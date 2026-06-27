@@ -1,4 +1,4 @@
-# UT-TDD Agent Harness
+# HELIX — 超個人開発システム（UT-TDD Agent Harness を土台とする）
 
 ## Claude Code Read Order
 
@@ -27,6 +27,39 @@ use `ut-tdd`, not legacy commands.
 ADR-001 is binding: source concepts may be used as design source material, but
 UT-TDD implementation is TypeScript/Bun. old W1-W3a Python is not
 current product runtime.
+
+## HELIX 再構築方針（現行・最優先）
+
+本リポジトリは **HELIX（超個人開発システム）** を構築する場である。HELIX は別プロジェクトではなく、
+**UT-TDD Agent Harness の「仕組み」をそのまま土台に、その上へ HELIX の機能を積んで harness 自身を
+HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
+`docs/design/helix/L0-charter/helix-charter_v0.1.md`（status=confirmed, 10 本柱 P0–P9）と起票
+`docs/plans/PLAN-L0-01-helix-charter.md`。
+
+### precedence（拘束原則）
+
+- **仕組み（V モデル工程・gate・state DB・harness ルール）= UT-TDD ハーネスが上**。
+- **個別機能（command / skill 等の中身）= 旧 HELIX（`RetryYN/ai-dev-kit-vscode`）が先行、機能ソースとして上**。
+- ただし **個別機能は仕組みを超えない** — 旧 HELIX の機能は harness の仕組みに従属して差し込む（仕組みを曲げない）。
+- ADR-001 継続: 旧 HELIX の機能ロジックは **TS/Bun で再実装**（Python を runtime に持ち込まない）。
+
+### 進め方（design-driven 漸進）
+
+- harness の V モデルを **L0 から Forward に 1 層ずつ設計で進める**。各層で**その粒度に合う旧 HELIX の
+  個別機能を突き合わせ → 取捨選択 → 機能一覧（FR）を都度更新 → 名称も揃えて登録**する。
+- 取捨選択は粒度を合わせる: L1 = 機能エリア（BR/NFR）、L3 = 機能ユニット（FR）、L4–L6 = command/algorithm。
+- 大きな一括 import（capability map / bulk import）はしない。
+
+### 自律境界（charter §3）
+
+- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。
+- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。
+
+### リネーム方針（段階）
+
+- product 名 / prose は **HELIX** へ移行中。**機械識別子（CLI `ut-tdd`、`.ut-tdd/`、`area=harness`、
+  rule-drift marker）は据え置き**で、CLI/dir は後日 **専用 migration PLAN** で atomic に改名する。
+  そのため本書下部および各所の `ut-tdd ...` コマンド表記・Adapter Rule Markers は**現時点では変更しない**。
 
 ## Purpose
 

@@ -1,8 +1,9 @@
 <div align="center">
 
-# 🧭 UT-TDD Agent Harness
+# 🧭 HELIX — 超個人開発システム
 
-### AI 実装エージェントを、チーム開発で _安全に_ 使うための検証・開発基盤
+### 企画・要求・デザインモックを人が決めれば、あとは AI が完成まで _安全に_ 自走する ── その検証・開発基盤
+### <sub>土台 = **UT-TDD Agent Harness**（V-model × 駆動モデル × `harness.db` の「仕組み」）</sub>
 
 **V-model** × **駆動モデル** が **`harness.db`** を通じてサイクルを回し、品質を機械で守る。
 provider の API キーは、リポジトリに置かない。
@@ -25,6 +26,16 @@ provider の API キーは、リポジトリに置かない。
 </div>
 
 ---
+
+> [!IMPORTANT]
+> **本リポジトリは HELIX（超個人開発システム）として再構築中です。**
+> 土台は **UT-TDD Agent Harness の「仕組み」**（V-model・gate・`harness.db`）。その上に旧 HELIX 由来の
+> 個別機能を **設計で取捨選択しながら** 積み、harness 自身を HELIX へ進化させます。
+>
+> - **precedence**: 仕組み = harness が上 ／ 個別機能 = 旧 HELIX が上、ただし **個別機能は仕組みを超えない**。
+> - **スコープ転換**: 以下には **team 委譲** 機能の記述が残りますが、これは harness 由来の既存機構です。
+>   HELIX の製品スコープでは **team 運用は非目標**、**個人開発の AI 委譲（超個人開発）** が主軸。
+> - 北極星ビジョン = `docs/design/helix/L0-charter/helix-charter_v0.1.md`（10 本柱 P0–P9）。詳細は `CLAUDE.md`。
 
 ## 🔥 なぜ作ったのか
 
@@ -339,5 +350,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\ut-tdd.ps1 doctor
 
 <div align="center">
 <br>
-<sub><b>UT-TDD Agent Harness</b> — TypeScript core · ADR-001<br>土台が、その上で動くプロダクト開発を安全にする。</sub>
+<sub><b>HELIX</b> — 超個人開発システム（土台: <b>UT-TDD Agent Harness</b>）· TypeScript core · ADR-001<br>人が上流を決めれば、あとは AI がガードレール内で完成まで自走する。</sub>
 </div>

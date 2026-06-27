@@ -1,4 +1,4 @@
-# Codex CLI - UT-TDD Agent Harness
+# Codex CLI — HELIX（UT-TDD Agent Harness 土台）
 
 This file is the Codex CLI project rules for this repository.
 
@@ -47,6 +47,23 @@ harness implementation language.
 `docs/archive/` is not canonical; it is historical material only. The HELIX
 vendor snapshot has been removed now that the fork is complete (see
 `docs/migration/helix-fork-completion-plan.md` §11).
+
+## HELIX 再構築方針（現行・最優先 / Claude と共通）
+
+本リポジトリは **HELIX（超個人開発システム）** を構築する場であり、**UT-TDD Agent Harness の
+「仕組み」を土台に harness 自身を HELIX へ進化させる**。北極星は L0 企画書
+`docs/design/helix/L0-charter/helix-charter_v0.1.md`（confirmed, P0–P9）。詳細は `CLAUDE.md`
+同名セクションと同一。要点のみ:
+
+- **precedence**: 仕組み（V モデル・gate・state DB・harness ルール）= UT-TDD ハーネスが上。個別機能
+  （command/skill の中身）= 旧 HELIX が機能ソースとして上。ただし **個別機能は仕組みを超えない**
+  （harness の仕組みに従属して差し込む）。ADR-001 継続で旧ロジックは **TS/Bun 再実装**。
+- **進め方**: L0 から Forward に 1 層ずつ。各層で粒度を合わせて旧 HELIX 機能を取捨選択し、機能一覧を
+  都度更新・名称を揃えて登録（一括 import はしない）。L1=機能エリア / L3=機能ユニット / L4–L6=command。
+- **自律境界**: 人＝L0/L1/L2（モックが最後）＋ L3 承認のみ。AI＝L3 起草＋L4 以降〜GitHub を完全自動。
+- **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `ut-tdd`・`.ut-tdd/`・`area=harness`・
+  rule-drift marker）は据え置き**、後日 専用 migration PLAN で atomic 改名。よって下部 Adapter Rule
+  Markers と `ut-tdd ...` 表記は現時点では変更しない。
 
 ## Session Start
 
