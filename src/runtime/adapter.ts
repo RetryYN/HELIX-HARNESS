@@ -278,6 +278,11 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
   const args = isCodex
     ? [
         CODEX_STDIN_ARGS[0],
+        // HELIX hybrid premise: when actually executing (not dry-run), Codex acts as a
+        // writing worker, so grant the workspace-write sandbox. Dry-run stays read-only.
+        // (`codex exec` is headless; workspace-write lets it apply patches in-repo without
+        // prompts. .codex/hooks.json work-guard still governs foreign edits.)
+        ...(intent.execute ? ["--sandbox", "workspace-write"] : []),
         ...(intent.model ? [CODEX_MODEL_FLAG, intent.model] : []),
         CODEX_STDIN_ARGS[1],
       ]

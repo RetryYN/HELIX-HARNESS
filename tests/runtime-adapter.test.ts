@@ -56,6 +56,26 @@ describe("runtime adapter plan", () => {
     expect(plan.plan_id).toBe("PLAN-L4-99-x");
   });
 
+  it("U-ADAPTER-007: grants codex workspace-write sandbox only on execute (HELIX hybrid worker)", () => {
+    const dry = buildAdapterPlan(
+      { provider: "codex", role: "se", task: "implement", model: "gpt-5.3-codex" },
+      "hybrid",
+    );
+    expect(dry.dry_run).toBe(true);
+    expect(dry.args).not.toContain("--sandbox");
+    expect(dry.args).not.toContain("workspace-write");
+
+    const exec = buildAdapterPlan(
+      { provider: "codex", role: "se", task: "implement", model: "gpt-5.3-codex", execute: true },
+      "hybrid",
+    );
+    expect(exec.dry_run).toBe(false);
+    expect(exec.args).toContain("--sandbox");
+    expect(exec.args).toContain("workspace-write");
+    // sandbox flag sits after the `exec` sentinel (before the stdin `-` sentinel).
+    expect(exec.args.indexOf("--sandbox")).toBeGreaterThan(exec.args.indexOf(CODEX_STDIN_ARGS[0]));
+  });
+
   it("marks unavailable provider as not available", () => {
     const plan = buildAdapterPlan({ provider: "claude", role: "tl", task: "review" }, "codex-only");
     expect(plan.available).toBe(false);
