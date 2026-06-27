@@ -31,6 +31,11 @@ dependencies:
 
 # PLAN-L4-50: P2 hybrid orchestration + P7 共有メモリ 機能追加
 
+> **訂正・superseded (2026-06-28)**: 本 PLAN を `kind=design` master_hub で起票したのは Add-feature
+> ワークフロー（`docs/process/modes/add-feature.md` = `kind=add-design`(L3-L6) + `kind=add-impl`(L7)、
+> route B bottom-up）の誤適用だった。正しい add-design として **PLAN-L6-50-helix-orchestration-memory**
+> が本 PLAN を supersede する。設計サマリ・実行は L6-50（および後続 add-impl / Reverse）へ移管。
+
 ## §0 役割 / 前提
 
 HELIX を **Claude Code ↔ Codex 連携前提のマルチエージェント・オーケストレーション**に寄せる機能追加（PO 指示）。UT ハーネスの standalone 単体ベースは縮退モード扱いとし、**hybrid Claude+Codex を foundation** に据える。当面の駆動目的＝**作業を Codex へ分散し main(Claude) budget を節約**。L1 trace（BR-07 loop-eng / BR-12 2層メモリ / NFR-03 hybrid 前提）は solo 変換 PLAN-L1-06 で確定（carry）。
