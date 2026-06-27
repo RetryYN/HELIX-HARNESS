@@ -21,7 +21,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 | NFR-ID | 非機能要求 | 詳細 |
 |--------|-----------|------|
-| **NFR-01** | **cross-platform native** — Windows / macOS / Linux を全て第一級サポート | Windows = PowerShell entrypoint / macOS・Linux = bash entrypoint。WSL2 は任意互換環境 (必須外)。Git Bash 依存は局所化。**handover 保持期間 30 日 archive + 90 日削除 (B7=a)** で長期 stability 担保 |
+| **NFR-01** | **cross-platform native（HELIX solo narrow）** — Windows / macOS / Linux で動くが、HELIX solo では **「開発者本人の単一プラットフォームが第一級」**（team 全体での多 OS 同時第一級保証は不要）。移植性は goal として維持 | Windows = PowerShell entrypoint / macOS・Linux = bash entrypoint。WSL2 は任意互換環境 (必須外)。Git Bash 依存は局所化。**handover 保持期間 30 日 archive + 90 日削除 (B7=a)** で長期 stability 担保。**solo 改訂 (PLAN-L1-06)**: Windows 第一級の team 前提を「本人環境第一級」へ narrow |
 | **NFR-06** | **fail-close** — gate / lint は安全側に倒し、silent pass を許さない。**FE detector 5 軸決定論性適用** (A-52 audit I-03): drive=fe 時は fe-detector-spec.md の 5 軸 (mock-promotion / design-token-drift / a11y-regression / visual-regression / state-transition-drift、axis-15〜19) の pass 証跡を必須化し fail-close 対象とする (FR-L1-22 連動) | subagent guard: blockOnFailure=true / gate-checks.yaml: exit 2 on fail / stdin 読取失敗も block / FE detector 5 軸 fail-close (drive=fe 時、fe-detector-spec.md) |
 | **NFR-16** | **onboarding 互換性** — 既存プロジェクトへの途中導入時、既存 docs / コード / state の不整合を block せず段階移行 | FR-L1-44 連動。既存資産を harness state に段階的に取り込み、初回 import でプロジェクトを止めない |
 
@@ -29,7 +29,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 | NFR-ID | 非機能要求 | 詳細 |
 |--------|-----------|------|
-| **NFR-07** | **実務で機能する完成度** — 部分 MVP でなく、成功条件 5 つを総合的に満たして初めて価値 (MVP は存在しない) | 成功条件: ① L0-L14 通し実行 / ② 複数人 team gate 回転 / ③ AI 委譲で回帰なし / ④ ダッシュボード進捗可視 / ⑤ PoC 契約化合流 |
+| **NFR-07** | **実務で機能する完成度** — 部分 MVP でなく、成功条件 5 つを総合的に満たして初めて価値 (MVP は存在しない) | 成功条件: ① L0-L14 通し実行 / ② **solo+AI roster の gate 回転（worker≠verifier の役割境界が回る）** / ③ AI 委譲で回帰なし / ④ ダッシュボード進捗可視 / ⑤ PoC 契約化合流（**solo 改訂 PLAN-L1-06**: ②「複数人 team」→「solo+AI roster」） |
 | **NFR-12** | **machine × AI 2 層補完機構** — Gate 判定・lint・detector は機械 (決定論的 static check) が一次、AI レビューが二次補完。両者の責務境界を明示し silent pass を防ぐ。**課金モード制約** (A-52 audit C-02): subscription / API credit の使い分けを harness が管理し、**サブスク内継続動作を default** とする (continuous-run-context-management.md §課金の制約、2026/6/15 Agent SDK クレジット分離対応)。context 0.70 閾値到達時の handover → fresh 再起動は NFR-15 server-optional と整合 | concept §audit-framework §17 / FR-L1-05 (static gate) + FR-L1-19/20 (Learning Engine + 観測) で 2 層運用 / continuous-run-context-management.md (課金・context 閾値) |
 | **NFR-15** | **server-optional 拡張** — Phase A (local DB + local dashboard) は server 不要、Phase B で server sync を opt-in 追加可能。harness core は local-first を維持し server を必須条件にしない | dashboard Phase A 必須 / Phase B 拡張 (BR-20 / FR-L1-20 / L3-L4 carry、PGlite + ElectricSQL ADR-002 候補)。**Claude ↔ Codex provider 間 handover** (FR-L1-42、F5=a) で多 provider 拡張は将来対応 (現状 Claude+Codex のみ) |
 
