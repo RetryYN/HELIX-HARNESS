@@ -4,10 +4,37 @@ title: "PLAN-L6-50 (add-design): P2 orchestration + P7 memory 機能設計 (Add-
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 created: 2026-06-28
 updated: 2026-06-28
 owner: AIM + TL
+review_evidence:
+  - reviewer: codex (gpt-5.3-codex)
+    review_kind: cross_agent
+    reviewed_at: "2026-06-28T16:30:00+09:00"
+    tests_green_at: "2026-06-28T16:25:00+09:00"
+    verdict: pass
+    worker_model: claude-opus-4-8
+    reviewer_model: gpt-5.3-codex
+    scope: "L6 function-design (9 契約) ⇔ test-design (9 oracle) の cross-runtime review。生成=Claude(Opus)、判断=Codex(別 runtime)。VERDICT PASS (Critical 0)。Important 4 件 (selectVerifier hybrid-unavailable fail-close / LoopState・loop_iterations の blockedReason 列 / writeMemory secret reject 明確化 / evaluateStop 必須フィールド欠落 fail-close) を凍結前に design+test-design へ反映済。pair-freeze 孤児 0、P8 違反なし"
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/orchestration tests/memory"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-28T16:25:00+09:00"
+        evidence_path: tests/orchestration/orchestration.test.ts
+        output_digest: "sha256:ea07c58d88fc5f1fa745a965f629f2aedba0f855fdece86ac37631577628c45a"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-28T16:25:00+09:00"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+pair_artifact: docs/test-design/helix/orchestration-memory.md
 agent_slots:
   - role: aim
     slot_label: "AIM — 影響範囲特定・機能設計・監視"
@@ -89,17 +116,17 @@ HELIX を Claude+Codex マルチエージェント・オーケストレーショ
 ### Step 2: [直列] add-design = L6 機能設計（function-spec ① 確定）
 > 直列理由: downstream_dependency — 機能契約が実装の前提。
 各モジュールの function-spec（型 body・契約・擬似コード）を `docs/design/helix/L6-function-design/orchestration-memory.md` に確定。coding-rule SSoT delta 反映。
-- 進捗: 🔄 function-design 起草済（9 契約関数 + 型 + 改修 delta + fail-safe + storage）。freeze 判定待ち。
+- 進捗: ✅ function-design 確定（9 契約関数 + 型 + 改修 delta + fail-safe + storage、cross-review Important 反映済）。
 
 ### Step 3: [直列] test-design pair-freeze（①⇔③、片肺禁止）
 > 直列理由: downstream_dependency — design を test-design と対凍結。
 `docs/test-design/helix/orchestration-memory.md` に U-ORCH/U-MEM oracle 9 本を起票し function-spec と pair-freeze。coverage 単独 pass 禁止。
-- 進捗: 🔄 test-design 起草済（9 oracle、契約 1:1、孤児 0）。① ⇔ ③ pair-freeze 判定待ち。
+- 進捗: ✅ test-design 確定（9 oracle、契約 1:1、孤児 0、forward-citation スタブ充足）。① ⇔ ③ pair-freeze 完了。
 
 ### Step 4: [直列] review（cross-runtime）→ add-design freeze
 > 直列理由: downstream_dependency — 定量(plan lint/doctor)→定性レビュー。
 tl review（frontier-reviewer class）/ intra_runtime_subagent 記録（tests_green_at ≤ reviewed_at）→ add-design freeze。後続 = `kind=add-impl` PLAN(L7) を本 PLAN を parent に起票。
-- 進捗: ⬜
+- 進捗: ✅ cross_agent review（Codex, VERDICT PASS / Critical 0、Important 4 反映）→ **add-design freeze（status=confirmed）**。次 = add-impl(L7) を本 PLAN parent で起票し writable Codex へ実装分散。
 
 ## §3.1 実装計画
 

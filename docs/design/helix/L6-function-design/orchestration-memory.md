@@ -60,6 +60,7 @@ interface LoopState {
   lastVerdict: Verdict;
   workerProvider: Provider;
   verifierProvider: Provider | null;   // standalone fallback では worker と同値 + blockedReason
+  blockedReason: string | null;        // "intra_runtime_fallback" / "cross_runtime_unavailable" 等。null=正常
   windowOpensAt: string;               // ISO8601。within_time_window 判定の下端
   windowClosesAt: string;              // ISO8601。これを過ぎたら resume しない
   costUsd: number;                     // 累積。cost_budget stop の入力
@@ -105,13 +106,13 @@ interface MemoryEntry {
 
 | 関数 | signature | DbC |
 |------|-----------|-----|
-| `canResume` | `(s: LoopState, now: string) => boolean` | **純関数**。`status==="running" && now∈[windowOpensAt,windowClosesAt] && lastVerdict!=="pass" && iteration<maxIterations` の **AND**。1 つでも偽 → false（旧 auto_run_engine 3 条件の TS 化、carry 条件を内包） |
-| `evaluateStop` | `(rules: StopRule[], s: LoopState, probe: StopProbe) => StopDecision` | **純関数**（I/O は probe 注入）。最初に成立した rule で stop。`verdict`→`lastVerdict==="pass"`、`count`→`iteration>=threshold`、`cost_budget`→`costUsd>=threshold`、`file_exists`→`probe.exists(path)`、`no_progress`→`probe.noProgress(threshold)`、`custom`→`probe.custom()`。未知 reason は throw せず `{stop:true,reason:null,onFailure:"escalate"}`（fail-close） |
-| `selectVerifier` | `(workerProvider: Provider, mode: ExecutionMode) => { provider: Provider; blockedReason: string \| null }` | **純関数**。hybrid → worker と異なる provider を返す（`blockedReason=null`）。それ以外（single-runtime）→ worker と同 provider + `blockedReason="intra_runtime_fallback"`。**hybrid で worker と同 provider を返すことは無い**（BLOCKED_SELF_DELEGATION の core） |
-| `tick` | `(s: LoopState, rules: StopRule[], deps: TickDeps) => Promise<LoopState>` | orchestration。`canResume` 偽 → state 不変で返す。真 → `evaluateStop`→stop なら `onFailure` 経路（escalate/retry/abort）→ worker dispatch → verifier dispatch（`selectVerifier`）→ `loop_iterations` 追記 → iteration++ で新 state。**副作用は deps 経由のみ**、token を state/log に書かない |
+| `canResume` | `(s: LoopState, now: string) => boolean` | **純関数**。旧 auto_run_engine の **3 条件** `status==="running"` ∧ `within_time_window` ∧ `should_schedule` を TS 化。`within_time_window` = `now∈[windowOpensAt,windowClosesAt]`（両端含む ≤）、`should_schedule` = `lastVerdict!=="pass"` ∧ `iteration<maxIterations`（carry 述語）。展開すると **計 4 述語の AND**、1 つでも偽 → false |
+| `evaluateStop` | `(rules: StopRule[], s: LoopState, probe: StopProbe) => StopDecision` | **純関数**（I/O は probe 注入）。最初に成立した rule で stop。`verdict`→`lastVerdict==="pass"`、`count`→`iteration>=threshold`、`cost_budget`→`costUsd>=threshold`、`file_exists`→`probe.exists(path)`、`no_progress`→`probe.noProgress(threshold)`、`custom`→`probe.custom()`。**必須フィールド欠落の fail-close**: `count`/`cost_budget`/`no_progress` で `threshold==null`、`file_exists` で `path==null` の rule は評価不能 → `{stop:true,reason:null,onFailure:"escalate"}`。未知 reason も同様（throw せず escalate で安全側に倒す） |
+| `selectVerifier` | `(workerProvider: Provider, mode: ExecutionMode) => { provider: Provider; blockedReason: string \| null }` | **純関数**（provider 選定のみ。可用性 I/O は持たない）。hybrid → worker と異なる provider を返す（`blockedReason=null`）。それ以外（single-runtime）→ worker と同 provider + `blockedReason="intra_runtime_fallback"`。**hybrid で worker と同 provider を返すことは無い**（BLOCKED_SELF_DELEGATION の core） |
+| `tick` | `(s: LoopState, rules: StopRule[], deps: TickDeps) => Promise<LoopState>` | orchestration。`canResume` 偽 → state 不変で返す。真 → `evaluateStop`→stop なら `onFailure` 経路（escalate/retry/abort）→ worker dispatch → `selectVerifier` で verifier provider 決定 → verifier dispatch → `loop_iterations` 追記 → iteration++ で新 state。**hybrid 自己評価 fail-close**: hybrid で選定 verifier provider が dispatch 時に利用不能（`deps.providerAvailable(provider)===false`）なら **worker と同 runtime で代替検証せず escalate**（`status="stopped"`, `blockedReason="cross_runtime_unavailable"`）。worker 自身の runtime から `pass` を出さない。**副作用は deps 経由のみ**、token を state/log に書かない |
 | `classifyRecovery` | `(s: LoopState, signals: RecoverySignals) => RecoveryAction` | **純関数**。旧 RecoveryEngine C1-C4: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 → `{kind:"escalate"\|"retry"\|"abort", reason}`。閾値内 → `{kind:"continue"}` |
 | `claimNextJob` | `(db: Database, provider: Provider) => Job \| null` | `BEGIN IMMEDIATE` トランザクション内で `status="queued"` の最優先 1 件を `status="claimed", provider=:provider` に更新して返す。無ければ null。**並行 claim はトランザクション直列化で二重取得しない**（旧 job_queue 排他の TS 移植） |
-| `writeMemory` | `(layer: MemoryLayer, key: string, body: string, deps: MemoryDeps) => MemoryEntry` | secret パターン検査（既存 `SECRET_PATTERN`）で body を拒否/strip → harness.db `upsertRow` + `.ut-tdd/memory/<layer>.jsonl` 追記の **2 層投影**。同 key 既存 → `supersedes` に旧 id を載せて新 entry（履歴非破壊） |
+| `writeMemory` | `(layer: MemoryLayer, key: string, body: string, deps: MemoryDeps) => MemoryEntry` | **secret 命中時は書込拒否（throw、reject）— strip して部分保存はしない**（部分保存は「保存された」誤解と漏洩境界の曖昧化を生む）。既存 `SECRET_PATTERN` で body を検査し、命中 0 のときのみ harness.db `upsertRow` + `.ut-tdd/memory/<layer>.jsonl` 追記の **2 層投影**。同 key 既存 → `supersedes` に旧 id を載せて新 entry（履歴非破壊） |
 | `listMemory` | `(layer: MemoryLayer, deps: MemoryDeps) => MemoryEntry[]` | 指定層の有効 entry（superseded 除く）を `createdAt` 昇順で返す。**純読取**、書込なし |
 | `surfaceMemory` | `(deps: MemoryDeps) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない |
 
@@ -138,7 +139,7 @@ interface MemoryEntry {
 ### §2.6 ストレージ / 配置
 
 - loop state: `.ut-tdd/state/loop/<planId>.json`（runtime state、非追跡）。
-- 投影: harness.db `loop_iterations`（plan_id/iteration/worker_provider/verifier_provider/verdict/cost_usd/stop_reason）/ `jobs`。
+- 投影: harness.db `loop_iterations`（plan_id/iteration/worker_provider/verifier_provider/verdict/cost_usd/stop_reason/**blocked_reason**）/ `jobs`。`blocked_reason` で hybrid 自己評価 fallback・cross_runtime_unavailable を後段 doctor（`verifier-provider-mismatch`）が検査できる。
 - memory: harness.db `harness_memory_entries` / `project_memory_entries` ＋ `.ut-tdd/memory/<layer>.jsonl`（**git 共有 = Claude も Codex も読める**）。
 - `.claude/agent-memory/` silo は廃止（per-agent・Codex 非共有・asset-drift 衝突の解消）。
 

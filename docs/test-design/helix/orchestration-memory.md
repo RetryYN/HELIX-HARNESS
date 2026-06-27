@@ -32,26 +32,31 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 
 ## §2 oracle 定義
 
-### U-ORCH-001 — `canResume` は 3 条件 AND
+### U-ORCH-001 — `canResume` は（3 条件＝計 4 述語の）AND
 - **観測**: `status`/時刻 window/`lastVerdict`/`iteration<max` の各組合せで `canResume(s, now)`。
-- **期待**: 全条件成立のみ true。`status!=="running"` / `now` が window 外 / `lastVerdict==="pass"` /
-  `iteration>=max` のいずれか 1 つでも false → **false**。境界: `now===windowClosesAt` は含む（≤）。
+- **期待**: 旧 auto_run_engine 3 条件（`status` ∧ `within_time_window` ∧ `should_schedule`、後者は
+  `lastVerdict!=="pass"` ∧ `iteration<max` の 2 述語）= 展開して **4 述語が全成立のみ true**。`status!=="running"` /
+  `now` が window 外 / `lastVerdict==="pass"` / `iteration>=max` のいずれか 1 つでも → **false**。境界: `now===windowClosesAt` は含む（≤）。
 
-### U-ORCH-002 — `evaluateStop` 各 reason + 未知 fail-close
-- **観測**: 各 `StopReason` の rule 配列を、成立/非成立する `LoopState`+`probe` で評価。未知 reason も注入。
+### U-ORCH-002 — `evaluateStop` 各 reason + 欠落/未知 fail-close
+- **観測**: 各 `StopReason` の rule 配列を、成立/非成立する `LoopState`+`probe` で評価。**必須フィールド欠落
+  rule**（`count`/`cost_budget`/`no_progress` で `threshold` 無し、`file_exists` で `path` 無し）と未知 reason も注入。
 - **期待**: `verdict`(pass)/`count`(≥threshold)/`cost_budget`(≥)/`file_exists`(probe true)/`no_progress`/
   `custom` が各々成立時に `stop:true` と当該 reason・`onFailure` を返す。**最初に成立した rule** を採用。
-  どれも非成立 → `stop:false`。未知 reason → `{stop:true,reason:null,onFailure:"escalate"}`（throw しない）。
+  どれも非成立 → `stop:false`。**必須フィールド欠落 rule・未知 reason → `{stop:true,reason:null,onFailure:"escalate"}`**（throw しない、安全側）。
 
 ### U-ORCH-003 — `selectVerifier` 自己評価禁止
 - **観測**: `selectVerifier("codex", "hybrid")` / `("claude","hybrid")` / `(_, "codex-only")` / `(_, "claude-only")`。
 - **期待**: hybrid → worker と**異なる** provider、`blockedReason===null`。single-runtime → worker と
   同 provider だが `blockedReason==="intra_runtime_fallback"`。**hybrid で worker と同 provider を返さない**。
 
-### U-ORCH-004 — `tick` の状態遷移
-- **観測**: (a) `canResume` 偽な state、(b) stop 成立 state、(c) 継続 state を、mock `TickDeps` で `tick`。
+### U-ORCH-004 — `tick` の状態遷移 + hybrid 自己評価 fail-close
+- **観測**: (a) `canResume` 偽な state、(b) stop 成立 state、(c) 継続 state、(d) hybrid で選定 verifier provider
+  が利用不能（`deps.providerAvailable→false`）な state を、mock `TickDeps` で `tick`。
 - **期待**: (a) state 不変で返る（dispatch 呼ばれない）。(b) `onFailure` 経路が呼ばれ loop が `stopped`。
-  (c) worker→verifier dispatch、`loop_iterations` 追記、`iteration` が +1。**token を state/log に書かない**。
+  (c) worker→verifier dispatch、`loop_iterations` 追記（`blocked_reason` 記録）、`iteration` が +1。
+  **(d) worker と同 runtime で代替検証せず `status="stopped"`・`blockedReason="cross_runtime_unavailable"` で
+  escalate（worker の runtime から `pass` を出さない）**。全ケースで **token を state/log に書かない**。
 
 ### U-ORCH-005 — `classifyRecovery` C1-C4
 - **観測**: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 の各 signal、および閾値内 signal。
@@ -65,7 +70,8 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 ### U-MEM-001 — `writeMemory` 2 層投影 + secret + supersede
 - **観測**: 通常 body / `SECRET_PATTERN` 命中 body / 同 key 再書込 を mock `MemoryDeps` で。
 - **期待**: 通常 → harness.db row ＋ `.ut-tdd/memory/<layer>.jsonl` の **両方**に投影、`id` は stableId。
-  secret 命中 → 書込拒否（両層に残らない）。同 key 再書込 → 新 entry の `supersedes` に旧 id（旧 entry は履歴に残る）。
+  **secret 命中 → throw で書込拒否（reject、strip 部分保存はしない。両層に一切残らない）**。同 key 再書込 →
+  新 entry の `supersedes` に旧 id（旧 entry は履歴に残る）。
 
 ### U-MEM-002 — `listMemory` 有効集合
 - **観測**: superseded を含む entry 群に対し `listMemory(layer)`。
