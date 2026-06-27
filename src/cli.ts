@@ -56,6 +56,8 @@ import {
   saveVerificationEvidence,
   verificationRecommendationMermaid,
 } from "./lint/verification-profile";
+import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
+import { fileMemoryDeps } from "./memory/memory-store";
 import { lintPlanWithGate } from "./plan/lint";
 import {
   type AdapterContextInjection,
@@ -410,6 +412,13 @@ function adapterExecutionEnv(
   return { ...env, ...extraEnv };
 }
 
+function parseMemoryLayer(layer: string): MemoryLayer | null {
+  if (layer === "harness" || layer === "project") return layer;
+  process.stderr.write(`invalid memory layer: ${layer} (expected harness|project)\n`);
+  process.exitCode = 1;
+  return null;
+}
+
 const program = new Command();
 program
   .name("ut-tdd")
@@ -506,6 +515,53 @@ mcpProfile
       process.stdout.write(`  - ${check.ok ? "ok" : "missing"} ${check.name}: ${check.message}\n`);
     }
     process.exitCode = result.ready ? 0 : 1;
+  });
+
+const memory = program.command("memory").description("shared harness/project memory");
+memory
+  .command("write <layer> <key> <body>")
+  .description("write a shared memory entry")
+  .action((layer: string, key: string, body: string) => {
+    const memoryLayer = parseMemoryLayer(layer);
+    if (!memoryLayer) return;
+    const deps = fileMemoryDeps({ root: process.cwd() });
+    try {
+      const entry = writeMemory({ layer: memoryLayer, key, body }, deps);
+      process.stdout.write(`${entry.id}\n`);
+    } catch (error) {
+      if (error instanceof Error && /secret policy/.test(error.message)) {
+        process.stderr.write("rejected: secret detected\n");
+        process.exitCode = 1;
+        return;
+      }
+      throw error;
+    }
+  });
+
+memory
+  .command("list <layer>")
+  .description("list active shared memory entries")
+  .option("--json", "JSON output")
+  .action((layer: string, opts: { json?: boolean }) => {
+    const memoryLayer = parseMemoryLayer(layer);
+    if (!memoryLayer) return;
+    const entries = listMemory(memoryLayer, fileMemoryDeps({ root: process.cwd() }));
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(entries, null, 2)}\n`);
+      return;
+    }
+    for (const entry of entries) {
+      process.stdout.write(`[${entry.id}] ${entry.key}: ${entry.body}\n`);
+    }
+  });
+
+memory
+  .command("show")
+  .description("surface harness memory for session start")
+  .action(() => {
+    for (const line of surfaceMemory(fileMemoryDeps({ root: process.cwd() }))) {
+      process.stdout.write(`${line}\n`);
+    }
   });
 
 mcp

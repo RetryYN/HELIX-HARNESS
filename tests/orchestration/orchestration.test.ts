@@ -1,7 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { describe, expect, it, vi } from "vitest";
 import { selectVerifier } from "../../src/orchestration/cross-verifier";
+import { openJobQueue } from "../../src/orchestration/job-queue";
 import { classifyRecovery, DIFF_ESCALATION_THRESHOLD } from "../../src/orchestration/loop-recovery";
-import { canResume } from "../../src/orchestration/loop-runner";
+import { canResume, type TickDeps, tick } from "../../src/orchestration/loop-runner";
 import type { LoopState, StopRule } from "../../src/orchestration/loop-state";
 import { evaluateStop, type StopProbe } from "../../src/orchestration/loop-stop-rules";
 
@@ -145,7 +149,87 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
     expect(selectVerifier("claude", "hybrid").provider).not.toBe("claude");
   });
 
-  it.todo("U-ORCH-004: tick は resume 偽で不変 / stop 経路 / iteration++ で token を漏らさない");
+  function makeTickDeps(input: Partial<TickDeps> = {}): TickDeps {
+    return {
+      mode: "hybrid",
+      now: vi.fn(() => "2026-06-28T00:30:00.000Z"),
+      providerAvailable: vi.fn(() => true),
+      runWorker: vi.fn(async () => {}),
+      runVerifier: vi.fn(async () => "pass" as const),
+      recordIteration: vi.fn(),
+      ...input,
+    };
+  }
+
+  it("U-ORCH-004: tick は resume 偽で不変 / stop 経路 / iteration++ で token を漏らさない", async () => {
+    const paused = { ...runningState, status: "paused" as const };
+    const pausedDeps = makeTickDeps();
+
+    await expect(tick(paused, [], pausedDeps)).resolves.toBe(paused);
+    expect(pausedDeps.runWorker).not.toHaveBeenCalled();
+    expect(pausedDeps.runVerifier).not.toHaveBeenCalled();
+    expect(pausedDeps.recordIteration).not.toHaveBeenCalled();
+
+    const stopDeps = makeTickDeps();
+    await expect(
+      tick(runningState, [{ reason: "count", threshold: 1, onFailure: "abort" }], stopDeps),
+    ).resolves.toEqual({ ...runningState, status: "stopped" });
+    expect(stopDeps.runWorker).not.toHaveBeenCalled();
+    expect(stopDeps.runVerifier).not.toHaveBeenCalled();
+    expect(stopDeps.recordIteration).toHaveBeenCalledWith({
+      planId: runningState.planId,
+      iteration: runningState.iteration,
+      workerProvider: "codex",
+      verifierProvider: null,
+      verdict: "fail",
+      stopReason: "count",
+      blockedReason: null,
+    });
+
+    const normalDeps = makeTickDeps({
+      runVerifier: vi.fn(async () => "fail" as const),
+    });
+    await expect(tick(runningState, [], normalDeps)).resolves.toEqual({
+      ...runningState,
+      iteration: 2,
+      lastVerdict: "fail",
+      verifierProvider: "claude",
+      blockedReason: null,
+      updatedAt: "2026-06-28T00:30:00.000Z",
+    });
+    expect(normalDeps.runWorker).toHaveBeenCalledWith(runningState);
+    expect(normalDeps.runVerifier).toHaveBeenCalledWith("claude", runningState);
+    expect(normalDeps.recordIteration).toHaveBeenCalledWith({
+      planId: runningState.planId,
+      iteration: runningState.iteration,
+      workerProvider: "codex",
+      verifierProvider: "claude",
+      verdict: "fail",
+      stopReason: null,
+      blockedReason: null,
+    });
+
+    const unavailableDeps = makeTickDeps({
+      providerAvailable: vi.fn(() => false),
+    });
+    await expect(tick(runningState, [], unavailableDeps)).resolves.toEqual({
+      ...runningState,
+      status: "stopped",
+      verifierProvider: null,
+      blockedReason: "cross_runtime_unavailable",
+    });
+    expect(unavailableDeps.runWorker).not.toHaveBeenCalled();
+    expect(unavailableDeps.runVerifier).not.toHaveBeenCalled();
+    expect(unavailableDeps.recordIteration).toHaveBeenCalledWith({
+      planId: runningState.planId,
+      iteration: runningState.iteration,
+      workerProvider: "codex",
+      verifierProvider: null,
+      verdict: "error",
+      stopReason: null,
+      blockedReason: "cross_runtime_unavailable",
+    });
+  });
 
   it("U-ORCH-005: classifyRecovery は C1-C4 を escalate/retry/abort/continue へ分類", () => {
     const quietSignals = {
@@ -183,5 +267,59 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
     });
   });
 
-  it.todo("U-ORCH-006: claimNextJob は BEGIN IMMEDIATE で競合 claim を二重取得しない");
+  it("U-ORCH-006: claimNextJob は BEGIN IMMEDIATE で競合 claim を二重取得しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-job-queue-"));
+    const dbPath = join(root, "jobs.sqlite");
+    const queue = openJobQueue(dbPath);
+
+    try {
+      queue.enqueue({
+        id: "job-late",
+        planId: "PLAN-L7-176",
+        priority: 20,
+        createdAt: "2026-06-28T00:00:02.000Z",
+      });
+      queue.enqueue({
+        id: "job-first",
+        planId: "PLAN-L7-176",
+        priority: 10,
+        createdAt: "2026-06-28T00:00:01.000Z",
+      });
+      queue.enqueue({
+        id: "job-second",
+        planId: "PLAN-L7-176",
+        priority: 10,
+        createdAt: "2026-06-28T00:00:02.000Z",
+      });
+
+      const first = queue.claimNextJob("codex");
+      const second = queue.claimNextJob("claude");
+      const third = queue.claimNextJob("codex");
+      const drained = queue.claimNextJob("claude");
+
+      expect(first).toMatchObject({
+        id: "job-first",
+        planId: "PLAN-L7-176",
+        priority: 10,
+        status: "claimed",
+        provider: "codex",
+        retryCount: 0,
+      });
+      expect(second).toMatchObject({
+        id: "job-second",
+        status: "claimed",
+        provider: "claude",
+      });
+      expect(third).toMatchObject({
+        id: "job-late",
+        status: "claimed",
+        provider: "codex",
+      });
+      expect(new Set([first?.id, second?.id, third?.id]).size).toBe(3);
+      expect(drained).toBeNull();
+    } finally {
+      queue.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

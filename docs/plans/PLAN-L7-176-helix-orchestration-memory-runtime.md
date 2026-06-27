@@ -1,0 +1,112 @@
+---
+plan_id: PLAN-L7-176-helix-orchestration-memory-runtime
+title: "PLAN-L7-176 (add-impl): P2/P7 runtime — tick / job-queue / memory 永続 + CLI (Codex 分散)"
+kind: add-impl
+layer: L7
+drive: agent
+status: confirmed
+created: 2026-06-28
+updated: 2026-06-28
+owner: AIM + TL
+parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
+review_evidence:
+  - reviewer: claude-opus-4-8
+    review_kind: cross_agent
+    reviewed_at: "2026-06-28T18:00:00+09:00"
+    tests_green_at: "2026-06-28T17:55:00+09:00"
+    verdict: pass
+    worker_model: gpt-5.3-codex
+    reviewer_model: claude-opus-4-8
+    scope: "P2/P7 runtime: tick (hybrid 自己評価 fail-close)/job-queue (BEGIN IMMEDIATE 二重 claim 回避)/loop-store (json I/O)/memory-store (jsonl 2 層永続, isSecretLike reject)/cli memory。Codex(worker) 実装、Claude(reviewer) が job-queue 排他・tick fail-close・secret reject・active/superseded 算出を精読確認。U-ORCH-004/006 + memory-store Red→Green、9 oracle 全 Green。harness.db 分析投影/observability doctor gate/asset-drift silo 除去は P9 carry。"
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/orchestration tests/memory"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-28T17:55:00+09:00"
+        evidence_path: tests/orchestration/orchestration.test.ts
+        output_digest: "sha256:d1eec04a210514b2253fc73fb88ed435fc5c23108b8acc4e152673dc0c155a30"
+      - kind: unit_test
+        command: "bun run vitest run tests/memory"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-28T17:55:00+09:00"
+        evidence_path: tests/memory/memory-store.test.ts
+        output_digest: "sha256:1a726f1bafe256d6e8ea5989d3efca1dbdccfb297846a29d5dfdda7d9b586ef6"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-28T17:55:00+09:00"
+        evidence_path: tsconfig.json
+        output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
+agent_slots:
+  - role: se
+    slot_label: "SE — Codex 実装 worker (writable, hybrid)"
+  - role: tl
+    slot_label: "TL — cross-runtime review (Claude)"
+generates:
+  - artifact_path: docs/plans/PLAN-L7-176-helix-orchestration-memory-runtime.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-REVERSE-176-helix-orchestration-memory-runtime.md
+    artifact_type: markdown_doc
+  - artifact_path: src/orchestration/job-queue.ts
+    artifact_type: source_module
+  - artifact_path: src/orchestration/loop-store.ts
+    artifact_type: source_module
+  - artifact_path: src/memory/memory-store.ts
+    artifact_type: source_module
+dependencies:
+  parent: PLAN-L6-50-helix-orchestration-memory
+  requires:
+    - PLAN-L6-50-helix-orchestration-memory
+    - PLAN-REVERSE-176-helix-orchestration-memory-runtime
+  references:
+    - docs/design/helix/L6-function-design/orchestration-memory.md
+    - src/orchestration/loop-runner.ts
+    - src/memory/index.ts
+---
+
+# PLAN-L7-176 (add-impl): P2/P7 runtime
+
+## §0 役割 / スコープ
+
+純粋契約コア（PLAN-L7-175）の上に **runtime（永続・実行・競合排他）**を載せる add-impl。**Codex=worker /
+Claude=reviewer**。設計の storage 方針（§2.6）に沿い **ファイル/専用ストア永続**で機能を完成させ、
+harness.db 分析投影（loop_iterations/jobs/memory 2 表）＋観測 doctor gate は **P9 観測強化として carry**
+（既存 db-projection-coverage/ingestion gate を本 PLAN で巻き込まない）。
+
+## §1 実装単位
+
+| module | 内容 | oracle |
+|--------|------|--------|
+| `src/orchestration/loop-store.ts` | LoopState の `.ut-tdd/state/loop/<planId>.json` I/O（read/write、注入 fs） | (tick の deps) |
+| `src/orchestration/loop-runner.ts`（改修） | `tick`（hybrid 自己評価 fail-close、stop 経路、iteration++、loop record） | U-ORCH-004 |
+| `src/orchestration/job-queue.ts` | `claimNextJob`（**専用** `bun:sqlite` `.ut-tdd/state/jobs.db`、`BEGIN IMMEDIATE` 競合排他） | U-ORCH-006 |
+| `src/memory/memory-store.ts` | 実 `MemoryDeps`（`.ut-tdd/memory/<layer>.jsonl` git 共有 SSoT、`isSecretLike` 再利用、stableId/now） | (U-MEM 実体) |
+| `src/cli.ts`（改修） | `ut-tdd memory write/list/show` subcommand（memory-store 経由） | (CLI surface) |
+| `src/lint/asset-drift.ts`（改修） | `.claude/agent-memory/` silo scan 除去（per-agent silo 廃止） | (silo 廃止) |
+
+## §2 進め方（Codex 分散・Red→Green）
+
+1. U-ORCH-004 / U-ORCH-006 の `it.todo` を実テスト（Red）へ展開し Codex 実装で Green。
+2. memory-store / cli は file-based で結合し、`ut-tdd memory` が動くことを確認。
+3. Claude が cross-runtime review（契約適合・fail-close・secret reject を精読）。
+
+## §3 DoD（達成）
+
+- [x] `tick`（U-ORCH-004）/ `claimNextJob`（U-ORCH-006）green、**9 oracle 全 Green（todo 解消）**。
+- [x] `ut-tdd memory write/list/show` がファイル永続（jsonl）で動作、secret reject、harness-only surface。
+- [x] typecheck/vitest/lint/doctor green、cross-runtime review 証跡（green_commands + 実 digest）。
+- [x] Reverse(PLAN-REVERSE-176) の L3 要件 back-fill（HR-BR-07R/12R/NFR-03R）と両 confirm。
+
+> 注: `.claude/agent-memory/` silo 廃止（asset-drift scan 除去）は §4 carry（P9 観測強化）へ。
+
+## §4 carry（P9 観測強化、別 add-impl）
+
+- harness.db への loop_iterations[blocked_reason] / jobs / memory 2 表 projection（分析・query）。
+- doctor `verifier-provider-mismatch`（loop_iterations 走査）/ `agent-memory-silo`。
+- `agent-guard` の BLOCKED_SELF_DELEGATION を `selectVerifier` へ集約（重複排除）。
