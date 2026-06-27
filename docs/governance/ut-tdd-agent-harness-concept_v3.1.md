@@ -93,6 +93,18 @@ AI 駆動開発の現実観察から、以下 4 問題が常態化している:
 | 構想書 v1.1 | チーム構造・理念・5 段階セキュリティ | 本書 §2-§9 でこれを実装層に落とす |
 | 運用ルール書 v1.1 | 日常フロー・PR/ブランチ規約・インシデント | 本書 §6-§7 + §9 でこれを CI / ハーネス層に組み込む |
 
+> **HELIX solo 読み替えコンベンション (PLAN-L1-06 Step 1、本書全体に適用)**: HELIX は超個人開発システムで、
+> companion 2 構想書（`ai-dev-team-*`）の「チーム構造・5 役割」は**機能ソース**として参照するが、HELIX では
+> **役割の担い手を solo+AI agent roster へ写像**する。precedence: **仕組み（V 工程・gate・mode・cross-review 強制・
+> CODEOWNERS/Branch Protection 等の機械機構）は不変**。変えるのは「誰が担うか」だけ —
+> 本書以降に現れる **mode owner / CODEOWNERS / 5 役割マトリクス（TL/QA/AIM/UIUX/PO）/「チーム共有」**は、
+> charter §3 の 3 層自律境界に従って読む:
+> - **人間（PO/RetryYN）は L0 企画・L1 業務要求・L2 デザインモック・L3 要件の承認のみ**に直接関与。
+> - **それ以外の役割 owner（tl/qa/aim/uiux）と L3 起草〜L7 実装〜L8–L14 検証〜PR/CI/merge/tag は AI agent が担い無人完走**（不可逆操作のみ escalate）。
+> - **CODEOWNERS / cross-agent review は「人を跨ぐ」でなく「別ランタイム/別モデルを跨ぐ」自己承認禁止**（P2 orchestration の worker≠verifier、§2.1.2.1）として読む。
+> - 「チーム共有 audit」は単一開発者の **GitHub 正本 + harness.db** 共有（[[helix-orchestration-memory]] P7 2 層メモリ）として読む。
+> 個別箇所での team→solo 逐条注記はこの大域コンベンションに集約し、scope（§2.1 「個人開発を AI に委譲」）と整合させる。
+
 3 文書は `docs/governance/` 配下に共存する:
 
 ```
