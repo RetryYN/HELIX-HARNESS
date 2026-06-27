@@ -144,6 +144,23 @@ const BP_SCRIPT = join("scripts", "setup-branch-protection.sh");
 const MANAGED_START = "<!-- UT-TDD:managed:start -->";
 const MANAGED_END = "<!-- UT-TDD:managed:end -->";
 const MERGEABLE_ADAPTER_DOCS = new Set(["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")]);
+const COMMITLINT_DOTFILE = "commitlint.config.js";
+
+/**
+ * package.json が既に commitlint 設定 (`"commitlint"` キー) を宣言しているか判定する純関数。
+ * repository-structure.md は commitlint を package.json に集約し root dotfile を増やさない方針
+ * (root config 6 枚上限) なので、宣言済みなら setup は重複する commitlint.config.js を emit しない。
+ * consumer の package.json に key が無ければ従来どおり dotfile を出す (非破壊・機能維持)。
+ */
+export function packageJsonDeclaresCommitlint(packageJson: string | null): boolean {
+  if (!packageJson) return false;
+  try {
+    const parsed = JSON.parse(packageJson) as Record<string, unknown>;
+    return Object.hasOwn(parsed, "commitlint");
+  } catch {
+    return false;
+  }
+}
 const CLEAN_REQUIRED_PATHS = [
   "README.md",
   "LICENSE",
@@ -513,7 +530,13 @@ export function emitSetup(plan: SetupPlan, templates: TemplateSet, deps: SetupDe
   const rendered = renderArtifacts(plan, templates);
   if (plan.dryRun) return rendered.map((r) => r.path);
   const written: string[] = [];
+  // governance (repository-structure.md): commitlint は package.json に集約し dotfile を増やさない。
+  // 対象 repo の package.json が既に commitlint を宣言済みなら、重複する root dotfile は emit しない。
+  const skipCommitlintDotfile = packageJsonDeclaresCommitlint(
+    deps.readText(join(deps.repoRoot, "package.json")),
+  );
   for (const r of rendered) {
+    if (r.path === COMMITLINT_DOTFILE && skipCommitlintDotfile) continue;
     const abs = join(deps.repoRoot, r.path);
     const existing = deps.readText(abs);
     const exists = existing !== null;

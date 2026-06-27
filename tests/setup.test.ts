@@ -10,6 +10,7 @@ import {
   emitSetup,
   loadTemplates,
   type ProjectScale,
+  packageJsonDeclaresCommitlint,
   planSetup,
   recommendPhase,
   recordSetupState,
@@ -236,6 +237,35 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }
+  });
+
+  it("U-SETUP-014: emitSetup skips the commitlint dotfile when package.json already declares commitlint", () => {
+    // 純関数: 宣言済み→true / 無し→false / 壊れ JSON→false / null→false。
+    expect(packageJsonDeclaresCommitlint('{"commitlint":{"extends":["x"]}}')).toBe(true);
+    expect(packageJsonDeclaresCommitlint('{"name":"x"}')).toBe(false);
+    expect(packageJsonDeclaresCommitlint("{ not json")).toBe(false);
+    expect(packageJsonDeclaresCommitlint(null)).toBe(false);
+
+    const plan = planSetup("0-A", { dryRun: false });
+
+    // package.json が commitlint を宣言 → governance 集約済み → dotfile を出さない。
+    const declared = mockDeps({ templates: baseTemplates });
+    declared.files.set(
+      join("/repo", "package.json"),
+      '{"name":"x","commitlint":{"extends":["c"]}}',
+    );
+    const writtenDeclared = emitSetup(plan, baseTemplates, declared);
+    expect(writtenDeclared).not.toContain("commitlint.config.js");
+    expect(declared.files.has(join("/repo", "commitlint.config.js"))).toBe(false);
+
+    // package.json に key 無し (generic consumer) → 従来どおり dotfile を emit (非破壊・機能維持)。
+    const undeclared = mockDeps({ templates: baseTemplates });
+    undeclared.files.set(join("/repo", "package.json"), '{"name":"x"}');
+    const writtenUndeclared = emitSetup(plan, baseTemplates, undeclared);
+    expect(writtenUndeclared).toContain("commitlint.config.js");
+    expect(undeclared.files.get(join("/repo", "commitlint.config.js"))).toContain(
+      "config-conventional",
+    );
   });
 
   it("U-SETUP-009: planSetup projects clean adapter templates for brownfield consumers", () => {
