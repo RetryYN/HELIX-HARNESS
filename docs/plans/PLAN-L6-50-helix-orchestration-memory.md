@@ -16,6 +16,10 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L6-50-helix-orchestration-memory.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L6-function-design/orchestration-memory.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/orchestration-memory.md
+    artifact_type: test_design
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 supersedes:
   - PLAN-L4-50-orchestration-memory-hybrid
@@ -84,13 +88,13 @@ HELIX を Claude+Codex マルチエージェント・オーケストレーショ
 
 ### Step 2: [直列] add-design = L6 機能設計（function-spec ① 確定）
 > 直列理由: downstream_dependency — 機能契約が実装の前提。
-各モジュールの function-spec（型 body・契約・擬似コード）を `docs/design/helix/L6-function-design/` 相当に確定。coding-rule SSoT delta 反映。drafting は subagent/Codex へ分散可。
-- 進捗: ⬜
+各モジュールの function-spec（型 body・契約・擬似コード）を `docs/design/helix/L6-function-design/orchestration-memory.md` に確定。coding-rule SSoT delta 反映。
+- 進捗: 🔄 function-design 起草済（9 契約関数 + 型 + 改修 delta + fail-safe + storage）。freeze 判定待ち。
 
 ### Step 3: [直列] test-design pair-freeze（①⇔③、片肺禁止）
 > 直列理由: downstream_dependency — design を test-design と対凍結。
-`docs/test-design/helix/` に U-* oracle を起票し function-spec と pair-freeze。coverage 単独 pass 禁止。
-- 進捗: ⬜
+`docs/test-design/helix/orchestration-memory.md` に U-ORCH/U-MEM oracle 9 本を起票し function-spec と pair-freeze。coverage 単独 pass 禁止。
+- 進捗: 🔄 test-design 起草済（9 oracle、契約 1:1、孤児 0）。① ⇔ ③ pair-freeze 判定待ち。
 
 ### Step 4: [直列] review（cross-runtime）→ add-design freeze
 > 直列理由: downstream_dependency — 定量(plan lint/doctor)→定性レビュー。
