@@ -18,8 +18,11 @@ dependencies:
   parent: null
   requires: []
   blocks:
-    - PLAN-L1-01-business-requirements
+    - PLAN-L1-06-helix-solo-conversion
   references: []
+# 訂正 (2026-06-28): 旧 blocks=PLAN-L1-01-business-requirements は harness の confirmed
+# team 版 L1 PLAN を誤参照していた (HELIX の L1 work でない)。HELIX solo 化は既存 L1 を
+# 検証修正 + re-freeze する駆動 hub PLAN-L1-06-helix-solo-conversion が担うため、ここへ repoint。
 # G0.5 は review-only/judgment gate。charter (kind=charter) は review_evidence 必須対象
 # (design/impl/add-*) ではないため test-green 証跡は持たない。PO サインオフは status=confirmed
 # + §3 Step 5 + §4 DoD で記録 (2026-06-28、人間 PO 承認)。
@@ -92,6 +95,6 @@ PO 承認 → status=confirmed。L1 要求起票（P0–P9 → BR-*/NFR-*）へ 
 
 ## §5 carry / 次工程 (L1) への引き継ぎ
 
-- P0–P9 と横断原則を L1 で BR-*/NFR-* に分解（`blocks: PLAN-L1-01-business-requirements`）。
+- P0–P9 と横断原則を L1 で BR-*/NFR-* に分解。HELIX は harness の Forward L0 再入として既存 L0/L1 を検証修正・re-freeze する（駆動 hub = `PLAN-L1-06-helix-solo-conversion`、team→solo + P0–P9）。
 - W モデル（AI エージェントシステム = V を 2 回）適用要否を L1 で判定（charter §9）。
 - 非目標（チーム運用／人の L3 以降直接記述・L4 介入／既存 L1–L7 作り直し／CC 内蔵メモリ依存）を L1 制約として継承。
