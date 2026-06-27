@@ -1,6 +1,7 @@
 # HELIX 企画書 — 超個人開発システム
 
-> 版: v0.1 ／ status: draft（G0.5 未通過）／ 起票 PLAN: PLAN-L0-01-helix-charter ／ drive: agent
+> 版: v0.2 ／ status: confirmed（G0.5 PASS 2026-06-28）／ 起票 PLAN: PLAN-L0-01-helix-charter ／ drive: agent
+> 改訂: v0.2 (2026-06-28) — Scrum を「大規模開発を機能ユニット分割し L4–L7 を反復着地させる機構」として対象内に訂正（v0.1 で誤って非目標化）。version-up 定義を追加（L1 back-propagation）。
 > 位置づけ: 本書は HELIX の L0 企画書（charter）。具体機構（アルゴリズム・スキーマ・gate 配線）は持たず、背景・目的・スコープを高レベルで定め、L1 要求へ trace させる。土台は UT-TDD Agent Harness（V モデル工程・gate・state DB 実装済み）。
 
 ## §1 背景
@@ -30,7 +31,7 @@
 > 各柱は高レベルの方向性。機構の詳細は L1 以降で定義する。
 
 - **P0 逸脱受け止めと Forward 収束** — 直線 Forward だけでなく、AI 自走中の逸脱・障害・暴走を受け止め、**必ず Forward へ戻して正本に収束させる**。駆動 workflow（Reverse／Discovery／Incident／Recovery／Refactor／Retrofit／Research／Add-feature）＋ forward_return 戻し規律＋ AI 暴走ガード（lock／budget time-cap／Recovery）。*無人自走の安全弁*。
-- **P1 要件承認後フル自動＋連続自律走行エンジン** — §3 の自律境界③を、走り続ける engine（heartbeat／job-queue／budget time-cap／fresh-session 再起動）で完走する。
+- **P1 要件承認後フル自動＋連続自律走行エンジン** — §3 の自律境界③を、走り続ける engine（heartbeat／job-queue／budget time-cap／fresh-session 再起動）で完走する。大規模開発は **Scrum**（基本設計 L4 以降、設計を機能ユニット単位に分割し、各ユニットを Forward へ下ろして L4–L7 を反復横断しながら段階着地させる分割実行機構）でスケールさせる。**version-up 定義**（将来版への deferred-but-committed 繰り越し＝`version_target`、リリース／タグ lifecycle。P6 と接続）で版を管理し、今版に入れない作業を失わない。
 - **P2 オーケストレーション根本強化＋ループエンジニアリング** — 現ハーネスの弱いオーケストレーションを HELIX の根本強化点とする。サブエージェントを「**プロンプトを複数視点で解釈・検証 → 計画 → 実行 → 検証 → オーケストレーターへ返す**」ループ単位で動かし、orchestrator が統括・統合する。effort／budget 制御を組み込む。設計手法として W モデル（AI エージェントシステムは V を2回）＋型付き内部契約（agent↔tool の request/response 機械検証）を採用検討。
 - **P3 強い検証基盤** — HELIX の第一級の強み。完全自動を許容できる安全性の要。**pair_closure（design⇔test を対で凍結、coverage100% 単独 pass 禁止）／片肺禁止／機械 vs AI 判定境界**。成果を外部の真実に照合する。
 - **P4 自動保守システム** — drift・劣化・不整合を自動検出し自動修復（自走保守）。**検出 → 自動ルーティング循環**（detection-routing）と**学習ループ**（成功 recipe 蓄積／頻出トラブル → 予防ルール=gate/detector へ昇格）。根幹は P7 ハーネスメモリ。
@@ -51,7 +52,7 @@
 
 ## §6 非目標（スコープ境界）
 
-- **チーム運用・複数人協調は対象外**（`helix team` 相当の人間ロール分担・Scrum 反復・velocity は持たない。ただしサブエージェント分業＝model 割当は P2 に活用する）。
+- **チーム運用・複数人協調は対象外**（`helix team` 相当の人間ロール分担・velocity／sprint ceremony は持たない。ただしサブエージェント分業＝model 割当は P2 に活用する）。**注**: ここでの「Scrum 非採用」はチームの velocity/ceremony に限る。HELIX の Scrum は大規模開発の機能ユニット分割・L4–L7 反復着地機構（P1）であり**対象内**。
 - **要件定義（L3）以降を人が直接書くこと、および L4 以降への人手介入は対象外**（人は L3 承認まで）。
 - **要件定義より上流の自動化は対象外**（企画・要求・デザインモックは人が確定する）。
 - 既存ハーネス（UT-TDD）の確定済み L1–L7 資産の作り直しはしない（壊さず上に積む）。
