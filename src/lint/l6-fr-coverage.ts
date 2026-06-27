@@ -190,7 +190,7 @@ export function analyzeL6FrCoverage(docs: L6FrCoverageDocs): L6FrCoverageResult 
 
 export function loadL6FrCoverageDocs(repoRoot: string = process.cwd()): L6FrCoverageDocs {
   return {
-    frIds: parseFrRows(loadFrDocs().l1Functional).map((r) => r.id),
+    frIds: parseFrRows(loadFrDocs(repoRoot).l1Functional).map((r) => r.id),
     coverageText: readFileSync(
       join(repoRoot, "docs", "design", "harness", "L6-function-design", "fr-unit-coverage.md"),
       "utf8",

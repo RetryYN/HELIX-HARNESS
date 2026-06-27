@@ -132,4 +132,32 @@ describe("L6 FR coverage (FR registry -> unit-level function spec)", () => {
     expect(result.weakContracts).toEqual([]);
     expect(result.missingSubstance).toEqual([]);
   });
+
+  it("loadL6FrCoverageDocs reads the FR registry from the injected repoRoot (compiled-binary ROOT regression)", () => {
+    // Regression: loadL6FrCoverageDocs forwards its repoRoot to loadFrDocs for the
+    // FR registry, not just for the coverage matrix. Before the fix the FR registry
+    // was loaded via loadFrDocs()'s import.meta-derived ROOT, which in a `bun build
+    // --compile` binary resolves to /$bunfs → ENOENT ("L6 FR coverage matrix を読めない").
+    const repoRoot = join(tmpdir(), `ut-tdd-l6-frroot-${Date.now()}`);
+    const l1Dir = join(repoRoot, "docs", "design", "harness", "L1-requirements");
+    const l3Dir = join(repoRoot, "docs", "design", "harness", "L3-functional");
+    const l6Dir = join(repoRoot, "docs", "design", "harness", "L6-function-design");
+    mkdirSync(l1Dir, { recursive: true });
+    mkdirSync(l3Dir, { recursive: true });
+    mkdirSync(l6Dir, { recursive: true });
+    writeFileSync(
+      join(l1Dir, "functional-requirements.md"),
+      "## §1 機能一覧\n\n| ID | 機能名 | trace | 記載項目 | artifact | 優先 | role |\n|---|---|---|---|---|---|---|\n| **FR-L1-77** | sentinel fr | t | i | a | P0 | X |\n\n### §1.1 end\n",
+      "utf8",
+    );
+    writeFileSync(join(l3Dir, "functional-requirements.md"), "", "utf8");
+    writeFileSync(join(l1Dir, "screen-requirements.md"), "", "utf8");
+    writeFileSync(join(l6Dir, "fr-unit-coverage.md"), "", "utf8");
+    try {
+      const docs = loadL6FrCoverageDocs(repoRoot);
+      expect(docs.frIds).toEqual(["FR-L1-77"]);
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
 });
