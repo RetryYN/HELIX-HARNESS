@@ -1,0 +1,24 @@
+{
+  "schema_version": "provider-handover.v1",
+  "handover_kind": "mechanical",
+  "handover_id": "20260617020449-claude-to-codex-plan-l7-68",
+  "from": "claude",
+  "to": "codex",
+  "active_plan": "PLAN-L7-68",
+  "budget": "No further scope requested. Branch not pushed (awaiting PO). Repo-wide CRLF->LF renormalization is a separate decision;…",
+  "context": {
+    "summary": "Discharged codex->claude PLAN-L7-68 handover. Reviewed the uncommitted diff and committed it in 4 focused commits: (1) …",
+    "next_actions": [
+      "Push branch codex/harden-automation-team-launch when PO approves",
+      "Decide whether to renormalize local working-tree CRLF (git add --renormalize) — optional, CI unaffected"
+    ],
+    "files": [
+      "src/lint/readability.ts",
+      "src/plan/lint.ts",
+      "tests/state-db.test.ts",
+      "src/lint/project-hook.ts",
+      "src/lint/runtime-portability.ts"
+    ]
+  },
+  "created_at": "2026-06-17T02:04:49.632Z"
+}

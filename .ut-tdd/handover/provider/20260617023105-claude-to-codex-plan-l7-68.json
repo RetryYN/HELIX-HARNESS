@@ -1,0 +1,23 @@
+{
+  "schema_version": "provider-handover.v1",
+  "handover_kind": "mechanical",
+  "handover_id": "20260617023105-claude-to-codex-plan-l7-68",
+  "from": "claude",
+  "to": "codex",
+  "active_plan": "PLAN-L7-68",
+  "budget": "All reported existing problems resolved (IT-DB-01 EBUSY, biome noUselessStringRaw, biome format line-width). codex earl…",
+  "context": {
+    "summary": "Discharged codex->claude PLAN-L7-68 handover AND resolved all existing problems. 6 commits on branch codex/harden-autom…",
+    "next_actions": [
+      "Push branch codex/harden-automation-team-launch when PO approves"
+    ],
+    "files": [
+      "src/lint/readability.ts",
+      "src/plan/lint.ts",
+      "tests/state-db.test.ts",
+      "src/lint/runtime-portability.ts",
+      "src/lint/project-hook.ts"
+    ]
+  },
+  "created_at": "2026-06-17T02:31:05.461Z"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "provider-handover.v1",
+  "handover_kind": "mechanical",
+  "handover_id": "20260619062853-codex-to-claude-plan-l7-79",
+  "from": "codex",
+  "to": "claude",
+  "active_plan": "PLAN-L7-79",
+  "budget": null,
+  "context": {
+    "summary": "PLAN-L7-79 follow-up: design/implementation review found MCP launcher readiness gap; probe now checks generated launche…",
+    "next_actions": [
+      "Review current diff and run final verification before commit",
+      "Keep legacy-source references historical/reference-only; do not use provider CURRENT from old migration work"
+    ],
+    "files": [
+      "src/lint/verification-profile.ts",
+      "tests/verification-profile.test.ts",
+      "docs/design/harness/L6-function-design/function-spec.md",
+      "docs/test-design/harness/L7-unit-test-design.md"
+    ]
+  },
+  "created_at": "2026-06-19T06:28:53.816Z"
+}

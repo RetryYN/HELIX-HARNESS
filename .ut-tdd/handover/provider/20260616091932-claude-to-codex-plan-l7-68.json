@@ -1,0 +1,36 @@
+{
+  "schema_version": "provider-handover.v1",
+  "handover_kind": "mechanical",
+  "handover_id": "20260616091932-claude-to-codex-plan-l7-68",
+  "from": "claude",
+  "to": "codex",
+  "active_plan": "PLAN-L7-68",
+  "budget": "solo harness dev; use UT_TDD_CODEX_BIN / UT_TDD_CLAUDE_BIN for provider binary overrides when native auto-discovery is insufficient",
+  "context": {
+    "summary": "A-137 provider-dispatch countermeasures verified: codex/team dispatch path restored, spawnability-based detection enabled, handover split recorded",
+    "next_actions": [
+      "Review docs/handover/session-handover-2026-06-16.md for explicit human-readable judgement",
+      "Review .ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md and .ut-tdd/audit/A-138-helix-separation-check.md",
+      "Verify PLAN-L7-68 and PLAN-L7-69 frontmatter/governance if continuing from ClaudeCode",
+      "Carry forward PLAN-L7-69 / IMP-135 for expanded encoding-corruption detection"
+    ],
+    "files": [
+      ".ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md",
+      ".ut-tdd/audit/A-138-helix-separation-check.md",
+      "docs/handover/session-handover-2026-06-16.md",
+      "docs/handover/handover-mechanical-explicit.md",
+      "docs/plans/PLAN-L7-68-provider-dispatch-portability.md",
+      "docs/plans/PLAN-L7-69-encoding-corruption-expanded-guard.md",
+      "src/cli.ts",
+      "src/runtime/adapter.ts",
+      "src/runtime/detect.ts",
+      "src/runtime/provider-handover.ts",
+      "tests/cli-surface.test.ts",
+      "tests/provider-handover.test.ts",
+      "tests/runtime-adapter.test.ts",
+      "tests/runtime-hook-entrypoints.test.ts",
+      "tests/runtime.test.ts"
+    ]
+  },
+  "created_at": "2026-06-16T09:19:32.085Z"
+}

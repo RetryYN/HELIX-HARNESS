@@ -1,0 +1,23 @@
+{
+  "schema_version": "provider-handover.v1",
+  "handover_id": "20260616084105-codex-to-claude-plan-l7-62-runtime-portability-guard",
+  "from": "codex",
+  "to": "claude",
+  "active_plan": "PLAN-L7-62-runtime-portability-guard",
+  "budget": "Claude Code verification only; do not broaden scope unless a verification blocker is found.",
+  "context": {
+    "summary": "Codex fixed Windows runtime-portability drift detection and pushed commit 574271b.",
+    "next_actions": [
+      "Review commit 574271b and the preceding branch commits for Windows/runtime portability regressions.",
+      "Run the listed verification commands on Windows and compare outputs with handover evidence.",
+      "Report any remaining Windows-specific gaps separately from provider CLI external-host limitations."
+    ],
+    "files": [
+      "docs/handover/session-handover-2026-06-16.md",
+      "src/lint/runtime-portability.ts",
+      "tests/runtime-portability.test.ts",
+      "docs/plans/PLAN-L7-62-runtime-portability-guard.md"
+    ]
+  },
+  "created_at": "2026-06-16T08:41:05.933Z"
+}
