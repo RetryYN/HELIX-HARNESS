@@ -242,6 +242,27 @@ export function buildProviderInvocation(input: ProviderInvocationInput): Provide
   return { command: resolved, args };
 }
 
+export function adapterExecutionEnv(
+  provider: AdapterProvider,
+  extraEnv: Record<string, string> = {},
+  baseEnv: NodeJS.ProcessEnv = process.env,
+): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = { ...baseEnv };
+  const legacyPrefix = ["HE", "LIX"].join("");
+  for (const key of [
+    [legacyPrefix, "ALLOW", "RAW", "CLAUDE"].join("_"),
+    [legacyPrefix, "RAW", "CLAUDE", "REASON"].join("_"),
+    [legacyPrefix, "ALLOW", "RAW", "CODEX"].join("_"),
+    [legacyPrefix, "RAW", "CODEX", "REASON"].join("_"),
+    [legacyPrefix, "CLAUDE", "BIN"].join("_"),
+    [legacyPrefix, "CODEX", "BIN"].join("_"),
+  ]) {
+    delete env[key];
+  }
+  if (provider !== "claude" && provider !== "codex") return env;
+  return { ...env, ...extraEnv };
+}
+
 export function isProviderCommandSpawnable(
   provider: AdapterProvider,
   opts: ProviderProbeOptions = {},

@@ -1,0 +1,105 @@
+---
+plan_id: PLAN-L7-177-helix-orchestration-runtime-bridge
+title: "PLAN-L7-177 (add-impl): P2 runtime bridge — tick を実 Codex/Claude へ配線 + ut-tdd loop entrypoint"
+kind: add-impl
+layer: L7
+drive: agent
+status: confirmed
+created: 2026-06-28
+updated: 2026-06-28
+owner: AIM + TL
+parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
+review_evidence:
+  - reviewer: claude-opus-4-8
+    review_kind: cross_agent
+    reviewed_at: "2026-06-28T20:05:00+09:00"
+    tests_green_at: "2026-06-28T20:00:00+09:00"
+    verdict: pass
+    worker_model: gpt-5.3-codex
+    reviewer_model: claude-opus-4-8
+    scope: "P2 runtime bridge: nodeTickDeps が runWorker/runVerifier を実 adapter 実行面へ配線（worker≠verifier の provider 選択は tick の selectVerifier に委譲・再実装せず、hybrid 不在 fail-close は HR-BR-07R 継承）、ut-tdd loop run --plan/--once/--dry-run。Codex(worker) 実装、Claude(reviewer) が独立に typecheck/vitest を再実行し精読確認: 契約適合・spawn shell:false・error detail throw・adapterExecutionEnv は既存 cli.ts inline scrub の正当な共有抽出（新規ハックでない）。U-ORCH-BRIDGE-02 は実 CLI を fake provider 付きで spawn する end-to-end（純関数 oracle でなく runtime 配線を実証＝gap 解消）。8 tests green。harness.db projection は P9 carry。"
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/orchestration"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-28T20:00:00+09:00"
+        evidence_path: tests/orchestration/loop-bridge.test.ts
+        output_digest: "sha256:69325e3eedd258df92d734cdb6fbf3becad34bad25a72505673baf52d43597c0"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-28T20:00:00+09:00"
+        evidence_path: src/orchestration/loop-bridge.ts
+        output_digest: "sha256:76b23b1b727fe367477232120eeb70c4e2e525d37d479af4ec73e6f4b44f9f8c"
+agent_slots:
+  - role: se
+    slot_label: "SE — Codex 実装 worker (writable, hybrid)"
+  - role: tl
+    slot_label: "TL — cross-runtime review (Claude)"
+generates:
+  - artifact_path: docs/plans/PLAN-L7-177-helix-orchestration-runtime-bridge.md
+    artifact_type: markdown_doc
+  - artifact_path: src/orchestration/loop-bridge.ts
+    artifact_type: source_module
+dependencies:
+  parent: PLAN-L6-50-helix-orchestration-memory
+  requires:
+    - PLAN-REVERSE-177-helix-orchestration-runtime-bridge
+  references:
+    - docs/design/helix/L6-function-design/orchestration-memory.md
+    - src/orchestration/loop-runner.ts
+    - docs/plans/PLAN-L7-176-helix-orchestration-memory-runtime.md
+---
+
+# PLAN-L7-177 (add-impl): P2 runtime bridge
+
+## §0 役割 / なぜ必要か（errata）
+
+PLAN-L7-175/176 は `tick`/loop-runner の**契約ロジック**を実装し 9 oracle green にした。しかし
+`TickDeps.runWorker`/`runVerifier` を**実ランタイム（Codex/Claude）に繋ぐ本番 wiring が 0 件**（テスト注入のみ）、
+かつ **`ut-tdd loop` entrypoint が無い**ため、**自律ループ orchestration は実際には Codex を起動して回らない**
+（PO 指摘 2026-06-28）。「9 oracle green」は純関数のロジック検証であって runtime 配線の証明ではない
+（[[orchestration-runtime-bridge-gap]]、`実装したつもり` ギャップ）。本 add-impl はその **runtime bridge** を実装し、
+P2「サブエージェントを loop で回し worker≠verifier」を**実起動可能**にする。
+
+> 既に動く委譲面: `ut-tdd codex --execute`（単発）/ `ut-tdd team run --execute`（hybrid team）。本 bridge は
+> これらの adapter 実行面を **tick ループに接続**する（新規 provider 呼出は増やさず既存 adapter を再利用）。
+
+## §1 実装単位
+
+| module | 内容 | oracle |
+|--------|------|--------|
+| `src/orchestration/loop-bridge.ts` | `nodeTickDeps(input)` = 実 `TickDeps`。`runWorker(s)` → 既存 adapter 実行面（`buildAdapterPlan`+execute、worker provider の CLI）を呼ぶ。`runVerifier(provider,s)` → **反対 provider** の adapter で review し `Verdict` を解釈（hybrid 不在は tick 側 fail-close 既存）。`providerAvailable` = adapter availability。`recordIteration` = loop-store/loop-iterations 追記。`now` = 実時計 | U-ORCH-BRIDGE-01 |
+| `src/cli.ts`（改修） | `ut-tdd loop run --plan <id>`：loop-store から LoopState 読込 → `canResume` の間 `tick` を回し各 iteration を永続。`--once` で 1 tick、`--dry-run` で dispatch せず計画表示 | U-ORCH-BRIDGE-02 |
+
+## §2 進め方（Codex 分散・Red→Green、dogfood）
+
+1. U-ORCH-BRIDGE-01/02 を Red（`runWorker` が worker provider の adapter execute を呼ぶ・`loop run` が canResume の間 tick を駆動）。
+2. **Codex（worker）が loop-bridge.ts + entrypoint を実装**、Claude（verifier）が cross-runtime review（自己評価禁止＝本 PLAN 自体が dogfood）。
+3. dispatch は既存 adapter 実行面を再利用（child process spawn は adapter 層に閉じ込め、bridge は注入 fn 経由でテスト可能に保つ）。
+
+## §3 DoD
+
+- [x] `nodeTickDeps` が worker→反対 provider verifier を実 adapter で dispatch（U-ORCH-BRIDGE-01 green）。
+- [x] `ut-tdd loop run --plan <id>` が LoopState を回し iteration 永続（U-ORCH-BRIDGE-02 green、`--dry-run`/`--once` 含む）。
+- [x] typecheck/vitest/lint/doctor green、cross-runtime review 証跡（worker=Codex / reviewer=Claude、green_commands + 実 digest）。
+- [x] Reverse(PLAN-REVERSE-177) の L3 back-fill と両 confirm（route-B dual-confirm）。
+- [x] **end-to-end 証跡**: `ut-tdd loop run --dry-run` が worker/verifier provider 配線を表示（純関数 oracle ではなく runtime 配線を示す smoke）。U-ORCH-BRIDGE-02 が実 CLI spawn で被覆。
+
+## §3.1 実装計画
+
+| Step | 対象 | 方法 |
+|------|------|------|
+| 1 | oracle Red | U-ORCH-BRIDGE-01/02 を test-design へ追記し Red |
+| 2 | loop-bridge.ts | Codex 実装: nodeTickDeps（adapter 実行面を注入 fn で wrap、worker≠verifier provider 選択は selectVerifier 再利用） |
+| 3 | `ut-tdd loop run` | Codex 実装: loop-store 読込→tick 駆動→永続、--once/--dry-run |
+| 4 | review | Claude cross-runtime review（自己評価禁止 dogfood）、証跡構造化 |
+
+## §4 carry
+
+- harness.db への loop_iterations 投影・観測 doctor gate は P9 観測強化（PLAN-L7-176 §4 と同じ carry）。
+- budget time-cap / fresh-session 再入（HBR-P1 continuous-run engine）は後続 add-impl。

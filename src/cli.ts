@@ -12,9 +12,10 @@ import {
   readdirSync,
   readFileSync,
   statSync,
+  writeFileSync,
 } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { Command } from "commander";
 import { parse as parseYaml } from "yaml";
 import { catalogAutomationAssets } from "./assets/catalog";
@@ -58,10 +59,16 @@ import {
 } from "./lint/verification-profile";
 import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
 import { fileMemoryDeps } from "./memory/memory-store";
+import { selectVerifier } from "./orchestration/cross-verifier";
+import { nodeTickDeps } from "./orchestration/loop-bridge";
+import { canResume, tick } from "./orchestration/loop-runner";
+import type { Provider as LoopProvider, LoopState } from "./orchestration/loop-state";
+import { fileLoopStore } from "./orchestration/loop-store";
 import { lintPlanWithGate } from "./plan/lint";
 import {
   type AdapterContextInjection,
   type AdapterProvider,
+  adapterExecutionEnv,
   buildAdapterPlan,
   buildProviderInvocation,
 } from "./runtime/adapter";
@@ -392,31 +399,30 @@ function surfaceTakeoverFeedbackToStdout(repoRoot: string): void {
   }
 }
 
-function adapterExecutionEnv(
-  provider: AdapterProvider,
-  extraEnv: Record<string, string> = {},
-): NodeJS.ProcessEnv {
-  const env: NodeJS.ProcessEnv = { ...process.env };
-  const legacyPrefix = ["HE", "LIX"].join("");
-  for (const key of [
-    [legacyPrefix, "ALLOW", "RAW", "CLAUDE"].join("_"),
-    [legacyPrefix, "RAW", "CLAUDE", "REASON"].join("_"),
-    [legacyPrefix, "ALLOW", "RAW", "CODEX"].join("_"),
-    [legacyPrefix, "RAW", "CODEX", "REASON"].join("_"),
-    [legacyPrefix, "CLAUDE", "BIN"].join("_"),
-    [legacyPrefix, "CODEX", "BIN"].join("_"),
-  ]) {
-    delete env[key];
-  }
-  if (provider !== "claude" && provider !== "codex") return env;
-  return { ...env, ...extraEnv };
-}
-
 function parseMemoryLayer(layer: string): MemoryLayer | null {
   if (layer === "harness" || layer === "project") return layer;
   process.stderr.write(`invalid memory layer: ${layer} (expected harness|project)\n`);
   process.exitCode = 1;
   return null;
+}
+
+function parseLoopProvider(provider: string): LoopProvider | null {
+  if (provider === "claude" || provider === "codex") return provider;
+  return null;
+}
+
+function loopStoreForRoot(root: string) {
+  return fileLoopStore({
+    root,
+    readText: (path: string) => {
+      if (!existsSync(path)) return null;
+      return readFileSync(path, "utf8");
+    },
+    writeText: (path: string, content: string) => {
+      mkdirSync(dirname(path), { recursive: true });
+      writeFileSync(path, content, "utf8");
+    },
+  });
 }
 
 const program = new Command();
@@ -562,6 +568,70 @@ memory
     for (const line of surfaceMemory(fileMemoryDeps({ root: process.cwd() }))) {
       process.stdout.write(`${line}\n`);
     }
+  });
+
+const loop = program.command("loop").description("P2 orchestration loop runtime");
+loop
+  .command("run")
+  .description("run a stored LoopState through the real runtime bridge")
+  .requiredOption("--plan <id>", "PLAN id / loop state id")
+  .option("--once", "run only one tick")
+  .option("--dry-run", "print worker/verifier wiring without dispatching adapters")
+  .action(async (opts: { plan: string; once?: boolean; dryRun?: boolean }) => {
+    const repoRoot = process.cwd();
+    const store = loopStoreForRoot(repoRoot);
+    const state = store.read(opts.plan);
+    if (!state) {
+      process.stderr.write(`loop state not found or invalid: ${opts.plan}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    const workerProvider = parseLoopProvider(state.workerProvider);
+    if (!workerProvider) {
+      process.stderr.write(`invalid loop worker provider: ${String(state.workerProvider)}\n`);
+      process.exitCode = 1;
+      return;
+    }
+
+    const mode = detectMode().mode;
+    const verifier = selectVerifier(workerProvider, mode);
+    const deps = nodeTickDeps({ mode, store });
+    if (opts.dryRun) {
+      process.stdout.write(
+        [
+          "loop dry-run:",
+          `plan=${state.planId}`,
+          `mode=${mode}`,
+          `worker=${workerProvider} available=${deps.providerAvailable(workerProvider)}`,
+          `verifier=${verifier.provider} available=${deps.providerAvailable(verifier.provider)} blockedReason=${verifier.blockedReason ?? "null"}`,
+          "dispatch=false",
+        ].join("\n"),
+      );
+      process.stdout.write("\n");
+      return;
+    }
+
+    let current: LoopState = { ...state, workerProvider };
+    let ticks = 0;
+    try {
+      while (canResume(current, deps.now())) {
+        current = await tick(current, [], deps);
+        store.write(current);
+        ticks += 1;
+        if (opts.once) break;
+      }
+    } catch (error) {
+      process.stderr.write(
+        `loop run failed: plan=${opts.plan} detail=${
+          error instanceof Error ? error.message : String(error)
+        }\n`,
+      );
+      process.exitCode = 1;
+      return;
+    }
+    process.stdout.write(
+      `loop run: plan=${current.planId} ticks=${ticks} status=${current.status} iteration=${current.iteration} verdict=${current.lastVerdict}\n`,
+    );
   });
 
 mcp
