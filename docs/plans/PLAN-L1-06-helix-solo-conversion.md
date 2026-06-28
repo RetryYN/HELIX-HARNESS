@@ -69,7 +69,7 @@ business（team→solo, BR-02 等）／nfr（NFR-01 Windows narrow + 外部 delt
 ### Step 3: [直列] 既存 governance 検証 → 修正
 > 直列理由: downstream_dependency — L1 修正と整合する governance（DDD/TDD・team 系）を揃えるため。
 `ddd-tdd-rules.md` を外部研究（DDD/TDD best practice）と照合し検証→修正。team governance の solo 適用を整理。
-- 進捗: ⬜
+- 進捗: 🔄 **検証済**: `ddd-tdd-rules.md` は team 前提 hit=0（domain boundary/invariant/TDD red-first/oracle strength の機械強制 SSoT、`owner:` は code-owner で人間 role でない）→ **既に solo 中立、修正不要**。team governance 実体 = `ai-dev-team-concept_v1.1.md` / `ai-dev-team-operations_v1.1.md`（共に「Status: Reference only」非正本）→ **top-down 書換せず、§1.3 大域コンベンションと同方式で solo 読み替えバナーを冒頭付与**（「チーム/複数人/役割」→本人+AI roster、worker≠verifier、L3/L4 で roster/advisor 個別機能ソースとして取捨選択・harden する参照材料と位置づけ）。inventory-first 厳守。**残**: 外部 DDD/TDD best-practice 照合は web 要のため **Step 2 外部研究 delta パスへ carry**。
 
 ### Step 4: [直列] pair 更新 (L1↔L14 operational-test-design、片肺禁止)
 > 直列理由: downstream_dependency — Step 2 の要求変更に test-design を対で追随させるため。
