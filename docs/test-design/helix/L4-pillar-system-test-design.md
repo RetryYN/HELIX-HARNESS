@@ -23,6 +23,7 @@ next_pair_freeze: L4
 - 対象 L3 要件: 43 件。
 - 対象 L4 block: 10 件。
 - system test 観測: HST 43 件。
+- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の acceptance で観測し、本 L4 pillar system test では 43 件に二重計上しない。
 - 孤児: 0。
 
 ## §1 system test trace

@@ -23,6 +23,7 @@ next_pair_freeze: L5
 - 対象 L5 contract: 10 件。
 - integration test 観測: `LIT-*` 43 件。
 - 対象 L3 要件: 43 件。
+- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle で観測し、本 L5 pillar integration test では 43 件に二重計上しない。
 - 孤児: 0。
 
 ## §1 integration test trace

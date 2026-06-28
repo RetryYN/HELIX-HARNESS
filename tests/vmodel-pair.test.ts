@@ -256,7 +256,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l3RequirementIds = uniqueMatches(l3, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
     const hatRequirementIds = uniqueMatches(
       l12,
-      /^\| HAT-(?!ID\b)[^|]+ \| (HR-(?:FR|NFR)-[^ |]+) \|/gm,
+      /^\| HAT-(?!ID\b|O)[^|]+ \| (HR-(?:FR|NFR)-[^ |]+) \|/gm,
     );
     const l3AcIds = uniqueMatches(l3, /^\| (HAC-[^ |]+) \|/gm);
     const hatAcIds = expandHacRefs(l12);
@@ -265,6 +265,51 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(hatRequirementIds).toEqual(l3RequirementIds);
     expect(l3AcIds).toHaveLength(86);
     expect(hatAcIds).toEqual(l3AcIds);
+  });
+
+  it("U-VPAIR-005j: HELIX L3 route-B back-fill 要件も L12 acceptance に孤児なく接続", () => {
+    const backfillDocs = [
+      readFileSync("docs/design/helix/L3-requirements/orchestration-memory.md", "utf8"),
+      readFileSync("docs/design/helix/L3-requirements/orchestration-memory-runtime.md", "utf8"),
+      readFileSync("docs/design/helix/L3-requirements/orchestration-runtime-bridge.md", "utf8"),
+    ].join("\n");
+    const l12 = readFileSync("docs/test-design/helix/L3-pillar-acceptance-test-design.md", "utf8");
+    const downstreamPillarDocs = [
+      readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8"),
+      readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8"),
+      readFileSync("docs/test-design/helix/L4-pillar-system-test-design.md", "utf8"),
+      readFileSync("docs/test-design/helix/L5-pillar-integration-test-design.md", "utf8"),
+    ].join("\n");
+    const backfillRequirementIds = uniqueMatches(backfillDocs, /^## (HR-(?:BR|NFR)-[A-Z0-9]+) /gm);
+    const hatBackfillRequirementIds = uniqueMatches(
+      l12,
+      /^\| HAT-O[^|]+ \| (HR-(?:BR|NFR)-[A-Z0-9]+) \|/gm,
+    );
+
+    expect(backfillRequirementIds).toEqual([
+      "HR-BR-07",
+      "HR-BR-07R",
+      "HR-BR-12",
+      "HR-BR-12R",
+      "HR-BR-13R",
+      "HR-BR-14R",
+      "HR-NFR-03",
+      "HR-NFR-03R",
+    ]);
+    expect(hatBackfillRequirementIds).toEqual(backfillRequirementIds);
+    for (const required of [
+      "Route-B back-fill L3 要件",
+      "## §1.1 Route-B back-fill acceptance",
+      "## §2.1 Route-B back-fill trace",
+      "U-ORCH-001 / U-ORCH-002 / U-ORCH-005",
+      "U-MEM-001 / U-MEM-002 / U-MEM-003",
+      "U-ORCH-BRIDGE-01",
+      "U-ORCH-BRIDGE-02",
+    ]) {
+      expect(l12).toContain(required);
+    }
+    expect(downstreamPillarDocs.match(/Route-B back-fill L3 要件 8 件/g)).toHaveLength(4);
+    expect(downstreamPillarDocs.match(/二重計上しない/g)).toHaveLength(4);
   });
 
   it("U-VPAIR-005d: HELIX L1 external delta の具体化語彙が L3/L12 に降下済み", () => {

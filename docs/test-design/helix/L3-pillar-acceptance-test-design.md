@@ -23,7 +23,8 @@ next_pair_freeze: L3
 - 対象 L3 要件: HR-FR 30 件 + HR-NFR 13 件 = 43 件。
 - 対象 AC: HAC 86 件。
 - 受入テスト: HAT 43 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
-- 孤児: 0。詳細は §2 trace。
+- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 43 件とは別枠で §1.1 に受入観測を持つ。
+- 孤児: 0。詳細は §2 / §2.1 trace。
 
 ## §1 受入テスト
 
@@ -73,6 +74,23 @@ next_pair_freeze: L3
 | HAT-NAC-02 | HR-NFR-AC-02 | HAC-NAC-02a/b | hosted API/developer tool surface は preflight evidence なしに通らない | hosted-surface preflight tests |
 | HAT-NAC-03 | HR-NFR-AC-03 | HAC-NAC-03a/b | AI runtime が provider API 直叩き前提ではなく PLAN artifact / CLI adapter / harness DB trace / dry-run plan を正本にする | runtime-route / approval-boundary tests |
 
+## §1.1 Route-B back-fill acceptance
+
+`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 43 件とは別に
+受入観測を固定する。これらは L4/L5 pillar overlay へ二重採番せず、L6 `orchestration-memory.md` と
+L7 実装済み oracle を通じて trace する。
+
+| HAT-ID | 対応 L3 back-fill | 受入観測 | 機械検証候補 |
+|--------|-------------------|----------|--------------|
+| HAT-ORB-07 | HR-BR-07 | `canResume` / `evaluateStop` / `classifyRecovery` が loop 継続・停止・Recovery 分類を安全側に決定する | U-ORCH-001 / U-ORCH-002 / U-ORCH-005 |
+| HAT-ORB-12 | HR-BR-12 | 2 層 memory が append-only / supersede / harness-only surface のセマンティクスを持つ | U-MEM-001 / U-MEM-002 / U-MEM-003 |
+| HAT-ONFR-03 | HR-NFR-03 | hybrid では worker と verifier が別 runtime になり、single-runtime fallback は明示 blockedReason を持つ | U-ORCH-003 / U-MEM-001 |
+| HAT-ORB-07R | HR-BR-07R | `tick` が resume 偽で dispatch せず、cross runtime 不在時に worker 自己評価で pass しない | U-ORCH-004 |
+| HAT-ORB-12R | HR-BR-12R | `.ut-tdd/memory/<layer>.jsonl` が共有 SSoT として読み書きされ、secret body は保存されない | memory-store / CLI memory tests |
+| HAT-ONFR-03R | HR-NFR-03R | job queue claim が `BEGIN IMMEDIATE` により二重取得を防ぎ、busy は backoff 可能な null になる | U-ORCH-006 |
+| HAT-ORB-13R | HR-BR-13R | `nodeTickDeps` が tick の provider 選定を再実装せず、既存 adapter 実行面と verdict 解釈へ接続する | U-ORCH-BRIDGE-01 |
+| HAT-ORB-14R | HR-BR-14R | `ut-tdd loop run` が loop-store から state を読み、`--once` / `--dry-run` / iteration 永続を正しく扱う | U-ORCH-BRIDGE-02 |
+
 ## §2 trace
 
 | L1 | L3 | L12 |
@@ -88,6 +106,14 @@ next_pair_freeze: L3
 | HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 | HAT-P9-01 / HAT-P9-02 / HAT-P9-03 |
 | HNFR-P5 | HR-NFR-P5-01 / HR-NFR-P5-02 / HR-NFR-P5-03 | HAT-N5-01 / HAT-N5-02 / HAT-N5-03 |
 | HNFR-AC | HR-NFR-AC-01 / HR-NFR-AC-02 / HR-NFR-AC-03 | HAT-NAC-01 / HAT-NAC-02 / HAT-NAC-03 |
+
+## §2.1 Route-B back-fill trace
+
+| L3 back-fill doc | L3 IDs | L12 |
+|------------------|--------|-----|
+| orchestration-memory.md | HR-BR-07 / HR-BR-12 / HR-NFR-03 | HAT-ORB-07 / HAT-ORB-12 / HAT-ONFR-03 |
+| orchestration-memory-runtime.md | HR-BR-07R / HR-BR-12R / HR-NFR-03R | HAT-ORB-07R / HAT-ORB-12R / HAT-ONFR-03R |
+| orchestration-runtime-bridge.md | HR-BR-13R / HR-BR-14R | HAT-ORB-13R / HAT-ORB-14R |
 
 ## §3 G-REQ.L3
 

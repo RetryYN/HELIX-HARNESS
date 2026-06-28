@@ -24,6 +24,7 @@ next_pair_freeze: L9
 - 入力 L3: `HR-FR` 30 件 + `HR-NFR` 13 件 = 43 件。
 - L4 block: 10 件 (`HB-P0` / `HB-P1` / `HB-P2` / `HB-P3` / `HB-P4` / `HB-P6` / `HB-P7` / `HB-P8` / `HB-P9` / `HB-AC`)。
 - L9 system test design: `HST-*` 43 件。
+- Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P2 / HB-P7 / HB-AC の境界として受ける。
 - 孤児: 0。詳細は §2 trace。
 
 ## §1 L4 building block

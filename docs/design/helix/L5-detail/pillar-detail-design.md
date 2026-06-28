@@ -22,6 +22,7 @@ next_pair_freeze: L8
 - 入力 L4: `HB-*` 10 block、`HR-FR` 30 件 + `HR-NFR` 13 件 = 43 件。
 - L5 detailed contract: 10 件 (`HC-P0` / `HC-P1` / `HC-P2` / `HC-P3` / `HC-P4` / `HC-P6` / `HC-P7` / `HC-P8` / `HC-P9` / `HC-AC`)。
 - L8 integration test design: `LIT-*` 43 件。
+- Route-B back-fill L3 要件 8 件は本 pillar detail の 43 件へ二重計上しない。該当契約は L6 `orchestration-memory.md` と Reverse back-fill 側で関数境界へ降下し、本書では HC-P2 / HC-P7 / HC-AC の contract matrix に取り込む。
 - 孤児: 0。詳細は §2 trace。
 
 ## §1 L5 detailed contract
