@@ -43,7 +43,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ### carry note: ダッシュボード server sync (Phase B、BR-21 相当)
 
-Phase B のサーバー同期 (PGlite + ElectricSQL 候補) は L3/L4 forward carry。ADR-002 候補として L4 外部 IF 設計 sub-doc で検討する。現時点では Phase A (local DB + local dashboard) を対象とする。**最終形 = ADR-005 D2 の「中央・全 project 横断 Web UI (team server、GitHub backbone)」**。Phase A local はその bootstrap であり、Phase B server sync が中央化に接続する (後続作業追跡は ADR-005 Follow-ups が正本)。
+Phase B のサーバー同期 (PGlite + ElectricSQL 候補) は L3/L4 forward carry。ADR-002 候補として L4 外部 IF 設計 sub-doc で検討する。現時点では Phase A (local DB + local dashboard) を対象とする。**最終形 = ADR-005 D2 の「中央・全 project 横断 Web UI (本人 server、GitHub backbone)」**(旧 team server を concept §1.3 で solo 読み替え)。Phase A local はその bootstrap であり、Phase B server sync が中央化に接続する (後続作業追跡は ADR-005 Follow-ups が正本)。
 
 ## §3 既存システム制約
 
@@ -52,7 +52,7 @@ Phase B のサーバー同期 (PGlite + ElectricSQL 候補) は L3/L4 forward ca
 | **source reference snapshot** | read-only。productizing 時は設計概念だけを参照し、UT-TDD 所有パスで TS/Bun として再実装 |
 | **`.ut-tdd/` state** | UT-TDD runtime state の正本。大半は gitignored |
 | **legacy local state** | migration evidence のみ。通常は Git 追跡しない。UT-TDD 正本 state にはしない |
-| **開発者規模** | チーム規模 2-5 名 + AI スロット 3 を想定 (B1=b / BR-02)。single-developer mode も互換維持 |
+| **開発者規模** | 開発者 1 名 (本人/PO) + AI agent roster (worker / verifier 等の役割スロット) を想定 (BR-02、charter §3 3 層自律境界)。旧「チーム 2-5 名 + AI スロット 3」前提は solo へ縮退し、責務分離は人間複数ではなく **worker(AI)≠verifier(AI)** で担保 (concept §1.3 大域コンベンション)。将来の team-mode は互換拡張として残置 |
 | **運用者ロール** | `.ut-tdd/` 直接編集 / `gate-checks.yaml` 更新 / hook 有効化のみ可。gate サインオフ / PLAN 削除は不可 (S-04) |
 | **Windows sandbox** | Codex 内 PowerShell が 8009001d で起動失敗。大きな input は task ファイル埋め込みで回避 |
 | **WSL2** | 任意の互換環境。必須条件ではない |
