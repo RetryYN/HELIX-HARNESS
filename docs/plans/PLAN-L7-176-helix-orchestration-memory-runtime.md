@@ -112,6 +112,15 @@ SessionStart hook 本体）が `surfaceMemory(fileMemoryDeps({root}))` を呼び
 として hook 出力に surface する。これで共有 SSoT（`.ut-tdd/memory/harness.jsonl`、git 追跡・Claude/Codex 共有）が
 **自動想起**され、**Claude Code 内蔵メモリ（per-agent silo）に依存しない**（charter P7 dogfood）。被覆 = U-CLI-MEM-SURFACE。
 
+### §3.2 追補（surface context-budget 上限化、2026-06-28）
+
+`surfaceMemory` は SessionStart で毎回 context へ注入されるため、無制限化すると entry 増加に比例して
+context を圧迫する。L6 設計 §2.3 契約を改訂し、surface を有界化した: 直近 `maxEntries`(既定 12) 件のみ・
+各 body を `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — ut-tdd memory list harness)` フッタへ
+集約する（全文・全件の毎回注入を禁止）。`SurfaceBudget` で上限を注入可能（テスト容易性）。
+被覆 = tests/memory/memory-store.test.ts「clips long bodies and caps surfaced entries」。これは
+HNFR-AC（同一記憶共有）の運用 NFR（context 予算）面の補強であり、契約の意味は不変（harness 層のみ・秘匿非 surface）。
+
 ## §4 carry（P9 観測強化、別 add-impl）
 
 - harness.db への loop_iterations[blocked_reason] / jobs / memory 2 表 projection（分析・query）。

@@ -51,6 +51,29 @@ describe("fileMemoryDeps", () => {
     expect(lines.join("\n")).not.toContain("project body");
   });
 
+  it("clips long bodies and caps surfaced entries to bound SessionStart context", () => {
+    const deps = createDeps([
+      "2026-06-28T00:00:00.000Z",
+      "2026-06-28T00:01:00.000Z",
+      "2026-06-28T00:02:00.000Z",
+    ]);
+    writeMemory({ layer: "harness", key: "a", body: "x".repeat(50) }, deps);
+    writeMemory({ layer: "harness", key: "b", body: "b body" }, deps);
+    writeMemory({ layer: "harness", key: "c", body: "c body" }, deps);
+
+    const lines = surfaceMemory(deps, { maxEntries: 2, maxBodyChars: 10 });
+
+    // only the 2 most recent entries surface, oldest collapses into a footer
+    expect(lines).toEqual([
+      "- [b] b body",
+      "- [c] c body",
+      "- (+1 older — ut-tdd memory list harness)",
+    ]);
+
+    const clipped = surfaceMemory(deps, { maxBodyChars: 10 });
+    expect(clipped[0]).toBe(`- [a] ${"x".repeat(9)}…`);
+  });
+
   it("lists by createdAt ascending and persists across fileMemoryDeps instances", () => {
     const deps = createDeps([
       "2026-06-28T00:02:00.000Z",

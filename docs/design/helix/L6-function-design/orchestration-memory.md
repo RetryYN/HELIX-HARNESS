@@ -114,7 +114,7 @@ interface MemoryEntry {
 | `claimNextJob` | `(db: Database, provider: Provider) => Job \| null` | `BEGIN IMMEDIATE` トランザクション内で `status="queued"` の最優先 1 件を `status="claimed", provider=:provider` に更新して返す。無ければ null。**並行 claim はトランザクション直列化で二重取得しない**（旧 job_queue 排他の TS 移植） |
 | `writeMemory` | `(input: WriteMemoryInput, deps: MemoryDeps) => MemoryEntry`（`WriteMemoryInput={layer,key,body}`。coding-rule max-source-params=3 のため input object 化、impl→design back-fill） | **secret 命中時は書込拒否（throw、reject）— strip して部分保存はしない**（部分保存は「保存された」誤解と漏洩境界の曖昧化を生む）。既存 `SECRET_PATTERN` で body を検査し、命中 0 のときのみ harness.db `upsertRow` + `.ut-tdd/memory/<layer>.jsonl` 追記の **2 層投影**。同 key 既存 → `supersedes` に旧 id を載せて新 entry（履歴非破壊） |
 | `listMemory` | `(layer: MemoryLayer, deps: MemoryDeps) => MemoryEntry[]` | 指定層の有効 entry（superseded 除く）を `createdAt` 昇順で返す。**純読取**、書込なし |
-| `surfaceMemory` | `(deps: MemoryDeps) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない |
+| `surfaceMemory` | `(deps: MemoryDeps, budget?: SurfaceBudget) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない。**context 圧迫対策**: 直近 `maxEntries`(既定 12) 件のみ・各 body は `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — ut-tdd memory list harness)` フッタに集約（無制限注入を禁止） |
 
 ### §2.4 既存機構との接続（改修 delta）
 
