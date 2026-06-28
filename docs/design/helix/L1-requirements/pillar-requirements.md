@@ -53,6 +53,26 @@ pair_artifact: docs/test-design/helix/L1-pillar-operational-test-design.md
 | **HNFR-P8** | **外部連携セキュリティ（厳格・hard 制約）** — 外部連携は secret 漏洩防止/信頼境界/サンドボックス下でのみ。**不可逆操作の escalation 境界**＝本番/認証認可/決済/PII/secret/license/schema migration/破壊的データ/外部 API・infra 変更のみ人間へ戻す | FR-L1-09（agent guard）/ FR-L1-05 / SECRET_PATTERN | **sandbox/trust-boundary の機能要件化・escalation 境界の FR 化が無し**（CLAUDE.md 安全境界に prose で在るが FR 未昇格） |
 | **HNFR-AC** | **エージェント整合（同一記憶・同一規則）** — 全エージェントが単一規則セットに従い同一記憶（P7 2 層）を共有、per-agent 規則乖離・記憶サイロ禁止。`rule-drift` を全エージェントへ一般化 | rule-drift（Codex↔Claude adapter 乖離検査）/ FR-L1-46/47 | rule-drift は 2 adapter のみ。**全 agent への一般化 + 共有 memory access の機械強制が net-new** |
 
+## §2.5 外部研究 delta（2026-06-28、L1 re-freeze 反映候補、PO 承認待ち）
+
+PLAN-L1-06 Step 2/3 の外部研究パス（pmo-tech-docs 委譲、2025–2026 ソース照合）で surface した、net-new GAP を
+sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX precedence（仕組み≦harness）に適合する
+もののみ採用候補とし、**個別ツール・数値・出典は一次未検証 → L3 で検証**（下記「要追加調査」）。仕組みを超えない。
+
+| 優先 | 対象 GAP | delta（採用候補・概念） | 出典系統（2025–2026、要一次検証） |
+|------|----------|--------------------------|-----------------------------------|
+| P1 | HNFR-P8 | **escalation 境界を prose→FR 機械強制**へ昇格。不可逆操作のみ human approval、approval は action-binding（actor/tool/target/params/timestamp/expiry 記録）。**承認範囲は最小化**（過剰承認＝click-through 疲弊＝prompt-injection 攻撃面、というセキュリティ根拠つき） | OWASP LLM06:2025 Excessive Agency |
+| P1 | HBR-P6 | gated-push の具体手段 = **GitHub Rulesets push rules（bypass-actor 限定で raw push deny）+ Merge Queue（required checks 全通過後のみ merge）**。GAP 列に実装手段として明記し L3 設計者の判断材料に | GitHub Docs（rulesets / merge queue） |
+| P1 | HNFR-P5 | **artifact trail（変更ファイルパス追跡）を汎用圧縮と分離し harness DB へ専用記録**。汎用 summarization では artifact trail が消失する実証あり → projection-writer 連携を L1 から明示 | Factory AI context-compression 分析 |
+| P2 | HNFR-P3 | external-truth grounding に **measurable AC**: 「外部参照 URL なき断定クレーム＝未検証＝gate reject」。span-level verification + source attribution（URL+公開日+版）を substance gate へ。self-verification 単独は禁止（worker≠verifier と連動） | RAG span-level verification / OWASP |
+| P2 | HBR-P8 | sandbox/trust-boundary 具体化方針 = **外部コード実行は MicroVM デフォルト**（低リスク external call は gVisor、無制限禁止）。外部 API/GitHub は **action 単位の short-lived / fine-grained token**（タスク完了/失敗で失効、再利用禁止） | MicroVM(Firecracker/Kata) / short-lived token |
+| P2 | HNFR-P5 | injection budget の **3 層 context 管理**（直近 N ターン逐語 / 中間 rolling summary / 古域は目標・制約のみ）。handover 圧縮は **anchored iterative**（sections 固定・新規 truncate 分のみ merge、全再生成禁止）。層境界ターン数は**要数値化** | Anchored Iterative Summarization / 3 層管理 |
+| P3 | HBR-P6 | 自律 tag 版管理ツールは **semantic-release vs Release Please を ADR 化**（Release Please は PR 経由 gate レビューを持ち HELIX approval gate と親和）。CI auto-fix の **repush 信頼度閾値**（暫定 0.75+、未達は Issue 起票→escalate）を FR 化し際限ない repush を防ぐ | semantic-release(MIT) / Release Please(Apache-2.0) |
+
+**採用しなかった/保留**: self-verification 単独（HNFR-P3 が明示禁止、best practice も不支持）/ ARIA delegation graph（arxiv 段階、実用 OSS 未確認）/ Anthropic compact beta（harness handover と競合有無 未確認）。
+
+**要追加調査（L3 で一次検証してから採用）**: Release Please のカスタム gate hook 対応範囲 / ACON 等論文実装の TS 再実装可否（Python binding 禁止）/ MicroVM の Bun/TS プロセス統合 / 上記出典 URL の一次確認。**ADR-001 厳守: OSS は概念採取＋TS-Bun 再実装、bulk import 禁止。**
+
 ## §3 harness 既存 FR/BR/NFR との関係（重複させない・接地済）
 
 - harness `business-requirements.md` の BR-01..08/21/22・`nfr.md` NFR-15 件・**`functional-requirements.md` の FR-L1-01..51 は既存資産**。本書 HBR/HNFR は §0/§1/§2 で **各 FR を接地（再利用）**し、**GAP（net-new）だけを足す**。番号は HELIX 名前空間で衝突しない。
