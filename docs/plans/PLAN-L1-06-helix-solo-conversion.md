@@ -79,7 +79,7 @@ business（team→solo, BR-02 等）／nfr（NFR-01 Windows narrow + 外部 delt
 ### Step 5: [直列] review (plan lint / doctor + review tier)
 > 直列理由: downstream_dependency — Step 1–4 の成果物に対し定量検証→定性レビューを行うため。
 `ut-tdd plan lint` / `ut-tdd doctor` green、cross-agent または intra_runtime_subagent review を記録（tests_green_at ≤ reviewed_at）。
-- 進捗: ⬜
+- 進捗: ✅ **cross-runtime review 済**（作成=Claude / 判定=Codex、creation≠judgement・別ランタイム）。`ut-tdd codex --role tl --execute` で委譲、**VERDICT: approve_after_fixes**。**Codex 指摘を反映**: (Critical) business §3.3.2「人間主導+AI補助」+§4 権限表が TL human G4-6 signoff / AI commit 禁止 = charter §3 自律境界（L3 後 AI 自律で L4〜merge/tag、不可逆のみ escalate）と矛盾 → **AI 自律+人間 residue へ反転 reframe**（人間 = L0–L3 承認+escalation のみ、L4+ gate = AI verifier worker≠verifier、AI が commit/merge 自律）、対の OT-20/OT-42 も追随。(Important) HOT-P2/P7 を `implemented`→**`partial`**（親 HBR 残 GAP: typed contract/effort-budget/Glossary SSoT、NFR-08 真実性）/ harness OT の FR 量閉じ **47→48 件**（FR-L1-51 反映、L3 carry 36/38/43 のみ除外）。(Minor) ai-dev-team BOM は内容 OK で cosmetic 受容。doctor exit=0。review 委譲ログ = `tasks/b3411633k.output`。
 
 ### Step 6: [直列] G-REQ.L1 re-freeze + PO サインオフ
 > 直列理由: downstream_dependency — Step 5 検証通過後に PO が re-freeze を確定するため。

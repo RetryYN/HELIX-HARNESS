@@ -14,7 +14,7 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 > `docs/design/helix/L1-requirements/pillar-requirements.md`（HBR/HNFR、charter P0–P9）の **L14 対**（片肺禁止）。
 > OT-* ⇔ HBR/HNFR を **1:1** で立てる。ID は HELIX 名前空間 **HOT-** で harness の OT-01..47 と非衝突。
 > **承認は PO（charter §3: L1 は人間承認）= PLAN-L1-06 Step 6 G-REQ.L1 re-freeze で対凍結**。
-> 実装状態は虚偽宣言を禁じる（NFR-08）: P2/P7 は実装済（PLAN-L7-175/176、9 oracle green）、他柱は L1 宣言のみ（L3 降下で詳細化）。
+> 実装状態は虚偽宣言を禁じる（NFR-08）: P2/P7 は **partial**（loop/memory architecture + 実 runtime bridge は green: PLAN-L7-175/176/177 で U-ORCH/U-MEM/BRIDGE oracle green。ただし親 HBR に残 GAP: typed agent↔tool contract / loop effort-budget / Glossary SSoT）。他柱は L1 宣言のみ（L3 降下で詳細化）。
 
 ## §0 量閉じ原則 (L1↔L14)
 
@@ -28,11 +28,11 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 |----|------|--------------|----------|----------|
 | **HOT-P0** | HBR-P0 | 逸脱・失敗・暴走を driver（Reverse/Recovery/Incident）で受け、`forward_return` 規律で Forward 正本へ収束。budget time-cap 到達で runaway を停止 | 逸脱試行が driver へ routing され forward_return で Forward へ戻る / time-cap 超過で停止が記録 / 未収束 0 | not-implemented（FR 接地厚いが forward_return first-class・runaway guard は net-new） |
 | **HOT-P1** | HBR-P1 | 要件承認後、engine（resume 3 条件 / job-queue / budget time-cap / fresh-session）で無人完走、Scrum 分割でスケール、version-up で今版外作業を保全 | 承認後 human 介在 0 で完走 / job-queue 二重 claim 0 / time-cap で fresh-session 再入 / version_target 外作業が version-up へ隔離 | partial（loop/job-queue は PLAN-L7-176 実装、continuous-run engine 全体・version-up lifecycle は net-new） |
-| **HOT-P2** | HBR-P2 | subagent を loop 単位（解釈→検証→計画→実行→検証→返却）で動かし orchestrator 統括、hybrid で worker≠verifier（自己評価禁止）、不在時 fail-close | tick が canResume gate / hybrid 不在で stopped+cross_runtime_unavailable（自己評価せず）/ selectVerifier が反対 provider | **implemented**（PLAN-L7-175/176、U-ORCH-001..006 green） |
+| **HOT-P2** | HBR-P2 | subagent を loop 単位（解釈→検証→計画→実行→検証→返却）で動かし orchestrator 統括、hybrid で worker≠verifier（自己評価禁止）、不在時 fail-close | tick が canResume gate / hybrid 不在で stopped+cross_runtime_unavailable（自己評価せず）/ selectVerifier が反対 provider | **partial**（loop 構造 + 実 runtime bridge は green: PLAN-L7-175/176/177、U-ORCH-001..006 + BRIDGE-01/02 green。**残 GAP**: typed agent↔tool contract 機械検証 / loop 内 effort-budget 制御 → 親 HBR-P2 と整合） |
 | **HOT-P3** | HBR-P3 | design⇔test-design を pair 凍結（片肺禁止）、coverage 単独 pass 禁止、合格主張は green_commands 実証跡、成果を held-out 外部真実に照合 | 片肺 freeze 試行が block / prose-only 合格主張が substance gate で reject / held-out 照合無しの完了主張を検知 | partial（pair_closure/substance gate は既存、held-out external grounding は net-new） |
 | **HOT-P4** | HBR-P4 | drift/劣化/不整合を自動検出→**自動修復**、検出→routing 循環、recipe 蓄積→予防 gate/detector へ昇格 | 検出 event が修復 action へ routing / recipe が gate/detector へ promote / 劣化（flake/perf）検出が発火 | not-implemented（検出は厚いが auto-repair/promote は net-new） |
 | **HOT-P6** | HBR-P6 | 全 gate PASS で push authorized、raw push を fail-close deny、PR 自動 cross-review、CI 失敗で auto-fix-repush、tag で版管理 | gate 未充足 push が deny / PR が cross-review 経路に乗る / CI fail で auto-fix commit が repush / tag lifecycle が成立 | not-implemented（HELIX 最大 net-new 領域） |
-| **HOT-P7** | HBR-P7 | harness/project 2 層 memory を分離、全エージェント同一記憶共有（silo 禁止）、SessionStart 想起、Glossary を SSoT 連結 | harness/project 層分離 / Claude↔Codex が同一 `.ut-tdd/memory` を共有（silo 0）/ secret reject / SessionStart で有界 surface | **implemented**（architecture: PLAN-L7-175/176、U-MEM-001..003 green + surface 配線）。Glossary SSoT 連結は net-new |
+| **HOT-P7** | HBR-P7 | harness/project 2 層 memory を分離、全エージェント同一記憶共有（silo 禁止）、SessionStart 想起、Glossary を SSoT 連結 | harness/project 層分離 / Claude↔Codex が同一 `.ut-tdd/memory` を共有（silo 0）/ secret reject / SessionStart で有界 surface | **partial**（2 層 memory architecture + 有界 surface は green: PLAN-L7-175/176、U-MEM-001..003 green。**残 GAP**: Glossary SSoT 連結 → 親 HBR-P7 と整合） |
 | **HOT-P8** | HBR-P8 | 外部（Web/docs/OSS/tool）を検索・参照し幻覚を外部照合で抑止、有益知見を skill 化して自己取込、sandbox/trust-boundary 下で実行 | 外部照合経路が成立 / skillify ループで skill が追加 / sandbox 外アクセスが escalation へ | not-implemented（外部検索/skillify/sandbox すべて net-new = 最大の空白） |
 | **HOT-P9** | HBR-P9 | 成果物を harness.db 台帳へ収束、**DB 未収束＝未完了** enforcement、cross-artifact relation graph で影響分析、contract ledger 整合 | 未収束 artifact の完了主張を block / relation graph で impact 算出 / contract ledger が整合 | partial（projection 厚いが「未収束＝未完了」enforcement gate・relation graph・contract ledger は net-new） |
 
@@ -54,5 +54,5 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 ## §4 後続（L3 降下）
 
 - 各 HOT の **具体数値しきい値（time-cap 秒数 / gate 通過率 / injection budget トークン上限等）は L3 AC で確定**。本書は L1 能力境界の対凍結まで。
-- implemented（HOT-P2/P7）は既存 oracle（U-ORCH-001..006 / U-MEM-001..003）が L7 単体側の被覆。本 OT は L14 運用観測側の対。
+- partial（HOT-P2/P7）は既存 oracle（U-ORCH-001..006 + BRIDGE-01/02 / U-MEM-001..003）が L7 単体側の被覆。本 OT は L14 運用観測側の対。残 GAP（typed contract / effort-budget / Glossary SSoT）は L3 降下対象。
 - not-implemented 柱（P6/P8 等）は L3 で優先設計（pillar-requirements §0/§3 の GAP 大の領域）。

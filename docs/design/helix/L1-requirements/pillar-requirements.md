@@ -28,7 +28,7 @@ pair_artifact: docs/test-design/helix/L1-pillar-operational-test-design.md
 
 - **既存 FR が厚い柱**: P0（19 FR）/ P4（10 FR、ただし検出のみ・修復欠）/ P9（11 FR、projection のみ・enforcement 欠）。
 - **既存 FR が薄い/欠の柱（HELIX の真の net-new）**: **P6**（FR-L1-05/17 のみ、gated-push/PR auto/CI auto-fix/tag は FR 無し）、**P8**（ほぼ皆無、外部検索/skillify/sandbox/escalation 境界の FR 無し）、**P7**（memory は impl detail 止まり、2 層 architecture/共有 access/Glossary SSoT の FR 無し）。
-- **GAP を実装で既に充足した柱**: **P2/P7** — subagent loop 構造・worker≠verifier・2 層 memory architecture は既存 FR に無かった GAP で、**PLAN-L7-175/176 が充足済**。
+- **GAP を実装で先行充足（一部）した柱**: **P2/P7** — subagent loop 構造・worker≠verifier・2 層 memory architecture + 実 runtime bridge は既存 FR に無かった GAP で **PLAN-L7-175/176/177 が green**。ただし**残 GAP あり**（P2: typed agent↔tool contract / loop effort-budget、P7: Glossary SSoT 連結）→ 柱全体は partial、§1 GAP 列参照。
 
 ## §1 業務要求 (HBR、charter 柱 → 能力要件、既存 FR 接地つき)
 
@@ -85,4 +85,4 @@ sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX pr
 - pair = `docs/test-design/helix/L1-pillar-operational-test-design.md`（OT-* ⇔ HBR/HNFR を 1:1。Step 4 で起票・対凍結）。
 - **承認**: 本書は AI 起草 draft。PO レビュー → G-REQ.L1 re-freeze（Step 6）で status=confirmed。
 - L3 降下: confirmed 後、各 HBR/HNFR を L3 FR（機能要件）+ AC（受入条件）へ分解（next_pair_freeze=L3）。
-- 既に実装済の P2/P7（HBR-P2/P7）は L3 back-fill（[[helix-orchestration-memory]] HR-BR-07/12/NFR-03 + runtime R 系）と整合。
+- 一部実装済（partial）の P2/P7（HBR-P2/P7）は L3 back-fill（[[helix-orchestration-memory]] HR-BR-07/12/NFR-03 + runtime R 系 + HR-BR-13R/14R bridge）と整合。残 GAP（typed contract / effort-budget / Glossary SSoT）は L3 で起票。

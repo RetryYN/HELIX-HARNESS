@@ -136,25 +136,27 @@ Forward / Research を除く 7 mode (Reverse / Discovery / Refactor / Retrofit /
 
 ### §3.3.2 人間主導 + AI 補助原則 (CC2 / PO 承認 2026-05-28)
 
-UT-TDD Agent Harness の運用原則として、**画面・hook・gate のすべては人間 (PO / 運用者) の判断補助のために設計**する。AI 単独自動化に依存せず、人間が異常検知・問題箇所特定・修正判断を主導する設計思想を貫く。
+**HELIX solo 改訂 (charter §3 自律境界、PLAN-L1-06 Step 5、Codex cross-review Critical 反映)**: 旧「人間主導 + AI 補助」は team 期モデル。HELIX solo では **AI 自律 + 人間は residue** へ反転する。**人間 (本人/PO) の判断点は L0 企画 / L1 要求 / L2 モック / L3 承認 ＋ 不可逆操作の escalation に集中**し、**L3 承認後の L4 以降〜merge/tag は AI roster が自律実行**する。L4+ の gate は **worker≠verifier の AI 検証**で通過し、**人間は per-gate サインオフをしない**（最終 override 権は保持）。画面・hook・gate は、この人間の L0–L3 ＋ 監視/例外介入（NFR-14 human-as-residue）を補助するために設計する（AI 単独依存ではなく、異常時に人間が residue として介入できる粒度を維持）。
 
-- **AI = 補助者**: AI は実装・文書起草・レビューを担うが、最終判断 (gate サインオフ / 修正方針 / リソース割当) は人間が下す
-- **画面 = 人間の判断補助**: 画面はサマリだけでなく **詳細データテーブル** を提供し、人間が目視で異常検知できる粒度を維持 (screen §3.1 横断原則 [[CC3]])
-- **AI への指示は copy-paste UI で生成**: 自動修正ボタンではなく、人間が AI に貼り付けて指示するテキストを生成する設計 (画面 §3.1 [[CC2]])
+- **AI = 自律実行者**: AI roster が L3 起草 ＋ L4 以降の実装・検証・gate 通過・commit・merge/tag を自律実行する。gate サインオフは AI verifier（worker≠verifier、自己評価禁止）。
+- **人間 = residue + 上流承認**: 最終判断は **L0–L3 承認 ＋ 不可逆操作 escalation ＋ 異常時 override** に限定（per-gate の L4+ サインオフは行わない）。
+- **画面 = 人間の L0–L3 / 監視判断補助**: サマリだけでなく **詳細データテーブル** を提供し、人間が residue として異常検知できる粒度を維持 (screen §3.1 横断原則 [[CC3]])
+- **AI への指示は copy-paste UI で生成**: 人間が AI に貼り付けて指示するテキストを生成する設計 (画面 §3.1 [[CC2]])
 - **AI は UI 操作なし** (S-01): Claude Code / Codex は CLI 経由のみで harness と連携する
-- **整合**: BR-02 (AI agent roster 責務境界、worker≠verifier) / BR-08 (doc-reviewer 必須召喚) / NFR-14 (human-as-residue 原則) と整合
+- **整合**: BR-02 (AI agent roster 責務境界、worker≠verifier) / charter §3 自律境界 / NFR-14 (human-as-residue 原則) と整合
 
-本原則は L3 / L4 設計層への forward carry とし、全機能設計で「人間判断点」を明示する。
+本原則は L3 / L4 設計層への forward carry とし、全機能設計で「人間判断点 = L0–L3 ＋ escalation」を明示する。
 
 ## §4 ステークホルダー
 
+> **HELIX solo 改訂 (charter §3 自律境界)**: 実体としての人間は **本人 (PO) 1 名**。TL/開発チームは別人ではなく **AI roster の役割**へ写像（§1.3）。**L0–L3 の承認 gate のみ人間、L4 以降の gate は AI verifier（worker≠verifier）が通過**し、AI が commit/merge/tag を自律実行する（不可逆操作のみ人間 escalate）。
+
 | ステークホルダー | 関心事 | 関与フェーズ | gate サインオフ権 | 権限 (S-04) |
 |------------------|--------|-------------|-----------------|------------|
-| PO (ユーザー) | スコープ・受入・最終承認 | 全フェーズ | G1 / G3 / G7 / G11 (S-02) | gate override 例外権 (S-03) / PLAN 削除 / merge 権 (S-05) |
-| TL (Tech Lead) | 技術品質・設計判断 | L3-L9 | G4 / G5 / G6 (S-02) | merge 権 (S-05) / 設計 ADR 承認 |
-| 開発チーム | 実装・テスト・レビュー | L4-L11 | — | PR 作成・レビュー |
-| AI エージェント (Claude / Codex) | 実装・文書起草・レビュー | L4-L9 (harness 委譲対象) | — (commit 禁止) | CLI 経由のみ / `.ut-tdd/` 直接編集不可 (S-01) |
-| harness 運用者 | 基盤導入・hook 有効化・state 管理 | 全フェーズ | — (gate サインオフ禁止) | `.ut-tdd/` state 直接編集 / hook 有効化 (S-04)。PLAN 削除禁止 |
+| **PO (本人 / 唯一の人間)** | スコープ・受入・上流承認・residue 介入 | L0–L3 ＋ 不可逆 escalation | **L0–L3 承認 gate (G0–G3 相当)** ＋ 例外 override (S-03) | 最終 override / PLAN 削除 / 不可逆操作承認。merge/tag は AI 自動（override 権保持） |
+| **AI roster — verifier (別ランタイム/別モデル)** | L4+ 品質・検証・gate 通過 | L4–L9 | **L4 以降の gate (worker≠verifier、自己評価禁止)** | cross-runtime review / gate 通過判定 |
+| **AI roster — worker** | 実装・テスト・文書起草 | L3 起草・L4–L11 | — (worker は判定不可) | 実装・PR 作成・**commit/merge/tag 自律**（不可逆のみ escalate） |
+| harness 運用者ロール (= 本人) | 基盤導入・hook 有効化・state 管理 | 全フェーズ | — (gate サインオフ禁止) | `.ut-tdd/` state 直接編集 / hook 有効化 (S-04)。PLAN 削除禁止 |
 | 外部ステークホルダー | 進捗確認 | 参照のみ | — | read-only (S-02) |
 
 ## §5 現状課題 → あるべき姿
