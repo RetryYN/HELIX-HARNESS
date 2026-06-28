@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-29
 owner: QA + AIM
 plan: PLAN-L6-50-helix-orchestration-memory
 pair_artifact: docs/design/helix/L6-function-design/orchestration-memory.md
@@ -15,7 +15,8 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 
 > `docs/design/helix/L6-function-design/orchestration-memory.md` (①) と **pair-freeze**。
 > oracle は「観測 → 期待」を明示し、coverage 単独 pass を禁止する。tests 配置（add-impl 時）:
-> `tests/orchestration/*.test.ts` / `tests/memory/*.test.ts`。`tdd_red_required: true`（Red 先行）。
+> `tests/orchestration/*.test.ts` / `tests/memory/*.test.ts`。実 runtime bridge は
+> `tests/orchestration/loop-bridge.test.ts`。`tdd_red_required: true`（Red 先行）。
 
 ## §1 契約 ↔ oracle 対応（孤児 0）
 
@@ -25,6 +26,8 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 | `evaluateStop` | U-ORCH-002 |
 | `selectVerifier` | U-ORCH-003 |
 | `tick` | U-ORCH-004 |
+| `nodeTickDeps` | U-ORCH-BRIDGE-01 |
+| `ut-tdd loop run` | U-ORCH-BRIDGE-02 |
 | `classifyRecovery` | U-ORCH-005 |
 | `claimNextJob` | U-ORCH-006 |
 | `writeMemory` | U-MEM-001 |
@@ -58,6 +61,24 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
   (c) worker→verifier dispatch、`loop_iterations` 追記（`blocked_reason` 記録）、`iteration` が +1。
   **(d) worker と同 runtime で代替検証せず `status="stopped"`・`blockedReason="cross_runtime_unavailable"` で
   escalate（worker の runtime から `pass` を出さない）**。全ケースで **token を state/log に書かない**。
+
+### U-ORCH-BRIDGE-01 — `nodeTickDeps` は実 adapter bridge を構成する
+- **観測**: fake `execAdapter` / fake `LoopStore` を注入した `nodeTickDeps` で `runWorker` と `runVerifier` を実行し、
+  `ExecAdapterInput` の `provider` / `purpose` / `role` / `plan.command` / `plan.stdin` / verdict 解釈を観測する。
+- **期待**: worker は state の `workerProvider` で adapter plan を作る。verifier は `tick` が渡した provider を使い、
+  bridge 内で provider 選定を再実装しない。worker/verifier の prompt は目的別に分離し、verifier は
+  `VERDICT: pass|fail|error|pending` または JSON `{verdict}` のみを verdict として解釈する。
+  adapter non-zero は success 扱いにせず、iteration record は store へ追記される。HR-BR-13R の acceptance
+  `U-ORCH-BRIDGE-01` と同一 oracle。
+
+### U-ORCH-BRIDGE-02 — `ut-tdd loop run` は store/dry-run/once/iteration 永続を扱う
+- **観測**: temp repo に `.ut-tdd/state/loop/<plan>.json` と fake `codex` / `claude` provider を置き、
+  実 CLI `ut-tdd loop run --plan <id> --dry-run`、`--once`、通常実行を spawn して stdout・provider 呼び出し・
+  state json・iterations jsonl を観測する。
+- **期待**: `--dry-run` は mode/worker/verifier availability と `dispatch=false` を出し、provider 呼び出しと
+  state 書込をしない。`--once` は 1 tick だけ進め、state と iteration record を永続化する。通常実行は
+  `canResume` が false になるまで tick する。state 不在・invalid provider・runtime bridge error は exitCode=1。
+  HR-BR-14R の acceptance `U-ORCH-BRIDGE-02` と同一 oracle。
 
 ### U-ORCH-005 — `classifyRecovery` C1-C4
 - **観測**: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 の各 signal、および閾値内 signal。

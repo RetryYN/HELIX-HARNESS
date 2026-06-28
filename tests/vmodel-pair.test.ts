@@ -293,6 +293,11 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "docs/test-design/helix/L5-pillar-integration-test-design.md",
       "utf8",
     );
+    const l6FunctionDesign = readFileSync(
+      "docs/design/helix/L6-function-design/orchestration-memory.md",
+      "utf8",
+    );
+    const l6UnitTestDesign = readFileSync("docs/test-design/helix/orchestration-memory.md", "utf8");
     const l4Plan = readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8");
     const l5Plan = readFileSync("docs/plans/PLAN-L5-09-helix-pillar-detail-design.md", "utf8");
     const backfillRequirementIds = uniqueMatches(backfillDocs, /^## (HR-(?:BR|NFR)-[A-Z0-9]+) /gm);
@@ -357,6 +362,35 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     ]) {
       expect(l5TestDesign).toContain(required);
     }
+    for (const id of backfillRequirementIds) {
+      expect(l6FunctionDesign, `${id} must descend into L6 function design`).toContain(id);
+    }
+    for (const required of [
+      "契約 11 本",
+      "11 契約",
+      "nodeTickDeps",
+      "ut-tdd loop run",
+      "U-ORCH-BRIDGE-01",
+      "U-ORCH-BRIDGE-02",
+      "Route-B back-fill L3 要件 8 件",
+      "HR-BR-13R` は `nodeTickDeps`",
+      "HR-BR-14R` は",
+    ]) {
+      expect(l6FunctionDesign).toContain(required);
+    }
+    for (const required of [
+      "`nodeTickDeps` | U-ORCH-BRIDGE-01",
+      "`ut-tdd loop run` | U-ORCH-BRIDGE-02",
+      "### U-ORCH-BRIDGE-01",
+      "### U-ORCH-BRIDGE-02",
+      "HR-BR-13R",
+      "HR-BR-14R",
+      "tests/orchestration/loop-bridge.test.ts",
+    ]) {
+      expect(l6UnitTestDesign).toContain(required);
+    }
+    expect(l6FunctionDesign).not.toContain("契約関数 9 本");
+    expect(l6FunctionDesign).not.toContain("9 契約 ↔");
     expect(l4Plan).toContain("### Step 6: [直列] Route-B back-fill 境界監査");
     expect(l4Plan).toContain("HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC");
     expect(l5Plan).toContain("### Step 7: [直列] Route-B back-fill contract 境界監査");
