@@ -22,7 +22,7 @@ next_pair_freeze: L8
 - 入力 L4: `HB-*` 10 block、`HR-FR` 30 件 + `HR-NFR` 13 件 = 43 件。
 - L5 detailed contract: 10 件 (`HC-P0` / `HC-P1` / `HC-P2` / `HC-P3` / `HC-P4` / `HC-P6` / `HC-P7` / `HC-P8` / `HC-P9` / `HC-AC`)。
 - L8 integration test design: `LIT-*` 43 件。
-- Route-B back-fill L3 要件 8 件は本 pillar detail の 43 件へ二重計上しない。該当契約は L6 `orchestration-memory.md` と Reverse back-fill 側で関数境界へ降下し、本書では HC-P2 / HC-P7 / HC-AC の contract matrix に取り込む。
+- Route-B back-fill L3 要件 8 件は本 pillar detail の 43 件へ二重計上しない。該当契約は L6 `orchestration-memory.md` と Reverse back-fill 側で関数境界へ降下し、本書では HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract matrix に取り込む。
 - 孤児: 0。詳細は §2 trace。
 
 ## §1 L5 detailed contract
@@ -87,6 +87,22 @@ next_pair_freeze: L8
 | HR-NFR-AC-01 | HB-AC | HC-AC | LIT-NAC-01 |
 | HR-NFR-AC-02 | HB-AC | HC-AC | LIT-NAC-02 |
 | HR-NFR-AC-03 | HB-AC | HC-AC | LIT-NAC-03 |
+
+## §2.1 Route-B back-fill contract boundary
+
+Route-B back-fill 8 件は §2 の `LIT-*` 43 件へ二重採番しない。ただし L5 contract の責務から外さず、
+既存 `HC-*` contract の fail-close / projection / output 境界へ接続する。
+
+| Route-B L3 ID | L4 block boundary | L5 contract boundary | L5 で固定する contract 判断 |
+|---------------|-------------------|----------------------|------------------------------|
+| HR-BR-07 | HB-P2 | HC-P2 | `LoopDispatchDecision` は canResume/evaluateStop/classifyRecovery を安全側に解釈する |
+| HR-BR-12 | HB-P7 | HC-P7 | `BoundedRecallPacket` / memory contract は supersede と harness/project layer を保持する |
+| HR-NFR-03 | HB-P3 / HB-P7 | HC-P3 / HC-P7 | `VerificationEvidenceProfile` は worker 自己 pass を拒否し、memory contract は secret body を保存しない |
+| HR-BR-07R | HB-P2 | HC-P2 | tick runtime は cross-runtime verifier 不在時に same-runtime pass へ落とさない |
+| HR-BR-12R | HB-P7 | HC-P7 | memory persistence は shared SSoT、append-only、secret reject を module contract にする |
+| HR-NFR-03R | HB-P1 | HC-P1 | job claim は continuous autonomy の scheduler contract として二重取得を防ぐ |
+| HR-BR-13R | HB-P2 / HB-AC | HC-P2 / HC-AC | runtime bridge は provider 選定を再実装せず adapter parity / preflight contract に従う |
+| HR-BR-14R | HB-P1 / HB-P2 | HC-P1 / HC-P2 | loop CLI は scheduler state と tick contract を結合し、dry-run と dispatch を分離する |
 
 ## §3 L5 contract matrix
 

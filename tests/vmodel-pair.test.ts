@@ -280,6 +280,21 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       readFileSync("docs/test-design/helix/L4-pillar-system-test-design.md", "utf8"),
       readFileSync("docs/test-design/helix/L5-pillar-integration-test-design.md", "utf8"),
     ].join("\n");
+    const l4Design = readFileSync(
+      "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "utf8",
+    );
+    const l5Design = readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8");
+    const l4TestDesign = readFileSync(
+      "docs/test-design/helix/L4-pillar-system-test-design.md",
+      "utf8",
+    );
+    const l5TestDesign = readFileSync(
+      "docs/test-design/helix/L5-pillar-integration-test-design.md",
+      "utf8",
+    );
+    const l4Plan = readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8");
+    const l5Plan = readFileSync("docs/plans/PLAN-L5-09-helix-pillar-detail-design.md", "utf8");
     const backfillRequirementIds = uniqueMatches(backfillDocs, /^## (HR-(?:BR|NFR)-[A-Z0-9]+) /gm);
     const hatBackfillRequirementIds = uniqueMatches(
       l12,
@@ -310,6 +325,42 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
     expect(downstreamPillarDocs.match(/Route-B back-fill L3 要件 8 件/g)).toHaveLength(4);
     expect(downstreamPillarDocs.match(/二重計上しない/g)).toHaveLength(4);
+    for (const required of [
+      "HR-NFR-03R | job-queue 競合排他 | HB-P1",
+      "HR-NFR-03 | hybrid 自己評価禁止 + memory secret reject | HB-P3 / HB-P7",
+      "HR-BR-13R | tick の実 runtime bridge | HB-P2 / HB-AC",
+      "HR-BR-14R | loop run entrypoint | HB-P1 / HB-P2",
+    ]) {
+      expect(l4Design).toContain(required);
+    }
+    for (const required of [
+      "HR-NFR-03R | HB-P1 | HC-P1",
+      "HR-NFR-03 | HB-P3 / HB-P7 | HC-P3 / HC-P7",
+      "HR-BR-13R | HB-P2 / HB-AC | HC-P2 / HC-AC",
+      "HR-BR-14R | HB-P1 / HB-P2 | HC-P1 / HC-P2",
+    ]) {
+      expect(l5Design).toContain(required);
+    }
+    for (const required of [
+      "## §1.1 Route-B boundary observation",
+      "HR-NFR-03R | HB-P1 | job queue claim",
+      "HR-NFR-03 | HB-P3 / HB-P7 | worker 自己 pass 禁止",
+      "HR-BR-14R | HB-P1 / HB-P2 | loop run entrypoint",
+    ]) {
+      expect(l4TestDesign).toContain(required);
+    }
+    for (const required of [
+      "## §1.1 Route-B contract observation",
+      "HR-NFR-03R | HC-P1 | scheduler/job contract",
+      "HR-NFR-03 | HC-P3 / HC-P7 | verification profile",
+      "HR-BR-14R | HC-P1 / HC-P2 | loop CLI",
+    ]) {
+      expect(l5TestDesign).toContain(required);
+    }
+    expect(l4Plan).toContain("### Step 6: [直列] Route-B back-fill 境界監査");
+    expect(l4Plan).toContain("HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC");
+    expect(l5Plan).toContain("### Step 7: [直列] Route-B back-fill contract 境界監査");
+    expect(l5Plan).toContain("HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC");
   });
 
   it("U-VPAIR-005d: HELIX L1 external delta の具体化語彙が L3/L12 に降下済み", () => {
@@ -555,7 +606,8 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     );
     const l4 = readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8");
     const l3RequirementIds = uniqueMatches(l3, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
-    const l4RequirementIds = uniqueMatches(l4, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l4PillarTrace = l4.split("## §2 L3 -> L4 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
+    const l4RequirementIds = uniqueMatches(l4PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
 
     expect(l3RequirementIds).toHaveLength(43);
     expect(l4RequirementIds).toEqual(l3RequirementIds);
@@ -758,8 +810,11 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
   it("U-VPAIR-009a: HELIX L4 43要件は L5 detail design に全件降下済み", () => {
     const l4 = readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8");
     const l5 = readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8");
-    const l4RequirementIds = uniqueMatches(l4, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
-    const l5RequirementIds = uniqueMatches(l5, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l4PillarTrace = l4.split("## §2 L3 -> L4 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
+    const l5PillarTrace =
+      l5.split("## §2 L4 -> L5 -> L8 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
+    const l4RequirementIds = uniqueMatches(l4PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l5RequirementIds = uniqueMatches(l5PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
 
     expect(l4RequirementIds).toHaveLength(43);
     expect(l5RequirementIds).toEqual(l4RequirementIds);

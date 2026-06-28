@@ -23,7 +23,7 @@ next_pair_freeze: L5
 - 対象 L5 contract: 10 件。
 - integration test 観測: `LIT-*` 43 件。
 - 対象 L3 要件: 43 件。
-- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle で観測し、本 L5 pillar integration test では 43 件に二重計上しない。
+- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle で観測し、本 L5 pillar integration test では 43 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract 境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
 
 ## §1 integration test trace
@@ -73,6 +73,19 @@ next_pair_freeze: L5
 | LIT-NAC-01 | HR-NFR-AC-01 | HC-AC | Given adapter/template/skill/runtime rule / When drift check runs / Then divergence from shared core is surfaced |
 | LIT-NAC-02 | HR-NFR-AC-02 | HC-AC | Given hosted API/developer tool edit / When preflight audit is checked / Then hook non-enforcement and target paths are recorded |
 | LIT-NAC-03 | HR-NFR-AC-03 | HC-AC | Given runtime execution route / When route contract is checked / Then PLAN/CLI/harness DB/dry-run path is the SSoT |
+
+## §1.1 Route-B contract observation
+
+| Route-B L3 ID | L5 contract boundary | integration 観測 |
+|---------------|----------------------|------------------|
+| HR-BR-07 | HC-P2 | `LoopDispatchDecision` が canResume/evaluateStop/classifyRecovery の安全側出力を持つ |
+| HR-BR-12 | HC-P7 | memory contract が layer / supersede / bounded recall を保持する |
+| HR-NFR-03 | HC-P3 / HC-P7 | verification profile が worker 自己 pass を拒否し、memory contract が secret body を保存しない |
+| HR-BR-07R | HC-P2 | tick runtime が cross-runtime verifier 不在時に same-runtime pass を出さない |
+| HR-BR-12R | HC-P7 | memory persistence が shared SSoT / append-only / secret reject を満たす |
+| HR-NFR-03R | HC-P1 | scheduler/job contract が `BEGIN IMMEDIATE` claim と busy backoff を扱う |
+| HR-BR-13R | HC-P2 / HC-AC | runtime bridge が provider 選定を再実装せず adapter parity に従う |
+| HR-BR-14R | HC-P1 / HC-P2 | loop CLI が scheduler state と tick contract を結合し、dry-run と dispatch を分離する |
 
 ## §2 G-DESIGN.L5
 

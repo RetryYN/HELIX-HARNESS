@@ -23,7 +23,7 @@ next_pair_freeze: L4
 - 対象 L3 要件: 43 件。
 - 対象 L4 block: 10 件。
 - system test 観測: HST 43 件。
-- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の acceptance で観測し、本 L4 pillar system test では 43 件に二重計上しない。
+- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の acceptance で観測し、本 L4 pillar system test では 43 件に二重計上しない。ただし HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
 
 ## §1 system test trace
@@ -73,6 +73,19 @@ next_pair_freeze: L4
 | HST-NAC-01 | HR-NFR-AC-01 | HB-AC | agent/template/skill/runtime adapter の rule drift を検出する |
 | HST-NAC-02 | HR-NFR-AC-02 | HB-AC | hosted API/developer tool surface は preflight evidence なしに通らない |
 | HST-NAC-03 | HR-NFR-AC-03 | HB-AC | runtime route が provider API direct call 前提でなく PLAN/CLI/harness DB/dry-run を正本にする |
+
+## §1.1 Route-B boundary observation
+
+| Route-B L3 ID | L4 block boundary | system 観測 |
+|---------------|-------------------|-------------|
+| HR-BR-07 | HB-P2 | loop 継続・停止・Recovery 分類が agent-loop の安全側 decision として扱われる |
+| HR-BR-12 | HB-P7 | shared memory が harness/project layer と supersede を持ち、per-agent silo へ落ちない |
+| HR-NFR-03 | HB-P3 / HB-P7 | worker 自己 pass 禁止と memory secret reject が別々の境界で観測できる |
+| HR-BR-07R | HB-P2 | tick runtime が same-runtime verifier 代替へ落ちず stopped/blocker を残す |
+| HR-BR-12R | HB-P7 | memory persistence / CLI が shared SSoT と append-only を守る |
+| HR-NFR-03R | HB-P1 | job queue claim が二重取得を防ぎ、busy を backoff 可能に扱う |
+| HR-BR-13R | HB-P2 / HB-AC | runtime bridge が tick の verifier selection と adapter parity に従う |
+| HR-BR-14R | HB-P1 / HB-P2 | loop run entrypoint が scheduler state と tick を結合し、dry-run では dispatch しない |
 
 ## §2 G-DESIGN.L4
 

@@ -24,7 +24,7 @@ next_pair_freeze: L9
 - 入力 L3: `HR-FR` 30 件 + `HR-NFR` 13 件 = 43 件。
 - L4 block: 10 件 (`HB-P0` / `HB-P1` / `HB-P2` / `HB-P3` / `HB-P4` / `HB-P6` / `HB-P7` / `HB-P8` / `HB-P9` / `HB-AC`)。
 - L9 system test design: `HST-*` 43 件。
-- Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P2 / HB-P7 / HB-AC の境界として受ける。
+- Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存 block 境界へ受ける。
 - 孤児: 0。詳細は §2 trace。
 
 ## §1 L4 building block
@@ -90,6 +90,22 @@ next_pair_freeze: L9
 | HR-NFR-AC-02 | HB-AC | hosted API/developer tool surface は repo hook 非強制を明示し preflight audit を必須にする | HST-NAC-02 |
 | HR-NFR-AC-03 | HB-AC | AI runtime は provider API direct call / SDK 常駐実行を前提にせず、PLAN artifact / repo-local CLI adapter / harness DB trace / dry-run plan を正本にする | HST-NAC-03 |
 
+## §2.1 Route-B back-fill boundary
+
+Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4 block の責務から外すのではなく、
+下表の block 境界で受け、詳細な関数契約は L6 route-B / Reverse back-fill に委ねる。
+
+| Route-B L3 ID | 意味境界 | L4 block boundary | L4 で固定する設計判断 |
+|---------------|----------|-------------------|------------------------|
+| HR-BR-07 | loop-engineering 決定ロジック | HB-P2 | loop 継続・停止・Recovery 分類は agent-loop の決定境界であり、数値だけの自動継続にしない |
+| HR-BR-12 | 2 層共有メモリのセマンティクス | HB-P7 | shared knowledge は harness/project 層、supersede、bounded recall を持ち、per-agent silo を正本にしない |
+| HR-NFR-03 | hybrid 自己評価禁止 + memory secret reject | HB-P3 / HB-P7 | verification governance は worker 自己 pass を拒否し、knowledge boundary は secret body を保存しない |
+| HR-BR-07R | tick runtime | HB-P2 | runtime tick は `canResume` / `evaluateStop` / verifier selection を再利用し、自己評価代替を許さない |
+| HR-BR-12R | memory persistence + CLI | HB-P7 | `.ut-tdd/memory/<layer>.jsonl` を共有 SSoT とし、append-only / secret reject を維持する |
+| HR-NFR-03R | job-queue 競合排他 | HB-P1 | continuous autonomy の job claim は二重取得を防ぎ、busy は backoff 可能にする |
+| HR-BR-13R | tick の実 runtime bridge | HB-P2 / HB-AC | bridge は verifier 選定を再実装せず、adapter parity / preflight 境界に従う |
+| HR-BR-14R | loop run entrypoint | HB-P1 / HB-P2 | loop CLI は scheduler/loop state から tick を駆動し、dry-run と iteration 永続を分離する |
+
 ## §3 横断設計
 
 - **data/projection**: 新規永続 state を安易に増やさず、既存 harness.db projection (`plan_registry`,
@@ -109,8 +125,8 @@ next_pair_freeze: L9
 
 `PLAN-L4-50-orchestration-memory-hybrid` は P2/P7 の一部を L4 として起票した historical draft だが、
 `PLAN-L6-50-helix-orchestration-memory` が `supersedes` し、P2/P7 の機能設計は L6 route-B と Reverse
-back-fill で確定済みである。本書では P2/P7 を HB-P2 / HB-P7 / HB-AC の L4 block として再接地し、L4-50
-自体は archived historical artifact として閉じる。
+back-fill で確定済みである。本書では P2/P7 を §2.1 のとおり HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の
+L4 block 境界へ再接地し、L4-50 自体は archived historical artifact として閉じる。
 
 ## §5 carry
 
