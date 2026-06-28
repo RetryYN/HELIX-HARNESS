@@ -65,7 +65,7 @@ commit 前の review 前置 (`code-reviewer` + `pmo-sonnet` 並行、`claude-onl
 |---|---|---|---|
 | R-01 | Important | `L3-acceptance-test-design.md` §0 量閉じ原則が `P0 18 件 = FR-01〜18` のままで、同 doc §4 R2 の `L3 FR 26 件` と矛盾 | §0 を `L3 FR 26 件 (= FR-01〜18 + FR-45 + workflow core 7 件)` へ更新 |
 | R-02 | Important | 同 doc §2 量閉じ一覧 functional 節が `18 FR × 3 AC = 54` のままで FR-45 / workflow core 7 件を孤児チェックから落としていた | §2 functional 節を L3 FR 26 件へ更新し §1.4 件数まとめ (AT-FR 79 件) を参照 |
-| R-03 | Important | `screen-requirements.md` HM-01 画面仕様が `FR-L1 42 件` (中間値) のままで、同 doc §5.3 の `FR-L1 P0 19 件 / 46 件版` と矛盾 | HM-01 一覧行・情報要素を `FR-L1 46 件` へ更新 |
+| R-03 | Important | `screen-requirements.md` HM-01 画面仕様が当時の中間件数のままで、同 doc §5.3 の P0 件数表現と矛盾 | HM-01 一覧行・情報要素を当時の正本件数へ更新 (現行件数正本は L1 functional §1) |
 | R-04 | Important | `PLAN-L1-02` §3.1 見出しが `P0 18 件優先` のままで、同 PLAN §0/§7 carry note の `P0 19 件` と矛盾 | 見出しを `P0 19 件優先` へ更新 |
 
 **accepted-historical (修正せず carry)**: `PLAN-L1-02` §6 DoD `[x] P0 18 件翻案完了 (PO 承認済 2026-05-28)` は FR-L1-45 追加 (A-49) 前の milestone 記録のため日付つきで保持。`L1-operational-test-design.md` OT-14 `FR-L1-01〜35 (P0 18 件)` は HELIX 由来 35 件中の P0 サブセットを正しく指すため保持。`v2-import-ledger.md` / `docs/archive/**` の旧件数は historical ledger / superseded として許容。

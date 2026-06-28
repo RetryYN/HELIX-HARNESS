@@ -83,15 +83,15 @@ core ↔ adapter ↔ 外部 service の 3 層境界。core は正規化 intent (
 
 ## §4 受入条件 / DoD
 
-- [ ] Step 1〜8 のすべてが `external-if.md` に存在
-- [ ] 6 外部 service が境界カテゴリに分類 (漏れ 0)
-- [ ] 各境界に DbC pre/post/invariant が最低 1 件
-- [ ] 失敗時 fail-close / degradation 方針が存在
-- [ ] 秘密情報・認証の扱いが禁止事項と整合 (key/credential を書かない、認証は人間確認)
-- [ ] what/形状 ↔ L5 D-API 粒度境界明示 (IMP-018)
-- [ ] runtime adapter 境界が architecture.md §6 と整合
-- [ ] §6 用語更新 / §7 機能要求更新 が存在
-- [ ] frontmatter `kind == design`、§0〜§7 完備
+- [x] Step 1〜8 のすべてが `external-if.md` に存在
+- [x] 外部 service / external research / sandbox / release / hosted tool surface が境界カテゴリに分類 (漏れ 0)
+- [x] 各境界に DbC pre/post/invariant が最低 1 件
+- [x] 失敗時 fail-close / degradation 方針が存在
+- [x] 秘密情報・認証の扱いが禁止事項と整合 (key/credential を書かない、認証は人間確認)
+- [x] what/形状 ↔ L5 D-API 粒度境界明示 (IMP-018)
+- [x] runtime adapter 境界が architecture.md §6 と整合
+- [x] §6 用語更新 / §7 機能要求更新 が存在
+- [x] frontmatter `kind == design`、§0〜§7 完備
 
 ## §5 関連 PLAN / ADR / docs
 

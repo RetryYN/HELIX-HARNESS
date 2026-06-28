@@ -52,12 +52,12 @@ describe("static gates", () => {
     }
   });
 
-  it("wires G6 to deterministic layer pair gate and surfaces HELIX draft as not passed", () => {
+  it("wires G6 to deterministic layer pair gate and passes after HELIX L6 pair freeze", () => {
     const result = evaluateStaticGate({ gate: "G6", repoRoot: process.cwd() });
     expect(result.applicable).toBe(true);
-    expect(result.passed).toBe(false);
+    expect(result.passed).toBe(true);
     expect(result.messages.join("\n")).toContain("g6-pair");
-    expect(result.messages.join("\n")).toContain("draft=1");
+    expect(result.messages.join("\n")).toContain("draft=0");
   });
 
   it("fails a layer pair gate when pair evidence is missing", () => {

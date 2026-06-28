@@ -2,7 +2,7 @@
 title: "HELIX L6 単体テスト設計 (③) — P2 orchestration + P7 memory"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-06-28
 updated: 2026-06-28
 owner: QA + AIM

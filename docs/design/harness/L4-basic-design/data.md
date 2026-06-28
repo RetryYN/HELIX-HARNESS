@@ -156,11 +156,28 @@ L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-
 
 不変条件: projection DB は生成 state だが、検出器の機械 SSoT として扱う。入力となる docs/YAML/JSON と projection の齟齬は doctor が finding として出し、silent repair しない。
 
+### §8.2 HELIX pillar projection carry (PLAN-L4-51)
+
+HELIX pillar の `HR-FR-*` / `HR-NFR-*` 43 件は、L4 時点で新しい集約ルートを追加しない。5 集約 (Plan / Artifact / Workflow / Handover / Evaluation) を維持し、以下は L5 physical-data / state-db projection の候補として扱う。
+
+| HELIX data concern | 所属 / projection 候補 | 理由 |
+|---|---|---|
+| **version/release ledger** | Plan / Workflow projection | version-up、tag/release、CI gate の進捗は workflow と release plan の状態であり、独立集約にしない |
+| **approval action ledger** | Workflow / guardrail_decisions | high-impact action、GitHub Rulesets、external API、sandbox 実行は承認 decision として記録し、承認そのものを設計文書に埋め込まない |
+| **research source ledger** | Artifact / Evaluation projection | external research は source URL/version/span と要約 artifact を分離し、raw 外部文を命令として保存しない |
+| **security event ledger** | Evaluation / findings | prompt injection、secret detection、sandbox policy violation は finding/event として記録し、automatic repair しない |
+| **glossary/context-map projection** | Artifact / graph / search | glossary、bounded context、DDD context map は authored markdown を正本にし、relation graph/search_index は派生 projection とする |
+| **metric trend / layer baseline** | Evaluation / coverage / impact_results | implementation accuracy、test workload、layer regression は trend と baseline の比較であり、Plan/Artifact を直接書き換えない |
+| **contract ledger** | Artifact / trace_edges / relation graph | API/CLI/adapter contract と層間 trace は relation graph で照合し、DB を authored truth にしない |
+
+> **集約判断**: HELIX pillar の共有知識・外部研究・承認・security filter は重要な data concern だが、L4 では **新規 aggregate root 追加なし**。L5 で physical table を追加する場合も、authoring source と projection の分離を invariant とする。
+
 ## §9 carry → L5 詳細設計
 
 - 各集約の **物理 schema 詳細** (JSON フィールド型・必須/任意・default) は L5 physical-data (D-DB) で確定
 - **集約ルートの操作 (API)** = Precondition/Postcondition は L5 D-API / internal-processing で DbC 記述 (IMP-014、edge 5-8 docstring)
 - evaluation_batch (Phase B) の集計アーキは L4 architecture + Phase B telemetry carry
 - **observability 系値オブジェクト候補** (business §10.4、Phase A): `invocation_log` / `detector_result` / `gate_evidence` / `code_catalog` / `command_catalog` の値オブジェクト/state schema を L5 physical-data で確定 (本 doc では entity 追加なし、候補として carry)
+- **HELIX pillar projection carry** (PLAN-L4-51): approval action ledger / research source ledger / security event ledger / glossary/context-map projection / metric trend / contract ledger は §8.2 のとおり 5 集約を維持したまま L5 physical-data で table/projection 粒度を確定する
 - **SubDoc enum 実装** (IMP-026): requirements §1.10.G.1 の VALID_SUB_DOCS は `src/schema` の zod enum と frontmatter superRefine へ実装済み
 - **内部資産 (roster/skill) の back-fill 解消** (A-90、L9 ST-ASSET-04 対応): roster/skill は in-memory scan-on-demand で**永続 state なし** (§8、ADR-004) のため data 集約・物理 state schema に**追加なし**と確定。各 subcommand / capability resolver / recommender / drift 判定の**関数仕様**は L6 機能設計で確定済み (`function-spec.md` / `fr-unit-coverage.md` の FR-L1-12, FR-L1-33, FR-L1-34, FR-L1-46〜49)。L5 physical-data で roster/skill の物理 state 追加は不要 (fs 正本)

@@ -159,7 +159,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 | 節 | 情報源 | 方法 |
 |----|--------|------|
 | §1 目的・背景 | L1 functional §1 + screen §1 | L1 baton を継承し L3 詳細化目的を宣言 |
-| §2 FR-* + AC-* 一覧 (本体) | L1 FR-L1 現行 47 件 + screen §5 trace | L3 確定 26 件を本体化、残 P1/P2 は U-L3-2 / U-L3-3 に従い carry 分類 |
+| §2 FR-* + AC-* 一覧 (本体) | L1 FR-L1 現行 51 件 + screen §5 trace | L3 確定 26 件を本体化、残 P1/P2 は U-L3-2 / U-L3-3 に従い carry 分類 |
 | §3 carry 宣言 | P1/P2 の L4/Phase B carry | U-L3-2 / U-L3-3 確定に従う |
 | §4 画面 trace (L2 deep-link) | screen §5 G1-trace + L2-screen | L1 から継承、L3 AC レベルに展開 |
 | §5 9 mode × FR 整合 | business §3.3.1 + 各 FR | mode 統一合流原則を L3 で機械強制化 |
@@ -183,7 +183,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 
 - **L4 基本設計 (PLAN-L4-01)**: L3 FR-* の実現方式・アーキテクチャ詳細は L4 ADR / L4 基本設計で確定。本 PLAN は機能要件レベルのみ
 - **L4 データ設計 (PLAN-L4-04)**: business §10.2 L4 carry 表 7 行 (集約境界 / 値オブジェクト等) は L4 データ設計 sub-doc で確定 (PLAN-L3-01 出力の AC を入力)
-- **PLAN-L3-02 連携**: BR-21 詳細化 + HM-08 連動 + FR-L1-36/38/43 (Phase B carry) は PLAN-L3-02 に委譲、本 PLAN ではスコープ外
+- **PLAN-L3-02 連携**: BR-21 詳細化 + HM-08 連動 + FR-L1-36/38/43 evaluation projection は PLAN-L3-02 に委譲、本 PLAN ではスコープ外
 - **PLAN-L3-03 連携**: NFR グレード値確定は PLAN-L3-03 に委譲、本 PLAN では FR 中心
 - **L7 実装スプリント (PLAN-L7-NN)**: 本 PLAN 確定 AC は L7 TDD Red の入力。AC を Red テスト → Green 実装の機械契約に変換
 - **G3 lint 実装**: `ut-tdd plan lint --gate G3` の R-trace ルールは L7 実装で確定 (本 PLAN は設計のみ)

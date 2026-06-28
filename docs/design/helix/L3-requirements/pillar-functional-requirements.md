@@ -24,19 +24,19 @@ next_pair_freeze: L12
 
 | L1 要求 | L3 展開 | 状態 |
 |---------|---------|------|
-| HBR-P0 | HR-FR-P0-01 / HR-FR-P0-02 | 起草済 |
-| HBR-P1 | HR-FR-P1-01 / HR-FR-P1-02 / HR-FR-P1-03 / HR-FR-P1-04 | 起草済 |
-| HBR-P2 | HR-FR-P2-01 / HR-FR-P2-02 / HR-FR-P2-03 / HR-FR-P2-04 + 既存 HR-BR-07/07R/13R/14R | 起草済 |
-| HBR-P3 | HR-FR-P3-01 / HR-FR-P3-02 + HR-NFR-P3-01 / HR-NFR-P3-04 | 起草済 |
-| HBR-P4 | HR-FR-P4-01 / HR-FR-P4-02 / HR-FR-P4-03 | 起草済 |
-| HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | 起草済 |
-| HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 + 既存 HR-BR-12/12R | 起草済 |
-| HBR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 + HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 起草済 |
-| HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 | 起草済 |
-| HNFR-P3 | HR-NFR-P3-01 / HR-NFR-P3-02 / HR-NFR-P3-03 / HR-NFR-P3-04 | 起草済 |
-| HNFR-P5 | HR-NFR-P5-01 / HR-NFR-P5-02 / HR-NFR-P5-03 | 起草済 |
-| HNFR-P8 | HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 起草済 |
-| HNFR-AC | HR-NFR-AC-01 / HR-NFR-AC-02 / HR-NFR-AC-03 | 起草済 |
+| HBR-P0 | HR-FR-P0-01 / HR-FR-P0-02 | 確定済 |
+| HBR-P1 | HR-FR-P1-01 / HR-FR-P1-02 / HR-FR-P1-03 / HR-FR-P1-04 | 確定済 |
+| HBR-P2 | HR-FR-P2-01 / HR-FR-P2-02 / HR-FR-P2-03 / HR-FR-P2-04 + 既存 HR-BR-07/07R/13R/14R | 確定済 |
+| HBR-P3 | HR-FR-P3-01 / HR-FR-P3-02 + HR-NFR-P3-01 / HR-NFR-P3-04 | 確定済 |
+| HBR-P4 | HR-FR-P4-01 / HR-FR-P4-02 / HR-FR-P4-03 | 確定済 |
+| HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | 確定済 |
+| HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 + 既存 HR-BR-12/12R | 確定済 |
+| HBR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 + HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 確定済 |
+| HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 | 確定済 |
+| HNFR-P3 | HR-NFR-P3-01 / HR-NFR-P3-02 / HR-NFR-P3-03 / HR-NFR-P3-04 | 確定済 |
+| HNFR-P5 | HR-NFR-P5-01 / HR-NFR-P5-02 / HR-NFR-P5-03 | 確定済 |
+| HNFR-P8 | HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 確定済 |
+| HNFR-AC | HR-NFR-AC-01 / HR-NFR-AC-02 / HR-NFR-AC-03 | 確定済 |
 
 孤児 L1 pillar = 0。既存 P2/P7 back-fill に含まれる pure/runtime/bridge 要件は重複採番しない。
 

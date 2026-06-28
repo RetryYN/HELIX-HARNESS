@@ -83,14 +83,14 @@ YAML/JSON state のディレクトリ/ファイル schema と SQLite projection 
 
 ## §4 受入条件 / DoD
 
-- [ ] Step 1〜8 のすべてが `data.md` に存在
-- [ ] 12 entity (+ L3 由来 11) が集約に分類され、集約ルート/境界が明示
-- [ ] 各集約に不変条件 (DbC invariant) が最低 1 件
-- [ ] `src/schema/index.ts` の enum と値オブジェクト定義が 1:1 整合 (齟齬 0)
-- [ ] V-model 4 artifact 双方向 trace 明示 (L9 総合テスト設計 pair)
-- [ ] §6 用語更新 が存在 (要件 §1.10.G.9)
-- [ ] §7 機能要求更新 が存在 (要件 §1.10.G.10)
-- [ ] frontmatter `kind == design`、§0〜§7 完備
+- [x] Step 1〜8 のすべてが `data.md` に存在
+- [x] entity が 5 集約 (Plan / Artifact / Workflow / Handover / Evaluation) と値オブジェクト / projection に分類され、集約ルート/境界が明示
+- [x] 各集約に不変条件 (DbC invariant) が最低 1 件
+- [x] `src/schema/index.ts` の enum と値オブジェクト定義が 1:1 整合 (齟齬 0)
+- [x] V-model 4 artifact 双方向 trace 明示 (L9 総合テスト設計 pair)
+- [x] §6 用語更新 が存在 (要件 §1.10.G.9)
+- [x] §7 機能要求更新 が存在 (要件 §1.10.G.10)
+- [x] frontmatter `kind == design`、§0〜§7 完備
 
 ## §5 関連 PLAN / ADR / docs
 

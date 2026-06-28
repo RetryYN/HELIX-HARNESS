@@ -121,6 +121,6 @@ U-FSF-001 (`detectDanglingTurn` 純粋性/dangling 判定) / U-FSF-002 (`recordF
 
 本機能の要件・signal 体系は **bottom-up build → 後段 Reverse (PLAN-REVERSE-03) で back-fill**:
 - **L0 concept §2.6.1 signal→mode**: `forced_stop` を `agent_runaway` 級 Recovery trigger として追加 (現状 signal リストに無い実ギャップ)。
-- **L3 要件 (FR/AC)**: フィードバックログ + 強制停止検出 + Recovery 提示の振る舞いを既存 FR 拡張で吸収 (fr-registry-audit 46 件不変、新 FR を起こさない)。
+- **L3 要件 (FR/AC)**: フィードバックログ + 強制停止検出 + Recovery 提示の振る舞いを既存 FR 拡張で吸収 (本 Reverse では新 FR を起こさない。現行 FR registry は 51 件)。
 - **recovery.md spike**: `forced_stop` trigger + 出口契約に**再発防止ドキュメント MUST** を追記。recovery.md §6 の既存「interrupt (設計ギャップ割込み)」とは別概念 → 命名衝突させない (`forced_stop`)。
 - **再発防止 = 仕組み化志向**: prose 止まりでなく guard/test/rule への機械強制を目指す (§8.6 失敗→仕組みループ、[[feedback_process_for_record_not_weight]])。

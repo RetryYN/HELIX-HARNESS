@@ -3,6 +3,7 @@
  * 機能一覧 (L1 functional §1) の漏れ監査自動化。
  * PO 指摘「機能一覧の漏れ監査の自動化と登録の機構」反映。
  */
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   analyzeFrRegistry,
@@ -45,7 +46,7 @@ describe("FR registry audit (機能一覧 漏れ監査)", () => {
     expect(result.unexplainedGaps).toEqual([]);
   });
 
-  it("漏れ型3 属性漏れ: 全 42 行が必須 7 列 + 有効重要度を持つ (orphan = 0)", () => {
+  it("漏れ型3 属性漏れ: 全 51 行が必須 7 列 + 有効重要度を持つ (orphan = 0)", () => {
     expect(result.attributeOrphans).toEqual([]);
   });
 
@@ -63,5 +64,43 @@ describe("FR registry audit (機能一覧 漏れ監査)", () => {
 
   it("FR-L1-50 registry entry is present", () => {
     expect(result.registered).toContain("FR-L1-50");
+  });
+
+  it("current canonical docs do not carry stale FR registry counts", () => {
+    const currentDocs = [
+      "docs/governance/ut-tdd-agent-harness-concept_v3.1.md",
+      "docs/design/harness/L1-requirements/functional-requirements.md",
+      "docs/design/harness/L3-functional/roadmap.md",
+      "docs/design/harness/L6-function-design/forced-stop-feedback.md",
+      "docs/test-design/harness/L1-operational-test-design.md",
+      "docs/test-design/harness/L7-unit-test-design.md",
+      "docs/plans/PLAN-L1-02-functional-requirements.md",
+      "docs/plans/PLAN-L3-01-functional-detail.md",
+      "docs/plans/PLAN-L6-21-fr-unit-coverage.md",
+      "docs/plans/PLAN-L7-22-fr-unit-coverage.md",
+    ];
+    const stale =
+      /FR-L1 現行 47|FR registry 4[67]|fr-registry-audit 46|FR-L1 48|46 件版|46 件を L6|47 件を L6|FR-L1 計 46|FR-L1 計 47/;
+    const offenders = currentDocs.filter((path) => stale.test(readFileSync(path, "utf-8")));
+    expect(offenders).toEqual([]);
+  });
+
+  it("current BR-21 evaluation docs do not describe implemented projections as open carry", () => {
+    const currentDocs = [
+      "docs/design/harness/L1-requirements/functional-requirements.md",
+      "docs/design/harness/L1-requirements/business-requirements.md",
+      "docs/design/harness/L3-functional/README.md",
+      "docs/design/harness/L3-functional/business-detail.md",
+      "docs/design/harness/L4-basic-design/function.md",
+      "docs/test-design/harness/L3-acceptance-test-design.md",
+      "docs/plans/PLAN-L3-01-functional-detail.md",
+      "docs/plans/PLAN-L3-02-business-detail.md",
+      "docs/plans/PLAN-L7-52-l7-completion-audit-closure.md",
+      "docs/plans/PLAN-L7-53-learning-engine.md",
+    ];
+    const stale =
+      /FR-L1-36\/38\/43.*(?:Phase B carry|P2 carry|forward-carry)|FR-L1-36 \/ FR-L1-38 \/ FR-L1-43.*(?:Phase B carry|forward carry)|FR-BR21-3(?:6|8|43).*\(Phase B\)|AT-FR-BR21.*Phase B carry|cost 効率は token telemetry 未実装|token telemetry 未存在/;
+    const offenders = currentDocs.filter((path) => stale.test(readFileSync(path, "utf-8")));
+    expect(offenders).toEqual([]);
   });
 });

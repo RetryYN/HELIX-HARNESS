@@ -12,11 +12,11 @@ created: 2026-05-28
 updated: 2026-05-28
 ---
 
-> **SSoT 参照**: BR-21 全文 = business-requirements.md §11 / HM-08 = screen-requirements.md §1.HM.08 / FR-L1-36/38/43 = functional-requirements.md §1 (P2、L3 forward carry)。
+> **SSoT 参照**: BR-21 全文 = business-requirements.md §11 / HM-08 = screen-requirements.md §1.HM.08 / FR-L1-36/38/43 = functional-requirements.md §1 (P2 起点、現行 projection 実装済み)。
 > **scope**: BR-21 (AI 実行成果評価) + HM-08 画面連動 + FR-L1-36/38/43 (Learning Engine 系、P2) のみ。FR 一般詳細化は functional-requirements.md (PLAN-L3-01) 担当 (重複回避)。
 > **L12 接続**: 全 AC を AT-* で被覆 (孤児 0)。
 
-# UT-TDD Agent Harness — L3 業務要件詳細 (business-detail) — BR-21 + HM-08 + Phase B carry
+# UT-TDD Agent Harness — L3 業務要件詳細 (business-detail) — BR-21 + HM-08 + evaluation projection
 
 ## §1 評価対象 (U-BR21-1 採用、PLAN 単位 default + 補助単位)
 
@@ -138,27 +138,27 @@ priority: P1」
 - **When**: 集計バッチ実行
 - **Then**: 該当データソース skip + warn `Warning: invocation_log 破損、token cost 指標欠落` / 他 3 ソースは正常集計 / HM-08 に warn バナー表示
 
-## §6 Phase A / Phase B 境界 (U-BR21-8 採用、Phase A = 宣言のみ + HM-08 placeholder)
+## §6 後続 carry 境界 (U-BR21-8 採用、projection 実装済み + HM-08/改善ループ carry)
 
-### §6.1 Phase A スコープ (本 sub-doc 確定範囲)
+### §6.1 現行実装済みスコープ
 
-- **実装範囲**: §1 評価対象 / §2 評価指標 / §3 サイクル / §4 アクション の **宣言のみ**
-- **画面**: HM-08 placeholder (UI レイアウト + データソース 4 件統合の derived view 設計、実データ無し or サンプルデータ)
-- **計測**: §2 5 指標のうち PLAN 単位 4 指標 (成功率 / 所要時間 / 再実行回数 / fail-close 発火率) のみ自動記録、token cost は Phase B (invocation_log 整備依存)
-- **改善サイクル**: §3 sprint 末 + §4 提案表示まで、実適用は Phase B
+- **projection**: FR-L1-36/38/43 は PLAN-L7-53 で `skill_evaluations` / `model_evaluations` / `poc_evaluations` として実装済み
+- **token/cost**: FR-L1-38 の token/cost 効率は PLAN-L7-57/58 で telemetry scan + model_evaluations 集計として実装済み
+- **画面**: HM-08 表示・操作 UX は L4/L10 carry
+- **改善サイクル**: §4 の提案生成・人間承認・適用ループは後続 carry
 
-### §6.2 Phase B 着手条件 (U-BR21-9 採用、A-44 ledger)
+### §6.2 後続 carry 着手条件 (U-BR21-9 採用、A-44 ledger)
 
-以下の **AND 条件**を全て満たした時点で Phase B 着手:
+以下の **AND 条件**を全て満たした時点で HM-08 表示・改善ループの本格化に着手:
 
 1. **Phase A G14 通過** (workflow 標準完了点、技術判断)
 2. **KPI D-07 (AI 委譲時間率) 直近 1 sprint ≥ 50% 達成** (MVP scope で AI 委譲が機能している証明、目標値 ≥ 70% の手前)
 
 > **後続調整可能**: PO が目標値を引き上げたい場合は L4/Phase B 着手 PLAN で再調整。
 
-### §6.3 Phase B 実装範囲 (L3 ↔ Phase B carry)
+### §6.3 後続実装範囲
 
-- §2 model 単位指標の本格集計 (opt-in)
+- HM-08 表示 (skill/model/PoC 評価 projection の UI 表示)
 - §4 改善アクションの半自動適用パイプライン (提案 + 承認 + 適用 + 評価のループ)
 - HM-08 リアルタイム表示 (集計バッチ → イベントストリーム移行)
 - §6.4 telemetry (PII redaction + 同意 default)
@@ -170,14 +170,14 @@ priority: P1」
 - **PII redaction**: 必須 (prompt 本文除外、NFR-09/14 整合)
 - **詳細設計**: Phase B 着手時 PLAN で確定 (本 sub-doc は宣言のみ)
 
-## §7 FR-L1-36/38/43 詳細化 (Phase B 実装契約)
+## §7 FR-L1-36/38/43 詳細化 (projection 実装契約)
 
-### FR-BR21-36: スキル評価システム (Phase B)
+### FR-BR21-36: スキル評価システム
 
 - **L1 上流**: FR-L1-36
-- **入力**: skill 採用ログ (skill 注入 → 利用 → PLAN 完了) / PLAN 成功率
-- **出力**: skill_rating (0.0〜1.0) / 採用率 / 削除候補フラグ
-- **振る舞い**: sprint 末バッチで skill 別 (採用 PLAN の成功率 + 採用率) を集計 → skill_rating 更新
+- **入力**: `skill_invocations.accepted=1`、`plan_registry.status`、`asOf`
+- **出力**: `skill_evaluations` projection (skill_rating / adoption_count / success_count / unused_flag)
+- **振る舞い**: skill 別に採用 PLAN と成功 PLAN を集計し、30 日未発火を unused として flag する。削除は人間専属
 
 #### AC-FR-BR21-36-01 (正常系)
 - **Given**: skill-X が直近 sprint で 5 PLAN に採用、5 件全て成功
@@ -189,29 +189,29 @@ priority: P1」
 - **When**: バッチ実行
 - **Then**: warn `skill-X 30 日採用 0 件 (未使用 skill)` / 廃止候補フラグ true / 削除は人間専属 (AC-FR-BR21-06)
 
-### FR-BR21-38: model 評価システム (Phase B、opt-in)
+### FR-BR21-38: model 評価システム (opt-in)
 
 - **L1 上流**: FR-L1-38
-- **入力**: model 別 invocation_log (token / cost / 成功率)
-- **出力**: model_recommendation (task 種別 × drive × layer → model 推奨)
-- **振る舞い**: model 別成功率 / cost 効率を集計 → FR-L1-37 (model 推挙) のフィードバック
+- **入力**: `model_runs`、`plan_registry.status`、`.ut-tdd/config/model-opt-in.yaml`
+- **出力**: `model_evaluations` projection (success_rate / run_count / success_count / token・cost 効率)
+- **振る舞い**: model 別成功率と token/cost 効率を集計し、FR-L1-37 (model 推挙) のフィードバック入力にする
 
 #### AC-FR-BR21-38-01 (正常系)
 - **Given**: model-opt-in.yaml で `enabled: true`、model-A / model-B 両方使用履歴あり
 - **When**: バッチ実行
-- **Then**: model 別 成功率 / cost 効率比較表 を HM-08 に表示 / 推奨 model 提案
+- **Then**: model 別 success_rate / run_count / success_count / token・cost 効率を projection し、HM-08 表示入力として利用可能
 
 #### AC-FR-BR21-38-02 (境界系)
 - **Given**: opt-in `enabled: false`
 - **When**: バッチ実行
 - **Then**: model 評価 skip / PLAN/skill 評価のみ実行 / audit に opt-in 状態記録
 
-### FR-BR21-43: PoC サクセス計測 (Phase B)
+### FR-BR21-43: PoC サクセス計測
 
 - **L1 上流**: FR-L1-43
 - **入力**: Discovery (S0-S4) 完了 PLAN / decision_outcome
-- **出力**: PoC 成功率 (confirmed / (confirmed + rejected + pivot)) / 打ち切り判定精度
-- **振る舞い**: S4 decide 完了時に集計 → PoC 設計フィードバック (PLAN テンプレート更新提案)
+- **出力**: `poc_evaluations` projection (poc_success_rate / confirmed_count / rejected_count / pivot_count / total_count)
+- **振る舞い**: decided PoC の confirmed / rejected / pivot を集計し、pivot は分母に含めて非成功として扱う
 
 #### AC-FR-BR21-43-01 (正常系)
 - **Given**: 直近 10 件 PoC のうち confirmed 6 件 / rejected 3 件 / pivot 1 件
@@ -235,9 +235,9 @@ priority: P1」
 
 ## §9 carry / 次工程 (L4 / Phase B) への引き継ぎ
 
-- **L4 基本設計**: BR-21 評価指標の集計アーキ (state schema / クエリ / 集計バッチ) は L4 基本設計で確定
-- **L4 データ設計**: 評価指標 entity (PlanEvaluation / SkillEvaluation / ModelEvaluation / PocEvaluation) は L4 データ設計で確定
-- **Phase B 実装 PLAN**: Phase B 着手時 (§6.2 AND 条件達成時) に PLAN-Phase-B-NN として Learning Engine 本実装を起票
+- **L4 基本設計**: BR-21 評価指標の UI 表示・改善ループ・state schema 境界は L4 基本設計で確定
+- **L4 データ設計**: 評価指標 entity (PlanEvaluation / SkillEvaluation / ModelEvaluation / PocEvaluation) は L4 データ設計で確定し、L7 projection 実装と整合させる
+- **実装済み projection**: FR-L1-36/38/43 の projection は PLAN-L7-53/57/58 で実装済み。後続は HM-08 表示・改善アクション適用ループ
 - **NFR-18 (telemetry PII redaction)**: nfr-grade.md §7.3 carry と整合、Phase B 着手時に確定 (旧 NFR-17 を A-54 で NFR-18 にリネーム、NFR-17 = 統合セキュリティとの ID 衝突解消)
 - **L10 UX refinement**: HM-08 画面の最終 UX 確定は L10 UX 磨きへ送り
 - **CC2 carry 強化**: 全 §4 改善アクションは半自動 (提案 + 人間承認) の二段階を厳守、L4 / L5 で詳細実装

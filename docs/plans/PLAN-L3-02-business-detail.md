@@ -39,25 +39,25 @@ review_evidence:
     scope: "A-100 L0-L3 refreeze sign-off (pmo-sonnet + PO、claude-only intra_runtime_subagent)"
 ---
 
-# PLAN-L3-02: BR-21 詳細化 + HM-08 連動 + Phase B FR carry 起票工程
+# PLAN-L3-02: BR-21 詳細化 + HM-08 連動 + 評価 projection 起票工程
 
 > **正本宣言**: 本 PLAN は **中間準備ドシエ** (ヒアリング項目・調査メモ・工程表)。
 > **本 PLAN が産出する正本 doc**: `docs/design/harness/L3-functional/business-detail.md` (上記 frontmatter generates 参照)。
 > **V-model pair**: L3 business-detail sub-doc ↔ L12 受入テスト設計 1 doc。本 PLAN 完了時に G3 pair freeze の対象。
-> **スコープ**: BR-21 + FR-L1-36/38/43 (Learning Engine 系、P2 Phase B carry) + HM-08 画面連動 の 3 軸詳細化のみ。FR 一般詳細化は PLAN-L3-01 が担当。
+> **スコープ**: BR-21 + FR-L1-36/38/43 (Learning Engine 系、P2 起点、現行 projection 実装済み) + HM-08 画面連動 の 3 軸詳細化のみ。FR 一般詳細化は PLAN-L3-01 が担当。
 
 ## §0 本 PLAN の役割
 
-L1 で宣言された **BR-21「AI 実行成果の継続評価と改善サイクル」** (P2、Phase B 中心) を L3 で詳細化し、対応 FR (FR-L1-36 skill 評価 / FR-L1-38 model 評価 / FR-L1-43 PoC 計測) の Phase B 実装入力を整える。
+L1 で宣言された **BR-21「AI 実行成果の継続評価と改善サイクル」** (P2 起点) を L3 で詳細化し、対応 FR (FR-L1-36 skill 評価 / FR-L1-38 model 評価 / FR-L1-43 PoC 計測) の実装入力を整える。現行では PLAN-L7-53/57/58 により projection 実装済みで、HM-08 表示・改善アクション適用ループが後続 carry。
 
-HM-08 (AI 効果データ + Learning Engine ビュー) との画面連動規約を確定し、Phase B 着手時の機能要件 baton として L4 carry する。
+HM-08 (AI 効果データ + Learning Engine ビュー) との画面連動規約を確定し、表示・操作面の機能要件 baton として L4/L10 carry する。
 
 PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Learning Engine 系 + Phase B 寄せの BR-21 経路** のみを扱う (重複を避ける)。
 
 ## §1 入力 (上流からの baton)
 
 - L1 業務要求 §11 BR-21 詳細: `docs/design/harness/L1-requirements/business-requirements.md` §11 (BR-21 全文)
-- L1 機能要求 FR-L1-36/38/43: `docs/design/harness/L1-requirements/functional-requirements.md` (L3 carry forward 宣言済)
+- L1 機能要求 FR-L1-36/38/43: `docs/design/harness/L1-requirements/functional-requirements.md` (現行は登録・実装済み)
 - L1 画面要求 HM-08: `docs/design/harness/L1-requirements/screen-requirements.md` §1.HM.08
 - L1 業務 KPI D-07 (AI 委譲時間率 ≥ 70%): business §6.5
 - HELIX-workflows Learning Engine 参考: `vendor/helix-source/docs/v2/process/L19-learning-engine.md` 等 (Phase B 想定)
@@ -66,7 +66,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 
 - 正本 doc: `docs/design/harness/L3-functional/business-detail.md` (frontmatter generates)
 - BR-21 詳細仕様: 評価対象 / 評価指標 / 改善サイクル / 計測場所
-- FR-L1-36/38/43 詳細化: 各 FR の入出力 / AC / Phase B 実装契約
+- FR-L1-36/38/43 詳細化: 各 FR の入出力 / AC / projection 実装契約
 - HM-08 画面連動規約: 画面表示要素 / データソース / 更新タイミング
 
 ## §3 ヒアリング項目 / 調査メモ (BR-21 固有)
@@ -124,8 +124,8 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 
 ### Step 5: FR-L1-36/38/43 詳細化
 - 担当: tl + se
-- 内容: 3 FR の入出力 / AC / Phase B 実装契約を business-detail §7 で詳細化 (PLAN-L3-01 の AC 形式と整合)
-- 進捗: ✅ (§7 FR-BR21-36/38/43 各 AC 2 件 計 6 AC 起草完了、Phase B carry 明示)
+- 内容: 3 FR の入出力 / AC / projection 実装契約を business-detail §7 で詳細化 (PLAN-L3-01 の AC 形式と整合)
+- 進捗: ✅ (§7 FR-BR21-36/38/43 各 AC 2 件 計 6 AC 起草完了。projection は PLAN-L7-53/57/58 で実装済み)
 
 ### Step 6: 機械検証 + L12 受入テスト pair 凍結
 - 担当: qa
@@ -134,7 +134,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 
 ### Step 7: review (self / pmo-sonnet)
 - 担当: pmo-sonnet
-- 内容: 専門サブエージェント review 必須。BR-21 詳細化 / HM-08 連動 / Phase B carry 明示・孤児 BR-21 由来 0 を確認
+- 内容: 専門サブエージェント review 必須。BR-21 詳細化 / HM-08 連動 / projection 契約明示・孤児 BR-21 由来 0 を確認
 - 進捗: ⬜ (G3 readiness 整備時に L3 3 sub-doc + L12 受入テスト 4 doc 全件まとめて review)
 
 ## §5 実装計画
@@ -146,7 +146,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 | §3 改善サイクル | U-BR21-3 確定 | sprint 末 + 任意手動 |
 | §4 改善アクション | U-BR21-4 確定 | 全件「人間承認必須」 (CC2) |
 | §5 HM-08 連動 | U-BR21-5〜7 確定 | データソース 4 件統合 + AI 指示 copy UI |
-| §6 Phase B carry | U-BR21-8〜10 確定 | Phase A 範囲 + Phase B 着手条件 |
+| §6 後続 carry | U-BR21-8〜10 確定 | HM-08 表示 / 改善ループ / PII redaction の後続条件 |
 | §7 FR-L1-36/38/43 詳細化 | L1 functional + AC テンプレ | PLAN-L3-01 の AC 形式と整合 |
 
 ## §6 DoD (Definition of Done)

@@ -64,7 +64,7 @@ PLAN-L6-21 の coverage matrix を機械検証する add-impl。`fr-registry-aud
 
 ### Step 2: [並列] unit tests 追加
 
-合成 missing/unknown/incomplete と real repo 46 件 coverage を検証する。
+合成 missing/unknown/incomplete と real repo 51 件 coverage を検証する。
 
 ### Step 3: [直列] doctor 配線
 

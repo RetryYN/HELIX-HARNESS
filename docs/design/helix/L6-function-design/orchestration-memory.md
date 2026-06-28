@@ -2,7 +2,7 @@
 title: "HELIX L6 機能設計 — P2 hybrid orchestration + P7 共有メモリ"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-06-28
 updated: 2026-06-28
 owner: AIM + TL

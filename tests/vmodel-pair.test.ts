@@ -205,7 +205,10 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3Ids).toEqual(l1Ids);
     expect(l12Ids).toEqual(l1Ids);
 
-    const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "起草済");
+    expect(l3, "confirmed HELIX L3 requirements must not retain draft wording").not.toContain(
+      "起草済",
+    );
+    const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
     for (const id of l1Ids) {
       const l3Row = l3ClosureRows.find((row) => row[0] === id);
@@ -475,6 +478,213 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
   });
 
+  it("U-VPAIR-007a: HELIX L3 43要件は L4 basic design に全件降下済み", () => {
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    const l4 = readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8");
+    const l3RequirementIds = uniqueMatches(l3, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l4RequirementIds = uniqueMatches(l4, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+
+    expect(l3RequirementIds).toHaveLength(43);
+    expect(l4RequirementIds).toEqual(l3RequirementIds);
+    for (const required of [
+      "HB-P0 forward-convergence",
+      "HB-P1 continuous-autonomy",
+      "HB-P2 agent-loop-contract",
+      "HB-P3 verification-governance",
+      "HB-P4 repair-learning",
+      "HB-P6 github-distribution",
+      "HB-P7 shared-knowledge",
+      "HB-P8 external-security",
+      "HB-P9 db-convergence",
+      "HB-AC adapter-consistency",
+      "provider API direct call",
+      "SDK 常駐実行",
+      "security filter",
+      "parallel worker/resource budget",
+      "L2 skip",
+      "bounded context",
+      "Red evidence",
+    ]) {
+      expect(l4).toContain(required);
+    }
+  });
+
+  it("U-VPAIR-007b: HELIX L4 design と L9 system test design は単一 doc pair で双方向接続", () => {
+    const ok = analyzePairFreeze([
+      doc(
+        "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+        "L4",
+        "docs/test-design/helix/L4-pillar-system-test-design.md",
+        "confirmed",
+      ),
+      doc(
+        "docs/test-design/helix/L4-pillar-system-test-design.md",
+        "L4",
+        "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+        "confirmed",
+      ),
+    ]);
+    expect(ok.ok).toBe(true);
+    expect(ok.pairs).toBe(1);
+  });
+
+  it("U-VPAIR-007c: HELIX L4 system test design は L3 43要件を1件も漏らさない", () => {
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    const l4 = readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8");
+    const l9 = readFileSync("docs/test-design/helix/L4-pillar-system-test-design.md", "utf8");
+    const l3RequirementIds = uniqueMatches(l3, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l4TestIds = uniqueMatches(l4, /\| (HST-[^ |]+) \|$/gm);
+    const l9RequirementIds = uniqueMatches(
+      l9,
+      /^\| HST-(?!ID\b)[^|]+ \| (HR-(?:FR|NFR)-[^ |]+) \|/gm,
+    );
+    const l9TestIds = uniqueMatches(l9, /^\| (HST-(?!ID\b)[^ |]+) \|/gm);
+
+    expect(l9RequirementIds).toEqual(l3RequirementIds);
+    expect(l9TestIds).toHaveLength(43);
+    expect(l4TestIds).toEqual(l9TestIds);
+  });
+
+  it("U-VPAIR-007d: 既存 harness L4 本体も HELIX pillar overlay の scope/carry/boundary を持つ", () => {
+    const functionDoc = readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8");
+    const architectureDoc = readFileSync(
+      "docs/design/harness/L4-basic-design/architecture.md",
+      "utf8",
+    );
+    const dataDoc = readFileSync("docs/design/harness/L4-basic-design/data.md", "utf8");
+    const externalIfDoc = readFileSync(
+      "docs/design/harness/L4-basic-design/external-if.md",
+      "utf8",
+    );
+
+    for (const required of [
+      "PLAN-L4-51",
+      "harness core only",
+      "HR-FR-*` 30 件 + `HR-NFR-*` 13 件",
+      "HELIX pillar block overlay",
+      "HB-P8 external-security",
+    ]) {
+      expect(functionDoc).toContain(required);
+    }
+
+    for (const required of [
+      "HELIX pillar overlay",
+      "no provider API/SDK core dependency",
+      "HB-P8 external-security",
+      "raw external text is not instruction",
+      "hosted API/developer tool surface",
+    ]) {
+      expect(architectureDoc).toContain(required);
+    }
+
+    for (const required of [
+      "HELIX pillar projection carry",
+      "approval action ledger",
+      "research source ledger",
+      "security event ledger",
+      "glossary/context-map projection",
+      "contract ledger",
+    ]) {
+      expect(dataDoc).toContain(required);
+    }
+
+    for (const required of [
+      "external research/input boundary",
+      "sandbox/external execution boundary",
+      "release/GitHub rules boundary",
+      "hosted API/developer tool boundary",
+      "raw external text is not instruction",
+      "repo-local hooks are not mechanical coverage",
+    ]) {
+      expect(externalIfDoc).toContain(required);
+    }
+  });
+
+  it("U-VPAIR-007e: HELIX L4 block ID 参照は許可済み10 blockだけを使う", () => {
+    const allowedBlocks = [
+      "HB-AC",
+      "HB-P0",
+      "HB-P1",
+      "HB-P2",
+      "HB-P3",
+      "HB-P4",
+      "HB-P6",
+      "HB-P7",
+      "HB-P8",
+      "HB-P9",
+    ];
+    const docs = [
+      readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8"),
+      readFileSync("docs/test-design/helix/L4-pillar-system-test-design.md", "utf8"),
+      readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8"),
+      readFileSync("docs/design/harness/L4-basic-design/architecture.md", "utf8"),
+      readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8"),
+    ].join("\n");
+    const referencedBlocks = uniqueMatches(docs, /\b(HB-(?:P\d+|AC))\b/g);
+
+    expect(referencedBlocks).toEqual(allowedBlocks);
+    expect(docs).not.toContain("HB-P5");
+    expect(docs).toContain("`HNFR-P5` は `HB-P1` / `HB-P3` に降下");
+  });
+
+  it("U-VPAIR-007f: HELIX L4 completion docs do not retain stale draft status claims", () => {
+    const planL451 = readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8");
+    const planL450 = readFileSync("docs/plans/PLAN-L4-50-orchestration-memory-hybrid.md", "utf8");
+
+    expect(planL450).toMatch(/^status:\s*archived$/m);
+    expect(planL451).not.toContain("`status: draft` のまま残っていた");
+    expect(planL451).toContain("現行では `status: archived` に閉じる対象");
+  });
+
+  it("U-VPAIR-008: L4 master は confirmed L4 child と L9 UI標準 pair を漏らさない", () => {
+    const master = readFileSync("docs/plans/PLAN-L4-00-master.md", "utf8");
+    const l9 = readFileSync("docs/test-design/harness/L9-system-test-design.md", "utf8");
+    const confirmedL4Plans = [
+      "docs/plans/PLAN-L4-01-data.md",
+      "docs/plans/PLAN-L4-02-architecture.md",
+      "docs/plans/PLAN-L4-03-function.md",
+      "docs/plans/PLAN-L4-04-external-if.md",
+      "docs/plans/PLAN-L4-05-workflow-orchestration.md",
+      "docs/plans/PLAN-L4-06-design-refresh.md",
+      "docs/plans/PLAN-L4-10-internal-asset-master.md",
+      "docs/plans/PLAN-L4-11-roster.md",
+      "docs/plans/PLAN-L4-12-skill-pack.md",
+      "docs/plans/PLAN-L4-13-drift-lint.md",
+      "docs/plans/PLAN-L4-14-ui-standard.md",
+      "docs/plans/PLAN-L4-51-helix-pillar-basic-design.md",
+    ];
+
+    for (const planPath of confirmedL4Plans) {
+      const plan = readFileSync(planPath, "utf8");
+      const planId = plan.match(/^plan_id:\s*(\S+)/m)?.[1];
+      expect(plan, `${planPath} must be confirmed`).toMatch(/^status:\s*confirmed$/m);
+      expect(plan, `${planPath} must not leave open DoD checkboxes`).not.toMatch(/^- \[ \]/m);
+      expect(master, `${planId} must be in PLAN-L4-00 roadmap spans`).toContain(
+        `plan_id: ${planId}`,
+      );
+    }
+
+    for (const required of [
+      "ui-standard+tokens",
+      "PLAN-L4-14-ui-standard",
+      "related_l4_ui_standard",
+      "related_l4_tokens",
+      "ST-UI-01",
+      "ST-UI-02",
+      "ST-UI-03",
+      "ST-UI-04",
+      "ui-standard.md / tokens.yaml",
+    ]) {
+      expect(`${master}\n${l9}`).toContain(required);
+    }
+  });
+
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {
     expect(pairFreezeMessages({ ok: true, orphans: [], pairs: 5 })[0]).toContain("OK");
     const msgs = pairFreezeMessages({
@@ -627,19 +837,19 @@ describe("verification trigger (U-VTRIG、層群 freeze の機械発火、IMP-06
     expect(progress[0]).toContain("Forward 進行中");
   });
 
-  it("U-VTRIG-005: 実 repo ガード — L3 承認後も別層 draft を Forward 進行中として surface", () => {
+  it("U-VTRIG-005: 実 repo ガード — L3/L4-L6/L0-L7 の freeze 完了を surface", () => {
     const docs = loadPairDocs();
     const { orphans } = analyzePairFreeze(docs);
     const groups = analyzeVerificationGroups(docs, orphans, loadVerificationPlanEvidence());
     expect(groups.find((g) => g.id === "L0-L3")?.frozen).toBe(true);
-    expect(groups.find((g) => g.id === "L4-L6")?.frozen).toBe(false);
+    expect(groups.find((g) => g.id === "L4-L6")?.frozen).toBe(true);
     // 全 3 検証サイクルゲート名が実 repo の surface に出る (PLAN-REVERSE-36、命名の壊れを CI で検知)。
     const surface = verificationGroupMessages(groups).join("\n");
     expect(surface).toContain("L3 検証サイクルゲート");
     expect(surface).toContain("L6 検証サイクルゲート");
     expect(surface).toContain("設計検証サイクルゲート");
     expect(surface).toContain("実装検証サイクルゲート");
-    expect(surface).toContain("Forward 進行中");
-    expect(groups.find((g) => g.id === "L0-L7")?.frozen).toBe(false);
+    expect(surface).toContain("freeze 完了");
+    expect(groups.find((g) => g.id === "L0-L7")?.frozen).toBe(true);
   });
 });

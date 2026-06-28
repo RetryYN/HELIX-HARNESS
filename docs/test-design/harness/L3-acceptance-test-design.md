@@ -138,15 +138,15 @@ updated: 2026-06-02
 | **AT-BR21-07** | AC-FR-BR21-07 (自動 skill 削除 block) | 自動削除試行 → fail-close exit 2 | vitest skill delete test |
 | **AT-BR21-08** | AC-FR-BR21-08 (HM-08 表示) | バッチ完了 → 4 ソース統合 view / 30 秒ポーリング | E2E UI test (L4 carry) |
 | **AT-BR21-09** | AC-FR-BR21-09 (集計バッチ失敗) | invocation_log 破損 → 該当 skip + warn / 他正常集計 | vitest evaluation test |
-| **AT-FR-BR21-36-01** | (FR-BR21-36 正常系) | skill 5 PLAN 採用 / 5 件成功 → skill_rating=1.0 / 維持 | vitest evaluation test (Phase B carry) |
-| **AT-FR-BR21-36-02** | (FR-BR21-36 境界系) | 30 日採用 0 件 → 廃止候補フラグ true | vitest evaluation test (Phase B carry) |
-| **AT-FR-BR21-38-01** | (FR-BR21-38 正常系) | opt-in true → model 比較表 + 推奨 | vitest evaluation test (Phase B carry) |
+| **AT-FR-BR21-36-01** | (FR-BR21-36 正常系) | skill 5 PLAN 採用 / 5 件成功 → skill_rating=1.0 / success_count=5 | `tests/skill-evaluation.test.ts` |
+| **AT-FR-BR21-36-02** | (FR-BR21-36 境界系) | 30 日採用 0 件 → unused_flag true | `tests/skill-evaluation.test.ts` |
+| **AT-FR-BR21-38-01** | (FR-BR21-38 正常系) | opt-in true → model 別 success_rate / token・cost 効率を projection | `tests/model-evaluation.test.ts` / `tests/token-tracker.test.ts` |
 | **AT-FR-BR21-38-02** | (FR-BR21-38 境界系) | opt-in false → skip | vitest evaluation test |
-| **AT-FR-BR21-43-01** | (FR-BR21-43 正常系) | 10 件 PoC (6/3/1) → 成功率 60% 表示 | vitest evaluation test (Phase B carry) |
+| **AT-FR-BR21-43-01** | (FR-BR21-43 正常系) | 10 件 PoC (6/3/1) → 成功率 60% projection | `tests/poc-evaluation.test.ts` |
 | **AT-FR-BR21-43-02** | (FR-BR21-43 異常系) | PoC 0 件 → info + 「データ蓄積中」表示 | vitest evaluation test |
 | **AT-UX-01** | (C-01 補完、A-47) AC-UX-01-01 (3 バランス被覆) | sprint 末 D-03=0 + D-04 ≥ 80% + D-06 = 0 努力目標 + D-07 ≥ 70% を **3 軸全件 pass**。1 軸突出は warn | vitest KPI 集計 test |
 
-> **AT-BR21 系 合計 = 16 件** = AT-BR21 (BR-21 §1〜§6 直接) 9 件 + AT-FR-BR21 (FR-BR21-36/38/43 派生) 6 件 + AT-UX-01 (補完) 1 件 — **§1.4 件数まとめと一致**。Phase 別の内訳では Phase A 即実装 7 件 + Phase B carry 9 件 (= 16)。category 別 (§1.4) と Phase 別 (本注記) は切り口が異なるだけで合計は同一。
+> **AT-BR21 系 合計 = 16 件** = AT-BR21 (BR-21 §1〜§6 直接) 9 件 + AT-FR-BR21 (評価 projection 派生) 6 件 + AT-UX-01 (補完) 1 件 — **§1.4 件数まとめと一致**。評価 projection は L7 unit/integration tests で実装済み。残る後続 carry は HM-08 UI / 改善アクション適用 / PII redaction 等の周辺能力。
 
 ### §1.3 nfr-grade sub-doc 由来 AT (NFR-* 15 件)
 
@@ -184,7 +184,7 @@ updated: 2026-06-02
 | AT-FR (functional 由来: FR-01〜18 ×3 = 54 + AT-FR-09-04 + FR-45 ×3 + workflow core FR-23/24/25/26/27/29/30 ×3 = 21) | 79 |
 | AT-UX (UX-01 補完) | 1 |
 | AT-BR21 (business-detail 由来、BR-21 §1〜§6) | 9 |
-| AT-FR-BR21 (FR-BR21-36/38/43 派生、Phase B carry 中心) | 6 |
+| AT-FR-BR21 (FR-BR21-36/38/43 派生、projection 実装済み) | 6 |
 | AT-NFR (nfr-grade 由来、Phase A: 18 + NFR-17 統合セキュリティ A-54) | 19 |
 | AT-NFR (L4/Phase B carry placeholder: NFR-02/09/18) | 3 |
 | **合計** | **117** (Phase A 即実装 105 件 + carry 12 件。A-54 で実数再カウント、旧 95 は集計漏れ) |
@@ -198,7 +198,7 @@ updated: 2026-06-02
 
 ### business-detail sub-doc
 - BR-21 (§1〜§6) → AT-BR21-01〜09 (9 件、Phase A)
-- FR-BR21-36 → AT-FR-BR21-36-01/02 (2 件、Phase B carry)
+- FR-BR21-36 → AT-FR-BR21-36-01/02 (2 件、projection 実装済み)
 - FR-BR21-38 → AT-FR-BR21-38-01/02 (2 件)
 - FR-BR21-43 → AT-FR-BR21-43-01/02 (2 件)
 - **孤児 BR-21 派生 = 0**
@@ -229,5 +229,5 @@ updated: 2026-06-02
 ## §5 carry / 次工程
 
 - **L4 carry AT**: AT-FR-10-03 (UI 直接実行不可) / AT-FR-17-01〜03 (GHA workflow) / AT-NFR-02 / AT-NFR-09 → L4 設計 + 実装後に L12 AT として lift
-- **Phase B carry AT**: AT-FR-BR21-36-01〜43-02 (6 件) + AT-BR21-06/08 (UI、2 件) / AT-NFR-18 (PII redaction) → Phase B 着手時に lift
+- **Phase B carry AT**: AT-BR21-06/08 (UI、2 件) / AT-NFR-18 (PII redaction) → Phase B 着手時に lift。AT-FR-BR21-36-01〜43-02 (6 件) は L7 projection tests で実装済み
 - **L7 実装**: 全 AT-* を vitest / GHA workflow に変換、Red 状態で先行作成 (TDD 強制 FR-02)

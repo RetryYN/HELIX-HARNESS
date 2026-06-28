@@ -39,7 +39,7 @@ review_evidence:
 
 ## §0 位置づけ
 
-L6 完遂の入口条件として、L1 FR registry 46 件を L6 unit-test-level contract へ 100% 接続する add-design。既存の `fr-registry-audit` は FR 一覧そのものの漏れを検出するが、L6 仕様への coverage は未検査だった。本 PLAN はその穴を閉じる。
+L6 完遂の入口条件として、L1 FR registry 全件を L6 unit-test-level contract へ 100% 接続する add-design。現行 registry は 51 件で、既存の `fr-registry-audit` は FR 一覧そのものの漏れを検出するが、L6 仕様への coverage は未検査だった。本 PLAN はその穴を閉じる。
 
 ## §3.1 実装計画（情報源）
 

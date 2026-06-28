@@ -139,11 +139,11 @@ tl review（frontier-reviewer class）/ intra_runtime_subagent 記録（tests_gr
 
 ## §4 DoD (add-design)
 
-- [ ] §1 影響範囲が既存 L1-L14/コードに対し確定（重複実装なし）。
-- [ ] L6 function-spec ① 確定、coding-rule SSoT delta 反映。
-- [ ] test-design ③ と pair-freeze（片肺禁止）。
-- [ ] DDD 境界/不変条件 impact 記録（本 §4）、`tdd_red_required: true`。
-- [ ] `ut-tdd plan lint` / `doctor` green、cross-runtime review 証跡。
+- [x] §1 影響範囲が既存 L1-L14/コードに対し確定（重複実装なし）。
+- [x] L6 function-spec ① 確定、coding-rule SSoT delta 反映。
+- [x] test-design ③ と pair-freeze（片肺禁止）。
+- [x] DDD 境界/不変条件 impact 記録（本 §4）、`tdd_red_required: true`。
+- [x] `ut-tdd plan lint` / `doctor` green、cross-runtime review 証跡。
 
 ## §5 carry / 後続
 

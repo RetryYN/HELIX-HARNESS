@@ -21,7 +21,7 @@ review_evidence:
     tests_green_at: "2026-06-15"
     reviewed_at: "2026-06-15"
     verdict: pass
-    scope: "Learning Engine FR-L1-36/38/43 (projectSkillEvaluations/projectPocEvaluations/projectModelEvaluations + harness-db schema v12 + 3 evaluation test suites)。cold-start 不変条件 (0 telemetry/opt-in 無効で 0 行・throw しない) を 3 projection で確認、FR-38 cost-efficiency の explicit_l7_defer (token telemetry 未存在・捏造なし) 正当性、値の正しさ (skill rating=adoption×success / PoC=confirmed/(confirmed+rejected+pivot) pivot 非成功 / model=success_count/run_count、join=plan_registry.status IN PLAN_SUCCESS_STATUSES) を検証。Critical=0、APPROVE。Important I-1 (poc PK single-row 制約 doc note) は対応、I-2 (unused cutoff 30d 境界テスト) + Minor M-1..3 (asOf 対称性/PLAN_SUCCESS_STATUSES export/index コメント) は §Carry に test-hardening follow-up として記録 (非ブロッカー、green コードへの増分)。V-model closure 用の後追い review (実装は 2026-06-15 同日 merge 済 green、status=draft + review_evidence 空のまま放置されていたのを本クローズで confirmed 化)。"
+    scope: "Learning Engine FR-L1-36/38/43 (projectSkillEvaluations/projectPocEvaluations/projectModelEvaluations + harness-db schema v12 + 3 evaluation test suites)。cold-start 不変条件 (0 telemetry/opt-in 無効で 0 行・throw しない) を 3 projection で確認、FR-38 cost-efficiency の explicit_l7_defer (当時 telemetry 未配線・捏造なし、後続 PLAN-L7-57/58 で discharge 済み) 正当性、値の正しさ (skill rating=adoption×success / PoC=confirmed/(confirmed+rejected+pivot) pivot 非成功 / model=success_count/run_count、join=plan_registry.status IN PLAN_SUCCESS_STATUSES) を検証。Critical=0、APPROVE。Important I-1 (poc PK single-row 制約 doc note) は対応、I-2 (unused cutoff 30d 境界テスト) + Minor M-1..3 (asOf 対称性/PLAN_SUCCESS_STATUSES export/index コメント) は §Carry に test-hardening follow-up として記録 (非ブロッカー、green コードへの増分)。V-model closure 用の後追い review (実装は 2026-06-15 同日 merge 済 green、status=draft + review_evidence 空のまま放置されていたのを本クローズで confirmed 化)。"
 generates:
   # FR-L1-36 (foundation slice — implemented in this PLAN)
   - artifact_path: src/schema/harness-db.ts
@@ -145,25 +145,22 @@ All three BR-21 FR slices are implemented in this PLAN.
 - [x] tsc + vitest + biome + doctor all pass.
 - [x] function-spec.md, fr-unit-coverage.md, L7-unit-test-design.md updated.
 - [x] FR-L1-38 follow-up (cost-efficiency) declared in PLAN body and function-spec.md invariant.
-- [x] FR-L1-38 cost-efficiency formalized as a named defer with explicit owner + discharge condition (§Carry).
+- [x] FR-L1-38 cost-efficiency formalized as a named defer with explicit owner + discharge condition (§Carry)。後続 PLAN-L7-57/58 で discharge 済み。
 
-## Carry (deferred follow-up — owner + discharge condition 明示)
+## Carry (deferred follow-up — owner + discharge condition 明示 / 後続 discharge 済み)
 
 > 正規 defer 手続き (CLAUDE.md G.13 / concept §3.1.3.1: 明示宣言した defer は under-design ではない)。
 > doc-only に留めず discharge condition を機械追跡可能な形で残す。
 
-- **FR-L1-38 cost-efficiency (`cost_per_success`)** — `explicit_l7_defer`
+- **FR-L1-38 cost-efficiency (`cost_per_success`)** — `explicit_l7_defer`、後続 PLAN-L7-57/58 で discharge 済み
   - **deferred because**: token/cost telemetry が現状 harness のどこにも存在しない (`model_runs` に
     cost/token 列がなく、cost を計算する原資データがゼロ)。捏造した cost を投影しない方針 (= 0 行 cold-start
     と同じ honest-absence 原則)。FR-L1-38 本体 (model 別 success_rate) は実装済・substance-verified
     (U-FR-L1-38 oracle / `tests/model-evaluation.test.ts`) であり、**deferred なのは cost 効率の sub-aspect のみ**
     (FR 全体を defer しているのではない)。
   - **owner**: PO (telemetry 配線の優先度判断) + telemetry 実装担当。
-  - **discharge condition**: token/cost telemetry が `model_runs` (または同等の run-level metrics) に配線され
-    実 cost データが入った時点で → ① `model_evaluations` に cost 列 (例 `total_cost` / `cost_per_success`) 追加、
-    ② `projectModelEvaluations` で `cost_per_success = total_cost / success_count` を計算、③ U-FR-L1-38 oracle に
-    cost-efficiency ケースを追加して substance-verify。
-  - **non-fabrication invariant**: discharge までは cost 列を投影しない / ダミー値を入れない (壊さない事項)。
+  - **discharged by**: PLAN-L7-57 token telemetry tracker + PLAN-L7-58 cost enrichment。`projectTokenUsage` が runtime session telemetry を `model_runs` に投入し、`projectModelEvaluations` が token/cost efficiency を集計する。未掲載 pricing は null のままにし、ダミー cost は投影しない。
+  - **verification**: `tests/token-tracker.test.ts` + `tests/model-evaluation.test.ts`。
 
 - **test-hardening follow-up (review 2026-06-15 I-2 / M-1..3、非ブロッカー)** — green コードへの増分:
   - I-2: `unused_flag` cutoff の **ちょうど 30 日前 (境界、`fired_at === cutoff`)** ケースを `tests/skill-evaluation.test.ts` に追加し inclusive (`>=`) を回帰固定。

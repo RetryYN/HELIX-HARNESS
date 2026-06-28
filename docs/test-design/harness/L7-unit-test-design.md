@@ -454,7 +454,7 @@ L6 機能設計の各**関数 signature + DbC + edge** が L7 単体テスト (U
 | U-FRCOV-002 | `analyzeL6FrCoverage` | missing/unknown/incomplete row を violation |
 | U-FRCOV-003 | `analyzeL6FrCoverage` | contract ref が L6 spec に無ければ weak contract |
 | U-FRCOV-004 | `analyzeL6FrCoverage` | function-spec/governance/agent-slots ref に型 body + pseudocode/defer marker が無ければ missing substance |
-| U-FRCOV-005 | 実 repo guard | FR registry 46 件すべて L6 spec / U-* oracle / substance marker に接続 |
+| U-FRCOV-005 | 実 repo guard | FR registry 51 件すべて L6 spec / U-* oracle / substance marker に接続 |
 | U-FRCOV-006 | `analyzeL6FrCoverage` | `explicit_l7_defer` 行の type body に `{...}` フィールドブロックが無ければ missing substance |
 
 ### §1.21 U-FR-L1-21 (test perspective gate)

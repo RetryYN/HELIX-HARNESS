@@ -88,6 +88,23 @@ UT-TDD harness は **AI 実装エージェント (Claude Code / Codex) を統制
 > **roster ↔ agent-guard の依存方向 (Critical-1 是正 A-85)**: roster は agent-guard に**依存しない** (依存先 = schema/fs のみ)。allowlist 統合は **agent-guard (runtime) が roster を読む = `runtime → roster` の一方向**で実現し、循環を作らない。roster は `.claude/agents/*.md` から allowlist を構築する**設計上の SSoT** (受動的提供側)、agent-guard が enforcement (能動的参照側)。現状 agent-guard はハードコード相当 allowlist で動作 (実装済)、roster 実装完了時に agent-guard が roster 参照へ切替 (移行段階は §4.1 / 下記 Critical-2 是正)。
 > **fs の扱い**: `fs` (Node built-in) は依存方向ルールの対象外 (副作用アクセス)。core ロジックは `analyzeX(docs?)` の pure 関数に隔離し、`loadX()` (fs 読込) を呼び出し端点側に寄せる方針。テスト時は docs を注入し fs を介さない (§3.2)。
 
+### §3.1.1 HELIX pillar overlay (PLAN-L4-51)
+
+HELIX pillar の L4 add-design は新しい top-level provider SDK / 常駐 API module を増やさない。既存 `src/` building block に重ねる overlay として、L5/L6 で必要最小の関数契約へ降下する。特に **no provider API/SDK core dependency** を invariant とし、Claude/Codex/GitHub は external-if の adapter 境界に隔離する。
+
+| HELIX block | 配置先 module / surface | 方式判断 |
+|---|---|---|
+| **HB-P0 forward-convergence** | workflow / doctor / handover | runaway・forced stop・reopen point は workflow state と handover evidence を join して判定し、自己判断で破壊的復旧しない |
+| **HB-P1 continuous-autonomy** | workflow / setup / plan / skills | continuous-run・version-up・Scrum・L2 skip・context injection budget・anchored handover は PLAN/gate/readiness の組み合わせで表現し、テンプレ自動適用は human approval 境界を越えない |
+| **HB-P2 agent-loop-contract** | orchestration / runtime / team / guardrail | worker/verifier 分離、loop budget、Codex parity は provider-neutral decision function に閉じ、adapter は intent 実行のみ |
+| **HB-P3 verification-governance** | vmodel / lint / review-evidence / gate | strict verification と Red evidence を pair-freeze/review-evidence/green command 証跡へ集約し、coverage-only green を許可しない |
+| **HB-P4 repair-learning** | feedback / state-db / audit | repair proposal と metric trend は projection/readiness input とし、authoring source を silent rewrite しない |
+| **HB-P6 github-distribution** | setup / runtime adapter / CI/release plan | gated push/PR/CI/tag/release は emit-only default。GitHub Rulesets/branch protection/release automation は approval surface を経由する |
+| **HB-P7 shared-knowledge** | memory / skills / graph / search / future glossary/context-map | memory、glossary、bounded context map は local authoring source と DB projection を分け、prompt body や secrets を DB に保存しない |
+| **HB-P8 external-security** | external-if / audit / guardrail / future security filter | external research・skillify・sandbox は external input として分類し、raw external text is not instruction を境界 invariant にする |
+| **HB-P9 db-convergence** | state-db / graph / search / doctor | DB convergence、relation graph、layer regression は projection の整合検査で surface し、DB を authored truth にしない |
+| **HB-AC adapter-consistency** | codex-hook-adapter / work-guard / rule-drift / review-evidence | hosted API/developer tool surface では repo hook が機械強制されないため、git/status/target preflight と監査記録を runtime discipline として要求する |
+
 ### §3.2 Level 2 — 代表 module の内部
 
 - **schema**: `index.ts` (主要 enum 群 `VALID_*` + `V_MODEL_PAIRS`、**件数は `schema/index.ts` が正本** = 設計 doc に固定数を直書きしない) / `frontmatter.ts` (kind 別 superRefine: poc→S0-S4・cross、reverse R4→routing+strategy、design L1-L6→sub_doc、design/impl→review_evidence)。
