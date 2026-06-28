@@ -685,6 +685,102 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
   });
 
+  it("U-VPAIR-009a: HELIX L4 43要件は L5 detail design に全件降下済み", () => {
+    const l4 = readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8");
+    const l5 = readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8");
+    const l4RequirementIds = uniqueMatches(l4, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l5RequirementIds = uniqueMatches(l5, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+
+    expect(l4RequirementIds).toHaveLength(43);
+    expect(l5RequirementIds).toEqual(l4RequirementIds);
+    for (const required of [
+      "HC-P0 forward-return-contract",
+      "HC-P1 autonomous-work-contract",
+      "HC-P2 agent-loop-contract",
+      "HC-P3 verification-contract",
+      "HC-P4 repair-feedback-contract",
+      "HC-P6 distribution-contract",
+      "HC-P7 knowledge-contract",
+      "HC-P8 security-boundary-contract",
+      "HC-P9 convergence-db-contract",
+      "HC-AC adapter-consistency-contract",
+      "action-binding approval",
+      "preflight 欠落",
+    ]) {
+      expect(l5).toContain(required);
+    }
+  });
+
+  it("U-VPAIR-009b: HELIX L5 design と L8 integration test design は単一 doc pair で双方向接続", () => {
+    const ok = analyzePairFreeze([
+      doc(
+        "docs/design/helix/L5-detail/pillar-detail-design.md",
+        "L5",
+        "docs/test-design/helix/L5-pillar-integration-test-design.md",
+        "confirmed",
+      ),
+      doc(
+        "docs/test-design/helix/L5-pillar-integration-test-design.md",
+        "L5",
+        "docs/design/helix/L5-detail/pillar-detail-design.md",
+        "confirmed",
+      ),
+    ]);
+    expect(ok.ok).toBe(true);
+    expect(ok.pairs).toBe(1);
+  });
+
+  it("U-VPAIR-009c: HELIX L5 integration test design は L3 43要件を1件も漏らさない", () => {
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    const l5 = readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8");
+    const l8 = readFileSync("docs/test-design/helix/L5-pillar-integration-test-design.md", "utf8");
+    const l3RequirementIds = uniqueMatches(l3, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l5TestIds = uniqueMatches(l5, /\| (LIT-[^ |]+) \|$/gm);
+    const l8RequirementIds = uniqueMatches(
+      l8,
+      /^\| LIT-(?!ID\b)[^|]+ \| (HR-(?:FR|NFR)-[^ |]+) \|/gm,
+    );
+    const l8TestIds = uniqueMatches(l8, /^\| (LIT-(?!ID\b)[^ |]+) \|/gm);
+
+    expect(l8RequirementIds).toEqual(l3RequirementIds);
+    expect(l8TestIds).toHaveLength(43);
+    expect(l5TestIds).toEqual(l8TestIds);
+  });
+
+  it("U-VPAIR-009d: L5 master は HELIX pillar detail child と L5-L8 pair wording を持つ", () => {
+    const master = readFileSync("docs/plans/PLAN-L5-00-master.md", "utf8");
+    const plan = readFileSync("docs/plans/PLAN-L5-09-helix-pillar-detail-design.md", "utf8");
+    const docs = [
+      readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8"),
+      readFileSync("docs/test-design/helix/L5-pillar-integration-test-design.md", "utf8"),
+      plan,
+    ].join("\n");
+    const allowedContracts = [
+      "HC-AC",
+      "HC-P0",
+      "HC-P1",
+      "HC-P2",
+      "HC-P3",
+      "HC-P4",
+      "HC-P6",
+      "HC-P7",
+      "HC-P8",
+      "HC-P9",
+    ];
+
+    expect(plan).toMatch(/^status:\s*confirmed$/m);
+    expect(plan).not.toMatch(/^- \[ \]/m);
+    expect(master).toContain("plan_id: PLAN-L5-09-helix-pillar-detail-design");
+    expect(master).toContain("HELIX pillar detail");
+    expect(master).toContain("L5↔L8 V-pair");
+    expect(`${master}\n${plan}`).not.toContain("L5↔L9");
+    expect(uniqueMatches(docs, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
+    expect(docs).not.toContain("HC-P5");
+  });
+
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {
     expect(pairFreezeMessages({ ok: true, orphans: [], pairs: 5 })[0]).toContain("OK");
     const msgs = pairFreezeMessages({

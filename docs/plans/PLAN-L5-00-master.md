@@ -31,7 +31,7 @@ roadmap:
   gates:
     - id: G-DESIGN.L5
       name: L5 詳細設計 freeze
-      exit_criteria: "L5 詳細設計 sub-doc (internal-processing/module-decomposition/physical-data/if-detail + 内部資産拡張 roster/skill/drift + harness-db-feedback) が全 child PLAN で confirmed、L5↔L9 V-pair 整合、G5 PASS 台帳と一致"
+      exit_criteria: "L5 詳細設計 sub-doc (internal-processing/module-decomposition/physical-data/if-detail + 内部資産拡張 roster/skill/drift + harness-db-feedback + HELIX pillar detail) が全 child PLAN で confirmed、L5↔L8 V-pair 整合、G5 PASS 台帳と一致"
   spans:
     - plan_id: PLAN-L5-01-physical-data
       after_gate: entry
@@ -55,6 +55,9 @@ roadmap:
       after_gate: entry
       before_gate: G-DESIGN.L5
     - plan_id: PLAN-L5-08-harness-db-feedback
+      after_gate: entry
+      before_gate: G-DESIGN.L5
+    - plan_id: PLAN-L5-09-helix-pillar-detail-design
       after_gate: entry
       before_gate: G-DESIGN.L5
 dependencies:
@@ -138,3 +141,7 @@ child PLAN 起票時に以下を織り込む:
 ## Appendix B: PLAN-L5-08 Add-Design Registration (2026-06-08)
 
 PLAN-L5-08-harness-db-feedback is registered as a post-freeze add-design child for the DB reference-feedback and automation-foundation mechanism. It binds the user request to FR-L1-05/06/07/09/12/13/17/18/19/20/33/37/39/40/41/45/46/47/48/49, descends the missing schema/module/D-API/CLI/search/feedback/automation/guardrail/asset-catalog detail to L5, and pairs the additions to L8 IT-DB/IT-SEARCH/IT-FEEDBACK/IT-AUTOMATION/IT-GUARDRAIL/IT-ASSET-DB rows. It does not roll back or replace PLAN-L5-01..07.
+
+## Appendix C: PLAN-L5-09 Add-Design Registration (2026-06-28)
+
+PLAN-L5-09-helix-pillar-detail-design is registered as the HELIX pillar L5 add-design child for PLAN-L4-51. It descends the L4 `HB-*` 10 blocks and HR 43 requirement rows into L5 `HC-*` detailed contracts and pairs them to L8 `LIT-*` integration observations. It preserves the existing harness L5 sub-docs and corrects the master V-pair wording to L5↔L8.
