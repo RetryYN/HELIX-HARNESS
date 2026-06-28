@@ -133,9 +133,9 @@ HNFR-P5/P8/AC の net-new GAP が L3 FR/AC として未降下だった。
 | `docs/design/helix/L3-requirements/orchestration-memory.md` | confirmed | P2/P7 pure contract back-fill。`HR-BR-07` / `HR-BR-12` / `HR-NFR-03` を pillar L3 の下位詳細として参照 |
 | `docs/design/helix/L3-requirements/orchestration-memory-runtime.md` | confirmed | P2/P7 runtime back-fill。`HR-BR-07R` / `HR-BR-12R` / `HR-NFR-03R` を下位詳細として参照 |
 | `docs/design/helix/L3-requirements/orchestration-runtime-bridge.md` | confirmed | P2 runtime bridge back-fill。`HR-BR-13R` / `HR-BR-14R` を下位詳細として参照 |
-| `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | draft | 本 PLAN の新規 L3 正本候補。L1 HBR/HNFR 全件を FR/NFR/AC と L12 HAT へ降下 |
+| `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | confirmed | 本 PLAN の L3 confirmed 正本。L1 HBR/HNFR 全件を FR/NFR/AC と L12 HAT へ降下済み |
 
-### Step 2: [直列] L3 FR/AC 正本候補作成
+### Step 2: [直列] L3 FR/AC 正本作成
 
 - 直列理由: downstream_dependency。
 - 成果: `docs/design/helix/L3-requirements/pillar-functional-requirements.md`。

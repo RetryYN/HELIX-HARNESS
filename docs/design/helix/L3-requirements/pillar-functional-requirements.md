@@ -15,10 +15,10 @@ next_pair_freeze: L12
 
 # HELIX L3 要件 — L1 pillar HBR/HNFR -> FR/AC descent
 
-> 本書は `pillar-requirements.md` の HBR/HNFR 全件を L3 の機能要件・非機能要件・受入条件へ降ろす
-> Forward L3 正本候補である。P2/P7 の実装済み back-fill
+> 本書は `pillar-requirements.md` の HBR/HNFR 全件を L3 の機能要件・非機能要件・受入条件へ降ろした
+> Forward L3 confirmed 正本である。P2/P7 の実装済み back-fill
 > (`orchestration-memory*.md`) は下位詳細として参照し、本書では L1 に残っていた GAP と pillar 横断 AC を閉じる。
-> status は `confirmed`。charter §3 に基づく PO 承認を経て G-REQ.L3 の正本候補から confirmed 正本へ昇格した。
+> status は `confirmed`。charter §3 に基づく PO 承認を経て G-REQ.L3 の confirmed 正本へ昇格済み。
 
 ## §0 量閉じ
 

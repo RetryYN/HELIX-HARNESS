@@ -14,7 +14,7 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 > `docs/design/helix/L1-requirements/pillar-requirements.md`（HBR/HNFR、charter P0–P9）の **L14 対**（片肺禁止）。
 > OT-* ⇔ HBR/HNFR を **1:1** で立てる。ID は HELIX 名前空間 **HOT-** で harness の OT-01..47 と非衝突。
 > **PO（charter §3: L1 は人間承認）により PLAN-L1-06 Step 6 G-REQ.L1 re-freeze で対凍結済み**。
-> 実装状態は虚偽宣言を禁じる（NFR-08）: P2/P7 は **partial**（loop/memory architecture + 実 runtime bridge は green: PLAN-L7-175/176/177 で U-ORCH/U-MEM/BRIDGE oracle green。ただし親 HBR に残 GAP: typed agent↔tool contract / loop effort-budget / Glossary SSoT）。他柱は L1 宣言のみ（L3 降下で詳細化）。
+> 実装状態は虚偽宣言を禁じる（NFR-08）: P2/P7 は **partial**（loop/memory architecture + 実 runtime bridge は green: PLAN-L7-175/176/177 で U-ORCH/U-MEM/BRIDGE oracle green。ただし親 HBR に残 GAP: typed agent↔tool contract / loop effort-budget / Glossary SSoT）。他柱を含む未実装/partial 能力は PLAN-L3-06 / PLAN-L4-51 で要求・block へ詳細化済みで、実装完了とは扱わない。
 
 ## §0 量閉じ原則 (L1↔L14)
 
@@ -51,10 +51,10 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 - HNFR: HNFR-P3→HOT-N3 / HNFR-P5→HOT-N5 / HNFR-P8→HOT-N8 / HNFR-AC→HOT-NAC。**孤児 HNFR = 0**（4/4）。
 - 逆方向: 全 HOT-* が HBR/HNFR を親に持つ（孤児 OT = 0）。
 
-## §4 後続（L3 降下）
+## §4 後続（L3/L4 降下後）
 
-- 各 HOT の **具体数値しきい値（time-cap 秒数 / gate 通過率 / injection budget トークン上限等）は L3 AC で確定**。本書は L1 能力境界の対凍結まで。
-- partial（HOT-P2/P7）は既存 oracle（U-ORCH-001..006 + BRIDGE-01/02 / U-MEM-001..003）が L7 単体側の被覆。本 OT は L14 運用観測側の対。残 GAP（typed contract / effort-budget / Glossary SSoT）は L3 降下対象。
+- 各 HOT の **具体数値しきい値（time-cap 秒数 / gate 通過率 / injection budget トークン上限等）は PLAN-L3-06 の AC で確定済み**。本書は L1 能力境界の対凍結として残す。
+- partial（HOT-P2/P7）は既存 oracle（U-ORCH-001..006 + BRIDGE-01/02 / U-MEM-001..003）が L7 単体側の被覆。本 OT は L14 運用観測側の対。残 GAP（typed contract / effort-budget / Glossary SSoT）は PLAN-L3-06 / PLAN-L4-51 で降下済みで、実装・下位詳細は後続 L5+ / L7+ の対象。
 - Codex runtime parity overlay（pillar-requirements §2.6）は HOT-P2/HOT-P7/HOT-NAC の acceptance に含める。Claude だけで成立する実装は L3/L7 で reject する。
 - Distribution / full setup overlay（pillar-requirements §2.7）は HOT-P6/HOT-P9/HOT-N8/HOT-NAC の acceptance に含める。手作業の doc 探索、暗黙のグローバル設定、既存ファイルの silent overwrite/delete/reset、途中導入不可、version-up 不可を前提にした導入は L3/L7 で reject する。
-- not-implemented 柱（P6/P8 等）は L3 で優先設計（pillar-requirements §0/§3 の GAP 大の領域）。
+- not-implemented 柱（P6/P8 等）は PLAN-L3-06 / PLAN-L4-51 で優先設計済み（pillar-requirements §0/§3 の GAP 大の領域）。本書上の `not-implemented` は runtime 実装未完了の状態であり、要件未降下の意味ではない。

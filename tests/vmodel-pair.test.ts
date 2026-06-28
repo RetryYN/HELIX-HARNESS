@@ -222,6 +222,31 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
   });
 
+  it("U-VPAIR-005e: HELIX L0-L4 current-state docs do not retain pre-confirmation descent wording", () => {
+    const l1 = readFileSync("docs/design/helix/L1-requirements/pillar-requirements.md", "utf8");
+    const l14 = readFileSync("docs/test-design/helix/L1-pillar-operational-test-design.md", "utf8");
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    const planL306 = readFileSync("docs/plans/PLAN-L3-06-helix-pillar-descent.md", "utf8");
+    const planL451 = readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8");
+
+    expect(l3).toContain("Forward L3 confirmed 正本");
+    expect(l3).not.toContain("Forward L3 正本候補");
+    expect(l1).toContain("PLAN-L3-06 / PLAN-L4-51 で要求・block 化済み");
+    expect(l1).not.toContain(
+      "残 GAP（typed contract / effort-budget / Glossary SSoT）は L3 で起票",
+    );
+    expect(l14).toContain("本書上の `not-implemented` は runtime 実装未完了の状態");
+    expect(l14).not.toContain("他柱は L1 宣言のみ");
+    expect(l14).not.toContain("not-implemented 柱（P6/P8 等）は L3 で優先設計");
+    expect(planL306).toContain(
+      "| `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | confirmed |",
+    );
+    expect(planL451).toContain("U-VPAIR-007a/b/c/d/e/f");
+  });
+
   it("U-VPAIR-005c: HELIX L3 FR/NFR と HAC は HAT acceptance に孤児なく接続", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",

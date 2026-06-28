@@ -53,11 +53,11 @@ pair_artifact: docs/test-design/helix/L1-pillar-operational-test-design.md
 | **HNFR-P8** | **外部連携セキュリティ（厳格・hard 制約）** — 外部連携は secret 漏洩防止/信頼境界/サンドボックス下でのみ。**不可逆操作の escalation 境界**＝本番/認証認可/決済/PII/secret/license/schema migration/破壊的データ/外部 API・infra 変更のみ人間へ戻す | FR-L1-09（agent guard）/ FR-L1-05 / SECRET_PATTERN | **sandbox/trust-boundary の機能要件化・escalation 境界の FR 化が無し**（CLAUDE.md 安全境界に prose で在るが FR 未昇格） |
 | **HNFR-AC** | **エージェント整合（同一記憶・同一規則）** — 全エージェントが単一規則セットに従い同一記憶（P7 2 層）を共有、per-agent 規則乖離・記憶サイロ禁止。`rule-drift` を全エージェントへ一般化し、Claude/Codex の tool 名・hook surface 差分を adapter map で吸収する | rule-drift（Codex↔Claude adapter 乖離検査）/ FR-L1-46/47 / codex-hook-adapter doctor | rule-drift は 2 adapter のみ。**全 agent への一般化 + 共有 memory access の機械強制 + Codex hosted API surface（repo hook 非強制）での明示 preflight が net-new** |
 
-## §2.5 外部研究 delta（2026-06-28、L1 re-freeze 反映済み、L3 一次検証対象）
+## §2.5 外部研究 delta（2026-06-28、L1 re-freeze 反映済み、L3 一次検証済み）
 
 PLAN-L1-06 Step 2/3 の外部研究パス（pmo-tech-docs 委譲、2025–2026 ソース照合）で surface した、net-new GAP を
 sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX precedence（仕組み≦harness）に適合する
-もののみ採用候補とし、**個別ツール・数値・出典は一次未検証 → L3 で検証**（下記「要追加調査」）。仕組みを超えない。
+もののみ採用候補とし、**個別ツール・数値・出典は PLAN-L3-06 で一次検証し、HR-FR/HR-NFR/HAC へ降下済み**。仕組みを超えない。
 
 | 優先 | 対象 GAP | delta（採用候補・概念） | 出典系統（2025–2026、要一次検証） |
 |------|----------|--------------------------|-----------------------------------|
@@ -71,11 +71,11 @@ sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX pr
 
 **採用しなかった/保留**: self-verification 単独（HNFR-P3 が明示禁止、best practice も不支持）/ ARIA delegation graph（arxiv 段階、実用 OSS 未確認）/ Anthropic compact beta（harness handover と競合有無 未確認）。
 
-**要追加調査（L3 で一次検証してから採用）**: Release Please のカスタム gate hook 対応範囲 / ACON 等論文実装の TS 再実装可否（Python binding 禁止）/ MicroVM の Bun/TS プロセス統合 / 上記出典 URL の一次確認。**ADR-001 厳守: OSS は概念採取＋TS-Bun 再実装、bulk import 禁止。**
+**L3 一次検証結果（PLAN-L3-06）**: Release Please / semantic-release / GitHub Rulesets / Merge Queue / OWASP LLM01・LLM06 / Firecracker / gVisor / GitHub token docs は L3 §2.5 で一次出典を固定。ACON 等の論文実装は採用済み runtime 前提にせず、必要時は後続 PLAN で TS/Bun 再実装可否を個別検証する。**ADR-001 厳守: OSS は概念採取＋TS-Bun 再実装、bulk import 禁止。**
 
 ## §2.6 Codex runtime parity 要求（PLAN-L1-06 close 前追加、2026-06-28）
 
-Claude 視点だけで L1 を閉じないため、P2/P7/HNFR-AC の L3 降下時は以下を acceptance overlay として必ず展開する。
+Claude 視点だけで L1 を閉じないため、P2/P7/HNFR-AC の acceptance overlay として以下を固定する。PLAN-L3-06 で `HR-FR-P2-03` / `HR-FR-P7-01` / `HR-NFR-AC-*` へ降下済み。
 
 | 対象 | L1 要求 | L3/L7 での検証観点 |
 |------|---------|--------------------|
@@ -101,12 +101,12 @@ P6/P9 の確定 GAP として明示する。
 
 - harness `business-requirements.md` の BR-01..08/21/22・`nfr.md` NFR-15 件・**`functional-requirements.md` の FR-L1-01..51 は既存資産**。本書 HBR/HNFR は §0/§1/§2 で **各 FR を接地（再利用）**し、**GAP（net-new）だけを足す**。番号は HELIX 名前空間で衝突しない。
 - **二重定義しない**: 既存 FR が被覆する部分は「既存 FR」列で再利用宣言し、本要件は GAP 列の差分のみを規定する。仕組みは harness 正本、HELIX は方向性＋GAP 能力を積む。
-- **L3 降下時の整合**: 各 HBR/HNFR を L3 FR へ分解する際は、接地 FR-L1-NN を親に持つ拡張として起票し、harness FR registry（51 件）と整合させる（新 FR は GAP 分のみ）。配布/フルセットアップは FR-L1-44（onboarding）と technical L1 の GitHub-pull/tag-pin/setup 方針に接地し、HELIX 側の「最終利用可能状態」として §2.7 を展開する。
-- **取捨選択メモ**: P2/P7 の GAP は実装で先行充足（PLAN-L7-175/176）。P6/P8 は既存 FR がほぼ無く HELIX の最大 net-new 領域 → L3 で優先設計。P0/P4/P9 は既存 FR が厚いので「enforcement 化（forward_return/auto-repair/DB-未収束＝未完了）」の薄い差分に絞る。
+- **L3/L4 降下済みの整合**: 各 HBR/HNFR は PLAN-L3-06 で L3 FR/NFR/AC へ、PLAN-L4-51 で L4 block へ降下済み。接地 FR-L1-NN を親に持つ拡張として扱い、harness FR registry（51 件）と整合させる（新 FR は GAP 分のみ）。配布/フルセットアップは FR-L1-44（onboarding）と technical L1 の GitHub-pull/tag-pin/setup 方針に接地し、HELIX 側の「最終利用可能状態」として §2.7 を展開済み。
+- **取捨選択メモ**: P2/P7 の GAP は一部を実装で先行充足（PLAN-L7-175/176/177）し、残りは PLAN-L3-06 / PLAN-L4-51 で要求・block 化済み。P6/P8 は既存 FR がほぼ無い HELIX の最大 net-new 領域として L3/L4 に優先降下済み。P0/P4/P9 は既存 FR が厚いので「enforcement 化（forward_return/auto-repair/DB-未収束＝未完了）」の薄い差分として降下済み。
 
 ## §4 pair（片肺禁止）/ 後続
 
 - pair = `docs/test-design/helix/L1-pillar-operational-test-design.md`（OT-* ⇔ HBR/HNFR を 1:1。Step 4 で起票・対凍結）。
 - **承認**: PO レビュー → G-REQ.L1 re-freeze（Step 6）で status=confirmed（A-143）。
-- L3 降下: confirmed 後、各 HBR/HNFR を L3 FR（機能要件）+ AC（受入条件）へ分解（next_pair_freeze=L3）。
-- 一部実装済（partial）の P2/P7（HBR-P2/P7）は L3 back-fill（[[helix-orchestration-memory]] HR-BR-07/12/NFR-03 + runtime R 系 + HR-BR-13R/14R bridge）と整合。残 GAP（typed contract / effort-budget / Glossary SSoT）は L3 で起票。
+- L3/L4 降下: PLAN-L3-06 / PLAN-L4-51 で、各 HBR/HNFR を L3 FR/NFR/AC と L4 block へ分解済み（next_pair_freeze=L3 は完了）。
+- 一部実装済（partial）の P2/P7（HBR-P2/P7）は L3 back-fill（[[helix-orchestration-memory]] HR-BR-07/12/NFR-03 + runtime R 系 + HR-BR-13R/14R bridge）と整合。残 GAP（typed contract / effort-budget / Glossary SSoT）は PLAN-L3-06 で起票済み、実装・下位詳細は後続 L5+ / L7+ の対象。

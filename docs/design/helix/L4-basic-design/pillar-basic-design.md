@@ -113,6 +113,6 @@ back-fill で確定済みである。本書では P2/P7 を HB-P2 / HB-P7 / HB-A
 
 ## §5 carry
 
-- L5: block ごとの table/schema/API/DbC 詳細、approval ledger、external source ledger、contract ledger。
+- L5: block ごとの table/schema/API/DbC 詳細、approval ledger、external source ledger、contract ledger。PLAN-L5-09 で降下済み。
 - L6: function contracts、security-filter parser、context-map checker、job/loop scheduler、setup/release dry-run planner。
 - L7: implementation は L6 freeze 後に PLAN-driven add-impl として扱う。
