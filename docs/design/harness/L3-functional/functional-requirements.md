@@ -15,7 +15,7 @@ updated: 2026-05-28
 
 > **SSoT 参照**: ユビキタス言語 = L0 概念層 §10 用語集 / Bounded Context = L0 §2.5 (9-mode) + screen sub-doc §6 (PM/HM/GD 3 カテゴリ) / 業界標準整合 = ISO/IEC/IEEE 29148 (要件記述) + BDD Given-When-Then (AC 形式) + ISTQB Foundation Level (境界値分析)。
 > **件数確定**: L3 FR は **26 件** = P0 18 件 (FR-01〜18、L1 FR-L1-01〜18 と 1:1 対応) + FR-45 (P0、doc-reviewer back-propagation A-49) + workflow core 7 件 (FR-23〜30、A-50 で L3 直接詳細化)。残 P1 10 件 + P2 5 件は L4 carry (§3 / §3.1)。BR-21 経路 (FR-L1-36 / FR-L1-38 / FR-L1-43 + 関連 P2) は business-detail.md 担当 (重複回避)。FR-L1-36 / FR-L1-38 / FR-L1-43 はすべて PLAN-L7-53 で実装済み (2026-06-15)。g3-trace lint の l3Fr=26 と一致。
-> **AC 件数**: 全 FR で AC 最低 3 件 (正常 / 異常 / 境界)、計 54+ AC を予定。**人間判断点 列必須** (CC2 carry)。
+> **AC 件数**: 全 FR で AC 最低 3 件 (正常 / 異常 / 境界)、functional sub-doc の AC-FR は **85 件** (FR-03/07/25 の back-fill 追加 AC を含む)。**人間判断点 列必須** (CC2 carry)。
 > **L12 接続規約**: `next_pair_freeze: L12`。L12 受入テスト設計は本 sub-doc の全 AC を AT-* で被覆 (孤児 AC = 0)。
 > **正規式モデル (PLAN-RECOVERY-02、2026-06-04)**: L3 要件の検証本質 = **本番受入** (本番環境で FR+AC が満たせるか、L12 で実施。データ実在性エスカレーションの本番 band)。画面要求は L1 (screen sub-doc) が担い L3 では起こさない (L2=L1 フェーズ分離)。
 
@@ -767,7 +767,7 @@ A-50 で workflow core 7 件 (FR-L1-23/24/25/26/27/29/30) を L3 直接詳細化
 | FR-L1-05/06/07/17/18/20/24/33/45/50 A-126 extension | PLAN-L5-08 + A-126 addendum / Phase 4 seed IMP-126 | `document_export_profiles/document_export_runs/document_export_datasets/document_export_artifacts` を DB projection に追加し、企画・要件定義・詳細設計・PLAN・ADR・テスト設計から source anchor 付き spreadsheet / Excel / PPTX 変換物を生成・記録する。 |
 | FR-L1-31〜35 (P2 コンテキスト/フォルダ/棚卸し/穴管理/整備可視化) | PLAN-L4-NN-infra-readiness | 整備系、Phase B carry 含む |
 
-> **A-50 で 6 件削減** (FR-L1-23/24/25/26/27/29/30 = workflow core 7 件を L3 詳細化に格上げ)。**A-54 で FR-L1-40/41 を本 §3.1 表に明示追加** (§3 主表に L4 carry 宣言済だが §3.1 詳細表から漏れていた不整合を解消、audit 軸2 C-01/C-02)。残 P1 L4 carry = 9 件 (FR-L1-21/22/28/37/39/40/41/42/44) + P2 (FR-L1-31〜35) + Phase B (FR-L1-19/20)。いずれも workflow core ではないため L4 carry を維持。
+> **A-50 で 7 件削減** (FR-L1-23/24/25/26/27/29/30 = workflow core 7 件を L3 詳細化に格上げ)。**A-54 で FR-L1-40/41 を本 §3.1 表に明示追加** (§3 主表に L4 carry 宣言済だが §3.1 詳細表から漏れていた不整合を解消、audit 軸2 C-01/C-02)。残 P1 tracking は、**L4 未起票 sub-PLAN 8 件** (FR-L1-21/22/28/37/39/40/41/44) + **実装済 1 件** (FR-L1-42 provider handover) + **L7/Reverse fullback 1 件** (FR-L1-51 artifact progress) に分けて扱う。P2 (FR-L1-31〜35) と Phase B (FR-L1-19/20) は別枠。いずれも workflow core ではないため、L3 直接詳細化ではなく各着地先で扱う。
 
 ### §3.2 UX-01 (3 バランス価値体験) AC + AT 追加 (C-01 補完)
 
@@ -799,15 +799,17 @@ screen §5 G1-trace マトリクスを継承し、L3 FR-* × 15 画面 (PM/HM/GD
 
 (残 12 FR の AC レベル拡張は L2-screen 本起票 + L12 AT-* 起票時に確定)
 
-## §5 9 mode × FR 整合 + drive タグ + 人間判断点 (CC2 carry)
+## §5 workflow taxonomy × FR 整合 + drive タグ + 人間判断点 (CC2 carry)
 
-§2 表の「対応 mode」「対応 drive」「人間判断点」列で全 FR-* に明示済み。**CC2 (人間主導 + AI 補助原則) carry 充足**: 全 18 FR で人間判断点が明示され、AI 単独自動化に依存しない設計。
+§2 表の「対応 mode」「対応 drive」「人間判断点」列で全 FR-* に明示済み。**CC2 (人間主導 + AI 補助原則) carry 充足**: L3 FR 26 件すべてで人間判断点が明示され、AI 単独自動化に依存しない設計。
 
-### §5.1 9 mode 被覆確認 (A-50 で全 9 mode 直接被覆達成)
+### §5.1 Forward spine + 9 駆動モデル + 2 工程専門 被覆確認 (A-50)
+
+L4 function §3 の operational 正本と同じ taxonomy を L3 要件でも採る。**Forward は entry mode ではなく全駆動モデルの合流先 (spine)**、9 駆動モデルは Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / Research、screen-design / frontend-design は独立 mode ではなく工程専門である。
 
 | mode | 被覆 FR | 備考 |
 |------|--------|------|
-| Forward | FR-01 / FR-02 / FR-13 | 主線 mode、L0-L14 主要 FR |
+| Forward spine | FR-01 / FR-02 / FR-13 | 主線・合流先、L0-L14 主要 FR |
 | Reverse | FR-14 (専用) / FR-03 | R0-R4 + RGC + trace 検証 |
 | Discovery | FR-15 (専用) / FR-08 (自動起動) | S0-S4 + 仮説判定 |
 | Incident | FR-16 (専用) / FR-08 / FR-10 | 緊急 hotfix + Recovery |
@@ -820,7 +822,7 @@ screen §5 G1-trace マトリクスを継承し、L3 FR-* × 15 画面 (PM/HM/GD
 | **frontend-design (L10 専門)** | **FR-30 (専用、A-50)** | visual → token SSOT → a11y → visual regression |
 | Research | **FR-27 (専用、A-50)** | kind=research、generates=ADR |
 
-> **9 mode + 工程専門 2 = 11 mode 全件 L3 で直接被覆達成 (A-50)**。PO 指摘「ワークフローがガードレールだからハーネスとしてのコア」反映、L4 carry → L3 直接詳細化に格上げ。
+> **Forward spine + 9 entry modes + 工程専門 2 を L3 で直接被覆達成 (A-50)**。PO 指摘「ワークフローがガードレールだからハーネスとしてのコア」反映、L4 carry → L3 直接詳細化に格上げ。concept / L1 の legacy「9-mode ecosystem」表記との数え方差は L4 function §3 の bridge note を正とし、L5 以降も同 taxonomy を採る。
 
 ### §5.2 drive 軸被覆確認
 
@@ -859,7 +861,7 @@ screen §5 G1-trace マトリクスを継承し、L3 FR-* × 15 画面 (PM/HM/GD
 - **L4 データ設計 (PLAN-L4-04)**: business §10.2 L4 carry 表 7 項目 (集約境界 / 値オブジェクト等) + 各 FR の入出力データ構造を L4 で確定
 - **A-122 requirements back-propagation**: UT evidence history、GreenDefinition、DB collector/rebuild/migration、CI/hook/OS evidence matrix は、L1 functional §7 と requirements §6.8.7 に戻した。L4/L5/L6 では `FR-L1-02/06/07/17/18/20/45/50` の既存 FR 拡張として AC/DbC/IT を追加し、新 FR 採番は行わない。
 - **L7 実装スプリント**: 各 AC-* を TDD Red の入力として使用。Given-When-Then 形式を vitest describe-it に直接変換可能
-- **L12 受入テスト設計**: 全 54+ AC-* を AT-* で被覆 (孤児 0)。本 sub-doc 完成後に L12 担当 sub-doc 本起草
+- **L12 受入テスト設計**: 全 85 AC-FR-* を AT-FR-* で被覆 (孤児 0)。本 sub-doc 完成後に L12 担当 sub-doc 本起草
 - **G3 lint 実装** (`ut-tdd plan lint --gate G3-trace`): R1 (BR/UX/FR-L1 → L3) / R2 (FR-* → AC → AT) / R3 (AT → 要求) / R4 (NFR → 閾値 → AT) は L7 実装済みで、`ut-tdd doctor` hard gate に集約される
 - **CC2 carry 強化**: L4 / L5 / L6 設計で「人間判断点」明示を継承 (各設計 layer に対応列追加)
 

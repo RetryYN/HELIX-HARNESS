@@ -209,7 +209,7 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 
 ---
 
-## §6 配置・常時参照と back-fill 義務
+## §6 配置・動的参照と back-fill 義務
 
 ### 配置 (PO 2026-06-04 確定)
 
@@ -217,12 +217,14 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 
 > **スキーマ補足**: 現 PLAN スキーマ (requirements §1.10.G.1) の L3 sub_doc enum は `business-requirement / functional-requirement / nfr-grade` の 3 種で roadmap 型を持たない。本書は sub_doc pair artifact ではないため `kind=design + sub_doc` の起票導線には乗らない。これを正式な design PLAN で機械追跡するなら sub_doc enum の扱い (拡張 or 非 sub_doc design doc の許容) を整理する必要がある → IMP-036 の back-fill で扱う。現行 `ut-tdd plan lint` は schedule/G1-trace/G3-trace を実装済みだが、本 roadmap 型の sub_doc schema 拡張はまだ対象外。
 
-### 常時参照配線
+### 動的参照配線
 
-PO 指示どおり次の 2 ファイルから**常時参照**させる:
+本書は `CLAUDE.md` / `AGENTS.md` の normal startup Read Order / Core Reads には含めない。通常作業は
+Forward descent path (L0→L14) を主語にし、本書は V-model layer group の Forward freeze が完了して
+検証サイクルを実行するときだけ動的に参照する。
 
-- `CLAUDE.md` — Claude Code Read Order
-- `AGENTS.md` — Core Reads
+- `CLAUDE.md` — normal startup read から除外し、freeze boundary での dynamic read として扱う
+- `AGENTS.md` — Core Reads から除外し、verification cycle 実行時の dynamic read として扱う
 
 > governance 正本リスト (`CLAUDE.md` の「正本ドキュメント」節 / `docs/governance/README.md` の Current Source Of Truth) には**載せない** = 本書は governance 正本ではなく設計層の doc であるため。
 

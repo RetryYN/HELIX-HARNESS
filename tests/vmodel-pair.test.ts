@@ -599,6 +599,95 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
   });
 
+  it("U-VPAIR-005k: harness L3 roadmap は startup Core Read ではなく freeze 境界の動的参照", () => {
+    const readme = readFileSync("docs/design/harness/L3-functional/README.md", "utf8");
+    const roadmap = readFileSync("docs/design/harness/L3-functional/roadmap.md", "utf8");
+    const agents = readFileSync("AGENTS.md", "utf8");
+    const claude = readFileSync("CLAUDE.md", "utf8");
+    const combined = `${readme}\n${roadmap}`;
+
+    expect(agents).toContain("Do not load `docs/design/harness/L3-functional/roadmap.md`");
+    expect(claude).toContain("Do not load `docs/design/harness/L3-functional/roadmap.md`");
+    expect(combined).toContain("Core Reads には含めず");
+    expect(combined).toContain("V-model freeze 境界");
+    expect(combined).toContain("検証サイクルを実行するときだけ動的に参照");
+    expect(combined).not.toContain("AGENTS.md Core Reads が常時参照");
+    expect(combined).not.toContain("常時参照配線");
+  });
+
+  it("U-VPAIR-005l: harness L3 workflow taxonomy は L4 operational 正本と一致", () => {
+    const l3 = readFileSync("docs/design/harness/L3-functional/functional-requirements.md", "utf8");
+    const l4 = readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8");
+
+    for (const required of [
+      "Forward spine + 9 駆動モデル + 2 工程専門",
+      "Forward は entry mode ではなく全駆動モデルの合流先",
+      "Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / Research",
+      "screen-design / frontend-design は独立 mode ではなく工程専門",
+      "L3 FR 26 件すべてで人間判断点",
+      "Forward spine + 9 entry modes + 工程専門 2",
+    ]) {
+      expect(l3).toContain(required);
+    }
+
+    expect(l4).toContain("Forward spine (主線、合流先) + 駆動モデル (entry mode、9 種) + 工程専門");
+    expect(l4).toContain("Forward は駆動モデルの 1 つでなく");
+    expect(l4).toContain("screen-design / frontend-design は**独立した駆動モデルでなく");
+    expect(l3).not.toContain("9 mode + 工程専門 2 = 11 mode");
+    expect(l3).not.toContain("全 18 FR で人間判断点");
+  });
+
+  it("U-VPAIR-005m: harness P1 carry count は L4未起票と実装済/fullbackを混同しない", () => {
+    const l3 = readFileSync("docs/design/harness/L3-functional/functional-requirements.md", "utf8");
+    const l4 = readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8");
+    const combined = `${l3}\n${l4}`;
+
+    for (const required of [
+      "L4 未起票 sub-PLAN 8 件",
+      "実装済 1 件",
+      "FR-L1-42 provider handover",
+      "L7/Reverse fullback 1 件",
+      "FR-L1-51 artifact progress",
+      "A-50 で 7 件削減",
+      "全行が L4 sub-PLAN 待ちではない",
+      "FR-L1-42 は provider-handover 実装済",
+      "FR-L1-51 は PLAN-L7-56 / PLAN-REVERSE-56 で扱う",
+    ]) {
+      expect(combined).toContain(required);
+    }
+
+    expect(combined).not.toContain("残 P1 L4 carry = 9 件");
+    expect(combined).not.toContain("P1 sub-PLAN 9 件");
+    expect(combined).not.toContain("P1 carry 10 件の機能 building block");
+    expect(combined).not.toContain("A-50 で 6 件削減");
+  });
+
+  it("U-VPAIR-005n: harness L3 functional AC は L12 AT-FR に全件接続", () => {
+    const functional = readFileSync(
+      "docs/design/harness/L3-functional/functional-requirements.md",
+      "utf8",
+    );
+    const acceptance = readFileSync(
+      "docs/test-design/harness/L3-acceptance-test-design.md",
+      "utf8",
+    );
+    const acIds = uniqueMatches(functional, /^#### (AC-FR-\d+-\d+)/gm);
+    const atMappedAcIds = uniqueMatches(
+      acceptance,
+      /\| \*\*AT-FR-\d+-\d+\*\* \| [^|\n]*(AC-FR-\d+-\d+)/g,
+    );
+
+    expect(acIds).toHaveLength(85);
+    expect(atMappedAcIds).toHaveLength(85);
+    expect(atMappedAcIds).toEqual(acIds);
+    expect(functional).toContain("AC-FR は **85 件**");
+    expect(functional).toContain("全 85 AC-FR-* を AT-FR-* で被覆");
+    expect(acceptance).toContain("AT-FR 合計 = 85 件");
+    expect(acceptance).toContain("AC-FR / AT-FR 85 件");
+    expect(acceptance).not.toContain("AT-FR 計 79 件");
+    expect(acceptance).not.toContain("AT-FR 合計 = 58 + 21");
+  });
+
   it("U-VPAIR-007a: HELIX L3 43要件は L4 basic design に全件降下済み", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",

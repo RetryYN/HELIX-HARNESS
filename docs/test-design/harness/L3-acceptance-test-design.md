@@ -26,7 +26,7 @@ updated: 2026-06-02
 ## §0 量閉じ原則 (L3 ↔ L12)
 
 - 全 L3 FR-* (26 件 = FR-01〜18 + FR-45 + workflow core 7 件 [FR-23〜27/29/30]) / AT 対応必須
-- 全 AC-* (54+ 件、3.section AC) / AT 対応必須
+- 全 AC-FR-* (85 件、functional sub-doc) / AT 対応必須
 - 全 BR-21 派生 (FR-BR21-36/38/43) / AT 対応必須
 - 全 NFR-* (15 件、NFR-09/10 欠番。NFR-17 = 統合セキュリティ A-54 追加) / AT 対応必須 (carry の場合は placeholder AT)
 - 孤児 = 0 (機械検証 `ut-tdd plan lint --gate G3-trace`)
@@ -39,7 +39,7 @@ updated: 2026-06-02
 |-------|---------|---------|---------|
 | **AT-DIST-001** | clean distribution / installable same-core CLI environment | Planned clean artifact set を temp repo に展開し、`bun install --frozen-lockfile` 後に `status --json`、`distribution plan --tag v0.1.0 --json`、`typecheck` が通る。外部 clean GitHub repo 作成、tag push、signed tarball publish は PO 承認後の公開操作として本 smoke では実行しない。source repo 用 full `doctor` は dogfood PLAN/design/test-design/runtime artifacts を要求するため、clean distribution の受入条件ではなく consumer doctor profile の別設計対象とする。 | `tests/distribution-acceptance.test.ts` |
 
-### §1.1 functional sub-doc 由来 AT (FR-01〜18 × AC 3 件 = 54+ AT)
+### §1.1 functional sub-doc 由来 AT (AC-FR 85 件)
 
 | AT-ID | 対応 AC | 受入条件 (Given-When-Then を変換) | 機械検証 |
 |-------|---------|------------------------------|---------|
@@ -52,6 +52,7 @@ updated: 2026-06-02
 | **AT-FR-03-01** | AC-FR-03-01 (trace 整合 pass) | 4 artifact 全件 → `ut-tdd trace check` pass / report 12/12 edges | vitest trace test |
 | **AT-FR-03-02** | AC-FR-03-02 (test 設計欠落) | pair 欠落 → fail-close trace 断絶 error / exit 1 | vitest trace test |
 | **AT-FR-03-03** | AC-FR-03-03 (generates 未宣言) | pair_artifact のみ → warn / exit 0 | vitest trace test |
+| **AT-FR-03-04** | AC-FR-03-04 (descent obligation 不在検出 / impl-ahead) | src/test 着地済で L6 単体テスト設計が不在 → `ut-tdd doctor` が unmet obligation / impl-ahead を fail-close し、pair back-fill または有効 defer を next_action に出す | vitest descent-obligation test |
 | **AT-FR-04-01** | AC-FR-04-01 (kind enum pass) | kind=design + 依存 PLAN 存在 → lint pass | vitest plan lint test |
 | **AT-FR-04-02** | AC-FR-04-02 (循環依存) | 自己 requires → fail-close 循環依存 error / exit 1 | vitest plan lint test |
 | **AT-FR-04-03** | AC-FR-04-03 (impl + parent_design 欠落) | kind=impl で parent_design なし → schema fail / exit 1 | vitest schema test (既存 frontmatter.test.ts カバー) |
@@ -64,6 +65,8 @@ updated: 2026-06-02
 | **AT-FR-07-01** | AC-FR-07-01 (hook 自動登録) | git commit → PostCommit hook → code_catalog 追加 | vitest hook test |
 | **AT-FR-07-02** | AC-FR-07-02 (hook 書込失敗) | permission denied → warn / exit 2 / git commit は成功 | vitest hook test |
 | **AT-FR-07-03** | AC-FR-07-03 (hook 未実装 skip) | hook placeholder → skip + audit / exit 0 | vitest hook test |
+| **AT-FR-07-04** | AC-FR-07-04 (session-log 観測 hook fail-open) | SessionStart / PostToolUse / Stop で I/O 失敗や不正 JSON があっても exit 0、記録可能分のみ append、Stop digest は idempotent、secret/PII を sanitize | vitest session-log hook test |
+| **AT-FR-07-05** | AC-FR-07-05 (forced-stop 検出 + feedback fail-open) | dangling session を SessionStart で検出し、feedback のみ記録、mistake は記録せず、同一内容は重複せず、Recovery 起票候補は人間 yes 待ち | vitest forced-stop feedback test |
 | **AT-FR-08-01** | AC-FR-08-01 (drift → Reverse 提案) | drift 検出 → mode-routing Reverse 提案 / next_action 出力 | vitest doctor + routing test |
 | **AT-FR-08-02** | AC-FR-08-02 (複数シグナル優先度) | drift + 劣化 + 暴走 → Recovery routing / 他 warn | vitest routing test |
 | **AT-FR-08-03** | AC-FR-08-03 (PO 手動 mode) | `ut-tdd route --mode reverse --force` → warn + audit / routing | vitest CLI + audit test |
@@ -110,6 +113,9 @@ updated: 2026-06-02
 | **AT-FR-25-01** | (A-50 workflow core) AC-FR-25-01 (Refactor 振る舞い不変正常) | 既存 test 緑維持 + axis-11 regression pass | vitest sprint + regression test |
 | **AT-FR-25-02** | AC-FR-25-02 (既存 test 破壊) | refactor 後 test fail → fail-close error | vitest sprint test |
 | **AT-FR-25-03** | AC-FR-25-03 (test 保護網薄い) | coverage < 60% → warn / 続行可 | vitest sprint test |
+| **AT-FR-25-04** | AC-FR-25-04 (refactor green requires test IDs) | `assertRefactorInvariant` が before/after 一致、regression exit_code=0、linked regression test_id ありの場合だけ Green とする | vitest refactor invariant test |
+| **AT-FR-25-05** | AC-FR-25-05 (DB trigger: relation graph / feedback 起点) | harness.db findings / quality_signals / feedback_events / impact_results / artifact_progress から refactor PLAN 入力を生成でき、source docs を直接書き換えない | vitest workflow signal test |
+| **AT-FR-25-06** | AC-FR-25-06 (dependency impact 未解消) | relation-graph open action が残る refactor PLAN は Green/completed にせず、required action を evidence として返す | vitest relation graph readiness test |
 | **AT-FR-26-01** | (A-50 workflow core) AC-FR-26-01 (Retrofit matrix 正常) | retrofit-matrix.yaml 生成 + 段階 config + G4 通過 | vitest retrofit + gate test |
 | **AT-FR-26-02** | AC-FR-26-02 (matrix 欠落) | matrix 未生成で G4 → fail-close error | vitest gate test |
 | **AT-FR-26-03** | AC-FR-26-03 (段階 rollback) | `ut-tdd cutover --to <previous-stage>` → 前段階 config 復帰 + audit | vitest cutover test |
@@ -123,7 +129,7 @@ updated: 2026-06-02
 | **AT-FR-30-02** | AC-FR-30-02 (token 二重定義) | color.primary 衝突 → fail-close | vitest token lint test |
 | **AT-FR-30-03** | AC-FR-30-03 (a11y warn 多発) | WCAG warn ≥10 → 集約レポート + 通過許可 | vitest a11y test |
 
-> **AT-FR 合計 = 58 + 21 (A-50 workflow core: FR-23/24/25/26/27/29/30 × 3 AC) = 79 件** (A-49: FR-19 → FR-45 / A-50: workflow core 7 FR L3 詳細化)。一部 (AC-FR-10-03 UI / AC-FR-17-* GHA workflow / AC-FR-29-03 back-propagation) は L4 carry 想定 (L4 で実装後に L12 AT として lift)。
+> **AT-FR 合計 = 85 件** (base 79 件 + back-fill 追加 AC 6 件: AC-FR-03-04 / AC-FR-07-04/05 / AC-FR-25-04/05/06)。一部 (AC-FR-10-03 UI / AC-FR-17-* GHA workflow / AC-FR-29-03 back-propagation) は L4 carry 想定 (L4 で実装後に L12 AT として lift)。
 
 ### §1.2 business-detail sub-doc 由来 AT (BR-21 + HM-08 + FR-BR21-36/38/43)
 
@@ -181,20 +187,20 @@ updated: 2026-06-02
 
 | 区分 | 件数 |
 |------|------|
-| AT-FR (functional 由来: FR-01〜18 ×3 = 54 + AT-FR-09-04 + FR-45 ×3 + workflow core FR-23/24/25/26/27/29/30 ×3 = 21) | 79 |
+| AT-FR (functional 由来: AC-FR 85 件 = base 79 + back-fill 追加 6) | 85 |
 | AT-UX (UX-01 補完) | 1 |
 | AT-BR21 (business-detail 由来、BR-21 §1〜§6) | 9 |
 | AT-FR-BR21 (FR-BR21-36/38/43 派生、projection 実装済み) | 6 |
 | AT-NFR (nfr-grade 由来、Phase A: 18 + NFR-17 統合セキュリティ A-54) | 19 |
 | AT-NFR (L4/Phase B carry placeholder: NFR-02/09/18) | 3 |
-| **合計** | **117** (Phase A 即実装 105 件 + carry 12 件。A-54 で実数再カウント、旧 95 は集計漏れ) |
+| **合計** | **123** (Phase A 即実装 111 件 + carry 12 件。A-54 後の 117 から back-fill 追加 AC 6 件を反映) |
 
 ## §2 量閉じ一覧 (要求 → AT 被覆、孤児チェック)
 
 ### functional sub-doc (L3 FR 26 件 = FR-01〜18 + FR-45 + workflow core 7 件)
 - FR-01 → AT-FR-01-01/02/03 / FR-02 → AT-FR-02-01/02/03 / ... / FR-18 → AT-FR-18-01/02/03
-- FR-45 + workflow core FR-23/24/25/26/27/29/30 → §1.4 件数まとめ参照 (AT-FR 計 79 件)
-- **孤児 FR = 0** (L3 FR 26 件、AT-FR 79 件で全件被覆。§1.4 件数まとめと整合)
+- FR-45 + workflow core FR-23/24/25/26/27/29/30 → §1.4 件数まとめ参照 (AT-FR 計 85 件)
+- **孤児 AC-FR = 0** (L3 FR 26 件、AC-FR / AT-FR 85 件で全件被覆。§1.4 件数まとめと整合)
 
 ### business-detail sub-doc
 - BR-21 (§1〜§6) → AT-BR21-01〜09 (9 件、Phase A)
