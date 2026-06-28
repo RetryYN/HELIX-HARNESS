@@ -17,6 +17,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L1-requirements/pillar-requirements.md
     artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L1-pillar-operational-test-design.md
+    artifact_type: test_design
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 dependencies:
   parent: PLAN-L0-01-helix-charter
@@ -72,7 +74,7 @@ business（team→solo, BR-02 等）／nfr（NFR-01 Windows narrow + 外部 delt
 ### Step 4: [直列] pair 更新 (L1↔L14 operational-test-design、片肺禁止)
 > 直列理由: downstream_dependency — Step 2 の要求変更に test-design を対で追随させるため。
 `docs/test-design/harness/L1-operational-test-design.md` を solo 要求へ追随更新（OT-* ⇔ BR-* 1:1 維持）。
-- 進捗: 🔄 **既存 harness L1 OT 対の追随済**（片肺禁止）: reframe した BR-02 → **OT-02**（複数人→AI roster, worker≠verifier 役割逸脱検知）、NFR-01 → **OT-09**（全 OS 第一級→本人環境第一級ネイティブ + 他 OS は移植性 goal）、§2 成功条件②シナリオを AI roster へ。併せて business-requirements.md の BR-02 二次言及残存（§整合注・リスク表・BR↔OT trace 表の「複数人チーム/team gate」）を AI roster へ一貫修正（前回 core reframe の取りこぼし回収）。doctor green、team-person 残存 0。**残**: net-new HELIX pillar（HBR-P*/HNFR-*）の L14 対 = `docs/test-design/helix/L1-pillar-operational-test-design.md` 起票。
+- 進捗: 🔄 **既存 harness L1 OT 対の追随済**（片肺禁止）: reframe した BR-02 → **OT-02**（複数人→AI roster, worker≠verifier 役割逸脱検知）、NFR-01 → **OT-09**（全 OS 第一級→本人環境第一級ネイティブ + 他 OS は移植性 goal）、§2 成功条件②シナリオを AI roster へ。併せて business-requirements.md の BR-02 二次言及残存（§整合注・リスク表・BR↔OT trace 表の「複数人チーム/team gate」）を AI roster へ一貫修正（前回 core reframe の取りこぼし回収）。doctor green、team-person 残存 0。**net-new HELIX pillar の L14 対も起票済**: `docs/test-design/helix/L1-pillar-operational-test-design.md`（HOT-* ⇔ HBR/HNFR 1:1、HBR 9/9・HNFR 4/4 孤児 0、HOT-P2/P7=implemented と trace、他柱=not-implemented で L3 降下）。pillar-requirements.md の pair_artifact 宣言を充足し片肺解消。**残**: 外部研究 delta 逐条照合（Step 2）と Step 3 governance。
 
 ### Step 5: [直列] review (plan lint / doctor + review tier)
 > 直列理由: downstream_dependency — Step 1–4 の成果物に対し定量検証→定性レビューを行うため。
