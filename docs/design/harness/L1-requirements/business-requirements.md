@@ -142,7 +142,7 @@ UT-TDD Agent Harness の運用原則として、**画面・hook・gate のすべ
 - **画面 = 人間の判断補助**: 画面はサマリだけでなく **詳細データテーブル** を提供し、人間が目視で異常検知できる粒度を維持 (screen §3.1 横断原則 [[CC3]])
 - **AI への指示は copy-paste UI で生成**: 自動修正ボタンではなく、人間が AI に貼り付けて指示するテキストを生成する設計 (画面 §3.1 [[CC2]])
 - **AI は UI 操作なし** (S-01): Claude Code / Codex は CLI 経由のみで harness と連携する
-- **整合**: BR-02 (複数人チーム role 境界) / BR-08 (doc-reviewer 必須召喚) / NFR-14 (human-as-residue 原則) と整合
+- **整合**: BR-02 (AI agent roster 責務境界、worker≠verifier) / BR-08 (doc-reviewer 必須召喚) / NFR-14 (human-as-residue 原則) と整合
 
 本原則は L3 / L4 設計層への forward carry とし、全機能設計で「人間判断点」を明示する。
 
@@ -162,7 +162,7 @@ UT-TDD Agent Harness の運用原則として、**画面・hook・gate のすべ
 | 現状課題 | あるべき姿 | 対応 BR |
 |----------|-----------|---------|
 | AI 委譲時に設計・テストとの整合が崩れる | 4 artifact pair trace を機械強制 | BR-01 / BR-03 |
-| チーム role 境界が散文ポリシーのみ | subagent guard で機械強制 | BR-02 |
+| AI roster 役割境界が散文ポリシーのみ | subagent guard で機械強制 (worker≠verifier) | BR-02 |
 | PoC 成果が独り歩きして知見が散逸 | Discovery ワークフローで契約化してから合流 | BR-04 |
 | PLAN 管理が手動で規約違反の機械検知がない | PLAN lint / phase-aware ID で機械検知 | BR-05 |
 | 進捗可視化がない | 専用 UI ダッシュボード (リアルタイム横断) | BR-06 / UX-02 |
@@ -198,7 +198,7 @@ UT-TDD Agent Harness の運用原則として、**画面・hook・gate のすべ
 | BR-ID | OT-ID | テスト観点 |
 |-------|-------|-----------|
 | BR-01 | OT-01 | L0-L14 通し実行の整合確認 |
-| BR-02 | OT-02 | 複数人 team gate 回転確認 |
+| BR-02 | OT-02 | AI roster gate 回転確認 (worker≠verifier) |
 | BR-03 | OT-03 | AI 委譲後の回帰検知確認 |
 | BR-04 | OT-04 | PoC 契約化→合流フロー確認 |
 | BR-05 | OT-05 | PLAN lint / phase-aware ID 機械検知確認 |
