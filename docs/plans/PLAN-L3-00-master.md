@@ -25,7 +25,7 @@ roadmap:
       exit_criteria: "L1 要求 sub-doc (business/functional/screen/technical/nfr) が confirmed、L1↔L14 V-pair 整合"
     - id: G-REQ.L3
       name: L3 要件 freeze
-      exit_criteria: "L3 要件 sub-doc (business-requirement/functional-requirement/nfr-grade) が confirmed、L3↔L12 V-pair 整合、L3 検証サイクルゲート [L0-L3] freeze 台帳と一致"
+      exit_criteria: "L3 要件 sub-doc (business-requirement/functional-requirement/nfr-grade + HELIX pillar descent) が confirmed、L3↔L12 V-pair 整合、L3 検証サイクルゲート [L0-L3] freeze 台帳と一致"
   spans:
     - plan_id: PLAN-L1-01-business-requirements
       after_gate: entry
@@ -51,6 +51,9 @@ roadmap:
     - plan_id: PLAN-L3-03-nfr-grade
       after_gate: G-REQ.L1
       before_gate: G-REQ.L3
+    - plan_id: PLAN-L3-06-helix-pillar-descent
+      after_gate: G-REQ.L1
+      before_gate: G-REQ.L3
 dependencies:
   parent: null
   requires: []
@@ -58,6 +61,7 @@ dependencies:
     - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
     - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
     - docs/plans/PLAN-RECOVERY-04-roadmap-definition.md
+    - docs/plans/PLAN-L3-06-helix-pillar-descent.md
 related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 review_evidence:
   - reviewer: pmo-sonnet
@@ -65,7 +69,7 @@ review_evidence:
     reviewed_at: "2026-06-11"
     tests_green_at: "2026-06-11"
     verdict: approve
-    scope: "RECOVERY-04 fullback: upstream バンド工程表登録 (gate G-REQ.L1/L3 + L1×5/L3×3 span)。span 実在・gate 順序・program-coverage upstream covered を doctor/vitest で検証。cross-agent 不在のため intra_runtime_subagent 代替 (claude-only)。"
+    scope: "RECOVERY-04 fullback: upstream バンド工程表登録 (gate G-REQ.L1/L3 + L1×5/L3×3 span)。span 実在・gate 順序・program-coverage upstream covered を doctor/vitest で検証。cross-agent 不在のため intra_runtime_subagent 代替 (claude-only)。後続 PLAN-L3-06 add-design により HELIX pillar descent span を追加し、G-REQ.L3 は当該 draft 承認まで未到達へ戻す。"
 ---
 
 # PLAN-L3-00 (Master hub / 工程表): upstream バンド (L0-L3 要求〜要件) の人間向け進行台帳
@@ -76,7 +80,8 @@ review_evidence:
 
 - **L0 (企画)**: 別 PLAN を持たない。正本 = `concept_v3.1.md` (企画は既済、[[project_l0_dogfooding_entry]])。
 - **L2 (画面)**: 本 harness では L2 を L1 へ畳んでいる ([[project_vmodel_canonical_model]] L2=L1 分離)。独立 PLAN なし。
-- **L1 (要求) / L3 (要件)**: 実 child PLAN を span として列挙する。
+- **L1 (要求) / L3 (要件)**: 実 child PLAN を span として列挙する。HELIX solo conversion 後の pillar 要求は
+  `PLAN-L3-06-helix-pillar-descent` で L3 追補し、G-REQ.L3 の対象に含める。
 
 roadmap.layer = L3 (バンドの exit 層) で program-coverage の upstream バンドを被覆する。`PROGRAM_BANDS` の単一正本 = `src/lint/roadmap-registry.ts`。
 
@@ -84,7 +89,7 @@ roadmap.layer = L3 (バンドの exit 層) で program-coverage の upstream バ
 
 ### Step 1: upstream 工程表ブロック定義 [直列]
 - 直列理由 = **downstream_dependency** (後続 Step が本ブロックの gate/span に依存)。
-- frontmatter `roadmap:` に gate G-REQ.L1 (要求 freeze) / G-REQ.L3 (要件 freeze) と L1×5 / L3×3 span を定義。span は実在 PLAN を参照 (孤児 0)。
+- frontmatter `roadmap:` に gate G-REQ.L1 (要求 freeze) / G-REQ.L3 (要件 freeze) と L1×5 / L3×4 span を定義。span は実在 PLAN を参照 (孤児 0)。
 
 ### Step 2: 機械検証 [直列]
 - 直列理由 = **downstream_dependency** (Step 1 の成果物を検証)。

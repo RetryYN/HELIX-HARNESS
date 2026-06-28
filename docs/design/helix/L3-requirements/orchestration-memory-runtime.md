@@ -8,6 +8,7 @@ updated: 2026-06-28
 owner: AIM + TL
 plan: PLAN-REVERSE-176-helix-orchestration-memory-runtime
 backfills: PLAN-L7-176-helix-orchestration-memory-runtime
+pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
 ---
 
 # HELIX L3 要件 back-fill — P2/P7 runtime

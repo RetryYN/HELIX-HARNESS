@@ -15,7 +15,7 @@ import {
 // の edge を生む source set を返すこと、純関数と結合して impact/export が動くことを検証する。
 function buildRepo(root: string): void {
   mkdirSync(join(root, "docs", "plans"), { recursive: true });
-  mkdirSync(join(root, "docs", "design", "harness"), { recursive: true });
+  mkdirSync(join(root, "docs", "design", "harness", "L6-function-design"), { recursive: true });
   mkdirSync(join(root, "docs", "process", "modes"), { recursive: true });
   mkdirSync(join(root, "docs", "test-design", "harness"), { recursive: true });
   mkdirSync(join(root, ".claude", "agents"), { recursive: true });
@@ -51,7 +51,7 @@ function buildRepo(root: string): void {
     "utf8",
   );
   writeFileSync(
-    join(root, "docs", "design", "harness", "widget-design.md"),
+    join(root, "docs", "design", "harness", "L6-function-design", "widget-design.md"),
     [
       "---",
       "layer: L6",
@@ -133,7 +133,9 @@ describe("loadRelationGraphSourceSet", () => {
       expect(src?.tests).toContain("tests/core.test.ts");
 
       // design→test-design pairs
-      const design = sourceSet.designDocs?.find((d) => d.path.endsWith("widget-design.md"));
+      const design = sourceSet.designDocs?.find((d) =>
+        d.path.endsWith("L6-function-design/widget-design.md"),
+      );
       expect(design?.pairs).toBe("docs/test-design/harness/widget-test-design.md");
 
       const processMode = sourceSet.designDocs?.find(

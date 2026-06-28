@@ -8,6 +8,7 @@ updated: 2026-06-28
 owner: AIM + TL
 plan: PLAN-L6-50-helix-orchestration-memory
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+pair_artifact: docs/test-design/helix/orchestration-memory.md
 pair_test_design: docs/test-design/helix/orchestration-memory.md
 ---
 

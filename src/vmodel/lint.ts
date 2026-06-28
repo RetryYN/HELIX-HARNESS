@@ -54,11 +54,11 @@ const basename = (p: string): string => p.split("/").pop() ?? p;
 const dirOf = (p: string): string => p.slice(0, p.lastIndexOf("/") + 1);
 
 /**
- * docs/design/harness/L<N>-*​/<file>.md (N=1-6) の sub-doc 層を path から判定。
+ * docs/design/{harness,helix}/L<N>-*​/<file>.md (N=1-6) の sub-doc 層を path から判定。
  * frontmatter `layer` 欠落でも対象に入れる (layer/pair を持たない L6 doc が検査を素通りする穴を塞ぐ、IMP-067)。
  */
 export function designLayerFromPath(path: string): string | null {
-  return path.match(/^docs\/design\/harness\/(L[1-6])-[^/]+\/[^/]+\.md$/)?.[1] ?? null;
+  return path.match(/^docs\/design\/(harness|helix)\/(L[1-6])-[^/]+\/[^/]+\.md$/)?.[2] ?? null;
 }
 
 /** 検査対象の設計 sub-doc か (L1-L6 サブディレクトリ配下、README/roadmap は除外)。 */
@@ -108,11 +108,12 @@ export function analyzePairFreeze(docs: PairDoc[]): PairFreezeResult {
     }
     // rule 3 trace-bidir
     if (pa.startsWith("docs/test-design/")) {
-      // test-design 側は design dir の集合参照。design の所在 dir を含めば双方向成立。
+      // test-design 側は design dir の集合参照または単一 design doc 参照。design の所在 dir または
+      // design doc 自身を指せば双方向成立。
       const back = target.pairArtifact;
       const dir = dirOf(d.path);
       const normBack = back ? (back.endsWith("/") ? back : `${back}/`) : null;
-      if (normBack && dir.startsWith(normBack)) {
+      if (back === d.path || (normBack && dir.startsWith(normBack))) {
         pairs++;
       } else {
         orphans.push({
@@ -154,11 +155,22 @@ function walkMd(dir: string, repoRoot: string): { rel: string; content: string }
   return out;
 }
 
-/** docs/design/harness/** + docs/test-design/harness/** の全 .md frontmatter を読む。 */
+/** docs/design/{harness,helix}/** + docs/test-design/{harness,helix}/** の全 .md frontmatter を読む。 */
 export function loadPairDocs(repoRoot: string = process.cwd()): PairDoc[] {
   const docs: PairDoc[] = [];
-  for (const base of ["docs/design/harness", "docs/test-design/harness"]) {
-    for (const { rel, content } of walkMd(join(repoRoot, base), repoRoot)) {
+  for (const base of [
+    "docs/design/harness",
+    "docs/test-design/harness",
+    "docs/design/helix",
+    "docs/test-design/helix",
+  ]) {
+    let files: { rel: string; content: string }[];
+    try {
+      files = walkMd(join(repoRoot, base), repoRoot);
+    } catch {
+      continue;
+    }
+    for (const { rel, content } of files) {
       docs.push(parsePairDoc(rel, content));
     }
   }

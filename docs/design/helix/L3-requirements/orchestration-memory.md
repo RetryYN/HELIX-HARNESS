@@ -9,6 +9,7 @@ owner: AIM + TL
 plan: PLAN-REVERSE-175-helix-orchestration-memory
 backfills: PLAN-L7-175-helix-orchestration-memory-impl
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
 ---
 
 # HELIX L3 要件 back-fill — P2/P7 純粋契約コア

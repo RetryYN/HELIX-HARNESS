@@ -43,13 +43,21 @@ describe("static gates", () => {
     expect(result.messages.join("\n")).toContain("g3-trace");
   });
 
-  it("wires G2/G4/G5/G6 to deterministic layer pair gates", () => {
-    for (const gate of ["G2", "G4", "G5", "G6"]) {
+  it("wires G2/G4/G5 to deterministic layer pair gates", () => {
+    for (const gate of ["G2", "G4", "G5"]) {
       const result = evaluateStaticGate({ gate, repoRoot: process.cwd() });
       expect(result.applicable).toBe(true);
       expect(result.passed).toBe(true);
       expect(result.messages.join("\n")).toContain(`${gate.toLowerCase()}-pair`);
     }
+  });
+
+  it("wires G6 to deterministic layer pair gate and surfaces HELIX draft as not passed", () => {
+    const result = evaluateStaticGate({ gate: "G6", repoRoot: process.cwd() });
+    expect(result.applicable).toBe(true);
+    expect(result.passed).toBe(false);
+    expect(result.messages.join("\n")).toContain("g6-pair");
+    expect(result.messages.join("\n")).toContain("draft=1");
   });
 
   it("fails a layer pair gate when pair evidence is missing", () => {
@@ -117,7 +125,8 @@ describe("static gates", () => {
 
     expect(result.applicable).toBe(true);
     expect(result.passed).toBe(false);
-    expect(result.messages.join("\n")).toContain("deterministic check could not run");
+    expect(result.messages.join("\n")).toContain("g1-pair - violation");
+    expect(result.messages.join("\n")).toContain("required docs could not be read");
   });
 
   it("U-GATE-006: reports invalid checklist YAML as a gate failure instead of crashing", () => {

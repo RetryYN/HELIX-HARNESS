@@ -4,12 +4,14 @@ import {
   type DriveDbRegistrationStats,
   driveDbRegistrationMessages,
 } from "../src/lint/drive-db-registration";
+import { loadReviewPlans } from "../src/lint/review-evidence";
 import {
+  collectCurrentPlanRegistryFingerprint,
   collectDriveDbRegistrationStats,
-  loadOrBuildDriveDbRegistrationStats,
 } from "../src/state-db/drive-registration";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
+import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 
 const compliant: DriveDbRegistrationStats = {
   planCount: 10,
@@ -156,18 +158,28 @@ describe("drive DB registration lint", () => {
   });
 
   it("U-DDBREG-003: current harness.db has automatic registration evidence", () => {
-    const stats = loadOrBuildDriveDbRegistrationStats(process.cwd());
-    const r = analyzeDriveDbRegistration(stats);
+    const db = openHarnessDb(":memory:");
+    try {
+      rebuildHarnessDb({ repoRoot: process.cwd(), db });
+      const stats = {
+        ...collectDriveDbRegistrationStats(db),
+        expectedPlanCount: loadReviewPlans(process.cwd()).length,
+        expectedPlanRegistryFingerprint: collectCurrentPlanRegistryFingerprint(process.cwd()),
+      };
+      const r = analyzeDriveDbRegistration(stats);
 
-    expect(stats).not.toBeNull();
-    expect(r.ok).toBe(true);
-    expect(stats?.expectedPlanCount).toBe(stats?.planCount);
-    expect(stats?.expectedPlanRegistryFingerprint).toBe(stats?.planRegistryFingerprint);
-    expect(stats?.driveRuns).toBeGreaterThan(0);
-    expect(stats?.workflowOrphans).toBe(0);
-    expect(stats?.modelOrphans).toBe(0);
-    expect(stats?.skillRecommendationOrphans).toBe(0);
-    expect(stats?.skillInvocationOrphans).toBe(0);
-    expect(stats?.registeredHookEvents).toBeGreaterThan(0);
+      expect(stats).not.toBeNull();
+      expect(r.ok).toBe(true);
+      expect(stats?.expectedPlanCount).toBe(stats?.planCount);
+      expect(stats?.expectedPlanRegistryFingerprint).toBe(stats?.planRegistryFingerprint);
+      expect(stats?.driveRuns).toBeGreaterThan(0);
+      expect(stats?.workflowOrphans).toBe(0);
+      expect(stats?.modelOrphans).toBe(0);
+      expect(stats?.skillRecommendationOrphans).toBe(0);
+      expect(stats?.skillInvocationOrphans).toBe(0);
+      expect(stats?.registeredHookEvents).toBeGreaterThan(0);
+    } finally {
+      db.close();
+    }
   });
 });

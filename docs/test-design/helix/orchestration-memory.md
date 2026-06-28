@@ -7,6 +7,7 @@ created: 2026-06-28
 updated: 2026-06-28
 owner: QA + AIM
 plan: PLAN-L6-50-helix-orchestration-memory
+pair_artifact: docs/design/helix/L6-function-design/orchestration-memory.md
 pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 ---
 

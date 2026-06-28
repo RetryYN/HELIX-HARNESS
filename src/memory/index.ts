@@ -45,7 +45,9 @@ export function surfaceMemory(deps: MemoryDeps, budget: SurfaceBudget = {}): str
 
   const all = listMemory("harness", deps);
   const shown = all.slice(-maxEntries);
-  const lines = shown.map((entry) => `- [${entry.key}] ${clip(singleLine(entry.body), maxBodyChars)}`);
+  const lines = shown.map(
+    (entry) => `- [${entry.key}] ${clip(singleLine(entry.body), maxBodyChars)}`,
+  );
 
   const hidden = all.length - shown.length;
   if (hidden > 0) {
