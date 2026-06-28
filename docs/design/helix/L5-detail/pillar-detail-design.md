@@ -87,14 +87,45 @@ next_pair_freeze: L8
 | HR-NFR-AC-02 | HB-AC | HC-AC | LIT-NAC-02 |
 | HR-NFR-AC-03 | HB-AC | HC-AC | LIT-NAC-03 |
 
-## §3 detailed design decisions
+## §3 L5 contract matrix
+
+L5 は L4 block の名前を移すだけではなく、L8 で結合観測できる **module contract** を固定する。各
+`HC-*` は「入力」「正規化 state/projection」「出力」「fail-close 条件」「L6 へ降ろす関数境界」を持つ。
+旧 HELIX は read-only 設計ソースとして参照し、runtime / Python / bash / `.helix` state は取り込まない。
+
+| Contract | Required inputs | State / projection boundary | Contract output | Fail-close / block condition | L6 carry |
+|----------|-----------------|-----------------------------|-----------------|------------------------------|----------|
+| HC-P0 forward-return-contract | PLAN `kind` / `workflow_phase` / `forward_return` / `gap-only` / `version_target` / stop reason | `plan_registry` + `workflow_runs` + `gate_runs` + handover stop reason | `ForwardReturnDecision` (`return_to` / `defer_to_version` / `gap_only` / `blocked_reason`) | workflow completion claim without return/defer/gap target, archived or missing return target, stop reason dropped from handover | forward-return validator, stop-reason normalizer |
+| HC-P1 autonomous-work-contract | job candidate, resume 3 predicates, budget window, iteration cap, context threshold, L2 template availability, release/tag target | `jobs` + `workflow_runs` + `budget_events` + `version_target` ledger + handover provider package | `AutonomyResumeDecision` (`dispatch` / `idle` / `handover` / `version_up`) | budget expired, stale lock, missing next_action, version-up without migration/rollback/idempotency evidence, L2 skip without template/defer record | scheduler predicate evaluator, version-up dry-run planner, L2 template pack selector |
+| HC-P2 agent-loop-contract | tool call request, registered tool surface, effort budget, model role, provider route, loop span id | `model_runs` + `guardrail_decisions` + tool contract registry + trace span projection | `LoopDispatchDecision` (`allow` / `deny` / `defer` / `escalate`) + replayable trace row | unknown surface without explicit defer, over-budget loop self-continues, missing worker/verifier separation, provider API/SDK daemon used as required path | tool request/response schema validator, loop budget tick, trace-span writer |
+| HC-P3 verification-contract | design artifact, pair artifact, AC/test ids, green command evidence, review tier, grounding metadata, TDD oracle | `trace_edges` + `test_runs` + `review_evidence` + green-command digest projection | `VerificationEvidenceProfile` (`mechanical_green` / `qualitative_review` / `external_grounding` / `oracle_strength`) | pair missing, coverage-only pass, self-review claimed as cross-agent, stale/fake digest, external claim without URL/version/span, Red/oracle missing for code change | pair closure validator, evidence profile classifier, TDD oracle checker |
+| HC-P4 repair-feedback-contract | detector finding, severity, affected artifact, rollback hint, metric event, repair result | `findings` + `quality_signals` + `feedback_events` + improvement backlog + harness memory | `RepairCandidate` / `RepairRecipe` / `MetricImprovementSignal` | destructive/auth/PII/license repair without action approval, detector event not routed, successful repair not recorded as recipe/backlog candidate | repair router, recipe promoter, metric event projector |
+| HC-P6 distribution-contract | push/merge intent, branch/rules/check plan, PR review route, CI failure, setup target, release tool choice, tag bump | setup baseline + release ledger + import report + GitHub dry-run plan | `DistributionPlan` (`dry_run_changes` / `required_checks` / `ruleset_plan` / `rollback_point`) | raw push path, ruleset/secret/branch-protection apply without approval, destructive setup overwrite, CI auto-fix below confidence cap, release tool without ADR | setup planner, GitHub rules emitter, release ADR checker, CI auto-fix confidence gate |
+| HC-P7 knowledge-contract | memory query, provider handover, glossary term, bounded context, context-crossing command, rename event | `.ut-tdd/memory` + provider handover + glossary/context-map + relation graph | `BoundedRecallPacket` + `GlossaryDriftFinding` + context translation rule | per-agent memory silo used as SSoT, bounded recall missing for one runtime, rename without supersedes, context-crossing call without anti-corruption boundary | memory reader, glossary drift detector, context-map checker |
+| HC-P8 security-boundary-contract | external source artifact, raw text, tool/API/GitHub action, sandbox profile, token scope, approval record, threat pattern | research artifact + security event + token policy + approval audit | `SecurityBoundaryDecision` (`allow_read` / `sanitize` / `sandbox` / `human_required` / `deny`) | untrusted text becomes instruction, missing source attribution, external code/API action without sandbox/token scope, high-impact action without action-binding approval | source attribution validator, security filter parser, sandbox/token policy selector |
+| HC-P9 convergence-db-contract | artifact path, PLAN generates/requires, trace edge, projection status, contract change, layer baseline, metric trend | harness.db projections + relation graph + contract ledger + layer baseline snapshot | `ConvergenceStatus` (`green` / `yellow` / `red` / `blocker`) + impact query result | generated artifact absent from projection, DB not rebuilt after change, contract change without compatibility/migration class, affected layer gate/test not run | projection convergence checker, contract ledger classifier, regression impact query |
+| HC-AC adapter-consistency-contract | adapter rule file, hook map, hosted API/developer-tool surface, preflight record, deferred tool surface | rule-drift result + preflight audit + adapter dry-run plan | `AdapterParityDecision` (`covered_by_hook` / `preflight_required` / `deferred_guard` / `drift`) | hosted/API edit without git/status preflight, Codex surface claimed hook-covered when not, new agent/tool surface without registry/defer, adapter rule diverges from shared core | adapter map validator, hosted-surface preflight checker, deferred surface registry |
+
+## §4 source-design audit and anti-corruption boundary
+
+旧 HELIX `RetryYN/ai-dev-kit-vscode` の read-only audit で、L5 に落とすべき設計素材は以下に限定する。
+いずれも UT-TDD/HELIX harness の TS/Bun・`.ut-tdd` projection・PLAN 正本へ翻案し、旧 runtime を current path にしない。
+
+| Source signal | L5 adoption | Not adopted |
+|---------------|-------------|-------------|
+| `HELIX-process-L0-L14.md`: workflow は必ず Forward と DB trace へ戻る / L5↔L8 は module 結合粒度 | HC-P0 / HC-P9 の return + convergence contract、L8 の module integration observation | `.helix` state、legacy command path |
+| `db-integration.md`: plan/code/command/contract/model/skill registry と drift_db_diff | HC-P9 relation graph / contract ledger / projection convergence | legacy SQLite schema の移植 |
+| `recovery-workflow.md`: budget / gate / lock / stop-hook / recovery PLAN | HC-P0 stop reason、HC-P1 budget/lock、HC-P4 repair routing | rollback/cutover runtime の流用 |
+| `asset-mapping.md`: command/skill/detector/hook/catalog は既存資産接続と穴埋めで扱う | HC-P2 tool registry、HC-P7 skill/memory/glossary、HC-AC adapter parity | HELIX skill/command の bulk import |
+
+## §5 cross-contract detailed decisions
 
 - **physical data**: 既存 `plan_registry` / `workflow_runs` / `trace_edges` / `findings` / `feedback_events` / `guardrail_decisions` / `contract_ledger` projection を優先し、新規永続 state は L6 以降の table contract で確定する。
 - **module boundary**: scheduler、runtime adapter、verification gate、repair feedback、distribution planner、memory/glossary、security filter、relation graph、adapter preflight は L5 では module 結合境界までを確定し、関数 signature は L6 へ降ろす。
 - **D-CONTRACT**: external API / GitHub / infra / hosted API surface は dry-run plan と action-binding approval を contract とし、L5 で実適用や credential 扱いを決めない。
 - **fail-close**: pair 欠落、projection 未収束、same-provider self verification、untrusted external instruction、approval 不一致、preflight 欠落はいずれも green にしない。
 
-## §4 carry
+## §6 carry
 
 - L6: `HC-*` ごとの function signature、schema、threshold、doctor/lint rule。
 - L8: `LIT-*` の integration fixture / Given-When-Then は pair test-design を正本とする。

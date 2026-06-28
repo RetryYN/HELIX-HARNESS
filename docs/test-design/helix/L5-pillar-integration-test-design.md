@@ -76,3 +76,26 @@ next_pair_freeze: L5
 ## §2 G-DESIGN.L5
 
 本 test design は L5 detail design と pair であり、`PLAN-L5-09` の G-DESIGN.L5 add-design readiness を検査する。
+
+## §3 integration observation contract
+
+各 `LIT-*` は実装テストではなく L8 で実装される結合観測の設計である。したがって、各 case は
+L5 `HC-*` contract matrix の 4 面を観測する。
+
+| Observation axis | L8 で観測するもの | 欠落時の扱い |
+|------------------|------------------|--------------|
+| contract input | PLAN / job / tool call / evidence / external source / adapter surface など、該当 `HC-*` の Required inputs が揃うこと | test design の片肺として fail |
+| projection/evidence | `plan_registry`、`workflow_runs`、`trace_edges`、`test_runs`、`feedback_events`、`guardrail_decisions`、`contract_ledger`、memory/glossary/context-map 等の境界に証跡が残ること | green claim 不可 |
+| contract output | `ForwardReturnDecision`、`AutonomyResumeDecision`、`LoopDispatchDecision`、`VerificationEvidenceProfile`、`DistributionPlan`、`SecurityBoundaryDecision` 等の正規化出力が一意に決まること | L6 function contract へ降下不可 |
+| fail-close behavior | missing return、over-budget self-continue、self-review claim、untrusted instruction、approval/preflight 欠落、projection 未収束などが green にならないこと | L8 case は negative path を持つ |
+
+## §4 source-design coverage
+
+旧 HELIX source から採用するのは設計概念のみで、L8 では以下が観測対象になる。
+
+| Source-derived concern | Covered by |
+|------------------------|------------|
+| workflow は Forward と DB trace へ戻る | LIT-P0-01 / LIT-P9-01 |
+| budget / lock / stop reason で runaway を止める | LIT-P0-02 / LIT-P1-01 / LIT-P2-02 |
+| catalog / registry / contract ledger に収束する | LIT-P2-01 / LIT-P9-02 / LIT-NAC-03 |
+| command/skill/hook は bulk import せず adapter parity と drift で扱う | LIT-P7-01 / LIT-NAC-01 / LIT-NAC-02 |

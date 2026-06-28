@@ -731,6 +731,22 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "HC-AC adapter-consistency-contract",
       "action-binding approval",
       "preflight 欠落",
+      "## §3 L5 contract matrix",
+      "Required inputs",
+      "State / projection boundary",
+      "Contract output",
+      "Fail-close / block condition",
+      "ForwardReturnDecision",
+      "AutonomyResumeDecision",
+      "LoopDispatchDecision",
+      "VerificationEvidenceProfile",
+      "SecurityBoundaryDecision",
+      "ConvergenceStatus",
+      "## §4 source-design audit and anti-corruption boundary",
+      "HELIX-process-L0-L14.md",
+      "db-integration.md",
+      "recovery-workflow.md",
+      "asset-mapping.md",
     ]) {
       expect(l5).toContain(required);
     }
@@ -773,6 +789,20 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l8RequirementIds).toEqual(l3RequirementIds);
     expect(l8TestIds).toHaveLength(43);
     expect(l5TestIds).toEqual(l8TestIds);
+    for (const required of [
+      "## §3 integration observation contract",
+      "contract input",
+      "projection/evidence",
+      "contract output",
+      "fail-close behavior",
+      "negative path",
+      "## §4 source-design coverage",
+      "workflow は Forward と DB trace へ戻る",
+      "budget / lock / stop reason",
+      "catalog / registry / contract ledger",
+    ]) {
+      expect(l8).toContain(required);
+    }
   });
 
   it("U-VPAIR-009d: L5 master は HELIX pillar detail child と L5-L8 pair wording を持つ", () => {
