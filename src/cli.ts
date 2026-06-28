@@ -757,6 +757,13 @@ session
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);
     runSessionStartSideEffects(repoRoot, input, deps);
     dispatch(input, deps, HOOK_EVENT_SESSION_START);
+    // HELIX P7: surface harness-layer agent memory at SessionStart so the shared,
+    // git-tracked SSoT (.ut-tdd/memory/harness.jsonl) is recalled instead of a
+    // per-agent silo. surfaceMemory reads fail-soft (empty when absent).
+    const memoryLines = surfaceMemory(fileMemoryDeps({ root: repoRoot }));
+    if (memoryLines.length > 0) {
+      process.stdout.write(`harness-memory (${memoryLines.length}):\n${memoryLines.join("\n")}\n`);
+    }
     process.stdout.write(`session-log: start ${input.session_id ?? "ut-tdd-cli"}\n`);
   });
 

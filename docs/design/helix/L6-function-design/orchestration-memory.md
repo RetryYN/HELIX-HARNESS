@@ -142,6 +142,7 @@ interface MemoryEntry {
 - 投影: harness.db `loop_iterations`（plan_id/iteration/worker_provider/verifier_provider/verdict/cost_usd/stop_reason/**blocked_reason**）/ `jobs`。`blocked_reason` で hybrid 自己評価 fallback・cross_runtime_unavailable を後段 doctor（`verifier-provider-mismatch`）が検査できる。
 - memory: harness.db `harness_memory_entries` / `project_memory_entries` ＋ `.ut-tdd/memory/<layer>.jsonl`（**git 共有 = Claude も Codex も読める**）。
 - `.claude/agent-memory/` silo は廃止（per-agent・Codex 非共有・asset-drift 衝突の解消）。
+- **SessionStart 配線（実装済 PLAN-L7-176 後続）**: `ut-tdd session start`（`.claude/settings.json` SessionStart hook 本体）が `surfaceMemory(fileMemoryDeps)` を呼び、harness 層メモリを `harness-memory (N):` として hook 出力に surface する。これにより共有 SSoT（`.ut-tdd/memory/harness.jsonl`、git 追跡・Claude/Codex 共有）が想起され、**Claude Code 内蔵メモリ（per-agent silo）に依存しない**（charter P7）。被覆 = U-CLI-MEM-SURFACE。
 
 ## §3 ③ 単体テスト設計 (pair)
 

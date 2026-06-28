@@ -543,4 +543,31 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   }, 20_000);
+
+  it("U-CLI-MEM-SURFACE: session start surfaces harness-layer memory (HELIX P7, not a per-agent silo)", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-mem-surface-"));
+    try {
+      mkdirSync(join(root, ".ut-tdd", "memory"), { recursive: true });
+      const entry = {
+        id: "harness:rule:2026-01-01T00:00:00.000Z",
+        layer: "harness",
+        key: "rule",
+        body: "always inventory existing first",
+        supersedes: null,
+        createdAt: "2026-01-01T00:00:00.000Z",
+      };
+      writeFileSync(
+        join(root, ".ut-tdd", "memory", "harness.jsonl"),
+        `${JSON.stringify(entry)}\n`,
+        "utf8",
+      );
+      const run = runCliIn(root, ["session", "start"]);
+      // harness memory が SessionStart 出力に surface する (Claude 内蔵 silo でなく共有 SSoT を想起)。
+      expect(run.stdout).toContain("harness-memory (1):");
+      expect(run.stdout).toContain("- [rule] always inventory existing first");
+      expect(run.stdout).toContain("session-log: start");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
 });

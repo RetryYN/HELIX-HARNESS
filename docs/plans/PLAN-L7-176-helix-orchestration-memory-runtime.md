@@ -105,6 +105,13 @@ harness.db 分析投影（loop_iterations/jobs/memory 2 表）＋観測 doctor g
 
 > 注: `.claude/agent-memory/` silo 廃止（asset-drift scan 除去）は §4 carry（P9 観測強化）へ。
 
+### §3.1 追補（SessionStart surfacing 配線、2026-06-28）
+
+L6 設計 §2.6 の「SessionStart で harness 層 surface」を配線完了: `ut-tdd session start`（`.claude/settings.json`
+SessionStart hook 本体）が `surfaceMemory(fileMemoryDeps({root}))` を呼び、harness メモリを `harness-memory (N):`
+として hook 出力に surface する。これで共有 SSoT（`.ut-tdd/memory/harness.jsonl`、git 追跡・Claude/Codex 共有）が
+**自動想起**され、**Claude Code 内蔵メモリ（per-agent silo）に依存しない**（charter P7 dogfood）。被覆 = U-CLI-MEM-SURFACE。
+
 ## §4 carry（P9 観測強化、別 add-impl）
 
 - harness.db への loop_iterations[blocked_reason] / jobs / memory 2 表 projection（分析・query）。
