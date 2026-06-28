@@ -50,6 +50,16 @@ HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
 - 取捨選択は粒度を合わせる: L1 = 機能エリア（BR/NFR）、L3 = 機能ユニット（FR）、L4–L6 = command/algorithm。
 - 大きな一括 import（capability map / bulk import）はしない。
 
+### 旧 HELIX ソースリポジトリ（機能ソース・常時参照）
+
+- 旧 HELIX = `git@github.com:RetryYN/ai-dev-kit-vscode.git`（uninstalled 済の旧 core、**個別機能ソースの正本**）。
+- **各層を設計・キュレーションするたびに、引っ張れる個別機能（command / skill / subagent / detector /
+  advisor role〔例: TL advisor〕等）が無いか常にこの repo を確認する**。inventory-first の絶対ルール
+  （既存を見ずに top-down で起こさない）の対象に**旧 HELIX を必ず含める**。
+- ただし precedence と ADR-001 を超えない: **read-only 参照／設計概念のみ採取／TS・Bun 再実装**（Python・旧
+  runtime をそのまま持ち込まない）、**bulk import 禁止**、粒度を合わせて取捨選択（L1=エリア / L3=FR /
+  L4–L6=command）。harden（rename・legacy 前提除去・capability-class 化）して harness の仕組みへ従属させて差す。
+
 ### 自律境界（charter §3）
 
 - **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。

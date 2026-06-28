@@ -60,6 +60,11 @@ vendor snapshot has been removed now that the fork is complete (see
   （harness の仕組みに従属して差し込む）。ADR-001 継続で旧ロジックは **TS/Bun 再実装**。
 - **進め方**: L0 から Forward に 1 層ずつ。各層で粒度を合わせて旧 HELIX 機能を取捨選択し、機能一覧を
   都度更新・名称を揃えて登録（一括 import はしない）。L1=機能エリア / L3=機能ユニット / L4–L6=command。
+- **旧 HELIX ソース（機能ソース・常時参照）**: 旧 HELIX = `git@github.com:RetryYN/ai-dev-kit-vscode.git`
+  （個別機能ソースの正本）。各層の設計・キュレーション時に **引っ張れる個別機能（command / skill /
+  subagent / detector / advisor role〔例: TL advisor〕等）が無いか常にこの repo を確認**（inventory-first の
+  絶対ルールに旧 HELIX を必ず含める）。ただし read-only 参照・設計概念のみ採取・**TS/Bun 再実装**・
+  **bulk import 禁止**で、harden（rename・legacy 前提除去・capability-class 化）して仕組みに従属させて差す。
 - **自律境界**: 人＝L0/L1/L2（モックが最後）＋ L3 承認のみ。AI＝L3 起草＋L4 以降〜GitHub を完全自動。
 - **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `ut-tdd`・`.ut-tdd/`・`area=harness`・
   rule-drift marker）は据え置き**、後日 専用 migration PLAN で atomic 改名。よって下部 Adapter Rule
