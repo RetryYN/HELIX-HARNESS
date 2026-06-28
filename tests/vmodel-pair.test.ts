@@ -802,6 +802,11 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(master).toContain("HELIX pillar detail");
     expect(master).toContain("L5↔L8 V-pair");
     expect(`${master}\n${plan}`).not.toContain("L5↔L9");
+    expect(plan).not.toContain(
+      "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    );
+    expect(plan).toContain(".ut-tdd/evidence/helix-l5/20260629-l5-09-vmodel-pair.json");
+    expect(plan).toContain(".ut-tdd/evidence/helix-l5/20260629-l5-09-plan-lint.json");
     expect(uniqueMatches(docs, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
     expect(docs).not.toContain("HC-P5");
   });

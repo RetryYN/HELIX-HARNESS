@@ -1,0 +1,20 @@
+{
+  "schema_version": "helix-l5-evidence-v1",
+  "plan_id": "PLAN-L5-09-helix-pillar-detail-design",
+  "evidence_kind": "plan-lint",
+  "recorded_at": "2026-06-29T00:00:00+09:00",
+  "command": "bun run src/cli.ts plan lint docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
+  "runner": "bun",
+  "scope": "targeted",
+  "exit_code": 0,
+  "covered_requirements": [
+    "PLAN-L5-09 frontmatter and schedule are parseable",
+    "PLAN-L5-09 has a checked serial workflow",
+    "PLAN-L5-09 remains confirmed as a G-DESIGN.L5 child"
+  ],
+  "authoritative_sources": [
+    "docs/plans/PLAN-L5-09-helix-pillar-detail-design.md",
+    "docs/plans/PLAN-L5-00-master.md"
+  ],
+  "result_summary": "plan-schedule OK"
+}

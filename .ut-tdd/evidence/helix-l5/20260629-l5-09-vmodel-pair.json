@@ -1,0 +1,30 @@
+{
+  "schema_version": "helix-l5-evidence-v1",
+  "plan_id": "PLAN-L5-09-helix-pillar-detail-design",
+  "evidence_kind": "vmodel-pair-regression",
+  "recorded_at": "2026-06-29T00:00:00+09:00",
+  "command": "bun run vitest run tests/vmodel-pair.test.ts",
+  "runner": "bun",
+  "scope": "targeted",
+  "exit_code": 0,
+  "covered_oracles": [
+    "U-VPAIR-009a",
+    "U-VPAIR-009b",
+    "U-VPAIR-009c",
+    "U-VPAIR-009d"
+  ],
+  "covered_requirements": [
+    "L4 43 HELIX requirements descend to L5 detail design",
+    "L5 detail design and L8 integration test design are paired",
+    "L8 integration test design observes all 43 L3 requirements",
+    "L5 master contains PLAN-L5-09 and uses L5-to-L8 pair wording"
+  ],
+  "authoritative_sources": [
+    "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+    "docs/design/helix/L5-detail/pillar-detail-design.md",
+    "docs/test-design/helix/L5-pillar-integration-test-design.md",
+    "docs/plans/PLAN-L5-00-master.md",
+    "tests/vmodel-pair.test.ts"
+  ],
+  "result_summary": "vmodel-pair targeted regression passed"
+}

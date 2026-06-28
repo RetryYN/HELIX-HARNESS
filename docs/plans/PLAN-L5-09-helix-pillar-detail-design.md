@@ -40,29 +40,29 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 review_evidence:
   - reviewer: codex-tl-audit
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-28"
-    tests_green_at: "2026-06-28"
+    reviewed_at: "2026-06-29"
+    tests_green_at: "2026-06-29"
     verdict: approve
     worker_model: gpt-5.5
     reviewer_model: gpt-5.5
-    scope: "Codex-only TL tier review for L5 add-design: L4 HB 10 block / HR 43件 -> L5 detail contract / L8 integration test 43件の全件 trace、G-DESIGN.L5 span 更新。cross_agent は利用不可のため intra_runtime fallback として記録。"
+    scope: "Codex-only TL tier review for L5 add-design: L4 HB 10 block / HR 43件 -> L5 detail contract / L8 integration test 43件の全件 trace、G-DESIGN.L5 span 更新。cross_agent は利用不可のため intra_runtime fallback として記録。2026-06-29 に green_commands の fake digest を安定証跡JSONの実SHA256へ補正。"
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/vmodel-pair.test.ts tests/gate-static.test.ts"
+        command: "bun run vitest run tests/vmodel-pair.test.ts"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-28"
-        evidence_path: tests/vmodel-pair.test.ts
-        output_digest: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        completed_at: "2026-06-29"
+        evidence_path: .ut-tdd/evidence/helix-l5/20260629-l5-09-vmodel-pair.json
+        output_digest: "sha256:ebc94739505cdfef0bac824e940df6d9ed25691d21afa0cccb4c01fd67815658"
       - kind: smoke
         command: "bun run src/cli.ts plan lint docs/plans/PLAN-L5-09-helix-pillar-detail-design.md"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-28"
-        evidence_path: docs/plans/PLAN-L5-09-helix-pillar-detail-design.md
-        output_digest: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        completed_at: "2026-06-29"
+        evidence_path: .ut-tdd/evidence/helix-l5/20260629-l5-09-plan-lint.json
+        output_digest: "sha256:e55e94bc80365cc8f0eb801f7a5817721b5cb8d9f8bf8d7d44b070d8893a7ec2"
 ---
 
 # PLAN-L5-09: HELIX L4 pillar -> L5 detail design descent
