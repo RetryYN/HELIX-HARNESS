@@ -19,6 +19,7 @@ import {
   type SetupState,
 } from "../src/setup/index";
 import type { TemplateSet } from "../src/setup/templates";
+import { COMMON_FILES } from "../src/setup/templates";
 
 /** in-memory file store + gh 呼び出し記録の mock deps (now 固定で決定論)。 */
 function mockDeps(
@@ -224,6 +225,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     try {
       const templates = loadTemplates(repo);
       expect(templates["adapter/AGENTS.md"]).toContain("UT-TDD Agent Harness Adapter");
+      expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
+      expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
+        "consumer-safe UT-TDD subagent",
+      );
+      expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["team/CODEOWNERS"]).toContain("{{TL_TEAM}}");
       const deps = mockDeps({ repoRoot: repo, templates });
@@ -274,15 +280,32 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.arrayContaining([
         expect.objectContaining({ path: "AGENTS.md", category: "A" }),
         expect.objectContaining({ path: "CLAUDE.md", category: "A" }),
+        expect.objectContaining({ path: join(".codex", "config.toml"), category: "A" }),
+        expect.objectContaining({ path: join(".codex", "hooks.json"), category: "A" }),
         expect.objectContaining({ path: join(".claude", "CLAUDE.md"), category: "A" }),
         expect.objectContaining({ path: join(".claude", "settings.json"), category: "A" }),
+        expect.objectContaining({
+          path: join(".claude", "agents", "code-reviewer.md"),
+          category: "A",
+        }),
+        expect.objectContaining({
+          path: join(".claude", "commands", "build.md"),
+          category: "A",
+        }),
       ]),
     );
 
     const deps = mockDeps({ templates: baseTemplates });
     const preview = emitSetup(plan, baseTemplates, deps);
     expect(preview).toEqual(
-      expect.arrayContaining(["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")]),
+      expect.arrayContaining([
+        "AGENTS.md",
+        "CLAUDE.md",
+        join(".codex", "hooks.json"),
+        join(".claude", "CLAUDE.md"),
+        join(".claude", "agents", "code-reviewer.md"),
+        join(".claude", "commands", "build.md"),
+      ]),
     );
     for (const p of preview) expect(p).not.toContain("UT-TDD-agent-harness");
   });
@@ -318,12 +341,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "package.json",
         "src/cli.ts",
         "src/setup/index.ts",
+        ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
+          (entry) => `docs/templates/${entry.template}`,
+        ),
         "src/web/page.tsx",
-        "docs/templates/adapter/AGENTS.md",
-        "docs/templates/adapter/CLAUDE.md",
-        "docs/templates/adapter/.claude/CLAUDE.md",
-        "docs/templates/adapter/.claude/settings.json",
         ".claude/settings.json",
+        ".codex/hooks.json",
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
         "docs/design/harness/L6-function-design/setup-solo-team.md",
         ".ut-tdd/handover/CURRENT.json",
@@ -334,8 +357,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.channel).toBe("clean-repo-plus-signed-tarball");
     expect(plan.artifactPaths).toContain("LICENSE");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/AGENTS.md");
+    expect(plan.artifactPaths).toContain("docs/templates/adapter/.codex/hooks.json");
+    expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/agents/code-reviewer.md");
+    expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/commands/build.md");
     expect(plan.artifactPaths).not.toContain("src/web/page.tsx");
     expect(plan.artifactPaths).not.toContain(".claude/settings.json");
+    expect(plan.artifactPaths).not.toContain(".codex/hooks.json");
     expect(plan.artifactPaths).not.toContain("docs/plans/PLAN-L7-157-distribution-clean-pull.md");
     expect(plan.artifactPaths).not.toContain(".ut-tdd/handover/CURRENT.json");
     expect(plan.releaseIntegrity.artifacts).toEqual([
@@ -350,6 +377,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: false,
+      hasUtTddCli: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -361,11 +389,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.mode).toBe("codex-only");
     expect(ready.workspace.monorepo).toBe(true);
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
+    expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
     expect(ready.ci.requires).toContain("bun run test");
     expect(ready.rollback.backupRequired).toBe(true);
     expect(ready.rollback.managedPaths).toContain("AGENTS.md");
+    expect(ready.rollback.managedPaths).toContain(join(".codex", "hooks.json"));
+    expect(ready.rollback.managedPaths).toContain(join(".claude", "agents", "code-reviewer.md"));
+    expect(ready.rollback.managedPaths).toContain(join(".claude", "commands", "build.md"));
     expect(ready.contracts.tagPin).toContain("#v0.1.0");
     expect(ready.contracts.stable).toContain("adapter managed markers");
+    expect(ready.contracts.stable).toContain("Claude/Codex adapter hook templates");
+    expect(ready.contracts.stable).toContain("Claude subagent and slash-command templates");
     expect(ready.smokeScenarios).toEqual(
       expect.arrayContaining([
         "consumer CI -> harness-check green without repository secrets",
@@ -377,6 +411,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.2.9",
       hasGit: false,
       hasGh: false,
+      hasUtTddCli: false,
       hasClaude: false,
       hasCodex: false,
       repoRoot: "/repo",
@@ -386,6 +421,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "bun>=1.3",
       "git",
       "gh",
+      "ut-tdd-cli",
       "runtime-cli",
     ]);
   });

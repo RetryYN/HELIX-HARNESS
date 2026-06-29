@@ -409,6 +409,10 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "docs/design/harness/L6-function-design/function-spec.md",
       "utf8",
     );
+    const harnessSetupSoloTeam = readFileSync(
+      "docs/design/harness/L6-function-design/setup-solo-team.md",
+      "utf8",
+    );
     const harnessUnitTestDesign = readFileSync(
       "docs/test-design/harness/L7-unit-test-design.md",
       "utf8",
@@ -528,6 +532,16 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "generic `Bash (bash)` events",
     ]) {
       expect(harnessUnitTestDesign).toContain(required);
+    }
+    for (const required of [
+      "Claude/Codex hook",
+      "subagent",
+      "command templates",
+      "bare `ut-tdd`",
+      "not spawnable on PATH",
+      "root の開発用 `.claude` / `.codex` 状態",
+    ]) {
+      expect(`${harnessSetupSoloTeam}\n${harnessUnitTestDesign}`).toContain(required);
     }
     expect(testDesign).toContain("| A146-8 | HU-FR-08 | HUT-SYS-08 | HU-C08 | U-UPSTREAM-009 |");
     expect(l6).toContain(

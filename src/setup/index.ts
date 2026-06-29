@@ -167,10 +167,9 @@ const CLEAN_REQUIRED_PATHS = [
   "package.json",
   "src/cli.ts",
   "src/setup/index.ts",
-  "docs/templates/adapter/AGENTS.md",
-  "docs/templates/adapter/CLAUDE.md",
-  "docs/templates/adapter/.claude/CLAUDE.md",
-  "docs/templates/adapter/.claude/settings.json",
+  ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
+    (entry) => `docs/templates/${entry.template}`,
+  ),
 ];
 const CLEAN_DENY_PREFIXES = [
   ".ut-tdd/",
@@ -337,8 +336,16 @@ function templateNameFor(targetPath: string): string {
   if (targetPath === BP_SCRIPT) return "team/setup-branch-protection.sh";
   if (targetPath === "AGENTS.md") return "adapter/AGENTS.md";
   if (targetPath === "CLAUDE.md") return "adapter/CLAUDE.md";
+  if (targetPath === join(".codex", "config.toml")) return "adapter/.codex/config.toml";
+  if (targetPath === join(".codex", "hooks.json")) return "adapter/.codex/hooks.json";
   if (targetPath === join(".claude", "CLAUDE.md")) return "adapter/.claude/CLAUDE.md";
   if (targetPath === join(".claude", "settings.json")) return "adapter/.claude/settings.json";
+  if (targetPath.startsWith(`${join(".claude", "agents")}${sep}`)) {
+    return `adapter/.claude/agents/${basename(targetPath)}`;
+  }
+  if (targetPath.startsWith(`${join(".claude", "commands")}${sep}`)) {
+    return `adapter/.claude/commands/${basename(targetPath)}`;
+  }
   return `common/${basename(targetPath)}`;
 }
 
@@ -424,6 +431,7 @@ export function buildConsumerReadinessPlan(input: {
   bunVersion: string | null;
   hasGit: boolean;
   hasGh: boolean;
+  hasUtTddCli?: boolean;
   hasClaude: boolean;
   hasCodex: boolean;
   repoRoot: string;
@@ -459,6 +467,14 @@ export function buildConsumerReadinessPlan(input: {
         : "Install gh for GitHub setup; local setup can continue",
     },
     {
+      name: "ut-tdd-cli",
+      ok: input.hasUtTddCli ?? true,
+      message:
+        (input.hasUtTddCli ?? true)
+          ? "ut-tdd resolves on PATH for projected hooks"
+          : "Run `bun link` in the harness package and `bun link ut-tdd` in the consumer repo before setup",
+    },
+    {
       name: "runtime-cli",
       ok: runtimeOk,
       message: runtimeOk
@@ -469,7 +485,7 @@ export function buildConsumerReadinessPlan(input: {
   const packageRoot = input.packageRoot ?? input.repoRoot;
   const tag = input.tag ?? "v0.1.0";
   return {
-    ok: bunOk && input.hasGit && runtimeOk,
+    ok: bunOk && input.hasGit && (input.hasUtTddCli ?? true) && runtimeOk,
     checks,
     mode,
     workspace: {
@@ -491,11 +507,7 @@ export function buildConsumerReadinessPlan(input: {
     },
     rollback: {
       managedPaths: [
-        "AGENTS.md",
-        "CLAUDE.md",
-        ".claude/CLAUDE.md",
-        ".claude/settings.json",
-        ".github/workflows/harness-check.yml",
+        ...COMMON_FILES.map((entry) => normalizeDistributionPath(entry.file.path)),
         ".ut-tdd/state/setup.json",
       ],
       backupRequired: true,
@@ -508,6 +520,8 @@ export function buildConsumerReadinessPlan(input: {
         "CLI surface",
         "adapter managed markers",
         ".ut-tdd state schema",
+        "Claude/Codex adapter hook templates",
+        "Claude subagent and slash-command templates",
         "hook event schema",
         "team yaml schema",
       ],

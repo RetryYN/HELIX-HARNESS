@@ -1,20 +1,9 @@
 {
+  "$comment": "UT-TDD Codex adapter hooks. Hosted/API tool surfaces still require explicit `ut-tdd guard preflight` before edits because repo-local Codex hooks do not execute there.",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Agent|Task",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "ut-tdd hook agent-guard",
-            "timeout": 5,
-            "blockOnFailure": true,
-            "statusMessage": "agent-guard: subagent allowlist/model enforcement"
-          }
-        ]
-      },
-      {
-        "matcher": "Edit|Write|MultiEdit",
+        "matcher": "apply_patch|write_file",
         "hooks": [
           {
             "type": "command",
@@ -40,7 +29,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write|MultiEdit|Bash",
+        "matcher": "apply_patch|write_file|exec_command|local_shell",
         "hooks": [
           {
             "type": "command",
@@ -59,18 +48,6 @@
             "command": "ut-tdd session summary",
             "timeout": 5,
             "statusMessage": "session-log: PLAN digest summary (fail-open)"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "ut-tdd hook subagent-stop",
-            "timeout": 5,
-            "statusMessage": "agent-slots: release oldest guard slot (fail-open)"
           }
         ]
       }
