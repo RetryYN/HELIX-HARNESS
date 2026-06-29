@@ -401,6 +401,10 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l3 = readFileSync("docs/design/helix/L3-requirements/upstream-substance-gap.md", "utf8");
     const l4 = readFileSync("docs/design/helix/L4-basic-design/upstream-substance-gap.md", "utf8");
     const l5 = readFileSync("docs/design/helix/L5-detail/upstream-substance-gap.md", "utf8");
+    const harnessPhysicalData = readFileSync(
+      "docs/design/harness/L5-detailed-design/physical-data.md",
+      "utf8",
+    );
     const l6 = readFileSync(
       "docs/design/helix/L6-function-design/upstream-substance-gap.md",
       "utf8",
@@ -480,6 +484,18 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "target-runtime tool event evidence",
     ]) {
       expect(combined).toContain(required);
+    }
+    for (const required of [
+      "Telemetry provenance invariant",
+      "projection-only telemetry",
+      "runtime_rows=0",
+      "projection_rows>0",
+      "source=runtime-hook:skill-suggest",
+      "projectReviewEvidenceRegistry",
+      "projectHookEvents",
+      "recognized verification command",
+    ]) {
+      expect(harnessPhysicalData).toContain(required);
     }
     expect(testDesign).toContain("| A146-8 | HU-FR-08 | HUT-SYS-08 | HU-C08 | U-UPSTREAM-009 |");
     expect(l6).toContain(

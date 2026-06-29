@@ -131,6 +131,19 @@ data.md (論理ドメインモデル) の §8 state schema を、`.ut-tdd/` YAML
 
 物理不変条件: `trace_edges` の orphan 0、`coverage.status=fail` の gate fail-close、`findings.status=open` の severity 別 gate 判定、`model_runs.plan_id` と `plan_registry.plan_id` の参照整合を doctor / vmodel lint が検証する。`plan_registry.source_hash` は PLAN markdown 全文の sha256 で、persisted `harness.db` と現在の `docs/plans/*.md` の fingerprint 不一致は `drive-db-registration` hard gate で stale として扱う。projection は自動生成だが、検出対象の機械 SSoT として扱い、入力 state との不一致は `findings` に保存する。
 
+Telemetry provenance invariant (upstream A-146 / PLAN-L7-188): telemetry tables used to claim
+that something "fired", "executed", "was used", or "works" must distinguish runtime provenance
+from deterministic projection. `skill_invocations`, `test_runs`, `guardrail_decisions`, and
+`model_runs` cannot be used as runtime-substance evidence when they contain only projection rows
+(`runtime_rows=0` and `projection_rows>0`). Default doctor may report this as a partial migration
+state while runtime capture is being wired, but verification-strategy close must not treat
+projection-only telemetry as substance. Runtime Claude/Codex session usage may be overlaid for
+doctor/readiness views; deterministic `db rebuild` remains a source projection and does not scan
+user runtime logs. Runtime `forced_stop` session events project to `guardrail_decisions` with
+non-empty session provenance, and runtime `Bash (skill)` events project to `skill_invocations`
+with `source=runtime-hook:skill-suggest`; generic shell events must not fabricate skill or
+guardrail telemetry.
+
 ## §3 値オブジェクトの物理表現 + SubDoc zod 化 (IMP-026)
 
 data.md §3 の 12 値オブジェクトは全て **enum string** で物理表現 (JSON では文字列)。
@@ -286,7 +299,13 @@ Required UT-derived metrics:
 - `green_definition_compliance = every test_runs.green_definition_id resolves and every required command in that definition has exit_code=0`.
 - `review_green_command_compliance = every 2026-06-23-or-later confirmed/completed review_evidence entry has at least one projected test_runs row with exit_code=0, evidence_path, and output_digest`.
 
-Current implementation note (2026-06-23): `projectReviewEvidenceRegistry` projects `review_evidence.green_commands[]` into `test_runs` during deterministic harness.db rebuild. General UT runner ingestion, flake history, and duration regression projection remain separate IMP-109 scope.
+Current implementation note (2026-06-30): `projectReviewEvidenceRegistry` projects
+`review_evidence.green_commands[]` into `test_runs` during deterministic harness.db rebuild as
+projection-only evidence. `projectHookEvents` may additionally derive runtime-provenance
+`test_runs` rows from session-log `tool_use` events only when the sanitized command target is a
+recognized verification command (`vitest`, `test`, `tsc`, `doctor`, `lint`, or `eslint`) and the
+row preserves non-empty `session_id` plus the session JSONL `evidence_path`. General UT runner
+ingestion, flake history, and duration regression projection remain separate IMP-109 scope.
 
 Implementation constraints:
 
