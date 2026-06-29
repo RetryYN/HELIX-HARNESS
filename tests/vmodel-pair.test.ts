@@ -543,6 +543,14 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     ]) {
       expect(`${harnessSetupSoloTeam}\n${harnessUnitTestDesign}`).toContain(required);
     }
+    for (const required of [
+      ".codex/config.toml",
+      ".codex/hooks.json",
+      "Claude subagent templates",
+      "Claude slash-command templates",
+    ]) {
+      expect(harnessUnitTestDesign).toContain(required);
+    }
     expect(testDesign).toContain("| A146-8 | HU-FR-08 | HUT-SYS-08 | HU-C08 | U-UPSTREAM-009 |");
     expect(l6).toContain(
       "Findings already generally covered by pillar docs remain separately traceable",
