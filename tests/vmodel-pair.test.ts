@@ -1282,6 +1282,143 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(docs).not.toContain("HC-P5");
   });
 
+  it("U-VPAIR-009e: HELIX L5 HC contracts are lowered into L6 function contracts and L7 oracles", () => {
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    const l5 = readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8");
+    const l6 = readFileSync(
+      "docs/design/helix/L6-function-design/pillar-function-design.md",
+      "utf8",
+    );
+    const l7 = readFileSync("docs/test-design/helix/L6-pillar-unit-test-design.md", "utf8");
+    const l3RequirementIds = uniqueMatches(l3, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l6RequirementIds = uniqueMatches(l6, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
+    const l7RequirementIds = uniqueMatches(
+      l7,
+      /^\| HU-PILLAR-[^|]+ \| (HR-(?:FR|NFR)-[^ |]+) \|/gm,
+    );
+    const l7OracleIds = uniqueMatches(l7, /^\| (HU-PILLAR-(?![A-Z ]+\|)[^ |]+) \|/gm);
+    const allowedContracts = [
+      "HC-AC",
+      "HC-P0",
+      "HC-P1",
+      "HC-P2",
+      "HC-P3",
+      "HC-P4",
+      "HC-P6",
+      "HC-P7",
+      "HC-P8",
+      "HC-P9",
+    ];
+
+    const pair = analyzePairFreeze([
+      doc(
+        "docs/design/helix/L6-function-design/pillar-function-design.md",
+        "L6",
+        "docs/test-design/helix/L6-pillar-unit-test-design.md",
+        "confirmed",
+      ),
+      doc(
+        "docs/test-design/helix/L6-pillar-unit-test-design.md",
+        "L6",
+        "docs/design/helix/L6-function-design/pillar-function-design.md",
+        "confirmed",
+      ),
+    ]);
+
+    expect(pair.ok).toBe(true);
+    expect(l6RequirementIds).toEqual(l3RequirementIds);
+    expect(l7RequirementIds).toEqual(l3RequirementIds);
+    expect(l7OracleIds).toHaveLength(49);
+    expect(uniqueMatches(`${l5}\n${l6}\n${l7}`, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
+    for (const required of [
+      "function contract",
+      "30 function contract",
+      "ForwardReturnDecision",
+      "VerificationProfileDecision",
+      "AdapterParityDecision",
+      "fast<=120s/default<=600s/full<=1800s",
+      "p95 duration budget",
+      "projection-only telemetry cannot close",
+      "RuntimeVerificationLogEvent",
+      "projectRuntimeAdapterAssets",
+      "MAX_TEAM_PARALLEL=8",
+      "PLAN-L7-190",
+      "PLAN-L7-196",
+      "telemetry provenance source map",
+      "Bash (skill)",
+      "forced_stop",
+      "runtime-hook:skill-suggest",
+      "HU-PILLAR-NAC-03",
+      "HU-PILLAR-DIST-01",
+      "HU-PILLAR-CONFIG-01",
+      "HU-PILLAR-PROV-04",
+    ]) {
+      expect(`${l6}\n${l7}`).toContain(required);
+    }
+  });
+
+  it("U-VPAIR-009f: old HELIX extension candidates are lowered through HELIX L3-L6", () => {
+    const l3 = readFileSync("docs/design/helix/L3-requirements/legacy-helix-extension.md", "utf8");
+    const l4 = readFileSync("docs/design/helix/L4-basic-design/legacy-helix-extension.md", "utf8");
+    const l5 = readFileSync("docs/design/helix/L5-detail/legacy-helix-extension.md", "utf8");
+    const l6 = readFileSync(
+      "docs/design/helix/L6-function-design/legacy-helix-extension.md",
+      "utf8",
+    );
+    const testDesign = readFileSync("docs/test-design/helix/legacy-helix-extension.md", "utf8");
+    const combined = [l3, l4, l5, l6, testDesign].join("\n");
+    const l3Ids = uniqueMatches(l3, /^\| (HLX-FR-\d{2}) \|/gm);
+    const l4Ids = uniqueMatches(l4, /\b(HLX-SYS-\d{2})\b/g);
+    const l5Ids = uniqueMatches(l5, /\b(HLX-C\d{2})\b/g);
+    const l6Oracles = uniqueMatches(testDesign, /\b(U-HLX-\d{3})\b/g);
+
+    const pair = analyzePairFreeze([
+      doc(
+        "docs/design/helix/L6-function-design/legacy-helix-extension.md",
+        "L6",
+        "docs/test-design/helix/legacy-helix-extension.md",
+        "confirmed",
+      ),
+      doc(
+        "docs/test-design/helix/legacy-helix-extension.md",
+        "L6",
+        "docs/design/helix/",
+        "confirmed",
+      ),
+    ]);
+
+    expect(pair.ok).toBe(true);
+    expect(l3Ids).toEqual(["HLX-FR-01", "HLX-FR-02", "HLX-FR-03", "HLX-FR-04", "HLX-FR-05"]);
+    expect(l4Ids).toEqual(["HLX-SYS-01", "HLX-SYS-02", "HLX-SYS-03", "HLX-SYS-04", "HLX-SYS-05"]);
+    expect(l5Ids).toEqual(["HLX-C01", "HLX-C02", "HLX-C03", "HLX-C04", "HLX-C05"]);
+    expect(l6Oracles).toEqual([
+      "U-HLX-001",
+      "U-HLX-002",
+      "U-HLX-003",
+      "U-HLX-004",
+      "U-HLX-005",
+      "U-HLX-006",
+    ]);
+    for (const required of [
+      "source_legacy_commit: 1cb4c3e",
+      "TL advisor evidence",
+      "detector axis registry",
+      "recommender catalog",
+      "RUN & Debug trace",
+      "buildWorkPreflightDecision",
+      "classifyTechnicalQuestion",
+      "registerDetectorAxis",
+      "buildRecommendationDecision",
+      "analyzeRunDebugTrace",
+      "PLAN-M-02-helix-identifier-rename.md",
+    ]) {
+      expect(combined).toContain(required);
+    }
+  });
+
   it("U-VPAIR-006: pairFreezeMessages — 孤児なし OK / 孤児あり reason 別文言", () => {
     expect(pairFreezeMessages({ ok: true, orphans: [], pairs: 5 })[0]).toContain("OK");
     const msgs = pairFreezeMessages({
