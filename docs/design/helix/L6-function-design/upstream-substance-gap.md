@@ -110,6 +110,7 @@ interface RuntimeVerificationLogEvent {
 |------|-----------|-----|--------|
 | `buildRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput) => RuntimeVerificationLogEvent` | plan_id / claim / session_id / source / runtime_surface / correlation_id / evidence_path / occurred_at を必須にする。secret-like 値は event に入れず `redaction_policy` で表現する。 | U-VERIFYSTRAT-004 |
 | `validateRuntimeVerificationLogCompleteness` | `(event: RuntimeVerificationLogEvent) => RuntimeLogCompleteness` | `works` / `used` / `fired` claim は空 session_id、projection source、evidence_path 欠落、correlation_id 欠落を reject。`blocked` は hosted-preflight でも可だが blocked reason evidence を要求する。 | U-VERIFYSTRAT-005 |
+| `appendRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput, deps: RuntimeVerificationLogDeps, relPath?: string) => RuntimeVerificationLogWrite` | completeness pass 後にだけ `.ut-tdd/evidence/run-debug/runtime-verification.jsonl` へ 1 JSONL row を append する。projection source、invalid surface、secret-like 値、runtime closure link 欠落は write 前に reject。 | U-VERIFYSTRAT-006 |
 
 Operational note: these log events are append-only evidence inputs for later projection. Projection may summarize them,
 but the original runtime log event remains the acceptance source of truth.

@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+  appendRuntimeVerificationLogEvent,
   buildRunDebugObligation,
   buildRuntimeVerificationLogEvent,
   classifyRuntimeVerificationEvidence,
+  DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
   rejectProjectionOnlyVerification,
   validateRuntimeVerificationLogCompleteness,
 } from "../src/runtime/run-debug";
@@ -109,5 +111,37 @@ describe("L7.5 RUN & Debug runtime verification contracts", () => {
         "missing_requirement_or_oracle",
       ],
     });
+  });
+
+  it("U-RUNDEBUG-006: appends complete runtime verification events only", () => {
+    const writes: Array<{ path: string; content: string }> = [];
+    const written = appendRuntimeVerificationLogEvent(baseLogInput, {
+      repoRoot: "/repo",
+      appendText: (path, content) => writes.push({ path, content }),
+    });
+
+    expect(written.path).toBe(DEFAULT_RUNTIME_VERIFICATION_LOG_PATH);
+    expect(written.completeness).toEqual({ ok: true, findings: [] });
+    expect(writes).toEqual([
+      {
+        path: `/repo/${DEFAULT_RUNTIME_VERIFICATION_LOG_PATH}`,
+        content: `${JSON.stringify(written.event)}\n`,
+      },
+    ]);
+    expect(() =>
+      appendRuntimeVerificationLogEvent(
+        {
+          ...baseLogInput,
+          requirement_id: null,
+          test_oracle_id: null,
+        },
+        {
+          repoRoot: "/repo",
+          appendText: () => {
+            throw new Error("should not write incomplete events");
+          },
+        },
+      ),
+    ).toThrow(/incomplete/);
   });
 });

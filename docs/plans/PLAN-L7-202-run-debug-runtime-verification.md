@@ -26,7 +26,11 @@ generates:
     artifact_type: test_design
   - artifact_path: src/runtime/run-debug.ts
     artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
   - artifact_path: tests/run-debug.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L6-01-function-spec.md
@@ -123,14 +127,17 @@ runtime provenance is a blocked verification state, not an implicit pass.
 - Add L6 function contracts for runtime evidence classification, RUN & Debug obligation
   calculation, projection-only rejection, runtime verification log event creation, and
   log completeness validation.
-- Add L7 unit oracles `U-RUNDEBUG-001..005`.
+- Add a CLI evidence producer (`ut-tdd run-debug log`) that appends complete runtime
+  verification events to `.ut-tdd/evidence/run-debug/runtime-verification.jsonl`.
+- Add L7 unit oracles `U-RUNDEBUG-001..006`.
 - Implement the contracts in `src/runtime/run-debug.ts`.
 - Add focused unit tests for projection-only rejection, pure helper exemption, secret-like
-  value rejection, and completeness validation.
+  value rejection, completeness validation, and append-only evidence writes.
 
 ## Non-Goals
 
-- This PLAN does not launch external Claude/Codex provider CLIs.
+- This PLAN does not launch external Claude/Codex provider CLIs; `run-debug log` records
+  evidence produced by an already-observed runtime/debug action.
 - This PLAN does not rename `ut-tdd` or `.ut-tdd`; mechanical identifier migration remains
   owned by `PLAN-M-02-helix-identifier-rename`.
 - This PLAN does not change database schema. The log event type is an implementation
@@ -144,4 +151,6 @@ runtime provenance is a blocked verification state, not an implicit pass.
 - Unit-only helpers can skip L7.5 RUN & Debug only when a reason and substitute oracle are
   recorded.
 - Runtime verification log events reject secret-like values before storage.
+- `ut-tdd run-debug log` appends complete runtime verification events and refuses
+  projection-only or incomplete runtime acceptance claims before writing.
 - Lint, typecheck, doctor, and the full test suite pass after this PLAN is added.

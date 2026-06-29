@@ -83,6 +83,17 @@ export interface RuntimeLogCompleteness {
   findings: string[];
 }
 
+export interface RuntimeVerificationLogDeps {
+  repoRoot: string;
+  appendText: (path: string, content: string) => void;
+}
+
+export interface RuntimeVerificationLogWrite {
+  path: string;
+  event: RuntimeVerificationLogEvent;
+  completeness: RuntimeLogCompleteness;
+}
+
 const RUNTIME_CLAIMS = new Set<RuntimeClaim>([
   "fired",
   "used",
@@ -100,8 +111,19 @@ const ACCEPTABLE_RUNTIME_SOURCES = new Set<string>([
   "hosted-preflight",
 ]);
 
+const ACCEPTABLE_RUNTIME_SURFACES = new Set<string>([
+  "claude-hook",
+  "codex-hook",
+  "codex-hosted-api",
+  "ut-tdd-cli",
+  "external-api",
+]);
+
 const SECRET_LIKE_RE =
   /\b[A-Za-z0-9_-]*(?:token|key|secret|password|passwd|pwd|bearer)[A-Za-z0-9_-]*\s*[=:]\s*\S+/i;
+
+export const DEFAULT_RUNTIME_VERIFICATION_LOG_PATH =
+  ".ut-tdd/evidence/run-debug/runtime-verification.jsonl";
 
 function present(value: string | null | undefined): value is string {
   return typeof value === "string" && value.trim().length > 0;
@@ -199,6 +221,16 @@ export function buildRuntimeVerificationLogEvent(
   if (Number.isNaN(Date.parse(input.occurred_at))) {
     throw new Error("runtime verification log field is invalid: occurred_at");
   }
+  if (!RUNTIME_CLAIMS.has(input.claim)) {
+    throw new Error("runtime verification log field is invalid: claim");
+  }
+  const source = input.source as string;
+  if (!ACCEPTABLE_RUNTIME_SOURCES.has(source) || source === "projection") {
+    throw new Error("runtime verification log field is invalid: source");
+  }
+  if (!ACCEPTABLE_RUNTIME_SURFACES.has(input.runtime_surface)) {
+    throw new Error("runtime verification log field is invalid: runtime_surface");
+  }
   return {
     event_id: present(input.event_id) ? input.event_id : stableEventId(input),
     plan_id: input.plan_id,
@@ -234,6 +266,24 @@ export function validateRuntimeVerificationLogCompleteness(
   }
 
   return { ok: findings.length === 0, findings };
+}
+
+export function appendRuntimeVerificationLogEvent(
+  input: RuntimeVerificationLogInput,
+  deps: RuntimeVerificationLogDeps,
+  relPath = DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
+): RuntimeVerificationLogWrite {
+  const event = buildRuntimeVerificationLogEvent(input);
+  const completeness = validateRuntimeVerificationLogCompleteness(event);
+  if (!completeness.ok) {
+    throw new Error(
+      `runtime verification log event incomplete: ${completeness.findings.join(",")}`,
+    );
+  }
+  const normalizedRelPath = relPath.replaceAll("\\", "/").replace(/^\/+/, "");
+  const path = `${deps.repoRoot.replace(/[\\/]+$/, "")}/${normalizedRelPath}`;
+  deps.appendText(path, `${JSON.stringify(event)}\n`);
+  return { path: normalizedRelPath, event, completeness };
 }
 
 export type { RuntimeClaim, RuntimeEvidenceSource, RuntimeSurface, RuntimeVerificationClass };

@@ -292,6 +292,70 @@ describe("L7 CLI surface closure", () => {
     }
   });
 
+  it("appends L7.5 RUN & Debug runtime verification logs", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-run-debug-"));
+    try {
+      const run = runCliIn(root, [
+        "run-debug",
+        "log",
+        "--plan",
+        "PLAN-L7-202-run-debug-runtime-verification",
+        "--claim",
+        "works",
+        "--session",
+        "session-1",
+        "--correlation",
+        "corr-1",
+        "--evidence-path",
+        ".ut-tdd/evidence/run-debug/session-1.jsonl",
+        "--oracle",
+        "U-RUNDEBUG-006",
+        "--occurred-at",
+        "2026-06-30T00:00:00.000Z",
+        "--json",
+      ]);
+      const payload = JSON.parse(run.stdout);
+      const logPath = join(root, ".ut-tdd", "evidence", "run-debug", "runtime-verification.jsonl");
+      const rows = readFileSync(logPath, "utf8")
+        .trim()
+        .split("\n")
+        .map((line) => JSON.parse(line));
+
+      expect(run.status).toBe(0);
+      expect(payload.path).toBe(".ut-tdd/evidence/run-debug/runtime-verification.jsonl");
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({
+        plan_id: "PLAN-L7-202-run-debug-runtime-verification",
+        claim: "works",
+        session_id: "session-1",
+        source: "run-debug",
+        runtime_surface: "ut-tdd-cli",
+        test_oracle_id: "U-RUNDEBUG-006",
+      });
+
+      const refused = runCliIn(root, [
+        "run-debug",
+        "log",
+        "--plan",
+        "PLAN-L7-202-run-debug-runtime-verification",
+        "--claim",
+        "works",
+        "--session",
+        "session-1",
+        "--correlation",
+        "corr-2",
+        "--evidence-path",
+        ".ut-tdd/evidence/run-debug/session-1.jsonl",
+        "--source",
+        "projection",
+      ]);
+      expect(refused.status).toBe(1);
+      expect(refused.stderr).toContain("invalid: source");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
   it("exposes quality audit as a JSON command surface", () => {
     const run = runCli(["audit", "quality", "--json"]);
     const payload = JSON.parse(run.stdout);

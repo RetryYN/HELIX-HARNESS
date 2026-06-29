@@ -570,6 +570,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "U-VERIFYSTRAT-003",
       "U-VERIFYSTRAT-004",
       "U-VERIFYSTRAT-005",
+      "U-VERIFYSTRAT-006",
     ]) {
       expect(`${l6}\n${testDesign}`).toContain(required);
     }
@@ -602,6 +603,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "runtime provenance",
       "RuntimeVerificationLogEvent",
       "U-VERIFYSTRAT-005",
+      "U-VERIFYSTRAT-006",
     ]) {
       expect(combined).toContain(required);
     }

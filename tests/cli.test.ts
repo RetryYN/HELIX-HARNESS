@@ -8,5 +8,6 @@ describe("cli entrypoint smoke", () => {
 
     expect(source).toContain("new Command()");
     expect(source).toContain('.command("doctor")');
+    expect(source).toContain('.command("run-debug")');
   });
 });

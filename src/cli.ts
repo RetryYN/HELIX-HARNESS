@@ -105,6 +105,13 @@ import {
   summarizeStagedReview,
 } from "./runtime/review-guard";
 import {
+  appendRuntimeVerificationLogEvent,
+  DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
+  type RuntimeClaim,
+  type RuntimeEvidenceSource,
+  type RuntimeSurface,
+} from "./runtime/run-debug";
+import {
   dispatch,
   nodeDeps,
   parseSessionEvents,
@@ -756,6 +763,99 @@ verify
         for (const message of result.messages) process.stdout.write(`  - ${message}\n`);
       }
       process.exitCode = result.status === "passed" || result.status === "dry-run" ? 0 : 1;
+    },
+  );
+
+const runDebug = program.command("run-debug").description("L7.5 RUN & Debug evidence logging");
+runDebug
+  .command("log")
+  .description("append a runtime verification log event for L7.5 RUN & Debug")
+  .requiredOption("--plan <id>", "PLAN id")
+  .requiredOption(
+    "--claim <claim>",
+    "runtime claim: fired|used|works|blocked|recovered|observed|executed",
+  )
+  .requiredOption("--session <id>", "runtime session_id")
+  .requiredOption("--correlation <id>", "correlation id joining command/log/test evidence")
+  .requiredOption("--evidence-path <path>", "repo-relative evidence path for the runtime proof")
+  .option("--requirement <id>", "requirement id")
+  .option("--oracle <id>", "test oracle id")
+  .option(
+    "--source <source>",
+    "runtime-hook|adapter-command|run-debug|hosted-preflight",
+    "run-debug",
+  )
+  .option(
+    "--surface <surface>",
+    "claude-hook|codex-hook|codex-hosted-api|ut-tdd-cli|external-api",
+    "ut-tdd-cli",
+  )
+  .option(
+    "--redaction <policy>",
+    "secret-redacted|no-secret-material|blocked-sensitive",
+    "no-secret-material",
+  )
+  .option("--occurred-at <iso>", "runtime occurrence timestamp (default: now)")
+  .option(
+    "--output <path>",
+    "repo-relative append-only JSONL path",
+    DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
+  )
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      plan: string;
+      claim: string;
+      session: string;
+      correlation: string;
+      evidencePath: string;
+      requirement?: string;
+      oracle?: string;
+      source: string;
+      surface: string;
+      redaction: "secret-redacted" | "no-secret-material" | "blocked-sensitive" | string;
+      occurredAt?: string;
+      output: string;
+      json?: boolean;
+    }) => {
+      try {
+        const repoRoot = process.cwd();
+        const written = appendRuntimeVerificationLogEvent(
+          {
+            plan_id: opts.plan,
+            requirement_id: opts.requirement,
+            test_oracle_id: opts.oracle,
+            claim: opts.claim as RuntimeClaim,
+            session_id: opts.session,
+            source: opts.source as Exclude<RuntimeEvidenceSource, "projection">,
+            runtime_surface: opts.surface as RuntimeSurface,
+            correlation_id: opts.correlation,
+            evidence_path: opts.evidencePath,
+            occurred_at: opts.occurredAt ?? new Date().toISOString(),
+            redaction_policy: opts.redaction as
+              | "secret-redacted"
+              | "no-secret-material"
+              | "blocked-sensitive",
+          },
+          {
+            repoRoot,
+            appendText: (path, content) => {
+              mkdirSync(dirname(path), { recursive: true });
+              appendFileSync(path, content, "utf8");
+            },
+          },
+          opts.output,
+        );
+        if (opts.json) process.stdout.write(`${JSON.stringify(written, null, 2)}\n`);
+        else {
+          process.stdout.write(
+            `run-debug log: appended ${written.event.event_id} -> ${written.path}\n`,
+          );
+        }
+      } catch (error) {
+        process.stderr.write(`run-debug log failed: ${String(error)}\n`);
+        process.exitCode = 1;
+      }
     },
   );
 
