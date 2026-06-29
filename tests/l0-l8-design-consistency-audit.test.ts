@@ -31,7 +31,7 @@ function auditRow(id: string): string {
 }
 
 describe("HELIX L0-L8 semantic design consistency audit", () => {
-  it("records every audit decision and does not falsely mark all L7/L8 work complete", () => {
+  it("records every audit decision and separates L0-L8 completion from post-L8 work", () => {
     const proved = [
       "C-01",
       "C-02",
@@ -44,6 +44,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "C-09",
       "C-10",
       "C-11",
+      "C-14",
     ];
     const frontier = ["C-12"];
 
@@ -56,12 +57,15 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     }
 
     expect(auditRow("C-13")).toContain("| warning |");
+    expect(auditText()).toContain("For the requested L0-L8 boundary");
     expect(auditText()).toContain(
-      'The stronger claim "L7/L8 are fully complete" is still not true',
+      "therefore complete in the current design/implementation/test evidence",
     );
     expect(auditText()).toContain("G-L7PACK.C");
     expect(auditText()).toContain("frontier: なし");
     expect(auditText()).toContain("PLAN-L7-141-web-dashboard-component-derived");
+    expect(auditText()).toContain("PLAN-L7-146");
+    expect(auditText()).toContain("versionUpParked=1");
   });
 
   it("cites the semantic design and test-design artifacts that substantiate L0-L8 descent", () => {
@@ -84,6 +88,8 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "tests/roadmap.test.ts",
       "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
       "tests/web.test.ts",
+      "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+      "docs/process/modes/version-up.md",
     ];
 
     for (const artifact of requiredArtifacts) {
@@ -101,6 +107,8 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("proposal-coverage-team");
     expect(text).toContain("design_drift");
     expect(text).toContain("mode=reverse");
+    expect(text).toContain("version_deferral");
+    expect(text).toContain("mode=version-up");
     expect(text).toContain("cheap docs lanes cannot close risk");
   });
 

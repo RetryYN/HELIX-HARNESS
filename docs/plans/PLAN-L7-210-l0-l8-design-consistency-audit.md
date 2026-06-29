@@ -45,7 +45,7 @@ review_evidence:
     reviewed_at: "2026-06-30T04:05:00+09:00"
     tests_green_at: "2026-06-30T04:05:00+09:00"
     verdict: approve
-    scope: "L0-L8 semantic audit distinguishes proved design descent from L7/L8 frontiers and prevents false completion claims."
+    scope: "L0-L8 semantic audit distinguishes the completed L0-L8 boundary from post-L8 and future-version work, including PLAN-L7-146 version-up parking."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -56,7 +56,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T04:05:00+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
-        output_digest: "sha256:bbe081ec906f3e02963490afd48013bdf8e74dd5843ea8757a860f602ce51db5"
+        output_digest: "sha256:383f07046394b53ec8d5cad8bcc1aa46607413b708c668b9c1c245ec8b1f6e71"
 ---
 
 # PLAN-L7-210: L0-L8 semantic design consistency audit
@@ -64,7 +64,9 @@ review_evidence:
 ## Objective
 
 Create a meaning-based audit from L0 through L8 that verifies the current design
-chain and blocks the false claim that all L7/L8 runtime work is complete.
+chain and prevents two opposite false claims: treating unverified product/runtime
+work as complete, and treating post-L8 or version-up work as if it reopened the
+current L0-L8 boundary.
 
 ## Scope
 
@@ -73,11 +75,12 @@ chain and blocks the false claim that all L7/L8 runtime work is complete.
   routing evidence.
 - Add a governance audit that distinguishes `proved`, `frontier`, and `warning`.
 - Add a regression test that requires the audit to cite real artifacts and keep
-  L7/UI frontiers visible.
+  post-L8 / version-up frontiers visible.
 
 ## Non-Goals
 
-- This PLAN does not close `PLAN-L7-141` or implement UI/runtime frontiers.
+- This PLAN does not implement post-L8 UX/WCAG declaration, `PLAN-L7-146`
+  serverless delivery, or product/runtime frontiers.
 - This PLAN does not rename the L0 charter file from `v0.1` to `v0.2`.
 - This PLAN does not change production infrastructure, auth, PII, secrets,
   license policy, external APIs, or database schema.
@@ -85,10 +88,11 @@ chain and blocks the false claim that all L7/L8 runtime work is complete.
 ## Acceptance Criteria
 
 - The audit states that L0-L6 semantic design descent is complete and paired.
-- The audit states that universal L7/L8 completion is false while
-  `G-L7PACK.C` / `PLAN-L7-141` remain visible.
+- The audit states that the requested L0-L8 boundary is complete while
+  post-L8 and future-version work remains visible.
 - The audit records drive-model output: `fullstack`, `low-drive-confidence`,
-  `proposal-coverage-team`, and `design_drift` -> Reverse.
+  `proposal-coverage-team`, `design_drift` -> Reverse, and
+  `version_deferral` -> version-up.
 - Targeted audit tests, plan lint, doctor, and full tests pass before commit.
 
 ## §3 工程表 (Step + 進捗)
@@ -106,12 +110,12 @@ L0/L1/L3/L4/L5/L6設計、L1/L3/L4/L5/L6テスト設計、L8/G8 workflow、L7 ro
 ### Step 3: [直列] 監査文書とfalse-completion oracleを追加
 直列理由: downstream_dependency
 
-`proved` / `frontier` / `warning` を使い、未完了を完了扱いしないテストを追加する。
+`proved` / `frontier` / `warning` を使い、L0-L8境界の完了と post-L8 / version-up 未了を混同しないテストを追加する。
 
 ### Step 4: [直列] review
 直列理由: downstream_dependency
 
-self / intra-runtime reviewで、監査が「意味ベース」になっているか、L7/L8の未完了を隠していないか確認する。
+self / intra-runtime reviewで、監査が「意味ベース」になっているか、L0-L8完了境界と post-L8 未了を混同していないか確認する。
 
 ### Step 5: [直列] 検証・commit・push
 直列理由: downstream_dependency

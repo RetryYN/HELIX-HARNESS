@@ -42,11 +42,11 @@ backprop_scope:
   - layer: L7
     decision: updated
     evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
-    reason: "The audit records that L7 has an explicit feature-pack frontier and must not be called universally complete."
+    reason: "The audit records that the L7 feature-pack roadmap is closed for the L0-L8 boundary and that PLAN-L7-146 remains version-up parked rather than an active frontier."
   - layer: L8
     decision: updated
     evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
-    reason: "The audit records that current G8 closure is selected workflow coverage, not universal product completion."
+    reason: "The audit records that current G8 closure is selected workflow coverage and completes the requested L0-L8 boundary, without claiming post-L8 product/runtime completion."
 ---
 
 # PLAN-REVERSE-210: L0-L8 semantic audit fullback
@@ -62,9 +62,10 @@ that can be tested. The signal is `design_drift`; the PLAN enum route is
 ## R4 Forward Routing
 
 Forward route is `PLAN-L7-210-l0-l8-design-consistency-audit`. No L0-L6 design
-rewrite is required by this audit. The forward correction is to keep L7/L8
-frontiers visible and to prevent false completion claims until the relevant
-implementation/runtime frontiers are closed or version-targeted.
+rewrite is required by this audit. The forward correction is to keep the L0-L8
+completion boundary explicit while keeping post-L8 and version-up work visible:
+`PLAN-L7-141` is activated, `PLAN-L7-146` is version-up parked, and L10/runtime
+frontiers are not counted as L0-L8 blockers.
 
 ## §3 工程表 (Step + 進捗)
 
@@ -81,7 +82,7 @@ L0-L6の意味連鎖は保持し、L7/L8完遂境界を `PLAN-L7-210` に戻す�
 ### Step 3: [直列] review
 直列理由: downstream_dependency
 
-self reviewで、未完了frontierを完了扱いしていないことを確認する。
+self reviewで、L0-L8境界完了と post-L8 / version-up 未了を混同していないことを確認する。
 
 ## §3.1 実装計画
 
