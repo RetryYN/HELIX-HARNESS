@@ -405,6 +405,14 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "docs/design/harness/L5-detailed-design/physical-data.md",
       "utf8",
     );
+    const harnessFunctionSpec = readFileSync(
+      "docs/design/harness/L6-function-design/function-spec.md",
+      "utf8",
+    );
+    const harnessUnitTestDesign = readFileSync(
+      "docs/test-design/harness/L7-unit-test-design.md",
+      "utf8",
+    );
     const l6 = readFileSync(
       "docs/design/helix/L6-function-design/upstream-substance-gap.md",
       "utf8",
@@ -496,6 +504,30 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "recognized verification command",
     ]) {
       expect(harnessPhysicalData).toContain(required);
+    }
+    for (const required of [
+      "projectRuntimeTestRunFromSessionEvent",
+      "projectRuntimeGuardrailDecisionFromSessionEvent",
+      "projectRuntimeSkillInvocationFromSessionEvent",
+      "projectRuntimeModelTelemetryForDoctor",
+      "runtime=hook-session-log",
+      "guardrail=forced-stop",
+      "source=runtime-hook:skill-suggest",
+    ]) {
+      expect(harnessFunctionSpec).toContain(required);
+    }
+    for (const required of [
+      "U-DBPROJ-PROV-01",
+      "U-DBPROJ-PROV-02",
+      "U-DBPROJ-PROV-03",
+      "U-DBPROJ-PROV-04",
+      "U-DBPROJ-PROV-05",
+      "projection provenance",
+      "non-verification Bash events",
+      "ordinary `tool_use` events",
+      "generic `Bash (bash)` events",
+    ]) {
+      expect(harnessUnitTestDesign).toContain(required);
     }
     expect(testDesign).toContain("| A146-8 | HU-FR-08 | HUT-SYS-08 | HU-C08 | U-UPSTREAM-009 |");
     expect(l6).toContain(
