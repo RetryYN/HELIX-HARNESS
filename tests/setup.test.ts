@@ -93,6 +93,7 @@ const baseTemplates: TemplateSet = {
     "",
   ].join("\n"),
   "adapter/.claude/settings.json": '{"hooks":{"SessionStart":[]}}\n',
+  "adapter/.codex/config.toml": "[features]\nhooks = true\n",
   "common/harness-check.yml": "name: harness-check\n",
   "common/commitlint.config.js":
     "module.exports = { extends: ['@commitlint/config-conventional'] };\n",
@@ -226,6 +227,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       const templates = loadTemplates(repo);
       expect(templates["adapter/AGENTS.md"]).toContain("HELIX Adapter");
       expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
+      expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
       expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
         "consumer-safe HELIX subagent",
@@ -264,6 +266,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           { matcher?: string; hooks: { command: string; blockOnFailure?: boolean }[] }[]
         >;
       };
+      expect(templates["adapter/.codex/config.toml"]).toContain("[features]");
+      expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
 
       expect(claude.hooks.PreToolUse).toEqual(
         expect.arrayContaining([
@@ -354,6 +358,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "AGENTS.md",
         "CLAUDE.md",
         join(".codex", "hooks.json"),
+        join(".codex", "config.toml"),
         join(".claude", "CLAUDE.md"),
         join(".claude", "agents", "code-reviewer.md"),
         join(".claude", "commands", "build.md"),

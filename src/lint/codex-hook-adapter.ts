@@ -67,8 +67,10 @@ const CODEX_GLOBAL_RE = /(?:^|[\s"'=])(?:~|\$HOME|%USERPROFILE%)?[\\/]?\.codex[\
 
 export type CodexHookViolationReason =
   | "missing_hooks_json"
+  | "missing_config_toml"
   | "malformed_json"
   | "missing_hook"
+  | "hooks_feature_disabled"
   | "missing_block_on_failure"
   | "claude_project_dir_in_codex"
   | "global_codex_path"
@@ -102,6 +104,21 @@ interface CodexHooksFile {
   hooks?: Record<string, HookEntry[]>;
 }
 
+function codexHooksFeatureEnabled(configToml: string): boolean {
+  let inFeatures = false;
+  for (const rawLine of configToml.split(/\r?\n/)) {
+    const line = rawLine.replace(/#.*/, "").trim();
+    if (line === "") continue;
+    const section = line.match(/^\[([^\]]+)\]$/);
+    if (section) {
+      inFeatures = (section[1] ?? "") === "features";
+      continue;
+    }
+    if (inFeatures && /^hooks\s*=\s*true\s*$/i.test(line)) return true;
+  }
+  return false;
+}
+
 function matcherEq(actual: string | undefined, expected: string | undefined): boolean {
   if (!expected) return true;
   return actual === expected;
@@ -120,7 +137,10 @@ function commandHas(command: string, parts: readonly string[]): boolean {
   );
 }
 
-export function analyzeCodexHookAdapter(input: { codexHooksJson: string | null }): CodexHookResult {
+export function analyzeCodexHookAdapter(input: {
+  codexHooksJson: string | null;
+  codexConfigToml?: string | null;
+}): CodexHookResult {
   if (input.codexHooksJson === null) {
     return {
       checked: 0,
@@ -143,6 +163,15 @@ export function analyzeCodexHookAdapter(input: { codexHooksJson: string | null }
 
   const violations: CodexHookViolation[] = [];
   const hooks = parsed.hooks ?? {};
+
+  if ("codexConfigToml" in input) {
+    const configToml = input.codexConfigToml;
+    if (typeof configToml !== "string") {
+      violations.push({ reason: "missing_config_toml" });
+    } else if (!codexHooksFeatureEnabled(configToml)) {
+      violations.push({ reason: "hooks_feature_disabled" });
+    }
+  }
 
   // 双方向健全性: Codex の各 entrypoint は Claude `REQUIRED` にも存在しなければならない
   // (片方の adapter にしか無い = 黙った分岐)。
@@ -199,10 +228,15 @@ export function analyzeCodexHookAdapter(input: { codexHooksJson: string | null }
   };
 }
 
-export function loadCodexHookAdapterInput(repoRoot: string): { codexHooksJson: string | null } {
-  const target = join(repoRoot, ".codex", "hooks.json");
+export function loadCodexHookAdapterInput(repoRoot: string): {
+  codexHooksJson: string | null;
+  codexConfigToml: string | null;
+} {
+  const hooksTarget = join(repoRoot, ".codex", "hooks.json");
+  const configTarget = join(repoRoot, ".codex", "config.toml");
   return {
-    codexHooksJson: existsSync(target) ? readFileSync(target, "utf8") : null,
+    codexHooksJson: existsSync(hooksTarget) ? readFileSync(hooksTarget, "utf8") : null,
+    codexConfigToml: existsSync(configTarget) ? readFileSync(configTarget, "utf8") : null,
   };
 }
 
@@ -210,6 +244,7 @@ export function codexHookAdapterMessages(result: CodexHookResult): string[] {
   if (result.ok) {
     return [
       `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=apply_patch|write_file, subagent-stop=N/A, spawn_agent surface=deferred follow-up)`,
+      "codex-hook-adapter - OK (.codex/config.toml enables [features].hooks=true for direct Codex CLI/IDE sessions)",
       "codex-hook-adapter - note: .codex/hooks.json covers direct Codex CLI/IDE sessions only; hosted API/developer apply_patch tools do not execute through the Codex hook engine and are not repo-enforceable",
     ];
   }

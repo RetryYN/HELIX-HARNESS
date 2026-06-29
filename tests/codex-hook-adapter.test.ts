@@ -42,6 +42,7 @@ function validCodexHooks(): Record<string, unknown> {
 }
 
 const json = (o: unknown): string => JSON.stringify(o);
+const validCodexConfigToml = "[features]\nhooks = true\n";
 
 const assertExternalizedCodexRequiredPolicy = (): void => {
   expect(CODEX_REQUIRED_POLICY.map((hook) => hook.id)).toContain("work-guard");
@@ -55,6 +56,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     expect(r.violations).toEqual([]);
     expect(r.apiToolPathEnforced).toBe(false);
     expect(codexHookAdapterMessages(r)[0]).toContain(".codex/hooks.json shares");
+    expect(codexHookAdapterMessages(r).join("\n")).toContain(".codex/config.toml enables");
     expect(codexHookAdapterMessages(r).join("\n")).toContain(
       "hosted API/developer apply_patch tools do not execute through the Codex hook engine",
     );
@@ -63,6 +65,12 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
   it("U-CXHOOK-002: 有効な adapter fixture は ok", () => {
     assertExternalizedCodexRequiredPolicy();
     expect(analyzeCodexHookAdapter({ codexHooksJson: json(validCodexHooks()) }).ok).toBe(true);
+    expect(
+      analyzeCodexHookAdapter({
+        codexHooksJson: json(validCodexHooks()),
+        codexConfigToml: validCodexConfigToml,
+      }).ok,
+    ).toBe(true);
   });
 
   it("U-CXHOOK-002b: policy prose is mojibake-free", () => {
@@ -140,14 +148,37 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     expect(r.violations.some((v) => v.reason === "global_codex_path")).toBe(true);
   });
 
-  it("U-CXHOOK-010: Codex の各 entrypoint は Claude REQUIRED にも存在する (双方向、no silent fork)", () => {
+  it("U-CXHOOK-010: .codex/config.toml の hooks feature 欠落/無効化は fail-close", () => {
+    const missing = analyzeCodexHookAdapter({
+      codexHooksJson: json(validCodexHooks()),
+      codexConfigToml: null,
+    });
+    expect(missing.ok).toBe(false);
+    expect(missing.violations.some((v) => v.reason === "missing_config_toml")).toBe(true);
+
+    const disabled = analyzeCodexHookAdapter({
+      codexHooksJson: json(validCodexHooks()),
+      codexConfigToml: "[features]\nhooks = false\n",
+    });
+    expect(disabled.ok).toBe(false);
+    expect(disabled.violations.some((v) => v.reason === "hooks_feature_disabled")).toBe(true);
+
+    const wrongSection = analyzeCodexHookAdapter({
+      codexHooksJson: json(validCodexHooks()),
+      codexConfigToml: "[workspace]\nhooks = true\n",
+    });
+    expect(wrongSection.ok).toBe(false);
+    expect(wrongSection.violations.some((v) => v.reason === "hooks_feature_disabled")).toBe(true);
+  });
+
+  it("U-CXHOOK-011: Codex の各 entrypoint は Claude REQUIRED にも存在する (双方向、no silent fork)", () => {
     const claudeEntrypoints = new Set(CLAUDE_REQUIRED.map((r) => r.commandParts.join(" ")));
     for (const guard of CODEX_REQUIRED) {
       expect(claudeEntrypoints.has(guard.commandParts.join(" "))).toBe(true);
     }
   });
 
-  it("U-CXHOOK-011: subagent-stop のみ真の N/A。agent-guard は N/A でなく『実在するが未ガード』の deferred surface", () => {
+  it("U-CXHOOK-012: subagent-stop のみ真の N/A。agent-guard は N/A でなく『実在するが未ガード』の deferred surface", () => {
     const naEntrypoints = CODEX_NOT_APPLICABLE.map((n) => n.entrypoint);
     expect(naEntrypoints).toContain("src/cli.ts hook subagent-stop");
     // 当初 agent-guard を「面が無い N/A」と書いたのは誤り (spawn_agent 族が実在)。N/A から外れていること。
@@ -164,7 +195,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     expect(analyzeCodexHookAdapter({ codexHooksJson: json(validCodexHooks()) }).ok).toBe(true);
   });
 
-  it("U-CXHOOK-012: 共有 guard ロジックは runtime 非依存 — Codex 発火時も同じ判定になる", () => {
+  it("U-CXHOOK-013: 共有 guard ロジックは runtime 非依存 — Codex 発火時も同じ判定になる", () => {
     // work-guard: foreign uncommitted file は block (Codex の apply_patch|write_file 経由でも同一純関数)。
     expect(
       evaluateWorkGuard({
@@ -184,7 +215,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     ).toBe(2);
   });
 
-  it("U-CXHOOK-013: 非 command type の hook では guard 充足とみなさない (type==='command' 必須)", () => {
+  it("U-CXHOOK-014: 非 command type の hook では guard 充足とみなさない (type==='command' 必須)", () => {
     const broken = validCodexHooks() as {
       hooks: { PreToolUse: { hooks: { type: string }[] }[] };
     };
@@ -196,7 +227,7 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     );
   });
 
-  it("U-CXHOOK-014: script path が別 token の部分文字列に紛れるだけでは guard 充足にしない (token 厳格化)", () => {
+  it("U-CXHOOK-015: script path が別 token の部分文字列に紛れるだけでは guard 充足にしない (token 厳格化)", () => {
     const broken = validCodexHooks() as {
       hooks: { Stop: { hooks: { command: string }[] }[] };
     };
