@@ -7,8 +7,8 @@ drive: fullstack
 status: draft
 version_target: future
 created: 2026-06-24
-updated: 2026-06-26
-owner: PM (Opus) / PO (人間)
+updated: 2026-06-30
+owner: PM (Opus) / PO (人間) / Codex
 parent_design: docs/design/harness/L2-screen/screen-list.md
 related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
@@ -31,17 +31,19 @@ dependencies:
 
 # PLAN-L7-146 (impl): 中央UI 無料 serverless read-only 共有
 
-## 優先度: 後回し / deferred (PO 2026-06-26)
+## 優先度: version-up parked / future serverless delivery (PO 2026-06-26, Codex 2026-06-30)
 
 PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (clean distribution channel) を別PCで使える状態に
 する** ことを優先する (PO「UI は後回しで配布できるようにしたい」「UI は後程でいい」)。
 
-- 本 PLAN は `status=draft` のまま **deferred** とする。破棄 (archived) **ではない** — UI は「後で」やる。
+- 本 PLAN は `status=draft` + `version_target: future` の **version-up parked** とする。破棄 (archived) **ではない** — serverless 共有配信は将来版へ保全する。
 - 配布の active track = [[PLAN-L7-157-distribution-clean-pull]] (R2: 中央UI/画面 = L7-141/146 は配布物に
-  **同梱しない** = 画面なしで配布。本 deferral と整合)。中央UI 本体の再実装も後回し
-  ([[PLAN-L7-141-web-dashboard-component-derived]])。
-- 再開条件: 配布チャネルが PO 承認・着地した後、PO 指示で本 PLAN を再開する。
-- 非終端 (draft) のまま残るため `ut-tdd status` の outstanding には引き続き計上される (後回し = 完了ではない)。
+  **同梱しない** = 画面なしで配布。本 deferral と整合)。ただし中央UI 本体の first component-derived slice
+  ([[PLAN-L7-141-web-dashboard-component-derived]]) は 2026-06-30 に着地済みであり、本 PLAN の未了範囲は
+  serverless 共有配信層だけに限定される。
+- 再開条件: 配布チャネルが PO 承認・着地し、外部 Cloudflare 配信 / HMAC secret / 閲覧アクセス制御へ進む人間承認が出た後、本 PLAN を再開する。
+- 非終端 (draft) のまま残るため `ut-tdd status` の outstanding / version-up parked には引き続き計上される (将来版保全 = 完了ではない)。
+- `ut-tdd route eval --signal version_deferral --format json` は `mode=version-up` を返す。駆動モデル上も、本 PLAN は active L7 frontier ではなく version-up parked として扱う。
 
 ## 0. なぜ (PO 決定 2026-06-24「無料で、AI 編集なしでいけない？」→「OK それでいこう」)
 
@@ -91,7 +93,7 @@ PO 元来の狙い「全員で進捗・設計書を共有して見る」(ADR-005
 
 - mode: serial。
 - Step 0 ✓: L2 画面設計 (G2 freeze) + L4 FE 設計標準 ui-standard (2026-06-24、PLAN-L4-14) の descent 確認 = 起点 (本 PLAN の前提、再設計しない)。
-- Step 1: read-only src/web の component-derived 実装到達確認 ([PLAN-L7-141](./PLAN-L7-141-web-dashboard-component-derived.md))。未了なら L7-141 を先に進める (配信は実装の後)。
+- Step 1 ✓: read-only src/web の component-derived 実装到達確認 ([PLAN-L7-141](./PLAN-L7-141-web-dashboard-component-derived.md))。2026-06-30 に first slice 着地済み。
 - Step 2: Cloudflare Pages(静的 SPA) + Workers Free(read API) の最小配信骨格。`workers.dev` で公開、独自ドメインは任意。
 - Step 3: GitHub webhook(HMAC) → Worker → D1/KV projection 同期 + 定期 reconcile cron。secret 非投影を fail-close で配線。
 - Step 4: 閲覧アクセス制御 (Cloudflare Access 等) + 30 秒ポーリングの多人数共有導通。
@@ -107,4 +109,4 @@ PO 元来の狙い「全員で進捗・設計書を共有して見る」(ADR-005
 ## 6. review / 次工程
 
 - review evidence (cross_agent / intra_runtime_subagent) を confirmed 前に記録 (PLAN claim 規律: $0・read-only 不変は free-tier 単価と S5=b 引用で substantiate)。
-- 次: L7-141 (read-only UI) を実装 → 本 PLAN で配信。AI 編集/フロント送信が要件化されたら、本 read-only 共有を土台に承認ゲート付きの別 PLAN へ ([[project_central_ui_editable_front_direction]])。
+- 次: 人間承認後、本 PLAN で serverless 共有配信を activation する。AI 編集/フロント送信が要件化されたら、本 read-only 共有を土台に承認ゲート付きの別 PLAN へ ([[project_central_ui_editable_front_direction]])。

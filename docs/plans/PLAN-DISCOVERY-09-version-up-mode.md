@@ -10,7 +10,7 @@ status: confirmed
 decision_outcome: confirmed
 promotion_strategy: reuse-with-hardening
 created: 2026-06-26
-updated: 2026-06-26
+updated: 2026-06-30
 owner: PM (Opus) / PO (人間)
 agent_slots:
   - role: aim
@@ -70,6 +70,11 @@ PO 発話: 「駆動モデルでバージョンアップって駆動モデルを
 **いま Forward freeze / 配布スコープには入れない**が、**archived (破棄) ではなく将来版で必ず Forward へ入れる**
 ことを **明示・機械追跡**する。第一ケース = 中央UI (画面、[[PLAN-L7-141]] / [[PLAN-L7-146]])。配布 ([[PLAN-L7-157]]
 R2) は「画面なしで配布」なので、画面は version-up 対象として保全するのが正しい位置づけ。
+
+**activation note (2026-06-30)**: `PLAN-L7-141` は component-derived read-only UI slice として着地し、
+`version_target` を外して `status=confirmed` へ移行した。version-up の保全対象として残る中央UI系PLANは、
+外部 serverless 配信・HMAC secret・閲覧アクセス制御を含む `PLAN-L7-146` のみである。これは §2 の
+「activation 後は `version_target` を外す」規律どおりで、AC-3 の初期適用対象を現在状態へ反映したもの。
 
 ## 1. Gap (なぜ既存 mode / 既存状態で足りないか)
 

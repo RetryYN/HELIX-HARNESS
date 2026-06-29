@@ -2,9 +2,24 @@ import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 const AUDIT_PATH = "docs/governance/helix-l0-l8-design-consistency-audit.md";
+const PLAN_L7_141 = "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md";
+const PLAN_L7_146 = "docs/plans/PLAN-L7-146-serverless-readonly-share.md";
+const VERSION_UP_MODE = "docs/process/modes/version-up.md";
+const VERSION_UP_DISCOVERY = "docs/plans/PLAN-DISCOVERY-09-version-up-mode.md";
 
 function auditText(): string {
   return readFileSync(AUDIT_PATH, "utf8");
+}
+
+function fileText(path: string): string {
+  return readFileSync(path, "utf8");
+}
+
+function frontmatterValue(path: string, key: string): string | null {
+  const match = fileText(path).match(/^---\n([\s\S]*?)\n---/);
+  expect(match, `${path} frontmatter missing`).toBeTruthy();
+  const row = (match?.[1] ?? "").split("\n").find((line) => line.startsWith(`${key}:`));
+  return row ? row.slice(key.length + 1).trim() : null;
 }
 
 function auditRow(id: string): string {
@@ -87,5 +102,18 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("design_drift");
     expect(text).toContain("mode=reverse");
     expect(text).toContain("cheap docs lanes cannot close risk");
+  });
+
+  it("keeps version-up parking aligned after PLAN-L7-141 activation", () => {
+    expect(frontmatterValue(PLAN_L7_141, "status")).toBe("confirmed");
+    expect(frontmatterValue(PLAN_L7_141, "version_target")).toBeNull();
+    expect(frontmatterValue(PLAN_L7_146, "status")).toBe("draft");
+    expect(frontmatterValue(PLAN_L7_146, "version_target")).toBe("future");
+
+    expect(fileText(VERSION_UP_MODE)).toContain("PLAN-L7-141 は component-derived");
+    expect(fileText(VERSION_UP_MODE)).toContain("PLAN-L7-146 は外部 serverless");
+    expect(fileText(VERSION_UP_DISCOVERY)).toContain("activation note (2026-06-30)");
+    expect(fileText(PLAN_L7_146)).toContain("version-up parked");
+    expect(fileText(PLAN_L7_146)).toContain("mode=version-up");
   });
 });
