@@ -636,6 +636,16 @@ projection-only telemetry は trace 補助であり、実 runtime provenance の
 | U-DBPROJ-PROV-03 | `checkDbProjectionIngestion` / `projectRuntimeModelTelemetryForDoctor` | Doctor's in-memory DB rebuild overlays existing Claude/Codex JSONL token usage through `projectTokenUsage`, so `model_runs` with token/cost-valued columns count as runtime provenance without requiring provider CLI execution. The deterministic `db rebuild` command remains source-projection-only. |
 | U-DBPROJ-PROV-04 | `projectRuntimeGuardrailDecisionFromSessionEvent` | A session-log `forced_stop` event creates exactly one `guardrail_decisions` row with non-empty `session_id`, `guardrail=forced-stop`, `decision=block`, `mode=runtime-hook`, and the JSONL evidence path; ordinary `tool_use` events do not fabricate guardrail decisions. |
 | U-DBPROJ-PROV-05 | `summarize` / `projectRuntimeSkillInvocationFromSessionEvent` | A Bash command containing `skill suggest` is logged as `Bash (skill)`. A session-log `Bash (skill)` event creates `skill_invocations` rows with non-empty `session_id`, `source=runtime-hook:skill-suggest`, and accepted status from the hook outcome; generic `Bash (bash)` events do not fabricate skill invocations. |
+
+### §1.23 U-RUNDEBUG (L7.5 RUN & Debug runtime verification)
+
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-RUNDEBUG-001 | `classifyRuntimeVerificationEvidence` | `fired` / `used` / `works` / `blocked` / `recovered` / `observed` / `executed` は実 `session_id`、runtime `source`、runtime surface、timestamp、evidence path が揃う場合のみ `runtime_verified`。projection source は `projection_only_unverified`、欠落は `missing_runtime_provenance`、非 runtime claim は `not_runtime_claim`。 |
+| U-RUNDEBUG-002 | `buildRunDebugObligation` | runtime behavior claim は L7.5 RUN & Debug `required`。pure/unit-only helper は reason と substitute oracle がある場合のみ `not_required`。欠落時は `blocked`。 |
+| U-RUNDEBUG-003 | `rejectProjectionOnlyVerification` | `projection_only_unverified` / `missing_runtime_provenance` は runtime acceptance を close できない。 |
+| U-RUNDEBUG-004 | `buildRuntimeVerificationLogEvent` | append-only event に plan/test/claim/session/source/surface/correlation/evidence/timestamp/redaction policy を載せる。secret-like 値は保存せず reject。 |
+| U-RUNDEBUG-005 | `validateRuntimeVerificationLogCompleteness` | `works` / `used` / `fired` / `executed` は session/correlation/evidence と requirement または test oracle link が無ければ incomplete。 |
 | U-CHGIMPACT-NONGIT-01 | `isGitRepository` / `checkChangeImpact` / `checkChangeSetIntegrity` | In a non-git directory both checks return `ok:true` with a "skipped (not a git repository)" message (matching the non-git fail-open convention of `tracked-canonical` / `runtime-portability`), while an unreadable repo root still fail-closes with a `violation` message. CI runs in a git repo so its behavior is unchanged. |
 | U-SLOT-009 | `nodeAgentSlotsDeps.writeText` | State is written atomically: stage to a unique `*.tmp-<pid>-<seq>` file then `renameSync` over the target. A fire→release round-trip through the real fs deps persists the complete slot array and leaves **no** `*.tmp-*` temp file behind (concurrent hook / crash-mid-write never yields a torn JSON that `loadSlots` would discard). |
 
