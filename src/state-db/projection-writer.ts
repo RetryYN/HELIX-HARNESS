@@ -35,6 +35,12 @@ import {
   recommendVerificationProfiles,
 } from "../lint/verification-profile";
 import {
+  classifyRuntimeVerificationEvidence,
+  DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
+  type RuntimeVerificationLogEvent,
+  validateRuntimeVerificationLogCompleteness,
+} from "../runtime/run-debug";
+import {
   HARNESS_DB_TABLE_BY_NAME,
   HARNESS_DB_TABLES,
   primaryKeyOf,
@@ -718,6 +724,96 @@ function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
           },
         });
       }
+    }
+  }
+}
+
+function parseRuntimeVerificationLogRows(
+  content: string,
+): Array<{ line: number; event?: RuntimeVerificationLogEvent; error?: string }> {
+  return content
+    .split(/\r?\n/)
+    .map((line, index) => ({ raw: line.trim(), line: index + 1 }))
+    .filter((entry) => entry.raw.length > 0)
+    .map((entry) => {
+      try {
+        const parsed = JSON.parse(entry.raw) as RuntimeVerificationLogEvent;
+        return { line: entry.line, event: parsed };
+      } catch (error) {
+        return { line: entry.line, error: String(error) };
+      }
+    });
+}
+
+function projectRuntimeVerificationEvents(repoRoot: string, db: HarnessDb): void {
+  const logPath = join(repoRoot, DEFAULT_RUNTIME_VERIFICATION_LOG_PATH);
+  if (!existsSync(logPath)) return;
+  const relPath = normalizePath(relative(repoRoot, logPath));
+  const rows = parseRuntimeVerificationLogRows(readFileSync(logPath, "utf8"));
+  for (const row of rows) {
+    if (!row.event) {
+      recordFinding(db, {
+        kind: "runtime-verification-log-invalid",
+        severity: "warn",
+        subjectId: `${relPath}:${row.line}`,
+        source: "runtime-verification-log",
+        evidencePath: relPath,
+      });
+      continue;
+    }
+    const event = row.event;
+    if (
+      !asString(event.event_id) ||
+      !asString(event.plan_id) ||
+      !asString(event.claim) ||
+      !asString(event.session_id) ||
+      !asString(event.source) ||
+      !asString(event.runtime_surface) ||
+      !asString(event.correlation_id) ||
+      !asString(event.evidence_path) ||
+      !asString(event.occurred_at)
+    ) {
+      recordFinding(db, {
+        kind: "runtime-verification-log-invalid",
+        severity: "warn",
+        subjectId: `${relPath}:${row.line}`,
+        source: "runtime-verification-log",
+        evidencePath: relPath,
+      });
+      continue;
+    }
+    const verificationClass = classifyRuntimeVerificationEvidence(event);
+    const completeness = validateRuntimeVerificationLogCompleteness(event);
+    const acceptStatus =
+      verificationClass === "runtime_verified" && completeness.ok ? "accepted" : "blocked";
+    recordProjectionEvent(db, {
+      table: "runtime_verification_events",
+      id: event.event_id,
+      row: {
+        event_id: event.event_id,
+        plan_id: event.plan_id,
+        requirement_id: event.requirement_id ?? "",
+        test_oracle_id: event.test_oracle_id ?? "",
+        claim: event.claim,
+        session_id: event.session_id,
+        source: event.source,
+        runtime_surface: event.runtime_surface,
+        correlation_id: event.correlation_id,
+        evidence_path: event.evidence_path,
+        occurred_at: event.occurred_at,
+        redaction_policy: event.redaction_policy,
+        verification_class: verificationClass,
+        accept_status: acceptStatus,
+      },
+    });
+    if (acceptStatus !== "accepted") {
+      recordFinding(db, {
+        kind: "runtime-verification-log-incomplete",
+        severity: "warn",
+        subjectId: event.event_id,
+        source: "runtime-verification-log",
+        evidencePath: event.evidence_path || relPath,
+      });
     }
   }
 }
@@ -2634,6 +2730,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       projectReviewModelRuns(repoRoot, db, plans);
       projectRoadmapRollup(repoRoot, db);
       projectReviewEvidenceRegistry(repoRoot, db);
+      projectRuntimeVerificationEvents(repoRoot, db);
       projectGuardrailInvariantAdvisories(db);
       projectDescentObligations(repoRoot, db);
       projectVerificationBandExecution(db);

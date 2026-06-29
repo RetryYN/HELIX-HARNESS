@@ -691,6 +691,104 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("U-RUNDEBUG-007: projects L7.5 runtime verification logs into harness.db runtime evidence rows", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-runtime-verification-projection-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "run-debug"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-202-run-debug-runtime-verification.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-202-run-debug-runtime-verification",
+          "title: runtime verification projection fixture",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: be",
+          "status: confirmed",
+          "created: 2026-06-30",
+          "updated: 2026-06-30",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "run-debug", "runtime-verification.jsonl"),
+        [
+          JSON.stringify({
+            event_id: "runtime-event-1",
+            plan_id: "PLAN-L7-202-run-debug-runtime-verification",
+            requirement_id: "HR-FR-P4-01",
+            test_oracle_id: "U-RUNDEBUG-006",
+            claim: "works",
+            session_id: "session-1",
+            source: "run-debug",
+            runtime_surface: "ut-tdd-cli",
+            correlation_id: "corr-1",
+            evidence_path: ".ut-tdd/evidence/run-debug/session-1.jsonl",
+            occurred_at: "2026-06-30T00:00:00.000Z",
+            redaction_policy: "no-secret-material",
+          }),
+          "{not json",
+          "",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+        expect(result.ok).toBe(true);
+        expect(rowCounts(db).runtime_verification_events).toBe(1);
+        const event = db
+          .prepare(
+            "SELECT plan_id, claim, source, runtime_surface, verification_class, accept_status FROM runtime_verification_events WHERE event_id = ?",
+          )
+          .get("runtime-event-1");
+        expect(event).toMatchObject({
+          plan_id: "PLAN-L7-202-run-debug-runtime-verification",
+          claim: "works",
+          source: "run-debug",
+          runtime_surface: "ut-tdd-cli",
+          verification_class: "runtime_verified",
+          accept_status: "accepted",
+        });
+        const finding = db
+          .prepare("SELECT kind, source, status FROM findings WHERE kind = ?")
+          .get("runtime-verification-log-invalid");
+        expect(finding).toMatchObject({
+          kind: "runtime-verification-log-invalid",
+          source: "runtime-verification-log",
+          status: "open",
+        });
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it("projects artifact progress rows as yellow until linked tests have passing runs", () => {
     const db = openHarnessDb(":memory:");
     try {

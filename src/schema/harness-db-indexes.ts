@@ -91,6 +91,11 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["tool_name", "input_scope"],
   },
   {
+    name: "idx_runtime_verification_plan",
+    table: "runtime_verification_events",
+    columns: ["plan_id", "claim", "accept_status"],
+  },
+  {
     name: "idx_diagram_scope_format",
     table: "diagram_artifacts",
     columns: ["scope", "format"],

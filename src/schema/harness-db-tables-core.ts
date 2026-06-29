@@ -211,6 +211,25 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "runtime_verification_events",
+    columns: [
+      pk("event_id"),
+      col("plan_id"),
+      col("requirement_id"),
+      col("test_oracle_id"),
+      col("claim"),
+      col("session_id"),
+      col("source"),
+      col("runtime_surface"),
+      col("correlation_id"),
+      col("evidence_path"),
+      col("occurred_at"),
+      col("redaction_policy"),
+      col("verification_class"),
+      col("accept_status"),
+    ],
+  },
+  {
     name: "test_cases",
     columns: [
       pk("test_case_id"),

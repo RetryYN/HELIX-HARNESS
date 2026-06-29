@@ -290,6 +290,7 @@ Phase 2 close review found that the DB design can already project workflow, guar
 | `test_results` | `test_result_id` | `test_run_id`, `test_case_id`, `status`, `duration_ms`, `failure_digest`, `started_at`, `completed_at` | Track pass/fail/skip/todo by case and run. |
 | `test_artifact_edges` | `edge_id` | `test_case_id`, `artifact_id`, `edge_kind`, `plan_id`, `source_path` | Join test evidence back to V-model trace without overloading `trace_edges`. |
 | `test_flake_events` | `flake_event_id` | `test_case_id`, `window`, `pass_count`, `fail_count`, `flake_score`, `computed_at`, `evidence_path` | Surface unstable tests and duration regressions as quality signals. |
+| `runtime_verification_events` | `event_id` | `plan_id`, `requirement_id`, `test_oracle_id`, `claim`, `session_id`, `source`, `runtime_surface`, `correlation_id`, `evidence_path`, `occurred_at`, `redaction_policy`, `verification_class`, `accept_status` | Project L7.5 RUN & Debug runtime verification JSONL into DB rows for deterministic dashboards. Projection-only or incomplete rows cannot become `accept_status=accepted`. |
 
 Required UT-derived metrics:
 
@@ -306,6 +307,9 @@ projection-only evidence. `projectHookEvents` may additionally derive runtime-pr
 recognized verification command (`vitest`, `test`, `tsc`, `doctor`, `lint`, or `eslint`) and the
 row preserves non-empty `session_id` plus the session JSONL `evidence_path`. General UT runner
 ingestion, flake history, and duration regression projection remain separate IMP-109 scope.
+L7.5 RUN & Debug append-only rows project into `runtime_verification_events`; dashboards must read
+`verification_class` and `accept_status` directly instead of inferring runtime acceptance from
+generic `test_runs` or projection-only telemetry rows.
 
 Implementation constraints:
 
