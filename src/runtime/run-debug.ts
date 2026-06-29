@@ -6,14 +6,14 @@ type RuntimeVerificationClass =
   | "missing_runtime_provenance"
   | "not_runtime_claim";
 
-type RuntimeEvidenceSource =
+export type RuntimeEvidenceSource =
   | "runtime-hook"
   | "adapter-command"
   | "run-debug"
   | "hosted-preflight"
   | "projection";
 
-type RuntimeSurface =
+export type RuntimeSurface =
   | "claude-hook"
   | "codex-hook"
   | "codex-hosted-api"
@@ -286,4 +286,4 @@ export function appendRuntimeVerificationLogEvent(
   return { path: normalizedRelPath, event, completeness };
 }
 
-export type { RuntimeClaim, RuntimeEvidenceSource, RuntimeSurface, RuntimeVerificationClass };
+export type { RuntimeClaim, RuntimeVerificationClass };

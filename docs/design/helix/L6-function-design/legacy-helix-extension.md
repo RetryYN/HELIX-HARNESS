@@ -44,11 +44,13 @@ type RunDebugTraceKind = "complete" | "incomplete" | "blocked";
 type AdoptionDisposition = "existing_pillar_covered" | "adopt" | "harden_required" | "defer" | "reject" | "new_plan_required";
 type GuardSurfaceState = "wired" | "deferred" | "rejected";
 type PolicyDecisionKind = "allow" | "deny" | "escalate";
+type RuntimeSurface = "claude-hook" | "codex-hook" | "codex-hosted-api" | "ut-tdd-cli" | "external-api";
 
 interface RunDebugTraceDecision {
   kind: RunDebugTraceKind;
   matched_actions: string[];
   missing_actions: string[];
+  runtime_surface: RuntimeSurface | "";
   correlation_id: string;
   evidence_path: string;
 }
@@ -57,13 +59,15 @@ interface CoreInjectionDecision {
   disposition: AdoptionDisposition;
   repo_local_source: string;
   generated_target: string;
+  consumer_mode: string;
+  required_marker: string;
   provenance: string;
   rejected_assumption?: string;
 }
 
 interface GuardSurfaceDisposition {
   state: GuardSurfaceState;
-  runtime_surface: "claude" | "codex" | "hosted-api" | "repo-cli";
+  runtime_surface: RuntimeSurface;
   guard_intent: string;
   reason: string;
   oracle: string;

@@ -650,6 +650,24 @@ projection-only telemetry は trace 補助であり、実 runtime provenance の
 | U-CHGIMPACT-NONGIT-01 | `isGitRepository` / `checkChangeImpact` / `checkChangeSetIntegrity` | In a non-git directory both checks return `ok:true` with a "skipped (not a git repository)" message (matching the non-git fail-open convention of `tracked-canonical` / `runtime-portability`), while an unreadable repo root still fail-closes with a `violation` message. CI runs in a git repo so its behavior is unchanged. |
 | U-SLOT-009 | `nodeAgentSlotsDeps.writeText` | State is written atomically: stage to a unique `*.tmp-<pid>-<seq>` file then `renameSync` over the target. A fire→release round-trip through the real fs deps persists the complete slot array and leaves **no** `*.tmp-*` temp file behind (concurrent hook / crash-mid-write never yields a torn JSON that `loadSlots` would discard). |
 
+### §1.24 U-HLX (old HELIX semantic adoption decision contracts)
+
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-HLX-001 | `buildWorkPreflightDecision` | objective / workflow-layer / Forward return / acceptance-verification / work source / allowed scope が欠ける作業を `blocker` にし、高影響未承認操作は `escalate` にする。 |
+| U-HLX-002 | `classifyTechnicalQuestion` | design / contract / schema / migration / security 等の技術質問は TL advisor evidence なしで `deny`、preference-only は reason 付きでのみ `bypass_allowed`。 |
+| U-HLX-003 | `registerDetectorAxis` | detector axis は axis id / phase gate / kind / severity / workflow route を全て持つ場合のみ登録 OK。欠落 axis は routeable とみなさない。 |
+| U-HLX-004 | `routeDetectorFinding` | stub / advisory finding を hard gate proof として使う要求を `reject` し、登録済み axis の通常 finding のみ route する。 |
+| U-HLX-005 | `buildRecommendationDecision` | candidate / score / reason / references / recommended role を持つ候補だけを採用候補にし、legacy runtime path は `harden_required` にする。 |
+| U-HLX-006 | `analyzeRunDebugTrace` | expected action と observed evidence を照合し、missing action や runtime metadata 欠落がある trace は acceptance source にできない。 |
+| U-HLX-007 | `buildCoreInjectionContract` | repo-local source / generated target / marker / provenance を分離し、personal absolute path や global-file-only reference を current truth として採用しない。 |
+| U-HLX-008 | `classifyLegacyHookSurface` | hook / guard surface は runtime surface / matcher / intent / parity target / oracle を持つ場合のみ wired/deferred 判定し、unsupported surface は `rejected`。 |
+| U-HLX-009 | `buildAgentRolePolicyDecision` | role kind / model family / slot / delegation boundary / review substitute を要求し、self-review / unbounded delegation / unapproved overpowered model を deny/escalate。 |
+| U-HLX-010 | `mapWorkflowInventoryToPillar` | workflow inventory を pillar/workflow/gate に接続し、unknown workflow は自動 routing せず `new_plan_required`。 |
+| U-HLX-011 | `classifyLegacyDbSurface` | legacy DB/registry/API は harness.db projection/read-model/provenance 境界に分類し、raw legacy state import は `reject`。 |
+| U-HLX-012 | `buildContinuousRunControlDecision` | continuous run は trigger / queue lock / timebox / budget profile / stop condition / verification evidence を必須にし、stop condition なし auto-run は `deny`。 |
+| U-HLX-013 | `buildLearningFeedbackDecision` | feedback/recipe/learning は evidence と review state 付き improvement candidate に留め、learning output 単独で acceptance close しない。 |
+
 ## PLAN-L7-81 Codex Wrapper Parity Addendum
 
 | U-ID | Target | Oracle |
