@@ -191,7 +191,46 @@ describe("L7 CLI surface closure", () => {
     expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
       "ut-tdd builder catalog",
     );
+    expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
+      "ut-tdd progress snapshot",
+    );
+    expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
+      "ut-tdd graph export",
+    );
   });
+
+  it("exposes progress snapshot as a deterministic visualization JSON surface", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-progress-snapshot-"));
+    try {
+      const run = runCliIn(root, ["progress", "snapshot", "--json"]);
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(0);
+      expect(payload).toMatchObject({
+        schema_version: "visualization-snapshot.v1",
+        progress: {
+          artifacts: { total: 0, red: 0, yellow: 0, green: 0 },
+        },
+        graph: {
+          nodes: 0,
+          edges: 0,
+        },
+        evidence: {
+          runtime_verification: {
+            total: 0,
+            accepted: 0,
+            blocked: 0,
+          },
+        },
+        drilldowns: {
+          artifact_progress_command: "ut-tdd progress artifacts --json",
+          runtime_verification_table: "runtime_verification_events",
+        },
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
 
   it("fails review command closed unless the current uncommitted scope is explicit", () => {
     const run = runCli(["review", "--json"]);

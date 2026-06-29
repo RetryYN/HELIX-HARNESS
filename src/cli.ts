@@ -149,6 +149,7 @@ import {
   rebuildHarnessDb,
 } from "./state-db/projection-writer";
 import { loadRuntimeSessionUsage, summarizeRunUsage } from "./state-db/token-tracker";
+import { buildVisualizationSnapshot } from "./state-db/visualization-read-model";
 import { classifyProposalDocumentCoverage, classifyTask } from "./task/classify";
 import {
   type Provider,
@@ -1345,6 +1346,27 @@ progress
       db.close();
     }
   });
+progress
+  .command("snapshot")
+  .description("emit deterministic visualization snapshot from harness.db")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const db = openHarnessDb(defaultHarnessDbPath(process.cwd()), { repoRoot: process.cwd() });
+    try {
+      migrate(db);
+      const snapshot = buildVisualizationSnapshot(db);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `progress snapshot: artifacts red/yellow/green=${snapshot.progress.artifacts.red}/${snapshot.progress.artifacts.yellow}/${snapshot.progress.artifacts.green}, graph nodes/edges=${snapshot.graph.nodes}/${snapshot.graph.edges}, runtime accepted/blocked=${snapshot.evidence.runtime_verification.accepted}/${snapshot.evidence.runtime_verification.blocked}\n`,
+      );
+      for (const warning of snapshot.warnings) process.stdout.write(`  warning: ${warning}\n`);
+    } finally {
+      db.close();
+    }
+  });
 
 program
   .command("find <query>")
@@ -1830,6 +1852,17 @@ builder
       { path: "src/cli.ts", command: "ut-tdd skill suggest", description: "skill recommendation" },
       { path: "src/cli.ts", command: "ut-tdd review --uncommitted", description: "review packet" },
       { path: "src/cli.ts", command: "ut-tdd cutover --to", description: "cutover dry-run" },
+      {
+        path: "src/cli.ts",
+        command: "ut-tdd progress artifacts",
+        description: "artifact progress read model",
+      },
+      {
+        path: "src/cli.ts",
+        command: "ut-tdd progress snapshot",
+        description: "visualization snapshot read model",
+      },
+      { path: "src/cli.ts", command: "ut-tdd graph export", description: "relation graph export" },
       { path: "src/cli.ts", command: "ut-tdd asset catalog", description: "asset catalog" },
       { path: "src/cli.ts", command: "ut-tdd builder catalog", description: "builder catalog" },
     ];

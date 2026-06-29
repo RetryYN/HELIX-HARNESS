@@ -50,6 +50,25 @@ L6 機能設計の各**関数 signature + DbC + edge** が L7 単体テスト (U
 実 command / adapter surface、timestamp、evidence path を捕捉してから trace-freeze / review / accept に渡す。
 projection-only telemetry は trace 補助であり、実 runtime provenance の代替として accept しない。
 
+## §0.2 可視化 read-model の検証戦略
+
+L1 §2.8 の Asset / progress visualization は、Webview の見た目ではなく **deterministic response contract** を先に
+検証する。UI は `ut-tdd progress snapshot --json` の `VisualizationSnapshot` を読むだけで、LLM 生成 summary を
+正本にしない。検証戦略は以下:
+
+- DB projection が同一なら snapshot は byte-level JSON shape と数値が安定する。
+- cold-start は失敗や fabricated success ではなく zero counts + warning を返す。
+- `runtime_verification_events.verification_class` は `runtime_verified` / `projection_only_unverified` /
+  `missing_runtime_provenance` を分離し、`accept_status=accepted` のみ accepted runtime evidence として数える。
+- accepted runtime evidence は `verification_class="runtime_verified" AND accept_status="accepted"` の交差であり、
+  projection-only 行が誤って `accept_status=accepted` を持っても accepted runtime verification には入れない。
+- drill-down は CLI command / table pointer に限定し、provider transcript・secret・machine-local absolute path を保持しない。
+
+| U-ID | 検証対象 | oracle (DbC) |
+|---|---|---|
+| U-VISUAL-001 | `buildVisualizationSnapshot` | artifact progress / plan status / gate status / graph node-edge / test runs / skill-model-guardrail counts を既存 harness.db projection から deterministically 集計し、同一 DB 入力で同一 snapshot を返す。cold-start は zero counts + rebuild warning。 |
+| U-VISUAL-002 | `buildVisualizationSnapshot` + `ut-tdd progress snapshot --json` | `projection_only_unverified` と `missing_runtime_provenance` は runtime verified / accepted に混入しない。特に `verification_class!="runtime_verified"` なら `accept_status="accepted"` でも accepted count は増えない。CLI JSON は `schema_version=\"visualization-snapshot.v1\"` と drill-down pointer を返し、read-only で schema/source を変更しない。 |
+
 ## §1 単体テスト (U-*) — placeholder skeleton
 
 > L7 = 個別関数の **単体**を対象 (最小単位、純粋関数中心)。既存 vitest 66 test が seed (analyzeX/evaluateAgentGuard/detectMode/frontmatter)。個別 U ケースは L7 entry で展開。
