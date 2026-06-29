@@ -397,6 +397,96 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l5Plan).toContain("HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC");
   });
 
+  it("U-VPAIR-005o: upstream A-146 substance-gap findings are lowered through HELIX L3-L6", () => {
+    const l3 = readFileSync("docs/design/helix/L3-requirements/upstream-substance-gap.md", "utf8");
+    const l4 = readFileSync("docs/design/helix/L4-basic-design/upstream-substance-gap.md", "utf8");
+    const l5 = readFileSync("docs/design/helix/L5-detail/upstream-substance-gap.md", "utf8");
+    const l6 = readFileSync(
+      "docs/design/helix/L6-function-design/upstream-substance-gap.md",
+      "utf8",
+    );
+    const testDesign = readFileSync("docs/test-design/helix/upstream-substance-gap.md", "utf8");
+    const combined = [l3, l4, l5, l6, testDesign].join("\n");
+    const upstreamIds = uniqueMatches(l3, /\b(A146-\d)\b/g);
+    const l3Ids = uniqueMatches(l3, /\b(HU-FR-\d{2})\b/g);
+    const l4Ids = uniqueMatches(l4, /\b(HUT-SYS-\d{2})\b/g);
+    const l5Ids = uniqueMatches(l5, /\b(HU-C\d{2})\b/g);
+    const l6Oracles = uniqueMatches(testDesign, /\b(U-UPSTREAM-\d{3})\b/g);
+
+    expect(upstreamIds).toEqual([
+      "A146-1",
+      "A146-2",
+      "A146-3",
+      "A146-4",
+      "A146-5",
+      "A146-6",
+      "A146-7",
+      "A146-8",
+    ]);
+    expect(l3Ids).toEqual([
+      "HU-FR-01",
+      "HU-FR-02",
+      "HU-FR-03",
+      "HU-FR-04",
+      "HU-FR-05",
+      "HU-FR-06",
+      "HU-FR-07",
+      "HU-FR-08",
+    ]);
+    expect(l4Ids).toEqual([
+      "HUT-SYS-01",
+      "HUT-SYS-02",
+      "HUT-SYS-03",
+      "HUT-SYS-04",
+      "HUT-SYS-05",
+      "HUT-SYS-06",
+      "HUT-SYS-07",
+      "HUT-SYS-08",
+    ]);
+    expect(l5Ids).toEqual([
+      "HU-C01",
+      "HU-C02",
+      "HU-C03",
+      "HU-C04",
+      "HU-C05",
+      "HU-C06",
+      "HU-C07",
+      "HU-C08",
+    ]);
+    expect(l6Oracles).toEqual([
+      "U-UPSTREAM-001",
+      "U-UPSTREAM-002",
+      "U-UPSTREAM-003",
+      "U-UPSTREAM-004",
+      "U-UPSTREAM-005",
+      "U-UPSTREAM-006",
+      "U-UPSTREAM-007",
+      "U-UPSTREAM-008",
+      "U-UPSTREAM-009",
+    ]);
+    for (const required of [
+      "source_upstream_commit: 7f83ca8",
+      "A-146-substance-gap-consolidated-remediation.md",
+      "green command digest",
+      "runtime provenance",
+      "distribution curation",
+      "FE design coverage",
+      "signal -> mode",
+      "kind x drive",
+      "runtime matcher compatibility",
+      "blanket `docs/governance/` allow",
+      "presence-only",
+      "hash-only restamp",
+      "target-runtime tool event evidence",
+    ]) {
+      expect(combined).toContain(required);
+    }
+    expect(testDesign).toContain("| A146-8 | HU-FR-08 | HUT-SYS-08 | HU-C08 | U-UPSTREAM-009 |");
+    expect(l6).toContain(
+      "Findings already generally covered by pillar docs remain separately traceable",
+    );
+  });
+
   it("U-VPAIR-005d: HELIX L1 external delta の具体化語彙が L3/L12 に降下済み", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
