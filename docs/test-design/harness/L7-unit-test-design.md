@@ -22,7 +22,7 @@ This L7 document remains the single pair artifact for L6 and must carry a U-* or
 
 The additional SQLite/reference-feedback/search/drive-log/skill-metric requirements are covered through `docs/design/harness/L6-function-design/fr-unit-coverage.md` and the U-FR-L1-* rows added at the end of this document. This is coverage of the function-design contract, not proof that every L7 implementation test already exists.
 
-# UT-TDD Agent Harness — L7 単体テスト設計 (④ / U-*)
+# HELIX — L7 単体テスト設計 (④ / U-*)
 
 > **layer (作成層 = V-pair key)**: L6 (機能設計) / **executed_at_layer (実施層)**: L7 (単体テスト — 実装スプリント内で TDD Red 先行) / **artifact**: ④ テスト設計 (V-model 右、② L6 機能設計 と対)
 > **pair (V-model L6↔L7)**: `docs/design/harness/L6-function-design/{function-spec,edge-case}.md` 2 sub-doc ↔ 本書 1 doc
@@ -117,7 +117,7 @@ projection-only telemetry は trace 補助であり、実 runtime provenance の
 | U-SETUP-005 | `recordSetupState` | setup.json に phase/decidedBy/signals を書く / **signals が 4 フィールド (ownerType/collaborators/hasCodeowners/hasBranchProtection) 以外を含まない (strip 検証)** / token 非含 / 再読込で同一 phase / **再実行 (phase 変更) → 上書きで最新 phase のみ読める (append しない)** |
 | U-SETUP-006 | `applyBranchProtection` | `apply≠true` → `{applied:false, reason:"emit-only"}` (gh 呼ばれない) / **`isInteractive≠true` かつ `apply=true` → `{applied:false, reason:"non-interactive"}` (gh 呼ばれない)** / 対話下でも admin/auth/confirm 欠落 → 実行しない |
 | U-SETUP-007 | `runSetup` (orchestration) | ①フラグあり→フラグ値採用 / ②フラグ無し+対話→confirm 結果 / ③フラグ無し+非対話→`0-A` (fallback) / ④`apply=true`+非対話→`applied:false` (I-2 配線ミス検出) |
-| U-SETUP-009 | `planSetup` / `emitSetup` | `0-A` の生成計画に clean adapter テンプレ (`AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` / `.claude/settings.json` / `.codex/config.toml` / `.codex/hooks.json` / Claude subagent templates / Claude slash-command templates) が含まれる。dry-run preview は adapter path を返し、dogfood repo 名や machine-local absolute path を含まない。 |
+| U-SETUP-009 | `planSetup` / `emitSetup` | `0-A` の生成計画に clean adapter テンプレ (`AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` / `.claude/settings.json` / `.codex/config.toml` / `.codex/hooks.json` / Claude subagent templates / Claude slash-command templates) が含まれる。dry-run preview は adapter path を返し、dogfood repo 名や machine-local absolute path を含まない。consumer-facing prose / subagent / slash-command は HELIX 名義で、CLI 名と managed marker は `PLAN-M-02` まで `ut-tdd` / `UT-TDD:managed` を維持する。 |
 | U-SETUP-010 | `emitSetup` | 既存 consumer `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` は既存行を verbatim 保全し、`<!-- UT-TDD:managed:start -->`〜`<!-- UT-TDD:managed:end -->` の managed block だけを追加/更新する。既存 `.claude/settings.json` は confirm なしに上書きしない。同じ setup を 2 回走らせても doc 内容は no-op。 |
 | U-SETUP-011 | `buildCleanDistributionPlan` | clean distribution channel は `clean-repo-plus-signed-tarball`。artifact path は LICENSE / package / src / adapter templates を含み、adapter templates には Claude/Codex hook・subagent・command 設定を含む。dogfood (`docs/plans` / `docs/design/harness` / `docs/test-design` / `.ut-tdd`) と root の開発用 `.claude` / `.codex` 状態、UI (`src/web`) は含まない。release integrity artifact (`tar.gz` / `sha256` / `sig`) を要求する。 |
 | U-SETUP-012 | `buildConsumerReadinessPlan` | Bun>=1.3 / git / gh / bare `ut-tdd` CLI / runtime CLI を preflight として診断し、gh は GitHub setup 用 warning、Bun/git/`ut-tdd`/runtime は blocking。生成 adapter hooks は bare `ut-tdd ...` を呼ぶため、PATH 未解決なら consumer hook 自走性を満たさず readiness を fail-close する。rollback managed paths、tag-pin contract、CI self-sufficiency、monorepo package-root 判定、全 smoke scenario を返す。 |

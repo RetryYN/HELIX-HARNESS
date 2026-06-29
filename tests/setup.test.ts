@@ -67,7 +67,7 @@ const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
 const baseTemplates: TemplateSet = {
   "adapter/AGENTS.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# UT-TDD Agent Harness Adapter",
+    "# HELIX Adapter",
     "",
     "- Status: `ut-tdd status`",
     "- Doctor: `ut-tdd doctor`",
@@ -77,7 +77,7 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "adapter/CLAUDE.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# UT-TDD Agent Harness Shared Context",
+    "# HELIX Shared Context",
     "",
     "- `ut-tdd status`",
     "- `ut-tdd doctor`",
@@ -224,12 +224,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-tdd-setup-existing-"));
     try {
       const templates = loadTemplates(repo);
-      expect(templates["adapter/AGENTS.md"]).toContain("UT-TDD Agent Harness Adapter");
+      expect(templates["adapter/AGENTS.md"]).toContain("HELIX Adapter");
+      expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
       expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
-        "consumer-safe UT-TDD subagent",
+        "consumer-safe HELIX subagent",
       );
+      expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain("HELIX workflow");
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
+      expect(templates["adapter/.claude/commands/helix-status.md"]).toContain("HELIX status");
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["team/CODEOWNERS"]).toContain("{{TL_TEAM}}");
       const deps = mockDeps({ repoRoot: repo, templates });
@@ -354,6 +357,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         join(".claude", "CLAUDE.md"),
         join(".claude", "agents", "code-reviewer.md"),
         join(".claude", "commands", "build.md"),
+        join(".claude", "commands", "helix-status.md"),
       ]),
     );
     for (const p of preview) expect(p).not.toContain("UT-TDD-agent-harness");
@@ -372,6 +376,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const agents = deps.files.get(join("/repo", "AGENTS.md")) as string;
     expect(agents).toContain("# Consumer Rules\n\nKeep this line.\n");
     expect(agents).toContain("<!-- UT-TDD:managed:start -->");
+    expect(agents).toContain("HELIX Adapter");
     expect(agents).toContain("`ut-tdd doctor`");
     expect(deps.files.get(join("/repo", ".claude", "settings.json"))).toBe('{"consumer":true}\n');
 

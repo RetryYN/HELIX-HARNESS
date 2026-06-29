@@ -97,6 +97,21 @@ P6/P9 の確定 GAP として明示する。
 | HBR-P1 / HBR-P6 / HBR-P9 | セットアップ済みプロジェクトは tag bump / release pin 更新で version-up できる。更新は既存 harness state を読み、必要な migration / compatibility / rollback plan を出す | 現行 version と target tag を検出し、差分 plan・互換性 warning・rollback point・再実行 idempotency を記録する。破壊的 migration や不可逆な branch/ruleset 変更は自動適用しない |
 | HNFR-P8 / HNFR-AC | branch protection/rulesets/secrets/外部 API 設定など本番・外部影響を持つ適用は dry-run/emit-only を既定にし、実適用は action-binding approval を必須にする。setup は既存ファイルを silent overwrite / delete / reset しない | `--dry-run` が無変更、apply は対象・actor・params・expiry を audit に残す。既存ファイル衝突は stop + diff plan + backup/merge 指示にし、hosted API surface でも同じ preflight を要求する |
 
+## §2.8 Asset / progress visualization 要求（2026-06-30 追補）
+
+HELIX 資産と進捗は、LLM に都度「図を描かせる」生成物ではなく、Markdown 正本・harness.db projection・relation graph から
+再生成可能な view として可視化する。VSCode Webview / VSCode View / 将来の web dashboard は UI surface であり、
+正本は docs と DB に置く。
+
+| 対象 | L1 要求 | L3/L7 での検証観点 |
+|------|---------|--------------------|
+| HBR-P9 / HBR-P4 | 設計層、PLAN、test-design、implementation、gate、review evidence、dependency / trace edge を DB と Markdown から読み、進捗・未収束・依存関係・blocker を可視化する。LLM 生成の要約図を正本にしない | Markdown parser / harness.db / relation graph から Mermaid などの deterministic diagram data を生成し、LLM なしで再現できる。図の node/edge 数が DB source と一致し、未収束 artifact が見える |
+| HBR-P7 / HNFR-P3 | skill 発火、agent slot、model run、runtime verification、handover、memory recall を計測 view として見られる。検証戦略・RUN & Debug 証跡と同じ evidence path に戻れる | skill_invocations / model_runs / test_runs / guardrail_decisions / runtime verification log event へ drill-down でき、projection-only evidence は runtime verified と誤表示しない |
+| HNFR-AC / HNFR-P8 | VSCode Webview / View は read-only first。command 実行、外部 API、設定変更、branch/ruleset 変更など action surface は action-binding approval と preflight を要求する | Webview が DB/docs 由来の read model だけを描画し、秘密情報・provider transcript・machine-local absolute path を保持しない。編集/実行導線は CLI command copy または approval-bound action に限定する |
+
+起票: `PLAN-DISCOVERY-10-helix-asset-visualization.md`。既存 `PLAN-L7-141-web-dashboard-component-derived` は中央 UI の
+deferred 実装 PLAN であり、本要求の L1 起点・VSCode Webview/View・DB/Markdown deterministic visualization とは別に扱う。
+
 ## §3 harness 既存 FR/BR/NFR との関係（重複させない・接地済）
 
 - harness `business-requirements.md` の BR-01..08/21/22・`nfr.md` NFR-15 件・**`functional-requirements.md` の FR-L1-01..51 は既存資産**。本書 HBR/HNFR は §0/§1/§2 で **各 FR を接地（再利用）**し、**GAP（net-new）だけを足す**。番号は HELIX 名前空間で衝突しない。

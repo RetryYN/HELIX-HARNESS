@@ -37,20 +37,17 @@ const CLAUDE_AGENT_TEMPLATES = [
     "Refactoring reviewer for complexity, duplication, and low-risk extraction candidates.",
   ],
   ["security-audit", "Security reviewer for auth, secrets, PII, and threat-model concerns."],
-  [
-    "ut-tdd-tl",
-    "Technical-lead reviewer for UT-TDD workflow, gates, tests, and release readiness.",
-  ],
+  ["helix-tl", "Technical-lead reviewer for HELIX workflow, gates, tests, and release readiness."],
 ] as const;
 
 const CLAUDE_COMMAND_TEMPLATES = [
-  ["build", "Implement against a frozen UT-TDD spec/test design."],
+  ["build", "Implement against a frozen HELIX spec/test design."],
   ["code-simplify", "Identify the smallest safe simplification for the selected code."],
-  ["sdd-plan", "Create a spec-driven UT-TDD plan before implementation."],
-  ["sdd-review", "Review a spec/design against UT-TDD trace and gate requirements."],
+  ["sdd-plan", "Create a spec-driven planning document for HELIX before implementation."],
+  ["sdd-review", "Review a spec/design against HELIX trace and gate requirements."],
   ["ship", "Prepare release evidence, rollback notes, and final verification."],
   ["spec", "Author a spec-first design before any implementation."],
-  ["test", "Run targeted UT-TDD verification for the current change."],
+  ["test", "Run targeted HELIX verification for the current change."],
 ] as const;
 
 function agentTemplate(name: string, description: string): string {
@@ -61,11 +58,11 @@ function agentTemplate(name: string, description: string): string {
     "tools: Read, Grep, Glob, Bash",
     "---",
     "",
-    "Act as a consumer-safe UT-TDD subagent for the current repository.",
+    "Act as a consumer-safe HELIX subagent for the current repository.",
     "",
     "Required baseline:",
     "- Read `AGENTS.md`, `CLAUDE.md`, and `.claude/CLAUDE.md` when present.",
-    "- Use `ut-tdd status` and `ut-tdd doctor` as local state evidence.",
+    "- Use `ut-tdd status` and `ut-tdd doctor` as HELIX local state evidence until PLAN-M-02 renames the CLI.",
     "- Report findings before summaries, with file and command evidence.",
     "- Do not write secrets, credentials, PII, or machine-local absolute paths.",
     "- Prefer read-only review unless the user explicitly asks for implementation.",
@@ -84,7 +81,7 @@ function commandTemplate(name: string, description: string): string {
     "",
     "Target: $ARGUMENTS",
     "",
-    "Use repository-local UT-TDD commands. Start with `ut-tdd status --json`, run the narrow verification for the target, and finish with `ut-tdd doctor` when workflow or gate behavior is affected.",
+    "Use repository-local HELIX commands through the current `ut-tdd` CLI. Start with `ut-tdd status --json`, run the narrow verification for the target, and finish with `ut-tdd doctor` when workflow or gate behavior is affected.",
     "",
   ].join("\n");
 }
@@ -129,9 +126,9 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   ...CLAUDE_COMMAND_TEMPLATE_SET,
   "adapter/AGENTS.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# UT-TDD Agent Harness Adapter",
+    "# HELIX Adapter",
     "",
-    "This project uses UT-TDD Agent Harness commands as the local orchestration surface.",
+    "This project uses HELIX commands as the local orchestration surface. The CLI is still `ut-tdd` until PLAN-M-02 performs the atomic identifier migration.",
     "",
     "- Status: `ut-tdd status`",
     "- Doctor: `ut-tdd doctor`",
@@ -146,9 +143,9 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   ].join("\n"),
   "adapter/CLAUDE.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# UT-TDD Agent Harness Shared Context",
+    "# HELIX Shared Context",
     "",
-    "Use repository-local UT-TDD commands for harness state and delegation.",
+    "Use repository-local HELIX commands for harness state and delegation. The current command name remains `ut-tdd` until PLAN-M-02.",
     "",
     "- `ut-tdd status` reports the local runtime mode.",
     "- `ut-tdd doctor` runs repository health checks.",
@@ -164,7 +161,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "<!-- UT-TDD:managed:start -->",
     "# Claude Runtime Adapter",
     "",
-    "Claude Code sessions should route harness lifecycle work through `ut-tdd`.",
+    "Claude Code sessions should route HELIX lifecycle work through the current `ut-tdd` CLI.",
     "Consumer-owned Claude instructions can be added outside this managed block.",
     "",
     "- Session evidence: `ut-tdd status` and `ut-tdd handover`",
@@ -260,7 +257,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   "adapter/.codex/config.toml": ["[features]", "hooks = true", ""].join("\n"),
   "adapter/.codex/hooks.json": [
     "{",
-    '  "$comment": "UT-TDD Codex adapter hooks. Hosted/API tool surfaces still require explicit `ut-tdd guard preflight` before edits because repo-local Codex hooks do not execute there.",',
+    '  "$comment": "Codex adapter hooks for HELIX. Hosted/API tool surfaces still require explicit `ut-tdd guard preflight` before edits because repo-local Codex hooks do not execute there. The CLI name is intentionally unchanged until PLAN-M-02.",',
     '  "hooks": {',
     '    "PreToolUse": [',
     "      {",
@@ -317,23 +314,23 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "}",
     "",
   ].join("\n"),
-  "adapter/.claude/commands/ut-tdd-status.md": [
+  "adapter/.claude/commands/helix-status.md": [
     "---",
-    "description: Show UT-TDD status and doctor output",
+    "description: Show HELIX status and doctor output",
     "---",
     "",
-    "Run `ut-tdd status --json` and `ut-tdd doctor`, then summarize mode, active drafts, open defers, and hard-gate failures.",
+    "Run `ut-tdd status --json` and `ut-tdd doctor`, then summarize HELIX mode, active drafts, open defers, and hard-gate failures.",
     "",
   ].join("\n"),
-  "adapter/.claude/commands/ut-tdd-test.md": [
+  "adapter/.claude/commands/helix-test.md": [
     "---",
-    "description: Run UT-TDD verification for the current change",
+    "description: Run HELIX verification for the current change",
     'argument-hint: "<changed area or PLAN id>"',
     "---",
     "",
     "Target: $ARGUMENTS",
     "",
-    "Run the narrow Vitest target first, then `bun run typecheck`, `bun run lint`, and `ut-tdd doctor` when the change affects core workflow or gates.",
+    "Run the narrow Vitest target first, then `bun run typecheck`, `bun run lint`, and `ut-tdd doctor` when the change affects HELIX workflow or gates.",
     "",
   ].join("\n"),
   "common/harness-check.yml": [
@@ -408,7 +405,7 @@ export const COMMON_FILES: { template: string; file: GeneratedFile }[] = [
     file: {
       path: "AGENTS.md",
       category: "A",
-      purpose: "UT-TDD adapter instructions (managed block)",
+      purpose: "HELIX adapter instructions (managed block)",
     },
   },
   {
@@ -416,7 +413,7 @@ export const COMMON_FILES: { template: string; file: GeneratedFile }[] = [
     file: {
       path: "CLAUDE.md",
       category: "A",
-      purpose: "UT-TDD shared adapter context (managed block)",
+      purpose: "HELIX shared adapter context (managed block)",
     },
   },
   {
@@ -432,7 +429,7 @@ export const COMMON_FILES: { template: string; file: GeneratedFile }[] = [
     file: {
       path: join(".codex", "hooks.json"),
       category: "A",
-      purpose: "Codex hook settings for UT-TDD CLI entrypoints",
+      purpose: "Codex hook settings for HELIX CLI entrypoints",
     },
   },
   {
@@ -448,25 +445,25 @@ export const COMMON_FILES: { template: string; file: GeneratedFile }[] = [
     file: {
       path: join(".claude", "settings.json"),
       category: "A",
-      purpose: "Claude hook settings for UT-TDD CLI entrypoints",
+      purpose: "Claude hook settings for HELIX CLI entrypoints",
     },
   },
   ...CLAUDE_AGENT_FILES,
   ...CLAUDE_COMMAND_FILES,
   {
-    template: "adapter/.claude/commands/ut-tdd-status.md",
+    template: "adapter/.claude/commands/helix-status.md",
     file: {
-      path: join(".claude", "commands", "ut-tdd-status.md"),
+      path: join(".claude", "commands", "helix-status.md"),
       category: "A",
-      purpose: "Claude slash command for UT-TDD status checks",
+      purpose: "Claude slash command for HELIX status checks",
     },
   },
   {
-    template: "adapter/.claude/commands/ut-tdd-test.md",
+    template: "adapter/.claude/commands/helix-test.md",
     file: {
-      path: join(".claude", "commands", "ut-tdd-test.md"),
+      path: join(".claude", "commands", "helix-test.md"),
       category: "A",
-      purpose: "Claude slash command for UT-TDD verification",
+      purpose: "Claude slash command for HELIX verification",
     },
   },
   {

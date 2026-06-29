@@ -1,7 +1,7 @@
 <!-- UT-TDD:managed:start -->
-# UT-TDD Agent Harness Shared Context
+# HELIX Shared Context
 
-Use repository-local UT-TDD commands for harness state and delegation.
+Use repository-local HELIX commands for harness state and delegation. The current command name remains `ut-tdd` until PLAN-M-02.
 
 - `ut-tdd status` reports the local runtime mode.
 - `ut-tdd doctor` runs repository health checks.
@@ -11,4 +11,3 @@ Use repository-local UT-TDD commands for harness state and delegation.
 
 Do not put secrets, tokens, or machine-local absolute paths in adapter docs.
 <!-- UT-TDD:managed:end -->
-

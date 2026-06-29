@@ -1,7 +1,7 @@
 <!-- UT-TDD:managed:start -->
-# UT-TDD Agent Harness Adapter
+# HELIX Adapter
 
-This project uses UT-TDD Agent Harness commands as the local orchestration surface.
+This project uses HELIX commands as the local orchestration surface. The CLI is still `ut-tdd` until PLAN-M-02 performs the atomic identifier migration.
 
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
@@ -12,4 +12,3 @@ This project uses UT-TDD Agent Harness commands as the local orchestration surfa
 
 Project-owned instructions outside this managed block remain consumer-owned.
 <!-- UT-TDD:managed:end -->
-

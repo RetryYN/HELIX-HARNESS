@@ -18,7 +18,7 @@ PLAN: PLAN-L6-05-setup-solo-team (add-design)。pair (③): docs/test-design/har
 上位整合: 要件 §6.5 Phase 0-A/0-B / §9.1 A/B 種別 / L4 external-if GitHub 境界 (後段 Reverse で back-fill)。
 -->
 
-# UT-TDD Agent Harness — L6 機能設計: ut-tdd setup solo/team (参加規模検出 + 提案/確認/記録 + GitHub 設定出し分け)
+# HELIX — L6 機能設計: ut-tdd setup solo/team (参加規模検出 + 提案/確認/記録 + GitHub 設定出し分け)
 
 ## §1 概要
 
@@ -109,7 +109,7 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 
 - 確定 phase: `.ut-tdd/state/setup.json` (gitignored runtime state、確定値の SSoT。毎回再推測しない安定化)。
 - 生成物の配置 (対象 repo): `.github/` (workflow / CODEOWNERS / ISSUE_TEMPLATE / PR template) / repo root or package.json (commitlint、L7 で config 最小化方針と突合) / `scripts/setup-branch-protection.sh`。
-- 本 repo のテンプレ置き場: `docs/templates/github/` と `docs/templates/adapter/`。テンプレ実ファイル群は `PLAN-L7-03-setup-solo-team` / `PLAN-L7-157-distribution-clean-pull` (add-impl) が `artifact_type=template` として generates・tracking する。既存プロジェクトへ harness binary だけを持ち込む場合は対象 repo にこの docs tree が存在しないため、`loadTemplates` は `BUILTIN_GITHUB_TEMPLATES` を fallback として持つ (PLAN-L7-66)。対象 repo 側の `docs/templates/github/` / `docs/templates/adapter/` が存在する場合はそれで built-in を上書きできる。adapter template には `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` / `.claude/settings.json` に加え、`.codex/config.toml` / `.codex/hooks.json` / Claude subagent templates / Claude slash-command templates を含める。root の開発用 `.claude` / `.codex` 状態は clean distribution から除外し、導入先には template 経由で投影する。
+- 本 repo のテンプレ置き場: `docs/templates/github/` と `docs/templates/adapter/`。テンプレ実ファイル群は `PLAN-L7-03-setup-solo-team` / `PLAN-L7-157-distribution-clean-pull` (add-impl) が `artifact_type=template` として generates・tracking する。既存プロジェクトへ harness binary だけを持ち込む場合は対象 repo にこの docs tree が存在しないため、`loadTemplates` は `BUILTIN_GITHUB_TEMPLATES` を fallback として持つ (PLAN-L7-66)。対象 repo 側の `docs/templates/github/` / `docs/templates/adapter/` が存在する場合はそれで built-in を上書きできる。adapter template には `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` / `.claude/settings.json` に加え、`.codex/config.toml` / `.codex/hooks.json` / Claude subagent templates / Claude slash-command templates を含める。consumer-facing prose / subagent / command は HELIX 名義にし、CLI 名・managed marker は `PLAN-M-02` の atomic migration まで `ut-tdd` / `UT-TDD:managed` を維持する。root の開発用 `.claude` / `.codex` 状態は clean distribution から除外し、導入先には template 経由で投影する。
 - hook: **無し** (setup は CLI subcommand。hook は足さない)。
 
 ## §3 ③ 単体テスト設計 (pair) — L7-unit-test-design.md §1.7
