@@ -11,6 +11,7 @@ pair_artifact: docs/test-design/helix/legacy-helix-extension.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 source_legacy_repo: RetryYN/ai-dev-kit-vscode
 source_legacy_commit: 1cb4c3e
+source_legacy_commit_full: 1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23
 ---
 
 # HELIX L3 要件 back-fill — old HELIX extension adoption

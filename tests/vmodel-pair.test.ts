@@ -482,6 +482,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     ]);
     for (const required of [
       "source_upstream_commit: 7f83ca8",
+      "source_upstream_commit_full: 7f83ca811353ed90b3e981178a1b0c9977dd5863",
       "A-146-substance-gap-consolidated-remediation.md",
       "green command digest",
       "runtime provenance",
@@ -1404,6 +1405,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     ]);
     for (const required of [
       "source_legacy_commit: 1cb4c3e",
+      "source_legacy_commit_full: 1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23",
       "TL advisor evidence",
       "detector axis registry",
       "recommender catalog",

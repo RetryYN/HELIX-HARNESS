@@ -11,12 +11,14 @@ pair_artifact: docs/test-design/helix/upstream-substance-gap.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 source_upstream_repo: unison-ai-product/UT-TDD_AGENT-HARNESS
 source_upstream_commit: 7f83ca8
+source_upstream_commit_full: 7f83ca811353ed90b3e981178a1b0c9977dd5863
 source_upstream_artifact: .ut-tdd/audit/A-146-substance-gap-consolidated-remediation.md
 ---
 
 # HELIX L3 要件 back-fill — upstream A-146 substance-gap adoption
 
-先行 `unison-ai-product/UT-TDD_AGENT-HARNESS` の `7f83ca8` に含まれる
+先行 `unison-ai-product/UT-TDD_AGENT-HARNESS` の `7f83ca8`
+(`7f83ca811353ed90b3e981178a1b0c9977dd5863`) に含まれる
 `.ut-tdd/audit/A-146-substance-gap-consolidated-remediation.md` を、HELIX 側へ採用するための
 L3 要件 back-fill。A-146 は「presence / projection は強いが、substance / runtime provenance が弱い」
 という監査結論を持つ。本書はその 8 findings を HELIX の L3 要件として受ける。
