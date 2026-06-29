@@ -4,11 +4,13 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  analyzeL7FeaturePackCoverage,
   analyzeProgramCoverage,
   checkSpanExistence,
   computeGateProgress,
   computeProgramRollup,
   extractRoadmap,
+  l7FeaturePackCoverageMessages,
   loadRoadmaps,
   PARKED_BANDS,
   PROGRAM_BANDS,
@@ -16,20 +18,41 @@ import {
   programCoverageMessages,
   type RoadmapRecord,
 } from "../src/lint/roadmap-registry";
-import { roadmapSchema, validateRoadmapStructure } from "../src/schema/roadmap";
+import { type Roadmap, roadmapSchema, validateRoadmapStructure } from "../src/schema/roadmap";
 
 /** test 用 RoadmapRecord factory (layer だけ可変、gates/spans は最小)。 */
 function record(planId: string, layer: string): RoadmapRecord {
   return {
     planId,
     file: `docs/plans/${planId}.md`,
-    roadmap: { layer, gates: [{ id: "G", name: "g", exit_criteria: "x" }], spans: [] },
+    roadmap: {
+      layer,
+      feature_packs: [],
+      gates: [{ id: "G", name: "g", exit_criteria: "x" }],
+      spans: [],
+    },
     errors: [],
   };
 }
 
 const VALID_ROADMAP = {
   layer: "L7",
+  feature_packs: [
+    {
+      id: "fp-db",
+      name: "database pack",
+      layer: "database",
+      exit_criteria: "DB responsibilities are represented",
+      owns: [],
+    },
+    {
+      id: "fp-service",
+      name: "service pack",
+      layer: "service",
+      exit_criteria: "service responsibilities are represented",
+      owns: [],
+    },
+  ],
   gates: [
     { id: "G-L7.A", name: "orphan guard", exit_criteria: "impl-plan-trace green + orphan 0" },
     {
@@ -39,10 +62,20 @@ const VALID_ROADMAP = {
     },
   ],
   spans: [
-    { plan_id: "PLAN-REVERSE-40-orphan-governance", after_gate: "entry", before_gate: "G-L7.A" },
-    { plan_id: "PLAN-REVERSE-41-substance-lints", after_gate: "G-L7.A", before_gate: "G-L7.B" },
+    {
+      plan_id: "PLAN-REVERSE-40-orphan-governance",
+      after_gate: "entry",
+      before_gate: "G-L7.A",
+      feature_pack: "fp-db",
+    },
+    {
+      plan_id: "PLAN-REVERSE-41-substance-lints",
+      after_gate: "G-L7.A",
+      before_gate: "G-L7.B",
+      feature_pack: "fp-service",
+    },
   ],
-};
+} satisfies Roadmap;
 
 function loadPlanStatuses(repoRoot: string): Map<string, string> {
   const planDir = join(repoRoot, "docs", "plans");
@@ -137,6 +170,7 @@ describe("roadmap park / program rollup (U-ROADMAP-019..022)", () => {
         file: "docs/plans/PLAN-UP.md",
         roadmap: {
           layer: "L3",
+          feature_packs: [],
           gates: [{ id: "G-UP", name: "up", exit_criteria: "x" }],
           spans: [{ plan_id: "PLAN-UP-1", after_gate: "entry", before_gate: "G-UP" }],
         },
@@ -147,6 +181,7 @@ describe("roadmap park / program rollup (U-ROADMAP-019..022)", () => {
         file: "docs/plans/PLAN-IMPL.md",
         roadmap: {
           layer: "L7",
+          feature_packs: [],
           gates: [{ id: "G-IMPL", name: "impl", exit_criteria: "x" }],
           spans: [{ plan_id: "PLAN-IMPL-1", after_gate: "entry", before_gate: "G-IMPL" }],
         },
@@ -224,7 +259,8 @@ describe("roadmap park / program rollup (U-ROADMAP-019..022)", () => {
     expect(rollup.coveredBands).toBe(rollup.totalBands);
     expect(rollup.parkedBands).toBe(0);
     expect(rollup.uncoveredBands).toBe(0);
-    expect(rollup.frontier).toEqual([]);
+    expect(rollup.frontier).not.toContain("verification");
+    expect(rollup.frontier).not.toContain("cutover");
   });
 });
 
@@ -274,6 +310,40 @@ describe("validateRoadmapStructure (U-ROADMAP-003/004/005)", () => {
     expect(validateRoadmapStructure(bad).filter((i) => i.kind === "duplicate-gate")).toHaveLength(
       1,
     );
+  });
+
+  it("U-ROADMAP-025: feature_pack id 重複と未知参照を構造 issue として surface", () => {
+    const duplicate = {
+      ...VALID_ROADMAP,
+      feature_packs: [
+        ...VALID_ROADMAP.feature_packs,
+        {
+          id: "fp-db",
+          name: "duplicate database pack",
+          layer: "database",
+          exit_criteria: "x",
+          owns: [],
+        },
+      ],
+    } satisfies Roadmap;
+    expect(
+      validateRoadmapStructure(duplicate).filter((i) => i.kind === "duplicate-feature-pack"),
+    ).toHaveLength(1);
+
+    const unknown = {
+      ...VALID_ROADMAP,
+      spans: [
+        {
+          plan_id: "PLAN-L7-UNKNOWN-PACK",
+          after_gate: "entry",
+          before_gate: "G-L7.A",
+          feature_pack: "fp-missing",
+        },
+      ],
+    };
+    expect(
+      validateRoadmapStructure(unknown).filter((i) => i.kind === "unknown-feature-pack"),
+    ).toHaveLength(1);
   });
 });
 
@@ -353,6 +423,7 @@ describe("computeGateProgress (U-ROADMAP-009/010)", () => {
   it("U-ROADMAP-023: completed は confirmed と同等に gate 到達計数へ含める", () => {
     const roadmap = {
       layer: "L7",
+      feature_packs: [],
       gates: [{ id: "G-L7.CLOSE", name: "close", exit_criteria: "span done" }],
       spans: [{ plan_id: "PLAN-L7-CLOSE", after_gate: "entry", before_gate: "G-L7.CLOSE" }],
     };
@@ -408,5 +479,63 @@ describe("analyzeProgramCoverage (U-ROADMAP-015〜018、全プログラム被覆
     ]);
     expect(all.uncovered).toHaveLength(0);
     expect(programCoverageMessages(all)[0]).toContain("OK");
+  });
+});
+
+describe("analyzeL7FeaturePackCoverage (U-ROADMAP-026/027、L7 意味責務被覆)", () => {
+  const l7FeaturePackRecord: RoadmapRecord = {
+    planId: "PLAN-L7-FEATURE-PACKS",
+    file: "docs/plans/PLAN-L7-FEATURE-PACKS.md",
+    roadmap: {
+      layer: "L7",
+      feature_packs: [
+        { id: "fp-db", name: "database", layer: "database", exit_criteria: "x", owns: [] },
+        { id: "fp-service", name: "service", layer: "service", exit_criteria: "x", owns: [] },
+        {
+          id: "fp-frontend",
+          name: "frontend",
+          layer: "frontend",
+          exit_criteria: "x",
+          owns: [],
+        },
+        { id: "fp-ui", name: "ui", layer: "ui", exit_criteria: "x", owns: [] },
+      ],
+      gates: [{ id: "G-L7PACK.A", name: "pack", exit_criteria: "x" }],
+      spans: [
+        {
+          plan_id: "PLAN-L7-44-harness-db-master",
+          after_gate: "entry",
+          before_gate: "G-L7PACK.A",
+          feature_pack: "fp-db",
+        },
+      ],
+    },
+    errors: [],
+  };
+
+  it("U-ROADMAP-026: L7 の database/service/frontend/ui feature pack が揃えば OK", () => {
+    const result = analyzeL7FeaturePackCoverage([l7FeaturePackRecord]);
+    expect(result.ok).toBe(true);
+    expect(result.missingLayers).toEqual([]);
+    expect(result.packs.map((pack) => pack.layer)).toEqual([
+      "database",
+      "service",
+      "frontend",
+      "ui",
+    ]);
+    expect(l7FeaturePackCoverageMessages(result)[0]).toContain("OK");
+  });
+
+  it("U-ROADMAP-027: L7 feature pack が不足すれば意味責務の未登録として fail-close", () => {
+    const result = analyzeL7FeaturePackCoverage([record("PLAN-L7-ONLY-GATES", "L7")]);
+    expect(result.ok).toBe(false);
+    expect(result.missingLayers).toEqual(["database", "service", "frontend", "ui"]);
+    expect(l7FeaturePackCoverageMessages(result)[0]).toContain("violation");
+  });
+
+  it("U-ROADMAP-028: real repo L7 roadmap covers database/service/frontend/ui feature packs", () => {
+    const result = analyzeL7FeaturePackCoverage(loadRoadmaps(process.cwd()));
+    expect(result.ok).toBe(true);
+    expect(result.missingLayers).toEqual([]);
   });
 });

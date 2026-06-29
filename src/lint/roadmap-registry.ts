@@ -13,7 +13,12 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { type Roadmap, roadmapSchema, validateRoadmapStructure } from "../schema/roadmap";
+import {
+  type Roadmap,
+  type RoadmapFeaturePackLayer,
+  roadmapSchema,
+  validateRoadmapStructure,
+} from "../schema/roadmap";
 import { fmValue } from "./shared";
 
 /** content から frontmatter block (先頭 `---` 〜 次 `---`) のテキストを返す。無ければ null。 */
@@ -105,6 +110,32 @@ export interface RoadmapRecord {
   errors: string[];
 }
 
+export const L7_REQUIRED_FEATURE_PACK_LAYERS = [
+  "database",
+  "service",
+  "frontend",
+  "ui",
+] as const satisfies readonly RoadmapFeaturePackLayer[];
+
+export type L7RequiredFeaturePackLayer = (typeof L7_REQUIRED_FEATURE_PACK_LAYERS)[number];
+
+export interface L7FeaturePackCoveragePack {
+  planId: string;
+  file: string;
+  id: string;
+  name: string;
+  layer: RoadmapFeaturePackLayer;
+  spanCount: number;
+}
+
+export interface L7FeaturePackCoverageResult {
+  ok: boolean;
+  requiredLayers: L7RequiredFeaturePackLayer[];
+  missingLayers: L7RequiredFeaturePackLayer[];
+  packs: L7FeaturePackCoveragePack[];
+  recordsChecked: number;
+}
+
 /**
  * forward プログラムのバンド (band) = 工程表 (roadmap) 登録が期待される機能群塊の単一正本。
  * 工程表の定義 = 人間向け**全プログラム台帳** (concept §10.2 [[全プログラム被覆]])。
@@ -180,6 +211,56 @@ export function analyzeProgramCoverage(
   const parked = coverage.filter((c) => !c.covered && parkedBandIds.has(c.band.id));
   const uncovered = coverage.filter((c) => !c.covered && !parkedBandIds.has(c.band.id));
   return { coverage, parked, uncovered };
+}
+
+/**
+ * L7 feature-pack coverage: L7 は単なる実装量ではなく、database/service/frontend/ui の
+ * 意味責務パックとして人間向け工程表に出ているかを検査する。
+ */
+export function analyzeL7FeaturePackCoverage(
+  records: RoadmapRecord[],
+  requiredLayers: readonly L7RequiredFeaturePackLayer[] = L7_REQUIRED_FEATURE_PACK_LAYERS,
+): L7FeaturePackCoverageResult {
+  const l7Records = records.filter((r) => r.roadmap.layer === "L7");
+  const packs = l7Records.flatMap((record) =>
+    record.roadmap.feature_packs.map((pack) => ({
+      planId: record.planId,
+      file: record.file,
+      id: pack.id,
+      name: pack.name,
+      layer: pack.layer,
+      spanCount: record.roadmap.spans.filter((span) => span.feature_pack === pack.id).length,
+    })),
+  );
+  const present = new Set(packs.map((pack) => pack.layer));
+  const missingLayers = requiredLayers.filter((layer) => !present.has(layer));
+
+  return {
+    ok: missingLayers.length === 0,
+    requiredLayers: [...requiredLayers],
+    missingLayers,
+    packs,
+    recordsChecked: l7Records.length,
+  };
+}
+
+export function l7FeaturePackCoverageMessages(result: L7FeaturePackCoverageResult): string[] {
+  if (result.ok) {
+    const byLayer = result.requiredLayers
+      .map((layer) => {
+        const packIds = result.packs
+          .filter((pack) => pack.layer === layer)
+          .map((pack) => `${pack.planId}:${pack.id}(${pack.spanCount} spans)`);
+        return `${layer}=${packIds.join("|")}`;
+      })
+      .join(", ");
+    return [
+      `l7-feature-pack-roadmap — OK (records=${result.recordsChecked}, required=${result.requiredLayers.join("/")}, ${byLayer})`,
+    ];
+  }
+  return [
+    `l7-feature-pack-roadmap — violation: L7 工程表に必須 feature pack が未登録 (${result.missingLayers.join(", ")}). L7 roadmap must expose database/service/frontend/ui responsibility packs, not only gate/span counts.`,
+  ];
 }
 
 /** doctor surface 用メッセージ (fail-close)。 */

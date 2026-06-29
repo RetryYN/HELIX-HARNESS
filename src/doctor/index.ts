@@ -204,10 +204,12 @@ import {
   rightArmGatePlanningMessages,
 } from "../lint/right-arm-gate-planning";
 import {
+  analyzeL7FeaturePackCoverage,
   analyzeProgramCoverage,
   checkSpanExistence,
   computeGateProgress,
   computeProgramRollup,
+  l7FeaturePackCoverageMessages,
   loadRoadmaps,
   PARKED_BANDS,
   programCoverageMessages,
@@ -1466,11 +1468,14 @@ export function checkRoadmap(repoRoot: string): { messages: string[]; ok: boolea
     const coverageMessages = programCoverageMessages(
       analyzeProgramCoverage(records, new Set(PARKED_BANDS.keys())),
     );
+    const featurePackCoverage = analyzeL7FeaturePackCoverage(records);
+    const featurePackMessages = l7FeaturePackCoverageMessages(featurePackCoverage);
     if (records.length === 0) {
       return {
         messages: [
           "roadmap - violation: 登録工程表なし (master-hub roadmap block 未使用)",
           ...coverageMessages,
+          ...featurePackMessages,
         ],
         ok: false,
       };
@@ -1514,9 +1519,10 @@ export function checkRoadmap(repoRoot: string): { messages: string[]; ok: boolea
       `roadmap-rollup — bands ${rollup.coveredBands}/${rollup.totalBands} covered (park ${rollup.parkedBands}, uncovered ${rollup.uncoveredBands}) / gates ${rollup.reachedGates}/${rollup.totalGates} reached / spans ${rollup.confirmedSpans}/${rollup.totalSpans} / frontier: ${rollup.frontier.length ? rollup.frontier.join(", ") : "なし"}`,
     );
     messages.push(...coverageMessages);
+    messages.push(...featurePackMessages);
     const coverageOk =
       analyzeProgramCoverage(records, new Set(PARKED_BANDS.keys())).uncovered.length === 0;
-    return { messages, ok: issueCount === 0 && coverageOk };
+    return { messages, ok: issueCount === 0 && coverageOk && featurePackCoverage.ok };
   } catch {
     return { messages: ["roadmap - violation: 工程表を読めず検査できない"], ok: false };
   }

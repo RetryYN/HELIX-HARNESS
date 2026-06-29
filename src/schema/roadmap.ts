@@ -20,21 +20,48 @@ export const roadmapGateSchema = z.object({
   exit_criteria: z.string().min(1),
 });
 
+export const roadmapFeaturePackLayerSchema = z.enum([
+  "database",
+  "service",
+  "frontend",
+  "ui",
+  "runtime",
+  "verification",
+  "integration",
+  "docs",
+]);
+
+/**
+ * 機能パック: L7 などの大きい実装層を意味責務で束ねる単位。
+ * gates/spans は進行順、feature_packs は人間/AI が担当できる責務境界を表す。
+ */
+export const roadmapFeaturePackSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  layer: roadmapFeaturePackLayerSchema,
+  exit_criteria: z.string().min(1),
+  owns: z.array(z.string().min(1)).default([]),
+});
+
 /** 区間: 2 ゲート間の 1 区間 = 1 PLAN。after_gate は "entry" (工程表入口) または gate id。 */
 export const roadmapSpanSchema = z.object({
   plan_id: z.string().min(1),
   after_gate: z.string().min(1),
   before_gate: z.string().min(1),
+  feature_pack: z.string().min(1).optional(),
 });
 
 /** 工程表: 対象大層 + 層内ゲート列 + 区間 (PLAN) 群。gates は層分解の最小単位なので 1 件以上。 */
 export const roadmapSchema = z.object({
   layer: z.string().min(1),
+  feature_packs: z.array(roadmapFeaturePackSchema).default([]),
   gates: z.array(roadmapGateSchema).min(1, "gates は 1 件以上 (工程表は層分解の体をなす)"),
   spans: z.array(roadmapSpanSchema).default([]),
 });
 
 export type Roadmap = z.infer<typeof roadmapSchema>;
+export type RoadmapFeaturePack = z.infer<typeof roadmapFeaturePackSchema>;
+export type RoadmapFeaturePackLayer = z.infer<typeof roadmapFeaturePackLayerSchema>;
 export type RoadmapGate = z.infer<typeof roadmapGateSchema>;
 export type RoadmapSpan = z.infer<typeof roadmapSpanSchema>;
 
@@ -42,7 +69,12 @@ export type RoadmapSpan = z.infer<typeof roadmapSpanSchema>;
 export const ROADMAP_ENTRY = "entry";
 
 export interface RoadmapStructureIssue {
-  kind: "unknown-gate" | "gate-order" | "duplicate-gate";
+  kind:
+    | "unknown-gate"
+    | "gate-order"
+    | "duplicate-gate"
+    | "duplicate-feature-pack"
+    | "unknown-feature-pack";
   message: string;
 }
 
@@ -63,6 +95,14 @@ export function validateRoadmapStructure(roadmap: Roadmap): RoadmapStructureIssu
     order.set(g.id, i);
   });
 
+  const featurePacks = new Set<string>();
+  for (const fp of roadmap.feature_packs) {
+    if (featurePacks.has(fp.id)) {
+      issues.push({ kind: "duplicate-feature-pack", message: `feature_pack id 重複: ${fp.id}` });
+    }
+    featurePacks.add(fp.id);
+  }
+
   for (const span of roadmap.spans) {
     const afterIdx = order.get(span.after_gate);
     const beforeIdx = order.get(span.before_gate);
@@ -82,6 +122,12 @@ export function validateRoadmapStructure(roadmap: Roadmap): RoadmapStructureIssu
       issues.push({
         kind: "gate-order",
         message: `span ${span.plan_id}: before_gate=${span.before_gate} が after_gate=${span.after_gate} より後ろでない`,
+      });
+    }
+    if (span.feature_pack && !featurePacks.has(span.feature_pack)) {
+      issues.push({
+        kind: "unknown-feature-pack",
+        message: `span ${span.plan_id} の feature_pack=${span.feature_pack} が feature_packs[] に不在`,
       });
     }
   }

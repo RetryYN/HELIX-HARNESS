@@ -744,3 +744,49 @@ test-design/plan/requirement nodes. It records `dependency_check_run_id`,
 `artifact_progress_events` rows and mirrors red/yellow rows into
 `feedback_events` with `source_table="artifact_progress"` so workflow routing can
 start from DB state.
+
+## 2026-06-30 L7 feature-pack roadmap Addendum (PLAN-L7-207)
+
+Roadmap progress is not sufficient if it only counts gates and spans. L7 must
+also expose semantic responsibility packs so the work can be checked against the
+feature list and not just against implementation volume.
+
+`roadmapSchema` extends the roadmap frontmatter contract:
+
+- `feature_packs[]`: optional array of `{ id, name, layer, exit_criteria, owns }`.
+  `layer` is one of `database`, `service`, `frontend`, `ui`, `runtime`,
+  `verification`, `integration`, or `docs`.
+- `span.feature_pack`: optional string reference to a declared
+  `feature_packs[].id`.
+- `validateRoadmapStructure(roadmap)` reports `duplicate-feature-pack` and
+  `unknown-feature-pack` in addition to gate structure issues.
+
+`analyzeL7FeaturePackCoverage(records, requiredLayers?)` is a pure function over
+loaded roadmap records. It filters `roadmap.layer === "L7"`, collects declared
+feature packs, and returns:
+
+```ts
+interface L7FeaturePackCoverageResult {
+  ok: boolean;
+  requiredLayers: Array<"database" | "service" | "frontend" | "ui">;
+  missingLayers: Array<"database" | "service" | "frontend" | "ui">;
+  packs: Array<{
+    planId: string;
+    file: string;
+    id: string;
+    name: string;
+    layer: RoadmapFeaturePackLayer;
+    spanCount: number;
+  }>;
+  recordsChecked: number;
+}
+```
+
+Default required layers are `database`, `service`, `frontend`, and `ui`. The
+function must not infer packs from PLAN `drive`; packs are explicit roadmap
+semantics. `l7FeaturePackCoverageMessages(result)` emits the doctor surface, and
+`checkRoadmap(repoRoot)` includes the result in `runDoctor.ok`.
+
+Invariant: a DB or frontend read-model pack cannot close the UI pack. Deferred
+UI work remains visible as a `ui` pack span until the component-derived UI
+implementation PLAN is confirmed.
