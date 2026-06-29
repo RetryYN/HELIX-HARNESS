@@ -17,8 +17,20 @@ function auditRow(id: string): string {
 
 describe("HELIX L0-L8 semantic design consistency audit", () => {
   it("records every audit decision and does not falsely mark all L7/L8 work complete", () => {
-    const proved = ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06", "C-07", "C-08", "C-11"];
-    const frontier = ["C-09", "C-10", "C-12"];
+    const proved = [
+      "C-01",
+      "C-02",
+      "C-03",
+      "C-04",
+      "C-05",
+      "C-06",
+      "C-07",
+      "C-08",
+      "C-09",
+      "C-10",
+      "C-11",
+    ];
+    const frontier = ["C-12"];
 
     for (const id of proved) {
       expect(auditRow(id), `${id} should be proved`).toContain("| proved |");
@@ -29,8 +41,11 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     }
 
     expect(auditRow("C-13")).toContain("| warning |");
-    expect(auditText()).toContain('The stronger claim "L7/L8 are fully complete" is not true');
+    expect(auditText()).toContain(
+      'The stronger claim "L7/L8 are fully complete" is still not true',
+    );
     expect(auditText()).toContain("G-L7PACK.C");
+    expect(auditText()).toContain("frontier: なし");
     expect(auditText()).toContain("PLAN-L7-141-web-dashboard-component-derived");
   });
 
@@ -53,6 +68,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "docs/plans/PLAN-L7-207-l7-feature-pack-roadmap-definition.md",
       "tests/roadmap.test.ts",
       "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
+      "tests/web.test.ts",
     ];
 
     for (const artifact of requiredArtifacts) {

@@ -167,10 +167,22 @@ const CLEAN_REQUIRED_PATHS = [
   "package.json",
   "src/cli.ts",
   "src/setup/index.ts",
+  "src/web/catalog.ts",
+  "src/web/index.ts",
+  "src/web/render.ts",
+  "src/web/tokens.ts",
+  "src/web/types.ts",
   ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
     (entry) => `docs/templates/${entry.template}`,
   ),
 ];
+const CLEAN_WEB_RUNTIME_FILES = new Set([
+  "src/web/catalog.ts",
+  "src/web/index.ts",
+  "src/web/render.ts",
+  "src/web/tokens.ts",
+  "src/web/types.ts",
+]);
 const CLEAN_DENY_PREFIXES = [
   ".ut-tdd/",
   "docs/plans/",
@@ -372,11 +384,13 @@ function normalizeDistributionPath(path: string): string {
 
 function isDeniedCleanPath(path: string): boolean {
   const p = normalizeDistributionPath(path);
+  if (CLEAN_WEB_RUNTIME_FILES.has(p)) return false;
   return CLEAN_DENY_PREFIXES.some((prefix) => p === prefix.slice(0, -1) || p.startsWith(prefix));
 }
 
 function isAllowedCleanPath(path: string): boolean {
   const p = normalizeDistributionPath(path);
+  if (CLEAN_WEB_RUNTIME_FILES.has(p)) return true;
   if (CLEAN_ALLOW_FILES.has(p)) return true;
   return CLEAN_ALLOW_PREFIXES.some((prefix) => p.startsWith(prefix));
 }

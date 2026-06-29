@@ -1006,7 +1006,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         parked_bands: 0,
         uncovered_bands: 0,
         total_gates: 23,
-        reached_gates: 22,
+        reached_gates: 23,
       });
 
       const verificationBand = db
@@ -1073,7 +1073,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         "L13",
         "L14",
       ]);
-      expect(verificationRuns.every((row) => row.ready_status === "blocked")).toBe(true);
+      expect(verificationRuns.every((row) => row.ready_status === "passed_local")).toBe(true);
       expect(
         verificationRuns
           .filter((row) => row.phase === "L12" || row.phase === "L13")
@@ -1117,7 +1117,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         )
         .all("PLAN-M-00-verify-cutover", "G-VERIFY.L%") as unknown as VerificationGateRow[];
       expect(verificationGates).toHaveLength(7);
-      expect(verificationGates.every((row) => row.status === "blocked")).toBe(true);
+      expect(verificationGates.every((row) => row.status === "passed")).toBe(true);
       expect(
         verificationGates.every((row) =>
           String(row.evidence_path).includes("A-132-l8-l14-verification-band-execution.md"),

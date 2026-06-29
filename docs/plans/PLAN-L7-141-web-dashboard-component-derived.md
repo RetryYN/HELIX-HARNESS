@@ -4,11 +4,10 @@ title: "PLAN-L7-141 (impl): src/web 中央UI 再実装 — ui-element §2 設計
 kind: impl
 layer: L7
 drive: fe
-status: draft
-version_target: future
+status: confirmed
 created: 2026-06-24
-updated: 2026-06-26
-owner: PM (Opus) / PO (人間)
+updated: 2026-06-30
+owner: PM (Opus) / PO (人間) / Codex
 parent_design: docs/design/harness/L2-screen/screen-list.md
 supersedes:
   - PLAN-L7-102-web-dashboard-phase-b
@@ -22,27 +21,78 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-141-web-dashboard-component-derived.md
     artifact_type: markdown_doc
+  - artifact_path: src/web/types.ts
+    artifact_type: source_module
+  - artifact_path: src/web/tokens.ts
+    artifact_type: source_module
+  - artifact_path: src/web/catalog.ts
+    artifact_type: source_module
+  - artifact_path: src/web/render.ts
+    artifact_type: source_module
+  - artifact_path: src/web/index.ts
+    artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
+  - artifact_path: tests/web.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L2-03-ui-element.md
   references:
     - docs/plans/PLAN-L7-102-web-dashboard-phase-b.md
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T04:15:00+09:00"
+    tests_green_at: "2026-06-30T04:15:00+09:00"
+    verdict: approve
+    scope: "PLAN-L7-141 resumed for a component-derived read-only static UI slice: 15 L2 screens, L4 token source, no table-dumper, CLI web render surface. L10 UX polish and implemented_screens declaration remain separate frontiers."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/web.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T04:15:00+09:00"
+        evidence_path: tests/web.test.ts
+        output_digest: "sha256:5a3fd2544c6bfa21ea4f0b57c63e9601e9d53dc4b5162b32e97bda1e248a5352"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T04:15:00+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:4637e0591dee4a807fa236c9b6c648f23dacdaa4a2f9fbd10bc811a98e481f96"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T04:15:00+09:00"
+        evidence_path: src/web/catalog.ts
+        output_digest: "sha256:89751205161e2d91c71128fe514a3fa935570231665619ac89e844e0677407bc"
 ---
 
 # PLAN-L7-141 (impl): src/web 中央UI 再実装 (component-derived)
 
-## 優先度: 後回し / deferred (PO 2026-06-26)
+## 優先度: 再開 / first component-derived slice landed (Codex 2026-06-30)
 
-PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (clean distribution channel) を別PCで使える状態に
-する** ことを優先する (PO「UI は後回しで配布できるようにしたい」「UI は後程でいい」)。
+PO 決定 (2026-06-26) では **中央UI (画面) は後回し** としていたが、2026-06-30 の L0-L8 completion 監査で
+`G-L7PACK.C` / 本 PLAN が L7 frontier として残っていることを確認したため、Codex で first component-derived
+slice を再開した。
 
-- 本 PLAN は `status=draft` のまま **deferred** とする。破棄 (archived) **ではない** — UI は「後で」やる。
+- 本 PLAN は `status=confirmed`。`src/web` に L2/L4 由来の component registry、L4 token reader、read-only
+  static renderer、`ut-tdd web render` CLI surface、`tests/web.test.ts` を追加済み。
+- ただし `implemented_screens` はまだ立てない。`screen-impl-pair-freeze` の L10 境界と、impl 後 UX 磨き /
+  WCAG 実比検証は別frontierとして残す。
 - 配布の active track = [[PLAN-L7-157-distribution-clean-pull]] (R2: 中央UI/画面 = L7-141/146 は配布物に
-  **同梱しない** = 画面なしで配布。本 deferral と整合)。同系列の serverless 共有も後回し
-  ([[PLAN-L7-146-serverless-readonly-share]])。
-- 再開条件: 配布チャネルが PO 承認・着地した後、PO 指示で本 PLAN を再開する。
-- 非終端 (draft) のまま残るため `ut-tdd status` の outstanding には引き続き計上される (後回し = 完了ではない)。
+  **同梱しない** = 画面なしで配布、という過去判断は distribution channel の判断として残る。今回の着地は
+  product runtime へ配布を強制しない repo-local L7 implementation slice。
+  同系列の serverless 共有 ([[PLAN-L7-146-serverless-readonly-share]]) は引き続き別frontier。
 
 ## 0. なぜ再起票か (PO 2026-06-24「画面のほうは一度破棄。使い物にならないから要件を正して再起票」)
 
@@ -75,15 +125,18 @@ prototype コード (`src/web/*.ts`) と `tests/web.test.ts`、`cli web` command
 
 ## 2. Scope (着手時)
 
-- `src/web/` を ui-element §2 部品ベースで再構築 (render 部品 → 画面 → router/app/server)。
-- `cli web` command 再配線、`tests/web.test.ts` を部品単位で再設計。
-- L4 FE 設計標準 (ui-standard、PLAN-L4-14) が未到達なら本 PLAN はそこで block (段階順を破らない)。
+- `src/web/` を ui-element §2 部品ベースで再構築 (component catalog → 15 screen composition → static app shell)。
+- `cli web render` command 再配線、`tests/web.test.ts` を部品単位で再設計。
+- L4 FE 設計標準 (ui-standard、PLAN-L4-14) 到達済み。`tokens.yaml` を唯一のtoken sourceとして読む。
+- Serverless共有・runtime配信・L10 UX磨きは本first sliceの外。後続frontierとして残す。
 
 ## 3. Acceptance Criteria
 
-- 15 画面が ui-element §2 部品から構成され、table-dumper 描画が無い。
+- 15 画面が ui-element §2 部品から構成され、table-dumper 描画が無い。`tests/web.test.ts` が固定。
 - `screen-impl-pair-freeze` gate green かつ L4 FE 設計標準 (ui-standard) 到達後にのみ `implemented_screens` を宣言。
-- mission (工程管理表) で進捗が測れる。
+  本sliceでは L10 未到達のため宣言しない。
+- mission (工程管理表) は PM-01 `HeatmapGrid` を含む component composition で表現する。
+- `ut-tdd web render --out <path> --json` が静的 read-only HTML を生成する。
 - doctor / lint / vitest / plan lint green。review evidence を confirmed 前に記録。
 
 ## 4. Schedule
@@ -95,6 +148,11 @@ prototype コード (`src/web/*.ts`) と `tests/web.test.ts`、`cli web` command
 - Step 2: ui-element §2 部品の render 実装。
 - Step 3: 画面 → router/app/server 配線 + tests。
 - Step 4: review → confirmed。
+- Step 2 ✓ (2026-06-30): `src/web/catalog.ts` に L2 §2 由来の共通10部品 + 画面固有40部品 + 15 screen
+  composition を実装。
+- Step 3 ✓ (2026-06-30): `src/web/render.ts` で read-only static app shell を実装し、`src/cli.ts` に
+  `web render` を再配線。副作用はファイル書き出しのみで、UI実行/API呼び出しは持たない。
+- Step 4 ✓ (2026-06-30): `tests/web.test.ts` + `tests/cli-surface.test.ts` + typecheck/lint green。
 
 ## 5. 壊さない / 再発させない
 

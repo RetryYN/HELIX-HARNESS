@@ -168,6 +168,7 @@ import {
 } from "./team/run";
 import { formatVmodelInjection, resolveVmodelInjection } from "./vmodel/injection";
 import { lintVmodel } from "./vmodel/lint";
+import { componentCoverageSummary, loadUiTokens, renderAppShell } from "./web";
 import {
   buildCommandCatalog,
   evaluateRouteCommand,
@@ -1552,6 +1553,38 @@ skill
       }
     },
   );
+
+const web = program.command("web").description("component-derived read-only web UI");
+web
+  .command("render")
+  .description("render the component-derived read-only UI as static HTML")
+  .option("--out <path>", "write HTML to a file instead of stdout")
+  .option("--json", "JSON output with coverage summary")
+  .action((opts: { out?: string; json?: boolean }) => {
+    try {
+      const tokens = loadUiTokens(defaultTokenPathFromCwd());
+      const html = renderAppShell(tokens);
+      const summary = componentCoverageSummary();
+      if (opts.out) {
+        mkdirSync(dirname(opts.out), { recursive: true });
+        writeFileSync(opts.out, html);
+      } else if (!opts.json) {
+        process.stdout.write(html);
+      }
+      if (opts.json) {
+        process.stdout.write(
+          `${JSON.stringify({ ok: true, output_path: opts.out ?? null, ...summary }, null, 2)}\n`,
+        );
+      }
+    } catch (e) {
+      process.stderr.write(`web render failed: ${String(e)}\n`);
+      process.exitCode = 1;
+    }
+  });
+
+function defaultTokenPathFromCwd(): string {
+  return join(process.cwd(), "docs", "design", "harness", "L4-basic-design", "tokens.yaml");
+}
 
 program
   .command("review")

@@ -26,13 +26,14 @@ P0/P1/P2/P3/P4/P6/P7/P8/P9 are lowered from charter to L1 HBR/HNFR, to 43 L3
 requirements, to 10 L4 blocks, to 10 L5 contracts, and to 30 L6 function
 contracts with L7/L8/L9/L12/L14 paired test-design artifacts.
 
-The stronger claim "L7/L8 are fully complete" is not true as a product/runtime
-statement. Current evidence proves selected L8/G8 workflow closure and L7
-roadmap/feature-pack visibility, but the L7 UI implementation pack remains an
-explicit frontier through `PLAN-L7-207-l7-feature-pack-roadmap-definition` /
-`G-L7PACK.C` / `PLAN-L7-141-web-dashboard-component-derived`. L1/L14 also still
-marks several pillar capabilities as `partial` or `not-implemented` at runtime
-level. Those are valid design states, not completed runtime states.
+The stronger claim "L7/L8 are fully complete" is still not true as a
+product/runtime statement. Current evidence proves selected L8/G8 workflow
+closure and the L7 feature-pack roadmap now has no rollup frontier after
+`PLAN-L7-141-web-dashboard-component-derived` landed a first component-derived
+UI slice. However the screen implementation declaration remains intentionally
+unset until the L10 UX/WCAG pair is reached. L1/L14 also still marks several
+pillar capabilities as `partial` or `not-implemented` at runtime level. Those
+are valid design states, not completed runtime states.
 
 ## Audit Table
 
@@ -46,10 +47,10 @@ level. Those are valid design states, not completed runtime states.
 | C-06 | L5 creates integration-observable contracts and pairs every L3 item to an L8 `LIT-*` case. | proved | `docs/design/helix/L5-detail/pillar-detail-design.md`, `docs/test-design/helix/L5-pillar-integration-test-design.md` | L5/L8 is design-complete for the 43-item integration test design surface. |
 | C-07 | L6 lowers L5 contracts to implementable function families and L7 oracles. | proved | `docs/design/helix/L6-function-design/pillar-function-design.md`, `docs/test-design/helix/L6-pillar-unit-test-design.md` | L6 is the current function-contract source for future L7 implementation slices. |
 | C-08 | L8/G8 workflow has executable closure for selected integration coverage, but not universal product completion. | proved | `docs/test-design/harness/L8-integration-test-design.md`, `tests/g8-integration-workflow.test.ts`, `.ut-tdd/evidence/g8-integration/` | Current doctor result `g8-integration-workflow - OK (it_cases=43, manifests=2, selected_it=12, mandatory_it=6)` closes the selected G8 workflow profile only. |
-| C-09 | L7 feature-pack semantics expose DB/service/frontend/UI/verification responsibilities. | frontier | `docs/plans/PLAN-L7-207-l7-feature-pack-roadmap-definition.md`, `tests/roadmap.test.ts` | `G-L7PACK.C` is pending by design; UI implementation carry remains visible and must not be counted as done by DB/read-model work. |
-| C-10 | Roadmap rollup still has an L7 frontier. | frontier | `bun run src/cli.ts doctor` on 2026-06-30 | Doctor reports `roadmap-rollup ... gates 22/23 ... spans 87/88 / frontier: PLAN-L7-207-l7-feature-pack-roadmap-definition`. Therefore "all L7 complete" is false. |
+| C-09 | L7 feature-pack semantics expose DB/service/frontend/UI/verification responsibilities, and the UI pack now has a first implementation slice. | proved | `docs/plans/PLAN-L7-207-l7-feature-pack-roadmap-definition.md`, `docs/plans/PLAN-L7-141-web-dashboard-component-derived.md`, `tests/roadmap.test.ts`, `tests/web.test.ts` | `G-L7PACK.C` is reached after `PLAN-L7-141` became confirmed; DB/read-model work no longer masks the UI pack. |
+| C-10 | Roadmap rollup no longer has an L7 feature-pack frontier. | proved | `bun run src/cli.ts doctor` on 2026-06-30 | Doctor reports `roadmap-rollup ... gates 23/23 ... spans 88/88 / frontier: なし`. This closes the roadmap frontier, not the L10/screen declaration frontier. |
 | C-11 | Drive model execution says this request must not be narrowed automatically. | proved | `bun run src/cli.ts task classify --design-docs --json`, `bun run src/cli.ts team suggest --design-docs --mode hybrid --json`, `bun run src/cli.ts route eval --signal design_drift --format json` | Classification is `drive=fullstack`, `drive_confidence=0.6`, finding `low-drive-confidence`; design drift routes to `mode=reverse`; cheap docs lanes cannot close risk. |
-| C-12 | Screen/UI surface is intentionally not implementation-complete. | frontier | `bun run src/cli.ts doctor`, `docs/plans/PLAN-L7-141-web-dashboard-component-derived.md` | Doctor reports `screen-impl-pair-freeze - OK (実装宣言なし = mock 段階, next_pair_freeze=L10)` and `frontend-design-coverage ... body present 3 / pending 3`. |
+| C-12 | Screen/UI surface still has an L10 declaration frontier. | frontier | `bun run src/cli.ts doctor`, `docs/plans/PLAN-L7-141-web-dashboard-component-derived.md`, `src/web/`, `tests/web.test.ts` | Doctor reports `screen-impl-pair-freeze - OK (実装宣言なし = mock 段階, next_pair_freeze=L10)`. The repo now has component-derived `src/web` code, but `implemented_screens` is not declared until the L10 UX/WCAG pair is reached. |
 | C-13 | Charter filename/version is a citation ambiguity. | warning | File path `docs/design/helix/L0-charter/helix-charter_v0.1.md` contains title/version `v0.2`. | Do not rename in this audit because many trace references point to the current path. Record as naming carry for a later atomic migration. |
 
 ## Drive-Model Optimization
@@ -69,11 +70,12 @@ The drive model was not used as a rubber stamp. It changed the process:
 The current defensible completion statement is:
 
 L0-L6 semantic design descent is complete and paired. L8 selected workflow
-verification is complete for the current G8 profile. L7 is not universally
-complete because `G-L7PACK.C` / UI implementation carry is still a visible
-frontier, and several L1 pillar runtime capabilities remain `partial` or
+verification is complete for the current G8 profile. L7 feature-pack roadmap
+coverage is now complete, including the UI pack. Universal product completion is
+still not proven because the screen implementation declaration is gated by L10
+UX/WCAG, and several L1 pillar runtime capabilities remain `partial` or
 `not-implemented`.
 
 The next implementation-design target for "L7/L8 full completion" is to close
-or intentionally version-target the UI/runtime frontiers rather than hiding them
-inside aggregate roadmap counts.
+the L10/screen declaration frontier and the remaining runtime pillar frontiers,
+rather than relying on aggregate roadmap counts.

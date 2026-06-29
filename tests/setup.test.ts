@@ -400,6 +400,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "package.json",
         "src/cli.ts",
         "src/setup/index.ts",
+        "src/web/catalog.ts",
+        "src/web/index.ts",
+        "src/web/render.ts",
+        "src/web/tokens.ts",
+        "src/web/types.ts",
         ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
           (entry) => `docs/templates/${entry.template}`,
         ),
@@ -415,6 +420,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.ok).toBe(true);
     expect(plan.channel).toBe("clean-repo-plus-signed-tarball");
     expect(plan.artifactPaths).toContain("LICENSE");
+    expect(plan.artifactPaths).toContain("src/web/catalog.ts");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/AGENTS.md");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.codex/hooks.json");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/agents/code-reviewer.md");
