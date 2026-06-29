@@ -124,7 +124,7 @@ const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
 
 const ROUTE_COMMAND_TASK_CLASSIFY = "ut-tdd task classify";
 const ROUTE_COMMAND_DOCTOR = "ut-tdd doctor";
-const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/contracts.ts";
+const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/routing-contracts.ts";
 
 export function validateRouteConfigText(input: {
   path: string;
@@ -299,6 +299,13 @@ const ROUTE_SIGNAL_MAP: RouteSignalEntry[] = [
   {
     tokens: ["user_feedback_iteration", "requirement_continuous_refinement", "scrum"],
     mode: "scrum",
+    command: ROUTE_COMMAND_TASK_CLASSIFY,
+    preflight: true,
+    requiresApproval: false,
+  },
+  {
+    tokens: ["version_deferral", "version-up", "version_up"],
+    mode: "version-up",
     command: ROUTE_COMMAND_TASK_CLASSIFY,
     preflight: true,
     requiresApproval: false,

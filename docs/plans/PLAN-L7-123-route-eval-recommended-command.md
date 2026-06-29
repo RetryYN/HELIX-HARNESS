@@ -21,6 +21,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc
+  - artifact_path: src/workflow/routing-contracts.ts
+    artifact_type: source_module
   - artifact_path: src/workflow/contracts.ts
     artifact_type: source_module
   - artifact_path: src/cli.ts
@@ -92,3 +94,19 @@ Make the signal routing requirement executable through `ut-tdd route eval
   names are rejected by the existing schema.
 - Unknown signals return explicit not-available routing (`exit_code=2`) without
   a runnable command.
+- `version_deferral` returns `mode=version-up`, matching
+  `PLAN-REVERSE-140` / `docs/process/modes/version-up.md` after the
+  version-up mode was adopted.
+
+## 2026-06-30 version-up route backfill
+
+The original route evaluator predated `PLAN-DISCOVERY-09` / `PLAN-REVERSE-140`.
+After version-up was adopted as a mode, docs/process and requirements named
+`version_deferral -> version-up`, but `ut-tdd route eval --signal
+version_deferral` still returned `no-route`. This was an executable drive-model
+gap, not a docs-only typo.
+
+This follow-up adds `version_deferral` / `version-up` / `version_up` tokens to
+`src/workflow/routing-contracts.ts` and fixes
+`tests/workflow-contracts.test.ts` so the route evaluator and mode docs remain
+aligned.

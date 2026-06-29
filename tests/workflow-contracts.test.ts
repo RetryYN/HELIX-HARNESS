@@ -165,6 +165,7 @@ describe("L7 workflow contract implementations", () => {
     expect(routeSignalToMode({ signal: "drift", drive: "agent" }).candidates[0]).toBe("reverse");
     expect(routeSignalToMode({ signal: "regression_prod" }).candidates[0]).toBe("incident");
     expect(routeSignalToMode({ signal: "new_requirement" }).candidates[0]).toBe("add-feature");
+    expect(routeSignalToMode({ signal: "version_deferral" }).candidates[0]).toBe("version-up");
     const routeEval = evaluateRouteCommand({ signal: "reverse gap" });
     expect(routeEval.mode).toBe("reverse");
     expect(routeEval.exit_code).toBe(0);
@@ -203,6 +204,14 @@ describe("L7 workflow contract implementations", () => {
     expect(driftRoute.recommended_command?.args).toMatchObject({ drift_type: "schema" });
     const additiveInterruptRoute = evaluateRouteCommand({ signal: "new_requirement" });
     expect(additiveInterruptRoute.mode).toBe("add-feature");
+    const versionUpRoute = evaluateRouteCommand({ signal: "version_deferral" });
+    expect(versionUpRoute.mode).toBe("version-up");
+    expect(versionUpRoute.exit_code).toBe(0);
+    expect(versionUpRoute.recommended_command?.command).toBe("ut-tdd task classify");
+    expect(versionUpRoute.recommended_command?.args).toMatchObject({
+      signal: "version_deferral",
+      mode: "version-up",
+    });
     const legacyCommandRoute = evaluateRouteCommand({
       signal: "legacy override",
       route_map: [
