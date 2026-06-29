@@ -668,6 +668,20 @@ projection-only telemetry は trace 補助であり、実 runtime provenance の
 | U-HLX-012 | `buildContinuousRunControlDecision` | continuous run は trigger / queue lock / timebox / budget profile / stop condition / verification evidence を必須にし、stop condition なし auto-run は `deny`。 |
 | U-HLX-013 | `buildLearningFeedbackDecision` | feedback/recipe/learning は evidence と review state 付き improvement candidate に留め、learning output 単独で acceptance close しない。 |
 
+### §1.25 U-UPSTREAM (upstream A-146 semantic adoption decision contracts)
+
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-UPSTREAM-001 | `classifyUpstreamA146Finding` | `A146-1..A146-8` だけを known とし、HU-FR/HU-C/U-UPSTREAM trace へ接続する。未知 finding は known 扱いしない。 |
+| U-UPSTREAM-002 | `buildGuardGovernancePack` | Claude/Codex guard entrypoints、deferred surfaces、coverage claims を分離し、未実装 guard を covered と主張したら fail。 |
+| U-UPSTREAM-003 | `resolveConsumerCliPath` | consumer hook の CLI 呼び出しは PATH / wrapper / resolver のいずれかで解決できる場合のみ resolved。不可なら remediation 付き fail-close。 |
+| U-UPSTREAM-004 | `verifyGreenEvidenceBinding` | command rerun、exit 0、evidence path、digest update が同一 batch にある場合だけ integrity closed。hash-only restamp は closed にならない。 |
+| U-UPSTREAM-005 | `classifyTelemetryProvenance` | telemetry row を runtime / projected / derived / unknown に分類し、`source: runtime` だけでなく runtime event/evidence path を要求する。unknown は runtime evidence として扱わない。 |
+| U-UPSTREAM-006 | `curateDistributionDoc` | consumer / internal / dogfood / deny を分類し、blanket governance allowlist や dogfood marker は consumer package 混入を止める。 |
+| U-UPSTREAM-007 | `evaluateFeDesignSubstance` | FE design body を populated / explicit_defer / out_of_scope / hollow に分類し、presence-only を populated にしない。 |
+| U-UPSTREAM-008 | `validateDriveEntryMatrix` | `signal -> mode` と `kind x drive` の両方が matrix と一致した場合のみ auto route。未知/矛盾は fail-close/defer/human review。 |
+| U-UPSTREAM-009 | `verifyRuntimeMatcherEvidence` | target runtime surface、emitted tool event、matcher、matcher fire、guard result が揃い、tool event が matcher と一致する場合だけ covered。期待だけなら unverified。 |
+
 ## PLAN-L7-81 Codex Wrapper Parity Addendum
 
 | U-ID | Target | Oracle |
