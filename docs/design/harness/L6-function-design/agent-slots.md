@@ -80,6 +80,7 @@ export interface AgentSlotsDeps {
 }
 
 export const DEFAULT_MAX_PARALLEL = 8;   // .claude/CLAUDE.md 並列上限と整合
+export const MAX_TEAM_PARALLEL = 8;      // team.yaml 入力の hard cap (SEC-3)
 export const DEFAULT_STALE_MINUTES = 5;  // source reference の list_stale_slots と同じ既定値
 ```
 
@@ -110,13 +111,15 @@ export const teamMemberSchema = z.object({
 export const teamDefinitionSchema = z.object({
   name: z.string().min(1),
   strategy: teamStrategySchema.default("sequential"),  // source reference の team_runner と同じ安全側デフォルト
-  max_parallel: z.number().int().positive().default(8),
+  max_parallel: z.number().int().positive().max(MAX_TEAM_PARALLEL).default(8),
   serialization: serializationReasonSchema.optional(), // チーム全体の直列化根拠 (3 条件)
   members: z.array(teamMemberSchema).min(1),           // 空 → reject (zod fail-close)
 });
 ```
 
 `teamDefinitionSchema` は `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml` (`hybrid` mode) の入力である。`strategy` のデフォルトを `sequential` にするのは source reference の team runner と同じ安全側設計。
+`max_parallel` は consumer/dogfood を問わず `MAX_TEAM_PARALLEL` を超える値を zod で reject し、過大並列による
+resource exhaustion を設定段階で止める (upstream `PLAN-L7-196` SEC-3 採用)。
 
 **model/effort policy (FR-L1-37 landing)**: `difficulty` 未指定時は `selectTeamModel` が task keyword から `trivial|simple|standard|complex|critical` を決定論推定し、`recommendModelEffort` の `model_family` / `reasoning_effort` へ接続する。`model` / `effort` が明示された member は override として `model_selection.*_source="explicit"` に記録する。推挙は hidden prompt state ではなく `buildTeamRunPlan().members[].model_selection` と prompt header に出す。`model` override は `gpt-*|claude-*|codex-*|haiku|sonnet|opus|local` のみ zod で受理し、タイポを fail-close する。Claude は `--model` / `--effort` / `CLAUDE_CODE_EFFORT_LEVEL` に渡す。Codex は `-m` に model を渡し、effort は公式 surface を pin するまで evidence/prompt metadata に留める。
 

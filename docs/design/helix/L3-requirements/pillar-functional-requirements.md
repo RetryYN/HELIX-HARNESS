@@ -80,7 +80,7 @@ next_pair_freeze: L12
 | HR-NFR-P3-04 | HNFR-P3 / HBR-P3 | AI による実装作業は test-first を既定にし、Red evidence、expected failure、acceptance oracle、Green evidence、refactor safety を記録する。test-first 不適用は理由と代替 oracle を持たなければならない | HAC-N3-04a / HAC-N3-04b |
 | HR-NFR-P5-01 | HNFR-P5 | injection budget は直近逐語 / rolling summary / stable constraints の 3 層と層境界数値を持ち、可逆圧縮に必要な artifact trail と raw/evidence pointer を汎用要約から分離して保持する | HAC-N5-01a / HAC-N5-01b |
 | HR-NFR-P5-02 | HNFR-P5 | handover は anchored iterative 方式で固定 section に差分追記し、全再生成で Next Action / artifact trail を落とさない | HAC-N5-02a / HAC-N5-02b |
-| HR-NFR-P5-03 | HNFR-P5 / HBR-P3 | verification workload は fast/default/full の test profile、並列度、resource budget、実行時間記録を持ち、通常 loop で必要以上の full suite を強制しない | HAC-N5-03a / HAC-N5-03b |
+| HR-NFR-P5-03 | HNFR-P5 / HBR-P3 | verification workload は fast/default/full の test/verification profile、並列度、CPU/IO/resource budget、timeout、p95 duration budget、実行時間記録を持ち、通常 loop で必要以上の full suite を強制しない。初期 budget は fast<=120s / default<=600s / full<=1800s を上限目安とし、超過時は continuation/blocker/improvement task に変換する | HAC-N5-03a / HAC-N5-03b |
 | HR-NFR-P8-01 | HNFR-P8 | 認証/認可/決済/PII/secret/license/schema migration/destructive data/external API・infra 変更は action-binding approval なしに適用しない | HAC-N8-01a / HAC-N8-01b |
 | HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |
 | HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |
@@ -170,8 +170,8 @@ L3 要件の受入条件として固定する。
 | HAC-N5-01b | artifact trail または raw/evidence pointer が summary にしか無い | handover lint を実行 | 可逆圧縮不能な trail 欠落として fail/warn |
 | HAC-N5-02a | handover を更新する | generator を実行 | 固定 section に差分 merge し、Next Action を保持する |
 | HAC-N5-02b | 全再生成で prior blockers が落ちる | lint を実行 | drift として検出する |
-| HAC-N5-03a | local verification を要求する loop がある | test profile を選択 | 変更影響に応じて fast/default/full を選び、選択理由と実行時間を evidence に残す |
-| HAC-N5-03b | full suite または高負荷検証が必要 | scheduler が実行 | 並列度・CPU/IO 負荷・timeout budget を守り、超過時は continuation/blocker として扱う |
+| HAC-N5-03a | local verification を要求する loop がある | test/verification profile を選択 | 変更影響に応じて fast/default/full を選び、選択理由、timeout、p95 duration budget、実測 duration、実行 worker 数を evidence に残す。fast は 120s 以内、default は 600s 以内を既定上限にし、超過は改善候補または blocker に分類する |
+| HAC-N5-03b | full suite または高負荷検証が必要 | scheduler が実行 | full profile は 1800s 以内の p95 duration budget、並列度、CPU/IO 負荷、timeout budget を持つ。超過時は silent retry せず continuation/blocker/improvement task として扱い、通常 loop に full suite を無条件で強制しない |
 | HAC-N8-01a | irreversible/high-impact operation がある | apply を試行 | action-binding approval なしに止まる |
 | HAC-N8-01b | approval がある | apply 前に検査 | actor/tool/target/params/timestamp/expiry が一致しない approval は無効 |
 | HAC-N8-02a | prompt injection pattern または data exfiltration 誘導がある | filter policy を評価 | threat class、source、matched rule、decision、redacted span が audit に残る |
@@ -217,7 +217,7 @@ AI-driven development の実務上の不変条件として以下を L3 に取り
 | DDD は bounded context と ubiquitous language を境界の正本にし、context 間の翻訳/依存を明示する | `HR-FR-P7-03` / `HAC-P7-03a/b` | https://martinfowler.com/bliki/BoundedContext.html / https://martinfowler.com/bliki/UbiquitousLanguage.html |
 | TDD は Red/Green/Refactor と acceptance oracle を実装順序に組み込み、AI 実装でも failing test または代替 oracle を evidence にする | `HR-NFR-P3-04` / `HAC-N3-04a/b` | https://martinfowler.com/bliki/TestDrivenDevelopment.html |
 | regression は code/test/doc/requirement graph と実行 evidence で追跡し、AI 生成変更の影響範囲を層別に比較する | `HR-NFR-P3-03` / `HR-FR-P9-03` / `HAC-N3-03a/b` / `HAC-P9-03a/b` | https://arxiv.org/abs/2603.17973 |
-| harness engineering は test isolation、parallel worker/resource budget、trace/metric/log observability を持つ。HELIX では UI 固有 runner の採用ではなく、fast/default/full profile、worker 数、duration、flake、metric trend、span を harness DB に収束する要求へ変換する | `HR-NFR-P5-03` / `HR-FR-P4-03` / `HR-FR-P9-03` / `HAC-N5-03a/b` / `HAC-P4-03a/b` / `HAC-P9-03a/b` | https://playwright.dev/docs/best-practices / https://playwright.dev/docs/test-parallel / https://opentelemetry.io/docs/what-is-opentelemetry/ |
+| harness engineering は test isolation、parallel worker/resource budget、trace/metric/log observability を持つ。HELIX では UI 固有 runner の採用ではなく、fast/default/full profile、worker 数、timeout、p95 duration budget、duration、flake、metric trend、span を harness DB に収束する要求へ変換する | `HR-NFR-P5-03` / `HR-FR-P4-03` / `HR-FR-P9-03` / `HAC-N5-03a/b` / `HAC-P4-03a/b` / `HAC-P9-03a/b` | https://playwright.dev/docs/best-practices / https://playwright.dev/docs/test-parallel / https://opentelemetry.io/docs/what-is-opentelemetry/ |
 
 ## §3 既存 L3 back-fill との関係
 

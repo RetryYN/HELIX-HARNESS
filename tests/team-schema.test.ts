@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { mustSerialize, type SerializationReason, teamDefinitionSchema } from "../src/schema/team";
+import {
+  MAX_TEAM_PARALLEL,
+  mustSerialize,
+  type SerializationReason,
+  teamDefinitionSchema,
+} from "../src/schema/team";
 
 describe("U-TEAM-001 teamDefinitionSchema", () => {
   const valid = {
@@ -15,6 +20,15 @@ describe("U-TEAM-001 teamDefinitionSchema", () => {
 
   it("members 空 → reject", () => {
     expect(() => teamDefinitionSchema.parse({ name: "t", members: [] })).toThrow();
+  });
+
+  it("max_parallel は既定上限を超えた値を reject する", () => {
+    expect(
+      teamDefinitionSchema.parse({ ...valid, max_parallel: MAX_TEAM_PARALLEL }).max_parallel,
+    ).toBe(MAX_TEAM_PARALLEL);
+    expect(() =>
+      teamDefinitionSchema.parse({ ...valid, max_parallel: MAX_TEAM_PARALLEL + 1 }),
+    ).toThrow();
   });
 
   it("不正な role → reject / 不正な strategy → reject", () => {
