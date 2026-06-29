@@ -245,6 +245,55 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     }
   });
 
+  it("U-SETUP-004c: built-in adapter templates ship enforced portable guard hooks", () => {
+    const repo = mkdtempSync(join(tmpdir(), "ut-tdd-setup-templates-"));
+    const templates = loadTemplates(repo);
+    try {
+      const claude = JSON.parse(templates["adapter/.claude/settings.json"]) as {
+        hooks: Record<
+          string,
+          { matcher?: string; hooks: { command: string; blockOnFailure?: boolean }[] }[]
+        >;
+      };
+      const codex = JSON.parse(templates["adapter/.codex/hooks.json"]) as {
+        hooks: Record<
+          string,
+          { matcher?: string; hooks: { command: string; blockOnFailure?: boolean }[] }[]
+        >;
+      };
+
+      expect(claude.hooks.PreToolUse).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            matcher: "Agent|Task",
+            hooks: [
+              expect.objectContaining({ command: "ut-tdd hook agent-guard", blockOnFailure: true }),
+            ],
+          }),
+          expect.objectContaining({
+            matcher: "Edit|Write|MultiEdit",
+            hooks: [
+              expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+            ],
+          }),
+        ]),
+      );
+      expect(claude.hooks.SubagentStop[0].hooks[0].command).toBe("ut-tdd hook subagent-stop");
+      expect(codex.hooks.PreToolUse).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            matcher: "apply_patch|write_file",
+            hooks: [
+              expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+            ],
+          }),
+        ]),
+      );
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
   it("U-SETUP-014: emitSetup skips the commitlint dotfile when package.json already declares commitlint", () => {
     // 純関数: 宣言済み→true / 無し→false / 壊れ JSON→false / null→false。
     expect(packageJsonDeclaresCommitlint('{"commitlint":{"extends":["x"]}}')).toBe(true);

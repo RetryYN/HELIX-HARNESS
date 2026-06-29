@@ -58,3 +58,58 @@ type MatcherCompatibility = "covered" | "unverified" | "incompatible";
   HELIX design contracts.
 - Findings already generally covered by pillar docs remain separately traceable through `HU-FR-*`, so future
   completion audits can prove A-146 adoption directly instead of inferring it from broad pillar requirements.
+
+## §4 verification strategy adoption (upstream PLAN-L7-188)
+
+上流 `PLAN-L7-188-verification-strategy-design-time-logging` の趣旨を HELIX へ採用する。ここでは
+L7 実装を起こさず、L6 の function contract と paired oracle だけを固定する。
+
+| 関数 | signature | DbC | oracle |
+|------|-----------|-----|--------|
+| `classifyRuntimeVerificationEvidence` | `(input: RuntimeEvidenceClaim) => RuntimeVerificationClass` | `fired` / `used` / `works` / `blocked` / `recovered` / `observed` の claim は、実 `session_id`、実 `source`、adapter/runtime surface、timestamp、evidence path を持つ場合だけ `runtime_verified`。projection-only は `projection_only_unverified`。欠落は `missing_runtime_provenance`。 | U-VERIFYSTRAT-001 |
+| `buildRunDebugObligation` | `(input: CapabilityVerificationInput) => RunDebugObligation` | runtime behavior を主張する capability には L7.5 RUN & Debug obligation を生成する。unit-only helper は `not_required` にできるが、理由と代替 oracle を必須にする。 | U-VERIFYSTRAT-002 |
+| `rejectProjectionOnlyVerification` | `(input: RuntimeVerificationClass) => VerificationGateDecision` | `projection_only_unverified` と `missing_runtime_provenance` は accept 不能。trace 補助としては保存できるが、works/fired/used の完了根拠にはしない。 | U-VERIFYSTRAT-003 |
+
+```ts
+type RuntimeVerificationClass =
+  | "runtime_verified"
+  | "projection_only_unverified"
+  | "missing_runtime_provenance"
+  | "not_runtime_claim";
+
+type RunDebugObligationKind = "required" | "not_required" | "blocked";
+```
+
+Safety rule: L7 unit green is necessary for implementation correctness, but runtime behavior acceptance requires
+L7.5 RUN & Debug evidence before trace-freeze/review/accept. This prevents projection rows from replacing real
+verification evidence.
+
+## §5 runtime verification log design
+
+RUN & Debug の実証拠は後付けメモではなく、L6 設計時点でログ構造を予約する。ログは保守性のために
+「何が動いたか」「どの設計/テストに対応するか」「なぜ accept できるか」を結合できる形にする。
+
+```ts
+interface RuntimeVerificationLogEvent {
+  event_id: string;
+  plan_id: string;
+  requirement_id: string | null;
+  test_oracle_id: string | null;
+  claim: "fired" | "used" | "works" | "blocked" | "recovered" | "observed";
+  session_id: string;
+  source: "runtime-hook" | "adapter-command" | "run-debug" | "hosted-preflight";
+  runtime_surface: "claude-hook" | "codex-hook" | "codex-hosted-api" | "ut-tdd-cli" | "external-api";
+  correlation_id: string;
+  evidence_path: string;
+  occurred_at: string;
+  redaction_policy: "secret-redacted" | "no-secret-material" | "blocked-sensitive";
+}
+```
+
+| 関数 | signature | DbC | oracle |
+|------|-----------|-----|--------|
+| `buildRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput) => RuntimeVerificationLogEvent` | plan_id / claim / session_id / source / runtime_surface / correlation_id / evidence_path / occurred_at を必須にする。secret-like 値は event に入れず `redaction_policy` で表現する。 | U-VERIFYSTRAT-004 |
+| `validateRuntimeVerificationLogCompleteness` | `(event: RuntimeVerificationLogEvent) => RuntimeLogCompleteness` | `works` / `used` / `fired` claim は空 session_id、projection source、evidence_path 欠落、correlation_id 欠落を reject。`blocked` は hosted-preflight でも可だが blocked reason evidence を要求する。 | U-VERIFYSTRAT-005 |
+
+Operational note: these log events are append-only evidence inputs for later projection. Projection may summarize them,
+but the original runtime log event remains the acceptance source of truth.

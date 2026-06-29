@@ -20,6 +20,29 @@ match, the expected result is the union of every required document, evidence
 item, and gate. LLM wording such as "minor", "simple", "not needed", or "skip"
 is treated as a finding only and must not remove required documents.
 
+## 0. Test Strategy And Verification Strategy
+
+This document carries both sides of the right-arm obligation:
+
+- **Test strategy** decides which L7/L8/L9/L12/L14 test-design artifacts and
+  oracles are required for a change.
+- **Verification strategy** decides which real evidence proves the changed
+  system actually ran and satisfied the intended behavior.
+
+Unit/integration/system/acceptance/operational test rows are necessary but not
+sufficient for falsifiable runtime claims such as fired, used, works, shipped,
+blocked, recovered, or observed. Those claims require runtime provenance:
+session id, command or adapter surface, source category, timestamp, and the
+evidence path that connects the event back to the design/test-design pair.
+Projection-only rows can support traceability, but they cannot close a
+verification claim by themselves.
+
+The implementation valley may use L7 unit tests as Red/Green proof. A capability
+that claims runtime behavior must also reserve a RUN & Debug verification slot
+before acceptance: execute the capability in the intended adapter/runtime,
+capture real provenance, then run trace/review gates against that evidence. This
+is the design-time contract for the later L7.5 RUN & Debug phase.
+
 ## 1. Coverage Tiers
 
 | Tier | Meaning | Required test-design response |

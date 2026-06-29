@@ -26,6 +26,18 @@ next_pair_freeze: L3
 - Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 43 件とは別枠で §1.1 に受入観測を持つ。
 - 孤児: 0。詳細は §2 / §2.1 trace。
 
+## §0.1 HELIX 検証戦略
+
+本書は L12 受入テスト設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。
+HELIX ではこれに加え、受入 claim を閉じる **検証戦略**を要求する。
+
+- HAT が runtime behavior を観測する場合、合格根拠は実 command / adapter / hook / session 由来の evidence
+  でなければならない。DB projection、計画表、coverage 数値だけでは `works` claim を閉じない。
+- P2/P7/HNFR-AC の Claude/Codex runtime parity は、direct hook が効く surface と hosted/API preflight-only
+  surface を分け、どちらの evidence で受け入れるかを記録する。
+- P3/P9 の実装精度・DB 収束は、L7.5 RUN & Debug で捕捉した runtime provenance を L12 受入 evidence
+  に接続する。projection-only telemetry は未検証として扱う。
+
 ## §1 受入テスト
 
 | HAT-ID | 対応 L3 | 対応 AC | 受入観測 | 機械検証候補 |

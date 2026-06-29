@@ -555,6 +555,55 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l6).toContain(
       "Findings already generally covered by pillar docs remain separately traceable",
     );
+    for (const required of [
+      "verification strategy",
+      "RuntimeVerificationClass",
+      "L7.5 RUN & Debug",
+      "projection_only_unverified",
+      "missing_runtime_provenance",
+      "RuntimeVerificationLogEvent",
+      "correlation_id",
+      "redaction_policy",
+      "U-VERIFYSTRAT-001",
+      "U-VERIFYSTRAT-002",
+      "U-VERIFYSTRAT-003",
+      "U-VERIFYSTRAT-004",
+      "U-VERIFYSTRAT-005",
+    ]) {
+      expect(`${l6}\n${testDesign}`).toContain(required);
+    }
+  });
+
+  it("U-VPAIR-005c.1: HELIX 検証戦略は L3/L4/L5/L6 の右腕 test-design に降下済み", () => {
+    const l3 = readFileSync(
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "utf8",
+    );
+    const l4Test = readFileSync("docs/test-design/helix/L4-pillar-system-test-design.md", "utf8");
+    const l5Test = readFileSync(
+      "docs/test-design/helix/L5-pillar-integration-test-design.md",
+      "utf8",
+    );
+    const l6 = readFileSync(
+      "docs/design/helix/L6-function-design/upstream-substance-gap.md",
+      "utf8",
+    );
+    const l6Test = readFileSync("docs/test-design/helix/upstream-substance-gap.md", "utf8");
+    const combined = `${l3}\n${l4Test}\n${l5Test}\n${l6}\n${l6Test}`;
+
+    for (const required of [
+      "検証戦略 overlay",
+      "system verification strategy",
+      "integration verification strategy",
+      "runtime verification log design",
+      "L7.5 RUN & Debug",
+      "projection-only telemetry",
+      "runtime provenance",
+      "RuntimeVerificationLogEvent",
+      "U-VERIFYSTRAT-005",
+    ]) {
+      expect(combined).toContain(required);
+    }
   });
 
   it("U-VPAIR-005d: HELIX L1 external delta の具体化語彙が L3/L12 に降下済み", () => {
@@ -615,6 +664,10 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "https://opentelemetry.io/docs/what-is-opentelemetry/",
       "test isolation",
       "parallel worker/resource budget",
+      "検証戦略 overlay",
+      "L7.5 RUN & Debug",
+      "projection-only telemetry",
+      "実 `session_id`",
       "trace/metric/log observability",
       "screen-list / screen-flow / screen-detail / ui-element / business-flow / wireframe",
       "back-propagation workflow",

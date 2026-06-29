@@ -103,6 +103,18 @@ L5 `HC-*` contract matrix の 4 面を観測する。
 | contract output | `ForwardReturnDecision`、`AutonomyResumeDecision`、`LoopDispatchDecision`、`VerificationEvidenceProfile`、`DistributionPlan`、`SecurityBoundaryDecision` 等の正規化出力が一意に決まること | L6 function contract へ降下不可 |
 | fail-close behavior | missing return、over-budget self-continue、self-review claim、untrusted instruction、approval/preflight 欠落、projection 未収束などが green にならないこと | L8 case は negative path を持つ |
 
+## §3.1 integration verification strategy
+
+L8 integration では、module/adapter/state 境界を跨いだ実挙動を観測する。テスト戦略は Given/When/Then
+を決めるが、検証戦略はその観測が実 runtime 由来かを決める。
+
+| Verification axis | Required evidence | Fail condition |
+|-------------------|-------------------|----------------|
+| runtime provenance | real `session_id`, `source`, adapter/runtime surface, timestamp, evidence path | projection-only row or empty session id cannot prove fired/used/works |
+| cross-boundary correlation | PLAN id, requirement/test id, module or adapter boundary, and correlation id join across log/projection rows | unjoinable log rows remain trace-support only |
+| debug reproducibility | L7.5 RUN & Debug command or adapter invocation can be rerun or reviewed from recorded args with secrets redacted | prose-only debug note is not acceptance evidence |
+| negative verification | hosted/API hook non-enforcement, preflight-only edits, blocked external actions, and missing approval remain observable as blocked outcomes | blocked path absent from integration evidence |
+
 ## §4 source-design coverage
 
 旧 HELIX source から採用するのは設計概念のみで、L8 では以下が観測対象になる。

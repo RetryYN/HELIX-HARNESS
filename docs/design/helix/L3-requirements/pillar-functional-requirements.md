@@ -88,6 +88,12 @@ next_pair_freeze: L12
 | HR-NFR-AC-02 | HNFR-AC | hosted API/developer tool surface は repo hook 非強制であることを明示し、作業前 preflight と監査ログを必須にする | HAC-NAC-02a / HAC-NAC-02b |
 | HR-NFR-AC-03 | HNFR-AC / HBR-P2 / HBR-P8 | AI runtime は provider API 直叩きや SDK 常駐実行を前提にせず、PLAN artifact、repo-local CLI adapter、harness DB trace、dry-run plan を正本にする。外部 API / infra / GitHub 操作は plan emit と action-binding approval を経ない限り実適用しない | HAC-NAC-03a / HAC-NAC-03b |
 
+**検証戦略 overlay (PLAN-L7-188 採用)**: HR-NFR-P3-01〜04 / HR-NFR-P5-03 / HR-NFR-AC-02〜03 は
+テスト戦略だけで閉じない。`fired` / `used` / `works` / `blocked` / `recovered` / `observed` など runtime
+behavior claim は L7.5 RUN & Debug で実 `session_id`、実 `source`、adapter/runtime surface、timestamp、
+evidence path を捕捉し、projection-only telemetry を未検証として扱う。これにより右腕の検証戦略を
+L3 要件の受入条件として固定する。
+
 ## §2 Acceptance Criteria 詳細
 
 | AC-ID | Given | When | Then |

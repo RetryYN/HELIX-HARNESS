@@ -50,3 +50,16 @@ Completeness oracle: U-UPSTREAM-001 covers the exact A146-1..A146-8 ID set.
 - This test-design does not claim the L7 implementations exist.
 - This test-design does not close external publication, tag, signed artifact, UAT, or release evidence.
 - This test-design prevents A-146 adoption from being inferred from broad existing pillar requirements alone.
+
+## §4 verification strategy oracles
+
+These oracles pair with `docs/design/helix/L6-function-design/upstream-substance-gap.md` §4 and adopt upstream
+`PLAN-L7-188` at design level only.
+
+| Oracle | Contract | Expected behavior |
+|--------|----------|-------------------|
+| U-VERIFYSTRAT-001 | `classifyRuntimeVerificationEvidence` | classifies claims with real session/source/surface/timestamp/evidence path as `runtime_verified`; projection-only rows become `projection_only_unverified`; missing provenance becomes `missing_runtime_provenance` |
+| U-VERIFYSTRAT-002 | `buildRunDebugObligation` | runtime behavior claims generate an L7.5 RUN & Debug obligation; unit-only helpers can skip it only with an explicit reason and substitute oracle |
+| U-VERIFYSTRAT-003 | `rejectProjectionOnlyVerification` | projection-only and missing-provenance classes cannot close fired/used/works acceptance, though they may remain trace-support evidence |
+| U-VERIFYSTRAT-004 | `buildRuntimeVerificationLogEvent` | produces an append-only event with plan/test/claim/session/source/surface/correlation/evidence/timestamp and redaction policy, without storing secret-like values |
+| U-VERIFYSTRAT-005 | `validateRuntimeVerificationLogCompleteness` | rejects fired/used/works events with empty session id, projection source, missing evidence path, or missing correlation id; blocked hosted-preflight events require blocked-reason evidence |

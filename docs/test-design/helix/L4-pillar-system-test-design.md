@@ -26,6 +26,18 @@ next_pair_freeze: L4
 - Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の acceptance で観測し、本 L4 pillar system test では 43 件に二重計上しない。ただし HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
 
+## §0.1 system verification strategy
+
+L9 system test は system behavior の観測設計であり、HST-* の pass は実行済み unit/integration
+test の集計だけでは閉じない。HELIX では system-level claim を以下で検証する。
+
+- HST-P2 / HST-P7 / HST-NAC の runtime parity は、Claude/Codex direct hook、Codex hosted/API
+  preflight-only surface、adapter command のどこで実際に観測したかを evidence path に持つ。
+- HST-P3 / HST-P9 の completion claim は、projection-only telemetry ではなく L7.5 RUN & Debug の
+  runtime provenance log に紐づく場合だけ `works` と扱う。
+- HST-P6 / HST-P8 の external/GitHub/API 操作は、dry-run plan と action-binding approval の evidence
+  が無い限り system pass にしない。
+
 ## §1 system test trace
 
 | HST-ID | 対応 L3 | 対応 L4 block | system 観測 |

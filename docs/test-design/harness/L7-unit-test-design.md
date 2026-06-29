@@ -39,6 +39,17 @@ L6 機能設計の各**関数 signature + DbC + edge** が L7 単体テスト (U
 - **edge-case**: `@edge-normal/error/boundary/throws` (4 観点) → edge 単位 U-* 必須
 - 孤児 = 0 (`ut-tdd vmodel lint` の edge 5-8 照合に接続)
 
+## §0.1 テスト戦略と検証戦略の分離
+
+本書の主責務は L6⇔L7 の **テスト戦略**である。つまり、関数契約・DbC・edge をどの U-* oracle
+で Red/Green にするかを固定する。
+
+ただし、runtime behavior を主張する機能は、単体テスト green だけでは完了しない。`fired` / `used` /
+`works` / `blocked` / `recovered` / `observed` など実走で反証可能な claim は **検証戦略**を別に持つ。
+検証戦略は L7.5 RUN & Debug phase で実 adapter/runtime を動かし、実 `session_id`、実 `source`、
+実 command / adapter surface、timestamp、evidence path を捕捉してから trace-freeze / review / accept に渡す。
+projection-only telemetry は trace 補助であり、実 runtime provenance の代替として accept しない。
+
 ## §1 単体テスト (U-*) — placeholder skeleton
 
 > L7 = 個別関数の **単体**を対象 (最小単位、純粋関数中心)。既存 vitest 66 test が seed (analyzeX/evaluateAgentGuard/detectMode/frontmatter)。個別 U ケースは L7 entry で展開。
