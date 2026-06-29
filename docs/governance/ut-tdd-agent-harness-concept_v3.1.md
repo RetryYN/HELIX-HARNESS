@@ -208,7 +208,7 @@ cross-agent review は **別 runtime / 別モデルのレビュアー**を前提
 2. ② は同一モデルのため **cross-provider 要件を満たさない**。`same_model_approval: forbidden` を実行時強制し、worker と reviewer の (provider, model) 一致時は承認を無効化して gate を止める (hybrid でも同一モデル割当を弾く)。**機械着地 (IMP-076)**: review_evidence entry に `worker_model` / `reviewer_model` を記録し、doctor `checkReviewEvidence` が cross_agent entry の同一/欠落を `crossReviewViolations` として fail-close 検出する (単体 runtime は相異 model を供給できず `cross_agent` を僭称できない = 核心ルール 1 の静的担保)。PLAN-L6-13/L7-14/REVERSE-13。
 3. ② のレビュー観点は曖昧にせず **明文化された checklist を逐条評価** し、各項目に pass/fail/n-a + 根拠を記録する (checklist 正本は要件定義書 §7.8.7)。
 4. `orchestration_mode` (§2.6.4) が要求する agent が execution mode で不在なら、silent fallback せず **縮退規則**で別 mode に落とすか人間に委ねる (不在を明示記録)。例: `claude_judge_codex_impl` は hybrid のみ完全実体化。claude-only では実装も Claude が担い review は ② に縮退、codex-only では Codex 主導 + ②。
-5. **escalation 境界 (本番影響 / 認証 / 認可 / 決済 / PII / ライセンス / destructive) は execution mode を問わず人間サインオフ必須** (② でも代替不可。hard-block。§8 エスカレーションと整合)。
+5. **escalation 境界 (本番影響 / 認証 / 認可 / 決済 / PII / secret / ライセンス / schema migration / destructive / 外部 API・infra 変更) は execution mode を問わず人間サインオフ必須** (② でも代替不可。hard-block。§8 エスカレーションと整合)。
 6. **定量テスト → 定性レビュー順序 (全駆動モデル普遍、IMP-077)**: 品質保証は定量テスト (vitest/doctor/lint) × 定性レビュー (review tier) の二軸 (柱6)。**定量検証が green になってから定性レビューを行う** (未検証成果物をレビューしない)。9 駆動モデルすべての workflow に普遍 (各 mode の verify step が review/サインオフ step の前。Discovery=S3 verify→S4 / Refactor=テスト緑→commit / Incident=収束確認→postmortem 等)。機械着地 = review_evidence の `tests_green_at ≤ reviewed_at` を doctor `checkReviewEvidence` が fail-close 検出。PLAN-L6-14/L7-15/REVERSE-14。
 
 機械検証要件と checklist 正本は要件定義書 §7.8.7。

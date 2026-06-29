@@ -106,10 +106,13 @@ const ROUTE_CONFIG_FORBIDDEN_PATTERNS: {
 const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
   "authentication",
   "authorization",
+  "access control",
   "payment",
   "billing",
   "credential",
   "secret",
+  "hmac",
+  "webhook",
   "pii",
   "license",
   "production",
@@ -117,6 +120,8 @@ const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
   "migration",
   "schema",
   "external api",
+  "external infrastructure",
+  "infrastructure",
 ].map((term) => ({
   term,
   pattern: new RegExp(`\\b${term}s?\\b`, "i"),

@@ -212,6 +212,17 @@ describe("L7 workflow contract implementations", () => {
       signal: "version_deferral",
       mode: "version-up",
     });
+    const versionUpExternalRoute = evaluateRouteCommand({
+      signal:
+        "version_deferral Cloudflare HMAC webhook access control external infrastructure activation",
+    });
+    expect(versionUpExternalRoute.mode).toBe("version-up");
+    expect(versionUpExternalRoute.exit_code).toBe(1);
+    expect(versionUpExternalRoute.escalation_boundaries.map((b) => b.term)).toEqual(
+      expect.arrayContaining(["hmac", "webhook", "access control", "external infrastructure"]),
+    );
+    expect(versionUpExternalRoute.approval.status).toBe("policy_missing");
+    expect(versionUpExternalRoute.recommended_command?.safety.requires_human_approval).toBe(true);
     const legacyCommandRoute = evaluateRouteCommand({
       signal: "legacy override",
       route_map: [

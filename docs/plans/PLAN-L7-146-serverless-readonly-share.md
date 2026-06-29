@@ -16,7 +16,7 @@ agent_slots:
   - role: se
     slot_label: "SE — Cloudflare Pages/Workers/D1 free deploy + GitHub webhook projection sync (read-only)"
   - role: tl
-    slot_label: "TL — read-only/S5=b 不変・free-tier guardrail・escalation 不要のレビュー"
+    slot_label: "TL — read-only/S5=b 不変・free-tier guardrail・外部infra/auth/secret escalation 境界レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-146-serverless-readonly-share.md
     artifact_type: markdown_doc
@@ -41,15 +41,17 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
   **同梱しない** = 画面なしで配布。本 deferral と整合)。ただし中央UI 本体の first component-derived slice
   ([[PLAN-L7-141-web-dashboard-component-derived]]) は 2026-06-30 に着地済みであり、本 PLAN の未了範囲は
   serverless 共有配信層だけに限定される。
-- 再開条件: 配布チャネルが PO 承認・着地し、外部 Cloudflare 配信 / HMAC secret / 閲覧アクセス制御へ進む人間承認が出た後、本 PLAN を再開する。
+- 再開条件: 配布チャネルが PO 承認・着地し、外部 Cloudflare 配信 / HMAC secret / webhook / 閲覧アクセス制御へ進む action-binding approval が出た後、本 PLAN を再開する。
 - 非終端 (draft) のまま残るため `ut-tdd status` の outstanding / version-up parked には引き続き計上される (将来版保全 = 完了ではない)。
 - `ut-tdd route eval --signal version_deferral --format json` は `mode=version-up` を返す。駆動モデル上も、本 PLAN は active L7 frontier ではなく version-up parked として扱う。
+- activation 信号（例: `version_deferral Cloudflare HMAC webhook access control external infrastructure activation`）は mode=`version-up` のまま `escalation_boundaries[]` を返し、approval policy/approval が無ければ exit 1 になる。将来版保全と外部配信適用を混同しない。
 
 ## 0. なぜ (PO 決定 2026-06-24「無料で、AI 編集なしでいけない？」→「OK それでいこう」)
 
 中央UI を **AI 編集なし = read-only の共有ダッシュボードに絞り、Cloudflare 無料枠で $0** 配信する。
 これは確定原則 **S5=b**(UI は副作用 API を持たない)/ **S-01**(AI は CLI 経由のみ)/ **CC2**(人間主導)/
-**ADR-005 D2**(UI から CLI 直接発動しない)を**一切変えない** = 要件改定も escalation も不要の、最も安全で安い入口。
+**ADR-005 D2**(UI から CLI 直接発動しない)を**一切変えない**。ただし Cloudflare 配信、GitHub webhook HMAC、閲覧 access control、secret は
+HNFR-P8 / XR-2 の外部 API・infra / secret / auth 境界であり、実適用には action-binding approval が必要。
 PO 元来の狙い「全員で進捗・設計書を共有して見る」(ADR-005 D2 中央・全 project 横断)をフルに満たす。
 
 ## 1. L2 起点の descent (PO「L2 からな」、段階順を飛ばさない)
