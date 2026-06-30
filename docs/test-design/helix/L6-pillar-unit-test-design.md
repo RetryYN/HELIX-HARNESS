@@ -63,7 +63,7 @@ next_pair_freeze: L6
 | HU-PILLAR-P8-02 | HR-FR-P8-02 | HC-P8 | `validateSourceAttribution` | skillify candidate は license/safety/scope review 欠落で registry reject |
 | HU-PILLAR-P8-03 | HR-FR-P8-03 | HC-P8 | `selectSandboxTokenPolicy` / `requireActionBindingApproval` | external action に sandbox/token/approval を要求 |
 | HU-PILLAR-P8-04 | HR-FR-P8-04 | HC-P8 | `parseExternalSecurityFilter` | raw/metadata/trusted extraction/instruction を分離 |
-| HU-PILLAR-P9-01 | HR-FR-P9-01 | HC-P9 | `checkProjectionConvergence` | projection 未収束 artifact を complete 扱いにしない |
+| HU-PILLAR-P9-01 | HR-FR-P9-01 | HC-P9 | `checkProjectionConvergence` / `analyzeOutstandingWork` | projection 未収束 artifact を complete 扱いにしない。PO/S4 判断待ち、version-up parked、rename/cutover 承認待ちは `semantic_feature_frontier_record` として `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` に分類され、`completionClaimAllowed=false` を返す |
 | HU-PILLAR-P9-02 | HR-FR-P9-02 | HC-P9 | `classifyContractChange` | relation graph/contract ledger に breaking/compatible/migration-needed を要求 |
 | HU-PILLAR-P9-03 | HR-FR-P9-03 | HC-P9 | `queryLayerRegressionImpact` | layer baseline/gate/metric/owner 欠落を blocker にする |
 | HU-PILLAR-N3-01 | HR-NFR-P3-01 | HC-P3 | `classifyVerificationEvidenceProfile` | green command/review tier/external grounding を区別 |
@@ -106,7 +106,7 @@ next_pair_freeze: L6
 | HC-P8 | untrusted external text is never copied into executable instruction fields |
 | HC-P9 | stale projection or missing layer gate keeps `ConvergenceStatus` non-green |
 | HC-AC | Codex hosted/API surface cannot be classified as hook-covered without preflight evidence |
-| G-SF | semantic frontier records with `frontier_pending_decision`, `parked_future_version`, or `approval_gated_cutover` cannot allow whole-program completion |
+| G-SF | semantic frontier records with `frontier_pending_decision`, `parked_future_version`, or `approval_gated_cutover` cannot allow whole-program completion; `outstanding.semanticFeatureFrontierRecords[]` must expose the same classification vocabulary in status/handover JSON |
 
 ## §3 verification strategy
 

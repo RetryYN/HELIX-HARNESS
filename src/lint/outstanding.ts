@@ -44,6 +44,8 @@ export interface OutstandingWork {
   blockersByKind: Record<string, number>;
   /** 非終端 PLAN の明細。status --json / handover で完了主張を計画単位に照合する。 */
   items: OutstandingItem[];
+  /** 要求修正 / parked / cutover を「意味単位」で閉じないための G-SF record。 */
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   /** 全プログラム完了 claim の可否。doctor green とは別の completion-readiness 判定。 */
   completionReadiness: CompletionReadiness;
 }
@@ -75,6 +77,23 @@ export interface OutstandingItem {
   requiredActions: string[];
   /** requiredAction を満たしたと機械照合するために残すべき証跡。 */
   requiredEvidence: string[];
+}
+
+export type SemanticFeatureFrontierClassification =
+  | "frontier_pending_decision"
+  | "parked_future_version"
+  | "approval_gated_cutover";
+
+export interface SemanticFeatureFrontierRecord {
+  recordName: "semantic_feature_frontier_record";
+  planId: string;
+  featureId: string;
+  classification: SemanticFeatureFrontierClassification;
+  completionClaimAllowed: false;
+  blockers: string[];
+  requiredRoute: string;
+  reason: string;
+  sourcePaths: string[];
 }
 
 export interface CompletionReadiness {
@@ -241,11 +260,97 @@ export function analyzeOutstandingWork(
     openDefers: Math.max(0, openDefers),
     blockersByKind: orderedBlockers,
     items,
+    semanticFeatureFrontierRecords: semanticFeatureFrontierRecordsForItems(items),
   };
   return {
     ...base,
     completionReadiness: completionReadinessForOutstanding(base),
   };
+}
+
+function semanticFeatureFrontierRecordsForItems(
+  items: OutstandingItem[],
+): SemanticFeatureFrontierRecord[] {
+  return items
+    .map(semanticFeatureFrontierRecordForItem)
+    .filter((record): record is SemanticFeatureFrontierRecord => record !== null);
+}
+
+function semanticFeatureFrontierRecordForItem(
+  item: OutstandingItem,
+): SemanticFeatureFrontierRecord | null {
+  const classification = semanticFeatureFrontierClassificationForItem(item);
+  if (!classification) return null;
+  return {
+    recordName: "semantic_feature_frontier_record",
+    planId: item.planId,
+    featureId: semanticFeatureIdForPlan(item.planId),
+    classification,
+    completionClaimAllowed: false,
+    blockers: item.blockers,
+    requiredRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+    reason: item.reason,
+    sourcePaths: semanticFeatureSourcePathsForClassification(classification),
+  };
+}
+
+function semanticFeatureFrontierClassificationForItem(
+  item: OutstandingItem,
+): SemanticFeatureFrontierClassification | null {
+  if (item.blockers.includes("irreversible_migration_pending")) {
+    return "approval_gated_cutover";
+  }
+  if (item.blockers.includes("version_up_parked")) {
+    return "parked_future_version";
+  }
+  if (item.blockers.includes("po_decision_pending")) {
+    return "frontier_pending_decision";
+  }
+  return null;
+}
+
+function semanticFeatureIdForPlan(planId: string): string {
+  if (planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) return "name_cutover";
+  switch (planId) {
+    case "PLAN-DISCOVERY-10":
+    case "PLAN-DISCOVERY-10-helix-asset-visualization":
+      return "asset_progress_visualization";
+    case "PLAN-DISCOVERY-07":
+    case "PLAN-DISCOVERY-07-design-bottomup-mode":
+      return "design_bottomup_mode";
+    case "PLAN-L7-146":
+    case "PLAN-L7-146-serverless-readonly-share":
+      return "serverless_readonly_share";
+    default:
+      return planId
+        .toLowerCase()
+        .replace(/^plan-/, "")
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+  }
+}
+
+function semanticFeatureSourcePathsForClassification(
+  classification: SemanticFeatureFrontierClassification,
+): string[] {
+  switch (classification) {
+    case "frontier_pending_decision":
+      return [
+        "docs/process/modes/discovery.md",
+        "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      ];
+    case "parked_future_version":
+      return [
+        "docs/process/modes/version-up.md",
+        "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      ];
+    case "approval_gated_cutover":
+      return [
+        "docs/process/forward/L08-L14-verification-phase.md",
+        "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      ];
+  }
 }
 
 function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {

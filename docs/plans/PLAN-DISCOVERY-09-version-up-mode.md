@@ -56,7 +56,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:9444994d2501ba233bd01389162f08bfcb2e65d7bcd70f5e33d9ee6f112371a5"
+        output_digest: "sha256:817b8cb1643a2d0b2748ec7504388627855c3b54d4859477af3c47b2c92e8688"
 ---
 
 s4_decision_record:

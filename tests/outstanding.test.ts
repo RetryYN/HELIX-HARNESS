@@ -133,6 +133,47 @@ describe("analyzeOutstandingWork", () => {
         "record required human/action-binding approval before executing the high-impact action",
       ]),
     );
+    expect(o.semanticFeatureFrontierRecords).toEqual([
+      {
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-DISCOVERY-10",
+        featureId: "asset_progress_visualization",
+        classification: "frontier_pending_decision",
+        completionClaimAllowed: false,
+        blockers: ["po_decision_pending"],
+        requiredRoute: expect.stringContaining("S4 decide"),
+        reason: "po_decision_pending",
+        sourcePaths: expect.arrayContaining([
+          "docs/process/modes/discovery.md",
+          "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        ]),
+      },
+      {
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-L7-146",
+        featureId: "serverless_readonly_share",
+        classification: "parked_future_version",
+        completionClaimAllowed: false,
+        blockers: ["human_approval_pending", "version_up_parked"],
+        requiredRoute: expect.stringContaining("version-up activation"),
+        reason: "version_up_parked",
+        sourcePaths: expect.arrayContaining(["docs/process/modes/version-up.md"]),
+      },
+      {
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-M-02",
+        featureId: "name_cutover",
+        classification: "approval_gated_cutover",
+        completionClaimAllowed: false,
+        blockers: ["irreversible_migration_pending"],
+        requiredRoute: expect.stringContaining("L14 cutover"),
+        reason: "irreversible_migration_pending",
+        sourcePaths: expect.arrayContaining([
+          "docs/process/forward/L08-L14-verification-phase.md",
+          "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+        ]),
+      },
+    ]);
   });
 
   it("負の openDefers は 0 にクランプ / 全終端なら total=0", () => {
@@ -142,6 +183,7 @@ describe("analyzeOutstandingWork", () => {
     expect(o.openDefers).toBe(0);
     expect(o.blockersByKind).toEqual({});
     expect(o.items).toEqual([]);
+    expect(o.semanticFeatureFrontierRecords).toEqual([]);
   });
 });
 
