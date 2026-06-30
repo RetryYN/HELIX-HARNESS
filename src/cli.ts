@@ -34,6 +34,7 @@ import { loadRelationGraphSourceSet } from "./graph/loader";
 import {
   checkHandoverBypass,
   checkHandoverDiscipline,
+  handoverStale,
   latestSessionId,
   nodeHandoverDeps,
   readPointer,
@@ -1235,19 +1236,49 @@ handover
   .description("show current session handover pointer")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const pointer = readPointer(nodeHandoverDeps(process.cwd()));
+    const repoRoot = process.cwd();
+    const pointerPath = join(repoRoot, ".ut-tdd", "handover", "CURRENT.json");
+    const currentExists = existsSync(pointerPath);
+    const pointer = readPointer(nodeHandoverDeps(repoRoot));
     if (!pointer) {
-      process.stderr.write("handover: CURRENT.json not found\n");
-      process.exitCode = 1;
+      const status = {
+        exists: currentExists,
+        stale: currentExists,
+        stale_reasons: currentExists ? ["CURRENT.json is unreadable or invalid"] : [],
+        active_plan: null,
+        status: null,
+        latest_doc: null,
+        digest_summary: null,
+        updated_at: null,
+      };
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
+        process.exitCode = currentExists ? 1 : 0;
+      } else {
+        process.stdout.write(
+          currentExists
+            ? "handover status: exists=true stale=true reason=CURRENT.json is unreadable or invalid\n"
+            : "handover status: exists=false stale=false\n",
+        );
+        process.exitCode = currentExists ? 1 : 0;
+      }
       return;
     }
+    const stale = handoverStale(pointer.updated_at, new Date().toISOString());
+    const status = {
+      ...pointer,
+      exists: true,
+      stale,
+      stale_reasons: stale ? [`updated_at is older than 24h: ${pointer.updated_at}`] : [],
+    };
     if (opts.json) {
-      process.stdout.write(`${JSON.stringify(pointer, null, 2)}\n`);
+      process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
       return;
     }
     process.stdout.write(
-      `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} updated_at=${pointer.updated_at}\n`,
+      `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} stale=${stale} updated_at=${pointer.updated_at}\n`,
     );
+    for (const reason of status.stale_reasons) process.stdout.write(`stale_reason: ${reason}\n`);
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
   });
 

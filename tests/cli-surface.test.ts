@@ -64,12 +64,29 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
 }
 
 describe("L7 CLI surface closure", () => {
-  it("exposes normal handover status as a read-only JSON preflight surface", () => {
+  it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-status-"));
     try {
       const missing = runCliIn(root, ["handover", "status", "--json"]);
-      expect(missing.status).toBe(1);
-      expect(missing.stderr).toContain("handover: CURRENT.json not found");
+      expect(missing.status).toBe(0);
+      expect(JSON.parse(missing.stdout)).toMatchObject({
+        exists: false,
+        stale: false,
+        stale_reasons: [],
+        active_plan: null,
+      });
+
+      const handoverDir = join(root, ".ut-tdd", "handover");
+      const pointerPath = join(handoverDir, "CURRENT.json");
+      mkdirSync(handoverDir, { recursive: true });
+      writeFileSync(pointerPath, "{not json", "utf8");
+      const invalid = runCliIn(root, ["handover", "status", "--json"]);
+      expect(invalid.status).toBe(1);
+      expect(JSON.parse(invalid.stdout)).toMatchObject({
+        exists: true,
+        stale: true,
+        stale_reasons: ["CURRENT.json is unreadable or invalid"],
+      });
 
       const generated = runCliIn(root, [
         "handover",
@@ -87,6 +104,9 @@ describe("L7 CLI surface closure", () => {
         active_plan: "PLAN-L7-04-handover-mechanism",
         status: "in_progress",
         generated_by: "ut-tdd-handover",
+        exists: true,
+        stale: false,
+        stale_reasons: [],
       });
       expect(payload.latest_doc).toMatch(/^docs[/\\]handover[/\\]session-handover-/);
       expect(payload.outstanding.completionReadiness).toMatchObject({
@@ -97,9 +117,23 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["handover", "status"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain(
-        "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress",
+        "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress stale=false",
       );
       expect(text.stdout).toContain("latest_doc:");
+
+      const stalePointer = {
+        ...payload,
+        updated_at: "2026-06-01T00:00:00.000Z",
+      };
+      writeFileSync(pointerPath, JSON.stringify(stalePointer), "utf8");
+      const stale = runCliIn(root, ["handover", "status", "--json"]);
+      expect(stale.status).toBe(0);
+      const stalePayload = JSON.parse(stale.stdout);
+      expect(stalePayload).toMatchObject({
+        exists: true,
+        stale: true,
+      });
+      expect(stalePayload.stale_reasons[0]).toContain("updated_at is older than 24h");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

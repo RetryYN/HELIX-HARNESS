@@ -35,10 +35,10 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T17:24:00+09:00"
-    tests_green_at: "2026-06-30T17:24:00+09:00"
+    reviewed_at: "2026-06-30T17:32:00+09:00"
+    tests_green_at: "2026-06-30T17:32:00+09:00"
     verdict: approve
-    scope: "Normal handover now has a read-only `ut-tdd handover status --json` preflight surface, backed by L6 design and L7 oracle rows, so session-start instructions can inspect `.ut-tdd/handover/CURRENT.json` without accidentally invoking provider handover or generating state."
+    scope: "Normal handover now has a read-only `ut-tdd handover status --json` preflight surface with exists/stale/stale_reasons, backed by L6 design and L7 oracle rows, so session-start instructions can inspect `.ut-tdd/handover/CURRENT.json` without accidentally invoking provider handover or generating state."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -47,17 +47,17 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T17:24:00+09:00"
+        completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:d1d5421b98ff72602c1740008cc12146db5f136bc8ec4388fb0e2aa7bff11b6c"
+        output_digest: "sha256:c063bd06e89b7331628a788ca5b3e22969ca3bbe69b6c7bdf2207d1ffcd5c529"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T17:24:00+09:00"
+        completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:0791e22a795f9048f6c0b5647c0a3bde270b531810f9c342e161f69153e8d342"
+        output_digest: "sha256:665ece8c54003ad9905750e9f082575445dba1540d5a09eab2872e2db7fd3161"
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-04"
@@ -99,7 +99,7 @@ review_evidence:
 `src/handover/index.ts` + session-log amendment を実装し U-HOVER を Green に。`npx vitest run tests/handover.test.ts`。
 
 ### Step 3: CLI 配線
-`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `ut-tdd handover status --json`、`ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.ut-tdd/handover/CURRENT.json` を読み、不在時は exit 1 で生成や補完をしない。
+`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `ut-tdd handover status --json`、`ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.ut-tdd/handover/CURRENT.json` を読み、不在時は exit 0 + `exists:false`、壊れ JSON は exit 1 + `exists:true, stale:true`、既存 pointer は `stale/stale_reasons` 付きで返す。生成や補完はしない。
 
 ### Step 4: review (review 前置 MUST)
 claude-only のため `code-reviewer` (TL/QA 代替) で DbC 充足 / 循環 import 回避の妥当性 / dry-run 非破壊 / sanitize defense-in-depth / 既存 session-log 非回帰をレビュー。cross-agent 不在を evidence 記録。
@@ -127,5 +127,5 @@ L6-06 §6 で宣言済の 4 用語 (handover 機械ポインタ / handover scaff
 - U-HOVER-001〜007 が ④ テストで Green (孤児 0、③ 設計被覆)
 - 全回帰 pass (既存 92 を壊さない = session-log amendment が非回帰)
 - code-reviewer review APPROVE (Critical 0、特に 循環 import 回避 / dry-run 非破壊 / sanitize / 既存 session-log 非回帰)
-- CLI スモーク (`handover --dry-run` 非破壊 / `handover status --json` read-only preflight / `plan use` round-trip) OK
+- CLI スモーク (`handover --dry-run` 非破壊 / `handover status --json` exists/stale read-only preflight / `plan use` round-trip) OK
 - 後段 `PLAN-REVERSE-05-handover-mechanism` で §6.8.5/§6.8.6 詳細 + 要件 CURRENT.md→.json 同期 + L4 整合 + L0 §10 用語 back-fill
