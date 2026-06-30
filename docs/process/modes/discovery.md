@@ -112,6 +112,11 @@ S4 decision source ledger (checked 2026-06-30):
 
 Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その S4 decision source ledger は stale とし、S3 verified evidence を S4 判定材料へ進めない。
 
+Source ledger meaning review: `checked` 更新時は、各公式 source について `source_status_delta`、
+`adoption_decision_delta`、`workflow_route_impact` を S4 review evidence に残す。source の意味が
+acceptance gap、unresolved risk、external source basis、Forward/Reverse route に影響する場合、
+date-only refresh で S4 confirmed/rejected/pivot を判断してはならない。
+
 ---
 
 ## 4. Forward 合流点

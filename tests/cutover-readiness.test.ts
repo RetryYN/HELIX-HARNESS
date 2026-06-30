@@ -29,6 +29,11 @@ const cutoverMarkers = [
   "| Google SRE Release Engineering | https://sre.google/sre-book/release-engineering/ | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback process | rollback_plan |",
   "| OWASP LLM06:2025 Excessive Agency | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | approval_scope |",
   "| SLSA Provenance | https://slsa.dev/spec/v1.2/provenance | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | artifact provenance | audit_record |",
+  "Cutover source ledger meaning review",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+  "Date-only refresh",
 ].join("\n");
 
 function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadinessInput {

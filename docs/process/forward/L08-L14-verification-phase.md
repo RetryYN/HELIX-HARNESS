@@ -32,6 +32,13 @@
 
 Ledger freshness policy: `checked` は公式 source を再確認した日付を表す。未来日、または現在日から 90 日超過の ledger は stale とし、G8-G14 / S4 / completion / cutover の判断材料にしない。
 
+Source ledger meaning review: `checked` を更新する時は日付だけを直してはならない。date-only refresh は
+gate evidence ではない。review evidence は
+`source_status_delta` (公式 status/version/date に変化があるか)、`adoption_decision_delta`
+(採用・追跡・比較のみの判断に変化があるか)、`workflow_route_impact` (G8-G14 / S4 / action-binding /
+cutover / completion のどこへ差し戻すか) を記録する。公式 source が変わった、または row の adoption decision と
+verification use が噛み合わなくなった場合は、ledger refresh ではなく対象 gate / mode / PLAN の設計差し戻しとして扱う。
+
 > **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
 
 ### 右腕 evidence profile (G8-G14)
@@ -110,6 +117,10 @@ Cutover source ledger (checked 2026-06-30):
 | SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | cutover artifact, command, builder, and material provenance must be reproducible from audit evidence | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
 
 Cutover ledger freshness follows the same 90-day policy as the verification source ledger. Stale official-source decisions cannot authorize irreversible L14 cutover or action-binding approval records.
+Cutover source ledger meaning review uses the same `source_status_delta` / `adoption_decision_delta` /
+`workflow_route_impact` evidence. Date-only refresh cannot approve an irreversible rename, state move, alias policy,
+or action-binding approval; any source change that affects approval scope, concurrency, rollback, provenance, backup,
+or monitoring routes the cutover PLAN back to `request_runbook_changes` before apply.
 
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や

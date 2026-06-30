@@ -36,6 +36,10 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "| ISO/IEC/IEEE 29148 | https://www.iso.org/standard/72089.html | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements trace | acceptance_gap |",
     "| ISTQB Glossary | https://glossary.istqb.org/ | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis terms | verified_evidence |",
     "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | residual risk | unresolved_risk |",
+    "source_status_delta",
+    "adoption_decision_delta",
+    "workflow_route_impact",
+    "date-only refresh",
   ].join("\n");
   return {
     discoveryMd: modeDoc,

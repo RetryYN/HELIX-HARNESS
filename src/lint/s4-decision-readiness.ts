@@ -108,6 +108,10 @@ const MODE_DOC_MARKERS = [
   "adopted version/date",
   "latest official status",
   "adoption decision",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+  "date-only refresh",
 ] as const;
 
 const OUTSTANDING_MARKERS = [

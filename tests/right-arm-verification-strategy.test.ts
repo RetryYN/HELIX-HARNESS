@@ -171,6 +171,10 @@ describe("right-arm verification strategy", () => {
       "ISTQB Glossary",
       "OWASP LLM06:2025 Excessive Agency",
       "official source ledger checked 2026-06-30",
+      "source_status_delta",
+      "adoption_decision_delta",
+      "workflow_route_impact",
+      "date-only refresh is not gate evidence",
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://scrumguides.org/scrum-guide.html",
       "https://glossary.istqb.org/",
@@ -260,6 +264,11 @@ describe("right-arm verification strategy", () => {
     expect(rightArm).toContain("GitHub Environments required reviewers");
     expect(rightArm).toContain("VS Code Webview Security");
     expect(rightArm).toContain("Google SRE Release Engineering");
+    expect(rightArm).toContain("Source ledger meaning review");
+    expect(rightArm).toContain("source_status_delta");
+    expect(rightArm).toContain("adoption_decision_delta");
+    expect(rightArm).toContain("workflow_route_impact");
+    expect(rightArm).toContain("date-only refresh");
   });
 
   it("defines required evidence for every right-arm gate through L14 feedback", () => {
@@ -304,6 +313,11 @@ describe("right-arm verification strategy", () => {
       "Rev. 1 initial public draft v1.2",
       "track-draft-do-not-adopt-until-final",
       "人間承認・権限境界・不可逆操作",
+      "Source ledger meaning review",
+      "source_status_delta",
+      "adoption_decision_delta",
+      "workflow_route_impact",
+      "date-only refresh",
     ]) {
       expect(rightArm).toContain(marker);
     }

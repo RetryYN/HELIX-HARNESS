@@ -53,6 +53,11 @@ const CUTOVER_RECORD_MARKERS = [
   "audit_record",
   "post_cutover_monitoring",
   "legacy_alias_policy",
+  "Cutover source ledger meaning review",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+  "Date-only refresh",
 ] as const;
 
 const CUTOVER_RECORD_NAME = "cutover_decision_record";
