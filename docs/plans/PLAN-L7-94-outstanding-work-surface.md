@@ -7,9 +7,42 @@ drive: db
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 status: confirmed
 created: 2026-06-22
-updated: 2026-06-30
+updated: 2026-07-01
 owner: PM (Opus) / PO (人間)
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T02:34:00+09:00"
+    tests_green_at: "2026-07-01T02:32:00+09:00"
+    verdict: pass
+    scope: "Continuation 31: action-binding approval now exposes a dedicated non-destructive `ut-tdd action-binding approval-packet` surface. The packet reads the PLAN `action_binding_approval_record`, reports approve/deny/scope-reduction routes, and fixes `planOnly=true`, `mustNotApprove=true`, `approvalCommandAvailable=false`, and `approvalAllowed=false` so PO/named-approver decision support cannot record approval, mutate status, or execute high-impact actions."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts tests/outstanding.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T02:31:00+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:7a7ce2203d4370254bc17627e576f960d0d8089ce66ed60c49a93777e178b3c7"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T02:31:00+09:00"
+        evidence_path: src/lint/action-binding-approval-readiness.ts
+        output_digest: "sha256:c2ba045d1a42765db905d6f54980924d078a746b6dad46778adfa410f9550a29"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T02:32:00+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:240ebf6ea6e3d3f2a82e6305d3dc7e8d2bdc051fb7f50681ef97717d935b4fc1"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:21:04+09:00"
@@ -42,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:20:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:811564b4566e9976a1bd7942c8400fecf6c970d30d777cc587c217381efd83d0"
+        output_digest: "sha256:240ebf6ea6e3d3f2a82e6305d3dc7e8d2bdc051fb7f50681ef97717d935b4fc1"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T00:32:57+09:00"
@@ -175,7 +208,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:35:18+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
-        output_digest: "sha256:a7ea4ddc4eff0d6c9d505e1d2c0b9016a15c407232fddae18374410917ce72f9"
+        output_digest: "sha256:7a7ce2203d4370254bc17627e576f960d0d8089ce66ed60c49a93777e178b3c7"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -183,7 +216,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:35:18+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
-        output_digest: "sha256:6ac81820249a466e8b7c8da88ed7a94870dc9315f3338786e8d705ccd4322e05"
+        output_digest: "sha256:c2ba045d1a42765db905d6f54980924d078a746b6dad46778adfa410f9550a29"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T19:28:24+09:00"
@@ -366,7 +399,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:01:37+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:85b070aa4071e78de5297ab84821036dff6f7e058217cebeae8c581a9eb7653b"
+        output_digest: "sha256:66e8f04ab279c0271e9b2f126cb0864f4c3087cf053a6f0f43dc88ef2104a20d"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -415,7 +448,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:811564b4566e9976a1bd7942c8400fecf6c970d30d777cc587c217381efd83d0"
+        output_digest: "sha256:240ebf6ea6e3d3f2a82e6305d3dc7e8d2bdc051fb7f50681ef97717d935b4fc1"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:44:15+09:00"
@@ -507,7 +540,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:12:00+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
-        output_digest: "sha256:a7ea4ddc4eff0d6c9d505e1d2c0b9016a15c407232fddae18374410917ce72f9"
+        output_digest: "sha256:7a7ce2203d4370254bc17627e576f960d0d8089ce66ed60c49a93777e178b3c7"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -515,7 +548,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:12:00+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
-        output_digest: "sha256:6ac81820249a466e8b7c8da88ed7a94870dc9315f3338786e8d705ccd4322e05"
+        output_digest: "sha256:c2ba045d1a42765db905d6f54980924d078a746b6dad46778adfa410f9550a29"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:47:45+09:00"
@@ -582,7 +615,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:26:09+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
-        output_digest: "sha256:a7ea4ddc4eff0d6c9d505e1d2c0b9016a15c407232fddae18374410917ce72f9"
+        output_digest: "sha256:7a7ce2203d4370254bc17627e576f960d0d8089ce66ed60c49a93777e178b3c7"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -590,7 +623,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:26:09+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
-        output_digest: "sha256:6ac81820249a466e8b7c8da88ed7a94870dc9315f3338786e8d705ccd4322e05"
+        output_digest: "sha256:c2ba045d1a42765db905d6f54980924d078a746b6dad46778adfa410f9550a29"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:00:21+09:00"
@@ -846,6 +879,14 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   `review_approval_evidence`、`expires_at_or_trigger`、`audit_record` を必須にする。これは承認代行ではなく、
   承認前に actor / tool / target / params / expiry / audit route を個別 field として固定して
   prose-only approval や scope への丸め込みを防ぐ gate である。
+  2026-07-01 continuation 31 で `buildActionBindingApprovalPackets` と
+  `ut-tdd action-binding approval-packet` を追加し、high-impact approval PLAN を
+  `action-binding-approval-packet.v1` として独立出力する。packet は `planOnly=true`、
+  `mustNotApprove=true`、`approvalCommandAvailable=false`、`approvalAllowed=false` を固定し、
+  `approve_action_binding` / `deny_action` / `request_scope_reduction` の route と
+  current `action_binding_approval_record` の actor/tool/target/params 欠落理由を出す。これにより
+  action-binding 承認が completion packet の補助 record に埋もれず、PO / named approver の意味判断面として
+  分離されるが、承認記録・適用・外部 action 実行は行わない。
 - `src/lint/source-ledger-freshness.ts`: external-source ledger の `checked YYYY-MM-DD` を共通検査する。
   未来日、または現在日から 90 日超過の ledger は stale とし、S4 decision / version-up activation /
   L14 cutover / completion decision packet の判断材料にしない。これは source row/column/adoption decision が
@@ -940,6 +981,9 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   欠落や field 欠落を拒否し、completion packet だけに承認境界が残る状態を防ぐ。
 - [x] action-binding approval は `approval_scope` prose だけでは通らず、`approved_actor` / `approved_tool` /
   `approved_target` / `approved_params` が揃わない承認待ち PLAN を拒否する。
+- [x] `ut-tdd action-binding approval-packet` が承認待ち high-impact PLAN を専用 packet に分離し、
+  `planOnly=true` / `mustNotApprove=true` / `approvalAllowed=false` / `approvalCommandAvailable=false` の
+  非破壊 surface として actor/tool/target/params の concrete 欠落理由と承認/拒否/縮小 route を出す。
 - [x] doctor `version-up-readiness` hard gate が、version-up parked の activation record から
   `target_version_or_release_trigger` / `activation_route` が落ちる状態を拒否し、将来版保全を無期限 draft に戻さない。
 - [x] doctor `s4-decision-readiness` hard gate が、S4 判断材料の分解不足
@@ -961,7 +1005,7 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   `completionDecisionPacket` 欠落、source mismatch、freshness/shape drift、readiness/decision count mismatch を拒否する。
 - [x] informational surface = 非 fail-close (gate ではない、doctor.ok に連動させない)。
 - [x] test 15 ケース (analyze 5 / completion readiness 2 / decision packet 3 / summaryLine 2 / loader+compute 3)、
-  completion-decision-packet 14 ケース、action-binding approval readiness 3 ケース、S4 readiness 7 ケース、cutover readiness 6 ケース。typecheck / Biome /
+  completion-decision-packet 14 ケース、action-binding approval readiness 8 ケース、S4 readiness 7 ケース、cutover readiness 6 ケース。typecheck / Biome /
   Vitest / doctor green。
 
 ## 4. Out of scope

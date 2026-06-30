@@ -410,6 +410,43 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
+  it("exposes action-binding approval packets as a non-destructive planning surface", () => {
+    const json = runCli(["action-binding", "approval-packet", "--json"]);
+
+    expect(json.status).toBe(0);
+    const packets = JSON.parse(json.stdout);
+    expect(packets.map((packet: { planId: string }) => packet.planId)).toEqual([
+      "PLAN-DISCOVERY-10-helix-asset-visualization",
+      "PLAN-L7-146-serverless-readonly-share",
+      "PLAN-M-02-helix-identifier-rename",
+    ]);
+    expect(packets[0]).toMatchObject({
+      schemaVersion: "action-binding-approval-packet.v1",
+      status: "pending_action_binding_approval",
+      planOnly: true,
+      mustNotApprove: true,
+      approvalCommandAvailable: false,
+      approvalAllowed: false,
+      allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
+    });
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining(["missing concrete approve_action_binding decision"]),
+    );
+
+    const text = runCli([
+      "action-binding",
+      "approval-packet",
+      "--plan",
+      "PLAN-M-02-helix-identifier-rename",
+    ]);
+    expect(text.status).toBe(0);
+    expect(text.stdout).toContain(
+      "action-binding approval-packet: PLAN-M-02-helix-identifier-rename",
+    );
+    expect(text.stdout).toContain("approvalAllowed=false");
+    expect(text.stdout).toContain("approvalCommandAvailable=false");
+  }, 15_000);
+
   it("exposes skill suggest as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--plan", "PLAN-NO-SUCH", "--json"]);
 

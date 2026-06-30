@@ -31,6 +31,20 @@ export interface ActionBindingApprovalReadinessResult {
   ok: boolean;
 }
 
+export interface ActionBindingApprovalPacket {
+  schemaVersion: "action-binding-approval-packet.v1";
+  planId: string;
+  status: "pending_action_binding_approval" | "invalid_not_pending_approval";
+  planOnly: true;
+  mustNotApprove: true;
+  approvalCommandAvailable: false;
+  approvalAllowed: false;
+  allowedOutcomes: string[];
+  approvalRecord: Record<string, string>;
+  blockedReasons: string[];
+  nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
 const ACTION_BINDING_RECORD_NAME = "action_binding_approval_record";
 const ACTION_BINDING_RECORD_FIELDS = [
   "allowed_outcome",
@@ -63,6 +77,11 @@ const RIGHT_ARM_MARKERS = [
   "review_approval_evidence",
   "expires_at_or_trigger",
   "audit_record",
+  "action-binding-approval-packet.v1",
+  "planOnly=true",
+  "mustNotApprove=true",
+  "approvalCommandAvailable=false",
+  "approvalAllowed=false",
   "GitHub Environments required reviewers",
   "OWASP LLM06:2025 Excessive Agency",
 ] as const;
@@ -153,6 +172,54 @@ export function analyzeActionBindingApprovalReadiness(
     pendingPlanIds: pending.map((p) => p.plan_id).sort(),
     violations,
     ok: violations.length === 0,
+  };
+}
+
+export function buildActionBindingApprovalPackets(
+  input: ActionBindingApprovalReadinessInput,
+): ActionBindingApprovalPacket[] {
+  return input.plans
+    .filter(isPendingHighImpactApproval)
+    .map((plan) => buildActionBindingApprovalPacket(plan))
+    .sort((a, b) => a.planId.localeCompare(b.planId));
+}
+
+export function buildActionBindingApprovalPacket(
+  plan: ActionBindingApprovalPlan,
+): ActionBindingApprovalPacket {
+  const approvalRecord = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
+    ...ACTION_BINDING_RECORD_FIELDS,
+  ]);
+  return {
+    schemaVersion: "action-binding-approval-packet.v1",
+    planId: plan.plan_id,
+    status: isPendingHighImpactApproval(plan)
+      ? "pending_action_binding_approval"
+      : "invalid_not_pending_approval",
+    planOnly: true,
+    mustNotApprove: true,
+    approvalCommandAvailable: false,
+    approvalAllowed: false,
+    allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
+    approvalRecord,
+    blockedReasons: actionBindingBlockedReasons(plan, approvalRecord),
+    nextWorkflowRoutes: [
+      {
+        outcome: "approve_action_binding",
+        route:
+          "record named approver plus exact approved_actor/approved_tool/approved_target/approved_params, expiry, and audit evidence before any high-impact execution",
+      },
+      {
+        outcome: "deny_action",
+        route:
+          "record denial rationale and route the PLAN to archive, redesign, or parked future work without executing the high-impact action",
+      },
+      {
+        outcome: "request_scope_reduction",
+        route:
+          "narrow actor/tool/target/params or split the PLAN, then request a new action-binding approval packet",
+      },
+    ],
   };
 }
 
@@ -247,6 +314,61 @@ function validateActionBindingSemantics(
 
 function record(plan: ActionBindingApprovalPlan, field: string): string {
   return recordFieldValue(plan.text, ACTION_BINDING_RECORD_NAME, field) ?? "";
+}
+
+function recordValues(
+  text: string,
+  recordName: string,
+  fields: readonly string[],
+): Record<string, string> {
+  return Object.fromEntries(
+    fields.map((field) => [field, recordFieldValue(text, recordName, field) ?? ""]),
+  );
+}
+
+function actionBindingBlockedReasons(
+  plan: ActionBindingApprovalPlan,
+  approvalRecord: Record<string, string>,
+): string[] {
+  const reasons: string[] = [];
+  if (isPendingHighImpactApproval(plan)) {
+    reasons.push("plan carries high-impact approval scope; execution remains human-gated");
+  } else {
+    reasons.push("plan is not pending high-impact action-binding approval");
+  }
+  if (selectedOutcome(approvalRecord.allowed_outcome) !== "approve_action_binding") {
+    reasons.push("missing concrete approve_action_binding decision");
+  }
+  for (const field of [
+    "approved_actor",
+    "approved_tool",
+    "approved_target",
+    "approved_params",
+  ] as const) {
+    const value = approvalRecord[field] ?? "";
+    if (!value.trim()) {
+      reasons.push(`action-binding approval lacks concrete ${field}`);
+      continue;
+    }
+    if (isBroadApproval(value)) {
+      reasons.push(`${field} must not grant broad or wildcard approval`);
+    }
+    if (mentions(value, ["no ", "not approved", "未承認", "while parked", "draft plan"])) {
+      reasons.push(`action-binding approval lacks concrete ${field}`);
+    }
+  }
+  if (!hasLimitedApprovalScope(approvalRecord.approval_scope ?? "")) {
+    reasons.push("approval_scope must bind a limited actor/tool/target/params boundary");
+  }
+  if (!hasExpiryOrTrigger(approvalRecord.expires_at_or_trigger ?? "")) {
+    reasons.push("approval requires expiry or trigger-bound re-approval");
+  }
+  return [...new Set(reasons)];
+}
+
+function selectedOutcome(value = ""): string | null {
+  const normalized = value.replace(/`/g, "").trim();
+  return ACTION_BINDING_ALLOWED_OUTCOMES.find((outcome) => normalized === outcome) ?? null;
 }
 
 function mentions(value: string, needles: string[]): boolean {

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   actionBindingApprovalReadinessMessages,
   analyzeActionBindingApprovalReadiness,
+  buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
 } from "../src/lint/action-binding-approval-readiness";
 
@@ -18,6 +19,11 @@ const RIGHT_ARM = [
   "review_approval_evidence",
   "expires_at_or_trigger",
   "audit_record",
+  "action-binding-approval-packet.v1",
+  "planOnly=true",
+  "mustNotApprove=true",
+  "approvalCommandAvailable=false",
+  "approvalAllowed=false",
   "GitHub Environments required reviewers",
   "OWASP LLM06:2025 Excessive Agency",
 ].join("\n");
@@ -62,6 +68,46 @@ describe("action-binding approval readiness", () => {
     expect(actionBindingApprovalReadinessMessages(result)[0]).toContain(
       "action-binding-approval-readiness - OK",
     );
+  });
+
+  it("emits non-destructive approval packets that keep high-impact execution human-gated", () => {
+    const packets = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${RECORD}`,
+        },
+      ],
+    });
+
+    expect(packets).toHaveLength(1);
+    const packet = packets[0];
+    expect(packet).toMatchObject({
+      schemaVersion: "action-binding-approval-packet.v1",
+      planId: "PLAN-X",
+      status: "pending_action_binding_approval",
+      planOnly: true,
+      mustNotApprove: true,
+      approvalCommandAvailable: false,
+      approvalAllowed: false,
+      allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
+    });
+    expect(packet.approvalRecord.approved_actor).toBe("PO-named operator");
+    expect(packet.blockedReasons).toEqual(
+      expect.arrayContaining([
+        "plan carries high-impact approval scope; execution remains human-gated",
+        "missing concrete approve_action_binding decision",
+      ]),
+    );
+    expect(packet.nextWorkflowRoutes.map((route) => route.outcome)).toEqual([
+      "approve_action_binding",
+      "deny_action",
+      "request_scope_reduction",
+    ]);
   });
 
   it("rejects prose-only approval mentions", () => {
@@ -213,5 +259,19 @@ describe("action-binding approval readiness", () => {
       "PLAN-L7-146-serverless-readonly-share",
       "PLAN-M-02-helix-identifier-rename",
     ]);
+  });
+
+  it("emits current repo approval packets for every pending high-impact approval PLAN", () => {
+    const packets = buildActionBindingApprovalPackets(loadActionBindingApprovalReadinessInput());
+
+    expect(packets.map((packet) => packet.planId)).toEqual([
+      "PLAN-DISCOVERY-10-helix-asset-visualization",
+      "PLAN-L7-146-serverless-readonly-share",
+      "PLAN-M-02-helix-identifier-rename",
+    ]);
+    expect(packets.every((packet) => packet.approvalAllowed === false)).toBe(true);
+    expect(packets.flatMap((packet) => packet.blockedReasons)).toContain(
+      "missing concrete approve_action_binding decision",
+    );
   });
 });

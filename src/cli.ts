@@ -41,6 +41,10 @@ import {
   runHandover,
   setActivePlanCli,
 } from "./handover/index";
+import {
+  buildActionBindingApprovalPackets,
+  loadActionBindingApprovalReadinessInput,
+} from "./lint/action-binding-approval-readiness";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
   auditIdentifierRenameBlastRadius,
@@ -1102,6 +1106,37 @@ s4.command("decision-packet")
     for (const packet of filtered) {
       process.stdout.write(
         `s4 decision-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} decisionAllowed=${packet.decisionAllowed} decisionCommandAvailable=${packet.decisionCommandAvailable}\n`,
+      );
+      for (const reason of packet.blockedReasons) {
+        process.stdout.write(`  blocked: ${reason}\n`);
+      }
+    }
+  });
+
+const actionBinding = program
+  .command("action-binding")
+  .description("human/action-binding approval planning surfaces");
+actionBinding
+  .command("approval-packet")
+  .description("emit non-destructive approval packets for high-impact action-binding PLANs")
+  .option("--json", "JSON output")
+  .option("--plan <planId>", "filter by PLAN id")
+  .action((opts: { json?: boolean; plan?: string }) => {
+    const packets = buildActionBindingApprovalPackets(
+      loadActionBindingApprovalReadinessInput(process.cwd()),
+    );
+    const filtered = opts.plan ? packets.filter((packet) => packet.planId === opts.plan) : packets;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(filtered, null, 2)}\n`);
+      return;
+    }
+    if (filtered.length === 0) {
+      process.stdout.write("action-binding approval-packet: no pending approval PLANs matched\n");
+      return;
+    }
+    for (const packet of filtered) {
+      process.stdout.write(
+        `action-binding approval-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} approvalAllowed=${packet.approvalAllowed} approvalCommandAvailable=${packet.approvalCommandAvailable}\n`,
       );
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
