@@ -88,6 +88,8 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       expect.arrayContaining([
         "smart-agent-writes-test-first",
         "light-agent-cannot-close",
+        "light-implementation-requires-evidence-or-consultation",
+        "consultation-routes-to-smart-instruction",
         "fail-verdict-routes-back-to-light-implementation",
       ]),
     );
@@ -196,7 +198,9 @@ describe("P2/P3 pair-agent TDD programming route", () => {
             ? "FIX_INSTRUCTION: adjust implementation to satisfy Red oracle\nVERDICT: fail\n"
             : phase.name === "smart_review"
               ? "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n"
-              : "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n",
+              : phase.name === "smart_test_author"
+                ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n"
+                : "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: minimal implementation attempt\n",
         stderr: "",
       }),
     });
@@ -282,7 +286,12 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         if (phase.name === "smart_review") {
           return { status: 0, stdout: "VERDICT: pass\n", stderr: "" };
         }
-        return { status: 0, stdout: "implementation attempt\n", stderr: "" };
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+          stderr: "",
+        };
       },
     });
 
@@ -344,7 +353,12 @@ describe("P2/P3 pair-agent TDD programming route", () => {
             stderr: "",
           };
         }
-        return { status: 0, stdout: "implementation attempt\n", stderr: "" };
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+          stderr: "",
+        };
       },
     });
 
@@ -355,6 +369,182 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       "FIX_INSTRUCTION: thread the reviewer output into the next implementation prompt",
     );
     expect(lightPrompts[1]?.prompt).toContain("PAIR TRANSCRIPT");
+  });
+
+  it("fails closed when the lightweight implementation emits no implementation evidence or consultation", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n",
+            stderr: "",
+          };
+        }
+        return { status: 0, stdout: "implementation attempt without evidence\n", stderr: "" };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.steps.at(-1)).toMatchObject({
+      phase: "light_implementation",
+      status: "error",
+    });
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-light-implementation-evidence",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
+  it("routes lightweight consultation to smart instruction before the next fix cycle", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 2,
+    });
+    const lightPrompts: { cycle: number; prompt: string }[] = [];
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase, cycle, adapterPlan }) => {
+        if (phase.name === "light_implementation") {
+          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+        }
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout: "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "light_implementation" && cycle === 1) {
+          return {
+            status: 0,
+            stdout: "CONSULTATION_QUESTION: should route matrix include rejected and pivot?\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review" && cycle === 1) {
+          return {
+            status: 0,
+            stdout:
+              "IMPLEMENTATION_DIRECTIVE: include confirmed, rejected, and pivot rows\nVERDICT: pending\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented route matrix\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.steps.map((step) => [step.phase, step.cycle, step.status, step.verdict])).toEqual(
+      [
+        ["smart_test_author", 0, "passed", null],
+        ["light_implementation", 1, "pending", null],
+        ["smart_review", 1, "pending", "pending"],
+        ["light_implementation", 2, "passed", null],
+        ["smart_review", 2, "passed", "pass"],
+      ],
+    );
+    expect(lightPrompts[1]?.prompt).toContain(
+      "IMPLEMENTATION_DIRECTIVE: include confirmed, rejected, and pivot rows",
+    );
+  });
+
+  it("accepts a smart fail verdict as consultation guidance when it includes an implementation directive", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 2,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase, cycle }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout: "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "light_implementation" && cycle === 1) {
+          return {
+            status: 0,
+            stdout: "CONSULTATION_QUESTION: which decision outcomes are required?\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review" && cycle === 1) {
+          return {
+            status: 0,
+            stdout:
+              "IMPLEMENTATION_DIRECTIVE: include confirmed, rejected, and pivot outcomes\nVERDICT: fail\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented directive\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.steps.map((step) => [step.phase, step.cycle, step.status, step.verdict])).toEqual(
+      [
+        ["smart_test_author", 0, "passed", null],
+        ["light_implementation", 1, "pending", null],
+        ["smart_review", 1, "failed", "fail"],
+        ["light_implementation", 2, "passed", null],
+        ["smart_review", 2, "passed", "pass"],
+      ],
+    );
   });
 
   it("blocks executable pair runs without explicit T0 frontier approval", async () => {

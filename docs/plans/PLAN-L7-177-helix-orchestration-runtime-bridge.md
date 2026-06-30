@@ -12,6 +12,39 @@ parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T03:31:59+09:00"
+    tests_green_at: "2026-07-01T03:31:59+09:00"
+    verdict: pass
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Continuation: L3/L6/L7 pair-agent contract now requires light implementation evidence or consultation. Light implementation fail-closes without changed-files, targeted-test-command, and implementation-notes evidence unless it emits a consultation question. Consultation cannot be passed as implementation; smart review must return an implementation directive/fix response on pending or fail verdict and route the next light fix cycle through the bounded transcript."
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/pair-agent.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T03:31:59+09:00"
+        evidence_path: tests/pair-agent.test.ts
+        output_digest: "sha256:e82b6286501e18d126c950d0530bd878c6b0864c426d8ad5dd9c4ea6b118cf8e"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:31:59+09:00"
+        evidence_path: src/orchestration/pair-agent.ts
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:31:59+09:00"
+        evidence_path: src/orchestration/pair-agent.ts
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:59:10+0900"
     tests_green_at: "2026-07-01T02:59:10+0900"
     verdict: pass
@@ -26,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f4d6e34d844d4d94fbe99e161e9163cb4b43c888dc2115d352acf04ef6091f60"
+        output_digest: "sha256:e82b6286501e18d126c950d0530bd878c6b0864c426d8ad5dd9c4ea6b118cf8e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +67,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:6a10e3e4afadc6e5b105c1202aacf8740f35682fc07a45f4f2beb0c2734da00d"
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -42,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:6a10e3e4afadc6e5b105c1202aacf8740f35682fc07a45f4f2beb0c2734da00d"
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:35:00+09:00"
@@ -84,7 +117,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:45:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f4d6e34d844d4d94fbe99e161e9163cb4b43c888dc2115d352acf04ef6091f60"
+        output_digest: "sha256:e82b6286501e18d126c950d0530bd878c6b0864c426d8ad5dd9c4ea6b118cf8e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -109,7 +142,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:20:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f4d6e34d844d4d94fbe99e161e9163cb4b43c888dc2115d352acf04ef6091f60"
+        output_digest: "sha256:e82b6286501e18d126c950d0530bd878c6b0864c426d8ad5dd9c4ea6b118cf8e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -117,7 +150,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:20:00+09:00"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:6a10e3e4afadc6e5b105c1202aacf8740f35682fc07a45f4f2beb0c2734da00d"
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:05:00+09:00"
@@ -134,7 +167,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f4d6e34d844d4d94fbe99e161e9163cb4b43c888dc2115d352acf04ef6091f60"
+        output_digest: "sha256:e82b6286501e18d126c950d0530bd878c6b0864c426d8ad5dd9c4ea6b118cf8e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -142,7 +175,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:6a10e3e4afadc6e5b105c1202aacf8740f35682fc07a45f4f2beb0c2734da00d"
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T01:35:00+09:00"
@@ -159,7 +192,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T01:35:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f4d6e34d844d4d94fbe99e161e9163cb4b43c888dc2115d352acf04ef6091f60"
+        output_digest: "sha256:e82b6286501e18d126c950d0530bd878c6b0864c426d8ad5dd9c4ea6b118cf8e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -167,7 +200,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T01:35:00+09:00"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:6a10e3e4afadc6e5b105c1202aacf8740f35682fc07a45f4f2beb0c2734da00d"
+        output_digest: "sha256:80406ead6957bea1fe5f63751a5537211badb9bc312088b976d50a3c7a1ab944"
   - reviewer: claude-opus-4-8
     review_kind: cross_agent
     reviewed_at: "2026-06-28T20:05:00+09:00"
@@ -243,7 +276,7 @@ P2「サブエージェントを loop で回し worker≠verifier」を**実起�
 |--------|------|--------|
 | `src/orchestration/loop-bridge.ts` | `nodeTickDeps(input)` = 実 `TickDeps`。`runWorker(s)` → 既存 adapter 実行面（`buildAdapterPlan`+execute、worker provider の CLI）を呼ぶ。`runVerifier(provider,s)` → **反対 provider** の adapter で review し `Verdict` を解釈（hybrid 不在は tick 側 fail-close 既存）。`providerAvailable` = adapter availability。`recordIteration` = loop-store/loop-iterations 追記。`now` = 実時計 | U-ORCH-BRIDGE-01 |
 | `src/cli.ts`（改修） | `ut-tdd loop run --plan <id>`：loop-store から LoopState 読込 → `canResume` の間 `tick` を回し各 iteration を永続。`--once` で 1 tick、`--dry-run` で dispatch せず計画表示 | U-ORCH-BRIDGE-02 |
-| `src/orchestration/pair-agent.ts` | `buildPairAgentTddPlan(input)` = smart review agent が test/oracle を先に作り、light implementation agent が実装し、smart review agent が test/review/verdict を出す TDD pair route を生成。`runPairAgentTddPlan(input)` = smart_test_author を一度実行し、Red/oracle evidence が無ければ実装へ進めず、light_implementation → smart_review を `maxFixCycles` まで回す。smart_review の pass verdict は Green evidence と review finding が無ければ error、fail verdict は fix instruction が無ければ error。各 phase 出力は bounded transcript に残し、smart review の fail instruction を次の light_implementation prompt へ渡す。single runtime は intra-runtime fallback として cross-agent judgement evidence にしない | HU-PILLAR-P2-04 |
+| `src/orchestration/pair-agent.ts` | `buildPairAgentTddPlan(input)` = smart review agent が test/oracle を先に作り、light implementation agent が実装し、smart review agent が test/review/verdict を出す TDD pair route を生成。`runPairAgentTddPlan(input)` = smart_test_author を一度実行し、Red/oracle evidence が無ければ実装へ進めず、light_implementation → smart_review を `maxFixCycles` まで回す。light_implementation は changed-files / targeted-test-command / implementation-notes evidence を出すか、consultation question を出す。consultation は pass ではなく smart review の implementation directive / fix response を経て次の light fix cycle に戻す。smart_review の pass verdict は Green evidence と review finding が無ければ error、fail verdict は fix instruction が無ければ error。各 phase 出力は bounded transcript に残し、smart review の fail instruction を次の light_implementation prompt へ渡す。single runtime は intra-runtime fallback として cross-agent judgement evidence にしない | HU-PILLAR-P2-04 |
 | `src/cli.ts`（改修） | `ut-tdd pair-agent plan --plan-id <id> --task ...`：pair route と adapter dry-run plan を JSON/text で表示。`ut-tdd pair-agent run` は dry-run が既定、`--execute --allow-frontier` で provider adapter を順序実行し、result transcript を JSON に含める。`--save-evidence` は `.ut-tdd/evidence/pair-agent/` に plan/run/transcript と replay 用 trace fields（run/span/tool/handoff/guardrail/eval/duration/cost）を保存。T0 smart agent は `--allow-frontier` なしでは executionAuthorized=false | HU-PILLAR-P2-04 |
 | `src/state-db/projection-writer.ts`（改修） | `.ut-tdd/evidence/pair-agent/*.json` を `rebuildHarnessDb` で読み、phase agent を `model_runs`、pair run gate を `gate_runs`、frontier approval を `guardrail_decisions` へ投影する。壊れた証跡は `findings` に落とし、stdout-only / file-only の証跡で完了扱いにしない | HU-PILLAR-P2-04 / HU-PILLAR-P9-01 |
 

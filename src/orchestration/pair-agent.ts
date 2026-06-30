@@ -279,6 +279,8 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
       "smart-agent-writes-test-first",
       "red-evidence-before-implementation",
       "light-agent-cannot-close",
+      "light-implementation-requires-evidence-or-consultation",
+      "consultation-routes-to-smart-instruction",
       "smart-agent-runs-tests-and-reviews",
       "pass-verdict-requires-green-and-review-evidence",
       "fail-verdict-requires-fix-instruction",
@@ -336,7 +338,31 @@ function hasReviewEvidence(output: string): boolean {
 }
 
 function hasFixInstruction(output: string): boolean {
-  return /\b(FIX_INSTRUCTION|FIX|REVIEW_FINDINGS?)\b\s*[:=]/i.test(output);
+  return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE|FIX|REVIEW_FINDINGS?)\b\s*[:=]/i.test(
+    output,
+  );
+}
+
+function hasChangedFilesEvidence(output: string): boolean {
+  return /\b(CHANGED_FILES|FILES_CHANGED|MODIFIED_FILES)\b\s*[:=]/i.test(output);
+}
+
+function hasTargetedTestCommand(output: string): boolean {
+  return /\b(TARGETED_TEST_COMMAND|TARGETED_TEST|TEST_COMMAND)\b\s*[:=]/i.test(output);
+}
+
+function hasImplementationNotes(output: string): boolean {
+  return /\b(IMPLEMENTATION_NOTES|IMPLEMENTATION_NOTE|CHANGE_SUMMARY)\b\s*[:=]/i.test(output);
+}
+
+function hasConsultationQuestion(output: string): boolean {
+  return /\b(CONSULTATION_QUESTION|CLARIFICATION_NEEDED|QUESTION)\b\s*[:=]/i.test(output);
+}
+
+function hasConsultationResponse(output: string): boolean {
+  return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE|GUIDANCE)\b\s*[:=]/i.test(
+    output,
+  );
 }
 
 function stepStatusFromReviewVerdict(
@@ -424,11 +450,44 @@ export async function runPairAgentTddPlan(input: {
     const output = `${result?.stdout ?? ""}\n${result?.stderr ?? ""}`;
     let reviewVerdict = phaseName === "smart_review" ? parsePairAgentVerdict(output) : null;
     let evidenceErrorCode: string | null = null;
+    const lightConsulted =
+      phaseName === "light_implementation" &&
+      hasConsultationQuestion(output) &&
+      !(
+        hasChangedFilesEvidence(output) &&
+        hasTargetedTestCommand(output) &&
+        hasImplementationNotes(output)
+      );
+    const previousLightConsulted =
+      phaseName === "smart_review" &&
+      transcript.at(-1)?.phase === "light_implementation" &&
+      transcript.at(-1)?.status === "pending";
     if (
       phaseName === "smart_test_author" &&
       (!hasRedEvidence(output) || !hasOracleEvidence(output))
     ) {
       evidenceErrorCode = "missing-red-or-oracle-evidence";
+    }
+    if (phaseName === "light_implementation" && result?.status === 0 && !lightConsulted) {
+      if (
+        !hasChangedFilesEvidence(output) ||
+        !hasTargetedTestCommand(output) ||
+        !hasImplementationNotes(output)
+      ) {
+        evidenceErrorCode = "missing-light-implementation-evidence";
+      }
+    }
+    if (previousLightConsulted && reviewVerdict === "pass") {
+      evidenceErrorCode = "consultation-cannot-pass-without-implementation";
+      reviewVerdict = "error";
+    }
+    if (
+      previousLightConsulted &&
+      (reviewVerdict === "fail" || reviewVerdict === "pending") &&
+      !hasConsultationResponse(output)
+    ) {
+      evidenceErrorCode = "missing-consultation-response";
+      reviewVerdict = "error";
     }
     if (phaseName === "smart_review" && reviewVerdict === "pass") {
       if (!hasGreenEvidence(output) || !hasReviewEvidence(output)) {
@@ -459,7 +518,9 @@ export async function runPairAgentTddPlan(input: {
           : phaseName === "smart_review"
             ? stepStatusFromReviewVerdict(reviewVerdict ?? "pending")
             : result?.status === 0
-              ? "passed"
+              ? lightConsulted
+                ? "pending"
+                : "passed"
               : "error",
       verdict: reviewVerdict,
       exitCode: result?.status ?? null,
@@ -480,7 +541,7 @@ export async function runPairAgentTddPlan(input: {
   let finalVerdict: PairAgentRunResult["finalVerdict"] = null;
   for (let cycle = 1; cycle <= input.plan.maxFixCycles; cycle++) {
     const implementation = await executePhase("light_implementation", cycle);
-    if (implementation.status !== "passed") {
+    if (!["passed", "pending"].includes(implementation.status)) {
       return { ok: false, status: "error", finalVerdict, steps, transcript, findings };
     }
     const review = await executePhase("smart_review", cycle);
