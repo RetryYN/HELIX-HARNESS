@@ -4,7 +4,7 @@ layer: L5
 kind: add-design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-30
+updated: 2026-07-01
 owner: AIM + TL (Codex)
 plan: PLAN-L5-09-helix-pillar-detail-design
 pair_artifact: docs/test-design/helix/L5-pillar-integration-test-design.md
@@ -27,6 +27,13 @@ next_pair_freeze: L8
 - L1 §2.8 asset/progress visualization amendment は `PLAN-DISCOVERY-10` S4 decision 待ちである。
   `PLAN-L7-206` の `VisualizationSnapshot` は先行 read-model response であり、本 L5 10 contract / 43
   `LIT-*` の完了範囲に VSCode View/Webview contract を追加した扱いにはしない。
+- G-SF `semantic_feature_frontier_record` の分類は L5 contract boundary でも維持する。
+  `frontier_pending_decision` は visualization read-model / graph IR / drill-down / UI action contract を
+  未 confirmed として扱い、`parked_future_version` は activation decision まで current integration
+  contract の pass に数えず、`approval_gated_cutover` は dry-run / rollback / state backup / audit の
+  contract までで apply command を持たない。中間 contract がこの分類を落とす場合、実装 path や
+  first-response artifact をもって revised request が fully descended したと誤読できるため、
+  G-DESIGN.L5 / L8 integration pass の完了根拠にしない。
 
 ## §1 L5 detailed contract
 

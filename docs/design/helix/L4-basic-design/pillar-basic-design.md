@@ -4,7 +4,7 @@ layer: L4
 kind: add-design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-30
+updated: 2026-07-01
 owner: AIM + TL (Codex)
 plan: PLAN-L4-51-helix-pillar-basic-design
 pair_artifact: docs/test-design/helix/L4-pillar-system-test-design.md
@@ -29,6 +29,12 @@ next_pair_freeze: L9
 - L1 §2.8 asset/progress visualization amendment は本 L4 10 block / 43 要件の confirmed 範囲外である。
   `PLAN-DISCOVERY-10` S4 confirmed 後に VSCode Tree View / Webview / deterministic graph / drill-down の
   L4 UI-data boundary として別途 Forward 合流させる。
+- G-SF `semantic_feature_frontier_record` の分類は L4 block boundary でも維持する。
+  `frontier_pending_decision` は L4 UI-data boundary を未 confirmed として扱い、
+  `parked_future_version` は current system block の完了に数えず、`approval_gated_cutover` は
+  blast-radius / dry-run / rollback / monitoring の設計までで apply 可能 block にしない。
+  中間層でこの分類を落とした場合、L3 で正しく分けた要求修正を L4 が汎用 block に吸収してしまうため、
+  G-DESIGN.L4 の完了根拠にしない。
 
 ## §1 L4 building block
 

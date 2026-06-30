@@ -192,16 +192,33 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     const addFeature = fileText(ADD_FEATURE_MODE);
     const reverse = fileText(REVERSE_MODE);
     const l3 = fileText("docs/design/helix/L3-requirements/pillar-functional-requirements.md");
+    const l4 = fileText("docs/design/helix/L4-basic-design/pillar-basic-design.md");
+    const l5 = fileText("docs/design/helix/L5-detail/pillar-detail-design.md");
     const l6 = fileText("docs/design/helix/L6-function-design/pillar-function-design.md");
     const l12 = fileText("docs/test-design/helix/L3-pillar-acceptance-test-design.md");
+    const l9System = fileText("docs/test-design/helix/L4-pillar-system-test-design.md");
+    const l8Integration = fileText("docs/test-design/helix/L5-pillar-integration-test-design.md");
     const l7Unit = fileText("docs/test-design/helix/L6-pillar-unit-test-design.md");
 
-    for (const text of [forwardDesign, discovery, addFeature, reverse, l3, l6, l12, l7Unit]) {
+    for (const text of [
+      forwardDesign,
+      discovery,
+      addFeature,
+      reverse,
+      l3,
+      l4,
+      l5,
+      l6,
+      l12,
+      l9System,
+      l8Integration,
+      l7Unit,
+    ]) {
       expect(text).toContain("semantic_feature_frontier_record");
       expect(text).toContain("frontier_pending_decision");
     }
 
-    for (const text of [forwardDesign, l3, l6, l12, l7Unit]) {
+    for (const text of [forwardDesign, l3, l4, l5, l6, l12, l9System, l8Integration, l7Unit]) {
       expect(text).toContain("parked_future_version");
       expect(text).toContain("approval_gated_cutover");
     }
@@ -220,8 +237,12 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(l3).toContain("version-up-activation-packet.v1");
     expect(l3).toContain("plan-only activation packet");
     expect(l3).toContain("apply surface を持たない");
+    expect(l4).toContain("L4 UI-data boundary を未 confirmed");
+    expect(l5).toContain("first-response artifact をもって revised request が fully descended");
     expect(l6).toContain("実装済み path の存在だけでは `completion_claim_allowed=true` にならない");
     expect(l12).toContain("G-SF oracle");
+    expect(l9System).toContain("selected HST green");
+    expect(l8Integration).toContain("current 43 件の integration completion に混ぜない");
     expect(l7Unit).toContain("G-SF | semantic frontier records");
   });
 

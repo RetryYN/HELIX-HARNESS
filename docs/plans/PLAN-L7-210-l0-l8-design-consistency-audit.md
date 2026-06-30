@@ -72,7 +72,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:49:14+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
-        output_digest: "sha256:569c1db4d10a6d823fd15a1906c258676eb526cbbc490181c21b19632b6bb4ca"
+        output_digest: "sha256:09fa27b97e29d5432333096601ae5629b6b9311be08f8c1c3d3f1c2eb2b36769"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T12:30:00+09:00"
@@ -89,7 +89,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:29:00+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
-        output_digest: "sha256:569c1db4d10a6d823fd15a1906c258676eb526cbbc490181c21b19632b6bb4ca"
+        output_digest: "sha256:09fa27b97e29d5432333096601ae5629b6b9311be08f8c1c3d3f1c2eb2b36769"
 ---
 
 # PLAN-L7-210: L0-L8 semantic design consistency audit
