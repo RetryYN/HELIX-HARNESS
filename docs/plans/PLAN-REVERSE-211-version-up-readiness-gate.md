@@ -49,7 +49,7 @@ review_evidence:
     reviewed_at: "2026-06-30T10:31:00+09:00"
     tests_green_at: "2026-06-30T10:30:00+09:00"
     verdict: approve
-    scope: "Backfilled the version-up readiness gate into process-mode semantics without changing L0/L3/L4 requirements or activating the parked serverless PLAN."
+    scope: "Backfilled the version-up readiness gate into process-mode semantics without changing L0/L3/L4 requirements or activating the parked serverless PLAN. 2026-06-30 continuation adds parked_review_record as the review contract for parked version-up work."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -60,7 +60,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T10:25:06+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:b36361acfc3ea4ec9ce2ba3100736719f310b156469ced180d5990dc7349a256"
+        output_digest: "sha256:5fc7b73ea123ba449b06b0284eb1417e308b2a1fdeef6b0d02d87005c0ed9f7c"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

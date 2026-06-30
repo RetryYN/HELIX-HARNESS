@@ -63,7 +63,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"
         evidence_path: docs/process/modes/version-up.md
-        output_digest: "sha256:17507c57adb55225eb4cb0640644f4230e1efd91939cb0e9fe51bc4108de34b3"
+        output_digest: "sha256:d215e11c113f3be127be8771702a90d3302e68a51c71ef2030ef61acd161bfa0"
       - kind: unit_test
         command: "bunx vitest run tests/forward-convergence.test.ts (version-up parked + fail-close + legacy audit)"
         runner: bun

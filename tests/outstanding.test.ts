@@ -117,6 +117,7 @@ describe("analyzeOutstandingWork", () => {
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+        "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
         "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
       ]),
     );
@@ -241,6 +242,9 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
     expect(packet.decisions[1].requiredEvidence).toContain(
       "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+    );
+    expect(packet.decisions[1].requiredEvidence).toContain(
+      "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
     );
     expect(packet.decisions[2].requiredEvidence).toContain(
       "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",

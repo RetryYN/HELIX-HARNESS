@@ -42,7 +42,7 @@ review_evidence:
     reviewed_at: "2026-06-30T10:30:00+09:00"
     tests_green_at: "2026-06-30T10:30:00+09:00"
     verdict: approve
-    scope: "Version-up parked PLANs are hard-gated for activation markers and external action-binding approval boundaries without activating the parked work."
+    scope: "Version-up parked PLANs are hard-gated for activation markers and external action-binding approval boundaries without activating the parked work. 2026-06-30 continuation adds parked_review_record so parked work has review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route instead of indefinite draft."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -53,7 +53,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T10:25:06+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:b36361acfc3ea4ec9ce2ba3100736719f310b156469ced180d5990dc7349a256"
+        output_digest: "sha256:5fc7b73ea123ba449b06b0284eb1417e308b2a1fdeef6b0d02d87005c0ed9f7c"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -61,7 +61,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T10:25:00+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:94113e23d90a37a05d9849913fe0bd4b97cdb79f367ec1ab496a1c4cc8f9f82d"
+        output_digest: "sha256:42faf9c81885f969427a95ac06df8d2b51d980337a0f0ad8442e65f3974c86a2"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -69,7 +69,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T10:25:52+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:b36361acfc3ea4ec9ce2ba3100736719f310b156469ced180d5990dc7349a256"
+        output_digest: "sha256:5fc7b73ea123ba449b06b0284eb1417e308b2a1fdeef6b0d02d87005c0ed9f7c"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

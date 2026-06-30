@@ -15,7 +15,7 @@ review_evidence:
     reviewed_at: "2026-06-30T11:17:00+09:00"
     tests_green_at: "2026-06-30T11:16:00+09:00"
     verdict: pass
-    scope: "PO『4 は対応しろ』(2026-06-22) を受け IMP-139 (status/handover/DB が『未了の正の集計シグナル』を出さず doctor green=完了 と誤読され得る) を実装。新規 src/lint/outstanding.ts: analyzeOutstandingWork (純関数、非終端 PLAN を layer 別集計、terminal=confirmed/completed/accepted と archived を除外、key 昇順決定論、openDefers を Math.max(0) クランプ) + loadOutstandingPlanRows (docs/plans frontmatter から layer/status) + computeOutstandingWork (placeholder-deps specBackfillWaits を open defer として合成、I/O 失敗は fail-open ゼロ寄せ) + outstandingSummaryLine。surface 2 面: (1) ut-tdd status --json に outstanding を additive 付加 (nextAction を additive 付加した A-138/PLAN-L7-84 の前例に倣う、既存 6 field 不変) + status text に 1 行。(2) handover CURRENT.json pointer に outstanding を additive (session 再開時の完了主張を機械照合可能に)。gate ではない informational surface (非 fail-close)。2026-06-30 に意味別 blocker 分類と requiredAction/requiredEvidence を追加。さらに `completionReadiness` を追加し、doctor green とは別に whole-program / L14 全件達成 claim の ready/blocked を機械判定する。2026-06-30 continuation で `completionDecisionPacketForOutstanding` と `ut-tdd completion decision-packet` を追加し、PO/S4 判断・version-up activation・action-binding approval・不可逆 migration signoff を PLAN 単位の decision packet として出す。status JSON に `completionDecisionPacket` を additive に接続し、blocked status text から packet command へ直接辿れるようにした。2026-06-30 continuation 2 で `s4-decision-readiness` hard gate を追加し、S3 verified PoC が S4 decision record (allowed_outcome / decision_owner / decision_basis / forward_route / reverse_fullback_required) 無しに outstanding から消えないようにした。2026-06-30 continuation 3 で `cutover-readiness` hard gate を追加し、不可逆 L14 cutover が cutover decision record (allowed_outcome / trigger_condition / blast_radius_baseline / dry_run_plan / rollback_plan / state_backup_plan / approval_scope / audit_record / post_cutover_monitoring / legacy_alias_policy) 無しに completion packet から消えないようにした。test 14 ケース (analyze 5 + completion readiness 2 + decision packet 2 + summaryLine 2 + loader/compute 3) + S4 readiness 4 ケース + cutover readiness 4 ケース + CLI status/decision-packet surface + 既存 handover/status スイート不破壊。typecheck/Biome/Vitest/doctor green。"
+    scope: "PO『4 は対応しろ』(2026-06-22) を受け IMP-139 (status/handover/DB が『未了の正の集計シグナル』を出さず doctor green=完了 と誤読され得る) を実装。新規 src/lint/outstanding.ts: analyzeOutstandingWork (純関数、非終端 PLAN を layer 別集計、terminal=confirmed/completed/accepted と archived を除外、key 昇順決定論、openDefers を Math.max(0) クランプ) + loadOutstandingPlanRows (docs/plans frontmatter から layer/status) + computeOutstandingWork (placeholder-deps specBackfillWaits を open defer として合成、I/O 失敗は fail-open ゼロ寄せ) + outstandingSummaryLine。surface 2 面: (1) ut-tdd status --json に outstanding を additive 付加 (nextAction を additive 付加した A-138/PLAN-L7-84 の前例に倣う、既存 6 field 不変) + status text に 1 行。(2) handover CURRENT.json pointer に outstanding を additive (session 再開時の完了主張を機械照合可能に)。gate ではない informational surface (非 fail-close)。2026-06-30 に意味別 blocker 分類と requiredAction/requiredEvidence を追加。さらに `completionReadiness` を追加し、doctor green とは別に whole-program / L14 全件達成 claim の ready/blocked を機械判定する。2026-06-30 continuation で `completionDecisionPacketForOutstanding` と `ut-tdd completion decision-packet` を追加し、PO/S4 判断・version-up activation・action-binding approval・不可逆 migration signoff を PLAN 単位の decision packet として出す。status JSON に `completionDecisionPacket` を additive に接続し、blocked status text から packet command へ直接辿れるようにした。2026-06-30 continuation 2 で `s4-decision-readiness` hard gate を追加し、S3 verified PoC が S4 decision record (allowed_outcome / decision_owner / decision_basis / forward_route / reverse_fullback_required) 無しに outstanding から消えないようにした。2026-06-30 continuation 3 で `cutover-readiness` hard gate を追加し、不可逆 L14 cutover が cutover decision record (allowed_outcome / trigger_condition / blast_radius_baseline / dry_run_plan / rollback_plan / state_backup_plan / approval_scope / audit_record / post_cutover_monitoring / legacy_alias_policy) 無しに completion packet から消えないようにした。2026-06-30 continuation 4 で version-up parked の requiredEvidence に parked_review_record を追加し、review owner / trigger / stale action が無い将来版保全を completion blocker として維持する。test 14 ケース (analyze 5 + completion readiness 2 + decision packet 2 + summaryLine 2 + loader/compute 3) + S4 readiness 4 ケース + cutover readiness 4 ケース + CLI status/decision-packet surface + 既存 handover/status スイート不破壊。typecheck/Biome/Vitest/doctor green。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:a279910596bb502d4d795d754d70e54f27cbd21e7974725a08501c2c48998cd0"
+        output_digest: "sha256:025020b8870fb2aa260dd5455cabda43f35d47a91b04ad4b2201f8cc7c8438f6"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:b35707e9badca9217c24a07404fbd7915b0b06d31008dfafdb4ed679b3bc0f0a"
+        output_digest: "sha256:9877fa56668ee2467d6daebf06d98fb3b74e22d5fcdcef5835bc4a9d21002bb5"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:b35707e9badca9217c24a07404fbd7915b0b06d31008dfafdb4ed679b3bc0f0a"
+        output_digest: "sha256:9877fa56668ee2467d6daebf06d98fb3b74e22d5fcdcef5835bc4a9d21002bb5"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -50,7 +50,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:b35707e9badca9217c24a07404fbd7915b0b06d31008dfafdb4ed679b3bc0f0a"
+        output_digest: "sha256:9877fa56668ee2467d6daebf06d98fb3b74e22d5fcdcef5835bc4a9d21002bb5"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
