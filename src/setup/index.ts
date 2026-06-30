@@ -106,6 +106,7 @@ export interface HelixProjectSetupResult extends SetupResult {
   futureCommand: "helix setup project";
   importReport: HelixProjectImportReport;
   consumerReadiness: ConsumerReadinessPlan;
+  postSetupWorkflow: HelixProjectPostSetupWorkflow;
   vscode: {
     tasksPath: string;
     statusTask: "HELIX: status";
@@ -139,6 +140,18 @@ export interface HelixProjectSetupResult extends SetupResult {
     reason: string;
   };
   nextCommands: string[];
+}
+
+export interface HelixProjectPostSetupWorkflow {
+  schemaVersion: "helix-project-post-setup-workflow.v1";
+  nextRoute: "ready" | "review_import_report" | "fix_consumer_readiness";
+  importReportRoute: HelixProjectImportReport["nextRoute"];
+  readinessOk: boolean;
+  manualDocSearchRequired: false;
+  unmetGates: string[];
+  nextActions: string[];
+  verificationCommands: string[];
+  blockedUntil: string[];
 }
 
 export interface CleanDistributionPlan {
@@ -728,6 +741,61 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps): ConsumerReadinessPla
   });
 }
 
+function buildHelixProjectPostSetupWorkflow(input: {
+  importReport: HelixProjectImportReport;
+  consumerReadiness: ConsumerReadinessPlan;
+}): HelixProjectPostSetupWorkflow {
+  const failedChecks = input.consumerReadiness.checks.filter((check) => !check.ok);
+  const failedBlockingChecks = input.consumerReadiness.ok ? [] : failedChecks;
+  const unmetGates = [
+    ...(input.importReport.requiresReview ? ["import_report_review"] : []),
+    ...failedBlockingChecks.map((check) => `consumer_readiness:${check.name}`),
+  ];
+  const nextRoute = input.importReport.requiresReview
+    ? "review_import_report"
+    : input.consumerReadiness.ok
+      ? "ready"
+      : "fix_consumer_readiness";
+  const nextActions =
+    nextRoute === "review_import_report"
+      ? [
+          "Review importReport.skippedExistingPaths and merge or accept consumer-owned configs before apply",
+          "Rerun `ut-tdd setup project --dry-run` after the import report is resolved",
+          "Run `ut-tdd status --json` and `ut-tdd doctor` before starting HELIX work",
+        ]
+      : nextRoute === "fix_consumer_readiness"
+        ? [
+            ...failedBlockingChecks.map((check) => check.message),
+            "Rerun `ut-tdd setup project --dry-run` after readiness checks are green",
+            "Run `ut-tdd status --json` and `ut-tdd doctor` before starting HELIX work",
+          ]
+        : [
+            "Run `ut-tdd status --json`",
+            "Run `ut-tdd doctor`",
+            "Start from the active handover or current PLAN route",
+          ];
+  const blockedUntil = [
+    ...(input.importReport.requiresReview ? ["importReport.requiresReview=false"] : []),
+    ...failedBlockingChecks.map((check) => `${check.name}=ok`),
+    "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
+  ];
+  return {
+    schemaVersion: "helix-project-post-setup-workflow.v1",
+    nextRoute,
+    importReportRoute: input.importReport.nextRoute,
+    readinessOk: input.consumerReadiness.ok,
+    manualDocSearchRequired: false,
+    unmetGates,
+    nextActions,
+    verificationCommands: [
+      "ut-tdd setup project --dry-run",
+      "ut-tdd status --json",
+      "ut-tdd doctor",
+    ],
+    blockedUntil,
+  };
+}
+
 /**
  * U-SETUP-005: setup.json を上書き (単一ファイル = 確定値 SSoT、append しない)。
  * signals は 4 フィールドのみ strip (認証情報混入経路を遮断)。
@@ -840,6 +908,10 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     emittedPaths: written,
   });
   const consumerReadiness = buildHelixSetupConsumerReadiness(deps);
+  const postSetupWorkflow = buildHelixProjectPostSetupWorkflow({
+    importReport,
+    consumerReadiness,
+  });
   const branchProtection = args.dryRun
     ? { applied: false, reason: "dry-run" }
     : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
@@ -852,6 +924,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     branchProtection,
     importReport,
     consumerReadiness,
+    postSetupWorkflow,
     vscode: {
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",

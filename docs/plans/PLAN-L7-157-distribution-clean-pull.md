@@ -81,7 +81,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
+        output_digest: "sha256:ed8df53330d60a7d1dafb0d0047178992492e14f0f21c0c34c4ba2490e5b0583"
       - kind: unit_test
         command: "bun run vitest run tests\\setup.test.ts tests\\cli-surface.test.ts"
         runner: bun
@@ -89,7 +89,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:e1481324fab5c5b546b2ea1a85f948de50e06639bdd90a5e6abecad83670380e"
+        output_digest: "sha256:230921ed2dea8471dd17af9979affab30e2da69907238aa513076160e59d1b34"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -97,7 +97,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:35:12+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
+        output_digest: "sha256:cce0b85dc1f80862afa6de952eccab1cb084d9964be66788b2588e99808d123b"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -105,7 +105,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:dcdf1f00617ac86ceb7c55547647dc23512c82ce9ff54d7ba07b95fe2af281d0"
+        output_digest: "sha256:24b4dbf854d6920677d40940b4f2924af5af4a4953abde9ae0d8ea56ca807658"
       - kind: smoke
         command: "bun src\\cli.ts distribution plan --tag v0.1.0 --json"
         runner: bun
@@ -113,7 +113,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:38:19+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
+        output_digest: "sha256:cce0b85dc1f80862afa6de952eccab1cb084d9964be66788b2588e99808d123b"
       - kind: smoke
         command: "bun run vitest run tests\\distribution-acceptance.test.ts"
         runner: bun

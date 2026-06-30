@@ -557,6 +557,12 @@ describe("L7 CLI surface closure", () => {
         enablementStatus: "blocked_pending_cutover_approval",
         enablementPacketCommand: "ut-tdd rename plan --json",
       },
+      postSetupWorkflow: {
+        schemaVersion: "helix-project-post-setup-workflow.v1",
+        nextRoute: "review_import_report",
+        importReportRoute: "review_import_report",
+        manualDocSearchRequired: false,
+      },
     });
     expect(payload.written).toEqual(
       expect.arrayContaining([
@@ -596,6 +602,14 @@ describe("L7 CLI surface closure", () => {
         (check: { name: string }) => check.name === "ut-tdd-cli",
       )?.message,
     ).toMatch(/projected hooks|bun link ut-tdd/);
+    expect(payload.postSetupWorkflow.unmetGates).toEqual(
+      expect.arrayContaining(["import_report_review"]),
+    );
+    expect(payload.postSetupWorkflow.verificationCommands).toEqual([
+      "ut-tdd setup project --dry-run",
+      "ut-tdd status --json",
+      "ut-tdd doctor",
+    ]);
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
     );
@@ -604,6 +618,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.status).toBe(0);
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain("consumer-readiness:");
+    expect(text.stdout).toContain("post-setup-workflow: review_import_report");
     expect(text.stdout).toContain(
       "command-availability: ut-tdd setup project available=true; helix setup project available=false",
     );

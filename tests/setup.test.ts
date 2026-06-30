@@ -556,6 +556,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         enablementStatus: "blocked_pending_cutover_approval",
         enablementPacketCommand: "ut-tdd rename plan --json",
       },
+      postSetupWorkflow: {
+        schemaVersion: "helix-project-post-setup-workflow.v1",
+        nextRoute: "fix_consumer_readiness",
+        importReportRoute: "ready",
+        readinessOk: false,
+        manualDocSearchRequired: false,
+      },
     });
     expect(preview.identifierTransition.reason).toContain("PLAN-M-02");
     expect(preview.commandAvailability.reason).toContain("package/bin alias activation");
@@ -592,6 +599,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(preview.nextCommands).toEqual(
       expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
+    );
+    expect(preview.postSetupWorkflow.unmetGates).toEqual(
+      expect.arrayContaining(["consumer_readiness:ut-tdd-cli", "consumer_readiness:runtime-cli"]),
+    );
+    expect(preview.postSetupWorkflow.nextActions).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("bun link ut-tdd"),
+        "Run `ut-tdd status --json` and `ut-tdd doctor` before starting HELIX work",
+      ]),
+    );
+    expect(preview.postSetupWorkflow.verificationCommands).toEqual([
+      "ut-tdd setup project --dry-run",
+      "ut-tdd status --json",
+      "ut-tdd doctor",
+    ]);
+    expect(preview.postSetupWorkflow.blockedUntil).toContain(
+      "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
     );
     expect(dry.files.size).toBe(0);
     expect(dry.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
@@ -647,6 +671,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.importReport.reviewRequiredReasons).toContain(
       "existing_non_mergeable_paths_preserved",
     );
+    expect(result.postSetupWorkflow).toMatchObject({
+      schemaVersion: "helix-project-post-setup-workflow.v1",
+      nextRoute: "review_import_report",
+      importReportRoute: "review_import_report",
+      manualDocSearchRequired: false,
+    });
+    expect(result.postSetupWorkflow.unmetGates).toContain("import_report_review");
+    expect(result.postSetupWorkflow.nextActions).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("Review importReport.skippedExistingPaths"),
+        "Rerun `ut-tdd setup project --dry-run` after the import report is resolved",
+      ]),
+    );
     expect(result.written).not.toContain(join(".vscode", "tasks.json"));
     expect(deps.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("keep-existing");
     expect(deps.files.get(join("/repo", "AGENTS.md"))).toContain("UT-TDD:managed:start");
@@ -681,6 +718,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.consumerReadiness.smokeScenarios).toContain(
       "consumer CI -> harness-check green without repository secrets",
     );
+    expect(result.postSetupWorkflow).toMatchObject({
+      nextRoute: "ready",
+      importReportRoute: "ready",
+      readinessOk: true,
+      unmetGates: [],
+      nextActions: [
+        "Run `ut-tdd status --json`",
+        "Run `ut-tdd doctor`",
+        "Start from the active handover or current PLAN route",
+      ],
+    });
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {
