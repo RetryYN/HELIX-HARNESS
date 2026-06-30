@@ -116,6 +116,7 @@ function smartTestPrompt(input: { planId: string; task: string }): string {
     `Task: ${input.task}`,
     "Read the paired design/test-design artifacts before editing.",
     "Create or update the failing test, acceptance oracle, or test-design row before product implementation.",
+    "Run the targeted test in Red state and record RED_TEST_COMMAND plus a non-zero RED_EXIT_CODE before implementation.",
     "Record the expected Red failure and the exact evidence path. Do not approve implementation in this phase.",
   ].join("\n");
 }
@@ -239,7 +240,13 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
       agentKey: smartAgent.key,
       dependsOn: [],
       prompt: smartTestPrompt(promptInput),
-      requiredEvidence: ["red_evidence", "acceptance_oracle", "test_design_trace"],
+      requiredEvidence: [
+        "red_evidence",
+        "red_test_command",
+        "red_exit_code_nonzero",
+        "acceptance_oracle",
+        "test_design_trace",
+      ],
       onFail: null,
     },
     {
@@ -278,6 +285,7 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
     gates: [
       "smart-agent-writes-test-first",
       "red-evidence-before-implementation",
+      "red-test-command-and-nonzero-exit-before-implementation",
       "light-agent-cannot-close",
       "light-implementation-requires-evidence-or-consultation",
       "consultation-routes-to-smart-instruction",
@@ -327,6 +335,15 @@ function hasRedEvidence(output: string): boolean {
 
 function hasOracleEvidence(output: string): boolean {
   return /\b(ACCEPTANCE_ORACLE|TEST_DESIGN_TRACE|RED_ORACLE|ORACLE)\b\s*[:=]/i.test(output);
+}
+
+function hasRedTestCommand(output: string): boolean {
+  return /\b(RED_TEST_COMMAND|RED_COMMAND)\b\s*[:=]\s*\S+/i.test(output);
+}
+
+function hasNonZeroRedExitCode(output: string): boolean {
+  const match = output.match(/\b(RED_EXIT_CODE|RED_STATUS)\b\s*[:=]\s*(-?\d+)\b/i);
+  return match ? Number(match[2]) !== 0 : false;
 }
 
 function hasGreenEvidence(output: string): boolean {
@@ -464,9 +481,12 @@ export async function runPairAgentTddPlan(input: {
       transcript.at(-1)?.status === "pending";
     if (
       phaseName === "smart_test_author" &&
-      (!hasRedEvidence(output) || !hasOracleEvidence(output))
+      (!hasRedEvidence(output) ||
+        !hasOracleEvidence(output) ||
+        !hasRedTestCommand(output) ||
+        !hasNonZeroRedExitCode(output))
     ) {
-      evidenceErrorCode = "missing-red-or-oracle-evidence";
+      evidenceErrorCode = "missing-red-command-or-oracle-evidence";
     }
     if (phaseName === "light_implementation" && result?.status === 0 && !lightConsulted) {
       if (

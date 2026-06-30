@@ -82,11 +82,14 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     ]);
     expect(plan.phases[0]?.agentKey).toBe("smart-review-agent");
     expect(plan.phases[0]?.requiredEvidence).toContain("red_evidence");
+    expect(plan.phases[0]?.requiredEvidence).toContain("red_test_command");
+    expect(plan.phases[0]?.requiredEvidence).toContain("red_exit_code_nonzero");
     expect(plan.phases[1]?.dependsOn).toEqual(["smart_test_author"]);
     expect(plan.phases[2]?.onFail).toBe("light_implementation");
     expect(plan.gates).toEqual(
       expect.arrayContaining([
         "smart-agent-writes-test-first",
+        "red-test-command-and-nonzero-exit-before-implementation",
         "light-agent-cannot-close",
         "light-implementation-requires-evidence-or-consultation",
         "consultation-routes-to-smart-instruction",
@@ -199,7 +202,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
             : phase.name === "smart_review"
               ? "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n"
               : phase.name === "smart_test_author"
-                ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n"
+                ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n"
                 : "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: minimal implementation attempt\n",
         stderr: "",
       }),
@@ -226,7 +229,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     );
   });
 
-  it("fails closed when the smart test author does not emit Red/oracle evidence", async () => {
+  it("fails closed when the smart test author does not emit Red command/oracle evidence", async () => {
     const plan = buildPairAgentTddPlan({
       planId: "PLAN-L7-PAIR",
       task: "Add pair-agent TDD route",
@@ -255,7 +258,42 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     expect(result.findings).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          code: "missing-red-or-oracle-evidence",
+          code: "missing-red-command-or-oracle-evidence",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
+  it("fails closed when the smart test author does not prove a non-zero Red test exit", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => ({
+        status: 0,
+        stdout:
+          phase.name === "smart_test_author"
+            ? "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 0\n"
+            : "VERDICT: pass\n",
+        stderr: "",
+      }),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.steps).toHaveLength(1);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-red-command-or-oracle-evidence",
           severity: "error",
         }),
       ]),
@@ -279,7 +317,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -334,7 +372,8 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         if (phase.name === "smart_test_author") {
           return {
             status: 0,
-            stdout: "RED_ORACLE: expect audit status to block unsafe apply\n",
+            stdout:
+              "RED_ORACLE: expect audit status to block unsafe apply\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -388,7 +427,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           return {
             status: 0,
             stdout:
-              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n",
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -433,7 +472,8 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         if (phase.name === "smart_test_author") {
           return {
             status: 0,
-            stdout: "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\n",
+            stdout:
+              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -500,7 +540,8 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         if (phase.name === "smart_test_author") {
           return {
             status: 0,
-            stdout: "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\n",
+            stdout:
+              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
             stderr: "",
           };
         }
@@ -661,7 +702,13 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           parent_span_id: expect.stringMatching(/^pair-agent:PLAN-L7-PAIR:\d{14}:run$/),
           phase: "smart_test_author",
           handoff_target: null,
-          required_evidence: ["red_evidence", "acceptance_oracle", "test_design_trace"],
+          required_evidence: [
+            "red_evidence",
+            "red_test_command",
+            "red_exit_code_nonzero",
+            "acceptance_oracle",
+            "test_design_trace",
+          ],
           eval_outcome: { status: "planned", verdict: null, exit_code: null },
         }),
         expect.objectContaining({
