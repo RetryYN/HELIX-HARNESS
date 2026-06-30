@@ -73,7 +73,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:41:00+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:cbdce9e49e20ca490058d95c48c4a8d25854d6465ed84799309e96977afda900"
+        output_digest: "sha256:5340219616194d58594c0c236bc2cb1c292fdcbd71ee67961d1e7b227bc1cd58"
       - kind: unit_test
         command: "bun run vitest run tests/runtime-portability.test.ts"
         runner: bun
@@ -97,7 +97,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:44:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:4637e0591dee4a807fa236c9b6c648f23dacdaa4a2f9fbd10bc811a98e481f96"
+        output_digest: "sha256:dceb3adf9360e1863745a4f8de18c62dfb52dbbf8ef77aa9911a55e0b4641caa"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

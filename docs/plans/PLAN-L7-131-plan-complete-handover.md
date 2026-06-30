@@ -43,7 +43,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23T16:10:00+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:cbdce9e49e20ca490058d95c48c4a8d25854d6465ed84799309e96977afda900"
+        output_digest: "sha256:5340219616194d58594c0c236bc2cb1c292fdcbd71ee67961d1e7b227bc1cd58"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

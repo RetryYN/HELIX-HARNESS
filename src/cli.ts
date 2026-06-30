@@ -40,7 +40,11 @@ import {
   setActivePlanCli,
 } from "./handover/index";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
-import { computeOutstandingWork, outstandingSummaryLine } from "./lint/outstanding";
+import {
+  completionReadinessLine,
+  computeOutstandingWork,
+  outstandingSummaryLine,
+} from "./lint/outstanding";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -460,6 +464,7 @@ program
       );
       process.stdout.write(`next: ${nextAction}\n`);
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
+      process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
     }
   });
 

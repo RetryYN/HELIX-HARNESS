@@ -80,6 +80,51 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
+  it("exposes whole-program completion readiness on status surfaces", () => {
+    const readyRoot = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-ready-"));
+    const blockedRoot = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-blocked-"));
+    try {
+      const ready = runCliIn(readyRoot, ["status", "--json"]);
+      expect(ready.status).toBe(0);
+      expect(JSON.parse(ready.stdout).outstanding.completionReadiness).toMatchObject({
+        ok: true,
+        status: "ready",
+      });
+
+      mkdirSync(join(blockedRoot, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(blockedRoot, "docs", "plans", "PLAN-M-02-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-M-02-fixture",
+          "kind: design",
+          "layer: L14",
+          "status: draft",
+          "---",
+          "",
+          "# fixture",
+          "irreversible cutover requires PO signoff.",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const blockedJson = runCliIn(blockedRoot, ["status", "--json"]);
+      expect(blockedJson.status).toBe(0);
+      expect(JSON.parse(blockedJson.stdout).outstanding.completionReadiness).toMatchObject({
+        ok: false,
+        status: "blocked",
+        blockers: expect.arrayContaining(["irreversible_migration_pending", "non_terminal_plans"]),
+      });
+
+      const blockedText = runCliIn(blockedRoot, ["status"]);
+      expect(blockedText.status).toBe(0);
+      expect(blockedText.stdout).toContain("completion: blocked");
+    } finally {
+      rmSync(readyRoot, { recursive: true, force: true });
+      rmSync(blockedRoot, { recursive: true, force: true });
+    }
+  }, 15_000);
+
   it("exposes skill suggest as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--plan", "PLAN-NO-SUCH", "--json"]);
 

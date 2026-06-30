@@ -48,7 +48,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:10:36+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:55e7dc554de96a32e3b77e3b22625ecbf68a7d0c52336e72367505daa2e4a1dd"
+        output_digest: "sha256:927de636be289167e5bf36a1bc6c14faf311fe18761164b31a66e7c6e75eb7fa"
       - kind: unit_test
         command: "bun run vitest run tests\\handover-completion-wording.test.ts --reporter=dot"
         runner: bun

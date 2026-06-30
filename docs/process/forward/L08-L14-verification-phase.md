@@ -31,6 +31,12 @@
 | G13 | L12 deployment record | deployed/staging 環境 smoke が通る | smoke command evidence、monitoring quiet window、incident routing if failed | production write は人間承認なしに実行しない |
 | G14 | L1 operational test design + L0 value hypothesis | 運用データ×時間で要求・価値が保たれる | operational metric snapshot、incident/backlog delta、L14→L0 feedback record | 価値検証 feedback。未記録なら「L14 達成」ではない |
 
+Whole-program completion readiness: `ut-tdd status --json` の
+`outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
+`doctor` green があっても「L14 全件達成」ではない。非終端 PLAN、open defer、
+version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migration 待ちのいずれかが
+残る場合、status は completion `blocked` を返し、必要な action/evidence を PLAN 単位で示す。
+
 ---
 
 ## 各層定義

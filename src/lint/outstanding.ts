@@ -44,6 +44,8 @@ export interface OutstandingWork {
   blockersByKind: Record<string, number>;
   /** 非終端 PLAN の明細。status --json / handover で完了主張を計画単位に照合する。 */
   items: OutstandingItem[];
+  /** 全プログラム完了 claim の可否。doctor green とは別の completion-readiness 判定。 */
+  completionReadiness: CompletionReadiness;
 }
 
 export interface OutstandingPlanRow {
@@ -71,6 +73,14 @@ export interface OutstandingItem {
   requiredAction: string;
   /** requiredAction を満たしたと機械照合するために残すべき証跡。 */
   requiredEvidence: string[];
+}
+
+export interface CompletionReadiness {
+  ok: boolean;
+  status: "ready" | "blocked";
+  reason: string;
+  blockers: string[];
+  requiredActions: string[];
 }
 
 /**
@@ -116,7 +126,7 @@ export function analyzeOutstandingWork(
   for (const key of Object.keys(blockersByKind).sort()) orderedBlockers[key] = blockersByKind[key];
   items.sort((a, b) => a.planId.localeCompare(b.planId));
   const total = Object.values(ordered).reduce((acc, n) => acc + n, 0);
-  return {
+  const base = {
     nonTerminalPlansByLayer: ordered,
     nonTerminalPlansTotal: total,
     versionUpParked,
@@ -124,6 +134,10 @@ export function analyzeOutstandingWork(
     openDefers: Math.max(0, openDefers),
     blockersByKind: orderedBlockers,
     items,
+  };
+  return {
+    ...base,
+    completionReadiness: completionReadinessForOutstanding(base),
   };
 }
 
@@ -266,4 +280,45 @@ export function outstandingSummaryLine(o: OutstandingWork): string {
       .map(([kind, n]) => `${kind}:${n}`)
       .join(", ") || "none";
   return `outstanding: non-terminal PLANs=${o.nonTerminalPlansTotal} (${byLayer})${versionUp}; blockers=${blockers}; open defers=${o.openDefers}`;
+}
+
+type OutstandingWorkBase = Omit<OutstandingWork, "completionReadiness">;
+
+export function completionReadinessForOutstanding(o: OutstandingWorkBase): CompletionReadiness {
+  const blockers = new Set<string>();
+  if (o.nonTerminalPlansTotal > 0) blockers.add("non_terminal_plans");
+  if (o.openDefers > 0) blockers.add("open_defers");
+  for (const blocker of Object.keys(o.blockersByKind)) blockers.add(blocker);
+
+  const requiredActions = [...new Set(o.items.map((item) => item.requiredAction))].sort();
+  if (o.openDefers > 0) {
+    requiredActions.push(
+      "resolve open placeholder/spec-backfill defers before claiming whole-program completion",
+    );
+  }
+
+  if (blockers.size === 0) {
+    return {
+      ok: true,
+      status: "ready",
+      reason: "no non-terminal PLANs or open defers remain",
+      blockers: [],
+      requiredActions: [],
+    };
+  }
+
+  return {
+    ok: false,
+    status: "blocked",
+    reason:
+      "whole-program completion is blocked; doctor green is not a substitute for closing outstanding work",
+    blockers: [...blockers].sort(),
+    requiredActions,
+  };
+}
+
+export function completionReadinessLine(o: OutstandingWork): string {
+  const readiness = o.completionReadiness;
+  if (readiness.ok) return "completion: ready (no outstanding work)";
+  return `completion: blocked (${readiness.blockers.join(", ")}); required actions=${readiness.requiredActions.length}`;
 }

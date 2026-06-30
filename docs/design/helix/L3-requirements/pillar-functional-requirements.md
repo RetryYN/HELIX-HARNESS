@@ -152,7 +152,7 @@ L3 要件の受入条件として固定する。
 | HAC-P8-03b | 外部 API/GitHub token が必要 | action を作る | action 単位 short-lived/fine-grained token 以外は拒否 |
 | HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |
 | HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |
-| HAC-P9-01a | generated artifact が DB/projection 未収束 | complete を試行 | 完了扱いを拒否し、projection rebuild または defer を要求 |
+| HAC-P9-01a | generated artifact が DB/projection 未収束、または `outstanding.completionReadiness.ok=false` | complete / L14 全件達成 claim を試行 | 完了扱いを拒否し、projection rebuild、未了 PLAN の requiredAction、または defer を要求 |
 | HAC-P9-01b | setup/import/upgrade baseline が未登録 | doctor を実行 | consumer baseline 未収束として表示する |
 | HAC-P9-02a | doc/code/test/check の依存がある | relation graph を rebuild | relation edge と owner が記録され、impact query に出る |
 | HAC-P9-02b | contract が変わる | ledger を検査 | breaking/compatible/migration-needed の分類が無ければ fail |

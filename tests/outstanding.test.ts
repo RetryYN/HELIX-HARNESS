@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeOutstandingWork,
+  completionReadinessForOutstanding,
   computeOutstandingWork,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
@@ -30,6 +31,11 @@ describe("analyzeOutstandingWork", () => {
     expect(o.openDefers).toBe(2);
     expect(o.blockersByKind).toEqual({ active_draft: 3 });
     expect(o.items).toHaveLength(3);
+    expect(o.completionReadiness).toMatchObject({
+      ok: false,
+      status: "blocked",
+      blockers: ["active_draft", "non_terminal_plans", "open_defers"],
+    });
   });
 
   it("layer key は昇順 (決定論順)", () => {
@@ -119,6 +125,58 @@ describe("analyzeOutstandingWork", () => {
   });
 });
 
+describe("completionReadinessForOutstanding", () => {
+  it("blocks whole-program completion while non-terminal PLANs or open defers remain", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible cutover requires PO signoff and approval",
+        },
+      ],
+      1,
+    );
+
+    expect(o.completionReadiness.ok).toBe(false);
+    expect(o.completionReadiness.blockers).toEqual([
+      "human_approval_pending",
+      "irreversible_migration_pending",
+      "non_terminal_plans",
+      "open_defers",
+    ]);
+    expect(o.completionReadiness.reason).toContain("doctor green is not a substitute");
+    expect(o.completionReadiness.requiredActions).toEqual(
+      expect.arrayContaining([
+        "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+        "resolve open placeholder/spec-backfill defers before claiming whole-program completion",
+      ]),
+    );
+  });
+
+  it("is ready only when non-terminal PLANs and open defers are zero", () => {
+    expect(
+      completionReadinessForOutstanding({
+        nonTerminalPlansByLayer: {},
+        nonTerminalPlansTotal: 0,
+        versionUpParked: 0,
+        activeDraftTotal: 0,
+        openDefers: 0,
+        blockersByKind: {},
+        items: [],
+      }),
+    ).toEqual({
+      ok: true,
+      status: "ready",
+      reason: "no non-terminal PLANs or open defers remain",
+      blockers: [],
+      requiredActions: [],
+    });
+  });
+});
+
 describe("outstandingSummaryLine", () => {
   it("非終端ありの 1 行サマリ", () => {
     expect(
@@ -130,6 +188,13 @@ describe("outstandingSummaryLine", () => {
         openDefers: 1,
         blockersByKind: { active_draft: 3 },
         items: [],
+        completionReadiness: {
+          ok: false,
+          status: "blocked",
+          reason: "",
+          blockers: [],
+          requiredActions: [],
+        },
       }),
     ).toBe(
       "outstanding: non-terminal PLANs=3 (L7:2, cross:1); blockers=active_draft:3; open defers=1",
@@ -146,6 +211,13 @@ describe("outstandingSummaryLine", () => {
         openDefers: 0,
         blockersByKind: {},
         items: [],
+        completionReadiness: {
+          ok: true,
+          status: "ready",
+          reason: "",
+          blockers: [],
+          requiredActions: [],
+        },
       }),
     ).toBe("outstanding: non-terminal PLANs=0 (none); blockers=none; open defers=0");
   });
