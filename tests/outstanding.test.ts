@@ -117,7 +117,7 @@ describe("analyzeOutstandingWork", () => {
     );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
-        "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+        "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
         "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
         "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
         "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, review_approval_evidence, expires_at_or_trigger, and audit_record",
@@ -308,8 +308,17 @@ describe("completionDecisionPacketForOutstanding", () => {
       "parked_review_record",
       "action_binding_approval_record",
     ]);
+    expect(packet.decisions[1].requiredRecords[0]?.fields).toEqual([
+      "allowed_outcome",
+      "target_version_or_release_trigger",
+      "activation_route",
+      "review_by",
+      "approval_scope",
+      "dry_run_plan",
+      "rollback_plan",
+    ]);
     expect(packet.decisions[1].requiredEvidence).toContain(
-      "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+      "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
     );
     expect(packet.decisions[1].requiredEvidence).toContain(
       "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
@@ -566,7 +575,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         ["PLAN-S3", "po_decision_pending"],
       ]);
       expect(o.items[0]?.requiredEvidence).toContain(
-        "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+        "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
       );
       expect(o.items[0]?.requiredEvidence).not.toContain(
         "s4_decision_record with allowed_outcome confirmed / rejected / pivot",

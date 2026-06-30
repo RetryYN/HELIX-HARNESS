@@ -41,6 +41,31 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T15:47:45+09:00"
+    tests_green_at: "2026-06-30T15:47:45+09:00"
+    verdict: approve
+    scope: "Continuation: activation_decision_record now requires target_version_or_release_trigger and activation_route. Version-up parked work can no longer remain an indefinite future draft or activate without naming the release trigger and add-feature/Forward route."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/version-up-readiness.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T15:47:45+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:1c3d499aff26f31b8c4a9c847e97fee4c593e17ce31ada43bed978885620a385"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T15:47:45+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:abdb20819c4bfa0eb94a44bb579e595958e38271e79e8ebd2576280d9f844959"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:32:07+09:00"
     tests_green_at: "2026-06-30T14:32:07+09:00"
     verdict: approve
@@ -55,7 +80,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4ea543cd9a1cfeda104a0fc0bcb9abc7e360007dd94d2cf20d7a2a63330149bd"
+        output_digest: "sha256:1c3d499aff26f31b8c4a9c847e97fee4c593e17ce31ada43bed978885620a385"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -63,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:28:03+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:5e25f6e7afb73b37ccda0bb4b2c236d773e4f7da708c5b4c545d6aac4362d41b"
+        output_digest: "sha256:abdb20819c4bfa0eb94a44bb579e595958e38271e79e8ebd2576280d9f844959"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -71,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4ea543cd9a1cfeda104a0fc0bcb9abc7e360007dd94d2cf20d7a2a63330149bd"
+        output_digest: "sha256:1c3d499aff26f31b8c4a9c847e97fee4c593e17ce31ada43bed978885620a385"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

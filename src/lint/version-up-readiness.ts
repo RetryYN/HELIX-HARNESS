@@ -40,6 +40,8 @@ const MODE_DOC_MARKERS = [
   "VERSION_UP_ALLOWED_TARGETS",
   "activation_decision_record",
   "allowed_outcome",
+  "target_version_or_release_trigger",
+  "activation_route",
   "review_by",
   "approval_scope",
   "dry_run_plan",
@@ -98,6 +100,8 @@ const PARKED_PLAN_MARKERS = [
   "activation",
   "activation_decision_record",
   "allowed_outcome",
+  "target_version_or_release_trigger",
+  "activation_route",
   "review_by",
   "parked_review_record",
   "review_owner",
@@ -112,6 +116,8 @@ const PARKED_PLAN_MARKERS = [
 const ACTIVATION_RECORD_NAME = "activation_decision_record";
 const ACTIVATION_RECORD_FIELDS = [
   "allowed_outcome",
+  "target_version_or_release_trigger",
+  "activation_route",
   "review_by",
   "approval_scope",
   "dry_run_plan",

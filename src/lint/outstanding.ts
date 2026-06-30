@@ -259,7 +259,7 @@ function requiredOutstandingAction(reason: string): {
         requiredAction:
           "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
         requiredEvidence: [
-          "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+          "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
           "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
           "review_by date/owner recorded when keep_parked_with_review_date is chosen",
           "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
@@ -577,6 +577,8 @@ function requiredRecordsForOutstandingReason(
           recordName: "activation_decision_record",
           fields: [
             "allowed_outcome",
+            "target_version_or_release_trigger",
+            "activation_route",
             "review_by",
             "approval_scope",
             "dry_run_plan",
