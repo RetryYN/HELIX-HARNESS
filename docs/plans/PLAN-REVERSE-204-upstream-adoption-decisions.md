@@ -76,7 +76,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:47:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:02fd2183588a41a05eb94357196c35bb7c95bad96addb52f97bc1b29afe14d74"
+        output_digest: "sha256:74fe3ba297a217bb24177e56c26b1c3e75d99f9e589ae6a8b36a97ddf52a154e"
 ---
 
 # PLAN-REVERSE-204: upstream A-146 semantic adoption decision back-fill

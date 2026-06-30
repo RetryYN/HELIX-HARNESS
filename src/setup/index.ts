@@ -15,7 +15,12 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, readSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, relative, sep } from "node:path";
-import { BUILTIN_GITHUB_TEMPLATES, COMMON_FILES, type TemplateSet } from "./templates";
+import {
+  BUILTIN_GITHUB_TEMPLATES,
+  COMMON_FILES,
+  PROJECT_SETUP_FILES,
+  type TemplateSet,
+} from "./templates";
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
 
@@ -77,6 +82,23 @@ export interface SetupResult {
   phase: SetupPhase;
   written: string[];
   branchProtection: { applied: boolean; reason: string };
+}
+
+export interface HelixProjectSetupResult extends SetupResult {
+  schemaVersion: "helix-project-setup.v1";
+  setupCommand: "ut-tdd setup project";
+  vscode: {
+    tasksPath: string;
+    statusTask: "HELIX: status";
+    doctorTask: "HELIX: doctor";
+  };
+  baseline: {
+    statePath: string;
+    memoryPath: string;
+    handoverPath: string;
+    evidencePath: string;
+  };
+  nextCommands: string[];
 }
 
 export interface CleanDistributionPlan {
@@ -323,6 +345,19 @@ export function planSetup(
   };
 }
 
+export function planHelixProjectSetup(
+  phase: SetupPhase,
+  opts: { teams?: TeamSlugs; dryRun: boolean },
+): SetupPlan {
+  const base = planSetup(phase, opts);
+  const byPath = new Map(base.files.map((file) => [file.path, file]));
+  for (const entry of PROJECT_SETUP_FILES) byPath.set(entry.file.path, { ...entry.file });
+  return {
+    ...base,
+    files: [...byPath.values()],
+  };
+}
+
 /** 内部 helper (独立契約でない、U-SETUP-004 に内包): plan + templates → {path, content}[]。token 非埋込。 */
 function renderArtifacts(
   plan: SetupPlan,
@@ -352,6 +387,17 @@ function templateNameFor(targetPath: string): string {
   if (targetPath === join(".codex", "hooks.json")) return "adapter/.codex/hooks.json";
   if (targetPath === join(".claude", "CLAUDE.md")) return "adapter/.claude/CLAUDE.md";
   if (targetPath === join(".claude", "settings.json")) return "adapter/.claude/settings.json";
+  if (targetPath === join(".vscode", "tasks.json")) return "project/.vscode/tasks.json";
+  if (targetPath === join(".vscode", "settings.json")) return "project/.vscode/settings.json";
+  if (targetPath === join(".ut-tdd", "memory", ".gitkeep")) {
+    return "project/.ut-tdd/memory/.gitkeep";
+  }
+  if (targetPath === join(".ut-tdd", "handover", ".gitkeep")) {
+    return "project/.ut-tdd/handover/.gitkeep";
+  }
+  if (targetPath === join(".ut-tdd", "evidence", ".gitkeep")) {
+    return "project/.ut-tdd/evidence/.gitkeep";
+  }
   if (targetPath.startsWith(`${join(".claude", "agents")}${sep}`)) {
     return `adapter/.claude/agents/${basename(targetPath)}`;
   }
@@ -665,24 +711,7 @@ export function applyBranchProtection(
  */
 export function runSetup(args: SetupArgs, deps: SetupDeps): SetupResult {
   const scale = detectProjectScale(deps);
-  let phase: SetupPhase;
-  let decidedBy: SetupState["decidedBy"];
-  if (args.phase) {
-    phase = args.phase;
-    decidedBy = "flag";
-  } else if (deps.isInteractive) {
-    const rec = recommendPhase(scale);
-    const ok = deps.confirm(
-      `検出: owner=${scale.ownerType}, collaborators=${scale.collaborators ?? "?"}, ` +
-        `CODEOWNERS=${scale.hasCodeowners ? "あり" : "なし"} → 推奨 ${rec.phase} (${rec.reason})。` +
-        `${rec.phase === "0-B" ? "team" : "solo"} 設定を生成しますか？`,
-    );
-    phase = ok ? rec.phase : "0-A";
-    decidedBy = "confirm";
-  } else {
-    phase = "0-A"; // 非対話 + フラグ無し → 安全フォールバック
-    decidedBy = "fallback";
-  }
+  const { phase, decidedBy } = decideSetupPhase(args, deps, scale);
 
   // dry-run は副作用ゼロ契約 (CLI help「書き込まない」)。state 書込も remote 適用も行わない。
   // emit は plan.dryRun で既に非書込だが、record/apply は dryRun を見ないため runSetup 側で封鎖する。
@@ -695,6 +724,63 @@ export function runSetup(args: SetupArgs, deps: SetupDeps): SetupResult {
     ? { applied: false, reason: "dry-run" }
     : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
   return { phase, written, branchProtection };
+}
+
+export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixProjectSetupResult {
+  const scale = detectProjectScale(deps);
+  const { phase, decidedBy } = decideSetupPhase(args, deps, scale);
+  if (!args.dryRun) {
+    recordSetupState({ phase, decidedAt: deps.now(), decidedBy, signals: scale }, deps);
+  }
+  const plan = planHelixProjectSetup(phase, { teams: args.teams, dryRun: args.dryRun });
+  const written = emitSetup(plan, deps.templates, deps);
+  const branchProtection = args.dryRun
+    ? { applied: false, reason: "dry-run" }
+    : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
+  return {
+    schemaVersion: "helix-project-setup.v1",
+    setupCommand: "ut-tdd setup project",
+    phase,
+    written,
+    branchProtection,
+    vscode: {
+      tasksPath: join(".vscode", "tasks.json"),
+      statusTask: "HELIX: status",
+      doctorTask: "HELIX: doctor",
+    },
+    baseline: {
+      statePath: STATE_PATH,
+      memoryPath: join(".ut-tdd", "memory"),
+      handoverPath: join(".ut-tdd", "handover"),
+      evidencePath: join(".ut-tdd", "evidence"),
+    },
+    nextCommands: [
+      "ut-tdd status --json",
+      "ut-tdd doctor",
+      "ut-tdd handover status --json",
+      "ut-tdd setup project --dry-run",
+    ],
+  };
+}
+
+function decideSetupPhase(
+  args: SetupArgs,
+  deps: SetupDeps,
+  scale: ProjectScale,
+): { phase: SetupPhase; decidedBy: SetupState["decidedBy"] } {
+  if (args.phase) {
+    return { phase: args.phase, decidedBy: "flag" };
+  }
+  if (deps.isInteractive) {
+    const rec = recommendPhase(scale);
+    const ok = deps.confirm(
+      `検出: owner=${scale.ownerType}, collaborators=${scale.collaborators ?? "?"}, ` +
+        `CODEOWNERS=${scale.hasCodeowners ? "あり" : "なし"} → 推奨 ${rec.phase} (${rec.reason})。` +
+        `${rec.phase === "0-B" ? "team" : "solo"} 設定を生成しますか？`,
+    );
+    return { phase: ok ? rec.phase : "0-A", decidedBy: "confirm" };
+  }
+  return { phase: "0-A", decidedBy: "fallback" };
 }
 
 // ── node 実 deps (real I/O / gh / confirm / templates) ──────────────────────

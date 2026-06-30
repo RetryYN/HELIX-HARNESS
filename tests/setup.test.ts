@@ -11,9 +11,11 @@ import {
   loadTemplates,
   type ProjectScale,
   packageJsonDeclaresCommitlint,
+  planHelixProjectSetup,
   planSetup,
   recommendPhase,
   recordSetupState,
+  runHelixProjectSetup,
   runSetup,
   type SetupDeps,
   type SetupState,
@@ -94,6 +96,11 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "adapter/.claude/settings.json": '{"hooks":{"SessionStart":[]}}\n',
   "adapter/.codex/config.toml": "[features]\nhooks = true\n",
+  "project/.vscode/tasks.json": '{"version":"2.0.0","tasks":[]}\n',
+  "project/.vscode/settings.json": '{"task.allowAutomaticTasks":"off"}\n',
+  "project/.ut-tdd/memory/.gitkeep": "",
+  "project/.ut-tdd/handover/.gitkeep": "",
+  "project/.ut-tdd/evidence/.gitkeep": "",
   "common/harness-check.yml": "name: harness-check\n",
   "common/commitlint.config.js":
     "module.exports = { extends: ['@commitlint/config-conventional'] };\n",
@@ -489,6 +496,61 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd-cli",
       "runtime-cli",
     ]);
+  });
+
+  it("U-SETUP-015: HELIX project setup adds VSCode tasks and project-local state baselines without external apply", () => {
+    const plan = planHelixProjectSetup("0-A", { dryRun: true });
+
+    expect(plan.files).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ path: join(".vscode", "tasks.json"), category: "A" }),
+        expect.objectContaining({ path: join(".vscode", "settings.json"), category: "A" }),
+        expect.objectContaining({ path: join(".ut-tdd", "memory", ".gitkeep"), category: "A" }),
+        expect.objectContaining({ path: join(".ut-tdd", "handover", ".gitkeep"), category: "A" }),
+        expect.objectContaining({ path: join(".ut-tdd", "evidence", ".gitkeep"), category: "A" }),
+      ]),
+    );
+
+    const dry = mockDeps({ templates: baseTemplates, isInteractive: false });
+    const preview = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: true },
+      dry,
+    );
+    expect(preview).toMatchObject({
+      schemaVersion: "helix-project-setup.v1",
+      setupCommand: "ut-tdd setup project",
+      phase: "0-A",
+      branchProtection: { applied: false, reason: "dry-run" },
+      vscode: {
+        tasksPath: join(".vscode", "tasks.json"),
+        statusTask: "HELIX: status",
+        doctorTask: "HELIX: doctor",
+      },
+    });
+    expect(preview.written).toContain(join(".vscode", "tasks.json"));
+    expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
+    expect(preview.nextCommands).toEqual(
+      expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
+    );
+    expect(dry.files.size).toBe(0);
+    expect(dry.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
+
+    const wet = mockDeps({ templates: baseTemplates, isInteractive: false });
+    const applied = runHelixProjectSetup(
+      { phase: "0-A", dryRun: false, applyBranchProtection: false },
+      wet,
+    );
+    expect(applied.written).toEqual(
+      expect.arrayContaining([
+        join(".vscode", "tasks.json"),
+        join(".ut-tdd", "handover", ".gitkeep"),
+      ]),
+    );
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
+    expect(wet.files.get(statePath)).toContain('"phase": "0-A"');
+    for (const value of wet.files.values()) {
+      expect(value.toLowerCase()).not.toMatch(/(ghp_|github_pat_|token=|bearer )/);
+    }
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {

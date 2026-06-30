@@ -159,6 +159,7 @@ import {
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
   nodeSetupDeps,
+  runHelixProjectSetup,
   runSetup,
   type SetupArgs,
 } from "./setup/index";
@@ -3373,7 +3374,7 @@ feedback
     }
   });
 
-program
+const setupCommand = program
   .command("setup")
   .description(
     "solo/team を検出・提案・確認して GitHub 設定を出し分け生成 (Phase 0-A/0-B、要件 §6.5)",
@@ -3384,57 +3385,98 @@ program
   .option("--apply-branch-protection", "branch protection を対話下で適用 (既定は emit-only)")
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
-  .option("--po-team <slug>", "CODEOWNERS の PO team slug")
-  .action(
-    (opts: {
-      solo?: boolean;
-      team?: boolean;
-      dryRun?: boolean;
-      applyBranchProtection?: boolean;
-      tlTeam?: string;
-      qaTeam?: string;
-      poTeam?: string;
-    }) => {
-      if (opts.solo && opts.team) {
-        process.stderr.write("--solo と --team は同時指定できません (どちらか一方)\n");
-        process.exitCode = 1;
-        return;
-      }
-      const teamCount = [opts.tlTeam, opts.qaTeam, opts.poTeam].filter(Boolean).length;
-      if (teamCount > 0 && teamCount < 3) {
-        process.stderr.write(
-          "--tl-team / --qa-team / --po-team は 3 つとも指定してください (CODEOWNERS の @TODO 混入防止)\n",
-        );
-        process.exitCode = 1;
-        return;
-      }
-      const deps = nodeSetupDeps(process.cwd());
-      const phase = opts.solo ? "0-A" : opts.team ? "0-B" : undefined;
-      const teams =
-        teamCount === 3
-          ? { tl: opts.tlTeam as string, qa: opts.qaTeam as string, po: opts.poTeam as string }
-          : undefined;
-      const args: SetupArgs = {
-        ...(phase ? { phase } : {}),
-        dryRun: Boolean(opts.dryRun),
-        applyBranchProtection: Boolean(opts.applyBranchProtection),
-        ...(teams ? { teams } : {}),
-      };
-      const r = runSetup(args, deps);
-      process.stdout.write(`phase: ${r.phase}${args.dryRun ? " (dry-run)" : ""}\n`);
-      for (const w of r.written) process.stdout.write(`  ${args.dryRun ? "·" : "+"} ${w}\n`);
-      process.stdout.write(
-        `branch-protection: ${
-          r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
-        }\n`,
-      );
-      if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
-        process.stdout.write(
-          "  → scripts/setup-branch-protection.sh を生成。admin 権限の人間が実行してください (本番 merge ゲート変更)\n",
-        );
-      }
-    },
+  .option("--po-team <slug>", "CODEOWNERS の PO team slug");
+
+type SetupCliOptions = {
+  solo?: boolean;
+  team?: boolean;
+  dryRun?: boolean;
+  applyBranchProtection?: boolean;
+  tlTeam?: string;
+  qaTeam?: string;
+  poTeam?: string;
+  json?: boolean;
+};
+
+function setupArgsFromOptions(opts: SetupCliOptions): SetupArgs | null {
+  if (opts.solo && opts.team) {
+    process.stderr.write("--solo と --team は同時指定できません (どちらか一方)\n");
+    process.exitCode = 1;
+    return null;
+  }
+  const teamCount = [opts.tlTeam, opts.qaTeam, opts.poTeam].filter(Boolean).length;
+  if (teamCount > 0 && teamCount < 3) {
+    process.stderr.write(
+      "--tl-team / --qa-team / --po-team は 3 つとも指定してください (CODEOWNERS の @TODO 混入防止)\n",
+    );
+    process.exitCode = 1;
+    return null;
+  }
+  const phase = opts.solo ? "0-A" : opts.team ? "0-B" : undefined;
+  const teams =
+    teamCount === 3
+      ? { tl: opts.tlTeam as string, qa: opts.qaTeam as string, po: opts.poTeam as string }
+      : undefined;
+  return {
+    ...(phase ? { phase } : {}),
+    dryRun: Boolean(opts.dryRun),
+    applyBranchProtection: Boolean(opts.applyBranchProtection),
+    ...(teams ? { teams } : {}),
+  };
+}
+
+setupCommand.action((opts: SetupCliOptions) => {
+  const args = setupArgsFromOptions(opts);
+  if (!args) return;
+  const deps = nodeSetupDeps(process.cwd());
+  const r = runSetup(args, deps);
+  process.stdout.write(`phase: ${r.phase}${args.dryRun ? " (dry-run)" : ""}\n`);
+  for (const w of r.written) process.stdout.write(`  ${args.dryRun ? "·" : "+"} ${w}\n`);
+  process.stdout.write(
+    `branch-protection: ${
+      r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
+    }\n`,
   );
+  if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
+    process.stdout.write(
+      "  → scripts/setup-branch-protection.sh を生成。admin 権限の人間が実行してください (本番 merge ゲート変更)\n",
+    );
+  }
+});
+
+setupCommand
+  .command("project")
+  .description("bootstrap a HELIX-ready VSCode project with adapters, local state, and tasks")
+  .option("--solo", "Phase 0-A (solo) を強制")
+  .option("--team", "Phase 0-B (team) を強制")
+  .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
+  .option("--apply-branch-protection", "branch protection を対話下で適用 (既定は emit-only)")
+  .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
+  .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
+  .option("--po-team <slug>", "CODEOWNERS の PO team slug")
+  .option("--json", "JSON output")
+  .action((opts: SetupCliOptions) => {
+    const inherited = setupCommand.opts<SetupCliOptions>();
+    const merged = { ...inherited, ...opts };
+    const args = setupArgsFromOptions(merged);
+    if (!args) return;
+    const deps = nodeSetupDeps(process.cwd());
+    const r = runHelixProjectSetup(args, deps);
+    if (merged.json) {
+      process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `helix project setup: phase=${r.phase}${args.dryRun ? " dry-run=true" : ""}\n`,
+    );
+    for (const w of r.written) process.stdout.write(`  ${args.dryRun ? "·" : "+"} ${w}\n`);
+    process.stdout.write(`vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask})\n`);
+    process.stdout.write(
+      `branch-protection: ${
+        r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
+      }\n`,
+    );
+  });
 
 const distribution = program.command("distribution").description("clean distribution planning");
 distribution

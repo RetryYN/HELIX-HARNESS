@@ -333,6 +333,36 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "Run the narrow Vitest target first, then `bun run typecheck`, `bun run lint`, and `ut-tdd doctor` when the change affects HELIX workflow or gates.",
     "",
   ].join("\n"),
+  "project/.vscode/tasks.json": [
+    "{",
+    '  "version": "2.0.0",',
+    '  "tasks": [',
+    "    {",
+    '      "label": "HELIX: status",',
+    '      "type": "shell",',
+    '      "command": "ut-tdd status",',
+    '      "problemMatcher": []',
+    "    },",
+    "    {",
+    '      "label": "HELIX: doctor",',
+    '      "type": "shell",',
+    '      "command": "ut-tdd doctor",',
+    '      "problemMatcher": []',
+    "    },",
+    "    {",
+    '      "label": "HELIX: setup dry-run",',
+    '      "type": "shell",',
+    '      "command": "ut-tdd setup project --dry-run",',
+    '      "problemMatcher": []',
+    "    }",
+    "  ]",
+    "}",
+    "",
+  ].join("\n"),
+  "project/.vscode/settings.json": ["{", '  "task.allowAutomaticTasks": "off"', "}", ""].join("\n"),
+  "project/.ut-tdd/memory/.gitkeep": "",
+  "project/.ut-tdd/handover/.gitkeep": "",
+  "project/.ut-tdd/evidence/.gitkeep": "",
   "common/harness-check.yml": [
     "name: harness-check",
     "on:",
@@ -508,6 +538,49 @@ export const COMMON_FILES: { template: string; file: GeneratedFile }[] = [
       path: join(".github", "PULL_REQUEST_TEMPLATE.md"),
       category: "A",
       purpose: "PR template",
+    },
+  },
+];
+
+export const PROJECT_SETUP_FILES: { template: string; file: GeneratedFile }[] = [
+  {
+    template: "project/.vscode/tasks.json",
+    file: {
+      path: join(".vscode", "tasks.json"),
+      category: "A",
+      purpose: "VSCode HELIX task shortcuts for status, doctor, and setup dry-run",
+    },
+  },
+  {
+    template: "project/.vscode/settings.json",
+    file: {
+      path: join(".vscode", "settings.json"),
+      category: "A",
+      purpose: "VSCode HELIX workspace safety defaults",
+    },
+  },
+  {
+    template: "project/.ut-tdd/memory/.gitkeep",
+    file: {
+      path: join(".ut-tdd", "memory", ".gitkeep"),
+      category: "A",
+      purpose: "HELIX project-local memory baseline",
+    },
+  },
+  {
+    template: "project/.ut-tdd/handover/.gitkeep",
+    file: {
+      path: join(".ut-tdd", "handover", ".gitkeep"),
+      category: "A",
+      purpose: "HELIX project-local handover baseline",
+    },
+  },
+  {
+    template: "project/.ut-tdd/evidence/.gitkeep",
+    file: {
+      path: join(".ut-tdd", "evidence", ".gitkeep"),
+      category: "A",
+      purpose: "HELIX project-local evidence baseline",
     },
   },
 ];

@@ -447,6 +447,37 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("approvalCommandAvailable=false");
   }, 15_000);
 
+  it("exposes HELIX project setup for VSCode-ready new projects", () => {
+    const json = runCli(["setup", "project", "--dry-run", "--json"]);
+
+    expect(json.status).toBe(0);
+    const payload = JSON.parse(json.stdout);
+    expect(payload).toMatchObject({
+      schemaVersion: "helix-project-setup.v1",
+      setupCommand: "ut-tdd setup project",
+      branchProtection: { applied: false, reason: "dry-run" },
+      vscode: {
+        tasksPath: join(".vscode", "tasks.json"),
+        statusTask: "HELIX: status",
+        doctorTask: "HELIX: doctor",
+      },
+      baseline: {
+        memoryPath: join(".ut-tdd", "memory"),
+        handoverPath: join(".ut-tdd", "handover"),
+      },
+    });
+    expect(payload.written).toEqual(
+      expect.arrayContaining([
+        join(".vscode", "tasks.json"),
+        join(".ut-tdd", "memory", ".gitkeep"),
+        join(".ut-tdd", "handover", ".gitkeep"),
+      ]),
+    );
+    expect(payload.nextCommands).toEqual(
+      expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
+    );
+  }, 15_000);
+
   it("exposes skill suggest as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--plan", "PLAN-NO-SUCH", "--json"]);
 

@@ -8,21 +8,90 @@ confirmed_reverse_type: fullback
 drive: fullstack
 status: confirmed
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-07-01
 owner: PM (Opus) / PO (人間)
 forward_routing: L4
 promotion_strategy: reuse-as-is
+backprop_scope:
+  - layer: requirements
+    decision: not_impacted
+    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    reason: "ut-tdd setup project is a Phase 0 bootstrap entrypoint for already-defined setup/governance behavior; it does not add a new L1/L3 product requirement."
+  - layer: L4-basic-design
+    decision: not_impacted
+    evidence_path: docs/design/harness/L4-basic-design/external-if.md
+    reason: "GitHub/API boundary remains file emit plus branch-protection emit-only; no new external API contract is introduced."
+  - layer: L5-detailed-design
+    decision: not_impacted
+    evidence_path: docs/design/harness/L5-detailed-design/internal-processing.md
+    reason: "No DB schema, API payload, or state storage contract changes; .ut-tdd baseline directories are project-local setup artifacts."
+  - layer: L6-function-design
+    decision: updated
+    evidence_path: docs/design/harness/L6-function-design/setup-solo-team.md
+    reason: "HELIX project setup addendum registers VSCode tasks and project-local state baselines under the existing setup boundary."
+  - layer: L7-unit-test-design
+    decision: updated
+    evidence_path: docs/test-design/harness/L7-unit-test-design.md
+    reason: "U-SETUP-015 covers planHelixProjectSetup, runHelixProjectSetup, and ut-tdd setup project CLI semantics."
 agent_slots:
   - role: tl
     slot_label: "TL — as-is 設計復元 / GitHub 境界契約 (emit-only) / 用語 back-merge のレビュー (claude-only は code-reviewer 代替)"
   - role: po
     slot_label: "PO — R3 intent (setup=Phase 0 工程外で新 FR 不要 / branch protection 人間サインオフ) 検証 (§1.8 R3 必須)"
-generates: []
+generates:
+  - artifact_path: docs/plans/PLAN-REVERSE-04-setup-solo-team.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/design/harness/L4-basic-design/external-if.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L5-detailed-design/internal-processing.md
+    artifact_type: design_doc
+  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: null
   requires:
     - docs/plans/PLAN-L7-03-setup-solo-team.md
   blocks: []
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T02:47:22+0900"
+    tests_green_at: "2026-07-01T02:47:22+0900"
+    verdict: approve
+    scope: "R4 fullback for ut-tdd setup project: HELIX-ready VSCode bootstrap remains Phase 0 project setup, reuses setup solo/team and emit-only boundaries, and does not add new L1/L3 product requirements or irreversible identifier cutover."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T02:47:22+0900"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:f49f2b2becf20cc7b6994556fd5ff2c446d6ea73046f18a40aa0bd5eeaa0c550"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T02:47:22+0900"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:9e0dad491409f2a6b9e064ea6865b5104bcd470ff4005d3415784bad37c95b56"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T02:47:22+0900"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:161edc7797139feb3e82bc8b4510e9fb9a7d45b461ca806f6bba8e6ec4f5a2e7"
 ---
 
 # PLAN-REVERSE-04 (reverse/fullback): ut-tdd setup solo/team を上位整合へ back-fill
@@ -33,11 +102,14 @@ Add-feature 標準ライフサイクル 経路 B の **収束段**。`PLAN-L6-05
 
 > `forward_routing=L4` は **最前の design-layer 追記 = L4 external-if** を指す (REVERSE-03 の L3=FR 拡張に相当)。§6.5 (要件 governance) と §10.3 (L0 glossary) は同時に行う back-merge であり、design-layer の最前は L4。
 
+2026-07-01 continuation: `ut-tdd setup project` は HELIX 導入済み VSCode で新規 project を始めるための bootstrap entrypoint であり、既存 `ut-tdd setup` の Phase 0 project setup 境界に属する。追加される `.vscode/tasks.json` / `.vscode/settings.json` / `.ut-tdd/memory|handover|evidence` baseline は adapter/runtime-state 投影の具体化であって、新しい L1/L3 product FR、DB/API contract、不可逆 `.ut-tdd -> .helix` cutover ではない。
+
 ## §1 R0-R4 (fullback)
 
 | phase | 作業 | 結果 |
 |-------|------|------|
 | R0 evidence | 実装事実収集: `src/setup/index.ts` (契約関数 7 本) / `src/cli.ts` ut-tdd setup / `tests/setup.test.ts` U-SETUP-001〜007 (92 pass) / `docs/templates/github/{common,team}/` 8 テンプレ | evidence = 実装 + 92 pass + テンプレ |
+| R0 continuation evidence | `planHelixProjectSetup` / `runHelixProjectSetup` / `ut-tdd setup project` が VSCode task と project-local `.ut-tdd` baseline を同じ setup 境界で生成し、dry-run と branch protection emit-only を維持する | evidence = U-SETUP-015 + CLI surface test + L6/L7 design update |
 | R1 (skip) | GitHub 設定は file emit (CODEOWNERS/workflow/templates) + gh-api 操作 (branch protection) の 2 種。外部契約 = gh CLI I/F + file 投影のみ (setup-solo-team.md §2.4) | observed = gh I/F + file 投影 |
 | R2 as-is | `ut-tdd setup` は §6.5 Phase 0-A/0-B の **emission 実装**だが §6.5 側に setup 実装への参照なし。GitHub 境界 (file vs gh-api / emit-only 既定 / branch protection 人間サインオフ) が L4 external-if に未記載。Phase 0-A/0-B・参加規模検出・emit-only が L0 §10 用語に未 back-merge | as-is = 3 つの上位 gap |
 | R3 intent (po 検証) | (a) **setup = Phase 0 bootstrap (リポジトリ初期化 / branch protection = concept §512 で「工程外」) → 新 FR を起こさない** / (b) GitHub 設定操作 (branch protection) は **emit-only 既定・適用は admin 人間サインオフ** (認可・本番影響境界) を L4 external-if に明記 / (c) Phase 0-A/0-B 出し分けが §6.5 2-stage と整合 — の 3 点が intent | **R3 PASS (2026-06-02)**: (a) は concept §512 (Phase 0 = 工程外) + scout 監査 (setup の FR-L1-NN 不在) に grounded、新 top-level 要件にしない / (b)(c) は L6 設計で PO 確定済 (emit-only / 非対話 apply 封鎖 / 数で自動確定しない)。よって R3 intent 充足。PO 認識ずれあれば再エスカレーション |
@@ -48,6 +120,7 @@ Add-feature 標準ライフサイクル 経路 B の **収束段**。`PLAN-L6-05
 - **要件 §6.5** (`docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`ut-tdd setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で人間適用。
 - **L4 external-if** (`docs/design/harness/L4-basic-design/external-if.md`): VCS・CI 境界に「`ut-tdd setup` の GitHub 設定境界 = ファイル emit (CODEOWNERS / workflow / ISSUE・PR テンプレ) は harness が書く / branch protection・Required 化は gh-api 操作で **emit-only 既定** (script 生成、適用は admin 人間サインオフ) / token は保持しない (gh 認証委譲)」の DbC 境界を追記。
 - **L0 §10.3 機構用語** (`docs/governance/ut-tdd-agent-harness-concept_v3.1.md`): Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only を back-merge (§G.9、機構用語)。
+- **L6/L7 continuation** (`docs/design/harness/L6-function-design/setup-solo-team.md` / `docs/test-design/harness/L7-unit-test-design.md`): `ut-tdd setup project` は setup solo/team の extension として登録済み。VSCode task と `.ut-tdd` baseline は Phase 0 bootstrap の生成物であり、branch protection / external API / secrets / identifier cutover を自動適用しない。
 
 > **なぜ新 FR でないか**: `ut-tdd setup` (リポジトリ初期化 + CODEOWNERS/branch protection bootstrap) は concept §512 が明示する **Phase 0 = V-model 工程外の基盤整備**であり、L1/L3 の機能要件 (FR-L1/FR) ではない。要件は §6.5/§9.1/§10 (Phase 0 governance) 側にあり、FR registry を増やさない。
 
@@ -56,6 +129,8 @@ Add-feature 標準ライフサイクル 経路 B の **収束段**。`PLAN-L6-05
 ### Step R4-1: 要件 §6.5 に ut-tdd setup solo/team emission を追記
 ### Step R4-2: L4 external-if に setup GitHub 境界契約 (file emit / emit-only / 人間サインオフ / token 非保持) を追記
 ### Step R4-3: L0 §10.3 機構用語に Phase 0-A/0-B / 参加規模検出 / emit-only を back-merge
+### Step R4-3b: HELIX project setup continuation の L6/L7 back-fill
+`ut-tdd setup project` を L6 setup design と L7 U-SETUP-015 に登録し、Phase 0 bootstrap の生成物であること、dry-run 副作用ゼロと emit-only 境界を維持すること、新 FR / irreversible cutover ではないことを明記。
 ### Step R-review: review 前置 (MUST)
 `code-reviewer` で back-fill の妥当性 (新 FR 不要の判断 / GitHub 境界契約が impl と一致 / 用語定義) をレビュー。po (R3) intent 検証は escalation。
 ### Step R4-4: fr-registry-audit + 全回帰

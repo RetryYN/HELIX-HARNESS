@@ -92,7 +92,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:35:22+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:02fd2183588a41a05eb94357196c35bb7c95bad96addb52f97bc1b29afe14d74"
+        output_digest: "sha256:74fe3ba297a217bb24177e56c26b1c3e75d99f9e589ae6a8b36a97ddf52a154e"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -100,7 +100,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:36:14+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:e08f31126509b5f74ba82cf503b3dc9263536ac6ab3e6d19cf6ece755d1751a4"
+        output_digest: "sha256:f49f2b2becf20cc7b6994556fd5ff2c446d6ea73046f18a40aa0bd5eeaa0c550"
 ---
 
 # PLAN-L7-208: Codex hook feature enablement gate

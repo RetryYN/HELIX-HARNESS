@@ -58,7 +58,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23T22:03:46+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:66e8f04ab279c0271e9b2f126cb0864f4c3087cf053a6f0f43dc88ef2104a20d"
+        output_digest: "sha256:55b381282e2dfd1795568ddea708943ae17d384fd64428166416cdfa456b7ab5"
       - kind: typecheck
         command: "bun run tsc --noEmit"
         runner: bun
@@ -66,7 +66,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23T22:03:49+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:240ebf6ea6e3d3f2a82e6305d3dc7e8d2bdc051fb7f50681ef97717d935b4fc1"
+        output_digest: "sha256:161edc7797139feb3e82bc8b4510e9fb9a7d45b461ca806f6bba8e6ec4f5a2e7"
       - kind: lint
         command: "bun run lint"
         runner: bun
