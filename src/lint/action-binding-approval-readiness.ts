@@ -6,11 +6,24 @@ import {
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
+import {
+  ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  RENAME_PLAN_PACKET_COMMAND,
+  type RelatedDecisionPacket,
+  relatedDecisionPacket,
+  S4_DECISION_PACKET_COMMAND,
+  uniqueRelatedDecisionPackets,
+  VERSION_UP_ACTIVATION_PACKET_COMMAND,
+} from "./workflow-decision-packets";
 
 export interface ActionBindingApprovalPlan {
   file: string;
   plan_id: string;
+  kind?: string;
   status: string;
+  workflowPhase?: string | null;
+  decisionOutcome?: string | null;
+  versionTarget?: string | null;
   text: string;
 }
 
@@ -41,6 +54,7 @@ export interface ActionBindingApprovalPacket {
   approvalAllowed: false;
   allowedOutcomes: string[];
   approvalRecord: Record<string, string>;
+  relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
 }
@@ -98,7 +112,11 @@ function parsePlan(file: string, content: string): ActionBindingApprovalPlan {
   return {
     file,
     plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
+    kind: fmValue(content, "kind") ?? undefined,
     status: fmValue(content, "status") ?? "unknown",
+    workflowPhase: fmValue(content, "workflow_phase") ?? null,
+    decisionOutcome: fmValue(content, "decision_outcome") ?? null,
+    versionTarget: fmValue(content, "version_target") ?? null,
     text: content,
   };
 }
@@ -202,6 +220,7 @@ export function buildActionBindingApprovalPacket(
     approvalAllowed: false,
     allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
     approvalRecord,
+    relatedDecisionPackets: relatedDecisionPacketsForActionBindingPlan(plan),
     blockedReasons: actionBindingBlockedReasons(plan, approvalRecord),
     nextWorkflowRoutes: [
       {
@@ -221,6 +240,57 @@ export function buildActionBindingApprovalPacket(
       },
     ],
   };
+}
+
+function relatedDecisionPacketsForActionBindingPlan(
+  plan: ActionBindingApprovalPlan,
+): RelatedDecisionPacket[] {
+  return uniqueRelatedDecisionPackets([
+    relatedDecisionPacket({
+      command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+      role: "primary",
+      reason: "PLAN carries a human/action-binding approval boundary",
+      route: "record action_binding_approval_record before executing any high-impact action",
+    }),
+    ...(plan.kind === "poc" &&
+    plan.status === "draft" &&
+    plan.workflowPhase === "S3" &&
+    !plan.decisionOutcome
+      ? [
+          relatedDecisionPacket({
+            command: S4_DECISION_PACKET_COMMAND,
+            role: "supporting",
+            reason:
+              "same S3 PoC also requires a PO/S4 decision before promotion, rejection, or pivot",
+            route: "record s4_decision_record and decision_outcome before terminal S4 routing",
+          }),
+        ]
+      : []),
+    ...(plan.versionTarget !== null && plan.versionTarget !== undefined
+      ? [
+          relatedDecisionPacket({
+            command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+            role: "supporting",
+            reason: "same PLAN is parked for a future version-up activation decision",
+            route:
+              "record activation_decision_record and parked_review_record before activation or continued parking",
+          }),
+        ]
+      : []),
+    ...(plan.text.includes("cutover_decision_record") ||
+    plan.text.includes("identifier rename") ||
+    plan.plan_id === "PLAN-M-02-helix-identifier-rename"
+      ? [
+          relatedDecisionPacket({
+            command: RENAME_PLAN_PACKET_COMMAND,
+            role: "supporting",
+            reason: "same PLAN also carries an irreversible rename/cutover signoff boundary",
+            route:
+              "use rename plan for cutover dry-run, rollback, backup, monitoring, and approval gate material",
+          }),
+        ]
+      : []),
+  ]);
 }
 
 function validateActionBindingSemantics(

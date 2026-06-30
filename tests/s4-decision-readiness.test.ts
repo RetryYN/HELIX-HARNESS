@@ -146,6 +146,43 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({ item: "route_and_fullback" }),
       ]),
     );
+    expect(packet.relatedDecisionPackets).toEqual([
+      expect.objectContaining({
+        role: "primary",
+        command: "ut-tdd s4 decision-packet --json",
+      }),
+    ]);
+  });
+
+  it("keeps supporting action-binding approval visible on S4 packets", () => {
+    const packets = buildS4DecisionPackets(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-902.md",
+            plan_id: "PLAN-DISCOVERY-902",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            decisionOutcome: null,
+            text: `${input().plans[0].text}\nrequires action-binding approval before external execution`,
+          },
+        ],
+      }),
+    );
+
+    expect(packets[0].relatedDecisionPackets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          role: "primary",
+          command: "ut-tdd s4 decision-packet --json",
+        }),
+        expect.objectContaining({
+          role: "supporting",
+          command: "ut-tdd action-binding approval-packet --json",
+        }),
+      ]),
+    );
   });
 
   it("U-DECISIONREC-001: fails S3 pending PoC plans that do not say what S4 must decide", () => {

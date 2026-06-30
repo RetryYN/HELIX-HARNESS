@@ -10,6 +10,14 @@ import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
+import {
+  ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  planTextRequiresActionBindingApproval,
+  type RelatedDecisionPacket,
+  relatedDecisionPacket,
+  uniqueRelatedDecisionPackets,
+  VERSION_UP_ACTIVATION_PACKET_COMMAND,
+} from "./workflow-decision-packets";
 
 export interface VersionUpReadinessPlan {
   file: string;
@@ -71,6 +79,7 @@ export interface VersionUpActivationPacket {
     item: string;
     evidence: string;
   }>;
+  relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
 }
@@ -637,6 +646,27 @@ export function buildVersionUpActivationPacket(
         evidence: provenance.audit_record,
       },
     ],
+    relatedDecisionPackets: uniqueRelatedDecisionPackets([
+      relatedDecisionPacket({
+        command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+        role: "primary",
+        reason: "version_target parked PLAN remains pending activation decision",
+        route:
+          "record activation_decision_record and parked_review_record before activation, rejection, or continued parking",
+      }),
+      ...(externalBoundaries.length > 0 || planTextRequiresActionBindingApproval(plan.text)
+        ? [
+            relatedDecisionPacket({
+              command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+              role: "supporting",
+              reason:
+                "activation touches an external/high-impact boundary that requires action-binding approval",
+              route:
+                "record action_binding_approval_record before external activation or secret/infra/auth changes",
+            }),
+          ]
+        : []),
+    ]),
     blockedReasons,
     nextWorkflowRoutes: [
       {

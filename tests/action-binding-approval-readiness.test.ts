@@ -108,6 +108,59 @@ describe("action-binding approval readiness", () => {
       "deny_action",
       "request_scope_reduction",
     ]);
+    expect(packet.relatedDecisionPackets).toEqual([
+      expect.objectContaining({
+        role: "primary",
+        command: "ut-tdd action-binding approval-packet --json",
+      }),
+    ]);
+  });
+
+  it("U-OUTSTANDING-011: keeps sibling S4, version-up, and rename decision packets visible", () => {
+    const packets = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-DISCOVERY-10.md",
+          plan_id: "PLAN-DISCOVERY-10",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          decisionOutcome: null,
+          text: `requires action-binding approval\n${RECORD}`,
+        },
+        {
+          file: "PLAN-L7-146.md",
+          plan_id: "PLAN-L7-146",
+          status: "draft",
+          versionTarget: "future",
+          text: `requires action-binding approval\n${RECORD}`,
+        },
+        {
+          file: "PLAN-M-02.md",
+          plan_id: "PLAN-M-02-helix-identifier-rename",
+          status: "draft",
+          text: `identifier rename cutover_decision_record requires action-binding approval\n${RECORD}`,
+        },
+      ],
+    });
+
+    expect(packets.find((p) => p.planId === "PLAN-DISCOVERY-10")?.relatedDecisionPackets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ command: "ut-tdd s4 decision-packet --json" }),
+      ]),
+    );
+    expect(packets.find((p) => p.planId === "PLAN-L7-146")?.relatedDecisionPackets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ command: "ut-tdd version-up activation-packet --json" }),
+      ]),
+    );
+    expect(
+      packets.find((p) => p.planId === "PLAN-M-02-helix-identifier-rename")?.relatedDecisionPackets,
+    ).toEqual(
+      expect.arrayContaining([expect.objectContaining({ command: "ut-tdd rename plan --json" })]),
+    );
   });
 
   it("rejects prose-only approval mentions", () => {

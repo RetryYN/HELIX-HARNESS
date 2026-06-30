@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:22d8fb8e04bd62825c73a463ed97697fe25e4dcd673133745e8aa6f4204b22db"
+        output_digest: "sha256:471aa3e7b08f123899eeeb765acd97c426c05d96bf475a96215a19fc8435c489"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
@@ -103,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:22d8fb8e04bd62825c73a463ed97697fe25e4dcd673133745e8aa6f4204b22db"
+        output_digest: "sha256:471aa3e7b08f123899eeeb765acd97c426c05d96bf475a96215a19fc8435c489"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装

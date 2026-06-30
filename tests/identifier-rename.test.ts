@@ -237,6 +237,18 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({ item: "execution_window_or_freeze_policy" }),
         ]),
       );
+      expect(plan.relatedDecisionPackets).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            role: "primary",
+            command: "ut-tdd rename plan --json",
+          }),
+          expect.objectContaining({
+            role: "supporting",
+            command: "ut-tdd action-binding approval-packet --json",
+          }),
+        ]),
+      );
       expect(plan.approvalGate).toMatchObject({
         requiredDecision: "approve_cutover",
         requiredActionBinding: "approve_action_binding",

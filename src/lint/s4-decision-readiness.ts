@@ -11,6 +11,14 @@ import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
+import {
+  ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  planTextRequiresActionBindingApproval,
+  type RelatedDecisionPacket,
+  relatedDecisionPacket,
+  S4_DECISION_PACKET_COMMAND,
+  uniqueRelatedDecisionPackets,
+} from "./workflow-decision-packets";
 
 export interface S4DecisionPlan {
   file: string;
@@ -67,6 +75,7 @@ export interface S4DecisionPacket {
     item: string;
     evidence: string;
   }>;
+  relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
 }
@@ -543,6 +552,25 @@ export function buildS4DecisionPacket(plan: S4DecisionPlan): S4DecisionPacket {
         evidence: decisionRecord.external_source_basis ?? "",
       },
     ],
+    relatedDecisionPackets: uniqueRelatedDecisionPackets([
+      relatedDecisionPacket({
+        command: S4_DECISION_PACKET_COMMAND,
+        role: "primary",
+        reason: "S3 PoC remains pending PO/S4 decision",
+        route: "record s4_decision_record and decision_outcome before promotion/rejection/pivot",
+      }),
+      ...(planTextRequiresActionBindingApproval(plan.text)
+        ? [
+            relatedDecisionPacket({
+              command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+              role: "supporting",
+              reason: "same PLAN also carries a human/action-binding approval boundary",
+              route:
+                "record action_binding_approval_record before executing any high-impact action",
+            }),
+          ]
+        : []),
+    ]),
     blockedReasons,
     nextWorkflowRoutes: [
       {

@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: tests/identifier-rename.test.ts
-        output_digest: "sha256:ed403a66426ad2a9c755329a5627c8dc9412a78152b042317881ce8e428ca7e3"
+        output_digest: "sha256:a6fe83c18a3e7fb48cc41077d6bee554337777e7365d1b1f80926176d2bf9e65"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:d2c3da9162f877d68da12e3c15819ec0ef94b01b13da6a5874045a754d8d3e7b"
+        output_digest: "sha256:5a74717afd63158734a2ffc14a66641ba282c81fb4d94079a53208dbaa071dd1"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:d2c3da9162f877d68da12e3c15819ec0ef94b01b13da6a5874045a754d8d3e7b"
+        output_digest: "sha256:5a74717afd63158734a2ffc14a66641ba282c81fb4d94079a53208dbaa071dd1"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:05:00+09:00"
@@ -59,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
-        output_digest: "sha256:ed403a66426ad2a9c755329a5627c8dc9412a78152b042317881ce8e428ca7e3"
+        output_digest: "sha256:a6fe83c18a3e7fb48cc41077d6bee554337777e7365d1b1f80926176d2bf9e65"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -67,7 +67,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:d2c3da9162f877d68da12e3c15819ec0ef94b01b13da6a5874045a754d8d3e7b"
+        output_digest: "sha256:5a74717afd63158734a2ffc14a66641ba282c81fb4d94079a53208dbaa071dd1"
 agent_slots:
   - role: tl
     slot_label: "TL — rename audit boundary and fail-close approval semantics"

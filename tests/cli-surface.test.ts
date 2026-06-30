@@ -499,6 +499,11 @@ describe("L7 CLI surface closure", () => {
     expect(packets[0].blockedReasons).toEqual(
       expect.arrayContaining(["missing concrete approve_action_binding decision"]),
     );
+    expect(packets[0].relatedDecisionPackets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ command: "ut-tdd s4 decision-packet --json" }),
+      ]),
+    );
 
     const text = runCli([
       "action-binding",
@@ -512,6 +517,10 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("approvalAllowed=false");
     expect(text.stdout).toContain("approvalCommandAvailable=false");
+    expect(text.stdout).toContain(
+      "related-packet: primary ut-tdd action-binding approval-packet --json",
+    );
+    expect(text.stdout).toContain("related-packet: supporting ut-tdd rename plan --json");
   }, 15_000);
 
   it("exposes HELIX project setup for VSCode-ready new projects", () => {

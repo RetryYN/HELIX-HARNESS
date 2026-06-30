@@ -1,5 +1,12 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import {
+  ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  RENAME_PLAN_PACKET_COMMAND,
+  type RelatedDecisionPacket,
+  relatedDecisionPacket,
+  uniqueRelatedDecisionPackets,
+} from "./workflow-decision-packets";
 
 export type IdentifierRenameToken = "ut-tdd" | ".ut-tdd" | "area=harness";
 
@@ -61,6 +68,7 @@ export interface IdentifierRenameCutoverPlan {
     item: string;
     evidence: string;
   }>;
+  relatedDecisionPackets: RelatedDecisionPacket[];
   approvalGate: {
     requiredRecords: string[];
     requiredDecision: "approve_cutover";
@@ -320,6 +328,23 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
           "quiet window, single-run concurrency policy, frozen HEAD, and re-approval triggers",
       },
     ],
+    relatedDecisionPackets: uniqueRelatedDecisionPackets([
+      relatedDecisionPacket({
+        command: RENAME_PLAN_PACKET_COMMAND,
+        role: "primary",
+        reason: "irreversible .ut-tdd to .helix cutover requires explicit cutover signoff",
+        route:
+          "use rename plan for blast-radius, dry-run, rollback, backup, monitoring, and approval-gate material",
+      }),
+      relatedDecisionPacket({
+        command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+        role: "supporting",
+        reason:
+          "same cutover requires scoped human/action-binding approval before any irreversible apply",
+        route:
+          "record action_binding_approval_record with actor/tool/target/params before cutover execution",
+      }),
+    ]),
     approvalGate: {
       requiredRecords: audit.requiredRecords,
       requiredDecision: "approve_cutover",

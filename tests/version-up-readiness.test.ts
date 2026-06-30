@@ -225,6 +225,18 @@ describe("version-up-readiness", () => {
         expect.objectContaining({ item: "audit_record" }),
       ]),
     );
+    expect(packet.relatedDecisionPackets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          role: "primary",
+          command: "ut-tdd version-up activation-packet --json",
+        }),
+        expect.objectContaining({
+          role: "supporting",
+          command: "ut-tdd action-binding approval-packet --json",
+        }),
+      ]),
+    );
   });
 
   it("U-DECISIONREC-002: fails parked plans that do not explain activation as version-up", () => {

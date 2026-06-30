@@ -94,9 +94,12 @@ G-SF `semantic_feature_frontier_record` への写像:
   requirements / acceptance を本書の 43 件に混ぜない。
 - `PLAN-L7-146` serverless readonly share: `classification=parked_future_version`。activation decision が出るまで
   current completion に数えない。`version-up-activation-packet.v1` は判断材料であり、activation 実行・
-  external infra 変更・secret 設定・`version_target` 解除を行わない。
+  external infra 変更・secret 設定・`version_target` 解除を行わない。同一 PLAN が action-binding approval
+  も必要な場合は `relatedDecisionPackets[]` で `ut-tdd action-binding approval-packet --json` を supporting
+  route として出す。
 - PLAN-M-02 identifier rename: `classification=approval_gated_cutover`。cutover/action-binding approval が無い限り
-  audit/plan-only で止める。
+  audit/plan-only で止める。`rename plan` は primary cutover packet と supporting action-binding approval packet
+  の関係を `relatedDecisionPackets[]` に保持し、承認待ちを rename 完了や apply 許可に読み替えない。
 
 この record が更新されていない要求修正は、doctor green や selected test green があっても G3/G7/accept の完了根拠にしない。
 
@@ -107,7 +110,7 @@ G-SF `semantic_feature_frontier_record` への写像:
 | HR-FR-P0-01 | HBR-P0 | 全駆動 workflow は `forward_return` を持ち、Reverse/Recovery/Incident/Discovery/Refactor/Retrofit/Research/Add-feature の出口が Forward 正本へ戻るか、明示 `gap-only` / `version_target` に隔離される | HAC-P0-01a / HAC-P0-01b |
 | HR-FR-P0-02 | HBR-P0 | runaway guard は budget time-cap、iteration cap、lock、Recovery escalation を単一停止判定に集約し、停止理由を state/handover に記録する | HAC-P0-02a / HAC-P0-02b |
 | HR-FR-P1-01 | HBR-P1 | continuous-run engine は resume 3 条件、job-queue、budget time-cap、fresh-session 再入をつなぎ、要件承認後の無人再開を成立させる | HAC-P1-01a / HAC-P1-01b |
-| HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない | HAC-P1-02a / HAC-P1-02b |
+| HR-FR-P1-02 | HBR-P1 | `version_target` / release tag / migration / rollback を持つ version-up lifecycle を提供し、今版外作業を失わない。parked work は activation decision、parked review、action-binding approval を `version-up-activation-packet.v1` として出せるが、packet は plan-only で apply surface を持たない。同一 PLAN に複数判断境界がある場合は `relatedDecisionPackets[]` で primary/supporting packet route を保持し、S4 / version-up / rename / action-binding のどれか一つだけを見て完了扱いしない | HAC-P1-02a / HAC-P1-02b |
 | HR-FR-P1-03 | HBR-P1 | 大きい要求は Scrum / PoC / sprint backlog に自動分割され、各 slice が Forward 返却先、budget、acceptance、handover next_action を持つ | HAC-P1-03a / HAC-P1-03b |
 | HR-FR-P1-04 | HBR-P1 / HBR-P3 | L2 を個別 slice で飛ばす場合でも、後続/導入時に L2 design template と mock workflow を生成・選択・back-propagation できるようにする | HAC-P1-04a / HAC-P1-04b |
 | HR-FR-P2-01 | HBR-P2 | agent->tool request/response は typed contract registry で検証され、未登録 tool surface は fail-close または明示 deferred になる | HAC-P2-01a / HAC-P2-01b |

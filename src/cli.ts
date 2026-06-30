@@ -1074,6 +1074,11 @@ rename
     if (plan.blockedReasons.length > 0) {
       for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
     }
+    for (const related of plan.relatedDecisionPackets) {
+      process.stdout.write(
+        `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+      );
+    }
   });
 
 const versionUp = program
@@ -1102,6 +1107,11 @@ versionUp
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
       }
+      for (const related of packet.relatedDecisionPackets) {
+        process.stdout.write(
+          `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+        );
+      }
     }
   });
 
@@ -1127,6 +1137,11 @@ s4.command("decision-packet")
       );
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
+      }
+      for (const related of packet.relatedDecisionPackets) {
+        process.stdout.write(
+          `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+        );
       }
     }
   });
@@ -1158,6 +1173,11 @@ actionBinding
       );
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
+      }
+      for (const related of packet.relatedDecisionPackets) {
+        process.stdout.write(
+          `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+        );
       }
     }
   });

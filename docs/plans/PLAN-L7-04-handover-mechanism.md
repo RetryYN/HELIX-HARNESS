@@ -49,7 +49,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:efc675f6888cb948bfc36ef1a34d9a9a1216af29d2e8251090a7441826cdffb2"
+        output_digest: "sha256:b8c5bc27607a9302486960ec453dab6281fa12ee1608d6859bacbafecb1adf64"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -57,7 +57,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:22d8fb8e04bd62825c73a463ed97697fe25e4dcd673133745e8aa6f4204b22db"
+        output_digest: "sha256:471aa3e7b08f123899eeeb765acd97c426c05d96bf475a96215a19fc8435c489"
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-04"
