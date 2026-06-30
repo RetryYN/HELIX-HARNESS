@@ -9,11 +9,29 @@ import {
 } from "./workflow-decision-packets";
 
 export type IdentifierRenameToken = "ut-tdd" | ".ut-tdd" | "area=harness";
+export type IdentifierRenameHitCategory =
+  | "source_code"
+  | "test_code"
+  | "runtime_state"
+  | "adapter_config"
+  | "consumer_template"
+  | "plan_doc"
+  | "design_doc"
+  | "governance_doc"
+  | "distribution_surface"
+  | "other";
 
 export interface IdentifierRenameHit {
   token: IdentifierRenameToken;
   path: string;
   count: number;
+  category: IdentifierRenameHitCategory;
+}
+
+export interface IdentifierRenameCategorySummary {
+  category: IdentifierRenameHitCategory;
+  hits: number;
+  files: number;
 }
 
 export interface IdentifierRenameAudit {
@@ -24,6 +42,7 @@ export interface IdentifierRenameAudit {
   totalHits: number;
   hitsByToken: Record<IdentifierRenameToken, number>;
   filesByToken: Record<IdentifierRenameToken, number>;
+  hitsByCategory: IdentifierRenameCategorySummary[];
   hits: IdentifierRenameHit[];
   cutoverApproved: boolean;
   status: "ready_for_cutover" | "blocked_pending_cutover_approval";
@@ -49,6 +68,13 @@ export interface IdentifierRenameCutoverPlan {
     IdentifierRenameAudit,
     "status" | "totalHits" | "hitsByToken" | "filesByToken" | "requiredRecords"
   >;
+  hitsByCategory: IdentifierRenameCategorySummary[];
+  cutoverCategoryChecklist: Array<{
+    category: IdentifierRenameHitCategory;
+    hits: number;
+    files: number;
+    cutoverAction: string;
+  }>;
   blockedReasons: string[];
   dryRunPlan: string[];
   rollbackPlan: string[];
@@ -80,6 +106,18 @@ export interface IdentifierRenameCutoverPlan {
 }
 
 const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
+const HIT_CATEGORIES: IdentifierRenameHitCategory[] = [
+  "source_code",
+  "test_code",
+  "runtime_state",
+  "adapter_config",
+  "consumer_template",
+  "plan_doc",
+  "design_doc",
+  "governance_doc",
+  "distribution_surface",
+  "other",
+];
 const RENAME_MAP: IdentifierRenameMapping[] = [
   { from: "ut-tdd", to: "helix" },
   { from: ".ut-tdd", to: ".helix" },
@@ -112,6 +150,42 @@ function hasTextExtension(path: string): boolean {
 
 function countToken(text: string, token: IdentifierRenameToken): number {
   return text.split(token).length - 1;
+}
+
+function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
+  if (path.startsWith(".ut-tdd/")) return "runtime_state";
+  if (
+    path === "AGENTS.md" ||
+    path === "CLAUDE.md" ||
+    path.startsWith(".claude/") ||
+    path.startsWith(".codex/")
+  ) {
+    return "adapter_config";
+  }
+  if (path.startsWith("docs/templates/")) return "consumer_template";
+  if (path.startsWith("docs/plans/")) return "plan_doc";
+  if (path.startsWith("docs/design/") || path.startsWith("docs/test-design/")) {
+    return "design_doc";
+  }
+  if (
+    path.startsWith("docs/governance/") ||
+    path.startsWith("docs/process/") ||
+    path.startsWith("docs/adr/") ||
+    path.startsWith("docs/reference/")
+  ) {
+    return "governance_doc";
+  }
+  if (path.startsWith("src/")) return "source_code";
+  if (path.startsWith("tests/")) return "test_code";
+  if (
+    path === "package.json" ||
+    path === "bun.lock" ||
+    path.startsWith("scripts/") ||
+    path.startsWith(".github/")
+  ) {
+    return "distribution_surface";
+  }
+  return "other";
 }
 
 function walkTextFiles(root: string): string[] {
@@ -181,20 +255,39 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     ".ut-tdd": 0,
     "area=harness": 0,
   };
+  const categoryStats = new Map<
+    IdentifierRenameHitCategory,
+    { hits: number; files: Set<string> }
+  >();
+  for (const category of HIT_CATEGORIES) categoryStats.set(category, { hits: 0, files: new Set() });
 
   for (const file of walkTextFiles(root)) {
     const rel = relative(root, file).replace(/\\/g, "/");
+    const category = classifyRenameHitPath(rel);
     const text = readFileSync(file, "utf8");
     for (const token of TOKENS) {
       const count = countToken(text, token);
       if (count === 0) continue;
-      hits.push({ token, path: rel, count });
+      hits.push({ token, path: rel, count, category });
       hitsByToken[token] += count;
       filesByToken[token] += 1;
+      const stats = categoryStats.get(category);
+      if (stats) {
+        stats.hits += count;
+        stats.files.add(rel);
+      }
     }
   }
 
   const cutoverApproved = cutoverApprovalPresent(root);
+  const hitsByCategory = HIT_CATEGORIES.map((category) => {
+    const stats = categoryStats.get(category);
+    return {
+      category,
+      hits: stats?.hits ?? 0,
+      files: stats?.files.size ?? 0,
+    };
+  }).filter((summary) => summary.hits > 0);
   return {
     sourceRoot: root,
     targetCli: "helix",
@@ -203,11 +296,37 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     totalHits: hits.reduce((sum, hit) => sum + hit.count, 0),
     hitsByToken,
     filesByToken,
+    hitsByCategory,
     hits,
     cutoverApproved,
     status: cutoverApproved ? "ready_for_cutover" : "blocked_pending_cutover_approval",
     requiredRecords: ["cutover_decision_record", "action_binding_approval_record"],
   };
+}
+
+function cutoverActionForCategory(category: IdentifierRenameHitCategory): string {
+  switch (category) {
+    case "runtime_state":
+      return "backup and migrate state paths atomically, then verify restore before apply";
+    case "adapter_config":
+      return "rewrite Claude/Codex adapter markers and hook config in the same cutover commit";
+    case "consumer_template":
+      return "update generated project templates and rerun setup dry-run smoke";
+    case "source_code":
+      return "apply source codemod and run typecheck plus targeted runtime tests";
+    case "test_code":
+      return "update oracle fixtures and run targeted plus full test suite";
+    case "plan_doc":
+      return "update PLAN records and keep approval-gated semantics intact";
+    case "design_doc":
+      return "update design/test-design trace without collapsing approval_gated_cutover status";
+    case "governance_doc":
+      return "update governance/process references and rule-drift markers together";
+    case "distribution_surface":
+      return "update package/scripts/GitHub surfaces and run distribution smoke";
+    case "other":
+      return "inspect manually before approval and record disposition in audit_record";
+  }
 }
 
 export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRenameCutoverPlan {
@@ -237,6 +356,11 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
       filesByToken: audit.filesByToken,
       requiredRecords: audit.requiredRecords,
     },
+    hitsByCategory: audit.hitsByCategory,
+    cutoverCategoryChecklist: audit.hitsByCategory.map((summary) => ({
+      ...summary,
+      cutoverAction: cutoverActionForCategory(summary.category),
+    })),
     blockedReasons,
     dryRunPlan: [
       "run rename audit and freeze the ut-tdd/.ut-tdd/area=harness blast-radius baseline",

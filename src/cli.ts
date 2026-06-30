@@ -1083,6 +1083,11 @@ rename
         `  ${token}: hits=${audit.hitsByToken[token]} files=${audit.filesByToken[token]}\n`,
       );
     }
+    for (const category of audit.hitsByCategory) {
+      process.stdout.write(
+        `  category ${category.category}: hits=${category.hits} files=${category.files}\n`,
+      );
+    }
     if (!audit.cutoverApproved) {
       process.stdout.write(
         `  required: ${audit.requiredRecords.join(", ")} before .ut-tdd -> .helix apply\n`,

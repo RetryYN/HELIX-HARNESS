@@ -96,6 +96,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       mkdirSync(join(root, "src"), { recursive: true });
+      mkdirSync(join(root, "tests"), { recursive: true });
+      mkdirSync(join(root, "docs", "templates", "adapter"), { recursive: true });
+      mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
+      mkdirSync(join(root, ".codex"), { recursive: true });
       writeFileSync(
         join(root, "src", "sample.ts"),
         [
@@ -104,13 +108,51 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           'const marker = "area=harness";',
         ].join("\n"),
       );
+      writeFileSync(join(root, "tests", "sample.test.ts"), 'expect(".ut-tdd").toBeTruthy();\n');
+      writeFileSync(
+        join(root, "docs", "templates", "adapter", "AGENTS.md"),
+        "Generated projects use ut-tdd until cutover.\n",
+      );
+      writeFileSync(join(root, ".ut-tdd", "state", "setup.json"), '{"cli":"ut-tdd"}\n');
+      writeFileSync(join(root, ".codex", "hooks.json"), '{"marker":"area=harness"}\n');
 
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
       expect(audit.cutoverApproved).toBe(false);
       expect(audit.hitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
-      expect(audit.hitsByToken[".ut-tdd"]).toBe(1);
-      expect(audit.hitsByToken["area=harness"]).toBe(1);
+      expect(audit.hitsByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
+      expect(audit.hitsByToken["area=harness"]).toBe(2);
+      expect(audit.hits).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ path: "src/sample.ts", category: "source_code" }),
+          expect.objectContaining({ path: "tests/sample.test.ts", category: "test_code" }),
+          expect.objectContaining({
+            path: "docs/templates/adapter/AGENTS.md",
+            category: "consumer_template",
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/state/setup.json",
+            category: "runtime_state",
+          }),
+          expect.objectContaining({ path: ".codex/hooks.json", category: "adapter_config" }),
+        ]),
+      );
+      for (const category of [
+        "source_code",
+        "test_code",
+        "consumer_template",
+        "runtime_state",
+        "adapter_config",
+      ]) {
+        expect(audit.hitsByCategory).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({ category, files: 1, hits: expect.any(Number) }),
+          ]),
+        );
+        expect(
+          audit.hitsByCategory.find((entry) => entry.category === category)?.hits,
+        ).toBeGreaterThan(0);
+      }
       expect(audit.requiredRecords).toEqual([
         "cutover_decision_record",
         "action_binding_approval_record",
@@ -165,6 +207,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(payload.hitsByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.hitsByToken[".ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.hitsByCategory).toEqual(
+        expect.arrayContaining([expect.objectContaining({ category: "adapter_config" })]),
+      );
+
+      const text = runCliIn(root, ["rename", "audit"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("category adapter_config:");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -194,6 +243,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       ]);
       expect(plan.blockedReasons).toContain(
         "missing concrete cutover_decision_record.allowed_outcome=approve_cutover",
+      );
+      expect(plan.hitsByCategory).toEqual(
+        expect.arrayContaining([expect.objectContaining({ category: "adapter_config" })]),
+      );
+      expect(plan.cutoverCategoryChecklist).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            category: "adapter_config",
+            cutoverAction: expect.stringContaining("adapter markers"),
+          }),
+        ]),
       );
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
       expect(plan.rollbackPlan.join("\n")).toContain(".ut-tdd/harness.db");
@@ -294,6 +354,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         mustNotApply: true,
         applyCommandAvailable: false,
       });
+      expect(payload.hitsByCategory.length).toBeGreaterThan(0);
+      expect(payload.cutoverCategoryChecklist.length).toBeGreaterThan(0);
       expect(payload.dryRunPlan.length).toBeGreaterThan(0);
       expect(payload.rollbackPlan.length).toBeGreaterThan(0);
       expect(payload.monitoringPlan.length).toBeGreaterThan(0);

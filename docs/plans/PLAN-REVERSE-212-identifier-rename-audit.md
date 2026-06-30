@@ -99,15 +99,21 @@ action-binding approval records are concrete.
   rewrite, or action binding.
 - The cutover packet now carries structured backup, freeze, re-approval, and
   provenance fields so approval can be judged semantically before any apply.
+- 2026-07-01 continuation: audit output now carries `hitsByCategory`, and the
+  cutover packet carries `cutoverCategoryChecklist`, so approval review can see
+  whether legacy identifiers remain in source, tests, runtime state, adapter
+  config, consumer templates, design/governance docs, or distribution surfaces
+  before any irreversible apply.
 
 ## Acceptance Criteria
 
 - `PLAN-L7-212` and this Reverse PLAN require each other for required
   add-impl backfill pairing.
 - `ut-tdd rename audit` can report current `ut-tdd`, `.ut-tdd`, and
-  `area=harness` blast radius.
+  `area=harness` blast radius by token and category.
 - The audit remains `blocked_pending_cutover_approval` while PLAN-M-02 contains
   draft approval placeholders.
 - `ut-tdd rename plan --json` exposes backup manifest, freeze policy, and
-  provenance requirements without exposing an apply command.
+  provenance requirements, plus category-specific cutover actions, without
+  exposing an apply command.
 - `doctor` passes after DB rebuild.

@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: tests/identifier-rename.test.ts
-        output_digest: "sha256:a6fe83c18a3e7fb48cc41077d6bee554337777e7365d1b1f80926176d2bf9e65"
+        output_digest: "sha256:8c8598876aa94494870652cd6bd4df8775168081117f30aab6d48c379785a710"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:5a74717afd63158734a2ffc14a66641ba282c81fb4d94079a53208dbaa071dd1"
+        output_digest: "sha256:5177176695fd8b66e44f0e51e8aede2fdd39478e8b74d4d47129c7b6e0b0d75e"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:05:07+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:5a74717afd63158734a2ffc14a66641ba282c81fb4d94079a53208dbaa071dd1"
+        output_digest: "sha256:5177176695fd8b66e44f0e51e8aede2fdd39478e8b74d4d47129c7b6e0b0d75e"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:05:00+09:00"
@@ -59,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
-        output_digest: "sha256:a6fe83c18a3e7fb48cc41077d6bee554337777e7365d1b1f80926176d2bf9e65"
+        output_digest: "sha256:8c8598876aa94494870652cd6bd4df8775168081117f30aab6d48c379785a710"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -67,7 +67,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:5a74717afd63158734a2ffc14a66641ba282c81fb4d94079a53208dbaa071dd1"
+        output_digest: "sha256:5177176695fd8b66e44f0e51e8aede2fdd39478e8b74d4d47129c7b6e0b0d75e"
 agent_slots:
   - role: tl
     slot_label: "TL — rename audit boundary and fail-close approval semantics"
@@ -105,7 +105,7 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 
 | module | 内容 | oracle |
 |--------|------|--------|
-| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、dry-run、rollback、monitoring、state backup manifest、freeze policy、provenance requirements、approval gate を返す | identifier-rename tests |
+| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧、source/test/runtime-state/adapter-config/consumer-template/plan/design/governance/distribution surface 別の `hitsByCategory` を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、category 別 cutover checklist、dry-run、rollback、monitoring、state backup manifest、freeze policy、provenance requirements、approval gate を返す | identifier-rename tests |
 | `src/cli.ts` | `ut-tdd rename audit --json` / `ut-tdd rename plan --json` / text output を追加。apply は行わず、targetCli=`helix` / targetStateDir=`.helix` と requiredRecords / cutover packet を出す | identifier-rename CLI test |
 
 ## §2 DoD
