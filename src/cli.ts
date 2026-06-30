@@ -3472,6 +3472,9 @@ setupCommand
     for (const w of r.written) process.stdout.write(`  ${args.dryRun ? "·" : "+"} ${w}\n`);
     process.stdout.write(`vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask})\n`);
     process.stdout.write(
+      `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,
+    );
+    process.stdout.write(
       `branch-protection: ${
         r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
       }\n`,

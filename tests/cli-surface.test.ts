@@ -455,6 +455,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload).toMatchObject({
       schemaVersion: "helix-project-setup.v1",
       setupCommand: "ut-tdd setup project",
+      futureCommand: "helix setup project",
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
@@ -464,6 +465,13 @@ describe("L7 CLI surface closure", () => {
       baseline: {
         memoryPath: join(".ut-tdd", "memory"),
         handoverPath: join(".ut-tdd", "handover"),
+      },
+      identifierTransition: {
+        currentStateDir: ".ut-tdd",
+        targetStateDir: ".helix",
+        status: "blocked_pending_cutover_approval",
+        mustNotApply: true,
+        cutoverPlanCommand: "ut-tdd rename plan --json",
       },
     });
     expect(payload.written).toEqual(

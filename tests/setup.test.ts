@@ -519,6 +519,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview).toMatchObject({
       schemaVersion: "helix-project-setup.v1",
       setupCommand: "ut-tdd setup project",
+      futureCommand: "helix setup project",
       phase: "0-A",
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
@@ -526,7 +527,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         statusTask: "HELIX: status",
         doctorTask: "HELIX: doctor",
       },
+      identifierTransition: {
+        currentCli: "ut-tdd",
+        currentStateDir: ".ut-tdd",
+        currentArea: "area=harness",
+        targetCli: "helix",
+        targetStateDir: ".helix",
+        targetArea: "area=helix",
+        status: "blocked_pending_cutover_approval",
+        mustNotApply: true,
+        cutoverPlanCommand: "ut-tdd rename plan --json",
+      },
     });
+    expect(preview.identifierTransition.reason).toContain("PLAN-M-02");
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
     expect(preview.nextCommands).toEqual(

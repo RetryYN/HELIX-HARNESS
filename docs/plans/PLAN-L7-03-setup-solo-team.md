@@ -40,6 +40,39 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T03:40:56+09:00"
+    tests_green_at: "2026-07-01T03:40:56+09:00"
+    verdict: approve
+    scope: "Continuation: HELIX project setup JSON/text now exposes identifierTransition so new VSCode projects see the current ut-tdd/.ut-tdd baseline, future helix/.helix target, PLAN-M-02 cutover blocker, and mustNotApply=true boundary instead of confusing setup bootstrap with irreversible rename completion."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T03:40:56+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:b598c52e4a03d5fb1e35b4b24e75f98a769ec23451754c0770ee9a24c181d8bf"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:40:56+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:371b4530032fd40b5cbd90e61955b7cb361433e5227a8dd0d39b605b389a564f"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:40:56+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:de02599e11ec285ab1834d4d332223abd365eaea1e83314b7340a33c2df460d0"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
     tests_green_at: "2026-07-01T02:47:22+0900"
     verdict: approve
@@ -54,7 +87,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:f49f2b2becf20cc7b6994556fd5ff2c446d6ea73046f18a40aa0bd5eeaa0c550"
+        output_digest: "sha256:b598c52e4a03d5fb1e35b4b24e75f98a769ec23451754c0770ee9a24c181d8bf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -62,7 +95,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:9e0dad491409f2a6b9e064ea6865b5104bcd470ff4005d3415784bad37c95b56"
+        output_digest: "sha256:371b4530032fd40b5cbd90e61955b7cb361433e5227a8dd0d39b605b389a564f"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -70,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:161edc7797139feb3e82bc8b4510e9fb9a7d45b461ca806f6bba8e6ec4f5a2e7"
+        output_digest: "sha256:de02599e11ec285ab1834d4d332223abd365eaea1e83314b7340a33c2df460d0"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装
@@ -79,7 +112,7 @@ review_evidence:
 
 `PLAN-L6-05-setup-solo-team` (add-design) の ① 機能設計 (`setup-solo-team.md`) + ③ 単体テスト設計 (U-SETUP-001〜007) を ② 実装 + ④ テストコードに落とす add-impl。**Add-feature 標準ライフサイクル 経路 B** の impl 段階。完了後、後段 `PLAN-REVERSE-04` (未起票、本 PLAN 完了後に起票予定) で L4 external-if (GitHub 境界契約) / L3 要件 (新 FR 要否) / §6.5 整合 / L0 §10 用語へ back-fill する。
 
-2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
+2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
 
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
 - **dependencies**: `parent=PLAN-L6-05` で lineage 連結。`requires` には置かない (confirmed 段階の design PLAN を `status=completed` 検証対象にしないため = §1.10.E の latent fail-close 回避。bottom-up Add-feature で L7 impl は confirmed L6 設計に依存するのが常態)。
@@ -104,7 +137,7 @@ U-SETUP-001〜007 を vitest 化 (③ 設計 L7-unit-test-design.md §1.7)。dep
 commander で `ut-tdd setup` を追加: `--solo` / `--team` (phase 上書き) / `--dry-run` / `--apply-branch-protection` / `--tl-team` / `--qa-team` / `--po-team`。非対話判定 (TTY/CI) を `isInteractive` deps に注入。既存 status/plan サブコマンドと同形。
 
 ### Step 5b: ut-tdd setup project CLI 配線 (src/cli.ts)
-`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、次に実行する確認コマンドを返す。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
+`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、次に実行する確認コマンドを返す。`identifierTransition` は現行 `ut-tdd` / `.ut-tdd` / `area=harness`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=ut-tdd rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
 
 ### Step 6: review (review 前置 MUST)
 `code-reviewer` (Senior Staff、TL 代替) で実装/型/file↔GitHub-API 境界/非対話 apply 封鎖/token 非記録/安全フォールバック/idempotency をレビュー。cross-agent 不在を evidence に記録 ([[feedback_ts_native_over_helix_cli]])。

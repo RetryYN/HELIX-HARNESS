@@ -87,6 +87,7 @@ export interface SetupResult {
 export interface HelixProjectSetupResult extends SetupResult {
   schemaVersion: "helix-project-setup.v1";
   setupCommand: "ut-tdd setup project";
+  futureCommand: "helix setup project";
   vscode: {
     tasksPath: string;
     statusTask: "HELIX: status";
@@ -97,6 +98,18 @@ export interface HelixProjectSetupResult extends SetupResult {
     memoryPath: string;
     handoverPath: string;
     evidencePath: string;
+  };
+  identifierTransition: {
+    currentCli: "ut-tdd";
+    currentStateDir: ".ut-tdd";
+    currentArea: "area=harness";
+    targetCli: "helix";
+    targetStateDir: ".helix";
+    targetArea: "area=helix";
+    status: "blocked_pending_cutover_approval";
+    mustNotApply: true;
+    cutoverPlanCommand: "ut-tdd rename plan --json";
+    reason: string;
   };
   nextCommands: string[];
 }
@@ -740,6 +753,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
   return {
     schemaVersion: "helix-project-setup.v1",
     setupCommand: "ut-tdd setup project",
+    futureCommand: "helix setup project",
     phase,
     written,
     branchProtection,
@@ -753,6 +767,19 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       memoryPath: join(".ut-tdd", "memory"),
       handoverPath: join(".ut-tdd", "handover"),
       evidencePath: join(".ut-tdd", "evidence"),
+    },
+    identifierTransition: {
+      currentCli: "ut-tdd",
+      currentStateDir: ".ut-tdd",
+      currentArea: "area=harness",
+      targetCli: "helix",
+      targetStateDir: ".helix",
+      targetArea: "area=helix",
+      status: "blocked_pending_cutover_approval",
+      mustNotApply: true,
+      cutoverPlanCommand: "ut-tdd rename plan --json",
+      reason:
+        "PLAN-M-02 cutover/action-binding approval is required before setup may switch generated state from .ut-tdd to .helix.",
     },
     nextCommands: [
       "ut-tdd status --json",
