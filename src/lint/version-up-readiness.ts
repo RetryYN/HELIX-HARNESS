@@ -84,6 +84,52 @@ export interface VersionUpActivationPacket {
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
 }
 
+export interface VersionUpgradeDryRunInput {
+  currentVersion: string;
+  targetVersion: string;
+  releaseTrigger?: string;
+}
+
+export interface VersionUpgradeDryRunPlan {
+  schemaVersion: "version-up-dry-run-plan.v1";
+  currentVersion: string;
+  targetVersion: string;
+  normalizedCurrent: string | null;
+  normalizedTarget: string | null;
+  semverChange: "major" | "minor" | "patch" | "prerelease" | "same" | "downgrade" | "invalid";
+  releaseTrigger: string;
+  planOnly: true;
+  mustNotApply: true;
+  applyCommandAvailable: false;
+  ok: boolean;
+  blockedReasons: string[];
+  migrationPlan: Array<{
+    step: string;
+    command: string;
+    requiredEvidence: string;
+  }>;
+  rollbackPlan: Array<{
+    step: string;
+    command: string;
+    requiredEvidence: string;
+  }>;
+  idempotencyChecks: Array<{
+    check: string;
+    command: string;
+    expected: string;
+  }>;
+  releaseGateChecks: Array<{
+    check: string;
+    command: string;
+    requiredEvidence: string;
+  }>;
+  sourceBasis: Array<{
+    name: string;
+    url: string;
+    versionUpUse: string;
+  }>;
+}
+
 const MODE_DOC_MARKERS = [
   "deferred-but-committed-future",
   "status=draft",
@@ -540,6 +586,127 @@ export function buildVersionUpActivationPackets(
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
 
+export function buildVersionUpgradeDryRunPlan(
+  input: VersionUpgradeDryRunInput,
+): VersionUpgradeDryRunPlan {
+  const current = parseSemver(input.currentVersion);
+  const target = parseSemver(input.targetVersion);
+  const semverChange = classifySemverChange(current, target);
+  const blockedReasons: string[] = [];
+  if (!current || !target) {
+    blockedReasons.push("current and target versions must be SemVer");
+  } else if (semverChange === "same") {
+    blockedReasons.push("target version must differ from current version");
+  } else if (semverChange === "downgrade") {
+    blockedReasons.push("target version must be greater than current version");
+  }
+
+  return {
+    schemaVersion: "version-up-dry-run-plan.v1",
+    currentVersion: input.currentVersion,
+    targetVersion: input.targetVersion,
+    normalizedCurrent: current?.normalized ?? null,
+    normalizedTarget: target?.normalized ?? null,
+    semverChange,
+    releaseTrigger: input.releaseTrigger ?? `GitHub release tag ${input.targetVersion}`,
+    planOnly: true,
+    mustNotApply: true,
+    applyCommandAvailable: false,
+    ok: blockedReasons.length === 0,
+    blockedReasons,
+    migrationPlan: [
+      {
+        step: "compare_current_target",
+        command: `ut-tdd version-up dry-run --current ${input.currentVersion} --target ${input.targetVersion} --json`,
+        requiredEvidence: "semver_diff",
+      },
+      {
+        step: "project_setup_dry_run",
+        command: "ut-tdd setup project --dry-run --json",
+        requiredEvidence: "setup_import_report_and_identifier_transition",
+      },
+      {
+        step: "activation_packet_review",
+        command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+        requiredEvidence: "activation_decision_record_and_parked_review_record",
+      },
+      {
+        step: "doctor_rebuild",
+        command: "ut-tdd db rebuild && ut-tdd doctor",
+        requiredEvidence: "doctor_green_before_tag_or_release_update",
+      },
+    ],
+    rollbackPlan: [
+      {
+        step: "restore_previous_tag",
+        command: `git switch ${input.currentVersion}`,
+        requiredEvidence: "previous_tag_or_branch_exists",
+      },
+      {
+        step: "restore_harness_state",
+        command: "restore .ut-tdd state backup captured before upgrade apply",
+        requiredEvidence: "state_backup_manifest",
+      },
+      {
+        step: "rebuild_projection_after_rollback",
+        command: "ut-tdd db rebuild && ut-tdd doctor",
+        requiredEvidence: "post_rollback_doctor_green",
+      },
+    ],
+    idempotencyChecks: [
+      {
+        check: "repeat_dry_run_has_no_state_change",
+        command: `ut-tdd version-up dry-run --current ${input.currentVersion} --target ${input.targetVersion} --json`,
+        expected: "same normalizedCurrent/normalizedTarget/semverChange and no file writes",
+      },
+      {
+        check: "setup_project_dry_run_is_non_destructive",
+        command: "ut-tdd setup project --dry-run --json",
+        expected: "writtenPaths empty in importReport and no remote apply",
+      },
+    ],
+    releaseGateChecks: [
+      {
+        check: "release_tag_exists",
+        command: `git rev-parse --verify ${input.targetVersion}`,
+        requiredEvidence: "target tag or release trigger resolved before activation",
+      },
+      {
+        check: "required_checks_green",
+        command: "ut-tdd status --json",
+        requiredEvidence: "completion decision packet has no unreviewed regression gate",
+      },
+      {
+        check: "merge_queue_or_ruleset_gate_preserved",
+        command: "ut-tdd doctor",
+        requiredEvidence: "ruleset/merge readiness gates remain green",
+      },
+    ],
+    sourceBasis: [
+      {
+        name: "Semantic Versioning 2.0.0",
+        url: "https://semver.org/",
+        versionUpUse: "classify current/target compatibility intent and reject non-SemVer targets",
+      },
+      {
+        name: "GitHub Releases",
+        url: "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository",
+        versionUpUse: "treat release tags as activation triggers and rollback anchors",
+      },
+      {
+        name: "GitHub Rulesets",
+        url: "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets",
+        versionUpUse: "preserve required checks and bypass audit before release/tag activation",
+      },
+      {
+        name: "GitHub Merge Queue",
+        url: "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+        versionUpUse: "verify merge readiness before release candidate promotion",
+      },
+    ],
+  };
+}
+
 export function buildVersionUpActivationPacket(
   plan: VersionUpReadinessPlan,
 ): VersionUpActivationPacket {
@@ -800,6 +967,67 @@ function mentions(value: string, needles: string[]): boolean {
 
 function mentionsForwardLayer(value: string): boolean {
   return /\bL(?:2|3|4|5|6|7)\b/.test(value) || mentions(value, ["Forward", "descent", "再降下"]);
+}
+
+function parseSemver(value: string): {
+  normalized: string;
+  major: number;
+  minor: number;
+  patch: number;
+  prerelease: string | null;
+} | null {
+  const match = value
+    .trim()
+    .match(
+      /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z.-]+))?(?:\+[0-9A-Za-z.-]+)?$/,
+    );
+  if (!match) return null;
+  const [, major, minor, patch, prerelease] = match;
+  const normalized = `${major}.${minor}.${patch}${prerelease ? `-${prerelease}` : ""}`;
+  return {
+    normalized,
+    major: Number(major),
+    minor: Number(minor),
+    patch: Number(patch),
+    prerelease: prerelease ?? null,
+  };
+}
+
+function classifySemverChange(
+  current: ReturnType<typeof parseSemver>,
+  target: ReturnType<typeof parseSemver>,
+): VersionUpgradeDryRunPlan["semverChange"] {
+  if (!current || !target) return "invalid";
+  if (target.major !== current.major) return target.major > current.major ? "major" : "downgrade";
+  if (target.minor !== current.minor) return target.minor > current.minor ? "minor" : "downgrade";
+  if (target.patch !== current.patch) return target.patch > current.patch ? "patch" : "downgrade";
+  if (target.prerelease !== current.prerelease) {
+    if (current.prerelease && !target.prerelease) return "patch";
+    if (!current.prerelease && target.prerelease) return "downgrade";
+    return comparePrerelease(current.prerelease ?? "", target.prerelease ?? "") < 0
+      ? "prerelease"
+      : "downgrade";
+  }
+  return "same";
+}
+
+function comparePrerelease(current: string, target: string): number {
+  const currentParts = current.split(".");
+  const targetParts = target.split(".");
+  for (let i = 0; i < Math.max(currentParts.length, targetParts.length); i++) {
+    const a = currentParts[i];
+    const b = targetParts[i];
+    if (a === undefined) return -1;
+    if (b === undefined) return 1;
+    if (a === b) continue;
+    const aNumeric = /^\d+$/.test(a);
+    const bNumeric = /^\d+$/.test(b);
+    if (aNumeric && bNumeric) return Number(a) - Number(b);
+    if (aNumeric) return -1;
+    if (bNumeric) return 1;
+    return a < b ? -1 : 1;
+  }
+  return 0;
 }
 
 function parseVersionUpSourceLedger(text: string): {

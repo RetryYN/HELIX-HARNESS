@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   analyzeVersionUpReadiness,
   buildVersionUpActivationPackets,
+  buildVersionUpgradeDryRunPlan,
   loadVersionUpReadinessInput,
   type VersionUpReadinessInput,
   versionUpReadinessMessages,
@@ -241,6 +242,91 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+  });
+
+  it("emits a non-destructive version upgrade dry-run plan with rollback and idempotency evidence", () => {
+    const plan = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v0.1.0",
+      targetVersion: "v0.2.0",
+      releaseTrigger: "GitHub release tag v0.2.0",
+    });
+
+    expect(plan).toMatchObject({
+      schemaVersion: "version-up-dry-run-plan.v1",
+      currentVersion: "v0.1.0",
+      targetVersion: "v0.2.0",
+      normalizedCurrent: "0.1.0",
+      normalizedTarget: "0.2.0",
+      semverChange: "minor",
+      planOnly: true,
+      mustNotApply: true,
+      applyCommandAvailable: false,
+      ok: true,
+      releaseTrigger: "GitHub release tag v0.2.0",
+    });
+    expect(plan.migrationPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          step: "compare_current_target",
+          requiredEvidence: "semver_diff",
+        }),
+        expect.objectContaining({ step: "project_setup_dry_run" }),
+      ]),
+    );
+    expect(plan.rollbackPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ step: "restore_previous_tag", command: "git switch v0.1.0" }),
+      ]),
+    );
+    expect(plan.idempotencyChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ check: "repeat_dry_run_has_no_state_change" }),
+      ]),
+    );
+    expect(plan.releaseGateChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ check: "release_tag_exists" }),
+        expect.objectContaining({ check: "required_checks_green" }),
+      ]),
+    );
+    expect(plan.sourceBasis.map((source) => source.name)).toEqual(
+      expect.arrayContaining([
+        "Semantic Versioning 2.0.0",
+        "GitHub Releases",
+        "GitHub Rulesets",
+        "GitHub Merge Queue",
+      ]),
+    );
+    expect(plan.blockedReasons).toEqual([]);
+  });
+
+  it("rejects downgrade or invalid version-up dry-run targets before any apply surface exists", () => {
+    const downgrade = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v0.2.0",
+      targetVersion: "v0.1.0",
+    });
+    expect(downgrade.ok).toBe(false);
+    expect(downgrade.semverChange).toBe("downgrade");
+    expect(downgrade.blockedReasons).toContain(
+      "target version must be greater than current version",
+    );
+    expect(downgrade.applyCommandAvailable).toBe(false);
+
+    const invalid = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v0.2.0",
+      targetVersion: "latest",
+    });
+    expect(invalid.ok).toBe(false);
+    expect(invalid.semverChange).toBe("invalid");
+    expect(invalid.blockedReasons).toContain("current and target versions must be SemVer");
+    expect(invalid.mustNotApply).toBe(true);
+
+    const prerelease = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v1.0.0-alpha.1",
+      targetVersion: "v1.0.0-alpha.2",
+    });
+    expect(prerelease.ok).toBe(true);
+    expect(prerelease.semverChange).toBe("prerelease");
   });
 
   it("U-DECISIONREC-002: fails parked plans that do not explain activation as version-up", () => {
@@ -616,5 +702,31 @@ describe("version-up-readiness", () => {
       "approval_evidence",
       "audit_record",
     ]);
+  });
+
+  it("exposes version-up dry-run through the CLI as JSON", () => {
+    const raw = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "dry-run",
+        "--current",
+        "v0.1.0",
+        "--target",
+        "v0.2.0",
+        "--json",
+      ],
+      { encoding: "utf8" },
+    );
+    const plan = JSON.parse(raw);
+    expect(plan).toMatchObject({
+      schemaVersion: "version-up-dry-run-plan.v1",
+      ok: true,
+      planOnly: true,
+      applyCommandAvailable: false,
+      semverChange: "minor",
+    });
   });
 });

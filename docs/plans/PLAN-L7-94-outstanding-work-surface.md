@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:22:48+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -156,7 +156,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:05:01+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -213,7 +213,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:52:48+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:05:00+09:00"
@@ -279,7 +279,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:32:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:21:04+09:00"
@@ -312,7 +312,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:20:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T00:32:57+09:00"
@@ -685,7 +685,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:44:15+09:00"

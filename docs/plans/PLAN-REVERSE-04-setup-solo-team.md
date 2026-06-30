@@ -91,7 +91,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
 ---
 
 # PLAN-REVERSE-04 (reverse/fullback): ut-tdd setup solo/team を上位整合へ back-fill

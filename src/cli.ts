@@ -77,6 +77,7 @@ import {
 } from "./lint/verification-profile";
 import {
   buildVersionUpActivationPackets,
+  buildVersionUpgradeDryRunPlan,
   loadVersionUpReadinessInput,
 } from "./lint/version-up-readiness";
 import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
@@ -1084,6 +1085,33 @@ rename
 const versionUp = program
   .command("version-up")
   .description("version-up parked work decision surfaces");
+versionUp
+  .command("dry-run")
+  .description("emit a non-destructive current->target version upgrade plan")
+  .requiredOption("--current <version>", "current SemVer tag/version")
+  .requiredOption("--target <version>", "target SemVer tag/version")
+  .option("--release-trigger <trigger>", "release/tag trigger text")
+  .option("--json", "JSON output")
+  .action((opts: { current: string; target: string; releaseTrigger?: string; json?: boolean }) => {
+    const plan = buildVersionUpgradeDryRunPlan({
+      currentVersion: opts.current,
+      targetVersion: opts.target,
+      ...(opts.releaseTrigger ? { releaseTrigger: opts.releaseTrigger } : {}),
+    });
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `version-up dry-run: ${plan.currentVersion} -> ${plan.targetVersion} change=${plan.semverChange} ok=${plan.ok} planOnly=${plan.planOnly} applyCommandAvailable=${plan.applyCommandAvailable}\n`,
+    );
+    for (const reason of plan.blockedReasons) {
+      process.stdout.write(`  blocked: ${reason}\n`);
+    }
+    process.stdout.write(
+      `  migration=${plan.migrationPlan.length} rollback=${plan.rollbackPlan.length} idempotency=${plan.idempotencyChecks.length} release-gates=${plan.releaseGateChecks.length}\n`,
+    );
+  });
 versionUp
   .command("activation-packet")
   .description("emit non-destructive activation decision packets for version_target parked PLANs")

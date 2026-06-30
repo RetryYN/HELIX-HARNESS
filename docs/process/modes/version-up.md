@@ -72,6 +72,20 @@ budget、GitHub webhook `X-Hub-Signature-256` HMAC 検証、Cloudflare Access po
 no-prod-write、rollback rehearsal、source ledger / approval / audit evidence を承認前に審査するための
 設計材料であり、apply 権限ではない。
 
+### 4.1.2 version upgrade dry-run surface
+
+`ut-tdd version-up dry-run --current <semver-or-tag> --target <semver-or-tag> --json` は、
+tag bump / release pin 更新を実適用する前の plan-only surface である。`version-up-dry-run-plan.v1` は
+`currentVersion` / `targetVersion`、`normalizedCurrent` / `normalizedTarget`、SemVer 差分
+(`major` / `minor` / `patch` / `prerelease` / `same` / `downgrade` / `invalid`)、`releaseTrigger`、
+`migrationPlan`、`rollbackPlan`、`idempotencyChecks`、`releaseGateChecks`、`sourceBasis` を返す。
+
+この surface も **apply 権限を持たない**。`planOnly=true`、`mustNotApply=true`、
+`applyCommandAvailable=false` を固定し、target が current 以下、または current/target が SemVer として
+解釈できない場合は `ok=false` と `blockedReasons` を返す。migration は `ut-tdd setup project --dry-run`
+と activation packet / doctor を経由し、rollback は旧 tag/branch と `.ut-tdd` state backup / projection rebuild
+を要求する。同じ dry-run を再実行しても file/state/remote side effect が無いことを idempotency evidence とする。
+
 ### 4.2 parked review record
 
 version-up parked PLAN は、activation 判断の前に `parked_review_record` を持つ。これは「いつ、誰が、何を見て、

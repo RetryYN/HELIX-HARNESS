@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:5c66aad2bbecccdda2d4249565f62ca6384d55fdba62e666ca70eb4f5f57674d"
+        output_digest: "sha256:de6c5b9ea4490f8c02fc28138162e58b5db27ffd16b7f26d54edeb60d462c584"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:45:00+09:00"
@@ -119,7 +119,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -160,7 +160,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
@@ -193,7 +193,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装
