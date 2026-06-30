@@ -144,6 +144,13 @@ DISCOVERY-01/06 と同じ reuse-with-hardening)。
 > concept §2.5 / requirements / docs/process/modes へ back-merge し、`PLAN-REVERSE-*` で Reverse 合流する
 > (confirmed poc の IMP-064 義務はその時点で発生)。本 PLAN は S4 decision まで `status=draft` として outstanding に残す。
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (人間)。TL は engine 非重複・Forward 合流設計の助言のみ。
+- decision_basis: AC-1〜AC-5 の S3 verified evidence、code-reviewer review、Discovery 合成が既存 route を再利用していること、中央 UI dogfood 前の規範変更 risk。
+- forward_route: `confirmed` の場合は L1/L3-L6 へ design-bottomup 要求・設計を back-merge し、中央 UI dogfood を別 PLAN で descent する。
+- reverse_fullback_required: yes。confirmed 後は concept / requirements / docs/process/modes へ Reverse fullback で正本化する。
+
 ## 5. §工程表 schedule (並列/直列 明示、review step 必須)
 
 | Step | 内容 | 並列/直列 | 直列理由 |

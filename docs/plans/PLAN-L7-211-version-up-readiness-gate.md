@@ -77,7 +77,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T10:30:00+09:00"
         evidence_path: src/doctor/index.ts
-        output_digest: "sha256:c0cbd207cdf9c4ca2dec3868c499867c87d10d2107613dba084e56e6b9c0aafd"
+        output_digest: "sha256:a0f9a88b7443a187e879d133b386d3923bf5736b8d61aac9e7e40a5504997adf"
 ---
 
 # PLAN-L7-211: version-up parked readiness gate

@@ -56,6 +56,23 @@ S3 の `verified evidence / outstanding` は「技術的・検証的には揃っ
 
 fail-close: confirmed は verify script 成功と S4 `decision_outcome=confirmed` の両方が必須。S3 verify 成功だけで `confirmed` / `completed` にしない。S3 verify 失敗時は sprint を completed にせず、S4 で `rejected` または `pivot` を記録する。
 
+### 3.1 S4 decision record
+
+S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば S4 へ進めるかを失わないため、
+本文に `s4_decision_record` を持つ。
+
+| field | 必須条件 | 意味 |
+|---|---|---|
+| `s4_decision_record` | S3 pending PLAN で必須 | S4 decide の判断単位。これが無い verified PLAN は単なる draft と区別できない |
+| `allowed_outcome` | S3 pending PLAN で必須 | `confirmed` / `rejected` / `pivot` のいずれか |
+| `decision_owner` | S3 pending PLAN で必須 | S4 判断を記録する PO / 代理 owner |
+| `decision_basis` | S3 pending PLAN で必須 | S3 verified evidence、review evidence、外部根拠、未解決リスクの要約 |
+| `forward_route` | `confirmed` 候補がある場合必須 | L1 / L3-L6 / gap-only 等の Forward 合流候補 |
+| `reverse_fullback_required` | `confirmed` 候補がある場合必須 | confirmed 後に Reverse fullback で正本化が必要か |
+
+`s4_decision_record` は `decision_outcome` の代替ではない。S4 で PO が `decision_outcome` を記録した後に
+terminal status / Forward merge / Reverse fullback へ進める。
+
 ---
 
 ## 4. Forward 合流点

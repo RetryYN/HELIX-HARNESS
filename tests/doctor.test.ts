@@ -47,6 +47,7 @@ import {
   checkRuleDrift,
   checkRuntimePortability,
   checkRuntimeReadability,
+  checkS4DecisionReadiness,
   checkScrumReverse,
   checkSkillAssignment,
   checkTelemetryClosure,
@@ -311,6 +312,11 @@ describe("runDoctor", () => {
   it("includes version-up readiness hard gate in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
+  });
+
+  it("includes S4 decision readiness hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: s4-decision-readiness - OK")).toBe(true);
   });
 
   it("includes objective evidence audit hard gate in doctor output", () => {
@@ -687,6 +693,7 @@ describe("runDoctor", () => {
       ["dependency-drift", checkDependencyDrift(missingRoot)],
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
       ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
+      ["s4-decision-readiness", checkS4DecisionReadiness(missingRoot)],
       ["objective-evidence-audit", checkObjectiveEvidenceAudit(missingRoot)],
       ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
     ] as const;

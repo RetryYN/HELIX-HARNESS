@@ -236,6 +236,11 @@ import {
   runtimePortabilityMessages,
 } from "../lint/runtime-portability";
 import {
+  analyzeS4DecisionReadiness,
+  loadS4DecisionReadinessInput,
+  s4DecisionReadinessMessages,
+} from "../lint/s4-decision-readiness";
+import {
   analyzeScreenImplPairFreeze,
   loadScreenImplPairFreezeInput,
   screenImplPairFreezeMessages,
@@ -1838,6 +1843,18 @@ export function checkVersionUpReadiness(repoRoot: string): { messages: string[];
   }
 }
 
+export function checkS4DecisionReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeS4DecisionReadiness(loadS4DecisionReadinessInput(repoRoot));
+    return { messages: s4DecisionReadinessMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["s4-decision-readiness - violation: S3/S4 decision docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
 export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput(repoRoot));
@@ -2010,6 +2027,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
   const forwardConvergence = checkForwardConvergence(deps.repoRoot);
   const versionUpReadiness = checkVersionUpReadiness(deps.repoRoot);
+  const s4DecisionReadiness = checkS4DecisionReadiness(deps.repoRoot);
   const objectiveEvidenceAudit = checkObjectiveEvidenceAudit(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   return {
@@ -2083,6 +2101,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       frontendDesignCoverage.ok &&
       forwardConvergence.ok &&
       versionUpReadiness.ok &&
+      s4DecisionReadiness.ok &&
       objectiveEvidenceAudit.ok &&
       forwardConvergenceAudit.ok &&
       handoverOutstanding.ok,
@@ -2162,6 +2181,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
+      ...s4DecisionReadiness.messages.map((m) => `doctor: ${m}`),
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],

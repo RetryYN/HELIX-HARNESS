@@ -235,6 +235,9 @@ describe("completionDecisionPacketForOutstanding", () => {
       ["PLAN-M-02", "irreversible_migration_signoff"],
     ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packet.decisions[0].requiredEvidence).toContain(
+      "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
+    );
     expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
     expect(packet.decisions[1].requiredEvidence).toContain(
       "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",

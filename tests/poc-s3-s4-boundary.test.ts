@@ -54,7 +54,10 @@ describe("PoC S3/S4 semantic boundary", () => {
     expect(mergedPlanStatus).toContain("p.hasReviewEvidence === true");
 
     expect(outstanding).toContain("record the PO/S4 decision before promotion");
-    expect(outstanding).toContain("decision_outcome recorded in the PLAN");
-    expect(outstanding).toContain("promotion_strategy or rejection rationale");
+    expect(outstanding).toContain(
+      "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
+    );
+    expect(outstanding).toContain("decision_outcome recorded in the PLAN at S4");
+    expect(outstanding).toContain("promotion_strategy or rejection/pivot rationale");
   });
 });

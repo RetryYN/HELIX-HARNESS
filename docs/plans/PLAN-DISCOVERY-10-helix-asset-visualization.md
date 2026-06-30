@@ -129,6 +129,13 @@ Recommendation: **confirm with reuse-with-hardening**.
 - [ ] S4 decision_outcome は PO。confirmed なら `decision_outcome: confirmed` / `promotion_strategy: reuse-with-hardening` を記録し、
   後続 L3/L4/L6/L7 PLAN へ Forward 合流する。
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (人間)。TL は visualization scope と read-only/action-boundary の助言のみ。
+- decision_basis: S3 verified read model (`PLAN-L7-206`)、official VS Code Tree View / Webview / Webview UX guidance、Mermaid graph IR、HOT-P9 L14 pair、projection-only guard の検証結果。
+- forward_route: `confirmed` の場合は L3 visualization requirements、L4 UI/data boundary、L6 view-model contract、L7 VSCode Tree View/Webview prototype に分割して Forward 合流する。
+- reverse_fullback_required: yes。confirmed 後は L1/L3/L4/L6 の正本へ Reverse fullback し、action surface は approval-bound のまま維持する。
+
 ## Pre-Verified Read Model Response
 
 `PLAN-L7-206` で固定した `VisualizationSnapshot` は、既存 harness.db projection を束ねる read-only response である。

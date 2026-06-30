@@ -235,8 +235,11 @@ function requiredOutstandingAction(reason: string): {
       return {
         requiredAction: "record the PO/S4 decision before promotion, rejection, or Forward merge",
         requiredEvidence: [
-          "decision_outcome recorded in the PLAN",
-          "promotion_strategy or rejection rationale recorded before terminal status",
+          "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
+          "decision_owner and decision_basis recorded before terminal status",
+          "forward_route / reverse_fullback_required recorded when confirmed",
+          "decision_outcome recorded in the PLAN at S4",
+          "promotion_strategy or rejection/pivot rationale recorded before terminal status",
         ],
       };
     case "human_approval_pending":

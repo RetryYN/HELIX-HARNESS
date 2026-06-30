@@ -15,7 +15,7 @@ review_evidence:
     reviewed_at: "2026-06-30T11:17:00+09:00"
     tests_green_at: "2026-06-30T11:16:00+09:00"
     verdict: pass
-    scope: "PO『4 は対応しろ』(2026-06-22) を受け IMP-139 (status/handover/DB が『未了の正の集計シグナル』を出さず doctor green=完了 と誤読され得る) を実装。新規 src/lint/outstanding.ts: analyzeOutstandingWork (純関数、非終端 PLAN を layer 別集計、terminal=confirmed/completed/accepted と archived を除外、key 昇順決定論、openDefers を Math.max(0) クランプ) + loadOutstandingPlanRows (docs/plans frontmatter から layer/status) + computeOutstandingWork (placeholder-deps specBackfillWaits を open defer として合成、I/O 失敗は fail-open ゼロ寄せ) + outstandingSummaryLine。surface 2 面: (1) ut-tdd status --json に outstanding を additive 付加 (nextAction を additive 付加した A-138/PLAN-L7-84 の前例に倣う、既存 6 field 不変) + status text に 1 行。(2) handover CURRENT.json pointer に outstanding を additive (session 再開時の完了主張を機械照合可能に)。gate ではない informational surface (非 fail-close)。2026-06-30 に意味別 blocker 分類と requiredAction/requiredEvidence を追加。さらに `completionReadiness` を追加し、doctor green とは別に whole-program / L14 全件達成 claim の ready/blocked を機械判定する。2026-06-30 continuation で `completionDecisionPacketForOutstanding` と `ut-tdd completion decision-packet` を追加し、PO/S4 判断・version-up activation・action-binding approval・不可逆 migration signoff を PLAN 単位の decision packet として出す。status JSON に `completionDecisionPacket` を additive に接続し、blocked status text から packet command へ直接辿れるようにした。test 14 ケース (analyze 5 + completion readiness 2 + decision packet 2 + summaryLine 2 + loader/compute 3) + CLI status/decision-packet surface + 既存 handover/status スイート不破壊。typecheck/Biome/Vitest/doctor green。"
+    scope: "PO『4 は対応しろ』(2026-06-22) を受け IMP-139 (status/handover/DB が『未了の正の集計シグナル』を出さず doctor green=完了 と誤読され得る) を実装。新規 src/lint/outstanding.ts: analyzeOutstandingWork (純関数、非終端 PLAN を layer 別集計、terminal=confirmed/completed/accepted と archived を除外、key 昇順決定論、openDefers を Math.max(0) クランプ) + loadOutstandingPlanRows (docs/plans frontmatter から layer/status) + computeOutstandingWork (placeholder-deps specBackfillWaits を open defer として合成、I/O 失敗は fail-open ゼロ寄せ) + outstandingSummaryLine。surface 2 面: (1) ut-tdd status --json に outstanding を additive 付加 (nextAction を additive 付加した A-138/PLAN-L7-84 の前例に倣う、既存 6 field 不変) + status text に 1 行。(2) handover CURRENT.json pointer に outstanding を additive (session 再開時の完了主張を機械照合可能に)。gate ではない informational surface (非 fail-close)。2026-06-30 に意味別 blocker 分類と requiredAction/requiredEvidence を追加。さらに `completionReadiness` を追加し、doctor green とは別に whole-program / L14 全件達成 claim の ready/blocked を機械判定する。2026-06-30 continuation で `completionDecisionPacketForOutstanding` と `ut-tdd completion decision-packet` を追加し、PO/S4 判断・version-up activation・action-binding approval・不可逆 migration signoff を PLAN 単位の decision packet として出す。status JSON に `completionDecisionPacket` を additive に接続し、blocked status text から packet command へ直接辿れるようにした。2026-06-30 continuation 2 で `s4-decision-readiness` hard gate を追加し、S3 verified PoC が S4 decision record (allowed_outcome / decision_owner / decision_basis / forward_route / reverse_fullback_required) 無しに outstanding から消えないようにした。test 14 ケース (analyze 5 + completion readiness 2 + decision packet 2 + summaryLine 2 + loader/compute 3) + S4 readiness 4 ケース + CLI status/decision-packet surface + 既存 handover/status スイート不破壊。typecheck/Biome/Vitest/doctor green。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:382623b54b91ee0b3b5aed5a66f223168bd65fee3f064431693ecd762dc811ea"
+        output_digest: "sha256:9fd8de9467342993a618d6b972db2658e95044e775b28876971d0db155f595c0"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:bff53d6c89c4e6d0f046f58a3c25eae50ee8b51812159c3ce9d7321bc10ef146"
+        output_digest: "sha256:95dbc385d8e80d4940dfce91f0e1dc0376a5371e9729b3665cb3e5fb3aef6504"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:bff53d6c89c4e6d0f046f58a3c25eae50ee8b51812159c3ce9d7321bc10ef146"
+        output_digest: "sha256:95dbc385d8e80d4940dfce91f0e1dc0376a5371e9729b3665cb3e5fb3aef6504"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -50,7 +50,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:07:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:bff53d6c89c4e6d0f046f58a3c25eae50ee8b51812159c3ce9d7321bc10ef146"
+        output_digest: "sha256:95dbc385d8e80d4940dfce91f0e1dc0376a5371e9729b3665cb3e5fb3aef6504"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -59,11 +59,15 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/lint/outstanding.ts
     artifact_type: source_module
+  - artifact_path: src/lint/s4-decision-readiness.ts
+    artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
   - artifact_path: src/handover/index.ts
     artifact_type: source_module
   - artifact_path: tests/outstanding.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/s4-decision-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
