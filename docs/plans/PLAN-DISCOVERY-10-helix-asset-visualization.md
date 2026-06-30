@@ -133,6 +133,12 @@ s4_decision_record:
 - allowed_outcome: `confirmed` / `rejected` / `pivot`
 - decision_owner: PO (人間)。TL は visualization scope と read-only/action-boundary の助言のみ。
 - decision_basis: S3 verified read model (`PLAN-L7-206`)、official VS Code Tree View / Webview / Webview UX guidance、Mermaid graph IR、HOT-P9 L14 pair、projection-only guard の検証結果。
+- verified_evidence: `PLAN-L7-206-visualization-read-model-response` の read-model response 検証、`ut-tdd progress snapshot --json`、projection-only guard、HOT-P9 L14 pair、Mermaid graph IR の S3 evidence。
+- stakeholder_review_or_proxy: TL proxy review 済み。PO は S4 で VSCode visualization workflow を confirmed / rejected / pivot するかだけを判断する。
+- acceptance_gap: read model は verified。未充足 gap は L3 visualization requirements、L4 UI/data boundary、L6 view-model contract、L7 VSCode Tree View/Webview prototype。
+- unresolved_risk: Webview CSP/localResourceRoots、provider transcript / secret 非保存、action surface の approval-boundary、既存 `PLAN-L7-141` web dashboard との誤同一視。
+- external_source_basis: docs/process/modes/discovery.md の S4 decision source ledger、VS Code Tree View / Webview / Webview UX official docs、Mermaid Syntax、`PLAN-L7-206` evidence。
+- route_impact: confirmed なら L3/L4/L6/L7 へ分割 descent、rejected なら visualization workflow を採用せず read-model を archive、pivot なら native Tree View / Webview scope を再定義する。
 - forward_route: `confirmed` の場合は L3 visualization requirements、L4 UI/data boundary、L6 view-model contract、L7 VSCode Tree View/Webview prototype に分割して Forward 合流する。
 - reverse_fullback_required: yes。confirmed 後は L1/L3/L4/L6 の正本へ Reverse fullback し、action surface は approval-bound のまま維持する。
 

@@ -67,11 +67,26 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 | `allowed_outcome` | S3 pending PLAN で必須 | `confirmed` / `rejected` / `pivot` のいずれか |
 | `decision_owner` | S3 pending PLAN で必須 | S4 判断を記録する PO / 代理 owner |
 | `decision_basis` | S3 pending PLAN で必須 | S3 verified evidence、review evidence、外部根拠、未解決リスクの要約 |
+| `verified_evidence` | S3 pending PLAN で必須 | 実行した test / verify command / review_evidence / artifact hash。検証実績が無い仮説を S4 材料にしない |
+| `stakeholder_review_or_proxy` | S3 pending PLAN で必須 | PO / user / TL proxy の inspect/adapt 記録。未実施なら未実施理由と代替判断者を明示 |
+| `acceptance_gap` | S3 pending PLAN で必須 | acceptance criteria と未充足 gap。gap が 0 か、pivot/reject 候補かを明示 |
+| `unresolved_risk` | S3 pending PLAN で必須 | 未解決リスク、外部依存、security / approval / migration 境界 |
+| `external_source_basis` | S3 pending PLAN で必須 | 判断に使った公式ソース、既存正本、review source。URL / doc path / PLAN ID のいずれか |
+| `route_impact` | S3 pending PLAN で必須 | confirmed / rejected / pivot ごとの Forward / Reverse / backlog 影響 |
 | `forward_route` | `confirmed` 候補がある場合必須 | L1 / L3-L6 / gap-only 等の Forward 合流候補 |
 | `reverse_fullback_required` | `confirmed` 候補がある場合必須 | confirmed 後に Reverse fullback で正本化が必要か |
 
 `s4_decision_record` は `decision_outcome` の代替ではない。S4 で PO が `decision_outcome` を記録した後に
 terminal status / Forward merge / Reverse fullback へ進める。
+
+S4 decision source ledger (checked 2026-06-30):
+
+| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |
+|---|---|---|---|---|---|---|
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | current official Scrum Guide page | adopt-current-guide | S3 review / inspect-adapt は S4 判断入力であって terminal 完了ではない | `stakeholder_review_or_proxy`, `allowed_outcome` |
+| ISO/IEC/IEEE 29148 | <https://www.iso.org/standard/72089.html> | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements / acceptance trace を S4 の forward route と gap 判断に使う | `acceptance_gap`, `forward_route`, `route_impact` |
+| ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis / test condition / test result の語彙で verified evidence を分離する | `verified_evidence`, `decision_basis` |
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | secure development / release evidence と residual risk を S4 判断材料に残す | `unresolved_risk`, `external_source_basis` |
 
 ---
 

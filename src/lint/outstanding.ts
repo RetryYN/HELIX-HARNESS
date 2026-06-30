@@ -265,6 +265,7 @@ function requiredOutstandingAction(reason: string): {
         requiredEvidence: [
           "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
           "decision_owner and decision_basis recorded before terminal status",
+          "verified_evidence, stakeholder_review_or_proxy, acceptance_gap, unresolved_risk, external_source_basis, and route_impact recorded before S4 decision",
           "forward_route / reverse_fullback_required recorded when confirmed",
           "decision_outcome recorded in the PLAN at S4",
           "promotion_strategy or rejection/pivot rationale recorded before terminal status",

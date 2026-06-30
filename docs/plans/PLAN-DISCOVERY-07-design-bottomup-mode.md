@@ -148,6 +148,12 @@ s4_decision_record:
 - allowed_outcome: `confirmed` / `rejected` / `pivot`
 - decision_owner: PO (人間)。TL は engine 非重複・Forward 合流設計の助言のみ。
 - decision_basis: AC-1〜AC-5 の S3 verified evidence、code-reviewer review、Discovery 合成が既存 route を再利用していること、中央 UI dogfood 前の規範変更 risk。
+- verified_evidence: `tests/design-elicitation.test.ts` 10 tests、mode taxonomy / compose checks、`ut-tdd doctor`、`bun run test`、`ut-tdd plan lint`、`bun run lint`、`bun run typecheck` の S3 evidence。
+- stakeholder_review_or_proxy: code-reviewer review と TL proxy review 済み。PO は S4 で design-bottomup mode 正本化採否のみを判断する。
+- acceptance_gap: S3 scope の AC-1〜AC-5 は充足。中央 UI dogfood、concept / requirements / process modes の正本 back-merge は S4 confirmed 後の gap。
+- unresolved_risk: concept §2.5 9→10 mode 変更、requirements / process modes の規範変更、中央 UI dogfood 前に正本を書き換える risk。
+- external_source_basis: docs/process/modes/discovery.md の S4 decision source ledger、既存 routeSignalToMode / Discovery 合成、code-reviewer review evidence。
+- route_impact: confirmed なら L1/L3-L6 back-merge + Reverse fullback + 中央 UI dogfood、rejected なら design-bottomup mode を採用せず engine を archive、pivot なら Discovery 合成方針を再設計する。
 - forward_route: `confirmed` の場合は L1/L3-L6 へ design-bottomup 要求・設計を back-merge し、中央 UI dogfood を別 PLAN で descent する。
 - reverse_fullback_required: yes。confirmed 後は concept / requirements / docs/process/modes へ Reverse fullback で正本化する。
 

@@ -26,6 +26,8 @@ export interface S4DecisionViolation {
 
 export interface S4DecisionReadinessResult {
   pendingPlanIds: string[];
+  missingSourceLedgerRows: string[];
+  sourceLedgerViolations: S4DecisionViolation[];
   violations: S4DecisionViolation[];
   ok: boolean;
 }
@@ -35,8 +37,22 @@ const MODE_DOC_MARKERS = [
   "allowed_outcome",
   "decision_owner",
   "decision_basis",
+  "verified_evidence",
+  "stakeholder_review_or_proxy",
+  "acceptance_gap",
+  "unresolved_risk",
+  "external_source_basis",
+  "route_impact",
   "forward_route",
   "reverse_fullback_required",
+  "S4 decision source ledger (checked 2026-06-30)",
+  "Scrum Guide 2020",
+  "ISO/IEC/IEEE 29148",
+  "ISTQB Glossary",
+  "NIST SSDF SP 800-218",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
 ] as const;
 
 const OUTSTANDING_MARKERS = [
@@ -50,8 +66,31 @@ const S4_RECORD_FIELDS = [
   "allowed_outcome",
   "decision_owner",
   "decision_basis",
+  "verified_evidence",
+  "stakeholder_review_or_proxy",
+  "acceptance_gap",
+  "unresolved_risk",
+  "external_source_basis",
+  "route_impact",
   "forward_route",
   "reverse_fullback_required",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_COLUMNS = [
+  "source",
+  "official URL",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
+  "S4 decision use",
+  "required field impact",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_ROWS = [
+  "Scrum Guide 2020",
+  "ISO/IEC/IEEE 29148",
+  "ISTQB Glossary",
+  "NIST SSDF SP 800-218",
 ] as const;
 
 function parsePlan(file: string, content: string): S4DecisionPlan {
@@ -105,6 +144,19 @@ export function analyzeS4DecisionReadiness(
         violations.push({ subject: doc[0], reason: `missing ${marker}` });
       }
     }
+
+    const sourceLedger = parseS4DecisionSourceLedger(doc[1]);
+    for (const source of REQUIRED_SOURCE_LEDGER_ROWS.filter(
+      (source) => !sourceLedger.rows.some((row) => row.source === source),
+    )) {
+      violations.push({
+        subject: doc[0],
+        reason: `S4 decision source ledger missing row: ${source}`,
+      });
+    }
+    for (const violation of sourceLedgerViolations(doc[0], sourceLedger)) {
+      violations.push(violation);
+    }
   }
 
   for (const marker of OUTSTANDING_MARKERS) {
@@ -130,9 +182,115 @@ export function analyzeS4DecisionReadiness(
 
   return {
     pendingPlanIds: pending.map((p) => p.plan_id).sort(),
+    missingSourceLedgerRows: missingSourceLedgerRowsForDocs(input.discoveryMd, input.scrumMd),
+    sourceLedgerViolations: [
+      ...sourceLedgerViolations(
+        "docs/process/modes/discovery.md",
+        parseS4DecisionSourceLedger(input.discoveryMd),
+      ),
+      ...sourceLedgerViolations(
+        "docs/process/modes/scrum.md",
+        parseS4DecisionSourceLedger(input.scrumMd),
+      ),
+    ],
     violations,
     ok: violations.length === 0,
   };
+}
+
+function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): string[] {
+  const discovery = parseS4DecisionSourceLedger(discoveryMd);
+  const scrum = parseS4DecisionSourceLedger(scrumMd);
+  return REQUIRED_SOURCE_LEDGER_ROWS.filter(
+    (source) =>
+      !discovery.rows.some((row) => row.source === source) ||
+      !scrum.rows.some((row) => row.source === source),
+  );
+}
+
+function sourceLedgerViolations(
+  subject: string,
+  sourceLedger: { columns: string[]; rows: Record<string, string>[] },
+): S4DecisionViolation[] {
+  return [
+    ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
+      (column) => !sourceLedger.columns.includes(column),
+    ).map((column) => ({
+      subject,
+      reason: `S4 decision source ledger missing column: ${column}`,
+    })),
+    ...sourceLedger.rows.flatMap((row) =>
+      REQUIRED_SOURCE_LEDGER_COLUMNS.flatMap((column) => {
+        const value = row[column] ?? "";
+        if (value.trim() === "" || /^(TBD|TODO|-)$/.test(value.trim())) {
+          return [
+            {
+              subject,
+              reason: `S4 decision source ledger ${row.source} has empty ${column}`,
+            },
+          ];
+        }
+        return [];
+      }),
+    ),
+    ...sourceLedger.rows.flatMap((row) =>
+      row["official URL"]?.includes("https://")
+        ? []
+        : [
+            {
+              subject,
+              reason: `S4 decision source ledger ${row.source} official URL is not https`,
+            },
+          ],
+    ),
+  ];
+}
+
+function parseS4DecisionSourceLedger(text: string): {
+  columns: string[];
+  rows: Record<string, string>[];
+} {
+  const lines = text.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) =>
+    line.includes("S4 decision source ledger (checked 2026-06-30)"),
+  );
+  if (headingIndex < 0) {
+    return { columns: [], rows: [] };
+  }
+  const tableLines: string[] = [];
+  for (const line of lines.slice(headingIndex + 1)) {
+    if (line.trim() === "") {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    if (!line.trim().startsWith("|")) {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    tableLines.push(line);
+  }
+  if (tableLines.length < 2) {
+    return { columns: [], rows: [] };
+  }
+  const columns = tableCells(tableLines[0]);
+  const rows = tableLines.slice(2).map((line) => {
+    const rowCells = tableCells(line);
+    return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
+  });
+  return { columns, rows };
+}
+
+function tableCells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
 }
 
 export function s4DecisionReadinessMessages(result: S4DecisionReadinessResult): string[] {
