@@ -5,7 +5,7 @@ executed_at_layer: L8
 artifact_type: test_design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-30
 owner: QA + AIM
 plan: PLAN-L5-09-helix-pillar-detail-design
 pair_artifact: docs/design/helix/L5-detail/pillar-detail-design.md
@@ -25,6 +25,9 @@ next_pair_freeze: L5
 - 対象 L3 要件: 43 件。
 - Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle で観測し、本 L5 pillar integration test では 43 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract 境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
+- L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 `LIT-*` 43 件の
+  integration pass に含めない。S4 confirmed 後は visualization read-model / graph IR / drill-down /
+  read-only UI action boundary の結合観測を追加する。
 
 ## §1 integration test trace
 

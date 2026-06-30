@@ -208,6 +208,12 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3, "confirmed HELIX L3 requirements must not retain draft wording").not.toContain(
       "起草済",
     );
+    expect(l1).toContain("§2.8 Asset / progress visualization 要求");
+    expect(l3).toContain("§0.1 L1 amendment frontier");
+    expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
+    expect(l3).toContain("L1 §2.8 を含む revised");
+    expect(l12).toContain("§0.1 amendment frontier oracle");
+    expect(l12).toContain("visualization 要求も L3/L4/L6/L7 fully descended");
     const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
     for (const id of l1Ids) {
@@ -973,6 +979,8 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "L2 skip",
       "bounded context",
       "Red evidence",
+      "L1 §2.8 asset/progress visualization amendment",
+      "S4 confirmed 後",
     ]) {
       expect(l4).toContain(required);
     }
@@ -1015,6 +1023,8 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l9RequirementIds).toEqual(l3RequirementIds);
     expect(l9TestIds).toHaveLength(43);
     expect(l4TestIds).toEqual(l9TestIds);
+    expect(l9).toContain("L1 §2.8 asset/progress visualization amendment");
+    expect(l9).toContain("Tree View / Webview boundary");
   });
 
   it("U-VPAIR-007d: 既存 harness L4 本体も HELIX pillar overlay の scope/carry/boundary を持つ", () => {
@@ -1183,6 +1193,8 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "ForwardReturnDecision",
       "AutonomyResumeDecision",
       "LoopDispatchDecision",
+      "L1 §2.8 asset/progress visualization amendment",
+      "VisualizationSnapshot",
       "VerificationEvidenceProfile",
       "SecurityBoundaryDecision",
       "ConvergenceStatus",
@@ -1244,6 +1256,8 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "workflow は Forward と DB trace へ戻る",
       "budget / lock / stop reason",
       "catalog / registry / contract ledger",
+      "L1 §2.8 asset/progress visualization amendment",
+      "visualization read-model / graph IR / drill-down",
     ]) {
       expect(l8).toContain(required);
     }
@@ -1358,6 +1372,9 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "HU-PILLAR-DIST-01",
       "HU-PILLAR-CONFIG-01",
       "HU-PILLAR-PROV-04",
+      "L1 §2.8 asset/progress visualization amendment",
+      "view-model function",
+      "VSCode Tree View / Webview",
     ]) {
       expect(`${l6}\n${l7}`).toContain(required);
     }

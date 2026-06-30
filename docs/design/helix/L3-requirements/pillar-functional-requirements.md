@@ -4,7 +4,7 @@ layer: L3
 kind: design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-30
 owner: AIM + TL (Codex) / PO approval required
 plan: PLAN-L3-06-helix-pillar-descent
 pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
@@ -15,10 +15,12 @@ next_pair_freeze: L12
 
 # HELIX L3 要件 — L1 pillar HBR/HNFR -> FR/AC descent
 
-> 本書は `pillar-requirements.md` の HBR/HNFR 全件を L3 の機能要件・非機能要件・受入条件へ降ろした
-> Forward L3 confirmed 正本である。P2/P7 の実装済み back-fill
+> 本書は 2026-06-28 の G-REQ.L1 re-freeze 時点の `pillar-requirements.md` HBR/HNFR 全件を
+> L3 の機能要件・非機能要件・受入条件へ降ろした Forward L3 confirmed 正本である。P2/P7 の実装済み back-fill
 > (`orchestration-memory*.md`) は下位詳細として参照し、本書では L1 に残っていた GAP と pillar 横断 AC を閉じる。
 > status は `confirmed`。charter §3 に基づく PO 承認を経て G-REQ.L3 の confirmed 正本へ昇格済み。
+> 2026-06-30 に追加された L1 §2.8 asset/progress visualization 要求は、`PLAN-DISCOVERY-10` の
+> S4 PO decision 待ち amendment frontier であり、本 confirmed 43 件へ混ぜない。
 
 ## §0 量閉じ
 
@@ -39,6 +41,25 @@ next_pair_freeze: L12
 | HNFR-AC | HR-NFR-AC-01 / HR-NFR-AC-02 / HR-NFR-AC-03 | 確定済 |
 
 孤児 L1 pillar = 0。既存 P2/P7 back-fill に含まれる pure/runtime/bridge 要件は重複採番しない。
+
+### §0.1 L1 amendment frontier
+
+2026-06-30 追補の L1 §2.8 asset/progress visualization は、既存 `HBR-P9` / `HBR-P4` /
+`HBR-P7` / `HNFR-P3` / `HNFR-AC` / `HNFR-P8` を親にするが、意味内容は既存
+`HR-FR-P9-01..03` の単なる言い換えではない。VSCode Tree View / Webview、deterministic graph IR、
+evidence drill-down、read-only first の UI/data boundary を持つ新しい要求変更である。
+
+この amendment は `PLAN-DISCOVERY-10-helix-asset-visualization` が S3 verify 済み、S4 PO decision
+待ちのため、現時点では以下を未降下として扱う。
+
+- L3: visualization view requirements / acceptance IDs。
+- L4: VSCode extension adapter、Tree View / Webview boundary、CSP / localResourceRoots、read-only action boundary。
+- L5: visualization read-model contract、graph IR contract、drill-down contract。
+- L6: layer tree、Mermaid-compatible graph IR、runtime evidence timeline、drill-down pointer の view-model function。
+- L7: VSCode Tree View prototype、Webview graph/detail panel。
+
+したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に限定される。L1 §2.8 を含む revised
+request 全体について「L3/L4/L6/L7 fully descended」または「L14 全件達成」と主張してはならない。
 
 ## §1 FR/AC 一覧
 

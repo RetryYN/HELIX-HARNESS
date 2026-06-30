@@ -5,7 +5,7 @@ executed_at_layer: L9
 artifact_type: test_design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-30
 owner: QA + AIM
 plan: PLAN-L4-51-helix-pillar-basic-design
 pair_artifact: docs/design/helix/L4-basic-design/pillar-basic-design.md
@@ -25,6 +25,9 @@ next_pair_freeze: L4
 - system test 観測: HST 43 件。
 - Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の acceptance で観測し、本 L4 pillar system test では 43 件に二重計上しない。ただし HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
+- L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 HST 43 件の system
+  pass に含めない。S4 confirmed 後は Tree View / Webview boundary、read-only action surface、CSP /
+  local resource policy、evidence drill-down を別 HST として追加する。
 
 ## §0.1 system verification strategy
 

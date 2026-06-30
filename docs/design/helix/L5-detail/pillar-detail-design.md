@@ -4,7 +4,7 @@ layer: L5
 kind: add-design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-30
 owner: AIM + TL (Codex)
 plan: PLAN-L5-09-helix-pillar-detail-design
 pair_artifact: docs/test-design/helix/L5-pillar-integration-test-design.md
@@ -24,6 +24,9 @@ next_pair_freeze: L8
 - L8 integration test design: `LIT-*` 43 件。
 - Route-B back-fill L3 要件 8 件は本 pillar detail の 43 件へ二重計上しない。該当契約は L6 `orchestration-memory.md` と Reverse back-fill 側で関数境界へ降下し、本書では HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract matrix に取り込む。
 - 孤児: 0。詳細は §2 trace。
+- L1 §2.8 asset/progress visualization amendment は `PLAN-DISCOVERY-10` S4 decision 待ちである。
+  `PLAN-L7-206` の `VisualizationSnapshot` は先行 read-model response であり、本 L5 10 contract / 43
+  `LIT-*` の完了範囲に VSCode View/Webview contract を追加した扱いにはしない。
 
 ## §1 L5 detailed contract
 

@@ -5,7 +5,7 @@ executed_at_layer: L12
 artifact_type: test_design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-30
 owner: AIM + TL (Codex) / PO approval required
 plan: PLAN-L3-06-helix-pillar-descent
 pair_artifact: docs/design/helix/L3-requirements/
@@ -20,13 +20,23 @@ next_pair_freeze: L3
 
 ## §0 量閉じ
 
-- 対象 L3 要件: HR-FR 30 件 + HR-NFR 13 件 = 43 件。
+- 対象 L3 要件: HR-FR 30 件 + HR-NFR 13 件 = 43 件（2026-06-28 G-REQ.L1 freeze 範囲）。
 - 対象 AC: HAC 86 件。
 - 受入テスト: HAT 43 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
 - Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 43 件とは別枠で §1.1 に受入観測を持つ。
 - 孤児: 0。詳細は §2 / §2.1 trace。
 
-## §0.1 HELIX 検証戦略
+### §0.1 amendment frontier oracle
+
+L1 §2.8 asset/progress visualization は 2026-06-30 の要求変更であり、`PLAN-DISCOVERY-10` の S4
+decision が出るまで本 confirmed HAT 43 件へ混ぜない。acceptance 上の oracle は、S4 前に
+「visualization 要求も L3/L4/L6/L7 fully descended」と主張することを false completion として拒否する。
+
+S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 acceptance、L4 UI-data system test、
+L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
+read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
+
+## §0.2 HELIX 検証戦略
 
 本書は L12 受入テスト設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。
 HELIX ではこれに加え、受入 claim を閉じる **検証戦略**を要求する。

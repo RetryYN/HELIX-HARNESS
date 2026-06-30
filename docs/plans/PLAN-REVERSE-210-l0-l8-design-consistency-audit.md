@@ -11,7 +11,7 @@ created: 2026-06-30
 updated: 2026-06-30
 owner: Codex
 forward_routing: L5
-promotion_strategy: reuse-as-is
+promotion_strategy: reuse-with-hardening
 agent_slots:
   - role: tl
     slot_label: "TL - design drift reverse judgement"
@@ -20,6 +20,22 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-l0-l8-design-consistency-audit.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L4-pillar-system-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/design/helix/L5-detail/pillar-detail-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L5-pillar-integration-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L7-210-l0-l8-design-consistency-audit.md
   requires:
@@ -28,17 +44,21 @@ dependencies:
   blocks: []
 backprop_scope:
   - layer: requirements
-    decision: not_impacted
-    reason: "The audit does not change L1/L3 requirements; it classifies completion evidence and frontiers."
+    decision: updated
+    evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
+    reason: "The 2026-06-30 L1 §2.8 visualization amendment is now explicitly recorded as an S4-pending L3 amendment frontier rather than hidden behind the frozen 43-item descent."
   - layer: L4-basic-design
-    decision: not_impacted
-    reason: "The audit preserves current L4 block design and records it as semantically consistent."
+    decision: updated
+    evidence_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
+    reason: "L4 now states that visualization Tree View/Webview boundary work is outside the confirmed 10 block / 43 requirement set until S4 routing."
   - layer: L5-detailed-design
-    decision: not_impacted
-    reason: "The audit preserves current L5 contract and L8 test-design pairing."
+    decision: updated
+    evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
+    reason: "L5 now separates PLAN-L7-206 first response from future visualization graph/read-model/drill-down contracts."
   - layer: L0-L6-design
-    decision: not_impacted
-    reason: "The audit found the current HELIX pillar design descent semantically consistent."
+    decision: updated
+    evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
+    reason: "L3-L6 design/test-design now distinguishes the 2026-06-28 frozen descent from the revised visualization amendment."
   - layer: L7
     decision: updated
     evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
@@ -46,7 +66,7 @@ backprop_scope:
   - layer: L8
     decision: updated
     evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
-    reason: "The audit records that current G8 closure is selected workflow coverage and completes the requested L0-L8 boundary, without claiming post-L8 product/runtime completion."
+    reason: "The audit records that current G8 closure is selected workflow coverage for the pre-amendment boundary only; the revised visualization request remains not L0-L8 complete."
 ---
 
 # PLAN-REVERSE-210: L0-L8 semantic audit fullback
@@ -61,11 +81,13 @@ that can be tested. The signal is `design_drift`; the PLAN enum route is
 
 ## R4 Forward Routing
 
-Forward route is `PLAN-L7-210-l0-l8-design-consistency-audit`. No L0-L6 design
-rewrite is required by this audit. The forward correction is to keep the L0-L8
-completion boundary explicit while keeping post-L8 and version-up work visible:
-`PLAN-L7-141` is activated, `PLAN-L7-146` is version-up parked, and L10/runtime
-frontiers are not counted as L0-L8 blockers.
+Forward route is `PLAN-L7-210-l0-l8-design-consistency-audit`. The first audit
+understated the impact of the 2026-06-30 L1 §2.8 visualization amendment, so
+L3-L6 design/test-design now receives an explicit amendment frontier. The
+forward correction is to keep the pre-amendment L0-L8 boundary narrow-complete
+while stating that the revised request is not L0-L8 complete until S4 routes
+visualization L3/L4/L5/L6/L7 work. `PLAN-L7-141` is activated, `PLAN-L7-146` is
+version-up parked, and L10/runtime frontiers are not counted as completed work.
 
 ## §3 工程表 (Step + 進捗)
 
@@ -77,14 +99,16 @@ frontiers are not counted as L0-L8 blockers.
 ### Step 2: [直列] R4合流先決定
 直列理由: downstream_dependency
 
-L0-L6の意味連鎖は保持し、L7/L8完遂境界を `PLAN-L7-210` に戻す。
+L0-L6の freeze 済み意味連鎖は保持し、2026-06-30 visualization amendment を未降下 frontier として
+L3/L4/L5/L6/test-design に back-propagate してから `PLAN-L7-210` に戻す。
 
 ### Step 3: [直列] review
 直列理由: downstream_dependency
 
-self reviewで、L0-L8境界完了と post-L8 / version-up 未了を混同していないことを確認する。
+self reviewで、pre-amendment L0-L8 の narrow-complete、revised request の未完了、post-L8 /
+version-up 未了を混同していないことを確認する。
 
 ## §3.1 実装計画
 
 - 情報源: `bun run src/cli.ts route eval --signal design_drift --format json`。
-- 変更対象: Reverse記録のみ。設計本文の破壊的変更は行わない。
+- 変更対象: Reverse記録、governance audit、L3-L6 design/test-design の amendment frontier 注記。

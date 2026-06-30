@@ -4,7 +4,7 @@ layer: L4
 kind: add-design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-06-30
 owner: AIM + TL (Codex)
 plan: PLAN-L4-51-helix-pillar-basic-design
 pair_artifact: docs/test-design/helix/L4-pillar-system-test-design.md
@@ -26,6 +26,9 @@ next_pair_freeze: L9
 - L9 system test design: `HST-*` 43 件。
 - Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存 block 境界へ受ける。
 - 孤児: 0。詳細は §2 trace。
+- L1 §2.8 asset/progress visualization amendment は本 L4 10 block / 43 要件の confirmed 範囲外である。
+  `PLAN-DISCOVERY-10` S4 confirmed 後に VSCode Tree View / Webview / deterministic graph / drill-down の
+  L4 UI-data boundary として別途 Forward 合流させる。
 
 ## §1 L4 building block
 

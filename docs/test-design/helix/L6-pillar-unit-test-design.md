@@ -24,6 +24,9 @@ next_pair_freeze: L6
 - 対象 L3 要件: 43 件。
 - L7 unit oracle: `HU-PILLAR-*` 43 件。
 - 孤児: 0。詳細は §1 trace。
+- L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 `HU-PILLAR-*` 43 件の
+  unit oracle に含めない。`PLAN-L7-206` の read-model tests は first response の先行検証であり、
+  VSCode Tree View / Webview の view-model function oracle ではない。
 
 ## §1 unit oracle trace
 

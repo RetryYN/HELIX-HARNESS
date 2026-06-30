@@ -24,6 +24,9 @@ pillar 43 要件全体の L6 横断設計を受け持つ。
 - L6 function family: 10 family / 30 function contract。
 - L7 unit oracle: `HU-PILLAR-*` 43 件。
 - Route-B back-fill 8 件は `orchestration-memory.md` で 11 契約へ降下済み。本書では `HC-P1` / `HC-P2` / `HC-P3` / `HC-P7` / `HC-AC` の横断 family へ接続し、二重採番しない。
+- L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 L6 30 function contract
+  へ含めない。S4 confirmed 後に layer tree / graph IR / evidence timeline / drill-down pointer の
+  view-model function を別 family または HC-P9/HB-P9 extension として降下する。
 
 ## §1 function family
 

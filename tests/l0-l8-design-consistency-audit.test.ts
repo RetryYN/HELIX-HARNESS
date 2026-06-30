@@ -58,10 +58,8 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     }
 
     expect(auditRow("C-13")).toContain("| warning |");
-    expect(auditText()).toContain("For the requested L0-L8 boundary");
-    expect(auditText()).toContain(
-      "therefore complete in the current design/implementation/test evidence",
-    );
+    expect(auditText()).toContain("For the pre-amendment L0-L8 boundary");
+    expect(auditText()).toContain("revised user request is not L0-L8 complete");
     expect(auditText()).toContain("G-L7PACK.C");
     expect(auditText()).toContain("frontier: なし");
     expect(auditText()).toContain("PLAN-L7-141-web-dashboard-component-derived");
@@ -119,6 +117,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
 
   it("records P5 absorption and modified visualization requirements without overclaiming descent", () => {
     const text = auditText();
+    const normalized = text.replace(/\s+/g, " ");
 
     expect(auditRow("C-15")).toContain("HNFR-P5");
     expect(auditRow("C-15")).toContain("HB-P1");
@@ -131,8 +130,10 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain(
       "asset/progress visualization requirement is captured at L1 §2.8 / HOT-P9",
     );
-    expect(text).toContain("must not be counted as L3/L4/L6/L7 fully descended");
-    expect(text).toContain("downstream L3/L4/L6/L7 route");
+    expect(normalized).toContain("must not be counted as L3/L4/L5/L6/L7 fully descended");
+    expect(text).toContain("frozen 43-item pillar overlay");
+    expect(text).toContain("visualization amendment is not L0-L8 complete");
+    expect(text).toContain("downstream L3/L4/L5/L6/L7 route");
   });
 
   it("keeps version-up parking aligned after PLAN-L7-141 activation", () => {
