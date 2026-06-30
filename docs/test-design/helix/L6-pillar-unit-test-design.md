@@ -41,7 +41,7 @@ next_pair_freeze: L6
 | HU-PILLAR-P2-01 | HR-FR-P2-01 | HC-P2 | `validateToolContractSurface` | registered schema は allow、unknown surface は deny/defer |
 | HU-PILLAR-P2-02 | HR-FR-P2-02 | HC-P2 | `tickLoopEffortBudget` | over-budget loop が same worker continue/pass を返さない |
 | HU-PILLAR-P2-03 | HR-FR-P2-03 | HC-AC | `validateAdapterParityMap` / `requireHostedSurfacePreflight` | hook-covered surface と hosted preflight-only surface を分離 |
-| HU-PILLAR-P2-04 | HR-FR-P2-04 | HC-P2 | `writeLoopTraceSpan` / `selectWorkflowComplexity` / `buildPairAgentTddPlan` / `ut-tdd pair-agent plan` | PLAN/tool/handoff/guardrail/eval span を残し、simple workflow を既定にする。TDD pair route では smart review agent が最初に test/oracle を作り、light implementation agent が実装し、smart review agent がテスト・レビュー・VERDICT を出す。light agent は closing authority を持たず、fail verdict は light implementation 修正ループへ戻る。T0 smart agent は実行前に explicit frontier approval を要求する |
+| HU-PILLAR-P2-04 | HR-FR-P2-04 | HC-P2 | `writeLoopTraceSpan` / `selectWorkflowComplexity` / `buildPairAgentTddPlan` / `runPairAgentTddPlan` / `ut-tdd pair-agent plan/run` | PLAN/tool/handoff/guardrail/eval span を残し、simple workflow を既定にする。TDD pair route では smart review agent が最初に test/oracle を作り、light implementation agent が実装し、smart review agent がテスト・レビュー・VERDICT を出す。light agent は closing authority を持たず、fail verdict と smart review の fix instruction は bounded transcript として次の light implementation prompt へ渡る。T0 smart agent は実行前に explicit frontier approval を要求する |
 | HU-PILLAR-P3-01 | HR-FR-P3-01 | HC-P3 | `validatePairClosure` | pair 欠落と coverage-only pass を reject |
 | HU-PILLAR-P3-02 | HR-FR-P3-02 | HC-P3 | `validateExternalGrounding` | URL/version/span と separate verifier evidence 欠落を reject |
 | HU-PILLAR-P4-01 | HR-FR-P4-01 | HC-P4 | `routeRepairFinding` | repair candidate に owner/route/rollback/risk を必須にする |
@@ -94,7 +94,7 @@ next_pair_freeze: L6
 | HC-P0 | completion claim without Forward return, gap-only, or version target returns `blocker` |
 | HC-P1 | stale lock, missing next_action, or budget overrun returns `idle` / `handover` / `blocker`, never `dispatch` |
 | HC-P2 | unknown surface and over-budget loop cannot produce pass evidence |
-| HC-P2/P3 | pair-agent TDD route cannot start with implementation, cannot let the light agent close, and cannot execute the smart T0 review agent without explicit approval |
+| HC-P2/P3 | pair-agent TDD route cannot start with implementation, cannot let the light agent close, cannot drop smart review fix instructions between cycles, and cannot execute the smart T0 review agent without explicit approval |
 | HC-P3 | projection-only telemetry cannot close `works` / `fired` / `used` claims |
 | HC-P4 | destructive repair without approval returns `human_required` |
 | HC-P6 | GitHub rules/apply plan is emit-only unless approval evidence is action-bound |

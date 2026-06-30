@@ -202,6 +202,13 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     expect(result.ok).toBe(true);
     expect(result.status).toBe("passed");
     expect(result.finalVerdict).toBe("pass");
+    expect(result.transcript.map((entry) => entry.phase)).toEqual([
+      "smart_test_author",
+      "light_implementation",
+      "smart_review",
+      "light_implementation",
+      "smart_review",
+    ]);
     expect(result.steps.map((step) => [step.phase, step.cycle, step.status, step.verdict])).toEqual(
       [
         ["smart_test_author", 0, "passed", null],
@@ -211,6 +218,55 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         ["smart_review", 2, "passed", "pass"],
       ],
     );
+  });
+
+  it("passes smart test output and review instructions into the next lightweight fix prompt", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 2,
+    });
+    const lightPrompts: { cycle: number; prompt: string }[] = [];
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase, cycle, adapterPlan }) => {
+        if (phase.name === "light_implementation") {
+          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+        }
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout: "RED_ORACLE: expect audit status to block unsafe apply\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review" && cycle === 1) {
+          return {
+            status: 0,
+            stdout:
+              "FIX_INSTRUCTION: thread the reviewer output into the next implementation prompt\nVERDICT: fail\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return { status: 0, stdout: "VERDICT: pass\n", stderr: "" };
+        }
+        return { status: 0, stdout: "implementation attempt\n", stderr: "" };
+      },
+    });
+
+    expect(result.ok).toBe(true);
+    expect(lightPrompts).toHaveLength(2);
+    expect(lightPrompts[0]?.prompt).toContain("RED_ORACLE: expect audit status");
+    expect(lightPrompts[1]?.prompt).toContain(
+      "FIX_INSTRUCTION: thread the reviewer output into the next implementation prompt",
+    );
+    expect(lightPrompts[1]?.prompt).toContain("PAIR TRANSCRIPT");
   });
 
   it("blocks executable pair runs without explicit T0 frontier approval", async () => {

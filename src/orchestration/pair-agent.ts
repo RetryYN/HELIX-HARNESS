@@ -72,6 +72,10 @@ export interface PairAgentRunStep {
   exitCode: number | null;
 }
 
+export interface PairAgentTranscriptEntry extends PairAgentRunStep {
+  outputExcerpt: string;
+}
+
 export interface PairAgentExecutionResult {
   status: number | null;
   stdout: string;
@@ -90,6 +94,7 @@ export interface PairAgentRunResult {
   status: "planned" | "passed" | "failed" | "blocked" | "error";
   finalVerdict: "pass" | "fail" | "error" | "pending" | null;
   steps: PairAgentRunStep[];
+  transcript: PairAgentTranscriptEntry[];
   findings: PairAgentFinding[];
 }
 
@@ -134,6 +139,35 @@ function smartReviewPrompt(input: { planId: string; task: string }): string {
     "Run or require the targeted tests. If failing, give concrete fix instructions and route back to light_implementation.",
     "End with exactly one machine-readable line: VERDICT: pass|fail|error|pending.",
   ].join("\n");
+}
+
+function boundedTranscriptOutput(output: string): string {
+  const normalized = output.trim();
+  if (normalized.length <= 4000) return normalized;
+  return `${normalized.slice(0, 4000)}\n[truncated]`;
+}
+
+function transcriptForPrompt(transcript: PairAgentTranscriptEntry[]): string {
+  if (transcript.length === 0) return "";
+  const recent = transcript.slice(-6);
+  return [
+    "",
+    "PAIR TRANSCRIPT (bounded, newest instructions must be honored):",
+    ...recent.map((entry) =>
+      [
+        `--- ${entry.phase} cycle=${entry.cycle} status=${entry.status} verdict=${entry.verdict ?? "null"} ---`,
+        entry.outputExcerpt || "(no output)",
+      ].join("\n"),
+    ),
+  ].join("\n");
+}
+
+function promptWithTranscript(
+  phase: PairAgentPhase,
+  transcript: PairAgentTranscriptEntry[],
+): string {
+  if (transcript.length === 0) return phase.prompt;
+  return `${phase.prompt}${transcriptForPrompt(transcript)}`;
 }
 
 export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTddPlan {
@@ -297,15 +331,11 @@ export async function runPairAgentTddPlan(input: {
   execute: boolean;
   executor?: PairAgentPhaseExecutor;
 }): Promise<PairAgentRunResult> {
-  const adapterPlans = buildPairAgentAdapterPlans({
-    plan: input.plan,
-    mode: input.mode,
-    execute: input.execute,
-  });
   const agents = new Map(input.plan.agents.map((agent) => [agent.key, agent]));
-  const phases = new Map(input.plan.phases.map((phase, index) => [phase.name, { phase, index }]));
+  const phases = new Map(input.plan.phases.map((phase) => [phase.name, phase]));
   const findings = [...input.plan.findings];
   const steps: PairAgentRunStep[] = [];
+  const transcript: PairAgentTranscriptEntry[] = [];
 
   const appendPlanned = (phase: PairAgentPhase, cycle: number): void => {
     const agent = agents.get(phase.agentKey);
@@ -324,7 +354,7 @@ export async function runPairAgentTddPlan(input: {
 
   if (!input.execute) {
     for (const phase of input.plan.phases) appendPlanned(phase, 0);
-    return { ok: true, status: "planned", finalVerdict: null, steps, findings };
+    return { ok: true, status: "planned", finalVerdict: null, steps, transcript, findings };
   }
 
   if (!input.plan.executionAuthorized) {
@@ -333,7 +363,7 @@ export async function runPairAgentTddPlan(input: {
       severity: "error",
       message: "pair-agent run requires explicit frontier approval before executing T0 phases",
     });
-    return { ok: false, status: "blocked", finalVerdict: null, steps, findings };
+    return { ok: false, status: "blocked", finalVerdict: null, steps, transcript, findings };
   }
   if (!input.executor) {
     findings.push({
@@ -341,21 +371,30 @@ export async function runPairAgentTddPlan(input: {
       severity: "error",
       message: "pair-agent run requires an executor when execute=true",
     });
-    return { ok: false, status: "blocked", finalVerdict: null, steps, findings };
+    return { ok: false, status: "blocked", finalVerdict: null, steps, transcript, findings };
   }
 
   const executePhase = async (
     phaseName: PairAgentPhaseName,
     cycle: number,
   ): Promise<PairAgentRunStep> => {
-    const phaseEntry = phases.get(phaseName);
-    if (!phaseEntry) throw new Error(`unknown pair-agent phase: ${phaseName}`);
-    const agent = agents.get(phaseEntry.phase.agentKey);
-    if (!agent) throw new Error(`missing pair-agent identity: ${phaseEntry.phase.agentKey}`);
-    const adapterPlan = adapterPlans[phaseEntry.index];
-    if (!adapterPlan) throw new Error(`missing adapter plan for phase: ${phaseName}`);
+    const phase = phases.get(phaseName);
+    if (!phase) throw new Error(`unknown pair-agent phase: ${phaseName}`);
+    const agent = agents.get(phase.agentKey);
+    if (!agent) throw new Error(`missing pair-agent identity: ${phase.agentKey}`);
+    const adapterPlan = buildAdapterPlan(
+      {
+        provider: agent.provider,
+        role: agent.role,
+        task: promptWithTranscript(phase, transcript),
+        planId: input.plan.planId,
+        model: agent.model,
+        execute: input.execute,
+      },
+      input.mode,
+    );
     const result = await input.executor?.({
-      phase: phaseEntry.phase,
+      phase,
       agent,
       adapterPlan,
       cycle,
@@ -364,7 +403,7 @@ export async function runPairAgentTddPlan(input: {
     const reviewVerdict = phaseName === "smart_review" ? parsePairAgentVerdict(output) : null;
     const step: PairAgentRunStep = {
       phase: phaseName,
-      agentKey: phaseEntry.phase.agentKey,
+      agentKey: phase.agentKey,
       provider: agent.provider,
       model: agent.model,
       cycle,
@@ -378,29 +417,33 @@ export async function runPairAgentTddPlan(input: {
       exitCode: result?.status ?? null,
     };
     steps.push(step);
+    transcript.push({
+      ...step,
+      outputExcerpt: boundedTranscriptOutput(output),
+    });
     return step;
   };
 
   const testAuthor = await executePhase("smart_test_author", 0);
   if (testAuthor.status !== "passed") {
-    return { ok: false, status: "error", finalVerdict: null, steps, findings };
+    return { ok: false, status: "error", finalVerdict: null, steps, transcript, findings };
   }
 
   let finalVerdict: PairAgentRunResult["finalVerdict"] = null;
   for (let cycle = 1; cycle <= input.plan.maxFixCycles; cycle++) {
     const implementation = await executePhase("light_implementation", cycle);
     if (implementation.status !== "passed") {
-      return { ok: false, status: "error", finalVerdict, steps, findings };
+      return { ok: false, status: "error", finalVerdict, steps, transcript, findings };
     }
     const review = await executePhase("smart_review", cycle);
     finalVerdict = review.verdict;
     if (review.verdict === "pass") {
-      return { ok: true, status: "passed", finalVerdict, steps, findings };
+      return { ok: true, status: "passed", finalVerdict, steps, transcript, findings };
     }
     if (review.verdict === "error") {
-      return { ok: false, status: "error", finalVerdict, steps, findings };
+      return { ok: false, status: "error", finalVerdict, steps, transcript, findings };
     }
   }
 
-  return { ok: false, status: "failed", finalVerdict, steps, findings };
+  return { ok: false, status: "failed", finalVerdict, steps, transcript, findings };
 }
