@@ -18,6 +18,8 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-211-version-up-readiness-gate.md
     artifact_type: markdown_doc
+  - artifact_path: docs/process/modes/version-up.md
+    artifact_type: markdown_doc
   - artifact_path: src/lint/version-up-readiness.ts
     artifact_type: source_module
   - artifact_path: src/doctor/index.ts
@@ -39,10 +41,10 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T10:30:00+09:00"
-    tests_green_at: "2026-06-30T10:30:00+09:00"
+    reviewed_at: "2026-06-30T14:32:07+09:00"
+    tests_green_at: "2026-06-30T14:32:07+09:00"
     verdict: approve
-    scope: "Version-up parked PLANs are hard-gated for activation markers and external action-binding approval boundaries without activating the parked work. 2026-06-30 continuation adds parked_review_record so parked work has review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route instead of indefinite draft."
+    scope: "Version-up parked PLANs are hard-gated for activation markers, external action-binding approval boundaries, structured parked_review_record, and official source-ledger adoption decisions without activating the parked work."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -51,31 +53,31 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T10:25:06+09:00"
+        completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:7325660eec5c3e85270835b5afc3434bd36f07f594f34bd552cb098c9ede2389"
+        output_digest: "sha256:4ea543cd9a1cfeda104a0fc0bcb9abc7e360007dd94d2cf20d7a2a63330149bd"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T10:25:00+09:00"
+        completed_at: "2026-06-30T14:28:03+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:8a956498e354218210ac6c188eb253ebe65e24177f22b72cc78afa7aa17ba658"
+        output_digest: "sha256:5e25f6e7afb73b37ccda0bb4b2c236d773e4f7da708c5b4c545d6aac4362d41b"
       - kind: lint
         command: "bun run lint"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T10:25:52+09:00"
+        completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:7325660eec5c3e85270835b5afc3434bd36f07f594f34bd552cb098c9ede2389"
+        output_digest: "sha256:4ea543cd9a1cfeda104a0fc0bcb9abc7e360007dd94d2cf20d7a2a63330149bd"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T10:30:00+09:00"
+        completed_at: "2026-06-30T14:32:07+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:358f76d23bc9090b638152803fcbd19146121899675c0a90019a0ac3e9bb8a54"
 ---
@@ -94,6 +96,10 @@ path, and preserve approval/escalation boundaries before future activation.
 - Check L0 charter, L3 requirements, L4 functional design, the mode catalog,
   the version-up mode document, S4 discovery decision, and current
   `version_target` PLANs as one semantic trace.
+- Check the version-up source ledger as a structured table with official URL,
+  adopted version/date, latest official status, adoption decision,
+  version-up use, and required field impact. Release automation candidates
+  (semantic-release / Release Please) stay compare-only until a release ADR.
 - Require external activation candidates to mention action-binding approval,
   `escalation_boundaries`, and unapproved `exit 1` behavior.
 - Do not activate `PLAN-L7-146` or touch external infrastructure, auth, secrets,
@@ -116,4 +122,6 @@ path, and preserve approval/escalation boundaries before future activation.
 - `PLAN-L7-146-serverless-readonly-share` remains `status=draft` +
   `version_target: future`, but is checked for activation boundary readiness.
 - Dropping L0/L3/L4/mode catalog semantics makes the lint fail.
+- Dropping a version-up source ledger row, adoption decision, latest official
+  status, or release automation comparison source makes the lint fail.
 - Targeted tests, typecheck, lint, DB rebuild, doctor, and full tests pass.

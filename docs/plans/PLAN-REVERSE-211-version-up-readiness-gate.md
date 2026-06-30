@@ -23,7 +23,7 @@ backprop_scope:
   - layer: process-mode
     decision: updated
     evidence_path: docs/process/modes/version-up.md
-    reason: "Added explicit semantic trace from L0/L3/L4/mode catalog to parked PLAN and doctor gate."
+    reason: "Added explicit semantic trace from L0/L3/L4/mode catalog to parked PLAN and doctor gate, and hardened the official source ledger with adoption decisions."
   - layer: L5-detailed-design
     decision: not_impacted
     reason: "The change is a requirements/process-mode gate and does not alter detailed internal contracts."
@@ -46,10 +46,10 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T10:31:00+09:00"
-    tests_green_at: "2026-06-30T10:30:00+09:00"
+    reviewed_at: "2026-06-30T14:32:07+09:00"
+    tests_green_at: "2026-06-30T14:32:07+09:00"
     verdict: approve
-    scope: "Backfilled the version-up readiness gate into process-mode semantics without changing L0/L3/L4 requirements or activating the parked serverless PLAN. 2026-06-30 continuation adds parked_review_record as the review contract for parked version-up work."
+    scope: "Backfilled the version-up readiness gate into process-mode semantics without changing L0/L3/L4 requirements or activating the parked serverless PLAN. The source ledger now carries adoption decisions and compare-only release automation candidates."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -58,15 +58,15 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T10:25:06+09:00"
+        completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:7325660eec5c3e85270835b5afc3434bd36f07f594f34bd552cb098c9ede2389"
+        output_digest: "sha256:4ea543cd9a1cfeda104a0fc0bcb9abc7e360007dd94d2cf20d7a2a63330149bd"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T10:30:00+09:00"
+        completed_at: "2026-06-30T14:32:07+09:00"
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:358f76d23bc9090b638152803fcbd19146121899675c0a90019a0ac3e9bb8a54"
 ---
@@ -87,6 +87,9 @@ the version-up mode SSoT.
 - `docs/process/modes/version-up.md` now lists the requirement trace and the
   five current feature responsibilities: marker, outstanding separation,
   Forward convergence, activation, and safety boundary.
+- The version-up source ledger now records official URL, adopted version/date,
+  latest official status, adoption decision, version-up use, and required field
+  impact, including compare-only release automation candidates.
 - `PLAN-L7-146` stays parked. This backfill does not authorize Cloudflare,
   HMAC/webhook, access-control, secret, or external infrastructure work.
 
@@ -95,4 +98,7 @@ the version-up mode SSoT.
 - `PLAN-L7-211` and this Reverse PLAN require each other for required
   add-impl backfill pairing.
 - `version-up-readiness` fails if L0/L3/L4/mode catalog semantics disappear.
+- `version-up-readiness` fails if the source ledger loses a required row,
+  adoption decision, latest official status, or release automation comparison
+  source.
 - `doctor` passes after DB rebuild.

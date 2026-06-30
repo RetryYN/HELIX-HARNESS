@@ -52,8 +52,26 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "GitHub Releases",
       "GitHub Environments required reviewers",
       "NIST SSDF SP 800-218",
+      "semantic-release",
+      "Release Please",
+      "GitHub Rulesets",
+      "GitHub Merge Queue",
+      "adopted version/date",
+      "latest official status",
+      "adoption decision",
       "action-binding approval",
       "escalation_boundaries",
+      "Version-up source ledger (checked 2026-06-30)",
+      "| source | official URL | adopted version/date | latest official status | adoption decision | version-up use | required field impact |",
+      "|---|---|---|---|---|---|---|",
+      "| Semantic Versioning 2.0.0 | https://semver.org/ | 2.0.0 | current official specification page | adopt-2.0.0 | compatibility intent | version_target |",
+      "| GitHub Releases | https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository | live GitHub docs | live official GitHub docs | adopt-live-docs-for-release-trigger | release/tag trigger | review_trigger |",
+      "| GitHub Environments required reviewers | https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments | live GitHub docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | review_owner |",
+      "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | rollback traceability | rollback_plan |",
+      "| semantic-release | https://semantic-release.gitbook.io/semantic-release | live official docs | live official docs | compare-only-until-release-ADR | release automation candidate | release automation ADR |",
+      "| Release Please | https://github.com/googleapis/release-please | live official repository docs | live official repository docs | compare-only-until-release-ADR | release PR candidate | release automation ADR |",
+      "| GitHub Rulesets | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets | live GitHub docs | live official GitHub docs | adopt-live-docs-for-gated-push-design | gated push | approval_scope |",
+      "| GitHub Merge Queue | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue | live GitHub docs | live official GitHub docs | adopt-live-docs-for-merge-readiness | merge readiness | activation_dependency |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     plans: [
@@ -178,6 +196,57 @@ describe("version-up-readiness", () => {
     );
   });
 
+  it("fails when the version-up source ledger loses adoption decisions or source rows", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: [
+          "deferred-but-committed-future",
+          "status=draft",
+          "version_target",
+          "VERSION_UP_ALLOWED_TARGETS",
+          "activation_decision_record",
+          "allowed_outcome",
+          "review_by",
+          "approval_scope",
+          "dry_run_plan",
+          "rollback_plan",
+          "parked_review_record",
+          "review_owner",
+          "review_trigger",
+          "review_by_policy",
+          "stale_action",
+          "activation_dependency",
+          "decision_packet_route",
+          "Version-up source ledger",
+          "Semantic Versioning 2.0.0",
+          "GitHub Releases",
+          "GitHub Environments required reviewers",
+          "NIST SSDF SP 800-218",
+          "semantic-release",
+          "Release Please",
+          "GitHub Rulesets",
+          "GitHub Merge Queue",
+          "adopted version/date",
+          "latest official status",
+          "adoption decision",
+          "action-binding approval",
+          "escalation_boundaries",
+          "Version-up source ledger (checked 2026-06-30)",
+          "| source | official URL | adopted version/date | latest official status | adoption decision | version-up use | required field impact |",
+          "|---|---|---|---|---|---|---|",
+          "| Semantic Versioning 2.0.0 | https://semver.org/ | 2.0.0 | current official specification page | - | compatibility intent | version_target |",
+        ].join("\n"),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.missingSourceLedgerRows).toContain("GitHub Releases");
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason: "version-up source ledger Semantic Versioning 2.0.0 has empty adoption decision",
+    });
+  });
+
   it("U-DECISIONREC-002: fails external activation candidates without explicit approval and route-fail evidence", () => {
     const result = analyzeVersionUpReadiness(
       input({
@@ -226,5 +295,7 @@ describe("version-up-readiness", () => {
     const result = analyzeVersionUpReadiness(loadVersionUpReadinessInput());
     expect(result.ok).toBe(true);
     expect(result.parkedPlanIds).toEqual(["PLAN-L7-146-serverless-readonly-share"]);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
   });
 });

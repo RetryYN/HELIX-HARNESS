@@ -27,6 +27,8 @@ export interface VersionUpReadinessViolation {
 
 export interface VersionUpReadinessResult {
   parkedPlanIds: string[];
+  missingSourceLedgerRows: string[];
+  sourceLedgerViolations: VersionUpReadinessViolation[];
   violations: VersionUpReadinessViolation[];
   ok: boolean;
 }
@@ -54,6 +56,13 @@ const MODE_DOC_MARKERS = [
   "GitHub Releases",
   "GitHub Environments required reviewers",
   "NIST SSDF SP 800-218",
+  "semantic-release",
+  "Release Please",
+  "GitHub Rulesets",
+  "GitHub Merge Queue",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
   "action-binding approval",
   "escalation_boundaries",
 ] as const;
@@ -135,6 +144,27 @@ const EXTERNAL_ACTIVATION_MARKERS = [
   "dry_run_plan",
   "rollback_plan",
   "exit 1",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_COLUMNS = [
+  "source",
+  "official URL",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
+  "version-up use",
+  "required field impact",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_ROWS = [
+  "Semantic Versioning 2.0.0",
+  "GitHub Releases",
+  "GitHub Environments required reviewers",
+  "NIST SSDF SP 800-218",
+  "semantic-release",
+  "Release Please",
+  "GitHub Rulesets",
+  "GitHub Merge Queue",
 ] as const;
 
 function parsePlan(file: string, content: string): VersionUpReadinessPlan {
@@ -220,6 +250,61 @@ export function analyzeVersionUpReadiness(
     }
   }
 
+  const sourceLedger = parseVersionUpSourceLedger(input.modeDoc);
+  const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
+    (source) => !sourceLedger.rows.some((row) => row.source === source),
+  );
+  const sourceLedgerViolations: VersionUpReadinessViolation[] = [
+    ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
+      (column) => !sourceLedger.columns.includes(column),
+    ).map((column) => ({
+      subject: "docs/process/modes/version-up.md",
+      reason: `version-up source ledger missing column: ${column}`,
+    })),
+    ...sourceLedger.rows.flatMap((row) =>
+      REQUIRED_SOURCE_LEDGER_COLUMNS.flatMap((column) => {
+        const value = row[column] ?? "";
+        if (value.trim() === "" || /^(TBD|TODO|-)$/.test(value.trim())) {
+          return [
+            {
+              subject: "docs/process/modes/version-up.md",
+              reason: `version-up source ledger ${row.source} has empty ${column}`,
+            },
+          ];
+        }
+        return [];
+      }),
+    ),
+    ...sourceLedger.rows.flatMap((row) =>
+      row["official URL"]?.includes("https://")
+        ? []
+        : [
+            {
+              subject: "docs/process/modes/version-up.md",
+              reason: `version-up source ledger ${row.source} official URL is not https`,
+            },
+          ],
+    ),
+    ...sourceLedger.rows.flatMap((row) =>
+      row["adoption decision"]?.trim()
+        ? []
+        : [
+            {
+              subject: "docs/process/modes/version-up.md",
+              reason: `version-up source ledger ${row.source} missing adoption decision`,
+            },
+          ],
+    ),
+  ];
+
+  for (const source of missingSourceLedgerRows) {
+    violations.push({
+      subject: "docs/process/modes/version-up.md",
+      reason: `version-up source ledger missing row: ${source}`,
+    });
+  }
+  violations.push(...sourceLedgerViolations);
+
   if (!input.discoveryPlan.includes("decision_outcome: confirmed")) {
     violations.push({
       subject: "PLAN-DISCOVERY-09-version-up-mode",
@@ -277,9 +362,58 @@ export function analyzeVersionUpReadiness(
 
   return {
     parkedPlanIds: parked.map((p) => p.plan_id).sort(),
+    missingSourceLedgerRows,
+    sourceLedgerViolations,
     violations,
     ok: violations.length === 0,
   };
+}
+
+function parseVersionUpSourceLedger(text: string): {
+  columns: string[];
+  rows: Record<string, string>[];
+} {
+  const lines = text.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) =>
+    line.includes("Version-up source ledger (checked 2026-06-30)"),
+  );
+  if (headingIndex < 0) {
+    return { columns: [], rows: [] };
+  }
+  const tableLines: string[] = [];
+  for (const line of lines.slice(headingIndex + 1)) {
+    if (line.trim() === "") {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    if (!line.trim().startsWith("|")) {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    tableLines.push(line);
+  }
+  if (tableLines.length < 2) {
+    return { columns: [], rows: [] };
+  }
+  const columns = tableCells(tableLines[0]);
+  const rows = tableLines.slice(2).map((line) => {
+    const rowCells = tableCells(line);
+    return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
+  });
+  return { columns, rows };
+}
+
+function tableCells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
 }
 
 export function versionUpReadinessMessages(result: VersionUpReadinessResult): string[] {
