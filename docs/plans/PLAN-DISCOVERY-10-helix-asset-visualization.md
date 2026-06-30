@@ -141,6 +141,7 @@ s4_decision_record:
 - route_impact: confirmed なら L3/L4/L6/L7 へ分割 descent、rejected なら visualization workflow を採用せず read-model を archive、pivot なら native Tree View / Webview scope を再定義する。
 - forward_route: `confirmed` の場合は L3 visualization requirements、L4 UI/data boundary、L6 view-model contract、L7 VSCode Tree View/Webview prototype に分割して Forward 合流する。
 - reverse_fullback_required: yes。confirmed 後は L1/L3/L4/L6 の正本へ Reverse fullback し、action surface は approval-bound のまま維持する。
+- promotion_strategy_or_rejection_pivot_rationale: confirmed の場合は `reuse-with-hardening`。`VisualizationSnapshot` first response を再利用し、L3/L4/L6/L7 を分割 descent する。rejected の場合は VSCode visualization workflow を採用せず read-model を archive、pivot の場合は Tree View / Webview / Mermaid-compatible IR の scope を再定義して S1/S2 へ戻す。
 
 action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`

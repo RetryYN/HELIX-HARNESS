@@ -60,6 +60,6 @@ describe("PoC S3/S4 semantic boundary", () => {
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
     );
     expect(outstanding).toContain("decision_outcome recorded in the PLAN at S4");
-    expect(outstanding).toContain("promotion_strategy or rejection/pivot rationale");
+    expect(outstanding).toContain("promotion_strategy_or_rejection_pivot_rationale");
   });
 });

@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T15:41:37+09:00"
+    tests_green_at: "2026-06-30T15:41:37+09:00"
+    verdict: pass
+    scope: "Continuation 11: S4 decision readiness now hard-gates the concrete route after meaning-based PO decision. S3 pending PoC PLANs must carry promotion_strategy_or_rejection_pivot_rationale in s4_decision_record, so confirmed outcomes name the promotion strategy and rejected/pivot outcomes name the closure/backlog route before terminal status."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/s4-decision-readiness.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/poc-s3-s4-boundary.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T15:41:37+09:00"
+        evidence_path: tests/s4-decision-readiness.test.ts
+        output_digest: "sha256:d5374a286bfb8da4f8bbfd5e2c7fcc4dfca54012854bb3a13450cae8260ca6b0"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T15:41:37+09:00"
+        evidence_path: src/lint/s4-decision-readiness.ts
+        output_digest: "sha256:83aecf11b01ee14717efdbc7172995d45af063ae1b9edbb700d3a1a363a2335a"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:26:09+09:00"
     tests_green_at: "2026-06-30T15:26:09+09:00"
     verdict: pass
@@ -65,7 +90,7 @@ review_evidence:
     reviewed_at: "2026-06-30T14:53:25+09:00"
     tests_green_at: "2026-06-30T14:53:25+09:00"
     verdict: pass
-    scope: "Continuation 8: S4 decision readiness now requires decomposed decision_basis fields (verified_evidence, stakeholder_review_or_proxy, acceptance_gap, unresolved_risk, external_source_basis, route_impact) and an official S4 decision source ledger in Discovery/Scrum mode docs. Pending S3 PoC PLANs keep status=draft and decision_outcome unset, but now carry the structured PO decision material."
+    scope: "Continuation 8: S4 decision readiness now requires decomposed decision_basis fields (verified_evidence, stakeholder_review_or_proxy, acceptance_gap, unresolved_risk, external_source_basis, route_impact, and later promotion_strategy_or_rejection_pivot_rationale) and an official S4 decision source ledger in Discovery/Scrum mode docs. Pending S3 PoC PLANs keep status=draft and decision_outcome unset, but now carry the structured PO decision material."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -76,7 +101,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:53:25+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:86da875552a0ca426daff74eca42c7f2d54267620c30a0773d6ca4f05e4a541c"
+        output_digest: "sha256:d5374a286bfb8da4f8bbfd5e2c7fcc4dfca54012854bb3a13450cae8260ca6b0"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -84,7 +109,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:53:25+09:00"
         evidence_path: src/lint/s4-decision-readiness.ts
-        output_digest: "sha256:9e50477e9ff884449efe0bd4c337220829837d7eb2fb3ba0a1e01ab35d28f629"
+        output_digest: "sha256:83aecf11b01ee14717efdbc7172995d45af063ae1b9edbb700d3a1a363a2335a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:41:22+09:00"
@@ -101,7 +126,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:02f0306bf8e5fe2d0504db0d19189e9aa3bbd178efba9517bcb29ca48c137261"
+        output_digest: "sha256:8c714c5e033eff052969078a869b6be38215194ef83669a86fe035079222f8d6"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -125,7 +150,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:0d3ff53b9c1aa9a7535e7e3f2793f7a717be9f8ea7e38cd342760780d55397b6"
+        output_digest: "sha256:083c7dec93ac0e26396f4f4ed1ace8527cefdbe6b921f86fe6ec620286224ba6"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -133,7 +158,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:0d3ff53b9c1aa9a7535e7e3f2793f7a717be9f8ea7e38cd342760780d55397b6"
+        output_digest: "sha256:083c7dec93ac0e26396f4f4ed1ace8527cefdbe6b921f86fe6ec620286224ba6"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -141,7 +166,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:0d3ff53b9c1aa9a7535e7e3f2793f7a717be9f8ea7e38cd342760780d55397b6"
+        output_digest: "sha256:083c7dec93ac0e26396f4f4ed1ace8527cefdbe6b921f86fe6ec620286224ba6"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -248,7 +273,7 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   承認前に actor / tool / target / params / expiry / audit route を固定して prose-only approval を防ぐ gate である。
 - `src/lint/s4-decision-readiness.ts`: S3 pending PoC の S4 判断材料を `decision_basis` 自由文から
   `verified_evidence`、`stakeholder_review_or_proxy`、`acceptance_gap`、`unresolved_risk`、
-  `external_source_basis`、`route_impact` に分解する。Discovery/Scrum mode doc の S4 decision source ledger は
+  `external_source_basis`、`route_impact`、`promotion_strategy_or_rejection_pivot_rationale` に分解する。Discovery/Scrum mode doc の S4 decision source ledger は
   official URL、adopted version/date、latest official status、adoption decision、S4 decision use、
   required field impact を持ち、Scrum Guide / ISO 29148 / ISTQB / NIST SSDF のいずれかを落とすと fail-close する。
 - `src/lint/cutover-readiness.ts`: L14 cutover の source ledger を official URL、adopted version/date、
@@ -294,7 +319,7 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
 - [x] doctor `action-binding-approval-readiness` hard gate が、承認待ち PLAN 本文の `action_binding_approval_record`
   欠落や field 欠落を拒否し、completion packet だけに承認境界が残る状態を防ぐ。
 - [x] doctor `s4-decision-readiness` hard gate が、S4 判断材料の分解不足
-  (verified evidence / stakeholder review / acceptance gap / unresolved risk / external source / route impact) と
+  (verified evidence / stakeholder review / acceptance gap / unresolved risk / external source / route impact / promotion strategy or rejection/pivot rationale) と
   S4 decision source ledger 劣化を拒否する。
 - [x] doctor `cutover-readiness` hard gate が、不可逆 L14 cutover の source ledger 劣化
   (required row / adopted version-date / latest official status / adoption decision / provenance source 欠落) を拒否する。

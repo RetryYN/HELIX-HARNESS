@@ -275,7 +275,7 @@ function requiredOutstandingAction(reason: string): {
           "verified_evidence, stakeholder_review_or_proxy, acceptance_gap, unresolved_risk, external_source_basis, and route_impact recorded before S4 decision",
           "forward_route / reverse_fullback_required recorded when confirmed",
           "decision_outcome recorded in the PLAN at S4",
-          "promotion_strategy or rejection/pivot rationale recorded before terminal status",
+          "promotion_strategy_or_rejection_pivot_rationale recorded before terminal status",
         ],
       };
     case "human_approval_pending":
@@ -566,6 +566,7 @@ function requiredRecordsForOutstandingReason(
             "route_impact",
             "forward_route",
             "reverse_fullback_required",
+            "promotion_strategy_or_rejection_pivot_rationale",
           ],
           sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
         },

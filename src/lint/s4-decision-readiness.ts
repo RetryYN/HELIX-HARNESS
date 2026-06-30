@@ -45,6 +45,7 @@ const MODE_DOC_MARKERS = [
   "route_impact",
   "forward_route",
   "reverse_fullback_required",
+  "promotion_strategy_or_rejection_pivot_rationale",
   "S4 decision source ledger (checked 2026-06-30)",
   "Scrum Guide 2020",
   "ISO/IEC/IEEE 29148",
@@ -59,6 +60,7 @@ const OUTSTANDING_MARKERS = [
   "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
   "decision_owner and decision_basis recorded before terminal status",
   "forward_route / reverse_fullback_required recorded when confirmed",
+  "promotion_strategy_or_rejection_pivot_rationale recorded before terminal status",
 ] as const;
 
 const S4_RECORD_NAME = "s4_decision_record";
@@ -74,6 +76,7 @@ const S4_RECORD_FIELDS = [
   "route_impact",
   "forward_route",
   "reverse_fullback_required",
+  "promotion_strategy_or_rejection_pivot_rationale",
 ] as const;
 
 const REQUIRED_SOURCE_LEDGER_COLUMNS = [

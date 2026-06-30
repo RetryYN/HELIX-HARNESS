@@ -273,6 +273,7 @@ describe("completionDecisionPacketForOutstanding", () => {
           "route_impact",
           "forward_route",
           "reverse_fullback_required",
+          "promotion_strategy_or_rejection_pivot_rationale",
         ],
         sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
       },

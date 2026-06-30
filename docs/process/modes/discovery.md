@@ -75,6 +75,7 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 | `route_impact` | S3 pending PLAN で必須 | confirmed / rejected / pivot ごとの Forward / Reverse / backlog 影響 |
 | `forward_route` | `confirmed` 候補がある場合必須 | L1 / L3-L6 / gap-only 等の Forward 合流候補 |
 | `reverse_fullback_required` | `confirmed` 候補がある場合必須 | confirmed 後に Reverse fullback で正本化が必要か |
+| `promotion_strategy_or_rejection_pivot_rationale` | S3 pending PLAN で必須 | confirmed なら `promotion_strategy` (`reuse-with-hardening` / `redesign` 等) と後続 descent 方針、rejected/pivot なら却下・再探索理由と backlog / retry route |
 
 `s4_decision_record` は `decision_outcome` の代替ではない。S4 で PO が `decision_outcome` を記録した後に
 terminal status / Forward merge / Reverse fullback へ進める。
@@ -84,7 +85,7 @@ S4 decision source ledger (checked 2026-06-30):
 | source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |
 |---|---|---|---|---|---|---|
 | Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | current official Scrum Guide page | adopt-current-guide | S3 review / inspect-adapt は S4 判断入力であって terminal 完了ではない | `stakeholder_review_or_proxy`, `allowed_outcome` |
-| ISO/IEC/IEEE 29148 | <https://www.iso.org/standard/72089.html> | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements / acceptance trace を S4 の forward route と gap 判断に使う | `acceptance_gap`, `forward_route`, `route_impact` |
+| ISO/IEC/IEEE 29148 | <https://www.iso.org/standard/72089.html> | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements / acceptance trace を S4 の forward route と gap 判断に使う | `acceptance_gap`, `forward_route`, `route_impact`, `promotion_strategy_or_rejection_pivot_rationale` |
 | ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis / test condition / test result の語彙で verified evidence を分離する | `verified_evidence`, `decision_basis` |
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | secure development / release evidence と residual risk を S4 判断材料に残す | `unresolved_risk`, `external_source_basis` |
 

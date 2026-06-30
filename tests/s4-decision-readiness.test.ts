@@ -20,6 +20,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "route_impact",
     "forward_route",
     "reverse_fullback_required",
+    "promotion_strategy_or_rejection_pivot_rationale",
     "S4 decision source ledger (checked 2026-06-30)",
     "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
     "|---|---|---|---|---|---|---|",
@@ -35,6 +36,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
       "decision_owner and decision_basis recorded before terminal status",
       "forward_route / reverse_fullback_required recorded when confirmed",
+      "promotion_strategy_or_rejection_pivot_rationale recorded before terminal status",
     ].join("\n"),
     plans: [
       {
@@ -57,6 +59,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
           "- route_impact: confirmed routes forward; rejected/pivot returns backlog",
           "- forward_route: confirmed route",
           "- reverse_fullback_required: yes",
+          "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening or reject/pivot rationale",
         ].join("\n"),
       },
     ],
@@ -98,6 +101,10 @@ describe("S4 decision readiness", () => {
         { subject: "PLAN-DISCOVERY-901", reason: "missing structured acceptance_gap" },
         { subject: "PLAN-DISCOVERY-901", reason: "missing structured route_impact" },
         { subject: "PLAN-DISCOVERY-901", reason: "missing structured reverse_fullback_required" },
+        {
+          subject: "PLAN-DISCOVERY-901",
+          reason: "missing structured promotion_strategy_or_rejection_pivot_rationale",
+        },
       ]),
     );
   });
@@ -135,6 +142,10 @@ describe("S4 decision readiness", () => {
         { subject: "PLAN-DISCOVERY-904", reason: "missing structured unresolved_risk" },
         { subject: "PLAN-DISCOVERY-904", reason: "missing structured external_source_basis" },
         { subject: "PLAN-DISCOVERY-904", reason: "missing structured route_impact" },
+        {
+          subject: "PLAN-DISCOVERY-904",
+          reason: "missing structured promotion_strategy_or_rejection_pivot_rationale",
+        },
       ]),
     );
   });
@@ -153,6 +164,7 @@ describe("S4 decision readiness", () => {
       "route_impact",
       "forward_route",
       "reverse_fullback_required",
+      "promotion_strategy_or_rejection_pivot_rationale",
       "S4 decision source ledger (checked 2026-06-30)",
       "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
       "|---|---|---|---|---|---|---|",

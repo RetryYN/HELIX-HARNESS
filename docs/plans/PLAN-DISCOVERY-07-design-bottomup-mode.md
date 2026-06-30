@@ -156,6 +156,7 @@ s4_decision_record:
 - route_impact: confirmed なら L1/L3-L6 back-merge + Reverse fullback + 中央 UI dogfood、rejected なら design-bottomup mode を採用せず engine を archive、pivot なら Discovery 合成方針を再設計する。
 - forward_route: `confirmed` の場合は L1/L3-L6 へ design-bottomup 要求・設計を back-merge し、中央 UI dogfood を別 PLAN で descent する。
 - reverse_fullback_required: yes。confirmed 後は concept / requirements / docs/process/modes へ Reverse fullback で正本化する。
+- promotion_strategy_or_rejection_pivot_rationale: confirmed の場合は `reuse-with-hardening`。PoC engine は破棄せず hardening して L3-L6 descent / central UI dogfood へ進める。rejected の場合は新 mode 採用を止め engine を archive、pivot の場合は既存 Discovery 合成との境界を再設計して次 sprint へ戻す。
 
 ## 5. §工程表 schedule (並列/直列 明示、review step 必須)
 
