@@ -40,6 +40,7 @@ import {
   checkReadability,
   checkRegressionExpansion,
   checkReviewEvidence,
+  checkRightArmVerificationStrategy,
   checkRoadmap,
   checkRuleAutomationClosure,
   checkRuleDrift,
@@ -298,6 +299,11 @@ describe("runDoctor", () => {
   it("includes branch-kind-check in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(true);
+  });
+
+  it("includes right-arm verification strategy hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: right-arm-verification-strategy - OK")).toBe(true);
   });
 
   it("includes G1/G3 trace gates in doctor output", () => {
@@ -667,6 +673,7 @@ describe("runDoctor", () => {
       ["oracle-test-trace", checkOracleTestTrace(missingRoot)],
       ["tracked-canonical", checkTrackedCanonical(missingRoot)],
       ["dependency-drift", checkDependencyDrift(missingRoot)],
+      ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
       ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
     ] as const;
 
@@ -746,6 +753,7 @@ describe("runDoctor", () => {
       "oracleTestTrace",
       "trackedCanonical",
       "dependencyDrift",
+      "rightArmVerificationStrategy",
       "regressionExpansion",
     ];
 

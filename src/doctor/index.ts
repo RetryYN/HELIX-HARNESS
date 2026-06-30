@@ -204,6 +204,11 @@ import {
   rightArmGatePlanningMessages,
 } from "../lint/right-arm-gate-planning";
 import {
+  analyzeRightArmVerificationStrategy,
+  loadRightArmVerificationStrategyInput,
+  rightArmVerificationStrategyMessages,
+} from "../lint/right-arm-verification-strategy";
+import {
   analyzeL7FeaturePackCoverage,
   analyzeProgramCoverage,
   checkSpanExistence,
@@ -1765,6 +1770,23 @@ export function checkRightArmGatePlanning(repoRoot: string): { messages: string[
   }
 }
 
+export function checkRightArmVerificationStrategy(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const r = analyzeRightArmVerificationStrategy(loadRightArmVerificationStrategyInput(repoRoot));
+    return { messages: rightArmVerificationStrategyMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: [
+        "right-arm-verification-strategy - violation: right-arm verification docs could not be read",
+      ],
+      ok: false,
+    };
+  }
+}
+
 export function checkLintWiring(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeLintWiring(loadLintWiringInput(repoRoot));
@@ -1943,6 +1965,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const frRegistryAudit = checkFrRegistryAudit(deps.repoRoot);
   const improvementBacklog = checkImprovementBacklog(deps.repoRoot);
   const rightArmGatePlanning = checkRightArmGatePlanning(deps.repoRoot);
+  const rightArmVerificationStrategy = checkRightArmVerificationStrategy(deps.repoRoot);
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
@@ -2017,6 +2040,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       frRegistryAudit.ok &&
       improvementBacklog.ok &&
       rightArmGatePlanning.ok &&
+      rightArmVerificationStrategy.ok &&
       g8IntegrationWorkflow.ok &&
       lintWiring.ok &&
       proposalDocumentCoverage.ok &&
@@ -2091,6 +2115,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...frRegistryAudit.messages.map((m) => `doctor: ${m}`),
       ...improvementBacklog.messages.map((m) => `doctor: ${m}`),
       ...rightArmGatePlanning.messages.map((m) => `doctor: ${m}`),
+      ...rightArmVerificationStrategy.messages.map((m) => `doctor: ${m}`),
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),

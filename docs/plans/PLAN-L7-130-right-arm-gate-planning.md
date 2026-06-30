@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-06-30
 owner: Codex
 parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
 agent_slots:
@@ -19,9 +19,13 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/lint/right-arm-gate-planning.ts
     artifact_type: source_module
+  - artifact_path: src/lint/right-arm-verification-strategy.ts
+    artifact_type: source_module
   - artifact_path: src/doctor/index.ts
     artifact_type: source_module
   - artifact_path: tests/right-arm-gate-planning.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/right-arm-verification-strategy.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-95-lint-wiring-meta-gate.md
@@ -72,14 +76,20 @@ untraceable.
 - Treat `docs/plans/PLAN-L7-130-right-arm-gate-planning.md` and
   `docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md` as the first
   machine-readable route for the carry.
-- Keep full G8-G14 gate implementation as child-plan work; this PLAN only
-  prevents the "future PLAN but no PLAN exists" hole from recurring.
-- Add targeted tests for unplanned and routed cases.
+- Keep full G9-G14 executable gate implementation as child-plan work; this PLAN
+  owns the route and the evidence-profile regression fence so G8-G14 cannot fall
+  back to concept-only prose.
+- Add targeted tests for unplanned, stale concept-only, missing profile-row, and
+  routed cases.
 
 ## Acceptance Criteria
 
 - Doctor fails when G8-G14 carry has no concrete PLAN reference.
 - Doctor passes when the carry is backed by concrete PLAN artifacts.
-- `lint-wiring` reaches the new lint module through the runtime entrypoint.
+- Doctor fails when `gates.md` reintroduces stale concept-only wording or when
+  `L08-L14-verification-phase.md` loses any G8-G14 evidence-profile row,
+  external test-basis marker, or L14->L0 feedback evidence.
+- `lint-wiring` reaches both right-arm lint modules through the runtime
+  entrypoint.
 - The reverse record explains why this is a planning fail-close slice, not the
   full G8-G14 gate implementation.

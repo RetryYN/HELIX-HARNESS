@@ -1,11 +1,31 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import {
+  analyzeRightArmVerificationStrategy,
+  loadRightArmVerificationStrategyInput,
+  rightArmVerificationStrategyMessages,
+} from "../src/lint/right-arm-verification-strategy";
 
 function text(path: string): string {
   return readFileSync(path, "utf8");
 }
 
 describe("right-arm verification strategy", () => {
+  it("fails stale concept-only gate wording and missing L14 feedback evidence", () => {
+    const result = analyzeRightArmVerificationStrategy({
+      gatesMd:
+        "G8-G14 の機械検証条件は概念定義に留まる。G8-G14 機械化 PLAN は**未起票のまま** = carry。",
+      rightArmMd:
+        "### 右腕 evidence profile (G8-G14)\n| G8 | x | y | `g8-integration-evidence-v1` | z |",
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.forbiddenGateMarkers).toContain("G8-G14 の機械検証条件は概念定義に留まる");
+    expect(result.missingGateRows).toContain("G14");
+    expect(result.missingRightArmMarkers).toContain("L14→L0 feedback record");
+    expect(rightArmVerificationStrategyMessages(result)[0]).toContain("violation");
+  });
+
   it("keeps G8-G14 gates aligned with evidence profiles instead of concept-only claims", () => {
     const gates = text("docs/process/gates.md");
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
@@ -54,5 +74,13 @@ describe("right-arm verification strategy", () => {
     ]) {
       expect(rightArm).toContain(requiredEvidence);
     }
+  });
+
+  it("passes through the live repo loader", () => {
+    const result = analyzeRightArmVerificationStrategy(loadRightArmVerificationStrategyInput());
+    expect(result.ok).toBe(true);
+    expect(rightArmVerificationStrategyMessages(result)[0]).toContain(
+      "right-arm-verification-strategy - OK",
+    );
   });
 });
