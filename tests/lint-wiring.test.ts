@@ -91,6 +91,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     expect(r.ok).toBe(true);
     // The audits this PLAN re-wired into doctor are now genuinely reachable.
     for (const m of [
+      "action-binding-approval-readiness",
       "cutover-readiness",
       "completion-decision-packet",
       "doc-consistency",

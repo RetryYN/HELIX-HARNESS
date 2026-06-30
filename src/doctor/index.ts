@@ -15,6 +15,11 @@ import {
   type HandoverPointer,
   handoverStale,
 } from "../handover/index";
+import {
+  actionBindingApprovalReadinessMessages,
+  analyzeActionBindingApprovalReadiness,
+  loadActionBindingApprovalReadinessInput,
+} from "../lint/action-binding-approval-readiness";
 import { analyzeAssetDrift, assetDriftMessages, loadAssetDriftInput } from "../lint/asset-drift";
 import { analyzeBackfill, backfillMessages, loadBackfillDocs } from "../lint/backfill-pairing";
 import { analyzeBranchKind, branchKindMessages, loadBranchKindInput } from "../lint/branch-kind";
@@ -1853,6 +1858,25 @@ export function checkVersionUpReadiness(repoRoot: string): { messages: string[];
   }
 }
 
+export function checkActionBindingApprovalReadiness(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const r = analyzeActionBindingApprovalReadiness(
+      loadActionBindingApprovalReadinessInput(repoRoot),
+    );
+    return { messages: actionBindingApprovalReadinessMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: [
+        "action-binding-approval-readiness - violation: action-binding approval docs could not be read",
+      ],
+      ok: false,
+    };
+  }
+}
+
 export function checkS4DecisionReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeS4DecisionReadiness(loadS4DecisionReadinessInput(repoRoot));
@@ -2070,6 +2094,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
   const forwardConvergence = checkForwardConvergence(deps.repoRoot);
   const versionUpReadiness = checkVersionUpReadiness(deps.repoRoot);
+  const actionBindingApprovalReadiness = checkActionBindingApprovalReadiness(deps.repoRoot);
   const s4DecisionReadiness = checkS4DecisionReadiness(deps.repoRoot);
   const cutoverReadiness = checkCutoverReadiness(deps.repoRoot);
   const completionDecisionPacket = checkCompletionDecisionPacket(deps.repoRoot);
@@ -2147,6 +2172,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       greenCommandDigest.ok &&
       forwardConvergence.ok &&
       versionUpReadiness.ok &&
+      actionBindingApprovalReadiness.ok &&
       s4DecisionReadiness.ok &&
       cutoverReadiness.ok &&
       completionDecisionPacket.ok &&
@@ -2229,6 +2255,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
+      ...actionBindingApprovalReadiness.messages.map((m) => `doctor: ${m}`),
       ...s4DecisionReadiness.messages.map((m) => `doctor: ${m}`),
       ...cutoverReadiness.messages.map((m) => `doctor: ${m}`),
       ...completionDecisionPacket.messages.map((m) => `doctor: ${m}`),

@@ -61,6 +61,14 @@ parked_review_record:
 - activation_dependency: PLAN-L7-141 confirmed read-only UI、PLAN-L7-157 配布チャネル、ADR-005 D2、Cloudflare/GitHub webhook approval scope。
 - decision_packet_route: `ut-tdd status --json` の `completionDecisionPacket` に version_up_activation として残し、L14 全件達成 claim を block する。
 
+action_binding_approval_record:
+- allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
+- approval_policy_or_named_approver: PO action-binding approval is required before Cloudflare/GitHub webhook/HMAC/access-control/secret activation; current state is parked, not approved.
+- approval_scope: Cloudflare Pages/Workers/D1/KV, GitHub webhook HMAC, read-only share access control, secret binding, and external infrastructure activation only.
+- review_approval_evidence: `activation_decision_record`, `parked_review_record`, dry-run result, rollback plan, ADR-005 D2, and no-secret/no-prod-write evidence must be reviewed before activation.
+- expires_at_or_trigger: Trigger-bound; approval expires if distribution channel scope, access-control design, secret handling, or Cloudflare/GitHub target changes before activation.
+- audit_record: No external activation is approved or executed while `version_target: future` remains; activation must write approver, action scope, commands, result, and rollback/incident route.
+
 ## 0. なぜ (PO 決定 2026-06-24「無料で、AI 編集なしでいけない？」→「OK それでいこう」)
 
 中央UI を **AI 編集なし = read-only の共有ダッシュボードに絞り、Cloudflare 無料枠で $0** 配信する。

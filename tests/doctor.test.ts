@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  checkActionBindingApprovalReadiness,
   checkAgentSlots,
   checkAssetDrift,
   checkBackfillResult,
@@ -315,6 +316,13 @@ describe("runDoctor", () => {
   it("includes version-up readiness hard gate in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
+  });
+
+  it("includes action-binding approval readiness hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: action-binding-approval-readiness - OK")).toBe(
+      true,
+    );
   });
 
   it("includes S4 decision readiness hard gate in doctor output", () => {
@@ -703,6 +711,7 @@ describe("runDoctor", () => {
       ["dependency-drift", checkDependencyDrift(missingRoot)],
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
       ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
+      ["action-binding-approval-readiness", checkActionBindingApprovalReadiness(missingRoot)],
       ["s4-decision-readiness", checkS4DecisionReadiness(missingRoot)],
       ["cutover-readiness", checkCutoverReadiness(missingRoot)],
       ["objective-evidence-audit", checkObjectiveEvidenceAudit(missingRoot)],
