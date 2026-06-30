@@ -298,6 +298,10 @@ import {
   loadVersionUpReadinessInput,
   versionUpReadinessMessages,
 } from "../lint/version-up-readiness";
+import {
+  auditToolContractRegistry,
+  toolContractRegistryMessages,
+} from "../orchestration/tool-contract";
 import type { LintResult } from "../plan/lint";
 import { lintPlan, lintPlanWithGate } from "../plan/lint";
 import { SUBAGENT_ALLOWLIST } from "../runtime/agent-guard";
@@ -1166,6 +1170,24 @@ export function checkCodexHookAdapter(repoRoot: string): { messages: string[]; o
   } catch {
     return {
       messages: ["codex-hook-adapter - violation: Codex hooks.json could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkToolContractRegistry(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["tool-contract-registry - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = auditToolContractRegistry();
+    return { messages: toolContractRegistryMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["tool-contract-registry - violation: registry audit could not run"],
       ok: false,
     };
   }
@@ -2066,6 +2088,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const cycleP4Verification = checkCycleP4Verification(deps.repoRoot);
   const projectHooks = checkProjectHooks(deps.repoRoot);
   const codexHookAdapter = checkCodexHookAdapter(deps.repoRoot);
+  const toolContractRegistry = checkToolContractRegistry(deps.repoRoot);
   const codexWrapperParity = checkCodexWrapperParity(deps);
   const l6FrCoverage = checkL6FrCoverage(deps.repoRoot);
   const readability = checkReadability(deps.repoRoot);
@@ -2153,6 +2176,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       feedbackLog.ok &&
       projectHooks.ok &&
       codexHookAdapter.ok &&
+      toolContractRegistry.ok &&
       codexWrapperParity.ok &&
       l6Completion.ok &&
       l7Completion.ok &&
@@ -2230,6 +2254,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...cycleP4Verification.messages.map((m) => `doctor: ${m}`),
       ...projectHooks.messages.map((m) => `doctor: ${m}`),
       ...codexHookAdapter.messages.map((m) => `doctor: ${m}`),
+      ...toolContractRegistry.messages.map((m) => `doctor: ${m}`),
       ...codexWrapperParity.messages.map((m) => `doctor: ${m}`),
       ...l6FrCoverage.messages.map((m) => `doctor: ${m}`),
       ...readability.messages.map((m) => `doctor: ${m}`),
