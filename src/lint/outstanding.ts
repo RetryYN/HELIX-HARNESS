@@ -71,6 +71,8 @@ export interface OutstandingItem {
   blockers: string[];
   /** この PLAN を完了/合流へ進める前に必要な次アクション。 */
   requiredAction: string;
+  /** 複数 blocker を持つ PLAN で、補助 blocker の action-binding 要求を落とさないための全アクション。 */
+  requiredActions: string[];
   /** requiredAction を満たしたと機械照合するために残すべき証跡。 */
   requiredEvidence: string[];
 }
@@ -100,6 +102,7 @@ export interface CompletionDecisionItem {
   blockers: string[];
   decisionKind: CompletionDecisionKind;
   requiredAction: string;
+  requiredActions: string[];
   requiredEvidence: string[];
   allowedOutcomes: string[];
   nextWorkflowRoute: string;
@@ -153,6 +156,8 @@ export function analyzeOutstandingWork(
     const blockers = classifyOutstandingBlockers(p);
     const reason = primaryOutstandingReason(blockers);
     const action = requiredOutstandingAction(reason);
+    const requiredActions = requiredActionsForBlockers(blockers);
+    const requiredEvidence = requiredEvidenceForBlockers(blockers);
     for (const blocker of blockers) blockersByKind[blocker] = (blockersByKind[blocker] ?? 0) + 1;
     items.push({
       planId: (p.planId ?? "unknown").trim() || "unknown",
@@ -164,7 +169,8 @@ export function analyzeOutstandingWork(
       reason,
       blockers,
       requiredAction: action.requiredAction,
-      requiredEvidence: action.requiredEvidence,
+      requiredActions,
+      requiredEvidence,
     });
   }
   // 決定論順 (layer key 昇順) で再構築する (出力安定性)。
@@ -197,8 +203,9 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   const blockers = new Set<string>();
   if ((p.versionTarget ?? "").trim()) blockers.add("version_up_parked");
   if (
-    /\bS[34]\b/i.test(p.workflowPhase ?? "") ||
-    /s4 decision|decision_outcome|po 判断|po gate|po サインオフ|po 承認/i.test(text)
+    p.kind === "poc" &&
+    (/\bS[34]\b/i.test(p.workflowPhase ?? "") ||
+      /s4 decision|s4 decide|decision_outcome|po\/s4|s4 判断|s4 判定/i.test(text))
   ) {
     blockers.add("po_decision_pending");
   }
@@ -284,6 +291,22 @@ function requiredOutstandingAction(reason: string): {
   }
 }
 
+function requiredActionsForBlockers(blockers: string[]): string[] {
+  return uniqueInOrder(
+    blockers.map((blocker) => requiredOutstandingAction(blocker).requiredAction),
+  );
+}
+
+function requiredEvidenceForBlockers(blockers: string[]): string[] {
+  return uniqueInOrder(
+    blockers.flatMap((blocker) => requiredOutstandingAction(blocker).requiredEvidence),
+  );
+}
+
+function uniqueInOrder(values: string[]): string[] {
+  return [...new Set(values)];
+}
+
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
 export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] {
   const dir = join(repoRoot, "docs", "plans");
@@ -347,7 +370,7 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
   if (o.openDefers > 0) blockers.add("open_defers");
   for (const blocker of Object.keys(o.blockersByKind)) blockers.add(blocker);
 
-  const requiredActions = [...new Set(o.items.map((item) => item.requiredAction))].sort();
+  const requiredActions = [...new Set(o.items.flatMap((item) => item.requiredActions))].sort();
   if (o.openDefers > 0) {
     requiredActions.push(
       "resolve open placeholder/spec-backfill defers before claiming whole-program completion",
@@ -439,6 +462,7 @@ export function completionDecisionPacketForOutstanding(
       blockers: item.blockers,
       decisionKind: decisionKindForOutstandingReason(item.reason),
       requiredAction: item.requiredAction,
+      requiredActions: item.requiredActions,
       requiredEvidence: item.requiredEvidence,
       allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
       nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),

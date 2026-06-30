@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:49b83b1b17464290540829c1892f73cca44e47464cf5637c6ae2f7393c469ae7"
+        output_digest: "sha256:be463e8ab129e9c1c2d758967aa3efe8736ccd75f4633b676ff4127a784b2b83"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:e6b067f22872fe242ebb5a2b48cbd939371f0ee4a725da76f7e9fb17b649d830"
+        output_digest: "sha256:68ee6176918a2b01403bc826ca223a500333e37aacb22dcd64afff88beb8db77"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -50,7 +50,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:e6b067f22872fe242ebb5a2b48cbd939371f0ee4a725da76f7e9fb17b649d830"
+        output_digest: "sha256:68ee6176918a2b01403bc826ca223a500333e37aacb22dcd64afff88beb8db77"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -58,7 +58,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:e6b067f22872fe242ebb5a2b48cbd939371f0ee4a725da76f7e9fb17b649d830"
+        output_digest: "sha256:68ee6176918a2b01403bc826ca223a500333e37aacb22dcd64afff88beb8db77"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"

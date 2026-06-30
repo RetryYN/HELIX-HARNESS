@@ -90,7 +90,7 @@ describe("analyzeOutstandingWork", () => {
     expect(o.blockersByKind).toEqual({
       human_approval_pending: 1,
       irreversible_migration_pending: 1,
-      po_decision_pending: 2,
+      po_decision_pending: 1,
       version_up_parked: 1,
     });
     expect(o.items.map((item) => [item.planId, item.reason])).toEqual([
@@ -120,6 +120,13 @@ describe("analyzeOutstandingWork", () => {
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
         "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
         "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
+        "approval policy or named approver evidence",
+      ]),
+    );
+    expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredActions).toEqual(
+      expect.arrayContaining([
+        "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
+        "record required human/action-binding approval before executing the high-impact action",
       ]),
     );
   });
@@ -197,7 +204,7 @@ describe("completionDecisionPacketForOutstanding", () => {
           kind: "poc",
           status: "draft",
           workflowPhase: "S3",
-          text: "S4 decision_outcome is PO gated.",
+          text: "S4 decision_outcome is PO gated and requires human approval.",
         },
         {
           planId: "PLAN-L7-146",
@@ -253,6 +260,15 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
     expect(packet.decisions[0].requiredEvidence).toContain(
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
+    );
+    expect(packet.decisions[0].requiredActions).toEqual(
+      expect.arrayContaining([
+        "record the PO/S4 decision before promotion, rejection, or Forward merge",
+        "record required human/action-binding approval before executing the high-impact action",
+      ]),
+    );
+    expect(packet.decisions[0].requiredEvidence).toContain(
+      "approval policy or named approver evidence",
     );
     expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
     expect(packet.decisions[1].requiredEvidence).toContain(
@@ -436,8 +452,10 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         `plan_id: ${name.replace(/\.md$/, "")}`,
         `layer: ${layer}`,
         `status: ${status}`,
-        "kind: impl",
-        ...Object.entries(options.frontmatter ?? {}).map(([key, value]) => `${key}: ${value}`),
+        `kind: ${options.frontmatter?.kind ?? "impl"}`,
+        ...Object.entries(options.frontmatter ?? {})
+          .filter(([key]) => key !== "kind")
+          .map(([key, value]) => `${key}: ${value}`),
         "---",
         "",
         `# ${name}`,
@@ -477,7 +495,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         body: "Action-binding activation requires approval before external webhook use.",
       });
       writePlan(root, "PLAN-S3.md", "cross", "draft", {
-        frontmatter: { workflow_phase: "S3" },
+        frontmatter: { kind: "poc", workflow_phase: "S3" },
         body: "S4 decision pending.",
       });
 
@@ -493,6 +511,9 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
       ]);
       expect(o.items[0]?.requiredEvidence).toContain(
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+      );
+      expect(o.items[0]?.requiredEvidence).not.toContain(
+        "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
       );
     } finally {
       rmSync(root, { recursive: true, force: true });
