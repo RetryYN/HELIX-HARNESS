@@ -81,6 +81,7 @@ decision packet を PO/S4 判断・version-up activation・不可逆 migration s
 | U-OUTSTANDING-002 | `analyzeCompletionDecisionPacket` | `generatedFrom`、`ok/status` 整合、`generatedAt`、allowed `sourceCommand`、freshness policy/window/`expiresAt`、computed stale flag、`decisionCount` を検査し、stale / unknown source / shape drift を fail-close する。 |
 | U-OUTSTANDING-003 | `checkCompletionDecisionPacket` + `ut-tdd doctor` | live repo の standalone `ut-tdd completion decision-packet --json` 相当 packet は fresh として通し、repo root 不在や packet lint violation は doctor hard gate violation として出す。 |
 | U-OUTSTANDING-004 | `workflowNextActionForOutstanding` + `ut-tdd status --json` | runtime `nextAction` は mode/judgment-gate guidance のまま保持し、whole-program/L14 の次アクションは `workflowNextAction` として分離する。未了 blocker がある場合は `completion-blocked:`、未了なしの場合だけ `completion-ready:` を返す。複数 blocker では PO/S4 decision → version-up activation → L14 cutover signoff → generic human/active-draft の優先順で top action を選ぶ。 |
+| U-OUTSTANDING-005 | `completionDecisionPacketForOutstanding` + `analyzeCompletionDecisionPacket` | 各 required record は `recordTemplates[]` に同名の copyable YAML block を持つ。template は `recordName:` header、非空 `insertionHint`、全 required field の `- field:` 行を含む。template 欠落や field 欠落は packet lint violation として fail-close し、PO/人間判断が prose-only requiredEvidence に戻らない。 |
 
 ## §0.4 green command digest の検証戦略
 

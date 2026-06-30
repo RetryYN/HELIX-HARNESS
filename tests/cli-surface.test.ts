@@ -298,6 +298,13 @@ describe("L7 CLI surface closure", () => {
         sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
       });
       expect(packet.decisions[0].requiredRecords[0].fields).toContain("verified_evidence");
+      expect(packet.decisions[0].recordTemplates[0]).toMatchObject({
+        recordName: "s4_decision_record",
+        yamlLines: expect.arrayContaining([
+          "s4_decision_record:",
+          '  - allowed_outcome: "<confirmed|rejected|pivot>"',
+        ]),
+      });
       expect(packet.decisions[1].requiredRecords[0]).toMatchObject({
         recordName: "cutover_decision_record",
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
@@ -326,6 +333,10 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain("record-outcomes cutover_decision_record");
       expect(text.stdout).toContain("record-route cutover_decision_record");
+      expect(text.stdout).toContain("record-template cutover_decision_record");
+      expect(text.stdout).toContain(
+        '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

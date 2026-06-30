@@ -117,6 +117,45 @@ describe("completion decision packet lint", () => {
     expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record");
   });
 
+  // U-OUTSTANDING-005
+  it("rejects decisions whose required records lack record templates", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        recordTemplates: [],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("missing_record_templates");
+  });
+
+  // U-OUTSTANDING-005
+  it("rejects record templates that do not cover every required field", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        recordTemplates: [
+          {
+            recordName: "s4_decision_record",
+            insertionHint: "Add this block before S4 decision.",
+            yamlLines: ["s4_decision_record:", '  - allowed_outcome: "<confirmed|rejected|pivot>"'],
+          },
+        ],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("invalid_record_template");
+    expect(result.violations.map((v) => v.detail).join("\n")).toContain(
+      "template missing field=decision_owner",
+    );
+  });
+
   it("rejects decisions whose required records lack record-level allowed outcomes", () => {
     const packet = {
       ...basePacket(),

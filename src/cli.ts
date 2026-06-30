@@ -514,6 +514,12 @@ completion
           `    record-route ${record.recordName}: ${record.nextWorkflowRoute}\n`,
         );
       }
+      for (const template of decision.recordTemplates) {
+        process.stdout.write(`    record-template ${template.recordName}:\n`);
+        for (const line of template.yamlLines) {
+          process.stdout.write(`      ${line}\n`);
+        }
+      }
     }
   });
 

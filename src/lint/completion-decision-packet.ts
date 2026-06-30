@@ -18,6 +18,8 @@ export type CompletionDecisionPacketViolationReason =
   | "decision_count_mismatch"
   | "missing_required_records"
   | "invalid_required_record"
+  | "missing_record_templates"
+  | "invalid_record_template"
   | "missing_allowed_outcomes_by_record"
   | "invalid_allowed_outcomes_by_record"
   | "missing_next_routes_by_record"
@@ -161,6 +163,12 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] planId=${decision.planId}`,
       });
     }
+    if (!Array.isArray(decision.recordTemplates) || decision.recordTemplates.length === 0) {
+      violations.push({
+        reason: "missing_record_templates",
+        detail: `decision[${decisionIndex}] planId=${decision.planId}`,
+      });
+    }
     decision.requiredRecords.forEach((record, recordIndex) => {
       const subject = `decision[${decisionIndex}].requiredRecords[${recordIndex}]`;
       if (!record.recordName?.trim()) {
@@ -206,6 +214,9 @@ export function analyzeCompletionDecisionPacket(
     const routeRecords = new Map(
       (decision.nextWorkflowRoutesByRecord ?? []).map((entry) => [entry.recordName, entry]),
     );
+    const templateRecords = new Map(
+      (decision.recordTemplates ?? []).map((entry) => [entry.recordName, entry]),
+    );
     for (const record of decision.requiredRecords) {
       const outcome = outcomeRecords.get(record.recordName);
       if (!outcome) {
@@ -244,6 +255,42 @@ export function analyzeCompletionDecisionPacket(
           reason: "invalid_next_routes_by_record",
           detail: `decision[${decisionIndex}] ${record.recordName} invalid route=${nextWorkflowRoute}`,
         });
+      }
+      const template = templateRecords.get(record.recordName);
+      if (!template) {
+        violations.push({
+          reason: "invalid_record_template",
+          detail: `decision[${decisionIndex}] missing template for ${record.recordName}`,
+        });
+        continue;
+      }
+      if (!template.insertionHint?.trim() || /^(TBD|TODO|-)$/.test(template.insertionHint.trim())) {
+        violations.push({
+          reason: "invalid_record_template",
+          detail: `decision[${decisionIndex}] ${record.recordName} invalid insertionHint`,
+        });
+      }
+      if (!Array.isArray(template.yamlLines) || template.yamlLines.length === 0) {
+        violations.push({
+          reason: "invalid_record_template",
+          detail: `decision[${decisionIndex}] ${record.recordName} missing yamlLines`,
+        });
+        continue;
+      }
+      if (template.yamlLines[0]?.trim() !== `${record.recordName}:`) {
+        violations.push({
+          reason: "invalid_record_template",
+          detail: `decision[${decisionIndex}] ${record.recordName} template header mismatch`,
+        });
+      }
+      const templateText = template.yamlLines.join("\n");
+      for (const field of record.fields) {
+        if (!templateText.includes(`- ${field}:`)) {
+          violations.push({
+            reason: "invalid_record_template",
+            detail: `decision[${decisionIndex}] ${record.recordName} template missing field=${field}`,
+          });
+        }
       }
     }
   });

@@ -105,6 +105,7 @@ export interface CompletionDecisionItem {
   requiredActions: string[];
   requiredEvidence: string[];
   requiredRecords: CompletionDecisionRecordRequirement[];
+  recordTemplates: CompletionDecisionRecordTemplate[];
   allowedOutcomes: string[];
   allowedOutcomesByRecord: CompletionDecisionRecordOutcome[];
   nextWorkflowRoutesByRecord: CompletionDecisionRecordRoute[];
@@ -125,6 +126,12 @@ export interface CompletionDecisionRecordOutcome {
 export interface CompletionDecisionRecordRoute {
   recordName: string;
   nextWorkflowRoute: string;
+}
+
+export interface CompletionDecisionRecordTemplate {
+  recordName: string;
+  insertionHint: string;
+  yamlLines: string[];
 }
 
 export interface CompletionDecisionPacket {
@@ -489,6 +496,7 @@ export function completionDecisionPacketForOutstanding(
         requiredActions: item.requiredActions,
         requiredEvidence: item.requiredEvidence,
         requiredRecords,
+        recordTemplates: recordTemplatesForRecords(requiredRecords),
         allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
         allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
         nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
@@ -594,6 +602,60 @@ function nextWorkflowRouteForRecordName(recordName: string): string {
     default:
       return "record-specific workflow route is undefined; update completion decision schema before completion claim";
   }
+}
+
+function recordTemplatesForRecords(
+  records: CompletionDecisionRecordRequirement[],
+): CompletionDecisionRecordTemplate[] {
+  return records.map((record) => ({
+    recordName: record.recordName,
+    insertionHint: insertionHintForRecordName(record.recordName),
+    yamlLines: [
+      `${record.recordName}:`,
+      ...record.fields.map(
+        (field) => `  - ${field}: "${placeholderForRecordField(record, field)}"`,
+      ),
+    ],
+  }));
+}
+
+function insertionHintForRecordName(recordName: string): string {
+  switch (recordName) {
+    case "s4_decision_record":
+      return "Add this block to the PLAN S4 decision evidence before setting decision_outcome or terminal status.";
+    case "activation_decision_record":
+      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked.";
+    case "parked_review_record":
+      return "Add this block to the version-up PLAN while the work remains parked for a future release.";
+    case "cutover_decision_record":
+      return "Add this block to the L14 cutover PLAN before any irreversible apply or migration.";
+    case "action_binding_approval_record":
+      return "Add this block to the PLAN before executing the scoped high-impact actor/tool/target action.";
+    case "terminal_evidence_record":
+      return "Add this block before marking the PLAN terminal after artifacts, review evidence, and green commands exist.";
+    default:
+      return "Add this record block to the PLAN before claiming the blocker is resolved.";
+  }
+}
+
+function placeholderForRecordField(
+  record: CompletionDecisionRecordRequirement,
+  field: string,
+): string {
+  if (field === "allowed_outcome") {
+    return `<${allowedOutcomesForRecordName(record.recordName).join("|")}>`;
+  }
+  if (field === "reverse_fullback_required") return "<true|false plus route basis>";
+  if (field === "dry_run_plan" || field === "rollback_plan" || field === "state_backup_plan") {
+    return `<${field} evidence path or runbook id>`;
+  }
+  if (field === "review_by" || field === "expires_at_or_trigger") {
+    return "<ISO timestamp, date, or trigger condition>";
+  }
+  if (field === "audit_record" || field === "review_approval_evidence") {
+    return "<evidence path or audit id>";
+  }
+  return `<${field}>`;
 }
 
 function requiredRecordsForBlockers(blockers: string[]): CompletionDecisionRecordRequirement[] {
