@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue, missingRecordFields } from "./shared";
+import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
 import {
   hasSourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
@@ -83,6 +83,7 @@ const S4_RECORD_FIELDS = [
   "reverse_fullback_required",
   "promotion_strategy_or_rejection_pivot_rationale",
 ] as const;
+const S4_ALLOWED_OUTCOMES = ["confirmed", "rejected", "pivot"] as const;
 
 const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "source",
@@ -191,6 +192,14 @@ export function analyzeS4DecisionReadiness(
     const missingFields = missingRecordFields(plan.text, S4_RECORD_NAME, S4_RECORD_FIELDS);
     for (const field of missingFields) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+    }
+    const outcomeViolation = allowedOutcomeSetViolation(
+      plan.text,
+      S4_RECORD_NAME,
+      S4_ALLOWED_OUTCOMES,
+    );
+    if (outcomeViolation) {
+      violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
   }
 

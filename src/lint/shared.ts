@@ -18,18 +18,72 @@ export function missingRecordFields(
   recordName: string,
   fields: readonly string[],
 ): string[] {
+  const body = recordBody(text, recordName);
+  if (body === null) {
+    return [recordName, ...fields];
+  }
+  return fields.filter((field) => {
+    const value = recordFieldValueFromBody(body, field);
+    return !value || value === "TBD" || value === "TODO" || value === "-";
+  });
+}
+
+function recordBody(text: string, recordName: string): string | null {
   const header = text.match(new RegExp(`^\\s*${recordName}:\\s*$`, "m"));
   if (!header || header.index === undefined) {
-    return [recordName, ...fields];
+    return null;
   }
   const section = text.slice(header.index);
   const nextHeading = section.search(/\n#{1,6}\s+/);
-  const body = nextHeading >= 0 ? section.slice(0, nextHeading) : section;
-  return fields.filter((field) => {
-    const fieldLine = body.match(new RegExp(`^\\s*-\\s*${field}:\\s*(.+?)\\s*$`, "m"));
-    const value = fieldLine?.[1]?.replace(/`/g, "").trim();
-    return !value || value === "TBD" || value === "TODO" || value === "-";
-  });
+  return nextHeading >= 0 ? section.slice(0, nextHeading) : section;
+}
+
+function recordFieldValueFromBody(body: string, field: string): string | undefined {
+  return body
+    .match(new RegExp(`^\\s*-\\s*${field}:\\s*(.+?)\\s*$`, "m"))?.[1]
+    ?.replace(/`/g, "")
+    .trim();
+}
+
+/** Markdown の `record_name:` 配下にある `- field: value` の実値を返す。 */
+export function recordFieldValue(
+  text: string,
+  recordName: string,
+  field: string,
+): string | undefined {
+  const body = recordBody(text, recordName);
+  if (body === null) return undefined;
+  return recordFieldValueFromBody(body, field);
+}
+
+/** `allowed_outcome` が設計 enum と同じ集合を列挙しているかを検査する。 */
+export function allowedOutcomeSetViolation(
+  text: string,
+  recordName: string,
+  allowedOutcomes: readonly string[],
+): string | null {
+  const value = recordFieldValue(text, recordName, "allowed_outcome");
+  if (!value || value === "TBD" || value === "TODO" || value === "-") {
+    return null;
+  }
+  const escaped = allowedOutcomes.map((outcome) => outcome.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const known = new RegExp(`\\b(?:${escaped.join("|")})\\b`, "g");
+  const found = new Set(value.match(known) ?? []);
+  const unknown = value
+    .replace(known, " ")
+    .replace(/[<>"'`|,]/g, " ")
+    .replace(/\//g, " ")
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(Boolean)
+    .filter((token) => token !== "or" && token !== "and");
+  const missing = allowedOutcomes.filter((outcome) => !found.has(outcome));
+  if (missing.length === 0 && unknown.length === 0) return null;
+  const parts = [
+    missing.length > 0 ? `missing allowed_outcome ${missing.join(",")}` : "",
+    unknown.length > 0 ? `unknown allowed_outcome ${unknown.join(",")}` : "",
+  ].filter(Boolean);
+  return `invalid allowed_outcome set for ${recordName}: ${parts.join("; ")}`;
 }
 
 // L6 機能設計の DbC テーブル見出し (関数仕様の substance マーカー)。

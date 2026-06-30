@@ -92,6 +92,29 @@ describe("action-binding approval readiness", () => {
     );
   });
 
+  it("rejects approval records whose allowed_outcome set drifts from the design enum", () => {
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${RECORD.replace(
+            "`approve_action_binding` / `deny_action` / `request_scope_reduction`",
+            "`approve_action_binding` / `approve_everything`",
+          )}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "invalid allowed_outcome set for action_binding_approval_record: missing allowed_outcome deny_action,request_scope_reduction; unknown allowed_outcome approve_everything",
+    );
+  });
+
   it("loads the current repo pending approval records", () => {
     const result = analyzeActionBindingApprovalReadiness(loadActionBindingApprovalReadinessInput());
 

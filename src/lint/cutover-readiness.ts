@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue, missingRecordFields } from "./shared";
+import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
 import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
@@ -64,6 +64,11 @@ const CUTOVER_RECORD_FIELDS = [
   "audit_record",
   "post_cutover_monitoring",
   "legacy_alias_policy",
+] as const;
+const CUTOVER_ALLOWED_OUTCOMES = [
+  "approve_cutover",
+  "reject_or_defer",
+  "request_runbook_changes",
 ] as const;
 
 const OUTSTANDING_MARKERS = [
@@ -217,6 +222,14 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
     );
     for (const field of missingFields) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+    }
+    const outcomeViolation = allowedOutcomeSetViolation(
+      plan.text,
+      CUTOVER_RECORD_NAME,
+      CUTOVER_ALLOWED_OUTCOMES,
+    );
+    if (outcomeViolation) {
+      violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
   }
 

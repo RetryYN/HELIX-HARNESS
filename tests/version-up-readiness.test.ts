@@ -183,6 +183,28 @@ describe("version-up-readiness", () => {
     );
   });
 
+  it("U-DECISIONREC-004: fails activation records whose allowed_outcome set drifts from the design enum", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "`activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+              "`activate_future_version` / `skip_review`",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "invalid allowed_outcome set for activation_decision_record: missing allowed_outcome reject_or_archive,keep_parked_with_review_date; unknown allowed_outcome skip_review",
+    );
+  });
+
   it("fails when the feature catalog or requirement trace drops version-up semantics", () => {
     const result = analyzeVersionUpReadiness(
       input({

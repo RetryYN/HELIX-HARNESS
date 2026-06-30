@@ -114,6 +114,31 @@ describe("cutover readiness", () => {
     );
   });
 
+  it("U-DECISIONREC-004: fails cutover records whose allowed_outcome set drifts from the design enum", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-M-904.md",
+            plan_id: "PLAN-M-904",
+            layer: "L14",
+            kind: "design",
+            status: "draft",
+            text: `irreversible state dir cutover\n${cutoverMarkers.replace(
+              "`approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
+              "`approve_cutover` / `manual_override`",
+            )}`,
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "invalid allowed_outcome set for cutover_decision_record: missing allowed_outcome reject_or_defer,request_runbook_changes; unknown allowed_outcome manual_override",
+    );
+  });
+
   it("fails when the cutover source ledger loses adoption decisions or provenance rows", () => {
     const result = analyzeCutoverReadiness(
       input({

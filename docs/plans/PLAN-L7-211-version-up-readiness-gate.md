@@ -41,6 +41,31 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T18:59:06+09:00"
+    tests_green_at: "2026-06-30T18:59:06+09:00"
+    verdict: approve
+    scope: "Continuation: activation_decision_record allowed_outcome is now checked as the exact version-up activation enum set. Parked work cannot pass with an unknown activation outcome or a partial outcome list that diverges from the mode definition."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/action-binding-approval-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T18:59:06+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:71a62052b5f45a55c77d7f208111c5a7ed44d1ac54f8a66b47d6d8f615878f4b"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T18:59:06+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:1729110c36c3c616c685274ce69f7f5196337e17cc64fd4d66145c168d153d28"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:47:45+09:00"
     tests_green_at: "2026-06-30T15:47:45+09:00"
     verdict: approve
@@ -55,7 +80,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:35605b0209866b6a8229a9a0526edf00bcd8fe9b060907c6d47f543dcbb88da3"
+        output_digest: "sha256:71a62052b5f45a55c77d7f208111c5a7ed44d1ac54f8a66b47d6d8f615878f4b"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -63,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:cfcc12778378e8a86c00e8e76e8355ce712e8cfac4c2b60ef9f0990bdd6a5a95"
+        output_digest: "sha256:1729110c36c3c616c685274ce69f7f5196337e17cc64fd4d66145c168d153d28"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:32:07+09:00"
@@ -80,7 +105,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:35605b0209866b6a8229a9a0526edf00bcd8fe9b060907c6d47f543dcbb88da3"
+        output_digest: "sha256:71a62052b5f45a55c77d7f208111c5a7ed44d1ac54f8a66b47d6d8f615878f4b"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -88,7 +113,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:28:03+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:cfcc12778378e8a86c00e8e76e8355ce712e8cfac4c2b60ef9f0990bdd6a5a95"
+        output_digest: "sha256:1729110c36c3c616c685274ce69f7f5196337e17cc64fd4d66145c168d153d28"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -96,7 +121,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:35605b0209866b6a8229a9a0526edf00bcd8fe9b060907c6d47f543dcbb88da3"
+        output_digest: "sha256:71a62052b5f45a55c77d7f208111c5a7ed44d1ac54f8a66b47d6d8f615878f4b"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

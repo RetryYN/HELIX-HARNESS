@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue, missingRecordFields } from "./shared";
+import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
 
 export interface ActionBindingApprovalPlan {
   file: string;
@@ -38,6 +38,11 @@ const ACTION_BINDING_RECORD_FIELDS = [
   "review_approval_evidence",
   "expires_at_or_trigger",
   "audit_record",
+] as const;
+const ACTION_BINDING_ALLOWED_OUTCOMES = [
+  "approve_action_binding",
+  "deny_action",
+  "request_scope_reduction",
 ] as const;
 
 const RIGHT_ARM_MARKERS = [
@@ -125,6 +130,14 @@ export function analyzeActionBindingApprovalReadiness(
     );
     for (const field of missingFields) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+    }
+    const outcomeViolation = allowedOutcomeSetViolation(
+      plan.text,
+      ACTION_BINDING_RECORD_NAME,
+      ACTION_BINDING_ALLOWED_OUTCOMES,
+    );
+    if (outcomeViolation) {
+      violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
   }
 

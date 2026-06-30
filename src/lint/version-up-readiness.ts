@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue, missingRecordFields } from "./shared";
+import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
 import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
@@ -126,6 +126,11 @@ const ACTIVATION_RECORD_FIELDS = [
   "approval_scope",
   "dry_run_plan",
   "rollback_plan",
+] as const;
+const ACTIVATION_ALLOWED_OUTCOMES = [
+  "activate_future_version",
+  "reject_or_archive",
+  "keep_parked_with_review_date",
 ] as const;
 
 const PARKED_REVIEW_RECORD_NAME = "parked_review_record";
@@ -354,6 +359,14 @@ export function analyzeVersionUpReadiness(
       ACTIVATION_RECORD_FIELDS,
     )) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+    }
+    const activationOutcomeViolation = allowedOutcomeSetViolation(
+      plan.text,
+      ACTIVATION_RECORD_NAME,
+      ACTIVATION_ALLOWED_OUTCOMES,
+    );
+    if (activationOutcomeViolation) {
+      violations.push({ subject: plan.plan_id, reason: activationOutcomeViolation });
     }
     for (const field of missingRecordFields(
       plan.text,

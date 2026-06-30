@@ -150,6 +150,43 @@ describe("S4 decision readiness", () => {
     );
   });
 
+  it("U-DECISIONREC-004: fails S4 records whose allowed_outcome set drifts from the design enum", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-905.md",
+            plan_id: "PLAN-DISCOVERY-905",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            decisionOutcome: null,
+            text: [
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `ship_anyway`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- route_impact: confirmed routes forward; rejected/pivot returns backlog",
+              "- forward_route: confirmed route",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening or reject/pivot rationale",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "invalid allowed_outcome set for s4_decision_record: missing allowed_outcome rejected,pivot; unknown allowed_outcome ship_anyway",
+    );
+  });
+
   it("fails when S4 decision source ledgers lose adoption decisions or required rows", () => {
     const modeDoc = [
       "s4_decision_record",
