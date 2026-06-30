@@ -115,6 +115,9 @@ describe("analyzeOutstandingWork", () => {
     expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toContain(
       "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
     );
+    expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toContain(
+      "execution_window_or_freeze_policy recorded before irreversible apply",
+    );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
@@ -341,6 +344,7 @@ describe("completionDecisionPacketForOutstanding", () => {
           "dry_run_plan",
           "rollback_plan",
           "state_backup_plan",
+          "execution_window_or_freeze_policy",
           "approval_scope",
           "audit_record",
           "post_cutover_monitoring",

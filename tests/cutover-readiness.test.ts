@@ -15,6 +15,7 @@ const cutoverMarkers = [
   "- dry_run_plan: dry-run",
   "- rollback_plan: rollback",
   "- state_backup_plan: backup",
+  "- execution_window_or_freeze_policy: single cutover window with frozen HEAD and no concurrent apply",
   "- approval_scope: rename",
   "- audit_record: A-NNN",
   "- post_cutover_monitoring: quiet window",
@@ -24,6 +25,7 @@ const cutoverMarkers = [
   "|---|---|---|---|---|---|---|",
   "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity | audit_record |",
   "| GitHub Environments required reviewers | https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | decision_owner |",
+  "| GitHub Actions concurrency | https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | prevent concurrent cutover apply | execution_window_or_freeze_policy |",
   "| Google SRE Release Engineering | https://sre.google/sre-book/release-engineering/ | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback process | rollback_plan |",
   "| OWASP LLM06:2025 Excessive Agency | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | approval_scope |",
   "| SLSA Provenance | https://slsa.dev/spec/v1.2/provenance | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | artifact provenance | audit_record |",
@@ -36,6 +38,7 @@ function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadiness
       "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
       "trigger_condition and blast_radius_baseline recorded before irreversible migration",
       "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
+      "execution_window_or_freeze_policy recorded before irreversible apply",
       "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
     ].join("\n"),
     plans: [
@@ -83,6 +86,7 @@ describe("cutover readiness", () => {
         { subject: "PLAN-M-901", reason: "missing structured allowed_outcome" },
         { subject: "PLAN-M-901", reason: "missing structured dry_run_plan" },
         { subject: "PLAN-M-901", reason: "missing structured rollback_plan" },
+        { subject: "PLAN-M-901", reason: "missing structured execution_window_or_freeze_policy" },
         { subject: "PLAN-M-901", reason: "missing structured audit_record" },
       ]),
     );
@@ -98,7 +102,7 @@ describe("cutover readiness", () => {
             layer: "L14",
             kind: "design",
             status: "draft",
-            text: "irreversible cutover cutover_decision_record allowed_outcome decision_owner trigger_condition blast_radius_baseline dry_run_plan rollback_plan state_backup_plan approval_scope audit_record post_cutover_monitoring legacy_alias_policy",
+            text: "irreversible cutover cutover_decision_record allowed_outcome decision_owner trigger_condition blast_radius_baseline dry_run_plan rollback_plan state_backup_plan execution_window_or_freeze_policy approval_scope audit_record post_cutover_monitoring legacy_alias_policy",
           },
         ],
       }),
@@ -122,6 +126,7 @@ describe("cutover readiness", () => {
           "dry_run_plan",
           "rollback_plan",
           "state_backup_plan",
+          "execution_window_or_freeze_policy",
           "approval_scope",
           "audit_record",
           "post_cutover_monitoring",
@@ -136,6 +141,7 @@ describe("cutover readiness", () => {
 
     expect(result.ok).toBe(false);
     expect(result.missingSourceLedgerRows).toContain("SLSA Provenance");
+    expect(result.missingSourceLedgerRows).toContain("GitHub Actions concurrency");
     expect(result.sourceLedgerViolations).toContainEqual({
       subject: "docs/process/forward/L08-L14-verification-phase.md",
       reason: "cutover source ledger NIST SSDF SP 800-218 has empty adoption decision",

@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T16:21:00+09:00"
+    tests_green_at: "2026-06-30T16:21:00+09:00"
+    verdict: pass
+    scope: "Continuation 14: L14 cutover approval now requires execution_window_or_freeze_policy. Irreversible cutover decisions must bind a frozen HEAD/window, no-concurrent-apply policy, and re-approval trigger for drift before apply."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/cutover-readiness.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T16:21:00+09:00"
+        evidence_path: tests/cutover-readiness.test.ts
+        output_digest: "sha256:e38cd9794d9b96b9cc6adb8771443aef6c0869b44854f047ce84ac0bf7ed5467"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T16:21:00+09:00"
+        evidence_path: src/lint/cutover-readiness.ts
+        output_digest: "sha256:b98d3128531a9ab9c8384d63c7110ef2524dffd566beffa351d695da9e2dfe00"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:12:00+09:00"
     tests_green_at: "2026-06-30T16:12:00+09:00"
     verdict: pass
@@ -51,7 +76,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:838f6d6ebb0fb815defcbe2f441d2567ddd4541a238adfc768b7e88db3e88415"
+        output_digest: "sha256:6ab9a00a8c1e13f714f114b02ea8276cb730f2cf843aa9b1fdacc917de2cefb9"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -59,7 +84,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
+        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:41:37+09:00"
@@ -176,7 +201,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:838f6d6ebb0fb815defcbe2f441d2567ddd4541a238adfc768b7e88db3e88415"
+        output_digest: "sha256:6ab9a00a8c1e13f714f114b02ea8276cb730f2cf843aa9b1fdacc917de2cefb9"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -192,7 +217,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:41:22+09:00"
         evidence_path: tests/cutover-readiness.test.ts
-        output_digest: "sha256:dcbcd16e61bab90440dc514fb39468cbdfba3490a883a3c26445fa39183a8893"
+        output_digest: "sha256:e38cd9794d9b96b9cc6adb8771443aef6c0869b44854f047ce84ac0bf7ed5467"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -200,7 +225,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
+        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -208,7 +233,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
+        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -216,7 +241,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
+        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -334,8 +359,10 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   required field impact を持ち、Scrum Guide / ISO 29148 / ISTQB / NIST SSDF のいずれかを落とすと fail-close する。
 - `src/lint/cutover-readiness.ts`: L14 cutover の source ledger を official URL、adopted version/date、
   latest official status、adoption decision、cutover use、required field impact で検査する。NIST SSDF、
-  GitHub Environments required reviewers、Google SRE Release Engineering、OWASP LLM06、SLSA Provenance の
-  いずれかを落とす、または adoption decision を空にすると fail-close する。
+  GitHub Environments required reviewers、GitHub Actions concurrency、Google SRE Release Engineering、
+  OWASP LLM06、SLSA Provenance のいずれかを落とす、または adoption decision を空にすると fail-close する。
+  `cutover_decision_record` は `execution_window_or_freeze_policy` を必須にし、不可逆 apply が承認後の
+  HEAD/scope drift や並行実行で実行時条件をすり替えられないようにする。
 - `loadOutstandingPlanRows(repoRoot)`: docs/plans frontmatter から layer/status (registry を介さず最新値)。
 - `computeOutstandingWork(repoRoot)`: open defer = placeholder-deps `specBackfillWaits` を合成
   (上位仕様確定待ちの正当な carry、threshold は descent-obligation 担当)。I/O 失敗は fail-open。
@@ -383,6 +410,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   S4 decision source ledger 劣化を拒否する。
 - [x] doctor `cutover-readiness` hard gate が、不可逆 L14 cutover の source ledger 劣化
   (required row / adopted version-date / latest official status / adoption decision / provenance source 欠落) を拒否する。
+- [x] L14 cutover は `execution_window_or_freeze_policy` を持たない限り通らず、frozen HEAD / 実行 window /
+  no-concurrent-apply / drift 時再承認条件を cutover 判断前に固定する。
 - [x] open defer (spec-backfill placeholder_deps carry) を集計。
 - [x] status --json / status text / handover CURRENT.json に additive surface (既存契約不変)。blocked status から
   decision packet へ直接辿れる。

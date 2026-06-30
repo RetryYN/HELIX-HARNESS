@@ -39,6 +39,7 @@ const CUTOVER_RECORD_MARKERS = [
   "dry_run_plan",
   "rollback_plan",
   "state_backup_plan",
+  "execution_window_or_freeze_policy",
   "approval_scope",
   "audit_record",
   "post_cutover_monitoring",
@@ -54,6 +55,7 @@ const CUTOVER_RECORD_FIELDS = [
   "dry_run_plan",
   "rollback_plan",
   "state_backup_plan",
+  "execution_window_or_freeze_policy",
   "approval_scope",
   "audit_record",
   "post_cutover_monitoring",
@@ -64,6 +66,7 @@ const OUTSTANDING_MARKERS = [
   "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
   "trigger_condition and blast_radius_baseline recorded before irreversible migration",
   "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
+  "execution_window_or_freeze_policy recorded before irreversible apply",
   "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
 ] as const;
 
@@ -80,6 +83,7 @@ const REQUIRED_SOURCE_LEDGER_COLUMNS = [
 const REQUIRED_SOURCE_LEDGER_ROWS = [
   "NIST SSDF SP 800-218",
   "GitHub Environments required reviewers",
+  "GitHub Actions concurrency",
   "Google SRE Release Engineering",
   "OWASP LLM06:2025 Excessive Agency",
   "SLSA Provenance",

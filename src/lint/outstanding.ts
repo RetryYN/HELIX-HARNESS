@@ -251,6 +251,7 @@ function requiredOutstandingAction(reason: string): {
           "decision_owner and approval_scope recorded before irreversible migration",
           "trigger_condition and blast_radius_baseline recorded before irreversible migration",
           "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
+          "execution_window_or_freeze_policy recorded before irreversible apply",
           "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
         ],
       };
@@ -611,6 +612,7 @@ function requiredRecordsForOutstandingReason(
             "dry_run_plan",
             "rollback_plan",
             "state_backup_plan",
+            "execution_window_or_freeze_policy",
             "approval_scope",
             "audit_record",
             "post_cutover_monitoring",

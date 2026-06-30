@@ -101,6 +101,7 @@ cutover_decision_record:
 - dry_run_plan: codemod + state path migration rehearsal + `bun run test` + `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor` + compiled dist smoke を non-destructive branch で実行する。
 - rollback_plan: cutover commit 前 tag/branch、state dir backup、旧 `ut-tdd` alias/shim の暫定復旧、hooks/config restore、doctor failure 時の revert route を記録する。
 - state_backup_plan: `.ut-tdd/harness.db`、memory/state/logs/handover、provider handover pointer、repo-local hook config を backup/restore 対象にする。
+- execution_window_or_freeze_policy: No apply window is approved by this draft PLAN. Future approval must name the frozen HEAD, quiet window, single-run/concurrency policy, branch/prose freeze boundary, and re-approval trigger for any HEAD/scope/evidence drift before apply.
 - approval_scope: CLI/bin rename、state dir move、adapter marker/hook rename、docs/governance link rename、distribution surface の範囲に限定する。secret/auth/infra は対象外。
 - audit_record: apply commands、git hash、backup location、approver、doctor/full test/dist smoke 結果、rollback decision を `.ut-tdd/audit/A-NNN-*` に記録する。
 - post_cutover_monitoring: quiet window 中に `helix doctor`、旧 alias smoke、status/completion packet、harness.db rebuild、feedback backlog を確認する。
