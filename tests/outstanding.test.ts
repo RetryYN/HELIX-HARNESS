@@ -120,7 +120,7 @@ describe("analyzeOutstandingWork", () => {
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
         "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
         "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
-        "approval policy or named approver evidence",
+        "action_binding_approval_record with approval_policy_or_named_approver, approval_scope, review_approval_evidence, expires_at_or_trigger, and audit_record",
       ]),
     );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredActions).toEqual(
@@ -258,6 +258,36 @@ describe("completionDecisionPacketForOutstanding", () => {
       ["PLAN-M-02", "irreversible_migration_signoff"],
     ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packet.decisions[0].requiredRecords).toEqual([
+      {
+        recordName: "s4_decision_record",
+        fields: [
+          "allowed_outcome",
+          "decision_owner",
+          "decision_basis",
+          "verified_evidence",
+          "stakeholder_review_or_proxy",
+          "acceptance_gap",
+          "unresolved_risk",
+          "external_source_basis",
+          "route_impact",
+          "forward_route",
+          "reverse_fullback_required",
+        ],
+        sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
+      },
+      {
+        recordName: "action_binding_approval_record",
+        fields: [
+          "approval_policy_or_named_approver",
+          "approval_scope",
+          "review_approval_evidence",
+          "expires_at_or_trigger",
+          "audit_record",
+        ],
+        sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+      },
+    ]);
     expect(packet.decisions[0].requiredEvidence).toContain(
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
     );
@@ -268,9 +298,14 @@ describe("completionDecisionPacketForOutstanding", () => {
       ]),
     );
     expect(packet.decisions[0].requiredEvidence).toContain(
-      "approval policy or named approver evidence",
+      "action_binding_approval_record with approval_policy_or_named_approver, approval_scope, review_approval_evidence, expires_at_or_trigger, and audit_record",
     );
     expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
+    expect(packet.decisions[1].requiredRecords.map((record) => record.recordName)).toEqual([
+      "activation_decision_record",
+      "parked_review_record",
+      "action_binding_approval_record",
+    ]);
     expect(packet.decisions[1].requiredEvidence).toContain(
       "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
     );
@@ -280,6 +315,25 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[2].requiredEvidence).toContain(
       "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
     );
+    expect(packet.decisions[2].requiredRecords).toEqual([
+      {
+        recordName: "cutover_decision_record",
+        fields: [
+          "allowed_outcome",
+          "decision_owner",
+          "trigger_condition",
+          "blast_radius_baseline",
+          "dry_run_plan",
+          "rollback_plan",
+          "state_backup_plan",
+          "approval_scope",
+          "audit_record",
+          "post_cutover_monitoring",
+          "legacy_alias_policy",
+        ],
+        sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+      },
+    ]);
     expect(packet.decisions[2].nextWorkflowRoute).toContain("cutover_decision_record");
   });
 

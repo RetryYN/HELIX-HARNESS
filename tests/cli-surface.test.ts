@@ -218,6 +218,15 @@ describe("L7 CLI surface closure", () => {
         ["PLAN-DISCOVERY-10-fixture", "po_s4_decision"],
         ["PLAN-M-02-fixture", "irreversible_migration_signoff"],
       ]);
+      expect(packet.decisions[0].requiredRecords[0]).toMatchObject({
+        recordName: "s4_decision_record",
+        sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
+      });
+      expect(packet.decisions[0].requiredRecords[0].fields).toContain("verified_evidence");
+      expect(packet.decisions[1].requiredRecords[0]).toMatchObject({
+        recordName: "cutover_decision_record",
+        sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+      });
 
       const text = runCliIn(root, ["completion", "decision-packet"]);
       expect(text.status).toBe(0);

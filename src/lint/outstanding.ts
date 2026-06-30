@@ -104,8 +104,15 @@ export interface CompletionDecisionItem {
   requiredAction: string;
   requiredActions: string[];
   requiredEvidence: string[];
+  requiredRecords: CompletionDecisionRecordRequirement[];
   allowedOutcomes: string[];
   nextWorkflowRoute: string;
+}
+
+export interface CompletionDecisionRecordRequirement {
+  recordName: string;
+  fields: string[];
+  sourcePaths: string[];
 }
 
 export interface CompletionDecisionPacket {
@@ -276,8 +283,9 @@ function requiredOutstandingAction(reason: string): {
         requiredAction:
           "record required human/action-binding approval before executing the high-impact action",
         requiredEvidence: [
-          "approval policy or named approver evidence",
-          "review/approval evidence recorded before activation",
+          "action_binding_approval_record with approval_policy_or_named_approver, approval_scope, review_approval_evidence, expires_at_or_trigger, and audit_record",
+          "approval scope binds actor/tool/target/params before activation",
+          "review/approval evidence and expiry or trigger condition recorded before activation",
         ],
       };
     default:
@@ -465,6 +473,7 @@ export function completionDecisionPacketForOutstanding(
       requiredAction: item.requiredAction,
       requiredActions: item.requiredActions,
       requiredEvidence: item.requiredEvidence,
+      requiredRecords: requiredRecordsForBlockers(item.blockers),
       allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
       nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
     })),
@@ -510,6 +519,125 @@ function allowedOutcomesForOutstandingReason(reason: string): string[] {
       return ["approve_action_binding", "deny_action", "request_scope_reduction"];
     default:
       return ["continue_workflow", "mark_terminal_after_required_evidence"];
+  }
+}
+
+function requiredRecordsForBlockers(blockers: string[]): CompletionDecisionRecordRequirement[] {
+  const records = [...blockers]
+    .sort((a, b) => outstandingReasonRank(a) - outstandingReasonRank(b) || a.localeCompare(b))
+    .flatMap((blocker) => requiredRecordsForOutstandingReason(blocker));
+  const seen = new Set<string>();
+  return records.filter((record) => {
+    if (seen.has(record.recordName)) return false;
+    seen.add(record.recordName);
+    return true;
+  });
+}
+
+function outstandingReasonRank(reason: string): number {
+  const priority = [
+    "irreversible_migration_pending",
+    "version_up_parked",
+    "po_decision_pending",
+    "human_approval_pending",
+    "active_draft",
+  ];
+  const rank = priority.indexOf(reason);
+  return rank === -1 ? Number.MAX_SAFE_INTEGER : rank;
+}
+
+function requiredRecordsForOutstandingReason(
+  reason: string,
+): CompletionDecisionRecordRequirement[] {
+  switch (reason) {
+    case "po_decision_pending":
+      return [
+        {
+          recordName: "s4_decision_record",
+          fields: [
+            "allowed_outcome",
+            "decision_owner",
+            "decision_basis",
+            "verified_evidence",
+            "stakeholder_review_or_proxy",
+            "acceptance_gap",
+            "unresolved_risk",
+            "external_source_basis",
+            "route_impact",
+            "forward_route",
+            "reverse_fullback_required",
+          ],
+          sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
+        },
+      ];
+    case "version_up_parked":
+      return [
+        {
+          recordName: "activation_decision_record",
+          fields: [
+            "allowed_outcome",
+            "review_by",
+            "approval_scope",
+            "dry_run_plan",
+            "rollback_plan",
+          ],
+          sourcePaths: ["docs/process/modes/version-up.md"],
+        },
+        {
+          recordName: "parked_review_record",
+          fields: [
+            "review_owner",
+            "review_trigger",
+            "review_by_policy",
+            "stale_action",
+            "activation_dependency",
+            "decision_packet_route",
+          ],
+          sourcePaths: ["docs/process/modes/version-up.md"],
+        },
+      ];
+    case "irreversible_migration_pending":
+      return [
+        {
+          recordName: "cutover_decision_record",
+          fields: [
+            "allowed_outcome",
+            "decision_owner",
+            "trigger_condition",
+            "blast_radius_baseline",
+            "dry_run_plan",
+            "rollback_plan",
+            "state_backup_plan",
+            "approval_scope",
+            "audit_record",
+            "post_cutover_monitoring",
+            "legacy_alias_policy",
+          ],
+          sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+        },
+      ];
+    case "human_approval_pending":
+      return [
+        {
+          recordName: "action_binding_approval_record",
+          fields: [
+            "approval_policy_or_named_approver",
+            "approval_scope",
+            "review_approval_evidence",
+            "expires_at_or_trigger",
+            "audit_record",
+          ],
+          sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+        },
+      ];
+    default:
+      return [
+        {
+          recordName: "terminal_evidence_record",
+          fields: ["generated_artifacts", "review_evidence", "green_commands"],
+          sourcePaths: ["docs/plans"],
+        },
+      ];
   }
 }
 

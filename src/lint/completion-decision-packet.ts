@@ -15,7 +15,9 @@ export type CompletionDecisionPacketViolationReason =
   | "invalid_expires_at"
   | "stale_flag_mismatch"
   | "stale_packet"
-  | "decision_count_mismatch";
+  | "decision_count_mismatch"
+  | "missing_required_records"
+  | "invalid_required_record";
 
 export interface CompletionDecisionPacketViolation {
   reason: CompletionDecisionPacketViolationReason;
@@ -128,6 +130,55 @@ export function analyzeCompletionDecisionPacket(
       detail: `decisionCount=${packet.decisionCount} actual=${packet.decisions.length}`,
     });
   }
+
+  packet.decisions.forEach((decision, decisionIndex) => {
+    if (!Array.isArray(decision.requiredRecords) || decision.requiredRecords.length === 0) {
+      violations.push({
+        reason: "missing_required_records",
+        detail: `decision[${decisionIndex}] planId=${decision.planId}`,
+      });
+      return;
+    }
+    decision.requiredRecords.forEach((record, recordIndex) => {
+      const subject = `decision[${decisionIndex}].requiredRecords[${recordIndex}]`;
+      if (!record.recordName?.trim()) {
+        violations.push({
+          reason: "invalid_required_record",
+          detail: `${subject} missing recordName`,
+        });
+      }
+      if (!Array.isArray(record.fields) || record.fields.length === 0) {
+        violations.push({
+          reason: "invalid_required_record",
+          detail: `${subject} missing fields`,
+        });
+      } else {
+        for (const field of record.fields) {
+          if (!field.trim() || /^(TBD|TODO|-)$/.test(field.trim())) {
+            violations.push({
+              reason: "invalid_required_record",
+              detail: `${subject} invalid field=${field}`,
+            });
+          }
+        }
+      }
+      if (!Array.isArray(record.sourcePaths) || record.sourcePaths.length === 0) {
+        violations.push({
+          reason: "invalid_required_record",
+          detail: `${subject} missing sourcePaths`,
+        });
+      } else {
+        for (const sourcePath of record.sourcePaths) {
+          if (!sourcePath.trim() || /^(TBD|TODO|-)$/.test(sourcePath.trim())) {
+            violations.push({
+              reason: "invalid_required_record",
+              detail: `${subject} invalid sourcePath=${sourcePath}`,
+            });
+          }
+        }
+      }
+    });
+  });
 
   return {
     ok: violations.length === 0,

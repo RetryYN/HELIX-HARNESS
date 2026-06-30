@@ -26,7 +26,7 @@
 | Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | current official Scrum Guide page | adopt-current-guide | Sprint Review / inspect-adapt は完了宣言ではなく、PO/S4/Forward gate 判定への入力として扱う | S3 / S4 / G11 / G12 |
 | ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis / test condition / execution evidence / defect routing の用語を右腕 gate vocabulary に固定する | G8-G14 |
 | OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | agentic workflow の過剰自律を防ぎ、人間承認・権限境界・不可逆操作を completion blocker として扱う | G11 / G12 / G13 / G14 |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | deployment / release approval を action-binding な reviewer evidence として扱う | G12 / G13 |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | deployment / release approval を action-binding な reviewer evidence として扱う | G12 / G13 / action-binding approval |
 | VS Code Webview Security | <https://code.visualstudio.com/api/extension-guides/webview#security> | live VS Code API docs | live official VS Code docs | adopt-live-docs-for-webview-risk | Webview / dashboard / screenshot evidence で local resource・script・message 境界を検証対象にする | G10 / G11 |
 | Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback、release process、post-release monitoring を運用 control として扱う | G12 / G13 / G14 |
 
@@ -43,6 +43,22 @@
 | G12 | L3 acceptance test design | release candidate が受入条件を満たす | acceptance command evidence、release approval、rollback/destructive check | PO signoff 必須。外部/本番影響は escalation 境界 |
 | G13 | L12 deployment record | deployed/staging 環境 smoke が通る | smoke command evidence、monitoring quiet window、incident routing if failed | production write は人間承認なしに実行しない |
 | G14 | L1 operational test design + L0 value hypothesis | 運用データ×時間で要求・価値が保たれる | operational metric snapshot、incident/backlog delta、L14→L0 feedback record | 価値検証 feedback。未記録なら「L14 達成」ではない |
+
+### Action-binding approval decision record
+
+G11-G14 または mode activation で本番・外部 API・infra・secret・認証/認可・destructive/state 変更などの
+高影響 action を扱う PLAN は、prose の「承認済み」ではなく `action_binding_approval_record` を持つ。
+これは承認を作業全体へ包括付与するものではなく、actor / tool / target / params / expiry を特定した
+最小権限の実行許可である。
+
+| field | 必須条件 | 意味 |
+|---|---|---|
+| `action_binding_approval_record` | high-impact action を含む PLAN で必須 | action-binding approval の判断単位。無い場合は completion blocker |
+| `approval_policy_or_named_approver` | 常時必須 | `.ut-tdd/config/approval-policy.yaml` の policy ID、または承認した PO / named approver |
+| `approval_scope` | 常時必須 | 承認対象の actor / tool / target / params。範囲外 action は未承認として扱う |
+| `review_approval_evidence` | 常時必須 | 承認前に確認した diff / dry-run / risk review / evidence path |
+| `expires_at_or_trigger` | 常時必須 | 承認が失効する日時、または trigger-bound な再承認条件 |
+| `audit_record` | action 実行前後で必須 | 実施時刻、command/action、approver、result、incident/backlog route |
 
 ### L14 irreversible cutover decision record
 
@@ -70,7 +86,7 @@ Cutover source ledger (checked 2026-06-30):
 | source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |
 |---|---|---|---|---|---|---|
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity / archive / protection traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding deployment approval pattern | `decision_owner`, `approval_scope` |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding deployment approval pattern | `decision_owner`, `approval_policy_or_named_approver`, `approval_scope`, `review_approval_evidence`, `expires_at_or_trigger` |
 | Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback and release process as operational controls | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
 | OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | irreversible agentic actions require constrained authority and human oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
 | SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | cutover artifact, command, builder, and material provenance must be reproducible from audit evidence | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |

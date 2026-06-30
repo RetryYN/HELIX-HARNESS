@@ -83,6 +83,40 @@ describe("completion decision packet lint", () => {
     expect(result.violations.map((v) => v.reason)).toContain("decision_count_mismatch");
   });
 
+  it("rejects decisions without structured required records", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        requiredRecords: [],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("missing_required_records");
+  });
+
+  it("rejects required records without fields or source paths", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        requiredRecords: [
+          {
+            recordName: "s4_decision_record",
+            fields: [],
+            sourcePaths: [],
+          },
+        ],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record");
+  });
+
   // U-OUTSTANDING-003
   it("loads the current repo packet as fresh doctor input", () => {
     const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
