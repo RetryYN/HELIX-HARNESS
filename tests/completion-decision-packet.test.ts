@@ -261,6 +261,31 @@ describe("completion decision packet lint", () => {
     expect(result.violations.map((v) => v.reason)).toContain("invalid_allowed_outcomes_by_record");
   });
 
+  it("U-OUTSTANDING-008: rejects record-level allowed outcomes that drift from the canonical record enum", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        allowedOutcomesByRecord: decision.allowedOutcomesByRecord.map((entry) =>
+          entry.recordName === "s4_decision_record"
+            ? {
+                ...entry,
+                allowedOutcomes: ["confirmed", "pivot", "approve_everything"],
+              }
+            : entry,
+        ),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      reason: "invalid_allowed_outcomes_by_record",
+      detail:
+        "decision[0] s4_decision_record allowedOutcomes mismatch expected=confirmed,pivot,rejected actual=approve_everything,confirmed,pivot",
+    });
+  });
+
   it("rejects decisions whose required records lack record-level workflow routes", () => {
     const packet = {
       ...basePacket(),
@@ -292,6 +317,27 @@ describe("completion decision packet lint", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations.map((v) => v.reason)).toContain("invalid_next_routes_by_record");
+  });
+
+  it("U-OUTSTANDING-008: rejects record-level workflow routes that omit canonical route semantics", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        nextWorkflowRoutesByRecord: decision.nextWorkflowRoutesByRecord.map((entry) =>
+          entry.recordName === "s4_decision_record"
+            ? { ...entry, nextWorkflowRoute: "S4 decide later" }
+            : entry,
+        ),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      reason: "invalid_next_routes_by_record",
+      detail: "decision[0] s4_decision_record route missing guidance=decision_outcome",
+    });
   });
 
   // U-OUTSTANDING-003

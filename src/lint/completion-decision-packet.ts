@@ -265,6 +265,17 @@ export function analyzeCompletionDecisionPacket(
           });
         }
       }
+      const expectedOutcomes = requiredAllowedOutcomes(record.recordName);
+      if (expectedOutcomes) {
+        const actual = [...outcome.allowedOutcomes].sort();
+        const expected = [...expectedOutcomes].sort();
+        if (actual.join("\0") !== expected.join("\0")) {
+          violations.push({
+            reason: "invalid_allowed_outcomes_by_record",
+            detail: `decision[${decisionIndex}] ${record.recordName} allowedOutcomes mismatch expected=${expected.join(",")} actual=${actual.join(",")}`,
+          });
+        }
+      }
       const route = routeRecords.get(record.recordName);
       if (!route) {
         violations.push({
@@ -279,6 +290,15 @@ export function analyzeCompletionDecisionPacket(
           reason: "invalid_next_routes_by_record",
           detail: `decision[${decisionIndex}] ${record.recordName} invalid route=${nextWorkflowRoute}`,
         });
+      }
+      const routeText = nextWorkflowRoute.toLowerCase();
+      for (const expectedGuidance of requiredRouteGuidance(record.recordName)) {
+        if (!routeText.includes(expectedGuidance.toLowerCase())) {
+          violations.push({
+            reason: "invalid_next_routes_by_record",
+            detail: `decision[${decisionIndex}] ${record.recordName} route missing guidance=${expectedGuidance}`,
+          });
+        }
       }
       const template = templateRecords.get(record.recordName);
       if (!template) {
@@ -338,6 +358,54 @@ export function analyzeCompletionDecisionPacket(
     expiresAt,
     violations,
   };
+}
+
+function requiredAllowedOutcomes(recordName: string): string[] | null {
+  switch (recordName) {
+    case "s4_decision_record":
+      return ["confirmed", "rejected", "pivot"];
+    case "activation_decision_record":
+      return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
+    case "parked_review_record":
+      return ["review_scheduled", "mark_stale", "route_to_activation_decision"];
+    case "cutover_decision_record":
+      return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
+    case "action_binding_approval_record":
+      return ["approve_action_binding", "deny_action", "request_scope_reduction"];
+    case "terminal_evidence_record":
+      return ["continue_workflow", "mark_terminal_after_required_evidence"];
+    default:
+      return null;
+  }
+}
+
+function requiredRouteGuidance(recordName: string): string[] {
+  switch (recordName) {
+    case "s4_decision_record":
+      return ["S4 decide", "decision_outcome", "Forward", "rejected backlog", "pivot"];
+    case "activation_decision_record":
+      return ["version-up activation", "add-feature", "Forward", "reject/archive", "review_by"];
+    case "parked_review_record":
+      return [
+        "version-up parked review",
+        "schedule review",
+        "mark stale",
+        "activation_decision_record",
+      ];
+    case "cutover_decision_record":
+      return ["L14 cutover decision", "approve_cutover", "reject/defer", "request runbook changes"];
+    case "action_binding_approval_record":
+      return [
+        "action-binding approval gate",
+        "actor/tool/target/params",
+        "deny action",
+        "reduce scope",
+      ];
+    case "terminal_evidence_record":
+      return ["workflow continuation", "terminal evidence", "green commands"];
+    default:
+      return [];
+  }
 }
 
 function requiredTemplateGuidance(recordName: string): string[] {
