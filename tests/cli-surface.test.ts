@@ -231,6 +231,7 @@ describe("L7 CLI surface closure", () => {
       expect(ready.status).toBe(0);
       const readyPayload = JSON.parse(ready.stdout);
       expect(readyPayload.workflowNextAction).toMatch(/^completion-ready:/);
+      expect(readyPayload.workflowNextActions).toEqual([]);
       expect(readyPayload.outstanding.completionReadiness).toMatchObject({
         ok: true,
         status: "ready",
@@ -252,14 +253,44 @@ describe("L7 CLI surface closure", () => {
         ].join("\n"),
         "utf8",
       );
+      writeFileSync(
+        join(blockedRoot, "docs", "plans", "PLAN-DISCOVERY-07-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-DISCOVERY-07-fixture",
+          "kind: poc",
+          "layer: cross",
+          "status: draft",
+          "workflow_phase: S3",
+          "---",
+          "",
+          "# fixture",
+          "S4 decision_outcome is pending.",
+        ].join("\n"),
+        "utf8",
+      );
 
       const blockedJson = runCliIn(blockedRoot, ["status", "--json"]);
       expect(blockedJson.status).toBe(0);
       const blockedPayload = JSON.parse(blockedJson.stdout);
       expect(blockedPayload.nextAction).toEqual(expect.stringMatching(/^[a-z][a-z-]*: /));
       expect(blockedPayload.workflowNextAction).toContain(
-        "obtain explicit PO signoff before irreversible migration/cutover",
+        "record the PO/S4 decision before promotion, rejection, or Forward merge",
       );
+      expect(blockedPayload.workflowNextActions).toMatchObject([
+        {
+          order: 1,
+          planId: "PLAN-DISCOVERY-07-fixture",
+          reason: "po_decision_pending",
+          decisionKind: "po_s4_decision",
+        },
+        {
+          order: 2,
+          planId: "PLAN-M-02-fixture",
+          reason: "irreversible_migration_pending",
+          decisionKind: "irreversible_migration_signoff",
+        },
+      ]);
       expect(blockedPayload.outstanding.completionReadiness).toMatchObject({
         ok: false,
         status: "blocked",
@@ -275,20 +306,29 @@ describe("L7 CLI surface closure", () => {
           stale: false,
           policy: "decision-packet-freshness.v1",
         },
-        decisionCount: 1,
+        decisionCount: 2,
       });
       expect(blockedPayload.completionDecisionPacket.generatedAt).toEqual(expect.any(String));
       expect(blockedPayload.completionDecisionPacket.freshness.expiresAt).toEqual(
         expect.any(String),
       );
-      expect(blockedPayload.completionDecisionPacket.decisions[0]).toMatchObject({
-        planId: "PLAN-M-02-fixture",
-        decisionKind: "irreversible_migration_signoff",
-      });
+      expect(blockedPayload.completionDecisionPacket.decisions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            planId: "PLAN-DISCOVERY-07-fixture",
+            decisionKind: "po_s4_decision",
+          }),
+          expect.objectContaining({
+            planId: "PLAN-M-02-fixture",
+            decisionKind: "irreversible_migration_signoff",
+          }),
+        ]),
+      );
 
       const blockedText = runCliIn(blockedRoot, ["status"]);
       expect(blockedText.status).toBe(0);
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
+      expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain(
         "decision-packet: ut-tdd completion decision-packet --json",

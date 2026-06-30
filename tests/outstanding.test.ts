@@ -11,6 +11,7 @@ import {
   type OutstandingPlanRow,
   outstandingSummaryLine,
   workflowNextActionForOutstanding,
+  workflowNextActionsForOutstanding,
 } from "../src/lint/outstanding";
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
@@ -620,6 +621,33 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
     expect(workflowNextActionForOutstanding(outstanding)).toBe(
       "completion-blocked: record the PO/S4 decision before promotion, rejection, or Forward merge",
     );
+    expect(workflowNextActionsForOutstanding(outstanding)).toMatchObject([
+      {
+        order: 1,
+        planId: "PLAN-DISCOVERY-07",
+        reason: "po_decision_pending",
+        decisionKind: "po_s4_decision",
+        decisionPacketCommand: "ut-tdd completion decision-packet --json",
+      },
+      {
+        order: 2,
+        planId: "PLAN-L7-146",
+        reason: "version_up_parked",
+        decisionKind: "version_up_activation",
+      },
+      {
+        order: 3,
+        planId: "PLAN-M-02",
+        reason: "irreversible_migration_pending",
+        decisionKind: "irreversible_migration_signoff",
+      },
+    ]);
+  });
+
+  it("returns an empty workflow action queue only when completion is ready", () => {
+    const outstanding = analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], 0);
+
+    expect(workflowNextActionsForOutstanding(outstanding)).toEqual([]);
   });
 });
 

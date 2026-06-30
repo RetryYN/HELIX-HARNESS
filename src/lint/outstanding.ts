@@ -160,6 +160,19 @@ export interface CompletionDecisionPacketOptions {
   sourceCommand?: string;
 }
 
+export interface WorkflowNextActionItem {
+  order: number;
+  planId: string;
+  reason: string;
+  blockers: string[];
+  decisionKind: CompletionDecisionKind;
+  requiredAction: string;
+  requiredActions: string[];
+  requiredEvidence: string[];
+  nextWorkflowRoute: string;
+  decisionPacketCommand: "ut-tdd completion decision-packet --json";
+}
+
 /**
  * 非終端 PLAN の layer 別集計 + version-up parked 分離 + open defer 数を組む純関数。
  * archived と終端 status は未了から除外する。version-up parked は非終端に含めるが別途分離計上する。
@@ -437,26 +450,46 @@ export function workflowNextActionForOutstanding(o: OutstandingWork): string {
   if (readiness.ok) {
     return "completion-ready: run completion claim audit before marking the whole objective complete";
   }
-  const prioritizedReasons = [
+  const prioritizedItem = workflowNextActionsForOutstanding(o)[0];
+  const action =
+    prioritizedItem?.requiredAction ??
+    readiness.requiredActions[0] ??
+    "resolve outstanding blockers before claiming completion";
+  return `completion-blocked: ${action}`;
+}
+
+export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowNextActionItem[] {
+  if (o.completionReadiness.ok) return [];
+  return [...o.items]
+    .sort(
+      (a, b) =>
+        workflowActionRank(a.reason) - workflowActionRank(b.reason) ||
+        a.planId.localeCompare(b.planId),
+    )
+    .map((item, index) => ({
+      order: index + 1,
+      planId: item.planId,
+      reason: item.reason,
+      blockers: item.blockers,
+      decisionKind: decisionKindForOutstandingReason(item.reason),
+      requiredAction: item.requiredAction,
+      requiredActions: item.requiredActions,
+      requiredEvidence: item.requiredEvidence,
+      nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+      decisionPacketCommand: "ut-tdd completion decision-packet --json",
+    }));
+}
+
+function workflowActionRank(reason: string): number {
+  const priority = [
     "po_decision_pending",
     "version_up_parked",
     "irreversible_migration_pending",
     "human_approval_pending",
     "active_draft",
   ];
-  const prioritizedItem = [...o.items].sort((a, b) => {
-    const aRank = prioritizedReasons.indexOf(a.reason);
-    const bRank = prioritizedReasons.indexOf(b.reason);
-    return (
-      (aRank === -1 ? Number.MAX_SAFE_INTEGER : aRank) -
-        (bRank === -1 ? Number.MAX_SAFE_INTEGER : bRank) || a.planId.localeCompare(b.planId)
-    );
-  })[0];
-  const action =
-    prioritizedItem?.requiredAction ??
-    readiness.requiredActions[0] ??
-    "resolve outstanding blockers before claiming completion";
-  return `completion-blocked: ${action}`;
+  const rank = priority.indexOf(reason);
+  return rank === -1 ? Number.MAX_SAFE_INTEGER : rank;
 }
 
 export function completionDecisionPacketForOutstanding(

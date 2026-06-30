@@ -12,6 +12,47 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T03:52:48+09:00"
+    tests_green_at: "2026-07-01T03:52:48+09:00"
+    verdict: pass
+    scope: "Continuation 33: status JSON now exposes workflowNextActions[] as the full ordered blocker queue while preserving workflowNextAction as the top guidance string. Multiple outstanding blockers no longer hide version-up activation, L14 cutover signoff, or action-binding approval behind the first PO/S4 action."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/outstanding.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T03:52:48+09:00"
+        evidence_path: tests/outstanding.test.ts
+        output_digest: "sha256:941cd4ad204ab8956de4914a72a8e6c43f1373d27ad57a708f4591da936fc505"
+      - kind: unit_test
+        command: "bun test tests/outstanding.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T03:52:48+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:2a46a4150f51a19141463a0621e294857cb01d21a73b6ced6637232a4a67a13c"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:52:48+09:00"
+        evidence_path: src/lint/outstanding.ts
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:52:48+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:99000b17dec4889e2708905a9de2b360d60ef4f6b2931c73e96923e2b7abaf33"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:05:00+09:00"
     tests_green_at: "2026-07-01T04:05:00+09:00"
     verdict: pass
@@ -75,7 +116,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:32:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:de02599e11ec285ab1834d4d332223abd365eaea1e83314b7340a33c2df460d0"
+        output_digest: "sha256:99000b17dec4889e2708905a9de2b360d60ef4f6b2931c73e96923e2b7abaf33"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:21:04+09:00"
@@ -108,7 +149,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:20:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:de02599e11ec285ab1834d4d332223abd365eaea1e83314b7340a33c2df460d0"
+        output_digest: "sha256:99000b17dec4889e2708905a9de2b360d60ef4f6b2931c73e96923e2b7abaf33"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T00:32:57+09:00"
@@ -208,7 +249,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:48:01+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:0dd8718f9a7be428f89ccf0ee6d7ae04aa6d0b20f5c7ee95932c93637b9809df"
+        output_digest: "sha256:941cd4ad204ab8956de4914a72a8e6c43f1373d27ad57a708f4591da936fc505"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -224,7 +265,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:48:01+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T19:35:18+09:00"
@@ -432,7 +473,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:01:37+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:d30768d67061ba4cd186a66831f65adc64c16992ccdcbbb4f6e37c82dabf8b9f"
+        output_digest: "sha256:2a46a4150f51a19141463a0621e294857cb01d21a73b6ced6637232a4a67a13c"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -473,7 +514,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
       - kind: lint
         command: "bun run lint && git diff --check"
         runner: bun
@@ -481,7 +522,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:de02599e11ec285ab1834d4d332223abd365eaea1e83314b7340a33c2df460d0"
+        output_digest: "sha256:99000b17dec4889e2708905a9de2b360d60ef4f6b2931c73e96923e2b7abaf33"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:44:15+09:00"
@@ -506,7 +547,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:44:15+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:34:00+09:00"
@@ -531,7 +572,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:34:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:21:00+09:00"
@@ -598,7 +639,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:0dd8718f9a7be428f89ccf0ee6d7ae04aa6d0b20f5c7ee95932c93637b9809df"
+        output_digest: "sha256:941cd4ad204ab8956de4914a72a8e6c43f1373d27ad57a708f4591da936fc505"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -606,7 +647,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:41:37+09:00"
@@ -723,7 +764,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:0dd8718f9a7be428f89ccf0ee6d7ae04aa6d0b20f5c7ee95932c93637b9809df"
+        output_digest: "sha256:941cd4ad204ab8956de4914a72a8e6c43f1373d27ad57a708f4591da936fc505"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -747,7 +788,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -755,7 +796,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -763,7 +804,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:c5e2564df0fe2378c79184c2511f323873e04606754cb7b76f283e3d3236b6f5"
+        output_digest: "sha256:e47139c8fe516723e4f5288069442007011ef3885691afbc17957d6a166ccd60"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -867,6 +908,11 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
 - `completionReadiness`: `nonTerminalPlansTotal` / `openDefers` / `blockersByKind` を全件完了 claim 用に集約し、
   `ready` / `blocked` と required actions を返す。これは doctor health と分離した判定で、doctor green を
   L14 全件達成の代替にしない。
+- `workflowNextActionForOutstanding` / `workflowNextActionsForOutstanding`: status の top action は既存互換の
+  1 行 guidance として維持しつつ、複数 blocker がある場合は `workflowNextActions[]` に PO/S4 decision、
+  version-up activation、L14 cutover signoff、action-binding approval の全 queue を順序付きで返す。
+  各 item は PLAN ID、reason、decision kind、必要 action/evidence、next route、decision packet command を持ち、
+  top 1 件だけで他の blocker が隠れる状態を避ける。
 - `completionDecisionPacketForOutstanding`: `completionReadiness` が blocked のとき、未了 PLAN を
   `po_s4_decision` / `version_up_activation` / `human_action_approval` /
   `irreversible_migration_signoff` / `workflow_continuation` の decision item に変換する。
@@ -954,9 +1000,10 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
 - `loadOutstandingPlanRows(repoRoot)`: docs/plans frontmatter から layer/status (registry を介さず最新値)。
 - `computeOutstandingWork(repoRoot)`: open defer = placeholder-deps `specBackfillWaits` を合成
   (上位仕様確定待ちの正当な carry、threshold は descent-obligation 担当)。I/O 失敗は fail-open。
-- status `--json` に `outstanding` と `completionDecisionPacket` を additive
+- status `--json` に `outstanding` / `workflowNextActions` / `completionDecisionPacket` を additive
   (既存 6 field + nextAction 不変、A-138/PLAN-L7-84 前例)。status text に `outstandingSummaryLine`、
-  `completionReadinessLine`、blocked 時の `ut-tdd completion decision-packet --json` 導線を出す。
+  `completionReadinessLine`、`workflow-next-actions` 件数、blocked 時の
+  `ut-tdd completion decision-packet --json` 導線を出す。
 - `ut-tdd completion decision-packet [--json]` が同じ outstanding 正本から decision packet を出す。
 - handover `runHandover` が CURRENT.json pointer に `outstanding` と同じ生成時点の
   `completionDecisionPacket` (`sourceCommand=ut-tdd handover`) を additive 記録し、`ut-tdd handover status --json`
@@ -1031,7 +1078,7 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   no-concurrent-apply / drift 時再承認条件を cutover 判断前に固定する。
 - [x] open defer (spec-backfill placeholder_deps carry) を集計。
 - [x] status --json / status text / handover CURRENT.json に additive surface (既存契約不変)。blocked status から
-  decision packet へ直接辿れる。
+  decision packet へ直接辿れる。status JSON は `workflowNextActions[]` で全 blocker queue も出す。
 - [x] handover CURRENT.json は `completionDecisionPacket` を持ち、handover 再開時にも required record の
   `recordTemplates` を失わない。
 - [x] doctor `handover-decision-packet` hard gate が、blocked outstanding を持つ旧 CURRENT.json の

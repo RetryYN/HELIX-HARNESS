@@ -56,6 +56,7 @@ import {
   computeOutstandingWork,
   outstandingSummaryLine,
   workflowNextActionForOutstanding,
+  workflowNextActionsForOutstanding,
 } from "./lint/outstanding";
 import {
   analyzeRelationImpact,
@@ -595,6 +596,7 @@ program
     // 「doctor green = 完了」誤読を機械照合可能にする (gate ではない informational surface)。
     const outstanding = computeOutstandingWork(process.cwd());
     const workflowNextAction = workflowNextActionForOutstanding(outstanding);
+    const workflowNextActions = workflowNextActionsForOutstanding(outstanding);
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
       sourceCommand: "ut-tdd status --json",
     });
@@ -602,7 +604,7 @@ program
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, workflowNextAction, outstanding, completionDecisionPacket }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
@@ -610,6 +612,9 @@ program
       );
       process.stdout.write(`next: ${nextAction}\n`);
       process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
+      if (workflowNextActions.length > 0) {
+        process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
+      }
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
       if (!completionDecisionPacket.ok) {
