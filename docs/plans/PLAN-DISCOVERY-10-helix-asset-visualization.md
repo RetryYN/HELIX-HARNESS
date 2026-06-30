@@ -147,6 +147,10 @@ action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
 - approval_policy_or_named_approver: PO action-binding approval is required before any VSCode View/Webview command execution, external API, config mutation, or write-capable action surface is activated.
 - approval_scope: Read-only `ut-tdd progress snapshot --json` rendering is excluded; approval scope is limited to actor/tool/target/params for later command execution, external API/config mutation, or write-capable Webview action surfaces.
+- approved_actor: No actor is approved by this Discovery PLAN; future approval must name the human operator or automation identity before activation.
+- approved_tool: No write-capable tool is approved by this Discovery PLAN; future approval must name the VSCode command/Webview action/CLI wrapper before activation.
+- approved_target: No mutable target is approved by this Discovery PLAN; future approval must name the command target, external API, config file, or Webview action target before activation.
+- approved_params: No params are approved by this Discovery PLAN; future approval must record the command args/config diff/params hash or summary before activation.
 - review_approval_evidence: S3 read-model evidence, L1 §2.8, HOT-P9 L14 pair, VS Code Webview security source, and the L3/L4/L6/L7 split plan must be reviewed before approval.
 - expires_at_or_trigger: Trigger-bound; approval expires before the first L7 prototype action-binding implementation or whenever scope expands beyond read-only visualization.
 - audit_record: No high-impact action is approved or executed by this Discovery PLAN; activation must write approver, scope, command/action, result, and incident/backlog route before execution.

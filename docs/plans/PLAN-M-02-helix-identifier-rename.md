@@ -110,6 +110,10 @@ action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
 - approval_policy_or_named_approver: PO action-binding approval is required before any CLI/bin rename, state dir move, hook/adapter marker rename, or distribution surface cutover is applied.
 - approval_scope: CLI/bin rename, `.ut-tdd` state dir migration, adapter marker/hook rename, docs/governance link rename, and distribution surface only; secret/auth/infra changes are explicitly out of scope.
+- approved_actor: No actor is approved by this draft PLAN; cutover approval must name the human operator or automation identity before apply.
+- approved_tool: No migration tool is approved by this draft PLAN; cutover approval must name the codemod/CLI/script/workflow used for each apply step.
+- approved_target: No irreversible target is approved by this draft PLAN; cutover approval must name the CLI/bin identifiers, state paths, hook/adapter markers, docs/governance paths, and distribution surface.
+- approved_params: No apply params are approved by this draft PLAN; cutover approval must record command args, codemod options, state move mapping, and params hash or summary.
 - review_approval_evidence: Step 1 blast-radius baseline, dry-run plan, rollback/state backup plan, compiled dist smoke, full test, db rebuild, doctor, and legacy alias policy must be reviewed before approval.
 - expires_at_or_trigger: Trigger-bound; approval expires if Step 1-6 evidence changes, branch/head changes, scope expands, or the quiet-window/rollback plan is revised.
 - audit_record: No irreversible cutover is approved or executed by this draft PLAN; apply must write approver, git hash, backup location, commands, results, rollback decision, and monitoring outcome.

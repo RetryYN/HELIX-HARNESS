@@ -67,6 +67,10 @@ action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
 - approval_policy_or_named_approver: PO action-binding approval is required before Cloudflare/GitHub webhook/HMAC/access-control/secret activation; current state is parked, not approved.
 - approval_scope: Cloudflare Pages/Workers/D1/KV, GitHub webhook HMAC, read-only share access control, secret binding, and external infrastructure activation only.
+- approved_actor: No actor is approved while `version_target: future` remains; activation must name the PO-approved human operator or CI/deploy identity.
+- approved_tool: No deploy/config tool is approved while parked; activation must name the Cloudflare/GitHub CLI, workflow, or action wrapper before use.
+- approved_target: No external target is approved while parked; activation must name the Cloudflare project/resources, GitHub webhook/repo, access-control target, and secret binding target.
+- approved_params: No activation params are approved while parked; activation must record the reviewed command args/config diff/env binding names/params hash or summary.
 - review_approval_evidence: `activation_decision_record`, `parked_review_record`, dry-run result, rollback plan, ADR-005 D2, and no-secret/no-prod-write evidence must be reviewed before activation.
 - expires_at_or_trigger: Trigger-bound; approval expires if distribution channel scope, access-control design, secret handling, or Cloudflare/GitHub target changes before activation.
 - audit_record: No external activation is approved or executed while `version_target: future` remains; activation must write approver, action scope, commands, result, and rollback/incident route.

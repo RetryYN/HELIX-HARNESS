@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T16:12:00+09:00"
+    tests_green_at: "2026-06-30T16:12:00+09:00"
+    verdict: pass
+    scope: "Continuation 13: action-binding approval no longer treats approval_scope prose as enough. Records now require approved_actor, approved_tool, approved_target, and approved_params, so high-impact approvals bind the actual execution subject/tool/resource/parameters before activation."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/action-binding-approval-readiness.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T16:12:00+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:3baed204c551da35c28abe4329eb182fc48753e1b8d59ff24afa1829d77c1852"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T16:12:00+09:00"
+        evidence_path: src/lint/action-binding-approval-readiness.ts
+        output_digest: "sha256:c095730fa59a3570bd0773949e5b2f44fb908a4cf2dd845b331476247268a944"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:47:45+09:00"
     tests_green_at: "2026-06-30T15:47:45+09:00"
     verdict: pass
@@ -26,7 +51,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:a0f58be3f6270b7788aea50bdd1c2eb436c770cf96c8a97fc81e65c3b380a213"
+        output_digest: "sha256:838f6d6ebb0fb815defcbe2f441d2567ddd4541a238adfc768b7e88db3e88415"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:fb7d06a05a0d58ea6838ae334c8bed049944f3f96b8bc7e7277354a976fab62e"
+        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:41:37+09:00"
@@ -76,7 +101,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:26:09+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
-        output_digest: "sha256:62f550f238e3021685f21361115f3dbc1a8338022d4d72f9cee1fd509f2e29fb"
+        output_digest: "sha256:3baed204c551da35c28abe4329eb182fc48753e1b8d59ff24afa1829d77c1852"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -84,7 +109,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:26:09+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
-        output_digest: "sha256:c5dc3356b76ab1080689000d01995ae7b1f9c61be36914e89a0b1cf9e2e29e7a"
+        output_digest: "sha256:c095730fa59a3570bd0773949e5b2f44fb908a4cf2dd845b331476247268a944"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:00:21+09:00"
@@ -151,7 +176,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:a0f58be3f6270b7788aea50bdd1c2eb436c770cf96c8a97fc81e65c3b380a213"
+        output_digest: "sha256:838f6d6ebb0fb815defcbe2f441d2567ddd4541a238adfc768b7e88db3e88415"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -175,7 +200,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:fb7d06a05a0d58ea6838ae334c8bed049944f3f96b8bc7e7277354a976fab62e"
+        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -183,7 +208,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:fb7d06a05a0d58ea6838ae334c8bed049944f3f96b8bc7e7277354a976fab62e"
+        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -191,7 +216,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:fb7d06a05a0d58ea6838ae334c8bed049944f3f96b8bc7e7277354a976fab62e"
+        output_digest: "sha256:73a9e9e9f0bbbfdb0c2ec66eec6a056b24df3b4722375b1b9845f16182393331"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -294,8 +319,10 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
 - `src/lint/action-binding-approval-readiness.ts`: high-impact approval / action-binding / human approval を含む
   非終端 PLAN が `action_binding_approval_record` を本文に持つことを doctor hard gate として検査する。
   record は `allowed_outcome`、`approval_policy_or_named_approver`、`approval_scope`、
+  `approved_actor`、`approved_tool`、`approved_target`、`approved_params`、
   `review_approval_evidence`、`expires_at_or_trigger`、`audit_record` を必須にする。これは承認代行ではなく、
-  承認前に actor / tool / target / params / expiry / audit route を固定して prose-only approval を防ぐ gate である。
+  承認前に actor / tool / target / params / expiry / audit route を個別 field として固定して
+  prose-only approval や scope への丸め込みを防ぐ gate である。
 - `src/lint/version-up-readiness.ts`: version-up parked PLAN の activation を plain draft / indefinite future へ戻さない。
   `activation_decision_record` は `target_version_or_release_trigger` と `activation_route` を必須にし、将来版 activation が
   add-feature / Forward のどの route へ戻るかを構造化する。外部 activation は引き続き action-binding approval
@@ -347,6 +374,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   doctor `completion-decision-packet` hard gate が拒否する。
 - [x] doctor `action-binding-approval-readiness` hard gate が、承認待ち PLAN 本文の `action_binding_approval_record`
   欠落や field 欠落を拒否し、completion packet だけに承認境界が残る状態を防ぐ。
+- [x] action-binding approval は `approval_scope` prose だけでは通らず、`approved_actor` / `approved_tool` /
+  `approved_target` / `approved_params` が揃わない承認待ち PLAN を拒否する。
 - [x] doctor `version-up-readiness` hard gate が、version-up parked の activation record から
   `target_version_or_release_trigger` / `activation_route` が落ちる状態を拒否し、将来版保全を無期限 draft に戻さない。
 - [x] doctor `s4-decision-readiness` hard gate が、S4 判断材料の分解不足

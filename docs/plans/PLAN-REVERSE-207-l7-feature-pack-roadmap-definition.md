@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
-        output_digest: "sha256:5c42601a9c23e3e65c20dc83795e027e6c318ec48e7006f19ba40f9878c87230"
+        output_digest: "sha256:ef20cbeecaef706a2220c04023a786d94b8456033ad6ccd6e6966f93829580a6"
       - kind: lint
         command: "bun run lint"
         runner: bun

@@ -11,6 +11,10 @@ const RIGHT_ARM = [
   "allowed_outcome",
   "approval_policy_or_named_approver",
   "approval_scope",
+  "approved_actor",
+  "approved_tool",
+  "approved_target",
+  "approved_params",
   "review_approval_evidence",
   "expires_at_or_trigger",
   "audit_record",
@@ -19,8 +23,8 @@ const RIGHT_ARM = [
 ].join("\n");
 
 const OUTSTANDING = [
-  "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, review_approval_evidence, expires_at_or_trigger, and audit_record",
-  "approval scope binds actor/tool/target/params before activation",
+  "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, expires_at_or_trigger, and audit_record",
+  "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
   "review/approval evidence and expiry or trigger condition recorded before activation",
 ].join("\n");
 
@@ -29,6 +33,10 @@ const RECORD = [
   "- allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`",
   "- approval_policy_or_named_approver: PO approval policy",
   "- approval_scope: actor/tool/target/params for a high-impact action",
+  "- approved_actor: PO-named operator",
+  "- approved_tool: ut-tdd CLI action wrapper",
+  "- approved_target: Cloudflare deployment target",
+  "- approved_params: reviewed command parameters hash",
   "- review_approval_evidence: dry-run and risk review",
   "- expires_at_or_trigger: before activation or scope change",
   "- audit_record: approver/action/result/incident route",
@@ -76,6 +84,10 @@ describe("action-binding approval readiness", () => {
         { subject: "PLAN-X", reason: "missing structured action_binding_approval_record" },
         { subject: "PLAN-X", reason: "missing structured allowed_outcome" },
         { subject: "PLAN-X", reason: "missing structured approval_scope" },
+        { subject: "PLAN-X", reason: "missing structured approved_actor" },
+        { subject: "PLAN-X", reason: "missing structured approved_tool" },
+        { subject: "PLAN-X", reason: "missing structured approved_target" },
+        { subject: "PLAN-X", reason: "missing structured approved_params" },
       ]),
     );
   });

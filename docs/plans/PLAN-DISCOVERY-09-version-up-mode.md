@@ -56,7 +56,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T15:20:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:a0f58be3f6270b7788aea50bdd1c2eb436c770cf96c8a97fc81e65c3b380a213"
+        output_digest: "sha256:838f6d6ebb0fb815defcbe2f441d2567ddd4541a238adfc768b7e88db3e88415"
 ---
 
 # PLAN-DISCOVERY-09 (kind=poc): version-up 駆動モデル

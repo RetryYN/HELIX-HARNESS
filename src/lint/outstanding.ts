@@ -283,8 +283,8 @@ function requiredOutstandingAction(reason: string): {
         requiredAction:
           "record required human/action-binding approval before executing the high-impact action",
         requiredEvidence: [
-          "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, review_approval_evidence, expires_at_or_trigger, and audit_record",
-          "approval scope binds actor/tool/target/params before activation",
+          "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, expires_at_or_trigger, and audit_record",
+          "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
           "review/approval evidence and expiry or trigger condition recorded before activation",
         ],
       };
@@ -627,6 +627,10 @@ function requiredRecordsForOutstandingReason(
             "allowed_outcome",
             "approval_policy_or_named_approver",
             "approval_scope",
+            "approved_actor",
+            "approved_tool",
+            "approved_target",
+            "approved_params",
             "review_approval_evidence",
             "expires_at_or_trigger",
             "audit_record",
