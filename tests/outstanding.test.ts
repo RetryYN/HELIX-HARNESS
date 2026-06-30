@@ -90,6 +90,23 @@ describe("analyzeOutstandingWork", () => {
       ["PLAN-L7-146", "version_up_parked"],
       ["PLAN-M-02", "irreversible_migration_pending"],
     ]);
+    expect(o.items.map((item) => [item.planId, item.requiredAction])).toEqual([
+      [
+        "PLAN-DISCOVERY-10",
+        "record the PO/S4 decision before promotion, rejection, or Forward merge",
+      ],
+      [
+        "PLAN-L7-146",
+        "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
+      ],
+      [
+        "PLAN-M-02",
+        "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+      ],
+    ]);
+    expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toContain(
+      "PO signoff recorded on the migration PLAN",
+    );
   });
 
   it("負の openDefers は 0 にクランプ / 全終端なら total=0", () => {
@@ -204,6 +221,9 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         ["PLAN-FUTURE", "version_up_parked"],
         ["PLAN-S3", "po_decision_pending"],
       ]);
+      expect(o.items[0]?.requiredEvidence).toContain(
+        "version-up activation decision or rejection rationale",
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

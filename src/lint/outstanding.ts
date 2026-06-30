@@ -67,6 +67,10 @@ export interface OutstandingItem {
   versionTarget: string | null;
   reason: string;
   blockers: string[];
+  /** この PLAN を完了/合流へ進める前に必要な次アクション。 */
+  requiredAction: string;
+  /** requiredAction を満たしたと機械照合するために残すべき証跡。 */
+  requiredEvidence: string[];
 }
 
 /**
@@ -89,6 +93,8 @@ export function analyzeOutstandingWork(
     // version-up parked = draft + version_target (landed には schema が付与を禁ずる)。
     if (s === "draft" && (p.versionTarget ?? "").trim().length > 0) versionUpParked++;
     const blockers = classifyOutstandingBlockers(p);
+    const reason = primaryOutstandingReason(blockers);
+    const action = requiredOutstandingAction(reason);
     for (const blocker of blockers) blockersByKind[blocker] = (blockersByKind[blocker] ?? 0) + 1;
     items.push({
       planId: (p.planId ?? "unknown").trim() || "unknown",
@@ -97,8 +103,10 @@ export function analyzeOutstandingWork(
       status: p.status,
       workflowPhase: p.workflowPhase ?? null,
       versionTarget: p.versionTarget ?? null,
-      reason: primaryOutstandingReason(blockers),
+      reason,
       blockers,
+      requiredAction: action.requiredAction,
+      requiredEvidence: action.requiredEvidence,
     });
   }
   // 決定論順 (layer key 昇順) で再構築する (出力安定性)。
@@ -151,6 +159,58 @@ function primaryOutstandingReason(blockers: string[]): string {
     "active_draft",
   ];
   return priority.find((p) => blockers.includes(p)) ?? blockers[0] ?? "active_draft";
+}
+
+function requiredOutstandingAction(reason: string): {
+  requiredAction: string;
+  requiredEvidence: string[];
+} {
+  switch (reason) {
+    case "irreversible_migration_pending":
+      return {
+        requiredAction:
+          "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+        requiredEvidence: [
+          "PO signoff recorded on the migration PLAN",
+          "cutover/audit evidence recorded before terminal status",
+        ],
+      };
+    case "version_up_parked":
+      return {
+        requiredAction:
+          "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
+        requiredEvidence: [
+          "version-up activation decision or rejection rationale",
+          "required external/action-binding approval evidence when activation touches infra/auth/secrets",
+        ],
+      };
+    case "po_decision_pending":
+      return {
+        requiredAction: "record the PO/S4 decision before promotion, rejection, or Forward merge",
+        requiredEvidence: [
+          "decision_outcome recorded in the PLAN",
+          "promotion_strategy or rejection rationale recorded before terminal status",
+        ],
+      };
+    case "human_approval_pending":
+      return {
+        requiredAction:
+          "record required human/action-binding approval before executing the high-impact action",
+        requiredEvidence: [
+          "approval policy or named approver evidence",
+          "review/approval evidence recorded before activation",
+        ],
+      };
+    default:
+      return {
+        requiredAction:
+          "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present",
+        requiredEvidence: [
+          "required generated artifacts are present",
+          "review_evidence and green_commands are recorded before terminal status",
+        ],
+      };
+  }
 }
 
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
