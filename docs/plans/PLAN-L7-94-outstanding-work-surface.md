@@ -12,6 +12,39 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T18:01:37+09:00"
+    tests_green_at: "2026-06-30T18:01:37+09:00"
+    verdict: pass
+    scope: "Continuation 18: handover CURRENT.json now carries completionDecisionPacket from the same outstanding snapshot. Handover resume/status keeps recordTemplates for PO/S4, version-up, cutover, and action-binding decisions instead of only exposing outstanding counts."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/handover.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T18:01:37+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:85b070aa4071e78de5297ab84821036dff6f7e058217cebeae8c581a9eb7653b"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T18:01:37+09:00"
+        evidence_path: src/handover/index.ts
+        output_digest: "sha256:345bdc6246c7ca21d837a0783295d5ab559a14cad939314231b350e745365363"
+      - kind: lint
+        command: "bun run lint && git diff --check"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T18:01:37+09:00"
+        evidence_path: tests/handover.test.ts
+        output_digest: "sha256:47beafa4479e6e79f1b641d252ff63ed1cd69f6604aba839eec506c969b2ba39"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T17:47:32+09:00"
     tests_green_at: "2026-06-30T17:47:32+09:00"
     verdict: pass
@@ -26,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:64b7c1565c7e64dbd27ad4f41fcaf49ca5fd37a84edf1e42fda875cfcd9ec3c0"
+        output_digest: "sha256:8c0dea69dc65a628b3d1351941b75736375c9aa7e41772a45446ea3125f125b6"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -59,7 +92,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:44:15+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:64b7c1565c7e64dbd27ad4f41fcaf49ca5fd37a84edf1e42fda875cfcd9ec3c0"
+        output_digest: "sha256:8c0dea69dc65a628b3d1351941b75736375c9aa7e41772a45446ea3125f125b6"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -84,7 +117,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:34:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:64b7c1565c7e64dbd27ad4f41fcaf49ca5fd37a84edf1e42fda875cfcd9ec3c0"
+        output_digest: "sha256:8c0dea69dc65a628b3d1351941b75736375c9aa7e41772a45446ea3125f125b6"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -234,7 +267,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:00:21+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:64b7c1565c7e64dbd27ad4f41fcaf49ca5fd37a84edf1e42fda875cfcd9ec3c0"
+        output_digest: "sha256:8c0dea69dc65a628b3d1351941b75736375c9aa7e41772a45446ea3125f125b6"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -242,7 +275,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:00:21+09:00"
         evidence_path: src/lint/completion-decision-packet.ts
-        output_digest: "sha256:a6937c6dd3bd942ede71918c55beabea9c1ff1b8a3be428a45a08d46084d9994"
+        output_digest: "sha256:c141903cf0c80db8cc97949e2b958d266ee55a8beb83e220cff4945d6a1eb478"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:53:25+09:00"
@@ -292,7 +325,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T13:00:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:64b7c1565c7e64dbd27ad4f41fcaf49ca5fd37a84edf1e42fda875cfcd9ec3c0"
+        output_digest: "sha256:8c0dea69dc65a628b3d1351941b75736375c9aa7e41772a45446ea3125f125b6"
       - kind: unit_test
         command: "bun run vitest run tests/cutover-readiness.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --run"
         runner: bun
@@ -460,7 +493,9 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   (既存 6 field + nextAction 不変、A-138/PLAN-L7-84 前例)。status text に `outstandingSummaryLine`、
   `completionReadinessLine`、blocked 時の `ut-tdd completion decision-packet --json` 導線を出す。
 - `ut-tdd completion decision-packet [--json]` が同じ outstanding 正本から decision packet を出す。
-- handover `runHandover` が CURRENT.json pointer に `outstanding` を additive 記録。
+- handover `runHandover` が CURRENT.json pointer に `outstanding` と同じ生成時点の
+  `completionDecisionPacket` (`sourceCommand=ut-tdd handover`) を additive 記録し、`ut-tdd handover status --json`
+  から再開時にも recordTemplates を含む PO/S4・version-up・cutover・action-binding 判断 packet を読める。
 
 Source ledger (checked 2026-06-30):
 
@@ -511,6 +546,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
 - [x] open defer (spec-backfill placeholder_deps carry) を集計。
 - [x] status --json / status text / handover CURRENT.json に additive surface (既存契約不変)。blocked status から
   decision packet へ直接辿れる。
+- [x] handover CURRENT.json は `completionDecisionPacket` を持ち、handover 再開時にも required record の
+  `recordTemplates` を失わない。
 - [x] informational surface = 非 fail-close (gate ではない、doctor.ok に連動させない)。
 - [x] test 15 ケース (analyze 5 / completion readiness 2 / decision packet 3 / summaryLine 2 / loader+compute 3)、
   completion-decision-packet 12 ケース、action-binding approval readiness 3 ケース、S4 readiness 7 ケース、cutover readiness 6 ケース。typecheck / Biome /

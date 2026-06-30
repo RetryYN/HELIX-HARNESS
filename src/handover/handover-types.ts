@@ -1,4 +1,4 @@
-import type { OutstandingWork } from "../lint/outstanding";
+import type { CompletionDecisionPacket, OutstandingWork } from "../lint/outstanding";
 import type { PlanDigest } from "../runtime/session-log";
 
 type HandoverStatus = "in_progress" | "completed";
@@ -17,6 +17,7 @@ interface HandoverPointer {
   generated_by?: string;
   doc_entry_count?: number;
   outstanding?: OutstandingWork;
+  completionDecisionPacket?: CompletionDecisionPacket;
 }
 
 interface HandoverDoc {

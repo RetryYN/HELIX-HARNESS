@@ -76,6 +76,8 @@ interface HandoverPointer {
   latest_doc: string | null;   // docs/handover/session-handover-<date>.md への相対 path
   digest_summary: { commits: number; files: number; failures: number } | null;
   updated_at: string;          // ISO8601 (stale 判定の基準)
+  outstanding?: OutstandingWork;
+  completionDecisionPacket?: CompletionDecisionPacket;
 }
 
 // markdown 1 entry の論理内容
@@ -112,11 +114,11 @@ interface HandoverResult {
 | `scaffoldFromDigests` | `(digests: PlanDigestRef[], planMeta: {plan_id;kind;title}[], date: string) => HandoverDoc` | **純関数**。digest.commits/files_touched → `deliverables` / planMeta.kind/title → `plans.summary` / **③-⑥ は空配列** (human 記入のため scaffold では生成しない) |
 | `renderHandoverScaffold` | `(doc: HandoverDoc) => string` | **純関数**。`# Session Handover — <date>` + §0..§6 相当の 6 セクション markdown を render / 機械部 (①②) は埋め、③-⑥ は `<!-- TODO(human): ... -->` placeholder / **自由テキスト欄 (`plans[].summary` / `deliverables[].*` / digest 由来 failures) は session-log の `sanitize` を render 時にも適用する (defense-in-depth)**。tracked な `docs/handover/*.md` に commit されるため、digest 側 sanitize 済でも render 段で再マスクして credential/PII の流出経路をゼロにする (二重 sanitize は冪等、`SECRET_RE` は `name=value` を `name=***` に) |
 | `handoverStale` | `(updated_at: string\|null, now: string, maxHours = 24) => boolean` | **純関数**。precondition: `now`/`updated_at` は ISO8601 (`Date.parse` 可能、UTC 推奨)。`updated_at` 無し/parse 不能 → true / `(Date.parse(now) - Date.parse(updated_at)) / 3.6e6 > maxHours` → true / 以内 → false / **境界 (=maxHours ちょうど) は `>` 判定ゆえ stale でない**。**辞書順比較でなく数値差分で判定** (TZ 混入時の silent wrong answer 回避) |
-| `readPointer` | `(deps: { repoRoot; readText }) => HandoverPointer \| null` | `.ut-tdd/handover/CURRENT.json` を read-only に読む。**不在 / parse 不能 / I/O 失敗は null**、正常 JSON は object を返す。`ut-tdd handover status --json` は通常 handover の status envelope を返す: missing は `exists:false, stale:false, stale_reasons:[]` + exit 0、parse 不能は `exists:true, stale:true, stale_reasons:["CURRENT.json is unreadable or invalid"]` + exit 1、正常 pointer は `exists:true` と `handoverStale(updated_at, now)` 由来の `stale/stale_reasons` を additive に付ける。status preflight は read-only であり、CURRENT.json や markdown scaffold を生成しない |
+| `readPointer` | `(deps: { repoRoot; readText }) => HandoverPointer \| null` | `.ut-tdd/handover/CURRENT.json` を read-only に読む。**不在 / parse 不能 / I/O 失敗は null**、正常 JSON は object を返す。`ut-tdd handover status --json` は通常 handover の status envelope を返す: missing は `exists:false, stale:false, stale_reasons:[]` + exit 0、parse 不能は `exists:true, stale:true, stale_reasons:["CURRENT.json is unreadable or invalid"]` + exit 1、正常 pointer は `exists:true` と `handoverStale(updated_at, now)` 由来の `stale/stale_reasons` を additive に付ける。status preflight は read-only であり、CURRENT.json や markdown scaffold を生成しない。`outstanding` が blocked の場合、pointer は同じ生成時点の `completionDecisionPacket` (`sourceCommand="ut-tdd handover"`) を保持し、再開時に PO/S4・version-up・cutover・action-binding record template を失わない |
 | `writePointer` | `(pointer: HandoverPointer, deps: { repoRoot; writeText }) => void` | `.ut-tdd/handover/CURRENT.json` を **JSON 上書き** (単一機械ポインタ、append しない)。失敗は呼び出し側 (CLI) が warn |
 | `setActivePlan` | `(planId: string\|null, deps: { repoRoot; writeText; removeFile? }) => void` | `.ut-tdd/state/current-plan` を書く (`resolveActivePlan` 読取先と同一)。**`planId!==null` → planId を書く / `planId===null` かつ `removeFile` 有 → file 削除 / `planId===null` かつ `removeFile` 無 → `writeText` で空文字を書く** (`resolveActivePlan` L126-127 は空文字を `trim()` で falsy 判定し branch fallback→null へ落とすため、空文字書込でも実質 clear になる)。deps は `SessionLogDeps` の subset (repoRoot/writeText) ゆえ amendment 経路でアダプタ不要 |
 | `inferPlanFromCommit` | `(commitMessage: string) => string\|null` | **純関数**。`/PLAN-(?:L(?:[0-9]\|1[0-4])\|DISCOVERY\|REVERSE\|RECOVERY\|M)-\d{2}(?:-[a-z0-9-]+)?/` の最初の一致を返す / 無ければ null |
-| `runHandover` | `(args: HandoverArgs, deps: { repoRoot; readText; writeText; listDir; now }) => HandoverResult` | orchestration。`resolveHandoverScope` → `scaffoldFromDigests` → `renderHandoverScaffold` → md **追記/新規** (`args.dryRun` は書かず `content` を返す) → `buildPointer`+`writePointer`。**`args.complete` → `buildPointer` に `status="completed"` と `active_plan = args.planId ?? scope.active_plan` を渡し CURRENT.json に completed を書く** (それ以外は `status="in_progress"`)。**dry-run 非破壊 (`written=[]`) / 既存 md は追記し上書きしない / CURRENT.json は単一上書き** |
+| `runHandover` | `(args: HandoverArgs, deps: { repoRoot; readText; writeText; listDir; now }) => HandoverResult` | orchestration。`resolveHandoverScope` → `scaffoldFromDigests` → `renderHandoverScaffold` → md **追記/新規** (`args.dryRun` は書かず `content` を返す) → `buildPointer`+`writePointer`。**`args.complete` → `buildPointer` に `status="completed"` と `active_plan = args.planId ?? scope.active_plan` を渡し CURRENT.json に completed を書く** (それ以外は `status="in_progress"`)。CURRENT.json には `outstanding` と、同じ `now` / `outstanding` から生成した `completionDecisionPacket` を additive に書く。**dry-run 非破壊 (`written=[]`) / 既存 md は追記し上書きしない / CURRENT.json は単一上書き** |
 
 I/O deps は session-log.ts `SessionLogDeps` (repoRoot / readText / writeText / listDir) と同型注入。決定論的テストのため `now` を注入する (`Date.now`/`new Date` を関数内で直接呼ばない)。`renderHandoverScaffold` の sanitize は session-log の `export function sanitize` を再利用する (新規実装しない)。
 
@@ -138,7 +140,7 @@ if (isCommit) {
 
 | 対象 | path | tracked? | 役割 |
 |------|------|----------|------|
-| 機械ポインタ | `.ut-tdd/handover/CURRENT.json` | gitignored | active PLAN / status / 最新 doc / digest 要約 (機械可読 SSoT)。CLAUDE.md ワークフロー参照先 |
+| 機械ポインタ | `.ut-tdd/handover/CURRENT.json` | gitignored | active PLAN / status / 最新 doc / digest 要約 / outstanding / completion decision packet (機械可読 SSoT)。CLAUDE.md ワークフロー参照先 |
 | チーム記録 | `docs/handover/session-handover-<date>[suffix].md` | tracked | 人間判断 durable (既存運用を scaffold で augment) |
 | 活性化 state | `.ut-tdd/state/current-plan` | gitignored | `resolveActivePlan` の入力 (Gap B) |
 | digest 入力 | `.ut-tdd/logs/plan/<id>.digest.json` | gitignored | session-log onStop 生成 (活性化後に初 populate) |

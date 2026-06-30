@@ -13,7 +13,11 @@
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { computeOutstandingWork, outstandingSummaryLine } from "../lint/outstanding";
+import {
+  completionDecisionPacketForOutstanding,
+  computeOutstandingWork,
+  outstandingSummaryLine,
+} from "../lint/outstanding";
 import {
   activePlanStale,
   inferPlanFromCommit,
@@ -742,15 +746,22 @@ export function runHandover(args: HandoverArgs, deps: HandoverDeps): HandoverRes
   // §5 を機械事実 (outstanding) で seed することで「前任 prose の転記」由来の false-state を機械が
   // 上書きする (§5 は handover で唯一機械裏付け不在だった = 実在しない PO 判断が残る根因)。
   const outstanding = computeOutstandingWork(deps.repoRoot);
+  const now = deps.now();
+  const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
+    generatedAt: now,
+    now,
+    sourceCommand: "ut-tdd handover",
+  });
   const content = renderHandoverScaffold(doc, { slimSummary: bounded != null, outstanding });
   const next = bounded ? `${bounded.replace(/\s*$/, "")}\n\n---\n\n${content}\n` : `${content}\n`;
   // IMP-078 gap①: generated_by 署名 + entry 数を刻む (手書き bypass を checkHandoverBypass が検知できる)。
   const pointer: HandoverPointer = {
-    ...buildPointer({ scope: effectiveScope, latestDoc: docRel, status, now: deps.now() }),
+    ...buildPointer({ scope: effectiveScope, latestDoc: docRel, status, now }),
     generated_by: GENERATED_BY,
     doc_entry_count: countHandoverEntries(next),
     // IMP-139: 未了の正の集計を CURRENT.json へ additive 記録 (session 再開時に「完了主張」を機械照合可能に)。
     outstanding,
+    completionDecisionPacket,
   };
 
   const written: string[] = [];

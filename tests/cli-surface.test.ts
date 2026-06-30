@@ -113,6 +113,13 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         status: "ready",
       });
+      expect(payload.completionDecisionPacket).toMatchObject({
+        ok: true,
+        status: "ready",
+        generatedFrom: "outstanding.completionReadiness",
+        sourceCommand: "ut-tdd handover",
+        decisionCount: 0,
+      });
 
       const text = runCliIn(root, ["handover", "status"]);
       expect(text.status).toBe(0);
@@ -134,6 +141,67 @@ describe("L7 CLI surface closure", () => {
         stale: true,
       });
       expect(stalePayload.stale_reasons[0]).toContain("updated_at is older than 24h");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("exposes completion decision packet templates through handover status JSON", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-packet-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-M-02-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-M-02-fixture",
+          "kind: design",
+          "layer: L14",
+          "status: draft",
+          "---",
+          "",
+          "# fixture",
+          "irreversible cutover requires PO signoff and action-binding approval.",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const generated = runCliIn(root, ["handover", "--plan", "PLAN-M-02-fixture"]);
+      expect(generated.status).toBe(0);
+
+      const json = runCliIn(root, ["handover", "status", "--json"]);
+      expect(json.status).toBe(0);
+      const payload = JSON.parse(json.stdout);
+      expect(payload.outstanding.completionReadiness).toMatchObject({
+        ok: false,
+        status: "blocked",
+      });
+      expect(payload.completionDecisionPacket).toMatchObject({
+        ok: false,
+        status: "blocked",
+        generatedFrom: "outstanding.completionReadiness",
+        sourceCommand: "ut-tdd handover",
+        decisionCount: 1,
+      });
+      expect(payload.completionDecisionPacket.decisions[0]).toMatchObject({
+        planId: "PLAN-M-02-fixture",
+        decisionKind: "irreversible_migration_signoff",
+      });
+      expect(payload.completionDecisionPacket.decisions[0].recordTemplates).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            recordName: "cutover_decision_record",
+            yamlLines: expect.arrayContaining([
+              "cutover_decision_record:",
+              '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
+            ]),
+          }),
+          expect.objectContaining({
+            recordName: "action_binding_approval_record",
+            yamlLines: expect.arrayContaining(["action_binding_approval_record:"]),
+          }),
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

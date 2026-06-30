@@ -48,7 +48,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:10:36+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:927de636be289167e5bf36a1bc6c14faf311fe18761164b31a66e7c6e75eb7fa"
+        output_digest: "sha256:47beafa4479e6e79f1b641d252ff63ed1cd69f6604aba839eec506c969b2ba39"
       - kind: unit_test
         command: "bun run vitest run tests\\handover-completion-wording.test.ts --reporter=dot"
         runner: bun
@@ -64,7 +64,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:16:58+09:00"
         evidence_path: src/handover/index.ts
-        output_digest: "sha256:8284061b8e1dcc8e089b784f51f39f32cbd91ddfeb3452d8a96a07f54158bc25"
+        output_digest: "sha256:345bdc6246c7ca21d837a0783295d5ab559a14cad939314231b350e745365363"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -72,7 +72,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:16:49+09:00"
         evidence_path: src/handover/handover-types.ts
-        output_digest: "sha256:ac848a981e1843998d9a219a8209a4458195b89bc1c4bfe90dfd3696163c5160"
+        output_digest: "sha256:012fc748fc8deadc8a362165cf82d3682e41042b3d1d206ac637b3e8e3b9f282"
     notes:
       - "bun run vitest run tests\\doctor.test.ts timed out before test output in this environment; retained as residual verification risk and covered by subsequent doctor CLI gate."
 ---

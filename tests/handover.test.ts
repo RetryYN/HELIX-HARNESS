@@ -684,6 +684,29 @@ describe("U-HOVER-007 runHandover", () => {
     expect(r.written).toContain(join(".ut-tdd", "handover", "CURRENT.json"));
   });
 
+  it("CURRENT.json に handover 生成時点の completionDecisionPacket を記録する", () => {
+    const deps = seeded();
+    const r = runHandover({ date: "2026-06-04" }, deps);
+    expect(r.pointer.completionDecisionPacket).toMatchObject({
+      ok: true,
+      status: "ready",
+      generatedFrom: "outstanding.completionReadiness",
+      generatedAt: NOW,
+      sourceCommand: "ut-tdd handover",
+      freshness: {
+        validForMinutes: 1440,
+        expiresAt: "2026-06-05T00:00:00.000Z",
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
+      decisionCount: 0,
+      blockers: [],
+      decisions: [],
+    });
+    const pointer = JSON.parse(deps.files.get(pointerPath) ?? "{}");
+    expect(pointer.completionDecisionPacket.sourceCommand).toBe("ut-tdd handover");
+  });
+
   it("complete=true → CURRENT.json status=completed かつ active_plan=planId", () => {
     const deps = seeded();
     runHandover(

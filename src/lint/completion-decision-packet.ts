@@ -43,6 +43,7 @@ export interface CompletionDecisionPacketLintResult {
 
 const POLICY = "decision-packet-freshness.v1";
 const ALLOWED_SOURCE_COMMANDS = new Set([
+  "ut-tdd handover",
   "ut-tdd status --json",
   "ut-tdd completion decision-packet --json",
 ]);

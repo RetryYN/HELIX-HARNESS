@@ -27,7 +27,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-24T19:20:00+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:927de636be289167e5bf36a1bc6c14faf311fe18761164b31a66e7c6e75eb7fa"
+        output_digest: "sha256:47beafa4479e6e79f1b641d252ff63ed1cd69f6604aba839eec506c969b2ba39"
   - reviewer: codex-gpt-5.x
     review_kind: cross_agent
     reviewed_at: "2026-06-24T19:40:00+09:00"
@@ -44,7 +44,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-24T19:20:00+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:927de636be289167e5bf36a1bc6c14faf311fe18761164b31a66e7c6e75eb7fa"
+        output_digest: "sha256:47beafa4479e6e79f1b641d252ff63ed1cd69f6604aba839eec506c969b2ba39"
 agent_slots:
   - role: tl
     slot_label: "TL — handover 生成器 path relativize + home-mask"
