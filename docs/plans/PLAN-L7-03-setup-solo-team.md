@@ -40,6 +40,47 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T04:45:00+09:00"
+    tests_green_at: "2026-07-01T04:45:00+09:00"
+    verdict: approve
+    scope: "Continuation: HELIX project setup now distinguishes target command naming from current command availability. `futureCommand=helix setup project` remains a post-cutover target, while `commandAvailability.futureCommandAvailable=false` and `enablementPacketCommand=ut-tdd rename plan --json` prevent setup output from implying the helix package/bin alias is active before PLAN-M-02 cutover/action-binding approval."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T04:45:00+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T04:45:00+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T04:45:00+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:2136dae1452fd306be4885951da21eec85ef4821b2c70844999147ba720990c7"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T04:45:00+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:adcaf0a35af15962da14931847dd43fa3e7dc56b06c9c00ec42fe2b8be80057f"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:40:56+09:00"
     tests_green_at: "2026-07-01T03:40:56+09:00"
     verdict: approve
@@ -54,7 +95,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:b598c52e4a03d5fb1e35b4b24e75f98a769ec23451754c0770ee9a24c181d8bf"
+        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -62,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:371b4530032fd40b5cbd90e61955b7cb361433e5227a8dd0d39b605b389a564f"
+        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -70,7 +111,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:471aa3e7b08f123899eeeb765acd97c426c05d96bf475a96215a19fc8435c489"
+        output_digest: "sha256:2136dae1452fd306be4885951da21eec85ef4821b2c70844999147ba720990c7"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
@@ -87,7 +128,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:b598c52e4a03d5fb1e35b4b24e75f98a769ec23451754c0770ee9a24c181d8bf"
+        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -95,7 +136,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:371b4530032fd40b5cbd90e61955b7cb361433e5227a8dd0d39b605b389a564f"
+        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -103,7 +144,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:471aa3e7b08f123899eeeb765acd97c426c05d96bf475a96215a19fc8435c489"
+        output_digest: "sha256:2136dae1452fd306be4885951da21eec85ef4821b2c70844999147ba720990c7"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装

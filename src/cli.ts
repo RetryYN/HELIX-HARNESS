@@ -3512,6 +3512,9 @@ setupCommand
       `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,
     );
     process.stdout.write(
+      `command-availability: ${r.commandAvailability.currentCommand} available=${r.commandAvailability.currentCommandAvailable}; ${r.commandAvailability.futureCommand} available=${r.commandAvailability.futureCommandAvailable} (${r.commandAvailability.enablementPacketCommand})\n`,
+    );
+    process.stdout.write(
       `branch-protection: ${
         r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
       }\n`,

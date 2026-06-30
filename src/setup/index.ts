@@ -111,6 +111,15 @@ export interface HelixProjectSetupResult extends SetupResult {
     cutoverPlanCommand: "ut-tdd rename plan --json";
     reason: string;
   };
+  commandAvailability: {
+    currentCommand: "ut-tdd setup project";
+    currentCommandAvailable: true;
+    futureCommand: "helix setup project";
+    futureCommandAvailable: false;
+    enablementStatus: "blocked_pending_cutover_approval";
+    enablementPacketCommand: "ut-tdd rename plan --json";
+    reason: string;
+  };
   nextCommands: string[];
 }
 
@@ -780,6 +789,16 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       cutoverPlanCommand: "ut-tdd rename plan --json",
       reason:
         "PLAN-M-02 cutover/action-binding approval is required before setup may switch generated state from .ut-tdd to .helix.",
+    },
+    commandAvailability: {
+      currentCommand: "ut-tdd setup project",
+      currentCommandAvailable: true,
+      futureCommand: "helix setup project",
+      futureCommandAvailable: false,
+      enablementStatus: "blocked_pending_cutover_approval",
+      enablementPacketCommand: "ut-tdd rename plan --json",
+      reason:
+        "The helix command name is a post-cutover target; package/bin alias activation requires PLAN-M-02 cutover/action-binding approval.",
     },
     nextCommands: [
       "ut-tdd status --json",

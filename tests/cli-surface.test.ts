@@ -549,6 +549,14 @@ describe("L7 CLI surface closure", () => {
         mustNotApply: true,
         cutoverPlanCommand: "ut-tdd rename plan --json",
       },
+      commandAvailability: {
+        currentCommand: "ut-tdd setup project",
+        currentCommandAvailable: true,
+        futureCommand: "helix setup project",
+        futureCommandAvailable: false,
+        enablementStatus: "blocked_pending_cutover_approval",
+        enablementPacketCommand: "ut-tdd rename plan --json",
+      },
     });
     expect(payload.written).toEqual(
       expect.arrayContaining([
@@ -559,6 +567,12 @@ describe("L7 CLI surface closure", () => {
     );
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
+    );
+
+    const text = runCli(["setup", "project", "--dry-run"]);
+    expect(text.status).toBe(0);
+    expect(text.stdout).toContain(
+      "command-availability: ut-tdd setup project available=true; helix setup project available=false",
     );
   }, 15_000);
 

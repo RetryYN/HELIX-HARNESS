@@ -538,8 +538,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         mustNotApply: true,
         cutoverPlanCommand: "ut-tdd rename plan --json",
       },
+      commandAvailability: {
+        currentCommand: "ut-tdd setup project",
+        currentCommandAvailable: true,
+        futureCommand: "helix setup project",
+        futureCommandAvailable: false,
+        enablementStatus: "blocked_pending_cutover_approval",
+        enablementPacketCommand: "ut-tdd rename plan --json",
+      },
     });
     expect(preview.identifierTransition.reason).toContain("PLAN-M-02");
+    expect(preview.commandAvailability.reason).toContain("package/bin alias activation");
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
     expect(preview.nextCommands).toEqual(
