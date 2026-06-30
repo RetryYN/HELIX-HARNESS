@@ -35,7 +35,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadReviewPlans } from "./review-evidence";
-import { normalizePath } from "./shared";
+import { fmValue, normalizePath } from "./shared";
 
 // review-evidence gate との scope 差は意図的 (別関心、reviewer I-1/I-2):
 //   - 本 gate = **status 正確性**の強制 = 「出荷物を merge したら PLAN を draft のままにするな」。
@@ -58,6 +58,8 @@ export interface MergedPlanRow {
   planId: string;
   status: string;
   kind: string;
+  workflowPhase?: string | null;
+  hasReviewEvidence?: boolean;
   /** generates の deliverable (src/ tests/ scripts/ .claude/) のうち repo に実在する (= merged) パス集合。 */
   mergedArtifacts: string[];
 }
@@ -82,10 +84,24 @@ export interface MergedPlanStatusResult {
  */
 export function analyzeMergedPlanStatus(input: MergedPlanStatusInput): MergedPlanStatusResult {
   const violations = input.plans
-    .filter((p) => !CONFIRMED_STATUSES.has(p.status.toLowerCase()) && p.mergedArtifacts.length > 0)
+    .filter(
+      (p) =>
+        !CONFIRMED_STATUSES.has(p.status.toLowerCase()) &&
+        p.mergedArtifacts.length > 0 &&
+        !isS3VerifiedPocPendingDecision(p),
+    )
     .map((p) => ({ planId: p.planId, status: p.status, artifacts: p.mergedArtifacts }))
     .sort((a, b) => a.planId.localeCompare(b.planId));
   return { violations, ok: violations.length === 0 };
+}
+
+function isS3VerifiedPocPendingDecision(p: MergedPlanRow): boolean {
+  return (
+    p.kind === "poc" &&
+    p.status === "draft" &&
+    p.workflowPhase === "S3" &&
+    p.hasReviewEvidence === true
+  );
 }
 
 interface PlanFrontmatterGenerates {
@@ -132,6 +148,8 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
       planId: rp.plan_id,
       status: rp.status,
       kind: rp.kind,
+      workflowPhase: fmValue(content, "workflow_phase") ?? null,
+      hasReviewEvidence: rp.hasEvidence,
       mergedArtifacts,
     });
   }

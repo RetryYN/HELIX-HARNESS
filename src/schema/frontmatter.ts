@@ -279,6 +279,19 @@ export const frontmatterSchema = frontmatterBaseSchema.superRefine((fm, ctx) => 
       message: "kind=poc + S4 は decision_outcome 必須 (§1.1 / §1.2.2)",
     });
   }
+  // Discovery/Scrum の terminal 宣言は S4 decision 後のみ。S0-S3 の検証途中で confirmed/completed にしない。
+  if (
+    fm.kind === "poc" &&
+    (fm.status === "confirmed" || fm.status === "completed") &&
+    fm.workflow_phase !== "S4"
+  ) {
+    ctx.addIssue({
+      code: custom,
+      path: ["workflow_phase"],
+      message:
+        "kind=poc の confirmed/completed は workflow_phase=S4 + decision_outcome 後のみ (§1.2.2)",
+    });
+  }
 
   // §3.3: kind=reverse → confirmed_reverse_type 必須
   if (fm.kind === "reverse" && !fm.confirmed_reverse_type) {

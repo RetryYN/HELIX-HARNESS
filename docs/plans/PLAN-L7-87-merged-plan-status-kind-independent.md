@@ -93,6 +93,10 @@ status drift を解消した (各 PLAN の review_evidence に記録):
   条件は `status 非 confirm` かつ `mergedArtifacts.length > 0` のみ (deliverable-driven)。
 - `ARTIFACT_KINDS` 定数を削除。`mergedArtifacts` は既に出荷物ルート (`DELIVERABLE_ROOTS`)
   の **実在** artifact に filter 済なので、kind は冗長かつ有害 (過小検出) だった。
+- 2026-06-30 補正: `kind=poc` / `workflow_phase=S3` / `status=draft` / `review_evidence` ありは
+  **S3 verified but S4 PO decision pending** として merged-plan-status では terminal 化を強制しない。
+  これは green ではなく `outstanding` に残す状態であり、S3 以外・review_evidence なし・通常 impl/add-design の
+  draft-with-merged-deliverable は従来どおり violation。
 - docstring / 型コメント / review-evidence gate との関心分離コメントを deliverable-driven
   表現へ整合 (誤誘導コメント残債を残さない)。`MergedPlanRow.kind` は情報用に温存。
 
@@ -100,6 +104,8 @@ status drift を解消した (各 PLAN の review_evidence に記録):
 
 - [x] draft の PLAN が merged 出荷物 (src/tests/scripts/.claude) を持つと、**kind を問わず**
       violation になる (poc / add-design / design / impl / add-impl / refactor)。
+- [x] 例外は S3 verified PoC draft (`kind=poc` + `workflow_phase=S3` + `review_evidence` あり) のみ。
+      これは S4 decision pending として outstanding に残し、merged-plan-status は terminal 化を強制しない。
 - [x] deliverable が未 merge の draft PLAN は kind を問わず violation にならない (真に作業中)。
 - [x] PLAN 自身の `docs/` artifact / `.ut-tdd/` 生成状態は merged-deliverable に計上しない。
 - [x] 先行解消した 3 件 (DISCOVERY-05 / L3-04 / L3-05) は confirmed ゆえ violation にならない。

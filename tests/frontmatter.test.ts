@@ -120,6 +120,15 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
         decision_outcome: "confirmed",
       }).success,
     ).toBe(true);
+    // S0-S3 のまま confirmed/completed は fail。S4 decision 前の terminal 化を禁止する。
+    expect(
+      frontmatterSchema.safeParse({
+        ...pocBase,
+        status: "confirmed",
+        workflow_phase: "S3",
+        scrum_type: "design-spike",
+      }).success,
+    ).toBe(false);
     // S4 + decision_outcome ありでも scrum_type 欠落は fail (§3.5)
     expect(
       frontmatterSchema.safeParse({

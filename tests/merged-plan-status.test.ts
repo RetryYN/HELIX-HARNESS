@@ -55,6 +55,46 @@ describe("analyzeMergedPlanStatus", () => {
     expect(r.violations.map((v) => v.planId)).toEqual(["PLAN-AD", "PLAN-DS", "PLAN-POC"]);
   });
 
+  it("does not flag S3 verified PoC draft with review evidence; it remains outstanding until S4 decision", () => {
+    const r = analyzeMergedPlanStatus({
+      plans: [
+        {
+          planId: "PLAN-POC-S3",
+          status: "draft",
+          kind: "poc",
+          workflowPhase: "S3",
+          hasReviewEvidence: true,
+          mergedArtifacts: ["src/spike.ts"],
+        },
+      ],
+    });
+    expect(r.ok).toBe(true);
+  });
+
+  it("still flags merged PoC draft when it is not S3 verified with review evidence", () => {
+    const r = analyzeMergedPlanStatus({
+      plans: [
+        {
+          planId: "PLAN-POC-S3-NO-REVIEW",
+          status: "draft",
+          kind: "poc",
+          workflowPhase: "S3",
+          hasReviewEvidence: false,
+          mergedArtifacts: ["src/spike.ts"],
+        },
+        {
+          planId: "PLAN-POC-S2",
+          status: "draft",
+          kind: "poc",
+          workflowPhase: "S2",
+          hasReviewEvidence: true,
+          mergedArtifacts: ["src/early.ts"],
+        },
+      ],
+    });
+    expect(r.violations.map((v) => v.planId)).toEqual(["PLAN-POC-S2", "PLAN-POC-S3-NO-REVIEW"]);
+  });
+
   it("still does not flag a draft PLAN of any kind whose deliverable is NOT merged", () => {
     const r = analyzeMergedPlanStatus({
       plans: [
