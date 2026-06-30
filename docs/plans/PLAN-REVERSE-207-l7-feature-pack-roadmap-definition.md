@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:b2d477fefe27c286d31e1ff666bdfbb37c658758474233e270f772bb640ac9cc"
+        output_digest: "sha256:79860ced577e4773101e17188af214ab8e29ae5fbe26f7f5d5e7ff61bac91c8a"
       - kind: unit_test
         command: "bun run vitest run tests/roadmap.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
         runner: bun

@@ -204,6 +204,30 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("U-OUTSTANDING-007: rejects record templates that cover fields but omit workflow semantic guidance", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        recordTemplates: decision.requiredRecords.map((record) => ({
+          recordName: record.recordName,
+          insertionHint: "Add this block before S4 decision.",
+          yamlLines: [
+            `${record.recordName}:`,
+            ...record.fields.map((field) => `  - ${field}: "<${field}>"`),
+          ],
+        })),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      reason: "invalid_record_template",
+      detail: "decision[0] s4_decision_record template missing guidance=confirmed",
+    });
+  });
+
   it("rejects decisions whose required records lack record-level allowed outcomes", () => {
     const packet = {
       ...basePacket(),

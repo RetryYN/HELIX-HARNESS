@@ -316,6 +316,15 @@ export function analyzeCompletionDecisionPacket(
           });
         }
       }
+      const guidanceText = `${template.insertionHint}\n${templateText}`.toLowerCase();
+      for (const expectedGuidance of requiredTemplateGuidance(record.recordName)) {
+        if (!guidanceText.includes(expectedGuidance.toLowerCase())) {
+          violations.push({
+            reason: "invalid_record_template",
+            detail: `decision[${decisionIndex}] ${record.recordName} template missing guidance=${expectedGuidance}`,
+          });
+        }
+      }
     }
   });
 
@@ -329,6 +338,46 @@ export function analyzeCompletionDecisionPacket(
     expiresAt,
     violations,
   };
+}
+
+function requiredTemplateGuidance(recordName: string): string[] {
+  switch (recordName) {
+    case "s4_decision_record":
+      return ["confirmed", "rejected", "pivot", "forward", "reverse", "archive", "route_impact"];
+    case "activation_decision_record":
+      return ["add-feature", "forward", "reject/archive", "review_by", "dry-run", "rollback"];
+    case "parked_review_record":
+      return [
+        "review_owner",
+        "review_trigger",
+        "stale_action",
+        "completion/status decision packet",
+      ];
+    case "cutover_decision_record":
+      return [
+        "frozen head",
+        "quiet window",
+        "single-run",
+        "drift re-approval",
+        "dry-run",
+        "branch/tag rollback",
+        "state backup",
+        "smoke/doctor/status",
+      ];
+    case "action_binding_approval_record":
+      return [
+        "limited",
+        "actor/tool/target/params",
+        "dry-run",
+        "risk",
+        "expiry",
+        "approver/action/result/incident",
+      ];
+    case "terminal_evidence_record":
+      return ["artifacts", "review_evidence", "green_commands"];
+    default:
+      return [];
+  }
 }
 
 export function loadCompletionDecisionPacketInput(

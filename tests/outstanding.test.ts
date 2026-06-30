@@ -317,28 +317,34 @@ describe("completionDecisionPacketForOutstanding", () => {
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
       },
     ]);
-    expect(packet.decisions[0].recordTemplates).toEqual([
-      {
-        recordName: "s4_decision_record",
-        insertionHint: expect.stringContaining("S4 decision evidence"),
-        yamlLines: expect.arrayContaining([
-          "s4_decision_record:",
-          '  - allowed_outcome: "<confirmed|rejected|pivot>"',
-          '  - verified_evidence: "<verified_evidence>"',
-          '  - reverse_fullback_required: "<true|false plus route basis>"',
-        ]),
-      },
-      {
-        recordName: "action_binding_approval_record",
-        insertionHint: expect.stringContaining("high-impact actor/tool/target action"),
-        yamlLines: expect.arrayContaining([
-          "action_binding_approval_record:",
-          '  - allowed_outcome: "<approve_action_binding|deny_action|request_scope_reduction>"',
-          '  - approved_actor: "<approved_actor>"',
-          '  - audit_record: "<evidence path or audit id>"',
-        ]),
-      },
-    ]);
+    const s4Template = packet.decisions[0].recordTemplates[0];
+    expect(s4Template?.recordName).toBe("s4_decision_record");
+    expect(s4Template?.insertionHint).toContain("S4 decision evidence");
+    expect(s4Template?.insertionHint).toContain("Forward/Reverse");
+    expect(s4Template?.insertionHint).toContain("archive/backlog");
+    expect(s4Template?.insertionHint).toContain("route_impact");
+    expect(s4Template?.yamlLines).toEqual(
+      expect.arrayContaining([
+        "s4_decision_record:",
+        '  - allowed_outcome: "<confirmed|rejected|pivot>"',
+        '  - verified_evidence: "<verified_evidence>"',
+        '  - reverse_fullback_required: "<true|false plus route basis>"',
+      ]),
+    );
+    const actionBindingTemplate = packet.decisions[0].recordTemplates[1];
+    expect(actionBindingTemplate?.recordName).toBe("action_binding_approval_record");
+    expect(actionBindingTemplate?.insertionHint).toContain("actor/tool/target/params");
+    expect(actionBindingTemplate?.insertionHint).toContain("dry-run");
+    expect(actionBindingTemplate?.insertionHint).toContain("risk");
+    expect(actionBindingTemplate?.insertionHint).toContain("approver/action/result/incident");
+    expect(actionBindingTemplate?.yamlLines).toEqual(
+      expect.arrayContaining([
+        "action_binding_approval_record:",
+        '  - allowed_outcome: "<approve_action_binding|deny_action|request_scope_reduction>"',
+        '  - approved_actor: "<approved_actor>"',
+        '  - audit_record: "<evidence path or audit id>"',
+      ]),
+    );
     expect(packet.decisions[0].requiredEvidence).toContain(
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
     );

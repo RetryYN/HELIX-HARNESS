@@ -622,17 +622,17 @@ function recordTemplatesForRecords(
 function insertionHintForRecordName(recordName: string): string {
   switch (recordName) {
     case "s4_decision_record":
-      return "Add this block to the PLAN S4 decision evidence before setting decision_outcome or terminal status.";
+      return "Add this block to the PLAN S4 decision evidence before setting decision_outcome or terminal status; distinguish confirmed/rejected/pivot, record route_impact, and bind the Forward/Reverse route or archive/backlog path.";
     case "activation_decision_record":
-      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked.";
+      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked; bind the add-feature/Forward route, reject/archive route, review_by policy, dry-run, and rollback.";
     case "parked_review_record":
-      return "Add this block to the version-up PLAN while the work remains parked for a future release.";
+      return "Add this block to the version-up PLAN while the work remains parked for a future release; include review_owner, review_trigger, stale_action, and completion/status decision packet route.";
     case "cutover_decision_record":
-      return "Add this block to the L14 cutover PLAN before any irreversible apply or migration.";
+      return "Add this block to the L14 cutover PLAN before any irreversible apply or migration; bind frozen HEAD, quiet window, single-run, drift re-approval, dry-run, branch/tag rollback, state backup, and smoke/doctor/status monitoring.";
     case "action_binding_approval_record":
-      return "Add this block to the PLAN before executing the scoped high-impact actor/tool/target action.";
+      return "Add this block to the PLAN before executing the high-impact action; approval must be limited to actor/tool/target/params, cite dry-run and risk evidence, set expiry, and capture approver/action/result/incident audit.";
     case "terminal_evidence_record":
-      return "Add this block before marking the PLAN terminal after artifacts, review evidence, and green commands exist.";
+      return "Add this block before marking the PLAN terminal after artifacts, review_evidence, and green_commands exist.";
     default:
       return "Add this record block to the PLAN before claiming the blocker is resolved.";
   }
