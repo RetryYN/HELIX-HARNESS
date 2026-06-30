@@ -198,6 +198,45 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
       expect(plan.rollbackPlan.join("\n")).toContain(".ut-tdd/harness.db");
       expect(plan.monitoringPlan.join("\n")).toContain("helix doctor");
+      expect(plan.stateBackupManifest).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: ".ut-tdd/harness.db",
+            restoreRequired: true,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/logs",
+            restoreRequired: true,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/handover",
+            restoreRequired: true,
+          }),
+          expect.objectContaining({
+            path: ".codex/hooks.json",
+            restoreRequired: true,
+          }),
+        ]),
+      );
+      expect(plan.freezePolicy).toMatchObject({
+        requiresFrozenHead: true,
+        requiresQuietWindow: true,
+        concurrencyPolicy: "single-run-no-concurrent-apply",
+      });
+      expect(plan.freezePolicy.reapprovalTriggers).toEqual(
+        expect.arrayContaining([
+          "HEAD changes after approval",
+          "blast-radius hit set changes after approval",
+        ]),
+      );
+      expect(plan.provenanceRequirements).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ item: "blast_radius_baseline" }),
+          expect.objectContaining({ item: "state_backup_plan" }),
+          expect.objectContaining({ item: "audit_record" }),
+          expect.objectContaining({ item: "execution_window_or_freeze_policy" }),
+        ]),
+      );
       expect(plan.approvalGate).toMatchObject({
         requiredDecision: "approve_cutover",
         requiredActionBinding: "approve_action_binding",
@@ -246,6 +285,15 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(payload.dryRunPlan.length).toBeGreaterThan(0);
       expect(payload.rollbackPlan.length).toBeGreaterThan(0);
       expect(payload.monitoringPlan.length).toBeGreaterThan(0);
+      expect(payload.stateBackupManifest).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ path: ".ut-tdd/harness.db", restoreRequired: true }),
+        ]),
+      );
+      expect(payload.freezePolicy.concurrencyPolicy).toBe("single-run-no-concurrent-apply");
+      expect(payload.provenanceRequirements).toEqual(
+        expect.arrayContaining([expect.objectContaining({ item: "audit_record" })]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

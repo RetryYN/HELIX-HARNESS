@@ -46,6 +46,21 @@ export interface IdentifierRenameCutoverPlan {
   dryRunPlan: string[];
   rollbackPlan: string[];
   monitoringPlan: string[];
+  stateBackupManifest: Array<{
+    path: string;
+    purpose: string;
+    restoreRequired: true;
+  }>;
+  freezePolicy: {
+    requiresFrozenHead: true;
+    requiresQuietWindow: true;
+    concurrencyPolicy: "single-run-no-concurrent-apply";
+    reapprovalTriggers: string[];
+  };
+  provenanceRequirements: Array<{
+    item: string;
+    evidence: string;
+  }>;
   approvalGate: {
     requiredRecords: string[];
     requiredDecision: "approve_cutover";
@@ -234,6 +249,76 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
       "rebuild harness.db and inspect status/completion decision packet",
       "check rule-drift, hook adapter parity, and green-command digest after cutover",
       "watch feedback backlog, handover, and runtime logs for path or marker regressions",
+    ],
+    stateBackupManifest: [
+      {
+        path: ".ut-tdd/harness.db",
+        purpose: "state DB projection and completion evidence baseline",
+        restoreRequired: true,
+      },
+      {
+        path: ".ut-tdd/memory",
+        purpose: "HELIX shared memory before state-dir rename",
+        restoreRequired: true,
+      },
+      {
+        path: ".ut-tdd/state",
+        purpose: "active plan, setup, and runtime state before migration",
+        restoreRequired: true,
+      },
+      {
+        path: ".ut-tdd/logs",
+        purpose: "runtime/session/gate logs used as verification provenance",
+        restoreRequired: true,
+      },
+      {
+        path: ".ut-tdd/handover",
+        purpose: "handover pointer and completion decision packet continuity",
+        restoreRequired: true,
+      },
+      {
+        path: ".claude/settings.json",
+        purpose: "Claude hook/adapter config before marker rename",
+        restoreRequired: true,
+      },
+      {
+        path: ".codex/hooks.json",
+        purpose: "Codex hook adapter config before marker rename",
+        restoreRequired: true,
+      },
+    ],
+    freezePolicy: {
+      requiresFrozenHead: true,
+      requiresQuietWindow: true,
+      concurrencyPolicy: "single-run-no-concurrent-apply",
+      reapprovalTriggers: [
+        "HEAD changes after approval",
+        "blast-radius hit set changes after approval",
+        "approval scope or approved params change",
+        "dry-run, rollback, backup, or monitoring plan changes",
+        "doctor, full test, or distribution smoke evidence becomes stale or red",
+      ],
+    },
+    provenanceRequirements: [
+      {
+        item: "blast_radius_baseline",
+        evidence: "rename audit JSON captured at frozen HEAD with token/file counts",
+      },
+      {
+        item: "state_backup_plan",
+        evidence:
+          "backup manifest with restore-required entries for DB, memory, state, logs, handover, and hook configs",
+      },
+      {
+        item: "audit_record",
+        evidence:
+          "approver, git hash, command args, params hash, result, incident/rollback decision, and monitoring outcome",
+      },
+      {
+        item: "execution_window_or_freeze_policy",
+        evidence:
+          "quiet window, single-run concurrency policy, frozen HEAD, and re-approval triggers",
+      },
     ],
     approvalGate: {
       requiredRecords: audit.requiredRecords,

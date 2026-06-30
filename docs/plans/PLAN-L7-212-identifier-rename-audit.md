@@ -12,6 +12,39 @@ parent_design: docs/plans/PLAN-M-02-helix-identifier-rename.md
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T03:05:07+09:00"
+    tests_green_at: "2026-07-01T03:05:07+09:00"
+    verdict: pass
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Continuation: rename cutover packet now emits structured stateBackupManifest, freezePolicy, and provenanceRequirements so PLAN-M-02 approval can be judged from explicit backup, freeze, re-approval, and audit-evidence fields. The surface remains plan-only and does not apply .ut-tdd -> .helix."
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/action-binding-approval-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T03:05:07+09:00"
+        evidence_path: tests/identifier-rename.test.ts
+        output_digest: "sha256:ed403a66426ad2a9c755329a5627c8dc9412a78152b042317881ce8e428ca7e3"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:05:07+09:00"
+        evidence_path: src/lint/identifier-rename.ts
+        output_digest: "sha256:d2c3da9162f877d68da12e3c15819ec0ef94b01b13da6a5874045a754d8d3e7b"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:05:07+09:00"
+        evidence_path: src/lint/identifier-rename.ts
+        output_digest: "sha256:d2c3da9162f877d68da12e3c15819ec0ef94b01b13da6a5874045a754d8d3e7b"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:05:00+09:00"
     tests_green_at: "2026-07-01T02:05:00+09:00"
     verdict: pass
@@ -26,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
-        output_digest: "sha256:97a7c7b0705ec0c533e3ff11f7cac444f83262bba797d823a36b6a6cc674454d"
+        output_digest: "sha256:ed403a66426ad2a9c755329a5627c8dc9412a78152b042317881ce8e428ca7e3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +67,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:e989d0b598a5a84583a2c006603469049f2bff6c91b683952a33c8ac7e595271"
+        output_digest: "sha256:d2c3da9162f877d68da12e3c15819ec0ef94b01b13da6a5874045a754d8d3e7b"
 agent_slots:
   - role: tl
     slot_label: "TL — rename audit boundary and fail-close approval semantics"
@@ -64,12 +97,15 @@ dependencies:
 hook/adapter marker rename は `PLAN-M-02` の cutover decision と action-binding approval が揃うまで
 blocked のまま扱う。`ut-tdd rename plan` は approval が concrete でも plan-only surface であり、
 dry-run / rollback / monitoring / approval gate を出すだけで apply command を提供しない。
+2026-07-01 continuation: cutover packet は structured `stateBackupManifest` / `freezePolicy` /
+`provenanceRequirements` を持ち、承認者が backup 対象、凍結 HEAD / quiet window / 単独実行、
+再承認 trigger、audit evidence を JSON で確認できる。これは承認前判定の設計材料であり、apply 権限ではない。
 
 ## §1 実装単位
 
 | module | 内容 | oracle |
 |--------|------|--------|
-| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、dry-run、rollback、monitoring、approval gate を返す | identifier-rename tests |
+| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、dry-run、rollback、monitoring、state backup manifest、freeze policy、provenance requirements、approval gate を返す | identifier-rename tests |
 | `src/cli.ts` | `ut-tdd rename audit --json` / `ut-tdd rename plan --json` / text output を追加。apply は行わず、targetCli=`helix` / targetStateDir=`.helix` と requiredRecords / cutover packet を出す | identifier-rename CLI test |
 
 ## §2 DoD
@@ -77,6 +113,7 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 - [x] `ut-tdd` / `.ut-tdd` / `area=harness` blast radius を JSON で出せる。
 - [x] draft approval placeholder を concrete approval と誤判定しない。
 - [x] dry-run / rollback / monitoring / approval gate を含む non-destructive cutover packet を JSON で出せる。
+- [x] state backup manifest / frozen HEAD quiet window single-run reapproval / provenance requirements を構造化 JSON field として出せる。
 - [x] `.ut-tdd -> .helix` apply は実行しない。
 - [x] `tests/identifier-rename.test.ts` / typecheck / lint / doctor 対象。
 

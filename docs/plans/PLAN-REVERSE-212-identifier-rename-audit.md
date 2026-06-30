@@ -38,7 +38,7 @@ backprop_scope:
   - layer: L14-cutover-plan
     decision: updated
     evidence_path: docs/plans/PLAN-M-02-helix-identifier-rename.md
-    reason: "PLAN-M-02 Step 1 records partial progress for blast-radius audit only; state migration, CLI/bin rename, and adapter marker rewrite remain blocked."
+    reason: "PLAN-M-02 Step 1 records partial progress for blast-radius audit and structured cutover safety packet only; state migration, CLI/bin rename, and adapter marker rewrite remain blocked."
 agent_slots:
   - role: tl
     slot_label: "TL - identifier rename audit backfill"
@@ -97,6 +97,8 @@ action-binding approval records are concrete.
 - `PLAN-M-02` records Step 1 partial progress only. It does not authorize
   `.ut-tdd -> .helix` state migration, CLI/bin rename, hook/adapter marker
   rewrite, or action binding.
+- The cutover packet now carries structured backup, freeze, re-approval, and
+  provenance fields so approval can be judged semantically before any apply.
 
 ## Acceptance Criteria
 
@@ -106,4 +108,6 @@ action-binding approval records are concrete.
   `area=harness` blast radius.
 - The audit remains `blocked_pending_cutover_approval` while PLAN-M-02 contains
   draft approval placeholders.
+- `ut-tdd rename plan --json` exposes backup manifest, freeze policy, and
+  provenance requirements without exposing an apply command.
 - `doctor` passes after DB rebuild.
