@@ -218,6 +218,22 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packet.activationReadinessChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "free_tier_budget_check",
+          status: "pending_evidence",
+          reason: "external activation requires concrete rehearsal output before approval",
+        }),
+        expect.objectContaining({
+          check: "rollback_rehearsal",
+          status: "present",
+        }),
+      ]),
+    );
+    expect(packet.blockedReasons).toEqual(
+      expect.arrayContaining(["activation rehearsal evidence pending: free_tier_budget_check"]),
+    );
     expect(packet.costGuardrails).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ surface: "Cloudflare Workers" }),
@@ -717,6 +733,24 @@ describe("version-up-readiness", () => {
         expect.objectContaining({ check: "free_tier_budget_check" }),
         expect.objectContaining({ check: "webhook_signature_check" }),
         expect.objectContaining({ check: "access_control_check" }),
+      ]),
+    );
+    expect(packets[0].activationReadinessChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "webhook_signature_check",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "approval_evidence",
+          status: "pending_evidence",
+        }),
+      ]),
+    );
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining([
+        "activation rehearsal evidence pending: webhook_signature_check",
+        "activation rehearsal evidence pending: approval_evidence",
       ]),
     );
     expect(packets[0].costGuardrails.map((row: { surface: string }) => row.surface)).toEqual([

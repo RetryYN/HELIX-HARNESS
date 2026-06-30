@@ -81,9 +81,17 @@ export interface VersionUpActivationPacket {
     evidence: string;
   }>;
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
+  activationReadinessChecks: VersionUpActivationReadinessCheck[];
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
+export interface VersionUpActivationReadinessCheck {
+  check: string;
+  status: "present" | "pending_evidence";
+  evidence: string;
+  reason: string;
 }
 
 export interface VersionUpSourceLedgerFreshness {
@@ -321,6 +329,20 @@ const COST_GUARDRAIL_RECORD_FIELDS = [
 
 const PROVENANCE_RECORD_NAME = "activation_provenance_requirements";
 const PROVENANCE_RECORD_FIELDS = [
+  "source_ledger",
+  "dry_run_evidence",
+  "approval_evidence",
+  "audit_record",
+] as const;
+
+const ACTIVATION_REHEARSAL_REQUIRED_EVIDENCE = [
+  "official_source_basis",
+  "free_tier_budget_check",
+  "webhook_signature_check",
+  "access_control_check",
+  "no_secret_pii_check",
+  "no_prod_write_check",
+  "rollback_rehearsal",
   "source_ledger",
   "dry_run_evidence",
   "approval_evidence",
@@ -747,8 +769,14 @@ export function buildVersionUpActivationPacket(
   const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
     plan.text.toLowerCase().includes(term.toLowerCase()),
   );
+  const activationReadinessChecks = buildActivationReadinessChecks(
+    externalBoundaries,
+    externalRehearsal,
+    provenance,
+  );
   const blockedReasons = [
     ...blockedActivationReasons(plan, actionBindingApproval, externalBoundaries),
+    ...activationReadinessBlockedReasons(activationReadinessChecks),
     ...sourceLedgerActivationBlockedReasons(sourceLedgerFreshness),
   ];
 
@@ -839,6 +867,7 @@ export function buildVersionUpActivationPacket(
       },
     ],
     sourceLedgerFreshness,
+    activationReadinessChecks,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
@@ -877,6 +906,51 @@ export function buildVersionUpActivationPacket(
       },
     ],
   };
+}
+
+function buildActivationReadinessChecks(
+  externalBoundaries: readonly string[],
+  externalRehearsal: Record<string, string>,
+  provenance: Record<string, string>,
+): VersionUpActivationReadinessCheck[] {
+  if (externalBoundaries.length === 0) return [];
+  return ACTIVATION_REHEARSAL_REQUIRED_EVIDENCE.map((check) => {
+    const evidence = externalRehearsal[check] ?? provenance[check] ?? "";
+    const pending = activationEvidenceIsPending(evidence);
+    return {
+      check,
+      status: pending ? "pending_evidence" : "present",
+      evidence,
+      reason: pending
+        ? "external activation requires concrete rehearsal output before approval"
+        : "concrete rehearsal evidence recorded",
+    };
+  });
+}
+
+function activationReadinessBlockedReasons(
+  checks: readonly VersionUpActivationReadinessCheck[],
+): string[] {
+  return checks
+    .filter((check) => check.status === "pending_evidence")
+    .map((check) => `activation rehearsal evidence pending: ${check.check}`);
+}
+
+function activationEvidenceIsPending(evidence: string): boolean {
+  const normalized = evidence.trim().toLowerCase();
+  if (!normalized) return true;
+  return [
+    "<",
+    "todo",
+    "tbd",
+    "must ",
+    "must be",
+    "before activation",
+    "before any",
+    "not approved",
+    "while parked",
+    "no external activation",
+  ].some((marker) => normalized.includes(marker));
 }
 
 function validateParkedVersionUpSemantics(
