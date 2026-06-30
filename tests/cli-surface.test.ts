@@ -125,6 +125,71 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
+  it("exposes a completion decision packet for outstanding PO and approval blockers", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-packet-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-DISCOVERY-10-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-DISCOVERY-10-fixture",
+          "kind: poc",
+          "layer: cross",
+          "status: draft",
+          "workflow_phase: S3",
+          "---",
+          "",
+          "# fixture",
+          "S4 decision_outcome is PO gated.",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-M-02-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-M-02-fixture",
+          "kind: design",
+          "layer: L14",
+          "status: draft",
+          "---",
+          "",
+          "# fixture",
+          "irreversible cutover requires PO signoff and rollback evidence.",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const json = runCliIn(root, ["completion", "decision-packet", "--json"]);
+      expect(json.status).toBe(0);
+      const packet = JSON.parse(json.stdout);
+      expect(packet).toMatchObject({
+        ok: false,
+        status: "blocked",
+        generatedFrom: "outstanding.completionReadiness",
+        decisionCount: 2,
+      });
+      expect(
+        packet.decisions.map((d: { planId: string; decisionKind: string }) => [
+          d.planId,
+          d.decisionKind,
+        ]),
+      ).toEqual([
+        ["PLAN-DISCOVERY-10-fixture", "po_s4_decision"],
+        ["PLAN-M-02-fixture", "irreversible_migration_signoff"],
+      ]);
+
+      const text = runCliIn(root, ["completion", "decision-packet"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("completion decision-packet: blocked decisions=2");
+      expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
+      expect(text.stdout).toContain("PLAN-M-02-fixture");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
   it("exposes skill suggest as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--plan", "PLAN-NO-SUCH", "--json"]);
 

@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeOutstandingWork,
+  completionDecisionPacketForOutstanding,
   completionReadinessForOutstanding,
   computeOutstandingWork,
   loadOutstandingPlanRows,
@@ -173,6 +174,79 @@ describe("completionReadinessForOutstanding", () => {
       reason: "no non-terminal PLANs or open defers remain",
       blockers: [],
       requiredActions: [],
+    });
+  });
+});
+
+describe("completionDecisionPacketForOutstanding", () => {
+  it("turns outstanding blockers into explicit decision items for PO/human gates", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision_outcome is PO gated.",
+        },
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "version-up parked Cloudflare HMAC webhook action-binding approval",
+        },
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible cutover requires PO signoff",
+        },
+      ],
+      0,
+    );
+
+    const packet = completionDecisionPacketForOutstanding(outstanding);
+
+    expect(packet).toMatchObject({
+      ok: false,
+      status: "blocked",
+      generatedFrom: "outstanding.completionReadiness",
+      decisionCount: 3,
+      blockers: expect.arrayContaining([
+        "irreversible_migration_pending",
+        "non_terminal_plans",
+        "po_decision_pending",
+        "version_up_parked",
+      ]),
+    });
+    expect(packet.decisions.map((d) => [d.planId, d.decisionKind])).toEqual([
+      ["PLAN-DISCOVERY-10", "po_s4_decision"],
+      ["PLAN-L7-146", "version_up_activation"],
+      ["PLAN-M-02", "irreversible_migration_signoff"],
+    ]);
+    expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
+    expect(packet.decisions[2].requiredEvidence).toContain(
+      "PO signoff recorded on the migration PLAN",
+    );
+  });
+
+  it("is ready and has no decisions when no outstanding work remains", () => {
+    const packet = completionDecisionPacketForOutstanding(
+      analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], 0),
+    );
+
+    expect(packet).toEqual({
+      ok: true,
+      status: "ready",
+      generatedFrom: "outstanding.completionReadiness",
+      decisionCount: 0,
+      blockers: [],
+      decisions: [],
     });
   });
 });

@@ -41,6 +41,7 @@ import {
 } from "./handover/index";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
+  completionDecisionPacketForOutstanding,
   completionReadinessLine,
   computeOutstandingWork,
   outstandingSummaryLine,
@@ -465,6 +466,29 @@ program
       process.stdout.write(`next: ${nextAction}\n`);
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
+    }
+  });
+
+const completion = program.command("completion").description("whole-program completion readiness");
+completion
+  .command("decision-packet")
+  .description("emit the decision packet required before whole-program completion can be claimed")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()));
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `completion decision-packet: ${packet.status} decisions=${packet.decisions.length}\n`,
+    );
+    for (const decision of packet.decisions) {
+      process.stdout.write(
+        `  - ${decision.planId}: ${decision.decisionKind} (${decision.blockerReason})\n`,
+      );
+      process.stdout.write(`    action: ${decision.requiredAction}\n`);
+      process.stdout.write(`    outcomes: ${decision.allowedOutcomes.join(", ")}\n`);
     }
   });
 

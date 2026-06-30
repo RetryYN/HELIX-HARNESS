@@ -83,6 +83,37 @@ export interface CompletionReadiness {
   requiredActions: string[];
 }
 
+export type CompletionDecisionKind =
+  | "po_s4_decision"
+  | "version_up_activation"
+  | "irreversible_migration_signoff"
+  | "human_action_approval"
+  | "workflow_continuation";
+
+export interface CompletionDecisionItem {
+  planId: string;
+  layer: string;
+  kind: string;
+  status: string;
+  workflowPhase: string | null;
+  blockerReason: string;
+  blockers: string[];
+  decisionKind: CompletionDecisionKind;
+  requiredAction: string;
+  requiredEvidence: string[];
+  allowedOutcomes: string[];
+  nextWorkflowRoute: string;
+}
+
+export interface CompletionDecisionPacket {
+  ok: boolean;
+  status: "ready" | "blocked";
+  generatedFrom: "outstanding.completionReadiness";
+  decisionCount: number;
+  blockers: string[];
+  decisions: CompletionDecisionItem[];
+}
+
 /**
  * 非終端 PLAN の layer 別集計 + version-up parked 分離 + open defer 数を組む純関数。
  * archived と終端 status は未了から除外する。version-up parked は非終端に含めるが別途分離計上する。
@@ -321,4 +352,75 @@ export function completionReadinessLine(o: OutstandingWork): string {
   const readiness = o.completionReadiness;
   if (readiness.ok) return "completion: ready (no outstanding work)";
   return `completion: blocked (${readiness.blockers.join(", ")}); required actions=${readiness.requiredActions.length}`;
+}
+
+export function completionDecisionPacketForOutstanding(
+  outstanding: OutstandingWork,
+): CompletionDecisionPacket {
+  return {
+    ok: outstanding.completionReadiness.ok,
+    status: outstanding.completionReadiness.status,
+    generatedFrom: "outstanding.completionReadiness",
+    decisionCount: outstanding.items.length,
+    blockers: outstanding.completionReadiness.blockers,
+    decisions: outstanding.items.map((item) => ({
+      planId: item.planId,
+      layer: item.layer,
+      kind: item.kind,
+      status: item.status,
+      workflowPhase: item.workflowPhase,
+      blockerReason: item.reason,
+      blockers: item.blockers,
+      decisionKind: decisionKindForOutstandingReason(item.reason),
+      requiredAction: item.requiredAction,
+      requiredEvidence: item.requiredEvidence,
+      allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
+      nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+    })),
+  };
+}
+
+function decisionKindForOutstandingReason(reason: string): CompletionDecisionKind {
+  switch (reason) {
+    case "po_decision_pending":
+      return "po_s4_decision";
+    case "version_up_parked":
+      return "version_up_activation";
+    case "irreversible_migration_pending":
+      return "irreversible_migration_signoff";
+    case "human_approval_pending":
+      return "human_action_approval";
+    default:
+      return "workflow_continuation";
+  }
+}
+
+function allowedOutcomesForOutstandingReason(reason: string): string[] {
+  switch (reason) {
+    case "po_decision_pending":
+      return ["confirmed", "rejected", "pivot"];
+    case "version_up_parked":
+      return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
+    case "irreversible_migration_pending":
+      return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
+    case "human_approval_pending":
+      return ["approve_action_binding", "deny_action", "request_scope_reduction"];
+    default:
+      return ["continue_workflow", "mark_terminal_after_required_evidence"];
+  }
+}
+
+function nextWorkflowRouteForOutstandingReason(reason: string): string {
+  switch (reason) {
+    case "po_decision_pending":
+      return "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded";
+    case "version_up_parked":
+      return "version-up activation -> add-feature/rejection path, with approval boundary preserved";
+    case "irreversible_migration_pending":
+      return "L14 cutover -> PO signoff + dry-run/rollback evidence before apply";
+    case "human_approval_pending":
+      return "approval gate -> action-binding approval audit before high-impact action";
+    default:
+      return "continue current workflow phase until terminal evidence exists";
+  }
 }

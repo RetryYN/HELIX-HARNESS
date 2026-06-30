@@ -89,7 +89,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:5340219616194d58594c0c236bc2cb1c292fdcbd71ee67961d1e7b227bc1cd58"
+        output_digest: "sha256:4f7a9515cc8f5d148d85bdb111b39199569298a2f5fa61a568f708229ee3dc64"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -105,7 +105,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:dceb3adf9360e1863745a4f8de18c62dfb52dbbf8ef77aa9911a55e0b4641caa"
+        output_digest: "sha256:50809a9b2d0fae5cce7b87264fdc3aaaeca9a8d3dc00acb29adfefaa75162ab0"
       - kind: smoke
         command: "bun src\\cli.ts distribution plan --tag v0.1.0 --json"
         runner: bun
