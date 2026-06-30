@@ -77,6 +77,8 @@ import {
   buildPairAgentAdapterPlans,
   buildPairAgentTddPlan,
   type PairAgentPhaseExecutor,
+  type PairAgentRunResult,
+  type PairAgentTddPlan,
   runPairAgentTddPlan,
 } from "./orchestration/pair-agent";
 import { lintPlanWithGate } from "./plan/lint";
@@ -447,6 +449,92 @@ function loopStoreForRoot(root: string) {
       writeFileSync(path, content, "utf8");
     },
   });
+}
+
+function safeEvidenceFileName(value: string): string {
+  return value.replace(/[^A-Za-z0-9._-]/g, "-").replace(/-+/g, "-");
+}
+
+function savePairAgentRunEvidence(input: {
+  plan: PairAgentTddPlan;
+  result: PairAgentRunResult;
+  mode: string;
+  execute: boolean;
+  startedAt: string;
+  completedAt: string;
+}): string {
+  const recordedAt = input.completedAt;
+  const stamp = recordedAt.replace(/[^0-9]/g, "").slice(0, 14);
+  const safePlanId = safeEvidenceFileName(input.plan.planId);
+  const runId = `pair-agent:${safePlanId}:${stamp}`;
+  const durationMs = Math.max(
+    0,
+    new Date(input.completedAt).getTime() - new Date(input.startedAt).getTime(),
+  );
+  const phases = new Map(input.plan.phases.map((phase) => [phase.name, phase]));
+  const rel = join(".ut-tdd", "evidence", "pair-agent", `${stamp}-${safePlanId}.json`);
+  const abs = join(process.cwd(), rel);
+  mkdirSync(dirname(abs), { recursive: true });
+  writeFileSync(
+    abs,
+    `${JSON.stringify(
+      {
+        schema_version: "pair-agent-run-evidence.v1",
+        recorded_at: recordedAt,
+        run_id: runId,
+        mode: input.mode,
+        execute: input.execute,
+        trace: {
+          plan_id: input.plan.planId,
+          span_id: `${runId}:run`,
+          tool_contract_id: "HC-P2.runPairAgentTddPlan",
+          handoff_target:
+            input.result.finalVerdict === "fail" ? "light_implementation" : "orchestrator",
+          guardrail_decision: {
+            guardrail: "frontier-approval",
+            decision: input.execute && !input.plan.executionAuthorized ? "block" : "allow",
+            human_signoff_required: input.execute && input.plan.frontierApprovalRequired,
+          },
+          eval_outcome: {
+            ok: input.result.ok,
+            status: input.result.status,
+            final_verdict: input.result.finalVerdict,
+          },
+          started_at: input.startedAt,
+          completed_at: input.completedAt,
+          duration_ms: durationMs,
+          cost_usd: null,
+          phase_spans: input.result.steps.map((step, index) => {
+            const phase = phases.get(step.phase);
+            return {
+              span_id: `${runId}:phase:${index + 1}`,
+              parent_span_id: `${runId}:run`,
+              phase: step.phase,
+              cycle: step.cycle,
+              agent_key: step.agentKey,
+              provider: step.provider,
+              model: step.model,
+              required_evidence: phase?.requiredEvidence ?? [],
+              handoff_target:
+                step.phase === "smart_review" && step.verdict === "fail"
+                  ? "light_implementation"
+                  : (phase?.onFail ?? null),
+              eval_outcome: {
+                status: step.status,
+                verdict: step.verdict,
+                exit_code: step.exitCode,
+              },
+            };
+          }),
+        },
+        plan: input.plan,
+        result: input.result,
+      },
+      null,
+      2,
+    )}\n`,
+  );
+  return rel.replaceAll("\\", "/");
 }
 
 function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
@@ -836,6 +924,7 @@ pairAgent
   .option("--execute", "dispatch provider adapters; omitted means dry-run only")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--json", "JSON output")
+  .option("--save-evidence", SAVE_EVIDENCE_OPTION_DESCRIPTION)
   .action(
     async (opts: {
       planId: string;
@@ -847,6 +936,7 @@ pairAgent
       execute?: boolean;
       mode?: ReturnType<typeof detectMode>["mode"];
       json?: boolean;
+      saveEvidence?: boolean;
     }) => {
       const taskText = resolveTaskText({ task: opts.task, taskFile: opts.taskFile });
       if (taskText === null || taskText.trim().length === 0) {
@@ -870,18 +960,33 @@ pairAgent
         allowFrontier: Boolean(opts.allowFrontier),
         maxFixCycles,
       });
+      const startedAt = new Date().toISOString();
       const result = await runPairAgentTddPlan({
         plan,
         mode: detection.mode,
         execute: Boolean(opts.execute),
         executor: opts.execute ? defaultPairAgentExecutor() : undefined,
       });
+      const completedAt = new Date().toISOString();
+      const evidencePath = opts.saveEvidence
+        ? savePairAgentRunEvidence({
+            plan,
+            result,
+            mode: detection.mode,
+            execute: Boolean(opts.execute),
+            startedAt,
+            completedAt,
+          })
+        : null;
       if (opts.json) {
-        process.stdout.write(`${JSON.stringify({ plan, result }, null, 2)}\n`);
+        process.stdout.write(
+          `${JSON.stringify({ plan, result, evidence_path: evidencePath }, null, 2)}\n`,
+        );
       } else {
         process.stdout.write(
           `pair-agent run: status=${result.status} execute=${Boolean(opts.execute)} verdict=${result.finalVerdict ?? "null"} steps=${result.steps.length}\n`,
         );
+        if (evidencePath) process.stdout.write(`  evidence: ${evidencePath}\n`);
         for (const step of result.steps) {
           process.stdout.write(
             `  step ${step.phase}: cycle=${step.cycle} agent=${step.agentKey} provider=${step.provider} status=${step.status} verdict=${step.verdict ?? "null"} exit=${step.exitCode ?? "null"}\n`,

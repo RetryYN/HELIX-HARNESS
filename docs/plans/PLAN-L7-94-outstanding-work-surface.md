@@ -382,7 +382,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2d0f5de8b1cdfc14177dbd989840470ba193bb11f27a48d8a0fb6987584d3806"
+        output_digest: "sha256:2f26cbe144dc660c92b3e846d760c624703416d9f79d15c11ce1dab279a78ac2"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:44:15+09:00"

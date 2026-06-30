@@ -1,4 +1,6 @@
 import { spawnSync } from "node:child_process";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildPairAgentTddPlan, runPairAgentTddPlan } from "../src/orchestration/pair-agent";
@@ -25,17 +27,17 @@ const codexOnly: RuntimeDetection = {
   missingRuntimes: [],
 };
 
-function runCli(args: string[]) {
+function runCli(args: string[], cwd: string = repoRoot) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
     return spawnSync(cmdExe, ["/d", "/c", "bun", cliPath, ...args], {
-      cwd: repoRoot,
+      cwd,
       encoding: "utf8",
       env: process.env,
     });
   }
   return spawnSync("bun", [cliPath, ...args], {
-    cwd: repoRoot,
+    cwd,
     encoding: "utf8",
     env: process.env,
   });
@@ -323,5 +325,82 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       expect.objectContaining({ phase: "light_implementation", status: "planned" }),
       expect.objectContaining({ phase: "smart_review", status: "planned" }),
     ]);
+  });
+
+  it("persists pair-agent run evidence when requested", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-pair-agent-evidence-"));
+    try {
+      const result = runCli(
+        [
+          "pair-agent",
+          "run",
+          "--plan-id",
+          "PLAN-L7-PAIR",
+          "--task",
+          "Add pair-agent TDD route",
+          "--primary",
+          "codex",
+          "--mode",
+          "hybrid",
+          "--save-evidence",
+          "--json",
+        ],
+        root,
+      );
+
+      expect(result.status).toBe(0);
+      const payload = JSON.parse(result.stdout);
+      expect(payload.evidence_path).toMatch(
+        /^\.ut-tdd\/evidence\/pair-agent\/\d{14}-PLAN-L7-PAIR\.json$/,
+      );
+      const evidencePath = join(root, payload.evidence_path);
+      expect(existsSync(evidencePath)).toBe(true);
+      const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
+      expect(evidence).toMatchObject({
+        schema_version: "pair-agent-run-evidence.v1",
+        run_id: expect.stringMatching(/^pair-agent:PLAN-L7-PAIR:\d{14}$/),
+        mode: "hybrid",
+        execute: false,
+        trace: {
+          plan_id: "PLAN-L7-PAIR",
+          span_id: expect.stringMatching(/^pair-agent:PLAN-L7-PAIR:\d{14}:run$/),
+          tool_contract_id: "HC-P2.runPairAgentTddPlan",
+          handoff_target: "orchestrator",
+          guardrail_decision: {
+            guardrail: "frontier-approval",
+            decision: "allow",
+            human_signoff_required: false,
+          },
+          eval_outcome: { ok: true, status: "planned", final_verdict: null },
+          cost_usd: null,
+        },
+        plan: { planId: "PLAN-L7-PAIR" },
+        result: { status: "planned" },
+      });
+      expect(typeof evidence.trace.duration_ms).toBe("number");
+      expect(evidence.trace.duration_ms).toBeGreaterThanOrEqual(0);
+      expect(evidence.trace.phase_spans).toEqual([
+        expect.objectContaining({
+          span_id: expect.stringMatching(/^pair-agent:PLAN-L7-PAIR:\d{14}:phase:1$/),
+          parent_span_id: expect.stringMatching(/^pair-agent:PLAN-L7-PAIR:\d{14}:run$/),
+          phase: "smart_test_author",
+          handoff_target: null,
+          required_evidence: ["red_evidence", "acceptance_oracle", "test_design_trace"],
+          eval_outcome: { status: "planned", verdict: null, exit_code: null },
+        }),
+        expect.objectContaining({
+          phase: "light_implementation",
+          handoff_target: "smart_test_author",
+          required_evidence: ["changed_files", "targeted_test_command", "implementation_notes"],
+        }),
+        expect.objectContaining({
+          phase: "smart_review",
+          handoff_target: "light_implementation",
+          required_evidence: ["green_evidence", "review_findings", "verdict_line"],
+        }),
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
