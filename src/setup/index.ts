@@ -105,6 +105,7 @@ export interface HelixProjectSetupResult extends SetupResult {
   setupCommand: "ut-tdd setup project";
   futureCommand: "helix setup project";
   importReport: HelixProjectImportReport;
+  consumerReadiness: ConsumerReadinessPlan;
   vscode: {
     tasksPath: string;
     statusTask: "HELIX: status";
@@ -197,6 +198,9 @@ export interface SetupDeps {
   confirm: Confirm;
   isInteractive: boolean;
   templates: TemplateSet;
+  commandAvailable?: (name: string) => boolean;
+  bunVersion?: () => string | null;
+  packageRoot?: string;
 }
 
 const CODEOWNERS_TARGET = join(".github", "CODEOWNERS");
@@ -710,6 +714,20 @@ function buildHelixProjectImportReport(input: {
   };
 }
 
+function buildHelixSetupConsumerReadiness(deps: SetupDeps): ConsumerReadinessPlan {
+  const commandAvailable = deps.commandAvailable ?? (() => false);
+  return buildConsumerReadinessPlan({
+    bunVersion: deps.bunVersion?.() ?? null,
+    hasGit: commandAvailable("git"),
+    hasGh: commandAvailable("gh"),
+    hasUtTddCli: commandAvailable("ut-tdd"),
+    hasClaude: commandAvailable("claude"),
+    hasCodex: commandAvailable("codex"),
+    repoRoot: deps.repoRoot,
+    ...(deps.packageRoot ? { packageRoot: deps.packageRoot } : {}),
+  });
+}
+
 /**
  * U-SETUP-005: setup.json を上書き (単一ファイル = 確定値 SSoT、append しない)。
  * signals は 4 フィールドのみ strip (認証情報混入経路を遮断)。
@@ -821,6 +839,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     existingPaths,
     emittedPaths: written,
   });
+  const consumerReadiness = buildHelixSetupConsumerReadiness(deps);
   const branchProtection = args.dryRun
     ? { applied: false, reason: "dry-run" }
     : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
@@ -832,6 +851,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     written,
     branchProtection,
     importReport,
+    consumerReadiness,
     vscode: {
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",
@@ -929,6 +949,29 @@ function nodeConfirm(message: string): boolean {
   }
 }
 
+function nodeCommandAvailable(name: string): boolean {
+  try {
+    execFileSync(name, ["--version"], {
+      encoding: "utf8",
+      stdio: ["ignore", "ignore", "ignore"],
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function nodeBunVersion(): string | null {
+  try {
+    return execFileSync("bun", ["--version"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return null;
+  }
+}
+
 /** docs/templates/github/{common,team}/ 配下を TemplateSet (相対名→内容) に読み込む。 */
 export function loadTemplates(repoRoot: string): TemplateSet {
   const set: TemplateSet = { ...BUILTIN_GITHUB_TEMPLATES };
@@ -960,5 +1003,7 @@ export function nodeSetupDeps(repoRoot: string): SetupDeps {
     confirm: nodeConfirm,
     isInteractive: Boolean(process.stdin.isTTY) && Boolean(process.stderr.isTTY) && !process.env.CI,
     templates: loadTemplates(repoRoot),
+    commandAvailable: nodeCommandAvailable,
+    bunVersion: nodeBunVersion,
   };
 }

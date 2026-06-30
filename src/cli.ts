@@ -3540,6 +3540,10 @@ setupCommand
         r.importReport.requiresReview ? "review_required" : "ready"
       } (${r.importReport.nextRoute})\n`,
     );
+    const cliCheck = r.consumerReadiness.checks.find((check) => check.name === "ut-tdd-cli");
+    process.stdout.write(
+      `consumer-readiness: ok=${r.consumerReadiness.ok} mode=${r.consumerReadiness.mode} ut-tdd-cli=${cliCheck?.ok ?? false}\n`,
+    );
     process.stdout.write(`vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask})\n`);
     process.stdout.write(
       `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,

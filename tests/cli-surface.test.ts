@@ -580,6 +580,22 @@ describe("L7 CLI surface closure", () => {
     expect(payload.importReport.existingPaths).toEqual(
       expect.arrayContaining(["AGENTS.md", join(".codex", "config.toml")]),
     );
+    expect(payload.consumerReadiness).toMatchObject({
+      workspace: { repoRoot },
+      ci: { forkPullRequestSecrets: "not-required" },
+    });
+    expect(payload.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "ut-tdd-cli",
+        }),
+      ]),
+    );
+    expect(
+      payload.consumerReadiness.checks.find(
+        (check: { name: string }) => check.name === "ut-tdd-cli",
+      )?.message,
+    ).toMatch(/projected hooks|bun link ut-tdd/);
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
     );
@@ -587,6 +603,7 @@ describe("L7 CLI surface closure", () => {
     const text = runCli(["setup", "project", "--dry-run"]);
     expect(text.status).toBe(0);
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
+    expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain(
       "command-availability: ut-tdd setup project available=true; helix setup project available=false",
     );

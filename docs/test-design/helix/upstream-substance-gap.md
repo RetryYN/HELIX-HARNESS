@@ -37,7 +37,7 @@ Completeness oracle: U-UPSTREAM-001 covers the exact A146-1..A146-8 ID set.
 |--------|----------|-------------------|
 | U-UPSTREAM-001 | `classifyUpstreamA146Finding` | accepts exactly A146-1..A146-8 as known; unknown ids are not silently adopted |
 | U-UPSTREAM-002 | `buildGuardGovernancePack` | separates guard entrypoints, deferred surfaces, and coverage claims; unimplemented guards cannot be marked covered |
-| U-UPSTREAM-003 | `resolveConsumerCliPath` | proves `ut-tdd` is resolvable through PATH/wrapper/resolver or returns fail-close remediation |
+| U-UPSTREAM-003 | `resolveConsumerCliPath` / `runHelixProjectSetup.consumerReadiness` | proves `ut-tdd` is resolvable through PATH/wrapper/resolver or returns fail-close remediation; `ut-tdd setup project` surfaces the same PATH preflight in JSON/text output so projected hooks are not silently accepted when the CLI is missing |
 | U-UPSTREAM-004 | `verifyGreenEvidenceBinding` | closes evidence integrity only when command rerun evidence and digest update share one batch; hash-only restamp fails |
 | U-UPSTREAM-005 | `classifyTelemetryProvenance` | classifies runtime/projected/derived/unknown and rejects unknown as runtime evidence |
 | U-UPSTREAM-006 | `curateDistributionDoc` | classifies consumer/internal/dogfood/deny and flags blanket governance allowlisting |

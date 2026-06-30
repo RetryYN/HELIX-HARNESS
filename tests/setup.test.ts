@@ -549,6 +549,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(preview.identifierTransition.reason).toContain("PLAN-M-02");
     expect(preview.commandAvailability.reason).toContain("package/bin alias activation");
+    expect(preview.consumerReadiness).toMatchObject({
+      ok: false,
+      mode: "standalone",
+      workspace: { repoRoot: "/repo", packageRoot: "/repo", monorepo: false },
+    });
+    expect(preview.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "ut-tdd-cli",
+          ok: false,
+          message: expect.stringContaining("bun link ut-tdd"),
+        }),
+      ]),
+    );
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
     expect(preview.importReport).toMatchObject({
@@ -626,6 +640,37 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.written).not.toContain(join(".vscode", "tasks.json"));
     expect(deps.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("keep-existing");
     expect(deps.files.get(join("/repo", "AGENTS.md"))).toContain("UT-TDD:managed:start");
+  });
+
+  it("U-SETUP-017: HELIX project setup readiness records consumer CLI PATH resolution", () => {
+    const deps = mockDeps({
+      templates: baseTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness).toMatchObject({
+      ok: true,
+      mode: "codex-only",
+      ci: { forkPullRequestSecrets: "not-required" },
+    });
+    expect(result.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "ut-tdd-cli",
+          ok: true,
+          message: "ut-tdd resolves on PATH for projected hooks",
+        }),
+      ]),
+    );
+    expect(result.consumerReadiness.smokeScenarios).toContain(
+      "consumer CI -> harness-check green without repository secrets",
+    );
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {

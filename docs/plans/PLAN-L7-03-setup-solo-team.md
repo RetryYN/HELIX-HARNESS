@@ -40,6 +40,55 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T05:45:48+09:00"
+    tests_green_at: "2026-07-01T05:45:48+09:00"
+    verdict: approve
+    scope: "Continuation: HELIX project setup now surfaces consumerReadiness for projected hook CLI PATH resolution. `runHelixProjectSetup` records Bun/Git/GitHub CLI, Claude/Codex runtime mode, `ut-tdd-cli` PATH status, and secret-free consumer CI smoke; missing `ut-tdd` returns `bun link` remediation instead of silent pass. L6/L7 design and A146 HU-FR-02 oracle references were synchronized. PLAN-M-02 identifier cutover, branch protection apply, secrets, and external API application remain outside this change."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T05:45:48+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:45:48+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:45:48+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:45:48+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:45:48+09:00"
+        evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+        output_digest: "sha256:c316ac4e3c3f0b16477189ae597e8149f9bd42041f78293939dbe94ba62f29b7"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T05:22:33+09:00"
     tests_green_at: "2026-07-01T05:22:33+09:00"
     verdict: approve
@@ -54,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -62,7 +111,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -70,7 +119,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
+        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -78,7 +127,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -86,7 +135,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:de6c5b9ea4490f8c02fc28138162e58b5db27ffd16b7f26d54edeb60d462c584"
+        output_digest: "sha256:c316ac4e3c3f0b16477189ae597e8149f9bd42041f78293939dbe94ba62f29b7"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:45:00+09:00"
@@ -103,7 +152,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -111,7 +160,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -119,7 +168,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
+        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -127,7 +176,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:adcaf0a35af15962da14931847dd43fa3e7dc56b06c9c00ec42fe2b8be80057f"
+        output_digest: "sha256:4e530c6e048920630cca649770cd7cf3e3abb5f00fd10e5de59c4399e0662c49"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:40:56+09:00"
@@ -144,7 +193,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -152,7 +201,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -160,7 +209,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
+        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
@@ -177,7 +226,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -185,7 +234,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -193,7 +242,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
+        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装
@@ -202,7 +251,7 @@ review_evidence:
 
 `PLAN-L6-05-setup-solo-team` (add-design) の ① 機能設計 (`setup-solo-team.md`) + ③ 単体テスト設計 (U-SETUP-001〜007) を ② 実装 + ④ テストコードに落とす add-impl。**Add-feature 標準ライフサイクル 経路 B** の impl 段階。完了後、後段 `PLAN-REVERSE-04` (未起票、本 PLAN 完了後に起票予定) で L4 external-if (GitHub 境界契約) / L3 要件 (新 FR 要否) / §6.5 整合 / L0 §10 用語へ back-fill する。
 
-2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。brownfield では `importReport` に managed/preview/existing/written/skipped/mergeable path と `requiresReview` / `nextRoute=review_import_report` を返し、既存 non-mergeable config を黙って成功扱いにしない。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
+2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。brownfield では `importReport` に managed/preview/existing/written/skipped/mergeable path と `requiresReview` / `nextRoute=review_import_report` を返し、既存 non-mergeable config を黙って成功扱いにしない。さらに `consumerReadiness` で projected hook が呼ぶ `ut-tdd` CLI の PATH 解決性、Bun/Git/GitHub CLI、Claude/Codex runtime mode、secret 不要の consumer CI smoke を返し、PATH 未解決時は `bun link` / `bun link ut-tdd` remediation を出して silent pass させない。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
 
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
 - **dependencies**: `parent=PLAN-L6-05` で lineage 連結。`requires` には置かない (confirmed 段階の design PLAN を `status=completed` 検証対象にしないため = §1.10.E の latent fail-close 回避。bottom-up Add-feature で L7 impl は confirmed L6 設計に依存するのが常態)。
@@ -227,7 +276,7 @@ U-SETUP-001〜007 を vitest 化 (③ 設計 L7-unit-test-design.md §1.7)。dep
 commander で `ut-tdd setup` を追加: `--solo` / `--team` (phase 上書き) / `--dry-run` / `--apply-branch-protection` / `--tl-team` / `--qa-team` / `--po-team`。非対話判定 (TTY/CI) を `isInteractive` deps に注入。既存 status/plan サブコマンドと同形。
 
 ### Step 5b: ut-tdd setup project CLI 配線 (src/cli.ts)
-`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、`importReport`、次に実行する確認コマンドを返す。`importReport` は fresh/brownfield、managed/preview/existing/written/skipped/mergeable path、`requiresReview`、`reviewRequiredReasons`、`nextRoute` を含める。text 出力でも `import-report: ready|review_required` を出し、brownfield の衝突レビューを見落とさない。`identifierTransition` は現行 `ut-tdd` / `.ut-tdd` / `area=harness`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=ut-tdd rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
+`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、`importReport`、`consumerReadiness`、次に実行する確認コマンドを返す。`importReport` は fresh/brownfield、managed/preview/existing/written/skipped/mergeable path、`requiresReview`、`reviewRequiredReasons`、`nextRoute` を含める。`consumerReadiness` は consumer repo で projected hook が呼ぶ `ut-tdd` CLI の PATH 解決性を検査し、未解決なら setup output に `bun link` remediation を出す。text 出力でも `import-report: ready|review_required` と `consumer-readiness:` を出し、brownfield の衝突レビューや CLI PATH 未解決を見落とさない。`identifierTransition` は現行 `ut-tdd` / `.ut-tdd` / `area=harness`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=ut-tdd rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
 
 ### Step 6: review (review 前置 MUST)
 `code-reviewer` (Senior Staff、TL 代替) で実装/型/file↔GitHub-API 境界/非対話 apply 封鎖/token 非記録/安全フォールバック/idempotency をレビュー。cross-agent 不在を evidence に記録 ([[feedback_ts_native_over_helix_cli]])。

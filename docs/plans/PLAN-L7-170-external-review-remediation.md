@@ -65,7 +65,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:40:00+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
       - kind: unit_test
         command: "bun run vitest run tests/cli-surface.test.ts"
         runner: bun
@@ -73,7 +73,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:41:00+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:84fa8475fa6b9e75d2c261f4b62d76e6e6cb1c2156f82f4ff228f3112bcebc78"
+        output_digest: "sha256:e1481324fab5c5b546b2ea1a85f948de50e06639bdd90a5e6abecad83670380e"
       - kind: unit_test
         command: "bun run vitest run tests/runtime-portability.test.ts"
         runner: bun
@@ -97,7 +97,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:44:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2dc2203a548bb09ae270970cc739ce570a96a362108fdbfdb360feecc364aa3a"
+        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -105,7 +105,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:44:10+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -129,7 +129,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:45:00+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+        output_digest: "sha256:9daf35668b2ec3327908d0827f3382d692878b71bb21b194fb4992a639d2181f"
 ---
 
 # PLAN-L7-170: 外部レビュー remediation (4 findings + digest 再stamp)

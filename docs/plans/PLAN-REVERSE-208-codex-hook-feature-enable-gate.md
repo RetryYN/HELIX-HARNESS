@@ -90,7 +90,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:31:29+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:adcaf0a35af15962da14931847dd43fa3e7dc56b06c9c00ec42fe2b8be80057f"
+        output_digest: "sha256:4e530c6e048920630cca649770cd7cf3e3abb5f00fd10e5de59c4399e0662c49"
       - kind: unit_test
         command: "bun run vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
         runner: bun
@@ -106,7 +106,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:35:22+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:adcaf0a35af15962da14931847dd43fa3e7dc56b06c9c00ec42fe2b8be80057f"
+        output_digest: "sha256:4e530c6e048920630cca649770cd7cf3e3abb5f00fd10e5de59c4399e0662c49"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -114,7 +114,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:36:14+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
 ---
 
 # PLAN-REVERSE-208: Codex hook feature enablement back-fill
