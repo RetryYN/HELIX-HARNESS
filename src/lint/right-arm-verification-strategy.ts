@@ -14,6 +14,7 @@ export interface RightArmVerificationStrategyResult {
   missingGateRows: string[];
   missingSourceLedgerRows: string[];
   sourceLedgerViolations: string[];
+  missingSourceLedgerGateCoverage: string[];
   violations: string[];
 }
 
@@ -85,6 +86,12 @@ const RIGHT_ARM_MARKERS = [
 ] as const;
 
 const REQUIRED_GATE_ROWS = ["G8", "G9", "G10", "G11", "G12", "G13", "G14"] as const;
+const ALLOWED_GATE_IMPACTS = new Set<string>([
+  ...REQUIRED_GATE_ROWS,
+  "S3",
+  "S4",
+  "action-binding approval",
+]);
 
 const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "source",
@@ -158,7 +165,21 @@ export function analyzeRightArmVerificationStrategy(
         ? []
         : [`verification source ledger ${row.source} missing adoption decision`],
     ),
+    ...sourceLedger.rows.flatMap((row) => {
+      const impacts = gateImpactTokens(row["gate impact"] ?? "");
+      return impacts.length > 0 && impacts.every((impact) => ALLOWED_GATE_IMPACTS.has(impact))
+        ? []
+        : [
+            `verification source ledger ${row.source} has invalid gate impact: ${row["gate impact"] ?? ""}`,
+          ];
+    }),
   ];
+  const coveredGateImpacts = new Set(
+    sourceLedger.rows.flatMap((row) => gateImpactTokens(row["gate impact"] ?? "")),
+  );
+  const missingSourceLedgerGateCoverage = REQUIRED_GATE_ROWS.filter(
+    (gate) => !coveredGateImpacts.has(gate),
+  );
 
   const violations = [
     ...forbiddenGateMarkers.map((marker) => `forbidden stale gates.md marker remains: ${marker}`),
@@ -169,6 +190,9 @@ export function analyzeRightArmVerificationStrategy(
     ...missingGateRows.map((gate) => `right-arm evidence profile missing row: ${gate}`),
     ...missingSourceLedgerRows.map((source) => `verification source ledger missing row: ${source}`),
     ...sourceLedgerViolations,
+    ...missingSourceLedgerGateCoverage.map(
+      (gate) => `verification source ledger gate impact missing coverage: ${gate}`,
+    ),
   ];
 
   return {
@@ -179,8 +203,14 @@ export function analyzeRightArmVerificationStrategy(
     missingGateRows,
     missingSourceLedgerRows,
     sourceLedgerViolations,
+    missingSourceLedgerGateCoverage,
     violations,
   };
+}
+
+function gateImpactTokens(value: string): string[] {
+  const tokens = value.match(/\bG(?:8|9|10|11|12|13|14)\b|\bS[34]\b|action-binding approval/g);
+  return [...new Set(tokens ?? [])];
 }
 
 function parseVerificationSourceLedger(text: string): {

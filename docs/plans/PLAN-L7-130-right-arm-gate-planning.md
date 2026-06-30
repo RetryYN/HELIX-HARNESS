@@ -41,6 +41,31 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T16:55:32+09:00"
+    tests_green_at: "2026-06-30T16:55:32+09:00"
+    verdict: approve
+    scope: "Right-arm verification source ledger now hard-gates gate-impact semantics: official source rows must map to recognized G8-G14/S3/S4/action-binding routes, and the ledger must cover every G8-G14 gate."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T16:55:32+09:00"
+        evidence_path: tests/right-arm-verification-strategy.test.ts
+        output_digest: "sha256:c1585629984820c41eeb5fb738f6f5df3ba9b5fd6909e23df070ef55114533b7"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T16:55:32+09:00"
+        evidence_path: src/lint/right-arm-verification-strategy.ts
+        output_digest: "sha256:185022df7fa3617a16e929d622323706907dc2af02a63950c0981b53b9e1a10a"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:21:41+09:00"
     tests_green_at: "2026-06-30T14:21:41+09:00"
     verdict: approve
@@ -55,7 +80,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:7784e6d73cdce4c48315c409ae74f30ffaa728dfd4a71227b823338329f7ec02"
+        output_digest: "sha256:c1585629984820c41eeb5fb738f6f5df3ba9b5fd6909e23df070ef55114533b7"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -63,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:7784e6d73cdce4c48315c409ae74f30ffaa728dfd4a71227b823338329f7ec02"
+        output_digest: "sha256:c1585629984820c41eeb5fb738f6f5df3ba9b5fd6909e23df070ef55114533b7"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -71,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:41+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:5763680f81c135d7bdd24cd1c98eb1f331905bfde21717d979c857bd11e6dff4"
+        output_digest: "sha256:185022df7fa3617a16e929d622323706907dc2af02a63950c0981b53b9e1a10a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"
@@ -120,6 +145,10 @@ untraceable.
   URL, adopted version/date, latest official status, adoption decision,
   verification use, and gate impact, so external standards are consumed
   semantically instead of as name-only markers or stale version claims.
+- Require source-ledger `gate impact` values to map to recognized
+  G8-G14/S3/S4/action-binding routes, and require the ledger as a whole to cover
+  every G8-G14 gate. This prevents a live official-source table from drifting
+  away from the right-arm verification band it is supposed to justify.
 - Add targeted tests for unplanned, stale concept-only, missing profile-row, and
   routed cases.
 
@@ -135,6 +164,9 @@ untraceable.
   latest official status, adoption decision, verification use, gate impact, or
   the OWASP LLM06 human-approval boundary for agentic workflow completion
   claims.
+- Doctor fails when source-ledger `gate impact` values are not recognized
+  G8-G14/S3/S4/action-binding routes, or when the source ledger no longer covers
+  the full G8-G14 verification band.
 - `lint-wiring` reaches both right-arm lint modules through the runtime
   entrypoint.
 - The reverse record explains why this is a planning fail-close slice, not the
