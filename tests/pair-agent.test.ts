@@ -410,6 +410,154 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     expect(lightPrompts[1]?.prompt).toContain("PAIR TRANSCRIPT");
   });
 
+  it("rejects smart review output without an explicit verdict line", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-review-verdict",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
+  it("requires a pending smart review verdict to include a continuation directive", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 2,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "REVIEW: implementation needs another pass\nVERDICT: pending\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-continuation-directive",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
+  it("does not treat review findings alone as a fix instruction", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "REVIEW_FINDINGS: missing route matrix coverage\nVERDICT: fail\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-fix-instruction",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
   it("fails closed when the lightweight implementation emits no implementation evidence or consultation", async () => {
     const plan = buildPairAgentTddPlan({
       planId: "PLAN-L7-PAIR",

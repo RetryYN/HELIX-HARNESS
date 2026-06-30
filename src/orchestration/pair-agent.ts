@@ -290,8 +290,10 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
       "light-implementation-requires-evidence-or-consultation",
       "consultation-routes-to-smart-instruction",
       "smart-agent-runs-tests-and-reviews",
+      "smart-review-requires-explicit-verdict-line",
       "pass-verdict-requires-green-and-review-evidence",
       "fail-verdict-requires-fix-instruction",
+      "pending-verdict-requires-continuation-directive",
       "fail-verdict-routes-back-to-light-implementation",
       "max-fix-cycles-enforced",
     ],
@@ -329,6 +331,10 @@ function parsePairAgentVerdict(output: string): "pass" | "fail" | "error" | "pen
   return match ? (match[1]?.toLowerCase() as "pass" | "fail" | "error" | "pending") : "pending";
 }
 
+function hasReviewVerdictLine(output: string): boolean {
+  return /\bVERDICT\s*[:=]\s*(pass|fail|error|pending)\b/i.test(output);
+}
+
 function hasRedEvidence(output: string): boolean {
   return /\b(RED_EVIDENCE|RED_ORACLE|FAILING_TEST|RED)\b\s*[:=]/i.test(output);
 }
@@ -355,7 +361,7 @@ function hasReviewEvidence(output: string): boolean {
 }
 
 function hasFixInstruction(output: string): boolean {
-  return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE|FIX|REVIEW_FINDINGS?)\b\s*[:=]/i.test(
+  return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE)\b\s*[:=]/i.test(
     output,
   );
 }
@@ -377,7 +383,7 @@ function hasConsultationQuestion(output: string): boolean {
 }
 
 function hasConsultationResponse(output: string): boolean {
-  return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE|GUIDANCE)\b\s*[:=]/i.test(
+  return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE)\b\s*[:=]/i.test(
     output,
   );
 }
@@ -479,6 +485,10 @@ export async function runPairAgentTddPlan(input: {
       phaseName === "smart_review" &&
       transcript.at(-1)?.phase === "light_implementation" &&
       transcript.at(-1)?.status === "pending";
+    if (phaseName === "smart_review" && !hasReviewVerdictLine(output)) {
+      evidenceErrorCode = "missing-review-verdict";
+      reviewVerdict = "error";
+    }
     if (
       phaseName === "smart_test_author" &&
       (!hasRedEvidence(output) ||
@@ -497,11 +507,12 @@ export async function runPairAgentTddPlan(input: {
         evidenceErrorCode = "missing-light-implementation-evidence";
       }
     }
-    if (previousLightConsulted && reviewVerdict === "pass") {
+    if (!evidenceErrorCode && previousLightConsulted && reviewVerdict === "pass") {
       evidenceErrorCode = "consultation-cannot-pass-without-implementation";
       reviewVerdict = "error";
     }
     if (
+      !evidenceErrorCode &&
       previousLightConsulted &&
       (reviewVerdict === "fail" || reviewVerdict === "pending") &&
       !hasConsultationResponse(output)
@@ -509,13 +520,27 @@ export async function runPairAgentTddPlan(input: {
       evidenceErrorCode = "missing-consultation-response";
       reviewVerdict = "error";
     }
-    if (phaseName === "smart_review" && reviewVerdict === "pass") {
+    if (
+      !evidenceErrorCode &&
+      phaseName === "smart_review" &&
+      reviewVerdict === "pending" &&
+      !hasConsultationResponse(output)
+    ) {
+      evidenceErrorCode = "missing-continuation-directive";
+      reviewVerdict = "error";
+    }
+    if (!evidenceErrorCode && phaseName === "smart_review" && reviewVerdict === "pass") {
       if (!hasGreenEvidence(output) || !hasReviewEvidence(output)) {
         evidenceErrorCode = "missing-green-or-review-evidence";
         reviewVerdict = "error";
       }
     }
-    if (phaseName === "smart_review" && reviewVerdict === "fail" && !hasFixInstruction(output)) {
+    if (
+      !evidenceErrorCode &&
+      phaseName === "smart_review" &&
+      reviewVerdict === "fail" &&
+      !hasFixInstruction(output)
+    ) {
       evidenceErrorCode = "missing-fix-instruction";
       reviewVerdict = "error";
     }
