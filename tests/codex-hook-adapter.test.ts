@@ -23,6 +23,16 @@ function validCodexHooks(): Record<string, unknown> {
     hooks: {
       PreToolUse: [
         {
+          matcher: "spawn_agent|spawn_agents_on_csv",
+          hooks: [
+            {
+              type: "command",
+              command: "bun .claude/hooks/agent-guard.ts",
+              blockOnFailure: true,
+            },
+          ],
+        },
+        {
           matcher: "apply_patch|write_file",
           hooks: [
             { type: "command", command: "bun .claude/hooks/work-guard.ts", blockOnFailure: true },
@@ -43,6 +53,26 @@ function validCodexHooks(): Record<string, unknown> {
 
 const json = (o: unknown): string => JSON.stringify(o);
 const validCodexConfigToml = "[features]\nhooks = true\n";
+
+function preToolEntryByMatcher(
+  hooks: ReturnType<typeof validCodexHooks>,
+  matcher: string,
+): {
+  matcher: string;
+  hooks: Array<{ type?: string; command?: string; blockOnFailure?: boolean }>;
+} {
+  const typed = hooks as {
+    hooks: {
+      PreToolUse: Array<{
+        matcher: string;
+        hooks: Array<{ type?: string; command?: string; blockOnFailure?: boolean }>;
+      }>;
+    };
+  };
+  const entry = typed.hooks.PreToolUse.find((candidate) => candidate.matcher === matcher);
+  if (!entry) throw new Error(`missing fixture matcher: ${matcher}`);
+  return entry;
+}
 
 const assertExternalizedCodexRequiredPolicy = (): void => {
   expect(CODEX_REQUIRED_POLICY.map((hook) => hook.id)).toContain("work-guard");
@@ -107,9 +137,9 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
   });
 
   it("U-CXHOOK-006: Codex の編集 matcher が Claude 字面のままだと発火しない = fail-close", () => {
-    const broken = validCodexHooks() as { hooks: { PreToolUse: { matcher: string }[] } };
+    const broken = validCodexHooks();
     // 字面コピー (Edit|Write|MultiEdit) は Codex tool 名と一致せず発火しない偽パリティ。
-    broken.hooks.PreToolUse[0].matcher = "Edit|Write|MultiEdit";
+    preToolEntryByMatcher(broken, "apply_patch|write_file").matcher = "Edit|Write|MultiEdit";
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(r.violations.some((v) => v.hook === "work-guard" && v.reason === "missing_hook")).toBe(
@@ -118,20 +148,16 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
   });
 
   it("U-CXHOOK-007: work-guard の blockOnFailure 欠落は fail-close", () => {
-    const broken = validCodexHooks() as {
-      hooks: { PreToolUse: { hooks: { blockOnFailure?: boolean }[] }[] };
-    };
-    broken.hooks.PreToolUse[0].hooks[0].blockOnFailure = undefined;
+    const broken = validCodexHooks();
+    preToolEntryByMatcher(broken, "apply_patch|write_file").hooks[0].blockOnFailure = undefined;
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(r.violations.some((v) => v.reason === "missing_block_on_failure")).toBe(true);
   });
 
   it("U-CXHOOK-008: Codex command が $CLAUDE_PROJECT_DIR 依存だと fail-close (repo-relative 原則)", () => {
-    const broken = validCodexHooks() as {
-      hooks: { PreToolUse: { hooks: { command: string }[] }[] };
-    };
-    broken.hooks.PreToolUse[0].hooks[0].command =
+    const broken = validCodexHooks();
+    preToolEntryByMatcher(broken, "apply_patch|write_file").hooks[0].command =
       'bun "$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts"';
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
@@ -178,19 +204,14 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
     }
   });
 
-  it("U-CXHOOK-012: subagent-stop のみ真の N/A。agent-guard は N/A でなく『実在するが未ガード』の deferred surface", () => {
+  it("U-CXHOOK-012: subagent-stop のみ真の N/A。Codex spawn_agent は agent-guard でガードする", () => {
     const naEntrypoints = CODEX_NOT_APPLICABLE.map((n) => n.entrypoint);
     expect(naEntrypoints).toContain("src/cli.ts hook subagent-stop");
     // 当初 agent-guard を「面が無い N/A」と書いたのは誤り (spawn_agent 族が実在)。N/A から外れていること。
     expect(naEntrypoints).not.toContain(".claude/hooks/agent-guard.ts");
     for (const n of CODEX_NOT_APPLICABLE) expect(n.reason.length).toBeGreaterThan(0);
-    // spawn_agent 面は「実在するが未ガード」の deferred follow-up として契約に残す (gap でも N/A でもない)。
-    const deferred = CODEX_DEFERRED_SURFACE.map((d) => d.surface).join(" ");
-    expect(deferred).toContain("spawn_agent");
-    for (const d of CODEX_DEFERRED_SURFACE) {
-      expect(d.claude_analog).toBe(".claude/hooks/agent-guard.ts");
-      expect(d.reason.length).toBeGreaterThan(0);
-    }
+    expect(CODEX_DEFERRED_SURFACE).toEqual([]);
+    expect(CODEX_REQUIRED.map((hook) => hook.id)).toContain("agent-guard");
     // 真の N/A (subagent-stop) のみなので Codex hooks.json に SubagentStop hook が無くても parity は ok。
     expect(analyzeCodexHookAdapter({ codexHooksJson: json(validCodexHooks()) }).ok).toBe(true);
   });
@@ -205,8 +226,8 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
         bypass: false,
       }).decision,
     ).toBe("block");
-    // agent-guard allowlist ロジックは共有。Codex は spawn_agent 面を実際に持つので、agent-guard 相当を
-    // 配線すれば同 entrypoint・同判定になる (配線自体は deferred follow-up)。
+    // agent-guard allowlist ロジックは共有。Codex は spawn_agent 面を実際に持つので、
+    // 同 entrypoint で Codex payload も fail-close 判定する。
     expect(
       evaluateAgentGuard(
         { tool_name: "Agent", tool_input: { subagent_type: "be-logic", model: "sonnet" } },
@@ -216,10 +237,8 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
   });
 
   it("U-CXHOOK-014: 非 command type の hook では guard 充足とみなさない (type==='command' 必須)", () => {
-    const broken = validCodexHooks() as {
-      hooks: { PreToolUse: { hooks: { type: string }[] }[] };
-    };
-    broken.hooks.PreToolUse[0].hooks[0].type = "notification";
+    const broken = validCodexHooks();
+    preToolEntryByMatcher(broken, "apply_patch|write_file").hooks[0].type = "notification";
     const r = analyzeCodexHookAdapter({ codexHooksJson: json(broken) });
     expect(r.ok).toBe(false);
     expect(r.violations.some((v) => v.hook === "work-guard" && v.reason === "missing_hook")).toBe(

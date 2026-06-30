@@ -76,7 +76,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:4e530c6e048920630cca649770cd7cf3e3abb5f00fd10e5de59c4399e0662c49"
+        output_digest: "sha256:bef0bd7f9c25172d054604d736bcf386eb05283e199b3fca4a68e91d83ec4730"
 ---
 
 # PLAN-REVERSE-203: old HELIX semantic adoption decision back-fill

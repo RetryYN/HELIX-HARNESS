@@ -78,7 +78,7 @@ next_pair_freeze: L6
 | HU-PILLAR-N8-03 | HR-NFR-P8-03 | HC-P8 | `selectSandboxTokenPolicy` / `requireActionBindingApproval` | agentic AI escalation に least privilege/rollback/monitoring/risk owner を要求 |
 | HU-PILLAR-NAC-01 | HR-NFR-AC-01 | HC-AC | `validateAdapterParityMap` | adapter/template/skill/runtime rule drift を drift として返す |
 | HU-PILLAR-NAC-02 | HR-NFR-AC-02 | HC-AC | `requireHostedSurfacePreflight` | hosted/API edit は hook non-enforcement、git status、target path evidence 欠落で reject |
-| HU-PILLAR-NAC-03 | HR-NFR-AC-03 | HC-AC | `registerDeferredSurface` / `validateAdapterParityMap` | PLAN/CLI/harness DB/dry-run path を SSoT にし、provider API direct path を required にしない |
+| HU-PILLAR-NAC-03 | HR-NFR-AC-03 | HC-AC | `registerDeferredSurface` / `validateAdapterParityMap` | PLAN/CLI/harness DB/dry-run path を SSoT にし、provider API direct path を required にしない。Codex `spawn_agent|spawn_agents_on_csv` は required agent-guard matcher として検証し、missing/unknown `agent_type`、direct model override、task body 欠落、bulk spawn を fail-close する |
 
 ## §1.1 upstream hardening and provenance oracles
 

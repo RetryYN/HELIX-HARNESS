@@ -46,7 +46,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: unit_test
         command: "bun run vitest run tests\\setup.test.ts"
         runner: bun
@@ -62,7 +62,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: src/setup/templates.ts
-        output_digest: "sha256:efead74fe31c92d80cc664f697596a136c5dba75a8c91189e36174aedd9b706d"
+        output_digest: "sha256:6eeaa921a28cf0d9a2d528c0580307c23bfc1dd6ef1c914cf1953837e86749fd"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -78,7 +78,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T20:48:55+09:00"
         evidence_path: src/setup/templates.ts
-        output_digest: "sha256:efead74fe31c92d80cc664f697596a136c5dba75a8c91189e36174aedd9b706d"
+        output_digest: "sha256:6eeaa921a28cf0d9a2d528c0580307c23bfc1dd6ef1c914cf1953837e86749fd"
 ---
 
 # PLAN-L7-166: setup template catalog split

@@ -12,8 +12,8 @@
  *     (`apply_patch` は freeform で file_path を持たず、パスは patch 本文に埋まる。work-guard 側で抽出)
  *   - shell : Claude `Bash`               → Codex `exec_command|local_shell`
  *   - Codex に `SubagentStop` event は無い          → subagent-stop は Codex で真の N/A
- *   - `spawn_agent` 等の sub-agent ツール族は実在    → agent-guard 相当は「未ガードの deferred surface」
- *     (N/A ではない。cross-runtime review で是正)
+ *   - `spawn_agent` 等の sub-agent ツール族は実在    → Claude agent-guard entrypoint を
+ *     Codex matcher `spawn_agent|spawn_agents_on_csv` へ配線する (N/A ではない)
  *
  * SSoT: 各ガードの entrypoint (どの TS スクリプトを呼ぶか) は project-hook.ts の `REQUIRED`
  * (Claude 側) と共有する。本 lint は Codex 側が「Claude と同じ entrypoint を、Codex の matcher で」
@@ -48,19 +48,17 @@ export const CODEX_NOT_APPLICABLE = [
  * 当初 agent-guard を「Codex に subagent 面が無い → N/A」と記していたが誤り。codex.exe 0.128.0 には
  * `spawn_agent` / `wait_agent` / `list_agents` / `close_agent` / `spawn_agents_on_csv` の sub-agent
  * ツール族が実在し ("This spawn_agent tool provides you access to sub-agents")、PreToolUse の tool_name
- * として観測できる (cross-runtime review Important で是正、バイナリ実機で確認)。Claude agent-guard
- * (subagent_type allowlist + model family 一致) の Codex 版は spawn_agent の意味論 (model 継承 /
- * agent_role / canonical task_name) が異なり別設計を要するため、本 PLAN scope 外の follow-up とする。
- * 「面が無い」ではなく「面は在るが未ガード」であることを契約として残す。
+ * として観測できる (cross-runtime review Important で是正、バイナリ実機で確認)。現在は
+ * `spawn_agent|spawn_agents_on_csv` を agent-guard に配線し、role allowlist / direct model override /
+ * concrete task body / bulk spawn を fail-close する。
  */
-export const CODEX_DEFERRED_SURFACE = [
-  {
-    surface: "spawn_agent / wait_agent / list_agents / close_agent / spawn_agents_on_csv",
-    claude_analog: ".claude/hooks/agent-guard.ts",
-    reason:
-      "Codex の sub-agent ツール族は PreToolUse tool_name として実在するが、agent-guard 相当の allowlist/model 検査は別設計が必要なため PLAN-L7-139 の follow-up として繰り延べ (未ガードの既知残面)",
-  },
-] as const;
+interface CodexDeferredSurface {
+  surface: string;
+  claude_analog: string;
+  reason: string;
+}
+
+export const CODEX_DEFERRED_SURFACE = [] as readonly CodexDeferredSurface[];
 
 /** `~/.codex/` 等 global Codex 設定への参照 (repo-relative 原則違反) を検出。 */
 const CODEX_GLOBAL_RE = /(?:^|[\s"'=])(?:~|\$HOME|%USERPROFILE%)?[\\/]?\.codex[\\/]/i;
@@ -243,7 +241,7 @@ export function loadCodexHookAdapterInput(repoRoot: string): {
 export function codexHookAdapterMessages(result: CodexHookResult): string[] {
   if (result.ok) {
     return [
-      `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=apply_patch|write_file, subagent-stop=N/A, spawn_agent surface=deferred follow-up)`,
+      `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=spawn_agent|apply_patch|write_file, subagent-stop=N/A)`,
       "codex-hook-adapter - OK (.codex/config.toml enables [features].hooks=true for direct Codex CLI/IDE sessions)",
       "codex-hook-adapter - note: .codex/hooks.json covers direct Codex CLI/IDE sessions only; hosted API/developer apply_patch tools do not execute through the Codex hook engine and are not repo-enforceable",
     ];

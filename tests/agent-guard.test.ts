@@ -1,3 +1,7 @@
+import { spawnSync } from "node:child_process";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   type AgentGuardContext,
@@ -17,6 +21,7 @@ const FAMILIES: Record<string, ResolvedFamily> = {
   "code-reviewer": "sonnet",
 };
 const legacyRuntimeCommand = `${["he", "lix"].join("")} codex`;
+const cliPath = join(process.cwd(), "src", "cli.ts");
 
 function ctx(allowRaw = false): AgentGuardContext {
   return {
@@ -27,6 +32,24 @@ function ctx(allowRaw = false): AgentGuardContext {
 
 function agent(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
   return { tool_name: "Agent", tool_input };
+}
+
+function codexSpawn(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
+  return { tool_name: "spawn_agent", tool_input };
+}
+
+function runCliAgentGuard(input: AgentGuardInput | string) {
+  const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-agent-guard-cli-"));
+  try {
+    return spawnSync("bun", [cliPath, "hook", "agent-guard"], {
+      cwd,
+      encoding: "utf8",
+      input: typeof input === "string" ? input : JSON.stringify(input),
+      env: { ...process.env, UT_TDD_ALLOW_RAW_AGENT: undefined },
+    });
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
 }
 
 describe("normalizeModelFamily", () => {
@@ -126,5 +149,62 @@ describe("evaluateAgentGuard", () => {
     const d = evaluateAgentGuard(agent({ subagent_type: "be-logic", model: "sonnet" }), ctx(true));
     expect(d.code).toBe(0);
     expect(d.bypassed).toBe(true);
+  });
+
+  it("blocks Codex spawn_agent calls without an explicit agent_type", () => {
+    const d = evaluateAgentGuard(codexSpawn({ message: "Inspect the routing code" }), ctx());
+    expect(d.code).toBe(2);
+    expect(d.message).toContain("agent_type");
+  });
+
+  it("allows Codex spawn_agent with an approved agent_type, inherited model, and concrete task", () => {
+    const d = evaluateAgentGuard(
+      codexSpawn({ agent_type: "worker", message: "Ownership: tests/agent-guard.test.ts only" }),
+      ctx(),
+    );
+    expect(d.code).toBe(0);
+  });
+
+  it("blocks Codex spawn_agent unknown roles and direct model overrides", () => {
+    expect(
+      evaluateAgentGuard(codexSpawn({ agent_type: "auditor", message: "Review code" }), ctx()).code,
+    ).toBe(2);
+    const override = evaluateAgentGuard(
+      codexSpawn({ agent_type: "worker", model: "gpt-5.5", message: "Implement change" }),
+      ctx(),
+    );
+    expect(override.code).toBe(2);
+    expect(override.message).toContain("model override");
+  });
+
+  it("blocks Codex spawn_agent calls without a concrete task body", () => {
+    const d = evaluateAgentGuard(codexSpawn({ agent_type: "explorer" }), ctx());
+    expect(d.code).toBe(2);
+    expect(d.message).toContain("task body");
+  });
+
+  it("blocks Codex bulk spawn surface until team-run ownership can guard each member", () => {
+    const d = evaluateAgentGuard(
+      { tool_name: "spawn_agents_on_csv", tool_input: { agent_type: "worker", message: "x" } },
+      ctx(),
+    );
+    expect(d.code).toBe(2);
+    expect(d.message).toContain("bulk");
+  });
+
+  it("exposes ut-tdd hook agent-guard as a blocking CLI hook", () => {
+    const pass = runCliAgentGuard(
+      codexSpawn({ agent_type: "explorer", message: "Inspect tests/agent-guard.test.ts" }),
+    );
+    expect(pass.status).toBe(0);
+    expect(pass.stdout).toContain("agent-guard: pass");
+
+    const blocked = runCliAgentGuard(codexSpawn({ message: "No explicit role" }));
+    expect(blocked.status).toBe(2);
+    expect(blocked.stderr).toContain("BLOCK");
+
+    const empty = runCliAgentGuard("");
+    expect(empty.status).toBe(2);
+    expect(empty.stderr).toContain("fail-close");
   });
 });

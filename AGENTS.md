@@ -157,11 +157,11 @@ Codex tool names differ from Claude, so matchers are mapped (not copied):
 - `subagent-stop` (`SubagentStop`) has **no Codex surface** and is genuinely N/A:
   codex.exe 0.128.0 exposes only `PreToolUse` / `PostToolUse` / `SessionStart` /
   `Stop` / `UserPromptSubmit` hook events (no `SubagentStop`).
-- `agent-guard` (`Agent`) is **not yet wired** for Codex. Codex DOES have a
-  sub-agent surface (`spawn_agent` / `wait_agent` / `list_agents` tools), so an
-  agent-guard analog is a **deferred follow-up** (a real, currently-unguarded
-  surface), **not** an absent one. Wiring it needs a Codex allowlist/model design
-  because `spawn_agent` semantics differ from Claude's `subagent_type`.
+- `agent-guard` (`Agent`) maps to Codex `spawn_agent|spawn_agents_on_csv`.
+  Codex `spawn_agent` semantics differ from Claude `subagent_type`, so the shared
+  guard normalizes the Codex payload separately: `agent_type` must be explicit and
+  allowlisted, direct model overrides are blocked, task body is required, and bulk
+  spawn is denied unless routed through the team/pair-agent workflow.
 
 `.codex/hooks.json` parity with `.claude/settings.json` is machine-checked by `doctor`
 `codex-hook-adapter`, which fails closed if a guard diverges, drops

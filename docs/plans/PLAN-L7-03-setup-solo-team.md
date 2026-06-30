@@ -54,7 +54,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
+        output_digest: "sha256:ae9fcd060e7bb1c821712f12ae9006d43a6943d4f7cf64c9048ada41ba374115"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -78,7 +78,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:8fd526c801fbb9110263b8b16f8b328fd3763b7036f6f2ca1862021f71a76c0a"
+        output_digest: "sha256:e2372f6bdc090d2424ebb0a361b1624e1fc79398eb12b43e283b4807d281dae3"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T05:22:33+09:00"
@@ -103,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -119,7 +119,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
+        output_digest: "sha256:ae9fcd060e7bb1c821712f12ae9006d43a6943d4f7cf64c9048ada41ba374115"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -127,7 +127,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -135,7 +135,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:8fd526c801fbb9110263b8b16f8b328fd3763b7036f6f2ca1862021f71a76c0a"
+        output_digest: "sha256:e2372f6bdc090d2424ebb0a361b1624e1fc79398eb12b43e283b4807d281dae3"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:45:00+09:00"
@@ -152,7 +152,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -168,7 +168,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
+        output_digest: "sha256:ae9fcd060e7bb1c821712f12ae9006d43a6943d4f7cf64c9048ada41ba374115"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -176,7 +176,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:4e530c6e048920630cca649770cd7cf3e3abb5f00fd10e5de59c4399e0662c49"
+        output_digest: "sha256:bef0bd7f9c25172d054604d736bcf386eb05283e199b3fca4a68e91d83ec4730"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:40:56+09:00"
@@ -193,7 +193,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -209,7 +209,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
+        output_digest: "sha256:ae9fcd060e7bb1c821712f12ae9006d43a6943d4f7cf64c9048ada41ba374115"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
@@ -226,7 +226,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -242,7 +242,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:24f7ab9de006caea28aceb93f4120659ef8ae51ac3e4db8fe6b19db69ff18dc8"
+        output_digest: "sha256:ae9fcd060e7bb1c821712f12ae9006d43a6943d4f7cf64c9048ada41ba374115"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装

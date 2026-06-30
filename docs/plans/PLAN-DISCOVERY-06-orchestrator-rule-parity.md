@@ -34,7 +34,7 @@ s4_decision_record:
 - verified_evidence: PLAN-DISCOVERY-06 §5/§5.1, PLAN-L7-139-codex-hook-adapter, and PLAN-REVERSE-139-codex-hook-adapter.
 - stakeholder_review_or_proxy: cross-runtime Codex/gpt-5.5 review recorded in §5.1.
 - acceptance_gap: Codex hosted/API tool surfaces remain outside direct repo hook enforcement and are documented as a scope boundary.
-- unresolved_risk: Codex spawn_agent guard remains deferred and must not be treated as N/A.
+- unresolved_risk: Hosted/API tool surfaces remain outside direct repo hook enforcement and require explicit preflight; Codex spawn_agent guard parity is no longer deferred after PLAN-L7-139 continuation.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
 - route_impact: confirmed routes hook parity findings to L7 implementation and Reverse architecture backfill.
 - forward_route: PLAN-L7-139-codex-hook-adapter and PLAN-REVERSE-139-codex-hook-adapter.
@@ -127,9 +127,10 @@ hybrid 規律) は **「どの orchestrator が回しても効く」= orchestrat
 >    `extractEditTargets` (runtime-agnostic pure fn) が patch 本文の複数ファイルパスを抽出して訂正。
 > 2. **(Important) matcher の tool 名が違う** (`apply_patch|write_file` / `exec_command|local_shell`)。
 >    Claude の `Write|Edit` を literal copy しても発火しない = 偽パリティ。
-> 3. **(Important) `agent-guard` は N/A ではなく deferred**。Codex は `spawn_agent` 族 (real
->    sub-agent surface) を持ち現状未ガード = `CODEX_DEFERRED_SURFACE`。**真に N/A なのは
->    `subagent-stop` のみ**。
+> 3. **(Important) `agent-guard` は N/A ではない**。Codex は `spawn_agent` 族 (real
+>    sub-agent surface) を持つ。PLAN-L7-139 continuation で `spawn_agent|spawn_agents_on_csv`
+>    を agent-guard に配線し、`agent_type` allowlist / model override / task body / bulk spawn
+>    を fail-close する。**真に N/A なのは `subagent-stop` のみ**。
 > 4. **(scope boundary) `.codex/hooks.json` の効力範囲は direct Codex CLI/IDE の repo-local hook**
 >    であり、hosted/API runtime の `apply_patch` までは機械的に intercept しない。この制限は
 >    `L7-139` 側で明示済み (本 S4 結論にも同じ制限が掛かる)。

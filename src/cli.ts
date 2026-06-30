@@ -104,7 +104,15 @@ import {
   buildProviderInvocation,
 } from "./runtime/adapter";
 import {
+  type AgentGuardInput,
+  evaluateAgentGuard,
+  normalizeModelFamily,
+  type ResolvedFamily,
+} from "./runtime/agent-guard";
+import {
+  DEFAULT_MAX_PARALLEL,
   nodeAgentSlotsDeps,
+  recordGuardFire,
   releaseOldestGuardSlot,
   sweepStaleGuardSlots,
 } from "./runtime/agent-slots";
@@ -347,6 +355,27 @@ function readHookInput(defaultEvent: string, sessionId?: string): SessionHookInp
     hook_event_name: parsed.hook_event_name ?? defaultEvent,
     session_id: sessionId ?? parsed.session_id ?? "ut-tdd-cli",
   };
+}
+
+function readStrictHookInput(): AgentGuardInput | null {
+  const raw = process.stdin.isTTY ? "" : readStdin();
+  const normalized = raw.replace(/^\uFEFF/, "").trim();
+  if (!normalized) return null;
+  try {
+    return JSON.parse(normalized) as AgentGuardInput;
+  } catch {
+    return null;
+  }
+}
+
+function resolveAgentFamilyFromRepo(repoRoot: string, subagentType: string): ResolvedFamily {
+  const md = join(repoRoot, ".claude", "agents", `${subagentType}.md`);
+  if (!existsSync(md)) return "missing";
+  const content = readFileSync(md, "utf8");
+  const fm = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!fm) return "unknown";
+  const modelLine = fm[1].match(/^model:[ \t]*(\S+)/m);
+  return normalizeModelFamily(modelLine?.[1]?.trim()) ?? "unknown";
 }
 
 function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undefined): string[] {
@@ -1518,6 +1547,52 @@ session
   });
 
 const hook = program.command("hook").description("package-local hook entrypoints");
+hook
+  .command("agent-guard")
+  .description("block unsafe Claude/Codex sub-agent dispatch before execution")
+  .action(() => {
+    const repoRoot = process.cwd();
+    const input = readStrictHookInput();
+    if (input === null) {
+      process.stderr.write(
+        "[ut-tdd-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const decision = evaluateAgentGuard(input, {
+      resolveAgentFamily: (subagentType) => resolveAgentFamilyFromRepo(repoRoot, subagentType),
+      allowRaw: process.env.UT_TDD_ALLOW_RAW_AGENT === "1",
+    });
+    if (decision.message) process.stderr.write(`${decision.message}\n`);
+
+    const passedKind = input.tool_input?.subagent_type ?? input.tool_input?.agent_type;
+    if (decision.code === 0 && passedKind) {
+      try {
+        const { activeCount, exceeded } = recordGuardFire(
+          { agentKind: passedKind },
+          nodeAgentSlotsDeps(repoRoot),
+        );
+        if (exceeded) {
+          process.stderr.write(
+            `[ut-tdd-guard] WARN: concurrent sub-agents=${activeCount}, limit=${DEFAULT_MAX_PARALLEL}. Check serialization requirements.\n`,
+          );
+        }
+      } catch {
+        // Slot accounting is advisory; guard allow/block decision must not depend on log I/O.
+      }
+    }
+
+    if (decision.code === 0) {
+      process.stdout.write(
+        `agent-guard: ${decision.bypassed ? "bypassed" : "pass"} ${
+          passedKind ? `kind=${passedKind}` : "kind=none"
+        }\n`,
+      );
+    }
+    process.exitCode = decision.code;
+  });
+
 hook
   .command("post-tool-use")
   .description("record PostToolUse through the shared session-log core")

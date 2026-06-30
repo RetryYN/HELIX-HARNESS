@@ -52,9 +52,12 @@ try {
 }
 let input: AgentGuardInput;
 try {
-  input = JSON.parse(raw || "{}") as AgentGuardInput;
+  if (!raw.trim()) throw new Error("empty hook stdin");
+  input = JSON.parse(raw) as AgentGuardInput;
 } catch {
-  process.stderr.write("[ut-tdd-guard] BLOCK: hook stdin の JSON 解析に失敗しました (fail-close)。\n");
+  process.stderr.write(
+    "[ut-tdd-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
+  );
   process.exit(2);
 }
 
@@ -67,7 +70,7 @@ if (decision.message) process.stderr.write(`${decision.message}\n`);
 
 // IMP-050 助言: pass (code 0) 時のみ subagent fire を記録し並列超過なら warn。
 // block 判定 (fail-close) には一切影響しない。slot I/O 失敗は recordGuardFire 内で握る (fail-open)。
-const passedKind = input.tool_input?.subagent_type;
+const passedKind = input.tool_input?.subagent_type ?? input.tool_input?.agent_type;
 if (decision.code === 0 && passedKind) {
   try {
     const { activeCount, exceeded } = recordGuardFire(

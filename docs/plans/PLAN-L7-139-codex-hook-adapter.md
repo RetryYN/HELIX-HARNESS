@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-06-24
-updated: 2026-06-24
+updated: 2026-07-01
 owner: Claude
 backprop_decision: not_required
 backprop_decision_reason: "Developer-local runtime guard parity: gives the Codex CLI the same repo-local foreign-edit / session-lifecycle hooks Claude already has, enforcing the existing hybrid Git rule. It does not change product requirements or runtime user behavior (mirrors PLAN-L7-114-work-guard, which is the Claude side of the same guard)."
@@ -24,9 +24,21 @@ generates:
     artifact_type: json_config
   - artifact_path: src/lint/codex-hook-adapter.ts
     artifact_type: source_module
+  - artifact_path: src/lint/codex-hook-adapter-policy.ts
+    artifact_type: source_module
+  - artifact_path: src/runtime/agent-guard.ts
+    artifact_type: source_module
+  - artifact_path: src/runtime/agent-guard-policy.ts
+    artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/setup/templates.ts
+    artifact_type: source_module
+  - artifact_path: .claude/hooks/agent-guard.ts
+    artifact_type: source_module
   - artifact_path: tests/codex-hook-adapter.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/agent-guard.test.ts
     artifact_type: test_code
   - artifact_path: tests/work-guard.test.ts
     artifact_type: test_code
@@ -35,12 +47,53 @@ dependencies:
   requires:
     - PLAN-L7-114-work-guard
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T06:20:45+09:00"
+    tests_green_at: "2026-07-01T06:20:45+09:00"
+    verdict: pass
+    scope: "Continuation: Codex spawn_agent guard parity is now wired instead of deferred. .codex/hooks.json requires the shared agent-guard entrypoint for spawn_agent|spawn_agents_on_csv, evaluateAgentGuard validates Codex payloads separately from Claude Agent payloads, ut-tdd hook agent-guard exposes the blocking CLI hook used by consumer templates, and design/test-design/PLAN text now reflects that subagent-stop is the only true N/A while spawn_agent is guarded."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/agent-guard.test.ts tests/codex-hook-adapter.test.ts tests/setup.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T06:18:00+09:00"
+        evidence_path: tests/agent-guard.test.ts
+        output_digest: "sha256:2e77132180a05f588c6225cc5f6af92bdc87624b59445edb8e71a3a158f7bac2"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T06:18:00+09:00"
+        evidence_path: src/runtime/agent-guard.ts
+        output_digest: "sha256:8bc4662d6ad9f7af6a243a60833905bdc0c4cb674e36a079f25ab26a6db569e2"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T06:18:00+09:00"
+        evidence_path: src/lint/codex-hook-adapter.ts
+        output_digest: "sha256:90ac4dbc6ae3c9bb1ff59c7dddb4801216dd0a673be8bb8046bb8a60f2932102"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T06:20:45+09:00"
+        evidence_path: tests/codex-hook-adapter.test.ts
+        output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
   - reviewer: claude-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-24T12:20:00+09:00"
     tests_green_at: "2026-06-24T12:17:00+09:00"
     verdict: approve
-    scope: "Cross-runtime (Codex/gpt-5.5) desk review returned REJECT (see body '## Cross-runtime review'); all three substantive findings verified TRUE against the real codex.exe 0.128.0 binary (233.8MB, strings inspection) and addressed in code. (Critical) work-guard now extracts edit targets from the apply_patch freeform patch body (`*** Update/Add/Delete File:` / `*** Move to:`, multi-file) so the foreign-edit block actually fires for apply_patch — runtime-agnostic pure fn `extractEditTargets`, Claude file_path path unchanged. (Important) spawn_agent N/A falsehood corrected: subagent-stop is genuinely N/A (no SubagentStop event) but the spawn_agent surface is recorded as a real, currently-unguarded deferred follow-up (CODEX_DEFERRED_SURFACE), not absent. (Important) analyzer hardened: `type===\"command\"` required + token-exact path matching. status=confirmed because the deliverables are merged (merged-plan-status hard-requires confirmed+evidence for merged artifacts) and the change is unit-green (32 tests); the end-to-end live Codex hook-payload run is a documented hardening follow-up, not a confirmation blocker (the parser is payload-key-agnostic, so the residual is only whether Codex puts the patch in tool_input at all — the freeform single-arg binary evidence makes that low-risk)."
+    scope: "Cross-runtime (Codex/gpt-5.5) desk review returned REJECT (see body '## Cross-runtime review'); all three substantive findings verified TRUE against the real codex.exe 0.128.0 binary (233.8MB, strings inspection) and addressed in code. (Critical) work-guard now extracts edit targets from the apply_patch freeform patch body (`*** Update/Add/Delete File:` / `*** Move to:`, multi-file) so the foreign-edit block actually fires for apply_patch — runtime-agnostic pure fn `extractEditTargets`, Claude file_path path unchanged. (Important) spawn_agent N/A falsehood corrected: subagent-stop is genuinely N/A (no SubagentStop event); spawn_agent was first recorded as a real surface rather than absent, and the 2026-07-01 continuation wires spawn_agent|spawn_agents_on_csv to agent-guard instead of leaving it deferred. (Important) analyzer hardened: `type===\"command\"` required + token-exact path matching. status=confirmed because the deliverables are merged (merged-plan-status hard-requires confirmed+evidence for merged artifacts) and the change is unit-green (32 tests); the end-to-end live Codex hook-payload run is a documented hardening follow-up, not a confirmation blocker (the parser is payload-key-agnostic, so the residual is only whether Codex puts the patch in tool_input at all — the freeform single-arg binary evidence makes that low-risk)."
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
     green_commands:
@@ -67,7 +120,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-24T12:17:00+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
-        output_digest: "sha256:b46958ac82b8c8f7ad31b3fafe20a7991fc992c52979abe60999893b69b7fb03"
+        output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
 ---
 
 # PLAN-L7-139: Codex hook adapter (orchestrator-rule parity)
@@ -104,8 +157,8 @@ payload field names shared with Claude). This PLAN lands the implementation.
 
 - **`.codex/hooks.json`**: Codex hook adapter mirroring the Claude guards,
   reusing the SAME TypeScript entrypoints (`.claude/hooks/work-guard.ts`,
-  `bun src/cli.ts session ...`) with NO logic fork. Repo-relative; never writes
-  global `~/.codex/`.
+  `.claude/hooks/agent-guard.ts`, `bun src/cli.ts session ...`) with NO logic fork.
+  Repo-relative; never writes global `~/.codex/`.
 - **`.codex/config.toml`**: enables project-local hooks explicitly with
   `[features].hooks = true`; Codex loads project `.codex/` layers only for
   trusted projects.
@@ -122,6 +175,7 @@ payload field names shared with Claude). This PLAN lands the implementation.
   never fire = false parity. Confirmed from the `codex.exe` 0.128.0 binary):
   - `Edit|Write|MultiEdit` -> `apply_patch|write_file` (work-guard).
   - `Bash` -> `exec_command|local_shell` (PostToolUse session logging).
+  - `Agent` -> `spawn_agent|spawn_agents_on_csv` (agent-guard).
 - **`work-guard` apply_patch path extraction** (the cross-runtime REJECT fix):
   Codex's `apply_patch` is **freeform** and carries no `tool_input.file_path` —
   the edited paths live in the patch body (`*** Update File:` / `*** Add File:` /
@@ -132,18 +186,18 @@ payload field names shared with Claude). This PLAN lands the implementation.
   `write_file`, or parses ALL patch-body paths for apply_patch. The entrypoint
   evaluates every target and blocks if any is foreign-uncommitted. Claude's
   behavior is unchanged (it always sends `file_path`).
-- **N/A vs deferred (the cross-runtime REJECT correction)**:
+- **N/A vs guarded sub-agent surface (the cross-runtime REJECT correction)**:
   - `subagent-stop` (`SubagentStop`) is **genuinely N/A**: codex.exe 0.128.0
     exposes only `PreToolUse`/`PostToolUse`/`SessionStart`/`Stop`/
     `UserPromptSubmit` hook events (no `SubagentStop`, confirmed by binary).
   - `agent-guard` is **NOT N/A**. Codex has a real sub-agent surface
     (`spawn_agent` / `wait_agent` / `list_agents` / `close_agent` /
     `spawn_agents_on_csv` — 19 `spawn_agent` occurrences, "This spawn_agent tool
-    provides you access to sub-agents"). It is recorded as a **deferred,
-    currently-unguarded surface** (`CODEX_DEFERRED_SURFACE`), not an absent one.
-    Wiring an agent-guard analog needs a Codex allowlist/model design because
-    `spawn_agent` semantics (model inheritance, `agent_role`, canonical task name)
-    differ from Claude's `subagent_type`.
+    provides you access to sub-agents"). `spawn_agent|spawn_agents_on_csv` now
+    routes through `agent-guard`: `agent_type` must be explicit and allowlisted,
+    direct `model` overrides are blocked, a concrete task body is required, and
+    bulk spawn is denied unless routed through `ut-tdd team run` / pair-agent
+    workflow. `CODEX_DEFERRED_SURFACE` is empty for this known sub-agent surface.
 - **`src/lint/codex-hook-adapter.ts` + doctor `codex-hook-adapter`**: fail-close
   parity check that `.codex/hooks.json` declares the same guard entrypoints as
   `.claude/settings.json` with Codex matchers, `blockOnFailure` on the guard, no
@@ -167,7 +221,7 @@ verified TRUE against the real `codex.exe` 0.128.0 binary and addressed:
 | Finding | Severity | Verified | Resolution |
 | --- | --- | --- | --- |
 | `apply_patch` carries no `file_path` -> work-guard no-ops = false parity | Critical | TRUE (freeform, "accepts exactly one argument", path in patch body) | `extractEditTargets` parses patch-body paths (multi-file) |
-| `agent-guard` "N/A" wrong: `spawn_agent` sub-agent family exists | Important | TRUE (19x `spawn_agent`, tool family) | corrected to `CODEX_DEFERRED_SURFACE` (real, unguarded, deferred) |
+| `agent-guard` "N/A" wrong: `spawn_agent` sub-agent family exists | Important | TRUE (19x `spawn_agent`, tool family) | corrected first to explicit surface, then wired to agent-guard with `spawn_agent|spawn_agents_on_csv` matcher and Codex payload validation |
 | analyzer should require `type==="command"` + stricter tokens | Important | n/a (design) | added `type==="command"` + token-exact path matching |
 | status=confirmed premature | Minor | n/a | status=draft until live hook-payload run |
 
@@ -184,9 +238,10 @@ verified TRUE against the real `codex.exe` 0.128.0 binary and addressed:
    foreign-edit block fires for Codex's primary edit tool, not just `write_file`;
    Claude `file_path` behavior unchanged. (`extractEditTargets` tests in
    `tests/work-guard.test.ts`)
-5. `subagent-stop` documented genuinely N/A; `spawn_agent` recorded as a real,
-   currently-unguarded **deferred** surface (not N/A); shared guard logic
-   verified runtime-agnostic. (U-CXHOOK-011, U-CXHOOK-012)
+5. `subagent-stop` documented genuinely N/A; `spawn_agent|spawn_agents_on_csv`
+   recorded as a required `agent-guard` matcher (not N/A / not deferred). Shared
+   guard logic blocks unsafe Claude and Codex sub-agent dispatch. (U-CXHOOK-011,
+   U-CXHOOK-012)
 6. `doctor` surfaces the hosted API/developer-tool limitation explicitly:
    `.codex/hooks.json` covers direct Codex CLI/IDE sessions, but not this
    chat/runtime's injected `apply_patch` tool path.
@@ -207,8 +262,6 @@ verified TRUE against the real `codex.exe` 0.128.0 binary and addressed:
   apply_patch bodies, returns exit 2 on foreign uncommitted targets, and reports
   `apiToolPathEnforced=false` so callers do not confuse preflight with mechanical
   hook interception.
-- **`spawn_agent` guard**: design a Codex agent-guard analog (allowlist / model
-  policy for the `spawn_agent` tool family) and wire it into `.codex/hooks.json`.
 - **SSoT materializer**: emit `.claude/settings.json` and `.codex/hooks.json` from one
   source (`ut-tdd setup`) instead of two hand-maintained adapters; currently the
   `codex-hook-adapter` drift gate keeps them in sync.

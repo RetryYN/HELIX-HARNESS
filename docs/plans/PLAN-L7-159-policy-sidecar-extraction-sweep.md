@@ -66,7 +66,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T19:04:17+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
-        output_digest: "sha256:b46958ac82b8c8f7ad31b3fafe20a7991fc992c52979abe60999893b69b7fb03"
+        output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
       - kind: unit_test
         command: "bun run vitest run tests\\gate-review-tier.test.ts tests\\codex-hook-adapter.test.ts tests\\proposal-document-coverage.test.ts"
         runner: bun

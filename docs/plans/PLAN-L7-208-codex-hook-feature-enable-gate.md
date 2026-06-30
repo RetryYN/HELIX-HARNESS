@@ -60,7 +60,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:34:03+09:00"
         evidence_path: src/lint/codex-hook-adapter.ts
-        output_digest: "sha256:2e1bf073c735701c9b54ae4424f4943faccfe3a6aae1d592c5cc765459a28b46"
+        output_digest: "sha256:90ac4dbc6ae3c9bb1ff59c7dddb4801216dd0a673be8bb8046bb8a60f2932102"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -68,7 +68,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:34:44+09:00"
         evidence_path: src/lint/codex-hook-adapter.ts
-        output_digest: "sha256:2e1bf073c735701c9b54ae4424f4943faccfe3a6aae1d592c5cc765459a28b46"
+        output_digest: "sha256:90ac4dbc6ae3c9bb1ff59c7dddb4801216dd0a673be8bb8046bb8a60f2932102"
       - kind: unit_test
         command: "bun run vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts"
         runner: bun
@@ -76,7 +76,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:31:29+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
-        output_digest: "sha256:b46958ac82b8c8f7ad31b3fafe20a7991fc992c52979abe60999893b69b7fb03"
+        output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
       - kind: unit_test
         command: "bun run vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
         runner: bun
@@ -84,7 +84,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:35:02+09:00"
         evidence_path: tests/codex-hook-adapter.test.ts
-        output_digest: "sha256:b46958ac82b8c8f7ad31b3fafe20a7991fc992c52979abe60999893b69b7fb03"
+        output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -92,7 +92,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:35:22+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:4e530c6e048920630cca649770cd7cf3e3abb5f00fd10e5de59c4399e0662c49"
+        output_digest: "sha256:bef0bd7f9c25172d054604d736bcf386eb05283e199b3fca4a68e91d83ec4730"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -100,7 +100,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:36:14+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:de589dc8c8f5a82ede71dad032ed7bacee897e46ce8be3c205ca8b72f5bed99f"
+        output_digest: "sha256:1be98f5f154d4e399642ff306ad1303859f9e88bd0d3eac593b4beb384f7efc5"
 ---
 
 # PLAN-L7-208: Codex hook feature enablement gate

@@ -235,6 +235,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["adapter/AGENTS.md"]).toContain("HELIX Adapter");
       expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
       expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
+      expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook agent-guard");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
       expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
         "consumer-safe HELIX subagent",
@@ -295,6 +296,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(claude.hooks.SubagentStop[0].hooks[0].command).toBe("ut-tdd hook subagent-stop");
       expect(codex.hooks.PreToolUse).toEqual(
         expect.arrayContaining([
+          expect.objectContaining({
+            matcher: "spawn_agent|spawn_agents_on_csv",
+            hooks: [
+              expect.objectContaining({
+                command: "ut-tdd hook agent-guard",
+                blockOnFailure: true,
+              }),
+            ],
+          }),
           expect.objectContaining({
             matcher: "apply_patch|write_file",
             hooks: [
