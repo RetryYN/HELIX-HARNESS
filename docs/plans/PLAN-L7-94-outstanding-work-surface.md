@@ -208,7 +208,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:21:00+09:00"
         evidence_path: tests/cutover-readiness.test.ts
-        output_digest: "sha256:c455c01b59bc9bc30af5eeade6223549871eabf28d6d4893be2dc9a511ada6b0"
+        output_digest: "sha256:1b2363a0c61bc9c08c5130bfcd97d27e5431614a20542e999e53eef70ec5b5f3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -216,7 +216,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:21:00+09:00"
         evidence_path: src/lint/cutover-readiness.ts
-        output_digest: "sha256:c62e7a300b34969ed83bad39bb13bcb7a74d74ec46158310dc12280e690ac0f5"
+        output_digest: "sha256:350d60d7323dfc197426e4827e8ac5b5aa249fb24f8a2ff8c4e745514d2dd7ae"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:12:00+09:00"
@@ -283,7 +283,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:41:37+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:9b24d7fb740b95dc91c1fbb7f65a4b6324f99b73c658edc383279a2b06bfa9cc"
+        output_digest: "sha256:f08abb033c43a562fa256c9c529cf841376cd14b06abc4702a0cab970c52eb74"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -291,7 +291,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:41:37+09:00"
         evidence_path: src/lint/s4-decision-readiness.ts
-        output_digest: "sha256:8b3a12c15a8d06d7e7ff34e46b28e894bf9de10902e8e20192ba1db30aaa08e8"
+        output_digest: "sha256:f76801dfc6b8b8777f3bd945830a29ed84fb14da8837bd99791afba2705fef5c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:26:09+09:00"
@@ -358,7 +358,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:53:25+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:9b24d7fb740b95dc91c1fbb7f65a4b6324f99b73c658edc383279a2b06bfa9cc"
+        output_digest: "sha256:f08abb033c43a562fa256c9c529cf841376cd14b06abc4702a0cab970c52eb74"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -366,7 +366,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:53:25+09:00"
         evidence_path: src/lint/s4-decision-readiness.ts
-        output_digest: "sha256:8b3a12c15a8d06d7e7ff34e46b28e894bf9de10902e8e20192ba1db30aaa08e8"
+        output_digest: "sha256:f76801dfc6b8b8777f3bd945830a29ed84fb14da8837bd99791afba2705fef5c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:41:22+09:00"
@@ -399,7 +399,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:41:22+09:00"
         evidence_path: tests/cutover-readiness.test.ts
-        output_digest: "sha256:c455c01b59bc9bc30af5eeade6223549871eabf28d6d4893be2dc9a511ada6b0"
+        output_digest: "sha256:1b2363a0c61bc9c08c5130bfcd97d27e5431614a20542e999e53eef70ec5b5f3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -547,6 +547,8 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   未来日、または現在日から 90 日超過の ledger は stale とし、S4 decision / version-up activation /
   L14 cutover / completion decision packet の判断材料にしない。これは source row/column/adoption decision が
   揃っていても、外部公式ソースの再確認が古ければ fail-close するための横断 helper である。
+  `sourceLedgerHeadingPattern` は `checked` 日付を `2026-06-30` 固定にせず、再確認日を更新しても
+  parser が ledger table を読み続けることを保証する。
 - `src/lint/version-up-readiness.ts`: version-up parked PLAN の activation を plain draft / indefinite future へ戻さない。
   `activation_decision_record` は `target_version_or_release_trigger` と `activation_route` を必須にし、将来版 activation が
   add-feature / Forward のどの route へ戻るかを構造化する。外部 activation は引き続き action-binding approval
@@ -628,6 +630,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
 - [x] doctor `cutover-readiness` hard gate が、不可逆 L14 cutover の source ledger 劣化
   (required row / adopted version-date / latest official status / adoption decision / provenance source 欠落) と
   90 日超過 stale を拒否する。
+- [x] source ledger parser は `checked` 日付を固定文字列で探さず、公式 source 再確認による日付更新を
+  missing rows と誤判定しない。
 - [x] L14 cutover は `execution_window_or_freeze_policy` を持たない限り通らず、frozen HEAD / 実行 window /
   no-concurrent-apply / drift 時再承認条件を cutover 判断前に固定する。
 - [x] open defer (spec-backfill placeholder_deps carry) を集計。

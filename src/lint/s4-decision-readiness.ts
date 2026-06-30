@@ -1,7 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fmValue, missingRecordFields } from "./shared";
-import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
+import {
+  hasSourceLedgerCheckedDate,
+  sourceLedgerCheckedDateViolation,
+  sourceLedgerHeadingPattern,
+} from "./source-ledger-freshness";
 
 export interface S4DecisionPlan {
   file: string;
@@ -47,7 +51,7 @@ const MODE_DOC_MARKERS = [
   "forward_route",
   "reverse_fullback_required",
   "promotion_strategy_or_rejection_pivot_rationale",
-  "S4 decision source ledger (checked 2026-06-30)",
+  "S4 decision source ledger",
   "Scrum Guide 2020",
   "ISO/IEC/IEEE 29148",
   "ISTQB Glossary",
@@ -147,6 +151,12 @@ export function analyzeS4DecisionReadiness(
       if (!doc[1].includes(marker)) {
         violations.push({ subject: doc[0], reason: `missing ${marker}` });
       }
+    }
+    if (!hasSourceLedgerCheckedDate(doc[1], "S4 decision source ledger")) {
+      violations.push({
+        subject: doc[0],
+        reason: "missing S4 decision source ledger checked date",
+      });
     }
 
     const sourceLedger = parseS4DecisionSourceLedger(doc[1]);
@@ -263,9 +273,8 @@ function parseS4DecisionSourceLedger(text: string): {
   rows: Record<string, string>[];
 } {
   const lines = text.split(/\r?\n/);
-  const headingIndex = lines.findIndex((line) =>
-    line.includes("S4 decision source ledger (checked 2026-06-30)"),
-  );
+  const headingPattern = sourceLedgerHeadingPattern("S4 decision source ledger");
+  const headingIndex = lines.findIndex((line) => headingPattern.test(line));
   if (headingIndex < 0) {
     return { columns: [], rows: [] };
   }

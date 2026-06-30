@@ -271,6 +271,22 @@ describe("version-up-readiness", () => {
     });
   });
 
+  it("accepts refreshed version-up source ledger checked dates without losing table rows", () => {
+    // U-SOURCELEDGER-005
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input().modeDoc.replace(
+          "Version-up source ledger (checked 2026-06-30)",
+          "Version-up source ledger (checked 2026-06-15)",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
   it("U-DECISIONREC-002: fails external activation candidates without explicit approval and route-fail evidence", () => {
     const result = analyzeVersionUpReadiness(
       input({

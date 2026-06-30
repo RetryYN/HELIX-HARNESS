@@ -1,5 +1,13 @@
 export const SOURCE_LEDGER_MAX_AGE_DAYS = 90;
 
+export function sourceLedgerHeadingPattern(ledgerLabel: string): RegExp {
+  return new RegExp(`${escapeRegExp(ledgerLabel)} \\(checked \\d{4}-\\d{2}-\\d{2}\\)`);
+}
+
+export function hasSourceLedgerCheckedDate(text: string, ledgerLabel: string): boolean {
+  return sourceLedgerHeadingPattern(ledgerLabel).test(text);
+}
+
 export function sourceLedgerCheckedDateViolation(
   text: string,
   ledgerLabel: string,

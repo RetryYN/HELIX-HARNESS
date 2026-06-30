@@ -1,7 +1,10 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fmValue, missingRecordFields } from "./shared";
-import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
+import {
+  sourceLedgerCheckedDateViolation,
+  sourceLedgerHeadingPattern,
+} from "./source-ledger-freshness";
 
 export interface CutoverReadinessPlan {
   file: string;
@@ -231,9 +234,8 @@ function parseCutoverSourceLedger(text: string): {
   rows: Record<string, string>[];
 } {
   const lines = text.split(/\r?\n/);
-  const headingIndex = lines.findIndex((line) =>
-    line.includes("Cutover source ledger (checked 2026-06-30)"),
-  );
+  const headingPattern = sourceLedgerHeadingPattern("Cutover source ledger");
+  const headingIndex = lines.findIndex((line) => headingPattern.test(line));
   if (headingIndex < 0) {
     return { columns: [], rows: [] };
   }

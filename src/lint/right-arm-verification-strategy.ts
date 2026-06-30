@@ -1,6 +1,10 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
+import {
+  hasSourceLedgerCheckedDate,
+  sourceLedgerCheckedDateViolation,
+  sourceLedgerHeadingPattern,
+} from "./source-ledger-freshness";
 
 export interface RightArmVerificationStrategyInput {
   gatesMd: string;
@@ -36,7 +40,7 @@ const GATE_MARKERS = [
   "Scrum Guide 2020",
   "ISTQB Glossary",
   "OWASP LLM06:2025 Excessive Agency",
-  "official source ledger checked 2026-06-30",
+  "official source ledger checked",
   "https://csrc.nist.gov/pubs/sp/800/218/final",
   "https://scrumguides.org/scrum-guide.html",
   "https://glossary.istqb.org/",
@@ -51,7 +55,7 @@ const GATE_MARKERS = [
 
 const RIGHT_ARM_MARKERS = [
   "### 右腕 evidence profile (G8-G14)",
-  "### Verification source ledger (checked 2026-06-30)",
+  "### Verification source ledger",
   "NIST SSDF SP 800-218",
   "Scrum Guide 2020",
   "ISTQB Glossary",
@@ -133,9 +137,12 @@ export function analyzeRightArmVerificationStrategy(
     input.gatesMd.includes(marker),
   );
   const missingGateMarkers = GATE_MARKERS.filter((marker) => !input.gatesMd.includes(marker));
-  const missingRightArmMarkers = RIGHT_ARM_MARKERS.filter(
+  const missingRightArmMarkers: string[] = RIGHT_ARM_MARKERS.filter(
     (marker) => !input.rightArmMd.includes(marker),
   );
+  if (!hasSourceLedgerCheckedDate(input.rightArmMd, "Verification source ledger")) {
+    missingRightArmMarkers.push("### Verification source ledger (checked YYYY-MM-DD)");
+  }
   const missingGateRows = REQUIRED_GATE_ROWS.filter(
     (gate) => !input.rightArmMd.includes(`| ${gate} |`),
   );
@@ -224,9 +231,8 @@ function parseVerificationSourceLedger(text: string): {
   rows: Record<string, string>[];
 } {
   const lines = text.split(/\r?\n/);
-  const headingIndex = lines.findIndex((line) =>
-    line.includes("### Verification source ledger (checked 2026-06-30)"),
-  );
+  const headingPattern = sourceLedgerHeadingPattern("Verification source ledger");
+  const headingIndex = lines.findIndex((line) => headingPattern.test(line));
   if (headingIndex < 0) {
     return { columns: [], rows: [] };
   }

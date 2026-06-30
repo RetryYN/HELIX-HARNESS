@@ -221,6 +221,22 @@ describe("S4 decision readiness", () => {
     });
   });
 
+  it("accepts refreshed S4 decision source ledger checked dates without losing table rows", () => {
+    // U-SOURCELEDGER-005
+    const refreshed = input().discoveryMd.replace(
+      "S4 decision source ledger (checked 2026-06-30)",
+      "S4 decision source ledger (checked 2026-06-15)",
+    );
+
+    const result = analyzeS4DecisionReadiness(
+      input({ discoveryMd: refreshed, scrumMd: refreshed }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
   it("U-DECISIONREC-001: fails S3 pending PoC plans that mention fields without a structured record", () => {
     const result = analyzeS4DecisionReadiness(
       input({

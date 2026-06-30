@@ -143,6 +143,21 @@ describe("right-arm verification strategy", () => {
     );
   });
 
+  it("accepts refreshed source ledger checked dates without losing table rows", () => {
+    // U-SOURCELEDGER-005
+    const result = analyzeRightArmVerificationStrategy({
+      gatesMd: text("docs/process/gates.md"),
+      rightArmMd: text("docs/process/forward/L08-L14-verification-phase.md").replace(
+        "### Verification source ledger (checked 2026-06-30)",
+        "### Verification source ledger (checked 2026-06-15)",
+      ),
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
   it("fails source ledgers whose gate impact does not cover the G8-G14 verification band", () => {
     const gatesMd = [
       "G8 has an executable workflow gate",

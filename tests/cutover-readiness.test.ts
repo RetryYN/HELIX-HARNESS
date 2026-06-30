@@ -166,6 +166,22 @@ describe("cutover readiness", () => {
     });
   });
 
+  it("accepts refreshed cutover source ledger checked dates without losing table rows", () => {
+    // U-SOURCELEDGER-005
+    const result = analyzeCutoverReadiness(
+      input({
+        rightArmMd: cutoverMarkers.replace(
+          "Cutover source ledger (checked 2026-06-30):",
+          "Cutover source ledger (checked 2026-06-15):",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
   it("ignores terminal or non-L14 migration prose", () => {
     const result = analyzeCutoverReadiness(
       input({
