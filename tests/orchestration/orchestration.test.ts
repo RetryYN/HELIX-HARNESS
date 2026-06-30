@@ -4,6 +4,11 @@ import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { selectVerifier } from "../../src/orchestration/cross-verifier";
 import { openJobQueue } from "../../src/orchestration/job-queue";
+import {
+  createLoopEffortBudget,
+  deriveLoopEffortLimits,
+  tickLoopEffortBudget,
+} from "../../src/orchestration/loop-effort-budget";
 import { classifyRecovery, DIFF_ESCALATION_THRESHOLD } from "../../src/orchestration/loop-recovery";
 import { canResume, type TickDeps, tick } from "../../src/orchestration/loop-runner";
 import type { LoopState, StopRule } from "../../src/orchestration/loop-state";
@@ -228,6 +233,129 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
       verdict: "error",
       stopReason: null,
       blockedReason: "cross_runtime_unavailable",
+    });
+  });
+
+  it("HU-PILLAR-P2-02: tickLoopEffortBudget は plan size / role / iteration / tool use 超過を止める", () => {
+    const smartLimits = deriveLoopEffortLimits("M", "smart_review_agent");
+    const lightLimits = deriveLoopEffortLimits("M", "light_implementation_agent");
+
+    expect(smartLimits.maxToolCalls).toBeGreaterThan(lightLimits.maxToolCalls);
+    expect(smartLimits.maxIterations).toBeGreaterThanOrEqual(lightLimits.maxIterations);
+
+    const budgeted = {
+      ...runningState,
+      effortBudget: createLoopEffortBudget({
+        planSize: "M",
+        modelRole: "light_implementation_agent",
+        usage: { iteration: 1, toolCalls: 2, costUsd: 0.1, elapsedMs: 1000 },
+        limits: { maxIterations: 3, maxToolCalls: 4, maxCostUsd: 0.5, maxElapsedMs: 5000 },
+      }),
+    };
+
+    expect(tickLoopEffortBudget({ state: budgeted, stage: "before_worker" })).toMatchObject({
+      kind: "continue",
+      allowContinue: true,
+      allowWorkerPass: true,
+      violations: [],
+    });
+
+    expect(
+      tickLoopEffortBudget({
+        state: budgeted,
+        stage: "before_worker",
+        usage: { toolCalls: 4 },
+      }),
+    ).toMatchObject({
+      kind: "stop",
+      allowContinue: false,
+      allowWorkerPass: false,
+      blockedReason: "loop_effort_budget_overrun",
+      violations: ["tool_calls_over_limit"],
+    });
+
+    expect(
+      tickLoopEffortBudget({
+        state: budgeted,
+        stage: "after_verifier",
+        usage: { iteration: 3, costUsd: 0.5 },
+        proposedVerdict: "pass",
+      }),
+    ).toMatchObject({
+      kind: "stop",
+      allowContinue: false,
+      allowWorkerPass: false,
+      blockedReason: "loop_effort_budget_overrun_blocks_worker_pass",
+      violations: expect.arrayContaining(["iteration_over_limit", "cost_usd_over_limit"]),
+    });
+  });
+
+  it("HU-PILLAR-P2-02: tick は effort-budget 超過時に worker dispatch/pass/continue を記録しない", async () => {
+    const overBefore = {
+      ...runningState,
+      effortBudget: createLoopEffortBudget({
+        planSize: "S",
+        modelRole: "worker",
+        usage: { iteration: 1, toolCalls: 8, costUsd: 0.1, elapsedMs: 1000 },
+        limits: { maxIterations: 3, maxToolCalls: 8, maxCostUsd: 1, maxElapsedMs: 5000 },
+      }),
+    };
+    const beforeDeps = makeTickDeps();
+
+    await expect(tick(overBefore, [], beforeDeps)).resolves.toEqual({
+      ...overBefore,
+      status: "stopped",
+      blockedReason: "loop_effort_budget_overrun",
+    });
+    expect(beforeDeps.runWorker).not.toHaveBeenCalled();
+    expect(beforeDeps.runVerifier).not.toHaveBeenCalled();
+    expect(beforeDeps.recordIteration).toHaveBeenCalledWith({
+      planId: overBefore.planId,
+      iteration: overBefore.iteration,
+      workerProvider: "codex",
+      verifierProvider: null,
+      verdict: "fail",
+      stopReason: "effort_budget",
+      blockedReason: "loop_effort_budget_overrun",
+    });
+
+    const overAfter = {
+      ...runningState,
+      effortBudget: createLoopEffortBudget({
+        planSize: "S",
+        modelRole: "worker",
+        usage: { iteration: 1, toolCalls: 2, costUsd: 0.1, elapsedMs: 1000 },
+        limits: { maxIterations: 2, maxToolCalls: 3, maxCostUsd: 1, maxElapsedMs: 5000 },
+      }),
+    };
+    const afterDeps = makeTickDeps({
+      runVerifier: vi.fn(async () => "pass" as const),
+      readEffortUsage: vi.fn((state: LoopState) =>
+        state.iteration > overAfter.iteration
+          ? { iteration: 2, toolCalls: 3, costUsd: 0.2, elapsedMs: 1200 }
+          : overAfter.effortBudget?.usage,
+      ),
+    });
+
+    await expect(tick(overAfter, [], afterDeps)).resolves.toEqual({
+      ...overAfter,
+      status: "stopped",
+      iteration: 2,
+      lastVerdict: "error",
+      verifierProvider: "claude",
+      blockedReason: "loop_effort_budget_overrun_blocks_worker_pass",
+      updatedAt: "2026-06-28T00:30:00.000Z",
+    });
+    expect(afterDeps.runWorker).toHaveBeenCalledWith(overAfter);
+    expect(afterDeps.runVerifier).toHaveBeenCalledWith("claude", overAfter);
+    expect(afterDeps.recordIteration).toHaveBeenCalledWith({
+      planId: overAfter.planId,
+      iteration: overAfter.iteration,
+      workerProvider: "codex",
+      verifierProvider: "claude",
+      verdict: "error",
+      stopReason: "effort_budget",
+      blockedReason: "loop_effort_budget_overrun_blocks_worker_pass",
     });
   });
 

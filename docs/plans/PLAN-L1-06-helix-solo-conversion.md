@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T21:29:00+09:00"
         evidence_path: docs/test-design/helix/L1-pillar-operational-test-design.md
-        output_digest: "sha256:7d71b0d019a6c1cce1b28f021cb94ddebeebdec30de6e1ff5644f2020d8814cb"
+        output_digest: "sha256:af00c6ae7fafdff8edebbcbe2afc07c0fba0cfd394aba05508a2d712a505b5bc"
 agent_slots:
   - role: po
     slot_label: "PO — HELIX solo 化 (team→solo + P0–P9) の最終判断・G-REQ.L1 re-freeze 承認"
@@ -137,4 +137,4 @@ G-REQ.L1 exit_criteria（L1 sub-doc confirmed・L1↔L14 pair 整合）を再充
 
 - L3 降下では P6/P8 を優先し、§2.5 外部研究 delta と §2.6 Codex runtime parity overlay を一次検証して FR+AC 化する。
 - P6/P9 では §2.7 Distribution/full setup overlay を優先し、`ut-tdd setup`（PLAN-M-02 後は `helix setup`）の final one-command setup を FR+AC 化する。AC には非破壊（silent overwrite/delete/reset 禁止）、既存プロジェクト途中導入（import report + 段階移行）、version-up（tag bump + migration/rollback plan）を必ず含める。
-- P2/P7 残 GAP（typed agent↔tool contract / loop effort-budget / Glossary SSoT）は L3 で起票する。Codex subagent guard parity は PLAN-L7-139 continuation で `spawn_agent|spawn_agents_on_csv` を agent-guard に配線済み。
+- P2/P7 残 GAP は L3 で起票済み。typed agent↔tool contract は PLAN-L7-213、loop effort-budget は PLAN-L7-214 で L7 実装済み。残りは hosted/API preflight 強化と Glossary SSoT。Codex subagent guard parity は PLAN-L7-139 continuation で `spawn_agent|spawn_agents_on_csv` を agent-guard に配線済み。
