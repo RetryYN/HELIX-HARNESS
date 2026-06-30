@@ -41,8 +41,8 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T11:29:00+09:00"
-    tests_green_at: "2026-06-30T11:28:37+09:00"
+    reviewed_at: "2026-06-30T14:21:41+09:00"
+    tests_green_at: "2026-06-30T14:21:41+09:00"
     verdict: approve
     scope: "Official source ledger hardening for the right-arm verification strategy."
     worker_model: codex
@@ -53,25 +53,25 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T11:26:21+09:00"
+        completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:f1628c61d5fbb75a19565793bcc79adb0ad30da50f6d0a6f887d844634a164d9"
+        output_digest: "sha256:7784e6d73cdce4c48315c409ae74f30ffaa728dfd4a71227b823338329f7ec02"
       - kind: unit_test
         command: "bun run test"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T11:28:20+09:00"
+        completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:f1628c61d5fbb75a19565793bcc79adb0ad30da50f6d0a6f887d844634a164d9"
+        output_digest: "sha256:7784e6d73cdce4c48315c409ae74f30ffaa728dfd4a71227b823338329f7ec02"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T11:28:30+09:00"
+        completed_at: "2026-06-30T14:21:41+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:3467298e525aa9e98f8c77d6e828fbf8dcdb7a0bbaf1bacb7972895841184530"
+        output_digest: "sha256:5763680f81c135d7bdd24cd1c98eb1f331905bfde21717d979c857bd11e6dff4"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"
@@ -117,8 +117,9 @@ untraceable.
   owns the route and the evidence-profile regression fence so G8-G14 cannot fall
   back to concept-only prose.
 - Ground the right-arm verification strategy in an official source ledger with
-  URL, version/date, verification use, and gate impact, so external standards are
-  consumed semantically instead of as name-only markers.
+  URL, adopted version/date, latest official status, adoption decision,
+  verification use, and gate impact, so external standards are consumed
+  semantically instead of as name-only markers or stale version claims.
 - Add targeted tests for unplanned, stale concept-only, missing profile-row, and
   routed cases.
 
@@ -130,9 +131,10 @@ untraceable.
   `L08-L14-verification-phase.md` loses any G8-G14 evidence-profile row,
   official external source ledger entry, external test-basis marker, or L14->L0
   feedback evidence.
-- Doctor fails when the right-arm strategy loses official URLs, version/date,
-  verification use, gate impact, or the OWASP LLM06 human-approval boundary for
-  agentic workflow completion claims.
+- Doctor fails when the right-arm strategy loses official URLs, adopted version/date,
+  latest official status, adoption decision, verification use, gate impact, or
+  the OWASP LLM06 human-approval boundary for agentic workflow completion
+  claims.
 - `lint-wiring` reaches both right-arm lint modules through the runtime
   entrypoint.
 - The reverse record explains why this is a planning fail-close slice, not the

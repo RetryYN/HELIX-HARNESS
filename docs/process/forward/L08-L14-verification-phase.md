@@ -16,16 +16,19 @@
 - 右腕の pass claim は、左腕の test basis / test condition に対応する実行証跡を必要とする。NIST SSDF SP 800-218 の PW.8 系 practice と同じく、実行コード・環境・結果・欠陥 routing が追跡できない検証は acceptance evidence にしない。
 - Sprint / PoC 由来の increment は、Scrum Guide 2020 の Sprint Review と同じく inspect/adapt の入力であって、PO/S4 判定または Forward 右腕 gate の acceptance evidence なしに完了扱いしない。
 - LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、人間承認・権限境界・不可逆操作の gate evidence が無い限り completion evidence にしない。
-- 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>)
+- 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>、Rev. 1 IPD は <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> で追跡) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>) / GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>) / VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>) / Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)
 
 ### Verification source ledger (checked 2026-06-30)
 
-| source | official URL | version/date | verification use | gate impact |
-|--------|--------------|--------------|------------------|-------------|
-| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> | final publication | 実行コード・環境・結果・欠陥 routing が追跡できる security/release evidence を要求する | G8 / G9 / G12 / G13 / G14 |
-| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | Sprint Review / inspect-adapt は完了宣言ではなく、PO/S4/Forward gate 判定への入力として扱う | S3 / S4 / G11 / G12 |
-| ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | test basis / test condition / execution evidence / defect routing の用語を右腕 gate vocabulary に固定する | G8-G14 |
-| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | agentic workflow の過剰自律を防ぎ、人間承認・権限境界・不可逆操作を completion blocker として扱う | G11 / G12 / G13 / G14 |
+| source | official URL | adopted version/date | latest official status | adoption decision | verification use | gate impact |
+|--------|--------------|----------------------|------------------------|-------------------|------------------|-------------|
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | 実行コード・環境・結果・欠陥 routing が追跡できる security/release evidence を要求する | G8 / G9 / G12 / G13 / G14 |
+| Scrum Guide 2020 | <https://scrumguides.org/scrum-guide.html> | November 2020 guide | current official Scrum Guide page | adopt-current-guide | Sprint Review / inspect-adapt は完了宣言ではなく、PO/S4/Forward gate 判定への入力として扱う | S3 / S4 / G11 / G12 |
+| ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis / test condition / execution evidence / defect routing の用語を右腕 gate vocabulary に固定する | G8-G14 |
+| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | agentic workflow の過剰自律を防ぎ、人間承認・権限境界・不可逆操作を completion blocker として扱う | G11 / G12 / G13 / G14 |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | deployment / release approval を action-binding な reviewer evidence として扱う | G12 / G13 |
+| VS Code Webview Security | <https://code.visualstudio.com/api/extension-guides/webview#security> | live VS Code API docs | live official VS Code docs | adopt-live-docs-for-webview-risk | Webview / dashboard / screenshot evidence で local resource・script・message 境界を検証対象にする | G10 / G11 |
+| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback、release process、post-release monitoring を運用 control として扱う | G12 / G13 / G14 |
 
 > **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
 

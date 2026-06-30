@@ -60,8 +60,8 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T11:29:00+09:00"
-    tests_green_at: "2026-06-30T11:28:37+09:00"
+    reviewed_at: "2026-06-30T14:21:41+09:00"
+    tests_green_at: "2026-06-30T14:21:41+09:00"
     verdict: approve
     scope: "R4 fullback update for official source ledger semantic grounding."
     worker_model: codex
@@ -72,25 +72,25 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T11:26:21+09:00"
+        completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:f1628c61d5fbb75a19565793bcc79adb0ad30da50f6d0a6f887d844634a164d9"
+        output_digest: "sha256:7784e6d73cdce4c48315c409ae74f30ffaa728dfd4a71227b823338329f7ec02"
       - kind: unit_test
         command: "bun run test"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T11:28:20+09:00"
+        completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:f1628c61d5fbb75a19565793bcc79adb0ad30da50f6d0a6f887d844634a164d9"
+        output_digest: "sha256:7784e6d73cdce4c48315c409ae74f30ffaa728dfd4a71227b823338329f7ec02"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-06-30T11:28:30+09:00"
+        completed_at: "2026-06-30T14:21:41+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:3467298e525aa9e98f8c77d6e828fbf8dcdb7a0bbaf1bacb7972895841184530"
+        output_digest: "sha256:5763680f81c135d7bdd24cd1c98eb1f331905bfde21717d979c857bd11e6dff4"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"
@@ -131,8 +131,8 @@ a doctor-enforced planning route.
 - It closes the specific process hole where the carry could remain "future PLAN"
   without any actual PLAN artifact.
 - It also closes the weaker-source hole where external verification standards
-  could be referenced by name without an official URL, version/date,
-  verification use, and gate impact.
+  could be referenced by name without an official URL, adopted version/date,
+  latest official status, adoption decision, verification use, and gate impact.
 - Future child PLANs should define the concrete G8-G14 fail-close conditions.
 
 ## Acceptance Criteria

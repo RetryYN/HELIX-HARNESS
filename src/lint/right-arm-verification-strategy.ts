@@ -12,6 +12,8 @@ export interface RightArmVerificationStrategyResult {
   forbiddenGateMarkers: string[];
   missingRightArmMarkers: string[];
   missingGateRows: string[];
+  missingSourceLedgerRows: string[];
+  sourceLedgerViolations: string[];
   violations: string[];
 }
 
@@ -37,7 +39,10 @@ const GATE_MARKERS = [
   "https://scrumguides.org/scrum-guide.html",
   "https://glossary.istqb.org/",
   "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
-  "official URL / version/date / verification use / gate impact",
+  "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+  "https://code.visualstudio.com/api/extension-guides/webview#security",
+  "https://sre.google/sre-book/release-engineering/",
+  "official URL / adopted version/date / latest official status / adoption decision / verification use / gate impact",
   "PLAN-L7-130-right-arm-gate-planning",
   "IMP-052** は implemented",
 ] as const;
@@ -49,14 +54,25 @@ const RIGHT_ARM_MARKERS = [
   "Scrum Guide 2020",
   "ISTQB Glossary",
   "OWASP LLM06:2025 Excessive Agency",
+  "GitHub Environments required reviewers",
+  "VS Code Webview Security",
+  "Google SRE Release Engineering",
   "official URL",
-  "version/date",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
   "verification use",
   "gate impact",
   "https://csrc.nist.gov/pubs/sp/800/218/final",
+  "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd",
   "https://scrumguides.org/scrum-guide.html",
   "https://glossary.istqb.org/",
   "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+  "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+  "https://code.visualstudio.com/api/extension-guides/webview#security",
+  "https://sre.google/sre-book/release-engineering/",
+  "Rev. 1 initial public draft v1.2",
+  "track-draft-do-not-adopt-until-final",
   "人間承認・権限境界・不可逆操作",
   "g8-integration-evidence-v1",
   "ST-* row",
@@ -69,6 +85,26 @@ const RIGHT_ARM_MARKERS = [
 ] as const;
 
 const REQUIRED_GATE_ROWS = ["G8", "G9", "G10", "G11", "G12", "G13", "G14"] as const;
+
+const REQUIRED_SOURCE_LEDGER_COLUMNS = [
+  "source",
+  "official URL",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
+  "verification use",
+  "gate impact",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_ROWS = [
+  "NIST SSDF SP 800-218",
+  "Scrum Guide 2020",
+  "ISTQB Glossary",
+  "OWASP LLM06:2025 Excessive Agency",
+  "GitHub Environments required reviewers",
+  "VS Code Webview Security",
+  "Google SRE Release Engineering",
+] as const;
 
 export function loadRightArmVerificationStrategyInput(
   repoRoot = process.cwd(),
@@ -95,6 +131,34 @@ export function analyzeRightArmVerificationStrategy(
   const missingGateRows = REQUIRED_GATE_ROWS.filter(
     (gate) => !input.rightArmMd.includes(`| ${gate} |`),
   );
+  const sourceLedger = parseVerificationSourceLedger(input.rightArmMd);
+  const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
+    (source) => !sourceLedger.rows.some((row) => row.source === source),
+  );
+  const sourceLedgerViolations = [
+    ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
+      (column) => !sourceLedger.columns.includes(column),
+    ).map((column) => `verification source ledger missing column: ${column}`),
+    ...sourceLedger.rows.flatMap((row) =>
+      REQUIRED_SOURCE_LEDGER_COLUMNS.flatMap((column) => {
+        const value = row[column] ?? "";
+        if (value.trim() === "" || /^(TBD|TODO|-)$/.test(value.trim())) {
+          return [`verification source ledger ${row.source} has empty ${column}`];
+        }
+        return [];
+      }),
+    ),
+    ...sourceLedger.rows.flatMap((row) =>
+      row["official URL"]?.includes("https://")
+        ? []
+        : [`verification source ledger ${row.source} official URL is not https`],
+    ),
+    ...sourceLedger.rows.flatMap((row) =>
+      row["adoption decision"]?.trim()
+        ? []
+        : [`verification source ledger ${row.source} missing adoption decision`],
+    ),
+  ];
 
   const violations = [
     ...forbiddenGateMarkers.map((marker) => `forbidden stale gates.md marker remains: ${marker}`),
@@ -103,6 +167,8 @@ export function analyzeRightArmVerificationStrategy(
       (marker) => `L08-L14 verification strategy missing marker: ${marker}`,
     ),
     ...missingGateRows.map((gate) => `right-arm evidence profile missing row: ${gate}`),
+    ...missingSourceLedgerRows.map((source) => `verification source ledger missing row: ${source}`),
+    ...sourceLedgerViolations,
   ];
 
   return {
@@ -111,8 +177,57 @@ export function analyzeRightArmVerificationStrategy(
     forbiddenGateMarkers,
     missingRightArmMarkers,
     missingGateRows,
+    missingSourceLedgerRows,
+    sourceLedgerViolations,
     violations,
   };
+}
+
+function parseVerificationSourceLedger(text: string): {
+  columns: string[];
+  rows: Record<string, string>[];
+} {
+  const lines = text.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) =>
+    line.includes("### Verification source ledger (checked 2026-06-30)"),
+  );
+  if (headingIndex < 0) {
+    return { columns: [], rows: [] };
+  }
+  const tableLines: string[] = [];
+  for (const line of lines.slice(headingIndex + 1)) {
+    if (line.trim() === "") {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    if (!line.trim().startsWith("|")) {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    tableLines.push(line);
+  }
+  if (tableLines.length < 2) {
+    return { columns: [], rows: [] };
+  }
+  const columns = cells(tableLines[0]);
+  const rows = tableLines.slice(2).map((line) => {
+    const rowCells = cells(line);
+    return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
+  });
+  return { columns, rows };
+}
+
+function cells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
 }
 
 export function rightArmVerificationStrategyMessages(
@@ -120,7 +235,7 @@ export function rightArmVerificationStrategyMessages(
 ): string[] {
   if (result.ok) {
     return [
-      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=4)`,
+      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=${REQUIRED_SOURCE_LEDGER_ROWS.length})`,
     ];
   }
   return [`right-arm-verification-strategy - violation: ${result.violations.join("; ")}`];
