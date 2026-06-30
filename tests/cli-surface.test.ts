@@ -86,7 +86,9 @@ describe("L7 CLI surface closure", () => {
     try {
       const ready = runCliIn(readyRoot, ["status", "--json"]);
       expect(ready.status).toBe(0);
-      expect(JSON.parse(ready.stdout).outstanding.completionReadiness).toMatchObject({
+      const readyPayload = JSON.parse(ready.stdout);
+      expect(readyPayload.workflowNextAction).toMatch(/^completion-ready:/);
+      expect(readyPayload.outstanding.completionReadiness).toMatchObject({
         ok: true,
         status: "ready",
       });
@@ -111,6 +113,10 @@ describe("L7 CLI surface closure", () => {
       const blockedJson = runCliIn(blockedRoot, ["status", "--json"]);
       expect(blockedJson.status).toBe(0);
       const blockedPayload = JSON.parse(blockedJson.stdout);
+      expect(blockedPayload.nextAction).toEqual(expect.stringMatching(/^[a-z][a-z-]*: /));
+      expect(blockedPayload.workflowNextAction).toContain(
+        "obtain explicit PO signoff before irreversible migration/cutover",
+      );
       expect(blockedPayload.outstanding.completionReadiness).toMatchObject({
         ok: false,
         status: "blocked",
@@ -139,6 +145,7 @@ describe("L7 CLI surface closure", () => {
 
       const blockedText = runCliIn(blockedRoot, ["status"]);
       expect(blockedText.status).toBe(0);
+      expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain(
         "decision-packet: ut-tdd completion decision-packet --json",

@@ -380,6 +380,33 @@ export function completionReadinessLine(o: OutstandingWork): string {
   return `completion: blocked (${readiness.blockers.join(", ")}); required actions=${readiness.requiredActions.length}`;
 }
 
+export function workflowNextActionForOutstanding(o: OutstandingWork): string {
+  const readiness = o.completionReadiness;
+  if (readiness.ok) {
+    return "completion-ready: run completion claim audit before marking the whole objective complete";
+  }
+  const prioritizedReasons = [
+    "po_decision_pending",
+    "version_up_parked",
+    "irreversible_migration_pending",
+    "human_approval_pending",
+    "active_draft",
+  ];
+  const prioritizedItem = [...o.items].sort((a, b) => {
+    const aRank = prioritizedReasons.indexOf(a.reason);
+    const bRank = prioritizedReasons.indexOf(b.reason);
+    return (
+      (aRank === -1 ? Number.MAX_SAFE_INTEGER : aRank) -
+        (bRank === -1 ? Number.MAX_SAFE_INTEGER : bRank) || a.planId.localeCompare(b.planId)
+    );
+  })[0];
+  const action =
+    prioritizedItem?.requiredAction ??
+    readiness.requiredActions[0] ??
+    "resolve outstanding blockers before claiming completion";
+  return `completion-blocked: ${action}`;
+}
+
 export function completionDecisionPacketForOutstanding(
   outstanding: OutstandingWork,
   opts: CompletionDecisionPacketOptions = {},

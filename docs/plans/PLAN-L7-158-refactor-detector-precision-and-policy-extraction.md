@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:23:31+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:c22245ffa538ce32b4318d3da67b5210c2379131bf12b8b0171ef0d677bb8b48"
+        output_digest: "sha256:ab3df4b5b2d0c0b72f4454c6ec0fbc2ea39fbfd82bf954e9caf4b5d09d391848"
       - kind: unit_test
         command: "bun run vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
         runner: bun
@@ -114,7 +114,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:24:02+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:929640e5daddda2f3ccde9788c354e1b9f0527c9e23af0e451862837b401843c"
+        output_digest: "sha256:9bd3576ae962410c505d8f4c5a703f45da87a0643f07db61a644b522b63675cc"
 ---
 
 # PLAN-L7-158: refactor detector precision and policy extraction

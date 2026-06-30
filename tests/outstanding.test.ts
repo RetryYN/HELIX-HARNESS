@@ -10,6 +10,7 @@ import {
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
   outstandingSummaryLine,
+  workflowNextActionForOutstanding,
 } from "../src/lint/outstanding";
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
@@ -354,6 +355,69 @@ describe("outstandingSummaryLine", () => {
         },
       }),
     ).toBe("outstanding: non-terminal PLANs=0 (none); blockers=none; open defers=0");
+  });
+});
+
+describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
+  it("keeps whole-program blockers machine-switchable instead of relying on runtime nextAction", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending.",
+        },
+      ],
+      0,
+    );
+
+    expect(workflowNextActionForOutstanding(outstanding)).toBe(
+      "completion-blocked: record the PO/S4 decision before promotion, rejection, or Forward merge",
+    );
+  });
+
+  it("reports a completion-ready action only when no outstanding rows remain", () => {
+    const outstanding = analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], 0);
+
+    expect(workflowNextActionForOutstanding(outstanding)).toMatch(/^completion-ready:/);
+  });
+
+  it("prioritizes PO/S4 decisions ahead of parked version-up and L14 signoff when selecting the top workflow action", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible cutover requires PO signoff.",
+        },
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "serverless share activation is future parked.",
+        },
+        {
+          planId: "PLAN-DISCOVERY-07",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending.",
+        },
+      ],
+      0,
+    );
+
+    expect(workflowNextActionForOutstanding(outstanding)).toBe(
+      "completion-blocked: record the PO/S4 decision before promotion, rejection, or Forward merge",
+    );
   });
 });
 

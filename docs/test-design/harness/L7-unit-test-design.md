@@ -80,6 +80,7 @@ decision packet を PO/S4 判断・version-up activation・不可逆 migration s
 | U-OUTSTANDING-001 | `completionDecisionPacketForOutstanding` | `outstanding.completionReadiness` の `ok/status/blockers` を保持し、非終端 PLAN を decision item に変換する。各 item は decision kind、required evidence、allowed outcomes、next workflow route を持ち、doctor green を completion ready に読み替えない。 |
 | U-OUTSTANDING-002 | `analyzeCompletionDecisionPacket` | `generatedFrom`、`ok/status` 整合、`generatedAt`、allowed `sourceCommand`、freshness policy/window/`expiresAt`、computed stale flag、`decisionCount` を検査し、stale / unknown source / shape drift を fail-close する。 |
 | U-OUTSTANDING-003 | `checkCompletionDecisionPacket` + `ut-tdd doctor` | live repo の standalone `ut-tdd completion decision-packet --json` 相当 packet は fresh として通し、repo root 不在や packet lint violation は doctor hard gate violation として出す。 |
+| U-OUTSTANDING-004 | `workflowNextActionForOutstanding` + `ut-tdd status --json` | runtime `nextAction` は mode/judgment-gate guidance のまま保持し、whole-program/L14 の次アクションは `workflowNextAction` として分離する。未了 blocker がある場合は `completion-blocked:`、未了なしの場合だけ `completion-ready:` を返す。複数 blocker では PO/S4 decision → version-up activation → L14 cutover signoff → generic human/active-draft の優先順で top action を選ぶ。 |
 
 ## §0.4 green command digest の検証戦略
 

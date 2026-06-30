@@ -72,7 +72,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23T16:10:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:929640e5daddda2f3ccde9788c354e1b9f0527c9e23af0e451862837b401843c"
+        output_digest: "sha256:9bd3576ae962410c505d8f4c5a703f45da87a0643f07db61a644b522b63675cc"
 ---
 
 # PLAN-REVERSE-131: plan complete handover fullback
