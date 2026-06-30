@@ -93,6 +93,19 @@ dir move + harness.db パス + projection-writer + `.gitignore` + loop/jobs/memo
 1 コミット境界で origin と整合 push、PO 承認 → status=confirmed、audit A-NNN 記録。
 - 進捗: ⬜
 
+cutover_decision_record:
+- allowed_outcome: `approve_cutover` / `reject_or_defer` / `request_runbook_changes`
+- decision_owner: PO (人間 / RetryYN)。TL は blast-radius、dry-run、rollback、alias policy の技術判定を提出する。
+- trigger_condition: `PLAN-L1-06-helix-solo-conversion` の G-REQ.L1 re-freeze が confirmed、かつ Step 1〜6 の atomic rename 検証が green。
+- blast_radius_baseline: Step 1 の再計測結果 (`ut-tdd` / `.ut-tdd/` / `area=harness` / rule-drift markers / hooks / package bin / docs links) を audit に固定する。
+- dry_run_plan: codemod + state path migration rehearsal + `bun run test` + `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor` + compiled dist smoke を non-destructive branch で実行する。
+- rollback_plan: cutover commit 前 tag/branch、state dir backup、旧 `ut-tdd` alias/shim の暫定復旧、hooks/config restore、doctor failure 時の revert route を記録する。
+- state_backup_plan: `.ut-tdd/harness.db`、memory/state/logs/handover、provider handover pointer、repo-local hook config を backup/restore 対象にする。
+- approval_scope: CLI/bin rename、state dir move、adapter marker/hook rename、docs/governance link rename、distribution surface の範囲に限定する。secret/auth/infra は対象外。
+- audit_record: apply commands、git hash、backup location、approver、doctor/full test/dist smoke 結果、rollback decision を `.ut-tdd/audit/A-NNN-*` に記録する。
+- post_cutover_monitoring: quiet window 中に `helix doctor`、旧 alias smoke、status/completion packet、harness.db rebuild、feedback backlog を確認する。
+- legacy_alias_policy: `ut-tdd` alias/shim は Step 6 review で keep/remove を決め、残す場合は removal PLAN と sunset 条件を持つ。
+
 ## §3.1 実装計画 (各 Step をどう埋めるか)
 
 | Step | 対象 | 方法 |

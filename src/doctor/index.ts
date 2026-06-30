@@ -39,6 +39,11 @@ import {
   loadCodingWorkflowDocs,
 } from "../lint/coding-rules";
 import {
+  analyzeCutoverReadiness,
+  cutoverReadinessMessages,
+  loadCutoverReadinessInput,
+} from "../lint/cutover-readiness";
+import {
   analyzeCycleP4Verification,
   cycleP4VerificationMessages,
   loadCycleP4VerificationDocs,
@@ -1855,6 +1860,18 @@ export function checkS4DecisionReadiness(repoRoot: string): { messages: string[]
   }
 }
 
+export function checkCutoverReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeCutoverReadiness(loadCutoverReadinessInput(repoRoot));
+    return { messages: cutoverReadinessMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["cutover-readiness - violation: irreversible cutover docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
 export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput(repoRoot));
@@ -2028,6 +2045,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const forwardConvergence = checkForwardConvergence(deps.repoRoot);
   const versionUpReadiness = checkVersionUpReadiness(deps.repoRoot);
   const s4DecisionReadiness = checkS4DecisionReadiness(deps.repoRoot);
+  const cutoverReadiness = checkCutoverReadiness(deps.repoRoot);
   const objectiveEvidenceAudit = checkObjectiveEvidenceAudit(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   return {
@@ -2102,6 +2120,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       forwardConvergence.ok &&
       versionUpReadiness.ok &&
       s4DecisionReadiness.ok &&
+      cutoverReadiness.ok &&
       objectiveEvidenceAudit.ok &&
       forwardConvergenceAudit.ok &&
       handoverOutstanding.ok,
@@ -2182,6 +2201,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
       ...s4DecisionReadiness.messages.map((m) => `doctor: ${m}`),
+      ...cutoverReadiness.messages.map((m) => `doctor: ${m}`),
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],

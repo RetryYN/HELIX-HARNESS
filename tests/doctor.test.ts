@@ -10,6 +10,7 @@ import {
   checkChangeSetIntegrity,
   checkCodexWrapperParity,
   checkCodingRules,
+  checkCutoverReadiness,
   checkCycleP4Verification,
   checkDbProjectionCoverage,
   checkDbProjectionIngestion,
@@ -317,6 +318,11 @@ describe("runDoctor", () => {
   it("includes S4 decision readiness hard gate in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: s4-decision-readiness - OK")).toBe(true);
+  });
+
+  it("includes cutover readiness hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: cutover-readiness - OK")).toBe(true);
   });
 
   it("includes objective evidence audit hard gate in doctor output", () => {
@@ -694,6 +700,7 @@ describe("runDoctor", () => {
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
       ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
       ["s4-decision-readiness", checkS4DecisionReadiness(missingRoot)],
+      ["cutover-readiness", checkCutoverReadiness(missingRoot)],
       ["objective-evidence-audit", checkObjectiveEvidenceAudit(missingRoot)],
       ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
     ] as const;

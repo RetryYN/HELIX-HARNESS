@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T19:30:24+09:00"
         evidence_path: tests/doctor.test.ts
-        output_digest: "sha256:652ab23ad42695764f9851b43062c0d8c4f79d151552306f63f9060df623056e"
+        output_digest: "sha256:5fb06d44d8979ec56c8aaf51cf2286775c797199e5f2325e1dcdd48bb897a711"
       - kind: unit_test
         command: "bun run vitest run tests\\doctor.test.ts -t \"U-ADAPTER-009\""
         runner: bun
@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T19:30:24+09:00"
         evidence_path: src/doctor/index.ts
-        output_digest: "sha256:a0f9a88b7443a187e879d133b386d3923bf5736b8d61aac9e7e40a5504997adf"
+        output_digest: "sha256:89432418538e7d19c5b98402c30bc11186b0c1b0867cb5332d1db9371594202a"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

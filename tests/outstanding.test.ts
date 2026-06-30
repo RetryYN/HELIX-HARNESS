@@ -112,7 +112,7 @@ describe("analyzeOutstandingWork", () => {
       ],
     ]);
     expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toContain(
-      "PO signoff recorded on the migration PLAN",
+      "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
     );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
@@ -243,8 +243,9 @@ describe("completionDecisionPacketForOutstanding", () => {
       "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
     );
     expect(packet.decisions[2].requiredEvidence).toContain(
-      "PO signoff recorded on the migration PLAN",
+      "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
     );
+    expect(packet.decisions[2].nextWorkflowRoute).toContain("cutover_decision_record");
   });
 
   it("is ready and has no decisions when no outstanding work remains", () => {

@@ -41,6 +41,36 @@
 | G13 | L12 deployment record | deployed/staging 環境 smoke が通る | smoke command evidence、monitoring quiet window、incident routing if failed | production write は人間承認なしに実行しない |
 | G14 | L1 operational test design + L0 value hypothesis | 運用データ×時間で要求・価値が保たれる | operational metric snapshot、incident/backlog delta、L14→L0 feedback record | 価値検証 feedback。未記録なら「L14 達成」ではない |
 
+### L14 irreversible cutover decision record
+
+L14 で state dir 移行、CLI/marker 改名、本番/配布 surface 変更などの不可逆 cutover を扱う PLAN は、
+単なる「PO signoff」ではなく `cutover_decision_record` を持つ。これは L14 実行許可ではなく、
+許可・延期・runbook 修正要求を判断するための evidence schema である。
+
+| field | 必須条件 | 意味 |
+|---|---|---|
+| `cutover_decision_record` | 不可逆 cutover PLAN で必須 | L14 cutover の判断単位。無い場合は completion blocker |
+| `allowed_outcome` | 不可逆 cutover PLAN で必須 | `approve_cutover` / `reject_or_defer` / `request_runbook_changes` |
+| `decision_owner` | 不可逆 cutover PLAN で必須 | PO または action-binding approval の named owner |
+| `trigger_condition` | 不可逆 cutover PLAN で必須 | 何が満たされたら cutover 判定へ進めるか |
+| `blast_radius_baseline` | 不可逆 cutover PLAN で必須 | 影響識別子、state path、hook/adapter、docs/CI の再計測基準 |
+| `dry_run_plan` | apply 前必須 | codemod、state move、dist smoke、doctor/review を非破壊で検証する手順 |
+| `rollback_plan` | apply 前必須 | 失敗時の復帰点、alias/shim、branch/tag、state restore 条件 |
+| `state_backup_plan` | state dir / DB を触る場合必須 | harness.db / memory / handover / logs の backup と restore 対象 |
+| `approval_scope` | 本番・配布・認証・secret・state 変更で必須 | 承認対象の具体範囲。範囲外の実適用は禁止 |
+| `audit_record` | terminal status 前必須 | 実施時刻、commands、hash、approver、result、incident route |
+| `post_cutover_monitoring` | terminal status 前必須 | quiet window、smoke、doctor、feedback/backlog 監視 |
+| `legacy_alias_policy` | CLI/dir/marker rename で必須 | 旧名 alias/shim を残すか、いつ外すか |
+
+Cutover source ledger (checked 2026-06-30):
+
+| source | official URL | cutover use | required field impact |
+|---|---|---|---|
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> | release integrity / archive / protection traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | action-binding deployment approval pattern | `decision_owner`, `approval_scope` |
+| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | rollback and release process as operational controls | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
+| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | irreversible agentic actions require constrained authority and human oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
+
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
 `doctor` green があっても「L14 全件達成」ではない。非終端 PLAN、open defer、

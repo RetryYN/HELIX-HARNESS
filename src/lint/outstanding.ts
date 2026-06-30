@@ -216,8 +216,11 @@ function requiredOutstandingAction(reason: string): {
         requiredAction:
           "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
         requiredEvidence: [
-          "PO signoff recorded on the migration PLAN",
-          "cutover/audit evidence recorded before terminal status",
+          "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
+          "decision_owner and approval_scope recorded before irreversible migration",
+          "trigger_condition and blast_radius_baseline recorded before irreversible migration",
+          "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
+          "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
         ],
       };
     case "version_up_parked":
@@ -422,7 +425,7 @@ function nextWorkflowRouteForOutstandingReason(reason: string): string {
     case "version_up_parked":
       return "version-up activation -> add-feature/rejection path, with approval boundary preserved";
     case "irreversible_migration_pending":
-      return "L14 cutover -> PO signoff + dry-run/rollback evidence before apply";
+      return "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply";
     case "human_approval_pending":
       return "approval gate -> action-binding approval audit before high-impact action";
     default:
