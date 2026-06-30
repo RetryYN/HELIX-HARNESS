@@ -114,6 +114,12 @@ describe("analyzeOutstandingWork", () => {
     expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toContain(
       "PO signoff recorded on the migration PLAN",
     );
+    expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
+      expect.arrayContaining([
+        "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+        "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
+      ]),
+    );
   });
 
   it("負の openDefers は 0 にクランプ / 全終端なら total=0", () => {
@@ -230,6 +236,9 @@ describe("completionDecisionPacketForOutstanding", () => {
     ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
     expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
+    expect(packet.decisions[1].requiredEvidence).toContain(
+      "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
+    );
     expect(packet.decisions[2].requiredEvidence).toContain(
       "PO signoff recorded on the migration PLAN",
     );
@@ -368,7 +377,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         ["PLAN-S3", "po_decision_pending"],
       ]);
       expect(o.items[0]?.requiredEvidence).toContain(
-        "version-up activation decision or rejection rationale",
+        "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date",
       );
     } finally {
       rmSync(root, { recursive: true, force: true });

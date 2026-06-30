@@ -34,6 +34,12 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "status=draft",
       "version_target",
       "VERSION_UP_ALLOWED_TARGETS",
+      "activation_decision_record",
+      "allowed_outcome",
+      "review_by",
+      "approval_scope",
+      "dry_run_plan",
+      "rollback_plan",
       "action-binding approval",
       "escalation_boundaries",
     ].join("\n"),
@@ -48,10 +54,16 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "version-up parked",
           "mode=version-up",
           "activation",
+          "activation_decision_record",
+          "allowed_outcome",
+          "review_by",
           "version_target",
           "Cloudflare HMAC webhook access control external",
           "action-binding approval",
           "escalation_boundaries",
+          "approval_scope",
+          "dry_run_plan",
+          "rollback_plan",
           "exit 1",
         ].join("\n"),
       },
@@ -88,6 +100,9 @@ describe("version-up-readiness", () => {
       "missing parked marker mode=version-up",
     );
     expect(result.violations.map((v) => v.reason)).toContain("missing parked marker activation");
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "missing parked marker activation_decision_record",
+    );
   });
 
   it("fails when the feature catalog or requirement trace drops version-up semantics", () => {
@@ -116,7 +131,7 @@ describe("version-up-readiness", () => {
             plan_id: "PLAN-L7-902-external",
             status: "draft",
             versionTarget: "future",
-            text: "version-up parked\nmode=version-up\nactivation\nversion_target\nCloudflare HMAC webhook",
+            text: "version-up parked\nmode=version-up\nactivation\nactivation_decision_record\nallowed_outcome\nreview_by\nversion_target\nCloudflare HMAC webhook",
           },
         ],
       }),
@@ -127,6 +142,9 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         "external activation boundary missing action-binding approval",
         "external activation boundary missing escalation_boundaries",
+        "external activation boundary missing approval_scope",
+        "external activation boundary missing dry_run_plan",
+        "external activation boundary missing rollback_plan",
         "external activation boundary missing exit 1",
       ]),
     );

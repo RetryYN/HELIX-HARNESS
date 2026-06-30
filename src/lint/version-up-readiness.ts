@@ -36,6 +36,12 @@ const MODE_DOC_MARKERS = [
   "status=draft",
   "version_target",
   "VERSION_UP_ALLOWED_TARGETS",
+  "activation_decision_record",
+  "allowed_outcome",
+  "review_by",
+  "approval_scope",
+  "dry_run_plan",
+  "rollback_plan",
   "action-binding approval",
   "escalation_boundaries",
 ] as const;
@@ -69,6 +75,9 @@ const PARKED_PLAN_MARKERS = [
   "version-up parked",
   "mode=version-up",
   "activation",
+  "activation_decision_record",
+  "allowed_outcome",
+  "review_by",
   "version_target",
 ] as const;
 
@@ -84,6 +93,9 @@ const EXTERNAL_BOUNDARY_TERMS = [
 const EXTERNAL_ACTIVATION_MARKERS = [
   "action-binding approval",
   "escalation_boundaries",
+  "approval_scope",
+  "dry_run_plan",
+  "rollback_plan",
   "exit 1",
 ] as const;
 
