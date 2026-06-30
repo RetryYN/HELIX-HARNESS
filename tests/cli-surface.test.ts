@@ -110,15 +110,29 @@ describe("L7 CLI surface closure", () => {
 
       const blockedJson = runCliIn(blockedRoot, ["status", "--json"]);
       expect(blockedJson.status).toBe(0);
-      expect(JSON.parse(blockedJson.stdout).outstanding.completionReadiness).toMatchObject({
+      const blockedPayload = JSON.parse(blockedJson.stdout);
+      expect(blockedPayload.outstanding.completionReadiness).toMatchObject({
         ok: false,
         status: "blocked",
         blockers: expect.arrayContaining(["irreversible_migration_pending", "non_terminal_plans"]),
+      });
+      expect(blockedPayload.completionDecisionPacket).toMatchObject({
+        ok: false,
+        status: "blocked",
+        generatedFrom: "outstanding.completionReadiness",
+        decisionCount: 1,
+      });
+      expect(blockedPayload.completionDecisionPacket.decisions[0]).toMatchObject({
+        planId: "PLAN-M-02-fixture",
+        decisionKind: "irreversible_migration_signoff",
       });
 
       const blockedText = runCliIn(blockedRoot, ["status"]);
       expect(blockedText.status).toBe(0);
       expect(blockedText.stdout).toContain("completion: blocked");
+      expect(blockedText.stdout).toContain(
+        "decision-packet: ut-tdd completion decision-packet --json",
+      );
     } finally {
       rmSync(readyRoot, { recursive: true, force: true });
       rmSync(blockedRoot, { recursive: true, force: true });
