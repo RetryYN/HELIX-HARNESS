@@ -193,10 +193,10 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         status: 0,
         stdout:
           phase.name === "smart_review" && cycle === 1
-            ? "VERDICT: fail\n"
+            ? "FIX_INSTRUCTION: adjust implementation to satisfy Red oracle\nVERDICT: fail\n"
             : phase.name === "smart_review"
-              ? "VERDICT: pass\n"
-              : "ok\n",
+              ? "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n"
+              : "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n",
         stderr: "",
       }),
     });
@@ -219,6 +219,88 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         ["light_implementation", 2, "passed", null],
         ["smart_review", 2, "passed", "pass"],
       ],
+    );
+  });
+
+  it("fails closed when the smart test author does not emit Red/oracle evidence", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => ({
+        status: 0,
+        stdout: phase.name === "smart_test_author" ? "ok\n" : "VERDICT: pass\n",
+        stderr: "",
+      }),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.steps).toHaveLength(1);
+    expect(result.steps[0]).toMatchObject({
+      phase: "smart_test_author",
+      status: "error",
+    });
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-red-or-oracle-evidence",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
+  it("rejects a smart review pass verdict that lacks Green evidence and review findings", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return { status: 0, stdout: "VERDICT: pass\n", stderr: "" };
+        }
+        return { status: 0, stdout: "implementation attempt\n", stderr: "" };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.finalVerdict).toBe("error");
+    expect(result.steps.at(-1)).toMatchObject({
+      phase: "smart_review",
+      status: "error",
+      verdict: "error",
+    });
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-green-or-review-evidence",
+          severity: "error",
+        }),
+      ]),
     );
   });
 
@@ -256,7 +338,11 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           };
         }
         if (phase.name === "smart_review") {
-          return { status: 0, stdout: "VERDICT: pass\n", stderr: "" };
+          return {
+            status: 0,
+            stdout: "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n",
+            stderr: "",
+          };
         }
         return { status: 0, stdout: "implementation attempt\n", stderr: "" };
       },

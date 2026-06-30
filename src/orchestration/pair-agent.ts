@@ -280,6 +280,8 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
       "red-evidence-before-implementation",
       "light-agent-cannot-close",
       "smart-agent-runs-tests-and-reviews",
+      "pass-verdict-requires-green-and-review-evidence",
+      "fail-verdict-requires-fix-instruction",
       "fail-verdict-routes-back-to-light-implementation",
       "max-fix-cycles-enforced",
     ],
@@ -315,6 +317,26 @@ export function buildPairAgentAdapterPlans(input: {
 function parsePairAgentVerdict(output: string): "pass" | "fail" | "error" | "pending" {
   const match = output.match(/\bVERDICT\s*[:=]\s*(pass|fail|error|pending)\b/i);
   return match ? (match[1]?.toLowerCase() as "pass" | "fail" | "error" | "pending") : "pending";
+}
+
+function hasRedEvidence(output: string): boolean {
+  return /\b(RED_EVIDENCE|RED_ORACLE|FAILING_TEST|RED)\b\s*[:=]/i.test(output);
+}
+
+function hasOracleEvidence(output: string): boolean {
+  return /\b(ACCEPTANCE_ORACLE|TEST_DESIGN_TRACE|RED_ORACLE|ORACLE)\b\s*[:=]/i.test(output);
+}
+
+function hasGreenEvidence(output: string): boolean {
+  return /\b(GREEN_EVIDENCE|TARGETED_TEST|TEST_COMMAND|PASSING_TEST)\b\s*[:=]/i.test(output);
+}
+
+function hasReviewEvidence(output: string): boolean {
+  return /\b(REVIEW_FINDINGS?|REVIEW|FINDING|NO_FINDINGS)\b\s*[:=]/i.test(output);
+}
+
+function hasFixInstruction(output: string): boolean {
+  return /\b(FIX_INSTRUCTION|FIX|REVIEW_FINDINGS?)\b\s*[:=]/i.test(output);
 }
 
 function stepStatusFromReviewVerdict(
@@ -400,7 +422,31 @@ export async function runPairAgentTddPlan(input: {
       cycle,
     });
     const output = `${result?.stdout ?? ""}\n${result?.stderr ?? ""}`;
-    const reviewVerdict = phaseName === "smart_review" ? parsePairAgentVerdict(output) : null;
+    let reviewVerdict = phaseName === "smart_review" ? parsePairAgentVerdict(output) : null;
+    let evidenceErrorCode: string | null = null;
+    if (
+      phaseName === "smart_test_author" &&
+      (!hasRedEvidence(output) || !hasOracleEvidence(output))
+    ) {
+      evidenceErrorCode = "missing-red-or-oracle-evidence";
+    }
+    if (phaseName === "smart_review" && reviewVerdict === "pass") {
+      if (!hasGreenEvidence(output) || !hasReviewEvidence(output)) {
+        evidenceErrorCode = "missing-green-or-review-evidence";
+        reviewVerdict = "error";
+      }
+    }
+    if (phaseName === "smart_review" && reviewVerdict === "fail" && !hasFixInstruction(output)) {
+      evidenceErrorCode = "missing-fix-instruction";
+      reviewVerdict = "error";
+    }
+    if (evidenceErrorCode) {
+      findings.push({
+        code: evidenceErrorCode,
+        severity: "error",
+        message: `pair-agent phase ${phaseName} did not emit the required TDD evidence markers`,
+      });
+    }
     const step: PairAgentRunStep = {
       phase: phaseName,
       agentKey: phase.agentKey,
@@ -408,11 +454,13 @@ export async function runPairAgentTddPlan(input: {
       model: agent.model,
       cycle,
       status:
-        phaseName === "smart_review"
-          ? stepStatusFromReviewVerdict(reviewVerdict ?? "pending")
-          : result?.status === 0
-            ? "passed"
-            : "error",
+        evidenceErrorCode !== null
+          ? "error"
+          : phaseName === "smart_review"
+            ? stepStatusFromReviewVerdict(reviewVerdict ?? "pending")
+            : result?.status === 0
+              ? "passed"
+              : "error",
       verdict: reviewVerdict,
       exitCode: result?.status ?? null,
     };
