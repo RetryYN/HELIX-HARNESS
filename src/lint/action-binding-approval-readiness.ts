@@ -1,6 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
+import {
+  allowedOutcomeSetViolation,
+  fmValue,
+  missingRecordFields,
+  recordFieldValue,
+} from "./shared";
 
 export interface ActionBindingApprovalPlan {
   file: string;
@@ -139,6 +144,9 @@ export function analyzeActionBindingApprovalReadiness(
     if (outcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
+    if (missingFields.length === 0 && !outcomeViolation) {
+      violations.push(...validateActionBindingSemantics(plan));
+    }
   }
 
   return {
@@ -146,6 +154,164 @@ export function analyzeActionBindingApprovalReadiness(
     violations,
     ok: violations.length === 0,
   };
+}
+
+function validateActionBindingSemantics(
+  plan: ActionBindingApprovalPlan,
+): ActionBindingApprovalViolation[] {
+  const violations: ActionBindingApprovalViolation[] = [];
+  const approvalScope = record(plan, "approval_scope");
+  const approvedActor = record(plan, "approved_actor");
+  const approvedTool = record(plan, "approved_tool");
+  const approvedTarget = record(plan, "approved_target");
+  const approvedParams = record(plan, "approved_params");
+  const reviewEvidence = record(plan, "review_approval_evidence");
+  const expiry = record(plan, "expires_at_or_trigger");
+  const auditRecord = record(plan, "audit_record");
+
+  if (!hasLimitedApprovalScope(approvalScope)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "approval_scope must limit the approved action scope",
+    });
+  }
+  for (const [field, value] of [
+    ["approved_actor", approvedActor],
+    ["approved_tool", approvedTool],
+    ["approved_target", approvedTarget],
+    ["approved_params", approvedParams],
+  ] as const) {
+    if (isBroadApproval(value)) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: `${field} must not grant broad or wildcard approval`,
+      });
+    }
+    if (
+      mentions(value, [
+        "no ",
+        "no actor",
+        "no tool",
+        "no external",
+        "no irreversible",
+        "no params",
+        "未承認",
+      ])
+    ) {
+      if (!mentions(value, ["must name", "must record", "must write", "before", "承認"])) {
+        violations.push({
+          subject: plan.plan_id,
+          reason: `${field} pending approval must state the future named binding condition`,
+        });
+      }
+    }
+  }
+  if (
+    !mentions(reviewEvidence, [
+      "dry-run",
+      "risk",
+      "review",
+      "evidence",
+      "rollback",
+      "no-secret",
+      "full test",
+      "doctor",
+    ])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "review_approval_evidence must name concrete review evidence before approval",
+    });
+  }
+  if (!hasExpiryOrTrigger(expiry)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "expires_at_or_trigger must define expiry or trigger-bound re-approval",
+    });
+  }
+  if (
+    !mentions(auditRecord, ["approver"]) ||
+    !mentions(auditRecord, ["action", "command", "commands"]) ||
+    !mentions(auditRecord, ["result", "結果"]) ||
+    !mentions(auditRecord, ["incident", "backlog", "rollback", "monitoring"])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason:
+        "audit_record must capture approver, action/command, result, and incident/backlog/rollback route",
+    });
+  }
+
+  return violations;
+}
+
+function record(plan: ActionBindingApprovalPlan, field: string): string {
+  return recordFieldValue(plan.text, ACTION_BINDING_RECORD_NAME, field) ?? "";
+}
+
+function mentions(value: string, needles: string[]): boolean {
+  const normalized = value.toLowerCase();
+  return needles.some((needle) => normalized.includes(needle.toLowerCase()));
+}
+
+function isBroadApproval(value: string): boolean {
+  return /\b(any|all|everything|unlimited|wildcard)\b/i.test(value) || value.includes("*");
+}
+
+function hasLimitedApprovalScope(value: string): boolean {
+  if (isBroadApproval(value)) {
+    return false;
+  }
+  const hasLimiter = mentions(value, [
+    "only",
+    "limited",
+    "excluded",
+    "out of scope",
+    "限定",
+    "範囲に限定",
+    "対象外",
+  ]);
+  const hasConcreteBoundary = mentions(value, [
+    ".ut-tdd",
+    "access control",
+    "actor",
+    "adapter",
+    "api",
+    "bin",
+    "cli",
+    "cloudflare",
+    "command",
+    "config",
+    "distribution",
+    "docs/governance",
+    "external",
+    "github",
+    "hook",
+    "params",
+    "read-only",
+    "secret",
+    "state dir",
+    "target",
+    "tool",
+    "webhook",
+    "write-capable",
+  ]);
+  return hasLimiter && hasConcreteBoundary;
+}
+
+function hasExpiryOrTrigger(value: string): boolean {
+  return (
+    /\d{4}-\d{2}-\d{2}/.test(value) ||
+    mentions(value, [
+      "trigger-bound",
+      "expires",
+      "expires if",
+      "before",
+      "scope change",
+      "changes",
+      "re-approval",
+    ])
+  );
 }
 
 export function actionBindingApprovalReadinessMessages(

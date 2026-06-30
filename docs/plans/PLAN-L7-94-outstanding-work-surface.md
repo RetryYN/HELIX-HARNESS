@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T19:35:18+09:00"
+    tests_green_at: "2026-06-30T19:35:18+09:00"
+    verdict: pass
+    scope: "Continuation 25: action-binding approval readiness now validates least-privilege binding semantics, not just field presence. Approval records reject broad/wildcard actor/tool/target/params, require approval_scope to limit a concrete boundary rather than say scope/limited only, require concrete review evidence, expiry or trigger-bound re-approval, and audit routes for approver/action/result/incident."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T19:35:18+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:a7ea4ddc4eff0d6c9d505e1d2c0b9016a15c407232fddae18374410917ce72f9"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T19:35:18+09:00"
+        evidence_path: src/lint/action-binding-approval-readiness.ts
+        output_digest: "sha256:6ac81820249a466e8b7c8da88ed7a94870dc9315f3338786e8d705ccd4322e05"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T19:28:24+09:00"
     tests_green_at: "2026-06-30T19:28:24+09:00"
     verdict: pass
@@ -333,7 +358,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:12:00+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
-        output_digest: "sha256:8f674916c4c82ee8af33923ff56e687ba2d37a2bce277cddeface4f614ff77f0"
+        output_digest: "sha256:a7ea4ddc4eff0d6c9d505e1d2c0b9016a15c407232fddae18374410917ce72f9"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -341,7 +366,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:12:00+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
-        output_digest: "sha256:a6474c6439c9c63386bae44115fae8d88d343a7c89ecf154d8ce1ba799d2e11c"
+        output_digest: "sha256:6ac81820249a466e8b7c8da88ed7a94870dc9315f3338786e8d705ccd4322e05"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:47:45+09:00"
@@ -408,7 +433,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:26:09+09:00"
         evidence_path: tests/action-binding-approval-readiness.test.ts
-        output_digest: "sha256:8f674916c4c82ee8af33923ff56e687ba2d37a2bce277cddeface4f614ff77f0"
+        output_digest: "sha256:a7ea4ddc4eff0d6c9d505e1d2c0b9016a15c407232fddae18374410917ce72f9"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -416,7 +441,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:26:09+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
-        output_digest: "sha256:a6474c6439c9c63386bae44115fae8d88d343a7c89ecf154d8ce1ba799d2e11c"
+        output_digest: "sha256:6ac81820249a466e8b7c8da88ed7a94870dc9315f3338786e8d705ccd4322e05"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:00:21+09:00"

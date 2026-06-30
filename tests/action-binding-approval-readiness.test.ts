@@ -32,7 +32,7 @@ const RECORD = [
   "action_binding_approval_record:",
   "- allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`",
   "- approval_policy_or_named_approver: PO approval policy",
-  "- approval_scope: actor/tool/target/params for a high-impact action",
+  "- approval_scope: limited scope for actor/tool/target/params for a high-impact action only",
   "- approved_actor: PO-named operator",
   "- approved_tool: ut-tdd CLI action wrapper",
   "- approved_target: Cloudflare deployment target",
@@ -113,6 +113,95 @@ describe("action-binding approval readiness", () => {
     expect(result.violations.map((v) => v.reason)).toContain(
       "invalid allowed_outcome set for action_binding_approval_record: missing allowed_outcome deny_action,request_scope_reduction; unknown allowed_outcome approve_everything",
     );
+  });
+
+  it("U-DECISIONREC-009: rejects action-binding records that grant broad approvals or omit review/audit semantics", () => {
+    const weakRecord = [
+      "action_binding_approval_record:",
+      "- allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`",
+      "- approval_policy_or_named_approver: PO approval policy",
+      "- approval_scope: approve deployment",
+      "- approved_actor: any operator",
+      "- approved_tool: all tools",
+      "- approved_target: *",
+      "- approved_params: everything",
+      "- review_approval_evidence: looks fine",
+      "- expires_at_or_trigger: never",
+      "- audit_record: note",
+    ].join("\n");
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${weakRecord}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        { subject: "PLAN-X", reason: "approval_scope must limit the approved action scope" },
+        {
+          subject: "PLAN-X",
+          reason: "approved_actor must not grant broad or wildcard approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason: "approved_tool must not grant broad or wildcard approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason: "approved_target must not grant broad or wildcard approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason: "approved_params must not grant broad or wildcard approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason: "review_approval_evidence must name concrete review evidence before approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason: "expires_at_or_trigger must define expiry or trigger-bound re-approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason:
+            "audit_record must capture approver, action/command, result, and incident/backlog/rollback route",
+        },
+      ]),
+    );
+  });
+
+  it("U-DECISIONREC-009: rejects approval scope that is limited in wording but has no concrete boundary", () => {
+    const weakScopeRecord = RECORD.replace(
+      "limited scope for actor/tool/target/params for a high-impact action only",
+      "limited scope only",
+    );
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${weakScopeRecord}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-X",
+      reason: "approval_scope must limit the approved action scope",
+    });
   });
 
   it("loads the current repo pending approval records", () => {
