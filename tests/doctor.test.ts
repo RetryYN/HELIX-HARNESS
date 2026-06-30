@@ -60,6 +60,7 @@ import {
   type DoctorDeps,
   runDoctor,
 } from "../src/doctor/index";
+import { checkGreenCommandDigests } from "../src/lint/green-command-digest";
 import type { AgentSlotsDeps, Slot } from "../src/runtime/agent-slots";
 
 const NOW = "2026-06-04T00:00:00.000Z";
@@ -664,6 +665,7 @@ describe("runDoctor", () => {
       ["guardrail-invariants", checkGuardrailInvariants(missingRoot)],
       ["asset-drift", checkAssetDrift(missingRoot)],
       ["completion-decision-packet", checkCompletionDecisionPacket(missingRoot)],
+      ["green-command-digest", checkGreenCommandDigests(missingRoot)],
       ["skill-assignment", checkSkillAssignment(missingRoot)],
       ["descent-obligation", checkDescentObligation(missingRoot)],
       ["change-impact", checkChangeImpact(missingRoot)],
@@ -733,7 +735,7 @@ describe("runDoctor", () => {
     }
   });
 
-  it("keeps all hard gates wired into runDoctor hard-gate aggregation", () => {
+  it("U-GREENCMD-003: keeps all hard gates wired into runDoctor hard-gate aggregation", () => {
     const source = readFileSync(join(process.cwd(), "src", "doctor", "index.ts"), "utf8");
     const okExpression = source.match(/return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/)?.[1] ?? "";
     const expectedHardGates = [
@@ -782,6 +784,7 @@ describe("runDoctor", () => {
       "implPlanTrace",
       "oracleTestTrace",
       "trackedCanonical",
+      "greenCommandDigest",
       "dependencyDrift",
       "rightArmVerificationStrategy",
       "versionUpReadiness",

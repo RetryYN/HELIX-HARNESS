@@ -1,6 +1,9 @@
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   auditGreenCommandDigests,
+  checkGreenCommandDigests,
   type DigestAuditDeps,
   greenCommandDigestMessages,
 } from "../src/lint/green-command-digest";
@@ -47,7 +50,7 @@ const deps: DigestAuditDeps = {
 describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
   const realDigest = `sha256:${Buffer.from("real-content").toString("hex")}`;
 
-  it("passes when output_digest matches the real hash of evidence_path", () => {
+  it("U-GREENCMD-001: passes when output_digest matches the real hash of evidence_path", () => {
     const mismatches = auditGreenCommandDigests(
       [plan("PLAN-OK", [{ evidence_path: "tests/real.test.ts", output_digest: realDigest }])],
       deps,
@@ -55,7 +58,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches).toEqual([]);
   });
 
-  it("flags a fake/placeholder digest as digest-mismatch (the L7-110/114 hole)", () => {
+  it("U-GREENCMD-001: flags a fake/placeholder digest as digest-mismatch (the L7-110/114 hole)", () => {
     const mismatches = auditGreenCommandDigests(
       [
         plan("PLAN-FAKE", [
@@ -69,7 +72,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches[0]?.plan_id).toBe("PLAN-FAKE");
   });
 
-  it("flags a missing evidence_path file", () => {
+  it("U-GREENCMD-001: flags a missing evidence_path file", () => {
     const mismatches = auditGreenCommandDigests(
       [
         plan("PLAN-GONE", [
@@ -83,7 +86,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches[0]?.actual).toBe("");
   });
 
-  it("skips entries with empty path or digest", () => {
+  it("U-GREENCMD-001: skips entries with empty path or digest", () => {
     const mismatches = auditGreenCommandDigests(
       [plan("PLAN-EMPTY", [{ evidence_path: "", output_digest: "" }])],
       deps,
@@ -91,9 +94,9 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches).toEqual([]);
   });
 
-  it("renders an OK message when clean and a note when mismatched (non-breaking advisory)", () => {
+  it("U-GREENCMD-002: renders an OK message when clean and a violation when mismatched", () => {
     expect(greenCommandDigestMessages([])[0]).toContain("OK");
-    const note = greenCommandDigestMessages([
+    const message = greenCommandDigestMessages([
       {
         plan_id: "PLAN-FAKE",
         evidence_path: "tests/real.test.ts",
@@ -102,7 +105,16 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
         reason: "digest-mismatch",
       },
     ])[0];
-    expect(note).toContain("note:");
-    expect(note).toContain("PLAN-FAKE");
+    expect(message).toContain("violation:");
+    expect(message).toContain("PLAN-FAKE");
+  });
+
+  it("U-GREENCMD-002: fails closed when the repository root is unreadable", () => {
+    const result = checkGreenCommandDigests(
+      join(tmpdir(), `ut-tdd-green-command-digest-missing-root-${Date.now()}-nope`),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.messages.join("\n")).toContain("violation:");
   });
 });

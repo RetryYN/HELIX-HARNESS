@@ -7,11 +7,10 @@
  * 強制する gate」が fake substance で満たせる穴がある (coverage ≠ substance のメタ再発)。
  *
  * 本検査は各 green_command の `output_digest` が `evidence_path` の実 sha256 と一致するかを照合し、
- * 不一致 (fake / stale) を surface する。
+ * 不一致 (fake / stale) を fail-close する。
  *
- * **非破壊 (advisory)**: 既存の committed PLAN が fake digest を持つため、これを hard-fail にすると
- * doctor を一斉に赤化させ他ランタイムの committed 状態をデグレさせる。よって本検査は note (warn) で
- * 可視化に留め、訂正は coordinated に行う (hard 化は全 fake 是正後)。判定は I/O 注入で純粋に保つ。
+ * 2026-06-30 に既存 fake/stale digest を是正したため、doctor hard gate として扱う。判定は I/O 注入で
+ * 純粋に保つ。
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
@@ -89,42 +88,52 @@ export function nodeDigestAuditDeps(repoRoot: string): DigestAuditDeps {
   };
 }
 
-/**
- * doctor 向け advisory メッセージ (非ブロック)。不一致が無ければ OK 行、有れば note 行で可視化する。
- */
-const DIGEST_NOTE_CAP = 8;
+/** doctor 向け hard-gate メッセージ。不一致が無ければ OK 行、有れば violation 行を返す。 */
+const DIGEST_MESSAGE_CAP = 8;
 
 export function greenCommandDigestMessages(mismatches: DigestMismatch[]): string[] {
   if (mismatches.length === 0) {
     return ["green-command-digest — OK (全 green_command digest が evidence_path 実 hash と一致)"];
   }
-  const shown = mismatches.slice(0, DIGEST_NOTE_CAP);
+  const shown = mismatches.slice(0, DIGEST_MESSAGE_CAP);
   const detail = shown.map((m) => `${m.plan_id}:${m.evidence_path} (${m.reason})`).join(", ");
   const more =
     mismatches.length > shown.length ? ` (+${mismatches.length - shown.length} more)` : "";
   const planCount = new Set(mismatches.map((m) => m.plan_id)).size;
   return [
-    `green-command-digest — note: ${mismatches.length} 件の output_digest が evidence_path の実 hash と不一致 ` +
-      `(${planCount} PLAN、fake/stale substance、要訂正・hard 化前に是正): ${detail}${more}`,
+    `green-command-digest — violation: ${mismatches.length} 件の output_digest が evidence_path の実 hash と不一致 ` +
+      `(${planCount} PLAN、fake/stale substance): ${detail}${more}`,
   ];
 }
 
-/** repoRoot を読み、digest 不一致の advisory メッセージを返す (doctor 配線の薄いラッパ)。 */
+/** repoRoot を読み、digest 不一致の hard-gate メッセージを返す (doctor 配線の薄いラッパ)。 */
 export function checkGreenCommandDigests(repoRoot: string = process.cwd()): {
   messages: string[];
   mismatches: DigestMismatch[];
+  ok: boolean;
 } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["green-command-digest — violation: repo root could not be read"],
+      mismatches: [],
+      ok: false,
+    };
+  }
   try {
     const mismatches = auditGreenCommandDigests(
       loadReviewPlans(repoRoot),
       nodeDigestAuditDeps(repoRoot),
     );
-    return { messages: greenCommandDigestMessages(mismatches), mismatches };
-  } catch {
-    // advisory ゆえ非ブロック: PLAN 読取失敗でも doctor を止めない。
     return {
-      messages: ["green-command-digest — note: 検査スキップ (PLAN 読取失敗、advisory)"],
+      messages: greenCommandDigestMessages(mismatches),
+      mismatches,
+      ok: mismatches.length === 0,
+    };
+  } catch {
+    return {
+      messages: ["green-command-digest — violation: PLAN digest check could not run"],
       mismatches: [],
+      ok: false,
     };
   }
 }

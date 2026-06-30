@@ -2065,7 +2065,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
   const handoverOutstanding = checkHandoverOutstandingAnchor(handoverDeps(deps));
-  // advisory (非ブロック): green_command digest が evidence_path 実 hash と一致するか (fake substance 可視化、PLAN-L7-132)。
+  // fail-close: green_command digest が evidence_path 実 hash と一致するか (fake substance 防止、PLAN-L7-132)。
   const greenCommandDigest = checkGreenCommandDigests(deps.repoRoot);
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
   const forwardConvergence = checkForwardConvergence(deps.repoRoot);
@@ -2144,6 +2144,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       lintWiring.ok &&
       proposalDocumentCoverage.ok &&
       frontendDesignCoverage.ok &&
+      greenCommandDigest.ok &&
       forwardConvergence.ok &&
       versionUpReadiness.ok &&
       s4DecisionReadiness.ok &&

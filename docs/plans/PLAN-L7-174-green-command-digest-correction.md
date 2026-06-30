@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T22:34:29+09:00"
     tests_green_at: "2026-06-25T22:34:29+09:00"
     verdict: approve
-    scope: "Mechanically align stale green_commands output_digest values to the current SHA256 of each evidence_path and verify the digest advisory is clean."
+    scope: "Mechanically align stale green_commands output_digest values to the current SHA256 of each evidence_path and verify the digest hard gate is clean."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -46,7 +46,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:34:00+09:00"
         evidence_path: tests/green-command-digest.test.ts
-        output_digest: "sha256:4c10eca9258ffe560b0eb420d9ecac699ad0e7423b519f09cdf6db81e0000018"
+        output_digest: "sha256:0c2c2dd640f1908504899dd88b0f863377c4f94c743bd258b667862c3d606ff6"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -54,7 +54,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:34:13+09:00"
         evidence_path: src/lint/green-command-digest.ts
-        output_digest: "sha256:898a7a236a2873fdbd0df6b380331fcd70774334af71abd3bd6fb721d721a7f4"
+        output_digest: "sha256:9e68209eead46fab25457e4ffee97d362a81d2c457120ebc3a88d301c97317d3"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -62,14 +62,14 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:34:00+09:00"
         evidence_path: src/lint/green-command-digest.ts
-        output_digest: "sha256:898a7a236a2873fdbd0df6b380331fcd70774334af71abd3bd6fb721d721a7f4"
+        output_digest: "sha256:9e68209eead46fab25457e4ffee97d362a81d2c457120ebc3a88d301c97317d3"
 ---
 
 # PLAN-L7-174: green command digest correction
 
 ## Objective
 
-Remove the remaining `green-command-digest` advisory note by correcting stale
+Remove the remaining `green-command-digest` hard-gate blockers by correcting stale
 PLAN `green_commands[].output_digest` values to match the current SHA256 of
 their declared `evidence_path`.
 
@@ -81,7 +81,8 @@ their declared `evidence_path`.
 - Replace self-referential PLAN-doc `evidence_path` entries with stable command
   evidence artifacts under `.ut-tdd/evidence/green-command/`; a digest embedded
   in the same PLAN document cannot converge to that document's raw SHA256.
-- Keep the correction behavior aligned with `src/lint/green-command-digest.ts`.
+- Keep the correction behavior aligned with `src/lint/green-command-digest.ts`
+  and its doctor hard-gate aggregation.
 
 ## Acceptance Criteria
 
