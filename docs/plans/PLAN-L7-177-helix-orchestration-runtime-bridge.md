@@ -10,6 +10,31 @@ updated: 2026-06-28
 owner: AIM + TL
 parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T01:35:00+09:00"
+    tests_green_at: "2026-07-01T01:35:00+09:00"
+    verdict: pass
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    scope: "Continuation: P2 runtime bridge now exposes a pair-agent TDD route. The smart review agent authors Red/oracle evidence first, the lightweight implementation agent performs the minimum implementation without closing authority, and the smart review agent tests/reviews/verdicts with fail routed back to implementation. CLI surface: ut-tdd pair-agent plan."
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/pair-agent.test.ts tests/orchestration/loop-bridge.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T01:35:00+09:00"
+        evidence_path: tests/pair-agent.test.ts
+        output_digest: "sha256:3956308d5618a875b20e7456989dc2a4b8f502a7ae1d50c1c091c2bd7ef8e866"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T01:35:00+09:00"
+        evidence_path: src/orchestration/pair-agent.ts
+        output_digest: "sha256:79cf38a2e290e309d420207a38a82e39c94dbcc199186eb4691c5b7b3267c146"
   - reviewer: claude-opus-4-8
     review_kind: cross_agent
     reviewed_at: "2026-06-28T20:05:00+09:00"
@@ -45,6 +70,10 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/orchestration/loop-bridge.ts
     artifact_type: source_module
+  - artifact_path: src/orchestration/pair-agent.ts
+    artifact_type: source_module
+  - artifact_path: tests/pair-agent.test.ts
+    artifact_type: test_code
 dependencies:
   parent: PLAN-L6-50-helix-orchestration-memory
   requires:
@@ -75,6 +104,8 @@ P2「サブエージェントを loop で回し worker≠verifier」を**実起�
 |--------|------|--------|
 | `src/orchestration/loop-bridge.ts` | `nodeTickDeps(input)` = 実 `TickDeps`。`runWorker(s)` → 既存 adapter 実行面（`buildAdapterPlan`+execute、worker provider の CLI）を呼ぶ。`runVerifier(provider,s)` → **反対 provider** の adapter で review し `Verdict` を解釈（hybrid 不在は tick 側 fail-close 既存）。`providerAvailable` = adapter availability。`recordIteration` = loop-store/loop-iterations 追記。`now` = 実時計 | U-ORCH-BRIDGE-01 |
 | `src/cli.ts`（改修） | `ut-tdd loop run --plan <id>`：loop-store から LoopState 読込 → `canResume` の間 `tick` を回し各 iteration を永続。`--once` で 1 tick、`--dry-run` で dispatch せず計画表示 | U-ORCH-BRIDGE-02 |
+| `src/orchestration/pair-agent.ts` | `buildPairAgentTddPlan(input)` = smart review agent が test/oracle を先に作り、light implementation agent が実装し、smart review agent が test/review/verdict を出す TDD pair route を生成。single runtime は intra-runtime fallback として cross-agent judgement evidence にしない | HU-PILLAR-P2-04 |
+| `src/cli.ts`（改修） | `ut-tdd pair-agent plan --plan-id <id> --task ...`：pair route と adapter dry-run plan を JSON/text で表示。T0 smart agent は `--allow-frontier` なしでは executionAuthorized=false | HU-PILLAR-P2-04 |
 
 ## §2 進め方（Codex 分散・Red→Green、dogfood）
 

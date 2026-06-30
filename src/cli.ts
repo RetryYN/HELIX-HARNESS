@@ -72,6 +72,7 @@ import { nodeTickDeps } from "./orchestration/loop-bridge";
 import { canResume, tick } from "./orchestration/loop-runner";
 import type { Provider as LoopProvider, LoopState } from "./orchestration/loop-state";
 import { fileLoopStore } from "./orchestration/loop-store";
+import { buildPairAgentAdapterPlans, buildPairAgentTddPlan } from "./orchestration/pair-agent";
 import { lintPlanWithGate } from "./plan/lint";
 import {
   type AdapterContextInjection,
@@ -702,6 +703,93 @@ loop
       `loop run: plan=${current.planId} ticks=${ticks} status=${current.status} iteration=${current.iteration} verdict=${current.lastVerdict}\n`,
     );
   });
+
+const pairAgent = program.command("pair-agent").description("P2/P3 TDD pair programming route");
+pairAgent
+  .command("plan")
+  .description("plan smart-review-agent + lightweight-implementation-agent TDD pairing")
+  .requiredOption("--plan-id <id>", "PLAN id")
+  .option("--task <text>", "task text")
+  .option("--task-file <path>", TASK_FILE_OPTION_DESCRIPTION)
+  .option("--primary <provider>", "execution provider (claude|codex)")
+  .option("--allow-frontier", "explicitly authorize T0 smart review agent execution")
+  .option("--max-fix-cycles <n>", "maximum light implementation fix cycles", "3")
+  .option("--adapter-plans", "include provider adapter dry-run plans")
+  .option("--execute", "mark adapter plans executable; still does not dispatch providers")
+  .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      planId: string;
+      task?: string;
+      taskFile?: string;
+      primary?: string;
+      allowFrontier?: boolean;
+      maxFixCycles?: string;
+      adapterPlans?: boolean;
+      execute?: boolean;
+      mode?: ReturnType<typeof detectMode>["mode"];
+      json?: boolean;
+    }) => {
+      const taskText = resolveTaskText({ task: opts.task, taskFile: opts.taskFile });
+      if (taskText === null || taskText.trim().length === 0) {
+        process.stderr.write("pair-agent plan requires exactly one of --task or --task-file\n");
+        process.exitCode = 1;
+        return;
+      }
+      if (opts.primary && opts.primary !== "claude" && opts.primary !== "codex") {
+        process.stderr.write("pair-agent plan --primary must be claude or codex\n");
+        process.exitCode = 1;
+        return;
+      }
+      const maxFixCycles = Number.parseInt(opts.maxFixCycles ?? "3", 10);
+      const base = detectMode();
+      const detection = opts.mode ? { ...base, mode: opts.mode } : base;
+      const plan = buildPairAgentTddPlan({
+        planId: opts.planId,
+        task: taskText,
+        detection,
+        primary: opts.primary as Provider | undefined,
+        allowFrontier: Boolean(opts.allowFrontier),
+        maxFixCycles,
+      });
+      const adapterPlans = opts.adapterPlans
+        ? buildPairAgentAdapterPlans({
+            plan,
+            mode: detection.mode,
+            execute: Boolean(opts.execute),
+          })
+        : [];
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify({ plan, adapterPlans }, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `pair-agent plan: status=${plan.status} review=${plan.reviewKind} execution=${plan.cross.execution}>${plan.cross.judgement} authorized=${plan.executionAuthorized}\n`,
+      );
+      for (const agent of plan.agents) {
+        process.stdout.write(
+          `  agent ${agent.key}: role=${agent.role} provider=${agent.provider} tier=${agent.tier} model=${agent.model} close=${agent.closingAuthority}\n`,
+        );
+      }
+      for (const phase of plan.phases) {
+        process.stdout.write(
+          `  phase ${phase.index} ${phase.name}: agent=${phase.agentKey} evidence=${phase.requiredEvidence.join(",")}\n`,
+        );
+      }
+      for (const finding of plan.findings) {
+        process.stdout.write(`  ${finding.severity}: ${finding.code} — ${finding.message}\n`);
+      }
+      if (opts.adapterPlans) {
+        for (const adapterPlan of adapterPlans) {
+          process.stdout.write(
+            `  adapter: provider=${adapterPlan.provider} available=${adapterPlan.available} command=${adapterPlan.command} model=${adapterPlan.model ?? "-"} dryRun=${adapterPlan.dry_run}\n`,
+          );
+        }
+      }
+      if (!plan.ok) process.exitCode = 1;
+    },
+  );
 
 mcp
   .command("inspect <name>")

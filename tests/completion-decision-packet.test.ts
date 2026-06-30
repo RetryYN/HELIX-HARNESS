@@ -392,6 +392,39 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("U-OUTSTANDING-010: rejects top-level decision kind, outcomes, or route that drift from the blocker reason", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        decisionKind: "human_action_approval" as const,
+        allowedOutcomes: ["approve_action_binding", "deny_action"],
+        nextWorkflowRoute: "handle later",
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_decision_kind",
+          detail:
+            "decision[0] blockerReason=po_decision_pending decisionKind=human_action_approval expected=po_s4_decision",
+        },
+        {
+          reason: "invalid_decision_allowed_outcomes",
+          detail:
+            "decision[0] top-level allowedOutcomes mismatch expected=confirmed,pivot,rejected actual=approve_action_binding,deny_action",
+        },
+        {
+          reason: "invalid_decision_next_route",
+          detail: "decision[0] top-level route missing guidance=S4 decide",
+        },
+      ]),
+    );
+  });
+
   // U-OUTSTANDING-003
   // U-OUTSTANDING-006
   it("loads the current repo packet as fresh doctor input", () => {

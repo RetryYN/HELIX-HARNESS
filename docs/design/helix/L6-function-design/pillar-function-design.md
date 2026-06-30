@@ -34,7 +34,7 @@ pillar 43 要件全体の L6 横断設計を受け持つ。
 |----|-----------------|----------------|------------------|----------------|--------|
 | HC-P0 | forward-return | `normalizeForwardReturnInput(input) => ForwardReturnInput` / `decideForwardReturn(input) => ForwardReturnDecision` / `recordStopReasonEvidence(decision, sink) => EvidenceRef` | `return_to` / `gap_only` / `version_target` のいずれも無い完了 claim は reject。stop reason が空なら `blocked_reason="missing_stop_reason"` | `workflow_runs` / `gate_runs` / handover stop reason | HU-PILLAR-P0-01..02 |
 | HC-P1 | autonomous-work | `evaluateAutonomyResume(input) => AutonomyResumeDecision` / `planVersionUpgradeDryRun(input) => VersionUpgradePlan` / `selectL2TemplatePack(input) => L2TemplateDecision` / `mergeAnchoredHandover(input) => HandoverMergeResult` | resume 3 条件、job availability、budget、handover next_action が揃わない場合は dispatch しない。version-up は migration/rollback/idempotency 欠落で dry-run fail | `jobs` / `budget_events` / `version_target` ledger / handover provider package | HU-PILLAR-P1-01..04 / HU-PILLAR-N5-01..02 |
-| HC-P2 | agent-loop | `validateToolContractSurface(input) => ToolSurfaceDecision` / `tickLoopEffortBudget(input) => LoopBudgetDecision` / `writeLoopTraceSpan(input) => TraceSpanWriteResult` / `selectWorkflowComplexity(input) => WorkflowComplexityDecision` | 未登録 surface は fail-close または explicit defer。budget 超過時は同 worker が pass/continue を出せない。provider API/SDK daemon を required path にしない | `model_runs` / `guardrail_decisions` / trace span / tool contract registry | HU-PILLAR-P2-01..04 |
+| HC-P2 | agent-loop | `validateToolContractSurface(input) => ToolSurfaceDecision` / `tickLoopEffortBudget(input) => LoopBudgetDecision` / `writeLoopTraceSpan(input) => TraceSpanWriteResult` / `selectWorkflowComplexity(input) => WorkflowComplexityDecision` / `buildPairAgentTddPlan(input) => PairAgentTddPlan` | 未登録 surface は fail-close または explicit defer。budget 超過時は同 worker が pass/continue を出せない。provider API/SDK daemon を required path にしない。TDD pair route は smart review agent の test/oracle 作成を light implementation より前に置き、light agent に closing authority を与えない | `model_runs` / `guardrail_decisions` / trace span / tool contract registry / pair-agent plan JSON | HU-PILLAR-P2-01..04 |
 | HC-P3 | verification | `validatePairClosure(input) => PairClosureDecision` / `classifyVerificationEvidenceProfile(input) => VerificationEvidenceProfile` / `validateExternalGrounding(input) => GroundingDecision` / `validateTddOracle(input) => TddOracleDecision` / `selectVerificationProfile(input) => VerificationProfileDecision` | pair 欠落、coverage-only pass、self-review cross-agent 僭称、stale digest、external span 欠落、Red/oracle 欠落を accept しない。profile は timeout / p95 duration budget / worker count を必須にする | `trace_edges` / `test_runs` / `review_evidence` / runtime verification log | HU-PILLAR-P3-01..02 / HU-PILLAR-N3-01..04 / HU-PILLAR-N5-03 |
 | HC-P4 | repair-feedback | `routeRepairFinding(input) => RepairCandidate` / `promoteRepairRecipe(input) => RepairRecipeDecision` / `projectMetricImprovementSignal(input) => MetricImprovementSignal` | detector finding は owner/route/rollback 無しに close しない。auth/PII/license/destructive repair は approval 無しで apply しない | `findings` / `quality_signals` / `feedback_events` / improvement backlog | HU-PILLAR-P4-01..03 |
 | HC-P6 | distribution | `buildDistributionPlan(input) => DistributionPlan` / `projectRuntimeAdapterAssets(input) => RuntimeAssetProjectionPlan` / `validatePrReviewRoute(input) => ReviewRouteDecision` / `planReleaseAutomationDecision(input) => ReleaseAutomationDecision` / `gateCiAutoFixRepush(input) => CiAutoFixDecision` | raw push path、ruleset apply、branch protection apply、destructive setup overwrite、confidence<0.75 repush、release ADR 欠落を reject。consumer runtime asset は `.claude/agents` / `.claude/commands` / `.codex/hooks.json` / `.codex/config.toml` を明示投影し、dogfood `.claude/` / `.codex/` / `.ut-tdd/` runtime state は clean channel から除外する | setup baseline / release ledger / GitHub dry-run plan / import report / runtime asset manifest | HU-PILLAR-P6-01..05 / HU-PILLAR-DIST-01 |
@@ -70,6 +70,18 @@ interface AdapterParityDecision {
   evidence: EvidenceRef | null;
 }
 
+interface PairAgentTddPlan {
+  status: "ready" | "blocked";
+  reviewKind: "cross_agent" | "intra_runtime_subagent";
+  agents: Array<{
+    key: "smart-review-agent" | "light-implementation-agent";
+    tier: "T0" | "T2";
+    closingAuthority: boolean;
+  }>;
+  phases: Array<"smart_test_author" | "light_implementation" | "smart_review">;
+  executionAuthorized: boolean;
+}
+
 interface RuntimeAssetProjectionPlan {
   consumer_assets: string[];
   excluded_dogfood_state: string[];
@@ -96,7 +108,7 @@ interface RuntimeConfigHardeningDecision {
 | HR-FR-P2-01 | HC-P2 | `validateToolContractSurface` | HU-PILLAR-P2-01 |
 | HR-FR-P2-02 | HC-P2 | `tickLoopEffortBudget` | HU-PILLAR-P2-02 |
 | HR-FR-P2-03 | HC-AC | `validateAdapterParityMap` / `requireHostedSurfacePreflight` | HU-PILLAR-P2-03 |
-| HR-FR-P2-04 | HC-P2 | `writeLoopTraceSpan` / `selectWorkflowComplexity` | HU-PILLAR-P2-04 |
+| HR-FR-P2-04 | HC-P2 | `writeLoopTraceSpan` / `selectWorkflowComplexity` / `buildPairAgentTddPlan` | HU-PILLAR-P2-04 |
 | HR-FR-P3-01 | HC-P3 | `validatePairClosure` | HU-PILLAR-P3-01 |
 | HR-FR-P3-02 | HC-P3 | `validateExternalGrounding` | HU-PILLAR-P3-02 |
 | HR-FR-P4-01 | HC-P4 | `routeRepairFinding` | HU-PILLAR-P4-01 |
@@ -153,6 +165,19 @@ L6 function は pass/fail の boolean だけを返さない。保守時に原因
 Runtime behavior を主張する function は `upstream-substance-gap.md` §5 の `RuntimeVerificationLogEvent` と結合できる
 `correlation_id` を持つ。projection は補助であり、acceptance source of truth は runtime log event または
 review evidence に残す。
+
+### §4.0 pair-agent TDD verification basis
+
+`buildPairAgentTddPlan` は pair programming を「2 agent が同時に触る」ではなく、TDD の順序契約として扱う。
+smart review agent は test/oracle を先に作り、light implementation agent はその Red evidence を満たす最小実装だけを行い、
+smart review agent が test/review/verdict を閉じる。根拠は以下の外部確認済み方針に合わせる。
+
+- TDD は test case list から Red / Green / Refactor を反復し、実装前に失敗する test/oracle を置く。
+  Source: Martin Fowler, "Test Driven Development" (https://martinfowler.com/bliki/TestDrivenDevelopment.html), checked 2026-07-01.
+- secure development は code review / analysis / testing の issue と remediation を workflow へ記録する。
+  Source: NIST SP 800-218 SSDF v1.1 (https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf), checked 2026-07-01.
+- merge/push 側の最終 gate は required checks を待つため、pair-agent の local verdict は CI/merge queue の代替ではなく事前証跡である。
+  Source: GitHub Docs, "Managing a merge queue" (https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue), checked 2026-07-01.
 
 ## §4.1 telemetry provenance source map
 

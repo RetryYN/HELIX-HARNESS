@@ -16,6 +16,9 @@ export type CompletionDecisionPacketViolationReason =
   | "stale_flag_mismatch"
   | "stale_packet"
   | "decision_count_mismatch"
+  | "invalid_decision_kind"
+  | "invalid_decision_allowed_outcomes"
+  | "invalid_decision_next_route"
   | "missing_required_records"
   | "invalid_required_record"
   | "missing_record_templates"
@@ -151,6 +154,40 @@ export function analyzeCompletionDecisionPacket(
     sourcePath.split(/[\\/]+/).includes("..");
 
   packet.decisions.forEach((decision, decisionIndex) => {
+    const expectedDecisionKind = requiredDecisionKind(decision.blockerReason);
+    if (decision.decisionKind !== expectedDecisionKind) {
+      violations.push({
+        reason: "invalid_decision_kind",
+        detail: `decision[${decisionIndex}] blockerReason=${decision.blockerReason} decisionKind=${decision.decisionKind} expected=${expectedDecisionKind}`,
+      });
+    }
+    const expectedDecisionOutcomes = requiredDecisionAllowedOutcomes(decision.blockerReason);
+    if (expectedDecisionOutcomes) {
+      const actual = [...(decision.allowedOutcomes ?? [])].sort();
+      const expected = [...expectedDecisionOutcomes].sort();
+      if (actual.join("\0") !== expected.join("\0")) {
+        violations.push({
+          reason: "invalid_decision_allowed_outcomes",
+          detail: `decision[${decisionIndex}] top-level allowedOutcomes mismatch expected=${expected.join(",")} actual=${actual.join(",")}`,
+        });
+      }
+    }
+    const decisionRoute = decision.nextWorkflowRoute ?? "";
+    if (!decisionRoute.trim() || /^(TBD|TODO|-)$/.test(decisionRoute.trim())) {
+      violations.push({
+        reason: "invalid_decision_next_route",
+        detail: `decision[${decisionIndex}] invalid top-level route=${decisionRoute}`,
+      });
+    }
+    const decisionRouteText = decisionRoute.toLowerCase();
+    for (const expectedGuidance of requiredDecisionRouteGuidance(decision.blockerReason)) {
+      if (!decisionRouteText.includes(expectedGuidance.toLowerCase())) {
+        violations.push({
+          reason: "invalid_decision_next_route",
+          detail: `decision[${decisionIndex}] top-level route missing guidance=${expectedGuidance}`,
+        });
+      }
+    }
     if (!Array.isArray(decision.requiredRecords) || decision.requiredRecords.length === 0) {
       violations.push({
         reason: "missing_required_records",
@@ -389,6 +426,53 @@ export function analyzeCompletionDecisionPacket(
     expiresAt,
     violations,
   };
+}
+
+function requiredDecisionKind(blockerReason: string): string {
+  switch (blockerReason) {
+    case "po_decision_pending":
+      return "po_s4_decision";
+    case "version_up_parked":
+      return "version_up_activation";
+    case "irreversible_migration_pending":
+      return "irreversible_migration_signoff";
+    case "human_approval_pending":
+      return "human_action_approval";
+    default:
+      return "workflow_continuation";
+  }
+}
+
+function requiredDecisionAllowedOutcomes(blockerReason: string): string[] | null {
+  switch (blockerReason) {
+    case "po_decision_pending":
+      return ["confirmed", "rejected", "pivot"];
+    case "version_up_parked":
+      return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
+    case "irreversible_migration_pending":
+      return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
+    case "human_approval_pending":
+      return ["approve_action_binding", "deny_action", "request_scope_reduction"];
+    case "active_draft":
+      return ["continue_workflow", "mark_terminal_after_required_evidence"];
+    default:
+      return null;
+  }
+}
+
+function requiredDecisionRouteGuidance(blockerReason: string): string[] {
+  switch (blockerReason) {
+    case "po_decision_pending":
+      return ["S4 decide", "Reverse/Forward", "decision_outcome"];
+    case "version_up_parked":
+      return ["version-up activation", "add-feature", "approval boundary"];
+    case "irreversible_migration_pending":
+      return ["L14 cutover", "cutover_decision_record", "dry-run", "rollback"];
+    case "human_approval_pending":
+      return ["approval gate", "action-binding approval", "audit"];
+    default:
+      return ["continue current workflow phase", "terminal evidence"];
+  }
 }
 
 function rejectDuplicateOrExtraRecordEntries(input: {
