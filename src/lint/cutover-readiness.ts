@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue } from "./shared";
+import { fmValue, missingRecordFields } from "./shared";
 
 export interface CutoverReadinessPlan {
   file: string;
@@ -30,6 +30,21 @@ export interface CutoverReadinessResult {
 
 const CUTOVER_RECORD_MARKERS = [
   "cutover_decision_record",
+  "allowed_outcome",
+  "decision_owner",
+  "trigger_condition",
+  "blast_radius_baseline",
+  "dry_run_plan",
+  "rollback_plan",
+  "state_backup_plan",
+  "approval_scope",
+  "audit_record",
+  "post_cutover_monitoring",
+  "legacy_alias_policy",
+] as const;
+
+const CUTOVER_RECORD_NAME = "cutover_decision_record";
+const CUTOVER_RECORD_FIELDS = [
   "allowed_outcome",
   "decision_owner",
   "trigger_condition",
@@ -110,10 +125,13 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
 
   const pending = input.plans.filter(isPendingIrreversibleCutover);
   for (const plan of pending) {
-    for (const marker of CUTOVER_RECORD_MARKERS) {
-      if (!plan.text.includes(marker)) {
-        violations.push({ subject: plan.plan_id, reason: `missing ${marker}` });
-      }
+    const missingFields = missingRecordFields(
+      plan.text,
+      CUTOVER_RECORD_NAME,
+      CUTOVER_RECORD_FIELDS,
+    );
+    for (const field of missingFields) {
+      violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
   }
 

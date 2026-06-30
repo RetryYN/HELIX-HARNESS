@@ -66,16 +66,19 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "version-up parked",
           "mode=version-up",
           "activation",
-          "activation_decision_record",
-          "allowed_outcome",
-          "review_by",
-          "parked_review_record",
-          "review_owner",
-          "review_trigger",
-          "review_by_policy",
-          "stale_action",
-          "activation_dependency",
-          "decision_packet_route",
+          "activation_decision_record:",
+          "- allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+          "- review_by: PO + TL",
+          "- approval_scope: Cloudflare HMAC webhook",
+          "- dry_run_plan: dry-run projection",
+          "- rollback_plan: disable binding",
+          "parked_review_record:",
+          "- review_owner: PO + TL",
+          "- review_trigger: distribution landing",
+          "- review_by_policy: trigger-bound",
+          "- stale_action: keep parked",
+          "- activation_dependency: distribution channel",
+          "- decision_packet_route: completion packet",
           "version_target",
           "Cloudflare HMAC webhook access control external",
           "action-binding approval",
@@ -92,14 +95,14 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
 }
 
 describe("version-up-readiness", () => {
-  it("passes when mode docs and parked plans expose activation and approval boundaries", () => {
+  it("U-DECISIONREC-002: passes when mode docs and parked plans expose activation and approval boundaries", () => {
     const result = analyzeVersionUpReadiness(input());
     expect(result.ok).toBe(true);
     expect(result.parkedPlanIds).toEqual(["PLAN-L7-900-future"]);
     expect(versionUpReadinessMessages(result)[0]).toContain("version-up-readiness - OK");
   });
 
-  it("fails parked plans that do not explain activation as version-up", () => {
+  it("U-DECISIONREC-002: fails parked plans that do not explain activation as version-up", () => {
     const result = analyzeVersionUpReadiness(
       input({
         plans: [
@@ -125,6 +128,37 @@ describe("version-up-readiness", () => {
     expect(result.violations.map((v) => v.reason)).toContain(
       "missing parked marker parked_review_record",
     );
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "missing structured activation_decision_record",
+    );
+  });
+
+  it("U-DECISIONREC-002: fails parked plans that mention activation fields without structured records", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-L7-903-future.md",
+            plan_id: "PLAN-L7-903-future",
+            status: "draft",
+            versionTarget: "future",
+            text: [
+              "version-up parked mode=version-up activation version_target",
+              "activation_decision_record allowed_outcome review_by approval_scope dry_run_plan rollback_plan",
+              "parked_review_record review_owner review_trigger review_by_policy stale_action activation_dependency decision_packet_route",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toEqual(
+      expect.arrayContaining([
+        "missing structured activation_decision_record",
+        "missing structured parked_review_record",
+      ]),
+    );
   });
 
   it("fails when the feature catalog or requirement trace drops version-up semantics", () => {
@@ -144,7 +178,7 @@ describe("version-up-readiness", () => {
     );
   });
 
-  it("fails external activation candidates without explicit approval and route-fail evidence", () => {
+  it("U-DECISIONREC-002: fails external activation candidates without explicit approval and route-fail evidence", () => {
     const result = analyzeVersionUpReadiness(
       input({
         plans: [
@@ -157,16 +191,16 @@ describe("version-up-readiness", () => {
               "version-up parked",
               "mode=version-up",
               "activation",
-              "activation_decision_record",
-              "allowed_outcome",
-              "review_by",
-              "parked_review_record",
-              "review_owner",
-              "review_trigger",
-              "review_by_policy",
-              "stale_action",
-              "activation_dependency",
-              "decision_packet_route",
+              "activation_decision_record:",
+              "- allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+              "- review_by: PO + TL",
+              "parked_review_record:",
+              "- review_owner: PO + TL",
+              "- review_trigger: distribution landing",
+              "- review_by_policy: trigger-bound",
+              "- stale_action: keep parked",
+              "- activation_dependency: distribution channel",
+              "- decision_packet_route: completion packet",
               "version_target",
               "Cloudflare HMAC webhook",
             ].join("\n"),

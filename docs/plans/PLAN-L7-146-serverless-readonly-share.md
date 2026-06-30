@@ -45,19 +45,21 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
 - 非終端 (draft) のまま残るため `ut-tdd status` の outstanding / version-up parked には引き続き計上される (将来版保全 = 完了ではない)。
 - `ut-tdd route eval --signal version_deferral --format json` は `mode=version-up` を返す。駆動モデル上も、本 PLAN は active L7 frontier ではなく version-up parked として扱う。
 - activation 信号（例: `version_deferral Cloudflare HMAC webhook access control external infrastructure activation`）は mode=`version-up` のまま `escalation_boundaries[]` を返し、approval policy/approval が無ければ exit 1 になる。将来版保全と外部配信適用を混同しない。
-- activation_decision_record:
-  - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
-  - review_by: PO + TL が配布チャネル着地後に再確認日を設定する。継続 park の場合は次回日付と owner を本文へ追記する。
-  - approval_scope: Cloudflare Pages/Workers/D1/KV、GitHub webhook HMAC、閲覧 access control、secret 管理、外部 infrastructure activation。
-  - dry_run_plan: read-only SPA 配信、HMAC 検証、secret/PII 非投影、prod write なし、30 秒 polling/reconcile を staging または dry-run projection で確認する。
-  - rollback_plan: `version_target: future` を維持し、Cloudflare/webhook/access-control binding を無効化、projection を git/GitHub 正本から再構築可能な状態へ戻す。
-- parked_review_record:
-  - review_owner: PO (人間) + TL。activation 可否は PO、technical readiness は TL が判定する。
-  - review_trigger: `PLAN-L7-157-distribution-clean-pull` の配布チャネル着地、または PO が serverless read-only 共有を次版候補に戻す request を出した時点。
-  - review_by_policy: trigger-bound。trigger 発生後、activation branch を切る前に必ず review し、trigger が無い場合も次回 L14 completion audit で stale 判定する。
-  - stale_action: trigger 後に action-binding approval / dry-run / rollback / access-control 方針が揃わなければ `keep_parked_with_review_date`、不要判断なら `reject_or_archive`。
-  - activation_dependency: PLAN-L7-141 confirmed read-only UI、PLAN-L7-157 配布チャネル、ADR-005 D2、Cloudflare/GitHub webhook approval scope。
-  - decision_packet_route: `ut-tdd status --json` の `completionDecisionPacket` に version_up_activation として残し、L14 全件達成 claim を block する。
+
+activation_decision_record:
+- allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
+- review_by: PO + TL が配布チャネル着地後に再確認日を設定する。継続 park の場合は次回日付と owner を本文へ追記する。
+- approval_scope: Cloudflare Pages/Workers/D1/KV、GitHub webhook HMAC、閲覧 access control、secret 管理、外部 infrastructure activation。
+- dry_run_plan: read-only SPA 配信、HMAC 検証、secret/PII 非投影、prod write なし、30 秒 polling/reconcile を staging または dry-run projection で確認する。
+- rollback_plan: `version_target: future` を維持し、Cloudflare/webhook/access-control binding を無効化、projection を git/GitHub 正本から再構築可能な状態へ戻す。
+
+parked_review_record:
+- review_owner: PO (人間) + TL。activation 可否は PO、technical readiness は TL が判定する。
+- review_trigger: `PLAN-L7-157-distribution-clean-pull` の配布チャネル着地、または PO が serverless read-only 共有を次版候補に戻す request を出した時点。
+- review_by_policy: trigger-bound。trigger 発生後、activation branch を切る前に必ず review し、trigger が無い場合も次回 L14 completion audit で stale 判定する。
+- stale_action: trigger 後に action-binding approval / dry-run / rollback / access-control 方針が揃わなければ `keep_parked_with_review_date`、不要判断なら `reject_or_archive`。
+- activation_dependency: PLAN-L7-141 confirmed read-only UI、PLAN-L7-157 配布チャネル、ADR-005 D2、Cloudflare/GitHub webhook approval scope。
+- decision_packet_route: `ut-tdd status --json` の `completionDecisionPacket` に version_up_activation として残し、L14 全件達成 claim を block する。
 
 ## 0. なぜ (PO 決定 2026-06-24「無料で、AI 編集なしでいけない？」→「OK それでいこう」)
 

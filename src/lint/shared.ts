@@ -12,6 +12,26 @@ export function fmValue(content: string, key: string): string | undefined {
   return content.match(new RegExp(`^${key}:\\s*(.+?)\\s*(?:#.*)?$`, "m"))?.[1]?.trim();
 }
 
+/** Markdown の `record_name:` 配下に `- field: value` 形式の実値が揃っているかを検査する。 */
+export function missingRecordFields(
+  text: string,
+  recordName: string,
+  fields: readonly string[],
+): string[] {
+  const header = text.match(new RegExp(`^\\s*${recordName}:\\s*$`, "m"));
+  if (!header || header.index === undefined) {
+    return [recordName, ...fields];
+  }
+  const section = text.slice(header.index);
+  const nextHeading = section.search(/\n#{1,6}\s+/);
+  const body = nextHeading >= 0 ? section.slice(0, nextHeading) : section;
+  return fields.filter((field) => {
+    const fieldLine = body.match(new RegExp(`^\\s*-\\s*${field}:\\s*(.+?)\\s*$`, "m"));
+    const value = fieldLine?.[1]?.replace(/`/g, "").trim();
+    return !value || value === "TBD" || value === "TODO" || value === "-";
+  });
+}
+
 // L6 機能設計の DbC テーブル見出し (関数仕様の substance マーカー)。
 // l6-completion (freeze readiness) と l6-fr-coverage (FR 被覆) が同一判定を要するため共有する。
 const DBC_TABLE_FULL =

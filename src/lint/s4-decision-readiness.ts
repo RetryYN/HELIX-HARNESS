@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue } from "./shared";
+import { fmValue, missingRecordFields } from "./shared";
 
 export interface S4DecisionPlan {
   file: string;
@@ -45,8 +45,8 @@ const OUTSTANDING_MARKERS = [
   "forward_route / reverse_fullback_required recorded when confirmed",
 ] as const;
 
-const PENDING_PLAN_MARKERS = [
-  "s4_decision_record",
+const S4_RECORD_NAME = "s4_decision_record";
+const S4_RECORD_FIELDS = [
   "allowed_outcome",
   "decision_owner",
   "decision_basis",
@@ -111,10 +111,9 @@ export function analyzeS4DecisionReadiness(
 
   const pending = input.plans.filter(isS3PocPendingDecision);
   for (const plan of pending) {
-    for (const marker of PENDING_PLAN_MARKERS) {
-      if (!plan.text.includes(marker)) {
-        violations.push({ subject: plan.plan_id, reason: `missing ${marker}` });
-      }
+    const missingFields = missingRecordFields(plan.text, S4_RECORD_NAME, S4_RECORD_FIELDS);
+    for (const field of missingFields) {
+      violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
   }
 

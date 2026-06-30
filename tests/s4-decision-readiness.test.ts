@@ -32,12 +32,12 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
         workflowPhase: "S3",
         decisionOutcome: null,
         text: [
-          "s4_decision_record",
-          "allowed_outcome",
-          "decision_owner",
-          "decision_basis",
-          "forward_route",
-          "reverse_fullback_required",
+          "s4_decision_record:",
+          "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+          "- decision_owner: PO",
+          "- decision_basis: verified evidence",
+          "- forward_route: confirmed route",
+          "- reverse_fullback_required: yes",
         ].join("\n"),
       },
     ],
@@ -46,14 +46,14 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
 }
 
 describe("S4 decision readiness", () => {
-  it("passes when S3 pending PoC plans carry an explicit S4 decision record", () => {
+  it("U-DECISIONREC-001: passes when S3 pending PoC plans carry an explicit S4 decision record", () => {
     const result = analyzeS4DecisionReadiness(input());
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual(["PLAN-DISCOVERY-900"]);
     expect(s4DecisionReadinessMessages(result)[0]).toContain("s4-decision-readiness - OK");
   });
 
-  it("fails S3 pending PoC plans that do not say what S4 must decide", () => {
+  it("U-DECISIONREC-001: fails S3 pending PoC plans that do not say what S4 must decide", () => {
     const result = analyzeS4DecisionReadiness(
       input({
         plans: [
@@ -73,10 +73,33 @@ describe("S4 decision readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        { subject: "PLAN-DISCOVERY-901", reason: "missing s4_decision_record" },
-        { subject: "PLAN-DISCOVERY-901", reason: "missing decision_basis" },
-        { subject: "PLAN-DISCOVERY-901", reason: "missing reverse_fullback_required" },
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured s4_decision_record" },
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured decision_basis" },
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured reverse_fullback_required" },
       ]),
+    );
+  });
+
+  it("U-DECISIONREC-001: fails S3 pending PoC plans that mention fields without a structured record", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-903.md",
+            plan_id: "PLAN-DISCOVERY-903",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            decisionOutcome: null,
+            text: "s4_decision_record allowed_outcome decision_owner decision_basis forward_route reverse_fullback_required",
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "missing structured s4_decision_record",
     );
   });
 

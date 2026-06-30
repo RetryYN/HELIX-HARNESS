@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue } from "./shared";
+import { fmValue, missingRecordFields } from "./shared";
 
 export interface VersionUpReadinessPlan {
   file: string;
@@ -98,6 +98,25 @@ const PARKED_PLAN_MARKERS = [
   "activation_dependency",
   "decision_packet_route",
   "version_target",
+] as const;
+
+const ACTIVATION_RECORD_NAME = "activation_decision_record";
+const ACTIVATION_RECORD_FIELDS = [
+  "allowed_outcome",
+  "review_by",
+  "approval_scope",
+  "dry_run_plan",
+  "rollback_plan",
+] as const;
+
+const PARKED_REVIEW_RECORD_NAME = "parked_review_record";
+const PARKED_REVIEW_RECORD_FIELDS = [
+  "review_owner",
+  "review_trigger",
+  "review_by_policy",
+  "stale_action",
+  "activation_dependency",
+  "decision_packet_route",
 ] as const;
 
 const EXTERNAL_BOUNDARY_TERMS = [
@@ -226,6 +245,20 @@ export function analyzeVersionUpReadiness(
       if (!plan.text.includes(marker)) {
         violations.push({ subject: plan.plan_id, reason: `missing parked marker ${marker}` });
       }
+    }
+    for (const field of missingRecordFields(
+      plan.text,
+      ACTIVATION_RECORD_NAME,
+      ACTIVATION_RECORD_FIELDS,
+    )) {
+      violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+    }
+    for (const field of missingRecordFields(
+      plan.text,
+      PARKED_REVIEW_RECORD_NAME,
+      PARKED_REVIEW_RECORD_FIELDS,
+    )) {
+      violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
     const hasExternalBoundary = EXTERNAL_BOUNDARY_TERMS.some((term) =>
       plan.text.toLowerCase().includes(term.toLowerCase()),

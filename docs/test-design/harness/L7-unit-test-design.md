@@ -94,6 +94,18 @@ fail-close する。
 | U-GREENCMD-002 | `greenCommandDigestMessages` / `checkGreenCommandDigests` | mismatch 0 件は OK、1 件以上または repo root/PLAN 読取不能は `violation` かつ `ok=false`。message は代表 mismatch と件数を含み、advisory/note として扱わない。 |
 | U-GREENCMD-003 | `ut-tdd doctor` hard-gate aggregation | `greenCommandDigest.ok` が `runDoctor().ok` に含まれ、不一致がある状態で doctor green を返さない。 |
 
+## §0.5 decision record shape の検証戦略
+
+S4 decision / version-up activation / irreversible cutover は PO 判断または action-binding approval の入力であり、
+単なる「PO signoff」「approval_scope」などの語句出現では判断材料にならない。各 PLAN は record 名の直下に
+`- field: value` 形式で必要項目を持ち、値が空 / `TBD` / `TODO` / `-` の場合は未証跡として扱う。
+
+| U-ID | 検証対象 | oracle (DbC) |
+|---|---|---|
+| U-DECISIONREC-001 | `analyzeS4DecisionReadiness` | S3 pending PoC は `s4_decision_record:` 配下に `allowed_outcome` / `decision_owner` / `decision_basis` / `forward_route` / `reverse_fullback_required` の実値を持つ。語句だけの prose は violation。 |
+| U-DECISIONREC-002 | `analyzeVersionUpReadiness` | `version_target` 付き parked PLAN は `activation_decision_record:` と `parked_review_record:` の構造化 field を持つ。外部 infra/auth/secret 境界を含む場合は approval/dry-run/rollback を空値で通さない。 |
+| U-DECISIONREC-003 | `analyzeCutoverReadiness` | L14 irreversible cutover PLAN は `cutover_decision_record:` 配下に blast radius / dry-run / rollback / backup / audit / monitoring / legacy alias policy の実値を持つ。marker-only prose は violation。 |
+
 ## §1 単体テスト (U-*) — placeholder skeleton
 
 > L7 = 個別関数の **単体**を対象 (最小単位、純粋関数中心)。既存 vitest 66 test が seed (analyzeX/evaluateAgentGuard/detectMode/frontmatter)。個別 U ケースは L7 entry で展開。

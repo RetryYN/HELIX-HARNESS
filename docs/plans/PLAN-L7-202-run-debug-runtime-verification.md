@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:44b4df4fbca4de0aaf543cfe80a63b4089add619c6b15517ec5e85af94ed06e8"
+        output_digest: "sha256:4e2ae88b011c791e881e7d31ae0dfc51b702a37332cb30bb9ba0eef9a10bc321"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
-        output_digest: "sha256:af50bb86a3c646b517961f6942751a70123906073fea3845c8522e6be1a4a1df"
+        output_digest: "sha256:517fc8d43f38320155a46002293b2ae8909d4c1152db0ec6015a78b52b6292ef"
       - kind: unit_test
         command: "bun run test"
         runner: bun

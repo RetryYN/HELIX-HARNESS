@@ -7,18 +7,18 @@ import {
 } from "../src/lint/cutover-readiness";
 
 const cutoverMarkers = [
-  "cutover_decision_record",
-  "allowed_outcome",
-  "decision_owner",
-  "trigger_condition",
-  "blast_radius_baseline",
-  "dry_run_plan",
-  "rollback_plan",
-  "state_backup_plan",
-  "approval_scope",
-  "audit_record",
-  "post_cutover_monitoring",
-  "legacy_alias_policy",
+  "cutover_decision_record:",
+  "- allowed_outcome: `approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
+  "- decision_owner: PO",
+  "- trigger_condition: L1 re-freeze",
+  "- blast_radius_baseline: measured",
+  "- dry_run_plan: dry-run",
+  "- rollback_plan: rollback",
+  "- state_backup_plan: backup",
+  "- approval_scope: rename",
+  "- audit_record: A-NNN",
+  "- post_cutover_monitoring: quiet window",
+  "- legacy_alias_policy: decide",
 ].join("\n");
 
 function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadinessInput {
@@ -45,14 +45,14 @@ function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadiness
 }
 
 describe("cutover readiness", () => {
-  it("passes when pending irreversible L14 cutover plans carry a full decision record", () => {
+  it("U-DECISIONREC-003: passes when pending irreversible L14 cutover plans carry a full decision record", () => {
     const result = analyzeCutoverReadiness(input());
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual(["PLAN-M-900"]);
     expect(cutoverReadinessMessages(result)[0]).toContain("cutover-readiness - OK");
   });
 
-  it("fails irreversible cutover plans that only say PO signoff", () => {
+  it("U-DECISIONREC-003: fails irreversible cutover plans that only say PO signoff", () => {
     const result = analyzeCutoverReadiness(
       input({
         plans: [
@@ -71,11 +71,34 @@ describe("cutover readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        { subject: "PLAN-M-901", reason: "missing cutover_decision_record" },
-        { subject: "PLAN-M-901", reason: "missing dry_run_plan" },
-        { subject: "PLAN-M-901", reason: "missing rollback_plan" },
-        { subject: "PLAN-M-901", reason: "missing audit_record" },
+        { subject: "PLAN-M-901", reason: "missing structured cutover_decision_record" },
+        { subject: "PLAN-M-901", reason: "missing structured allowed_outcome" },
+        { subject: "PLAN-M-901", reason: "missing structured dry_run_plan" },
+        { subject: "PLAN-M-901", reason: "missing structured rollback_plan" },
+        { subject: "PLAN-M-901", reason: "missing structured audit_record" },
       ]),
+    );
+  });
+
+  it("U-DECISIONREC-003: fails irreversible cutover plans that mention fields without a structured record", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-M-903.md",
+            plan_id: "PLAN-M-903",
+            layer: "L14",
+            kind: "design",
+            status: "draft",
+            text: "irreversible cutover cutover_decision_record allowed_outcome decision_owner trigger_condition blast_radius_baseline dry_run_plan rollback_plan state_backup_plan approval_scope audit_record post_cutover_monitoring legacy_alias_policy",
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain(
+      "missing structured cutover_decision_record",
     );
   });
 
