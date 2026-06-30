@@ -66,6 +66,9 @@ Reverse は ① 設計だけでなく **③ テスト設計も対称に扱う** 
 - **再入先 Pair freeze gate 通過義務を明示** (§4): routing 確定後、再入先 layer の gate を通すまで L7 着手禁止
 - open gap が残る場合は `debt` / `readiness-defer` / 新規 plan へ差し戻し
 - R4 で Forward の既存 gate 前提を崩す結果が出た場合は該当ゲートを invalidated に戻す (`--invalidate-forward` 相当)
+- requirements / acceptance / 機能一覧 / 運用ポリシーの意味が増える場合は、R4 gap-register に
+  G-SF `semantic_feature_frontier_record` を追加し、`classification=frontier_pending_decision` または
+  `confirmed_current` を明示する。これが無い R4 は、実装や green command があっても意味ベース設計の完了根拠にならない。
 
 ---
 

@@ -27,6 +27,10 @@ next_pair_freeze: L6
 - L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 `HU-PILLAR-*` 43 件の
   unit oracle に含めない。`PLAN-L7-206` の read-model tests は first response の先行検証であり、
   VSCode Tree View / Webview の view-model function oracle ではない。
+- G-SF `semantic_feature_frontier_record` で `frontier_pending_decision` / `parked_future_version` /
+  `approval_gated_cutover` に分類された意味単位は、L6 unit oracle の confirmed 43 件へ混ぜない。
+  `completion_claim_allowed=false` が unit oracle の期待動作であり、関数や CLI surface の一部実装だけで
+  `confirmed_current` へ昇格しない。
 
 ## §1 unit oracle trace
 
@@ -102,6 +106,7 @@ next_pair_freeze: L6
 | HC-P8 | untrusted external text is never copied into executable instruction fields |
 | HC-P9 | stale projection or missing layer gate keeps `ConvergenceStatus` non-green |
 | HC-AC | Codex hosted/API surface cannot be classified as hook-covered without preflight evidence |
+| G-SF | semantic frontier records with `frontier_pending_decision`, `parked_future_version`, or `approval_gated_cutover` cannot allow whole-program completion |
 
 ## §3 verification strategy
 

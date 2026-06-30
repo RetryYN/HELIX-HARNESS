@@ -36,6 +36,11 @@ S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 
 L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
 read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
 
+G-SF oracle: 要求修正がある PLAN は `semantic_feature_frontier_record` を持ち、classification が
+`frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` の間は
+`completion_claim_allowed=false` でなければならない。`confirmed_current` へ更新できるのは、対応する
+L3/L12 pair または S4/rejection/archive decision が揃った後だけである。
+
 ## §0.2 HELIX 検証戦略
 
 本書は L12 受入テスト設計であり、HAT-* は「何を受け入れるか」を固定する **テスト戦略**である。

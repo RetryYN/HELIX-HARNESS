@@ -72,7 +72,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:29:00+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
-        output_digest: "sha256:e5f956d5dc6d06189ffc38a36a41475d0fa330f2ee502d4b1c4ac18f0aa5af99"
+        output_digest: "sha256:5f8fce809e3903904c28ffb34b9a357d516f1ef0af3e269201bcedf34456d49c"
 ---
 
 # PLAN-L7-210: L0-L8 semantic design consistency audit

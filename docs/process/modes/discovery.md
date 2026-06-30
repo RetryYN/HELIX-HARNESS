@@ -43,6 +43,8 @@ verified evidence / outstanding → [S4 decide] → confirmed / rejected / pivot
 ```
 
 S3 の `verified evidence / outstanding` は「技術的・検証的には揃ったが、PO/S4 判定が未記録」の状態である。`merged-plan-status` はこの状態を draft violation から除外してよいが、`ut-tdd status` は `po_decision_pending` として残す。
+この状態に新しい要求意味が含まれる場合は、Forward 側の G-SF `semantic_feature_frontier_record` で
+`classification=frontier_pending_decision` として扱い、L3/L4/L6/L7 fully descended claim を禁止する。
 
 ---
 
@@ -79,6 +81,9 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 
 `s4_decision_record` は `decision_outcome` の代替ではない。S4 で PO が `decision_outcome` を記録した後に
 terminal status / Forward merge / Reverse fullback へ進める。
+S4 が `confirmed` の場合でも、要求意味が増えたときは `semantic_feature_frontier_record` を
+`confirmed_current` へ更新し、L3 requirement / acceptance、L4 boundary、L5 contract、L6 function、L7 implementation
+のどこまで降ろすかを `downstream_route` に分解する。S4 前の S3 evidence は `frontier_pending_decision` のままである。
 
 S4 decision source ledger (checked 2026-06-30):
 

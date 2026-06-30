@@ -40,6 +40,9 @@ L6 機能設計
 - 左腕の各層で **① 設計 ⇔ ③ テスト設計** を同時に起票・凍結する (Pair freeze、G1-G6)。
 - 谷 L7 に入る前に L6 単体テスト設計に対応する **④ テストコードを先行作成 (TDD Red)** し、その状態で実装を開始する。
 - テスト設計 doc なしの「テストも書いた」は **逆ピラミッド**として G6/G7 で fail-close する (AP-8)。
+- 要求修正後は **G-SF semantic feature frontier gate** を通し、意味単位を `confirmed_current` /
+  `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` / `rejected_or_archived`
+  に分類する。frontier/parked/approval-gated が残る場合、selected gate green を whole-program 完了へ読み替えない。
 
 ---
 

@@ -16,6 +16,31 @@
 左腕完了 = ① + ③ ペアが揃い、対応ゲートを通過した状態。
 設計のみ先行・テスト設計を後回しにする運用は V-model 違反 (AP-8: 逆ピラミッド)。
 
+## G-SF: semantic feature frontier gate
+
+G1/G3/G4/G5/G6 の pair freeze と、Discovery S4 / Reverse R4 / Add-feature 統合の出口では、
+ID 件数だけでなく **要求が増えた意味単位** を分類する。要求修正、PO 指摘、Discovery S3/S4、bottom-up 実装、
+version-up、rename/cutover のいずれかで「機能一覧・受入条件・運用ポリシーの意味」が増えた場合、
+完了主張の前に `semantic_feature_frontier_record` を残す。
+
+`semantic_feature_frontier_record` は少なくとも以下を持つ:
+
+| field | 内容 |
+|---|---|
+| `meaning_unit` | 何の能力・ユーザー価値・運用制約が増えたか。実装ファイル名や PLAN 名だけで代替しない |
+| `source_request` | L0/L1/L3/PO 指摘/Discovery/Reverse/Add-feature/version-up/cutover の根拠 |
+| `classification` | `confirmed_current` / `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` / `rejected_or_archived` |
+| `downstream_route` | L1/L3/L4/L5/L6/L7/L8-L14 のどこへ降ろすか、または `gap-only` / archive |
+| `acceptance_oracle` | ③ テスト設計、S4 decision record、activation/cutover decision packet、または拒否理由 |
+| `completion_claim_allowed` | `true` は `confirmed_current` か `rejected_or_archived` のみ。frontier/parked/approval-gated は whole-program 完了不可 |
+
+Fail-close:
+
+- `frontier_pending_decision` を L3/L4/L6/L7 fully descended と主張してはならない。
+- `parked_future_version` を今版 active frontier 完了へ数えてはならない。
+- `approval_gated_cutover` は dry-run / audit / plan-only までで、action-binding approval が無い限り apply 済みと扱わない。
+- `semantic_feature_frontier_record` が無い要求修正は、green command や doctor green があっても G3/G6/G7/accept の完了根拠にならない。
+
 > **正規式モデル (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 左腕各層の検証ペアと検証本質を明確化。
 > - **L0 企画 ⇔ 価値検証** (L14→L0 feedback で企画目的・価値の実現を検証) — 従来ペア無しの穴埋め。
 > - **谷 = 3 点合算** (L6 機能設計 ① + 単体テスト設計 ③ + L7 コード ②、最小単位)。

@@ -6,6 +6,11 @@ const PLAN_L7_141 = "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md";
 const PLAN_L7_146 = "docs/plans/PLAN-L7-146-serverless-readonly-share.md";
 const VERSION_UP_MODE = "docs/process/modes/version-up.md";
 const VERSION_UP_DISCOVERY = "docs/plans/PLAN-DISCOVERY-09-version-up-mode.md";
+const FORWARD_DESIGN = "docs/process/forward/L00-L06-design-phase.md";
+const FORWARD_OVERVIEW = "docs/process/forward/overview.md";
+const DISCOVERY_MODE = "docs/process/modes/discovery.md";
+const ADD_FEATURE_MODE = "docs/process/modes/add-feature.md";
+const REVERSE_MODE = "docs/process/modes/reverse.md";
 
 function auditText(): string {
   return readFileSync(AUDIT_PATH, "utf8");
@@ -150,6 +155,43 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("visualization S4");
     expect(text).toContain("rename cutover approval");
     expect(text).toContain("version-up parked work");
+  });
+
+  it("binds requirement amendments to the G-SF semantic feature frontier gate", () => {
+    const forwardDesign = fileText(FORWARD_DESIGN);
+    const forwardOverview = fileText(FORWARD_OVERVIEW);
+    const discovery = fileText(DISCOVERY_MODE);
+    const addFeature = fileText(ADD_FEATURE_MODE);
+    const reverse = fileText(REVERSE_MODE);
+    const l3 = fileText("docs/design/helix/L3-requirements/pillar-functional-requirements.md");
+    const l6 = fileText("docs/design/helix/L6-function-design/pillar-function-design.md");
+    const l12 = fileText("docs/test-design/helix/L3-pillar-acceptance-test-design.md");
+    const l7Unit = fileText("docs/test-design/helix/L6-pillar-unit-test-design.md");
+
+    for (const text of [forwardDesign, discovery, addFeature, reverse, l3, l6, l12, l7Unit]) {
+      expect(text).toContain("semantic_feature_frontier_record");
+      expect(text).toContain("frontier_pending_decision");
+    }
+
+    for (const text of [forwardDesign, l3, l6, l12, l7Unit]) {
+      expect(text).toContain("parked_future_version");
+      expect(text).toContain("approval_gated_cutover");
+    }
+
+    expect(forwardDesign).toContain("## G-SF: semantic feature frontier gate");
+    expect(forwardDesign).toContain("completion_claim_allowed");
+    expect(forwardDesign).toContain("green command や doctor green");
+    expect(forwardOverview).toContain("G-SF semantic feature frontier gate");
+    expect(discovery).toContain("S3 evidence は `frontier_pending_decision` のまま");
+    expect(addFeature).toContain("bottom-up build で機能意味が増えた場合");
+    expect(reverse).toContain("実装や green command があっても意味ベース設計の完了根拠にならない");
+    expect(l3).toContain("confirmed 43 件: `classification=confirmed_current`");
+    expect(l3).toContain(
+      "asset/progress visualization: `classification=frontier_pending_decision`",
+    );
+    expect(l6).toContain("実装済み path の存在だけでは `completion_claim_allowed=true` にならない");
+    expect(l12).toContain("G-SF oracle");
+    expect(l7Unit).toContain("G-SF | semantic frontier records");
   });
 
   it("keeps version-up parking aligned after PLAN-L7-141 activation", () => {

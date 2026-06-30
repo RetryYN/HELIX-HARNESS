@@ -217,8 +217,13 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3).toContain("pair-agent TDD route");
     expect(l3).toContain("`.ut-tdd -> .helix` rename");
     expect(l3).toContain("S3 verified / S4 PO decision pending");
+    expect(l3).toContain("G-SF `semantic_feature_frontier_record`");
+    expect(l3).toContain(
+      "asset/progress visualization: `classification=frontier_pending_decision`",
+    );
     expect(l12).toContain("§0.1 amendment frontier oracle");
     expect(l12).toContain("visualization 要求も L3/L4/L6/L7 fully descended");
+    expect(l12).toContain("G-SF oracle");
     const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
     for (const id of l1Ids) {

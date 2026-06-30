@@ -55,6 +55,11 @@
 | 5. 既存テスト確認 + 追加テスト | L8/L9 で既存テスト影響確認、追加テスト起票 | ③ + ④ 差分 |
 | 6. V-model 整合 | **B: Reverse (R0-R4, fullback, forward_routing=L3) で L3 要件を back-fill → G3 凍結**。A: 追補を該当工程ファイルへ反映 | trace 更新 / L3 要件復元 |
 
+Step 1 と Step 6 では Forward G-SF `semantic_feature_frontier_record` を更新する。bottom-up build で機能意味が増えた場合、
+一時的に `frontier_pending_decision` として扱い、Reverse fullback と G3/G6 pair freeze が閉じるまで
+`completion_claim_allowed=false` のままにする。単なる名前変更・整形で意味が増えない場合だけ `local_impl_only`
+として理由を残せる。
+
 ---
 
 ## 3. exit 条件
