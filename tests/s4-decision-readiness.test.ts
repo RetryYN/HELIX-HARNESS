@@ -26,6 +26,9 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "s4-decision-packet.v1",
     "planOnly=true",
     "decisionAllowed=false",
+    "decisionEvidenceChecklist",
+    "outcomeRouteMatrix",
+    "provenanceRequirements",
     "S4 decision source ledger (checked 2026-06-30)",
     "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
     "|---|---|---|---|---|---|---|",
@@ -104,6 +107,45 @@ describe("S4 decision readiness", () => {
       "rejected",
       "pivot",
     ]);
+    expect(packet.decisionEvidenceChecklist).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          field: "verified_evidence",
+          decisionUse: expect.stringContaining("S3 verification"),
+        }),
+        expect.objectContaining({
+          field: "acceptance_gap",
+          decisionUse: expect.stringContaining("confirm"),
+        }),
+        expect.objectContaining({
+          field: "route_impact",
+          decisionUse: expect.stringContaining("Forward/Reverse/backlog"),
+        }),
+      ]),
+    );
+    expect(packet.outcomeRouteMatrix).toEqual([
+      expect.objectContaining({
+        outcome: "confirmed",
+        terminalStatus: "confirmed or completed",
+        routePolicy: expect.stringContaining("Forward/Reverse"),
+      }),
+      expect.objectContaining({
+        outcome: "rejected",
+        terminalStatus: "archived",
+      }),
+      expect.objectContaining({
+        outcome: "pivot",
+        terminalStatus: "archived",
+        routePolicy: expect.stringContaining("S0/S1"),
+      }),
+    ]);
+    expect(packet.provenanceRequirements).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ item: "decision_record" }),
+        expect.objectContaining({ item: "green_evidence" }),
+        expect.objectContaining({ item: "route_and_fullback" }),
+      ]),
+    );
   });
 
   it("U-DECISIONREC-001: fails S3 pending PoC plans that do not say what S4 must decide", () => {
@@ -533,5 +575,27 @@ describe("S4 decision readiness", () => {
       ]),
     );
     expect(packets[0].decisionRecord.forward_route).toContain("L3 visualization");
+    expect(packets[0].decisionEvidenceChecklist.map((row: { field: string }) => row.field)).toEqual(
+      [
+        "verified_evidence",
+        "stakeholder_review_or_proxy",
+        "acceptance_gap",
+        "unresolved_risk",
+        "external_source_basis",
+        "route_impact",
+      ],
+    );
+    expect(packets[0].outcomeRouteMatrix.map((row: { outcome: string }) => row.outcome)).toEqual([
+      "confirmed",
+      "rejected",
+      "pivot",
+    ]);
+    expect(packets[0].provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
+      "decision_record",
+      "green_evidence",
+      "stakeholder_or_proxy_review",
+      "route_and_fullback",
+      "source_ledger",
+    ]);
   });
 });

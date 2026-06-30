@@ -52,6 +52,21 @@ export interface S4DecisionPacket {
   decisionAllowed: false;
   allowedOutcomes: string[];
   decisionRecord: Record<string, string>;
+  decisionEvidenceChecklist: Array<{
+    field: string;
+    evidence: string;
+    decisionUse: string;
+  }>;
+  outcomeRouteMatrix: Array<{
+    outcome: string;
+    terminalStatus: string;
+    routePolicy: string;
+    requiredEvidence: string;
+  }>;
+  provenanceRequirements: Array<{
+    item: string;
+    evidence: string;
+  }>;
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
 }
@@ -73,6 +88,9 @@ const MODE_DOC_MARKERS = [
   "s4-decision-packet.v1",
   "planOnly=true",
   "decisionAllowed=false",
+  "decisionEvidenceChecklist",
+  "outcomeRouteMatrix",
+  "provenanceRequirements",
   "S4 decision source ledger",
   "Scrum Guide 2020",
   "ISO/IEC/IEEE 29148",
@@ -447,6 +465,84 @@ export function buildS4DecisionPacket(plan: S4DecisionPlan): S4DecisionPacket {
     decisionAllowed: false,
     allowedOutcomes: [...S4_ALLOWED_OUTCOMES],
     decisionRecord,
+    decisionEvidenceChecklist: [
+      {
+        field: "verified_evidence",
+        evidence: decisionRecord.verified_evidence ?? "",
+        decisionUse: "prove S3 verification exists before PO chooses confirmed/rejected/pivot",
+      },
+      {
+        field: "stakeholder_review_or_proxy",
+        evidence: decisionRecord.stakeholder_review_or_proxy ?? "",
+        decisionUse: "separate inspect/adapt review input from terminal acceptance",
+      },
+      {
+        field: "acceptance_gap",
+        evidence: decisionRecord.acceptance_gap ?? "",
+        decisionUse: "decide whether remaining gaps allow confirm, require pivot, or reject",
+      },
+      {
+        field: "unresolved_risk",
+        evidence: decisionRecord.unresolved_risk ?? "",
+        decisionUse:
+          "carry residual risk into route impact instead of hiding it behind green tests",
+      },
+      {
+        field: "external_source_basis",
+        evidence: decisionRecord.external_source_basis ?? "",
+        decisionUse: "bind the decision to official/process/design sources used as judgment basis",
+      },
+      {
+        field: "route_impact",
+        evidence: decisionRecord.route_impact ?? "",
+        decisionUse: "show how each outcome changes Forward/Reverse/backlog state",
+      },
+    ],
+    outcomeRouteMatrix: [
+      {
+        outcome: "confirmed",
+        terminalStatus: "confirmed or completed",
+        routePolicy:
+          "promote through declared Forward/Reverse route; do not treat S3 evidence alone as completion",
+        requiredEvidence:
+          "verified evidence, zero or accepted acceptance_gap, explicit forward_route, reverse_fullback_required yes/no, and promotion strategy",
+      },
+      {
+        outcome: "rejected",
+        terminalStatus: "archived",
+        routePolicy: "archive the PoC or increment and exclude it from active completion frontier",
+        requiredEvidence:
+          "rejection rationale, no Forward promotion route, and backlog/archive impact",
+      },
+      {
+        outcome: "pivot",
+        terminalStatus: "archived",
+        routePolicy: "archive the old PoC and create a new S0/S1 backlog or PLAN-DISCOVERY route",
+        requiredEvidence: "pivot rationale, route impact, and next sprint/backlog target",
+      },
+    ],
+    provenanceRequirements: [
+      {
+        item: "decision_record",
+        evidence: "s4_decision_record with all required fields and exact allowed_outcome enum",
+      },
+      {
+        item: "green_evidence",
+        evidence: decisionRecord.verified_evidence ?? "",
+      },
+      {
+        item: "stakeholder_or_proxy_review",
+        evidence: decisionRecord.stakeholder_review_or_proxy ?? "",
+      },
+      {
+        item: "route_and_fullback",
+        evidence: `${decisionRecord.forward_route ?? ""} / ${decisionRecord.reverse_fullback_required ?? ""}`,
+      },
+      {
+        item: "source_ledger",
+        evidence: decisionRecord.external_source_basis ?? "",
+      },
+    ],
     blockedReasons,
     nextWorkflowRoutes: [
       {
