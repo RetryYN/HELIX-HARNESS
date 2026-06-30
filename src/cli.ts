@@ -42,7 +42,10 @@ import {
   setActivePlanCli,
 } from "./handover/index";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
-import { auditIdentifierRenameBlastRadius } from "./lint/identifier-rename";
+import {
+  auditIdentifierRenameBlastRadius,
+  buildIdentifierRenameCutoverPlan,
+} from "./lint/identifier-rename";
 import {
   completionDecisionPacketForOutstanding,
   completionReadinessLine,
@@ -1023,6 +1026,26 @@ rename
       process.stdout.write(
         `  required: ${audit.requiredRecords.join(", ")} before .ut-tdd -> .helix apply\n`,
       );
+    }
+  });
+rename
+  .command("plan")
+  .description("emit a non-destructive PLAN-M-02 cutover packet without applying rename")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const plan = buildIdentifierRenameCutoverPlan(process.cwd());
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename plan: status=${plan.status} planOnly=${plan.planOnly} applyAuthorized=${plan.applyAuthorized} mustNotApply=${plan.mustNotApply}\n`,
+    );
+    process.stdout.write(
+      `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
+    );
+    if (plan.blockedReasons.length > 0) {
+      for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
     }
   });
 

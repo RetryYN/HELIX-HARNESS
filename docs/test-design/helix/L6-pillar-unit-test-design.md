@@ -50,7 +50,7 @@ next_pair_freeze: L6
 | HU-PILLAR-P6-01 | HR-FR-P6-01 | HC-P6 | `buildDistributionPlan` | rulesets/checks/merge queue/bypass audit を dry-run plan に出す |
 | HU-PILLAR-P6-02 | HR-FR-P6-02 | HC-P6 | `validatePrReviewRoute` / `gateCiAutoFixRepush` | worker!=verifier と confidence/iteration cap を強制 |
 | HU-PILLAR-P6-03 | HR-FR-P6-03 | HC-P6 | `buildDistributionPlan` | fresh/brownfield setup は managed diff/import report を出し既存を壊さない |
-| HU-PILLAR-P6-04 | HR-FR-P6-04 | HC-P6 | `planVersionUpgradeDryRun` / `auditIdentifierRenameBlastRadius` / `ut-tdd rename audit` | tag bump に rollback/destructive block/idempotency evidence を要求する。PLAN-M-02 identifier rename は `ut-tdd` / `.ut-tdd` / `area=harness` blast radius を audit し、cutover/action-binding approval が無い限り `.ut-tdd -> .helix` apply 可能と扱わない |
+| HU-PILLAR-P6-04 | HR-FR-P6-04 | HC-P6 | `planVersionUpgradeDryRun` / `auditIdentifierRenameBlastRadius` / `buildIdentifierRenameCutoverPlan` / `ut-tdd rename audit` / `ut-tdd rename plan` | tag bump に rollback/destructive block/idempotency evidence を要求する。PLAN-M-02 identifier rename は `ut-tdd` / `.ut-tdd` / `area=harness` blast radius を audit し、cutover/action-binding approval が無い限り `.ut-tdd -> .helix` apply 可能と扱わない。`rename plan` は dry-run / rollback / monitoring / approval gate を返すが、approval records が concrete でも plan-only であり apply command を提供しない |
 | HU-PILLAR-P6-05 | HR-FR-P6-05 | HC-P6 | `planReleaseAutomationDecision` / `gateCiAutoFixRepush` | release ADR 欠落と confidence<0.75 repush を reject |
 | HU-PILLAR-P7-01 | HR-FR-P7-01 | HC-P7 | `buildBoundedRecallPacket` | Claude/Codex が shared provider memory から bounded recall する |
 | HU-PILLAR-P7-02 | HR-FR-P7-02 | HC-P7 | `detectGlossaryDrift` | rename/synonym drift に old/new/supersedes/context を要求 |
@@ -97,7 +97,7 @@ next_pair_freeze: L6
 | HC-P2/P3 | pair-agent TDD route cannot start with implementation, cannot let the light agent close, cannot drop smart review fix instructions between cycles, cannot lose requested run evidence, and cannot execute the smart T0 review agent without explicit approval |
 | HC-P3 | projection-only telemetry cannot close `works` / `fired` / `used` claims |
 | HC-P4 | destructive repair without approval returns `human_required` |
-| HC-P6 | GitHub rules/apply plan is emit-only unless approval evidence is action-bound |
+| HC-P6 | GitHub rules/apply plan and identifier rename cutover packet are emit-only unless approval evidence is action-bound; `rename plan` never applies |
 | HC-P7 | per-agent memory silo is not accepted as shared SSoT |
 | HC-P8 | untrusted external text is never copied into executable instruction fields |
 | HC-P9 | stale projection or missing layer gate keeps `ConvergenceStatus` non-green |

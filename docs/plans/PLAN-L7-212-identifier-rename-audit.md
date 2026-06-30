@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-212-identifier-rename-audit
-title: "PLAN-L7-212 (add-impl): HELIX identifier rename blast-radius audit"
+title: "PLAN-L7-212 (add-impl): HELIX identifier rename blast-radius audit and cutover packet"
 kind: add-impl
 layer: L7
 drive: agent
@@ -17,7 +17,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "PLAN-M-02 Step 1 support: add a non-destructive identifier rename blast-radius audit for ut-tdd, .ut-tdd, and area=harness. The audit reports blocked_pending_cutover_approval until cutover_decision_record and action_binding_approval_record contain concrete approval values; it does not perform the irreversible .ut-tdd -> .helix state move."
+    scope: "PLAN-M-02 Step 1 support: add a non-destructive identifier rename blast-radius audit and cutover packet for ut-tdd, .ut-tdd, and area=harness. The audit reports blocked_pending_cutover_approval until cutover_decision_record and action_binding_approval_record contain concrete approval values; rename plan emits dry-run/rollback/monitoring/approval-gate material but does not perform the irreversible .ut-tdd -> .helix state move."
     green_commands:
       - kind: unit_test
         command: "bun test tests/identifier-rename.test.ts"
@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/identifier-rename.test.ts
-        output_digest: "sha256:568451756e51b3f99881210c3a17abedc2b5698e0e5cba17d577f09b68b5a296"
+        output_digest: "sha256:97a7c7b0705ec0c533e3ff11f7cac444f83262bba797d823a36b6a6cc674454d"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: src/lint/identifier-rename.ts
-        output_digest: "sha256:09f7eccc760099c1b6a450f78dc9d03c8ce06d35da580e356670c89d22cbd3ca"
+        output_digest: "sha256:e989d0b598a5a84583a2c006603469049f2bff6c91b683952a33c8ac7e595271"
 agent_slots:
   - role: tl
     slot_label: "TL — rename audit boundary and fail-close approval semantics"
@@ -55,25 +55,28 @@ dependencies:
     - docs/test-design/helix/L6-pillar-unit-test-design.md
 ---
 
-# PLAN-L7-212 (add-impl): HELIX identifier rename blast-radius audit
+# PLAN-L7-212 (add-impl): HELIX identifier rename blast-radius audit and cutover packet
 
 ## §0 役割
 
-`PLAN-M-02` の Step 1（blast-radius 再計測 + 改名表凍結）を機械化する。これは `.ut-tdd` を
-`.helix` へ移す cutover apply ではない。state dir migration、CLI/bin rename、hook/adapter marker rename は
-`PLAN-M-02` の cutover decision と action-binding approval が揃うまで blocked のまま扱う。
+`PLAN-M-02` の Step 1（blast-radius 再計測 + 改名表凍結 + 非破壊 cutover packet）を機械化する。
+これは `.ut-tdd` を `.helix` へ移す cutover apply ではない。state dir migration、CLI/bin rename、
+hook/adapter marker rename は `PLAN-M-02` の cutover decision と action-binding approval が揃うまで
+blocked のまま扱う。`ut-tdd rename plan` は approval が concrete でも plan-only surface であり、
+dry-run / rollback / monitoring / approval gate を出すだけで apply command を提供しない。
 
 ## §1 実装単位
 
 | module | 内容 | oracle |
 |--------|------|--------|
-| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval` | identifier-rename tests |
-| `src/cli.ts` | `ut-tdd rename audit --json` / text output を追加。apply は行わず、targetCli=`helix` / targetStateDir=`.helix` と requiredRecords を出す | identifier-rename CLI test |
+| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、dry-run、rollback、monitoring、approval gate を返す | identifier-rename tests |
+| `src/cli.ts` | `ut-tdd rename audit --json` / `ut-tdd rename plan --json` / text output を追加。apply は行わず、targetCli=`helix` / targetStateDir=`.helix` と requiredRecords / cutover packet を出す | identifier-rename CLI test |
 
 ## §2 DoD
 
 - [x] `ut-tdd` / `.ut-tdd` / `area=harness` blast radius を JSON で出せる。
 - [x] draft approval placeholder を concrete approval と誤判定しない。
+- [x] dry-run / rollback / monitoring / approval gate を含む non-destructive cutover packet を JSON で出せる。
 - [x] `.ut-tdd -> .helix` apply は実行しない。
 - [x] `tests/identifier-rename.test.ts` / typecheck / lint / doctor 対象。
 

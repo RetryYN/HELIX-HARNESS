@@ -3,7 +3,10 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { auditIdentifierRenameBlastRadius } from "../src/lint/identifier-rename";
+import {
+  auditIdentifierRenameBlastRadius,
+  buildIdentifierRenameCutoverPlan,
+} from "../src/lint/identifier-rename";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
@@ -162,6 +165,87 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(payload.hitsByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.hitsByToken[".ut-tdd"]).toBeGreaterThan(0);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("builds a non-destructive cutover packet with dry-run, rollback, and monitoring plans", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const plan = buildIdentifierRenameCutoverPlan(root);
+      expect(plan).toMatchObject({
+        schemaVersion: "identifier-rename-cutover-plan.v1",
+        status: "blocked_pending_cutover_approval",
+        planOnly: true,
+        mustNotApply: true,
+        applyCommandAvailable: false,
+        applyAuthorized: false,
+        targetCli: "helix",
+        targetStateDir: ".helix",
+      });
+      expect(plan.renameMap).toEqual([
+        { from: "ut-tdd", to: "helix" },
+        { from: ".ut-tdd", to: ".helix" },
+        { from: "area=harness", to: "area=helix" },
+      ]);
+      expect(plan.blockedReasons).toContain(
+        "missing concrete cutover_decision_record.allowed_outcome=approve_cutover",
+      );
+      expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
+      expect(plan.rollbackPlan.join("\n")).toContain(".ut-tdd/harness.db");
+      expect(plan.monitoringPlan.join("\n")).toContain("helix doctor");
+      expect(plan.approvalGate).toMatchObject({
+        requiredDecision: "approve_cutover",
+        requiredActionBinding: "approve_action_binding",
+        approvedActorRequired: true,
+        approvedToolRequired: true,
+        approvedTargetRequired: true,
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("keeps rename plan non-applying even when approval records are concrete", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-approved-"));
+    try {
+      writeApprovedRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const plan = buildIdentifierRenameCutoverPlan(root);
+      expect(plan.status).toBe("ready_for_cutover_packet");
+      expect(plan.applyAuthorized).toBe(true);
+      expect(plan.mustNotApply).toBe(true);
+      expect(plan.applyCommandAvailable).toBe(false);
+      expect(plan.blockedReasons).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("exposes rename plan as a CLI JSON surface", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-cli-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const result = runCliIn(root, ["rename", "plan", "--json"]);
+      expect(result.status).toBe(0);
+      const payload = JSON.parse(result.stdout);
+      expect(payload).toMatchObject({
+        schemaVersion: "identifier-rename-cutover-plan.v1",
+        status: "blocked_pending_cutover_approval",
+        planOnly: true,
+        mustNotApply: true,
+        applyCommandAvailable: false,
+      });
+      expect(payload.dryRunPlan.length).toBeGreaterThan(0);
+      expect(payload.rollbackPlan.length).toBeGreaterThan(0);
+      expect(payload.monitoringPlan.length).toBeGreaterThan(0);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
