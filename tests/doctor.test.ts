@@ -10,6 +10,7 @@ import {
   checkChangeSetIntegrity,
   checkCodexWrapperParity,
   checkCodingRules,
+  checkCompletionDecisionPacket,
   checkCutoverReadiness,
   checkCycleP4Verification,
   checkDbProjectionCoverage,
@@ -662,6 +663,7 @@ describe("runDoctor", () => {
       ["review-evidence", checkReviewEvidence(missingRoot)],
       ["guardrail-invariants", checkGuardrailInvariants(missingRoot)],
       ["asset-drift", checkAssetDrift(missingRoot)],
+      ["completion-decision-packet", checkCompletionDecisionPacket(missingRoot)],
       ["skill-assignment", checkSkillAssignment(missingRoot)],
       ["descent-obligation", checkDescentObligation(missingRoot)],
       ["change-impact", checkChangeImpact(missingRoot)],
@@ -783,6 +785,7 @@ describe("runDoctor", () => {
       "dependencyDrift",
       "rightArmVerificationStrategy",
       "versionUpReadiness",
+      "completionDecisionPacket",
       "objectiveEvidenceAudit",
       "regressionExpansion",
     ];

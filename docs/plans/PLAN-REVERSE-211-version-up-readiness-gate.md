@@ -68,7 +68,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T10:30:00+09:00"
         evidence_path: src/doctor/index.ts
-        output_digest: "sha256:89432418538e7d19c5b98402c30bc11186b0c1b0867cb5332d1db9371594202a"
+        output_digest: "sha256:305449af830db8a72cfaa5be9535e6bb6884a185cd64712c4a5e6fd0c4b9955d"
 ---
 
 # PLAN-REVERSE-211: version-up readiness gate backfill

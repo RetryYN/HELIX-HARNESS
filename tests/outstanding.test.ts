@@ -186,6 +186,7 @@ describe("completionReadinessForOutstanding", () => {
 });
 
 describe("completionDecisionPacketForOutstanding", () => {
+  // U-OUTSTANDING-001
   it("turns outstanding blockers into explicit decision items for PO/human gates", () => {
     const outstanding = analyzeOutstandingWork(
       [

@@ -39,6 +39,11 @@ import {
   loadCodingWorkflowDocs,
 } from "../lint/coding-rules";
 import {
+  analyzeCompletionDecisionPacket,
+  completionDecisionPacketMessages,
+  loadCompletionDecisionPacketInput,
+} from "../lint/completion-decision-packet";
+import {
   analyzeCutoverReadiness,
   cutoverReadinessMessages,
   loadCutoverReadinessInput,
@@ -1872,6 +1877,27 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
   }
 }
 
+export function checkCompletionDecisionPacket(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["completion-decision-packet - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = analyzeCompletionDecisionPacket(loadCompletionDecisionPacketInput(repoRoot));
+    return { messages: completionDecisionPacketMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["completion-decision-packet - violation: decision packet check could not run"],
+      ok: false,
+    };
+  }
+}
+
 export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput(repoRoot));
@@ -2046,6 +2072,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const versionUpReadiness = checkVersionUpReadiness(deps.repoRoot);
   const s4DecisionReadiness = checkS4DecisionReadiness(deps.repoRoot);
   const cutoverReadiness = checkCutoverReadiness(deps.repoRoot);
+  const completionDecisionPacket = checkCompletionDecisionPacket(deps.repoRoot);
   const objectiveEvidenceAudit = checkObjectiveEvidenceAudit(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   return {
@@ -2121,6 +2148,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       versionUpReadiness.ok &&
       s4DecisionReadiness.ok &&
       cutoverReadiness.ok &&
+      completionDecisionPacket.ok &&
       objectiveEvidenceAudit.ok &&
       forwardConvergenceAudit.ok &&
       handoverOutstanding.ok,
@@ -2202,6 +2230,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
       ...s4DecisionReadiness.messages.map((m) => `doctor: ${m}`),
       ...cutoverReadiness.messages.map((m) => `doctor: ${m}`),
+      ...completionDecisionPacket.messages.map((m) => `doctor: ${m}`),
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],

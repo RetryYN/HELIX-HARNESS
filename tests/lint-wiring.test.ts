@@ -92,6 +92,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
     // The audits this PLAN re-wired into doctor are now genuinely reachable.
     for (const m of [
       "cutover-readiness",
+      "completion-decision-packet",
       "doc-consistency",
       "entity-coverage",
       "fr-registry-audit",
