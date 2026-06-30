@@ -40,13 +40,33 @@ export interface OutstandingWork {
   activeDraftTotal: number;
   /** open な spec-backfill placeholder_deps carry 数 (IMP-139 b)。 */
   openDefers: number;
+  /** 非終端 PLAN の主要 blocker / wait reason 別集計。完了扱いしない理由を status surface に出す。 */
+  blockersByKind: Record<string, number>;
+  /** 非終端 PLAN の明細。status --json / handover で完了主張を計画単位に照合する。 */
+  items: OutstandingItem[];
 }
 
 export interface OutstandingPlanRow {
+  planId?: string;
   layer: string;
+  kind?: string;
   status: string;
+  workflowPhase?: string | null;
   /** version-up parked マーカー (PLAN-DISCOVERY-09)。null = 通常。 */
   versionTarget?: string | null;
+  /** frontmatter/body の軽量分類用テキスト。 */
+  text?: string;
+}
+
+export interface OutstandingItem {
+  planId: string;
+  layer: string;
+  kind: string;
+  status: string;
+  workflowPhase: string | null;
+  versionTarget: string | null;
+  reason: string;
+  blockers: string[];
 }
 
 /**
@@ -58,6 +78,8 @@ export function analyzeOutstandingWork(
   openDefers: number,
 ): OutstandingWork {
   const byLayer: Record<string, number> = {};
+  const blockersByKind: Record<string, number> = {};
+  const items: OutstandingItem[] = [];
   let versionUpParked = 0;
   for (const p of plans) {
     const s = p.status.toLowerCase();
@@ -66,10 +88,25 @@ export function analyzeOutstandingWork(
     byLayer[layer] = (byLayer[layer] ?? 0) + 1;
     // version-up parked = draft + version_target (landed には schema が付与を禁ずる)。
     if (s === "draft" && (p.versionTarget ?? "").trim().length > 0) versionUpParked++;
+    const blockers = classifyOutstandingBlockers(p);
+    for (const blocker of blockers) blockersByKind[blocker] = (blockersByKind[blocker] ?? 0) + 1;
+    items.push({
+      planId: (p.planId ?? "unknown").trim() || "unknown",
+      layer,
+      kind: (p.kind ?? "unknown").trim() || "unknown",
+      status: p.status,
+      workflowPhase: p.workflowPhase ?? null,
+      versionTarget: p.versionTarget ?? null,
+      reason: primaryOutstandingReason(blockers),
+      blockers,
+    });
   }
   // 決定論順 (layer key 昇順) で再構築する (出力安定性)。
   const ordered: Record<string, number> = {};
   for (const key of Object.keys(byLayer).sort()) ordered[key] = byLayer[key];
+  const orderedBlockers: Record<string, number> = {};
+  for (const key of Object.keys(blockersByKind).sort()) orderedBlockers[key] = blockersByKind[key];
+  items.sort((a, b) => a.planId.localeCompare(b.planId));
   const total = Object.values(ordered).reduce((acc, n) => acc + n, 0);
   return {
     nonTerminalPlansByLayer: ordered,
@@ -77,7 +114,43 @@ export function analyzeOutstandingWork(
     versionUpParked,
     activeDraftTotal: Math.max(0, total - versionUpParked),
     openDefers: Math.max(0, openDefers),
+    blockersByKind: orderedBlockers,
+    items,
   };
+}
+
+function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
+  const text = [p.planId, p.layer, p.kind, p.status, p.workflowPhase, p.versionTarget, p.text]
+    .filter(Boolean)
+    .join("\n")
+    .toLowerCase();
+  const blockers = new Set<string>();
+  if ((p.versionTarget ?? "").trim()) blockers.add("version_up_parked");
+  if (
+    /\bS[34]\b/i.test(p.workflowPhase ?? "") ||
+    /s4 decision|decision_outcome|po 判断|po gate|po サインオフ|po 承認/i.test(text)
+  ) {
+    blockers.add("po_decision_pending");
+  }
+  if (/approval|承認|action-binding|human signoff|人間サインオフ|人間承認/i.test(text)) {
+    blockers.add("human_approval_pending");
+  }
+  if (/irreversible|不可逆|state dir|cutover|\.ut-tdd\/.*\.helix|atomic migration/i.test(text)) {
+    blockers.add("irreversible_migration_pending");
+  }
+  if (blockers.size === 0) blockers.add("active_draft");
+  return [...blockers].sort();
+}
+
+function primaryOutstandingReason(blockers: string[]): string {
+  const priority = [
+    "irreversible_migration_pending",
+    "version_up_parked",
+    "po_decision_pending",
+    "human_approval_pending",
+    "active_draft",
+  ];
+  return priority.find((p) => blockers.includes(p)) ?? blockers[0] ?? "active_draft";
 }
 
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
@@ -94,9 +167,13 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
       continue;
     }
     rows.push({
+      planId: fmValue(content, "plan_id") ?? f.replace(/\.md$/, ""),
       layer: fmValue(content, "layer") ?? "unknown",
+      kind: fmValue(content, "kind") ?? "unknown",
       status: fmValue(content, "status") ?? "unknown",
+      workflowPhase: fmValue(content, "workflow_phase") ?? null,
       versionTarget: fmValue(content, "version_target") ?? null,
+      text: content,
     });
   }
   return rows;
@@ -124,5 +201,9 @@ export function outstandingSummaryLine(o: OutstandingWork): string {
     o.versionUpParked > 0
       ? `; version-up parked=${o.versionUpParked} (active draft=${o.activeDraftTotal})`
       : "";
-  return `outstanding: non-terminal PLANs=${o.nonTerminalPlansTotal} (${byLayer})${versionUp}; open defers=${o.openDefers}`;
+  const blockers =
+    Object.entries(o.blockersByKind)
+      .map(([kind, n]) => `${kind}:${n}`)
+      .join(", ") || "none";
+  return `outstanding: non-terminal PLANs=${o.nonTerminalPlansTotal} (${byLayer})${versionUp}; blockers=${blockers}; open defers=${o.openDefers}`;
 }

@@ -325,6 +325,8 @@ describe("U-HOVER-017 §5 outstanding seed + anchor gate (PLAN-L7-98)", () => {
     versionUpParked: 0,
     activeDraftTotal: 2,
     openDefers: 1,
+    blockersByKind: { active_draft: 2 },
+    items: [],
   };
 
   it("outstanding 指定で §5 に機械集計 marker + 件数を出力する", () => {

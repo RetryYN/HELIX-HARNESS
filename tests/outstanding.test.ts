@@ -28,6 +28,8 @@ describe("analyzeOutstandingWork", () => {
     expect(o.nonTerminalPlansByLayer).toEqual({ L7: 2, cross: 1 });
     expect(o.nonTerminalPlansTotal).toBe(3);
     expect(o.openDefers).toBe(2);
+    expect(o.blockersByKind).toEqual({ active_draft: 3 });
+    expect(o.items).toHaveLength(3);
   });
 
   it("layer key は昇順 (決定論順)", () => {
@@ -47,11 +49,56 @@ describe("analyzeOutstandingWork", () => {
     expect(o.nonTerminalPlansByLayer).toEqual({ unknown: 1 });
   });
 
+  it("非終端 PLAN を意味別 blocker に分類する", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "migration",
+          status: "draft",
+          text: "不可逆 state dir cutover は PO サインオフ後に実施する。",
+        },
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "Cloudflare HMAC webhook access control activation requires human approval.",
+        },
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending.",
+        },
+      ],
+      0,
+    );
+
+    expect(o.blockersByKind).toEqual({
+      human_approval_pending: 1,
+      irreversible_migration_pending: 1,
+      po_decision_pending: 2,
+      version_up_parked: 1,
+    });
+    expect(o.items.map((item) => [item.planId, item.reason])).toEqual([
+      ["PLAN-DISCOVERY-10", "po_decision_pending"],
+      ["PLAN-L7-146", "version_up_parked"],
+      ["PLAN-M-02", "irreversible_migration_pending"],
+    ]);
+  });
+
   it("負の openDefers は 0 にクランプ / 全終端なら total=0", () => {
     const o = analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], -5);
     expect(o.nonTerminalPlansTotal).toBe(0);
     expect(o.nonTerminalPlansByLayer).toEqual({});
     expect(o.openDefers).toBe(0);
+    expect(o.blockersByKind).toEqual({});
+    expect(o.items).toEqual([]);
   });
 });
 
@@ -64,8 +111,12 @@ describe("outstandingSummaryLine", () => {
         versionUpParked: 0,
         activeDraftTotal: 3,
         openDefers: 1,
+        blockersByKind: { active_draft: 3 },
+        items: [],
       }),
-    ).toBe("outstanding: non-terminal PLANs=3 (L7:2, cross:1); open defers=1");
+    ).toBe(
+      "outstanding: non-terminal PLANs=3 (L7:2, cross:1); blockers=active_draft:3; open defers=1",
+    );
   });
 
   it("非終端ゼロは none 表記", () => {
@@ -76,13 +127,21 @@ describe("outstandingSummaryLine", () => {
         versionUpParked: 0,
         activeDraftTotal: 0,
         openDefers: 0,
+        blockersByKind: {},
+        items: [],
       }),
-    ).toBe("outstanding: non-terminal PLANs=0 (none); open defers=0");
+    ).toBe("outstanding: non-terminal PLANs=0 (none); blockers=none; open defers=0");
   });
 });
 
 describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
-  function writePlan(root: string, name: string, layer: string, status: string): void {
+  function writePlan(
+    root: string,
+    name: string,
+    layer: string,
+    status: string,
+    options: { body?: string; frontmatter?: Record<string, string> } = {},
+  ): void {
     writeFileSync(
       join(root, "docs", "plans", name),
       [
@@ -91,10 +150,11 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         `layer: ${layer}`,
         `status: ${status}`,
         "kind: impl",
+        ...Object.entries(options.frontmatter ?? {}).map(([key, value]) => `${key}: ${value}`),
         "---",
         "",
         `# ${name}`,
-        "本文。",
+        options.body ?? "本文。",
       ].join("\n"),
       "utf8",
     );
@@ -115,6 +175,35 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
       expect(o.nonTerminalPlansByLayer).toEqual({ L7: 1, cross: 1 });
       expect(o.nonTerminalPlansTotal).toBe(2);
       expect(o.openDefers).toBe(0); // design/test-design 不在 → 0 (fail-open)
+      expect(o.items.map((item) => item.planId)).toEqual(["PLAN-A", "PLAN-C"]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("frontmatter/body から workflow blocker を分類する", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-classify-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writePlan(root, "PLAN-FUTURE.md", "L7", "draft", {
+        frontmatter: { version_target: "future" },
+        body: "Action-binding activation requires approval before external webhook use.",
+      });
+      writePlan(root, "PLAN-S3.md", "cross", "draft", {
+        frontmatter: { workflow_phase: "S3" },
+        body: "S4 decision pending.",
+      });
+
+      const o = computeOutstandingWork(root);
+      expect(o.blockersByKind).toEqual({
+        human_approval_pending: 1,
+        po_decision_pending: 1,
+        version_up_parked: 1,
+      });
+      expect(o.items.map((item) => [item.planId, item.reason])).toEqual([
+        ["PLAN-FUTURE", "version_up_parked"],
+        ["PLAN-S3", "po_decision_pending"],
+      ]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
