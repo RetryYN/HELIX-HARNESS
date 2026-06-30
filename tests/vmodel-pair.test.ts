@@ -255,6 +255,14 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "残 GAP（typed contract / effort-budget / Glossary SSoT）は L3 で起票",
     );
     expect(l14).toContain("本書上の `not-implemented` は runtime 実装未完了の状態");
+    expect(l14).toContain("right-arm verification source");
+    expect(l14).toContain("90 日超過なら");
+    expect(l14).toContain("source_status_delta");
+    expect(l14).toContain("adoption_decision_delta");
+    expect(l14).toContain("workflow_route_impact");
+    expect(l14).toContain("`completionDecisionPacket`");
+    expect(l14).toContain("outstanding.completionReadiness.ok=true");
+    expect(l14).toContain("L14 completion overlay");
     expect(l14).not.toContain("他柱は L1 宣言のみ");
     expect(l14).not.toContain("not-implemented 柱（P6/P8 等）は L3 で優先設計");
     expect(planL306).toContain(

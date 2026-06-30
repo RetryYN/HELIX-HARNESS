@@ -66,7 +66,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tests/vmodel-pair.test.ts
-        output_digest: "sha256:03bceb5b81d874b39b3314141a6640578edbe005b165beee495ebb6489d8a758"
+        output_digest: "sha256:e09dec550cb920ef2998eb286243542bf8a2043b5db5045d88ea049c1e65c272"
       - kind: smoke
         command: "bun run src/cli.ts plan lint docs/plans/PLAN-L4-51-helix-pillar-basic-design.md"
         runner: bun
