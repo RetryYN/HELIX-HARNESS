@@ -19,6 +19,14 @@ const cutoverMarkers = [
   "- audit_record: A-NNN",
   "- post_cutover_monitoring: quiet window",
   "- legacy_alias_policy: decide",
+  "Cutover source ledger (checked 2026-06-30):",
+  "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
+  "|---|---|---|---|---|---|---|",
+  "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity | audit_record |",
+  "| GitHub Environments required reviewers | https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | decision_owner |",
+  "| Google SRE Release Engineering | https://sre.google/sre-book/release-engineering/ | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback process | rollback_plan |",
+  "| OWASP LLM06:2025 Excessive Agency | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | approval_scope |",
+  "| SLSA Provenance | https://slsa.dev/spec/v1.2/provenance | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | artifact provenance | audit_record |",
 ].join("\n");
 
 function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadinessInput {
@@ -102,6 +110,38 @@ describe("cutover readiness", () => {
     );
   });
 
+  it("fails when the cutover source ledger loses adoption decisions or provenance rows", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        rightArmMd: [
+          "cutover_decision_record",
+          "allowed_outcome",
+          "decision_owner",
+          "trigger_condition",
+          "blast_radius_baseline",
+          "dry_run_plan",
+          "rollback_plan",
+          "state_backup_plan",
+          "approval_scope",
+          "audit_record",
+          "post_cutover_monitoring",
+          "legacy_alias_policy",
+          "Cutover source ledger (checked 2026-06-30):",
+          "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
+          "|---|---|---|---|---|---|---|",
+          "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final | final publication 1.1 | Rev. 1 initial public draft v1.2 | - | release integrity | audit_record |",
+        ].join("\n"),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.missingSourceLedgerRows).toContain("SLSA Provenance");
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/forward/L08-L14-verification-phase.md",
+      reason: "cutover source ledger NIST SSDF SP 800-218 has empty adoption decision",
+    });
+  });
+
   it("ignores terminal or non-L14 migration prose", () => {
     const result = analyzeCutoverReadiness(
       input({
@@ -134,5 +174,7 @@ describe("cutover readiness", () => {
     const result = analyzeCutoverReadiness(loadCutoverReadinessInput());
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual(["PLAN-M-02-helix-identifier-rename"]);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
   });
 });

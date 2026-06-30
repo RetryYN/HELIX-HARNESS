@@ -24,6 +24,8 @@ export interface CutoverReadinessViolation {
 
 export interface CutoverReadinessResult {
   pendingPlanIds: string[];
+  missingSourceLedgerRows: string[];
+  sourceLedgerViolations: CutoverReadinessViolation[];
   violations: CutoverReadinessViolation[];
   ok: boolean;
 }
@@ -63,6 +65,24 @@ const OUTSTANDING_MARKERS = [
   "trigger_condition and blast_radius_baseline recorded before irreversible migration",
   "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
   "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_COLUMNS = [
+  "source",
+  "official URL",
+  "adopted version/date",
+  "latest official status",
+  "adoption decision",
+  "cutover use",
+  "required field impact",
+] as const;
+
+const REQUIRED_SOURCE_LEDGER_ROWS = [
+  "NIST SSDF SP 800-218",
+  "GitHub Environments required reviewers",
+  "Google SRE Release Engineering",
+  "OWASP LLM06:2025 Excessive Agency",
+  "SLSA Provenance",
 ] as const;
 
 const STATE_DIR_RENAME_PATTERN = "\\.ut" + "-tdd\\/.*\\.helix";
@@ -123,6 +143,51 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
     }
   }
 
+  const sourceLedger = parseCutoverSourceLedger(input.rightArmMd);
+  const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
+    (source) => !sourceLedger.rows.some((row) => row.source === source),
+  );
+  const sourceLedgerViolations: CutoverReadinessViolation[] = [
+    ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
+      (column) => !sourceLedger.columns.includes(column),
+    ).map((column) => ({
+      subject: "docs/process/forward/L08-L14-verification-phase.md",
+      reason: `cutover source ledger missing column: ${column}`,
+    })),
+    ...sourceLedger.rows.flatMap((row) =>
+      REQUIRED_SOURCE_LEDGER_COLUMNS.flatMap((column) => {
+        const value = row[column] ?? "";
+        if (value.trim() === "" || /^(TBD|TODO|-)$/.test(value.trim())) {
+          return [
+            {
+              subject: "docs/process/forward/L08-L14-verification-phase.md",
+              reason: `cutover source ledger ${row.source} has empty ${column}`,
+            },
+          ];
+        }
+        return [];
+      }),
+    ),
+    ...sourceLedger.rows.flatMap((row) =>
+      row["official URL"]?.includes("https://")
+        ? []
+        : [
+            {
+              subject: "docs/process/forward/L08-L14-verification-phase.md",
+              reason: `cutover source ledger ${row.source} official URL is not https`,
+            },
+          ],
+    ),
+  ];
+
+  for (const source of missingSourceLedgerRows) {
+    violations.push({
+      subject: "docs/process/forward/L08-L14-verification-phase.md",
+      reason: `cutover source ledger missing row: ${source}`,
+    });
+  }
+  violations.push(...sourceLedgerViolations);
+
   const pending = input.plans.filter(isPendingIrreversibleCutover);
   for (const plan of pending) {
     const missingFields = missingRecordFields(
@@ -137,9 +202,58 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
 
   return {
     pendingPlanIds: pending.map((p) => p.plan_id).sort(),
+    missingSourceLedgerRows,
+    sourceLedgerViolations,
     violations,
     ok: violations.length === 0,
   };
+}
+
+function parseCutoverSourceLedger(text: string): {
+  columns: string[];
+  rows: Record<string, string>[];
+} {
+  const lines = text.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) =>
+    line.includes("Cutover source ledger (checked 2026-06-30)"),
+  );
+  if (headingIndex < 0) {
+    return { columns: [], rows: [] };
+  }
+  const tableLines: string[] = [];
+  for (const line of lines.slice(headingIndex + 1)) {
+    if (line.trim() === "") {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    if (!line.trim().startsWith("|")) {
+      if (tableLines.length === 0) {
+        continue;
+      }
+      break;
+    }
+    tableLines.push(line);
+  }
+  if (tableLines.length < 2) {
+    return { columns: [], rows: [] };
+  }
+  const columns = tableCells(tableLines[0]);
+  const rows = tableLines.slice(2).map((line) => {
+    const rowCells = tableCells(line);
+    return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
+  });
+  return { columns, rows };
+}
+
+function tableCells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
 }
 
 export function cutoverReadinessMessages(result: CutoverReadinessResult): string[] {

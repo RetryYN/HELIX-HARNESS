@@ -67,12 +67,13 @@ L14 で state dir 移行、CLI/marker 改名、本番/配布 surface 変更な�
 
 Cutover source ledger (checked 2026-06-30):
 
-| source | official URL | cutover use | required field impact |
-|---|---|---|---|
-| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> | release integrity / archive / protection traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | action-binding deployment approval pattern | `decision_owner`, `approval_scope` |
-| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | rollback and release process as operational controls | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
-| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | irreversible agentic actions require constrained authority and human oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
+| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |
+|---|---|---|---|---|---|---|
+| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity / archive / protection traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding deployment approval pattern | `decision_owner`, `approval_scope` |
+| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback and release process as operational controls | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
+| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | irreversible agentic actions require constrained authority and human oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
+| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | cutover artifact, command, builder, and material provenance must be reproducible from audit evidence | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
 
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
