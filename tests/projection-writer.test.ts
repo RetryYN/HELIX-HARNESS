@@ -789,6 +789,150 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("projects pair-agent run evidence into model, gate, and guardrail rows", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-pair-agent-projection-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-177-helix-orchestration-runtime-bridge",
+          "title: pair-agent evidence projection fixture",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "created: 2026-07-01",
+          "updated: 2026-07-01",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "pair-agent", "20260701034500-PLAN-L7-177.json"),
+        `${JSON.stringify(
+          {
+            schema_version: "pair-agent-run-evidence.v1",
+            recorded_at: "2026-07-01T03:45:00.000Z",
+            run_id: "pair-agent:PLAN-L7-177:20260701034500",
+            mode: "hybrid",
+            execute: false,
+            trace: {
+              plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+              span_id: "pair-agent:PLAN-L7-177:20260701034500:run",
+              tool_contract_id: "HC-P2.runPairAgentTddPlan",
+              handoff_target: "orchestrator",
+              guardrail_decision: {
+                guardrail: "frontier-approval",
+                decision: "allow",
+                human_signoff_required: false,
+              },
+              eval_outcome: { ok: true, status: "planned", final_verdict: null },
+              started_at: "2026-07-01T03:44:59.000Z",
+              completed_at: "2026-07-01T03:45:00.000Z",
+              duration_ms: 1000,
+              cost_usd: null,
+              phase_spans: [
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:1",
+                  phase: "smart_test_author",
+                  cycle: 0,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  eval_outcome: { status: "planned", verdict: null, exit_code: null },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:2",
+                  phase: "light_implementation",
+                  cycle: 0,
+                  agent_key: "light-implementation-agent",
+                  provider: "codex",
+                  model: "gpt-5.3-codex-spark",
+                  eval_outcome: { status: "planned", verdict: null, exit_code: null },
+                },
+              ],
+            },
+          },
+          null,
+          2,
+        )}\n`,
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const modelRuns = db
+          .prepare(
+            "SELECT runtime, model, role, drive, plan_id, evidence_path FROM model_runs WHERE evidence_path LIKE ? ORDER BY run_id",
+          )
+          .all(".ut-tdd/evidence/pair-agent/%");
+        expect(modelRuns).toEqual([
+          expect.objectContaining({
+            runtime: "claude",
+            role: "smart-review-agent",
+            drive: "agent",
+            plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+          }),
+          expect.objectContaining({
+            runtime: "codex",
+            role: "light-implementation-agent",
+            drive: "agent",
+            plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+          }),
+        ]);
+        const gate = db
+          .prepare("SELECT gate_id, status, evidence_path FROM gate_runs WHERE gate_id = ?")
+          .get("pair-agent-run-evidence");
+        expect(gate).toMatchObject({
+          gate_id: "pair-agent-run-evidence",
+          status: "planned",
+          evidence_path: ".ut-tdd/evidence/pair-agent/20260701034500-PLAN-L7-177.json",
+        });
+        const guardrail = db
+          .prepare(
+            "SELECT guardrail, decision, mode, human_signoff_required FROM guardrail_decisions WHERE session_id = ?",
+          )
+          .get("pair-agent:PLAN-L7-177:20260701034500");
+        expect(guardrail).toMatchObject({
+          guardrail: "frontier-approval",
+          decision: "allow",
+          mode: "pair-agent",
+          human_signoff_required: 0,
+        });
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it("projects artifact progress rows as yellow until linked tests have passing runs", () => {
     const db = openHarnessDb(":memory:");
     try {

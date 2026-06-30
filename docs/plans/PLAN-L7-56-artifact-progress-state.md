@@ -71,7 +71,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23T19:44:07+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:8635da5cb157b26b5975bcaa031f0d842711b963ded7c6442c927a8f43faedae"
+        output_digest: "sha256:f765afd5e76e05cdb9143f19363800cb68a57ed3b5faa23b430b37ccc0d94b34"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -79,7 +79,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23T19:44:07+09:00"
         evidence_path: src/state-db/projection-writer.ts
-        output_digest: "sha256:6b0ff0c148c2a7e4f90304ce92af91491fb497771481846a014b2e195cffacb2"
+        output_digest: "sha256:3bcc7bcb8f7c597f51745f53ec06bf08addbf8dc1d4f4ef70f8a286c940aca23"
 ---
 
 # PLAN-L7-56: DB-backed artifact progress color projection

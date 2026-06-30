@@ -67,6 +67,46 @@ import {
 import { migrate, rowCounts } from "./migration";
 import type { RunUsage } from "./token-tracker";
 
+interface PairAgentEvidencePhaseSpan {
+  span_id?: unknown;
+  phase?: unknown;
+  agent_key?: unknown;
+  provider?: unknown;
+  model?: unknown;
+  eval_outcome?: {
+    status?: unknown;
+    verdict?: unknown;
+    exit_code?: unknown;
+  };
+}
+
+interface PairAgentRunEvidence {
+  schema_version?: unknown;
+  run_id?: unknown;
+  recorded_at?: unknown;
+  execute?: unknown;
+  trace?: {
+    plan_id?: unknown;
+    span_id?: unknown;
+    tool_contract_id?: unknown;
+    started_at?: unknown;
+    completed_at?: unknown;
+    duration_ms?: unknown;
+    cost_usd?: unknown;
+    guardrail_decision?: {
+      guardrail?: unknown;
+      decision?: unknown;
+      human_signoff_required?: unknown;
+    };
+    eval_outcome?: {
+      ok?: unknown;
+      status?: unknown;
+      final_verdict?: unknown;
+    };
+    phase_spans?: unknown;
+  };
+}
+
 export interface ProjectionEvent {
   table: string;
   id: string;
@@ -813,6 +853,127 @@ function projectRuntimeVerificationEvents(repoRoot: string, db: HarnessDb): void
         subjectId: event.event_id,
         source: "runtime-verification-log",
         evidencePath: event.evidence_path || relPath,
+      });
+    }
+  }
+}
+
+function pairAgentEvidenceFiles(repoRoot: string): string[] {
+  const dir = join(repoRoot, ".ut-tdd", "evidence", "pair-agent");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((name) => name.endsWith(".json"))
+    .map((name) => join(dir, name))
+    .sort();
+}
+
+function parsePairAgentRunEvidence(content: string): PairAgentRunEvidence | null {
+  try {
+    return JSON.parse(content) as PairAgentRunEvidence;
+  } catch {
+    return null;
+  }
+}
+
+function projectPairAgentRunEvidence(
+  repoRoot: string,
+  db: HarnessDb,
+  plans: Map<string, ProjectedPlan>,
+): void {
+  for (const file of pairAgentEvidenceFiles(repoRoot)) {
+    const relPath = normalizePath(relative(repoRoot, file));
+    const evidence = parsePairAgentRunEvidence(readFileSync(file, "utf8"));
+    const trace = evidence?.trace;
+    const planId = asString(trace?.plan_id);
+    const runId = asString(evidence?.run_id);
+    const spanId = asString(trace?.span_id);
+    if (evidence?.schema_version !== "pair-agent-run-evidence.v1" || !runId || !spanId || !planId) {
+      recordFinding(db, {
+        kind: "pair-agent-evidence-invalid",
+        severity: "warn",
+        subjectId: relPath,
+        source: "pair-agent-evidence",
+        evidencePath: relPath,
+      });
+      continue;
+    }
+
+    const meta = plans.get(planId);
+    const completedAt = asString(trace?.completed_at) ?? asString(evidence.recorded_at) ?? "";
+    const status = asString(trace?.eval_outcome?.status) ?? "unknown";
+    const guardrail = trace?.guardrail_decision;
+    const guardrailName = asString(guardrail?.guardrail);
+    if (guardrailName) {
+      recordProjectionEvent(db, {
+        table: "guardrail_decisions",
+        id: stableId("pair-agent-guardrail", `${runId}:${guardrailName}`),
+        row: {
+          guardrail_decision_id: stableId("pair-agent-guardrail", `${runId}:${guardrailName}`),
+          plan_id: planId,
+          session_id: runId,
+          guardrail: guardrailName,
+          decision: asString(guardrail?.decision) ?? "",
+          mode: "pair-agent",
+          human_signoff_required: guardrail?.human_signoff_required === true ? 1 : 0,
+          evidence_path: relPath,
+          decided_at: completedAt,
+        },
+      });
+    }
+    recordProjectionEvent(db, {
+      table: "gate_runs",
+      id: stableId("pair-agent-gate", runId),
+      row: {
+        gate_run_id: stableId("pair-agent-gate", runId),
+        gate_id: "pair-agent-run-evidence",
+        plan_id: planId,
+        status,
+        checked_at: completedAt,
+        evidence_path: relPath,
+      },
+    });
+
+    const spans = Array.isArray(trace?.phase_spans) ? trace.phase_spans : [];
+    if (spans.length === 0) {
+      recordFinding(db, {
+        kind: "pair-agent-evidence-missing-phase-spans",
+        severity: "warn",
+        subjectId: runId,
+        source: "pair-agent-evidence",
+        evidencePath: relPath,
+      });
+      continue;
+    }
+    for (const rawSpan of spans) {
+      const span = rawSpan as PairAgentEvidencePhaseSpan;
+      const phaseSpanId = asString(span.span_id);
+      const model = asString(span.model);
+      if (!phaseSpanId || !model) {
+        recordFinding(db, {
+          kind: "pair-agent-evidence-invalid-phase-span",
+          severity: "warn",
+          subjectId: `${runId}:${asString(span.phase) ?? "unknown"}`,
+          source: "pair-agent-evidence",
+          evidencePath: relPath,
+        });
+        continue;
+      }
+      const costUsd = typeof trace?.cost_usd === "number" ? trace.cost_usd : null;
+      recordProjectionEvent(db, {
+        table: "model_runs",
+        id: phaseSpanId,
+        row: {
+          run_id: phaseSpanId,
+          runtime: asString(span.provider) ?? "",
+          model,
+          role: asString(span.agent_key) ?? asString(span.phase) ?? "pair-agent",
+          drive: meta?.drive ?? "",
+          plan_id: planId,
+          started_at: asString(trace?.started_at) ?? "",
+          completed_at: completedAt,
+          evidence_path: relPath,
+          cost_usd: costUsd,
+        },
       });
     }
   }
@@ -2731,6 +2892,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       projectRoadmapRollup(repoRoot, db);
       projectReviewEvidenceRegistry(repoRoot, db);
       projectRuntimeVerificationEvents(repoRoot, db);
+      projectPairAgentRunEvidence(repoRoot, db, plans);
       projectGuardrailInvariantAdvisories(db);
       projectDescentObligations(repoRoot, db);
       projectVerificationBandExecution(db);

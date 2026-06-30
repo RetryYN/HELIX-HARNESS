@@ -58,7 +58,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:23:38+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:8635da5cb157b26b5975bcaa031f0d842711b963ded7c6442c927a8f43faedae"
+        output_digest: "sha256:f765afd5e76e05cdb9143f19363800cb68a57ed3b5faa23b430b37ccc0d94b34"
       - kind: unit_test
         command: "bun run vitest run tests\\cli.test.ts tests\\agent-guard.test.ts"
         runner: bun
