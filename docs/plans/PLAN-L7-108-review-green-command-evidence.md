@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/frontmatter.test.ts
-        output_digest: "sha256:5ef62e98c92039bfc63a5e760a0e7235c768832c7752f18dd6ddb44e9b2be655"
+        output_digest: "sha256:efdc16972b7b4ef1cc71b3d7ea71f60a6ad837673fbf2f00479a655270c618f4"
       - kind: unit_test
         command: "bun test tests\\workflow-contracts.test.ts"
         runner: bun
@@ -78,7 +78,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-23"
         evidence_path: tests/workflow-contracts.test.ts
-        output_digest: "sha256:2a08f62b3f8de0104c840e9941a3c33fc6b4c26e66e0ba47070f6398d93d6590"
+        output_digest: "sha256:bd6fbad509bbef979cec46e4559add10015533bcac71a90a11416822fea0dd7f"
       - kind: doctor
         command: "bun run src\\cli.ts doctor"
         runner: bun

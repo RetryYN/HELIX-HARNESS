@@ -1,0 +1,15 @@
+{
+  "schema_version": "green-command-evidence-v1",
+  "plan_id": "PLAN-L4-51-helix-pillar-basic-design",
+  "evidence_kind": "plan-lint",
+  "recorded_at": "2026-06-30T10:08:17+09:00",
+  "command": "bun run src/cli.ts plan lint docs/plans/PLAN-L4-51-helix-pillar-basic-design.md",
+  "runner": "bun",
+  "scope": "targeted",
+  "exit_code": 0,
+  "result_summary": "plan-schedule OK (§工程表 checked=1, §G.4 minimal slice)",
+  "authoritative_sources": [
+    "docs/plans/PLAN-L4-51-helix-pillar-basic-design.md"
+  ],
+  "note": "This stable evidence artifact replaces a self-referential PLAN-doc evidence_path whose digest cannot converge while the digest is embedded in that same PLAN."
+}

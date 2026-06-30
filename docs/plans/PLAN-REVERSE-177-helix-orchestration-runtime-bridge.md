@@ -29,7 +29,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T20:00:00+09:00"
         evidence_path: docs/design/helix/L3-requirements/orchestration-runtime-bridge.md
-        output_digest: "sha256:a91c63e38f8c5c0bb9623768e086e921452d40eb7a8625b679c404cccf71b6c6"
+        output_digest: "sha256:315afb56ea9cee0ae1ee5111afd8f55e132f7a3de43db92f27d125355139b01c"
 backprop_scope:
   - layer: requirements
     decision: updated

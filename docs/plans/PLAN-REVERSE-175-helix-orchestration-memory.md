@@ -29,7 +29,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T16:58:00+09:00"
         evidence_path: docs/design/helix/L3-requirements/orchestration-memory.md
-        output_digest: "sha256:9947ca8431e16e04d7ff4d1bafea58b15732d759d3df9ff776ab8d71b075e48a"
+        output_digest: "sha256:9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c"
 backprop_scope:
   - layer: requirements
     decision: updated

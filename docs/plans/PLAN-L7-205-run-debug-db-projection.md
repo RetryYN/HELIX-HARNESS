@@ -65,7 +65,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:53:00+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:e452877e98e0768f453f88fe3812400bcaab12b598c28a95159195a29240406c"
+        output_digest: "sha256:8635da5cb157b26b5975bcaa031f0d842711b963ded7c6442c927a8f43faedae"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

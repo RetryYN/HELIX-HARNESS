@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T21:29:00+09:00"
         evidence_path: docs/test-design/helix/L1-pillar-operational-test-design.md
-        output_digest: "sha256:de59163f574ea782ab8fb29a398c6f1890602aeb54521151ccfe3a288e4435bf"
+        output_digest: "sha256:89868e3f022cea0cfb4699c082bc0ff2c16e802994f9044d4e8ca7f57bb4051e"
 agent_slots:
   - role: po
     slot_label: "PO — HELIX solo 化 (team→solo + P0–P9) の最終判断・G-REQ.L1 re-freeze 承認"

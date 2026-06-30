@@ -1,0 +1,17 @@
+{
+  "schema_version": "green-command-evidence-v1",
+  "plan_id": "PLAN-L7-203-legacy-adoption-decisions",
+  "evidence_kind": "doctor",
+  "recorded_at": "2026-06-30T10:08:17+09:00",
+  "command": "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+  "runner": "bun",
+  "scope": "full",
+  "exit_code": 0,
+  "result_summary": "db rebuild projection ok and doctor exit 0; the remaining green-command-digest note was isolated to self-referential PLAN-doc evidence paths before this artifact rewrite.",
+  "authoritative_sources": [
+    "docs/plans/PLAN-L7-203-legacy-adoption-decisions.md",
+    "src/runtime/legacy-adoption.ts",
+    "tests/legacy-adoption.test.ts"
+  ],
+  "note": "This stable evidence artifact replaces a self-referential PLAN-doc evidence_path whose digest cannot converge while the digest is embedded in that same PLAN."
+}

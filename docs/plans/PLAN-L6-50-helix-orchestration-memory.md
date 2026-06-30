@@ -25,7 +25,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T16:25:00+09:00"
         evidence_path: tests/orchestration/orchestration.test.ts
-        output_digest: "sha256:ea07c58d88fc5f1fa745a965f629f2aedba0f855fdece86ac37631577628c45a"
+        output_digest: "sha256:d1eec04a210514b2253fc73fb88ed435fc5c23108b8acc4e152673dc0c155a30"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

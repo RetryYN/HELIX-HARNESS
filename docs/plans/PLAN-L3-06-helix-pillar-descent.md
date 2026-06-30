@@ -65,15 +65,15 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tests/vmodel-pair.test.ts
-        output_digest: "sha256:360cb3005f18ab55b37a37ffd516527887e96a9d1f919cba29666cb4e5f8daca"
+        output_digest: "sha256:db7731ebf75d75058ca014bc400c8f88fc3061393b662fca7402bbdb7f7daabf"
       - kind: smoke
         command: "bun run src/cli.ts plan lint docs/plans/PLAN-L3-06-helix-pillar-descent.md"
         runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28"
-        evidence_path: docs/plans/PLAN-L3-06-helix-pillar-descent.md
-        output_digest: "sha256:92e45cd73e6f9209427c0a693d42c94364d6299c7e8691884bb81b95e1f3bf87"
+        evidence_path: .ut-tdd/evidence/green-command/20260630-plan-lint-l3-06.json
+        output_digest: "sha256:7b263818ea5dd2b32b83d8a02fc37657830327f37aba05556670b4bb1b2ec9f4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -97,7 +97,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: src/cli.ts
-        output_digest: "sha256:7483fc5e5be226b913828df152e508d6f23d1cb4f262a18b2fb282d3d0262694"
+        output_digest: "sha256:4637e0591dee4a807fa236c9b6c648f23dacdaa4a2f9fbd10bc811a98e481f96"
 ---
 
 # PLAN-L3-06: HELIX L1 pillar requirements -> L3 FR/AC descent

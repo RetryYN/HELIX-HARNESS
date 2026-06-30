@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T16:58:00+09:00"
         evidence_path: tests/orchestration/orchestration.test.ts
-        output_digest: "sha256:370665d4c581c0e0d20b3bb960574a3cc73accd21dd831d16da6cd4a25952938"
+        output_digest: "sha256:d1eec04a210514b2253fc73fb88ed435fc5c23108b8acc4e152673dc0c155a30"
       - kind: unit_test
         command: "bun run vitest run tests/memory"
         runner: bun

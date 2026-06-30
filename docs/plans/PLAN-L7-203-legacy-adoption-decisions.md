@@ -63,7 +63,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
         evidence_path: src/runtime/legacy-adoption.ts
-        output_digest: "sha256:452f13ad6b6a3abe02cb4df875ef1ee8e6047af7c1c547a476a732a6def8d3a5"
+        output_digest: "sha256:dc68d604d6fe36db8727e8f427622ccea283d2bcf88ff96030eaa3026783078e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -71,15 +71,15 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
         evidence_path: src/runtime/legacy-adoption.ts
-        output_digest: "sha256:452f13ad6b6a3abe02cb4df875ef1ee8e6047af7c1c547a476a732a6def8d3a5"
+        output_digest: "sha256:dc68d604d6fe36db8727e8f427622ccea283d2bcf88ff96030eaa3026783078e"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
-        evidence_path: docs/plans/PLAN-L7-203-legacy-adoption-decisions.md
-        output_digest: "sha256:0623370407afd4dd1c5b55ca5a026d46c88f1c70c315c3fd585ce60cdbd6d01f"
+        evidence_path: .ut-tdd/evidence/green-command/20260630-legacy-adoption-doctor.json
+        output_digest: "sha256:5d88ccad441f6522019b75d4f72b9387ab9c347d9ad125cf4bf33b5b1800ccf5"
 ---
 
 # PLAN-L7-203: old HELIX semantic adoption decision contracts

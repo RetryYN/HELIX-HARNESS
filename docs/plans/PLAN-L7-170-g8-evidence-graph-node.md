@@ -47,7 +47,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T21:05:00+09:00"
         evidence_path: tests/relation-graph-loader.test.ts
-        output_digest: "sha256:0e15ab9cd21665d4e29cddcca5ff78714a4ca4801a7e37754a38cc57c55458ca"
+        output_digest: "sha256:61c16d3b9e3305cc2e79000f5bde9c6169b0bb1bdaaab6b25541c1ce293804ba"
       - kind: unit_test
         command: "bun run vitest run tests\\relation-graph-loader.test.ts"
         runner: bun

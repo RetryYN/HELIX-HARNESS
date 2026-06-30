@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28T17:55:00+09:00"
         evidence_path: tests/memory/memory-store.test.ts
-        output_digest: "sha256:1a726f1bafe256d6e8ea5989d3efca1dbdccfb297846a29d5dfdda7d9b586ef6"
+        output_digest: "sha256:bb7378891f56252325adb44a34ed2e36aa0cbc9aae1a7d11bbcfab0796edb868"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

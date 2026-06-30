@@ -138,7 +138,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: src/schema/roadmap.ts
-        output_digest: "sha256:73749efaeb3af6128b684ed337acd670ebf02e45e998175c81916dba46de4fed"
+        output_digest: "sha256:7eb65629607daa5cc660d46759a995cd453f3dc784121a491a7a53f077403a19"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -146,7 +146,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: src/lint/roadmap-registry.ts
-        output_digest: "sha256:1c384fa0fddd7d2f5581f5c9044508db28ef8c994857e4d96e6a7cf933202fc8"
+        output_digest: "sha256:6310194b804201518a3e6048fd91b81e564ae36335025a3e0fcb896260496136"
       - kind: unit_test
         command: "bun run vitest run tests/roadmap.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
         runner: bun
@@ -154,7 +154,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: tests/roadmap.test.ts
-        output_digest: "sha256:cb04ffee9b6eb398b877ae3c4f2b98c17b482b5ccfaae2667b44f23f7f4a7f86"
+        output_digest: "sha256:e4dee03f96fa6468aff5ddf2b55a30d1669256e4f7e1e50c289218ef840fb710"
 ---
 
 # PLAN-L7-207: L7 feature-pack roadmap definition

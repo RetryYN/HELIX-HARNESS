@@ -6,7 +6,7 @@ layer: L7
 drive: db
 status: confirmed
 created: 2026-06-25
-updated: 2026-06-25
+updated: 2026-06-30
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
@@ -19,6 +19,12 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-174-green-command-digest-correction.md
     artifact_type: markdown_doc
+  - artifact_path: .ut-tdd/evidence/green-command/20260630-plan-lint-l3-06.json
+    artifact_type: other
+  - artifact_path: .ut-tdd/evidence/green-command/20260630-plan-lint-l4-51.json
+    artifact_type: other
+  - artifact_path: .ut-tdd/evidence/green-command/20260630-legacy-adoption-doctor.json
+    artifact_type: other
 dependencies:
   parent: docs/plans/PLAN-L7-132-green-command-digest-integrity.md
   requires:
@@ -72,6 +78,9 @@ their declared `evidence_path`.
 - Do not change command text, exit codes, evidence paths, or review verdicts.
 - Mechanically update only `output_digest` values where the evidence file exists
   and the current hash differs.
+- Replace self-referential PLAN-doc `evidence_path` entries with stable command
+  evidence artifacts under `.ut-tdd/evidence/green-command/`; a digest embedded
+  in the same PLAN document cannot converge to that document's raw SHA256.
 - Keep the correction behavior aligned with `src/lint/green-command-digest.ts`.
 
 ## Acceptance Criteria

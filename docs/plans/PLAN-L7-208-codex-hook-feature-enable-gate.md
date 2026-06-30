@@ -100,7 +100,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:36:14+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:8ffa0dedee7ff447dd81827e2d3eef0ada920cd106d346a4432e05d39bf14918"
+        output_digest: "sha256:e08f31126509b5f74ba82cf503b3dc9263536ac6ab3e6d19cf6ece755d1751a4"
 ---
 
 # PLAN-L7-208: Codex hook feature enablement gate

@@ -66,15 +66,15 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: tests/vmodel-pair.test.ts
-        output_digest: "sha256:4a7ca5929e6bd479db9441d522b88aa8c0116b3ea63ea62ce618885c4e9b9176"
+        output_digest: "sha256:db7731ebf75d75058ca014bc400c8f88fc3061393b662fca7402bbdb7f7daabf"
       - kind: smoke
         command: "bun run src/cli.ts plan lint docs/plans/PLAN-L4-51-helix-pillar-basic-design.md"
         runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-06-28"
-        evidence_path: docs/plans/PLAN-L4-51-helix-pillar-basic-design.md
-        output_digest: "sha256:c22bf00cb1935b8af515b9bc85940b3ef8ea6f229856a0ee7e65e01cd4093809"
+        evidence_path: .ut-tdd/evidence/green-command/20260630-plan-lint-l4-51.json
+        output_digest: "sha256:c087e8f29733864a6b7627dd4cc0be3ffee886f479181599316203c8103711d2"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

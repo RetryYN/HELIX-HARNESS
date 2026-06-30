@@ -62,7 +62,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: tests/run-debug.test.ts
-        output_digest: "sha256:715f33831f449d58000dfa6fedec86c8f92fd8d38f4d759f3e210f3a3baba35c"
+        output_digest: "sha256:192bd5a2bed49493d64134d64343d9f1a243fee8aa8a3933ab5b67aeeeda3ebc"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:31bce7e8a27a0004633b6f76222d0bb88b8cd3dbf387709e3bbc25b3e7760428"
+        output_digest: "sha256:d8ef5129c5a056b100875a09c09780a6541170c9ea84207d63a125199ffcb29a"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -78,7 +78,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: src/runtime/run-debug.ts
-        output_digest: "sha256:a0350af8341bceb2565af22f5bfc8ecda46ba199ba77b7633fc3479d3bf5947d"
+        output_digest: "sha256:217764259a121913527a17c247616a3c50c4cf32bea4a3b4367dbd46a20db145"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
-        output_digest: "sha256:cefc50177de5e635c0fc3e5ad0d3ae9d078886a3886ee6d4150447f1184feeb5"
+        output_digest: "sha256:b935a5b1cf81c6d0f7a954c01159cb7daf4bb24e1bf9407046792d0a22dfe5db"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -94,7 +94,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: tests/run-debug.test.ts
-        output_digest: "sha256:715f33831f449d58000dfa6fedec86c8f92fd8d38f4d759f3e210f3a3baba35c"
+        output_digest: "sha256:192bd5a2bed49493d64134d64343d9f1a243fee8aa8a3933ab5b67aeeeda3ebc"
 ---
 
 # PLAN-L7-202: L7.5 RUN & Debug runtime verification gate
