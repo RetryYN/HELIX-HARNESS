@@ -32,7 +32,7 @@ backprop_scope:
   - layer: L7-unit-test-design
     decision: updated
     evidence_path: tests/goal-evidence-audit.test.ts
-    reason: "A focused audit oracle proves the objective evidence table stays complete."
+    reason: "A focused audit oracle and doctor hard gate prove the objective evidence table stays aligned to completionReadiness."
 agent_slots:
   - role: tl
     slot_label: "TL - objective evidence back-fill review"
@@ -49,7 +49,13 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
+  - artifact_path: src/lint/objective-evidence-audit.ts
+    artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
   - artifact_path: tests/goal-evidence-audit.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/doctor.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-209-objective-evidence-audit.md
@@ -57,25 +63,28 @@ dependencies:
     - docs/plans/PLAN-L7-209-objective-evidence-audit.md
   references:
     - docs/governance/helix-objective-evidence-audit.md
+    - src/lint/objective-evidence-audit.ts
+    - src/doctor/index.ts
     - tests/goal-evidence-audit.test.ts
+    - tests/doctor.test.ts
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T10:50:00+09:00"
-    tests_green_at: "2026-06-30T10:49:00+09:00"
+    reviewed_at: "2026-06-30T11:02:00+09:00"
+    tests_green_at: "2026-06-30T11:01:00+09:00"
     verdict: approve
-    scope: "Back-fill confirms the evidence audit is an index over existing design/implementation proof and current completion blockers, not a false full-completion claim."
+    scope: "Back-fill confirms the evidence audit is an index over existing proof and current completion blockers, and doctor now hard-gates false full-completion claims."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/goal-evidence-audit.test.ts"
+        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T10:49:00+09:00"
+        completed_at: "2026-06-30T11:01:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:4a8f546a43b57969cdc135b89241d93ccc2c52d611db35aaa6dfb2627af7fdb4"
+        output_digest: "sha256:c7dde7bc91d8d29560704cc92df21a2455af72210322488838e765ac7859ae72"
 ---
 
 # PLAN-REVERSE-209: active objective evidence audit back-fill
@@ -88,9 +97,10 @@ review_evidence:
   design, test, source, and doctor gates.
 - R3: Intent is to make completion evidence inspectable without reducing the
   objective to green command counts.
-- R4: Route to an L7 audit artifact and test oracle only.
+- R4: Route to an L7 audit artifact, test oracle, and doctor hard gate.
 
 ## Gap Closed
 
 The objective evidence table provides a stable index from each user requirement
-to current-state proof or an explicit blocker when proof is not yet available.
+to current-state proof or an explicit blocker when proof is not yet available,
+and `ut-tdd doctor` now rejects semantic completion drift.

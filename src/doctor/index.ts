@@ -145,6 +145,11 @@ import {
 } from "../lint/merged-plan-status";
 import { analyzeModuleDrift, loadModuleDocs, moduleDriftMessages } from "../lint/module-drift";
 import {
+  analyzeObjectiveEvidenceAudit,
+  loadObjectiveEvidenceAuditInput,
+  objectiveEvidenceAuditMessages,
+} from "../lint/objective-evidence-audit";
+import {
   analyzeOracleTestTrace,
   loadOracleTestTraceInput,
   oracleTestTraceMessages,
@@ -1833,6 +1838,18 @@ export function checkVersionUpReadiness(repoRoot: string): { messages: string[];
   }
 }
 
+export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput(repoRoot));
+    return { messages: objectiveEvidenceAuditMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["objective-evidence-audit - violation: objective audit docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
 /** legacy debt allowlist ↔ audit doc の双方向一致 hard check (Codex Critical B)。 */
 export function checkForwardConvergenceAudit(repoRoot: string): {
   messages: string[];
@@ -1993,6 +2010,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
   const forwardConvergence = checkForwardConvergence(deps.repoRoot);
   const versionUpReadiness = checkVersionUpReadiness(deps.repoRoot);
+  const objectiveEvidenceAudit = checkObjectiveEvidenceAudit(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   return {
     ok:
@@ -2065,6 +2083,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       frontendDesignCoverage.ok &&
       forwardConvergence.ok &&
       versionUpReadiness.ok &&
+      objectiveEvidenceAudit.ok &&
       forwardConvergenceAudit.ok &&
       handoverOutstanding.ok,
     messages: [
@@ -2143,6 +2162,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
+      ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],
   };

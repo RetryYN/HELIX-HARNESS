@@ -96,6 +96,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
       "fr-registry-audit",
       "improvement-backlog",
       "lint-wiring",
+      "objective-evidence-audit",
       "proposal-document-coverage",
       "right-arm-verification-strategy",
       "version-up-readiness",

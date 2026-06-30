@@ -1,5 +1,11 @@
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import {
+  analyzeObjectiveEvidenceAudit,
+  loadObjectiveEvidenceAuditInput,
+  objectiveEvidenceAuditMessages,
+} from "../src/lint/objective-evidence-audit";
+import { analyzeOutstandingWork } from "../src/lint/outstanding";
 
 const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
 
@@ -69,5 +75,44 @@ describe("HELIX objective evidence audit", () => {
       expect(text, `${artifact} not cited`).toContain(artifact);
       expect(existsSync(artifact), `${artifact} missing`).toBe(true);
     }
+  });
+
+  it("fails false whole-program completion claims when outstanding blockers remain", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02-helix-identifier-rename",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          workflowPhase: null,
+          versionTarget: null,
+          text: "irreversible cutover PO signoff",
+        },
+      ],
+      0,
+    );
+    const text = auditText().replace("| G-10 |", "| G-10 |").replace("| blocked |", "| proved |");
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-10: completion row must be blocked",
+        "G-10: all rows cannot be proved while completionReadiness is blocked",
+      ]),
+    );
+  });
+
+  it("passes the live repository audit and reports completion as blocked", () => {
+    const result = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput());
+    expect(result.ok).toBe(true);
+    expect(result.completionStatus).toBe("blocked");
+    expect(objectiveEvidenceAuditMessages(result)[0]).toContain("objective-evidence-audit - OK");
   });
 });

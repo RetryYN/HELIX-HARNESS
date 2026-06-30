@@ -22,7 +22,13 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
+  - artifact_path: src/lint/objective-evidence-audit.ts
+    artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
   - artifact_path: tests/goal-evidence-audit.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/doctor.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/plans/PLAN-L7-208-codex-hook-feature-enable-gate.md
@@ -36,25 +42,28 @@ dependencies:
     - docs/plans/PLAN-L7-208-codex-hook-feature-enable-gate.md
   references:
     - docs/governance/helix-objective-evidence-audit.md
+    - src/lint/objective-evidence-audit.ts
+    - src/doctor/index.ts
     - tests/goal-evidence-audit.test.ts
+    - tests/doctor.test.ts
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T10:50:00+09:00"
-    tests_green_at: "2026-06-30T10:49:00+09:00"
+    reviewed_at: "2026-06-30T11:02:00+09:00"
+    tests_green_at: "2026-06-30T11:01:00+09:00"
     verdict: approve
-    scope: "Active objective evidence is indexed by requirement, with current external source heads, semantic proof links, and an explicit blocked row for whole-program/L14 completion while completionReadiness is false."
+    scope: "Active objective evidence is indexed by requirement, with semantic proof links, an explicit blocked row for whole-program/L14 completion while completionReadiness is false, and doctor hard-gate enforcement against false completion claims."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/goal-evidence-audit.test.ts"
+        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T10:49:00+09:00"
+        completed_at: "2026-06-30T11:01:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:4a8f546a43b57969cdc135b89241d93ccc2c52d611db35aaa6dfb2627af7fdb4"
+        output_digest: "sha256:c7dde7bc91d8d29560704cc92df21a2455af72210322488838e765ac7859ae72"
 ---
 
 # PLAN-L7-209: active objective evidence audit
@@ -70,10 +79,10 @@ adapter config, performance NFR, and naming migration.
 
 - Add a governance audit table keyed by objective requirement.
 - Include current source commit evidence for both referenced GitHub repositories.
-- Add a regression test that verifies every requirement row is present, proved
-  rows stay proved, the whole-program completion row stays blocked while
-  `completionReadiness` is false, and cited current-state artifacts exist in
-  the repo.
+- Add a regression test and doctor hard gate that verify every requirement row
+  is present, proved rows stay proved, the whole-program completion row stays
+  aligned to `completionReadiness`, false full-completion claims are rejected,
+  and cited current-state artifacts exist in the repo.
 
 ## Non-Goals
 
@@ -87,6 +96,8 @@ adapter config, performance NFR, and naming migration.
 - The audit has proved rows for implemented/hardened objective requirements and
   a blocked row for L14 / whole-program completion until `completionReadiness`
   is true.
+- `objective-evidence-audit` is wired into `ut-tdd doctor` hard-gate
+  aggregation, so semantic completion drift cannot stay test-only.
 - The audit cites both external source commits observed for this continuation.
 - The audit distinguishes semantic proof from test count or roadmap count.
 - Targeted audit tests, doctor, and full tests pass before commit.

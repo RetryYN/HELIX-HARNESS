@@ -29,6 +29,7 @@ import {
   checkL7Completion,
   checkMergedPlanStatus,
   checkModuleDrift,
+  checkObjectiveEvidenceAudit,
   checkOracleTestTrace,
   checkPairFreeze,
   checkPlaceholderDeps,
@@ -310,6 +311,11 @@ describe("runDoctor", () => {
   it("includes version-up readiness hard gate in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
+  });
+
+  it("includes objective evidence audit hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: objective-evidence-audit - OK")).toBe(true);
   });
 
   it("includes G1/G3 trace gates in doctor output", () => {
@@ -681,6 +687,7 @@ describe("runDoctor", () => {
       ["dependency-drift", checkDependencyDrift(missingRoot)],
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
       ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
+      ["objective-evidence-audit", checkObjectiveEvidenceAudit(missingRoot)],
       ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
     ] as const;
 
@@ -762,6 +769,7 @@ describe("runDoctor", () => {
       "dependencyDrift",
       "rightArmVerificationStrategy",
       "versionUpReadiness",
+      "objectiveEvidenceAudit",
       "regressionExpansion",
     ];
 
