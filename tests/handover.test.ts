@@ -454,6 +454,11 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
 
     expect(r.ok).toBe(true);
     expect(r.messages[0]).toContain("decisions=1");
+    const pointer = JSON.parse(deps.files.get(pointerPath) ?? "{}");
+    expect(pointer.completionDecisionPacket.decisions[0]).toMatchObject({
+      decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+      packetCommands: ["ut-tdd s4 decision-packet --json"],
+    });
   });
 
   it("standalone packet を handover pointer に転記しただけなら source mismatch で fail-close", () => {

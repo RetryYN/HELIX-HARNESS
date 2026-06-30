@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
-        output_digest: "sha256:1f487e5653fab2fedadfda57571439b2c289d5b9fff4c228ee94c8ba7feb351b"
+        output_digest: "sha256:8f4d5c5ea534810fbaa2c9f24041d6eccb1714c47dded0eca2a0541767587475"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:21:36+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:54fc0014921e9dbef9bc8609c970662adb00f2ea4d7ec3910580eebebf91f8b0"
+        output_digest: "sha256:7116238953146d30c8e0d821af9739f81808e7f071cdb654293efce4f33cdd13"
       - kind: unit_test
         command: "bun run vitest run tests/roadmap.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
         runner: bun

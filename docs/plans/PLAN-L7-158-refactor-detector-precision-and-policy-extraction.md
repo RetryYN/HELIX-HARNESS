@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:23:31+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:8a0432cb9360181bff311bfa9d9d4c8f28bdcd5b682a32adffdfabad850f8ccb"
+        output_digest: "sha256:efc675f6888cb948bfc36ef1a34d9a9a1216af29d2e8251090a7441826cdffb2"
       - kind: unit_test
         command: "bun run vitest run tests\\agent-guard.test.ts tests\\workflow-contracts.test.ts tests\\cli-surface.test.ts"
         runner: bun

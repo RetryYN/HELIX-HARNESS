@@ -117,6 +117,10 @@ export interface CompletionDecisionItem {
   allowedOutcomesByRecord: CompletionDecisionRecordOutcome[];
   nextWorkflowRoutesByRecord: CompletionDecisionRecordRoute[];
   nextWorkflowRoute: string;
+  /** Primary non-destructive packet command for the top blocker on this decision. */
+  decisionPacketCommand: WorkflowDecisionPacketCommand;
+  /** Primary + supporting non-destructive packet commands for every blocker on this decision. */
+  packetCommands: WorkflowDecisionPacketCommand[];
 }
 
 export interface CompletionDecisionRecordRequirement {
@@ -545,6 +549,8 @@ export function completionDecisionPacketForOutstanding(
         allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
         nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+        decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
+        packetCommands: packetCommandsForOutstandingBlockers(item.reason, item.blockers),
       };
     }),
   };

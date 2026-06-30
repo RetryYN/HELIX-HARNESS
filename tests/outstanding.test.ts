@@ -261,6 +261,24 @@ describe("completionDecisionPacketForOutstanding", () => {
       ["PLAN-L7-146", "version_up_activation"],
       ["PLAN-M-02", "irreversible_migration_signoff"],
     ]);
+    expect(
+      packet.decisions.map((d) => [d.planId, d.decisionPacketCommand, d.packetCommands]),
+    ).toEqual([
+      [
+        "PLAN-DISCOVERY-10",
+        "ut-tdd s4 decision-packet --json",
+        ["ut-tdd s4 decision-packet --json", "ut-tdd action-binding approval-packet --json"],
+      ],
+      [
+        "PLAN-L7-146",
+        "ut-tdd version-up activation-packet --json",
+        [
+          "ut-tdd version-up activation-packet --json",
+          "ut-tdd action-binding approval-packet --json",
+        ],
+      ],
+      ["PLAN-M-02", "ut-tdd rename plan --json", ["ut-tdd rename plan --json"]],
+    ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
     expect(packet.decisions[0].allowedOutcomesByRecord).toEqual([
       {

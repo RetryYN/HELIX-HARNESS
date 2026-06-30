@@ -17,6 +17,7 @@ export type CompletionDecisionPacketViolationReason =
   | "stale_packet"
   | "decision_count_mismatch"
   | "invalid_decision_kind"
+  | "invalid_decision_packet_command"
   | "invalid_decision_allowed_outcomes"
   | "invalid_decision_next_route"
   | "missing_required_records"
@@ -159,6 +160,25 @@ export function analyzeCompletionDecisionPacket(
       violations.push({
         reason: "invalid_decision_kind",
         detail: `decision[${decisionIndex}] blockerReason=${decision.blockerReason} decisionKind=${decision.decisionKind} expected=${expectedDecisionKind}`,
+      });
+    }
+    const expectedPacketCommand = requiredDecisionPacketCommand(decision.blockerReason);
+    if (decision.decisionPacketCommand !== expectedPacketCommand) {
+      violations.push({
+        reason: "invalid_decision_packet_command",
+        detail: `decision[${decisionIndex}] blockerReason=${decision.blockerReason} decisionPacketCommand=${String(decision.decisionPacketCommand)} expected=${expectedPacketCommand}`,
+      });
+    }
+    const expectedPacketCommands = requiredPacketCommands(
+      decision.blockerReason,
+      decision.blockers,
+    );
+    const actualPacketCommands = [...(decision.packetCommands ?? [])].sort();
+    const sortedExpectedPacketCommands = [...expectedPacketCommands].sort();
+    if (actualPacketCommands.join("\0") !== sortedExpectedPacketCommands.join("\0")) {
+      violations.push({
+        reason: "invalid_decision_packet_command",
+        detail: `decision[${decisionIndex}] packetCommands mismatch expected=${sortedExpectedPacketCommands.join(",")} actual=${actualPacketCommands.join(",")}`,
       });
     }
     const expectedDecisionOutcomes = requiredDecisionAllowedOutcomes(decision.blockerReason);
@@ -441,6 +461,30 @@ function requiredDecisionKind(blockerReason: string): string {
     default:
       return "workflow_continuation";
   }
+}
+
+function requiredDecisionPacketCommand(blockerReason: string): string {
+  switch (blockerReason) {
+    case "po_decision_pending":
+      return "ut-tdd s4 decision-packet --json";
+    case "version_up_parked":
+      return "ut-tdd version-up activation-packet --json";
+    case "irreversible_migration_pending":
+      return "ut-tdd rename plan --json";
+    case "human_approval_pending":
+      return "ut-tdd action-binding approval-packet --json";
+    default:
+      return "ut-tdd completion decision-packet --json";
+  }
+}
+
+function requiredPacketCommands(blockerReason: string, blockers: string[] = []): string[] {
+  return [
+    ...new Set([
+      requiredDecisionPacketCommand(blockerReason),
+      ...blockers.map((blocker) => requiredDecisionPacketCommand(blocker)),
+    ]),
+  ];
 }
 
 function requiredDecisionAllowedOutcomes(blockerReason: string): string[] | null {

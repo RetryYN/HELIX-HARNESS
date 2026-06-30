@@ -412,6 +412,22 @@ describe("L7 CLI surface closure", () => {
         ["PLAN-DISCOVERY-10-fixture", "po_s4_decision"],
         ["PLAN-M-02-fixture", "irreversible_migration_signoff"],
       ]);
+      expect(
+        packet.decisions.map(
+          (d: { planId: string; decisionPacketCommand: string; packetCommands: string[] }) => [
+            d.planId,
+            d.decisionPacketCommand,
+            d.packetCommands,
+          ],
+        ),
+      ).toEqual([
+        [
+          "PLAN-DISCOVERY-10-fixture",
+          "ut-tdd s4 decision-packet --json",
+          ["ut-tdd s4 decision-packet --json"],
+        ],
+        ["PLAN-M-02-fixture", "ut-tdd rename plan --json", ["ut-tdd rename plan --json"]],
+      ]);
       expect(packet.decisions[0].requiredRecords[0]).toMatchObject({
         recordName: "s4_decision_record",
         sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],

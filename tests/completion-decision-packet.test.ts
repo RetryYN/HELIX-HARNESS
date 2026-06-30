@@ -425,6 +425,34 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("rejects decision packet command drift from the blocker reason and secondary blockers", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        decisionPacketCommand: "ut-tdd completion decision-packet --json" as const,
+        packetCommands: ["ut-tdd completion decision-packet --json" as const],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_decision_packet_command",
+          detail:
+            "decision[0] blockerReason=po_decision_pending decisionPacketCommand=ut-tdd completion decision-packet --json expected=ut-tdd s4 decision-packet --json",
+        },
+        {
+          reason: "invalid_decision_packet_command",
+          detail:
+            "decision[0] packetCommands mismatch expected=ut-tdd s4 decision-packet --json actual=ut-tdd completion decision-packet --json",
+        },
+      ]),
+    );
+  });
+
   // U-OUTSTANDING-003
   // U-OUTSTANDING-006
   it("loads the current repo packet as fresh doctor input", () => {
