@@ -13,6 +13,7 @@
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { analyzeCompletionDecisionPacket } from "../lint/completion-decision-packet";
 import {
   completionDecisionPacketForOutstanding,
   computeOutstandingWork,
@@ -595,6 +596,76 @@ export function checkHandoverOutstandingAnchor(deps: HandoverDeps): {
     };
   }
   return { messages: ["handover-outstanding — OK (§5 が機械集計行で anchor 済)"], ok: true };
+}
+
+/**
+ * PLAN-L7-94 continuation: blocked outstanding を持つ CURRENT.json は、同じ resume surface に
+ * completionDecisionPacket を必ず保持する。standalone `completion decision-packet` が green でも、
+ * handover pointer が古い形なら再開時に PO/S4・version-up・cutover・action-binding の record template を
+ * 失うため fail-close する。
+ */
+export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
+  messages: string[];
+  ok: boolean;
+} {
+  const pointer = readPointer(deps);
+  if (!pointer) {
+    return { messages: ["handover-decision-packet — skipped (handover 未生成)"], ok: true };
+  }
+  const readiness = pointer.outstanding?.completionReadiness;
+  if (!readiness || readiness.ok) {
+    return {
+      messages: ["handover-decision-packet — OK (blocked outstanding なし)"],
+      ok: true,
+    };
+  }
+  if (!pointer.completionDecisionPacket) {
+    return {
+      messages: [
+        "handover-decision-packet — violation: blocked outstanding だが CURRENT.json に completionDecisionPacket が無い → `ut-tdd handover` で再生成",
+      ],
+      ok: false,
+    };
+  }
+
+  const packet = pointer.completionDecisionPacket;
+  const lint = analyzeCompletionDecisionPacket(packet, deps.now());
+  const messages = lint.violations.map(
+    (v) => `handover-decision-packet — violation: ${v.reason} (${v.detail})`,
+  );
+  if (packet.sourceCommand !== "ut-tdd handover") {
+    messages.push(
+      `handover-decision-packet — violation: sourceCommand=${packet.sourceCommand} expected=ut-tdd handover`,
+    );
+  }
+  if (packet.status !== readiness.status || packet.ok !== readiness.ok) {
+    messages.push(
+      `handover-decision-packet — violation: readiness mismatch (pointer=${readiness.status}/${String(
+        readiness.ok,
+      )}, packet=${packet.status}/${String(packet.ok)})`,
+    );
+  }
+  const outstandingItemCount = pointer.outstanding?.items.length ?? 0;
+  if (
+    packet.decisionCount !== outstandingItemCount ||
+    packet.decisions.length !== outstandingItemCount
+  ) {
+    messages.push(
+      `handover-decision-packet — violation: decision count mismatch (outstanding=${outstandingItemCount}, decisionCount=${packet.decisionCount}, decisions=${packet.decisions.length})`,
+    );
+  }
+  if (messages.length > 0) {
+    return { messages, ok: false };
+  }
+
+  return {
+    messages: [
+      `handover-decision-packet — OK (status=${packet.status}, decisions=${packet.decisionCount}, freshness=${packet.freshness.validForMinutes}m stale=${String(
+        packet.freshness.stale,
+      )})`,
+    ],
+    ok: true,
+  };
 }
 
 /** CURRENT.json を JSON 上書き (単一機械ポインタ、append しない)。 */

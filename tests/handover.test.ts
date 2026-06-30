@@ -12,6 +12,7 @@ import {
   buildPointer,
   capWithBreadcrumb,
   checkHandoverBypass,
+  checkHandoverCompletionDecisionPacket,
   checkHandoverDiscipline,
   checkHandoverOutstandingAnchor,
   countHandoverEntries,
@@ -37,6 +38,11 @@ import {
   scaffoldFromDigests,
   setActivePlan,
 } from "../src/handover/index";
+import {
+  analyzeOutstandingWork,
+  completionDecisionPacketForOutstanding,
+  type OutstandingWork,
+} from "../src/lint/outstanding";
 import { resolveActivePlan, type SessionLogDeps } from "../src/runtime/session-log";
 
 const NOW = "2026-06-04T00:00:00.000Z";
@@ -376,6 +382,107 @@ describe("U-HOVER-017 §5 outstanding seed + anchor gate (PLAN-L7-98)", () => {
   it("複数 entry は最後の entry の §5 を見る (古い entry の marker では通さない)", () => {
     const md = `# Session Handover — 2026-06-04\n\n## §5 未了 PO 判断\n\n> ${HANDOVER_OUTSTANDING_MARKER}: x\n\n---\n\n# Session Handover — 2026-06-04\n\n## §5 未了 PO 判断\n\n- 待ち prose のみ\n\n## §6 x\n`;
     expect(checkHandoverOutstandingAnchor(withDoc(md)).ok).toBe(false);
+  });
+});
+
+describe("U-HOVER-019 handover completion decision packet gate", () => {
+  function blockedOutstanding(): OutstandingWork {
+    return analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-S3",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending.",
+        },
+      ],
+      0,
+    );
+  }
+
+  function writePointer(deps: ReturnType<typeof mockDeps>, pointer: Partial<HandoverPointer>) {
+    deps.files.set(
+      pointerPath,
+      JSON.stringify({
+        active_plan: null,
+        status: "in_progress",
+        latest_doc: null,
+        digest_summary: null,
+        updated_at: NOW,
+        generated_by: GENERATED_BY,
+        ...pointer,
+      }),
+    );
+  }
+
+  it("pointer 不在は skip (ok)", () => {
+    const r = checkHandoverCompletionDecisionPacket(mockDeps());
+
+    expect(r.ok).toBe(true);
+    expect(r.messages[0]).toContain("skipped");
+  });
+
+  it("blocked outstanding だが completionDecisionPacket が無い旧 pointer は fail-close", () => {
+    const deps = mockDeps();
+    writePointer(deps, { outstanding: blockedOutstanding() });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("completionDecisionPacket");
+  });
+
+  it("blocked outstanding と同じ snapshot 由来の handover packet は ok", () => {
+    const deps = mockDeps();
+    const outstanding = blockedOutstanding();
+    writePointer(deps, {
+      outstanding,
+      completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
+        generatedAt: NOW,
+        now: NOW,
+        sourceCommand: "ut-tdd handover",
+      }),
+    });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(true);
+    expect(r.messages[0]).toContain("decisions=1");
+  });
+
+  it("standalone packet を handover pointer に転記しただけなら source mismatch で fail-close", () => {
+    const deps = mockDeps();
+    const outstanding = blockedOutstanding();
+    writePointer(deps, {
+      outstanding,
+      completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
+        generatedAt: NOW,
+        now: NOW,
+        sourceCommand: "ut-tdd completion decision-packet --json",
+      }),
+    });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(false);
+    expect(r.messages.join("\n")).toContain("expected=ut-tdd handover");
+  });
+
+  it("packet の decision count が outstanding 明細とずれたら fail-close", () => {
+    const deps = mockDeps();
+    const outstanding = blockedOutstanding();
+    const packet = completionDecisionPacketForOutstanding(outstanding, {
+      generatedAt: NOW,
+      now: NOW,
+      sourceCommand: "ut-tdd handover",
+    });
+    writePointer(deps, {
+      outstanding,
+      completionDecisionPacket: { ...packet, decisions: [], decisionCount: 0 },
+    });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(false);
+    expect(r.messages.join("\n")).toContain("decision count mismatch");
   });
 });
 

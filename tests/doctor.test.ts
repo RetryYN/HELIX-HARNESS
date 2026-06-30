@@ -157,6 +157,58 @@ describe("checkHandover (doctor handover staleness surface)", () => {
     expect(() => checkHandover(deps({ files }))).not.toThrow();
     expect(checkHandover(deps({ files }))).toContain("CURRENT.json");
   });
+
+  it("runDoctor fails closed when blocked handover pointer lacks completionDecisionPacket", () => {
+    const files = new Map([
+      [
+        pointerPath,
+        JSON.stringify({
+          active_plan: null,
+          status: "in_progress",
+          latest_doc: null,
+          digest_summary: null,
+          updated_at: NOW,
+          generated_by: "ut-tdd-handover",
+          outstanding: {
+            nonTerminalPlansByLayer: { cross: 1 },
+            nonTerminalPlansTotal: 1,
+            versionUpParked: 0,
+            activeDraftTotal: 1,
+            openDefers: 0,
+            blockersByKind: { po_decision_pending: 1 },
+            items: [
+              {
+                planId: "PLAN-S3",
+                layer: "cross",
+                kind: "poc",
+                status: "draft",
+                workflowPhase: "S3",
+                versionTarget: null,
+                reason: "po_decision_pending",
+                blockers: ["po_decision_pending"],
+                requiredAction: "record the PO/S4 decision before promotion",
+                requiredActions: ["record the PO/S4 decision before promotion"],
+                requiredEvidence: ["s4_decision_record"],
+              },
+            ],
+            completionReadiness: {
+              ok: false,
+              status: "blocked",
+              reason: "whole-program completion is blocked",
+              blockers: ["po_decision_pending"],
+              requiredActions: ["record the PO/S4 decision before promotion"],
+            },
+          },
+        }),
+      ],
+    ]);
+    const r = runDoctor(deps({ files }));
+
+    expect(r.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(r.messages, "handover-decision-packet", "completionDecisionPacket"),
+    ).toBe(true);
+  });
 });
 
 describe("checkHandoverDisciplineMessages", () => {
@@ -798,6 +850,7 @@ describe("runDoctor", () => {
       "rightArmVerificationStrategy",
       "versionUpReadiness",
       "completionDecisionPacket",
+      "handoverDecisionPacket",
       "objectiveEvidenceAudit",
       "regressionExpansion",
     ];

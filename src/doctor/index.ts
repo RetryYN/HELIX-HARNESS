@@ -8,6 +8,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   checkHandoverBypass,
+  checkHandoverCompletionDecisionPacket,
   checkHandoverCompletionWording,
   checkHandoverDiscipline,
   checkHandoverOutstandingAnchor,
@@ -2089,6 +2090,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
   const handoverOutstanding = checkHandoverOutstandingAnchor(handoverDeps(deps));
+  const handoverDecisionPacket = checkHandoverCompletionDecisionPacket(handoverDeps(deps));
   // fail-close: green_command digest が evidence_path 実 hash と一致するか (fake substance 防止、PLAN-L7-132)。
   const greenCommandDigest = checkGreenCommandDigests(deps.repoRoot);
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
@@ -2178,7 +2180,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       completionDecisionPacket.ok &&
       objectiveEvidenceAudit.ok &&
       forwardConvergenceAudit.ok &&
-      handoverOutstanding.ok,
+      handoverOutstanding.ok &&
+      handoverDecisionPacket.ok,
     messages: [
       `doctor: mode=${d.mode} (claude=${d.claude}, codex=${d.codex})`,
       checkHandover(deps),
@@ -2252,6 +2255,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
       ...handoverOutstanding.messages.map((m) => `doctor: ${m}`),
+      ...handoverDecisionPacket.messages.map((m) => `doctor: ${m}`),
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
       ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
