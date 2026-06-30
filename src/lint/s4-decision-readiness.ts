@@ -87,6 +87,10 @@ function isS3PocPendingDecision(plan: S4DecisionPlan): boolean {
   );
 }
 
+function isMisplacedPocDecisionOutcome(plan: S4DecisionPlan): boolean {
+  return plan.kind === "poc" && !!plan.decisionOutcome && plan.workflowPhase !== "S4";
+}
+
 export function analyzeS4DecisionReadiness(
   input: S4DecisionReadinessInput,
 ): S4DecisionReadinessResult {
@@ -107,6 +111,13 @@ export function analyzeS4DecisionReadiness(
     if (!input.outstandingTs.includes(marker)) {
       violations.push({ subject: "src/lint/outstanding.ts", reason: `missing ${marker}` });
     }
+  }
+
+  for (const plan of input.plans.filter(isMisplacedPocDecisionOutcome)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "decision_outcome requires workflow_phase=S4",
+    });
   }
 
   const pending = input.plans.filter(isS3PocPendingDecision);

@@ -103,7 +103,7 @@ describe("S4 decision readiness", () => {
     );
   });
 
-  it("does not require a pending decision record once decision_outcome exists", () => {
+  it("U-DECISIONREC-001: fails S3 PoC plans that place decision_outcome before S4", () => {
     const result = analyzeS4DecisionReadiness(
       input({
         plans: [
@@ -120,7 +120,11 @@ describe("S4 decision readiness", () => {
       }),
     );
 
-    expect(result.ok).toBe(true);
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-902",
+      reason: "decision_outcome requires workflow_phase=S4",
+    });
     expect(result.pendingPlanIds).toEqual([]);
   });
 

@@ -17,7 +17,9 @@ describe("PoC S3/S4 semantic boundary", () => {
     expect(requirements).toContain("| `S4` | poc | Decide (decision_outcome 必須)");
 
     expect(schema).toContain("Discovery/Scrum の terminal 宣言は S4 decision 後のみ");
+    expect(schema).toContain("decision_outcome は S4 outcome 専用");
     expect(schema).toContain('fm.workflow_phase !== "S4"');
+    expect(schema).toContain("kind=poc の decision_outcome は workflow_phase=S4 専用");
     expect(schema).toContain("kind=poc の confirmed/completed は workflow_phase=S4");
   });
 

@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:20:00+09:00"
         evidence_path: docs/design/harness/L6-function-design/function-spec.md
-        output_digest: "sha256:517fc8d43f38320155a46002293b2ae8909d4c1152db0ec6015a78b52b6292ef"
+        output_digest: "sha256:be5b30a96724aaad04926979176b6d9a043053c5d82f200b0f88c7746ffb5e15"
 ---
 
 # PLAN-REVERSE-206: visualization read-model semantic back-fill

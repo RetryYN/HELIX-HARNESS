@@ -111,6 +111,15 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     expect(frontmatterSchema.safeParse({ ...pocBase, workflow_phase: "S4" }).success).toBe(false);
     // S3 以降 scrum_type 欠落は fail (§3.5)
     expect(frontmatterSchema.safeParse({ ...pocBase, workflow_phase: "S3" }).success).toBe(false);
+    // decision_outcome は S4 outcome 専用。S3 verified evidence では持てない。
+    expect(
+      frontmatterSchema.safeParse({
+        ...pocBase,
+        workflow_phase: "S3",
+        scrum_type: "design-spike",
+        decision_outcome: "confirmed",
+      }).success,
+    ).toBe(false);
     // S4 + decision_outcome + scrum_type ありは通る
     expect(
       frontmatterSchema.safeParse({

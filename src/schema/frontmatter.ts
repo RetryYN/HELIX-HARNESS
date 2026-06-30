@@ -279,6 +279,14 @@ export const frontmatterSchema = frontmatterBaseSchema.superRefine((fm, ctx) => 
       message: "kind=poc + S4 は decision_outcome 必須 (§1.1 / §1.2.2)",
     });
   }
+  // §1.2.2: decision_outcome は S4 outcome 専用。S3 verified evidence を PO 決定済みに偽装しない。
+  if (fm.kind === "poc" && fm.decision_outcome && fm.workflow_phase !== "S4") {
+    ctx.addIssue({
+      code: custom,
+      path: ["decision_outcome"],
+      message: "kind=poc の decision_outcome は workflow_phase=S4 専用 (§1.2.2)",
+    });
+  }
   // Discovery/Scrum の terminal 宣言は S4 decision 後のみ。S0-S3 の検証途中で confirmed/completed にしない。
   if (
     fm.kind === "poc" &&

@@ -60,6 +60,7 @@ Unit oracle families:
 - U-VISUAL-001 / U-VISUAL-002 cover deterministic visualization snapshot response and runtime evidence class separation for L1 §2.8.
 - U-OUTSTANDING-001..003 cover completion decision packet construction, freshness/source/shape linting, and doctor hard-gate wiring for whole-program completion claims.
 - U-DECISIONREC-001..003 cover structured S4 / version-up activation / irreversible cutover decision records; marker-only prose is not accepted as decision evidence.
+- U-DECISIONREC-001 also preserves the semantic boundary between S3 verified evidence and S4 PO decision: `decision_outcome` is valid only when `kind=poc + workflow_phase=S4`. A draft S3 PoC with `decision_outcome` is a violation, not a decided PLAN.
 - U-GREENCMD-001..003 cover green command digest substance: fake/stale digest detection, unreadable repo fail-close, and doctor hard-gate wiring.
 - `analyzeRefactorCandidates` (refactor candidate detector) is an additive `quality_signals`/`feedback_events` projection under the same projection oracle family (U-FR-L1-06/19/20/40/41); its four-kind detection is covered by `tests/projection-writer.test.ts` (L7 descent: `docs/test-design/harness/L7-unit-test-design.md`).
 
