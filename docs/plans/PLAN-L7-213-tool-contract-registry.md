@@ -52,7 +52,7 @@ review_evidence:
     reviewed_at: "2026-07-01T06:38:00+09:00"
     tests_green_at: "2026-07-01T06:38:00+09:00"
     verdict: approve
-    scope: "HC-P2 typed agent-tool request/response contract registry: known Claude/Codex/runtime tool surfaces now have contract ids, request required fields, response required fields, forbidden fields, and deny/defer disposition. Unknown surfaces fail-close unless explicitly deferred, Codex bulk spawn is registered as denied, and doctor now audits the registry so the contract cannot drift into prose-only coverage. This closes the core typed contract registry gap but does not close loop effort-budget or hosted/API preflight residual work."
+    scope: "HC-P2 typed agent-tool request/response contract registry: known Claude/Codex/runtime tool surfaces now have contract ids, request required fields, response required fields, forbidden fields, and deny/defer disposition. Unknown surfaces fail-close unless explicitly deferred, Codex bulk spawn is registered as denied, and doctor now audits the registry so the contract cannot drift into prose-only coverage. This closes the core typed contract registry gap; loop effort-budget is closed by PLAN-L7-214 and hosted/API preflight by PLAN-L7-215."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:

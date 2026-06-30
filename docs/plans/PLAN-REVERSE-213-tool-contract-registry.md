@@ -16,7 +16,7 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/design/helix/L1-requirements/pillar-requirements.md
-    reason: "HBR-P2 now distinguishes the implemented typed agent-tool request/response registry core from loop effort-budget (later PLAN-L7-214) and remaining hosted/API preflight work."
+    reason: "HBR-P2 now distinguishes the implemented typed agent-tool request/response registry core from loop effort-budget (later PLAN-L7-214) and hosted/API preflight (later PLAN-L7-215)."
   - layer: L3-requirements
     decision: updated
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
@@ -74,7 +74,7 @@ review_evidence:
     reviewed_at: "2026-07-01T06:44:00+09:00"
     tests_green_at: "2026-07-01T06:44:00+09:00"
     verdict: pass
-    scope: "Backfilled PLAN-L7-213 into HELIX P2 requirements, architecture, function design, and paired test design. The backfill records typed request/response contract registry as implemented while preserving loop effort-budget for PLAN-L7-214 and hosted/API preflight residual work."
+    scope: "Backfilled PLAN-L7-213 into HELIX P2 requirements, architecture, function design, and paired test design. The backfill records typed request/response contract registry as implemented while preserving loop effort-budget for PLAN-L7-214 and hosted/API preflight for PLAN-L7-215."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -100,8 +100,8 @@ tool surfaces from becoming untracked autonomy.
 ## Backfill Result
 
 - HBR-P2 / HOT-P2 record the typed request/response registry as implemented
-  evidence. Loop effort-budget is handled by PLAN-L7-214; P2 remains partial
-  because hosted/API preflight work is still open.
+  evidence. Loop effort-budget is handled by PLAN-L7-214 and hosted/API
+  preflight by PLAN-L7-215.
 - L3 acceptance keeps HR-FR-P2-01 unchanged but points to concrete test and
   doctor evidence.
 - L4 architecture includes `validateToolContractSurface` in the orchestration
@@ -116,4 +116,5 @@ tool surfaces from becoming untracked autonomy.
 - The new registry is test-cited by `U-TOOLCONTRACT-001..006`.
 - Doctor exposes `tool-contract-registry`.
 - The backfill does not claim whole P2 completion. Loop effort-budget is closed
-  separately by PLAN-L7-214; hosted/API hook non-enforcement remains open.
+  separately by PLAN-L7-214; hosted/API preflight is closed separately by
+  PLAN-L7-215.

@@ -50,7 +50,7 @@ review_evidence:
     reviewed_at: "2026-07-01T07:05:00+09:00"
     tests_green_at: "2026-07-01T07:05:00+09:00"
     verdict: approve
-    scope: "HC-P2 loop effort-budget: plan size / model role / iteration / toolCalls / costUsd / elapsedMs now have a pure budget decision, and tick applies it before worker dispatch and before verifier verdict recording. Over-budget loops stop with effort_budget and cannot record same-worker pass/continue. This closes the core loop effort-budget gap but does not close hosted/API preflight or whole-program completion."
+    scope: "HC-P2 loop effort-budget: plan size / model role / iteration / toolCalls / costUsd / elapsedMs now have a pure budget decision, and tick applies it before worker dispatch and before verifier verdict recording. Over-budget loops stop with effort_budget and cannot record same-worker pass/continue. This closes the core loop effort-budget gap; hosted/API preflight is closed by PLAN-L7-215. Whole-program completion remains approval/S4/cutover blocked."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:

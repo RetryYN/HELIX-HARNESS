@@ -16,7 +16,7 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/design/helix/L1-requirements/pillar-requirements.md
-    reason: "HBR-P2 now distinguishes implemented loop effort-budget enforcement from remaining hosted/API preflight work."
+    reason: "HBR-P2 now distinguishes implemented loop effort-budget enforcement from hosted/API preflight work later closed by PLAN-L7-215."
   - layer: L3-requirements
     decision: updated
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
@@ -71,7 +71,7 @@ review_evidence:
     reviewed_at: "2026-07-01T07:05:00+09:00"
     tests_green_at: "2026-07-01T07:05:00+09:00"
     verdict: pass
-    scope: "Backfilled PLAN-L7-214 into HELIX P2 requirements, function design, and paired test design. The backfill records loop effort-budget as implemented while preserving remaining hosted/API preflight residual work."
+    scope: "Backfilled PLAN-L7-214 into HELIX P2 requirements, function design, and paired test design. The backfill records loop effort-budget as implemented while preserving hosted/API preflight for PLAN-L7-215."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -95,8 +95,8 @@ carry explicit effort limits and must not self-continue or pass when over budget
 
 ## Backfill Result
 
-- HBR-P2 / HOT-P2 now record loop effort-budget as implemented evidence while
-  keeping P2 partial because hosted/API preflight is still open.
+- HBR-P2 / HOT-P2 now record loop effort-budget as implemented evidence.
+  Hosted/API preflight is handled by PLAN-L7-215.
 - L3 acceptance keeps HR-FR-P2-02 unchanged but points to concrete test evidence.
 - L6 HC-P2 specifies plan-size/model-role limits, usage dimensions, and `tick`
   pre/post enforcement.
@@ -106,5 +106,5 @@ carry explicit effort limits and must not self-continue or pass when over budget
 - `PLAN-L7-214` and this Reverse PLAN require each other for add-impl backfill
   closure.
 - The new budget enforcement is test-cited by `HU-PILLAR-P2-02`.
-- The backfill does not claim whole P2 completion and does not close hosted/API
-  hook non-enforcement.
+- The backfill does not claim whole P2 completion. Hosted/API preflight is
+  closed separately by PLAN-L7-215.

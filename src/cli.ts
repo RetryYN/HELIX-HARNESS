@@ -132,6 +132,10 @@ import {
   scanDanglingStops,
 } from "./runtime/forced-stop";
 import {
+  requireHostedSurfacePreflight,
+  validateAdapterParityMap,
+} from "./runtime/hosted-preflight";
+import {
   nodeProviderHandoverDeps,
   type ProviderRuntime,
   readProviderHandoverCurrent,
@@ -1691,13 +1695,29 @@ guard
         sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
         bypass: override.bypass,
       });
+      const adapterParity = validateAdapterParityMap({
+        surface: "codex-hosted-api",
+        toolName: opts.patchFile || opts.stdin ? "apply_patch" : "manual",
+      });
+      const hostedPreflight = requireHostedSurfacePreflight({
+        surface: "codex-hosted-api",
+        operation: targetPaths.length > 0 ? "edit" : "dry_run",
+        hookNonEnforcementAcknowledged: true,
+        gitStatusChecked: true,
+        targetPaths,
+        workGuardDecision: result,
+        preflightCommand: "ut-tdd guard preflight",
+        auditRecord: opts.session ?? "cli-stdout",
+      });
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(
             {
               ...result,
               override,
-              apiToolPathEnforced: false,
+              adapterParity,
+              hostedPreflight,
+              apiToolPathEnforced: hostedPreflight.apiToolPathEnforced,
               note: "hosted/API tools do not execute .codex/hooks.json; guard preflight is the repo-side substitute",
             },
             null,
@@ -1706,12 +1726,14 @@ guard
         );
       } else if (result.blocked) {
         process.stderr.write(`${result.blocked.message}\n`);
+      } else if (hostedPreflight.kind === "deny") {
+        process.stderr.write(`hosted preflight denied: ${hostedPreflight.reason}\n`);
       } else {
         process.stdout.write(
           `guard preflight: pass (${result.reason}, targets=${result.results.length})\n`,
         );
       }
-      process.exitCode = result.decision === "block" ? 2 : 0;
+      process.exitCode = result.decision === "block" || hostedPreflight.kind === "deny" ? 2 : 0;
     },
   );
 

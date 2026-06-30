@@ -114,7 +114,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:24:02+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:ae9fcd060e7bb1c821712f12ae9006d43a6943d4f7cf64c9048ada41ba374115"
+        output_digest: "sha256:dcdf1f00617ac86ceb7c55547647dc23512c82ce9ff54d7ba07b95fe2af281d0"
 ---
 
 # PLAN-L7-158: refactor detector precision and policy extraction
