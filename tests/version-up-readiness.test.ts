@@ -63,6 +63,15 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "Release Please",
       "GitHub Rulesets",
       "GitHub Merge Queue",
+      "Cloudflare Pages limits",
+      "Cloudflare Workers limits",
+      "Cloudflare D1 limits",
+      "Cloudflare Workers KV limits",
+      "Cloudflare Access policies",
+      "GitHub webhook HMAC SHA-256",
+      "external_rehearsal_plan",
+      "cost_guardrails",
+      "activation_provenance_requirements",
       "adopted version/date",
       "latest official status",
       "adoption decision",
@@ -79,6 +88,12 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| Release Please | https://github.com/googleapis/release-please | live official repository docs | live official repository docs | compare-only-until-release-ADR | release PR candidate | release automation ADR |",
       "| GitHub Rulesets | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets | live GitHub docs | live official GitHub docs | adopt-live-docs-for-gated-push-design | gated push | approval_scope |",
       "| GitHub Merge Queue | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue | live GitHub docs | live official GitHub docs | adopt-live-docs-for-merge-readiness | merge readiness | activation_route activation_dependency |",
+      "| Cloudflare Pages limits | https://developers.cloudflare.com/pages/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-static-hosting-budget | $0 static SPA budget check | cost_guardrails pages_limit external_rehearsal_plan |",
+      "| Cloudflare Workers limits | https://developers.cloudflare.com/workers/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-worker-budget | read API request budget | cost_guardrails workers_limit external_rehearsal_plan |",
+      "| Cloudflare D1 limits | https://developers.cloudflare.com/d1/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-db-budget | projection DB budget | cost_guardrails d1_limit external_rehearsal_plan |",
+      "| Cloudflare Workers KV limits | https://developers.cloudflare.com/kv/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget | cost_guardrails kv_limit external_rehearsal_plan |",
+      "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/policies/access/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check |",
+      "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     plans: [
@@ -106,6 +121,25 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- stale_action: keep_parked_with_review_date or reject_or_archive",
           "- activation_dependency: distribution channel",
           "- decision_packet_route: completion packet",
+          "external_rehearsal_plan:",
+          "- official_source_basis: Cloudflare Pages/Workers/D1/KV official limits + GitHub webhook HMAC SHA-256 + Cloudflare Access policies",
+          "- free_tier_budget_check: Pages Free deploy/file limits, Workers Free request budget, D1/KV free budget checked before activation",
+          "- webhook_signature_check: GitHub X-Hub-Signature-256 HMAC validation dry-run",
+          "- access_control_check: Cloudflare Access policy protects read-only dashboard route",
+          "- no_secret_pii_check: projection excludes secret/PII/raw transcript",
+          "- no_prod_write_check: dry-run uses staging or non-production projection only",
+          "- rollback_rehearsal: disable binding and rebuild projection from GitHub source",
+          "cost_guardrails:",
+          "- pages_limit: Cloudflare Pages official limits must fit static SPA artifact",
+          "- workers_limit: Workers Free request budget must fit read API and Pages Functions usage",
+          "- d1_limit: D1 free storage/query budget must fit projection DB",
+          "- kv_limit: Workers KV free read/write/storage budget must fit projection cache",
+          "- exceed_action: keep_parked_with_review_date or request_scope_reduction; never silent paid upgrade",
+          "activation_provenance_requirements:",
+          "- source_ledger: version-up source ledger checked at activation review date",
+          "- dry_run_evidence: free-tier budget, HMAC, access-control, no-secret, no-prod-write, rollback rehearsal output",
+          "- approval_evidence: activation_decision_record + action_binding_approval_record",
+          "- audit_record: approver, actor, tool, target, params hash, command output, rollback/incident route",
           "version_target",
           "Cloudflare HMAC webhook access control external",
           "action-binding approval",
@@ -153,6 +187,7 @@ describe("version-up-readiness", () => {
       "HMAC",
       "webhook",
       "access control",
+      "secret",
       "external",
     ]);
     expect(packet.blockedReasons).toEqual(
@@ -166,6 +201,30 @@ describe("version-up-readiness", () => {
       "reject_or_archive",
       "keep_parked_with_review_date",
     ]);
+    expect(packet.externalRehearsalPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "webhook_signature_check",
+          evidence: expect.stringContaining("X-Hub-Signature-256"),
+        }),
+        expect.objectContaining({
+          check: "access_control_check",
+          source: "Cloudflare Access policy testing",
+        }),
+      ]),
+    );
+    expect(packet.costGuardrails).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ surface: "Cloudflare Workers" }),
+        expect.objectContaining({ surface: "Cloudflare D1" }),
+      ]),
+    );
+    expect(packet.provenanceRequirements).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ item: "dry_run_evidence" }),
+        expect.objectContaining({ item: "audit_record" }),
+      ]),
+    );
   });
 
   it("U-DECISIONREC-002: fails parked plans that do not explain activation as version-up", () => {
@@ -469,6 +528,9 @@ describe("version-up-readiness", () => {
         "external activation boundary missing dry_run_plan",
         "external activation boundary missing rollback_plan",
         "external activation boundary missing exit 1",
+        "missing structured external_rehearsal_plan",
+        "missing structured cost_guardrails",
+        "missing structured activation_provenance_requirements",
       ]),
     );
   });
@@ -515,5 +577,24 @@ describe("version-up-readiness", () => {
         "missing concrete approve_action_binding outcome",
       ]),
     );
+    expect(packets[0].externalRehearsalPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ check: "free_tier_budget_check" }),
+        expect.objectContaining({ check: "webhook_signature_check" }),
+        expect.objectContaining({ check: "access_control_check" }),
+      ]),
+    );
+    expect(packets[0].costGuardrails.map((row: { surface: string }) => row.surface)).toEqual([
+      "Cloudflare Pages",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Cloudflare Workers KV",
+    ]);
+    expect(packets[0].provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
+      "source_ledger",
+      "dry_run_evidence",
+      "approval_evidence",
+      "audit_record",
+    ]);
   });
 });

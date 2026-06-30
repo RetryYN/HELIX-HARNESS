@@ -56,6 +56,21 @@ export interface VersionUpActivationPacket {
   parkedReview: Record<string, string>;
   actionBindingApproval: Record<string, string>;
   externalBoundaries: string[];
+  externalRehearsalPlan: Array<{
+    check: string;
+    evidence: string;
+    source: string;
+  }>;
+  costGuardrails: Array<{
+    surface: string;
+    freeLimit: string;
+    activationImpact: string;
+    source: string;
+  }>;
+  provenanceRequirements: Array<{
+    item: string;
+    evidence: string;
+  }>;
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
 }
@@ -89,6 +104,15 @@ const MODE_DOC_MARKERS = [
   "Release Please",
   "GitHub Rulesets",
   "GitHub Merge Queue",
+  "Cloudflare Pages limits",
+  "Cloudflare Workers limits",
+  "Cloudflare D1 limits",
+  "Cloudflare Workers KV limits",
+  "Cloudflare Access policies",
+  "GitHub webhook HMAC SHA-256",
+  "external_rehearsal_plan",
+  "cost_guardrails",
+  "activation_provenance_requirements",
   "adopted version/date",
   "latest official status",
   "adoption decision",
@@ -140,6 +164,9 @@ const PARKED_PLAN_MARKERS = [
   "stale_action",
   "activation_dependency",
   "decision_packet_route",
+  "external_rehearsal_plan",
+  "cost_guardrails",
+  "activation_provenance_requirements",
   "version_target",
 ] as const;
 
@@ -198,6 +225,34 @@ const ACTION_BINDING_RECORD_FIELDS = [
   "approved_params",
   "review_approval_evidence",
   "expires_at_or_trigger",
+  "audit_record",
+] as const;
+
+const EXTERNAL_REHEARSAL_RECORD_NAME = "external_rehearsal_plan";
+const EXTERNAL_REHEARSAL_RECORD_FIELDS = [
+  "official_source_basis",
+  "free_tier_budget_check",
+  "webhook_signature_check",
+  "access_control_check",
+  "no_secret_pii_check",
+  "no_prod_write_check",
+  "rollback_rehearsal",
+] as const;
+
+const COST_GUARDRAIL_RECORD_NAME = "cost_guardrails";
+const COST_GUARDRAIL_RECORD_FIELDS = [
+  "pages_limit",
+  "workers_limit",
+  "d1_limit",
+  "kv_limit",
+  "exceed_action",
+] as const;
+
+const PROVENANCE_RECORD_NAME = "activation_provenance_requirements";
+const PROVENANCE_RECORD_FIELDS = [
+  "source_ledger",
+  "dry_run_evidence",
+  "approval_evidence",
   "audit_record",
 ] as const;
 
@@ -430,6 +485,27 @@ export function analyzeVersionUpReadiness(
           });
         }
       }
+      for (const field of missingRecordFields(
+        plan.text,
+        EXTERNAL_REHEARSAL_RECORD_NAME,
+        EXTERNAL_REHEARSAL_RECORD_FIELDS,
+      )) {
+        violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+      }
+      for (const field of missingRecordFields(
+        plan.text,
+        COST_GUARDRAIL_RECORD_NAME,
+        COST_GUARDRAIL_RECORD_FIELDS,
+      )) {
+        violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+      }
+      for (const field of missingRecordFields(
+        plan.text,
+        PROVENANCE_RECORD_NAME,
+        PROVENANCE_RECORD_FIELDS,
+      )) {
+        violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+      }
     }
   }
 
@@ -463,6 +539,13 @@ export function buildVersionUpActivationPacket(
   const actionBindingApproval = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
     ...ACTION_BINDING_RECORD_FIELDS,
   ]);
+  const externalRehearsal = recordValues(plan.text, EXTERNAL_REHEARSAL_RECORD_NAME, [
+    ...EXTERNAL_REHEARSAL_RECORD_FIELDS,
+  ]);
+  const costGuardrails = recordValues(plan.text, COST_GUARDRAIL_RECORD_NAME, [
+    ...COST_GUARDRAIL_RECORD_FIELDS,
+  ]);
+  const provenance = recordValues(plan.text, PROVENANCE_RECORD_NAME, [...PROVENANCE_RECORD_FIELDS]);
   const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
     plan.text.toLowerCase().includes(term.toLowerCase()),
   );
@@ -483,6 +566,77 @@ export function buildVersionUpActivationPacket(
     parkedReview,
     actionBindingApproval,
     externalBoundaries,
+    externalRehearsalPlan: [
+      {
+        check: "free_tier_budget_check",
+        evidence: externalRehearsal.free_tier_budget_check,
+        source: "Cloudflare Pages/Workers/D1/KV official limits",
+      },
+      {
+        check: "webhook_signature_check",
+        evidence: externalRehearsal.webhook_signature_check,
+        source: "GitHub X-Hub-Signature-256 webhook validation",
+      },
+      {
+        check: "access_control_check",
+        evidence: externalRehearsal.access_control_check,
+        source: "Cloudflare Access policy testing",
+      },
+      {
+        check: "no_secret_pii_check",
+        evidence: externalRehearsal.no_secret_pii_check,
+        source: "projection no-secret/no-PII invariant",
+      },
+      {
+        check: "rollback_rehearsal",
+        evidence: externalRehearsal.rollback_rehearsal,
+        source: "version-up rollback plan",
+      },
+    ],
+    costGuardrails: [
+      {
+        surface: "Cloudflare Pages",
+        freeLimit: costGuardrails.pages_limit,
+        activationImpact: "static SPA must remain inside Pages Free deploy/file limits",
+        source: "Cloudflare Pages limits",
+      },
+      {
+        surface: "Cloudflare Workers",
+        freeLimit: costGuardrails.workers_limit,
+        activationImpact: "read API and Pages Functions requests share Workers Free daily quota",
+        source: "Cloudflare Workers limits",
+      },
+      {
+        surface: "Cloudflare D1",
+        freeLimit: costGuardrails.d1_limit,
+        activationImpact: "projection DB must fit Free storage/query constraints before activation",
+        source: "Cloudflare D1 limits",
+      },
+      {
+        surface: "Cloudflare Workers KV",
+        freeLimit: costGuardrails.kv_limit,
+        activationImpact: "projection cache/write rate must stay inside KV Free limits",
+        source: "Cloudflare Workers KV limits",
+      },
+    ],
+    provenanceRequirements: [
+      {
+        item: "source_ledger",
+        evidence: provenance.source_ledger,
+      },
+      {
+        item: "dry_run_evidence",
+        evidence: provenance.dry_run_evidence,
+      },
+      {
+        item: "approval_evidence",
+        evidence: provenance.approval_evidence,
+      },
+      {
+        item: "audit_record",
+        evidence: provenance.audit_record,
+      },
+    ],
     blockedReasons,
     nextWorkflowRoutes: [
       {

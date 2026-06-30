@@ -48,6 +48,9 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
 - `ut-tdd version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json` は activation / parked review / action-binding approval を
   `version-up-activation-packet.v1` として出すが、`planOnly=true` / `mustNotApply=true` / `applyCommandAvailable=false` /
   `activationAllowed=false` の非破壊 surface であり、Cloudflare/GitHub/HMAC/access-control/secret activation は実行しない。
+  2026-07-01 continuation: packet は `externalRehearsalPlan` / `costGuardrails` / `provenanceRequirements` も出し、
+  Cloudflare free-tier、GitHub HMAC、Cloudflare Access、secret/PII 非投影、no-prod-write、rollback、approval/audit
+  evidence を PO/TL が承認前に審査できるようにする。
 
 activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
@@ -77,6 +80,28 @@ action_binding_approval_record:
 - review_approval_evidence: `activation_decision_record`, `parked_review_record`, dry-run result, rollback plan, ADR-005 D2, and no-secret/no-prod-write evidence must be reviewed before activation.
 - expires_at_or_trigger: Trigger-bound; approval expires if distribution channel scope, access-control design, secret handling, or Cloudflare/GitHub target changes before activation.
 - audit_record: No external activation is approved or executed while `version_target: future` remains; activation must write approver, action scope, commands, result, and rollback/incident route.
+
+external_rehearsal_plan:
+- official_source_basis: Cloudflare Pages/Workers/D1/KV official limits, Cloudflare Access policies, and GitHub webhook HMAC SHA-256 validation docs must be refreshed before activation.
+- free_tier_budget_check: SPA artifact size/file count, Workers request budget, D1 storage/query budget, and Workers KV storage/read/write budget must fit $0 constraints before activation.
+- webhook_signature_check: GitHub webhook delivery must validate `X-Hub-Signature-256` HMAC in dry-run/staging before any production webhook is enabled.
+- access_control_check: Cloudflare Access or equivalent read-only viewer policy must protect the dashboard route before public sharing.
+- no_secret_pii_check: projection rehearsal must prove secret/PII/raw transcript are excluded from Pages/Workers/D1/KV payloads.
+- no_prod_write_check: rehearsal must use staging or non-production projection and must not mutate production Cloudflare/GitHub resources.
+- rollback_rehearsal: disable webhook/access bindings and rebuild projection from git/GitHub source without data loss.
+
+cost_guardrails:
+- pages_limit: Cloudflare Pages official limits must fit the static SPA artifact and deploy cadence.
+- workers_limit: Workers Free request budget must fit read API / Pages Functions usage for the expected viewer and polling load.
+- d1_limit: D1 free storage/query budget must fit the read-only projection and rebuild/reconcile cadence.
+- kv_limit: Workers KV free storage/read/write budget must fit projection cache and freshness needs.
+- exceed_action: If any free-tier or access-control constraint fails, choose `keep_parked_with_review_date` or `request_scope_reduction`; never silently activate paid infrastructure.
+
+activation_provenance_requirements:
+- source_ledger: Version-up source ledger and Cloudflare/GitHub official docs are checked at activation review date.
+- dry_run_evidence: free-tier budget, webhook HMAC, access-control, no-secret/PII, no-prod-write, and rollback rehearsal output are recorded.
+- approval_evidence: `activation_decision_record`, `parked_review_record`, and `action_binding_approval_record` are reviewed together before activation.
+- audit_record: approver, actor, tool, target, params hash/summary, command output, result, and rollback/incident route are recorded.
 
 ## 0. なぜ (PO 決定 2026-06-24「無料で、AI 編集なしでいけない？」→「OK それでいこう」)
 

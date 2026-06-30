@@ -6,7 +6,7 @@ layer: L7
 drive: be
 status: confirmed
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-01
 owner: Codex
 parent_design: docs/process/modes/version-up.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -41,6 +41,39 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T03:35:00+09:00"
+    tests_green_at: "2026-07-01T03:35:00+09:00"
+    verdict: approve
+    scope: "Continuation: version-up activation packet now exposes externalRehearsalPlan, costGuardrails, and provenanceRequirements for Cloudflare/GitHub activation candidates. External parked work must carry structured free-tier, HMAC, access-control, no-secret/PII, no-prod-write, rollback, approval, and audit evidence before future activation; the surface remains plan-only and non-applying."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/version-up-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T03:35:00+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:a3c79440835746914f8397f7d95ee5670186d2de2fe94df815e82c0520356787"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:35:00+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:4b4c59d2f2002bbd1136b5dce2a6b42861cc2975badadb6faaa9e608c34c844c"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T03:35:00+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:4b4c59d2f2002bbd1136b5dce2a6b42861cc2975badadb6faaa9e608c34c844c"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T19:21:30+09:00"
     tests_green_at: "2026-06-30T19:21:30+09:00"
     verdict: approve
@@ -55,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:21:30+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4b30d369f2036f649415018b8de9bbcc8bd9424de9eb9975530c920dbe2af4cb"
+        output_digest: "sha256:a3c79440835746914f8397f7d95ee5670186d2de2fe94df815e82c0520356787"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -63,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:21:30+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:39a7fbee03d0ace02f5107c81732c784045adcd4222395fe4bb018db1770dc11"
+        output_digest: "sha256:4b4c59d2f2002bbd1136b5dce2a6b42861cc2975badadb6faaa9e608c34c844c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T18:59:06+09:00"
@@ -80,7 +113,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:59:06+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4b30d369f2036f649415018b8de9bbcc8bd9424de9eb9975530c920dbe2af4cb"
+        output_digest: "sha256:a3c79440835746914f8397f7d95ee5670186d2de2fe94df815e82c0520356787"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -88,7 +121,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:59:06+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:39a7fbee03d0ace02f5107c81732c784045adcd4222395fe4bb018db1770dc11"
+        output_digest: "sha256:4b4c59d2f2002bbd1136b5dce2a6b42861cc2975badadb6faaa9e608c34c844c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:47:45+09:00"
@@ -105,7 +138,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4b30d369f2036f649415018b8de9bbcc8bd9424de9eb9975530c920dbe2af4cb"
+        output_digest: "sha256:a3c79440835746914f8397f7d95ee5670186d2de2fe94df815e82c0520356787"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -113,7 +146,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:39a7fbee03d0ace02f5107c81732c784045adcd4222395fe4bb018db1770dc11"
+        output_digest: "sha256:4b4c59d2f2002bbd1136b5dce2a6b42861cc2975badadb6faaa9e608c34c844c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:32:07+09:00"
@@ -130,7 +163,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4b30d369f2036f649415018b8de9bbcc8bd9424de9eb9975530c920dbe2af4cb"
+        output_digest: "sha256:a3c79440835746914f8397f7d95ee5670186d2de2fe94df815e82c0520356787"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -138,7 +171,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:28:03+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:39a7fbee03d0ace02f5107c81732c784045adcd4222395fe4bb018db1770dc11"
+        output_digest: "sha256:4b4c59d2f2002bbd1136b5dce2a6b42861cc2975badadb6faaa9e608c34c844c"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -146,7 +179,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:4b30d369f2036f649415018b8de9bbcc8bd9424de9eb9975530c920dbe2af4cb"
+        output_digest: "sha256:a3c79440835746914f8397f7d95ee5670186d2de2fe94df815e82c0520356787"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -183,6 +216,11 @@ path, and preserve approval/escalation boundaries before future activation.
   ledger table.
 - Require external activation candidates to mention action-binding approval,
   `escalation_boundaries`, and unapproved `exit 1` behavior.
+- Require external activation candidates to carry structured
+  `external_rehearsal_plan`, `cost_guardrails`, and
+  `activation_provenance_requirements` so $0/free-tier, HMAC, access-control,
+  secret/PII, no-prod-write, rollback, approval, and audit evidence are not
+  left as prose.
 - Do not activate `PLAN-L7-146` or touch external infrastructure, auth, secrets,
   access control, or Cloudflare configuration.
 
@@ -195,7 +233,7 @@ path, and preserve approval/escalation boundaries before future activation.
 | L4 `HB-P1 continuous-autonomy` / routing | version-up belongs to continuous autonomy and escalation-aware routing |
 | `docs/process/modes/README.md` | `version_deferral` is listed as `version-up`; activation returns through add-feature |
 | `docs/process/modes/version-up.md` | parked / activation / approval semantics are the operational SSoT |
-| `PLAN-L7-146` | current live parked case remains draft and is not activated by this PLAN |
+| `PLAN-L7-146` | current live parked case remains draft and exposes external rehearsal, cost, and provenance material without activation |
 
 ## Acceptance Criteria
 
@@ -209,3 +247,6 @@ path, and preserve approval/escalation boundaries before future activation.
 - Refreshing the version-up source ledger to a newer valid `checked` date keeps
   row parsing and readiness green.
 - Targeted tests, typecheck, lint, DB rebuild, doctor, and full tests pass.
+- `ut-tdd version-up activation-packet --json` includes external rehearsal,
+  cost guardrails, and provenance requirements while keeping
+  `applyCommandAvailable=false`.
