@@ -4,7 +4,7 @@ layer: L1
 kind: design
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-07-01
 owner: PO (人間 / RetryYN)
 plan: PLAN-L1-06-helix-solo-conversion
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md

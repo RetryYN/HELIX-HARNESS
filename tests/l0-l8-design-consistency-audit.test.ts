@@ -51,6 +51,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "C-11",
       "C-14",
       "C-15",
+      "C-17",
     ];
     const frontier = ["C-12", "C-16"];
 
@@ -155,6 +156,33 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("visualization S4");
     expect(text).toContain("rename cutover approval");
     expect(text).toContain("version-up parked work");
+    expect(text).toContain("Pair-agent and setup/rename are aligned");
+  });
+
+  it("records the 2026-07-01 semantic re-read across feature list and blockers", () => {
+    const text = auditText();
+    const row = auditRow("C-17");
+
+    expect(text).toContain("## 2026-07-01 Re-Read Addendum");
+    expect(row).toContain("| proved |");
+    expect(row).toContain("pair-agent");
+    expect(row).toContain("setup/rename");
+    expect(row).toContain("handover status");
+    expect(row).toContain("This re-read does not permit a whole-program completion claim");
+    expect(text).toContain("Pair-agent TDD route");
+    expect(text).toContain("Red/oracle markers before light implementation");
+    expect(text).toContain("Pair-agent evidence and DB convergence");
+    expect(text).toContain("model_runs");
+    expect(text).toContain("gate_runs");
+    expect(text).toContain("guardrail_decisions");
+    expect(text).toContain("Setup and HELIX command naming");
+    expect(text).toContain("`helix setup project` is a future target");
+    expect(text).toContain("Asset/progress visualization amendment");
+    expect(text).toContain("Whole-program/L14 completion");
+    expect(text).toContain("human_approval_pending");
+    expect(text).toContain("irreversible_migration_pending");
+    expect(text).toContain("po_decision_pending");
+    expect(text).toContain("version_up_parked");
   });
 
   it("binds requirement amendments to the G-SF semantic feature frontier gate", () => {

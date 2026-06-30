@@ -1,6 +1,6 @@
 # HELIX Objective Evidence Audit
 
-Updated: 2026-06-30
+Updated: 2026-07-01
 
 This audit maps the active user objective to current repository evidence. It is
 not a replacement for the design documents; it is the requirement-by-requirement

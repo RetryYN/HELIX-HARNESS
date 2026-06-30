@@ -8,7 +8,7 @@ confirmed_reverse_type: fullback
 drive: fullstack
 status: confirmed
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-01
 owner: Codex
 forward_routing: L5
 promotion_strategy: reuse-with-hardening
@@ -88,6 +88,12 @@ forward correction is to keep the pre-amendment L0-L8 boundary narrow-complete
 while stating that the revised request is not L0-L8 complete until S4 routes
 visualization L3/L4/L5/L6/L7 work. `PLAN-L7-141` is activated, `PLAN-L7-146` is
 version-up parked, and L10/runtime frontiers are not counted as completed work.
+
+2026-07-01 re-read keeps the same R4 route and adds a narrow correction: the
+audit now records an explicit feature-list check for pair-agent TDD, setup /
+rename command availability, the visualization amendment, and current
+outstanding blockers. This is a clarification of the existing design boundary,
+not an approval to apply `.ut-tdd -> .helix` or to promote S4-pending work.
 
 ## §3 工程表 (Step + 進捗)
 

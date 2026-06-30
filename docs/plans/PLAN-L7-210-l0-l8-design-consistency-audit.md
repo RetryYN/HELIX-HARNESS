@@ -6,7 +6,7 @@ layer: L7
 drive: fullstack
 status: confirmed
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-01
 owner: Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -58,6 +58,23 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T04:50:00+09:00"
+    tests_green_at: "2026-07-01T04:49:14+09:00"
+    verdict: approve
+    scope: "2026-07-01 re-read: meaning-based feature list check for pair-agent TDD, setup/rename command availability, visualization amendment frontier, and outstanding workflow blockers."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T04:49:14+09:00"
+        evidence_path: tests/l0-l8-design-consistency-audit.test.ts
+        output_digest: "sha256:569c1db4d10a6d823fd15a1906c258676eb526cbbc490181c21b19632b6bb4ca"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T12:30:00+09:00"
     tests_green_at: "2026-06-30T12:29:00+09:00"
     verdict: approve
@@ -72,7 +89,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:29:00+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
-        output_digest: "sha256:6fa24e7e0c5b546bd76fe184bf14bcaf7a33dafd0c416dd670c67616e203a8dc"
+        output_digest: "sha256:569c1db4d10a6d823fd15a1906c258676eb526cbbc490181c21b19632b6bb4ca"
 ---
 
 # PLAN-L7-210: L0-L8 semantic design consistency audit
@@ -92,6 +109,8 @@ current L0-L8 boundary.
 - Add a governance audit that distinguishes `proved`, `frontier`, and `warning`.
 - Add a regression test that requires the audit to cite real artifacts and keep
   post-L8 / version-up frontiers visible.
+- Maintain a 2026-07-01 re-read addendum so later completion claims can see
+  exactly which meaning units were checked and which remained blocked.
 
 ## Non-Goals
 
@@ -139,6 +158,12 @@ self / intra-runtime reviewで、監査が「意味ベース」になってい�
 直列理由: downstream_dependency
 
 targeted vitest、plan lint、typecheck、lint、DB rebuild、doctor、full testを実行し、明示pathだけstageしてcommit/pushする。
+
+### Step 6: [直列] 2026-07-01 semantic re-read追補
+直列理由: downstream_dependency
+
+L1/L3/L6/L7 実装・DB projection・handover outstanding を再読し、pair-agent / setup rename /
+visualization amendment / L14 completion blocker の意味対応を監査表 C-17 と addendum に追記する。
 
 ## §3.1 実装計画
 
