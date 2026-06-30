@@ -473,14 +473,7 @@ export async function runPairAgentTddPlan(input: {
     const output = `${result?.stdout ?? ""}\n${result?.stderr ?? ""}`;
     let reviewVerdict = phaseName === "smart_review" ? parsePairAgentVerdict(output) : null;
     let evidenceErrorCode: string | null = null;
-    const lightConsulted =
-      phaseName === "light_implementation" &&
-      hasConsultationQuestion(output) &&
-      !(
-        hasChangedFilesEvidence(output) &&
-        hasTargetedTestCommand(output) &&
-        hasImplementationNotes(output)
-      );
+    const lightConsulted = phaseName === "light_implementation" && hasConsultationQuestion(output);
     const previousLightConsulted =
       phaseName === "smart_review" &&
       transcript.at(-1)?.phase === "light_implementation" &&

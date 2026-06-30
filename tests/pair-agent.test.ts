@@ -671,6 +671,79 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     );
   });
 
+  it("treats consultation as pending even when lightweight output also includes implementation evidence", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 2,
+    });
+    const lightPrompts: { cycle: number; prompt: string }[] = [];
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase, cycle, adapterPlan }) => {
+        if (phase.name === "light_implementation") {
+          lightPrompts.push({ cycle, prompt: adapterPlan.stdin ?? "" });
+        }
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: expect bounded consultation handoff\nACCEPTANCE_ORACLE: mixed consultation cannot pass as implementation\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "light_implementation" && cycle === 1) {
+          return {
+            status: 0,
+            stdout:
+              "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: partial attempt\nCONSULTATION_QUESTION: should consultation override partial implementation evidence?\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review" && cycle === 1) {
+          return {
+            status: 0,
+            stdout:
+              "IMPLEMENTATION_DIRECTIVE: treat any consultation marker as pending and route back to light fix\nVERDICT: pending\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implemented directive\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.steps.map((step) => [step.phase, step.cycle, step.status, step.verdict])).toEqual(
+      [
+        ["smart_test_author", 0, "passed", null],
+        ["light_implementation", 1, "pending", null],
+        ["smart_review", 1, "pending", "pending"],
+        ["light_implementation", 2, "passed", null],
+        ["smart_review", 2, "passed", "pass"],
+      ],
+    );
+    expect(lightPrompts[1]?.prompt).toContain(
+      "IMPLEMENTATION_DIRECTIVE: treat any consultation marker as pending",
+    );
+  });
+
   it("accepts a smart fail verdict as consultation guidance when it includes an implementation directive", async () => {
     const plan = buildPairAgentTddPlan({
       planId: "PLAN-L7-PAIR",
