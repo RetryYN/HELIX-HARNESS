@@ -21,10 +21,15 @@ commands. It separates three states:
 
 ## Verdict
 
-L0-L6 design descent is semantically consistent for the HELIX pillar overlay:
-P0/P1/P2/P3/P4/P6/P7/P8/P9 are lowered from charter to L1 HBR/HNFR, to 43 L3
-requirements, to 10 L4 blocks, to 10 L5 contracts, and to 30 L6 function
-contracts with L7/L8/L9/L12/L14 paired test-design artifacts.
+L0-L6 design descent is semantically consistent for the confirmed HELIX pillar
+overlay: P0/P1/P2/P3/P4/P6/P7/P8/P9 are lowered from charter to L1 HBR/HNFR,
+to 43 L3 requirements, to 10 L4 blocks, to 10 L5 contracts, and to 30 L6
+function contracts with L7/L8/L9/L12/L14 paired test-design artifacts. P5 is
+not missing: charter P5 is context efficiency, and the confirmed design lowers
+it as `HNFR-P5` because it constrains P1 autonomy, P3 verification workload, and
+handover/injection behavior rather than defining an independent business
+capability. The absence of `HBR-P5` / `HB-P5` / `HC-P5` is therefore an
+intentional meaning decision, not an uncovered pillar.
 
 For the requested L0-L8 boundary, the current evidence is complete: selected
 L8/G8 workflow closure is green, the L7 feature-pack roadmap has no rollup
@@ -36,8 +41,12 @@ active L7 frontier.
 This is not the same as universal product/runtime completion. The screen
 implementation declaration remains intentionally unset until the L10 UX/WCAG
 pair is reached. L1/L14 also still marks several pillar capabilities as
-`partial` or `not-implemented` at runtime level. Those are valid post-L8 design
-states, not blockers for the L0-L8 completion boundary.
+`partial` or `not-implemented` at runtime level. In addition, the 2026-06-30
+asset/progress visualization requirement is captured at L1 §2.8 / HOT-P9 and
+has a verified read-model first response, but its Discovery PLAN is still S3
+with S4 PO decision pending. Until S4 confirms and routes follow-up work, it
+must not be counted as L3/L4/L6/L7 fully descended. Those are visible frontier
+states, not proof that everything through runtime/product delivery is complete.
 
 ## Audit Table
 
@@ -56,6 +65,8 @@ states, not blockers for the L0-L8 completion boundary.
 | C-11 | Drive model execution says this request must not be narrowed automatically and parks out-of-scope delivery through version-up. | proved | `bun run src/cli.ts task classify --design-docs --json`, `bun run src/cli.ts team suggest --design-docs --mode hybrid --json`, `bun run src/cli.ts route eval --signal design_drift --format json`, `bun run src/cli.ts route eval --signal version_deferral --format json` | Classification is `drive=fullstack`, `drive_confidence=0.6`, finding `low-drive-confidence`; design drift routes to `mode=reverse`; `version_deferral` routes to `mode=version-up`; cheap docs lanes cannot close risk. |
 | C-12 | Screen/UI surface has a post-L8 L10 declaration frontier, not an L0-L8 blocker. | frontier | `bun run src/cli.ts doctor`, `docs/plans/PLAN-L7-141-web-dashboard-component-derived.md`, `src/web/`, `tests/web.test.ts` | Doctor reports `screen-impl-pair-freeze - OK (実装宣言なし = mock 段階, next_pair_freeze=L10)`. The repo now has component-derived `src/web` code; `implemented_screens` is intentionally declared only at the L10 UX/WCAG pair. |
 | C-14 | Serverless read-only sharing is parked by version-up and does not reopen L7/L8. | proved | `docs/plans/PLAN-L7-146-serverless-readonly-share.md`, `docs/process/modes/version-up.md`, `bun run src/cli.ts status --json`, `bun run src/cli.ts route eval --signal version_deferral --format json` | `PLAN-L7-146` remains `status=draft` + `version_target: future`, and status reports `versionUpParked=1`. Its Cloudflare/HMAC/access-control scope is future delivery, not an active L7/L8 completion gap. |
+| C-15 | Charter P5 is intentionally lowered as `HNFR-P5`, not as an independent HBR/block/contract. | proved | `docs/design/helix/L1-requirements/pillar-requirements.md`, `docs/design/helix/L3-requirements/pillar-functional-requirements.md`, `docs/design/helix/L4-basic-design/pillar-basic-design.md`, `docs/design/helix/L5-detail/pillar-detail-design.md`, `docs/design/helix/L6-function-design/pillar-function-design.md`, `tests/vmodel-pair.test.ts` | Context efficiency is a cross-cutting nonfunctional constraint: it descends to `HR-NFR-P5-01..03`, `HB-P1` / `HB-P3`, `HC-P1` / `HC-P3`, and `mergeAnchoredHandover` / `selectVerificationProfile`. Do not create or expect `HBR-P5`, `HB-P5`, or `HC-P5` unless L1 is explicitly re-opened. |
+| C-16 | The 2026-06-30 asset/progress visualization request is recorded, but not fully descended past S4. | frontier | `docs/design/helix/L1-requirements/pillar-requirements.md` §2.8, `docs/test-design/helix/L1-pillar-operational-test-design.md`, `docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md`, `docs/plans/PLAN-L7-206-visualization-read-model-response.md`, `tests/visualization-read-model.test.ts` | L1/HOT-P9 and the deterministic read-model response are real. S4 PO decision pending remains the governing state, so follow-up L3 visualization requirements, L4 UI/data boundary, L6 view-model contracts, and L7 VSCode Tree View/Webview implementation are not yet confirmed Forward work. |
 | C-13 | Charter filename/version is a citation ambiguity. | warning | File path `docs/design/helix/L0-charter/helix-charter_v0.1.md` contains title/version `v0.2`. | Do not rename in this audit because many trace references point to the current path. Record as naming carry for a later atomic migration. |
 
 ## Drive-Model Optimization
@@ -82,7 +93,9 @@ coverage is complete, including the UI pack. The requested L0-L8 boundary is
 therefore complete in the current design/implementation/test evidence.
 
 The remaining visible work is outside that boundary: L10 screen implementation
-declaration / UX-WCAG proof, future-version serverless sharing
+declaration / UX-WCAG proof, `PLAN-DISCOVERY-10` S4 visualization decision and
+its downstream L3/L4/L6/L7 route, future-version serverless sharing
 (`PLAN-L7-146`), L14 identifier rename, and other product/runtime pillar
-hardening. Those items must stay visible, but they must not be used to reopen
-the L0-L8 completion claim.
+hardening. Those items must stay visible. They must not be hidden behind the
+word "complete", and they also must not be used to reopen the narrower
+confirmed-pillar L0-L8 evidence claim.

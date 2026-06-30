@@ -42,21 +42,21 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T04:05:00+09:00"
-    tests_green_at: "2026-06-30T04:05:00+09:00"
+    reviewed_at: "2026-06-30T12:30:00+09:00"
+    tests_green_at: "2026-06-30T12:29:00+09:00"
     verdict: approve
-    scope: "L0-L8 semantic audit distinguishes the completed L0-L8 boundary from post-L8 and future-version work, including PLAN-L7-146 version-up parking."
+    scope: "L0-L8 semantic audit distinguishes the completed confirmed-pillar L0-L8 boundary from P5 HNFR absorption, S4-pending visualization changes, post-L8 work, and PLAN-L7-146 version-up parking."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts"
+        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts tests/vmodel-pair.test.ts --run"
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T04:05:00+09:00"
+        completed_at: "2026-06-30T12:29:00+09:00"
         evidence_path: tests/l0-l8-design-consistency-audit.test.ts
-        output_digest: "sha256:383f07046394b53ec8d5cad8bcc1aa46607413b708c668b9c1c245ec8b1f6e71"
+        output_digest: "sha256:e57d556a468fc6f431d364fb52d8cc4c0306ac3c3c5cf249a5a6517b55189396"
 ---
 
 # PLAN-L7-210: L0-L8 semantic design consistency audit

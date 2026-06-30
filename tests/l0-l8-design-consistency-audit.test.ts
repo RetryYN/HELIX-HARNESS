@@ -45,8 +45,9 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "C-10",
       "C-11",
       "C-14",
+      "C-15",
     ];
-    const frontier = ["C-12"];
+    const frontier = ["C-12", "C-16"];
 
     for (const id of proved) {
       expect(auditRow(id), `${id} should be proved`).toContain("| proved |");
@@ -65,6 +66,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(auditText()).toContain("frontier: なし");
     expect(auditText()).toContain("PLAN-L7-141-web-dashboard-component-derived");
     expect(auditText()).toContain("PLAN-L7-146");
+    expect(auditText()).toContain("PLAN-DISCOVERY-10");
     expect(auditText()).toContain("versionUpParked=1");
   });
 
@@ -89,7 +91,10 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "docs/plans/PLAN-L7-141-web-dashboard-component-derived.md",
       "tests/web.test.ts",
       "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+      "docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md",
+      "docs/plans/PLAN-L7-206-visualization-read-model-response.md",
       "docs/process/modes/version-up.md",
+      "tests/visualization-read-model.test.ts",
     ];
 
     for (const artifact of requiredArtifacts) {
@@ -110,6 +115,24 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("version_deferral");
     expect(text).toContain("mode=version-up");
     expect(text).toContain("cheap docs lanes cannot close risk");
+  });
+
+  it("records P5 absorption and modified visualization requirements without overclaiming descent", () => {
+    const text = auditText();
+
+    expect(auditRow("C-15")).toContain("HNFR-P5");
+    expect(auditRow("C-15")).toContain("HB-P1");
+    expect(auditRow("C-15")).toContain("HB-P3");
+    expect(text).toContain("The absence of `HBR-P5` / `HB-P5` / `HC-P5`");
+    expect(text).toContain("intentional meaning decision");
+
+    expect(auditRow("C-16")).toContain("| frontier |");
+    expect(auditRow("C-16")).toContain("S4 PO decision pending");
+    expect(text).toContain(
+      "asset/progress visualization requirement is captured at L1 §2.8 / HOT-P9",
+    );
+    expect(text).toContain("must not be counted as L3/L4/L6/L7 fully descended");
+    expect(text).toContain("downstream L3/L4/L6/L7 route");
   });
 
   it("keeps version-up parking aligned after PLAN-L7-141 activation", () => {
