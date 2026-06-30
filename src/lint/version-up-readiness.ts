@@ -1,6 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
+import {
+  allowedOutcomeSetViolation,
+  fmValue,
+  missingRecordFields,
+  recordFieldValue,
+} from "./shared";
 import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
@@ -375,6 +380,9 @@ export function analyzeVersionUpReadiness(
     )) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
+    if (!activationOutcomeViolation) {
+      violations.push(...validateParkedVersionUpSemantics(plan));
+    }
     const hasExternalBoundary = EXTERNAL_BOUNDARY_TERMS.some((term) =>
       plan.text.toLowerCase().includes(term.toLowerCase()),
     );
@@ -397,6 +405,80 @@ export function analyzeVersionUpReadiness(
     violations,
     ok: violations.length === 0,
   };
+}
+
+function validateParkedVersionUpSemantics(
+  plan: VersionUpReadinessPlan,
+): VersionUpReadinessViolation[] {
+  const violations: VersionUpReadinessViolation[] = [];
+  const activationRoute = record(plan, ACTIVATION_RECORD_NAME, "activation_route");
+  const targetTrigger = record(plan, ACTIVATION_RECORD_NAME, "target_version_or_release_trigger");
+  const reviewBy = record(plan, ACTIVATION_RECORD_NAME, "review_by");
+  const reviewByPolicy = record(plan, PARKED_REVIEW_RECORD_NAME, "review_by_policy");
+  const staleAction = record(plan, PARKED_REVIEW_RECORD_NAME, "stale_action");
+  const activationDependency = record(plan, PARKED_REVIEW_RECORD_NAME, "activation_dependency");
+  const decisionPacketRoute = record(plan, PARKED_REVIEW_RECORD_NAME, "decision_packet_route");
+  const combinedRoute = [
+    activationRoute,
+    targetTrigger,
+    reviewBy,
+    reviewByPolicy,
+    staleAction,
+    activationDependency,
+    decisionPacketRoute,
+  ].join("\n");
+
+  if (!mentions(targetTrigger, ["release", "tag", "version", "trigger", "request", "次版"])) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "version-up activation requires a concrete release/version/trigger",
+    });
+  }
+  if (!mentions(activationRoute, ["add-feature"]) || !mentionsForwardLayer(activationRoute)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "activate_future_version requires an add-feature Forward route",
+    });
+  }
+  if (!mentions(combinedRoute, ["reject_or_archive", "archive", "archived", "破棄"])) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "reject_or_archive requires an archive/rejection route",
+    });
+  }
+  if (!mentions(combinedRoute, ["keep_parked_with_review_date", "review date", "再確認日"])) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "keep_parked_with_review_date requires a review-date route",
+    });
+  }
+  if (!mentions(reviewByPolicy, ["trigger-bound"]) && !/\d{4}-\d{2}-\d{2}/.test(reviewByPolicy)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "parked review requires trigger-bound policy or explicit YYYY-MM-DD date",
+    });
+  }
+  if (!mentions(decisionPacketRoute, ["completion", "status --json", "decision packet"])) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "parked review must remain visible in completion/status decision packet",
+    });
+  }
+
+  return violations;
+}
+
+function record(textPlan: VersionUpReadinessPlan, recordName: string, field: string): string {
+  return recordFieldValue(textPlan.text, recordName, field) ?? "";
+}
+
+function mentions(value: string, needles: string[]): boolean {
+  const normalized = value.toLowerCase();
+  return needles.some((needle) => normalized.includes(needle.toLowerCase()));
+}
+
+function mentionsForwardLayer(value: string): boolean {
+  return /\bL(?:2|3|4|5|6|7)\b/.test(value) || mentions(value, ["Forward", "descent", "再降下"]);
 }
 
 function parseVersionUpSourceLedger(text: string): {

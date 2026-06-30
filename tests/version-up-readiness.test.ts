@@ -98,7 +98,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- review_owner: PO + TL",
           "- review_trigger: distribution landing",
           "- review_by_policy: trigger-bound",
-          "- stale_action: keep parked",
+          "- stale_action: keep_parked_with_review_date or reject_or_archive",
           "- activation_dependency: distribution channel",
           "- decision_packet_route: completion packet",
           "version_target",
@@ -202,6 +202,73 @@ describe("version-up-readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations.map((v) => v.reason)).toContain(
       "invalid allowed_outcome set for activation_decision_record: missing allowed_outcome reject_or_archive,keep_parked_with_review_date; unknown allowed_outcome skip_review",
+    );
+  });
+
+  it("U-DECISIONREC-007: fails parked version-up plans whose activation record has outcomes but no matching routes", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: [
+              "version-up parked",
+              "mode=version-up",
+              "activation",
+              "activation_decision_record:",
+              "- allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+              "- target_version_or_release_trigger: future someday",
+              "- activation_route: direct external activation only",
+              "- review_by: later",
+              "- approval_scope: Cloudflare HMAC webhook",
+              "- dry_run_plan: dry-run projection",
+              "- rollback_plan: disable binding",
+              "parked_review_record:",
+              "- review_owner: PO + TL",
+              "- review_trigger: distribution landing",
+              "- review_by_policy: later",
+              "- stale_action: keep parked",
+              "- activation_dependency: distribution channel",
+              "- decision_packet_route: private note",
+              "version_target",
+              "Cloudflare HMAC webhook access control external",
+              "action-binding approval",
+              "escalation_boundaries",
+              "approval_scope",
+              "dry_run_plan",
+              "rollback_plan",
+              "exit 1",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-L7-900-future",
+          reason: "activate_future_version requires an add-feature Forward route",
+        },
+        {
+          subject: "PLAN-L7-900-future",
+          reason: "reject_or_archive requires an archive/rejection route",
+        },
+        {
+          subject: "PLAN-L7-900-future",
+          reason: "keep_parked_with_review_date requires a review-date route",
+        },
+        {
+          subject: "PLAN-L7-900-future",
+          reason: "parked review requires trigger-bound policy or explicit YYYY-MM-DD date",
+        },
+        {
+          subject: "PLAN-L7-900-future",
+          reason: "parked review must remain visible in completion/status decision packet",
+        },
+      ]),
     );
   });
 
@@ -331,7 +398,7 @@ describe("version-up-readiness", () => {
               "- review_owner: PO + TL",
               "- review_trigger: distribution landing",
               "- review_by_policy: trigger-bound",
-              "- stale_action: keep parked",
+              "- stale_action: keep_parked_with_review_date or reject_or_archive",
               "- activation_dependency: distribution channel",
               "- decision_packet_route: completion packet",
               "version_target",
