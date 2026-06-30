@@ -85,6 +85,16 @@ S4 が `confirmed` の場合でも、要求意味が増えたときは `semantic
 `confirmed_current` へ更新し、L3 requirement / acceptance、L4 boundary、L5 contract、L6 function、L7 implementation
 のどこまで降ろすかを `downstream_route` に分解する。S4 前の S3 evidence は `frontier_pending_decision` のままである。
 
+### 3.1.1 S4 decision packet surface
+
+`ut-tdd s4 decision-packet --json` は、S3 pending Discovery PLAN の `s4_decision_record` を読み、
+PO が S4 で confirmed / rejected / pivot のどれを選ぶかを判断する材料を `s4-decision-packet.v1` として出す。
+
+この surface は **plan-only** である。`planOnly=true`、`mustNotDecide=true`、
+`decisionCommandAvailable=false`、`decisionAllowed=false` を固定し、S4 `decision_outcome` の記録、
+terminal status 変更、Forward merge、Reverse fullback 起票を行わない。packet は PO/TL の判断材料であり、
+S3 evidence を terminal 完了へ読み替えるものではない。
+
 S4 decision source ledger (checked 2026-06-30):
 
 | source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |

@@ -42,6 +42,20 @@ export interface S4DecisionReadinessResult {
   ok: boolean;
 }
 
+export interface S4DecisionPacket {
+  schemaVersion: "s4-decision-packet.v1";
+  planId: string;
+  status: "pending_po_decision" | "invalid_not_pending_s3";
+  planOnly: true;
+  mustNotDecide: true;
+  decisionCommandAvailable: false;
+  decisionAllowed: false;
+  allowedOutcomes: string[];
+  decisionRecord: Record<string, string>;
+  blockedReasons: string[];
+  nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
 const MODE_DOC_MARKERS = [
   "s4_decision_record",
   "allowed_outcome",
@@ -56,6 +70,9 @@ const MODE_DOC_MARKERS = [
   "forward_route",
   "reverse_fullback_required",
   "promotion_strategy_or_rejection_pivot_rationale",
+  "s4-decision-packet.v1",
+  "planOnly=true",
+  "decisionAllowed=false",
   "S4 decision source ledger",
   "Scrum Guide 2020",
   "ISO/IEC/IEEE 29148",
@@ -410,6 +427,47 @@ export function analyzeS4DecisionReadiness(
   };
 }
 
+export function buildS4DecisionPackets(input: S4DecisionReadinessInput): S4DecisionPacket[] {
+  return input.plans
+    .filter(isS3PocPendingDecision)
+    .map((plan) => buildS4DecisionPacket(plan))
+    .sort((a, b) => a.planId.localeCompare(b.planId));
+}
+
+export function buildS4DecisionPacket(plan: S4DecisionPlan): S4DecisionPacket {
+  const decisionRecord = recordValues(plan.text, S4_RECORD_NAME, [...S4_RECORD_FIELDS]);
+  const blockedReasons = s4DecisionBlockedReasons(plan, decisionRecord);
+  return {
+    schemaVersion: "s4-decision-packet.v1",
+    planId: plan.plan_id,
+    status: isS3PocPendingDecision(plan) ? "pending_po_decision" : "invalid_not_pending_s3",
+    planOnly: true,
+    mustNotDecide: true,
+    decisionCommandAvailable: false,
+    decisionAllowed: false,
+    allowedOutcomes: [...S4_ALLOWED_OUTCOMES],
+    decisionRecord,
+    blockedReasons,
+    nextWorkflowRoutes: [
+      {
+        outcome: "confirmed",
+        route:
+          "record S4 decision_outcome=confirmed, terminal status, semantic frontier update, then route through Forward/Reverse fullback as declared",
+      },
+      {
+        outcome: "rejected",
+        route:
+          "record rejection/archive rationale, set terminal archived status, and exclude from active completion frontier",
+      },
+      {
+        outcome: "pivot",
+        route:
+          "record pivot rationale, archive the old PoC, and route a new S0/S1 backlog item or PLAN-DISCOVERY",
+      },
+    ],
+  };
+}
+
 function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): string[] {
   const discovery = parseS4DecisionSourceLedger(discoveryMd);
   const scrum = parseS4DecisionSourceLedger(scrumMd);
@@ -508,6 +566,39 @@ function tableCells(line: string): string[] {
     .replace(/\|$/, "")
     .split("|")
     .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
+}
+
+function recordValues(
+  text: string,
+  recordName: string,
+  fields: readonly string[],
+): Record<string, string> {
+  return Object.fromEntries(
+    fields.map((field) => [field, recordFieldValue(text, recordName, field) ?? ""]),
+  );
+}
+
+function s4DecisionBlockedReasons(
+  plan: S4DecisionPlan,
+  decisionRecord: Record<string, string>,
+): string[] {
+  const reasons: string[] = [];
+  if (!isS3PocPendingDecision(plan)) {
+    reasons.push("plan is not an S3 draft PoC pending PO decision");
+  } else {
+    reasons.push("plan remains S3 draft; PO/S4 decision_outcome has not been recorded");
+  }
+  if (plan.decisionOutcome) {
+    reasons.push(
+      "decision_outcome is already present and must be validated as S4 terminal evidence",
+    );
+  }
+  for (const field of S4_RECORD_FIELDS) {
+    if (!(decisionRecord[field] ?? "").trim()) {
+      reasons.push(`s4_decision_record lacks concrete ${field}`);
+    }
+  }
+  return [...new Set(reasons)];
 }
 
 export function s4DecisionReadinessMessages(result: S4DecisionReadinessResult): string[] {

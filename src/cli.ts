@@ -59,6 +59,7 @@ import {
   exportRelationDiagram,
   type RelationDiagramAdapter,
 } from "./lint/relation-graph";
+import { buildS4DecisionPackets, loadS4DecisionReadinessInput } from "./lint/s4-decision-readiness";
 import {
   inspectMcpProfile,
   listVerificationProfiles,
@@ -1075,6 +1076,32 @@ versionUp
     for (const packet of filtered) {
       process.stdout.write(
         `version-up activation-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} activationAllowed=${packet.activationAllowed} applyCommandAvailable=${packet.applyCommandAvailable}\n`,
+      );
+      for (const reason of packet.blockedReasons) {
+        process.stdout.write(`  blocked: ${reason}\n`);
+      }
+    }
+  });
+
+const s4 = program.command("s4").description("S4 PO decision planning surfaces");
+s4.command("decision-packet")
+  .description("emit non-destructive S4 decision packets for S3 pending PoC PLANs")
+  .option("--json", "JSON output")
+  .option("--plan <planId>", "filter by PLAN id")
+  .action((opts: { json?: boolean; plan?: string }) => {
+    const packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(process.cwd()));
+    const filtered = opts.plan ? packets.filter((packet) => packet.planId === opts.plan) : packets;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(filtered, null, 2)}\n`);
+      return;
+    }
+    if (filtered.length === 0) {
+      process.stdout.write("s4 decision-packet: no S3 pending PoC PLANs matched\n");
+      return;
+    }
+    for (const packet of filtered) {
+      process.stdout.write(
+        `s4 decision-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} decisionAllowed=${packet.decisionAllowed} decisionCommandAvailable=${packet.decisionCommandAvailable}\n`,
       );
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);

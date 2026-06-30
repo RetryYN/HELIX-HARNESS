@@ -1,6 +1,8 @@
+import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 import {
   analyzeS4DecisionReadiness,
+  buildS4DecisionPackets,
   loadS4DecisionReadinessInput,
   type S4DecisionReadinessInput,
   s4DecisionReadinessMessages,
@@ -21,6 +23,9 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "forward_route",
     "reverse_fullback_required",
     "promotion_strategy_or_rejection_pivot_rationale",
+    "s4-decision-packet.v1",
+    "planOnly=true",
+    "decisionAllowed=false",
     "S4 decision source ledger (checked 2026-06-30)",
     "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
     "|---|---|---|---|---|---|---|",
@@ -73,6 +78,32 @@ describe("S4 decision readiness", () => {
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual(["PLAN-DISCOVERY-900"]);
     expect(s4DecisionReadinessMessages(result)[0]).toContain("s4-decision-readiness - OK");
+  });
+
+  it("emits a non-destructive S4 decision packet for S3 pending PoC plans", () => {
+    const packets = buildS4DecisionPackets(input());
+    expect(packets).toHaveLength(1);
+    const packet = packets[0];
+
+    expect(packet).toMatchObject({
+      schemaVersion: "s4-decision-packet.v1",
+      planId: "PLAN-DISCOVERY-900",
+      status: "pending_po_decision",
+      planOnly: true,
+      mustNotDecide: true,
+      decisionCommandAvailable: false,
+      decisionAllowed: false,
+    });
+    expect(packet.allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packet.decisionRecord.forward_route).toContain("L3 Forward design");
+    expect(packet.blockedReasons).toContain(
+      "plan remains S3 draft; PO/S4 decision_outcome has not been recorded",
+    );
+    expect(packet.nextWorkflowRoutes.map((route) => route.outcome)).toEqual([
+      "confirmed",
+      "rejected",
+      "pivot",
+    ]);
   });
 
   it("U-DECISIONREC-001: fails S3 pending PoC plans that do not say what S4 must decide", () => {
@@ -333,6 +364,9 @@ describe("S4 decision readiness", () => {
       "forward_route",
       "reverse_fullback_required",
       "promotion_strategy_or_rejection_pivot_rationale",
+      "s4-decision-packet.v1",
+      "planOnly=true",
+      "decisionAllowed=false",
       "S4 decision source ledger (checked 2026-06-30)",
       "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
       "|---|---|---|---|---|---|---|",
@@ -365,6 +399,9 @@ describe("S4 decision readiness", () => {
       "forward_route",
       "reverse_fullback_required",
       "promotion_strategy_or_rejection_pivot_rationale",
+      "s4-decision-packet.v1",
+      "planOnly=true",
+      "decisionAllowed=false",
       "S4 decision source ledger (checked 2026-01-01)",
       "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
       "|---|---|---|---|---|---|---|",
@@ -462,5 +499,39 @@ describe("S4 decision readiness", () => {
     ]);
     expect(result.missingSourceLedgerRows).toEqual([]);
     expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
+  it("exposes live S3 pending PoC work through the CLI S4 decision packet surface", () => {
+    const raw = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "s4",
+        "decision-packet",
+        "--plan",
+        "PLAN-DISCOVERY-10-helix-asset-visualization",
+        "--json",
+      ],
+      { encoding: "utf8" },
+    );
+    const packets = JSON.parse(raw);
+    expect(packets).toHaveLength(1);
+    expect(packets[0]).toMatchObject({
+      schemaVersion: "s4-decision-packet.v1",
+      planId: "PLAN-DISCOVERY-10-helix-asset-visualization",
+      status: "pending_po_decision",
+      planOnly: true,
+      mustNotDecide: true,
+      decisionCommandAvailable: false,
+      decisionAllowed: false,
+    });
+    expect(packets[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining([
+        "plan remains S3 draft; PO/S4 decision_outcome has not been recorded",
+      ]),
+    );
+    expect(packets[0].decisionRecord.forward_route).toContain("L3 visualization");
   });
 });
