@@ -57,7 +57,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
           "- unresolved_risk: none",
           "- external_source_basis: docs/process/modes/discovery.md",
           "- route_impact: confirmed routes forward; rejected/pivot returns backlog",
-          "- forward_route: confirmed route",
+          "- forward_route: confirmed route to L3 Forward design",
           "- reverse_fullback_required: yes",
           "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening or reject/pivot rationale",
         ].join("\n"),
@@ -125,7 +125,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- forward_route: confirmed route",
+              "- forward_route: confirmed route to L3 Forward design",
               "- reverse_fullback_required: yes",
             ].join("\n"),
           },
@@ -213,6 +213,106 @@ describe("S4 decision readiness", () => {
         {
           subject: "PLAN-DISCOVERY-906",
           reason: "missing structured promotion_strategy_or_rejection_pivot_rationale",
+        },
+      ]),
+    );
+  });
+
+  it("U-DECISIONREC-006: fails confirmed S4 decisions whose record contradicts promotion semantics", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-907.md",
+            plan_id: "PLAN-DISCOVERY-907",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "confirmed",
+            text: [
+              "decision_outcome: confirmed",
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- route_impact: confirmed but no promotion route",
+              "- forward_route: none; archive only",
+              "- reverse_fullback_required: maybe",
+              "- promotion_strategy_or_rejection_pivot_rationale: reject the spike; no feature promotion",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-DISCOVERY-907",
+          reason:
+            "confirmed decision requires forward_route to name a Forward/Reverse promotion target",
+        },
+        {
+          subject: "PLAN-DISCOVERY-907",
+          reason: "confirmed decision requires reverse_fullback_required to be yes or no",
+        },
+        {
+          subject: "PLAN-DISCOVERY-907",
+          reason:
+            "confirmed decision requires promotion_strategy_or_rejection_pivot_rationale to include reuse-as-is, reuse-with-hardening, or redesign",
+        },
+      ]),
+    );
+  });
+
+  it("U-DECISIONREC-006: fails rejected S4 decisions that still look like feature promotion", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-908.md",
+            plan_id: "PLAN-DISCOVERY-908",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "rejected",
+            text: [
+              "decision_outcome: rejected",
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- decision_owner: PO",
+              "- decision_basis: acceptance gap remains",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: mandatory scenario failed",
+              "- unresolved_risk: unbounded implementation risk",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- route_impact: rejected due acceptance gap",
+              "- forward_route: PLAN-L3-99-promote-rejected-spike",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: rejected due acceptance gap",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-DISCOVERY-908",
+          reason: "rejected S4 decision must archive the PoC plan",
+        },
+        {
+          subject: "PLAN-DISCOVERY-908",
+          reason: "rejected decision must not name a Forward promotion route",
         },
       ]),
     );

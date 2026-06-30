@@ -1,6 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
+import {
+  allowedOutcomeSetViolation,
+  fmValue,
+  missingRecordFields,
+  recordFieldValue,
+} from "./shared";
 import {
   hasSourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
@@ -84,6 +89,7 @@ const S4_RECORD_FIELDS = [
   "promotion_strategy_or_rejection_pivot_rationale",
 ] as const;
 const S4_ALLOWED_OUTCOMES = ["confirmed", "rejected", "pivot"] as const;
+type S4AllowedOutcome = (typeof S4_ALLOWED_OUTCOMES)[number];
 
 const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "source",
@@ -157,7 +163,174 @@ function validateS4DecisionRecord(plan: S4DecisionPlan): S4DecisionViolation[] {
   if (outcomeViolation) {
     violations.push({ subject: plan.plan_id, reason: outcomeViolation });
   }
+  if (missingFields.length === 0 && !outcomeViolation) {
+    violations.push(...validateSelectedOutcomeSemantics(plan));
+  }
   return violations;
+}
+
+function validateSelectedOutcomeSemantics(plan: S4DecisionPlan): S4DecisionViolation[] {
+  const outcome = plan.decisionOutcome;
+  if (!outcome || !isS4AllowedOutcome(outcome)) return [];
+
+  const violations: S4DecisionViolation[] = [];
+  const status = plan.status;
+  const routeImpact = s4RecordField(plan, "route_impact");
+  const forwardRoute = s4RecordField(plan, "forward_route");
+  const reverseFullbackRequired = s4RecordField(plan, "reverse_fullback_required");
+  const rationale = s4RecordField(plan, "promotion_strategy_or_rejection_pivot_rationale");
+
+  if (!["confirmed", "completed", "archived"].includes(status)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "S4 decision_outcome requires terminal status",
+    });
+  }
+
+  if (outcome === "confirmed") {
+    if (status === "archived") {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "confirmed S4 decision cannot use archived status",
+      });
+    }
+    if (!mentions(routeImpact, ["confirmed"])) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "confirmed decision requires route_impact to describe confirmed impact",
+      });
+    }
+    if (!mentionsPromotionTarget(forwardRoute)) {
+      violations.push({
+        subject: plan.plan_id,
+        reason:
+          "confirmed decision requires forward_route to name a Forward/Reverse promotion target",
+      });
+    }
+    if (!/^(yes|no)\b/i.test(reverseFullbackRequired)) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "confirmed decision requires reverse_fullback_required to be yes or no",
+      });
+    }
+    if (
+      /^no\b/i.test(reverseFullbackRequired) &&
+      !mentions(rationale, ["redesign", "reuse-as-is", "reuse-with-hardening"])
+    ) {
+      violations.push({
+        subject: plan.plan_id,
+        reason:
+          "confirmed decision with no reverse fullback requires an explicit promotion strategy",
+      });
+    }
+    if (!mentions(rationale, ["reuse-as-is", "reuse-with-hardening", "redesign"])) {
+      violations.push({
+        subject: plan.plan_id,
+        reason:
+          "confirmed decision requires promotion_strategy_or_rejection_pivot_rationale to include reuse-as-is, reuse-with-hardening, or redesign",
+      });
+    }
+  }
+
+  if (outcome === "rejected") {
+    if (status !== "archived") {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "rejected S4 decision must archive the PoC plan",
+      });
+    }
+    if (!mentions(routeImpact, ["rejected", "reject", "archive", "archived"])) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "rejected decision requires route_impact to describe rejection/archive impact",
+      });
+    }
+    if (!mentionsNoForwardRoute(forwardRoute)) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "rejected decision must not name a Forward promotion route",
+      });
+    }
+    if (!mentions(rationale, ["rejected", "reject", "archive", "archived"])) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "rejected decision requires rejection/archive rationale",
+      });
+    }
+  }
+
+  if (outcome === "pivot") {
+    if (status !== "archived") {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "pivot S4 decision must archive the old PoC plan",
+      });
+    }
+    if (!mentions(routeImpact, ["pivot"])) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "pivot decision requires route_impact to describe pivot impact",
+      });
+    }
+    if (
+      !mentions(`${forwardRoute} ${rationale}`, [
+        "new poc",
+        "new PLAN-DISCOVERY",
+        "S0",
+        "retry",
+        "backlog",
+        "next sprint",
+        "再投入",
+      ])
+    ) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "pivot decision requires a new PoC/S0/backlog route",
+      });
+    }
+    if (!mentions(rationale, ["pivot"])) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "pivot decision requires pivot rationale",
+      });
+    }
+  }
+
+  return violations;
+}
+
+function isS4AllowedOutcome(outcome: string): outcome is S4AllowedOutcome {
+  return S4_ALLOWED_OUTCOMES.includes(outcome as S4AllowedOutcome);
+}
+
+function s4RecordField(plan: S4DecisionPlan, field: string): string {
+  return recordFieldValue(plan.text, S4_RECORD_NAME, field) ?? "";
+}
+
+function mentions(value: string, needles: string[]): boolean {
+  const normalized = value.toLowerCase();
+  return needles.some((needle) => normalized.includes(needle.toLowerCase()));
+}
+
+function mentionsPromotionTarget(value: string): boolean {
+  return (
+    /\bPLAN-(?:L|REVERSE)-/i.test(value) ||
+    /\bL(?:1|2|3|4|5|6|7|8|9|10|11|12|13|14)\b/.test(value) ||
+    mentions(value, ["Forward", "Reverse", "requirements", "design", "descent", "正本"])
+  );
+}
+
+function mentionsNoForwardRoute(value: string): boolean {
+  return mentions(value, [
+    "none",
+    "no forward",
+    "not applicable",
+    "n/a",
+    "archive",
+    "archived",
+    "backlog",
+    "除外",
+  ]);
 }
 
 export function analyzeS4DecisionReadiness(
