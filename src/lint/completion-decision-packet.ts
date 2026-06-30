@@ -19,7 +19,9 @@ export type CompletionDecisionPacketViolationReason =
   | "missing_required_records"
   | "invalid_required_record"
   | "missing_allowed_outcomes_by_record"
-  | "invalid_allowed_outcomes_by_record";
+  | "invalid_allowed_outcomes_by_record"
+  | "missing_next_routes_by_record"
+  | "invalid_next_routes_by_record";
 
 export interface CompletionDecisionPacketViolation {
   reason: CompletionDecisionPacketViolationReason;
@@ -150,6 +152,15 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] planId=${decision.planId}`,
       });
     }
+    if (
+      !Array.isArray(decision.nextWorkflowRoutesByRecord) ||
+      decision.nextWorkflowRoutesByRecord.length === 0
+    ) {
+      violations.push({
+        reason: "missing_next_routes_by_record",
+        detail: `decision[${decisionIndex}] planId=${decision.planId}`,
+      });
+    }
     decision.requiredRecords.forEach((record, recordIndex) => {
       const subject = `decision[${decisionIndex}].requiredRecords[${recordIndex}]`;
       if (!record.recordName?.trim()) {
@@ -192,6 +203,9 @@ export function analyzeCompletionDecisionPacket(
     const outcomeRecords = new Map(
       (decision.allowedOutcomesByRecord ?? []).map((entry) => [entry.recordName, entry]),
     );
+    const routeRecords = new Map(
+      (decision.nextWorkflowRoutesByRecord ?? []).map((entry) => [entry.recordName, entry]),
+    );
     for (const record of decision.requiredRecords) {
       const outcome = outcomeRecords.get(record.recordName);
       if (!outcome) {
@@ -215,6 +229,21 @@ export function analyzeCompletionDecisionPacket(
             detail: `decision[${decisionIndex}] ${record.recordName} invalid outcome=${allowedOutcome}`,
           });
         }
+      }
+      const route = routeRecords.get(record.recordName);
+      if (!route) {
+        violations.push({
+          reason: "invalid_next_routes_by_record",
+          detail: `decision[${decisionIndex}] missing route for ${record.recordName}`,
+        });
+        continue;
+      }
+      const nextWorkflowRoute = route.nextWorkflowRoute ?? "";
+      if (!nextWorkflowRoute.trim() || /^(TBD|TODO|-)$/.test(nextWorkflowRoute.trim())) {
+        violations.push({
+          reason: "invalid_next_routes_by_record",
+          detail: `decision[${decisionIndex}] ${record.recordName} invalid route=${nextWorkflowRoute}`,
+        });
       }
     }
   });

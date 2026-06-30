@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T16:44:15+09:00"
+    tests_green_at: "2026-06-30T16:44:15+09:00"
+    verdict: pass
+    scope: "Continuation 16: completion decision packets now expose nextWorkflowRoutesByRecord for every required decision record. Multi-blocker PLANs can no longer hide action-binding or parked-review return routes behind a primary S4/version-up/cutover route."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T16:44:15+09:00"
+        evidence_path: tests/completion-decision-packet.test.ts
+        output_digest: "sha256:542006f1bfafb9ff83d6281b438a76ca215f01a4ade933f217b9456b67d50b87"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T16:44:15+09:00"
+        evidence_path: src/lint/outstanding.ts
+        output_digest: "sha256:86c228fb7ced7530805ac003c6db3a49b77ade6fc779797c2de32f03cb28945d"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:34:00+09:00"
     tests_green_at: "2026-06-30T16:34:00+09:00"
     verdict: pass
@@ -26,7 +51,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:34:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:1a7dce227cb8ac201da357c412c5bdbcf0c5d801377b90e65847f837e7067434"
+        output_digest: "sha256:542006f1bfafb9ff83d6281b438a76ca215f01a4ade933f217b9456b67d50b87"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -34,7 +59,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:34:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
+        output_digest: "sha256:86c228fb7ced7530805ac003c6db3a49b77ade6fc779797c2de32f03cb28945d"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:21:00+09:00"
@@ -101,7 +126,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:89081963c60b14d118b06cc1b639a69a2520aa67318c99f833497e73627d9b16"
+        output_digest: "sha256:60a44e700a02fa512a4f3d421b8d4c0f9a475e6d6789ac34aca35cc242b479d4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -109,7 +134,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
+        output_digest: "sha256:86c228fb7ced7530805ac003c6db3a49b77ade6fc779797c2de32f03cb28945d"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:41:37+09:00"
@@ -176,7 +201,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:00:21+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:1a7dce227cb8ac201da357c412c5bdbcf0c5d801377b90e65847f837e7067434"
+        output_digest: "sha256:542006f1bfafb9ff83d6281b438a76ca215f01a4ade933f217b9456b67d50b87"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -184,7 +209,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:00:21+09:00"
         evidence_path: src/lint/completion-decision-packet.ts
-        output_digest: "sha256:8c18f75ab7b7c6d8c4775880ba5c0d71a515524f843d1a7d44e4087456533255"
+        output_digest: "sha256:02dc99e93fd554150a201655c047f1bc55b1d9aedabe967db5a5d3ae741d8bf1"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:53:25+09:00"
@@ -226,7 +251,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:89081963c60b14d118b06cc1b639a69a2520aa67318c99f833497e73627d9b16"
+        output_digest: "sha256:60a44e700a02fa512a4f3d421b8d4c0f9a475e6d6789ac34aca35cc242b479d4"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -234,7 +259,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T13:00:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:1a7dce227cb8ac201da357c412c5bdbcf0c5d801377b90e65847f837e7067434"
+        output_digest: "sha256:542006f1bfafb9ff83d6281b438a76ca215f01a4ade933f217b9456b67d50b87"
       - kind: unit_test
         command: "bun run vitest run tests/cutover-readiness.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --run"
         runner: bun
@@ -250,7 +275,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
+        output_digest: "sha256:86c228fb7ced7530805ac003c6db3a49b77ade6fc779797c2de32f03cb28945d"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -258,7 +283,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
+        output_digest: "sha256:86c228fb7ced7530805ac003c6db3a49b77ade6fc779797c2de32f03cb28945d"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -266,7 +291,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
+        output_digest: "sha256:86c228fb7ced7530805ac003c6db3a49b77ade6fc779797c2de32f03cb28945d"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -367,7 +392,9 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   これにより PO/S4 と action-binding approval が同じ PLAN に同居しても承認 record が packet から落ちず、
   PO 判断 packet が文章の requiredEvidence だけに戻ることを防ぐ。2026-06-30 continuation 15 で
   `allowedOutcomesByRecord` を追加し、primary blocker 以外の record outcome (例: action-binding approval) が
-  allowed outcomes から落ちる状態も fail-close にした。
+  allowed outcomes から落ちる状態も fail-close にした。2026-06-30 continuation 16 で
+  `nextWorkflowRoutesByRecord` を追加し、primary blocker 以外の record route (例: action-binding approval /
+  parked review) が next route から落ちる状態も fail-close にした。
 - `src/lint/action-binding-approval-readiness.ts`: high-impact approval / action-binding / human approval を含む
   非終端 PLAN が `action_binding_approval_record` を本文に持つことを doctor hard gate として検査する。
   record は `allowed_outcome`、`approval_policy_or_named_approver`、`approval_scope`、
@@ -428,6 +455,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   doctor `completion-decision-packet` hard gate が拒否する。
 - [x] completion decision packet は `allowedOutcomesByRecord` を持ち、requiredRecords ごとの allowed outcomes
   欠落や primary blocker への丸め込みを doctor `completion-decision-packet` hard gate が拒否する。
+- [x] completion decision packet は `nextWorkflowRoutesByRecord` を持ち、requiredRecords ごとの workflow route
+  欠落や primary blocker への丸め込みを doctor `completion-decision-packet` hard gate が拒否する。
 - [x] doctor `action-binding-approval-readiness` hard gate が、承認待ち PLAN 本文の `action_binding_approval_record`
   欠落や field 欠落を拒否し、completion packet だけに承認境界が残る状態を防ぐ。
 - [x] action-binding approval は `approval_scope` prose だけでは通らず、`approved_actor` / `approved_tool` /
@@ -446,7 +475,7 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   decision packet へ直接辿れる。
 - [x] informational surface = 非 fail-close (gate ではない、doctor.ok に連動させない)。
 - [x] test 15 ケース (analyze 5 / completion readiness 2 / decision packet 3 / summaryLine 2 / loader+compute 3)、
-  completion-decision-packet 8 ケース、action-binding approval readiness 3 ケース、S4 readiness 7 ケース、cutover readiness 6 ケース。typecheck / Biome /
+  completion-decision-packet 12 ケース、action-binding approval readiness 3 ケース、S4 readiness 7 ケース、cutover readiness 6 ケース。typecheck / Biome /
   Vitest / doctor green。
 
 ## 4. Out of scope

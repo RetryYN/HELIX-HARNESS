@@ -507,6 +507,11 @@ completion
           `    record-outcomes ${record.recordName}: ${record.allowedOutcomes.join(", ")}\n`,
         );
       }
+      for (const record of decision.nextWorkflowRoutesByRecord) {
+        process.stdout.write(
+          `    record-route ${record.recordName}: ${record.nextWorkflowRoute}\n`,
+        );
+      }
     }
   });
 

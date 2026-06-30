@@ -97,7 +97,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-28"
         evidence_path: src/cli.ts
-        output_digest: "sha256:33ec341e4088dbdf87cdc74e0d6f8ed88ec6911f36a53d41ccbdaf15517f84ae"
+        output_digest: "sha256:07cb1646c23ce02d4836a2c7698e508e67beaae7d8d43b4042a3d8e9f82d9ad6"
 ---
 
 # PLAN-L3-06: HELIX L1 pillar requirements -> L3 FR/AC descent

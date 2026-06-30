@@ -150,6 +150,39 @@ describe("completion decision packet lint", () => {
     expect(result.violations.map((v) => v.reason)).toContain("invalid_allowed_outcomes_by_record");
   });
 
+  it("rejects decisions whose required records lack record-level workflow routes", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        nextWorkflowRoutesByRecord: [],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("missing_next_routes_by_record");
+  });
+
+  it("rejects decisions when record-level workflow routes do not cover required records", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        nextWorkflowRoutesByRecord: [
+          {
+            recordName: "other_record",
+            nextWorkflowRoute: "other route",
+          },
+        ],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("invalid_next_routes_by_record");
+  });
+
   // U-OUTSTANDING-003
   it("loads the current repo packet as fresh doctor input", () => {
     const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");

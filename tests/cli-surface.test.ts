@@ -235,6 +235,14 @@ describe("L7 CLI surface closure", () => {
           },
         ]),
       );
+      expect(packet.decisions[1].nextWorkflowRoutesByRecord).toEqual(
+        expect.arrayContaining([
+          {
+            recordName: "cutover_decision_record",
+            nextWorkflowRoute: expect.stringContaining("L14 cutover decision"),
+          },
+        ]),
+      );
 
       const text = runCliIn(root, ["completion", "decision-packet"]);
       expect(text.status).toBe(0);
@@ -242,6 +250,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain("record-outcomes cutover_decision_record");
+      expect(text.stdout).toContain("record-route cutover_decision_record");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

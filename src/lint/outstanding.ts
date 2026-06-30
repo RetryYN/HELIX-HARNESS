@@ -107,6 +107,7 @@ export interface CompletionDecisionItem {
   requiredRecords: CompletionDecisionRecordRequirement[];
   allowedOutcomes: string[];
   allowedOutcomesByRecord: CompletionDecisionRecordOutcome[];
+  nextWorkflowRoutesByRecord: CompletionDecisionRecordRoute[];
   nextWorkflowRoute: string;
 }
 
@@ -119,6 +120,11 @@ export interface CompletionDecisionRecordRequirement {
 export interface CompletionDecisionRecordOutcome {
   recordName: string;
   allowedOutcomes: string[];
+}
+
+export interface CompletionDecisionRecordRoute {
+  recordName: string;
+  nextWorkflowRoute: string;
 }
 
 export interface CompletionDecisionPacket {
@@ -485,6 +491,7 @@ export function completionDecisionPacketForOutstanding(
         requiredRecords,
         allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
         allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
+        nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
       };
     }),
@@ -558,6 +565,34 @@ function allowedOutcomesForRecordName(recordName: string): string[] {
       return ["continue_workflow", "mark_terminal_after_required_evidence"];
     default:
       return ["record_decision", "request_schema_update"];
+  }
+}
+
+function nextWorkflowRoutesForRecords(
+  records: CompletionDecisionRecordRequirement[],
+): CompletionDecisionRecordRoute[] {
+  return records.map((record) => ({
+    recordName: record.recordName,
+    nextWorkflowRoute: nextWorkflowRouteForRecordName(record.recordName),
+  }));
+}
+
+function nextWorkflowRouteForRecordName(recordName: string): string {
+  switch (recordName) {
+    case "s4_decision_record":
+      return "S4 decide -> record decision_outcome, then route to Forward L1/L3-L6, rejected backlog exclusion, or pivot sprint";
+    case "activation_decision_record":
+      return "version-up activation -> activate via add-feature/Forward route, reject/archive, or keep parked with review_by";
+    case "parked_review_record":
+      return "version-up parked review -> schedule review, mark stale, or route to activation_decision_record";
+    case "cutover_decision_record":
+      return "L14 cutover decision -> approve_cutover, reject/defer, or request runbook changes before any irreversible apply";
+    case "action_binding_approval_record":
+      return "action-binding approval gate -> approve scoped actor/tool/target/params, deny action, or reduce scope before execution";
+    case "terminal_evidence_record":
+      return "workflow continuation -> keep current phase open until terminal evidence and green commands exist";
+    default:
+      return "record-specific workflow route is undefined; update completion decision schema before completion claim";
   }
 }
 

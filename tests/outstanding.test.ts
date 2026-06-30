@@ -271,6 +271,16 @@ describe("completionDecisionPacketForOutstanding", () => {
         allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
       },
     ]);
+    expect(packet.decisions[0].nextWorkflowRoutesByRecord).toEqual([
+      {
+        recordName: "s4_decision_record",
+        nextWorkflowRoute: expect.stringContaining("S4 decide"),
+      },
+      {
+        recordName: "action_binding_approval_record",
+        nextWorkflowRoute: expect.stringContaining("action-binding approval gate"),
+      },
+    ]);
     expect(packet.decisions[0].requiredRecords).toEqual([
       {
         recordName: "s4_decision_record",
@@ -343,6 +353,20 @@ describe("completionDecisionPacketForOutstanding", () => {
         allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
       },
     ]);
+    expect(packet.decisions[1].nextWorkflowRoutesByRecord).toEqual([
+      {
+        recordName: "activation_decision_record",
+        nextWorkflowRoute: expect.stringContaining("version-up activation"),
+      },
+      {
+        recordName: "parked_review_record",
+        nextWorkflowRoute: expect.stringContaining("version-up parked review"),
+      },
+      {
+        recordName: "action_binding_approval_record",
+        nextWorkflowRoute: expect.stringContaining("action-binding approval gate"),
+      },
+    ]);
     expect(packet.decisions[1].requiredRecords[0]?.fields).toEqual([
       "allowed_outcome",
       "target_version_or_release_trigger",
@@ -385,6 +409,12 @@ describe("completionDecisionPacketForOutstanding", () => {
       {
         recordName: "cutover_decision_record",
         allowedOutcomes: ["approve_cutover", "reject_or_defer", "request_runbook_changes"],
+      },
+    ]);
+    expect(packet.decisions[2].nextWorkflowRoutesByRecord).toEqual([
+      {
+        recordName: "cutover_decision_record",
+        nextWorkflowRoute: expect.stringContaining("L14 cutover decision"),
       },
     ]);
     expect(packet.decisions[2].nextWorkflowRoute).toContain("cutover_decision_record");
