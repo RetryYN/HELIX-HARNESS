@@ -52,6 +52,7 @@ import {
   checkTrackedCanonical,
   checkVerificationGroupsResult,
   checkVerificationProfile,
+  checkVersionUpReadiness,
   type DoctorDeps,
   runDoctor,
 } from "../src/doctor/index";
@@ -304,6 +305,11 @@ describe("runDoctor", () => {
   it("includes right-arm verification strategy hard gate in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: right-arm-verification-strategy - OK")).toBe(true);
+  });
+
+  it("includes version-up readiness hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
   });
 
   it("includes G1/G3 trace gates in doctor output", () => {
@@ -674,6 +680,7 @@ describe("runDoctor", () => {
       ["tracked-canonical", checkTrackedCanonical(missingRoot)],
       ["dependency-drift", checkDependencyDrift(missingRoot)],
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
+      ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
       ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
     ] as const;
 
@@ -754,6 +761,7 @@ describe("runDoctor", () => {
       "trackedCanonical",
       "dependencyDrift",
       "rightArmVerificationStrategy",
+      "versionUpReadiness",
       "regressionExpansion",
     ];
 

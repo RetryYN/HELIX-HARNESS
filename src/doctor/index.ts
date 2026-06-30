@@ -267,6 +267,11 @@ import {
   loadVerificationRecommendation,
   verificationProfileGateMessages,
 } from "../lint/verification-profile";
+import {
+  analyzeVersionUpReadiness,
+  loadVersionUpReadinessInput,
+  versionUpReadinessMessages,
+} from "../lint/version-up-readiness";
 import type { LintResult } from "../plan/lint";
 import { lintPlan, lintPlanWithGate } from "../plan/lint";
 import { SUBAGENT_ALLOWLIST } from "../runtime/agent-guard";
@@ -1816,6 +1821,18 @@ export function checkForwardConvergence(repoRoot: string): { messages: string[];
   }
 }
 
+export function checkVersionUpReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeVersionUpReadiness(loadVersionUpReadinessInput(repoRoot));
+    return { messages: versionUpReadinessMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["version-up-readiness - violation: version-up docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
 /** legacy debt allowlist ↔ audit doc の双方向一致 hard check (Codex Critical B)。 */
 export function checkForwardConvergenceAudit(repoRoot: string): {
   messages: string[];
@@ -1975,6 +1992,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const greenCommandDigest = checkGreenCommandDigests(deps.repoRoot);
   // fail-close: spine-外 kind=impl の NEW 未集約 landed を gate (PLAN-DISCOVERY-08 Step5)。legacy は grandfather。
   const forwardConvergence = checkForwardConvergence(deps.repoRoot);
+  const versionUpReadiness = checkVersionUpReadiness(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   return {
     ok:
@@ -2046,6 +2064,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       proposalDocumentCoverage.ok &&
       frontendDesignCoverage.ok &&
       forwardConvergence.ok &&
+      versionUpReadiness.ok &&
       forwardConvergenceAudit.ok &&
       handoverOutstanding.ok,
     messages: [
@@ -2123,6 +2142,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...handoverOutstanding.messages.map((m) => `doctor: ${m}`),
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergence.messages.map((m) => `doctor: ${m}`),
+      ...versionUpReadiness.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],
   };

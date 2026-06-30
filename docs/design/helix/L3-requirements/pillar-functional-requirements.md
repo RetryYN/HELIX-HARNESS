@@ -104,7 +104,7 @@ L3 要件の受入条件として固定する。
 | HAC-P0-02b | lock 中に同一 plan の worker が再入 | claim を試行 | 二重実行せず retry/backoff または Recovery に送る |
 | HAC-P1-01a | L3 承認済 plan が runnable かつ未 pass | scheduler が起動 | resume 3 条件、job availability、budget を満たす場合だけ worker/verifier を dispatch |
 | HAC-P1-01b | context threshold 到達前 | continuation を判断 | fresh-session handover を生成し、次 session が next_action から再開できる |
-| HAC-P1-02a | 今版対象外の requirement がある | plan lint を実行 | `version_target` と理由が無ければ pending として fail |
+| HAC-P1-02a | 今版対象外の requirement がある | plan lint / `version-up-readiness` を実行 | `version_target` と理由、activation 条件、要求・機能一覧との trace が無ければ pending として fail |
 | HAC-P1-02b | tag bump を要求 | dry-run を実行 | migration/compatibility/rollback/idempotency plan を出し、破壊的操作は適用しない |
 | HAC-P1-03a | L/M/Large 判定または長時間実行が必要な要求がある | planner が work breakdown を作る | Scrum / PoC / sprint backlog の slice に分解し、各 slice が parent、Forward 返却先、acceptance、budget を持つ |
 | HAC-P1-03b | 分割済み slice から fresh session に再入する | handover/status を読む | 次 slice、未充足 gate、next_action が command output または handover に残り、手作業の doc 探索を前提にしない |
