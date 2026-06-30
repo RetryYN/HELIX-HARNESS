@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fmValue, missingRecordFields } from "./shared";
+import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
 export interface VersionUpReadinessPlan {
   file: string;
@@ -260,7 +261,14 @@ export function analyzeVersionUpReadiness(
   const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
     (source) => !sourceLedger.rows.some((row) => row.source === source),
   );
+  const freshnessViolation = sourceLedgerCheckedDateViolation(
+    input.modeDoc,
+    "Version-up source ledger",
+  );
   const sourceLedgerViolations: VersionUpReadinessViolation[] = [
+    ...(freshnessViolation
+      ? [{ subject: "docs/process/modes/version-up.md", reason: freshnessViolation }]
+      : []),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => ({

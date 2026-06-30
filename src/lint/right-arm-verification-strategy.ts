@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
 export interface RightArmVerificationStrategyInput {
   gatesMd: string;
@@ -142,7 +143,12 @@ export function analyzeRightArmVerificationStrategy(
   const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
     (source) => !sourceLedger.rows.some((row) => row.source === source),
   );
+  const sourceLedgerFreshnessViolation = sourceLedgerCheckedDateViolation(
+    input.rightArmMd,
+    "Verification source ledger",
+  );
   const sourceLedgerViolations = [
+    ...(sourceLedgerFreshnessViolation ? [sourceLedgerFreshnessViolation] : []),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => `verification source ledger missing column: ${column}`),

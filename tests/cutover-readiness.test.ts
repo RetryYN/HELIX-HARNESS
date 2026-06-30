@@ -148,6 +148,24 @@ describe("cutover readiness", () => {
     });
   });
 
+  it("fails when the cutover source ledger checked date is stale", () => {
+    // U-SOURCELEDGER-004
+    const result = analyzeCutoverReadiness(
+      input({
+        rightArmMd: cutoverMarkers.replace(
+          "Cutover source ledger (checked 2026-06-30):",
+          "Cutover source ledger (checked 2026-01-01):",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/forward/L08-L14-verification-phase.md",
+      reason: "Cutover source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    });
+  });
+
   it("ignores terminal or non-L14 migration prose", () => {
     const result = analyzeCutoverReadiness(
       input({

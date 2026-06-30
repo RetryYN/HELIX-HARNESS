@@ -55,7 +55,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:1c3d499aff26f31b8c4a9c847e97fee4c593e17ce31ada43bed978885620a385"
+        output_digest: "sha256:000b8c3de9c87c9c624bb8e472ca02187fe02e8af08bcbcd766935ec9b628389"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -63,7 +63,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:abdb20819c4bfa0eb94a44bb579e595958e38271e79e8ebd2576280d9f844959"
+        output_digest: "sha256:6b526b05244e7b44bf22ebbf7f27cf24b4de4dafede2be282ad23ed822fc4982"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:32:07+09:00"
@@ -80,7 +80,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:1c3d499aff26f31b8c4a9c847e97fee4c593e17ce31ada43bed978885620a385"
+        output_digest: "sha256:000b8c3de9c87c9c624bb8e472ca02187fe02e8af08bcbcd766935ec9b628389"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -88,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:28:03+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:abdb20819c4bfa0eb94a44bb579e595958e38271e79e8ebd2576280d9f844959"
+        output_digest: "sha256:6b526b05244e7b44bf22ebbf7f27cf24b4de4dafede2be282ad23ed822fc4982"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -96,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:1c3d499aff26f31b8c4a9c847e97fee4c593e17ce31ada43bed978885620a385"
+        output_digest: "sha256:000b8c3de9c87c9c624bb8e472ca02187fe02e8af08bcbcd766935ec9b628389"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -125,6 +125,9 @@ path, and preserve approval/escalation boundaries before future activation.
   adopted version/date, latest official status, adoption decision,
   version-up use, and required field impact. Release automation candidates
   (semantic-release / Release Please) stay compare-only until a release ADR.
+- Check the version-up source ledger `checked` date. A future date or a date
+  older than 90 days is stale and cannot support parked review, activation, or
+  completion packet decisions.
 - Require external activation candidates to mention action-binding approval,
   `escalation_boundaries`, and unapproved `exit 1` behavior.
 - Do not activate `PLAN-L7-146` or touch external infrastructure, auth, secrets,
@@ -148,5 +151,6 @@ path, and preserve approval/escalation boundaries before future activation.
   `version_target: future`, but is checked for activation boundary readiness.
 - Dropping L0/L3/L4/mode catalog semantics makes the lint fail.
 - Dropping a version-up source ledger row, adoption decision, latest official
-  status, or release automation comparison source makes the lint fail.
+  status, release automation comparison source, or freshness within 90 days
+  makes the lint fail.
 - Targeted tests, typecheck, lint, DB rebuild, doctor, and full tests pass.

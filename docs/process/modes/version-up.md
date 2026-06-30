@@ -83,6 +83,8 @@ Version-up source ledger (checked 2026-06-30):
 | GitHub Rulesets | <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets> | live GitHub docs | live official GitHub docs | adopt-live-docs-for-gated-push-design | raw push deny / bypass actor / required checks plan を release activation guard として扱う | `approval_scope`, `activation_dependency` |
 | GitHub Merge Queue | <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue> | live GitHub docs | live official GitHub docs | adopt-live-docs-for-merge-readiness | required checks を満たす PR だけを merge candidate にする release readiness guard として扱う | `activation_route`, `review_trigger`, `activation_dependency` |
 
+Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その Version-up source ledger は stale とし、parked review / activation decision / completion packet の判断材料にしない。
+
 ## 5. 要求・機能一覧との意味対応
 
 version-up の機能一覧は、単に `version_target` を受理することではない。L0/P1 の「今版に入れない作業を失わない」

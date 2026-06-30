@@ -86,6 +86,63 @@ describe("right-arm verification strategy", () => {
     expect(result.missingSourceLedgerRows).toContain("Scrum Guide 2020");
   });
 
+  it("fails source ledgers whose checked date is stale", () => {
+    // U-SOURCELEDGER-001
+    const result = analyzeRightArmVerificationStrategy({
+      gatesMd: [
+        "G8 has an executable workflow gate",
+        "G9-G14 have defined evidence profiles",
+        "test-basis",
+        "test-condition",
+        "execution-evidence",
+        "defect-routing",
+        "NIST SSDF SP 800-218",
+        "Scrum Guide 2020",
+        "ISTQB Glossary",
+        "OWASP LLM06:2025 Excessive Agency",
+        "official source ledger checked 2026-06-30",
+        "https://csrc.nist.gov/pubs/sp/800/218/final",
+        "https://scrumguides.org/scrum-guide.html",
+        "https://glossary.istqb.org/",
+        "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+        "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+        "https://code.visualstudio.com/api/extension-guides/webview#security",
+        "https://sre.google/sre-book/release-engineering/",
+        "official URL / adopted version/date / latest official status / adoption decision / verification use / gate impact",
+        "PLAN-L7-130-right-arm-gate-planning",
+        "IMP-052** は implemented",
+      ].join("\n"),
+      rightArmMd: [
+        "### Verification source ledger (checked 2026-01-01)",
+        "| source | official URL | adopted version/date | latest official status | adoption decision | verification use | gate impact |",
+        "|--------|--------------|----------------------|------------------------|-------------------|------------------|-------------|",
+        "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final | final publication 1.1 | current official page | adopt-final-1.1 | release evidence | G8 / G9 / G12 / G13 / G14 |",
+        "| Scrum Guide 2020 | https://scrumguides.org/scrum-guide.html | November 2020 guide | current official page | adopt-current-guide | inspect-adapt | S3 / S4 / G11 / G12 |",
+        "| ISTQB Glossary | https://glossary.istqb.org/ | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | terminology | G8 / G9 / G10 / G11 / G12 / G13 / G14 |",
+        "| OWASP LLM06:2025 Excessive Agency | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | approval | G11 / G12 / G13 / G14 |",
+        "| GitHub Environments required reviewers | https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments | live GitHub docs | live official docs | adopt-live-docs-for-approval-shape | approval | G12 / action-binding approval |",
+        "| VS Code Webview Security | https://code.visualstudio.com/api/extension-guides/webview#security | live VS Code docs | live official docs | adopt-live-docs-for-webview-risk | webview risk | G10 |",
+        "| Google SRE Release Engineering | https://sre.google/sre-book/release-engineering/ | SRE book release engineering chapter | live official book | adopt-operational-guidance | release operations | G12 / G13 / G14 |",
+        "### 右腕 evidence profile (G8-G14)",
+        "| gate | left | condition | evidence | consumption |",
+        "|------|------|-----------|----------|-------------|",
+        "| G8 | x | y | g8-integration-evidence-v1 | z |",
+        "| G9 | x | y | ST-* row | z |",
+        "| G10 | x | y | screenshot / render smoke / accessibility finding | z |",
+        "| G11 | x | y | UAT decision record | z |",
+        "| G12 | x | y | acceptance command evidence | z |",
+        "| G13 | x | y | smoke command evidence | z |",
+        "| G14 | x | y | operational metric snapshot / L14→L0 feedback record | z |",
+        "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd Rev. 1 initial public draft v1.2 track-draft-do-not-adopt-until-final 人間承認・権限境界・不可逆操作",
+      ].join("\n"),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContain(
+      "Verification source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    );
+  });
+
   it("fails source ledgers whose gate impact does not cover the G8-G14 verification band", () => {
     const gatesMd = [
       "G8 has an executable workflow gate",

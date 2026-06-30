@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fmValue, missingRecordFields } from "./shared";
+import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
 export interface CutoverReadinessPlan {
   file: string;
@@ -151,7 +152,19 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
   const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
     (source) => !sourceLedger.rows.some((row) => row.source === source),
   );
+  const freshnessViolation = sourceLedgerCheckedDateViolation(
+    input.rightArmMd,
+    "Cutover source ledger",
+  );
   const sourceLedgerViolations: CutoverReadinessViolation[] = [
+    ...(freshnessViolation
+      ? [
+          {
+            subject: "docs/process/forward/L08-L14-verification-phase.md",
+            reason: freshnessViolation,
+          },
+        ]
+      : []),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => ({

@@ -181,6 +181,46 @@ describe("S4 decision readiness", () => {
     });
   });
 
+  it("fails when S4 decision source ledgers have stale checked dates", () => {
+    // U-SOURCELEDGER-002
+    const staleModeDoc = [
+      "s4_decision_record",
+      "allowed_outcome",
+      "decision_owner",
+      "decision_basis",
+      "verified_evidence",
+      "stakeholder_review_or_proxy",
+      "acceptance_gap",
+      "unresolved_risk",
+      "external_source_basis",
+      "route_impact",
+      "forward_route",
+      "reverse_fullback_required",
+      "promotion_strategy_or_rejection_pivot_rationale",
+      "S4 decision source ledger (checked 2026-01-01)",
+      "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
+      "|---|---|---|---|---|---|---|",
+      "| Scrum Guide 2020 | https://scrumguides.org/scrum-guide.html | November 2020 guide | current official Scrum Guide page | adopt-current-guide | inspect-adapt input | stakeholder_review_or_proxy |",
+      "| ISO/IEC/IEEE 29148 | https://www.iso.org/standard/72089.html | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements trace | acceptance_gap |",
+      "| ISTQB Glossary | https://glossary.istqb.org/ | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis terms | verified_evidence |",
+      "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | residual risk | unresolved_risk |",
+    ].join("\n");
+
+    const result = analyzeS4DecisionReadiness(
+      input({ discoveryMd: staleModeDoc, scrumMd: staleModeDoc }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/discovery.md",
+      reason: "S4 decision source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    });
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/scrum.md",
+      reason: "S4 decision source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    });
+  });
+
   it("U-DECISIONREC-001: fails S3 pending PoC plans that mention fields without a structured record", () => {
     const result = analyzeS4DecisionReadiness(
       input({

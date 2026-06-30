@@ -253,6 +253,24 @@ describe("version-up-readiness", () => {
     });
   });
 
+  it("fails when the version-up source ledger checked date is stale", () => {
+    // U-SOURCELEDGER-003
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input().modeDoc.replace(
+          "Version-up source ledger (checked 2026-06-30)",
+          "Version-up source ledger (checked 2026-01-01)",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason: "Version-up source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    });
+  });
+
   it("U-DECISIONREC-002: fails external activation candidates without explicit approval and route-fail evidence", () => {
     const result = analyzeVersionUpReadiness(
       input({

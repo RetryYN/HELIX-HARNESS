@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fmValue, missingRecordFields } from "./shared";
+import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
 export interface S4DecisionPlan {
   file: string;
@@ -157,7 +158,7 @@ export function analyzeS4DecisionReadiness(
         reason: `S4 decision source ledger missing row: ${source}`,
       });
     }
-    for (const violation of sourceLedgerViolations(doc[0], sourceLedger)) {
+    for (const violation of sourceLedgerViolations(doc[0], sourceLedger, doc[1])) {
       violations.push(violation);
     }
   }
@@ -190,10 +191,12 @@ export function analyzeS4DecisionReadiness(
       ...sourceLedgerViolations(
         "docs/process/modes/discovery.md",
         parseS4DecisionSourceLedger(input.discoveryMd),
+        input.discoveryMd,
       ),
       ...sourceLedgerViolations(
         "docs/process/modes/scrum.md",
         parseS4DecisionSourceLedger(input.scrumMd),
+        input.scrumMd,
       ),
     ],
     violations,
@@ -214,8 +217,14 @@ function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): s
 function sourceLedgerViolations(
   subject: string,
   sourceLedger: { columns: string[]; rows: Record<string, string>[] },
+  sourceText = "",
 ): S4DecisionViolation[] {
+  const freshnessViolation = sourceLedgerCheckedDateViolation(
+    sourceText,
+    "S4 decision source ledger",
+  );
   return [
+    ...(freshnessViolation ? [{ subject, reason: freshnessViolation }] : []),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => ({
