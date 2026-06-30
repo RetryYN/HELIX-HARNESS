@@ -340,6 +340,58 @@ describe("completion decision packet lint", () => {
     });
   });
 
+  it("U-OUTSTANDING-009: rejects duplicate or extra record metadata entries even when required records are covered", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        requiredRecords: [...decision.requiredRecords, decision.requiredRecords[0]],
+        allowedOutcomesByRecord: [
+          ...decision.allowedOutcomesByRecord,
+          {
+            recordName: "other_record",
+            allowedOutcomes: ["record_decision"],
+          },
+        ],
+        nextWorkflowRoutesByRecord: [
+          ...decision.nextWorkflowRoutesByRecord,
+          decision.nextWorkflowRoutesByRecord[0],
+        ],
+        recordTemplates: [
+          ...decision.recordTemplates,
+          {
+            recordName: "other_record",
+            insertionHint: "extra template",
+            yamlLines: ["other_record:", '  - allowed_outcome: "record_decision"'],
+          },
+        ],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_required_record",
+          detail: "decision[0].requiredRecords duplicate recordName=s4_decision_record",
+        },
+        {
+          reason: "invalid_allowed_outcomes_by_record",
+          detail: "decision[0].allowedOutcomesByRecord unexpected recordName=other_record",
+        },
+        {
+          reason: "invalid_next_routes_by_record",
+          detail: "decision[0].nextWorkflowRoutesByRecord duplicate recordName=s4_decision_record",
+        },
+        {
+          reason: "invalid_record_template",
+          detail: "decision[0].recordTemplates unexpected recordName=other_record",
+        },
+      ]),
+    );
+  });
+
   // U-OUTSTANDING-003
   // U-OUTSTANDING-006
   it("loads the current repo packet as fresh doctor input", () => {

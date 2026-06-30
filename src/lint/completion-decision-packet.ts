@@ -182,6 +182,37 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] planId=${decision.planId}`,
       });
     }
+    const requiredRecordNames = decision.requiredRecords.map((record) => record.recordName);
+    rejectDuplicateOrExtraRecordEntries({
+      violations,
+      subject: `decision[${decisionIndex}].requiredRecords`,
+      reason: "invalid_required_record",
+      requiredRecordNames,
+      actualRecordNames: requiredRecordNames,
+    });
+    rejectDuplicateOrExtraRecordEntries({
+      violations,
+      subject: `decision[${decisionIndex}].allowedOutcomesByRecord`,
+      reason: "invalid_allowed_outcomes_by_record",
+      requiredRecordNames,
+      actualRecordNames: (decision.allowedOutcomesByRecord ?? []).map((entry) => entry.recordName),
+    });
+    rejectDuplicateOrExtraRecordEntries({
+      violations,
+      subject: `decision[${decisionIndex}].nextWorkflowRoutesByRecord`,
+      reason: "invalid_next_routes_by_record",
+      requiredRecordNames,
+      actualRecordNames: (decision.nextWorkflowRoutesByRecord ?? []).map(
+        (entry) => entry.recordName,
+      ),
+    });
+    rejectDuplicateOrExtraRecordEntries({
+      violations,
+      subject: `decision[${decisionIndex}].recordTemplates`,
+      reason: "invalid_record_template",
+      requiredRecordNames,
+      actualRecordNames: (decision.recordTemplates ?? []).map((entry) => entry.recordName),
+    });
     decision.requiredRecords.forEach((record, recordIndex) => {
       const subject = `decision[${decisionIndex}].requiredRecords[${recordIndex}]`;
       if (!record.recordName?.trim()) {
@@ -358,6 +389,38 @@ export function analyzeCompletionDecisionPacket(
     expiresAt,
     violations,
   };
+}
+
+function rejectDuplicateOrExtraRecordEntries(input: {
+  violations: CompletionDecisionPacketViolation[];
+  subject: string;
+  reason: CompletionDecisionPacketViolationReason;
+  requiredRecordNames: string[];
+  actualRecordNames: string[];
+}): void {
+  const { actualRecordNames, reason, requiredRecordNames, subject, violations } = input;
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+  for (const recordName of actualRecordNames) {
+    if (seen.has(recordName)) duplicates.add(recordName);
+    seen.add(recordName);
+  }
+  for (const duplicate of [...duplicates].sort()) {
+    violations.push({
+      reason,
+      detail: `${subject} duplicate recordName=${duplicate}`,
+    });
+  }
+
+  const required = new Set(requiredRecordNames);
+  for (const recordName of [...seen].sort()) {
+    if (!required.has(recordName)) {
+      violations.push({
+        reason,
+        detail: `${subject} unexpected recordName=${recordName}`,
+      });
+    }
+  }
 }
 
 function requiredAllowedOutcomes(recordName: string): string[] | null {
