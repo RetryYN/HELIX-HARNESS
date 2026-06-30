@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T19:28:24+09:00"
+    tests_green_at: "2026-06-30T19:28:24+09:00"
+    verdict: pass
+    scope: "Continuation 24: L14 cutover readiness now validates execution-control semantics, not just cutover_decision_record field presence. Irreversible apply requires frozen HEAD, quiet window, single-run/concurrency, drift re-approval, non-destructive dry-run, branch/tag rollback, state restore, audit, and post-cutover monitoring evidence."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/cutover-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T19:28:24+09:00"
+        evidence_path: tests/cutover-readiness.test.ts
+        output_digest: "sha256:60693dfad4fbfda68e0d037fd50959c29a165ad5d1a49a3ffa7cf5a13b564835"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T19:28:24+09:00"
+        evidence_path: src/lint/cutover-readiness.ts
+        output_digest: "sha256:cf3d3809cb1c932a6ebe9a421252bd772dcb8e403f49c091eb6516ad60cdbb29"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T19:15:49+09:00"
     tests_green_at: "2026-06-30T19:15:49+09:00"
     verdict: pass
@@ -283,7 +308,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:21:00+09:00"
         evidence_path: tests/cutover-readiness.test.ts
-        output_digest: "sha256:2b7fc10071bccb7a12037ad16704e2c149f7016f4da3685e3e1eed59608c334c"
+        output_digest: "sha256:60693dfad4fbfda68e0d037fd50959c29a165ad5d1a49a3ffa7cf5a13b564835"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -291,7 +316,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:21:00+09:00"
         evidence_path: src/lint/cutover-readiness.ts
-        output_digest: "sha256:c0a9a2db8a28f3a5777d04732e407899d374ff5fd119de18f6e6119bbe432246"
+        output_digest: "sha256:cf3d3809cb1c932a6ebe9a421252bd772dcb8e403f49c091eb6516ad60cdbb29"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:12:00+09:00"
@@ -474,7 +499,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:41:22+09:00"
         evidence_path: tests/cutover-readiness.test.ts
-        output_digest: "sha256:2b7fc10071bccb7a12037ad16704e2c149f7016f4da3685e3e1eed59608c334c"
+        output_digest: "sha256:60693dfad4fbfda68e0d037fd50959c29a165ad5d1a49a3ffa7cf5a13b564835"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

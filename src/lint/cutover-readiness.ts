@@ -1,6 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { allowedOutcomeSetViolation, fmValue, missingRecordFields } from "./shared";
+import {
+  allowedOutcomeSetViolation,
+  fmValue,
+  missingRecordFields,
+  recordFieldValue,
+} from "./shared";
 import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
@@ -231,6 +236,9 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
     if (outcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
+    if (missingFields.length === 0 && !outcomeViolation) {
+      violations.push(...validateCutoverExecutionSemantics(plan));
+    }
   }
 
   return {
@@ -240,6 +248,99 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
     violations,
     ok: violations.length === 0,
   };
+}
+
+function validateCutoverExecutionSemantics(
+  plan: CutoverReadinessPlan,
+): CutoverReadinessViolation[] {
+  const violations: CutoverReadinessViolation[] = [];
+  const executionWindow = cutoverField(plan, "execution_window_or_freeze_policy");
+  const dryRunPlan = cutoverField(plan, "dry_run_plan");
+  const rollbackPlan = cutoverField(plan, "rollback_plan");
+  const stateBackupPlan = cutoverField(plan, "state_backup_plan");
+  const auditRecord = cutoverField(plan, "audit_record");
+  const postCutoverMonitoring = cutoverField(plan, "post_cutover_monitoring");
+
+  if (!hasFrozenWindowPolicy(executionWindow)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason:
+        "execution_window_or_freeze_policy must bind frozen HEAD, quiet window, single-run/concurrency, and drift re-approval",
+    });
+  }
+  if (
+    !mentions(dryRunPlan, ["dry-run", "rehearsal"]) ||
+    !mentions(dryRunPlan, ["non-destructive", "no apply", "no write", "branch"])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "dry_run_plan must describe non-destructive rehearsal before apply",
+    });
+  }
+  if (
+    !mentions(rollbackPlan, ["tag", "branch"]) ||
+    !mentions(rollbackPlan, ["restore", "revert", "rollback"]) ||
+    !mentions(rollbackPlan, ["alias", "shim"])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "rollback_plan must bind branch/tag, restore/revert route, and alias/shim recovery",
+    });
+  }
+  if (
+    !mentions(stateBackupPlan, ["harness.db"]) ||
+    !mentions(stateBackupPlan, ["memory", "logs", "handover"]) ||
+    !mentions(stateBackupPlan, ["backup", "restore"])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "state_backup_plan must cover harness.db, memory/logs/handover, and restore path",
+    });
+  }
+  if (
+    !mentions(auditRecord, ["command", "commands"]) ||
+    !mentions(auditRecord, ["hash", "git"]) ||
+    !mentions(auditRecord, ["approver"]) ||
+    !mentions(auditRecord, ["result", "結果"]) ||
+    !mentions(auditRecord, ["rollback"])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason:
+        "audit_record must capture commands, git hash, approver, result, and rollback decision",
+    });
+  }
+  if (
+    !mentions(postCutoverMonitoring, ["quiet window"]) ||
+    !mentions(postCutoverMonitoring, ["smoke", "doctor"]) ||
+    !mentions(postCutoverMonitoring, ["status", "feedback", "backlog"])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason:
+        "post_cutover_monitoring must include quiet window, smoke/doctor, status, and feedback/backlog monitoring",
+    });
+  }
+
+  return violations;
+}
+
+function cutoverField(plan: CutoverReadinessPlan, field: string): string {
+  return recordFieldValue(plan.text, CUTOVER_RECORD_NAME, field) ?? "";
+}
+
+function hasFrozenWindowPolicy(value: string): boolean {
+  return (
+    mentions(value, ["frozen HEAD", "frozen head"]) &&
+    mentions(value, ["quiet window", "apply window", "window"]) &&
+    mentions(value, ["single-run", "single run", "concurrency", "concurrent"]) &&
+    mentions(value, ["re-approval", "reapproval", "drift"])
+  );
+}
+
+function mentions(value: string, needles: string[]): boolean {
+  const normalized = value.toLowerCase();
+  return needles.some((needle) => normalized.includes(needle.toLowerCase()));
 }
 
 function parseCutoverSourceLedger(text: string): {

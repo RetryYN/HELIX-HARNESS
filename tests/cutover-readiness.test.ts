@@ -12,13 +12,13 @@ const cutoverMarkers = [
   "- decision_owner: PO",
   "- trigger_condition: L1 re-freeze",
   "- blast_radius_baseline: measured",
-  "- dry_run_plan: dry-run",
-  "- rollback_plan: rollback",
-  "- state_backup_plan: backup",
-  "- execution_window_or_freeze_policy: single cutover window with frozen HEAD and no concurrent apply",
+  "- dry_run_plan: codemod/state move dry-run rehearsal on a non-destructive branch with no apply",
+  "- rollback_plan: rollback via branch/tag, state restore, alias/shim recovery, and revert route",
+  "- state_backup_plan: backup and restore harness.db, memory, logs, and handover state",
+  "- execution_window_or_freeze_policy: single cutover quiet window with frozen HEAD, no concurrent apply, and re-approval trigger for HEAD/scope/evidence drift",
   "- approval_scope: rename",
-  "- audit_record: A-NNN",
-  "- post_cutover_monitoring: quiet window",
+  "- audit_record: A-NNN records commands, git hash, approver, result, and rollback decision",
+  "- post_cutover_monitoring: quiet window with smoke, doctor, status, feedback, and backlog monitoring",
   "- legacy_alias_policy: decide",
   "Cutover source ledger (checked 2026-06-30):",
   "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
@@ -136,6 +136,77 @@ describe("cutover readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations.map((v) => v.reason)).toContain(
       "invalid allowed_outcome set for cutover_decision_record: missing allowed_outcome reject_or_defer,request_runbook_changes; unknown allowed_outcome manual_override",
+    );
+  });
+
+  it("U-DECISIONREC-008: fails cutover records whose execution controls are present but semantically too weak", () => {
+    const weakRecord = cutoverMarkers
+      .replace(
+        "single cutover quiet window with frozen HEAD, no concurrent apply, and re-approval trigger for HEAD/scope/evidence drift",
+        "tomorrow after approval",
+      )
+      .replace(
+        "codemod/state move dry-run rehearsal on a non-destructive branch with no apply",
+        "dry-run",
+      )
+      .replace(
+        "rollback via branch/tag, state restore, alias/shim recovery, and revert route",
+        "rollback if needed",
+      )
+      .replace("backup and restore harness.db, memory, logs, and handover state", "backup files")
+      .replace("A-NNN records commands, git hash, approver, result, and rollback decision", "A-NNN")
+      .replace(
+        "quiet window with smoke, doctor, status, feedback, and backlog monitoring",
+        "quiet window",
+      );
+
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-M-905.md",
+            plan_id: "PLAN-M-905",
+            layer: "L14",
+            kind: "design",
+            status: "draft",
+            text: `irreversible state dir cutover\n${weakRecord}`,
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-M-905",
+          reason:
+            "execution_window_or_freeze_policy must bind frozen HEAD, quiet window, single-run/concurrency, and drift re-approval",
+        },
+        {
+          subject: "PLAN-M-905",
+          reason: "dry_run_plan must describe non-destructive rehearsal before apply",
+        },
+        {
+          subject: "PLAN-M-905",
+          reason:
+            "rollback_plan must bind branch/tag, restore/revert route, and alias/shim recovery",
+        },
+        {
+          subject: "PLAN-M-905",
+          reason: "state_backup_plan must cover harness.db, memory/logs/handover, and restore path",
+        },
+        {
+          subject: "PLAN-M-905",
+          reason:
+            "audit_record must capture commands, git hash, approver, result, and rollback decision",
+        },
+        {
+          subject: "PLAN-M-905",
+          reason:
+            "post_cutover_monitoring must include quiet window, smoke/doctor, status, and feedback/backlog monitoring",
+        },
+      ]),
     );
   });
 
