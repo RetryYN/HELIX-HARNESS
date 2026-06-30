@@ -24,7 +24,7 @@ Right-arm verification strategy (external-grounded): L8-L14 gates consume
 test-basis / test-condition / execution-evidence / defect-routing records, not
 prose completion claims. The right-arm evidence profile is defined in
 `docs/process/forward/L08-L14-verification-phase.md` §右腕 evidence profile.
-External basis: NIST SSDF SP 800-218, Scrum Guide 2020, and ISTQB Glossary.
+External basis (official source ledger checked 2026-06-30): NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>), Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>), ISTQB Glossary (<https://glossary.istqb.org/>), and OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>). The ledger must preserve official URL / version/date / verification use / gate impact so right-arm gate design is tied to source meaning, not source names.
 
 ## 1. gate 一覧表
 

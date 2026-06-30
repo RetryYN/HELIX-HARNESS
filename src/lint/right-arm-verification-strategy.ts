@@ -31,15 +31,33 @@ const GATE_MARKERS = [
   "NIST SSDF SP 800-218",
   "Scrum Guide 2020",
   "ISTQB Glossary",
+  "OWASP LLM06:2025 Excessive Agency",
+  "official source ledger checked 2026-06-30",
+  "https://csrc.nist.gov/pubs/sp/800/218/final",
+  "https://scrumguides.org/scrum-guide.html",
+  "https://glossary.istqb.org/",
+  "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+  "official URL / version/date / verification use / gate impact",
   "PLAN-L7-130-right-arm-gate-planning",
   "IMP-052** は implemented",
 ] as const;
 
 const RIGHT_ARM_MARKERS = [
   "### 右腕 evidence profile (G8-G14)",
+  "### Verification source ledger (checked 2026-06-30)",
   "NIST SSDF SP 800-218",
   "Scrum Guide 2020",
   "ISTQB Glossary",
+  "OWASP LLM06:2025 Excessive Agency",
+  "official URL",
+  "version/date",
+  "verification use",
+  "gate impact",
+  "https://csrc.nist.gov/pubs/sp/800/218/final",
+  "https://scrumguides.org/scrum-guide.html",
+  "https://glossary.istqb.org/",
+  "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+  "人間承認・権限境界・不可逆操作",
   "g8-integration-evidence-v1",
   "ST-* row",
   "screenshot / render smoke / accessibility finding",
@@ -102,7 +120,7 @@ export function rightArmVerificationStrategyMessages(
 ): string[] {
   if (result.ok) {
     return [
-      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, external bases=3)`,
+      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=4)`,
     ];
   }
   return [`right-arm-verification-strategy - violation: ${result.violations.join("; ")}`];

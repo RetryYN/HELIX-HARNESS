@@ -45,14 +45,23 @@ describe("right-arm verification strategy", () => {
       "NIST SSDF SP 800-218",
       "Scrum Guide 2020",
       "ISTQB Glossary",
+      "OWASP LLM06:2025 Excessive Agency",
+      "official source ledger checked 2026-06-30",
+      "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "https://scrumguides.org/scrum-guide.html",
+      "https://glossary.istqb.org/",
+      "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "official URL / version/date / verification use / gate impact",
     ]) {
       expect(gates).toContain(marker);
     }
 
     expect(rightArm).toContain("### 右腕 evidence profile (G8-G14)");
+    expect(rightArm).toContain("### Verification source ledger (checked 2026-06-30)");
     expect(rightArm).toContain("NIST SSDF SP 800-218");
     expect(rightArm).toContain("Scrum Guide 2020");
     expect(rightArm).toContain("ISTQB Glossary");
+    expect(rightArm).toContain("OWASP LLM06:2025 Excessive Agency");
   });
 
   it("defines required evidence for every right-arm gate through L14 feedback", () => {
@@ -73,6 +82,24 @@ describe("right-arm verification strategy", () => {
       "L14→L0 feedback record",
     ]) {
       expect(rightArm).toContain(requiredEvidence);
+    }
+  });
+
+  it("ties external sources to official URLs, version/date, verification use, and gate impact", () => {
+    const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
+
+    for (const marker of [
+      "official URL",
+      "version/date",
+      "verification use",
+      "gate impact",
+      "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "https://scrumguides.org/scrum-guide.html",
+      "https://glossary.istqb.org/",
+      "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "人間承認・権限境界・不可逆操作",
+    ]) {
+      expect(rightArm).toContain(marker);
     }
   });
 

@@ -8,7 +8,7 @@ confirmed_reverse_type: fullback
 drive: agent
 status: confirmed
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-06-30
 owner: Codex
 forward_routing: L4
 promotion_strategy: reuse-with-hardening
@@ -20,7 +20,7 @@ backprop_scope:
   - layer: process-gates
     decision: updated-by-plan-evidence
     evidence_path: docs/plans/PLAN-L7-130-right-arm-gate-planning.md
-    reason: "The carry now has a concrete PLAN and doctor lint checks the route."
+    reason: "The carry now has a concrete PLAN, official source ledger, and doctor lint checks the route."
   - layer: L4-basic-design
     decision: not_impacted
     evidence_path: docs/design/harness/L4-basic-design/function.md
@@ -39,6 +39,10 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md
     artifact_type: markdown_doc
+  - artifact_path: docs/process/gates.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/process/forward/L08-L14-verification-phase.md
+    artifact_type: markdown_doc
   - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
@@ -54,6 +58,39 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-130-right-arm-gate-planning.md
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T11:29:00+09:00"
+    tests_green_at: "2026-06-30T11:28:37+09:00"
+    verdict: approve
+    scope: "R4 fullback update for official source ledger semantic grounding."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/right-arm-verification-strategy.test.ts tests/right-arm-gate-planning.test.ts tests/lint-wiring.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T11:26:21+09:00"
+        evidence_path: tests/right-arm-verification-strategy.test.ts
+        output_digest: "sha256:f1628c61d5fbb75a19565793bcc79adb0ad30da50f6d0a6f887d844634a164d9"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T11:28:20+09:00"
+        evidence_path: tests/right-arm-verification-strategy.test.ts
+        output_digest: "sha256:f1628c61d5fbb75a19565793bcc79adb0ad30da50f6d0a6f887d844634a164d9"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T11:28:30+09:00"
+        evidence_path: src/lint/right-arm-verification-strategy.ts
+        output_digest: "sha256:3467298e525aa9e98f8c77d6e828fbf8dcdb7a0bbaf1bacb7972895841184530"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"
@@ -93,6 +130,9 @@ a doctor-enforced planning route.
 - This reverse slice does not claim full G8-G14 gate implementation.
 - It closes the specific process hole where the carry could remain "future PLAN"
   without any actual PLAN artifact.
+- It also closes the weaker-source hole where external verification standards
+  could be referenced by name without an official URL, version/date,
+  verification use, and gate impact.
 - Future child PLANs should define the concrete G8-G14 fail-close conditions.
 
 ## Acceptance Criteria
@@ -100,3 +140,5 @@ a doctor-enforced planning route.
 - The L7 PLAN and reverse PLAN both exist as machine-readable artifacts.
 - Doctor runs the right-arm planning lint.
 - The lint fails in tests when no PLAN route exists.
+- The right-arm verification strategy fails if its official source ledger loses
+  semantic source-to-gate mapping.
