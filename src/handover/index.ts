@@ -629,7 +629,9 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
   }
 
   const packet = pointer.completionDecisionPacket;
-  const lint = analyzeCompletionDecisionPacket(packet, deps.now());
+  const lint = analyzeCompletionDecisionPacket(packet, deps.now(), {
+    sourcePathExists: (sourcePath) => deps.readText(join(deps.repoRoot, sourcePath)) !== null,
+  });
   const messages = lint.violations.map(
     (v) => `handover-decision-packet — violation: ${v.reason} (${v.detail})`,
   );

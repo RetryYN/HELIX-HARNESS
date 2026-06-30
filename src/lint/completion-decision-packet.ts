@@ -23,7 +23,8 @@ export type CompletionDecisionPacketViolationReason =
   | "missing_allowed_outcomes_by_record"
   | "invalid_allowed_outcomes_by_record"
   | "missing_next_routes_by_record"
-  | "invalid_next_routes_by_record";
+  | "invalid_next_routes_by_record"
+  | "invalid_required_record_source_path";
 
 export interface CompletionDecisionPacketViolation {
   reason: CompletionDecisionPacketViolationReason;
@@ -41,6 +42,11 @@ export interface CompletionDecisionPacketLintResult {
   violations: CompletionDecisionPacketViolation[];
 }
 
+export interface CompletionDecisionPacketLintOptions {
+  /** repo-relative sourcePaths が実在するかを呼び出し側が検査するための hook。 */
+  sourcePathExists?: (repoRelativePath: string) => boolean;
+}
+
 const POLICY = "decision-packet-freshness.v1";
 const ALLOWED_SOURCE_COMMANDS = new Set([
   "ut-tdd handover",
@@ -51,6 +57,7 @@ const ALLOWED_SOURCE_COMMANDS = new Set([
 export function analyzeCompletionDecisionPacket(
   packet: CompletionDecisionPacket,
   now: string = new Date().toISOString(),
+  opts: CompletionDecisionPacketLintOptions = {},
 ): CompletionDecisionPacketLintResult {
   const violations: CompletionDecisionPacketViolation[] = [];
   const generatedAt = packet.generatedAt;
@@ -138,6 +145,11 @@ export function analyzeCompletionDecisionPacket(
     });
   }
 
+  const unsafeRepoRelativePath = (sourcePath: string): boolean =>
+    sourcePath.startsWith("/") ||
+    /^[A-Za-z]:[\\/]/.test(sourcePath) ||
+    sourcePath.split(/[\\/]+/).includes("..");
+
   packet.decisions.forEach((decision, decisionIndex) => {
     if (!Array.isArray(decision.requiredRecords) || decision.requiredRecords.length === 0) {
       violations.push({
@@ -200,10 +212,21 @@ export function analyzeCompletionDecisionPacket(
         });
       } else {
         for (const sourcePath of record.sourcePaths) {
-          if (!sourcePath.trim() || /^(TBD|TODO|-)$/.test(sourcePath.trim())) {
+          const trimmed = sourcePath.trim();
+          if (!trimmed || /^(TBD|TODO|-)$/.test(trimmed)) {
             violations.push({
               reason: "invalid_required_record",
               detail: `${subject} invalid sourcePath=${sourcePath}`,
+            });
+          } else if (unsafeRepoRelativePath(trimmed)) {
+            violations.push({
+              reason: "invalid_required_record_source_path",
+              detail: `${subject} sourcePath must be repo-relative=${trimmed}`,
+            });
+          } else if (opts.sourcePathExists && !opts.sourcePathExists(trimmed)) {
+            violations.push({
+              reason: "invalid_required_record_source_path",
+              detail: `${subject} sourcePath missing=${trimmed}`,
             });
           }
         }

@@ -417,6 +417,11 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
     );
   }
 
+  function seedDecisionSourceDocs(deps: ReturnType<typeof mockDeps>) {
+    deps.files.set(join("/repo", "docs/process/modes/discovery.md"), "discovery mode");
+    deps.files.set(join("/repo", "docs/process/modes/scrum.md"), "scrum mode");
+  }
+
   it("pointer 不在は skip (ok)", () => {
     const r = checkHandoverCompletionDecisionPacket(mockDeps());
 
@@ -435,6 +440,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
 
   it("blocked outstanding と同じ snapshot 由来の handover packet は ok", () => {
     const deps = mockDeps();
+    seedDecisionSourceDocs(deps);
     const outstanding = blockedOutstanding();
     writePointer(deps, {
       outstanding,
@@ -452,6 +458,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
 
   it("standalone packet を handover pointer に転記しただけなら source mismatch で fail-close", () => {
     const deps = mockDeps();
+    seedDecisionSourceDocs(deps);
     const outstanding = blockedOutstanding();
     writePointer(deps, {
       outstanding,
@@ -469,6 +476,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
 
   it("packet の decision count が outstanding 明細とずれたら fail-close", () => {
     const deps = mockDeps();
+    seedDecisionSourceDocs(deps);
     const outstanding = blockedOutstanding();
     const packet = completionDecisionPacketForOutstanding(outstanding, {
       generatedAt: NOW,
@@ -483,6 +491,21 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
 
     expect(r.ok).toBe(false);
     expect(r.messages.join("\n")).toContain("decision count mismatch");
+  });
+
+  it("packet の required record sourcePath が実在しなければ fail-close", () => {
+    const deps = mockDeps();
+    const outstanding = blockedOutstanding();
+    const packet = completionDecisionPacketForOutstanding(outstanding, {
+      generatedAt: NOW,
+      now: NOW,
+      sourceCommand: "ut-tdd handover",
+    });
+    writePointer(deps, { outstanding, completionDecisionPacket: packet });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(false);
+    expect(r.messages.join("\n")).toContain("sourcePath missing");
   });
 });
 

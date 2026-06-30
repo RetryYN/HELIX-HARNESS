@@ -1913,7 +1913,14 @@ export function checkCompletionDecisionPacket(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeCompletionDecisionPacket(loadCompletionDecisionPacketInput(repoRoot));
+    const now = new Date().toISOString();
+    const r = analyzeCompletionDecisionPacket(
+      loadCompletionDecisionPacketInput(repoRoot, now),
+      now,
+      {
+        sourcePathExists: (sourcePath) => existsSync(join(repoRoot, sourcePath)),
+      },
+    );
     return { messages: completionDecisionPacketMessages(r), ok: r.ok };
   } catch {
     return {

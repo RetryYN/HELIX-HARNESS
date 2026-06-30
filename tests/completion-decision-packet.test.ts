@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeCompletionDecisionPacket,
@@ -125,6 +127,44 @@ describe("completion decision packet lint", () => {
     expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record");
   });
 
+  // U-OUTSTANDING-006
+  it("rejects required record source paths that are not repo-relative", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        requiredRecords: decision.requiredRecords.map((record) => ({
+          ...record,
+          sourcePaths: ["/tmp/not-a-repo-source.md"],
+        })),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record_source_path");
+  });
+
+  // U-OUTSTANDING-006
+  it("rejects missing required record source paths when repo existence is checked", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        requiredRecords: decision.requiredRecords.map((record) => ({
+          ...record,
+          sourcePaths: ["docs/process/modes/missing-source.md"],
+        })),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z", {
+      sourcePathExists: () => false,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record_source_path");
+  });
+
   // U-OUTSTANDING-005
   it("rejects decisions whose required records lack record templates", () => {
     const packet = {
@@ -231,9 +271,12 @@ describe("completion decision packet lint", () => {
   });
 
   // U-OUTSTANDING-003
+  // U-OUTSTANDING-006
   it("loads the current repo packet as fresh doctor input", () => {
     const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
-    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T03:00:00.000Z");
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T03:00:00.000Z", {
+      sourcePathExists: (sourcePath) => existsSync(join(process.cwd(), sourcePath)),
+    });
 
     expect(result.ok).toBe(true);
     expect(result.sourceCommand).toBe("ut-tdd completion decision-packet --json");

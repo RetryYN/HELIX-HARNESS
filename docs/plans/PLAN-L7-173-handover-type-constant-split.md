@@ -48,7 +48,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:10:36+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:4cf11b5d6a557e87e11fbaeba3d134ad556c06430d9c635fab41f48aac7e601d"
+        output_digest: "sha256:a59d5047eb3fc0bea7cf6b8495eeb7479a54862fa2984da46dcd21a25c9dee78"
       - kind: unit_test
         command: "bun run vitest run tests\\handover-completion-wording.test.ts --reporter=dot"
         runner: bun
@@ -64,7 +64,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T22:16:58+09:00"
         evidence_path: src/handover/index.ts
-        output_digest: "sha256:bd838d2e6cfcb0faad6326a4e281355d29d3532f33c1d80c9f13aea7c1aaf4ad"
+        output_digest: "sha256:61094154bb6355fbb1e34a6c58c28168dbe8cf545d98117483a36982bcc07e2a"
       - kind: lint
         command: "bun run lint"
         runner: bun
