@@ -120,8 +120,18 @@ describe("L7 CLI surface closure", () => {
         ok: false,
         status: "blocked",
         generatedFrom: "outstanding.completionReadiness",
+        sourceCommand: "ut-tdd status --json",
+        freshness: {
+          validForMinutes: 1440,
+          stale: false,
+          policy: "decision-packet-freshness.v1",
+        },
         decisionCount: 1,
       });
+      expect(blockedPayload.completionDecisionPacket.generatedAt).toEqual(expect.any(String));
+      expect(blockedPayload.completionDecisionPacket.freshness.expiresAt).toEqual(
+        expect.any(String),
+      );
       expect(blockedPayload.completionDecisionPacket.decisions[0]).toMatchObject({
         planId: "PLAN-M-02-fixture",
         decisionKind: "irreversible_migration_signoff",
@@ -182,8 +192,16 @@ describe("L7 CLI surface closure", () => {
         ok: false,
         status: "blocked",
         generatedFrom: "outstanding.completionReadiness",
+        sourceCommand: "ut-tdd completion decision-packet --json",
+        freshness: {
+          validForMinutes: 1440,
+          stale: false,
+          policy: "decision-packet-freshness.v1",
+        },
         decisionCount: 2,
       });
+      expect(packet.generatedAt).toEqual(expect.any(String));
+      expect(packet.freshness.expiresAt).toEqual(expect.any(String));
       expect(
         packet.decisions.map((d: { planId: string; decisionKind: string }) => [
           d.planId,

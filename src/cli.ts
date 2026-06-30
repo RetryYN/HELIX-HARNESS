@@ -455,7 +455,9 @@ program
     // IMP-139: 未了の正の集計 (非終端 PLAN 層別 + open defer) を additive に surface し
     // 「doctor green = 完了」誤読を機械照合可能にする (gate ではない informational surface)。
     const outstanding = computeOutstandingWork(process.cwd());
-    const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding);
+    const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
+      sourceCommand: "ut-tdd status --json",
+    });
     if (opts.json) {
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
@@ -481,7 +483,9 @@ completion
   .description("emit the decision packet required before whole-program completion can be claimed")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
-    const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()));
+    const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()), {
+      sourceCommand: "ut-tdd completion decision-packet --json",
+    });
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
       return;

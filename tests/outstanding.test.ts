@@ -216,12 +216,25 @@ describe("completionDecisionPacketForOutstanding", () => {
       0,
     );
 
-    const packet = completionDecisionPacketForOutstanding(outstanding);
+    const packet = completionDecisionPacketForOutstanding(outstanding, {
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      now: "2026-06-30T00:30:00.000Z",
+      validForMinutes: 60,
+      sourceCommand: "ut-tdd completion decision-packet --json",
+    });
 
     expect(packet).toMatchObject({
       ok: false,
       status: "blocked",
       generatedFrom: "outstanding.completionReadiness",
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      sourceCommand: "ut-tdd completion decision-packet --json",
+      freshness: {
+        validForMinutes: 60,
+        expiresAt: "2026-06-30T01:00:00.000Z",
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
       decisionCount: 3,
       blockers: expect.arrayContaining([
         "irreversible_migration_pending",
@@ -252,6 +265,27 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[2].nextWorkflowRoute).toContain("cutover_decision_record");
   });
 
+  it("marks old decision packets stale after the configured freshness window", () => {
+    const packet = completionDecisionPacketForOutstanding(
+      analyzeOutstandingWork(
+        [{ planId: "PLAN-S3", layer: "cross", kind: "poc", status: "draft", workflowPhase: "S3" }],
+        0,
+      ),
+      {
+        generatedAt: "2026-06-30T00:00:00.000Z",
+        now: "2026-06-30T02:00:00.001Z",
+        validForMinutes: 120,
+      },
+    );
+
+    expect(packet.freshness).toEqual({
+      validForMinutes: 120,
+      expiresAt: "2026-06-30T02:00:00.000Z",
+      stale: true,
+      policy: "decision-packet-freshness.v1",
+    });
+  });
+
   it("is ready and has no decisions when no outstanding work remains", () => {
     const packet = completionDecisionPacketForOutstanding(
       analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], 0),
@@ -261,6 +295,14 @@ describe("completionDecisionPacketForOutstanding", () => {
       ok: true,
       status: "ready",
       generatedFrom: "outstanding.completionReadiness",
+      generatedAt: expect.any(String),
+      sourceCommand: "ut-tdd completion decision-packet --json",
+      freshness: {
+        validForMinutes: 1440,
+        expiresAt: expect.any(String),
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
       decisionCount: 0,
       blockers: [],
       decisions: [],

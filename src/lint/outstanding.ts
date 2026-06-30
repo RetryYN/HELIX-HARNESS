@@ -109,9 +109,26 @@ export interface CompletionDecisionPacket {
   ok: boolean;
   status: "ready" | "blocked";
   generatedFrom: "outstanding.completionReadiness";
+  generatedAt: string;
+  sourceCommand: string;
+  freshness: DecisionPacketFreshness;
   decisionCount: number;
   blockers: string[];
   decisions: CompletionDecisionItem[];
+}
+
+export interface DecisionPacketFreshness {
+  validForMinutes: number;
+  expiresAt: string;
+  stale: boolean;
+  policy: "decision-packet-freshness.v1";
+}
+
+export interface CompletionDecisionPacketOptions {
+  generatedAt?: string;
+  now?: string;
+  validForMinutes?: number;
+  sourceCommand?: string;
 }
 
 /**
@@ -365,11 +382,24 @@ export function completionReadinessLine(o: OutstandingWork): string {
 
 export function completionDecisionPacketForOutstanding(
   outstanding: OutstandingWork,
+  opts: CompletionDecisionPacketOptions = {},
 ): CompletionDecisionPacket {
+  const generatedAt = normalizeIsoTimestamp(opts.generatedAt ?? new Date().toISOString());
+  const now = normalizeIsoTimestamp(opts.now ?? generatedAt);
+  const validForMinutes = opts.validForMinutes ?? 24 * 60;
+  const expiresAt = addMinutesIso(generatedAt, validForMinutes);
   return {
     ok: outstanding.completionReadiness.ok,
     status: outstanding.completionReadiness.status,
     generatedFrom: "outstanding.completionReadiness",
+    generatedAt,
+    sourceCommand: opts.sourceCommand ?? "ut-tdd completion decision-packet --json",
+    freshness: {
+      validForMinutes,
+      expiresAt,
+      stale: Date.parse(now) > Date.parse(expiresAt),
+      policy: "decision-packet-freshness.v1",
+    },
     decisionCount: outstanding.items.length,
     blockers: outstanding.completionReadiness.blockers,
     decisions: outstanding.items.map((item) => ({
@@ -387,6 +417,18 @@ export function completionDecisionPacketForOutstanding(
       nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
     })),
   };
+}
+
+function normalizeIsoTimestamp(value: string): string {
+  const parsed = Date.parse(value);
+  if (Number.isNaN(parsed)) return new Date(0).toISOString();
+  return new Date(parsed).toISOString();
+}
+
+function addMinutesIso(value: string, minutes: number): string {
+  const parsed = Date.parse(value);
+  const safeMinutes = Number.isFinite(minutes) ? minutes : 0;
+  return new Date(parsed + safeMinutes * 60_000).toISOString();
 }
 
 function decisionKindForOutstandingReason(reason: string): CompletionDecisionKind {
