@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { buildPairAgentTddPlan } from "../src/orchestration/pair-agent";
+import { buildPairAgentTddPlan, runPairAgentTddPlan } from "../src/orchestration/pair-agent";
 import type { RuntimeDetection } from "../src/runtime/detect";
 
 const repoRoot = process.cwd();
@@ -172,5 +172,100 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       model: "gpt-5.3-codex-spark",
       dry_run: true,
     });
+  });
+
+  it("runs smart test authoring once, then repeats light implementation and smart review until pass", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 3,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase, cycle }) => ({
+        status: 0,
+        stdout:
+          phase.name === "smart_review" && cycle === 1
+            ? "VERDICT: fail\n"
+            : phase.name === "smart_review"
+              ? "VERDICT: pass\n"
+              : "ok\n",
+        stderr: "",
+      }),
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.status).toBe("passed");
+    expect(result.finalVerdict).toBe("pass");
+    expect(result.steps.map((step) => [step.phase, step.cycle, step.status, step.verdict])).toEqual(
+      [
+        ["smart_test_author", 0, "passed", null],
+        ["light_implementation", 1, "passed", null],
+        ["smart_review", 1, "failed", "fail"],
+        ["light_implementation", 2, "passed", null],
+        ["smart_review", 2, "passed", "pass"],
+      ],
+    );
+  });
+
+  it("blocks executable pair runs without explicit T0 frontier approval", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async () => ({ status: 0, stdout: "VERDICT: pass\n", stderr: "" }),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("blocked");
+    expect(result.steps).toEqual([]);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "execution-not-authorized",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
+  it("exposes pair-agent run as a dry-run CLI surface", () => {
+    const result = runCli([
+      "pair-agent",
+      "run",
+      "--plan-id",
+      "PLAN-L7-PAIR",
+      "--task",
+      "Add pair-agent TDD route",
+      "--primary",
+      "codex",
+      "--mode",
+      "hybrid",
+      "--json",
+    ]);
+
+    expect(result.status).toBe(0);
+    const payload = JSON.parse(result.stdout);
+    expect(payload.result).toMatchObject({
+      ok: true,
+      status: "planned",
+      finalVerdict: null,
+    });
+    expect(payload.result.steps.map((step: { phase: string; status: string }) => step)).toEqual([
+      expect.objectContaining({ phase: "smart_test_author", status: "planned" }),
+      expect.objectContaining({ phase: "light_implementation", status: "planned" }),
+      expect.objectContaining({ phase: "smart_review", status: "planned" }),
+    ]);
   });
 });

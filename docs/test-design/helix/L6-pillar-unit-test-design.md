@@ -50,7 +50,7 @@ next_pair_freeze: L6
 | HU-PILLAR-P6-01 | HR-FR-P6-01 | HC-P6 | `buildDistributionPlan` | rulesets/checks/merge queue/bypass audit を dry-run plan に出す |
 | HU-PILLAR-P6-02 | HR-FR-P6-02 | HC-P6 | `validatePrReviewRoute` / `gateCiAutoFixRepush` | worker!=verifier と confidence/iteration cap を強制 |
 | HU-PILLAR-P6-03 | HR-FR-P6-03 | HC-P6 | `buildDistributionPlan` | fresh/brownfield setup は managed diff/import report を出し既存を壊さない |
-| HU-PILLAR-P6-04 | HR-FR-P6-04 | HC-P6 | `planVersionUpgradeDryRun` | tag bump に rollback/destructive block/idempotency evidence を要求 |
+| HU-PILLAR-P6-04 | HR-FR-P6-04 | HC-P6 | `planVersionUpgradeDryRun` / `auditIdentifierRenameBlastRadius` / `ut-tdd rename audit` | tag bump に rollback/destructive block/idempotency evidence を要求する。PLAN-M-02 identifier rename は `ut-tdd` / `.ut-tdd` / `area=harness` blast radius を audit し、cutover/action-binding approval が無い限り `.ut-tdd -> .helix` apply 可能と扱わない |
 | HU-PILLAR-P6-05 | HR-FR-P6-05 | HC-P6 | `planReleaseAutomationDecision` / `gateCiAutoFixRepush` | release ADR 欠落と confidence<0.75 repush を reject |
 | HU-PILLAR-P7-01 | HR-FR-P7-01 | HC-P7 | `buildBoundedRecallPacket` | Claude/Codex が shared provider memory から bounded recall する |
 | HU-PILLAR-P7-02 | HR-FR-P7-02 | HC-P7 | `detectGlossaryDrift` | rename/synonym drift に old/new/supersedes/context を要求 |

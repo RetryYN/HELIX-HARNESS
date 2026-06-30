@@ -97,7 +97,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T11:44:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:207ca6cefe7328258f8eb4f462448b595d758fa7f1bf123c5255b407ef831f13"
+        output_digest: "sha256:2d0f5de8b1cdfc14177dbd989840470ba193bb11f27a48d8a0fb6987584d3806"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

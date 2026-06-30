@@ -51,7 +51,7 @@ next_pair_freeze: L5
 | LIT-P6-01 | HR-FR-P6-01 | HC-P6 | Given raw push risk / When GitHub plan is emitted / Then rulesets, checks, and merge queue constraints are visible |
 | LIT-P6-02 | HR-FR-P6-02 | HC-P6 | Given PR/CI auto-fix / When verifier is selected / Then worker != verifier and confidence cap are enforced |
 | LIT-P6-03 | HR-FR-P6-03 | HC-P6 | Given setup target / When dry-run setup runs / Then managed changes and import report are non-destructive |
-| LIT-P6-04 | HR-FR-P6-04 | HC-P6 | Given tag bump / When migration plan is produced / Then rollback point and destructive-apply block are present |
+| LIT-P6-04 | HR-FR-P6-04 | HC-P6 | Given tag bump or PLAN-M-02 identifier rename cutover / When migration/audit plan is produced / Then rollback point, blast-radius baseline, and destructive-apply block are present |
 | LIT-P6-05 | HR-FR-P6-05 | HC-P6 | Given release automation choice / When ADR/check runs / Then selected tool and CI auto-fix confidence policy are recorded |
 | LIT-P7-01 | HR-FR-P7-01 | HC-P7 | Given Claude/Codex session start / When memory is surfaced / Then both runtime routes read the shared provider |
 | LIT-P7-02 | HR-FR-P7-02 | HC-P7 | Given glossary rename / When drift detection runs / Then old/new terms and bounded context are linked |
