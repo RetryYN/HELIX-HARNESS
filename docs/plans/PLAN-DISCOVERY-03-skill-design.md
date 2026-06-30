@@ -43,6 +43,20 @@ related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO/PM S4 close (2026-06-22)
+- decision_basis: shipped skill recommender implementation proved the phase-driven recommender viable while exposing score-saturation limits.
+- verified_evidence: PLAN-DISCOVERY-03 §5 S2/S3 live observations; PLAN-L5-06-skill, PLAN-L4-12-skill-pack, and PLAN-L7-70-skill-pack-curation.
+- stakeholder_review_or_proxy: PM S4 record and production implementation verification used as proxy evidence.
+- acceptance_gap: generic scoring saturation remained and was routed to L5/L6 tag/category hardening.
+- unresolved_risk: future skill quality must be evaluated by adoption/success metrics, not only recommendation presence.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed preserves the concept but does not bless the original spike plan as-is.
+- forward_route: PLAN-L5-06-skill / PLAN-L4-12-skill-pack / PLAN-L7-70-skill-pack-curation.
+- reverse_fullback_required: no; redesign/Forward implementation already carried the accepted learning.
+- promotion_strategy_or_rejection_pivot_rationale: redesign; use production Forward implementation and harden scoring instead of preserving the original spike.
+
 # PLAN-DISCOVERY-03 (kind=poc): skill module 設計の Discovery 検証
 
 ## §0 位置づけ

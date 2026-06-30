@@ -36,6 +36,20 @@ related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (S4 result recorded 2026-06-01)
+- decision_basis: roster module core was validated by S2/S3 spike and the throwaway spike path was intentionally redesigned into Forward design.
+- verified_evidence: PLAN-DISCOVERY-02 §5 S2/S3 verification; PLAN-L5-05-roster and PLAN-L4-11-roster carry the confirmed design.
+- stakeholder_review_or_proxy: PM/PO S4 record in §4 and Codex review fallback noted in §5.
+- acceptance_gap: spike quality was not accepted as product implementation; redesign path closed the gap.
+- unresolved_risk: parse zod hardening and agent directory path resolution were carried to L6/L7 instead of hidden in the PoC.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed with redesign discards spike code and keeps the design outcome for Forward implementation.
+- forward_route: PLAN-L5-05-roster / PLAN-L4-11-roster Forward design path.
+- reverse_fullback_required: no; redesign outcome intentionally reimplemented through Forward design rather than reusing spike artifacts.
+- promotion_strategy_or_rejection_pivot_rationale: redesign; spike was evidence only, product work continues through confirmed Forward design.
+
 # PLAN-DISCOVERY-02 (kind=poc): roster module 設計の Discovery 検証
 
 ## §0 位置づけ

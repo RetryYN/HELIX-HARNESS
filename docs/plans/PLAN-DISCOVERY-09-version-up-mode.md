@@ -59,6 +59,20 @@ review_evidence:
         output_digest: "sha256:75cc3d7487e2f66aaedeb86a98f8678f40f9d1c06641144ab3716df53d6dd6ca"
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (2026-06-26 version-up mode request/adoption)
+- decision_basis: version-up mode separated future committed work from plain draft/archived/add-feature and was validated by status/outstanding and forward-convergence behavior.
+- verified_evidence: review_evidence green_commands, PLAN-DISCOVERY-09 §4 ACs, PLAN-L7-211-version-up-readiness-gate, and PLAN-REVERSE-140.
+- stakeholder_review_or_proxy: Codex/gpt-5.5 cross-runtime TL review recorded in review_evidence.
+- acceptance_gap: PLAN-L7-146 remains parked and requires future activation/action-binding approval; this is preserved as an explicit blocker, not hidden completion.
+- unresolved_risk: future activation touching infra/auth/secrets must remain human-approved with dry-run/rollback evidence.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules plus docs/process/modes/version-up.md.
+- route_impact: confirmed adds version-up as a parked future-work mode and keeps parked work outside active completion.
+- forward_route: PLAN-REVERSE-140-forward-convergence-version-up-backfill -> version-up mode docs and readiness gates.
+- reverse_fullback_required: yes; discharged by PLAN-REVERSE-140-forward-convergence-version-up-backfill.
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the mode and harden activation/readiness boundaries.
+
 # PLAN-DISCOVERY-09 (kind=poc): version-up 駆動モデル
 
 ## 0. Objective (PO 指示 2026-06-26)

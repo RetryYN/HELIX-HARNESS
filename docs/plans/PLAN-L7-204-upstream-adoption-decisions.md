@@ -79,7 +79,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:47:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:409e06b41f45cd55ec25853b6756e911fe3a51434f63087c8a7c398def20be95"
+        output_digest: "sha256:ef0cbf669c4d0580d685a10716b3a29fe567d4f7cc38e378ddee225831e77328"
 ---
 
 # PLAN-L7-204: upstream A-146 semantic adoption decision contracts

@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T19:07:08+09:00"
+    tests_green_at: "2026-06-30T19:07:08+09:00"
+    verdict: pass
+    scope: "Continuation 22: S4 decision readiness now validates terminal S4 PoC plans, not only S3 pending plans. Existing confirmed/completed Discovery PLANs now carry structured s4_decision_record blocks, so frontmatter decision_outcome alone can no longer stand in for PO/S4 basis, route, risk, and fullback evidence."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T19:07:08+09:00"
+        evidence_path: tests/s4-decision-readiness.test.ts
+        output_digest: "sha256:d2b7d3a9a2f743fb71078bf0ba2d5063efca070243d43d7dd71a79dfc88631b3"
+      - kind: doctor
+        command: "bun run src/cli.ts doctor"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T19:07:08+09:00"
+        evidence_path: src/lint/s4-decision-readiness.ts
+        output_digest: "sha256:56f0f05139304ca6c2109eba9987262214823453d514aa0809e5ae7ba7ff6a40"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T18:59:06+09:00"
     tests_green_at: "2026-06-30T18:59:06+09:00"
     verdict: pass
@@ -26,7 +51,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:59:06+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:20418fd1ce5af6ac3ee2c7eb8894d0c743fabd75db39cba1bca6bfc11d2df0f1"
+        output_digest: "sha256:d2b7d3a9a2f743fb71078bf0ba2d5063efca070243d43d7dd71a79dfc88631b3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -308,7 +333,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:41:37+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:20418fd1ce5af6ac3ee2c7eb8894d0c743fabd75db39cba1bca6bfc11d2df0f1"
+        output_digest: "sha256:d2b7d3a9a2f743fb71078bf0ba2d5063efca070243d43d7dd71a79dfc88631b3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -316,7 +341,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:41:37+09:00"
         evidence_path: src/lint/s4-decision-readiness.ts
-        output_digest: "sha256:ef18d90622eaa4d388896a437ab6ff7976996fdaa58703f1eca558a36e9d5cb1"
+        output_digest: "sha256:56f0f05139304ca6c2109eba9987262214823453d514aa0809e5ae7ba7ff6a40"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:26:09+09:00"
@@ -383,7 +408,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:53:25+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:20418fd1ce5af6ac3ee2c7eb8894d0c743fabd75db39cba1bca6bfc11d2df0f1"
+        output_digest: "sha256:d2b7d3a9a2f743fb71078bf0ba2d5063efca070243d43d7dd71a79dfc88631b3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -391,7 +416,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:53:25+09:00"
         evidence_path: src/lint/s4-decision-readiness.ts
-        output_digest: "sha256:ef18d90622eaa4d388896a437ab6ff7976996fdaa58703f1eca558a36e9d5cb1"
+        output_digest: "sha256:56f0f05139304ca6c2109eba9987262214823453d514aa0809e5ae7ba7ff6a40"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:41:22+09:00"
@@ -482,6 +507,22 @@ generates:
   - artifact_path: docs/plans/PLAN-DISCOVERY-07-design-bottomup-mode.md
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-02-roster-design.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-03-skill-design.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-04-process-workflows.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-06-orchestrator-rule-parity.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-08-forward-convergence-invariant.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-DISCOVERY-09-version-up-mode.md
     artifact_type: markdown_doc
   - artifact_path: src/cli.ts
     artifact_type: source_module
@@ -590,6 +631,9 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   official URL、adopted version/date、latest official status、adoption decision、S4 decision use、
   required field impact を持ち、Scrum Guide / ISO 29148 / ISTQB / NIST SSDF のいずれかを落とすと fail-close する。
   ledger の `checked` が未来日または 90 日超過 stale の場合も fail-close し、古い外部根拠で S4 に進めない。
+  2026-06-30 continuation 22 で terminal S4 PoC (`workflow_phase=S4` + `decision_outcome`) も同じ
+  `s4_decision_record` 検査対象にした。これにより confirmed/completed PLAN の frontmatter だけで
+  PO/S4 basis、route、risk、Reverse fullback を証跡化した扱いにしない。
 - `src/lint/cutover-readiness.ts`: L14 cutover の source ledger を official URL、adopted version/date、
   latest official status、adoption decision、cutover use、required field impact で検査する。NIST SSDF、
   GitHub Environments required reviewers、GitHub Actions concurrency、Google SRE Release Engineering、

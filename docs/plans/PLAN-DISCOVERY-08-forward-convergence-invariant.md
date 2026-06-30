@@ -62,6 +62,20 @@ review_evidence:
         output_digest: "sha256:51d23f4db4ee7890a4d75606a7cd4567ca64a0b58f44587d57f215297124cb28"
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (2026-06-26 S4 adoption)
+- decision_basis: forward-convergence invariant was supported by cross-runtime review and implemented as analyzer/test/doctor surface.
+- verified_evidence: review_evidence green_commands, src/lint/forward-convergence.ts, tests/forward-convergence.test.ts, and PLAN-REVERSE-140.
+- stakeholder_review_or_proxy: Codex/gpt-5.5 cross-runtime TL review recorded in review_evidence.
+- acceptance_gap: minor schema wording for not_required reasons remained follow-up but did not block invariant adoption.
+- unresolved_risk: legacy local_impl_only debt must stay allowlisted/audited until fully backfilled.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed makes unaggregated landed side-flow work block freeze/forward-convergence claims.
+- forward_route: PLAN-REVERSE-140-forward-convergence-version-up-backfill -> requirements §6.8.8.1 and process docs.
+- reverse_fullback_required: yes; discharged by PLAN-REVERSE-140-forward-convergence-version-up-backfill.
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the invariant and harden analyzer/gate evidence.
+
 # PLAN-DISCOVERY-08 (kind=poc): forward-convergence 不変条件
 
 ## 0. Objective (PO 指示 2026-06-26)

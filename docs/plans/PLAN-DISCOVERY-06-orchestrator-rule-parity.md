@@ -27,6 +27,20 @@ dependencies:
     - PLAN-L7-114-work-guard
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO/PM S4 close (2026-06-24)
+- decision_basis: Codex hook feasibility was confirmed and false parity caveats were corrected before adoption.
+- verified_evidence: PLAN-DISCOVERY-06 §5/§5.1, PLAN-L7-139-codex-hook-adapter, and PLAN-REVERSE-139-codex-hook-adapter.
+- stakeholder_review_or_proxy: cross-runtime Codex/gpt-5.5 review recorded in §5.1.
+- acceptance_gap: Codex hosted/API tool surfaces remain outside direct repo hook enforcement and are documented as a scope boundary.
+- unresolved_risk: Codex spawn_agent guard remains deferred and must not be treated as N/A.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed routes hook parity findings to L7 implementation and Reverse architecture backfill.
+- forward_route: PLAN-L7-139-codex-hook-adapter and PLAN-REVERSE-139-codex-hook-adapter.
+- reverse_fullback_required: yes; discharged by PLAN-REVERSE-139-codex-hook-adapter.
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; reuse compatible hooks while hardening freeform apply_patch and scope caveats.
+
 # PLAN-DISCOVERY-06 (kind=poc): orchestrator-rule parity
 
 ## 0. Objective (PO 指示 2026-06-23「しばっておきたい」「オーケストレーターに同じルールを持たせるべき」)

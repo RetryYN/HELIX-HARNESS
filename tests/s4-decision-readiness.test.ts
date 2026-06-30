@@ -187,6 +187,37 @@ describe("S4 decision readiness", () => {
     );
   });
 
+  it("U-DECISIONREC-005: fails terminal S4 PoC plans that have decision_outcome without a structured record", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-906.md",
+            plan_id: "PLAN-DISCOVERY-906",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "confirmed",
+            text: "decision_outcome: confirmed",
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        { subject: "PLAN-DISCOVERY-906", reason: "missing structured s4_decision_record" },
+        { subject: "PLAN-DISCOVERY-906", reason: "missing structured decision_owner" },
+        { subject: "PLAN-DISCOVERY-906", reason: "missing structured verified_evidence" },
+        {
+          subject: "PLAN-DISCOVERY-906",
+          reason: "missing structured promotion_strategy_or_rejection_pivot_rationale",
+        },
+      ]),
+    );
+  });
+
   it("fails when S4 decision source ledgers lose adoption decisions or required rows", () => {
     const modeDoc = [
       "s4_decision_record",

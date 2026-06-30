@@ -102,6 +102,20 @@ dependencies:
 related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO goal directive (2026-06-22: A の 3 本の drift 解消)
+- decision_basis: roadmap registry was already merged, load-bearing in doctor, and promoted into governance concept text.
+- verified_evidence: review_evidence scope, src/schema/roadmap.ts, src/lint/roadmap-registry.ts, tests/roadmap.test.ts, doctor roadmap-rollup/program-coverage gates.
+- stakeholder_review_or_proxy: PM/Opus verification with PO directive recorded in review_evidence.
+- acceptance_gap: no adoption gap for roadmap registry; later roadmap-band refinements remain normal Forward work.
+- unresolved_risk: new roadmap bands still require registered gates/spans and cannot be inferred from prose.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed keeps roadmap as a first-class machine registration entity.
+- forward_route: RECOVERY-04 / PLAN-REVERSE-44 roadmap definition path plus active roadmap doctor gates.
+- reverse_fullback_required: yes; discharged by roadmap definition/backfill records.
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the mechanism and harden registration/gate checks.
+
 # PLAN-DISCOVERY-05 (kind=poc): 工程表を第一級・機械登録エンティティ化する metamodel 検証
 
 ## §0 位置づけ

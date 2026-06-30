@@ -34,6 +34,20 @@ dependencies:
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (2026-06-02 S4 process workflow decision)
+- decision_basis: docs/process Forward/modes/gates definitions could be written and dogfooded, with gaps captured for Reverse normalization.
+- verified_evidence: PLAN-DISCOVERY-04 S2/S3 dogfood record and PLAN-REVERSE-01 process-docs R0-R4.
+- stakeholder_review_or_proxy: code-reviewer/pmo-sonnet review noted in Step 5 and PO S4 routing decision.
+- acceptance_gap: V1-V7/V8+ gaps required Reverse fullback rather than direct Forward freeze.
+- unresolved_risk: future process changes must update concept/requirements before docs/process mirrors.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed routes the spike into Reverse for process-doc正本化.
+- forward_route: PLAN-REVERSE-01-process-docs -> docs/process and requirements/concept alignment.
+- reverse_fullback_required: yes; discharged by PLAN-REVERSE-01-process-docs.
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; retain the workflow model and harden through Reverse.
+
 # PLAN-DISCOVERY-04 (kind=poc): docs/process ワークフロー整備の Discovery
 
 ## §0 位置づけ

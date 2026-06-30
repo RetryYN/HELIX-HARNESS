@@ -139,6 +139,27 @@ function isMisplacedPocDecisionOutcome(plan: S4DecisionPlan): boolean {
   return plan.kind === "poc" && !!plan.decisionOutcome && plan.workflowPhase !== "S4";
 }
 
+function isS4PocDecision(plan: S4DecisionPlan): boolean {
+  return plan.kind === "poc" && plan.workflowPhase === "S4" && !!plan.decisionOutcome;
+}
+
+function validateS4DecisionRecord(plan: S4DecisionPlan): S4DecisionViolation[] {
+  const violations: S4DecisionViolation[] = [];
+  const missingFields = missingRecordFields(plan.text, S4_RECORD_NAME, S4_RECORD_FIELDS);
+  for (const field of missingFields) {
+    violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
+  }
+  const outcomeViolation = allowedOutcomeSetViolation(
+    plan.text,
+    S4_RECORD_NAME,
+    S4_ALLOWED_OUTCOMES,
+  );
+  if (outcomeViolation) {
+    violations.push({ subject: plan.plan_id, reason: outcomeViolation });
+  }
+  return violations;
+}
+
 export function analyzeS4DecisionReadiness(
   input: S4DecisionReadinessInput,
 ): S4DecisionReadinessResult {
@@ -189,18 +210,11 @@ export function analyzeS4DecisionReadiness(
 
   const pending = input.plans.filter(isS3PocPendingDecision);
   for (const plan of pending) {
-    const missingFields = missingRecordFields(plan.text, S4_RECORD_NAME, S4_RECORD_FIELDS);
-    for (const field of missingFields) {
-      violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
-    }
-    const outcomeViolation = allowedOutcomeSetViolation(
-      plan.text,
-      S4_RECORD_NAME,
-      S4_ALLOWED_OUTCOMES,
-    );
-    if (outcomeViolation) {
-      violations.push({ subject: plan.plan_id, reason: outcomeViolation });
-    }
+    violations.push(...validateS4DecisionRecord(plan));
+  }
+
+  for (const plan of input.plans.filter(isS4PocDecision)) {
+    violations.push(...validateS4DecisionRecord(plan));
   }
 
   return {

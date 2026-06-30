@@ -29,6 +29,20 @@ dependencies:
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
+s4_decision_record:
+- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- decision_owner: PO (2026-06-04 directive: "3件の問題を解消して")
+- decision_basis: L1-L5 dogfood and RECOVERY/Reverse cycles showed the workflow metamodel can run without schema-breaking gaps.
+- verified_evidence: PLAN-DISCOVERY-01 §7.1 S3 verify plus PLAN-REVERSE-08 R0-R4 normalization evidence.
+- stakeholder_review_or_proxy: PO directive plus intra-runtime review recorded in PLAN-REVERSE-08.
+- acceptance_gap: none for metamodel adoption; remaining language/detail gaps were routed through PLAN-REVERSE-08 and later Forward PLANs.
+- unresolved_risk: future mode-specific gaps must still enter Discovery/Reverse instead of bypassing Forward.
+- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- route_impact: confirmed promotes the metamodel findings into Forward governance through Reverse normalization.
+- forward_route: PLAN-REVERSE-08-discovery-metamodel -> concept §2.5 / requirements signal routing.
+- reverse_fullback_required: yes; discharged by PLAN-REVERSE-08-discovery-metamodel.
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the metamodel and harden language/gates through Reverse/Forward.
+
 # PLAN-DISCOVERY-01 (kind=poc): workflow メタモデル検証 (駆動プラン / S1)
 
 ## §0 位置づけ
