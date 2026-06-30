@@ -168,6 +168,10 @@ describe("L7 CLI surface closure", () => {
 
       const generated = runCliIn(root, ["handover", "--plan", "PLAN-M-02-fixture"]);
       expect(generated.status).toBe(0);
+      const pointerPath = join(root, ".ut-tdd", "handover", "CURRENT.json");
+      const oldPointer = JSON.parse(readFileSync(pointerPath, "utf8"));
+      delete oldPointer.outstanding?.semanticFeatureFrontierRecords;
+      writeFileSync(pointerPath, JSON.stringify(oldPointer), "utf8");
 
       const json = runCliIn(root, ["handover", "status", "--json"]);
       expect(json.status).toBe(0);
@@ -187,6 +191,14 @@ describe("L7 CLI surface closure", () => {
         planId: "PLAN-M-02-fixture",
         decisionKind: "irreversible_migration_signoff",
       });
+      expect(payload.outstanding.semanticFeatureFrontierRecords).toEqual([
+        expect.objectContaining({
+          recordName: "semantic_feature_frontier_record",
+          planId: "PLAN-M-02-fixture",
+          classification: "approval_gated_cutover",
+          completionClaimAllowed: false,
+        }),
+      ]);
       expect(payload.completionDecisionPacket.decisions[0].recordTemplates).toEqual(
         expect.arrayContaining([
           expect.objectContaining({

@@ -159,8 +159,10 @@ if (isCommit) {
 | ② 成果物 (commit / files) | digest.commits / files_touched から full prefill | — | CURRENT.json(件数) + md(全列挙) |
 | ③ Next Action / ④ carry / ⑤ 未了 PO 判断 / ⑥ 壊さない注意 | — | **人間記入 (placeholder)** | md のみ |
 | active PLAN / status / stale | 全自動 | — | CURRENT.json |
+| outstanding / completionDecisionPacket / G-SF semantic frontier | `ut-tdd handover` 生成時は CURRENT.json に snapshot 保存。`ut-tdd handover status --json` は read-only preflight として live `computeOutstandingWork` で再計算し、古い snapshot に無い additive field を補う | — | status response = live overlay、CURRENT.json = 保存 snapshot |
 
 → 「機械可読の**今どこ** (CURRENT.json)」と「人間判断の**次どう** (markdown)」を型 (`HandoverPointer` / `HandoverDoc`) で分離。§6.8.6 の役割直交 (state DB=今どこ / handover=次どう) を機構へ落とす。**機械化しないものを機械化しない**ことが設計判断 (Next Action を AI が捏造しない)。
+ただし outstanding / completion decision / G-SF semantic frontier は PLAN/frontier state から機械再計算できるため、`handover status` の preflight 出力では CURRENT.json の古い snapshot をそのまま返さず live overlay を優先する。これにより handover 再生成前でも、再開確認で PO/S4 pending、version-up parked、cutover approval 待ちの意味分類が落ちない。
 
 ### §2.6 markdown scaffold テンプレート (renderHandoverScaffold 出力骨格)
 

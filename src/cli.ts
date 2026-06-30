@@ -1880,8 +1880,14 @@ handover
       return;
     }
     const stale = handoverStale(pointer.updated_at, new Date().toISOString());
+    const liveOutstanding = computeOutstandingWork(repoRoot);
+    const liveCompletionDecisionPacket = completionDecisionPacketForOutstanding(liveOutstanding, {
+      sourceCommand: "ut-tdd handover",
+    });
     const status = {
       ...pointer,
+      outstanding: liveOutstanding,
+      completionDecisionPacket: liveCompletionDecisionPacket,
       exists: true,
       stale,
       stale_reasons: stale ? [`updated_at is older than 24h: ${pointer.updated_at}`] : [],
@@ -1895,6 +1901,11 @@ handover
     );
     for (const reason of status.stale_reasons) process.stdout.write(`stale_reason: ${reason}\n`);
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
+    if ((liveOutstanding.semanticFeatureFrontierRecords ?? []).length > 0) {
+      process.stdout.write(
+        `semantic_frontier_records: ${liveOutstanding.semanticFeatureFrontierRecords?.length ?? 0}\n`,
+      );
+    }
   });
 
 const providerHandover = handover.command("provider").description("Claude/Codex provider handover");

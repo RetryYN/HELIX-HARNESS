@@ -35,6 +35,31 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T08:42:36+09:00"
+    tests_green_at: "2026-07-01T08:42:36+09:00"
+    verdict: approve
+    scope: "`ut-tdd handover status --json` now overlays live outstanding/completionDecisionPacket data on top of the stored CURRENT.json pointer so older handover snapshots do not drop G-SF semantic frontier records during resume preflight. The command remains read-only and does not rewrite CURRENT.json."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts tests/outstanding.test.ts tests/handover.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T08:42:36+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:399c0008566c9e8ade4e57d0536646372aea2e38870622db1398f4b3cbdba13e"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T08:42:36+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:52c73f9ae3234e11ed854dbbebe66001803e699fd0e8d57a9cf7d9de2ab8933c"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T17:32:00+09:00"
     tests_green_at: "2026-06-30T17:32:00+09:00"
     verdict: approve
@@ -49,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:230921ed2dea8471dd17af9979affab30e2da69907238aa513076160e59d1b34"
+        output_digest: "sha256:399c0008566c9e8ade4e57d0536646372aea2e38870622db1398f4b3cbdba13e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -57,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:32:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:d4f501f0afdf6536823d297518b38527d3b922912c6752abd6dbb29883fc0c89"
+        output_digest: "sha256:52c73f9ae3234e11ed854dbbebe66001803e699fd0e8d57a9cf7d9de2ab8933c"
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-04"
@@ -99,7 +124,7 @@ review_evidence:
 `src/handover/index.ts` + session-log amendment を実装し U-HOVER を Green に。`npx vitest run tests/handover.test.ts`。
 
 ### Step 3: CLI 配線
-`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `ut-tdd handover status --json`、`ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.ut-tdd/handover/CURRENT.json` を読み、不在時は exit 0 + `exists:false`、壊れ JSON は exit 1 + `exists:true, stale:true`、既存 pointer は `stale/stale_reasons` 付きで返す。生成や補完はしない。
+`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `ut-tdd handover status --json`、`ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.ut-tdd/handover/CURRENT.json` を読み、不在時は exit 0 + `exists:false`、壊れ JSON は exit 1 + `exists:true, stale:true`、既存 pointer は `stale/stale_reasons` 付きで返す。CURRENT.json は書き換えないが、read-only preflight response の `outstanding` / `completionDecisionPacket` は live PLAN state から再計算して overlay するため、古い pointer snapshot に無い G-SF semantic frontier records を再開確認時に落とさない。
 
 ### Step 4: review (review 前置 MUST)
 claude-only のため `code-reviewer` (TL/QA 代替) で DbC 充足 / 循環 import 回避の妥当性 / dry-run 非破壊 / sanitize defense-in-depth / 既存 session-log 非回帰をレビュー。cross-agent 不在を evidence 記録。
