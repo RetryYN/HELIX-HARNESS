@@ -63,7 +63,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:55:32+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:185022df7fa3617a16e929d622323706907dc2af02a63950c0981b53b9e1a10a"
+        output_digest: "sha256:051d4b177145d2cf8a2b44fe60b7e858d7ed607578219620dd15a68848b7c3e4"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:21:41+09:00"
@@ -96,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:41+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:185022df7fa3617a16e929d622323706907dc2af02a63950c0981b53b9e1a10a"
+        output_digest: "sha256:051d4b177145d2cf8a2b44fe60b7e858d7ed607578219620dd15a68848b7c3e4"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"

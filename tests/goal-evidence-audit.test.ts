@@ -35,6 +35,16 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("PLAN-M-02");
     expect(text).toContain("semantic, not only quantitative");
     expect(text).toContain("version_up_parked");
+    expect(completionRow).toContain("PLAN-DISCOVERY-07-design-bottomup-mode");
+    expect(completionRow).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
+    expect(completionRow).toContain("PLAN-L7-146-serverless-readonly-share");
+    expect(completionRow).toContain("PLAN-M-02-helix-identifier-rename");
+    expect(completionRow).toContain("record the PO/S4 decision before promotion");
+    expect(completionRow).toContain("record required human/action-binding approval");
+    expect(completionRow).toContain("keep parked until a future version-up activation decision");
+    expect(completionRow).toContain(
+      "obtain explicit PO signoff before irreversible migration/cutover",
+    );
   });
 
   it("references the core current-state artifacts needed to substantiate the audit", () => {
@@ -66,7 +76,9 @@ describe("HELIX objective evidence audit", () => {
       "src/lint/codex-hook-adapter.ts",
       "tests/codex-hook-adapter.test.ts",
       "src/lint/outstanding.ts",
+      "src/lint/completion-decision-packet.ts",
       "tests/outstanding.test.ts",
+      "tests/completion-decision-packet.test.ts",
       "docs/process/forward/L08-L14-verification-phase.md",
       "docs/process/gates.md",
     ];
@@ -92,7 +104,13 @@ describe("HELIX objective evidence audit", () => {
       ],
       0,
     );
-    const text = auditText().replace("| G-10 |", "| G-10 |").replace("| blocked |", "| proved |");
+    const text = auditText()
+      .replace("| blocked |", "| proved |")
+      .replace("PLAN-M-02-helix-identifier-rename", "PLAN-M-XX-missing")
+      .replace(
+        "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+        "obtain signoff",
+      );
 
     const result = analyzeObjectiveEvidenceAudit({
       auditText: text,
@@ -105,6 +123,8 @@ describe("HELIX objective evidence audit", () => {
       expect.arrayContaining([
         "G-10: completion row must be blocked",
         "G-10: all rows cannot be proved while completionReadiness is blocked",
+        "G-10: completion row missing outstanding plan PLAN-M-02-helix-identifier-rename",
+        "G-10: completion row missing required action obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
       ]),
     );
   });

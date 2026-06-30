@@ -84,7 +84,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:01:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:c7dde7bc91d8d29560704cc92df21a2455af72210322488838e765ac7859ae72"
+        output_digest: "sha256:45b91f37110330ab1b3d4ab51a1c187da8638375caf85b5bc771288c72edc0b8"
 ---
 
 # PLAN-REVERSE-209: active objective evidence audit back-fill

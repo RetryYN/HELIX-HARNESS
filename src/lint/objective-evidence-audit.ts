@@ -31,7 +31,9 @@ const COMPLETION_REQUIREMENT_ID = "G-10";
 
 const REQUIRED_COMPLETION_ARTIFACTS = [
   "src/lint/outstanding.ts",
+  "src/lint/completion-decision-packet.ts",
   "tests/outstanding.test.ts",
+  "tests/completion-decision-packet.test.ts",
   "tests/cli-surface.test.ts",
   "docs/process/forward/L08-L14-verification-phase.md",
   "docs/process/gates.md",
@@ -115,6 +117,16 @@ function checkCompletionRow(
   for (const blocker of readiness.blockers) {
     if (!row.includes(blocker)) {
       violations.push(`G-10: completion row missing blocker ${blocker}`);
+    }
+  }
+  for (const item of input.outstanding.items) {
+    if (!row.includes(item.planId)) {
+      violations.push(`G-10: completion row missing outstanding plan ${item.planId}`);
+    }
+  }
+  for (const action of readiness.requiredActions) {
+    if (!row.includes(action)) {
+      violations.push(`G-10: completion row missing required action ${action}`);
     }
   }
 }

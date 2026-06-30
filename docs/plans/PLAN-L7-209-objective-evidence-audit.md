@@ -49,6 +49,31 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T17:06:13+09:00"
+    tests_green_at: "2026-06-30T17:06:13+09:00"
+    verdict: approve
+    scope: "G-10 completion evidence now must enumerate every outstanding PLAN and every completionReadiness.requiredAction, so whole-program/L14 completion cannot hide a blocked decision behind aggregate blocker labels."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T17:06:13+09:00"
+        evidence_path: tests/goal-evidence-audit.test.ts
+        output_digest: "sha256:45b91f37110330ab1b3d4ab51a1c187da8638375caf85b5bc771288c72edc0b8"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T17:06:13+09:00"
+        evidence_path: src/lint/objective-evidence-audit.ts
+        output_digest: "sha256:ad639cd4b1fe93faf1db9f7affaef4705cdf235a40675101ed3a2d23655f9fb7"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T11:02:00+09:00"
     tests_green_at: "2026-06-30T11:01:00+09:00"
     verdict: approve
@@ -63,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:01:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:c7dde7bc91d8d29560704cc92df21a2455af72210322488838e765ac7859ae72"
+        output_digest: "sha256:45b91f37110330ab1b3d4ab51a1c187da8638375caf85b5bc771288c72edc0b8"
 ---
 
 # PLAN-L7-209: active objective evidence audit
@@ -82,7 +107,8 @@ adapter config, performance NFR, and naming migration.
 - Add a regression test and doctor hard gate that verify every requirement row
   is present, proved rows stay proved, the whole-program completion row stays
   aligned to `completionReadiness`, false full-completion claims are rejected,
-  and cited current-state artifacts exist in the repo.
+  cited current-state artifacts exist in the repo, and the blocked completion
+  row enumerates all current outstanding PLANs and required actions.
 
 ## Non-Goals
 
@@ -96,6 +122,8 @@ adapter config, performance NFR, and naming migration.
 - The audit has proved rows for implemented/hardened objective requirements and
   a blocked row for L14 / whole-program completion until `completionReadiness`
   is true.
+- The blocked completion row cites every outstanding PLAN ID and every
+  `completionReadiness.requiredAction`, not only aggregate blocker labels.
 - `objective-evidence-audit` is wired into `ut-tdd doctor` hard-gate
   aggregation, so semantic completion drift cannot stay test-only.
 - The audit cites both external source commits observed for this continuation.
