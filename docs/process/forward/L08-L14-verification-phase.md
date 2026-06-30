@@ -13,8 +13,23 @@
 - 右腕工程で **ペア未凍結のテスト設計を新規起票することは V-model 違反** (AP-7)。
 - 検証工程で品質観点の不足が見つかった場合は、独立の **QA 追加テスト設計 doc** として正本化し、既存 ③ を書き換えない (concept v3.1 §3.4)。
 - 検証失敗は左腕の適切な設計層へ差し戻す (§右腕差し戻しルール)。
+- 右腕の pass claim は、左腕の test basis / test condition に対応する実行証跡を必要とする。NIST SSDF SP 800-218 の PW.8 系 practice と同じく、実行コード・環境・結果・欠陥 routing が追跡できない検証は acceptance evidence にしない。
+- Sprint / PoC 由来の increment は、Scrum Guide 2020 の Sprint Review と同じく inspect/adapt の入力であって、PO/S4 判定または Forward 右腕 gate の acceptance evidence なしに完了扱いしない。
+- 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>)
 
 > **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
+
+### 右腕 evidence profile (G8-G14)
+
+| gate | 左腕 test basis | 右腕 test condition | 必須 evidence | gate 消費形態 |
+|------|----------------|---------------------|---------------|---------------|
+| G8 | L5 D-API / D-DB / D-CONTRACT | module / state / adapter / asset / DB 境界が結合して動く | `g8-integration-evidence-v1` manifest、selected IT IDs、command exit 0、coverage row、stale defer 0 | `g8-integration-workflow` hard gate |
+| G9 | L4 architecture / ADR / system contract | system behavior が feature pack / roadmap span 単位で成立する | ST-* row、system command evidence、roadmap span coverage、regression finding routing | G9 child PLAN で manifest 化するまで `right-arm-gate-planning` が route を保持 |
+| G10 | L2 screen / mock / UX requirement | 本番相当データで画面・会話 UI が成立する | screenshot / render smoke / accessibility finding / real-data fixture provenance | G10 child PLAN で profile 化。現時点は `screen-impl-pair-freeze` と frontend coverage が前段証跡 |
+| G11 | L1 business requirement + L3 FR/AC | UAT feedback が要求・要件に照合済み | UAT decision record、accepted/rejected feedback、add-design/backprop route | human/PO evidence 必須。未処理 feedback は Forward 完了不可 |
+| G12 | L3 acceptance test design | release candidate が受入条件を満たす | acceptance command evidence、release approval、rollback/destructive check | PO signoff 必須。外部/本番影響は escalation 境界 |
+| G13 | L12 deployment record | deployed/staging 環境 smoke が通る | smoke command evidence、monitoring quiet window、incident routing if failed | production write は人間承認なしに実行しない |
+| G14 | L1 operational test design + L0 value hypothesis | 運用データ×時間で要求・価値が保たれる | operational metric snapshot、incident/backlog delta、L14→L0 feedback record | 価値検証 feedback。未記録なら「L14 達成」ではない |
 
 ---
 

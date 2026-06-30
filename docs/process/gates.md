@@ -8,8 +8,9 @@
 
 G8-G14 planning route (current): PLAN-L7-130-right-arm-gate-planning /
 PLAN-REVERSE-130-right-arm-gate-planning. `right-arm-gate-planning` is the
-doctor hard gate that prevents the G8-G14 carry from returning to an unplanned
-state.
+doctor hard gate that prevents the G9-G14 child-gate work from returning to an
+unplanned state. G8 has an executable workflow gate; G9-G14 have defined
+evidence profiles and remain child-PLAN implementation work.
 
 G8-WORKFLOW minimum mechanization (PLAN-L8 ascent): G8 is no longer closed by
 IT-* row presence alone. A passing G8 slice requires an integration evidence
@@ -18,6 +19,12 @@ exit blocks for missing evidence, stale defers, or failed mandatory IT cases.
 The required gate artifact is an integration evidence manifest.
 The source of workflow granularity is
 `docs/test-design/harness/L8-integration-test-design.md` §6 G8-WORKFLOW.
+
+Right-arm verification strategy (external-grounded): L8-L14 gates consume
+test-basis / test-condition / execution-evidence / defect-routing records, not
+prose completion claims. The right-arm evidence profile is defined in
+`docs/process/forward/L08-L14-verification-phase.md` §右腕 evidence profile.
+External basis: NIST SSDF SP 800-218, Scrum Guide 2020, and ISTQB Glossary.
 
 ## 1. gate 一覧表
 
@@ -31,15 +38,15 @@ The source of workflow granularity is
 | **G5** | L5 完了 | D-API/D-DB/D-CONTRACT ⇔ 結合テスト設計 凍結 (API/Schema Freeze) | block → L5 修正 |
 | **G6** | L6 完了 | 関数 signature + WBS ⇔ 単体テスト設計 凍結 | block → L6 修正 |
 | **G7** | L7 完了 | 4 artifact trace freeze: ① 4 artifact 揃い / ② 必須 8 directed edge 全充足 / ③ coverage ≥ 80% — **3 条件いずれか欠落 → exit 1** (§2.2 R-C3 fix) | exit 1 → L7 差分修正 |
-| **G8** | L8 完了 | 結合テスト品質 (概念定義、機械化は将来 PLAN) | block → L8 修正 |
-| **G9** | L9 完了 | 総合テスト品質 (概念定義、機械化は将来 PLAN) | block → L9 修正 |
-| **G10** | L10 完了 | UX 磨き品質 (概念定義) | block → L10 修正 |
-| **G11** | L11 完了 | 総合レビュー + UAT (概念定義) | block → L11 修正 |
-| **G12** | L12 完了 | デプロイ + 受入テスト通過 | block → L12 修正 |
-| **G13** | L13 完了 | デプロイ後検証 (概念定義) | block → L13 修正 |
-| **G14** | L14 完了 | 運用検証 (概念定義) | block → L14 修正 |
+| **G8** | L8 完了 | 結合テスト品質: `g8-integration-evidence-v1` manifest + selected IT coverage + stale defer 0 | block → L8 修正 |
+| **G9** | L9 完了 | 総合テスト品質: ST-* evidence + roadmap span coverage + regression routing | block → L9 修正 |
+| **G10** | L10 完了 | UX 磨き品質: real-data render/screenshot/a11y evidence + frontend coverage | block → L10 修正 |
+| **G11** | L11 完了 | 総合レビュー + UAT: UAT decision record + feedback backprop route | block → L11 修正 |
+| **G12** | L12 完了 | デプロイ + 受入テスト通過: acceptance command evidence + release approval + rollback/destructive check | block → L12 修正 |
+| **G13** | L13 完了 | デプロイ後検証: smoke evidence + monitoring quiet window + incident routing if failed | block → L13 修正 |
+| **G14** | L14 完了 | 運用検証: operational metric snapshot + improvement backlog delta + L14→L0 feedback record | block → L14 修正 |
 
-注: G8-G14 の機械検証条件は概念定義に留まる。機械化は将来の個別 PLAN で詳細設計する (§2.2 末尾)。全 Reverse は confirmed 化済 (2026-06-04) だが G8-G14 機械化 PLAN は**未起票のまま** = carry。起票自体は Phase 3 (L7 自動化) / Phase 5 以降でよいが、carry の所在を living で追えるよう `docs/improvement-backlog.md` の **IMP-052** (observed) に登録した。起票時に当該 PLAN_ID をここへリンクで埋める。G1-G7 は §2.2 段階 A/B で機械化済み (または計画済み)。
+注: G8 は PLAN-L7-168 / PLAN-REVERSE-168 / PLAN-L7-169 系で executable evidence manifest 化済み。G9-G14 は本表と `L08-L14-verification-phase.md` の evidence profile を正本とし、詳細な fail-close 実装は **PLAN-L7-130-right-arm-gate-planning / PLAN-REVERSE-130-right-arm-gate-planning** 配下の子 PLAN で展開する。`docs/improvement-backlog.md` の **IMP-052** は implemented であり、未起票 carry に戻してはならない。G1-G7 は §2.2 段階 A/B で機械化済み (または計画済み)。
 
 > **正規式モデル (PLAN-RECOVERY-02、2026-06-04、非破壊)**: 各 gate の V-pair は対応する検証本質を凍結/検証する — L6 単体 / L5 結合 / L4 総合 / L3 本番受入 / L2 実データ検証 / L1 運用 / **L0 価値検証 (G0.5 + L14→L0 feedback、従来ペア無しの穴埋め)**。右腕 = データ実在性エスカレーション (合成→本番→運用→価値)。番号・既存ゲートは据え置き。正本 = gate-design.md / concept §2.3 / overview §4。
 
