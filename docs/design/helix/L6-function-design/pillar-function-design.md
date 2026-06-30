@@ -28,6 +28,25 @@ pillar 43 要件全体の L6 横断設計を受け持つ。
   へ含めない。S4 confirmed 後に layer tree / graph IR / evidence timeline / drill-down pointer の
   view-model function を別 family または HC-P9/HB-P9 extension として降下する。
 
+### §0.1 実装可能機能一覧の意味境界
+
+L6 の機能一覧は、L3 の意味単位をそのまま関数境界へ落とす。実装済み/設計済み/未承認/将来版 parked を
+同じ「完了」に丸めない。
+
+| 意味単位 | L6 family / function | 状態 | 完了主張の境界 |
+|----------|----------------------|------|----------------|
+| Forward 収束 / stop reason | HC-P0 `decideForwardReturn` / `recordStopReasonEvidence` | L6 confirmed | completion claim は return/gap/version target と stop evidence が無い限り blocker |
+| continuous autonomy / version-up / handover | HC-P1 `evaluateAutonomyResume` / `planVersionUpgradeDryRun` / `mergeAnchoredHandover` | L6 confirmed | parked version-up は dispatch せず、activation decision / rollback / approval を要求 |
+| pair-agent TDD / loop trace | HC-P2 `buildPairAgentTddPlan` / `runPairAgentTddPlan` / `writeLoopTraceSpan` | L6 confirmed、一部 L7 実装済み | smart test/oracle -> light implementation -> smart review の順序と evidence 保存が必須。local verdict は CI/merge gate の代替ではない |
+| verification / TDD oracle / runtime provenance | HC-P3 `validatePairClosure` / `validateTddOracle` / `selectVerificationProfile` | L6 confirmed | projection-only telemetry、coverage-only、self-review は `works` claim を閉じない |
+| repair / metric improvement | HC-P4 `routeRepairFinding` / `promoteRepairRecipe` / `projectMetricImprovementSignal` | L6 confirmed | destructive/auth/PII/license repair は approval なしに apply しない |
+| GitHub/setup/release/identifier rename | HC-P6 `buildDistributionPlan` / `planReleaseAutomationDecision` / `auditIdentifierRenameBlastRadius` | L6 confirmed、一部 L7 実装済み | `.ut-tdd -> .helix` は audit/cutover plan まで。cutover/action-binding approval が無い限り apply 可能と扱わない |
+| shared memory / glossary / context map | HC-P7 `buildBoundedRecallPacket` / `detectGlossaryDrift` / `validateContextMapBoundary` | L6 confirmed | per-agent silo は SSoT ではない。rename/synonym は supersedes/context を要求 |
+| external source/security/action approval | HC-P8 `validateSourceAttribution` / `parseExternalSecurityFilter` / `requireActionBindingApproval` | L6 confirmed | raw external text を instruction 化しない。high-impact action は matching approval 必須 |
+| DB convergence / layer regression | HC-P9 `checkProjectionConvergence` / `queryLayerRegressionImpact` | L6 confirmed | DB 未収束、contract 未分類、影響 layer gate/test 未実行は green にしない |
+| adapter/preflight consistency | HC-AC `validateAdapterParityMap` / `requireHostedSurfacePreflight` | L6 confirmed | hosted/API surface は repo hook 非強制のため preflight evidence が無ければ reject |
+| asset/progress visualization amendment | S4 confirmed 後に view-model family へ降下予定 | frontier | `VisualizationSnapshot` first response は既存だが、Tree View/Webview の L6 function と L7 implementation は未 confirmed |
+
 ## §1 function family
 
 | HC | function family | 主な signature | DbC / fail-close | log / evidence | oracle |

@@ -136,6 +136,22 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("downstream L3/L4/L5/L6/L7 route");
   });
 
+  it("answers PO semantic completeness questions without false completion wording", () => {
+    const text = auditText();
+
+    expect(text).toContain("## PO Question Ledger");
+    expect(text).toContain("要求と要件定義はずれていないのか");
+    expect(text).toContain("機能一覧は本当に合っているのか");
+    expect(text).toContain("要求修正が入ったのに中身も合っているのか");
+    expect(text).toContain("ワークフローに従っているのか");
+    expect(text).toContain("全部終わっているのか");
+    expect(text).toContain("No. Whole-program completion is blocked");
+    expect(text).toContain("confirmed 43 items plus explicit frontiers");
+    expect(text).toContain("visualization S4");
+    expect(text).toContain("rename cutover approval");
+    expect(text).toContain("version-up parked work");
+  });
+
   it("keeps version-up parking aligned after PLAN-L7-141 activation", () => {
     expect(frontmatterValue(PLAN_L7_141, "status")).toBe("confirmed");
     expect(frontmatterValue(PLAN_L7_141, "version_target")).toBeNull();

@@ -61,6 +61,31 @@ evidence drill-down、read-only first の UI/data boundary を持つ新しい要
 したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に限定される。L1 §2.8 を含む revised
 request 全体について「L3/L4/L6/L7 fully descended」または「L14 全件達成」と主張してはならない。
 
+### §0.2 意味ベース機能一覧と要求修正境界
+
+本書の機能一覧は、ID 数だけでなく「要求が何を意味しているか」で管理する。したがって、confirmed
+43 件に含まれる機能、要求修正で追加された frontier、不可逆承認待ちの cutover、将来版 parked work
+を混ぜて「全部終わった」とは言わない。
+
+| 意味単位 | 要求根拠 | L3 状態 | 下流状態 / 完了境界 |
+|----------|----------|---------|----------------------|
+| 逸脱受け止めと Forward 収束 | HBR-P0 / HR-FR-P0-01..02 | confirmed 43 件に含む | L4-L6 へ降下済み。runtime/product 完了は各 L7/L14 evidence 別判定 |
+| 連続自律走行 / Scrum 分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 43 件に含む | version-up mode は正本化済み。ただし `PLAN-L7-146` は `version_target: future` の parked で、今版完了には数えない |
+| pair-agent TDD route | HR-FR-P2-04 / HAC-P2-04b | confirmed 43 件に含む | L6 `buildPairAgentTddPlan` / `runPairAgentTddPlan` へ降下済み。PLAN-L7-177 で evidence 保存・DB projection まで実装済みだが、CI/merge gate の代替ではない |
+| 強い検証 / test-first / 実装精度 | HBR-P3 / HNFR-P3 | confirmed 43 件に含む | L6 verification family へ降下済み。green command・review・runtime provenance の実証跡が無い runtime claim は閉じない |
+| 自動修復 / 計測改善 | HBR-P4 | confirmed 43 件に含む | detector -> repair / recipe / metric の要求は降下済み。自動適用は high-impact approval 境界に従う |
+| GitHub 自動化 / setup / release / rename | HBR-P6 | confirmed 43 件に含む | setup / release dry-run / gated push は設計済み。`.ut-tdd -> .helix` rename は PLAN-M-02 の cutover/action-binding approval が無い限り audit/plan までで、apply 完了にしない |
+| 共有 memory / Glossary / DDD context | HBR-P7 | confirmed 43 件に含む | L6 knowledge family へ降下済み。Glossary SSoT と context-map の runtime 完了は下位実装・検証で別判定 |
+| 外部検索 / skillify / security boundary | HBR-P8 / HNFR-P8 | confirmed 43 件に含む | source attribution / sandbox / approval / security filter を要求化済み。外部 API・infra・secret 変更は action-binding approval なしに apply しない |
+| DB 収束 / relation graph / contract ledger | HBR-P9 | confirmed 43 件に含む | DB 未収束 artifact は完了扱いにしない。doctor green だけでは whole-program completion の代替にならない |
+| context efficiency | HNFR-P5 | confirmed 43 件に含む | 独立した business-requirement の P5 ID ではなく HNFR-P5 として P1/P3 に吸収。`HB-P5` / `HC-P5` を期待しない |
+| adapter/rule/memory 一貫性 | HNFR-AC | confirmed 43 件に含む | Claude/Codex/hosted API の surface 差分は adapter/preflight で扱う。repo hook 非強制 surface を hook-covered と主張しない |
+| asset/progress visualization | L1 §2.8 / PLAN-DISCOVERY-10 | S3 verified / S4 PO decision pending | L1/HOT-P9 と `VisualizationSnapshot` first response は存在するが、L3 visualization requirements、L4 UI-data boundary、L5 graph/drill-down contract、L6 view-model function、L7 VSCode View/Webview は未 confirmed |
+
+この表は「機能一覧が合っているか」の現在の回答である。confirmed 43 件の設計降下は成立しているが、
+要求修正後の revised request 全体は `PLAN-DISCOVERY-10` S4 判断と PLAN-M-02 cutover 承認が残るため、
+L14 全件完了とは扱わない。
+
 ## §1 FR/AC 一覧
 
 | ID | 親 | 要件 | 主な AC |

@@ -210,8 +210,13 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     );
     expect(l1).toContain("§2.8 Asset / progress visualization 要求");
     expect(l3).toContain("§0.1 L1 amendment frontier");
+    expect(l3).toContain("§0.2 意味ベース機能一覧と要求修正境界");
     expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
     expect(l3).toContain("L1 §2.8 を含む revised");
+    expect(l3).toContain("要求修正後の revised request 全体");
+    expect(l3).toContain("pair-agent TDD route");
+    expect(l3).toContain("`.ut-tdd -> .helix` rename");
+    expect(l3).toContain("S3 verified / S4 PO decision pending");
     expect(l12).toContain("§0.1 amendment frontier oracle");
     expect(l12).toContain("visualization 要求も L3/L4/L6/L7 fully descended");
     const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
@@ -1373,6 +1378,10 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "HU-PILLAR-CONFIG-01",
       "HU-PILLAR-PROV-04",
       "L1 §2.8 asset/progress visualization amendment",
+      "§0.1 実装可能機能一覧の意味境界",
+      "pair-agent TDD / loop trace",
+      "GitHub/setup/release/identifier rename",
+      "`.ut-tdd -> .helix`",
       "view-model function",
       "VSCode Tree View / Webview",
     ]) {

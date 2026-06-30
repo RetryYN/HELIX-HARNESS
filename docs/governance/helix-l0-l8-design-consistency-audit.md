@@ -102,3 +102,15 @@ its downstream L3/L4/L5/L6/L7 route, future-version serverless sharing
 hardening. Those items must stay visible. They must not be hidden behind the
 word "complete", and they also must not be used to reopen the narrower
 confirmed-pillar L0-L8 evidence claim.
+
+## PO Question Ledger
+
+The current answer to the repeated PO questions is intentionally narrow:
+
+| PO question | Current answer | Governing artifact |
+|-------------|----------------|--------------------|
+| 要求と要件定義はずれていないのか | The frozen 2026-06-28 L1 -> L3 chain is aligned for 43 confirmed HR items. The 2026-06-30 visualization amendment is not yet L3 confirmed. | `pillar-functional-requirements.md` §0.2 |
+| 機能一覧は本当に合っているのか | The feature list is correct only when read as confirmed 43 items plus explicit frontiers: visualization S4, rename cutover approval, version-up parked work, and runtime/product hardening. | `pillar-functional-requirements.md` §0.2 / `pillar-function-design.md` §0.1 |
+| 要求修正が入ったのに中身も合っているのか | The content is not claimed fully descended after the amendment. The amendment is visible at L1/HOT-P9 and S3 read-model evidence, but L3/L4/L5/L6/L7 follow-up is blocked on S4. | C-16 / `PLAN-DISCOVERY-10` |
+| ワークフローに従っているのか | Discovery S3 is kept draft/outstanding until S4 PO decision; version-up parked is not active completion; irreversible rename is blocked until cutover/action-binding approval. | `docs/process/modes/discovery.md`, `docs/process/modes/version-up.md`, `PLAN-M-02` |
+| 全部終わっているのか | No. Whole-program completion is blocked by outstanding S4 decisions, parked version-up work, and approval-gated cutover. Doctor green or selected L0-L8 design evidence is not a full completion claim. | `ut-tdd handover status --json` / completion readiness |
