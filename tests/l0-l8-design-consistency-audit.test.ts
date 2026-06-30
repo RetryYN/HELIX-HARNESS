@@ -189,6 +189,9 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(l3).toContain(
       "asset/progress visualization: `classification=frontier_pending_decision`",
     );
+    expect(l3).toContain("version-up-activation-packet.v1");
+    expect(l3).toContain("plan-only activation packet");
+    expect(l3).toContain("apply surface を持たない");
     expect(l6).toContain("実装済み path の存在だけでは `completion_claim_allowed=true` にならない");
     expect(l12).toContain("G-SF oracle");
     expect(l7Unit).toContain("G-SF | semantic frontier records");

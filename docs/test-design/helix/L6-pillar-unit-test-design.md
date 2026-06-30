@@ -39,7 +39,7 @@ next_pair_freeze: L6
 | HU-PILLAR-P0-01 | HR-FR-P0-01 | HC-P0 | `decideForwardReturn` | return/gap/version target のいずれも無い completion claim を reject |
 | HU-PILLAR-P0-02 | HR-FR-P0-02 | HC-P0 | `recordStopReasonEvidence` | cap/lock/Recovery stop reason を evidence に残し、空 reason を blocker 化 |
 | HU-PILLAR-P1-01 | HR-FR-P1-01 | HC-P1 | `evaluateAutonomyResume` | resume 3 条件、job availability、budget、handover next_action が揃う時だけ dispatch |
-| HU-PILLAR-P1-02 | HR-FR-P1-02 | HC-P1 | `planVersionUpgradeDryRun` | migration/rollback/idempotency 欠落を dry-run fail にする |
+| HU-PILLAR-P1-02 | HR-FR-P1-02 | HC-P1 | `planVersionUpgradeDryRun` / `buildVersionUpActivationPackets` / `ut-tdd version-up activation-packet` | migration/rollback/idempotency 欠落を dry-run fail にする。parked PLAN の activation packet は activation/parked review/action-binding approval を出すが、`planOnly=true` / `mustNotApply=true` / `applyCommandAvailable=false` / `activationAllowed=false` であり、承認なしに apply surface を作らない |
 | HU-PILLAR-P1-03 | HR-FR-P1-03 | HC-P1 | `evaluateAutonomyResume` | large request slice が Forward return、budget、acceptance を持たなければ dispatch しない |
 | HU-PILLAR-P1-04 | HR-FR-P1-04 | HC-P1 | `selectL2TemplatePack` | L2 skip 時も template pack と defer/back-propagation record を返す |
 | HU-PILLAR-P2-01 | HR-FR-P2-01 | HC-P2 | `validateToolContractSurface` | registered schema は allow、unknown surface は deny/defer |
@@ -96,7 +96,7 @@ next_pair_freeze: L6
 | Family | Negative oracle |
 |--------|-----------------|
 | HC-P0 | completion claim without Forward return, gap-only, or version target returns `blocker` |
-| HC-P1 | stale lock, missing next_action, or budget overrun returns `idle` / `handover` / `blocker`, never `dispatch` |
+| HC-P1 | stale lock, missing next_action, budget overrun, or parked version-up activation without concrete action-binding approval returns `idle` / `handover` / `blocker` / plan-only packet, never `dispatch` / `apply` |
 | HC-P2 | unknown surface and over-budget loop cannot produce pass evidence |
 | HC-P2/P3 | pair-agent TDD route cannot start with implementation, cannot let the light agent close, cannot drop smart review fix instructions between cycles, cannot lose requested run evidence, and cannot execute the smart T0 review agent without explicit approval |
 | HC-P3 | projection-only telemetry cannot close `works` / `fired` / `used` claims |

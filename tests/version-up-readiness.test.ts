@@ -1,6 +1,8 @@
+import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 import {
   analyzeVersionUpReadiness,
+  buildVersionUpActivationPackets,
   loadVersionUpReadinessInput,
   type VersionUpReadinessInput,
   versionUpReadinessMessages,
@@ -15,6 +17,9 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "version-up-readiness",
       "`version_target`",
       "activation 条件",
+      "version-up-activation-packet.v1",
+      "plan-only activation packet",
+      "apply surface を持たない",
       "今版外作業を失わない",
     ].join("\n"),
     functionalDesign: [
@@ -122,6 +127,45 @@ describe("version-up-readiness", () => {
     expect(result.ok).toBe(true);
     expect(result.parkedPlanIds).toEqual(["PLAN-L7-900-future"]);
     expect(versionUpReadinessMessages(result)[0]).toContain("version-up-readiness - OK");
+  });
+
+  it("emits a non-destructive activation packet for parked version-up plans", () => {
+    const packets = buildVersionUpActivationPackets(input());
+    expect(packets).toHaveLength(1);
+    const packet = packets[0];
+
+    expect(packet.schemaVersion).toBe("version-up-activation-packet.v1");
+    expect(packet.planId).toBe("PLAN-L7-900-future");
+    expect(packet.status).toBe("parked_pending_activation_decision");
+    expect(packet.planOnly).toBe(true);
+    expect(packet.mustNotApply).toBe(true);
+    expect(packet.applyCommandAvailable).toBe(false);
+    expect(packet.activationAllowed).toBe(false);
+    expect(packet.allowedOutcomes).toEqual([
+      "activate_future_version",
+      "reject_or_archive",
+      "keep_parked_with_review_date",
+    ]);
+    expect(packet.activationDecision.activation_route).toContain("add-feature");
+    expect(packet.parkedReview.decision_packet_route).toContain("completion packet");
+    expect(packet.externalBoundaries).toEqual([
+      "Cloudflare",
+      "HMAC",
+      "webhook",
+      "access control",
+      "external",
+    ]);
+    expect(packet.blockedReasons).toEqual(
+      expect.arrayContaining([
+        "plan remains version_target parked; activation decision has not been executed",
+        "missing concrete approve_action_binding outcome",
+      ]),
+    );
+    expect(packet.nextWorkflowRoutes.map((route) => route.outcome)).toEqual([
+      "activate_future_version",
+      "reject_or_archive",
+      "keep_parked_with_review_date",
+    ]);
   });
 
   it("U-DECISIONREC-002: fails parked plans that do not explain activation as version-up", () => {
@@ -284,6 +328,13 @@ describe("version-up-readiness", () => {
     expect(result.violations).toEqual(
       expect.arrayContaining([
         { subject: "L3 pillar requirements", reason: "missing HAC-P1-02a" },
+        { subject: "L3 pillar requirements", reason: "missing version-up-readiness" },
+        { subject: "L3 pillar requirements", reason: "missing `version_target`" },
+        { subject: "L3 pillar requirements", reason: "missing activation 条件" },
+        { subject: "L3 pillar requirements", reason: "missing version-up-activation-packet.v1" },
+        { subject: "L3 pillar requirements", reason: "missing plan-only activation packet" },
+        { subject: "L3 pillar requirements", reason: "missing apply surface を持たない" },
+        { subject: "L3 pillar requirements", reason: "missing 今版外作業を失わない" },
         { subject: "docs/process/modes/README.md", reason: "missing `version_deferral`" },
       ]),
     );
@@ -428,5 +479,41 @@ describe("version-up-readiness", () => {
     expect(result.parkedPlanIds).toEqual(["PLAN-L7-146-serverless-readonly-share"]);
     expect(result.missingSourceLedgerRows).toEqual([]);
     expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
+  it("exposes live parked work through the CLI activation packet surface", () => {
+    const raw = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "activation-packet",
+        "--plan",
+        "PLAN-L7-146-serverless-readonly-share",
+        "--json",
+      ],
+      { encoding: "utf8" },
+    );
+    const packets = JSON.parse(raw);
+    expect(packets).toHaveLength(1);
+    expect(packets[0]).toMatchObject({
+      schemaVersion: "version-up-activation-packet.v1",
+      planId: "PLAN-L7-146-serverless-readonly-share",
+      status: "parked_pending_activation_decision",
+      planOnly: true,
+      mustNotApply: true,
+      applyCommandAvailable: false,
+      activationAllowed: false,
+    });
+    expect(packets[0].externalBoundaries).toEqual(
+      expect.arrayContaining(["Cloudflare", "HMAC", "webhook", "access control", "secret"]),
+    );
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining([
+        "plan remains version_target parked; activation decision has not been executed",
+        "missing concrete approve_action_binding outcome",
+      ]),
+    );
   });
 });

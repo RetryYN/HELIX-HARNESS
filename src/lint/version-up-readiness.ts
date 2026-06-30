@@ -42,6 +42,24 @@ export interface VersionUpReadinessResult {
   ok: boolean;
 }
 
+export interface VersionUpActivationPacket {
+  schemaVersion: "version-up-activation-packet.v1";
+  planId: string;
+  versionTarget: string | null;
+  status: "parked_pending_activation_decision" | "invalid_not_parked";
+  planOnly: true;
+  mustNotApply: true;
+  applyCommandAvailable: false;
+  activationAllowed: false;
+  allowedOutcomes: string[];
+  activationDecision: Record<string, string>;
+  parkedReview: Record<string, string>;
+  actionBindingApproval: Record<string, string>;
+  externalBoundaries: string[];
+  blockedReasons: string[];
+  nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
 const MODE_DOC_MARKERS = [
   "deferred-but-committed-future",
   "status=draft",
@@ -86,6 +104,9 @@ const PILLAR_REQUIREMENT_MARKERS = [
   "version-up-readiness",
   "`version_target`",
   "activation 条件",
+  "version-up-activation-packet.v1",
+  "plan-only activation packet",
+  "apply surface を持たない",
   "今版外作業を失わない",
 ] as const;
 
@@ -164,6 +185,20 @@ const EXTERNAL_ACTIVATION_MARKERS = [
   "dry_run_plan",
   "rollback_plan",
   "exit 1",
+] as const;
+
+const ACTION_BINDING_RECORD_NAME = "action_binding_approval_record";
+const ACTION_BINDING_RECORD_FIELDS = [
+  "allowed_outcome",
+  "approval_policy_or_named_approver",
+  "approval_scope",
+  "approved_actor",
+  "approved_tool",
+  "approved_target",
+  "approved_params",
+  "review_approval_evidence",
+  "expires_at_or_trigger",
+  "audit_record",
 ] as const;
 
 const REQUIRED_SOURCE_LEDGER_COLUMNS = [
@@ -407,6 +442,66 @@ export function analyzeVersionUpReadiness(
   };
 }
 
+export function buildVersionUpActivationPackets(
+  input: VersionUpReadinessInput,
+): VersionUpActivationPacket[] {
+  return input.plans
+    .filter((plan) => plan.versionTarget !== null)
+    .map((plan) => buildVersionUpActivationPacket(plan))
+    .sort((a, b) => a.planId.localeCompare(b.planId));
+}
+
+export function buildVersionUpActivationPacket(
+  plan: VersionUpReadinessPlan,
+): VersionUpActivationPacket {
+  const activationDecision = recordValues(plan.text, ACTIVATION_RECORD_NAME, [
+    ...ACTIVATION_RECORD_FIELDS,
+  ]);
+  const parkedReview = recordValues(plan.text, PARKED_REVIEW_RECORD_NAME, [
+    ...PARKED_REVIEW_RECORD_FIELDS,
+  ]);
+  const actionBindingApproval = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
+    ...ACTION_BINDING_RECORD_FIELDS,
+  ]);
+  const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
+    plan.text.toLowerCase().includes(term.toLowerCase()),
+  );
+  const blockedReasons = blockedActivationReasons(plan, actionBindingApproval, externalBoundaries);
+
+  return {
+    schemaVersion: "version-up-activation-packet.v1",
+    planId: plan.plan_id,
+    versionTarget: plan.versionTarget,
+    status:
+      plan.versionTarget === null ? "invalid_not_parked" : "parked_pending_activation_decision",
+    planOnly: true,
+    mustNotApply: true,
+    applyCommandAvailable: false,
+    activationAllowed: false,
+    allowedOutcomes: [...ACTIVATION_ALLOWED_OUTCOMES],
+    activationDecision,
+    parkedReview,
+    actionBindingApproval,
+    externalBoundaries,
+    blockedReasons,
+    nextWorkflowRoutes: [
+      {
+        outcome: "activate_future_version",
+        route: "route through add-feature / Forward descent before any external activation",
+      },
+      {
+        outcome: "reject_or_archive",
+        route:
+          "record archive/rejection rationale and remove from active parked completion blocker",
+      },
+      {
+        outcome: "keep_parked_with_review_date",
+        route: "record review_by date or trigger-bound owner and keep completion blocked",
+      },
+    ],
+  };
+}
+
 function validateParkedVersionUpSemantics(
   plan: VersionUpReadinessPlan,
 ): VersionUpReadinessViolation[] {
@@ -470,6 +565,44 @@ function validateParkedVersionUpSemantics(
 
 function record(textPlan: VersionUpReadinessPlan, recordName: string, field: string): string {
   return recordFieldValue(textPlan.text, recordName, field) ?? "";
+}
+
+function recordValues(
+  text: string,
+  recordName: string,
+  fields: readonly string[],
+): Record<string, string> {
+  return Object.fromEntries(
+    fields.map((field) => [field, recordFieldValue(text, recordName, field) ?? ""]),
+  );
+}
+
+function blockedActivationReasons(
+  plan: VersionUpReadinessPlan,
+  actionBindingApproval: Record<string, string>,
+  externalBoundaries: readonly string[],
+): string[] {
+  const reasons: string[] = [];
+  if (plan.versionTarget !== null) {
+    reasons.push("plan remains version_target parked; activation decision has not been executed");
+  } else {
+    reasons.push("plan is not a version-up parked plan");
+  }
+  if ((actionBindingApproval.allowed_outcome ?? "").trim() !== "approve_action_binding") {
+    reasons.push("missing concrete approve_action_binding outcome");
+  }
+  for (const field of ["approved_actor", "approved_tool", "approved_target", "approved_params"]) {
+    const value = actionBindingApproval[field] ?? "";
+    if (!value || mentions(value, ["No ", "not approved", "while parked"])) {
+      reasons.push(`action-binding approval lacks concrete ${field}`);
+    }
+  }
+  if (externalBoundaries.length > 0) {
+    reasons.push(
+      `external activation boundary requires explicit approval: ${externalBoundaries.join(", ")}`,
+    );
+  }
+  return [...new Set(reasons)];
 }
 
 function mentions(value: string, needles: string[]): boolean {

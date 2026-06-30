@@ -45,6 +45,9 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
 - 非終端 (draft) のまま残るため `ut-tdd status` の outstanding / version-up parked には引き続き計上される (将来版保全 = 完了ではない)。
 - `ut-tdd route eval --signal version_deferral --format json` は `mode=version-up` を返す。駆動モデル上も、本 PLAN は active L7 frontier ではなく version-up parked として扱う。
 - activation 信号（例: `version_deferral Cloudflare HMAC webhook access control external infrastructure activation`）は mode=`version-up` のまま `escalation_boundaries[]` を返し、approval policy/approval が無ければ exit 1 になる。将来版保全と外部配信適用を混同しない。
+- `ut-tdd version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json` は activation / parked review / action-binding approval を
+  `version-up-activation-packet.v1` として出すが、`planOnly=true` / `mustNotApply=true` / `applyCommandAvailable=false` /
+  `activationAllowed=false` の非破壊 surface であり、Cloudflare/GitHub/HMAC/access-control/secret activation は実行しない。
 
 activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`

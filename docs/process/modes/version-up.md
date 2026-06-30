@@ -55,6 +55,17 @@ version-up parked PLAN は、将来版へ保全している間も「次に何を
 activation 後に `version_target` を外す。`reject_or_archive` の場合は破棄理由を記録して archived 化する。
 `keep_parked_with_review_date` の場合は `review_by` を更新し、completion readiness は引き続き blocked とする。
 
+### 4.1.1 activation packet surface
+
+`ut-tdd version-up activation-packet --json` は、parked PLAN の `activation_decision_record` /
+`parked_review_record` / `action_binding_approval_record` を読み、将来版 activation の判断材料を
+`version-up-activation-packet.v1` として出力する。
+
+この surface は **plan-only** である。`planOnly=true`、`mustNotApply=true`、`applyCommandAvailable=false`、
+`activationAllowed=false` を固定し、Cloudflare / HMAC / webhook / access control / secret / external などの
+外部境界が残る限り blocked reason として表示する。packet は PO/TL の判断材料であり、activation 実行・外部 infra
+変更・secret 設定・`version_target` 解除を行わない。
+
 ### 4.2 parked review record
 
 version-up parked PLAN は、activation 判断の前に `parked_review_record` を持つ。これは「いつ、誰が、何を見て、
@@ -98,6 +109,7 @@ version-up の機能一覧は、単に `version_target` を受理することで
 | 本 mode doc | parked と active draft / archived / Add-feature / Retrofit を分離し、activation 境界を定義する |
 | parked PLAN | `status=draft` + `version_target` + `version-up parked` + `mode=version-up` + activation 条件を持つ |
 | doctor gate | `version-up-readiness` が L0/L3/L4/mode catalog/PLAN 実体の意味対応を検査する |
+| activation packet | `ut-tdd version-up activation-packet --json` が parked PLAN の activation / parked review / action-binding approval を plan-only packet として出す |
 
 現在の機能セットは次の 5 点である。
 
@@ -107,6 +119,7 @@ version-up の機能一覧は、単に `version_target` を受理することで
 4. **activation**: 将来版で再開するときは `target_version_or_release_trigger` と `activation_route` を持ち、add-feature で L2/L3 → L7 へ Forward 合流する。
 5. **安全境界**: 外部 API・infra・secret・認証/認可等を含む activation は `escalation_boundaries[]` と action-binding approval が無ければ exit 1。
 6. **parked review**: `parked_review_record` が review owner / trigger / stale action を持ち、将来版保全を無期限 draft にしない。
+7. **activation packet**: `version-up-activation-packet.v1` が allowed outcomes、blocked reasons、external boundaries、next workflow routes を出し、承認なしの apply surface を作らない。
 
 ## 6. 他 mode との非重複
 

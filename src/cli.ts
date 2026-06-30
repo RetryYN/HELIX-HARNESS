@@ -69,6 +69,10 @@ import {
   saveVerificationEvidence,
   verificationRecommendationMermaid,
 } from "./lint/verification-profile";
+import {
+  buildVersionUpActivationPackets,
+  loadVersionUpReadinessInput,
+} from "./lint/version-up-readiness";
 import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
 import { fileMemoryDeps } from "./memory/memory-store";
 import { selectVerifier } from "./orchestration/cross-verifier";
@@ -1046,6 +1050,35 @@ rename
     );
     if (plan.blockedReasons.length > 0) {
       for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
+    }
+  });
+
+const versionUp = program
+  .command("version-up")
+  .description("version-up parked work decision surfaces");
+versionUp
+  .command("activation-packet")
+  .description("emit non-destructive activation decision packets for version_target parked PLANs")
+  .option("--json", "JSON output")
+  .option("--plan <planId>", "filter by PLAN id")
+  .action((opts: { json?: boolean; plan?: string }) => {
+    const packets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(process.cwd()));
+    const filtered = opts.plan ? packets.filter((packet) => packet.planId === opts.plan) : packets;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(filtered, null, 2)}\n`);
+      return;
+    }
+    if (filtered.length === 0) {
+      process.stdout.write("version-up activation-packet: no parked PLANs matched\n");
+      return;
+    }
+    for (const packet of filtered) {
+      process.stdout.write(
+        `version-up activation-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} activationAllowed=${packet.activationAllowed} applyCommandAvailable=${packet.applyCommandAvailable}\n`,
+      );
+      for (const reason of packet.blockedReasons) {
+        process.stdout.write(`  blocked: ${reason}\n`);
+      }
     }
   });
 
