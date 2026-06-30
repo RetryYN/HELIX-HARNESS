@@ -261,6 +261,16 @@ describe("completionDecisionPacketForOutstanding", () => {
       ["PLAN-M-02", "irreversible_migration_signoff"],
     ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packet.decisions[0].allowedOutcomesByRecord).toEqual([
+      {
+        recordName: "s4_decision_record",
+        allowedOutcomes: ["confirmed", "rejected", "pivot"],
+      },
+      {
+        recordName: "action_binding_approval_record",
+        allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
+      },
+    ]);
     expect(packet.decisions[0].requiredRecords).toEqual([
       {
         recordName: "s4_decision_record",
@@ -315,6 +325,24 @@ describe("completionDecisionPacketForOutstanding", () => {
       "parked_review_record",
       "action_binding_approval_record",
     ]);
+    expect(packet.decisions[1].allowedOutcomesByRecord).toEqual([
+      {
+        recordName: "activation_decision_record",
+        allowedOutcomes: [
+          "activate_future_version",
+          "reject_or_archive",
+          "keep_parked_with_review_date",
+        ],
+      },
+      {
+        recordName: "parked_review_record",
+        allowedOutcomes: ["review_scheduled", "mark_stale", "route_to_activation_decision"],
+      },
+      {
+        recordName: "action_binding_approval_record",
+        allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
+      },
+    ]);
     expect(packet.decisions[1].requiredRecords[0]?.fields).toEqual([
       "allowed_outcome",
       "target_version_or_release_trigger",
@@ -351,6 +379,12 @@ describe("completionDecisionPacketForOutstanding", () => {
           "legacy_alias_policy",
         ],
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+      },
+    ]);
+    expect(packet.decisions[2].allowedOutcomesByRecord).toEqual([
+      {
+        recordName: "cutover_decision_record",
+        allowedOutcomes: ["approve_cutover", "reject_or_defer", "request_runbook_changes"],
       },
     ]);
     expect(packet.decisions[2].nextWorkflowRoute).toContain("cutover_decision_record");

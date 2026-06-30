@@ -502,6 +502,11 @@ completion
       );
       process.stdout.write(`    action: ${decision.requiredAction}\n`);
       process.stdout.write(`    outcomes: ${decision.allowedOutcomes.join(", ")}\n`);
+      for (const record of decision.allowedOutcomesByRecord) {
+        process.stdout.write(
+          `    record-outcomes ${record.recordName}: ${record.allowedOutcomes.join(", ")}\n`,
+        );
+      }
     }
   });
 

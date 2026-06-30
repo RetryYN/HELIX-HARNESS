@@ -227,12 +227,21 @@ describe("L7 CLI surface closure", () => {
         recordName: "cutover_decision_record",
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
       });
+      expect(packet.decisions[1].allowedOutcomesByRecord).toEqual(
+        expect.arrayContaining([
+          {
+            recordName: "cutover_decision_record",
+            allowedOutcomes: ["approve_cutover", "reject_or_defer", "request_runbook_changes"],
+          },
+        ]),
+      );
 
       const text = runCliIn(root, ["completion", "decision-packet"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("completion decision-packet: blocked decisions=2");
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
+      expect(text.stdout).toContain("record-outcomes cutover_decision_record");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

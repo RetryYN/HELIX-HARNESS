@@ -17,7 +17,9 @@ export type CompletionDecisionPacketViolationReason =
   | "stale_packet"
   | "decision_count_mismatch"
   | "missing_required_records"
-  | "invalid_required_record";
+  | "invalid_required_record"
+  | "missing_allowed_outcomes_by_record"
+  | "invalid_allowed_outcomes_by_record";
 
 export interface CompletionDecisionPacketViolation {
   reason: CompletionDecisionPacketViolationReason;
@@ -139,6 +141,15 @@ export function analyzeCompletionDecisionPacket(
       });
       return;
     }
+    if (
+      !Array.isArray(decision.allowedOutcomesByRecord) ||
+      decision.allowedOutcomesByRecord.length === 0
+    ) {
+      violations.push({
+        reason: "missing_allowed_outcomes_by_record",
+        detail: `decision[${decisionIndex}] planId=${decision.planId}`,
+      });
+    }
     decision.requiredRecords.forEach((record, recordIndex) => {
       const subject = `decision[${decisionIndex}].requiredRecords[${recordIndex}]`;
       if (!record.recordName?.trim()) {
@@ -178,6 +189,34 @@ export function analyzeCompletionDecisionPacket(
         }
       }
     });
+    const outcomeRecords = new Map(
+      (decision.allowedOutcomesByRecord ?? []).map((entry) => [entry.recordName, entry]),
+    );
+    for (const record of decision.requiredRecords) {
+      const outcome = outcomeRecords.get(record.recordName);
+      if (!outcome) {
+        violations.push({
+          reason: "invalid_allowed_outcomes_by_record",
+          detail: `decision[${decisionIndex}] missing outcomes for ${record.recordName}`,
+        });
+        continue;
+      }
+      if (!Array.isArray(outcome.allowedOutcomes) || outcome.allowedOutcomes.length === 0) {
+        violations.push({
+          reason: "invalid_allowed_outcomes_by_record",
+          detail: `decision[${decisionIndex}] ${record.recordName} missing allowedOutcomes`,
+        });
+        continue;
+      }
+      for (const allowedOutcome of outcome.allowedOutcomes) {
+        if (!allowedOutcome.trim() || /^(TBD|TODO|-)$/.test(allowedOutcome.trim())) {
+          violations.push({
+            reason: "invalid_allowed_outcomes_by_record",
+            detail: `decision[${decisionIndex}] ${record.recordName} invalid outcome=${allowedOutcome}`,
+          });
+        }
+      }
+    }
   });
 
   return {

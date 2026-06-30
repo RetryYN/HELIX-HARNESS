@@ -106,6 +106,7 @@ export interface CompletionDecisionItem {
   requiredEvidence: string[];
   requiredRecords: CompletionDecisionRecordRequirement[];
   allowedOutcomes: string[];
+  allowedOutcomesByRecord: CompletionDecisionRecordOutcome[];
   nextWorkflowRoute: string;
 }
 
@@ -113,6 +114,11 @@ export interface CompletionDecisionRecordRequirement {
   recordName: string;
   fields: string[];
   sourcePaths: string[];
+}
+
+export interface CompletionDecisionRecordOutcome {
+  recordName: string;
+  allowedOutcomes: string[];
 }
 
 export interface CompletionDecisionPacket {
@@ -462,22 +468,26 @@ export function completionDecisionPacketForOutstanding(
     },
     decisionCount: outstanding.items.length,
     blockers: outstanding.completionReadiness.blockers,
-    decisions: outstanding.items.map((item) => ({
-      planId: item.planId,
-      layer: item.layer,
-      kind: item.kind,
-      status: item.status,
-      workflowPhase: item.workflowPhase,
-      blockerReason: item.reason,
-      blockers: item.blockers,
-      decisionKind: decisionKindForOutstandingReason(item.reason),
-      requiredAction: item.requiredAction,
-      requiredActions: item.requiredActions,
-      requiredEvidence: item.requiredEvidence,
-      requiredRecords: requiredRecordsForBlockers(item.blockers),
-      allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
-      nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
-    })),
+    decisions: outstanding.items.map((item) => {
+      const requiredRecords = requiredRecordsForBlockers(item.blockers);
+      return {
+        planId: item.planId,
+        layer: item.layer,
+        kind: item.kind,
+        status: item.status,
+        workflowPhase: item.workflowPhase,
+        blockerReason: item.reason,
+        blockers: item.blockers,
+        decisionKind: decisionKindForOutstandingReason(item.reason),
+        requiredAction: item.requiredAction,
+        requiredActions: item.requiredActions,
+        requiredEvidence: item.requiredEvidence,
+        requiredRecords,
+        allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
+        allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
+        nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+      };
+    }),
   };
 }
 
@@ -520,6 +530,34 @@ function allowedOutcomesForOutstandingReason(reason: string): string[] {
       return ["approve_action_binding", "deny_action", "request_scope_reduction"];
     default:
       return ["continue_workflow", "mark_terminal_after_required_evidence"];
+  }
+}
+
+function allowedOutcomesForRecords(
+  records: CompletionDecisionRecordRequirement[],
+): CompletionDecisionRecordOutcome[] {
+  return records.map((record) => ({
+    recordName: record.recordName,
+    allowedOutcomes: allowedOutcomesForRecordName(record.recordName),
+  }));
+}
+
+function allowedOutcomesForRecordName(recordName: string): string[] {
+  switch (recordName) {
+    case "s4_decision_record":
+      return ["confirmed", "rejected", "pivot"];
+    case "activation_decision_record":
+      return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
+    case "parked_review_record":
+      return ["review_scheduled", "mark_stale", "route_to_activation_decision"];
+    case "cutover_decision_record":
+      return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
+    case "action_binding_approval_record":
+      return ["approve_action_binding", "deny_action", "request_scope_reduction"];
+    case "terminal_evidence_record":
+      return ["continue_workflow", "mark_terminal_after_required_evidence"];
+    default:
+      return ["record_decision", "request_schema_update"];
   }
 }
 

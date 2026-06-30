@@ -12,6 +12,31 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T16:34:00+09:00"
+    tests_green_at: "2026-06-30T16:34:00+09:00"
+    verdict: pass
+    scope: "Continuation 15: completion decision packets now expose allowedOutcomesByRecord for every required decision record. Multi-blocker PLANs can no longer hide action-binding outcomes behind a primary S4/version-up/cutover outcome list."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/cli-surface.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T16:34:00+09:00"
+        evidence_path: tests/completion-decision-packet.test.ts
+        output_digest: "sha256:1a7dce227cb8ac201da357c412c5bdbcf0c5d801377b90e65847f837e7067434"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T16:34:00+09:00"
+        evidence_path: src/lint/outstanding.ts
+        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:21:00+09:00"
     tests_green_at: "2026-06-30T16:21:00+09:00"
     verdict: pass
@@ -76,7 +101,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:6ab9a00a8c1e13f714f114b02ea8276cb730f2cf843aa9b1fdacc917de2cefb9"
+        output_digest: "sha256:89081963c60b14d118b06cc1b639a69a2520aa67318c99f833497e73627d9b16"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -84,7 +109,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
+        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:41:37+09:00"
@@ -151,7 +176,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:00:21+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:9ee4c6dfd16ba0cce306081e76bfae0aff91f84ee4a3f226a25229926283ef5a"
+        output_digest: "sha256:1a7dce227cb8ac201da357c412c5bdbcf0c5d801377b90e65847f837e7067434"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -159,7 +184,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:00:21+09:00"
         evidence_path: src/lint/completion-decision-packet.ts
-        output_digest: "sha256:dd7b57c2b99eafaefb11983383117f96a640b71eb3a3c19578d101f0739b2a1f"
+        output_digest: "sha256:8c18f75ab7b7c6d8c4775880ba5c0d71a515524f843d1a7d44e4087456533255"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:53:25+09:00"
@@ -201,7 +226,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: tests/outstanding.test.ts
-        output_digest: "sha256:6ab9a00a8c1e13f714f114b02ea8276cb730f2cf843aa9b1fdacc917de2cefb9"
+        output_digest: "sha256:89081963c60b14d118b06cc1b639a69a2520aa67318c99f833497e73627d9b16"
       - kind: unit_test
         command: "bun run vitest run tests/completion-decision-packet.test.ts --run"
         runner: bun
@@ -209,7 +234,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T13:00:00+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:9ee4c6dfd16ba0cce306081e76bfae0aff91f84ee4a3f226a25229926283ef5a"
+        output_digest: "sha256:1a7dce227cb8ac201da357c412c5bdbcf0c5d801377b90e65847f837e7067434"
       - kind: unit_test
         command: "bun run vitest run tests/cutover-readiness.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --run"
         runner: bun
@@ -225,7 +250,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
+        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -233,7 +258,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
+        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
@@ -241,7 +266,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T12:36:00+09:00"
         evidence_path: src/lint/outstanding.ts
-        output_digest: "sha256:34be2b5846ea78f837111ab5016a111a8dd686cfbe241615c806cbea87e0f0b9"
+        output_digest: "sha256:16862b9857f3813efbcecd45249707e3464552d4e3dc3501dd3f7b85ba61cbad"
 agent_slots:
   - role: tl
     slot_label: "TL - outstanding-work additive surface (status/handover, IMP-139)"
@@ -340,7 +365,9 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   fail-close で担保する。2026-06-30 continuation 9 で各 decision item の `requiredRecords`
   (recordName / fields / sourcePaths) も検査対象にし、各 PLAN の全 blocker から record schema を合成する。
   これにより PO/S4 と action-binding approval が同じ PLAN に同居しても承認 record が packet から落ちず、
-  PO 判断 packet が文章の requiredEvidence だけに戻ることを防ぐ。
+  PO 判断 packet が文章の requiredEvidence だけに戻ることを防ぐ。2026-06-30 continuation 15 で
+  `allowedOutcomesByRecord` を追加し、primary blocker 以外の record outcome (例: action-binding approval) が
+  allowed outcomes から落ちる状態も fail-close にした。
 - `src/lint/action-binding-approval-readiness.ts`: high-impact approval / action-binding / human approval を含む
   非終端 PLAN が `action_binding_approval_record` を本文に持つことを doctor hard gate として検査する。
   record は `allowed_outcome`、`approval_policy_or_named_approver`、`approval_scope`、
@@ -399,6 +426,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
 - [x] completion decision packet が requiredRecords (recordName / fields / sourcePaths) を持ち、S4 / version-up /
   cutover / approval / terminal evidence の record schema を JSON で出す。requiredRecords 欠落や空 fields/sourcePaths は
   doctor `completion-decision-packet` hard gate が拒否する。
+- [x] completion decision packet は `allowedOutcomesByRecord` を持ち、requiredRecords ごとの allowed outcomes
+  欠落や primary blocker への丸め込みを doctor `completion-decision-packet` hard gate が拒否する。
 - [x] doctor `action-binding-approval-readiness` hard gate が、承認待ち PLAN 本文の `action_binding_approval_record`
   欠落や field 欠落を拒否し、completion packet だけに承認境界が残る状態を防ぐ。
 - [x] action-binding approval は `approval_scope` prose だけでは通らず、`approved_actor` / `approved_tool` /

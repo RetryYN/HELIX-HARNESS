@@ -117,6 +117,39 @@ describe("completion decision packet lint", () => {
     expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record");
   });
 
+  it("rejects decisions whose required records lack record-level allowed outcomes", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        allowedOutcomesByRecord: [],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("missing_allowed_outcomes_by_record");
+  });
+
+  it("rejects decisions when record-level allowed outcomes do not cover required records", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        allowedOutcomesByRecord: [
+          {
+            recordName: "other_record",
+            allowedOutcomes: ["record_decision"],
+          },
+        ],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toContain("invalid_allowed_outcomes_by_record");
+  });
+
   // U-OUTSTANDING-003
   it("loads the current repo packet as fresh doctor input", () => {
     const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
