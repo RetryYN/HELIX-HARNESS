@@ -36,6 +36,7 @@ import {
   checkHandoverDiscipline,
   latestSessionId,
   nodeHandoverDeps,
+  readPointer,
   runHandover,
   setActivePlanCli,
 } from "./handover/index";
@@ -1228,6 +1229,27 @@ const handover = program
       if (opts.dryRun) process.stdout.write(`\n--- scaffold ---\n${r.content}\n`);
     },
   );
+
+handover
+  .command("status")
+  .description("show current session handover pointer")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const pointer = readPointer(nodeHandoverDeps(process.cwd()));
+    if (!pointer) {
+      process.stderr.write("handover: CURRENT.json not found\n");
+      process.exitCode = 1;
+      return;
+    }
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(pointer, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} updated_at=${pointer.updated_at}\n`,
+    );
+    if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
+  });
 
 const providerHandover = handover.command("provider").description("Claude/Codex provider handover");
 providerHandover

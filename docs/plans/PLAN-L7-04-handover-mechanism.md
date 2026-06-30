@@ -18,6 +18,8 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/handover.test.ts
     artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
   - artifact_path: src/cli.ts
     artifact_type: source_module
   - artifact_path: src/runtime/session-log.ts
@@ -31,6 +33,31 @@ dependencies:
   requires: []
   blocks: []
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-06-30T17:24:00+09:00"
+    tests_green_at: "2026-06-30T17:24:00+09:00"
+    verdict: approve
+    scope: "Normal handover now has a read-only `ut-tdd handover status --json` preflight surface, backed by L6 design and L7 oracle rows, so session-start instructions can inspect `.ut-tdd/handover/CURRENT.json` without accidentally invoking provider handover or generating state."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/cli-surface.test.ts tests/handover.test.ts tests/doctor.test.ts tests/lint-wiring.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-06-30T17:24:00+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:d1d5421b98ff72602c1740008cc12146db5f136bc8ec4388fb0e2aa7bff11b6c"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-06-30T17:24:00+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:0791e22a795f9048f6c0b5647c0a3bde270b531810f9c342e161f69153e8d342"
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-04"
@@ -43,7 +70,7 @@ review_evidence:
 
 ## §0 位置づけ
 
-`PLAN-L6-06-handover-mechanism` (add-design ①③) が確定した設計を実装する add-impl。先行 add-impl (`PLAN-L7-01-session-log` / `PLAN-L7-03-setup-solo-team`) と同型 — U-HOVER を先行 ④ テストコード化 (Red) → `src/handover/index.ts` (②) を Green → CLI (`ut-tdd handover` / `ut-tdd plan use`) 配線 → session-log 限定 amendment (Gap B 活性化)。
+`PLAN-L6-06-handover-mechanism` (add-design ①③) が確定した設計を実装する add-impl。先行 add-impl (`PLAN-L7-01-session-log` / `PLAN-L7-03-setup-solo-team`) と同型 — U-HOVER を先行 ④ テストコード化 (Red) → `src/handover/index.ts` (②) を Green → CLI (`ut-tdd handover` / `ut-tdd handover status --json` / `ut-tdd plan use`) 配線 → session-log 限定 amendment (Gap B 活性化)。
 
 - 親: `PLAN-L6-06-handover-mechanism` (drive=fullstack 一致)。
 - 駆動モデル: **Add-feature** (bottom-up build。後段 `PLAN-REVERSE-05` で上位整合 back-fill)。
@@ -72,7 +99,7 @@ review_evidence:
 `src/handover/index.ts` + session-log amendment を実装し U-HOVER を Green に。`npx vitest run tests/handover.test.ts`。
 
 ### Step 3: CLI 配線
-`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]` と `ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。
+`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `ut-tdd handover status --json`、`ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.ut-tdd/handover/CURRENT.json` を読み、不在時は exit 1 で生成や補完をしない。
 
 ### Step 4: review (review 前置 MUST)
 claude-only のため `code-reviewer` (TL/QA 代替) で DbC 充足 / 循環 import 回避の妥当性 / dry-run 非破壊 / sanitize defense-in-depth / 既存 session-log 非回帰をレビュー。cross-agent 不在を evidence 記録。
@@ -88,7 +115,7 @@ claude-only のため `code-reviewer` (TL/QA 代替) で DbC 充足 / 循環 imp
 | U-HOVER-001〜007 oracle | `docs/test-design/harness/L7-unit-test-design.md` §1.8 |
 | deps 注入 / nodeDeps / in-memory mock | `src/setup/index.ts` (nodeSetupDeps) + `tests/setup.test.ts` (mockDeps) |
 | sanitize / PlanDigest 型 / resolveActivePlan / onPostToolUse | `src/runtime/session-log.ts` (import 再利用 + amendment) |
-| CLI subcommand パターン | `src/cli.ts` (setup / feedback の commander 配線) |
+| CLI subcommand パターン | `src/cli.ts` (setup / feedback / provider handover status の commander 配線) |
 | current-plan の配置 (循環回避) | §1.1 (session-log が current-plan の owner) |
 
 ## §6 用語更新 (§G.9)
@@ -100,5 +127,5 @@ L6-06 §6 で宣言済の 4 用語 (handover 機械ポインタ / handover scaff
 - U-HOVER-001〜007 が ④ テストで Green (孤児 0、③ 設計被覆)
 - 全回帰 pass (既存 92 を壊さない = session-log amendment が非回帰)
 - code-reviewer review APPROVE (Critical 0、特に 循環 import 回避 / dry-run 非破壊 / sanitize / 既存 session-log 非回帰)
-- CLI スモーク (`handover --dry-run` 非破壊 / `plan use` round-trip) OK
+- CLI スモーク (`handover --dry-run` 非破壊 / `handover status --json` read-only preflight / `plan use` round-trip) OK
 - 後段 `PLAN-REVERSE-05-handover-mechanism` で §6.8.5/§6.8.6 詳細 + 要件 CURRENT.md→.json 同期 + L4 整合 + L0 §10 用語 back-fill

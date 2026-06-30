@@ -64,6 +64,47 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
 }
 
 describe("L7 CLI surface closure", () => {
+  it("exposes normal handover status as a read-only JSON preflight surface", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-status-"));
+    try {
+      const missing = runCliIn(root, ["handover", "status", "--json"]);
+      expect(missing.status).toBe(1);
+      expect(missing.stderr).toContain("handover: CURRENT.json not found");
+
+      const generated = runCliIn(root, [
+        "handover",
+        "--plan",
+        "PLAN-L7-04-handover-mechanism",
+        "--scope-active",
+      ]);
+      expect(generated.status).toBe(0);
+      expect(generated.stdout).toContain("handover: active=PLAN-L7-04-handover-mechanism");
+
+      const json = runCliIn(root, ["handover", "status", "--json"]);
+      expect(json.status).toBe(0);
+      const payload = JSON.parse(json.stdout);
+      expect(payload).toMatchObject({
+        active_plan: "PLAN-L7-04-handover-mechanism",
+        status: "in_progress",
+        generated_by: "ut-tdd-handover",
+      });
+      expect(payload.latest_doc).toMatch(/^docs[/\\]handover[/\\]session-handover-/);
+      expect(payload.outstanding.completionReadiness).toMatchObject({
+        ok: true,
+        status: "ready",
+      });
+
+      const text = runCliIn(root, ["handover", "status"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain(
+        "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress",
+      );
+      expect(text.stdout).toContain("latest_doc:");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
   it("exposes plan complete as the completed handover lifecycle entrypoint", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-plan-complete-"));
     try {

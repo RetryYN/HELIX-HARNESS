@@ -66,7 +66,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T04:15:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:07cb1646c23ce02d4836a2c7698e508e67beaae7d8d43b4042a3d8e9f82d9ad6"
+        output_digest: "sha256:0791e22a795f9048f6c0b5647c0a3bde270b531810f9c342e161f69153e8d342"
       - kind: lint
         command: "bun run lint"
         runner: bun

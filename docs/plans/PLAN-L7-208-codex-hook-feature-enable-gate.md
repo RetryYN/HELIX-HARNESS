@@ -92,7 +92,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:35:22+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:2bff04a1e83e1970e3e4420b88768d425396321812a8275aa9bfde77ac53dd05"
+        output_digest: "sha256:04383d64406f480f0b09bf9a85efc6886eed7b9795e498ede2563670b94d0c70"
       - kind: unit_test
         command: "bun run test"
         runner: bun
