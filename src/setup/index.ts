@@ -84,10 +84,27 @@ export interface SetupResult {
   branchProtection: { applied: boolean; reason: string };
 }
 
+export interface HelixProjectImportReport {
+  schemaVersion: "helix-project-import-report.v1";
+  mode: "fresh" | "brownfield";
+  dryRun: boolean;
+  policy: "preserve_existing_then_review_import_report";
+  managedPaths: string[];
+  previewPaths: string[];
+  existingPaths: string[];
+  writtenPaths: string[];
+  skippedExistingPaths: string[];
+  mergeableManagedBlockPaths: string[];
+  requiresReview: boolean;
+  reviewRequiredReasons: string[];
+  nextRoute: "ready" | "review_import_report";
+}
+
 export interface HelixProjectSetupResult extends SetupResult {
   schemaVersion: "helix-project-setup.v1";
   setupCommand: "ut-tdd setup project";
   futureCommand: "helix setup project";
+  importReport: HelixProjectImportReport;
   vscode: {
     tasksPath: string;
     statusTask: "HELIX: status";
@@ -652,6 +669,47 @@ export function emitSetup(plan: SetupPlan, templates: TemplateSet, deps: SetupDe
   return written;
 }
 
+function existingManagedPaths(plan: SetupPlan, templates: TemplateSet, deps: SetupDeps): string[] {
+  return renderArtifacts(plan, templates)
+    .map((r) => r.path)
+    .filter((path) => deps.readText(join(deps.repoRoot, path)) !== null);
+}
+
+function buildHelixProjectImportReport(input: {
+  plan: SetupPlan;
+  templates: TemplateSet;
+  existingPaths: string[];
+  emittedPaths: string[];
+}): HelixProjectImportReport {
+  const managedPaths = renderArtifacts(input.plan, input.templates).map((r) => r.path);
+  const actualWrittenPaths = input.plan.dryRun ? [] : input.emittedPaths;
+  const writtenSet = new Set(actualWrittenPaths);
+  const existingSet = new Set(input.existingPaths);
+  const mergeableManagedBlockPaths = managedPaths.filter(
+    (path) => existingSet.has(path) && MERGEABLE_ADAPTER_DOCS.has(path),
+  );
+  const mergeableSet = new Set(mergeableManagedBlockPaths);
+  const skippedExistingPaths = input.existingPaths.filter(
+    (path) => !writtenSet.has(path) && !mergeableSet.has(path),
+  );
+  const requiresReview = skippedExistingPaths.length > 0;
+  return {
+    schemaVersion: "helix-project-import-report.v1",
+    mode: input.existingPaths.length > 0 ? "brownfield" : "fresh",
+    dryRun: input.plan.dryRun,
+    policy: "preserve_existing_then_review_import_report",
+    managedPaths,
+    previewPaths: managedPaths,
+    existingPaths: input.existingPaths,
+    writtenPaths: actualWrittenPaths,
+    skippedExistingPaths,
+    mergeableManagedBlockPaths,
+    requiresReview,
+    reviewRequiredReasons: requiresReview ? ["existing_non_mergeable_paths_preserved"] : [],
+    nextRoute: requiresReview ? "review_import_report" : "ready",
+  };
+}
+
 /**
  * U-SETUP-005: setup.json を上書き (単一ファイル = 確定値 SSoT、append しない)。
  * signals は 4 フィールドのみ strip (認証情報混入経路を遮断)。
@@ -755,7 +813,14 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     recordSetupState({ phase, decidedAt: deps.now(), decidedBy, signals: scale }, deps);
   }
   const plan = planHelixProjectSetup(phase, { teams: args.teams, dryRun: args.dryRun });
+  const existingPaths = existingManagedPaths(plan, deps.templates, deps);
   const written = emitSetup(plan, deps.templates, deps);
+  const importReport = buildHelixProjectImportReport({
+    plan,
+    templates: deps.templates,
+    existingPaths,
+    emittedPaths: written,
+  });
   const branchProtection = args.dryRun
     ? { applied: false, reason: "dry-run" }
     : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
@@ -766,6 +831,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     phase,
     written,
     branchProtection,
+    importReport,
     vscode: {
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",

@@ -3507,6 +3507,11 @@ setupCommand
       `helix project setup: phase=${r.phase}${args.dryRun ? " dry-run=true" : ""}\n`,
     );
     for (const w of r.written) process.stdout.write(`  ${args.dryRun ? "·" : "+"} ${w}\n`);
+    process.stdout.write(
+      `import-report: ${
+        r.importReport.requiresReview ? "review_required" : "ready"
+      } (${r.importReport.nextRoute})\n`,
+    );
     process.stdout.write(`vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask})\n`);
     process.stdout.write(
       `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,

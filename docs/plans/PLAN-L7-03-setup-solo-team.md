@@ -40,6 +40,55 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T05:22:33+09:00"
+    tests_green_at: "2026-07-01T05:22:33+09:00"
+    verdict: approve
+    scope: "Continuation: HELIX project setup now returns a semantic importReport for fresh/brownfield repos. Brownfield existing non-mergeable files are preserved and surfaced as skippedExistingPaths with requiresReview=true and nextRoute=review_import_report; text output also exposes import-report status. PLAN-M-02 cutover and external apply boundaries remain blocked/pending approval."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T05:22:33+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:22:33+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:22:33+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:22:33+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:22:33+09:00"
+        evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+        output_digest: "sha256:5c66aad2bbecccdda2d4249565f62ca6384d55fdba62e666ca70eb4f5f57674d"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:45:00+09:00"
     tests_green_at: "2026-07-01T04:45:00+09:00"
     verdict: approve
@@ -54,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
+        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -62,7 +111,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
+        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -70,7 +119,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2136dae1452fd306be4885951da21eec85ef4821b2c70844999147ba720990c7"
+        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -95,7 +144,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
+        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -103,7 +152,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
+        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -111,7 +160,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:40:56+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2136dae1452fd306be4885951da21eec85ef4821b2c70844999147ba720990c7"
+        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:47:22+0900"
@@ -128,7 +177,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
+        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -136,7 +185,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
+        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -144,7 +193,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:2136dae1452fd306be4885951da21eec85ef4821b2c70844999147ba720990c7"
+        output_digest: "sha256:b3f1cd799f120ad01c59b28d97d0d2329fc544830f3366c317bb5a38369b1525"
 ---
 
 # PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装
@@ -153,7 +202,7 @@ review_evidence:
 
 `PLAN-L6-05-setup-solo-team` (add-design) の ① 機能設計 (`setup-solo-team.md`) + ③ 単体テスト設計 (U-SETUP-001〜007) を ② 実装 + ④ テストコードに落とす add-impl。**Add-feature 標準ライフサイクル 経路 B** の impl 段階。完了後、後段 `PLAN-REVERSE-04` (未起票、本 PLAN 完了後に起票予定) で L4 external-if (GitHub 境界契約) / L3 要件 (新 FR 要否) / §6.5 整合 / L0 §10 用語へ back-fill する。
 
-2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
+2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。brownfield では `importReport` に managed/preview/existing/written/skipped/mergeable path と `requiresReview` / `nextRoute=review_import_report` を返し、既存 non-mergeable config を黙って成功扱いにしない。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
 
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
 - **dependencies**: `parent=PLAN-L6-05` で lineage 連結。`requires` には置かない (confirmed 段階の design PLAN を `status=completed` 検証対象にしないため = §1.10.E の latent fail-close 回避。bottom-up Add-feature で L7 impl は confirmed L6 設計に依存するのが常態)。
@@ -178,7 +227,7 @@ U-SETUP-001〜007 を vitest 化 (③ 設計 L7-unit-test-design.md §1.7)。dep
 commander で `ut-tdd setup` を追加: `--solo` / `--team` (phase 上書き) / `--dry-run` / `--apply-branch-protection` / `--tl-team` / `--qa-team` / `--po-team`。非対話判定 (TTY/CI) を `isInteractive` deps に注入。既存 status/plan サブコマンドと同形。
 
 ### Step 5b: ut-tdd setup project CLI 配線 (src/cli.ts)
-`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、次に実行する確認コマンドを返す。`identifierTransition` は現行 `ut-tdd` / `.ut-tdd` / `area=harness`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=ut-tdd rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
+`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、`importReport`、次に実行する確認コマンドを返す。`importReport` は fresh/brownfield、managed/preview/existing/written/skipped/mergeable path、`requiresReview`、`reviewRequiredReasons`、`nextRoute` を含める。text 出力でも `import-report: ready|review_required` を出し、brownfield の衝突レビューを見落とさない。`identifierTransition` は現行 `ut-tdd` / `.ut-tdd` / `area=harness`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=ut-tdd rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
 
 ### Step 6: review (review 前置 MUST)
 `code-reviewer` (Senior Staff、TL 代替) で実装/型/file↔GitHub-API 境界/非対話 apply 封鎖/token 非記録/安全フォールバック/idempotency をレビュー。cross-agent 不在を evidence に記録 ([[feedback_ts_native_over_helix_cli]])。

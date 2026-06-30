@@ -46,7 +46,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:ffa675e84b3bb1b8b8d639f15ee54dc4cecc4c180aa34412ca1f2032d0a11b28"
+        output_digest: "sha256:6818b4a50fead18ad4b996fe53b0078bc3b8a98c8223a41418b2624510552d2e"
       - kind: unit_test
         command: "bun run vitest run tests\\setup.test.ts"
         runner: bun
@@ -54,7 +54,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T20:48:29+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
+        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
       - kind: unit_test
         command: "bun run vitest run tests\\setup.test.ts"
         runner: bun
@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T20:48:53+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:fccfbe7fd499658f2adb6b444bdb0c056ef2499193ed12c9546309f85b9f172a"
+        output_digest: "sha256:15d8c3fca02bbc61035841353d2ff04bdf6fb309a4536f4421a673aa3ee4fc56"
       - kind: lint
         command: "bun run lint"
         runner: bun

@@ -565,12 +565,28 @@ describe("L7 CLI surface closure", () => {
         join(".ut-tdd", "handover", ".gitkeep"),
       ]),
     );
+    expect(payload.importReport).toMatchObject({
+      schemaVersion: "helix-project-import-report.v1",
+      mode: "brownfield",
+      dryRun: true,
+      policy: "preserve_existing_then_review_import_report",
+      writtenPaths: [],
+      requiresReview: true,
+      nextRoute: "review_import_report",
+    });
+    expect(payload.importReport.managedPaths).toEqual(
+      expect.arrayContaining([join(".vscode", "tasks.json")]),
+    );
+    expect(payload.importReport.existingPaths).toEqual(
+      expect.arrayContaining(["AGENTS.md", join(".codex", "config.toml")]),
+    );
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
     );
 
     const text = runCli(["setup", "project", "--dry-run"]);
     expect(text.status).toBe(0);
+    expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain(
       "command-availability: ut-tdd setup project available=true; helix setup project available=false",
     );

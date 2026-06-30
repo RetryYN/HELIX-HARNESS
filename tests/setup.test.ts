@@ -551,6 +551,21 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.commandAvailability.reason).toContain("package/bin alias activation");
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
+    expect(preview.importReport).toMatchObject({
+      schemaVersion: "helix-project-import-report.v1",
+      mode: "fresh",
+      dryRun: true,
+      policy: "preserve_existing_then_review_import_report",
+      requiresReview: false,
+      nextRoute: "ready",
+      writtenPaths: [],
+    });
+    expect(preview.importReport.previewPaths).toEqual(
+      expect.arrayContaining([
+        join(".vscode", "tasks.json"),
+        join(".ut-tdd", "memory", ".gitkeep"),
+      ]),
+    );
     expect(preview.nextCommands).toEqual(
       expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
     );
@@ -573,6 +588,44 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     for (const value of wet.files.values()) {
       expect(value.toLowerCase()).not.toMatch(/(ghp_|github_pat_|token=|bearer )/);
     }
+  });
+
+  it("U-SETUP-016: brownfield HELIX project setup emits an import report instead of hiding skipped conflicts", () => {
+    const deps = mockDeps({ templates: baseTemplates, isInteractive: false });
+    deps.files.set(
+      join("/repo", ".vscode", "tasks.json"),
+      '{"version":"2.0.0","tasks":[{"label":"keep-existing"}]}\n',
+    );
+    deps.files.set(join("/repo", "AGENTS.md"), "# consumer rules\n");
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: false, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.importReport).toMatchObject({
+      schemaVersion: "helix-project-import-report.v1",
+      mode: "brownfield",
+      dryRun: false,
+      policy: "preserve_existing_then_review_import_report",
+      requiresReview: true,
+      nextRoute: "review_import_report",
+    });
+    expect(result.importReport.managedPaths).toEqual(
+      expect.arrayContaining(["AGENTS.md", join(".vscode", "tasks.json")]),
+    );
+    expect(result.importReport.existingPaths).toEqual(
+      expect.arrayContaining(["AGENTS.md", join(".vscode", "tasks.json")]),
+    );
+    expect(result.importReport.mergeableManagedBlockPaths).toContain("AGENTS.md");
+    expect(result.importReport.writtenPaths).toContain("AGENTS.md");
+    expect(result.importReport.skippedExistingPaths).toContain(join(".vscode", "tasks.json"));
+    expect(result.importReport.reviewRequiredReasons).toContain(
+      "existing_non_mergeable_paths_preserved",
+    );
+    expect(result.written).not.toContain(join(".vscode", "tasks.json"));
+    expect(deps.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("keep-existing");
+    expect(deps.files.get(join("/repo", "AGENTS.md"))).toContain("UT-TDD:managed:start");
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {
