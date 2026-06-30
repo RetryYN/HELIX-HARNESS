@@ -627,19 +627,82 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         planId: "PLAN-DISCOVERY-07",
         reason: "po_decision_pending",
         decisionKind: "po_s4_decision",
-        decisionPacketCommand: "ut-tdd completion decision-packet --json",
+        decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+        packetCommands: ["ut-tdd s4 decision-packet --json"],
       },
       {
         order: 2,
         planId: "PLAN-L7-146",
         reason: "version_up_parked",
         decisionKind: "version_up_activation",
+        decisionPacketCommand: "ut-tdd version-up activation-packet --json",
+        packetCommands: ["ut-tdd version-up activation-packet --json"],
       },
       {
         order: 3,
         planId: "PLAN-M-02",
         reason: "irreversible_migration_pending",
         decisionKind: "irreversible_migration_signoff",
+        decisionPacketCommand: "ut-tdd rename plan --json",
+        packetCommands: ["ut-tdd rename plan --json"],
+      },
+    ]);
+  });
+
+  it("keeps supporting packet commands for secondary approval blockers", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending and requires human approval.",
+        },
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "future activation requires action-binding approval.",
+        },
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible cutover requires human approval.",
+        },
+      ],
+      0,
+    );
+
+    expect(workflowNextActionsForOutstanding(outstanding)).toMatchObject([
+      {
+        planId: "PLAN-DISCOVERY-10",
+        decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+        packetCommands: [
+          "ut-tdd s4 decision-packet --json",
+          "ut-tdd action-binding approval-packet --json",
+        ],
+      },
+      {
+        planId: "PLAN-L7-146",
+        decisionPacketCommand: "ut-tdd version-up activation-packet --json",
+        packetCommands: [
+          "ut-tdd version-up activation-packet --json",
+          "ut-tdd action-binding approval-packet --json",
+        ],
+      },
+      {
+        planId: "PLAN-M-02",
+        decisionPacketCommand: "ut-tdd rename plan --json",
+        packetCommands: [
+          "ut-tdd rename plan --json",
+          "ut-tdd action-binding approval-packet --json",
+        ],
       },
     ]);
   });

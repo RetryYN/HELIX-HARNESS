@@ -92,6 +92,13 @@ export type CompletionDecisionKind =
   | "human_action_approval"
   | "workflow_continuation";
 
+export type WorkflowDecisionPacketCommand =
+  | "ut-tdd s4 decision-packet --json"
+  | "ut-tdd version-up activation-packet --json"
+  | "ut-tdd rename plan --json"
+  | "ut-tdd action-binding approval-packet --json"
+  | "ut-tdd completion decision-packet --json";
+
 export interface CompletionDecisionItem {
   planId: string;
   layer: string;
@@ -170,7 +177,10 @@ export interface WorkflowNextActionItem {
   requiredActions: string[];
   requiredEvidence: string[];
   nextWorkflowRoute: string;
-  decisionPacketCommand: "ut-tdd completion decision-packet --json";
+  /** Primary non-destructive packet for this PLAN's top blocker. */
+  decisionPacketCommand: WorkflowDecisionPacketCommand;
+  /** Primary + supporting non-destructive packets for every blocker on this PLAN. */
+  packetCommands: WorkflowDecisionPacketCommand[];
 }
 
 /**
@@ -345,7 +355,7 @@ function requiredEvidenceForBlockers(blockers: string[]): string[] {
   );
 }
 
-function uniqueInOrder(values: string[]): string[] {
+function uniqueInOrder<T extends string>(values: T[]): T[] {
   return [...new Set(values)];
 }
 
@@ -476,7 +486,8 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
       requiredActions: item.requiredActions,
       requiredEvidence: item.requiredEvidence,
       nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
-      decisionPacketCommand: "ut-tdd completion decision-packet --json",
+      decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
+      packetCommands: packetCommandsForOutstandingBlockers(item.reason, item.blockers),
     }));
 }
 
@@ -564,6 +575,31 @@ function decisionKindForOutstandingReason(reason: string): CompletionDecisionKin
     default:
       return "workflow_continuation";
   }
+}
+
+function decisionPacketCommandForOutstandingReason(reason: string): WorkflowDecisionPacketCommand {
+  switch (reason) {
+    case "po_decision_pending":
+      return "ut-tdd s4 decision-packet --json";
+    case "version_up_parked":
+      return "ut-tdd version-up activation-packet --json";
+    case "irreversible_migration_pending":
+      return "ut-tdd rename plan --json";
+    case "human_approval_pending":
+      return "ut-tdd action-binding approval-packet --json";
+    default:
+      return "ut-tdd completion decision-packet --json";
+  }
+}
+
+function packetCommandsForOutstandingBlockers(
+  primaryReason: string,
+  blockers: string[],
+): WorkflowDecisionPacketCommand[] {
+  return uniqueInOrder([
+    decisionPacketCommandForOutstandingReason(primaryReason),
+    ...blockers.map((blocker) => decisionPacketCommandForOutstandingReason(blocker)),
+  ]);
 }
 
 function allowedOutcomesForOutstandingReason(reason: string): string[] {

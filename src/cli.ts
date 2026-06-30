@@ -618,7 +618,19 @@ program
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
       if (!completionDecisionPacket.ok) {
-        process.stdout.write("decision-packet: ut-tdd completion decision-packet --json\n");
+        const primaryPacket =
+          workflowNextActions[0]?.decisionPacketCommand ??
+          "ut-tdd completion decision-packet --json";
+        const packetCommands = [
+          ...new Set(workflowNextActions.flatMap((item) => item.packetCommands)),
+        ];
+        process.stdout.write(`decision-packet: ${primaryPacket}\n`);
+        if (packetCommands.length > 1) {
+          process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
+        }
+        process.stdout.write(
+          "completion-decision-packet: ut-tdd completion decision-packet --json\n",
+        );
       }
     }
   });

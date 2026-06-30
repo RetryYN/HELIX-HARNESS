@@ -249,7 +249,7 @@ describe("L7 CLI surface closure", () => {
           "---",
           "",
           "# fixture",
-          "irreversible cutover requires PO signoff.",
+          "irreversible cutover requires PO signoff and human approval.",
         ].join("\n"),
         "utf8",
       );
@@ -283,12 +283,19 @@ describe("L7 CLI surface closure", () => {
           planId: "PLAN-DISCOVERY-07-fixture",
           reason: "po_decision_pending",
           decisionKind: "po_s4_decision",
+          decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+          packetCommands: ["ut-tdd s4 decision-packet --json"],
         },
         {
           order: 2,
           planId: "PLAN-M-02-fixture",
           reason: "irreversible_migration_pending",
           decisionKind: "irreversible_migration_signoff",
+          decisionPacketCommand: "ut-tdd rename plan --json",
+          packetCommands: [
+            "ut-tdd rename plan --json",
+            "ut-tdd action-binding approval-packet --json",
+          ],
         },
       ]);
       expect(blockedPayload.outstanding.completionReadiness).toMatchObject({
@@ -330,8 +337,12 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain("completion: blocked");
+      expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
       expect(blockedText.stdout).toContain(
-        "decision-packet: ut-tdd completion decision-packet --json",
+        "supporting-decision-packets: ut-tdd s4 decision-packet --json | ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+      );
+      expect(blockedText.stdout).toContain(
+        "completion-decision-packet: ut-tdd completion decision-packet --json",
       );
     } finally {
       rmSync(readyRoot, { recursive: true, force: true });
