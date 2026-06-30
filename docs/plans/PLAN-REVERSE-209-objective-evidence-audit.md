@@ -61,10 +61,10 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-06-30T04:00:00+09:00"
-    tests_green_at: "2026-06-30T04:00:00+09:00"
+    reviewed_at: "2026-06-30T10:50:00+09:00"
+    tests_green_at: "2026-06-30T10:49:00+09:00"
     verdict: approve
-    scope: "Back-fill confirms the evidence audit is an index over existing design/implementation proof, not a requirement or architecture change."
+    scope: "Back-fill confirms the evidence audit is an index over existing design/implementation proof and current completion blockers, not a false full-completion claim."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -73,9 +73,9 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-06-30T04:00:00+09:00"
+        completed_at: "2026-06-30T10:49:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:32c13e6b3d4bf8e2168642d274473bf73424a04c84acd11c6a51f4b5d186d3a1"
+        output_digest: "sha256:4a8f546a43b57969cdc135b89241d93ccc2c52d611db35aaa6dfb2627af7fdb4"
 ---
 
 # PLAN-REVERSE-209: active objective evidence audit back-fill
@@ -93,4 +93,4 @@ review_evidence:
 ## Gap Closed
 
 The objective evidence table provides a stable index from each user requirement
-to current-state proof.
+to current-state proof or an explicit blocker when proof is not yet available.

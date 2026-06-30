@@ -5,7 +5,7 @@ Updated: 2026-06-30
 This audit maps the active user objective to current repository evidence. It is
 not a replacement for the design documents; it is the requirement-by-requirement
 index that proves where the semantic work is lowered, where it is implemented,
-and where it is intentionally deferred.
+where it is intentionally deferred, and where full completion is still blocked.
 
 External source heads checked on 2026-06-30:
 
@@ -25,6 +25,7 @@ External source heads checked on 2026-06-30:
 | G-07 | ClaudeCode and Codex plugin/config setup is preimplemented so new HELIX adoption pulls internal adapter configuration. | proved | `.claude/settings.json`<br>`.codex/config.toml`<br>`.codex/hooks.json`<br>`src/setup/templates.ts`<br>`src/lint/codex-hook-adapter.ts`<br>`tests/setup.test.ts`<br>`tests/codex-hook-adapter.test.ts`<br>`tests/doctor.test.ts` | Setup emits Claude/Codex adapter templates, including Codex hooks feature enablement. Doctor now proves both `.codex/hooks.json` wiring and `.codex/config.toml` `[features].hooks=true`; hosted/API tools remain explicitly outside mechanical hook coverage. |
 | G-08 | L3 includes test/verification performance NFR and UT-TDD naming is being moved to HELIX. | proved | `docs/design/helix/L3-requirements/pillar-functional-requirements.md`<br>`docs/test-design/helix/L3-pillar-acceptance-test-design.md`<br>`docs/test-design/helix/L6-pillar-unit-test-design.md`<br>`tests/vmodel-pair.test.ts`<br>`tests/rule-drift.test.ts` | `HR-NFR-P5-03` defines fast/default/full profiles, worker/resource budget, timeout, p95 duration budget, and evidence. HELIX prose is the product language; machine identifiers such as `ut-tdd`, `.ut-tdd`, and `UT-TDD:managed` are intentionally deferred to `PLAN-M-02` to avoid unsafe partial rename. |
 | G-09 | The completion claim is semantic, not only quantitative. | proved | `docs/governance/helix-objective-evidence-audit.md`<br>`tests/goal-evidence-audit.test.ts`<br>`tests/upstream-adoption.test.ts`<br>`tests/legacy-adoption.test.ts`<br>`tests/roadmap.test.ts`<br>`tests/doctor.test.ts` | Evidence rows require current-source commits, L3-L6 descent, L7 decision/oracle coverage, doctor gates, and explicit non-goals. File counts, green test counts, or roadmap span counts alone do not prove adoption. |
+| G-10 | L14 / whole-program completion is claimed only when no outstanding PLAN, version-up parked item, PO/S4 decision, human approval, irreversible migration, or open defer remains. | blocked | `bun run src/cli.ts status --json`<br>`src/lint/outstanding.ts`<br>`tests/outstanding.test.ts`<br>`tests/cli-surface.test.ts`<br>`docs/process/forward/L08-L14-verification-phase.md`<br>`docs/process/gates.md` | Current `outstanding.completionReadiness.ok=false`; blockers are `human_approval_pending`, `irreversible_migration_pending`, `non_terminal_plans`, `po_decision_pending`, and `version_up_parked`. Therefore the active objective is not complete even though the verification and workflow hardening slices are green. Required actions remain PO/S4 decisions, version-up activation/rejection evidence, and PO signoff for irreversible migration. |
 
 ## Known Non-Goals
 
@@ -35,3 +36,5 @@ External source heads checked on 2026-06-30:
   Bash, personal paths, `.helix` state, or global config.
 - This audit does not rename machine identifiers in-place. The safe atomic
   rename remains the `PLAN-M-02` migration scope.
+- This audit does not claim L14 / whole-program completion while
+  `outstanding.completionReadiness.ok=false`.
