@@ -83,6 +83,15 @@ secret/PII 非投影、no-prod-write、rollback rehearsal、source ledger freshn
 (<https://cloud.google.com/deploy/docs/rollbacks>) の公式運用と同じく、実適用前に
 「検証済み・戻せる・段階適用できる」証拠を要求するための HELIX 版の gate である。
 
+packet はさらに `reapprovalTriggers[]` を出す。activation packet、dry-run、approval evidence は snapshot ではなく
+承認時点の HEAD / release trigger / scope / source ledger / rehearsal evidence に結びつくため、HEAD/scope/source/evidence drift
+が起きた場合は承認済みとして流用しない。`head_sha_or_release_trigger_drift`、`approval_scope_or_params_drift`、
+`source_ledger_or_external_limit_drift`、`rehearsal_or_rollback_evidence_drift` のいずれかに該当した場合は、
+`ut-tdd version-up dry-run`、activation packet、DB rebuild、doctor、action-binding approval packet を再実行し、
+必要なら `keep_parked_with_review_date` または `request_scope_reduction` へ戻す。
+これは GitHub Actions concurrency、Google SRE release engineering、SLSA provenance の考え方に合わせ、
+同時実行・古い根拠・再現不能な provenance で future activation を進めないための再承認 gate である。
+
 ### 4.1.2 version upgrade dry-run surface
 
 `ut-tdd version-up dry-run --current <semver-or-tag> --target <semver-or-tag> --json` は、
@@ -168,6 +177,8 @@ version-up の機能一覧は、単に `version_target` を受理することで
    approval/audit evidence を出し、$0 claim や外部安全境界を口頭説明だけにしない。
 9. **activation readiness checks**: `activationReadinessChecks[]` が external rehearsal / provenance の各項目を
    `present` / `pending_evidence` に分類し、pending のままでは activation 判断を blocked reason に残す。
+10. **reapproval triggers**: `reapprovalTriggers[]` が HEAD/scope/source/evidence drift 時の再実行・再承認 route を示し、
+    古い dry-run / approval / source ledger / rollback evidence を activation 根拠として流用しない。
 
 ## 6. 他 mode との非重複
 

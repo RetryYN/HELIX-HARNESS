@@ -82,6 +82,7 @@ export interface VersionUpActivationPacket {
   }>;
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
+  reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
@@ -92,6 +93,13 @@ export interface VersionUpActivationReadinessCheck {
   status: "present" | "pending_evidence";
   evidence: string;
   reason: string;
+}
+
+export interface VersionUpActivationReapprovalTrigger {
+  trigger: string;
+  invalidates: string;
+  requiredAction: string;
+  source: string;
 }
 
 export interface VersionUpSourceLedgerFreshness {
@@ -191,6 +199,8 @@ const MODE_DOC_MARKERS = [
   "adopted version/date",
   "latest official status",
   "adoption decision",
+  "reapprovalTriggers[]",
+  "HEAD/scope/source/evidence drift",
   "source_status_delta",
   "adoption_decision_delta",
   "workflow_route_impact",
@@ -774,6 +784,7 @@ export function buildVersionUpActivationPacket(
     externalRehearsal,
     provenance,
   );
+  const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
   const blockedReasons = [
     ...blockedActivationReasons(plan, actionBindingApproval, externalBoundaries),
     ...activationReadinessBlockedReasons(activationReadinessChecks),
@@ -868,6 +879,7 @@ export function buildVersionUpActivationPacket(
     ],
     sourceLedgerFreshness,
     activationReadinessChecks,
+    reapprovalTriggers,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
@@ -906,6 +918,41 @@ export function buildVersionUpActivationPacket(
       },
     ],
   };
+}
+
+function buildVersionUpActivationReapprovalTriggers(): VersionUpActivationReapprovalTrigger[] {
+  return [
+    {
+      trigger: "head_sha_or_release_trigger_drift",
+      invalidates:
+        "activation packet, dry-run evidence, and action-binding approval tied to the previous HEAD/release trigger",
+      requiredAction:
+        "re-run version-up dry-run, activation packet, db rebuild, doctor, and approval packet before any activation",
+      source: "GitHub Actions concurrency + Google SRE release engineering",
+    },
+    {
+      trigger: "approval_scope_or_params_drift",
+      invalidates: "approved actor/tool/target/params/scope and any derived approval evidence",
+      requiredAction:
+        "record a new action_binding_approval_record or request_scope_reduction before execution",
+      source: "GitHub Environments required reviewers + action-binding approval policy",
+    },
+    {
+      trigger: "source_ledger_or_external_limit_drift",
+      invalidates:
+        "sourceLedgerFreshness, cost guardrails, external rehearsal assumptions, and activation route",
+      requiredAction:
+        "refresh source ledger with source_status_delta/adoption_decision_delta/workflow_route_impact and reroute if needed",
+      source: "Version-up source ledger freshness policy",
+    },
+    {
+      trigger: "rehearsal_or_rollback_evidence_drift",
+      invalidates: "dry-run, rollback rehearsal, provenance, and audit evidence",
+      requiredAction:
+        "keep parked or rerun rehearsal until concrete evidence matches the approved HEAD/scope",
+      source: "SLSA provenance + Google SRE rollback guidance",
+    },
+  ];
 }
 
 function buildActivationReadinessChecks(

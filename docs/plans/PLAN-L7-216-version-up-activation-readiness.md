@@ -53,7 +53,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:23:12+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:cb42662fea0a96f88625201c32ad2cdc897e1e97c53689cb41acb361277cddb0"
+        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -61,7 +61,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:23:12+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:53c05ed5971ec32dd6409e59d52929dbc6206e67cb00bb5ba96d3b10b00a2fa6"
+        output_digest: "sha256:e5281e9eab7e257930c135cc1aafbca2884cd83f0ef3988035852271ddf27f5a"
 ---
 
 # PLAN-L7-216: version-up activation readiness evidence

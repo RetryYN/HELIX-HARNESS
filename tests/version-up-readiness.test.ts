@@ -76,6 +76,8 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "adopted version/date",
       "latest official status",
       "adoption decision",
+      "reapprovalTriggers[]",
+      "HEAD/scope/source/evidence drift",
       "source_status_delta",
       "adoption_decision_delta",
       "workflow_route_impact",
@@ -228,6 +230,26 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "rollback_rehearsal",
           status: "present",
+        }),
+      ]),
+    );
+    expect(packet.reapprovalTriggers).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          trigger: "head_sha_or_release_trigger_drift",
+          requiredAction: expect.stringContaining("re-run version-up dry-run"),
+        }),
+        expect.objectContaining({
+          trigger: "approval_scope_or_params_drift",
+          invalidates: expect.stringContaining("approved actor/tool/target/params"),
+        }),
+        expect.objectContaining({
+          trigger: "source_ledger_or_external_limit_drift",
+          requiredAction: expect.stringContaining("source_status_delta"),
+        }),
+        expect.objectContaining({
+          trigger: "rehearsal_or_rollback_evidence_drift",
+          source: expect.stringContaining("SLSA provenance"),
         }),
       ]),
     );
@@ -581,6 +603,8 @@ describe("version-up-readiness", () => {
           "adopted version/date",
           "latest official status",
           "adoption decision",
+          "reapprovalTriggers[]",
+          "HEAD/scope/source/evidence drift",
           "source_status_delta",
           "adoption_decision_delta",
           "workflow_route_impact",
@@ -747,6 +771,12 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packets[0].reapprovalTriggers.map((row: { trigger: string }) => row.trigger)).toEqual([
+      "head_sha_or_release_trigger_drift",
+      "approval_scope_or_params_drift",
+      "source_ledger_or_external_limit_drift",
+      "rehearsal_or_rollback_evidence_drift",
+    ]);
     expect(packets[0].blockedReasons).toEqual(
       expect.arrayContaining([
         "activation rehearsal evidence pending: webhook_signature_check",

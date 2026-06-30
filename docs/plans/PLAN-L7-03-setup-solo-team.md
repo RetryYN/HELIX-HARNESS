@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:45:48+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:e093695f6269759dbcaceedd2bc3017b4ab95320c87616c270b4ccc5207b716d"
+        output_digest: "sha256:adfb39c835e8dd1dd75081cc046fe1fb9c1a04c1097186b7769074c0a4153d01"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T05:22:33+09:00"
@@ -135,7 +135,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:22:33+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:e093695f6269759dbcaceedd2bc3017b4ab95320c87616c270b4ccc5207b716d"
+        output_digest: "sha256:adfb39c835e8dd1dd75081cc046fe1fb9c1a04c1097186b7769074c0a4153d01"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:45:00+09:00"
