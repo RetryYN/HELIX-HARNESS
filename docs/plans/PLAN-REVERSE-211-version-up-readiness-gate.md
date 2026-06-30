@@ -60,7 +60,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

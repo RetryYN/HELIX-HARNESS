@@ -230,6 +230,14 @@ describe("version-up-readiness", () => {
         expect.objectContaining({ item: "audit_record" }),
       ]),
     );
+    expect(packet.sourceLedgerFreshness).toMatchObject({
+      ledgerLabel: "Version-up source ledger",
+      checkedDate: "2026-06-30",
+      stale: false,
+      maxAgeDays: 90,
+      rowCount: 14,
+      missingRows: [],
+    });
     expect(packet.relatedDecisionPackets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -242,6 +250,27 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+  });
+
+  it("surfaces stale source ledger freshness inside activation packets", () => {
+    const packets = buildVersionUpActivationPackets(
+      input({
+        modeDoc: input().modeDoc.replace(
+          "Version-up source ledger (checked 2026-06-30)",
+          "Version-up source ledger (checked 2026-01-01)",
+        ),
+      }),
+    );
+
+    expect(packets[0].sourceLedgerFreshness).toMatchObject({
+      checkedDate: "2026-01-01",
+      stale: true,
+      violation: "Version-up source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    });
+    expect(packets[0].blockedReasons).toContain(
+      "source ledger must be refreshed before activation: Version-up source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    );
+    expect(packets[0].applyCommandAvailable).toBe(false);
   });
 
   it("emits a non-destructive version upgrade dry-run plan with rollback and idempotency evidence", () => {
@@ -702,6 +731,12 @@ describe("version-up-readiness", () => {
       "approval_evidence",
       "audit_record",
     ]);
+    expect(packets[0].sourceLedgerFreshness).toMatchObject({
+      ledgerLabel: "Version-up source ledger",
+      stale: false,
+      rowCount: 14,
+      missingRows: [],
+    });
   });
 
   it("exposes version-up dry-run through the CLI as JSON", () => {

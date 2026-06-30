@@ -7,6 +7,7 @@ import {
   recordFieldValue,
 } from "./shared";
 import {
+  SOURCE_LEDGER_MAX_AGE_DAYS,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
@@ -79,9 +80,20 @@ export interface VersionUpActivationPacket {
     item: string;
     evidence: string;
   }>;
+  sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
+export interface VersionUpSourceLedgerFreshness {
+  ledgerLabel: "Version-up source ledger";
+  checkedDate: string | null;
+  stale: boolean;
+  violation: string | null;
+  maxAgeDays: number;
+  rowCount: number;
+  missingRows: string[];
 }
 
 export interface VersionUpgradeDryRunInput {
@@ -580,9 +592,11 @@ export function analyzeVersionUpReadiness(
 export function buildVersionUpActivationPackets(
   input: VersionUpReadinessInput,
 ): VersionUpActivationPacket[] {
+  const sourceLedger = parseVersionUpSourceLedger(input.modeDoc);
+  const sourceLedgerFreshness = buildVersionUpSourceLedgerFreshness(input.modeDoc, sourceLedger);
   return input.plans
     .filter((plan) => plan.versionTarget !== null)
-    .map((plan) => buildVersionUpActivationPacket(plan))
+    .map((plan) => buildVersionUpActivationPacket(plan, sourceLedgerFreshness))
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
 
@@ -709,6 +723,10 @@ export function buildVersionUpgradeDryRunPlan(
 
 export function buildVersionUpActivationPacket(
   plan: VersionUpReadinessPlan,
+  sourceLedgerFreshness: VersionUpSourceLedgerFreshness = buildVersionUpSourceLedgerFreshness("", {
+    columns: [],
+    rows: [],
+  }),
 ): VersionUpActivationPacket {
   const activationDecision = recordValues(plan.text, ACTIVATION_RECORD_NAME, [
     ...ACTIVATION_RECORD_FIELDS,
@@ -729,7 +747,10 @@ export function buildVersionUpActivationPacket(
   const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
     plan.text.toLowerCase().includes(term.toLowerCase()),
   );
-  const blockedReasons = blockedActivationReasons(plan, actionBindingApproval, externalBoundaries);
+  const blockedReasons = [
+    ...blockedActivationReasons(plan, actionBindingApproval, externalBoundaries),
+    ...sourceLedgerActivationBlockedReasons(sourceLedgerFreshness),
+  ];
 
   return {
     schemaVersion: "version-up-activation-packet.v1",
@@ -817,6 +838,7 @@ export function buildVersionUpActivationPacket(
         evidence: provenance.audit_record,
       },
     ],
+    sourceLedgerFreshness,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
@@ -930,6 +952,38 @@ function recordValues(
   return Object.fromEntries(
     fields.map((field) => [field, recordFieldValue(text, recordName, field) ?? ""]),
   );
+}
+
+function buildVersionUpSourceLedgerFreshness(
+  modeDoc: string,
+  sourceLedger: ReturnType<typeof parseVersionUpSourceLedger>,
+): VersionUpSourceLedgerFreshness {
+  const checkedDate =
+    modeDoc.match(/Version-up source ledger \(checked (\d{4}-\d{2}-\d{2})\)/)?.[1] ?? null;
+  const violation = sourceLedgerCheckedDateViolation(modeDoc, "Version-up source ledger");
+  const missingRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
+    (source) => !sourceLedger.rows.some((row) => row.source === source),
+  );
+  return {
+    ledgerLabel: "Version-up source ledger",
+    checkedDate,
+    stale: violation !== null || missingRows.length > 0,
+    violation,
+    maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
+    rowCount: sourceLedger.rows.length,
+    missingRows,
+  };
+}
+
+function sourceLedgerActivationBlockedReasons(freshness: VersionUpSourceLedgerFreshness): string[] {
+  const reasons: string[] = [];
+  if (freshness.violation) {
+    reasons.push(`source ledger must be refreshed before activation: ${freshness.violation}`);
+  }
+  if (freshness.missingRows.length > 0) {
+    reasons.push(`source ledger missing activation sources: ${freshness.missingRows.join(", ")}`);
+  }
+  return reasons;
 }
 
 function blockedActivationReasons(

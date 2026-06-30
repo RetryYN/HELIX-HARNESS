@@ -41,6 +41,55 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T05:55:24+09:00"
+    tests_green_at: "2026-07-01T05:55:24+09:00"
+    verdict: approve
+    scope: "Continuation: version-up activation packets now expose sourceLedgerFreshness with checkedDate, stale status, row count, and missing required sources. Stale or incomplete source ledgers become activation blocked reasons in the packet itself, not only in doctor, so PO/TL cannot review future activation against stale external assumptions. The surface remains planOnly/mustNotApply/applyCommandAvailable=false and does not activate PLAN-L7-146 or touch Cloudflare/GitHub/auth/secret infrastructure."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T05:55:24+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:55:24+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:55:24+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:55:24+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T05:55:24+09:00"
+        evidence_path: docs/process/modes/version-up.md
+        output_digest: "sha256:12ad06a350ea53b4fea855414cedaef05a453174749e5be132ae338847b9a2eb"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T05:32:31+09:00"
     tests_green_at: "2026-07-01T05:32:31+09:00"
     verdict: approve
@@ -55,7 +104,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -63,7 +112,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -79,7 +128,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -87,7 +136,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: docs/process/modes/version-up.md
-        output_digest: "sha256:75b255306c8448b4b85a307755d186ede0f16f9832834833f1003b98709a8caa"
+        output_digest: "sha256:12ad06a350ea53b4fea855414cedaef05a453174749e5be132ae338847b9a2eb"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:35:00+09:00"
@@ -104,7 +153,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:35:00+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -112,7 +161,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:35:00+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -120,7 +169,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:35:00+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T19:21:30+09:00"
@@ -137,7 +186,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:21:30+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -145,7 +194,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:21:30+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T18:59:06+09:00"
@@ -162,7 +211,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:59:06+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -170,7 +219,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:59:06+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T15:47:45+09:00"
@@ -187,7 +236,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -195,7 +244,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:32:07+09:00"
@@ -212,7 +261,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -220,7 +269,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:28:03+09:00"
         evidence_path: src/lint/version-up-readiness.ts
-        output_digest: "sha256:7c9b2575e329ad3c3b9c4e87338e716d702fd60923514a3ddabe64ea4a6ae32a"
+        output_digest: "sha256:70f22c89e3ddd0d8f347b08a245e90323952eafaa92ed2e0973ac59b4ac12a22"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -228,7 +277,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:9d7703676d7ec020f4f58bd088429263869e3b4f60e42959213d99d760e09169"
+        output_digest: "sha256:cae73a4da016b2fc40f23c89ea55eadd3356571b44c596e6cab70c44b029a288"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -263,6 +312,9 @@ path, and preserve approval/escalation boundaries before future activation.
 - Parse the `checked` heading by date shape instead of the initial 2026-06-30
   string, so a valid official-source refresh does not break the version-up
   ledger table.
+- Expose the same source ledger freshness in `version-up-activation-packet.v1`
+  so PO/TL activation review sees `checkedDate`, stale status, row count, and
+  missing required sources directly in the packet, not only in the doctor gate.
 - Require external activation candidates to mention action-binding approval,
   `escalation_boundaries`, and unapproved `exit 1` behavior.
 - Require external activation candidates to carry structured
@@ -302,8 +354,9 @@ path, and preserve approval/escalation boundaries before future activation.
   row parsing and readiness green.
 - Targeted tests, typecheck, lint, DB rebuild, doctor, and full tests pass.
 - `ut-tdd version-up activation-packet --json` includes external rehearsal,
-  cost guardrails, and provenance requirements while keeping
-  `applyCommandAvailable=false`.
+  cost guardrails, provenance requirements, and `sourceLedgerFreshness` while
+  keeping `applyCommandAvailable=false`. A stale source ledger is surfaced as a
+  packet blocked reason before activation.
 - `ut-tdd version-up dry-run --current v0.1.0 --target v0.2.0 --json` returns
   `planOnly=true`, `mustNotApply=true`, `applyCommandAvailable=false`,
   `semverChange=minor`, and migration/rollback/idempotency/release gate/source
