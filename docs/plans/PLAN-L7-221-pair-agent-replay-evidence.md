@@ -43,6 +43,63 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T13:34:22+09:00"
+    tests_green_at: "2026-07-01T13:34:22+09:00"
+    verdict: approve
+    scope: "Semantic design audit follow-up: L3 requirements, L3 acceptance, L6 function design, L6 unit test design, DB projection, and projection tests now agree that saved pair-agent run evidence must prove smart_test_author -> light_implementation -> smart_review order. Invalid phase_spans block the pair-agent-run-evidence gate and emit a finding; quality_signals project phase, smart/light/review, consultation, pending consultation, failed review, and fix cycle counts."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/projection-writer.test.ts --test-name-pattern \"pair-agent\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T13:34:22+09:00"
+        evidence_path: tests/projection-writer.test.ts
+        output_digest: "sha256:1c5f57229de3e966a14d197cede7c3bb219f47348970be051c0f5903a0471913"
+      - kind: unit_test
+        command: "bun test tests/review-evidence.test.ts tests/green-command-digest.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T13:31:09+09:00"
+        evidence_path: tests/review-evidence.test.ts
+        output_digest: "sha256:dfbf0e3feee78280b464dbae6e28bc3b5c0a652e416c6587f14c2d90c95f6af2"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:31:09+09:00"
+        evidence_path: src/state-db/projection-writer.ts
+        output_digest: "sha256:b2085ff2a1ca704a5750aaa4e2a3230792bd39dddb703fcb8484341b04a19e00"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:31:09+09:00"
+        evidence_path: src/state-db/projection-writer.ts
+        output_digest: "sha256:b2085ff2a1ca704a5750aaa4e2a3230792bd39dddb703fcb8484341b04a19e00"
+      - kind: smoke
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:31:09+09:00"
+        evidence_path: src/state-db/projection-writer.ts
+        output_digest: "sha256:b2085ff2a1ca704a5750aaa4e2a3230792bd39dddb703fcb8484341b04a19e00"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:31:09+09:00"
+        evidence_path: tests/projection-writer.test.ts
+        output_digest: "sha256:1c5f57229de3e966a14d197cede7c3bb219f47348970be051c0f5903a0471913"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T09:52:22+09:00"
     tests_green_at: "2026-07-01T09:52:22+09:00"
     verdict: approve
@@ -90,13 +147,18 @@ review_evidence:
 
 Close the remaining semantic evidence gap in the pair-agent TDD route. A saved
 pair-agent run must prove not only that phases executed, but also whether the
-run contained consultation, smart-review failure, and light fix cycles.
+run contained consultation, smart-review failure, and light fix cycles. DB
+rebuild must also reject saved replay evidence whose `phase_spans` do not prove
+the smart-test-author -> light-implementation -> smart-review order.
 
 ## Scope
 
 - Add `trace.loop_summary` to pair-agent run evidence.
 - Add a stable bounded transcript digest and per-phase output excerpt digest.
 - Project loop summary counts into `quality_signals` during DB rebuild.
+- Validate saved run `phase_spans` order during DB rebuild and block the
+  `pair-agent-run-evidence` gate when replay evidence starts with
+  implementation or otherwise violates the TDD pair order.
 - Extend unit tests so replay evidence covers consultation -> failed review ->
   light fix -> pass review.
 - Backfill L3 requirements/acceptance wording plus L6 function and unit test
@@ -114,5 +176,7 @@ run contained consultation, smart-review failure, and light fix cycles.
 - [x] Saved pair-agent evidence contains `loop_summary`.
 - [x] Saved phase spans contain `output_excerpt_digest`.
 - [x] DB rebuild projects pair-agent loop counts into `quality_signals`.
+- [x] DB rebuild blocks saved pair-agent evidence whose phase order violates
+      smart-test-author -> light-implementation -> smart-review.
 - [x] L3/L6 design and paired test design describe the replay contract.
 - [x] Targeted Red/Green tests cover evidence save and projection.

@@ -999,8 +999,142 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           expect.objectContaining({ metric: "consultation_count", value: 1, status: "warn" }),
           expect.objectContaining({ metric: "failed_review_count", value: 1, status: "warn" }),
           expect.objectContaining({ metric: "fix_cycle_count", value: 1, status: "pass" }),
+          expect.objectContaining({
+            metric: "light_implementation_count",
+            value: 2,
+            status: "pass",
+          }),
+          expect.objectContaining({
+            metric: "pending_consultation_count",
+            value: 1,
+            status: "warn",
+          }),
           expect.objectContaining({ metric: "phase_count", value: 5, status: "pass" }),
+          expect.objectContaining({ metric: "smart_review_count", value: 2, status: "pass" }),
+          expect.objectContaining({
+            metric: "smart_test_author_count",
+            value: 1,
+            status: "pass",
+          }),
         ]);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks pair-agent run evidence whose phase spans violate the smart-light-review order", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-pair-agent-order-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-177-helix-orchestration-runtime-bridge",
+          "title: pair-agent evidence order fixture",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "created: 2026-07-01",
+          "updated: 2026-07-01",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "pair-agent", "20260701034600-PLAN-L7-177.json"),
+        `${JSON.stringify(
+          {
+            schema_version: "pair-agent-run-evidence.v1",
+            recorded_at: "2026-07-01T03:46:00.000Z",
+            run_id: "pair-agent:PLAN-L7-177:20260701034600",
+            mode: "hybrid",
+            execute: true,
+            trace: {
+              plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+              span_id: "pair-agent:PLAN-L7-177:20260701034600:run",
+              tool_contract_id: "HC-P2.runPairAgentTddPlan",
+              guardrail_decision: {
+                guardrail: "frontier-approval",
+                decision: "allow",
+                human_signoff_required: false,
+              },
+              eval_outcome: { ok: true, status: "passed", final_verdict: "pass" },
+              completed_at: "2026-07-01T03:46:00.000Z",
+              phase_spans: [
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034600:phase:1",
+                  phase: "light_implementation",
+                  cycle: 1,
+                  agent_key: "light-implementation-agent",
+                  provider: "codex",
+                  model: "gpt-5.3-codex-spark",
+                  eval_outcome: { status: "passed", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034600:phase:2",
+                  phase: "smart_review",
+                  cycle: 1,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  eval_outcome: { status: "passed", verdict: "pass", exit_code: 0 },
+                },
+              ],
+            },
+          },
+          null,
+          2,
+        )}\n`,
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const gate = db
+          .prepare("SELECT gate_id, status, evidence_path FROM gate_runs WHERE gate_id = ?")
+          .get("pair-agent-run-evidence");
+        expect(gate).toMatchObject({
+          gate_id: "pair-agent-run-evidence",
+          status: "blocked",
+          evidence_path: ".ut-tdd/evidence/pair-agent/20260701034600-PLAN-L7-177.json",
+        });
+        const finding = db
+          .prepare("SELECT kind, source, status FROM findings WHERE kind = ?")
+          .get("pair-agent-evidence-phase-order-invalid");
+        expect(finding).toMatchObject({
+          kind: "pair-agent-evidence-phase-order-invalid",
+          source: "pair-agent-evidence",
+          status: "open",
+        });
       } finally {
         db.close();
       }

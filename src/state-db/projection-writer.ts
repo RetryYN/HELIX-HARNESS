@@ -70,6 +70,7 @@ import type { RunUsage } from "./token-tracker";
 interface PairAgentEvidencePhaseSpan {
   span_id?: unknown;
   phase?: unknown;
+  cycle?: unknown;
   agent_key?: unknown;
   provider?: unknown;
   model?: unknown;
@@ -911,6 +912,33 @@ function parsePairAgentRunEvidence(content: string): PairAgentRunEvidence | null
   }
 }
 
+function pairAgentPhaseOrderViolations(spans: unknown[]): string[] {
+  const violations: string[] = [];
+  const expectedAfterRed = ["light_implementation", "smart_review"] as const;
+  spans.forEach((rawSpan, index) => {
+    if (!rawSpan || typeof rawSpan !== "object") {
+      violations.push(`phase[${index}] is not an object`);
+      return;
+    }
+    const span = rawSpan as PairAgentEvidencePhaseSpan;
+    const phase = asString(span.phase);
+    if (!phase) {
+      violations.push(`phase[${index}] missing phase`);
+      return;
+    }
+    const expectedPhase = index === 0 ? "smart_test_author" : expectedAfterRed[(index - 1) % 2];
+    if (phase !== expectedPhase) {
+      violations.push(`phase[${index}] expected ${expectedPhase} but got ${phase}`);
+    }
+    const cycle = asFiniteNumber(span.cycle);
+    const expectedCycle = index === 0 ? 0 : Math.ceil(index / 2);
+    if (cycle !== null && cycle !== expectedCycle) {
+      violations.push(`phase[${index}] expected cycle ${expectedCycle} but got ${cycle}`);
+    }
+  });
+  return violations;
+}
+
 function projectPairAgentPlanEvidenceFile(input: {
   db: HarnessDb;
   plans: Map<string, ProjectedPlan>;
@@ -1049,6 +1077,8 @@ function projectPairAgentRunEvidence(
     const meta = plans.get(planId);
     const completedAt = asString(trace?.completed_at) ?? asString(evidence.recorded_at) ?? "";
     const status = asString(trace?.eval_outcome?.status) ?? "unknown";
+    const spans = Array.isArray(trace?.phase_spans) ? trace.phase_spans : [];
+    const phaseOrderViolations = spans.length > 0 ? pairAgentPhaseOrderViolations(spans) : [];
     const guardrail = trace?.guardrail_decision;
     const guardrailName = asString(guardrail?.guardrail);
     if (guardrailName) {
@@ -1075,11 +1105,20 @@ function projectPairAgentRunEvidence(
         gate_run_id: stableId("pair-agent-gate", runId),
         gate_id: "pair-agent-run-evidence",
         plan_id: planId,
-        status,
+        status: phaseOrderViolations.length > 0 ? "blocked" : status,
         checked_at: completedAt,
         evidence_path: relPath,
       },
     });
+    for (const violation of phaseOrderViolations) {
+      recordFinding(db, {
+        kind: "pair-agent-evidence-phase-order-invalid",
+        severity: "warn",
+        subjectId: `${runId}:${violation}`,
+        source: "pair-agent-evidence",
+        evidencePath: relPath,
+      });
+    }
     const loopSummary =
       trace?.loop_summary && typeof trace.loop_summary === "object"
         ? (trace.loop_summary as Record<string, unknown>)
@@ -1087,14 +1126,21 @@ function projectPairAgentRunEvidence(
     if (loopSummary) {
       for (const metric of [
         "phase_count",
+        "smart_test_author_count",
+        "light_implementation_count",
+        "smart_review_count",
         "consultation_count",
+        "pending_consultation_count",
         "failed_review_count",
         "fix_cycle_count",
       ]) {
         const value = asFiniteNumber(loopSummary[metric]);
         if (value === null) continue;
         const status =
-          metric === "phase_count"
+          metric === "phase_count" ||
+          metric === "smart_test_author_count" ||
+          metric === "light_implementation_count" ||
+          metric === "smart_review_count"
             ? value > 0
               ? "pass"
               : "warn"
@@ -1121,7 +1167,6 @@ function projectPairAgentRunEvidence(
       }
     }
 
-    const spans = Array.isArray(trace?.phase_spans) ? trace.phase_spans : [];
     if (spans.length === 0) {
       recordFinding(db, {
         kind: "pair-agent-evidence-missing-phase-spans",
