@@ -376,11 +376,22 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   if (/approval|承認|action-binding|human signoff|人間サインオフ|人間承認/i.test(text)) {
     blockers.add("human_approval_pending");
   }
-  if (/irreversible|不可逆|state dir|cutover|\.ut-tdd\/.*\.helix|atomic migration/i.test(text)) {
+  if (hasIrreversibleMigrationContext(p, text)) {
     blockers.add("irreversible_migration_pending");
   }
   if (blockers.size === 0) blockers.add("active_draft");
   return [...blockers].sort();
+}
+
+function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): boolean {
+  const planId = (p.planId ?? "").trim();
+  if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
+    return /irreversible|不可逆|state dir|cutover|\.ut-tdd\/.*\.helix|atomic migration/i.test(text);
+  }
+  if (/cutover_decision_record|state dir|\.ut-tdd\/.*\.helix|atomic migration/i.test(text)) {
+    return true;
+  }
+  return /irreversible|不可逆/i.test(text) && /cutover|migration|state dir|rename/i.test(text);
 }
 
 function primaryOutstandingReason(blockers: string[]): string {

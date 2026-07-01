@@ -180,6 +180,41 @@ describe("analyzeOutstandingWork", () => {
     ]);
   });
 
+  it("does not classify no-snapshot approval wording as irreversible cutover", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10-helix-asset-visualization",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: [
+            "S4 decision pending.",
+            "action_binding_approval_record:",
+            "- reviewed_snapshot_binding: No snapshot-bearing activation/cutover packet applies to this Discovery S4 approval.",
+            "future write-capable action surfaces require action-binding approval.",
+          ].join("\n"),
+        },
+      ],
+      0,
+    );
+
+    expect(o.blockersByKind).toEqual({
+      human_approval_pending: 1,
+      po_decision_pending: 1,
+    });
+    expect(o.items[0]).toMatchObject({
+      planId: "PLAN-DISCOVERY-10-helix-asset-visualization",
+      blockers: ["human_approval_pending", "po_decision_pending"],
+      reason: "po_decision_pending",
+    });
+    expect(o.semanticFeatureFrontierRecords?.[0]).toMatchObject({
+      classification: "frontier_pending_decision",
+      reason: "po_decision_pending",
+    });
+  });
+
   it("負の openDefers は 0 にクランプ / 全終端なら total=0", () => {
     const o = analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], -5);
     expect(o.nonTerminalPlansTotal).toBe(0);
