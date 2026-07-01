@@ -223,6 +223,8 @@ function walkTextFiles(root: string): string[] {
 interface CutoverApprovalEvaluation {
   approved: boolean;
   reasons: string[];
+  cutoverSnapshotId: string;
+  reviewedSnapshotBinding: string;
 }
 
 function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
@@ -231,6 +233,8 @@ function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
     return {
       approved: false,
       reasons: ["missing PLAN-M-02-helix-identifier-rename.md approval source"],
+      cutoverSnapshotId: "",
+      reviewedSnapshotBinding: "",
     };
   }
   const text = readFileSync(planPath, "utf8");
@@ -286,6 +290,8 @@ function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
       reasons.push(`missing concrete ${recordName}.${field} sha256 snapshot id`);
     }
   };
+  const snapshotValue = (block: string, field: string): string =>
+    normalizedValue(valueFor(block, field)).match(/\bsha256:[a-f0-9]{64}\b/)?.[0] ?? "";
 
   requireOutcome({
     block: cutoverBlock,
@@ -331,7 +337,12 @@ function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
   }
   requireSnapshot(approvalBlock, "reviewed_snapshot_binding", "action_binding_approval_record");
 
-  return { approved: reasons.length === 0, reasons };
+  return {
+    approved: reasons.length === 0,
+    reasons,
+    cutoverSnapshotId: snapshotValue(cutoverBlock, "cutover_snapshot_id"),
+    reviewedSnapshotBinding: snapshotValue(approvalBlock, "reviewed_snapshot_binding"),
+  };
 }
 
 function cutoverApprovalPresent(root: string): boolean {
@@ -427,7 +438,7 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
 export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRenameCutoverPlan {
   const audit = auditIdentifierRenameBlastRadius(root);
   const approvalEvaluation = evaluateCutoverApproval(root);
-  const blockedReasons = approvalEvaluation.approved ? [] : approvalEvaluation.reasons;
+  const blockedReasons = approvalEvaluation.approved ? [] : [...approvalEvaluation.reasons];
   const hitsByCategory = audit.hitsByCategory;
   const cutoverCategoryChecklist = hitsByCategory.map((summary) => ({
     ...summary,
@@ -512,19 +523,32 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
     freezePolicy,
     provenanceRequirements,
   });
+  if (approvalEvaluation.approved) {
+    if (approvalEvaluation.cutoverSnapshotId !== cutoverSnapshot.snapshotId) {
+      blockedReasons.push(
+        "cutover_decision_record.cutover_snapshot_id does not match current cutoverSnapshot.snapshotId",
+      );
+    }
+    if (approvalEvaluation.reviewedSnapshotBinding !== cutoverSnapshot.snapshotId) {
+      blockedReasons.push(
+        "action_binding_approval_record.reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId",
+      );
+    }
+  }
+  const applyAuthorized = approvalEvaluation.approved && blockedReasons.length === 0;
 
   return {
     schemaVersion: "identifier-rename-cutover-plan.v1",
-    status: audit.cutoverApproved ? "ready_for_cutover_packet" : "blocked_pending_cutover_approval",
+    status: applyAuthorized ? "ready_for_cutover_packet" : "blocked_pending_cutover_approval",
     planOnly: true,
     mustNotApply: true,
     applyCommandAvailable: false,
-    applyAuthorized: audit.cutoverApproved,
+    applyAuthorized,
     targetCli: audit.targetCli,
     targetStateDir: audit.targetStateDir,
     renameMap: RENAME_MAP,
     audit: {
-      status: audit.status,
+      status: applyAuthorized ? "ready_for_cutover" : "blocked_pending_cutover_approval",
       totalHits: audit.totalHits,
       hitsByToken: audit.hitsByToken,
       filesByToken: audit.filesByToken,

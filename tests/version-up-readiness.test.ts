@@ -289,6 +289,10 @@ describe("version-up-readiness", () => {
     expect(packet.externalRehearsalPlan).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
+          check: "official_source_basis",
+          source: "Version-up source ledger and official provider documentation",
+        }),
+        expect.objectContaining({
           check: "webhook_signature_check",
           evidence: expect.stringContaining("X-Hub-Signature-256"),
         }),
@@ -296,8 +300,21 @@ describe("version-up-readiness", () => {
           check: "access_control_check",
           source: "Cloudflare Access policy testing",
         }),
+        expect.objectContaining({
+          check: "no_prod_write_check",
+          source: "dry-run projection and no-production-write rehearsal",
+        }),
       ]),
     );
+    expect(packet.externalRehearsalPlan.map((item) => item.check)).toEqual([
+      "official_source_basis",
+      "free_tier_budget_check",
+      "webhook_signature_check",
+      "access_control_check",
+      "no_secret_pii_check",
+      "no_prod_write_check",
+      "rollback_rehearsal",
+    ]);
     expect(packet.activationReadinessChecks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -951,15 +968,34 @@ describe("version-up-readiness", () => {
     );
     expect(packets[0].externalRehearsalPlan).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({ check: "official_source_basis" }),
         expect.objectContaining({ check: "free_tier_budget_check" }),
         expect.objectContaining({ check: "webhook_signature_check" }),
         expect.objectContaining({ check: "access_control_check" }),
+        expect.objectContaining({ check: "no_prod_write_check" }),
       ]),
     );
+    expect(packets[0].externalRehearsalPlan.map((item: { check: string }) => item.check)).toEqual([
+      "official_source_basis",
+      "free_tier_budget_check",
+      "webhook_signature_check",
+      "access_control_check",
+      "no_secret_pii_check",
+      "no_prod_write_check",
+      "rollback_rehearsal",
+    ]);
     expect(packets[0].activationReadinessChecks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
+          check: "official_source_basis",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
           check: "webhook_signature_check",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "no_prod_write_check",
           status: "pending_evidence",
         }),
         expect.objectContaining({

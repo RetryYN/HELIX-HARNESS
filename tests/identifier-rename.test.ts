@@ -71,7 +71,7 @@ function writeConcreteActorWithOutcomeChoices(root: string) {
   );
 }
 
-function writeApprovedRenamePlan(root: string) {
+function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID) {
   mkdirSync(join(root, "docs", "plans"), { recursive: true });
   writeFileSync(
     join(root, "docs", "plans", "PLAN-M-02-helix-identifier-rename.md"),
@@ -84,7 +84,7 @@ function writeApprovedRenamePlan(root: string) {
       "cutover_decision_record:",
       "- allowed_outcome: approve_cutover",
       "- decision_owner: PO RetryYN",
-      `- cutover_snapshot_id: cutoverSnapshot.snapshotId ${CONCRETE_SNAPSHOT_ID}`,
+      `- cutover_snapshot_id: cutoverSnapshot.snapshotId ${snapshotId}`,
       "- trigger_condition: PLAN-L1-06 confirmed and Step 1-6 gates green",
       "- blast_radius_baseline: rename audit JSON at frozen HEAD",
       "- dry_run_plan: codemod/state migration rehearsal evidence .ut-tdd/evidence/rename/dry-run.json",
@@ -104,7 +104,7 @@ function writeApprovedRenamePlan(root: string) {
       "- approved_target: .ut-tdd -> .helix",
       "- approved_params: reviewed command params hash abc123",
       "- review_approval_evidence: dry-run risk review rollback full test doctor evidence",
-      `- reviewed_snapshot_binding: cutoverSnapshot.snapshotId ${CONCRETE_SNAPSHOT_ID}`,
+      `- reviewed_snapshot_binding: cutoverSnapshot.snapshotId ${snapshotId}`,
       "- expires_at_or_trigger: expires if HEAD scope evidence or quiet window changes",
       "- audit_record: approver action command result incident rollback route",
     ].join("\n"),
@@ -398,17 +398,40 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("keeps rename plan non-applying even when approval records are concrete", () => {
+  it("keeps rename plan blocked when concrete approval records cite a stale cutover snapshot", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-approved-"));
     try {
       writeApprovedRenamePlan(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const plan = buildIdentifierRenameCutoverPlan(root);
-      expect(plan.status).toBe("ready_for_cutover_packet");
-      expect(plan.applyAuthorized).toBe(true);
+      expect(plan.status).toBe("blocked_pending_cutover_approval");
+      expect(plan.applyAuthorized).toBe(false);
       expect(plan.mustNotApply).toBe(true);
       expect(plan.applyCommandAvailable).toBe(false);
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          "cutover_decision_record.cutover_snapshot_id does not match current cutoverSnapshot.snapshotId",
+          "action_binding_approval_record.reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId",
+        ]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("authorizes only when concrete approval records cite the current cutover snapshot", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-"));
+    try {
+      writeApprovedRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(root).cutoverSnapshot.snapshotId;
+      writeApprovedRenamePlan(root, currentSnapshotId);
+      const plan = buildIdentifierRenameCutoverPlan(root);
+
+      expect(plan.status).toBe("ready_for_cutover_packet");
+      expect(plan.applyAuthorized).toBe(true);
       expect(plan.blockedReasons).toEqual([]);
     } finally {
       rmSync(root, { recursive: true, force: true });

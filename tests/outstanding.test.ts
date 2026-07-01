@@ -16,6 +16,13 @@ import {
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
 
+const sourceLedgerMeaningReviewEvidence = [
+  "source_ledger_freshness records the fresh checked ledger label before terminal decision use",
+  "source_status_delta records none/changed official source status impact before terminal decision use",
+  "adoption_decision_delta records none/changed adoption decision impact before terminal decision use",
+  "workflow_route_impact records none or the named workflow reroute before terminal decision use",
+] as const;
+
 describe("analyzeOutstandingWork", () => {
   const rows: OutstandingPlanRow[] = [
     { layer: "L7", status: "draft" },
@@ -125,6 +132,12 @@ describe("analyzeOutstandingWork", () => {
     expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toContain(
       "execution_window_or_freeze_policy recorded before irreversible apply",
     );
+    expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toEqual(
+      expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
+    );
+    expect(o.items.find((item) => item.planId === "PLAN-DISCOVERY-10")?.requiredEvidence).toEqual(
+      expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
+    );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
@@ -132,6 +145,7 @@ describe("analyzeOutstandingWork", () => {
         "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
         "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
         "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
+        ...sourceLedgerMeaningReviewEvidence,
       ]),
     );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredActions).toEqual(
@@ -467,6 +481,9 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[0].requiredEvidence).toContain(
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
     );
+    expect(packet.decisions[0].requiredEvidence).toEqual(
+      expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
+    );
     expect(packet.decisions[0].requiredActions).toEqual(
       expect.arrayContaining([
         "record the PO/S4 decision before promotion, rejection, or Forward merge",
@@ -480,6 +497,9 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[1].requiredRecords.map((record) => record.recordName)).toEqual([
       "activation_decision_record",
       "parked_review_record",
+      "external_rehearsal_plan",
+      "cost_guardrails",
+      "activation_provenance_requirements",
       "action_binding_approval_record",
     ]);
     expect(packet.decisions[1].allowedOutcomesByRecord).toEqual([
@@ -496,6 +516,18 @@ describe("completionDecisionPacketForOutstanding", () => {
         allowedOutcomes: ["review_scheduled", "mark_stale", "route_to_activation_decision"],
       },
       {
+        recordName: "external_rehearsal_plan",
+        allowedOutcomes: ["evidence_present", "pending_evidence", "request_scope_reduction"],
+      },
+      {
+        recordName: "cost_guardrails",
+        allowedOutcomes: ["within_guardrails", "pending_limits", "request_scope_reduction"],
+      },
+      {
+        recordName: "activation_provenance_requirements",
+        allowedOutcomes: ["provenance_complete", "pending_evidence", "deny_activation"],
+      },
+      {
         recordName: "action_binding_approval_record",
         allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
       },
@@ -508,6 +540,18 @@ describe("completionDecisionPacketForOutstanding", () => {
       {
         recordName: "parked_review_record",
         nextWorkflowRoute: expect.stringContaining("version-up parked review"),
+      },
+      {
+        recordName: "external_rehearsal_plan",
+        nextWorkflowRoute: expect.stringContaining("version-up external rehearsal"),
+      },
+      {
+        recordName: "cost_guardrails",
+        nextWorkflowRoute: expect.stringContaining("version-up cost guardrails"),
+      },
+      {
+        recordName: "activation_provenance_requirements",
+        nextWorkflowRoute: expect.stringContaining("version-up provenance"),
       },
       {
         recordName: "action_binding_approval_record",
@@ -531,6 +575,9 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[1].recordTemplates.map((template) => template.recordName)).toEqual([
       "activation_decision_record",
       "parked_review_record",
+      "external_rehearsal_plan",
+      "cost_guardrails",
+      "activation_provenance_requirements",
       "action_binding_approval_record",
     ]);
     expect(packet.decisions[1].recordTemplates[0]?.yamlLines).toEqual(
@@ -550,8 +597,21 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[1].requiredEvidence).toContain(
       "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
     );
+    expect(packet.decisions[1].requiredEvidence).toEqual(
+      expect.arrayContaining([
+        "external_rehearsal_plan records official source basis, budget, signature, access, no-secret/PII, no-prod-write, and rollback rehearsal evidence",
+        "cost_guardrails records provider free-tier limits and exceed_action before activation",
+        "activation_provenance_requirements records source ledger, dry-run evidence, approval evidence, and audit record before activation",
+      ]),
+    );
+    expect(packet.decisions[1].requiredEvidence).toEqual(
+      expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
+    );
     expect(packet.decisions[2].requiredEvidence).toContain(
       "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
+    );
+    expect(packet.decisions[2].requiredEvidence).toEqual(
+      expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
     );
     expect(packet.decisions[2].requiredRecords).toEqual([
       {
@@ -930,6 +990,9 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
       );
       expect(o.items[0]?.requiredEvidence).toContain(
         "activation_snapshot_id from the current activationSnapshot.snapshotId recorded before activation approval",
+      );
+      expect(o.items[0]?.requiredEvidence).toEqual(
+        expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
       );
       expect(o.items[0]?.requiredEvidence).not.toContain(
         "s4_decision_record with allowed_outcome confirmed / rejected / pivot",

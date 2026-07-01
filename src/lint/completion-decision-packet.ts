@@ -623,6 +623,12 @@ function requiredAllowedOutcomes(recordName: string): string[] | null {
       return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
     case "parked_review_record":
       return ["review_scheduled", "mark_stale", "route_to_activation_decision"];
+    case "external_rehearsal_plan":
+      return ["evidence_present", "pending_evidence", "request_scope_reduction"];
+    case "cost_guardrails":
+      return ["within_guardrails", "pending_limits", "request_scope_reduction"];
+    case "activation_provenance_requirements":
+      return ["provenance_complete", "pending_evidence", "deny_activation"];
     case "cutover_decision_record":
       return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
     case "action_binding_approval_record":
@@ -654,6 +660,17 @@ function requiredRouteGuidance(recordName: string): string[] {
         "mark stale",
         "activation_decision_record",
       ];
+    case "external_rehearsal_plan":
+      return [
+        "version-up external rehearsal",
+        "official source basis",
+        "no-prod-write",
+        "rollback",
+      ];
+    case "cost_guardrails":
+      return ["version-up cost guardrails", "provider limits", "exceed_action", "reduce scope"];
+    case "activation_provenance_requirements":
+      return ["version-up provenance", "source ledger", "dry-run", "approval", "audit"];
     case "cutover_decision_record":
       return [
         "L14 cutover decision",
@@ -698,6 +715,19 @@ function requiredTemplateGuidance(recordName: string): string[] {
         "stale_action",
         "completion/status decision packet",
       ];
+    case "external_rehearsal_plan":
+      return [
+        "official source basis",
+        "free-tier budget",
+        "webhook signature",
+        "access control",
+        "no-production-write",
+        "rollback rehearsal",
+      ];
+    case "cost_guardrails":
+      return ["free-tier limits", "Pages/Workers/D1/KV", "exceed_action", "scope reduction"];
+    case "activation_provenance_requirements":
+      return ["source ledger", "dry-run evidence", "approval evidence", "audit record"];
     case "cutover_decision_record":
       return [
         "frozen head",

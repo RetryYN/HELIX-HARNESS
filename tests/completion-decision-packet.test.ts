@@ -557,4 +557,37 @@ describe("completion decision packet lint", () => {
       records.find((record) => record.recordName === "action_binding_approval_record")?.fields,
     ).toContain("reviewed_snapshot_binding");
   });
+
+  it("carries external activation rehearsal, cost, and provenance records for version-up parked work", () => {
+    const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
+    const versionUpDecision = packet.decisions.find(
+      (decision) => decision.planId === "PLAN-L7-146-serverless-readonly-share",
+    );
+
+    expect(versionUpDecision?.requiredRecords.map((record) => record.recordName)).toEqual(
+      expect.arrayContaining([
+        "external_rehearsal_plan",
+        "cost_guardrails",
+        "activation_provenance_requirements",
+      ]),
+    );
+    expect(
+      versionUpDecision?.requiredRecords.find(
+        (record) => record.recordName === "external_rehearsal_plan",
+      )?.fields,
+    ).toEqual(
+      expect.arrayContaining([
+        "official_source_basis",
+        "no_prod_write_check",
+        "rollback_rehearsal",
+      ]),
+    );
+    expect(versionUpDecision?.recordTemplates.map((template) => template.recordName)).toEqual(
+      expect.arrayContaining([
+        "external_rehearsal_plan",
+        "cost_guardrails",
+        "activation_provenance_requirements",
+      ]),
+    );
+  });
 });

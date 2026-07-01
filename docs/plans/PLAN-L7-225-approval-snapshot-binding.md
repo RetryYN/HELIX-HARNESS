@@ -83,6 +83,63 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T14:44:49+09:00"
+    tests_green_at: "2026-07-01T14:44:49+09:00"
+    verdict: approve
+    scope: "Cutover approval snapshot binding now compares approval record snapshot ids with the current rename plan cutoverSnapshot.snapshotId. Concrete but stale cutover_snapshot_id / reviewed_snapshot_binding values keep applyAuthorized=false, while matching current snapshot ids are required before the non-applying packet can become ready_for_cutover_packet."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: tests/identifier-rename.test.ts
+        output_digest: "sha256:47c7c0e52546a9badf5989b0617777a315678ce8aeeba65f7ad0233d75b6a820"
+      - kind: unit_test
+        command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: tests/cutover-readiness.test.ts
+        output_digest: "sha256:0d8a9fc88a92dbf25405b0723cd342174b1b45fb49d3fb9a994dbd648845e4c3"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: src/lint/identifier-rename.ts
+        output_digest: "sha256:c2d6c04935c47ae79c724b42b86039d227c2cf20971e0e56d4eed2ba60eebf39"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: src/lint/cutover-readiness.ts
+        output_digest: "sha256:7e50738b4417b7c9cede44a0b3e06482efcf72c513dca1d0768b896f3a832e36"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: docs/plans/PLAN-M-02-helix-identifier-rename.md
+        output_digest: "sha256:ffde01c6c7e939880f684c1f3b8fcdc1c33f2e8a97e13a4020b4a269a4f9f4b6"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: tests/identifier-rename.test.ts
+        output_digest: "sha256:47c7c0e52546a9badf5989b0617777a315678ce8aeeba65f7ad0233d75b6a820"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T14:06:12+09:00"
     tests_green_at: "2026-07-01T14:06:12+09:00"
     verdict: approve

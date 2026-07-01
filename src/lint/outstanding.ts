@@ -33,6 +33,38 @@ const SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
   "workflow_route_impact",
 ] as const;
 
+const SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE = [
+  "source_ledger_freshness records the fresh checked ledger label before terminal decision use",
+  "source_status_delta records none/changed official source status impact before terminal decision use",
+  "adoption_decision_delta records none/changed adoption decision impact before terminal decision use",
+  "workflow_route_impact records none or the named workflow reroute before terminal decision use",
+] as const;
+
+const EXTERNAL_REHEARSAL_RECORD_FIELDS = [
+  "official_source_basis",
+  "free_tier_budget_check",
+  "webhook_signature_check",
+  "access_control_check",
+  "no_secret_pii_check",
+  "no_prod_write_check",
+  "rollback_rehearsal",
+] as const;
+
+const COST_GUARDRAIL_RECORD_FIELDS = [
+  "pages_limit",
+  "workers_limit",
+  "d1_limit",
+  "kv_limit",
+  "exceed_action",
+] as const;
+
+const ACTIVATION_PROVENANCE_RECORD_FIELDS = [
+  "source_ledger",
+  "dry_run_evidence",
+  "approval_evidence",
+  "audit_record",
+] as const;
+
 export interface OutstandingWork {
   /** 非終端 PLAN を layer 別に集計 (key 昇順、IMP-139 a)。 */
   nonTerminalPlansByLayer: Record<string, number>;
@@ -427,6 +459,7 @@ function requiredOutstandingAction(reason: string): {
           "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
           "execution_window_or_freeze_policy recorded before irreversible apply",
           "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
+          ...SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE,
         ],
       };
     case "version_up_parked":
@@ -440,6 +473,10 @@ function requiredOutstandingAction(reason: string): {
           "review_by date/owner recorded when keep_parked_with_review_date is chosen",
           "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
           "required action-binding approval evidence when activation touches infra/auth/secrets",
+          "external_rehearsal_plan records official source basis, budget, signature, access, no-secret/PII, no-prod-write, and rollback rehearsal evidence",
+          "cost_guardrails records provider free-tier limits and exceed_action before activation",
+          "activation_provenance_requirements records source ledger, dry-run evidence, approval evidence, and audit record before activation",
+          ...SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE,
         ],
       };
     case "po_decision_pending":
@@ -452,6 +489,7 @@ function requiredOutstandingAction(reason: string): {
           "forward_route / reverse_fullback_required recorded when confirmed",
           "decision_outcome recorded in the PLAN at S4",
           "promotion_strategy_or_rejection_pivot_rationale recorded before terminal status",
+          ...SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE,
         ],
       };
     case "human_approval_pending":
@@ -769,6 +807,12 @@ function allowedOutcomesForRecordName(recordName: string): string[] {
       return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
     case "parked_review_record":
       return ["review_scheduled", "mark_stale", "route_to_activation_decision"];
+    case "external_rehearsal_plan":
+      return ["evidence_present", "pending_evidence", "request_scope_reduction"];
+    case "cost_guardrails":
+      return ["within_guardrails", "pending_limits", "request_scope_reduction"];
+    case "activation_provenance_requirements":
+      return ["provenance_complete", "pending_evidence", "deny_activation"];
     case "cutover_decision_record":
       return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
     case "action_binding_approval_record":
@@ -797,6 +841,12 @@ function nextWorkflowRouteForRecordName(recordName: string): string {
       return "version-up activation -> bind activationSnapshot.snapshotId, then activate via add-feature/Forward route, reject/archive, or keep parked with review_by";
     case "parked_review_record":
       return "version-up parked review -> schedule review, mark stale, or route to activation_decision_record";
+    case "external_rehearsal_plan":
+      return "version-up external rehearsal -> record official source basis, no-prod-write, rollback rehearsal, or keep activation pending / reduce scope";
+    case "cost_guardrails":
+      return "version-up cost guardrails -> confirm provider limits and exceed_action, or keep activation pending / reduce scope";
+    case "activation_provenance_requirements":
+      return "version-up provenance -> bind source ledger, dry-run, approval, and audit evidence before activation or deny activation";
     case "cutover_decision_record":
       return "L14 cutover decision -> bind cutoverSnapshot.snapshotId, then approve_cutover, reject/defer, or request runbook changes before any irreversible apply";
     case "action_binding_approval_record":
@@ -831,6 +881,12 @@ function insertionHintForRecordName(recordName: string): string {
       return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked; bind activationSnapshot.snapshotId, the add-feature/Forward route, reject/archive route, review_by policy, dry-run, and rollback.";
     case "parked_review_record":
       return "Add this block to the version-up PLAN while the work remains parked for a future release; include review_owner, review_trigger, stale_action, and completion/status decision packet route.";
+    case "external_rehearsal_plan":
+      return "Add this block to the version-up PLAN before external activation; cite official source basis, free-tier budget, webhook signature, access control, no-secret/PII, no-production-write, and rollback rehearsal evidence.";
+    case "cost_guardrails":
+      return "Add this block to the version-up PLAN before external activation; record provider free-tier limits for Pages/Workers/D1/KV and the exceed_action or scope reduction route.";
+    case "activation_provenance_requirements":
+      return "Add this block to the version-up PLAN before external activation; bind source ledger, dry-run evidence, approval evidence, and audit record so activation is traceable.";
     case "cutover_decision_record":
       return "Add this block to the L14 cutover PLAN before any irreversible apply or migration; bind cutoverSnapshot.snapshotId, frozen HEAD, quiet window, single-run, drift re-approval, dry-run, branch/tag rollback, state backup, and smoke/doctor/status monitoring.";
     case "action_binding_approval_record":
@@ -872,6 +928,21 @@ function placeholderForRecordField(
   }
   if (field === "workflow_route_impact") {
     return "<none|route to S4/version-up/cutover/action-binding backfill>";
+  }
+  if (field === "official_source_basis" || field === "source_ledger") {
+    return `<${field} URL or source ledger reference>`;
+  }
+  if (field.endsWith("_check") || field === "rollback_rehearsal") {
+    return `<${field} evidence path or rehearsal result>`;
+  }
+  if (field.endsWith("_limit")) {
+    return `<${field} provider limit and measured usage>`;
+  }
+  if (field === "exceed_action") {
+    return "<deny activation|request scope reduction|new approval route>";
+  }
+  if (field === "dry_run_evidence" || field === "approval_evidence") {
+    return `<${field} evidence path or audit id>`;
   }
   return `<${field}>`;
 }
@@ -971,6 +1042,21 @@ function requiredRecordsForOutstandingReason(
             "activation_dependency",
             "decision_packet_route",
           ],
+          sourcePaths: ["docs/process/modes/version-up.md"],
+        },
+        {
+          recordName: "external_rehearsal_plan",
+          fields: [...EXTERNAL_REHEARSAL_RECORD_FIELDS],
+          sourcePaths: ["docs/process/modes/version-up.md"],
+        },
+        {
+          recordName: "cost_guardrails",
+          fields: [...COST_GUARDRAIL_RECORD_FIELDS],
+          sourcePaths: ["docs/process/modes/version-up.md"],
+        },
+        {
+          recordName: "activation_provenance_requirements",
+          fields: [...ACTIVATION_PROVENANCE_RECORD_FIELDS],
           sourcePaths: ["docs/process/modes/version-up.md"],
         },
       ];

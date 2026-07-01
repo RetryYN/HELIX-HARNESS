@@ -278,12 +278,19 @@ function validateCutoverExecutionSemantics(
 ): CutoverReadinessViolation[] {
   const violations: CutoverReadinessViolation[] = [];
   const executionWindow = cutoverField(plan, "execution_window_or_freeze_policy");
+  const cutoverSnapshotId = cutoverField(plan, "cutover_snapshot_id");
   const dryRunPlan = cutoverField(plan, "dry_run_plan");
   const rollbackPlan = cutoverField(plan, "rollback_plan");
   const stateBackupPlan = cutoverField(plan, "state_backup_plan");
   const auditRecord = cutoverField(plan, "audit_record");
   const postCutoverMonitoring = cutoverField(plan, "post_cutover_monitoring");
 
+  if (!/\bsha256:[a-f0-9]{64}\b/.test(cutoverSnapshotId)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "cutover_snapshot_id must record a concrete sha256 current cutover snapshot id",
+    });
+  }
   if (!hasFrozenWindowPolicy(executionWindow)) {
     violations.push({
       subject: plan.plan_id,

@@ -863,6 +863,11 @@ export function buildVersionUpActivationPacket(
     externalBoundaries,
     externalRehearsalPlan: [
       {
+        check: "official_source_basis",
+        evidence: externalRehearsal.official_source_basis,
+        source: "Version-up source ledger and official provider documentation",
+      },
+      {
         check: "free_tier_budget_check",
         evidence: externalRehearsal.free_tier_budget_check,
         source: "Cloudflare Pages/Workers/D1/KV official limits",
@@ -881,6 +886,11 @@ export function buildVersionUpActivationPacket(
         check: "no_secret_pii_check",
         evidence: externalRehearsal.no_secret_pii_check,
         source: "projection no-secret/no-PII invariant",
+      },
+      {
+        check: "no_prod_write_check",
+        evidence: externalRehearsal.no_prod_write_check,
+        source: "dry-run projection and no-production-write rehearsal",
       },
       {
         check: "rollback_rehearsal",

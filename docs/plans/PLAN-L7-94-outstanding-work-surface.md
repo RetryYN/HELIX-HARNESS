@@ -12,6 +12,63 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T14:44:49+09:00"
+    tests_green_at: "2026-07-01T14:44:49+09:00"
+    verdict: pass
+    scope: "Completion/status decision material now exposes the same meaning-level requirements that the record schema enforces. Version-up parked work carries external_rehearsal_plan, cost_guardrails, and activation_provenance_requirements through requiredRecords/templates/outcomes/routes; requiredEvidence also names source ledger freshness/status/adoption/route-impact checks so handover/status prose cannot be weaker than the packet schema."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/identifier-rename.test.ts tests/cli-surface.test.ts tests/handover.test.ts tests/action-binding-approval-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: tests/outstanding.test.ts
+        output_digest: "sha256:022f82dac85de962672ae7bd0e1d86abb5082b2c3a13f9c60def97f09628d95c"
+      - kind: unit_test
+        command: "bun test tests/outstanding.test.ts tests/completion-decision-packet.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/identifier-rename.test.ts tests/cli-surface.test.ts tests/handover.test.ts tests/action-binding-approval-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: tests/completion-decision-packet.test.ts
+        output_digest: "sha256:082f94e6337caad8ac24fce67b041a80cc1b22e4dfebc08352317f5ba9a1ce92"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: src/lint/outstanding.ts
+        output_digest: "sha256:d8d9dd2a7166419047369cf86b4ae63e3735b6750b4824b368fb3ce291d634af"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: src/lint/completion-decision-packet.ts
+        output_digest: "sha256:ed199a4c59773261f65994601e6ef840ab62982910b70966c86dccea7f231814"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:1d756dcb9988b5d012043e88e79f7ba4dfc038793413541f38a19fd187db1d72"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:44:49+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:18924688db59f233bfbd67cad97702f3731b407ddcad1f68cbd8602361531497"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T14:27:02+09:00"
     tests_green_at: "2026-07-01T14:27:02+09:00"
     verdict: pass

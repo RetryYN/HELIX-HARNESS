@@ -6,11 +6,14 @@ import {
   loadCutoverReadinessInput,
 } from "../src/lint/cutover-readiness";
 
+const CONCRETE_CUTOVER_SNAPSHOT_ID =
+  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+
 const cutoverMarkers = [
   "cutover_decision_record:",
   "- allowed_outcome: `approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
   "- decision_owner: PO",
-  "- cutover_snapshot_id: cutoverSnapshot.snapshotId",
+  `- cutover_snapshot_id: cutoverSnapshot.snapshotId ${CONCRETE_CUTOVER_SNAPSHOT_ID}`,
   "- trigger_condition: L1 re-freeze",
   "- blast_radius_baseline: measured",
   "- dry_run_plan: codemod/state move dry-run rehearsal on a non-destructive branch with no apply",
@@ -141,6 +144,29 @@ describe("cutover readiness", () => {
         "structured workflow_route_impact must not be placeholder",
       ]),
     );
+  });
+
+  it("fails cutover records whose snapshot id is only a placeholder", () => {
+    const base = input().plans[0];
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              `- cutover_snapshot_id: cutoverSnapshot.snapshotId ${CONCRETE_CUTOVER_SNAPSHOT_ID}`,
+              "- cutover_snapshot_id: cutoverSnapshot.snapshotId",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason: "cutover_snapshot_id must record a concrete sha256 current cutover snapshot id",
+    });
   });
 
   it("U-DECISIONREC-003: fails irreversible cutover plans that only say PO signoff", () => {
