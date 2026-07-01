@@ -599,6 +599,59 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     );
   });
 
+  it("fails closed when the lightweight implementation tries to close or approve the work", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: failing test added\nACCEPTANCE_ORACLE: expected behavior recorded\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout: "GREEN_EVIDENCE: targeted test passed\nREVIEW: no findings\nVERDICT: pass\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: implementation attempt\nVERDICT: pass\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("error");
+    expect(result.steps.at(-1)).toMatchObject({
+      phase: "light_implementation",
+      status: "error",
+    });
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "light-agent-closure-claim",
+          severity: "error",
+        }),
+      ]),
+    );
+  });
+
   it("routes lightweight consultation to smart instruction before the next fix cycle", async () => {
     const plan = buildPairAgentTddPlan({
       planId: "PLAN-L7-PAIR",

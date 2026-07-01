@@ -39,6 +39,47 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T09:16:27+09:00"
+    tests_green_at: "2026-07-01T09:16:27+09:00"
+    verdict: approve
+    scope: "Continuation: pair-agent TDD route now fail-closes lightweight implementation output that attempts to close, approve, or verdict the work. The light implementation agent remains implementation/consultation only; smart review keeps the only local verdict authority."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/pair-agent.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T09:16:27+09:00"
+        evidence_path: tests/pair-agent.test.ts
+        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+      - kind: unit_test
+        command: "bun test tests/pair-agent.test.ts --test-name-pattern \"lightweight implementation tries to close\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T09:16:27+09:00"
+        evidence_path: tests/pair-agent.test.ts
+        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+      - kind: smoke
+        command: "sha256sum src/orchestration/pair-agent.ts"
+        runner: bash
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T09:16:27+09:00"
+        evidence_path: src/orchestration/pair-agent.ts
+        output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
+      - kind: smoke
+        command: "sha256sum docs/design/helix/L3-requirements/pillar-functional-requirements.md docs/design/helix/L6-function-design/pillar-function-design.md docs/test-design/helix/L3-pillar-acceptance-test-design.md docs/test-design/helix/L6-pillar-unit-test-design.md"
+        runner: bash
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T09:16:27+09:00"
+        evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+        output_digest: "sha256:5834d142811211f6a4bc5622b7e4d6130610b97b688ef31a23850dfec0bba8c6"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T07:41:20+09:00"
     tests_green_at: "2026-07-01T07:41:20+09:00"
     verdict: approve
@@ -53,7 +94,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:57eff1fd2acb014c9f7c5ab3857cf37c33341e877cf86a57b8187b248b39a330"
+        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -61,7 +102,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:57eff1fd2acb014c9f7c5ab3857cf37c33341e877cf86a57b8187b248b39a330"
+        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -69,7 +110,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:f36f925b2ef7ddf24d78aa836d3043b562ea927487318e251b59a63f1701fd38"
+        output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -77,7 +118,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: src/orchestration/pair-agent.ts
-        output_digest: "sha256:f36f925b2ef7ddf24d78aa836d3043b562ea927487318e251b59a63f1701fd38"
+        output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
 ---
 
 # PLAN-L7-217: pair-agent consultation precedence
@@ -93,6 +134,9 @@ agent gives a directive or fix response and the next light fix cycle applies it.
 
 - Treat any `CONSULTATION_QUESTION` from `light_implementation` as pending
   consultation, regardless of simultaneous changed-files/test/notes evidence.
+- Treat any lightweight implementation completion/approval/verdict marker as a
+  closing-authority violation, even when implementation evidence is otherwise
+  present.
 - Add a regression test proving mixed consultation output routes through smart
   instruction before the next light fix cycle.
 - Backfill HR-FR-P2-04 / HAC-P2-04b and L3/L6 pair test design.
@@ -113,6 +157,7 @@ instruction before treating ambiguous implementation work as accepted.
 ## DoD
 
 - [x] Mixed implementation evidence plus consultation is marked pending.
+- [x] Lightweight implementation output cannot close, approve, or verdict the work.
 - [x] Smart directive/fix response is required before the next light fix cycle.
 - [x] Pair-agent tests cover the regression.
 - [x] L3/L6 design and paired test-design are updated.

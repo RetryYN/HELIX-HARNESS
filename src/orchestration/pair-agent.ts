@@ -382,6 +382,12 @@ function hasConsultationQuestion(output: string): boolean {
   return /\b(CONSULTATION_QUESTION|CLARIFICATION_NEEDED|QUESTION)\b\s*[:=]/i.test(output);
 }
 
+function hasLightAgentClosureClaim(output: string): boolean {
+  return /\b(VERDICT|FINAL_VERDICT|COMPLETION_CLAIM|CLOSE_PLAN|PLAN_STATUS|READY_FOR_REVIEW|APPROVAL)\b\s*[:=]/i.test(
+    output,
+  );
+}
+
 function hasConsultationResponse(output: string): boolean {
   return /\b(FIX_INSTRUCTION|IMPLEMENTATION_DIRECTIVE|CONSULTATION_RESPONSE)\b\s*[:=]/i.test(
     output,
@@ -490,6 +496,11 @@ export async function runPairAgentTddPlan(input: {
         !hasNonZeroRedExitCode(output))
     ) {
       evidenceErrorCode = "missing-red-command-or-oracle-evidence";
+    }
+    if (!evidenceErrorCode && phaseName === "light_implementation") {
+      if (hasLightAgentClosureClaim(output)) {
+        evidenceErrorCode = "light-agent-closure-claim";
+      }
     }
     if (phaseName === "light_implementation" && result?.status === 0 && !lightConsulted) {
       if (

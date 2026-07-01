@@ -75,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:33:36+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:75b2346e8d31c1c319b2e188cea3477771536d518f5d34fdece0524b4081a073"
+        output_digest: "sha256:5834d142811211f6a4bc5622b7e4d6130610b97b688ef31a23850dfec0bba8c6"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:22:48+09:00"
