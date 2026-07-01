@@ -77,6 +77,8 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "latest official status",
       "adoption decision",
       "reapprovalTriggers[]",
+      "activationSnapshot",
+      "snapshotId",
       "HEAD/scope/source/evidence drift",
       "source_status_delta",
       "adoption_decision_delta",
@@ -253,6 +255,21 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packet.activationSnapshot).toMatchObject({
+      releaseTrigger: expect.stringContaining("release"),
+      versionTarget: "future",
+      planStatus: "draft",
+      sourceLedgerCheckedDate: "2026-06-30",
+      approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      invalidatedBy: [
+        "head_sha_or_release_trigger_drift",
+        "approval_scope_or_params_drift",
+        "source_ledger_or_external_limit_drift",
+        "rehearsal_or_rollback_evidence_drift",
+      ],
+    });
+    expect(packet.activationSnapshot.snapshotId).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(packet.blockedReasons).toEqual(
       expect.arrayContaining(["activation rehearsal evidence pending: free_tier_budget_check"]),
     );

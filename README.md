@@ -174,28 +174,34 @@ bun install
 bun run build
 
 # ハーネス状態を受け取りたい既存プロジェクトのディレクトリで
-powershell -NoProfile -ExecutionPolicy Bypass -File C:\path\to\UT-TDD-agent-harness\scripts\ut-tdd.ps1 setup --solo
+$env:HELIX_HARNESS = "<harness-checkout>"
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:HELIX_HARNESS\scripts\ut-tdd.ps1" setup project --dry-run
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:HELIX_HARNESS\scripts\ut-tdd.ps1" setup project
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\ut-tdd.ps1 doctor
 ```
 
 ## ⚙️ セットアップ
 
-<!-- TODO(最終まとめ): ここに setup を集約。以下は正確なフラグ素材。 -->
+現行の HELIX project bootstrap 入口は `ut-tdd setup project` です。`helix setup project` と `.helix`
+state dir は PLAN-M-02 の cutover/action-binding approval 後の target であり、現時点では未有効です。
+初回導入時は `identifierTransition`、`consumerReadiness`、`postSetupWorkflow` を確認してください。
 
 | シーン | コマンド |
 |---|---|
-| 確認のみ(書き込まない) | `ut-tdd setup --dry-run` |
-| ソロ開発 | `ut-tdd setup --solo` |
-| チーム開発 | `ut-tdd setup --team --tl-team @org/tl --qa-team @org/qa --po-team @org/po` |
-| ブランチ保護まで適用 | `ut-tdd setup --team … --apply-branch-protection` |
+| HELIX project 確認のみ(書き込まない) | `ut-tdd setup project --dry-run --json` |
+| HELIX project 初期化 | `ut-tdd setup project` |
+| チーム slugs 付き初期化 | `ut-tdd setup project --team --tl-team @org/tl --qa-team @org/qa --po-team @org/po` |
+| cutover 判断材料 | `ut-tdd rename plan --json` |
 
-> `--tl-team` / `--qa-team` / `--po-team` は 3 つセットで指定(CODEOWNERS の `@TODO` 混入防止)。`.ut-tdd/state/setup.json` と GitHub workflow / テンプレートを生成し、ブランチ保護は既定で emit-only。
+> `--tl-team` / `--qa-team` / `--po-team` は 3 つセットで指定(CODEOWNERS の `@TODO` 混入防止)。
+> 現行 baseline は `ut-tdd` / `.ut-tdd` です。`.ut-tdd -> .helix` と `helix setup project` の有効化は
+> `ut-tdd rename plan --json` の packet と PLAN-M-02 承認を経るまで実行しません。
 
 ## 🗺️ コマンド早見表
 
 | コマンド | 用途 |
 |---|---|
-| `ut-tdd setup --solo` / `--team` | 対象リポジトリの初期化(ソロ / チーム) |
+| `ut-tdd setup project` | 対象リポジトリの HELIX project 初期化 |
 | `ut-tdd status` | 実行モード検出(`standalone` / `claude-only` / `codex-only` / `hybrid`) |
 | `ut-tdd doctor` | ガバナンス一括検証(gate / trace / drift / roadmap) |
 | `ut-tdd db rebuild --json` | `harness.db` の再投影 |
@@ -223,24 +229,34 @@ bun run build
 次に、ハーネス状態を受け取りたい既存プロジェクトのディレクトリで setup を実行します:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File C:\path\to\UT-TDD-agent-harness\scripts\ut-tdd.ps1 setup --dry-run
-powershell -NoProfile -ExecutionPolicy Bypass -File C:\path\to\UT-TDD-agent-harness\scripts\ut-tdd.ps1 setup --solo
+$env:HELIX_HARNESS = "<harness-checkout>"
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:HELIX_HARNESS\scripts\ut-tdd.ps1" setup project --dry-run --json
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:HELIX_HARNESS\scripts\ut-tdd.ps1" setup project
 ```
 
 チームリポジトリの場合:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File C:\path\to\UT-TDD-agent-harness\scripts\ut-tdd.ps1 setup --team --tl-team @org/tl --qa-team @org/qa --po-team @org/po
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:HELIX_HARNESS\scripts\ut-tdd.ps1" setup project --team --tl-team @org/tl --qa-team @org/qa --po-team @org/po
 ```
 
 POSIX シェルでも同じ「カレントディレクトリ」ルールを使います:
 
 ```sh
-/path/to/UT-TDD-agent-harness/scripts/ut-tdd setup --dry-run
-/path/to/UT-TDD-agent-harness/scripts/ut-tdd setup --solo
+/path/to/UT-TDD-agent-harness/scripts/ut-tdd setup project --dry-run --json
+/path/to/UT-TDD-agent-harness/scripts/ut-tdd setup project
 ```
 
-`setup` は GitHub の workflow/テンプレートと `.ut-tdd/state/setup.json` を書き出します。ブランチ保護はデフォルトでは emit のみ(出力するだけ)で、適用には明示的な人間 / 管理者の手順が必要です:
+`setup project` は GitHub の workflow/テンプレート、VS Code task、`.ut-tdd/state/setup.json`、`.ut-tdd/memory`、
+`.ut-tdd/handover`、`.ut-tdd/evidence` baseline を作ります。`--json` では `consumerReadiness` /
+`importReport` / `postSetupWorkflow` / `identifierTransition` を確認できます。`helix setup project` と `.helix`
+は PLAN-M-02 の cutover/action-binding approval 前には使いません。cutover 判断材料は次で確認します:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "$env:HELIX_HARNESS\scripts\ut-tdd.ps1" rename plan --json
+```
+
+ブランチ保護はデフォルトでは emit のみ(出力するだけ)で、適用には明示的な人間 / 管理者の手順が必要です:
 
 ```powershell
 scripts/setup-branch-protection.sh

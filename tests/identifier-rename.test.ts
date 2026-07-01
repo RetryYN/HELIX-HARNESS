@@ -289,6 +289,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           "blast-radius hit set changes after approval",
         ]),
       );
+      expect(plan.cutoverSnapshot).toMatchObject({
+        snapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        blastRadiusDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        invalidatedBy: plan.freezePolicy.reapprovalTriggers,
+      });
       expect(plan.provenanceRequirements).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ item: "blast_radius_baseline" }),
@@ -316,6 +323,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         approvedToolRequired: true,
         approvedTargetRequired: true,
       });
+
+      const beforeDigest = plan.cutoverSnapshot.blastRadiusDigest;
+      writeFileSync(join(root, "README.md"), "Additional ut-tdd mention after baseline.\n");
+      const changedPlan = buildIdentifierRenameCutoverPlan(root);
+      expect(changedPlan.cutoverSnapshot.blastRadiusDigest).not.toBe(beforeDigest);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

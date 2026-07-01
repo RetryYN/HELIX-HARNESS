@@ -122,6 +122,12 @@ Cutover source ledger meaning review uses the same `source_status_delta` / `adop
 or action-binding approval; any source change that affects approval scope, concurrency, rollback, provenance, backup,
 or monitoring routes the cutover PLAN back to `request_runbook_changes` before apply.
 
+`ut-tdd rename plan --json` must also emit `cutoverSnapshot`. `cutoverSnapshot.snapshotId` binds the current blast-radius
+digest, approval scope digest, backup/provenance/monitoring evidence digest, and freeze-policy reapproval triggers. This
+snapshot does not authorize apply; it lets PO/TL compare the approval evidence with the current rename packet and reject
+stale approvals when HEAD, hit set, scope, dry-run, backup, rollback, provenance, monitoring, or quiet-window evidence
+changes.
+
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
 `doctor` green があっても「L14 全件達成」ではない。非終端 PLAN、open defer、

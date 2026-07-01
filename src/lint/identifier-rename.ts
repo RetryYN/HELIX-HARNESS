@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import {
@@ -90,6 +91,7 @@ export interface IdentifierRenameCutoverPlan {
     concurrencyPolicy: "single-run-no-concurrent-apply";
     reapprovalTriggers: string[];
   };
+  cutoverSnapshot: IdentifierRenameCutoverSnapshot;
   provenanceRequirements: Array<{
     item: string;
     evidence: string;
@@ -103,6 +105,15 @@ export interface IdentifierRenameCutoverPlan {
     approvedToolRequired: true;
     approvedTargetRequired: true;
   };
+}
+
+export interface IdentifierRenameCutoverSnapshot {
+  snapshotId: string;
+  blastRadiusDigest: string;
+  approvalScopeDigest: string;
+  evidenceDigest: string;
+  sourceLedgerCheckedDate: string | null;
+  invalidatedBy: string[];
 }
 
 const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
@@ -338,6 +349,90 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
         "missing concrete action_binding_approval_record.allowed_outcome=approve_action_binding",
         "missing action-bound approved_actor/approved_tool/approved_target for irreversible rename",
       ];
+  const hitsByCategory = audit.hitsByCategory;
+  const cutoverCategoryChecklist = hitsByCategory.map((summary) => ({
+    ...summary,
+    cutoverAction: cutoverActionForCategory(summary.category),
+  }));
+  const stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"] = [
+    {
+      path: ".ut-tdd/harness.db",
+      purpose: "state DB projection and completion evidence baseline",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/memory",
+      purpose: "HELIX shared memory before state-dir rename",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/state",
+      purpose: "active plan, setup, and runtime state before migration",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/logs",
+      purpose: "runtime/session/gate logs used as verification provenance",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/handover",
+      purpose: "handover pointer and completion decision packet continuity",
+      restoreRequired: true,
+    },
+    {
+      path: ".claude/settings.json",
+      purpose: "Claude hook/adapter config before marker rename",
+      restoreRequired: true,
+    },
+    {
+      path: ".codex/hooks.json",
+      purpose: "Codex hook adapter config before marker rename",
+      restoreRequired: true,
+    },
+  ];
+  const freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"] = {
+    requiresFrozenHead: true,
+    requiresQuietWindow: true,
+    concurrencyPolicy: "single-run-no-concurrent-apply" as const,
+    reapprovalTriggers: [
+      "HEAD changes after approval",
+      "blast-radius hit set changes after approval",
+      "approval scope or approved params change",
+      "dry-run, rollback, backup, or monitoring plan changes",
+      "doctor, full test, or distribution smoke evidence becomes stale or red",
+    ],
+  };
+  const provenanceRequirements = [
+    {
+      item: "blast_radius_baseline",
+      evidence: "rename audit JSON captured at frozen HEAD with token/file counts",
+    },
+    {
+      item: "state_backup_plan",
+      evidence:
+        "backup manifest with restore-required entries for DB, memory, state, logs, handover, and hook configs",
+    },
+    {
+      item: "audit_record",
+      evidence:
+        "approver, git hash, command args, params hash, result, incident/rollback decision, and monitoring outcome",
+    },
+    {
+      item: "execution_window_or_freeze_policy",
+      evidence:
+        "quiet window, single-run concurrency policy, frozen HEAD, and re-approval triggers",
+    },
+  ];
+  const cutoverSnapshot = buildIdentifierRenameCutoverSnapshot({
+    audit,
+    renameMap: RENAME_MAP,
+    hitsByCategory,
+    cutoverCategoryChecklist,
+    stateBackupManifest,
+    freezePolicy,
+    provenanceRequirements,
+  });
 
   return {
     schemaVersion: "identifier-rename-cutover-plan.v1",
@@ -356,11 +451,8 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
       filesByToken: audit.filesByToken,
       requiredRecords: audit.requiredRecords,
     },
-    hitsByCategory: audit.hitsByCategory,
-    cutoverCategoryChecklist: audit.hitsByCategory.map((summary) => ({
-      ...summary,
-      cutoverAction: cutoverActionForCategory(summary.category),
-    })),
+    hitsByCategory,
+    cutoverCategoryChecklist,
     blockedReasons,
     dryRunPlan: [
       "run rename audit and freeze the ut-tdd/.ut-tdd/area=harness blast-radius baseline",
@@ -382,76 +474,10 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
       "check rule-drift, hook adapter parity, and green-command digest after cutover",
       "watch feedback backlog, handover, and runtime logs for path or marker regressions",
     ],
-    stateBackupManifest: [
-      {
-        path: ".ut-tdd/harness.db",
-        purpose: "state DB projection and completion evidence baseline",
-        restoreRequired: true,
-      },
-      {
-        path: ".ut-tdd/memory",
-        purpose: "HELIX shared memory before state-dir rename",
-        restoreRequired: true,
-      },
-      {
-        path: ".ut-tdd/state",
-        purpose: "active plan, setup, and runtime state before migration",
-        restoreRequired: true,
-      },
-      {
-        path: ".ut-tdd/logs",
-        purpose: "runtime/session/gate logs used as verification provenance",
-        restoreRequired: true,
-      },
-      {
-        path: ".ut-tdd/handover",
-        purpose: "handover pointer and completion decision packet continuity",
-        restoreRequired: true,
-      },
-      {
-        path: ".claude/settings.json",
-        purpose: "Claude hook/adapter config before marker rename",
-        restoreRequired: true,
-      },
-      {
-        path: ".codex/hooks.json",
-        purpose: "Codex hook adapter config before marker rename",
-        restoreRequired: true,
-      },
-    ],
-    freezePolicy: {
-      requiresFrozenHead: true,
-      requiresQuietWindow: true,
-      concurrencyPolicy: "single-run-no-concurrent-apply",
-      reapprovalTriggers: [
-        "HEAD changes after approval",
-        "blast-radius hit set changes after approval",
-        "approval scope or approved params change",
-        "dry-run, rollback, backup, or monitoring plan changes",
-        "doctor, full test, or distribution smoke evidence becomes stale or red",
-      ],
-    },
-    provenanceRequirements: [
-      {
-        item: "blast_radius_baseline",
-        evidence: "rename audit JSON captured at frozen HEAD with token/file counts",
-      },
-      {
-        item: "state_backup_plan",
-        evidence:
-          "backup manifest with restore-required entries for DB, memory, state, logs, handover, and hook configs",
-      },
-      {
-        item: "audit_record",
-        evidence:
-          "approver, git hash, command args, params hash, result, incident/rollback decision, and monitoring outcome",
-      },
-      {
-        item: "execution_window_or_freeze_policy",
-        evidence:
-          "quiet window, single-run concurrency policy, frozen HEAD, and re-approval triggers",
-      },
-    ],
+    stateBackupManifest,
+    freezePolicy,
+    cutoverSnapshot,
+    provenanceRequirements,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: RENAME_PLAN_PACKET_COMMAND,
@@ -478,4 +504,57 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
       approvedTargetRequired: true,
     },
   };
+}
+
+function buildIdentifierRenameCutoverSnapshot(input: {
+  audit: IdentifierRenameAudit;
+  renameMap: IdentifierRenameMapping[];
+  hitsByCategory: IdentifierRenameCategorySummary[];
+  cutoverCategoryChecklist: IdentifierRenameCutoverPlan["cutoverCategoryChecklist"];
+  stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"];
+  freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"];
+  provenanceRequirements: IdentifierRenameCutoverPlan["provenanceRequirements"];
+}): IdentifierRenameCutoverSnapshot {
+  const blastRadiusDigest = sha256Json({
+    tokens: input.audit.tokens,
+    hitsByToken: input.audit.hitsByToken,
+    filesByToken: input.audit.filesByToken,
+    hitsByCategory: input.hitsByCategory,
+    hits: input.audit.hits.map((hit) => ({
+      token: hit.token,
+      path: hit.path,
+      count: hit.count,
+      category: hit.category,
+    })),
+  });
+  const approvalScopeDigest = sha256Json({
+    renameMap: input.renameMap,
+    targetCli: input.audit.targetCli,
+    targetStateDir: input.audit.targetStateDir,
+    requiredRecords: input.audit.requiredRecords,
+    cutoverCategoryChecklist: input.cutoverCategoryChecklist,
+  });
+  const evidenceDigest = sha256Json({
+    stateBackupManifest: input.stateBackupManifest,
+    freezePolicy: input.freezePolicy,
+    provenanceRequirements: input.provenanceRequirements,
+  });
+  const snapshot = {
+    blastRadiusDigest,
+    approvalScopeDigest,
+    evidenceDigest,
+    sourceLedgerCheckedDate: null,
+    invalidatedBy: input.freezePolicy.reapprovalTriggers,
+  };
+  return {
+    snapshotId: sha256Json({
+      schemaVersion: "identifier-rename-cutover-plan.v1",
+      ...snapshot,
+    }),
+    ...snapshot,
+  };
+}
+
+function sha256Json(value: unknown): string {
+  return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
 }

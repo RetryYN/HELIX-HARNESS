@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
@@ -83,9 +84,21 @@ export interface VersionUpActivationPacket {
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
+  activationSnapshot: VersionUpActivationSnapshot;
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
+export interface VersionUpActivationSnapshot {
+  snapshotId: string;
+  releaseTrigger: string;
+  versionTarget: string | null;
+  planStatus: string;
+  sourceLedgerCheckedDate: string | null;
+  approvalScopeDigest: string;
+  evidenceDigest: string;
+  invalidatedBy: string[];
 }
 
 export interface VersionUpActivationReadinessCheck {
@@ -200,6 +213,8 @@ const MODE_DOC_MARKERS = [
   "latest official status",
   "adoption decision",
   "reapprovalTriggers[]",
+  "activationSnapshot",
+  "snapshotId",
   "HEAD/scope/source/evidence drift",
   "source_status_delta",
   "adoption_decision_delta",
@@ -785,6 +800,15 @@ export function buildVersionUpActivationPacket(
     provenance,
   );
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
+  const activationSnapshot = buildVersionUpActivationSnapshot({
+    plan,
+    activationDecision,
+    actionBindingApproval,
+    externalRehearsal,
+    provenance,
+    sourceLedgerFreshness,
+    reapprovalTriggers,
+  });
   const blockedReasons = [
     ...blockedActivationReasons(plan, actionBindingApproval, externalBoundaries),
     ...activationReadinessBlockedReasons(activationReadinessChecks),
@@ -880,6 +904,7 @@ export function buildVersionUpActivationPacket(
     sourceLedgerFreshness,
     activationReadinessChecks,
     reapprovalTriggers,
+    activationSnapshot,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
@@ -918,6 +943,52 @@ export function buildVersionUpActivationPacket(
       },
     ],
   };
+}
+
+function buildVersionUpActivationSnapshot(input: {
+  plan: VersionUpReadinessPlan;
+  activationDecision: Record<string, string>;
+  actionBindingApproval: Record<string, string>;
+  externalRehearsal: Record<string, string>;
+  provenance: Record<string, string>;
+  sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
+  reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
+}): VersionUpActivationSnapshot {
+  const releaseTrigger =
+    input.activationDecision.target_version_or_release_trigger || input.plan.versionTarget || "";
+  const approvalScopeDigest = sha256Json({
+    approval_scope: input.actionBindingApproval.approval_scope ?? "",
+    approved_actor: input.actionBindingApproval.approved_actor ?? "",
+    approved_tool: input.actionBindingApproval.approved_tool ?? "",
+    approved_target: input.actionBindingApproval.approved_target ?? "",
+    approved_params: input.actionBindingApproval.approved_params ?? "",
+  });
+  const evidenceDigest = sha256Json({
+    external_rehearsal_plan: input.externalRehearsal,
+    activation_provenance_requirements: input.provenance,
+    source_ledger_checked_date: input.sourceLedgerFreshness.checkedDate,
+    source_ledger_missing_rows: input.sourceLedgerFreshness.missingRows,
+  });
+  const snapshot = {
+    releaseTrigger,
+    versionTarget: input.plan.versionTarget,
+    planStatus: input.plan.status,
+    sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
+    approvalScopeDigest,
+    evidenceDigest,
+    invalidatedBy: input.reapprovalTriggers.map((trigger) => trigger.trigger),
+  };
+  return {
+    snapshotId: sha256Json({
+      plan_id: input.plan.plan_id,
+      ...snapshot,
+    }),
+    ...snapshot,
+  };
+}
+
+function sha256Json(value: unknown): string {
+  return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
 }
 
 function buildVersionUpActivationReapprovalTriggers(): VersionUpActivationReapprovalTrigger[] {

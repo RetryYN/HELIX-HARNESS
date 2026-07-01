@@ -1,4 +1,4 @@
-import { mkdtempSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -856,5 +856,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(d.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
     // branch protection は dry-run 理由で skip
     expect(r.branchProtection).toEqual({ applied: false, reason: "dry-run" });
+  });
+
+  it("U-SETUP-018: README quickstart points to the HELIX project setup workflow, not legacy setup shortcuts", () => {
+    const readme = readFileSync(join(process.cwd(), "README.md"), "utf8");
+    const quickstart = readme.match(/## 🚀 クイックスタート[\s\S]*?## ⚙️ セットアップ/)?.[0] ?? "";
+
+    expect(readme).toContain("ut-tdd setup project --dry-run");
+    expect(readme).toContain("ut-tdd rename plan --json");
+    expect(readme).toContain("helix setup project");
+    expect(readme).toContain("PLAN-M-02");
+    expect(readme).toContain("`.ut-tdd`");
+    expect(readme).toContain("`.helix`");
+    expect(quickstart).not.toContain("setup --solo");
   });
 });
