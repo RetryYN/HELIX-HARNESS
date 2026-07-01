@@ -19,6 +19,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "acceptance_gap",
     "unresolved_risk",
     "external_source_basis",
+    "source_ledger_freshness",
     "route_impact",
     "forward_route",
     "reverse_fullback_required",
@@ -68,6 +69,10 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
           "- acceptance_gap: none",
           "- unresolved_risk: none",
           "- external_source_basis: docs/process/modes/discovery.md",
+          "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+          "- source_status_delta: none",
+          "- adoption_decision_delta: none",
+          "- workflow_route_impact: none before S4 decision",
           "- route_impact: confirmed routes forward; rejected/pivot returns backlog",
           "- forward_route: confirmed route to L3 Forward design",
           "- reverse_fullback_required: yes",
@@ -85,6 +90,94 @@ describe("S4 decision readiness", () => {
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual(["PLAN-DISCOVERY-900"]);
     expect(s4DecisionReadinessMessages(result)[0]).toContain("s4-decision-readiness - OK");
+  });
+
+  it("fails S4 records that omit source ledger meaning-review fields", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-901.md",
+            plan_id: "PLAN-DISCOVERY-901",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            decisionOutcome: null,
+            text: [
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- route_impact: confirmed routes forward; rejected/pivot returns backlog",
+              "- forward_route: confirmed route to L3 Forward design",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening or reject/pivot rationale",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured source_ledger_freshness" },
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured source_status_delta" },
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured adoption_decision_delta" },
+        { subject: "PLAN-DISCOVERY-901", reason: "missing structured workflow_route_impact" },
+      ]),
+    );
+  });
+
+  it("fails S4 records whose source ledger meaning-review fields are placeholders", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-902.md",
+            plan_id: "PLAN-DISCOVERY-902",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            decisionOutcome: null,
+            text: [
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: source_ledger_freshness",
+              "- source_status_delta: source_status_delta",
+              "- adoption_decision_delta: adoption_decision_delta",
+              "- workflow_route_impact: workflow_route_impact",
+              "- route_impact: confirmed routes forward; rejected/pivot returns backlog",
+              "- forward_route: confirmed route to L3 Forward design",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening or reject/pivot rationale",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((violation) => violation.reason)).toEqual(
+      expect.arrayContaining([
+        "structured source_ledger_freshness must not be placeholder",
+        "structured source_status_delta must not be placeholder",
+        "structured adoption_decision_delta must not be placeholder",
+        "structured workflow_route_impact must not be placeholder",
+      ]),
+    );
   });
 
   it("emits a non-destructive S4 decision packet for S3 pending PoC plans", () => {
@@ -354,6 +447,10 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: none",
               "- unresolved_risk: none",
               "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
               "- route_impact: confirmed but no promotion route",
               "- forward_route: none; archive only",
               "- reverse_fullback_required: maybe",
@@ -407,6 +504,10 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: mandatory scenario failed",
               "- unresolved_risk: unbounded implementation risk",
               "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
               "- route_impact: rejected due acceptance gap",
               "- forward_route: PLAN-L3-99-promote-rejected-spike",
               "- reverse_fullback_required: yes",

@@ -1688,4 +1688,72 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       db.close();
     }
   });
+
+  it("normalizes inline comments from decision_outcome before PoC projection", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-poc-decision-comment-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-DISCOVERY-COMMENT.md"),
+        [
+          "---",
+          "plan_id: PLAN-DISCOVERY-COMMENT",
+          "kind: poc",
+          "layer: cross",
+          'drive: "agent # harness"',
+          "status: confirmed",
+          "workflow_phase: S4",
+          "decision_outcome: confirmed # PO accepted the verified PoC",
+          "updated: 2026-07-01",
+          "---",
+          "",
+          "# Commented decision outcome fixture",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const projectedPlan = db
+          .prepare(
+            "SELECT drive, decision_outcome FROM plan_registry WHERE plan_id = 'PLAN-DISCOVERY-COMMENT'",
+          )
+          .get() as { drive?: string; decision_outcome?: string } | undefined;
+        expect(projectedPlan?.drive).toBe("agent # harness");
+        expect(projectedPlan?.decision_outcome).toBe("confirmed");
+
+        const evaluation = db
+          .prepare("SELECT confirmed_count, total_count FROM poc_evaluations LIMIT 1")
+          .get() as { confirmed_count?: number; total_count?: number } | undefined;
+        expect(Number(evaluation?.confirmed_count)).toBe(1);
+        expect(Number(evaluation?.total_count)).toBe(1);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
 });

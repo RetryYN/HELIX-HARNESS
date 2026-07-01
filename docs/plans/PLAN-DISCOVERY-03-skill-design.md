@@ -52,6 +52,10 @@ s4_decision_record:
 - acceptance_gap: generic scoring saturation remained and was routed to L5/L6 tag/category hardening.
 - unresolved_risk: future skill quality must be evaluated by adoption/success metrics, not only recommendation presence.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed preserves the concept but does not bless the original spike plan as-is.
 - forward_route: PLAN-L5-06-skill / PLAN-L4-12-skill-pack / PLAN-L7-70-skill-pack-curation.
 - reverse_fullback_required: no; redesign/Forward implementation already carried the accepted learning.

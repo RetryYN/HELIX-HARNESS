@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-06-23
-updated: 2026-06-30
+updated: 2026-07-01
 owner: Codex
 parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
 agent_slots:
@@ -39,6 +39,55 @@ dependencies:
     - docs/improvement-backlog.md
     - docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T14:27:02+09:00"
+    tests_green_at: "2026-07-01T14:27:02+09:00"
+    verdict: approve
+    scope: "Right-arm verification strategy now carries NASA Systems Engineering Handbook Appendix as a source-ledger row for V&V plan / requirements verification matrix / validation requirements matrix structure, with the official source ledger date refreshed to 2026-07-01 and gate impact bound to G8-G14."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: tests/right-arm-verification-strategy.test.ts
+        output_digest: "sha256:f1bd669549e2fd65c77f9167eec2e5ee7f79815a0b56898e749dc949af6b6b01"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: src/lint/right-arm-verification-strategy.ts
+        output_digest: "sha256:dfbe5f8656e4e7d98db3851a0d360756e9bb302b0e08d092d84f10ee4da04ac4"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: src/lint/right-arm-verification-strategy.ts
+        output_digest: "sha256:dfbe5f8656e4e7d98db3851a0d360756e9bb302b0e08d092d84f10ee4da04ac4"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: docs/process/gates.md
+        output_digest: "sha256:3b19226ee2809a7537604f8924f09336724689b9348696b95dbcdc3150465d85"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: docs/process/forward/L08-L14-verification-phase.md
+        output_digest: "sha256:fed00c1c3c8f85ce76ff3e93614edbbc1111828bfd4ed9cc71ce265da61d5d19"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:55:32+09:00"

@@ -6,6 +6,8 @@ import {
   isClosedPlanStatus,
   missingRecordFields,
   recordFieldValue,
+  SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
+  sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
   sourceLedgerCheckedDateViolation,
@@ -77,6 +79,7 @@ const CUTOVER_RECORD_FIELDS = [
   "audit_record",
   "post_cutover_monitoring",
   "legacy_alias_policy",
+  ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
 ] as const;
 const CUTOVER_ALLOWED_OUTCOMES = [
   "approve_cutover",
@@ -252,6 +255,9 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
     );
     if (outcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: outcomeViolation });
+    }
+    for (const reason of sourceLedgerMeaningReviewFieldViolations(plan.text, CUTOVER_RECORD_NAME)) {
+      violations.push({ subject: plan.plan_id, reason });
     }
     if (missingFields.length === 0 && !outcomeViolation) {
       violations.push(...validateCutoverExecutionSemantics(plan));

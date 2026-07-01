@@ -367,8 +367,27 @@ function markdownFiles(dir: string): string[] {
 }
 
 function frontmatterValue(content: string, key: string): string {
-  const match = content.match(new RegExp(`^${key}:\\s*"?([^"\\r\\n]+)"?`, "m"));
-  return match?.[1]?.trim() ?? "";
+  const match = content.match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"));
+  return match ? unquoteFrontmatterValue(stripInlineYamlComment(match[1])) : "";
+}
+
+function stripInlineYamlComment(value: string): string {
+  let quote: '"' | "'" | null = null;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if ((char === '"' || char === "'") && (index === 0 || value[index - 1] !== "\\")) {
+      quote = quote === char ? null : (quote ?? char);
+      continue;
+    }
+    if (char === "#" && quote === null && (index === 0 || /\s/.test(value[index - 1] ?? ""))) {
+      return value.slice(0, index).trim();
+    }
+  }
+  return value.trim();
+}
+
+function unquoteFrontmatterValue(value: string): string {
+  return value.replace(/^"|"$/g, "").replace(/^'|'$/g, "").trim();
 }
 
 function markdownFrontmatter(content: string): string {

@@ -43,6 +43,10 @@ s4_decision_record:
 - acceptance_gap: V1-V7/V8+ gaps required Reverse fullback rather than direct Forward freeze.
 - unresolved_risk: future process changes must update concept/requirements before docs/process mirrors.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed routes the spike into Reverse for process-doc正本化.
 - forward_route: PLAN-REVERSE-01-process-docs -> docs/process and requirements/concept alignment.
 - reverse_fullback_required: yes; discharged by PLAN-REVERSE-01-process-docs.

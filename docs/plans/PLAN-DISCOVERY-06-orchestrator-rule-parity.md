@@ -36,6 +36,10 @@ s4_decision_record:
 - acceptance_gap: Codex hosted/API tool surfaces remain outside direct repo hook enforcement and are documented as a scope boundary.
 - unresolved_risk: Hosted/API tool surfaces remain outside direct repo hook enforcement and require explicit preflight; Codex spawn_agent guard parity is no longer deferred after PLAN-L7-139 continuation.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed routes hook parity findings to L7 implementation and Reverse architecture backfill.
 - forward_route: PLAN-L7-139-codex-hook-adapter and PLAN-REVERSE-139-codex-hook-adapter.
 - reverse_fullback_required: yes; discharged by PLAN-REVERSE-139-codex-hook-adapter.

@@ -111,6 +111,10 @@ s4_decision_record:
 - acceptance_gap: no adoption gap for roadmap registry; later roadmap-band refinements remain normal Forward work.
 - unresolved_risk: new roadmap bands still require registered gates/spans and cannot be inferred from prose.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed keeps roadmap as a first-class machine registration entity.
 - forward_route: RECOVERY-04 / PLAN-REVERSE-44 roadmap definition path plus active roadmap doctor gates.
 - reverse_fullback_required: yes; discharged by roadmap definition/backfill records.

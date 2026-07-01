@@ -78,6 +78,10 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 | `acceptance_gap` | S3 pending PLAN で必須 | acceptance criteria と未充足 gap。gap が 0 か、pivot/reject 候補かを明示 |
 | `unresolved_risk` | S3 pending PLAN で必須 | 未解決リスク、外部依存、security / approval / migration 境界 |
 | `external_source_basis` | S3 pending PLAN で必須 | 判断に使った公式ソース、既存正本、review source。URL / doc path / PLAN ID のいずれか |
+| `source_ledger_freshness` | S3 pending PLAN で必須 | S4 decision source ledger が fresh で、checked 日付と ledger label が判断時点で有効であること |
+| `source_status_delta` | S3 pending PLAN で必須 | 公式 source の status/version/date が前回採用時から `none` / `changed` のどちらか |
+| `adoption_decision_delta` | S3 pending PLAN で必須 | 採用判断が前回から `none` / `changed` のどちらか。changed なら route impact を残す |
+| `workflow_route_impact` | S3 pending PLAN で必須 | source 差分が無ければ `none`、差分があれば S4 / Forward / Reverse / backlog など差し戻し先 |
 | `route_impact` | S3 pending PLAN で必須 | confirmed / rejected / pivot ごとの Forward / Reverse / backlog 影響 |
 | `forward_route` | `confirmed` 候補がある場合必須 | L1 / L3-L6 / gap-only 等の Forward 合流候補 |
 | `reverse_fullback_required` | `confirmed` 候補がある場合必須 | confirmed 後に Reverse fullback で正本化が必要か |
@@ -116,7 +120,8 @@ S4 decision source ledger (checked 2026-06-30):
 
 Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その S4 decision source ledger は stale とし、S3 verified evidence を S4 判定材料へ進めない。
 
-Source ledger meaning review: `checked` 更新時は、各公式 source について `source_status_delta`、
+Source ledger meaning review: `checked` 更新時は、各公式 source について `source_ledger_freshness`、
+`source_status_delta`、
 `adoption_decision_delta`、`workflow_route_impact` を S4 review evidence に残す。source の意味が
 acceptance gap、unresolved risk、external source basis、Forward/Reverse route に影響する場合、
 date-only refresh で S4 confirmed/rejected/pivot を判断してはならない。

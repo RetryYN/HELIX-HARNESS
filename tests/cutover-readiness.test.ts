@@ -21,6 +21,10 @@ const cutoverMarkers = [
   "- audit_record: A-NNN records commands, git hash, approver, result, and rollback decision",
   "- post_cutover_monitoring: quiet window with smoke, doctor, status, feedback, and backlog monitoring",
   "- legacy_alias_policy: decide",
+  "- source_ledger_freshness: fresh Cutover source ledger checked 2026-06-30",
+  "- source_status_delta: none",
+  "- adoption_decision_delta: none",
+  "- workflow_route_impact: none while draft",
   "Cutover source ledger (checked 2026-06-30):",
   "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
   "|---|---|---|---|---|---|---|",
@@ -68,6 +72,75 @@ describe("cutover readiness", () => {
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual(["PLAN-M-900"]);
     expect(cutoverReadinessMessages(result)[0]).toContain("cutover-readiness - OK");
+  });
+
+  it("fails cutover records that omit source ledger meaning-review fields", () => {
+    const base = input().plans[0];
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .split("\n")
+              .filter(
+                (line) =>
+                  !/source_ledger_freshness|source_status_delta|adoption_decision_delta|workflow_route_impact/.test(
+                    line,
+                  ),
+              )
+              .join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        { subject: "PLAN-M-900", reason: "missing structured source_ledger_freshness" },
+        { subject: "PLAN-M-900", reason: "missing structured source_status_delta" },
+        { subject: "PLAN-M-900", reason: "missing structured adoption_decision_delta" },
+        { subject: "PLAN-M-900", reason: "missing structured workflow_route_impact" },
+      ]),
+    );
+  });
+
+  it("fails cutover records whose source ledger meaning-review fields are placeholders", () => {
+    const base = input().plans[0];
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .replace(
+                "- source_ledger_freshness: fresh Cutover source ledger checked 2026-06-30",
+                "- source_ledger_freshness: source_ledger_freshness",
+              )
+              .replace("- source_status_delta: none", "- source_status_delta: source_status_delta")
+              .replace(
+                "- adoption_decision_delta: none",
+                "- adoption_decision_delta: adoption_decision_delta",
+              )
+              .replace(
+                "- workflow_route_impact: none while draft",
+                "- workflow_route_impact: workflow_route_impact",
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((violation) => violation.reason)).toEqual(
+      expect.arrayContaining([
+        "structured source_ledger_freshness must not be placeholder",
+        "structured source_status_delta must not be placeholder",
+        "structured adoption_decision_delta must not be placeholder",
+        "structured workflow_route_impact must not be placeholder",
+      ]),
+    );
   });
 
   it("U-DECISIONREC-003: fails irreversible cutover plans that only say PO signoff", () => {

@@ -5,6 +5,8 @@ import {
   fmValue,
   missingRecordFields,
   recordFieldValue,
+  SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
+  sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
   hasSourceLedgerCheckedDate,
@@ -90,6 +92,7 @@ const MODE_DOC_MARKERS = [
   "acceptance_gap",
   "unresolved_risk",
   "external_source_basis",
+  ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
   "route_impact",
   "forward_route",
   "reverse_fullback_required",
@@ -131,6 +134,7 @@ const S4_RECORD_FIELDS = [
   "acceptance_gap",
   "unresolved_risk",
   "external_source_basis",
+  ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
   "route_impact",
   "forward_route",
   "reverse_fullback_required",
@@ -210,6 +214,9 @@ function validateS4DecisionRecord(plan: S4DecisionPlan): S4DecisionViolation[] {
   );
   if (outcomeViolation) {
     violations.push({ subject: plan.plan_id, reason: outcomeViolation });
+  }
+  for (const reason of sourceLedgerMeaningReviewFieldViolations(plan.text, S4_RECORD_NAME)) {
+    violations.push({ subject: plan.plan_id, reason });
   }
   if (missingFields.length === 0 && !outcomeViolation) {
     violations.push(...validateSelectedOutcomeSemantics(plan));

@@ -138,6 +138,10 @@ s4_decision_record:
 - acceptance_gap: read model は verified。未充足 gap は L3 visualization requirements、L4 UI/data boundary、L6 view-model contract、L7 VSCode Tree View/Webview prototype。
 - unresolved_risk: Webview CSP/localResourceRoots、provider transcript / secret 非保存、action surface の approval-boundary、既存 `PLAN-L7-141` web dashboard との誤同一視。
 - external_source_basis: docs/process/modes/discovery.md の S4 decision source ledger、VS Code Tree View / Webview / Webview UX official docs、Mermaid Syntax、`PLAN-L7-206` evidence。
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in docs/process/modes/discovery.md and docs/process/modes/scrum.md before S4 decision use.
+- source_status_delta: none; official source status changes do not alter the current S4 packet route for visualization adoption.
+- adoption_decision_delta: none; visualization remains S4 pending and read-only/action-bound until PO decision and action-binding approval are concrete.
+- workflow_route_impact: none until S4; after PO decision route to L3/L4/L6/L7 Forward descent, archive rejection, or S0 pivot.
 - route_impact: confirmed なら L3/L4/L6/L7 へ分割 descent、rejected なら visualization workflow を採用せず read-model を archive、pivot なら native Tree View / Webview scope を再定義する。
 - forward_route: `confirmed` の場合は L3 visualization requirements、L4 UI/data boundary、L6 view-model contract、L7 VSCode Tree View/Webview prototype に分割して Forward 合流する。
 - reverse_fullback_required: yes。confirmed 後は L1/L3/L4/L6 の正本へ Reverse fullback し、action surface は approval-bound のまま維持する。

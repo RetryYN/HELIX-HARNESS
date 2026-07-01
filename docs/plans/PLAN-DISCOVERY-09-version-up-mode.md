@@ -68,6 +68,10 @@ s4_decision_record:
 - acceptance_gap: PLAN-L7-146 remains parked and requires future activation/action-binding approval; this is preserved as an explicit blocker, not hidden completion.
 - unresolved_risk: future activation touching infra/auth/secrets must remain human-approved with dry-run/rollback evidence.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules plus docs/process/modes/version-up.md.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed adds version-up as a parked future-work mode and keeps parked work outside active completion.
 - forward_route: PLAN-REVERSE-140-forward-convergence-version-up-backfill -> version-up mode docs and readiness gates.
 - reverse_fullback_required: yes; discharged by PLAN-REVERSE-140-forward-convergence-version-up-backfill.

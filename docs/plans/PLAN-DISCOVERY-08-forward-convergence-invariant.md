@@ -71,6 +71,10 @@ s4_decision_record:
 - acceptance_gap: minor schema wording for not_required reasons remained follow-up but did not block invariant adoption.
 - unresolved_risk: legacy local_impl_only debt must stay allowlisted/audited until fully backfilled.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed makes unaggregated landed side-flow work block freeze/forward-convergence claims.
 - forward_route: PLAN-REVERSE-140-forward-convergence-version-up-backfill -> requirements §6.8.8.1 and process docs.
 - reverse_fullback_required: yes; discharged by PLAN-REVERSE-140-forward-convergence-version-up-backfill.

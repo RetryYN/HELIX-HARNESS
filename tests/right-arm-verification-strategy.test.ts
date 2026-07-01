@@ -246,11 +246,13 @@ describe("right-arm verification strategy", () => {
       "Scrum Guide 2020",
       "ISTQB Glossary",
       "OWASP LLM06:2025 Excessive Agency",
-      "official source ledger checked 2026-06-30",
+      "NASA Systems Engineering Handbook Appendix",
+      "official source ledger checked 2026-07-01",
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://scrumguides.org/scrum-guide.html",
       "https://glossary.istqb.org/",
       "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "https://www.nasa.gov/reference/system-engineering-handbook-appendix/",
       "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
       "https://code.visualstudio.com/api/extension-guides/webview#security",
       "https://sre.google/sre-book/release-engineering/",
@@ -260,11 +262,12 @@ describe("right-arm verification strategy", () => {
     }
 
     expect(rightArm).toContain("### 右腕 evidence profile (G8-G14)");
-    expect(rightArm).toContain("### Verification source ledger (checked 2026-06-30)");
+    expect(rightArm).toContain("### Verification source ledger (checked 2026-07-01)");
     expect(rightArm).toContain("NIST SSDF SP 800-218");
     expect(rightArm).toContain("Scrum Guide 2020");
     expect(rightArm).toContain("ISTQB Glossary");
     expect(rightArm).toContain("OWASP LLM06:2025 Excessive Agency");
+    expect(rightArm).toContain("NASA Systems Engineering Handbook Appendix");
     expect(rightArm).toContain("GitHub Environments required reviewers");
     expect(rightArm).toContain("VS Code Webview Security");
     expect(rightArm).toContain("Google SRE Release Engineering");

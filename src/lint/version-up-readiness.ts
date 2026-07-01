@@ -6,6 +6,8 @@ import {
   fmValue,
   missingRecordFields,
   recordFieldValue,
+  SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
+  sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
   SOURCE_LEDGER_MAX_AGE_DAYS,
@@ -299,6 +301,7 @@ const ACTIVATION_RECORD_FIELDS = [
   "approval_scope",
   "dry_run_plan",
   "rollback_plan",
+  ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
 ] as const;
 const ACTIVATION_ALLOWED_OUTCOMES = [
   "activate_future_version",
@@ -597,6 +600,12 @@ export function analyzeVersionUpReadiness(
     );
     if (activationOutcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: activationOutcomeViolation });
+    }
+    for (const reason of sourceLedgerMeaningReviewFieldViolations(
+      plan.text,
+      ACTIVATION_RECORD_NAME,
+    )) {
+      violations.push({ subject: plan.plan_id, reason });
     }
     for (const field of missingRecordFields(
       plan.text,

@@ -10,6 +10,79 @@ created: 2026-06-22
 updated: 2026-07-01
 owner: PM (Opus) / PO (人間)
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T14:27:02+09:00"
+    tests_green_at: "2026-07-01T14:27:02+09:00"
+    verdict: pass
+    scope: "Meaning-level source ledger review is now enforced at the actual S4/version-up/cutover record boundary, not only in generated completion packets. The terminal/activation/cutover records must carry `source_ledger_freshness`, `source_status_delta`, `adoption_decision_delta`, and `workflow_route_impact`; placeholder values fail, and live PLAN records were backfilled with explicit no-delta/no-route-impact evidence rather than prose-only source refresh claims."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: tests/s4-decision-readiness.test.ts
+        output_digest: "sha256:17f7aba4196eb11b476c3c93800e0107a0864cd2d1f2bbbde154f1bdf5b5559a"
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:412f4af64c49c3581a38fd8ce5222eed253d621edbd587952eb5ca032cd6c571"
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/projection-writer.test.ts tests/right-arm-verification-strategy.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: tests/cutover-readiness.test.ts
+        output_digest: "sha256:238a7bddc3cea03983e0a36be0cfef95ca48da02fd39fa7a729d319dc9aa06f4"
+      - kind: unit_test
+        command: "bun test tests/completion-decision-packet.test.ts tests/outstanding.test.ts tests/cli-surface.test.ts tests/handover.test.ts tests/poc-evaluation.test.ts tests/action-binding-approval-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: tests/completion-decision-packet.test.ts
+        output_digest: "sha256:de01bb51c15302702e210a1fe605909126817afcfbc05487078392d419f729bc"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: src/lint/shared.ts
+        output_digest: "sha256:ced73eb3fe3bb01ebf0a27372535e5ee2a648d3bd7ed09648021d041cd2d4eae"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: src/lint/shared.ts
+        output_digest: "sha256:ced73eb3fe3bb01ebf0a27372535e5ee2a648d3bd7ed09648021d041cd2d4eae"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: src/lint/s4-decision-readiness.ts
+        output_digest: "sha256:4f0704493d006a45cafe82cd6da56726fa739654a45a971151278fc436a9711f"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:27:02+09:00"
+        evidence_path: src/lint/cutover-readiness.ts
+        output_digest: "sha256:07511608c66c1c689e9722dd36003f5ab3c601a04aa1c6ec8844f3f2ddbe7fe3"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T13:18:45+09:00"

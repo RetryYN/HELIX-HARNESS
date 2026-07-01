@@ -123,6 +123,10 @@ cutover_decision_record:
 - audit_record: apply commands、git hash、backup location、approver、doctor/full test/dist smoke 結果、rollback decision を `.ut-tdd/audit/A-NNN-*` に記録する。
 - post_cutover_monitoring: quiet window 中に `helix doctor`、旧 alias smoke、status/completion packet、harness.db rebuild、feedback backlog を確認する。
 - legacy_alias_policy: `ut-tdd` alias/shim は Step 6 review で keep/remove を決め、残す場合は removal PLAN と sunset 条件を持つ。
+- source_ledger_freshness: fresh; Cutover source ledger checked 2026-07-01 in docs/process/forward/L08-L14-verification-phase.md before any cutover decision use.
+- source_status_delta: none; NIST / NASA V&V / GitHub / Google SRE / OWASP / SLSA source status changes do not authorize rename apply by themselves.
+- adoption_decision_delta: none; `.ut-tdd -> .helix` remains approval-gated and plan-only until cutover approval evidence is concrete.
+- workflow_route_impact: none while draft; future approval routes through L14 cutover decision, action-binding approval, and post-cutover monitoring.
 
 action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`

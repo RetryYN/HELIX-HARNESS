@@ -126,6 +126,10 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- approval_scope: Cloudflare HMAC webhook",
           "- dry_run_plan: dry-run projection",
           "- rollback_plan: disable binding",
+          "- source_ledger_freshness: fresh Version-up source ledger checked 2026-06-30",
+          "- source_status_delta: none",
+          "- adoption_decision_delta: none",
+          "- workflow_route_impact: none while parked",
           "parked_review_record:",
           "- review_owner: PO + TL",
           "- review_trigger: distribution landing",
@@ -173,6 +177,75 @@ describe("version-up-readiness", () => {
     expect(result.ok).toBe(true);
     expect(result.parkedPlanIds).toEqual(["PLAN-L7-900-future"]);
     expect(versionUpReadinessMessages(result)[0]).toContain("version-up-readiness - OK");
+  });
+
+  it("fails activation records that omit source ledger meaning-review fields", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .split("\n")
+              .filter(
+                (line) =>
+                  !/source_ledger_freshness|source_status_delta|adoption_decision_delta|workflow_route_impact/.test(
+                    line,
+                  ),
+              )
+              .join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        { subject: "PLAN-L7-900-future", reason: "missing structured source_ledger_freshness" },
+        { subject: "PLAN-L7-900-future", reason: "missing structured source_status_delta" },
+        { subject: "PLAN-L7-900-future", reason: "missing structured adoption_decision_delta" },
+        { subject: "PLAN-L7-900-future", reason: "missing structured workflow_route_impact" },
+      ]),
+    );
+  });
+
+  it("fails activation records whose source ledger meaning-review fields are placeholders", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .replace(
+                "- source_ledger_freshness: fresh Version-up source ledger checked 2026-06-30",
+                "- source_ledger_freshness: source_ledger_freshness",
+              )
+              .replace("- source_status_delta: none", "- source_status_delta: source_status_delta")
+              .replace(
+                "- adoption_decision_delta: none",
+                "- adoption_decision_delta: adoption_decision_delta",
+              )
+              .replace(
+                "- workflow_route_impact: none while parked",
+                "- workflow_route_impact: workflow_route_impact",
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((violation) => violation.reason)).toEqual(
+      expect.arrayContaining([
+        "structured source_ledger_freshness must not be placeholder",
+        "structured source_status_delta must not be placeholder",
+        "structured adoption_decision_delta must not be placeholder",
+        "structured workflow_route_impact must not be placeholder",
+      ]),
+    );
   });
 
   it("emits a non-destructive activation packet for parked version-up plans", () => {

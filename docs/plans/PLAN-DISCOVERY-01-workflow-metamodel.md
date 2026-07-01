@@ -38,6 +38,10 @@ s4_decision_record:
 - acceptance_gap: none for metamodel adoption; remaining language/detail gaps were routed through PLAN-REVERSE-08 and later Forward PLANs.
 - unresolved_risk: future mode-specific gaps must still enter Discovery/Reverse instead of bypassing Forward.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
+- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
+- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed promotes the metamodel findings into Forward governance through Reverse normalization.
 - forward_route: PLAN-REVERSE-08-discovery-metamodel -> concept §2.5 / requirements signal routing.
 - reverse_fullback_required: yes; discharged by PLAN-REVERSE-08-discovery-metamodel.

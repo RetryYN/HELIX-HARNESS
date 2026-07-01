@@ -38,6 +38,69 @@ export function isClosedPlanStatus(status: string): boolean {
   return normalized === "archived" || TERMINAL_PLAN_STATUSES.has(normalized);
 }
 
+export const SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
+  "source_ledger_freshness",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+] as const;
+
+export function sourceLedgerMeaningReviewFieldViolations(
+  text: string,
+  recordName: string,
+): string[] {
+  const violations: string[] = [];
+  for (const field of SOURCE_LEDGER_MEANING_REVIEW_FIELDS) {
+    const value = recordFieldValue(text, recordName, field);
+    if (!value) continue;
+    if (isPlaceholderRecordValue(value, field)) {
+      violations.push(`structured ${field} must not be placeholder`);
+      continue;
+    }
+    if (field === "source_ledger_freshness" && !hasFreshCheckedLedgerEvidence(value)) {
+      violations.push(`${field} must cite fresh checked source ledger evidence`);
+    }
+    if (field === "source_status_delta" && !hasNoneOrChangedDelta(value)) {
+      violations.push(`${field} must record none or changed official source status delta`);
+    }
+    if (field === "adoption_decision_delta" && !hasNoneOrChangedDelta(value)) {
+      violations.push(`${field} must record none or changed adoption decision delta`);
+    }
+    if (field === "workflow_route_impact" && !hasWorkflowRouteImpact(value)) {
+      violations.push(`${field} must record none or a named workflow reroute impact`);
+    }
+  }
+  return violations;
+}
+
+function isPlaceholderRecordValue(value: string, field: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  return (
+    normalized === field.toLowerCase() ||
+    normalized === "tbd" ||
+    normalized === "todo" ||
+    normalized === "-" ||
+    /^<.+>$/.test(normalized)
+  );
+}
+
+function hasFreshCheckedLedgerEvidence(value: string): boolean {
+  return /\bfresh\b/i.test(value) && /checked|ledger|source/i.test(value);
+}
+
+function hasNoneOrChangedDelta(value: string): boolean {
+  return /\bnone\b/i.test(value) || /\bchanged\b/i.test(value);
+}
+
+function hasWorkflowRouteImpact(value: string): boolean {
+  return (
+    /\bnone\b/i.test(value) ||
+    /\b(?:S[34]|G(?:8|9|10|11|12|13|14)|version-up|cutover|action-binding|completion|Forward|Reverse|L(?:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14))\b/i.test(
+      value,
+    )
+  );
+}
+
 /** Markdown の `record_name:` 配下に `- field: value` 形式の実値が揃っているかを検査する。 */
 export function missingRecordFields(
   text: string,

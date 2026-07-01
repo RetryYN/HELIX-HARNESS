@@ -61,6 +61,10 @@ activation_decision_record:
 - approval_scope: Cloudflare Pages/Workers/D1/KV、GitHub webhook HMAC、閲覧 access control、secret 管理、外部 infrastructure activation。
 - dry_run_plan: read-only SPA 配信、HMAC 検証、secret/PII 非投影、prod write なし、30 秒 polling/reconcile を staging または dry-run projection で確認する。
 - rollback_plan: `version_target: future` を維持し、Cloudflare/webhook/access-control binding を無効化、projection を git/GitHub 正本から再構築可能な状態へ戻す。
+- source_ledger_freshness: fresh; Version-up source ledger checked 2026-06-30 in docs/process/modes/version-up.md before activation packet use.
+- source_status_delta: none; SemVer / GitHub / Cloudflare / Google Cloud Deploy / SLSA / NIST source status changes do not authorize activation by themselves.
+- adoption_decision_delta: none; activation remains parked and plan-only until PO approval, action-binding approval, dry-run, and rollback evidence are concrete.
+- workflow_route_impact: none while parked; activation later routes through version-up add-feature/Forward descent or reject/archive.
 
 parked_review_record:
 - review_owner: PO (人間) + TL。activation 可否は PO、technical readiness は TL が判定する。
