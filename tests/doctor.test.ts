@@ -19,6 +19,7 @@ import {
   checkDddTddRules,
   checkDependencyDrift,
   checkDescentObligation,
+  checkDesignLanguage,
   checkDriveDbRegistration,
   checkDriveModelPassage,
   checkFrRoadmapCoverage,
@@ -456,6 +457,7 @@ describe("runDoctor", () => {
       "doctor: entity-coverage — OK",
       "doctor: fr-registry-audit — OK",
       "doctor: improvement-backlog — OK",
+      "doctor: design-language - OK",
       "doctor: lint-wiring — OK",
     ]) {
       expect(r.messages.some((m) => m.includes(gate))).toBe(true);
@@ -846,6 +848,7 @@ describe("runDoctor", () => {
       ["verification-profile", checkVerificationProfile(missingRoot)],
       ["coding-rules", checkCodingRules(missingRoot)],
       ["ddd-tdd-rules", checkDddTddRules(missingRoot)],
+      ["design-language", checkDesignLanguage(missingRoot)],
       ["runtime-portability", checkRuntimePortability(missingRoot)],
       ["db-projection-coverage", checkDbProjectionCoverage(missingRoot)],
       ["db-projection-ingestion", checkDbProjectionIngestion(missingRoot)],
@@ -1030,6 +1033,7 @@ describe("runDoctor", () => {
       "verificationProfile",
       "codingRules",
       "dddTddRules",
+      "designLanguage",
       "runtimePortability",
       "dbProjectionCoverage",
       "dbProjectionIngestion",

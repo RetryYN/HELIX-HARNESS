@@ -105,6 +105,18 @@ This addendum defines the L6 contract for optional graph/diagram development-too
 - **machine-surface language**: machine-facing CLI/doctor/lint/gate/status messages may include Japanese explanation, but their decision token must be stable ASCII English (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`). Japanese-only decision words in machine message lines are `machine-surface-language` violations. **Impl (2026-06-19、A-141)**: `analyzeCodingRules` の `violatesMachineSurfaceLanguage` が machine-surface 行パターン × 非 ASCII 判定語 × ASCII token 不在で検出し、`describe`/`it`/`test` のタイトル literal は除外 (false-positive 回避)。`REQUIRED_RULE_IDS` + SSoT `coding-rules.md` に `machine-surface-language` を登録。oracle U-CODE-010。実 repo violations 0。
 - **scope split**: no-any / no-suppression / file naming apply to source and tests. max-params / structured-error-handling / module-boundary apply only to `src/**`; test helper arity is governed by readability and local test design.
 
+### design-language lint 追補 (2026-07-02)
+
+- **背景**: HELIX 目標は「ドキュメントは英語ではなく日本語で統一」。root adapter ルールだけでは、設計 / governance /
+  ADR に英語 prose を新規追加しても doctor が検出できず、要求と成果物が乖離する穴が残る。
+- **対象**: `docs/adr/`、`docs/design/`、`docs/governance/` の markdown。inline code、URL、frontmatter、
+  開発用語、コマンド、識別子は除外し、見出し / 説明文が英語 prose のまま増えた場合を検出する。
+- **baseline**: 2026-07-02 の参考 Pack 差分監査で既存英語 prose debt 1669 件を確認。現時点では既存 debt を
+  一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS=1669` として固定し、増加を fail-close する。
+- **doctor contract**: `checkDesignLanguage(repoRoot)` は `loadDesignLanguageDocs` → `analyzeDesignLanguage` →
+  `designLanguageMessages` を実行し、baseline 超過を `runDoctor.ok=false` に連動する。baseline は完了宣言ではなく
+  ラチェット対象であり、今後の日本語化 PLAN で段階的に引き下げる。
+
 ### DDD/TDD Strictness Addendum (FR-L1-50)
 
 - **DDD/TDD rule SSoT**: `docs/governance/ddd-tdd-rules.md` defines rule IDs for `domain-boundary`, `invariant-test-trace`, `red-first-evidence`, `test-oracle-strength`, and `integration-gwt`.

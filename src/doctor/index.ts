@@ -87,6 +87,11 @@ import {
   loadFrUnitCoverageOracles,
   loadTraceKeyedArtifacts,
 } from "../lint/descent-obligation";
+import {
+  analyzeDesignLanguage,
+  designLanguageMessages,
+  loadDesignLanguageDocs,
+} from "../lint/design-language";
 import { analyzeDocConsistency, loadDocConsistencyDocs } from "../lint/doc-consistency";
 import {
   analyzeDriveDbRegistration,
@@ -883,6 +888,21 @@ export function checkDddTddRules(repoRoot: string): { messages: string[]; ok: bo
   } catch {
     return {
       messages: ["ddd-tdd-rules - violation: DDD/TDD strictness lint could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkDesignLanguage(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return { messages: ["design-language - violation: repo root could not be read"], ok: false };
+  }
+  try {
+    const r = analyzeDesignLanguage(loadDesignLanguageDocs(repoRoot));
+    return { messages: designLanguageMessages(r), ok: r.checked > 0 && r.ok };
+  } catch {
+    return {
+      messages: ["design-language - violation: design/governance/ADR docs could not be read"],
       ok: false,
     };
   }
@@ -2232,6 +2252,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const branchKind = checkBranchKind(deps.repoRoot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const dddTddRules = checkDddTddRules(deps.repoRoot);
+  const designLanguage = checkDesignLanguage(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
@@ -2318,6 +2339,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       branchKind.ok &&
       codingRules.ok &&
       dddTddRules.ok &&
+      designLanguage.ok &&
       runtimePortability.ok &&
       ruleDrift.ok &&
       gateConfirm.ok &&
@@ -2402,6 +2424,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...branchKind.messages.map((m) => `doctor: ${m}`),
       ...codingRules.messages.map((m) => `doctor: ${m}`),
       ...dddTddRules.messages.map((m) => `doctor: ${m}`),
+      ...designLanguage.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),

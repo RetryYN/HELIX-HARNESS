@@ -99,15 +99,18 @@ Design and implementation should be judged by these pillars:
 進捗報告・調査結論・選択肢提示・確認依頼など PO へ向けた chat 出力は日本語を既定とし、
 見出し・箇条書きラベルも日本語を優先する。
 
-ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
-英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。
-
 ### ドキュメント言語
 
 `docs/` 配下、PLAN、設計書、テスト設計、governance、handover、audit などの人間が読む成果物は
 **日本語を原則**とする。開発用語、コマンド、識別子、URL、コード片、エラーメッセージ、外部仕様名は原語のまま
 埋め込んでよいが、説明文・判断・受入条件・レビュー記録は日本語で書く。既存の英語記述は、触った範囲から
 段階的に日本語へ是正し、英語のまま新規追記して完了扱いにしない。
+
+`ut-tdd doctor` の `design-language` gate は、設計 / governance / ADR の英語 prose debt が baseline から
+増えないことを検査する。baseline は既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
+
+ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
+英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。
 
 ## Canonical Docs
 

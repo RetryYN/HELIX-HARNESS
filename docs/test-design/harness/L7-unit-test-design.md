@@ -508,6 +508,18 @@ ledger の `checked` 日付が未来日でなく、かつ 90 日を超えて sta
 | U-CODE-009 | module boundary | disallowed reverse dependency such as `src/lint/*` importing `../runtime/*` -> `module-boundary` violation |
 | U-CODE-010 | machine surface language | machine-facing CLI/doctor/lint/gate message line with Japanese-only decision words and no ASCII token (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) -> `machine-surface-language` violation; Japanese explanatory prose after the ASCII token remains allowed |
 
+### U-DESLANG Addendum (design-language)
+
+> Pair = `module-drift.md` design-language addendum. HELIX の「人間向け docs は日本語」要求を、設計 /
+> governance / ADR の英語 prose 増加防止 gate として機械化する。
+
+| ID | 対象 | 期待 |
+|----|------|------|
+| U-DESLANG-001 | `analyzeDesignLanguage` | 日本語 prose と `ut-tdd doctor` などの inline code / 技術識別子は violation にしない |
+| U-DESLANG-002 | `analyzeDesignLanguage` | 英語だけの見出し・説明文を `english-heading` / `english-prose` として検出する |
+| U-DESLANG-003 | baseline ratchet | 既存 debt 件数以内は OK、baseline を超えた英語 prose 増加は violation |
+| U-DESLANG-004 | real repo guard | `loadDesignLanguageDocs(process.cwd())` + `analyzeDesignLanguage` は現 baseline を超えず、`doctor` に `design-language` を surface して `runDoctor.ok` に連動する |
+
 ### U-DDDTDD Addendum (DDD/TDD strictness)
 
 > Pair = `module-drift.md` DDD/TDD Strictness Addendum. Requirements-level DDD/TDD rules are mechanically enforced by `src/lint/ddd-tdd-rules.ts` and `doctor`.
@@ -654,6 +666,7 @@ ledger の `checked` 日付が未来日でなく、かつ 90 日を超えて sta
 - **module-drift.md asset-drift alias (loadAssetDriftInput/analyzeAssetDrift/assetDriftMessages/checkAssetDrift) → U-ASSETDRIFT-001〜006** (内部資産 + prompt template cutover 差分、FR-L1-49。legacy source path residue / legacy command residue / docs-skills vacancy / guard allowlist missing を doctor hard guard。孤児 0)
 - **module-drift.md change-impact addendum (analyzeChangeImpact/parseGitPorcelain/loadChangedFiles/changeImpactMessages) → U-CHGIMPACT-001〜004** (コード変更に対する設計・テスト更新漏れ検出。doctor hard guard。孤児 0)
 - **module-drift.md coding-rules addendum (analyzeCodingRules/loadCodingRuleDocs/loadCodingWorkflowDocs/codingRulesMessages/checkCodingRules) → U-CODE-001〜010** (requirements-level coding rule SSoT + workflow placement + error/module-boundary + machine-surface-language の機械検出。doctor hard guard。孤児 0)
+- **module-drift.md design-language addendum (analyzeDesignLanguage/loadDesignLanguageDocs/designLanguageMessages/checkDesignLanguage) → U-DESLANG-001〜004** (設計/governance/ADR の日本語 prose baseline ratchet。doctor hard guard。孤児 0)
 - **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜008** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT の機械検出。doctor hard guard。孤児 0)
 - **team.ts §2.2 schema / 関数 (teamDefinitionSchema/mustSerialize) + team/launch-policy.ts → U-TEAM-001〜003** (add-feature 差分、IMP-050。孤児 0)
 - **backfill-pairing.md §2.3 関数 (parseRequires/parseGlossaryTerms/normalizeTerm/parsePlan/analyzeBackfill/loadBackfillDocs/backfillMessages/checkBackfill) → U-BACKFILL-001〜006** (add-feature 差分、IMP-051。normalizeTerm は parseGlossaryTerms/analyzeBackfill の内部パス経由で被覆。checkBackfill は doctor/index.ts の try-catch ラッパーで U-BACKFILL-006 実 repo ガードに内包。孤児 0)
