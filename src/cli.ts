@@ -1499,7 +1499,7 @@ actionBinding
         { concrete: 0, pending: 0, invalid: 0 },
       );
       process.stdout.write(
-        `  binding-checks: concrete=${checkCounts.concrete} pending=${checkCounts.pending} invalid=${checkCounts.invalid}\n`,
+        `  binding-checks: concrete=${checkCounts.concrete} pending=${checkCounts.pending} invalid=${checkCounts.invalid} verification-commands=${packet.approvalVerificationCommandMatrix.length}\n`,
       );
       for (const check of packet.approvalBindingChecks.filter(
         (approvalCheck) => approvalCheck.status !== "concrete",

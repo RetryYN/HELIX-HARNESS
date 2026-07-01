@@ -27,6 +27,7 @@ const RIGHT_ARM = [
   "approvalCommandAvailable=false",
   "approvalAllowed=false",
   "approvalBindingChecks",
+  "approvalVerificationCommandMatrix",
   "GitHub Environments required reviewers",
   "OWASP LLM06:2025 Excessive Agency",
 ].join("\n");
@@ -200,7 +201,7 @@ describe("action-binding approval readiness", () => {
     expect(packets.map((packet) => packet.planId)).toEqual(["PLAN-MERGED"]);
   });
 
-  it("emits non-destructive approval packets that keep high-impact execution human-gated", () => {
+  it("U-DECISIONREC-014: emits non-destructive approval verification matrices that keep high-impact execution human-gated", () => {
     const packets = buildActionBindingApprovalPackets({
       rightArmMd: RIGHT_ARM,
       outstandingTs: OUTSTANDING,
@@ -245,6 +246,29 @@ describe("action-binding approval readiness", () => {
         expect.objectContaining({
           field: "approved_actor",
           status: "concrete",
+        }),
+      ]),
+    );
+    expect(packet.approvalVerificationCommandMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "approval-packet-baseline",
+          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          evidence: "action-binding approval packet JSON attached to the approval review",
+        }),
+        expect.objectContaining({
+          phase: "least-privilege-binding",
+          expected:
+            "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
+        }),
+        expect.objectContaining({
+          phase: "snapshot-binding",
+          expected:
+            "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
+        }),
+        expect.objectContaining({
+          phase: "security-boundary",
+          command: "bun run src/cli.ts doctor",
         }),
       ]),
     );
@@ -827,5 +851,15 @@ describe("action-binding approval readiness", () => {
         }),
       ]),
     );
+    expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 9)).toBe(
+      true,
+    );
+    expect(
+      packets
+        .find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")
+        ?.approvalVerificationCommandMatrix.find(
+          (command) => command.phase === "sibling-decision-packets",
+        )?.command,
+    ).toContain("bun run src/cli.ts version-up activation-packet --json");
   });
 });

@@ -82,6 +82,12 @@ export interface ActionBindingApprovalPacket {
   allowedOutcomes: string[];
   approvalRecord: Record<string, string>;
   approvalBindingChecks: ActionBindingApprovalCheck[];
+  approvalVerificationCommandMatrix: Array<{
+    phase: string;
+    command: string;
+    expected: string;
+    evidence: string;
+  }>;
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[];
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
@@ -139,6 +145,7 @@ const RIGHT_ARM_MARKERS = [
   "approvalCommandAvailable=false",
   "approvalAllowed=false",
   "approvalBindingChecks",
+  "approvalVerificationCommandMatrix",
   "GitHub Environments required reviewers",
   "OWASP LLM06:2025 Excessive Agency",
 ] as const;
@@ -327,6 +334,7 @@ export function buildActionBindingApprovalPacket(
     allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
     approvalRecord,
     approvalBindingChecks,
+    approvalVerificationCommandMatrix: buildActionBindingApprovalVerificationCommandMatrix(plan),
     semanticFeatureFrontierRecords: semanticFrontierBindingsForActionBindingPlan(
       plan,
       input.semanticFeatureFrontierRecords,
@@ -354,6 +362,80 @@ export function buildActionBindingApprovalPacket(
       },
     ],
   };
+}
+
+function buildActionBindingApprovalVerificationCommandMatrix(
+  plan: ActionBindingApprovalPlan,
+): ActionBindingApprovalPacket["approvalVerificationCommandMatrix"] {
+  return [
+    {
+      phase: "approval-packet-baseline",
+      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      expected:
+        "captures current approval record, binding checks, sibling decision packets, blockers, and semantic frontier records",
+      evidence: "action-binding approval packet JSON attached to the approval review",
+    },
+    {
+      phase: "sibling-decision-packets",
+      command: relatedDecisionPacketsForActionBindingPlan(plan)
+        .map((packet) => packet.command.replace(/^ut-tdd /, "bun run src/cli.ts "))
+        .join(" && "),
+      expected:
+        "S4, version-up, rename, and action-binding packet routes are reviewed together before any high-impact action",
+      evidence: "related decision packet JSON outputs for every sibling blocker on the PLAN",
+    },
+    {
+      phase: "least-privilege-binding",
+      command:
+        "review approvalBindingChecks[] for concrete approved_actor, approved_tool, approved_target, approved_params, and non-wildcard approval_scope",
+      expected:
+        "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
+      evidence:
+        "approvalBindingChecks[] entries with concrete status or explicit pending/invalid blocker reasons",
+    },
+    {
+      phase: "snapshot-binding",
+      command:
+        "verify reviewed_snapshot_binding against activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or a no-snapshot basis from the sibling packet",
+      expected:
+        "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
+      evidence:
+        "activation packet, rename plan, or no-snapshot basis referenced by action_binding_approval_record.reviewed_snapshot_binding",
+    },
+    {
+      phase: "security-boundary",
+      command: "bun run src/cli.ts doctor",
+      expected:
+        "action-binding readiness, source ledger freshness, and security/workflow gates remain green without creating apply authority",
+      evidence:
+        "doctor output with action-binding-approval-readiness and related source ledger gates",
+    },
+    {
+      phase: "targeted-regression",
+      command: "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
+      expected: "action-binding packet and CLI surface regressions stay green",
+      evidence: "targeted vitest output",
+    },
+    {
+      phase: "static-gates",
+      command: "bun run lint && bun run typecheck && git diff --check",
+      expected: "format, type, and whitespace gates pass before approval review",
+      evidence: "lint/typecheck/diff-check command output",
+    },
+    {
+      phase: "full-regression",
+      command: "bun run test",
+      expected: "full repository regression suite passes before any approved high-impact action",
+      evidence: "full vitest output",
+    },
+    {
+      phase: "completion-frontier",
+      command: "bun run src/cli.ts status --json",
+      expected:
+        "completionReadiness remains blocked until action-binding approval and any sibling PO/version/cutover decisions are recorded",
+      evidence: "status JSON workflowNextActions and semanticFeatureFrontierRecords",
+    },
+  ];
 }
 
 function semanticFrontierExpectationsForActionBindingPlan(

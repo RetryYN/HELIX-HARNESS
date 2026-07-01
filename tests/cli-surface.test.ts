@@ -625,6 +625,22 @@ describe("L7 CLI surface closure", () => {
         }),
       ]),
     );
+    expect(packets[0].approvalVerificationCommandMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "approval-packet-baseline",
+          command:
+            "bun run src/cli.ts action-binding approval-packet --plan PLAN-DISCOVERY-10-helix-asset-visualization --json",
+        }),
+        expect.objectContaining({
+          phase: "least-privilege-binding",
+        }),
+        expect.objectContaining({
+          phase: "completion-frontier",
+          command: "bun run src/cli.ts status --json",
+        }),
+      ]),
+    );
     expect(packets[0].relatedDecisionPackets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ command: "ut-tdd s4 decision-packet --json" }),
@@ -647,6 +663,7 @@ describe("L7 CLI surface closure", () => {
       "packet-freshness: source=ut-tdd action-binding approval-packet --json",
     );
     expect(text.stdout).toContain("binding-checks:");
+    expect(text.stdout).toContain("verification-commands=9");
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");
     expect(text.stdout).toContain(
       "related-packet: primary ut-tdd action-binding approval-packet --json",

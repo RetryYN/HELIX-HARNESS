@@ -104,6 +104,15 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
   `runConsumerDoctor` は adapter docs の managed block だけでなく、日本語既定、consumer doctor profile、
   PLAN-M-02 cutover boundary、承認前 future state dir 未生成を検査する。
+- HC-P8 `requireActionBindingApproval` / `buildActionBindingApprovalPackets` は
+  `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
+  `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、
+  least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
+  full regression、completion frontier の command / expected / evidence を plan-only に列挙する。
+  GitHub Environments required reviewers、NIST least privilege、OWASP LLM06:2025 Excessive Agency の
+  公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。
+  text surface は binding check 件数に加えて verification command 件数を出し、JSON を見ない利用者にも
+  承認前に実行すべき証跡確認を欠落させない。
 - HC-P9 / handover resume surface は `ut-tdd status --json` と同じ live outstanding 由来の
   `workflowNextAction` / `workflowNextActions[]` を `ut-tdd handover status --json` と text mode にも出す。
   handover 再開時も completion decision packet command だけでなく、record すべき判断と route を直接読める
