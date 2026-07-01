@@ -108,6 +108,13 @@ route impact を同時に見て、`confirmed` / `rejected` / `pivot` の各 outc
 Reverse / backlog route、追加 fullback にどう影響するかを判断する。これにより動く increment やレビュー済みという
 単一シグナルだけで S4 confirmed を代替しない。
 
+packet は `decisionVerificationCommandMatrix[]` も出す。これは decision packet baseline、source ledger freshness、
+S3 verification evidence、requirements trace、targeted regression、static gates を含む。
+さらに full regression、completion frontier の各 phase に対して command / expected / evidence を持つ。
+Scrum Guide 2020 の inspect/adapt、ISO/IEC/IEEE 29148 の requirements trace、ISTQB Glossary の test basis、NIST SSDF の
+review checklist を、PO/S4 判断前の実行証跡へ接続する。matrix は apply/decision 権限ではなく、S4 の
+承認前 review material である。
+
 S4 decision source ledger (checked 2026-06-30):
 
 | source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |

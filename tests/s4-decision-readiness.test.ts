@@ -29,6 +29,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "decisionAllowed=false",
     "decisionEvidenceChecklist",
     "outcomeRouteMatrix",
+    "decisionVerificationCommandMatrix",
     "provenanceRequirements",
     "S4 decision source ledger (checked 2026-06-30)",
     "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
@@ -196,7 +197,7 @@ describe("S4 decision readiness", () => {
     );
   });
 
-  it("emits a non-destructive S4 decision packet for S3 pending PoC plans", () => {
+  it("U-DECISIONREC-013: emits a non-destructive S4 decision packet with verification commands for S3 pending PoC plans", () => {
     const packets = buildS4DecisionPackets(input());
     expect(packets).toHaveLength(1);
     const packet = packets[0];
@@ -259,6 +260,26 @@ describe("S4 decision readiness", () => {
         routePolicy: expect.stringContaining("S0/S1"),
       }),
     ]);
+    expect(packet.decisionVerificationCommandMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "decision-packet-baseline",
+          command: "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
+        }),
+        expect.objectContaining({
+          phase: "requirements-trace",
+          expected: expect.stringContaining("G1/G3 trace"),
+        }),
+        expect.objectContaining({
+          phase: "full-regression",
+          command: "bun run test",
+        }),
+        expect.objectContaining({
+          phase: "completion-frontier",
+          command: "bun run src/cli.ts status --json",
+        }),
+      ]),
+    );
     expect(packet.provenanceRequirements).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ item: "decision_record" }),
@@ -838,6 +859,23 @@ describe("S4 decision readiness", () => {
       "rejected",
       "pivot",
     ]);
+    expect(packets[0].decisionVerificationCommandMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "decision-packet-baseline",
+          command:
+            "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-10-helix-asset-visualization --json",
+        }),
+        expect.objectContaining({
+          phase: "targeted-regression",
+          command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+        }),
+        expect.objectContaining({
+          phase: "completion-frontier",
+          command: "bun run src/cli.ts status --json",
+        }),
+      ]),
+    );
     expect(packets[0].provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
       "decision_record",
       "green_evidence",
@@ -845,5 +883,21 @@ describe("S4 decision readiness", () => {
       "route_and_fullback",
       "source_ledger",
     ]);
+
+    const text = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "s4",
+        "decision-packet",
+        "--plan",
+        "PLAN-DISCOVERY-10-helix-asset-visualization",
+      ],
+      { encoding: "utf8" },
+    );
+    expect(text).toContain("evidence-checks=6");
+    expect(text).toContain("outcome-routes=3");
+    expect(text).toContain("verification-commands=8");
   });
 });

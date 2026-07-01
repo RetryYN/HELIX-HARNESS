@@ -1451,6 +1451,9 @@ s4.command("decision-packet")
         `s4 decision-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} decisionAllowed=${packet.decisionAllowed} decisionCommandAvailable=${packet.decisionCommandAvailable}\n`,
       );
       process.stdout.write(packetFreshnessLine(packet));
+      process.stdout.write(
+        `  evidence-checks=${packet.decisionEvidenceChecklist.length} outcome-routes=${packet.outcomeRouteMatrix.length} verification-commands=${packet.decisionVerificationCommandMatrix.length}\n`,
+      );
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
       }

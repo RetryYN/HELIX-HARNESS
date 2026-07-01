@@ -85,6 +85,12 @@ export interface S4DecisionPacket {
     routePolicy: string;
     requiredEvidence: string;
   }>;
+  decisionVerificationCommandMatrix: Array<{
+    phase: string;
+    command: string;
+    expected: string;
+    evidence: string;
+  }>;
   provenanceRequirements: Array<{
     item: string;
     evidence: string;
@@ -114,6 +120,7 @@ const MODE_DOC_MARKERS = [
   "decisionAllowed=false",
   "decisionEvidenceChecklist",
   "outcomeRouteMatrix",
+  "decisionVerificationCommandMatrix",
   "provenanceRequirements",
   "S4 decision source ledger",
   "Scrum Guide 2020",
@@ -578,6 +585,7 @@ export function buildS4DecisionPacket(
         requiredEvidence: "pivot rationale, route impact, and next sprint/backlog target",
       },
     ],
+    decisionVerificationCommandMatrix: buildS4DecisionVerificationCommandMatrix(plan),
     provenanceRequirements: [
       {
         item: "decision_record",
@@ -638,6 +646,68 @@ export function buildS4DecisionPacket(
       },
     ],
   };
+}
+
+function buildS4DecisionVerificationCommandMatrix(
+  plan: S4DecisionPlan,
+): S4DecisionPacket["decisionVerificationCommandMatrix"] {
+  return [
+    {
+      phase: "decision-packet-baseline",
+      command: `bun run src/cli.ts s4 decision-packet --plan ${plan.plan_id} --json`,
+      expected:
+        "captures current semantic frontier, decision checklist, outcome routes, blockers, and related packets",
+      evidence: "S4 decision packet JSON attached to PO/TL decision review",
+    },
+    {
+      phase: "source-ledger-freshness",
+      command: "bun run src/cli.ts doctor",
+      expected:
+        "S4 decision source ledger freshness, required rows, and decision packet gates remain green",
+      evidence: "doctor output with s4-decision-readiness and source ledger freshness gates",
+    },
+    {
+      phase: "s3-verification-evidence",
+      command: "run the PLAN-declared S3 verification command(s) cited by verified_evidence",
+      expected:
+        "verified_evidence points to concrete test/review output instead of a planned or prose-only claim",
+      evidence:
+        "test output, review evidence path, audit id, or digest cited by s4_decision_record.verified_evidence",
+    },
+    {
+      phase: "requirements-trace",
+      command: "bun run src/cli.ts doctor",
+      expected:
+        "G1/G3 trace, l6-fr-coverage, oracle-test-trace, and semantic frontier gates stay green before S4 outcome selection",
+      evidence: "doctor output and trace/oracle gate lines",
+    },
+    {
+      phase: "targeted-regression",
+      command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+      expected: "S4 packet and CLI surface regressions stay green",
+      evidence: "targeted vitest output",
+    },
+    {
+      phase: "static-gates",
+      command: "bun run lint && bun run typecheck && git diff --check",
+      expected: "format, type, and whitespace gates pass before S4 decision recording",
+      evidence: "lint/typecheck/diff-check command output",
+    },
+    {
+      phase: "full-regression",
+      command: "bun run test",
+      expected:
+        "full repository regression suite passes before terminal S4 promotion/rejection/pivot",
+      evidence: "full vitest output",
+    },
+    {
+      phase: "completion-frontier",
+      command: "bun run src/cli.ts status --json",
+      expected:
+        "completionReadiness remains blocked until decision_outcome and required route evidence are recorded",
+      evidence: "status JSON completionDecisionPacket and semanticFeatureFrontierRecords",
+    },
+  ];
 }
 
 function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): string[] {

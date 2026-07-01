@@ -60,6 +60,13 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 
 要求修正後の意味ベース確認により、以下を L6 契約へ追補する。
 
+- HC-P1 `buildS4DecisionPackets` は `decisionEvidenceChecklist` / `outcomeRouteMatrix` /
+  `provenanceRequirements` に加えて `decisionVerificationCommandMatrix[]` を返す。matrix は decision packet
+  baseline、source ledger freshness、S3 verification evidence、requirements trace、targeted regression を含む。
+  さらに static gates、full regression、completion frontier の各 phase と command / expected / evidence を持つ。
+  Scrum Guide 2020、ISO/IEC/IEEE 29148、ISTQB Glossary、NIST SSDF の source ledger を PO/S4 判断前の
+  実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
+  進めない。text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
 - HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
   `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
   source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
