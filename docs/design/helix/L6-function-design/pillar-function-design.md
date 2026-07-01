@@ -67,6 +67,15 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   と PLAN record の `source_ledger_freshness` 確認日がずれた場合は readiness violation にする。
   外部 activation の cost guardrails (`pages_limit` / `workers_limit` / `d1_limit` / `kv_limit` /
   `exceed_action`) は単なる表示ではなく `activationReadinessChecks[]` の `pending_evidence` 判定対象にする。
+  `Version-up source ledger` は source 名だけで通さず、SemVer / GitHub / Cloudflare / HMAC / Access
+  の期待 official URL と required field impact を source ごとに検査する。誤 URL や `cost_guardrails` /
+  `external_rehearsal_plan` / `dry_run_plan` / `activation_dependency` などの impact 欠落は、
+  source ledger が fresh でも version-up readiness violation にする。
+- HC-P6 `buildIdentifierRenameCutoverPlan` / `analyzeCutoverReadiness` は `Cutover source ledger` も同様に、
+  NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の期待
+  official URL と required field impact を固定検査する。`https` URL があるだけ、または source 名だけの
+  ledger refresh では L14 cutover 根拠にせず、backup / rollback / audit / monitoring / concurrency /
+  provenance に必要な field impact が揃うまで approval material と扱わない。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。

@@ -118,6 +118,54 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "SLSA Provenance",
 ] as const;
 
+const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
+  (typeof REQUIRED_SOURCE_LEDGER_ROWS)[number],
+  { urls: string[]; fieldImpacts: string[] }
+> = {
+  "NIST SSDF SP 800-218": {
+    urls: [
+      "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd",
+    ],
+    fieldImpacts: ["audit_record", "state_backup_plan", "blast_radius_baseline"],
+  },
+  "GitHub Environments required reviewers": {
+    urls: [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+    ],
+    fieldImpacts: [
+      "decision_owner",
+      "allowed_outcome",
+      "approval_policy_or_named_approver",
+      "approval_scope",
+      "approved_actor",
+      "approved_tool",
+      "approved_target",
+      "approved_params",
+      "review_approval_evidence",
+      "expires_at_or_trigger",
+    ],
+  },
+  "GitHub Actions concurrency": {
+    urls: [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+    ],
+    fieldImpacts: ["execution_window_or_freeze_policy"],
+  },
+  "Google SRE Release Engineering": {
+    urls: ["https://sre.google/sre-book/release-engineering/"],
+    fieldImpacts: ["dry_run_plan", "rollback_plan", "post_cutover_monitoring"],
+  },
+  "OWASP LLM06:2025 Excessive Agency": {
+    urls: ["https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"],
+    fieldImpacts: ["approval_scope", "legacy_alias_policy", "audit_record"],
+  },
+  "SLSA Provenance": {
+    urls: ["https://slsa.dev/spec/v1.2/provenance"],
+    fieldImpacts: ["audit_record", "blast_radius_baseline", "state_backup_plan"],
+  },
+};
+
 const STATE_DIR_RENAME_PATTERN = "\\.ut" + "-tdd\\/.*\\.helix";
 const IRREVERSIBLE_CUTOVER = new RegExp(
   `cutover_decision_record|PLAN-M-02|state dir|atomic migration|${STATE_DIR_RENAME_PATTERN}|(?:irreversible|不可逆).*(?:migration|rename|state dir|\\.ut-tdd|\\.helix|cutover)`,
@@ -232,6 +280,27 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
             },
           ],
     ),
+    ...REQUIRED_SOURCE_LEDGER_ROWS.flatMap((source) => {
+      const row = sourceLedger.rows.find((candidate) => candidate.source === source);
+      const expected = EXPECTED_SOURCE_LEDGER_BINDINGS[source];
+      if (!row) return [];
+      const officialUrl = row["official URL"] ?? "";
+      const requiredFieldImpact = row["required field impact"] ?? "";
+      return [
+        ...expected.urls
+          .filter((url) => !officialUrl.includes(url))
+          .map((url) => ({
+            subject: "docs/process/forward/L08-L14-verification-phase.md",
+            reason: `cutover source ledger ${source} official URL missing expected ${url}`,
+          })),
+        ...expected.fieldImpacts
+          .filter((impact) => !requiredFieldImpact.includes(impact))
+          .map((impact) => ({
+            subject: "docs/process/forward/L08-L14-verification-phase.md",
+            reason: `cutover source ledger ${source} required field impact missing expected ${impact}`,
+          })),
+      ];
+    }),
   ];
 
   for (const source of missingSourceLedgerRows) {

@@ -148,6 +148,8 @@ ledger の `checked` 日付が未来日でなく、かつ 90 日を超えて sta
 | U-SOURCELEDGER-003 | `sourceLedgerCheckedDateViolation` + `analyzeVersionUpReadiness` | `Version-up source ledger` が 90 日超 stale の場合、parked / activation decision packet の根拠にせず version-up readiness を fail-close する。 |
 | U-SOURCELEDGER-004 | `sourceLedgerCheckedDateViolation` + `analyzeCutoverReadiness` | `Cutover source ledger` が 90 日超 stale の場合、不可逆 L14 cutover / action-binding approval の根拠にせず cutover readiness を fail-close する。 |
 | U-SOURCELEDGER-005 | `sourceLedgerHeadingPattern` + 各 source-ledger parser | `checked` 日付を新しい再確認日に更新しても、parser は ledger table を読み続ける。`2026-06-30` 固定文字列に依存して、正しい ledger refresh を missing rows と誤判定しない。 |
+| U-SOURCELEDGER-006 | `analyzeVersionUpReadiness` | `Version-up source ledger` は source 名 / https URL / 非空 adoption decision だけでは通さない。SemVer / GitHub / Cloudflare / Access / HMAC の各 row は expected official URL を含み、`required field impact` に version-up activation の該当 field (`activation_dependency`、`dry_run_plan`、`cost_guardrails`、`external_rehearsal_plan` など) を含む。誤 URL または impact 欠落は source ledger violation。 |
+| U-SOURCELEDGER-007 | `analyzeCutoverReadiness` | `Cutover source ledger` は NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の expected official URL と `required field impact` を固定検査する。誤 URL または `blast_radius_baseline` / `state_backup_plan` / `execution_window_or_freeze_policy` / `post_cutover_monitoring` などの impact 欠落は cutover source ledger violation。 |
 
 ## §1 単体テスト (U-*) — placeholder skeleton
 

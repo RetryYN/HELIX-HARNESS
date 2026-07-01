@@ -437,6 +437,84 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "GitHub webhook HMAC SHA-256",
 ] as const;
 
+const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
+  (typeof REQUIRED_SOURCE_LEDGER_ROWS)[number],
+  { urls: string[]; fieldImpacts: string[] }
+> = {
+  "Semantic Versioning 2.0.0": {
+    urls: ["https://semver.org/"],
+    fieldImpacts: [
+      "version_target",
+      "target_version_or_release_trigger",
+      "review_trigger",
+      "activation_dependency",
+    ],
+  },
+  "GitHub Releases": {
+    urls: [
+      "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository",
+    ],
+    fieldImpacts: ["target_version_or_release_trigger", "review_trigger", "review_by_policy"],
+  },
+  "GitHub Environments required reviewers": {
+    urls: [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+    ],
+    fieldImpacts: ["review_owner", "approval_scope"],
+  },
+  "NIST SSDF SP 800-218": {
+    urls: [
+      "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd",
+    ],
+    fieldImpacts: ["dry_run_plan", "rollback_plan", "stale_action"],
+  },
+  "semantic-release": {
+    urls: ["https://semantic-release.gitbook.io/semantic-release"],
+    fieldImpacts: ["activation_dependency", "dry_run_plan", "release automation ADR"],
+  },
+  "Release Please": {
+    urls: ["https://github.com/googleapis/release-please"],
+    fieldImpacts: ["review_trigger", "activation_dependency", "release automation ADR"],
+  },
+  "GitHub Rulesets": {
+    urls: [
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets",
+    ],
+    fieldImpacts: ["approval_scope", "activation_dependency"],
+  },
+  "GitHub Merge Queue": {
+    urls: [
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+    ],
+    fieldImpacts: ["activation_route", "review_trigger", "activation_dependency"],
+  },
+  "Cloudflare Pages limits": {
+    urls: ["https://developers.cloudflare.com/pages/platform/limits/"],
+    fieldImpacts: ["cost_guardrails", "external_rehearsal_plan"],
+  },
+  "Cloudflare Workers limits": {
+    urls: ["https://developers.cloudflare.com/workers/platform/limits/"],
+    fieldImpacts: ["cost_guardrails", "external_rehearsal_plan"],
+  },
+  "Cloudflare D1 limits": {
+    urls: ["https://developers.cloudflare.com/d1/platform/limits/"],
+    fieldImpacts: ["cost_guardrails", "external_rehearsal_plan"],
+  },
+  "Cloudflare Workers KV limits": {
+    urls: ["https://developers.cloudflare.com/kv/platform/limits/"],
+    fieldImpacts: ["cost_guardrails", "external_rehearsal_plan"],
+  },
+  "Cloudflare Access policies": {
+    urls: ["https://developers.cloudflare.com/cloudflare-one/policies/access/"],
+    fieldImpacts: ["external_rehearsal_plan", "approval_scope"],
+  },
+  "GitHub webhook HMAC SHA-256": {
+    urls: ["https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries"],
+    fieldImpacts: ["external_rehearsal_plan", "dry_run_plan"],
+  },
+};
+
 function parsePlan(file: string, content: string): VersionUpReadinessPlan {
   return {
     file,
@@ -586,6 +664,27 @@ export function analyzeVersionUpReadiness(
             },
           ],
     ),
+    ...REQUIRED_SOURCE_LEDGER_ROWS.flatMap((source) => {
+      const row = sourceLedger.rows.find((candidate) => candidate.source === source);
+      const expected = EXPECTED_SOURCE_LEDGER_BINDINGS[source];
+      if (!row) return [];
+      const officialUrl = row["official URL"] ?? "";
+      const requiredFieldImpact = row["required field impact"] ?? "";
+      return [
+        ...expected.urls
+          .filter((url) => !officialUrl.includes(url))
+          .map((url) => ({
+            subject: "docs/process/modes/version-up.md",
+            reason: `version-up source ledger ${source} official URL missing expected ${url}`,
+          })),
+        ...expected.fieldImpacts
+          .filter((impact) => !requiredFieldImpact.includes(impact))
+          .map((impact) => ({
+            subject: "docs/process/modes/version-up.md",
+            reason: `version-up source ledger ${source} required field impact missing expected ${impact}`,
+          })),
+      ];
+    }),
   ];
 
   for (const source of missingSourceLedgerRows) {

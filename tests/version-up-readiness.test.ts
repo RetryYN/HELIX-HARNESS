@@ -91,20 +91,20 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "Version-up source ledger (checked 2026-06-30)",
       "| source | official URL | adopted version/date | latest official status | adoption decision | version-up use | required field impact |",
       "|---|---|---|---|---|---|---|",
-      "| Semantic Versioning 2.0.0 | https://semver.org/ | 2.0.0 | current official specification page | adopt-2.0.0 | compatibility intent | version_target target_version_or_release_trigger |",
-      "| GitHub Releases | https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository | live GitHub docs | live official GitHub docs | adopt-live-docs-for-release-trigger | release/tag trigger | target_version_or_release_trigger review_trigger |",
-      "| GitHub Environments required reviewers | https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments | live GitHub docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | review_owner |",
-      "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | rollback traceability | rollback_plan |",
-      "| semantic-release | https://semantic-release.gitbook.io/semantic-release | live official docs | live official docs | compare-only-until-release-ADR | release automation candidate | release automation ADR |",
-      "| Release Please | https://github.com/googleapis/release-please | live official repository docs | live official repository docs | compare-only-until-release-ADR | release PR candidate | release automation ADR |",
-      "| GitHub Rulesets | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets | live GitHub docs | live official GitHub docs | adopt-live-docs-for-gated-push-design | gated push | approval_scope |",
-      "| GitHub Merge Queue | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue | live GitHub docs | live official GitHub docs | adopt-live-docs-for-merge-readiness | merge readiness | activation_route activation_dependency |",
+      "| Semantic Versioning 2.0.0 | https://semver.org/ | 2.0.0 | current official specification page | adopt-2.0.0 | compatibility intent | version_target target_version_or_release_trigger review_trigger activation_dependency |",
+      "| GitHub Releases | https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository | live GitHub docs | live official GitHub docs | adopt-live-docs-for-release-trigger | release/tag trigger | target_version_or_release_trigger review_trigger review_by_policy |",
+      "| GitHub Environments required reviewers | https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments | live GitHub docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | review_owner approval_scope |",
+      "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | rollback traceability | dry_run_plan rollback_plan stale_action |",
+      "| semantic-release | https://semantic-release.gitbook.io/semantic-release | live official docs | live official docs | compare-only-until-release-ADR | release automation candidate | activation_dependency dry_run_plan release automation ADR |",
+      "| Release Please | https://github.com/googleapis/release-please | live official repository docs | live official repository docs | compare-only-until-release-ADR | release PR candidate | review_trigger activation_dependency release automation ADR |",
+      "| GitHub Rulesets | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets | live GitHub docs | live official GitHub docs | adopt-live-docs-for-gated-push-design | gated push | approval_scope activation_dependency |",
+      "| GitHub Merge Queue | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue | live GitHub docs | live official GitHub docs | adopt-live-docs-for-merge-readiness | merge readiness | activation_route review_trigger activation_dependency |",
       "| Cloudflare Pages limits | https://developers.cloudflare.com/pages/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-static-hosting-budget | $0 static SPA budget check | cost_guardrails pages_limit external_rehearsal_plan |",
       "| Cloudflare Workers limits | https://developers.cloudflare.com/workers/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-worker-budget | read API request budget | cost_guardrails workers_limit external_rehearsal_plan |",
       "| Cloudflare D1 limits | https://developers.cloudflare.com/d1/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-db-budget | projection DB budget | cost_guardrails d1_limit external_rehearsal_plan |",
       "| Cloudflare Workers KV limits | https://developers.cloudflare.com/kv/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget | cost_guardrails kv_limit external_rehearsal_plan |",
-      "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/policies/access/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check |",
-      "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check |",
+      "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/policies/access/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
+      "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check dry_run_plan |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     repoHeadSha: "0123456789abcdef0123456789abcdef01234567",
@@ -964,6 +964,35 @@ describe("version-up-readiness", () => {
         "Cloudflare Workers KV limits",
         "Cloudflare Access policies",
         "GitHub webhook HMAC SHA-256",
+      ]),
+    );
+  });
+
+  it("U-SOURCELEDGER-006: fails when version-up source ledger rows drift from expected official URLs or field impacts", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input()
+          .modeDoc.replace(
+            "https://developers.cloudflare.com/workers/platform/limits/",
+            "https://example.com/workers",
+          )
+          .replace("cost_guardrails workers_limit external_rehearsal_plan", "cost_guardrails"),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "docs/process/modes/version-up.md",
+          reason:
+            "version-up source ledger Cloudflare Workers limits official URL missing expected https://developers.cloudflare.com/workers/platform/limits/",
+        },
+        {
+          subject: "docs/process/modes/version-up.md",
+          reason:
+            "version-up source ledger Cloudflare Workers limits required field impact missing expected external_rehearsal_plan",
+        },
       ]),
     );
   });
