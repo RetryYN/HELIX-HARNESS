@@ -266,6 +266,11 @@ export interface WorkflowNextActionItem {
   decisionPacketCommand: WorkflowDecisionPacketCommand;
   /** Primary + supporting non-destructive packets for every blocker on this PLAN. */
   packetCommands: WorkflowDecisionPacketCommand[];
+  /**
+   * Matrix/review summary for each packet command, so status surfaces can route
+   * L14/S4/version-up review without forcing a separate completion packet first.
+   */
+  supportingPacketSummaries: CompletionDecisionSupportingPacketSummary[];
 }
 
 /**
@@ -667,19 +672,23 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
         workflowActionRank(a.reason) - workflowActionRank(b.reason) ||
         a.planId.localeCompare(b.planId),
     )
-    .map((item, index) => ({
-      order: index + 1,
-      planId: item.planId,
-      reason: item.reason,
-      blockers: item.blockers,
-      decisionKind: decisionKindForOutstandingReason(item.reason),
-      requiredAction: item.requiredAction,
-      requiredActions: item.requiredActions,
-      requiredEvidence: item.requiredEvidence,
-      nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
-      decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
-      packetCommands: packetCommandsForOutstandingBlockers(item.reason, item.blockers),
-    }));
+    .map((item, index) => {
+      const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
+      return {
+        order: index + 1,
+        planId: item.planId,
+        reason: item.reason,
+        blockers: item.blockers,
+        decisionKind: decisionKindForOutstandingReason(item.reason),
+        requiredAction: item.requiredAction,
+        requiredActions: item.requiredActions,
+        requiredEvidence: item.requiredEvidence,
+        nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+        decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
+        packetCommands,
+        supportingPacketSummaries: packetCommands.map(supportingPacketSummaryForCommand),
+      };
+    });
 }
 
 function workflowActionRank(reason: string): number {

@@ -831,6 +831,19 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
         decisionPacketCommand: "ut-tdd s4 decision-packet --json",
         packetCommands: ["ut-tdd s4 decision-packet --json"],
+        supportingPacketSummaries: [
+          {
+            command: "ut-tdd s4 decision-packet --json",
+            schemaVersion: "s4-decision-packet.v1",
+            matrixField: "decisionVerificationCommandMatrix",
+            expectedMatrixCount: 8,
+            requiredReviewFields: [
+              "decisionEvidenceChecklist",
+              "outcomeRouteMatrix",
+              "semanticFeatureFrontierRecord",
+            ],
+          },
+        ],
       },
       {
         order: 2,
@@ -843,6 +856,19 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "version-up activation -> add-feature/rejection path, with approval boundary preserved",
         decisionPacketCommand: "ut-tdd version-up activation-packet --json",
         packetCommands: ["ut-tdd version-up activation-packet --json"],
+        supportingPacketSummaries: [
+          {
+            command: "ut-tdd version-up activation-packet --json",
+            schemaVersion: "version-up-activation-packet.v1",
+            matrixField: "activationVerificationCommandMatrix",
+            expectedMatrixCount: 9,
+            requiredReviewFields: [
+              "activationReadinessSummary",
+              "activationSnapshot.snapshotId",
+              "reapprovalTriggers",
+            ],
+          },
+        ],
       },
       {
         order: 3,
@@ -855,6 +881,19 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
         decisionPacketCommand: "ut-tdd rename plan --json",
         packetCommands: ["ut-tdd rename plan --json"],
+        supportingPacketSummaries: [
+          {
+            command: "ut-tdd rename plan --json",
+            schemaVersion: "identifier-rename-cutover-plan.v1",
+            matrixField: "verificationCommandMatrix",
+            expectedMatrixCount: 6,
+            requiredReviewFields: [
+              "cutoverSnapshot.snapshotId",
+              "snapshotReview",
+              "cutoverCategoryChecklist",
+            ],
+          },
+        ],
       },
     ]);
   });
@@ -897,6 +936,16 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "ut-tdd s4 decision-packet --json",
           "ut-tdd action-binding approval-packet --json",
         ],
+        supportingPacketSummaries: [
+          expect.objectContaining({
+            command: "ut-tdd s4 decision-packet --json",
+            matrixField: "decisionVerificationCommandMatrix",
+          }),
+          expect.objectContaining({
+            command: "ut-tdd action-binding approval-packet --json",
+            matrixField: "approvalVerificationCommandMatrix",
+          }),
+        ],
       },
       {
         planId: "PLAN-L7-146",
@@ -905,6 +954,16 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "ut-tdd version-up activation-packet --json",
           "ut-tdd action-binding approval-packet --json",
         ],
+        supportingPacketSummaries: [
+          expect.objectContaining({
+            command: "ut-tdd version-up activation-packet --json",
+            matrixField: "activationVerificationCommandMatrix",
+          }),
+          expect.objectContaining({
+            command: "ut-tdd action-binding approval-packet --json",
+            matrixField: "approvalVerificationCommandMatrix",
+          }),
+        ],
       },
       {
         planId: "PLAN-M-02",
@@ -912,6 +971,16 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         packetCommands: [
           "ut-tdd rename plan --json",
           "ut-tdd action-binding approval-packet --json",
+        ],
+        supportingPacketSummaries: [
+          expect.objectContaining({
+            command: "ut-tdd rename plan --json",
+            matrixField: "verificationCommandMatrix",
+          }),
+          expect.objectContaining({
+            command: "ut-tdd action-binding approval-packet --json",
+            matrixField: "approvalVerificationCommandMatrix",
+          }),
         ],
       },
     ]);

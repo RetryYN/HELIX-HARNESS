@@ -138,6 +138,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `workflowNextAction` / `workflowNextActions[]` を `ut-tdd handover status --json` と text mode にも出す。
   handover 再開時も completion decision packet command だけでなく、record すべき判断と route を直接読める
   ことを contract とする。
+- HC-P9 `workflowNextActions[]` は command list だけでなく `supportingPacketSummaries[]` を持つ。各 summary は
+  command / schemaVersion / matrixField / expectedMatrixCount / requiredReviewFields / reviewRoute を返し、
+  status/handover surface から S4 / version-up / rename cutover / action-binding の verification matrix と
+  review field へ直接辿れるようにする。text mode は `packet-summary:` 行を出し、completion packet を別途開く前でも
+  L14 判断前に見るべき検証 matrix を隠さない。
 
 ## §1 function family
 

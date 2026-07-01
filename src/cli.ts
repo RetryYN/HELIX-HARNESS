@@ -808,6 +808,11 @@ program
           process.stdout.write(
             `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
           );
+          for (const summary of item.supportingPacketSummaries) {
+            process.stdout.write(
+              `packet-summary: ${item.order} ${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} review=${summary.reviewRoute}\n`,
+            );
+          }
         }
       }
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
@@ -2207,6 +2212,11 @@ handover
         process.stdout.write(
           `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
         );
+        for (const summary of item.supportingPacketSummaries) {
+          process.stdout.write(
+            `  packet-summary[${item.order}]: ${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} review=${summary.reviewRoute}\n`,
+          );
+        }
       }
     }
     if (!liveCompletionDecisionPacket.ok) {
