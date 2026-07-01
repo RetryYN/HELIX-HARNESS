@@ -42,6 +42,15 @@ export interface GateReviewResult {
   messages: string[];
 }
 
+export interface JudgmentReviewPlan {
+  mode: ExecutionMode;
+  requiredReviewKind: ReviewKind;
+  crossAgentReview: "available" | "unavailable";
+  requiredAction: string;
+  gateCommandTemplate: string;
+  requiredEvidence: string[];
+}
+
 export function isJudgmentGate(gate: string): boolean {
   return (JUDGMENT_GATES as readonly string[]).includes(gate);
 }
@@ -135,6 +144,58 @@ export function evaluateGateReview(input: GateReviewInput): GateReviewResult {
         : passed
           ? ["standalone human approval ok"]
           : ["standalone judgment gate requires human approval"],
+  };
+}
+
+export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPlan {
+  if (mode === "hybrid") {
+    return {
+      mode,
+      requiredReviewKind: "cross_agent",
+      crossAgentReview: "available",
+      requiredAction:
+        "route judgment gates to the opposite provider/model family and record worker_model plus reviewer_model",
+      gateCommandTemplate:
+        "ut-tdd gate <gate-id> --review-kind cross_agent --worker-model <worker-provider:model> --reviewer-model <reviewer-provider:model> --json",
+      requiredEvidence: [
+        "review_kind=cross_agent",
+        "worker_model recorded",
+        "reviewer_model recorded",
+        "worker_model and reviewer_model resolve to different providers",
+      ],
+    };
+  }
+
+  if (mode === "claude-only" || mode === "codex-only") {
+    return {
+      mode,
+      requiredReviewKind: "intra_runtime_subagent",
+      crossAgentReview: "unavailable",
+      requiredAction:
+        "record intra_runtime_subagent review evidence with a complete judgment checklist; do not claim cross_agent review",
+      gateCommandTemplate:
+        "ut-tdd gate <gate-id> --review-kind intra_runtime_subagent --checklist <review-checklist.yaml> --json",
+      requiredEvidence: [
+        "review_kind=intra_runtime_subagent",
+        "checklist contains every required judgment item",
+        "failed checklist items block the gate",
+        "n-a checklist items include evidence",
+      ],
+    };
+  }
+
+  return {
+    mode,
+    requiredReviewKind: "human",
+    crossAgentReview: "unavailable",
+    requiredAction:
+      "obtain human review evidence because no AI reviewer runtime is spawnable; do not auto-pass judgment gates",
+    gateCommandTemplate: "ut-tdd gate <gate-id> --review-kind human --human-approved --json",
+    requiredEvidence: [
+      "review_kind=human",
+      "human approval evidence recorded",
+      "no automatic judgment-gate pass without approval",
+    ],
   };
 }
 

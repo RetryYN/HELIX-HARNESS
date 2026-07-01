@@ -286,6 +286,12 @@ describe("L7 CLI surface closure", () => {
       expect(blockedJson.status).toBe(0);
       const blockedPayload = JSON.parse(blockedJson.stdout);
       expect(blockedPayload.nextAction).toEqual(expect.stringMatching(/^[a-z][a-z-]*: /));
+      expect(blockedPayload.judgmentReview).toMatchObject({
+        mode: expect.any(String),
+        requiredReviewKind: expect.stringMatching(/^(cross_agent|intra_runtime_subagent|human)$/),
+        gateCommandTemplate: expect.stringContaining("ut-tdd gate <gate-id>"),
+      });
+      expect(blockedPayload.judgmentReview.requiredEvidence.length).toBeGreaterThan(0);
       expect(blockedPayload.workflowNextAction).toContain(
         "record the PO/S4 decision before promotion, rejection, or Forward merge",
       );
@@ -346,6 +352,7 @@ describe("L7 CLI surface closure", () => {
 
       const blockedText = runCliIn(blockedRoot, ["status"]);
       expect(blockedText.status).toBe(0);
+      expect(blockedText.stdout).toContain("judgment-review:");
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain("completion: blocked");

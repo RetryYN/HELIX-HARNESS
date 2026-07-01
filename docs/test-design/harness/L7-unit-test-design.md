@@ -842,6 +842,7 @@ ledger の `checked` 日付が未来日でなく、かつ 90 日を超えて sta
 | U-DETECT-003 | `nextActionForMode("claude-only" / "codex-only")` | `single-runtime:` 接頭で始まり `intra_runtime_subagent` 証跡を要求する (単一 runtime fallback)。 |
 | U-DETECT-004 | `nextActionForMode("hybrid")` | `cross-review-ready:` 接頭で始まる — judgment ゲートを別 runtime/model 族へ回す。 |
 | U-DETECT-005 | `nextActionForMode` value-domain | 各値は先頭 token (`:` 手前) で機械 switch でき、後続が人間可読。公開 JSON 契約ゆえ ASCII のみ (machine-surface-language と整合)。 |
+| U-DETECT-006 | `judgmentReviewPlanForMode` + `ut-tdd status --json` | `nextAction` の人間可読 guidance とは別に、status JSON が `judgmentReview` を additive に返す。hybrid は `requiredReviewKind=cross_agent`、`crossAgentReview=available`、worker/reviewer model evidence と `ut-tdd gate <gate-id> --review-kind cross_agent ...` template を持つ。単一 runtime は `intra_runtime_subagent` + checklist、standalone は human approval template を持つ。 |
 
 ## PLAN-L7-85 Review Read-Only Guard Addendum
 

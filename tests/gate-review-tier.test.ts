@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   evaluateGateReview,
+  judgmentReviewPlanForMode,
   REQUIRED_CHECKLIST_IDS,
   type ReviewChecklist,
 } from "../src/gate/review-tier";
@@ -75,6 +76,31 @@ describe("gate review tier", () => {
     expect(claude.cross_agent_review).toBe(codex.cross_agent_review);
     expect(claude.review_kind).toBe(codex.review_kind);
     expect(claude.messages).toEqual(codex.messages);
+  });
+
+  it("U-DETECT-006: exposes a machine-readable judgment review plan for every runtime mode", () => {
+    expect(judgmentReviewPlanForMode("hybrid")).toMatchObject({
+      mode: "hybrid",
+      requiredReviewKind: "cross_agent",
+      crossAgentReview: "available",
+      gateCommandTemplate: expect.stringContaining("--review-kind cross_agent"),
+      requiredEvidence: expect.arrayContaining([
+        "worker_model recorded",
+        "reviewer_model recorded",
+      ]),
+    });
+    expect(judgmentReviewPlanForMode("codex-only")).toMatchObject({
+      mode: "codex-only",
+      requiredReviewKind: "intra_runtime_subagent",
+      crossAgentReview: "unavailable",
+      gateCommandTemplate: expect.stringContaining("--checklist <review-checklist.yaml>"),
+    });
+    expect(judgmentReviewPlanForMode("standalone")).toMatchObject({
+      mode: "standalone",
+      requiredReviewKind: "human",
+      crossAgentReview: "unavailable",
+      gateCommandTemplate: expect.stringContaining("--human-approved"),
+    });
   });
 
   it("fails checklist item fail and n-a without evidence", () => {
