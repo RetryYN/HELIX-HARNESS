@@ -63,7 +63,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 - HC-P1 `buildS4DecisionPackets` は `decisionEvidenceChecklist` / `outcomeRouteMatrix` /
   `provenanceRequirements` に加えて `decisionVerificationCommandMatrix[]` を返す。matrix は decision packet
   baseline、source ledger freshness、S3 verification evidence、requirements trace、targeted regression を含む。
-  さらに static gates、full regression、completion frontier の各 phase と command / expected / evidence を持つ。
+  さらに static gates、full regression、completion frontier の各 phase と command / expected / evidence /
+  source / sourceUrl を持つ。
   Scrum Guide 2020、ISO/IEC/IEEE 29148、ISTQB Glossary、NIST SSDF の source ledger を PO/S4 判断前の
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
   進めない。text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
@@ -83,7 +84,7 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   security testing 記述は activation 根拠にしない。activation packet は
   `activationVerificationCommandMatrix[]` を持ち、activation packet baseline、version dry-run、external rehearsal を
   検証 phase として扱う。さらに security testing、state+doctor、targeted regression、static gates、
-  full regression、approval packet の command / expected / evidence を plan-only に列挙する。matrix は
+  full regression、approval packet の command / expected / evidence / source / sourceUrl を plan-only に列挙する。matrix は
   `activationSnapshot.evidenceDigest` に含め、承認前 review material の drift を snapshot drift として扱う。
 - HC-P6 `buildIdentifierRenameCutoverPlan` / `analyzeCutoverReadiness` は `Cutover source ledger` も同様に、
   NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の期待
@@ -98,7 +99,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `verificationCommand` を持ち、Step 1 blast-radius baseline 凍結時にどの file surface を確認するかを
   reviewer が追える形にする。`verificationCommandMatrix[]` は baseline / targeted regression / static gates /
   state+doctor / full regression / compiled dist smoke を plan-only に列挙し、承認前の dry-run evidence を
-  自由文だけにしない。
+  自由文だけにしない。各 row は source / sourceUrl を持ち、L14 cutover source ledger、ADR-001 配布判断、
+  doctor/state projection、full regression policy へ直接接続する。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
@@ -113,11 +115,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、
   least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
-  full regression、completion frontier の command / expected / evidence を plan-only に列挙する。
+  full regression、completion frontier の command / expected / evidence / source / sourceUrl を plan-only に列挙する。
   GitHub Environments required reviewers、NIST least privilege、OWASP LLM06:2025 Excessive Agency の
   公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。
-  text surface は binding check 件数に加えて verification command 件数を出し、JSON を見ない利用者にも
-  承認前に実行すべき証跡確認を欠落させない。
+  text surface は binding check 件数に加えて verification command 件数と `verification-source:` 行を出し、
+  JSON を見ない利用者にも承認前に実行すべき証跡確認と公式/正本 source を欠落させない。
 - HC-P9 / handover resume surface は `ut-tdd status --json` と同じ live outstanding 由来の
   `workflowNextAction` / `workflowNextActions[]` を `ut-tdd handover status --json` と text mode にも出す。
   handover 再開時も completion decision packet command だけでなく、record すべき判断と route を直接読める

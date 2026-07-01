@@ -105,6 +105,8 @@ export interface VersionUpActivationPacket {
     command: string;
     expected: string;
     evidence: string;
+    source: string;
+    sourceUrl: string;
   }>;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   activationSnapshot: VersionUpActivationSnapshot;
@@ -1257,6 +1259,8 @@ function buildVersionUpActivationVerificationCommandMatrix(
       expected:
         "captures current activationSnapshot, semantic frontier, readiness checks, blockers, and related decision packets",
       evidence: "activation packet JSON attached to the version-up activation review",
+      source: "HELIX version-up activation packet contract",
+      sourceUrl: "docs/process/modes/version-up.md",
     },
     {
       phase: "version-dry-run",
@@ -1265,6 +1269,8 @@ function buildVersionUpActivationVerificationCommandMatrix(
       expected:
         "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority",
       evidence: "version-up dry-run JSON for the reviewed current/target release trigger",
+      source: "Semantic Versioning 2.0.0",
+      sourceUrl: "https://semver.org/",
     },
     {
       phase: "external-rehearsal",
@@ -1274,6 +1280,9 @@ function buildVersionUpActivationVerificationCommandMatrix(
         "proves external activation is budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
       evidence:
         "artifact paths, audit ids, digests, logs, or reports referenced by external_rehearsal_plan",
+      source: "GitHub Actions workflow and deployment protection rules",
+      sourceUrl:
+        "https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions",
     },
     {
       phase: "security-testing",
@@ -1283,6 +1292,8 @@ function buildVersionUpActivationVerificationCommandMatrix(
         "security checks pass before any Cloudflare/GitHub/HMAC/access-control activation is approved",
       evidence:
         "security test report or audit record linked from activation_provenance_requirements",
+      source: "OWASP Web Security Testing Guide",
+      sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
     },
     {
       phase: "state-and-doctor",
@@ -1290,24 +1301,33 @@ function buildVersionUpActivationVerificationCommandMatrix(
       expected:
         "state projection and workflow gates remain green after activation rehearsal material is recorded",
       evidence: "db rebuild and doctor output",
+      source: "HELIX state projection and doctor gate",
+      sourceUrl: "docs/adr/ADR-007-harness-db-sqlite-projection.md",
     },
     {
       phase: "targeted-regression",
       command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
       expected: "version-up packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
+      source: "HELIX version-up regression oracle",
+      sourceUrl:
+        "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
     },
     {
       phase: "static-gates",
       command: "bun run lint && bun run typecheck && git diff --check",
       expected: "format, type, and whitespace gates pass before activation approval",
       evidence: "lint/typecheck/diff-check command output",
+      source: "HELIX repository static gate policy",
+      sourceUrl: "AGENTS.md#test-rules",
     },
     {
       phase: "full-regression",
       command: "bun run test",
       expected: "full repository regression suite passes before any future activation apply route",
       evidence: "full vitest output",
+      source: "HELIX full regression policy",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
     },
     {
       phase: "approval-packet",
@@ -1315,6 +1335,9 @@ function buildVersionUpActivationVerificationCommandMatrix(
       expected:
         "approved actor/tool/target/params and reviewed_snapshot_binding cite the current activationSnapshot before activation",
       evidence: "action-binding approval packet JSON",
+      source: "GitHub Environments required reviewers",
+      sourceUrl:
+        "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
     },
   ];
 }

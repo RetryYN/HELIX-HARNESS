@@ -87,6 +87,8 @@ export interface ActionBindingApprovalPacket {
     command: string;
     expected: string;
     evidence: string;
+    source: string;
+    sourceUrl: string;
   }>;
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[];
   relatedDecisionPackets: RelatedDecisionPacket[];
@@ -374,6 +376,8 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       expected:
         "captures current approval record, binding checks, sibling decision packets, blockers, and semantic frontier records",
       evidence: "action-binding approval packet JSON attached to the approval review",
+      source: "HELIX action-binding approval contract",
+      sourceUrl: "docs/design/helix/L6-function-design/pillar-function-design.md",
     },
     {
       phase: "sibling-decision-packets",
@@ -383,6 +387,9 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       expected:
         "S4, version-up, rename, and action-binding packet routes are reviewed together before any high-impact action",
       evidence: "related decision packet JSON outputs for every sibling blocker on the PLAN",
+      source: "HELIX completion decision packet contract",
+      sourceUrl:
+        "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
     },
     {
       phase: "least-privilege-binding",
@@ -392,6 +399,8 @@ function buildActionBindingApprovalVerificationCommandMatrix(
         "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
       evidence:
         "approvalBindingChecks[] entries with concrete status or explicit pending/invalid blocker reasons",
+      source: "NIST least privilege security principle",
+      sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
     },
     {
       phase: "snapshot-binding",
@@ -401,6 +410,9 @@ function buildActionBindingApprovalVerificationCommandMatrix(
         "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
       evidence:
         "activation packet, rename plan, or no-snapshot basis referenced by action_binding_approval_record.reviewed_snapshot_binding",
+      source: "GitHub deployment protection rules required reviewers",
+      sourceUrl:
+        "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
     },
     {
       phase: "security-boundary",
@@ -409,24 +421,33 @@ function buildActionBindingApprovalVerificationCommandMatrix(
         "action-binding readiness, source ledger freshness, and security/workflow gates remain green without creating apply authority",
       evidence:
         "doctor output with action-binding-approval-readiness and related source ledger gates",
+      source: "VS Code Workspace Trust execution boundary",
+      sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     },
     {
       phase: "targeted-regression",
       command: "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
       expected: "action-binding packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
+      source: "HELIX action-binding regression oracle",
+      sourceUrl:
+        "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
     },
     {
       phase: "static-gates",
       command: "bun run lint && bun run typecheck && git diff --check",
       expected: "format, type, and whitespace gates pass before approval review",
       evidence: "lint/typecheck/diff-check command output",
+      source: "HELIX repository static gate policy",
+      sourceUrl: "AGENTS.md#test-rules",
     },
     {
       phase: "full-regression",
       command: "bun run test",
       expected: "full repository regression suite passes before any approved high-impact action",
       evidence: "full vitest output",
+      source: "HELIX full regression policy",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
     },
     {
       phase: "completion-frontier",
@@ -434,6 +455,8 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       expected:
         "completionReadiness remains blocked until action-binding approval and any sibling PO/version/cutover decisions are recorded",
       evidence: "status JSON workflowNextActions and semanticFeatureFrontierRecords",
+      source: "HELIX completion frontier contract",
+      sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
     },
   ];
 }

@@ -90,6 +90,8 @@ export interface S4DecisionPacket {
     command: string;
     expected: string;
     evidence: string;
+    source: string;
+    sourceUrl: string;
   }>;
   provenanceRequirements: Array<{
     item: string;
@@ -658,6 +660,8 @@ function buildS4DecisionVerificationCommandMatrix(
       expected:
         "captures current semantic frontier, decision checklist, outcome routes, blockers, and related packets",
       evidence: "S4 decision packet JSON attached to PO/TL decision review",
+      source: "HELIX Discovery S4 decision contract",
+      sourceUrl: "docs/process/modes/discovery.md",
     },
     {
       phase: "source-ledger-freshness",
@@ -665,6 +669,8 @@ function buildS4DecisionVerificationCommandMatrix(
       expected:
         "S4 decision source ledger freshness, required rows, and decision packet gates remain green",
       evidence: "doctor output with s4-decision-readiness and source ledger freshness gates",
+      source: "HELIX source ledger freshness policy",
+      sourceUrl: "docs/process/modes/discovery.md#s4-decision-source-ledger",
     },
     {
       phase: "s3-verification-evidence",
@@ -673,6 +679,8 @@ function buildS4DecisionVerificationCommandMatrix(
         "verified_evidence points to concrete test/review output instead of a planned or prose-only claim",
       evidence:
         "test output, review evidence path, audit id, or digest cited by s4_decision_record.verified_evidence",
+      source: "HELIX Scrum S3->S4 verification boundary",
+      sourceUrl: "docs/process/modes/scrum.md",
     },
     {
       phase: "requirements-trace",
@@ -680,18 +688,25 @@ function buildS4DecisionVerificationCommandMatrix(
       expected:
         "G1/G3 trace, l6-fr-coverage, oracle-test-trace, and semantic frontier gates stay green before S4 outcome selection",
       evidence: "doctor output and trace/oracle gate lines",
+      source: "HELIX V-model trace gate",
+      sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
     },
     {
       phase: "targeted-regression",
       command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
       expected: "S4 packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
+      source: "HELIX S4 regression oracle",
+      sourceUrl:
+        "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
     },
     {
       phase: "static-gates",
       command: "bun run lint && bun run typecheck && git diff --check",
       expected: "format, type, and whitespace gates pass before S4 decision recording",
       evidence: "lint/typecheck/diff-check command output",
+      source: "HELIX repository static gate policy",
+      sourceUrl: "AGENTS.md#test-rules",
     },
     {
       phase: "full-regression",
@@ -699,6 +714,8 @@ function buildS4DecisionVerificationCommandMatrix(
       expected:
         "full repository regression suite passes before terminal S4 promotion/rejection/pivot",
       evidence: "full vitest output",
+      source: "HELIX full regression policy",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
     },
     {
       phase: "completion-frontier",
@@ -706,6 +723,8 @@ function buildS4DecisionVerificationCommandMatrix(
       expected:
         "completionReadiness remains blocked until decision_outcome and required route evidence are recorded",
       evidence: "status JSON completionDecisionPacket and semanticFeatureFrontierRecords",
+      source: "HELIX completion frontier contract",
+      sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
     },
   ];
 }

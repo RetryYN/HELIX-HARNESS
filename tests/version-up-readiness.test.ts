@@ -409,14 +409,19 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "external-rehearsal",
           evidence: expect.stringContaining("external_rehearsal_plan"),
+          sourceUrl:
+            "https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions",
         }),
         expect.objectContaining({
           phase: "security-testing",
           command: expect.stringContaining("OWASP-aligned"),
+          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
         }),
         expect.objectContaining({
           phase: "approval-packet",
           command: "bun run src/cli.ts action-binding approval-packet --json",
+          sourceUrl:
+            "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
         }),
       ]),
     );
@@ -1345,6 +1350,12 @@ describe("version-up-readiness", () => {
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
     expect(text).toContain("verification-commands=9");
+    expect(text).toContain(
+      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/",
+    );
+    expect(text).toContain(
+      "verification-source: approval-packet source=GitHub Environments required reviewers sourceUrl=https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+    );
     expect(text).toContain("readiness-pending: webhook_signature_check");
     expect(text).toContain("readiness-pending: pages_limit");
     expect(text).toContain("reapproval-trigger: head_sha_or_release_trigger_drift");

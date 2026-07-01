@@ -755,6 +755,17 @@ function packetFreshnessLine(packet: {
   return `  packet-freshness: source=${packet.sourceCommand} generatedAt=${packet.generatedAt} validForMinutes=${packet.freshness.validForMinutes} expiresAt=${packet.freshness.expiresAt} stale=${packet.freshness.stale}\n`;
 }
 
+function verificationSourceLines(
+  rows: Array<{ phase: string; source?: string; sourceUrl?: string }>,
+): string {
+  return rows
+    .map(
+      (row) =>
+        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"}\n`,
+    )
+    .join("");
+}
+
 const program = new Command();
 program
   .name("ut-tdd")
@@ -1338,6 +1349,7 @@ rename
     process.stdout.write(
       `  cutover-checklist=${plan.cutoverCategoryChecklist.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
     );
+    process.stdout.write(verificationSourceLines(plan.verificationCommandMatrix));
     process.stdout.write(
       `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
     );
@@ -1411,6 +1423,7 @@ versionUp
       process.stdout.write(
         `  verification-commands=${packet.activationVerificationCommandMatrix.length}\n`,
       );
+      process.stdout.write(verificationSourceLines(packet.activationVerificationCommandMatrix));
       for (const checkName of packet.activationReadinessSummary.pendingCheckNames) {
         process.stdout.write(`  readiness-pending: ${checkName}\n`);
       }
@@ -1454,6 +1467,7 @@ s4.command("decision-packet")
       process.stdout.write(
         `  evidence-checks=${packet.decisionEvidenceChecklist.length} outcome-routes=${packet.outcomeRouteMatrix.length} verification-commands=${packet.decisionVerificationCommandMatrix.length}\n`,
       );
+      process.stdout.write(verificationSourceLines(packet.decisionVerificationCommandMatrix));
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
       }
@@ -1501,6 +1515,7 @@ actionBinding
       process.stdout.write(
         `  binding-checks: concrete=${checkCounts.concrete} pending=${checkCounts.pending} invalid=${checkCounts.invalid} verification-commands=${packet.approvalVerificationCommandMatrix.length}\n`,
       );
+      process.stdout.write(verificationSourceLines(packet.approvalVerificationCommandMatrix));
       for (const check of packet.approvalBindingChecks.filter(
         (approvalCheck) => approvalCheck.status !== "concrete",
       )) {

@@ -260,15 +260,19 @@ describe("action-binding approval readiness", () => {
           phase: "least-privilege-binding",
           expected:
             "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
+          sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
         }),
         expect.objectContaining({
           phase: "snapshot-binding",
           expected:
             "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
+          sourceUrl:
+            "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
         }),
         expect.objectContaining({
           phase: "security-boundary",
           command: "bun run src/cli.ts doctor",
+          sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
         }),
       ]),
     );

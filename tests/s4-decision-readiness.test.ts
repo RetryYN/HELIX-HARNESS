@@ -269,14 +269,17 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "requirements-trace",
           expected: expect.stringContaining("G1/G3 trace"),
+          sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
         }),
         expect.objectContaining({
           phase: "full-regression",
           command: "bun run test",
+          source: "HELIX full regression policy",
         }),
         expect.objectContaining({
           phase: "completion-frontier",
           command: "bun run src/cli.ts status --json",
+          sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
         }),
       ]),
     );
@@ -899,5 +902,11 @@ describe("S4 decision readiness", () => {
     expect(text).toContain("evidence-checks=6");
     expect(text).toContain("outcome-routes=3");
     expect(text).toContain("verification-commands=8");
+    expect(text).toContain(
+      "verification-source: requirements-trace source=HELIX V-model trace gate sourceUrl=docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+    );
+    expect(text).toContain(
+      "verification-source: completion-frontier source=HELIX completion frontier contract sourceUrl=docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+    );
   });
 });

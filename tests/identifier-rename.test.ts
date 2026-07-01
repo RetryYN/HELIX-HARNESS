@@ -376,10 +376,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             phase: "baseline",
             command: "bun run src/cli.ts rename audit --json",
+            sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
           }),
           expect.objectContaining({
             phase: "compiled-dist-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
+            sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
           }),
         ]),
       );
@@ -659,6 +661,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("snapshot-review: current=sha256:");
       expect(text.stdout).toContain("cutover-checklist=");
       expect(text.stdout).toContain("verification-commands=");
+      expect(text.stdout).toContain(
+        "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md",
+      );
+      expect(text.stdout).toContain(
+        "verification-source: compiled-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+      );
       expect(text.stdout).toContain("recordedCutover=-");
       expect(text.stdout).toContain("recordedActionBinding=-");
       expect(text.stdout).toContain("drift=no");

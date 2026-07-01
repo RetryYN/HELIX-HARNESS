@@ -673,6 +673,7 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           phase: "least-privilege-binding",
+          sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
         }),
         expect.objectContaining({
           phase: "completion-frontier",
@@ -703,6 +704,12 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("binding-checks:");
     expect(text.stdout).toContain("verification-commands=9");
+    expect(text.stdout).toContain(
+      "verification-source: least-privilege-binding source=NIST least privilege security principle sourceUrl=https://csrc.nist.gov/glossary/term/least_privilege",
+    );
+    expect(text.stdout).toContain(
+      "verification-source: security-boundary source=VS Code Workspace Trust execution boundary sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+    );
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");
     expect(text.stdout).toContain(
       "related-packet: primary ut-tdd action-binding approval-packet --json",

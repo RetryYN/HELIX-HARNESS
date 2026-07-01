@@ -96,6 +96,8 @@ export interface IdentifierRenameCutoverPlan {
     command: string;
     expected: string;
     evidence: string;
+    source: string;
+    sourceUrl: string;
   }>;
   rollbackPlan: string[];
   monitoringPlan: string[];
@@ -513,36 +515,49 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       command: "bun run src/cli.ts rename audit --json",
       expected: "captures token/file/category/sample-path blast-radius at frozen HEAD",
       evidence: "rename audit JSON attached to cutover approval record",
+      source: "HELIX identifier cutover source ledger",
+      sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
     },
     {
       phase: "targeted-regression",
       command: "bun test tests/identifier-rename.test.ts",
       expected: "rename packet, approval, snapshot, and category checklist regressions stay green",
       evidence: "targeted vitest output",
+      source: "HELIX L14 cutover regression oracle",
+      sourceUrl:
+        "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
     },
     {
       phase: "static-gates",
       command: "bun run lint && bun run typecheck && git diff --check",
       expected: "format, type, and whitespace gates pass before cutover approval",
       evidence: "lint/typecheck/diff-check command output",
+      source: "HELIX repository static gate policy",
+      sourceUrl: "AGENTS.md#test-rules",
     },
     {
       phase: "state-and-doctor",
       command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
       expected: "state projection rebuild and workflow gates pass against the renamed rehearsal",
       evidence: "db rebuild and doctor output",
+      source: "HELIX state projection and doctor gate",
+      sourceUrl: "docs/adr/ADR-007-harness-db-sqlite-projection.md",
     },
     {
       phase: "full-regression",
       command: "bun run test",
       expected: "full repository regression suite passes before irreversible cutover",
       evidence: "full vitest output",
+      source: "HELIX full regression policy",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
     },
     {
       phase: "compiled-dist-smoke",
       command: "bun run build && ./dist/ut-tdd doctor",
       expected: "compiled CLI artifact runs the same doctor surface after rename rehearsal",
       evidence: "build output and compiled doctor smoke",
+      source: "ADR-001 TypeScript/Bun single-binary distribution decision",
+      sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
     },
   ];
 }
