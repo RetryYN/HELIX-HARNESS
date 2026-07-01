@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  analyzeRightArmVerificationProfileCoverage,
   analyzeVerificationProfileGate,
   catalogVerificationProfiles,
   getVerificationProfile,
@@ -103,7 +104,67 @@ describe("verification profile recommendation", () => {
     expect(gate.externalProfiles).toEqual(["playwright-mcp", "vitest-browser-playwright"]);
     expect(gate.activationPlan.steps.map((step) => step.action)).toContain("human-approval");
     expect(gate.activationPlan.steps.map((step) => step.action)).toContain("refuse-run");
+    expect(gate.rightArmCoverage.gates.G10).toEqual([
+      "playwright-mcp",
+      "vitest-browser-playwright",
+    ]);
+    expect(gate.rightArmCoverage.drives.fe.g10Profiles).toEqual([
+      "playwright-mcp",
+      "vitest-browser-playwright",
+    ]);
     expect(verificationProfileGateMessages(gate)[0]).toContain("default_runnable=2");
+  });
+
+  it("U-MCPPROFILE-015: maps verification profiles to right-arm gates and drive-specific L10 obligations", () => {
+    const result = analyzeRightArmVerificationProfileCoverage();
+
+    expect(result.ok).toBe(true);
+    expect(result.coverage.gates.G8).toEqual(expect.arrayContaining(["msw", "testcontainers"]));
+    expect(result.coverage.gates.G10).toEqual(["playwright-mcp", "vitest-browser-playwright"]);
+    expect(result.coverage.gates.G14).toEqual(["doctor", "github-mcp-readonly"]);
+    for (const drive of ["agent", "fe", "fullstack"] as const) {
+      expect(result.coverage.drives[drive].l10Requirement).toBe("always");
+      expect(result.coverage.drives[drive].g10Profiles).toEqual([
+        "playwright-mcp",
+        "vitest-browser-playwright",
+      ]);
+    }
+    expect(result.coverage.drives.be.l10Requirement).toBe("ui_only");
+    expect(result.coverage.drives.db.l10Requirement).toBe("ui_only");
+  });
+
+  it("U-MCPPROFILE-016: fails closed when always-L10 drives lose their G10 browser profile mapping", () => {
+    const profiles = listVerificationProfiles().map((profile) =>
+      profile.id === "playwright-mcp" || profile.id === "vitest-browser-playwright"
+        ? {
+            ...profile,
+            recommendedGates: profile.recommendedGates?.filter((gate) => gate !== "G10"),
+          }
+        : profile,
+    );
+    const result = analyzeRightArmVerificationProfileCoverage(profiles);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-right-arm-gate-profile",
+          message: "G10 has no verification profile metadata",
+        }),
+        expect.objectContaining({
+          code: "missing-drive-g10-profile",
+          message: "fe requires L10, but no G10 browser verification profile is mapped",
+        }),
+        expect.objectContaining({
+          code: "missing-drive-g10-profile",
+          message: "fullstack requires L10, but no G10 browser verification profile is mapped",
+        }),
+        expect.objectContaining({
+          code: "missing-drive-g10-profile",
+          message: "agent requires L10, but no G10 browser verification profile is mapped",
+        }),
+      ]),
+    );
   });
 
   it("lists MCP and external test foundation profiles as disabled by default", () => {
@@ -260,6 +321,7 @@ describe("MCP profile config and safety (U-MCPPROFILE-001..014)", () => {
       const profile = catalog.profiles.find((candidate) => candidate.id === id);
       expect(profile?.sourceUrl).toMatch(/^https:\/\//);
       expect(profile?.triggerSignals?.length).toBeGreaterThan(0);
+      expect(profile?.recommendedGates?.length).toBeGreaterThan(0);
     }
   });
 

@@ -221,6 +221,15 @@ version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migr
 
 出典: concept v3.1 §3.7 / requirements v1.2 §1.6
 
+**verification profile 接続ルール**:
+
+G10 はスクリーンショットや手作業メモだけで pass しない。`verification-profile` catalog は
+`recommendedGates` / `recommendedDrives` を持ち、`fe` / `fullstack` / `agent` では G10 対応 browser profile
+(`vitest-browser-playwright` / `playwright-mcp`) が存在することを doctor hard gate で検査する。`be` / `db` は
+UI を持つ場合のみ L10 が必要だが、UI ありと判定された slice では同じ G10 profile に接続する。G8/G9 は
+Testcontainers / MSW / MCP Inspector 等の結合・システム profile、G12-G14 は doctor / GitHub read-only
+context 等の受入・release・post-deploy profile に接続する。
+
 ---
 
 ### L11 総合レビュー + UAT

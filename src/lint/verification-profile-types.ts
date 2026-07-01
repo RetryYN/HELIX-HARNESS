@@ -19,6 +19,10 @@ type VerificationSignal =
   | "workflow_policy"
   | "doc_backprop";
 
+type VerificationGate = "G8" | "G9" | "G10" | "G11" | "G12" | "G13" | "G14";
+
+type VerificationDrive = "be" | "fe" | "fullstack" | "db" | "agent";
+
 interface VerificationProfile {
   id: VerificationProfileId;
   label: string;
@@ -35,6 +39,8 @@ interface VerificationProfile {
   installHint: string | null;
   sourceUrl?: string;
   triggerSignals?: VerificationSignal[];
+  recommendedGates?: VerificationGate[];
+  recommendedDrives?: VerificationDrive[];
   optional?: boolean;
   profileIsolation?: string;
   allowedTools?: string[];
@@ -67,7 +73,10 @@ type VerificationProfileGateFindingCode =
   | "missing-default-profile"
   | "unrunnable-default-profile"
   | "external-without-activation-plan"
-  | "recommendation-without-signal";
+  | "recommendation-without-signal"
+  | "invalid-right-arm-gate"
+  | "missing-right-arm-gate-profile"
+  | "missing-drive-g10-profile";
 
 interface VerificationProfileGateFinding {
   code: VerificationProfileGateFindingCode;
@@ -75,11 +84,22 @@ interface VerificationProfileGateFinding {
   message: string;
 }
 
+interface VerificationDriveG10Coverage {
+  l10Requirement: "always" | "ui_only";
+  g10Profiles: VerificationProfileId[];
+}
+
+interface VerificationRightArmCoverage {
+  gates: Record<VerificationGate, VerificationProfileId[]>;
+  drives: Record<VerificationDrive, VerificationDriveG10Coverage>;
+}
+
 interface VerificationProfileGateResult {
   recommendation: VerificationRecommendationResult;
   activationPlan: ExternalProfileActivationPlan;
   defaultRunnableProfiles: VerificationProfileId[];
   externalProfiles: VerificationProfileId[];
+  rightArmCoverage: VerificationRightArmCoverage;
   findings: VerificationProfileGateFinding[];
   ok: boolean;
 }
@@ -231,8 +251,11 @@ export type {
   GeneratedMcpConfigResult,
   McpInspectResult,
   SaveVerificationEvidenceInput,
+  VerificationDrive,
+  VerificationDriveG10Coverage,
   VerificationEvidenceRecord,
   VerificationEvidenceWrite,
+  VerificationGate,
   VerificationGraphEdge,
   VerificationProbeCheck,
   VerificationProbeDeps,
@@ -250,6 +273,7 @@ export type {
   VerificationProfileSafetyResult,
   VerificationRecommendation,
   VerificationRecommendationResult,
+  VerificationRightArmCoverage,
   VerificationSignal,
 };
 export { VERIFICATION_EVIDENCE_SCHEMA_VERSION };

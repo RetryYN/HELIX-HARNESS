@@ -9,8 +9,10 @@ import {
   type McpInspectResult,
   type SaveVerificationEvidenceInput,
   VERIFICATION_EVIDENCE_SCHEMA_VERSION,
+  type VerificationDrive,
   type VerificationEvidenceRecord,
   type VerificationEvidenceWrite,
+  type VerificationGate,
   type VerificationGraphEdge,
   type VerificationProbeCheck,
   type VerificationProbeDeps,
@@ -23,6 +25,7 @@ import {
   type VerificationProfileRunResult,
   type VerificationRecommendation,
   type VerificationRecommendationResult,
+  type VerificationRightArmCoverage,
   type VerificationSignal,
 } from "./verification-profile-types";
 
@@ -34,8 +37,11 @@ export type {
   GeneratedMcpConfigResult,
   McpInspectResult,
   SaveVerificationEvidenceInput,
+  VerificationDrive,
+  VerificationDriveG10Coverage,
   VerificationEvidenceRecord,
   VerificationEvidenceWrite,
+  VerificationGate,
   VerificationGraphEdge,
   VerificationProbeCheck,
   VerificationProbeDeps,
@@ -53,6 +59,7 @@ export type {
   VerificationProfileSafetyResult,
   VerificationRecommendation,
   VerificationRecommendationResult,
+  VerificationRightArmCoverage,
   VerificationSignal,
 } from "./verification-profile-types";
 export { VERIFICATION_EVIDENCE_SCHEMA_VERSION } from "./verification-profile-types";
@@ -337,6 +344,105 @@ function uniqueSorted<T extends string>(values: T[]): T[] {
   return [...new Set(values)].sort();
 }
 
+const RIGHT_ARM_GATES: VerificationGate[] = ["G8", "G9", "G10", "G11", "G12", "G13", "G14"];
+
+const L10_REQUIRED_ALWAYS_DRIVES: VerificationDrive[] = ["agent", "fe", "fullstack"];
+
+const L10_UI_ONLY_DRIVES: VerificationDrive[] = ["be", "db"];
+
+const ALL_VERIFICATION_DRIVES: VerificationDrive[] = [
+  ...L10_UI_ONLY_DRIVES,
+  ...L10_REQUIRED_ALWAYS_DRIVES,
+].sort();
+
+function gateCoverageSeed(): Record<VerificationGate, VerificationProfileId[]> {
+  return RIGHT_ARM_GATES.reduce(
+    (acc, gate) => {
+      acc[gate] = [];
+      return acc;
+    },
+    {} as Record<VerificationGate, VerificationProfileId[]>,
+  );
+}
+
+function driveCoverageSeed(): Record<
+  VerificationDrive,
+  { l10Requirement: "always" | "ui_only"; g10Profiles: VerificationProfileId[] }
+> {
+  return ALL_VERIFICATION_DRIVES.reduce(
+    (acc, drive) => {
+      acc[drive] = {
+        l10Requirement: L10_REQUIRED_ALWAYS_DRIVES.includes(drive) ? "always" : "ui_only",
+        g10Profiles: [],
+      };
+      return acc;
+    },
+    {} as Record<
+      VerificationDrive,
+      { l10Requirement: "always" | "ui_only"; g10Profiles: VerificationProfileId[] }
+    >,
+  );
+}
+
+export function analyzeRightArmVerificationProfileCoverage(
+  profiles: VerificationProfile[] = listVerificationProfiles(),
+): {
+  coverage: VerificationRightArmCoverage;
+  findings: VerificationProfileGateFinding[];
+  ok: boolean;
+} {
+  const findings: VerificationProfileGateFinding[] = [];
+  const allowedGates = new Set(RIGHT_ARM_GATES);
+  const gates = gateCoverageSeed();
+  const drives = driveCoverageSeed();
+
+  for (const profile of profiles) {
+    for (const gate of profile.recommendedGates ?? []) {
+      if (!allowedGates.has(gate)) {
+        findings.push({
+          code: "invalid-right-arm-gate",
+          profileId: profile.id,
+          message: `${profile.id} declares unsupported right-arm gate ${gate}`,
+        });
+        continue;
+      }
+      gates[gate] = uniqueSorted([...gates[gate], profile.id]);
+    }
+    if (profile.recommendedGates?.includes("G10")) {
+      for (const drive of profile.recommendedDrives ?? []) {
+        if (!Object.hasOwn(drives, drive)) continue;
+        drives[drive].g10Profiles = uniqueSorted([...drives[drive].g10Profiles, profile.id]);
+      }
+    }
+  }
+
+  for (const gate of RIGHT_ARM_GATES) {
+    if (gates[gate].length === 0) {
+      findings.push({
+        code: "missing-right-arm-gate-profile",
+        message: `${gate} has no verification profile metadata`,
+      });
+    }
+  }
+
+  for (const drive of L10_REQUIRED_ALWAYS_DRIVES) {
+    if (drives[drive].g10Profiles.length === 0) {
+      findings.push({
+        code: "missing-drive-g10-profile",
+        message: `${drive} requires L10, but no G10 browser verification profile is mapped`,
+      });
+    }
+  }
+
+  return {
+    coverage: { gates, drives },
+    findings: findings.sort((a, b) =>
+      `${a.code}:${a.profileId ?? ""}`.localeCompare(`${b.code}:${b.profileId ?? ""}`),
+    ),
+    ok: findings.length === 0,
+  };
+}
+
 function signalForPath(path: string): VerificationSignal[] {
   const p = normalizePath(path);
   const signals: VerificationSignal[] = [];
@@ -471,6 +577,7 @@ export function analyzeVerificationProfileGate(
     recommendations: recommendation.recommendations,
     allowExternal: false,
   });
+  const rightArm = analyzeRightArmVerificationProfileCoverage();
 
   for (const rec of recommendation.recommendations) {
     if (rec.signals.length === 0) {
@@ -517,12 +624,14 @@ export function analyzeVerificationProfileGate(
     .filter((id) => PROFILE_RUNNERS[id])
     .sort();
   const externalProfiles = externalRecommendations.map((rec) => rec.profile.id).sort();
+  findings.push(...rightArm.findings);
 
   return {
     recommendation,
     activationPlan,
     defaultRunnableProfiles,
     externalProfiles,
+    rightArmCoverage: rightArm.coverage,
     findings: findings.sort((a, b) =>
       `${a.code}:${a.profileId ?? ""}`.localeCompare(`${b.code}:${b.profileId ?? ""}`),
     ),
@@ -534,6 +643,7 @@ export function verificationProfileGateMessages(result: VerificationProfileGateR
   if (result.ok) {
     return [
       `verification-profile - OK (${result.recommendation.recommendations.length} profiles recommended; default_runnable=${result.defaultRunnableProfiles.length}; external_gated=${result.externalProfiles.length})`,
+      `verification-profile - OK (right_arm_gates=${Object.keys(result.rightArmCoverage.gates).length}; always_l10_drives=${L10_REQUIRED_ALWAYS_DRIVES.length})`,
     ];
   }
   return [
