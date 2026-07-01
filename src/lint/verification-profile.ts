@@ -350,6 +350,11 @@ const L10_REQUIRED_ALWAYS_DRIVES: VerificationDrive[] = ["agent", "fe", "fullsta
 
 const L10_UI_ONLY_DRIVES: VerificationDrive[] = ["be", "db"];
 
+const G10_BROWSER_PROFILE_IDS: VerificationProfileId[] = [
+  "playwright-mcp",
+  "vitest-browser-playwright",
+];
+
 const ALL_VERIFICATION_DRIVES: VerificationDrive[] = [
   ...L10_UI_ONLY_DRIVES,
   ...L10_REQUIRED_ALWAYS_DRIVES,
@@ -408,7 +413,7 @@ export function analyzeRightArmVerificationProfileCoverage(
       }
       gates[gate] = uniqueSorted([...gates[gate], profile.id]);
     }
-    if (profile.recommendedGates?.includes("G10")) {
+    if (profile.recommendedGates?.includes("G10") && G10_BROWSER_PROFILE_IDS.includes(profile.id)) {
       for (const drive of profile.recommendedDrives ?? []) {
         if (!Object.hasOwn(drives, drive)) continue;
         drives[drive].g10Profiles = uniqueSorted([...drives[drive].g10Profiles, profile.id]);
@@ -429,7 +434,7 @@ export function analyzeRightArmVerificationProfileCoverage(
     if (drives[drive].g10Profiles.length === 0) {
       findings.push({
         code: "missing-drive-g10-profile",
-        message: `${drive} requires L10, but no G10 browser verification profile is mapped`,
+        message: `${drive} requires L10 browser evidence, but no G10 browser verification profile is mapped`,
       });
     }
   }

@@ -22,7 +22,11 @@ import {
   planExternalProfileActivation,
   renderGeneratedMcpConfig,
 } from "../src/lint/verification-profile-safety";
-import type { VerificationProfileRunResult as SidecarVerificationProfileRunResult } from "../src/lint/verification-profile-types";
+import type {
+  VerificationProfileRunResult as SidecarVerificationProfileRunResult,
+  VerificationDrive,
+  VerificationGate,
+} from "../src/lint/verification-profile-types";
 
 function deps(over: Partial<VerificationProbeDeps> = {}): VerificationProbeDeps {
   return {
@@ -45,6 +49,8 @@ function mustProfile(id: string) {
   if (!profile) throw new Error(`missing test profile: ${id}`);
   return profile;
 }
+
+const ALWAYS_L10_DRIVES: VerificationDrive[] = ["agent", "fe", "fullstack"];
 
 describe("verification profile recommendation", () => {
   it("loads profile definitions from the externalized catalog module", () => {
@@ -153,18 +159,52 @@ describe("verification profile recommendation", () => {
         }),
         expect.objectContaining({
           code: "missing-drive-g10-profile",
-          message: "fe requires L10, but no G10 browser verification profile is mapped",
+          message:
+            "fe requires L10 browser evidence, but no G10 browser verification profile is mapped",
         }),
         expect.objectContaining({
           code: "missing-drive-g10-profile",
-          message: "fullstack requires L10, but no G10 browser verification profile is mapped",
+          message:
+            "fullstack requires L10 browser evidence, but no G10 browser verification profile is mapped",
         }),
         expect.objectContaining({
           code: "missing-drive-g10-profile",
-          message: "agent requires L10, but no G10 browser verification profile is mapped",
+          message:
+            "agent requires L10 browser evidence, but no G10 browser verification profile is mapped",
         }),
       ]),
     );
+  });
+
+  it("U-MCPPROFILE-017: refuses non-browser G10 profiles as drive L10 browser evidence", () => {
+    const profiles = listVerificationProfiles().map((profile) =>
+      profile.id === "playwright-mcp" || profile.id === "vitest-browser-playwright"
+        ? {
+            ...profile,
+            recommendedGates: profile.recommendedGates?.filter((gate) => gate !== "G10"),
+          }
+        : profile.id === "msw"
+          ? {
+              ...profile,
+              recommendedGates: [...(profile.recommendedGates ?? []), "G10" as VerificationGate],
+              recommendedDrives: ALWAYS_L10_DRIVES,
+            }
+          : profile,
+    );
+    const result = analyzeRightArmVerificationProfileCoverage(profiles);
+
+    expect(result.coverage.gates.G10).toEqual(["msw"]);
+    expect(result.coverage.drives.fe.g10Profiles).not.toContain("msw");
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-drive-g10-profile",
+          message:
+            "fe requires L10 browser evidence, but no G10 browser verification profile is mapped",
+        }),
+      ]),
+    );
+    expect(result.ok).toBe(false);
   });
 
   it("lists MCP and external test foundation profiles as disabled by default", () => {

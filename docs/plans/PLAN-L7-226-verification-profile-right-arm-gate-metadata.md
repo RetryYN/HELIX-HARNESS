@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-226-verification-profile-right-arm-gate-metadata
-title: "PLAN-L7-226 (add-impl): verification profile right-arm gate metadata"
+title: "PLAN-L7-226 (add-impl): verification profile と右腕 gate metadata の接続"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/process/forward/L08-L14-verification-phase.md
 agent_slots:
   - role: tl
-    slot_label: "TL - right-arm verification profile semantic gate"
+    slot_label: "TL - 右腕 verification profile 意味 gate"
 generates:
   - artifact_path: docs/plans/PLAN-L7-226-verification-profile-right-arm-gate-metadata.md
     artifact_type: markdown_doc
@@ -43,7 +43,7 @@ review_evidence:
     reviewed_at: "2026-07-02T02:32:14+09:00"
     tests_green_at: "2026-07-02T02:32:00+09:00"
     verdict: approve
-    scope: "verification-profile now carries right-arm G8-G14 / drive metadata and doctor hard-gates G10 browser profile coverage for always-L10 drives. Regression tests cover live coverage and fail-closed removal of all G10 browser mappings."
+    scope: "verification-profile が右腕 G8-G14 / drive metadata を持ち、doctor が常時 L10 drive の G10 browser profile coverage を hard gate する。回帰テストは live coverage と全 G10 browser mapping 除去時の fail-close を被覆する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -73,7 +73,7 @@ review_evidence:
         output_digest: "sha256:28f379e9d0fcb4d236f441ed22ff1a150f9bcb8559123f2f8e3bf21dfb2b3e3a"
 ---
 
-# PLAN-L7-226: verification profile right-arm gate metadata
+# PLAN-L7-226: verification profile と右腕 gate metadata の接続
 
 ## 目的
 
@@ -88,7 +88,7 @@ drive 別 L10 要否に意味接続していなかった gap を閉じる。doct
 | <https://playwright.dev/docs/browser-contexts> | browser context isolation を G10/G11 browser evidence の前提にする。 |
 | <https://playwright.dev/docs/accessibility-testing> | accessibility finding を G10/G11 evidence に含める。 |
 | <https://vitest.dev/guide/browser/> | Vitest Browser Mode + Playwright provider を test-foundation browser profile にする。 |
-| <https://node.testcontainers.org/> | Testcontainers を DB/integration profile にする。 |
+| <https://node.testcontainers.org/> | Testcontainers を DB / integration profile にする。 |
 | <https://mswjs.io/docs/> | MSW を API mock / contract-adjacent profile にする。 |
 | <https://sre.google/sre-book/release-engineering/> | release evidence を G12 以降の profile 接続根拠にする。 |
 | <https://sre.google/workbook/canarying-releases/> | post-deploy / canary evidence を G13/G14 profile 接続根拠にする。 |
@@ -100,8 +100,9 @@ drive 別 L10 要否に意味接続していなかった gap を閉じる。doct
 - catalog の browser / integration / API mock / GitHub / doctor profile を G8-G14 と drive に接続する。
 - `analyzeRightArmVerificationProfileCoverage` を追加し、G8-G14 の profile 欠落と `fe` / `fullstack` /
   `agent` の G10 browser profile 欠落を fail-close する。
+- drive 別 L10 coverage は browser profile (`vitest-browser-playwright` / `playwright-mcp`) のみで充足し、非 browser profile が G10 を名乗っても browser evidence 扱いにしない。
 - `analyzeVerificationProfileGate` の doctor hard gate に right-arm coverage findings を合流する。
-- U-MCPPROFILE-015/016 を unit test design と `tests/verification-profile.test.ts` に追加する。
+- U-MCPPROFILE-015/016/017 を unit test design と `tests/verification-profile.test.ts` に追加する。
 
 ## 非スコープ
 
@@ -114,5 +115,6 @@ drive 別 L10 要否に意味接続していなかった gap を閉じる。doct
 - catalog の profile は G8-G14 / drive metadata を持つ。
 - `fe` / `fullstack` / `agent` から全 G10 browser profile metadata を外した fixture は
   `missing-drive-g10-profile` で fail する。
+- 非 browser profile が G10 を宣言しても、drive 別 L10 browser evidence を充足しない。
 - doctor の `verification-profile` hard gate が right-arm coverage finding を含む。
 - `bun run vitest run tests/verification-profile.test.ts`、typecheck、lint、DB rebuild、doctor が通る。

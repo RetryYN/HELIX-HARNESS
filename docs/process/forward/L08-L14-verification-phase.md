@@ -225,8 +225,9 @@ version-up parked、PO/S4 decision pending、人間承認待ち、不可逆 migr
 
 G10 はスクリーンショットや手作業メモだけで pass しない。`verification-profile` catalog は
 `recommendedGates` / `recommendedDrives` を持ち、`fe` / `fullstack` / `agent` では G10 対応 browser profile
-(`vitest-browser-playwright` / `playwright-mcp`) が存在することを doctor hard gate で検査する。`be` / `db` は
-UI を持つ場合のみ L10 が必要だが、UI ありと判定された slice では同じ G10 profile に接続する。G8/G9 は
+(`vitest-browser-playwright` / `playwright-mcp`) が存在することを doctor hard gate で検査する。非 browser
+profile が G10 を名乗っても、drive 別 L10 browser evidence の充足根拠にはしない。`be` / `db` は
+UI を持つ場合のみ L10 が必要だが、UI ありと判定された slice では同じ G10 browser profile に接続する。G8/G9 は
 Testcontainers / MSW / MCP Inspector 等の結合・システム profile、G12-G14 は doctor / GitHub read-only
 context 等の受入・release・post-deploy profile に接続する。
 
