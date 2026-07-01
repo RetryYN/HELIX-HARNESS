@@ -77,6 +77,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "adopted version/date",
       "latest official status",
       "adoption decision",
+      "activationReadinessSummary",
       "reapprovalTriggers[]",
       "activationSnapshot",
       "snapshotId",
@@ -245,6 +246,18 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packet.activationReadinessSummary).toMatchObject({
+      status: "pending_evidence",
+      totalChecks: 12,
+      presentChecks: 4,
+      pendingChecks: 8,
+      sourceLedgerFresh: true,
+      sourceLedgerViolation: null,
+      activationAllowed: false,
+    });
+    expect(packet.activationReadinessSummary.pendingCheckNames).toEqual(
+      expect.arrayContaining(["free_tier_budget_check", "dry_run_evidence", "audit_record"]),
+    );
     expect(packet.reapprovalTriggers).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -362,6 +375,13 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packets[0].activationReadinessSummary).toMatchObject({
+      status: "pending_evidence",
+      pendingChecks: 10,
+      sourceLedgerFresh: true,
+      activationAllowed: false,
+    });
+    expect(packets[0].activationReadinessSummary.pendingCheckNames).toContain("rollback_rehearsal");
     expect(packets[0].blockedReasons).toEqual(
       expect.arrayContaining([
         "activation rehearsal evidence pending: rollback_rehearsal",
@@ -389,6 +409,17 @@ describe("version-up-readiness", () => {
         /^Version-up source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
       ),
     });
+    expect(packets[0].activationReadinessSummary).toMatchObject({
+      status: "pending_evidence",
+      sourceLedgerFresh: false,
+      sourceLedgerViolation: expect.stringMatching(
+        /^Version-up source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+      ),
+      activationAllowed: false,
+    });
+    expect(packets[0].activationReadinessSummary.pendingCheckNames).toContain(
+      "source_ledger_freshness",
+    );
     expect(packets[0].blockedReasons).toEqual(
       expect.arrayContaining([
         expect.stringMatching(
@@ -872,6 +903,22 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packets[0].activationReadinessSummary).toMatchObject({
+      status: "pending_evidence",
+      totalChecks: 12,
+      presentChecks: 1,
+      pendingChecks: 11,
+      sourceLedgerFresh: true,
+      activationAllowed: false,
+    });
+    expect(packets[0].activationReadinessSummary.pendingCheckNames).toEqual(
+      expect.arrayContaining([
+        "webhook_signature_check",
+        "dry_run_evidence",
+        "approval_evidence",
+        "audit_record",
+      ]),
+    );
     expect(packets[0].reapprovalTriggers.map((row: { trigger: string }) => row.trigger)).toEqual([
       "head_sha_or_release_trigger_drift",
       "approval_scope_or_params_drift",
@@ -904,6 +951,21 @@ describe("version-up-readiness", () => {
       rowCount: 14,
       missingRows: [],
     });
+
+    const text = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "activation-packet",
+        "--plan",
+        "PLAN-L7-146-serverless-readonly-share",
+      ],
+      { encoding: "utf8" },
+    );
+    expect(text).toContain("readiness: status=pending_evidence present=1 pending=11 total=12");
+    expect(text).toContain("readiness-pending: webhook_signature_check");
   });
 
   it("exposes version-up dry-run through the CLI as JSON", () => {

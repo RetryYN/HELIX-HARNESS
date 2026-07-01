@@ -82,6 +82,7 @@ export interface VersionUpActivationPacket {
     evidence: string;
   }>;
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
+  activationReadinessSummary: VersionUpActivationReadinessSummary;
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   activationSnapshot: VersionUpActivationSnapshot;
@@ -105,6 +106,18 @@ export interface VersionUpActivationReadinessCheck {
   check: string;
   status: "present" | "pending_evidence";
   evidence: string;
+  reason: string;
+}
+
+export interface VersionUpActivationReadinessSummary {
+  status: "not_required" | "pending_evidence" | "ready_for_activation_review";
+  totalChecks: number;
+  presentChecks: number;
+  pendingChecks: number;
+  pendingCheckNames: string[];
+  sourceLedgerFresh: boolean;
+  sourceLedgerViolation: string | null;
+  activationAllowed: false;
   reason: string;
 }
 
@@ -213,6 +226,7 @@ const MODE_DOC_MARKERS = [
   "adopted version/date",
   "latest official status",
   "adoption decision",
+  "activationReadinessSummary",
   "reapprovalTriggers[]",
   "activationSnapshot",
   "snapshotId",
@@ -802,6 +816,11 @@ export function buildVersionUpActivationPacket(
     externalRehearsal,
     provenance,
   );
+  const activationReadinessSummary = buildActivationReadinessSummary(
+    externalBoundaries,
+    activationReadinessChecks,
+    sourceLedgerFreshness,
+  );
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
   const activationSnapshot = buildVersionUpActivationSnapshot({
     plan,
@@ -905,6 +924,7 @@ export function buildVersionUpActivationPacket(
       },
     ],
     sourceLedgerFreshness,
+    activationReadinessSummary,
     activationReadinessChecks,
     reapprovalTriggers,
     activationSnapshot,
@@ -1047,6 +1067,66 @@ function buildActivationReadinessChecks(
         : "concrete rehearsal evidence recorded",
     };
   });
+}
+
+function buildActivationReadinessSummary(
+  externalBoundaries: readonly string[],
+  checks: readonly VersionUpActivationReadinessCheck[],
+  sourceLedgerFreshness: VersionUpSourceLedgerFreshness,
+): VersionUpActivationReadinessSummary {
+  const pendingCheckNames = checks
+    .filter((check) => check.status === "pending_evidence")
+    .map((check) => check.check);
+  if (sourceLedgerFreshness.stale || sourceLedgerFreshness.missingRows.length > 0) {
+    pendingCheckNames.push("source_ledger_freshness");
+  }
+  const pendingChecks = pendingCheckNames.length;
+  const totalChecks =
+    checks.length +
+    (sourceLedgerFreshness.checkedDate || sourceLedgerFreshness.missingRows.length > 0 ? 1 : 0);
+  const presentChecks = Math.max(0, totalChecks - pendingChecks);
+
+  if (externalBoundaries.length === 0 && totalChecks === 0) {
+    return {
+      status: "not_required",
+      totalChecks: 0,
+      presentChecks: 0,
+      pendingChecks: 0,
+      pendingCheckNames: [],
+      sourceLedgerFresh: !sourceLedgerFreshness.stale,
+      sourceLedgerViolation: sourceLedgerFreshness.violation,
+      activationAllowed: false,
+      reason: "no external activation readiness checklist is required for this parked PLAN",
+    };
+  }
+
+  if (pendingChecks > 0) {
+    return {
+      status: "pending_evidence",
+      totalChecks,
+      presentChecks,
+      pendingChecks,
+      pendingCheckNames,
+      sourceLedgerFresh: !sourceLedgerFreshness.stale,
+      sourceLedgerViolation: sourceLedgerFreshness.violation,
+      activationAllowed: false,
+      reason:
+        "activation review material is incomplete; activation remains plan-only and approval-gated",
+    };
+  }
+
+  return {
+    status: "ready_for_activation_review",
+    totalChecks,
+    presentChecks,
+    pendingChecks: 0,
+    pendingCheckNames: [],
+    sourceLedgerFresh: true,
+    sourceLedgerViolation: null,
+    activationAllowed: false,
+    reason:
+      "activation review material is complete, but applying activation still requires the explicit human/action-binding decision route",
+  };
 }
 
 function activationReadinessBlockedReasons(

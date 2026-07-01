@@ -1355,6 +1355,12 @@ versionUp
       process.stdout.write(
         `version-up activation-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} activationAllowed=${packet.activationAllowed} applyCommandAvailable=${packet.applyCommandAvailable}\n`,
       );
+      process.stdout.write(
+        `  readiness: status=${packet.activationReadinessSummary.status} present=${packet.activationReadinessSummary.presentChecks} pending=${packet.activationReadinessSummary.pendingChecks} total=${packet.activationReadinessSummary.totalChecks} sourceLedgerFresh=${packet.activationReadinessSummary.sourceLedgerFresh}\n`,
+      );
+      for (const checkName of packet.activationReadinessSummary.pendingCheckNames) {
+        process.stdout.write(`  readiness-pending: ${checkName}\n`);
+      }
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
       }
