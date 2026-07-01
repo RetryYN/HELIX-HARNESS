@@ -78,6 +78,8 @@ secret/PII 非投影、no-prod-write、rollback rehearsal、source ledger freshn
 `no_prod_write_check` / `rollback_rehearsal` / `source_ledger` / `dry_run_evidence` / `approval_evidence` /
 `audit_record` が空、placeholder、または「before activation」型の未実証要求文だけの場合は
 `pending_evidence` とし、`blockedReasons[]` に `activation rehearsal evidence pending: <check>` を追加する。
+証跡 path、audit id、digest、実行ログ、result/exit code、report artifact などの concrete locator を伴わない
+手順文・予定文・「recorded」宣言文は、実証済み evidence ではなく `pending_evidence` として扱う。
 これは Google Cloud Deploy の deployment verification
 (<https://cloud.google.com/deploy/docs/deployment-verification>)、canary
 (<https://cloud.google.com/deploy/docs/deployment-strategies/canary>)、rollback-to-earlier-release
@@ -185,6 +187,7 @@ version-up の機能一覧は、単に `version_target` を受理することで
    approval/audit evidence を出し、$0 claim や外部安全境界を口頭説明だけにしない。
 9. **activation readiness checks**: `activationReadinessChecks[]` が external rehearsal / provenance の各項目を
    `present` / `pending_evidence` に分類し、pending のままでは activation 判断を blocked reason に残す。
+   証跡 locator のない要求文・手順文・予定文は `present` にしない。
 10. **reapproval triggers**: `reapprovalTriggers[]` が HEAD/scope/source/evidence drift 時の再実行・再承認 route を示し、
     古い dry-run / approval / source ledger / rollback evidence を activation 根拠として流用しない。
 11. **activation snapshot binding**: `activationSnapshot.snapshotId` が release trigger / source ledger / approval

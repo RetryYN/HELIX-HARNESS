@@ -139,7 +139,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- access_control_check: Cloudflare Access policy protects read-only dashboard route",
           "- no_secret_pii_check: projection excludes secret/PII/raw transcript",
           "- no_prod_write_check: dry-run uses staging or non-production projection only",
-          "- rollback_rehearsal: disable binding and rebuild projection from GitHub source",
+          "- rollback_rehearsal: .ut-tdd/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
           "cost_guardrails:",
           "- pages_limit: Cloudflare Pages official limits must fit static SPA artifact",
           "- workers_limit: Workers Free request budget must fit read API and Pages Functions usage",
@@ -147,7 +147,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- kv_limit: Workers KV free read/write/storage budget must fit projection cache",
           "- exceed_action: keep_parked_with_review_date or request_scope_reduction; never silent paid upgrade",
           "activation_provenance_requirements:",
-          "- source_ledger: version-up source ledger checked at activation review date",
+          "- source_ledger: docs/process/modes/version-up.md#version-up-source-ledger checked=2026-06-30",
           "- dry_run_evidence: free-tier budget, HMAC, access-control, no-secret, no-prod-write, rollback rehearsal output",
           "- approval_evidence: activation_decision_record + action_binding_approval_record",
           "- audit_record: approver, actor, tool, target, params hash, command output, rollback/incident route",
@@ -235,6 +235,14 @@ describe("version-up-readiness", () => {
           check: "rollback_rehearsal",
           status: "present",
         }),
+        expect.objectContaining({
+          check: "dry_run_evidence",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "audit_record",
+          status: "pending_evidence",
+        }),
       ]),
     );
     expect(packet.reapprovalTriggers).toEqual(
@@ -273,7 +281,11 @@ describe("version-up-readiness", () => {
     });
     expect(packet.activationSnapshot.snapshotId).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(packet.blockedReasons).toEqual(
-      expect.arrayContaining(["activation rehearsal evidence pending: free_tier_budget_check"]),
+      expect.arrayContaining([
+        "activation rehearsal evidence pending: free_tier_budget_check",
+        "activation rehearsal evidence pending: dry_run_evidence",
+        "activation rehearsal evidence pending: audit_record",
+      ]),
     );
     expect(packet.costGuardrails).toEqual(
       expect.arrayContaining([
@@ -305,6 +317,57 @@ describe("version-up-readiness", () => {
           role: "supporting",
           command: "ut-tdd action-binding approval-packet --json",
         }),
+      ]),
+    );
+  });
+
+  it("keeps prose-only rehearsal and provenance requirements pending until concrete evidence is cited", () => {
+    const base = input().plans[0];
+    const packets = buildVersionUpActivationPackets(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .replace(
+                ".ut-tdd/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
+                "disable binding and rebuild projection from GitHub source",
+              )
+              .replace(
+                "docs/process/modes/version-up.md#version-up-source-ledger checked=2026-06-30",
+                "version-up source ledger is checked at activation review date",
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(packets[0].activationReadinessChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "rollback_rehearsal",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "source_ledger",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "dry_run_evidence",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "audit_record",
+          status: "pending_evidence",
+        }),
+      ]),
+    );
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining([
+        "activation rehearsal evidence pending: rollback_rehearsal",
+        "activation rehearsal evidence pending: source_ledger",
+        "activation rehearsal evidence pending: dry_run_evidence",
+        "activation rehearsal evidence pending: audit_record",
       ]),
     );
   });
@@ -799,6 +862,14 @@ describe("version-up-readiness", () => {
           check: "approval_evidence",
           status: "pending_evidence",
         }),
+        expect.objectContaining({
+          check: "dry_run_evidence",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "audit_record",
+          status: "pending_evidence",
+        }),
       ]),
     );
     expect(packets[0].reapprovalTriggers.map((row: { trigger: string }) => row.trigger)).toEqual([
@@ -810,7 +881,9 @@ describe("version-up-readiness", () => {
     expect(packets[0].blockedReasons).toEqual(
       expect.arrayContaining([
         "activation rehearsal evidence pending: webhook_signature_check",
+        "activation rehearsal evidence pending: dry_run_evidence",
         "activation rehearsal evidence pending: approval_evidence",
+        "activation rehearsal evidence pending: audit_record",
       ]),
     );
     expect(packets[0].costGuardrails.map((row: { surface: string }) => row.surface)).toEqual([

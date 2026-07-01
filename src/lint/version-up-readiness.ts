@@ -1060,18 +1060,43 @@ function activationReadinessBlockedReasons(
 function activationEvidenceIsPending(evidence: string): boolean {
   const normalized = evidence.trim().toLowerCase();
   if (!normalized) return true;
-  return [
+  const isExplicitlyPending = [
     "<",
     "todo",
     "tbd",
     "must ",
     "must be",
+    "must fit",
+    "must validate",
+    "must prove",
+    "required before",
     "before activation",
     "before any",
     "not approved",
     "while parked",
     "no external activation",
+    "are recorded",
+    "is recorded",
+    "will be",
+    "should be",
+    "planned",
+    "pending",
   ].some((marker) => normalized.includes(marker));
+  if (isExplicitlyPending) return true;
+  return !hasConcreteActivationEvidence(evidence);
+}
+
+function hasConcreteActivationEvidence(evidence: string): boolean {
+  const normalized = evidence.trim();
+  return [
+    /sha256:[a-f0-9]{64}/i,
+    /\b[A-Z]{1,8}-\d{2,}\b/,
+    /\b(exit_code|exit code|status|result|verdict)\s*[:=]\s*(0|pass|passed|green|ok)\b/i,
+    /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)?\s*[:=]\s*\S+/i,
+    /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
+    /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
+    /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
+  ].some((pattern) => pattern.test(normalized));
 }
 
 function validateParkedVersionUpSemantics(

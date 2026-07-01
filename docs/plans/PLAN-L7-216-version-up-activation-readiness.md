@@ -39,6 +39,39 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T12:35:56+09:00"
+    tests_green_at: "2026-07-01T12:35:56+09:00"
+    verdict: approve
+    scope: "Continuation: activationReadinessChecks now distinguish concrete evidence from prose-only requirements. Rehearsal/provenance text without a path, audit id, digest, execution log, result/exit code, or report artifact remains pending_evidence, so PLAN-L7-146 cannot look activation-ready merely because the PLAN says evidence will be recorded. This preserves the plan-only/version-up blocker and does not activate external infrastructure or bypass action-binding approval."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/version-up-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T12:35:56+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:848c78bc623fec0b0f838497f4acaf57042122ff71c5e0d10db5b0889f1e03a1"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T12:35:56+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:197e0bb048126d3ae3593a122a2b25679204774bf1769dcb5512309a4e9575eb"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T12:35:56+09:00"
+        evidence_path: src/lint/version-up-readiness.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T07:23:12+09:00"
     tests_green_at: "2026-07-01T07:23:12+09:00"
     verdict: approve
@@ -79,6 +112,9 @@ approval.
 - Add `activationReadinessChecks[]` to version-up activation packets.
 - Classify external rehearsal/provenance evidence as `present` or
   `pending_evidence`.
+- Treat prose-only instructions, planned checks, and "recorded" claims without a
+  concrete evidence locator (path, audit id, digest, run log, result/exit code,
+  report artifact) as `pending_evidence`.
 - Add `activation rehearsal evidence pending: <check>` blocked reasons for
   pending checks.
 - Update version-up process, L6 function design, and paired L3/L6 test design.
@@ -101,6 +137,8 @@ verified, limited/progressive, and reversible before approval.
 
 - [x] External activation packets include `activationReadinessChecks[]`.
 - [x] Pending external rehearsal/provenance evidence becomes a blocked reason.
+- [x] Prose-only rehearsal/provenance claims without concrete evidence locators
+      remain `pending_evidence`.
 - [x] CLI activation packet for `PLAN-L7-146` exposes pending readiness checks.
 - [x] Existing plan-only safety flags remain fixed:
       `planOnly=true`, `mustNotApply=true`, `applyCommandAvailable=false`,
