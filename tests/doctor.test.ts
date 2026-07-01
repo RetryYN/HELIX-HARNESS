@@ -175,12 +175,28 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".vscode/tasks.json": JSON.stringify({
       version: "2.0.0",
       tasks: [
-        { label: "HELIX: status", command: "ut-tdd status" },
-        { label: "HELIX: doctor", command: "ut-tdd doctor --profile consumer" },
-        { label: "HELIX: handover status", command: "ut-tdd handover status --json" },
-        { label: "HELIX: setup dry-run", command: "ut-tdd setup project --dry-run" },
+        { label: "HELIX: status", type: "shell", command: "ut-tdd status", problemMatcher: [] },
+        {
+          label: "HELIX: doctor",
+          type: "shell",
+          command: "ut-tdd doctor --profile consumer",
+          problemMatcher: [],
+        },
+        {
+          label: "HELIX: handover status",
+          type: "shell",
+          command: "ut-tdd handover status --json",
+          problemMatcher: [],
+        },
+        {
+          label: "HELIX: setup dry-run",
+          type: "shell",
+          command: "ut-tdd setup project --dry-run",
+          problemMatcher: [],
+        },
       ],
     }),
+    ".vscode/settings.json": JSON.stringify({ "task.allowAutomaticTasks": "off" }),
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
@@ -207,10 +223,30 @@ describe("runConsumerDoctor", () => {
       ".vscode/tasks.json": JSON.stringify({
         version: "2.0.0",
         tasks: [
-          { label: "HELIX: status", command: "ut-tdd status" },
-          { label: "HELIX: doctor", command: "ut-tdd doctor" },
-          { label: "HELIX: handover status", command: "ut-tdd handover status --json" },
-          { label: "HELIX: setup dry-run", command: "ut-tdd setup project --dry-run" },
+          {
+            label: "HELIX: status",
+            type: "shell",
+            command: "ut-tdd status",
+            problemMatcher: [],
+          },
+          {
+            label: "HELIX: doctor",
+            type: "shell",
+            command: "ut-tdd doctor",
+            problemMatcher: [],
+          },
+          {
+            label: "HELIX: handover status",
+            type: "shell",
+            command: "ut-tdd handover status --json",
+            problemMatcher: [],
+          },
+          {
+            label: "HELIX: setup dry-run",
+            type: "shell",
+            command: "ut-tdd setup project --dry-run",
+            problemMatcher: [],
+          },
         ],
       }),
     });
@@ -219,6 +255,65 @@ describe("runConsumerDoctor", () => {
 
     expect(result.ok).toBe(false);
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - violation")).toBe(true);
+  });
+
+  it("fails closed when VS Code tasks can auto-run or carry unsafe task options", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".vscode/tasks.json": JSON.stringify({
+        version: "2.0.0",
+        tasks: [
+          {
+            label: "HELIX: status",
+            type: "shell",
+            command: "ut-tdd status",
+            problemMatcher: [],
+            runOptions: { runOn: "folderOpen" },
+          },
+          {
+            label: "HELIX: doctor",
+            type: "shell",
+            command: "ut-tdd doctor --profile consumer",
+            problemMatcher: ["$tsc"],
+          },
+          {
+            label: "HELIX: handover status",
+            type: "shell",
+            command: "ut-tdd handover status --json",
+            problemMatcher: [],
+          },
+          {
+            label: "HELIX: setup dry-run",
+            type: "process",
+            command: "ut-tdd setup project --dry-run",
+            problemMatcher: [],
+            options: { cwd: "workspace-root" },
+          },
+          {
+            label: "consumer-extra",
+            type: "shell",
+            command: "echo extra",
+            problemMatcher: [],
+            runOptions: { runOn: "folderOpen" },
+          },
+        ],
+      }),
+      ".vscode/settings.json": JSON.stringify({ "task.allowAutomaticTasks": "on" }),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-vscode-tasks - violation",
+        "automaticTasksOff=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessage(result.messages, "unsafe=HELIX: status,HELIX: doctor,HELIX: setup dry-run"),
+    ).toBe(true);
+    expect(hasDoctorMessage(result.messages, "autoRun=HELIX: status,consumer-extra")).toBe(true);
   });
 
   it("fails closed when adapter docs omit Japanese/cutover markers", () => {

@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 import {
   cpSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
@@ -78,18 +79,8 @@ function writeFakeCommand(root: string, name: string, output: string): string {
   return path;
 }
 
-function writeUtTddShim(root: string): string {
-  const binDir = join(root, ".fake-bin");
-  mkdirSync(binDir, { recursive: true });
-  const cliPath = join(root, "src", "cli.ts");
-  if (process.platform === "win32") {
-    const path = join(binDir, "ut-tdd.cmd");
-    writeFileSync(path, `@echo off\r\nbun "${cliPath}" %*\r\nexit /b %ERRORLEVEL%\r\n`, "utf8");
-    return path;
-  }
-  const path = join(binDir, "ut-tdd");
-  writeFileSync(path, `#!/bin/sh\nexec bun "${cliPath}" "$@"\n`, { encoding: "utf8", mode: 0o755 });
-  return path;
+function pathWith(...parts: string[]): string {
+  return parts.filter(Boolean).join(process.platform === "win32" ? ";" : ":");
 }
 
 describe("clean distribution local acceptance smoke", () => {
@@ -112,16 +103,28 @@ describe("clean distribution local acceptance smoke", () => {
       }
 
       const fakeCodex = writeFakeCommand(cleanRoot, "codex", "codex 0.0.0");
-      writeUtTddShim(cleanRoot);
       const fakeBin = dirname(fakeCodex);
+      const bunInstall = join(cleanRoot, ".bun-install");
       const env = {
         ...process.env,
-        PATH: `${fakeBin}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+        BUN_INSTALL: bunInstall,
+        PATH: pathWith(join(bunInstall, "bin"), fakeBin, process.env.PATH ?? ""),
         UT_TDD_CODEX_BIN: fakeCodex,
       };
 
       const install = runBun(cleanRoot, ["install", "--frozen-lockfile"], env);
       expect(install.status, install.stderr || install.stdout).toBe(0);
+
+      const build = runBun(cleanRoot, ["run", "build"], env);
+      expect(build.status, build.stderr || build.stdout).toBe(0);
+      const packageJson = JSON.parse(readFileSync(join(cleanRoot, "package.json"), "utf8")) as {
+        bin?: { "ut-tdd"?: string };
+      };
+      expect(packageJson.bin?.["ut-tdd"]).toBe("./dist/ut-tdd");
+      expect(existsSync(join(cleanRoot, packageJson.bin?.["ut-tdd"] ?? ""))).toBe(true);
+
+      const registerLink = runBun(cleanRoot, ["link"], env);
+      expect(registerLink.status, registerLink.stderr || registerLink.stdout).toBe(0);
 
       const status = runBun(cleanRoot, ["src/cli.ts", "status", "--json"], env);
       expect(status.status, status.stderr || status.stdout).toBe(0);
@@ -161,11 +164,18 @@ describe("clean distribution local acceptance smoke", () => {
 
       const consumerRoot = mkdtempSync(join(tmpdir(), "helix-consumer-"));
       try {
-        const setup = runBun(
-          consumerRoot,
-          [join(cleanRoot, "src", "cli.ts"), "setup", "project", "--json"],
-          env,
-        );
+        const linkConsumer = runBun(consumerRoot, ["link", "ut-tdd", "--no-save"], env);
+        expect(linkConsumer.status, linkConsumer.stderr || linkConsumer.stdout).toBe(0);
+        const linkedEnv = {
+          ...env,
+          PATH: pathWith(join(consumerRoot, "node_modules", ".bin"), env.PATH ?? ""),
+        };
+
+        const linkedVersion = runCommand(consumerRoot, "ut-tdd", ["--version"], linkedEnv);
+        expect(linkedVersion.status, linkedVersion.stderr || linkedVersion.stdout).toBe(0);
+        expect(linkedVersion.stdout.trim()).toBe("0.1.0");
+
+        const setup = runCommand(consumerRoot, "ut-tdd", ["setup", "project", "--json"], linkedEnv);
         expect(setup.status, setup.stderr || setup.stdout).toBe(0);
         const setupJson = JSON.parse(setup.stdout);
         expect(setupJson).toMatchObject({
@@ -194,12 +204,20 @@ describe("clean distribution local acceptance smoke", () => {
             }),
           ]),
         );
+        const workflow = readFileSync(
+          join(consumerRoot, ".github", "workflows", "harness-check.yml"),
+          "utf8",
+        );
+        expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
+        expect(workflow).toContain("bun run ut-tdd status --json");
+        expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
+        expect(workflow).toContain("bun run ut-tdd handover status --json");
 
         const statusFromGeneratedPath = runCommand(
           consumerRoot,
           "ut-tdd",
           ["status", "--json"],
-          env,
+          linkedEnv,
         );
         expect(statusFromGeneratedPath.status, statusFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(statusFromGeneratedPath.stdout).availableRuntimes).toContain("codex");
@@ -208,7 +226,7 @@ describe("clean distribution local acceptance smoke", () => {
           consumerRoot,
           "ut-tdd",
           ["doctor", "--profile", "consumer", "--json"],
-          env,
+          linkedEnv,
         );
         expect(doctorFromGeneratedPath.status, doctorFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(doctorFromGeneratedPath.stdout)).toMatchObject({ ok: true });
@@ -217,7 +235,7 @@ describe("clean distribution local acceptance smoke", () => {
           consumerRoot,
           "ut-tdd",
           ["handover", "status", "--json"],
-          env,
+          linkedEnv,
         );
         expect(handoverFromGeneratedPath.status, handoverFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(handoverFromGeneratedPath.stdout)).toMatchObject({ exists: false });
@@ -226,7 +244,7 @@ describe("clean distribution local acceptance smoke", () => {
           consumerRoot,
           "ut-tdd",
           ["setup", "project", "--dry-run", "--json"],
-          env,
+          linkedEnv,
         );
         expect(setupDryRunFromGeneratedPath.status, setupDryRunFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(setupDryRunFromGeneratedPath.stdout)).toMatchObject({

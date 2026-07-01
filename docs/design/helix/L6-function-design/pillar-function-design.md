@@ -108,11 +108,21 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   PLAN-M-02 cutover boundary、承認前 future state dir 未生成を検査する。
   `buildConsumerReadinessPlan` は `hasUtTddCli` 未指定を green とみなさず、setup / distribution plan の両方で
   bare `ut-tdd --version` 相当の PATH 解決性を実測した入力だけを ready にする。
+  consumer VS Code task は `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、
+  task-level `options` なし、`.vscode/settings.json` の `task.allowAutomaticTasks=off` まで doctor で検査し、
+  期待 task 以外の余分な task でも自動実行があれば fail-close する。Workspace Trust の自動実行抑止を
+  別 project 稼働証跡に含める。
 - HC-P6 `runHelixProjectSetup` の `postSetupWorkflow.verificationMatrix[]` は setup-dry-run /
   status-frontier / consumer-doctor / handover-route の phase / command / expected / evidence / source / sourceUrl を返す。
   VS Code workspace task、Workspace Trust、HELIX status/handover contract を初回稼働証跡へ接続し、
   command 列挙だけで「別プロジェクトで HELIX が動く」claim を閉じない。text surface は
   `verification-check:` と `verification-source:` も列挙する。
+- HC-P6 clean distribution acceptance は `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、
+  temp-local `BUN_INSTALL` の `bun link` と consumer repo の `bun link ut-tdd --no-save` を通した
+  `node_modules/.bin/ut-tdd` で setup / status / doctor / handover を実行する。handmade shim や
+  `src/cli.ts` 直実行だけでは package/bin 経路の証跡にしない。
+  `harness-check.yml` と `consumerReadiness.ci.requires` は post-setup verification と同じ
+  setup dry-run / status / consumer doctor / handover route の `bun run ut-tdd ...` command set を含む。
 - HC-P8 `requireActionBindingApproval` / `buildActionBindingApprovalPackets` は
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、

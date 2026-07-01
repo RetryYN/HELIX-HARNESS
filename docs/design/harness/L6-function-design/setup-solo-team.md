@@ -125,6 +125,12 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > Workspace Trust の実行境界、HELIX status/handover contract を初回稼働の検証証跡へ接続し、
 > command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。text surface は
 > `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
+> `ut-tdd doctor --profile consumer` は `.vscode/tasks.json` の label/command だけでなく、各 task が
+> `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、task-level `options` なしであること、
+> かつ `.vscode/settings.json` が `task.allowAutomaticTasks=off` であることを検査する。
+> 期待 task 以外の余分な task でも `runOptions.runOn=folderOpen` などの自動実行があれば fail-close する。
+> これにより VS Code Tasks / Workspace Trust の境界を「生成した」だけでなく、consumer repo で自動実行に開いていない
+> 証跡として扱う。
 > dry-run は引き続き副作用ゼロ、branch protection / external API / secrets / identifier cutover は自動適用しない。
 > VSCode 連携は標準 task に限定し、extension ID や外部 install を setup が暗黙実行しない。被覆 = U-SETUP-015..017。
 > 2026-07-02 追記: `runHelixProjectSetup` は L3 HR-FR-P6-03 / HAC-P6-03a の
@@ -132,6 +138,14 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `githubPlan` は plan-only / remote apply 無し / required check `harness-check` / branch protection
 > `emit_only` を示し、`doctorBaseline` は setup dry-run / status / `ut-tdd doctor --profile consumer` /
 > handover status と `.ut-tdd/memory|handover|evidence` baseline を示す。被覆 = U-SETUP-019。
+> clean distribution acceptance は `src/cli.ts` 直実行や handmade `ut-tdd` shim だけでは閉じない。
+> `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、temp-local `BUN_INSTALL` 配下で
+> `bun link` → consumer repo の `bun link ut-tdd --no-save` → consumer `node_modules/.bin/ut-tdd` の
+> `--version` / setup / status / doctor / handover を実行して、package/bin 経路が別 project で動くことを証明する。
+> `harness-check.yml` と `consumerReadiness.ci.requires` は `bun install --frozen-lockfile` 後に
+> `bun run ut-tdd setup project --dry-run --json`、`bun run ut-tdd status --json`、
+> `bun run ut-tdd doctor --profile consumer --json`、`bun run ut-tdd handover status --json` を含め、
+> post-setup verification と CI の command set をずらさない。
 > 2026-07-02 追記: setup が consumer repo へ配布する `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` /
 > Claude subagent / Claude slash-command / setup JSON の説明文は日本語-first とし、CLI 名・識別子・
 > stable token だけを原語で残す。`loadTemplates` の built-in fallback と `docs/templates/adapter/` 実体の

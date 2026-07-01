@@ -514,6 +514,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
     expect(ready.ci.requires).toContain("bun run test");
+    expect(ready.ci.requires).toEqual(
+      expect.arrayContaining([
+        "bun run ut-tdd setup project --dry-run --json",
+        "bun run ut-tdd status --json",
+        "bun run ut-tdd doctor --profile consumer --json",
+        "bun run ut-tdd handover status --json",
+      ]),
+    );
     expect(ready.rollback.backupRequired).toBe(true);
     expect(ready.rollback.managedPaths).toContain("AGENTS.md");
     expect(ready.rollback.managedPaths).toContain(join(".codex", "hooks.json"));
@@ -760,6 +768,54 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "ut-tdd handover status --json",
     );
+    const generatedTasks = JSON.parse(
+      wet.files.get(join("/repo", ".vscode", "tasks.json")) ?? "{}",
+    ) as {
+      tasks?: Array<{
+        label?: string;
+        command?: string;
+        type?: string;
+        problemMatcher?: unknown;
+        options?: unknown;
+        runOptions?: unknown;
+      }>;
+    };
+    expect(generatedTasks.tasks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          label: "HELIX: status",
+          type: "shell",
+          command: "ut-tdd status",
+          problemMatcher: [],
+        }),
+        expect.objectContaining({
+          label: "HELIX: doctor",
+          type: "shell",
+          command: "ut-tdd doctor --profile consumer",
+          problemMatcher: [],
+        }),
+        expect.objectContaining({
+          label: "HELIX: handover status",
+          type: "shell",
+          command: "ut-tdd handover status --json",
+          problemMatcher: [],
+        }),
+        expect.objectContaining({
+          label: "HELIX: setup dry-run",
+          type: "shell",
+          command: "ut-tdd setup project --dry-run",
+          problemMatcher: [],
+        }),
+      ]),
+    );
+    for (const task of generatedTasks.tasks ?? []) {
+      expect(task.options).toBeUndefined();
+      expect(task.runOptions).toBeUndefined();
+      expect(task.problemMatcher).toEqual([]);
+    }
+    expect(JSON.parse(wet.files.get(join("/repo", ".vscode", "settings.json")) ?? "{}")).toEqual({
+      "task.allowAutomaticTasks": "off",
+    });
     expect(wet.files.get(statePath)).toContain('"phase": "0-A"');
     for (const value of wet.files.values()) {
       expect(value.toLowerCase()).not.toMatch(/(ghp_|github_pat_|token=|bearer )/);

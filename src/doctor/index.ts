@@ -1760,6 +1760,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".codex/config.toml",
     ".codex/hooks.json",
     ".vscode/tasks.json",
+    ".vscode/settings.json",
     ".ut-tdd/memory/.gitkeep",
     ".ut-tdd/handover/.gitkeep",
     ".ut-tdd/evidence/.gitkeep",
@@ -1832,11 +1833,16 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const tasks = consumerJson(deps, ".vscode/tasks.json") as {
-    tasks?: { label?: string; command?: string }[];
+    tasks?: {
+      label?: string;
+      command?: string;
+      type?: string;
+      problemMatcher?: unknown;
+      runOptions?: { runOn?: string };
+      options?: unknown;
+    }[];
   } | null;
-  const labels = new Map(
-    (tasks?.tasks ?? []).map((task) => [task.label ?? "", task.command ?? ""]),
-  );
+  const tasksByLabel = new Map((tasks?.tasks ?? []).map((task) => [task.label ?? "", task]));
   const expectedTasks = new Map([
     ["HELIX: status", "ut-tdd status"],
     ["HELIX: doctor", "ut-tdd doctor --profile consumer"],
@@ -1844,14 +1850,37 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ["HELIX: setup dry-run", "ut-tdd setup project --dry-run"],
   ]);
   const missingTasks = [...expectedTasks.entries()].filter(
-    ([label, command]) => labels.get(label) !== command,
+    ([label, command]) => tasksByLabel.get(label)?.command !== command,
   );
+  const unsafeTasks = [...expectedTasks.keys()].filter((label) => {
+    const task = tasksByLabel.get(label);
+    if (!task) return false;
+    if (task.type !== "shell") return true;
+    if (!Array.isArray(task.problemMatcher) || task.problemMatcher.length !== 0) return true;
+    if (task.runOptions?.runOn && task.runOptions.runOn !== "default") return true;
+    return task.options !== undefined;
+  });
+  const autoRunTasks = (tasks?.tasks ?? [])
+    .filter((task) => task.runOptions?.runOn && task.runOptions.runOn !== "default")
+    .map((task) => task.label ?? "<unlabeled>");
+  const vscodeSettings = consumerJson(deps, ".vscode/settings.json") as Record<
+    string,
+    unknown
+  > | null;
+  const automaticTasksOff = vscodeSettings?.["task.allowAutomaticTasks"] === "off";
+  const taskSafetyOk =
+    missingTasks.length === 0 &&
+    unsafeTasks.length === 0 &&
+    autoRunTasks.length === 0 &&
+    automaticTasksOff;
   messages.push(
-    missingTasks.length === 0
-      ? `doctor: consumer-vscode-tasks - OK (tasks=${expectedTasks.size})`
+    taskSafetyOk
+      ? `doctor: consumer-vscode-tasks - OK (tasks=${expectedTasks.size}, safety=automatic-off,no-runOn,problemMatcher-empty)`
       : `doctor: consumer-vscode-tasks - violation missing_or_wrong=${missingTasks
           .map(([label]) => label)
-          .join(",")}`,
+          .join(
+            ",",
+          )} unsafe=${unsafeTasks.join(",")} autoRun=${autoRunTasks.join(",")} automaticTasksOff=${automaticTasksOff}`,
   );
 
   const ok =
@@ -1860,7 +1889,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     prematureHelixState.length === 0 &&
     claudeOk &&
     codexOk &&
-    missingTasks.length === 0;
+    taskSafetyOk;
   return { ok, messages };
 }
 
