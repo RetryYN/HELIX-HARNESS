@@ -4,6 +4,10 @@ import {
   computeOutstandingWork,
   requiredRecordsForBlockers,
 } from "./outstanding";
+import {
+  hasSourceLedgerCheckedDate,
+  sourceLedgerCheckedDateViolation,
+} from "./source-ledger-freshness";
 
 export type CompletionDecisionPacketViolationReason =
   | "invalid_generated_from"
@@ -29,7 +33,8 @@ export type CompletionDecisionPacketViolationReason =
   | "invalid_allowed_outcomes_by_record"
   | "missing_next_routes_by_record"
   | "invalid_next_routes_by_record"
-  | "invalid_required_record_source_path";
+  | "invalid_required_record_source_path"
+  | "invalid_required_record_source_ledger";
 
 export interface CompletionDecisionPacketViolation {
   reason: CompletionDecisionPacketViolationReason;
@@ -50,6 +55,8 @@ export interface CompletionDecisionPacketLintResult {
 export interface CompletionDecisionPacketLintOptions {
   /** repo-relative sourcePaths が実在するかを呼び出し側が検査するための hook。 */
   sourcePathExists?: (repoRelativePath: string) => boolean;
+  /** repo-relative sourcePaths の中身を読んで source ledger freshness を検査するための hook。 */
+  sourceText?: (repoRelativePath: string) => string | null;
 }
 
 const POLICY = "decision-packet-freshness.v1";
@@ -322,6 +329,50 @@ export function analyzeCompletionDecisionPacket(
               detail: `${subject} sourcePath missing=${trimmed}`,
             });
           }
+        }
+      }
+      for (const sourceLedgerCheck of record.sourceLedgerChecks ?? []) {
+        const sourcePath = sourceLedgerCheck.sourcePath.trim();
+        const ledgerLabel = sourceLedgerCheck.ledgerLabel.trim();
+        if (!sourcePath || !ledgerLabel || unsafeRepoRelativePath(sourcePath)) {
+          violations.push({
+            reason: "invalid_required_record_source_ledger",
+            detail: `${subject} invalid sourceLedgerCheck=${sourceLedgerCheck.sourcePath}:${sourceLedgerCheck.ledgerLabel}`,
+          });
+          continue;
+        }
+        if (!record.sourcePaths.includes(sourcePath)) {
+          violations.push({
+            reason: "invalid_required_record_source_ledger",
+            detail: `${subject} sourceLedgerCheck sourcePath not in sourcePaths=${sourcePath}`,
+          });
+        }
+        if (!opts.sourceText) continue;
+        const sourceText = opts.sourceText(sourcePath);
+        if (sourceText == null) {
+          violations.push({
+            reason: "invalid_required_record_source_ledger",
+            detail: `${subject} sourceLedger sourcePath missing=${sourcePath}`,
+          });
+          continue;
+        }
+        if (!hasSourceLedgerCheckedDate(sourceText, ledgerLabel)) {
+          violations.push({
+            reason: "invalid_required_record_source_ledger",
+            detail: `${subject} sourceLedger missing checked date label=${ledgerLabel} sourcePath=${sourcePath}`,
+          });
+          continue;
+        }
+        const sourceLedgerViolation = sourceLedgerCheckedDateViolation(
+          sourceText,
+          ledgerLabel,
+          now,
+        );
+        if (sourceLedgerViolation) {
+          violations.push({
+            reason: "invalid_required_record_source_ledger",
+            detail: `${subject} ${sourceLedgerViolation} sourcePath=${sourcePath}`,
+          });
         }
       }
     });

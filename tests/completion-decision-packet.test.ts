@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -163,6 +163,34 @@ describe("completion decision packet lint", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations.map((v) => v.reason)).toContain("invalid_required_record_source_path");
+  });
+
+  it("rejects required record source ledgers with stale, future, or missing checked dates", () => {
+    const stale = analyzeCompletionDecisionPacket(basePacket(), "2026-06-30T00:30:00.000Z", {
+      sourceText: () => "S4 decision source ledger (checked 2026-01-01):",
+    });
+    expect(stale.ok).toBe(false);
+    expect(stale.violations).toContainEqual({
+      reason: "invalid_required_record_source_ledger",
+      detail:
+        "decision[0].requiredRecords[0] S4 decision source ledger checked date is stale: 2026-01-01 (180d > 90d) sourcePath=docs/process/modes/discovery.md",
+    });
+
+    const future = analyzeCompletionDecisionPacket(basePacket(), "2026-06-30T00:30:00.000Z", {
+      sourceText: () => "S4 decision source ledger (checked 2026-07-02):",
+    });
+    expect(future.ok).toBe(false);
+    expect(future.violations.map((violation) => violation.detail)).toContain(
+      "decision[0].requiredRecords[0] S4 decision source ledger checked date is in the future: 2026-07-02 sourcePath=docs/process/modes/discovery.md",
+    );
+
+    const missing = analyzeCompletionDecisionPacket(basePacket(), "2026-06-30T00:30:00.000Z", {
+      sourceText: () => "source ledger without a checked heading",
+    });
+    expect(missing.ok).toBe(false);
+    expect(missing.violations.map((violation) => violation.detail)).toContain(
+      "decision[0].requiredRecords[0] sourceLedger missing checked date label=S4 decision source ledger sourcePath=docs/process/modes/discovery.md",
+    );
   });
 
   // U-OUTSTANDING-005
@@ -483,6 +511,10 @@ describe("completion decision packet lint", () => {
     const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T03:00:00.000Z", {
       sourcePathExists: (sourcePath) => existsSync(join(process.cwd(), sourcePath)),
+      sourceText: (sourcePath) => {
+        const path = join(process.cwd(), sourcePath);
+        return existsSync(path) ? readFileSync(path, "utf8") : null;
+      },
     });
 
     expect(result.ok).toBe(true);

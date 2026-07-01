@@ -471,6 +471,16 @@ describe("L7 CLI surface closure", () => {
       expect(packet.decisions[0].requiredRecords[0]).toMatchObject({
         recordName: "s4_decision_record",
         sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
+        sourceLedgerChecks: [
+          {
+            sourcePath: "docs/process/modes/discovery.md",
+            ledgerLabel: "S4 decision source ledger",
+          },
+          {
+            sourcePath: "docs/process/modes/scrum.md",
+            ledgerLabel: "S4 decision source ledger",
+          },
+        ],
       });
       expect(packet.decisions[0].requiredRecords[0].fields).toContain("verified_evidence");
       expect(packet.decisions[0].recordTemplates[0]).toMatchObject({
@@ -483,6 +493,12 @@ describe("L7 CLI surface closure", () => {
       expect(packet.decisions[1].requiredRecords[0]).toMatchObject({
         recordName: "cutover_decision_record",
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+        sourceLedgerChecks: [
+          {
+            sourcePath: "docs/process/forward/L08-L14-verification-phase.md",
+            ledgerLabel: "Cutover source ledger",
+          },
+        ],
       });
       expect(packet.decisions[1].requiredRecords[0].fields).toContain("cutover_snapshot_id");
       expect(packet.decisions[1].allowedOutcomesByRecord).toEqual(

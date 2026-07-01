@@ -483,8 +483,14 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
   }
 
   function seedDecisionSourceDocs(deps: ReturnType<typeof mockDeps>) {
-    deps.files.set(join("/repo", "docs/process/modes/discovery.md"), "discovery mode");
-    deps.files.set(join("/repo", "docs/process/modes/scrum.md"), "scrum mode");
+    deps.files.set(
+      join("/repo", "docs/process/modes/discovery.md"),
+      "S4 decision source ledger (checked 2026-06-04):",
+    );
+    deps.files.set(
+      join("/repo", "docs/process/modes/scrum.md"),
+      "S4 decision source ledger (checked 2026-06-04):",
+    );
   }
 
   it("pointer 不在は skip (ok)", () => {
@@ -524,6 +530,30 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       decisionPacketCommand: "ut-tdd s4 decision-packet --json",
       packetCommands: ["ut-tdd s4 decision-packet --json"],
     });
+  });
+
+  it("blocked outstanding の handover packet が stale source ledger を参照したら fail-close", () => {
+    const deps = mockDeps();
+    seedDecisionSourceDocs(deps);
+    deps.files.set(
+      join("/repo", "docs/process/modes/discovery.md"),
+      "S4 decision source ledger (checked 2026-01-01):",
+    );
+    const outstanding = blockedOutstanding();
+    writePointer(deps, {
+      outstanding,
+      completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
+        generatedAt: NOW,
+        now: NOW,
+        sourceCommand: "ut-tdd handover",
+      }),
+    });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(false);
+    expect(r.messages).toEqual(
+      expect.arrayContaining([expect.stringContaining("invalid_required_record_source_ledger")]),
+    );
   });
 
   it("standalone packet を handover pointer に転記しただけなら source mismatch で fail-close", () => {

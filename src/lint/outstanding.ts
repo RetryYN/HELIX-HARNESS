@@ -152,6 +152,12 @@ export interface CompletionDecisionRecordRequirement {
   recordName: string;
   fields: string[];
   sourcePaths: string[];
+  sourceLedgerChecks?: CompletionDecisionSourceLedgerCheck[];
+}
+
+export interface CompletionDecisionSourceLedgerCheck {
+  sourcePath: string;
+  ledgerLabel: string;
 }
 
 export interface CompletionDecisionRecordOutcome {
@@ -921,6 +927,16 @@ function requiredRecordsForOutstandingReason(
             "promotion_strategy_or_rejection_pivot_rationale",
           ],
           sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
+          sourceLedgerChecks: [
+            {
+              sourcePath: "docs/process/modes/discovery.md",
+              ledgerLabel: "S4 decision source ledger",
+            },
+            {
+              sourcePath: "docs/process/modes/scrum.md",
+              ledgerLabel: "S4 decision source ledger",
+            },
+          ],
         },
       ];
     case "version_up_parked":
@@ -939,6 +955,12 @@ function requiredRecordsForOutstandingReason(
             ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
           ],
           sourcePaths: ["docs/process/modes/version-up.md"],
+          sourceLedgerChecks: [
+            {
+              sourcePath: "docs/process/modes/version-up.md",
+              ledgerLabel: "Version-up source ledger",
+            },
+          ],
         },
         {
           recordName: "parked_review_record",
@@ -974,6 +996,12 @@ function requiredRecordsForOutstandingReason(
             ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
           ],
           sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+          sourceLedgerChecks: [
+            {
+              sourcePath: "docs/process/forward/L08-L14-verification-phase.md",
+              ledgerLabel: "Cutover source ledger",
+            },
+          ],
         },
       ];
     case "human_approval_pending":

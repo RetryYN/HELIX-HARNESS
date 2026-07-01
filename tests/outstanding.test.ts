@@ -403,6 +403,16 @@ describe("completionDecisionPacketForOutstanding", () => {
           "promotion_strategy_or_rejection_pivot_rationale",
         ],
         sourcePaths: ["docs/process/modes/discovery.md", "docs/process/modes/scrum.md"],
+        sourceLedgerChecks: [
+          {
+            sourcePath: "docs/process/modes/discovery.md",
+            ledgerLabel: "S4 decision source ledger",
+          },
+          {
+            sourcePath: "docs/process/modes/scrum.md",
+            ledgerLabel: "S4 decision source ledger",
+          },
+        ],
       },
       {
         recordName: "action_binding_approval_record",
@@ -563,6 +573,12 @@ describe("completionDecisionPacketForOutstanding", () => {
           "workflow_route_impact",
         ],
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+        sourceLedgerChecks: [
+          {
+            sourcePath: "docs/process/forward/L08-L14-verification-phase.md",
+            ledgerLabel: "Cutover source ledger",
+          },
+        ],
       },
     ]);
     expect(packet.decisions[2].allowedOutcomesByRecord).toEqual([

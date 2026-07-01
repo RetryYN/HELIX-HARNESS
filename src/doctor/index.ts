@@ -1942,6 +1942,10 @@ export function checkCompletionDecisionPacket(repoRoot: string): {
       now,
       {
         sourcePathExists: (sourcePath) => existsSync(join(repoRoot, sourcePath)),
+        sourceText: (sourcePath) => {
+          const path = join(repoRoot, sourcePath);
+          return existsSync(path) ? readFileSync(path, "utf8") : null;
+        },
       },
     );
     return { messages: completionDecisionPacketMessages(r), ok: r.ok };
