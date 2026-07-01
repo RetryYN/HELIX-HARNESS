@@ -3907,6 +3907,12 @@ setupCommand
       `post-setup-workflow: ${r.postSetupWorkflow.nextRoute} readiness=${r.postSetupWorkflow.readinessOk} gates=${r.postSetupWorkflow.unmetGates.length}\n`,
     );
     process.stdout.write(
+      `github-plan: ${r.githubPlan.schemaVersion} planOnly=${r.githubPlan.planOnly} requiredChecks=${r.githubPlan.requiredChecks.join(",")}\n`,
+    );
+    process.stdout.write(
+      `doctor-baseline: ${r.doctorBaseline.schemaVersion} completionClaimAllowed=${r.doctorBaseline.completionClaimAllowed} commands=${r.doctorBaseline.baselineCommands.length}\n`,
+    );
+    process.stdout.write(
       `vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask}, ${r.vscode.handoverTask})\n`,
     );
     process.stdout.write(

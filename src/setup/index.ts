@@ -104,6 +104,8 @@ export interface HelixProjectSetupResult extends SetupResult {
   schemaVersion: "helix-project-setup.v1";
   setupCommand: "ut-tdd setup project";
   futureCommand: "helix setup project";
+  githubPlan: HelixProjectGithubPlan;
+  doctorBaseline: HelixProjectDoctorBaseline;
   importReport: HelixProjectImportReport;
   consumerReadiness: ConsumerReadinessPlan;
   postSetupWorkflow: HelixProjectPostSetupWorkflow;
@@ -141,6 +143,37 @@ export interface HelixProjectSetupResult extends SetupResult {
     reason: string;
   };
   nextCommands: string[];
+}
+
+export interface HelixProjectGithubPlan {
+  schemaVersion: "helix-project-github-plan.v1";
+  planOnly: true;
+  appliesRemote: false;
+  applyCommandAvailable: false;
+  workflowPath: ".github/workflows/harness-check.yml";
+  requiredChecks: ["harness-check"];
+  generatedPolicyFiles: string[];
+  branchProtection: {
+    status: "emit_only";
+    scriptPath: "scripts/setup-branch-protection.sh";
+    requiresHumanApproval: true;
+    reason: string;
+  };
+}
+
+export interface HelixProjectDoctorBaseline {
+  schemaVersion: "helix-project-doctor-baseline.v1";
+  planOnly: true;
+  baselineCommands: [
+    "ut-tdd setup project --dry-run",
+    "ut-tdd status --json",
+    "ut-tdd doctor",
+    "ut-tdd handover status --json",
+  ];
+  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"];
+  completionClaimAllowed: false;
+  nextRouteSource: "postSetupWorkflow.nextRoute";
+  evidencePath: ".ut-tdd/evidence";
 }
 
 export interface HelixProjectPostSetupWorkflow {
@@ -286,6 +319,43 @@ const CLEAN_ALLOW_FILES = new Set([
   "tsconfig.json",
   "vitest.config.ts",
 ]);
+
+const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
+  schemaVersion: "helix-project-github-plan.v1",
+  planOnly: true,
+  appliesRemote: false,
+  applyCommandAvailable: false,
+  workflowPath: ".github/workflows/harness-check.yml",
+  requiredChecks: ["harness-check"],
+  generatedPolicyFiles: [
+    ".github/workflows/harness-check.yml",
+    ".github/ISSUE_TEMPLATE/recovery.md",
+    ".github/ISSUE_TEMPLATE/add-feature.md",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+  ],
+  branchProtection: {
+    status: "emit_only",
+    scriptPath: "scripts/setup-branch-protection.sh",
+    requiresHumanApproval: true,
+    reason:
+      "branch protection / required check application is a high-impact GitHub setting and remains plan-only until explicit human approval",
+  },
+};
+
+const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
+  schemaVersion: "helix-project-doctor-baseline.v1",
+  planOnly: true,
+  baselineCommands: [
+    "ut-tdd setup project --dry-run",
+    "ut-tdd status --json",
+    "ut-tdd doctor",
+    "ut-tdd handover status --json",
+  ],
+  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+  completionClaimAllowed: false,
+  nextRouteSource: "postSetupWorkflow.nextRoute",
+  evidencePath: ".ut-tdd/evidence",
+};
 
 /**
  * U-SETUP-001: gh で owner 種別 / collaborator 数 / 既存 protection を読む。**never throws**。
@@ -909,6 +979,8 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     schemaVersion: "helix-project-setup.v1",
     setupCommand: "ut-tdd setup project",
     futureCommand: "helix setup project",
+    githubPlan: PROJECT_GITHUB_PLAN,
+    doctorBaseline: PROJECT_DOCTOR_BASELINE,
     phase,
     written,
     branchProtection,

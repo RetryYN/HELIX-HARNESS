@@ -544,6 +544,33 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       setupCommand: "ut-tdd setup project",
       futureCommand: "helix setup project",
       phase: "0-A",
+      githubPlan: {
+        schemaVersion: "helix-project-github-plan.v1",
+        planOnly: true,
+        appliesRemote: false,
+        applyCommandAvailable: false,
+        workflowPath: ".github/workflows/harness-check.yml",
+        requiredChecks: ["harness-check"],
+        branchProtection: {
+          status: "emit_only",
+          scriptPath: "scripts/setup-branch-protection.sh",
+          requiresHumanApproval: true,
+        },
+      },
+      doctorBaseline: {
+        schemaVersion: "helix-project-doctor-baseline.v1",
+        planOnly: true,
+        baselineCommands: [
+          "ut-tdd setup project --dry-run",
+          "ut-tdd status --json",
+          "ut-tdd doctor",
+          "ut-tdd handover status --json",
+        ],
+        stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+        completionClaimAllowed: false,
+        nextRouteSource: "postSetupWorkflow.nextRoute",
+        evidencePath: ".ut-tdd/evidence",
+      },
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
@@ -580,6 +607,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(preview.identifierTransition.reason).toContain("PLAN-M-02");
     expect(preview.commandAvailability.reason).toContain("package/bin alias activation");
+    expect(preview.githubPlan.generatedPolicyFiles).toEqual(
+      expect.arrayContaining([
+        ".github/workflows/harness-check.yml",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+      ]),
+    );
+    expect(preview.githubPlan.branchProtection.reason).toContain("human approval");
+    expect(preview.doctorBaseline.baselineCommands).toEqual(
+      preview.postSetupWorkflow.verificationCommands,
+    );
     expect(preview.consumerReadiness).toMatchObject({
       ok: false,
       mode: "standalone",
@@ -754,6 +791,43 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "Run `ut-tdd handover status --json` and start from the active handover or current PLAN route",
       ],
     });
+  });
+
+  it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
+    const deps = mockDeps({
+      templates: baseTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: true },
+      deps,
+    );
+
+    expect(result.branchProtection).toEqual({ applied: false, reason: "dry-run" });
+    expect(result.githubPlan).toMatchObject({
+      schemaVersion: "helix-project-github-plan.v1",
+      planOnly: true,
+      appliesRemote: false,
+      applyCommandAvailable: false,
+      workflowPath: ".github/workflows/harness-check.yml",
+      requiredChecks: ["harness-check"],
+      branchProtection: {
+        status: "emit_only",
+        scriptPath: "scripts/setup-branch-protection.sh",
+        requiresHumanApproval: true,
+      },
+    });
+    expect(result.doctorBaseline).toEqual({
+      schemaVersion: "helix-project-doctor-baseline.v1",
+      planOnly: true,
+      baselineCommands: result.postSetupWorkflow.verificationCommands,
+      stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+      completionClaimAllowed: false,
+      nextRouteSource: "postSetupWorkflow.nextRoute",
+      evidencePath: ".ut-tdd/evidence",
+    });
+    expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {

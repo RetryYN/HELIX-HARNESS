@@ -622,6 +622,26 @@ describe("L7 CLI surface closure", () => {
       schemaVersion: "helix-project-setup.v1",
       setupCommand: "ut-tdd setup project",
       futureCommand: "helix setup project",
+      githubPlan: {
+        schemaVersion: "helix-project-github-plan.v1",
+        planOnly: true,
+        appliesRemote: false,
+        applyCommandAvailable: false,
+        workflowPath: ".github/workflows/harness-check.yml",
+        requiredChecks: ["harness-check"],
+      },
+      doctorBaseline: {
+        schemaVersion: "helix-project-doctor-baseline.v1",
+        planOnly: true,
+        baselineCommands: [
+          "ut-tdd setup project --dry-run",
+          "ut-tdd status --json",
+          "ut-tdd doctor",
+          "ut-tdd handover status --json",
+        ],
+        stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+        completionClaimAllowed: false,
+      },
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
@@ -702,6 +722,9 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd doctor",
       "ut-tdd handover status --json",
     ]);
+    expect(payload.doctorBaseline.baselineCommands).toEqual(
+      payload.postSetupWorkflow.verificationCommands,
+    );
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining([
         "ut-tdd status --json",
@@ -715,6 +738,10 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
+    expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
+    expect(text.stdout).toContain(
+      "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",
+    );
     expect(text.stdout).toContain("HELIX: handover status");
     expect(text.stdout).toContain(
       "command-availability: ut-tdd setup project available=true; helix setup project available=false",
