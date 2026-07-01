@@ -100,7 +100,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 
 > **HELIX project setup (L7、2026-07-01)**: HELIX 導入済み VSCode で新規 project を始める入口として
 > `ut-tdd setup project` を追加する。これは `runSetup` の solo/team 判定・adapter/hook 投影・branch protection
-> emit-only 境界を再利用し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と
+> emit-only 境界を再利用し、追加で status / doctor / handover status を開く `.vscode/tasks.json`、
+> `.vscode/settings.json` と
 > `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` の project-local baseline を作る。
 > `runHelixProjectSetup` は現行 `.ut-tdd` baseline と将来 `helix setup project` / `.helix` 目標を
 > `identifierTransition` として同時に返し、PLAN-M-02 cutover/action-binding approval が無い限り
@@ -108,6 +109,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > brownfield では `importReport` で既存 non-mergeable path を skipped/review_required として返す。
 > projected hook が呼ぶ bare `ut-tdd` CLI は `consumerReadiness` で PATH 解決性を preflight し、
 > 解決不能なら `bun link` remediation を出して silent pass させない。
+> `postSetupWorkflow.verificationCommands` は setup dry-run / status / doctor / handover status を含め、
+> ready route は active handover または current PLAN route に接続する。
 > dry-run は引き続き副作用ゼロ、branch protection / external API / secrets / identifier cutover は自動適用しない。
 > VSCode 連携は標準 task に限定し、extension ID や外部 install を setup が暗黙実行しない。被覆 = U-SETUP-015..017。
 

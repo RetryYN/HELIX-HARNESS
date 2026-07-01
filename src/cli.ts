@@ -3885,7 +3885,9 @@ setupCommand
     process.stdout.write(
       `post-setup-workflow: ${r.postSetupWorkflow.nextRoute} readiness=${r.postSetupWorkflow.readinessOk} gates=${r.postSetupWorkflow.unmetGates.length}\n`,
     );
-    process.stdout.write(`vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask})\n`);
+    process.stdout.write(
+      `vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask}, ${r.vscode.handoverTask})\n`,
+    );
     process.stdout.write(
       `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,
     );

@@ -6,7 +6,7 @@ layer: L7
 drive: fullstack
 status: confirmed
 created: 2026-06-02
-updated: 2026-07-01
+updated: 2026-07-02
 owner: PM (Opus) / PO (人間)
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
 agent_slots:
@@ -38,6 +38,55 @@ dependencies:
     - docs/plans/PLAN-REVERSE-04-setup-solo-team.md
   blocks: []
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-02T00:46:38+09:00"
+    tests_green_at: "2026-07-02T00:46:38+09:00"
+    verdict: approve
+    scope: "Continuation: HELIX project setup now promotes active handover preflight from a loose nextCommands hint into the first-run workflow contract. `postSetupWorkflow.verificationCommands` includes `ut-tdd handover status --json`, ready/fix/review nextActions name the handover command, generated VSCode tasks expose `HELIX: handover status`, CLI text prints the handover task, and L6/L7/HELIX function contracts were synchronized. This remains a non-destructive setup workflow hardening; PLAN-M-02 identifier cutover, branch protection apply, secrets, and external API application remain outside this change."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T00:46:38+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:3cb93e1c877e016cae3536dae183a4b60a710636897a72af842d5820a532c130"
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T00:46:38+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:18924688db59f233bfbd67cad97702f3731b407ddcad1f68cbd8602361531497"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T00:46:38+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:fc5d4c4b7239b82545dc61fb1282175a2c59ec4375abf1559c74e2561d1f6350"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T00:46:38+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:c8a0a72017a65dbb7e780a59b70556ce11c340e32c81bc6d7741fa7f95931d20"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T00:46:38+09:00"
+        evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
+        output_digest: "sha256:dc90ed840712678c54147352af4c2922d2ccf029130ea4d9b1b07ceb9de6b6d7"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T05:45:48+09:00"

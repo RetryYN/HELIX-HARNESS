@@ -609,6 +609,7 @@ describe("L7 CLI surface closure", () => {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
         doctorTask: "HELIX: doctor",
+        handoverTask: "HELIX: handover status",
       },
       baseline: {
         memoryPath: join(".ut-tdd", "memory"),
@@ -681,9 +682,14 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
       "ut-tdd doctor",
+      "ut-tdd handover status --json",
     ]);
     expect(payload.nextCommands).toEqual(
-      expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
+      expect.arrayContaining([
+        "ut-tdd status --json",
+        "ut-tdd doctor",
+        "ut-tdd handover status --json",
+      ]),
     );
 
     const text = runCli(["setup", "project", "--dry-run"]);
@@ -691,6 +697,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
+    expect(text.stdout).toContain("HELIX: handover status");
     expect(text.stdout).toContain(
       "command-availability: ut-tdd setup project available=true; helix setup project available=false",
     );

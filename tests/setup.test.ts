@@ -96,7 +96,18 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "adapter/.claude/settings.json": '{"hooks":{"SessionStart":[]}}\n',
   "adapter/.codex/config.toml": "[features]\nhooks = true\n",
-  "project/.vscode/tasks.json": '{"version":"2.0.0","tasks":[]}\n',
+  "project/.vscode/tasks.json": [
+    "{",
+    '  "version": "2.0.0",',
+    '  "tasks": [',
+    '    { "label": "HELIX: status", "type": "shell", "command": "ut-tdd status", "problemMatcher": [] },',
+    '    { "label": "HELIX: doctor", "type": "shell", "command": "ut-tdd doctor", "problemMatcher": [] },',
+    '    { "label": "HELIX: handover status", "type": "shell", "command": "ut-tdd handover status --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "ut-tdd setup project --dry-run", "problemMatcher": [] }',
+    "  ]",
+    "}",
+    "",
+  ].join("\n"),
   "project/.vscode/settings.json": '{"task.allowAutomaticTasks":"off"}\n',
   "project/.ut-tdd/memory/.gitkeep": "",
   "project/.ut-tdd/handover/.gitkeep": "",
@@ -538,6 +549,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
         doctorTask: "HELIX: doctor",
+        handoverTask: "HELIX: handover status",
       },
       identifierTransition: {
         currentCli: "ut-tdd",
@@ -600,7 +612,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(preview.nextCommands).toEqual(
-      expect.arrayContaining(["ut-tdd status --json", "ut-tdd doctor"]),
+      expect.arrayContaining([
+        "ut-tdd status --json",
+        "ut-tdd doctor",
+        "ut-tdd handover status --json",
+      ]),
     );
     expect(preview.postSetupWorkflow.unmetGates).toEqual(
       expect.arrayContaining(["consumer_readiness:ut-tdd-cli", "consumer_readiness:runtime-cli"]),
@@ -608,13 +624,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
         expect.stringContaining("bun link ut-tdd"),
-        "Run `ut-tdd status --json` and `ut-tdd doctor` before starting HELIX work",
+        "Run `ut-tdd status --json`, `ut-tdd doctor`, and `ut-tdd handover status --json` before starting HELIX work",
       ]),
     );
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
       "ut-tdd doctor",
+      "ut-tdd handover status --json",
     ]);
     expect(preview.postSetupWorkflow.blockedUntil).toContain(
       "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
@@ -634,6 +651,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
+      "HELIX: handover status",
+    );
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
+      "ut-tdd handover status --json",
+    );
     expect(wet.files.get(statePath)).toContain('"phase": "0-A"');
     for (const value of wet.files.values()) {
       expect(value.toLowerCase()).not.toMatch(/(ghp_|github_pat_|token=|bearer )/);
@@ -728,7 +751,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       nextActions: [
         "Run `ut-tdd status --json`",
         "Run `ut-tdd doctor`",
-        "Start from the active handover or current PLAN route",
+        "Run `ut-tdd handover status --json` and start from the active handover or current PLAN route",
       ],
     });
   });

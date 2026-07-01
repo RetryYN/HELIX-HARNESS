@@ -111,6 +111,7 @@ export interface HelixProjectSetupResult extends SetupResult {
     tasksPath: string;
     statusTask: "HELIX: status";
     doctorTask: "HELIX: doctor";
+    handoverTask: "HELIX: handover status";
   };
   baseline: {
     statePath: string;
@@ -749,18 +750,18 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "Review importReport.skippedExistingPaths and merge or accept consumer-owned configs before apply",
           "Rerun `ut-tdd setup project --dry-run` after the import report is resolved",
-          "Run `ut-tdd status --json` and `ut-tdd doctor` before starting HELIX work",
+          "Run `ut-tdd status --json`, `ut-tdd doctor`, and `ut-tdd handover status --json` before starting HELIX work",
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "Rerun `ut-tdd setup project --dry-run` after readiness checks are green",
-            "Run `ut-tdd status --json` and `ut-tdd doctor` before starting HELIX work",
+            "Run `ut-tdd status --json`, `ut-tdd doctor`, and `ut-tdd handover status --json` before starting HELIX work",
           ]
         : [
             "Run `ut-tdd status --json`",
             "Run `ut-tdd doctor`",
-            "Start from the active handover or current PLAN route",
+            "Run `ut-tdd handover status --json` and start from the active handover or current PLAN route",
           ];
   const blockedUntil = [
     ...(input.importReport.requiresReview ? ["importReport.requiresReview=false"] : []),
@@ -779,6 +780,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
       "ut-tdd doctor",
+      "ut-tdd handover status --json",
     ],
     blockedUntil,
   };
@@ -917,6 +919,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",
       doctorTask: "HELIX: doctor",
+      handoverTask: "HELIX: handover status",
     },
     baseline: {
       statePath: STATE_PATH,
