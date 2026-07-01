@@ -186,6 +186,14 @@ describe("clean distribution local acceptance smoke", () => {
         expect(tasks.tasks.map((task: { label: string }) => task.label)).toEqual(
           expect.arrayContaining(["HELIX: status", "HELIX: doctor", "HELIX: handover status"]),
         );
+        expect(tasks.tasks).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              label: "HELIX: doctor",
+              command: "ut-tdd doctor --profile consumer",
+            }),
+          ]),
+        );
 
         const statusFromGeneratedPath = runCommand(
           consumerRoot,
@@ -195,6 +203,15 @@ describe("clean distribution local acceptance smoke", () => {
         );
         expect(statusFromGeneratedPath.status, statusFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(statusFromGeneratedPath.stdout).availableRuntimes).toContain("codex");
+
+        const doctorFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          ["doctor", "--profile", "consumer", "--json"],
+          env,
+        );
+        expect(doctorFromGeneratedPath.status, doctorFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(doctorFromGeneratedPath.stdout)).toMatchObject({ ok: true });
 
         const handoverFromGeneratedPath = runCommand(
           consumerRoot,

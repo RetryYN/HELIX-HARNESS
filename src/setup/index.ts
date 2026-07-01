@@ -167,7 +167,7 @@ export interface HelixProjectDoctorBaseline {
   baselineCommands: [
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
-    "ut-tdd doctor",
+    "ut-tdd doctor --profile consumer",
     "ut-tdd handover status --json",
   ];
   stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"];
@@ -348,7 +348,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
   baselineCommands: [
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
-    "ut-tdd doctor",
+    "ut-tdd doctor --profile consumer",
     "ut-tdd handover status --json",
   ],
   stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
@@ -820,17 +820,17 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor`、`ut-tdd handover status --json` を実行する",
+          "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor --profile consumer`、`ut-tdd handover status --json` を実行する",
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor`、`ut-tdd handover status --json` を実行する",
+            "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor --profile consumer`、`ut-tdd handover status --json` を実行する",
           ]
         : [
             "`ut-tdd status --json` を実行する",
-            "`ut-tdd doctor` を実行する",
+            "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
           ];
   const blockedUntil = [
@@ -849,7 +849,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
     verificationCommands: [
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
-      "ut-tdd doctor",
+      "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
     ],
     blockedUntil,
@@ -1024,7 +1024,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     },
     nextCommands: [
       "ut-tdd status --json",
-      "ut-tdd doctor",
+      "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
       "ut-tdd setup project --dry-run",
     ],

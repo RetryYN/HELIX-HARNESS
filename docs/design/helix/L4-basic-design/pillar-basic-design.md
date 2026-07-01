@@ -72,7 +72,7 @@ next_pair_freeze: L9
 | HR-FR-P4-03 | HB-P4 | implementation accuracy / review finding / rework / test duration / flake / regression を metric event として収集する | HST-P4-03 |
 | HR-FR-P6-01 | HB-P6 | GitHub Rulesets / required checks / Merge Queue を gated push block に置く | HST-P6-01 |
 | HR-FR-P6-02 | HB-P6 | PR review と CI auto-fix-repush は worker!=verifier、confidence cap、iteration cap を持つ | HST-P6-02 |
-| HR-FR-P6-03 | HB-P6 | fresh/brownfield setup は hooks / adapters / state / memory / handover / GitHub plan / doctor baseline を非破壊に emit する | HST-P6-03 |
+| HR-FR-P6-03 | HB-P6 | fresh/brownfield setup は hooks / adapters / state / memory / handover / GitHub plan / consumer doctor baseline を非破壊に emit し、consumer repo では dogfood design/plans を要求しない `ut-tdd doctor --profile consumer` を初回 health check にする | HST-P6-03 |
 | HR-FR-P6-04 | HB-P6 | tag bump は current/target detection、migration、compatibility warning、rollback point、idempotency evidence を持つ。PLAN-M-02 rename cutover は actor/tool/target だけでなく approved params、current `cutoverSnapshot` sha256 binding、review/audit/expiry、backup/rollback/monitoring evidence が揃うまで apply 不可にする | HST-P6-04 |
 | HR-FR-P6-05 | HB-P6 | semantic-release vs Release Please は ADR で選び、CI auto-fix repush は confidence >=0.75 に制限する | HST-P6-05 |
 | HR-FR-P7-01 | HB-P7 | Claude/Codex SessionStart は同じ `.ut-tdd/memory` と provider handover から bounded recall する | HST-P7-01 |

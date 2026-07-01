@@ -22,7 +22,7 @@ import { parse as parseYaml } from "yaml";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
-import { runDoctor } from "./doctor";
+import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   renderFeedbackEventRows,
@@ -869,8 +869,23 @@ completion
 program
   .command("doctor")
   .description("統合検証 (doctor / gate / trace / drift / roadmap)")
-  .action(() => {
-    const r = runDoctor();
+  .option("--profile <name>", "doctor profile (consumer)")
+  .option("--json", "JSON output")
+  .action((opts: { profile?: string; json?: boolean }) => {
+    const r =
+      opts.profile === "consumer"
+        ? runConsumerDoctor()
+        : opts.profile
+          ? {
+              ok: false,
+              messages: [`doctor: profile - violation unknown profile ${opts.profile}`],
+            }
+          : runDoctor();
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+      process.exitCode = r.ok ? 0 : 1;
+      return;
+    }
     for (const m of r.messages) process.stdout.write(`${m}\n`);
     process.exitCode = r.ok ? 0 : 1;
   });

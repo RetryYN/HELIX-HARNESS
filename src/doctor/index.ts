@@ -1712,6 +1712,112 @@ export function nodeDoctorDeps(repoRoot: string): DoctorDeps {
   };
 }
 
+function consumerFile(deps: DoctorDeps, relativePath: string): string | null {
+  return deps.readText(join(deps.repoRoot, ...relativePath.split("/")));
+}
+
+function consumerHasFile(deps: DoctorDeps, relativePath: string): boolean {
+  return consumerFile(deps, relativePath) !== null;
+}
+
+function consumerJson(deps: DoctorDeps, relativePath: string): unknown | null {
+  const raw = consumerFile(deps, relativePath);
+  if (raw === null) return null;
+  try {
+    return JSON.parse(raw) as unknown;
+  } catch {
+    return null;
+  }
+}
+
+export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
+  const messages: string[] = ["doctor: profile=consumer"];
+  const requiredFiles = [
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/CLAUDE.md",
+    ".claude/settings.json",
+    ".codex/config.toml",
+    ".codex/hooks.json",
+    ".vscode/tasks.json",
+    ".ut-tdd/memory/.gitkeep",
+    ".ut-tdd/handover/.gitkeep",
+    ".ut-tdd/evidence/.gitkeep",
+  ];
+  const missing = requiredFiles.filter((path) => !consumerHasFile(deps, path));
+  messages.push(
+    missing.length === 0
+      ? `doctor: consumer-files - OK (checked=${requiredFiles.length})`
+      : `doctor: consumer-files - violation missing=${missing.join(",")}`,
+  );
+
+  const agents = consumerFile(deps, "AGENTS.md") ?? "";
+  const claude = consumerFile(deps, "CLAUDE.md") ?? "";
+  const claudeRuntime = consumerFile(deps, ".claude/CLAUDE.md") ?? "";
+  const docsOk =
+    agents.includes("HELIX アダプター") &&
+    agents.includes("UT-TDD:managed:start") &&
+    claude.includes("HELIX 共有コンテキスト") &&
+    claude.includes("UT-TDD:managed:start") &&
+    claudeRuntime.includes("Claude runtime アダプター") &&
+    claudeRuntime.includes("UT-TDD:managed:start");
+  messages.push(
+    docsOk
+      ? "doctor: consumer-adapter-docs - OK (HELIX/Claude adapter managed blocks present)"
+      : "doctor: consumer-adapter-docs - violation: HELIX/Claude adapter managed blocks missing",
+  );
+
+  const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
+  const claudeOk =
+    claudeSettings.includes("ut-tdd hook agent-guard") &&
+    claudeSettings.includes("ut-tdd hook work-guard") &&
+    claudeSettings.includes("ut-tdd session start");
+  messages.push(
+    claudeOk
+      ? "doctor: consumer-claude-adapter - OK (work/agent guard and session hook present)"
+      : "doctor: consumer-claude-adapter - violation: Claude hooks baseline incomplete",
+  );
+
+  const codexHooks = consumerFile(deps, ".codex/hooks.json") ?? "";
+  const codexConfig = consumerFile(deps, ".codex/config.toml") ?? "";
+  const codexOk =
+    codexConfig.includes("[features]") &&
+    codexConfig.includes("hooks = true") &&
+    codexHooks.includes("ut-tdd hook work-guard") &&
+    codexHooks.includes("ut-tdd hook agent-guard");
+  messages.push(
+    codexOk
+      ? "doctor: consumer-codex-adapter - OK (hooks enabled; work/agent guard present)"
+      : "doctor: consumer-codex-adapter - violation: Codex hooks/config baseline incomplete",
+  );
+
+  const tasks = consumerJson(deps, ".vscode/tasks.json") as {
+    tasks?: { label?: string; command?: string }[];
+  } | null;
+  const labels = new Map(
+    (tasks?.tasks ?? []).map((task) => [task.label ?? "", task.command ?? ""]),
+  );
+  const expectedTasks = new Map([
+    ["HELIX: status", "ut-tdd status"],
+    ["HELIX: doctor", "ut-tdd doctor --profile consumer"],
+    ["HELIX: handover status", "ut-tdd handover status --json"],
+    ["HELIX: setup dry-run", "ut-tdd setup project --dry-run"],
+  ]);
+  const missingTasks = [...expectedTasks.entries()].filter(
+    ([label, command]) => labels.get(label) !== command,
+  );
+  messages.push(
+    missingTasks.length === 0
+      ? `doctor: consumer-vscode-tasks - OK (tasks=${expectedTasks.size})`
+      : `doctor: consumer-vscode-tasks - violation missing_or_wrong=${missingTasks
+          .map(([label]) => label)
+          .join(",")}`,
+  );
+
+  const ok = missing.length === 0 && docsOk && claudeOk && codexOk && missingTasks.length === 0;
+  return { ok, messages };
+}
+
 /**
  * doc-consistency lint を hard gate 検査 (PLAN-L7-95、要件 §G.11 の「自動検証」配線)。
  * carry 整合 / screen-id 妥当性 / NFR 件数宣言-実数を fail-close。I/O 失敗も violation。

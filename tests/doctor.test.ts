@@ -61,6 +61,7 @@ import {
   checkVerificationProfile,
   checkVersionUpReadiness,
   type DoctorDeps,
+  runConsumerDoctor,
   runDoctor,
 } from "../src/doctor/index";
 import { checkGreenCommandDigests } from "../src/lint/green-command-digest";
@@ -119,6 +120,110 @@ function deps(over: Partial<DoctorDeps> & { files?: Map<string, string> } = {}):
 function hasDoctorMessage(messages: string[], fragment: string): boolean {
   return messages.some((m) => m.includes(fragment));
 }
+
+function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | null> = {}) {
+  const file = (relativePath: string) => join(root, ...relativePath.split("/"));
+  const entries: Record<string, string> = {
+    "AGENTS.md": [
+      "# consumer",
+      "<!-- UT-TDD:managed:start -->",
+      "# HELIX アダプター",
+      "<!-- UT-TDD:managed:end -->",
+    ].join("\n"),
+    "CLAUDE.md": [
+      "<!-- UT-TDD:managed:start -->",
+      "# HELIX 共有コンテキスト",
+      "<!-- UT-TDD:managed:end -->",
+    ].join("\n"),
+    ".claude/CLAUDE.md": [
+      "<!-- UT-TDD:managed:start -->",
+      "# Claude runtime アダプター",
+      "<!-- UT-TDD:managed:end -->",
+    ].join("\n"),
+    ".claude/settings.json": [
+      "{",
+      '  "hooks": {',
+      '    "PreToolUse": [',
+      '      { "matcher": "Agent|Task", "hooks": [{ "type": "command", "command": "ut-tdd hook agent-guard", "blockOnFailure": true }] },',
+      '      { "matcher": "Edit|Write|MultiEdit", "hooks": [{ "type": "command", "command": "ut-tdd hook work-guard", "blockOnFailure": true }] }',
+      "    ],",
+      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "ut-tdd session start" }] }]',
+      "  }",
+      "}",
+    ].join("\n"),
+    ".codex/config.toml": "[features]\nhooks = true\n",
+    ".codex/hooks.json": [
+      "{",
+      '  "hooks": {',
+      '    "PreToolUse": [',
+      '      { "matcher": "spawn_agent|spawn_agents_on_csv", "hooks": [{ "type": "command", "command": "ut-tdd hook agent-guard", "blockOnFailure": true }] },',
+      '      { "matcher": "apply_patch|write_file", "hooks": [{ "type": "command", "command": "ut-tdd hook work-guard", "blockOnFailure": true }] }',
+      "    ]",
+      "  }",
+      "}",
+    ].join("\n"),
+    ".vscode/tasks.json": JSON.stringify({
+      version: "2.0.0",
+      tasks: [
+        { label: "HELIX: status", command: "ut-tdd status" },
+        { label: "HELIX: doctor", command: "ut-tdd doctor --profile consumer" },
+        { label: "HELIX: handover status", command: "ut-tdd handover status --json" },
+        { label: "HELIX: setup dry-run", command: "ut-tdd setup project --dry-run" },
+      ],
+    }),
+    ".ut-tdd/memory/.gitkeep": "",
+    ".ut-tdd/handover/.gitkeep": "",
+    ".ut-tdd/evidence/.gitkeep": "",
+  };
+  for (const [path, text] of Object.entries(overrides)) {
+    if (text === null) delete entries[path];
+    else entries[path] = text;
+  }
+  return new Map(Object.entries(entries).map(([relativePath, text]) => [file(relativePath), text]));
+}
+
+describe("runConsumerDoctor", () => {
+  it("passes with generated consumer setup artifacts without requiring dogfood design docs", () => {
+    const result = runConsumerDoctor(deps({ files: consumerDoctorFiles() }));
+
+    expect(result.ok).toBe(true);
+    expect(hasDoctorMessage(result.messages, "doctor: profile=consumer")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
+  });
+
+  it("fails closed when the consumer doctor task still points at the product doctor", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".vscode/tasks.json": JSON.stringify({
+        version: "2.0.0",
+        tasks: [
+          { label: "HELIX: status", command: "ut-tdd status" },
+          { label: "HELIX: doctor", command: "ut-tdd doctor" },
+          { label: "HELIX: handover status", command: "ut-tdd handover status --json" },
+          { label: "HELIX: setup dry-run", command: "ut-tdd setup project --dry-run" },
+        ],
+      }),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - violation")).toBe(true);
+  });
+
+  it("fails closed when Claude adapter hooks are incomplete", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".claude/settings.json": '{"hooks":{"SessionStart":[]}}\n',
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - violation")).toBe(true);
+  });
+});
 
 function hasDoctorMessageWith(messages: string[], ...fragments: string[]): boolean {
   return messages.some((m) => fragments.every((fragment) => m.includes(fragment)));

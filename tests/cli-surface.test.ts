@@ -636,7 +636,7 @@ describe("L7 CLI surface closure", () => {
         baselineCommands: [
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
-          "ut-tdd doctor",
+          "ut-tdd doctor --profile consumer",
           "ut-tdd handover status --json",
         ],
         stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
@@ -719,7 +719,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
-      "ut-tdd doctor",
+      "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
     ]);
     expect(payload.doctorBaseline.baselineCommands).toEqual(
@@ -728,7 +728,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining([
         "ut-tdd status --json",
-        "ut-tdd doctor",
+        "ut-tdd doctor --profile consumer",
         "ut-tdd handover status --json",
       ]),
     );

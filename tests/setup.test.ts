@@ -72,7 +72,7 @@ const baseTemplates: TemplateSet = {
     "# HELIX アダプター",
     "",
     "- Status: `ut-tdd status`",
-    "- Doctor: `ut-tdd doctor`",
+    "- Doctor: `ut-tdd doctor --profile consumer`",
     "- Handover: `ut-tdd handover`",
     "<!-- UT-TDD:managed:end -->",
     "",
@@ -82,7 +82,7 @@ const baseTemplates: TemplateSet = {
     "# HELIX 共有コンテキスト",
     "",
     "- `ut-tdd status`",
-    "- `ut-tdd doctor`",
+    "- `ut-tdd doctor --profile consumer`",
     "<!-- UT-TDD:managed:end -->",
     "",
   ].join("\n"),
@@ -101,7 +101,7 @@ const baseTemplates: TemplateSet = {
     '  "version": "2.0.0",',
     '  "tasks": [',
     '    { "label": "HELIX: status", "type": "shell", "command": "ut-tdd status", "problemMatcher": [] },',
-    '    { "label": "HELIX: doctor", "type": "shell", "command": "ut-tdd doctor", "problemMatcher": [] },',
+    '    { "label": "HELIX: doctor", "type": "shell", "command": "ut-tdd doctor --profile consumer", "problemMatcher": [] },',
     '    { "label": "HELIX: handover status", "type": "shell", "command": "ut-tdd handover status --json", "problemMatcher": [] },',
     '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "ut-tdd setup project --dry-run", "problemMatcher": [] }',
     "  ]",
@@ -438,7 +438,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(agents).toContain("# Consumer Rules\n\nKeep this line.\n");
     expect(agents).toContain("<!-- UT-TDD:managed:start -->");
     expect(agents).toContain("HELIX アダプター");
-    expect(agents).toContain("`ut-tdd doctor`");
+    expect(agents).toContain("`ut-tdd doctor --profile consumer`");
     expect(deps.files.get(join("/repo", ".claude", "settings.json"))).toBe('{"consumer":true}\n');
 
     const beforeSecondRun = deps.files.get(join("/repo", "AGENTS.md"));
@@ -591,7 +591,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         baselineCommands: [
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
-          "ut-tdd doctor",
+          "ut-tdd doctor --profile consumer",
           "ut-tdd handover status --json",
         ],
         stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
@@ -679,7 +679,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.nextCommands).toEqual(
       expect.arrayContaining([
         "ut-tdd status --json",
-        "ut-tdd doctor",
+        "ut-tdd doctor --profile consumer",
         "ut-tdd handover status --json",
       ]),
     );
@@ -689,13 +689,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
         expect.stringContaining("bun link ut-tdd"),
-        "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor`、`ut-tdd handover status --json` を実行する",
+        "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor --profile consumer`、`ut-tdd handover status --json` を実行する",
       ]),
     );
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
-      "ut-tdd doctor",
+      "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
     ]);
     expect(preview.postSetupWorkflow.blockedUntil).toContain(
@@ -815,7 +815,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       unmetGates: [],
       nextActions: [
         "`ut-tdd status --json` を実行する",
-        "`ut-tdd doctor` を実行する",
+        "`ut-tdd doctor --profile consumer` を実行する",
         "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
       ],
     });
