@@ -52,6 +52,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "C-14",
       "C-15",
       "C-17",
+      "C-18",
     ];
     const frontier = ["C-12", "C-16"];
 
@@ -97,7 +98,9 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
       "docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md",
       "docs/plans/PLAN-L7-206-visualization-read-model-response.md",
+      "src/lint/semantic-frontier-consistency.ts",
       "docs/process/modes/version-up.md",
+      "tests/semantic-frontier-consistency.test.ts",
       "tests/visualization-read-model.test.ts",
     ];
 
@@ -164,6 +167,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     const row = auditRow("C-17");
 
     expect(text).toContain("## 2026-07-01 Re-Read Addendum");
+    expect(text).toContain("## 2026-07-02 Hard-Gate Addendum");
     expect(row).toContain("| proved |");
     expect(row).toContain("pair-agent");
     expect(row).toContain("setup/rename");
@@ -183,6 +187,15 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("irreversible_migration_pending");
     expect(text).toContain("po_decision_pending");
     expect(text).toContain("version_up_parked");
+
+    const hardGateRow = auditRow("C-18");
+    expect(hardGateRow).toContain("| proved |");
+    expect(hardGateRow).toContain("semantic-frontier-consistency");
+    expect(text).toContain("design_bottomup_mode");
+    expect(text).toContain("asset_progress_visualization");
+    expect(text).toContain("serverless_readonly_share");
+    expect(text).toContain("name_cutover");
+    expect(text).toContain("feature list is allowed to be considered aligned");
   });
 
   it("binds requirement amendments to the G-SF semantic feature frontier gate", () => {

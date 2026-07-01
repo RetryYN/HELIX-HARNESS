@@ -52,6 +52,7 @@ import {
   checkRuntimeReadability,
   checkS4DecisionReadiness,
   checkScrumReverse,
+  checkSemanticFrontierConsistency,
   checkSkillAssignment,
   checkTelemetryClosure,
   checkToolContractRegistry,
@@ -392,6 +393,11 @@ describe("runDoctor", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: objective-evidence-audit - OK")).toBe(true);
     expect(hasDoctorMessage(r.messages, "progress=90%")).toBe(true);
+  });
+
+  it("includes semantic frontier consistency hard gate in doctor output", () => {
+    const r = runDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: semantic-frontier-consistency - OK")).toBe(true);
   });
 
   it("includes G1/G3 trace gates in doctor output", () => {
@@ -770,6 +776,7 @@ describe("runDoctor", () => {
       ["s4-decision-readiness", checkS4DecisionReadiness(missingRoot)],
       ["cutover-readiness", checkCutoverReadiness(missingRoot)],
       ["objective-evidence-audit", checkObjectiveEvidenceAudit(missingRoot)],
+      ["semantic-frontier-consistency", checkSemanticFrontierConsistency(missingRoot)],
       ["regression-expansion", checkRegressionExpansion(missingRoot, null)],
     ] as const;
 

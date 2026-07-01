@@ -389,6 +389,7 @@ function semanticFeatureSourcePathsForClassification(
       ];
     case "approval_gated_cutover":
       return [
+        "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
         "docs/process/forward/L08-L14-verification-phase.md",
         "docs/plans/PLAN-M-02-helix-identifier-rename.md",
       ];

@@ -112,7 +112,7 @@ dir move + harness.db パス + projection-writer + `.gitignore` + loop/jobs/memo
 cutover_decision_record:
 - allowed_outcome: `approve_cutover` / `reject_or_defer` / `request_runbook_changes`
 - decision_owner: PO (人間 / RetryYN)。TL は blast-radius、dry-run、rollback、alias policy の技術判定を提出する。
-- cutover_snapshot_id: Current `cutoverSnapshot.snapshotId` from `ut-tdd rename plan --json` is `sha256:34e0fe0bfed5e7be1f98383f996382427190164d3ddc7dbb4f59deb8eab8bcce`; cutover/action-binding approval evidence becomes stale if this snapshot changes.
+- cutover_snapshot_id: Current `cutoverSnapshot.snapshotId` from `ut-tdd rename plan --json` is `sha256:623da784b06eb24ba0c924521b323591c72add49d75b2a6527ac2a031061cf5f`; cutover/action-binding approval evidence becomes stale if this snapshot changes.
 - trigger_condition: `PLAN-L1-06-helix-solo-conversion` の G-REQ.L1 re-freeze が confirmed、かつ Step 1〜6 の atomic rename 検証が green。
 - blast_radius_baseline: Step 1 の再計測結果 (`ut-tdd` / `.ut-tdd/` / `area=harness` / rule-drift markers / hooks / package bin / docs links) を audit に固定する。
 - dry_run_plan: codemod + state path migration rehearsal + `bun run test` + `bun run src/cli.ts db rebuild && bun run src/cli.ts doctor` + compiled dist smoke を non-destructive branch で実行する。
@@ -137,7 +137,7 @@ action_binding_approval_record:
 - approved_target: No irreversible target is approved by this draft PLAN; cutover approval must name the CLI/bin identifiers, state paths, hook/adapter markers, docs/governance paths, and distribution surface.
 - approved_params: No apply params are approved by this draft PLAN; cutover approval must record command args, codemod options, state move mapping, and params hash or summary.
 - review_approval_evidence: Step 1 blast-radius baseline, dry-run plan, rollback/state backup plan, compiled dist smoke, full test, db rebuild, doctor, and legacy alias policy must be reviewed before approval.
-- reviewed_snapshot_binding: Cutover approval must cite the current `cutoverSnapshot.snapshotId` from `ut-tdd rename plan --json` (`sha256:34e0fe0bfed5e7be1f98383f996382427190164d3ddc7dbb4f59deb8eab8bcce`); if that snapshot changes, old approval evidence is stale and cannot authorize `.ut-tdd` state migration or identifier cutover.
+- reviewed_snapshot_binding: Cutover approval must cite the current `cutoverSnapshot.snapshotId` from `ut-tdd rename plan --json` (`sha256:623da784b06eb24ba0c924521b323591c72add49d75b2a6527ac2a031061cf5f`); if that snapshot changes, old approval evidence is stale and cannot authorize `.ut-tdd` state migration or identifier cutover.
 - expires_at_or_trigger: Trigger-bound; approval expires if Step 1-6 evidence changes, branch/head changes, scope expands, or the quiet-window/rollback plan is revised.
 - audit_record: No irreversible cutover is approved or executed by this draft PLAN; apply must write approver, git hash, backup location, commands, results, rollback decision, and monitoring outcome.
 

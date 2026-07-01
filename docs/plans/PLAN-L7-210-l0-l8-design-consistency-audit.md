@@ -6,7 +6,7 @@ layer: L7
 drive: fullstack
 status: confirmed
 created: 2026-06-30
-updated: 2026-07-01
+updated: 2026-07-02
 owner: Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -24,6 +24,12 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: tests/l0-l8-design-consistency-audit.test.ts
     artifact_type: test_code
+  - artifact_path: src/lint/semantic-frontier-consistency.ts
+    artifact_type: source_module
+  - artifact_path: tests/semantic-frontier-consistency.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/doctor.test.ts
+    artifact_type: test_code
   - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
@@ -39,6 +45,8 @@ generates:
   - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L7-209-objective-evidence-audit.md
@@ -56,6 +64,71 @@ dependencies:
     - docs/governance/helix-l0-l8-design-consistency-audit.md
     - tests/l0-l8-design-consistency-audit.test.ts
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-02T01:48:49+09:00"
+    tests_green_at: "2026-07-02T01:48:49+09:00"
+    verdict: approve
+    scope: "Semantic feature frontier consistency is now a doctor hard gate. The L3 §0.2 meaning-based feature list and live status/handover semanticFeatureFrontierRecords must match bidirectionally for design_bottomup_mode, asset_progress_visualization, serverless_readonly_share, and name_cutover; extra live records, missing L3 markers, misclassification, completionClaimAllowed=true, or missing L3 sourcePaths fail the gate. PLAN-M-02 cutover snapshot material was refreshed to the current non-approving snapshot id after the L3 source changed."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/semantic-frontier-consistency.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: tests/semantic-frontier-consistency.test.ts
+        output_digest: "sha256:8ed6159da3605aa1c9c503343592cc5ffb8431fdcb6ae1d6c6ab5f265d1980b7"
+      - kind: unit_test
+        command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: tests/l0-l8-design-consistency-audit.test.ts
+        output_digest: "sha256:ac7fc7499f292d0d0801fa7aa6797618449c851b0a1def0cbb4d11609731e3cc"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: src/lint/semantic-frontier-consistency.ts
+        output_digest: "sha256:a50adfbdc36dd7c1ae05995c68eb0cb38cdeb539307321c4436ce60d205f3640"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:5689cc301bb339b645de5b96c72cbd8689769970006689ab8df136c384f53507"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
+        output_digest: "sha256:721c9439392ec648d88a59ebad5a38ec86a872fb3fd2651761a2df424cb4b849"
+      - kind: unit_test
+        command: "bun run vitest run tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
+        output_digest: "sha256:d3a6f8ec5ab4283c26dcd70e0d97778ef7c33aa56ec45435579fa1afc72584b7"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:48:49+09:00"
+        evidence_path: docs/plans/PLAN-M-02-helix-identifier-rename.md
+        output_digest: "sha256:e7cb3b1319050f4d367b163951e57dbd037ed45ff4100ed704d2bc031d47aa9c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:50:00+09:00"

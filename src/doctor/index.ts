@@ -263,6 +263,11 @@ import {
   screenImplPairFreezeMessages,
 } from "../lint/screen-impl-pair-freeze";
 import { analyzeScrumReverse, loadSrPlans, scrumReverseMessages } from "../lint/scrum-reverse";
+import {
+  analyzeSemanticFrontierConsistency,
+  loadSemanticFrontierConsistencyInput,
+  semanticFrontierConsistencyMessages,
+} from "../lint/semantic-frontier-consistency";
 import { fmValue } from "../lint/shared";
 import {
   analyzeSkillAssignments,
@@ -1997,6 +2002,23 @@ export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: strin
   }
 }
 
+export function checkSemanticFrontierConsistency(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const r = analyzeSemanticFrontierConsistency(loadSemanticFrontierConsistencyInput(repoRoot));
+    return { messages: semanticFrontierConsistencyMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: [
+        "semantic-frontier-consistency - violation: semantic frontier docs or outstanding state could not be read",
+      ],
+      ok: false,
+    };
+  }
+}
+
 /** legacy debt allowlist ↔ audit doc の双方向一致 hard check (Codex Critical B)。 */
 export function checkForwardConvergenceAudit(repoRoot: string): {
   messages: string[];
@@ -2165,6 +2187,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const cutoverReadiness = checkCutoverReadiness(deps.repoRoot);
   const completionDecisionPacket = checkCompletionDecisionPacket(deps.repoRoot);
   const objectiveEvidenceAudit = checkObjectiveEvidenceAudit(deps.repoRoot);
+  const semanticFrontierConsistency = checkSemanticFrontierConsistency(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   return {
     ok:
@@ -2244,6 +2267,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       cutoverReadiness.ok &&
       completionDecisionPacket.ok &&
       objectiveEvidenceAudit.ok &&
+      semanticFrontierConsistency.ok &&
       forwardConvergenceAudit.ok &&
       handoverNextAction.ok &&
       handoverOutstanding.ok &&
@@ -2332,6 +2356,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...cutoverReadiness.messages.map((m) => `doctor: ${m}`),
       ...completionDecisionPacket.messages.map((m) => `doctor: ${m}`),
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
+      ...semanticFrontierConsistency.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
     ],
   };

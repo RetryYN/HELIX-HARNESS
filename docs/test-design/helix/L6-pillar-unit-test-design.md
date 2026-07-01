@@ -106,7 +106,7 @@ next_pair_freeze: L6
 | HC-P8 | untrusted external text is never copied into executable instruction fields |
 | HC-P9 | stale projection or missing layer gate keeps `ConvergenceStatus` non-green |
 | HC-AC | Codex hosted/API surface cannot be classified as hook-covered without preflight evidence |
-| G-SF | semantic frontier records with `frontier_pending_decision`, `parked_future_version`, or `approval_gated_cutover` cannot allow whole-program completion; `outstanding.semanticFeatureFrontierRecords[]` must expose the same classification vocabulary in status/handover JSON; terminal decision records cannot close without current source ledger freshness, source status delta, adoption decision delta, and workflow route impact |
+| G-SF | semantic frontier records with `frontier_pending_decision`, `parked_future_version`, or `approval_gated_cutover` cannot allow whole-program completion; `outstanding.semanticFeatureFrontierRecords[]` must expose the same classification vocabulary in status/handover JSON; live records for `design_bottomup_mode`, `asset_progress_visualization`, `serverless_readonly_share`, and `name_cutover` must match the L3 §0.2 meaning-based feature list and cite that L3 source in `sourcePaths[]`; terminal decision records cannot close without current source ledger freshness, source status delta, adoption decision delta, and workflow route impact |
 
 ## §3 verification strategy
 
