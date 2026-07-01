@@ -16,6 +16,8 @@ import {
 } from "./source-ledger-freshness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  buildDecisionPacketProvenance,
+  type DecisionPacketFreshness,
   planTextRequiresActionBindingApproval,
   type RelatedDecisionPacket,
   relatedDecisionPacket,
@@ -57,6 +59,9 @@ export interface VersionUpReadinessResult {
 export interface VersionUpActivationPacket {
   schemaVersion: "version-up-activation-packet.v1";
   planId: string;
+  generatedAt: string;
+  sourceCommand: typeof VERSION_UP_ACTIVATION_PACKET_COMMAND;
+  freshness: DecisionPacketFreshness;
   versionTarget: string | null;
   status: "parked_pending_activation_decision" | "invalid_not_parked";
   planOnly: true;
@@ -845,10 +850,16 @@ export function buildVersionUpActivationPacket(
     ...activationReadinessBlockedReasons(activationReadinessChecks),
     ...sourceLedgerActivationBlockedReasons(sourceLedgerFreshness),
   ];
+  const packetProvenance = buildDecisionPacketProvenance({
+    sourceCommand: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+  });
 
   return {
     schemaVersion: "version-up-activation-packet.v1",
     planId: plan.plan_id,
+    generatedAt: packetProvenance.generatedAt,
+    sourceCommand: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+    freshness: packetProvenance.freshness,
     versionTarget: plan.versionTarget,
     status:
       plan.versionTarget === null ? "invalid_not_parked" : "parked_pending_activation_decision",

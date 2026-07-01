@@ -9,6 +9,8 @@ import {
 } from "./shared";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  buildDecisionPacketProvenance,
+  type DecisionPacketFreshness,
   RENAME_PLAN_PACKET_COMMAND,
   type RelatedDecisionPacket,
   relatedDecisionPacket,
@@ -58,6 +60,9 @@ export interface ActionBindingApprovalCheck {
 export interface ActionBindingApprovalPacket {
   schemaVersion: "action-binding-approval-packet.v1";
   planId: string;
+  generatedAt: string;
+  sourceCommand: typeof ACTION_BINDING_APPROVAL_PACKET_COMMAND;
+  freshness: DecisionPacketFreshness;
   status: "pending_action_binding_approval" | "invalid_not_pending_approval";
   planOnly: true;
   mustNotApprove: true;
@@ -243,9 +248,15 @@ export function buildActionBindingApprovalPacket(
     ...ACTION_BINDING_RECORD_FIELDS,
   ]);
   const approvalBindingChecks = buildActionBindingApprovalChecks(plan, approvalRecord);
+  const provenance = buildDecisionPacketProvenance({
+    sourceCommand: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  });
   return {
     schemaVersion: "action-binding-approval-packet.v1",
     planId: plan.plan_id,
+    generatedAt: provenance.generatedAt,
+    sourceCommand: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+    freshness: provenance.freshness,
     status: isPendingHighImpactApproval(plan)
       ? "pending_action_binding_approval"
       : "invalid_not_pending_approval",

@@ -355,6 +355,12 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("judgment-review:");
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
+      expect(blockedText.stdout).toContain(
+        "workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending packet=ut-tdd s4 decision-packet --json",
+      );
+      expect(blockedText.stdout).toContain(
+        "workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending packet=ut-tdd rename plan --json",
+      );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
       expect(blockedText.stdout).toContain(
@@ -521,8 +527,17 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["completion", "decision-packet"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("completion decision-packet: blocked decisions=2");
+      expect(text.stdout).toContain(
+        "packet-freshness: source=ut-tdd completion decision-packet --json",
+      );
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
+      expect(text.stdout).toContain(
+        "packet-command: primary=ut-tdd s4 decision-packet --json packets=ut-tdd s4 decision-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "packet-command: primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json",
+      );
       expect(text.stdout).toContain("record-outcomes cutover_decision_record");
       expect(text.stdout).toContain("record-route cutover_decision_record");
       expect(text.stdout).toContain("record-template cutover_decision_record");
@@ -587,6 +602,9 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("approvalAllowed=false");
     expect(text.stdout).toContain("approvalCommandAvailable=false");
+    expect(text.stdout).toContain(
+      "packet-freshness: source=ut-tdd action-binding approval-packet --json",
+    );
     expect(text.stdout).toContain("binding-checks:");
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");
     expect(text.stdout).toContain(

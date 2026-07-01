@@ -249,6 +249,14 @@ describe("S4 decision readiness", () => {
         command: "ut-tdd s4 decision-packet --json",
       }),
     ]);
+    expect(packet.generatedAt).toEqual(expect.any(String));
+    expect(packet.sourceCommand).toBe("ut-tdd s4 decision-packet --json");
+    expect(packet.freshness).toEqual({
+      validForMinutes: 1440,
+      expiresAt: expect.any(String),
+      stale: false,
+      policy: "decision-packet-freshness.v1",
+    });
   });
 
   it("keeps supporting action-binding approval visible on S4 packets", () => {
@@ -708,6 +716,14 @@ describe("S4 decision readiness", () => {
     expect(packets[0]).toMatchObject({
       schemaVersion: "s4-decision-packet.v1",
       planId: "PLAN-DISCOVERY-10-helix-asset-visualization",
+      generatedAt: expect.any(String),
+      sourceCommand: "ut-tdd s4 decision-packet --json",
+      freshness: {
+        validForMinutes: 1440,
+        expiresAt: expect.any(String),
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
       status: "pending_po_decision",
       planOnly: true,
       mustNotDecide: true,

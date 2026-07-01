@@ -15,6 +15,8 @@ import {
 } from "./source-ledger-freshness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  buildDecisionPacketProvenance,
+  type DecisionPacketFreshness,
   planTextRequiresActionBindingApproval,
   type RelatedDecisionPacket,
   relatedDecisionPacket,
@@ -55,6 +57,9 @@ export interface S4DecisionReadinessResult {
 export interface S4DecisionPacket {
   schemaVersion: "s4-decision-packet.v1";
   planId: string;
+  generatedAt: string;
+  sourceCommand: typeof S4_DECISION_PACKET_COMMAND;
+  freshness: DecisionPacketFreshness;
   status: "pending_po_decision" | "invalid_not_pending_s3";
   planOnly: true;
   mustNotDecide: true;
@@ -475,9 +480,13 @@ export function buildS4DecisionPackets(input: S4DecisionReadinessInput): S4Decis
 export function buildS4DecisionPacket(plan: S4DecisionPlan): S4DecisionPacket {
   const decisionRecord = recordValues(plan.text, S4_RECORD_NAME, [...S4_RECORD_FIELDS]);
   const blockedReasons = s4DecisionBlockedReasons(plan, decisionRecord);
+  const provenance = buildDecisionPacketProvenance({ sourceCommand: S4_DECISION_PACKET_COMMAND });
   return {
     schemaVersion: "s4-decision-packet.v1",
     planId: plan.plan_id,
+    generatedAt: provenance.generatedAt,
+    sourceCommand: S4_DECISION_PACKET_COMMAND,
+    freshness: provenance.freshness,
     status: isS3PocPendingDecision(plan) ? "pending_po_decision" : "invalid_not_pending_s3",
     planOnly: true,
     mustNotDecide: true,

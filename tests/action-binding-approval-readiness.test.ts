@@ -157,6 +157,14 @@ describe("action-binding approval readiness", () => {
       approvalCommandAvailable: false,
       approvalAllowed: false,
       allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
+      generatedAt: expect.any(String),
+      sourceCommand: "ut-tdd action-binding approval-packet --json",
+      freshness: {
+        validForMinutes: 1440,
+        expiresAt: expect.any(String),
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
     });
     expect(packet.approvalRecord.approved_actor).toBe("PO-named operator");
     expect(packet.approvalBindingChecks).toEqual(

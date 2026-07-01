@@ -24,6 +24,12 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
+import {
+  buildDecisionPacketProvenance,
+  COMPLETION_DECISION_PACKET_COMMAND,
+  type DecisionPacketFreshness,
+  type DecisionPacketSourceCommand,
+} from "./workflow-decision-packets";
 
 /** 終端 (= 完了とみなす) status。これ以外 (archived を除く) が非終端 = 未了。 */
 const SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
@@ -219,18 +225,11 @@ export interface CompletionDecisionPacket {
   decisions: CompletionDecisionItem[];
 }
 
-export interface DecisionPacketFreshness {
-  validForMinutes: number;
-  expiresAt: string;
-  stale: boolean;
-  policy: "decision-packet-freshness.v1";
-}
-
 export interface CompletionDecisionPacketOptions {
   generatedAt?: string;
   now?: string;
   validForMinutes?: number;
-  sourceCommand?: string;
+  sourceCommand?: DecisionPacketSourceCommand;
 }
 
 export interface WorkflowNextActionItem {
@@ -678,22 +677,19 @@ export function completionDecisionPacketForOutstanding(
   outstanding: OutstandingWork,
   opts: CompletionDecisionPacketOptions = {},
 ): CompletionDecisionPacket {
-  const generatedAt = normalizeIsoTimestamp(opts.generatedAt ?? new Date().toISOString());
-  const now = normalizeIsoTimestamp(opts.now ?? generatedAt);
-  const validForMinutes = opts.validForMinutes ?? 24 * 60;
-  const expiresAt = addMinutesIso(generatedAt, validForMinutes);
+  const provenance = buildDecisionPacketProvenance({
+    generatedAt: opts.generatedAt,
+    now: opts.now,
+    validForMinutes: opts.validForMinutes,
+    sourceCommand: opts.sourceCommand ?? COMPLETION_DECISION_PACKET_COMMAND,
+  });
   return {
     ok: outstanding.completionReadiness.ok,
     status: outstanding.completionReadiness.status,
     generatedFrom: "outstanding.completionReadiness",
-    generatedAt,
-    sourceCommand: opts.sourceCommand ?? "ut-tdd completion decision-packet --json",
-    freshness: {
-      validForMinutes,
-      expiresAt,
-      stale: Date.parse(now) > Date.parse(expiresAt),
-      policy: "decision-packet-freshness.v1",
-    },
+    generatedAt: provenance.generatedAt,
+    sourceCommand: provenance.sourceCommand,
+    freshness: provenance.freshness,
     decisionCount: outstanding.items.length,
     blockers: outstanding.completionReadiness.blockers,
     decisions: outstanding.items.map((item) => {
@@ -721,18 +717,6 @@ export function completionDecisionPacketForOutstanding(
       };
     }),
   };
-}
-
-function normalizeIsoTimestamp(value: string): string {
-  const parsed = Date.parse(value);
-  if (Number.isNaN(parsed)) return new Date(0).toISOString();
-  return new Date(parsed).toISOString();
-}
-
-function addMinutesIso(value: string, minutes: number): string {
-  const parsed = Date.parse(value);
-  const safeMinutes = Number.isFinite(minutes) ? minutes : 0;
-  return new Date(parsed + safeMinutes * 60_000).toISOString();
 }
 
 function decisionKindForOutstandingReason(reason: string): CompletionDecisionKind {

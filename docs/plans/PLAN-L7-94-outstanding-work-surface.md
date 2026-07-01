@@ -7,9 +7,58 @@ drive: db
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 status: confirmed
 created: 2026-06-22
-updated: 2026-07-01
+updated: 2026-07-02
 owner: PM (Opus) / PO (人間)
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-02T01:04:08+09:00"
+    tests_green_at: "2026-07-02T01:04:08+09:00"
+    verdict: pass
+    scope: "Continuation 46: dedicated S4, version-up activation, action-binding approval, and identifier rename decision packets now carry packet-level `generatedAt`, `sourceCommand`, and `freshness` (`decision-packet-freshness.v1`) using the same provenance helper as completion packets. `ut-tdd status` text prints every planId-level workflow-next-action with primary/supporting packet commands, and packet text surfaces print `packet-freshness`, so top-action convenience or stale copied packet material cannot hide remaining S4/version-up/cutover/action-binding blockers."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/action-binding-approval-readiness.test.ts tests/identifier-rename.test.ts tests/cli-surface.test.ts tests/outstanding.test.ts tests/completion-decision-packet.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:04:08+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:6fb6f9933670afb314f331a85b850537fc9e2d3ed3d09589a058534535bd8544"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:04:08+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:e7f7f97b3cf750e085b49473deb4d374a4eced0c4da96e74f018239095e14f72"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:04:08+09:00"
+        evidence_path: src/lint/workflow-decision-packets.ts
+        output_digest: "sha256:c9e06ff9ef2373361e15bdb3a67944fedeff59803316fea8591b5dafe2a6d0f8"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:04:08+09:00"
+        evidence_path: src/cli.ts
+        output_digest: "sha256:cc866b72ead22a99ef87f6beb278c124edb78a1247492ccbc136f71de1148942"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:04:08+09:00"
+        evidence_path: src/lint/outstanding.ts
+        output_digest: "sha256:d203d7184bcf3f9b271dd19084e533dc24e946bdf284db3aad3211b0e6ac615f"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T14:44:49+09:00"

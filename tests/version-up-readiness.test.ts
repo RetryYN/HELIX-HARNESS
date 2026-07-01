@@ -255,6 +255,14 @@ describe("version-up-readiness", () => {
 
     expect(packet.schemaVersion).toBe("version-up-activation-packet.v1");
     expect(packet.planId).toBe("PLAN-L7-900-future");
+    expect(packet.generatedAt).toEqual(expect.any(String));
+    expect(packet.sourceCommand).toBe("ut-tdd version-up activation-packet --json");
+    expect(packet.freshness).toEqual({
+      validForMinutes: 1440,
+      expiresAt: expect.any(String),
+      stale: false,
+      policy: "decision-packet-freshness.v1",
+    });
     expect(packet.status).toBe("parked_pending_activation_decision");
     expect(packet.planOnly).toBe(true);
     expect(packet.mustNotApply).toBe(true);
@@ -951,6 +959,14 @@ describe("version-up-readiness", () => {
     expect(packets[0]).toMatchObject({
       schemaVersion: "version-up-activation-packet.v1",
       planId: "PLAN-L7-146-serverless-readonly-share",
+      generatedAt: expect.any(String),
+      sourceCommand: "ut-tdd version-up activation-packet --json",
+      freshness: {
+        validForMinutes: 1440,
+        expiresAt: expect.any(String),
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
       status: "parked_pending_activation_decision",
       planOnly: true,
       mustNotApply: true,

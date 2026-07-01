@@ -359,6 +359,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         invalidatedBy: plan.freezePolicy.reapprovalTriggers,
       });
+      expect(plan.generatedAt).toEqual(expect.any(String));
+      expect(plan.sourceCommand).toBe("ut-tdd rename plan --json");
+      expect(plan.freshness).toEqual({
+        validForMinutes: 1440,
+        expiresAt: expect.any(String),
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      });
       expect(plan.provenanceRequirements).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ item: "blast_radius_baseline" }),
@@ -450,6 +458,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(payload).toMatchObject({
         schemaVersion: "identifier-rename-cutover-plan.v1",
         status: "blocked_pending_cutover_approval",
+        generatedAt: expect.any(String),
+        sourceCommand: "ut-tdd rename plan --json",
+        freshness: {
+          validForMinutes: 1440,
+          expiresAt: expect.any(String),
+          stale: false,
+          policy: "decision-packet-freshness.v1",
+        },
         planOnly: true,
         mustNotApply: true,
         applyCommandAvailable: false,

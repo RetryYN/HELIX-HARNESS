@@ -744,6 +744,14 @@ function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
   };
 }
 
+function packetFreshnessLine(packet: {
+  sourceCommand: string;
+  generatedAt: string;
+  freshness: { validForMinutes: number; expiresAt: string; stale: boolean };
+}): string {
+  return `  packet-freshness: source=${packet.sourceCommand} generatedAt=${packet.generatedAt} validForMinutes=${packet.freshness.validForMinutes} expiresAt=${packet.freshness.expiresAt} stale=${packet.freshness.stale}\n`;
+}
+
 const program = new Command();
 program
   .name("ut-tdd")
@@ -782,6 +790,11 @@ program
       process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
       if (workflowNextActions.length > 0) {
         process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
+        for (const item of workflowNextActions) {
+          process.stdout.write(
+            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
+          );
+        }
       }
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
@@ -824,9 +837,13 @@ completion
     process.stdout.write(
       `completion decision-packet: ${packet.status} decisions=${packet.decisions.length}\n`,
     );
+    process.stdout.write(packetFreshnessLine(packet));
     for (const decision of packet.decisions) {
       process.stdout.write(
         `  - ${decision.planId}: ${decision.decisionKind} (${decision.blockerReason})\n`,
+      );
+      process.stdout.write(
+        `    packet-command: primary=${decision.decisionPacketCommand} packets=${decision.packetCommands.join(" | ")}\n`,
       );
       process.stdout.write(`    action: ${decision.requiredAction}\n`);
       process.stdout.write(`    outcomes: ${decision.allowedOutcomes.join(", ")}\n`);
@@ -1292,6 +1309,7 @@ rename
     process.stdout.write(
       `rename plan: status=${plan.status} planOnly=${plan.planOnly} applyAuthorized=${plan.applyAuthorized} mustNotApply=${plan.mustNotApply}\n`,
     );
+    process.stdout.write(packetFreshnessLine(plan));
     process.stdout.write(
       `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
     );
@@ -1355,6 +1373,7 @@ versionUp
       process.stdout.write(
         `version-up activation-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} activationAllowed=${packet.activationAllowed} applyCommandAvailable=${packet.applyCommandAvailable}\n`,
       );
+      process.stdout.write(packetFreshnessLine(packet));
       process.stdout.write(
         `  readiness: status=${packet.activationReadinessSummary.status} present=${packet.activationReadinessSummary.presentChecks} pending=${packet.activationReadinessSummary.pendingChecks} total=${packet.activationReadinessSummary.totalChecks} sourceLedgerFresh=${packet.activationReadinessSummary.sourceLedgerFresh}\n`,
       );
@@ -1392,6 +1411,7 @@ s4.command("decision-packet")
       process.stdout.write(
         `s4 decision-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} decisionAllowed=${packet.decisionAllowed} decisionCommandAvailable=${packet.decisionCommandAvailable}\n`,
       );
+      process.stdout.write(packetFreshnessLine(packet));
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
       }
@@ -1428,6 +1448,7 @@ actionBinding
       process.stdout.write(
         `action-binding approval-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} approvalAllowed=${packet.approvalAllowed} approvalCommandAvailable=${packet.approvalCommandAvailable}\n`,
       );
+      process.stdout.write(packetFreshnessLine(packet));
       const checkCounts = packet.approvalBindingChecks.reduce(
         (counts, check) => {
           counts[check.status] += 1;

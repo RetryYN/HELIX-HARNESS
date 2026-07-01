@@ -3,6 +3,8 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  buildDecisionPacketProvenance,
+  type DecisionPacketFreshness,
   RENAME_PLAN_PACKET_COMMAND,
   type RelatedDecisionPacket,
   relatedDecisionPacket,
@@ -58,6 +60,9 @@ export interface IdentifierRenameMapping {
 export interface IdentifierRenameCutoverPlan {
   schemaVersion: "identifier-rename-cutover-plan.v1";
   status: "ready_for_cutover_packet" | "blocked_pending_cutover_approval";
+  generatedAt: string;
+  sourceCommand: typeof RENAME_PLAN_PACKET_COMMAND;
+  freshness: DecisionPacketFreshness;
   planOnly: true;
   mustNotApply: true;
   applyCommandAvailable: false;
@@ -437,6 +442,7 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
 
 export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRenameCutoverPlan {
   const audit = auditIdentifierRenameBlastRadius(root);
+  const provenance = buildDecisionPacketProvenance({ sourceCommand: RENAME_PLAN_PACKET_COMMAND });
   const approvalEvaluation = evaluateCutoverApproval(root);
   const blockedReasons = approvalEvaluation.approved ? [] : [...approvalEvaluation.reasons];
   const hitsByCategory = audit.hitsByCategory;
@@ -540,6 +546,9 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
   return {
     schemaVersion: "identifier-rename-cutover-plan.v1",
     status: applyAuthorized ? "ready_for_cutover_packet" : "blocked_pending_cutover_approval",
+    generatedAt: provenance.generatedAt,
+    sourceCommand: RENAME_PLAN_PACKET_COMMAND,
+    freshness: provenance.freshness,
     planOnly: true,
     mustNotApply: true,
     applyCommandAvailable: false,
