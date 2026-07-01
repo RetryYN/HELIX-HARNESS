@@ -56,7 +56,15 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     artifact_type: design_doc
+  - artifact_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L5-detail/pillar-detail-design.md
+    artifact_type: design_doc
   - artifact_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L4-pillar-system-test-design.md
+    artifact_type: test_design
+  - artifact_path: docs/test-design/helix/L5-pillar-integration-test-design.md
     artifact_type: test_design
   - artifact_path: docs/test-design/helix/L6-pillar-unit-test-design.md
     artifact_type: test_design
@@ -67,6 +75,63 @@ dependencies:
   requires:
     - docs/plans/PLAN-REVERSE-225-approval-snapshot-binding.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T13:49:34+09:00"
+    tests_green_at: "2026-07-01T13:49:34+09:00"
+    verdict: approve
+    scope: "Meaning-level alignment was rechecked from L3 requirements through L4/L5/L6 design and test-design to implementation/tests. Snapshot-bound approvals now stay pending until reviewed_snapshot_binding contains the current sha256 snapshot id, and PLAN-M-02 rename cutover cannot set applyAuthorized from outcome plus actor/tool/target only."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/identifier-rename.test.ts tests/cutover-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T13:49:34+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:c7df34650611cb419049e43e5e00ba3b6fc00fa05b30a1ba487a647d769ddad2"
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/identifier-rename.test.ts tests/cutover-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T13:49:34+09:00"
+        evidence_path: tests/identifier-rename.test.ts
+        output_digest: "sha256:bd29a7a4a9b534b335fb0da467e1a92118c7fee252cd2dc28f47758697fb45d7"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:49:34+09:00"
+        evidence_path: src/lint/identifier-rename.ts
+        output_digest: "sha256:7975a17c7475d667a6e015ddd72047e9f4b90c1d917546c51f8f9d56d82ce40a"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:49:34+09:00"
+        evidence_path: src/lint/action-binding-approval-readiness.ts
+        output_digest: "sha256:c14138ebd4e8b5520dc1b6bdc0e152e07a051b206678f90a6e3e0e50b70d22b1"
+      - kind: lint
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:49:34+09:00"
+        evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
+        output_digest: "sha256:dbf42c275bf6c2c277977a11fdb85000871f1bb552a53cc4b5d737f8c2e3bd9e"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T13:49:34+09:00"
+        evidence_path: docs/plans/PLAN-L7-225-approval-snapshot-binding.md
+        output_digest: "sha256:65865a33ca83b85778412f3fe17fac4590571deb4902c5359c0165a61f268d98"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T11:42:19+09:00"
@@ -151,6 +216,16 @@ evidence being reviewed.
 - Bind action-binding approval and completion decision records to those snapshot
   IDs via `reviewed_snapshot_binding`, `activation_snapshot_id`, and
   `cutover_snapshot_id`.
+- Keep approval packets from treating `activationSnapshot.snapshotId` /
+  `cutoverSnapshot.snapshotId` field-name placeholders as concrete approval
+  material; current `sha256:` snapshot IDs are required before a snapshot-bound
+  approval check can become concrete.
+- Require rename cutover authorization to include the full cutover and
+  action-binding approval evidence set, including approved params, current
+  cutover snapshot binding, review evidence, expiry, audit, backup, rollback,
+  and monitoring evidence.
+- Keep L3-L6 requirement/design/test-design wording aligned so the same
+  approval meaning is visible at each V-model layer.
 - Keep both surfaces plan-only: no apply command, no activation permission, no
   cutover execution, and no approval recording.
 - Update process/design/test docs so snapshot IDs are treated as approval
@@ -175,6 +250,12 @@ evidence being reviewed.
 - [x] Action-binding approval records require `reviewed_snapshot_binding` and
       reject stale/mismatched activation/cutover snapshot references.
 - [x] Snapshot digest changes when cutover blast radius changes.
+- [x] Action-binding approval packet keeps snapshot field placeholders pending
+      until a concrete current `sha256:` snapshot ID is recorded.
+- [x] Rename cutover does not set `applyAuthorized=true` from outcomes plus
+      actor/tool/target alone; full approval evidence is required.
+- [x] L3-L6 requirements/design/test-design lines carry the same snapshot and
+      full-approval semantics.
 - [x] README quickstart uses `ut-tdd setup project` and marks `helix setup project`
       as pending PLAN-M-02 cutover approval.
 - [x] Targeted tests cover version-up, rename, and setup README drift.

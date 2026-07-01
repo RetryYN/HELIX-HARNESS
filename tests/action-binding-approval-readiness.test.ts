@@ -364,6 +364,55 @@ describe("action-binding approval readiness", () => {
     );
   });
 
+  it("keeps snapshot field placeholders pending until the concrete current snapshot id is recorded", () => {
+    const concreteSnapshot =
+      "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+    const packets = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-L7-146.md",
+          plan_id: "PLAN-L7-146",
+          status: "draft",
+          versionTarget: "future",
+          text: `requires action-binding approval\n${RECORD.replace(
+            "no snapshot-bearing packet applies to this approval",
+            "activationSnapshot.snapshotId",
+          )}`,
+        },
+        {
+          file: "PLAN-M-02.md",
+          plan_id: "PLAN-M-02-helix-identifier-rename",
+          status: "draft",
+          text: `identifier rename cutover_decision_record requires action-binding approval\n${RECORD.replace(
+            "no snapshot-bearing packet applies to this approval",
+            `cutoverSnapshot.snapshotId ${concreteSnapshot}`,
+          )}`,
+        },
+      ],
+    });
+
+    const versionUpCheck = packets
+      .find((packet) => packet.planId === "PLAN-L7-146")
+      ?.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding");
+    expect(versionUpCheck).toMatchObject({
+      status: "pending",
+      reason: "snapshot binding names the packet field but not the concrete current snapshot id",
+    });
+    expect(packets.find((packet) => packet.planId === "PLAN-L7-146")?.blockedReasons).toContain(
+      "reviewed_snapshot_binding lacks concrete current snapshot id",
+    );
+
+    const cutoverCheck = packets
+      .find((packet) => packet.planId === "PLAN-M-02-helix-identifier-rename")
+      ?.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding");
+    expect(cutoverCheck).toMatchObject({
+      status: "concrete",
+      reason: "snapshot binding matches this PLAN route",
+    });
+  });
+
   it("loads the current repo pending approval records", () => {
     const result = analyzeActionBindingApprovalReadiness(loadActionBindingApprovalReadinessInput());
 

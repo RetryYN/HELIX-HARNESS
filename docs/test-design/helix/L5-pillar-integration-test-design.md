@@ -56,7 +56,7 @@ next_pair_freeze: L5
 | LIT-P6-01 | HR-FR-P6-01 | HC-P6 | Given raw push risk / When GitHub plan is emitted / Then rulesets, checks, and merge queue constraints are visible |
 | LIT-P6-02 | HR-FR-P6-02 | HC-P6 | Given PR/CI auto-fix / When verifier is selected / Then worker != verifier and confidence cap are enforced |
 | LIT-P6-03 | HR-FR-P6-03 | HC-P6 | Given setup target / When dry-run setup runs / Then managed changes and import report are non-destructive |
-| LIT-P6-04 | HR-FR-P6-04 | HC-P6 | Given tag bump or PLAN-M-02 identifier rename cutover / When migration/audit plan is produced / Then rollback point, blast-radius baseline, and destructive-apply block are present |
+| LIT-P6-04 | HR-FR-P6-04 | HC-P6 | Given tag bump or PLAN-M-02 identifier rename cutover / When migration/audit plan is produced / Then rollback point, blast-radius baseline, destructive-apply block, full approval evidence requirement, and current `cutoverSnapshot` sha256 binding requirement are present |
 | LIT-P6-05 | HR-FR-P6-05 | HC-P6 | Given release automation choice / When ADR/check runs / Then selected tool and CI auto-fix confidence policy are recorded |
 | LIT-P7-01 | HR-FR-P7-01 | HC-P7 | Given Claude/Codex session start / When memory is surfaced / Then both runtime routes read the shared provider |
 | LIT-P7-02 | HR-FR-P7-02 | HC-P7 | Given glossary rename / When drift detection runs / Then old/new terms and bounded context are linked |
@@ -75,7 +75,7 @@ next_pair_freeze: L5
 | LIT-N5-01 | HR-NFR-P5-01 | HC-P1 | Given injection plan / When budget split is checked / Then verbatim, summary, and stable constraints are bounded |
 | LIT-N5-02 | HR-NFR-P5-02 | HC-P1 | Given handover update / When anchored merge runs / Then Next Action and artifact trail are preserved |
 | LIT-N5-03 | HR-NFR-P5-03 | HC-P3 | Given verification request / When profile is selected / Then fast/default/full and resource budget are evidenced |
-| LIT-N8-01 | HR-NFR-P8-01 | HC-P8 | Given high-impact action / When approval gate runs / Then action-binding approval is required before apply |
+| LIT-N8-01 | HR-NFR-P8-01 | HC-P8 | Given high-impact action / When approval gate runs / Then action-binding approval is required before apply, and snapshot-bound approvals remain pending until `reviewed_snapshot_binding` cites the current `sha256:` snapshotId |
 | LIT-N8-02 | HR-NFR-P8-02 | HC-P8 | Given injection/exfiltration pattern / When security classification runs / Then deny/review/redaction decision is recorded |
 | LIT-N8-03 | HR-NFR-P8-03 | HC-P8 | Given agentic AI escalation / When risk gate runs / Then least privilege, rollback, monitoring, and risk owner are required |
 | LIT-NAC-01 | HR-NFR-AC-01 | HC-AC | Given adapter/template/skill/runtime rule / When drift check runs / Then divergence from shared core is surfaced |

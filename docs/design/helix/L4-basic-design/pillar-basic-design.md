@@ -73,7 +73,7 @@ next_pair_freeze: L9
 | HR-FR-P6-01 | HB-P6 | GitHub Rulesets / required checks / Merge Queue を gated push block に置く | HST-P6-01 |
 | HR-FR-P6-02 | HB-P6 | PR review と CI auto-fix-repush は worker!=verifier、confidence cap、iteration cap を持つ | HST-P6-02 |
 | HR-FR-P6-03 | HB-P6 | fresh/brownfield setup は hooks / adapters / state / memory / handover / GitHub plan / doctor baseline を非破壊に emit する | HST-P6-03 |
-| HR-FR-P6-04 | HB-P6 | tag bump は current/target detection、migration、compatibility warning、rollback point、idempotency evidence を持つ | HST-P6-04 |
+| HR-FR-P6-04 | HB-P6 | tag bump は current/target detection、migration、compatibility warning、rollback point、idempotency evidence を持つ。PLAN-M-02 rename cutover は actor/tool/target だけでなく approved params、current `cutoverSnapshot` sha256 binding、review/audit/expiry、backup/rollback/monitoring evidence が揃うまで apply 不可にする | HST-P6-04 |
 | HR-FR-P6-05 | HB-P6 | semantic-release vs Release Please は ADR で選び、CI auto-fix repush は confidence >=0.75 に制限する | HST-P6-05 |
 | HR-FR-P7-01 | HB-P7 | Claude/Codex SessionStart は同じ `.ut-tdd/memory` と provider handover から bounded recall する | HST-P7-01 |
 | HR-FR-P7-02 | HB-P7 | Glossary SSoT を memory / DDD context / docs 用語に接続する | HST-P7-02 |
@@ -92,7 +92,7 @@ next_pair_freeze: L9
 | HR-NFR-P5-01 | HB-P1 | 直近逐語 / rolling summary / stable constraints の 3 層 injection budget と artifact trail を分離する | HST-N5-01 |
 | HR-NFR-P5-02 | HB-P1 | anchored iterative handover は固定 section へ差分追記し Next Action / artifact trail を落とさない | HST-N5-02 |
 | HR-NFR-P5-03 | HB-P3 | fast/default/full profile、parallel worker/resource budget、duration evidence で不要な full suite を避ける | HST-N5-03 |
-| HR-NFR-P8-01 | HB-P8 | auth/authz/payment/PII/secret/license/schema migration/destructive/external infra は action-binding approval 必須にする | HST-N8-01 |
+| HR-NFR-P8-01 | HB-P8 | auth/authz/payment/PII/secret/license/schema migration/destructive/external infra は action-binding approval 必須にする。snapshot-bound approval は packet field 名だけでは不足で、current `sha256:` snapshotId を持つ `reviewed_snapshot_binding` まで pending とする | HST-N8-01 |
 | HR-NFR-P8-02 | HB-P8 | prompt injection / tool injection / exfiltration 誘導を classify し deny/review/redaction へ送る | HST-N8-02 |
 | HR-NFR-P8-03 | HB-P8 | agentic AI は task-scoped permission、least privilege、rollback、monitoring、risk owner、threat model を持つまで昇格しない | HST-N8-03 |
 | HR-NFR-AC-01 | HB-AC | rule-drift を agent/template/skill/runtime adapter 全体へ一般化する | HST-NAC-01 |

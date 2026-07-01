@@ -409,21 +409,37 @@ function validateActionBindingSemantics(
 function hasReviewedSnapshotBinding(plan: ActionBindingApprovalPlan, value: string): boolean {
   const normalized = value.toLowerCase();
   if (!normalized.trim()) return false;
-  const requiresVersionUpSnapshot =
-    (plan.versionTarget ?? "").trim().length > 0 ||
-    plan.plan_id === "PLAN-L7-146-serverless-readonly-share" ||
-    mentions([plan.plan_id, plan.file].join("\n"), ["version-up", "serverless-readonly-share"]);
-  const requiresCutoverSnapshot =
-    mentions(plan.text, ["cutover_decision_record", "identifier rename"]) ||
-    plan.plan_id === "PLAN-M-02-helix-identifier-rename" ||
-    plan.plan_id === "PLAN-M-02";
-  if (requiresVersionUpSnapshot) {
+  if (requiresVersionUpSnapshot(plan)) {
     return mentions(value, ["activationSnapshot"]) && mentions(value, ["snapshotId"]);
   }
-  if (requiresCutoverSnapshot) {
+  if (requiresCutoverSnapshot(plan)) {
     return mentions(value, ["cutoverSnapshot"]) && mentions(value, ["snapshotId"]);
   }
   return mentions(value, ["no snapshot", "not applicable", "n/a", "該当なし"]);
+}
+
+function requiresSnapshotBinding(plan: ActionBindingApprovalPlan): boolean {
+  return requiresVersionUpSnapshot(plan) || requiresCutoverSnapshot(plan);
+}
+
+function requiresVersionUpSnapshot(plan: ActionBindingApprovalPlan): boolean {
+  return (
+    (plan.versionTarget ?? "").trim().length > 0 ||
+    plan.plan_id === "PLAN-L7-146-serverless-readonly-share" ||
+    mentions([plan.plan_id, plan.file].join("\n"), ["version-up", "serverless-readonly-share"])
+  );
+}
+
+function requiresCutoverSnapshot(plan: ActionBindingApprovalPlan): boolean {
+  return (
+    mentions(plan.text, ["cutover_decision_record", "identifier rename"]) ||
+    plan.plan_id === "PLAN-M-02-helix-identifier-rename" ||
+    plan.plan_id === "PLAN-M-02"
+  );
+}
+
+function hasConcreteSnapshotId(value: string): boolean {
+  return /\bsha256:[a-f0-9]{64}\b/.test(value);
 }
 
 function record(plan: ActionBindingApprovalPlan, field: string): string {
@@ -473,6 +489,16 @@ function actionBindingBlockedReasons(
   }
   if (!hasLimitedApprovalScope(approvalRecord.approval_scope ?? "")) {
     reasons.push("approval_scope must bind a limited actor/tool/target/params boundary");
+  }
+  const reviewedSnapshotBinding = approvalRecord.reviewed_snapshot_binding ?? "";
+  if (!hasReviewedSnapshotBinding(plan, reviewedSnapshotBinding)) {
+    reasons.push("reviewed_snapshot_binding does not match the required decision packet route");
+  } else if (
+    requiresSnapshotBinding(plan) &&
+    (isPendingApprovalBinding(reviewedSnapshotBinding) ||
+      !hasConcreteSnapshotId(reviewedSnapshotBinding))
+  ) {
+    reasons.push("reviewed_snapshot_binding lacks concrete current snapshot id");
   }
   if (!hasExpiryOrTrigger(approvalRecord.expires_at_or_trigger ?? "")) {
     reasons.push("approval requires expiry or trigger-bound re-approval");
@@ -622,6 +648,16 @@ function actionBindingApprovalCheckForField(
         value,
         reason: "snapshot binding is described as a future approval obligation",
         requiredAction: "record the reviewed snapshot id or no-snapshot basis used for approval",
+      };
+    }
+    if (requiresSnapshotBinding(plan) && !hasConcreteSnapshotId(value)) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: "snapshot binding names the packet field but not the concrete current snapshot id",
+        requiredAction:
+          "record the current sha256 snapshotId from the activation or rename packet before approval",
       };
     }
     return concreteCheck(field, value, "snapshot binding matches this PLAN route");

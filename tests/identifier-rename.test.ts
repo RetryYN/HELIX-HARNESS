@@ -10,6 +10,8 @@ import {
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
+const CONCRETE_SNAPSHOT_ID =
+  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
 function runCliIn(cwd: string, args: string[]) {
   if (process.platform === "win32") {
@@ -70,6 +72,46 @@ function writeConcreteActorWithOutcomeChoices(root: string) {
 }
 
 function writeApprovedRenamePlan(root: string) {
+  mkdirSync(join(root, "docs", "plans"), { recursive: true });
+  writeFileSync(
+    join(root, "docs", "plans", "PLAN-M-02-helix-identifier-rename.md"),
+    [
+      "---",
+      "plan_id: PLAN-M-02-helix-identifier-rename",
+      "status: confirmed",
+      "---",
+      "",
+      "cutover_decision_record:",
+      "- allowed_outcome: approve_cutover",
+      "- decision_owner: PO RetryYN",
+      `- cutover_snapshot_id: cutoverSnapshot.snapshotId ${CONCRETE_SNAPSHOT_ID}`,
+      "- trigger_condition: PLAN-L1-06 confirmed and Step 1-6 gates green",
+      "- blast_radius_baseline: rename audit JSON at frozen HEAD",
+      "- dry_run_plan: codemod/state migration rehearsal evidence .ut-tdd/evidence/rename/dry-run.json",
+      "- rollback_plan: pre-cutover branch tag and state restore route",
+      "- state_backup_plan: .ut-tdd/harness.db memory state logs handover backup manifest",
+      "- execution_window_or_freeze_policy: frozen HEAD quiet window single-run concurrency",
+      "- approval_scope: CLI/bin rename and .ut-tdd state dir migration only",
+      "- audit_record: approver command result rollback monitoring route",
+      "- post_cutover_monitoring: quiet window helix doctor status feedback backlog monitoring",
+      "- legacy_alias_policy: temporary ut-tdd alias with sunset PLAN",
+      "action_binding_approval_record:",
+      "- allowed_outcome: approve_action_binding",
+      "- approval_policy_or_named_approver: PO RetryYN",
+      "- approval_scope: limited CLI/bin rename and .ut-tdd state dir migration only",
+      "- approved_actor: codex",
+      "- approved_tool: ut-tdd rename apply",
+      "- approved_target: .ut-tdd -> .helix",
+      "- approved_params: reviewed command params hash abc123",
+      "- review_approval_evidence: dry-run risk review rollback full test doctor evidence",
+      `- reviewed_snapshot_binding: cutoverSnapshot.snapshotId ${CONCRETE_SNAPSHOT_ID}`,
+      "- expires_at_or_trigger: expires if HEAD scope evidence or quiet window changes",
+      "- audit_record: approver action command result incident rollback route",
+    ].join("\n"),
+  );
+}
+
+function writeMinimalApprovedRenamePlan(root: string) {
   mkdirSync(join(root, "docs", "plans"), { recursive: true });
   writeFileSync(
     join(root, "docs", "plans", "PLAN-M-02-helix-identifier-rename.md"),
@@ -176,7 +218,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("marks the audit ready only when both approval records contain concrete approved outcomes", () => {
+  it("marks the audit ready only when both approval records contain full concrete approval evidence", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-approved-"));
     try {
       writeApprovedRenamePlan(root);
@@ -185,6 +227,27 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("ready_for_cutover");
       expect(audit.cutoverApproved).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("does not authorize rename cutover with outcomes plus actor/tool/target only", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-minimal-approved-"));
+    try {
+      writeMinimalApprovedRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const plan = buildIdentifierRenameCutoverPlan(root);
+      expect(plan.status).toBe("blocked_pending_cutover_approval");
+      expect(plan.applyAuthorized).toBe(false);
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          "missing concrete cutover_decision_record.cutover_snapshot_id sha256 snapshot id",
+          "missing concrete action_binding_approval_record.approved_params",
+          "missing concrete action_binding_approval_record.reviewed_snapshot_binding sha256 snapshot id",
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -322,6 +385,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         approvedActorRequired: true,
         approvedToolRequired: true,
         approvedTargetRequired: true,
+        approvedParamsRequired: true,
+        reviewedSnapshotBindingRequired: true,
       });
 
       const beforeDigest = plan.cutoverSnapshot.blastRadiusDigest;

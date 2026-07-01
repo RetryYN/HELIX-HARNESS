@@ -104,6 +104,8 @@ export interface IdentifierRenameCutoverPlan {
     approvedActorRequired: true;
     approvedToolRequired: true;
     approvedTargetRequired: true;
+    approvedParamsRequired: true;
+    reviewedSnapshotBindingRequired: true;
   };
 }
 
@@ -218,9 +220,19 @@ function walkTextFiles(root: string): string[] {
   return files.sort();
 }
 
-function cutoverApprovalPresent(root: string): boolean {
+interface CutoverApprovalEvaluation {
+  approved: boolean;
+  reasons: string[];
+}
+
+function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
   const planPath = join(root, "docs", "plans", "PLAN-M-02-helix-identifier-rename.md");
-  if (!existsSync(planPath) || !statSync(planPath).isFile()) return false;
+  if (!existsSync(planPath) || !statSync(planPath).isFile()) {
+    return {
+      approved: false,
+      reasons: ["missing PLAN-M-02-helix-identifier-rename.md approval source"],
+    };
+  }
   const text = readFileSync(planPath, "utf8");
   const blockFor = (recordName: string): string => {
     const match = text.match(
@@ -240,18 +252,90 @@ function cutoverApprovalPresent(root: string): boolean {
     normalizedValue(value) === expected;
   const cutoverBlock = blockFor("cutover_decision_record");
   const approvalBlock = blockFor("action_binding_approval_record");
-  const approvedActor = valueFor(approvalBlock, "approved_actor");
-  const approvedTool = valueFor(approvalBlock, "approved_tool");
-  const approvedTarget = valueFor(approvalBlock, "approved_target");
-  const isConcreteApprovalValue = (value: string | null, deniedPrefix: string): boolean =>
-    Boolean(value) && !value?.startsWith(deniedPrefix) && !/^<[^>]+>$/.test(value ?? "");
-  return (
-    isExactOutcome(valueFor(cutoverBlock, "allowed_outcome"), "approve_cutover") &&
-    isExactOutcome(valueFor(approvalBlock, "allowed_outcome"), "approve_action_binding") &&
-    isConcreteApprovalValue(approvedActor, "No actor is approved") &&
-    isConcreteApprovalValue(approvedTool, "No migration tool is approved") &&
-    isConcreteApprovalValue(approvedTarget, "No irreversible target is approved")
-  );
+  const reasons: string[] = [];
+  const isConcreteValue = (value: string | null): boolean => {
+    const normalized = normalizedValue(value);
+    if (!normalized) return false;
+    if (/^<[^>]+>$/.test(normalized)) return false;
+    if (/^No\b/i.test(normalized)) return false;
+    if (normalized.includes("`") && normalized.includes("/")) return false;
+    if (/\bmust\s+(name|record|write|cite|review)\b/i.test(normalized)) return false;
+    if (/\bbefore\s+(apply|approval|cutover|execution)\b/i.test(normalized)) return false;
+    if (/\bnot approved\b/i.test(normalized)) return false;
+    return true;
+  };
+  const requireOutcome = (input: {
+    block: string;
+    field: string;
+    expected: string;
+    recordName: string;
+  }) => {
+    const { block, field, expected, recordName } = input;
+    if (!isExactOutcome(valueFor(block, field), expected)) {
+      reasons.push(`missing concrete ${recordName}.${field}=${expected}`);
+    }
+  };
+  const requireConcrete = (block: string, field: string, recordName: string) => {
+    if (!isConcreteValue(valueFor(block, field))) {
+      reasons.push(`missing concrete ${recordName}.${field}`);
+    }
+  };
+  const requireSnapshot = (block: string, field: string, recordName: string) => {
+    const value = normalizedValue(valueFor(block, field));
+    if (!/\bsha256:[a-f0-9]{64}\b/.test(value)) {
+      reasons.push(`missing concrete ${recordName}.${field} sha256 snapshot id`);
+    }
+  };
+
+  requireOutcome({
+    block: cutoverBlock,
+    field: "allowed_outcome",
+    expected: "approve_cutover",
+    recordName: "cutover_decision_record",
+  });
+  for (const field of [
+    "decision_owner",
+    "trigger_condition",
+    "blast_radius_baseline",
+    "dry_run_plan",
+    "rollback_plan",
+    "state_backup_plan",
+    "execution_window_or_freeze_policy",
+    "approval_scope",
+    "audit_record",
+    "post_cutover_monitoring",
+    "legacy_alias_policy",
+  ]) {
+    requireConcrete(cutoverBlock, field, "cutover_decision_record");
+  }
+  requireSnapshot(cutoverBlock, "cutover_snapshot_id", "cutover_decision_record");
+
+  requireOutcome({
+    block: approvalBlock,
+    field: "allowed_outcome",
+    expected: "approve_action_binding",
+    recordName: "action_binding_approval_record",
+  });
+  for (const field of [
+    "approval_policy_or_named_approver",
+    "approval_scope",
+    "approved_actor",
+    "approved_tool",
+    "approved_target",
+    "approved_params",
+    "review_approval_evidence",
+    "expires_at_or_trigger",
+    "audit_record",
+  ]) {
+    requireConcrete(approvalBlock, field, "action_binding_approval_record");
+  }
+  requireSnapshot(approvalBlock, "reviewed_snapshot_binding", "action_binding_approval_record");
+
+  return { approved: reasons.length === 0, reasons };
+}
+
+function cutoverApprovalPresent(root: string): boolean {
+  return evaluateCutoverApproval(root).approved;
 }
 
 export function auditIdentifierRenameBlastRadius(root: string): IdentifierRenameAudit {
@@ -342,13 +426,8 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
 
 export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRenameCutoverPlan {
   const audit = auditIdentifierRenameBlastRadius(root);
-  const blockedReasons = audit.cutoverApproved
-    ? []
-    : [
-        "missing concrete cutover_decision_record.allowed_outcome=approve_cutover",
-        "missing concrete action_binding_approval_record.allowed_outcome=approve_action_binding",
-        "missing action-bound approved_actor/approved_tool/approved_target for irreversible rename",
-      ];
+  const approvalEvaluation = evaluateCutoverApproval(root);
+  const blockedReasons = approvalEvaluation.approved ? [] : approvalEvaluation.reasons;
   const hitsByCategory = audit.hitsByCategory;
   const cutoverCategoryChecklist = hitsByCategory.map((summary) => ({
     ...summary,
@@ -502,6 +581,8 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
       approvedActorRequired: true,
       approvedToolRequired: true,
       approvedTargetRequired: true,
+      approvedParamsRequired: true,
+      reviewedSnapshotBindingRequired: true,
     },
   };
 }
