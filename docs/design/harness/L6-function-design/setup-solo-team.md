@@ -145,6 +145,7 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `harness-check.yml` と `consumerReadiness.ci.requires` は `bun install --frozen-lockfile` 後に
 > `bun run ut-tdd setup project --dry-run --json`、`bun run ut-tdd status --json`、
 > `bun run ut-tdd doctor --profile consumer --json`、`bun run ut-tdd handover status --json` を含め、
+> acceptance は同じ `bun run ut-tdd ...` command set を consumer repo で実行し、
 > post-setup verification と CI の command set をずらさない。
 > 2026-07-02 追記: setup が consumer repo へ配布する `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` /
 > Claude subagent / Claude slash-command / setup JSON の説明文は日本語-first とし、CLI 名・識別子・

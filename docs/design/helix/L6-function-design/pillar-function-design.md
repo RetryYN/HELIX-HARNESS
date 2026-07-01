@@ -122,7 +122,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `node_modules/.bin/ut-tdd` で setup / status / doctor / handover を実行する。handmade shim や
   `src/cli.ts` 直実行だけでは package/bin 経路の証跡にしない。
   `harness-check.yml` と `consumerReadiness.ci.requires` は post-setup verification と同じ
-  setup dry-run / status / consumer doctor / handover route の `bun run ut-tdd ...` command set を含む。
+  setup dry-run / status / consumer doctor / handover route の `bun run ut-tdd ...` command set を含み、
+  acceptance はその command set を consumer repo で実行する。
 - HC-P8 `requireActionBindingApproval` / `buildActionBindingApprovalPackets` は
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、

@@ -83,6 +83,16 @@ function pathWith(...parts: string[]): string {
   return parts.filter(Boolean).join(process.platform === "win32" ? ";" : ":");
 }
 
+function runWorkflowUtTdd(
+  cwd: string,
+  workflowCommand: string,
+  env: NodeJS.ProcessEnv = process.env,
+) {
+  const prefix = "bun run ut-tdd ";
+  expect(workflowCommand.startsWith(prefix)).toBe(true);
+  return runBun(cwd, ["run", "ut-tdd", ...workflowCommand.slice(prefix.length).split(" ")], env);
+}
+
 describe("clean distribution local acceptance smoke", () => {
   it("U-SETUP-013 / AT-DIST-001: clean artifact installs and exposes the same core CLI surfaces", () => {
     const plan = buildCleanDistributionPlan({
@@ -212,6 +222,15 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("bun run ut-tdd status --json");
         expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
         expect(workflow).toContain("bun run ut-tdd handover status --json");
+        const workflowUtTddCommands = [
+          "bun run ut-tdd setup project --dry-run --json",
+          "bun run ut-tdd status --json",
+          "bun run ut-tdd doctor --profile consumer --json",
+          "bun run ut-tdd handover status --json",
+        ];
+        for (const command of workflowUtTddCommands) {
+          expect(workflow).toContain(command);
+        }
 
         const statusFromGeneratedPath = runCommand(
           consumerRoot,
@@ -264,6 +283,11 @@ describe("clean distribution local acceptance smoke", () => {
             ]),
           },
         });
+        for (const command of workflowUtTddCommands) {
+          const run = runWorkflowUtTdd(consumerRoot, command, linkedEnv);
+          expect(run.status, run.stderr || run.stdout).toBe(0);
+          expect(JSON.parse(run.stdout)).toBeTruthy();
+        }
       } finally {
         rmSync(consumerRoot, { recursive: true, force: true });
       }
