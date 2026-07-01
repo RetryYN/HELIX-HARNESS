@@ -1,5 +1,13 @@
 import { spawnSync } from "node:child_process";
-import { cpSync, mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -39,16 +47,48 @@ function runBun(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.en
   return spawnSync("bun", args, { cwd, encoding: "utf8", env, timeout: 120_000 });
 }
 
-function writeFakeCodex(root: string): string {
+function runCommand(
+  cwd: string,
+  command: string,
+  args: string[],
+  env: NodeJS.ProcessEnv = process.env,
+) {
+  if (process.platform === "win32") {
+    const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
+    return spawnSync(cmdExe, ["/d", "/c", command, ...args], {
+      cwd,
+      encoding: "utf8",
+      env,
+      timeout: 120_000,
+    });
+  }
+  return spawnSync(command, args, { cwd, encoding: "utf8", env, timeout: 120_000 });
+}
+
+function writeFakeCommand(root: string, name: string, output: string): string {
   const binDir = join(root, ".fake-bin");
   mkdirSync(binDir, { recursive: true });
   if (process.platform === "win32") {
-    const path = join(binDir, "codex.cmd");
-    writeFileSync(path, "@echo off\r\necho codex 0.0.0\r\nexit /b 0\r\n", "utf8");
+    const path = join(binDir, `${name}.cmd`);
+    writeFileSync(path, `@echo off\r\necho ${output}\r\nexit /b 0\r\n`, "utf8");
     return path;
   }
-  const path = join(binDir, "codex");
-  writeFileSync(path, "#!/bin/sh\necho codex 0.0.0\nexit 0\n", { encoding: "utf8", mode: 0o755 });
+  const path = join(binDir, name);
+  writeFileSync(path, `#!/bin/sh\necho ${output}\nexit 0\n`, { encoding: "utf8", mode: 0o755 });
+  return path;
+}
+
+function writeUtTddShim(root: string): string {
+  const binDir = join(root, ".fake-bin");
+  mkdirSync(binDir, { recursive: true });
+  const cliPath = join(root, "src", "cli.ts");
+  if (process.platform === "win32") {
+    const path = join(binDir, "ut-tdd.cmd");
+    writeFileSync(path, `@echo off\r\nbun "${cliPath}" %*\r\nexit /b %ERRORLEVEL%\r\n`, "utf8");
+    return path;
+  }
+  const path = join(binDir, "ut-tdd");
+  writeFileSync(path, `#!/bin/sh\nexec bun "${cliPath}" "$@"\n`, { encoding: "utf8", mode: 0o755 });
   return path;
 }
 
@@ -71,8 +111,14 @@ describe("clean distribution local acceptance smoke", () => {
         cpSync(from, to, { recursive: true });
       }
 
-      const fakeCodex = writeFakeCodex(cleanRoot);
-      const env = { ...process.env, UT_TDD_CODEX_BIN: fakeCodex };
+      const fakeCodex = writeFakeCommand(cleanRoot, "codex", "codex 0.0.0");
+      writeUtTddShim(cleanRoot);
+      const fakeBin = dirname(fakeCodex);
+      const env = {
+        ...process.env,
+        PATH: `${fakeBin}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+        UT_TDD_CODEX_BIN: fakeCodex,
+      };
 
       const install = runBun(cleanRoot, ["install", "--frozen-lockfile"], env);
       expect(install.status, install.stderr || install.stdout).toBe(0);
@@ -112,6 +158,123 @@ describe("clean distribution local acceptance smoke", () => {
 
       const typecheck = runBun(cleanRoot, ["run", "typecheck"], env);
       expect(typecheck.status, typecheck.stderr || typecheck.stdout).toBe(0);
+
+      const consumerRoot = mkdtempSync(join(tmpdir(), "helix-consumer-"));
+      try {
+        const setup = runBun(
+          consumerRoot,
+          [join(cleanRoot, "src", "cli.ts"), "setup", "project", "--json"],
+          env,
+        );
+        expect(setup.status, setup.stderr || setup.stdout).toBe(0);
+        const setupJson = JSON.parse(setup.stdout);
+        expect(setupJson).toMatchObject({
+          schemaVersion: "helix-project-setup.v1",
+          importReport: { mode: "fresh", requiresReview: false },
+          consumerReadiness: { ok: true },
+          postSetupWorkflow: { nextRoute: "ready", manualDocSearchRequired: false },
+        });
+        expect(["codex-only", "hybrid"]).toContain(setupJson.consumerReadiness.mode);
+        expect(setupJson.written).toEqual(
+          expect.arrayContaining(["AGENTS.md", ".vscode/tasks.json"]),
+        );
+        expect(readFileSync(join(consumerRoot, "AGENTS.md"), "utf8")).toContain("HELIX アダプター");
+        expect(
+          readFileSync(join(consumerRoot, ".claude", "agents", "code-reviewer.md"), "utf8"),
+        ).toContain("consumer-safe な HELIX subagent");
+        const tasks = JSON.parse(readFileSync(join(consumerRoot, ".vscode", "tasks.json"), "utf8"));
+        expect(tasks.tasks.map((task: { label: string }) => task.label)).toEqual(
+          expect.arrayContaining(["HELIX: status", "HELIX: doctor", "HELIX: handover status"]),
+        );
+
+        const statusFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          ["status", "--json"],
+          env,
+        );
+        expect(statusFromGeneratedPath.status, statusFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(statusFromGeneratedPath.stdout).availableRuntimes).toContain("codex");
+
+        const handoverFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          ["handover", "status", "--json"],
+          env,
+        );
+        expect(handoverFromGeneratedPath.status, handoverFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(handoverFromGeneratedPath.stdout)).toMatchObject({ exists: false });
+
+        const setupDryRunFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          ["setup", "project", "--dry-run", "--json"],
+          env,
+        );
+        expect(setupDryRunFromGeneratedPath.status, setupDryRunFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(setupDryRunFromGeneratedPath.stdout)).toMatchObject({
+          schemaVersion: "helix-project-setup.v1",
+          importReport: { dryRun: true },
+          postSetupWorkflow: { manualDocSearchRequired: false },
+        });
+      } finally {
+        rmSync(consumerRoot, { recursive: true, force: true });
+      }
+
+      const brownfieldRoot = mkdtempSync(join(tmpdir(), "helix-brownfield-"));
+      try {
+        mkdirSync(join(brownfieldRoot, ".vscode"), { recursive: true });
+        writeFileSync(
+          join(brownfieldRoot, "AGENTS.md"),
+          "# consumer rules\n\nこの行は consumer 側の既存ルール。\n",
+          "utf8",
+        );
+        writeFileSync(
+          join(brownfieldRoot, ".vscode", "tasks.json"),
+          '{"version":"2.0.0","tasks":[{"label":"keep-existing"}]}\n',
+          "utf8",
+        );
+
+        const firstBrownfieldSetup = runBun(
+          brownfieldRoot,
+          [join(cleanRoot, "src", "cli.ts"), "setup", "project", "--json"],
+          env,
+        );
+        expect(firstBrownfieldSetup.status, firstBrownfieldSetup.stderr).toBe(0);
+        const firstBrownfieldJson = JSON.parse(firstBrownfieldSetup.stdout);
+        expect(firstBrownfieldJson).toMatchObject({
+          importReport: {
+            mode: "brownfield",
+            requiresReview: true,
+            nextRoute: "review_import_report",
+          },
+          postSetupWorkflow: { nextRoute: "review_import_report" },
+        });
+        expect(firstBrownfieldJson.importReport.skippedExistingPaths).toContain(
+          ".vscode/tasks.json",
+        );
+        expect(firstBrownfieldJson.written).toContain("AGENTS.md");
+        expect(firstBrownfieldJson.written).not.toContain(".vscode/tasks.json");
+
+        const secondBrownfieldSetup = runBun(
+          brownfieldRoot,
+          [join(cleanRoot, "src", "cli.ts"), "setup", "project", "--json"],
+          env,
+        );
+        expect(secondBrownfieldSetup.status, secondBrownfieldSetup.stderr).toBe(0);
+        const secondBrownfieldJson = JSON.parse(secondBrownfieldSetup.stdout);
+        expect(secondBrownfieldJson.importReport.nextRoute).toBe("review_import_report");
+
+        const brownfieldAgents = readFileSync(join(brownfieldRoot, "AGENTS.md"), "utf8");
+        expect(brownfieldAgents).toContain("この行は consumer 側の既存ルール。");
+        expect(brownfieldAgents.match(/UT-TDD:managed:start/g) ?? []).toHaveLength(1);
+        expect(brownfieldAgents).toContain("HELIX アダプター");
+        expect(readFileSync(join(brownfieldRoot, ".vscode", "tasks.json"), "utf8")).toContain(
+          "keep-existing",
+        );
+      } finally {
+        rmSync(brownfieldRoot, { recursive: true, force: true });
+      }
     } finally {
       rmSync(cleanRoot, { recursive: true, force: true });
     }

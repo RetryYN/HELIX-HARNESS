@@ -3,6 +3,18 @@
   "hooks": {
     "PreToolUse": [
       {
+        "matcher": "spawn_agent|spawn_agents_on_csv",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ut-tdd hook agent-guard",
+            "timeout": 5,
+            "blockOnFailure": true,
+            "statusMessage": "agent-guard: Codex sub-agent role/model guard"
+          }
+        ]
+      },
+      {
         "matcher": "apply_patch|write_file",
         "hooks": [
           {

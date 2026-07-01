@@ -326,6 +326,32 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           }),
         ]),
       );
+      const repoTemplates = loadTemplates(process.cwd());
+      const repoCodex = JSON.parse(repoTemplates["adapter/.codex/hooks.json"]) as {
+        hooks: Record<
+          string,
+          { matcher?: string; hooks: { command: string; blockOnFailure?: boolean }[] }[]
+        >;
+      };
+      expect(repoCodex.hooks.PreToolUse).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            matcher: "spawn_agent|spawn_agents_on_csv",
+            hooks: [
+              expect.objectContaining({
+                command: "ut-tdd hook agent-guard",
+                blockOnFailure: true,
+              }),
+            ],
+          }),
+          expect.objectContaining({
+            matcher: "apply_patch|write_file",
+            hooks: [
+              expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+            ],
+          }),
+        ]),
+      );
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }
