@@ -325,7 +325,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("U-DECISIONREC-010: builds a non-destructive cutover packet with snapshot review, dry-run, rollback, and monitoring plans", () => {
+  it("U-DECISIONREC-010/U-DECISIONREC-011: builds a non-destructive cutover packet with snapshot review, category samples, verification commands, dry-run, rollback, and monitoring plans", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-"));
     try {
       writeDraftRenamePlan(root);
@@ -365,7 +365,21 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.objectContaining({
             category: "adapter_config",
+            samplePaths: expect.arrayContaining(["AGENTS.md"]),
             cutoverAction: expect.stringContaining("adapter markers"),
+            verificationCommand: "bun run src/cli.ts doctor",
+          }),
+        ]),
+      );
+      expect(plan.verificationCommandMatrix).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            phase: "baseline",
+            command: "bun run src/cli.ts rename audit --json",
+          }),
+          expect.objectContaining({
+            phase: "compiled-dist-smoke",
+            command: "bun run build && ./dist/ut-tdd doctor",
           }),
         ]),
       );
@@ -605,7 +619,23 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(payload.hitsByCategory.length).toBeGreaterThan(0);
       expect(payload.cutoverCategoryChecklist.length).toBeGreaterThan(0);
+      expect(payload.cutoverCategoryChecklist).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            samplePaths: expect.arrayContaining(["AGENTS.md"]),
+            verificationCommand: "bun run src/cli.ts doctor",
+          }),
+        ]),
+      );
       expect(payload.dryRunPlan.length).toBeGreaterThan(0);
+      expect(payload.verificationCommandMatrix).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            phase: "full-regression",
+            command: "bun run test",
+          }),
+        ]),
+      );
       expect(payload.rollbackPlan.length).toBeGreaterThan(0);
       expect(payload.monitoringPlan.length).toBeGreaterThan(0);
       expect(payload.stateBackupManifest).toEqual(
@@ -627,6 +657,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const text = runCliIn(root, ["rename", "plan"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("snapshot-review: current=sha256:");
+      expect(text.stdout).toContain("cutover-checklist=");
+      expect(text.stdout).toContain("verification-commands=");
       expect(text.stdout).toContain("recordedCutover=-");
       expect(text.stdout).toContain("recordedActionBinding=-");
       expect(text.stdout).toContain("drift=no");

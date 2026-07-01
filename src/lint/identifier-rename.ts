@@ -85,10 +85,18 @@ export interface IdentifierRenameCutoverPlan {
     category: IdentifierRenameHitCategory;
     hits: number;
     files: number;
+    samplePaths: string[];
     cutoverAction: string;
+    verificationCommand: string;
   }>;
   blockedReasons: string[];
   dryRunPlan: string[];
+  verificationCommandMatrix: Array<{
+    phase: string;
+    command: string;
+    expected: string;
+    evidence: string;
+  }>;
   rollbackPlan: string[];
   monitoringPlan: string[];
   stateBackupManifest: Array<{
@@ -457,6 +465,88 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
   }
 }
 
+function verificationCommandForCategory(category: IdentifierRenameHitCategory): string {
+  switch (category) {
+    case "source_code":
+      return "bun run typecheck && bun test tests/identifier-rename.test.ts";
+    case "test_code":
+      return "bun test tests/identifier-rename.test.ts && bun run test";
+    case "runtime_state":
+      return "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor";
+    case "adapter_config":
+      return "bun run src/cli.ts doctor";
+    case "consumer_template":
+      return "bun test tests/setup.test.ts tests/distribution-acceptance.test.ts";
+    case "plan_doc":
+      return "bun run src/cli.ts doctor";
+    case "design_doc":
+      return "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts";
+    case "governance_doc":
+      return "bun run src/cli.ts doctor";
+    case "distribution_surface":
+      return "bun run build && ./dist/ut-tdd doctor";
+    case "other":
+      return "bun run src/cli.ts rename audit --json";
+  }
+}
+
+function samplePathsForCategory(
+  hits: readonly IdentifierRenameHit[],
+  category: IdentifierRenameHitCategory,
+  limit = 5,
+): string[] {
+  const counts = new Map<string, number>();
+  for (const hit of hits) {
+    if (hit.category !== category) continue;
+    counts.set(hit.path, (counts.get(hit.path) ?? 0) + hit.count);
+  }
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([path]) => path);
+}
+
+function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["verificationCommandMatrix"] {
+  return [
+    {
+      phase: "baseline",
+      command: "bun run src/cli.ts rename audit --json",
+      expected: "captures token/file/category/sample-path blast-radius at frozen HEAD",
+      evidence: "rename audit JSON attached to cutover approval record",
+    },
+    {
+      phase: "targeted-regression",
+      command: "bun test tests/identifier-rename.test.ts",
+      expected: "rename packet, approval, snapshot, and category checklist regressions stay green",
+      evidence: "targeted vitest output",
+    },
+    {
+      phase: "static-gates",
+      command: "bun run lint && bun run typecheck && git diff --check",
+      expected: "format, type, and whitespace gates pass before cutover approval",
+      evidence: "lint/typecheck/diff-check command output",
+    },
+    {
+      phase: "state-and-doctor",
+      command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      expected: "state projection rebuild and workflow gates pass against the renamed rehearsal",
+      evidence: "db rebuild and doctor output",
+    },
+    {
+      phase: "full-regression",
+      command: "bun run test",
+      expected: "full repository regression suite passes before irreversible cutover",
+      evidence: "full vitest output",
+    },
+    {
+      phase: "compiled-dist-smoke",
+      command: "bun run build && ./dist/ut-tdd doctor",
+      expected: "compiled CLI artifact runs the same doctor surface after rename rehearsal",
+      evidence: "build output and compiled doctor smoke",
+    },
+  ];
+}
+
 export function buildIdentifierRenameCutoverPlan(
   root: string,
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[] = computeOutstandingWork(root)
@@ -485,8 +575,11 @@ export function buildIdentifierRenameCutoverPlan(
   const hitsByCategory = audit.hitsByCategory;
   const cutoverCategoryChecklist = hitsByCategory.map((summary) => ({
     ...summary,
+    samplePaths: samplePathsForCategory(audit.hits, summary.category),
     cutoverAction: cutoverActionForCategory(summary.category),
+    verificationCommand: verificationCommandForCategory(summary.category),
   }));
+  const verificationCommandMatrix = buildRenameVerificationCommandMatrix();
   const stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"] = [
     {
       path: ".ut-tdd/harness.db",
@@ -562,6 +655,7 @@ export function buildIdentifierRenameCutoverPlan(
     renameMap: RENAME_MAP,
     hitsByCategory,
     cutoverCategoryChecklist,
+    verificationCommandMatrix,
     stateBackupManifest,
     freezePolicy,
     provenanceRequirements,
@@ -616,6 +710,7 @@ export function buildIdentifierRenameCutoverPlan(
       "run targeted identifier-rename tests, typecheck, lint, db rebuild, doctor, and full test suite",
       "run compiled distribution smoke after the CLI/bin rename rehearsal",
     ],
+    verificationCommandMatrix,
     rollbackPlan: [
       "create a pre-cutover branch or tag at frozen HEAD",
       "backup .ut-tdd/harness.db, memory, state, logs, handover, provider handover, and repo-local hook configs",
@@ -669,6 +764,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
   renameMap: IdentifierRenameMapping[];
   hitsByCategory: IdentifierRenameCategorySummary[];
   cutoverCategoryChecklist: IdentifierRenameCutoverPlan["cutoverCategoryChecklist"];
+  verificationCommandMatrix: IdentifierRenameCutoverPlan["verificationCommandMatrix"];
   stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"];
   freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"];
   provenanceRequirements: IdentifierRenameCutoverPlan["provenanceRequirements"];
@@ -694,6 +790,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     cutoverCategoryChecklist: input.cutoverCategoryChecklist,
   });
   const evidenceDigest = sha256Json({
+    verificationCommandMatrix: input.verificationCommandMatrix,
     stateBackupManifest: input.stateBackupManifest,
     freezePolicy: input.freezePolicy,
     provenanceRequirements: input.provenanceRequirements,

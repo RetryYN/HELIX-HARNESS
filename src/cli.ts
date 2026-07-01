@@ -1336,6 +1336,9 @@ rename
       `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
     );
     process.stdout.write(
+      `  cutover-checklist=${plan.cutoverCategoryChecklist.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
+    );
+    process.stdout.write(
       `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
     );
     if (plan.blockedReasons.length > 0) {

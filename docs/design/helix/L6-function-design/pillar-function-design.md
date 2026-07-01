@@ -80,6 +80,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `cutover_decision_record.cutover_snapshot_id` と `action_binding_approval_record.reviewed_snapshot_binding`、
   current `cutoverSnapshot.snapshotId`、一致/不一致、drift warning、再承認 action を承認前から表示する。
   approval record が concrete でない draft 状態でも current snapshot と記録済み snapshot の比較 surface を隠さない。
+  `cutoverCategoryChecklist` は category count だけでなく代表 `samplePaths[]` と category 別
+  `verificationCommand` を持ち、Step 1 blast-radius baseline 凍結時にどの file surface を確認するかを
+  reviewer が追える形にする。`verificationCommandMatrix[]` は baseline / targeted regression / static gates /
+  state+doctor / full regression / compiled dist smoke を plan-only に列挙し、承認前の dry-run evidence を
+  自由文だけにしない。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
