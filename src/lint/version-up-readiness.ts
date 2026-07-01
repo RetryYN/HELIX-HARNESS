@@ -100,6 +100,12 @@ export interface VersionUpActivationPacket {
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   activationReadinessSummary: VersionUpActivationReadinessSummary;
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
+  activationVerificationCommandMatrix: Array<{
+    phase: string;
+    command: string;
+    expected: string;
+    evidence: string;
+  }>;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   activationSnapshot: VersionUpActivationSnapshot;
   relatedDecisionPackets: RelatedDecisionPacket[];
@@ -237,6 +243,7 @@ const MODE_DOC_MARKERS = [
   "Cloudflare Workers KV limits",
   "Cloudflare Access policies",
   "GitHub webhook HMAC SHA-256",
+  "OWASP Web Security Testing Guide",
   "external_rehearsal_plan",
   "cost_guardrails",
   "activation_provenance_requirements",
@@ -435,6 +442,7 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Cloudflare Workers KV limits",
   "Cloudflare Access policies",
   "GitHub webhook HMAC SHA-256",
+  "OWASP Web Security Testing Guide",
 ] as const;
 
 const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
@@ -512,6 +520,10 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
   "GitHub webhook HMAC SHA-256": {
     urls: ["https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries"],
     fieldImpacts: ["external_rehearsal_plan", "dry_run_plan"],
+  },
+  "OWASP Web Security Testing Guide": {
+    urls: ["https://owasp.org/www-project-web-security-testing-guide/"],
+    fieldImpacts: ["external_rehearsal_plan", "dry_run_plan", "activation_provenance_requirements"],
   },
 };
 
@@ -1009,6 +1021,8 @@ export function buildVersionUpActivationPacket(
     activationReadinessChecks,
     sourceLedgerFreshness,
   );
+  const activationVerificationCommandMatrix =
+    buildVersionUpActivationVerificationCommandMatrix(plan);
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
   const activationSnapshot = buildVersionUpActivationSnapshot({
     plan,
@@ -1016,6 +1030,7 @@ export function buildVersionUpActivationPacket(
     actionBindingApproval,
     externalRehearsal,
     provenance,
+    activationVerificationCommandMatrix,
     sourceLedgerFreshness,
     reapprovalTriggers,
     repoHeadSha,
@@ -1139,6 +1154,7 @@ export function buildVersionUpActivationPacket(
     sourceLedgerFreshness,
     activationReadinessSummary,
     activationReadinessChecks,
+    activationVerificationCommandMatrix,
     reapprovalTriggers,
     activationSnapshot,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
@@ -1187,6 +1203,7 @@ function buildVersionUpActivationSnapshot(input: {
   actionBindingApproval: Record<string, string>;
   externalRehearsal: Record<string, string>;
   provenance: Record<string, string>;
+  activationVerificationCommandMatrix: VersionUpActivationPacket["activationVerificationCommandMatrix"];
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   repoHeadSha: string | null;
@@ -1203,6 +1220,7 @@ function buildVersionUpActivationSnapshot(input: {
   const evidenceDigest = sha256Json({
     external_rehearsal_plan: input.externalRehearsal,
     activation_provenance_requirements: input.provenance,
+    activation_verification_command_matrix: input.activationVerificationCommandMatrix,
     source_ledger_checked_date: input.sourceLedgerFreshness.checkedDate,
     source_ledger_missing_rows: input.sourceLedgerFreshness.missingRows,
   });
@@ -1227,6 +1245,78 @@ function buildVersionUpActivationSnapshot(input: {
 
 function sha256Json(value: unknown): string {
   return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
+}
+
+function buildVersionUpActivationVerificationCommandMatrix(
+  plan: VersionUpReadinessPlan,
+): VersionUpActivationPacket["activationVerificationCommandMatrix"] {
+  return [
+    {
+      phase: "activation-packet-baseline",
+      command: `bun run src/cli.ts version-up activation-packet --plan ${plan.plan_id} --json`,
+      expected:
+        "captures current activationSnapshot, semantic frontier, readiness checks, blockers, and related decision packets",
+      evidence: "activation packet JSON attached to the version-up activation review",
+    },
+    {
+      phase: "version-dry-run",
+      command:
+        "bun run src/cli.ts version-up dry-run --current <current-semver> --target <target-semver> --json",
+      expected:
+        "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority",
+      evidence: "version-up dry-run JSON for the reviewed current/target release trigger",
+    },
+    {
+      phase: "external-rehearsal",
+      command:
+        "record staging/dry-run evidence for official_source_basis, free_tier_budget_check, webhook_signature_check, access_control_check, no_secret_pii_check, no_prod_write_check, and rollback_rehearsal",
+      expected:
+        "proves external activation is budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
+      evidence:
+        "artifact paths, audit ids, digests, logs, or reports referenced by external_rehearsal_plan",
+    },
+    {
+      phase: "security-testing",
+      command:
+        "run OWASP-aligned access-control, secret/PII exclusion, webhook signature, and read-only projection checks in staging",
+      expected:
+        "security checks pass before any Cloudflare/GitHub/HMAC/access-control activation is approved",
+      evidence:
+        "security test report or audit record linked from activation_provenance_requirements",
+    },
+    {
+      phase: "state-and-doctor",
+      command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      expected:
+        "state projection and workflow gates remain green after activation rehearsal material is recorded",
+      evidence: "db rebuild and doctor output",
+    },
+    {
+      phase: "targeted-regression",
+      command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
+      expected: "version-up packet and CLI surface regressions stay green",
+      evidence: "targeted vitest output",
+    },
+    {
+      phase: "static-gates",
+      command: "bun run lint && bun run typecheck && git diff --check",
+      expected: "format, type, and whitespace gates pass before activation approval",
+      evidence: "lint/typecheck/diff-check command output",
+    },
+    {
+      phase: "full-regression",
+      command: "bun run test",
+      expected: "full repository regression suite passes before any future activation apply route",
+      evidence: "full vitest output",
+    },
+    {
+      phase: "approval-packet",
+      command: "bun run src/cli.ts action-binding approval-packet --json",
+      expected:
+        "approved actor/tool/target/params and reviewed_snapshot_binding cite the current activationSnapshot before activation",
+      evidence: "action-binding approval packet JSON",
+    },
+  ];
 }
 
 function buildVersionUpActivationReapprovalTriggers(): VersionUpActivationReapprovalTrigger[] {

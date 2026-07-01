@@ -71,6 +71,13 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   の期待 official URL と required field impact を source ごとに検査する。誤 URL や `cost_guardrails` /
   `external_rehearsal_plan` / `dry_run_plan` / `activation_dependency` などの impact 欠落は、
   source ledger が fresh でも version-up readiness violation にする。
+  `OWASP Web Security Testing Guide` は version-up source ledger の必須 row とし、
+  `external_rehearsal_plan` / `dry_run_plan` / `activation_provenance_requirements` へ field impact を持たない
+  security testing 記述は activation 根拠にしない。activation packet は
+  `activationVerificationCommandMatrix[]` を持ち、activation packet baseline、version dry-run、external rehearsal を
+  検証 phase として扱う。さらに security testing、state+doctor、targeted regression、static gates、
+  full regression、approval packet の command / expected / evidence を plan-only に列挙する。matrix は
+  `activationSnapshot.evidenceDigest` に含め、承認前 review material の drift を snapshot drift として扱う。
 - HC-P6 `buildIdentifierRenameCutoverPlan` / `analyzeCutoverReadiness` は `Cutover source ledger` も同様に、
   NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の期待
   official URL と required field impact を固定検査する。`https` URL があるだけ、または source 名だけの

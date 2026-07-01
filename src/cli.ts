@@ -1408,6 +1408,9 @@ versionUp
       process.stdout.write(
         `  readiness: status=${packet.activationReadinessSummary.status} present=${packet.activationReadinessSummary.presentChecks} pending=${packet.activationReadinessSummary.pendingChecks} total=${packet.activationReadinessSummary.totalChecks} sourceLedgerFresh=${packet.activationReadinessSummary.sourceLedgerFresh}\n`,
       );
+      process.stdout.write(
+        `  verification-commands=${packet.activationVerificationCommandMatrix.length}\n`,
+      );
       for (const checkName of packet.activationReadinessSummary.pendingCheckNames) {
         process.stdout.write(`  readiness-pending: ${checkName}\n`);
       }

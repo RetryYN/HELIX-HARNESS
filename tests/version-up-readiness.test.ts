@@ -71,6 +71,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "Cloudflare Workers KV limits",
       "Cloudflare Access policies",
       "GitHub webhook HMAC SHA-256",
+      "OWASP Web Security Testing Guide",
       "external_rehearsal_plan",
       "cost_guardrails",
       "activation_provenance_requirements",
@@ -105,6 +106,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| Cloudflare Workers KV limits | https://developers.cloudflare.com/kv/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget | cost_guardrails kv_limit external_rehearsal_plan |",
       "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/policies/access/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check dry_run_plan |",
+      "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/ | live OWASP WSTG docs | live official OWASP docs | adopt-live-docs-for-security-testing-shape | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     repoHeadSha: "0123456789abcdef0123456789abcdef01234567",
@@ -266,7 +268,7 @@ describe("version-up-readiness", () => {
     );
   });
 
-  it("emits a non-destructive activation packet for parked version-up plans", () => {
+  it("U-DECISIONREC-012: emits a non-destructive activation packet with verification commands for parked version-up plans", () => {
     const packets = buildVersionUpActivationPackets(input());
     expect(packets).toHaveLength(1);
     const packet = packets[0];
@@ -397,6 +399,27 @@ describe("version-up-readiness", () => {
         "exceed_action",
       ]),
     );
+    expect(packet.activationVerificationCommandMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "activation-packet-baseline",
+          command:
+            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
+        }),
+        expect.objectContaining({
+          phase: "external-rehearsal",
+          evidence: expect.stringContaining("external_rehearsal_plan"),
+        }),
+        expect.objectContaining({
+          phase: "security-testing",
+          command: expect.stringContaining("OWASP-aligned"),
+        }),
+        expect.objectContaining({
+          phase: "approval-packet",
+          command: "bun run src/cli.ts action-binding approval-packet --json",
+        }),
+      ]),
+    );
     expect(packet.reapprovalTriggers).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -458,7 +481,7 @@ describe("version-up-readiness", () => {
       checkedDate: "2026-06-30",
       stale: false,
       maxAgeDays: 90,
-      rowCount: 14,
+      rowCount: 15,
       missingRows: [],
     });
     expect(packet.relatedDecisionPackets).toEqual(
@@ -946,7 +969,9 @@ describe("version-up-readiness", () => {
       .modeDoc.split("\n")
       .filter(
         (line) =>
-          !line.startsWith("| Cloudflare") && !line.startsWith("| GitHub webhook HMAC SHA-256 |"),
+          !line.startsWith("| Cloudflare") &&
+          !line.startsWith("| GitHub webhook HMAC SHA-256 |") &&
+          !line.startsWith("| OWASP Web Security Testing Guide |"),
       )
       .join("\n");
     const result = analyzeVersionUpReadiness(
@@ -964,6 +989,7 @@ describe("version-up-readiness", () => {
         "Cloudflare Workers KV limits",
         "Cloudflare Access policies",
         "GitHub webhook HMAC SHA-256",
+        "OWASP Web Security Testing Guide",
       ]),
     );
   });
@@ -1251,6 +1277,23 @@ describe("version-up-readiness", () => {
         "exceed_action",
       ]),
     );
+    expect(packets[0].activationVerificationCommandMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "activation-packet-baseline",
+          command:
+            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+        }),
+        expect.objectContaining({
+          phase: "state-and-doctor",
+          command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+        }),
+        expect.objectContaining({
+          phase: "full-regression",
+          command: "bun run test",
+        }),
+      ]),
+    );
     expect(packets[0].reapprovalTriggers.map((row: { trigger: string }) => row.trigger)).toEqual([
       "head_sha_or_release_trigger_drift",
       "approval_scope_or_params_drift",
@@ -1281,7 +1324,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
       stale: false,
-      rowCount: 14,
+      rowCount: 15,
       missingRows: [],
     });
 
@@ -1301,6 +1344,7 @@ describe("version-up-readiness", () => {
     expect(text).toContain("sourceLedgerCheckedDate=");
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
+    expect(text).toContain("verification-commands=9");
     expect(text).toContain("readiness-pending: webhook_signature_check");
     expect(text).toContain("readiness-pending: pages_limit");
     expect(text).toContain("reapproval-trigger: head_sha_or_release_trigger_drift");

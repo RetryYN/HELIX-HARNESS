@@ -76,6 +76,9 @@ packet 自体は `generatedAt`、`sourceCommand=ut-tdd version-up activation-pac
 secret/PII 非投影、no-prod-write、rollback rehearsal、source ledger freshness / approval / audit evidence を
 承認前に審査するための設計材料であり、apply 権限ではない。source ledger が stale または必須 source 欠落の
 場合、packet は blocked reason として返し、PO/TL が古い外部前提で activation 判断を進めないようにする。
+セキュリティ検証は OWASP Web Security Testing Guide を source ledger に持ち、access-control、webhook
+signature、secret/PII exclusion、read-only projection の rehearsal を `external_rehearsal_plan` /
+`dry_run_plan` / `activation_provenance_requirements` へ接続する。
 加えて packet は `activationReadinessChecks[]` を出す。外部 activation で `official_source_basis` /
 `free_tier_budget_check` / `webhook_signature_check` / `access_control_check` / `no_secret_pii_check` /
 `no_prod_write_check` / `rollback_rehearsal` / `source_ledger` / `dry_run_evidence` / `approval_evidence` /
@@ -107,6 +110,13 @@ release trigger、source ledger checked date、approval scope digest、rehearsal
 action-binding approval を記録する際に「どの release trigger / scope / evidence に対する判断だったか」を固定する
 binding ID になる。snapshotId が変わった場合は、旧 approval evidence を activation に流用せず、
 `ut-tdd version-up dry-run`、activation packet、doctor、action-binding approval packet を再実行する。
+
+packet は `activationVerificationCommandMatrix[]` も出す。これは `activation-packet-baseline`、
+`version-dry-run`、`external-rehearsal`、`security-testing`、`state-and-doctor` を検証 phase として持つ。
+さらに `targeted-regression`、`static-gates`、`full-regression`、`approval-packet` の各 phase に対して
+command / expected / evidence を持つ。これにより、activation readiness の判断材料を「あとで検証する」という自由文に戻さず、
+どの command・runbook・report・audit record を承認前 evidence とするかを packet から追えるようにする。
+matrix は apply 権限ではなく、`activationSnapshot.evidenceDigest` に含める承認前 review material である。
 
 ### 4.1.2 version upgrade dry-run surface
 
@@ -155,6 +165,7 @@ Version-up source ledger (checked 2026-06-30):
 | Cloudflare Workers KV limits | <https://developers.cloudflare.com/kv/platform/limits/> | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget を activation 前に確認する | `cost_guardrails`, `external_rehearsal_plan` |
 | Cloudflare Access policies | <https://developers.cloudflare.com/cloudflare-one/policies/access/> | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control を activation 前に rehearsal する | `external_rehearsal_plan`, `approval_scope` |
 | GitHub webhook HMAC SHA-256 | <https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries> | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity を activation 前に dry-run 検証する | `external_rehearsal_plan`, `dry_run_plan` |
+| OWASP Web Security Testing Guide | <https://owasp.org/www-project-web-security-testing-guide/> | live OWASP WSTG docs | live official OWASP docs | adopt-live-docs-for-security-testing-shape | access control / input / secret exposure surface の検証観点として使う | `external_rehearsal_plan`, `dry_run_plan`, `activation_provenance_requirements` |
 
 Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その Version-up source ledger は stale とし、parked review / activation decision / completion packet の判断材料にしない。
 
@@ -200,6 +211,9 @@ version-up の機能一覧は、単に `version_target` を受理することで
     古い dry-run / approval / source ledger / rollback evidence を activation 根拠として流用しない。
 11. **activation snapshot binding**: `activationSnapshot.snapshotId` が release trigger / source ledger / approval
     scope / rehearsal evidence digest を束ね、後続 approval が何を承認したかを機械的に固定する。
+12. **activation verification command matrix**: `activationVerificationCommandMatrix[]` が activation packet、
+    dry-run、external rehearsal、security testing、state/doctor、targeted regression、static gates を扱う。
+    さらに full regression、approval packet の command / expected / evidence を出し、承認前 evidence を自由文だけにしない。
 
 ## 6. 他 mode との非重複
 
