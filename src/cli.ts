@@ -792,7 +792,7 @@ program
         process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
         for (const item of workflowNextActions) {
           process.stdout.write(
-            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
+            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
           );
         }
       }
@@ -846,6 +846,10 @@ completion
         `    packet-command: primary=${decision.decisionPacketCommand} packets=${decision.packetCommands.join(" | ")}\n`,
       );
       process.stdout.write(`    action: ${decision.requiredAction}\n`);
+      for (const action of decision.requiredActions) {
+        process.stdout.write(`    required-action: ${action}\n`);
+      }
+      process.stdout.write(`    route: ${decision.nextWorkflowRoute}\n`);
       process.stdout.write(`    outcomes: ${decision.allowedOutcomes.join(", ")}\n`);
       for (const record of decision.allowedOutcomesByRecord) {
         process.stdout.write(
@@ -2145,6 +2149,21 @@ handover
     );
     for (const reason of status.stale_reasons) process.stdout.write(`stale_reason: ${reason}\n`);
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
+    process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
+    process.stdout.write(`${completionReadinessLine(liveOutstanding)}\n`);
+    if (!liveCompletionDecisionPacket.ok) {
+      const packetCommands = [
+        ...new Set(
+          liveCompletionDecisionPacket.decisions.flatMap((decision) => decision.packetCommands),
+        ),
+      ];
+      process.stdout.write(
+        "completion-decision-packet: ut-tdd completion decision-packet --json\n",
+      );
+      if (packetCommands.length > 0) {
+        process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
+      }
+    }
     if ((liveOutstanding.semanticFeatureFrontierRecords ?? []).length > 0) {
       process.stdout.write(
         `semantic_frontier_records: ${liveOutstanding.semanticFeatureFrontierRecords?.length ?? 0}\n`,

@@ -8,14 +8,20 @@ export function hasSourceLedgerCheckedDate(text: string, ledgerLabel: string): b
   return sourceLedgerHeadingPattern(ledgerLabel).test(text);
 }
 
+export function sourceLedgerCheckedDate(text: string, ledgerLabel: string): string | null {
+  return (
+    text.match(
+      new RegExp(`${escapeRegExp(ledgerLabel)} \\(checked (\\d{4}-\\d{2}-\\d{2})\\)`),
+    )?.[1] ?? null
+  );
+}
+
 export function sourceLedgerCheckedDateViolation(
   text: string,
   ledgerLabel: string,
   now: string = new Date().toISOString(),
 ): string | null {
-  const checkedDate = text.match(
-    new RegExp(`${escapeRegExp(ledgerLabel)} \\(checked (\\d{4}-\\d{2}-\\d{2})\\)`),
-  )?.[1];
+  const checkedDate = sourceLedgerCheckedDate(text, ledgerLabel);
   if (!checkedDate) return null;
 
   const checkedMs = Date.parse(`${checkedDate}T00:00:00.000Z`);

@@ -826,6 +826,9 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         planId: "PLAN-DISCOVERY-07",
         reason: "po_decision_pending",
         decisionKind: "po_s4_decision",
+        requiredAction: "record the PO/S4 decision before promotion, rejection, or Forward merge",
+        nextWorkflowRoute:
+          "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
         decisionPacketCommand: "ut-tdd s4 decision-packet --json",
         packetCommands: ["ut-tdd s4 decision-packet --json"],
       },
@@ -834,6 +837,10 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         planId: "PLAN-L7-146",
         reason: "version_up_parked",
         decisionKind: "version_up_activation",
+        requiredAction:
+          "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
+        nextWorkflowRoute:
+          "version-up activation -> add-feature/rejection path, with approval boundary preserved",
         decisionPacketCommand: "ut-tdd version-up activation-packet --json",
         packetCommands: ["ut-tdd version-up activation-packet --json"],
       },
@@ -842,6 +849,10 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         planId: "PLAN-M-02",
         reason: "irreversible_migration_pending",
         decisionKind: "irreversible_migration_signoff",
+        requiredAction:
+          "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+        nextWorkflowRoute:
+          "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
         decisionPacketCommand: "ut-tdd rename plan --json",
         packetCommands: ["ut-tdd rename plan --json"],
       },

@@ -554,6 +554,7 @@ export function buildIdentifierRenameCutoverPlan(
     stateBackupManifest,
     freezePolicy,
     provenanceRequirements,
+    sourceLedgerCheckedDate: loadCutoverSourceLedgerCheckedDate(root),
   });
   if (approvalEvaluation.approved) {
     if (approvalEvaluation.cutoverSnapshotId !== cutoverSnapshot.snapshotId) {
@@ -655,6 +656,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
   stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"];
   freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"];
   provenanceRequirements: IdentifierRenameCutoverPlan["provenanceRequirements"];
+  sourceLedgerCheckedDate: string | null;
 }): IdentifierRenameCutoverSnapshot {
   const blastRadiusDigest = sha256Json({
     tokens: input.audit.tokens,
@@ -684,7 +686,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     blastRadiusDigest,
     approvalScopeDigest,
     evidenceDigest,
-    sourceLedgerCheckedDate: null,
+    sourceLedgerCheckedDate: input.sourceLedgerCheckedDate,
     invalidatedBy: input.freezePolicy.reapprovalTriggers,
   };
   return {
@@ -694,6 +696,20 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     }),
     ...snapshot,
   };
+}
+
+function cutoverSourceLedgerCheckedDate(text: string): string | null {
+  return text.match(/Cutover source ledger \(checked (\d{4}-\d{2}-\d{2})\)/)?.[1] ?? null;
+}
+
+function loadCutoverSourceLedgerCheckedDate(root: string): string | null {
+  try {
+    return cutoverSourceLedgerCheckedDate(
+      readFileSync(join(root, "docs/process/forward/L08-L14-verification-phase.md"), "utf8"),
+    );
+  } catch {
+    return null;
+  }
 }
 
 function sha256Json(value: unknown): string {

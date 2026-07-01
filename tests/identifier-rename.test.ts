@@ -47,6 +47,22 @@ function runCliIn(cwd: string, args: string[]) {
   });
 }
 
+function writeCutoverSourceLedger(root: string, checkedDate = "2026-06-30"): void {
+  mkdirSync(join(root, "docs", "process", "forward"), { recursive: true });
+  writeFileSync(
+    join(root, "docs", "process", "forward", "L08-L14-verification-phase.md"),
+    [
+      `Cutover source ledger (checked ${checkedDate}):`,
+      "",
+      "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
+      "|---|---|---|---|---|---|---|",
+      "| GitHub Actions concurrency | <https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency> | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently | `execution_window_or_freeze_policy` |",
+      "",
+    ].join("\n"),
+    "utf8",
+  );
+}
+
 function writeDraftRenamePlan(root: string) {
   mkdirSync(join(root, "docs", "plans"), { recursive: true });
   writeFileSync(
@@ -283,6 +299,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-cli-"));
     try {
       writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const result = runCliIn(root, ["rename", "audit", "--json"]);
@@ -312,6 +329,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-"));
     try {
       writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const plan = buildIdentifierRenameCutoverPlan(root);
@@ -390,6 +408,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         blastRadiusDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        sourceLedgerCheckedDate: "2026-06-30",
         invalidatedBy: plan.freezePolicy.reapprovalTriggers,
       });
       expect(plan.generatedAt).toEqual(expect.any(String));

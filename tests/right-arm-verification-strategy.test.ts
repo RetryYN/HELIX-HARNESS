@@ -148,7 +148,7 @@ describe("right-arm verification strategy", () => {
     );
   });
 
-  it("accepts refreshed source ledger checked dates without losing table rows", () => {
+  it("fails date-only refreshed source ledger headings without matching meaning-review evidence", () => {
     // U-SOURCELEDGER-005
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
     const refreshed = rightArm.replace(
@@ -163,9 +163,16 @@ describe("right-arm verification strategy", () => {
       now: "2026-07-02T00:00:00.000Z",
     });
 
-    expect(result.ok).toBe(true);
+    expect(result.ok).toBe(false);
     expect(result.missingSourceLedgerRows).toEqual([]);
-    expect(result.sourceLedgerViolations).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual(
+      expect.arrayContaining([
+        "Verification source ledger missing source_ledger_freshness evidence for checked date 2026-06-15",
+        "Verification source ledger missing source_status_delta evidence for checked date 2026-06-15",
+        "Verification source ledger missing adoption_decision_delta evidence for checked date 2026-06-15",
+        "Verification source ledger missing workflow_route_impact evidence for checked date 2026-06-15",
+      ]),
+    );
   });
 
   it("fails source ledgers whose gate impact does not cover the G8-G14 verification band", () => {
@@ -372,7 +379,10 @@ describe("right-arm verification strategy", () => {
   });
 
   it("passes through the live repo loader", () => {
-    const result = analyzeRightArmVerificationStrategy(loadRightArmVerificationStrategyInput());
+    const result = analyzeRightArmVerificationStrategy({
+      ...loadRightArmVerificationStrategyInput(),
+      now: "2026-07-02T00:00:00.000Z",
+    });
     expect(result.ok).toBe(true);
     expect(result.missingSourceLedgerGateCoverage).toEqual([]);
     expect(result.sourceLedgerViolations).toEqual([]);

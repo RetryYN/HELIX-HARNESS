@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import {
   hasSourceLedgerCheckedDate,
+  sourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
@@ -134,6 +135,13 @@ const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "gate impact",
 ] as const;
 
+const REQUIRED_SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
+  "source_ledger_freshness",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+] as const;
+
 const REQUIRED_SOURCE_LEDGER_ROWS = [
   "NIST SSDF SP 800-218",
   "Scrum Guide 2020",
@@ -241,6 +249,7 @@ export function analyzeRightArmVerificationStrategy(
   );
   const sourceLedgerViolations = [
     ...(sourceLedgerFreshnessViolation ? [sourceLedgerFreshnessViolation] : []),
+    ...sourceLedgerMeaningReviewViolations(input.rightArmMd, "Verification source ledger"),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => `verification source ledger missing column: ${column}`),
@@ -321,6 +330,17 @@ export function analyzeRightArmVerificationStrategy(
     missingSourceLedgerGateCoverage,
     violations,
   };
+}
+
+function sourceLedgerMeaningReviewViolations(text: string, ledgerLabel: string): string[] {
+  const checkedDate = sourceLedgerCheckedDate(text, ledgerLabel);
+  if (!checkedDate) return [];
+  return REQUIRED_SOURCE_LEDGER_MEANING_REVIEW_FIELDS.flatMap((field) => {
+    const fieldDatePattern = new RegExp(`${field}[^\\n]*${checkedDate}`);
+    return fieldDatePattern.test(text)
+      ? []
+      : [`${ledgerLabel} missing ${field} evidence for checked date ${checkedDate}`];
+  });
 }
 
 function gateImpactTokens(value: string): string[] {

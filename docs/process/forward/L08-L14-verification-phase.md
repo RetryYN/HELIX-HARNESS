@@ -42,6 +42,13 @@ gate evidence ではない。review evidence は
 cutover / completion のどこへ差し戻すか) を記録する。公式 source が変わった、または row の adoption decision と
 verification use が噛み合わなくなった場合は、ledger refresh ではなく対象 gate / mode / PLAN の設計差し戻しとして扱う。
 
+Source ledger 意味レビュー証跡:
+
+- `source_ledger_freshness`: checked 2026-07-01、90 日鮮度 window 内。
+- `source_status_delta`: 2026-07-01 none。公式 source status/version/date の各 row は表の採用・追跡判断どおり。
+- `adoption_decision_delta`: 2026-07-01 none。右腕 evidence 用の adoption decision に変更なし。
+- `workflow_route_impact`: 2026-07-01 none。G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。
+
 > **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
 
 ### 右腕 evidence profile (G8-G14)

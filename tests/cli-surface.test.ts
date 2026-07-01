@@ -127,6 +127,7 @@ describe("L7 CLI surface closure", () => {
         "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress stale=false",
       );
       expect(text.stdout).toContain("latest_doc:");
+      expect(text.stdout).toContain("completion: ready");
 
       const stalePointer = {
         ...payload,
@@ -214,6 +215,16 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
+      const text = runCliIn(root, ["handover", "status"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("completion: blocked");
+      expect(text.stdout).toContain(
+        "completion-decision-packet: ut-tdd completion decision-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+      );
+      expect(text.stdout).toContain("semantic_frontier_records: 1");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -356,10 +367,10 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
-        "workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending packet=ut-tdd s4 decision-packet --json",
+        "workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=record the PO/S4 decision before promotion, rejection, or Forward merge route=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json",
       );
       expect(blockedText.stdout).toContain(
-        "workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending packet=ut-tdd rename plan --json",
+        "workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
@@ -427,7 +438,7 @@ describe("L7 CLI surface closure", () => {
           "---",
           "",
           "# fixture",
-          "irreversible cutover requires PO signoff and rollback evidence.",
+          "irreversible cutover requires PO signoff, rollback evidence, and action-binding approval.",
         ].join("\n"),
         "utf8",
       );
@@ -472,7 +483,11 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd s4 decision-packet --json",
           ["ut-tdd s4 decision-packet --json"],
         ],
-        ["PLAN-M-02-fixture", "ut-tdd rename plan --json", ["ut-tdd rename plan --json"]],
+        [
+          "PLAN-M-02-fixture",
+          "ut-tdd rename plan --json",
+          ["ut-tdd rename plan --json", "ut-tdd action-binding approval-packet --json"],
+        ],
       ]);
       expect(packet.decisions[0].requiredRecords[0]).toMatchObject({
         recordName: "s4_decision_record",
@@ -536,11 +551,23 @@ describe("L7 CLI surface closure", () => {
         "packet-command: primary=ut-tdd s4 decision-packet --json packets=ut-tdd s4 decision-packet --json",
       );
       expect(text.stdout).toContain(
-        "packet-command: primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json",
+        "packet-command: primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "required-action: record required human/action-binding approval before executing the high-impact action",
+      );
+      expect(text.stdout).toContain(
+        "required-action: obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+      );
+      expect(text.stdout).toContain(
+        "route: L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
       );
       expect(text.stdout).toContain("record-outcomes cutover_decision_record");
+      expect(text.stdout).toContain("record-outcomes action_binding_approval_record");
       expect(text.stdout).toContain("record-route cutover_decision_record");
+      expect(text.stdout).toContain("record-route action_binding_approval_record");
       expect(text.stdout).toContain("record-template cutover_decision_record");
+      expect(text.stdout).toContain("record-template action_binding_approval_record");
       expect(text.stdout).toContain(
         '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
       );
