@@ -55,6 +55,23 @@ function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadiness
       "execution_window_or_freeze_policy recorded before irreversible apply",
       "post_cutover_monitoring and legacy_alias_policy recorded before terminal status",
     ].join("\n"),
+    semanticFeatureFrontierRecords: [
+      {
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-M-900",
+        featureId: "name_cutover",
+        classification: "approval_gated_cutover",
+        completionClaimAllowed: false,
+        blockers: ["human_approval_pending", "irreversible_migration_pending"],
+        requiredRoute:
+          "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
+        reason: "irreversible_migration_pending",
+        sourcePaths: [
+          "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "docs/process/forward/L08-L14-verification-phase.md",
+        ],
+      },
+    ],
     plans: [
       {
         file: "PLAN-M-900.md",
@@ -107,6 +124,57 @@ describe("cutover readiness", () => {
         { subject: "PLAN-M-900", reason: "missing structured workflow_route_impact" },
       ]),
     );
+  });
+
+  it("fails irreversible cutover plans that are detached from live semantic frontier records", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        semanticFeatureFrontierRecords: [],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason: "missing semantic_feature_frontier_record for approval_gated_cutover",
+    });
+  });
+
+  it("fails irreversible cutover semantic frontier records with wrong feature or missing L3 source", () => {
+    const semanticRecord = input().semanticFeatureFrontierRecords?.[0];
+    if (!semanticRecord) throw new Error("missing cutover semantic frontier fixture");
+    const wrongFeature = analyzeCutoverReadiness(
+      input({
+        semanticFeatureFrontierRecords: [
+          {
+            ...semanticRecord,
+            featureId: "wrong_cutover",
+          },
+        ],
+      }),
+    );
+
+    expect(wrongFeature.ok).toBe(false);
+    expect(wrongFeature.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason: "semantic_feature_frontier_record featureId wrong_cutover expected name_cutover",
+    });
+
+    const missingL3 = analyzeCutoverReadiness(
+      input({
+        semanticFeatureFrontierRecords: [
+          {
+            ...semanticRecord,
+            sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+          },
+        ],
+      }),
+    );
+    expect(missingL3.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason:
+        "semantic_feature_frontier_record sourcePaths must include docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+    });
   });
 
   it("fails cutover records whose source ledger meaning-review fields are placeholders", () => {

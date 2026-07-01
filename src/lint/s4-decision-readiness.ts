@@ -1,5 +1,10 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  semanticFrontierBindingForPlan,
+  semanticFrontierBindingViolations,
+} from "./semantic-frontier-binding";
 import {
   allowedOutcomeSetViolation,
   fmValue,
@@ -38,6 +43,7 @@ export interface S4DecisionReadinessInput {
   discoveryMd: string;
   scrumMd: string;
   outstandingTs: string;
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: S4DecisionPlan[];
 }
 
@@ -66,6 +72,7 @@ export interface S4DecisionPacket {
   decisionCommandAvailable: false;
   decisionAllowed: false;
   allowedOutcomes: string[];
+  semanticFeatureFrontierRecord: SemanticFeatureFrontierRecord;
   decisionRecord: Record<string, string>;
   decisionEvidenceChecklist: Array<{
     field: string;
@@ -179,10 +186,12 @@ function parsePlan(file: string, content: string): S4DecisionPlan {
 
 export function loadS4DecisionReadinessInput(repoRoot = process.cwd()): S4DecisionReadinessInput {
   const plansDir = join(repoRoot, "docs", "plans");
+  const outstanding = computeOutstandingWork(repoRoot);
   return {
     discoveryMd: readFileSync(join(repoRoot, "docs", "process", "modes", "discovery.md"), "utf8"),
     scrumMd: readFileSync(join(repoRoot, "docs", "process", "modes", "scrum.md"), "utf8"),
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
+    semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: readdirSync(plansDir)
       .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
       .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
@@ -444,6 +453,18 @@ export function analyzeS4DecisionReadiness(
   const pending = input.plans.filter(isS3PocPendingDecision);
   for (const plan of pending) {
     violations.push(...validateS4DecisionRecord(plan));
+    if (input.semanticFeatureFrontierRecords !== undefined) {
+      violations.push(
+        ...semanticFrontierBindingViolations(
+          input.semanticFeatureFrontierRecords,
+          {
+            planId: plan.plan_id,
+            classification: "frontier_pending_decision",
+          },
+          plan.plan_id,
+        ),
+      );
+    }
   }
 
   for (const plan of input.plans.filter(isS4PocDecision)) {
@@ -473,11 +494,14 @@ export function analyzeS4DecisionReadiness(
 export function buildS4DecisionPackets(input: S4DecisionReadinessInput): S4DecisionPacket[] {
   return input.plans
     .filter(isS3PocPendingDecision)
-    .map((plan) => buildS4DecisionPacket(plan))
+    .map((plan) => buildS4DecisionPacket(plan, input.semanticFeatureFrontierRecords))
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
 
-export function buildS4DecisionPacket(plan: S4DecisionPlan): S4DecisionPacket {
+export function buildS4DecisionPacket(
+  plan: S4DecisionPlan,
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[],
+): S4DecisionPacket {
   const decisionRecord = recordValues(plan.text, S4_RECORD_NAME, [...S4_RECORD_FIELDS]);
   const blockedReasons = s4DecisionBlockedReasons(plan, decisionRecord);
   const provenance = buildDecisionPacketProvenance({ sourceCommand: S4_DECISION_PACKET_COMMAND });
@@ -493,6 +517,10 @@ export function buildS4DecisionPacket(plan: S4DecisionPlan): S4DecisionPacket {
     decisionCommandAvailable: false,
     decisionAllowed: false,
     allowedOutcomes: [...S4_ALLOWED_OUTCOMES],
+    semanticFeatureFrontierRecord: semanticFrontierBindingForPlan(semanticFeatureFrontierRecords, {
+      planId: plan.plan_id,
+      classification: "frontier_pending_decision",
+    }),
     decisionRecord,
     decisionEvidenceChecklist: [
       {

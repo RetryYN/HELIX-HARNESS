@@ -54,6 +54,46 @@ const RECORD = [
 
 const VERSION_UP_MODE_DOC = "Version-up source ledger (checked 2026-06-30)";
 
+function semanticRecord(
+  planId: string,
+  featureId: string,
+  classification: "frontier_pending_decision" | "parked_future_version" | "approval_gated_cutover",
+) {
+  return {
+    recordName: "semantic_feature_frontier_record" as const,
+    planId,
+    featureId,
+    classification,
+    completionClaimAllowed: false as const,
+    blockers:
+      classification === "frontier_pending_decision"
+        ? ["human_approval_pending", "po_decision_pending"]
+        : classification === "parked_future_version"
+          ? ["human_approval_pending", "version_up_parked"]
+          : ["human_approval_pending", "irreversible_migration_pending"],
+    requiredRoute:
+      classification === "frontier_pending_decision"
+        ? "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded"
+        : classification === "parked_future_version"
+          ? "version-up activation -> add-feature/rejection path, with approval boundary preserved"
+          : "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
+    reason:
+      classification === "frontier_pending_decision"
+        ? "po_decision_pending"
+        : classification === "parked_future_version"
+          ? "version_up_parked"
+          : "irreversible_migration_pending",
+    sourcePaths: [
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      classification === "parked_future_version"
+        ? "docs/process/modes/version-up.md"
+        : classification === "approval_gated_cutover"
+          ? "docs/process/forward/L08-L14-verification-phase.md"
+          : "docs/process/modes/discovery.md",
+    ],
+  };
+}
+
 function versionUpPlanWithSnapshot(snapshotId: string) {
   return {
     file: "PLAN-L7-146.md",
@@ -231,6 +271,19 @@ describe("action-binding approval readiness", () => {
     const packets = buildActionBindingApprovalPackets({
       rightArmMd: RIGHT_ARM,
       outstandingTs: OUTSTANDING,
+      semanticFeatureFrontierRecords: [
+        semanticRecord(
+          "PLAN-DISCOVERY-10",
+          "asset_progress_visualization",
+          "frontier_pending_decision",
+        ),
+        semanticRecord("PLAN-L7-146", "serverless_readonly_share", "parked_future_version"),
+        semanticRecord(
+          "PLAN-M-02-helix-identifier-rename",
+          "name_cutover",
+          "approval_gated_cutover",
+        ),
+      ],
       plans: [
         {
           file: "PLAN-DISCOVERY-10.md",
@@ -262,9 +315,27 @@ describe("action-binding approval readiness", () => {
         expect.objectContaining({ command: "ut-tdd s4 decision-packet --json" }),
       ]),
     );
+    expect(
+      packets.find((p) => p.planId === "PLAN-DISCOVERY-10")?.semanticFeatureFrontierRecords,
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          featureId: "asset_progress_visualization",
+          classification: "frontier_pending_decision",
+        }),
+      ]),
+    );
     expect(packets.find((p) => p.planId === "PLAN-L7-146")?.relatedDecisionPackets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ command: "ut-tdd version-up activation-packet --json" }),
+      ]),
+    );
+    expect(packets.find((p) => p.planId === "PLAN-L7-146")?.semanticFeatureFrontierRecords).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          featureId: "serverless_readonly_share",
+          classification: "parked_future_version",
+        }),
       ]),
     );
     expect(
@@ -272,6 +343,69 @@ describe("action-binding approval readiness", () => {
     ).toEqual(
       expect.arrayContaining([expect.objectContaining({ command: "ut-tdd rename plan --json" })]),
     );
+    expect(
+      packets.find((p) => p.planId === "PLAN-M-02-helix-identifier-rename")
+        ?.semanticFeatureFrontierRecords,
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          featureId: "name_cutover",
+          classification: "approval_gated_cutover",
+        }),
+      ]),
+    );
+  });
+
+  it("fails sibling action-binding packets that are detached from semantic frontier records", () => {
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      semanticFeatureFrontierRecords: [],
+      plans: [
+        {
+          file: "PLAN-L7-146.md",
+          plan_id: "PLAN-L7-146",
+          status: "draft",
+          versionTarget: "future",
+          text: `requires action-binding approval\n${RECORD}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-146",
+      reason: "missing semantic_feature_frontier_record for parked_future_version",
+    });
+  });
+
+  it("fails sibling action-binding semantic frontier records with wrong classification", () => {
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      semanticFeatureFrontierRecords: [
+        semanticRecord(
+          "PLAN-M-02-helix-identifier-rename",
+          "name_cutover",
+          "parked_future_version",
+        ),
+      ],
+      plans: [
+        {
+          file: "PLAN-M-02.md",
+          plan_id: "PLAN-M-02-helix-identifier-rename",
+          status: "draft",
+          text: `identifier rename cutover_decision_record requires action-binding approval\n${RECORD}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-02-helix-identifier-rename",
+      reason:
+        "semantic_feature_frontier_record classification parked_future_version expected approval_gated_cutover",
+    });
   });
 
   it("rejects prose-only approval mentions", () => {
@@ -659,6 +793,39 @@ describe("action-binding approval readiness", () => {
     ).toBe(true);
     expect(packets.flatMap((packet) => packet.blockedReasons)).toContain(
       "missing concrete approve_action_binding decision",
+    );
+    expect(
+      packets.find((packet) => packet.planId === "PLAN-DISCOVERY-10-helix-asset-visualization")
+        ?.semanticFeatureFrontierRecords,
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          featureId: "asset_progress_visualization",
+          classification: "frontier_pending_decision",
+        }),
+      ]),
+    );
+    expect(
+      packets.find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")
+        ?.semanticFeatureFrontierRecords,
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          featureId: "serverless_readonly_share",
+          classification: "parked_future_version",
+        }),
+      ]),
+    );
+    expect(
+      packets.find((packet) => packet.planId === "PLAN-M-02-helix-identifier-rename")
+        ?.semanticFeatureFrontierRecords,
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          featureId: "name_cutover",
+          classification: "approval_gated_cutover",
+        }),
+      ]),
     );
   });
 });

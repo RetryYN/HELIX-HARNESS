@@ -1,6 +1,11 @@
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  semanticFrontierBindingForPlan,
+  semanticFrontierBindingViolations,
+} from "./semantic-frontier-binding";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   buildDecisionPacketProvenance,
@@ -70,6 +75,7 @@ export interface IdentifierRenameCutoverPlan {
   targetCli: "helix";
   targetStateDir: ".helix";
   renameMap: IdentifierRenameMapping[];
+  semanticFeatureFrontierRecord: SemanticFeatureFrontierRecord;
   audit: Pick<
     IdentifierRenameAudit,
     "status" | "totalHits" | "hitsByToken" | "filesByToken" | "requiredRecords"
@@ -440,11 +446,31 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
   }
 }
 
-export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRenameCutoverPlan {
+export function buildIdentifierRenameCutoverPlan(
+  root: string,
+  semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[] = computeOutstandingWork(root)
+    .semanticFeatureFrontierRecords ?? [],
+): IdentifierRenameCutoverPlan {
   const audit = auditIdentifierRenameBlastRadius(root);
   const provenance = buildDecisionPacketProvenance({ sourceCommand: RENAME_PLAN_PACKET_COMMAND });
   const approvalEvaluation = evaluateCutoverApproval(root);
-  const blockedReasons = approvalEvaluation.approved ? [] : [...approvalEvaluation.reasons];
+  const semanticFrontierExpectation = {
+    planId: "PLAN-M-02-helix-identifier-rename",
+    classification: "approval_gated_cutover" as const,
+    featureId: "name_cutover",
+  };
+  const semanticFeatureFrontierRecord = semanticFrontierBindingForPlan(
+    semanticFeatureFrontierRecords,
+    semanticFrontierExpectation,
+  );
+  const blockedReasons = [
+    ...(approvalEvaluation.approved ? [] : approvalEvaluation.reasons),
+    ...semanticFrontierBindingViolations(
+      semanticFeatureFrontierRecords,
+      semanticFrontierExpectation,
+      "PLAN-M-02-helix-identifier-rename",
+    ).map((violation) => violation.reason),
+  ];
   const hitsByCategory = audit.hitsByCategory;
   const cutoverCategoryChecklist = hitsByCategory.map((summary) => ({
     ...summary,
@@ -556,6 +582,7 @@ export function buildIdentifierRenameCutoverPlan(root: string): IdentifierRename
     targetCli: audit.targetCli,
     targetStateDir: audit.targetStateDir,
     renameMap: RENAME_MAP,
+    semanticFeatureFrontierRecord,
     audit: {
       status: applyAuthorized ? "ready_for_cutover" : "blocked_pending_cutover_approval",
       totalHits: audit.totalHits,

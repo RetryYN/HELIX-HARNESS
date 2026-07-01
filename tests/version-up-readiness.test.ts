@@ -107,6 +107,23 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
+    semanticFeatureFrontierRecords: [
+      {
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-L7-900-future",
+        featureId: "serverless_readonly_share",
+        classification: "parked_future_version",
+        completionClaimAllowed: false,
+        blockers: ["human_approval_pending", "version_up_parked"],
+        requiredRoute:
+          "version-up activation -> add-feature/rejection path, with approval boundary preserved",
+        reason: "version_up_parked",
+        sourcePaths: [
+          "docs/process/modes/version-up.md",
+          "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        ],
+      },
+    ],
     plans: [
       {
         file: "PLAN-L7-900-future.md",
@@ -273,6 +290,13 @@ describe("version-up-readiness", () => {
       "reject_or_archive",
       "keep_parked_with_review_date",
     ]);
+    expect(packet.semanticFeatureFrontierRecord).toMatchObject({
+      recordName: "semantic_feature_frontier_record",
+      planId: "PLAN-L7-900-future",
+      featureId: "serverless_readonly_share",
+      classification: "parked_future_version",
+      completionClaimAllowed: false,
+    });
     expect(packet.activationDecision.activation_route).toContain("add-feature");
     expect(packet.parkedReview.decision_packet_route).toContain("completion packet");
     expect(packet.externalBoundaries).toEqual([
@@ -430,6 +454,58 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+  });
+
+  it("fails parked version-up plans that are detached from live semantic frontier records", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        semanticFeatureFrontierRecords: [],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason: "missing semantic_feature_frontier_record for parked_future_version",
+    });
+  });
+
+  it("fails parked version-up semantic frontier records with wrong classification or missing L3 source", () => {
+    const semanticRecord = input().semanticFeatureFrontierRecords?.[0];
+    if (!semanticRecord) throw new Error("missing version-up semantic frontier fixture");
+    const wrongClassification = analyzeVersionUpReadiness(
+      input({
+        semanticFeatureFrontierRecords: [
+          {
+            ...semanticRecord,
+            classification: "frontier_pending_decision",
+          },
+        ],
+      }),
+    );
+
+    expect(wrongClassification.ok).toBe(false);
+    expect(wrongClassification.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "semantic_feature_frontier_record classification frontier_pending_decision expected parked_future_version",
+    });
+
+    const missingL3 = analyzeVersionUpReadiness(
+      input({
+        semanticFeatureFrontierRecords: [
+          {
+            ...semanticRecord,
+            sourcePaths: ["docs/process/modes/version-up.md"],
+          },
+        ],
+      }),
+    );
+    expect(missingL3.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "semantic_feature_frontier_record sourcePaths must include docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+    });
   });
 
   it("keeps prose-only rehearsal and provenance requirements pending until concrete evidence is cited", () => {

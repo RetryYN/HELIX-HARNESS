@@ -32,6 +32,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/outstanding.ts
     artifact_type: source_module
+  - artifact_path: src/lint/semantic-frontier-binding.ts
+    artifact_type: source_module
   - artifact_path: tests/version-up-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/identifier-rename.test.ts
@@ -81,6 +83,55 @@ dependencies:
   requires:
     - docs/plans/PLAN-REVERSE-225-approval-snapshot-binding.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-02T02:06:00+09:00"
+    tests_green_at: "2026-07-02T02:06:00+09:00"
+    verdict: approve
+    scope: "Decision packets are now bound to the live L3 meaning frontier instead of only to plan kind/prose markers. S4 packets carry `semanticFeatureFrontierRecord` for frontier_pending_decision, version-up activation packets carry parked_future_version, rename/cutover packets carry featureId=name_cutover approval_gated_cutover, and action-binding packets expose sibling `semanticFeatureFrontierRecords[]`; missing records, wrong classification/feature, or detached L3 source paths fail readiness gates."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/s4-decision-readiness.test.ts tests/version-up-readiness.test.ts tests/cutover-readiness.test.ts tests/identifier-rename.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T02:02:00+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:74c3e6f375f25f53d23383fe9cf7081d92da378e285995c00046c541604432ba"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T02:06:00+09:00"
+        evidence_path: tests/doctor.test.ts
+        output_digest: "sha256:fd4bd4a551d3d9985bc18b3d9afe668d19489d0421908e7e584a000095ea5ab1"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T02:02:00+09:00"
+        evidence_path: src/lint/semantic-frontier-binding.ts
+        output_digest: "sha256:e82be61f36fc597e7f807c1b9847ca904d5dca922b55e61a517a11ba47d9d50d"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T02:02:00+09:00"
+        evidence_path: docs/design/harness/L6-function-design/function-spec.md
+        output_digest: "sha256:a564f23ed548028e0a92eda61d43a17285cc9c7acd89a206af3af8d2ae31be9c"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T02:02:00+09:00"
+        evidence_path: docs/process/forward/L08-L14-verification-phase.md
+        output_digest: "sha256:42af11edc5b7c2a378376c165741bd6d85e4160ad7f6f565780d3504079c5469"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T14:44:49+09:00"

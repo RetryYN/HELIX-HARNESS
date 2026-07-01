@@ -13,6 +13,24 @@ const cliPath = join(repoRoot, "src", "cli.ts");
 const CONCRETE_SNAPSHOT_ID =
   "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
+function nameCutoverSemanticRecord() {
+  return {
+    recordName: "semantic_feature_frontier_record" as const,
+    planId: "PLAN-M-02-helix-identifier-rename",
+    featureId: "name_cutover",
+    classification: "approval_gated_cutover" as const,
+    completionClaimAllowed: false as const,
+    blockers: ["human_approval_pending", "irreversible_migration_pending"],
+    requiredRoute:
+      "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
+    reason: "irreversible_migration_pending",
+    sourcePaths: [
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/process/forward/L08-L14-verification-phase.md",
+    ],
+  };
+}
+
 function runCliIn(cwd: string, args: string[]) {
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
@@ -36,6 +54,8 @@ function writeDraftRenamePlan(root: string) {
     [
       "---",
       "plan_id: PLAN-M-02-helix-identifier-rename",
+      "layer: L14",
+      "kind: design",
       "status: draft",
       "---",
       "",
@@ -57,6 +77,8 @@ function writeConcreteActorWithOutcomeChoices(root: string) {
     [
       "---",
       "plan_id: PLAN-M-02-helix-identifier-rename",
+      "layer: L14",
+      "kind: design",
       "status: draft",
       "---",
       "",
@@ -78,6 +100,8 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
     [
       "---",
       "plan_id: PLAN-M-02-helix-identifier-rename",
+      "layer: L14",
+      "kind: design",
       "status: confirmed",
       "---",
       "",
@@ -118,6 +142,8 @@ function writeMinimalApprovedRenamePlan(root: string) {
     [
       "---",
       "plan_id: PLAN-M-02-helix-identifier-rename",
+      "layer: L14",
+      "kind: design",
       "status: confirmed",
       "---",
       "",
@@ -238,7 +264,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeMinimalApprovedRenamePlan(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const plan = buildIdentifierRenameCutoverPlan(root);
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
       expect(plan.status).toBe("blocked_pending_cutover_approval");
       expect(plan.applyAuthorized).toBe(false);
       expect(plan.blockedReasons).toEqual(
@@ -304,6 +330,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         { from: ".ut-tdd", to: ".helix" },
         { from: "area=harness", to: "area=helix" },
       ]);
+      expect(plan.semanticFeatureFrontierRecord).toMatchObject({
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-M-02-helix-identifier-rename",
+        featureId: "name_cutover",
+        classification: "approval_gated_cutover",
+        completionClaimAllowed: false,
+      });
       expect(plan.blockedReasons).toContain(
         "missing concrete cutover_decision_record.allowed_outcome=approve_cutover",
       );
@@ -412,7 +445,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeApprovedRenamePlan(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const plan = buildIdentifierRenameCutoverPlan(root);
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
       expect(plan.status).toBe("blocked_pending_cutover_approval");
       expect(plan.applyAuthorized).toBe(false);
       expect(plan.mustNotApply).toBe(true);
@@ -434,13 +467,65 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeApprovedRenamePlan(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const currentSnapshotId = buildIdentifierRenameCutoverPlan(root).cutoverSnapshot.snapshotId;
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(root, [
+        nameCutoverSemanticRecord(),
+      ]).cutoverSnapshot.snapshotId;
       writeApprovedRenamePlan(root, currentSnapshotId);
-      const plan = buildIdentifierRenameCutoverPlan(root);
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
 
       expect(plan.status).toBe("ready_for_cutover_packet");
       expect(plan.applyAuthorized).toBe(true);
       expect(plan.blockedReasons).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks rename cutover packets that are detached from the name_cutover semantic frontier", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-no-frontier-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const plan = buildIdentifierRenameCutoverPlan(root, []);
+      expect(plan.semanticFeatureFrontierRecord).toMatchObject({
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-M-02-helix-identifier-rename",
+        featureId: "name_cutover",
+        classification: "approval_gated_cutover",
+        completionClaimAllowed: false,
+        reason: "missing_semantic_feature_frontier_record",
+      });
+      expect(plan.blockedReasons).toContain(
+        "missing semantic_feature_frontier_record for approval_gated_cutover",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks rename cutover packets whose semantic frontier classification or source path drifts", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-wrong-frontier-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const wrongClassification = buildIdentifierRenameCutoverPlan(root, [
+        { ...nameCutoverSemanticRecord(), classification: "parked_future_version" },
+      ]);
+      expect(wrongClassification.blockedReasons).toContain(
+        "semantic_feature_frontier_record classification parked_future_version expected approval_gated_cutover",
+      );
+
+      const missingL3 = buildIdentifierRenameCutoverPlan(root, [
+        {
+          ...nameCutoverSemanticRecord(),
+          sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+        },
+      ]);
+      expect(missingL3.blockedReasons).toContain(
+        "semantic_feature_frontier_record sourcePaths must include docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

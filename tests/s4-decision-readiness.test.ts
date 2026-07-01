@@ -51,6 +51,22 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
       "forward_route / reverse_fullback_required recorded when confirmed",
       "promotion_strategy_or_rejection_pivot_rationale recorded before terminal status",
     ].join("\n"),
+    semanticFeatureFrontierRecords: [
+      {
+        recordName: "semantic_feature_frontier_record",
+        planId: "PLAN-DISCOVERY-900",
+        featureId: "design_bottomup_mode",
+        classification: "frontier_pending_decision",
+        completionClaimAllowed: false,
+        blockers: ["po_decision_pending"],
+        requiredRoute: "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
+        reason: "po_decision_pending",
+        sourcePaths: [
+          "docs/process/modes/discovery.md",
+          "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        ],
+      },
+    ],
     plans: [
       {
         file: "PLAN-DISCOVERY-900.md",
@@ -195,6 +211,13 @@ describe("S4 decision readiness", () => {
       decisionAllowed: false,
     });
     expect(packet.allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+    expect(packet.semanticFeatureFrontierRecord).toMatchObject({
+      recordName: "semantic_feature_frontier_record",
+      planId: "PLAN-DISCOVERY-900",
+      featureId: "design_bottomup_mode",
+      classification: "frontier_pending_decision",
+      completionClaimAllowed: false,
+    });
     expect(packet.decisionRecord.forward_route).toContain("L3 Forward design");
     expect(packet.blockedReasons).toContain(
       "plan remains S3 draft; PO/S4 decision_outcome has not been recorded",
@@ -256,6 +279,69 @@ describe("S4 decision readiness", () => {
       expiresAt: expect.any(String),
       stale: false,
       policy: "decision-packet-freshness.v1",
+    });
+  });
+
+  it("fails S3 pending PoC plans that are detached from live semantic frontier records", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        semanticFeatureFrontierRecords: [],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-900",
+      reason: "missing semantic_feature_frontier_record for frontier_pending_decision",
+    });
+  });
+
+  it("fails S3 pending PoC semantic frontier records with wrong classification or missing L3 source", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        semanticFeatureFrontierRecords: [
+          {
+            recordName: "semantic_feature_frontier_record",
+            planId: "PLAN-DISCOVERY-900",
+            featureId: "design_bottomup_mode",
+            classification: "parked_future_version",
+            completionClaimAllowed: false,
+            blockers: ["po_decision_pending"],
+            requiredRoute: "S4 decide",
+            reason: "po_decision_pending",
+            sourcePaths: ["docs/process/modes/discovery.md"],
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-DISCOVERY-900",
+          reason:
+            "semantic_feature_frontier_record classification parked_future_version expected frontier_pending_decision",
+        },
+      ]),
+    );
+
+    const semanticRecord = input().semanticFeatureFrontierRecords?.[0];
+    if (!semanticRecord) throw new Error("missing S4 semantic frontier fixture");
+    const missingL3 = analyzeS4DecisionReadiness(
+      input({
+        semanticFeatureFrontierRecords: [
+          {
+            ...semanticRecord,
+            sourcePaths: ["docs/process/modes/discovery.md"],
+          },
+        ],
+      }),
+    );
+    expect(missingL3.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-900",
+      reason:
+        "semantic_feature_frontier_record sourcePaths must include docs/design/helix/L3-requirements/pillar-functional-requirements.md",
     });
   });
 

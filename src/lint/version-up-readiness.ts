@@ -1,6 +1,11 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  semanticFrontierBindingForPlan,
+  semanticFrontierBindingViolations,
+} from "./semantic-frontier-binding";
 import {
   allowedOutcomeSetViolation,
   fmValue,
@@ -40,6 +45,7 @@ export interface VersionUpReadinessInput {
   modeCatalog: string;
   modeDoc: string;
   discoveryPlan: string;
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: VersionUpReadinessPlan[];
 }
 
@@ -69,6 +75,7 @@ export interface VersionUpActivationPacket {
   applyCommandAvailable: false;
   activationAllowed: false;
   allowedOutcomes: string[];
+  semanticFeatureFrontierRecord: SemanticFeatureFrontierRecord;
   activationDecision: Record<string, string>;
   parkedReview: Record<string, string>;
   actionBindingApproval: Record<string, string>;
@@ -434,6 +441,7 @@ export function loadVersionUpReadinessInput(
   repoRoot: string = process.cwd(),
 ): VersionUpReadinessInput {
   const plansDir = join(repoRoot, "docs", "plans");
+  const outstanding = computeOutstandingWork(repoRoot);
   const plans = readdirSync(plansDir)
     .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
     .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8")));
@@ -464,6 +472,7 @@ export function loadVersionUpReadinessInput(
       join(repoRoot, "docs", "plans", "PLAN-DISCOVERY-09-version-up-mode.md"),
       "utf8",
     ),
+    semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans,
   };
 }
@@ -580,6 +589,18 @@ export function analyzeVersionUpReadiness(
 
   const parked = input.plans.filter((p) => p.versionTarget !== null);
   for (const plan of parked) {
+    if (input.semanticFeatureFrontierRecords !== undefined) {
+      violations.push(
+        ...semanticFrontierBindingViolations(
+          input.semanticFeatureFrontierRecords,
+          {
+            planId: plan.plan_id,
+            classification: "parked_future_version",
+          },
+          plan.plan_id,
+        ),
+      );
+    }
     if (plan.status !== "draft") {
       violations.push({
         subject: plan.plan_id,
@@ -674,7 +695,13 @@ export function buildVersionUpActivationPackets(
   const sourceLedgerFreshness = buildVersionUpSourceLedgerFreshness(input.modeDoc, sourceLedger);
   return input.plans
     .filter((plan) => plan.versionTarget !== null)
-    .map((plan) => buildVersionUpActivationPacket(plan, sourceLedgerFreshness))
+    .map((plan) =>
+      buildVersionUpActivationPacket(
+        plan,
+        sourceLedgerFreshness,
+        input.semanticFeatureFrontierRecords,
+      ),
+    )
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
 
@@ -805,6 +832,7 @@ export function buildVersionUpActivationPacket(
     columns: [],
     rows: [],
   }),
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[],
 ): VersionUpActivationPacket {
   const activationDecision = recordValues(plan.text, ACTIVATION_RECORD_NAME, [
     ...ACTIVATION_RECORD_FIELDS,
@@ -868,6 +896,10 @@ export function buildVersionUpActivationPacket(
     applyCommandAvailable: false,
     activationAllowed: false,
     allowedOutcomes: [...ACTIVATION_ALLOWED_OUTCOMES],
+    semanticFeatureFrontierRecord: semanticFrontierBindingForPlan(semanticFeatureFrontierRecords, {
+      planId: plan.plan_id,
+      classification: "parked_future_version",
+    }),
     activationDecision,
     parkedReview,
     actionBindingApproval,

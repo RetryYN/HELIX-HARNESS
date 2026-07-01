@@ -1,6 +1,12 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
+import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  type SemanticFrontierBindingExpectation,
+  semanticFrontierBindingForPlan,
+  semanticFrontierBindingViolations,
+} from "./semantic-frontier-binding";
 import {
   allowedOutcomeSetViolation,
   fmValue,
@@ -37,6 +43,7 @@ export interface ActionBindingApprovalReadinessInput {
   outstandingTs: string;
   versionUpModeDoc?: string;
   currentCutoverSnapshotId?: string;
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: ActionBindingApprovalPlan[];
 }
 
@@ -75,6 +82,7 @@ export interface ActionBindingApprovalPacket {
   allowedOutcomes: string[];
   approvalRecord: Record<string, string>;
   approvalBindingChecks: ActionBindingApprovalCheck[];
+  semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[];
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
@@ -165,6 +173,7 @@ export function loadActionBindingApprovalReadinessInput(
   repoRoot = process.cwd(),
 ): ActionBindingApprovalReadinessInput {
   const plansDir = join(repoRoot, "docs", "plans");
+  const outstanding = computeOutstandingWork(repoRoot);
   return {
     rightArmMd: readFileSync(
       join(repoRoot, "docs", "process", "forward", "L08-L14-verification-phase.md"),
@@ -176,6 +185,7 @@ export function loadActionBindingApprovalReadinessInput(
       "utf8",
     ),
     currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
+    semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: readdirSync(plansDir)
       .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
       .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
@@ -243,6 +253,17 @@ export function analyzeActionBindingApprovalReadiness(
     if (missingFields.length === 0 && !outcomeViolation) {
       violations.push(...validateActionBindingSemantics(plan, input));
     }
+    if (input.semanticFeatureFrontierRecords !== undefined) {
+      for (const expectation of semanticFrontierExpectationsForActionBindingPlan(plan)) {
+        violations.push(
+          ...semanticFrontierBindingViolations(
+            input.semanticFeatureFrontierRecords,
+            expectation,
+            plan.plan_id,
+          ),
+        );
+      }
+    }
   }
 
   return {
@@ -265,7 +286,7 @@ export function buildActionBindingApprovalPacket(
   plan: ActionBindingApprovalPlan,
   input: Pick<
     ActionBindingApprovalReadinessInput,
-    "versionUpModeDoc" | "currentCutoverSnapshotId"
+    "versionUpModeDoc" | "currentCutoverSnapshotId" | "semanticFeatureFrontierRecords"
   > = {},
 ): ActionBindingApprovalPacket {
   const approvalRecord = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
@@ -280,6 +301,16 @@ export function buildActionBindingApprovalPacket(
   const provenance = buildDecisionPacketProvenance({
     sourceCommand: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   });
+  const semanticFrontierViolations =
+    input.semanticFeatureFrontierRecords === undefined
+      ? []
+      : semanticFrontierExpectationsForActionBindingPlan(plan).flatMap((expectation) =>
+          semanticFrontierBindingViolations(
+            input.semanticFeatureFrontierRecords,
+            expectation,
+            plan.plan_id,
+          ),
+        );
   return {
     schemaVersion: "action-binding-approval-packet.v1",
     planId: plan.plan_id,
@@ -296,8 +327,15 @@ export function buildActionBindingApprovalPacket(
     allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
     approvalRecord,
     approvalBindingChecks,
+    semanticFeatureFrontierRecords: semanticFrontierBindingsForActionBindingPlan(
+      plan,
+      input.semanticFeatureFrontierRecords,
+    ),
     relatedDecisionPackets: relatedDecisionPacketsForActionBindingPlan(plan),
-    blockedReasons: actionBindingBlockedReasons(plan, approvalRecord, snapshotExpectations),
+    blockedReasons: [
+      ...actionBindingBlockedReasons(plan, approvalRecord, snapshotExpectations),
+      ...semanticFrontierViolations.map((violation) => violation.reason),
+    ],
     nextWorkflowRoutes: [
       {
         outcome: "approve_action_binding",
@@ -316,6 +354,46 @@ export function buildActionBindingApprovalPacket(
       },
     ],
   };
+}
+
+function semanticFrontierExpectationsForActionBindingPlan(
+  plan: ActionBindingApprovalPlan,
+): SemanticFrontierBindingExpectation[] {
+  const expectations: SemanticFrontierBindingExpectation[] = [];
+  if (
+    plan.kind === "poc" &&
+    plan.status === "draft" &&
+    plan.workflowPhase === "S3" &&
+    !plan.decisionOutcome
+  ) {
+    expectations.push({
+      planId: plan.plan_id,
+      classification: "frontier_pending_decision",
+    });
+  }
+  if (requiresVersionUpSnapshot(plan)) {
+    expectations.push({
+      planId: plan.plan_id,
+      classification: "parked_future_version",
+    });
+  }
+  if (requiresCutoverSnapshot(plan)) {
+    expectations.push({
+      planId: plan.plan_id,
+      classification: "approval_gated_cutover",
+      featureId: "name_cutover",
+    });
+  }
+  return expectations;
+}
+
+function semanticFrontierBindingsForActionBindingPlan(
+  plan: ActionBindingApprovalPlan,
+  records: SemanticFeatureFrontierRecord[] | undefined,
+): SemanticFeatureFrontierRecord[] {
+  return semanticFrontierExpectationsForActionBindingPlan(plan).map((expectation) =>
+    semanticFrontierBindingForPlan(records, expectation),
+  );
 }
 
 function relatedDecisionPacketsForActionBindingPlan(

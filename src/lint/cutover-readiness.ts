@@ -1,5 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import { semanticFrontierBindingViolations } from "./semantic-frontier-binding";
 import {
   allowedOutcomeSetViolation,
   fmValue,
@@ -26,6 +28,7 @@ export interface CutoverReadinessPlan {
 export interface CutoverReadinessInput {
   rightArmMd: string;
   outstandingTs: string;
+  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: CutoverReadinessPlan[];
 }
 
@@ -134,12 +137,14 @@ function parsePlan(file: string, content: string): CutoverReadinessPlan {
 
 export function loadCutoverReadinessInput(repoRoot = process.cwd()): CutoverReadinessInput {
   const plansDir = join(repoRoot, "docs", "plans");
+  const outstanding = computeOutstandingWork(repoRoot);
   return {
     rightArmMd: readFileSync(
       join(repoRoot, "docs", "process", "forward", "L08-L14-verification-phase.md"),
       "utf8",
     ),
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
+    semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: readdirSync(plansDir)
       .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
       .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
@@ -238,6 +243,21 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
   violations.push(...sourceLedgerViolations);
 
   const pending = input.plans.filter(isPendingIrreversibleCutover);
+  if (input.semanticFeatureFrontierRecords !== undefined) {
+    for (const plan of pending) {
+      violations.push(
+        ...semanticFrontierBindingViolations(
+          input.semanticFeatureFrontierRecords,
+          {
+            planId: plan.plan_id,
+            classification: "approval_gated_cutover",
+            featureId: "name_cutover",
+          },
+          plan.plan_id,
+        ),
+      );
+    }
+  }
   const recordValidationTargets = input.plans.filter(requiresCutoverRecordValidation);
   for (const plan of recordValidationTargets) {
     const missingFields = missingRecordFields(
