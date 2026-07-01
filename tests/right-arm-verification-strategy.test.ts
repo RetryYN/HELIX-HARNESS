@@ -247,12 +247,18 @@ describe("right-arm verification strategy", () => {
       "ISTQB Glossary",
       "OWASP LLM06:2025 Excessive Agency",
       "NASA Systems Engineering Handbook Appendix",
+      "W3C WCAG 2.2",
+      "Playwright Test",
       "official source ledger checked 2026-07-01",
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://scrumguides.org/scrum-guide.html",
       "https://glossary.istqb.org/",
       "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
       "https://www.nasa.gov/reference/system-engineering-handbook-appendix/",
+      "https://www.w3.org/TR/WCAG22/",
+      "https://playwright.dev/docs/intro",
+      "https://playwright.dev/docs/test-snapshots",
+      "https://playwright.dev/docs/accessibility-testing",
       "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
       "https://code.visualstudio.com/api/extension-guides/webview#security",
       "https://sre.google/sre-book/release-engineering/",
@@ -268,6 +274,8 @@ describe("right-arm verification strategy", () => {
     expect(rightArm).toContain("ISTQB Glossary");
     expect(rightArm).toContain("OWASP LLM06:2025 Excessive Agency");
     expect(rightArm).toContain("NASA Systems Engineering Handbook Appendix");
+    expect(rightArm).toContain("W3C WCAG 2.2");
+    expect(rightArm).toContain("Playwright Test");
     expect(rightArm).toContain("GitHub Environments required reviewers");
     expect(rightArm).toContain("VS Code Webview Security");
     expect(rightArm).toContain("Google SRE Release Engineering");
@@ -289,6 +297,9 @@ describe("right-arm verification strategy", () => {
       "g8-integration-evidence-v1",
       "ST-* row",
       "screenshot / render smoke / accessibility finding",
+      "WCAG 2.2 success-criteria mapping",
+      "Playwright trace or report",
+      "manual accessibility or inclusive-user review route",
       "UAT decision record",
       "acceptance command evidence",
       "smoke command evidence",
@@ -314,6 +325,10 @@ describe("right-arm verification strategy", () => {
       "https://scrumguides.org/scrum-guide.html",
       "https://glossary.istqb.org/",
       "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "https://www.w3.org/TR/WCAG22/",
+      "https://playwright.dev/docs/intro",
+      "https://playwright.dev/docs/test-snapshots",
+      "https://playwright.dev/docs/accessibility-testing",
       "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
       "https://code.visualstudio.com/api/extension-guides/webview#security",
       "https://sre.google/sre-book/release-engineering/",

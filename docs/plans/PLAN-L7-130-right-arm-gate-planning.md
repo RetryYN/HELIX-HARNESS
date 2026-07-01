@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-06-23
-updated: 2026-07-01
+updated: 2026-07-02
 owner: Codex
 parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
 agent_slots:
@@ -39,6 +39,63 @@ dependencies:
     - docs/improvement-backlog.md
     - docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-02T01:32:10+09:00"
+    tests_green_at: "2026-07-02T01:32:10+09:00"
+    verdict: approve
+    scope: "Right-arm verification strategy now includes W3C WCAG 2.2 and Playwright Test as official source-ledger rows for G10/G11 browser/accessibility evidence. G10 requires WCAG success-criteria mapping plus Playwright trace/report, and G11 keeps manual accessibility/inclusive-user review route, preventing screenshot-only or automated-a11y-only completion claims."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/right-arm-verification-strategy.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:32:10+09:00"
+        evidence_path: tests/right-arm-verification-strategy.test.ts
+        output_digest: "sha256:28f463388a08d9c964b98d9b3d16a5e2cc8f01d590769838e36d4a679ce8c325"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:32:10+09:00"
+        evidence_path: src/lint/right-arm-verification-strategy.ts
+        output_digest: "sha256:9c9e42720d346296e1ca35a4ecef8559d6980261d076c3d6e91c07b198c2798c"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:32:10+09:00"
+        evidence_path: docs/design/harness/L6-function-design/function-spec.md
+        output_digest: "sha256:b46250174bd3896ca3859ab790545f78da712f0e90514d0abde184e0dbf5d6b9"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:32:10+09:00"
+        evidence_path: docs/process/forward/L08-L14-verification-phase.md
+        output_digest: "sha256:42af11edc5b7c2a378376c165741bd6d85e4160ad7f6f565780d3504079c5469"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:32:10+09:00"
+        evidence_path: docs/process/gates.md
+        output_digest: "sha256:9c83ff135bcf0e7857fe9abfcd313829cf802c79a4fed95e38aa527b0ef0f76a"
+      - kind: smoke
+        command: "sha256sum docs/test-design/helix/L4-pillar-system-test-design.md"
+        runner: bash
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:32:10+09:00"
+        evidence_path: docs/test-design/helix/L4-pillar-system-test-design.md
+        output_digest: "sha256:dcaefa047b5b10cc8c7498860da2d05067e54176b8d3bb44883013ac9669de24"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T14:27:02+09:00"
