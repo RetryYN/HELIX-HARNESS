@@ -1246,7 +1246,12 @@ describe("P2/P3 pair-agent TDD programming route", () => {
           cost_usd: null,
         },
         plan: { planId: "PLAN-L7-PAIR" },
-        result: { status: "planned" },
+        result: {
+          status: "planned",
+          findings: expect.arrayContaining([
+            expect.objectContaining({ code: "frontier-approval-required", severity: "warn" }),
+          ]),
+        },
       });
       expect(typeof evidence.trace.duration_ms).toBe("number");
       expect(evidence.trace.duration_ms).toBeGreaterThanOrEqual(0);

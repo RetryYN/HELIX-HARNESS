@@ -913,7 +913,35 @@ export function checkDbProjectionIngestion(repoRoot: string): { messages: string
     try {
       const rebuilt = rebuildHarnessDb({ repoRoot, db });
       const result = analyzeDbProjectionIngestion(rebuilt.rowCounts);
-      return { messages: dbProjectionIngestionMessages(result), ok: result.ok };
+      const pairAgentBlockedGate = db
+        .prepare(
+          "SELECT gate_id, status, evidence_path FROM gate_runs WHERE gate_id = ? AND status IN ('blocked', 'error', 'failed') ORDER BY checked_at DESC LIMIT 1",
+        )
+        .get("pair-agent-run-evidence") as
+        | { gate_id: string; status: string; evidence_path: string }
+        | undefined;
+      const pairAgentFinding = db
+        .prepare(
+          "SELECT kind, severity, evidence_path FROM findings WHERE source = ? AND status = ? AND severity = ? ORDER BY kind LIMIT 1",
+        )
+        .get("pair-agent-evidence", "open", "error") as
+        | { kind: string; severity: string; evidence_path: string }
+        | undefined;
+      const messages = dbProjectionIngestionMessages(result);
+      if (pairAgentBlockedGate) {
+        messages.push(
+          `db-projection-ingestion - violation: pair-agent-run-evidence gate ${pairAgentBlockedGate.status} (${pairAgentBlockedGate.evidence_path})`,
+        );
+      }
+      if (pairAgentFinding) {
+        messages.push(
+          `db-projection-ingestion - violation: open pair-agent evidence finding ${pairAgentFinding.kind} (${pairAgentFinding.evidence_path})`,
+        );
+      }
+      return {
+        messages,
+        ok: result.ok && !pairAgentBlockedGate && !pairAgentFinding,
+      };
     } finally {
       db.close();
     }

@@ -784,6 +784,105 @@ describe("runDoctor", () => {
     }
   });
 
+  it("fails db projection ingestion when pair-agent evidence gates are blocked", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-doctor-pair-agent-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-177-helix-orchestration-runtime-bridge",
+          "title: pair-agent evidence doctor fixture",
+          "kind: add-impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "created: 2026-07-01",
+          "updated: 2026-07-01",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, ".ut-tdd", "evidence", "pair-agent", "20260701034800-PLAN-L7-177.json"),
+        `${JSON.stringify(
+          {
+            schema_version: "pair-agent-run-evidence.v1",
+            recorded_at: "2026-07-01T03:48:00.000Z",
+            run_id: "pair-agent:PLAN-L7-177:20260701034800",
+            mode: "hybrid",
+            execute: true,
+            trace: {
+              plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+              span_id: "pair-agent:PLAN-L7-177:20260701034800:run",
+              tool_contract_id: "HC-P2.runPairAgentTddPlan",
+              guardrail_decision: {
+                guardrail: "frontier-approval",
+                decision: "allow",
+                human_signoff_required: false,
+              },
+              eval_outcome: { ok: true, status: "passed", final_verdict: "pass" },
+              completed_at: "2026-07-01T03:48:00.000Z",
+              phase_spans: [
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034800:phase:1",
+                  phase: "smart_test_author",
+                  cycle: 0,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  eval_outcome: { status: "passed", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034800:phase:2",
+                  phase: "light_implementation",
+                  cycle: 1,
+                  agent_key: "light-implementation-agent",
+                  provider: "codex",
+                  model: "gpt-5.3-codex-spark",
+                  eval_outcome: { status: "passed", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034800:phase:3",
+                  phase: "smart_review",
+                  cycle: 1,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  eval_outcome: { status: "passed", verdict: "pass", exit_code: 0 },
+                },
+              ],
+            },
+            result: {
+              findings: [
+                {
+                  code: "light-agent-closure-claim",
+                  severity: "error",
+                  message: "light agent attempted to close the pair-agent loop",
+                },
+              ],
+            },
+          },
+          null,
+          2,
+        )}\n`,
+      );
+
+      const result = checkDbProjectionIngestion(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("pair-agent-run-evidence gate blocked");
+      expect(result.messages.join("\n")).toContain(
+        "open pair-agent evidence finding pair-agent-evidence-light-agent-closure-claim",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("skips change-impact / change-set-integrity in a non-git directory instead of failing closed", () => {
     // ZIP 展開のみ (非 git) の利用環境: git status が引けないだけで doctor を落とさない。
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-doctor-nongit-"));

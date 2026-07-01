@@ -22,8 +22,12 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
   - artifact_path: src/state-db/projection-writer.ts
     artifact_type: source_module
+  - artifact_path: tests/doctor.test.ts
+    artifact_type: test_code
   - artifact_path: tests/pair-agent.test.ts
     artifact_type: test_code
   - artifact_path: tests/projection-writer.test.ts
@@ -41,6 +45,71 @@ dependencies:
   requires:
     - docs/plans/PLAN-REVERSE-221-pair-agent-replay-evidence.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T15:01:52+09:00"
+    tests_green_at: "2026-07-01T15:01:52+09:00"
+    verdict: approve
+    scope: "Follow-up audit: saved pair-agent run evidence no longer relies only on phase order. DB rebuild projects runtime `result.findings` such as light-agent closing authority violations into findings, blocks the pair-agent-run-evidence gate for error findings, and doctor fails db-projection-ingestion when blocked/open pair-agent evidence exists. This makes saved evidence replay stricter instead of trusting local runtime verdicts."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/projection-writer.test.ts -t \"pair-agent\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:58:56+09:00"
+        evidence_path: tests/projection-writer.test.ts
+        output_digest: "sha256:60849e320ddf38b2474f163ee150f0891a0c8e0be91e46c5a4e13c6d37b8f884"
+      - kind: unit_test
+        command: "bun test tests/pair-agent.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:58:56+09:00"
+        evidence_path: tests/pair-agent.test.ts
+        output_digest: "sha256:06d5d5fdc6c8a7bb80bffe0d06bda53b068fdef616a117b9ddec39c8d885f008"
+      - kind: unit_test
+        command: "bun test tests/doctor.test.ts -t \"pair-agent evidence gates\""
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:58:56+09:00"
+        evidence_path: tests/doctor.test.ts
+        output_digest: "sha256:395e5fdd831e541d9740058e0329864989217f51aed91e5e916c5e1bd6f9eb73"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:58:56+09:00"
+        evidence_path: src/state-db/projection-writer.ts
+        output_digest: "sha256:d874cf70f4311748cea0093c1b8e697c58a7559afc633bda7ec9b6b9b0a0398b"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:58:56+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:432eea7839170c55d33de7dd77273c8738df1e593aa9f0f38d5f0002c92ff457"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T15:01:52+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:432eea7839170c55d33de7dd77273c8738df1e593aa9f0f38d5f0002c92ff457"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T15:01:52+09:00"
+        evidence_path: tests/doctor.test.ts
+        output_digest: "sha256:395e5fdd831e541d9740058e0329864989217f51aed91e5e916c5e1bd6f9eb73"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T13:34:22+09:00"

@@ -112,6 +112,9 @@ interface PairAgentRunEvidence {
   run_id?: unknown;
   recorded_at?: unknown;
   execute?: unknown;
+  result?: {
+    findings?: unknown;
+  };
   trace?: {
     plan_id?: unknown;
     span_id?: unknown;
@@ -133,6 +136,11 @@ interface PairAgentRunEvidence {
     loop_summary?: unknown;
     phase_spans?: unknown;
   };
+}
+
+interface PairAgentEvidenceFindingRecord {
+  code: string;
+  severity: "error" | "warn" | "info";
 }
 
 export interface ProjectionEvent {
@@ -958,6 +966,26 @@ function pairAgentPhaseOrderViolations(spans: unknown[]): string[] {
   return violations;
 }
 
+function pairAgentRuntimeFindingRecords(
+  evidence: PairAgentRunEvidence,
+): PairAgentEvidenceFindingRecord[] {
+  const findings = evidence.result?.findings;
+  if (!Array.isArray(findings)) return [];
+  return findings.flatMap((rawFinding): PairAgentEvidenceFindingRecord[] => {
+    if (!rawFinding || typeof rawFinding !== "object") return [];
+    const finding = rawFinding as { code?: unknown; severity?: unknown };
+    const code = asString(finding.code);
+    if (!code) return [];
+    const severity = asString(finding.severity);
+    return [
+      {
+        code: code.replace(/[^A-Za-z0-9._-]/g, "-"),
+        severity: severity === "error" || severity === "info" ? severity : "warn",
+      },
+    ];
+  });
+}
+
 function projectPairAgentPlanEvidenceFile(input: {
   db: HarnessDb;
   plans: Map<string, ProjectedPlan>;
@@ -1098,6 +1126,10 @@ function projectPairAgentRunEvidence(
     const status = asString(trace?.eval_outcome?.status) ?? "unknown";
     const spans = Array.isArray(trace?.phase_spans) ? trace.phase_spans : [];
     const phaseOrderViolations = spans.length > 0 ? pairAgentPhaseOrderViolations(spans) : [];
+    const runtimeFindings = pairAgentRuntimeFindingRecords(evidence);
+    const runtimeBlockingFindings = runtimeFindings.filter(
+      (finding) => finding.severity === "error",
+    );
     const guardrail = trace?.guardrail_decision;
     const guardrailName = asString(guardrail?.guardrail);
     if (guardrailName) {
@@ -1124,7 +1156,10 @@ function projectPairAgentRunEvidence(
         gate_run_id: stableId("pair-agent-gate", runId),
         gate_id: "pair-agent-run-evidence",
         plan_id: planId,
-        status: phaseOrderViolations.length > 0 ? "blocked" : status,
+        status:
+          phaseOrderViolations.length > 0 || runtimeBlockingFindings.length > 0
+            ? "blocked"
+            : status,
         checked_at: completedAt,
         evidence_path: relPath,
       },
@@ -1134,6 +1169,15 @@ function projectPairAgentRunEvidence(
         kind: "pair-agent-evidence-phase-order-invalid",
         severity: "warn",
         subjectId: `${runId}:${violation}`,
+        source: "pair-agent-evidence",
+        evidencePath: relPath,
+      });
+    }
+    for (const finding of runtimeFindings) {
+      recordFinding(db, {
+        kind: `pair-agent-evidence-${finding.code}`,
+        severity: finding.severity,
+        subjectId: `${runId}:${finding.code}`,
         source: "pair-agent-evidence",
         evidencePath: relPath,
       });
