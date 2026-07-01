@@ -21,7 +21,7 @@ import {
   type SetupState,
 } from "../src/setup/index";
 import type { TemplateSet } from "../src/setup/templates";
-import { COMMON_FILES } from "../src/setup/templates";
+import { BUILTIN_GITHUB_TEMPLATES, COMMON_FILES } from "../src/setup/templates";
 
 /** in-memory file store + gh 呼び出し記録の mock deps (now 固定で決定論)。 */
 function mockDeps(
@@ -69,7 +69,7 @@ const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
 const baseTemplates: TemplateSet = {
   "adapter/AGENTS.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# HELIX Adapter",
+    "# HELIX アダプター",
     "",
     "- Status: `ut-tdd status`",
     "- Doctor: `ut-tdd doctor`",
@@ -79,7 +79,7 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "adapter/CLAUDE.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# HELIX Shared Context",
+    "# HELIX 共有コンテキスト",
     "",
     "- `ut-tdd status`",
     "- `ut-tdd doctor`",
@@ -88,7 +88,7 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "adapter/.claude/CLAUDE.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# Claude Runtime Adapter",
+    "# Claude runtime アダプター",
     "",
     "- `ut-tdd handover`",
     "<!-- UT-TDD:managed:end -->",
@@ -243,17 +243,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-tdd-setup-existing-"));
     try {
       const templates = loadTemplates(repo);
-      expect(templates["adapter/AGENTS.md"]).toContain("HELIX Adapter");
+      expect(templates["adapter/AGENTS.md"]).toContain("HELIX アダプター");
       expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
       expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook agent-guard");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
       expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
-        "consumer-safe HELIX subagent",
+        "consumer-safe な HELIX subagent",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain("HELIX workflow");
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
-      expect(templates["adapter/.claude/commands/helix-status.md"]).toContain("HELIX status");
+      expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
+        "HELIX status と doctor 出力",
+      );
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["team/CODEOWNERS"]).toContain("{{TL_TEAM}}");
       const deps = mockDeps({ repoRoot: repo, templates });
@@ -409,7 +411,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const agents = deps.files.get(join("/repo", "AGENTS.md")) as string;
     expect(agents).toContain("# Consumer Rules\n\nKeep this line.\n");
     expect(agents).toContain("<!-- UT-TDD:managed:start -->");
-    expect(agents).toContain("HELIX Adapter");
+    expect(agents).toContain("HELIX アダプター");
     expect(agents).toContain("`ut-tdd doctor`");
     expect(deps.files.get(join("/repo", ".claude", "settings.json"))).toBe('{"consumer":true}\n');
 
@@ -497,8 +499,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.contracts.stable).toContain("Claude subagent and slash-command templates");
     expect(ready.smokeScenarios).toEqual(
       expect.arrayContaining([
-        "consumer CI -> harness-check green without repository secrets",
-        "monorepo package root -> adapter paths remain repo-root scoped",
+        "consumer CI -> repository secret 不要で harness-check green",
+        "monorepo package root -> adapter path は repo-root scoped のまま",
       ]),
     );
 
@@ -661,7 +663,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
         expect.stringContaining("bun link ut-tdd"),
-        "Run `ut-tdd status --json`, `ut-tdd doctor`, and `ut-tdd handover status --json` before starting HELIX work",
+        "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor`、`ut-tdd handover status --json` を実行する",
       ]),
     );
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
@@ -742,8 +744,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.postSetupWorkflow.unmetGates).toContain("import_report_review");
     expect(result.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
-        expect.stringContaining("Review importReport.skippedExistingPaths"),
-        "Rerun `ut-tdd setup project --dry-run` after the import report is resolved",
+        expect.stringContaining("importReport.skippedExistingPaths"),
+        "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
       ]),
     );
     expect(result.written).not.toContain(join(".vscode", "tasks.json"));
@@ -773,12 +775,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({
           name: "ut-tdd-cli",
           ok: true,
-          message: "ut-tdd resolves on PATH for projected hooks",
+          message: "projected hook 用の `ut-tdd` が PATH 上で解決できる",
         }),
       ]),
     );
     expect(result.consumerReadiness.smokeScenarios).toContain(
-      "consumer CI -> harness-check green without repository secrets",
+      "consumer CI -> repository secret 不要で harness-check green",
     );
     expect(result.postSetupWorkflow).toMatchObject({
       nextRoute: "ready",
@@ -786,9 +788,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       readinessOk: true,
       unmetGates: [],
       nextActions: [
-        "Run `ut-tdd status --json`",
-        "Run `ut-tdd doctor`",
-        "Run `ut-tdd handover status --json` and start from the active handover or current PLAN route",
+        "`ut-tdd status --json` を実行する",
+        "`ut-tdd doctor` を実行する",
+        "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
       ],
     });
   });
@@ -828,6 +830,31 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       evidencePath: ".ut-tdd/evidence",
     });
     expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
+  });
+
+  it("U-SETUP-020: distributed HELIX adapter docs stay Japanese-first", () => {
+    const repoTemplates = loadTemplates(process.cwd());
+    const samples = [
+      repoTemplates["adapter/AGENTS.md"],
+      repoTemplates["adapter/CLAUDE.md"],
+      repoTemplates["adapter/.claude/CLAUDE.md"],
+      repoTemplates["adapter/.claude/agents/code-reviewer.md"],
+      repoTemplates["adapter/.claude/commands/build.md"],
+      repoTemplates["adapter/.claude/commands/helix-status.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/AGENTS.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/CLAUDE.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/CLAUDE.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/agents/code-reviewer.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/build.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-status.md"],
+    ];
+
+    for (const text of samples) {
+      expect(text).toMatch(/[ぁ-んァ-ヶ一-龠]/);
+      expect(text).not.toMatch(
+        /This project uses|Use repository-local|Act as a|Required baseline|Run `ut-tdd|Do not put secrets|Project-owned instructions|Target: \$ARGUMENTS/,
+      );
+    }
   });
 
   it("U-SETUP-005: recordSetupState signals 4 フィールド strip / 上書き / token 非含", () => {

@@ -627,34 +627,34 @@ export function buildConsumerReadinessPlan(input: {
     {
       name: "bun>=1.3",
       ok: bunOk,
-      message: bunOk ? `Bun ${input.bunVersion}` : "Install Bun 1.3 or newer before setup",
+      message: bunOk ? `Bun ${input.bunVersion}` : "setup 前に Bun 1.3 以上を install する",
     },
     {
       name: "git",
       ok: input.hasGit,
-      message: input.hasGit ? "git available" : "Install git before tag-pin updates",
+      message: input.hasGit ? "git 利用可能" : "tag-pin 更新前に git を install する",
     },
     {
       name: "gh",
       ok: input.hasGh,
       message: input.hasGh
-        ? "gh available"
-        : "Install gh for GitHub setup; local setup can continue",
+        ? "gh 利用可能"
+        : "GitHub setup 用に gh を install する。local setup は継続可能",
     },
     {
       name: "ut-tdd-cli",
       ok: input.hasUtTddCli ?? true,
       message:
         (input.hasUtTddCli ?? true)
-          ? "ut-tdd resolves on PATH for projected hooks"
-          : "Run `bun link` in the harness package and `bun link ut-tdd` in the consumer repo before setup",
+          ? "projected hook 用の `ut-tdd` が PATH 上で解決できる"
+          : "setup 前に harness package で `bun link`、consumer repo で `bun link ut-tdd` を実行する",
     },
     {
       name: "runtime-cli",
       ok: runtimeOk,
       message: runtimeOk
         ? `mode=${mode}`
-        : "Install or login to claude or codex before review gates",
+        : "review gate 前に claude または codex を install / login する",
     },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
@@ -703,10 +703,10 @@ export function buildConsumerReadinessPlan(input: {
     },
     smokeScenarios: [
       "clean repo -> setup --dry-run -> doctor",
-      "brownfield repo -> setup twice -> consumer lines preserved",
-      "tag bump -> setup --dry-run -> rollback command available",
-      "consumer CI -> harness-check green without repository secrets",
-      "monorepo package root -> adapter paths remain repo-root scoped",
+      "brownfield repo -> setup twice -> consumer 行を保持",
+      "tag bump -> setup --dry-run -> rollback command 利用可能",
+      "consumer CI -> repository secret 不要で harness-check green",
+      "monorepo package root -> adapter path は repo-root scoped のまま",
     ],
   };
 }
@@ -818,20 +818,20 @@ function buildHelixProjectPostSetupWorkflow(input: {
   const nextActions =
     nextRoute === "review_import_report"
       ? [
-          "Review importReport.skippedExistingPaths and merge or accept consumer-owned configs before apply",
-          "Rerun `ut-tdd setup project --dry-run` after the import report is resolved",
-          "Run `ut-tdd status --json`, `ut-tdd doctor`, and `ut-tdd handover status --json` before starting HELIX work",
+          "apply 前に importReport.skippedExistingPaths を確認し、consumer-owned config を merge または受容する",
+          "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
+          "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor`、`ut-tdd handover status --json` を実行する",
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
-            "Rerun `ut-tdd setup project --dry-run` after readiness checks are green",
-            "Run `ut-tdd status --json`, `ut-tdd doctor`, and `ut-tdd handover status --json` before starting HELIX work",
+            "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
+            "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor`、`ut-tdd handover status --json` を実行する",
           ]
         : [
-            "Run `ut-tdd status --json`",
-            "Run `ut-tdd doctor`",
-            "Run `ut-tdd handover status --json` and start from the active handover or current PLAN route",
+            "`ut-tdd status --json` を実行する",
+            "`ut-tdd doctor` を実行する",
+            "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
           ];
   const blockedUntil = [
     ...(input.importReport.requiresReview ? ["importReport.requiresReview=false"] : []),
@@ -1010,7 +1010,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       mustNotApply: true,
       cutoverPlanCommand: "ut-tdd rename plan --json",
       reason:
-        "PLAN-M-02 cutover/action-binding approval is required before setup may switch generated state from .ut-tdd to .helix.",
+        "setup が生成 state を .ut-tdd から .helix へ切り替えるには PLAN-M-02 cutover/action-binding approval が必要。",
     },
     commandAvailability: {
       currentCommand: "ut-tdd setup project",
@@ -1020,7 +1020,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       enablementStatus: "blocked_pending_cutover_approval",
       enablementPacketCommand: "ut-tdd rename plan --json",
       reason:
-        "The helix command name is a post-cutover target; package/bin alias activation requires PLAN-M-02 cutover/action-binding approval.",
+        "`helix` command 名は post-cutover target。package/bin alias activation には PLAN-M-02 cutover/action-binding approval が必要。",
     },
     nextCommands: [
       "ut-tdd status --json",

@@ -1,11 +1,11 @@
 <!-- UT-TDD:managed:start -->
-# Claude Runtime Adapter
+# Claude runtime アダプター
 
-Claude Code sessions should route HELIX lifecycle work through the current `ut-tdd` CLI.
-Consumer-owned Claude instructions can be added outside this managed block.
+Claude Code session の HELIX lifecycle work は、現行 `ut-tdd` CLI 経由で扱う。
+consumer-owned Claude instruction は、この managed block の外側へ追加できる。
 
-- Session evidence: `ut-tdd status` and `ut-tdd handover`
+- Session evidence: `ut-tdd status` と `ut-tdd handover`
 - Health check: `ut-tdd doctor`
-- Review separation: use another runtime/model family when feasible
+- Review separation: 可能な場合は別 runtime / model family を使う
 
 <!-- UT-TDD:managed:end -->

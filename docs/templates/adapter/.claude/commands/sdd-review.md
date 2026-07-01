@@ -1,8 +1,10 @@
 ---
-description: Review a spec/design against UT-TDD trace and gate requirements.
+description: HELIX trace / gate 要求に照らして spec / design をレビューする。
 argument-hint: "<target>"
 ---
 
-Target: $ARGUMENTS
+Command: sdd-review
 
-Use repository-local UT-TDD commands. Start with `ut-tdd status --json`, run the narrow verification for the target, and finish with `ut-tdd doctor` when workflow or gate behavior is affected.
+対象: $ARGUMENTS
+
+現行 `ut-tdd` CLI 経由で repository-local HELIX command を使う。最初に `ut-tdd status --json` を実行し、対象に必要な narrow verification を走らせ、workflow または gate behavior に影響する場合は `ut-tdd doctor` で閉じる。

@@ -1,5 +1,5 @@
 ---
-description: Show HELIX status and doctor output
+description: HELIX status と doctor 出力を確認する。
 ---
 
-Run `ut-tdd status --json` and `ut-tdd doctor`, then summarize HELIX mode, active drafts, open defers, and hard-gate failures.
+`ut-tdd status --json` と `ut-tdd doctor` を実行し、HELIX mode、active draft、open defer、hard-gate failure を要約する。
