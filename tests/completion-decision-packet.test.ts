@@ -465,4 +465,25 @@ describe("completion decision packet lint", () => {
     expect(result.sourceCommand).toBe("ut-tdd completion decision-packet --json");
     expect(result.validForMinutes).toBe(1440);
   });
+
+  it("U-OUTSTANDING-014: carries source ledger freshness and meaning-review fields into terminal decision records", () => {
+    const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
+    const sourceLedgerFields = [
+      "source_ledger_freshness",
+      "source_status_delta",
+      "adoption_decision_delta",
+      "workflow_route_impact",
+    ];
+
+    for (const recordName of [
+      "s4_decision_record",
+      "activation_decision_record",
+      "cutover_decision_record",
+    ]) {
+      const record = packet.decisions
+        .flatMap((decision) => decision.requiredRecords)
+        .find((candidate) => candidate.recordName === recordName);
+      expect(record?.fields).toEqual(expect.arrayContaining(sourceLedgerFields));
+    }
+  });
 });

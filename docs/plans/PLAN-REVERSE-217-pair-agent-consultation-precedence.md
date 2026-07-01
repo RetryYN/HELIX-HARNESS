@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-        output_digest: "sha256:239418553b56722c54dc3cb22d3b780eef7ad1e69c21eb1e579f0308e36e247e"
+        output_digest: "sha256:bb979a6d8736a415df8f8ab837893b9f6a49cbf0c54412857f7bb98cc0abb042"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T07:41:20+09:00"

@@ -27,6 +27,12 @@ import { fmValue } from "./shared";
 
 /** 終端 (= 完了とみなす) status。これ以外 (archived を除く) が非終端 = 未了。 */
 const TERMINAL_STATUSES: ReadonlySet<string> = new Set(["confirmed", "completed", "accepted"]);
+const SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
+  "source_ledger_freshness",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+] as const;
 
 export interface OutstandingWork {
   /** 非終端 PLAN を layer 別に集計 (key 昇順、IMP-139 a)。 */
@@ -835,6 +841,15 @@ function placeholderForRecordField(
   if (field === "audit_record" || field === "review_approval_evidence") {
     return "<evidence path or audit id>";
   }
+  if (field === "source_ledger_freshness") {
+    return "<fresh|stale plus checked date and ledger label>";
+  }
+  if (field === "source_status_delta" || field === "adoption_decision_delta") {
+    return "<none|changed plus official source evidence>";
+  }
+  if (field === "workflow_route_impact") {
+    return "<none|route to S4/version-up/cutover/action-binding backfill>";
+  }
   return `<${field}>`;
 }
 
@@ -879,6 +894,7 @@ function requiredRecordsForOutstandingReason(
             "acceptance_gap",
             "unresolved_risk",
             "external_source_basis",
+            ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
             "route_impact",
             "forward_route",
             "reverse_fullback_required",
@@ -899,6 +915,7 @@ function requiredRecordsForOutstandingReason(
             "approval_scope",
             "dry_run_plan",
             "rollback_plan",
+            ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
           ],
           sourcePaths: ["docs/process/modes/version-up.md"],
         },
@@ -932,6 +949,7 @@ function requiredRecordsForOutstandingReason(
             "audit_record",
             "post_cutover_monitoring",
             "legacy_alias_policy",
+            ...SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
           ],
           sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
         },
