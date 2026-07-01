@@ -18,6 +18,7 @@ import {
   completionDecisionPacketForOutstanding,
   computeOutstandingWork,
   outstandingSummaryLine,
+  workflowNextActionsForOutstanding,
 } from "../lint/outstanding";
 import {
   activePlanStale,
@@ -31,6 +32,7 @@ import {
 import {
   CURRENT_PLAN_REL,
   GENERATED_BY,
+  HANDOVER_NEXT_ACTION_MARKER,
   HANDOVER_OUTSTANDING_MARKER,
   MAX_SAME_DAY_ENTRIES,
   MAX_SUMMARY_PLANS,
@@ -55,6 +57,7 @@ import type {
 
 export {
   GENERATED_BY,
+  HANDOVER_NEXT_ACTION_MARKER,
   HANDOVER_OUTSTANDING_MARKER,
   MAX_SAME_DAY_ENTRIES,
   MAX_SUMMARY_PLANS,
@@ -388,7 +391,31 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
       }),
     );
   }
-  lines.push("", "## §3 Next Action", "", TODO("順序付き次手"), "");
+  lines.push("", "## §3 Next Action", "");
+  if (opts.outstanding) {
+    const workflowActions = workflowNextActionsForOutstanding(opts.outstanding);
+    if (workflowActions.length === 0) {
+      lines.push(
+        `> ${HANDOVER_NEXT_ACTION_MARKER}: completion-ready`,
+        "- completion-ready: run completion claim audit before marking the whole objective complete",
+        "",
+      );
+    } else {
+      lines.push(
+        `> ${HANDOVER_NEXT_ACTION_MARKER}: ${workflowActions.length} item(s); source=\`workflowNextActionsForOutstanding\``,
+        "",
+        ...workflowActions.flatMap((a) => [
+          `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): ${sanitize(a.requiredAction)}`,
+          `  - route: ${sanitize(a.nextWorkflowRoute)}`,
+          `  - primary packet: \`${sanitize(a.decisionPacketCommand)}\``,
+          `  - packet commands: ${a.packetCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
+        ]),
+        "",
+      );
+    }
+  } else {
+    lines.push(TODO("順序付き次手"), "");
+  }
   lines.push("## §4 carry (未了・先送り)", "", TODO("carry"), "");
   lines.push("## §5 未了 PO 判断", "");
   if (opts.outstanding) {
@@ -596,6 +623,46 @@ export function checkHandoverOutstandingAnchor(deps: HandoverDeps): {
     };
   }
   return { messages: ["handover-outstanding — OK (§5 が機械集計行で anchor 済)"], ok: true };
+}
+
+/**
+ * PLAN-L7-94 continuation: 最新 handover の §3 Next Action を `workflowNextActions` 由来の
+ * 機械次手で anchor する。CURRENT.json / status JSON に正しい blocker queue があっても、markdown §3 が
+ * TODO のままだと再開者が workflow を外すため、latest entry の §3 marker を fail-close で強制する。
+ */
+export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
+  messages: string[];
+  ok: boolean;
+} {
+  const pointer = readPointer(deps);
+  if (!pointer?.latest_doc) {
+    return { messages: ["handover-next-action — skipped (handover 未生成)"], ok: true };
+  }
+  const md = deps.readText(join(deps.repoRoot, pointer.latest_doc));
+  if (md == null) {
+    return {
+      messages: [`handover-next-action — violation: ${pointer.latest_doc} を読めない`],
+      ok: false,
+    };
+  }
+  const section = latestEntrySection(md, "§3");
+  if (section == null) {
+    return {
+      messages: [
+        `handover-next-action — violation: 最新 entry に §3 Next Action が無い (${pointer.latest_doc})`,
+      ],
+      ok: false,
+    };
+  }
+  if (!section.includes(HANDOVER_NEXT_ACTION_MARKER)) {
+    return {
+      messages: [
+        `handover-next-action — violation: 最新 handover §3 に機械次手 (${HANDOVER_NEXT_ACTION_MARKER}) が無い → \`ut-tdd handover\` で再生成し workflowNextActions 由来の次手を seed`,
+      ],
+      ok: false,
+    };
+  }
+  return { messages: ["handover-next-action — OK (§3 が機械次手で anchor 済)"], ok: true };
 }
 
 /**

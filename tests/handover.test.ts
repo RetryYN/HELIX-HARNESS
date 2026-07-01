@@ -2,6 +2,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   GENERATED_BY as SIDECAR_GENERATED_BY,
+  HANDOVER_NEXT_ACTION_MARKER as SIDECAR_HANDOVER_NEXT_ACTION_MARKER,
   HANDOVER_OUTSTANDING_MARKER as SIDECAR_HANDOVER_OUTSTANDING_MARKER,
   MAX_SAME_DAY_ENTRIES as SIDECAR_MAX_SAME_DAY_ENTRIES,
   MAX_SUMMARY_PLANS as SIDECAR_MAX_SUMMARY_PLANS,
@@ -14,16 +15,19 @@ import {
   checkHandoverBypass,
   checkHandoverCompletionDecisionPacket,
   checkHandoverDiscipline,
+  checkHandoverNextActionAnchor,
   checkHandoverOutstandingAnchor,
   countHandoverEntries,
   dedupeDigests,
   GENERATED_BY,
+  HANDOVER_NEXT_ACTION_MARKER,
   HANDOVER_OUTSTANDING_MARKER,
   type HandoverDeps,
   type HandoverPointer,
   type HandoverScope,
   handoverStale,
   inferPlanFromCommit,
+  latestEntrySection,
   latestSessionId,
   MAX_SAME_DAY_ENTRIES,
   MAX_SUMMARY_PLANS,
@@ -90,6 +94,7 @@ const pointerPath = join("/repo", ".ut-tdd", "handover", "CURRENT.json");
 describe("PLAN-L7-173 handover sidecars", () => {
   it("re-exported constants and sidecar document type stay aligned", () => {
     expect(SIDECAR_GENERATED_BY).toBe(GENERATED_BY);
+    expect(SIDECAR_HANDOVER_NEXT_ACTION_MARKER).toBe(HANDOVER_NEXT_ACTION_MARKER);
     expect(SIDECAR_HANDOVER_OUTSTANDING_MARKER).toBe(HANDOVER_OUTSTANDING_MARKER);
     expect(SIDECAR_MAX_SAME_DAY_ENTRIES).toBe(MAX_SAME_DAY_ENTRIES);
     expect(SIDECAR_MAX_SUMMARY_PLANS).toBe(MAX_SUMMARY_PLANS);
@@ -382,6 +387,66 @@ describe("U-HOVER-017 §5 outstanding seed + anchor gate (PLAN-L7-98)", () => {
   it("複数 entry は最後の entry の §5 を見る (古い entry の marker では通さない)", () => {
     const md = `# Session Handover — 2026-06-04\n\n## §5 未了 PO 判断\n\n> ${HANDOVER_OUTSTANDING_MARKER}: x\n\n---\n\n# Session Handover — 2026-06-04\n\n## §5 未了 PO 判断\n\n- 待ち prose のみ\n\n## §6 x\n`;
     expect(checkHandoverOutstandingAnchor(withDoc(md)).ok).toBe(false);
+  });
+});
+
+describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
+  function blockedOutstanding(): OutstandingWork {
+    return analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending and requires human approval.",
+        },
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "future activation requires action-binding approval.",
+        },
+      ],
+      0,
+    );
+  }
+
+  function withDoc(md: string | null): ReturnType<typeof mockDeps> {
+    const deps = mockDeps();
+    deps.files.set(pointerPath, JSON.stringify({ latest_doc: "docs/handover/h.md" }));
+    if (md != null) deps.files.set(join("/repo", "docs", "handover", "h.md"), md);
+    return deps;
+  }
+
+  it("outstanding 指定で §3 に workflowNextActions 由来の機械次手と packet command を出力する", () => {
+    const md = renderHandoverScaffold(scaffoldFromDigests([digest()], [], "2026-06-04"), {
+      outstanding: blockedOutstanding(),
+    });
+
+    const section = latestEntrySection(md, "§3") ?? "";
+    expect(section).toContain(HANDOVER_NEXT_ACTION_MARKER);
+    expect(section).toContain("PLAN-DISCOVERY-10");
+    expect(section).toContain("record the PO/S4 decision");
+    expect(section).toContain("ut-tdd s4 decision-packet --json");
+    expect(section).toContain("ut-tdd action-binding approval-packet --json");
+    expect(section).not.toContain("TODO(human): 順序付き次手");
+  });
+
+  it("§3 に marker があれば ok", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n## §4 x\n`;
+    expect(checkHandoverNextActionAnchor(withDoc(md)).ok).toBe(true);
+  });
+
+  it("§3 が TODO のままなら fail-close", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n<!-- TODO(human): 順序付き次手 -->\n\n## §4 x\n`;
+    const r = checkHandoverNextActionAnchor(withDoc(md));
+
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("機械次手");
   });
 });
 

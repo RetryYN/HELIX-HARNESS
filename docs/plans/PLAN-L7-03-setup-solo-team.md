@@ -176,7 +176,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:45:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:66ff83826dcb91dd49e37e56df2d6283a5080949744b89708f2a2521612db6b6"
+        output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:40:56+09:00"

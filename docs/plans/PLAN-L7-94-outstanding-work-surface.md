@@ -12,6 +12,39 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T10:55:27+09:00"
+    tests_green_at: "2026-07-01T10:55:27+09:00"
+    verdict: pass
+    scope: "Continuation 40: handover markdown §3 Next Action is now seeded from workflowNextActionsForOutstanding with PLAN IDs, required actions, workflow routes, and primary/supporting packet commands. Doctor hard-gates the latest handover entry with handover-next-action, so a resume document cannot keep TODO(human) while status/CURRENT.json carry the real blocker queue."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/handover.test.ts tests/doctor.test.ts tests/cli-surface.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T10:55:27+09:00"
+        evidence_path: tests/handover.test.ts
+        output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T10:55:27+09:00"
+        evidence_path: src/handover/index.ts
+        output_digest: "sha256:c4bec147cbd94eeca526cfc46a081822846c5ec4054f2653cc5639d93e053581"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T10:55:27+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T10:40:33+09:00"
     tests_green_at: "2026-07-01T10:40:33+09:00"
     verdict: pass
@@ -75,7 +108,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:66ff83826dcb91dd49e37e56df2d6283a5080949744b89708f2a2521612db6b6"
+        output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T08:33:36+09:00"
@@ -182,7 +215,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:14:42+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:3b13a33abb624a69f4d744d9dacc1025cd1024ee8ea8deb7de21b281cce5581b"
+        output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -685,7 +718,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:28:00+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:3b13a33abb624a69f4d744d9dacc1025cd1024ee8ea8deb7de21b281cce5581b"
+        output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T18:17:24+09:00"
@@ -702,7 +735,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:17:24+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:3b13a33abb624a69f4d744d9dacc1025cd1024ee8ea8deb7de21b281cce5581b"
+        output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -710,7 +743,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:17:24+09:00"
         evidence_path: src/handover/index.ts
-        output_digest: "sha256:61094154bb6355fbb1e34a6c58c28168dbe8cf545d98117483a36982bcc07e2a"
+        output_digest: "sha256:c4bec147cbd94eeca526cfc46a081822846c5ec4054f2653cc5639d93e053581"
       - kind: lint
         command: "bun run lint && git diff --check"
         runner: bun
@@ -743,7 +776,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:01:37+09:00"
         evidence_path: src/handover/index.ts
-        output_digest: "sha256:61094154bb6355fbb1e34a6c58c28168dbe8cf545d98117483a36982bcc07e2a"
+        output_digest: "sha256:c4bec147cbd94eeca526cfc46a081822846c5ec4054f2653cc5639d93e053581"
       - kind: lint
         command: "bun run lint && git diff --check"
         runner: bun
@@ -751,7 +784,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:01:37+09:00"
         evidence_path: tests/handover.test.ts
-        output_digest: "sha256:3b13a33abb624a69f4d744d9dacc1025cd1024ee8ea8deb7de21b281cce5581b"
+        output_digest: "sha256:b76027787c058bdfb27ec4b8692d0b126a108f698e07d6e7acd0c61b73d28998"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T17:47:32+09:00"
@@ -1125,6 +1158,10 @@ generates:
     artifact_type: source_module
   - artifact_path: src/handover/index.ts
     artifact_type: source_module
+  - artifact_path: src/handover/handover-constants.ts
+    artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
   - artifact_path: tests/outstanding.test.ts
     artifact_type: test_code
   - artifact_path: tests/completion-decision-packet.test.ts
@@ -1291,6 +1328,10 @@ handover CURRENT.json に **additive** に surface し、「doctor green = 完�
   `completionDecisionPacket` / G-SF `semanticFeatureFrontierRecords` を live PLAN state から overlay するため、
   古い pointer snapshot が recordTemplates、専用 packet commands、または revised-request / parked /
   cutover の意味分類を落としていても再開時に復元して読める。
+- handover markdown の §3 Next Action は `workflowNextActionsForOutstanding` 由来の
+  `HANDOVER_NEXT_ACTION_MARKER`、PLAN ID、required action、route、primary/supporting packet commands を持つ。
+  §3 が `TODO(human): 順序付き次手` のまま残ると、status/CURRENT.json には blocker queue があるのに
+  再開文書が workflow を外すため、doctor `handover-next-action` hard gate が最新 entry の §3 marker を要求する。
 - doctor `handover-decision-packet` hard gate が、blocked outstanding を持つ handover CURRENT.json に
   `completionDecisionPacket` が存在し、`sourceCommand=ut-tdd handover`、freshness/shape lint OK、
   `completionReadiness` と ok/status 一致、`outstanding.items.length` と decision count 一致であることを検査する。
@@ -1373,6 +1414,8 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
   G-SF の完了許可根拠にしない。
 - [x] handover CURRENT.json は `completionDecisionPacket` を持ち、handover 再開時にも required record の
   `recordTemplates` を失わない。
+- [x] handover markdown §3 Next Action は `workflowNextActions[]` 由来の機械次手、route、packet commands を持ち、
+  TODO のまま再開文書へ渡らない。doctor `handover-next-action` hard gate が最新 entry の §3 marker 欠落を拒否する。
 - [x] doctor `handover-decision-packet` hard gate が、blocked outstanding を持つ旧 CURRENT.json の
   `completionDecisionPacket` 欠落、source mismatch、freshness/shape drift、readiness/decision count mismatch を拒否する。
 - [x] informational surface = 非 fail-close (gate ではない、doctor.ok に連動させない)。

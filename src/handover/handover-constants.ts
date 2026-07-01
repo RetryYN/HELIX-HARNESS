@@ -7,12 +7,14 @@ const PLAN_DIGEST_DIR = join(".ut-tdd", "logs", "plan");
 const CURRENT_PLAN_REL = join(".ut-tdd", "state", "current-plan");
 const MAX_SAME_DAY_ENTRIES = 4;
 const MAX_SUMMARY_PLANS = 12;
+const HANDOVER_NEXT_ACTION_MARKER = "機械次手 (workflowNextActions)";
 const HANDOVER_OUTSTANDING_MARKER = "機械集計 (outstanding)";
 
 export {
   CURRENT_PLAN_REL,
   GENERATED_BY,
   HANDOVER_DIR,
+  HANDOVER_NEXT_ACTION_MARKER,
   HANDOVER_OUTSTANDING_MARKER,
   MAX_SAME_DAY_ENTRIES,
   MAX_SUMMARY_PLANS,

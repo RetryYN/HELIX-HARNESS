@@ -11,6 +11,7 @@ import {
   checkHandoverCompletionDecisionPacket,
   checkHandoverCompletionWording,
   checkHandoverDiscipline,
+  checkHandoverNextActionAnchor,
   checkHandoverOutstandingAnchor,
   type HandoverDeps,
   type HandoverPointer,
@@ -2119,6 +2120,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const lintWiring = checkLintWiring(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
+  const handoverNextAction = checkHandoverNextActionAnchor(handoverDeps(deps));
   const handoverOutstanding = checkHandoverOutstandingAnchor(handoverDeps(deps));
   const handoverDecisionPacket = checkHandoverCompletionDecisionPacket(handoverDeps(deps));
   // fail-close: green_command digest が evidence_path 実 hash と一致するか (fake substance 防止、PLAN-L7-132)。
@@ -2211,6 +2213,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       completionDecisionPacket.ok &&
       objectiveEvidenceAudit.ok &&
       forwardConvergenceAudit.ok &&
+      handoverNextAction.ok &&
       handoverOutstanding.ok &&
       handoverDecisionPacket.ok,
     messages: [
@@ -2286,6 +2289,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
+      ...handoverNextAction.messages.map((m) => `doctor: ${m}`),
       ...handoverOutstanding.messages.map((m) => `doctor: ${m}`),
       ...handoverDecisionPacket.messages.map((m) => `doctor: ${m}`),
       ...greenCommandDigest.messages.map((m) => `doctor: ${m}`),
