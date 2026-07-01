@@ -43,6 +43,7 @@ const CUTOVER_RECORD_MARKERS = [
   "cutover_decision_record",
   "allowed_outcome",
   "decision_owner",
+  "cutover_snapshot_id",
   "trigger_condition",
   "blast_radius_baseline",
   "dry_run_plan",
@@ -64,6 +65,7 @@ const CUTOVER_RECORD_NAME = "cutover_decision_record";
 const CUTOVER_RECORD_FIELDS = [
   "allowed_outcome",
   "decision_owner",
+  "cutover_snapshot_id",
   "trigger_condition",
   "blast_radius_baseline",
   "dry_run_plan",
@@ -83,6 +85,7 @@ const CUTOVER_ALLOWED_OUTCOMES = [
 
 const OUTSTANDING_MARKERS = [
   "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
+  "cutover_snapshot_id from the current cutoverSnapshot.snapshotId recorded before irreversible migration approval",
   "trigger_condition and blast_radius_baseline recorded before irreversible migration",
   "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
   "execution_window_or_freeze_policy recorded before irreversible apply",

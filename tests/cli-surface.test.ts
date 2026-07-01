@@ -477,6 +477,7 @@ describe("L7 CLI surface closure", () => {
         recordName: "cutover_decision_record",
         sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
       });
+      expect(packet.decisions[1].requiredRecords[0].fields).toContain("cutover_snapshot_id");
       expect(packet.decisions[1].allowedOutcomesByRecord).toEqual(
         expect.arrayContaining([
           {
@@ -505,6 +506,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
       );
+      expect(text.stdout).toContain('  - cutover_snapshot_id: "<cutoverSnapshot.snapshotId>"');
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

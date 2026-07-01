@@ -486,4 +486,19 @@ describe("completion decision packet lint", () => {
       expect(record?.fields).toEqual(expect.arrayContaining(sourceLedgerFields));
     }
   });
+
+  it("carries activation and cutover snapshot binding fields into approval decision records", () => {
+    const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
+    const records = packet.decisions.flatMap((decision) => decision.requiredRecords);
+
+    expect(
+      records.find((record) => record.recordName === "activation_decision_record")?.fields,
+    ).toContain("activation_snapshot_id");
+    expect(
+      records.find((record) => record.recordName === "cutover_decision_record")?.fields,
+    ).toContain("cutover_snapshot_id");
+    expect(
+      records.find((record) => record.recordName === "action_binding_approval_record")?.fields,
+    ).toContain("reviewed_snapshot_binding");
+  });
 });

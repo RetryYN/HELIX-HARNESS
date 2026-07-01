@@ -575,7 +575,14 @@ function requiredRouteGuidance(recordName: string): string[] {
     case "s4_decision_record":
       return ["S4 decide", "decision_outcome", "Forward", "rejected backlog", "pivot"];
     case "activation_decision_record":
-      return ["version-up activation", "add-feature", "Forward", "reject/archive", "review_by"];
+      return [
+        "version-up activation",
+        "activationSnapshot.snapshotId",
+        "add-feature",
+        "Forward",
+        "reject/archive",
+        "review_by",
+      ];
     case "parked_review_record":
       return [
         "version-up parked review",
@@ -584,10 +591,17 @@ function requiredRouteGuidance(recordName: string): string[] {
         "activation_decision_record",
       ];
     case "cutover_decision_record":
-      return ["L14 cutover decision", "approve_cutover", "reject/defer", "request runbook changes"];
+      return [
+        "L14 cutover decision",
+        "cutoverSnapshot.snapshotId",
+        "approve_cutover",
+        "reject/defer",
+        "request runbook changes",
+      ];
     case "action_binding_approval_record":
       return [
         "action-binding approval gate",
+        "reviewed_snapshot_binding",
         "actor/tool/target/params",
         "deny action",
         "reduce scope",
@@ -604,7 +618,15 @@ function requiredTemplateGuidance(recordName: string): string[] {
     case "s4_decision_record":
       return ["confirmed", "rejected", "pivot", "forward", "reverse", "archive", "route_impact"];
     case "activation_decision_record":
-      return ["add-feature", "forward", "reject/archive", "review_by", "dry-run", "rollback"];
+      return [
+        "activationSnapshot.snapshotId",
+        "add-feature",
+        "forward",
+        "reject/archive",
+        "review_by",
+        "dry-run",
+        "rollback",
+      ];
     case "parked_review_record":
       return [
         "review_owner",
@@ -615,6 +637,7 @@ function requiredTemplateGuidance(recordName: string): string[] {
     case "cutover_decision_record":
       return [
         "frozen head",
+        "cutoverSnapshot.snapshotId",
         "quiet window",
         "single-run",
         "drift re-approval",
@@ -629,6 +652,7 @@ function requiredTemplateGuidance(recordName: string): string[] {
         "actor/tool/target/params",
         "dry-run",
         "risk",
+        "reviewed snapshot binding",
         "expiry",
         "approver/action/result/incident",
       ];

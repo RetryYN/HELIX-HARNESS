@@ -55,6 +55,7 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
 activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
 - target_version_or_release_trigger: 配布チャネル (`PLAN-L7-157`) の release/tag 着地、または PO が serverless read-only share を次版 scope に戻す明示 request。
+- activation_snapshot_id: Current `activationSnapshot.snapshotId` from `ut-tdd version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json`; approval evidence becomes stale if this snapshot changes.
 - activation_route: `activate_future_version` の場合は add-feature route で L2/L3/L4/L6/L7 に再降下し、Cloudflare/GitHub webhook activation を Forward 実装 PLAN として扱う。外部 activation だけで terminal にしない。
 - review_by: PO + TL が配布チャネル着地後に再確認日を設定する。継続 park の場合は次回日付と owner を本文へ追記する。
 - approval_scope: Cloudflare Pages/Workers/D1/KV、GitHub webhook HMAC、閲覧 access control、secret 管理、外部 infrastructure activation。
@@ -78,6 +79,7 @@ action_binding_approval_record:
 - approved_target: No external target is approved while parked; activation must name the Cloudflare project/resources, GitHub webhook/repo, access-control target, and secret binding target.
 - approved_params: No activation params are approved while parked; activation must record the reviewed command args/config diff/env binding names/params hash or summary.
 - review_approval_evidence: `activation_decision_record`, `parked_review_record`, dry-run result, rollback plan, ADR-005 D2, and no-secret/no-prod-write evidence must be reviewed before activation.
+- reviewed_snapshot_binding: Activation approval must cite the current `activationSnapshot.snapshotId` from `ut-tdd version-up activation-packet --json`; if that snapshot changes, old approval evidence is stale and cannot activate external Cloudflare/GitHub/HMAC/access-control work.
 - expires_at_or_trigger: Trigger-bound; approval expires if distribution channel scope, access-control design, secret handling, or Cloudflare/GitHub target changes before activation.
 - audit_record: No external activation is approved or executed while `version_target: future` remains; activation must write approver, action scope, commands, result, and rollback/incident route.
 

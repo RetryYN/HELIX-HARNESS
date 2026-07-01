@@ -10,6 +10,7 @@ const cutoverMarkers = [
   "cutover_decision_record:",
   "- allowed_outcome: `approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
   "- decision_owner: PO",
+  "- cutover_snapshot_id: cutoverSnapshot.snapshotId",
   "- trigger_condition: L1 re-freeze",
   "- blast_radius_baseline: measured",
   "- dry_run_plan: codemod/state move dry-run rehearsal on a non-destructive branch with no apply",
@@ -41,6 +42,7 @@ function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadiness
     rightArmMd: cutoverMarkers,
     outstandingTs: [
       "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
+      "cutover_snapshot_id from the current cutoverSnapshot.snapshotId recorded before irreversible migration approval",
       "trigger_condition and blast_radius_baseline recorded before irreversible migration",
       "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
       "execution_window_or_freeze_policy recorded before irreversible apply",
@@ -89,6 +91,7 @@ describe("cutover readiness", () => {
       expect.arrayContaining([
         { subject: "PLAN-M-901", reason: "missing structured cutover_decision_record" },
         { subject: "PLAN-M-901", reason: "missing structured allowed_outcome" },
+        { subject: "PLAN-M-901", reason: "missing structured cutover_snapshot_id" },
         { subject: "PLAN-M-901", reason: "missing structured dry_run_plan" },
         { subject: "PLAN-M-901", reason: "missing structured rollback_plan" },
         { subject: "PLAN-M-901", reason: "missing structured execution_window_or_freeze_policy" },
@@ -107,7 +110,7 @@ describe("cutover readiness", () => {
             layer: "L14",
             kind: "design",
             status: "draft",
-            text: "irreversible cutover cutover_decision_record allowed_outcome decision_owner trigger_condition blast_radius_baseline dry_run_plan rollback_plan state_backup_plan execution_window_or_freeze_policy approval_scope audit_record post_cutover_monitoring legacy_alias_policy",
+            text: "irreversible cutover cutover_decision_record allowed_outcome decision_owner cutover_snapshot_id trigger_condition blast_radius_baseline dry_run_plan rollback_plan state_backup_plan execution_window_or_freeze_policy approval_scope audit_record post_cutover_monitoring legacy_alias_policy",
           },
         ],
       }),

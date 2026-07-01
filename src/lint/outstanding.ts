@@ -406,6 +406,7 @@ function requiredOutstandingAction(reason: string): {
         requiredEvidence: [
           "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
           "decision_owner and approval_scope recorded before irreversible migration",
+          "cutover_snapshot_id from the current cutoverSnapshot.snapshotId recorded before irreversible migration approval",
           "trigger_condition and blast_radius_baseline recorded before irreversible migration",
           "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply",
           "execution_window_or_freeze_policy recorded before irreversible apply",
@@ -418,6 +419,7 @@ function requiredOutstandingAction(reason: string): {
           "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
         requiredEvidence: [
           "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
+          "activation_snapshot_id from the current activationSnapshot.snapshotId recorded before activation approval",
           "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route",
           "review_by date/owner recorded when keep_parked_with_review_date is chosen",
           "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation",
@@ -441,9 +443,9 @@ function requiredOutstandingAction(reason: string): {
         requiredAction:
           "record required human/action-binding approval before executing the high-impact action",
         requiredEvidence: [
-          "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, expires_at_or_trigger, and audit_record",
+          "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
           "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
-          "review/approval evidence and expiry or trigger condition recorded before activation",
+          "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
         ],
       };
     default:
@@ -776,13 +778,13 @@ function nextWorkflowRouteForRecordName(recordName: string): string {
     case "s4_decision_record":
       return "S4 decide -> record decision_outcome, then route to Forward L1/L3-L6, rejected backlog exclusion, or pivot sprint";
     case "activation_decision_record":
-      return "version-up activation -> activate via add-feature/Forward route, reject/archive, or keep parked with review_by";
+      return "version-up activation -> bind activationSnapshot.snapshotId, then activate via add-feature/Forward route, reject/archive, or keep parked with review_by";
     case "parked_review_record":
       return "version-up parked review -> schedule review, mark stale, or route to activation_decision_record";
     case "cutover_decision_record":
-      return "L14 cutover decision -> approve_cutover, reject/defer, or request runbook changes before any irreversible apply";
+      return "L14 cutover decision -> bind cutoverSnapshot.snapshotId, then approve_cutover, reject/defer, or request runbook changes before any irreversible apply";
     case "action_binding_approval_record":
-      return "action-binding approval gate -> approve scoped actor/tool/target/params, deny action, or reduce scope before execution";
+      return "action-binding approval gate -> approve scoped actor/tool/target/params only after reviewed_snapshot_binding cites the sibling snapshot packet, deny action, or reduce scope before execution";
     case "terminal_evidence_record":
       return "workflow continuation -> keep current phase open until terminal evidence and green commands exist";
     default:
@@ -810,13 +812,13 @@ function insertionHintForRecordName(recordName: string): string {
     case "s4_decision_record":
       return "Add this block to the PLAN S4 decision evidence before setting decision_outcome or terminal status; distinguish confirmed/rejected/pivot, record route_impact, and bind the Forward/Reverse route or archive/backlog path.";
     case "activation_decision_record":
-      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked; bind the add-feature/Forward route, reject/archive route, review_by policy, dry-run, and rollback.";
+      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked; bind activationSnapshot.snapshotId, the add-feature/Forward route, reject/archive route, review_by policy, dry-run, and rollback.";
     case "parked_review_record":
       return "Add this block to the version-up PLAN while the work remains parked for a future release; include review_owner, review_trigger, stale_action, and completion/status decision packet route.";
     case "cutover_decision_record":
-      return "Add this block to the L14 cutover PLAN before any irreversible apply or migration; bind frozen HEAD, quiet window, single-run, drift re-approval, dry-run, branch/tag rollback, state backup, and smoke/doctor/status monitoring.";
+      return "Add this block to the L14 cutover PLAN before any irreversible apply or migration; bind cutoverSnapshot.snapshotId, frozen HEAD, quiet window, single-run, drift re-approval, dry-run, branch/tag rollback, state backup, and smoke/doctor/status monitoring.";
     case "action_binding_approval_record":
-      return "Add this block to the PLAN before executing the high-impact action; approval must be limited to actor/tool/target/params, cite dry-run and risk evidence, set expiry, and capture approver/action/result/incident audit.";
+      return "Add this block to the PLAN before executing the high-impact action; approval must be limited to actor/tool/target/params, cite dry-run and risk evidence plus reviewed snapshot binding, set expiry, and capture approver/action/result/incident audit.";
     case "terminal_evidence_record":
       return "Add this block before marking the PLAN terminal after artifacts, review_evidence, and green_commands exist.";
     default:
@@ -832,6 +834,8 @@ function placeholderForRecordField(
     return `<${allowedOutcomesForRecordName(record.recordName).join("|")}>`;
   }
   if (field === "reverse_fullback_required") return "<true|false plus route basis>";
+  if (field === "activation_snapshot_id") return "<activationSnapshot.snapshotId>";
+  if (field === "cutover_snapshot_id") return "<cutoverSnapshot.snapshotId>";
   if (field === "dry_run_plan" || field === "rollback_plan" || field === "state_backup_plan") {
     return `<${field} evidence path or runbook id>`;
   }
@@ -840,6 +844,9 @@ function placeholderForRecordField(
   }
   if (field === "audit_record" || field === "review_approval_evidence") {
     return "<evidence path or audit id>";
+  }
+  if (field === "reviewed_snapshot_binding") {
+    return "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|no-snapshot basis>";
   }
   if (field === "source_ledger_freshness") {
     return "<fresh|stale plus checked date and ledger label>";
@@ -910,6 +917,7 @@ function requiredRecordsForOutstandingReason(
           fields: [
             "allowed_outcome",
             "target_version_or_release_trigger",
+            "activation_snapshot_id",
             "activation_route",
             "review_by",
             "approval_scope",
@@ -939,6 +947,7 @@ function requiredRecordsForOutstandingReason(
           fields: [
             "allowed_outcome",
             "decision_owner",
+            "cutover_snapshot_id",
             "trigger_condition",
             "blast_radius_baseline",
             "dry_run_plan",
@@ -967,6 +976,7 @@ function requiredRecordsForOutstandingReason(
             "approved_target",
             "approved_params",
             "review_approval_evidence",
+            "reviewed_snapshot_binding",
             "expires_at_or_trigger",
             "audit_record",
           ],

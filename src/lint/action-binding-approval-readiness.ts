@@ -69,6 +69,7 @@ const ACTION_BINDING_RECORD_FIELDS = [
   "approved_target",
   "approved_params",
   "review_approval_evidence",
+  "reviewed_snapshot_binding",
   "expires_at_or_trigger",
   "audit_record",
 ] as const;
@@ -89,6 +90,7 @@ const RIGHT_ARM_MARKERS = [
   "approved_target",
   "approved_params",
   "review_approval_evidence",
+  "reviewed_snapshot_binding",
   "expires_at_or_trigger",
   "audit_record",
   "action-binding-approval-packet.v1",
@@ -101,9 +103,9 @@ const RIGHT_ARM_MARKERS = [
 ] as const;
 
 const OUTSTANDING_MARKERS = [
-  "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, expires_at_or_trigger, and audit_record",
+  "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
   "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
-  "review/approval evidence and expiry or trigger condition recorded before activation",
+  "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
 ] as const;
 
 const HIGH_IMPACT_APPROVAL = /approval|承認|action-binding|human signoff|人間サインオフ|人間承認/i;
@@ -303,6 +305,7 @@ function validateActionBindingSemantics(
   const approvedTarget = record(plan, "approved_target");
   const approvedParams = record(plan, "approved_params");
   const reviewEvidence = record(plan, "review_approval_evidence");
+  const reviewedSnapshotBinding = record(plan, "reviewed_snapshot_binding");
   const expiry = record(plan, "expires_at_or_trigger");
   const auditRecord = record(plan, "audit_record");
 
@@ -366,6 +369,13 @@ function validateActionBindingSemantics(
       reason: "expires_at_or_trigger must define expiry or trigger-bound re-approval",
     });
   }
+  if (!hasReviewedSnapshotBinding(plan, reviewedSnapshotBinding)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason:
+        "reviewed_snapshot_binding must cite activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or an explicit no-snapshot basis",
+    });
+  }
   if (
     !mentions(auditRecord, ["approver"]) ||
     !mentions(auditRecord, ["action", "command", "commands"]) ||
@@ -380,6 +390,26 @@ function validateActionBindingSemantics(
   }
 
   return violations;
+}
+
+function hasReviewedSnapshotBinding(plan: ActionBindingApprovalPlan, value: string): boolean {
+  const normalized = value.toLowerCase();
+  if (!normalized.trim()) return false;
+  const requiresVersionUpSnapshot =
+    (plan.versionTarget ?? "").trim().length > 0 ||
+    plan.plan_id === "PLAN-L7-146-serverless-readonly-share" ||
+    mentions([plan.plan_id, plan.file].join("\n"), ["version-up", "serverless-readonly-share"]);
+  const requiresCutoverSnapshot =
+    mentions(plan.text, ["cutover_decision_record", "identifier rename"]) ||
+    plan.plan_id === "PLAN-M-02-helix-identifier-rename" ||
+    plan.plan_id === "PLAN-M-02";
+  if (requiresVersionUpSnapshot) {
+    return mentions(value, ["activationSnapshot"]) && mentions(value, ["snapshotId"]);
+  }
+  if (requiresCutoverSnapshot) {
+    return mentions(value, ["cutoverSnapshot"]) && mentions(value, ["snapshotId"]);
+  }
+  return mentions(value, ["no snapshot", "not applicable", "n/a", "該当なし"]);
 }
 
 function record(plan: ActionBindingApprovalPlan, field: string): string {

@@ -24,9 +24,27 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
+  - artifact_path: src/lint/action-binding-approval-readiness.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/completion-decision-packet.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/cutover-readiness.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
   - artifact_path: tests/version-up-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/identifier-rename.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/action-binding-approval-readiness.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/completion-decision-packet.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cutover-readiness.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/outstanding.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
     artifact_type: test_code
   - artifact_path: tests/setup.test.ts
     artifact_type: test_code
@@ -130,6 +148,9 @@ evidence being reviewed.
 
 - Add `activationSnapshot` to `version-up-activation-packet.v1`.
 - Add `cutoverSnapshot` to `identifier-rename-cutover-plan.v1`.
+- Bind action-binding approval and completion decision records to those snapshot
+  IDs via `reviewed_snapshot_binding`, `activation_snapshot_id`, and
+  `cutover_snapshot_id`.
 - Keep both surfaces plan-only: no apply command, no activation permission, no
   cutover execution, and no approval recording.
 - Update process/design/test docs so snapshot IDs are treated as approval
@@ -149,6 +170,10 @@ evidence being reviewed.
 
 - [x] Version-up activation packet exposes `activationSnapshot.snapshotId`.
 - [x] Rename plan exposes `cutoverSnapshot.snapshotId`.
+- [x] Completion decision packet requires `activation_snapshot_id` /
+      `cutover_snapshot_id` in version-up and cutover decision records.
+- [x] Action-binding approval records require `reviewed_snapshot_binding` and
+      reject stale/mismatched activation/cutover snapshot references.
 - [x] Snapshot digest changes when cutover blast radius changes.
 - [x] README quickstart uses `ut-tdd setup project` and marks `helix setup project`
       as pending PLAN-M-02 cutover approval.

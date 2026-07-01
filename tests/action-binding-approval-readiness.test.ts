@@ -17,6 +17,7 @@ const RIGHT_ARM = [
   "approved_target",
   "approved_params",
   "review_approval_evidence",
+  "reviewed_snapshot_binding",
   "expires_at_or_trigger",
   "audit_record",
   "action-binding-approval-packet.v1",
@@ -29,9 +30,9 @@ const RIGHT_ARM = [
 ].join("\n");
 
 const OUTSTANDING = [
-  "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, expires_at_or_trigger, and audit_record",
+  "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
   "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
-  "review/approval evidence and expiry or trigger condition recorded before activation",
+  "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
 ].join("\n");
 
 const RECORD = [
@@ -44,6 +45,7 @@ const RECORD = [
   "- approved_target: Cloudflare deployment target",
   "- approved_params: reviewed command parameters hash",
   "- review_approval_evidence: dry-run and risk review",
+  "- reviewed_snapshot_binding: no snapshot-bearing packet applies to this approval",
   "- expires_at_or_trigger: before activation or scope change",
   "- audit_record: approver/action/result/incident route",
 ].join("\n");
@@ -225,6 +227,7 @@ describe("action-binding approval readiness", () => {
       "- approved_target: *",
       "- approved_params: everything",
       "- review_approval_evidence: looks fine",
+      "- reviewed_snapshot_binding: missing",
       "- expires_at_or_trigger: never",
       "- audit_record: note",
     ].join("\n");
@@ -301,6 +304,50 @@ describe("action-binding approval readiness", () => {
       subject: "PLAN-X",
       reason: "approval_scope must limit the approved action scope",
     });
+  });
+
+  it("rejects version-up and cutover approvals that do not bind the current snapshot packet", () => {
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-L7-146.md",
+          plan_id: "PLAN-L7-146",
+          status: "draft",
+          versionTarget: "future",
+          text: `requires action-binding approval\n${RECORD.replace(
+            "no snapshot-bearing packet applies to this approval",
+            "cutoverSnapshot.snapshotId",
+          )}`,
+        },
+        {
+          file: "PLAN-M-02.md",
+          plan_id: "PLAN-M-02-helix-identifier-rename",
+          status: "draft",
+          text: `identifier rename cutover_decision_record requires action-binding approval\n${RECORD.replace(
+            "no snapshot-bearing packet applies to this approval",
+            "activationSnapshot.snapshotId",
+          )}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-L7-146",
+          reason:
+            "reviewed_snapshot_binding must cite activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or an explicit no-snapshot basis",
+        },
+        {
+          subject: "PLAN-M-02-helix-identifier-rename",
+          reason:
+            "reviewed_snapshot_binding must cite activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or an explicit no-snapshot basis",
+        },
+      ]),
+    );
   });
 
   it("loads the current repo pending approval records", () => {

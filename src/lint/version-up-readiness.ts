@@ -179,6 +179,7 @@ const MODE_DOC_MARKERS = [
   "activation_decision_record",
   "allowed_outcome",
   "target_version_or_release_trigger",
+  "activation_snapshot_id",
   "activation_route",
   "review_by",
   "approval_scope",
@@ -259,6 +260,7 @@ const PARKED_PLAN_MARKERS = [
   "activation_decision_record",
   "allowed_outcome",
   "target_version_or_release_trigger",
+  "activation_snapshot_id",
   "activation_route",
   "review_by",
   "parked_review_record",
@@ -328,6 +330,7 @@ const ACTION_BINDING_RECORD_FIELDS = [
   "approved_target",
   "approved_params",
   "review_approval_evidence",
+  "reviewed_snapshot_binding",
   "expires_at_or_trigger",
   "audit_record",
 ] as const;
