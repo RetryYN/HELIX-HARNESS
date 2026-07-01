@@ -12,6 +12,32 @@ export function fmValue(content: string, key: string): string | undefined {
   return content.match(new RegExp(`^${key}:\\s*(.+?)\\s*(?:#.*)?$`, "m"))?.[1]?.trim();
 }
 
+/**
+ * PLAN frontmatter terminal statuses used by readiness gates.
+ *
+ * `archived` is intentionally separate: it closes active-work tracking, but it
+ * does not prove delivered work. Unknown status values must not be treated as
+ * terminal; schema/frontmatter gates own those violations.
+ */
+export const TERMINAL_PLAN_STATUSES: ReadonlySet<string> = new Set([
+  "confirmed",
+  "completed",
+  "accepted",
+]);
+
+export function normalizedPlanStatus(status: string): string {
+  return status.trim().toLowerCase();
+}
+
+export function isTerminalPlanStatus(status: string): boolean {
+  return TERMINAL_PLAN_STATUSES.has(normalizedPlanStatus(status));
+}
+
+export function isClosedPlanStatus(status: string): boolean {
+  const normalized = normalizedPlanStatus(status);
+  return normalized === "archived" || TERMINAL_PLAN_STATUSES.has(normalized);
+}
+
 /** Markdown の `record_name:` 配下に `- field: value` 形式の実値が揃っているかを検査する。 */
 export function missingRecordFields(
   text: string,

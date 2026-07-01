@@ -50,9 +50,15 @@ generates:
     artifact_type: test_code
   - artifact_path: README.md
     artifact_type: markdown_doc
-  - artifact_path: docs/process/modes/version-up.md
+  - artifact_path: docs/process/forward/L00-L06-design-phase.md
     artifact_type: markdown_doc
   - artifact_path: docs/process/forward/L08-L14-verification-phase.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/process/modes/discovery.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/process/modes/scrum.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/process/modes/version-up.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     artifact_type: design_doc
@@ -75,6 +81,71 @@ dependencies:
   requires:
     - docs/plans/PLAN-REVERSE-225-approval-snapshot-binding.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T14:06:12+09:00"
+    tests_green_at: "2026-07-01T14:06:12+09:00"
+    verdict: approve
+    scope: "Meaning-level workflow alignment was rechecked after the requested requirement correction. Outstanding status handling now uses the same terminal set across readiness gates, packet generation and record validation are explicitly separate, terminal high-impact approval/cutover PLANs cannot hide missing structured records, archived remains closed/historical, and schema-invalid statuses such as merged/rejected/superseded remain fail-closed."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/cutover-readiness.test.ts tests/outstanding.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:b8a386148e488e080ae19a39115df8846ba4afe466783b549124a0354560c464"
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/cutover-readiness.test.ts tests/outstanding.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: tests/cutover-readiness.test.ts
+        output_digest: "sha256:40b30521a5100588754498dc404ecc771938e1f913c321f5647532f50c4017bb"
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/cutover-readiness.test.ts tests/outstanding.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: tests/outstanding.test.ts
+        output_digest: "sha256:e48134b48bb4819f274be99d9bcbf6f72b29c50d84d1a4eca0cdbd66cbb90324"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: src/lint/shared.ts
+        output_digest: "sha256:38bb990f1f920f33ae63db4189a819262b6c1a196a14f3bd7aad36ebfd0fb959"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: src/lint/action-binding-approval-readiness.ts
+        output_digest: "sha256:eb99cbfabed61c39b298b79939b022e4037a81457ba98a190b4f23faf8e6b8b2"
+      - kind: lint
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
+        output_digest: "sha256:008007b4210e26b3540f5aae459c0defd93023a0c511cbaf163df3de92e36192"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T14:06:12+09:00"
+        evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
+        output_digest: "sha256:af1774585533a80238c8895cd1a7671fe09f548fdb07ad7c9f6132510a57371d"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T13:49:34+09:00"
@@ -226,6 +297,11 @@ evidence being reviewed.
   and monitoring evidence.
 - Keep L3-L6 requirement/design/test-design wording aligned so the same
   approval meaning is visible at each V-model layer.
+- Share terminal PLAN status handling across outstanding, action-binding
+  approval readiness, and cutover readiness. Packet generation skips terminal
+  work, but record validation still checks terminal high-impact approval/cutover
+  PLANs so status changes cannot hide missing decision records; unknown status
+  values remain fail-closed.
 - Keep both surfaces plan-only: no apply command, no activation permission, no
   cutover execution, and no approval recording.
 - Update process/design/test docs so snapshot IDs are treated as approval
@@ -256,6 +332,8 @@ evidence being reviewed.
       actor/tool/target alone; full approval evidence is required.
 - [x] L3-L6 requirements/design/test-design lines carry the same snapshot and
       full-approval semantics.
+- [x] Readiness gates share terminal status handling, keep terminal record
+      validation active, and do not treat unknown status values as terminal.
 - [x] README quickstart uses `ut-tdd setup project` and marks `helix setup project`
       as pending PLAN-M-02 cutover approval.
 - [x] Targeted tests cover version-up, rename, and setup README drift.

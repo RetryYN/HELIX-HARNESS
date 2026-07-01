@@ -72,6 +72,14 @@ packet は `approvalRecord` の raw field に加えて `approvalBindingChecks[]`
 approved_tool、approved_target、approved_params、reviewed snapshot binding、expiry/trigger、audit evidence を concrete に記録するまで、
 高影響 action を実行してはならない。
 
+Packet generation and record validation are separate. A `confirmed` /
+`completed` / historical `accepted` PLAN does not need a new pending approval
+packet, but if the PLAN text carries a high-impact action-binding boundary then
+`action_binding_approval_record` is still validated. Moving a PLAN to terminal
+status must not hide a missing approval record. `archived` closes rejected or
+historical work; schema-invalid words such as `merged`, `rejected`, or
+`superseded` are not PLAN `status` values and must not be treated as terminal.
+
 | field | 必須条件 | 意味 |
 |---|---|---|
 | `action_binding_approval_record` | high-impact action を含む PLAN で必須 | action-binding approval の判断単位。無い場合は completion blocker |
@@ -92,6 +100,12 @@ approved_tool、approved_target、approved_params、reviewed snapshot binding、
 L14 で state dir 移行、CLI/marker 改名、本番/配布 surface 変更などの不可逆 cutover を扱う PLAN は、
 単なる「PO signoff」ではなく `cutover_decision_record` を持つ。これは L14 実行許可ではなく、
 許可・延期・runbook 修正要求を判断するための evidence schema である。
+
+Cutover packet generation may omit already terminal PLANs, but cutover record
+validation still applies to terminal L14 cutover PLANs. A `confirmed` /
+`completed` / historical `accepted` status without `cutover_decision_record`
+remains a workflow violation; only `archived` closes rejected/historical cutover
+work without keeping it in the active readiness queue.
 
 | field | 必須条件 | 意味 |
 |---|---|---|

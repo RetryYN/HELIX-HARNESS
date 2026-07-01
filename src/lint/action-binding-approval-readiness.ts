@@ -3,6 +3,7 @@ import { join } from "node:path";
 import {
   allowedOutcomeSetViolation,
   fmValue,
+  isClosedPlanStatus,
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
@@ -120,7 +121,12 @@ const OUTSTANDING_MARKERS = [
   "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
 ] as const;
 
-const HIGH_IMPACT_APPROVAL = /approval|承認|action-binding|human signoff|人間サインオフ|人間承認/i;
+const ACTION_BINDING_BOUNDARY =
+  /action-binding|requires_human_approval=true|human signoff|人間サインオフ|人間承認/i;
+const ACTION_BINDING_EXECUTION_OBLIGATION =
+  /requires?\s+action-binding approval\s+before|action-binding approval\s+(?:is\s+)?required\s+before|action-binding approval\s+なしに.*(?:apply|実行|実適用)|実適用には\s+action-binding approval\s+が必要/i;
+const HIGH_IMPACT_ACTION_TARGET =
+  /high-impact action|external|infra|secret|auth|destructive|state dir|migration|cutover|activation|deploy|deployment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|実適用/i;
 
 function parsePlan(file: string, content: string): ActionBindingApprovalPlan {
   return {
@@ -152,10 +158,23 @@ export function loadActionBindingApprovalReadinessInput(
 }
 
 function isPendingHighImpactApproval(plan: ActionBindingApprovalPlan): boolean {
-  if (plan.status === "archived" || ["confirmed", "completed", "accepted"].includes(plan.status)) {
-    return false;
-  }
-  return HIGH_IMPACT_APPROVAL.test([plan.plan_id, plan.file, plan.status, plan.text].join("\n"));
+  if (isClosedPlanStatus(plan.status)) return false;
+  return carriesHighImpactApprovalBoundary(plan);
+}
+
+function requiresActionBindingRecordValidation(plan: ActionBindingApprovalPlan): boolean {
+  if (plan.status.trim().toLowerCase() === "archived") return false;
+  return carriesHighImpactApprovalBoundary(plan);
+}
+
+function carriesHighImpactApprovalBoundary(plan: ActionBindingApprovalPlan): boolean {
+  if (new RegExp(`^\\s*${ACTION_BINDING_RECORD_NAME}:\\s*$`, "m").test(plan.text)) return true;
+  const haystack = [plan.plan_id, plan.file, plan.status, plan.text].join("\n");
+  return (
+    ACTION_BINDING_BOUNDARY.test(haystack) &&
+    ACTION_BINDING_EXECUTION_OBLIGATION.test(haystack) &&
+    HIGH_IMPACT_ACTION_TARGET.test(haystack)
+  );
 }
 
 export function analyzeActionBindingApprovalReadiness(
@@ -178,7 +197,8 @@ export function analyzeActionBindingApprovalReadiness(
   }
 
   const pending = input.plans.filter(isPendingHighImpactApproval);
-  for (const plan of pending) {
+  const recordValidationTargets = input.plans.filter(requiresActionBindingRecordValidation);
+  for (const plan of recordValidationTargets) {
     const missingFields = missingRecordFields(
       plan.text,
       ACTION_BINDING_RECORD_NAME,

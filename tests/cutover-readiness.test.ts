@@ -288,7 +288,7 @@ describe("cutover readiness", () => {
     expect(result.sourceLedgerViolations).toEqual([]);
   });
 
-  it("ignores terminal or non-L14 migration prose", () => {
+  it("ignores archived or non-L14 migration prose", () => {
     const result = analyzeCutoverReadiness(
       input({
         plans: [
@@ -297,7 +297,7 @@ describe("cutover readiness", () => {
             plan_id: "PLAN-M-902",
             layer: "L14",
             kind: "design",
-            status: "confirmed",
+            status: "archived",
             text: "irreversible cutover requires PO signoff",
           },
           {
@@ -314,6 +314,67 @@ describe("cutover readiness", () => {
 
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual([]);
+  });
+
+  it("validates terminal cutover records without emitting terminal pending decisions", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-CONFIRMED.md",
+            plan_id: "PLAN-CONFIRMED",
+            layer: "L14",
+            kind: "design",
+            status: "confirmed",
+            text: "irreversible state dir cutover requires PO signoff",
+          },
+          {
+            file: "PLAN-COMPLETED.md",
+            plan_id: "PLAN-COMPLETED",
+            layer: "L14",
+            kind: "design",
+            status: "completed",
+            text: "irreversible state dir cutover requires PO signoff",
+          },
+          {
+            file: "PLAN-ACCEPTED.md",
+            plan_id: "PLAN-ACCEPTED",
+            layer: "L14",
+            kind: "design",
+            status: "accepted",
+            text: "irreversible state dir cutover requires PO signoff",
+          },
+          {
+            file: "PLAN-ARCHIVED.md",
+            plan_id: "PLAN-ARCHIVED",
+            layer: "L14",
+            kind: "design",
+            status: "archived",
+            text: "irreversible state dir cutover requires PO signoff",
+          },
+          {
+            file: "PLAN-MERGED.md",
+            plan_id: "PLAN-MERGED",
+            layer: "L14",
+            kind: "design",
+            status: "merged",
+            text: "irreversible state dir cutover requires PO signoff",
+          },
+        ],
+      }),
+    );
+
+    expect(result.pendingPlanIds).toEqual(["PLAN-MERGED"]);
+    expect(result.ok).toBe(false);
+    for (const subject of ["PLAN-CONFIRMED", "PLAN-COMPLETED", "PLAN-ACCEPTED", "PLAN-MERGED"]) {
+      expect(result.violations).toContainEqual({
+        subject,
+        reason: "missing structured cutover_decision_record",
+      });
+    }
+    expect(result.violations.some((violation) => violation.subject === "PLAN-ARCHIVED")).toBe(
+      false,
+    );
   });
 
   it("passes against the live repository and lists the current L14 cutover decision", () => {

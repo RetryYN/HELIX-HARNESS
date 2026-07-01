@@ -73,6 +73,65 @@ describe("action-binding approval readiness", () => {
     );
   });
 
+  it("validates terminal high-impact approval records without emitting terminal packets", () => {
+    const plans = [
+      {
+        file: "PLAN-CONFIRMED.md",
+        plan_id: "PLAN-CONFIRMED",
+        status: "confirmed",
+        text: "requires action-binding approval before deployment",
+      },
+      {
+        file: "PLAN-COMPLETED.md",
+        plan_id: "PLAN-COMPLETED",
+        status: "completed",
+        text: "requires action-binding approval before deployment",
+      },
+      {
+        file: "PLAN-ACCEPTED.md",
+        plan_id: "PLAN-ACCEPTED",
+        status: "accepted",
+        text: "requires action-binding approval before deployment",
+      },
+      {
+        file: "PLAN-ARCHIVED.md",
+        plan_id: "PLAN-ARCHIVED",
+        status: "archived",
+        text: "requires action-binding approval before deployment",
+      },
+      {
+        file: "PLAN-MERGED.md",
+        plan_id: "PLAN-MERGED",
+        status: "merged",
+        text: "requires action-binding approval before deployment",
+      },
+    ];
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans,
+    });
+
+    expect(result.pendingPlanIds).toEqual(["PLAN-MERGED"]);
+    expect(result.ok).toBe(false);
+    for (const subject of ["PLAN-CONFIRMED", "PLAN-COMPLETED", "PLAN-ACCEPTED", "PLAN-MERGED"]) {
+      expect(result.violations).toContainEqual({
+        subject,
+        reason: "missing structured action_binding_approval_record",
+      });
+    }
+    expect(result.violations.some((violation) => violation.subject === "PLAN-ARCHIVED")).toBe(
+      false,
+    );
+
+    const packets = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans,
+    });
+    expect(packets.map((packet) => packet.planId)).toEqual(["PLAN-MERGED"]);
+  });
+
   it("emits non-destructive approval packets that keep high-impact execution human-gated", () => {
     const packets = buildActionBindingApprovalPackets({
       rightArmMd: RIGHT_ARM,

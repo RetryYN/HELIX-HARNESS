@@ -3,6 +3,7 @@ import { join } from "node:path";
 import {
   allowedOutcomeSetViolation,
   fmValue,
+  isClosedPlanStatus,
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
@@ -113,7 +114,7 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
 
 const STATE_DIR_RENAME_PATTERN = "\\.ut" + "-tdd\\/.*\\.helix";
 const IRREVERSIBLE_CUTOVER = new RegExp(
-  `irreversible|不可逆|state dir|cutover|atomic migration|${STATE_DIR_RENAME_PATTERN}`,
+  `cutover_decision_record|PLAN-M-02|state dir|atomic migration|${STATE_DIR_RENAME_PATTERN}|(?:irreversible|不可逆).*(?:migration|rename|state dir|\\.ut-tdd|\\.helix|cutover)`,
   "i",
 );
 
@@ -143,9 +144,16 @@ export function loadCutoverReadinessInput(repoRoot = process.cwd()): CutoverRead
 }
 
 function isPendingIrreversibleCutover(plan: CutoverReadinessPlan): boolean {
-  if (plan.status === "archived" || ["confirmed", "completed", "accepted"].includes(plan.status)) {
-    return false;
-  }
+  if (isClosedPlanStatus(plan.status)) return false;
+  return isIrreversibleCutoverPlan(plan);
+}
+
+function requiresCutoverRecordValidation(plan: CutoverReadinessPlan): boolean {
+  if (plan.status.trim().toLowerCase() === "archived") return false;
+  return isIrreversibleCutoverPlan(plan);
+}
+
+function isIrreversibleCutoverPlan(plan: CutoverReadinessPlan): boolean {
   const haystack = [plan.plan_id, plan.file, plan.layer, plan.kind, plan.status, plan.text].join(
     "\n",
   );
@@ -227,7 +235,8 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
   violations.push(...sourceLedgerViolations);
 
   const pending = input.plans.filter(isPendingIrreversibleCutover);
-  for (const plan of pending) {
+  const recordValidationTargets = input.plans.filter(requiresCutoverRecordValidation);
+  for (const plan of recordValidationTargets) {
     const missingFields = missingRecordFields(
       plan.text,
       CUTOVER_RECORD_NAME,

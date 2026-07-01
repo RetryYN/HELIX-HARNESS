@@ -23,10 +23,9 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
-import { fmValue } from "./shared";
+import { fmValue, isTerminalPlanStatus } from "./shared";
 
 /** 終端 (= 完了とみなす) status。これ以外 (archived を除く) が非終端 = 未了。 */
-const TERMINAL_STATUSES: ReadonlySet<string> = new Set(["confirmed", "completed", "accepted"]);
 const SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
   "source_ledger_freshness",
   "source_status_delta",
@@ -232,7 +231,7 @@ export function analyzeOutstandingWork(
   let versionUpParked = 0;
   for (const p of plans) {
     const s = p.status.toLowerCase();
-    if (s === "archived" || TERMINAL_STATUSES.has(s)) continue;
+    if (s === "archived" || isTerminalPlanStatus(s)) continue;
     const layer = p.layer.trim() || "unknown";
     byLayer[layer] = (byLayer[layer] ?? 0) + 1;
     // version-up parked = draft + version_target (landed には schema が付与を禁ずる)。

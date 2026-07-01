@@ -56,6 +56,10 @@ S3 の `verified evidence / outstanding` は「技術的・検証的には揃っ
 | `rejected` | 仮説不成立 | 学びを記録し backlog 除外。reject 理由を decision record に保持 |
 | `pivot` | 仮説修正 | 新仮説として次 sprint に再投入 |
 
+`confirmed` / `rejected` / `pivot` は S4 `decision_outcome` であり、PLAN frontmatter `status` ではない。
+Rejected Discovery work は `decision_outcome=rejected` と rejection rationale を記録し、PLAN は
+`status=archived` で閉じる。`status=rejected` は valid PLAN status ではなく、terminal status として扱わない。
+
 fail-close: confirmed は verify script 成功と S4 `decision_outcome=confirmed` の両方が必須。S3 verify 成功だけで `confirmed` / `completed` にしない。S3 verify 失敗時は sprint を completed にせず、S4 で `rejected` または `pivot` を記録する。
 
 ### 3.1 S4 decision record

@@ -25,15 +25,18 @@ describe("analyzeOutstandingWork", () => {
     { layer: "L5", status: "completed" }, // 終端 → 除外
     { layer: "L6", status: "accepted" }, // 終端 → 除外
     { layer: "L3", status: "archived" }, // archived → 除外
+    { layer: "L8", status: "merged" }, // schema 外 status は終端扱いしない
+    { layer: "L8", status: "rejected" }, // decision_outcome と混同しない
+    { layer: "L8", status: "superseded" }, // feedback/memory status と混同しない
   ];
 
   it("非終端のみを layer 別に集計し、終端/archived を除外する", () => {
     const o = analyzeOutstandingWork(rows, 2);
-    expect(o.nonTerminalPlansByLayer).toEqual({ L7: 2, cross: 1 });
-    expect(o.nonTerminalPlansTotal).toBe(3);
+    expect(o.nonTerminalPlansByLayer).toEqual({ L7: 2, L8: 3, cross: 1 });
+    expect(o.nonTerminalPlansTotal).toBe(6);
     expect(o.openDefers).toBe(2);
-    expect(o.blockersByKind).toEqual({ active_draft: 3 });
-    expect(o.items).toHaveLength(3);
+    expect(o.blockersByKind).toEqual({ active_draft: 6 });
+    expect(o.items).toHaveLength(6);
     expect(o.completionReadiness).toMatchObject({
       ok: false,
       status: "blocked",
