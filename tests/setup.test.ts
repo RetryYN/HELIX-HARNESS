@@ -425,6 +425,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
           (entry) => `docs/templates/${entry.template}`,
         ),
+        "tests/web.test.ts",
         "src/web/page.tsx",
         ".claude/settings.json",
         ".codex/hooks.json",
@@ -437,7 +438,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.ok).toBe(true);
     expect(plan.channel).toBe("clean-repo-plus-signed-tarball");
     expect(plan.artifactPaths).toContain("LICENSE");
-    expect(plan.artifactPaths).toContain("src/web/catalog.ts");
+    expect(plan.artifactPaths.some((path) => path.startsWith("src/web/"))).toBe(false);
+    expect(plan.artifactPaths).not.toContain("tests/web.test.ts");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/AGENTS.md");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.codex/hooks.json");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/agents/code-reviewer.md");

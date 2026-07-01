@@ -84,7 +84,7 @@ next_pair_freeze: L6
 
 | Oracle | Upstream | HC | Target function | Expected behavior |
 |--------|----------|----|-----------------|-------------------|
-| HU-PILLAR-DIST-01 | PLAN-L7-190 | HC-P6 | `projectRuntimeAdapterAssets` | consumer package includes `.claude/agents`, `.claude/commands`, `.codex/hooks.json`, `.codex/config.toml`; excludes dogfood `.claude/`, `.codex/`, `.ut-tdd/`, design, plan, and web runtime state; rollback metadata lists managed runtime assets |
+| HU-PILLAR-DIST-01 | PLAN-L7-190 | HC-P6 | `projectRuntimeAdapterAssets` / `buildCleanDistributionPlan` | consumer package includes `.claude/agents`, `.claude/commands`, `.codex/hooks.json`, `.codex/config.toml`; excludes dogfood `.claude/`, `.codex/`, `.ut-tdd/`, design, plan, `src/web/`, web 専用テスト, and web runtime state; clean artifact still passes core CLI `status` / `distribution plan` / `typecheck`; rollback metadata lists managed runtime assets |
 | HU-PILLAR-CONFIG-01 | PLAN-L7-196 | HC-AC | `validateRuntimeConfigHardening` | `max_parallel===MAX_TEAM_PARALLEL` is accepted, `max_parallel>MAX_TEAM_PARALLEL` is rejected, consumer matcher matrix covers standard `Task` and environment-specific `Agent` without changing dogfood matcher |
 | HU-PILLAR-PROV-01 | PLAN-L7-193 | HC-P3 | `classifyVerificationEvidenceProfile` | `test_runs` runtime evidence must come from sanitized session-log verification Bash events with non-empty `session_id`; generic Bash and review projection do not close works/fired/used |
 | HU-PILLAR-PROV-02 | PLAN-L7-199 | HC-P3 | `classifyVerificationEvidenceProfile` | `model_runs` runtime provenance requires Claude/Codex JSONL token telemetry; deterministic rebuild projection is trace-support only |

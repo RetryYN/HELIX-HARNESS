@@ -75,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:ed8df53330d60a7d1dafb0d0047178992492e14f0f21c0c34c4ba2490e5b0583"
+        output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -83,7 +83,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:cce0b85dc1f80862afa6de952eccab1cb084d9964be66788b2588e99808d123b"
+        output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -91,7 +91,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:47:22+0900"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
 ---
 
 # PLAN-REVERSE-04 (reverse/fullback): ut-tdd setup solo/team を上位整合へ back-fill

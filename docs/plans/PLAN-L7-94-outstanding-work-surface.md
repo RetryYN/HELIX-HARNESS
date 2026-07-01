@@ -34,7 +34,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:4c4a3b43d958ce5f10a7dd8279a533e2900a53a1593e8c9ce6e4a671c99cadba"
+        output_digest: "sha256:66ff83826dcb91dd49e37e56df2d6283a5080949744b89708f2a2521612db6b6"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T08:33:36+09:00"
@@ -75,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:33:36+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:f114f86ad3b3fd97c9b00bf15e2e00907eafb8bba66bd27a0da124aa66870690"
+        output_digest: "sha256:cea1c9b0276b10f5f9587d0774f225f3ac17ed067fa27d896a910ce65578bfa3"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:22:48+09:00"
@@ -108,7 +108,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:22:48+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -222,7 +222,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:05:01+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -279,7 +279,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:52:48+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:05:00+09:00"
@@ -345,7 +345,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:32:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T02:21:04+09:00"
@@ -378,7 +378,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:20:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T00:32:57+09:00"
@@ -751,7 +751,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:47:32+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T16:44:15+09:00"

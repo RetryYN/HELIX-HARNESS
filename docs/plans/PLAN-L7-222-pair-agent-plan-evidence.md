@@ -73,7 +73,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T10:08:25+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
+        output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
       - kind: smoke
         command: "sha256sum src/state-db/projection-writer.ts docs/design/helix/L6-function-design/pillar-function-design.md docs/test-design/helix/L6-pillar-unit-test-design.md"
         runner: bash

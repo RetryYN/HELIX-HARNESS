@@ -78,7 +78,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:52:22+09:00"
         evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-        output_digest: "sha256:b70f1027533e55f04870ee2e18d04857a99497641d27d5dc9af66da344a8a84c"
+        output_digest: "sha256:239418553b56722c54dc3cb22d3b780eef7ad1e69c21eb1e579f0308e36e247e"
       - kind: smoke
         command: "sha256sum docs/test-design/helix/L6-pillar-unit-test-design.md"
         runner: bash
@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:52:22+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:f114f86ad3b3fd97c9b00bf15e2e00907eafb8bba66bd27a0da124aa66870690"
+        output_digest: "sha256:cea1c9b0276b10f5f9587d0774f225f3ac17ed067fa27d896a910ce65578bfa3"
 ---
 
 # PLAN-REVERSE-221: pair-agent replay evidence backfill

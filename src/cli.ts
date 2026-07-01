@@ -214,7 +214,6 @@ import {
 } from "./team/run";
 import { formatVmodelInjection, resolveVmodelInjection } from "./vmodel/injection";
 import { lintVmodel } from "./vmodel/lint";
-import { componentCoverageSummary, loadUiTokens, renderAppShell } from "./web";
 import {
   buildCommandCatalog,
   evaluateRouteCommand,
@@ -2425,8 +2424,9 @@ web
   .description("render the component-derived read-only UI as static HTML")
   .option("--out <path>", "write HTML to a file instead of stdout")
   .option("--json", "JSON output with coverage summary")
-  .action((opts: { out?: string; json?: boolean }) => {
+  .action(async (opts: { out?: string; json?: boolean }) => {
     try {
+      const { componentCoverageSummary, loadUiTokens, renderAppShell } = await loadOptionalWebUi();
       const tokens = loadUiTokens(defaultTokenPathFromCwd());
       const html = renderAppShell(tokens);
       const summary = componentCoverageSummary();
@@ -2446,6 +2446,22 @@ web
       process.exitCode = 1;
     }
   });
+
+async function loadOptionalWebUi(): Promise<{
+  componentCoverageSummary: () => Record<string, unknown>;
+  loadUiTokens: (path: string) => unknown;
+  renderAppShell: (tokens: unknown) => string;
+}> {
+  const moduleUrl = new URL("./web/index.ts", import.meta.url).href;
+  const load = new Function("specifier", "return import(specifier)") as (
+    specifier: string,
+  ) => Promise<{
+    componentCoverageSummary: () => Record<string, unknown>;
+    loadUiTokens: (path: string) => unknown;
+    renderAppShell: (tokens: unknown) => string;
+  }>;
+  return await load(moduleUrl);
+}
 
 function defaultTokenPathFromCwd(): string {
   return join(process.cwd(), "docs", "design", "harness", "L4-basic-design", "tokens.yaml");

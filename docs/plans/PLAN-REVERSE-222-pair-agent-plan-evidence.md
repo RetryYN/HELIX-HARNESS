@@ -94,7 +94,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T10:08:25+09:00"
         evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-        output_digest: "sha256:b70f1027533e55f04870ee2e18d04857a99497641d27d5dc9af66da344a8a84c"
+        output_digest: "sha256:239418553b56722c54dc3cb22d3b780eef7ad1e69c21eb1e579f0308e36e247e"
 ---
 
 # PLAN-REVERSE-222: pair-agent plan evidence backfill

@@ -37,7 +37,7 @@ updated: 2026-06-02
 
 | AT-ID | 対応条件 | 受入条件 | 機械検証 |
 |-------|---------|---------|---------|
-| **AT-DIST-001** | clean distribution / installable same-core CLI environment | Planned clean artifact set を temp repo に展開し、`bun install --frozen-lockfile` 後に `status --json`、`distribution plan --tag v0.1.0 --json`、`typecheck` が通る。外部 clean GitHub repo 作成、tag push、signed tarball publish は PO 承認後の公開操作として本 smoke では実行しない。source repo 用 full `doctor` は dogfood PLAN/design/test-design/runtime artifacts を要求するため、clean distribution の受入条件ではなく consumer doctor profile の別設計対象とする。 | `tests/distribution-acceptance.test.ts` |
+| **AT-DIST-001** | clean distribution / installable same-core CLI environment | Planned clean artifact set を temp repo に展開し、`src/web/` と web 専用テストが含まれないことを確認したうえで、`bun install --frozen-lockfile` 後に `status --json`、`distribution plan --tag v0.1.0 --json`、`typecheck` が通る。外部 clean GitHub repo 作成、tag push、signed tarball publish は PO 承認後の公開操作として本 smoke では実行しない。source repo 用 full `doctor` は dogfood PLAN/design/test-design/runtime artifacts を要求するため、clean distribution の受入条件ではなく consumer doctor profile の別設計対象とする。 | `tests/distribution-acceptance.test.ts` |
 
 ### §1.1 functional sub-doc 由来 AT (AC-FR 85 件)
 
