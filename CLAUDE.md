@@ -106,8 +106,9 @@ Design and implementation should be judged by these pillars:
 埋め込んでよいが、説明文・判断・受入条件・レビュー記録は日本語で書く。既存の英語記述は、触った範囲から
 段階的に日本語へ是正し、英語のまま新規追記して完了扱いにしない。
 
-`ut-tdd doctor` の `design-language` gate は、設計 / governance / ADR の英語 prose debt が baseline から
-増えないことを検査する。baseline は既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
+`ut-tdd doctor` の `design-language` gate は、PLAN / 設計 / テスト設計 / process / governance / handover /
+adapter ルールなどの人間向け docs にある英語 prose debt が baseline から増えないことを検査する。baseline は
+既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
 
 ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
 英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。

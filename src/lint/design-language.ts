@@ -25,17 +25,23 @@ export interface DesignLanguageResult {
   ok: boolean;
 }
 
-// 2026-07-02: reference pack audit found 1669 existing English-prose debt items
-// across design/governance/ADR docs. The first gate prevents new drift; separate
-// Japanese-localization PLANs can ratchet this baseline down without blocking
-// unrelated workflow fixes.
-export const DESIGN_LANGUAGE_BASELINE_VIOLATIONS = 1669;
+// 2026-07-02: expanded audit found 7131 existing English-prose debt items
+// across human-facing docs and adapter rule docs. The first gate prevents new
+// drift; separate Japanese-localization PLANs can ratchet this baseline down
+// without blocking unrelated workflow fixes.
+export const DESIGN_LANGUAGE_BASELINE_VIOLATIONS = 7131;
 
 const DESIGN_LANGUAGE_ROOTS = [
   join("docs", "adr"),
   join("docs", "design"),
   join("docs", "governance"),
+  join("docs", "handover"),
+  join("docs", "plans"),
+  join("docs", "process"),
+  join("docs", "test-design"),
 ] as const;
+
+const DESIGN_LANGUAGE_FILES = ["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")] as const;
 
 const JAPANESE_PATTERN = /[\u3040-\u30ff\u3400-\u9fff]/;
 const ENGLISH_WORD_PATTERN = /\b[A-Za-z][A-Za-z'-]{2,}\b/g;
@@ -99,6 +105,12 @@ export function loadDesignLanguageDocs(repoRoot: string = process.cwd()): Design
   for (const rel of DESIGN_LANGUAGE_ROOTS) {
     const abs = join(repoRoot, rel);
     if (existsSync(abs)) walkMarkdown(abs, repoRoot, docs);
+  }
+  for (const rel of DESIGN_LANGUAGE_FILES) {
+    const abs = join(repoRoot, rel);
+    if (existsSync(abs) && statSync(abs).isFile()) {
+      docs.push({ path: normalizeRel(rel), text: readFileSync(abs, "utf8") });
+    }
   }
   return docs.sort((a, b) => a.path.localeCompare(b.path));
 }
@@ -183,11 +195,11 @@ export function analyzeDesignLanguage(
 
 export function designLanguageMessages(result: DesignLanguageResult): string[] {
   if (result.ok && result.violations.length === 0) {
-    return [`design-language - OK (design/governance/ADR docs ${result.checked}, english prose 0)`];
+    return [`design-language - OK (human-facing docs ${result.checked}, english prose 0)`];
   }
   if (result.ok) {
     return [
-      `design-language - OK (design/governance/ADR docs ${result.checked}, english prose debt=${result.violations.length}/${result.baselineViolations}, new=0)`,
+      `design-language - OK (human-facing docs ${result.checked}, english prose debt=${result.violations.length}/${result.baselineViolations}, new=0)`,
     ];
   }
   const sample = result.violations
@@ -195,6 +207,6 @@ export function designLanguageMessages(result: DesignLanguageResult): string[] {
     .map((v) => `${v.path}:${v.line}:${v.reason}`)
     .join(", ");
   return [
-    `design-language - violation: english prose increased by ${result.newViolations}件 (total=${result.violations.length}, baseline=${result.baselineViolations}, sample=${sample})。設計/governance/ADR の説明文は日本語を正本にし、英語は識別子/開発用語に限る`,
+    `design-language - violation: english prose increased by ${result.newViolations}件 (total=${result.violations.length}, baseline=${result.baselineViolations}, sample=${sample})。人間向け docs の説明文は日本語を正本にし、英語は識別子/開発用語に限る`,
   ];
 }

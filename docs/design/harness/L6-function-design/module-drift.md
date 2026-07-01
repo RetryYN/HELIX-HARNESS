@@ -109,10 +109,11 @@ This addendum defines the L6 contract for optional graph/diagram development-too
 
 - **背景**: HELIX 目標は「ドキュメントは英語ではなく日本語で統一」。root adapter ルールだけでは、設計 / governance /
   ADR に英語 prose を新規追加しても doctor が検出できず、要求と成果物が乖離する穴が残る。
-- **対象**: `docs/adr/`、`docs/design/`、`docs/governance/` の markdown。inline code、URL、frontmatter、
-  開発用語、コマンド、識別子は除外し、見出し / 説明文が英語 prose のまま増えた場合を検出する。
-- **baseline**: 2026-07-02 の参考 Pack 差分監査で既存英語 prose debt 1669 件を確認。現時点では既存 debt を
-  一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS=1669` として固定し、増加を fail-close する。
+- **対象**: `docs/adr/`、`docs/design/`、`docs/governance/`、`docs/test-design/`、`docs/process/`、
+  `docs/plans/`、`docs/handover/` と adapter ルール markdown。inline code、URL、frontmatter、開発用語、
+  コマンド、識別子は除外し、見出し / 説明文が英語 prose のまま増えた場合を検出する。
+- **baseline**: 2026-07-02 の拡張監査で既存英語 prose debt 7131 件を確認。現時点では既存 debt を
+  一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS=7131` として固定し、増加を fail-close する。
 - **doctor contract**: `checkDesignLanguage(repoRoot)` は `loadDesignLanguageDocs` → `analyzeDesignLanguage` →
   `designLanguageMessages` を実行し、baseline 超過を `runDoctor.ok=false` に連動する。baseline は完了宣言ではなく
   ラチェット対象であり、今後の日本語化 PLAN で段階的に引き下げる。

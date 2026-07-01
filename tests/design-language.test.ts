@@ -56,10 +56,10 @@ describe("design-language lint", () => {
     expect(designLanguageMessages(increased)[0]).toContain("english prose increased by 1件");
   });
 
-  it("U-DESLANG-004: real repo design/governance/ADR docs do not exceed the frozen English-prose baseline", () => {
+  it("U-DESLANG-004: real repo human-facing docs do not exceed the frozen English-prose baseline", () => {
     const result = analyzeDesignLanguage(loadDesignLanguageDocs());
 
-    expect(result.checked).toBeGreaterThan(50);
+    expect(result.checked).toBeGreaterThan(500);
     expect(result.ok).toBe(true);
     expect(result.newViolations).toBe(0);
   });

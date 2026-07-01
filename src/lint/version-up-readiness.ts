@@ -425,6 +425,12 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Release Please",
   "GitHub Rulesets",
   "GitHub Merge Queue",
+  "Cloudflare Pages limits",
+  "Cloudflare Workers limits",
+  "Cloudflare D1 limits",
+  "Cloudflare Workers KV limits",
+  "Cloudflare Access policies",
+  "GitHub webhook HMAC SHA-256",
 ] as const;
 
 function parsePlan(file: string, content: string): VersionUpReadinessPlan {

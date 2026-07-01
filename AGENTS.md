@@ -25,6 +25,10 @@ Separation of responsibilities:
 埋め込んでよいが、説明文・判断・受入条件・レビュー記録は日本語で書く。既存の英語記述は、触った範囲から
 段階的に日本語へ是正し、英語のまま新規追記して完了扱いにしない。
 
+`ut-tdd doctor` の `design-language` gate は、PLAN / 設計 / テスト設計 / process / governance / handover /
+adapter ルールなどの人間向け docs にある英語 prose debt が baseline から増えないことを検査する。baseline は
+既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
+
 ## Core Reads
 
 For work in this repository, read the repository-owned sources below and follow

@@ -922,6 +922,33 @@ describe("version-up-readiness", () => {
     });
   });
 
+  it("fails when external activation source ledger rows are present only as prose markers", () => {
+    const modeDocWithoutExternalLedgerRows = input()
+      .modeDoc.split("\n")
+      .filter(
+        (line) =>
+          !line.startsWith("| Cloudflare") && !line.startsWith("| GitHub webhook HMAC SHA-256 |"),
+      )
+      .join("\n");
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: modeDocWithoutExternalLedgerRows,
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.missingSourceLedgerRows).toEqual(
+      expect.arrayContaining([
+        "Cloudflare Pages limits",
+        "Cloudflare Workers limits",
+        "Cloudflare D1 limits",
+        "Cloudflare Workers KV limits",
+        "Cloudflare Access policies",
+        "GitHub webhook HMAC SHA-256",
+      ]),
+    );
+  });
+
   it("fails when the version-up source ledger checked date is stale", () => {
     // U-SOURCELEDGER-003
     const result = analyzeVersionUpReadiness(

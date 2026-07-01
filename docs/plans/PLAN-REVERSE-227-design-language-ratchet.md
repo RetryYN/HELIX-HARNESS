@@ -18,7 +18,7 @@ review_evidence:
     reviewed_at: "2026-07-02T04:45:00+09:00"
     tests_green_at: "2026-07-02T04:44:00+09:00"
     verdict: pass
-    scope: "PLAN-L7-227 の design-language lint を L6 module-drift addendum と L7 unit test design U-DESLANG に戻し、CLAUDE.md のドキュメント言語規則と doctor hard gate の関係を明示した。"
+    scope: "PLAN-L7-227 の design-language lint を L6 module-drift addendum と L7 unit test design U-DESLANG に戻し、CLAUDE.md / AGENTS.md のドキュメント言語規則と doctor hard gate の関係を明示した。"
     worker_model: gpt-5.5
     reviewer_model: gpt-5.5
     green_commands:
@@ -46,6 +46,8 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: CLAUDE.md
     artifact_type: markdown_doc
+  - artifact_path: AGENTS.md
+    artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L6-function-design/module-drift.md
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
@@ -64,19 +66,19 @@ PLAN-L7-227 の bottom-up 実装を設計文書へ戻す Reverse 記録である
 既存の「日本語で報連相・人間向け docs を書く」規律を doctor hard gate にすることなので、L6 module-drift addendum と
 L7 unit test design の U-DESLANG oracle へ合流する。
 
-## 1. Back-fill 内容
+## 1. 逆流反映内容
 
-- `CLAUDE.md`: ドキュメント言語規則を重複なく整理し、`design-language` gate の baseline ratchet を明記。
+- `CLAUDE.md` / `AGENTS.md`: ドキュメント言語規則を整理し、`design-language` gate の baseline ratchet を明記。
 - `docs/design/harness/L6-function-design/module-drift.md`: design-language lint 追補を追加し、対象、baseline、doctor contract を定義。
 - `docs/test-design/harness/L7-unit-test-design.md`: U-DESLANG-001〜004 と trace 行を追加。
 
 ## 2. 非変更
 
 - HELIX L3 の confirmed 43 件、amendment frontier、future parked、approval gated cutover の意味分類は変更しない。
-- 既存 1669 件の英語 prose debt はこの PLAN では翻訳しない。baseline を下げる作業は別 PLAN とする。
+- 既存 7131 件の英語 prose debt はこの PLAN では翻訳しない。baseline を下げる作業は別 PLAN とする。
 - PLAN-DISCOVERY-07 / PLAN-DISCOVERY-10 / PLAN-L7-146 / PLAN-M-02 の未承認 frontier を完了扱いにしない。
 
-## 3. DoD
+## 3. 完了条件
 
 - [x] L7 add-impl PLAN が本 Reverse PLAN を `dependencies.requires` に持つ。
 - [x] 本 Reverse PLAN が L7 add-impl PLAN を `dependencies.requires` に持つ。
