@@ -871,7 +871,9 @@ function placeholderForRecordField(
   return `<${field}>`;
 }
 
-function requiredRecordsForBlockers(blockers: string[]): CompletionDecisionRecordRequirement[] {
+export function requiredRecordsForBlockers(
+  blockers: string[],
+): CompletionDecisionRecordRequirement[] {
   const records = [...blockers]
     .sort((a, b) => outstandingReasonRank(a) - outstandingReasonRank(b) || a.localeCompare(b))
     .flatMap((blocker) => requiredRecordsForOutstandingReason(blocker));

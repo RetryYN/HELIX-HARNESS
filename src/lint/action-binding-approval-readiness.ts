@@ -44,6 +44,16 @@ export interface ActionBindingApprovalReadinessResult {
   ok: boolean;
 }
 
+export type ActionBindingApprovalCheckStatus = "concrete" | "pending" | "invalid";
+
+export interface ActionBindingApprovalCheck {
+  field: (typeof ACTION_BINDING_RECORD_FIELDS)[number];
+  status: ActionBindingApprovalCheckStatus;
+  value: string;
+  reason: string;
+  requiredAction: string;
+}
+
 export interface ActionBindingApprovalPacket {
   schemaVersion: "action-binding-approval-packet.v1";
   planId: string;
@@ -54,6 +64,7 @@ export interface ActionBindingApprovalPacket {
   approvalAllowed: false;
   allowedOutcomes: string[];
   approvalRecord: Record<string, string>;
+  approvalBindingChecks: ActionBindingApprovalCheck[];
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
@@ -98,6 +109,7 @@ const RIGHT_ARM_MARKERS = [
   "mustNotApprove=true",
   "approvalCommandAvailable=false",
   "approvalAllowed=false",
+  "approvalBindingChecks",
   "GitHub Environments required reviewers",
   "OWASP LLM06:2025 Excessive Agency",
 ] as const;
@@ -210,6 +222,7 @@ export function buildActionBindingApprovalPacket(
   const approvalRecord = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
     ...ACTION_BINDING_RECORD_FIELDS,
   ]);
+  const approvalBindingChecks = buildActionBindingApprovalChecks(plan, approvalRecord);
   return {
     schemaVersion: "action-binding-approval-packet.v1",
     planId: plan.plan_id,
@@ -222,6 +235,7 @@ export function buildActionBindingApprovalPacket(
     approvalAllowed: false,
     allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
     approvalRecord,
+    approvalBindingChecks,
     relatedDecisionPackets: relatedDecisionPacketsForActionBindingPlan(plan),
     blockedReasons: actionBindingBlockedReasons(plan, approvalRecord),
     nextWorkflowRoutes: [
@@ -466,6 +480,206 @@ function actionBindingBlockedReasons(
   return [...new Set(reasons)];
 }
 
+function buildActionBindingApprovalChecks(
+  plan: ActionBindingApprovalPlan,
+  approvalRecord: Record<string, string>,
+): ActionBindingApprovalCheck[] {
+  return ACTION_BINDING_RECORD_FIELDS.map((field) =>
+    actionBindingApprovalCheckForField(plan, approvalRecord, field),
+  );
+}
+
+function actionBindingApprovalCheckForField(
+  plan: ActionBindingApprovalPlan,
+  approvalRecord: Record<string, string>,
+  field: (typeof ACTION_BINDING_RECORD_FIELDS)[number],
+): ActionBindingApprovalCheck {
+  const value = approvalRecord[field] ?? "";
+  const trimmed = value.trim();
+  const pendingAction =
+    "record a concrete action_binding_approval_record value before any high-impact execution";
+
+  if (!trimmed) {
+    return {
+      field,
+      status: "pending",
+      value,
+      reason: `${field} is not recorded`,
+      requiredAction: pendingAction,
+    };
+  }
+
+  if (field === "allowed_outcome") {
+    const outcome = selectedOutcome(value);
+    if (!outcome) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: "allowed_outcome lists the enum but does not select a decision outcome",
+        requiredAction:
+          "select approve_action_binding, deny_action, or request_scope_reduction in the PLAN record",
+      };
+    }
+    return {
+      field,
+      status: "concrete",
+      value,
+      reason: `selected ${outcome}`,
+      requiredAction: "no field action; execution still requires the surrounding approval gate",
+    };
+  }
+
+  if (field === "approval_scope") {
+    if (isBroadApproval(value)) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: "approval_scope grants broad or wildcard authority",
+        requiredAction: "replace with a limited actor/tool/target/params boundary",
+      };
+    }
+    if (!hasLimitedApprovalScope(value)) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: "approval_scope does not bind a concrete limited boundary",
+        requiredAction: "record the exact limited actor/tool/target/params or CLI/API/config scope",
+      };
+    }
+    return concreteCheck(field, value, "approval_scope binds a limited concrete boundary");
+  }
+
+  if (
+    field === "approved_actor" ||
+    field === "approved_tool" ||
+    field === "approved_target" ||
+    field === "approved_params"
+  ) {
+    if (isBroadApproval(value)) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: `${field} grants broad or wildcard authority`,
+        requiredAction: `replace ${field} with an exact named binding`,
+      };
+    }
+    if (isPendingApprovalBinding(value)) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: `${field} explicitly remains unapproved or future-bound`,
+        requiredAction: `record a named ${field.replace("approved_", "")} before action execution`,
+      };
+    }
+    return concreteCheck(field, value, `${field} names a concrete approval binding`);
+  }
+
+  if (field === "review_approval_evidence") {
+    if (
+      mentions(value, [
+        "dry-run",
+        "risk",
+        "review",
+        "evidence",
+        "rollback",
+        "no-secret",
+        "full test",
+        "doctor",
+      ]) &&
+      !isPendingReviewEvidence(value)
+    ) {
+      return concreteCheck(field, value, "review evidence is named");
+    }
+    return {
+      field,
+      status: "pending",
+      value,
+      reason: "review evidence is not yet recorded as completed evidence",
+      requiredAction: "record completed review evidence, not only a future review obligation",
+    };
+  }
+
+  if (field === "reviewed_snapshot_binding") {
+    if (!hasReviewedSnapshotBinding(plan, value)) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: "snapshot binding does not match this PLAN route",
+        requiredAction:
+          "cite activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or an explicit no-snapshot basis",
+      };
+    }
+    if (isPendingApprovalBinding(value)) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: "snapshot binding is described as a future approval obligation",
+        requiredAction: "record the reviewed snapshot id or no-snapshot basis used for approval",
+      };
+    }
+    return concreteCheck(field, value, "snapshot binding matches this PLAN route");
+  }
+
+  if (field === "expires_at_or_trigger") {
+    if (!hasExpiryOrTrigger(value)) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: "expiry or trigger-bound re-approval is missing",
+        requiredAction: "record an expiry date or trigger condition",
+      };
+    }
+    return concreteCheck(field, value, "expiry or trigger condition is recorded");
+  }
+
+  if (field === "audit_record") {
+    if (isPendingApprovalBinding(value)) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: "audit_record is still a future execution obligation",
+        requiredAction:
+          "record the executed action audit id/path with approver, command, result, and route",
+      };
+    }
+    return concreteCheck(field, value, "audit route is recorded");
+  }
+
+  if (isPendingApprovalBinding(value)) {
+    return {
+      field,
+      status: "pending",
+      value,
+      reason: `${field} is future-bound`,
+      requiredAction: pendingAction,
+    };
+  }
+  return concreteCheck(field, value, `${field} is recorded`);
+}
+
+function concreteCheck(
+  field: (typeof ACTION_BINDING_RECORD_FIELDS)[number],
+  value: string,
+  reason: string,
+): ActionBindingApprovalCheck {
+  return {
+    field,
+    status: "concrete",
+    value,
+    reason,
+    requiredAction: "none for this field",
+  };
+}
+
 function selectedOutcome(value = ""): string | null {
   const normalized = value.replace(/`/g, "").trim();
   return ACTION_BINDING_ALLOWED_OUTCOMES.find((outcome) => normalized === outcome) ?? null;
@@ -478,6 +692,38 @@ function mentions(value: string, needles: string[]): boolean {
 
 function isBroadApproval(value: string): boolean {
   return /\b(any|all|everything|unlimited|wildcard)\b/i.test(value) || value.includes("*");
+}
+
+function isPendingApprovalBinding(value: string): boolean {
+  return mentions(value, [
+    "no ",
+    "not approved",
+    "未承認",
+    "while parked",
+    "draft plan",
+    "future approval",
+    "must name",
+    "must record",
+    "must write",
+    "must cite",
+    "must be reviewed",
+    "before approval",
+    "before activation",
+    "before apply",
+    "before execution",
+    "required before",
+    "cannot authorize",
+  ]);
+}
+
+function isPendingReviewEvidence(value: string): boolean {
+  return mentions(value, [
+    "must be reviewed",
+    "to be reviewed",
+    "before approval",
+    "before activation",
+    "required before",
+  ]);
 }
 
 function hasLimitedApprovalScope(value: string): boolean {

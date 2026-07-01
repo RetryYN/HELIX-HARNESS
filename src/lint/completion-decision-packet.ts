@@ -2,6 +2,7 @@ import {
   type CompletionDecisionPacket,
   completionDecisionPacketForOutstanding,
   computeOutstandingWork,
+  requiredRecordsForBlockers,
 } from "./outstanding";
 
 export type CompletionDecisionPacketViolationReason =
@@ -239,26 +240,30 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] planId=${decision.planId}`,
       });
     }
+    const expectedRecordNames = requiredRecordsForBlockers([
+      decision.blockerReason,
+      ...(decision.blockers ?? []),
+    ]).map((record) => record.recordName);
     const requiredRecordNames = decision.requiredRecords.map((record) => record.recordName);
     rejectDuplicateOrExtraRecordEntries({
       violations,
       subject: `decision[${decisionIndex}].requiredRecords`,
       reason: "invalid_required_record",
-      requiredRecordNames,
+      requiredRecordNames: expectedRecordNames,
       actualRecordNames: requiredRecordNames,
     });
     rejectDuplicateOrExtraRecordEntries({
       violations,
       subject: `decision[${decisionIndex}].allowedOutcomesByRecord`,
       reason: "invalid_allowed_outcomes_by_record",
-      requiredRecordNames,
+      requiredRecordNames: expectedRecordNames,
       actualRecordNames: (decision.allowedOutcomesByRecord ?? []).map((entry) => entry.recordName),
     });
     rejectDuplicateOrExtraRecordEntries({
       violations,
       subject: `decision[${decisionIndex}].nextWorkflowRoutesByRecord`,
       reason: "invalid_next_routes_by_record",
-      requiredRecordNames,
+      requiredRecordNames: expectedRecordNames,
       actualRecordNames: (decision.nextWorkflowRoutesByRecord ?? []).map(
         (entry) => entry.recordName,
       ),
@@ -267,7 +272,7 @@ export function analyzeCompletionDecisionPacket(
       violations,
       subject: `decision[${decisionIndex}].recordTemplates`,
       reason: "invalid_record_template",
-      requiredRecordNames,
+      requiredRecordNames: expectedRecordNames,
       actualRecordNames: (decision.recordTemplates ?? []).map((entry) => entry.recordName),
     });
     decision.requiredRecords.forEach((record, recordIndex) => {
@@ -541,6 +546,14 @@ function rejectDuplicateOrExtraRecordEntries(input: {
   }
 
   const required = new Set(requiredRecordNames);
+  for (const recordName of [...required].sort()) {
+    if (!seen.has(recordName)) {
+      violations.push({
+        reason,
+        detail: `${subject} missing recordName=${recordName}`,
+      });
+    }
+  }
   for (const recordName of [...seen].sort()) {
     if (!required.has(recordName)) {
       violations.push({

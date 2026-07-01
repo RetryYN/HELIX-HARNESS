@@ -453,6 +453,30 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("rejects required record drift from secondary blockers", () => {
+    const source = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
+    const packet = {
+      ...source,
+      decisions: source.decisions.map((decision) =>
+        decision.planId === "PLAN-DISCOVERY-10-helix-asset-visualization"
+          ? {
+              ...decision,
+              requiredRecords: decision.requiredRecords.filter(
+                (record) => record.recordName !== "action_binding_approval_record",
+              ),
+            }
+          : decision,
+      ),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T03:00:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      reason: "invalid_required_record",
+      detail: "decision[1].requiredRecords missing recordName=action_binding_approval_record",
+    });
+  });
+
   // U-OUTSTANDING-003
   // U-OUTSTANDING-006
   it("loads the current repo packet as fresh doctor input", () => {

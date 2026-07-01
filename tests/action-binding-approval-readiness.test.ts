@@ -25,6 +25,7 @@ const RIGHT_ARM = [
   "mustNotApprove=true",
   "approvalCommandAvailable=false",
   "approvalAllowed=false",
+  "approvalBindingChecks",
   "GitHub Environments required reviewers",
   "OWASP LLM06:2025 Excessive Agency",
 ].join("\n");
@@ -99,6 +100,19 @@ describe("action-binding approval readiness", () => {
       allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
     });
     expect(packet.approvalRecord.approved_actor).toBe("PO-named operator");
+    expect(packet.approvalBindingChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          field: "allowed_outcome",
+          status: "pending",
+          reason: "allowed_outcome lists the enum but does not select a decision outcome",
+        }),
+        expect.objectContaining({
+          field: "approved_actor",
+          status: "concrete",
+        }),
+      ]),
+    );
     expect(packet.blockedReasons).toEqual(
       expect.arrayContaining([
         "plan carries high-impact approval scope; execution remains human-gated",
@@ -370,6 +384,20 @@ describe("action-binding approval readiness", () => {
       "PLAN-M-02-helix-identifier-rename",
     ]);
     expect(packets.every((packet) => packet.approvalAllowed === false)).toBe(true);
+    expect(
+      packets.every((packet) =>
+        packet.approvalBindingChecks.some(
+          (check) => check.field === "allowed_outcome" && check.status === "pending",
+        ),
+      ),
+    ).toBe(true);
+    expect(
+      packets.every((packet) =>
+        packet.approvalBindingChecks.some(
+          (check) => check.field === "approved_actor" && check.status === "pending",
+        ),
+      ),
+    ).toBe(true);
     expect(packets.flatMap((packet) => packet.blockedReasons)).toContain(
       "missing concrete approve_action_binding decision",
     );

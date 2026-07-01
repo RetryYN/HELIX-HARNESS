@@ -1422,6 +1422,23 @@ actionBinding
       process.stdout.write(
         `action-binding approval-packet: ${packet.planId} status=${packet.status} planOnly=${packet.planOnly} approvalAllowed=${packet.approvalAllowed} approvalCommandAvailable=${packet.approvalCommandAvailable}\n`,
       );
+      const checkCounts = packet.approvalBindingChecks.reduce(
+        (counts, check) => {
+          counts[check.status] += 1;
+          return counts;
+        },
+        { concrete: 0, pending: 0, invalid: 0 },
+      );
+      process.stdout.write(
+        `  binding-checks: concrete=${checkCounts.concrete} pending=${checkCounts.pending} invalid=${checkCounts.invalid}\n`,
+      );
+      for (const check of packet.approvalBindingChecks.filter(
+        (approvalCheck) => approvalCheck.status !== "concrete",
+      )) {
+        process.stdout.write(
+          `  binding-check: ${check.field} status=${check.status} reason=${check.reason}\n`,
+        );
+      }
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
       }
