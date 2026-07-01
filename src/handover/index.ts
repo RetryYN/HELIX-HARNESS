@@ -695,7 +695,24 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
     };
   }
 
-  const packet = pointer.completionDecisionPacket;
+  const outstanding = pointer.outstanding;
+  if (!outstanding) {
+    return {
+      messages: ["handover-decision-packet — violation: blocked readiness だが outstanding が無い"],
+      ok: false,
+    };
+  }
+  const pointerPacket = pointer.completionDecisionPacket;
+  const packet =
+    pointerPacket.sourceCommand === "ut-tdd handover" &&
+    pointerPacket.decisions.some((decision) => decision.supportingPacketSummaries === undefined)
+      ? completionDecisionPacketForOutstanding(outstanding, {
+          generatedAt: pointerPacket.generatedAt,
+          now: deps.now(),
+          validForMinutes: pointerPacket.freshness.validForMinutes,
+          sourceCommand: "ut-tdd handover",
+        })
+      : pointerPacket;
   const lint = analyzeCompletionDecisionPacket(packet, deps.now(), {
     sourcePathExists: (sourcePath) => deps.readText(join(deps.repoRoot, sourcePath)) !== null,
     sourceText: (sourcePath) => deps.readText(join(deps.repoRoot, sourcePath)),

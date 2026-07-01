@@ -48,6 +48,60 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("U-OUTSTANDING-014: carries supporting packet summaries for dedicated matrix review", () => {
+    const packet = basePacket();
+
+    expect(packet.decisions[0].supportingPacketSummaries).toEqual([
+      expect.objectContaining({
+        command: "ut-tdd s4 decision-packet --json",
+        schemaVersion: "s4-decision-packet.v1",
+        matrixField: "decisionVerificationCommandMatrix",
+        expectedMatrixCount: 8,
+        requiredReviewFields: expect.arrayContaining([
+          "decisionEvidenceChecklist",
+          "outcomeRouteMatrix",
+          "semanticFeatureFrontierRecord",
+        ]),
+      }),
+    ]);
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+    expect(result.ok).toBe(true);
+  });
+
+  it("rejects supporting packet summaries that drift from packet commands or matrix contracts", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        supportingPacketSummaries: [
+          {
+            ...decision.supportingPacketSummaries[0],
+            matrixField: "approvalVerificationCommandMatrix" as const,
+            expectedMatrixCount: 9,
+            requiredReviewFields: ["decisionEvidenceChecklist"],
+          },
+        ],
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json drift expected=s4-decision-packet.v1/decisionVerificationCommandMatrix/8 actual=s4-decision-packet.v1/approvalVerificationCommandMatrix/9",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=outcomeRouteMatrix",
+        },
+      ]),
+    );
+  });
+
   it("rejects stale packets after the freshness window", () => {
     const result = analyzeCompletionDecisionPacket(basePacket(), "2026-06-30T01:00:00.001Z");
 

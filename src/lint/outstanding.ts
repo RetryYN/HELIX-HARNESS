@@ -183,6 +183,26 @@ export interface CompletionDecisionItem {
   decisionPacketCommand: WorkflowDecisionPacketCommand;
   /** Primary + supporting non-destructive packet commands for every blocker on this decision. */
   packetCommands: WorkflowDecisionPacketCommand[];
+  supportingPacketSummaries: CompletionDecisionSupportingPacketSummary[];
+}
+
+export interface CompletionDecisionSupportingPacketSummary {
+  command: WorkflowDecisionPacketCommand;
+  schemaVersion:
+    | "s4-decision-packet.v1"
+    | "version-up-activation-packet.v1"
+    | "identifier-rename-cutover-plan.v1"
+    | "action-binding-approval-packet.v1"
+    | "completion-decision-packet.v1";
+  matrixField:
+    | "decisionVerificationCommandMatrix"
+    | "activationVerificationCommandMatrix"
+    | "verificationCommandMatrix"
+    | "approvalVerificationCommandMatrix"
+    | "none";
+  expectedMatrixCount: number;
+  requiredReviewFields: string[];
+  reviewRoute: string;
 }
 
 export interface CompletionDecisionRecordRequirement {
@@ -695,6 +715,7 @@ export function completionDecisionPacketForOutstanding(
     blockers: outstanding.completionReadiness.blockers,
     decisions: outstanding.items.map((item) => {
       const requiredRecords = requiredRecordsForBlockers(item.blockers);
+      const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
       return {
         planId: item.planId,
         layer: item.layer,
@@ -714,10 +735,82 @@ export function completionDecisionPacketForOutstanding(
         nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
         decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
-        packetCommands: packetCommandsForOutstandingBlockers(item.reason, item.blockers),
+        packetCommands,
+        supportingPacketSummaries: packetCommands.map(supportingPacketSummaryForCommand),
       };
     }),
   };
+}
+
+function supportingPacketSummaryForCommand(
+  command: WorkflowDecisionPacketCommand,
+): CompletionDecisionSupportingPacketSummary {
+  switch (command) {
+    case "ut-tdd s4 decision-packet --json":
+      return {
+        command,
+        schemaVersion: "s4-decision-packet.v1",
+        matrixField: "decisionVerificationCommandMatrix",
+        expectedMatrixCount: 8,
+        requiredReviewFields: [
+          "decisionEvidenceChecklist",
+          "outcomeRouteMatrix",
+          "semanticFeatureFrontierRecord",
+        ],
+        reviewRoute: "review S4 decision evidence, outcome routes, and verification commands",
+      };
+    case "ut-tdd version-up activation-packet --json":
+      return {
+        command,
+        schemaVersion: "version-up-activation-packet.v1",
+        matrixField: "activationVerificationCommandMatrix",
+        expectedMatrixCount: 9,
+        requiredReviewFields: [
+          "activationReadinessSummary",
+          "activationSnapshot.snapshotId",
+          "reapprovalTriggers",
+        ],
+        reviewRoute:
+          "review activation readiness, current snapshot id, reapproval triggers, and verification commands",
+      };
+    case "ut-tdd rename plan --json":
+      return {
+        command,
+        schemaVersion: "identifier-rename-cutover-plan.v1",
+        matrixField: "verificationCommandMatrix",
+        expectedMatrixCount: 6,
+        requiredReviewFields: [
+          "cutoverSnapshot.snapshotId",
+          "snapshotReview",
+          "cutoverCategoryChecklist",
+        ],
+        reviewRoute:
+          "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",
+      };
+    case "ut-tdd action-binding approval-packet --json":
+      return {
+        command,
+        schemaVersion: "action-binding-approval-packet.v1",
+        matrixField: "approvalVerificationCommandMatrix",
+        expectedMatrixCount: 9,
+        requiredReviewFields: [
+          "approvalBindingChecks",
+          "semanticFeatureFrontierRecords",
+          "relatedDecisionPackets",
+        ],
+        reviewRoute:
+          "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands",
+      };
+    case "ut-tdd completion decision-packet --json":
+      return {
+        command,
+        schemaVersion: "completion-decision-packet.v1",
+        matrixField: "none",
+        expectedMatrixCount: 0,
+        requiredReviewFields: ["requiredRecords", "recordTemplates", "packetCommands"],
+        reviewRoute: "review completion decision records and route to dedicated packets",
+      };
+  }
 }
 
 function decisionKindForOutstandingReason(reason: string): CompletionDecisionKind {

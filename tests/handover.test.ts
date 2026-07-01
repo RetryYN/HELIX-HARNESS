@@ -44,6 +44,7 @@ import {
 } from "../src/handover/index";
 import {
   analyzeOutstandingWork,
+  type CompletionDecisionPacket,
   completionDecisionPacketForOutstanding,
   type OutstandingWork,
 } from "../src/lint/outstanding";
@@ -530,6 +531,30 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       decisionPacketCommand: "ut-tdd s4 decision-packet --json",
       packetCommands: ["ut-tdd s4 decision-packet --json"],
     });
+  });
+
+  it("新 schema field が無い旧 handover packet は live outstanding から再構成して検査する", () => {
+    const deps = mockDeps();
+    seedDecisionSourceDocs(deps);
+    const outstanding = blockedOutstanding();
+    const packet = completionDecisionPacketForOutstanding(outstanding, {
+      generatedAt: NOW,
+      now: NOW,
+      sourceCommand: "ut-tdd handover",
+    });
+    writePointer(deps, {
+      outstanding,
+      completionDecisionPacket: {
+        ...packet,
+        decisions: packet.decisions.map(({ supportingPacketSummaries: _omitted, ...decision }) => ({
+          ...decision,
+        })),
+      } as unknown as CompletionDecisionPacket,
+    });
+    const r = checkHandoverCompletionDecisionPacket(deps);
+
+    expect(r.ok).toBe(true);
+    expect(r.messages[0]).toContain("decisions=1");
   });
 
   it("blocked outstanding の handover packet が stale source ledger を参照したら fail-close", () => {

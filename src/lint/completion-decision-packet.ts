@@ -23,6 +23,7 @@ export type CompletionDecisionPacketViolationReason =
   | "decision_count_mismatch"
   | "invalid_decision_kind"
   | "invalid_decision_packet_command"
+  | "invalid_supporting_packet_summary"
   | "invalid_decision_allowed_outcomes"
   | "invalid_decision_next_route"
   | "missing_required_records"
@@ -188,6 +189,52 @@ export function analyzeCompletionDecisionPacket(
         reason: "invalid_decision_packet_command",
         detail: `decision[${decisionIndex}] packetCommands mismatch expected=${sortedExpectedPacketCommands.join(",")} actual=${actualPacketCommands.join(",")}`,
       });
+    }
+    const summaryCommands = [
+      ...(decision.supportingPacketSummaries ?? []).map((row) => row.command),
+    ].sort();
+    if (summaryCommands.join("\0") !== sortedExpectedPacketCommands.join("\0")) {
+      violations.push({
+        reason: "invalid_supporting_packet_summary",
+        detail: `decision[${decisionIndex}] supportingPacketSummaries mismatch expected=${sortedExpectedPacketCommands.join(",")} actual=${summaryCommands.join(",")}`,
+      });
+    }
+    for (const command of expectedPacketCommands) {
+      const summary = (decision.supportingPacketSummaries ?? []).find(
+        (row) => row.command === command,
+      );
+      const expectedSummary = requiredSupportingPacketSummary(command);
+      if (!summary) {
+        violations.push({
+          reason: "invalid_supporting_packet_summary",
+          detail: `decision[${decisionIndex}] missing supportingPacketSummary command=${command}`,
+        });
+        continue;
+      }
+      if (
+        summary.schemaVersion !== expectedSummary.schemaVersion ||
+        summary.matrixField !== expectedSummary.matrixField ||
+        summary.expectedMatrixCount !== expectedSummary.expectedMatrixCount
+      ) {
+        violations.push({
+          reason: "invalid_supporting_packet_summary",
+          detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} drift expected=${expectedSummary.schemaVersion}/${expectedSummary.matrixField}/${expectedSummary.expectedMatrixCount} actual=${summary.schemaVersion}/${summary.matrixField}/${summary.expectedMatrixCount}`,
+        });
+      }
+      for (const field of expectedSummary.requiredReviewFields) {
+        if (!(summary.requiredReviewFields ?? []).includes(field)) {
+          violations.push({
+            reason: "invalid_supporting_packet_summary",
+            detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} missing review field=${field}`,
+          });
+        }
+      }
+      if (!String(summary.reviewRoute ?? "").trim()) {
+        violations.push({
+          reason: "invalid_supporting_packet_summary",
+          detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} missing reviewRoute`,
+        });
+      }
     }
     const expectedDecisionOutcomes = requiredDecisionAllowedOutcomes(decision.blockerReason);
     if (expectedDecisionOutcomes) {
@@ -541,6 +588,67 @@ function requiredPacketCommands(blockerReason: string, blockers: string[] = []):
       ...blockers.map((blocker) => requiredDecisionPacketCommand(blocker)),
     ]),
   ];
+}
+
+function requiredSupportingPacketSummary(command: string): {
+  schemaVersion: string;
+  matrixField: string;
+  expectedMatrixCount: number;
+  requiredReviewFields: string[];
+} {
+  switch (command) {
+    case "ut-tdd s4 decision-packet --json":
+      return {
+        schemaVersion: "s4-decision-packet.v1",
+        matrixField: "decisionVerificationCommandMatrix",
+        expectedMatrixCount: 8,
+        requiredReviewFields: [
+          "decisionEvidenceChecklist",
+          "outcomeRouteMatrix",
+          "semanticFeatureFrontierRecord",
+        ],
+      };
+    case "ut-tdd version-up activation-packet --json":
+      return {
+        schemaVersion: "version-up-activation-packet.v1",
+        matrixField: "activationVerificationCommandMatrix",
+        expectedMatrixCount: 9,
+        requiredReviewFields: [
+          "activationReadinessSummary",
+          "activationSnapshot.snapshotId",
+          "reapprovalTriggers",
+        ],
+      };
+    case "ut-tdd rename plan --json":
+      return {
+        schemaVersion: "identifier-rename-cutover-plan.v1",
+        matrixField: "verificationCommandMatrix",
+        expectedMatrixCount: 6,
+        requiredReviewFields: [
+          "cutoverSnapshot.snapshotId",
+          "snapshotReview",
+          "cutoverCategoryChecklist",
+        ],
+      };
+    case "ut-tdd action-binding approval-packet --json":
+      return {
+        schemaVersion: "action-binding-approval-packet.v1",
+        matrixField: "approvalVerificationCommandMatrix",
+        expectedMatrixCount: 9,
+        requiredReviewFields: [
+          "approvalBindingChecks",
+          "semanticFeatureFrontierRecords",
+          "relatedDecisionPackets",
+        ],
+      };
+    default:
+      return {
+        schemaVersion: "completion-decision-packet.v1",
+        matrixField: "none",
+        expectedMatrixCount: 0,
+        requiredReviewFields: ["requiredRecords", "recordTemplates", "packetCommands"],
+      };
+  }
 }
 
 function requiredDecisionAllowedOutcomes(blockerReason: string): string[] | null {

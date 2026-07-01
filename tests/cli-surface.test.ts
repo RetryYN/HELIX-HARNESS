@@ -28,6 +28,29 @@ function runCliIn(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.
   });
 }
 
+function writeObjectiveAuditFixture(root: string): void {
+  const governanceDir = join(root, "docs", "governance");
+  mkdirSync(governanceDir, { recursive: true });
+  writeFileSync(
+    join(governanceDir, "helix-objective-evidence-audit.md"),
+    [
+      "| ID | Requirement | Status | Evidence | Note |",
+      "|---|---|---|---|---|",
+      "| G-01 | fixture | proved | fixture | fixture |",
+      "| G-02 | fixture | proved | fixture | fixture |",
+      "| G-03 | fixture | proved | fixture | fixture |",
+      "| G-04 | fixture | proved | fixture | fixture |",
+      "| G-05 | fixture | proved | fixture | fixture |",
+      "| G-06 | fixture | proved | fixture | fixture |",
+      "| G-07 | fixture | proved | fixture | fixture |",
+      "| G-08 | fixture | proved | fixture | fixture |",
+      "| G-09 | fixture | proved | fixture | fixture |",
+      "| G-10 | fixture | proved | fixture | outstanding.completionReadiness.ok=true |",
+    ].join("\n"),
+    "utf8",
+  );
+}
+
 function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
   const rawEnv = [legacyEnvPrefix, "ALLOW", "RAW", name.toUpperCase()].join("_");
   const reasonEnv = [legacyEnvPrefix, "RAW", name.toUpperCase(), "REASON"].join("_");
@@ -67,6 +90,7 @@ describe("L7 CLI surface closure", () => {
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-status-"));
     try {
+      writeObjectiveAuditFixture(root);
       const missing = runCliIn(root, ["handover", "status", "--json"]);
       expect(missing.status).toBe(0);
       expect(JSON.parse(missing.stdout)).toMatchObject({
@@ -113,6 +137,12 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         status: "ready",
       });
+      expect(payload.objectiveProgress).toMatchObject({
+        method: "objective-evidence-audit.v1",
+        percent: 100,
+        completionStatus: "ready",
+        completionClaimAllowed: true,
+      });
       expect(payload.completionDecisionPacket).toMatchObject({
         ok: true,
         status: "ready",
@@ -128,6 +158,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(text.stdout).toContain("latest_doc:");
       expect(text.stdout).toContain("completion: ready");
+      expect(text.stdout).toContain(
+        "objective-progress: 100% (ready; completion-claim-allowed=true)",
+      );
 
       const stalePointer = {
         ...payload,
@@ -151,6 +184,7 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-packet-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeObjectiveAuditFixture(root);
       writeFileSync(
         join(root, "docs", "plans", "PLAN-M-02-fixture.md"),
         [
@@ -229,9 +263,14 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["handover", "status"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("completion: blocked");
+      expect(text.stdout).toContain("objective-progress:");
+      expect(text.stdout).toContain("completion-claim-allowed=false");
       expect(text.stdout).toContain("workflow-next:");
       expect(text.stdout).toContain("workflow-next-actions: 1");
       expect(text.stdout).toContain("workflow-next-action[1]: PLAN-M-02-fixture");
+      expect(text.stdout).toContain(
+        "packet=ut-tdd rename plan --json supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+      );
       expect(text.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json",
       );
@@ -784,6 +823,19 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
     ]);
+    expect(payload.postSetupWorkflow.verificationMatrix).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          phase: "setup-dry-run",
+          command: "ut-tdd setup project --dry-run",
+        }),
+        expect.objectContaining({
+          phase: "consumer-doctor",
+          command: "ut-tdd doctor --profile consumer",
+          source: "VS Code Workspace Trust and consumer adapter safety contract",
+        }),
+      ]),
+    );
     expect(payload.doctorBaseline.baselineCommands).toEqual(
       payload.postSetupWorkflow.verificationCommands,
     );
@@ -800,9 +852,13 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
+    expect(text.stdout).toContain("verification-matrix: 4");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
+    expect(text.stdout).toContain(
+      "verification-check: consumer-doctor ut-tdd doctor --profile consumer",
+    );
     expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
     expect(text.stdout).toContain(
       "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",

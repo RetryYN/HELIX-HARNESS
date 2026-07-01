@@ -185,6 +185,13 @@ export interface HelixProjectPostSetupWorkflow {
   unmetGates: string[];
   nextActions: string[];
   verificationCommands: string[];
+  verificationMatrix: Array<{
+    phase: string;
+    command: string;
+    expected: string;
+    evidence: string;
+    source: string;
+  }>;
   blockedUntil: string[];
 }
 
@@ -846,6 +853,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
     ...failedBlockingChecks.map((check) => `${check.name}=ok`),
     "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
   ];
+  const verificationMatrix = buildHelixProjectPostSetupVerificationMatrix();
   return {
     schemaVersion: "helix-project-post-setup-workflow.v1",
     nextRoute,
@@ -854,14 +862,47 @@ function buildHelixProjectPostSetupWorkflow(input: {
     manualDocSearchRequired: false,
     unmetGates,
     nextActions,
-    verificationCommands: [
-      "ut-tdd setup project --dry-run",
-      "ut-tdd status --json",
-      "ut-tdd doctor --profile consumer",
-      "ut-tdd handover status --json",
-    ],
+    verificationCommands: verificationMatrix.map((row) => row.command),
+    verificationMatrix,
     blockedUntil,
   };
+}
+
+function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWorkflow["verificationMatrix"] {
+  return [
+    {
+      phase: "setup-dry-run",
+      command: "ut-tdd setup project --dry-run",
+      expected:
+        "returns the import report, VSCode tasks, local baseline paths, command availability, and PLAN-M-02 cutover blocker without writing files",
+      evidence: "setup dry-run text or JSON output saved in the consumer repository review record",
+      source: "VS Code workspace task contract",
+    },
+    {
+      phase: "status-frontier",
+      command: "ut-tdd status --json",
+      expected:
+        "returns objective progress, workflowNextAction, workflowNextActions, and completionReadiness before HELIX work starts",
+      evidence: "status JSON attached to the first-run readiness record",
+      source: "HELIX status and completion decision packet contract",
+    },
+    {
+      phase: "consumer-doctor",
+      command: "ut-tdd doctor --profile consumer",
+      expected:
+        "passes the consumer profile against projected adapters, VSCode tasks, and .ut-tdd baselines without requiring dogfood docs",
+      evidence: "consumer doctor output with profile=consumer",
+      source: "VS Code Workspace Trust and consumer adapter safety contract",
+    },
+    {
+      phase: "handover-route",
+      command: "ut-tdd handover status --json",
+      expected:
+        "returns active handover route or confirms normal start so the first project action is anchored",
+      evidence: "handover status JSON attached to the first-run readiness record",
+      source: "handover route contract",
+    },
+  ];
 }
 
 /**

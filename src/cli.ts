@@ -2157,12 +2157,14 @@ handover
     });
     const workflowNextAction = workflowNextActionForOutstanding(liveOutstanding);
     const workflowNextActions = workflowNextActionsForOutstanding(liveOutstanding);
+    const objectiveProgress = loadObjectiveProgress(repoRoot, liveOutstanding);
     const status = {
       ...pointer,
       outstanding: liveOutstanding,
       completionDecisionPacket: liveCompletionDecisionPacket,
       workflowNextAction,
       workflowNextActions,
+      ...(objectiveProgress ? { objectiveProgress } : {}),
       exists: true,
       stale,
       stale_reasons: stale ? [`updated_at is older than 24h: ${pointer.updated_at}`] : [],
@@ -2178,12 +2180,17 @@ handover
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
     process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
     process.stdout.write(`${completionReadinessLine(liveOutstanding)}\n`);
+    if (objectiveProgress) {
+      process.stdout.write(
+        `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed})\n`,
+      );
+    }
     process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
     if (workflowNextActions.length > 0) {
       process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
       for (const item of workflowNextActions) {
         process.stdout.write(
-          `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute}\n`,
+          `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
         );
       }
     }
@@ -3982,6 +3989,7 @@ setupCommand
     process.stdout.write(
       `post-setup-workflow: ${r.postSetupWorkflow.nextRoute} readiness=${r.postSetupWorkflow.readinessOk} gates=${r.postSetupWorkflow.unmetGates.length}\n`,
     );
+    process.stdout.write(`verification-matrix: ${r.postSetupWorkflow.verificationMatrix.length}\n`);
     for (const action of r.postSetupWorkflow.nextActions) {
       process.stdout.write(`post-setup-next-action: ${action}\n`);
     }
@@ -3990,6 +3998,9 @@ setupCommand
     }
     for (const command of r.postSetupWorkflow.verificationCommands) {
       process.stdout.write(`verification-command: ${command}\n`);
+    }
+    for (const row of r.postSetupWorkflow.verificationMatrix) {
+      process.stdout.write(`verification-check: ${row.phase} ${row.command}\n`);
     }
     process.stdout.write(
       `github-plan: ${r.githubPlan.schemaVersion} planOnly=${r.githubPlan.planOnly} requiredChecks=${r.githubPlan.requiredChecks.join(",")}\n`,

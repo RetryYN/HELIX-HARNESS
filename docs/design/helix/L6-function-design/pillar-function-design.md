@@ -104,6 +104,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
   `runConsumerDoctor` は adapter docs の managed block だけでなく、日本語既定、consumer doctor profile、
   PLAN-M-02 cutover boundary、承認前 future state dir 未生成を検査する。
+- HC-P6 `runHelixProjectSetup` の `postSetupWorkflow.verificationMatrix[]` は setup-dry-run /
+  status-frontier / consumer-doctor / handover-route の phase / command / expected / evidence / source を返す。
+  VS Code workspace task、Workspace Trust、HELIX status/handover contract を初回稼働証跡へ接続し、
+  command 列挙だけで「別プロジェクトで HELIX が動く」claim を閉じない。text surface は
+  `verification-check:` も列挙する。
 - HC-P8 `requireActionBindingApproval` / `buildActionBindingApprovalPackets` は
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、

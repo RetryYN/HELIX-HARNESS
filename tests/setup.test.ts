@@ -699,6 +699,28 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
     ]);
+    expect(preview.postSetupWorkflow.verificationMatrix).toEqual([
+      expect.objectContaining({
+        phase: "setup-dry-run",
+        command: "ut-tdd setup project --dry-run",
+        source: "VS Code workspace task contract",
+      }),
+      expect.objectContaining({
+        phase: "status-frontier",
+        command: "ut-tdd status --json",
+        expected: expect.stringContaining("objective progress"),
+      }),
+      expect.objectContaining({
+        phase: "consumer-doctor",
+        command: "ut-tdd doctor --profile consumer",
+        source: "VS Code Workspace Trust and consumer adapter safety contract",
+      }),
+      expect.objectContaining({
+        phase: "handover-route",
+        command: "ut-tdd handover status --json",
+        evidence: "handover status JSON attached to the first-run readiness record",
+      }),
+    ]);
     expect(preview.postSetupWorkflow.blockedUntil).toContain(
       "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
     );
@@ -820,6 +842,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
       ],
     });
+    expect(result.postSetupWorkflow.verificationMatrix.map((row) => row.phase)).toEqual([
+      "setup-dry-run",
+      "status-frontier",
+      "consumer-doctor",
+      "handover-route",
+    ]);
   });
 
   it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
