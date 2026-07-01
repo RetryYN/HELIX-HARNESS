@@ -222,6 +222,11 @@ export interface ConsumerReadinessPlan {
   };
   ci: {
     workflow: string;
+    packageResolution: {
+      command: "bun run ut-tdd --version";
+      requiredBefore: string[];
+      remediation: string;
+    };
     requires: string[];
     forkPullRequestSecrets: "not-required";
   };
@@ -687,10 +692,20 @@ export function buildConsumerReadinessPlan(input: {
     },
     ci: {
       workflow: ".github/workflows/harness-check.yml",
+      packageResolution: {
+        command: "bun run ut-tdd --version",
+        requiredBefore: [
+          "bun run ut-tdd setup project --dry-run --json",
+          "bun run ut-tdd doctor --profile consumer --json",
+        ],
+        remediation:
+          "consumer package.json に HELIX harness package/bin を解決できる dependency または approved link/install route を追加する",
+      },
       requires: [
         "actions/checkout@v4",
         "oven-sh/setup-bun@v2",
         "bun install --frozen-lockfile",
+        "bun run ut-tdd --version",
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd doctor --profile consumer --json",

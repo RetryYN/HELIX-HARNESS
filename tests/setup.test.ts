@@ -513,9 +513,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.workspace.monorepo).toBe(true);
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
+    expect(ready.ci.packageResolution).toMatchObject({
+      command: "bun run ut-tdd --version",
+      requiredBefore: expect.arrayContaining([
+        "bun run ut-tdd setup project --dry-run --json",
+        "bun run ut-tdd doctor --profile consumer --json",
+      ]),
+      remediation: expect.stringContaining("consumer package.json"),
+    });
     expect(ready.ci.requires).toContain("bun run test");
     expect(ready.ci.requires).toEqual(
       expect.arrayContaining([
+        "bun run ut-tdd --version",
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd doctor --profile consumer --json",

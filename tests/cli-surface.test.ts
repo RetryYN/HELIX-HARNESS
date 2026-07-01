@@ -1142,6 +1142,10 @@ describe("L7 CLI surface closure", () => {
       expect(payload.readiness.rollback.managedPaths).toContain("AGENTS.md");
       expect(payload.readiness.contracts.tagPin).toContain("#v0.1.0");
       expect(payload.readiness.ci.forkPullRequestSecrets).toBe("not-required");
+      expect(payload.readiness.ci.packageResolution).toMatchObject({
+        command: "bun run ut-tdd --version",
+        remediation: expect.stringContaining("consumer package.json"),
+      });
     } finally {
       rmSync(join(repoRoot, "codex-env.txt"), { force: true });
       rmSync(binDir, { recursive: true, force: true });

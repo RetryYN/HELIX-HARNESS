@@ -218,11 +218,13 @@ describe("clean distribution local acceptance smoke", () => {
           join(consumerRoot, ".github", "workflows", "harness-check.yml"),
           "utf8",
         );
+        expect(workflow).toContain("bun run ut-tdd --version");
         expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
         expect(workflow).toContain("bun run ut-tdd status --json");
         expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
         expect(workflow).toContain("bun run ut-tdd handover status --json");
         const workflowUtTddCommands = [
+          "bun run ut-tdd --version",
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd status --json",
           "bun run ut-tdd doctor --profile consumer --json",
@@ -286,7 +288,11 @@ describe("clean distribution local acceptance smoke", () => {
         for (const command of workflowUtTddCommands) {
           const run = runWorkflowUtTdd(consumerRoot, command, linkedEnv);
           expect(run.status, run.stderr || run.stdout).toBe(0);
-          expect(JSON.parse(run.stdout)).toBeTruthy();
+          if (command.endsWith("--version")) {
+            expect(run.stdout.trim()).toBe("0.1.0");
+          } else {
+            expect(JSON.parse(run.stdout)).toBeTruthy();
+          }
         }
       } finally {
         rmSync(consumerRoot, { recursive: true, force: true });
