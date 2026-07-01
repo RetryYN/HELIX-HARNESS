@@ -121,7 +121,7 @@ const baseTemplates: TemplateSet = {
   "common/PULL_REQUEST_TEMPLATE.md": "## 概要\nCloses #\n",
   "team/CODEOWNERS": "* {{TL_TEAM}}\n/docs/ {{PO_TEAM}}\n/tests/ {{QA_TEAM}}\n",
   "team/setup-branch-protection.sh":
-    "#!/usr/bin/env bash\ngh api -X PUT repos/{owner}/{repo}/branches/main/protection --input protection.json\n",
+    '#!/usr/bin/env bash\necho "action-binding approval required"\nexit 2\n',
 };
 
 describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
@@ -957,7 +957,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(re.phase).toBe("0-A"); // append でなく上書き
   });
 
-  it("U-SETUP-006: applyBranchProtection emit-only 既定 / 非対話封鎖 / 非 admin", () => {
+  it("U-SETUP-006: applyBranchProtection は承認未実装なら対話/adminでも gh 非実行", () => {
     const plan = planSetup("0-B", { dryRun: false });
 
     // apply≠true → emit-only、gh 呼ばれない
@@ -976,19 +976,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(d2.ghCalls.length).toBe(0);
 
-    // 対話 + 認証ありだが admin でない → not-admin
-    const ghNoAdmin = (args: string[]) => {
-      const key = args.join(" ");
-      if (key === "auth status") return { ok: true, stdout: "" };
-      if (key === "api repos/{owner}/{repo}")
-        return { ok: true, stdout: JSON.stringify({ permissions: { admin: false } }) };
-      return { ok: false, stdout: "" };
-    };
-    const d3 = mockDeps({ isInteractive: true, gh: ghNoAdmin, confirm: () => true });
+    // 対話 + admin + confirm が揃っても action-binding approval 入力が無ければ remote へ進まない。
+    const d3 = mockDeps({ isInteractive: true, gh: ghTeam, confirm: () => true });
     expect(applyBranchProtection(plan, d3, { apply: true })).toEqual({
       applied: false,
-      reason: "not-admin",
+      reason: "action-binding-approval-required",
     });
+    expect(d3.ghCalls.length).toBe(0);
   });
 
   it("U-SETUP-007: runSetup 優先順 (flag > confirm > fallback) + 非対話 apply 封鎖", () => {
@@ -1026,6 +1020,21 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const r4 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, a);
     expect(r4.branchProtection.applied).toBe(false);
     expect(r4.branchProtection.reason).toBe("non-interactive");
+
+    // ⑤ apply=true + 対話 + admin + confirm でも現行は action-binding approval が無いので止める。
+    const ai = mockDeps({
+      templates: baseTemplates,
+      isInteractive: true,
+      gh: ghTeam,
+      confirm: () => true,
+    });
+    const r5 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, ai);
+    expect(r5.branchProtection).toEqual({
+      applied: false,
+      reason: "action-binding-approval-required",
+    });
+    expect(ai.ghCalls).not.toContainEqual(["auth", "status"]);
+    expect(ai.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
   it("U-SETUP-008: dryRun=true は副作用ゼロ (state 非書込 / gh 非呼出 / branch protection 非適用)", () => {
@@ -1048,6 +1057,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(d.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
     // branch protection は dry-run 理由で skip
     expect(r.branchProtection).toEqual({ applied: false, reason: "dry-run" });
+  });
+
+  it("U-SETUP-022: branch protection 生成 script は approval checklist のみで remote API を呼ばない", () => {
+    const repoTemplates = loadTemplates(process.cwd());
+    for (const script of [
+      repoTemplates["team/setup-branch-protection.sh"],
+      BUILTIN_GITHUB_TEMPLATES["team/setup-branch-protection.sh"],
+    ]) {
+      expect(script).toContain("action-binding approval");
+      expect(script).toContain("remote GitHub API");
+      expect(script).toContain("exit 2");
+      expect(script).not.toContain("gh api -X PUT");
+      expect(script).not.toContain("/branches/main/protection");
+    }
   });
 
   it("U-SETUP-018: README quickstart points to the HELIX project setup workflow, not legacy setup shortcuts", () => {

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-229-helix-setup-branch-protection-approval
-title: "PLAN-L7-229 (troubleshoot): HELIX project setup の branch protection 外部適用封鎖"
+title: "PLAN-L7-229 (troubleshoot): setup branch protection 外部適用封鎖"
 kind: troubleshoot
 layer: L7
 drive: be
@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-07-02
 updated: 2026-07-02
 backprop_decision: not_required
-backprop_decision_reason: "L6 setup 設計は `ut-tdd setup project` の GitHub plan を plan-only / appliesRemote=false / applyCommandAvailable=false と定義済み。本 slice は legacy setup apply path が project setup に混入する実装漏れを塞ぐ troubleshoot であり、新しい product requirement や GitHub API contract は追加しない。"
+backprop_decision_reason: "L1 は branch protection / rulesets / 外部 API 設定の apply に action-binding approval を必須化している。本 slice は legacy setup、HELIX project setup、生成 script の branch protection apply surface を同じ意味に揃える troubleshoot であり、新しい GitHub API contract は追加しない。"
 owner: TL (Codex)
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -28,6 +28,12 @@ generates:
     artifact_type: test_design
   - artifact_path: src/setup/index.ts
     artifact_type: source_module
+  - artifact_path: src/setup/templates.ts
+    artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
+  - artifact_path: docs/templates/github/team/setup-branch-protection.sh
+    artifact_type: source_module
   - artifact_path: tests/setup.test.ts
     artifact_type: test_code
 dependencies:
@@ -40,71 +46,76 @@ dependencies:
 review_evidence:
   - reviewer: TL self-review (single-runtime)
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-02T05:04:51+09:00"
-    tests_green_at: "2026-07-02T05:04:21+09:00"
+    reviewed_at: "2026-07-02T05:24:58+09:00"
+    tests_green_at: "2026-07-02T05:24:50+09:00"
     verdict: pass
-    scope: "`ut-tdd setup project --apply-branch-protection` が human approval / action-binding approval なしに GitHub branch protection / required status checks の remote mutation へ到達し得る穴を封鎖。legacy `ut-tdd setup` の opt-in apply は維持し、HELIX project setup の GitHub plan-only 契約だけを強化した。"
+    scope: "`ut-tdd setup --apply-branch-protection` / `ut-tdd setup project --apply-branch-protection` / 生成 `setup-branch-protection.sh` が action-binding approval なしに GitHub branch protection / required status checks の remote mutation へ到達し得る穴を封鎖。L1 HNFR-P8 / HNFR-AC、L6 setup 設計、L7 U-SETUP oracle、実装、生成 template を同じ意味に揃えた。"
     worker_model: gpt-5.5
     reviewer_model: gpt-5.5
     green_commands:
       - kind: unit_test
-        command: "bun run vitest run tests/setup.test.ts tests/cli-surface.test.ts"
+        command: "bun run test"
         runner: bun
-        scope: targeted
+        scope: full
         exit_code: 0
-        completed_at: "2026-07-02T05:04:21+09:00"
+        completed_at: "2026-07-02T05:24:50+09:00"
         evidence_path: tests/setup.test.ts
-        output_digest: "sha256:01b230144252b8f8a52102a92545e9d1f93a10cc5823f6afc96cf74ad0049f01"
+        output_digest: "sha256:a9809158f2f241c7ca8a9590734efc91973bb95e86c7586dc65bd93965b5217a"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-02T05:04:21+09:00"
+        completed_at: "2026-07-02T05:17:42+09:00"
         evidence_path: src/setup/index.ts
-        output_digest: "sha256:06528c09318454f6d4fbc1fcae142b03d9f2c7088a5194398e2b91c67a1a514b"
+        output_digest: "sha256:5f14813617ad12cf42c7a54401f51c898686df675662e0873d72555867a50453"
       - kind: lint
         command: "bun run lint"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-02T05:04:21+09:00"
-        evidence_path: src/setup/index.ts
-        output_digest: "sha256:150eedc5458a7f2b922c4de5a38943702337449466c6dbbb738ec18d79dd5a32"
+        completed_at: "2026-07-02T05:18:41+09:00"
+        evidence_path: src/setup/templates.ts
+        output_digest: "sha256:857cd0b45e0ba4828e2a9f18f1ce60f458a321b460be48da190f2364931c2e69"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-02T05:04:21+09:00"
+        completed_at: "2026-07-02T05:19:21+09:00"
         evidence_path: docs/design/harness/L6-function-design/setup-solo-team.md
-        output_digest: "sha256:b9bff8f2f80976987bda2af6704981cdf89355a9983f98164b08ed4d8f84c529"
+        output_digest: "sha256:63cee00c59e893603f2fe01c0246bb14e48787181b97eee5194d7bbb68a08501"
 ---
 
-# PLAN-L7-229: HELIX project setup の branch protection 外部適用封鎖
+# PLAN-L7-229: setup branch protection 外部適用封鎖
 
 ## 0. 目的
 
-`ut-tdd setup project` は HELIX 導入済み VSCode で新規 project を始める bootstrap である。GitHub workflow /
-branch protection / required status checks は計画・生成物として提示するが、外部 GitHub 設定の実適用権限は持たない。
+`ut-tdd setup` / `ut-tdd setup project` は GitHub workflow / branch protection / required status checks を
+計画・生成物として提示するが、外部 GitHub 設定の実適用権限は action-binding approval なしに持たない。
 
-既存 `runHelixProjectSetup` は legacy `runSetup` と同じ `applyBranchProtection` を呼び得たため、対話 session、
-admin 権限、confirm が揃うと `--apply-branch-protection` から `gh api -X PUT` へ到達する余地があった。
-これは `githubPlan.planOnly=true` / `appliesRemote=false` / `applyCommandAvailable=false` の意味とずれる。
+既存 `runHelixProjectSetup` は既に plan-only に塞いだが、legacy `runSetup` の `applyBranchProtection` と
+生成される `setup-branch-protection.sh` / built-in fallback は、対話 session、admin 権限、confirm が揃うと
+`gh api -X PUT` へ到達する余地が残っていた。これは L1 HNFR-P8 / HNFR-AC の
+「branch protection/rulesets/secrets/外部 API 設定など本番・外部影響を持つ適用は action-binding approval 必須」
+という意味とずれる。
 
 ## 1. 実装
 
-- `runHelixProjectSetup` では branch protection を project setup 専用 decision に分離する。
+- `applyBranchProtection` は action-binding approval 入力が無い現行 setup では remote API へ進ませない。
 - dry-run は従来どおり `{applied:false, reason:"dry-run"}` を返す。
 - non-dry かつ `applyBranchProtection=false` は `{applied:false, reason:"emit-only"}` を返す。
-- non-dry かつ `applyBranchProtection=true` は `{applied:false, reason:"action-binding-approval-required"}` を返し、
+- non-dry かつ `applyBranchProtection=true` で非対話なら `{applied:false, reason:"non-interactive"}` を返す。
+- non-dry かつ `applyBranchProtection=true` で対話/admin/confirm 相当が揃っても `{applied:false, reason:"action-binding-approval-required"}` を返し、
   `gh auth status` や `gh api -X PUT` に進まない。
-- legacy `ut-tdd setup` の `applyBranchProtection` opt-in path は変更しない。
+- `docs/templates/github/team/setup-branch-protection.sh` と built-in fallback は実適用 script ではなく approval checklist にし、
+  `gh api -X PUT` / `/branches/main/protection` の mutating endpoint を含めず `exit 2` する。
+- `src/cli.ts` の `--apply-branch-protection` 説明も「適用」ではなく approval required stop に合わせる。
 
 action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
 - approval_policy_or_named_approver: PO の human approval / action-binding approval は、HELIX project setup が GitHub branch protection や required status checks を適用する前に必須。
-- approval_scope: この PLAN は `ut-tdd setup project --apply-branch-protection` の remote GitHub branch protection apply を拒否する範囲に限定し、legacy `ut-tdd setup` の opt-in 挙動は対象外。
+- approval_scope: この PLAN は `ut-tdd setup --apply-branch-protection` / `ut-tdd setup project --apply-branch-protection` / 生成 `setup-branch-protection.sh` の remote GitHub branch protection apply を拒否する範囲に限定する。
 - approved_actor: この PLAN では actor を承認しない。将来承認では GitHub apply 前に human operator または automation identity を記名する。
 - approved_tool: この PLAN では tool を承認しない。将来承認では GitHub apply 前に CLI / script / workflow を記名する。
 - approved_target: この PLAN では target を承認しない。将来承認では GitHub apply 前に repository、branch、branch protection rule、required check target を記名する。
@@ -127,6 +138,7 @@ action-binding approval なしに適用しない方針と整合する。
 ## 3. 受入条件
 
 - [x] `runHelixProjectSetup --apply-branch-protection` は対話 / admin / confirm が揃っていても `gh api -X PUT` を呼ばない。
+- [x] legacy `runSetup --apply-branch-protection` は対話 / admin / confirm が揃っていても `gh auth status` / `gh api -X PUT` を呼ばない。
 - [x] result は `action-binding-approval-required` を返し、`githubPlan` は plan-only のまま。
-- [x] `runSetup` の legacy opt-in apply path は変更しない。
-- [x] L6 design / L7 test-design に U-SETUP-021 として境界を登録する。
+- [x] 生成 branch protection script と built-in fallback は approval checklist のみで、mutating endpoint を含まない。
+- [x] L6 design / L7 test-design に U-SETUP-006 / U-SETUP-007 / U-SETUP-021 / U-SETUP-022 として境界を登録する。

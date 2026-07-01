@@ -8,7 +8,7 @@
  *
  * セキュリティ不変条件 (CLAUDE.md エスカレーション境界):
  *   ① token を読まない・state/docs/log に記録しない (gh 認証状態に委ねる seam)。
- *   ② branch protection の実適用は --apply + 対話 + admin/auth/confirm 全充足時のみ (非対話は封鎖)。
+ *   ② branch protection の実適用は action-binding approval 未実装のため常に封鎖する。
  *   ③ 既定は emit-only (スクリプト + 手順生成、適用は人間)。
  *   ④ 検出不能は solo に安全フォールバック (緩い側に倒す)。
  */
@@ -885,7 +885,7 @@ export function recordSetupState(state: SetupState, deps: SetupDeps): void {
 
 /**
  * U-SETUP-006: apply≠true → emit-only (既定)。isInteractive≠true → non-interactive で gh 非実行。
- * 対話下でのみ gh 認証 + admin + 人間 confirm 全充足で gh api 実行。欠落 → 実行せず emit-only に戻す。
+ * 対話下でも action-binding approval 入力が無い現行 setup では gh api 実行へ進まない。
  */
 export function applyBranchProtection(
   plan: SetupPlan,
@@ -897,44 +897,7 @@ export function applyBranchProtection(
   if (deps.isInteractive !== true) return { applied: false, reason: "non-interactive" };
   const action = plan.actions.find((a) => a.kind === "branch-protection");
   if (!action) return { applied: false, reason: "no-action" };
-  if (!deps.gh(["auth", "status"]).ok) return { applied: false, reason: "not-authenticated" };
-  const repo = deps.gh(["api", "repos/{owner}/{repo}"]);
-  let admin = false;
-  try {
-    admin =
-      (JSON.parse(repo.stdout) as { permissions?: { admin?: boolean } })?.permissions?.admin ===
-      true;
-  } catch {
-    admin = false;
-  }
-  if (!repo.ok || !admin) return { applied: false, reason: "not-admin" };
-  if (
-    !deps.confirm(
-      "main の branch protection を適用します (本番 merge ゲート変更)。よろしいですか？",
-    )
-  ) {
-    return { applied: false, reason: "declined" };
-  }
-  // emit-only script と同じ PUT を gh 経由で適用 (token は gh 認証に委譲、harness は保持しない)
-  const r = deps.gh([
-    "api",
-    "-X",
-    "PUT",
-    "repos/{owner}/{repo}/branches/main/protection",
-    "-H",
-    "Accept: application/vnd.github+json",
-    "-F",
-    "required_status_checks[strict]=true",
-    "-f",
-    "required_status_checks[checks][][context]=harness-check",
-    "-F",
-    "enforce_admins=true",
-    "-F",
-    "required_pull_request_reviews[required_approving_review_count]=1",
-    "-F",
-    "restrictions=null",
-  ]);
-  return r.ok ? { applied: true, reason: "applied" } : { applied: false, reason: "gh-failed" };
+  return { applied: false, reason: "action-binding-approval-required" };
 }
 
 /**

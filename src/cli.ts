@@ -3821,7 +3821,10 @@ const setupCommand = program
   .option("--solo", "Phase 0-A (solo) を強制 (自動提案の上書き)")
   .option("--team", "Phase 0-B (team) を強制 (自動提案の上書き)")
   .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
-  .option("--apply-branch-protection", "branch protection を対話下で適用 (既定は emit-only)")
+  .option(
+    "--apply-branch-protection",
+    "branch protection 適用要求を受け付けるが action-binding approval 未実装のため停止",
+  )
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
   .option("--po-team <slug>", "CODEOWNERS の PO team slug");
@@ -3878,7 +3881,7 @@ setupCommand.action((opts: SetupCliOptions) => {
   );
   if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
     process.stdout.write(
-      "  → scripts/setup-branch-protection.sh を生成。admin 権限の人間が実行してください (本番 merge ゲート変更)\n",
+      "  → scripts/setup-branch-protection.sh は action-binding approval checklist です。remote apply は実行しません\n",
     );
   }
 });
@@ -3889,7 +3892,10 @@ setupCommand
   .option("--solo", "Phase 0-A (solo) を強制")
   .option("--team", "Phase 0-B (team) を強制")
   .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
-  .option("--apply-branch-protection", "branch protection を対話下で適用 (既定は emit-only)")
+  .option(
+    "--apply-branch-protection",
+    "branch protection 適用要求を受け付けるが action-binding approval 未実装のため停止",
+  )
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
   .option("--po-team <slug>", "CODEOWNERS の PO team slug")
