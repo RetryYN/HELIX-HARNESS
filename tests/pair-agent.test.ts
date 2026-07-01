@@ -144,6 +144,42 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     );
   });
 
+  it("derives fix-cycle budget from task difficulty when maxFixCycles is not explicit", () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "production security migration pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+    });
+
+    expect(plan).toMatchObject({
+      difficulty: "critical",
+      difficultySource: "inferred",
+      maxFixCycles: 4,
+      maxFixCyclesSource: "difficulty_policy",
+    });
+  });
+
+  it("honors explicit difficulty and maxFixCycles overrides", () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      difficulty: "simple",
+      maxFixCycles: 5,
+    });
+
+    expect(plan).toMatchObject({
+      difficulty: "simple",
+      difficultySource: "explicit",
+      maxFixCycles: 5,
+      maxFixCyclesSource: "explicit",
+    });
+  });
+
   it("exposes the pair-agent plan through the CLI as JSON", () => {
     const result = runCli([
       "pair-agent",
@@ -179,6 +215,89 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       model: "gpt-5.3-codex-spark",
       dry_run: true,
     });
+  });
+
+  it("exposes explicit difficulty through the CLI plan surface", () => {
+    const result = runCli([
+      "pair-agent",
+      "plan",
+      "--plan-id",
+      "PLAN-L7-PAIR",
+      "--task",
+      "Add pair-agent TDD route",
+      "--primary",
+      "codex",
+      "--allow-frontier",
+      "--mode",
+      "hybrid",
+      "--difficulty",
+      "complex",
+      "--json",
+    ]);
+
+    expect(result.status).toBe(0);
+    const payload = JSON.parse(result.stdout);
+    expect(payload.plan).toMatchObject({
+      difficulty: "complex",
+      difficultySource: "explicit",
+      maxFixCycles: 3,
+      maxFixCyclesSource: "difficulty_policy",
+    });
+  });
+
+  it("rejects invalid CLI difficulty values", () => {
+    const result = runCli([
+      "pair-agent",
+      "plan",
+      "--plan-id",
+      "PLAN-L7-PAIR",
+      "--task",
+      "Add pair-agent TDD route",
+      "--difficulty",
+      "huge",
+      "--json",
+    ]);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("pair-agent plan --difficulty must be one of");
+  });
+
+  it("rejects non-integer CLI plan max fix cycle values", () => {
+    for (const value of ["2abc", "1.5", "0"]) {
+      const result = runCli([
+        "pair-agent",
+        "plan",
+        "--plan-id",
+        "PLAN-L7-PAIR",
+        "--task",
+        "Add pair-agent TDD route",
+        "--max-fix-cycles",
+        value,
+        "--json",
+      ]);
+
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain(
+        "pair-agent plan --max-fix-cycles must be a positive integer",
+      );
+    }
+  });
+
+  it("rejects non-integer CLI run max fix cycle values", () => {
+    const result = runCli([
+      "pair-agent",
+      "run",
+      "--plan-id",
+      "PLAN-L7-PAIR",
+      "--task",
+      "Add pair-agent TDD route",
+      "--max-fix-cycles",
+      "2abc",
+      "--json",
+    ]);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("pair-agent run --max-fix-cycles must be a positive integer");
   });
 
   it("persists pair-agent plan evidence when requested", () => {
@@ -957,6 +1076,57 @@ describe("P2/P3 pair-agent TDD programming route", () => {
         ["light_implementation", 2, "passed", null],
         ["smart_review", 2, "passed", "pass"],
       ],
+    );
+  });
+
+  it("records max-fix-cycles exhaustion as a finding", async () => {
+    const plan = buildPairAgentTddPlan({
+      planId: "PLAN-L7-PAIR",
+      task: "Add pair-agent TDD route",
+      detection: hybrid("codex"),
+      primary: "codex",
+      allowFrontier: true,
+      maxFixCycles: 1,
+    });
+    const result = await runPairAgentTddPlan({
+      plan,
+      mode: "hybrid",
+      execute: true,
+      executor: async ({ phase }) => {
+        if (phase.name === "smart_test_author") {
+          return {
+            status: 0,
+            stdout:
+              "RED_ORACLE: expect route matrix\nACCEPTANCE_ORACLE: packet has route matrix\nRED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nRED_EXIT_CODE: 1\n",
+            stderr: "",
+          };
+        }
+        if (phase.name === "smart_review") {
+          return {
+            status: 0,
+            stdout:
+              "FIX_INSTRUCTION: add the missing route matrix row before review can pass\nVERDICT: fail\n",
+            stderr: "",
+          };
+        }
+        return {
+          status: 0,
+          stdout:
+            "CHANGED_FILES: src/orchestration/pair-agent.ts\nTARGETED_TEST_COMMAND: bun test tests/pair-agent.test.ts\nIMPLEMENTATION_NOTES: first attempt\n",
+          stderr: "",
+        };
+      },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe("failed");
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "max-fix-cycles-exhausted",
+          severity: "error",
+        }),
+      ]),
     );
   });
 

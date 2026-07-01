@@ -1,7 +1,7 @@
 import { type AdapterPlan, buildAdapterPlan } from "../runtime/adapter";
 import type { ExecutionMode, RuntimeDetection } from "../runtime/detect";
 import { assignCross, type CrossAssign, type Provider, type RouterRole } from "../task/tier-router";
-import { MODEL_IDS, type TaskDifficulty } from "../team/model-policy";
+import { inferTaskDifficulty, MODEL_IDS, type TaskDifficulty } from "../team/model-policy";
 
 export type PairAgentPhaseName = "smart_test_author" | "light_implementation" | "smart_review";
 
@@ -42,7 +42,10 @@ export interface PairAgentTddPlan {
   cross: CrossAssign;
   executionAuthorized: boolean;
   frontierApprovalRequired: boolean;
+  difficulty: TaskDifficulty;
+  difficultySource: "explicit" | "inferred";
   maxFixCycles: number;
+  maxFixCyclesSource: "explicit" | "difficulty_policy";
   agents: PairAgentIdentity[];
   phases: PairAgentPhase[];
   gates: string[];
@@ -110,6 +113,20 @@ function lightModel(provider: Provider): string {
   return provider === "codex" ? MODEL_IDS.codex.spark : MODEL_IDS.claude.haiku;
 }
 
+function defaultMaxFixCyclesForDifficulty(difficulty: TaskDifficulty): number {
+  switch (difficulty) {
+    case "trivial":
+    case "simple":
+      return 1;
+    case "standard":
+      return 2;
+    case "complex":
+      return 3;
+    case "critical":
+      return 4;
+  }
+}
+
 function smartTestPrompt(input: { planId: string; task: string }): string {
   return [
     `Plan ${input.planId}: act as the smart review agent and start the TDD pair loop by writing the test/oracle first.`,
@@ -173,7 +190,14 @@ function promptWithTranscript(
 
 export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTddPlan {
   const findings: PairAgentFinding[] = [];
-  const maxFixCycles = input.maxFixCycles ?? 3;
+  const difficulty = inferTaskDifficulty({
+    task: input.task,
+    role: "pair-agent",
+    difficulty: input.difficulty,
+  });
+  const maxFixCycles =
+    input.maxFixCycles ?? defaultMaxFixCyclesForDifficulty(difficulty.difficulty);
+  const maxFixCyclesSource = input.maxFixCycles == null ? "difficulty_policy" : "explicit";
   if (!hasText(input.planId)) {
     findings.push({
       code: "missing-plan-id",
@@ -279,7 +303,10 @@ export function buildPairAgentTddPlan(input: PairAgentTddPlanInput): PairAgentTd
     cross,
     executionAuthorized: !hasErrors && Boolean(input.allowFrontier),
     frontierApprovalRequired,
+    difficulty: difficulty.difficulty,
+    difficultySource: difficulty.source,
     maxFixCycles,
+    maxFixCyclesSource,
     agents: [smartAgent, lightAgent],
     phases,
     gates: [
@@ -603,5 +630,10 @@ export async function runPairAgentTddPlan(input: {
     }
   }
 
+  findings.push({
+    code: "max-fix-cycles-exhausted",
+    severity: "error",
+    message: `pair-agent run exhausted maxFixCycles=${input.plan.maxFixCycles} without a passing smart review verdict`,
+  });
   return { ok: false, status: "failed", finalVerdict, steps, transcript, findings };
 }

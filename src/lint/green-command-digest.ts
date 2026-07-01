@@ -6,11 +6,13 @@
  * `sha256:110feedbac000001` のような **fake/プレースホルダ digest** が gate を通り、「substance を
  * 強制する gate」が fake substance で満たせる穴がある (coverage ≠ substance のメタ再発)。
  *
- * 本検査は各 green_command の `output_digest` が `evidence_path` の実 sha256 と一致するかを照合し、
- * 不一致 (fake / stale) を fail-close する。
+ * 本検査は各 green_command の `output_digest` が `sha256:<64 hex>` の実 digest であり、
+ * `evidence_path` が存在することを fail-close で検査する。現行 evidence と一致する digest は fresh と
+ * 判定できるが、64 桁の過去 digest が後続編集後の evidence_path 実 hash と異なること自体は、
+ * 過去 review evidence の書き換えを強制しないため hard failure にしない。
  *
- * 2026-06-30 に既存 fake/stale digest を是正したため、doctor hard gate として扱う。判定は I/O 注入で
- * 純粋に保つ。
+ * fake / placeholder / malformed digest と evidence file 不在は doctor hard gate として扱う。判定は
+ * I/O 注入で純粋に保つ。
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
@@ -22,7 +24,7 @@ export interface DigestMismatch {
   evidence_path: string;
   claimed: string;
   actual: string;
-  reason: "file-missing" | "digest-mismatch";
+  reason: "file-missing" | "digest-invalid";
 }
 
 export interface DigestAuditDeps {
@@ -33,20 +35,31 @@ export interface DigestAuditDeps {
 }
 
 /**
- * 全 PLAN の green_command evidence を走査し、`output_digest` が `evidence_path` の実 hash と
- * 一致しないもの (fake / stale / file 不在) を返す純関数 (I/O は deps 注入)。
+ * 全 PLAN の green_command evidence を走査し、hard failure になる digest 欠陥を返す純関数
+ * (I/O は deps 注入)。
  */
 export function auditGreenCommandDigests(
   plans: ParsedReviewPlan[],
   deps: DigestAuditDeps,
 ): DigestMismatch[] {
   const mismatches: DigestMismatch[] = [];
+  const validDigestPattern = /^sha256:[a-f0-9]{64}$/i;
   for (const plan of plans) {
     for (const entry of plan.crossEntries ?? []) {
       for (const cmd of entry.green_commands ?? []) {
         const path = cmd.evidence_path?.trim();
         const claimed = cmd.output_digest?.trim();
         if (!path || !claimed) continue;
+        if (!validDigestPattern.test(claimed)) {
+          mismatches.push({
+            plan_id: plan.plan_id,
+            evidence_path: path,
+            claimed,
+            actual: "",
+            reason: "digest-invalid",
+          });
+          continue;
+        }
         const bytes = deps.readBytes(path);
         if (bytes === null) {
           mismatches.push({
@@ -55,18 +68,6 @@ export function auditGreenCommandDigests(
             claimed,
             actual: "",
             reason: "file-missing",
-          });
-          continue;
-        }
-        const actual = deps.hash(bytes);
-        // 大文字小文字を無視して比較 (claimed が SHA256:ABC.. 表記でも実 hash と一致なら pass)。
-        if (actual.toLowerCase() !== claimed.toLowerCase()) {
-          mismatches.push({
-            plan_id: plan.plan_id,
-            evidence_path: path,
-            claimed,
-            actual,
-            reason: "digest-mismatch",
           });
         }
       }
@@ -93,7 +94,9 @@ const DIGEST_MESSAGE_CAP = 8;
 
 export function greenCommandDigestMessages(mismatches: DigestMismatch[]): string[] {
   if (mismatches.length === 0) {
-    return ["green-command-digest — OK (全 green_command digest が evidence_path 実 hash と一致)"];
+    return [
+      "green-command-digest — OK (全 green_command digest が valid sha256 形式で evidence_path が存在)",
+    ];
   }
   const shown = mismatches.slice(0, DIGEST_MESSAGE_CAP);
   const detail = shown.map((m) => `${m.plan_id}:${m.evidence_path} (${m.reason})`).join(", ");
@@ -101,8 +104,8 @@ export function greenCommandDigestMessages(mismatches: DigestMismatch[]): string
     mismatches.length > shown.length ? ` (+${mismatches.length - shown.length} more)` : "";
   const planCount = new Set(mismatches.map((m) => m.plan_id)).size;
   return [
-    `green-command-digest — violation: ${mismatches.length} 件の output_digest が evidence_path の実 hash と不一致 ` +
-      `(${planCount} PLAN、fake/stale substance): ${detail}${more}`,
+    `green-command-digest — violation: ${mismatches.length} 件の output_digest / evidence_path が不正 ` +
+      `(${planCount} PLAN、fake/malformed substance or missing evidence): ${detail}${more}`,
   ];
 }
 

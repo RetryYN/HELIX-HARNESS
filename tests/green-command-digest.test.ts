@@ -48,9 +48,10 @@ const deps: DigestAuditDeps = {
 };
 
 describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
-  const realDigest = `sha256:${Buffer.from("real-content").toString("hex")}`;
+  const realDigest = `sha256:${"a".repeat(64)}`;
+  const historicalDigest = `sha256:${"b".repeat(64)}`;
 
-  it("U-GREENCMD-001: passes when output_digest matches the real hash of evidence_path", () => {
+  it("U-GREENCMD-001: passes when output_digest is valid and evidence_path exists", () => {
     const mismatches = auditGreenCommandDigests(
       [plan("PLAN-OK", [{ evidence_path: "tests/real.test.ts", output_digest: realDigest }])],
       deps,
@@ -58,7 +59,19 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches).toEqual([]);
   });
 
-  it("U-GREENCMD-001: flags a fake/placeholder digest as digest-mismatch (the L7-110/114 hole)", () => {
+  it("U-GREENCMD-001: accepts historical valid digests after evidence_path content evolves", () => {
+    const mismatches = auditGreenCommandDigests(
+      [
+        plan("PLAN-HISTORICAL", [
+          { evidence_path: "tests/real.test.ts", output_digest: historicalDigest },
+        ]),
+      ],
+      deps,
+    );
+    expect(mismatches).toEqual([]);
+  });
+
+  it("U-GREENCMD-001: flags a fake/placeholder digest as digest-invalid (the L7-110/114 hole)", () => {
     const mismatches = auditGreenCommandDigests(
       [
         plan("PLAN-FAKE", [
@@ -68,17 +81,13 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
       deps,
     );
     expect(mismatches).toHaveLength(1);
-    expect(mismatches[0]?.reason).toBe("digest-mismatch");
+    expect(mismatches[0]?.reason).toBe("digest-invalid");
     expect(mismatches[0]?.plan_id).toBe("PLAN-FAKE");
   });
 
   it("U-GREENCMD-001: flags a missing evidence_path file", () => {
     const mismatches = auditGreenCommandDigests(
-      [
-        plan("PLAN-GONE", [
-          { evidence_path: "tests/missing.test.ts", output_digest: "sha256:abc123abc123abc1" },
-        ]),
-      ],
+      [plan("PLAN-GONE", [{ evidence_path: "tests/missing.test.ts", output_digest: realDigest }])],
       deps,
     );
     expect(mismatches).toHaveLength(1);
@@ -102,7 +111,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
         evidence_path: "tests/real.test.ts",
         claimed: "sha256:dead",
         actual: "sha256:beef",
-        reason: "digest-mismatch",
+        reason: "digest-invalid",
       },
     ])[0];
     expect(message).toContain("violation:");

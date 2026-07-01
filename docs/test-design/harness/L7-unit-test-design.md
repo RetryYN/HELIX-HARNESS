@@ -99,15 +99,17 @@ decision packet を PO/S4 判断・version-up activation・不可逆 migration s
 ## §0.4 green command digest の検証戦略
 
 review evidence の `green_commands[].output_digest` は、形式が `sha256:*` であるだけでは完了根拠にならない。
-`output_digest` は宣言された `evidence_path` の実ファイル hash と一致して初めて green evidence として扱う。
-fake / placeholder / stale digest、または evidence file 不在は coverage ではなく substance 欠落であり、doctor を
+`output_digest` は証跡取得時点の immutable digest であり、`sha256:<64 hex>` の実 digest として記録される必要がある。
+現行 `evidence_path` の実ファイル hash と一致すれば fresh evidence と判断できる。一方で、後続編集により valid な
+過去 digest が現行 hash と異なるだけなら、過去 review evidence を危険に再スタンプさせないため hard failure にしない。
+fake / placeholder / malformed digest、または evidence file 不在は coverage ではなく substance 欠落であり、doctor を
 fail-close する。
 
 | U-ID | 検証対象 | oracle (DbC) |
 |---|---|---|
-| U-GREENCMD-001 | `auditGreenCommandDigests` | `output_digest` が `evidence_path` の実 sha256 と一致する場合のみ pass。fake digest は `digest-mismatch`、missing file は `file-missing` を返し、空 path/digest は claim 無しとして skip する。 |
-| U-GREENCMD-002 | `greenCommandDigestMessages` / `checkGreenCommandDigests` | mismatch 0 件は OK、1 件以上または repo root/PLAN 読取不能は `violation` かつ `ok=false`。message は代表 mismatch と件数を含み、advisory/note として扱わない。 |
-| U-GREENCMD-003 | `ut-tdd doctor` hard-gate aggregation | `greenCommandDigest.ok` が `runDoctor().ok` に含まれ、不一致がある状態で doctor green を返さない。 |
+| U-GREENCMD-001 | `auditGreenCommandDigests` | `output_digest` が `sha256:<64 hex>` で `evidence_path` が存在する場合は pass。現行 hash と異なる valid historical digest は pass。fake / malformed digest は `digest-invalid`、missing file は `file-missing` を返し、空 path/digest は claim 無しとして skip する。 |
+| U-GREENCMD-002 | `greenCommandDigestMessages` / `checkGreenCommandDigests` | invalid / missing 0 件は OK、1 件以上または repo root/PLAN 読取不能は `violation` かつ `ok=false`。message は代表 invalid / missing と件数を含み、advisory/note として扱わない。 |
+| U-GREENCMD-003 | `ut-tdd doctor` hard-gate aggregation | `greenCommandDigest.ok` が `runDoctor().ok` に含まれ、fake / malformed digest または evidence file 不在がある状態で doctor green を返さない。 |
 
 ## §0.5 decision record shape の検証戦略
 

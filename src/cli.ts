@@ -206,6 +206,7 @@ import {
   routeToAdapterPlan,
 } from "./task/tier-router";
 import { recommendTeamLaunch } from "./team/launch-policy";
+import { TASK_DIFFICULTIES, type TaskDifficulty } from "./team/model-policy";
 import {
   buildTeamRunPlan,
   executeTeamRunPlan,
@@ -502,6 +503,19 @@ function loopStoreForRoot(root: string) {
 
 function safeEvidenceFileName(value: string): string {
   return value.replace(/[^A-Za-z0-9._-]/g, "-").replace(/-+/g, "-");
+}
+
+function parseTaskDifficulty(value: string | undefined): TaskDifficulty | undefined {
+  if (value == null) return undefined;
+  return TASK_DIFFICULTIES.includes(value as TaskDifficulty)
+    ? (value as TaskDifficulty)
+    : undefined;
+}
+
+function parsePositiveIntegerOption(value: string | undefined): number | undefined | null {
+  if (value == null) return undefined;
+  if (!/^[1-9]\d*$/.test(value)) return null;
+  return Number(value);
 }
 
 function sha256Text(value: string): string {
@@ -1017,8 +1031,9 @@ pairAgent
   .option("--task <text>", "task text")
   .option("--task-file <path>", TASK_FILE_OPTION_DESCRIPTION)
   .option("--primary <provider>", "execution provider (claude|codex)")
+  .option("--difficulty <level>", "task difficulty (trivial|simple|standard|complex|critical)")
   .option("--allow-frontier", "explicitly authorize T0 smart review agent execution")
-  .option("--max-fix-cycles <n>", "maximum light implementation fix cycles", "3")
+  .option("--max-fix-cycles <n>", "maximum light implementation fix cycles")
   .option("--adapter-plans", "include provider adapter dry-run plans")
   .option("--execute", "mark adapter plans executable; still does not dispatch providers")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
@@ -1030,6 +1045,7 @@ pairAgent
       task?: string;
       taskFile?: string;
       primary?: string;
+      difficulty?: string;
       allowFrontier?: boolean;
       maxFixCycles?: string;
       adapterPlans?: boolean;
@@ -1049,7 +1065,20 @@ pairAgent
         process.exitCode = 1;
         return;
       }
-      const maxFixCycles = Number.parseInt(opts.maxFixCycles ?? "3", 10);
+      const difficulty = parseTaskDifficulty(opts.difficulty);
+      if (opts.difficulty && !difficulty) {
+        process.stderr.write(
+          `pair-agent plan --difficulty must be one of ${TASK_DIFFICULTIES.join(", ")}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const maxFixCycles = parsePositiveIntegerOption(opts.maxFixCycles);
+      if (maxFixCycles === null) {
+        process.stderr.write("pair-agent plan --max-fix-cycles must be a positive integer\n");
+        process.exitCode = 1;
+        return;
+      }
       const base = detectMode();
       const detection = opts.mode ? { ...base, mode: opts.mode } : base;
       const plan = buildPairAgentTddPlan({
@@ -1058,6 +1087,7 @@ pairAgent
         detection,
         primary: opts.primary as Provider | undefined,
         allowFrontier: Boolean(opts.allowFrontier),
+        difficulty,
         maxFixCycles,
       });
       const adapterPlans = opts.adapterPlans
@@ -1116,8 +1146,9 @@ pairAgent
   .option("--task <text>", "task text")
   .option("--task-file <path>", TASK_FILE_OPTION_DESCRIPTION)
   .option("--primary <provider>", "execution provider (claude|codex)")
+  .option("--difficulty <level>", "task difficulty (trivial|simple|standard|complex|critical)")
   .option("--allow-frontier", "explicitly authorize T0 smart review agent execution")
-  .option("--max-fix-cycles <n>", "maximum light implementation fix cycles", "3")
+  .option("--max-fix-cycles <n>", "maximum light implementation fix cycles")
   .option("--execute", "dispatch provider adapters; omitted means dry-run only")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--json", "JSON output")
@@ -1128,6 +1159,7 @@ pairAgent
       task?: string;
       taskFile?: string;
       primary?: string;
+      difficulty?: string;
       allowFrontier?: boolean;
       maxFixCycles?: string;
       execute?: boolean;
@@ -1146,7 +1178,20 @@ pairAgent
         process.exitCode = 1;
         return;
       }
-      const maxFixCycles = Number.parseInt(opts.maxFixCycles ?? "3", 10);
+      const difficulty = parseTaskDifficulty(opts.difficulty);
+      if (opts.difficulty && !difficulty) {
+        process.stderr.write(
+          `pair-agent run --difficulty must be one of ${TASK_DIFFICULTIES.join(", ")}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const maxFixCycles = parsePositiveIntegerOption(opts.maxFixCycles);
+      if (maxFixCycles === null) {
+        process.stderr.write("pair-agent run --max-fix-cycles must be a positive integer\n");
+        process.exitCode = 1;
+        return;
+      }
       const base = detectMode();
       const detection = opts.mode ? { ...base, mode: opts.mode } : base;
       const plan = buildPairAgentTddPlan({
@@ -1155,6 +1200,7 @@ pairAgent
         detection,
         primary: opts.primary as Provider | undefined,
         allowFrontier: Boolean(opts.allowFrontier),
+        difficulty,
         maxFixCycles,
       });
       const startedAt = new Date().toISOString();
