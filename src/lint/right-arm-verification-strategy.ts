@@ -9,6 +9,7 @@ import {
 export interface RightArmVerificationStrategyInput {
   gatesMd: string;
   rightArmMd: string;
+  now?: string;
 }
 
 export interface RightArmVerificationStrategyResult {
@@ -146,6 +147,61 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Google SRE Release Engineering",
 ] as const;
 
+const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
+  (typeof REQUIRED_SOURCE_LEDGER_ROWS)[number],
+  { urls: string[]; gateImpacts: string[] }
+> = {
+  "NIST SSDF SP 800-218": {
+    urls: [
+      "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "https://csrc.nist.gov/pubs/sp/800/218/r1/ipd",
+    ],
+    gateImpacts: ["G8", "G9", "G12", "G13", "G14"],
+  },
+  "Scrum Guide 2020": {
+    urls: ["https://scrumguides.org/scrum-guide.html"],
+    gateImpacts: ["S3", "S4", "G11", "G12"],
+  },
+  "ISTQB Glossary": {
+    urls: ["https://glossary.istqb.org/"],
+    gateImpacts: ["G8", "G9", "G10", "G11", "G12", "G13", "G14"],
+  },
+  "OWASP LLM06:2025 Excessive Agency": {
+    urls: ["https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"],
+    gateImpacts: ["G11", "G12", "G13", "G14"],
+  },
+  "NASA Systems Engineering Handbook Appendix": {
+    urls: ["https://www.nasa.gov/reference/system-engineering-handbook-appendix/"],
+    gateImpacts: ["G8", "G9", "G10", "G11", "G12", "G13", "G14"],
+  },
+  "W3C WCAG 2.2": {
+    urls: ["https://www.w3.org/TR/WCAG22/"],
+    gateImpacts: ["G10", "G11"],
+  },
+  "Playwright Test": {
+    urls: [
+      "https://playwright.dev/docs/intro",
+      "https://playwright.dev/docs/test-snapshots",
+      "https://playwright.dev/docs/accessibility-testing",
+    ],
+    gateImpacts: ["G10", "G11"],
+  },
+  "GitHub Environments required reviewers": {
+    urls: [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+    ],
+    gateImpacts: ["G12", "G13", "action-binding approval"],
+  },
+  "VS Code Webview Security": {
+    urls: ["https://code.visualstudio.com/api/extension-guides/webview#security"],
+    gateImpacts: ["G10", "G11"],
+  },
+  "Google SRE Release Engineering": {
+    urls: ["https://sre.google/sre-book/release-engineering/"],
+    gateImpacts: ["G12", "G13", "G14"],
+  },
+};
+
 export function loadRightArmVerificationStrategyInput(
   repoRoot = process.cwd(),
 ): RightArmVerificationStrategyInput {
@@ -181,6 +237,7 @@ export function analyzeRightArmVerificationStrategy(
   const sourceLedgerFreshnessViolation = sourceLedgerCheckedDateViolation(
     input.rightArmMd,
     "Verification source ledger",
+    input.now,
   );
   const sourceLedgerViolations = [
     ...(sourceLedgerFreshnessViolation ? [sourceLedgerFreshnessViolation] : []),
@@ -213,6 +270,23 @@ export function analyzeRightArmVerificationStrategy(
         : [
             `verification source ledger ${row.source} has invalid gate impact: ${row["gate impact"] ?? ""}`,
           ];
+    }),
+    ...REQUIRED_SOURCE_LEDGER_ROWS.flatMap((source) => {
+      const row = sourceLedger.rows.find((candidate) => candidate.source === source);
+      const expected = EXPECTED_SOURCE_LEDGER_BINDINGS[source];
+      if (!row) return [];
+      const officialUrl = row["official URL"] ?? "";
+      const impacts = gateImpactTokens(row["gate impact"] ?? "");
+      const missingUrls = expected.urls.filter((url) => !officialUrl.includes(url));
+      const missingImpacts = expected.gateImpacts.filter((impact) => !impacts.includes(impact));
+      return [
+        ...missingUrls.map(
+          (url) => `verification source ledger ${source} official URL missing expected ${url}`,
+        ),
+        ...missingImpacts.map(
+          (impact) => `verification source ledger ${source} gate impact missing expected ${impact}`,
+        ),
+      ];
     }),
   ];
   const coveredGateImpacts = new Set(
@@ -250,7 +324,10 @@ export function analyzeRightArmVerificationStrategy(
 }
 
 function gateImpactTokens(value: string): string[] {
-  const tokens = value.match(/\bG(?:8|9|10|11|12|13|14)\b|\bS[34]\b|action-binding approval/g);
+  const expandedRanges = value.replace(/\bG8-G14\b/g, "G8 G9 G10 G11 G12 G13 G14");
+  const tokens = expandedRanges.match(
+    /\bG(?:8|9|10|11|12|13|14)\b|\bS[34]\b|action-binding approval/g,
+  );
   return [...new Set(tokens ?? [])];
 }
 

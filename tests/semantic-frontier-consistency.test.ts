@@ -6,23 +6,149 @@ import {
   semanticFrontierConsistencyMessages,
 } from "../src/lint/semantic-frontier-consistency";
 
+const L1_MARKERS = [
+  "HBR-P0",
+  "HBR-P1",
+  "HBR-P2",
+  "HBR-P3",
+  "HBR-P4",
+  "HBR-P6",
+  "HBR-P7",
+  "HBR-P8",
+  "HBR-P9",
+  "HNFR-P3",
+  "HNFR-P5",
+  "HNFR-P8",
+  "HNFR-AC",
+];
+
+const L3_IDS = [
+  "HR-FR-P0-01",
+  "HR-FR-P0-02",
+  "HR-FR-P1-01",
+  "HR-FR-P1-02",
+  "HR-FR-P1-03",
+  "HR-FR-P1-04",
+  "HR-FR-P2-01",
+  "HR-FR-P2-02",
+  "HR-FR-P2-03",
+  "HR-FR-P2-04",
+  "HR-FR-P3-01",
+  "HR-FR-P3-02",
+  "HR-FR-P4-01",
+  "HR-FR-P4-02",
+  "HR-FR-P4-03",
+  "HR-FR-P6-01",
+  "HR-FR-P6-02",
+  "HR-FR-P6-03",
+  "HR-FR-P6-04",
+  "HR-FR-P6-05",
+  "HR-FR-P7-01",
+  "HR-FR-P7-02",
+  "HR-FR-P7-03",
+  "HR-FR-P8-01",
+  "HR-FR-P8-02",
+  "HR-FR-P8-03",
+  "HR-FR-P8-04",
+  "HR-FR-P9-01",
+  "HR-FR-P9-02",
+  "HR-FR-P9-03",
+  "HR-NFR-P3-01",
+  "HR-NFR-P3-02",
+  "HR-NFR-P3-03",
+  "HR-NFR-P3-04",
+  "HR-NFR-P5-01",
+  "HR-NFR-P5-02",
+  "HR-NFR-P5-03",
+  "HR-NFR-P8-01",
+  "HR-NFR-P8-02",
+  "HR-NFR-P8-03",
+  "HR-NFR-AC-01",
+  "HR-NFR-AC-02",
+  "HR-NFR-AC-03",
+];
+
+const L12_IDS = [
+  "HAT-P0-01",
+  "HAT-P0-02",
+  "HAT-P1-01",
+  "HAT-P1-02",
+  "HAT-P1-03",
+  "HAT-P1-04",
+  "HAT-P2-01",
+  "HAT-P2-02",
+  "HAT-P2-03",
+  "HAT-P2-04",
+  "HAT-P3-01",
+  "HAT-P3-02",
+  "HAT-P4-01",
+  "HAT-P4-02",
+  "HAT-P4-03",
+  "HAT-P6-01",
+  "HAT-P6-02",
+  "HAT-P6-03",
+  "HAT-P6-04",
+  "HAT-P6-05",
+  "HAT-P7-01",
+  "HAT-P7-02",
+  "HAT-P7-03",
+  "HAT-P8-01",
+  "HAT-P8-02",
+  "HAT-P8-03",
+  "HAT-P8-04",
+  "HAT-P9-01",
+  "HAT-P9-02",
+  "HAT-P9-03",
+  "HAT-N3-01",
+  "HAT-N3-02",
+  "HAT-N3-03",
+  "HAT-N3-04",
+  "HAT-N5-01",
+  "HAT-N5-02",
+  "HAT-N5-03",
+  "HAT-N8-01",
+  "HAT-N8-02",
+  "HAT-N8-03",
+  "HAT-NAC-01",
+  "HAT-NAC-02",
+  "HAT-NAC-03",
+];
+
+function tableRows(ids: string[]): string {
+  return ids.map((id) => `| ${id} | x | y |`).join("\n");
+}
+
 function baseInput(): SemanticFrontierConsistencyInput {
   const l3Text = [
     "§0.2 意味ベース機能一覧と要求修正境界",
     "G-SF `semantic_feature_frontier_record` への写像",
+    "confirmed 43 件: `classification=confirmed_current`",
+    "逸脱受け止めと Forward 収束",
+    "連続自律走行 / Scrum 分割 / version-up",
+    "pair-agent TDD route",
+    "強い検証 / test-first / 実装精度",
+    "自動修復 / 計測改善",
+    "GitHub 自動化 / setup / release / rename",
+    "共有 memory / Glossary / DDD context",
+    "外部検索 / skillify / security boundary",
+    "DB 収束 / relation graph / contract ledger",
+    "context efficiency",
+    "adapter/rule/memory 一貫性",
     "design-bottomup mode: `classification=frontier_pending_decision`。backend から FE 要件を洗い出す",
     "asset/progress visualization: `classification=frontier_pending_decision`。S4 PO decision pending",
     "`PLAN-L7-146` serverless readonly share: `classification=parked_future_version`。activation decision",
     "PLAN-M-02 identifier rename: `classification=approval_gated_cutover`。cutover/action-binding approval",
+    tableRows(L3_IDS),
   ].join("\n");
   const sharedDoc =
     "semantic_feature_frontier_record frontier_pending_decision parked_future_version approval_gated_cutover";
   return {
+    l1Text: L1_MARKERS.join("\n"),
     l3Text: `${l3Text}\n${sharedDoc}`,
     l4Text: sharedDoc,
     l5Text: sharedDoc,
     l6Text: sharedDoc,
-    l12Text: sharedDoc,
+    l12Text: `${sharedDoc}\n${tableRows(L12_IDS)}`,
     l9SystemText: sharedDoc,
     l8IntegrationText: sharedDoc,
     l7UnitText: sharedDoc,
@@ -110,9 +236,42 @@ describe("semantic frontier consistency", () => {
     const result = analyzeSemanticFrontierConsistency(baseInput());
 
     expect(result.ok).toBe(true);
+    expect(result.expectedConfirmedCount).toBe(11);
+    expect(result.l3RequirementRowCount).toBe(43);
+    expect(result.l12AcceptanceRowCount).toBe(43);
     expect(semanticFrontierConsistencyMessages(result)).toEqual([
       "semantic-frontier-consistency - OK (expected=4, live=4)",
     ]);
+  });
+
+  it("fails when a confirmed meaning category loses its L1 parent, L3 row, or L12 acceptance", () => {
+    const input = baseInput();
+    input.l1Text = input.l1Text.replace("HBR-P6", "HBR-P6-MISSING");
+    input.l3Text = input.l3Text.replace("| HR-FR-P6-03 |", "| HR-FR-P6-03-MISSING |");
+    input.l12Text = input.l12Text.replace("| HAT-P6-03 |", "| HAT-P6-03-MISSING |");
+
+    const result = analyzeSemanticFrontierConsistency(input);
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "github_setup_release_rename: L1 parent marker missing HBR-P6",
+        "github_setup_release_rename: L3 requirement row missing HR-FR-P6-03",
+        "github_setup_release_rename: L12 acceptance row missing HAT-P6-03",
+      ]),
+    );
+  });
+
+  it("fails when context efficiency is split into a fake HBR-P5 pillar", () => {
+    const input = baseInput();
+    input.l1Text = `${input.l1Text}\n| **HBR-P5** | fake context pillar |`;
+
+    const result = analyzeSemanticFrontierConsistency(input);
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContain(
+      "context_efficiency: forbidden L1 parent row present | **HBR-P5** |",
+    );
   });
 
   it("fails when the L3 meaning-based feature list drops a frontier marker", () => {

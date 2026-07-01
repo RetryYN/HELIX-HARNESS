@@ -69,7 +69,7 @@ review_evidence:
     reviewed_at: "2026-07-02T01:48:49+09:00"
     tests_green_at: "2026-07-02T01:48:49+09:00"
     verdict: approve
-    scope: "Semantic feature frontier consistency is now a doctor hard gate. The L3 §0.2 meaning-based feature list and live status/handover semanticFeatureFrontierRecords must match bidirectionally for design_bottomup_mode, asset_progress_visualization, serverless_readonly_share, and name_cutover; extra live records, missing L3 markers, misclassification, completionClaimAllowed=true, or missing L3 sourcePaths fail the gate. PLAN-M-02 cutover snapshot material was refreshed to the current non-approving snapshot id after the L3 source changed."
+    scope: "Semantic feature frontier consistency is now a doctor hard gate. The L1 pillar parents, L3 §0.2 meaning-based feature list, 43 confirmed L3 rows, 43 L12 acceptance rows, and live status/handover semanticFeatureFrontierRecords must match bidirectionally. The gate also rejects fake HBR-P5 splitting and frontier drift for design_bottomup_mode, asset_progress_visualization, serverless_readonly_share, and name_cutover."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -80,7 +80,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: tests/semantic-frontier-consistency.test.ts
-        output_digest: "sha256:8ed6159da3605aa1c9c503343592cc5ffb8431fdcb6ae1d6c6ab5f265d1980b7"
+        output_digest: "sha256:002aa5c1f1637fb58589a2fa808983b5484ce2d2ab0fe87b5e9f52cc175f1628"
       - kind: unit_test
         command: "bun run vitest run tests/l0-l8-design-consistency-audit.test.ts --run"
         runner: bun
@@ -96,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: src/lint/semantic-frontier-consistency.ts
-        output_digest: "sha256:a50adfbdc36dd7c1ae05995c68eb0cb38cdeb539307321c4436ce60d205f3640"
+        output_digest: "sha256:9d0e706d34897eb6a899fa2f297195ac7008cb5cacc8f83d729f4f15de35b7b0"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -128,7 +128,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-02T01:48:49+09:00"
         evidence_path: docs/plans/PLAN-M-02-helix-identifier-rename.md
-        output_digest: "sha256:e7cb3b1319050f4d367b163951e57dbd037ed45ff4100ed704d2bc031d47aa9c"
+        output_digest: "sha256:8a76eada76dea129fe173e62615851e811f3238654c4c00c2e4d81964417247f"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T04:50:00+09:00"

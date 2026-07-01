@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
+        output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
+        output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -90,7 +90,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:41+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:550762c692e696d3c0399e0da919826e64e0af17cafd63de822fb79971e8f5ec"
+        output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"

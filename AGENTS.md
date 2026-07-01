@@ -18,6 +18,13 @@ Separation of responsibilities:
 ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
 英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。
 
+### ドキュメント言語
+
+`docs/` 配下、PLAN、設計書、テスト設計、governance、handover、audit などの人間が読む成果物は
+**日本語を原則**とする。開発用語、コマンド、識別子、URL、コード片、エラーメッセージ、外部仕様名は原語のまま
+埋め込んでよいが、説明文・判断・受入条件・レビュー記録は日本語で書く。既存の英語記述は、触った範囲から
+段階的に日本語へ是正し、英語のまま新規追記して完了扱いにしない。
+
 ## Core Reads
 
 For work in this repository, read the repository-owned sources below and follow
@@ -69,6 +76,10 @@ vendor snapshot has been removed now that the fork is complete (see
 - **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `ut-tdd`・`.ut-tdd/`・`area=harness`・
   rule-drift marker）は据え置き**、後日 専用 migration PLAN で atomic 改名。よって下部 Adapter Rule
   Markers と `ut-tdd ...` 表記は現時点では変更しない。
+- `.ut-tdd` から HELIX への名称変更は必達の最終ゴールだが、runtime state / CLI / hook / adapter /
+  consumer template / distribution surface をまたぐ不可逆 cutover である。PLAN-M-02 の
+  `cutover_decision_record` と action-binding approval、dry-run、backup、rollback、monitoring evidence が揃うまで
+  実 state move や alias 有効化を行わない。承認後は漏れのない atomic migration として実施する。
 
 ## Session Start
 

@@ -101,7 +101,7 @@ review_evidence:
     reviewed_at: "2026-07-01T14:27:02+09:00"
     tests_green_at: "2026-07-01T14:27:02+09:00"
     verdict: approve
-    scope: "Right-arm verification strategy now carries NASA Systems Engineering Handbook Appendix as a source-ledger row for V&V plan / requirements verification matrix / validation requirements matrix structure, with the official source ledger date refreshed to 2026-07-01 and gate impact bound to G8-G14."
+    scope: "Right-arm verification strategy now binds each official source ledger row to its expected official URL(s) and gate-impact meaning. Freshness tests inject a fixed now value and the refresh regression no longer passes when the heading replacement is a no-op."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -112,7 +112,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:f1bd669549e2fd65c77f9167eec2e5ee7f79815a0b56898e749dc949af6b6b01"
+        output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -120,7 +120,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:dfbe5f8656e4e7d98db3851a0d360756e9bb302b0e08d092d84f10ee4da04ac4"
+        output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -128,7 +128,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T14:27:02+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:dfbe5f8656e4e7d98db3851a0d360756e9bb302b0e08d092d84f10ee4da04ac4"
+        output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
       - kind: lint
         command: "bun run lint"
         runner: bun
@@ -161,7 +161,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:55:32+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
+        output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -169,7 +169,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T16:55:32+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:550762c692e696d3c0399e0da919826e64e0af17cafd63de822fb79971e8f5ec"
+        output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T14:21:41+09:00"
@@ -186,7 +186,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
+        output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -194,7 +194,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
+        output_digest: "sha256:d61657777102ee65bab0c9d4c76eb026633afa69e14c9098925814079fda5351"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -202,7 +202,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:41+09:00"
         evidence_path: src/lint/right-arm-verification-strategy.ts
-        output_digest: "sha256:550762c692e696d3c0399e0da919826e64e0af17cafd63de822fb79971e8f5ec"
+        output_digest: "sha256:7fc4e2ddfb6fa7f48781929e249b45f151d10ee60650c55c10fae08f19ea727c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-23T16:30:00+09:00"
