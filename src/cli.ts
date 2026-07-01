@@ -1,10 +1,11 @@
 #!/usr/bin/env bun
+import { execFileSync, spawn, spawnSync } from "node:child_process";
 /**
  * UT-TDD Agent Harness CLI (TypeScript core, ADR-001).
  * 薄い OS 別 entrypoint (scripts/ut-tdd, ut-tdd.ps1) が本 core を呼ぶ。
  * status / doctor / plan lint / vmodel lint / gate / runtime adapter を集約する。
  */
-import { execFileSync, spawn, spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   appendFileSync,
   existsSync,
@@ -504,6 +505,48 @@ function safeEvidenceFileName(value: string): string {
   return value.replace(/[^A-Za-z0-9._-]/g, "-").replace(/-+/g, "-");
 }
 
+function sha256Text(value: string): string {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function pairAgentTranscriptDigest(result: PairAgentRunResult): string {
+  return sha256Text(
+    result.transcript
+      .map((entry) =>
+        [entry.phase, entry.cycle, entry.status, entry.verdict ?? "null", entry.outputExcerpt].join(
+          "\n",
+        ),
+      )
+      .join("\n---\n"),
+  );
+}
+
+function pairAgentLoopSummary(result: PairAgentRunResult): Record<string, number | string> {
+  const lightCycles = new Set(
+    result.steps
+      .filter((step) => step.phase === "light_implementation" && step.cycle > 0)
+      .map((step) => step.cycle),
+  );
+  const consultationCount = result.steps.filter(
+    (step) => step.phase === "light_implementation" && step.status === "pending",
+  ).length;
+  return {
+    phase_count: result.steps.length,
+    smart_test_author_count: result.steps.filter((step) => step.phase === "smart_test_author")
+      .length,
+    light_implementation_count: result.steps.filter((step) => step.phase === "light_implementation")
+      .length,
+    smart_review_count: result.steps.filter((step) => step.phase === "smart_review").length,
+    consultation_count: consultationCount,
+    pending_consultation_count: consultationCount,
+    failed_review_count: result.steps.filter(
+      (step) => step.phase === "smart_review" && step.verdict === "fail",
+    ).length,
+    fix_cycle_count: Math.max(0, lightCycles.size - 1),
+    transcript_digest: pairAgentTranscriptDigest(result),
+  };
+}
+
 function savePairAgentRunEvidence(input: {
   plan: PairAgentTddPlan;
   result: PairAgentRunResult;
@@ -549,12 +592,14 @@ function savePairAgentRunEvidence(input: {
             status: input.result.status,
             final_verdict: input.result.finalVerdict,
           },
+          loop_summary: pairAgentLoopSummary(input.result),
           started_at: input.startedAt,
           completed_at: input.completedAt,
           duration_ms: durationMs,
           cost_usd: null,
           phase_spans: input.result.steps.map((step, index) => {
             const phase = phases.get(step.phase);
+            const transcriptEntry = input.result.transcript[index];
             return {
               span_id: `${runId}:phase:${index + 1}`,
               parent_span_id: `${runId}:run`,
@@ -564,6 +609,7 @@ function savePairAgentRunEvidence(input: {
               provider: step.provider,
               model: step.model,
               required_evidence: phase?.requiredEvidence ?? [],
+              output_excerpt_digest: sha256Text(transcriptEntry?.outputExcerpt ?? ""),
               handoff_target:
                 step.phase === "smart_review" && step.verdict === "fail"
                   ? "light_implementation"

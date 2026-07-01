@@ -73,6 +73,7 @@ interface PairAgentEvidencePhaseSpan {
   agent_key?: unknown;
   provider?: unknown;
   model?: unknown;
+  output_excerpt_digest?: unknown;
   eval_outcome?: {
     status?: unknown;
     verdict?: unknown;
@@ -103,6 +104,7 @@ interface PairAgentRunEvidence {
       status?: unknown;
       final_verdict?: unknown;
     };
+    loop_summary?: unknown;
     phase_spans?: unknown;
   };
 }
@@ -214,6 +216,15 @@ function relationArtifactId(nodeId: string): string {
 
 function asString(value: unknown): string | null {
   return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function asFiniteNumber(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
 }
 
 function scalarNumber(db: HarnessDb, sql: string, params: unknown[] = []): number {
@@ -932,6 +943,46 @@ function projectPairAgentRunEvidence(
         evidence_path: relPath,
       },
     });
+    const loopSummary =
+      trace?.loop_summary && typeof trace.loop_summary === "object"
+        ? (trace.loop_summary as Record<string, unknown>)
+        : null;
+    if (loopSummary) {
+      for (const metric of [
+        "phase_count",
+        "consultation_count",
+        "failed_review_count",
+        "fix_cycle_count",
+      ]) {
+        const value = asFiniteNumber(loopSummary[metric]);
+        if (value === null) continue;
+        const status =
+          metric === "phase_count"
+            ? value > 0
+              ? "pass"
+              : "warn"
+            : metric === "fix_cycle_count"
+              ? "pass"
+              : value > 0
+                ? "warn"
+                : "pass";
+        const signalId = stableId("pair-agent-loop-summary", `${runId}:${metric}`);
+        recordProjectionEvent(db, {
+          table: "quality_signals",
+          id: signalId,
+          row: {
+            signal_id: signalId,
+            source: "pair-agent-loop-summary",
+            subject_id: runId,
+            metric,
+            value,
+            threshold: metric === "phase_count" ? 1 : 0,
+            status,
+            computed_at: completedAt,
+          },
+        });
+      }
+    }
 
     const spans = Array.isArray(trace?.phase_spans) ? trace.phase_spans : [];
     if (spans.length === 0) {

@@ -58,7 +58,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:23:38+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:f765afd5e76e05cdb9143f19363800cb68a57ed3b5faa23b430b37ccc0d94b34"
+        output_digest: "sha256:a93799eaec55363d9bc3cebdf35f7f0054245caaba86d630ea68e75a57f4312d"
       - kind: unit_test
         command: "bun run vitest run tests\\cli.test.ts tests\\agent-guard.test.ts"
         runner: bun
@@ -114,7 +114,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T18:24:02+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:b1254925c4dcbd8df051acd3c3af5895f2c2981c9b49f280c3bdc3878ee4d3a7"
+        output_digest: "sha256:9f632d58472f600686eeb6531e484db3ad159301fa9f22023e26fe48ac8888c4"
 ---
 
 # PLAN-L7-158: refactor detector precision and policy extraction

@@ -963,6 +963,18 @@ describe("P2/P3 pair-agent TDD programming route", () => {
             human_signoff_required: false,
           },
           eval_outcome: { ok: true, status: "planned", final_verdict: null },
+          loop_summary: {
+            phase_count: 3,
+            smart_test_author_count: 1,
+            light_implementation_count: 1,
+            smart_review_count: 1,
+            consultation_count: 0,
+            pending_consultation_count: 0,
+            failed_review_count: 0,
+            fix_cycle_count: 0,
+            transcript_digest:
+              "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          },
           cost_usd: null,
         },
         plan: { planId: "PLAN-L7-PAIR" },
@@ -983,17 +995,23 @@ describe("P2/P3 pair-agent TDD programming route", () => {
             "acceptance_oracle",
             "test_design_trace",
           ],
+          output_excerpt_digest:
+            "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           eval_outcome: { status: "planned", verdict: null, exit_code: null },
         }),
         expect.objectContaining({
           phase: "light_implementation",
           handoff_target: "smart_test_author",
           required_evidence: ["changed_files", "targeted_test_command", "implementation_notes"],
+          output_excerpt_digest:
+            "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         }),
         expect.objectContaining({
           phase: "smart_review",
           handoff_target: "light_implementation",
           required_evidence: ["green_evidence", "review_findings", "verdict_line"],
+          output_excerpt_digest:
+            "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         }),
       ]);
     } finally {

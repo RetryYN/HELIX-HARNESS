@@ -70,7 +70,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
       - kind: smoke
         command: "sha256sum docs/design/helix/L3-requirements/pillar-functional-requirements.md"
         runner: bash
@@ -78,7 +78,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
-        output_digest: "sha256:4e5a63c3892774eca246120e66bad38c73b99950b1faaef5d044a49cf40cb200"
+        output_digest: "sha256:0b2cea7e69d29a35f443b82a252c0e9c17d0fc077910034f0b6bea5a8a8d2e3b"
       - kind: smoke
         command: "sha256sum docs/design/helix/L6-function-design/pillar-function-design.md"
         runner: bash
@@ -86,7 +86,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-        output_digest: "sha256:3a8569bd1dd080d7a7be99dd0902c5b8b9f423f45f5e9e39470efd178b5587a8"
+        output_digest: "sha256:74993caa48fdf71ee708b800d560860105eb8995a5f05065699e64a4afca731b"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T07:41:20+09:00"
@@ -103,7 +103,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -111,7 +111,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
 ---
 
 # PLAN-REVERSE-217: pair-agent consultation precedence backfill

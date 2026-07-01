@@ -62,7 +62,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T16:48:56+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:f765afd5e76e05cdb9143f19363800cb68a57ed3b5faa23b430b37ccc0d94b34"
+        output_digest: "sha256:a93799eaec55363d9bc3cebdf35f7f0054245caaba86d630ea68e75a57f4312d"
       - kind: unit_test
         command: "bun run vitest run tests\\tier-router.test.ts tests\\model-id-ssot.test.ts tests\\agent-guard.test.ts tests\\projection-writer.test.ts"
         runner: bun

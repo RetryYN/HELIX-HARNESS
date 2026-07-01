@@ -835,6 +835,18 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
               completed_at: "2026-07-01T03:45:00.000Z",
               duration_ms: 1000,
               cost_usd: null,
+              loop_summary: {
+                phase_count: 5,
+                smart_test_author_count: 1,
+                light_implementation_count: 2,
+                smart_review_count: 2,
+                consultation_count: 1,
+                pending_consultation_count: 1,
+                failed_review_count: 1,
+                fix_cycle_count: 1,
+                transcript_digest:
+                  "sha256:3f77f3902051f9be11dcc658411a9e07a685b1088231bbf6564e28ade32e5a80",
+              },
               phase_spans: [
                 {
                   span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:1",
@@ -848,11 +860,46 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
                 {
                   span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:2",
                   phase: "light_implementation",
-                  cycle: 0,
+                  cycle: 1,
                   agent_key: "light-implementation-agent",
                   provider: "codex",
                   model: "gpt-5.3-codex-spark",
-                  eval_outcome: { status: "planned", verdict: null, exit_code: null },
+                  output_excerpt_digest:
+                    "sha256:42e9b44a67d5f84e95e1dcd852e1aef7ddce1e917a3d385bd2072c9cef9f1c79",
+                  eval_outcome: { status: "pending", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:3",
+                  phase: "smart_review",
+                  cycle: 1,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  output_excerpt_digest:
+                    "sha256:f2469a633ae39d84ca42670f9cc2dfe327f1da74f933615f592fa6fb553f5cd2",
+                  eval_outcome: { status: "failed", verdict: "fail", exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:4",
+                  phase: "light_implementation",
+                  cycle: 2,
+                  agent_key: "light-implementation-agent",
+                  provider: "codex",
+                  model: "gpt-5.3-codex-spark",
+                  output_excerpt_digest:
+                    "sha256:8d3dd8e8b0de3f1c0914c5ad5f4d3173e3f734ca5c78406c70fdcb1f0174b80c",
+                  eval_outcome: { status: "passed", verdict: null, exit_code: 0 },
+                },
+                {
+                  span_id: "pair-agent:PLAN-L7-177:20260701034500:phase:5",
+                  phase: "smart_review",
+                  cycle: 2,
+                  agent_key: "smart-review-agent",
+                  provider: "claude",
+                  model: "claude-opus-4-8",
+                  output_excerpt_digest:
+                    "sha256:44e818f6f322e38cc5d6ceb76d2bfafc16c9de5e68fd033777d7f3255d76aa6d",
+                  eval_outcome: { status: "passed", verdict: "pass", exit_code: 0 },
                 },
               ],
             },
@@ -905,6 +952,24 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             drive: "agent",
             plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
           }),
+          expect.objectContaining({
+            runtime: "claude",
+            role: "smart-review-agent",
+            drive: "agent",
+            plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+          }),
+          expect.objectContaining({
+            runtime: "codex",
+            role: "light-implementation-agent",
+            drive: "agent",
+            plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+          }),
+          expect.objectContaining({
+            runtime: "claude",
+            role: "smart-review-agent",
+            drive: "agent",
+            plan_id: "PLAN-L7-177-helix-orchestration-runtime-bridge",
+          }),
         ]);
         const gate = db
           .prepare("SELECT gate_id, status, evidence_path FROM gate_runs WHERE gate_id = ?")
@@ -925,6 +990,17 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           mode: "pair-agent",
           human_signoff_required: 0,
         });
+        const signals = db
+          .prepare(
+            "SELECT metric, value, status FROM quality_signals WHERE source = ? AND subject_id = ? ORDER BY metric",
+          )
+          .all("pair-agent-loop-summary", "pair-agent:PLAN-L7-177:20260701034500");
+        expect(signals).toEqual([
+          expect.objectContaining({ metric: "consultation_count", value: 1, status: "warn" }),
+          expect.objectContaining({ metric: "failed_review_count", value: 1, status: "warn" }),
+          expect.objectContaining({ metric: "fix_cycle_count", value: 1, status: "pass" }),
+          expect.objectContaining({ metric: "phase_count", value: 5, status: "pass" }),
+        ]);
       } finally {
         db.close();
       }

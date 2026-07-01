@@ -53,7 +53,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
       - kind: unit_test
         command: "bun test tests/pair-agent.test.ts --test-name-pattern \"lightweight implementation tries to close\""
         runner: bun
@@ -61,7 +61,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
       - kind: smoke
         command: "sha256sum src/orchestration/pair-agent.ts"
         runner: bash
@@ -77,7 +77,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-        output_digest: "sha256:5834d142811211f6a4bc5622b7e4d6130610b97b688ef31a23850dfec0bba8c6"
+        output_digest: "sha256:c75e960a90f17976b1daeb6784886a4cc8e6b8d1faf77e5d4704d3c1dbd1f262"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T07:41:20+09:00"
@@ -94,7 +94,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -102,7 +102,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T07:41:20+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:f698066884627d97eb9550441c85ac444773f569d10534e28f2f3c22ef55e7b2"
+        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
