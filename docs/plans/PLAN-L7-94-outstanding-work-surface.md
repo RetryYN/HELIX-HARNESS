@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -42,7 +42,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T08:42:36+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:9d65bd6ac1ca0b4113f7786063f21cb2839d6d02715e2a21b805a8d30a68078e"
+        output_digest: "sha256:4c4a3b43d958ce5f10a7dd8279a533e2900a53a1593e8c9ce6e4a671c99cadba"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T08:33:36+09:00"
@@ -116,7 +116,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:22:48+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -173,7 +173,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:14:42+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -206,7 +206,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:05:01+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -230,7 +230,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:05:01+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -263,7 +263,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:52:48+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -702,7 +702,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:01:37+09:00"
         evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:976b783e62b906c939367c72df5f6b9ac315ce6e7d14dcc854ef7d14391af85e"
+        output_digest: "sha256:b1ce2029859c515432ffde27fa0853f77baedd271ebbb7ea0c3ce74561487309"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

@@ -1992,6 +1992,7 @@ skill pack は単独の助言文書ではなく、以下の gate に接続する
 | `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / `forced_stop` | recovery | human approval。`forced_stop` = ユーザー強制停止 (ESC/Ctrl+C/Stop) = 高 severity 負シグナル (concept §2.6.1、PLAN-L6-04/L7-02 dangling-turn 推定で検出) |
 | `production_incident` / `hotfix_required` / `regression_prod` | incident | env=prod 必須、human approval |
 | `feature_addition` / `scope_extension` | add-feature | §1.3 `kind=add-feature` と同じ正規表記 |
+| `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / `pair programming` | add-feature | smart test author -> lightweight implementation -> smart review の pair-agent TDD 経路に入る。mode は add-feature のまま、`recommended_command.command` は `ut-tdd pair-agent plan` |
 | `version_deferral` | version-up | capability を将来版へ保全 (今スコープ外・破棄しない)。`version_target` 付き draft で起票、活性化時に add-feature で Forward 合流 (§2.5 version-up、PLAN-DISCOVERY-09) |
 | `user_feedback_iteration` / `requirement_continuous_refinement` | scrum | |
 | `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` | discovery | 4 象限 P2 (uncertainty 高×impact 低) で Discovery 先行。上流委譲。**`design_uncertain` = 確証なき設計** (紙上で実現性・妥当性が確定できない設計、concept §2.5 / PLAN-DISCOVERY-01 S4 confirmed)。**在層で閉じる `design_gap` (下記 interrupt 分岐 → Forward spot 修正) とは区別**: 設計の確証が PoC を要するなら Discovery、層内で確定できるなら Forward |
@@ -2034,6 +2035,7 @@ route 結果は **人間向け表示 (`suggest_command`、文字列)** と **機
 - `command` は必ず `ut-tdd` 始まり (legacy runtime command name を含めば exit 1)。
 - `schema_version` は additive 拡張のみ (既存 field の意味変更禁止)。
 - `recommended_command` を agent / CI が JSON parse して実行する。`suggest_command` の文字列値は backward-compat 凍結 (変更時は schema_version を上げる)。
+- pair-agent TDD 系 signal は `mode=add-feature`、`recommended_command.command="ut-tdd pair-agent plan"`、`args.pair_route="smart_test_author_to_light_implementation_to_smart_review"`、`args.requires_plan_id=true` を返す。これは route eval の推薦面だけを切り替えるもので、独立 mode や完了承認ではない。
 - route eval の top-level 結果は `escalation_boundaries[]` を返し、XR-2 に該当する signal では `recommended_command.safety.requires_human_approval=true` に昇格する。`version_deferral` 単体は将来版保全として承認不要だが、将来版 activation signal が外部 API・infra、HMAC/webhook、閲覧 access control、secret、認証/認可などを含む場合は mode=`version-up` のまま escalation として fail-close する。
 
 ## 7.8.3 requires_human_approval → 承認者解決 要件 (チーム翻案)

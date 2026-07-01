@@ -759,6 +759,29 @@ describe("L7 CLI surface closure", () => {
     expect(routePayload.decision.model).not.toBe("gpt-5.4-mini");
   }, 20_000);
 
+  it("U-ROUTE-001: routes pair-agent TDD signals to the pair-agent planning surface", () => {
+    const run = runCli(["route", "eval", "--format", "json", "--signal", "pair-agent TDD route"]);
+    expect(run.status).toBe(0);
+    const payload = JSON.parse(run.stdout);
+    expect(payload.mode).toBe("add-feature");
+    expect(payload.suggest_command).toContain("ut-tdd pair-agent plan --plan-id <PLAN-ID>");
+    expect(payload.recommended_command).toMatchObject({
+      schema_version: "v1",
+      command: "ut-tdd pair-agent plan",
+      args: {
+        signal: "pair-agent TDD route",
+        mode: "add-feature",
+        pair_route: "smart_test_author_to_light_implementation_to_smart_review",
+        requires_plan_id: true,
+      },
+      safety: {
+        auto_apply: false,
+        requires_human_approval: false,
+        requires_preflight: true,
+      },
+    });
+  });
+
   it("exposes builder catalog as a JSON command surface", () => {
     const run = runCli(["builder", "catalog", "--json"]);
     const payload = JSON.parse(run.stdout);

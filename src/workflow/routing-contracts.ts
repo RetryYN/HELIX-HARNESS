@@ -129,6 +129,7 @@ const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
 
 const ROUTE_COMMAND_TASK_CLASSIFY = "ut-tdd task classify";
 const ROUTE_COMMAND_DOCTOR = "ut-tdd doctor";
+const ROUTE_COMMAND_PAIR_AGENT_PLAN = "ut-tdd pair-agent plan";
 const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/routing-contracts.ts";
 
 export function validateRouteConfigText(input: {
@@ -330,6 +331,21 @@ const ROUTE_SIGNAL_MAP: RouteSignalEntry[] = [
     requiresApproval: false,
   },
   {
+    tokens: [
+      "pair_agent_tdd",
+      "pair-agent-tdd",
+      "pair-agent tdd route",
+      "pair-agent tdd",
+      "pair programming",
+      "lightweight worker",
+      "smart reviewer",
+    ],
+    mode: "add-feature",
+    command: ROUTE_COMMAND_PAIR_AGENT_PLAN,
+    preflight: true,
+    requiresApproval: false,
+  },
+  {
     tokens: ["tech_decision_required", "option_comparison_needed", "adr_required", "research"],
     mode: "research",
     command: ROUTE_COMMAND_TASK_CLASSIFY,
@@ -430,6 +446,12 @@ export function evaluateRouteCommand(input: {
     args: {
       signal: input.signal,
       mode: route.mode,
+      ...(route.command === ROUTE_COMMAND_PAIR_AGENT_PLAN
+        ? {
+            pair_route: "smart_test_author_to_light_implementation_to_smart_review",
+            requires_plan_id: true,
+          }
+        : {}),
       ...(input.env ? { env: input.env } : {}),
       ...(input.drift_type ? { drift_type: input.drift_type } : {}),
     },
@@ -473,7 +495,9 @@ export function evaluateRouteCommand(input: {
     suggest_command:
       route.command === ROUTE_COMMAND_TASK_CLASSIFY
         ? `${route.command} --text "${input.signal}"`
-        : route.command,
+        : route.command === ROUTE_COMMAND_PAIR_AGENT_PLAN
+          ? `${route.command} --plan-id <PLAN-ID> --task "${input.signal}"`
+          : route.command,
     recommended_command: recommendedParsed.data,
     approval,
     escalation_boundaries: escalationBoundaries,

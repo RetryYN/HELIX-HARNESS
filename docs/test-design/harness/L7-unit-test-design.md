@@ -90,6 +90,12 @@ decision packet を PO/S4 判断・version-up activation・不可逆 migration s
 | U-OUTSTANDING-011 | `buildS4DecisionPackets` / `buildVersionUpActivationPackets` / `buildActionBindingApprovalPackets` / `buildIdentifierRenameCutoverPlan` | 専用 packet は自分の判断種別だけで閉じず、同一 PLAN の sibling blocker を `relatedDecisionPackets[]` に保持する。S4+approval は S4 packet に supporting action-binding route、version-up+external approval は activation packet に supporting action-binding route、action-binding packet は S4/version-up/rename sibling route、rename plan は supporting action-binding route を出す。CLI text は `related-packet:` 行を出し、JSON だけの隠れ導線にしない。 |
 | U-OUTSTANDING-012 | `analyzeObjectiveEvidenceAudit` / `objectiveProgressForAudit` + `ut-tdd status --json` | active objective progress is reported as `objectiveProgress.percent` using the objective evidence audit denominator, not test count or roadmap span count. Current live repo with G-01..G-09 proved and G-10 blocked reports `percent=90`, `provedRequirements=9`, `totalRequirements=10`, `blockedRequirements=1`, and `completionClaimAllowed=false`. The text status surface prints the same percentage and must not turn 90% into a whole-program / L14 completion claim. |
 
+## §0.3 route eval / pair-agent routing oracles
+
+| ID | Subject | Oracle |
+|----|---------|--------|
+| U-ROUTE-001 | `evaluateRouteCommand` + `ut-tdd route eval --format json` | `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / pair programming 系 signal は unknown route や plain `task classify` に落とさず、`mode=add-feature` と schema-valid `recommended_command.command="ut-tdd pair-agent plan"` を返す。`recommended_command.args` は original `signal`、`mode=add-feature`、`pair_route=smart_test_author_to_light_implementation_to_smart_review`、`requires_plan_id=true` を持つ。safety は `auto_apply=false`、`requires_preflight=true`、`requires_human_approval=false` で、pair-agent plan から T0 smart review 実行時の explicit frontier approval gate へ接続する。 |
+
 ## §0.4 green command digest の検証戦略
 
 review evidence の `green_commands[].output_digest` は、形式が `sha256:*` であるだけでは完了根拠にならない。

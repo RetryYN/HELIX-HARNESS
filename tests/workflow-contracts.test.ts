@@ -212,6 +212,34 @@ describe("L7 workflow contract implementations", () => {
       signal: "version_deferral",
       mode: "version-up",
     });
+    const pairAgentRoute = evaluateRouteCommand({
+      signal: "pair_agent_tdd implement with lightweight worker and smart reviewer",
+    });
+    expect(pairAgentRoute.mode).toBe("add-feature");
+    expect(pairAgentRoute.exit_code).toBe(0);
+    expect(pairAgentRoute.recommended_command?.command).toBe("ut-tdd pair-agent plan");
+    expect(pairAgentRoute.recommended_command?.args).toMatchObject({
+      signal: "pair_agent_tdd implement with lightweight worker and smart reviewer",
+      mode: "add-feature",
+      pair_route: "smart_test_author_to_light_implementation_to_smart_review",
+      requires_plan_id: true,
+    });
+    expect(pairAgentRoute.recommended_command?.safety).toMatchObject({
+      auto_apply: false,
+      requires_preflight: true,
+      requires_human_approval: false,
+    });
+    expect(recommendedCommandV1Schema.safeParse(pairAgentRoute.recommended_command).success).toBe(
+      true,
+    );
+    const pairAgentTextRoute = evaluateRouteCommand({ signal: "pair-agent TDD route" });
+    expect(pairAgentTextRoute.mode).toBe("add-feature");
+    expect(pairAgentTextRoute.recommended_command?.command).toBe("ut-tdd pair-agent plan");
+    expect(pairAgentTextRoute.recommended_command?.args).toMatchObject({
+      signal: "pair-agent TDD route",
+      pair_route: "smart_test_author_to_light_implementation_to_smart_review",
+      requires_plan_id: true,
+    });
     const versionUpExternalRoute = evaluateRouteCommand({
       signal:
         "version_deferral Cloudflare HMAC webhook access control external infrastructure activation",

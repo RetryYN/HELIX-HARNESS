@@ -435,6 +435,7 @@ mode と工程を「絵」で終わらせず自動で繋ぐ仕組み。V2 の ro
 | `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / `forced_stop` | Recovery | 承認必須。`forced_stop` = ユーザー強制停止 (ESC/Ctrl+C/Stop) = 高 severity 負シグナル (罵倒・強否定・同論点での連続停止を含む。罵倒のみが基準ではない)。専用 hook 不在のため dangling-turn 推定で検出 (PLAN-L6-04/L7-02)。提示まで自動・起票は人間 yes |
 | `production_incident` / `hotfix_required` / `regression_prod` | Incident | env=prod、承認必須 |
 | `feature_addition` / `scope_extension` | Add-feature | |
+| `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / `pair programming` | Add-feature | smart test author -> lightweight implementation -> smart review の pair-agent TDD 推薦経路。mode は Add-feature のまま、機械契約は `ut-tdd pair-agent plan` を返す |
 | `version_deferral` | version-up | capability を将来版へ保全 (今スコープ外・破棄しない、§2.5)。詳細は要件定義書 §7.8.1 |
 | `user_feedback_iteration` / `requirement_continuous_refinement` | Scrum | |
 | `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` (要件未確定 / 実現性不透明 / 確証なき設計) | Discovery | 4 象限 P2、上流委譲。`design_uncertain` = 紙上で確定できない設計 (§2.5、PLAN-DISCOVERY-01 S4 confirmed) |
