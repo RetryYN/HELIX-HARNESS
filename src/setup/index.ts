@@ -191,6 +191,7 @@ export interface HelixProjectPostSetupWorkflow {
     expected: string;
     evidence: string;
     source: string;
+    sourceUrl: string;
   }>;
   blockedUntil: string[];
 }
@@ -658,9 +659,9 @@ export function buildConsumerReadinessPlan(input: {
     },
     {
       name: "ut-tdd-cli",
-      ok: input.hasUtTddCli ?? true,
+      ok: input.hasUtTddCli === true,
       message:
-        (input.hasUtTddCli ?? true)
+        input.hasUtTddCli === true
           ? "projected hook 用の `ut-tdd` が PATH 上で解決できる"
           : "setup 前に harness package で `bun link`、consumer repo で `bun link ut-tdd` を実行する",
     },
@@ -675,7 +676,7 @@ export function buildConsumerReadinessPlan(input: {
   const packageRoot = input.packageRoot ?? input.repoRoot;
   const tag = input.tag ?? "v0.1.0";
   return {
-    ok: bunOk && input.hasGit && (input.hasUtTddCli ?? true) && runtimeOk,
+    ok: bunOk && input.hasGit && input.hasUtTddCli === true && runtimeOk,
     checks,
     mode,
     workspace: {
@@ -877,6 +878,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "returns the import report, VSCode tasks, local baseline paths, command availability, and PLAN-M-02 cutover blocker without writing files",
       evidence: "setup dry-run text or JSON output saved in the consumer repository review record",
       source: "VS Code workspace task contract",
+      sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
     },
     {
       phase: "status-frontier",
@@ -885,6 +887,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "returns objective progress, workflowNextAction, workflowNextActions, and completionReadiness before HELIX work starts",
       evidence: "status JSON attached to the first-run readiness record",
       source: "HELIX status and completion decision packet contract",
+      sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
     },
     {
       phase: "consumer-doctor",
@@ -893,6 +896,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "passes the consumer profile against projected adapters, VSCode tasks, and .ut-tdd baselines without requiring dogfood docs",
       evidence: "consumer doctor output with profile=consumer",
       source: "VS Code Workspace Trust and consumer adapter safety contract",
+      sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     },
     {
       phase: "handover-route",
@@ -901,6 +905,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "returns active handover route or confirms normal start so the first project action is anchored",
       evidence: "handover status JSON attached to the first-run readiness record",
       source: "handover route contract",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md#18-u-hover-handover",
     },
   ];
 }

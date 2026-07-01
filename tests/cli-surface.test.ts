@@ -86,6 +86,21 @@ function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
   return path;
 }
 
+function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCode = 0): string {
+  if (process.platform === "win32") {
+    const path = join(binDir, `${name}.cmd`);
+    writeFileSync(path, `@echo off\r\necho ${name} ${output}\r\nexit /b ${exitCode}\r\n`, "utf8");
+    return path;
+  }
+  const path = join(binDir, name);
+  writeFileSync(path, `#!/bin/sh\necho ${name} ${output}\nexit ${exitCode}\n`, {
+    encoding: "utf8",
+    mode: 0o755,
+  });
+  chmodSync(path, 0o755);
+  return path;
+}
+
 describe("L7 CLI surface closure", () => {
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-status-"));
@@ -840,6 +855,7 @@ describe("L7 CLI surface closure", () => {
           phase: "consumer-doctor",
           command: "ut-tdd doctor --profile consumer",
           source: "VS Code Workspace Trust and consumer adapter safety contract",
+          sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
         }),
       ]),
     );
@@ -865,6 +881,12 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain(
       "verification-check: consumer-doctor ut-tdd doctor --profile consumer",
+    );
+    expect(text.stdout).toContain(
+      "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
+    );
+    expect(text.stdout).toContain(
+      "verification-source: consumer-doctor source=VS Code Workspace Trust and consumer adapter safety contract sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     );
     expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
     expect(text.stdout).toContain(
@@ -1089,9 +1111,13 @@ describe("L7 CLI surface closure", () => {
   it("exposes clean distribution planning with preflight, rollback, and contract metadata", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-cli-dist-"));
     try {
+      writeFakeCommand(binDir, "git", "2.0.0");
+      writeFakeCommand(binDir, "gh", "2.0.0");
       const fakeCodex = writeFakeProvider(binDir, "codex");
+      writeFakeCommand(binDir, "ut-tdd", "0.1.0");
       const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.0", "--json"], {
         ...process.env,
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
         UT_TDD_CODEX_BIN: fakeCodex,
       });
       const payload = JSON.parse(run.stdout);
@@ -1118,6 +1144,39 @@ describe("L7 CLI surface closure", () => {
       expect(payload.readiness.ci.forkPullRequestSecrets).toBe("not-required");
     } finally {
       rmSync(join(repoRoot, "codex-env.txt"), { force: true });
+      rmSync(binDir, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it("blocks distribution planning when the bare ut-tdd CLI is not available", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-cli-dist-missing-"));
+    try {
+      writeFakeCommand(binDir, "git", "2.0.0");
+      writeFakeCommand(binDir, "gh", "2.0.0");
+      const fakeCodex = writeFakeProvider(binDir, "codex");
+      writeFakeCommand(binDir, "ut-tdd", "not-linked", 127);
+      const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.0", "--json"], {
+        ...process.env,
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+        UT_TDD_CODEX_BIN: fakeCodex,
+      });
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(1);
+      expect(payload).toMatchObject({
+        ok: false,
+        export: { ok: true },
+        readiness: { ok: false },
+      });
+      expect(payload.readiness.checks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            name: "ut-tdd-cli",
+            ok: false,
+          }),
+        ]),
+      );
+    } finally {
       rmSync(binDir, { recursive: true, force: true });
     }
   }, 20_000);

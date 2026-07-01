@@ -232,7 +232,19 @@ describe("clean distribution local acceptance smoke", () => {
         expect(JSON.parse(setupDryRunFromGeneratedPath.stdout)).toMatchObject({
           schemaVersion: "helix-project-setup.v1",
           importReport: { dryRun: true },
-          postSetupWorkflow: { manualDocSearchRequired: false },
+          postSetupWorkflow: {
+            manualDocSearchRequired: false,
+            verificationMatrix: expect.arrayContaining([
+              expect.objectContaining({
+                phase: "setup-dry-run",
+                sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
+              }),
+              expect.objectContaining({
+                phase: "consumer-doctor",
+                sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+              }),
+            ]),
+          },
         });
       } finally {
         rmSync(consumerRoot, { recursive: true, force: true });

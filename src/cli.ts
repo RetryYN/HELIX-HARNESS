@@ -4017,6 +4017,7 @@ setupCommand
     for (const row of r.postSetupWorkflow.verificationMatrix) {
       process.stdout.write(`verification-check: ${row.phase} ${row.command}\n`);
     }
+    process.stdout.write(verificationSourceLines(r.postSetupWorkflow.verificationMatrix));
     process.stdout.write(
       `github-plan: ${r.githubPlan.schemaVersion} planOnly=${r.githubPlan.planOnly} requiredChecks=${r.githubPlan.requiredChecks.join(",")}\n`,
     );
@@ -4062,6 +4063,7 @@ distribution
     }
     const hasGit = spawnSync("git", ["--version"], { stdio: "ignore" }).status === 0;
     const hasGh = spawnSync("gh", ["--version"], { stdio: "ignore" }).status === 0;
+    const hasUtTddCli = spawnSync("ut-tdd", ["--version"], { stdio: "ignore" }).status === 0;
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
       sourceTag: opts.tag,
@@ -4071,6 +4073,7 @@ distribution
       bunVersion,
       hasGit,
       hasGh,
+      hasUtTddCli,
       hasClaude: detection.claude,
       hasCodex: detection.codex,
       repoRoot,
@@ -4083,6 +4086,7 @@ distribution
       readiness,
       actualCutRequiresPoApproval: true,
     };
+    process.exitCode = output.ok ? 0 : 1;
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
       return;
@@ -4097,7 +4101,6 @@ distribution
       `  readiness: ${readiness.ok ? "ok" : "blocked"} mode=${readiness.mode}\n`,
     );
     process.stdout.write("  actual-cut: requires PO approval\n");
-    process.exitCode = output.ok ? 0 : 1;
   });
 
 program.parseAsync(process.argv).catch((e: unknown) => {

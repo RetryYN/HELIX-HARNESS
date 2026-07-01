@@ -547,6 +547,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd-cli",
       "runtime-cli",
     ]);
+
+    const omittedCli = buildConsumerReadinessPlan({
+      bunVersion: "1.3.2",
+      hasGit: true,
+      hasGh: true,
+      hasClaude: false,
+      hasCodex: true,
+      repoRoot: "/repo",
+    });
+    expect(omittedCli.ok).toBe(false);
+    expect(omittedCli.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
+      ok: false,
+    });
   });
 
   it("U-SETUP-015: HELIX project setup adds VSCode tasks and project-local state baselines without external apply", () => {
@@ -704,6 +717,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "setup-dry-run",
         command: "ut-tdd setup project --dry-run",
         source: "VS Code workspace task contract",
+        sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
       }),
       expect.objectContaining({
         phase: "status-frontier",
@@ -714,6 +728,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "consumer-doctor",
         command: "ut-tdd doctor --profile consumer",
         source: "VS Code Workspace Trust and consumer adapter safety contract",
+        sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
       }),
       expect.objectContaining({
         phase: "handover-route",

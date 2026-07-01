@@ -115,13 +115,16 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > projected hook が呼ぶ bare `ut-tdd` CLI は `consumerReadiness` で PATH 解決性を preflight し、
 > `not spawnable on PATH` を unresolved signal として扱う。
 > 解決不能なら `bun link` remediation を出して silent pass させない。
+> `hasUtTddCli` 未指定は green 扱いせず、`setup project` と `distribution plan` は bare `ut-tdd --version`
+> 相当の実測値を readiness に渡す。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / `ut-tdd doctor --profile consumer` /
 > handover status を含め、
 > ready route は active handover または current PLAN route に接続する。
 > `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / status-frontier / consumer-doctor /
-> handover-route の phase / command / expected / evidence / source を持つ。VS Code workspace task と
+> handover-route の phase / command / expected / evidence / source / sourceUrl を持つ。VS Code workspace task と
 > Workspace Trust の実行境界、HELIX status/handover contract を初回稼働の検証証跡へ接続し、
-> command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。
+> command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。text surface は
+> `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
 > dry-run は引き続き副作用ゼロ、branch protection / external API / secrets / identifier cutover は自動適用しない。
 > VSCode 連携は標準 task に限定し、extension ID や外部 install を setup が暗黙実行しない。被覆 = U-SETUP-015..017。
 > 2026-07-02 追記: `runHelixProjectSetup` は L3 HR-FR-P6-03 / HAC-P6-03a の
