@@ -12,6 +12,55 @@ owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-02T01:22:29+09:00"
+    tests_green_at: "2026-07-02T01:22:29+09:00"
+    verdict: pass
+    scope: "Continuation 47: action-binding approval now compares version-up `reviewed_snapshot_binding` against the current `activationSnapshot.snapshotId` generated from the sibling version-up activation packet/source ledger, and compares rename/cutover `reviewed_snapshot_binding` against the current `cutoverSnapshot.snapshotId` from the live rename plan. Field-name-only bindings stay pending, stale concrete sha256 bindings are invalid, and old activation/cutover approval evidence cannot be reused after source ledger, release trigger, blast radius, rollback, backup, or monitoring material changes."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/action-binding-approval-readiness.test.ts tests/identifier-rename.test.ts tests/version-up-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-02T01:18:57+09:00"
+        evidence_path: tests/action-binding-approval-readiness.test.ts
+        output_digest: "sha256:dc08aa4eab12fb684c0472640175bdc6f1f05d6c800a45430dbdc2bdf50c1d73"
+      - kind: unit_test
+        command: "bun run test"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:22:29+09:00"
+        evidence_path: tests/doctor.test.ts
+        output_digest: "sha256:395e5fdd831e541d9740058e0329864989217f51aed91e5e916c5e1bd6f9eb73"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:18:57+09:00"
+        evidence_path: src/lint/action-binding-approval-readiness.ts
+        output_digest: "sha256:d7337254706bdf6f35d031e1f5637ca88f494a82be63a54895828ee5f31b17fb"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:18:57+09:00"
+        evidence_path: docs/design/harness/L6-function-design/function-spec.md
+        output_digest: "sha256:954a8f6c8cdd96e13ed754cfcb0f29160334dc5195e97929aa750d22ea0c9210"
+      - kind: doctor
+        command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-02T01:18:57+09:00"
+        evidence_path: docs/process/forward/L08-L14-verification-phase.md
+        output_digest: "sha256:f2fcd49ff844a41e0cf82b05b5b3cf01c3aac0047cd7ff0fa7c08cbf5380479d"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-02T01:04:08+09:00"
     tests_green_at: "2026-07-02T01:04:08+09:00"
     verdict: pass

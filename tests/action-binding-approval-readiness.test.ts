@@ -5,6 +5,7 @@ import {
   buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
 } from "../src/lint/action-binding-approval-readiness";
+import { buildVersionUpActivationPackets } from "../src/lint/version-up-readiness";
 
 const RIGHT_ARM = [
   "Action-binding approval decision record",
@@ -50,6 +51,33 @@ const RECORD = [
   "- expires_at_or_trigger: before activation or scope change",
   "- audit_record: approver/action/result/incident route",
 ].join("\n");
+
+const VERSION_UP_MODE_DOC = "Version-up source ledger (checked 2026-06-30)";
+
+function versionUpPlanWithSnapshot(snapshotId: string) {
+  return {
+    file: "PLAN-L7-146.md",
+    plan_id: "PLAN-L7-146",
+    status: "draft",
+    versionTarget: "future",
+    text: `requires action-binding approval\n${RECORD.replace(
+      "no snapshot-bearing packet applies to this approval",
+      `activationSnapshot.snapshotId ${snapshotId}`,
+    )}`,
+  };
+}
+
+function currentVersionUpSnapshotId(plan = versionUpPlanWithSnapshot("sha256:0".padEnd(71, "0"))) {
+  return buildVersionUpActivationPackets({
+    charter: "",
+    pillarRequirements: "",
+    functionalDesign: "",
+    modeCatalog: "",
+    modeDoc: VERSION_UP_MODE_DOC,
+    discoveryPlan: "",
+    plans: [plan],
+  })[0].activationSnapshot.snapshotId;
+}
 
 describe("action-binding approval readiness", () => {
   it("accepts pending high-impact approval plans only when they carry structured records", () => {
@@ -475,6 +503,121 @@ describe("action-binding approval readiness", () => {
       .find((packet) => packet.planId === "PLAN-M-02-helix-identifier-rename")
       ?.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding");
     expect(cutoverCheck).toMatchObject({
+      status: "concrete",
+      reason: "snapshot binding matches this PLAN route",
+    });
+  });
+
+  it("rejects version-up approvals whose concrete snapshot id is stale", () => {
+    const staleSnapshot = "sha256:1111111111111111111111111111111111111111111111111111111111111111";
+    const stalePlan = versionUpPlanWithSnapshot(staleSnapshot);
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      plans: [stalePlan],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-146",
+      reason: "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    });
+
+    const stalePacket = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      plans: [stalePlan],
+    })[0];
+    expect(stalePacket.blockedReasons).toContain(
+      "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    );
+    expect(
+      stalePacket.approvalBindingChecks.find(
+        (check) => check.field === "reviewed_snapshot_binding",
+      ),
+    ).toMatchObject({
+      status: "invalid",
+      reason: "snapshot binding does not match current activationSnapshot.snapshotId",
+    });
+
+    const currentPlan = versionUpPlanWithSnapshot(currentVersionUpSnapshotId(stalePlan));
+    const currentPacket = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      plans: [currentPlan],
+    })[0];
+    expect(
+      currentPacket.approvalBindingChecks.find(
+        (check) => check.field === "reviewed_snapshot_binding",
+      ),
+    ).toMatchObject({
+      status: "concrete",
+      reason: "snapshot binding matches this PLAN route",
+    });
+  });
+
+  it("rejects cutover approvals whose concrete snapshot id is stale", () => {
+    const staleSnapshot = "sha256:2222222222222222222222222222222222222222222222222222222222222222";
+    const currentSnapshot =
+      "sha256:3333333333333333333333333333333333333333333333333333333333333333";
+    const stalePlan = {
+      file: "PLAN-M-02.md",
+      plan_id: "PLAN-M-02-helix-identifier-rename",
+      status: "draft",
+      text: `identifier rename cutover_decision_record requires action-binding approval\n${RECORD.replace(
+        "no snapshot-bearing packet applies to this approval",
+        `cutoverSnapshot.snapshotId ${staleSnapshot}`,
+      )}`,
+    };
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      currentCutoverSnapshotId: currentSnapshot,
+      plans: [stalePlan],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-02-helix-identifier-rename",
+      reason: "reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId",
+    });
+
+    const stalePacket = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      currentCutoverSnapshotId: currentSnapshot,
+      plans: [stalePlan],
+    })[0];
+    expect(stalePacket.blockedReasons).toContain(
+      "reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId",
+    );
+    expect(
+      stalePacket.approvalBindingChecks.find(
+        (check) => check.field === "reviewed_snapshot_binding",
+      ),
+    ).toMatchObject({
+      status: "invalid",
+      reason: "snapshot binding does not match current cutoverSnapshot.snapshotId",
+    });
+
+    const currentPlan = {
+      ...stalePlan,
+      text: stalePlan.text.replace(staleSnapshot, currentSnapshot),
+    };
+    const currentPacket = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      currentCutoverSnapshotId: currentSnapshot,
+      plans: [currentPlan],
+    })[0];
+    expect(
+      currentPacket.approvalBindingChecks.find(
+        (check) => check.field === "reviewed_snapshot_binding",
+      ),
+    ).toMatchObject({
       status: "concrete",
       reason: "snapshot binding matches this PLAN route",
     });

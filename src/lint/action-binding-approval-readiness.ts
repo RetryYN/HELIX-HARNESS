@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
 import {
   allowedOutcomeSetViolation,
   fmValue,
@@ -7,6 +8,7 @@ import {
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
+import { buildVersionUpActivationPackets } from "./version-up-readiness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   buildDecisionPacketProvenance,
@@ -33,6 +35,8 @@ export interface ActionBindingApprovalPlan {
 export interface ActionBindingApprovalReadinessInput {
   rightArmMd: string;
   outstandingTs: string;
+  versionUpModeDoc?: string;
+  currentCutoverSnapshotId?: string;
   plans: ActionBindingApprovalPlan[];
 }
 
@@ -74,6 +78,17 @@ export interface ActionBindingApprovalPacket {
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
+}
+
+interface ActionBindingSnapshotExpectations {
+  versionUpSnapshotId: string | null;
+  cutoverSnapshotId: string | null;
+}
+
+interface ActionBindingApprovalCheckContext {
+  plan: ActionBindingApprovalPlan;
+  approvalRecord: Record<string, string>;
+  snapshotExpectations: ActionBindingSnapshotExpectations;
 }
 
 const ACTION_BINDING_RECORD_NAME = "action_binding_approval_record";
@@ -156,6 +171,11 @@ export function loadActionBindingApprovalReadinessInput(
       "utf8",
     ),
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
+    versionUpModeDoc: readFileSync(
+      join(repoRoot, "docs", "process", "modes", "version-up.md"),
+      "utf8",
+    ),
+    currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
     plans: readdirSync(plansDir)
       .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
       .map((f) => parsePlan(f, readFileSync(join(plansDir, f), "utf8"))),
@@ -221,7 +241,7 @@ export function analyzeActionBindingApprovalReadiness(
       violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
     if (missingFields.length === 0 && !outcomeViolation) {
-      violations.push(...validateActionBindingSemantics(plan));
+      violations.push(...validateActionBindingSemantics(plan, input));
     }
   }
 
@@ -237,17 +257,26 @@ export function buildActionBindingApprovalPackets(
 ): ActionBindingApprovalPacket[] {
   return input.plans
     .filter(isPendingHighImpactApproval)
-    .map((plan) => buildActionBindingApprovalPacket(plan))
+    .map((plan) => buildActionBindingApprovalPacket(plan, input))
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
 
 export function buildActionBindingApprovalPacket(
   plan: ActionBindingApprovalPlan,
+  input: Pick<
+    ActionBindingApprovalReadinessInput,
+    "versionUpModeDoc" | "currentCutoverSnapshotId"
+  > = {},
 ): ActionBindingApprovalPacket {
   const approvalRecord = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
     ...ACTION_BINDING_RECORD_FIELDS,
   ]);
-  const approvalBindingChecks = buildActionBindingApprovalChecks(plan, approvalRecord);
+  const snapshotExpectations = actionBindingSnapshotExpectations(plan, input);
+  const approvalBindingChecks = buildActionBindingApprovalChecks(
+    plan,
+    approvalRecord,
+    snapshotExpectations,
+  );
   const provenance = buildDecisionPacketProvenance({
     sourceCommand: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   });
@@ -268,7 +297,7 @@ export function buildActionBindingApprovalPacket(
     approvalRecord,
     approvalBindingChecks,
     relatedDecisionPackets: relatedDecisionPacketsForActionBindingPlan(plan),
-    blockedReasons: actionBindingBlockedReasons(plan, approvalRecord),
+    blockedReasons: actionBindingBlockedReasons(plan, approvalRecord, snapshotExpectations),
     nextWorkflowRoutes: [
       {
         outcome: "approve_action_binding",
@@ -342,6 +371,7 @@ function relatedDecisionPacketsForActionBindingPlan(
 
 function validateActionBindingSemantics(
   plan: ActionBindingApprovalPlan,
+  input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc" | "currentCutoverSnapshotId">,
 ): ActionBindingApprovalViolation[] {
   const violations: ActionBindingApprovalViolation[] = [];
   const approvalScope = record(plan, "approval_scope");
@@ -421,6 +451,28 @@ function validateActionBindingSemantics(
         "reviewed_snapshot_binding must cite activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or an explicit no-snapshot basis",
     });
   }
+  const expectedVersionUpSnapshot = expectedVersionUpActivationSnapshotId(plan, input);
+  const expectedCutoverSnapshot = expectedCutoverSnapshotId(plan, input);
+  if (
+    expectedVersionUpSnapshot &&
+    hasConcreteSnapshotId(reviewedSnapshotBinding) &&
+    concreteSnapshotId(reviewedSnapshotBinding) !== expectedVersionUpSnapshot
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    });
+  }
+  if (
+    expectedCutoverSnapshot &&
+    hasConcreteSnapshotId(reviewedSnapshotBinding) &&
+    concreteSnapshotId(reviewedSnapshotBinding) !== expectedCutoverSnapshot
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId",
+    });
+  }
   if (
     !mentions(auditRecord, ["approver"]) ||
     !mentions(auditRecord, ["action", "command", "commands"]) ||
@@ -473,6 +525,54 @@ function hasConcreteSnapshotId(value: string): boolean {
   return /\bsha256:[a-f0-9]{64}\b/.test(value);
 }
 
+function concreteSnapshotId(value: string): string | null {
+  return value.match(/\bsha256:[a-f0-9]{64}\b/)?.[0] ?? null;
+}
+
+function expectedVersionUpActivationSnapshotId(
+  plan: ActionBindingApprovalPlan,
+  input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc">,
+): string | null {
+  if (!requiresVersionUpSnapshot(plan) || !input.versionUpModeDoc) return null;
+  return (
+    buildVersionUpActivationPackets({
+      charter: "",
+      pillarRequirements: "",
+      functionalDesign: "",
+      modeCatalog: "",
+      modeDoc: input.versionUpModeDoc,
+      discoveryPlan: "",
+      plans: [
+        {
+          file: plan.file,
+          plan_id: plan.plan_id,
+          status: plan.status,
+          versionTarget: plan.versionTarget ?? "future",
+          text: plan.text,
+        },
+      ],
+    })[0]?.activationSnapshot.snapshotId ?? null
+  );
+}
+
+function expectedCutoverSnapshotId(
+  plan: ActionBindingApprovalPlan,
+  input: Pick<ActionBindingApprovalReadinessInput, "currentCutoverSnapshotId">,
+): string | null {
+  if (!requiresCutoverSnapshot(plan)) return null;
+  return input.currentCutoverSnapshotId ?? null;
+}
+
+function actionBindingSnapshotExpectations(
+  plan: ActionBindingApprovalPlan,
+  input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc" | "currentCutoverSnapshotId">,
+): ActionBindingSnapshotExpectations {
+  return {
+    versionUpSnapshotId: expectedVersionUpActivationSnapshotId(plan, input),
+    cutoverSnapshotId: expectedCutoverSnapshotId(plan, input),
+  };
+}
+
 function record(plan: ActionBindingApprovalPlan, field: string): string {
   return recordFieldValue(plan.text, ACTION_BINDING_RECORD_NAME, field) ?? "";
 }
@@ -490,6 +590,10 @@ function recordValues(
 function actionBindingBlockedReasons(
   plan: ActionBindingApprovalPlan,
   approvalRecord: Record<string, string>,
+  snapshotExpectations: ActionBindingSnapshotExpectations = {
+    versionUpSnapshotId: null,
+    cutoverSnapshotId: null,
+  },
 ): string[] {
   const reasons: string[] = [];
   if (isPendingHighImpactApproval(plan)) {
@@ -530,6 +634,16 @@ function actionBindingBlockedReasons(
       !hasConcreteSnapshotId(reviewedSnapshotBinding))
   ) {
     reasons.push("reviewed_snapshot_binding lacks concrete current snapshot id");
+  } else if (
+    snapshotExpectations.versionUpSnapshotId &&
+    concreteSnapshotId(reviewedSnapshotBinding) !== snapshotExpectations.versionUpSnapshotId
+  ) {
+    reasons.push("reviewed_snapshot_binding does not match current activationSnapshot.snapshotId");
+  } else if (
+    snapshotExpectations.cutoverSnapshotId &&
+    concreteSnapshotId(reviewedSnapshotBinding) !== snapshotExpectations.cutoverSnapshotId
+  ) {
+    reasons.push("reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId");
   }
   if (!hasExpiryOrTrigger(approvalRecord.expires_at_or_trigger ?? "")) {
     reasons.push("approval requires expiry or trigger-bound re-approval");
@@ -540,17 +654,22 @@ function actionBindingBlockedReasons(
 function buildActionBindingApprovalChecks(
   plan: ActionBindingApprovalPlan,
   approvalRecord: Record<string, string>,
+  snapshotExpectations: ActionBindingSnapshotExpectations = {
+    versionUpSnapshotId: null,
+    cutoverSnapshotId: null,
+  },
 ): ActionBindingApprovalCheck[] {
+  const context = { plan, approvalRecord, snapshotExpectations };
   return ACTION_BINDING_RECORD_FIELDS.map((field) =>
-    actionBindingApprovalCheckForField(plan, approvalRecord, field),
+    actionBindingApprovalCheckForField(context, field),
   );
 }
 
 function actionBindingApprovalCheckForField(
-  plan: ActionBindingApprovalPlan,
-  approvalRecord: Record<string, string>,
+  context: ActionBindingApprovalCheckContext,
   field: (typeof ACTION_BINDING_RECORD_FIELDS)[number],
 ): ActionBindingApprovalCheck {
+  const { plan, approvalRecord, snapshotExpectations } = context;
   const value = approvalRecord[field] ?? "";
   const trimmed = value.trim();
   const pendingAction =
@@ -689,6 +808,32 @@ function actionBindingApprovalCheckForField(
         reason: "snapshot binding names the packet field but not the concrete current snapshot id",
         requiredAction:
           "record the current sha256 snapshotId from the activation or rename packet before approval",
+      };
+    }
+    if (
+      snapshotExpectations.versionUpSnapshotId &&
+      concreteSnapshotId(value) !== snapshotExpectations.versionUpSnapshotId
+    ) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: "snapshot binding does not match current activationSnapshot.snapshotId",
+        requiredAction:
+          "re-run ut-tdd version-up activation-packet --json and record the current activationSnapshot.snapshotId",
+      };
+    }
+    if (
+      snapshotExpectations.cutoverSnapshotId &&
+      concreteSnapshotId(value) !== snapshotExpectations.cutoverSnapshotId
+    ) {
+      return {
+        field,
+        status: "invalid",
+        value,
+        reason: "snapshot binding does not match current cutoverSnapshot.snapshotId",
+        requiredAction:
+          "re-run ut-tdd rename plan --json and record the current cutoverSnapshot.snapshotId",
       };
     }
     return concreteCheck(field, value, "snapshot binding matches this PLAN route");

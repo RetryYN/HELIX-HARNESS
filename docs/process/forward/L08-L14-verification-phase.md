@@ -92,7 +92,7 @@ historical work; schema-invalid words such as `merged`, `rejected`, or
 | `approved_target` | 常時必須 | 承認された repo / environment / service / state path / resource。target 外の実行は禁止 |
 | `approved_params` | 常時必須 | 承認された command args / config diff / params hash or summary。params 変更時は再承認 |
 | `review_approval_evidence` | 常時必須 | 承認前に確認した diff / dry-run / risk review / evidence path |
-| `reviewed_snapshot_binding` | 常時必須 | version-up では `activationSnapshot.snapshotId`、rename/cutover では `cutoverSnapshot.snapshotId`、それ以外では snapshot 対象外の根拠。関連 packet の snapshotId が変わった場合は旧承認 evidence を流用しない |
+| `reviewed_snapshot_binding` | 常時必須 | version-up では current `ut-tdd version-up activation-packet --json` の `activationSnapshot.snapshotId`、rename/cutover では `cutoverSnapshot.snapshotId`、それ以外では snapshot 対象外の根拠。field 名だけ、または現在 packet と一致しない sha256 は承認根拠にしない。関連 packet の snapshotId が変わった場合は旧承認 evidence を流用しない |
 | `expires_at_or_trigger` | 常時必須 | 承認が失効する日時、または trigger-bound な再承認条件 |
 | `audit_record` | action 実行前後で必須 | 実施時刻、command/action、approver、result、incident/backlog route |
 
