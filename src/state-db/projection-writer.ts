@@ -73,11 +73,36 @@ interface PairAgentEvidencePhaseSpan {
   agent_key?: unknown;
   provider?: unknown;
   model?: unknown;
+  prompt_digest?: unknown;
   output_excerpt_digest?: unknown;
   eval_outcome?: {
     status?: unknown;
     verdict?: unknown;
     exit_code?: unknown;
+  };
+}
+
+interface PairAgentPlanEvidence {
+  schema_version?: unknown;
+  recorded_at?: unknown;
+  plan_id?: unknown;
+  mode?: unknown;
+  execute?: unknown;
+  trace?: {
+    plan_id?: unknown;
+    span_id?: unknown;
+    tool_contract_id?: unknown;
+    guardrail_decision?: {
+      guardrail?: unknown;
+      decision?: unknown;
+      human_signoff_required?: unknown;
+    };
+    eval_outcome?: {
+      ok?: unknown;
+      status?: unknown;
+    };
+    adapter_plans_digest?: unknown;
+    phase_spans?: unknown;
   };
 }
 
@@ -886,6 +911,109 @@ function parsePairAgentRunEvidence(content: string): PairAgentRunEvidence | null
   }
 }
 
+function projectPairAgentPlanEvidenceFile(input: {
+  db: HarnessDb;
+  plans: Map<string, ProjectedPlan>;
+  evidence: PairAgentPlanEvidence;
+  relPath: string;
+}): void {
+  const { db, evidence, plans, relPath } = input;
+  const trace = evidence.trace;
+  const planId = asString(trace?.plan_id) ?? asString(evidence.plan_id);
+  const spanId = asString(trace?.span_id);
+  if (evidence.schema_version !== "pair-agent-plan-evidence.v1" || !spanId || !planId) {
+    recordFinding(db, {
+      kind: "pair-agent-plan-evidence-invalid",
+      severity: "warn",
+      subjectId: relPath,
+      source: "pair-agent-evidence",
+      evidencePath: relPath,
+    });
+    return;
+  }
+
+  const meta = plans.get(planId);
+  const recordedAt = asString(evidence.recorded_at) ?? "";
+  const status = asString(trace?.eval_outcome?.status) ?? "unknown";
+  const guardrail = trace?.guardrail_decision;
+  const guardrailName = asString(guardrail?.guardrail);
+  if (guardrailName) {
+    const guardrailId = stableId("pair-agent-plan-guardrail", `${spanId}:${guardrailName}`);
+    recordProjectionEvent(db, {
+      table: "guardrail_decisions",
+      id: guardrailId,
+      row: {
+        guardrail_decision_id: guardrailId,
+        session_id: spanId,
+        guardrail: guardrailName,
+        decision: asString(guardrail?.decision) ?? "unknown",
+        reason: "pair-agent plan evidence",
+        mode: "pair-agent",
+        human_signoff_required: guardrail?.human_signoff_required ? 1 : 0,
+        created_at: recordedAt,
+      },
+    });
+  }
+
+  const gateId = stableId("pair-agent-plan-gate", spanId);
+  recordProjectionEvent(db, {
+    table: "gate_runs",
+    id: gateId,
+    row: {
+      gate_run_id: gateId,
+      gate_id: "pair-agent-plan-evidence",
+      plan_id: planId,
+      status,
+      checked_at: recordedAt,
+      evidence_path: relPath,
+    },
+  });
+
+  const spans = Array.isArray(trace?.phase_spans) ? trace.phase_spans : [];
+  if (spans.length === 0) {
+    recordFinding(db, {
+      kind: "pair-agent-plan-evidence-missing-phase-spans",
+      severity: "warn",
+      subjectId: spanId,
+      source: "pair-agent-evidence",
+      evidencePath: relPath,
+    });
+    return;
+  }
+
+  for (const rawSpan of spans) {
+    if (!rawSpan || typeof rawSpan !== "object") continue;
+    const span = rawSpan as PairAgentEvidencePhaseSpan;
+    const phaseSpanId = asString(span.span_id);
+    const model = asString(span.model);
+    if (!phaseSpanId || !model) {
+      recordFinding(db, {
+        kind: "pair-agent-plan-evidence-invalid-phase-span",
+        severity: "warn",
+        subjectId: spanId,
+        source: "pair-agent-evidence",
+        evidencePath: relPath,
+      });
+      continue;
+    }
+    recordProjectionEvent(db, {
+      table: "model_runs",
+      id: phaseSpanId,
+      row: {
+        run_id: phaseSpanId,
+        runtime: asString(span.provider) ?? "",
+        model,
+        role: asString(span.agent_key) ?? asString(span.phase) ?? "pair-agent",
+        drive: meta?.drive ?? "",
+        plan_id: planId,
+        started_at: recordedAt,
+        completed_at: recordedAt,
+        evidence_path: relPath,
+      },
+    });
+  }
+}
+
 function projectPairAgentRunEvidence(
   repoRoot: string,
   db: HarnessDb,
@@ -894,6 +1022,15 @@ function projectPairAgentRunEvidence(
   for (const file of pairAgentEvidenceFiles(repoRoot)) {
     const relPath = normalizePath(relative(repoRoot, file));
     const evidence = parsePairAgentRunEvidence(readFileSync(file, "utf8"));
+    if (evidence?.schema_version === "pair-agent-plan-evidence.v1") {
+      projectPairAgentPlanEvidenceFile({
+        db,
+        plans,
+        evidence: evidence as PairAgentPlanEvidence,
+        relPath,
+      });
+      continue;
+    }
     const trace = evidence?.trace;
     const planId = asString(trace?.plan_id);
     const runId = asString(evidence?.run_id);

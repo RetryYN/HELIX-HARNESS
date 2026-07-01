@@ -547,6 +547,73 @@ function pairAgentLoopSummary(result: PairAgentRunResult): Record<string, number
   };
 }
 
+function savePairAgentPlanEvidence(input: {
+  plan: PairAgentTddPlan;
+  adapterPlans: unknown[];
+  mode: string;
+  execute: boolean;
+  recordedAt: string;
+}): string {
+  const stamp = input.recordedAt.replace(/[^0-9]/g, "").slice(0, 14);
+  const safePlanId = safeEvidenceFileName(input.plan.planId);
+  const spanId = `pair-agent-plan:${safePlanId}:${stamp}`;
+  const agents = new Map(input.plan.agents.map((agent) => [agent.key, agent]));
+  const rel = join(".ut-tdd", "evidence", "pair-agent", `${stamp}-${safePlanId}-plan.json`);
+  const abs = join(process.cwd(), rel);
+  mkdirSync(dirname(abs), { recursive: true });
+  writeFileSync(
+    abs,
+    `${JSON.stringify(
+      {
+        schema_version: "pair-agent-plan-evidence.v1",
+        recorded_at: input.recordedAt,
+        plan_id: input.plan.planId,
+        mode: input.mode,
+        execute: input.execute,
+        trace: {
+          plan_id: input.plan.planId,
+          span_id: spanId,
+          tool_contract_id: "HC-P2.buildPairAgentTddPlan",
+          guardrail_decision: {
+            guardrail: "frontier-approval",
+            decision: input.execute && !input.plan.executionAuthorized ? "block" : "allow",
+            human_signoff_required: input.execute && input.plan.frontierApprovalRequired,
+          },
+          eval_outcome: {
+            ok: input.plan.ok,
+            status: input.plan.ok ? "planned" : "blocked",
+          },
+          adapter_plans_digest: sha256Text(JSON.stringify(input.adapterPlans)),
+          phase_spans: input.plan.phases.map((phase) => {
+            const agent = agents.get(phase.agentKey);
+            return {
+              span_id: `${spanId}:phase:${phase.index}`,
+              parent_span_id: spanId,
+              phase: phase.name,
+              agent_key: phase.agentKey,
+              provider: agent?.provider ?? null,
+              model: agent?.model ?? null,
+              required_evidence: phase.requiredEvidence,
+              prompt_digest: sha256Text(phase.prompt),
+              handoff_target: phase.onFail,
+              eval_outcome: {
+                status: input.plan.ok ? "planned" : "blocked",
+                verdict: null,
+                exit_code: null,
+              },
+            };
+          }),
+        },
+        plan: input.plan,
+        adapterPlans: input.adapterPlans,
+      },
+      null,
+      2,
+    )}\n`,
+  );
+  return rel.replaceAll("\\", "/");
+}
+
 function savePairAgentRunEvidence(input: {
   plan: PairAgentTddPlan;
   result: PairAgentRunResult;
@@ -957,6 +1024,7 @@ pairAgent
   .option("--execute", "mark adapter plans executable; still does not dispatch providers")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--json", "JSON output")
+  .option("--save-evidence", SAVE_EVIDENCE_OPTION_DESCRIPTION)
   .action(
     (opts: {
       planId: string;
@@ -969,6 +1037,7 @@ pairAgent
       execute?: boolean;
       mode?: ReturnType<typeof detectMode>["mode"];
       json?: boolean;
+      saveEvidence?: boolean;
     }) => {
       const taskText = resolveTaskText({ task: opts.task, taskFile: opts.taskFile });
       if (taskText === null || taskText.trim().length === 0) {
@@ -999,8 +1068,19 @@ pairAgent
             execute: Boolean(opts.execute),
           })
         : [];
+      const evidencePath = opts.saveEvidence
+        ? savePairAgentPlanEvidence({
+            plan,
+            adapterPlans,
+            mode: detection.mode,
+            execute: Boolean(opts.execute),
+            recordedAt: new Date().toISOString(),
+          })
+        : null;
       if (opts.json) {
-        process.stdout.write(`${JSON.stringify({ plan, adapterPlans }, null, 2)}\n`);
+        process.stdout.write(
+          `${JSON.stringify({ plan, adapterPlans, evidence_path: evidencePath }, null, 2)}\n`,
+        );
         return;
       }
       process.stdout.write(
@@ -1026,6 +1106,7 @@ pairAgent
           );
         }
       }
+      if (evidencePath) process.stdout.write(`  evidence: ${evidencePath}\n`);
       if (!plan.ok) process.exitCode = 1;
     },
   );

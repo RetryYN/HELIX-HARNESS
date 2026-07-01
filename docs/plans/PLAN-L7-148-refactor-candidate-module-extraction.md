@@ -48,7 +48,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T14:49:29+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:a93799eaec55363d9bc3cebdf35f7f0054245caaba86d630ea68e75a57f4312d"
+        output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -64,7 +64,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T14:49:41+09:00"
         evidence_path: src/state-db/projection-writer.ts
-        output_digest: "sha256:e0046ebf2f11f466c71132ac8654955b5372b562959016d9bddd1589337a1a4f"
+        output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
       - kind: smoke
         command: "bun run src\\cli.ts db rebuild"
         runner: bun

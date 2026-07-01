@@ -181,6 +181,104 @@ describe("P2/P3 pair-agent TDD programming route", () => {
     });
   });
 
+  it("persists pair-agent plan evidence when requested", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-pair-agent-plan-evidence-"));
+    try {
+      const result = runCli(
+        [
+          "pair-agent",
+          "plan",
+          "--plan-id",
+          "PLAN-L7-PAIR",
+          "--task",
+          "Add pair-agent TDD route",
+          "--primary",
+          "codex",
+          "--allow-frontier",
+          "--mode",
+          "hybrid",
+          "--adapter-plans",
+          "--save-evidence",
+          "--json",
+        ],
+        root,
+      );
+
+      expect(result.status).toBe(0);
+      const payload = JSON.parse(result.stdout);
+      expect(payload.evidence_path).toMatch(
+        /^\.ut-tdd\/evidence\/pair-agent\/\d{14}-PLAN-L7-PAIR-plan\.json$/,
+      );
+      const evidencePath = join(root, payload.evidence_path);
+      expect(existsSync(evidencePath)).toBe(true);
+      const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
+      expect(evidence).toMatchObject({
+        schema_version: "pair-agent-plan-evidence.v1",
+        plan_id: "PLAN-L7-PAIR",
+        mode: "hybrid",
+        execute: false,
+        trace: {
+          plan_id: "PLAN-L7-PAIR",
+          tool_contract_id: "HC-P2.buildPairAgentTddPlan",
+          guardrail_decision: {
+            guardrail: "frontier-approval",
+            decision: "allow",
+            human_signoff_required: false,
+          },
+          eval_outcome: { ok: true, status: "planned" },
+          adapter_plans_digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        },
+        plan: { planId: "PLAN-L7-PAIR" },
+      });
+      expect(evidence.trace.phase_spans).toEqual([
+        expect.objectContaining({
+          phase: "smart_test_author",
+          required_evidence: [
+            "red_evidence",
+            "red_test_command",
+            "red_exit_code_nonzero",
+            "acceptance_oracle",
+            "test_design_trace",
+          ],
+          prompt_digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        }),
+        expect.objectContaining({
+          phase: "light_implementation",
+          required_evidence: ["changed_files", "targeted_test_command", "implementation_notes"],
+          prompt_digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        }),
+        expect.objectContaining({
+          phase: "smart_review",
+          required_evidence: ["green_evidence", "review_findings", "verdict_line"],
+          prompt_digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        }),
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("prints pair-agent adapter plans in text mode without invalid stdout encoding", () => {
+    const result = runCli([
+      "pair-agent",
+      "plan",
+      "--plan-id",
+      "PLAN-L7-PAIR",
+      "--task",
+      "Add pair-agent TDD route",
+      "--primary",
+      "codex",
+      "--allow-frontier",
+      "--mode",
+      "hybrid",
+      "--adapter-plans",
+    ]);
+
+    expect(result.status).toBe(0);
+    expect(result.stderr).toBe("");
+    expect(result.stdout.match(/adapter: provider=/g)).toHaveLength(3);
+  });
+
   it("runs smart test authoring once, then repeats light implementation and smart review until pass", async () => {
     const plan = buildPairAgentTddPlan({
       planId: "PLAN-L7-PAIR",

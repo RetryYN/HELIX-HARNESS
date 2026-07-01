@@ -26,7 +26,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T09:16:27+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: smoke
         command: "sha256sum src/orchestration/pair-agent.ts"
         runner: bash
@@ -51,7 +51,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T06:04:15+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -75,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T06:04:15+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:31:59+09:00"
@@ -92,7 +92,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:31:59+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -125,7 +125,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:59:10+0900"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -158,7 +158,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:35:00+09:00"
         evidence_path: tests/projection-writer.test.ts
-        output_digest: "sha256:a93799eaec55363d9bc3cebdf35f7f0054245caaba86d630ea68e75a57f4312d"
+        output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -166,7 +166,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T04:35:00+09:00"
         evidence_path: src/state-db/projection-writer.ts
-        output_digest: "sha256:e0046ebf2f11f466c71132ac8654955b5372b562959016d9bddd1589337a1a4f"
+        output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:45:00+09:00"
@@ -183,7 +183,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:45:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -191,7 +191,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:45:00+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:9f632d58472f600686eeb6531e484db3ad159301fa9f22023e26fe48ac8888c4"
+        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T03:20:00+09:00"
@@ -208,7 +208,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:20:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -233,7 +233,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T02:05:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -258,7 +258,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T01:35:00+09:00"
         evidence_path: tests/pair-agent.test.ts
-        output_digest: "sha256:e9beaca3584ff074036e3ba3aa005a78470e311d24d346cc59d995cfe8d42956"
+        output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun

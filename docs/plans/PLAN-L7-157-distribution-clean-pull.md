@@ -105,7 +105,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-26T18:37:05+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:9f632d58472f600686eeb6531e484db3ad159301fa9f22023e26fe48ac8888c4"
+        output_digest: "sha256:cacff0381a7376521e7f29cdc6c2377252455dfe2c9b61c62378f57b2c027c5a"
       - kind: smoke
         command: "bun src\\cli.ts distribution plan --tag v0.1.0 --json"
         runner: bun
