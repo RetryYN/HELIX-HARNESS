@@ -338,9 +338,17 @@ const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
     scriptPath: "scripts/setup-branch-protection.sh",
     requiresHumanApproval: true,
     reason:
-      "branch protection / required check application is a high-impact GitHub setting and remains plan-only until explicit human approval",
+      "branch protection / required check application is a high-impact GitHub setting and remains plan-only until explicit human approval / action-binding approval",
   },
 };
+
+function helixProjectBranchProtectionDecision(args: SetupArgs): SetupResult["branchProtection"] {
+  if (args.dryRun) return { applied: false, reason: "dry-run" };
+  if (args.applyBranchProtection) {
+    return { applied: false, reason: "action-binding-approval-required" };
+  }
+  return { applied: false, reason: "emit-only" };
+}
 
 const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
   schemaVersion: "helix-project-doctor-baseline.v1",
@@ -972,9 +980,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     importReport,
     consumerReadiness,
   });
-  const branchProtection = args.dryRun
-    ? { applied: false, reason: "dry-run" }
-    : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
+  const branchProtection = helixProjectBranchProtectionDecision(args);
   return {
     schemaVersion: "helix-project-setup.v1",
     setupCommand: "ut-tdd setup project",

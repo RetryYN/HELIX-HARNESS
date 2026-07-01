@@ -642,6 +642,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(preview.githubPlan.branchProtection.reason).toContain("human approval");
+    expect(preview.githubPlan.branchProtection.reason).toContain("action-binding approval");
     expect(preview.doctorBaseline.baselineCommands).toEqual(
       preview.postSetupWorkflow.verificationCommands,
     );
@@ -855,6 +856,47 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       nextRouteSource: "postSetupWorkflow.nextRoute",
       evidencePath: ".ut-tdd/evidence",
     });
+    expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
+  });
+
+  it("U-SETUP-021: HELIX project setup never applies branch protection without action-binding approval", () => {
+    const ghAdmin = (args: string[]) => {
+      const key = args.join(" ");
+      if (key === "auth status") return { ok: true, stdout: "" };
+      if (key === "api repos/{owner}/{repo}") {
+        return { ok: true, stdout: JSON.stringify({ permissions: { admin: true } }) };
+      }
+      if (key.includes("-X PUT")) return { ok: true, stdout: "{}" };
+      return { ok: true, stdout: "{}" };
+    };
+    const deps = mockDeps({
+      templates: baseTemplates,
+      isInteractive: true,
+      gh: ghAdmin,
+      confirm: () => true,
+      commandAvailable: (name) => ["bun", "git", "gh", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-B", dryRun: false, applyBranchProtection: true },
+      deps,
+    );
+
+    expect(result.githubPlan).toMatchObject({
+      planOnly: true,
+      appliesRemote: false,
+      applyCommandAvailable: false,
+      branchProtection: {
+        status: "emit_only",
+        requiresHumanApproval: true,
+      },
+    });
+    expect(result.branchProtection).toEqual({
+      applied: false,
+      reason: "action-binding-approval-required",
+    });
+    expect(deps.ghCalls).not.toContainEqual(["auth", "status"]);
     expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
