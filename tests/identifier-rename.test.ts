@@ -325,7 +325,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("builds a non-destructive cutover packet with dry-run, rollback, and monitoring plans", () => {
+  it("U-DECISIONREC-010: builds a non-destructive cutover packet with snapshot review, dry-run, rollback, and monitoring plans", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-"));
     try {
       writeDraftRenamePlan(root);
@@ -411,6 +411,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         sourceLedgerCheckedDate: "2026-06-30",
         invalidatedBy: plan.freezePolicy.reapprovalTriggers,
       });
+      expect(plan.snapshotReview).toMatchObject({
+        recordedCutoverSnapshotId: null,
+        recordedActionBindingSnapshotId: null,
+        currentSnapshotId: plan.cutoverSnapshot.snapshotId,
+        cutoverSnapshotMatchesCurrent: false,
+        actionBindingSnapshotMatchesCurrent: false,
+        driftWarning: null,
+      });
+      expect(plan.snapshotReview.requiredAction).toContain(
+        "current cutoverSnapshot.snapshotId before approval",
+      );
       expect(plan.generatedAt).toEqual(expect.any(String));
       expect(plan.sourceCommand).toBe("ut-tdd rename plan --json");
       expect(plan.freshness).toEqual({
@@ -475,6 +486,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           "action_binding_approval_record.reviewed_snapshot_binding does not match current cutoverSnapshot.snapshotId",
         ]),
       );
+      expect(plan.snapshotReview).toMatchObject({
+        recordedCutoverSnapshotId: CONCRETE_SNAPSHOT_ID,
+        recordedActionBindingSnapshotId: CONCRETE_SNAPSHOT_ID,
+        currentSnapshotId: plan.cutoverSnapshot.snapshotId,
+        cutoverSnapshotMatchesCurrent: false,
+        actionBindingSnapshotMatchesCurrent: false,
+        driftWarning: expect.stringContaining(
+          "does not match the current cutoverSnapshot.snapshotId",
+        ),
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -495,6 +516,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(plan.status).toBe("ready_for_cutover_packet");
       expect(plan.applyAuthorized).toBe(true);
       expect(plan.blockedReasons).toEqual([]);
+      expect(plan.snapshotReview).toMatchObject({
+        recordedCutoverSnapshotId: currentSnapshotId,
+        recordedActionBindingSnapshotId: currentSnapshotId,
+        currentSnapshotId,
+        cutoverSnapshotMatchesCurrent: true,
+        actionBindingSnapshotMatchesCurrent: true,
+        driftWarning: null,
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -585,9 +614,22 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         ]),
       );
       expect(payload.freezePolicy.concurrencyPolicy).toBe("single-run-no-concurrent-apply");
+      expect(payload.snapshotReview).toMatchObject({
+        currentSnapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        recordedCutoverSnapshotId: null,
+        recordedActionBindingSnapshotId: null,
+        driftWarning: null,
+      });
       expect(payload.provenanceRequirements).toEqual(
         expect.arrayContaining([expect.objectContaining({ item: "audit_record" })]),
       );
+
+      const text = runCliIn(root, ["rename", "plan"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("snapshot-review: current=sha256:");
+      expect(text.stdout).toContain("recordedCutover=-");
+      expect(text.stdout).toContain("recordedActionBinding=-");
+      expect(text.stdout).toContain("drift=no");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

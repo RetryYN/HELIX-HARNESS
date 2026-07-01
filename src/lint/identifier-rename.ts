@@ -103,6 +103,7 @@ export interface IdentifierRenameCutoverPlan {
     reapprovalTriggers: string[];
   };
   cutoverSnapshot: IdentifierRenameCutoverSnapshot;
+  snapshotReview: IdentifierRenameSnapshotReview;
   provenanceRequirements: Array<{
     item: string;
     evidence: string;
@@ -127,6 +128,16 @@ export interface IdentifierRenameCutoverSnapshot {
   evidenceDigest: string;
   sourceLedgerCheckedDate: string | null;
   invalidatedBy: string[];
+}
+
+export interface IdentifierRenameSnapshotReview {
+  recordedCutoverSnapshotId: string | null;
+  recordedActionBindingSnapshotId: string | null;
+  currentSnapshotId: string;
+  cutoverSnapshotMatchesCurrent: boolean;
+  actionBindingSnapshotMatchesCurrent: boolean;
+  driftWarning: string | null;
+  requiredAction: string;
 }
 
 const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
@@ -556,6 +567,10 @@ export function buildIdentifierRenameCutoverPlan(
     provenanceRequirements,
     sourceLedgerCheckedDate: loadCutoverSourceLedgerCheckedDate(root),
   });
+  const snapshotReview = buildIdentifierRenameSnapshotReview(
+    approvalEvaluation,
+    cutoverSnapshot.snapshotId,
+  );
   if (approvalEvaluation.approved) {
     if (approvalEvaluation.cutoverSnapshotId !== cutoverSnapshot.snapshotId) {
       blockedReasons.push(
@@ -617,6 +632,7 @@ export function buildIdentifierRenameCutoverPlan(
     stateBackupManifest,
     freezePolicy,
     cutoverSnapshot,
+    snapshotReview,
     provenanceRequirements,
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
@@ -695,6 +711,33 @@ function buildIdentifierRenameCutoverSnapshot(input: {
       ...snapshot,
     }),
     ...snapshot,
+  };
+}
+
+function buildIdentifierRenameSnapshotReview(
+  approval: CutoverApprovalEvaluation,
+  currentSnapshotId: string,
+): IdentifierRenameSnapshotReview {
+  const recordedCutoverSnapshotId = approval.cutoverSnapshotId || null;
+  const recordedActionBindingSnapshotId = approval.reviewedSnapshotBinding || null;
+  const cutoverSnapshotMatchesCurrent = recordedCutoverSnapshotId === currentSnapshotId;
+  const actionBindingSnapshotMatchesCurrent = recordedActionBindingSnapshotId === currentSnapshotId;
+  const hasRecordedSnapshot =
+    recordedCutoverSnapshotId !== null || recordedActionBindingSnapshotId !== null;
+  const driftWarning =
+    hasRecordedSnapshot && (!cutoverSnapshotMatchesCurrent || !actionBindingSnapshotMatchesCurrent)
+      ? "recorded cutover/action-binding snapshot does not match the current cutoverSnapshot.snapshotId; re-run rename plan and refresh approval evidence before any cutover"
+      : null;
+  return {
+    recordedCutoverSnapshotId,
+    recordedActionBindingSnapshotId,
+    currentSnapshotId,
+    cutoverSnapshotMatchesCurrent,
+    actionBindingSnapshotMatchesCurrent,
+    driftWarning,
+    requiredAction:
+      driftWarning ??
+      "record cutover_decision_record.cutover_snapshot_id and action_binding_approval_record.reviewed_snapshot_binding using the current cutoverSnapshot.snapshotId before approval",
   };
 }
 

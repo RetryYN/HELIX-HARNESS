@@ -76,6 +76,10 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   official URL と required field impact を固定検査する。`https` URL があるだけ、または source 名だけの
   ledger refresh では L14 cutover 根拠にせず、backup / rollback / audit / monitoring / concurrency /
   provenance に必要な field impact が揃うまで approval material と扱わない。
+  `buildIdentifierRenameCutoverPlan` は `snapshotReview` を返し、PLAN に記録済みの
+  `cutover_decision_record.cutover_snapshot_id` と `action_binding_approval_record.reviewed_snapshot_binding`、
+  current `cutoverSnapshot.snapshotId`、一致/不一致、drift warning、再承認 action を承認前から表示する。
+  approval record が concrete でない draft 状態でも current snapshot と記録済み snapshot の比較 surface を隠さない。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。

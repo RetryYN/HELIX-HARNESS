@@ -1335,6 +1335,9 @@ rename
     process.stdout.write(
       `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
     );
+    process.stdout.write(
+      `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
+    );
     if (plan.blockedReasons.length > 0) {
       for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
     }
