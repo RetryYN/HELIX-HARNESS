@@ -90,7 +90,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:31:29+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:3305eb23f6d8356e4ff01e2f139228670bba6d7ae0a5f1f0d9b20308b5a49406"
+        output_digest: "sha256:9d65bd6ac1ca0b4113f7786063f21cb2839d6d02715e2a21b805a8d30a68078e"
       - kind: unit_test
         command: "bun run vitest run tests/codex-hook-adapter.test.ts tests/setup.test.ts tests/doctor.test.ts tests/plan-lint.test.ts tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts"
         runner: bun
@@ -106,7 +106,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T03:35:22+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:3305eb23f6d8356e4ff01e2f139228670bba6d7ae0a5f1f0d9b20308b5a49406"
+        output_digest: "sha256:9d65bd6ac1ca0b4113f7786063f21cb2839d6d02715e2a21b805a8d30a68078e"
       - kind: unit_test
         command: "bun run test"
         runner: bun

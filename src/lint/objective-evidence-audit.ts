@@ -13,6 +13,18 @@ export interface ObjectiveEvidenceAuditResult {
   violations: string[];
   completionStatus: "ready" | "blocked";
   provedRows: number;
+  objectiveProgress: ObjectiveProgress;
+}
+
+export interface ObjectiveProgress {
+  method: "objective-evidence-audit.v1";
+  percent: number;
+  provedRequirements: number;
+  totalRequirements: number;
+  blockedRequirements: number;
+  completionStatus: "ready" | "blocked";
+  completionClaimAllowed: boolean;
+  basis: string;
 }
 
 const PROVED_REQUIREMENT_IDS = [
@@ -28,6 +40,7 @@ const PROVED_REQUIREMENT_IDS = [
 ] as const;
 
 const COMPLETION_REQUIREMENT_ID = "G-10";
+const TOTAL_OBJECTIVE_REQUIREMENTS = PROVED_REQUIREMENT_IDS.length + 1;
 
 const REQUIRED_COMPLETION_ARTIFACTS = [
   "src/lint/outstanding.ts",
@@ -96,7 +109,53 @@ export function analyzeObjectiveEvidenceAudit(
     violations,
     completionStatus: input.outstanding.completionReadiness.status,
     provedRows,
+    objectiveProgress: objectiveProgressForAudit(input, provedRows),
   };
+}
+
+export function objectiveProgressForAudit(
+  input: ObjectiveEvidenceAuditInput,
+  provedRows: number = countRowsWithStatus(input.auditText, "proved"),
+): ObjectiveProgress {
+  const readiness = input.outstanding.completionReadiness;
+  const effectiveProvedRows = readiness.ok
+    ? Math.min(provedRows, TOTAL_OBJECTIVE_REQUIREMENTS)
+    : Math.min(provedRows, PROVED_REQUIREMENT_IDS.length);
+  const blockedRequirements = readiness.ok ? 0 : 1;
+  const percent = Math.round((effectiveProvedRows / TOTAL_OBJECTIVE_REQUIREMENTS) * 100);
+  const basis = readiness.ok
+    ? `${effectiveProvedRows}/${TOTAL_OBJECTIVE_REQUIREMENTS} objective evidence rows proved; completionReadiness is ready`
+    : `${effectiveProvedRows}/${TOTAL_OBJECTIVE_REQUIREMENTS} objective evidence rows proved; G-10 is blocked by completionReadiness`;
+  return {
+    method: "objective-evidence-audit.v1",
+    percent,
+    provedRequirements: effectiveProvedRows,
+    totalRequirements: TOTAL_OBJECTIVE_REQUIREMENTS,
+    blockedRequirements,
+    completionStatus: readiness.status,
+    completionClaimAllowed: readiness.ok && percent === 100,
+    basis,
+  };
+}
+
+export function loadObjectiveProgress(
+  repoRoot: string = process.cwd(),
+  outstanding?: OutstandingWork,
+): ObjectiveProgress | null {
+  try {
+    const effectiveOutstanding = outstanding ?? computeOutstandingWork(repoRoot);
+    const input: ObjectiveEvidenceAuditInput = {
+      auditText: readFileSync(
+        join(repoRoot, "docs", "governance", "helix-objective-evidence-audit.md"),
+        "utf8",
+      ),
+      outstanding: effectiveOutstanding,
+      repoRoot,
+    };
+    return analyzeObjectiveEvidenceAudit(input).objectiveProgress;
+  } catch {
+    return null;
+  }
 }
 
 function checkCompletionRow(
@@ -144,7 +203,7 @@ function countRowsWithStatus(text: string, status: string): number {
 export function objectiveEvidenceAuditMessages(result: ObjectiveEvidenceAuditResult): string[] {
   if (result.ok) {
     return [
-      `objective-evidence-audit - OK (completion=${result.completionStatus}, proved=${result.provedRows})`,
+      `objective-evidence-audit - OK (completion=${result.completionStatus}, progress=${result.objectiveProgress.percent}%, proved=${result.objectiveProgress.provedRequirements}/${result.objectiveProgress.totalRequirements})`,
     ];
   }
   const detail = result.violations.slice(0, 8).join("; ");

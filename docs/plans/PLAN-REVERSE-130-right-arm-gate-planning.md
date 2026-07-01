@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:19:36+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:0e07600b7aa9b127e32428e31a708a56e0ac7183674dc92105862eeaed8d7cc8"
+        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -82,7 +82,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:21:31+09:00"
         evidence_path: tests/right-arm-verification-strategy.test.ts
-        output_digest: "sha256:0e07600b7aa9b127e32428e31a708a56e0ac7183674dc92105862eeaed8d7cc8"
+        output_digest: "sha256:22672f836c4d969a36752dafb9acaa5e84c1c4f3e953d6947846f3dee0277028"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

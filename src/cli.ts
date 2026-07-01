@@ -50,6 +50,7 @@ import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
 } from "./lint/identifier-rename";
+import { loadObjectiveProgress } from "./lint/objective-evidence-audit";
 import {
   completionDecisionPacketForOutstanding,
   completionReadinessLine,
@@ -634,11 +635,12 @@ program
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
       sourceCommand: "ut-tdd status --json",
     });
+    const objectiveProgress = loadObjectiveProgress(process.cwd(), outstanding);
     if (opts.json) {
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
@@ -651,6 +653,11 @@ program
       }
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
+      if (objectiveProgress) {
+        process.stdout.write(
+          `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed})\n`,
+        );
+      }
       if (!completionDecisionPacket.ok) {
         const primaryPacket =
           workflowNextActions[0]?.decisionPacketCommand ??

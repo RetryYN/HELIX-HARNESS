@@ -391,6 +391,7 @@ describe("runDoctor", () => {
   it("includes objective evidence audit hard gate in doctor output", () => {
     const r = runDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: objective-evidence-audit - OK")).toBe(true);
+    expect(hasDoctorMessage(r.messages, "progress=90%")).toBe(true);
   });
 
   it("includes G1/G3 trace gates in doctor output", () => {

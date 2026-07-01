@@ -75,7 +75,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T02:15:00+09:00"
         evidence_path: docs/test-design/harness/L7-unit-test-design.md
-        output_digest: "sha256:3305eb23f6d8356e4ff01e2f139228670bba6d7ae0a5f1f0d9b20308b5a49406"
+        output_digest: "sha256:9d65bd6ac1ca0b4113f7786063f21cb2839d6d02715e2a21b805a8d30a68078e"
 ---
 
 # PLAN-REVERSE-202: L7.5 RUN & Debug runtime verification back-fill

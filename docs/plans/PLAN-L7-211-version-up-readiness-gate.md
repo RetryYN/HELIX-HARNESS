@@ -55,7 +55,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:55:24+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -79,7 +79,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:55:24+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -104,7 +104,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -120,7 +120,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: src/cli.ts
-        output_digest: "sha256:52c73f9ae3234e11ed854dbbebe66001803e699fd0e8d57a9cf7d9de2ab8933c"
+        output_digest: "sha256:b1254925c4dcbd8df051acd3c3af5895f2c2981c9b49f280c3bdc3878ee4d3a7"
       - kind: unit_test
         command: "bun run test"
         runner: bun
@@ -128,7 +128,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T05:32:31+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
@@ -153,7 +153,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-07-01T03:35:00+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -186,7 +186,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T19:21:30+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -211,7 +211,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T18:59:06+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -236,7 +236,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T15:47:45+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -261,7 +261,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:30:08+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -277,7 +277,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T14:29:20+09:00"
         evidence_path: tests/version-up-readiness.test.ts
-        output_digest: "sha256:8dc5ee359b21c14b175ae68a9728df26a0e605034b038300f4e4652149079894"
+        output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
       - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun

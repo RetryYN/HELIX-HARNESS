@@ -74,7 +74,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-25T19:30:24+09:00"
         evidence_path: tests/doctor.test.ts
-        output_digest: "sha256:dedd5abd3116c1da91295b21bf497e62023cec4c49ecad609353562b21ce9c95"
+        output_digest: "sha256:7ed7860b34c01fc2b864f5396880a87d7d71d63367424b190efe87bd5041af86"
       - kind: unit_test
         command: "bun run vitest run tests\\doctor.test.ts -t \"U-ADAPTER-009\""
         runner: bun

@@ -263,7 +263,9 @@ describe("cutover readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.sourceLedgerViolations).toContainEqual({
       subject: "docs/process/forward/L08-L14-verification-phase.md",
-      reason: "Cutover source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+      reason: expect.stringMatching(
+        /^Cutover source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+      ),
     });
   });
 

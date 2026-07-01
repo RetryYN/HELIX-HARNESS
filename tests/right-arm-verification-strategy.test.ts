@@ -138,8 +138,12 @@ describe("right-arm verification strategy", () => {
     });
 
     expect(result.ok).toBe(false);
-    expect(result.sourceLedgerViolations).toContain(
-      "Verification source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    expect(result.sourceLedgerViolations).toEqual(
+      expect.arrayContaining([
+        expect.stringMatching(
+          /^Verification source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+        ),
+      ]),
     );
   });
 

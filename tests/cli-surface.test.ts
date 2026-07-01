@@ -362,6 +362,27 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
+  it("U-OUTSTANDING-012: exposes active objective progress as a percentage on the live status surface", () => {
+    const json = runCli(["status", "--json"]);
+    expect(json.status).toBe(0);
+    const payload = JSON.parse(json.stdout);
+    expect(payload.objectiveProgress).toMatchObject({
+      method: "objective-evidence-audit.v1",
+      percent: 90,
+      provedRequirements: 9,
+      totalRequirements: 10,
+      blockedRequirements: 1,
+      completionStatus: "blocked",
+      completionClaimAllowed: false,
+    });
+
+    const text = runCli(["status"]);
+    expect(text.status).toBe(0);
+    expect(text.stdout).toContain(
+      "objective-progress: 90% (blocked; completion-claim-allowed=false)",
+    );
+  });
+
   it("exposes a completion decision packet for outstanding PO and approval blockers", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-packet-"));
     try {

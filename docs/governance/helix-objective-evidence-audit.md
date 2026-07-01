@@ -12,6 +12,13 @@ External source heads checked on 2026-06-30:
 - `unison-ai-product/UT-TDD_AGENT-HARNESS` default branch `main`: `7f83ca811353ed90b3e981178a1b0c9977dd5863`
 - `RetryYN/ai-dev-kit-vscode` default branch `main`: `1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23`
 
+Verification / progress source basis re-checked on 2026-07-01:
+
+- NIST SSDF SP 800-218: verification and provenance evidence must remain inspectable rather than chat-only.
+- ISO/IEC/IEEE 29148: requirements evidence is counted by requirement information and verification basis, not by implementation file count alone.
+- ISTQB Glossary: test basis / test oracle semantics constrain progress claims; green execution without the right oracle is weak evidence.
+- Scrum Guide 2020: progress toward the Product Goal is inspected/adapted, so blocked decision work remains visible instead of being hidden behind completed increments.
+
 ## Requirement Evidence Matrix
 
 | ID | Objective requirement | Status | Authoritative evidence | Semantic proof |
@@ -24,8 +31,24 @@ External source heads checked on 2026-06-30:
 | G-06 | Test-design side includes verification strategy, not only test strategy. | proved | `docs/test-design/helix/L3-pillar-acceptance-test-design.md`<br>`docs/test-design/helix/L4-pillar-system-test-design.md`<br>`docs/test-design/helix/L5-pillar-integration-test-design.md`<br>`docs/test-design/helix/L6-pillar-unit-test-design.md`<br>`docs/test-design/harness/L7-unit-test-design.md`<br>`tests/vmodel-pair.test.ts` | The right-arm documents distinguish unit/system/integration/acceptance tests from runtime verification claims. Runtime parity, visualization, and acceptance closure require L7.5 evidence or explicit substitute oracles rather than count-only test presence. |
 | G-07 | ClaudeCode and Codex plugin/config setup is preimplemented so new HELIX adoption pulls internal adapter configuration. | proved | `.claude/settings.json`<br>`.codex/config.toml`<br>`.codex/hooks.json`<br>`src/setup/templates.ts`<br>`src/lint/codex-hook-adapter.ts`<br>`tests/setup.test.ts`<br>`tests/codex-hook-adapter.test.ts`<br>`tests/doctor.test.ts` | Setup emits Claude/Codex adapter templates, including Codex hooks feature enablement. Doctor now proves both `.codex/hooks.json` wiring and `.codex/config.toml` `[features].hooks=true`; hosted/API tools remain explicitly outside mechanical hook coverage. |
 | G-08 | L3 includes test/verification performance NFR and UT-TDD naming is being moved to HELIX. | proved | `docs/design/helix/L3-requirements/pillar-functional-requirements.md`<br>`docs/test-design/helix/L3-pillar-acceptance-test-design.md`<br>`docs/test-design/helix/L6-pillar-unit-test-design.md`<br>`tests/vmodel-pair.test.ts`<br>`tests/rule-drift.test.ts` | `HR-NFR-P5-03` defines fast/default/full profiles, worker/resource budget, timeout, p95 duration budget, and evidence. HELIX prose is the product language; machine identifiers such as `ut-tdd`, `.ut-tdd`, and `UT-TDD:managed` are intentionally deferred to `PLAN-M-02` to avoid unsafe partial rename. |
-| G-09 | The completion claim is semantic, not only quantitative. | proved | `docs/governance/helix-objective-evidence-audit.md`<br>`tests/goal-evidence-audit.test.ts`<br>`tests/upstream-adoption.test.ts`<br>`tests/legacy-adoption.test.ts`<br>`tests/roadmap.test.ts`<br>`tests/doctor.test.ts` | Evidence rows require current-source commits, L3-L6 descent, L7 decision/oracle coverage, doctor gates, and explicit non-goals. File counts, green test counts, or roadmap span counts alone do not prove adoption. |
+| G-09 | The completion claim is semantic, not only quantitative. | proved | `docs/governance/helix-objective-evidence-audit.md`<br>`src/lint/objective-evidence-audit.ts`<br>`tests/goal-evidence-audit.test.ts`<br>`tests/upstream-adoption.test.ts`<br>`tests/legacy-adoption.test.ts`<br>`tests/roadmap.test.ts`<br>`tests/doctor.test.ts`<br>`bun run src/cli.ts status --json` | Evidence rows require current-source commits, L3-L6 descent, L7 decision/oracle coverage, doctor gates, and explicit non-goals. File counts, green test counts, or roadmap span counts alone do not prove adoption. `objectiveProgress` is evidence-row based: current progress is 90% (9/10 objective rows proved), while `completionClaimAllowed=false` because G-10 remains blocked. |
 | G-10 | L14 / whole-program completion is claimed only when no outstanding PLAN, version-up parked item, PO/S4 decision, human approval, irreversible migration, or open defer remains. | blocked | `bun run src/cli.ts status --json`<br>`src/lint/outstanding.ts`<br>`src/lint/completion-decision-packet.ts`<br>`tests/outstanding.test.ts`<br>`tests/completion-decision-packet.test.ts`<br>`tests/cli-surface.test.ts`<br>`docs/process/forward/L08-L14-verification-phase.md`<br>`docs/process/gates.md` | Current `outstanding.completionReadiness.ok=false`; blockers are `human_approval_pending`, `irreversible_migration_pending`, `non_terminal_plans`, `po_decision_pending`, and `version_up_parked`. Outstanding plans are `PLAN-DISCOVERY-07-design-bottomup-mode`, `PLAN-DISCOVERY-10-helix-asset-visualization`, `PLAN-L7-146-serverless-readonly-share`, and `PLAN-M-02-helix-identifier-rename`. Therefore the active objective is not complete even though the verification and workflow hardening slices are green. Required actions remain: record the PO/S4 decision before promotion, rejection, or Forward merge; record required human/action-binding approval before executing the high-impact action; keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion; obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work. |
+
+## Objective Progress
+
+`objectiveProgress` is emitted by `ut-tdd status --json` from the same audit
+matrix and current `outstanding.completionReadiness`. The percentage is not a
+whole-program completion claim:
+
+- method: `objective-evidence-audit.v1`
+- percent: 90
+- provedRequirements: 9
+- totalRequirements: 10
+- blockedRequirements: 1
+- completionClaimAllowed: false
+
+G-10 is the remaining blocked requirement. The percentage must stay coupled to
+`completionClaimAllowed=false` until `outstanding.completionReadiness.ok=true`.
 
 ## Known Non-Goals
 

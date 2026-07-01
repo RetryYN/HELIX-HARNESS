@@ -34,6 +34,9 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
     expect(text).toContain("semantic, not only quantitative");
+    expect(text).toContain("objectiveProgress");
+    expect(text).toContain("percent: 90");
+    expect(text).toContain("completionClaimAllowed=false");
     expect(text).toContain("version_up_parked");
     expect(completionRow).toContain("PLAN-DISCOVERY-07-design-bottomup-mode");
     expect(completionRow).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
@@ -68,6 +71,7 @@ describe("HELIX objective evidence audit", () => {
       "src/schema/roadmap.ts",
       "src/lint/roadmap-registry.ts",
       "tests/roadmap.test.ts",
+      "src/lint/objective-evidence-audit.ts",
       "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
       "docs/test-design/helix/L6-pillar-unit-test-design.md",
       ".claude/settings.json",
@@ -119,6 +123,15 @@ describe("HELIX objective evidence audit", () => {
     });
 
     expect(result.ok).toBe(false);
+    expect(result.objectiveProgress).toMatchObject({
+      method: "objective-evidence-audit.v1",
+      percent: 90,
+      provedRequirements: 9,
+      totalRequirements: 10,
+      blockedRequirements: 1,
+      completionStatus: "blocked",
+      completionClaimAllowed: false,
+    });
     expect(result.violations).toEqual(
       expect.arrayContaining([
         "G-10: completion row must be blocked",
@@ -133,6 +146,18 @@ describe("HELIX objective evidence audit", () => {
     const result = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput());
     expect(result.ok).toBe(true);
     expect(result.completionStatus).toBe("blocked");
-    expect(objectiveEvidenceAuditMessages(result)[0]).toContain("objective-evidence-audit - OK");
+    expect(result.objectiveProgress).toMatchObject({
+      method: "objective-evidence-audit.v1",
+      percent: 90,
+      provedRequirements: 9,
+      totalRequirements: 10,
+      blockedRequirements: 1,
+      completionStatus: "blocked",
+      completionClaimAllowed: false,
+    });
+    expect(result.objectiveProgress.basis).toContain("G-10 is blocked");
+    expect(objectiveEvidenceAuditMessages(result)[0]).toContain(
+      "objective-evidence-audit - OK (completion=blocked, progress=90%, proved=9/10)",
+    );
   });
 });

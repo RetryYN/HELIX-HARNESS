@@ -303,10 +303,16 @@ describe("version-up-readiness", () => {
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       checkedDate: "2026-01-01",
       stale: true,
-      violation: "Version-up source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+      violation: expect.stringMatching(
+        /^Version-up source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+      ),
     });
-    expect(packets[0].blockedReasons).toContain(
-      "source ledger must be refreshed before activation: Version-up source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining([
+        expect.stringMatching(
+          /^source ledger must be refreshed before activation: Version-up source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+        ),
+      ]),
     );
     expect(packets[0].applyCommandAvailable).toBe(false);
   });
@@ -641,7 +647,9 @@ describe("version-up-readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.sourceLedgerViolations).toContainEqual({
       subject: "docs/process/modes/version-up.md",
-      reason: "Version-up source ledger checked date is stale: 2026-01-01 (180d > 90d)",
+      reason: expect.stringMatching(
+        /^Version-up source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+      ),
     });
   });
 

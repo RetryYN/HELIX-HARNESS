@@ -49,6 +49,31 @@ dependencies:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-01T09:10:00+09:00"
+    tests_green_at: "2026-07-01T09:10:00+09:00"
+    verdict: approve
+    scope: "Active objective progress is now emitted as `objectiveProgress.percent` from the objective evidence audit denominator. The current status is 90% (9/10 proved) with `completionClaimAllowed=false`, so progress visibility does not weaken the G-10 whole-program/L14 completion blocker."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun run vitest run tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/doctor.test.ts --run"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-01T09:10:00+09:00"
+        evidence_path: tests/goal-evidence-audit.test.ts
+        output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-01T09:10:00+09:00"
+        evidence_path: src/lint/objective-evidence-audit.ts
+        output_digest: "sha256:159e8b5c0c2ba3c65558c47b419386d3e0c33e14b1e07f6406a265a20b1ac535"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T17:06:13+09:00"
     tests_green_at: "2026-06-30T17:06:13+09:00"
     verdict: approve
@@ -63,7 +88,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:06:13+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:45b91f37110330ab1b3d4ab51a1c187da8638375caf85b5bc771288c72edc0b8"
+        output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
@@ -71,7 +96,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T17:06:13+09:00"
         evidence_path: src/lint/objective-evidence-audit.ts
-        output_digest: "sha256:ad639cd4b1fe93faf1db9f7affaef4705cdf235a40675101ed3a2d23655f9fb7"
+        output_digest: "sha256:159e8b5c0c2ba3c65558c47b419386d3e0c33e14b1e07f6406a265a20b1ac535"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-06-30T11:02:00+09:00"
@@ -88,7 +113,7 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-06-30T11:01:00+09:00"
         evidence_path: tests/goal-evidence-audit.test.ts
-        output_digest: "sha256:45b91f37110330ab1b3d4ab51a1c187da8638375caf85b5bc771288c72edc0b8"
+        output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
 ---
 
 # PLAN-L7-209: active objective evidence audit
@@ -128,4 +153,7 @@ adapter config, performance NFR, and naming migration.
   aggregation, so semantic completion drift cannot stay test-only.
 - The audit cites both external source commits observed for this continuation.
 - The audit distinguishes semantic proof from test count or roadmap count.
+- `ut-tdd status --json` exposes `objectiveProgress.percent`, and current
+  progress is 90% with `completionClaimAllowed=false` while G-10 remains
+  blocked.
 - Targeted audit tests, doctor, and full tests pass before commit.
