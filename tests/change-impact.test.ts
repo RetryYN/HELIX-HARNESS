@@ -30,6 +30,20 @@ describe("change-impact lint", () => {
     expect(changeImpactMessages(result)[0]).toContain("OK");
   });
 
+  it("treats HELIX design and test-design docs as counterpart artifacts", () => {
+    const result = analyzeChangeImpact({
+      changedFiles: [
+        "src/lint/foo.ts",
+        "docs/design/helix/L6-function-design/foo.md",
+        "docs/test-design/helix/L6-foo-unit-test-design.md",
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.missingDesign).toBe(false);
+    expect(result.missingTest).toBe(false);
+  });
+
   it("ignores documentation-only changes", () => {
     const result = analyzeChangeImpact({
       changedFiles: ["docs/design/harness/L6-function-design/foo.md"],
@@ -76,6 +90,19 @@ describe("change-impact lint", () => {
         message: "change set is missing source",
       }),
     );
+  });
+
+  it("includes HELIX design docs in change-set integrity categories", () => {
+    const result = analyzeChangeSetIntegrity({
+      changedFiles: [
+        "src/lint/foo.ts",
+        "docs/design/helix/L6-function-design/foo.md",
+        "docs/test-design/helix/L6-foo-unit-test-design.md",
+      ],
+    });
+
+    expect(result.categories).toEqual(["source", "design", "test"]);
+    expect(result.warnings).toEqual([]);
   });
 
   it("blocks when dependent modules exist and mapped regression tests are untouched", () => {

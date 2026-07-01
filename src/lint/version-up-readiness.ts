@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -45,6 +46,7 @@ export interface VersionUpReadinessInput {
   modeCatalog: string;
   modeDoc: string;
   discoveryPlan: string;
+  repoHeadSha?: string | null;
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: VersionUpReadinessPlan[];
 }
@@ -107,6 +109,7 @@ export interface VersionUpActivationPacket {
 
 export interface VersionUpActivationSnapshot {
   snapshotId: string;
+  headSha: string | null;
   releaseTrigger: string;
   versionTarget: string | null;
   planStatus: string;
@@ -308,6 +311,7 @@ const ACTIVATION_RECORD_NAME = "activation_decision_record";
 const ACTIVATION_RECORD_FIELDS = [
   "allowed_outcome",
   "target_version_or_release_trigger",
+  "activation_snapshot_id",
   "activation_route",
   "review_by",
   "approval_scope",
@@ -443,6 +447,17 @@ function parsePlan(file: string, content: string): VersionUpReadinessPlan {
   };
 }
 
+function readRepoHeadSha(repoRoot: string): string | null {
+  try {
+    return execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return null;
+  }
+}
+
 export function loadVersionUpReadinessInput(
   repoRoot: string = process.cwd(),
 ): VersionUpReadinessInput {
@@ -478,6 +493,7 @@ export function loadVersionUpReadinessInput(
       join(repoRoot, "docs", "plans", "PLAN-DISCOVERY-09-version-up-mode.md"),
       "utf8",
     ),
+    repoHeadSha: readRepoHeadSha(repoRoot),
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans,
   };
@@ -639,6 +655,28 @@ export function analyzeVersionUpReadiness(
     )) {
       violations.push({ subject: plan.plan_id, reason });
     }
+    const sourceLedgerFreshnessValue = record(
+      plan,
+      ACTIVATION_RECORD_NAME,
+      "source_ledger_freshness",
+    );
+    const currentLedgerCheckedDate = buildVersionUpSourceLedgerFreshness(
+      input.modeDoc,
+      sourceLedger,
+    ).checkedDate;
+    const recordedLedgerCheckedDate = sourceLedgerFreshnessValue.match(
+      /\bchecked[= ](\d{4}-\d{2}-\d{2})\b/i,
+    )?.[1];
+    if (
+      currentLedgerCheckedDate &&
+      recordedLedgerCheckedDate &&
+      recordedLedgerCheckedDate !== currentLedgerCheckedDate
+    ) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: `source_ledger_freshness checked date ${recordedLedgerCheckedDate} does not match current Version-up source ledger checked ${currentLedgerCheckedDate}`,
+      });
+    }
     for (const field of missingRecordFields(
       plan.text,
       PARKED_REVIEW_RECORD_NAME,
@@ -702,11 +740,10 @@ export function buildVersionUpActivationPackets(
   return input.plans
     .filter((plan) => plan.versionTarget !== null)
     .map((plan) =>
-      buildVersionUpActivationPacket(
-        plan,
-        sourceLedgerFreshness,
-        input.semanticFeatureFrontierRecords,
-      ),
+      buildVersionUpActivationPacket(plan, sourceLedgerFreshness, {
+        semanticFeatureFrontierRecords: input.semanticFeatureFrontierRecords,
+        repoHeadSha: input.repoHeadSha,
+      }),
     )
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
@@ -838,8 +875,12 @@ export function buildVersionUpActivationPacket(
     columns: [],
     rows: [],
   }),
-  semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[],
+  options: {
+    semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
+    repoHeadSha?: string | null;
+  } = {},
 ): VersionUpActivationPacket {
+  const repoHeadSha = options.repoHeadSha ?? null;
   const activationDecision = recordValues(plan.text, ACTIVATION_RECORD_NAME, [
     ...ACTIVATION_RECORD_FIELDS,
   ]);
@@ -859,11 +900,11 @@ export function buildVersionUpActivationPacket(
   const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
     plan.text.toLowerCase().includes(term.toLowerCase()),
   );
-  const activationReadinessChecks = buildActivationReadinessChecks(
-    externalBoundaries,
+  const activationReadinessChecks = buildActivationReadinessChecks(externalBoundaries, {
     externalRehearsal,
+    costGuardrails,
     provenance,
-  );
+  });
   const activationReadinessSummary = buildActivationReadinessSummary(
     externalBoundaries,
     activationReadinessChecks,
@@ -878,9 +919,11 @@ export function buildVersionUpActivationPacket(
     provenance,
     sourceLedgerFreshness,
     reapprovalTriggers,
+    repoHeadSha,
   });
   const blockedReasons = [
     ...blockedActivationReasons(plan, actionBindingApproval, externalBoundaries),
+    ...(repoHeadSha ? [] : ["activation snapshot is not bound to a readable git HEAD sha"]),
     ...activationReadinessBlockedReasons(activationReadinessChecks),
     ...sourceLedgerActivationBlockedReasons(sourceLedgerFreshness),
   ];
@@ -902,10 +945,13 @@ export function buildVersionUpActivationPacket(
     applyCommandAvailable: false,
     activationAllowed: false,
     allowedOutcomes: [...ACTIVATION_ALLOWED_OUTCOMES],
-    semanticFeatureFrontierRecord: semanticFrontierBindingForPlan(semanticFeatureFrontierRecords, {
-      planId: plan.plan_id,
-      classification: "parked_future_version",
-    }),
+    semanticFeatureFrontierRecord: semanticFrontierBindingForPlan(
+      options.semanticFeatureFrontierRecords,
+      {
+        planId: plan.plan_id,
+        classification: "parked_future_version",
+      },
+    ),
     activationDecision,
     parkedReview,
     actionBindingApproval,
@@ -1044,6 +1090,7 @@ function buildVersionUpActivationSnapshot(input: {
   provenance: Record<string, string>;
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
+  repoHeadSha: string | null;
 }): VersionUpActivationSnapshot {
   const releaseTrigger =
     input.activationDecision.target_version_or_release_trigger || input.plan.versionTarget || "";
@@ -1061,6 +1108,7 @@ function buildVersionUpActivationSnapshot(input: {
     source_ledger_missing_rows: input.sourceLedgerFreshness.missingRows,
   });
   const snapshot = {
+    headSha: input.repoHeadSha,
     releaseTrigger,
     versionTarget: input.plan.versionTarget,
     planStatus: input.plan.status,
@@ -1119,22 +1167,31 @@ function buildVersionUpActivationReapprovalTriggers(): VersionUpActivationReappr
 
 function buildActivationReadinessChecks(
   externalBoundaries: readonly string[],
-  externalRehearsal: Record<string, string>,
-  provenance: Record<string, string>,
+  records: {
+    externalRehearsal: Record<string, string>;
+    costGuardrails: Record<string, string>;
+    provenance: Record<string, string>;
+  },
 ): VersionUpActivationReadinessCheck[] {
   if (externalBoundaries.length === 0) return [];
-  return ACTIVATION_REHEARSAL_REQUIRED_EVIDENCE.map((check) => {
-    const evidence = externalRehearsal[check] ?? provenance[check] ?? "";
-    const pending = activationEvidenceIsPending(evidence);
-    return {
-      check,
-      status: pending ? "pending_evidence" : "present",
-      evidence,
-      reason: pending
-        ? "external activation requires concrete rehearsal output before approval"
-        : "concrete rehearsal evidence recorded",
-    };
-  });
+  return [...ACTIVATION_REHEARSAL_REQUIRED_EVIDENCE, ...COST_GUARDRAIL_RECORD_FIELDS].map(
+    (check) => {
+      const evidence =
+        records.externalRehearsal[check] ??
+        records.costGuardrails[check] ??
+        records.provenance[check] ??
+        "";
+      const pending = activationEvidenceIsPending(evidence);
+      return {
+        check,
+        status: pending ? "pending_evidence" : "present",
+        evidence,
+        reason: pending
+          ? "external activation requires concrete rehearsal output before approval"
+          : "concrete rehearsal evidence recorded",
+      };
+    },
+  );
 }
 
 function buildActivationReadinessSummary(

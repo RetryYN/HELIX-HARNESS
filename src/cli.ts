@@ -248,7 +248,10 @@ function gitBranch(): string | null {
 
 function gitHead(): string | null {
   try {
-    return execFileSync("git", ["rev-parse", "--short", "HEAD"], { encoding: "utf8" }).trim();
+    return execFileSync("git", ["rev-parse", "--short", "HEAD"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
   } catch {
     return null;
   }
@@ -1394,6 +1397,9 @@ versionUp
       );
       process.stdout.write(packetFreshnessLine(packet));
       process.stdout.write(
+        `  activation-snapshot: snapshotId=${packet.activationSnapshot.snapshotId} headSha=${packet.activationSnapshot.headSha ?? "-"} sourceLedgerCheckedDate=${packet.activationSnapshot.sourceLedgerCheckedDate ?? "-"}\n`,
+      );
+      process.stdout.write(
         `  readiness: status=${packet.activationReadinessSummary.status} present=${packet.activationReadinessSummary.presentChecks} pending=${packet.activationReadinessSummary.pendingChecks} total=${packet.activationReadinessSummary.totalChecks} sourceLedgerFresh=${packet.activationReadinessSummary.sourceLedgerFresh}\n`,
       );
       for (const checkName of packet.activationReadinessSummary.pendingCheckNames) {
@@ -1405,6 +1411,11 @@ versionUp
       for (const related of packet.relatedDecisionPackets) {
         process.stdout.write(
           `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+        );
+      }
+      for (const trigger of packet.reapprovalTriggers) {
+        process.stdout.write(
+          `  reapproval-trigger: ${trigger.trigger} -> ${trigger.requiredAction}\n`,
         );
       }
     }
@@ -2132,10 +2143,14 @@ handover
     const liveCompletionDecisionPacket = completionDecisionPacketForOutstanding(liveOutstanding, {
       sourceCommand: "ut-tdd handover",
     });
+    const workflowNextAction = workflowNextActionForOutstanding(liveOutstanding);
+    const workflowNextActions = workflowNextActionsForOutstanding(liveOutstanding);
     const status = {
       ...pointer,
       outstanding: liveOutstanding,
       completionDecisionPacket: liveCompletionDecisionPacket,
+      workflowNextAction,
+      workflowNextActions,
       exists: true,
       stale,
       stale_reasons: stale ? [`updated_at is older than 24h: ${pointer.updated_at}`] : [],
@@ -2151,6 +2166,15 @@ handover
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
     process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
     process.stdout.write(`${completionReadinessLine(liveOutstanding)}\n`);
+    process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
+    if (workflowNextActions.length > 0) {
+      process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
+      for (const item of workflowNextActions) {
+        process.stdout.write(
+          `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute}\n`,
+        );
+      }
+    }
     if (!liveCompletionDecisionPacket.ok) {
       const packetCommands = [
         ...new Set(
@@ -3946,6 +3970,15 @@ setupCommand
     process.stdout.write(
       `post-setup-workflow: ${r.postSetupWorkflow.nextRoute} readiness=${r.postSetupWorkflow.readinessOk} gates=${r.postSetupWorkflow.unmetGates.length}\n`,
     );
+    for (const action of r.postSetupWorkflow.nextActions) {
+      process.stdout.write(`post-setup-next-action: ${action}\n`);
+    }
+    for (const blocker of r.postSetupWorkflow.blockedUntil) {
+      process.stdout.write(`blocked-until: ${blocker}\n`);
+    }
+    for (const command of r.postSetupWorkflow.verificationCommands) {
+      process.stdout.write(`verification-command: ${command}\n`);
+    }
     process.stdout.write(
       `github-plan: ${r.githubPlan.schemaVersion} planOnly=${r.githubPlan.planOnly} requiredChecks=${r.githubPlan.requiredChecks.join(",")}\n`,
     );

@@ -107,6 +107,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
+    repoHeadSha: "0123456789abcdef0123456789abcdef01234567",
     semanticFeatureFrontierRecords: [
       {
         recordName: "semantic_feature_frontier_record",
@@ -297,6 +298,7 @@ describe("version-up-readiness", () => {
       classification: "parked_future_version",
       completionClaimAllowed: false,
     });
+    expect(packet.activationDecision.activation_snapshot_id).toBe("activationSnapshot.snapshotId");
     expect(packet.activationDecision.activation_route).toContain("add-feature");
     expect(packet.parkedReview.decision_packet_route).toContain("completion packet");
     expect(packet.externalBoundaries).toEqual([
@@ -366,19 +368,34 @@ describe("version-up-readiness", () => {
           check: "audit_record",
           status: "pending_evidence",
         }),
+        expect.objectContaining({
+          check: "pages_limit",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "exceed_action",
+          status: "pending_evidence",
+        }),
       ]),
     );
     expect(packet.activationReadinessSummary).toMatchObject({
       status: "pending_evidence",
-      totalChecks: 12,
-      presentChecks: 4,
-      pendingChecks: 8,
+      totalChecks: 17,
       sourceLedgerFresh: true,
       sourceLedgerViolation: null,
       activationAllowed: false,
     });
     expect(packet.activationReadinessSummary.pendingCheckNames).toEqual(
-      expect.arrayContaining(["free_tier_budget_check", "dry_run_evidence", "audit_record"]),
+      expect.arrayContaining([
+        "free_tier_budget_check",
+        "dry_run_evidence",
+        "audit_record",
+        "pages_limit",
+        "workers_limit",
+        "d1_limit",
+        "kv_limit",
+        "exceed_action",
+      ]),
     );
     expect(packet.reapprovalTriggers).toEqual(
       expect.arrayContaining([
@@ -402,6 +419,7 @@ describe("version-up-readiness", () => {
     );
     expect(packet.activationSnapshot).toMatchObject({
       releaseTrigger: expect.stringContaining("release"),
+      headSha: "0123456789abcdef0123456789abcdef01234567",
       versionTarget: "future",
       planStatus: "draft",
       sourceLedgerCheckedDate: "2026-06-30",
@@ -420,6 +438,7 @@ describe("version-up-readiness", () => {
         "activation rehearsal evidence pending: free_tier_budget_check",
         "activation rehearsal evidence pending: dry_run_evidence",
         "activation rehearsal evidence pending: audit_record",
+        "activation rehearsal evidence pending: pages_limit",
       ]),
     );
     expect(packet.costGuardrails).toEqual(
@@ -551,7 +570,7 @@ describe("version-up-readiness", () => {
     );
     expect(packets[0].activationReadinessSummary).toMatchObject({
       status: "pending_evidence",
-      pendingChecks: 10,
+      pendingChecks: 15,
       sourceLedgerFresh: true,
       activationAllowed: false,
     });
@@ -971,6 +990,30 @@ describe("version-up-readiness", () => {
 
   it("accepts refreshed version-up source ledger checked dates without losing table rows", () => {
     // U-SOURCELEDGER-005
+    const refreshedPlan = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input().modeDoc.replace(
+          "Version-up source ledger (checked 2026-06-30)",
+          "Version-up source ledger (checked 2026-06-15)",
+        ),
+        plans: [
+          {
+            ...refreshedPlan,
+            text: refreshedPlan.text
+              .replaceAll("checked=2026-06-30", "checked=2026-06-15")
+              .replaceAll("checked 2026-06-30", "checked 2026-06-15"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.missingSourceLedgerRows).toEqual([]);
+    expect(result.sourceLedgerViolations).toEqual([]);
+  });
+
+  it("fails activation records whose source_ledger_freshness date diverges from the current ledger heading", () => {
     const result = analyzeVersionUpReadiness(
       input({
         modeDoc: input().modeDoc.replace(
@@ -980,9 +1023,34 @@ describe("version-up-readiness", () => {
       }),
     );
 
-    expect(result.ok).toBe(true);
-    expect(result.missingSourceLedgerRows).toEqual([]);
-    expect(result.sourceLedgerViolations).toEqual([]);
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "source_ledger_freshness checked date 2026-06-30 does not match current Version-up source ledger checked 2026-06-15",
+    });
+  });
+
+  it("changes activationSnapshot when repoHeadSha changes", () => {
+    const first = buildVersionUpActivationPackets(
+      input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }),
+    )[0];
+    const second = buildVersionUpActivationPackets(
+      input({ repoHeadSha: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }),
+    )[0];
+
+    expect(first.activationSnapshot.headSha).toBe("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    expect(second.activationSnapshot.headSha).toBe("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+    expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
+  });
+
+  it("blocks activation packets when the git HEAD sha is unavailable", () => {
+    const packet = buildVersionUpActivationPackets(input({ repoHeadSha: null }))[0];
+
+    expect(packet.activationSnapshot.headSha).toBeNull();
+    expect(packet.blockedReasons).toContain(
+      "activation snapshot is not bound to a readable git HEAD sha",
+    );
   });
 
   it("U-DECISIONREC-002: fails external activation candidates without explicit approval and route-fail evidence", () => {
@@ -1129,13 +1197,15 @@ describe("version-up-readiness", () => {
           check: "audit_record",
           status: "pending_evidence",
         }),
+        expect.objectContaining({
+          check: "pages_limit",
+          status: "pending_evidence",
+        }),
       ]),
     );
     expect(packets[0].activationReadinessSummary).toMatchObject({
       status: "pending_evidence",
-      totalChecks: 12,
-      presentChecks: 1,
-      pendingChecks: 11,
+      totalChecks: 17,
       sourceLedgerFresh: true,
       activationAllowed: false,
     });
@@ -1145,6 +1215,11 @@ describe("version-up-readiness", () => {
         "dry_run_evidence",
         "approval_evidence",
         "audit_record",
+        "pages_limit",
+        "workers_limit",
+        "d1_limit",
+        "kv_limit",
+        "exceed_action",
       ]),
     );
     expect(packets[0].reapprovalTriggers.map((row: { trigger: string }) => row.trigger)).toEqual([
@@ -1159,6 +1234,7 @@ describe("version-up-readiness", () => {
         "activation rehearsal evidence pending: dry_run_evidence",
         "activation rehearsal evidence pending: approval_evidence",
         "activation rehearsal evidence pending: audit_record",
+        "activation rehearsal evidence pending: pages_limit",
       ]),
     );
     expect(packets[0].costGuardrails.map((row: { surface: string }) => row.surface)).toEqual([
@@ -1192,8 +1268,13 @@ describe("version-up-readiness", () => {
       ],
       { encoding: "utf8" },
     );
-    expect(text).toContain("readiness: status=pending_evidence present=1 pending=11 total=12");
+    expect(text).toContain("activation-snapshot: snapshotId=sha256:");
+    expect(text).toContain("sourceLedgerCheckedDate=");
+    expect(text).toContain("readiness: status=pending_evidence");
+    expect(text).toContain("total=17");
     expect(text).toContain("readiness-pending: webhook_signature_check");
+    expect(text).toContain("readiness-pending: pages_limit");
+    expect(text).toContain("reapproval-trigger: head_sha_or_release_trigger_drift");
   });
 
   it("exposes version-up dry-run through the CLI as JSON", () => {

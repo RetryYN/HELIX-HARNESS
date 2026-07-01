@@ -101,7 +101,7 @@ packet はさらに `reapprovalTriggers[]` を出す。activation packet、dry-r
 これは GitHub Actions concurrency、Google SRE release engineering、SLSA provenance の考え方に合わせ、
 同時実行・古い根拠・再現不能な provenance で future activation を進めないための再承認 gate である。
 
-packet は `activationSnapshot` も出す。`activationSnapshot.snapshotId` は plan id、version target、plan status、
+packet は `activationSnapshot` も出す。`activationSnapshot.snapshotId` は plan id、HEAD SHA、version target、plan status、
 release trigger、source ledger checked date、approval scope digest、rehearsal/provenance evidence digest、
 および `reapprovalTriggers[]` を束ねた非 secret digest である。これは承認を代行しないが、PO/TL が後で
 action-binding approval を記録する際に「どの release trigger / scope / evidence に対する判断だったか」を固定する

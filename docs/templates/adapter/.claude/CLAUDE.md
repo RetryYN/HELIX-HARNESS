@@ -3,6 +3,9 @@
 
 Claude Code session の HELIX lifecycle work は、現行 `ut-tdd` CLI 経由で扱う。
 consumer-owned Claude instruction は、この managed block の外側へ追加できる。
+PLAN-M-02 で atomic identifier migration が行われるまでは、CLI 名は `ut-tdd`、state dir は `.ut-tdd` のまま扱う。
+
+PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
 
 - Session evidence: `ut-tdd status` と `ut-tdd handover`
 - Health check: `ut-tdd doctor --profile consumer`

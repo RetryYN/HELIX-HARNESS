@@ -135,7 +135,7 @@ export interface HelixProjectSetupResult extends SetupResult {
   };
   commandAvailability: {
     currentCommand: "ut-tdd setup project";
-    currentCommandAvailable: true;
+    currentCommandAvailable: boolean;
     futureCommand: "helix setup project";
     futureCommandAvailable: false;
     enablementStatus: "blocked_pending_cutover_approval";
@@ -944,6 +944,8 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     consumerReadiness,
   });
   const branchProtection = helixProjectBranchProtectionDecision(args);
+  const currentCommandAvailable =
+    consumerReadiness.checks.find((check) => check.name === "ut-tdd-cli")?.ok ?? false;
   return {
     schemaVersion: "helix-project-setup.v1",
     setupCommand: "ut-tdd setup project",
@@ -983,7 +985,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     },
     commandAvailability: {
       currentCommand: "ut-tdd setup project",
-      currentCommandAvailable: true,
+      currentCommandAvailable,
       futureCommand: "helix setup project",
       futureCommandAvailable: false,
       enablementStatus: "blocked_pending_cutover_approval",

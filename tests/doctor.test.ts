@@ -129,16 +129,25 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "# consumer",
       "<!-- UT-TDD:managed:start -->",
       "# HELIX アダプター",
+      "PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。",
+      "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
+      "`ut-tdd doctor --profile consumer`",
       "<!-- UT-TDD:managed:end -->",
     ].join("\n"),
     "CLAUDE.md": [
       "<!-- UT-TDD:managed:start -->",
       "# HELIX 共有コンテキスト",
+      "PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。",
+      "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
+      "`ut-tdd doctor --profile consumer`",
       "<!-- UT-TDD:managed:end -->",
     ].join("\n"),
     ".claude/CLAUDE.md": [
       "<!-- UT-TDD:managed:start -->",
       "# Claude runtime アダプター",
+      "PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。",
+      "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
+      "`ut-tdd doctor --profile consumer`",
       "<!-- UT-TDD:managed:end -->",
     ].join("\n"),
     ".claude/settings.json": [
@@ -210,6 +219,34 @@ describe("runConsumerDoctor", () => {
 
     expect(result.ok).toBe(false);
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - violation")).toBe(true);
+  });
+
+  it("fails closed when adapter docs omit Japanese/cutover markers", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".claude/CLAUDE.md": [
+        "<!-- UT-TDD:managed:start -->",
+        "# Claude runtime アダプター",
+        "<!-- UT-TDD:managed:end -->",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(hasDoctorMessage(result.messages, "consumer-adapter-docs - violation")).toBe(true);
+  });
+
+  it("fails closed when .helix state exists before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".helix/handover/.gitkeep": "",
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(hasDoctorMessage(result.messages, "consumer-identifier-transition - violation")).toBe(
+      true,
+    );
   });
 
   it("fails closed when Claude adapter hooks are incomplete", () => {

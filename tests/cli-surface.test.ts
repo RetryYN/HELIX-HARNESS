@@ -188,6 +188,17 @@ describe("L7 CLI surface closure", () => {
         sourceCommand: "ut-tdd handover",
         decisionCount: 1,
       });
+      expect(payload.workflowNextAction).toContain(
+        "obtain explicit PO signoff before irreversible migration/cutover",
+      );
+      expect(payload.workflowNextActions).toMatchObject([
+        {
+          order: 1,
+          planId: "PLAN-M-02-fixture",
+          reason: "irreversible_migration_pending",
+          decisionKind: "irreversible_migration_signoff",
+        },
+      ]);
       expect(payload.completionDecisionPacket.decisions[0]).toMatchObject({
         planId: "PLAN-M-02-fixture",
         decisionKind: "irreversible_migration_signoff",
@@ -218,6 +229,9 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["handover", "status"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("completion: blocked");
+      expect(text.stdout).toContain("workflow-next:");
+      expect(text.stdout).toContain("workflow-next-actions: 1");
+      expect(text.stdout).toContain("workflow-next-action[1]: PLAN-M-02-fixture");
       expect(text.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json",
       );
@@ -689,7 +703,6 @@ describe("L7 CLI surface closure", () => {
       },
       commandAvailability: {
         currentCommand: "ut-tdd setup project",
-        currentCommandAvailable: true,
         futureCommand: "helix setup project",
         futureCommandAvailable: false,
         enablementStatus: "blocked_pending_cutover_approval",
@@ -740,6 +753,11 @@ describe("L7 CLI surface closure", () => {
         (check: { name: string }) => check.name === "ut-tdd-cli",
       )?.message,
     ).toMatch(/projected hooks|bun link ut-tdd/);
+    expect(payload.commandAvailability.currentCommandAvailable).toBe(
+      payload.consumerReadiness.checks.find(
+        (check: { name: string }) => check.name === "ut-tdd-cli",
+      )?.ok ?? false,
+    );
     expect(payload.postSetupWorkflow.unmetGates).toEqual(
       expect.arrayContaining(["import_report_review"]),
     );
@@ -765,13 +783,17 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
+    expect(text.stdout).toContain("post-setup-next-action:");
+    expect(text.stdout).toContain("blocked-until:");
+    expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
     expect(text.stdout).toContain(
       "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",
     );
     expect(text.stdout).toContain("HELIX: handover status");
+    const currentAvailable = payload.commandAvailability.currentCommandAvailable;
     expect(text.stdout).toContain(
-      "command-availability: ut-tdd setup project available=true; helix setup project available=false",
+      `command-availability: ut-tdd setup project available=${currentAvailable}; helix setup project available=false`,
     );
   }, 15_000);
 

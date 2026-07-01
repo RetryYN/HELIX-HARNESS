@@ -14,6 +14,11 @@ Current runtime boundary:
 - Core implementation: `src/`
 - Hook configuration: `.claude/settings.json`
 
+## Communication
+
+PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。
+docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
+
 Claude Code read priority is `../CLAUDE.md` -> this file ->
 `../docs/governance/README.md`. Codex project rules are in `../AGENTS.md`.
 

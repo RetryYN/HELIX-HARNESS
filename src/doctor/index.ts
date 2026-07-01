@@ -1774,17 +1774,37 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const agents = consumerFile(deps, "AGENTS.md") ?? "";
   const claude = consumerFile(deps, "CLAUDE.md") ?? "";
   const claudeRuntime = consumerFile(deps, ".claude/CLAUDE.md") ?? "";
+  const adapterDocHasConsumerPolicy = (text: string) =>
+    text.includes("日本語を既定") &&
+    text.includes("docs / handover / adapter prose も日本語") &&
+    text.includes("PLAN-M-02") &&
+    text.includes("ut-tdd doctor --profile consumer");
   const docsOk =
     agents.includes("HELIX アダプター") &&
     agents.includes("UT-TDD:managed:start") &&
+    adapterDocHasConsumerPolicy(agents) &&
     claude.includes("HELIX 共有コンテキスト") &&
     claude.includes("UT-TDD:managed:start") &&
+    adapterDocHasConsumerPolicy(claude) &&
     claudeRuntime.includes("Claude runtime アダプター") &&
-    claudeRuntime.includes("UT-TDD:managed:start");
+    claudeRuntime.includes("UT-TDD:managed:start") &&
+    adapterDocHasConsumerPolicy(claudeRuntime);
   messages.push(
     docsOk
-      ? "doctor: consumer-adapter-docs - OK (HELIX/Claude adapter managed blocks present)"
-      : "doctor: consumer-adapter-docs - violation: HELIX/Claude adapter managed blocks missing",
+      ? "doctor: consumer-adapter-docs - OK (managed blocks, Japanese rule, consumer profile, cutover boundary present)"
+      : "doctor: consumer-adapter-docs - violation: adapter docs missing managed/Japanese/consumer-profile/cutover markers",
+  );
+  const futureStateDir = [".", "helix"].join("");
+  const prematureHelixState = [
+    `${futureStateDir}/.gitkeep`,
+    `${futureStateDir}/memory/.gitkeep`,
+    `${futureStateDir}/handover/.gitkeep`,
+    `${futureStateDir}/evidence/.gitkeep`,
+  ].filter((path) => consumerHasFile(deps, path));
+  messages.push(
+    prematureHelixState.length === 0
+      ? `doctor: consumer-identifier-transition - OK (${futureStateDir} state not generated before PLAN-M-02 cutover)`
+      : `doctor: consumer-identifier-transition - violation premature_future_state=${prematureHelixState.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
@@ -1834,7 +1854,13 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
           .join(",")}`,
   );
 
-  const ok = missing.length === 0 && docsOk && claudeOk && codexOk && missingTasks.length === 0;
+  const ok =
+    missing.length === 0 &&
+    docsOk &&
+    prematureHelixState.length === 0 &&
+    claudeOk &&
+    codexOk &&
+    missingTasks.length === 0;
   return { ok, messages };
 }
 

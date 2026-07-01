@@ -56,6 +56,27 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 
 この分類は L6 関数一覧の一部であり、実装済み path の存在だけでは `completion_claim_allowed=true` にならない。
 
+### §0.2 2026-07-02 ワークフロー表示契約の追補
+
+要求修正後の意味ベース確認により、以下を L6 契約へ追補する。
+
+- HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
+  `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
+  source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
+  `snapshotId` に混ぜる。`HEAD` が読めない場合は activation blocker とし、source ledger 見出しの確認日
+  と PLAN record の `source_ledger_freshness` 確認日がずれた場合は readiness violation にする。
+  外部 activation の cost guardrails (`pages_limit` / `workers_limit` / `d1_limit` / `kv_limit` /
+  `exceed_action`) は単なる表示ではなく `activationReadinessChecks[]` の `pending_evidence` 判定対象にする。
+- HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
+  `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
+  `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
+  `runConsumerDoctor` は adapter docs の managed block だけでなく、日本語既定、consumer doctor profile、
+  PLAN-M-02 cutover boundary、承認前 future state dir 未生成を検査する。
+- HC-P9 / handover resume surface は `ut-tdd status --json` と同じ live outstanding 由来の
+  `workflowNextAction` / `workflowNextActions[]` を `ut-tdd handover status --json` と text mode にも出す。
+  handover 再開時も completion decision packet command だけでなく、record すべき判断と route を直接読める
+  ことを contract とする。
+
 ## §1 function family
 
 | HC | function family | 主な signature | DbC / fail-close | log / evidence | oracle |

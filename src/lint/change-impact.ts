@@ -72,11 +72,17 @@ function isSource(path: string): boolean {
 }
 
 function isDesignUpdate(path: string): boolean {
-  return /^docs\/design\/harness\/.+\.md$/.test(path) || /^docs\/plans\/PLAN-.+\.md$/.test(path);
+  return (
+    /^docs\/design\/(?:harness|helix)\/.+\.md$/.test(path) ||
+    /^docs\/plans\/PLAN-.+\.md$/.test(path)
+  );
 }
 
 function isTestUpdate(path: string): boolean {
-  return /^tests\/.+\.test\.ts$/.test(path) || /^docs\/test-design\/harness\/.+\.md$/.test(path);
+  return (
+    /^tests\/.+\.test\.ts$/.test(path) ||
+    /^docs\/test-design\/(?:harness|helix)\/.+\.md$/.test(path)
+  );
 }
 
 function sourceModule(path: string): string | null {

@@ -619,7 +619,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
       commandAvailability: {
         currentCommand: "ut-tdd setup project",
-        currentCommandAvailable: true,
+        currentCommandAvailable: false,
         futureCommand: "helix setup project",
         futureCommandAvailable: false,
         enablementStatus: "blocked_pending_cutover_approval",

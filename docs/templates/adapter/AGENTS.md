@@ -3,6 +3,8 @@
 
 この project は local orchestration surface として HELIX command を使う。PLAN-M-02 で atomic identifier migration が行われるまでは、CLI 名は `ut-tdd` のまま扱う。
 
+PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
+
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor --profile consumer`
 - Handover: `ut-tdd handover`
