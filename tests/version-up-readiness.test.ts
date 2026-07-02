@@ -3,9 +3,12 @@ import { describe, expect, it } from "vitest";
 import {
   analyzeVersionUpReadiness,
   buildVersionUpActivationPackets,
+  buildVersionUpActivationRehearsalPacket,
   buildVersionUpgradeDryRunPlan,
+  buildVersionUpSecurityChecklistPacket,
   loadVersionUpReadinessInput,
   type VersionUpReadinessInput,
+  versionUpActivationVerificationCommandViolations,
   versionUpReadinessMessages,
 } from "../src/lint/version-up-readiness";
 
@@ -79,6 +82,8 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "latest official status",
       "adoption decision",
       "activationReadinessSummary",
+      "version-up rehearsal",
+      "version-up security-checklist",
       "reapprovalTriggers[]",
       "activationSnapshot",
       "snapshotId",
@@ -110,6 +115,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/ | live OWASP WSTG docs | live official OWASP docs | adopt-live-docs-for-security-testing-shape | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
+    currentVersion: "0.1.0",
     repoHeadSha: "0123456789abcdef0123456789abcdef01234567",
     semanticFeatureFrontierRecords: [
       {
@@ -435,7 +441,13 @@ describe("version-up-readiness", () => {
             "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
         }),
         expect.objectContaining({
+          phase: "version-dry-run",
+          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+        }),
+        expect.objectContaining({
           phase: "external-rehearsal",
+          command:
+            "bun run src/cli.ts version-up rehearsal --plan PLAN-L7-900-future --no-write --json",
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
           sourceCheckedAt: "2026-07-02",
@@ -447,7 +459,8 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "security-testing",
-          command: expect.stringContaining("OWASP-aligned"),
+          command:
+            "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
           sourceCheckedAt: "2026-07-02",
           sourceStatusDelta: expect.stringContaining("OWASP WSTG"),
@@ -461,10 +474,10 @@ describe("version-up-readiness", () => {
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
           sourceCheckedAt: "2026-07-02",
-          latestOfficialStatus: expect.stringContaining("required reviewers"),
-          sourceStatusDelta: expect.stringContaining("required reviewers"),
-          adoptionDecision: expect.stringContaining("required-reviewer-boundary"),
-          adoptionDecisionDelta: expect.stringContaining("current snapshot binding"),
+          latestOfficialStatus: expect.stringContaining("availability constraints"),
+          sourceStatusDelta: expect.stringContaining("public-repository gated"),
+          adoptionDecision: expect.stringContaining("prevent-self-review-check"),
+          adoptionDecisionDelta: expect.stringContaining("GitHub Environments availability"),
           workflowRouteImpact: expect.stringContaining("reviewed_snapshot_binding"),
         }),
       ]),
@@ -551,6 +564,51 @@ describe("version-up-readiness", () => {
           role: "supporting",
           command: "ut-tdd action-binding approval-packet --json",
         }),
+      ]),
+    );
+    expect(versionUpActivationVerificationCommandViolations(packet)).toEqual([]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
+          (row) =>
+            row.phase === "external-rehearsal"
+              ? { ...row, command: "record staging evidence later" }
+              : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason:
+          "activationVerificationCommandMatrix command is not an executable approved no-write surface: record staging evidence later",
+      },
+    ]);
+    const rehearsalPacket = buildVersionUpActivationRehearsalPacket(packet);
+    expect(rehearsalPacket).toMatchObject({
+      schemaVersion: "version-up-activation-rehearsal.v1",
+      planId: "PLAN-L7-900-future",
+      planOnly: true,
+      mustNotApply: true,
+      writePolicy: "no-write",
+    });
+    expect(rehearsalPacket.activationReadinessChecks.length).toBeGreaterThan(0);
+    const securityPacket = buildVersionUpSecurityChecklistPacket(packet);
+    expect(securityPacket).toMatchObject({
+      schemaVersion: "version-up-security-checklist.v1",
+      planId: "PLAN-L7-900-future",
+      planOnly: true,
+      mustNotApply: true,
+      writePolicy: "no-write",
+    });
+    expect(securityPacket.securityChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ check: "github-actions-least-privilege" }),
+        expect.objectContaining({
+          check: "github-environments-availability",
+          requiredEvidence: expect.stringContaining("repository visibility"),
+        }),
+        expect.objectContaining({ check: "access-control-and-secret-exposure" }),
       ]),
     );
   });
@@ -708,6 +766,7 @@ describe("version-up-readiness", () => {
       currentVersion: "v0.1.0",
       targetVersion: "v0.2.0",
       releaseTrigger: "GitHub release tag v0.2.0",
+      releaseTagExists: true,
     });
 
     expect(plan).toMatchObject({
@@ -722,6 +781,9 @@ describe("version-up-readiness", () => {
       applyCommandAvailable: false,
       ok: true,
       releaseTrigger: "GitHub release tag v0.2.0",
+      releaseTagRef: "refs/tags/v0.2.0",
+      releaseTagExists: true,
+      releaseTriggerResolved: true,
     });
     expect(plan.migrationPlan).toEqual(
       expect.arrayContaining([
@@ -744,7 +806,11 @@ describe("version-up-readiness", () => {
     );
     expect(plan.releaseGateChecks).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ check: "release_tag_exists" }),
+        expect.objectContaining({
+          check: "release_tag_exists",
+          command: "git rev-parse --verify refs/tags/v0.2.0",
+          requiredEvidence: "target release tag resolved before activation",
+        }),
         expect.objectContaining({ check: "required_checks_green" }),
       ]),
     );
@@ -757,6 +823,24 @@ describe("version-up-readiness", () => {
       ]),
     );
     expect(plan.blockedReasons).toEqual([]);
+
+    const missingTag = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v0.1.0",
+      targetVersion: "v0.2.0",
+      releaseTagExists: false,
+    });
+    expect(missingTag.ok).toBe(false);
+    expect(missingTag.releaseTagRef).toBe("refs/tags/v0.2.0");
+    expect(missingTag.releaseTriggerResolved).toBe(false);
+    expect(missingTag.blockedReasons).toContain("target release tag must exist before activation");
+    expect(missingTag.releaseGateChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "release_tag_exists",
+          requiredEvidence: "target release tag is missing; keep activation blocked",
+        }),
+      ]),
+    );
   });
 
   it("rejects downgrade or invalid version-up dry-run targets before any apply surface exists", () => {
@@ -780,9 +864,27 @@ describe("version-up-readiness", () => {
     expect(invalid.blockedReasons).toContain("current and target versions must be SemVer");
     expect(invalid.mustNotApply).toBe(true);
 
+    const leadingZeroPrerelease = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v1.0.0",
+      targetVersion: "v1.0.1-01",
+    });
+    expect(leadingZeroPrerelease.ok).toBe(false);
+    expect(leadingZeroPrerelease.semverChange).toBe("invalid");
+    expect(leadingZeroPrerelease.blockedReasons).toContain(
+      "current and target versions must be SemVer",
+    );
+
+    const emptyPrereleaseIdentifier = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v1.0.0",
+      targetVersion: "v1.0.1-alpha..1",
+    });
+    expect(emptyPrereleaseIdentifier.ok).toBe(false);
+    expect(emptyPrereleaseIdentifier.semverChange).toBe("invalid");
+
     const prerelease = buildVersionUpgradeDryRunPlan({
       currentVersion: "v1.0.0-alpha.1",
       targetVersion: "v1.0.0-alpha.2",
+      releaseTagExists: true,
     });
     expect(prerelease.ok).toBe(true);
     expect(prerelease.semverChange).toBe("prerelease");
@@ -1344,6 +1446,20 @@ describe("version-up-readiness", () => {
             "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
         }),
         expect.objectContaining({
+          phase: "version-dry-run",
+          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+        }),
+        expect.objectContaining({
+          phase: "external-rehearsal",
+          command:
+            "bun run src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
+        }),
+        expect.objectContaining({
+          phase: "security-testing",
+          command:
+            "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
+        }),
+        expect.objectContaining({
           phase: "state-and-doctor",
           command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
           sourceCheckedAt: "2026-07-02",
@@ -1404,6 +1520,61 @@ describe("version-up-readiness", () => {
       rowCount: 16,
       missingRows: [],
     });
+    expect(versionUpActivationVerificationCommandViolations(packets[0])).toEqual([]);
+
+    const rehearsalRaw = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "rehearsal",
+        "--plan",
+        "PLAN-L7-146-serverless-readonly-share",
+        "--no-write",
+        "--json",
+      ],
+      { encoding: "utf8" },
+    );
+    const rehearsal = JSON.parse(rehearsalRaw);
+    expect(rehearsal).toMatchObject({
+      schemaVersion: "version-up-activation-rehearsal.v1",
+      planId: "PLAN-L7-146-serverless-readonly-share",
+      planOnly: true,
+      mustNotApply: true,
+      writePolicy: "no-write",
+    });
+    expect(rehearsal.activationReadinessChecks.length).toBeGreaterThan(0);
+
+    const securityRaw = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "security-checklist",
+        "--plan",
+        "PLAN-L7-146-serverless-readonly-share",
+        "--no-write",
+        "--json",
+      ],
+      { encoding: "utf8" },
+    );
+    const security = JSON.parse(securityRaw);
+    expect(security).toMatchObject({
+      schemaVersion: "version-up-security-checklist.v1",
+      planId: "PLAN-L7-146-serverless-readonly-share",
+      planOnly: true,
+      mustNotApply: true,
+      writePolicy: "no-write",
+    });
+    expect(security.securityChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ check: "github-actions-least-privilege" }),
+        expect.objectContaining({ check: "pull-request-target-risk-review" }),
+        expect.objectContaining({ check: "access-control-and-secret-exposure" }),
+      ]),
+    );
 
     const text = execFileSync(
       "bun",
@@ -1461,10 +1632,14 @@ describe("version-up-readiness", () => {
     const plan = JSON.parse(raw);
     expect(plan).toMatchObject({
       schemaVersion: "version-up-dry-run-plan.v1",
-      ok: true,
+      ok: false,
       planOnly: true,
       applyCommandAvailable: false,
       semverChange: "minor",
+      releaseTagRef: "refs/tags/v0.2.0",
+      releaseTagExists: false,
+      releaseTriggerResolved: false,
     });
+    expect(plan.blockedReasons).toContain("target release tag must exist before activation");
   });
 });

@@ -53,6 +53,7 @@ export interface VersionUpReadinessInput {
   modeCatalog: string;
   modeDoc: string;
   discoveryPlan: string;
+  currentVersion?: string;
   repoHeadSha?: string | null;
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: VersionUpReadinessPlan[];
@@ -181,6 +182,44 @@ export interface VersionUpgradeDryRunInput {
   currentVersion: string;
   targetVersion: string;
   releaseTrigger?: string;
+  releaseTagExists?: boolean;
+}
+
+export interface VersionUpActivationRehearsalPacket {
+  schemaVersion: "version-up-activation-rehearsal.v1";
+  planId: string;
+  planOnly: true;
+  mustNotApply: true;
+  writePolicy: "no-write";
+  sourceCommand: string;
+  activationSnapshot: VersionUpActivationSnapshot;
+  externalRehearsalPlan: VersionUpActivationPacket["externalRehearsalPlan"];
+  costGuardrails: VersionUpActivationPacket["costGuardrails"];
+  provenanceRequirements: VersionUpActivationPacket["provenanceRequirements"];
+  activationReadinessChecks: VersionUpActivationPacket["activationReadinessChecks"];
+  blockedUntil: string[];
+}
+
+export interface VersionUpSecurityChecklistPacket {
+  schemaVersion: "version-up-security-checklist.v1";
+  planId: string;
+  planOnly: true;
+  mustNotApply: true;
+  writePolicy: "no-write";
+  sourceCommand: string;
+  activationSnapshot: VersionUpActivationSnapshot;
+  securityChecks: Array<{
+    check: string;
+    source: string;
+    sourceUrl: string;
+    requiredEvidence: string;
+  }>;
+  blockedUntil: string[];
+}
+
+export interface VersionUpActivationCommandViolation {
+  subject: string;
+  reason: string;
 }
 
 export interface VersionUpgradeDryRunPlan {
@@ -191,6 +230,9 @@ export interface VersionUpgradeDryRunPlan {
   normalizedTarget: string | null;
   semverChange: "major" | "minor" | "patch" | "prerelease" | "same" | "downgrade" | "invalid";
   releaseTrigger: string;
+  releaseTagRef: string | null;
+  releaseTagExists: boolean;
+  releaseTriggerResolved: boolean;
   planOnly: true;
   mustNotApply: true;
   applyCommandAvailable: false;
@@ -268,6 +310,8 @@ const MODE_DOC_MARKERS = [
   "latest official status",
   "adoption decision",
   "activationReadinessSummary",
+  "version-up rehearsal",
+  "version-up security-checklist",
   "reapprovalTriggers[]",
   "activationSnapshot",
   "snapshotId",
@@ -580,6 +624,17 @@ function readRepoHeadSha(repoRoot: string): string | null {
   }
 }
 
+function readPackageVersion(repoRoot: string): string | null {
+  try {
+    const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+      version?: unknown;
+    };
+    return typeof pkg.version === "string" && pkg.version.trim() ? pkg.version.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
 export function loadVersionUpReadinessInput(
   repoRoot: string = process.cwd(),
 ): VersionUpReadinessInput {
@@ -615,6 +670,7 @@ export function loadVersionUpReadinessInput(
       join(repoRoot, "docs", "plans", "PLAN-DISCOVERY-09-version-up-mode.md"),
       "utf8",
     ),
+    currentVersion: readPackageVersion(repoRoot) ?? undefined,
     repoHeadSha: readRepoHeadSha(repoRoot),
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans,
@@ -868,6 +924,7 @@ export function analyzeVersionUpReadiness(
     const packet = buildVersionUpActivationPacket(plan, sourceLedgerFreshness, {
       semanticFeatureFrontierRecords: input.semanticFeatureFrontierRecords,
       repoHeadSha: input.repoHeadSha,
+      currentVersion: input.currentVersion,
     });
     const recordBlockers = [
       "version_up_parked",
@@ -907,6 +964,7 @@ export function buildVersionUpActivationPackets(
       buildVersionUpActivationPacket(plan, sourceLedgerFreshness, {
         semanticFeatureFrontierRecords: input.semanticFeatureFrontierRecords,
         repoHeadSha: input.repoHeadSha,
+        currentVersion: input.currentVersion,
       }),
     )
     .sort((a, b) => a.planId.localeCompare(b.planId));
@@ -918,6 +976,9 @@ export function buildVersionUpgradeDryRunPlan(
   const current = parseSemver(input.currentVersion);
   const target = parseSemver(input.targetVersion);
   const semverChange = classifySemverChange(current, target);
+  const releaseTagRef = target ? `refs/tags/v${target.normalized}` : null;
+  const releaseTagExists = input.releaseTagExists ?? false;
+  const releaseTriggerResolved = Boolean(target && releaseTagExists);
   const blockedReasons: string[] = [];
   if (!current || !target) {
     blockedReasons.push("current and target versions must be SemVer");
@@ -925,6 +986,9 @@ export function buildVersionUpgradeDryRunPlan(
     blockedReasons.push("target version must differ from current version");
   } else if (semverChange === "downgrade") {
     blockedReasons.push("target version must be greater than current version");
+  }
+  if (target && !releaseTriggerResolved) {
+    blockedReasons.push("target release tag must exist before activation");
   }
 
   return {
@@ -935,6 +999,9 @@ export function buildVersionUpgradeDryRunPlan(
     normalizedTarget: target?.normalized ?? null,
     semverChange,
     releaseTrigger: input.releaseTrigger ?? `GitHub release tag ${input.targetVersion}`,
+    releaseTagRef,
+    releaseTagExists,
+    releaseTriggerResolved,
     planOnly: true,
     mustNotApply: true,
     applyCommandAvailable: false,
@@ -994,8 +1061,12 @@ export function buildVersionUpgradeDryRunPlan(
     releaseGateChecks: [
       {
         check: "release_tag_exists",
-        command: `git rev-parse --verify ${input.targetVersion}`,
-        requiredEvidence: "target tag or release trigger resolved before activation",
+        command: releaseTagRef
+          ? `git rev-parse --verify ${releaseTagRef}`
+          : `git rev-parse --verify ${input.targetVersion}`,
+        requiredEvidence: releaseTriggerResolved
+          ? "target release tag resolved before activation"
+          : "target release tag is missing; keep activation blocked",
       },
       {
         check: "required_checks_green",
@@ -1042,6 +1113,7 @@ export function buildVersionUpActivationPacket(
   options: {
     semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
     repoHeadSha?: string | null;
+    currentVersion?: string | null;
   } = {},
 ): VersionUpActivationPacket {
   const repoHeadSha = options.repoHeadSha ?? null;
@@ -1080,8 +1152,10 @@ export function buildVersionUpActivationPacket(
       ? ["human_approval_pending"]
       : []),
   ];
-  const activationVerificationCommandMatrix =
-    buildVersionUpActivationVerificationCommandMatrix(plan);
+  const activationVerificationCommandMatrix = buildVersionUpActivationVerificationCommandMatrix(
+    plan,
+    options.currentVersion ?? "0.1.0",
+  );
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
   const activationSnapshot = buildVersionUpActivationSnapshot({
     plan,
@@ -1257,6 +1331,118 @@ export function buildVersionUpActivationPacket(
   };
 }
 
+export function buildVersionUpActivationRehearsalPacket(
+  packet: VersionUpActivationPacket,
+): VersionUpActivationRehearsalPacket {
+  return {
+    schemaVersion: "version-up-activation-rehearsal.v1",
+    planId: packet.planId,
+    planOnly: true,
+    mustNotApply: true,
+    writePolicy: "no-write",
+    sourceCommand: `ut-tdd version-up rehearsal --plan ${packet.planId} --no-write --json`,
+    activationSnapshot: packet.activationSnapshot,
+    externalRehearsalPlan: packet.externalRehearsalPlan,
+    costGuardrails: packet.costGuardrails,
+    provenanceRequirements: packet.provenanceRequirements,
+    activationReadinessChecks: packet.activationReadinessChecks,
+    blockedUntil: [
+      "all activationReadinessChecks are concrete evidence, not prose-only requirements",
+      "action_binding_approval_record cites the current activationSnapshot.snapshotId",
+      "activation remains plan-only until PO/human approval and add-feature Forward route are recorded",
+    ],
+  };
+}
+
+export function buildVersionUpSecurityChecklistPacket(
+  packet: VersionUpActivationPacket,
+): VersionUpSecurityChecklistPacket {
+  return {
+    schemaVersion: "version-up-security-checklist.v1",
+    planId: packet.planId,
+    planOnly: true,
+    mustNotApply: true,
+    writePolicy: "no-write",
+    sourceCommand: `ut-tdd version-up security-checklist --plan ${packet.planId} --no-write --json`,
+    activationSnapshot: packet.activationSnapshot,
+    securityChecks: [
+      {
+        check: "github-actions-least-privilege",
+        source: "GitHub Actions secure use",
+        sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+        requiredEvidence:
+          "workflow permissions are least-privilege and GITHUB_TOKEN write permissions are not granted by default",
+      },
+      {
+        check: "pull-request-target-risk-review",
+        source: "GitHub Actions secure use",
+        sourceUrl:
+          "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+        requiredEvidence:
+          "activation workflow does not run untrusted pull_request_target code with secrets or write token",
+      },
+      {
+        check: "webhook-hmac-sha256",
+        source: "GitHub webhook HMAC SHA-256",
+        sourceUrl:
+          "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+        requiredEvidence: "staging webhook validates X-Hub-Signature-256 before projection update",
+      },
+      {
+        check: "github-environments-availability",
+        source: "GitHub Environments required reviewers",
+        sourceUrl:
+          "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+        requiredEvidence:
+          "repository visibility, account/org plan, required reviewers, prevent self-review, and environment secrets availability are recorded before relying on GitHub Environments as the approval gate",
+      },
+      {
+        check: "access-control-and-secret-exposure",
+        source: "OWASP Web Security Testing Guide",
+        sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/latest/",
+        requiredEvidence:
+          "OWASP-aligned access-control, secret/PII exclusion, and read-only projection checks produce a report or audit id",
+      },
+    ],
+    blockedUntil: [
+      "securityChecks have concrete evidence paths, audit ids, or reports",
+      "external_rehearsal_plan and activation_provenance_requirements cite the same evidence",
+      "activation remains approval-gated and no production write is performed by this packet",
+    ],
+  };
+}
+
+export function versionUpActivationVerificationCommandViolations(
+  packet: VersionUpActivationPacket,
+): VersionUpActivationCommandViolation[] {
+  const allowedCommands = new Set([
+    `bun run src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
+    `bun run src/cli.ts version-up rehearsal --plan ${packet.planId} --no-write --json`,
+    `bun run src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
+    "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+    "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
+    "bun run lint && bun run typecheck && git diff --check",
+    "bun run test",
+    "bun run src/cli.ts action-binding approval-packet --json",
+  ]);
+  return packet.activationVerificationCommandMatrix.flatMap((row) => {
+    const command = row.command.trim();
+    if (
+      row.phase === "version-dry-run" &&
+      /^bun run src\/cli\.ts version-up dry-run --current \S+ --target \S+ --json$/.test(command)
+    ) {
+      return [];
+    }
+    if (allowedCommands.has(command)) return [];
+    return [
+      {
+        subject: `${packet.planId}.${row.phase}`,
+        reason: `activationVerificationCommandMatrix command is not an executable approved no-write surface: ${row.command}`,
+      },
+    ];
+  });
+}
+
 function buildVersionUpActivationSnapshot(input: {
   plan: VersionUpReadinessPlan;
   activationDecision: Record<string, string>;
@@ -1307,9 +1493,24 @@ function sha256Json(value: unknown): string {
   return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
 }
 
+function versionUpDryRunTarget(plan: VersionUpReadinessPlan): string {
+  const trigger = recordFieldValue(
+    plan.text,
+    ACTIVATION_RECORD_NAME,
+    "target_version_or_release_trigger",
+  );
+  const semver = trigger?.match(
+    /\bv?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?\b/,
+  )?.[0];
+  if (semver) return semver;
+  return plan.versionTarget && plan.versionTarget !== "future" ? plan.versionTarget : "future";
+}
+
 function buildVersionUpActivationVerificationCommandMatrix(
   plan: VersionUpReadinessPlan,
+  currentVersion: string,
 ): VersionUpActivationPacket["activationVerificationCommandMatrix"] {
+  const dryRunTarget = versionUpDryRunTarget(plan);
   return [
     {
       phase: "activation-packet-baseline",
@@ -1329,8 +1530,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "version-dry-run",
-      command:
-        "bun run src/cli.ts version-up dry-run --current <current-semver> --target <target-semver> --json",
+      command: `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`,
       expected:
         "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority",
       evidence: "version-up dry-run JSON for the reviewed current/target release trigger",
@@ -1346,8 +1546,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "external-rehearsal",
-      command:
-        "record staging/dry-run evidence for official_source_basis, GitHub Actions permissions/pull_request_target safety, free_tier_budget_check, webhook_signature_check, access_control_check, no_secret_pii_check, no_prod_write_check, and rollback_rehearsal",
+      command: `bun run src/cli.ts version-up rehearsal --plan ${plan.plan_id} --no-write --json`,
       expected:
         "proves external activation is least-privilege, avoids unsafe pull_request_target execution, budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
       evidence:
@@ -1368,8 +1567,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "security-testing",
-      command:
-        "run OWASP-aligned access-control, secret/PII exclusion, webhook signature, and read-only projection checks in staging",
+      command: `bun run src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
       expected:
         "security checks pass before any Cloudflare/GitHub/HMAC/access-control activation is approved",
       evidence:
@@ -1454,13 +1652,13 @@ function buildVersionUpActivationVerificationCommandMatrix(
         "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
       sourceCheckedAt: "2026-07-02",
       latestOfficialStatus:
-        "GitHub environments required reviewers remain live official approval gate guidance",
+        "GitHub environments required reviewers remain live official approval gate guidance with public/private repository and plan availability constraints",
       sourceStatusDelta:
-        "none; GitHub environments required reviewers remain the adopted approval boundary source",
+        "availability constraints reviewed; Free/Pro/Team required reviewers are public-repository gated, so private/internal activation must record an equivalent approved boundary before relying on environments",
       adoptionDecision:
-        "adopt-required-reviewer-boundary-for-action-binding-and-environment-secret-review",
+        "adopt-required-reviewer-boundary-only-after-repo-visibility-plan-and-prevent-self-review-check",
       adoptionDecisionDelta:
-        "none; keep action-binding approval packet and current snapshot binding required",
+        "tighten approval packet review so GitHub Environments availability is evidence, not an assumption",
       workflowRouteImpact:
         "none; missing reviewed_snapshot_binding keeps action-binding approval pending",
     },
@@ -1795,10 +1993,19 @@ function parseSemver(value: string): {
   const match = value
     .trim()
     .match(
-      /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z.-]+))?(?:\+[0-9A-Za-z.-]+)?$/,
+      /^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/,
     );
   if (!match) return null;
   const [, major, minor, patch, prerelease] = match;
+  if (
+    prerelease
+      ?.split(".")
+      .some(
+        (identifier) => /^\d+$/.test(identifier) && identifier.length > 1 && identifier[0] === "0",
+      )
+  ) {
+    return null;
+  }
   const normalized = `${major}.${minor}.${patch}${prerelease ? `-${prerelease}` : ""}`;
   return {
     normalized,

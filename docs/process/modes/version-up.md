@@ -119,11 +119,19 @@ packet は `activationVerificationCommandMatrix[]` も出す。これは `activa
 さらに `targeted-regression`、`static-gates`、`full-regression`、`approval-packet` の各 phase に対して
 command / expected / evidence / source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
 adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持つ。公式 source row は 2026-07-02 に GitHub Actions secure use / GITHUB_TOKEN permissions /
-pull_request_target guidance、GitHub Environments required reviewers、OWASP WSTG stable/latest を確認し、
+pull_request_target guidance、GitHub Environments required reviewers とその public/private repo・plan availability、
+OWASP WSTG stable/latest を確認し、
 Google Cloud Deploy verification / canary / rollback は段階適用・検証・rollback の運用比較根拠として確認済みとする。
 採用判断と route impact を packet に残すことで、activation readiness の判断材料を「あとで検証する」という自由文に戻さず、
 どの command・runbook・report・audit record を承認前 evidence とするかを packet から追えるようにする。
 matrix は apply 権限ではなく、`activationSnapshot.evidenceDigest` に含める承認前 review material である。
+`external-rehearsal` と `security-testing` は自然文 command ではなく、
+`ut-tdd version-up rehearsal --plan <PLAN> --no-write --json` と
+`ut-tdd version-up security-checklist --plan <PLAN> --no-write --json` の packet-only surface を指す。
+両 command は `planOnly=true` / `mustNotApply=true` / `writePolicy=no-write` を返し、
+Cloudflare / GitHub / HMAC / access-control / secret / external activation を実行しない。
+doctor の `version-up-readiness` は matrix command がこの no-write allowlist に一致しない場合 fail-close するため、
+承認前 evidence が未実装 command、placeholder、または prose-only 手順へ戻らない。
 
 ### 4.1.2 version upgrade dry-run surface
 
@@ -131,13 +139,20 @@ matrix は apply 権限ではなく、`activationSnapshot.evidenceDigest` に含
 tag bump / release pin 更新を実適用する前の plan-only surface である。`version-up-dry-run-plan.v1` は
 `currentVersion` / `targetVersion`、`normalizedCurrent` / `normalizedTarget`、SemVer 差分
 (`major` / `minor` / `patch` / `prerelease` / `same` / `downgrade` / `invalid`)、`releaseTrigger`、
-`migrationPlan`、`rollbackPlan`、`idempotencyChecks`、`releaseGateChecks`、`sourceBasis` を返す。
+`releaseTagRef`、`releaseTagExists`、`releaseTriggerResolved`、`migrationPlan`、`rollbackPlan`、
+`idempotencyChecks`、`releaseGateChecks`、`sourceBasis` を返す。
 
 この surface も **apply 権限を持たない**。`planOnly=true`、`mustNotApply=true`、
-`applyCommandAvailable=false` を固定し、target が current 以下、または current/target が SemVer として
-解釈できない場合は `ok=false` と `blockedReasons` を返す。migration は `ut-tdd setup project --dry-run`
+`applyCommandAvailable=false` を固定し、target が current 以下、current/target が SemVer として
+解釈できない、または target release tag が解決できない場合は `ok=false` と `blockedReasons` を返す。
+`releaseGateChecks.release_tag_exists` は `git rev-parse --verify refs/tags/v<target>` 相当の確認を示し、
+tag 未解決の dry-run を release readiness と誤認させない。migration は `ut-tdd setup project --dry-run`
 と activation packet / doctor を経由し、rollback は旧 tag/branch と `.ut-tdd` state backup / projection rebuild
 を要求する。同じ dry-run を再実行しても file/state/remote side effect が無いことを idempotency evidence とする。
+SemVer 判定は Semantic Versioning 2.0.0 に合わせ、空 prerelease identifier や numeric prerelease identifier の
+leading zero (`1.0.1-01` 等) は invalid として `ok=false` にする。dry-run は release readiness ではなく
+current/target compatibility と承認前証跡の plan-only packet であり、invalid target や未解決 release tag を
+activation readiness と誤認させない。
 
 ### 4.2 parked review record
 
@@ -160,7 +175,7 @@ Version-up source ledger (checked 2026-07-02):
 |---|---|---|---|---|---|---|
 | Semantic Versioning 2.0.0 | <https://semver.org/> | 2.0.0 | current official specification page | adopt-2.0.0 | version target / compatibility intent を明示する | `version_target`, `target_version_or_release_trigger`, `review_trigger`, `activation_dependency` |
 | GitHub Releases | <https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository> | live GitHub docs | live official GitHub docs | adopt-live-docs-for-release-trigger | release/tag を activation trigger として扱う | `target_version_or_release_trigger`, `review_trigger`, `review_by_policy` |
-| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs | adopt-live-docs-for-approval-shape | deployment/activation approval を action-binding にする | `review_owner`, `approval_scope` |
+| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs with public/private repo and plan constraints | adopt-live-docs-for-approval-shape-with-availability-check | deployment/activation approval を action-binding にする。ただし repo visibility / account or org plan / prevent self-review / environment secrets availability を確認できない場合は GitHub Environments を承認境界とみなさない | `review_owner`, `approval_scope` |
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | release evidence / archive / rollback traceability を要求する | `dry_run_plan`, `rollback_plan`, `stale_action` |
 | semantic-release | <https://semantic-release.gitbook.io/semantic-release> | live official docs | live official docs | compare-only-until-release-ADR | commit message から version / changelog / publish まで自動化できる候補。PR-gate 親和性と rollback を ADR で評価する | `activation_dependency`, `dry_run_plan`, release automation ADR |
 | Release Please | <https://github.com/googleapis/release-please> | live official repository docs | live official repository docs | compare-only-until-release-ADR | Conventional Commit から release PR / changelog / version bump を作る候補。publication は別機構として扱う | `review_trigger`, `activation_dependency`, release automation ADR |
@@ -222,6 +237,14 @@ version-up の機能一覧は、単に `version_target` を受理することで
 12. **activation verification command matrix**: `activationVerificationCommandMatrix[]` が activation packet、
     dry-run、external rehearsal、security testing、state/doctor、targeted regression、static gates を扱う。
     さらに full regression、approval packet の command / expected / evidence を出し、承認前 evidence を自由文だけにしない。
+12a. **no-write rehearsal/security packet**: `external-rehearsal` / `security-testing` は
+     `version-up rehearsal` / `version-up security-checklist` の no-write packet-only CLI で実行可能性を示し、
+     doctor が matrix command availability を検査する。
+12b. **release/environment availability gate**: `version-up dry-run` は `releaseTagExists` /
+     `releaseTriggerResolved` を返し、target release tag 未解決なら `ok=false` にする。approval packet /
+     security checklist は GitHub Environments required reviewers の repo visibility / account or org plan /
+     prevent self-review / environment secrets availability を承認前 evidence とし、CI workflow や environment 名の
+     存在だけで approval boundary とみなさない。
 
 ## 6. 他 mode との非重複
 

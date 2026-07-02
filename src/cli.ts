@@ -85,7 +85,9 @@ import {
 } from "./lint/verification-profile";
 import {
   buildVersionUpActivationPackets,
+  buildVersionUpActivationRehearsalPacket,
   buildVersionUpgradeDryRunPlan,
+  buildVersionUpSecurityChecklistPacket,
   loadVersionUpReadinessInput,
 } from "./lint/version-up-readiness";
 import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
@@ -1481,6 +1483,29 @@ rename
 const versionUp = program
   .command("version-up")
   .description("version-up parked work decision surfaces");
+
+function versionUpTargetTagRef(targetVersion: string): string | null {
+  const match = targetVersion
+    .trim()
+    .match(
+      /^v?((?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$/,
+    );
+  return match ? `refs/tags/v${match[1]}` : null;
+}
+
+function gitRefExists(ref: string | null): boolean {
+  if (!ref) return false;
+  try {
+    execFileSync("git", ["rev-parse", "--verify", "--quiet", ref], {
+      encoding: "utf8",
+      stdio: ["ignore", "ignore", "ignore"],
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 versionUp
   .command("dry-run")
   .description("emit a non-destructive current->target version upgrade plan")
@@ -1492,6 +1517,7 @@ versionUp
     const plan = buildVersionUpgradeDryRunPlan({
       currentVersion: opts.current,
       targetVersion: opts.target,
+      releaseTagExists: gitRefExists(versionUpTargetTagRef(opts.target)),
       ...(opts.releaseTrigger ? { releaseTrigger: opts.releaseTrigger } : {}),
     });
     if (opts.json) {
@@ -1499,7 +1525,7 @@ versionUp
       return;
     }
     process.stdout.write(
-      `version-up dry-run: ${plan.currentVersion} -> ${plan.targetVersion} change=${plan.semverChange} ok=${plan.ok} planOnly=${plan.planOnly} applyCommandAvailable=${plan.applyCommandAvailable}\n`,
+      `version-up dry-run: ${plan.currentVersion} -> ${plan.targetVersion} change=${plan.semverChange} ok=${plan.ok} releaseTriggerResolved=${plan.releaseTriggerResolved} planOnly=${plan.planOnly} applyCommandAvailable=${plan.applyCommandAvailable}\n`,
     );
     for (const reason of plan.blockedReasons) {
       process.stdout.write(`  blocked: ${reason}\n`);
@@ -1507,6 +1533,74 @@ versionUp
     process.stdout.write(
       `  migration=${plan.migrationPlan.length} rollback=${plan.rollbackPlan.length} idempotency=${plan.idempotencyChecks.length} release-gates=${plan.releaseGateChecks.length}\n`,
     );
+  });
+versionUp
+  .command("rehearsal")
+  .description("emit a no-write external activation rehearsal packet for a parked version-up PLAN")
+  .requiredOption("--plan <planId>", "parked PLAN id")
+  .option("--no-write", "confirm this command must not mutate files or external state")
+  .option("--json", "JSON output")
+  .action((opts: { plan: string; write?: boolean; json?: boolean }) => {
+    if (opts.write !== false) {
+      process.stderr.write("version-up rehearsal requires --no-write\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(process.cwd()));
+    const activationPacket = packets.find((packet) => packet.planId === opts.plan);
+    if (!activationPacket) {
+      process.stderr.write(`version-up rehearsal: parked PLAN not found: ${opts.plan}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildVersionUpActivationRehearsalPacket(activationPacket);
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `version-up rehearsal: ${packet.planId} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy}\n`,
+    );
+    process.stdout.write(
+      `  external=${packet.externalRehearsalPlan.length} cost=${packet.costGuardrails.length} provenance=${packet.provenanceRequirements.length} readiness=${packet.activationReadinessChecks.length}\n`,
+    );
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+  });
+versionUp
+  .command("security-checklist")
+  .description("emit a no-write security checklist packet for a parked version-up activation")
+  .requiredOption("--plan <planId>", "parked PLAN id")
+  .option("--no-write", "confirm this command must not mutate files or external state")
+  .option("--json", "JSON output")
+  .action((opts: { plan: string; write?: boolean; json?: boolean }) => {
+    if (opts.write !== false) {
+      process.stderr.write("version-up security-checklist requires --no-write\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(process.cwd()));
+    const activationPacket = packets.find((packet) => packet.planId === opts.plan);
+    if (!activationPacket) {
+      process.stderr.write(`version-up security-checklist: parked PLAN not found: ${opts.plan}\n`);
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildVersionUpSecurityChecklistPacket(activationPacket);
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `version-up security-checklist: ${packet.planId} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy} checks=${packet.securityChecks.length}\n`,
+    );
+    for (const check of packet.securityChecks) {
+      process.stdout.write(`  security-check: ${check.check} source=${check.sourceUrl}\n`);
+    }
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
   });
 versionUp
   .command("activation-packet")

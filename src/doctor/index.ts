@@ -313,7 +313,9 @@ import {
 } from "../lint/verification-profile";
 import {
   analyzeVersionUpReadiness,
+  buildVersionUpActivationPackets,
   loadVersionUpReadinessInput,
+  versionUpActivationVerificationCommandViolations,
   versionUpReadinessMessages,
 } from "../lint/version-up-readiness";
 import {
@@ -2313,8 +2315,21 @@ export function checkForwardConvergence(repoRoot: string): { messages: string[];
 
 export function checkVersionUpReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
-    const r = analyzeVersionUpReadiness(loadVersionUpReadinessInput(repoRoot));
-    return { messages: versionUpReadinessMessages(r), ok: r.ok };
+    const input = loadVersionUpReadinessInput(repoRoot);
+    const r = analyzeVersionUpReadiness(input);
+    const commandViolations = buildVersionUpActivationPackets(input).flatMap((packet) =>
+      versionUpActivationVerificationCommandViolations(packet),
+    );
+    return {
+      messages: [
+        ...versionUpReadinessMessages(r),
+        ...commandViolations.map(
+          (violation) =>
+            `version-up-readiness - violation: ${violation.subject}: ${violation.reason}`,
+        ),
+      ],
+      ok: r.ok && commandViolations.length === 0,
+    };
   } catch {
     return {
       messages: ["version-up-readiness - violation: version-up docs could not be read"],
