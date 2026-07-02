@@ -153,6 +153,8 @@ export interface ConsumerCiWorkflowContract {
   checkoutInputsExact: boolean;
   setupBunInputsEmpty: boolean;
   customEnvFree: boolean;
+  skipOrSoftFailFree: boolean;
+  executionSurfaceFixed: boolean;
   missingUses: string[];
   unexpectedUses: string[];
   missingRuns: string[];
@@ -218,6 +220,22 @@ export function analyzeConsumerCiWorkflowContract(
     !Object.hasOwn(workflow ?? {}, "env") &&
     !Object.hasOwn(harnessJob ?? {}, "env") &&
     stepRecords.every((step) => !Object.hasOwn(step, "env"));
+  const skipOrSoftFailFree =
+    !Object.hasOwn(harnessJob ?? {}, "if") &&
+    harnessJob?.["continue-on-error"] !== true &&
+    harnessJob?.["continue-on-error"] !== "true" &&
+    stepRecords.every(
+      (step) =>
+        !Object.hasOwn(step, "if") &&
+        step["continue-on-error"] !== true &&
+        step["continue-on-error"] !== "true",
+    );
+  const executionSurfaceFixed =
+    !Object.hasOwn(workflow ?? {}, "defaults") &&
+    !Object.hasOwn(harnessJob ?? {}, "defaults") &&
+    !Object.hasOwn(harnessJob ?? {}, "strategy") &&
+    !Object.hasOwn(harnessJob ?? {}, "container") &&
+    !Object.hasOwn(harnessJob ?? {}, "services");
   const contract = {
     ok: false,
     nameOk: workflow?.name === "harness-check",
@@ -232,6 +250,8 @@ export function analyzeConsumerCiWorkflowContract(
     checkoutInputsExact,
     setupBunInputsEmpty,
     customEnvFree,
+    skipOrSoftFailFree,
+    executionSurfaceFixed,
     missingUses,
     unexpectedUses,
     missingRuns,
@@ -254,6 +274,8 @@ export function analyzeConsumerCiWorkflowContract(
       contract.checkoutInputsExact &&
       contract.setupBunInputsEmpty &&
       contract.customEnvFree &&
+      contract.skipOrSoftFailFree &&
+      contract.executionSurfaceFixed &&
       contract.missingUses.length === 0 &&
       contract.unexpectedUses.length === 0 &&
       contract.missingRuns.length === 0 &&
@@ -1378,9 +1400,9 @@ function buildConsumerArtifactReadinessPlan(
       path: workflowPath,
       ok: hasPath(workflowPath) && workflowContract.ok,
       message:
-        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with fixed checkout/setup-bun inputs, no custom env, and the fixed package-local HELIX command set",
+        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with fixed action inputs, no custom env, no skip or soft-pass controls, and the fixed package-local HELIX command set",
       evidence:
-        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, action inputs, env, setup steps, and command surface",
+        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, action inputs, env, execution controls, setup steps, and command surface",
     },
     ...(codeownersRequired
       ? [
