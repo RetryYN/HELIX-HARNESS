@@ -408,7 +408,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
           kind: "poc",
           status: "draft",
           workflowPhase: "S3",
-          text: "S4 decision pending and requires human approval.",
+          text: "S4 decision pending; external visualization activation requires human approval before execution.",
         },
         {
           planId: "PLAN-L7-146",

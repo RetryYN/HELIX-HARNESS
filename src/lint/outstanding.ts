@@ -29,6 +29,7 @@ import {
   COMPLETION_DECISION_PACKET_COMMAND,
   type DecisionPacketFreshness,
   type DecisionPacketSourceCommand,
+  planTextRequiresActionBindingApproval,
 } from "./workflow-decision-packets";
 
 /** 終端 (= 完了とみなす) status。これ以外 (archived を除く) が非終端 = 未了。 */
@@ -673,7 +674,7 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   ) {
     blockers.add("po_decision_pending");
   }
-  if (/approval|承認|action-binding|human signoff|人間サインオフ|人間承認/i.test(text)) {
+  if (planTextRequiresActionBindingApproval(text)) {
     blockers.add("human_approval_pending");
   }
   if (hasIrreversibleMigrationContext(p, text)) {

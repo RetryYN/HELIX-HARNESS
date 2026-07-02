@@ -190,6 +190,19 @@ This table is the function-spec-side descent for rows in `fr-unit-coverage.md` w
 Proposal-stage subagent lane names are advisory and do not replace the execution router SSoT in `tierFor` / `routeTeamMembers`. `T2-mini` is the low-cost research/document inventory lane, `T2-spark` is the low-cost bounded implementation lane, `T1-worker` is the normal implementation lane, and `T0-frontier` is gated judgement. `PROPOSAL_SUBAGENT_LANES` defines model, `parallel_slots`, `closing_authority`, and guard text for these lanes: mini/spark lanes may run multiple disjoint workers in parallel but cannot close risk or reduce required coverage; frontier judgement is single-slot and explicitly gated. Do not introduce a separate `strong` model-band label here: `strong` is already used elsewhere as a compatibility adjective, and `T1-worker` is the unambiguous cost-tier name for this contract.
 
 `team suggest --design-docs` bridges these advisory lanes into a proposal coverage team definition. Non-closing lanes (`T2-mini`, `T2-spark`, `T1-worker`) become concrete `TeamMember` rows with model override, ownership shard, and low/medium effort. `T0-frontier` remains judgement guidance and is not emitted as an executable member, so frontier approval cannot be bypassed through `team run`; a Claude-side TL review member is added after the first parallel shard to preserve cross-provider review.
+
+### 2026-07-02 action-binding approval 分類追補
+
+`classifyHighImpactApprovalRequirement` は `workflow-decision-packets`、`outstanding`、`s4-decision-readiness`、
+`version-up-readiness`、`action-binding-approval-readiness` が共有する承認境界 classifier である。
+`approval` / `承認` / `action-binding` などの語が文書内に散在するだけでは `human_approval_pending` にしない。
+true になる条件は、(1) structured `action_binding_approval_record:` が存在する、または (2) 同一行・同一文の
+文脈に high-impact target、approval boundary、execution-before obligation が揃う場合に限る。
+`approval_scope`、`review_approval_evidence`、source ledger、過去 PLAN の説明、`planOnly` / `mustNotApply` /
+out-of-scope 表明だけでは blocker にしない。一方で `production auth infrastructure deploy requires PO signoff
+before execution` や `future activation requires action-binding approval` のような自然文は、`action-binding`
+語が無くても high-impact approval requirement として扱う。これにより S4 / version-up / rename / action-binding
+packet の supporting route と `outstanding.blockersByKind.human_approval_pending` が同じ意味境界で揃う。
 | FR-L1-32 | `validateFolderRules` | validateFolderRules(input: ValidateFolderRulesInput, deps: ValidateFolderRulesDeps) => ValidateFolderRulesResult | path registry and artifact kind are supplied. | returns violations for misplaced process docs/tests/state. | folder policy is checked without rewriting files. | U-FR-L1-32 |
 | FR-L1-33 | `catalogExistingAssets` | catalogExistingAssets(input: CatalogExistingAssetsInput, deps: CatalogExistingAssetsDeps) => CatalogExistingAssetsResult | approved asset roots are supplied. | classifies command/skill/detector/template/state/hook/doc/test assets by coverage status. | catalog stores metadata only; prompt bodies and secrets stay in source docs. | U-FR-L1-33 |
 | FR-L1-34 | `prioritizeCapabilityGaps` | prioritizeCapabilityGaps(input: PrioritizeCapabilityGapsInput, deps: PrioritizeCapabilityGapsDeps) => PrioritizeCapabilityGapsResult | asset catalog, workflow impact, and missing route/recover signals are supplied. | returns deterministic priority order with reason. | priority is advisory until converted into a PLAN. | U-FR-L1-34 |

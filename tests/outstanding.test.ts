@@ -198,6 +198,54 @@ describe("analyzeOutstandingWork", () => {
     ]);
   });
 
+  it("approval 証跡フィールド名だけでは human approval blocker にしない", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DOCS-ONLY",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          text: [
+            "approval_scope: docs-only review boundary.",
+            "review_approval_evidence: approval packet template.",
+            "Cloudflare source ledger row is reference material only.",
+          ].join("\n"),
+        },
+      ],
+      0,
+    );
+
+    expect(o.blockersByKind).toEqual({ active_draft: 1 });
+    expect(o.items[0]).toMatchObject({
+      planId: "PLAN-DOCS-ONLY",
+      blockers: ["active_draft"],
+      reason: "active_draft",
+    });
+  });
+
+  it("自然文の高影響実行前 PO signoff は human approval blocker にする", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DEPLOY",
+          layer: "L12",
+          kind: "impl",
+          status: "draft",
+          text: "production auth infrastructure deploy requires PO signoff before execution.",
+        },
+      ],
+      0,
+    );
+
+    expect(o.blockersByKind).toEqual({ human_approval_pending: 1 });
+    expect(o.items[0]).toMatchObject({
+      planId: "PLAN-DEPLOY",
+      blockers: ["human_approval_pending"],
+      reason: "human_approval_pending",
+    });
+  });
+
   it("version-up parked 本文があるのに version_target frontmatter が無い PLAN を frontier から落とさない", () => {
     const o = analyzeOutstandingWork(
       [
@@ -410,7 +458,7 @@ describe("completionDecisionPacketForOutstanding", () => {
           kind: "poc",
           status: "draft",
           workflowPhase: "S3",
-          text: "S4 decision_outcome is PO gated and requires human approval.",
+          text: "S4 decision_outcome is PO gated; external visualization activation requires human approval before execution.",
         },
         {
           planId: "PLAN-L7-146",
@@ -418,7 +466,7 @@ describe("completionDecisionPacketForOutstanding", () => {
           kind: "impl",
           status: "draft",
           versionTarget: "future",
-          text: "version-up parked Cloudflare HMAC webhook action-binding approval",
+          text: "version-up parked Cloudflare HMAC webhook activation requires action-binding approval before external execution.",
         },
         {
           planId: "PLAN-M-02",
@@ -505,7 +553,11 @@ describe("completionDecisionPacketForOutstanding", () => {
           "ut-tdd action-binding approval-packet --json",
         ],
       ],
-      ["PLAN-M-02", "ut-tdd rename plan --json", ["ut-tdd rename plan --json"]],
+      [
+        "PLAN-M-02",
+        "ut-tdd rename plan --json",
+        ["ut-tdd rename plan --json", "ut-tdd action-binding approval-packet --json"],
+      ],
     ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
     expect(packet.decisions[0].allowedOutcomesByRecord).toEqual([
@@ -773,17 +825,42 @@ describe("completionDecisionPacketForOutstanding", () => {
           },
         ],
       },
+      {
+        recordName: "action_binding_approval_record",
+        fields: [
+          "allowed_outcome",
+          "approval_policy_or_named_approver",
+          "approval_scope",
+          "approved_actor",
+          "approved_tool",
+          "approved_target",
+          "approved_params",
+          "review_approval_evidence",
+          "reviewed_snapshot_binding",
+          "expires_at_or_trigger",
+          "audit_record",
+        ],
+        sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
+      },
     ]);
     expect(packet.decisions[2].allowedOutcomesByRecord).toEqual([
       {
         recordName: "cutover_decision_record",
         allowedOutcomes: ["approve_cutover", "reject_or_defer", "request_runbook_changes"],
       },
+      {
+        recordName: "action_binding_approval_record",
+        allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
+      },
     ]);
     expect(packet.decisions[2].nextWorkflowRoutesByRecord).toEqual([
       {
         recordName: "cutover_decision_record",
         nextWorkflowRoute: expect.stringContaining("L14 cutover decision"),
+      },
+      {
+        recordName: "action_binding_approval_record",
+        nextWorkflowRoute: expect.stringContaining("action-binding approval gate"),
       },
     ]);
     expect(packet.decisions[2].recordTemplates[0]).toMatchObject({
@@ -1164,9 +1241,15 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         nextWorkflowRoute:
           "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
         decisionPacketCommand: "ut-tdd rename plan --json",
-        packetCommands: ["ut-tdd rename plan --json"],
+        packetCommands: [
+          "ut-tdd rename plan --json",
+          "ut-tdd action-binding approval-packet --json",
+        ],
         scopedDecisionPacketCommand: "ut-tdd rename plan --json",
-        scopedPacketCommands: ["ut-tdd rename plan --json"],
+        scopedPacketCommands: [
+          "ut-tdd rename plan --json",
+          "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
+        ],
         supportingPacketSummaries: [
           {
             command: "ut-tdd rename plan --json",
@@ -1225,6 +1308,38 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
               "workflowRouteImpact",
             ]),
           },
+          {
+            command: "ut-tdd action-binding approval-packet --json",
+            schemaVersion: "action-binding-approval-packet.v1",
+            matrixField: "approvalVerificationCommandMatrix",
+            expectedMatrixCount: 10,
+            requiredReviewFields: expect.arrayContaining([
+              "planOnly",
+              "approvalAllowed",
+              "approvalRecord.approved_actor",
+              "approvalRecord.approved_tool",
+              "approvalRecord.approved_target",
+              "approvalRecord.approved_params",
+              "approvalRecord.reviewed_snapshot_binding",
+              "approvalBindingChecks.approved_actor",
+              "approvalBindingChecks.approved_tool",
+              "approvalBindingChecks.approved_target",
+              "approvalBindingChecks.approved_params",
+              "approvalBindingChecks.reviewed_snapshot_binding",
+              "approvalBindingChecks.status",
+              "approvalVerificationCommandMatrix.command",
+              "relatedDecisionPackets.scopedCommand",
+              "nextWorkflowRoutes.route",
+            ]),
+            requiredMatrixFields: expect.arrayContaining([
+              "sourceCheckedAt",
+              "latestOfficialStatus",
+              "sourceStatusDelta",
+              "adoptionDecision",
+              "adoptionDecisionDelta",
+              "workflowRouteImpact",
+            ]),
+          },
         ],
       },
     ]);
@@ -1239,7 +1354,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           kind: "poc",
           status: "draft",
           workflowPhase: "S3",
-          text: "S4 decision pending and requires human approval.",
+          text: "S4 decision pending; external visualization activation requires human approval before execution.",
         },
         {
           planId: "PLAN-L7-146",

@@ -27,6 +27,7 @@ import { buildVersionUpActivationPackets } from "./version-up-readiness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   buildDecisionPacketProvenance,
+  classifyHighImpactApprovalRequirement,
   type DecisionPacketFreshness,
   RENAME_PLAN_PACKET_COMMAND,
   type RelatedDecisionPacket,
@@ -185,13 +186,6 @@ const OUTSTANDING_MARKERS = [
   "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
 ] as const;
 
-const ACTION_BINDING_BOUNDARY =
-  /action-binding|human\/action-binding approval|requires_human_approval=true|human signoff|人間サインオフ|人間承認/i;
-const ACTION_BINDING_EXECUTION_OBLIGATION =
-  /requires?\s+action-binding approval\s+before|action-binding approval\s+(?:is\s+)?required\s+before|action-binding approval\s+なしに.*(?:apply|実行|実適用)|実適用には\s+action-binding approval\s+が必要|高影響\s+action\s+の実行前に\s+human\/action-binding approval\s+を記録する/i;
-const HIGH_IMPACT_ACTION_TARGET =
-  /high-impact action|high-impact execution|高影響\s+action|external|infra|secret|auth|destructive|state dir|migration|cutover|activation|deploy|deployment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|設定変更|実行|実適用/i;
-
 function parsePlan(file: string, content: string): ActionBindingApprovalPlan {
   return {
     file,
@@ -241,13 +235,8 @@ function requiresActionBindingRecordValidation(plan: ActionBindingApprovalPlan):
 }
 
 function carriesHighImpactApprovalBoundary(plan: ActionBindingApprovalPlan): boolean {
-  if (new RegExp(`^\\s*${ACTION_BINDING_RECORD_NAME}:\\s*$`, "m").test(plan.text)) return true;
   const haystack = [plan.plan_id, plan.file, plan.status, plan.text].join("\n");
-  return (
-    ACTION_BINDING_BOUNDARY.test(haystack) &&
-    ACTION_BINDING_EXECUTION_OBLIGATION.test(haystack) &&
-    HIGH_IMPACT_ACTION_TARGET.test(haystack)
-  );
+  return classifyHighImpactApprovalRequirement(haystack).required;
 }
 
 export function analyzeActionBindingApprovalReadiness(

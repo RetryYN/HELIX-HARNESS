@@ -7,6 +7,7 @@ import {
   loadActionBindingApprovalReadinessInput,
 } from "../src/lint/action-binding-approval-readiness";
 import { buildVersionUpActivationPackets } from "../src/lint/version-up-readiness";
+import { classifyHighImpactApprovalRequirement } from "../src/lint/workflow-decision-packets";
 
 const RIGHT_ARM = [
   "Action-binding approval decision record",
@@ -129,6 +130,36 @@ function currentVersionUpSnapshotId(
 }
 
 describe("action-binding approval readiness", () => {
+  it("classifies high-impact approval requirements by shared sentence context", () => {
+    expect(
+      classifyHighImpactApprovalRequirement(
+        [
+          "approval_scope: docs-only review boundary.",
+          "review_approval_evidence: approval packet template.",
+          "Cloudflare source ledger row is mentioned as reference material.",
+        ].join("\n"),
+      ).required,
+    ).toBe(false);
+    expect(
+      classifyHighImpactApprovalRequirement(
+        "production auth infrastructure deploy requires PO signoff before execution",
+      ),
+    ).toMatchObject({
+      required: true,
+      reason: "high_impact_action_binding_required",
+    });
+    expect(
+      classifyHighImpactApprovalRequirement("S4 decision pending and requires human approval.")
+        .required,
+    ).toBe(false);
+    expect(
+      classifyHighImpactApprovalRequirement("future activation requires action-binding approval."),
+    ).toMatchObject({
+      required: true,
+      reason: "high_impact_action_binding_required",
+    });
+  });
+
   it("accepts pending high-impact approval plans only when they carry structured records", () => {
     const result = analyzeActionBindingApprovalReadiness({
       rightArmMd: RIGHT_ARM,
