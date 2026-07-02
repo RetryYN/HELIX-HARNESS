@@ -84,8 +84,14 @@ supporting summary は `approvalRecord` や `approvalBindingChecks` という親
 `approvalRecord.approval_scope`、`approvalRecord.approved_actor`、`approvalRecord.approved_tool`、
 `approvalRecord.approved_target`、`approvalRecord.approved_params`、`approvalRecord.review_approval_evidence`、
 `approvalRecord.reviewed_snapshot_binding`、`approvalRecord.expires_at_or_trigger`、`approvalRecord.audit_record` と、
-対応する `approvalBindingChecks.*` を列挙する。これにより、承認者が actor / tool / target / params /
-snapshot / expiry / audit のどこを確認すべきかを status だけで辿れる。
+対応する `approvalBindingChecks.*` を列挙する。さらに `planOnly`、`mustNotApprove`、
+`approvalCommandAvailable`、`approvalAllowed`、`allowedOutcomes`、`approvalBindingChecks.status`、
+`approvalBindingChecks.reason`、`approvalBindingChecks.requiredAction`、
+`approvalVerificationCommandMatrix.command`、`approvalVerificationCommandMatrix.writePolicy`、
+`approvalVerificationCommandMatrix.evidence`、`relatedDecisionPackets.scopedCommand`、`nextWorkflowRoutes.route`
+も summary へ出す。これにより、承認者が actor / tool / target / params / snapshot / expiry / audit に加えて、
+承認不可の plan-only safety、check が pending/invalid の理由、再実行すべき検証 command、sibling packet の
+PLAN scope、承認後 route を status だけで辿れる。
 さらに `approvalVerificationCommandMatrix[]` を持ち、approval packet baseline、sibling decision packet、
 least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
 full regression、completion frontier を承認前の検証 phase として列挙する。各 row は command / expected /

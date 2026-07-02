@@ -272,6 +272,11 @@ describe("completion decision packet lint", () => {
     );
     expect(approvalSummary?.requiredReviewFields).toEqual(
       expect.arrayContaining([
+        "planOnly",
+        "mustNotApprove",
+        "approvalCommandAvailable",
+        "approvalAllowed",
+        "allowedOutcomes",
         "approvalRecord.allowed_outcome",
         "approvalRecord.approval_policy_or_named_approver",
         "approvalRecord.approval_scope",
@@ -293,6 +298,15 @@ describe("completion decision packet lint", () => {
         "approvalBindingChecks.reviewed_snapshot_binding",
         "approvalBindingChecks.expires_at_or_trigger",
         "approvalBindingChecks.audit_record",
+        "approvalBindingChecks.status",
+        "approvalBindingChecks.reason",
+        "approvalBindingChecks.requiredAction",
+        "approvalVerificationCommandMatrix.phase",
+        "approvalVerificationCommandMatrix.command",
+        "approvalVerificationCommandMatrix.writePolicy",
+        "approvalVerificationCommandMatrix.evidence",
+        "relatedDecisionPackets.scopedCommand",
+        "nextWorkflowRoutes.route",
       ]),
     );
     const renameDecisionPacket = renamePacket();
@@ -617,6 +631,11 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=planOnly",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
             "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalRecord.approved_actor",
         },
         {
@@ -628,6 +647,21 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalBindingChecks.approved_params",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalBindingChecks.status",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalVerificationCommandMatrix.command",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=relatedDecisionPackets.scopedCommand",
         },
       ]),
     );

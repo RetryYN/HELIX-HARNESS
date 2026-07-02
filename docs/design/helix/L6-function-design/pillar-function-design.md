@@ -259,8 +259,13 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `approvalRecord` / `approvalBindingChecks` という親 field だけに畳まない。`allowed_outcome`、
   `approval_policy_or_named_approver`、`approval_scope`、`approved_actor`、`approved_tool`、`approved_target`、
   `approved_params`、`review_approval_evidence`、`reviewed_snapshot_binding`、`expires_at_or_trigger`、
-  `audit_record` と対応する binding check field を `requiredReviewFields[]` に列挙し、承認前 review が
-  actor / tool / target / params / snapshot / expiry / audit のどれを確認すべきかを失わない。
+  `audit_record` と対応する binding check field を `requiredReviewFields[]` に列挙する。加えて `planOnly`、
+  `mustNotApprove`、`approvalCommandAvailable`、`approvalAllowed`、`approvalBindingChecks.status`、
+  `approvalBindingChecks.reason`、`approvalBindingChecks.requiredAction`、
+  `approvalVerificationCommandMatrix.command`、`approvalVerificationCommandMatrix.writePolicy`、
+  `approvalVerificationCommandMatrix.evidence`、`relatedDecisionPackets.scopedCommand`、`nextWorkflowRoutes.route`
+  も列挙し、承認前 review が actor / tool / target / params / snapshot / expiry / audit、plan-only safety、
+  pending/invalid reason、再実行 command、sibling packet scope、承認後 route のどれを確認すべきかを失わない。
   text surface は binding check 件数に加えて verification command 件数と
   writePolicy / command 付き `verification-source:` 行を出し、
   JSON を見ない利用者にも承認前に実行すべき証跡確認と公式/正本 source を欠落させない。
