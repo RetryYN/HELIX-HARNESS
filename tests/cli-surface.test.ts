@@ -857,6 +857,25 @@ describe("L7 CLI surface closure", () => {
     expect(payload.importReport.existingPaths).toEqual(
       expect.arrayContaining(["AGENTS.md", join(".codex", "config.toml")]),
     );
+    expect(payload.importReport.skipSubDocs).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: "docs/plans",
+          reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+          nextRoute: "consumer_doctor_profile",
+          followUpGate: "consumer_doctor",
+        }),
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: join(".codex", "config.toml"),
+          reason: "consumer_owned_path_preserved_for_staged_migration",
+          nextRoute: "review_import_report",
+          evidence: "importReport.skippedExistingPaths",
+          followUpGate: "import_report_review",
+        }),
+      ]),
+    );
     expect(payload.consumerReadiness).toMatchObject({
       workspace: { repoRoot },
       ci: { forkPullRequestSecrets: "not-required" },
@@ -925,6 +944,13 @@ describe("L7 CLI surface closure", () => {
     const text = runCli(["setup", "project", "--dry-run"]);
     expect(text.status).toBe(0);
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
+    expect(text.stdout).toContain("skipSubDocs=");
+    expect(text.stdout).toContain(
+      "skip-sub-doc: docs/plans marker=skip_sub_doc route=consumer_doctor_profile reason=dogfood_sub_doc_not_required_for_consumer_setup gate=consumer_doctor",
+    );
+    expect(text.stdout).toContain(
+      "skip-sub-doc: .codex/config.toml marker=skip_sub_doc route=review_import_report reason=consumer_owned_path_preserved_for_staged_migration gate=import_report_review",
+    );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
     expect(text.stdout).toContain("verification-matrix: 5");

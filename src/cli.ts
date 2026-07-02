@@ -4014,8 +4014,13 @@ setupCommand
     process.stdout.write(
       `import-report: ${
         r.importReport.requiresReview ? "review_required" : "ready"
-      } (${r.importReport.nextRoute})\n`,
+      } (${r.importReport.nextRoute}) skipSubDocs=${r.importReport.skipSubDocs.length}\n`,
     );
+    for (const record of r.importReport.skipSubDocs) {
+      process.stdout.write(
+        `skip-sub-doc: ${record.path} marker=${record.marker} route=${record.nextRoute} reason=${record.reason} gate=${record.followUpGate}\n`,
+      );
+    }
     const cliCheck = r.consumerReadiness.checks.find((check) => check.name === "ut-tdd-cli");
     process.stdout.write(
       `consumer-readiness: ok=${r.consumerReadiness.ok} mode=${r.consumerReadiness.mode} ut-tdd-cli=${cliCheck?.ok ?? false}\n`,

@@ -96,9 +96,21 @@ export interface HelixProjectImportReport {
   writtenPaths: string[];
   skippedExistingPaths: string[];
   mergeableManagedBlockPaths: string[];
+  skipSubDocs: HelixProjectSkipSubDocRecord[];
   requiresReview: boolean;
   reviewRequiredReasons: string[];
   nextRoute: "ready" | "review_import_report";
+}
+
+export interface HelixProjectSkipSubDocRecord {
+  marker: "skip_sub_doc";
+  path: string;
+  reason:
+    | "dogfood_sub_doc_not_required_for_consumer_setup"
+    | "consumer_owned_path_preserved_for_staged_migration";
+  nextRoute: "consumer_doctor_profile" | "review_import_report";
+  evidence: string;
+  followUpGate: "consumer_doctor" | "import_report_review";
 }
 
 export interface HelixProjectSetupResult extends SetupResult {
@@ -392,6 +404,33 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
   nextRouteSource: "postSetupWorkflow.nextRoute",
   evidencePath: ".ut-tdd/evidence",
 };
+
+const CONSUMER_SETUP_SKIP_SUB_DOCS: HelixProjectSkipSubDocRecord[] = [
+  {
+    marker: "skip_sub_doc",
+    path: "docs/plans",
+    reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+    nextRoute: "consumer_doctor_profile",
+    evidence: "consumer doctor profile intentionally does not require dogfood PLAN corpus",
+    followUpGate: "consumer_doctor",
+  },
+  {
+    marker: "skip_sub_doc",
+    path: "docs/design/harness",
+    reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+    nextRoute: "consumer_doctor_profile",
+    evidence: "consumer doctor profile validates projected adapters and baseline state only",
+    followUpGate: "consumer_doctor",
+  },
+  {
+    marker: "skip_sub_doc",
+    path: "docs/test-design",
+    reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+    nextRoute: "consumer_doctor_profile",
+    evidence: "postSetupWorkflow.verificationCommands includes ut-tdd doctor --profile consumer",
+    followUpGate: "consumer_doctor",
+  },
+];
 
 /**
  * U-SETUP-001: gh で owner 種別 / collaborator 数 / 既存 protection を読む。**never throws**。
@@ -830,6 +869,19 @@ function buildHelixProjectImportReport(input: {
     (path) => !writtenSet.has(path) && !mergeableSet.has(path),
   );
   const requiresReview = skippedExistingPaths.length > 0;
+  const skipSubDocs = [
+    ...CONSUMER_SETUP_SKIP_SUB_DOCS,
+    ...skippedExistingPaths.map(
+      (path): HelixProjectSkipSubDocRecord => ({
+        marker: "skip_sub_doc",
+        path,
+        reason: "consumer_owned_path_preserved_for_staged_migration",
+        nextRoute: "review_import_report",
+        evidence: "importReport.skippedExistingPaths",
+        followUpGate: "import_report_review",
+      }),
+    ),
+  ];
   return {
     schemaVersion: "helix-project-import-report.v1",
     mode: input.existingPaths.length > 0 ? "brownfield" : "fresh",
@@ -841,6 +893,7 @@ function buildHelixProjectImportReport(input: {
     writtenPaths: actualWrittenPaths,
     skippedExistingPaths,
     mergeableManagedBlockPaths,
+    skipSubDocs,
     requiresReview,
     reviewRequiredReasons: requiresReview ? ["existing_non_mergeable_paths_preserved"] : [],
     nextRoute: requiresReview ? "review_import_report" : "ready",
@@ -879,7 +932,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
   const nextActions =
     nextRoute === "review_import_report"
       ? [
-          "apply 前に importReport.skippedExistingPaths を確認し、consumer-owned config を merge または受容する",
+          "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
           `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]

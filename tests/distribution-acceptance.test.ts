@@ -389,6 +389,23 @@ describe("clean distribution local acceptance smoke", () => {
         expect(firstBrownfieldJson.importReport.skippedExistingPaths).toContain(
           ".vscode/tasks.json",
         );
+        expect(firstBrownfieldJson.importReport.skipSubDocs).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              marker: "skip_sub_doc",
+              path: "docs/plans",
+              reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+              nextRoute: "consumer_doctor_profile",
+            }),
+            expect.objectContaining({
+              marker: "skip_sub_doc",
+              path: ".vscode/tasks.json",
+              reason: "consumer_owned_path_preserved_for_staged_migration",
+              nextRoute: "review_import_report",
+              followUpGate: "import_report_review",
+            }),
+          ]),
+        );
         expect(firstBrownfieldJson.written).toContain("AGENTS.md");
         expect(firstBrownfieldJson.written).not.toContain(".vscode/tasks.json");
 

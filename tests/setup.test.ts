@@ -762,6 +762,36 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         join(".ut-tdd", "teams", "default-hybrid.yaml"),
       ]),
     );
+    expect(preview.importReport.skipSubDocs).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: "docs/plans",
+          reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+          nextRoute: "consumer_doctor_profile",
+          followUpGate: "consumer_doctor",
+        }),
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: "docs/design/harness",
+          reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+          nextRoute: "consumer_doctor_profile",
+          followUpGate: "consumer_doctor",
+        }),
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: "docs/test-design",
+          reason: "dogfood_sub_doc_not_required_for_consumer_setup",
+          nextRoute: "consumer_doctor_profile",
+          followUpGate: "consumer_doctor",
+        }),
+      ]),
+    );
+    expect(
+      preview.importReport.skipSubDocs.filter(
+        (record) => record.nextRoute === "review_import_report",
+      ),
+    ).toEqual([]);
     expect(preview.nextCommands).toEqual(
       expect.arrayContaining([
         "ut-tdd status --json",
@@ -934,6 +964,24 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.importReport.mergeableManagedBlockPaths).toContain("AGENTS.md");
     expect(result.importReport.writtenPaths).toContain("AGENTS.md");
     expect(result.importReport.skippedExistingPaths).toContain(join(".vscode", "tasks.json"));
+    expect(result.importReport.skipSubDocs).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: "docs/plans",
+          nextRoute: "consumer_doctor_profile",
+          followUpGate: "consumer_doctor",
+        }),
+        expect.objectContaining({
+          marker: "skip_sub_doc",
+          path: join(".vscode", "tasks.json"),
+          reason: "consumer_owned_path_preserved_for_staged_migration",
+          nextRoute: "review_import_report",
+          evidence: "importReport.skippedExistingPaths",
+          followUpGate: "import_report_review",
+        }),
+      ]),
+    );
     expect(result.importReport.reviewRequiredReasons).toContain(
       "existing_non_mergeable_paths_preserved",
     );
