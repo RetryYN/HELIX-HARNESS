@@ -26,6 +26,7 @@ import {
   sourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
+  verificationSourceMetadataViolations,
 } from "./source-ledger-freshness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
@@ -866,16 +867,22 @@ export function s4DecisionVerificationCommandViolations(
     "bun run src/cli.ts status --json",
   ]);
   return packet.decisionVerificationCommandMatrix.flatMap((row) => {
+    const violations: S4DecisionCommandViolation[] = [];
     const command = row.command.trim();
-    if (allowedCommands.has(command)) {
-      return [];
-    }
-    return [
-      {
+    if (!allowedCommands.has(command)) {
+      violations.push({
         subject: `${packet.planId}.${row.phase}`,
         reason: `decisionVerificationCommandMatrix command is not an executable approved surface: ${row.command}`,
-      },
-    ];
+      });
+    }
+    violations.push(
+      ...verificationSourceMetadataViolations({
+        subject: `${packet.planId}.${row.phase}`,
+        matrixName: "decisionVerificationCommandMatrix",
+        row,
+      }),
+    );
+    return violations;
   });
 }
 

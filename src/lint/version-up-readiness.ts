@@ -27,6 +27,7 @@ import {
   SOURCE_LEDGER_MAX_AGE_DAYS,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
+  verificationSourceMetadataViolations,
 } from "./source-ledger-freshness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
@@ -1468,7 +1469,15 @@ export function versionUpActivationVerificationCommandViolations(
       row.phase === "version-dry-run" &&
       /^bun run src\/cli\.ts version-up dry-run --current \S+ --target \S+ --json$/.test(command)
     ) {
-      return versionUpActivationWritePolicyViolations(packet.planId, row, command);
+      violations.push(...versionUpActivationWritePolicyViolations(packet.planId, row, command));
+      violations.push(
+        ...verificationSourceMetadataViolations({
+          subject: `${packet.planId}.${row.phase}`,
+          matrixName: "activationVerificationCommandMatrix",
+          row,
+        }),
+      );
+      return violations;
     }
     const allowedForPolicy =
       (row.writePolicy === "no-write" && allowedNoWriteCommands.has(command)) ||
@@ -1480,6 +1489,13 @@ export function versionUpActivationVerificationCommandViolations(
       });
     }
     violations.push(...versionUpActivationWritePolicyViolations(packet.planId, row, command));
+    violations.push(
+      ...verificationSourceMetadataViolations({
+        subject: `${packet.planId}.${row.phase}`,
+        matrixName: "activationVerificationCommandMatrix",
+        row,
+      }),
+    );
     return violations;
   });
 }

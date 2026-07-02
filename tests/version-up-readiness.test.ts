@@ -683,6 +683,71 @@ describe("version-up-readiness", () => {
           "activationVerificationCommandMatrix state-write command must be explicit about state rebuild: bun run src/cli.ts doctor",
       },
     ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
+          (row) =>
+            row.phase === "external-rehearsal"
+              ? {
+                  ...row,
+                  sourceCheckedAt: "2026-01-01",
+                }
+              : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason: expect.stringMatching(
+          /^activationVerificationCommandMatrix sourceCheckedAt is stale: 2026-01-01 \(\d+d > 90d\)$/,
+        ),
+      },
+    ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
+          (row) =>
+            row.phase === "external-rehearsal"
+              ? {
+                  ...row,
+                  sourceCheckedAt: "2999-01-01",
+                }
+              : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason: "activationVerificationCommandMatrix sourceCheckedAt is in the future: 2999-01-01",
+      },
+    ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
+          (row) =>
+            row.phase === "external-rehearsal"
+              ? {
+                  ...row,
+                  latestOfficialStatus: "TODO",
+                  workflowRouteImpact: "-",
+                }
+              : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason:
+          "activationVerificationCommandMatrix latestOfficialStatus is missing or placeholder",
+      },
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason: "activationVerificationCommandMatrix workflowRouteImpact is missing or placeholder",
+      },
+    ]);
     const rehearsalPacket = buildVersionUpActivationRehearsalPacket(packet);
     expect(rehearsalPacket).toMatchObject({
       schemaVersion: "version-up-activation-rehearsal.v1",

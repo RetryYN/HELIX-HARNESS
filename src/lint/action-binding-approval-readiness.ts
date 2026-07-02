@@ -22,7 +22,7 @@ import {
   missingRecordFields,
   recordFieldValue,
 } from "./shared";
-import { SOURCE_LEDGER_MAX_AGE_DAYS } from "./source-ledger-freshness";
+import { verificationSourceMetadataViolations } from "./source-ledger-freshness";
 import { buildVersionUpActivationPackets } from "./version-up-readiness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
@@ -723,54 +723,11 @@ function actionBindingApprovalVerificationSourceViolations(
   planId: string,
   row: ActionBindingApprovalPacket["approvalVerificationCommandMatrix"][number],
 ): ActionBindingApprovalCommandViolation[] {
-  const violations: ActionBindingApprovalCommandViolation[] = [];
-  const subject = `${planId}.${row.phase}`;
-  const checkedMs = Date.parse(`${row.sourceCheckedAt}T00:00:00.000Z`);
-  const nowMs = Date.now();
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(row.sourceCheckedAt) || Number.isNaN(checkedMs)) {
-    violations.push({
-      subject,
-      reason: `approvalVerificationCommandMatrix sourceCheckedAt is invalid: ${row.sourceCheckedAt}`,
-    });
-  } else if (checkedMs > nowMs) {
-    violations.push({
-      subject,
-      reason: `approvalVerificationCommandMatrix sourceCheckedAt is in the future: ${row.sourceCheckedAt}`,
-    });
-  } else {
-    const ageDays = Math.floor((nowMs - checkedMs) / 86_400_000);
-    if (ageDays > SOURCE_LEDGER_MAX_AGE_DAYS) {
-      violations.push({
-        subject,
-        reason: `approvalVerificationCommandMatrix sourceCheckedAt is stale: ${row.sourceCheckedAt} (${ageDays}d > ${SOURCE_LEDGER_MAX_AGE_DAYS}d)`,
-      });
-    }
-  }
-
-  for (const [field, value] of [
-    ["sourceUrl", row.sourceUrl],
-    ["latestOfficialStatus", row.latestOfficialStatus],
-    ["sourceStatusDelta", row.sourceStatusDelta],
-    ["adoptionDecision", row.adoptionDecision],
-    ["adoptionDecisionDelta", row.adoptionDecisionDelta],
-    ["workflowRouteImpact", row.workflowRouteImpact],
-  ] as const) {
-    if (!value.trim() || /^(TBD|TODO|N\/A|-|placeholder)$/i.test(value.trim())) {
-      violations.push({
-        subject,
-        reason: `approvalVerificationCommandMatrix ${field} is missing or placeholder`,
-      });
-    }
-  }
-
-  if (/^https?:\/\//.test(row.sourceUrl) && !row.sourceUrl.startsWith("https://")) {
-    violations.push({
-      subject,
-      reason: `approvalVerificationCommandMatrix sourceUrl must use https: ${row.sourceUrl}`,
-    });
-  }
-
-  return violations;
+  return verificationSourceMetadataViolations({
+    subject: `${planId}.${row.phase}`,
+    matrixName: "approvalVerificationCommandMatrix",
+    row,
+  });
 }
 
 function validateActionBindingSemantics(

@@ -359,6 +359,67 @@ describe("S4 decision readiness", () => {
           "decisionVerificationCommandMatrix command is not an executable approved surface: run the PLAN-declared S3 verification command(s) cited by verified_evidence",
       },
     ]);
+    expect(
+      s4DecisionVerificationCommandViolations({
+        ...packet,
+        decisionVerificationCommandMatrix: packet.decisionVerificationCommandMatrix.map((row) =>
+          row.phase === "source-ledger-freshness"
+            ? {
+                ...row,
+                sourceCheckedAt: "2026-01-01",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-DISCOVERY-900.source-ledger-freshness",
+        reason: expect.stringMatching(
+          /^decisionVerificationCommandMatrix sourceCheckedAt is stale: 2026-01-01 \(\d+d > 90d\)$/,
+        ),
+      },
+    ]);
+    expect(
+      s4DecisionVerificationCommandViolations({
+        ...packet,
+        decisionVerificationCommandMatrix: packet.decisionVerificationCommandMatrix.map((row) =>
+          row.phase === "source-ledger-freshness"
+            ? {
+                ...row,
+                sourceCheckedAt: "2999-01-01",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-DISCOVERY-900.source-ledger-freshness",
+        reason: "decisionVerificationCommandMatrix sourceCheckedAt is in the future: 2999-01-01",
+      },
+    ]);
+    expect(
+      s4DecisionVerificationCommandViolations({
+        ...packet,
+        decisionVerificationCommandMatrix: packet.decisionVerificationCommandMatrix.map((row) =>
+          row.phase === "source-ledger-freshness"
+            ? {
+                ...row,
+                latestOfficialStatus: "TODO",
+                workflowRouteImpact: "-",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-DISCOVERY-900.source-ledger-freshness",
+        reason: "decisionVerificationCommandMatrix latestOfficialStatus is missing or placeholder",
+      },
+      {
+        subject: "PLAN-DISCOVERY-900.source-ledger-freshness",
+        reason: "decisionVerificationCommandMatrix workflowRouteImpact is missing or placeholder",
+      },
+    ]);
     expect(packet.provenanceRequirements).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ item: "decision_record" }),

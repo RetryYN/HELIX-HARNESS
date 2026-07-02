@@ -482,6 +482,64 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             "verificationCommandMatrix local-artifact-write command must be explicit about local artifact output: bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
         },
       ]);
+      expect(
+        identifierRenameVerificationCommandViolations({
+          verificationCommandMatrix: plan.verificationCommandMatrix.map((row) =>
+            row.phase === "baseline"
+              ? {
+                  ...row,
+                  sourceCheckedAt: "2026-01-01",
+                }
+              : row,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "baseline",
+          reason: expect.stringMatching(
+            /^verificationCommandMatrix sourceCheckedAt is stale: 2026-01-01 \(\d+d > 90d\)$/,
+          ),
+        },
+      ]);
+      expect(
+        identifierRenameVerificationCommandViolations({
+          verificationCommandMatrix: plan.verificationCommandMatrix.map((row) =>
+            row.phase === "baseline"
+              ? {
+                  ...row,
+                  sourceCheckedAt: "2999-01-01",
+                }
+              : row,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "baseline",
+          reason: "verificationCommandMatrix sourceCheckedAt is in the future: 2999-01-01",
+        },
+      ]);
+      expect(
+        identifierRenameVerificationCommandViolations({
+          verificationCommandMatrix: plan.verificationCommandMatrix.map((row) =>
+            row.phase === "baseline"
+              ? {
+                  ...row,
+                  latestOfficialStatus: "TODO",
+                  workflowRouteImpact: "-",
+                }
+              : row,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "baseline",
+          reason: "verificationCommandMatrix latestOfficialStatus is missing or placeholder",
+        },
+        {
+          subject: "baseline",
+          reason: "verificationCommandMatrix workflowRouteImpact is missing or placeholder",
+        },
+      ]);
       expect(plan.recordTemplates).toEqual(
         expect.arrayContaining([
           expect.objectContaining({

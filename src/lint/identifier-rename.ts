@@ -18,6 +18,7 @@ import {
   sourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
+  verificationSourceMetadataViolations,
 } from "./source-ledger-freshness";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
@@ -1129,6 +1130,13 @@ export function identifierRenameVerificationCommandViolations(
         reason: `verificationCommandMatrix local-artifact-write command must be explicit about local artifact output: ${row.command}`,
       });
     }
+    violations.push(
+      ...verificationSourceMetadataViolations({
+        subject: row.phase,
+        matrixName: "verificationCommandMatrix",
+        row,
+      }),
+    );
     return violations;
   });
 }

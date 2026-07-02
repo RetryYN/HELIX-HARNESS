@@ -71,6 +71,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   進めない。packet は `s4_decision_record` と、同一 PLAN が承認境界を持つ場合の
   `action_binding_approval_record` の `recordTemplates[]` を返し、text surface も `record-template` 行を出す。
   text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
+  `decisionVerificationCommandMatrix[]` は共通 source metadata validator により、未来日・90 日超 stale・
+  非実在日付の `sourceCheckedAt`、および placeholder / future-action prose の source/adoption/route metadata を
+  PO 判断前 evidence として通さない。
 - HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
   `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
   source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
@@ -98,6 +101,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `activationSnapshot.evidenceDigest` に含め、承認前 review material の drift を snapshot drift として扱う。
   activation packet は activation / parked review / external rehearsal / cost guardrail / provenance /
   action-binding の required record を `recordTemplates[]` として返し、PO が packet だけで記入 block を複写できる。
+  `activationVerificationCommandMatrix[]` も共通 source metadata validator を通し、source 日付の非実在値や
+  `record later` / `<sourceUrl>` などの placeholder を future activation evidence として採用しない。
 - HC-P6 `buildIdentifierRenameCutoverPlan` / `analyzeCutoverReadiness` は `Cutover source ledger` も同様に、
   NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の期待
   official URL と required field impact を固定検査する。`https` URL があるだけ、または source 名だけの
@@ -118,6 +123,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   doctor/state projection、full regression policy へ直接接続する。GitHub Actions concurrency / Google SRE /
   SLSA provenance / OWASP LLM06 の公式 source は確認日と採用判断を持ち、source 名や URL だけの
   irreversible cutover review にしない。
+  `verificationCommandMatrix[]` も共通 source metadata validator を通し、source ledger refresh と matrix metadata の
+  日付・status・adoption・route impact が承認前 evidence として実体を持つことを検査する。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
@@ -176,9 +183,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   実行可能な承認済み CLI/test surface に限定し、`review ...` / `verify ...` の自然文手順を approval evidence として
   通さない。sibling S4 / version-up packet は `--plan <PLAN_ID>` 付き command、rename は singleton
   `rename plan` として出し、複数 pending PLAN 時の対象推測へ戻さない。
-  同 validator は `sourceCheckedAt` の未来日・90 日超 stale・不正形式、および source/adoption/route metadata の
-  空値・placeholder も fail-close し、action-binding approval packet が古い official-source 前提や
-  date-only review で承認材料になることを防ぐ。
+  同 validator は共通 source metadata validator を使い、`sourceCheckedAt` の未来日・90 日超 stale・非実在日付、
+  および source/adoption/route metadata の空値・placeholder・future-action prose も fail-close し、
+  action-binding approval packet が古い official-source 前提や date-only review で承認材料になることを防ぐ。
   version-up sibling の `reviewed_snapshot_binding` は repo HEAD と current package version を入力にした
   current `activationSnapshot.snapshotId` と照合し、HEAD なしで生成された snapshot や別 HEAD の snapshot を
   current approval evidence と誤認しない。
