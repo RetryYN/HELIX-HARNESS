@@ -163,6 +163,14 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 余分な `run:` (例: `echo` / `curl` / `gh` / install 追加) は、`permissions: contents: read` と必須 smoke が揃っていても
 > `fix_consumer_readiness` に戻す。GitHub Actions の `GITHUB_TOKEN` least-privilege と `pull_request_target` 境界を
 > 「read-only smoke 固定集合」へ落とし込み、初回 setup CI が任意 shell 実行 surface へ広がらないようにする。
+> 2026-07-03 追補2: `consumerReadiness.artifactReadiness` は `harness-check.yml` を YAML として parse し、
+> workflow 名、`push:main` / `pull_request:main`、`pull_request_target` 不在、`permissions.contents=read` と
+> write permission 不在、`jobs.harness-check.runs-on=ubuntu-latest`、`actions/checkout@v4`、
+> `oven-sh/setup-bun@v2`、secret 参照不在、固定 `run:` command set をすべて満たす場合だけ green にする。
+> `run:` が完全一致していても branch が `develop` のみ、setup-bun step 欠落、job 名や runner drift がある場合は
+> consumer doctor に先送りせず `fix_consumer_readiness` へ戻す。`workflow_dispatch` / `schedule` などの追加 trigger、
+> 期待 2 本以外の `uses:` action、`${{ secrets.NAME }}` / `${{ secrets['NAME'] }}` / 空白入り bracket secret 参照も
+> read-only smoke 証跡として扱わない。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
 > `ut-tdd rename plan --json` / handover status /
 > `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含む集約リストである。

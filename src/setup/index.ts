@@ -15,6 +15,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, readSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, relative, sep } from "node:path";
+import { parse as parseYaml } from "yaml";
 import {
   BUILTIN_GITHUB_TEMPLATES,
   COMMON_FILES,
@@ -118,6 +119,120 @@ export function consumerVscodeTasksExactlyMatchSetupContract(tasksText: string):
 
 export function consumerVscodeSettingsDisableAutomaticTasks(settingsText: string): boolean {
   return parseJsonRecord(settingsText)?.["task.allowAutomaticTasks"] === "off";
+}
+
+function parseYamlRecord(text: string): Record<string, unknown> | null {
+  try {
+    return recordFromUnknown(parseYaml(text) as unknown);
+  } catch {
+    return null;
+  }
+}
+
+function recordFromUnknown(value: unknown): Record<string, unknown> | null {
+  return isRecord(value) ? value : null;
+}
+
+function stringList(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
+export interface ConsumerCiWorkflowContract {
+  ok: boolean;
+  nameOk: boolean;
+  pushMain: boolean;
+  pullRequestMain: boolean;
+  unexpectedTriggers: string[];
+  noPullRequestTarget: boolean;
+  permissionsRead: boolean;
+  tokenWrite: boolean;
+  jobOk: boolean;
+  missingUses: string[];
+  unexpectedUses: string[];
+  missingRuns: string[];
+  exactSteps: boolean;
+  exactRuns: boolean;
+  secretsFree: boolean;
+}
+
+export function analyzeConsumerCiWorkflowContract(
+  workflowText: string,
+): ConsumerCiWorkflowContract {
+  const workflow = parseYamlRecord(workflowText);
+  const workflowOn = recordFromUnknown(workflow?.on);
+  const push = recordFromUnknown(workflowOn?.push);
+  const pullRequest = recordFromUnknown(workflowOn?.pull_request);
+  const permissionsRaw = workflow?.permissions;
+  const permissions = recordFromUnknown(permissionsRaw);
+  const jobs = recordFromUnknown(workflow?.jobs);
+  const harnessJob = recordFromUnknown(jobs?.["harness-check"]);
+  const steps = Array.isArray(harnessJob?.steps) ? harnessJob.steps : [];
+  const stepRecords = steps
+    .map(recordFromUnknown)
+    .filter((step): step is Record<string, unknown> => Boolean(step));
+  const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
+  const requiredRuns = [...CONSUMER_CI_RUN_COMMANDS];
+  const expectedSteps = [
+    ...requiredUses.map((use) => ({ key: "uses", value: use })),
+    ...requiredRuns.map((run) => ({ key: "run", value: run })),
+  ];
+  const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
+  const actualUses = stepRecords
+    .map((step) => step.uses)
+    .filter((use): use is string => typeof use === "string");
+  const unexpectedUses = actualUses.filter((use) => !requiredUses.includes(use));
+  const missingRuns = requiredRuns.filter((run) => !stepRecords.some((step) => step.run === run));
+  const workflowOnKeys = workflowOn ? Object.keys(workflowOn).sort() : [];
+  const unexpectedTriggers = workflowOnKeys.filter(
+    (key) => !["pull_request", "push"].includes(key),
+  );
+  const permissionsRead = permissions?.contents === "read";
+  const tokenWrite =
+    typeof permissionsRaw === "string"
+      ? /write/i.test(permissionsRaw)
+      : permissions
+        ? Object.values(permissions).some((value) => value === "write")
+        : false;
+  const exactSteps =
+    stepRecords.length === expectedSteps.length &&
+    expectedSteps.every((expected, index) => stepRecords[index]?.[expected.key] === expected.value);
+  const contract = {
+    ok: false,
+    nameOk: workflow?.name === "harness-check",
+    pushMain: stringList(push?.branches).includes("main"),
+    pullRequestMain: stringList(pullRequest?.branches).includes("main"),
+    unexpectedTriggers,
+    noPullRequestTarget: workflowOn ? !Object.hasOwn(workflowOn, "pull_request_target") : false,
+    permissionsRead,
+    tokenWrite,
+    jobOk: harnessJob?.["runs-on"] === "ubuntu-latest",
+    missingUses,
+    unexpectedUses,
+    missingRuns,
+    exactSteps,
+    exactRuns: workflowRunCommandsExactlyMatchConsumerCi(workflowText),
+    secretsFree: !/\bsecrets\s*(?:\.|\[)/i.test(workflowText),
+  };
+  return {
+    ...contract,
+    ok:
+      contract.nameOk &&
+      contract.pushMain &&
+      contract.pullRequestMain &&
+      contract.unexpectedTriggers.length === 0 &&
+      contract.noPullRequestTarget &&
+      contract.permissionsRead &&
+      !contract.tokenWrite &&
+      contract.jobOk &&
+      contract.missingUses.length === 0 &&
+      contract.unexpectedUses.length === 0 &&
+      contract.missingRuns.length === 0 &&
+      contract.exactSteps &&
+      contract.exactRuns &&
+      contract.secretsFree,
+  };
 }
 
 /** 検出結果 (生信号、判定しない)。token は含めない。 */
@@ -1178,11 +1293,7 @@ function buildConsumerArtifactReadinessPlan(
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
   });
-  const workflowUsesReadOnlyPermissions = (text: string): boolean =>
-    /\bpermissions:\s*\n(?:[ \t]+[a-z0-9_-]+:\s*(?:read|none)\s*(?:#.*)?\n?)+/i.test(text) &&
-    /^\s*contents:\s*read\s*(?:#.*)?$/im.test(text) &&
-    !/\bwrite-all\b/i.test(text) &&
-    !/^\s*[a-z0-9_-]+:\s*write\s*(?:#.*)?$/im.test(text);
+  const workflowContract = analyzeConsumerCiWorkflowContract(workflow);
   const checks: ConsumerArtifactReadinessPlan["checks"] = [
     {
       name: "adapter-guidance-connects-consumer-verification",
@@ -1237,17 +1348,11 @@ function buildConsumerArtifactReadinessPlan(
     {
       name: "harness-check-ci-is-read-only-consumer-smoke",
       path: workflowPath,
-      ok:
-        hasPath(workflowPath) &&
-        workflowUsesReadOnlyPermissions(workflow) &&
-        workflow.includes("push:") &&
-        workflow.includes("pull_request:") &&
-        !workflow.includes("pull_request_target") &&
-        !workflow.includes("secrets.") &&
-        workflowRunCommandsExactlyMatchConsumerCi(workflow),
+      ok: hasPath(workflowPath) && workflowContract.ok,
       message:
-        "harness-check workflow must be a read-only, secret-free consumer smoke with the fixed package-local HELIX command set and no extra run commands",
-      evidence: ".github/workflows/harness-check.yml permissions/triggers/command surface",
+        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with checkout, setup-bun, and the fixed package-local HELIX command set",
+      evidence:
+        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, setup steps, and command surface",
     },
     ...(codeownersRequired
       ? [

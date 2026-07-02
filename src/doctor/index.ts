@@ -347,9 +347,9 @@ import {
 import { detectMode } from "../runtime/detect";
 import { teamDefinitionSchema } from "../schema/team";
 import {
+  analyzeConsumerCiWorkflowContract,
   CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_VSCODE_TASK_COMMANDS,
-  workflowRunCommandsExactlyMatchConsumerCi,
 } from "../setup/index";
 import {
   CONSUMER_CLAUDE_AGENT_NAMES,
@@ -2153,47 +2153,11 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const workflowRaw = consumerFile(deps, ".github/workflows/harness-check.yml") ?? "";
-  const workflow = recordValue(consumerYaml(deps, ".github/workflows/harness-check.yml"));
-  const workflowOn = recordValue(workflow?.on);
-  const push = recordValue(workflowOn?.push);
-  const pullRequest = recordValue(workflowOn?.pull_request);
-  const pushMain = stringList(push?.branches).includes("main");
-  const pullRequestMain = stringList(pullRequest?.branches).includes("main");
-  const noPullRequestTarget = workflowOn
-    ? !Object.hasOwn(workflowOn, "pull_request_target")
-    : false;
-  const permissions = recordValue(workflow?.permissions);
-  const permissionsRead = permissions?.contents === "read";
-  const tokenWrite = permissions
-    ? Object.values(permissions).some((value) => value === "write")
-    : false;
-  const jobs = recordValue(workflow?.jobs);
-  const harnessJob = recordValue(jobs?.["harness-check"]);
-  const steps = Array.isArray(harnessJob?.steps) ? harnessJob.steps : [];
-  const stepRecords = steps
-    .map(recordValue)
-    .filter((step): step is Record<string, unknown> => Boolean(step));
-  const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
-  const requiredRuns = [...CONSUMER_CI_RUN_COMMANDS];
-  const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
-  const missingRuns = requiredRuns.filter((run) => !stepRecords.some((step) => step.run === run));
-  const exactRunCommands = workflowRunCommandsExactlyMatchConsumerCi(workflowRaw);
-  const ciOk =
-    workflow?.name === "harness-check" &&
-    pushMain &&
-    pullRequestMain &&
-    noPullRequestTarget &&
-    permissionsRead &&
-    !tokenWrite &&
-    harnessJob?.["runs-on"] === "ubuntu-latest" &&
-    missingUses.length === 0 &&
-    missingRuns.length === 0 &&
-    exactRunCommands &&
-    !workflowRaw.includes("secrets.");
+  const ciContract = analyzeConsumerCiWorkflowContract(workflowRaw);
   messages.push(
-    ciOk
-      ? `doctor: consumer-ci-workflow - OK (workflow=harness-check, permissions=contents:read, triggers=push/pull_request:main, commands=${requiredUses.length + requiredRuns.length}, secrets=not-required)`
-      : `doctor: consumer-ci-workflow - violation name=${workflow?.name === "harness-check"} pushMain=${pushMain} pullRequestMain=${pullRequestMain} noPullRequestTarget=${noPullRequestTarget} permissionsRead=${permissionsRead} tokenWrite=${tokenWrite} job=${harnessJob?.["runs-on"] === "ubuntu-latest"} missingUses=${missingUses.join(",")} missingRuns=${missingRuns.join(",")} exactRuns=${exactRunCommands} secrets=${workflowRaw.includes("secrets.")}`,
+    ciContract.ok
+      ? `doctor: consumer-ci-workflow - OK (workflow=harness-check, permissions=contents:read, triggers=push/pull_request:main, commands=${2 + CONSUMER_CI_RUN_COMMANDS.length}, secrets=not-required)`
+      : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
   );
 
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
@@ -2243,7 +2207,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     claudeSurfaceOk &&
     teamSurfaceOk &&
     taskSafetyOk &&
-    ciOk &&
+    ciContract.ok &&
     policyTemplatesOk;
   return { ok, messages };
 }
