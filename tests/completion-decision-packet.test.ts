@@ -85,6 +85,29 @@ function actionBindingPacket(): CompletionDecisionPacket {
   );
 }
 
+function renamePacket(): CompletionDecisionPacket {
+  return completionDecisionPacketForOutstanding(
+    analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible migration pending for .ut-tdd to .helix identifier rename cutover.",
+        },
+      ],
+      0,
+    ),
+    {
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      now: "2026-06-30T00:30:00.000Z",
+      validForMinutes: 60,
+      sourceCommand: "ut-tdd completion decision-packet --json",
+    },
+  );
+}
+
 describe("completion decision packet lint", () => {
   // U-OUTSTANDING-002
   it("accepts a fresh packet with source command and matching freshness metadata", () => {
@@ -244,6 +267,37 @@ describe("completion decision packet lint", () => {
         "approvalBindingChecks.reviewed_snapshot_binding",
         "approvalBindingChecks.expires_at_or_trigger",
         "approvalBindingChecks.audit_record",
+      ]),
+    );
+    const renameDecisionPacket = renamePacket();
+    const renameSummary = renameDecisionPacket.decisions[0].supportingPacketSummaries.find(
+      (summary) => summary.command === "ut-tdd rename plan --json",
+    );
+    expect(renameSummary?.requiredReviewFields).toEqual(
+      expect.arrayContaining([
+        "cutoverSnapshot.snapshotId",
+        "cutoverSnapshot.repoHeadSha",
+        "cutoverSnapshot.blastRadiusDigest",
+        "cutoverSnapshot.approvalScopeDigest",
+        "cutoverSnapshot.evidenceDigest",
+        "cutoverSnapshot.sourceLedgerRowsDigest",
+        "snapshotReview.currentSnapshotId",
+        "snapshotReview.cutoverSnapshotMatchesCurrent",
+        "snapshotReview.actionBindingSnapshotMatchesCurrent",
+        "snapshotReview.requiredAction",
+        "cutoverCategoryChecklist.samplePaths",
+        "cutoverCategoryChecklist.verificationCommand",
+        "sourceLedgerFreshness.rowsDigest",
+        "cutoverRunbook.command",
+        "cutoverRunbook.writePolicy",
+        "cutoverRunbook.evidencePath",
+        "stateBackupManifest.restoreEvidencePath",
+        "stateBackupManifest.restoreDrillRequired",
+        "freezePolicy.concurrencyPolicy",
+        "freezePolicy.reapprovalTriggers",
+        "provenanceRequirements.evidence",
+        "approvalGate.requiredDecision",
+        "approvalGate.reviewedSnapshotBindingRequired",
       ]),
     );
   });
@@ -528,6 +582,70 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalBindingChecks.approved_params",
+        },
+      ]),
+    );
+  });
+
+  it("rejects rename summaries that omit concrete cutover snapshot and runbook fields", () => {
+    const packet = {
+      ...renamePacket(),
+      decisions: renamePacket().decisions.map((decision) => ({
+        ...decision,
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) => ({
+          ...summary,
+          requiredReviewFields: [
+            "semanticFeatureFrontierRecord",
+            "recordTemplates",
+            "cutoverSnapshot",
+            "cutoverSnapshot.snapshotId",
+            "snapshotReview",
+            "cutoverCategoryChecklist",
+            "sourceLedgerFreshness",
+            "cutoverRunbook",
+            "dryRunPlan",
+            "rollbackPlan",
+            "monitoringPlan",
+            "stateBackupManifest",
+            "freezePolicy",
+            "provenanceRequirements",
+            "relatedDecisionPackets",
+            "approvalGate",
+            "blockedReasons",
+          ],
+        })),
+      })),
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=cutoverSnapshot.blastRadiusDigest",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=snapshotReview.currentSnapshotId",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=cutoverRunbook.writePolicy",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=stateBackupManifest.restoreEvidencePath",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=approvalGate.reviewedSnapshotBindingRequired",
         },
       ]),
     );

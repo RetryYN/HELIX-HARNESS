@@ -161,6 +161,14 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   irreversible cutover review にしない。
   `verificationCommandMatrix[]` も共通 source metadata validator を通し、source ledger refresh と matrix metadata の
   日付・status・adoption・route impact が承認前 evidence として実体を持つことを検査する。
+  completion decision packet / status / handover の supporting summary でも、rename/cutover は
+  `cutoverSnapshot` / `snapshotReview` / `cutoverRunbook` / `stateBackupManifest` などの親 field だけに畳まない。
+  `cutoverSnapshot.blastRadiusDigest`、`cutoverSnapshot.approvalScopeDigest`、`cutoverSnapshot.evidenceDigest`、
+  `cutoverSnapshot.sourceLedgerRowsDigest`、`snapshotReview.currentSnapshotId`、
+  `snapshotReview.cutoverSnapshotMatchesCurrent`、`cutoverRunbook.writePolicy`、`cutoverRunbook.evidencePath`、
+  `stateBackupManifest.restoreEvidencePath`、`freezePolicy.concurrencyPolicy`、
+  `approvalGate.reviewedSnapshotBindingRequired` などを `requiredReviewFields[]` に列挙し、L14 cutover review で
+  blast radius、snapshot drift、runbook write policy、backup/restore drill、quiet window、approval gate の確認対象を失わない。
   text surface は `sourceLedgerFreshness.rowsDigest`、`cutoverSnapshot.sourceLedgerRowsDigest` /
   `blastRadiusDigest` / `approvalScopeDigest` / `evidenceDigest` と `verification-source:` の writePolicy /
   command を出し、承認前 review が JSON-only safety field を見落とさないようにする。

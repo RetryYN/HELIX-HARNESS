@@ -197,6 +197,20 @@ source-ledger/runbook/backup/provenance/monitoring evidence digest、freeze-poli
 この snapshot は apply を許可しない。PO/TL が approval evidence と current rename packet を比較し、HEAD、
 hit set、source ledger、scope、dry-run、backup、rollback、provenance、monitoring、dist smoke、quiet-window
 evidence が変わった stale approval を拒否するための binding である。
+`ut-tdd completion decision-packet --json` / `ut-tdd status` / handover から rename plan へ入る場合も、
+supporting summary は `cutoverSnapshot`、`snapshotReview`、`cutoverRunbook`、`stateBackupManifest` などの
+親 field だけで完了しない。`requiredReviewFields[]` は `cutoverSnapshot.repoHeadSha`、
+`cutoverSnapshot.blastRadiusDigest`、`cutoverSnapshot.approvalScopeDigest`、`cutoverSnapshot.evidenceDigest`、
+`cutoverSnapshot.sourceLedgerRowsDigest`、`snapshotReview.currentSnapshotId`、
+`snapshotReview.cutoverSnapshotMatchesCurrent`、`snapshotReview.actionBindingSnapshotMatchesCurrent`、
+`cutoverCategoryChecklist.samplePaths`、`cutoverCategoryChecklist.verificationCommand`、
+`sourceLedgerFreshness.rowsDigest`、`cutoverRunbook.command`、`cutoverRunbook.writePolicy`、
+`cutoverRunbook.evidencePath`、`stateBackupManifest.restoreEvidencePath`、
+`stateBackupManifest.restoreDrillRequired`、`freezePolicy.concurrencyPolicy`、
+`freezePolicy.reapprovalTriggers`、`provenanceRequirements.evidence`、
+`approvalGate.reviewedSnapshotBindingRequired` などを列挙する。これにより、承認者が HEAD-bound snapshot、
+blast-radius、source ledger、runbook write policy、backup/restore、freeze policy、provenance、approval gate の
+どこを確認すべきかを status だけで辿れる。
 
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
