@@ -44,7 +44,7 @@ v2_import: docs/migration/v2-import-ledger.md
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO/PM S4 close (2026-06-22)
 - decision_basis: shipped skill recommender implementation proved the phase-driven recommender viable while exposing score-saturation limits.
 - verified_evidence: PLAN-DISCOVERY-03 §5 S2/S3 live observations; PLAN-L5-06-skill, PLAN-L4-12-skill-pack, and PLAN-L7-70-skill-pack-curation.

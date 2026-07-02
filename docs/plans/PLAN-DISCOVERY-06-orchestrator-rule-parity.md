@@ -28,7 +28,7 @@ dependencies:
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO/PM S4 close (2026-06-24)
 - decision_basis: Codex hook feasibility was confirmed and false parity caveats were corrected before adoption.
 - verified_evidence: PLAN-DISCOVERY-06 §5/§5.1, PLAN-L7-139-codex-hook-adapter, and PLAN-REVERSE-139-codex-hook-adapter.

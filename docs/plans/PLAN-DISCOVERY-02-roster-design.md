@@ -37,7 +37,7 @@ v2_import: docs/migration/v2-import-ledger.md
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO (S4 result recorded 2026-06-01)
 - decision_basis: roster module core was validated by S2/S3 spike and the throwaway spike path was intentionally redesigned into Forward design.
 - verified_evidence: PLAN-DISCOVERY-02 §5 S2/S3 verification; PLAN-L5-05-roster and PLAN-L4-11-roster carry the confirmed design.

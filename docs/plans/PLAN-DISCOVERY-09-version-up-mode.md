@@ -60,7 +60,7 @@ review_evidence:
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-26 version-up mode request/adoption)
 - decision_basis: version-up mode separated future committed work from plain draft/archived/add-feature and was validated by status/outstanding and forward-convergence behavior.
 - verified_evidence: review_evidence green_commands, PLAN-DISCOVERY-09 §4 ACs, PLAN-L7-211-version-up-readiness-gate, and PLAN-REVERSE-140.

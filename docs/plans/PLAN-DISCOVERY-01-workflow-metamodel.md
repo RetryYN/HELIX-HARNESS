@@ -30,7 +30,7 @@ v2_import: docs/migration/v2-import-ledger.md
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-04 directive: "3件の問題を解消して")
 - decision_basis: L1-L5 dogfood and RECOVERY/Reverse cycles showed the workflow metamodel can run without schema-breaking gaps.
 - verified_evidence: PLAN-DISCOVERY-01 §7.1 S3 verify plus PLAN-REVERSE-08 R0-R4 normalization evidence.

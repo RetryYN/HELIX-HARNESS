@@ -63,7 +63,7 @@ review_evidence:
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-26 S4 adoption)
 - decision_basis: forward-convergence invariant was supported by cross-runtime review and implemented as analyzer/test/doctor surface.
 - verified_evidence: review_evidence green_commands, src/lint/forward-convergence.ts, tests/forward-convergence.test.ts, and PLAN-REVERSE-140.

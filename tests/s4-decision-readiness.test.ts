@@ -636,7 +636,7 @@ describe("S4 decision readiness", () => {
             text: [
               "decision_outcome: confirmed",
               "s4_decision_record:",
-              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
               "- verified_evidence: targeted tests and review evidence",
@@ -679,6 +679,89 @@ describe("S4 decision readiness", () => {
     );
   });
 
+  it("fails terminal S4 decisions whose allowed_outcome still lists the enum instead of the selected outcome", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-907B.md",
+            plan_id: "PLAN-DISCOVERY-907B",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "confirmed",
+            text: [
+              "decision_outcome: confirmed",
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
+              "- route_impact: confirmed routes forward",
+              "- forward_route: PLAN-L3-99-confirmed-forward-route",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-907B",
+      reason:
+        "invalid selected allowed_outcome for s4_decision_record: allowed_outcome must select exactly one outcome, found=confirmed,rejected,pivot",
+    });
+  });
+
+  it("accepts terminal S4 decisions whose allowed_outcome selects the recorded decision_outcome", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-907C.md",
+            plan_id: "PLAN-DISCOVERY-907C",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "confirmed",
+            text: [
+              "decision_outcome: confirmed",
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
+              "- route_impact: confirmed routes forward",
+              "- forward_route: PLAN-L3-99-confirmed-forward-route",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+  });
+
   it("U-DECISIONREC-006: fails rejected S4 decisions that still look like feature promotion", () => {
     const result = analyzeS4DecisionReadiness(
       input({
@@ -693,7 +776,7 @@ describe("S4 decision readiness", () => {
             text: [
               "decision_outcome: rejected",
               "s4_decision_record:",
-              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- allowed_outcome: `rejected`",
               "- decision_owner: PO",
               "- decision_basis: acceptance gap remains",
               "- verified_evidence: targeted tests and review evidence",

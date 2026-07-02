@@ -35,7 +35,7 @@ v2_import: docs/migration/v2-import-ledger.md
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-02 S4 process workflow decision)
 - decision_basis: docs/process Forward/modes/gates definitions could be written and dogfooded, with gaps captured for Reverse normalization.
 - verified_evidence: PLAN-DISCOVERY-04 S2/S3 dogfood record and PLAN-REVERSE-01 process-docs R0-R4.

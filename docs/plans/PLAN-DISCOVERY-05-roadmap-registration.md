@@ -103,7 +103,7 @@ related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 ---
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `confirmed`
 - decision_owner: PO goal directive (2026-06-22: A の 3 本の drift 解消)
 - decision_basis: roadmap registry was already merged, load-bearing in doctor, and promoted into governance concept text.
 - verified_evidence: review_evidence scope, src/schema/roadmap.ts, src/lint/roadmap-registry.ts, tests/roadmap.test.ts, doctor roadmap-rollup/program-coverage gates.
