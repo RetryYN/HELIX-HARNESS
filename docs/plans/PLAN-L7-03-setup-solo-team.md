@@ -309,6 +309,12 @@ review_evidence:
 同 continuation は `contents: read` が残っていても `write-all` または `pull-requests: write` 等の任意 write
 permission が混在する workflow を read-only CI evidence として扱わない。
 
+2026-07-03 continuation: `runHelixProjectSetup.consumerReadiness.artifactReadiness` を固定 0-A ではなく
+実際の `planHelixProjectSetup(phase, teams, dryRun)` に束縛する。0-B/team plan では `.github/CODEOWNERS`
+を readiness 対象に含め、TL/QA/PO team slug が render 済みで placeholder が残らないことを検査する。
+これにより、0-B の CODEOWNERS / branch-protection plan を preview しているのに consumer readiness だけ
+0-A artifact を見て green になる意味ずれを防ぐ。
+
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
 - **dependencies**: `parent=PLAN-L6-05` で lineage 連結。`requires` には置かない (confirmed 段階の design PLAN を `status=completed` 検証対象にしないため = §1.10.E の latent fail-close 回避。bottom-up Add-feature で L7 impl は confirmed L6 設計に依存するのが常態)。
 - パターン: `src/runtime/session-log.ts` (deps 注入 + 純粋関数分離 + never-throw) / `src/runtime/detect.ts` (`onPath`) / `src/cli.ts` (commander) を踏襲・再利用。drive=fullstack (親一致)。

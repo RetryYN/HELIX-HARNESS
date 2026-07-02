@@ -1025,6 +1025,17 @@ function buildConsumerArtifactReadinessPlan(
   const settings = content(settingsPath);
   const workflow = content(workflowPath);
   const team = content(teamPath);
+  const codeowners = content(CODEOWNERS_TARGET);
+  const codeownersRequired = plan.files.some((file) => file.path === CODEOWNERS_TARGET);
+  const expectedTeamSlugs = plan.teams ? [plan.teams.tl, plan.teams.qa, plan.teams.po] : [];
+  const codeownersTeamSlugsOk =
+    !codeownersRequired ||
+    (hasPath(CODEOWNERS_TARGET) &&
+      !codeowners.includes("{{TL_TEAM}}") &&
+      !codeowners.includes("{{QA_TEAM}}") &&
+      !codeowners.includes("{{PO_TEAM}}") &&
+      (expectedTeamSlugs.length === 0 ||
+        expectedTeamSlugs.every((slug) => codeowners.includes(slug))));
   const claude = content("CLAUDE.md");
   const claudeRuntime = content(join(".claude", "CLAUDE.md"));
   const claudeAgentPaths = CONSUMER_CLAUDE_AGENT_NAMES.map((name) =>
@@ -1155,6 +1166,18 @@ function buildConsumerArtifactReadinessPlan(
         "harness-check workflow must be a read-only, secret-free consumer smoke with package-local HELIX commands and no pull_request_target",
       evidence: ".github/workflows/harness-check.yml permissions/triggers/command surface",
     },
+    ...(codeownersRequired
+      ? [
+          {
+            name: "team-codeowners-are-rendered-for-0-b",
+            path: CODEOWNERS_TARGET,
+            ok: codeownersTeamSlugsOk,
+            message:
+              "0-B/team setup must project CODEOWNERS with resolved team slugs and no unresolved placeholders",
+            evidence: ".github/CODEOWNERS phase/team rendering contract",
+          },
+        ]
+      : []),
     {
       name: "ut-tdd-baseline-paths-projected",
       path: ".ut-tdd",
@@ -1271,10 +1294,9 @@ function buildHelixProjectImportReport(input: {
   };
 }
 
-function buildHelixSetupConsumerReadiness(deps: SetupDeps): ConsumerReadinessPlan {
+function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): ConsumerReadinessPlan {
   const commandAvailable = deps.commandAvailable ?? (() => false);
   const packageRoot = deps.packageRoot ?? deps.repoRoot;
-  const plan = planHelixProjectSetup("0-A", { dryRun: true });
   return buildConsumerReadinessPlan({
     bunVersion: deps.bunVersion?.() ?? null,
     hasGit: commandAvailable("git"),
@@ -1626,7 +1648,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     existingPaths,
     emittedPaths: written,
   });
-  const consumerReadiness = buildHelixSetupConsumerReadiness(deps);
+  const consumerReadiness = buildHelixSetupConsumerReadiness(deps, plan);
   const postSetupWorkflow = buildHelixProjectPostSetupWorkflow({
     importReport,
     consumerReadiness,

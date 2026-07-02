@@ -1410,6 +1410,69 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ]);
   });
 
+  it("U-SETUP-017: 0-B HELIX project setup readiness is bound to rendered team CODEOWNERS", () => {
+    const deps = mockDeps({
+      templates: baseTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      {
+        phase: "0-B",
+        dryRun: true,
+        applyBranchProtection: false,
+        teams: { tl: "@org/tl", qa: "@org/qa", po: "@org/po" },
+      },
+      deps,
+    );
+
+    expect(result.phase).toBe("0-B");
+    expect(result.importReport.previewPaths).toContain(join(".github", "CODEOWNERS"));
+    expect(result.consumerReadiness.ok).toBe(true);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "team-codeowners-are-rendered-for-0-b",
+          path: join(".github", "CODEOWNERS"),
+          ok: true,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("ready");
+  });
+
+  it("blocks 0-B readiness when CODEOWNERS keeps unresolved team placeholders", () => {
+    const brokenTemplates = {
+      ...baseTemplates,
+      "team/CODEOWNERS": "* {{TL_TEAM}}\n/docs/ {{PO_TEAM}}\n/tests/ {{QA_TEAM}}\n",
+    };
+    const deps = mockDeps({
+      templates: brokenTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-B", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "team-codeowners-are-rendered-for-0-b",
+          ok: false,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
+    expect(result.postSetupWorkflow.unmetGates).toContain(
+      "consumer_readiness:projected-consumer-artifacts",
+    );
+  });
+
   it("accepts consumer packageRoot scripts.ut-tdd as CLI resolution evidence", () => {
     const deps = mockDeps({
       templates: baseTemplates,
