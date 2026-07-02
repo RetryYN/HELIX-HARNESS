@@ -71,24 +71,18 @@ describe("U-MODELID: model-id SSoT", () => {
   });
 
   it("U-MODELID-005: proposal subagent lanes use MODEL_IDS and keep mini out of execution TIER_TABLE", () => {
-    expect(PROPOSAL_SUBAGENT_LANES["T2-mini"]).toMatchObject({
-      model: MODEL_IDS.codex.mini,
-      max_parallel: 4,
-      closing_authority: false,
-      ownership: expect.stringContaining("disjoint"),
-    });
-    expect(PROPOSAL_SUBAGENT_LANES["T2-spark"]).toMatchObject({
-      model: MODEL_IDS.codex.spark,
-      max_parallel: 3,
-      closing_authority: false,
-      ownership: expect.stringContaining("disjoint"),
-    });
-    expect(PROPOSAL_SUBAGENT_LANES["T0-frontier"]).toMatchObject({
-      model: MODEL_IDS.codex.frontier,
-      max_parallel: 1,
-      closing_authority: true,
-      ownership: expect.stringContaining("single"),
-    });
+    expect(PROPOSAL_SUBAGENT_LANES["T2-mini"].model).toBe(MODEL_IDS.codex.mini);
+    expect(PROPOSAL_SUBAGENT_LANES["T2-mini"].max_parallel).toBe(4);
+    expect(PROPOSAL_SUBAGENT_LANES["T2-mini"].closing_authority).toBe(false);
+    expect(PROPOSAL_SUBAGENT_LANES["T2-mini"].ownership).toContain("disjoint");
+    expect(PROPOSAL_SUBAGENT_LANES["T2-spark"].model).toBe(MODEL_IDS.codex.spark);
+    expect(PROPOSAL_SUBAGENT_LANES["T2-spark"].max_parallel).toBe(3);
+    expect(PROPOSAL_SUBAGENT_LANES["T2-spark"].closing_authority).toBe(false);
+    expect(PROPOSAL_SUBAGENT_LANES["T2-spark"].ownership).toContain("disjoint");
+    expect(PROPOSAL_SUBAGENT_LANES["T0-frontier"].model).toBe(MODEL_IDS.codex.frontier);
+    expect(PROPOSAL_SUBAGENT_LANES["T0-frontier"].max_parallel).toBe(1);
+    expect(PROPOSAL_SUBAGENT_LANES["T0-frontier"].closing_authority).toBe(true);
+    expect(PROPOSAL_SUBAGENT_LANES["T0-frontier"].ownership).toContain("single");
     expect(Object.values(TIER_TABLE).some((tier) => tier.codex === MODEL_IDS.codex.mini)).toBe(
       false,
     );
