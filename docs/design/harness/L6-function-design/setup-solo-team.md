@@ -100,9 +100,9 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 
 > **HELIX project setup (L7、2026-07-01)**: HELIX 導入済み VSCode で新規 project を始める入口として
 > `ut-tdd setup project` を追加する。これは `runSetup` の solo/team 判定・adapter/hook 投影・branch protection
-> emit-only 境界を再利用し、追加で status / consumer doctor / handover status を開く `.vscode/tasks.json`、
+> emit-only 境界を再利用し、追加で status / consumer doctor / handover status / team run dry-run を開く `.vscode/tasks.json`、
 > `.vscode/settings.json` と
-> `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` の project-local baseline を作る。
+> `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` / `.ut-tdd/teams` の project-local baseline を作る。
 > `runHelixProjectSetup` は現行 `.ut-tdd` baseline と将来 `helix setup project` / `.helix` 目標を
 > `identifierTransition` として同時に返し、PLAN-M-02 cutover/action-binding approval が無い限り
 > `blocked_pending_cutover_approval` / `mustNotApply=true` を出す。
@@ -118,11 +118,11 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `hasUtTddCli` 未指定は green 扱いせず、`setup project` と `distribution plan` は bare `ut-tdd --version`
 > 相当の実測値を readiness に渡す。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / `ut-tdd doctor --profile consumer` /
-> handover status を含め、
+> handover status / `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含め、
 > ready route は active handover または current PLAN route に接続する。
 > `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / status-frontier / consumer-doctor /
-> handover-route の phase / command / expected / evidence / source / sourceUrl / sourceCheckedAt / adoptionDecision を持つ。VS Code workspace task と
-> Workspace Trust の実行境界、HELIX status/handover contract を初回稼働の検証証跡へ接続し、
+> handover-route / team-run-dry-run の phase / command / expected / evidence / source / sourceUrl / sourceCheckedAt / adoptionDecision を持つ。VS Code workspace task と
+> Workspace Trust の実行境界、HELIX status/handover/team definition contract を初回稼働の検証証跡へ接続し、
 > command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。VS Code Tasks / Workspace Trust の
 > 公式 source は checked date と採用判断を matrix に残し、source 名だけの stale な根拠にしない。text surface は
 > `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
@@ -138,17 +138,18 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > GitHub rules/checks plan と consumer doctor baseline 要求に対応し、`githubPlan` と `doctorBaseline` を返す。
 > `githubPlan` は plan-only / remote apply 無し / required check `harness-check` / branch protection
 > `emit_only` を示し、`doctorBaseline` は setup dry-run / status / `ut-tdd doctor --profile consumer` /
-> handover status と `.ut-tdd/memory|handover|evidence` baseline を示す。被覆 = U-SETUP-019。
+> handover status / team-run dry-run と `.ut-tdd/memory|handover|evidence|teams` baseline を示す。被覆 = U-SETUP-019。
 > clean distribution acceptance は `src/cli.ts` 直実行や handmade `ut-tdd` shim だけでは閉じない。
 > `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、temp-local `BUN_INSTALL` 配下で
 > `bun link` → consumer repo の `bun link ut-tdd --no-save` → consumer `node_modules/.bin/ut-tdd` の
-> `--version` / setup / status / doctor / handover を実行して、package/bin 経路が別 project で動くことを証明する。
+> `--version` / setup / status / doctor / handover / team run dry-run を実行して、package/bin 経路が別 project で動くことを証明する。
 > `harness-check.yml` と `consumerReadiness.ci.requires` は GitHub Actions workflow syntax / permissions の公式境界
 > (workflow YAML、`push` / `pull_request`、top-level `permissions`) に合わせ、`push:main` / `pull_request:main`、
 > `permissions: contents: read`、`pull_request_target` 不使用、secret 不要を contract とする。
 > `bun install --frozen-lockfile` 後に `bun run ut-tdd --version` を package/bin resolution preflight として置き、
 > `bun run ut-tdd setup project --dry-run --json`、`bun run ut-tdd status --json`、
-> `bun run ut-tdd doctor --profile consumer --json`、`bun run ut-tdd handover status --json` を含め、
+> `bun run ut-tdd doctor --profile consumer --json`、`bun run ut-tdd handover status --json`、
+> `bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含め、
 > acceptance は同じ `bun run ut-tdd ...` command set を consumer repo で実行し、
 > post-setup verification と CI の command set をずらさない。
 > GitHub Issue / Pull Request template は公式 template 仕様に合わせて `.github/ISSUE_TEMPLATE/*.md` と
@@ -163,6 +164,11 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > も検査し、frontmatter YAML、subagent `name` と file 名の一致、`description` / `tools`、consumer-safe、
 > `ut-tdd status` / `ut-tdd doctor --profile consumer`、secret/PII 禁止、findings-first を持つこと、
 > 各 slash-command が `description`、`ut-tdd status --json`、consumer doctor 導線を持つことを fail-close する。
+> 2026-07-02 追記: `AGENTS.md` が案内する `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+> は配布済み `.ut-tdd/teams/default-hybrid.yaml` に接続する。consumer doctor はこの YAML を
+> `teamDefinitionSchema` で parse し、`buildTeamRunPlan(..., "hybrid")` の dry-run plan が Codex worker /
+> Claude reviewer の provider 分離を持つことを fail-close する。VS Code task、consumer CI、distribution
+> acceptance も同じ dry-run command を実行し、案内だけで実体が無い状態を許さない。被覆 = U-SETUP-023。
 
 ### §2.5 fail-safe + 安全フォールバック
 
@@ -175,12 +181,12 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 
 - 確定 phase: `.ut-tdd/state/setup.json` (gitignored runtime state、確定値の SSoT。毎回再推測しない安定化)。
 - 生成物の配置 (対象 repo): `.github/` (workflow / CODEOWNERS / ISSUE_TEMPLATE / PR template) / repo root or package.json (commitlint、L7 で config 最小化方針と突合) / `scripts/setup-branch-protection.sh`。
-- 本 repo のテンプレ置き場: `docs/templates/github/` と `docs/templates/adapter/`。テンプレ実ファイル群は `PLAN-L7-03-setup-solo-team` / `PLAN-L7-157-distribution-clean-pull` (add-impl) が `artifact_type=template` として generates・tracking する。既存プロジェクトへ harness binary だけを持ち込む場合は対象 repo にこの docs tree が存在しないため、`loadTemplates` は `BUILTIN_GITHUB_TEMPLATES` を fallback として持つ (PLAN-L7-66)。対象 repo 側の `docs/templates/github/` / `docs/templates/adapter/` が存在する場合はそれで built-in を上書きできる。adapter template には `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` / `.claude/settings.json` に加え、`.codex/config.toml` / `.codex/hooks.json` / Claude subagent templates / Claude slash-command templates を含める。`.codex/config.toml` は direct Codex CLI/IDE の hooks feature を有効化する前提ファイルであり、`.codex/hooks.json` だけが存在しても未発火になりうるため、`codex-hook-adapter` doctor は repo-local `.codex/config.toml` の `[features].hooks=true` も fail-close で検査する。consumer-facing prose / subagent / command は HELIX 名義にし、CLI 名・managed marker は `PLAN-M-02` の atomic migration まで `ut-tdd` / `UT-TDD:managed` を維持する。root の開発用 `.claude` / `.codex` 状態は clean distribution から除外し、導入先には template 経由で投影する。
+- 本 repo のテンプレ置き場: `docs/templates/github/`、`docs/templates/adapter/`、`docs/templates/project/`。テンプレ実ファイル群は `PLAN-L7-03-setup-solo-team` / `PLAN-L7-157-distribution-clean-pull` (add-impl) が `artifact_type=template` として generates・tracking する。既存プロジェクトへ harness binary だけを持ち込む場合は対象 repo にこの docs tree が存在しないため、`loadTemplates` は `BUILTIN_GITHUB_TEMPLATES` を fallback として持つ (PLAN-L7-66)。対象 repo 側の `docs/templates/github/` / `docs/templates/adapter/` / `docs/templates/project/` が存在する場合はそれで built-in を上書きできる。adapter template には `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` / `.claude/settings.json` に加え、`.codex/config.toml` / `.codex/hooks.json` / Claude subagent templates / Claude slash-command templates を含める。project template には `.ut-tdd/teams/default-hybrid.yaml` を含める。`.codex/config.toml` は direct Codex CLI/IDE の hooks feature を有効化する前提ファイルであり、`.codex/hooks.json` だけが存在しても未発火になりうるため、`codex-hook-adapter` doctor は repo-local `.codex/config.toml` の `[features].hooks=true` も fail-close で検査する。consumer-facing prose / subagent / command は HELIX 名義にし、CLI 名・managed marker は `PLAN-M-02` の atomic migration まで `ut-tdd` / `UT-TDD:managed` を維持する。root の開発用 `.claude` / `.codex` 状態は clean distribution から除外し、導入先には template 経由で投影する。
 - hook: **無し** (setup は CLI subcommand。hook は足さない)。
 
 ## §3 ③ 単体テスト設計 (pair) — L7-unit-test-design.md §1.7
 
-U-SETUP-001 (`detectProjectScale` never-throws / gh 失敗→unknown) / U-SETUP-002 (`recommendPhase` 純粋・team/solo/fallback 信号) / U-SETUP-003 (`planSetup` 0-A=A のみ / 0-B=A+CODEOWNERS+bp script / team 名注入) / U-SETUP-004 (`emitSetup` dry-run 非書込 / 期待ファイル書込 / token 非含。**内部 helper `renderArtifacts` の render 内容もここで被覆**) / U-SETUP-005 (`recordSetupState` signals 4 フィールド strip / token 非含 / 再読込同一) / U-SETUP-006 (`applyBranchProtection` apply≠true→emit-only / 非対話→non-interactive で gh 非実行 / 対話・admin・confirm が揃っても action-binding approval なしに gh auth / PUT へ進まない) / U-SETUP-007 (`runSetup` フラグ>確認>fallback 優先順 + legacy setup apply 要求の approval 封鎖) / U-SETUP-009 (`planSetup` が adapter テンプレを含め、`.codex/config.toml` と `.codex/hooks.json` をセットで preview する) / U-SETUP-010 (`emitSetup` が brownfield 既存 adapter doc を非破壊 merge し、構造ファイルは confirm なしに上書きしない) / U-SETUP-014 (`packageJsonDeclaresCommitlint` 純関数 + `emitSetup` が package.json 宣言済みなら commitlint dotfile を skip / 未宣言なら従来 emit) / U-SETUP-015 (`planHelixProjectSetup` / `runHelixProjectSetup` / `ut-tdd setup project` が VSCode task と project-local memory/handover/evidence baseline を非破壊に emit し、dry-run と branch protection 境界を維持する。JSON/text は `.ut-tdd` 現行 baseline、`helix setup project` / `.helix` 目標、PLAN-M-02 承認待ち `identifierTransition` を返し、cutover を apply 済みと誤認させない) / U-SETUP-016 (brownfield の既存 non-mergeable path を `importReport` に残し、`review_import_report` へ送る) / U-SETUP-017 (`consumerReadiness` が projected hook 用 `ut-tdd` CLI PATH preflight と remediation / secret 不要 CI smoke を返す) / U-SETUP-019 (`githubPlan` と `doctorBaseline` が rules/checks plan と `ut-tdd doctor --profile consumer` baseline を plan-only 構造で返す) / U-SETUP-020 (配布 adapter / subagent / command template と setup next action が日本語-first であることを固定する) / U-SETUP-021 (`runHelixProjectSetup --apply-branch-protection` が action-binding approval なしに gh auth / PUT へ進まないことを固定する) / U-SETUP-022 (`loadTemplates` / built-in fallback の branch protection script が approval checklist のみで remote API を呼ばないことを固定する)。
+U-SETUP-001 (`detectProjectScale` never-throws / gh 失敗→unknown) / U-SETUP-002 (`recommendPhase` 純粋・team/solo/fallback 信号) / U-SETUP-003 (`planSetup` 0-A=A のみ / 0-B=A+CODEOWNERS+bp script / team 名注入) / U-SETUP-004 (`emitSetup` dry-run 非書込 / 期待ファイル書込 / token 非含。**内部 helper `renderArtifacts` の render 内容もここで被覆**) / U-SETUP-005 (`recordSetupState` signals 4 フィールド strip / token 非含 / 再読込同一) / U-SETUP-006 (`applyBranchProtection` apply≠true→emit-only / 非対話→non-interactive で gh 非実行 / 対話・admin・confirm が揃っても action-binding approval なしに gh auth / PUT へ進まない) / U-SETUP-007 (`runSetup` フラグ>確認>fallback 優先順 + legacy setup apply 要求の approval 封鎖) / U-SETUP-009 (`planSetup` が adapter テンプレを含め、`.codex/config.toml` と `.codex/hooks.json` をセットで preview する) / U-SETUP-010 (`emitSetup` が brownfield 既存 adapter doc を非破壊 merge し、構造ファイルは confirm なしに上書きしない) / U-SETUP-014 (`packageJsonDeclaresCommitlint` 純関数 + `emitSetup` が package.json 宣言済みなら commitlint dotfile を skip / 未宣言なら従来 emit) / U-SETUP-015 (`planHelixProjectSetup` / `runHelixProjectSetup` / `ut-tdd setup project` が VSCode task と project-local memory/handover/evidence/team baseline を非破壊に emit し、dry-run と branch protection 境界を維持する。JSON/text は `.ut-tdd` 現行 baseline、`helix setup project` / `.helix` 目標、PLAN-M-02 承認待ち `identifierTransition` を返し、cutover を apply 済みと誤認させない) / U-SETUP-016 (brownfield の既存 non-mergeable path を `importReport` に残し、`review_import_report` へ送る) / U-SETUP-017 (`consumerReadiness` が projected hook 用 `ut-tdd` CLI PATH preflight と remediation / secret 不要 CI smoke を返す) / U-SETUP-019 (`githubPlan` と `doctorBaseline` が rules/checks plan と `ut-tdd doctor --profile consumer` baseline を plan-only 構造で返す) / U-SETUP-020 (配布 adapter / subagent / command template と setup next action が日本語-first であることを固定する) / U-SETUP-021 (`runHelixProjectSetup --apply-branch-protection` が action-binding approval なしに gh auth / PUT へ進まないことを固定する) / U-SETUP-022 (`loadTemplates` / built-in fallback の branch protection script が approval checklist のみで remote API を呼ばないことを固定する) / U-SETUP-023 (`.ut-tdd/teams/default-hybrid.yaml` を配布し、consumer doctor / VS Code task / CI / distribution acceptance が team-run dry-run を検査する)。
 
 **PLAN-L7-157 distribution addendum**: `buildCleanDistributionPlan(paths, tag, cleanRepo)` は R1/R2/R12/R13 の clean export contract。clean-repo + signed-tarball channel を返し、LICENSE / package / src / adapter templates (Claude/Codex hook、subagent、command templates を含む) を入れる一方、dogfood (`docs/plans`、`docs/design/harness`、`docs/test-design`、`.ut-tdd`)、central UI (`src/web/`)、web 専用 test (`tests/web.test.ts`)、frontend asset / dashboard route / dependency residue を clean artifact から除外し、必須 file 欠落または denylist drift で fail-close する (U-SETUP-011)。`buildConsumerReadinessPlan(host/runtime/workspace/tag signals)` は R3/R5/R6/R8/R9/R10/R16/R17 の onboarding/readiness contract で、Bun / git / gh / bare `ut-tdd` / runtime preflight、CI self-sufficiency、rollback managed paths、tag-pin/public contracts、monorepo package-root placement、portability smoke scenarios を host 非変更で返す (U-SETUP-012)。生成される Claude/Codex adapter hook は bare `ut-tdd ...` を呼ぶため、`ut-tdd` が PATH 上で spawn できない (`not spawnable on PATH`) 場合 readiness は fail-close し、install flow は `ut-tdd setup` 前に linked/package binary を確立しなければならない。local distribution acceptance smoke (U-SETUP-013 / AT-DIST-001) は planned clean artifact set を temp repo に materialize し、`src/web/` と `tests/web.test.ts` が無いこと、`bun install --frozen-lockfile`、`status --json`、`distribution plan --json`、`typecheck` が通ることを検証する。さらに clean artifact CLI を別の空 consumer repo から `setup project --json` として実行し、fresh import report、readiness ok、`.vscode/tasks.json`、日本語-first adapter / Claude subagent 生成を確認する。fake `ut-tdd` は echo ではなく clean artifact CLI へ委譲する shim とし、生成 task 相当の `ut-tdd status --json` / `ut-tdd doctor --profile consumer --json` / `ut-tdd handover status --json` / `ut-tdd setup project --dry-run --json` を consumer repo で実行する。consumer doctor profile は dogfood PLAN/design/test-design/runtime state を要求せず、setup が投影した adapter / VSCode task / `.ut-tdd` baseline を検査する。brownfield consumer では既存 `AGENTS.md` と `.vscode/tasks.json` を置いた状態で setup を 2 回実行し、consumer 行保持、managed block 重複なし、`.vscode/tasks.json` skip、`importReport.nextRoute=review_import_report` を確認する。source repo 用 full `doctor` は clean artifact が dogfood PLAN/design/test-design/runtime state を意図的に除外するため対象外であり、consumer repo では `--profile consumer` を使う。
 

@@ -219,7 +219,12 @@ describe("clean distribution local acceptance smoke", () => {
         ).toContain("## V-model artifact");
         const tasks = JSON.parse(readFileSync(join(consumerRoot, ".vscode", "tasks.json"), "utf8"));
         expect(tasks.tasks.map((task: { label: string }) => task.label)).toEqual(
-          expect.arrayContaining(["HELIX: status", "HELIX: doctor", "HELIX: handover status"]),
+          expect.arrayContaining([
+            "HELIX: status",
+            "HELIX: doctor",
+            "HELIX: handover status",
+            "HELIX: team run dry-run",
+          ]),
         );
         expect(tasks.tasks).toEqual(
           expect.arrayContaining([
@@ -227,8 +232,20 @@ describe("clean distribution local acceptance smoke", () => {
               label: "HELIX: doctor",
               command: "ut-tdd doctor --profile consumer",
             }),
+            expect.objectContaining({
+              label: "HELIX: team run dry-run",
+              command:
+                "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+            }),
           ]),
         );
+        const generatedTeamDefinition = readFileSync(
+          join(consumerRoot, ".ut-tdd", "teams", "default-hybrid.yaml"),
+          "utf8",
+        );
+        expect(generatedTeamDefinition).toContain("name: default-hybrid");
+        expect(generatedTeamDefinition).toContain("engine: codex-se");
+        expect(generatedTeamDefinition).toContain("engine: pmo-sonnet");
         const workflow = readFileSync(
           join(consumerRoot, ".github", "workflows", "harness-check.yml"),
           "utf8",
@@ -240,12 +257,16 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("bun run ut-tdd status --json");
         expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
         expect(workflow).toContain("bun run ut-tdd handover status --json");
+        expect(workflow).toContain(
+          "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        );
         const workflowUtTddCommands = [
           "bun run ut-tdd --version",
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd status --json",
           "bun run ut-tdd doctor --profile consumer --json",
           "bun run ut-tdd handover status --json",
+          "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         ];
         for (const command of workflowUtTddCommands) {
           expect(workflow).toContain(command);
@@ -277,6 +298,27 @@ describe("clean distribution local acceptance smoke", () => {
         );
         expect(handoverFromGeneratedPath.status, handoverFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(handoverFromGeneratedPath.stdout)).toMatchObject({ exists: false });
+
+        const teamRunFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          [
+            "team",
+            "run",
+            "--definition",
+            ".ut-tdd/teams/default-hybrid.yaml",
+            "--mode",
+            "hybrid",
+            "--json",
+          ],
+          linkedEnv,
+        );
+        expect(teamRunFromGeneratedPath.status, teamRunFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(teamRunFromGeneratedPath.stdout)).toMatchObject({
+          ok: true,
+          team: "default-hybrid",
+          dry_run: true,
+        });
 
         const setupDryRunFromGeneratedPath = runCommand(
           consumerRoot,

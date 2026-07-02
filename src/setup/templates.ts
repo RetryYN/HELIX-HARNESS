@@ -58,6 +58,8 @@ export const CONSUMER_CLAUDE_COMMAND_NAMES = [
   "helix-test",
 ];
 
+export const CONSUMER_TEAM_DEFINITION_PATH = ".ut-tdd/teams/default-hybrid.yaml";
+
 function agentTemplate(name: string, description: string): string {
   return [
     "---",
@@ -387,6 +389,12 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     '      "type": "shell",',
     '      "command": "ut-tdd setup project --dry-run",',
     '      "problemMatcher": []',
+    "    },",
+    "    {",
+    '      "label": "HELIX: team run dry-run",',
+    '      "type": "shell",',
+    '      "command": "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",',
+    '      "problemMatcher": []',
     "    }",
     "  ]",
     "}",
@@ -396,6 +404,28 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   "project/.ut-tdd/memory/.gitkeep": "",
   "project/.ut-tdd/handover/.gitkeep": "",
   "project/.ut-tdd/evidence/.gitkeep": "",
+  "project/.ut-tdd/teams/default-hybrid.yaml": [
+    "name: default-hybrid",
+    "strategy: sequential",
+    "max_parallel: 2",
+    "serialization:",
+    "  file_conflict: false",
+    "  downstream_dependency: true",
+    "  shared_state: false",
+    "members:",
+    "  - role: se",
+    "    engine: codex-se",
+    "    difficulty: standard",
+    "    ownership: 実装対象ファイルを明示し、既存変更を戻さない",
+    "    task: HELIX setup 後の対象 slice を実装し、変更ファイルと検証 command を残す",
+    "  - role: tl",
+    "    engine: pmo-sonnet",
+    "    difficulty: standard",
+    "    serialize_after: se",
+    "    ownership: worker の変更範囲を review し、要求・設計・テストの意味整合を確認する",
+    "    task: worker の実装結果を review し、findings-first で gate / test / handover の不足を指摘する",
+    "",
+  ].join("\n"),
   "common/harness-check.yml": [
     "name: harness-check",
     "on:",
@@ -422,6 +452,8 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "        run: bun run ut-tdd doctor --profile consumer --json",
     "      - name: Handover route",
     "        run: bun run ut-tdd handover status --json",
+    "      - name: HELIX team run dry-run",
+    "        run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     "      - run: bun run typecheck",
     "      - run: bun run test",
     "",
@@ -663,6 +695,14 @@ export const PROJECT_SETUP_FILES: { template: string; file: GeneratedFile }[] = 
       path: join(".ut-tdd", "evidence", ".gitkeep"),
       category: "A",
       purpose: "HELIX project-local evidence baseline",
+    },
+  },
+  {
+    template: "project/.ut-tdd/teams/default-hybrid.yaml",
+    file: {
+      path: join(".ut-tdd", "teams", "default-hybrid.yaml"),
+      category: "A",
+      purpose: "HELIX default hybrid team-run definition",
     },
   },
 ];

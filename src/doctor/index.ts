@@ -326,7 +326,12 @@ import {
   peakParallel,
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
-import { CONSUMER_CLAUDE_AGENT_NAMES, CONSUMER_CLAUDE_COMMAND_NAMES } from "../setup/templates";
+import { teamDefinitionSchema } from "../schema/team";
+import {
+  CONSUMER_CLAUDE_AGENT_NAMES,
+  CONSUMER_CLAUDE_COMMAND_NAMES,
+  CONSUMER_TEAM_DEFINITION_PATH,
+} from "../setup/templates";
 import { loadOrBuildDriveDbRegistrationStats } from "../state-db/drive-registration";
 import {
   type GuardrailDecisionInput,
@@ -335,6 +340,7 @@ import {
 import { openHarnessDb } from "../state-db/index";
 import { rebuildHarnessDb } from "../state-db/projection-writer";
 import { classifyProposalDocumentCoverage } from "../task/classify";
+import { buildTeamRunPlan } from "../team/run";
 import {
   analyzePairFreeze,
   analyzeVerificationGroups,
@@ -1808,6 +1814,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".github/PULL_REQUEST_TEMPLATE.md",
     ...expectedClaudeAgentPaths,
     ...expectedClaudeCommandPaths,
+    CONSUMER_TEAM_DEFINITION_PATH,
     ".ut-tdd/memory/.gitkeep",
     ".ut-tdd/handover/.gitkeep",
     ".ut-tdd/evidence/.gitkeep",
@@ -1917,6 +1924,33 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : `doctor: consumer-claude-surface - violation invalidAgents=${invalidAgentTemplates.join(",")} invalidCommands=${invalidCommandTemplates.join(",")}`,
   );
 
+  const teamDefinition = teamDefinitionSchema.safeParse(
+    consumerYaml(deps, CONSUMER_TEAM_DEFINITION_PATH),
+  );
+  const teamRunPlan = teamDefinition.success
+    ? buildTeamRunPlan(teamDefinition.data, "hybrid")
+    : null;
+  const teamSurfaceOk =
+    teamDefinition.success &&
+    teamDefinition.data.name === "default-hybrid" &&
+    teamDefinition.data.members.some(
+      (member) => member.role === "se" && member.engine.startsWith("codex"),
+    ) &&
+    teamDefinition.data.members.some(
+      (member) =>
+        (member.role === "tl" || member.role === "qa") &&
+        (member.engine.startsWith("pmo-") || member.engine.startsWith("claude")),
+    ) &&
+    teamRunPlan?.ok === true &&
+    teamRunPlan.dry_run === true &&
+    teamRunPlan.members.some((member) => member.provider === "codex") &&
+    teamRunPlan.members.some((member) => member.provider === "claude");
+  messages.push(
+    teamSurfaceOk
+      ? `doctor: consumer-team-run-surface - OK (${CONSUMER_TEAM_DEFINITION_PATH}, members=${teamRunPlan?.members.length ?? 0}, dry-run=hybrid)`
+      : `doctor: consumer-team-run-surface - violation path=${CONSUMER_TEAM_DEFINITION_PATH} schema=${teamDefinition.success} messages=${teamRunPlan?.messages.join("|") ?? "schema-invalid"}`,
+  );
+
   const tasks = consumerJson(deps, ".vscode/tasks.json") as {
     version?: unknown;
     tasks?: {
@@ -1937,6 +1971,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ["HELIX: doctor", "ut-tdd doctor --profile consumer"],
     ["HELIX: handover status", "ut-tdd handover status --json"],
     ["HELIX: setup dry-run", "ut-tdd setup project --dry-run"],
+    [
+      "HELIX: team run dry-run",
+      `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+    ],
   ]);
   const missingTasks = [...expectedTasks.entries()].filter(
     ([label, command]) => tasksByLabel.get(label)?.command !== command,
@@ -2003,6 +2041,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     "bun run ut-tdd status --json",
     "bun run ut-tdd doctor --profile consumer --json",
     "bun run ut-tdd handover status --json",
+    `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     "bun run typecheck",
     "bun run test",
   ];
@@ -2068,6 +2107,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     claudeOk &&
     codexOk &&
     claudeSurfaceOk &&
+    teamSurfaceOk &&
     taskSafetyOk &&
     ciOk &&
     policyTemplatesOk;

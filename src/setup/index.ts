@@ -18,6 +18,7 @@ import { basename, dirname, join, relative, sep } from "node:path";
 import {
   BUILTIN_GITHUB_TEMPLATES,
   COMMON_FILES,
+  CONSUMER_TEAM_DEFINITION_PATH,
   PROJECT_SETUP_FILES,
   type TemplateSet,
 } from "./templates";
@@ -114,12 +115,14 @@ export interface HelixProjectSetupResult extends SetupResult {
     statusTask: "HELIX: status";
     doctorTask: "HELIX: doctor";
     handoverTask: "HELIX: handover status";
+    teamRunTask: "HELIX: team run dry-run";
   };
   baseline: {
     statePath: string;
     memoryPath: string;
     handoverPath: string;
     evidencePath: string;
+    teamsPath: string;
   };
   identifierTransition: {
     currentCli: "ut-tdd";
@@ -169,8 +172,9 @@ export interface HelixProjectDoctorBaseline {
     "ut-tdd status --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd handover status --json",
+    "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
   ];
-  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"];
+  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence", ".ut-tdd/teams"];
   completionClaimAllowed: false;
   nextRouteSource: "postSetupWorkflow.nextRoute";
   evidencePath: ".ut-tdd/evidence";
@@ -300,6 +304,7 @@ const CLEAN_REQUIRED_PATHS = [
   "package.json",
   "src/cli.ts",
   "src/setup/index.ts",
+  "docs/templates/project/.ut-tdd/teams/default-hybrid.yaml",
   ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
     (entry) => `docs/templates/${entry.template}`,
   ),
@@ -324,6 +329,7 @@ const CLEAN_ALLOW_PREFIXES = [
   "docs/skills/",
   "docs/templates/adapter/",
   "docs/templates/github/",
+  "docs/templates/project/",
   "scripts/",
   "src/",
   "tests/",
@@ -379,8 +385,9 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "ut-tdd status --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd handover status --json",
+    `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
-  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence", ".ut-tdd/teams"],
   completionClaimAllowed: false,
   nextRouteSource: "postSetupWorkflow.nextRoute",
   evidencePath: ".ut-tdd/evidence",
@@ -542,6 +549,9 @@ function templateNameFor(targetPath: string): string {
   }
   if (targetPath === join(".ut-tdd", "evidence", ".gitkeep")) {
     return "project/.ut-tdd/evidence/.gitkeep";
+  }
+  if (targetPath === join(".ut-tdd", "teams", "default-hybrid.yaml")) {
+    return "project/.ut-tdd/teams/default-hybrid.yaml";
   }
   if (targetPath.startsWith(`${join(".claude", "agents")}${sep}`)) {
     return `adapter/.claude/agents/${basename(targetPath)}`;
@@ -711,6 +721,7 @@ export function buildConsumerReadinessPlan(input: {
         requiredBefore: [
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd doctor --profile consumer --json",
+          `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         ],
         remediation:
           "consumer package.json に HELIX harness package/bin を解決できる dependency または approved link/install route を追加する",
@@ -724,6 +735,7 @@ export function buildConsumerReadinessPlan(input: {
         "bun run ut-tdd status --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd handover status --json",
+        `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         "bun run typecheck",
         "bun run test",
       ],
@@ -869,18 +881,19 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor --profile consumer`、`ut-tdd handover status --json` を実行する",
+          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor --profile consumer`、`ut-tdd handover status --json` を実行する",
+            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`ut-tdd status --json` を実行する",
             "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
+            `\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を dry-run し、worker/reviewer の provider 分離を確認する`,
           ];
   const blockedUntil = [
     ...(input.importReport.requiresReview ? ["importReport.requiresReview=false"] : []),
@@ -951,6 +964,18 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       sourceCheckedAt: "2026-07-02",
       adoptionDecision:
         "handover status で active handover または通常開始を確認してから最初の HELIX 作業へ入る",
+    },
+    {
+      phase: "team-run-dry-run",
+      command: `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      expected:
+        "parses the distributed default hybrid team definition and returns a dry-run launch plan with Codex worker and Claude reviewer separation",
+      evidence: "team run JSON dry-run output attached to the first-run readiness record",
+      source: "HELIX team definition schema and provider handover contract",
+      sourceUrl: "docs/design/harness/L6-function-design/agent-slots.md",
+      sourceCheckedAt: "2026-07-02",
+      adoptionDecision:
+        "AGENTS.md の team run 案内は配布 YAML と dry-run 検証へ接続し、実 provider 実行や外部 API 呼び出しなしに初回導線を検証する",
     },
   ];
 }
@@ -1054,12 +1079,14 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       statusTask: "HELIX: status",
       doctorTask: "HELIX: doctor",
       handoverTask: "HELIX: handover status",
+      teamRunTask: "HELIX: team run dry-run",
     },
     baseline: {
       statePath: STATE_PATH,
       memoryPath: join(".ut-tdd", "memory"),
       handoverPath: join(".ut-tdd", "handover"),
       evidencePath: join(".ut-tdd", "evidence"),
+      teamsPath: join(".ut-tdd", "teams"),
     },
     identifierTransition: {
       currentCli: "ut-tdd",
@@ -1084,12 +1111,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       reason:
         "`helix` command 名は post-cutover target。package/bin alias activation には PLAN-M-02 cutover/action-binding approval が必要。",
     },
-    nextCommands: [
-      "ut-tdd status --json",
-      "ut-tdd doctor --profile consumer",
-      "ut-tdd handover status --json",
-      "ut-tdd setup project --dry-run",
-    ],
+    nextCommands: postSetupWorkflow.verificationCommands,
   };
 }
 
@@ -1185,6 +1207,8 @@ export function loadTemplates(repoRoot: string): TemplateSet {
   walk(githubRoot, githubRoot);
   const adapterRoot = join(repoRoot, "docs", "templates", "adapter");
   walk(adapterRoot, adapterRoot, "adapter/");
+  const projectRoot = join(repoRoot, "docs", "templates", "project");
+  walk(projectRoot, projectRoot, "project/");
   return set;
 }
 

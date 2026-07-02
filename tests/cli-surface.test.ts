@@ -791,8 +791,14 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd status --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd handover status --json",
+          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         ],
-        stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+        stateBaselinePaths: [
+          ".ut-tdd/memory",
+          ".ut-tdd/handover",
+          ".ut-tdd/evidence",
+          ".ut-tdd/teams",
+        ],
         completionClaimAllowed: false,
       },
       branchProtection: { applied: false, reason: "dry-run" },
@@ -801,10 +807,12 @@ describe("L7 CLI surface closure", () => {
         statusTask: "HELIX: status",
         doctorTask: "HELIX: doctor",
         handoverTask: "HELIX: handover status",
+        teamRunTask: "HELIX: team run dry-run",
       },
       baseline: {
         memoryPath: join(".ut-tdd", "memory"),
         handoverPath: join(".ut-tdd", "handover"),
+        teamsPath: join(".ut-tdd", "teams"),
       },
       identifierTransition: {
         currentStateDir: ".ut-tdd",
@@ -878,6 +886,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd status --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
+      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
     expect(payload.postSetupWorkflow.verificationMatrix).toEqual(
       expect.arrayContaining([
@@ -893,6 +902,12 @@ describe("L7 CLI surface closure", () => {
           sourceCheckedAt: "2026-07-02",
           adoptionDecision: expect.stringContaining("task.allowAutomaticTasks=off"),
         }),
+        expect.objectContaining({
+          phase: "team-run-dry-run",
+          command:
+            "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          source: "HELIX team definition schema and provider handover contract",
+        }),
       ]),
     );
     expect(payload.doctorBaseline.baselineCommands).toEqual(
@@ -903,6 +918,7 @@ describe("L7 CLI surface closure", () => {
         "ut-tdd status --json",
         "ut-tdd doctor --profile consumer",
         "ut-tdd handover status --json",
+        "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
 
@@ -911,10 +927,13 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("import-report: review_required (review_import_report)");
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 4");
+    expect(text.stdout).toContain("verification-matrix: 5");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
+    expect(text.stdout).toContain(
+      "verification-command: ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+    );
     expect(text.stdout).toContain(
       "verification-check: consumer-doctor ut-tdd doctor --profile consumer",
     );

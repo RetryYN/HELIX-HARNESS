@@ -185,6 +185,31 @@ function consumerClaudeCommandTemplate(name: string): string {
   ].join("\n");
 }
 
+function consumerTeamDefinitionTemplate(): string {
+  return [
+    "name: default-hybrid",
+    "strategy: sequential",
+    "max_parallel: 2",
+    "serialization:",
+    "  file_conflict: false",
+    "  downstream_dependency: true",
+    "  shared_state: false",
+    "members:",
+    "  - role: se",
+    "    engine: codex-se",
+    "    difficulty: standard",
+    "    ownership: 実装対象ファイルを明示し、既存変更を戻さない",
+    "    task: HELIX setup 後の対象 slice を実装し、変更ファイルと検証 command を残す",
+    "  - role: tl",
+    "    engine: pmo-sonnet",
+    "    difficulty: standard",
+    "    serialize_after: se",
+    "    ownership: worker の変更範囲を review し、要求・設計・テストの意味整合を確認する",
+    "    task: worker の実装結果を review し、findings-first で gate / test / handover の不足を指摘する",
+    "",
+  ].join("\n");
+}
+
 function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | null> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
   const entries: Record<string, string> = {
@@ -257,6 +282,13 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
           command: "ut-tdd setup project --dry-run",
           problemMatcher: [],
         },
+        {
+          label: "HELIX: team run dry-run",
+          type: "shell",
+          command:
+            "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          problemMatcher: [],
+        },
       ],
     }),
     ".vscode/settings.json": JSON.stringify({ "task.allowAutomaticTasks": "off" }),
@@ -286,6 +318,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "        run: bun run ut-tdd doctor --profile consumer --json",
       "      - name: Handover route",
       "        run: bun run ut-tdd handover status --json",
+      "      - name: HELIX team run dry-run",
+      "        run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       "      - run: bun run typecheck",
       "      - run: bun run test",
       "",
@@ -344,6 +378,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
+    ".ut-tdd/teams/default-hybrid.yaml": consumerTeamDefinitionTemplate(),
   };
   for (const name of consumerClaudeAgentNames) {
     entries[`.claude/agents/${name}.md`] = consumerClaudeAgentTemplate(name);
@@ -369,6 +404,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-ci-workflow - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-policy-templates - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-claude-surface - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-team-run-surface - OK")).toBe(true);
   });
 
   it("fails closed when the consumer doctor task still points at the product doctor", () => {
@@ -606,6 +642,41 @@ describe("runConsumerDoctor", () => {
     expect(
       hasDoctorMessage(result.messages, "invalidCommands=.claude/commands/helix-test.md"),
     ).toBe(true);
+  });
+
+  it("U-SETUP-023: fails closed when the distributed team-run definition is missing or not hybrid-runnable", () => {
+    const missing = runConsumerDoctor(
+      deps({ files: consumerDoctorFiles("/repo", { ".ut-tdd/teams/default-hybrid.yaml": null }) }),
+    );
+    expect(missing.ok).toBe(false);
+    expect(
+      hasDoctorMessage(
+        missing.messages,
+        "consumer-files - violation missing=.ut-tdd/teams/default-hybrid.yaml",
+      ),
+    ).toBe(true);
+
+    const singleProvider = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/teams/default-hybrid.yaml": [
+            "name: default-hybrid",
+            "members:",
+            "  - role: se",
+            "    engine: codex-se",
+            "    task: implement",
+            "  - role: tl",
+            "    engine: codex-tl",
+            "    task: review",
+            "",
+          ].join("\n"),
+        }),
+      }),
+    );
+    expect(singleProvider.ok).toBe(false);
+    expect(hasDoctorMessage(singleProvider.messages, "consumer-team-run-surface - violation")).toBe(
+      true,
+    );
   });
 
   it("fails closed when adapter docs omit Japanese/cutover markers", () => {

@@ -103,7 +103,8 @@ const baseTemplates: TemplateSet = {
     '    { "label": "HELIX: status", "type": "shell", "command": "ut-tdd status", "problemMatcher": [] },',
     '    { "label": "HELIX: doctor", "type": "shell", "command": "ut-tdd doctor --profile consumer", "problemMatcher": [] },',
     '    { "label": "HELIX: handover status", "type": "shell", "command": "ut-tdd handover status --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "ut-tdd setup project --dry-run", "problemMatcher": [] }',
+    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "ut-tdd setup project --dry-run", "problemMatcher": [] },',
+    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
     "  ]",
     "}",
     "",
@@ -112,7 +113,21 @@ const baseTemplates: TemplateSet = {
   "project/.ut-tdd/memory/.gitkeep": "",
   "project/.ut-tdd/handover/.gitkeep": "",
   "project/.ut-tdd/evidence/.gitkeep": "",
-  "common/harness-check.yml": "name: harness-check\n",
+  "project/.ut-tdd/teams/default-hybrid.yaml": [
+    "name: default-hybrid",
+    "strategy: sequential",
+    "max_parallel: 2",
+    "members:",
+    "  - role: se",
+    "    engine: codex-se",
+    "    task: implement",
+    "  - role: tl",
+    "    engine: pmo-sonnet",
+    "    task: review",
+    "",
+  ].join("\n"),
+  "common/harness-check.yml":
+    "name: harness-check\nrun: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json\n",
   "common/commitlint.config.js":
     "module.exports = { extends: ['@commitlint/config-conventional'] };\n",
   "common/escalation-stale.yml": "name: escalation-stale\n",
@@ -260,6 +275,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "HELIX status と doctor 出力",
       );
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain("ut-tdd status --json");
+      expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain(
+        "name: default-hybrid",
+      );
+      expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain("engine: codex-se");
+      expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain(
+        "engine: pmo-sonnet",
+      );
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
@@ -465,6 +487,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "package.json",
         "src/cli.ts",
         "src/setup/index.ts",
+        "docs/templates/project/.ut-tdd/teams/default-hybrid.yaml",
         "src/web/catalog.ts",
         "src/web/index.ts",
         "src/web/render.ts",
@@ -492,6 +515,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.codex/hooks.json");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/agents/code-reviewer.md");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/commands/build.md");
+    expect(plan.artifactPaths).toContain(
+      "docs/templates/project/.ut-tdd/teams/default-hybrid.yaml",
+    );
     expect(plan.artifactPaths).not.toContain("src/web/page.tsx");
     expect(plan.artifactPaths).not.toContain(".claude/settings.json");
     expect(plan.artifactPaths).not.toContain(".codex/hooks.json");
@@ -544,6 +570,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "bun run ut-tdd status --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd handover status --json",
+        "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
     expect(ready.rollback.backupRequired).toBe(true);
@@ -604,6 +631,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({ path: join(".ut-tdd", "memory", ".gitkeep"), category: "A" }),
         expect.objectContaining({ path: join(".ut-tdd", "handover", ".gitkeep"), category: "A" }),
         expect.objectContaining({ path: join(".ut-tdd", "evidence", ".gitkeep"), category: "A" }),
+        expect.objectContaining({
+          path: join(".ut-tdd", "teams", "default-hybrid.yaml"),
+          category: "A",
+        }),
       ]),
     );
 
@@ -638,8 +669,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           "ut-tdd status --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd handover status --json",
+          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         ],
-        stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+        stateBaselinePaths: [
+          ".ut-tdd/memory",
+          ".ut-tdd/handover",
+          ".ut-tdd/evidence",
+          ".ut-tdd/teams",
+        ],
         completionClaimAllowed: false,
         nextRouteSource: "postSetupWorkflow.nextRoute",
         evidencePath: ".ut-tdd/evidence",
@@ -650,6 +687,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         statusTask: "HELIX: status",
         doctorTask: "HELIX: doctor",
         handoverTask: "HELIX: handover status",
+        teamRunTask: "HELIX: team run dry-run",
       },
       identifierTransition: {
         currentCli: "ut-tdd",
@@ -707,6 +745,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
+    expect(preview.written).toContain(join(".ut-tdd", "teams", "default-hybrid.yaml"));
     expect(preview.importReport).toMatchObject({
       schemaVersion: "helix-project-import-report.v1",
       mode: "fresh",
@@ -720,6 +759,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.arrayContaining([
         join(".vscode", "tasks.json"),
         join(".ut-tdd", "memory", ".gitkeep"),
+        join(".ut-tdd", "teams", "default-hybrid.yaml"),
       ]),
     );
     expect(preview.nextCommands).toEqual(
@@ -727,6 +767,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "ut-tdd status --json",
         "ut-tdd doctor --profile consumer",
         "ut-tdd handover status --json",
+        "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
     expect(preview.postSetupWorkflow.unmetGates).toEqual(
@@ -735,7 +776,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
         expect.stringContaining("bun link ut-tdd"),
-        "HELIX work 開始前に `ut-tdd status --json`、`ut-tdd doctor --profile consumer`、`ut-tdd handover status --json` を実行する",
+        expect.stringContaining("ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml"),
       ]),
     );
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
@@ -743,6 +784,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd status --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd handover status --json",
+      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
     expect(preview.postSetupWorkflow.verificationMatrix).toEqual([
       expect.objectContaining({
@@ -771,6 +813,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         command: "ut-tdd handover status --json",
         evidence: "handover status JSON attached to the first-run readiness record",
       }),
+      expect.objectContaining({
+        phase: "team-run-dry-run",
+        command:
+          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        source: "HELIX team definition schema and provider handover contract",
+      }),
     ]);
     expect(preview.postSetupWorkflow.blockedUntil).toContain(
       "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
@@ -795,6 +843,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "ut-tdd handover status --json",
+    );
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
+      "HELIX: team run dry-run",
+    );
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
+      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     );
     const generatedTasks = JSON.parse(
       wet.files.get(join("/repo", ".vscode", "tasks.json")) ?? "{}",
@@ -939,6 +993,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "`ut-tdd status --json` を実行する",
         "`ut-tdd doctor --profile consumer` を実行する",
         "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
+        "`ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を dry-run し、worker/reviewer の provider 分離を確認する",
       ],
     });
     expect(result.postSetupWorkflow.verificationMatrix.map((row) => row.phase)).toEqual([
@@ -946,6 +1001,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "status-frontier",
       "consumer-doctor",
       "handover-route",
+      "team-run-dry-run",
     ]);
   });
 
@@ -978,7 +1034,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       schemaVersion: "helix-project-doctor-baseline.v1",
       planOnly: true,
       baselineCommands: result.postSetupWorkflow.verificationCommands,
-      stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence"],
+      stateBaselinePaths: [
+        ".ut-tdd/memory",
+        ".ut-tdd/handover",
+        ".ut-tdd/evidence",
+        ".ut-tdd/teams",
+      ],
       completionClaimAllowed: false,
       nextRouteSource: "postSetupWorkflow.nextRoute",
       evidencePath: ".ut-tdd/evidence",
@@ -1038,6 +1099,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoTemplates["adapter/.claude/commands/build.md"],
       repoTemplates["adapter/.claude/commands/helix-status.md"],
       repoTemplates["adapter/.claude/commands/helix-test.md"],
+      repoTemplates["project/.ut-tdd/teams/default-hybrid.yaml"],
       BUILTIN_GITHUB_TEMPLATES["adapter/AGENTS.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/CLAUDE.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/CLAUDE.md"],
@@ -1046,6 +1108,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/build.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-status.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-test.md"],
+      BUILTIN_GITHUB_TEMPLATES["project/.ut-tdd/teams/default-hybrid.yaml"],
       BUILTIN_GITHUB_TEMPLATES["common/recovery.md"],
       BUILTIN_GITHUB_TEMPLATES["common/add-feature.md"],
       BUILTIN_GITHUB_TEMPLATES["common/PULL_REQUEST_TEMPLATE.md"],
