@@ -181,6 +181,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   irreversible cutover review にしない。
   `verificationCommandMatrix[]` も共通 source metadata validator を通し、source ledger refresh と matrix metadata の
   日付・status・adoption・route impact が承認前 evidence として実体を持つことを検査する。
+  `verificationCommandMatrix[]` の `sourceCheckedAt` は `sourceLedgerFreshness.checkedDate` から派生させ、
+  Cutover source ledger heading と matrix metadata の確認日が新旧混在した cutover packet を作らない。
   completion decision packet / status / handover の supporting summary でも、rename/cutover は
   `cutoverSnapshot` / `snapshotReview` / `cutoverRunbook` / `stateBackupManifest` などの親 field だけに畳まない。
   `cutoverSnapshot.blastRadiusDigest`、`cutoverSnapshot.approvalScopeDigest`、`cutoverSnapshot.evidenceDigest`、

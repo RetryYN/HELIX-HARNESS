@@ -462,6 +462,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
       for (const row of plan.verificationCommandMatrix) {
         expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(row.sourceCheckedAt, row.phase).toBe(plan.sourceLedgerFreshness.checkedDate);
         expect(row.writePolicy, row.phase).toMatch(/^(no-write|state-write|local-artifact-write)$/);
         expect(row.latestOfficialStatus, row.phase).not.toBe("");
         expect(row.sourceStatusDelta, row.phase).not.toBe("");
@@ -838,6 +839,35 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
       expect(first.cutoverSnapshot.evidenceDigest).not.toBe(second.cutoverSnapshot.evidenceDigest);
       expect(first.cutoverSnapshot.snapshotId).not.toBe(second.cutoverSnapshot.snapshotId);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("derives all cutover verification source dates from the Cutover source ledger heading", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-ledger-date-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root, "2026-01-01");
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const plan = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+
+      expect(plan.sourceLedgerFreshness.checkedDate).toBe("2026-01-01");
+      expect(new Set(plan.verificationCommandMatrix.map((row) => row.sourceCheckedAt))).toEqual(
+        new Set(["2026-01-01"]),
+      );
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          expect.stringMatching(
+            /^source ledger must be refreshed before cutover: Cutover source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
+          ),
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

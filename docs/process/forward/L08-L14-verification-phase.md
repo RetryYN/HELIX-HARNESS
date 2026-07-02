@@ -206,7 +206,8 @@ sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptio
 workflowRouteImpact を持ち、L14 review が source 名や URL だけの evidence に退行しないようにする。
 GitHub Actions concurrency、Google SRE release engineering、SLSA provenance、OWASP LLM06 の公式 source は、
 この matrix metadata 用に 2026-07-02 に再確認済みであり、ledger heading は source-ledger freshness の
-anchor として残す。`cutoverSnapshot.snapshotId` は current blast-radius digest、approval scope digest、
+anchor として残す。`sourceCheckedAt` は `Cutover source ledger (checked YYYY-MM-DD)` から派生させ、
+ledger heading と verification matrix の確認日を別々に進めない。`cutoverSnapshot.snapshotId` は current blast-radius digest、approval scope digest、
 source-ledger/runbook/backup/provenance/monitoring evidence digest、freeze-policy reapproval trigger を束ねる。
 この snapshot は apply を許可しない。PO/TL が approval evidence と current rename packet を比較し、HEAD、
 hit set、source ledger、scope、dry-run、backup、rollback、provenance、monitoring、dist smoke、quiet-window
