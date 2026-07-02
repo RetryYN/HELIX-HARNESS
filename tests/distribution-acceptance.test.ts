@@ -228,7 +228,7 @@ describe("clean distribution local acceptance smoke", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "c583953f5fda9c406ff180ae700deefa0d6206ae",
+              mainHead: "69c36cdff9491fba6e19279d8d545e7d37652f4e",
               latestTag: "v0.1.3",
             },
             versionBinding: {
