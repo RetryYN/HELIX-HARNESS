@@ -242,6 +242,7 @@ export interface CleanDistributionPlan {
 export interface ConsumerReadinessPlan {
   ok: boolean;
   checks: { name: string; ok: boolean; message: string }[];
+  artifactReadiness: ConsumerArtifactReadinessPlan;
   objectiveBoundary: {
     scope: "consumer_setup_readiness_not_whole_program_completion";
     progressPercent: 90;
@@ -308,6 +309,17 @@ export interface ConsumerReadinessPlan {
     stable: string[];
   };
   smokeScenarios: string[];
+}
+
+export interface ConsumerArtifactReadinessPlan {
+  ok: boolean;
+  checks: {
+    name: string;
+    path: string;
+    ok: boolean;
+    message: string;
+    evidence: string;
+  }[];
 }
 
 /** gh 実行 seam (raw token 非依存 = gh の認証状態に委ねる)。test=mock。 */
@@ -755,6 +767,7 @@ export function buildConsumerReadinessPlan(input: {
   hasGh: boolean;
   hasUtTddCli?: boolean;
   hasUtTddPackageScript?: boolean;
+  artifactReadiness?: ConsumerArtifactReadinessPlan;
   hasClaude: boolean;
   hasCodex: boolean;
   repoRoot: string;
@@ -779,6 +792,18 @@ export function buildConsumerReadinessPlan(input: {
   const cliResolvedByPath = input.hasUtTddCli === true;
   const cliResolvedByPackageScript = input.hasUtTddPackageScript === true;
   const cliResolved = cliResolvedByPath || cliResolvedByPackageScript;
+  const artifactReadiness = input.artifactReadiness ?? {
+    ok: true,
+    checks: [
+      {
+        name: "artifact-readiness-not-supplied",
+        path: "n/a",
+        ok: true,
+        message: "pure readiness input did not include projected artifact checks",
+        evidence: "buildConsumerReadinessPlan.artifactReadiness omitted",
+      },
+    ],
+  };
   const checks = [
     {
       name: "bun>=1.3",
@@ -820,11 +845,25 @@ export function buildConsumerReadinessPlan(input: {
         ? `mode=${mode}`
         : "review gate 前に claude または codex を install / login する",
     },
+    {
+      name: "projected-consumer-artifacts",
+      ok: artifactReadiness.ok,
+      message: artifactReadiness.ok
+        ? "projected adapter / VSCode task / .ut-tdd baseline / default-hybrid team が初回 HELIX 稼働契約を満たす"
+        : "projected consumer artifacts が不足または意味ずれしている。artifactReadiness.checks を修正してから setup を再実行する",
+    },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
   return {
-    ok: bunOk && input.hasGit && requestedTagMatchesPackageVersion && cliResolved && runtimeOk,
+    ok:
+      bunOk &&
+      input.hasGit &&
+      requestedTagMatchesPackageVersion &&
+      cliResolved &&
+      runtimeOk &&
+      artifactReadiness.ok,
     checks,
+    artifactReadiness,
     objectiveBoundary: {
       scope: "consumer_setup_readiness_not_whole_program_completion",
       progressPercent: 90,
@@ -943,6 +982,97 @@ export function buildConsumerReadinessPlan(input: {
   };
 }
 
+function buildConsumerArtifactReadinessPlan(
+  plan: SetupPlan,
+  templates: TemplateSet,
+): ConsumerArtifactReadinessPlan {
+  const artifacts = renderArtifacts(plan, templates);
+  const byPath = new Map(artifacts.map((artifact) => [artifact.path, artifact.content]));
+  const hasPath = (path: string): boolean => byPath.has(path);
+  const content = (path: string): string => byPath.get(path) ?? "";
+  const tasksPath = join(".vscode", "tasks.json");
+  const settingsPath = join(".vscode", "settings.json");
+  const teamPath = CONSUMER_TEAM_DEFINITION_PATH;
+  const baselinePaths = [
+    join(".ut-tdd", "memory", ".gitkeep"),
+    join(".ut-tdd", "handover", ".gitkeep"),
+    join(".ut-tdd", "evidence", ".gitkeep"),
+    teamPath,
+  ];
+  const ag = content("AGENTS.md");
+  const tasks = content(tasksPath);
+  const settings = content(settingsPath);
+  const team = content(teamPath);
+  const checks: ConsumerArtifactReadinessPlan["checks"] = [
+    {
+      name: "adapter-guidance-connects-consumer-verification",
+      path: "AGENTS.md",
+      ok:
+        hasPath("AGENTS.md") &&
+        ag.includes(MANAGED_START) &&
+        ag.includes(MANAGED_END) &&
+        ag.includes("ut-tdd doctor --profile consumer") &&
+        ag.includes(
+          `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+        ),
+      message:
+        "AGENTS managed block must point to consumer doctor and the distributed default-hybrid team dry-run",
+      evidence: "AGENTS.md managed block command surface",
+    },
+    {
+      name: "vscode-tasks-are-manual-consumer-smoke",
+      path: tasksPath,
+      ok:
+        hasPath(tasksPath) &&
+        tasks.includes("HELIX: doctor") &&
+        tasks.includes("bun run ut-tdd doctor --profile consumer") &&
+        tasks.includes("HELIX: team run dry-run") &&
+        tasks.includes(
+          `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+        ) &&
+        !tasks.includes("runOn") &&
+        !tasks.includes("runOptions"),
+      message:
+        "VSCode tasks must expose manual consumer doctor and team-run dry-run tasks without automatic run options",
+      evidence: ".vscode/tasks.json task labels and commands",
+    },
+    {
+      name: "vscode-automatic-tasks-disabled",
+      path: settingsPath,
+      ok:
+        hasPath(settingsPath) &&
+        settings.includes('"task.allowAutomaticTasks"') &&
+        settings.includes('"off"'),
+      message: "VSCode workspace settings must disable automatic tasks for consumer setup",
+      evidence: ".vscode/settings.json task.allowAutomaticTasks",
+    },
+    {
+      name: "ut-tdd-baseline-paths-projected",
+      path: ".ut-tdd",
+      ok: baselinePaths.every(hasPath),
+      message:
+        "setup must project .ut-tdd memory, handover, evidence, and default-hybrid team baselines",
+      evidence: baselinePaths.join(", "),
+    },
+    {
+      name: "default-hybrid-team-separates-worker-reviewer",
+      path: teamPath,
+      ok:
+        hasPath(teamPath) &&
+        team.includes("name: default-hybrid") &&
+        team.includes("role: se") &&
+        team.includes("engine: codex-se") &&
+        team.includes("role: tl") &&
+        team.includes("engine: pmo-sonnet") &&
+        team.includes("serialize_after: se"),
+      message:
+        "default-hybrid team must keep Codex worker and TL reviewer roles separate for dry-run verification",
+      evidence: ".ut-tdd/teams/default-hybrid.yaml role/engine/serialization contract",
+    },
+  ];
+  return { ok: checks.every((check) => check.ok), checks };
+}
+
 /**
  * U-SETUP-004: render → 書込。dryRun は書かず path 一覧を返すのみ。既存上書きは confirm 経由。
  * 生成内容に token を埋め込まない (render は templates と team slug のみ)。書いた path を返す。
@@ -1035,6 +1165,7 @@ function buildHelixProjectImportReport(input: {
 function buildHelixSetupConsumerReadiness(deps: SetupDeps): ConsumerReadinessPlan {
   const commandAvailable = deps.commandAvailable ?? (() => false);
   const packageRoot = deps.packageRoot ?? deps.repoRoot;
+  const plan = planHelixProjectSetup("0-A", { dryRun: true });
   return buildConsumerReadinessPlan({
     bunVersion: deps.bunVersion?.() ?? null,
     hasGit: commandAvailable("git"),
@@ -1043,6 +1174,7 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps): ConsumerReadinessPla
     hasUtTddPackageScript: packageJsonDeclaresUtTddScript(
       deps.readText(join(packageRoot, "package.json")),
     ),
+    artifactReadiness: buildConsumerArtifactReadinessPlan(plan, deps.templates),
     hasClaude: commandAvailable("claude"),
     hasCodex: commandAvailable("codex"),
     repoRoot: deps.repoRoot,

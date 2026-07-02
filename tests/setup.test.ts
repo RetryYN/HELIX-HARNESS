@@ -127,12 +127,19 @@ const baseTemplates: TemplateSet = {
     "name: default-hybrid",
     "strategy: sequential",
     "max_parallel: 2",
+    "serialization:",
+    "  file_conflict: false",
+    "  downstream_dependency: true",
+    "  shared_state: false",
     "members:",
     "  - role: se",
     "    engine: codex-se",
+    "    difficulty: standard",
     "    task: implement",
     "  - role: tl",
     "    engine: pmo-sonnet",
+    "    difficulty: standard",
+    "    serialize_after: se",
     "    task: review",
     "",
   ].join("\n"),
@@ -1215,6 +1222,31 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ok: true,
       mode: "codex-only",
       ci: { forkPullRequestSecrets: "not-required" },
+      artifactReadiness: {
+        ok: true,
+        checks: expect.arrayContaining([
+          expect.objectContaining({
+            name: "adapter-guidance-connects-consumer-verification",
+            ok: true,
+            path: "AGENTS.md",
+          }),
+          expect.objectContaining({
+            name: "vscode-tasks-are-manual-consumer-smoke",
+            ok: true,
+            path: join(".vscode", "tasks.json"),
+          }),
+          expect.objectContaining({
+            name: "ut-tdd-baseline-paths-projected",
+            ok: true,
+            path: ".ut-tdd",
+          }),
+          expect.objectContaining({
+            name: "default-hybrid-team-separates-worker-reviewer",
+            ok: true,
+            path: join(".ut-tdd", "teams", "default-hybrid.yaml"),
+          }),
+        ]),
+      },
       objectiveBoundary: {
         scope: "consumer_setup_readiness_not_whole_program_completion",
         progressPercent: 90,
@@ -1246,6 +1278,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           name: "ut-tdd-cli",
           ok: true,
           message: "projected hook 用の `ut-tdd` が PATH 上で解決できる",
+        }),
+      ]),
+    );
+    expect(result.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "projected-consumer-artifacts",
+          ok: true,
         }),
       ]),
     );
@@ -1310,6 +1350,66 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
     });
     expect(result.postSetupWorkflow.nextRoute).toBe("ready");
+  });
+
+  it("blocks consumer readiness when projected setup artifacts do not carry the first-run HELIX route", () => {
+    const brokenTemplates = {
+      ...baseTemplates,
+      "adapter/AGENTS.md": [
+        "<!-- UT-TDD:managed:start -->",
+        "# HELIX アダプター",
+        "- Doctor: `ut-tdd doctor`",
+        "<!-- UT-TDD:managed:end -->",
+        "",
+      ].join("\n"),
+      "project/.ut-tdd/teams/default-hybrid.yaml": [
+        "name: default-hybrid",
+        "members:",
+        "  - role: se",
+        "    engine: codex-se",
+        "",
+      ].join("\n"),
+    };
+    const deps = mockDeps({
+      templates: brokenTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness).toMatchObject({
+      ok: false,
+      checks: expect.arrayContaining([
+        expect.objectContaining({
+          name: "adapter-guidance-connects-consumer-verification",
+          ok: false,
+        }),
+        expect.objectContaining({
+          name: "default-hybrid-team-separates-worker-reviewer",
+          ok: false,
+        }),
+      ]),
+    });
+    expect(result.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "projected-consumer-artifacts",
+          ok: false,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow).toMatchObject({
+      nextRoute: "fix_consumer_readiness",
+      readinessOk: false,
+    });
+    expect(result.postSetupWorkflow.unmetGates).toContain(
+      "consumer_readiness:projected-consumer-artifacts",
+    );
   });
 
   it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
