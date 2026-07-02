@@ -79,6 +79,11 @@ pending approval がある状態でも、再開者が別 PLAN の approval packe
 secret/PII 非投影、no-prod-write、rollback rehearsal、source ledger freshness / approval / audit evidence を
 承認前に審査するための設計材料であり、apply 権限ではない。source ledger が stale または必須 source 欠落の
 場合、packet は blocked reason として返し、PO/TL が古い外部前提で activation 判断を進めないようにする。
+`externalRehearsalPlan[]`、`costGuardrails[]`、`version-up security-checklist` の `securityChecks[]` は
+source 名だけでは不可とし、各 row が `sourceUrl` / `sourceCheckedAt` / `latestOfficialStatus` /
+`sourceStatusDelta` / `adoptionDecision` / `adoptionDecisionDelta` / `workflowRouteImpact` を持つ。
+source metadata が空、placeholder、未来日、90 日超 stale の場合は activation evidence とみなさず
+fail-close する。
 GitHub Actions を activation/dry-run 経路に使う場合は、`GITHUB_TOKEN` 権限、workflow の least privilege、
 `pull_request_target` の未信頼コード実行リスク、自動 PR 承認リスクを `external_rehearsal_plan` /
 `dry_run_plan` / `activation_provenance_requirements` / `audit_record` に接続し、CI があるだけで安全と読み替えない。
@@ -214,7 +219,7 @@ Version-up source ledger (checked 2026-07-02):
 | Cloudflare Workers KV limits | <https://developers.cloudflare.com/kv/platform/limits/> | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget を activation 前に確認する | `cost_guardrails`, `external_rehearsal_plan` |
 | Cloudflare Access policies | <https://developers.cloudflare.com/cloudflare-one/access-controls/policies/> | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control を activation 前に rehearsal する | `external_rehearsal_plan`, `approval_scope` |
 | GitHub webhook HMAC SHA-256 | <https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries> | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity を activation 前に dry-run 検証する | `external_rehearsal_plan`, `dry_run_plan` |
-| OWASP Web Security Testing Guide | <https://owasp.org/www-project-web-security-testing-guide/> | live OWASP WSTG docs | live official OWASP docs | adopt-live-docs-for-security-testing-shape | access control / input / secret exposure surface の検証観点として使う | `external_rehearsal_plan`, `dry_run_plan`, `activation_provenance_requirements` |
+| OWASP Web Security Testing Guide | <https://owasp.org/www-project-web-security-testing-guide/stable/> / <https://owasp.org/www-project-web-security-testing-guide/latest/> | stable WSTG baseline + latest volatility watch | stable は current baseline、latest は頻繁に変わり得る live docs | adopt-stable-wstg-baseline-track-latest-volatility | access control / input / secret exposure surface の検証観点として使う。latest の変更は security-testing scope の再確認入力であり、自動採用しない | `external_rehearsal_plan`, `dry_run_plan`, `activation_provenance_requirements` |
 
 Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その Version-up source ledger は stale とし、parked review / activation decision / completion packet の判断材料にしない。
 

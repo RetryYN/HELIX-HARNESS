@@ -27,6 +27,7 @@ import {
   SOURCE_LEDGER_MAX_AGE_DAYS,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
+  type VerificationSourceMetadataRow,
   verificationSourceMetadataViolations,
 } from "./source-ledger-freshness";
 import {
@@ -93,17 +94,21 @@ export interface VersionUpActivationPacket {
   actionBindingApproval: Record<string, string>;
   recordTemplates: CompletionDecisionRecordTemplate[];
   externalBoundaries: string[];
-  externalRehearsalPlan: Array<{
-    check: string;
-    evidence: string;
-    source: string;
-  }>;
-  costGuardrails: Array<{
-    surface: string;
-    freeLimit: string;
-    activationImpact: string;
-    source: string;
-  }>;
+  externalRehearsalPlan: Array<
+    {
+      check: string;
+      evidence: string;
+      source: string;
+    } & VerificationSourceMetadataRow
+  >;
+  costGuardrails: Array<
+    {
+      surface: string;
+      freeLimit: string;
+      activationImpact: string;
+      source: string;
+    } & VerificationSourceMetadataRow
+  >;
   provenanceRequirements: Array<{
     item: string;
     evidence: string;
@@ -237,6 +242,12 @@ export interface VersionUpSecurityChecklistPacket {
     check: string;
     source: string;
     sourceUrl: string;
+    sourceCheckedAt: string;
+    latestOfficialStatus: string;
+    sourceStatusDelta: string;
+    adoptionDecision: string;
+    adoptionDecisionDelta: string;
+    workflowRouteImpact: string;
     requiredEvidence: string;
   }>;
   blockedUntil: string[];
@@ -635,10 +646,190 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
     fieldImpacts: ["external_rehearsal_plan", "dry_run_plan"],
   },
   "OWASP Web Security Testing Guide": {
-    urls: ["https://owasp.org/www-project-web-security-testing-guide/"],
+    urls: [
+      "https://owasp.org/www-project-web-security-testing-guide/stable/",
+      "https://owasp.org/www-project-web-security-testing-guide/latest/",
+    ],
     fieldImpacts: ["external_rehearsal_plan", "dry_run_plan", "activation_provenance_requirements"],
   },
 };
+
+const VERSION_UP_SOURCE_CHECKED_AT = "2026-07-02";
+
+const VERSION_UP_SOURCE_METADATA = {
+  sourceLedger: {
+    sourceUrl: "docs/process/modes/version-up.md",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "local Version-up source ledger rows are current at HEAD after official source recheck",
+    sourceStatusDelta:
+      "source ledger now binds external rehearsal and cost guardrail rows to per-row source metadata",
+    adoptionDecision: "adopt-source-ledger-as-required-basis-for-external-rehearsal",
+    adoptionDecisionDelta:
+      "tighten packet evidence so source names alone are not sufficient activation material",
+    workflowRouteImpact:
+      "missing source metadata keeps activation readiness blocked before approval review",
+  },
+  cloudflarePages: {
+    sourceUrl: "https://developers.cloudflare.com/pages/platform/limits/",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "Cloudflare Pages limits remain live official guidance with project limits and abuse/temporary disable constraints",
+    sourceStatusDelta:
+      "official limits remain a live budget source; activation must record current Pages fit before deploy",
+    adoptionDecision: "adopt-live-docs-for-static-hosting-budget",
+    adoptionDecisionDelta:
+      "require Pages budget evidence on the cost guardrail row, not only in prose",
+    workflowRouteImpact:
+      "Pages budget drift routes back to external rehearsal before activation review",
+  },
+  cloudflareWorkers: {
+    sourceUrl: "https://developers.cloudflare.com/workers/platform/limits/",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "Cloudflare Workers Free plan documents 100,000 requests per day and over-limit Error 1027 behavior",
+    sourceStatusDelta:
+      "Workers request and subrequest limits remain activation cost constraints for read API and Pages Functions",
+    adoptionDecision: "adopt-live-docs-for-worker-budget",
+    adoptionDecisionDelta:
+      "require current Workers quota evidence before treating external rehearsal as ready",
+    workflowRouteImpact: "Workers quota drift keeps activationReadinessSummary pending_evidence",
+  },
+  cloudflareD1: {
+    sourceUrl: "https://developers.cloudflare.com/d1/platform/limits/",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "Cloudflare D1 limits remain live official guidance for database count, storage, Time Travel, and query limits",
+    sourceStatusDelta:
+      "D1 storage/query constraints remain projection DB budget inputs for activation rehearsal",
+    adoptionDecision: "adopt-live-docs-for-projection-db-budget",
+    adoptionDecisionDelta:
+      "require D1 limit evidence on cost guardrail rows before activation review",
+    workflowRouteImpact:
+      "D1 limit drift routes back to budget rehearsal and activation record update",
+  },
+  cloudflareKv: {
+    sourceUrl: "https://developers.cloudflare.com/kv/platform/limits/",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "Cloudflare Workers KV limits remain live official guidance with Free reads, writes, operations, namespace, and storage quotas",
+    sourceStatusDelta:
+      "KV read/write/storage limits remain projection cache budget inputs for activation rehearsal",
+    adoptionDecision: "adopt-live-docs-for-projection-cache-budget",
+    adoptionDecisionDelta:
+      "require KV limit evidence on cost guardrail rows before activation review",
+    workflowRouteImpact:
+      "KV limit drift routes back to budget rehearsal and activation record update",
+  },
+  cloudflareAccess: {
+    sourceUrl: "https://developers.cloudflare.com/cloudflare-one/access-controls/policies/",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "Cloudflare Access policies remain live official guidance for Allow, Block, Bypass, Service Auth, Include, Exclude, and Require rules",
+    sourceStatusDelta:
+      "Access policy docs still require explicit rule and bypass-risk review for read-only dashboard exposure",
+    adoptionDecision: "adopt-live-docs-for-viewer-access-control",
+    adoptionDecisionDelta:
+      "require access-control rehearsal evidence before treating viewer access as approved",
+    workflowRouteImpact:
+      "Access policy drift routes back to external rehearsal and action-binding approval",
+  },
+  githubWebhookHmac: {
+    sourceUrl: "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "GitHub webhook HMAC SHA-256 validation remains live official guidance for delivery authenticity",
+    sourceStatusDelta:
+      "webhook signature verification remains required before projection update activation",
+    adoptionDecision: "adopt-live-docs-for-webhook-signature",
+    adoptionDecisionDelta:
+      "require concrete HMAC rehearsal evidence before external activation approval",
+    workflowRouteImpact:
+      "missing webhook evidence keeps activationReadinessSummary pending_evidence",
+  },
+  githubActionsSecurity: {
+    sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "GitHub Actions secure-use guidance keeps GITHUB_TOKEN least-privilege permissions and untrusted trigger review as live official guidance",
+    sourceStatusDelta:
+      "least-privilege token and pull_request_target risk review remain required activation workflow evidence",
+    adoptionDecision:
+      "adopt-live-docs-for-least-privilege-token-scope-and-untrusted-pr-trigger-review",
+    adoptionDecisionDelta:
+      "keep activation workflow hardening as required external rehearsal evidence",
+    workflowRouteImpact:
+      "missing concrete rehearsal evidence keeps activationReadinessSummary pending_evidence",
+  },
+  githubActionsPullRequestTarget: {
+    sourceUrl:
+      "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "GitHub pull_request_target security guidance remains live official guidance for untrusted code and token/secret exposure review",
+    sourceStatusDelta:
+      "pull_request_target remains a high-risk trigger that must not run untrusted code with secrets",
+    adoptionDecision: "adopt-live-docs-for-untrusted-pr-trigger-review",
+    adoptionDecisionDelta:
+      "require pull_request_target risk evidence in the security checklist before approval",
+    workflowRouteImpact:
+      "unsafe trigger evidence routes back to workflow hardening before activation review",
+  },
+  githubEnvironments: {
+    sourceUrl:
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "GitHub environments required reviewers remain live official approval gate guidance with public/private repository and plan availability constraints",
+    sourceStatusDelta:
+      "availability constraints reviewed; Free/Pro/Team required reviewers are public-repository gated, so private/internal activation must record an equivalent approved boundary before relying on environments",
+    adoptionDecision:
+      "adopt-required-reviewer-boundary-only-after-repo-visibility-plan-and-prevent-self-review-check",
+    adoptionDecisionDelta:
+      "tighten approval packet review so GitHub Environments availability is evidence, not an assumption",
+    workflowRouteImpact: "missing reviewed_snapshot_binding keeps action-binding approval pending",
+  },
+  owaspWstg: {
+    sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "OWASP WSTG stable page is the adopted baseline; latest page is explicitly volatile and may change frequently",
+    sourceStatusDelta:
+      "stable baseline remains adopted while latest volatility requires recheck before changing security-testing scope",
+    adoptionDecision:
+      "adopt-stable-wstg-baseline-and-track-latest-volatility-for-security-testing-shape",
+    adoptionDecisionDelta:
+      "tighten WSTG adoption so latest changes are review input, not automatic activation scope changes",
+    workflowRouteImpact:
+      "WSTG latest/stable drift routes back to security checklist review before activation approval",
+  },
+  localInvariant: {
+    sourceUrl: "docs/process/modes/version-up.md",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "local HELIX no-secret/no-PII and no-production-write invariants remain current at HEAD",
+    sourceStatusDelta:
+      "local invariants now require per-row source metadata in activation rehearsal packets",
+    adoptionDecision: "adopt-local-invariants-for-non-secret-read-only-projection-rehearsal",
+    adoptionDecisionDelta:
+      "require invariant evidence as structured rehearsal metadata instead of prose-only notes",
+    workflowRouteImpact:
+      "missing invariant evidence keeps activationReadinessSummary pending_evidence",
+  },
+  rollbackPlan: {
+    sourceUrl: "docs/process/modes/version-up.md",
+    sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+    latestOfficialStatus:
+      "local HELIX rollback evidence requirement remains current at HEAD for version-up activation",
+    sourceStatusDelta:
+      "rollback rehearsal remains required approval material before any external activation",
+    adoptionDecision: "adopt-local-rollback-plan-as-version-up-activation-rehearsal-evidence",
+    adoptionDecisionDelta:
+      "require rollback evidence row metadata before activation approval review",
+    workflowRouteImpact:
+      "missing rollback evidence keeps activationReadinessSummary pending_evidence",
+  },
+} satisfies Record<string, VerificationSourceMetadataRow>;
 
 function parsePlan(file: string, content: string): VersionUpReadinessPlan {
   return {
@@ -1211,6 +1402,80 @@ export function buildVersionUpActivationPacket(
     ...COST_GUARDRAIL_RECORD_FIELDS,
   ]);
   const provenance = recordValues(plan.text, PROVENANCE_RECORD_NAME, [...PROVENANCE_RECORD_FIELDS]);
+  const externalRehearsalPlan: VersionUpActivationPacket["externalRehearsalPlan"] = [
+    {
+      check: "official_source_basis",
+      evidence: externalRehearsal.official_source_basis,
+      source: "Version-up source ledger and official provider documentation",
+      ...VERSION_UP_SOURCE_METADATA.sourceLedger,
+    },
+    {
+      check: "free_tier_budget_check",
+      evidence: externalRehearsal.free_tier_budget_check,
+      source: "Cloudflare Pages/Workers/D1/KV official limits",
+      ...VERSION_UP_SOURCE_METADATA.cloudflareWorkers,
+    },
+    {
+      check: "webhook_signature_check",
+      evidence: externalRehearsal.webhook_signature_check,
+      source: "GitHub X-Hub-Signature-256 webhook validation",
+      ...VERSION_UP_SOURCE_METADATA.githubWebhookHmac,
+    },
+    {
+      check: "access_control_check",
+      evidence: externalRehearsal.access_control_check,
+      source: "Cloudflare Access policy testing",
+      ...VERSION_UP_SOURCE_METADATA.cloudflareAccess,
+    },
+    {
+      check: "no_secret_pii_check",
+      evidence: externalRehearsal.no_secret_pii_check,
+      source: "projection no-secret/no-PII invariant",
+      ...VERSION_UP_SOURCE_METADATA.localInvariant,
+    },
+    {
+      check: "no_prod_write_check",
+      evidence: externalRehearsal.no_prod_write_check,
+      source: "dry-run projection and no-production-write rehearsal",
+      ...VERSION_UP_SOURCE_METADATA.localInvariant,
+    },
+    {
+      check: "rollback_rehearsal",
+      evidence: externalRehearsal.rollback_rehearsal,
+      source: "version-up rollback plan",
+      ...VERSION_UP_SOURCE_METADATA.rollbackPlan,
+    },
+  ];
+  const costGuardrailRows: VersionUpActivationPacket["costGuardrails"] = [
+    {
+      surface: "Cloudflare Pages",
+      freeLimit: costGuardrails.pages_limit,
+      activationImpact: "static SPA must remain inside Pages Free deploy/file limits",
+      source: "Cloudflare Pages limits",
+      ...VERSION_UP_SOURCE_METADATA.cloudflarePages,
+    },
+    {
+      surface: "Cloudflare Workers",
+      freeLimit: costGuardrails.workers_limit,
+      activationImpact: "read API and Pages Functions requests share Workers Free daily quota",
+      source: "Cloudflare Workers limits",
+      ...VERSION_UP_SOURCE_METADATA.cloudflareWorkers,
+    },
+    {
+      surface: "Cloudflare D1",
+      freeLimit: costGuardrails.d1_limit,
+      activationImpact: "projection DB must fit Free storage/query constraints before activation",
+      source: "Cloudflare D1 limits",
+      ...VERSION_UP_SOURCE_METADATA.cloudflareD1,
+    },
+    {
+      surface: "Cloudflare Workers KV",
+      freeLimit: costGuardrails.kv_limit,
+      activationImpact: "projection cache/write rate must stay inside KV Free limits",
+      source: "Cloudflare Workers KV limits",
+      ...VERSION_UP_SOURCE_METADATA.cloudflareKv,
+    },
+  ];
   const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
     plan.text.toLowerCase().includes(term.toLowerCase()),
   );
@@ -1251,6 +1516,8 @@ export function buildVersionUpActivationPacket(
     reapprovalTriggers,
     repoHeadSha,
     costGuardrails,
+    externalRehearsalPlan,
+    costGuardrailRows,
     activationReadinessChecks,
   });
   const blockedReasons = [
@@ -1295,69 +1562,8 @@ export function buildVersionUpActivationPacket(
     actionBindingApproval,
     recordTemplates: recordTemplatesForRecords(requiredRecordsForBlockers(recordBlockers)),
     externalBoundaries,
-    externalRehearsalPlan: [
-      {
-        check: "official_source_basis",
-        evidence: externalRehearsal.official_source_basis,
-        source: "Version-up source ledger and official provider documentation",
-      },
-      {
-        check: "free_tier_budget_check",
-        evidence: externalRehearsal.free_tier_budget_check,
-        source: "Cloudflare Pages/Workers/D1/KV official limits",
-      },
-      {
-        check: "webhook_signature_check",
-        evidence: externalRehearsal.webhook_signature_check,
-        source: "GitHub X-Hub-Signature-256 webhook validation",
-      },
-      {
-        check: "access_control_check",
-        evidence: externalRehearsal.access_control_check,
-        source: "Cloudflare Access policy testing",
-      },
-      {
-        check: "no_secret_pii_check",
-        evidence: externalRehearsal.no_secret_pii_check,
-        source: "projection no-secret/no-PII invariant",
-      },
-      {
-        check: "no_prod_write_check",
-        evidence: externalRehearsal.no_prod_write_check,
-        source: "dry-run projection and no-production-write rehearsal",
-      },
-      {
-        check: "rollback_rehearsal",
-        evidence: externalRehearsal.rollback_rehearsal,
-        source: "version-up rollback plan",
-      },
-    ],
-    costGuardrails: [
-      {
-        surface: "Cloudflare Pages",
-        freeLimit: costGuardrails.pages_limit,
-        activationImpact: "static SPA must remain inside Pages Free deploy/file limits",
-        source: "Cloudflare Pages limits",
-      },
-      {
-        surface: "Cloudflare Workers",
-        freeLimit: costGuardrails.workers_limit,
-        activationImpact: "read API and Pages Functions requests share Workers Free daily quota",
-        source: "Cloudflare Workers limits",
-      },
-      {
-        surface: "Cloudflare D1",
-        freeLimit: costGuardrails.d1_limit,
-        activationImpact: "projection DB must fit Free storage/query constraints before activation",
-        source: "Cloudflare D1 limits",
-      },
-      {
-        surface: "Cloudflare Workers KV",
-        freeLimit: costGuardrails.kv_limit,
-        activationImpact: "projection cache/write rate must stay inside KV Free limits",
-        source: "Cloudflare Workers KV limits",
-      },
-    ],
+    externalRehearsalPlan,
+    costGuardrails: costGuardrailRows,
     provenanceRequirements: [
       {
         item: "source_ledger",
@@ -1464,37 +1670,34 @@ export function buildVersionUpSecurityChecklistPacket(
       {
         check: "github-actions-least-privilege",
         source: "GitHub Actions secure use",
-        sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+        ...VERSION_UP_SOURCE_METADATA.githubActionsSecurity,
         requiredEvidence:
           "workflow permissions are least-privilege and GITHUB_TOKEN write permissions are not granted by default",
       },
       {
         check: "pull-request-target-risk-review",
         source: "GitHub Actions secure use",
-        sourceUrl:
-          "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+        ...VERSION_UP_SOURCE_METADATA.githubActionsPullRequestTarget,
         requiredEvidence:
           "activation workflow does not run untrusted pull_request_target code with secrets or write token",
       },
       {
         check: "webhook-hmac-sha256",
         source: "GitHub webhook HMAC SHA-256",
-        sourceUrl:
-          "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+        ...VERSION_UP_SOURCE_METADATA.githubWebhookHmac,
         requiredEvidence: "staging webhook validates X-Hub-Signature-256 before projection update",
       },
       {
         check: "github-environments-availability",
         source: "GitHub Environments required reviewers",
-        sourceUrl:
-          "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+        ...VERSION_UP_SOURCE_METADATA.githubEnvironments,
         requiredEvidence:
           "repository visibility, account/org plan, required reviewers, prevent self-review, and environment secrets availability are recorded before relying on GitHub Environments as the approval gate",
       },
       {
         check: "access-control-and-secret-exposure",
         source: "OWASP Web Security Testing Guide",
-        sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/latest/",
+        ...VERSION_UP_SOURCE_METADATA.owaspWstg,
         requiredEvidence:
           "OWASP-aligned access-control, secret/PII exclusion, and read-only projection checks produce a report or audit id",
       },
@@ -1505,6 +1708,18 @@ export function buildVersionUpSecurityChecklistPacket(
       "activation remains approval-gated and no production write is performed by this packet",
     ],
   };
+}
+
+export function versionUpSecurityChecklistSourceViolations(
+  packet: VersionUpSecurityChecklistPacket,
+): VersionUpActivationCommandViolation[] {
+  return packet.securityChecks.flatMap((row) =>
+    verificationSourceMetadataViolations({
+      subject: `${packet.planId}.securityChecks.${row.check}`,
+      matrixName: "securityChecks",
+      row,
+    }),
+  );
 }
 
 export function versionUpActivationVerificationCommandViolations(
@@ -1522,7 +1737,24 @@ export function versionUpActivationVerificationCommandViolations(
   const allowedStateWriteCommands = new Set([
     "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
   ]);
-  return packet.activationVerificationCommandMatrix.flatMap((row) => {
+  const externalRehearsalViolations = packet.externalRehearsalPlan.flatMap((row) =>
+    verificationSourceMetadataViolations({
+      subject: `${packet.planId}.externalRehearsalPlan.${row.check}`,
+      matrixName: "externalRehearsalPlan",
+      row,
+    }),
+  );
+  const costGuardrailViolations = packet.costGuardrails.flatMap((row) =>
+    verificationSourceMetadataViolations({
+      subject: `${packet.planId}.costGuardrails.${row.surface}`,
+      matrixName: "costGuardrails",
+      row,
+    }),
+  );
+  const securityChecklistViolations = versionUpSecurityChecklistSourceViolations(
+    buildVersionUpSecurityChecklistPacket(packet),
+  );
+  const commandMatrixViolations = packet.activationVerificationCommandMatrix.flatMap((row) => {
     const violations: VersionUpActivationCommandViolation[] = [];
     const command = row.command.trim();
     if (row.phase === "version-dry-run" && isApprovedVersionDryRunCommand(command)) {
@@ -1555,6 +1787,12 @@ export function versionUpActivationVerificationCommandViolations(
     );
     return violations;
   });
+  return [
+    ...externalRehearsalViolations,
+    ...costGuardrailViolations,
+    ...securityChecklistViolations,
+    ...commandMatrixViolations,
+  ];
 }
 
 function isApprovedVersionDryRunCommand(command: string): boolean {
@@ -1601,6 +1839,8 @@ function buildVersionUpActivationSnapshot(input: {
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   repoHeadSha: string | null;
   costGuardrails: Record<string, string>;
+  externalRehearsalPlan: VersionUpActivationPacket["externalRehearsalPlan"];
+  costGuardrailRows: VersionUpActivationPacket["costGuardrails"];
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
 }): VersionUpActivationSnapshot {
   const releaseTrigger =
@@ -1619,7 +1859,9 @@ function buildVersionUpActivationSnapshot(input: {
   });
   const evidenceDigest = sha256Json({
     external_rehearsal_plan: input.externalRehearsal,
+    external_rehearsal_packet_rows: input.externalRehearsalPlan,
     cost_guardrails: input.costGuardrails,
+    cost_guardrail_packet_rows: input.costGuardrailRows,
     activation_readiness_checks: input.activationReadinessChecks.map((check) => ({
       check: check.check,
       status: check.status,
@@ -1738,7 +1980,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "activation packet JSON attached to the version-up activation review",
       source: "HELIX version-up activation packet contract",
       sourceUrl: "docs/process/modes/version-up.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus: "local HELIX workflow contract current at HEAD",
       sourceStatusDelta: "none; local version-up contract reviewed against current HEAD",
       adoptionDecision: "adopt-current-version-up-contract-for-plan-only-activation-review",
@@ -1758,7 +2000,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
         : "version-up dry-run JSON showing target is not SemVer and activation remains parked",
       source: "Semantic Versioning 2.0.0",
       sourceUrl: "https://semver.org/",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus:
         "SemVer 2.0.0 official specification page remains the adopted compatibility contract",
       sourceStatusDelta: "none; SemVer 2.0.0 remains the current official compatibility source",
@@ -1775,18 +2017,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence:
         "artifact paths, audit ids, digests, logs, or reports referenced by external_rehearsal_plan",
       source: "GitHub Actions secure use and pull_request_target guidance",
-      sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
-      sourceCheckedAt: "2026-07-02",
-      latestOfficialStatus:
-        "GitHub Actions secure-use, pull_request_target, and GITHUB_TOKEN permissions docs remain live official guidance",
-      sourceStatusDelta:
-        "none; official GitHub Actions security guidance still requires least-privilege and pull_request_target risk review",
-      adoptionDecision:
-        "adopt-live-docs-for-least-privilege-token-scope-and-untrusted-pr-trigger-review",
-      adoptionDecisionDelta:
-        "none; keep activation workflow hardening as required external rehearsal evidence",
-      workflowRouteImpact:
-        "none; missing concrete rehearsal evidence keeps activationReadinessSummary pending_evidence",
+      ...VERSION_UP_SOURCE_METADATA.githubActionsSecurity,
     },
     {
       phase: "security-testing",
@@ -1797,15 +2028,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence:
         "security test report or audit record linked from activation_provenance_requirements",
       source: "OWASP Web Security Testing Guide",
-      sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
-      sourceCheckedAt: "2026-07-02",
-      latestOfficialStatus:
-        "OWASP WSTG stable/latest testing guide remains the adopted web security test source",
-      sourceStatusDelta: "none; OWASP WSTG remains the adopted security-testing source",
-      adoptionDecision:
-        "adopt-wstg-for-access-control-secret-exposure-webhook-and-read-only-projection-checks",
-      adoptionDecisionDelta: "none; keep WSTG-aligned security checks before activation review",
-      workflowRouteImpact: "none; security report absence remains activation evidence pending",
+      ...VERSION_UP_SOURCE_METADATA.owaspWstg,
     },
     {
       phase: "state-and-doctor",
@@ -1816,7 +2039,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "db rebuild and doctor output",
       source: "HELIX state projection and doctor gate",
       sourceUrl: "docs/adr/ADR-007-harness-db-sqlite-projection.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus: "local HELIX state projection contract current at HEAD",
       sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
       adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",
@@ -1832,7 +2055,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       source: "HELIX version-up regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus: "local HELIX L7 unit oracle current at HEAD",
       sourceStatusDelta: "none; local version-up regression oracle reviewed against current HEAD",
       adoptionDecision: "adopt-targeted-regression-before-activation-review",
@@ -1847,7 +2070,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus: "repository AGENTS test rules current at HEAD",
       sourceStatusDelta: "none; repository static gate policy reviewed against current HEAD",
       adoptionDecision: "adopt-static-gates-before-activation-review",
@@ -1862,7 +2085,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus: "local HELIX full regression policy current at HEAD",
       sourceStatusDelta: "none; local full regression policy reviewed against current HEAD",
       adoptionDecision: "adopt-full-regression-before-any-future-activation-apply-route",
@@ -1879,7 +2102,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       source: "GitHub Environments required reviewers",
       sourceUrl:
         "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
       latestOfficialStatus:
         "GitHub environments required reviewers remain live official approval gate guidance with public/private repository and plan availability constraints",
       sourceStatusDelta:

@@ -13,7 +13,18 @@ import {
   type VersionUpReadinessInput,
   versionUpActivationVerificationCommandViolations,
   versionUpReadinessMessages,
+  versionUpSecurityChecklistSourceViolations,
 } from "../src/lint/version-up-readiness";
+
+const REQUIRED_SOURCE_METADATA_FIELDS = [
+  "sourceUrl",
+  "sourceCheckedAt",
+  "latestOfficialStatus",
+  "sourceStatusDelta",
+  "adoptionDecision",
+  "adoptionDecisionDelta",
+  "workflowRouteImpact",
+] as const;
 
 function writeFakeRemoteTagGit(binDir: string, tag: string): void {
   const remoteUrl = "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
@@ -151,7 +162,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| Cloudflare Workers KV limits | https://developers.cloudflare.com/kv/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget | cost_guardrails kv_limit external_rehearsal_plan |",
       "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/access-controls/policies/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check dry_run_plan |",
-      "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/ | live OWASP WSTG docs | live official OWASP docs | adopt-live-docs-for-security-testing-shape | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
+      "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/stable/ / https://owasp.org/www-project-web-security-testing-guide/latest/ | stable WSTG baseline + latest volatility watch | stable current; latest may change frequently | adopt-stable-wstg-baseline-track-latest-volatility | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     currentVersion: "0.1.0",
@@ -401,6 +412,12 @@ describe("version-up-readiness", () => {
       "no_prod_write_check",
       "rollback_rehearsal",
     ]);
+    for (const row of packet.externalRehearsalPlan) {
+      for (const field of REQUIRED_SOURCE_METADATA_FIELDS) {
+        expect(row[field], `${row.check}.${field}`).not.toBe("");
+      }
+      expect(row.sourceCheckedAt, row.check).toBe("2026-07-02");
+    }
     expect(packet.activationReadinessChecks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -511,7 +528,7 @@ describe("version-up-readiness", () => {
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
           sourceCheckedAt: "2026-07-02",
-          latestOfficialStatus: expect.stringContaining("GITHUB_TOKEN permissions"),
+          latestOfficialStatus: expect.stringContaining("GITHUB_TOKEN least-privilege"),
           sourceStatusDelta: expect.stringContaining("least-privilege"),
           adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
           adoptionDecisionDelta: expect.stringContaining("external rehearsal evidence"),
@@ -522,12 +539,13 @@ describe("version-up-readiness", () => {
           command:
             "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
           writePolicy: "no-write",
-          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
+          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
           sourceCheckedAt: "2026-07-02",
-          sourceStatusDelta: expect.stringContaining("OWASP WSTG"),
+          latestOfficialStatus: expect.stringContaining("latest page is explicitly volatile"),
+          sourceStatusDelta: expect.stringContaining("stable baseline remains adopted"),
           adoptionDecision: expect.stringContaining("wstg"),
-          adoptionDecisionDelta: expect.stringContaining("security checks"),
-          workflowRouteImpact: expect.stringContaining("security report absence"),
+          adoptionDecisionDelta: expect.stringContaining("latest changes are review input"),
+          workflowRouteImpact: expect.stringContaining("WSTG latest/stable drift"),
         }),
         expect.objectContaining({
           phase: "state-and-doctor",
@@ -610,10 +628,25 @@ describe("version-up-readiness", () => {
     );
     expect(packet.costGuardrails).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ surface: "Cloudflare Workers" }),
-        expect.objectContaining({ surface: "Cloudflare D1" }),
+        expect.objectContaining({
+          surface: "Cloudflare Workers",
+          sourceUrl: "https://developers.cloudflare.com/workers/platform/limits/",
+          sourceCheckedAt: "2026-07-02",
+          adoptionDecision: "adopt-live-docs-for-worker-budget",
+        }),
+        expect.objectContaining({
+          surface: "Cloudflare D1",
+          sourceUrl: "https://developers.cloudflare.com/d1/platform/limits/",
+          sourceCheckedAt: "2026-07-02",
+          adoptionDecision: "adopt-live-docs-for-projection-db-budget",
+        }),
       ]),
     );
+    for (const row of packet.costGuardrails) {
+      for (const field of REQUIRED_SOURCE_METADATA_FIELDS) {
+        expect(row[field], `${row.surface}.${field}`).not.toBe("");
+      }
+    }
     expect(packet.provenanceRequirements).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ item: "dry_run_evidence" }),
@@ -769,6 +802,44 @@ describe("version-up-readiness", () => {
         reason: "activationVerificationCommandMatrix workflowRouteImpact is missing or placeholder",
       },
     ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        externalRehearsalPlan: packet.externalRehearsalPlan.map((row) =>
+          row.check === "access_control_check"
+            ? {
+                ...row,
+                sourceCheckedAt: "2026-01-01",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.externalRehearsalPlan.access_control_check",
+        reason: expect.stringMatching(
+          /^externalRehearsalPlan sourceCheckedAt is stale: 2026-01-01 \(\d+d > 90d\)$/,
+        ),
+      },
+    ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        costGuardrails: packet.costGuardrails.map((row) =>
+          row.surface === "Cloudflare Workers"
+            ? {
+                ...row,
+                sourceUrl: "TODO",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.costGuardrails.Cloudflare Workers",
+        reason: "costGuardrails sourceUrl is missing or placeholder",
+      },
+    ]);
     const rehearsalPacket = buildVersionUpActivationRehearsalPacket(packet);
     expect(rehearsalPacket).toMatchObject({
       schemaVersion: "version-up-activation-rehearsal.v1",
@@ -788,14 +859,46 @@ describe("version-up-readiness", () => {
     });
     expect(securityPacket.securityChecks).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ check: "github-actions-least-privilege" }),
+        expect.objectContaining({
+          check: "github-actions-least-privilege",
+          sourceCheckedAt: "2026-07-02",
+          adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
+        }),
         expect.objectContaining({
           check: "github-environments-availability",
           requiredEvidence: expect.stringContaining("repository visibility"),
         }),
-        expect.objectContaining({ check: "access-control-and-secret-exposure" }),
+        expect.objectContaining({
+          check: "access-control-and-secret-exposure",
+          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
+          latestOfficialStatus: expect.stringContaining("latest page is explicitly volatile"),
+        }),
       ]),
     );
+    for (const row of securityPacket.securityChecks) {
+      for (const field of REQUIRED_SOURCE_METADATA_FIELDS) {
+        expect(row[field], `${row.check}.${field}`).not.toBe("");
+      }
+    }
+    expect(versionUpSecurityChecklistSourceViolations(securityPacket)).toEqual([]);
+    expect(
+      versionUpSecurityChecklistSourceViolations({
+        ...securityPacket,
+        securityChecks: securityPacket.securityChecks.map((row) =>
+          row.check === "access-control-and-secret-exposure"
+            ? {
+                ...row,
+                workflowRouteImpact: "-",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.securityChecks.access-control-and-secret-exposure",
+        reason: "securityChecks workflowRouteImpact is missing or placeholder",
+      },
+    ]);
   });
 
   it("binds activation snapshots to the concrete version-up dry-run result digest", () => {
@@ -1706,6 +1809,24 @@ describe("version-up-readiness", () => {
     });
   });
 
+  it("fails when OWASP WSTG latest volatility source is not ledgered beside stable", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input().modeDoc.replace(
+          " / https://owasp.org/www-project-web-security-testing-guide/latest/",
+          "",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason:
+        "version-up source ledger OWASP Web Security Testing Guide official URL missing expected https://owasp.org/www-project-web-security-testing-guide/latest/",
+    });
+  });
+
   it("fails when the version-up source ledger checked date is stale", () => {
     // U-SOURCELEDGER-003
     const result = analyzeVersionUpReadiness(
@@ -2344,12 +2465,13 @@ describe("version-up-readiness", () => {
       "writePolicy=no-write command=bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
     );
     expect(text).toContain("adoption=adopt-live-docs-for-least-privilege-token-scope");
-    expect(text).toContain("statusDelta=none; official GitHub Actions security guidance");
-    expect(text).toContain("adoptionDelta=none; keep activation workflow hardening");
-    expect(text).toContain("routeImpact=none; missing concrete rehearsal evidence keeps");
+    expect(text).toContain("statusDelta=least-privilege token and pull_request_target risk review");
+    expect(text).toContain("adoptionDelta=keep activation workflow hardening");
+    expect(text).toContain("routeImpact=missing concrete rehearsal evidence keeps");
     expect(text).toContain(
-      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/ checked=2026-07-02",
+      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/stable/ checked=2026-07-02",
     );
+    expect(text).toContain("statusDelta=stable baseline remains adopted while latest volatility");
     expect(text).toContain(
       "verification-source: approval-packet source=GitHub Environments required reviewers sourceUrl=https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments checked=2026-07-02",
     );
