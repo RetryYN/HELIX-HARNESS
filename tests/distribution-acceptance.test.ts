@@ -368,6 +368,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("bun run ut-tdd --version");
         expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
         expect(workflow).toContain("bun run ut-tdd status --json");
+        expect(workflow).toContain("bun run ut-tdd completion decision-packet --json");
         expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
         expect(workflow).toContain("bun run ut-tdd rename plan --json");
         expect(workflow).toContain("bun run ut-tdd handover status --json");
@@ -378,6 +379,7 @@ describe("clean distribution local acceptance smoke", () => {
           "bun run ut-tdd --version",
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd status --json",
+          "bun run ut-tdd completion decision-packet --json",
           "bun run ut-tdd doctor --profile consumer --json",
           "bun run ut-tdd rename plan --json",
           "bun run ut-tdd handover status --json",
