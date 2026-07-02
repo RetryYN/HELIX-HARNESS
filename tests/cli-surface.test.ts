@@ -1247,6 +1247,20 @@ describe("L7 CLI surface closure", () => {
     );
   }, 15_000);
 
+  it("keeps legacy setup text scoped away from HELIX project completion", () => {
+    const text = runCli(["setup", "--dry-run"]);
+
+    expect(text.status).toBe(0);
+    expect(text.stdout).toContain("setup-scope: legacy solo/team adapter setup");
+    expect(text.stdout).toContain(
+      "HELIX project bootstrap は `ut-tdd setup project` を使用してください",
+    );
+    expect(text.stdout).toContain("completion-boundary:");
+    expect(text.stdout).toContain("L14 completion evidence ではありません");
+    expect(text.stdout).not.toContain("helix project setup:");
+    expect(text.stdout).not.toContain("verification-command: ut-tdd rename plan --json");
+  }, 15_000);
+
   it("exposes skill suggest as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--plan", "PLAN-NO-SUCH", "--json"]);
 

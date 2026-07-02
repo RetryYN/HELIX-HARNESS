@@ -4358,6 +4358,12 @@ setupCommand.action((opts: SetupCliOptions) => {
       r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
     }\n`,
   );
+  process.stdout.write(
+    "setup-scope: legacy solo/team adapter setup; HELIX project bootstrap は `ut-tdd setup project` を使用してください\n",
+  );
+  process.stdout.write(
+    "completion-boundary: VSCode tasks / .ut-tdd project baseline / rename packet を生成しないため L14 completion evidence ではありません\n",
+  );
   if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
     process.stdout.write(
       "  → scripts/setup-branch-protection.sh は action-binding approval checklist です。remote apply は実行しません\n",

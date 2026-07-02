@@ -121,6 +121,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
+  親 `ut-tdd setup` の text surface は legacy solo/team adapter setup に scope を限定し、HELIX project
+  bootstrap は `ut-tdd setup project` を使うこと、親 setup が VS Code task / `.ut-tdd` project baseline /
+  rename packet を生成しないため L14 completion evidence ではないことを表示する。
   `runConsumerDoctor` は adapter docs の managed block だけでなく、日本語既定、consumer doctor profile、
   PLAN-M-02 cutover boundary、承認前 `.helix/**` state 未生成、`package.json` の `bin.helix`、
   `name=helix` / `@scope/helix` の string `bin`、package scripts、`.vscode/tasks.json` /
