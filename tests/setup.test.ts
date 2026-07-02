@@ -736,6 +736,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         baselineCommands: [
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
+          "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
@@ -889,6 +890,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
+      "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
@@ -915,6 +917,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         writePolicy: "no-write",
         expected: expect.stringContaining("objective progress"),
         latestOfficialStatus: expect.stringContaining("local HELIX L3"),
+      }),
+      expect.objectContaining({
+        phase: "github-ci-safety",
+        command: "ut-tdd setup project --dry-run --json",
+        writePolicy: "no-write",
+        expected: expect.stringContaining("contents:read permissions"),
+        evidence: "setup project JSON attached to the first-run readiness record",
+        source: "GitHub Actions secure use and workflow token permissions",
+        sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+        sourceCheckedAt: "2026-07-02",
+        latestOfficialStatus: expect.stringContaining("GITHUB_TOKEN"),
+        adoptionDecision: expect.stringContaining("pull_request_target"),
+        workflowRouteImpact: expect.stringContaining("CI permission"),
       }),
       expect.objectContaining({
         phase: "completion-decision-packet",
@@ -1203,6 +1218,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       unmetGates: [],
       nextActions: [
         "`ut-tdd status --json` を実行する",
+        "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
         "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
         "`ut-tdd doctor --profile consumer` を実行する",
         "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
@@ -1213,6 +1229,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.postSetupWorkflow.verificationMatrix.map((row) => row.phase)).toEqual([
       "setup-dry-run",
       "status-frontier",
+      "github-ci-safety",
       "completion-decision-packet",
       "consumer-doctor",
       "identifier-cutover-packet",

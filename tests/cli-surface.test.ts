@@ -1053,6 +1053,7 @@ describe("L7 CLI surface closure", () => {
         baselineCommands: [
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
+          "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
@@ -1170,6 +1171,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
+      "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
@@ -1182,6 +1184,14 @@ describe("L7 CLI surface closure", () => {
           phase: "setup-dry-run",
           command: "ut-tdd setup project --dry-run",
           writePolicy: "no-write",
+        }),
+        expect.objectContaining({
+          phase: "github-ci-safety",
+          command: "ut-tdd setup project --dry-run --json",
+          writePolicy: "no-write",
+          source: "GitHub Actions secure use and workflow token permissions",
+          sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+          adoptionDecision: expect.stringContaining("pull_request_target"),
         }),
         expect.objectContaining({
           phase: "consumer-doctor",
@@ -1233,7 +1243,7 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 7");
+    expect(text.stdout).toContain("verification-matrix: 8");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");

@@ -184,6 +184,7 @@ export interface HelixProjectDoctorBaseline {
   baselineCommands: [
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
+    "ut-tdd setup project --dry-run --json",
     "ut-tdd completion decision-packet --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
@@ -435,6 +436,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
   baselineCommands: [
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
+    "ut-tdd setup project --dry-run --json",
     "ut-tdd completion decision-packet --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
@@ -1026,16 +1028,17 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`ut-tdd status --json` を実行する",
+            "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
             "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
             "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
@@ -1103,6 +1106,26 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "none; completion readiness remains separate from consumer setup success",
       workflowRouteImpact:
         "missing status frontier evidence routes to fix_consumer_readiness before implementation starts",
+    },
+    {
+      phase: "github-ci-safety",
+      command: "ut-tdd setup project --dry-run --json",
+      writePolicy: "no-write",
+      expected:
+        "returns githubPlan and consumerReadiness.ci.requires with push/pull_request on main, contents:read permissions, pull_request_target denied, required smoke commands, and no repository secrets",
+      evidence: "setup project JSON attached to the first-run readiness record",
+      source: "GitHub Actions secure use and workflow token permissions",
+      sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "GitHub recommends minimum required GITHUB_TOKEN permissions and read-only contents by default where possible",
+      sourceStatusDelta: "none; setup keeps generated harness-check CI secret-free and read-only",
+      adoptionDecision:
+        "harness-check は push/pull_request の read-only smoke に限定し、pull_request_target と repository secret 前提を初回 setup 証跡にしない",
+      adoptionDecisionDelta:
+        "none; branch protection and remote required-check application remain plan-only until approval",
+      workflowRouteImpact:
+        "CI permission or trigger drift routes to consumer doctor/template repair before first HELIX work",
     },
     {
       phase: "completion-decision-packet",

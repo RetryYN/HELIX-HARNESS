@@ -120,11 +120,11 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 解決不能なら `bun link` remediation を出して silent pass させない。
 > `hasUtTddCli` 未指定は green 扱いせず、`setup project` と `distribution plan` は bare `ut-tdd --version`
 > 相当の実測値を readiness に渡す。
-> `postSetupWorkflow.verificationCommands` は setup dry-run / status / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
+> `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
 > `ut-tdd rename plan --json` / handover status /
 > `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含め、
 > ready route は active handover または current PLAN route に接続する。
-> `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / status-frontier / completion-decision-packet / consumer-doctor /
+> `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / status-frontier / github-ci-safety / completion-decision-packet / consumer-doctor /
 > identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / expected / evidence / source /
 > sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
 > adoptionDecisionDelta / workflowRouteImpact を持つ。VS Code workspace task と
