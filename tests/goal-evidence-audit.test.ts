@@ -176,6 +176,33 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
+  it("fails when external observed source values drift from the ledger", () => {
+    const baseInput = loadObjectiveEvidenceAuditInput();
+    const ok = analyzeObjectiveEvidenceAudit({
+      ...baseInput,
+      externalObserved: {
+        development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+        distribution_pack_repo: "e899c3a7c18c47380e102446de7fba702635ac6a",
+        distribution_pack_latest_tag: "v0.1.3",
+      },
+    });
+    expect(ok.ok).toBe(true);
+
+    const drifted = analyzeObjectiveEvidenceAudit({
+      ...baseInput,
+      externalObserved: {
+        development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+        distribution_pack_repo: "different-pack-head",
+        distribution_pack_latest_tag: "v0.1.3",
+      },
+    });
+
+    expect(drifted.ok).toBe(false);
+    expect(drifted.violations).toContain(
+      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=e899c3a7c18c47380e102446de7fba702635ac6a actual=different-pack-head",
+    );
+  });
+
   it("fails when objective audit drops permanent language, setup, version-up, or cutover evidence", () => {
     const text = auditText()
       .replaceAll("CLAUDE.md", "CLAUDE-REMOVED.md")

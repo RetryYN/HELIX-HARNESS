@@ -7,6 +7,7 @@ export interface ObjectiveEvidenceAuditInput {
   auditText: string;
   outstanding: OutstandingWork;
   repoRoot: string;
+  externalObserved?: Record<string, string>;
 }
 
 export interface ObjectiveEvidenceAuditResult {
@@ -263,6 +264,12 @@ function checkExternalSourceLedger(input: ObjectiveEvidenceAuditInput, violation
           `G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} ${expected.source} ${column} missing ${expectedValue}`,
         );
       }
+    }
+    const observed = input.externalObserved?.[expected.source];
+    if (observed !== undefined && row.observed !== observed) {
+      violations.push(
+        `G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} ${expected.source} observed drift expected=${row.observed} actual=${observed}`,
+      );
     }
   }
 }
