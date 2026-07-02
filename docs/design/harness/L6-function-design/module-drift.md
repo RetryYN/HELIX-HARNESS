@@ -112,11 +112,13 @@ This addendum defines the L6 contract for optional graph/diagram development-too
 - **対象**: `docs/adr/`、`docs/design/`、`docs/governance/`、`docs/test-design/`、`docs/process/`、
   `docs/plans/`、`docs/handover/` と adapter ルール markdown。inline code、URL、frontmatter、開発用語、
   コマンド、識別子は除外し、見出し / 説明文が英語 prose のまま増えた場合を検出する。
-- **baseline**: 2026-07-02 の拡張監査で既存英語 prose debt 7131 件を確認。現時点では既存 debt を
-  一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS=7131` として固定し、増加を fail-close する。
+- **baseline**: 2026-07-02 の拡張監査で残存する既存英語 prose debt を確認する。現時点では既存 debt を
+  一括翻訳せず、`DESIGN_LANGUAGE_BASELINE_VIOLATIONS` と `DESIGN_LANGUAGE_BASELINE_FINGERPRINT` を固定する。
+  件数増加だけでなく、同件数の英語 prose 差し替えも fingerprint drift として fail-close する。純粋な日本語化で
+  debt 件数が下がる変更は許可し、後続 PLAN で baseline を段階的に引き下げる。
 - **doctor contract**: `checkDesignLanguage(repoRoot)` は `loadDesignLanguageDocs` → `analyzeDesignLanguage` →
-  `designLanguageMessages` を実行し、baseline 超過を `runDoctor.ok=false` に連動する。baseline は完了宣言ではなく
-  ラチェット対象であり、今後の日本語化 PLAN で段階的に引き下げる。
+  `designLanguageMessages` を実行し、baseline 超過または fingerprint drift を `runDoctor.ok=false` に連動する。
+  baseline は完了宣言ではなくラチェット対象であり、今後の日本語化 PLAN で段階的に引き下げる。
 
 ### DDD/TDD Strictness Addendum (FR-L1-50)
 

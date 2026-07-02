@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
@@ -11,25 +12,30 @@ export interface DesignLanguageViolation {
   line: number;
   excerpt: string;
   reason: "english-heading" | "english-prose";
+  fingerprint: string;
 }
 
 export interface DesignLanguagePolicy {
   baselineViolations: number;
+  baselineFingerprint?: string;
 }
 
 export interface DesignLanguageResult {
   checked: number;
   violations: DesignLanguageViolation[];
   baselineViolations: number;
+  fingerprint: string;
+  fingerprintDrift: boolean;
   newViolations: number;
   ok: boolean;
 }
 
-// 2026-07-02: expanded audit found 7131 existing English-prose debt items
-// across human-facing docs and adapter rule docs. The first gate prevents new
-// drift; separate Japanese-localization PLANs can ratchet this baseline down
-// without blocking unrelated workflow fixes.
-export const DESIGN_LANGUAGE_BASELINE_VIOLATIONS = 7131;
+// 2026-07-02: expanded audit freezes the remaining English-prose debt across
+// human-facing docs and adapter rule docs. Count + fingerprint prevent same-count
+// replacement drift; Japanese-localization PLANs can ratchet this baseline down.
+export const DESIGN_LANGUAGE_BASELINE_VIOLATIONS = 7084;
+export const DESIGN_LANGUAGE_BASELINE_FINGERPRINT =
+  "sha256:9ab31dc3dbe5947df9cb31e5f86471aa06daed564095122ee0cabc494be419b3";
 
 const DESIGN_LANGUAGE_ROOTS = [
   join("docs", "adr"),
@@ -129,6 +135,28 @@ function countEnglishWords(line: string): number {
   return words.filter((word) => !TECHNICAL_WORD_ALLOWLIST.has(word)).length;
 }
 
+function sha256Text(value: string): string {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function violationFingerprint(input: {
+  path: string;
+  line: number;
+  excerpt: string;
+  reason: DesignLanguageViolation["reason"];
+}): string {
+  return sha256Text(`${input.path}\0${input.line}\0${input.reason}\0${input.excerpt}`);
+}
+
+function aggregateFingerprint(violations: readonly DesignLanguageViolation[]): string {
+  return sha256Text(
+    violations
+      .map((violation) => violation.fingerprint)
+      .sort()
+      .join("\n"),
+  );
+}
+
 function isFrontmatterLine(line: string, inFrontmatter: boolean): boolean {
   if (line.trim() === "---") return true;
   if (!inFrontmatter) return false;
@@ -148,7 +176,10 @@ function shouldIgnoreLine(line: string, inFrontmatter: boolean): boolean {
 
 export function analyzeDesignLanguage(
   docs: DesignLanguageDoc[],
-  policy: DesignLanguagePolicy = { baselineViolations: DESIGN_LANGUAGE_BASELINE_VIOLATIONS },
+  policy: DesignLanguagePolicy = {
+    baselineViolations: DESIGN_LANGUAGE_BASELINE_VIOLATIONS,
+    baselineFingerprint: DESIGN_LANGUAGE_BASELINE_FINGERPRINT,
+  },
 ): DesignLanguageResult {
   const violations: DesignLanguageViolation[] = [];
   for (const doc of docs) {
@@ -175,21 +206,36 @@ export function analyzeDesignLanguage(
       const isHeading = /^#{1,6}\s+/.test(trimmed);
       const threshold = isHeading ? 2 : 4;
       if (words < threshold) continue;
+      const excerpt = trimmed.slice(0, 120);
       violations.push({
         path: doc.path,
         line: index + 1,
-        excerpt: trimmed.slice(0, 120),
+        excerpt,
         reason: isHeading ? "english-heading" : "english-prose",
+        fingerprint: violationFingerprint({
+          path: doc.path,
+          line: index + 1,
+          excerpt,
+          reason: isHeading ? "english-heading" : "english-prose",
+        }),
       });
     }
   }
+  const fingerprint = aggregateFingerprint(violations);
+  const fingerprintDrift = Boolean(
+    policy.baselineFingerprint &&
+      violations.length >= policy.baselineViolations &&
+      fingerprint !== policy.baselineFingerprint,
+  );
   const newViolations = Math.max(0, violations.length - policy.baselineViolations);
   return {
     checked: docs.length,
     violations,
     baselineViolations: policy.baselineViolations,
+    fingerprint,
+    fingerprintDrift,
     newViolations,
-    ok: newViolations === 0,
+    ok: newViolations === 0 && !fingerprintDrift,
   };
 }
 
@@ -199,7 +245,12 @@ export function designLanguageMessages(result: DesignLanguageResult): string[] {
   }
   if (result.ok) {
     return [
-      `design-language - OK (human-facing docs ${result.checked}, english prose debt=${result.violations.length}/${result.baselineViolations}, new=0)`,
+      `design-language - OK (human-facing docs ${result.checked}, english prose debt=${result.violations.length}/${result.baselineViolations}, fingerprint=${result.fingerprint}, new=0)`,
+    ];
+  }
+  if (result.fingerprintDrift) {
+    return [
+      `design-language - violation: english prose fingerprint changed at frozen debt count (total=${result.violations.length}, baseline=${result.baselineViolations}, fingerprint=${result.fingerprint})。既存英語 prose の差し替えではなく、日本語化で debt を減らすか baseline fingerprint 更新 PLAN を通す`,
     ];
   }
   const sample = result.violations

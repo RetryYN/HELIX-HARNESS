@@ -56,6 +56,23 @@ describe("design-language lint", () => {
     expect(designLanguageMessages(increased)[0]).toContain("english prose increased by 1件");
   });
 
+  it("U-DESLANG-005: fails same-count English prose replacement by fingerprint drift", () => {
+    const baselineDocs = [{ path: "docs/design/a.md", text: "# English Heading\n" }];
+    const baseline = analyzeDesignLanguage(baselineDocs, { baselineViolations: 1 });
+    const replaced = analyzeDesignLanguage(
+      [{ path: "docs/design/a.md", text: "# Different Heading\n" }],
+      {
+        baselineViolations: 1,
+        baselineFingerprint: baseline.fingerprint,
+      },
+    );
+
+    expect(replaced.ok).toBe(false);
+    expect(replaced.newViolations).toBe(0);
+    expect(replaced.fingerprintDrift).toBe(true);
+    expect(designLanguageMessages(replaced)[0]).toContain("english prose fingerprint changed");
+  });
+
   it("U-DESLANG-004: real repo human-facing docs do not exceed the frozen English-prose baseline", () => {
     const result = analyzeDesignLanguage(loadDesignLanguageDocs());
 
