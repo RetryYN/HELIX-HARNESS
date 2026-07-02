@@ -1178,10 +1178,12 @@ describe("L7 CLI surface closure", () => {
         expect.objectContaining({
           phase: "setup-dry-run",
           command: "ut-tdd setup project --dry-run",
+          writePolicy: "no-write",
         }),
         expect.objectContaining({
           phase: "consumer-doctor",
           command: "ut-tdd doctor --profile consumer",
+          writePolicy: "no-write",
           source: "VS Code Workspace Trust and consumer adapter safety contract",
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
           sourceCheckedAt: "2026-07-02",
@@ -1191,6 +1193,7 @@ describe("L7 CLI surface closure", () => {
           phase: "team-run-dry-run",
           command:
             "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          writePolicy: "no-write",
           source: "HELIX team definition schema and provider handover contract",
         }),
       ]),
@@ -1229,10 +1232,10 @@ describe("L7 CLI surface closure", () => {
       "verification-command: ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     );
     expect(text.stdout).toContain(
-      "verification-check: consumer-doctor ut-tdd doctor --profile consumer",
+      "verification-check: consumer-doctor writePolicy=no-write command=ut-tdd doctor --profile consumer expected=passes the consumer profile",
     );
     expect(text.stdout).toContain(
-      "verification-check: identifier-cutover-packet ut-tdd rename plan --json",
+      "verification-check: identifier-cutover-packet writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",
     );
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
@@ -1243,6 +1246,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("adoption=VS Code Tasks は shell task");
     expect(text.stdout).toContain("adoptionDelta=none; keep task projection non-automatic");
     expect(text.stdout).toContain("routeImpact=task contract drift routes to consumer doctor");
+    expect(text.stdout).toContain("writePolicy=no-write command=ut-tdd setup project --dry-run");
     expect(text.stdout).toContain(
       "verification-source: consumer-doctor source=VS Code Workspace Trust and consumer adapter safety contract sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     );

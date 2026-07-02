@@ -330,16 +330,16 @@ describe("clean distribution local acceptance smoke", () => {
           expect.arrayContaining([
             expect.objectContaining({
               label: "HELIX: doctor",
-              command: "ut-tdd doctor --profile consumer",
+              command: "bun run ut-tdd doctor --profile consumer",
             }),
             expect.objectContaining({
               label: "HELIX: rename plan",
-              command: "ut-tdd rename plan --json",
+              command: "bun run ut-tdd rename plan --json",
             }),
             expect.objectContaining({
               label: "HELIX: team run dry-run",
               command:
-                "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+                "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
             }),
           ]),
         );

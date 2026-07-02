@@ -206,6 +206,7 @@ export interface HelixProjectPostSetupWorkflow {
   verificationMatrix: Array<{
     phase: string;
     command: string;
+    writePolicy: "no-write";
     expected: string;
     evidence: string;
     source: string;
@@ -1060,6 +1061,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "setup-dry-run",
       command: "ut-tdd setup project --dry-run",
+      writePolicy: "no-write",
       expected:
         "returns the import report, VSCode tasks, local baseline paths, command availability, and PLAN-M-02 cutover blocker without writing files",
       evidence: "setup dry-run text or JSON output saved in the consumer repository review record",
@@ -1079,6 +1081,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "status-frontier",
       command: "ut-tdd status --json",
+      writePolicy: "no-write",
       expected:
         "returns objective progress, workflowNextAction, workflowNextActions, and completionReadiness before HELIX work starts",
       evidence: "status JSON attached to the first-run readiness record",
@@ -1098,6 +1101,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "consumer-doctor",
       command: "ut-tdd doctor --profile consumer",
+      writePolicy: "no-write",
       expected:
         "passes the consumer profile against projected adapters, VSCode tasks, and .ut-tdd baselines without requiring dogfood docs",
       evidence: "consumer doctor output with profile=consumer",
@@ -1116,6 +1120,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "identifier-cutover-packet",
       command: "ut-tdd rename plan --json",
+      writePolicy: "no-write",
       expected:
         "returns blocked_pending_cutover_approval with planOnly=true, mustNotApply=true, applyCommandAvailable=false, and the current cutoverSnapshot before any helix alias/state activation",
       evidence: "rename plan JSON attached to the first-run readiness record",
@@ -1135,6 +1140,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "handover-route",
       command: "ut-tdd handover status --json",
+      writePolicy: "no-write",
       expected:
         "returns active handover route or confirms normal start so the first project action is anchored",
       evidence: "handover status JSON attached to the first-run readiness record",
@@ -1154,6 +1160,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "team-run-dry-run",
       command: `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      writePolicy: "no-write",
       expected:
         "parses the distributed default hybrid team definition and returns a dry-run launch plan with Codex worker and Claude reviewer separation",
       evidence: "team run JSON dry-run output attached to the first-run readiness record",

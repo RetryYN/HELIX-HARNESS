@@ -19,18 +19,19 @@ const compliant = `# PLAN-X
 | Refactor | behavior-invariance proof, Forward target, residual status |
 | Retrofit | migration plan, Forward target, residual status |
 | Add-feature | parent PLAN, Forward target, residual status |
+| version-up | version_target, release trigger, activation packet, Forward target, residual status |
 | Research | ADR, Forward target, residual status |
 
 ## Section 2.2 Next
 `;
 
 describe("drive-model passage lint", () => {
-  it("U-DMP-001: accepts the complete 9-mode passage table", () => {
+  it("U-DMP-001: accepts the complete 10-mode passage table", () => {
     const r = analyzeDriveModelPassage([{ file: "PLAN-X.md", content: compliant }]);
 
     expect(r.ok).toBe(true);
-    expect(r.rows).toHaveLength(9);
-    expect(driveModelPassageMessages(r)[0]).toContain("OK");
+    expect(r.rows).toHaveLength(10);
+    expect(driveModelPassageMessages(r)[0]).toContain("expected=10");
   });
 
   it("U-DMP-002: rejects a mode row without Forward re-entry", () => {
@@ -70,6 +71,7 @@ describe("drive-model passage lint", () => {
       "Refactor",
       "Retrofit",
       "Add-feature",
+      "version-up",
       "Research",
     ]);
   });

@@ -2027,14 +2027,14 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const taskList = tasksArrayOk ? (tasks.tasks ?? []) : [];
   const tasksByLabel = new Map(taskList.map((task) => [task.label ?? "", task]));
   const expectedTasks = new Map([
-    ["HELIX: status", "ut-tdd status"],
-    ["HELIX: doctor", "ut-tdd doctor --profile consumer"],
-    ["HELIX: rename plan", "ut-tdd rename plan --json"],
-    ["HELIX: handover status", "ut-tdd handover status --json"],
-    ["HELIX: setup dry-run", "ut-tdd setup project --dry-run"],
+    ["HELIX: status", "bun run ut-tdd status"],
+    ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
+    ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
+    ["HELIX: handover status", "bun run ut-tdd handover status --json"],
+    ["HELIX: setup dry-run", "bun run ut-tdd setup project --dry-run"],
     [
       "HELIX: team run dry-run",
-      `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     ],
   ]);
   const missingTasks = [...expectedTasks.entries()].filter(

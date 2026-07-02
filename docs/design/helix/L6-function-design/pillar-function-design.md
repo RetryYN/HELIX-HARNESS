@@ -155,13 +155,17 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   task-level `options` なし、`.vscode/settings.json` の `task.allowAutomaticTasks=off` まで doctor で検査し、
   期待 task 以外の余分な task でも自動実行があれば fail-close する。Workspace Trust の自動実行抑止を
   別 project 稼働証跡に含める。
+  生成 task の command は package-local `bun run ut-tdd ...` とし、consumer shell の PATH に bare
+  `ut-tdd` が無い場合でも package/bin resolution 経路へ寄せる。
 - HC-P6 `runHelixProjectSetup` の `postSetupWorkflow.verificationMatrix[]` は setup-dry-run /
-  status-frontier / consumer-doctor / identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / expected / evidence /
+  status-frontier / consumer-doctor / identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / writePolicy / expected / evidence /
   source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
   adoptionDecisionDelta / workflowRouteImpact を返す。
+  各 row は `writePolicy=no-write` で、初回 consumer verification が state/file/remote apply surface へ
+  変わらないことを text/JSON の両方で示す。
   VS Code workspace task、Workspace Trust、PLAN-M-02 rename packet、HELIX status/handover contract、team definition contract を初回稼働証跡へ接続し、
   command 列挙や source 名だけで「別プロジェクトで HELIX が動く」claim を閉じない。text surface は
-  `verification-check:` と `verification-source:` も列挙する。
+  `verification-check:` は writePolicy / command / expected / evidence を含め、`verification-source:` も列挙する。
   `HelixProjectSetupResult.githubPlan.branchProtection.scriptPath` を返す場合、0-A/0-B の project setup preview /
   written paths に同じ approval checklist script を含め、JSON が存在しない script を指さない。
 - HC-P6 clean distribution acceptance は `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、
@@ -268,7 +272,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 **HC-P6 2026-07-02 追補**: `ut-tdd setup project` が生成する `.vscode/tasks.json` は status / consumer doctor /
 rename plan / handover status / team-run dry-run を同じ first-run verification set として投影する。
 `harness-check.yml`、`consumerReadiness.ci.requires`、distribution acceptance、consumer doctor の expected task /
-required run も `ut-tdd rename plan --json` を含み、PLAN-M-02 blocked packet を保存しない初回稼働 claim を閉じない。
+required run も package-local `bun run ut-tdd ...` 経路で `rename plan --json` を含み、PLAN-M-02 blocked
+packet を保存しない初回稼働 claim を閉じない。adapter hook/readiness の bare `ut-tdd` PATH preflight は
+別契約として残し、VSCode task command と混同しない。
 consumer doctor の identifier transition gate は、既知 subcommand の狭い列挙ではなく、package string `bin`、
 adapter hook、VS Code task、CI workflow、配布 Claude agent / slash-command に現れる lowercase `helix` 実行 alias
 全般を承認前 alias activation として fail-close する。

@@ -899,17 +899,19 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l4 = readFileSync("docs/design/harness/L4-basic-design/function.md", "utf8");
 
     for (const required of [
-      "Forward spine + 9 駆動モデル + 2 工程専門",
+      "Forward spine + 10 駆動モデル + 2 工程専門",
       "Forward は entry mode ではなく全駆動モデルの合流先",
-      "Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / Research",
+      "Discovery / Scrum / Reverse / Recovery / Incident / Refactor / Retrofit / Add-feature / version-up / Research",
       "screen-design / frontend-design は独立 mode ではなく工程専門",
       "L3 FR 26 件すべてで人間判断点",
-      "Forward spine + 9 entry modes + 工程専門 2",
+      "Forward spine + 10 entry modes + 工程専門 2",
     ]) {
       expect(l3).toContain(required);
     }
 
-    expect(l4).toContain("Forward spine (主線、合流先) + 駆動モデル (entry mode、9 種) + 工程専門");
+    expect(l4).toContain(
+      "Forward spine (主線、合流先) + 駆動モデル (entry mode、10 種) + 工程専門",
+    );
     expect(l4).toContain("Forward は駆動モデルの 1 つでなく");
     expect(l4).toContain("screen-design / frontend-design は**独立した駆動モデルでなく");
     expect(l3).not.toContain("9 mode + 工程専門 2 = 11 mode");

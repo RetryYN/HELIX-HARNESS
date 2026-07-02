@@ -4442,7 +4442,9 @@ setupCommand
       process.stdout.write(`verification-command: ${command}\n`);
     }
     for (const row of r.postSetupWorkflow.verificationMatrix) {
-      process.stdout.write(`verification-check: ${row.phase} ${row.command}\n`);
+      process.stdout.write(
+        `verification-check: ${row.phase} writePolicy=${row.writePolicy} command=${row.command} expected=${row.expected} evidence=${row.evidence}\n`,
+      );
     }
     process.stdout.write(verificationSourceLines(r.postSetupWorkflow.verificationMatrix));
     process.stdout.write(

@@ -103,12 +103,12 @@ const baseTemplates: TemplateSet = {
     "{",
     '  "version": "2.0.0",',
     '  "tasks": [',
-    '    { "label": "HELIX: status", "type": "shell", "command": "ut-tdd status", "problemMatcher": [] },',
-    '    { "label": "HELIX: doctor", "type": "shell", "command": "ut-tdd doctor --profile consumer", "problemMatcher": [] },',
-    '    { "label": "HELIX: rename plan", "type": "shell", "command": "ut-tdd rename plan --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: handover status", "type": "shell", "command": "ut-tdd handover status --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "ut-tdd setup project --dry-run", "problemMatcher": [] },',
-    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
+    '    { "label": "HELIX: status", "type": "shell", "command": "bun run ut-tdd status", "problemMatcher": [] },',
+    '    { "label": "HELIX: doctor", "type": "shell", "command": "bun run ut-tdd doctor --profile consumer", "problemMatcher": [] },',
+    '    { "label": "HELIX: rename plan", "type": "shell", "command": "bun run ut-tdd rename plan --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: handover status", "type": "shell", "command": "bun run ut-tdd handover status --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "bun run ut-tdd setup project --dry-run", "problemMatcher": [] },',
+    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
     "  ]",
     "}",
     "",
@@ -875,6 +875,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "setup-dry-run",
         command: "ut-tdd setup project --dry-run",
+        writePolicy: "no-write",
         source: "VS Code workspace task contract",
         sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
         sourceCheckedAt: "2026-07-02",
@@ -887,12 +888,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "status-frontier",
         command: "ut-tdd status --json",
+        writePolicy: "no-write",
         expected: expect.stringContaining("objective progress"),
         latestOfficialStatus: expect.stringContaining("local HELIX L3"),
       }),
       expect.objectContaining({
         phase: "consumer-doctor",
         command: "ut-tdd doctor --profile consumer",
+        writePolicy: "no-write",
         source: "VS Code Workspace Trust and consumer adapter safety contract",
         sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
         sourceCheckedAt: "2026-07-02",
@@ -905,6 +908,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "identifier-cutover-packet",
         command: "ut-tdd rename plan --json",
+        writePolicy: "no-write",
         expected: expect.stringContaining("blocked_pending_cutover_approval"),
         source: "PLAN-M-02 HELIX identifier rename cutover packet",
         sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
@@ -914,12 +918,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "handover-route",
         command: "ut-tdd handover status --json",
+        writePolicy: "no-write",
         evidence: "handover status JSON attached to the first-run readiness record",
       }),
       expect.objectContaining({
         phase: "team-run-dry-run",
         command:
           "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        writePolicy: "no-write",
         source: "HELIX team definition schema and provider handover contract",
       }),
     ]);
@@ -928,6 +934,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         (row) =>
           row.latestOfficialStatus &&
           row.sourceStatusDelta &&
+          row.writePolicy === "no-write" &&
           row.adoptionDecisionDelta &&
           row.workflowRouteImpact,
       ),
@@ -952,19 +959,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("HELIX: rename plan");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "ut-tdd rename plan --json",
+      "bun run ut-tdd rename plan --json",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "HELIX: handover status",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "ut-tdd handover status --json",
+      "bun run ut-tdd handover status --json",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "HELIX: team run dry-run",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     );
     const generatedTasks = JSON.parse(
       wet.files.get(join("/repo", ".vscode", "tasks.json")) ?? "{}",
@@ -983,31 +990,31 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({
           label: "HELIX: status",
           type: "shell",
-          command: "ut-tdd status",
+          command: "bun run ut-tdd status",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: doctor",
           type: "shell",
-          command: "ut-tdd doctor --profile consumer",
+          command: "bun run ut-tdd doctor --profile consumer",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: rename plan",
           type: "shell",
-          command: "ut-tdd rename plan --json",
+          command: "bun run ut-tdd rename plan --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: handover status",
           type: "shell",
-          command: "ut-tdd handover status --json",
+          command: "bun run ut-tdd handover status --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: setup dry-run",
           type: "shell",
-          command: "ut-tdd setup project --dry-run",
+          command: "bun run ut-tdd setup project --dry-run",
           problemMatcher: [],
         }),
       ]),

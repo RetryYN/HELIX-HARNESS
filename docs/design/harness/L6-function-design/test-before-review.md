@@ -18,7 +18,7 @@ plan: docs/plans/PLAN-L6-14-test-before-review.md
 
 品質保証は**定量テスト × 定性レビュー**の二軸 (柱6)。本機能はその**順序**を機械強制する: **定量検証 (vitest/doctor/lint) が green になってから 定性レビューを行う** (未検証成果物をレビューしない)。
 
-> **全駆動モデル普遍 (PO 2026-06-05「駆動モデルのワークフローもすべて」)**: design/impl に限らず **9 駆動モデルすべての workflow** に適用。各 mode の 定量 verify step (Discovery=S3 verify / Scrum=increment テスト / Reverse=③テスト設計状態確定 / Incident=収束確認 / Refactor=テスト緑確認 / Retrofit=L8 回帰 / Add-feature=テスト確認 / Research=候補比較 evidence) が、その mode の 定性 review/サインオフ step の**前**に来る。共通アンカー = `review_evidence` の `tests_green_at ≤ reviewed_at`。
+> **全駆動モデル普遍 (PO 2026-06-05「駆動モデルのワークフローもすべて」、version-up 追補反映)**: design/impl に限らず **10 駆動モデルすべての workflow** に適用。各 mode の 定量 verify step (Discovery=S3 verify / Scrum=increment テスト / Reverse=③テスト設計状態確定 / Incident=収束確認 / Refactor=テスト緑確認 / Retrofit=L8 回帰 / Add-feature=テスト確認 / version-up=activation packet / Research=候補比較 evidence) が、その mode の 定性 review/サインオフ step の**前**に来る。共通アンカー = `review_evidence` の `tests_green_at ≤ reviewed_at`。
 
 ## §2 schema 拡張
 

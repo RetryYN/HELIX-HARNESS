@@ -43,6 +43,7 @@ const EXPECTED_MODES = [
   "Refactor",
   "Retrofit",
   "Add-feature",
+  "version-up",
   "Research",
 ] as const;
 
@@ -152,6 +153,6 @@ export function driveModelPassageMessages(result: DriveModelPassageResult): stri
     ];
   }
   return [
-    `drive-model-passage - OK (checked=${result.checked}, modes=${result.rows.length}, expected=9)`,
+    `drive-model-passage - OK (checked=${result.checked}, modes=${result.rows.length}, expected=${EXPECTED_MODES.length})`,
   ];
 }

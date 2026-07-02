@@ -271,36 +271,41 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".vscode/tasks.json": JSON.stringify({
       version: "2.0.0",
       tasks: [
-        { label: "HELIX: status", type: "shell", command: "ut-tdd status", problemMatcher: [] },
+        {
+          label: "HELIX: status",
+          type: "shell",
+          command: "bun run ut-tdd status",
+          problemMatcher: [],
+        },
         {
           label: "HELIX: doctor",
           type: "shell",
-          command: "ut-tdd doctor --profile consumer",
+          command: "bun run ut-tdd doctor --profile consumer",
           problemMatcher: [],
         },
         {
           label: "HELIX: rename plan",
           type: "shell",
-          command: "ut-tdd rename plan --json",
+          command: "bun run ut-tdd rename plan --json",
           problemMatcher: [],
         },
         {
           label: "HELIX: handover status",
           type: "shell",
-          command: "ut-tdd handover status --json",
+          command: "bun run ut-tdd handover status --json",
           problemMatcher: [],
         },
         {
           label: "HELIX: setup dry-run",
           type: "shell",
-          command: "ut-tdd setup project --dry-run",
+          command: "bun run ut-tdd setup project --dry-run",
           problemMatcher: [],
         },
         {
           label: "HELIX: team run dry-run",
           type: "shell",
           command:
-            "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+            "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
           problemMatcher: [],
         },
       ],
@@ -431,25 +436,25 @@ describe("runConsumerDoctor", () => {
           {
             label: "HELIX: status",
             type: "shell",
-            command: "ut-tdd status",
+            command: "bun run ut-tdd status",
             problemMatcher: [],
           },
           {
             label: "HELIX: doctor",
             type: "shell",
-            command: "ut-tdd doctor",
+            command: "bun run ut-tdd doctor",
             problemMatcher: [],
           },
           {
             label: "HELIX: handover status",
             type: "shell",
-            command: "ut-tdd handover status --json",
+            command: "bun run ut-tdd handover status --json",
             problemMatcher: [],
           },
           {
             label: "HELIX: setup dry-run",
             type: "shell",
-            command: "ut-tdd setup project --dry-run",
+            command: "bun run ut-tdd setup project --dry-run",
             problemMatcher: [],
           },
         ],
@@ -470,26 +475,26 @@ describe("runConsumerDoctor", () => {
           {
             label: "HELIX: status",
             type: "shell",
-            command: "ut-tdd status",
+            command: "bun run ut-tdd status",
             problemMatcher: [],
             runOptions: { runOn: "folderOpen" },
           },
           {
             label: "HELIX: doctor",
             type: "shell",
-            command: "ut-tdd doctor --profile consumer",
+            command: "bun run ut-tdd doctor --profile consumer",
             problemMatcher: ["$tsc"],
           },
           {
             label: "HELIX: handover status",
             type: "shell",
-            command: "ut-tdd handover status --json",
+            command: "bun run ut-tdd handover status --json",
             problemMatcher: [],
           },
           {
             label: "HELIX: setup dry-run",
             type: "process",
-            command: "ut-tdd setup project --dry-run",
+            command: "bun run ut-tdd setup project --dry-run",
             problemMatcher: [],
             options: { cwd: "workspace-root" },
           },
@@ -765,7 +770,10 @@ describe("runConsumerDoctor", () => {
     const tasksPath = join("/repo", ".vscode", "tasks.json");
     const workflowPath = join("/repo", ".github", "workflows", "harness-check.yml");
     const hooksPath = join("/repo", ".codex", "hooks.json");
-    files.set(tasksPath, (files.get(tasksPath) ?? "").replace("ut-tdd status", "helix status"));
+    files.set(
+      tasksPath,
+      (files.get(tasksPath) ?? "").replace("bun run ut-tdd status", "helix status"),
+    );
     files.set(
       workflowPath,
       (files.get(workflowPath) ?? "").replace(
