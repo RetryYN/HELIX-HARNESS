@@ -1063,6 +1063,11 @@ function buildConsumerArtifactReadinessPlan(
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
   });
+  const workflowUsesReadOnlyPermissions = (text: string): boolean =>
+    /\bpermissions:\s*\n(?:[ \t]+[a-z0-9_-]+:\s*(?:read|none)\s*(?:#.*)?\n?)+/i.test(text) &&
+    /^\s*contents:\s*read\s*(?:#.*)?$/im.test(text) &&
+    !/\bwrite-all\b/i.test(text) &&
+    !/^\s*[a-z0-9_-]+:\s*write\s*(?:#.*)?$/im.test(text);
   const checks: ConsumerArtifactReadinessPlan["checks"] = [
     {
       name: "adapter-guidance-connects-consumer-verification",
@@ -1131,8 +1136,7 @@ function buildConsumerArtifactReadinessPlan(
       path: workflowPath,
       ok:
         hasPath(workflowPath) &&
-        workflow.includes("permissions:") &&
-        workflow.includes("contents: read") &&
+        workflowUsesReadOnlyPermissions(workflow) &&
         workflow.includes("push:") &&
         workflow.includes("pull_request:") &&
         !workflow.includes("pull_request_target") &&

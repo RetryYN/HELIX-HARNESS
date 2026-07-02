@@ -306,6 +306,8 @@ review_evidence:
 実テンプレ `harness-check.yml` の artifact readiness と接続する。`permissions: contents: read`、`push` /
 `pull_request`、`pull_request_target` 不使用、secret 参照なし、`bun run ut-tdd ...` command 群を満たさない
 配布 workflow は `fix_consumer_readiness` へ戻し、GitHub secure-use 境界を JSON 宣言だけで green にしない。
+同 continuation は `contents: read` が残っていても `write-all` または `pull-requests: write` 等の任意 write
+permission が混在する workflow を read-only CI evidence として扱わない。
 
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
 - **dependencies**: `parent=PLAN-L6-05` で lineage 連結。`requires` には置かない (confirmed 段階の design PLAN を `status=completed` 検証対象にしないため = §1.10.E の latent fail-close 回避。bottom-up Add-feature で L7 impl は confirmed L6 設計に依存するのが常態)。
