@@ -1,4 +1,7 @@
 import { execFileSync } from "node:child_process";
+import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeVersionUpReadiness,
@@ -11,6 +14,42 @@ import {
   versionUpActivationVerificationCommandViolations,
   versionUpReadinessMessages,
 } from "../src/lint/version-up-readiness";
+
+function writeFakeRemoteTagGit(binDir: string, tag: string): void {
+  const remoteUrl = "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+  const ref = `refs/tags/${tag}`;
+  if (process.platform === "win32") {
+    writeFileSync(
+      join(binDir, "git.cmd"),
+      [
+        "@echo off",
+        'if not "%1"=="ls-remote" exit /b 11',
+        'if not "%2"=="--tags" exit /b 12',
+        `if not "%3"=="${remoteUrl}" exit /b 13`,
+        `if not "%4"=="${ref}" exit /b 14`,
+        `echo a148fd304a455e21e631d4dab3c36d59725b1034	${ref}`,
+        "",
+      ].join("\r\n"),
+      "utf8",
+    );
+    return;
+  }
+  const path = join(binDir, "git");
+  writeFileSync(
+    path,
+    [
+      "#!/bin/sh",
+      `test "$1" = "ls-remote" || exit 11`,
+      `test "$2" = "--tags" || exit 12`,
+      `test "$3" = "${remoteUrl}" || exit 13`,
+      `test "$4" = "${ref}" || exit 14`,
+      `printf '%s\\t%s\\n' 'a148fd304a455e21e631d4dab3c36d59725b1034' '${ref}'`,
+      "",
+    ].join("\n"),
+    { encoding: "utf8", mode: 0o755 },
+  );
+  chmodSync(path, 0o755);
+}
 
 function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadinessInput {
   return {
@@ -444,8 +483,10 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          command:
+            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
           writePolicy: "no-write",
+          expected: expect.stringContaining("concrete SemVer tag"),
         }),
         expect.objectContaining({
           phase: "external-rehearsal",
@@ -837,6 +878,8 @@ describe("version-up-readiness", () => {
       ok: true,
       releaseTrigger: "GitHub release tag v0.2.0",
       releaseTagRef: "refs/tags/v0.2.0",
+      releaseTagSource: "local",
+      releaseTagCheckCommand: "git rev-parse --verify refs/tags/v0.2.0",
       releaseTagExists: true,
       releaseTriggerResolved: true,
     });
@@ -844,6 +887,7 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           step: "compare_current_target",
+          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.2.0 --json",
           requiredEvidence: "semver_diff",
         }),
         expect.objectContaining({ step: "project_setup_dry_run" }),
@@ -856,7 +900,10 @@ describe("version-up-readiness", () => {
     );
     expect(plan.idempotencyChecks).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ check: "repeat_dry_run_has_no_state_change" }),
+        expect.objectContaining({
+          check: "repeat_dry_run_has_no_state_change",
+          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.2.0 --json",
+        }),
       ]),
     );
     expect(plan.releaseGateChecks).toEqual(
@@ -893,6 +940,50 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "release_tag_exists",
           requiredEvidence: "target release tag is missing; keep activation blocked",
+        }),
+      ]),
+    );
+
+    const remoteTag = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v0.1.0",
+      targetVersion: "v0.1.3",
+      releaseRemoteUrl: "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+      releaseTagExists: true,
+    });
+    expect(remoteTag).toMatchObject({
+      ok: true,
+      semverChange: "patch",
+      releaseTagRef: "refs/tags/v0.1.3",
+      releaseTagSource: "remote",
+      releaseTagCheckCommand:
+        "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/tags/v0.1.3",
+      releaseTagExists: true,
+      releaseTriggerResolved: true,
+    });
+    expect(remoteTag.releaseGateChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "release_tag_exists",
+          command:
+            "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/tags/v0.1.3",
+        }),
+      ]),
+    );
+    expect(remoteTag.migrationPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          step: "compare_current_target",
+          command:
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+        }),
+      ]),
+    );
+    expect(remoteTag.idempotencyChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "repeat_dry_run_has_no_state_change",
+          command:
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         }),
       ]),
     );
@@ -1598,7 +1689,9 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          command:
+            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+          expected: expect.stringContaining("concrete SemVer tag"),
         }),
         expect.objectContaining({
           phase: "external-rehearsal",
@@ -1792,5 +1885,70 @@ describe("version-up-readiness", () => {
       releaseTriggerResolved: false,
     });
     expect(plan.blockedReasons).toContain("target release tag must exist before activation");
+  });
+
+  it("resolves Pack release tags through an explicit remote in the CLI dry-run", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-version-up-remote-tag-"));
+    try {
+      writeFakeRemoteTagGit(binDir, "v0.1.3");
+      const raw = execFileSync(
+        "bun",
+        [
+          "run",
+          "src/cli.ts",
+          "version-up",
+          "dry-run",
+          "--current",
+          "v0.1.0",
+          "--target",
+          "v0.1.3",
+          "--release-remote",
+          "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+          "--json",
+        ],
+        {
+          encoding: "utf8",
+          env: {
+            ...process.env,
+            PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+          },
+        },
+      );
+      const plan = JSON.parse(raw);
+
+      expect(plan).toMatchObject({
+        schemaVersion: "version-up-dry-run-plan.v1",
+        ok: true,
+        semverChange: "patch",
+        releaseTagRef: "refs/tags/v0.1.3",
+        releaseTagSource: "remote",
+        releaseTagCheckCommand:
+          "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/tags/v0.1.3",
+        releaseTagExists: true,
+        releaseTriggerResolved: true,
+        applyCommandAvailable: false,
+      });
+      expect(plan.migrationPlan).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            step: "compare_current_target",
+            command:
+              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          }),
+        ]),
+      );
+      expect(plan.idempotencyChecks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            check: "repeat_dry_run_has_no_state_change",
+            command:
+              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          }),
+        ]),
+      );
+      expect(plan.blockedReasons).toEqual([]);
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
+    }
   });
 });

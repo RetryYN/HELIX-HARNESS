@@ -184,6 +184,7 @@ export interface VersionUpgradeDryRunInput {
   targetVersion: string;
   releaseTrigger?: string;
   releaseTagExists?: boolean;
+  releaseRemoteUrl?: string;
 }
 
 export interface VersionUpActivationRehearsalPacket {
@@ -232,6 +233,8 @@ export interface VersionUpgradeDryRunPlan {
   semverChange: "major" | "minor" | "patch" | "prerelease" | "same" | "downgrade" | "invalid";
   releaseTrigger: string;
   releaseTagRef: string | null;
+  releaseTagSource: "local" | "remote";
+  releaseTagCheckCommand: string;
   releaseTagExists: boolean;
   releaseTriggerResolved: boolean;
   planOnly: true;
@@ -978,6 +981,22 @@ export function buildVersionUpgradeDryRunPlan(
   const target = parseSemver(input.targetVersion);
   const semverChange = classifySemverChange(current, target);
   const releaseTagRef = target ? `refs/tags/v${target.normalized}` : null;
+  const releaseTagSource = input.releaseRemoteUrl ? "remote" : "local";
+  const releaseTagCheckCommand = releaseTagRef
+    ? input.releaseRemoteUrl
+      ? `git ls-remote --tags ${input.releaseRemoteUrl} ${releaseTagRef}`
+      : `git rev-parse --verify ${releaseTagRef}`
+    : input.releaseRemoteUrl
+      ? `git ls-remote --tags ${input.releaseRemoteUrl} ${input.targetVersion}`
+      : `git rev-parse --verify ${input.targetVersion}`;
+  const dryRunCommand = [
+    `ut-tdd version-up dry-run --current ${input.currentVersion}`,
+    `--target ${input.targetVersion}`,
+    input.releaseRemoteUrl ? `--release-remote ${input.releaseRemoteUrl}` : null,
+    "--json",
+  ]
+    .filter((part): part is string => part !== null)
+    .join(" ");
   const releaseTagExists = input.releaseTagExists ?? false;
   const releaseTriggerResolved = Boolean(target && releaseTagExists);
   const blockedReasons: string[] = [];
@@ -1001,6 +1020,8 @@ export function buildVersionUpgradeDryRunPlan(
     semverChange,
     releaseTrigger: input.releaseTrigger ?? `GitHub release tag ${input.targetVersion}`,
     releaseTagRef,
+    releaseTagSource,
+    releaseTagCheckCommand,
     releaseTagExists,
     releaseTriggerResolved,
     planOnly: true,
@@ -1011,7 +1032,7 @@ export function buildVersionUpgradeDryRunPlan(
     migrationPlan: [
       {
         step: "compare_current_target",
-        command: `ut-tdd version-up dry-run --current ${input.currentVersion} --target ${input.targetVersion} --json`,
+        command: dryRunCommand,
         requiredEvidence: "semver_diff",
       },
       {
@@ -1050,7 +1071,7 @@ export function buildVersionUpgradeDryRunPlan(
     idempotencyChecks: [
       {
         check: "repeat_dry_run_has_no_state_change",
-        command: `ut-tdd version-up dry-run --current ${input.currentVersion} --target ${input.targetVersion} --json`,
+        command: dryRunCommand,
         expected: "same normalizedCurrent/normalizedTarget/semverChange and no file writes",
       },
       {
@@ -1062,9 +1083,7 @@ export function buildVersionUpgradeDryRunPlan(
     releaseGateChecks: [
       {
         check: "release_tag_exists",
-        command: releaseTagRef
-          ? `git rev-parse --verify ${releaseTagRef}`
-          : `git rev-parse --verify ${input.targetVersion}`,
+        command: releaseTagCheckCommand,
         requiredEvidence: releaseTriggerResolved
           ? "target release tag resolved before activation"
           : "target release tag is missing; keep activation blocked",
@@ -1561,6 +1580,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
   currentVersion: string,
 ): VersionUpActivationPacket["activationVerificationCommandMatrix"] {
   const dryRunTarget = versionUpDryRunTarget(plan);
+  const dryRunTargetResolved = parseSemver(dryRunTarget) !== null;
   return [
     {
       phase: "activation-packet-baseline",
@@ -1581,11 +1601,16 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "version-dry-run",
-      command: `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`,
+      command: dryRunTargetResolved
+        ? `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`
+        : `bun run src/cli.ts version-up activation-packet --plan ${plan.plan_id} --json`,
       writePolicy: "no-write",
-      expected:
-        "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority",
-      evidence: "version-up dry-run JSON for the reviewed current/target release trigger",
+      expected: dryRunTargetResolved
+        ? "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority"
+        : "keeps version dry-run blocked until target_version_or_release_trigger contains a concrete SemVer tag",
+      evidence: dryRunTargetResolved
+        ? "version-up dry-run JSON for the reviewed current/target release trigger"
+        : "activation packet JSON showing release trigger is still unresolved and activation remains parked",
       source: "Semantic Versioning 2.0.0",
       sourceUrl: "https://semver.org/",
       sourceCheckedAt: "2026-07-02",

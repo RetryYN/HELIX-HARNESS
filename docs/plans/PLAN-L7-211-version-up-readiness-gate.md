@@ -327,6 +327,12 @@ path, and preserve approval/escalation boundaries before future activation.
   `version-up-dry-run-plan.v1` with SemVer normalization, migration plan,
   rollback plan, idempotency checks, release gate checks, and official source
   basis; downgrade/invalid targets fail closed and no apply command is exposed.
+  A remote distribution tag must be checked with explicit
+  `--release-remote <url>` / `git ls-remote --tags`; local tag absence must not
+  be used as evidence that an external Pack tag is missing.
+  Activation packets must not emit `--target future` dry-run commands; unresolved
+  future targets remain activation-packet review material until a concrete SemVer
+  tag or release trigger is recorded.
 - Do not activate `PLAN-L7-146` or touch external infrastructure, auth, secrets,
   access control, or Cloudflare configuration.
 
@@ -362,3 +368,9 @@ path, and preserve approval/escalation boundaries before future activation.
   `semverChange=minor`, and migration/rollback/idempotency/release gate/source
   basis rows. Downgrade or invalid target input returns `ok=false` before any
   apply surface exists.
+- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote
+  https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`
+  resolves the Pack tag through `git ls-remote --tags` and reports
+  `releaseTagSource=remote`; without a concrete SemVer target, activation packet
+  verification uses the activation-packet review command instead of emitting
+  `--target future`.

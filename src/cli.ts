@@ -1551,34 +1551,63 @@ function gitRefExists(ref: string | null): boolean {
   }
 }
 
+function gitRemoteRefExists(remoteUrl: string | undefined, ref: string | null): boolean {
+  if (!remoteUrl || !ref) return false;
+  try {
+    const stdout = execFileSync("git", ["ls-remote", "--tags", remoteUrl, ref], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return stdout
+      .split("\n")
+      .some((line) => line.trim().endsWith(`\t${ref}`) || line.trim().endsWith(` ${ref}`));
+  } catch {
+    return false;
+  }
+}
+
 versionUp
   .command("dry-run")
   .description("emit a non-destructive current->target version upgrade plan")
   .requiredOption("--current <version>", "current SemVer tag/version")
   .requiredOption("--target <version>", "target SemVer tag/version")
   .option("--release-trigger <trigger>", "release/tag trigger text")
+  .option("--release-remote <url>", "remote repository URL used to verify the target release tag")
   .option("--json", "JSON output")
-  .action((opts: { current: string; target: string; releaseTrigger?: string; json?: boolean }) => {
-    const plan = buildVersionUpgradeDryRunPlan({
-      currentVersion: opts.current,
-      targetVersion: opts.target,
-      releaseTagExists: gitRefExists(versionUpTargetTagRef(opts.target)),
-      ...(opts.releaseTrigger ? { releaseTrigger: opts.releaseTrigger } : {}),
-    });
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `version-up dry-run: ${plan.currentVersion} -> ${plan.targetVersion} change=${plan.semverChange} ok=${plan.ok} releaseTriggerResolved=${plan.releaseTriggerResolved} planOnly=${plan.planOnly} applyCommandAvailable=${plan.applyCommandAvailable}\n`,
-    );
-    for (const reason of plan.blockedReasons) {
-      process.stdout.write(`  blocked: ${reason}\n`);
-    }
-    process.stdout.write(
-      `  migration=${plan.migrationPlan.length} rollback=${plan.rollbackPlan.length} idempotency=${plan.idempotencyChecks.length} release-gates=${plan.releaseGateChecks.length}\n`,
-    );
-  });
+  .action(
+    (opts: {
+      current: string;
+      target: string;
+      releaseTrigger?: string;
+      releaseRemote?: string;
+      json?: boolean;
+    }) => {
+      const targetRef = versionUpTargetTagRef(opts.target);
+      const releaseTagExists = opts.releaseRemote
+        ? gitRemoteRefExists(opts.releaseRemote, targetRef)
+        : gitRefExists(targetRef);
+      const plan = buildVersionUpgradeDryRunPlan({
+        currentVersion: opts.current,
+        targetVersion: opts.target,
+        releaseTagExists,
+        ...(opts.releaseRemote ? { releaseRemoteUrl: opts.releaseRemote } : {}),
+        ...(opts.releaseTrigger ? { releaseTrigger: opts.releaseTrigger } : {}),
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `version-up dry-run: ${plan.currentVersion} -> ${plan.targetVersion} change=${plan.semverChange} ok=${plan.ok} releaseTriggerResolved=${plan.releaseTriggerResolved} planOnly=${plan.planOnly} applyCommandAvailable=${plan.applyCommandAvailable}\n`,
+      );
+      for (const reason of plan.blockedReasons) {
+        process.stdout.write(`  blocked: ${reason}\n`);
+      }
+      process.stdout.write(
+        `  migration=${plan.migrationPlan.length} rollback=${plan.rollbackPlan.length} idempotency=${plan.idempotencyChecks.length} release-gates=${plan.releaseGateChecks.length}\n`,
+      );
+    },
+  );
 versionUp
   .command("rehearsal")
   .description("emit a no-write external activation rehearsal packet for a parked version-up PLAN")
