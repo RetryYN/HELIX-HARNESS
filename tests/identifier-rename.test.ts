@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
+  buildIdentifierRenameDistSmokeDryRun,
   identifierRenameRunbookCommandViolations,
 } from "../src/lint/identifier-rename";
 
@@ -209,6 +210,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
       expect(audit.cutoverApproved).toBe(false);
+      expect(audit.approvalRecordsConcrete).toBe(false);
       expect(audit.hitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
       expect(audit.hitsByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
       expect(audit.hitsByToken["area=harness"]).toBe(2);
@@ -261,20 +263,22 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
       expect(audit.cutoverApproved).toBe(false);
+      expect(audit.approvalRecordsConcrete).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
   });
 
-  it("marks the audit ready only when both approval records contain full concrete approval evidence", () => {
+  it("keeps audit blocked even when approval records are concrete because snapshot freshness belongs to rename plan", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-approved-"));
     try {
       writeApprovedRenamePlan(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const audit = auditIdentifierRenameBlastRadius(root);
-      expect(audit.status).toBe("ready_for_cutover");
-      expect(audit.cutoverApproved).toBe(true);
+      expect(audit.status).toBe("blocked_pending_cutover_approval");
+      expect(audit.cutoverApproved).toBe(false);
+      expect(audit.approvalRecordsConcrete).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -316,6 +320,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         targetStateDir: ".helix",
         status: "blocked_pending_cutover_approval",
         cutoverApproved: false,
+        approvalRecordsConcrete: false,
       });
       expect(payload.hitsByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.hitsByToken[".ut-tdd"]).toBeGreaterThan(0);
@@ -404,7 +409,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
-            command: "bun run build && ./dist/helix doctor",
+            command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
             adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
             workflowRouteImpact: expect.stringContaining("does not authorize apply"),
           }),
@@ -459,14 +464,18 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             evidencePath: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
           }),
           expect.objectContaining({
+            id: "cutover-rb-04",
+            phase: "static-and-state-gates",
+            writePolicy: "state-write",
+          }),
+          expect.objectContaining({
             id: "cutover-rb-03",
             phase: "state-backup-restore-drill",
             command: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
           }),
           expect.objectContaining({
             id: "cutover-rb-05",
-            command:
-              "bun run build && bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+            command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
           }),
         ]),
       );
@@ -483,7 +492,27 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         {
           subject: "cutover-rb-02",
           reason:
-            "cutoverRunbook command is not an executable approved no-write surface: ut-tdd rename rehearsal --no-write --target helix",
+            "cutoverRunbook command is not an executable approved surface for its writePolicy: ut-tdd rename rehearsal --no-write --target helix",
+        },
+      ]);
+      expect(
+        identifierRenameRunbookCommandViolations({
+          cutoverRunbook: plan.cutoverRunbook.map((step) =>
+            step.id === "cutover-rb-02"
+              ? { ...step, command: "bun run build && ./dist/ut-tdd doctor" }
+              : step,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "cutover-rb-02",
+          reason:
+            "cutoverRunbook command is not an executable approved surface for its writePolicy: bun run build && ./dist/ut-tdd doctor",
+        },
+        {
+          subject: "cutover-rb-02",
+          reason:
+            "cutoverRunbook no-write command may write local state or artifacts: bun run build && ./dist/ut-tdd doctor",
         },
       ]);
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
@@ -751,7 +780,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
-            command: "bun run build && ./dist/helix doctor",
+            command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
             adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
           }),
         ]),
@@ -862,6 +891,63 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
         ]),
       );
+
+      const distSmoke = runCliIn(root, [
+        "rename",
+        "dist-smoke",
+        "--no-write",
+        "--target",
+        "helix",
+        "--json",
+      ]);
+      expect(distSmoke.status, distSmoke.stderr || distSmoke.stdout).toBe(0);
+      const distSmokePayload = JSON.parse(distSmoke.stdout);
+      expect(distSmokePayload).toMatchObject({
+        schemaVersion: "identifier-rename-dist-smoke-dry-run.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        target: "helix",
+        currentBinary: {
+          path: "dist/ut-tdd",
+          smokeCommand: "bun run build && ./dist/ut-tdd doctor",
+        },
+        renamedBinaryPreview: {
+          path: "dist/helix",
+          smokeCommandAfterApproval:
+            "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor",
+        },
+      });
+      expect(distSmokePayload.blockedUntil).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("cutover_decision_record approves"),
+          expect.stringContaining("legacy ut-tdd alias disposition"),
+        ]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("builds a no-write dist smoke packet without requiring the future helix binary to exist", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-dist-smoke-"));
+    try {
+      const packet = buildIdentifierRenameDistSmokeDryRun(root);
+      expect(packet).toMatchObject({
+        schemaVersion: "identifier-rename-dist-smoke-dry-run.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        target: "helix",
+        currentBinary: {
+          path: "dist/ut-tdd",
+          exists: false,
+        },
+        renamedBinaryPreview: {
+          path: "dist/helix",
+          exists: false,
+        },
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

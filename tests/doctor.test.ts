@@ -707,6 +707,23 @@ describe("runConsumerDoctor", () => {
     );
   });
 
+  it("fails closed when package/bin or scripts expose helix before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo", {
+      "package.json": JSON.stringify({
+        name: "consumer",
+        bin: { helix: "./dist/helix" },
+        scripts: { doctor: "helix doctor --profile consumer" },
+      }),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain("premature_alias=package.json:bin.helix,package.json:scripts.doctor");
+  });
+
   it("fails closed when Claude adapter hooks are incomplete", () => {
     const result = runConsumerDoctor(
       deps({

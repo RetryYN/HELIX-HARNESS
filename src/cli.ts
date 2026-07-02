@@ -54,6 +54,7 @@ import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
+  buildIdentifierRenameDistSmokeDryRun,
   buildIdentifierRenameRehearsalPlan,
   buildIdentifierRenameStateBackupDryRun,
 } from "./lint/identifier-rename";
@@ -1352,7 +1353,7 @@ rename
       return;
     }
     process.stdout.write(
-      `rename audit: status=${audit.status} totalHits=${audit.totalHits} cutoverApproved=${audit.cutoverApproved}\n`,
+      `rename audit: status=${audit.status} totalHits=${audit.totalHits} cutoverApproved=${audit.cutoverApproved} approvalRecordsConcrete=${audit.approvalRecordsConcrete}\n`,
     );
     for (const token of audit.tokens) {
       process.stdout.write(
@@ -1438,6 +1439,41 @@ rename
         `  restore-check: ${check.path} exists=${check.sourceExists} evidence=${check.restoreEvidencePath}\n`,
       );
     }
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+  });
+rename
+  .command("dist-smoke")
+  .description("emit a no-write compiled binary smoke packet for HELIX identifier rename")
+  .option("--no-write", "confirm this command must not mutate files or state")
+  .option("--target <target>", "target CLI name", "helix")
+  .option("--json", "JSON output")
+  .action((opts: { write?: boolean; target?: string; json?: boolean }) => {
+    if (opts.write !== false) {
+      process.stderr.write("rename dist-smoke requires --no-write\n");
+      process.exitCode = 1;
+      return;
+    }
+    if (opts.target !== "helix") {
+      process.stderr.write("rename dist-smoke currently supports --target helix only\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildIdentifierRenameDistSmokeDryRun(process.cwd(), "helix");
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename dist-smoke: target=${packet.target} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy}\n`,
+    );
+    process.stdout.write(
+      `  current=${packet.currentBinary.path} exists=${packet.currentBinary.exists} renamed=${packet.renamedBinaryPreview.path} exists=${packet.renamedBinaryPreview.exists}\n`,
+    );
+    process.stdout.write(
+      `  current-smoke: ${packet.currentBinary.smokeCommand}\n  renamed-after-approval: ${packet.renamedBinaryPreview.smokeCommandAfterApproval}\n`,
+    );
     for (const blocker of packet.blockedUntil) {
       process.stdout.write(`  blocked-until: ${blocker}\n`);
     }

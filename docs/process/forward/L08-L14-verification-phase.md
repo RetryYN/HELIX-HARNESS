@@ -162,8 +162,10 @@ or monitoring routes the cutover PLAN back to `request_runbook_changes` before a
 `ut-tdd rename plan --json` must also emit `sourceLedgerFreshness`, `cutoverRunbook[]`, `stateBackupManifest[]`,
 `verificationCommandMatrix[]`, and `cutoverSnapshot`. `sourceLedgerFreshness` exposes the Cutover source ledger checked
 date, 90-day freshness result, row count, and required source omissions; stale or incomplete official-source basis routes
-the cutover back to `request_runbook_changes`. `cutoverRunbook[]` is a no-write approval-review runbook with phase,
-command, evidence path, pass criteria, rollback check, and source citation. `stateBackupManifest[]` must include backup
+the cutover back to `request_runbook_changes`. `cutoverRunbook[]` is an approval-review runbook with phase,
+command, `writePolicy`, evidence path, pass criteria, rollback check, and source citation. No-write rows must not hide
+local artifact writes or state rebuilds; DB rebuild and compiled binary rehearsal requirements must be explicit state/artifact
+or packet-only rows. `stateBackupManifest[]` must include backup
 target pattern, checksum requirement, restore drill requirement, and restore evidence path for harness.db, memory, state,
 logs, handover, provider handover pointer, approval policy, and repo-local hook configs.
 

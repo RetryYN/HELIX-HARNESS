@@ -176,6 +176,18 @@ describe("clean distribution local acceptance smoke", () => {
       ).toBe(0);
       expect(linkedRenamePacket.stdout).toContain("Usage: ut-tdd rename plan");
 
+      const linkedRenameDistSmoke = runCommand(
+        cleanRoot,
+        "ut-tdd",
+        ["rename", "dist-smoke", "--help"],
+        env,
+      );
+      expect(
+        linkedRenameDistSmoke.status,
+        linkedRenameDistSmoke.stderr || linkedRenameDistSmoke.stdout,
+      ).toBe(0);
+      expect(linkedRenameDistSmoke.stdout).toContain("Usage: ut-tdd rename dist-smoke");
+
       const linkedActionBindingPacket = runCommand(
         cleanRoot,
         "ut-tdd",

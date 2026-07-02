@@ -65,6 +65,7 @@ export interface IdentifierRenameAudit {
   hitsByCategory: IdentifierRenameCategorySummary[];
   hits: IdentifierRenameHit[];
   cutoverApproved: boolean;
+  approvalRecordsConcrete: boolean;
   status: "ready_for_cutover" | "blocked_pending_cutover_approval";
   requiredRecords: string[];
 }
@@ -108,7 +109,7 @@ export interface IdentifierRenameCutoverPlan {
     id: string;
     phase: string;
     command: string;
-    writePolicy: "no-write";
+    writePolicy: "no-write" | "local-artifact-write" | "state-write";
     evidencePath: string;
     passCriteria: string;
     rollbackCheck: string;
@@ -202,6 +203,30 @@ export interface IdentifierRenameStateBackupDryRun {
     restoreRequired: true;
     sourceExists: boolean;
   }>;
+  blockedUntil: string[];
+}
+
+export interface IdentifierRenameDistSmokeDryRun {
+  schemaVersion: "identifier-rename-dist-smoke-dry-run.v1";
+  planOnly: true;
+  mustNotApply: true;
+  writePolicy: "no-write";
+  target: "helix";
+  sourceCommand: "ut-tdd rename dist-smoke --no-write --target helix --json";
+  currentBinary: {
+    path: "dist/ut-tdd";
+    exists: boolean;
+    smokeCommand: "bun run build && ./dist/ut-tdd doctor";
+  };
+  renamedBinaryPreview: {
+    path: "dist/helix";
+    exists: boolean;
+    smokeCommandAfterApproval: "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor";
+  };
+  legacyAliasPreview: {
+    path: "dist/ut-tdd";
+    dispositionRequired: "preserve_with_sunset_plan_or_remove_with_migration_notes";
+  };
   blockedUntil: string[];
 }
 
@@ -514,7 +539,7 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     }
   }
 
-  const cutoverApproved = cutoverApprovalPresent(root);
+  const approvalRecordsConcrete = cutoverApprovalPresent(root);
   const hitsByCategory = HIT_CATEGORIES.map((category) => {
     const stats = categoryStats.get(category);
     return {
@@ -533,8 +558,9 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     filesByToken,
     hitsByCategory,
     hits,
-    cutoverApproved,
-    status: cutoverApproved ? "ready_for_cutover" : "blocked_pending_cutover_approval",
+    cutoverApproved: false,
+    approvalRecordsConcrete,
+    status: "blocked_pending_cutover_approval",
     requiredRecords: ["cutover_decision_record", "action_binding_approval_record"],
   };
 }
@@ -697,10 +723,10 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     },
     {
       phase: "renamed-helix-dist-smoke",
-      command: "bun run build && ./dist/helix doctor",
+      command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
       expected:
-        "renamed compiled helix CLI smoke is proven in a non-destructive rehearsal before alias enablement",
-      evidence: "renamed compiled doctor smoke captured in cutover dry-run evidence",
+        "renamed compiled helix CLI smoke requirements are emitted as a no-write packet before alias enablement",
+      evidence: "identifier-rename-dist-smoke-dry-run.v1 attached to cutover approval review",
       source: "PLAN-M-02 HELIX identifier rename runbook",
       sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
       sourceCheckedAt: "2026-07-02",
@@ -769,7 +795,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "static-and-state-gates",
       command:
         "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
-      writePolicy: "no-write",
+      writePolicy: "state-write",
       evidencePath: ".ut-tdd/evidence/rename/static-state-gates.txt",
       passCriteria: "lint, typecheck, projection rebuild, and doctor are green before approval",
       rollbackCheck: "any red gate routes outcome to request_runbook_changes",
@@ -779,8 +805,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-05",
       phase: "dist-smoke-rehearsal",
-      command:
-        "bun run build && bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+      command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
       writePolicy: "no-write",
       evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
       passCriteria:
@@ -963,6 +988,41 @@ export function buildIdentifierRenameStateBackupDryRun(
   };
 }
 
+export function buildIdentifierRenameDistSmokeDryRun(
+  root: string,
+  target: "helix" = "helix",
+): IdentifierRenameDistSmokeDryRun {
+  return {
+    schemaVersion: "identifier-rename-dist-smoke-dry-run.v1",
+    planOnly: true,
+    mustNotApply: true,
+    writePolicy: "no-write",
+    target,
+    sourceCommand: "ut-tdd rename dist-smoke --no-write --target helix --json",
+    currentBinary: {
+      path: "dist/ut-tdd",
+      exists: existsSync(join(root, "dist", "ut-tdd")),
+      smokeCommand: "bun run build && ./dist/ut-tdd doctor",
+    },
+    renamedBinaryPreview: {
+      path: "dist/helix",
+      exists: existsSync(join(root, "dist", "helix")),
+      smokeCommandAfterApproval:
+        "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor",
+    },
+    legacyAliasPreview: {
+      path: "dist/ut-tdd",
+      dispositionRequired: "preserve_with_sunset_plan_or_remove_with_migration_notes",
+    },
+    blockedUntil: [
+      "cutover_decision_record approves the current cutoverSnapshot.snapshotId",
+      "action_binding_approval_record scopes actor/tool/target/params for package/bin alias changes",
+      "renamed dist/helix binary is built only in an approved cutover rehearsal branch or release job",
+      "legacy ut-tdd alias disposition is recorded before package/bin alias activation",
+    ],
+  };
+}
+
 export function identifierRenameRunbookCommandViolations(
   plan: Pick<IdentifierRenameCutoverPlan, "cutoverRunbook">,
 ): IdentifierRenameRunbookCommandViolation[] {
@@ -971,23 +1031,38 @@ export function identifierRenameRunbookCommandViolations(
     "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
     "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
     "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
-    "bun run build && bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+    "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
     "bun run test",
   ]);
   return plan.cutoverRunbook.flatMap((step) => {
+    const violations: IdentifierRenameRunbookCommandViolation[] = [];
     if (!step.command.trim()) {
       return [{ subject: step.id, reason: "cutoverRunbook command is empty" }];
     }
     if (!allowedCommands.has(step.command)) {
-      return [
-        {
-          subject: step.id,
-          reason: `cutoverRunbook command is not an executable approved no-write surface: ${step.command}`,
-        },
-      ];
+      violations.push({
+        subject: step.id,
+        reason: `cutoverRunbook command is not an executable approved surface for its writePolicy: ${step.command}`,
+      });
     }
-    return [];
+    if (step.writePolicy === "no-write" && commandWritesLocalStateOrArtifacts(step.command)) {
+      violations.push({
+        subject: step.id,
+        reason: `cutoverRunbook no-write command may write local state or artifacts: ${step.command}`,
+      });
+    }
+    if (step.writePolicy === "state-write" && !step.command.includes("db rebuild")) {
+      violations.push({
+        subject: step.id,
+        reason: `cutoverRunbook state-write command must be explicit about state rebuild: ${step.command}`,
+      });
+    }
+    return violations;
   });
+}
+
+function commandWritesLocalStateOrArtifacts(command: string): boolean {
+  return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
 export function buildIdentifierRenameCutoverPlan(

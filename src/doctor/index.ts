@@ -1864,10 +1864,23 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     `${futureStateDir}/handover/.gitkeep`,
     `${futureStateDir}/evidence/.gitkeep`,
   ].filter((path) => consumerHasFile(deps, path));
+  const packageJson = recordValue(consumerJson(deps, "package.json"));
+  const packageBin = recordValue(packageJson?.bin);
+  const packageScripts = recordValue(packageJson?.scripts);
+  const prematureHelixAlias = [
+    ...(packageBin && Object.hasOwn(packageBin, "helix") ? ["package.json:bin.helix"] : []),
+    ...Object.entries(packageScripts ?? {})
+      .filter(
+        ([, value]) =>
+          typeof value === "string" &&
+          /\bhelix\s+(setup|doctor|status|handover|team)\b/.test(value),
+      )
+      .map(([name]) => `package.json:scripts.${name}`),
+  ];
   messages.push(
-    prematureHelixState.length === 0
-      ? `doctor: consumer-identifier-transition - OK (${futureStateDir} state not generated before PLAN-M-02 cutover)`
-      : `doctor: consumer-identifier-transition - violation premature_future_state=${prematureHelixState.join(",")}`,
+    prematureHelixState.length === 0 && prematureHelixAlias.length === 0
+      ? `doctor: consumer-identifier-transition - OK (${futureStateDir} state and helix package/bin alias not generated before PLAN-M-02 cutover)`
+      : `doctor: consumer-identifier-transition - violation premature_future_state=${prematureHelixState.join(",")} premature_alias=${prematureHelixAlias.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
@@ -2112,6 +2125,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     missing.length === 0 &&
     docsOk &&
     prematureHelixState.length === 0 &&
+    prematureHelixAlias.length === 0 &&
     claudeOk &&
     codexOk &&
     claudeSurfaceOk &&
