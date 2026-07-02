@@ -122,6 +122,56 @@ function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCo
   return path;
 }
 
+function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.1.3"): string {
+  if (process.platform === "win32") {
+    const path = join(binDir, "git.cmd");
+    writeFileSync(
+      path,
+      [
+        "@echo off",
+        "set args=%*",
+        'echo %args% | findstr /C:"--tags" >nul',
+        "if not errorlevel 1 (",
+        `  echo a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}`,
+        "  exit /b 0",
+        ")",
+        'echo %args% | findstr /C:"UT-TDD_AGENT-HARNESS-Pack.git" >nul',
+        "if not errorlevel 1 (",
+        `  echo ${packHead} refs/heads/main`,
+        "  exit /b 0",
+        ")",
+        "echo 7f83ca811353ed90b3e981178a1b0c9977dd5863 refs/heads/main",
+        "exit /b 0",
+        "",
+      ].join("\r\n"),
+      "utf8",
+    );
+    return path;
+  }
+  const path = join(binDir, "git");
+  writeFileSync(
+    path,
+    [
+      "#!/bin/sh",
+      'case "$*" in',
+      '  *"UT-TDD_AGENT-HARNESS-Pack.git"*"--tags"*|*"--tags"*"UT-TDD_AGENT-HARNESS-Pack.git"*)',
+      `    echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}'`,
+      "    ;;",
+      '  *"UT-TDD_AGENT-HARNESS-Pack.git"*)',
+      `    echo '${packHead} refs/heads/main'`,
+      "    ;;",
+      "  *)",
+      "    echo '7f83ca811353ed90b3e981178a1b0c9977dd5863 refs/heads/main'",
+      "    ;;",
+      "esac",
+      "",
+    ].join("\n"),
+    { encoding: "utf8", mode: 0o755 },
+  );
+  chmodSync(path, 0o755);
+  return path;
+}
+
 describe("L7 CLI surface closure", () => {
   it("keeps CLI --version bound to package.json version", () => {
     const packageJson = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
@@ -594,6 +644,80 @@ describe("L7 CLI surface closure", () => {
       "objective-progress: 90% (blocked; completion-claim-allowed=false)",
     );
   });
+
+  it("verifies objective external ledger with git ls-remote observations", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
+    try {
+      writeFakeGitLsRemote(binDir, "c583953f5fda9c406ff180ae700deefa0d6206ae");
+      const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
+        ...process.env,
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+      });
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(payload).toMatchObject({
+        ok: true,
+        externalObserved: {
+          ok: true,
+          externalObserved: {
+            development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+            distribution_pack_repo: "c583953f5fda9c406ff180ae700deefa0d6206ae",
+            distribution_pack_latest_tag: "v0.1.3",
+          },
+        },
+        audit: {
+          ok: true,
+          objectiveProgress: {
+            percent: 90,
+            completionClaimAllowed: false,
+          },
+        },
+      });
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it("blocks objective external audit when git observed HEAD drifts from the ledger", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-drift-"));
+    try {
+      writeFakeGitLsRemote(binDir, "drifted-pack-head");
+      const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
+        ...process.env,
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+      });
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(1);
+      expect(payload.ok).toBe(false);
+      expect(payload.audit.violations).toContain(
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=c583953f5fda9c406ff180ae700deefa0d6206ae actual=drifted-pack-head",
+      );
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
+    try {
+      writeFakeGitLsRemote(binDir, "c583953f5fda9c406ff180ae700deefa0d6206ae", "v0.1.4");
+      const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
+        ...process.env,
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+      });
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(1);
+      expect(payload.ok).toBe(false);
+      expect(payload.audit.violations).toContain(
+        "G-01: 外部 source ledger distribution_pack_latest_tag observed drift expected=v0.1.3 actual=v0.1.4",
+      );
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
+    }
+  }, 20_000);
 
   it("exposes a completion decision packet for outstanding PO and approval blockers", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-packet-"));
@@ -1329,7 +1453,7 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "e899c3a7c18c47380e102446de7fba702635ac6a",
+              mainHead: "c583953f5fda9c406ff180ae700deefa0d6206ae",
               latestTag: "v0.1.3",
             },
             versionBinding: {

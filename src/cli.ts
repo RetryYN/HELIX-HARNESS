@@ -58,7 +58,12 @@ import {
   buildIdentifierRenameRehearsalPlan,
   buildIdentifierRenameStateBackupDryRun,
 } from "./lint/identifier-rename";
-import { loadObjectiveProgress } from "./lint/objective-evidence-audit";
+import {
+  analyzeObjectiveEvidenceAudit,
+  loadObjectiveEvidenceAuditInput,
+  loadObjectiveProgress,
+  objectiveEvidenceAuditMessages,
+} from "./lint/objective-evidence-audit";
 import {
   completionDecisionPacketForOutstanding,
   completionReadinessLine,
@@ -4012,6 +4017,80 @@ team
     },
   );
 
+function loadObjectiveExternalObserved(): {
+  ok: boolean;
+  externalObserved: Record<string, string>;
+  messages: string[];
+} {
+  const externalObserved: Record<string, string> = {};
+  const messages: string[] = [];
+  const readRemote = (
+    source: string,
+    args: string[],
+    parser: (stdout: string) => string | null,
+  ) => {
+    try {
+      const stdout = execFileSync("git", ["ls-remote", ...args], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+      const observed = parser(stdout);
+      if (!observed) {
+        messages.push(`${source}: git ls-remote output did not contain the expected ref`);
+        return;
+      }
+      externalObserved[source] = observed;
+      messages.push(`${source}: ${observed}`);
+    } catch (error) {
+      messages.push(`${source}: git ls-remote failed: ${String(error)}`);
+    }
+  };
+  const firstSha = (stdout: string) => stdout.trim().split(/\s+/)[0] || null;
+  const latestSemverTag = (stdout: string) => {
+    const tags = new Set<string>();
+    for (const line of stdout.split("\n")) {
+      const match = line.trim().match(/\srefs\/tags\/(v\d+\.\d+\.\d+)(?:\^\{\})?$/);
+      if (match?.[1]) tags.add(match[1]);
+    }
+    return (
+      [...tags]
+        .sort((left, right) => {
+          const leftParts = left.slice(1).split(".").map(Number);
+          const rightParts = right.slice(1).split(".").map(Number);
+          for (let i = 0; i < 3; i += 1) {
+            const delta = (leftParts[i] ?? 0) - (rightParts[i] ?? 0);
+            if (delta !== 0) return delta;
+          }
+          return left.localeCompare(right);
+        })
+        .at(-1) ?? null
+    );
+  };
+  readRemote(
+    "development_repo",
+    ["https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git", "refs/heads/main"],
+    firstSha,
+  );
+  readRemote(
+    "distribution_pack_repo",
+    ["https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git", "refs/heads/main"],
+    firstSha,
+  );
+  readRemote(
+    "distribution_pack_latest_tag",
+    ["--tags", "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git"],
+    latestSemverTag,
+  );
+  return {
+    ok:
+      externalObserved.development_repo !== undefined &&
+      externalObserved.distribution_pack_repo !== undefined &&
+      externalObserved.distribution_pack_latest_tag !== undefined,
+    externalObserved,
+    messages,
+  };
+}
+
 const audit = program.command("audit").description("read-only repository audits");
 
 audit
@@ -4033,6 +4112,39 @@ audit
       process.exitCode = result.ok ? 0 : 1;
     },
   );
+
+audit
+  .command("objective-external")
+  .description("verify objective evidence external source ledger against git ls-remote")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const observedResult = loadObjectiveExternalObserved();
+    const input = loadObjectiveEvidenceAuditInput(process.cwd());
+    const result =
+      observedResult.ok === true
+        ? analyzeObjectiveEvidenceAudit({
+            ...input,
+            externalObserved: observedResult.externalObserved,
+          })
+        : analyzeObjectiveEvidenceAudit(input);
+    const output = {
+      ok: observedResult.ok === true && result.ok,
+      externalObserved: observedResult,
+      audit: result,
+    };
+    process.exitCode = output.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `objective-external: ${output.ok ? "ok" : "blocked"} observed=${observedResult.ok ? "ok" : "failed"} audit=${result.ok ? "ok" : "failed"}\n`,
+    );
+    for (const message of observedResult.messages) process.stdout.write(`  - ${message}\n`);
+    for (const message of objectiveEvidenceAuditMessages(result)) {
+      process.stdout.write(`  - ${message}\n`);
+    }
+  });
 
 const branch = program.command("branch").description("read-only branch maintenance helpers");
 

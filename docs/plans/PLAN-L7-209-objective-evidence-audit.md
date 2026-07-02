@@ -6,7 +6,7 @@ layer: L7
 drive: fullstack
 status: confirmed
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-02
 owner: Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -24,12 +24,20 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/lint/objective-evidence-audit.ts
     artifact_type: source_module
+  - artifact_path: src/cli.ts
+    artifact_type: source_module
   - artifact_path: src/doctor/index.ts
     artifact_type: source_module
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
+  - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
   - artifact_path: tests/doctor.test.ts
     artifact_type: test_code
+  - artifact_path: docs/design/harness/L6-function-design/function-spec.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L7-208-codex-hook-feature-enable-gate.md
   requires:
@@ -43,8 +51,10 @@ dependencies:
   references:
     - docs/governance/helix-objective-evidence-audit.md
     - src/lint/objective-evidence-audit.ts
+    - src/cli.ts
     - src/doctor/index.ts
     - tests/goal-evidence-audit.test.ts
+    - tests/cli-surface.test.ts
     - tests/doctor.test.ts
 review_evidence:
   - reviewer: codex-intra-runtime
@@ -134,10 +144,16 @@ adapter config, performance NFR, and naming migration.
   aligned to `completionReadiness`, false full-completion claims are rejected,
   cited current-state artifacts exist in the repo, and the blocked completion
   row enumerates all current outstanding PLANs and required actions.
+- Expose a read-only `ut-tdd audit objective-external --json` surface for the
+  explicit networked check that compares the external source ledger against
+  live `git ls-remote` observations. Normal doctor remains non-networked.
+- Treat Pack latest tag as the semver-maximum remote tag, not merely as
+  existence of the previously adopted tag.
 
 ## Non-Goals
 
-- This PLAN does not add new product behavior.
+- This PLAN does not add end-user product behavior or apply external changes;
+  the added CLI surface is a read-only governance audit.
 - This PLAN does not redefine deferred UI implementation as complete.
 - This PLAN does not perform the later atomic `ut-tdd` to `helix` identifier
   migration.
@@ -156,4 +172,8 @@ adapter config, performance NFR, and naming migration.
 - `ut-tdd status --json` exposes `objectiveProgress.percent`, and current
   progress is 90% with `completionClaimAllowed=false` while G-10 remains
   blocked.
+- `ut-tdd audit objective-external --json` obtains `development_repo`,
+  `distribution_pack_repo`, and `distribution_pack_latest_tag` through
+  `git ls-remote`, passes them as `externalObserved`, and exits non-zero when
+  any observed HEAD or semver-latest Pack tag drifts from the ledger.
 - Targeted audit tests, doctor, and full tests pass before commit.
