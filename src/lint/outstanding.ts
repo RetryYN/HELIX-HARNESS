@@ -281,9 +281,19 @@ export interface CompletionDecisionPacket {
   generatedAt: string;
   sourceCommand: string;
   freshness: DecisionPacketFreshness;
+  semanticMeaningSummary: CompletionDecisionSemanticMeaningSummary;
+  semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[];
+  confirmedCurrentMeaningRecords: ConfirmedCurrentMeaningRecord[];
   decisionCount: number;
   blockers: string[];
   decisions: CompletionDecisionItem[];
+}
+
+export interface CompletionDecisionSemanticMeaningSummary {
+  frontierRecordCount: number;
+  confirmedCurrentMeaningRecordCount: number;
+  completionClaimAllowed: boolean;
+  sourcePaths: string[];
 }
 
 export interface CompletionDecisionPacketOptions {
@@ -910,6 +920,17 @@ export function completionDecisionPacketForOutstanding(
     generatedAt: provenance.generatedAt,
     sourceCommand: provenance.sourceCommand,
     freshness: provenance.freshness,
+    semanticMeaningSummary: {
+      frontierRecordCount: outstanding.semanticFeatureFrontierRecords?.length ?? 0,
+      confirmedCurrentMeaningRecordCount: outstanding.confirmedCurrentMeaningRecords?.length ?? 0,
+      completionClaimAllowed: outstanding.completionReadiness.ok,
+      sourcePaths: [
+        "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      ],
+    },
+    semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
+    confirmedCurrentMeaningRecords: outstanding.confirmedCurrentMeaningRecords ?? [],
     decisionCount: outstanding.items.length,
     blockers: outstanding.completionReadiness.blockers,
     decisions: outstanding.items.map((item) => {

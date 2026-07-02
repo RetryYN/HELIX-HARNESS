@@ -778,16 +778,20 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
     };
   }
   const pointerPacket = pointer.completionDecisionPacket;
-  const packet =
+  const needsLivePacketRebuild =
     pointerPacket.sourceCommand === "ut-tdd handover" &&
-    pointerPacket.decisions.some((decision) => decision.supportingPacketSummaries === undefined)
-      ? completionDecisionPacketForOutstanding(outstanding, {
-          generatedAt: pointerPacket.generatedAt,
-          now: deps.now(),
-          validForMinutes: pointerPacket.freshness.validForMinutes,
-          sourceCommand: "ut-tdd handover",
-        })
-      : pointerPacket;
+    (pointerPacket.semanticMeaningSummary === undefined ||
+      pointerPacket.semanticFeatureFrontierRecords === undefined ||
+      pointerPacket.confirmedCurrentMeaningRecords === undefined ||
+      pointerPacket.decisions.some((decision) => decision.supportingPacketSummaries === undefined));
+  const packet = needsLivePacketRebuild
+    ? completionDecisionPacketForOutstanding(outstanding, {
+        generatedAt: pointerPacket.generatedAt,
+        now: deps.now(),
+        validForMinutes: pointerPacket.freshness.validForMinutes,
+        sourceCommand: "ut-tdd handover",
+      })
+    : pointerPacket;
   const lint = analyzeCompletionDecisionPacket(packet, deps.now(), {
     sourcePathExists: (sourcePath) => deps.readText(join(deps.repoRoot, sourcePath)) !== null,
     sourceText: (sourcePath) => deps.readText(join(deps.repoRoot, sourcePath)),

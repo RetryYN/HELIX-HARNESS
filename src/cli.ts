@@ -914,6 +914,9 @@ completion
     process.stdout.write(
       `completion decision-packet: ${packet.status} decisions=${packet.decisions.length}\n`,
     );
+    process.stdout.write(
+      `semantic-summary: frontier=${packet.semanticMeaningSummary.frontierRecordCount} confirmed=${packet.semanticMeaningSummary.confirmedCurrentMeaningRecordCount} completion-claim-allowed=${packet.semanticMeaningSummary.completionClaimAllowed}\n`,
+    );
     process.stdout.write(packetFreshnessLine(packet));
     for (const decision of packet.decisions) {
       process.stdout.write(

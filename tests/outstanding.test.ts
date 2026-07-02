@@ -354,7 +354,22 @@ describe("completionDecisionPacketForOutstanding", () => {
         "po_decision_pending",
         "version_up_parked",
       ]),
+      semanticMeaningSummary: {
+        frontierRecordCount: 3,
+        confirmedCurrentMeaningRecordCount: 11,
+        completionClaimAllowed: false,
+        sourcePaths: [
+          "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        ],
+      },
     });
+    expect(packet.semanticFeatureFrontierRecords.map((record) => record.featureId)).toEqual([
+      "asset_progress_visualization",
+      "serverless_readonly_share",
+      "name_cutover",
+    ]);
+    expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
     expect(packet.decisions.map((d) => [d.planId, d.decisionKind])).toEqual([
       ["PLAN-DISCOVERY-10", "po_s4_decision"],
       ["PLAN-L7-146", "version_up_activation"],
@@ -708,10 +723,22 @@ describe("completionDecisionPacketForOutstanding", () => {
         stale: false,
         policy: "decision-packet-freshness.v1",
       },
+      semanticMeaningSummary: {
+        frontierRecordCount: 0,
+        confirmedCurrentMeaningRecordCount: 11,
+        completionClaimAllowed: true,
+        sourcePaths: [
+          "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        ],
+      },
+      semanticFeatureFrontierRecords: [],
+      confirmedCurrentMeaningRecords: expect.any(Array),
       decisionCount: 0,
       blockers: [],
       decisions: [],
     });
+    expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
   });
 });
 

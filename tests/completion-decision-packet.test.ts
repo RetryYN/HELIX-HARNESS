@@ -53,6 +53,13 @@ describe("completion decision packet lint", () => {
   it("U-OUTSTANDING-014: carries supporting packet summaries for dedicated matrix review", () => {
     const packet = basePacket();
 
+    expect(packet.semanticMeaningSummary).toMatchObject({
+      frontierRecordCount: 1,
+      confirmedCurrentMeaningRecordCount: 11,
+      completionClaimAllowed: false,
+    });
+    expect(packet.semanticFeatureFrontierRecords).toHaveLength(1);
+    expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
     expect(packet.decisions[0].supportingPacketSummaries).toEqual([
       expect.objectContaining({
         command: "ut-tdd s4 decision-packet --json",
@@ -77,6 +84,44 @@ describe("completion decision packet lint", () => {
     ]);
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
     expect(result.ok).toBe(true);
+  });
+
+  it("rejects packets that drop or drift the semantic meaning summary", () => {
+    const packet = {
+      ...basePacket(),
+      semanticMeaningSummary: {
+        ...basePacket().semanticMeaningSummary,
+        frontierRecordCount: 99,
+        confirmedCurrentMeaningRecordCount: 0,
+        completionClaimAllowed: true,
+        sourcePaths: ["docs/design/helix/L3-requirements/pillar-functional-requirements.md"],
+      },
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_semantic_meaning_summary",
+          detail: "frontierRecordCount=99 actual=1",
+        },
+        {
+          reason: "invalid_semantic_meaning_summary",
+          detail: "confirmedCurrentMeaningRecordCount=0 actual=11",
+        },
+        {
+          reason: "invalid_semantic_meaning_summary",
+          detail: "completionClaimAllowed=true expected=false",
+        },
+        {
+          reason: "invalid_semantic_meaning_summary",
+          detail:
+            "semanticMeaningSummary sourcePaths missing docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        },
+      ]),
+    );
   });
 
   it("rejects supporting packet summaries that drift from packet commands or matrix contracts", () => {

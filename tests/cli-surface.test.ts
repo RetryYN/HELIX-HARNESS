@@ -797,7 +797,14 @@ describe("L7 CLI surface closure", () => {
           policy: "decision-packet-freshness.v1",
         },
         decisionCount: 2,
+        semanticMeaningSummary: {
+          frontierRecordCount: 2,
+          confirmedCurrentMeaningRecordCount: 11,
+          completionClaimAllowed: false,
+        },
       });
+      expect(packet.semanticFeatureFrontierRecords).toHaveLength(2);
+      expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
       expect(packet.generatedAt).toEqual(expect.any(String));
       expect(packet.freshness.expiresAt).toEqual(expect.any(String));
       expect(
@@ -898,6 +905,9 @@ describe("L7 CLI surface closure", () => {
       expect(text.status).toBe(0);
       const cutoverDecision = packet.decisions[1];
       expect(text.stdout).toContain("completion decision-packet: blocked decisions=2");
+      expect(text.stdout).toContain(
+        "semantic-summary: frontier=2 confirmed=11 completion-claim-allowed=false",
+      );
       expect(text.stdout).toContain(
         "packet-freshness: source=ut-tdd completion decision-packet --json",
       );

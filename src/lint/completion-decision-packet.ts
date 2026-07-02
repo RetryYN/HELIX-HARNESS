@@ -27,6 +27,7 @@ export type CompletionDecisionPacketViolationReason =
   | "stale_flag_mismatch"
   | "stale_packet"
   | "decision_count_mismatch"
+  | "invalid_semantic_meaning_summary"
   | "invalid_decision_kind"
   | "invalid_decision_packet_command"
   | "invalid_scoped_decision_packet_command"
@@ -169,6 +170,46 @@ export function analyzeCompletionDecisionPacket(
       reason: "decision_count_mismatch",
       detail: `decisionCount=${packet.decisionCount} actual=${packet.decisions.length}`,
     });
+  }
+
+  const semanticSummary = packet.semanticMeaningSummary;
+  const frontierRecords = packet.semanticFeatureFrontierRecords ?? [];
+  const confirmedRecords = packet.confirmedCurrentMeaningRecords ?? [];
+  if (!semanticSummary) {
+    violations.push({
+      reason: "invalid_semantic_meaning_summary",
+      detail: "semanticMeaningSummary is required",
+    });
+  } else {
+    if (semanticSummary.frontierRecordCount !== frontierRecords.length) {
+      violations.push({
+        reason: "invalid_semantic_meaning_summary",
+        detail: `frontierRecordCount=${String(semanticSummary.frontierRecordCount)} actual=${frontierRecords.length}`,
+      });
+    }
+    if (semanticSummary.confirmedCurrentMeaningRecordCount !== confirmedRecords.length) {
+      violations.push({
+        reason: "invalid_semantic_meaning_summary",
+        detail: `confirmedCurrentMeaningRecordCount=${String(semanticSummary.confirmedCurrentMeaningRecordCount)} actual=${confirmedRecords.length}`,
+      });
+    }
+    if (semanticSummary.completionClaimAllowed !== packet.ok) {
+      violations.push({
+        reason: "invalid_semantic_meaning_summary",
+        detail: `completionClaimAllowed=${String(semanticSummary.completionClaimAllowed)} expected=${String(packet.ok)}`,
+      });
+    }
+    for (const sourcePath of [
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+    ]) {
+      if (!(semanticSummary.sourcePaths ?? []).includes(sourcePath)) {
+        violations.push({
+          reason: "invalid_semantic_meaning_summary",
+          detail: `semanticMeaningSummary sourcePaths missing ${sourcePath}`,
+        });
+      }
+    }
   }
 
   const unsafeRepoRelativePath = (sourcePath: string): boolean =>

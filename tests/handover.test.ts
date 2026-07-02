@@ -582,10 +582,16 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       now: NOW,
       sourceCommand: "ut-tdd handover",
     });
+    const {
+      semanticMeaningSummary: _semanticMeaningSummary,
+      semanticFeatureFrontierRecords: _semanticFeatureFrontierRecords,
+      confirmedCurrentMeaningRecords: _confirmedCurrentMeaningRecords,
+      ...packetWithoutSemanticSummary
+    } = packet;
     writePointer(deps, {
       outstanding,
       completionDecisionPacket: {
-        ...packet,
+        ...packetWithoutSemanticSummary,
         decisions: packet.decisions.map(({ supportingPacketSummaries: _omitted, ...decision }) => ({
           ...decision,
         })),
