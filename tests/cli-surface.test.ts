@@ -1313,6 +1313,16 @@ describe("L7 CLI surface closure", () => {
         },
         readiness: {
           ok: true,
+          objectiveBoundary: {
+            scope: "consumer_setup_readiness_not_whole_program_completion",
+            progressPercent: 90,
+            completionClaimAllowed: false,
+            distributionReference: {
+              repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+              mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+              latestTag: "v0.1.3",
+            },
+          },
         },
       });
       expect(payload.export.artifactPaths).toContain("LICENSE");
@@ -1326,6 +1336,7 @@ describe("L7 CLI surface closure", () => {
         command: "bun run ut-tdd --version",
         remediation: expect.stringContaining("consumer package.json"),
       });
+      expect(payload.readiness.objectiveBoundary.reason).toContain("does not approve");
     } finally {
       rmSync(join(repoRoot, "codex-env.txt"), { force: true });
       rmSync(binDir, { recursive: true, force: true });

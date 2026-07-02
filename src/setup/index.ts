@@ -238,6 +238,21 @@ export interface CleanDistributionPlan {
 export interface ConsumerReadinessPlan {
   ok: boolean;
   checks: { name: string; ok: boolean; message: string }[];
+  objectiveBoundary: {
+    scope: "consumer_setup_readiness_not_whole_program_completion";
+    progressPercent: 90;
+    completionClaimAllowed: false;
+    objectiveAuditCommand: "ut-tdd status --json";
+    completionPacketCommand: "ut-tdd completion decision-packet --json";
+    versionUpPacketCommand: "ut-tdd version-up activation-packet --json";
+    cutoverPacketCommand: "ut-tdd rename plan --json";
+    distributionReference: {
+      repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";
+      mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721";
+      latestTag: "v0.1.3";
+    };
+    reason: string;
+  };
   mode: "standalone" | "claude-only" | "codex-only" | "hybrid";
   workspace: {
     repoRoot: string;
@@ -754,6 +769,22 @@ export function buildConsumerReadinessPlan(input: {
   return {
     ok: bunOk && input.hasGit && input.hasUtTddCli === true && runtimeOk,
     checks,
+    objectiveBoundary: {
+      scope: "consumer_setup_readiness_not_whole_program_completion",
+      progressPercent: 90,
+      completionClaimAllowed: false,
+      objectiveAuditCommand: "ut-tdd status --json",
+      completionPacketCommand: "ut-tdd completion decision-packet --json",
+      versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
+      cutoverPacketCommand: "ut-tdd rename plan --json",
+      distributionReference: {
+        repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+        mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+        latestTag: "v0.1.3",
+      },
+      reason:
+        "consumer setup readiness only means the projected adapter/package path can run; it does not approve version-up activation, PLAN-M-02 cutover, or whole-program L14 completion",
+    },
     mode,
     workspace: {
       repoRoot: input.repoRoot,

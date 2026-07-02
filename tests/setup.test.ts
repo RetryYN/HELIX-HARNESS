@@ -1075,7 +1075,24 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ok: true,
       mode: "codex-only",
       ci: { forkPullRequestSecrets: "not-required" },
+      objectiveBoundary: {
+        scope: "consumer_setup_readiness_not_whole_program_completion",
+        progressPercent: 90,
+        completionClaimAllowed: false,
+        objectiveAuditCommand: "ut-tdd status --json",
+        completionPacketCommand: "ut-tdd completion decision-packet --json",
+        versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
+        cutoverPacketCommand: "ut-tdd rename plan --json",
+        distributionReference: {
+          repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+          mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+          latestTag: "v0.1.3",
+        },
+      },
     });
+    expect(result.consumerReadiness.objectiveBoundary.reason).toContain(
+      "does not approve version-up activation",
+    );
     expect(result.consumerReadiness.checks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({

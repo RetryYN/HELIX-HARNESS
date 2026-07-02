@@ -29,10 +29,12 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
 
+    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-02");
     expect(text).toContain("7f83ca811353ed90b3e981178a1b0c9977dd5863");
     expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
     expect(text).toContain("a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721");
     expect(text).toContain("v0.1.3");
+    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-02");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
@@ -113,9 +115,14 @@ describe("HELIX objective evidence audit", () => {
 
   it("fails when the external distribution reference repository marker is dropped", () => {
     const text = auditText()
+      .replaceAll("外部ソース HEAD 確認日: 2026-07-02", "外部ソース HEAD 確認日: 2026-06-30")
       .replaceAll("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack", "unison-ai-product/PACK-MISSING")
       .replaceAll("a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721", "pack-head-missing")
-      .replaceAll("v0.1.3", "pack-tag-missing");
+      .replaceAll("v0.1.3", "pack-tag-missing")
+      .replaceAll(
+        "検証 / 進捗 source basis 再確認日: 2026-07-02",
+        "検証 / 進捗 source basis 再確認日: 2026-07-01",
+      );
 
     const result = analyzeObjectiveEvidenceAudit({
       auditText: text,
@@ -126,9 +133,11 @@ describe("HELIX objective evidence audit", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
+        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-02",
         "G-01: missing external source marker unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
         "G-01: missing external source marker a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
         "G-01: missing external source marker v0.1.3",
+        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-02",
       ]),
     );
   });

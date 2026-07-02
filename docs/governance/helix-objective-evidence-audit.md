@@ -1,18 +1,18 @@
 # HELIX 目標証跡監査
 
-更新日: 2026-07-01
+更新日: 2026-07-02
 
 この監査は、現在のユーザー目標をリポジトリ上の証跡へ対応付ける。
 設計書の代替ではなく、要求ごとに「意味がどの層へ降下済みか」「どこで実装済みか」
 「どこを意図的に保留しているか」「全件完了がどこで block されているか」を示す索引である。
 
-外部ソース HEAD 確認日: 2026-06-30
+外部ソース HEAD 確認日: 2026-07-02
 
 - `unison-ai-product/UT-TDD_AGENT-HARNESS` default branch `main`: `7f83ca811353ed90b3e981178a1b0c9977dd5863`
 - `unison-ai-product/UT-TDD_AGENT-HARNESS-Pack` default branch `main`: `a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721`（latest tag 確認: `v0.1.3`）
 - `RetryYN/ai-dev-kit-vscode` default branch `main`: `1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23`
 
-検証 / 進捗 source basis 再確認日: 2026-07-01
+検証 / 進捗 source basis 再確認日: 2026-07-02
 
 - NIST SSDF SP 800-218: 検証証跡と provenance は chat-only ではなく、後から検査可能でなければならない。
 - ISO/IEC/IEEE 29148: 要求証跡は実装ファイル数ではなく、要求情報と検証根拠で数える。

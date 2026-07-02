@@ -223,6 +223,15 @@ describe("clean distribution local acceptance smoke", () => {
         },
         readiness: {
           ok: true,
+          objectiveBoundary: {
+            progressPercent: 90,
+            completionClaimAllowed: false,
+            distributionReference: {
+              repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+              mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+              latestTag: "v0.1.3",
+            },
+          },
         },
       });
       expect(distributionJson.export.artifactPaths).toContain("src/cli.ts");
@@ -257,9 +266,19 @@ describe("clean distribution local acceptance smoke", () => {
         expect(setupJson).toMatchObject({
           schemaVersion: "helix-project-setup.v1",
           importReport: { mode: "fresh", requiresReview: false },
-          consumerReadiness: { ok: true },
+          consumerReadiness: {
+            ok: true,
+            objectiveBoundary: {
+              scope: "consumer_setup_readiness_not_whole_program_completion",
+              progressPercent: 90,
+              completionClaimAllowed: false,
+            },
+          },
           postSetupWorkflow: { nextRoute: "ready", manualDocSearchRequired: false },
         });
+        expect(setupJson.consumerReadiness.objectiveBoundary.cutoverPacketCommand).toBe(
+          "ut-tdd rename plan --json",
+        );
         expect(["codex-only", "hybrid"]).toContain(setupJson.consumerReadiness.mode);
         expect(setupJson.written).toEqual(
           expect.arrayContaining(["AGENTS.md", ".vscode/tasks.json"]),
