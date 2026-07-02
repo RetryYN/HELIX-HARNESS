@@ -186,11 +186,11 @@ const OUTSTANDING_MARKERS = [
 ] as const;
 
 const ACTION_BINDING_BOUNDARY =
-  /action-binding|requires_human_approval=true|human signoff|人間サインオフ|人間承認/i;
+  /action-binding|human\/action-binding approval|requires_human_approval=true|human signoff|人間サインオフ|人間承認/i;
 const ACTION_BINDING_EXECUTION_OBLIGATION =
-  /requires?\s+action-binding approval\s+before|action-binding approval\s+(?:is\s+)?required\s+before|action-binding approval\s+なしに.*(?:apply|実行|実適用)|実適用には\s+action-binding approval\s+が必要/i;
+  /requires?\s+action-binding approval\s+before|action-binding approval\s+(?:is\s+)?required\s+before|action-binding approval\s+なしに.*(?:apply|実行|実適用)|実適用には\s+action-binding approval\s+が必要|高影響\s+action\s+の実行前に\s+human\/action-binding approval\s+を記録する/i;
 const HIGH_IMPACT_ACTION_TARGET =
-  /high-impact action|external|infra|secret|auth|destructive|state dir|migration|cutover|activation|deploy|deployment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|実適用/i;
+  /high-impact action|high-impact execution|高影響\s+action|external|infra|secret|auth|destructive|state dir|migration|cutover|activation|deploy|deployment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|設定変更|実行|実適用/i;
 
 function parsePlan(file: string, content: string): ActionBindingApprovalPlan {
   return {

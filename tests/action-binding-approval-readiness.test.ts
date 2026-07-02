@@ -582,6 +582,40 @@ describe("action-binding approval readiness", () => {
     );
   });
 
+  it("detects the Japanese high-impact action-binding wording emitted by status and handover", () => {
+    const planText = [
+      "requiredActionJa: 高影響 action の実行前に human/action-binding approval を記録する",
+      "外部 API 設定変更と本番 infrastructure activation は未承認のため実行しない。",
+    ].join("\n");
+    const input = {
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-JA.md",
+          plan_id: "PLAN-JA",
+          status: "draft",
+          text: planText,
+        },
+      ],
+    };
+    const result = analyzeActionBindingApprovalReadiness(input);
+    const packets = buildActionBindingApprovalPackets(input);
+
+    expect(result.ok).toBe(false);
+    expect(result.pendingPlanIds).toEqual(["PLAN-JA"]);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-JA",
+      reason: "missing structured action_binding_approval_record",
+    });
+    expect(packets).toHaveLength(1);
+    expect(packets[0]).toMatchObject({
+      planId: "PLAN-JA",
+      status: "pending_action_binding_approval",
+      approvalAllowed: false,
+    });
+  });
+
   it("rejects approval records whose allowed_outcome set drifts from the design enum", () => {
     const result = analyzeActionBindingApprovalReadiness({
       rightArmMd: RIGHT_ARM,
