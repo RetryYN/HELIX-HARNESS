@@ -497,6 +497,30 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       workflowRouteImpact: "none; stale or missing snapshot binding denies action approval",
     },
     {
+      phase: "github-environment-approval-boundary",
+      command:
+        plan.versionTarget !== null
+          ? `bun run src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`
+          : `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      expected:
+        "GitHub Environments required reviewers are only treated as an approval boundary after repository visibility, account or organization plan availability, prevent self-review, and environment secrets availability are recorded",
+      evidence:
+        "security checklist or approval review evidence records repo visibility, plan availability, required reviewers, prevent self-review, and environment secrets before relying on GitHub Environments",
+      source: "GitHub Environments deployment protection rules",
+      sourceUrl:
+        "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "GitHub deployment protection rules can require manual approval, but required reviewers availability depends on repository visibility and plan",
+      sourceStatusDelta:
+        "none; environment required reviewers remain usable only after availability and self-review constraints are recorded",
+      adoptionDecision: "adopt-github-environments-only-as-evidence-bound-approval-boundary",
+      adoptionDecisionDelta:
+        "none; environment name or workflow presence alone is not approval evidence",
+      workflowRouteImpact:
+        "none; missing environment availability evidence keeps action-binding approval pending",
+    },
+    {
       phase: "security-boundary",
       command: "bun run src/cli.ts doctor",
       expected:
@@ -695,6 +719,7 @@ export function actionBindingApprovalVerificationCommandViolations(
     approvalPacketCommand,
     `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
     `bun run src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
+    `bun run src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
     "bun run src/cli.ts rename plan --json",
     "bun run src/cli.ts status --json",
     "bun run src/cli.ts doctor",

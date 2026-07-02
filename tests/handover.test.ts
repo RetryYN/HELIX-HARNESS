@@ -448,7 +448,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
       "matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
     );
     expect(section).toContain(
-      "packet要約: `ut-tdd action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=9",
+      "packet要約: `ut-tdd action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=10",
     );
     expect(section).toContain(
       "S4 decision evidence / outcome route / verification command を確認する",

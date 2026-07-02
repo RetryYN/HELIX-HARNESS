@@ -558,7 +558,7 @@ describe("L7 CLI surface closure", () => {
               command: "ut-tdd action-binding approval-packet --json",
               schemaVersion: "action-binding-approval-packet.v1",
               matrixField: "approvalVerificationCommandMatrix",
-              expectedMatrixCount: 9,
+              expectedMatrixCount: 10,
               requiredReviewFields: expect.arrayContaining(["approvalBindingChecks"]),
               requiredMatrixFields: expect.arrayContaining([
                 "sourceCheckedAt",
@@ -632,7 +632,7 @@ describe("L7 CLI surface closure", () => {
         "packet-summary: 2 ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=8",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd action-binding approval-packet --json schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=9",
+        "packet-summary: 2 ut-tdd action-binding approval-packet --json schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
@@ -1011,7 +1011,7 @@ describe("L7 CLI surface closure", () => {
       "packet-freshness: source=ut-tdd action-binding approval-packet --json",
     );
     expect(text.stdout).toContain("binding-checks:");
-    expect(text.stdout).toContain("verification-commands=9");
+    expect(text.stdout).toContain("verification-commands=10");
     expect(text.stdout).toContain("record-template action_binding_approval_record");
     expect(text.stdout).toContain('  - approved_params: "<approved_params>"');
     expect(text.stdout).toContain(

@@ -222,7 +222,7 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   current approval evidence と誤認しない。
   GitHub Environments required reviewers / prevent self-review、NIST least privilege、VS Code Workspace Trust、
   OWASP WSTG、OWASP LLM06:2025 Excessive Agency の
-  公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。
+  公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。版上げ系の関連承認は `github-environment-approval-boundary` で `ut-tdd version-up security-checklist --plan <PLAN_ID> --no-write --json` を指し、リポジトリ公開範囲・契約プラン可用性・自己承認防止・環境シークレット可用性を承認前証跡とする。
   text surface は binding check 件数に加えて verification command 件数と
   writePolicy / command 付き `verification-source:` 行を出し、
   JSON を見ない利用者にも承認前に実行すべき証跡確認と公式/正本 source を欠落させない。

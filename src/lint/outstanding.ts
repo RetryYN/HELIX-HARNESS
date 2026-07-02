@@ -895,7 +895,7 @@ function supportingPacketSummaryForCommand(
         command,
         schemaVersion: "action-binding-approval-packet.v1",
         matrixField: "approvalVerificationCommandMatrix",
-        expectedMatrixCount: 9,
+        expectedMatrixCount: 10,
         requiredReviewFields: [
           "approvalBindingChecks",
           "semanticFeatureFrontierRecords",

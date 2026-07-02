@@ -297,6 +297,16 @@ describe("action-binding approval readiness", () => {
           adoptionDecision: "adopt-required-reviewer-and-current-snapshot-binding",
         }),
         expect.objectContaining({
+          phase: "github-environment-approval-boundary",
+          command:
+            "bun run src/cli.ts version-up security-checklist --plan PLAN-X --no-write --json",
+          expected: expect.stringContaining("repository visibility"),
+          evidence: expect.stringContaining("required reviewers"),
+          sourceUrl:
+            "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+          adoptionDecision: "adopt-github-environments-only-as-evidence-bound-approval-boundary",
+        }),
+        expect.objectContaining({
           phase: "security-boundary",
           command: "bun run src/cli.ts doctor",
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
@@ -1163,7 +1173,7 @@ describe("action-binding approval readiness", () => {
         }),
       ]),
     );
-    expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 9)).toBe(
+    expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 10)).toBe(
       true,
     );
     expect(
@@ -1187,6 +1197,15 @@ describe("action-binding approval readiness", () => {
         )?.command,
     ).toContain(
       "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+    );
+    expect(
+      packets
+        .find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")
+        ?.approvalVerificationCommandMatrix.find(
+          (command) => command.phase === "github-environment-approval-boundary",
+        )?.command,
+    ).toBe(
+      "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
     );
     expect(
       packets.map(
