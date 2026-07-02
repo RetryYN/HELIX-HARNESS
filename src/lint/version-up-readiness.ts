@@ -111,6 +111,7 @@ export interface VersionUpActivationPacket {
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   activationReadinessSummary: VersionUpActivationReadinessSummary;
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
+  versionDryRunEvidence: VersionUpActivationDryRunEvidence;
   activationVerificationCommandMatrix: Array<{
     phase: string;
     command: string;
@@ -146,8 +147,22 @@ export interface VersionUpActivationSnapshot {
   sourceLedgerCheckedDate: string | null;
   sourceLedgerRowsDigest: string;
   approvalScopeDigest: string;
+  versionDryRunDigest: string;
   evidenceDigest: string;
   invalidatedBy: string[];
+}
+
+export interface VersionUpActivationDryRunEvidence {
+  command: string;
+  planCommand: string;
+  digest: string;
+  ok: boolean;
+  semverChange: VersionUpgradeDryRunPlan["semverChange"];
+  releaseTagRef: string | null;
+  releaseTagSource: VersionUpgradeDryRunPlan["releaseTagSource"];
+  releaseTagExists: boolean;
+  releaseTriggerResolved: boolean;
+  blockedReasons: string[];
 }
 
 export interface VersionUpActivationReadinessCheck {
@@ -904,6 +919,12 @@ export function analyzeVersionUpReadiness(
     const recordedLedgerCheckedDate = sourceLedgerFreshnessValue.match(
       /\bchecked[= ](\d{4}-\d{2}-\d{2})\b/i,
     )?.[1];
+    if (currentLedgerCheckedDate && !recordedLedgerCheckedDate) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: `source_ledger_freshness must cite current Version-up source ledger checked ${currentLedgerCheckedDate}`,
+      });
+    }
     if (
       currentLedgerCheckedDate &&
       recordedLedgerCheckedDate &&
@@ -1021,15 +1042,15 @@ export function buildVersionUpgradeDryRunPlan(
   const releaseTagSource = input.releaseRemoteUrl ? "remote" : "local";
   const releaseTagCheckCommand = releaseTagRef
     ? input.releaseRemoteUrl
-      ? `git ls-remote --tags ${input.releaseRemoteUrl} ${releaseTagRef}`
-      : `git rev-parse --verify ${releaseTagRef}`
+      ? `git ls-remote --tags ${shellQuote(input.releaseRemoteUrl)} ${shellQuote(releaseTagRef)}`
+      : `git rev-parse --verify ${shellQuote(releaseTagRef)}`
     : input.releaseRemoteUrl
-      ? `git ls-remote --tags ${input.releaseRemoteUrl} ${input.targetVersion}`
-      : `git rev-parse --verify ${input.targetVersion}`;
+      ? `git ls-remote --tags ${shellQuote(input.releaseRemoteUrl)} ${shellQuote(input.targetVersion)}`
+      : `git rev-parse --verify ${shellQuote(input.targetVersion)}`;
   const dryRunCommand = [
-    `ut-tdd version-up dry-run --current ${input.currentVersion}`,
-    `--target ${input.targetVersion}`,
-    input.releaseRemoteUrl ? `--release-remote ${input.releaseRemoteUrl}` : null,
+    `ut-tdd version-up dry-run --current ${shellQuote(input.currentVersion)}`,
+    `--target ${shellQuote(input.targetVersion)}`,
+    input.releaseRemoteUrl ? `--release-remote ${shellQuote(input.releaseRemoteUrl)}` : null,
     "--json",
   ]
     .filter((part): part is string => part !== null)
@@ -1213,6 +1234,10 @@ export function buildVersionUpActivationPacket(
     plan,
     options.currentVersion ?? "0.1.0",
   );
+  const versionDryRunEvidence = buildVersionUpActivationDryRunEvidence(
+    plan,
+    options.currentVersion ?? "0.1.0",
+  );
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
   const activationSnapshot = buildVersionUpActivationSnapshot({
     plan,
@@ -1220,6 +1245,7 @@ export function buildVersionUpActivationPacket(
     actionBindingApproval,
     externalRehearsal,
     provenance,
+    versionDryRunEvidence,
     activationVerificationCommandMatrix,
     sourceLedgerFreshness,
     reapprovalTriggers,
@@ -1353,6 +1379,7 @@ export function buildVersionUpActivationPacket(
     sourceLedgerFreshness,
     activationReadinessSummary,
     activationReadinessChecks,
+    versionDryRunEvidence,
     activationVerificationCommandMatrix,
     reapprovalTriggers,
     activationSnapshot,
@@ -1498,10 +1525,7 @@ export function versionUpActivationVerificationCommandViolations(
   return packet.activationVerificationCommandMatrix.flatMap((row) => {
     const violations: VersionUpActivationCommandViolation[] = [];
     const command = row.command.trim();
-    if (
-      row.phase === "version-dry-run" &&
-      /^bun run src\/cli\.ts version-up dry-run --current \S+ --target \S+ --json$/.test(command)
-    ) {
+    if (row.phase === "version-dry-run" && isApprovedVersionDryRunCommand(command)) {
       violations.push(...versionUpActivationWritePolicyViolations(packet.planId, row, command));
       violations.push(
         ...verificationSourceMetadataViolations({
@@ -1531,6 +1555,13 @@ export function versionUpActivationVerificationCommandViolations(
     );
     return violations;
   });
+}
+
+function isApprovedVersionDryRunCommand(command: string): boolean {
+  const arg = String.raw`(?:\S+|'(?:'\\''|[^'])*')`;
+  return new RegExp(
+    String.raw`^bun run src/cli\.ts version-up dry-run --current ${arg} --target ${arg} --json$`,
+  ).test(command);
 }
 
 function versionUpActivationWritePolicyViolations(
@@ -1564,6 +1595,7 @@ function buildVersionUpActivationSnapshot(input: {
   actionBindingApproval: Record<string, string>;
   externalRehearsal: Record<string, string>;
   provenance: Record<string, string>;
+  versionDryRunEvidence: VersionUpActivationDryRunEvidence;
   activationVerificationCommandMatrix: VersionUpActivationPacket["activationVerificationCommandMatrix"];
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
@@ -1595,6 +1627,7 @@ function buildVersionUpActivationSnapshot(input: {
       reason: check.reason,
     })),
     activation_provenance_requirements: input.provenance,
+    version_dry_run_evidence: input.versionDryRunEvidence,
     activation_verification_command_matrix: input.activationVerificationCommandMatrix,
     source_ledger_checked_date: input.sourceLedgerFreshness.checkedDate,
     source_ledger_missing_rows: input.sourceLedgerFreshness.missingRows,
@@ -1612,6 +1645,7 @@ function buildVersionUpActivationSnapshot(input: {
     sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
     sourceLedgerRowsDigest: input.sourceLedgerFreshness.rowsDigest,
     approvalScopeDigest,
+    versionDryRunDigest: input.versionDryRunEvidence.digest,
     evidenceDigest,
     invalidatedBy: input.reapprovalTriggers.map((trigger) => trigger.trigger),
   } satisfies Omit<VersionUpActivationSnapshot, "snapshotId">;
@@ -1643,6 +1677,37 @@ function sha256Json(value: unknown): string {
   return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
 }
 
+function buildVersionUpActivationDryRunEvidence(
+  plan: VersionUpReadinessPlan,
+  currentVersion: string,
+): VersionUpActivationDryRunEvidence {
+  const targetVersion = versionUpDryRunTarget(plan);
+  const dryRunPlan = buildVersionUpgradeDryRunPlan({ currentVersion, targetVersion });
+  return {
+    command: buildVersionUpDryRunReviewCommand(currentVersion, targetVersion),
+    planCommand:
+      dryRunPlan.migrationPlan.find((step) => step.step === "compare_current_target")?.command ??
+      `ut-tdd version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`,
+    digest: sha256Json(dryRunPlan),
+    ok: dryRunPlan.ok,
+    semverChange: dryRunPlan.semverChange,
+    releaseTagRef: dryRunPlan.releaseTagRef,
+    releaseTagSource: dryRunPlan.releaseTagSource,
+    releaseTagExists: dryRunPlan.releaseTagExists,
+    releaseTriggerResolved: dryRunPlan.releaseTriggerResolved,
+    blockedReasons: dryRunPlan.blockedReasons,
+  };
+}
+
+function buildVersionUpDryRunReviewCommand(currentVersion: string, targetVersion: string): string {
+  return `bun run src/cli.ts version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`;
+}
+
+function shellQuote(value: string): string {
+  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
+  return `'${value.replace(/'/g, "'\\''")}'`;
+}
+
 function versionUpDryRunTarget(plan: VersionUpReadinessPlan): string {
   const trigger = recordFieldValue(
     plan.text,
@@ -1662,6 +1727,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
 ): VersionUpActivationPacket["activationVerificationCommandMatrix"] {
   const dryRunTarget = versionUpDryRunTarget(plan);
   const dryRunTargetResolved = parseSemver(dryRunTarget) !== null;
+  const dryRunCommand = buildVersionUpDryRunReviewCommand(currentVersion, dryRunTarget);
   return [
     {
       phase: "activation-packet-baseline",
@@ -1682,7 +1748,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "version-dry-run",
-      command: `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`,
+      command: dryRunCommand,
       writePolicy: "no-write",
       expected: dryRunTargetResolved
         ? "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority"

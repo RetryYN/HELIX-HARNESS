@@ -449,6 +449,18 @@ describe("version-up-readiness", () => {
         "exceed_action",
       ]),
     );
+    expect(packet.versionDryRunEvidence).toMatchObject({
+      command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+      planCommand: "ut-tdd version-up dry-run --current 0.1.0 --target future --json",
+      digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      ok: false,
+      semverChange: "invalid",
+      releaseTagRef: null,
+      releaseTagSource: "local",
+      releaseTagExists: false,
+      releaseTriggerResolved: false,
+      blockedReasons: ["current and target versions must be SemVer"],
+    });
     expect(packet.recordTemplates).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -578,6 +590,7 @@ describe("version-up-readiness", () => {
       sourceLedgerCheckedDate: "2026-06-30",
       sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      versionDryRunDigest: packet.versionDryRunEvidence.digest,
       evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       invalidatedBy: [
         "head_sha_or_release_trigger_drift",
@@ -782,6 +795,60 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({ check: "access-control-and-secret-exposure" }),
       ]),
+    );
+  });
+
+  it("binds activation snapshots to the concrete version-up dry-run result digest", () => {
+    const base = input().plans[0];
+    const target010 = buildVersionUpActivationPackets(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "- target_version_or_release_trigger: distribution release tag",
+              "- target_version_or_release_trigger: GitHub release tag v0.1.0",
+            ),
+          },
+        ],
+      }),
+    )[0];
+    const target020 = buildVersionUpActivationPackets(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "- target_version_or_release_trigger: distribution release tag",
+              "- target_version_or_release_trigger: GitHub release tag v0.2.0",
+            ),
+          },
+        ],
+      }),
+    )[0];
+
+    expect(target010.versionDryRunEvidence).toMatchObject({
+      command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target v0.1.0 --json",
+      semverChange: "same",
+      blockedReasons: [
+        "target version must differ from current version",
+        "target release tag must exist before activation",
+      ],
+    });
+    expect(target020.versionDryRunEvidence).toMatchObject({
+      command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target v0.2.0 --json",
+      semverChange: "minor",
+      blockedReasons: ["target release tag must exist before activation"],
+    });
+    expect(target010.versionDryRunEvidence.digest).not.toBe(target020.versionDryRunEvidence.digest);
+    expect(target010.activationSnapshot.versionDryRunDigest).toBe(
+      target010.versionDryRunEvidence.digest,
+    );
+    expect(target020.activationSnapshot.versionDryRunDigest).toBe(
+      target020.versionDryRunEvidence.digest,
+    );
+    expect(target010.activationSnapshot.snapshotId).not.toBe(
+      target020.activationSnapshot.snapshotId,
     );
   });
 
@@ -1103,6 +1170,27 @@ describe("version-up-readiness", () => {
             "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         }),
       ]),
+    );
+
+    const unsafeInput = buildVersionUpgradeDryRunPlan({
+      currentVersion: "v0.1.0",
+      targetVersion: "v0.2.0; echo unsafe",
+      releaseRemoteUrl: "https://example.invalid/repo.git; echo unsafe",
+      releaseTagExists: false,
+    });
+    expect(unsafeInput.ok).toBe(false);
+    expect(unsafeInput.applyCommandAvailable).toBe(false);
+    expect(unsafeInput.migrationPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          step: "compare_current_target",
+          command:
+            "ut-tdd version-up dry-run --current v0.1.0 --target 'v0.2.0; echo unsafe' --release-remote 'https://example.invalid/repo.git; echo unsafe' --json",
+        }),
+      ]),
+    );
+    expect(unsafeInput.releaseTagCheckCommand).toBe(
+      "git ls-remote --tags 'https://example.invalid/repo.git; echo unsafe' 'v0.2.0; echo unsafe'",
     );
   });
 
@@ -1678,6 +1766,30 @@ describe("version-up-readiness", () => {
       subject: "PLAN-L7-900-future",
       reason:
         "source_ledger_freshness checked date 2026-06-30 does not match current Version-up source ledger checked 2026-06-15",
+    });
+  });
+
+  it("fails activation records whose source_ledger_freshness omits the current ledger checked date", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "- source_ledger_freshness: fresh Version-up source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh checked Version-up source ledger",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "source_ledger_freshness must cite current Version-up source ledger checked 2026-06-30",
     });
   });
 

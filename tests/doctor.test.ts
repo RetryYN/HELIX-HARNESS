@@ -414,6 +414,27 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
+    ".ut-tdd/state/project-setup.json": JSON.stringify({
+      schemaVersion: "helix-project-setup-state.v1",
+      setupCommand: "ut-tdd setup project",
+      phase: "0-A",
+      objectiveBoundary: {
+        scope: "consumer_setup_readiness_not_whole_program_completion",
+        completionClaimAllowed: false,
+        completionPacketCommand: "ut-tdd completion decision-packet --json",
+      },
+      postSetupWorkflow: {
+        nextRoute: "ready",
+        readinessOk: true,
+        verificationCommands: [
+          "ut-tdd setup project --dry-run",
+          "ut-tdd status --json",
+          "ut-tdd completion decision-packet --json",
+          "ut-tdd doctor --profile consumer",
+          "ut-tdd rename plan --json",
+        ],
+      },
+    }),
     ".ut-tdd/teams/default-hybrid.yaml": consumerTeamDefinitionTemplate(),
   };
   for (const name of consumerClaudeAgentNames) {
@@ -441,6 +462,46 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-policy-templates - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-claude-surface - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-team-run-surface - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-project-setup-state - OK")).toBe(true);
+  });
+
+  it("fails closed when setup state loses the completion boundary", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/state/project-setup.json": JSON.stringify({
+            schemaVersion: "helix-project-setup-state.v1",
+            setupCommand: "ut-tdd setup project",
+            objectiveBoundary: {
+              scope: "consumer_setup_readiness_not_whole_program_completion",
+              completionClaimAllowed: true,
+              completionPacketCommand: "ut-tdd completion decision-packet --json",
+            },
+            postSetupWorkflow: {
+              nextRoute: "ready",
+              readinessOk: true,
+              verificationCommands: ["ut-tdd doctor --profile consumer"],
+            },
+          }),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "completionClaimAllowed=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "verificationCommands=ut-tdd doctor --profile consumer",
+      ),
+    ).toBe(true);
   });
 
   it("fails closed when the consumer doctor task still points at the product doctor", () => {

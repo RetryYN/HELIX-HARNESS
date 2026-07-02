@@ -1863,6 +1863,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".ut-tdd/memory/.gitkeep",
     ".ut-tdd/handover/.gitkeep",
     ".ut-tdd/evidence/.gitkeep",
+    ".ut-tdd/state/project-setup.json",
   ];
   const missing = requiredFiles.filter((path) => !consumerHasFile(deps, path));
   messages.push(
@@ -1927,6 +1928,33 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     prematureHelixState.length === 0 && prematureHelixAlias.length === 0
       ? `doctor: consumer-identifier-transition - OK (${futureStateDir} state and helix package/bin alias not generated before PLAN-M-02 cutover)`
       : `doctor: consumer-identifier-transition - violation premature_future_state=${prematureHelixState.join(",")} premature_alias=${prematureHelixAlias.join(",")}`,
+  );
+
+  const projectSetupState = recordValue(consumerJson(deps, ".ut-tdd/state/project-setup.json"));
+  const projectSetupObjectiveBoundary = recordValue(projectSetupState?.objectiveBoundary);
+  const projectSetupPostWorkflow = recordValue(projectSetupState?.postSetupWorkflow);
+  const projectSetupVerificationCommands = stringList(
+    projectSetupPostWorkflow?.verificationCommands,
+  );
+  const projectSetupStateOk =
+    projectSetupState?.schemaVersion === "helix-project-setup-state.v1" &&
+    projectSetupState?.setupCommand === "ut-tdd setup project" &&
+    projectSetupObjectiveBoundary?.scope ===
+      "consumer_setup_readiness_not_whole_program_completion" &&
+    projectSetupObjectiveBoundary?.completionClaimAllowed === false &&
+    projectSetupObjectiveBoundary?.completionPacketCommand ===
+      "ut-tdd completion decision-packet --json" &&
+    ["ready", "review_import_report", "fix_consumer_readiness"].includes(
+      typeof projectSetupPostWorkflow?.nextRoute === "string"
+        ? projectSetupPostWorkflow.nextRoute
+        : "",
+    ) &&
+    projectSetupVerificationCommands.includes("ut-tdd completion decision-packet --json") &&
+    projectSetupVerificationCommands.includes("ut-tdd doctor --profile consumer");
+  messages.push(
+    projectSetupStateOk
+      ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false)"
+      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
@@ -2178,6 +2206,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     docsOk &&
     prematureHelixState.length === 0 &&
     prematureHelixAlias.length === 0 &&
+    projectSetupStateOk &&
     claudeOk &&
     codexOk &&
     claudeSurfaceOk &&
