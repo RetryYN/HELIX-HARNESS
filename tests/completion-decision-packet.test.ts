@@ -62,6 +62,29 @@ function versionUpPacket(): CompletionDecisionPacket {
   );
 }
 
+function actionBindingPacket(): CompletionDecisionPacket {
+  return completionDecisionPacketForOutstanding(
+    analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-ACTION",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "requires action-binding approval before high-impact deployment.",
+        },
+      ],
+      0,
+    ),
+    {
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      now: "2026-06-30T00:30:00.000Z",
+      validForMinutes: 60,
+      sourceCommand: "ut-tdd completion decision-packet --json",
+    },
+  );
+}
+
 describe("completion decision packet lint", () => {
   // U-OUTSTANDING-002
   it("accepts a fresh packet with source command and matching freshness metadata", () => {
@@ -166,6 +189,35 @@ describe("completion decision packet lint", () => {
         "relatedDecisionPackets",
         "nextWorkflowRoutes",
         "blockedReasons",
+      ]),
+    );
+    const approvalPacket = actionBindingPacket();
+    const approvalSummary = approvalPacket.decisions[0].supportingPacketSummaries.find(
+      (summary) => summary.command === "ut-tdd action-binding approval-packet --json",
+    );
+    expect(approvalSummary?.requiredReviewFields).toEqual(
+      expect.arrayContaining([
+        "approvalRecord.allowed_outcome",
+        "approvalRecord.approval_policy_or_named_approver",
+        "approvalRecord.approval_scope",
+        "approvalRecord.approved_actor",
+        "approvalRecord.approved_tool",
+        "approvalRecord.approved_target",
+        "approvalRecord.approved_params",
+        "approvalRecord.review_approval_evidence",
+        "approvalRecord.reviewed_snapshot_binding",
+        "approvalRecord.expires_at_or_trigger",
+        "approvalRecord.audit_record",
+        "approvalBindingChecks.allowed_outcome",
+        "approvalBindingChecks.approval_scope",
+        "approvalBindingChecks.approved_actor",
+        "approvalBindingChecks.approved_tool",
+        "approvalBindingChecks.approved_target",
+        "approvalBindingChecks.approved_params",
+        "approvalBindingChecks.review_approval_evidence",
+        "approvalBindingChecks.reviewed_snapshot_binding",
+        "approvalBindingChecks.expires_at_or_trigger",
+        "approvalBindingChecks.audit_record",
       ]),
     );
   });
@@ -381,6 +433,50 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionEvidenceChecklist.unresolved_risk",
+        },
+      ]),
+    );
+  });
+
+  it("rejects action-binding summaries that omit concrete approval binding fields", () => {
+    const packet = {
+      ...actionBindingPacket(),
+      decisions: actionBindingPacket().decisions.map((decision) => ({
+        ...decision,
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) => ({
+          ...summary,
+          requiredReviewFields: [
+            "approvalRecord",
+            "recordTemplates",
+            "approvalBindingChecks",
+            "semanticFeatureFrontierRecords",
+            "relatedDecisionPackets",
+            "nextWorkflowRoutes",
+            "blockedReasons",
+          ],
+        })),
+      })),
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalRecord.approved_actor",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalRecord.reviewed_snapshot_binding",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalBindingChecks.approved_params",
         },
       ]),
     );
