@@ -1358,7 +1358,10 @@ rename
       `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
     );
     process.stdout.write(
-      `  cutover-checklist=${plan.cutoverCategoryChecklist.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
+      `  source-ledger: label=${plan.sourceLedgerFreshness.ledgerLabel} checked=${plan.sourceLedgerFreshness.checkedDate ?? "-"} stale=${plan.sourceLedgerFreshness.stale ? "yes" : "no"} rows=${plan.sourceLedgerFreshness.rowCount} missing=${plan.sourceLedgerFreshness.missingRows.length}\n`,
+    );
+    process.stdout.write(
+      `  cutover-checklist=${plan.cutoverCategoryChecklist.length} runbook=${plan.cutoverRunbook.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
     );
     process.stdout.write(verificationSourceLines(plan.verificationCommandMatrix));
     process.stdout.write(

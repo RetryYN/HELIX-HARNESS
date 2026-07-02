@@ -56,7 +56,12 @@ function writeCutoverSourceLedger(root: string, checkedDate = "2026-06-30"): voi
       "",
       "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
       "|---|---|---|---|---|---|---|",
+      "| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 | Rev. 1 draft | adopt-final-1.1 | release integrity | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |",
+      "| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |",
       "| GitHub Actions concurrency | <https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency> | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently | `execution_window_or_freeze_policy` |",
+      "| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book | live official Google SRE book | adopt-operational-guidance | rollback and release process | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |",
+      "| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | `approval_scope`, `legacy_alias_policy`, `audit_record` |",
+      "| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | reproducible cutover provenance | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |",
       "",
     ].join("\n"),
     "utf8",
@@ -379,9 +384,48 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
           }),
           expect.objectContaining({
-            phase: "compiled-dist-smoke",
+            phase: "targeted-regression",
+            command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+          }),
+          expect.objectContaining({
+            phase: "current-dist-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
             sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+          }),
+          expect.objectContaining({
+            phase: "renamed-helix-dist-smoke",
+            command: "bun run build && ./dist/helix doctor",
+          }),
+          expect.objectContaining({
+            phase: "legacy-alias-smoke",
+            command: "bun run build && ./dist/ut-tdd doctor",
+          }),
+        ]),
+      );
+      expect(plan.verificationCommandMatrix).toHaveLength(8);
+      expect(plan.sourceLedgerFreshness).toEqual({
+        ledgerLabel: "Cutover source ledger",
+        checkedDate: "2026-06-30",
+        stale: false,
+        violation: null,
+        maxAgeDays: 90,
+        rowCount: 6,
+        missingRows: [],
+      });
+      expect(plan.cutoverRunbook).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: "cutover-rb-01",
+            writePolicy: "no-write",
+            evidencePath: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+          }),
+          expect.objectContaining({
+            id: "cutover-rb-03",
+            phase: "state-backup-restore-drill",
+          }),
+          expect.objectContaining({
+            id: "cutover-rb-05",
+            command: "bun run build && ./dist/ut-tdd doctor && ./dist/helix doctor",
           }),
         ]),
       );
@@ -401,6 +445,15 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             path: ".ut-tdd/handover",
             restoreRequired: true,
+            restoreDrillRequired: true,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/handover/provider",
+            restoreEvidencePath: ".ut-tdd/evidence/rename/restore-provider-handover.json",
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/config/approval-policy.yaml",
+            checksumRequired: true,
           }),
           expect.objectContaining({
             path: ".codex/hooks.json",
@@ -521,6 +574,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-"));
     try {
       writeApprovedRenamePlan(root);
+      writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(root, [
@@ -636,8 +690,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             phase: "full-regression",
             command: "bun run test",
           }),
+          expect.objectContaining({
+            phase: "renamed-helix-dist-smoke",
+            command: "bun run build && ./dist/helix doctor",
+          }),
         ]),
       );
+      expect(payload.cutoverRunbook.length).toBeGreaterThan(0);
+      expect(payload.sourceLedgerFreshness).toMatchObject({
+        ledgerLabel: "Cutover source ledger",
+      });
       expect(payload.rollbackPlan.length).toBeGreaterThan(0);
       expect(payload.monitoringPlan.length).toBeGreaterThan(0);
       expect(payload.stateBackupManifest).toEqual(
@@ -659,13 +721,18 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const text = runCliIn(root, ["rename", "plan"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("snapshot-review: current=sha256:");
+      expect(text.stdout).toContain("source-ledger: label=Cutover source ledger");
       expect(text.stdout).toContain("cutover-checklist=");
+      expect(text.stdout).toContain("runbook=");
       expect(text.stdout).toContain("verification-commands=");
       expect(text.stdout).toContain(
         "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md",
       );
       expect(text.stdout).toContain(
-        "verification-source: compiled-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+        "verification-source: current-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+      );
+      expect(text.stdout).toContain(
+        "verification-source: renamed-helix-dist-smoke source=PLAN-M-02 HELIX identifier rename runbook sourceUrl=docs/plans/PLAN-M-02-helix-identifier-rename.md",
       );
       expect(text.stdout).toContain("recordedCutover=-");
       expect(text.stdout).toContain("recordedActionBinding=-");

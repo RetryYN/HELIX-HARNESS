@@ -787,11 +787,13 @@ function supportingPacketSummaryForCommand(
         command,
         schemaVersion: "identifier-rename-cutover-plan.v1",
         matrixField: "verificationCommandMatrix",
-        expectedMatrixCount: 6,
+        expectedMatrixCount: 8,
         requiredReviewFields: [
           "cutoverSnapshot.snapshotId",
           "snapshotReview",
           "cutoverCategoryChecklist",
+          "sourceLedgerFreshness",
+          "cutoverRunbook",
         ],
         reviewRoute:
           "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",

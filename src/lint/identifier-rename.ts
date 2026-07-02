@@ -7,6 +7,12 @@ import {
   semanticFrontierBindingViolations,
 } from "./semantic-frontier-binding";
 import {
+  SOURCE_LEDGER_MAX_AGE_DAYS,
+  sourceLedgerCheckedDate,
+  sourceLedgerCheckedDateViolation,
+  sourceLedgerHeadingPattern,
+} from "./source-ledger-freshness";
+import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   buildDecisionPacketProvenance,
   type DecisionPacketFreshness,
@@ -91,6 +97,17 @@ export interface IdentifierRenameCutoverPlan {
   }>;
   blockedReasons: string[];
   dryRunPlan: string[];
+  cutoverRunbook: Array<{
+    id: string;
+    phase: string;
+    command: string;
+    writePolicy: "no-write";
+    evidencePath: string;
+    passCriteria: string;
+    rollbackCheck: string;
+    source: string;
+    sourceUrl: string;
+  }>;
   verificationCommandMatrix: Array<{
     phase: string;
     command: string;
@@ -104,6 +121,10 @@ export interface IdentifierRenameCutoverPlan {
   stateBackupManifest: Array<{
     path: string;
     purpose: string;
+    backupTargetPattern: string;
+    checksumRequired: true;
+    restoreDrillRequired: true;
+    restoreEvidencePath: string;
     restoreRequired: true;
   }>;
   freezePolicy: {
@@ -112,6 +133,7 @@ export interface IdentifierRenameCutoverPlan {
     concurrencyPolicy: "single-run-no-concurrent-apply";
     reapprovalTriggers: string[];
   };
+  sourceLedgerFreshness: IdentifierRenameSourceLedgerFreshness;
   cutoverSnapshot: IdentifierRenameCutoverSnapshot;
   snapshotReview: IdentifierRenameSnapshotReview;
   provenanceRequirements: Array<{
@@ -129,6 +151,16 @@ export interface IdentifierRenameCutoverPlan {
     approvedParamsRequired: true;
     reviewedSnapshotBindingRequired: true;
   };
+}
+
+export interface IdentifierRenameSourceLedgerFreshness {
+  ledgerLabel: "Cutover source ledger";
+  checkedDate: string | null;
+  stale: boolean;
+  violation: string | null;
+  maxAgeDays: number;
+  rowCount: number;
+  missingRows: string[];
 }
 
 export interface IdentifierRenameCutoverSnapshot {
@@ -168,6 +200,14 @@ const RENAME_MAP: IdentifierRenameMapping[] = [
   { from: ".ut-tdd", to: ".helix" },
   { from: "area=harness", to: "area=helix" },
 ];
+const REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS = [
+  "NIST SSDF SP 800-218",
+  "GitHub Environments required reviewers",
+  "GitHub Actions concurrency",
+  "Google SRE Release Engineering",
+  "OWASP LLM06:2025 Excessive Agency",
+  "SLSA Provenance",
+] as const;
 const IGNORED_DIRS = new Set([".git", "node_modules", "dist", "coverage"]);
 const TEXT_EXTENSIONS = new Set([
   ".cjs",
@@ -520,8 +560,9 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     },
     {
       phase: "targeted-regression",
-      command: "bun test tests/identifier-rename.test.ts",
-      expected: "rename packet, approval, snapshot, and category checklist regressions stay green",
+      command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+      expected:
+        "rename packet, approval, snapshot, category checklist, and cutover readiness regressions stay green",
       evidence: "targeted vitest output",
       source: "HELIX L14 cutover regression oracle",
       sourceUrl:
@@ -552,12 +593,189 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
     },
     {
-      phase: "compiled-dist-smoke",
+      phase: "current-dist-smoke",
       command: "bun run build && ./dist/ut-tdd doctor",
-      expected: "compiled CLI artifact runs the same doctor surface after rename rehearsal",
-      evidence: "build output and compiled doctor smoke",
+      expected: "current compiled ut-tdd CLI remains runnable before rename cutover approval",
+      evidence: "build output and current compiled doctor smoke",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+    },
+    {
+      phase: "renamed-helix-dist-smoke",
+      command: "bun run build && ./dist/helix doctor",
+      expected:
+        "renamed compiled helix CLI smoke is proven in a non-destructive rehearsal before alias enablement",
+      evidence: "renamed compiled doctor smoke captured in cutover dry-run evidence",
+      source: "PLAN-M-02 HELIX identifier rename runbook",
+      sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+    },
+    {
+      phase: "legacy-alias-smoke",
+      command: "bun run build && ./dist/ut-tdd doctor",
+      expected:
+        "legacy ut-tdd alias behavior is either intentionally preserved with a sunset plan or explicitly absent with migration notes",
+      evidence: "legacy alias smoke or no-alias disposition recorded in audit_record",
+      source: "PLAN-M-02 legacy alias policy",
+      sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+    },
+  ];
+}
+
+function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
+  return [
+    {
+      id: "cutover-rb-01",
+      phase: "blast-radius-baseline",
+      command: "bun run src/cli.ts rename audit --json",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+      passCriteria: "token/file/category hit set is captured at frozen HEAD",
+      rollbackCheck: "re-run audit and compare blastRadiusDigest before approval",
+      source: "HELIX identifier cutover source ledger",
+      sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
+    },
+    {
+      id: "cutover-rb-02",
+      phase: "codemod-rehearsal",
+      command: "ut-tdd rename rehearsal --no-write --target helix",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+      passCriteria: "source/docs/template rename diff is previewed without touching the worktree",
+      rollbackCheck: "preview diff can be discarded without git or state mutation",
+      source: "PLAN-M-02 non-destructive rehearsal policy",
+      sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+    },
+    {
+      id: "cutover-rb-03",
+      phase: "state-backup-restore-drill",
+      command: "ut-tdd rename state-backup --dry-run --restore-drill",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
+      passCriteria: "DB, memory, state, logs, handover, and hook configs have restorable backups",
+      rollbackCheck: "restore drill proves old .ut-tdd state can be restored before apply",
+      source: "Cutover source ledger backup/provenance requirements",
+      sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
+    },
+    {
+      id: "cutover-rb-04",
+      phase: "static-and-state-gates",
+      command:
+        "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/static-state-gates.txt",
+      passCriteria: "lint, typecheck, projection rebuild, and doctor are green before approval",
+      rollbackCheck: "any red gate routes outcome to request_runbook_changes",
+      source: "HELIX repository static gate and doctor policy",
+      sourceUrl: "AGENTS.md#test-rules",
+    },
+    {
+      id: "cutover-rb-05",
+      phase: "dist-smoke-rehearsal",
+      command: "bun run build && ./dist/ut-tdd doctor && ./dist/helix doctor",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+      passCriteria:
+        "current CLI, renamed CLI, and alias disposition are all reviewed before cutover",
+      rollbackCheck: "failed renamed CLI smoke keeps old command/state path active",
+      source: "ADR-001 TypeScript/Bun single-binary distribution decision",
+      sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+    },
+    {
+      id: "cutover-rb-06",
+      phase: "full-regression",
+      command: "bun run test",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/full-regression.txt",
+      passCriteria: "full regression is green after rehearsal material is generated",
+      rollbackCheck: "red full regression blocks approval and keeps PLAN-M-02 draft",
+      source: "HELIX full regression policy",
+      sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
+    },
+  ];
+}
+
+function buildStateBackupManifest(): IdentifierRenameCutoverPlan["stateBackupManifest"] {
+  return [
+    {
+      path: ".ut-tdd/harness.db",
+      purpose: "state DB projection and completion evidence baseline",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/harness.db",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-harness-db.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/memory",
+      purpose: "HELIX shared memory before state-dir rename",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/memory/",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-memory.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/state",
+      purpose: "active plan, setup, and runtime state before migration",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/state/",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-state.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/logs",
+      purpose: "runtime/session/gate logs used as verification provenance",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/logs/",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-logs.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/handover",
+      purpose: "handover pointer and completion decision packet continuity",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/handover/",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-handover.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/handover/provider",
+      purpose: "provider handover pointer used by cross-runtime continuation",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/handover/provider/",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-provider-handover.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".ut-tdd/config/approval-policy.yaml",
+      purpose: "action-binding approval policy before irreversible rename",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/config/approval-policy.yaml",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-approval-policy.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".claude/settings.json",
+      purpose: "Claude hook/adapter config before marker rename",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/.claude/settings.json",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-claude-settings.json",
+      restoreRequired: true,
+    },
+    {
+      path: ".codex/hooks.json",
+      purpose: "Codex hook adapter config before marker rename",
+      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/.codex/hooks.json",
+      checksumRequired: true,
+      restoreDrillRequired: true,
+      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-codex-hooks.json",
+      restoreRequired: true,
     },
   ];
 }
@@ -595,43 +813,19 @@ export function buildIdentifierRenameCutoverPlan(
     verificationCommand: verificationCommandForCategory(summary.category),
   }));
   const verificationCommandMatrix = buildRenameVerificationCommandMatrix();
-  const stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"] = [
-    {
-      path: ".ut-tdd/harness.db",
-      purpose: "state DB projection and completion evidence baseline",
-      restoreRequired: true,
-    },
-    {
-      path: ".ut-tdd/memory",
-      purpose: "HELIX shared memory before state-dir rename",
-      restoreRequired: true,
-    },
-    {
-      path: ".ut-tdd/state",
-      purpose: "active plan, setup, and runtime state before migration",
-      restoreRequired: true,
-    },
-    {
-      path: ".ut-tdd/logs",
-      purpose: "runtime/session/gate logs used as verification provenance",
-      restoreRequired: true,
-    },
-    {
-      path: ".ut-tdd/handover",
-      purpose: "handover pointer and completion decision packet continuity",
-      restoreRequired: true,
-    },
-    {
-      path: ".claude/settings.json",
-      purpose: "Claude hook/adapter config before marker rename",
-      restoreRequired: true,
-    },
-    {
-      path: ".codex/hooks.json",
-      purpose: "Codex hook adapter config before marker rename",
-      restoreRequired: true,
-    },
-  ];
+  const cutoverRunbook = buildCutoverRunbook();
+  const stateBackupManifest = buildStateBackupManifest();
+  const sourceLedgerFreshness = buildCutoverSourceLedgerFreshness(root);
+  if (sourceLedgerFreshness.violation) {
+    blockedReasons.push(
+      `source ledger must be refreshed before cutover: ${sourceLedgerFreshness.violation}`,
+    );
+  }
+  if (sourceLedgerFreshness.missingRows.length > 0) {
+    blockedReasons.push(
+      `source ledger missing cutover sources: ${sourceLedgerFreshness.missingRows.join(", ")}`,
+    );
+  }
   const freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"] = {
     requiresFrozenHead: true,
     requiresQuietWindow: true,
@@ -670,11 +864,12 @@ export function buildIdentifierRenameCutoverPlan(
     renameMap: RENAME_MAP,
     hitsByCategory,
     cutoverCategoryChecklist,
+    cutoverRunbook,
     verificationCommandMatrix,
     stateBackupManifest,
     freezePolicy,
     provenanceRequirements,
-    sourceLedgerCheckedDate: loadCutoverSourceLedgerCheckedDate(root),
+    sourceLedgerFreshness,
   });
   const snapshotReview = buildIdentifierRenameSnapshotReview(
     approvalEvaluation,
@@ -725,6 +920,7 @@ export function buildIdentifierRenameCutoverPlan(
       "run targeted identifier-rename tests, typecheck, lint, db rebuild, doctor, and full test suite",
       "run compiled distribution smoke after the CLI/bin rename rehearsal",
     ],
+    cutoverRunbook,
     verificationCommandMatrix,
     rollbackPlan: [
       "create a pre-cutover branch or tag at frozen HEAD",
@@ -741,6 +937,7 @@ export function buildIdentifierRenameCutoverPlan(
     ],
     stateBackupManifest,
     freezePolicy,
+    sourceLedgerFreshness,
     cutoverSnapshot,
     snapshotReview,
     provenanceRequirements,
@@ -779,11 +976,12 @@ function buildIdentifierRenameCutoverSnapshot(input: {
   renameMap: IdentifierRenameMapping[];
   hitsByCategory: IdentifierRenameCategorySummary[];
   cutoverCategoryChecklist: IdentifierRenameCutoverPlan["cutoverCategoryChecklist"];
+  cutoverRunbook: IdentifierRenameCutoverPlan["cutoverRunbook"];
   verificationCommandMatrix: IdentifierRenameCutoverPlan["verificationCommandMatrix"];
   stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"];
   freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"];
   provenanceRequirements: IdentifierRenameCutoverPlan["provenanceRequirements"];
-  sourceLedgerCheckedDate: string | null;
+  sourceLedgerFreshness: IdentifierRenameSourceLedgerFreshness;
 }): IdentifierRenameCutoverSnapshot {
   const blastRadiusDigest = sha256Json({
     tokens: input.audit.tokens,
@@ -805,6 +1003,8 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     cutoverCategoryChecklist: input.cutoverCategoryChecklist,
   });
   const evidenceDigest = sha256Json({
+    sourceLedgerFreshness: input.sourceLedgerFreshness,
+    cutoverRunbook: input.cutoverRunbook,
     verificationCommandMatrix: input.verificationCommandMatrix,
     stateBackupManifest: input.stateBackupManifest,
     freezePolicy: input.freezePolicy,
@@ -814,7 +1014,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     blastRadiusDigest,
     approvalScopeDigest,
     evidenceDigest,
-    sourceLedgerCheckedDate: input.sourceLedgerCheckedDate,
+    sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
     invalidatedBy: input.freezePolicy.reapprovalTriggers,
   };
   return {
@@ -853,18 +1053,77 @@ function buildIdentifierRenameSnapshotReview(
   };
 }
 
-function cutoverSourceLedgerCheckedDate(text: string): string | null {
-  return text.match(/Cutover source ledger \(checked (\d{4}-\d{2}-\d{2})\)/)?.[1] ?? null;
+function buildCutoverSourceLedgerFreshness(root: string): IdentifierRenameSourceLedgerFreshness {
+  const ledgerLabel = "Cutover source ledger" as const;
+  let text = "";
+  try {
+    text = readFileSync(join(root, "docs/process/forward/L08-L14-verification-phase.md"), "utf8");
+  } catch {
+    return {
+      ledgerLabel,
+      checkedDate: null,
+      stale: true,
+      violation: "Cutover source ledger missing source document",
+      maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
+      rowCount: 0,
+      missingRows: [...REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS],
+    };
+  }
+  const checkedDate = sourceLedgerCheckedDate(text, ledgerLabel);
+  const violation =
+    checkedDate === null
+      ? "Cutover source ledger missing checked date"
+      : sourceLedgerCheckedDateViolation(text, ledgerLabel);
+  const ledger = parseCutoverSourceLedger(text);
+  const rowSources = new Set(ledger.rows.map((row) => row.source ?? ""));
+  const missingRows = REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS.filter(
+    (source) => !rowSources.has(source),
+  );
+  return {
+    ledgerLabel,
+    checkedDate,
+    stale: violation !== null || missingRows.length > 0,
+    violation,
+    maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
+    rowCount: ledger.rows.length,
+    missingRows,
+  };
 }
 
-function loadCutoverSourceLedgerCheckedDate(root: string): string | null {
-  try {
-    return cutoverSourceLedgerCheckedDate(
-      readFileSync(join(root, "docs/process/forward/L08-L14-verification-phase.md"), "utf8"),
-    );
-  } catch {
-    return null;
+function parseCutoverSourceLedger(text: string): { rows: Record<string, string>[] } {
+  const lines = text.split(/\r?\n/);
+  const headingPattern = sourceLedgerHeadingPattern("Cutover source ledger");
+  const headingIndex = lines.findIndex((line) => headingPattern.test(line));
+  if (headingIndex < 0) return { rows: [] };
+  const tableLines: string[] = [];
+  for (const line of lines.slice(headingIndex + 1)) {
+    if (line.trim() === "") {
+      if (tableLines.length === 0) continue;
+      break;
+    }
+    if (!line.trim().startsWith("|")) {
+      if (tableLines.length === 0) continue;
+      break;
+    }
+    tableLines.push(line);
   }
+  if (tableLines.length < 2) return { rows: [] };
+  const columns = tableCells(tableLines[0]);
+  return {
+    rows: tableLines.slice(2).map((line) => {
+      const rowCells = tableCells(line);
+      return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
+    }),
+  };
+}
+
+function tableCells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
 }
 
 function sha256Json(value: unknown): string {

@@ -623,11 +623,13 @@ function requiredSupportingPacketSummary(command: string): {
       return {
         schemaVersion: "identifier-rename-cutover-plan.v1",
         matrixField: "verificationCommandMatrix",
-        expectedMatrixCount: 6,
+        expectedMatrixCount: 8,
         requiredReviewFields: [
           "cutoverSnapshot.snapshotId",
           "snapshotReview",
           "cutoverCategoryChecklist",
+          "sourceLedgerFreshness",
+          "cutoverRunbook",
         ],
       };
     case "ut-tdd action-binding approval-packet --json":

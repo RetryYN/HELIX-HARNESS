@@ -156,11 +156,20 @@ Cutover source ledger meaning review uses the same `source_status_delta` / `adop
 or action-binding approval; any source change that affects approval scope, concurrency, rollback, provenance, backup,
 or monitoring routes the cutover PLAN back to `request_runbook_changes` before apply.
 
-`ut-tdd rename plan --json` must also emit `cutoverSnapshot`. `cutoverSnapshot.snapshotId` binds the current blast-radius
-digest, approval scope digest, backup/provenance/monitoring evidence digest, and freeze-policy reapproval triggers. This
-snapshot does not authorize apply; it lets PO/TL compare the approval evidence with the current rename packet and reject
-stale approvals when HEAD, hit set, scope, dry-run, backup, rollback, provenance, monitoring, or quiet-window evidence
-changes.
+`ut-tdd rename plan --json` must also emit `sourceLedgerFreshness`, `cutoverRunbook[]`, `stateBackupManifest[]`,
+`verificationCommandMatrix[]`, and `cutoverSnapshot`. `sourceLedgerFreshness` exposes the Cutover source ledger checked
+date, 90-day freshness result, row count, and required source omissions; stale or incomplete official-source basis routes
+the cutover back to `request_runbook_changes`. `cutoverRunbook[]` is a no-write approval-review runbook with phase,
+command, evidence path, pass criteria, rollback check, and source citation. `stateBackupManifest[]` must include backup
+target pattern, checksum requirement, restore drill requirement, and restore evidence path for harness.db, memory, state,
+logs, handover, provider handover pointer, approval policy, and repo-local hook configs.
+
+`verificationCommandMatrix[]` must separate current `ut-tdd` dist smoke, renamed `helix` dist smoke, and legacy alias
+smoke instead of hiding them under one compiled smoke row. `cutoverSnapshot.snapshotId` binds the current blast-radius
+digest, approval scope digest, source-ledger/runbook/backup/provenance/monitoring evidence digest, and freeze-policy
+reapproval triggers. This snapshot does not authorize apply; it lets PO/TL compare the approval evidence with the current
+rename packet and reject stale approvals when HEAD, hit set, source ledger, scope, dry-run, backup, rollback, provenance,
+monitoring, dist smoke, or quiet-window evidence changes.
 
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
