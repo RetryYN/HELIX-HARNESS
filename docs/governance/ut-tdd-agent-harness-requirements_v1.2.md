@@ -1466,6 +1466,8 @@ name: harness-check
 on:
   pull_request: { types: [opened, synchronize, ready_for_review] }
   push: { branches: [main] }
+permissions:
+  contents: read
 concurrency:
   group: harness-check-${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -1475,6 +1477,8 @@ jobs:
     if: ${{ !github.event.pull_request.draft }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: dorny/paths-filter@v3
         id: f
         with: { filters: "src: ['src/**','tests/**']\ndocs: ['docs/**']" }

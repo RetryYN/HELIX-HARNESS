@@ -149,6 +149,7 @@ export interface ConsumerCiWorkflowContract {
   permissionsRead: boolean;
   tokenWrite: boolean;
   jobOk: boolean;
+  checkoutPersistCredentialsFalse: boolean;
   missingUses: string[];
   unexpectedUses: string[];
   missingRuns: string[];
@@ -179,6 +180,11 @@ export function analyzeConsumerCiWorkflowContract(
     ...requiredRuns.map((run) => ({ key: "run", value: run })),
   ];
   const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
+  const checkoutStep = stepRecords.find((step) => step.uses === "actions/checkout@v4");
+  const checkoutWith = recordFromUnknown(checkoutStep?.with);
+  const checkoutPersistCredentialsFalse =
+    checkoutWith?.["persist-credentials"] === false ||
+    checkoutWith?.["persist-credentials"] === "false";
   const actualUses = stepRecords
     .map((step) => step.uses)
     .filter((use): use is string => typeof use === "string");
@@ -208,6 +214,7 @@ export function analyzeConsumerCiWorkflowContract(
     permissionsRead,
     tokenWrite,
     jobOk: harnessJob?.["runs-on"] === "ubuntu-latest",
+    checkoutPersistCredentialsFalse,
     missingUses,
     unexpectedUses,
     missingRuns,
@@ -226,6 +233,7 @@ export function analyzeConsumerCiWorkflowContract(
       contract.permissionsRead &&
       !contract.tokenWrite &&
       contract.jobOk &&
+      contract.checkoutPersistCredentialsFalse &&
       contract.missingUses.length === 0 &&
       contract.unexpectedUses.length === 0 &&
       contract.missingRuns.length === 0 &&
@@ -1174,7 +1182,7 @@ export function buildConsumerReadinessPlan(input: {
           "consumer package.json に HELIX harness package/bin を解決できる dependency または approved link/install route を追加する",
       },
       requires: [
-        "actions/checkout@v4",
+        "actions/checkout@v4 with persist-credentials=false",
         "oven-sh/setup-bun@v2",
         "bun install --frozen-lockfile",
         "bun run ut-tdd --version",
@@ -1350,9 +1358,9 @@ function buildConsumerArtifactReadinessPlan(
       path: workflowPath,
       ok: hasPath(workflowPath) && workflowContract.ok,
       message:
-        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with checkout, setup-bun, and the fixed package-local HELIX command set",
+        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with checkout credentials disabled, setup-bun, and the fixed package-local HELIX command set",
       evidence:
-        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, setup steps, and command surface",
+        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, checkout credential persistence, setup steps, and command surface",
     },
     ...(codeownersRequired
       ? [

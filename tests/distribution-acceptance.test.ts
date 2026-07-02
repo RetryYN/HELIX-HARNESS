@@ -365,6 +365,8 @@ describe("clean distribution local acceptance smoke", () => {
         );
         expect(workflow).toContain("permissions:");
         expect(workflow).toContain("contents: read");
+        expect(workflow).toContain("uses: actions/checkout@v4");
+        expect(workflow).toContain("persist-credentials: false");
         expect(workflow).toContain("bun run ut-tdd --version");
         expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
         expect(workflow).toContain("bun run ut-tdd status --json");

@@ -456,6 +456,8 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "    runs-on: ubuntu-latest",
     "    steps:",
     "      - uses: actions/checkout@v4",
+    "        with:",
+    "          persist-credentials: false",
     "      - uses: oven-sh/setup-bun@v2",
     "      - run: bun install --frozen-lockfile",
     "      - name: HELIX CLI dependency",
