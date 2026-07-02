@@ -84,6 +84,8 @@ source 名だけでは不可とし、各 row が `sourceUrl` / `sourceCheckedAt`
 `sourceStatusDelta` / `adoptionDecision` / `adoptionDecisionDelta` / `workflowRouteImpact` を持つ。
 source metadata が空、placeholder、未来日、90 日超 stale の場合は activation evidence とみなさず
 fail-close する。
+packet 内の `sourceCheckedAt` は `Version-up source ledger (checked YYYY-MM-DD)` と同じ日付から派生し、
+ledger heading と verification matrix / rehearsal / security checklist の確認日を別々に進めない。
 GitHub Actions を activation/dry-run 経路に使う場合は、`GITHUB_TOKEN` 権限、workflow の least privilege、
 `pull_request_target` の未信頼コード実行リスク、自動 PR 承認リスクを `external_rehearsal_plan` /
 `dry_run_plan` / `activation_provenance_requirements` / `audit_record` に接続し、CI があるだけで安全と読み替えない。

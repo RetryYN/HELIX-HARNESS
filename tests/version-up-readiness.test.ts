@@ -416,7 +416,7 @@ describe("version-up-readiness", () => {
       for (const field of REQUIRED_SOURCE_METADATA_FIELDS) {
         expect(row[field], `${row.check}.${field}`).not.toBe("");
       }
-      expect(row.sourceCheckedAt, row.check).toBe("2026-07-02");
+      expect(row.sourceCheckedAt, row.check).toBe(packet.sourceLedgerFreshness.checkedDate);
     }
     expect(packet.activationReadinessChecks).toEqual(
       expect.arrayContaining([
@@ -527,7 +527,7 @@ describe("version-up-readiness", () => {
           writePolicy: "no-write",
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           latestOfficialStatus: expect.stringContaining("GITHUB_TOKEN least-privilege"),
           sourceStatusDelta: expect.stringContaining("least-privilege"),
           adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
@@ -540,7 +540,7 @@ describe("version-up-readiness", () => {
             "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
           writePolicy: "no-write",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           latestOfficialStatus: expect.stringContaining("latest page is explicitly volatile"),
           sourceStatusDelta: expect.stringContaining("stable baseline remains adopted"),
           adoptionDecision: expect.stringContaining("wstg"),
@@ -559,7 +559,7 @@ describe("version-up-readiness", () => {
           writePolicy: "no-write",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           latestOfficialStatus: expect.stringContaining("availability constraints"),
           sourceStatusDelta: expect.stringContaining("public-repository gated"),
           adoptionDecision: expect.stringContaining("prevent-self-review-check"),
@@ -570,6 +570,7 @@ describe("version-up-readiness", () => {
     );
     for (const row of packet.activationVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(row.sourceCheckedAt, row.phase).toBe(packet.sourceLedgerFreshness.checkedDate);
       expect(row.latestOfficialStatus, row.phase).not.toBe("");
       expect(row.sourceStatusDelta, row.phase).not.toBe("");
       expect(row.adoptionDecision, row.phase).not.toBe("");
@@ -631,13 +632,13 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           surface: "Cloudflare Workers",
           sourceUrl: "https://developers.cloudflare.com/workers/platform/limits/",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           adoptionDecision: "adopt-live-docs-for-worker-budget",
         }),
         expect.objectContaining({
           surface: "Cloudflare D1",
           sourceUrl: "https://developers.cloudflare.com/d1/platform/limits/",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           adoptionDecision: "adopt-live-docs-for-projection-db-budget",
         }),
       ]),
@@ -875,7 +876,7 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           check: "github-actions-least-privilege",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
         }),
         expect.objectContaining({
@@ -1190,6 +1191,15 @@ describe("version-up-readiness", () => {
         ),
       ]),
     );
+    expect(packets[0].externalRehearsalPlan.map((row) => row.sourceCheckedAt)).toEqual(
+      expect.arrayContaining(["2026-01-01"]),
+    );
+    expect(
+      new Set(packets[0].activationVerificationCommandMatrix.map((row) => row.sourceCheckedAt)),
+    ).toEqual(new Set(["2026-01-01"]));
+    expect(
+      new Set(packets[0].securityChecklistPacket.securityChecks.map((row) => row.sourceCheckedAt)),
+    ).toEqual(new Set(["2026-01-01"]));
     expect(packets[0].applyCommandAvailable).toBe(false);
   });
 

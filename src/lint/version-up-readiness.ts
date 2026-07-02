@@ -833,6 +833,20 @@ const VERSION_UP_SOURCE_METADATA = {
   },
 } satisfies Record<string, VerificationSourceMetadataRow>;
 
+type VersionUpSourceMetadata = typeof VERSION_UP_SOURCE_METADATA;
+
+function versionUpSourceMetadataForLedger(
+  sourceLedgerFreshness: VersionUpSourceLedgerFreshness,
+): VersionUpSourceMetadata {
+  const sourceCheckedAt = sourceLedgerFreshness.checkedDate ?? VERSION_UP_SOURCE_CHECKED_AT;
+  return Object.fromEntries(
+    Object.entries(VERSION_UP_SOURCE_METADATA).map(([key, row]) => [
+      key,
+      { ...row, sourceCheckedAt },
+    ]),
+  ) as VersionUpSourceMetadata;
+}
+
 function parsePlan(file: string, content: string): VersionUpReadinessPlan {
   return {
     file,
@@ -1415,48 +1429,49 @@ export function buildVersionUpActivationPacket(
     ...COST_GUARDRAIL_RECORD_FIELDS,
   ]);
   const provenance = recordValues(plan.text, PROVENANCE_RECORD_NAME, [...PROVENANCE_RECORD_FIELDS]);
+  const sourceMetadata = versionUpSourceMetadataForLedger(sourceLedgerFreshness);
   const externalRehearsalPlan: VersionUpActivationPacket["externalRehearsalPlan"] = [
     {
       check: "official_source_basis",
       evidence: externalRehearsal.official_source_basis,
       source: "Version-up source ledger and official provider documentation",
-      ...VERSION_UP_SOURCE_METADATA.sourceLedger,
+      ...sourceMetadata.sourceLedger,
     },
     {
       check: "free_tier_budget_check",
       evidence: externalRehearsal.free_tier_budget_check,
       source: "Cloudflare Pages/Workers/D1/KV official limits",
-      ...VERSION_UP_SOURCE_METADATA.cloudflareWorkers,
+      ...sourceMetadata.cloudflareWorkers,
     },
     {
       check: "webhook_signature_check",
       evidence: externalRehearsal.webhook_signature_check,
       source: "GitHub X-Hub-Signature-256 webhook validation",
-      ...VERSION_UP_SOURCE_METADATA.githubWebhookHmac,
+      ...sourceMetadata.githubWebhookHmac,
     },
     {
       check: "access_control_check",
       evidence: externalRehearsal.access_control_check,
       source: "Cloudflare Access policy testing",
-      ...VERSION_UP_SOURCE_METADATA.cloudflareAccess,
+      ...sourceMetadata.cloudflareAccess,
     },
     {
       check: "no_secret_pii_check",
       evidence: externalRehearsal.no_secret_pii_check,
       source: "projection no-secret/no-PII invariant",
-      ...VERSION_UP_SOURCE_METADATA.localInvariant,
+      ...sourceMetadata.localInvariant,
     },
     {
       check: "no_prod_write_check",
       evidence: externalRehearsal.no_prod_write_check,
       source: "dry-run projection and no-production-write rehearsal",
-      ...VERSION_UP_SOURCE_METADATA.localInvariant,
+      ...sourceMetadata.localInvariant,
     },
     {
       check: "rollback_rehearsal",
       evidence: externalRehearsal.rollback_rehearsal,
       source: "version-up rollback plan",
-      ...VERSION_UP_SOURCE_METADATA.rollbackPlan,
+      ...sourceMetadata.rollbackPlan,
     },
   ];
   const costGuardrailRows: VersionUpActivationPacket["costGuardrails"] = [
@@ -1465,28 +1480,28 @@ export function buildVersionUpActivationPacket(
       freeLimit: costGuardrails.pages_limit,
       activationImpact: "static SPA must remain inside Pages Free deploy/file limits",
       source: "Cloudflare Pages limits",
-      ...VERSION_UP_SOURCE_METADATA.cloudflarePages,
+      ...sourceMetadata.cloudflarePages,
     },
     {
       surface: "Cloudflare Workers",
       freeLimit: costGuardrails.workers_limit,
       activationImpact: "read API and Pages Functions requests share Workers Free daily quota",
       source: "Cloudflare Workers limits",
-      ...VERSION_UP_SOURCE_METADATA.cloudflareWorkers,
+      ...sourceMetadata.cloudflareWorkers,
     },
     {
       surface: "Cloudflare D1",
       freeLimit: costGuardrails.d1_limit,
       activationImpact: "projection DB must fit Free storage/query constraints before activation",
       source: "Cloudflare D1 limits",
-      ...VERSION_UP_SOURCE_METADATA.cloudflareD1,
+      ...sourceMetadata.cloudflareD1,
     },
     {
       surface: "Cloudflare Workers KV",
       freeLimit: costGuardrails.kv_limit,
       activationImpact: "projection cache/write rate must stay inside KV Free limits",
       source: "Cloudflare Workers KV limits",
-      ...VERSION_UP_SOURCE_METADATA.cloudflareKv,
+      ...sourceMetadata.cloudflareKv,
     },
   ];
   const externalBoundaries = EXTERNAL_BOUNDARY_TERMS.filter((term) =>
@@ -1511,6 +1526,7 @@ export function buildVersionUpActivationPacket(
   const activationVerificationCommandMatrix = buildVersionUpActivationVerificationCommandMatrix(
     plan,
     options.currentVersion ?? "0.1.0",
+    sourceMetadata,
   );
   const versionDryRunEvidence = buildVersionUpActivationDryRunEvidence(
     plan,
@@ -1610,7 +1626,7 @@ export function buildVersionUpActivationPacket(
       writePolicy: "no-write",
       sourceCommand: `ut-tdd version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
       activationSnapshot,
-      securityChecks: buildVersionUpSecurityChecks(),
+      securityChecks: buildVersionUpSecurityChecks(sourceMetadata),
       blockedUntil: [
         "securityChecks have concrete evidence paths, audit ids, or reports",
         "external_rehearsal_plan and activation_provenance_requirements cite the same evidence",
@@ -1689,39 +1705,41 @@ export function buildVersionUpSecurityChecklistPacket(
   return packet.securityChecklistPacket;
 }
 
-function buildVersionUpSecurityChecks(): VersionUpSecurityChecklistPacket["securityChecks"] {
+function buildVersionUpSecurityChecks(
+  sourceMetadata: VersionUpSourceMetadata,
+): VersionUpSecurityChecklistPacket["securityChecks"] {
   return [
     {
       check: "github-actions-least-privilege",
       source: "GitHub Actions secure use",
-      ...VERSION_UP_SOURCE_METADATA.githubActionsSecurity,
+      ...sourceMetadata.githubActionsSecurity,
       requiredEvidence:
         "workflow permissions are least-privilege and GITHUB_TOKEN write permissions are not granted by default",
     },
     {
       check: "pull-request-target-risk-review",
       source: "GitHub Actions secure use",
-      ...VERSION_UP_SOURCE_METADATA.githubActionsPullRequestTarget,
+      ...sourceMetadata.githubActionsPullRequestTarget,
       requiredEvidence:
         "activation workflow does not run untrusted pull_request_target code with secrets or write token",
     },
     {
       check: "webhook-hmac-sha256",
       source: "GitHub webhook HMAC SHA-256",
-      ...VERSION_UP_SOURCE_METADATA.githubWebhookHmac,
+      ...sourceMetadata.githubWebhookHmac,
       requiredEvidence: "staging webhook validates X-Hub-Signature-256 before projection update",
     },
     {
       check: "github-environments-availability",
       source: "GitHub Environments required reviewers",
-      ...VERSION_UP_SOURCE_METADATA.githubEnvironments,
+      ...sourceMetadata.githubEnvironments,
       requiredEvidence:
         "repository visibility, account/org plan, required reviewers, prevent self-review, and environment secrets availability are recorded before relying on GitHub Environments as the approval gate",
     },
     {
       check: "access-control-and-secret-exposure",
       source: "OWASP Web Security Testing Guide",
-      ...VERSION_UP_SOURCE_METADATA.owaspWstg,
+      ...sourceMetadata.owaspWstg,
       requiredEvidence:
         "OWASP-aligned access-control, secret/PII exclusion, and read-only projection checks produce a report or audit id",
     },
@@ -1984,10 +2002,12 @@ function versionUpDryRunTarget(plan: VersionUpReadinessPlan): string {
 function buildVersionUpActivationVerificationCommandMatrix(
   plan: VersionUpReadinessPlan,
   currentVersion: string,
+  sourceMetadata: VersionUpSourceMetadata,
 ): VersionUpActivationPacket["activationVerificationCommandMatrix"] {
   const dryRunTarget = versionUpDryRunTarget(plan);
   const dryRunTargetResolved = parseSemver(dryRunTarget) !== null;
   const dryRunCommand = buildVersionUpDryRunReviewCommand(currentVersion, dryRunTarget);
+  const sourceCheckedAt = sourceMetadata.sourceLedger.sourceCheckedAt;
   return [
     {
       phase: "activation-packet-baseline",
@@ -1998,7 +2018,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "activation packet JSON attached to the version-up activation review",
       source: "HELIX version-up activation packet contract",
       sourceUrl: "docs/process/modes/version-up.md",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus: "local HELIX workflow contract current at HEAD",
       sourceStatusDelta: "none; local version-up contract reviewed against current HEAD",
       adoptionDecision: "adopt-current-version-up-contract-for-plan-only-activation-review",
@@ -2018,7 +2038,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
         : "version-up dry-run JSON showing target is not SemVer and activation remains parked",
       source: "Semantic Versioning 2.0.0",
       sourceUrl: "https://semver.org/",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus:
         "SemVer 2.0.0 official specification page remains the adopted compatibility contract",
       sourceStatusDelta: "none; SemVer 2.0.0 remains the current official compatibility source",
@@ -2035,7 +2055,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence:
         "artifact paths, audit ids, digests, logs, or reports referenced by external_rehearsal_plan",
       source: "GitHub Actions secure use and pull_request_target guidance",
-      ...VERSION_UP_SOURCE_METADATA.githubActionsSecurity,
+      ...sourceMetadata.githubActionsSecurity,
     },
     {
       phase: "security-testing",
@@ -2046,7 +2066,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence:
         "security test report or audit record linked from activation_provenance_requirements",
       source: "OWASP Web Security Testing Guide",
-      ...VERSION_UP_SOURCE_METADATA.owaspWstg,
+      ...sourceMetadata.owaspWstg,
     },
     {
       phase: "state-and-doctor",
@@ -2057,7 +2077,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "db rebuild and doctor output",
       source: "HELIX state projection and doctor gate",
       sourceUrl: "docs/adr/ADR-007-harness-db-sqlite-projection.md",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus: "local HELIX state projection contract current at HEAD",
       sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
       adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",
@@ -2073,7 +2093,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       source: "HELIX version-up regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus: "local HELIX L7 unit oracle current at HEAD",
       sourceStatusDelta: "none; local version-up regression oracle reviewed against current HEAD",
       adoptionDecision: "adopt-targeted-regression-before-activation-review",
@@ -2088,7 +2108,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus: "repository AGENTS test rules current at HEAD",
       sourceStatusDelta: "none; repository static gate policy reviewed against current HEAD",
       adoptionDecision: "adopt-static-gates-before-activation-review",
@@ -2103,7 +2123,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus: "local HELIX full regression policy current at HEAD",
       sourceStatusDelta: "none; local full regression policy reviewed against current HEAD",
       adoptionDecision: "adopt-full-regression-before-any-future-activation-apply-route",
@@ -2120,7 +2140,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
       source: "GitHub Environments required reviewers",
       sourceUrl:
         "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
-      sourceCheckedAt: VERSION_UP_SOURCE_CHECKED_AT,
+      sourceCheckedAt,
       latestOfficialStatus:
         "GitHub environments required reviewers remain live official approval gate guidance with public/private repository and plan availability constraints",
       sourceStatusDelta:
