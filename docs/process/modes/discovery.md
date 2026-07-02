@@ -89,9 +89,10 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 
 `s4_decision_record` は `decision_outcome` の代替ではない。S4 で PO が `decision_outcome` を記録した後に
 terminal status / Forward merge / Reverse fullback へ進める。
-S4 review material は prose-only claim では足りない。`verified_evidence` は test path、実行 command、PLAN ID、
-artifact/audit/report/log path、URL、hash のいずれかへ接続し、`external_source_basis` は公式 source、repo doc path、
-PLAN ID、URL のいずれかを含む。pending S3/S4 の `route_impact` は confirmed / rejected / pivot の三分岐を
+S4 review material は prose-only claim では足りない。`verified_evidence` は実行済み test/review command、
+test path、artifact/audit/evidence/report/log path、run/workflow/job id、または hash へ接続する。
+URL、repo doc path、PLAN ID だけの source 参照は `external_source_basis` としては有効だが、
+実行済み検証証跡ではないため `verified_evidence` 単独では通さない。pending S3/S4 の `route_impact` は confirmed / rejected / pivot の三分岐を
 同時に示す。S4 `decision_outcome=confirmed` 後の `forward_route` は Forward / Reverse へ進む具体 target であり、
 `PLAN-DISCOVERY-*` は follow-up PoC / pivot route としてのみ扱い、confirmed の昇格先にはしない。
 S4 が `confirmed` の場合でも、要求意味が増えたときは `semantic_feature_frontier_record` を

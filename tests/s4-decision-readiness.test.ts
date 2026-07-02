@@ -292,6 +292,53 @@ describe("S4 decision readiness", () => {
     );
   });
 
+  it("fails S4 verified_evidence that only cites a source URL or docs path", () => {
+    for (const [label, verifiedEvidence] of [
+      ["url-only", "https://scrumguides.org/scrum-guide.html"],
+      ["docs-only", "docs/process/modes/discovery.md"],
+      ["plan-only", "PLAN-DISCOVERY-900"],
+    ] as const) {
+      const base = input();
+      const plan = {
+        ...base.plans[0],
+        plan_id: `PLAN-DISCOVERY-903-${label}`,
+        text: base.plans[0].text.replace(
+          "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+          `- verified_evidence: ${verifiedEvidence}`,
+        ),
+      };
+
+      const result = analyzeS4DecisionReadiness(input({ plans: [plan] }));
+
+      expect(result.ok, label).toBe(false);
+      expect(result.violations, label).toContainEqual({
+        subject: `PLAN-DISCOVERY-903-${label}`,
+        reason: "verified_evidence must cite concrete test/review evidence locator or command",
+      });
+    }
+  });
+
+  it("keeps source URL and docs path valid for external_source_basis only", () => {
+    for (const [label, externalSourceBasis] of [
+      ["url", "https://scrumguides.org/scrum-guide.html"],
+      ["docs", "docs/process/modes/discovery.md"],
+      ["plan", "PLAN-DISCOVERY-900"],
+    ] as const) {
+      const base = input();
+      const plan = {
+        ...base.plans[0],
+        text: base.plans[0].text.replace(
+          "- external_source_basis: docs/process/modes/discovery.md",
+          `- external_source_basis: ${externalSourceBasis}`,
+        ),
+      };
+
+      const result = analyzeS4DecisionReadiness(input({ plans: [plan] }));
+
+      expect(result.ok, label).toBe(true);
+    }
+  });
+
   it("U-DECISIONREC-013: emits a non-destructive S4 decision packet with verification commands for S3 pending PoC plans", () => {
     const packets = buildS4DecisionPackets(input());
     expect(packets).toHaveLength(1);

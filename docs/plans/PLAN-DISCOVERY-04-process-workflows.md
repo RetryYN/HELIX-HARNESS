@@ -38,7 +38,7 @@ s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-02 S4 process workflow decision)
 - decision_basis: docs/process Forward/modes/gates definitions could be written and dogfooded, with gaps captured for Reverse normalization.
-- verified_evidence: PLAN-DISCOVERY-04 S2/S3 dogfood record and PLAN-REVERSE-01 process-docs R0-R4.
+- verified_evidence: PLAN-DISCOVERY-04 S2/S3 dogfood record and PLAN-REVERSE-01 process-docs R0-R4; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
 - stakeholder_review_or_proxy: code-reviewer/pmo-sonnet review noted in Step 5 and PO S4 routing decision.
 - acceptance_gap: V1-V7/V8+ gaps required Reverse fullback rather than direct Forward freeze.
 - unresolved_risk: future process changes must update concept/requirements before docs/process mirrors.

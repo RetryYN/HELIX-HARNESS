@@ -63,7 +63,7 @@ s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-26 version-up mode request/adoption)
 - decision_basis: version-up mode separated future committed work from plain draft/archived/add-feature and was validated by status/outstanding and forward-convergence behavior.
-- verified_evidence: review_evidence green_commands, PLAN-DISCOVERY-09 §4 ACs, PLAN-L7-211-version-up-readiness-gate, and PLAN-REVERSE-140.
+- verified_evidence: review_evidence green_commands, PLAN-DISCOVERY-09 §4 ACs, PLAN-L7-211-version-up-readiness-gate, and PLAN-REVERSE-140; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
 - stakeholder_review_or_proxy: Codex/gpt-5.5 cross-runtime TL review recorded in review_evidence.
 - acceptance_gap: PLAN-L7-146 remains parked and requires future activation/action-binding approval; this is preserved as an explicit blocker, not hidden completion.
 - unresolved_risk: future activation touching infra/auth/secrets must remain human-approved with dry-run/rollback evidence.

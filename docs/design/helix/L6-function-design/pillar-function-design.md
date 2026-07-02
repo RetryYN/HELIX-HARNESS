@@ -77,6 +77,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
   進めない。packet は `s4_decision_record` と、同一 PLAN が承認境界を持つ場合の
   `action_binding_approval_record` の `recordTemplates[]` を返し、text surface も `record-template` 行を出す。S4 終端判断の `forward_route` は `Forward` / `Reverse` / `正本化` の抽象説明だけでは不足とし、PLAN 識別子、`docs/...` パス、または L1/L3-L6 の具体的な合流層を含む場合だけ具体昇格先とみなす。これにより S3 検証証跡を「意味上どこへ降ろすか」の設計判断なしに confirmed へ読み替えない。
+  `verified_evidence` は source URL / repo doc / PLAN ID 単独では足りず、実行済み test/review command、
+  test path、artifact/audit/evidence/report/log path、run/workflow/job id、または hash へ接続する場合だけ
+  S4 判断用の検証証跡とみなす。source 根拠だけを示す値は `external_source_basis` に分離する。
   text surface は evidence check 件数、outcome route 件数、verification command 件数と、
   checked/adoption/status delta/route impact/writePolicy/command 付き `verification-source:` 行を出す。
   `decisionVerificationCommandMatrix[]` は共通 source metadata validator により、未来日・90 日超 stale・

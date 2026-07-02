@@ -40,7 +40,7 @@ s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (S4 result recorded 2026-06-01)
 - decision_basis: roster module core was validated by S2/S3 spike and the throwaway spike path was intentionally redesigned into Forward design.
-- verified_evidence: PLAN-DISCOVERY-02 §5 S2/S3 verification; PLAN-L5-05-roster and PLAN-L4-11-roster carry the confirmed design.
+- verified_evidence: PLAN-DISCOVERY-02 §5 S2/S3 verification; PLAN-L5-05-roster and PLAN-L4-11-roster carry the confirmed design; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
 - stakeholder_review_or_proxy: PM/PO S4 record in §4 and Codex review fallback noted in §5.
 - acceptance_gap: spike quality was not accepted as product implementation; redesign path closed the gap.
 - unresolved_risk: parse zod hardening and agent directory path resolution were carried to L6/L7 instead of hidden in the PoC.

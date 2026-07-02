@@ -31,7 +31,7 @@ s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO/PM S4 close (2026-06-24)
 - decision_basis: Codex hook feasibility was confirmed and false parity caveats were corrected before adoption.
-- verified_evidence: PLAN-DISCOVERY-06 §5/§5.1, PLAN-L7-139-codex-hook-adapter, and PLAN-REVERSE-139-codex-hook-adapter.
+- verified_evidence: PLAN-DISCOVERY-06 §5/§5.1, PLAN-L7-139-codex-hook-adapter, and PLAN-REVERSE-139-codex-hook-adapter; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
 - stakeholder_review_or_proxy: cross-runtime Codex/gpt-5.5 review recorded in §5.1.
 - acceptance_gap: Codex hosted/API tool surfaces remain outside direct repo hook enforcement and are documented as a scope boundary.
 - unresolved_risk: Hosted/API tool surfaces remain outside direct repo hook enforcement and require explicit preflight; Codex spawn_agent guard parity is no longer deferred after PLAN-L7-139 continuation.

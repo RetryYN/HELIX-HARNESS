@@ -33,7 +33,7 @@ s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-04 directive: "3件の問題を解消して")
 - decision_basis: L1-L5 dogfood and RECOVERY/Reverse cycles showed the workflow metamodel can run without schema-breaking gaps.
-- verified_evidence: PLAN-DISCOVERY-01 §7.1 S3 verify plus PLAN-REVERSE-08 R0-R4 normalization evidence.
+- verified_evidence: PLAN-DISCOVERY-01 §7.1 S3 verify plus PLAN-REVERSE-08 R0-R4 normalization evidence; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
 - stakeholder_review_or_proxy: PO directive plus intra-runtime review recorded in PLAN-REVERSE-08.
 - acceptance_gap: none for metamodel adoption; remaining language/detail gaps were routed through PLAN-REVERSE-08 and later Forward PLANs.
 - unresolved_risk: future mode-specific gaps must still enter Discovery/Reverse instead of bypassing Forward.

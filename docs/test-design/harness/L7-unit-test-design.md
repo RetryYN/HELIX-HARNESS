@@ -150,6 +150,9 @@ U-DECISIONREC-011 も `sourceLedgerFreshness.checkedDate` を `verificationComma
 Cutover source ledger heading と matrix metadata の確認日が新旧混在した rename/cutover packet を許可しない。
 U-DECISIONREC-013 も `S4 decision source ledger` の checked date を `decisionVerificationCommandMatrix[]` の
 `sourceCheckedAt` へ伝播し、ledger heading と S4 packet metadata の確認日が新旧混在した decision packet を許可しない。
+U-DECISIONREC-013 は `verified_evidence` と `external_source_basis` の concrete 判定を分離し、URL / repo doc path /
+PLAN ID だけの source 参照を `verified_evidence` としては fail-close する。実行済み test/review command、test path、
+artifact/audit/evidence/report/log path、run/workflow/job id、hash のいずれかに接続しない S4 判断材料は検証証跡にしない。
 
 2026-07-02 追補: U-DECISIONREC-002 は、activation packet の `activationDecision.activation_snapshot_id`、
 `activationSnapshot.headSha`、`HEAD` 差分による `snapshotId` 変化、`HEAD` 不明時 blocker、source ledger 確認日

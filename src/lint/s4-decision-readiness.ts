@@ -328,7 +328,7 @@ function validateS4ReviewMaterial(plan: S4DecisionPlan): S4DecisionViolation[] {
     }
   }
 
-  if (!hasConcreteS4EvidenceLocator(verifiedEvidence)) {
+  if (!hasConcreteS4VerifiedEvidence(verifiedEvidence)) {
     violations.push({
       subject: plan.plan_id,
       reason: "verified_evidence must cite concrete test/review evidence locator or command",
@@ -552,6 +552,23 @@ function hasConcreteS4EvidenceLocator(value: string): boolean {
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
     /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
+  ].some((pattern) => pattern.test(normalized));
+}
+
+function hasConcreteS4VerifiedEvidence(value: string): boolean {
+  const normalized = value.trim();
+  if (!normalized) return false;
+  return [
+    /sha256:[a-f0-9]{64}/i,
+    /\b(bun|npm|pnpm|yarn)\s+(run|test|check|exec)\b/i,
+    /\bgit\s+(diff|status|show|ls|check|log)\b/i,
+    /\but-tdd\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
+    /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
+    /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
+    /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
+    /\b(?:\.ut-tdd|\.helix)\/(?:evidence|audit|handover)\/\S+/i,
+    /\btests\/\S+\.(?:test|spec)\.(?:ts|tsx|js|jsx)\b/i,
+    /\S+\.(?:log|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));
 }
 
