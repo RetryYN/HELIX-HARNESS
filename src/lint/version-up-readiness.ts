@@ -239,6 +239,7 @@ const MODE_DOC_MARKERS = [
   "Release Please",
   "GitHub Rulesets",
   "GitHub Merge Queue",
+  "GitHub Actions secure use",
   "Cloudflare Pages limits",
   "Cloudflare Workers limits",
   "Cloudflare D1 limits",
@@ -438,6 +439,7 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Release Please",
   "GitHub Rulesets",
   "GitHub Merge Queue",
+  "GitHub Actions secure use",
   "Cloudflare Pages limits",
   "Cloudflare Workers limits",
   "Cloudflare D1 limits",
@@ -498,6 +500,20 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
       "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
     ],
     fieldImpacts: ["activation_route", "review_trigger", "activation_dependency"],
+  },
+  "GitHub Actions secure use": {
+    urls: [
+      "https://docs.github.com/en/actions/reference/security/secure-use",
+      "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+      "https://docs.github.com/actions/reference/authentication-in-a-workflow",
+    ],
+    fieldImpacts: [
+      "approval_scope",
+      "dry_run_plan",
+      "external_rehearsal_plan",
+      "activation_provenance_requirements",
+      "audit_record",
+    ],
   },
   "Cloudflare Pages limits": {
     urls: ["https://developers.cloudflare.com/pages/platform/limits/"],
@@ -1275,14 +1291,13 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "external-rehearsal",
       command:
-        "record staging/dry-run evidence for official_source_basis, free_tier_budget_check, webhook_signature_check, access_control_check, no_secret_pii_check, no_prod_write_check, and rollback_rehearsal",
+        "record staging/dry-run evidence for official_source_basis, GitHub Actions permissions/pull_request_target safety, free_tier_budget_check, webhook_signature_check, access_control_check, no_secret_pii_check, no_prod_write_check, and rollback_rehearsal",
       expected:
-        "proves external activation is budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
+        "proves external activation is least-privilege, avoids unsafe pull_request_target execution, budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
       evidence:
         "artifact paths, audit ids, digests, logs, or reports referenced by external_rehearsal_plan",
-      source: "GitHub Actions workflow and deployment protection rules",
-      sourceUrl:
-        "https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions",
+      source: "GitHub Actions secure use and pull_request_target guidance",
+      sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
     },
     {
       phase: "security-testing",

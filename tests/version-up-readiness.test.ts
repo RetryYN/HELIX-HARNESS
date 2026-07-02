@@ -100,6 +100,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| Release Please | https://github.com/googleapis/release-please | live official repository docs | live official repository docs | compare-only-until-release-ADR | release PR candidate | review_trigger activation_dependency release automation ADR |",
       "| GitHub Rulesets | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets | live GitHub docs | live official GitHub docs | adopt-live-docs-for-gated-push-design | gated push | approval_scope activation_dependency |",
       "| GitHub Merge Queue | https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue | live GitHub docs | live official GitHub docs | adopt-live-docs-for-merge-readiness | merge readiness | activation_route review_trigger activation_dependency |",
+      "| GitHub Actions secure use | https://docs.github.com/en/actions/reference/security/secure-use / https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target / https://docs.github.com/actions/reference/authentication-in-a-workflow | live GitHub Actions security docs | live official GitHub docs | adopt-live-docs-for-activation-workflow-hardening | activation workflow hardening | approval_scope dry_run_plan external_rehearsal_plan activation_provenance_requirements audit_record |",
       "| Cloudflare Pages limits | https://developers.cloudflare.com/pages/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-static-hosting-budget | $0 static SPA budget check | cost_guardrails pages_limit external_rehearsal_plan |",
       "| Cloudflare Workers limits | https://developers.cloudflare.com/workers/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-worker-budget | read API request budget | cost_guardrails workers_limit external_rehearsal_plan |",
       "| Cloudflare D1 limits | https://developers.cloudflare.com/d1/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-db-budget | projection DB budget | cost_guardrails d1_limit external_rehearsal_plan |",
@@ -409,8 +410,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "external-rehearsal",
           evidence: expect.stringContaining("external_rehearsal_plan"),
-          sourceUrl:
-            "https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions",
+          sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
         }),
         expect.objectContaining({
           phase: "security-testing",
@@ -486,7 +486,7 @@ describe("version-up-readiness", () => {
       checkedDate: "2026-06-30",
       stale: false,
       maxAgeDays: 90,
-      rowCount: 15,
+      rowCount: 16,
       missingRows: [],
     });
     expect(packet.relatedDecisionPackets).toEqual(
@@ -975,6 +975,7 @@ describe("version-up-readiness", () => {
       .filter(
         (line) =>
           !line.startsWith("| Cloudflare") &&
+          !line.startsWith("| GitHub Actions secure use |") &&
           !line.startsWith("| GitHub webhook HMAC SHA-256 |") &&
           !line.startsWith("| OWASP Web Security Testing Guide |"),
       )
@@ -993,6 +994,7 @@ describe("version-up-readiness", () => {
         "Cloudflare D1 limits",
         "Cloudflare Workers KV limits",
         "Cloudflare Access policies",
+        "GitHub Actions secure use",
         "GitHub webhook HMAC SHA-256",
         "OWASP Web Security Testing Guide",
       ]),
@@ -1329,7 +1331,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
       stale: false,
-      rowCount: 15,
+      rowCount: 16,
       missingRows: [],
     });
 
@@ -1350,6 +1352,9 @@ describe("version-up-readiness", () => {
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
     expect(text).toContain("verification-commands=9");
+    expect(text).toContain(
+      "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use",
+    );
     expect(text).toContain(
       "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/",
     );
