@@ -1,0 +1,177 @@
+/**
+ * git-command-guard — hybrid runtime で相手 runtime の commit / branch 履歴を壊す
+ * destructive git 操作を PreToolUse(Bash/exec_command) で止める。
+ *
+ * IMP-142 の再発防止: `git reset` / destructive checkout / revert / force-push を
+ * 「手順を知っているはず」の運用規律に任せず、理由付き override なしでは fail-close する。
+ * 判定は保守的に command token ベース。通常の status/diff/log/commit/push と checkout -b は通す。
+ */
+
+export type GitCommandGuardReason =
+  | "no-command"
+  | "non-git"
+  | "safe-git"
+  | "bypass"
+  | "destructive-git";
+
+export interface GitCommandGuardInput {
+  command: string;
+  bypass?: boolean;
+}
+
+export interface GitCommandGuardResult {
+  decision: "pass" | "block";
+  reason: GitCommandGuardReason;
+  destructiveOperation?: string;
+  message: string;
+}
+
+function shellTokens(command: string): string[] {
+  const tokens: string[] = [];
+  let current = "";
+  let quote: "'" | '"' | null = null;
+  let escaped = false;
+  for (const ch of command) {
+    if (escaped) {
+      current += ch;
+      escaped = false;
+      continue;
+    }
+    if (ch === "\\" && quote !== "'") {
+      escaped = true;
+      continue;
+    }
+    if ((ch === "'" || ch === '"') && quote === null) {
+      quote = ch;
+      continue;
+    }
+    if (ch === quote) {
+      quote = null;
+      continue;
+    }
+    if (/\s/.test(ch) && quote === null) {
+      if (current) {
+        tokens.push(current);
+        current = "";
+      }
+      continue;
+    }
+    current += ch;
+  }
+  if (current) tokens.push(current);
+  return tokens;
+}
+
+function gitSlices(tokens: string[]): string[][] {
+  const slices: string[][] = [];
+  for (let i = 0; i < tokens.length; i++) {
+    if (tokens[i] !== "git") continue;
+    const slice: string[] = [];
+    for (let j = i + 1; j < tokens.length; j++) {
+      const token = tokens[j] ?? "";
+      if (/^(?:&&|\|\||;|\|)$/.test(token)) break;
+      slice.push(token);
+    }
+    slices.push(slice);
+  }
+  return slices;
+}
+
+function withoutGlobalOptions(args: string[]): string[] {
+  const out = [...args];
+  while (out.length > 0) {
+    const head = out[0] ?? "";
+    if (head === "-C" || head === "-c") {
+      out.splice(0, 2);
+      continue;
+    }
+    if (head.startsWith("--git-dir=") || head.startsWith("--work-tree=")) {
+      out.shift();
+      continue;
+    }
+    if (head === "--git-dir" || head === "--work-tree") {
+      out.splice(0, 2);
+      continue;
+    }
+    break;
+  }
+  return out;
+}
+
+function hasAny(args: string[], flags: string[]): boolean {
+  const set = new Set(args);
+  return flags.some((flag) => set.has(flag));
+}
+
+function destructiveOperation(args: string[]): string | null {
+  const normalized = withoutGlobalOptions(args);
+  const sub = normalized[0];
+  const rest = normalized.slice(1);
+  if (!sub) return null;
+  if (sub === "reset") return "git reset";
+  if (sub === "revert") return "git revert";
+  if (
+    sub === "push" &&
+    rest.some((arg) => arg === "--force" || arg === "-f" || arg.startsWith("--force-with-lease"))
+  ) {
+    return "git push --force";
+  }
+  if (sub === "checkout") {
+    if (hasAny(rest, ["-b", "-B", "--orphan", "--detach"])) return null;
+    return "git checkout";
+  }
+  if (sub === "restore") return "git restore";
+  return null;
+}
+
+export function extractShellCommand(toolInput: unknown): string {
+  if (typeof toolInput === "string") return toolInput;
+  if (!toolInput || typeof toolInput !== "object") return "";
+  const obj = toolInput as Record<string, unknown>;
+  for (const key of ["command", "cmd", "script"]) {
+    const value = obj[key];
+    if (typeof value === "string") return value;
+  }
+  return "";
+}
+
+export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommandGuardResult {
+  const command = input.command.trim();
+  if (!command) return { decision: "pass", reason: "no-command", message: "" };
+  if (input.bypass) return { decision: "pass", reason: "bypass", message: "" };
+  const tokens = shellTokens(command);
+  const slices = gitSlices(tokens);
+  if (slices.length === 0) return { decision: "pass", reason: "non-git", message: "" };
+  for (const slice of slices) {
+    const op = destructiveOperation(slice);
+    if (!op) continue;
+    return {
+      decision: "block",
+      reason: "destructive-git",
+      destructiveOperation: op,
+      message:
+        `[ut-tdd-git-command-guard] BLOCK: ${op} は hybrid runtime の相手 commit / branch を破壊し得るため、理由付き承認なしに実行できません。` +
+        " 先に git status / git log / git reflog で出所を確認し、相手 runtime の commit を残したまま上に積んでください。" +
+        " 意図的に実行する場合のみ UT_TDD_ALLOW_DESTRUCTIVE_GIT=1 または .ut-tdd/state/destructive-git-override に理由を記録してください。",
+    };
+  }
+  return { decision: "pass", reason: "safe-git", message: "" };
+}
+
+export interface DestructiveGitOverride {
+  bypass: boolean;
+  source: "env" | "marker" | "none";
+  reason: string;
+}
+
+export function resolveDestructiveGitOverride(opts: {
+  env?: string;
+  markerReason?: string | null;
+}): DestructiveGitOverride {
+  if (opts.env === "1") {
+    return { bypass: true, source: "env", reason: "UT_TDD_ALLOW_DESTRUCTIVE_GIT=1" };
+  }
+  const reason = (opts.markerReason ?? "").trim();
+  if (reason) return { bypass: true, source: "marker", reason };
+  return { bypass: false, source: "none", reason: "" };
+}

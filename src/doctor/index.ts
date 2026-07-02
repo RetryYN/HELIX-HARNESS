@@ -2013,10 +2013,11 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const claudeOk =
     claudeSettings.includes("ut-tdd hook agent-guard") &&
     claudeSettings.includes("ut-tdd hook work-guard") &&
+    claudeSettings.includes("ut-tdd hook git-command-guard") &&
     claudeSettings.includes("ut-tdd session start");
   messages.push(
     claudeOk
-      ? "doctor: consumer-claude-adapter - OK (work/agent guard and session hook present)"
+      ? "doctor: consumer-claude-adapter - OK (work/agent/git guard and session hook present)"
       : "doctor: consumer-claude-adapter - violation: Claude hooks baseline incomplete",
   );
 
@@ -2026,10 +2027,11 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     codexConfig.includes("[features]") &&
     codexConfig.includes("hooks = true") &&
     codexHooks.includes("ut-tdd hook work-guard") &&
+    codexHooks.includes("ut-tdd hook git-command-guard") &&
     codexHooks.includes("ut-tdd hook agent-guard");
   messages.push(
     codexOk
-      ? "doctor: consumer-codex-adapter - OK (hooks enabled; work/agent guard present)"
+      ? "doctor: consumer-codex-adapter - OK (hooks enabled; work/agent/git guard present)"
       : "doctor: consumer-codex-adapter - violation: Codex hooks/config baseline incomplete",
   );
 

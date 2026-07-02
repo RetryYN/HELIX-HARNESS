@@ -169,6 +169,9 @@ Codex tool names differ from Claude, so matchers are mapped (not copied):
   `write_file`.
 - `Bash` (Claude) -> `exec_command|local_shell` (Codex) for `PostToolUse`
   session logging.
+- `Bash` (Claude) -> `exec_command|local_shell` (Codex) for `PreToolUse`
+  `git-command-guard`, which blocks destructive git reset/restore/revert/checkout/force-push
+  unless an explicit one-shot override reason is recorded.
 - `subagent-stop` (`SubagentStop`) has **no Codex surface** and is genuinely N/A:
   codex.exe 0.128.0 exposes only `PreToolUse` / `PostToolUse` / `SessionStart` /
   `Stop` / `UserPromptSubmit` hook events (no `SubagentStop`).
@@ -217,6 +220,10 @@ calls.
   (Claude) の commit を `reset` / `revert` / `checkout` / force で破棄・デグレさせない。
   working tree の foreign 変更は既定で「相手ランタイムの正規作業」とみなす。判断不能なら
   revert せず PO 確認。
+- `git reset` / destructive `git checkout` / `git restore` / `git revert` / force-push は
+  `git-command-guard` の block 対象。どうしても必要な場合だけ、`git log` / `git reflog` 確認後に
+  `UT_TDD_ALLOW_DESTRUCTIVE_GIT=1` または `.ut-tdd/state/destructive-git-override` へ理由を残して
+  one-shot override する。
 - 自分の成果は相手の commit の上に積み、相手のファイルに触れない。
 - **commit 直前に `git status` + `git diff --staged` (or `ut-tdd review --staged` /
   `--uncommitted`)** で、authored した意図ファイルのみが staged であることを検証する。

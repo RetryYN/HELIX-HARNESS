@@ -15,6 +15,7 @@ import {
 import { REQUIRED as CLAUDE_REQUIRED } from "../src/lint/project-hook";
 import { analyzeReadability } from "../src/lint/readability";
 import { evaluateAgentGuard } from "../src/runtime/agent-guard";
+import { evaluateGitCommandGuard } from "../src/runtime/git-command-guard";
 import { evaluateWorkGuard } from "../src/runtime/work-guard";
 
 /** .codex/hooks.json と同型の有効な Codex adapter fixture (mutate して fail-close を検証)。 */
@@ -36,6 +37,16 @@ function validCodexHooks(): Record<string, unknown> {
           matcher: "apply_patch|write_file",
           hooks: [
             { type: "command", command: "bun .claude/hooks/work-guard.ts", blockOnFailure: true },
+          ],
+        },
+        {
+          matcher: "exec_command|local_shell",
+          hooks: [
+            {
+              type: "command",
+              command: "bun .claude/hooks/git-command-guard.ts",
+              blockOnFailure: true,
+            },
           ],
         },
       ],
@@ -76,6 +87,7 @@ function preToolEntryByMatcher(
 
 const assertExternalizedCodexRequiredPolicy = (): void => {
   expect(CODEX_REQUIRED_POLICY.map((hook) => hook.id)).toContain("work-guard");
+  expect(CODEX_REQUIRED_POLICY.map((hook) => hook.id)).toContain("git-command-guard");
   expect(CODEX_REQUIRED_POLICY).toEqual(CODEX_REQUIRED);
 };
 
@@ -234,6 +246,9 @@ describe("codex-hook-adapter — Codex hooks.json parity (PLAN-L7-139)", () => {
         { allowRaw: false, resolveAgentFamily: () => "missing" },
       ).code,
     ).toBe(2);
+    // git-command-guard も shell surface の共有ガードとして、Codex exec_command payload の
+    // destructive git 操作を block する。
+    expect(evaluateGitCommandGuard({ command: "git reset --hard HEAD" }).decision).toBe("block");
   });
 
   it("U-CXHOOK-014: 非 command type の hook では guard 充足とみなさない (type==='command' 必須)", () => {

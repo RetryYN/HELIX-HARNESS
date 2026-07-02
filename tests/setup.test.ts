@@ -324,6 +324,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook agent-guard");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
+      expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook git-command-guard");
       expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
         "consumer-safe な HELIX subagent",
       );
@@ -402,6 +403,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
             ],
           }),
+          expect.objectContaining({
+            matcher: "Bash",
+            hooks: [
+              expect.objectContaining({
+                command: "ut-tdd hook git-command-guard",
+                blockOnFailure: true,
+              }),
+            ],
+          }),
         ]),
       );
       expect(claude.hooks.SubagentStop[0].hooks[0].command).toBe("ut-tdd hook subagent-stop");
@@ -420,6 +430,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             matcher: "apply_patch|write_file",
             hooks: [
               expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+            ],
+          }),
+          expect.objectContaining({
+            matcher: "exec_command|local_shell",
+            hooks: [
+              expect.objectContaining({
+                command: "ut-tdd hook git-command-guard",
+                blockOnFailure: true,
+              }),
             ],
           }),
         ]),
@@ -446,6 +465,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             matcher: "apply_patch|write_file",
             hooks: [
               expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+            ],
+          }),
+          expect.objectContaining({
+            matcher: "exec_command|local_shell",
+            hooks: [
+              expect.objectContaining({
+                command: "ut-tdd hook git-command-guard",
+                blockOnFailure: true,
+              }),
             ],
           }),
         ]),

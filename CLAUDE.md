@@ -170,6 +170,10 @@ V-model artifacts must stay separated:
   (相手ランタイムの成果) が無いか調べる。**他ランタイムの commit を `reset` / `revert` / `checkout` /
   force で破棄・デグレさせない**。working tree の foreign 変更は **既定で「相手ランタイムの正規作業」と
   みなす** (overstep と決めつけない)。判断が付かなければ revert せず PO へ確認する。
+- `git reset` / destructive `git checkout` / `git restore` / `git revert` / force-push は
+  `git-command-guard` の block 対象。必要な場合は `git log` / `git reflog` 確認後に
+  `UT_TDD_ALLOW_DESTRUCTIVE_GIT=1` または `.ut-tdd/state/destructive-git-override` へ理由を残す。
+  marker は one-shot で消費され、audit log に残る。
 - 自分の成果は **相手の commit の上に積む** (rebase/stack)。相手のファイルには触れず、自分の意図ファイル
   のみを path 明示で stage する (`git add <path>`、`git add -A` / `git add .` 禁止)。
 - **commit 直前に `git status` + `git diff --staged` (or `ut-tdd review --staged` / `--uncommitted`) を

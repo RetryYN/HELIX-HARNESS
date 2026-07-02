@@ -25,6 +25,18 @@
             "blockOnFailure": true
           }
         ]
+      },
+      {
+        "matcher": "exec_command|local_shell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun .claude/hooks/git-command-guard.ts",
+            "timeout": 5,
+            "statusMessage": "git-command-guard: block destructive git operations unless explicitly bypassed (Codex parity)",
+            "blockOnFailure": true
+          }
+        ]
       }
     ],
     "SessionStart": [

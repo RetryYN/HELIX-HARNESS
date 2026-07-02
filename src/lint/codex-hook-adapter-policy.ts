@@ -27,6 +27,13 @@ export const CODEX_REQUIRED = [
     commandParts: [".claude/hooks/work-guard.ts"],
     blockOnFailure: true,
   },
+  {
+    id: "git-command-guard",
+    event: "PreToolUse",
+    matcher: "exec_command|local_shell",
+    commandParts: [".claude/hooks/git-command-guard.ts"],
+    blockOnFailure: true,
+  },
   { id: "session-start", event: "SessionStart", commandParts: ["src/cli.ts", "session start"] },
   {
     id: "post-tool-use",

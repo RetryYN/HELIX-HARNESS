@@ -24,6 +24,18 @@
             "statusMessage": "work-guard: foreign edit protection"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ut-tdd hook git-command-guard",
+            "timeout": 5,
+            "blockOnFailure": true,
+            "statusMessage": "git-command-guard: destructive git operation protection"
+          }
+        ]
       }
     ],
     "SessionStart": [

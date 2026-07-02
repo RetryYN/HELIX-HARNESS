@@ -11,6 +11,7 @@
  *   - 編集系: Claude `Edit|Write|MultiEdit` → Codex `apply_patch|write_file`
  *     (`apply_patch` は freeform で file_path を持たず、パスは patch 本文に埋まる。work-guard 側で抽出)
  *   - shell : Claude `Bash`               → Codex `exec_command|local_shell`
+ *     (`git-command-guard` は PreToolUse、session-log は PostToolUse で同じ shell matcher を使う)
  *   - Codex に `SubagentStop` event は無い          → subagent-stop は Codex で真の N/A
  *   - `spawn_agent` 等の sub-agent ツール族は実在    → Claude agent-guard entrypoint を
  *     Codex matcher `spawn_agent|spawn_agents_on_csv` へ配線する (N/A ではない)
@@ -241,7 +242,7 @@ export function loadCodexHookAdapterInput(repoRoot: string): {
 export function codexHookAdapterMessages(result: CodexHookResult): string[] {
   if (result.ok) {
     return [
-      `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=spawn_agent|apply_patch|write_file, subagent-stop=N/A)`,
+      `codex-hook-adapter - OK (checked=${result.checked}, .codex/hooks.json shares Claude guard entrypoints; matcher=spawn_agent|apply_patch|write_file|exec_command|local_shell, subagent-stop=N/A)`,
       "codex-hook-adapter - OK (.codex/config.toml enables [features].hooks=true for direct Codex CLI/IDE sessions)",
       "codex-hook-adapter - note: .codex/hooks.json covers direct Codex CLI/IDE sessions only; hosted API/developer apply_patch tools do not execute through the Codex hook engine and are not repo-enforceable",
     ];

@@ -12,6 +12,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  rmSync,
   statSync,
   writeFileSync,
 } from "node:fs";
@@ -147,6 +148,11 @@ import {
   recordFeedback,
   scanDanglingStops,
 } from "./runtime/forced-stop";
+import {
+  evaluateGitCommandGuard,
+  extractShellCommand,
+  resolveDestructiveGitOverride,
+} from "./runtime/git-command-guard";
 import {
   requireHostedSurfacePreflight,
   validateAdapterParityMap,
@@ -423,6 +429,17 @@ function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undef
     }
   }
   return touched;
+}
+
+function readOneShotMarker(path: string): string | null {
+  try {
+    if (!existsSync(path)) return null;
+    const reason = readFileSync(path, "utf8");
+    rmSync(path, { force: true });
+    return reason;
+  } catch {
+    return null;
+  }
 }
 
 function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[] {
@@ -2247,6 +2264,52 @@ hook
       );
     }
     process.exitCode = decision.code;
+  });
+
+hook
+  .command("git-command-guard")
+  .description("block destructive git history/worktree operations before shell execution")
+  .action(() => {
+    const input = readStrictHookInput();
+    if (input === null) {
+      process.stderr.write(
+        "[ut-tdd-git-command-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
+      );
+      process.exitCode = 2;
+      return;
+    }
+    const override = resolveDestructiveGitOverride({
+      env: process.env.UT_TDD_ALLOW_DESTRUCTIVE_GIT,
+      markerReason: readOneShotMarker(
+        join(process.cwd(), ".ut-tdd", "state", "destructive-git-override"),
+      ),
+    });
+    const result = evaluateGitCommandGuard({
+      command: extractShellCommand(input.tool_input),
+      bypass: override.bypass,
+    });
+    if (override.source === "marker") {
+      const auditPath = join(process.cwd(), ".ut-tdd", "logs", "destructive-git-overrides.jsonl");
+      try {
+        mkdirSync(dirname(auditPath), { recursive: true });
+        appendFileSync(
+          auditPath,
+          `${JSON.stringify({
+            ts: new Date().toISOString(),
+            command: extractShellCommand(input.tool_input),
+            reason: override.reason,
+            sessionId: (input as { session_id?: string }).session_id ?? "ut-tdd-cli",
+          })}\n`,
+        );
+      } catch {
+        // Override audit is best-effort; the explicit marker reason is still required.
+      }
+    }
+    if (result.message) process.stderr.write(`${result.message}\n`);
+    if (result.decision === "pass") {
+      process.stdout.write(`git-command-guard: pass (${result.reason})\n`);
+    }
+    process.exitCode = result.decision === "block" ? 2 : 0;
   });
 
 hook
