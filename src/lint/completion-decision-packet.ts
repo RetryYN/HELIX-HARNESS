@@ -747,6 +747,7 @@ function requiredSupportingPacketSummary(command: string): {
           "decisionEvidenceChecklist",
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
+          "provenanceRequirements",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };

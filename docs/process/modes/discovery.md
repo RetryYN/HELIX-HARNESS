@@ -89,6 +89,11 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 
 `s4_decision_record` は `decision_outcome` の代替ではない。S4 で PO が `decision_outcome` を記録した後に
 terminal status / Forward merge / Reverse fullback へ進める。
+S4 review material は prose-only claim では足りない。`verified_evidence` は test path、実行 command、PLAN ID、
+artifact/audit/report/log path、URL、hash のいずれかへ接続し、`external_source_basis` は公式 source、repo doc path、
+PLAN ID、URL のいずれかを含む。pending S3/S4 の `route_impact` は confirmed / rejected / pivot の三分岐を
+同時に示す。S4 `decision_outcome=confirmed` 後の `forward_route` は Forward / Reverse へ進む具体 target であり、
+`PLAN-DISCOVERY-*` は follow-up PoC / pivot route としてのみ扱い、confirmed の昇格先にはしない。
 S4 が `confirmed` の場合でも、要求意味が増えたときは `semantic_feature_frontier_record` を
 `confirmed_current` へ更新し、L3 requirement / acceptance、L4 boundary、L5 contract、L6 function、L7 implementation
 のどこまで降ろすかを `downstream_route` に分解する。S4 前の S3 evidence は `frontier_pending_decision` のままである。
@@ -107,7 +112,8 @@ packet 自体は `generatedAt`、`sourceCommand=ut-tdd s4 decision-packet --json
 `freshness` (`decision-packet-freshness.v1`) を持つ。古い packet の転記や stale な判断材料を
 S4 決定に流用しない。
 
-packet は `decisionEvidenceChecklist` / `outcomeRouteMatrix` / `provenanceRequirements` も出力する。
+packet は `decisionEvidenceChecklist` / `outcomeRouteMatrix` / `semanticFeatureFrontierRecord` /
+`provenanceRequirements` も出力する。
 PO は verified evidence、stakeholder/proxy review、acceptance gap、unresolved risk、external source basis、
 route impact を同時に見て、`confirmed` / `rejected` / `pivot` の各 outcome が terminal status、Forward /
 Reverse / backlog route、追加 fullback にどう影響するかを判断する。これにより S3 green やレビュー済みという

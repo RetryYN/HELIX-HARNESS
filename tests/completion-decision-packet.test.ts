@@ -63,6 +63,7 @@ describe("completion decision packet lint", () => {
           "decisionEvidenceChecklist",
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
+          "provenanceRequirements",
         ]),
         requiredMatrixFields: expect.arrayContaining([
           "sourceCheckedAt",
@@ -108,6 +109,11 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=outcomeRouteMatrix",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=provenanceRequirements",
         },
         {
           reason: "invalid_supporting_packet_summary",

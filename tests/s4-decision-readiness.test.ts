@@ -83,7 +83,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
           "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
           "- decision_owner: PO",
           "- decision_basis: verified evidence",
-          "- verified_evidence: targeted tests and review evidence",
+          "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
           "- stakeholder_review_or_proxy: PO/TL proxy review",
           "- acceptance_gap: none",
           "- unresolved_risk: none",
@@ -150,7 +150,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -192,7 +192,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -218,6 +218,76 @@ describe("S4 decision readiness", () => {
         "structured source_status_delta must not be placeholder",
         "structured adoption_decision_delta must not be placeholder",
         "structured workflow_route_impact must not be placeholder",
+      ]),
+    );
+  });
+
+  it("fails S4 records whose review material is prose-only instead of concrete evidence", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-903.md",
+            plan_id: "PLAN-DISCOVERY-903",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            decisionOutcome: null,
+            text: [
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: looks fine",
+              "- stakeholder_review_or_proxy: ok",
+              "- acceptance_gap: good",
+              "- unresolved_risk: done",
+              "- external_source_basis: looks fine",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
+              "- route_impact: confirmed only",
+              "- forward_route: confirmed route to L3 Forward design",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening or reject/pivot rationale",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "verified_evidence must not be a prose-only approval claim",
+        },
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "verified_evidence must cite concrete test/review evidence locator or command",
+        },
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "external_source_basis must cite concrete source, PLAN, docs path, or URL",
+        },
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "stakeholder_review_or_proxy must name the reviewer or proxy review basis",
+        },
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "route_impact must cover confirmed, rejected, and pivot outcomes",
+        },
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "acceptance_gap must describe a concrete gap or explicit none/zero gap",
+        },
+        {
+          subject: "PLAN-DISCOVERY-903",
+          reason: "unresolved_risk must describe residual risk or explicit none/zero risk",
+        },
       ]),
     );
   });
@@ -661,7 +731,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `ship_anyway`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -730,7 +800,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -787,7 +857,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -814,6 +884,50 @@ describe("S4 decision readiness", () => {
     });
   });
 
+  it("fails confirmed S4 decisions whose forward_route points back to a Discovery plan", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-907D.md",
+            plan_id: "PLAN-DISCOVERY-907D",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "confirmed",
+            text: [
+              "decision_outcome: confirmed",
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
+              "- route_impact: confirmed routes forward",
+              "- forward_route: PLAN-DISCOVERY-999-followup-spike",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-907D",
+      reason:
+        "confirmed decision requires forward_route to name a concrete Forward/Reverse promotion target",
+    });
+  });
+
   it("fails terminal S4 decisions whose allowed_outcome still lists the enum instead of the selected outcome", () => {
     const result = analyzeS4DecisionReadiness(
       input({
@@ -831,7 +945,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed` / `rejected` / `pivot`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -875,7 +989,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `confirmed`",
               "- decision_owner: PO",
               "- decision_basis: verified evidence",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: none",
               "- unresolved_risk: none",
@@ -914,7 +1028,7 @@ describe("S4 decision readiness", () => {
               "- allowed_outcome: `rejected`",
               "- decision_owner: PO",
               "- decision_basis: acceptance gap remains",
-              "- verified_evidence: targeted tests and review evidence",
+              "- verified_evidence: tests/s4-decision-readiness.test.ts and bun test tests/s4-decision-readiness.test.ts",
               "- stakeholder_review_or_proxy: PO/TL proxy review",
               "- acceptance_gap: mandatory scenario failed",
               "- unresolved_risk: unbounded implementation risk",

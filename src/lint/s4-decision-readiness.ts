@@ -295,8 +295,94 @@ function validateS4DecisionRecord(
     }
   }
   if (missingFields.length === 0 && !outcomeViolation) {
+    violations.push(...validateS4ReviewMaterial(plan));
+  }
+  if (missingFields.length === 0 && !outcomeViolation) {
     violations.push(...validateSelectedOutcomeSemantics(plan));
   }
+  return violations;
+}
+
+function validateS4ReviewMaterial(plan: S4DecisionPlan): S4DecisionViolation[] {
+  const violations: S4DecisionViolation[] = [];
+  const verifiedEvidence = s4RecordField(plan, "verified_evidence");
+  const stakeholderReview = s4RecordField(plan, "stakeholder_review_or_proxy");
+  const acceptanceGap = s4RecordField(plan, "acceptance_gap");
+  const unresolvedRisk = s4RecordField(plan, "unresolved_risk");
+  const externalSourceBasis = s4RecordField(plan, "external_source_basis");
+  const routeImpact = s4RecordField(plan, "route_impact");
+
+  for (const [field, value] of [
+    ["verified_evidence", verifiedEvidence],
+    ["stakeholder_review_or_proxy", stakeholderReview],
+    ["acceptance_gap", acceptanceGap],
+    ["unresolved_risk", unresolvedRisk],
+    ["external_source_basis", externalSourceBasis],
+    ["route_impact", routeImpact],
+  ] as const) {
+    if (isWeakS4ReviewMaterial(value)) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: `${field} must not be a prose-only approval claim`,
+      });
+    }
+  }
+
+  if (!hasConcreteS4EvidenceLocator(verifiedEvidence)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "verified_evidence must cite concrete test/review evidence locator or command",
+    });
+  }
+  if (!hasConcreteS4EvidenceLocator(externalSourceBasis)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "external_source_basis must cite concrete source, PLAN, docs path, or URL",
+    });
+  }
+  if (
+    !mentions(stakeholderReview, ["review", "S4 record", "verification"]) ||
+    !mentions(stakeholderReview, [
+      "PO",
+      "TL",
+      "PM",
+      "Codex",
+      "proxy",
+      "reviewer",
+      "code-reviewer",
+      "human",
+      "人間",
+    ])
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "stakeholder_review_or_proxy must name the reviewer or proxy review basis",
+    });
+  }
+  if (
+    !plan.decisionOutcome &&
+    (!mentions(routeImpact, ["confirmed"]) ||
+      !mentions(routeImpact, ["rejected", "reject"]) ||
+      !mentions(routeImpact, ["pivot"]))
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "route_impact must cover confirmed, rejected, and pivot outcomes",
+    });
+  }
+  if (!describesGapOrExplicitNone(acceptanceGap)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "acceptance_gap must describe a concrete gap or explicit none/zero gap",
+    });
+  }
+  if (!describesRiskOrExplicitNone(unresolvedRisk)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: "unresolved_risk must describe residual risk or explicit none/zero risk",
+    });
+  }
+
   return violations;
 }
 
@@ -443,9 +529,86 @@ function mentions(value: string, needles: string[]): boolean {
   return needles.some((needle) => normalized.includes(needle.toLowerCase()));
 }
 
+function isWeakS4ReviewMaterial(value: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized) return true;
+  return /^(looks fine|ok|okay|good|done|pass|passed|green|済み|問題なし|大丈夫)[。.!！]*$/i.test(
+    normalized,
+  );
+}
+
+function hasConcreteS4EvidenceLocator(value: string): boolean {
+  const normalized = value.trim();
+  if (!normalized) return false;
+  return [
+    /sha256:[a-f0-9]{64}/i,
+    /\bPLAN-(?:L\d*|REVERSE|DISCOVERY)-[A-Za-z0-9-]+\b/i,
+    /\b[A-Z]{1,8}-\d{2,}\b/,
+    /\b(bun|npm|pnpm|yarn|git)\s+(run|test|diff|status|show|ls|check|exec)\b/i,
+    /\but-tdd\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
+    /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
+    /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
+    /https?:\/\/\S+/i,
+    /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
+    /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
+    /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
+  ].some((pattern) => pattern.test(normalized));
+}
+
+function describesGapOrExplicitNone(value: string): boolean {
+  return mentions(value, [
+    "none",
+    "zero",
+    "no gap",
+    "gap",
+    "follow-up",
+    "remained",
+    "remain",
+    "outside",
+    "boundary",
+    "scope",
+    "AC-",
+    "L1",
+    "L3",
+    "L4",
+    "L5",
+    "L6",
+    "L7",
+    "なし",
+    "未充足",
+    "充足",
+  ]);
+}
+
+function describesRiskOrExplicitNone(value: string): boolean {
+  return mentions(value, [
+    "none",
+    "zero",
+    "no risk",
+    "risk",
+    "residual",
+    "unresolved",
+    "future",
+    "debt",
+    "deferred",
+    "require",
+    "requires",
+    "must",
+    "hardening",
+    "carried",
+    "security",
+    "approval",
+    "CSP",
+    "secret",
+    "auth",
+    "なし",
+    "リスク",
+  ]);
+}
+
 function mentionsConcretePromotionTarget(value: string): boolean {
   return (
-    /\bPLAN-(?:L|REVERSE|DISCOVERY)-/i.test(value) ||
+    /\bPLAN-(?:L\d+|REVERSE)-/i.test(value) ||
     /\bL(?:1|3|4|5|6)\b/.test(value) ||
     /docs[\\/](?:design|plans|process|test-design)[\\/]/i.test(value)
   );

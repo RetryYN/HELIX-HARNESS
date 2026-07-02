@@ -105,6 +105,14 @@ G-SF `semantic_feature_frontier_record` への写像:
   の関係を `relatedDecisionPackets[]` に保持し、承認待ちを rename 完了や apply 許可に読み替えない。
 
 この record が更新されていない要求修正は、doctor green や selected test green があっても G3/G7/accept の完了根拠にしない。
+S4 / completion packet は意味証跡も同じ frontier 契約で扱う。S4 `verified_evidence` / `external_source_basis` は
+test path、実行 command、repo doc path、PLAN ID、URL、hash などの具体 locator を持つ必要があり、`looks fine` / `ok`
+のような prose-only review は完了・昇格材料にしない。pending S4 の `route_impact` は confirmed / rejected / pivot
+の三分岐を同時に示し、confirmed 後の `forward_route` は L1/L3-L6、`PLAN-L*`、`PLAN-REVERSE-*`、
+または `docs/design|test-design|process|plans/...` の具体 target を指す。`PLAN-DISCOVERY-*` は follow-up PoC /
+pivot route としてのみ扱い、confirmed の Forward/Reverse 昇格先にしない。completion decision packet が S4
+supporting summary を表示する場合は `decisionEvidenceChecklist`、`outcomeRouteMatrix`、
+`semanticFeatureFrontierRecord`、`provenanceRequirements` をすべて review field として保持する。
 
 ## §1 FR/AC 一覧
 

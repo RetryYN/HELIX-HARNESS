@@ -845,6 +845,7 @@ function supportingPacketSummaryForCommand(
           "decisionEvidenceChecklist",
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
+          "provenanceRequirements",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute: "review S4 decision evidence, outcome routes, and verification commands",

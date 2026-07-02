@@ -846,6 +846,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
               "decisionEvidenceChecklist",
               "outcomeRouteMatrix",
               "semanticFeatureFrontierRecord",
+              "provenanceRequirements",
             ],
             requiredMatrixFields: expect.arrayContaining([
               "sourceCheckedAt",
