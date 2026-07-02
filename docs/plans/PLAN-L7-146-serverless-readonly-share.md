@@ -51,6 +51,9 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
   2026-07-01 continuation: packet は `externalRehearsalPlan` / `costGuardrails` / `provenanceRequirements` も出し、
   Cloudflare free-tier、GitHub HMAC、Cloudflare Access、secret/PII 非投影、no-prod-write、rollback、approval/audit
   evidence を PO/TL が承認前に審査できるようにする。
+  2026-07-03 continuation: `activationVerificationCommandMatrix` の `version-dry-run` は `future` のままでも
+  `ut-tdd version-up dry-run --current v0.1.0 --target future --json` を出し、`semverChange=invalid` / `ok=false` /
+  `blockedReasons` を no-write evidence として残す。activation packet baseline へ差し替えて dry-run surface を省略しない。
 
 activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`

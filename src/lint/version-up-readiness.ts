@@ -1682,16 +1682,14 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "version-dry-run",
-      command: dryRunTargetResolved
-        ? `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`
-        : `bun run src/cli.ts version-up activation-packet --plan ${plan.plan_id} --json`,
+      command: `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`,
       writePolicy: "no-write",
       expected: dryRunTargetResolved
         ? "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority"
         : "keeps version dry-run blocked until target_version_or_release_trigger contains a concrete SemVer tag",
       evidence: dryRunTargetResolved
         ? "version-up dry-run JSON for the reviewed current/target release trigger"
-        : "activation packet JSON showing release trigger is still unresolved and activation remains parked",
+        : "version-up dry-run JSON showing target is not SemVer and activation remains parked",
       source: "Semantic Versioning 2.0.0",
       sourceUrl: "https://semver.org/",
       sourceCheckedAt: "2026-07-02",

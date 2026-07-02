@@ -145,6 +145,10 @@ doctor の `version-up-readiness` は matrix command と `writePolicy` が allow
 `approval-packet` phase は `ut-tdd action-binding approval-packet --plan <PLAN> --json` を指し、
 version-up activation の承認材料を別 PLAN の action-binding packet と取り違えない。`--plan` が欠落した
 approval packet command は activation verification matrix の承認済み surface として扱わない。
+`version-dry-run` phase は、`target_version_or_release_trigger` が `future` などの抽象 trigger のままでも
+`ut-tdd version-up dry-run --current <current> --target future --json` を指す。dry-run 自体が
+`semverChange=invalid` / `ok=false` / `blockedReasons` を返すことで、抽象 trigger が activation に進めないことを
+no-write evidence として残す。activation packet baseline への差し替えで dry-run surface を省略してはならない。
 
 ### 4.1.2 version upgrade dry-run surface
 
@@ -256,7 +260,8 @@ version-up の機能一覧は、単に `version_target` を受理することで
      `version-up rehearsal` / `version-up security-checklist` の no-write packet-only CLI で実行可能性を示し、
      doctor が matrix command availability を検査する。
 12b. **release/environment availability gate**: `version-up dry-run` は `releaseTagExists` /
-     `releaseTriggerResolved` を返し、target release tag 未解決なら `ok=false` にする。approval packet /
+     `releaseTriggerResolved` を返し、target release tag 未解決または `future` などの非 SemVer target なら
+     `ok=false` にする。approval packet /
      security checklist は GitHub Environments required reviewers の repo visibility / account or org plan /
      prevent self-review / environment secrets availability を承認前 evidence とし、CI workflow や environment 名の
      存在だけで approval boundary とみなさない。

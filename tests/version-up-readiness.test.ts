@@ -486,10 +486,10 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command:
-            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
+          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           writePolicy: "no-write",
           expected: expect.stringContaining("concrete SemVer tag"),
+          evidence: expect.stringContaining("target is not SemVer"),
         }),
         expect.objectContaining({
           phase: "external-rehearsal",
@@ -2063,9 +2063,9 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "version-dry-run",
-          command:
-            "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+          command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           expected: expect.stringContaining("concrete SemVer tag"),
+          evidence: expect.stringContaining("target is not SemVer"),
         }),
         expect.objectContaining({
           phase: "external-rehearsal",
@@ -2228,6 +2228,9 @@ describe("version-up-readiness", () => {
     expect(text).toContain(
       "writePolicy=no-write command=bun run src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
     );
+    expect(text).toContain(
+      "writePolicy=no-write command=bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+    );
     expect(text).toContain("adoption=adopt-live-docs-for-least-privilege-token-scope");
     expect(text).toContain("statusDelta=none; official GitHub Actions security guidance");
     expect(text).toContain("adoptionDelta=none; keep activation workflow hardening");
@@ -2271,6 +2274,42 @@ describe("version-up-readiness", () => {
       releaseTriggerResolved: false,
     });
     expect(plan.blockedReasons).toContain("target release tag must exist before activation");
+
+    const unresolvedRaw = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "dry-run",
+        "--current",
+        "v0.1.0",
+        "--target",
+        "future",
+        "--json",
+      ],
+      { encoding: "utf8" },
+    );
+    const unresolved = JSON.parse(unresolvedRaw);
+    expect(unresolved).toMatchObject({
+      schemaVersion: "version-up-dry-run-plan.v1",
+      ok: false,
+      planOnly: true,
+      applyCommandAvailable: false,
+      semverChange: "invalid",
+      normalizedTarget: null,
+      releaseTagRef: null,
+      releaseTriggerResolved: false,
+    });
+    expect(unresolved.blockedReasons).toContain("current and target versions must be SemVer");
+    expect(unresolved.migrationPlan).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          step: "compare_current_target",
+          command: "ut-tdd version-up dry-run --current v0.1.0 --target future --json",
+        }),
+      ]),
+    );
   });
 
   it("resolves Pack release tags through an explicit remote in the CLI dry-run", () => {
