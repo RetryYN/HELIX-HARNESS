@@ -20,6 +20,7 @@ export interface SemanticFrontierConsistencyResult {
   expectedCount: number;
   liveRecordCount: number;
   expectedConfirmedCount: number;
+  liveConfirmedCount: number;
   l3RequirementRowCount: number;
   l12AcceptanceRowCount: number;
   violations: string[];
@@ -97,10 +98,10 @@ const EXPECTED_CONFIRMED_MEANINGS = [
   },
   {
     featureId: "pair_agent_tdd_route",
-    meaningMarker: "pair-agent TDD route",
+    meaningMarker: "agent/tool/runtime guardrail + pair-agent TDD route",
     l1Parents: ["HBR-P2", "HBR-P3", "HBR-P4"],
-    l3Ids: ["HR-FR-P2-04"],
-    l12Ids: ["HAT-P2-04"],
+    l3Ids: ["HR-FR-P2-01", "HR-FR-P2-02", "HR-FR-P2-03", "HR-FR-P2-04"],
+    l12Ids: ["HAT-P2-01", "HAT-P2-02", "HAT-P2-03", "HAT-P2-04"],
   },
   {
     featureId: "strong_verification",
@@ -256,6 +257,91 @@ export function analyzeSemanticFrontierConsistency(
       }
     }
   }
+  const expectedConfirmedL3Ids = new Set<string>(
+    EXPECTED_CONFIRMED_MEANINGS.flatMap((item) => [...item.l3Ids]),
+  );
+  for (const id of l3RequirementRows) {
+    if (!expectedConfirmedL3Ids.has(id)) {
+      violations.push(
+        `${id}: L3 requirement row is not covered by confirmed_current meaning catalog`,
+      );
+    }
+  }
+  const expectedConfirmedL12Ids = new Set<string>(
+    EXPECTED_CONFIRMED_MEANINGS.flatMap((item) => [...item.l12Ids]),
+  );
+  for (const id of l12AcceptanceRows) {
+    if (!expectedConfirmedL12Ids.has(id)) {
+      violations.push(
+        `${id}: L12 acceptance row is not covered by confirmed_current meaning catalog`,
+      );
+    }
+  }
+
+  const liveConfirmedRecords = input.outstanding.confirmedCurrentMeaningRecords ?? [];
+  const expectedConfirmedIds = new Set<string>(
+    EXPECTED_CONFIRMED_MEANINGS.map((item) => item.featureId),
+  );
+  for (const record of liveConfirmedRecords) {
+    if (!expectedConfirmedIds.has(record.featureId)) {
+      violations.push(
+        `${record.featureId}: live confirmed_current meaning record is not in L3 expected confirmed set`,
+      );
+    }
+  }
+  if (liveConfirmedRecords.length !== EXPECTED_CONFIRMED_MEANINGS.length) {
+    violations.push(
+      `live confirmed_current meaning record count ${liveConfirmedRecords.length} expected ${EXPECTED_CONFIRMED_MEANINGS.length}`,
+    );
+  }
+  for (const expected of EXPECTED_CONFIRMED_MEANINGS) {
+    const record = liveConfirmedRecords.find(
+      (candidate) => candidate.featureId === expected.featureId,
+    );
+    if (!record) {
+      violations.push(`${expected.featureId}: live confirmed_current meaning record missing`);
+      continue;
+    }
+    if (record.classification !== "confirmed_current") {
+      violations.push(
+        `${expected.featureId}: confirmed classification ${record.classification} expected confirmed_current`,
+      );
+    }
+    if (record.completionBoundary !== "downstream_evidence_required") {
+      violations.push(
+        `${expected.featureId}: completionBoundary must remain downstream_evidence_required`,
+      );
+    }
+    for (const parent of expected.l1Parents) {
+      if (!record.l1Parents.includes(parent)) {
+        violations.push(`${expected.featureId}: live confirmed record missing L1 parent ${parent}`);
+      }
+    }
+    for (const id of expected.l3Ids) {
+      if (!record.l3RequirementIds.includes(id)) {
+        violations.push(
+          `${expected.featureId}: live confirmed record missing L3 requirement ${id}`,
+        );
+      }
+    }
+    for (const id of expected.l12Ids) {
+      if (!record.l12AcceptanceIds.includes(id)) {
+        violations.push(
+          `${expected.featureId}: live confirmed record missing L12 acceptance ${id}`,
+        );
+      }
+    }
+    if (!record.sourcePaths.includes(L3_PATH)) {
+      violations.push(`${expected.featureId}: confirmed sourcePaths must include ${L3_PATH}`);
+    }
+    if (
+      !record.sourcePaths.includes("docs/test-design/helix/L3-pillar-acceptance-test-design.md")
+    ) {
+      violations.push(
+        `${expected.featureId}: confirmed sourcePaths must include L12 acceptance source`,
+      );
+    }
+  }
 
   for (const [docName, text] of [
     ["L3", input.l3Text],
@@ -329,6 +415,7 @@ export function analyzeSemanticFrontierConsistency(
     expectedCount: EXPECTED_FRONTIERS.length,
     liveRecordCount: liveRecords.length,
     expectedConfirmedCount: EXPECTED_CONFIRMED_MEANINGS.length,
+    liveConfirmedCount: liveConfirmedRecords.length,
     l3RequirementRowCount: l3RequirementRows.length,
     l12AcceptanceRowCount: l12AcceptanceRows.length,
     violations,
@@ -361,7 +448,7 @@ export function semanticFrontierConsistencyMessages(
 ): string[] {
   if (result.ok) {
     return [
-      `semantic-frontier-consistency - OK (expected=${result.expectedCount}, live=${result.liveRecordCount})`,
+      `semantic-frontier-consistency - OK (frontier=${result.liveRecordCount}/${result.expectedCount}, confirmed=${result.liveConfirmedCount}/${result.expectedConfirmedCount})`,
     ];
   }
   const detail = result.violations.slice(0, 8).join("; ");

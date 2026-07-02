@@ -98,6 +98,12 @@ export interface OutstandingWork {
   items: OutstandingItem[];
   /** 要求修正 / parked / cutover を「意味単位」で閉じないための G-SF record。 */
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
+  /**
+   * L3 confirmed 43 件を意味単位で束ねた live catalog。
+   * frontier ではないため semanticFeatureFrontierRecords には混ぜず、L3/L12 trace の
+   * 機械照合用に status/handover JSON へ出す。
+   */
+  confirmedCurrentMeaningRecords?: ConfirmedCurrentMeaningRecord[];
   /** 全プログラム完了 claim の可否。doctor green とは別の completion-readiness 判定。 */
   completionReadiness: CompletionReadiness;
 }
@@ -149,6 +155,18 @@ export interface SemanticFeatureFrontierRecord {
   blockers: string[];
   requiredRoute: string;
   reason: string;
+  sourcePaths: string[];
+}
+
+export interface ConfirmedCurrentMeaningRecord {
+  recordName: "confirmed_current_meaning_record";
+  featureId: string;
+  classification: "confirmed_current";
+  meaning: string;
+  l1Parents: string[];
+  l3RequirementIds: string[];
+  l12AcceptanceIds: string[];
+  completionBoundary: "downstream_evidence_required";
   sourcePaths: string[];
 }
 
@@ -361,11 +379,133 @@ export function analyzeOutstandingWork(
     blockersByKind: orderedBlockers,
     items,
     semanticFeatureFrontierRecords: semanticFeatureFrontierRecordsForItems(items),
+    confirmedCurrentMeaningRecords: confirmedCurrentMeaningRecords(),
   };
   return {
     ...base,
     completionReadiness: completionReadinessForOutstanding(base),
   };
+}
+
+function confirmedCurrentMeaningRecords(): ConfirmedCurrentMeaningRecord[] {
+  return [
+    {
+      featureId: "forward_convergence",
+      meaning: "逸脱受け止めと Forward 収束",
+      l1Parents: ["HBR-P0"],
+      l3RequirementIds: ["HR-FR-P0-01", "HR-FR-P0-02"],
+      l12AcceptanceIds: ["HAT-P0-01", "HAT-P0-02"],
+    },
+    {
+      featureId: "continuous_autonomy_version_up",
+      meaning: "連続自律走行 / Scrum 分割 / version-up",
+      l1Parents: ["HBR-P1"],
+      l3RequirementIds: ["HR-FR-P1-01", "HR-FR-P1-02", "HR-FR-P1-03", "HR-FR-P1-04"],
+      l12AcceptanceIds: ["HAT-P1-01", "HAT-P1-02", "HAT-P1-03", "HAT-P1-04"],
+    },
+    {
+      featureId: "pair_agent_tdd_route",
+      meaning: "agent/tool/runtime guardrail + pair-agent TDD route",
+      l1Parents: ["HBR-P2", "HBR-P3", "HBR-P4"],
+      l3RequirementIds: ["HR-FR-P2-01", "HR-FR-P2-02", "HR-FR-P2-03", "HR-FR-P2-04"],
+      l12AcceptanceIds: ["HAT-P2-01", "HAT-P2-02", "HAT-P2-03", "HAT-P2-04"],
+    },
+    {
+      featureId: "strong_verification",
+      meaning: "強い検証 / test-first / 実装精度",
+      l1Parents: ["HBR-P3", "HNFR-P3"],
+      l3RequirementIds: [
+        "HR-FR-P3-01",
+        "HR-FR-P3-02",
+        "HR-NFR-P3-01",
+        "HR-NFR-P3-02",
+        "HR-NFR-P3-03",
+        "HR-NFR-P3-04",
+      ],
+      l12AcceptanceIds: [
+        "HAT-P3-01",
+        "HAT-P3-02",
+        "HAT-N3-01",
+        "HAT-N3-02",
+        "HAT-N3-03",
+        "HAT-N3-04",
+      ],
+    },
+    {
+      featureId: "auto_repair_metrics",
+      meaning: "自動修復 / 計測改善",
+      l1Parents: ["HBR-P4"],
+      l3RequirementIds: ["HR-FR-P4-01", "HR-FR-P4-02", "HR-FR-P4-03"],
+      l12AcceptanceIds: ["HAT-P4-01", "HAT-P4-02", "HAT-P4-03"],
+    },
+    {
+      featureId: "github_setup_release_rename",
+      meaning: "GitHub 自動化 / setup / release / rename",
+      l1Parents: ["HBR-P6"],
+      l3RequirementIds: ["HR-FR-P6-01", "HR-FR-P6-02", "HR-FR-P6-03", "HR-FR-P6-04", "HR-FR-P6-05"],
+      l12AcceptanceIds: ["HAT-P6-01", "HAT-P6-02", "HAT-P6-03", "HAT-P6-04", "HAT-P6-05"],
+    },
+    {
+      featureId: "shared_memory_ddd",
+      meaning: "共有 memory / Glossary / DDD context",
+      l1Parents: ["HBR-P7"],
+      l3RequirementIds: ["HR-FR-P7-01", "HR-FR-P7-02", "HR-FR-P7-03"],
+      l12AcceptanceIds: ["HAT-P7-01", "HAT-P7-02", "HAT-P7-03"],
+    },
+    {
+      featureId: "external_grounding_security",
+      meaning: "外部検索 / skillify / security boundary",
+      l1Parents: ["HBR-P8", "HNFR-P8"],
+      l3RequirementIds: [
+        "HR-FR-P8-01",
+        "HR-FR-P8-02",
+        "HR-FR-P8-03",
+        "HR-FR-P8-04",
+        "HR-NFR-P8-01",
+        "HR-NFR-P8-02",
+        "HR-NFR-P8-03",
+      ],
+      l12AcceptanceIds: [
+        "HAT-P8-01",
+        "HAT-P8-02",
+        "HAT-P8-03",
+        "HAT-P8-04",
+        "HAT-N8-01",
+        "HAT-N8-02",
+        "HAT-N8-03",
+      ],
+    },
+    {
+      featureId: "db_convergence_contract",
+      meaning: "DB 収束 / relation graph / contract ledger",
+      l1Parents: ["HBR-P9"],
+      l3RequirementIds: ["HR-FR-P9-01", "HR-FR-P9-02", "HR-FR-P9-03"],
+      l12AcceptanceIds: ["HAT-P9-01", "HAT-P9-02", "HAT-P9-03"],
+    },
+    {
+      featureId: "context_efficiency",
+      meaning: "context efficiency",
+      l1Parents: ["HNFR-P5"],
+      l3RequirementIds: ["HR-NFR-P5-01", "HR-NFR-P5-02", "HR-NFR-P5-03"],
+      l12AcceptanceIds: ["HAT-N5-01", "HAT-N5-02", "HAT-N5-03"],
+    },
+    {
+      featureId: "adapter_rule_memory_consistency",
+      meaning: "adapter/rule/memory 一貫性",
+      l1Parents: ["HNFR-AC"],
+      l3RequirementIds: ["HR-NFR-AC-01", "HR-NFR-AC-02", "HR-NFR-AC-03"],
+      l12AcceptanceIds: ["HAT-NAC-01", "HAT-NAC-02", "HAT-NAC-03"],
+    },
+  ].map((record) => ({
+    recordName: "confirmed_current_meaning_record" as const,
+    classification: "confirmed_current" as const,
+    completionBoundary: "downstream_evidence_required" as const,
+    sourcePaths: [
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+    ],
+    ...record,
+  }));
 }
 
 function semanticFeatureFrontierRecordsForItems(

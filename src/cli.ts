@@ -4452,7 +4452,7 @@ setupCommand
     }
     for (const row of r.postSetupWorkflow.verificationMatrix) {
       process.stdout.write(
-        `verification-check: ${row.phase} writePolicy=${row.writePolicy} command=${row.command} expected=${row.expected} evidence=${row.evidence}\n`,
+        `verification-check: ${row.phase} availability=${row.availability ?? "-"} requiresMaterializedPaths=${(row.requiresMaterializedPaths ?? []).join(",") || "-"} writePolicy=${row.writePolicy} command=${row.command} expected=${row.expected} evidence=${row.evidence}\n`,
       );
     }
     process.stdout.write(verificationSourceLines(r.postSetupWorkflow.verificationMatrix));

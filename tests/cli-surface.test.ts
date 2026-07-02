@@ -1282,13 +1282,13 @@ describe("L7 CLI surface closure", () => {
       "verification-command: ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     );
     expect(text.stdout).toContain(
-      "verification-check: consumer-doctor writePolicy=no-write command=ut-tdd doctor --profile consumer expected=passes the consumer profile",
+      "verification-check: consumer-doctor availability=post-apply-or-projected requiresMaterializedPaths=AGENTS.md,CLAUDE.md,.claude/CLAUDE.md,.vscode/tasks.json,.vscode/settings.json,.ut-tdd/memory,.ut-tdd/handover,.ut-tdd/evidence,.ut-tdd/teams writePolicy=no-write command=ut-tdd doctor --profile consumer expected=passes the consumer profile",
     );
     expect(text.stdout).toContain(
-      "verification-check: completion-decision-packet writePolicy=no-write command=ut-tdd completion decision-packet --json expected=returns completionStatus=blocked",
+      "verification-check: completion-decision-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd completion decision-packet --json expected=returns completionStatus=blocked",
     );
     expect(text.stdout).toContain(
-      "verification-check: identifier-cutover-packet writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",
+      "verification-check: identifier-cutover-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",
     );
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",

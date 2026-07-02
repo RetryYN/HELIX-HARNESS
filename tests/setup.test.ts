@@ -947,11 +947,25 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd handover status --json",
       "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
+    expect(preview.postSetupWorkflow.dryRunVerificationCommands).toEqual([
+      "ut-tdd setup project --dry-run",
+      "ut-tdd status --json",
+      "ut-tdd setup project --dry-run --json",
+      "ut-tdd completion decision-packet --json",
+      "ut-tdd rename plan --json",
+      "ut-tdd handover status --json",
+    ]);
+    expect(preview.postSetupWorkflow.postApplyVerificationCommands).toEqual([
+      "ut-tdd doctor --profile consumer",
+      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+    ]);
     expect(preview.postSetupWorkflow.verificationMatrix).toEqual([
       expect.objectContaining({
         phase: "setup-dry-run",
         command: "ut-tdd setup project --dry-run",
         writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
         source: "VS Code workspace task contract",
         sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
         sourceCheckedAt: "2026-07-02",
@@ -965,6 +979,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "status-frontier",
         command: "ut-tdd status --json",
         writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
         expected: expect.stringContaining("objective progress"),
         latestOfficialStatus: expect.stringContaining("local HELIX L3"),
       }),
@@ -972,6 +988,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "github-ci-safety",
         command: "ut-tdd setup project --dry-run --json",
         writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
         expected: expect.stringContaining("contents:read permissions"),
         evidence: "setup project JSON attached to the first-run readiness record",
         source: "GitHub Actions secure use and workflow token permissions",
@@ -985,6 +1003,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "completion-decision-packet",
         command: "ut-tdd completion decision-packet --json",
         writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
         expected: expect.stringContaining("completionClaimAllowed=false"),
         evidence: "completion decision packet JSON attached to the first-run readiness record",
         source: "HELIX completion decision packet contract",
@@ -996,6 +1016,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "consumer-doctor",
         command: "ut-tdd doctor --profile consumer",
         writePolicy: "no-write",
+        availability: "post-apply-or-projected",
+        requiresMaterializedPaths: expect.arrayContaining([
+          "AGENTS.md",
+          ".vscode/tasks.json",
+          ".ut-tdd/teams",
+        ]),
         source: "VS Code Workspace Trust and consumer adapter safety contract",
         sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
         sourceCheckedAt: "2026-07-02",
@@ -1009,6 +1035,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "identifier-cutover-packet",
         command: "ut-tdd rename plan --json",
         writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
         expected: expect.stringContaining("blocked_pending_cutover_approval"),
         source: "PLAN-M-02 HELIX identifier rename cutover packet",
         sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
@@ -1019,6 +1047,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         phase: "handover-route",
         command: "ut-tdd handover status --json",
         writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
         evidence: "handover status JSON attached to the first-run readiness record",
       }),
       expect.objectContaining({
@@ -1026,6 +1056,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         command:
           "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         writePolicy: "no-write",
+        availability: "post-apply-or-projected",
+        requiresMaterializedPaths: [".ut-tdd/teams/default-hybrid.yaml"],
         source: "HELIX team definition schema and provider handover contract",
       }),
     ]);
@@ -1035,6 +1067,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           row.latestOfficialStatus &&
           row.sourceStatusDelta &&
           row.writePolicy === "no-write" &&
+          row.availability &&
+          (row.availability === "dry-run-immediate" || row.requiresMaterializedPaths.length > 0) &&
           row.adoptionDecisionDelta &&
           row.workflowRouteImpact,
       ),

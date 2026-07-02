@@ -127,12 +127,15 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > setup JSON の readiness 自体を `fix_consumer_readiness` へ戻し、consumer doctor だけに検出を先送りしない。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
 > `ut-tdd rename plan --json` / handover status /
-> `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含め、
+> `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含む集約リストである。
+> 即時実行できるものは `dryRunVerificationCommands` に分け、投影 artifact が materialize された後に確認する
+> `ut-tdd doctor --profile consumer` と team-run dry-run は `postApplyVerificationCommands` に分ける。
 > ready route は active handover または current PLAN route に接続する。
 > `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / status-frontier / github-ci-safety / completion-decision-packet / consumer-doctor /
 > identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / expected / evidence / source /
 > sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
-> adoptionDecisionDelta / workflowRouteImpact を持つ。VS Code workspace task と
+> adoptionDecisionDelta / workflowRouteImpact に加えて、`availability=dry-run-immediate|post-apply-or-projected` と
+> `requiresMaterializedPaths[]` を持つ。VS Code workspace task と
 > Workspace Trust の実行境界、completion decision packet、PLAN-M-02 rename packet、HELIX status/handover/team definition contract を初回稼働の検証証跡へ接続し、
 > command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。VS Code Tasks / Workspace Trust の
 > 公式 source は checked date と採用判断を matrix に残し、source 名だけの stale な根拠にしない。text surface は
