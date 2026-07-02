@@ -2,6 +2,7 @@ import {
   type CompletionDecisionPacket,
   completionDecisionPacketForOutstanding,
   computeOutstandingWork,
+  REQUIRED_DECISION_PACKET_MATRIX_FIELDS,
   requiredRecordsForBlockers,
 } from "./outstanding";
 import {
@@ -226,6 +227,14 @@ export function analyzeCompletionDecisionPacket(
           violations.push({
             reason: "invalid_supporting_packet_summary",
             detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} missing review field=${field}`,
+          });
+        }
+      }
+      for (const field of expectedSummary.requiredMatrixFields) {
+        if (!(summary.requiredMatrixFields ?? []).includes(field)) {
+          violations.push({
+            reason: "invalid_supporting_packet_summary",
+            detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} missing matrix field=${field}`,
           });
         }
       }
@@ -595,6 +604,7 @@ function requiredSupportingPacketSummary(command: string): {
   matrixField: string;
   expectedMatrixCount: number;
   requiredReviewFields: string[];
+  requiredMatrixFields: string[];
 } {
   switch (command) {
     case "ut-tdd s4 decision-packet --json":
@@ -607,6 +617,7 @@ function requiredSupportingPacketSummary(command: string): {
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
     case "ut-tdd version-up activation-packet --json":
       return {
@@ -618,6 +629,7 @@ function requiredSupportingPacketSummary(command: string): {
           "activationSnapshot.snapshotId",
           "reapprovalTriggers",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
     case "ut-tdd rename plan --json":
       return {
@@ -631,6 +643,7 @@ function requiredSupportingPacketSummary(command: string): {
           "sourceLedgerFreshness",
           "cutoverRunbook",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
     case "ut-tdd action-binding approval-packet --json":
       return {
@@ -642,6 +655,7 @@ function requiredSupportingPacketSummary(command: string): {
           "semanticFeatureFrontierRecords",
           "relatedDecisionPackets",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
     default:
       return {
@@ -649,6 +663,7 @@ function requiredSupportingPacketSummary(command: string): {
         matrixField: "none",
         expectedMatrixCount: 0,
         requiredReviewFields: ["requiredRecords", "recordTemplates", "packetCommands"],
+        requiredMatrixFields: [],
       };
   }
 }

@@ -389,6 +389,14 @@ describe("L7 CLI surface closure", () => {
               matrixField: "decisionVerificationCommandMatrix",
               expectedMatrixCount: 8,
               requiredReviewFields: expect.arrayContaining(["decisionEvidenceChecklist"]),
+              requiredMatrixFields: expect.arrayContaining([
+                "sourceCheckedAt",
+                "latestOfficialStatus",
+                "sourceStatusDelta",
+                "adoptionDecision",
+                "adoptionDecisionDelta",
+                "workflowRouteImpact",
+              ]),
             }),
           ],
         },
@@ -409,6 +417,14 @@ describe("L7 CLI surface closure", () => {
               matrixField: "verificationCommandMatrix",
               expectedMatrixCount: 8,
               requiredReviewFields: expect.arrayContaining(["cutoverSnapshot.snapshotId"]),
+              requiredMatrixFields: expect.arrayContaining([
+                "sourceCheckedAt",
+                "latestOfficialStatus",
+                "sourceStatusDelta",
+                "adoptionDecision",
+                "adoptionDecisionDelta",
+                "workflowRouteImpact",
+              ]),
             }),
             expect.objectContaining({
               command: "ut-tdd action-binding approval-packet --json",
@@ -416,6 +432,14 @@ describe("L7 CLI surface closure", () => {
               matrixField: "approvalVerificationCommandMatrix",
               expectedMatrixCount: 9,
               requiredReviewFields: expect.arrayContaining(["approvalBindingChecks"]),
+              requiredMatrixFields: expect.arrayContaining([
+                "sourceCheckedAt",
+                "latestOfficialStatus",
+                "sourceStatusDelta",
+                "adoptionDecision",
+                "adoptionDecisionDelta",
+                "workflowRouteImpact",
+              ]),
             }),
           ],
         },
@@ -467,6 +491,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(blockedText.stdout).toContain(
         "packet-summary: 1 ut-tdd s4 decision-packet --json schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
+      );
+      expect(blockedText.stdout).toContain(
+        "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(blockedText.stdout).toContain(
         "packet-summary: 2 ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=8",
@@ -651,6 +678,12 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain(
         "packet-command: primary=ut-tdd s4 decision-packet --json packets=ut-tdd s4 decision-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "packet-summary: ut-tdd s4 decision-packet --json schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
+      );
+      expect(text.stdout).toContain(
+        "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(text.stdout).toContain(
         "packet-command: primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",

@@ -438,6 +438,12 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
       "packet要約: `ut-tdd s4 decision-packet --json` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8",
     );
     expect(section).toContain(
+      "確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord",
+    );
+    expect(section).toContain(
+      "matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
+    );
+    expect(section).toContain(
       "packet要約: `ut-tdd action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=9",
     );
     expect(section).toContain(
@@ -452,8 +458,16 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 に marker と packet 要約があれば ok", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認観点=review S4 decision evidence\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=review S4 decision evidence\n\n## §4 x\n`;
     expect(checkHandoverNextActionAnchor(withDoc(md)).ok).toBe(true);
+  });
+
+  it("§3 の packet 要約に source-delta field が無ければ fail-close", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認観点=review S4 decision evidence\n\n## §4 x\n`;
+    const r = checkHandoverNextActionAnchor(withDoc(md));
+
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("確認field/matrix必須field");
   });
 
   it("§3 に marker があっても packet 要約が無ければ fail-close", () => {

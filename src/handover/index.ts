@@ -460,7 +460,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
           `  - packet一覧: ${a.packetCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
             (summary) =>
-              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,
+              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${sanitize(summary.requiredReviewFields.join(","))} matrix必須field=${sanitize(summary.requiredMatrixFields.join(",") || "none")} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,
           ),
         ]),
         "",
@@ -683,7 +683,8 @@ export function checkHandoverOutstandingAnchor(deps: HandoverDeps): {
  * 機械次手で anchor する。CURRENT.json / status JSON に正しい blocker queue があっても、markdown §3 が
  * TODO のままだと再開者が workflow を外すため、latest entry の §3 marker を fail-close で強制する。
  * blocked route では packet 要約も必須にし、S4/version-up/cutover/action-binding の matrix/review
- * 導線が markdown handover で消える旧 entry を通さない。
+ * 導線が markdown handover で消える旧 entry を通さない。packet 要約は matrix の必須 source-delta
+ * field まで含め、判断材料の意味差分が handover prose で落ちないようにする。
  */
 export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   messages: string[];
@@ -721,6 +722,17 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
     return {
       messages: [
         "handover-next-action — violation: 最新 handover §3 に packet 要約が無い → `ut-tdd handover` で再生成し packet matrix/review 導線を seed",
+      ],
+      ok: false,
+    };
+  }
+  if (
+    !section.includes("completion-ready") &&
+    (!section.includes("確認field=") || !section.includes("matrix必須field="))
+  ) {
+    return {
+      messages: [
+        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認field/matrix必須field が無い → `ut-tdd handover` で再生成し source-delta review 導線を seed",
       ],
       ok: false,
     };

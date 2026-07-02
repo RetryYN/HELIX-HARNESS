@@ -776,6 +776,20 @@ function verificationSourceLines(
     .join("");
 }
 
+function packetSummaryText(summary: {
+  command: string;
+  schemaVersion: string;
+  matrixField: string;
+  expectedMatrixCount: number;
+  requiredReviewFields: string[];
+  requiredMatrixFields: string[];
+  reviewRoute: string;
+}): string {
+  const reviewFields = summary.requiredReviewFields.join(",");
+  const matrixFields = summary.requiredMatrixFields.join(",") || "none";
+  return `${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRoute}`;
+}
+
 const program = new Command();
 program
   .name("ut-tdd")
@@ -819,9 +833,7 @@ program
             `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
           );
           for (const summary of item.supportingPacketSummaries) {
-            process.stdout.write(
-              `packet-summary: ${item.order} ${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} review=${summary.reviewRoute}\n`,
-            );
+            process.stdout.write(`packet-summary: ${item.order} ${packetSummaryText(summary)}\n`);
           }
         }
       }
@@ -874,6 +886,9 @@ completion
       process.stdout.write(
         `    packet-command: primary=${decision.decisionPacketCommand} packets=${decision.packetCommands.join(" | ")}\n`,
       );
+      for (const summary of decision.supportingPacketSummaries) {
+        process.stdout.write(`    packet-summary: ${packetSummaryText(summary)}\n`);
+      }
       process.stdout.write(`    action: ${decision.requiredAction}\n`);
       for (const action of decision.requiredActions) {
         process.stdout.write(`    required-action: ${action}\n`);
@@ -2226,9 +2241,7 @@ handover
           `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
         );
         for (const summary of item.supportingPacketSummaries) {
-          process.stdout.write(
-            `  packet-summary[${item.order}]: ${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} review=${summary.reviewRoute}\n`,
-          );
+          process.stdout.write(`  packet-summary[${item.order}]: ${packetSummaryText(summary)}\n`);
         }
       }
     }

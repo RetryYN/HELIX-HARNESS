@@ -46,6 +46,15 @@ const SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE = [
   "workflow_route_impact records none or the named workflow reroute before terminal decision use",
 ] as const;
 
+export const REQUIRED_DECISION_PACKET_MATRIX_FIELDS = [
+  "sourceCheckedAt",
+  "latestOfficialStatus",
+  "sourceStatusDelta",
+  "adoptionDecision",
+  "adoptionDecisionDelta",
+  "workflowRouteImpact",
+] as const;
+
 const EXTERNAL_REHEARSAL_RECORD_FIELDS = [
   "official_source_basis",
   "free_tier_budget_check",
@@ -202,6 +211,7 @@ export interface CompletionDecisionSupportingPacketSummary {
     | "none";
   expectedMatrixCount: number;
   requiredReviewFields: string[];
+  requiredMatrixFields: string[];
   reviewRoute: string;
 }
 
@@ -766,6 +776,7 @@ function supportingPacketSummaryForCommand(
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute: "review S4 decision evidence, outcome routes, and verification commands",
       };
     case "ut-tdd version-up activation-packet --json":
@@ -779,6 +790,7 @@ function supportingPacketSummaryForCommand(
           "activationSnapshot.snapshotId",
           "reapprovalTriggers",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
           "review activation readiness, current snapshot id, reapproval triggers, and verification commands",
       };
@@ -795,6 +807,7 @@ function supportingPacketSummaryForCommand(
           "sourceLedgerFreshness",
           "cutoverRunbook",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
           "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",
       };
@@ -809,6 +822,7 @@ function supportingPacketSummaryForCommand(
           "semanticFeatureFrontierRecords",
           "relatedDecisionPackets",
         ],
+        requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
           "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands",
       };
@@ -819,6 +833,7 @@ function supportingPacketSummaryForCommand(
         matrixField: "none",
         expectedMatrixCount: 0,
         requiredReviewFields: ["requiredRecords", "recordTemplates", "packetCommands"],
+        requiredMatrixFields: [],
         reviewRoute: "review completion decision records and route to dedicated packets",
       };
   }
