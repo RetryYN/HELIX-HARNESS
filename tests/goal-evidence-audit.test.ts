@@ -33,7 +33,8 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
-    expect(text).toContain("semantic, not only quantitative");
+    expect(text).toContain("数量だけでなく意味");
+    expect(text).toContain("L14 / whole-program completion を claim しない");
     expect(text).toContain("objectiveProgress");
     expect(text).toContain("percent: 90");
     expect(text).toContain("completionClaimAllowed=false");
