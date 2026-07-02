@@ -1264,6 +1264,13 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
     );
+    expect(text.stdout).toContain(
+      "verification-source: github-ci-safety source=GitHub Actions secure use and workflow token permissions sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use",
+    );
+    expect(text.stdout).toContain("adoption=harness-check は push/pull_request");
+    expect(text.stdout).toContain(
+      "writePolicy=no-write command=ut-tdd setup project --dry-run --json",
+    );
     expect(text.stdout).toContain("checked=2026-07-02");
     expect(text.stdout).toContain("status=VS Code Tasks official docs current");
     expect(text.stdout).toContain("statusDelta=none; setup keeps generated tasks explicit");
