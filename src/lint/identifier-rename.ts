@@ -184,6 +184,7 @@ export interface IdentifierRenameRehearsalPlan {
   previewCommands: Array<{
     phase: string;
     command: string;
+    description: string;
     writesRepo: false;
     evidencePath: string;
   }>;
@@ -1014,13 +1015,15 @@ export function buildIdentifierRenameRehearsalPlan(
     previewCommands: [
       {
         phase: "codemod-preview",
-        command: `preview ${currentCliToken}/${currentStateDirToken}/${currentAreaToken} -> helix/${futureStateDirToken}/${targetAreaToken} token changes`,
+        command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+        description: `preview ${currentCliToken}/${currentStateDirToken}/${currentAreaToken} -> helix/${futureStateDirToken}/${targetAreaToken} token changes without applying them`,
         writesRepo: false,
         evidencePath: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
       },
       {
         phase: "renamed-binary-smoke-preview",
-        command:
+        command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+        description:
           "after approval, build the renamed binary on a non-destructive branch and run helix doctor before alias enablement",
         writesRepo: false,
         evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",

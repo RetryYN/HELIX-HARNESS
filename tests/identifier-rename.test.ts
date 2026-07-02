@@ -1172,10 +1172,24 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(rehearsalPayload.previewCommands).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ phase: "codemod-preview", writesRepo: false }),
-          expect.objectContaining({ phase: "renamed-binary-smoke-preview", writesRepo: false }),
+          expect.objectContaining({
+            phase: "codemod-preview",
+            command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+            description: expect.stringContaining("preview ut-tdd/.ut-tdd/area=harness"),
+            writesRepo: false,
+          }),
+          expect.objectContaining({
+            phase: "renamed-binary-smoke-preview",
+            command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+            description: expect.stringContaining("after approval"),
+            writesRepo: false,
+          }),
         ]),
       );
+      for (const previewCommand of rehearsalPayload.previewCommands) {
+        expect(previewCommand.command).toMatch(/^bun run src\/cli\.ts rename /);
+        expect(previewCommand.command).not.toMatch(/^preview |^after approval/);
+      }
 
       const stateBackup = runCliIn(root, [
         "rename",

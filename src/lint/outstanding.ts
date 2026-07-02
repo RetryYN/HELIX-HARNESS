@@ -229,17 +229,28 @@ export interface CompletionDecisionItem {
   nextWorkflowRouteJa: string;
   /** Primary non-destructive packet command for the top blocker on this decision. */
   decisionPacketCommand: WorkflowDecisionPacketCommand;
+  /** Repo-local package-script command that can regenerate the primary packet without relying on PATH. */
+  runnableDecisionPacketCommand: string;
   /** Primary + supporting non-destructive packet commands for every blocker on this decision. */
   packetCommands: WorkflowDecisionPacketCommand[];
+  /** Repo-local package-script commands for every primary + supporting packet. */
+  runnablePacketCommands: string[];
   /** PLAN に絞り込んだ primary packet command。rename plan は singleton のため base command と同じ。 */
   scopedDecisionPacketCommand: string;
+  /** Repo-local package-script command for the scoped primary packet. */
+  runnableScopedDecisionPacketCommand: string;
   /** PLAN に絞り込んだ primary + supporting packet commands。複数 pending 時の人間判断導線。 */
   scopedPacketCommands: string[];
+  /** Repo-local package-script commands for scoped primary + supporting packets. */
+  runnableScopedPacketCommands: string[];
   supportingPacketSummaries: CompletionDecisionSupportingPacketSummary[];
 }
 
 export interface CompletionDecisionSupportingPacketSummary {
   command: WorkflowDecisionPacketCommand;
+  runnableCommand: string;
+  scopedCommand?: string;
+  runnableScopedCommand?: string;
   schemaVersion:
     | "s4-decision-packet.v1"
     | "version-up-activation-packet.v1"
@@ -337,12 +348,20 @@ export interface WorkflowNextActionItem {
   nextWorkflowRouteJa: string;
   /** Primary non-destructive packet for this PLAN's top blocker. */
   decisionPacketCommand: WorkflowDecisionPacketCommand;
+  /** Repo-local package-script command for the primary packet. */
+  runnableDecisionPacketCommand: string;
   /** Primary + supporting non-destructive packets for every blocker on this PLAN. */
   packetCommands: WorkflowDecisionPacketCommand[];
+  /** Repo-local package-script commands for primary + supporting packets. */
+  runnablePacketCommands: string[];
   /** PLAN に絞り込んだ primary packet command。rename plan は singleton のため base command と同じ。 */
   scopedDecisionPacketCommand: string;
+  /** Repo-local package-script command for the scoped primary packet. */
+  runnableScopedDecisionPacketCommand: string;
   /** PLAN に絞り込んだ primary + supporting packet commands。複数 pending 時の人間判断導線。 */
   scopedPacketCommands: string[];
+  /** Repo-local package-script commands for scoped primary + supporting packets. */
+  runnableScopedPacketCommands: string[];
   /**
    * Matrix/review summary for each packet command, so status surfaces can route
    * L14/S4/version-up review without forcing a separate completion packet first.
@@ -993,6 +1012,11 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
     .map((item, index) => {
       const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
       const scopedPacketCommands = scopedPacketCommandsForPlan(item.planId, packetCommands);
+      const decisionPacketCommand = decisionPacketCommandForOutstandingReason(item.reason);
+      const scopedDecisionPacketCommand = scopedPacketCommandForPlan(
+        item.planId,
+        decisionPacketCommand,
+      );
       return {
         order: index + 1,
         planId: item.planId,
@@ -1008,14 +1032,17 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
         nextWorkflowRouteJa: workflowRouteTextJa(
           nextWorkflowRouteForOutstandingReason(item.reason),
         ),
-        decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
+        decisionPacketCommand,
+        runnableDecisionPacketCommand: runnablePacketCommand(decisionPacketCommand),
         packetCommands,
-        scopedDecisionPacketCommand: scopedPacketCommandForPlan(
-          item.planId,
-          decisionPacketCommandForOutstandingReason(item.reason),
-        ),
+        runnablePacketCommands: packetCommands.map(runnablePacketCommand),
+        scopedDecisionPacketCommand,
+        runnableScopedDecisionPacketCommand: runnablePacketCommand(scopedDecisionPacketCommand),
         scopedPacketCommands,
-        supportingPacketSummaries: packetCommands.map(supportingPacketSummaryForCommand),
+        runnableScopedPacketCommands: scopedPacketCommands.map(runnablePacketCommand),
+        supportingPacketSummaries: packetCommands.map((command) =>
+          supportingPacketSummaryForCommand(command, item.planId),
+        ),
       };
     });
 }
@@ -1097,13 +1124,27 @@ export function completionDecisionPacketForOutstanding(
           nextWorkflowRouteForOutstandingReason(item.reason),
         ),
         decisionPacketCommand,
+        runnableDecisionPacketCommand: runnablePacketCommand(decisionPacketCommand),
         packetCommands,
+        runnablePacketCommands: packetCommands.map(runnablePacketCommand),
         scopedDecisionPacketCommand: scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
+        runnableScopedDecisionPacketCommand: runnablePacketCommand(
+          scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
+        ),
         scopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands),
-        supportingPacketSummaries: packetCommands.map(supportingPacketSummaryForCommand),
+        runnableScopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands).map(
+          runnablePacketCommand,
+        ),
+        supportingPacketSummaries: packetCommands.map((command) =>
+          supportingPacketSummaryForCommand(command, item.planId),
+        ),
       };
     }),
   };
+}
+
+export function runnablePacketCommand(command: string): string {
+  return command.startsWith("ut-tdd ") ? `bun run ${command}` : command;
 }
 
 function scopedPacketCommandsForPlan(
@@ -1130,11 +1171,20 @@ function scopedPacketCommandForPlan(
 
 function supportingPacketSummaryForCommand(
   command: WorkflowDecisionPacketCommand,
+  planId?: string,
 ): CompletionDecisionSupportingPacketSummary {
+  const scopedCommand = planId ? scopedPacketCommandForPlan(planId, command) : undefined;
+  const base = {
+    command,
+    runnableCommand: runnablePacketCommand(command),
+    ...(scopedCommand
+      ? { scopedCommand, runnableScopedCommand: runnablePacketCommand(scopedCommand) }
+      : {}),
+  };
   switch (command) {
     case "ut-tdd s4 decision-packet --json":
       return {
-        command,
+        ...base,
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
@@ -1152,7 +1202,7 @@ function supportingPacketSummaryForCommand(
       };
     case "ut-tdd version-up activation-packet --json":
       return {
-        command,
+        ...base,
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
         expectedMatrixCount: 9,
@@ -1170,7 +1220,7 @@ function supportingPacketSummaryForCommand(
       };
     case "ut-tdd rename plan --json":
       return {
-        command,
+        ...base,
         schemaVersion: "identifier-rename-cutover-plan.v1",
         matrixField: "verificationCommandMatrix",
         expectedMatrixCount: 9,
@@ -1190,7 +1240,7 @@ function supportingPacketSummaryForCommand(
       };
     case "ut-tdd action-binding approval-packet --json":
       return {
-        command,
+        ...base,
         schemaVersion: "action-binding-approval-packet.v1",
         matrixField: "approvalVerificationCommandMatrix",
         expectedMatrixCount: 10,
@@ -1208,7 +1258,7 @@ function supportingPacketSummaryForCommand(
       };
     case "ut-tdd completion decision-packet --json":
       return {
-        command,
+        ...base,
         schemaVersion: "completion-decision-packet.v1",
         matrixField: "none",
         expectedMatrixCount: 0,

@@ -71,6 +71,9 @@ describe("completion decision packet lint", () => {
     expect(packet.decisions[0].supportingPacketSummaries).toEqual([
       expect.objectContaining({
         command: "ut-tdd s4 decision-packet --json",
+        runnableCommand: "bun run ut-tdd s4 decision-packet --json",
+        scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-S3",
+        runnableScopedCommand: "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
@@ -92,6 +95,13 @@ describe("completion decision packet lint", () => {
     ]);
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
     expect(result.ok).toBe(true);
+    expect(packet.decisions[0]).toMatchObject({
+      runnableDecisionPacketCommand: "bun run ut-tdd s4 decision-packet --json",
+      runnablePacketCommands: ["bun run ut-tdd s4 decision-packet --json"],
+      runnableScopedDecisionPacketCommand:
+        "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
+      runnableScopedPacketCommands: ["bun run ut-tdd s4 decision-packet --json --plan PLAN-S3"],
+    });
   });
 
   it("rejects packets whose authority boundary hides required human decisions", () => {

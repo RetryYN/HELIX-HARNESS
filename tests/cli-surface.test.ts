@@ -206,6 +206,7 @@ describe("L7 CLI surface closure", () => {
       expect.arrayContaining([
         expect.objectContaining({
           decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+          runnableDecisionPacketCommand: "bun run ut-tdd s4 decision-packet --json",
         }),
       ]),
     );
@@ -503,15 +504,26 @@ describe("L7 CLI surface closure", () => {
           reason: "po_decision_pending",
           decisionKind: "po_s4_decision",
           decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+          runnableDecisionPacketCommand: "bun run ut-tdd s4 decision-packet --json",
           packetCommands: ["ut-tdd s4 decision-packet --json"],
+          runnablePacketCommands: ["bun run ut-tdd s4 decision-packet --json"],
           scopedDecisionPacketCommand:
             "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+          runnableScopedDecisionPacketCommand:
+            "bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           scopedPacketCommands: [
             "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+          ],
+          runnableScopedPacketCommands: [
+            "bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           ],
           supportingPacketSummaries: [
             expect.objectContaining({
               command: "ut-tdd s4 decision-packet --json",
+              runnableCommand: "bun run ut-tdd s4 decision-packet --json",
+              scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+              runnableScopedCommand:
+                "bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
               schemaVersion: "s4-decision-packet.v1",
               matrixField: "decisionVerificationCommandMatrix",
               expectedMatrixCount: 8,
@@ -533,18 +545,31 @@ describe("L7 CLI surface closure", () => {
           reason: "irreversible_migration_pending",
           decisionKind: "irreversible_migration_signoff",
           decisionPacketCommand: "ut-tdd rename plan --json",
+          runnableDecisionPacketCommand: "bun run ut-tdd rename plan --json",
           packetCommands: [
             "ut-tdd rename plan --json",
             "ut-tdd action-binding approval-packet --json",
           ],
+          runnablePacketCommands: [
+            "bun run ut-tdd rename plan --json",
+            "bun run ut-tdd action-binding approval-packet --json",
+          ],
           scopedDecisionPacketCommand: "ut-tdd rename plan --json",
+          runnableScopedDecisionPacketCommand: "bun run ut-tdd rename plan --json",
           scopedPacketCommands: [
             "ut-tdd rename plan --json",
             "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
+          runnableScopedPacketCommands: [
+            "bun run ut-tdd rename plan --json",
+            "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+          ],
           supportingPacketSummaries: [
             expect.objectContaining({
               command: "ut-tdd rename plan --json",
+              runnableCommand: "bun run ut-tdd rename plan --json",
+              scopedCommand: "ut-tdd rename plan --json",
+              runnableScopedCommand: "bun run ut-tdd rename plan --json",
               schemaVersion: "identifier-rename-cutover-plan.v1",
               matrixField: "verificationCommandMatrix",
               expectedMatrixCount: 9,
@@ -560,6 +585,11 @@ describe("L7 CLI surface closure", () => {
             }),
             expect.objectContaining({
               command: "ut-tdd action-binding approval-packet --json",
+              runnableCommand: "bun run ut-tdd action-binding approval-packet --json",
+              scopedCommand:
+                "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+              runnableScopedCommand:
+                "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
               schemaVersion: "action-binding-approval-packet.v1",
               matrixField: "approvalVerificationCommandMatrix",
               expectedMatrixCount: 10,
@@ -621,22 +651,25 @@ describe("L7 CLI surface closure", () => {
         `workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=${firstWorkflowAction.requiredActionJa} action-id=record the PO/S4 decision before promotion, rejection, or Forward merge route=${firstWorkflowAction.nextWorkflowRouteJa} route-id=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture`,
       );
       expect(blockedText.stdout).toContain(
+        "runnable-workflow-next-action: 1 PLAN-DISCOVERY-07-fixture packet=bun run ut-tdd s4 decision-packet --json scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+      );
+      expect(blockedText.stdout).toContain(
         `workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=${secondWorkflowAction.requiredActionJa} action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=${secondWorkflowAction.nextWorkflowRouteJa} route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json`,
       );
       expect(blockedText.stdout).toContain(
         "scoped-supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 1 ut-tdd s4 decision-packet --json schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
+        "packet-summary: 1 ut-tdd s4 decision-packet --json runnable=bun run ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture runnable-scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
       );
       expect(blockedText.stdout).toContain(
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=9",
+        "packet-summary: 2 ut-tdd rename plan --json runnable=bun run ut-tdd rename plan --json scoped=ut-tdd rename plan --json runnable-scoped=bun run ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=9",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd action-binding approval-packet --json schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
+        "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("authority-blockers=human:");
@@ -922,13 +955,19 @@ describe("L7 CLI surface closure", () => {
         "packet-command: primary=ut-tdd s4 decision-packet --json scoped-primary=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=ut-tdd s4 decision-packet --json scoped-packets=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
-        "packet-summary: ut-tdd s4 decision-packet --json schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
+        "runnable-packet-command: primary=bun run ut-tdd s4 decision-packet --json scoped-primary=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=bun run ut-tdd s4 decision-packet --json scoped-packets=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+      );
+      expect(text.stdout).toContain(
+        "packet-summary: ut-tdd s4 decision-packet --json runnable=bun run ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture runnable-scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
       );
       expect(text.stdout).toContain(
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(text.stdout).toContain(
         "packet-command: primary=ut-tdd rename plan --json scoped-primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json scoped-packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+      );
+      expect(text.stdout).toContain(
+        "runnable-packet-command: primary=bun run ut-tdd rename plan --json scoped-primary=bun run ut-tdd rename plan --json packets=bun run ut-tdd rename plan --json | bun run ut-tdd action-binding approval-packet --json scoped-packets=bun run ut-tdd rename plan --json | bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(`required-action: ${cutoverDecision.requiredActionsJa[0]}`);
       expect(text.stdout).toContain(

@@ -796,6 +796,9 @@ function verificationSourceLines(
 
 function packetSummaryText(summary: {
   command: string;
+  runnableCommand?: string;
+  scopedCommand?: string;
+  runnableScopedCommand?: string;
   schemaVersion: string;
   matrixField: string;
   expectedMatrixCount: number;
@@ -806,7 +809,10 @@ function packetSummaryText(summary: {
 }): string {
   const reviewFields = summary.requiredReviewFields.join(",");
   const matrixFields = summary.requiredMatrixFields.join(",") || "none";
-  return `${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRouteJa ?? summary.reviewRoute} review-id=${summary.reviewRoute}`;
+  const runnable = summary.runnableCommand ?? summary.command;
+  const scoped = summary.scopedCommand ?? summary.command;
+  const runnableScoped = summary.runnableScopedCommand ?? runnable;
+  return `${summary.command} runnable=${runnable} scoped=${scoped} runnable-scoped=${runnableScoped} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRouteJa ?? summary.reviewRoute} review-id=${summary.reviewRoute}`;
 }
 
 function semanticMeaningSummaryLine(
@@ -872,6 +878,9 @@ program
           process.stdout.write(
             `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredActionJa} action-id=${item.requiredAction} route=${item.nextWorkflowRouteJa} route-id=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
           );
+          process.stdout.write(
+            `runnable-workflow-next-action: ${item.order} ${item.planId} packet=${item.runnableDecisionPacketCommand} scoped=${item.runnableScopedDecisionPacketCommand} supporting=${item.runnablePacketCommands.join(" | ")} scoped-supporting=${item.runnableScopedPacketCommands.join(" | ")}\n`,
+          );
           for (const summary of item.supportingPacketSummaries) {
             process.stdout.write(`packet-summary: ${item.order} ${packetSummaryText(summary)}\n`);
           }
@@ -895,6 +904,12 @@ program
         process.stdout.write(`decision-packet: ${primaryPacket}\n`);
         if (packetCommands.length > 1) {
           process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
+          process.stdout.write(
+            `runnable-supporting-decision-packets: ${workflowNextActions
+              .flatMap((item) => item.runnablePacketCommands)
+              .filter((value, index, array) => array.indexOf(value) === index)
+              .join(" | ")}\n`,
+          );
         }
         process.stdout.write(
           "completion-decision-packet: ut-tdd completion decision-packet --json\n",
@@ -935,6 +950,9 @@ completion
       );
       process.stdout.write(
         `    packet-command: primary=${decision.decisionPacketCommand} scoped-primary=${decision.scopedDecisionPacketCommand} packets=${decision.packetCommands.join(" | ")} scoped-packets=${decision.scopedPacketCommands.join(" | ")}\n`,
+      );
+      process.stdout.write(
+        `    runnable-packet-command: primary=${decision.runnableDecisionPacketCommand} scoped-primary=${decision.runnableScopedDecisionPacketCommand} packets=${decision.runnablePacketCommands.join(" | ")} scoped-packets=${decision.runnableScopedPacketCommands.join(" | ")}\n`,
       );
       for (const summary of decision.supportingPacketSummaries) {
         process.stdout.write(`    packet-summary: ${packetSummaryText(summary)}\n`);
@@ -1439,7 +1457,7 @@ rename
     );
     for (const command of packet.previewCommands) {
       process.stdout.write(
-        `  preview-command: ${command.phase} writesRepo=${command.writesRepo} evidence=${command.evidencePath}\n`,
+        `  preview-command: ${command.phase} command=${command.command} writesRepo=${command.writesRepo} evidence=${command.evidencePath} description=${command.description}\n`,
       );
     }
     for (const blocker of packet.blockedUntil) {
@@ -2529,6 +2547,9 @@ handover
         process.stdout.write(
           `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredActionJa} action-id=${item.requiredAction} route=${item.nextWorkflowRouteJa} route-id=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
         );
+        process.stdout.write(
+          `  runnable-workflow-next-action[${item.order}]: ${item.planId} packet=${item.runnableDecisionPacketCommand} scoped=${item.runnableScopedDecisionPacketCommand} supporting=${item.runnablePacketCommands.join(" | ")} scoped-supporting=${item.runnableScopedPacketCommands.join(" | ")}\n`,
+        );
         for (const summary of item.supportingPacketSummaries) {
           process.stdout.write(`  packet-summary[${item.order}]: ${packetSummaryText(summary)}\n`);
         }
@@ -2552,10 +2573,22 @@ handover
       );
       if (packetCommands.length > 0) {
         process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
+        process.stdout.write(
+          `runnable-supporting-decision-packets: ${liveCompletionDecisionPacket.decisions
+            .flatMap((decision) => decision.runnablePacketCommands)
+            .filter((value, index, array) => array.indexOf(value) === index)
+            .join(" | ")}\n`,
+        );
       }
       if (scopedPacketCommands.length > 0) {
         process.stdout.write(
           `scoped-supporting-decision-packets: ${scopedPacketCommands.join(" | ")}\n`,
+        );
+        process.stdout.write(
+          `runnable-scoped-supporting-decision-packets: ${liveCompletionDecisionPacket.decisions
+            .flatMap((decision) => decision.runnableScopedPacketCommands)
+            .filter((value, index, array) => array.indexOf(value) === index)
+            .join(" | ")}\n`,
         );
       }
     }

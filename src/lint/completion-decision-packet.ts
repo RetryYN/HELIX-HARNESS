@@ -6,6 +6,7 @@ import {
   computeOutstandingWork,
   REQUIRED_DECISION_PACKET_MATRIX_FIELDS,
   requiredRecordsForBlockers,
+  runnablePacketCommand,
   workflowActionTextJa,
   workflowReviewRouteTextJa,
   workflowRouteTextJa,
@@ -31,6 +32,7 @@ export type CompletionDecisionPacketViolationReason =
   | "invalid_semantic_meaning_summary"
   | "invalid_decision_kind"
   | "invalid_decision_packet_command"
+  | "invalid_runnable_decision_packet_command"
   | "invalid_scoped_decision_packet_command"
   | "invalid_supporting_packet_summary"
   | "invalid_decision_allowed_outcomes"
@@ -311,6 +313,13 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] blockerReason=${decision.blockerReason} decisionPacketCommand=${String(decision.decisionPacketCommand)} expected=${expectedPacketCommand}`,
       });
     }
+    const expectedRunnableDecisionPacketCommand = runnablePacketCommand(expectedPacketCommand);
+    if (decision.runnableDecisionPacketCommand !== expectedRunnableDecisionPacketCommand) {
+      violations.push({
+        reason: "invalid_runnable_decision_packet_command",
+        detail: `decision[${decisionIndex}] runnableDecisionPacketCommand mismatch expected=${expectedRunnableDecisionPacketCommand} actual=${String(decision.runnableDecisionPacketCommand)}`,
+      });
+    }
     const expectedRequiredActionJa = workflowActionTextJa(decision.requiredAction);
     if (decision.requiredActionJa !== expectedRequiredActionJa) {
       violations.push({
@@ -347,6 +356,14 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] packetCommands mismatch expected=${sortedExpectedPacketCommands.join(",")} actual=${actualPacketCommands.join(",")}`,
       });
     }
+    const expectedRunnablePacketCommands = expectedPacketCommands.map(runnablePacketCommand).sort();
+    const actualRunnablePacketCommands = [...(decision.runnablePacketCommands ?? [])].sort();
+    if (actualRunnablePacketCommands.join("\0") !== expectedRunnablePacketCommands.join("\0")) {
+      violations.push({
+        reason: "invalid_runnable_decision_packet_command",
+        detail: `decision[${decisionIndex}] runnablePacketCommands mismatch expected=${expectedRunnablePacketCommands.join(",")} actual=${actualRunnablePacketCommands.join(",")}`,
+      });
+    }
     const expectedScopedDecisionPacketCommand = scopedDecisionPacketCommandForPlan(
       decision.planId,
       expectedPacketCommand,
@@ -357,6 +374,17 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] scopedDecisionPacketCommand mismatch expected=${expectedScopedDecisionPacketCommand} actual=${String(decision.scopedDecisionPacketCommand)}`,
       });
     }
+    const expectedRunnableScopedDecisionPacketCommand = runnablePacketCommand(
+      expectedScopedDecisionPacketCommand,
+    );
+    if (
+      decision.runnableScopedDecisionPacketCommand !== expectedRunnableScopedDecisionPacketCommand
+    ) {
+      violations.push({
+        reason: "invalid_runnable_decision_packet_command",
+        detail: `decision[${decisionIndex}] runnableScopedDecisionPacketCommand mismatch expected=${expectedRunnableScopedDecisionPacketCommand} actual=${String(decision.runnableScopedDecisionPacketCommand)}`,
+      });
+    }
     const expectedScopedPacketCommands = expectedPacketCommands
       .map((command) => scopedDecisionPacketCommandForPlan(decision.planId, command))
       .sort();
@@ -365,6 +393,21 @@ export function analyzeCompletionDecisionPacket(
       violations.push({
         reason: "invalid_scoped_decision_packet_command",
         detail: `decision[${decisionIndex}] scopedPacketCommands mismatch expected=${expectedScopedPacketCommands.join(",")} actual=${actualScopedPacketCommands.join(",")}`,
+      });
+    }
+    const expectedRunnableScopedPacketCommands = expectedScopedPacketCommands
+      .map(runnablePacketCommand)
+      .sort();
+    const actualRunnableScopedPacketCommands = [
+      ...(decision.runnableScopedPacketCommands ?? []),
+    ].sort();
+    if (
+      actualRunnableScopedPacketCommands.join("\0") !==
+      expectedRunnableScopedPacketCommands.join("\0")
+    ) {
+      violations.push({
+        reason: "invalid_runnable_decision_packet_command",
+        detail: `decision[${decisionIndex}] runnableScopedPacketCommands mismatch expected=${expectedRunnableScopedPacketCommands.join(",")} actual=${actualRunnableScopedPacketCommands.join(",")}`,
       });
     }
     const summaryCommands = [
@@ -396,6 +439,32 @@ export function analyzeCompletionDecisionPacket(
         violations.push({
           reason: "invalid_supporting_packet_summary",
           detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} drift expected=${expectedSummary.schemaVersion}/${expectedSummary.matrixField}/${expectedSummary.expectedMatrixCount} actual=${summary.schemaVersion}/${summary.matrixField}/${summary.expectedMatrixCount}`,
+        });
+      }
+      const expectedSummaryRunnableCommand = runnablePacketCommand(command);
+      if (summary.runnableCommand !== expectedSummaryRunnableCommand) {
+        violations.push({
+          reason: "invalid_supporting_packet_summary",
+          detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} runnableCommand mismatch expected=${expectedSummaryRunnableCommand} actual=${String(summary.runnableCommand)}`,
+        });
+      }
+      const expectedSummaryScopedCommand = scopedDecisionPacketCommandForPlan(
+        decision.planId,
+        command,
+      );
+      if (summary.scopedCommand !== expectedSummaryScopedCommand) {
+        violations.push({
+          reason: "invalid_supporting_packet_summary",
+          detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} scopedCommand mismatch expected=${expectedSummaryScopedCommand} actual=${String(summary.scopedCommand)}`,
+        });
+      }
+      const expectedSummaryRunnableScopedCommand = runnablePacketCommand(
+        expectedSummaryScopedCommand,
+      );
+      if (summary.runnableScopedCommand !== expectedSummaryRunnableScopedCommand) {
+        violations.push({
+          reason: "invalid_supporting_packet_summary",
+          detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} runnableScopedCommand mismatch expected=${expectedSummaryRunnableScopedCommand} actual=${String(summary.runnableScopedCommand)}`,
         });
       }
       for (const field of expectedSummary.requiredReviewFields) {
