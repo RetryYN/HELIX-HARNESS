@@ -1389,6 +1389,27 @@ describe("version-up-readiness", () => {
     );
   });
 
+  it("fails version-up parked plans whose body has activation records but frontmatter lacks version_target", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            versionTarget: null,
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "version-up parked markers require version_target frontmatter before activation packet or status frontier classification",
+    });
+  });
+
   it("U-DECISIONREC-002: fails parked plans that mention activation fields without structured records", () => {
     const result = analyzeVersionUpReadiness(
       input({

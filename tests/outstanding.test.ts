@@ -198,6 +198,51 @@ describe("analyzeOutstandingWork", () => {
     ]);
   });
 
+  it("version-up parked 本文があるのに version_target frontmatter が無い PLAN を frontier から落とさない", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: null,
+          text: [
+            "version-up parked",
+            "mode=version-up",
+            "activation_decision_record:",
+            "- allowed_outcome: activate_future_version / reject_or_archive / keep_parked_with_review_date",
+            "parked_review_record:",
+            "- review_owner: PO + TL",
+          ].join("\n"),
+        },
+      ],
+      0,
+    );
+
+    expect(o.versionUpParked).toBe(1);
+    expect(o.activeDraftTotal).toBe(0);
+    expect(o.blockersByKind).toMatchObject({
+      version_up_frontmatter_missing: 1,
+      version_up_parked: 1,
+    });
+    expect(o.items[0]).toMatchObject({
+      planId: "PLAN-L7-146",
+      reason: "version_up_frontmatter_missing",
+      blockers: ["version_up_frontmatter_missing", "version_up_parked"],
+      requiredAction:
+        "record version_target frontmatter before treating version-up parked work as a valid future-version frontier",
+    });
+    expect(o.semanticFeatureFrontierRecords).toEqual([
+      expect.objectContaining({
+        planId: "PLAN-L7-146",
+        featureId: "serverless_readonly_share",
+        classification: "parked_future_version",
+        completionClaimAllowed: false,
+      }),
+    ]);
+  });
+
   it("does not classify no-snapshot approval wording as irreversible cutover", () => {
     const o = analyzeOutstandingWork(
       [

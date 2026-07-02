@@ -265,17 +265,21 @@ function baseInput(): SemanticFrontierConsistencyInput {
     "asset/progress visualization: `classification=frontier_pending_decision`。S4 PO decision pending",
     "`PLAN-L7-146` serverless readonly share: `classification=parked_future_version`。activation decision",
     "PLAN-M-02 identifier rename: `classification=approval_gated_cutover`。cutover/action-binding approval",
+    "setup は bare `ut-tdd --version` の PATH 解決を required にし、`ut-tdd-package-script` は fallback 証跡に限定する",
+    "package script のみなら `bareCommandResolved=false` のまま `fix_consumer_readiness` に戻す",
     tableRows(L3_IDS),
   ].join("\n");
   const sharedDoc =
     "semantic_feature_frontier_record frontier_pending_decision parked_future_version approval_gated_cutover";
+  const setupCliBoundary =
+    "bare `ut-tdd --version` `ut-tdd-package-script` package script のみ `bareCommandResolved=false` `fix_consumer_readiness`";
   return {
     l1Text: L1_MARKERS.join("\n"),
     l3Text: `${l3Text}\n${sharedDoc}`,
     l4Text: sharedDoc,
     l5Text: sharedDoc,
     l6Text: sharedDoc,
-    l12Text: `${sharedDoc}\n${tableRows(L12_IDS)}`,
+    l12Text: `${sharedDoc}\n${setupCliBoundary}\n${tableRows(L12_IDS)}`,
     l9SystemText: sharedDoc,
     l8IntegrationText: sharedDoc,
     l7UnitText: sharedDoc,
@@ -393,6 +397,22 @@ describe("semantic frontier consistency", () => {
         "github_setup_release_rename: L1 parent marker missing HBR-P6",
         "github_setup_release_rename: L3 requirement row missing HR-FR-P6-03",
         "github_setup_release_rename: L12 acceptance row missing HAT-P6-03",
+      ]),
+    );
+  });
+
+  it("fails when setup package scripts are treated as readiness without bare PATH", () => {
+    const input = baseInput();
+    input.l3Text = input.l3Text.replace("package script のみなら", "package script fallback");
+    input.l12Text = `${input.l12Text}\nPATH 解決が無い consumer でも package script があれば ready にでき`;
+
+    const result = analyzeSemanticFrontierConsistency(input);
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "L3: setup CLI boundary marker missing package script のみ",
+        "L12: package script only must not make consumer setup ready without bare ut-tdd PATH",
       ]),
     );
   });

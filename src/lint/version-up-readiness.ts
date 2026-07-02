@@ -6,6 +6,7 @@ import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
   type CompletionDecisionRecordTemplate,
   computeOutstandingWork,
+  planTextHasVersionUpParkingIntent,
   recordTemplatesForRecords,
   requiredRecordsForBlockers,
   type SemanticFeatureFrontierRecord,
@@ -1034,6 +1035,17 @@ export function analyzeVersionUpReadiness(
     violations.push({
       subject: "PLAN-DISCOVERY-09-version-up-mode",
       reason: "current activation note missing",
+    });
+  }
+
+  for (const plan of input.plans.filter(
+    (p) =>
+      p.status === "draft" && p.versionTarget === null && planTextHasVersionUpParkingIntent(p.text),
+  )) {
+    violations.push({
+      subject: plan.plan_id,
+      reason:
+        "version-up parked markers require version_target frontmatter before activation packet or status frontier classification",
     });
   }
 

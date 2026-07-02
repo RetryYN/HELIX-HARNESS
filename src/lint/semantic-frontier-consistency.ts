@@ -78,6 +78,19 @@ const REQUIRED_DOC_MARKERS = [
   "approval_gated_cutover",
 ] as const;
 
+const SETUP_CLI_BOUNDARY_MARKERS = [
+  "bare `ut-tdd",
+  "`ut-tdd-package-script`",
+  "package script のみ",
+  "`bareCommandResolved=false`",
+  "`fix_consumer_readiness`",
+] as const;
+
+const FORBIDDEN_SETUP_CLI_READY_MARKERS = [
+  "PATH 解決が無い consumer でも",
+  "ready にでき",
+] as const;
+
 const EXPECTED_L3_REQUIREMENT_ROWS = 43;
 const EXPECTED_L12_ACCEPTANCE_ROWS = 43;
 
@@ -357,6 +370,22 @@ export function analyzeSemanticFrontierConsistency(
       if (!text.includes(marker)) {
         violations.push(`${docName}: missing semantic frontier marker ${marker}`);
       }
+    }
+  }
+
+  for (const [docName, text] of [
+    ["L3", input.l3Text],
+    ["L12", input.l12Text],
+  ] as const) {
+    for (const marker of SETUP_CLI_BOUNDARY_MARKERS) {
+      if (!text.includes(marker)) {
+        violations.push(`${docName}: setup CLI boundary marker missing ${marker}`);
+      }
+    }
+    if (FORBIDDEN_SETUP_CLI_READY_MARKERS.every((marker) => text.includes(marker))) {
+      violations.push(
+        `${docName}: package script only must not make consumer setup ready without bare ut-tdd PATH`,
+      );
     }
   }
 

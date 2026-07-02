@@ -386,8 +386,14 @@ export function analyzeOutstandingWork(
     if (s === "archived" || isTerminalPlanStatus(s)) continue;
     const layer = p.layer.trim() || "unknown";
     byLayer[layer] = (byLayer[layer] ?? 0) + 1;
-    // version-up parked = draft + version_target (landed には schema が付与を禁ずる)。
-    if (s === "draft" && (p.versionTarget ?? "").trim().length > 0) versionUpParked++;
+    // version-up parked = draft + version_target。本文だけが parked を示す場合も frontier に出し、
+    // version-up-readiness 側で frontmatter 欠落を hard violation にする。
+    if (
+      s === "draft" &&
+      ((p.versionTarget ?? "").trim().length > 0 || planTextHasVersionUpParkingIntent(p.text ?? ""))
+    ) {
+      versionUpParked++;
+    }
     const blockers = classifyOutstandingBlockers(p);
     const reason = primaryOutstandingReason(blockers);
     const action = requiredOutstandingAction(reason);
@@ -654,7 +660,12 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   ) {
     blockers.add("consumer_setup_boundary");
   }
-  if ((p.versionTarget ?? "").trim()) blockers.add("version_up_parked");
+  if ((p.versionTarget ?? "").trim()) {
+    blockers.add("version_up_parked");
+  } else if (planTextHasVersionUpParkingIntent(p.text ?? "")) {
+    blockers.add("version_up_frontmatter_missing");
+    blockers.add("version_up_parked");
+  }
   if (
     p.kind === "poc" &&
     (/\bS[34]\b/i.test(p.workflowPhase ?? "") ||
@@ -683,9 +694,17 @@ function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): b
   return /irreversible|不可逆/i.test(text) && /cutover|migration|state dir|rename/i.test(text);
 }
 
+export function planTextHasVersionUpParkingIntent(text: string): boolean {
+  const value = text.toLowerCase();
+  if (/activation_decision_record/i.test(text) && /parked_review_record/i.test(text)) return true;
+  if (/version-up parked/i.test(text)) return true;
+  return /mode=version-up/i.test(text) && /version_target/i.test(value);
+}
+
 function primaryOutstandingReason(blockers: string[]): string {
   const priority = [
     "irreversible_migration_pending",
+    "version_up_frontmatter_missing",
     "version_up_parked",
     "po_decision_pending",
     "human_approval_pending",
@@ -729,6 +748,16 @@ function requiredOutstandingAction(reason: string): {
           "external_rehearsal_plan records official source basis, budget, signature, access, no-secret/PII, no-prod-write, and rollback rehearsal evidence",
           "cost_guardrails records provider free-tier limits and exceed_action before activation",
           "activation_provenance_requirements records source ledger, dry-run evidence, approval evidence, and audit record before activation",
+          ...SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE,
+        ],
+      };
+    case "version_up_frontmatter_missing":
+      return {
+        requiredAction:
+          "record version_target frontmatter before treating version-up parked work as a valid future-version frontier",
+        requiredEvidence: [
+          "version_target frontmatter records the future release target before status/outstanding can classify the PLAN as parked",
+          "activation_decision_record and parked_review_record remain plan-only until version-up activation is approved",
           ...SOURCE_LEDGER_MEANING_REVIEW_EVIDENCE,
         ],
       };
@@ -1050,6 +1079,7 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
 function workflowActionRank(reason: string): number {
   const priority = [
     "po_decision_pending",
+    "version_up_frontmatter_missing",
     "version_up_parked",
     "irreversible_migration_pending",
     "human_approval_pending",
@@ -1521,6 +1551,8 @@ export function workflowActionTextJa(action: string): string {
       return "PO/S4 判断を記録してから昇格・却下・Forward merge へ進める";
     case "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion":
       return "将来 version-up activation 判断が記録されるまで parked のまま保持し、active frontier 完了として数えない";
+    case "record version_target frontmatter before treating version-up parked work as a valid future-version frontier":
+      return "version-up parked work を有効な将来版 frontier として扱う前に version_target frontmatter を記録する";
     case "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work":
       return "不可逆 migration/cutover 前に明示的な PO signoff を取得し、通常作業として state move を実装しない";
     case "record required human/action-binding approval before executing the high-impact action":
@@ -1577,6 +1609,7 @@ function decisionKindForOutstandingReason(reason: string): CompletionDecisionKin
     case "po_decision_pending":
       return "po_s4_decision";
     case "version_up_parked":
+    case "version_up_frontmatter_missing":
       return "version_up_activation";
     case "irreversible_migration_pending":
       return "irreversible_migration_signoff";
@@ -1592,6 +1625,7 @@ function decisionPacketCommandForOutstandingReason(reason: string): WorkflowDeci
     case "po_decision_pending":
       return "ut-tdd s4 decision-packet --json";
     case "version_up_parked":
+    case "version_up_frontmatter_missing":
       return "ut-tdd version-up activation-packet --json";
     case "irreversible_migration_pending":
       return "ut-tdd rename plan --json";
@@ -1616,6 +1650,7 @@ function allowedOutcomesForOutstandingReason(reason: string): string[] {
   switch (reason) {
     case "po_decision_pending":
       return ["confirmed", "rejected", "pivot"];
+    case "version_up_frontmatter_missing":
     case "version_up_parked":
       return ["activate_future_version", "reject_or_archive", "keep_parked_with_review_date"];
     case "irreversible_migration_pending":
@@ -1809,6 +1844,7 @@ export function requiredRecordsForBlockers(
 function outstandingReasonRank(reason: string): number {
   const priority = [
     "irreversible_migration_pending",
+    "version_up_frontmatter_missing",
     "version_up_parked",
     "po_decision_pending",
     "human_approval_pending",
@@ -1854,6 +1890,7 @@ function requiredRecordsForOutstandingReason(
           ],
         },
       ];
+    case "version_up_frontmatter_missing":
     case "version_up_parked":
       return [
         {
@@ -1989,6 +2026,7 @@ function nextWorkflowRouteForOutstandingReason(reason: string): string {
   switch (reason) {
     case "po_decision_pending":
       return "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded";
+    case "version_up_frontmatter_missing":
     case "version_up_parked":
       return "version-up activation -> add-feature/rejection path, with approval boundary preserved";
     case "irreversible_migration_pending":
