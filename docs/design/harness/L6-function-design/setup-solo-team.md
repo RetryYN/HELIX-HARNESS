@@ -143,8 +143,10 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、temp-local `BUN_INSTALL` 配下で
 > `bun link` → consumer repo の `bun link ut-tdd --no-save` → consumer `node_modules/.bin/ut-tdd` の
 > `--version` / setup / status / doctor / handover を実行して、package/bin 経路が別 project で動くことを証明する。
-> `harness-check.yml` と `consumerReadiness.ci.requires` は `bun install --frozen-lockfile` 後に
-> `bun run ut-tdd --version` を package/bin resolution preflight として置き、
+> `harness-check.yml` と `consumerReadiness.ci.requires` は GitHub Actions workflow syntax / permissions の公式境界
+> (workflow YAML、`push` / `pull_request`、top-level `permissions`) に合わせ、`push:main` / `pull_request:main`、
+> `permissions: contents: read`、`pull_request_target` 不使用、secret 不要を contract とする。
+> `bun install --frozen-lockfile` 後に `bun run ut-tdd --version` を package/bin resolution preflight として置き、
 > `bun run ut-tdd setup project --dry-run --json`、`bun run ut-tdd status --json`、
 > `bun run ut-tdd doctor --profile consumer --json`、`bun run ut-tdd handover status --json` を含め、
 > acceptance は同じ `bun run ut-tdd ...` command set を consumer repo で実行し、

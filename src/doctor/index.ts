@@ -6,6 +6,7 @@
 
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { parse as parseYaml } from "yaml";
 import {
   checkHandoverBypass,
   checkHandoverCompletionDecisionPacket,
@@ -1750,6 +1751,28 @@ function consumerJson(deps: DoctorDeps, relativePath: string): unknown | null {
   }
 }
 
+function consumerYaml(deps: DoctorDeps, relativePath: string): unknown | null {
+  const raw = consumerFile(deps, relativePath);
+  if (raw === null) return null;
+  try {
+    return parseYaml(raw) as unknown;
+  } catch {
+    return null;
+  }
+}
+
+function recordValue(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+
+function stringList(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
 export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const messages: string[] = ["doctor: profile=consumer"];
   const requiredFiles = [
@@ -1761,6 +1784,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".codex/hooks.json",
     ".vscode/tasks.json",
     ".vscode/settings.json",
+    ".github/workflows/harness-check.yml",
     ".ut-tdd/memory/.gitkeep",
     ".ut-tdd/handover/.gitkeep",
     ".ut-tdd/evidence/.gitkeep",
@@ -1889,13 +1913,65 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
           )} unsafe=${unsafeTasks.join(",")} autoRun=${autoRunTasks.join(",")} automaticTasksOff=${automaticTasksOff}`,
   );
 
+  const workflowRaw = consumerFile(deps, ".github/workflows/harness-check.yml") ?? "";
+  const workflow = recordValue(consumerYaml(deps, ".github/workflows/harness-check.yml"));
+  const workflowOn = recordValue(workflow?.on);
+  const push = recordValue(workflowOn?.push);
+  const pullRequest = recordValue(workflowOn?.pull_request);
+  const pushMain = stringList(push?.branches).includes("main");
+  const pullRequestMain = stringList(pullRequest?.branches).includes("main");
+  const noPullRequestTarget = workflowOn
+    ? !Object.hasOwn(workflowOn, "pull_request_target")
+    : false;
+  const permissions = recordValue(workflow?.permissions);
+  const permissionsRead = permissions?.contents === "read";
+  const tokenWrite = permissions
+    ? Object.values(permissions).some((value) => value === "write")
+    : false;
+  const jobs = recordValue(workflow?.jobs);
+  const harnessJob = recordValue(jobs?.["harness-check"]);
+  const steps = Array.isArray(harnessJob?.steps) ? harnessJob.steps : [];
+  const stepRecords = steps
+    .map(recordValue)
+    .filter((step): step is Record<string, unknown> => Boolean(step));
+  const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
+  const requiredRuns = [
+    "bun install --frozen-lockfile",
+    "bun run ut-tdd --version",
+    "bun run ut-tdd setup project --dry-run --json",
+    "bun run ut-tdd status --json",
+    "bun run ut-tdd doctor --profile consumer --json",
+    "bun run ut-tdd handover status --json",
+    "bun run typecheck",
+    "bun run test",
+  ];
+  const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
+  const missingRuns = requiredRuns.filter((run) => !stepRecords.some((step) => step.run === run));
+  const ciOk =
+    workflow?.name === "harness-check" &&
+    pushMain &&
+    pullRequestMain &&
+    noPullRequestTarget &&
+    permissionsRead &&
+    !tokenWrite &&
+    harnessJob?.["runs-on"] === "ubuntu-latest" &&
+    missingUses.length === 0 &&
+    missingRuns.length === 0 &&
+    !workflowRaw.includes("secrets.");
+  messages.push(
+    ciOk
+      ? `doctor: consumer-ci-workflow - OK (workflow=harness-check, permissions=contents:read, triggers=push/pull_request:main, commands=${requiredUses.length + requiredRuns.length}, secrets=not-required)`
+      : `doctor: consumer-ci-workflow - violation name=${workflow?.name === "harness-check"} pushMain=${pushMain} pullRequestMain=${pullRequestMain} noPullRequestTarget=${noPullRequestTarget} permissionsRead=${permissionsRead} tokenWrite=${tokenWrite} job=${harnessJob?.["runs-on"] === "ubuntu-latest"} missingUses=${missingUses.join(",")} missingRuns=${missingRuns.join(",")} secrets=${workflowRaw.includes("secrets.")}`,
+  );
+
   const ok =
     missing.length === 0 &&
     docsOk &&
     prematureHelixState.length === 0 &&
     claudeOk &&
     codexOk &&
-    taskSafetyOk;
+    taskSafetyOk &&
+    ciOk;
   return { ok, messages };
 }
 

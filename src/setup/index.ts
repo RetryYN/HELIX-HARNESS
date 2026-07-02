@@ -224,6 +224,12 @@ export interface ConsumerReadinessPlan {
   };
   ci: {
     workflow: string;
+    security: {
+      permissions: "contents:read";
+      triggers: ["push:main", "pull_request:main"];
+      disallowedTriggers: ["pull_request_target"];
+      secrets: "not-required";
+    };
     packageResolution: {
       command: "bun run ut-tdd --version";
       requiredBefore: string[];
@@ -694,6 +700,12 @@ export function buildConsumerReadinessPlan(input: {
     },
     ci: {
       workflow: ".github/workflows/harness-check.yml",
+      security: {
+        permissions: "contents:read",
+        triggers: ["push:main", "pull_request:main"],
+        disallowedTriggers: ["pull_request_target"],
+        secrets: "not-required",
+      },
       packageResolution: {
         command: "bun run ut-tdd --version",
         requiredBefore: [

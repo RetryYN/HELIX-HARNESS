@@ -197,6 +197,36 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       ],
     }),
     ".vscode/settings.json": JSON.stringify({ "task.allowAutomaticTasks": "off" }),
+    ".github/workflows/harness-check.yml": [
+      "name: harness-check",
+      "on:",
+      "  push:",
+      "    branches: [main]",
+      "  pull_request:",
+      "    branches: [main]",
+      "permissions:",
+      "  contents: read",
+      "jobs:",
+      "  harness-check:",
+      "    runs-on: ubuntu-latest",
+      "    steps:",
+      "      - uses: actions/checkout@v4",
+      "      - uses: oven-sh/setup-bun@v2",
+      "      - run: bun install --frozen-lockfile",
+      "      - name: HELIX CLI dependency",
+      "        run: bun run ut-tdd --version",
+      "      - name: HELIX setup dry-run",
+      "        run: bun run ut-tdd setup project --dry-run --json",
+      "      - name: HELIX status",
+      "        run: bun run ut-tdd status --json",
+      "      - name: HELIX consumer doctor",
+      "        run: bun run ut-tdd doctor --profile consumer --json",
+      "      - name: Handover route",
+      "        run: bun run ut-tdd handover status --json",
+      "      - run: bun run typecheck",
+      "      - run: bun run test",
+      "",
+    ].join("\n"),
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
@@ -216,6 +246,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "doctor: profile=consumer")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-ci-workflow - OK")).toBe(true);
   });
 
   it("fails closed when the consumer doctor task still points at the product doctor", () => {
@@ -354,6 +385,51 @@ describe("runConsumerDoctor", () => {
         nonArrayResult.messages,
         "consumer-vscode-tasks - violation",
         "tasksArray=false",
+      ),
+    ).toBe(true);
+  });
+
+  it("fails closed when the consumer CI workflow loses read-only smoke-test contract", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".github/workflows/harness-check.yml": [
+        "name: harness-check",
+        "on:",
+        "  push:",
+        "    branches: [main]",
+        "  pull_request_target:",
+        "    branches: [main]",
+        "permissions:",
+        "  contents: write",
+        "jobs:",
+        "  harness-check:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "      - uses: actions/checkout@v4",
+        "      - uses: oven-sh/setup-bun@v2",
+        "      - run: bun install --frozen-lockfile",
+        "      - run: bun run ut-tdd --version",
+        "      - run: bun run ut-tdd status --json",
+        "      - run: bun run test",
+        "",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "permissionsRead=false",
+      ),
+    ).toBe(true);
+    expect(hasDoctorMessage(result.messages, "noPullRequestTarget=false")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "tokenWrite=true")).toBe(true);
+    expect(
+      hasDoctorMessage(
+        result.messages,
+        "missingRuns=bun run ut-tdd setup project --dry-run --json",
       ),
     ).toBe(true);
   });

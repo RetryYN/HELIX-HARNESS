@@ -395,6 +395,8 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "    branches: [main]",
     "  pull_request:",
     "    branches: [main]",
+    "permissions:",
+    "  contents: read",
     "jobs:",
     "  harness-check:",
     "    runs-on: ubuntu-latest",

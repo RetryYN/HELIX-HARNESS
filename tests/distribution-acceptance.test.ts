@@ -218,6 +218,8 @@ describe("clean distribution local acceptance smoke", () => {
           join(consumerRoot, ".github", "workflows", "harness-check.yml"),
           "utf8",
         );
+        expect(workflow).toContain("permissions:");
+        expect(workflow).toContain("contents: read");
         expect(workflow).toContain("bun run ut-tdd --version");
         expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
         expect(workflow).toContain("bun run ut-tdd status --json");

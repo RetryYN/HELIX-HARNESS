@@ -257,6 +257,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "HELIX status と doctor 出力",
       );
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
+      expect(templates["common/harness-check.yml"]).toContain("permissions:");
+      expect(templates["common/harness-check.yml"]).toContain("contents: read");
       expect(templates["team/CODEOWNERS"]).toContain("{{TL_TEAM}}");
       const deps = mockDeps({ repoRoot: repo, templates });
       const plan = planSetup("0-B", {
@@ -513,6 +515,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.workspace.monorepo).toBe(true);
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
+    expect(ready.ci.security).toEqual({
+      permissions: "contents:read",
+      triggers: ["push:main", "pull_request:main"],
+      disallowedTriggers: ["pull_request_target"],
+      secrets: "not-required",
+    });
     expect(ready.ci.packageResolution).toMatchObject({
       command: "bun run ut-tdd --version",
       requiredBefore: expect.arrayContaining([
