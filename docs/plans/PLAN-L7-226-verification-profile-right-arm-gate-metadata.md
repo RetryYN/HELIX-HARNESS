@@ -98,6 +98,8 @@ drive 別 L10 要否に意味接続していなかった gap を閉じる。doct
 
 - `VerificationProfile` に `recommendedGates` / `recommendedDrives` を追加する。
 - catalog の browser / integration / API mock / GitHub / doctor profile を G8-G14 と drive に接続する。
+- default-enabled な `bun-unit` は restricted network でも実行できる local regression runner とし、clean distribution
+  acceptance のような dependency download/cache 前提の full regression を default runnable に混ぜない。
 - `analyzeRightArmVerificationProfileCoverage` を追加し、G8-G14 の profile 欠落と `fe` / `fullstack` /
   `agent` の G10 browser profile 欠落を fail-close する。
 - drive 別 L10 coverage は browser profile (`vitest-browser-playwright` / `playwright-mcp`) のみで充足し、非 browser profile が G10 を名乗っても browser evidence 扱いにしない。
@@ -113,6 +115,8 @@ drive 別 L10 要否に意味接続していなかった gap を閉じる。doct
 ## 受入条件
 
 - catalog の profile は G8-G14 / drive metadata を持つ。
+- `bun-unit` の runner / generated MCP argv は `bun run test:local` に接続し、`bun run test` は release / cutover /
+  activation 用の full regression evidence として分離される。
 - `fe` / `fullstack` / `agent` から全 G10 browser profile metadata を外した fixture は
   `missing-drive-g10-profile` で fail する。
 - 非 browser profile が G10 を宣言しても、drive 別 L10 browser evidence を充足しない。

@@ -19,6 +19,7 @@
     "lint": "biome check src tests",
     "format": "biome check --write src tests",
     "test": "vitest run",
+    "test:local": "vitest run --exclude tests/distribution-acceptance.test.ts",
     "test:node-fallback": "vitest run tests/state-db.test.ts tests/runtime-portability.test.ts",
     "test:watch": "vitest"
   },

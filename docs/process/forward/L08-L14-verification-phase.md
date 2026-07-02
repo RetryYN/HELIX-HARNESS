@@ -268,6 +268,11 @@ profile が G10 を名乗っても、drive 別 L10 browser evidence の充足根
 UI を持つ場合のみ L10 が必要だが、UI ありと判定された slice では同じ G10 browser profile に接続する。G8/G9 は
 Testcontainers / MSW / MCP Inspector 等の結合・システム profile、G12-G14 は doctor / GitHub read-only
 context 等の受入・release・post-deploy profile に接続する。
+default runnable profile は restricted network でも実行できる local regression を指す。`bun-unit` は
+`bun run test:local` を使い、clean distribution acceptance のように `bun install --frozen-lockfile` で
+外部 registry / package cache に触る検証を default runnable に混ぜない。`bun run test` は承認前 full regression
+または release / cutover / activation の強い evidence として残すが、network-denied 環境での dependency download failure を
+「local unit regression の失敗」と読み替えない。
 
 ---
 

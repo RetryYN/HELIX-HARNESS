@@ -8,8 +8,8 @@ import type {
 export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   "bun-unit": {
     id: "bun-unit",
-    label: "Bun/Vitest unit regression",
-    command: "bun run test",
+    label: "Bun/Vitest local regression",
+    command: "bun run test:local",
     sourceType: "builtin",
     packageName: null,
     executable: "bun",
@@ -208,7 +208,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
 export const PROFILE_RUNNERS: Partial<
   Record<VerificationProfileId, readonly [string, readonly string[]]>
 > = {
-  "bun-unit": ["bun", ["run", "test"]] as const,
+  "bun-unit": ["bun", ["run", "test:local"]] as const,
   doctor: ["bun", ["run", "src/cli.ts", "doctor"]] as const,
   "vitest-browser-playwright": ["bun", ["run", "test", "--", "--browser"]] as const,
 };

@@ -341,7 +341,7 @@ describe("verification profile recommendation", () => {
     const result = runVerificationProfile("bun-unit", { dryRun: true }, deps());
 
     expect(result?.status).toBe("dry-run");
-    expect(result?.command).toBe("bun run test");
+    expect(result?.command).toBe("bun run test:local");
   });
 
   it("saves normalized evidence records for later DB collection", () => {
@@ -504,7 +504,7 @@ describe("MCP profile config and safety (U-MCPPROFILE-001..014)", () => {
     // command is the head token; args carry the remaining argv (no re-inclusion
     // of the executable, no whole-command-string-as-one-arg).
     expect(config.mcpServers["bun-unit"].command).toBe("bun");
-    expect(config.mcpServers["bun-unit"].args).toEqual(["run", "test"]);
+    expect(config.mcpServers["bun-unit"].args).toEqual(["run", "test:local"]);
 
     // Wrapper command whose first token ("ut-tdd") differs from the probe-hint
     // executable ("bun"): the launch command is the command head, not the hint.
@@ -513,7 +513,7 @@ describe("MCP profile config and safety (U-MCPPROFILE-001..014)", () => {
 
     // Regression for the pre-fix bug: args must never be the whole command line.
     for (const server of Object.values(config.mcpServers)) {
-      expect(server.args).not.toContain("bun run test");
+      expect(server.args).not.toContain("bun run test:local");
       expect(server.args[0]).not.toBe(server.command);
     }
   });

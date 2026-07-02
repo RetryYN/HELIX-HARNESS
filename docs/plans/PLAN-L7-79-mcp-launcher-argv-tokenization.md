@@ -66,8 +66,8 @@ related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 `renderGeneratedMcpConfig` produced an `mcpServers.<id>` entry whose `args` was
 `[profile.command]` — the entire command string packed into a single argv
 element — while `command` was `profile.executable ?? profile.command.split(" ")[0]`.
-For a profile like `bun-unit` (`command: "bun run test"`, `executable: "bun"`)
-this emitted `command:"bun", args:["bun run test"]`, double-including the
+For a profile like `bun-unit` (`command: "bun run test:local"`, `executable: "bun"`)
+this emitted `command:"bun", args:["bun run test:local"]`, double-including the
 executable and handing an external MCP launcher a malformed argv. For wrapper
 profiles whose `command` head differs from `executable` (e.g. `mcp-inspector-smoke`
 with `command:"ut-tdd …"`, `executable:"bun"`) it emitted a `command` that does
@@ -96,7 +96,7 @@ Out of scope:
 
 ## 2. Acceptance Criteria
 
-- For `bun-unit`, generated server is `command:"bun"`, `args:["run","test"]`.
+- For `bun-unit`, generated server is `command:"bun"`, `args:["run","test:local"]`.
 - For a wrapper profile whose command head differs from `executable`, `command`
   is the command head, not the probe-hint executable.
 - No generated server has the whole command string as a single `args` element.
