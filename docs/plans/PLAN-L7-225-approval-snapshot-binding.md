@@ -137,7 +137,7 @@ review_evidence:
     reviewed_at: "2026-07-01T14:44:49+09:00"
     tests_green_at: "2026-07-01T14:44:49+09:00"
     verdict: approve
-    scope: "Cutover approval snapshot binding now compares approval record snapshot ids with the current rename plan cutoverSnapshot.snapshotId. Concrete but stale cutover_snapshot_id / reviewed_snapshot_binding values keep applyAuthorized=false, while matching current snapshot ids are required before the non-applying packet can become ready_for_cutover_packet."
+    scope: "Cutover approval snapshot binding now compares approval record snapshot ids with the current rename plan cutoverSnapshot.snapshotId. Concrete but stale cutover_snapshot_id / reviewed_snapshot_binding values keep approvalMaterialReady=false, while matching current snapshot ids are required before the non-applying packet can become ready_for_cutover_packet. applyAuthorized remains false on the plan-only packet."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -259,7 +259,7 @@ review_evidence:
     reviewed_at: "2026-07-01T13:49:34+09:00"
     tests_green_at: "2026-07-01T13:49:34+09:00"
     verdict: approve
-    scope: "Meaning-level alignment was rechecked from L3 requirements through L4/L5/L6 design and test-design to implementation/tests. Snapshot-bound approvals now stay pending until reviewed_snapshot_binding contains the current sha256 snapshot id, and PLAN-M-02 rename cutover cannot set applyAuthorized from outcome plus actor/tool/target only."
+    scope: "Meaning-level alignment was rechecked from L3 requirements through L4/L5/L6 design and test-design to implementation/tests. Snapshot-bound approvals now stay pending until reviewed_snapshot_binding contains the current sha256 snapshot id, and PLAN-M-02 rename cutover cannot set approvalMaterialReady from outcome plus actor/tool/target only. applyAuthorized remains false on the plan-only packet."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -436,8 +436,11 @@ evidence being reviewed.
 - [x] Snapshot digest changes when cutover blast radius changes.
 - [x] Action-binding approval packet keeps snapshot field placeholders pending
       until a concrete current `sha256:` snapshot ID is recorded.
-- [x] Rename cutover does not set `applyAuthorized=true` from outcomes plus
+- [x] Rename cutover does not set `approvalMaterialReady=true` from outcomes plus
       actor/tool/target alone; full approval evidence is required.
+- [x] `rename plan` remains plan-only: `applyAuthorized=false`,
+      `applyCommandAvailable=false`, and `mustNotApply=true` even when approval
+      material is ready.
 - [x] L3-L6 requirements/design/test-design lines carry the same snapshot and
       full-approval semantics.
 - [x] Readiness gates share terminal status handling, keep terminal record

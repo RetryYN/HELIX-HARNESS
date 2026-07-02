@@ -86,6 +86,7 @@ export interface IdentifierRenameCutoverPlan {
   planOnly: true;
   mustNotApply: true;
   applyCommandAvailable: false;
+  approvalMaterialReady: boolean;
   applyAuthorized: boolean;
   targetCli: "helix";
   targetStateDir: ".helix";
@@ -1341,24 +1342,26 @@ export function buildIdentifierRenameCutoverPlan(
       );
     }
   }
-  const applyAuthorized = approvalEvaluation.approved && blockedReasons.length === 0;
+  const approvalMaterialReady = approvalEvaluation.approved && blockedReasons.length === 0;
+  const applyAuthorized = false;
 
   return {
     schemaVersion: "identifier-rename-cutover-plan.v1",
-    status: applyAuthorized ? "ready_for_cutover_packet" : "blocked_pending_cutover_approval",
+    status: approvalMaterialReady ? "ready_for_cutover_packet" : "blocked_pending_cutover_approval",
     generatedAt: provenance.generatedAt,
     sourceCommand: RENAME_PLAN_PACKET_COMMAND,
     freshness: provenance.freshness,
     planOnly: true,
     mustNotApply: true,
     applyCommandAvailable: false,
+    approvalMaterialReady,
     applyAuthorized,
     targetCli: audit.targetCli,
     targetStateDir: audit.targetStateDir,
     renameMap: RENAME_MAP,
     semanticFeatureFrontierRecord,
     audit: {
-      status: applyAuthorized ? "ready_for_cutover" : "blocked_pending_cutover_approval",
+      status: approvalMaterialReady ? "ready_for_cutover" : "blocked_pending_cutover_approval",
       totalHits: audit.totalHits,
       hitsByToken: audit.hitsByToken,
       filesByToken: audit.filesByToken,

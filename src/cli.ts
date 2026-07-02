@@ -1558,7 +1558,7 @@ rename
       return;
     }
     process.stdout.write(
-      `rename plan: status=${plan.status} planOnly=${plan.planOnly} applyAuthorized=${plan.applyAuthorized} mustNotApply=${plan.mustNotApply}\n`,
+      `rename plan: status=${plan.status} planOnly=${plan.planOnly} approvalMaterialReady=${plan.approvalMaterialReady} applyAuthorized=${plan.applyAuthorized} mustNotApply=${plan.mustNotApply}\n`,
     );
     process.stdout.write(packetFreshnessLine(plan));
     process.stdout.write(

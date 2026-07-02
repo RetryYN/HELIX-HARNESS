@@ -373,6 +373,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         planOnly: true,
         mustNotApply: true,
         applyCommandAvailable: false,
+        approvalMaterialReady: false,
         applyAuthorized: false,
         targetCli: "helix",
         targetStateDir: ".helix",
@@ -949,7 +950,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("authorizes only when concrete approval records cite the current cutover snapshot", () => {
+  it("marks approval material ready only when concrete approval records cite the current cutover snapshot", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-"));
     try {
       writeApprovedRenamePlan(root);
@@ -969,7 +970,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
 
       expect(plan.status).toBe("ready_for_cutover_packet");
-      expect(plan.applyAuthorized).toBe(true);
+      expect(plan.approvalMaterialReady).toBe(true);
+      expect(plan.applyAuthorized).toBe(false);
+      expect(plan.mustNotApply).toBe(true);
+      expect(plan.applyCommandAvailable).toBe(false);
       expect(plan.blockedReasons).toEqual([]);
       expect(plan.snapshotReview).toMatchObject({
         recordedCutoverSnapshotId: currentSnapshotId,
