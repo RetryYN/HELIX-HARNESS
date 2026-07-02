@@ -72,6 +72,7 @@ const baseTemplates: TemplateSet = {
     "# HELIX アダプター",
     "",
     "- Status: `ut-tdd status`",
+    "- Completion packet: `ut-tdd completion decision-packet --json`",
     "- Doctor: `ut-tdd doctor --profile consumer`",
     "- Rename packet: `ut-tdd rename plan --json`",
     "- Handover: `ut-tdd handover`",
@@ -83,6 +84,7 @@ const baseTemplates: TemplateSet = {
     "# HELIX 共有コンテキスト",
     "",
     "- `ut-tdd status`",
+    "- `ut-tdd completion decision-packet --json`",
     "- `ut-tdd doctor --profile consumer`",
     "- `ut-tdd rename plan --json`",
     "<!-- UT-TDD:managed:end -->",
@@ -92,6 +94,8 @@ const baseTemplates: TemplateSet = {
     "<!-- UT-TDD:managed:start -->",
     "# Claude runtime アダプター",
     "",
+    "- `ut-tdd status`",
+    "- `ut-tdd completion decision-packet --json`",
     "- `ut-tdd rename plan --json`",
     "- `ut-tdd handover`",
     "<!-- UT-TDD:managed:end -->",
@@ -274,6 +278,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       const templates = loadTemplates(repo);
       expect(templates["adapter/AGENTS.md"]).toContain("HELIX アダプター");
       expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
+      expect(templates["adapter/AGENTS.md"]).toContain("ut-tdd completion decision-packet --json");
+      expect(templates["adapter/CLAUDE.md"]).toContain("ut-tdd completion decision-packet --json");
+      expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
+        "ut-tdd completion decision-packet --json",
+      );
       expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook agent-guard");
       expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
@@ -284,11 +293,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
         "ut-tdd doctor --profile consumer",
       );
+      expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
+        "ut-tdd completion decision-packet --json",
+      );
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
-        "HELIX status と doctor 出力",
+        "HELIX status / completion packet / doctor 出力",
       );
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain("ut-tdd status --json");
+      expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
+        "ut-tdd completion decision-packet --json",
+      );
       expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain(
         "name: default-hybrid",
       );

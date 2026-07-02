@@ -6,6 +6,7 @@
 PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
 
 - Status: `ut-tdd status`
+- Completion packet: `ut-tdd completion decision-packet --json`
 - Doctor: `ut-tdd doctor --profile consumer`
 - Rename packet: `ut-tdd rename plan --json`
 - Handover: `ut-tdd handover`

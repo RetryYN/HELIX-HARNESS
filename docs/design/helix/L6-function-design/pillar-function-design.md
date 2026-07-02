@@ -306,7 +306,7 @@ packet を保存しない初回稼働 claim を閉じない。adapter hook/readi
 別契約として残し、VSCode task command と混同しない。
 consumer doctor の identifier transition gate は、既知 subcommand の狭い列挙ではなく、package string `bin`、
 adapter hook、VS Code task、CI workflow、配布 Claude agent / slash-command に現れる lowercase `helix` 実行 alias
-全般を承認前 alias activation として fail-close する。
+全般を承認前 alias activation として fail-close する。同じ consumer doctor surface で、配布 Claude subagent / slash-command は `ut-tdd status`、`ut-tdd completion decision-packet --json`、`ut-tdd doctor --profile consumer` の三点 baseline を持つことを fail-close で検査する。`status` は状態、completion packet は `completionClaimAllowed=false` と未完了列、consumer doctor は配布面の健全性を担い、doctor の成功だけを完了可否へ読み替えない。
 
 **HC-P6 importReport 補足**: `HelixProjectSetupResult.importReport.skipSubDocs[]` は各 record に `marker=skip_sub_doc`、対象 path、理由、次 route、evidence、follow-up gate を持つ。fresh consumer setup では dogfood `docs/plans` / `docs/design/harness` / `docs/test-design` を `consumer_doctor_profile` へ段階化し、brownfield conflict では保持した consumer-owned path を `review_import_report` へ段階化する。
 

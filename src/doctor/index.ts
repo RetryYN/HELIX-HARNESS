@@ -1872,6 +1872,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("日本語を既定") &&
     text.includes("docs / handover / adapter prose も日本語") &&
     text.includes("PLAN-M-02") &&
+    text.includes("ut-tdd completion decision-packet --json") &&
     text.includes("ut-tdd doctor --profile consumer");
   const docsOk =
     agents.includes("HELIX アダプター") &&
@@ -1958,6 +1959,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       fm.tools.trim().length > 0 &&
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd status") &&
+      text.includes("ut-tdd completion decision-packet --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       text.includes("findings") &&
@@ -1972,6 +1974,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       fm.description.trim().length > 0 &&
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
+      text.includes("ut-tdd completion decision-packet --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
@@ -1980,7 +1983,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     invalidAgentTemplates.length === 0 && invalidCommandTemplates.length === 0;
   messages.push(
     claudeSurfaceOk
-      ? `doctor: consumer-claude-surface - OK (agents=${expectedClaudeAgentPaths.length}, commands=${expectedClaudeCommandPaths.length}, Japanese+consumer-doctor baseline)`
+      ? `doctor: consumer-claude-surface - OK (agents=${expectedClaudeAgentPaths.length}, commands=${expectedClaudeCommandPaths.length}, Japanese+completion-packet+consumer-doctor baseline)`
       : `doctor: consumer-claude-surface - violation invalidAgents=${invalidAgentTemplates.join(",")} invalidCommands=${invalidCommandTemplates.join(",")}`,
   );
 

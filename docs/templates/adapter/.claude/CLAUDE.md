@@ -7,7 +7,7 @@ PLAN-M-02 で atomic identifier migration が行われるまでは、CLI 名は 
 
 PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
 
-- Session evidence: `ut-tdd status`、`ut-tdd rename plan --json`、`ut-tdd handover`
+- Session evidence: `ut-tdd status`、`ut-tdd completion decision-packet --json`、`ut-tdd rename plan --json`、`ut-tdd handover`
 - Health check: `ut-tdd doctor --profile consumer`
 - Review separation: 可能な場合は別 runtime / model family を使う
 
