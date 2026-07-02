@@ -1051,10 +1051,15 @@ describe("L7 CLI surface closure", () => {
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
     );
     expect(text.stdout).toContain("checked=2026-07-02");
+    expect(text.stdout).toContain("status=VS Code Tasks official docs current");
+    expect(text.stdout).toContain("statusDelta=none; setup keeps generated tasks explicit");
     expect(text.stdout).toContain("adoption=VS Code Tasks は shell task");
+    expect(text.stdout).toContain("adoptionDelta=none; keep task projection non-automatic");
+    expect(text.stdout).toContain("routeImpact=task contract drift routes to consumer doctor");
     expect(text.stdout).toContain(
       "verification-source: consumer-doctor source=VS Code Workspace Trust and consumer adapter safety contract sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     );
+    expect(text.stdout).toContain("status=VS Code Workspace Trust official docs current");
     expect(text.stdout).toContain("adoption=Workspace Trust の自動コード実行境界");
     expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
     expect(text.stdout).toContain(

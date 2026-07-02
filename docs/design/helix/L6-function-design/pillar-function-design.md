@@ -124,10 +124,14 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   期待 task 以外の余分な task でも自動実行があれば fail-close する。Workspace Trust の自動実行抑止を
   別 project 稼働証跡に含める。
 - HC-P6 `runHelixProjectSetup` の `postSetupWorkflow.verificationMatrix[]` は setup-dry-run /
-  status-frontier / consumer-doctor / handover-route / team-run-dry-run の phase / command / expected / evidence / source / sourceUrl を返す。
+  status-frontier / consumer-doctor / handover-route / team-run-dry-run の phase / command / expected / evidence /
+  source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
+  adoptionDecisionDelta / workflowRouteImpact を返す。
   VS Code workspace task、Workspace Trust、HELIX status/handover contract、team definition contract を初回稼働証跡へ接続し、
-  command 列挙だけで「別プロジェクトで HELIX が動く」claim を閉じない。text surface は
+  command 列挙や source 名だけで「別プロジェクトで HELIX が動く」claim を閉じない。text surface は
   `verification-check:` と `verification-source:` も列挙する。
+  `HelixProjectSetupResult.githubPlan.branchProtection.scriptPath` を返す場合、0-A/0-B の project setup preview /
+  written paths に同じ approval checklist script を含め、JSON が存在しない script を指さない。
 - HC-P6 clean distribution acceptance は `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、
   temp-local `BUN_INSTALL` の `bun link` と consumer repo の `bun link ut-tdd --no-save` を通した
   `node_modules/.bin/ut-tdd` で setup / status / doctor / handover / team-run dry-run を実行する。handmade shim や

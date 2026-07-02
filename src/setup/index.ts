@@ -209,7 +209,11 @@ export interface HelixProjectPostSetupWorkflow {
     source: string;
     sourceUrl: string;
     sourceCheckedAt: string;
+    latestOfficialStatus: string;
+    sourceStatusDelta: string;
     adoptionDecision: string;
+    adoptionDecisionDelta: string;
+    workflowRouteImpact: string;
   }>;
   blockedUntil: string[];
 }
@@ -543,6 +547,13 @@ export function planHelixProjectSetup(
   const base = planSetup(phase, opts);
   const byPath = new Map(base.files.map((file) => [file.path, file]));
   for (const entry of PROJECT_SETUP_FILES) byPath.set(entry.file.path, { ...entry.file });
+  if (!byPath.has(BP_SCRIPT)) {
+    byPath.set(BP_SCRIPT, {
+      path: BP_SCRIPT,
+      category: "A",
+      purpose: "branch protection approval checklist (emit-only)",
+    });
+  }
   return {
     ...base,
     files: [...byPath.values()],
@@ -979,8 +990,15 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       source: "VS Code workspace task contract",
       sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
       sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "VS Code Tasks official docs current for workspace tasks and shell task configuration",
+      sourceStatusDelta:
+        "none; setup keeps generated tasks explicit and does not enable automatic task execution",
       adoptionDecision:
         "VS Code Tasks は shell task と problemMatcher=[] に限定し、自動実行や外部 install を setup が有効化しない",
+      adoptionDecisionDelta: "none; keep task projection non-automatic and reviewable",
+      workflowRouteImpact:
+        "task contract drift routes to consumer doctor/template repair before first HELIX work",
     },
     {
       phase: "status-frontier",
@@ -991,8 +1009,15 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       source: "HELIX status and completion decision packet contract",
       sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX L3 status/completion contract current at HEAD",
+      sourceStatusDelta:
+        "none; setup still requires status frontier evidence before treating the project as ready",
       adoptionDecision:
         "status は objective progress と workflowNextActions を初回稼働証跡として保存し、doctor green を完了 claim に読み替えない",
+      adoptionDecisionDelta:
+        "none; completion readiness remains separate from consumer setup success",
+      workflowRouteImpact:
+        "missing status frontier evidence routes to fix_consumer_readiness before implementation starts",
     },
     {
       phase: "consumer-doctor",
@@ -1003,8 +1028,14 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       source: "VS Code Workspace Trust and consumer adapter safety contract",
       sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
       sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "VS Code Workspace Trust official docs current for restricted-mode execution boundary",
+      sourceStatusDelta:
+        "none; consumer doctor keeps automatic execution disabled and checks projected adapters",
       adoptionDecision:
         "Workspace Trust の自動コード実行境界に合わせ、task.allowAutomaticTasks=off と runOn/folderOpen 不使用を consumer doctor で検査する",
+      adoptionDecisionDelta: "none; projected VS Code tasks remain manual verification surfaces",
+      workflowRouteImpact: "consumer doctor failure routes to fix_consumer_readiness, not ready",
     },
     {
       phase: "handover-route",
@@ -1015,8 +1046,15 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       source: "handover route contract",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md#18-u-hover-handover",
       sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local handover route contract current at HEAD",
+      sourceStatusDelta:
+        "none; first action remains anchored by active handover or normal-start evidence",
       adoptionDecision:
         "handover status で active handover または通常開始を確認してから最初の HELIX 作業へ入る",
+      adoptionDecisionDelta:
+        "none; setup does not invent a work route without handover/status evidence",
+      workflowRouteImpact:
+        "handover route absence keeps the first action in fix_consumer_readiness",
     },
     {
       phase: "team-run-dry-run",
@@ -1027,8 +1065,15 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       source: "HELIX team definition schema and provider handover contract",
       sourceUrl: "docs/design/harness/L6-function-design/agent-slots.md",
       sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local team definition and provider handover contract current at HEAD",
+      sourceStatusDelta:
+        "none; distributed default team remains dry-run only for first-run verification",
       adoptionDecision:
         "AGENTS.md の team run 案内は配布 YAML と dry-run 検証へ接続し、実 provider 実行や外部 API 呼び出しなしに初回導線を検証する",
+      adoptionDecisionDelta:
+        "none; provider separation stays evidence-only until the user starts real work",
+      workflowRouteImpact:
+        "team dry-run failure routes to consumer readiness repair before parallel work",
     },
   ];
 }

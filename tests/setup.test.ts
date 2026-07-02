@@ -746,6 +746,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
     expect(preview.written).toContain(join(".ut-tdd", "teams", "default-hybrid.yaml"));
+    expect(preview.written).toContain(preview.githubPlan.branchProtection.scriptPath);
     expect(preview.importReport).toMatchObject({
       schemaVersion: "helix-project-import-report.v1",
       mode: "fresh",
@@ -760,6 +761,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         join(".vscode", "tasks.json"),
         join(".ut-tdd", "memory", ".gitkeep"),
         join(".ut-tdd", "teams", "default-hybrid.yaml"),
+        preview.githubPlan.branchProtection.scriptPath,
       ]),
     );
     expect(preview.importReport.skipSubDocs).toEqual(
@@ -823,12 +825,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         source: "VS Code workspace task contract",
         sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
         sourceCheckedAt: "2026-07-02",
+        latestOfficialStatus: expect.stringContaining("VS Code Tasks official docs"),
+        sourceStatusDelta: expect.stringContaining("none"),
         adoptionDecision: expect.stringContaining("自動実行"),
+        adoptionDecisionDelta: expect.stringContaining("none"),
+        workflowRouteImpact: expect.stringContaining("consumer doctor"),
       }),
       expect.objectContaining({
         phase: "status-frontier",
         command: "ut-tdd status --json",
         expected: expect.stringContaining("objective progress"),
+        latestOfficialStatus: expect.stringContaining("local HELIX L3"),
       }),
       expect.objectContaining({
         phase: "consumer-doctor",
@@ -836,7 +843,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         source: "VS Code Workspace Trust and consumer adapter safety contract",
         sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
         sourceCheckedAt: "2026-07-02",
+        latestOfficialStatus: expect.stringContaining("VS Code Workspace Trust official docs"),
+        sourceStatusDelta: expect.stringContaining("none"),
         adoptionDecision: expect.stringContaining("task.allowAutomaticTasks=off"),
+        adoptionDecisionDelta: expect.stringContaining("none"),
+        workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
       }),
       expect.objectContaining({
         phase: "handover-route",
@@ -850,6 +861,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         source: "HELIX team definition schema and provider handover contract",
       }),
     ]);
+    expect(
+      preview.postSetupWorkflow.verificationMatrix.every(
+        (row) =>
+          row.latestOfficialStatus &&
+          row.sourceStatusDelta &&
+          row.adoptionDecisionDelta &&
+          row.workflowRouteImpact,
+      ),
+    ).toBe(true);
     expect(preview.postSetupWorkflow.blockedUntil).toContain(
       "PLAN-M-02 cutover/action-binding approval before using `helix setup project` or `.helix` state",
     );
@@ -1078,6 +1098,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         requiresHumanApproval: true,
       },
     });
+    expect(result.written).toContain(result.githubPlan.branchProtection.scriptPath);
+    expect(result.importReport.previewPaths).toContain(
+      result.githubPlan.branchProtection.scriptPath,
+    );
     expect(result.doctorBaseline).toEqual({
       schemaVersion: "helix-project-doctor-baseline.v1",
       planOnly: true,
