@@ -16,6 +16,7 @@ import { dirname, join } from "node:path";
 import { analyzeCompletionDecisionPacket } from "../lint/completion-decision-packet";
 import {
   completionDecisionPacketForOutstanding,
+  completionReadinessForOutstanding,
   computeOutstandingWork,
   outstandingSummaryLine,
   workflowNextActionsForOutstanding,
@@ -780,17 +781,28 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
   const pointerPacket = pointer.completionDecisionPacket;
   const needsLivePacketRebuild =
     pointerPacket.sourceCommand === "ut-tdd handover" &&
-    (pointerPacket.semanticMeaningSummary === undefined ||
+    (pointerPacket.authorityBoundary === undefined ||
+      pointerPacket.humanDecisionRequired === undefined ||
+      pointerPacket.humanDecisionBlockers === undefined ||
+      pointerPacket.autonomousWorkBlockers === undefined ||
+      pointerPacket.nextAuthority === undefined ||
+      pointerPacket.semanticMeaningSummary === undefined ||
       pointerPacket.semanticFeatureFrontierRecords === undefined ||
       pointerPacket.confirmedCurrentMeaningRecords === undefined ||
       pointerPacket.decisions.some((decision) => decision.supportingPacketSummaries === undefined));
   const packet = needsLivePacketRebuild
-    ? completionDecisionPacketForOutstanding(outstanding, {
-        generatedAt: pointerPacket.generatedAt,
-        now: deps.now(),
-        validForMinutes: pointerPacket.freshness.validForMinutes,
-        sourceCommand: "ut-tdd handover",
-      })
+    ? completionDecisionPacketForOutstanding(
+        {
+          ...outstanding,
+          completionReadiness: completionReadinessForOutstanding(outstanding),
+        },
+        {
+          generatedAt: pointerPacket.generatedAt,
+          now: deps.now(),
+          validForMinutes: pointerPacket.freshness.validForMinutes,
+          sourceCommand: "ut-tdd handover",
+        },
+      )
     : pointerPacket;
   const lint = analyzeCompletionDecisionPacket(packet, deps.now(), {
     sourcePathExists: (sourcePath) => deps.readText(join(deps.repoRoot, sourcePath)) !== null,

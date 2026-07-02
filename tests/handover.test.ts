@@ -344,6 +344,11 @@ describe("U-HOVER-017 §5 outstanding seed + anchor gate (PLAN-L7-98)", () => {
       status: "blocked" as const,
       reason: "",
       blockers: [],
+      authorityBoundary: "automation_work_required" as const,
+      humanDecisionRequired: false,
+      humanDecisionBlockers: [],
+      autonomousWorkBlockers: [],
+      nextAuthority: "automation" as const,
       requiredActions: [],
       requiredActionsJa: [],
     },
@@ -583,6 +588,11 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       sourceCommand: "ut-tdd handover",
     });
     const {
+      authorityBoundary: _authorityBoundary,
+      humanDecisionRequired: _humanDecisionRequired,
+      humanDecisionBlockers: _humanDecisionBlockers,
+      autonomousWorkBlockers: _autonomousWorkBlockers,
+      nextAuthority: _nextAuthority,
       semanticMeaningSummary: _semanticMeaningSummary,
       semanticFeatureFrontierRecords: _semanticFeatureFrontierRecords,
       confirmedCurrentMeaningRecords: _confirmedCurrentMeaningRecords,

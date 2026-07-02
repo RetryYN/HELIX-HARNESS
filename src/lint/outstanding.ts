@@ -175,9 +175,21 @@ export interface CompletionReadiness {
   status: "ready" | "blocked";
   reason: string;
   blockers: string[];
+  authorityBoundary: CompletionAuthorityBoundary;
+  humanDecisionRequired: boolean;
+  humanDecisionBlockers: string[];
+  autonomousWorkBlockers: string[];
+  nextAuthority: CompletionNextAuthority;
   requiredActions: string[];
   requiredActionsJa: string[];
 }
+
+export type CompletionAuthorityBoundary =
+  | "none"
+  | "automation_work_required"
+  | "human_decision_required";
+
+export type CompletionNextAuthority = "none" | "automation" | "human";
 
 export type CompletionDecisionKind =
   | "po_s4_decision"
@@ -281,6 +293,11 @@ export interface CompletionDecisionPacket {
   generatedAt: string;
   sourceCommand: string;
   freshness: DecisionPacketFreshness;
+  authorityBoundary: CompletionAuthorityBoundary;
+  humanDecisionRequired: boolean;
+  humanDecisionBlockers: string[];
+  autonomousWorkBlockers: string[];
+  nextAuthority: CompletionNextAuthority;
   semanticMeaningSummary: CompletionDecisionSemanticMeaningSummary;
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[];
   confirmedCurrentMeaningRecords: ConfirmedCurrentMeaningRecord[];
@@ -849,6 +866,48 @@ export function outstandingSummaryLine(o: OutstandingWork): string {
 
 type OutstandingWorkBase = Omit<OutstandingWork, "completionReadiness">;
 
+const HUMAN_DECISION_BLOCKERS = new Set([
+  "human_approval_pending",
+  "irreversible_migration_pending",
+  "po_decision_pending",
+  "version_up_parked",
+]);
+
+function completionAuthorityBoundaryForBlockers(blockers: string[]): {
+  authorityBoundary: CompletionAuthorityBoundary;
+  humanDecisionRequired: boolean;
+  humanDecisionBlockers: string[];
+  autonomousWorkBlockers: string[];
+  nextAuthority: CompletionNextAuthority;
+} {
+  const humanDecisionBlockers = blockers
+    .filter((blocker) => HUMAN_DECISION_BLOCKERS.has(blocker))
+    .sort();
+  const autonomousWorkBlockers = blockers
+    .filter((blocker) => !HUMAN_DECISION_BLOCKERS.has(blocker))
+    .sort();
+  const humanDecisionRequired = humanDecisionBlockers.length > 0;
+  const authorityBoundary: CompletionAuthorityBoundary =
+    blockers.length === 0
+      ? "none"
+      : humanDecisionRequired
+        ? "human_decision_required"
+        : "automation_work_required";
+  const nextAuthority: CompletionNextAuthority =
+    authorityBoundary === "none"
+      ? "none"
+      : authorityBoundary === "human_decision_required"
+        ? "human"
+        : "automation";
+  return {
+    authorityBoundary,
+    humanDecisionRequired,
+    humanDecisionBlockers,
+    autonomousWorkBlockers,
+    nextAuthority,
+  };
+}
+
 export function completionReadinessForOutstanding(o: OutstandingWorkBase): CompletionReadiness {
   const blockers = new Set<string>();
   if (o.nonTerminalPlansTotal > 0) blockers.add("non_terminal_plans");
@@ -867,22 +926,27 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
   }
 
   if (blockers.size === 0) {
+    const authority = completionAuthorityBoundaryForBlockers([]);
     return {
       ok: true,
       status: "ready",
       reason: "no non-terminal PLANs or open defers remain",
       blockers: [],
+      ...authority,
       requiredActions: [],
       requiredActionsJa: [],
     };
   }
 
+  const blockerList = [...blockers].sort();
+  const authority = completionAuthorityBoundaryForBlockers(blockerList);
   return {
     ok: false,
     status: "blocked",
     reason:
       "whole-program completion is blocked; doctor green is not a substitute for closing outstanding work",
-    blockers: [...blockers].sort(),
+    blockers: blockerList,
+    ...authority,
     requiredActions,
     requiredActionsJa,
   };
@@ -891,7 +955,7 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
 export function completionReadinessLine(o: OutstandingWork): string {
   const readiness = o.completionReadiness;
   if (readiness.ok) return "completion: ready (no outstanding work)";
-  return `completion: blocked (${readiness.blockers.join(", ")}); required actions=${readiness.requiredActions.length}`;
+  return `completion: blocked (${readiness.blockers.join(", ")}); authority=${readiness.authorityBoundary}; next-authority=${readiness.nextAuthority}; required actions=${readiness.requiredActions.length}`;
 }
 
 export function workflowNextActionForOutstanding(o: OutstandingWork): string {
@@ -975,6 +1039,11 @@ export function completionDecisionPacketForOutstanding(
     generatedAt: provenance.generatedAt,
     sourceCommand: provenance.sourceCommand,
     freshness: provenance.freshness,
+    authorityBoundary: outstanding.completionReadiness.authorityBoundary,
+    humanDecisionRequired: outstanding.completionReadiness.humanDecisionRequired,
+    humanDecisionBlockers: outstanding.completionReadiness.humanDecisionBlockers,
+    autonomousWorkBlockers: outstanding.completionReadiness.autonomousWorkBlockers,
+    nextAuthority: outstanding.completionReadiness.nextAuthority,
     semanticMeaningSummary: {
       frontierRecordCount: outstanding.semanticFeatureFrontierRecords?.length ?? 0,
       confirmedCurrentMeaningRecordCount: outstanding.confirmedCurrentMeaningRecords?.length ?? 0,

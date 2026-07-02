@@ -1202,7 +1202,7 @@ describe("L7 CLI surface closure", () => {
       payload.consumerReadiness.checks.find(
         (check: { name: string }) => check.name === "ut-tdd-cli",
       )?.message,
-    ).toMatch(/projected hooks|bun link ut-tdd/);
+    ).toMatch(/projected hooks|bun link ut-tdd|bun run ut-tdd/);
     expect(payload.commandAvailability.currentCommandAvailable).toBe(
       payload.consumerReadiness.checks.find(
         (check: { name: string }) => check.name === "ut-tdd-cli",

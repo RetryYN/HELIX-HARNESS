@@ -265,6 +265,13 @@ describe("completionReadinessForOutstanding", () => {
       "non_terminal_plans",
       "open_defers",
     ]);
+    expect(o.completionReadiness).toMatchObject({
+      authorityBoundary: "human_decision_required",
+      humanDecisionRequired: true,
+      humanDecisionBlockers: ["human_approval_pending", "irreversible_migration_pending"],
+      autonomousWorkBlockers: ["non_terminal_plans", "open_defers"],
+      nextAuthority: "human",
+    });
     expect(o.completionReadiness.reason).toContain("doctor green is not a substitute");
     expect(o.completionReadiness.requiredActions).toEqual(
       expect.arrayContaining([
@@ -290,8 +297,55 @@ describe("completionReadinessForOutstanding", () => {
       status: "ready",
       reason: "no non-terminal PLANs or open defers remain",
       blockers: [],
+      authorityBoundary: "none",
+      humanDecisionRequired: false,
+      humanDecisionBlockers: [],
+      autonomousWorkBlockers: [],
+      nextAuthority: "none",
       requiredActions: [],
       requiredActionsJa: [],
+    });
+  });
+
+  it("keeps autonomous blockers separate from human decision blockers", () => {
+    const readiness = completionReadinessForOutstanding({
+      nonTerminalPlansByLayer: { L7: 1 },
+      nonTerminalPlansTotal: 1,
+      versionUpParked: 0,
+      activeDraftTotal: 1,
+      openDefers: 0,
+      blockersByKind: {
+        active_draft: 1,
+      },
+      items: [
+        {
+          planId: "PLAN-L7-WORK",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          workflowPhase: null,
+          versionTarget: null,
+          reason: "active_draft",
+          blockers: ["active_draft"],
+          requiredAction:
+            "continue the PLAN through its declared workflow before claiming completion",
+          requiredActionJa: "PLAN を宣言済み workflow に沿って進めてから completion を主張する",
+          requiredActions: [
+            "continue the PLAN through its declared workflow before claiming completion",
+          ],
+          requiredActionsJa: ["PLAN を宣言済み workflow に沿って進めてから completion を主張する"],
+          requiredEvidence: [],
+        },
+      ],
+    });
+
+    expect(readiness).toMatchObject({
+      ok: false,
+      authorityBoundary: "automation_work_required",
+      humanDecisionRequired: false,
+      humanDecisionBlockers: [],
+      autonomousWorkBlockers: ["active_draft", "non_terminal_plans"],
+      nextAuthority: "automation",
     });
   });
 });
@@ -347,6 +401,16 @@ describe("completionDecisionPacketForOutstanding", () => {
         stale: false,
         policy: "decision-packet-freshness.v1",
       },
+      authorityBoundary: "human_decision_required",
+      humanDecisionRequired: true,
+      humanDecisionBlockers: [
+        "human_approval_pending",
+        "irreversible_migration_pending",
+        "po_decision_pending",
+        "version_up_parked",
+      ],
+      autonomousWorkBlockers: ["non_terminal_plans"],
+      nextAuthority: "human",
       decisionCount: 3,
       blockers: expect.arrayContaining([
         "irreversible_migration_pending",
@@ -723,6 +787,11 @@ describe("completionDecisionPacketForOutstanding", () => {
         stale: false,
         policy: "decision-packet-freshness.v1",
       },
+      authorityBoundary: "none",
+      humanDecisionRequired: false,
+      humanDecisionBlockers: [],
+      autonomousWorkBlockers: [],
+      nextAuthority: "none",
       semanticMeaningSummary: {
         frontierRecordCount: 0,
         confirmedCurrentMeaningRecordCount: 11,
@@ -758,6 +827,11 @@ describe("outstandingSummaryLine", () => {
           status: "blocked",
           reason: "",
           blockers: [],
+          authorityBoundary: "automation_work_required",
+          humanDecisionRequired: false,
+          humanDecisionBlockers: [],
+          autonomousWorkBlockers: [],
+          nextAuthority: "automation",
           requiredActions: [],
           requiredActionsJa: [],
         },
@@ -782,6 +856,11 @@ describe("outstandingSummaryLine", () => {
           status: "ready",
           reason: "",
           blockers: [],
+          authorityBoundary: "none",
+          humanDecisionRequired: false,
+          humanDecisionBlockers: [],
+          autonomousWorkBlockers: [],
+          nextAuthority: "none",
           requiredActions: [],
           requiredActionsJa: [],
         },

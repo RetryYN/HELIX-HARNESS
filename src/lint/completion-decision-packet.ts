@@ -18,6 +18,7 @@ import {
 export type CompletionDecisionPacketViolationReason =
   | "invalid_generated_from"
   | "invalid_status_ok_consistency"
+  | "invalid_authority_boundary"
   | "missing_generated_at"
   | "invalid_generated_at"
   | "invalid_source_command"
@@ -80,6 +81,12 @@ const ALLOWED_SOURCE_COMMANDS = new Set([
   "ut-tdd status --json",
   "ut-tdd completion decision-packet --json",
 ]);
+const HUMAN_DECISION_BLOCKERS = new Set([
+  "human_approval_pending",
+  "irreversible_migration_pending",
+  "po_decision_pending",
+  "version_up_parked",
+]);
 
 export function analyzeCompletionDecisionPacket(
   packet: CompletionDecisionPacket,
@@ -105,6 +112,63 @@ export function analyzeCompletionDecisionPacket(
     violations.push({
       reason: "invalid_status_ok_consistency",
       detail: `ok=${String(packet.ok)} status=${String(packet.status)}`,
+    });
+  }
+
+  const packetBlockers = [...(packet.blockers ?? [])].sort();
+  const expectedHumanDecisionBlockers = packetBlockers
+    .filter((blocker) => HUMAN_DECISION_BLOCKERS.has(blocker))
+    .sort();
+  const expectedAutonomousWorkBlockers = packetBlockers
+    .filter((blocker) => !HUMAN_DECISION_BLOCKERS.has(blocker))
+    .sort();
+  const expectedHumanDecisionRequired = expectedHumanDecisionBlockers.length > 0;
+  const expectedAuthorityBoundary =
+    packet.status === "ready"
+      ? "none"
+      : expectedHumanDecisionRequired
+        ? "human_decision_required"
+        : "automation_work_required";
+  const expectedNextAuthority =
+    expectedAuthorityBoundary === "none"
+      ? "none"
+      : expectedAuthorityBoundary === "human_decision_required"
+        ? "human"
+        : "automation";
+  if (packet.authorityBoundary !== expectedAuthorityBoundary) {
+    violations.push({
+      reason: "invalid_authority_boundary",
+      detail: `authorityBoundary=${String(packet.authorityBoundary)} expected=${expectedAuthorityBoundary}`,
+    });
+  }
+  if (packet.humanDecisionRequired !== expectedHumanDecisionRequired) {
+    violations.push({
+      reason: "invalid_authority_boundary",
+      detail: `humanDecisionRequired=${String(packet.humanDecisionRequired)} expected=${String(expectedHumanDecisionRequired)}`,
+    });
+  }
+  if (
+    JSON.stringify(packet.humanDecisionBlockers ?? []) !==
+    JSON.stringify(expectedHumanDecisionBlockers)
+  ) {
+    violations.push({
+      reason: "invalid_authority_boundary",
+      detail: `humanDecisionBlockers=${(packet.humanDecisionBlockers ?? []).join(",")} expected=${expectedHumanDecisionBlockers.join(",")}`,
+    });
+  }
+  if (
+    JSON.stringify(packet.autonomousWorkBlockers ?? []) !==
+    JSON.stringify(expectedAutonomousWorkBlockers)
+  ) {
+    violations.push({
+      reason: "invalid_authority_boundary",
+      detail: `autonomousWorkBlockers=${(packet.autonomousWorkBlockers ?? []).join(",")} expected=${expectedAutonomousWorkBlockers.join(",")}`,
+    });
+  }
+  if (packet.nextAuthority !== expectedNextAuthority) {
+    violations.push({
+      reason: "invalid_authority_boundary",
+      detail: `nextAuthority=${String(packet.nextAuthority)} expected=${expectedNextAuthority}`,
     });
   }
 

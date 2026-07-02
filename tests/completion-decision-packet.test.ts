@@ -53,6 +53,13 @@ describe("completion decision packet lint", () => {
   it("U-OUTSTANDING-014: carries supporting packet summaries for dedicated matrix review", () => {
     const packet = basePacket();
 
+    expect(packet).toMatchObject({
+      authorityBoundary: "human_decision_required",
+      humanDecisionRequired: true,
+      humanDecisionBlockers: ["po_decision_pending"],
+      autonomousWorkBlockers: ["non_terminal_plans"],
+      nextAuthority: "human",
+    });
     expect(packet.semanticMeaningSummary).toMatchObject({
       frontierRecordCount: 1,
       confirmedCurrentMeaningRecordCount: 11,
@@ -84,6 +91,46 @@ describe("completion decision packet lint", () => {
     ]);
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
     expect(result.ok).toBe(true);
+  });
+
+  it("rejects packets whose authority boundary hides required human decisions", () => {
+    const packet = {
+      ...basePacket(),
+      authorityBoundary: "automation_work_required" as const,
+      humanDecisionRequired: false,
+      humanDecisionBlockers: [],
+      autonomousWorkBlockers: ["non_terminal_plans", "po_decision_pending"],
+      nextAuthority: "automation" as const,
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_authority_boundary",
+          detail: "authorityBoundary=automation_work_required expected=human_decision_required",
+        },
+        {
+          reason: "invalid_authority_boundary",
+          detail: "humanDecisionRequired=false expected=true",
+        },
+        {
+          reason: "invalid_authority_boundary",
+          detail: "humanDecisionBlockers= expected=po_decision_pending",
+        },
+        {
+          reason: "invalid_authority_boundary",
+          detail:
+            "autonomousWorkBlockers=non_terminal_plans,po_decision_pending expected=non_terminal_plans",
+        },
+        {
+          reason: "invalid_authority_boundary",
+          detail: "nextAuthority=automation expected=human",
+        },
+      ]),
+    );
   });
 
   it("rejects packets that drop or drift the semantic meaning summary", () => {
