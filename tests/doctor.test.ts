@@ -122,6 +122,69 @@ function hasDoctorMessage(messages: string[], fragment: string): boolean {
   return messages.some((m) => m.includes(fragment));
 }
 
+const consumerClaudeAgentNames = [
+  "be-api",
+  "be-logic",
+  "code-reviewer",
+  "db-schema",
+  "devops-deploy",
+  "pdm-innovation-manager",
+  "pdm-marketing-innovation",
+  "pdm-tech-innovation",
+  "pmo-haiku",
+  "pmo-project-explorer",
+  "pmo-project-scout",
+  "pmo-sonnet",
+  "pmo-tech-docs",
+  "pmo-tech-fork",
+  "pmo-tech-news",
+  "qa-test",
+  "refactor-scout",
+  "security-audit",
+  "helix-tl",
+];
+
+const consumerClaudeCommandNames = [
+  "build",
+  "code-simplify",
+  "sdd-plan",
+  "sdd-review",
+  "ship",
+  "spec",
+  "test",
+  "helix-status",
+  "helix-test",
+];
+
+function consumerClaudeAgentTemplate(name: string): string {
+  return [
+    "---",
+    `name: ${name}`,
+    `description: ${name} の HELIX レビュアー。`,
+    "tools: Read, Grep, Glob, Bash",
+    "---",
+    "",
+    "現在の repository に対して、consumer-safe な HELIX subagent として振る舞う。",
+    "- `ut-tdd status` と `ut-tdd doctor --profile consumer` を HELIX local state evidence として使う。",
+    "- summary より先に findings を出す。",
+    "- secret、credential、PII、machine-local absolute path を書かない。",
+    "",
+  ].join("\n");
+}
+
+function consumerClaudeCommandTemplate(name: string): string {
+  return [
+    "---",
+    `description: ${name} の HELIX command。`,
+    "---",
+    "",
+    `Command: ${name}`,
+    "",
+    "現行 `ut-tdd` CLI 経由で repository-local HELIX command を使う。最初に `ut-tdd status --json` を実行し、必要な verification を走らせ、workflow または gate behavior に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
+    "",
+  ].join("\n");
+}
+
 function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | null> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
   const entries: Record<string, string> = {
@@ -282,6 +345,12 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
   };
+  for (const name of consumerClaudeAgentNames) {
+    entries[`.claude/agents/${name}.md`] = consumerClaudeAgentTemplate(name);
+  }
+  for (const name of consumerClaudeCommandNames) {
+    entries[`.claude/commands/${name}.md`] = consumerClaudeCommandTemplate(name);
+  }
   for (const [path, text] of Object.entries(overrides)) {
     if (text === null) delete entries[path];
     else entries[path] = text;
@@ -299,6 +368,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-ci-workflow - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-policy-templates - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-claude-surface - OK")).toBe(true);
   });
 
   it("fails closed when the consumer doctor task still points at the product doctor", () => {
@@ -503,6 +573,39 @@ describe("runConsumerDoctor", () => {
       ),
     ).toBe(true);
     expect(hasDoctorMessage(result.messages, "pullRequest=false")).toBe(true);
+  });
+
+  it("fails closed when distributed Claude subagent or slash-command templates drift", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".claude/agents/security-audit.md": [
+        "---",
+        "name: generic-reviewer",
+        "description: security audit の HELIX レビュアー。",
+        "tools: Read, Grep, Glob, Bash",
+        "---",
+        "",
+        "現在の repository に対して、consumer-safe な HELIX subagent として振る舞う。",
+        "- `ut-tdd status` と `ut-tdd doctor --profile consumer` を HELIX local state evidence として使う。",
+        "- summary より先に findings を出す。",
+        "- secret、credential、PII、machine-local absolute path を書かない。",
+        "",
+      ].join("\n"),
+      ".claude/commands/helix-test.md": "Run tests only.\n",
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-claude-surface - violation",
+        "invalidAgents=.claude/agents/security-audit.md",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessage(result.messages, "invalidCommands=.claude/commands/helix-test.md"),
+    ).toBe(true);
   });
 
   it("fails closed when adapter docs omit Japanese/cutover markers", () => {

@@ -5,7 +5,7 @@
  */
 
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import {
   checkHandoverBypass,
@@ -326,6 +326,7 @@ import {
   peakParallel,
 } from "../runtime/agent-slots";
 import { detectMode } from "../runtime/detect";
+import { CONSUMER_CLAUDE_AGENT_NAMES, CONSUMER_CLAUDE_COMMAND_NAMES } from "../setup/templates";
 import { loadOrBuildDriveDbRegistrationStats } from "../state-db/drive-registration";
 import {
   type GuardrailDecisionInput,
@@ -1773,8 +1774,25 @@ function stringList(value: unknown): string[] {
     : [];
 }
 
+function markdownFrontmatter(text: string): Record<string, unknown> | null {
+  if (!text.startsWith("---\n")) return null;
+  const end = text.indexOf("\n---", 4);
+  if (end === -1) return null;
+  try {
+    return recordValue(parseYaml(text.slice(4, end)));
+  } catch {
+    return null;
+  }
+}
+
 export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const messages: string[] = ["doctor: profile=consumer"];
+  const expectedClaudeAgentPaths = CONSUMER_CLAUDE_AGENT_NAMES.map(
+    (name) => `.claude/agents/${name}.md`,
+  );
+  const expectedClaudeCommandPaths = CONSUMER_CLAUDE_COMMAND_NAMES.map(
+    (name) => `.claude/commands/${name}.md`,
+  );
   const requiredFiles = [
     "AGENTS.md",
     "CLAUDE.md",
@@ -1788,6 +1806,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".github/ISSUE_TEMPLATE/recovery.md",
     ".github/ISSUE_TEMPLATE/add-feature.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
+    ...expectedClaudeAgentPaths,
+    ...expectedClaudeCommandPaths,
     ".ut-tdd/memory/.gitkeep",
     ".ut-tdd/handover/.gitkeep",
     ".ut-tdd/evidence/.gitkeep",
@@ -1857,6 +1877,44 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     codexOk
       ? "doctor: consumer-codex-adapter - OK (hooks enabled; work/agent guard present)"
       : "doctor: consumer-codex-adapter - violation: Codex hooks/config baseline incomplete",
+  );
+
+  const invalidAgentTemplates = expectedClaudeAgentPaths.filter((path) => {
+    const text = consumerFile(deps, path) ?? "";
+    const fm = markdownFrontmatter(text);
+    const expectedName = basename(path, ".md");
+    return !(
+      fm?.name === expectedName &&
+      typeof fm.description === "string" &&
+      fm.description.trim().length > 0 &&
+      typeof fm.tools === "string" &&
+      fm.tools.trim().length > 0 &&
+      text.includes("consumer-safe な HELIX subagent") &&
+      text.includes("ut-tdd status") &&
+      text.includes("ut-tdd doctor --profile consumer") &&
+      text.includes("secret、credential、PII") &&
+      text.includes("findings") &&
+      /[ぁ-んァ-ヶ一-龠]/.test(text)
+    );
+  });
+  const invalidCommandTemplates = expectedClaudeCommandPaths.filter((path) => {
+    const text = consumerFile(deps, path) ?? "";
+    const fm = markdownFrontmatter(text);
+    return !(
+      typeof fm?.description === "string" &&
+      fm.description.trim().length > 0 &&
+      text.includes("HELIX") &&
+      text.includes("ut-tdd status --json") &&
+      text.includes("ut-tdd doctor --profile consumer") &&
+      /[ぁ-んァ-ヶ一-龠]/.test(text)
+    );
+  });
+  const claudeSurfaceOk =
+    invalidAgentTemplates.length === 0 && invalidCommandTemplates.length === 0;
+  messages.push(
+    claudeSurfaceOk
+      ? `doctor: consumer-claude-surface - OK (agents=${expectedClaudeAgentPaths.length}, commands=${expectedClaudeCommandPaths.length}, Japanese+consumer-doctor baseline)`
+      : `doctor: consumer-claude-surface - violation invalidAgents=${invalidAgentTemplates.join(",")} invalidCommands=${invalidCommandTemplates.join(",")}`,
   );
 
   const tasks = consumerJson(deps, ".vscode/tasks.json") as {
@@ -2009,6 +2067,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     prematureHelixState.length === 0 &&
     claudeOk &&
     codexOk &&
+    claudeSurfaceOk &&
     taskSafetyOk &&
     ciOk &&
     policyTemplatesOk;

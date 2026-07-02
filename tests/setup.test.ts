@@ -252,10 +252,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "consumer-safe な HELIX subagent",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain("HELIX workflow");
+      expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
+        "ut-tdd doctor --profile consumer",
+      );
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
         "HELIX status と doctor 出力",
       );
+      expect(templates["adapter/.claude/commands/helix-test.md"]).toContain("ut-tdd status --json");
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
@@ -1030,14 +1034,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoTemplates["adapter/CLAUDE.md"],
       repoTemplates["adapter/.claude/CLAUDE.md"],
       repoTemplates["adapter/.claude/agents/code-reviewer.md"],
+      repoTemplates["adapter/.claude/agents/helix-tl.md"],
       repoTemplates["adapter/.claude/commands/build.md"],
       repoTemplates["adapter/.claude/commands/helix-status.md"],
+      repoTemplates["adapter/.claude/commands/helix-test.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/AGENTS.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/CLAUDE.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/CLAUDE.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/agents/code-reviewer.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/agents/helix-tl.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/build.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-status.md"],
+      BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-test.md"],
       BUILTIN_GITHUB_TEMPLATES["common/recovery.md"],
       BUILTIN_GITHUB_TEMPLATES["common/add-feature.md"],
       BUILTIN_GITHUB_TEMPLATES["common/PULL_REQUEST_TEMPLATE.md"],

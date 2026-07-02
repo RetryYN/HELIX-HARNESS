@@ -159,6 +159,10 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > Claude subagent / Claude slash-command / setup JSON の説明文は日本語-first とし、CLI 名・識別子・
 > stable token だけを原語で残す。`loadTemplates` の built-in fallback と `docs/templates/adapter/` 実体の
 > 両方を U-SETUP-020 で固定し、導入先に英語説明文だけの adapter doc を生成しない。
+> `ut-tdd doctor --profile consumer` は setup template manifest 由来の配布済み Claude subagent / slash-command
+> も検査し、frontmatter YAML、subagent `name` と file 名の一致、`description` / `tools`、consumer-safe、
+> `ut-tdd status` / `ut-tdd doctor --profile consumer`、secret/PII 禁止、findings-first を持つこと、
+> 各 slash-command が `description`、`ut-tdd status --json`、consumer doctor 導線を持つことを fail-close する。
 
 ### §2.5 fail-safe + 安全フォールバック
 

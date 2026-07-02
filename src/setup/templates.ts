@@ -50,6 +50,14 @@ const CLAUDE_COMMAND_TEMPLATES = [
   ["test", "現在の変更に対して targeted HELIX verification を実行する。"],
 ] as const;
 
+export const CONSUMER_CLAUDE_AGENT_NAMES = CLAUDE_AGENT_TEMPLATES.map(([name]) => name);
+
+export const CONSUMER_CLAUDE_COMMAND_NAMES = [
+  ...CLAUDE_COMMAND_TEMPLATES.map(([name]) => name),
+  "helix-status",
+  "helix-test",
+];
+
 function agentTemplate(name: string, description: string): string {
   return [
     "---",
@@ -349,7 +357,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "",
     "対象: $ARGUMENTS",
     "",
-    "最初に narrow Vitest target を実行し、続いて `bun run typecheck`、`bun run lint` を実行する。変更が HELIX workflow または gate に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
+    "最初に `ut-tdd status --json` を確認し、narrow Vitest target、`bun run typecheck`、`bun run lint` を実行する。変更が HELIX workflow または gate に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
     "",
   ].join("\n"),
   "project/.vscode/tasks.json": [

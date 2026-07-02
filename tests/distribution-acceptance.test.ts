@@ -203,6 +203,12 @@ describe("clean distribution local acceptance smoke", () => {
           readFileSync(join(consumerRoot, ".claude", "agents", "code-reviewer.md"), "utf8"),
         ).toContain("consumer-safe な HELIX subagent");
         expect(
+          readFileSync(join(consumerRoot, ".claude", "agents", "helix-tl.md"), "utf8"),
+        ).toContain("ut-tdd doctor --profile consumer");
+        expect(
+          readFileSync(join(consumerRoot, ".claude", "commands", "helix-test.md"), "utf8"),
+        ).toContain("ut-tdd status --json");
+        expect(
           readFileSync(join(consumerRoot, ".github", "ISSUE_TEMPLATE", "recovery.md"), "utf8"),
         ).toContain("## 復旧手順");
         expect(
