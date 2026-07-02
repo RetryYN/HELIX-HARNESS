@@ -419,6 +419,7 @@ describe("action-binding approval readiness", () => {
       expect.objectContaining({
         role: "primary",
         command: "ut-tdd action-binding approval-packet --json",
+        scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-X",
       }),
     ]);
   });
@@ -468,7 +469,10 @@ describe("action-binding approval readiness", () => {
 
     expect(packets.find((p) => p.planId === "PLAN-DISCOVERY-10")?.relatedDecisionPackets).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ command: "ut-tdd s4 decision-packet --json" }),
+        expect.objectContaining({
+          command: "ut-tdd s4 decision-packet --json",
+          scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+        }),
       ]),
     );
     expect(
@@ -483,7 +487,10 @@ describe("action-binding approval readiness", () => {
     );
     expect(packets.find((p) => p.planId === "PLAN-L7-146")?.relatedDecisionPackets).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ command: "ut-tdd version-up activation-packet --json" }),
+        expect.objectContaining({
+          command: "ut-tdd version-up activation-packet --json",
+          scopedCommand: "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+        }),
       ]),
     );
     expect(packets.find((p) => p.planId === "PLAN-L7-146")?.semanticFeatureFrontierRecords).toEqual(
@@ -497,7 +504,12 @@ describe("action-binding approval readiness", () => {
     expect(
       packets.find((p) => p.planId === "PLAN-M-02-helix-identifier-rename")?.relatedDecisionPackets,
     ).toEqual(
-      expect.arrayContaining([expect.objectContaining({ command: "ut-tdd rename plan --json" })]),
+      expect.arrayContaining([
+        expect.objectContaining({
+          command: "ut-tdd rename plan --json",
+          scopedCommand: "ut-tdd rename plan --json",
+        }),
+      ]),
     );
     expect(
       packets.find((p) => p.planId === "PLAN-M-02-helix-identifier-rename")

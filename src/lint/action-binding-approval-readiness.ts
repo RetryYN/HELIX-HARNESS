@@ -644,6 +644,7 @@ function relatedDecisionPacketsForActionBindingPlan(
   return uniqueRelatedDecisionPackets([
     relatedDecisionPacket({
       command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+      scopedCommand: `${ACTION_BINDING_APPROVAL_PACKET_COMMAND} --plan ${plan.plan_id}`,
       role: "primary",
       reason: "PLAN carries a human/action-binding approval boundary",
       route: "record action_binding_approval_record before executing any high-impact action",
@@ -655,6 +656,7 @@ function relatedDecisionPacketsForActionBindingPlan(
       ? [
           relatedDecisionPacket({
             command: S4_DECISION_PACKET_COMMAND,
+            scopedCommand: `${S4_DECISION_PACKET_COMMAND} --plan ${plan.plan_id}`,
             role: "supporting",
             reason:
               "same S3 PoC also requires a PO/S4 decision before promotion, rejection, or pivot",
@@ -666,6 +668,7 @@ function relatedDecisionPacketsForActionBindingPlan(
       ? [
           relatedDecisionPacket({
             command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+            scopedCommand: `${VERSION_UP_ACTIVATION_PACKET_COMMAND} --plan ${plan.plan_id}`,
             role: "supporting",
             reason: "same PLAN is parked for a future version-up activation decision",
             route:
@@ -679,6 +682,7 @@ function relatedDecisionPacketsForActionBindingPlan(
       ? [
           relatedDecisionPacket({
             command: RENAME_PLAN_PACKET_COMMAND,
+            scopedCommand: RENAME_PLAN_PACKET_COMMAND,
             role: "supporting",
             reason: "same PLAN also carries an irreversible rename/cutover signoff boundary",
             route:

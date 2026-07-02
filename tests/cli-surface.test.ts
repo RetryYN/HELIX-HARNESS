@@ -991,8 +991,26 @@ describe("L7 CLI surface closure", () => {
     );
     expect(packets[0].relatedDecisionPackets).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ command: "ut-tdd s4 decision-packet --json" }),
+        expect.objectContaining({
+          command: "ut-tdd s4 decision-packet --json",
+          scopedCommand:
+            "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
+        }),
       ]),
+    );
+
+    const s4Text = runCli([
+      "s4",
+      "decision-packet",
+      "--plan",
+      "PLAN-DISCOVERY-10-helix-asset-visualization",
+    ]);
+    expect(s4Text.status).toBe(0);
+    expect(s4Text.stdout).toContain(
+      "related-packet: primary ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
+    );
+    expect(s4Text.stdout).toContain(
+      "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
     );
 
     const text = runCli([
@@ -1025,10 +1043,21 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");
     expect(text.stdout).toContain(
-      "related-packet: primary ut-tdd action-binding approval-packet --json",
+      "related-packet: primary ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
     );
-    expect(text.stdout).toContain("related-packet: supporting ut-tdd rename plan --json");
-  }, 15_000);
+    expect(text.stdout).toContain(
+      "related-packet: supporting ut-tdd rename plan --json scoped=ut-tdd rename plan --json",
+    );
+
+    const renameText = runCli(["rename", "plan"]);
+    expect(renameText.status).toBe(0);
+    expect(renameText.stdout).toContain(
+      "related-packet: primary ut-tdd rename plan --json scoped=ut-tdd rename plan --json",
+    );
+    expect(renameText.stdout).toContain(
+      "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
+    );
+  }, 20_000);
 
   it("exposes HELIX project setup for VSCode-ready new projects", () => {
     const json = runCli(["setup", "project", "--dry-run", "--json"]);

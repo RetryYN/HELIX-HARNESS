@@ -741,10 +741,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             role: "primary",
             command: "ut-tdd rename plan --json",
+            scopedCommand: "ut-tdd rename plan --json",
           }),
           expect.objectContaining({
             role: "supporting",
             command: "ut-tdd action-binding approval-packet --json",
+            scopedCommand:
+              "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
           }),
         ]),
       );

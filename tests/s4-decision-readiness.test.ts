@@ -501,6 +501,7 @@ describe("S4 decision readiness", () => {
       expect.objectContaining({
         role: "primary",
         command: "ut-tdd s4 decision-packet --json",
+        scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-900",
       }),
     ]);
     expect(packet.generatedAt).toEqual(expect.any(String));
@@ -628,10 +629,12 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           role: "primary",
           command: "ut-tdd s4 decision-packet --json",
+          scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-902",
         }),
         expect.objectContaining({
           role: "supporting",
           command: "ut-tdd action-binding approval-packet --json",
+          scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-902",
         }),
       ]),
     );

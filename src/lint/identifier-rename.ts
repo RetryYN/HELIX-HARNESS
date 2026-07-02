@@ -1394,6 +1394,7 @@ export function buildIdentifierRenameCutoverPlan(
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: RENAME_PLAN_PACKET_COMMAND,
+        scopedCommand: RENAME_PLAN_PACKET_COMMAND,
         role: "primary",
         reason: "irreversible .ut-tdd to .helix cutover requires explicit cutover signoff",
         route:
@@ -1401,6 +1402,7 @@ export function buildIdentifierRenameCutoverPlan(
       }),
       relatedDecisionPacket({
         command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+        scopedCommand: `${ACTION_BINDING_APPROVAL_PACKET_COMMAND} --plan PLAN-M-02-helix-identifier-rename`,
         role: "supporting",
         reason:
           "same cutover requires scoped human/action-binding approval before any irreversible apply",

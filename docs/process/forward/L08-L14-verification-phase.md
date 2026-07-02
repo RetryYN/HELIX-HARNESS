@@ -90,6 +90,9 @@ plan-only evidence であり、承認・apply surface ではない。
 `review ...` / `verify ...` の自然文手順、未実装 command、placeholder は承認前 evidence として扱わず
 fail-close する。S4 / version-up sibling packet は `--plan <PLAN_ID>` 付き command、rename は singleton
 `rename plan` として出し、複数 pending PLAN の対象を PO が推測する状態に戻さない。
+同じ scoped command は `relatedDecisionPackets[].scopedCommand` にも保持し、text mode の `related-packet:`
+行にも出す。completion/status 画面だけでなく、S4 / version-up / action-binding / rename の専用 packet
+単体をレビューした場合でも、別 PLAN の approval や decision material を流用できないようにする。
 `approve_action_binding` に進む場合でも、PLAN 本文へ named approver、approved_actor、
 approved_tool、approved_target、approved_params、reviewed snapshot binding、expiry/trigger、audit evidence を concrete に記録するまで、
 高影響 action を実行してはならない。

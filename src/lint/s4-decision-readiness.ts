@@ -868,6 +868,7 @@ export function buildS4DecisionPacket(
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: S4_DECISION_PACKET_COMMAND,
+        scopedCommand: `${S4_DECISION_PACKET_COMMAND} --plan ${plan.plan_id}`,
         role: "primary",
         reason: "S3 PoC remains pending PO/S4 decision",
         route: "record s4_decision_record and decision_outcome before promotion/rejection/pivot",
@@ -876,6 +877,7 @@ export function buildS4DecisionPacket(
         ? [
             relatedDecisionPacket({
               command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+              scopedCommand: `${ACTION_BINDING_APPROVAL_PACKET_COMMAND} --plan ${plan.plan_id}`,
               role: "supporting",
               reason: "same PLAN also carries a human/action-binding approval boundary",
               route:
