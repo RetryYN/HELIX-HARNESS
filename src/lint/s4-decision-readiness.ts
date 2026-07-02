@@ -92,6 +92,12 @@ export interface S4DecisionPacket {
     evidence: string;
     source: string;
     sourceUrl: string;
+    sourceCheckedAt: string;
+    latestOfficialStatus: string;
+    sourceStatusDelta: string;
+    adoptionDecision: string;
+    adoptionDecisionDelta: string;
+    workflowRouteImpact: string;
   }>;
   provenanceRequirements: Array<{
     item: string;
@@ -662,6 +668,12 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "S4 decision packet JSON attached to PO/TL decision review",
       source: "HELIX Discovery S4 decision contract",
       sourceUrl: "docs/process/modes/discovery.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local Discovery S4 decision contract current at HEAD",
+      sourceStatusDelta: "none; packet remains plan-only and PO-gated",
+      adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
+      adoptionDecisionDelta: "none; keep S4 decision recording outside automated completion",
+      workflowRouteImpact: "none; packet drift routes back to S4 evidence repair",
     },
     {
       phase: "source-ledger-freshness",
@@ -671,6 +683,13 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "doctor output with s4-decision-readiness and source ledger freshness gates",
       source: "HELIX source ledger freshness policy",
       sourceUrl: "docs/process/modes/discovery.md#s4-decision-source-ledger",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "S4 source ledger remains anchored to Scrum Guide 2020, ISO/IEC/IEEE 29148, ISTQB Glossary, and NIST SSDF rows",
+      sourceStatusDelta: "none; local source ledger reviewed against current HEAD",
+      adoptionDecision: "adopt-s4-source-ledger-freshness-before-po-decision",
+      adoptionDecisionDelta: "none; stale or incomplete ledger still blocks S4 terminal use",
+      workflowRouteImpact: "none; stale ledger routes the PLAN back to S4 evidence repair",
     },
     {
       phase: "s3-verification-evidence",
@@ -681,6 +700,12 @@ function buildS4DecisionVerificationCommandMatrix(
         "test output, review evidence path, audit id, or digest cited by s4_decision_record.verified_evidence",
       source: "HELIX Scrum S3->S4 verification boundary",
       sourceUrl: "docs/process/modes/scrum.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "Scrum Guide official current version remains November 2020",
+      sourceStatusDelta: "none; S3 verify remains evidence before S4 decide",
+      adoptionDecision: "adopt-s3-verified-evidence-as-s4-entry-gate",
+      adoptionDecisionDelta: "none; S3 verification alone remains non-terminal",
+      workflowRouteImpact: "none; missing verified_evidence keeps PLAN in S3/S4 repair",
     },
     {
       phase: "requirements-trace",
@@ -690,6 +715,12 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "doctor output and trace/oracle gate lines",
       source: "HELIX V-model trace gate",
       sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local V-model trace gate contract current at HEAD",
+      sourceStatusDelta: "none; G1/G3 trace remains required before S4 route selection",
+      adoptionDecision: "adopt-vmodel-trace-gates-before-s4-outcome-selection",
+      adoptionDecisionDelta: "none; keep requirements trace as S4 decision evidence",
+      workflowRouteImpact: "none; trace failure routes back to Forward trace repair",
     },
     {
       phase: "targeted-regression",
@@ -699,6 +730,12 @@ function buildS4DecisionVerificationCommandMatrix(
       source: "HELIX S4 regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local S4 regression oracle current at HEAD",
+      sourceStatusDelta: "none; S4 packet oracle reviewed against current HEAD",
+      adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
+      adoptionDecisionDelta: "none; keep targeted regression before PO decision use",
+      workflowRouteImpact: "none; regression failure routes back to L7 repair",
     },
     {
       phase: "static-gates",
@@ -707,6 +744,12 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "repository AGENTS test rules current at HEAD",
+      sourceStatusDelta: "none; static gate policy reviewed against current HEAD",
+      adoptionDecision: "adopt-static-gates-before-s4-decision-review",
+      adoptionDecisionDelta: "none; keep static gates before S4 terminal update",
+      workflowRouteImpact: "none; static failure routes back to implementation repair",
     },
     {
       phase: "full-regression",
@@ -716,6 +759,12 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX full regression policy current at HEAD",
+      sourceStatusDelta: "none; full regression policy reviewed against current HEAD",
+      adoptionDecision: "adopt-full-regression-before-terminal-s4-route",
+      adoptionDecisionDelta: "none; keep full regression as terminal S4 blocker",
+      workflowRouteImpact: "none; full regression failure blocks S4 decision recording",
     },
     {
       phase: "completion-frontier",
@@ -725,6 +774,12 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "status JSON completionDecisionPacket and semanticFeatureFrontierRecords",
       source: "HELIX completion frontier contract",
       sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local semantic frontier contract current at HEAD",
+      sourceStatusDelta: "none; frontier_pending_decision remains completion blocker",
+      adoptionDecision: "adopt-semantic-frontier-blocker-before-s4-terminal-status",
+      adoptionDecisionDelta: "none; do not count S4 pending plans as complete",
+      workflowRouteImpact: "none; unresolved frontier keeps completionReadiness blocked",
     },
   ];
 }

@@ -80,9 +80,12 @@ packet は `approvalRecord` の raw field に加えて `approvalBindingChecks[]`
 承認材料の不足を示すだけで、action 実行や承認記録には使えない。
 さらに `approvalVerificationCommandMatrix[]` を持ち、approval packet baseline、sibling decision packet、
 least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
-full regression、completion frontier を承認前の検証 phase として列挙する。これは GitHub Environments
-required reviewers のような reviewer gate、NIST least privilege、OWASP LLM06:2025 Excessive Agency の
-過剰自律防止を HELIX の実行許可境界へ写像するための plan-only evidence であり、承認・apply surface ではない。
+full regression、completion frontier を承認前の検証 phase として列挙する。各 row は command / expected /
+evidence / source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
+adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持つ。これは GitHub Environments
+required reviewers / prevent self-review、NIST least privilege、VS Code Workspace Trust、OWASP WSTG、
+OWASP LLM06:2025 Excessive Agency の過剰自律防止を HELIX の実行許可境界へ写像するための
+plan-only evidence であり、承認・apply surface ではない。
 `approve_action_binding` に進む場合でも、PLAN 本文へ named approver、approved_actor、
 approved_tool、approved_target、approved_params、reviewed snapshot binding、expiry/trigger、audit evidence を concrete に記録するまで、
 高影響 action を実行してはならない。

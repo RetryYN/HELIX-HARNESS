@@ -64,7 +64,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `provenanceRequirements` に加えて `decisionVerificationCommandMatrix[]` を返す。matrix は decision packet
   baseline、source ledger freshness、S3 verification evidence、requirements trace、targeted regression を含む。
   さらに static gates、full regression、completion frontier の各 phase と command / expected / evidence /
-  source / sourceUrl を持つ。
+  source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
+  adoptionDecisionDelta / workflowRouteImpact を持つ。
   Scrum Guide 2020、ISO/IEC/IEEE 29148、ISTQB Glossary、NIST SSDF の source ledger を PO/S4 判断前の
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
   進めない。text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
@@ -135,8 +136,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、
   least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
-  full regression、completion frontier の command / expected / evidence / source / sourceUrl を plan-only に列挙する。
-  GitHub Environments required reviewers、NIST least privilege、OWASP LLM06:2025 Excessive Agency の
+  full regression、completion frontier の command / expected / evidence / source / sourceUrl / sourceCheckedAt /
+  latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を
+  plan-only に列挙する。
+  GitHub Environments required reviewers / prevent self-review、NIST least privilege、VS Code Workspace Trust、
+  OWASP WSTG、OWASP LLM06:2025 Excessive Agency の
   公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。
   text surface は binding check 件数に加えて verification command 件数と `verification-source:` 行を出し、
   JSON を見ない利用者にも承認前に実行すべき証跡確認と公式/正本 source を欠落させない。

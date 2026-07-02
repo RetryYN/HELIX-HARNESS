@@ -255,12 +255,15 @@ describe("action-binding approval readiness", () => {
           phase: "approval-packet-baseline",
           command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           evidence: "action-binding approval packet JSON attached to the approval review",
+          sourceCheckedAt: "2026-07-02",
+          adoptionDecision: "adopt-current-action-binding-packet-for-approval-review",
         }),
         expect.objectContaining({
           phase: "least-privilege-binding",
           expected:
             "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
           sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
+          workflowRouteImpact: expect.stringContaining("request_scope_reduction"),
         }),
         expect.objectContaining({
           phase: "snapshot-binding",
@@ -268,14 +271,25 @@ describe("action-binding approval readiness", () => {
             "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+          latestOfficialStatus: expect.stringContaining("prevent self-review"),
+          adoptionDecision: "adopt-required-reviewer-and-current-snapshot-binding",
         }),
         expect.objectContaining({
           phase: "security-boundary",
           command: "bun run src/cli.ts doctor",
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+          adoptionDecision: "adopt-workspace-trust-as-local-execution-boundary",
         }),
       ]),
     );
+    for (const row of packet.approvalVerificationCommandMatrix) {
+      expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(row.latestOfficialStatus, row.phase).not.toBe("");
+      expect(row.sourceStatusDelta, row.phase).not.toBe("");
+      expect(row.adoptionDecision, row.phase).not.toBe("");
+      expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
+      expect(row.workflowRouteImpact, row.phase).not.toBe("");
+    }
     expect(packet.blockedReasons).toEqual(
       expect.arrayContaining([
         "plan carries high-impact approval scope; execution remains human-gated",
@@ -858,6 +872,19 @@ describe("action-binding approval readiness", () => {
     expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 9)).toBe(
       true,
     );
+    expect(
+      packets.every((packet) =>
+        packet.approvalVerificationCommandMatrix.every(
+          (row) =>
+            row.sourceCheckedAt &&
+            row.latestOfficialStatus &&
+            row.sourceStatusDelta &&
+            row.adoptionDecision &&
+            row.adoptionDecisionDelta &&
+            row.workflowRouteImpact,
+        ),
+      ),
+    ).toBe(true);
     expect(
       packets
         .find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")

@@ -265,24 +265,37 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "decision-packet-baseline",
           command: "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
+          sourceCheckedAt: "2026-07-02",
+          adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
         }),
         expect.objectContaining({
           phase: "requirements-trace",
           expected: expect.stringContaining("G1/G3 trace"),
           sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+          sourceStatusDelta: expect.stringContaining("G1/G3 trace"),
         }),
         expect.objectContaining({
           phase: "full-regression",
           command: "bun run test",
           source: "HELIX full regression policy",
+          adoptionDecision: "adopt-full-regression-before-terminal-s4-route",
         }),
         expect.objectContaining({
           phase: "completion-frontier",
           command: "bun run src/cli.ts status --json",
           sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          workflowRouteImpact: expect.stringContaining("completionReadiness blocked"),
         }),
       ]),
     );
+    for (const row of packet.decisionVerificationCommandMatrix) {
+      expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(row.latestOfficialStatus, row.phase).not.toBe("");
+      expect(row.sourceStatusDelta, row.phase).not.toBe("");
+      expect(row.adoptionDecision, row.phase).not.toBe("");
+      expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
+      expect(row.workflowRouteImpact, row.phase).not.toBe("");
+    }
     expect(packet.provenanceRequirements).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ item: "decision_record" }),
@@ -872,13 +885,23 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "targeted-regression",
           command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+          adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
         }),
         expect.objectContaining({
           phase: "completion-frontier",
           command: "bun run src/cli.ts status --json",
+          sourceCheckedAt: "2026-07-02",
         }),
       ]),
     );
+    for (const row of packets[0].decisionVerificationCommandMatrix) {
+      expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(row.latestOfficialStatus, row.phase).not.toBe("");
+      expect(row.sourceStatusDelta, row.phase).not.toBe("");
+      expect(row.adoptionDecision, row.phase).not.toBe("");
+      expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
+      expect(row.workflowRouteImpact, row.phase).not.toBe("");
+    }
     expect(packets[0].provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
       "decision_record",
       "green_evidence",

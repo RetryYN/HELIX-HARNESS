@@ -89,6 +89,12 @@ export interface ActionBindingApprovalPacket {
     evidence: string;
     source: string;
     sourceUrl: string;
+    sourceCheckedAt: string;
+    latestOfficialStatus: string;
+    sourceStatusDelta: string;
+    adoptionDecision: string;
+    adoptionDecisionDelta: string;
+    workflowRouteImpact: string;
   }>;
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[];
   relatedDecisionPackets: RelatedDecisionPacket[];
@@ -378,6 +384,12 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       evidence: "action-binding approval packet JSON attached to the approval review",
       source: "HELIX action-binding approval contract",
       sourceUrl: "docs/design/helix/L6-function-design/pillar-function-design.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local action-binding approval contract current at HEAD",
+      sourceStatusDelta: "none; approval packet remains plan-only and non-applying",
+      adoptionDecision: "adopt-current-action-binding-packet-for-approval-review",
+      adoptionDecisionDelta: "none; keep approvalAllowed=false without concrete record",
+      workflowRouteImpact: "none; packet drift routes back to approval evidence repair",
     },
     {
       phase: "sibling-decision-packets",
@@ -390,6 +402,13 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       source: "HELIX completion decision packet contract",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local completion decision packet contract current at HEAD",
+      sourceStatusDelta:
+        "none; sibling S4/version-up/rename packets remain required review context",
+      adoptionDecision: "adopt-sibling-packet-review-before-action-binding-approval",
+      adoptionDecisionDelta: "none; do not approve action binding from a single isolated packet",
+      workflowRouteImpact: "none; missing sibling packet keeps approval review pending",
     },
     {
       phase: "least-privilege-binding",
@@ -401,6 +420,14 @@ function buildActionBindingApprovalVerificationCommandMatrix(
         "approvalBindingChecks[] entries with concrete status or explicit pending/invalid blocker reasons",
       source: "NIST least privilege security principle",
       sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "NIST least privilege glossary entry remains the adopted authority boundary source",
+      sourceStatusDelta:
+        "none; least-privilege scope remains required for actor/tool/target/params",
+      adoptionDecision: "adopt-least-privilege-binding-for-approval-scope",
+      adoptionDecisionDelta: "none; wildcard or broad scope remains invalid/pending",
+      workflowRouteImpact: "none; weak binding routes to request_scope_reduction",
     },
     {
       phase: "snapshot-binding",
@@ -413,6 +440,14 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       source: "GitHub deployment protection rules required reviewers",
       sourceUrl:
         "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "GitHub Environments required reviewers and prevent self-review remain current deployment protection controls",
+      sourceStatusDelta:
+        "none; reviewed snapshot binding remains required before protected execution",
+      adoptionDecision: "adopt-required-reviewer-and-current-snapshot-binding",
+      adoptionDecisionDelta: "none; stale snapshot ids remain blocked",
+      workflowRouteImpact: "none; stale or missing snapshot binding denies action approval",
     },
     {
       phase: "security-boundary",
@@ -423,6 +458,13 @@ function buildActionBindingApprovalVerificationCommandMatrix(
         "doctor output with action-binding-approval-readiness and related source ledger gates",
       source: "VS Code Workspace Trust execution boundary",
       sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "VS Code Workspace Trust still gates code execution for untrusted folders",
+      sourceStatusDelta: "none; explicit trust boundary remains approval evidence input",
+      adoptionDecision: "adopt-workspace-trust-as-local-execution-boundary",
+      adoptionDecisionDelta: "none; untrusted workspace keeps execution restricted",
+      workflowRouteImpact: "none; trust-boundary failure blocks approval review",
     },
     {
       phase: "targeted-regression",
@@ -432,6 +474,12 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       source: "HELIX action-binding regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local action-binding regression oracle current at HEAD",
+      sourceStatusDelta: "none; action-binding packet oracle reviewed against current HEAD",
+      adoptionDecision: "adopt-targeted-regression-before-action-binding-review",
+      adoptionDecisionDelta: "none; keep targeted regression before approval evidence use",
+      workflowRouteImpact: "none; regression failure routes back to L7 repair",
     },
     {
       phase: "static-gates",
@@ -440,6 +488,12 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "repository AGENTS test rules current at HEAD",
+      sourceStatusDelta: "none; static gate policy reviewed against current HEAD",
+      adoptionDecision: "adopt-static-gates-before-action-binding-review",
+      adoptionDecisionDelta: "none; keep static gates before approval material use",
+      workflowRouteImpact: "none; static failure routes back to implementation repair",
     },
     {
       phase: "full-regression",
@@ -448,6 +502,12 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX full regression policy current at HEAD",
+      sourceStatusDelta: "none; full regression policy reviewed against current HEAD",
+      adoptionDecision: "adopt-full-regression-before-high-impact-action-approval",
+      adoptionDecisionDelta: "none; keep full regression as high-impact approval blocker",
+      workflowRouteImpact: "none; full regression failure blocks approval review",
     },
     {
       phase: "completion-frontier",
@@ -457,6 +517,12 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       evidence: "status JSON workflowNextActions and semanticFeatureFrontierRecords",
       source: "HELIX completion frontier contract",
       sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local semantic frontier contract current at HEAD",
+      sourceStatusDelta: "none; human/action-binding blockers remain completion blockers",
+      adoptionDecision: "adopt-semantic-frontier-blocker-before-action-binding-approval",
+      adoptionDecisionDelta: "none; do not count approval-gated work as complete",
+      workflowRouteImpact: "none; unresolved approval frontier keeps completionReadiness blocked",
     },
   ];
 }
