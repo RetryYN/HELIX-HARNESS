@@ -12,6 +12,14 @@
 - `unison-ai-product/UT-TDD_AGENT-HARNESS-Pack` default branch `main`: `e899c3a7c18c47380e102446de7fba702635ac6a`（latest tag 確認: `v0.1.3`）
 - `RetryYN/ai-dev-kit-vscode` default branch `main`: `1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23`
 
+外部 source ledger (checked 2026-07-02):
+
+| source | command | ref | observed | latestOfficialStatus | sourceStatusDelta | adoptionDecision | workflowRouteImpact |
+|---|---|---|---|---|---|---|---|
+| development_repo | `git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git refs/heads/main` | `refs/heads/main` | `7f83ca811353ed90b3e981178a1b0c9977dd5863` | main branch reachable | none | meaning-only adoption; no bulk import | none |
+| distribution_pack_repo | `git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main` | `refs/heads/main` | `e899c3a7c18c47380e102446de7fba702635ac6a` | main branch reachable | changed from previous audit; objective audit refreshed | reference source only; version-up activation required before adopting Pack latest | distribution-version-binding gate retained |
+| distribution_pack_latest_tag | `git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git` | `refs/tags/v0.1.3` | `v0.1.3` | latest tag reachable | none | reference source only; local distribution tag remains v0.1.0 | version-up activation packet required before tag adoption |
+
 配布 version binding:
 
 - package.json version: `0.1.0`

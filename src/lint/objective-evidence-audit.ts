@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
+import { sourceLedgerCheckedDateViolation } from "./source-ledger-freshness";
 
 export interface ObjectiveEvidenceAuditInput {
   auditText: string;
@@ -103,6 +104,54 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
   },
 ] as const;
 
+const EXTERNAL_SOURCE_LEDGER_LABEL = "外部 source ledger";
+const EXTERNAL_SOURCE_LEDGER_COLUMNS = [
+  "source",
+  "command",
+  "ref",
+  "observed",
+  "latestOfficialStatus",
+  "sourceStatusDelta",
+  "adoptionDecision",
+  "workflowRouteImpact",
+] as const;
+const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
+  {
+    source: "development_repo",
+    command:
+      "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git refs/heads/main",
+    ref: "refs/heads/main",
+    observed: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+    latestOfficialStatus: "main branch reachable",
+    sourceStatusDelta: "none",
+    adoptionDecision: "meaning-only adoption; no bulk import",
+    workflowRouteImpact: "none",
+  },
+  {
+    source: "distribution_pack_repo",
+    command:
+      "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
+    ref: "refs/heads/main",
+    observed: "e899c3a7c18c47380e102446de7fba702635ac6a",
+    latestOfficialStatus: "main branch reachable",
+    sourceStatusDelta: "changed from previous audit; objective audit refreshed",
+    adoptionDecision:
+      "reference source only; version-up activation required before adopting Pack latest",
+    workflowRouteImpact: "distribution-version-binding gate retained",
+  },
+  {
+    source: "distribution_pack_latest_tag",
+    command:
+      "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+    ref: "refs/tags/v0.1.3",
+    observed: "v0.1.3",
+    latestOfficialStatus: "latest tag reachable",
+    sourceStatusDelta: "none",
+    adoptionDecision: "reference source only; local distribution tag remains v0.1.0",
+    workflowRouteImpact: "version-up activation packet required before tag adoption",
+  },
+] as const;
+
 export function loadObjectiveEvidenceAuditInput(
   repoRoot: string = process.cwd(),
 ): ObjectiveEvidenceAuditInput {
@@ -164,6 +213,7 @@ export function analyzeObjectiveEvidenceAudit(
       }
     }
   }
+  checkExternalSourceLedger(input, violations);
   checkDistributionVersionBinding(input, violations);
 
   const provedRows = countRowsWithStatus(input.auditText, "proved");
@@ -181,6 +231,71 @@ export function analyzeObjectiveEvidenceAudit(
     provedRows,
     objectiveProgress: objectiveProgressForAudit(input, provedRows),
   };
+}
+
+function checkExternalSourceLedger(input: ObjectiveEvidenceAuditInput, violations: string[]): void {
+  const freshnessViolation = sourceLedgerCheckedDateViolation(
+    input.auditText,
+    EXTERNAL_SOURCE_LEDGER_LABEL,
+  );
+  if (freshnessViolation) {
+    violations.push(`G-01: ${freshnessViolation}`);
+  }
+  const rows = parseExternalSourceLedgerRows(input.auditText);
+  if (rows.length === 0) {
+    violations.push(`G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} rows missing`);
+    return;
+  }
+  for (const expected of EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS) {
+    const row = rows.find((candidate) => candidate.source === expected.source);
+    if (!row) {
+      violations.push(`G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} missing row ${expected.source}`);
+      continue;
+    }
+    for (const column of EXTERNAL_SOURCE_LEDGER_COLUMNS) {
+      if (!row[column]) {
+        violations.push(`G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} ${expected.source} empty ${column}`);
+        continue;
+      }
+      const expectedValue = expected[column];
+      if (!row[column].includes(expectedValue)) {
+        violations.push(
+          `G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} ${expected.source} ${column} missing ${expectedValue}`,
+        );
+      }
+    }
+  }
+}
+
+type ExternalSourceLedgerRow = Record<(typeof EXTERNAL_SOURCE_LEDGER_COLUMNS)[number], string>;
+
+function parseExternalSourceLedgerRows(text: string): ExternalSourceLedgerRow[] {
+  const lines = text.split("\n");
+  const headingIndex = lines.findIndex((line) =>
+    new RegExp(`${EXTERNAL_SOURCE_LEDGER_LABEL} \\(checked \\d{4}-\\d{2}-\\d{2}\\)`).test(line),
+  );
+  if (headingIndex === -1) return [];
+  const tableLines = lines.slice(headingIndex + 1).filter((line) => line.trim().startsWith("|"));
+  if (tableLines.length < 2) return [];
+  const header = splitMarkdownTableRow(tableLines[0]);
+  const expectedHeader = [...EXTERNAL_SOURCE_LEDGER_COLUMNS];
+  if (header.join("\0") !== expectedHeader.join("\0")) return [];
+  return tableLines
+    .slice(2)
+    .map(splitMarkdownTableRow)
+    .filter((cells) => cells.length === expectedHeader.length)
+    .map((cells) =>
+      Object.fromEntries(expectedHeader.map((column, index) => [column, cells[index] ?? ""])),
+    ) as ExternalSourceLedgerRow[];
+}
+
+function splitMarkdownTableRow(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim().replace(/`/g, ""));
 }
 
 function checkDistributionVersionBinding(
