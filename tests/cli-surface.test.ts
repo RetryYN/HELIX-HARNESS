@@ -1308,6 +1308,36 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).not.toContain("verification-command: ut-tdd rename plan --json");
   }, 15_000);
 
+  it("exposes HELIX project setup package-root evidence for monorepo consumers", () => {
+    const json = runCli([
+      "setup",
+      "project",
+      "--dry-run",
+      "--json",
+      "--package-root",
+      "packages/app",
+    ]);
+
+    expect(json.status).toBe(0);
+    const payload = JSON.parse(json.stdout);
+    expect(payload.consumerReadiness.workspace).toMatchObject({
+      repoRoot: process.cwd(),
+      packageRoot: join(process.cwd(), "packages/app"),
+      monorepo: true,
+    });
+    expect(payload.consumerReadiness.cliResolution).toMatchObject({
+      command: "ut-tdd",
+      checkedFrom: join(process.cwd(), "packages/app"),
+      fallbackCommands: expect.arrayContaining([
+        "bun run ut-tdd --version",
+        "bun run ut-tdd setup project --dry-run --json",
+      ]),
+    });
+    expect(payload.written).toEqual(
+      expect.arrayContaining([join(".ut-tdd", "teams", "default-hybrid.yaml")]),
+    );
+  }, 15_000);
+
   it("exposes skill suggest as a JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--plan", "PLAN-NO-SUCH", "--json"]);
 

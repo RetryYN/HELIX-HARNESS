@@ -76,6 +76,7 @@ const baseTemplates: TemplateSet = {
     "- Doctor: `ut-tdd doctor --profile consumer`",
     "- Rename packet: `ut-tdd rename plan --json`",
     "- Handover: `ut-tdd handover`",
+    "- Team run dry-run: `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json`",
     "<!-- UT-TDD:managed:end -->",
     "",
   ].join("\n"),
@@ -499,6 +500,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(agents).toContain("<!-- UT-TDD:managed:start -->");
     expect(agents).toContain("HELIX アダプター");
     expect(agents).toContain("`ut-tdd doctor --profile consumer`");
+    expect(agents).toContain(
+      "`ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json`",
+    );
+    expect(agents).not.toContain(".ut-tdd/teams/<team>.yaml");
     expect(deps.files.get(join("/repo", ".claude", "settings.json"))).toBe('{"consumer":true}\n');
 
     const beforeSecondRun = deps.files.get(join("/repo", "AGENTS.md"));
@@ -575,6 +580,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.ok).toBe(true);
     expect(ready.mode).toBe("codex-only");
     expect(ready.workspace.monorepo).toBe(true);
+    expect(ready.cliResolution).toEqual({
+      command: "ut-tdd",
+      checkedFrom: "/repo/packages/app",
+      resolved: true,
+      strategy: "path",
+      evidence: "`ut-tdd --version` resolved for consumer readiness",
+      fallbackCommands: [
+        "bun run ut-tdd --version",
+        "bun link ut-tdd",
+        "bun run ut-tdd setup project --dry-run --json",
+      ],
+    });
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
     expect(ready.checks.find((c) => c.name === "distribution-version-binding")).toMatchObject({

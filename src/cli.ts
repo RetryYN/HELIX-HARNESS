@@ -4327,6 +4327,7 @@ type SetupCliOptions = {
   team?: boolean;
   dryRun?: boolean;
   applyBranchProtection?: boolean;
+  packageRoot?: string;
   tlTeam?: string;
   qaTeam?: string;
   poTeam?: string;
@@ -4395,6 +4396,7 @@ setupCommand
     "--apply-branch-protection",
     "branch protection 適用要求を受け付けるが action-binding approval 未実装のため停止",
   )
+  .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
   .option("--po-team <slug>", "CODEOWNERS の PO team slug")
@@ -4404,7 +4406,11 @@ setupCommand
     const merged = { ...inherited, ...opts };
     const args = setupArgsFromOptions(merged);
     if (!args) return;
-    const deps = nodeSetupDeps(process.cwd());
+    const repoRoot = process.cwd();
+    const deps = nodeSetupDeps(
+      repoRoot,
+      merged.packageRoot ? join(repoRoot, merged.packageRoot) : undefined,
+    );
     const r = runHelixProjectSetup(args, deps);
     if (merged.json) {
       process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);

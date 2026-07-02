@@ -149,7 +149,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "- Handover: `ut-tdd handover`",
     '- Codex delegation: `ut-tdd codex --role <role> --task "..."`',
     '- Claude delegation: `ut-tdd claude --role <role> --task "..."`',
-    "- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`",
+    "- Team run dry-run: `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json`",
     "",
     "この managed block の外側にある project-owned instruction は consumer 側の所有物として扱い、勝手に上書きしない。",
     "<!-- UT-TDD:managed:end -->",

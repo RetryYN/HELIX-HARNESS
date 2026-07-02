@@ -273,6 +273,14 @@ export interface ConsumerReadinessPlan {
     packageRoot: string;
     monorepo: boolean;
   };
+  cliResolution: {
+    command: "ut-tdd";
+    checkedFrom: string;
+    resolved: boolean;
+    strategy: "path" | "missing";
+    evidence: string;
+    fallbackCommands: string[];
+  };
   ci: {
     workflow: string;
     security: {
@@ -799,6 +807,7 @@ export function buildConsumerReadinessPlan(input: {
     },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
+  const cliResolved = input.hasUtTddCli === true;
   return {
     ok:
       bunOk &&
@@ -836,6 +845,20 @@ export function buildConsumerReadinessPlan(input: {
       packageRoot,
       monorepo:
         normalizeDistributionPath(packageRoot) !== normalizeDistributionPath(input.repoRoot),
+    },
+    cliResolution: {
+      command: "ut-tdd",
+      checkedFrom: packageRoot,
+      resolved: cliResolved,
+      strategy: cliResolved ? "path" : "missing",
+      evidence: cliResolved
+        ? "`ut-tdd --version` resolved for consumer readiness"
+        : "`ut-tdd --version` did not resolve for consumer readiness",
+      fallbackCommands: [
+        "bun run ut-tdd --version",
+        "bun link ut-tdd",
+        "bun run ut-tdd setup project --dry-run --json",
+      ],
     },
     ci: {
       workflow: ".github/workflows/harness-check.yml",
@@ -1463,7 +1486,7 @@ export function loadTemplates(repoRoot: string): TemplateSet {
   return set;
 }
 
-export function nodeSetupDeps(repoRoot: string): SetupDeps {
+export function nodeSetupDeps(repoRoot: string, packageRoot?: string): SetupDeps {
   return {
     repoRoot,
     now: () => new Date().toISOString(),
@@ -1478,5 +1501,6 @@ export function nodeSetupDeps(repoRoot: string): SetupDeps {
     templates: loadTemplates(repoRoot),
     commandAvailable: nodeCommandAvailable,
     bunVersion: nodeBunVersion,
+    ...(packageRoot ? { packageRoot } : {}),
   };
 }
