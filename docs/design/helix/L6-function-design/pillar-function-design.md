@@ -122,9 +122,10 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
   `runConsumerDoctor` は adapter docs の managed block だけでなく、日本語既定、consumer doctor profile、
-  PLAN-M-02 cutover boundary、承認前 `.helix/**` state 未生成、package/bin/scripts と `.vscode/tasks.json` /
-  `.github/workflows/harness-check.yml` / `.claude/settings.json` / `.codex/hooks.json` の
-  `helix setup|doctor|status|handover|team` alias 未露出を検査する。
+  PLAN-M-02 cutover boundary、承認前 `.helix/**` state 未生成、`package.json` の `bin.helix`、
+  `name=helix` / `@scope/helix` の string `bin`、package scripts、`.vscode/tasks.json` /
+  `.github/workflows/harness-check.yml` / `.claude/settings.json` / `.codex/hooks.json` /
+  配布 `.claude/agents/*.md` / `.claude/commands/*.md` の lowercase `helix` 実行 alias 未露出を検査する。
   `buildConsumerReadinessPlan` は `hasUtTddCli` 未指定を green とみなさず、setup / distribution plan の両方で
   bare `ut-tdd --version` 相当の PATH 解決性を実測した入力だけを ready にする。
   consumer VS Code task は `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、
@@ -233,6 +234,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 rename plan / handover status / team-run dry-run を同じ first-run verification set として投影する。
 `harness-check.yml`、`consumerReadiness.ci.requires`、distribution acceptance、consumer doctor の expected task /
 required run も `ut-tdd rename plan --json` を含み、PLAN-M-02 blocked packet を保存しない初回稼働 claim を閉じない。
+consumer doctor の identifier transition gate は、既知 subcommand の狭い列挙ではなく、package string `bin`、
+adapter hook、VS Code task、CI workflow、配布 Claude agent / slash-command に現れる lowercase `helix` 実行 alias
+全般を承認前 alias activation として fail-close する。
 
 **HC-P6 importReport 補足**: `HelixProjectSetupResult.importReport.skipSubDocs[]` は各 record に `marker=skip_sub_doc`、対象 path、理由、次 route、evidence、follow-up gate を持つ。fresh consumer setup では dogfood `docs/plans` / `docs/design/harness` / `docs/test-design` を `consumer_doctor_profile` へ段階化し、brownfield conflict では保持した consumer-owned path を `review_import_report` へ段階化する。
 

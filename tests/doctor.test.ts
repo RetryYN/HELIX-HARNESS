@@ -739,6 +739,22 @@ describe("runConsumerDoctor", () => {
     ).toContain("premature_alias=package.json:bin.helix,package.json:scripts.doctor");
   });
 
+  it("fails closed when package string bin exposes a helix package command before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo", {
+      "package.json": JSON.stringify({
+        name: "@scope/helix",
+        bin: "./dist/helix",
+      }),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain("premature_alias=package.json:bin");
+  });
+
   it("fails closed when executable consumer surfaces expose helix aliases before PLAN-M-02 approval", () => {
     const files = consumerDoctorFiles("/repo");
     const tasksPath = join("/repo", ".vscode", "tasks.json");
@@ -764,6 +780,63 @@ describe("runConsumerDoctor", () => {
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
     ).toContain(
       "premature_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.codex/hooks.json",
+    );
+  });
+
+  it("fails closed when cutover, decision, or hook surfaces expose helix aliases before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo");
+    const tasksPath = join("/repo", ".vscode", "tasks.json");
+    const workflowPath = join("/repo", ".github", "workflows", "harness-check.yml");
+    const claudePath = join("/repo", ".claude", "settings.json");
+    files.set(
+      tasksPath,
+      (files.get(tasksPath) ?? "").replace("ut-tdd rename plan --json", "helix rename plan --json"),
+    );
+    files.set(
+      workflowPath,
+      (files.get(workflowPath) ?? "").replace(
+        "bun run ut-tdd rename plan --json",
+        "helix version-up activation-packet --json",
+      ),
+    );
+    files.set(
+      claudePath,
+      (files.get(claudePath) ?? "").replace(
+        "ut-tdd hook agent-guard",
+        "helix action-binding approval-packet",
+      ),
+    );
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain(
+      "premature_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.claude/settings.json",
+    );
+  });
+
+  it("fails closed when distributed Claude templates instruct future helix aliases before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo");
+    const agentPath = join("/repo", ".claude", "agents", "security-audit.md");
+    const commandPath = join("/repo", ".claude", "commands", "helix-status.md");
+    files.set(
+      agentPath,
+      `${files.get(agentPath) ?? ""}\n- 承認前でも helix doctor --profile consumer を実行する。\n`,
+    );
+    files.set(
+      commandPath,
+      `${files.get(commandPath) ?? ""}\n承認前でも helix status --json を実行する。\n`,
+    );
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain(
+      "premature_alias=.claude/agents/security-audit.md,.claude/commands/helix-status.md",
     );
   });
 

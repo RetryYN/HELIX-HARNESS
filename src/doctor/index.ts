@@ -1887,6 +1887,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const futureStateDir = [".", "helix"].join("");
   const prematureHelixState = consumerPathsUnder(deps, futureStateDir);
   const packageJson = recordValue(consumerJson(deps, "package.json"));
+  const packageName = typeof packageJson?.name === "string" ? packageJson.name : "";
+  const packageBinRaw = packageJson?.bin;
   const packageBin = recordValue(packageJson?.bin);
   const packageScripts = recordValue(packageJson?.scripts);
   const executableSurfacePaths = [
@@ -1894,10 +1896,15 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".github/workflows/harness-check.yml",
     ".claude/settings.json",
     ".codex/hooks.json",
+    ...expectedClaudeAgentPaths,
+    ...expectedClaudeCommandPaths,
   ];
-  const helixCommandPattern = /\bhelix\s+(setup|doctor|status|handover|team)\b/;
+  const helixCommandPattern = /\bhelix(?:\s+(?:--[a-z0-9-]+|[a-z][a-z0-9-]*))?(?=\s|$)/;
   const prematureHelixAlias = [
     ...(packageBin && Object.hasOwn(packageBin, "helix") ? ["package.json:bin.helix"] : []),
+    ...(typeof packageBinRaw === "string" && /(?:^|\/)helix$/.test(packageName)
+      ? ["package.json:bin"]
+      : []),
     ...Object.entries(packageScripts ?? {})
       .filter(([, value]) => typeof value === "string" && helixCommandPattern.test(value))
       .map(([name]) => `package.json:scripts.${name}`),
