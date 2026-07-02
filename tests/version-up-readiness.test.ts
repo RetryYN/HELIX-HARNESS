@@ -1982,6 +1982,9 @@ describe("version-up-readiness", () => {
     );
     expect(text).toContain("activation-snapshot: snapshotId=sha256:");
     expect(text).toContain("sourceLedgerCheckedDate=");
+    expect(text).toContain("sourceLedgerRowsDigest=sha256:");
+    expect(text).toContain("approvalScopeDigest=sha256:");
+    expect(text).toContain("evidenceDigest=sha256:");
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
     expect(text).toContain("verification-commands=9");
@@ -1989,6 +1992,9 @@ describe("version-up-readiness", () => {
     expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(
       "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-02",
+    );
+    expect(text).toContain(
+      "writePolicy=no-write command=bun run src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
     );
     expect(text).toContain("adoption=adopt-live-docs-for-least-privilege-token-scope");
     expect(text).toContain("statusDelta=none; official GitHub Actions security guidance");

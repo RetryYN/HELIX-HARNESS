@@ -1164,6 +1164,7 @@ describe("S4 decision readiness", () => {
     expect(text).toContain(
       "verification-source: requirements-trace source=HELIX V-model trace gate sourceUrl=docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
     );
+    expect(text).toContain("writePolicy=no-write command=bun run src/cli.ts doctor");
     expect(text).toContain(
       "verification-source: completion-frontier source=HELIX completion frontier contract sourceUrl=docs/design/helix/L3-requirements/pillar-functional-requirements.md",
     );

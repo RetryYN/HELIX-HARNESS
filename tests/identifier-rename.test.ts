@@ -1037,6 +1037,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("snapshot-review: current=sha256:");
       expect(text.stdout).toContain("cutover-snapshot-head:");
       expect(text.stdout).toContain("source-ledger: label=Cutover source ledger");
+      expect(text.stdout).toContain("rowsDigest=sha256:");
+      expect(text.stdout).toContain("sourceLedgerRowsDigest=sha256:");
+      expect(text.stdout).toContain("blastRadiusDigest=sha256:");
+      expect(text.stdout).toContain("approvalScopeDigest=sha256:");
+      expect(text.stdout).toContain("evidenceDigest=sha256:");
       expect(text.stdout).toContain("cutover-checklist=");
       expect(text.stdout).toContain("runbook=");
       expect(text.stdout).toContain("verification-commands=");
@@ -1044,6 +1049,9 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("record-template action_binding_approval_record");
       expect(text.stdout).toContain(
         "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md checked=2026-07-02",
+      );
+      expect(text.stdout).toContain(
+        "writePolicy=no-write command=bun run src/cli.ts rename audit --json",
       );
       expect(text.stdout).toContain("adoption=adopt-cutover-source-ledger-for-l14-approval-review");
       expect(text.stdout).toContain(

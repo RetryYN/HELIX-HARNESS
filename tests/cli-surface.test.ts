@@ -1018,6 +1018,9 @@ describe("L7 CLI surface closure", () => {
       "verification-source: least-privilege-binding source=NIST least privilege security principle sourceUrl=https://csrc.nist.gov/glossary/term/least_privilege",
     );
     expect(text.stdout).toContain(
+      "writePolicy=no-write command=bun run src/cli.ts action-binding approval-packet --plan PLAN-M-02-helix-identifier-rename --json",
+    );
+    expect(text.stdout).toContain(
       "verification-source: security-boundary source=VS Code Workspace Trust execution boundary sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     );
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");

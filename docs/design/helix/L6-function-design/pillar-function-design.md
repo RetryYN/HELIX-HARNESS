@@ -70,7 +70,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
   進めない。packet は `s4_decision_record` と、同一 PLAN が承認境界を持つ場合の
   `action_binding_approval_record` の `recordTemplates[]` を返し、text surface も `record-template` 行を出す。
-  text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
+  text surface は evidence check 件数、outcome route 件数、verification command 件数と、
+  checked/adoption/status delta/route impact/writePolicy/command 付き `verification-source:` 行を出す。
   `decisionVerificationCommandMatrix[]` は共通 source metadata validator により、未来日・90 日超 stale・
   非実在日付の `sourceCheckedAt`、および placeholder / future-action prose の source/adoption/route metadata を
   PO 判断前 evidence として通さない。
@@ -106,6 +107,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   action-binding の required record を `recordTemplates[]` として返し、PO が packet だけで記入 block を複写できる。
   `activationVerificationCommandMatrix[]` も共通 source metadata validator を通し、source 日付の非実在値や
   `record later` / `<sourceUrl>` などの placeholder を future activation evidence として採用しない。
+  text surface は `activationSnapshot.sourceLedgerRowsDigest` / `approvalScopeDigest` /
+  `evidenceDigest` と `verification-source:` の writePolicy / command を出し、JSON を見ない review でも
+  source / approval scope / evidence drift を隠さない。
 - HC-P6 `buildIdentifierRenameCutoverPlan` / `analyzeCutoverReadiness` は `Cutover source ledger` も同様に、
   NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の期待
   official URL と required field impact を固定検査する。`https` URL があるだけ、または source 名だけの
@@ -131,6 +135,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   irreversible cutover review にしない。
   `verificationCommandMatrix[]` も共通 source metadata validator を通し、source ledger refresh と matrix metadata の
   日付・status・adoption・route impact が承認前 evidence として実体を持つことを検査する。
+  text surface は `sourceLedgerFreshness.rowsDigest`、`cutoverSnapshot.sourceLedgerRowsDigest` /
+  `blastRadiusDigest` / `approvalScopeDigest` / `evidenceDigest` と `verification-source:` の writePolicy /
+  command を出し、承認前 review が JSON-only safety field を見落とさないようにする。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。
@@ -198,7 +205,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   GitHub Environments required reviewers / prevent self-review、NIST least privilege、VS Code Workspace Trust、
   OWASP WSTG、OWASP LLM06:2025 Excessive Agency の
   公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。
-  text surface は binding check 件数に加えて verification command 件数と `verification-source:` 行を出し、
+  text surface は binding check 件数に加えて verification command 件数と
+  writePolicy / command 付き `verification-source:` 行を出し、
   JSON を見ない利用者にも承認前に実行すべき証跡確認と公式/正本 source を欠落させない。
   packet は `action_binding_approval_record` の `recordTemplates[]` を JSON/text の両方に出し、
   actor / tool / target / params / snapshot binding / expiry / audit の承認 record を自由文に戻さない。

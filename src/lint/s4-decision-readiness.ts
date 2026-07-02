@@ -104,6 +104,7 @@ export interface S4DecisionPacket {
   decisionVerificationCommandMatrix: Array<{
     phase: string;
     command: string;
+    writePolicy: "no-write";
     expected: string;
     evidence: string;
     source: string;
@@ -852,7 +853,7 @@ function buildS4DecisionVerificationCommandMatrix(
       adoptionDecisionDelta: "none; do not count S4 pending plans as complete",
       workflowRouteImpact: "none; unresolved frontier keeps completionReadiness blocked",
     },
-  ];
+  ].map((row) => ({ writePolicy: "no-write" as const, ...row }));
 }
 
 export function s4DecisionVerificationCommandViolations(

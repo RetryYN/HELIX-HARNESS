@@ -102,6 +102,7 @@ export interface ActionBindingApprovalPacket {
   approvalVerificationCommandMatrix: Array<{
     phase: string;
     command: string;
+    writePolicy: "no-write";
     expected: string;
     evidence: string;
     source: string;
@@ -570,7 +571,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       adoptionDecisionDelta: "none; do not count approval-gated work as complete",
       workflowRouteImpact: "none; unresolved approval frontier keeps completionReadiness blocked",
     },
-  ];
+  ].map((row) => ({ writePolicy: "no-write" as const, ...row }));
 }
 
 function semanticFrontierExpectationsForActionBindingPlan(

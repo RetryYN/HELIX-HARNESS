@@ -769,6 +769,8 @@ function packetFreshnessLine(packet: {
 function verificationSourceLines(
   rows: Array<{
     phase: string;
+    command?: string;
+    writePolicy?: string;
     source?: string;
     sourceUrl?: string;
     sourceCheckedAt?: string;
@@ -782,7 +784,7 @@ function verificationSourceLines(
   return rows
     .map(
       (row) =>
-        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"} checked=${row.sourceCheckedAt ?? "-"} status=${row.latestOfficialStatus ?? "-"} statusDelta=${row.sourceStatusDelta ?? "-"} adoption=${row.adoptionDecision ?? "-"} adoptionDelta=${row.adoptionDecisionDelta ?? "-"} routeImpact=${row.workflowRouteImpact ?? "-"}\n`,
+        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"} checked=${row.sourceCheckedAt ?? "-"} status=${row.latestOfficialStatus ?? "-"} statusDelta=${row.sourceStatusDelta ?? "-"} adoption=${row.adoptionDecision ?? "-"} adoptionDelta=${row.adoptionDecisionDelta ?? "-"} routeImpact=${row.workflowRouteImpact ?? "-"} writePolicy=${row.writePolicy ?? "-"} command=${row.command ?? "-"}\n`,
     )
     .join("");
 }
@@ -1508,7 +1510,7 @@ rename
       `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
     );
     process.stdout.write(
-      `  source-ledger: label=${plan.sourceLedgerFreshness.ledgerLabel} checked=${plan.sourceLedgerFreshness.checkedDate ?? "-"} stale=${plan.sourceLedgerFreshness.stale ? "yes" : "no"} rows=${plan.sourceLedgerFreshness.rowCount} missing=${plan.sourceLedgerFreshness.missingRows.length}\n`,
+      `  source-ledger: label=${plan.sourceLedgerFreshness.ledgerLabel} checked=${plan.sourceLedgerFreshness.checkedDate ?? "-"} stale=${plan.sourceLedgerFreshness.stale ? "yes" : "no"} rows=${plan.sourceLedgerFreshness.rowCount} missing=${plan.sourceLedgerFreshness.missingRows.length} rowsDigest=${plan.sourceLedgerFreshness.rowsDigest}\n`,
     );
     process.stdout.write(
       `  cutover-checklist=${plan.cutoverCategoryChecklist.length} runbook=${plan.cutoverRunbook.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
@@ -1519,7 +1521,7 @@ rename
       `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
     );
     process.stdout.write(
-      `  cutover-snapshot-head: ${plan.cutoverSnapshot.repoHeadSha ?? "-"} digest=${plan.cutoverSnapshot.headDigest ?? "-"}\n`,
+      `  cutover-snapshot-head: ${plan.cutoverSnapshot.repoHeadSha ?? "-"} digest=${plan.cutoverSnapshot.headDigest ?? "-"} sourceLedgerRowsDigest=${plan.cutoverSnapshot.sourceLedgerRowsDigest} blastRadiusDigest=${plan.cutoverSnapshot.blastRadiusDigest} approvalScopeDigest=${plan.cutoverSnapshot.approvalScopeDigest} evidenceDigest=${plan.cutoverSnapshot.evidenceDigest}\n`,
     );
     if (plan.blockedReasons.length > 0) {
       for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
@@ -1704,7 +1706,7 @@ versionUp
       );
       process.stdout.write(packetFreshnessLine(packet));
       process.stdout.write(
-        `  activation-snapshot: snapshotId=${packet.activationSnapshot.snapshotId} headSha=${packet.activationSnapshot.headSha ?? "-"} sourceLedgerCheckedDate=${packet.activationSnapshot.sourceLedgerCheckedDate ?? "-"}\n`,
+        `  activation-snapshot: snapshotId=${packet.activationSnapshot.snapshotId} headSha=${packet.activationSnapshot.headSha ?? "-"} sourceLedgerCheckedDate=${packet.activationSnapshot.sourceLedgerCheckedDate ?? "-"} sourceLedgerRowsDigest=${packet.activationSnapshot.sourceLedgerRowsDigest} approvalScopeDigest=${packet.activationSnapshot.approvalScopeDigest} evidenceDigest=${packet.activationSnapshot.evidenceDigest}\n`,
       );
       process.stdout.write(
         `  readiness: status=${packet.activationReadinessSummary.status} present=${packet.activationReadinessSummary.presentChecks} pending=${packet.activationReadinessSummary.pendingChecks} total=${packet.activationReadinessSummary.totalChecks} sourceLedgerFresh=${packet.activationReadinessSummary.sourceLedgerFresh}\n`,
