@@ -80,8 +80,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   PO 判断前 evidence として通さない。
 - HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
   `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
-  source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
-  `snapshotId` に混ぜる。`HEAD` が読めない場合は activation blocker とし、source ledger 見出しの確認日
+  PLAN 本文 digest、source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
+  `snapshotId` に混ぜる。`HEAD` が読めない場合は activation blocker とし、同じ HEAD でも parked PLAN 本文や
+  source/evidence material が変われば snapshotId を変える。`activation_snapshot_id` / `reviewed_snapshot_binding`
+  の行は snapshot 自己参照を避けるため digest 計算時に field 名へ正規化し、current snapshot 値の記録だけで
+  snapshotId が揺れないようにする。source ledger 見出しの確認日
   と PLAN record の `source_ledger_freshness` 確認日がずれた場合は readiness violation にする。
   `activation_decision_record.activation_snapshot_id` は field 名だけでは足りず、current
   `activationSnapshot.snapshotId` の concrete sha256 と一致しなければ blocker にする。

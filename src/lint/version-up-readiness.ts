@@ -137,10 +137,12 @@ export interface VersionUpActivationSnapshot {
   snapshotId: string;
   headSha: string | null;
   headBound: boolean;
+  materialBound: boolean;
   validationStatus: "head_bound" | "head_unavailable";
   releaseTrigger: string;
   versionTarget: string | null;
   planStatus: string;
+  planTextDigest: string;
   sourceLedgerCheckedDate: string | null;
   sourceLedgerRowsDigest: string;
   approvalScopeDigest: string;
@@ -1357,6 +1359,7 @@ export function buildVersionUpActivationPacket(
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
+        scopedCommand: `${VERSION_UP_ACTIVATION_PACKET_COMMAND} --plan ${plan.plan_id}`,
         role: "primary",
         reason: "version_target parked PLAN remains pending activation decision",
         route:
@@ -1366,6 +1369,7 @@ export function buildVersionUpActivationPacket(
         ? [
             relatedDecisionPacket({
               command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+              scopedCommand: `${ACTION_BINDING_APPROVAL_PACKET_COMMAND} --plan ${plan.plan_id}`,
               role: "supporting",
               reason:
                 "activation touches an external/high-impact boundary that requires action-binding approval",
@@ -1569,6 +1573,11 @@ function buildVersionUpActivationSnapshot(input: {
 }): VersionUpActivationSnapshot {
   const releaseTrigger =
     input.activationDecision.target_version_or_release_trigger || input.plan.versionTarget || "";
+  const planTextDigest = sha256Json({
+    file: input.plan.file,
+    plan_id: input.plan.plan_id,
+    text: snapshotMaterialText(input.plan.text),
+  });
   const approvalScopeDigest = sha256Json({
     approval_scope: input.actionBindingApproval.approval_scope ?? "",
     approved_actor: input.actionBindingApproval.approved_actor ?? "",
@@ -1594,10 +1603,12 @@ function buildVersionUpActivationSnapshot(input: {
   const snapshot = {
     headSha: input.repoHeadSha,
     headBound: input.repoHeadSha !== null,
+    materialBound: true,
     validationStatus: input.repoHeadSha === null ? "head_unavailable" : "head_bound",
     releaseTrigger,
     versionTarget: input.plan.versionTarget,
     planStatus: input.plan.status,
+    planTextDigest,
     sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
     sourceLedgerRowsDigest: input.sourceLedgerFreshness.rowsDigest,
     approvalScopeDigest,
@@ -1611,6 +1622,21 @@ function buildVersionUpActivationSnapshot(input: {
     }),
     ...snapshot,
   };
+}
+
+function snapshotMaterialText(text: string): string {
+  return text
+    .split("\n")
+    .map((line) => {
+      if (/^\s*-\s+activation_snapshot_id\s*:/.test(line)) {
+        return line.replace(/:\s*.*/, ": <activationSnapshot.snapshotId>");
+      }
+      if (/^\s*-\s+reviewed_snapshot_binding\s*:/.test(line)) {
+        return line.replace(/:\s*.*/, ": <activationSnapshot.snapshotId>");
+      }
+      return line;
+    })
+    .join("\n");
 }
 
 function sha256Json(value: unknown): string {

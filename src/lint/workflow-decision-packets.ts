@@ -12,6 +12,7 @@ export type DecisionPacketSourceCommand =
 
 export interface RelatedDecisionPacket {
   command: WorkflowDecisionPacketCommand;
+  scopedCommand?: string;
   role: "primary" | "supporting";
   reason: string;
   route: string;
@@ -72,7 +73,7 @@ export function uniqueRelatedDecisionPackets(
 ): RelatedDecisionPacket[] {
   const seen = new Set<string>();
   return packets.filter((packet) => {
-    const key = `${packet.command}:${packet.role}`;
+    const key = `${packet.command}:${packet.scopedCommand ?? ""}:${packet.role}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;

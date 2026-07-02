@@ -1531,7 +1531,7 @@ rename
     }
     for (const related of plan.relatedDecisionPackets) {
       process.stdout.write(
-        `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+        `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
       );
     }
   });
@@ -1727,7 +1727,7 @@ versionUp
       }
       for (const related of packet.relatedDecisionPackets) {
         process.stdout.write(
-          `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+          `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
         );
       }
       for (const trigger of packet.reapprovalTriggers) {
@@ -1769,7 +1769,7 @@ s4.command("decision-packet")
       }
       for (const related of packet.relatedDecisionPackets) {
         process.stdout.write(
-          `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+          `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
         );
       }
     }
@@ -1825,7 +1825,7 @@ actionBinding
       }
       for (const related of packet.relatedDecisionPackets) {
         process.stdout.write(
-          `  related-packet: ${related.role} ${related.command} (${related.reason})\n`,
+          `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
         );
       }
     }

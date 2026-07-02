@@ -570,9 +570,11 @@ describe("version-up-readiness", () => {
       releaseTrigger: expect.stringContaining("release"),
       headSha: "0123456789abcdef0123456789abcdef01234567",
       headBound: true,
+      materialBound: true,
       validationStatus: "head_bound",
       versionTarget: "future",
       planStatus: "draft",
+      planTextDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       sourceLedgerCheckedDate: "2026-06-30",
       sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
@@ -618,10 +620,12 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           role: "primary",
           command: "ut-tdd version-up activation-packet --json",
+          scopedCommand: "ut-tdd version-up activation-packet --json --plan PLAN-L7-900-future",
         }),
         expect.objectContaining({
           role: "supporting",
           command: "ut-tdd action-binding approval-packet --json",
+          scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-L7-900-future",
         }),
       ]),
     );
@@ -1716,6 +1720,31 @@ describe("version-up-readiness", () => {
     expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
   });
 
+  it("changes activationSnapshot when the parked PLAN material changes under the same HEAD", () => {
+    const first = buildVersionUpActivationPackets(
+      input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }),
+    )[0];
+    const changedPlan = {
+      ...input().plans[0],
+      text: input().plans[0].text.replace(
+        "distribution release tag",
+        "distribution release tag with setup smoke evidence",
+      ),
+    };
+    const second = buildVersionUpActivationPackets(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        plans: [changedPlan],
+      }),
+    )[0];
+
+    expect(first.activationSnapshot.headSha).toBe(second.activationSnapshot.headSha);
+    expect(first.activationSnapshot.planTextDigest).not.toBe(
+      second.activationSnapshot.planTextDigest,
+    );
+    expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
+  });
+
   it("checks activation_decision_record.activation_snapshot_id against the current activationSnapshot", () => {
     const base = input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" });
     const placeholderPacket = buildVersionUpActivationPackets(base)[0];
@@ -1798,6 +1827,7 @@ describe("version-up-readiness", () => {
 
     expect(packet.activationSnapshot.headSha).toBeNull();
     expect(packet.activationSnapshot.headBound).toBe(false);
+    expect(packet.activationSnapshot.materialBound).toBe(true);
     expect(packet.activationSnapshot.validationStatus).toBe("head_unavailable");
     expect(packet.blockedReasons).toContain(
       "activation snapshot is not bound to a readable git HEAD sha",
@@ -2186,6 +2216,12 @@ describe("version-up-readiness", () => {
     expect(text).toContain("verification-commands=9");
     expect(text).toContain("record-template activation_decision_record");
     expect(text).toContain("record-template action_binding_approval_record");
+    expect(text).toContain(
+      "related-packet: primary ut-tdd version-up activation-packet --json scoped=ut-tdd version-up activation-packet --json --plan PLAN-L7-146-serverless-readonly-share",
+    );
+    expect(text).toContain(
+      "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-L7-146-serverless-readonly-share",
+    );
     expect(text).toContain(
       "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-02",
     );
