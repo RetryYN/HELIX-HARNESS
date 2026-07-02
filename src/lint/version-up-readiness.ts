@@ -850,14 +850,27 @@ export function analyzeVersionUpReadiness(
     )) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
-    const activationOutcomeViolation = hasConcreteActivationSnapshotId(plan)
+    const selectedOutcome = selectedActivationOutcome(plan);
+    const activationOutcomeViolation = selectedOutcome
       ? selectedAllowedOutcomeViolation({
           text: plan.text,
           recordName: ACTIVATION_RECORD_NAME,
           allowedOutcomes: ACTIVATION_ALLOWED_OUTCOMES,
+          selectedOutcome,
           selectedOutcomeLabel: "activation_outcome",
         })
-      : allowedOutcomeSetViolation(plan.text, ACTIVATION_RECORD_NAME, ACTIVATION_ALLOWED_OUTCOMES);
+      : hasConcreteActivationSnapshotId(plan)
+        ? selectedAllowedOutcomeViolation({
+            text: plan.text,
+            recordName: ACTIVATION_RECORD_NAME,
+            allowedOutcomes: ACTIVATION_ALLOWED_OUTCOMES,
+            selectedOutcomeLabel: "activation_outcome",
+          })
+        : allowedOutcomeSetViolation(
+            plan.text,
+            ACTIVATION_RECORD_NAME,
+            ACTIVATION_ALLOWED_OUTCOMES,
+          );
     if (activationOutcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: activationOutcomeViolation });
     }
@@ -955,6 +968,9 @@ export function analyzeVersionUpReadiness(
         reason: violation.reason,
       })),
     );
+    if (!activationOutcomeViolation && selectedOutcome === "activate_future_version") {
+      violations.push(...selectedActivationMaterialViolations(packet));
+    }
   }
 
   return {
@@ -1938,12 +1954,6 @@ function activationEvidenceIsPending(evidence: string): boolean {
   return !hasConcreteActivationEvidence(evidence);
 }
 
-function hasConcreteActivationSnapshotId(plan: VersionUpReadinessPlan): boolean {
-  return /^sha256:[a-f0-9]{64}$/i.test(
-    record(plan, ACTIVATION_RECORD_NAME, "activation_snapshot_id").trim(),
-  );
-}
-
 function hasConcreteActivationEvidence(evidence: string): boolean {
   const normalized = evidence.trim();
   return [
@@ -1955,6 +1965,124 @@ function hasConcreteActivationEvidence(evidence: string): boolean {
     /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));
+}
+
+function selectedActivationOutcome(
+  plan: VersionUpReadinessPlan,
+): (typeof ACTIVATION_ALLOWED_OUTCOMES)[number] | null {
+  const value = record(plan, ACTIVATION_RECORD_NAME, "allowed_outcome").trim().replace(/`/g, "");
+  return ACTIVATION_ALLOWED_OUTCOMES.find((outcome) => value === outcome) ?? null;
+}
+
+function hasConcreteActivationSnapshotId(plan: VersionUpReadinessPlan): boolean {
+  return (
+    concreteSnapshotId(record(plan, ACTIVATION_RECORD_NAME, "activation_snapshot_id")) !== null
+  );
+}
+
+function selectedActivationMaterialViolations(
+  packet: VersionUpActivationPacket,
+): VersionUpReadinessViolation[] {
+  const violations: VersionUpReadinessViolation[] = [];
+  const activationSnapshotId = concreteSnapshotId(
+    packet.activationDecision.activation_snapshot_id ?? "",
+  );
+  const actionBinding = packet.actionBindingApproval;
+
+  if (!packet.activationSnapshot.headBound) {
+    violations.push({
+      subject: packet.planId,
+      reason: "activation material cannot be approved without HEAD-bound activationSnapshot",
+    });
+  }
+  if (!activationSnapshotId) {
+    violations.push({
+      subject: packet.planId,
+      reason:
+        "activation_decision_record.activation_snapshot_id lacks concrete current activationSnapshot.snapshotId",
+    });
+  } else if (activationSnapshotId !== packet.activationSnapshot.snapshotId) {
+    violations.push({
+      subject: packet.planId,
+      reason:
+        "activation_decision_record.activation_snapshot_id does not match current activationSnapshot.snapshotId",
+    });
+  }
+  if ((actionBinding.allowed_outcome ?? "").trim() !== "approve_action_binding") {
+    violations.push({
+      subject: packet.planId,
+      reason: "action_binding_approval_record must select approve_action_binding before activation",
+    });
+  }
+  for (const field of ["approved_actor", "approved_tool", "approved_target", "approved_params"]) {
+    const value = actionBinding[field] ?? "";
+    if (!concreteApprovalBindingValue(value)) {
+      violations.push({
+        subject: packet.planId,
+        reason: `action_binding_approval_record lacks concrete ${field}`,
+      });
+    }
+  }
+  if (activationEvidenceIsPending(actionBinding.review_approval_evidence ?? "")) {
+    violations.push({
+      subject: packet.planId,
+      reason: "action_binding_approval_record lacks concrete review_approval_evidence",
+    });
+  }
+  const reviewedSnapshot = concreteSnapshotId(actionBinding.reviewed_snapshot_binding ?? "");
+  if (!reviewedSnapshot) {
+    violations.push({
+      subject: packet.planId,
+      reason:
+        "action_binding_approval_record.reviewed_snapshot_binding lacks concrete current activationSnapshot.snapshotId",
+    });
+  } else if (reviewedSnapshot !== packet.activationSnapshot.snapshotId) {
+    violations.push({
+      subject: packet.planId,
+      reason:
+        "action_binding_approval_record.reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    });
+  }
+  if (!concreteApprovalBindingValue(actionBinding.expires_at_or_trigger ?? "")) {
+    violations.push({
+      subject: packet.planId,
+      reason: "action_binding_approval_record lacks concrete expires_at_or_trigger",
+    });
+  }
+  if (activationEvidenceIsPending(actionBinding.audit_record ?? "")) {
+    violations.push({
+      subject: packet.planId,
+      reason: "action_binding_approval_record lacks concrete audit_record",
+    });
+  }
+  if (packet.activationReadinessSummary.status !== "ready_for_activation_review") {
+    violations.push({
+      subject: packet.planId,
+      reason: `activationReadinessSummary must be ready_for_activation_review before activate_future_version; pending=${packet.activationReadinessSummary.pendingCheckNames.join(",") || "none"}`,
+    });
+  }
+
+  return violations;
+}
+
+function concreteApprovalBindingValue(value: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized || normalized === "tbd" || normalized === "todo" || normalized === "-") {
+    return false;
+  }
+  return ![
+    "<",
+    "no actor",
+    "no deploy",
+    "no external",
+    "no activation",
+    "not approved",
+    "while parked",
+    "must ",
+    "must be",
+    "before activation",
+    "pending",
+  ].some((marker) => normalized.includes(marker));
 }
 
 function validateParkedVersionUpSemantics(

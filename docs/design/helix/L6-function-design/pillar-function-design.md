@@ -85,6 +85,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   と PLAN record の `source_ledger_freshness` 確認日がずれた場合は readiness violation にする。
   `activation_decision_record.activation_snapshot_id` は field 名だけでは足りず、current
   `activationSnapshot.snapshotId` の concrete sha256 と一致しなければ blocker にする。
+  `analyzeVersionUpReadiness` は enum set を提示する parked review record と、
+  `allowed_outcome=activate_future_version` が選択済みの activation material を分離する。後者では current
+  `activationSnapshot.snapshotId`、HEAD-bound snapshot、`approve_action_binding`、approved actor/tool/target/params、
+  `reviewed_snapshot_binding`、review/audit evidence、`activationReadinessSummary=ready_for_activation_review` が揃わない限り
+  readiness violation に昇格し、packet の blocker だけに閉じ込めない。
   外部 activation の cost guardrails (`pages_limit` / `workers_limit` / `d1_limit` / `kv_limit` /
   `exceed_action`) は単なる表示ではなく `activationReadinessChecks[]` の `pending_evidence` 判定対象にする。
   cost guardrails と `activationReadinessChecks[]` は `activationSnapshot.evidenceDigest` に含め、

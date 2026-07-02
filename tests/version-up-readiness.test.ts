@@ -1210,7 +1210,7 @@ describe("version-up-readiness", () => {
     });
   });
 
-  it("U-DECISIONREC-004: accepts concrete activation snapshots whose allowed_outcome selects one outcome", () => {
+  it("U-DECISIONREC-004: accepts concrete activation snapshots whose allowed_outcome keeps the plan parked", () => {
     const base = input().plans[0];
     const result = analyzeVersionUpReadiness(
       input({
@@ -1220,7 +1220,7 @@ describe("version-up-readiness", () => {
             text: base.text
               .replace(
                 "`activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
-                "`activate_future_version`",
+                "`keep_parked_with_review_date`",
               )
               .replace(
                 "activationSnapshot.snapshotId",
@@ -1235,6 +1235,83 @@ describe("version-up-readiness", () => {
     expect(result.violations.map((v) => v.reason)).not.toContain(
       "invalid selected allowed_outcome for activation_decision_record: allowed_outcome must select exactly one outcome, found=activate_future_version,reject_or_archive,keep_parked_with_review_date",
     );
+  });
+
+  it("fails activate_future_version selections until current snapshot, approval, and rehearsal evidence are concrete", () => {
+    const baseInput = input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" });
+    const currentSnapshot =
+      buildVersionUpActivationPackets(baseInput)[0].activationSnapshot.snapshotId;
+    const result = analyzeVersionUpReadiness(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        plans: [
+          {
+            ...baseInput.plans[0],
+            text: baseInput.plans[0].text
+              .replace(
+                "`activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+                "`activate_future_version`",
+              )
+              .replace(
+                "- activation_snapshot_id: activationSnapshot.snapshotId",
+                `- activation_snapshot_id: activationSnapshot.snapshotId ${currentSnapshot}`,
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-L7-900-future",
+          reason:
+            "action_binding_approval_record must select approve_action_binding before activation",
+        },
+        {
+          subject: "PLAN-L7-900-future",
+          reason:
+            "action_binding_approval_record.reviewed_snapshot_binding lacks concrete current activationSnapshot.snapshotId",
+        },
+        {
+          subject: "PLAN-L7-900-future",
+          reason: expect.stringContaining(
+            "activationReadinessSummary must be ready_for_activation_review before activate_future_version",
+          ),
+        },
+      ]),
+    );
+  });
+
+  it("fails activate_future_version selections whose concrete activation snapshot is stale", () => {
+    const baseInput = input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" });
+    const result = analyzeVersionUpReadiness(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        plans: [
+          {
+            ...baseInput.plans[0],
+            text: baseInput.plans[0].text
+              .replace(
+                "`activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+                "`activate_future_version`",
+              )
+              .replace(
+                "- activation_snapshot_id: activationSnapshot.snapshotId",
+                "- activation_snapshot_id: activationSnapshot.snapshotId sha256:1111111111111111111111111111111111111111111111111111111111111111",
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "activation_decision_record.activation_snapshot_id does not match current activationSnapshot.snapshotId",
+    });
   });
 
   it("U-DECISIONREC-007: fails parked version-up plans whose activation record has outcomes but no matching routes", () => {
