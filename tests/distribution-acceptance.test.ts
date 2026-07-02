@@ -157,6 +157,39 @@ describe("clean distribution local acceptance smoke", () => {
       ).toBe(0);
       expect(linkedCompletionPacket.stdout).toContain("Usage: ut-tdd completion decision-packet");
 
+      const linkedVersionUpPacket = runCommand(
+        cleanRoot,
+        "ut-tdd",
+        ["version-up", "activation-packet", "--help"],
+        env,
+      );
+      expect(
+        linkedVersionUpPacket.status,
+        linkedVersionUpPacket.stderr || linkedVersionUpPacket.stdout,
+      ).toBe(0);
+      expect(linkedVersionUpPacket.stdout).toContain("Usage: ut-tdd version-up activation-packet");
+
+      const linkedRenamePacket = runCommand(cleanRoot, "ut-tdd", ["rename", "plan", "--help"], env);
+      expect(
+        linkedRenamePacket.status,
+        linkedRenamePacket.stderr || linkedRenamePacket.stdout,
+      ).toBe(0);
+      expect(linkedRenamePacket.stdout).toContain("Usage: ut-tdd rename plan");
+
+      const linkedActionBindingPacket = runCommand(
+        cleanRoot,
+        "ut-tdd",
+        ["action-binding", "approval-packet", "--help"],
+        env,
+      );
+      expect(
+        linkedActionBindingPacket.status,
+        linkedActionBindingPacket.stderr || linkedActionBindingPacket.stdout,
+      ).toBe(0);
+      expect(linkedActionBindingPacket.stdout).toContain(
+        "Usage: ut-tdd action-binding approval-packet",
+      );
+
       const status = runBun(cleanRoot, ["src/cli.ts", "status", "--json"], env);
       expect(status.status, status.stderr || status.stdout).toBe(0);
       const statusJson = JSON.parse(status.stdout);
