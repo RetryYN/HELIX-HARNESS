@@ -696,6 +696,31 @@ describe("action-binding approval readiness", () => {
     });
   });
 
+  it("treats explicit no-snapshot basis as concrete for plans without snapshot-bearing sibling packets", () => {
+    const packet = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-DISCOVERY-10.md",
+          plan_id: "PLAN-DISCOVERY-10-helix-asset-visualization",
+          status: "draft",
+          text: `requires action-binding approval before external execution\n${RECORD}`,
+        },
+      ],
+    })[0];
+
+    expect(
+      packet.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding"),
+    ).toMatchObject({
+      status: "concrete",
+      reason: "explicit no-snapshot basis is recorded",
+    });
+    expect(packet.blockedReasons).not.toContain(
+      "reviewed_snapshot_binding lacks concrete current snapshot id",
+    );
+  });
+
   it("rejects version-up approvals whose concrete snapshot id is stale", () => {
     const staleSnapshot = "sha256:1111111111111111111111111111111111111111111111111111111111111111";
     const stalePlan = versionUpPlanWithSnapshot(staleSnapshot);
@@ -904,5 +929,25 @@ describe("action-binding approval readiness", () => {
           (command) => command.phase === "sibling-decision-packets",
         )?.command,
     ).toContain("bun run src/cli.ts version-up activation-packet --json");
+    expect(
+      packets.map(
+        (packet) =>
+          packet.approvalVerificationCommandMatrix.find(
+            (command) => command.phase === "sibling-decision-packets",
+          )?.command,
+      ),
+    ).toEqual([
+      expect.stringContaining("bun run src/cli.ts s4 decision-packet --json"),
+      expect.stringContaining("bun run src/cli.ts version-up activation-packet --json"),
+      expect.stringContaining("bun run src/cli.ts rename plan --json"),
+    ]);
+    expect(
+      packets.every(
+        (packet) =>
+          !packet.approvalVerificationCommandMatrix
+            .find((command) => command.phase === "sibling-decision-packets")
+            ?.command.includes("action-binding approval-packet"),
+      ),
+    ).toBe(true);
   });
 });

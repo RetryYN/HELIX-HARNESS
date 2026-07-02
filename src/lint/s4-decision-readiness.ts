@@ -545,7 +545,12 @@ export function buildS4DecisionPacket(
     "po_decision_pending",
     ...(planTextRequiresActionBindingApproval(plan.text) ? ["human_approval_pending"] : []),
   ];
-  const blockedReasons = s4DecisionBlockedReasons(plan, decisionRecord);
+  const blockedReasons = [
+    ...s4DecisionBlockedReasons(plan, decisionRecord),
+    ...(planTextRequiresActionBindingApproval(plan.text)
+      ? ["same PLAN also requires action-binding approval before high-impact execution"]
+      : []),
+  ];
   const provenance = buildDecisionPacketProvenance({ sourceCommand: S4_DECISION_PACKET_COMMAND });
   return {
     schemaVersion: "s4-decision-packet.v1",

@@ -419,11 +419,9 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "sibling-decision-packets",
-      command: relatedDecisionPacketsForActionBindingPlan(plan)
-        .map((packet) => packet.command.replace(/^ut-tdd /, "bun run src/cli.ts "))
-        .join(" && "),
+      command: siblingDecisionPacketCommandsForActionBindingPlan(plan).join(" && "),
       expected:
-        "S4, version-up, rename, and action-binding packet routes are reviewed together before any high-impact action",
+        "S4, version-up, and rename sibling packet routes are reviewed together before any high-impact action",
       evidence: "related decision packet JSON outputs for every sibling blocker on the PLAN",
       source: "HELIX completion decision packet contract",
       sourceUrl:
@@ -642,6 +640,15 @@ function relatedDecisionPacketsForActionBindingPlan(
         ]
       : []),
   ]);
+}
+
+function siblingDecisionPacketCommandsForActionBindingPlan(
+  plan: ActionBindingApprovalPlan,
+): string[] {
+  const commands = relatedDecisionPacketsForActionBindingPlan(plan)
+    .filter((packet) => packet.command !== ACTION_BINDING_APPROVAL_PACKET_COMMAND)
+    .map((packet) => packet.command.replace(/^ut-tdd /, "bun run src/cli.ts "));
+  return commands.length > 0 ? commands : ["no sibling decision packet required for this PLAN"];
 }
 
 function validateActionBindingSemantics(
@@ -1065,6 +1072,9 @@ function actionBindingApprovalCheckForField(
         requiredAction:
           "cite activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or an explicit no-snapshot basis",
       };
+    }
+    if (!requiresSnapshotBinding(plan)) {
+      return concreteCheck(field, value, "explicit no-snapshot basis is recorded");
     }
     if (isPendingApprovalBinding(value)) {
       return {

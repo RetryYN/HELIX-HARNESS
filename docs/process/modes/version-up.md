@@ -117,7 +117,7 @@ binding ID になる。snapshotId が変わった場合は、旧 approval eviden
 packet は `activationVerificationCommandMatrix[]` も出す。これは `activation-packet-baseline`、
 `version-dry-run`、`external-rehearsal`、`security-testing`、`state-and-doctor` を検証 phase として持つ。
 さらに `targeted-regression`、`static-gates`、`full-regression`、`approval-packet` の各 phase に対して
-command / expected / evidence / source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
+command / writePolicy / expected / evidence / source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
 adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持つ。公式 source row は 2026-07-02 に GitHub Actions secure use / GITHUB_TOKEN permissions /
 pull_request_target guidance、GitHub Environments required reviewers とその public/private repo・plan availability、
 OWASP WSTG stable/latest を確認し、
@@ -125,12 +125,15 @@ Google Cloud Deploy verification / canary / rollback は段階適用・検証・
 採用判断と route impact を packet に残すことで、activation readiness の判断材料を「あとで検証する」という自由文に戻さず、
 どの command・runbook・report・audit record を承認前 evidence とするかを packet から追えるようにする。
 matrix は apply 権限ではなく、`activationSnapshot.evidenceDigest` に含める承認前 review material である。
+`writePolicy` は `no-write` / `state-write` / `local-artifact-write` を明示し、`state-and-doctor` の
+`db rebuild` は `state-write` として扱う。`no-write` row に DB rebuild、build、file output などの
+local state/artifact write が混入した場合は fail-close する。
 `external-rehearsal` と `security-testing` は自然文 command ではなく、
 `ut-tdd version-up rehearsal --plan <PLAN> --no-write --json` と
 `ut-tdd version-up security-checklist --plan <PLAN> --no-write --json` の packet-only surface を指す。
 両 command は `planOnly=true` / `mustNotApply=true` / `writePolicy=no-write` を返し、
 Cloudflare / GitHub / HMAC / access-control / secret / external activation を実行しない。
-doctor の `version-up-readiness` は matrix command がこの no-write allowlist に一致しない場合 fail-close するため、
+doctor の `version-up-readiness` は matrix command と `writePolicy` が allowlist に一致しない場合 fail-close するため、
 承認前 evidence が未実装 command、placeholder、または prose-only 手順へ戻らない。
 
 ### 4.1.2 version upgrade dry-run surface
@@ -236,7 +239,9 @@ version-up の機能一覧は、単に `version_target` を受理することで
     scope / rehearsal evidence digest を束ね、後続 approval が何を承認したかを機械的に固定する。
 12. **activation verification command matrix**: `activationVerificationCommandMatrix[]` が activation packet、
     dry-run、external rehearsal、security testing、state/doctor、targeted regression、static gates を扱う。
-    さらに full regression、approval packet の command / expected / evidence を出し、承認前 evidence を自由文だけにしない。
+    さらに full regression、approval packet の command / writePolicy / expected / evidence を出し、
+    承認前 evidence を自由文だけにしない。`db rebuild` を含む state/doctor row は `state-write`、
+    packet-only rehearsal/security row は `no-write` として区別し、no-write row への state/artifact write 混入を拒否する。
 12a. **no-write rehearsal/security packet**: `external-rehearsal` / `security-testing` は
      `version-up rehearsal` / `version-up security-checklist` の no-write packet-only CLI で実行可能性を示し、
      doctor が matrix command availability を検査する。

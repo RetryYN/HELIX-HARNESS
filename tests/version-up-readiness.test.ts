@@ -439,15 +439,18 @@ describe("version-up-readiness", () => {
           phase: "activation-packet-baseline",
           command:
             "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-900-future --json",
+          writePolicy: "no-write",
         }),
         expect.objectContaining({
           phase: "version-dry-run",
           command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
+          writePolicy: "no-write",
         }),
         expect.objectContaining({
           phase: "external-rehearsal",
           command:
             "bun run src/cli.ts version-up rehearsal --plan PLAN-L7-900-future --no-write --json",
+          writePolicy: "no-write",
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
           sourceCheckedAt: "2026-07-02",
@@ -461,6 +464,7 @@ describe("version-up-readiness", () => {
           phase: "security-testing",
           command:
             "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
+          writePolicy: "no-write",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
           sourceCheckedAt: "2026-07-02",
           sourceStatusDelta: expect.stringContaining("OWASP WSTG"),
@@ -469,8 +473,14 @@ describe("version-up-readiness", () => {
           workflowRouteImpact: expect.stringContaining("security report absence"),
         }),
         expect.objectContaining({
+          phase: "state-and-doctor",
+          command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          writePolicy: "state-write",
+        }),
+        expect.objectContaining({
           phase: "approval-packet",
           command: "bun run src/cli.ts action-binding approval-packet --json",
+          writePolicy: "no-write",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
           sourceCheckedAt: "2026-07-02",
@@ -581,7 +591,51 @@ describe("version-up-readiness", () => {
       {
         subject: "PLAN-L7-900-future.external-rehearsal",
         reason:
-          "activationVerificationCommandMatrix command is not an executable approved no-write surface: record staging evidence later",
+          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: record staging evidence later",
+      },
+    ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
+          (row) =>
+            row.phase === "external-rehearsal"
+              ? { ...row, command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor" }
+              : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason:
+          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      },
+      {
+        subject: "PLAN-L7-900-future.external-rehearsal",
+        reason:
+          "activationVerificationCommandMatrix no-write command may write local state or artifacts: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      },
+    ]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.map(
+          (row) =>
+            row.phase === "state-and-doctor"
+              ? { ...row, command: "bun run src/cli.ts doctor" }
+              : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.state-and-doctor",
+        reason:
+          "activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run src/cli.ts doctor",
+      },
+      {
+        subject: "PLAN-L7-900-future.state-and-doctor",
+        reason:
+          "activationVerificationCommandMatrix state-write command must be explicit about state rebuild: bun run src/cli.ts doctor",
       },
     ]);
     const rehearsalPacket = buildVersionUpActivationRehearsalPacket(packet);

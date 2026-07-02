@@ -423,6 +423,9 @@ describe("S4 decision readiness", () => {
         }),
       ]),
     );
+    expect(packets[0].blockedReasons).toContain(
+      "same PLAN also requires action-binding approval before high-impact execution",
+    );
   });
 
   it("U-DECISIONREC-001: fails S3 pending PoC plans that do not say what S4 must decide", () => {

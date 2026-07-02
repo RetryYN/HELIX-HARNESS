@@ -112,6 +112,7 @@ export interface VersionUpActivationPacket {
   activationVerificationCommandMatrix: Array<{
     phase: string;
     command: string;
+    writePolicy: "no-write" | "state-write" | "local-artifact-write";
     expected: string;
     evidence: string;
     source: string;
@@ -1415,32 +1416,64 @@ export function buildVersionUpSecurityChecklistPacket(
 export function versionUpActivationVerificationCommandViolations(
   packet: VersionUpActivationPacket,
 ): VersionUpActivationCommandViolation[] {
-  const allowedCommands = new Set([
+  const allowedNoWriteCommands = new Set([
     `bun run src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
     `bun run src/cli.ts version-up rehearsal --plan ${packet.planId} --no-write --json`,
     `bun run src/cli.ts version-up security-checklist --plan ${packet.planId} --no-write --json`,
-    "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
     "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
     "bun run lint && bun run typecheck && git diff --check",
     "bun run test",
     "bun run src/cli.ts action-binding approval-packet --json",
   ]);
+  const allowedStateWriteCommands = new Set([
+    "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+  ]);
   return packet.activationVerificationCommandMatrix.flatMap((row) => {
+    const violations: VersionUpActivationCommandViolation[] = [];
     const command = row.command.trim();
     if (
       row.phase === "version-dry-run" &&
       /^bun run src\/cli\.ts version-up dry-run --current \S+ --target \S+ --json$/.test(command)
     ) {
-      return [];
+      return versionUpActivationWritePolicyViolations(packet.planId, row, command);
     }
-    if (allowedCommands.has(command)) return [];
-    return [
-      {
+    const allowedForPolicy =
+      (row.writePolicy === "no-write" && allowedNoWriteCommands.has(command)) ||
+      (row.writePolicy === "state-write" && allowedStateWriteCommands.has(command));
+    if (!allowedForPolicy) {
+      violations.push({
         subject: `${packet.planId}.${row.phase}`,
-        reason: `activationVerificationCommandMatrix command is not an executable approved no-write surface: ${row.command}`,
-      },
-    ];
+        reason: `activationVerificationCommandMatrix command is not an executable approved surface for its writePolicy: ${row.command}`,
+      });
+    }
+    violations.push(...versionUpActivationWritePolicyViolations(packet.planId, row, command));
+    return violations;
   });
+}
+
+function versionUpActivationWritePolicyViolations(
+  planId: string,
+  row: VersionUpActivationPacket["activationVerificationCommandMatrix"][number],
+  command: string,
+): VersionUpActivationCommandViolation[] {
+  const violations: VersionUpActivationCommandViolation[] = [];
+  if (row.writePolicy === "no-write" && commandWritesLocalStateOrArtifacts(command)) {
+    violations.push({
+      subject: `${planId}.${row.phase}`,
+      reason: `activationVerificationCommandMatrix no-write command may write local state or artifacts: ${row.command}`,
+    });
+  }
+  if (row.writePolicy === "state-write" && !command.includes("db rebuild")) {
+    violations.push({
+      subject: `${planId}.${row.phase}`,
+      reason: `activationVerificationCommandMatrix state-write command must be explicit about state rebuild: ${row.command}`,
+    });
+  }
+  return violations;
+}
+
+function commandWritesLocalStateOrArtifacts(command: string): boolean {
+  return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
 function buildVersionUpActivationSnapshot(input: {
@@ -1515,6 +1548,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "activation-packet-baseline",
       command: `bun run src/cli.ts version-up activation-packet --plan ${plan.plan_id} --json`,
+      writePolicy: "no-write",
       expected:
         "captures current activationSnapshot, semantic frontier, readiness checks, blockers, and related decision packets",
       evidence: "activation packet JSON attached to the version-up activation review",
@@ -1531,6 +1565,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "version-dry-run",
       command: `bun run src/cli.ts version-up dry-run --current ${currentVersion} --target ${dryRunTarget} --json`,
+      writePolicy: "no-write",
       expected:
         "returns migration, rollback, idempotency, release-gate, and source-basis evidence without apply authority",
       evidence: "version-up dry-run JSON for the reviewed current/target release trigger",
@@ -1547,6 +1582,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "external-rehearsal",
       command: `bun run src/cli.ts version-up rehearsal --plan ${plan.plan_id} --no-write --json`,
+      writePolicy: "no-write",
       expected:
         "proves external activation is least-privilege, avoids unsafe pull_request_target execution, budgeted, signed, access-controlled, non-secret, non-PII, no-prod-write, and rollbackable",
       evidence:
@@ -1568,6 +1604,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "security-testing",
       command: `bun run src/cli.ts version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
+      writePolicy: "no-write",
       expected:
         "security checks pass before any Cloudflare/GitHub/HMAC/access-control activation is approved",
       evidence:
@@ -1586,6 +1623,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "state-and-doctor",
       command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      writePolicy: "state-write",
       expected:
         "state projection and workflow gates remain green after activation rehearsal material is recorded",
       evidence: "db rebuild and doctor output",
@@ -1601,6 +1639,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "targeted-regression",
       command: "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
+      writePolicy: "no-write",
       expected: "version-up packet and CLI surface regressions stay green",
       evidence: "targeted vitest output",
       source: "HELIX version-up regression oracle",
@@ -1616,6 +1655,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "static-gates",
       command: "bun run lint && bun run typecheck && git diff --check",
+      writePolicy: "no-write",
       expected: "format, type, and whitespace gates pass before activation approval",
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
@@ -1630,6 +1670,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "full-regression",
       command: "bun run test",
+      writePolicy: "no-write",
       expected: "full repository regression suite passes before any future activation apply route",
       evidence: "full vitest output",
       source: "HELIX full regression policy",
@@ -1644,6 +1685,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     {
       phase: "approval-packet",
       command: "bun run src/cli.ts action-binding approval-packet --json",
+      writePolicy: "no-write",
       expected:
         "approved actor/tool/target/params and reviewed_snapshot_binding cite the current activationSnapshot before activation",
       evidence: "action-binding approval packet JSON",
