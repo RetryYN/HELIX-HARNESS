@@ -447,9 +447,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(section).toContain(
       "packet要約: `ut-tdd s4 decision-packet --json` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8",
     );
-    expect(section).toContain(
-      "確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord",
-    );
+    expect(section).toContain("確認field=decisionRecord,recordTemplates,decisionEvidenceChecklist");
     expect(section).toContain(
       "matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
     );

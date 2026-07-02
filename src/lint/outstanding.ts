@@ -1189,10 +1189,15 @@ function supportingPacketSummaryForCommand(
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
         requiredReviewFields: [
+          "decisionRecord",
+          "recordTemplates",
           "decisionEvidenceChecklist",
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
           "provenanceRequirements",
+          "relatedDecisionPackets",
+          "nextWorkflowRoutes",
+          "blockedReasons",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute: "review S4 decision evidence, outcome routes, and verification commands",
@@ -1207,18 +1212,31 @@ function supportingPacketSummaryForCommand(
         matrixField: "activationVerificationCommandMatrix",
         expectedMatrixCount: 9,
         requiredReviewFields: [
+          "semanticFeatureFrontierRecord",
+          "activationDecision",
+          "parkedReview",
+          "actionBindingApproval",
+          "recordTemplates",
           "activationReadinessSummary",
+          "activationReadinessChecks",
+          "activationSnapshot",
           "activationSnapshot.snapshotId",
           "externalRehearsalPlan",
           "costGuardrails",
-          "securityChecks",
+          "provenanceRequirements",
+          "sourceLedgerFreshness",
+          "versionDryRunEvidence",
+          "securityChecklistPacket.securityChecks",
           "reapprovalTriggers",
+          "relatedDecisionPackets",
+          "nextWorkflowRoutes",
+          "blockedReasons",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
-          "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checks, reapproval triggers, and verification commands",
+          "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checklist packet, reapproval triggers, and verification commands",
         reviewRouteJa: workflowReviewRouteTextJa(
-          "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checks, reapproval triggers, and verification commands",
+          "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checklist packet, reapproval triggers, and verification commands",
         ),
       };
     case "ut-tdd rename plan --json":
@@ -1228,11 +1246,23 @@ function supportingPacketSummaryForCommand(
         matrixField: "verificationCommandMatrix",
         expectedMatrixCount: 9,
         requiredReviewFields: [
+          "semanticFeatureFrontierRecord",
+          "recordTemplates",
+          "cutoverSnapshot",
           "cutoverSnapshot.snapshotId",
           "snapshotReview",
           "cutoverCategoryChecklist",
           "sourceLedgerFreshness",
           "cutoverRunbook",
+          "dryRunPlan",
+          "rollbackPlan",
+          "monitoringPlan",
+          "stateBackupManifest",
+          "freezePolicy",
+          "provenanceRequirements",
+          "relatedDecisionPackets",
+          "approvalGate",
+          "blockedReasons",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
@@ -1248,9 +1278,13 @@ function supportingPacketSummaryForCommand(
         matrixField: "approvalVerificationCommandMatrix",
         expectedMatrixCount: 10,
         requiredReviewFields: [
+          "approvalRecord",
+          "recordTemplates",
           "approvalBindingChecks",
           "semanticFeatureFrontierRecords",
           "relatedDecisionPackets",
+          "nextWorkflowRoutes",
+          "blockedReasons",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
@@ -1319,8 +1353,8 @@ export function workflowReviewRouteTextJa(route: string): string {
       return "S4 decision evidence / outcome route / verification command を確認する";
     case "review activation readiness, current snapshot id, reapproval triggers, and verification commands":
       return "activation readiness / current snapshot id / reapproval trigger / verification command を確認する";
-    case "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checks, reapproval triggers, and verification commands":
-      return "activation readiness / current snapshot id / external rehearsal / cost guardrails / security checks / reapproval trigger / verification command を確認する";
+    case "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checklist packet, reapproval triggers, and verification commands":
+      return "activation readiness / current snapshot id / external rehearsal / cost guardrails / security checklist packet / reapproval trigger / verification command を確認する";
     case "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands":
       return "cutover snapshot / snapshot drift review / blast-radius checklist / verification command を確認する";
     case "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands":

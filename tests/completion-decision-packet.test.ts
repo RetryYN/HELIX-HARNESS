@@ -102,10 +102,15 @@ describe("completion decision packet lint", () => {
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
         requiredReviewFields: expect.arrayContaining([
+          "decisionRecord",
+          "recordTemplates",
           "decisionEvidenceChecklist",
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
           "provenanceRequirements",
+          "relatedDecisionPackets",
+          "nextWorkflowRoutes",
+          "blockedReasons",
         ]),
         requiredMatrixFields: expect.arrayContaining([
           "sourceCheckedAt",
@@ -126,6 +131,33 @@ describe("completion decision packet lint", () => {
         "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
       runnableScopedPacketCommands: ["bun run ut-tdd s4 decision-packet --json --plan PLAN-S3"],
     });
+    const versionPacket = versionUpPacket();
+    const versionSummary = versionPacket.decisions[0].supportingPacketSummaries.find(
+      (summary) => summary.command === "ut-tdd version-up activation-packet --json",
+    );
+    expect(versionSummary?.requiredReviewFields).toEqual(
+      expect.arrayContaining([
+        "semanticFeatureFrontierRecord",
+        "activationDecision",
+        "parkedReview",
+        "actionBindingApproval",
+        "recordTemplates",
+        "activationReadinessSummary",
+        "activationReadinessChecks",
+        "activationSnapshot",
+        "activationSnapshot.snapshotId",
+        "externalRehearsalPlan",
+        "costGuardrails",
+        "provenanceRequirements",
+        "sourceLedgerFreshness",
+        "versionDryRunEvidence",
+        "securityChecklistPacket.securityChecks",
+        "reapprovalTriggers",
+        "relatedDecisionPackets",
+        "nextWorkflowRoutes",
+        "blockedReasons",
+      ]),
+    );
   });
 
   it("rejects packets whose authority boundary hides required human decisions", () => {
@@ -255,7 +287,7 @@ describe("completion decision packet lint", () => {
     );
   });
 
-  it("rejects version-up summaries that omit rehearsal, cost, or security review fields", () => {
+  it("rejects version-up summaries that omit rehearsal, cost, or security checklist review fields", () => {
     const packet = {
       ...versionUpPacket(),
       decisions: versionUpPacket().decisions.map((decision) => ({
@@ -292,7 +324,7 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecks",
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks",
         },
       ]),
     );
