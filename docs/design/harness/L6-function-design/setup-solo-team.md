@@ -186,6 +186,13 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `2.0.0`、`tasks` が配列、各 task が `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、task-level `options` なしであること、
 > かつ `.vscode/settings.json` が `task.allowAutomaticTasks=off` であることを検査する。
 > 期待 task 以外の余分な task でも `runOptions.runOn=folderOpen` などの自動実行があれば fail-close する。
+> 2026-07-03 追補: `ut-tdd setup project --dry-run --json` の `consumerReadiness.artifactReadiness` も
+> 同じ `.vscode/tasks.json` / `.vscode/settings.json` を JSON として parse し、期待 task 7 本
+> (status / doctor / completion decision-packet / rename plan / handover status / setup dry-run / team run dry-run)
+> の label・command・順序・件数、`type=shell`、`problemMatcher=[]`、task-level `options` 不在、
+> `runOptions.runOn` 未指定または `default`、`task.allowAutomaticTasks=off` を満たす場合だけ green にする。
+> 文字列上 required command が含まれていても、余分な task、自動実行 task、構造不正 settings が混じる場合は
+> consumer doctor に先送りせず `fix_consumer_readiness` へ戻す。
 > これにより VS Code Tasks / Workspace Trust の境界を「生成した」だけでなく、consumer repo で自動実行に開いていない
 > 証跡として扱う。
 > dry-run は引き続き副作用ゼロ、branch protection / external API / secrets / identifier cutover は自動適用しない。

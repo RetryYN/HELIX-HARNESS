@@ -612,6 +612,42 @@ describe("runConsumerDoctor", () => {
     ).toBe(true);
   });
 
+  it("fails closed when the first-run verification matrix keeps phases but drifts command bindings", () => {
+    const setupState = JSON.parse(consumerProjectSetupStateTemplate()) as {
+      postSetupWorkflow: {
+        verificationCommands: string[];
+        verificationMatrix: Array<{ phase: string; command: string }>;
+      };
+    };
+    setupState.postSetupWorkflow.verificationMatrix[1].command = "ut-tdd doctor --profile consumer";
+    setupState.postSetupWorkflow.verificationCommands =
+      setupState.postSetupWorkflow.verificationMatrix.map((row) => row.command);
+
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/state/project-setup.json": JSON.stringify(setupState),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "verificationMatrix=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "matrixCommands=ut-tdd setup project --dry-run,ut-tdd doctor --profile consumer",
+      ),
+    ).toBe(true);
+  });
+
   it("fails closed when the consumer doctor task still points at the product doctor", () => {
     const files = consumerDoctorFiles("/repo", {
       ".vscode/tasks.json": JSON.stringify({

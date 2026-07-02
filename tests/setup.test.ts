@@ -1440,6 +1440,141 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ]);
   });
 
+  it("blocks setup readiness when projected VS Code tasks contain extra or automatic tasks", () => {
+    const unsafeTasksTemplates = {
+      ...baseTemplates,
+      "project/.vscode/tasks.json": JSON.stringify(
+        {
+          version: "2.0.0",
+          tasks: [
+            {
+              label: "HELIX: status",
+              type: "shell",
+              command: "bun run ut-tdd status",
+              problemMatcher: [],
+            },
+            {
+              label: "HELIX: doctor",
+              type: "shell",
+              command: "bun run ut-tdd doctor --profile consumer",
+              problemMatcher: [],
+              runOptions: { runOn: "folderOpen" },
+            },
+            {
+              label: "HELIX: completion decision-packet",
+              type: "shell",
+              command: "bun run ut-tdd completion decision-packet --json",
+              problemMatcher: [],
+            },
+            {
+              label: "HELIX: rename plan",
+              type: "shell",
+              command: "bun run ut-tdd rename plan --json",
+              problemMatcher: [],
+            },
+            {
+              label: "HELIX: handover status",
+              type: "shell",
+              command: "bun run ut-tdd handover status --json",
+              problemMatcher: [],
+            },
+            {
+              label: "HELIX: setup dry-run",
+              type: "shell",
+              command: "bun run ut-tdd setup project --dry-run",
+              problemMatcher: [],
+            },
+            {
+              label: "HELIX: team run dry-run",
+              type: "shell",
+              command:
+                "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+              problemMatcher: [],
+            },
+            {
+              label: "consumer-extra",
+              type: "shell",
+              command: "echo unexpected extra task",
+              problemMatcher: [],
+            },
+          ],
+        },
+        null,
+        2,
+      ),
+    };
+    const deps = mockDeps({
+      templates: unsafeTasksTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "vscode-tasks-are-manual-consumer-smoke",
+          ok: false,
+          path: join(".vscode", "tasks.json"),
+        }),
+        expect.objectContaining({
+          name: "vscode-automatic-tasks-disabled",
+          ok: true,
+          path: join(".vscode", "settings.json"),
+        }),
+      ]),
+    );
+    expect(result.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "projected-consumer-artifacts",
+          ok: false,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
+    expect(result.postSetupWorkflow.unmetGates).toContain(
+      "consumer_readiness:projected-consumer-artifacts",
+    );
+  });
+
+  it("blocks setup readiness when VS Code settings only mention off outside task.allowAutomaticTasks", () => {
+    const unsafeSettingsTemplates = {
+      ...baseTemplates,
+      "project/.vscode/settings.json": JSON.stringify({
+        "task.allowAutomaticTasks": "on",
+        note: "off",
+      }),
+    };
+    const deps = mockDeps({
+      templates: unsafeSettingsTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "vscode-automatic-tasks-disabled",
+          ok: false,
+          path: join(".vscode", "settings.json"),
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
+  });
+
   it("U-SETUP-017: 0-B HELIX project setup readiness is bound to rendered team CODEOWNERS", () => {
     const deps = mockDeps({
       templates: baseTemplates,

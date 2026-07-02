@@ -348,6 +348,7 @@ import { detectMode } from "../runtime/detect";
 import { teamDefinitionSchema } from "../schema/team";
 import {
   CONSUMER_CI_RUN_COMMANDS,
+  CONSUMER_VSCODE_TASK_COMMANDS,
   workflowRunCommandsExactlyMatchConsumerCi,
 } from "../setup/index";
 import {
@@ -1949,23 +1950,30 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const projectSetupMatrixPhases = projectSetupVerificationMatrix
     .map((row) => (typeof row?.phase === "string" ? row.phase : ""))
     .filter(Boolean);
-  const expectedFirstRunPhases = [
-    "setup-dry-run",
-    "status-frontier",
-    "github-ci-safety",
-    "completion-decision-packet",
-    "consumer-doctor",
-    "identifier-cutover-packet",
-    "handover-route",
-    "team-run-dry-run",
+  const expectedFirstRunRows = [
+    { phase: "setup-dry-run", command: "ut-tdd setup project --dry-run" },
+    { phase: "status-frontier", command: "ut-tdd status --json" },
+    { phase: "github-ci-safety", command: "ut-tdd setup project --dry-run --json" },
+    { phase: "completion-decision-packet", command: "ut-tdd completion decision-packet --json" },
+    { phase: "consumer-doctor", command: "ut-tdd doctor --profile consumer" },
+    { phase: "identifier-cutover-packet", command: "ut-tdd rename plan --json" },
+    { phase: "handover-route", command: "ut-tdd handover status --json" },
+    {
+      phase: "team-run-dry-run",
+      command: `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+    },
   ];
+  const expectedFirstRunCommands = expectedFirstRunRows.map((row) => row.command);
   const projectSetupMatrixOk =
-    projectSetupVerificationMatrix.length === expectedFirstRunPhases.length &&
-    expectedFirstRunPhases.every((phase) => projectSetupMatrixPhases.includes(phase)) &&
-    projectSetupVerificationCommands.length === projectSetupMatrixCommands.length &&
-    projectSetupVerificationCommands.every((command) =>
-      projectSetupMatrixCommands.includes(command),
+    projectSetupVerificationMatrix.length === expectedFirstRunRows.length &&
+    projectSetupVerificationCommands.length === expectedFirstRunCommands.length &&
+    expectedFirstRunCommands.every(
+      (command, index) => projectSetupVerificationCommands[index] === command,
     ) &&
+    expectedFirstRunRows.every((expected, index) => {
+      const row = projectSetupVerificationMatrix[index];
+      return row?.phase === expected.phase && row.command === expected.command;
+    }) &&
     projectSetupVerificationMatrix.every((row) => {
       if (!row) return false;
       return (
@@ -1998,7 +2006,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     projectSetupStateOk
       ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false; first-run matrix persisted)"
-      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")}`,
+      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
@@ -2107,18 +2115,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const tasksArrayOk = Array.isArray(tasks?.tasks);
   const taskList = tasksArrayOk ? (tasks.tasks ?? []) : [];
   const tasksByLabel = new Map(taskList.map((task) => [task.label ?? "", task]));
-  const expectedTasks = new Map([
-    ["HELIX: status", "bun run ut-tdd status"],
-    ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
-    ["HELIX: completion decision-packet", "bun run ut-tdd completion decision-packet --json"],
-    ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
-    ["HELIX: handover status", "bun run ut-tdd handover status --json"],
-    ["HELIX: setup dry-run", "bun run ut-tdd setup project --dry-run"],
-    [
-      "HELIX: team run dry-run",
-      `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
-    ],
-  ]);
+  const expectedTasks = new Map(CONSUMER_VSCODE_TASK_COMMANDS);
   const missingTasks = [...expectedTasks.entries()].filter(
     ([label, command]) => tasksByLabel.get(label)?.command !== command,
   );

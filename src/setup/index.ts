@@ -41,6 +41,19 @@ export const CONSUMER_CI_RUN_COMMANDS = [
   "bun run test",
 ] as const;
 
+export const CONSUMER_VSCODE_TASK_COMMANDS = [
+  ["HELIX: status", "bun run ut-tdd status"],
+  ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
+  ["HELIX: completion decision-packet", "bun run ut-tdd completion decision-packet --json"],
+  ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
+  ["HELIX: handover status", "bun run ut-tdd handover status --json"],
+  ["HELIX: setup dry-run", "bun run ut-tdd setup project --dry-run"],
+  [
+    "HELIX: team run dry-run",
+    `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+  ],
+] as const;
+
 export function extractWorkflowRunCommands(workflow: string): string[] {
   return workflow
     .split(/\r?\n/)
@@ -55,6 +68,56 @@ export function workflowRunCommandsExactlyMatchConsumerCi(workflow: string): boo
     commands.length === CONSUMER_CI_RUN_COMMANDS.length &&
     CONSUMER_CI_RUN_COMMANDS.every((command, index) => commands[index] === command)
   );
+}
+
+function parseJsonRecord(text: string): Record<string, unknown> | null {
+  try {
+    const parsed = JSON.parse(text) as unknown;
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function problemMatcherIsEmpty(value: unknown): boolean {
+  return Array.isArray(value) && value.length === 0;
+}
+
+function runOptionsAreManual(value: unknown): boolean {
+  if (value === undefined) return true;
+  if (!isRecord(value)) return false;
+  const runOn = value.runOn;
+  return runOn === undefined || runOn === "default";
+}
+
+export function consumerVscodeTasksExactlyMatchSetupContract(tasksText: string): boolean {
+  const parsed = parseJsonRecord(tasksText);
+  const tasks = parsed?.tasks;
+  if (parsed?.version !== "2.0.0" || !Array.isArray(tasks)) return false;
+  if (tasks.length !== CONSUMER_VSCODE_TASK_COMMANDS.length) return false;
+
+  return CONSUMER_VSCODE_TASK_COMMANDS.every(([label, command], index) => {
+    const task = tasks[index];
+    if (!isRecord(task)) return false;
+    return (
+      task.label === label &&
+      task.command === command &&
+      task.type === "shell" &&
+      problemMatcherIsEmpty(task.problemMatcher) &&
+      runOptionsAreManual(task.runOptions) &&
+      task.options === undefined
+    );
+  });
+}
+
+export function consumerVscodeSettingsDisableAutomaticTasks(settingsText: string): boolean {
+  return parseJsonRecord(settingsText)?.["task.allowAutomaticTasks"] === "off";
 }
 
 /** 検出結果 (生信号、判定しない)。token は含めない。 */
@@ -1159,27 +1222,15 @@ function buildConsumerArtifactReadinessPlan(
     {
       name: "vscode-tasks-are-manual-consumer-smoke",
       path: tasksPath,
-      ok:
-        hasPath(tasksPath) &&
-        tasks.includes("HELIX: doctor") &&
-        tasks.includes("bun run ut-tdd doctor --profile consumer") &&
-        tasks.includes("HELIX: team run dry-run") &&
-        tasks.includes(
-          `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
-        ) &&
-        !tasks.includes("runOn") &&
-        !tasks.includes("runOptions"),
+      ok: hasPath(tasksPath) && consumerVscodeTasksExactlyMatchSetupContract(tasks),
       message:
-        "VSCode tasks must expose manual consumer doctor and team-run dry-run tasks without automatic run options",
-      evidence: ".vscode/tasks.json task labels and commands",
+        "VSCode tasks must expose the exact manual consumer smoke task set with shell tasks, empty problemMatcher, no task options, and no automatic run options",
+      evidence: ".vscode/tasks.json schema, task labels, commands, and safety fields",
     },
     {
       name: "vscode-automatic-tasks-disabled",
       path: settingsPath,
-      ok:
-        hasPath(settingsPath) &&
-        settings.includes('"task.allowAutomaticTasks"') &&
-        settings.includes('"off"'),
+      ok: hasPath(settingsPath) && consumerVscodeSettingsDisableAutomaticTasks(settings),
       message: "VSCode workspace settings must disable automatic tasks for consumer setup",
       evidence: ".vscode/settings.json task.allowAutomaticTasks",
     },
