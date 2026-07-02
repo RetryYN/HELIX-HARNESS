@@ -172,20 +172,46 @@ describe("completion decision packet lint", () => {
       expect.arrayContaining([
         "semanticFeatureFrontierRecord",
         "activationDecision",
+        "activationDecision.activation_snapshot_id",
+        "activationDecision.target_version_or_release_trigger",
+        "activationDecision.dry_run_plan",
+        "activationDecision.rollback_plan",
         "parkedReview",
+        "parkedReview.decision_packet_route",
         "actionBindingApproval",
         "recordTemplates",
         "activationReadinessSummary",
+        "activationReadinessSummary.status",
+        "activationReadinessSummary.pendingCheckNames",
+        "activationReadinessSummary.activationAllowed",
         "activationReadinessChecks",
+        "activationReadinessChecks.status",
+        "activationReadinessChecks.evidence",
         "activationSnapshot",
         "activationSnapshot.snapshotId",
+        "activationSnapshot.sourceLedgerRowsDigest",
+        "activationSnapshot.versionDryRunDigest",
+        "activationSnapshot.evidenceDigest",
         "externalRehearsalPlan",
+        "externalRehearsalPlan.evidence",
         "costGuardrails",
+        "costGuardrails.freeLimit",
+        "costGuardrails.activationImpact",
         "provenanceRequirements",
+        "provenanceRequirements.evidence",
         "sourceLedgerFreshness",
+        "sourceLedgerFreshness.rowsDigest",
         "versionDryRunEvidence",
+        "versionDryRunEvidence.digest",
+        "versionDryRunEvidence.semverChange",
+        "versionDryRunEvidence.releaseTagExists",
+        "versionDryRunEvidence.releaseTriggerResolved",
         "securityChecklistPacket.securityChecks",
+        "securityChecklistPacket.securityChecks.requiredEvidence",
+        "securityChecklistPacket.securityChecks.adoptionDecision",
+        "securityChecklistPacket.securityChecks.workflowRouteImpact",
         "reapprovalTriggers",
+        "reapprovalTriggers.requiredAction",
         "relatedDecisionPackets",
         "nextWorkflowRoutes",
         "blockedReasons",
@@ -381,12 +407,37 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=activationDecision.activation_snapshot_id",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=activationReadinessChecks.evidence",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=activationSnapshot.versionDryRunDigest",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
             "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=costGuardrails",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=versionDryRunEvidence.releaseTriggerResolved",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
             "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.workflowRouteImpact",
         },
       ]),
     );

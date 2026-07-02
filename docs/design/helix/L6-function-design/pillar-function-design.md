@@ -102,6 +102,13 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `sourceLedgerFreshness.rowsDigest` と `activationSnapshot.sourceLedgerRowsDigest` は
   `Version-up source ledger` の全 row 内容を束ね、checked date だけでなく official URL / latest status /
   adoption decision / required field impact の変更も snapshot drift として再承認対象にする。
+  completion decision packet / status / handover の supporting summary でも、version-up activation は
+  `activationDecision` / `activationSnapshot` / `versionDryRunEvidence` などの親 field だけに畳まない。
+  `activation_snapshot_id`、`dry_run_plan`、`rollback_plan`、`activationReadinessChecks.evidence`、
+  `activationSnapshot.versionDryRunDigest`、`versionDryRunEvidence.releaseTriggerResolved`、
+  `securityChecklistPacket.securityChecks.workflowRouteImpact`、`reapprovalTriggers.requiredAction` などを
+  `requiredReviewFields[]` に列挙し、SemVer dry-run、release tag 解決、snapshot drift、rehearsal/cost/provenance、
+  GitHub Actions least privilege / `pull_request_target` / environment approval 境界の確認対象を status から失わない。
   `Version-up source ledger` は source 名だけで通さず、SemVer / GitHub / Cloudflare / HMAC / Access
   の期待 official URL と required field impact を source ごとに検査する。誤 URL や `cost_guardrails` /
   `external_rehearsal_plan` / `dry_run_plan` / `activation_dependency` などの impact 欠落は、

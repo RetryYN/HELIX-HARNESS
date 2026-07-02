@@ -98,6 +98,18 @@ signature、secret/PII exclusion、read-only projection の rehearsal を `exter
 packet はさらに `activationReadinessSummary` を持ち、`presentChecks` / `pendingChecks` /
 `pendingCheckNames` / `sourceLedgerFresh` を集計する。summary が `ready_for_activation_review` でも
 `activationAllowed=false` は固定であり、明示の human/action-binding decision route なしに activation してはならない。
+`ut-tdd completion decision-packet --json` / `ut-tdd status` / handover から activation packet へ入る場合も、
+supporting summary は `activationDecision`、`activationSnapshot`、`versionDryRunEvidence` などの親 field だけで
+完了しない。`requiredReviewFields[]` は `activationDecision.activation_snapshot_id`、
+`activationDecision.dry_run_plan`、`activationDecision.rollback_plan`、
+`activationReadinessChecks.evidence`、`activationSnapshot.sourceLedgerRowsDigest`、
+`activationSnapshot.versionDryRunDigest`、`activationSnapshot.evidenceDigest`、
+`versionDryRunEvidence.digest`、`versionDryRunEvidence.semverChange`、
+`versionDryRunEvidence.releaseTagExists`、`versionDryRunEvidence.releaseTriggerResolved`、
+`securityChecklistPacket.securityChecks.requiredEvidence`、
+`securityChecklistPacket.securityChecks.workflowRouteImpact`、`reapprovalTriggers.requiredAction` などを列挙する。
+これにより、承認者が SemVer dry-run、release tag 解決、snapshot drift、rehearsal / cost / provenance、
+GitHub Actions hardening と security checklist のどこを確認すべきかを status だけで辿れる。
 証跡 path、audit id、digest、実行ログ、result/exit code、report artifact などの concrete locator を伴わない
 手順文・予定文・「recorded」宣言文は、実証済み evidence ではなく `pending_evidence` として扱う。
 これは Google Cloud Deploy の deployment verification
