@@ -30,6 +30,9 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
 
     expect(text).toContain("7f83ca811353ed90b3e981178a1b0c9977dd5863");
+    expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
+    expect(text).toContain("a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721");
+    expect(text).toContain("v0.1.3");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
@@ -106,6 +109,28 @@ describe("HELIX objective evidence audit", () => {
       expect(text, `${artifact} not cited`).toContain(artifact);
       expect(existsSync(artifact), `${artifact} missing`).toBe(true);
     }
+  });
+
+  it("fails when the external distribution reference repository marker is dropped", () => {
+    const text = auditText()
+      .replaceAll("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack", "unison-ai-product/PACK-MISSING")
+      .replaceAll("a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721", "pack-head-missing")
+      .replaceAll("v0.1.3", "pack-tag-missing");
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-01: missing external source marker unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+        "G-01: missing external source marker a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+        "G-01: missing external source marker v0.1.3",
+      ]),
+    );
   });
 
   it("fails when objective audit drops permanent language, setup, version-up, or cutover evidence", () => {

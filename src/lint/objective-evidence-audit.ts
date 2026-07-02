@@ -87,6 +87,20 @@ const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
   },
 ] as const;
 
+const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
+  {
+    requirementId: "G-01",
+    label: "external source marker",
+    markers: [
+      "unison-ai-product/UT-TDD_AGENT-HARNESS",
+      "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+      "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+      "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+      "v0.1.3",
+    ],
+  },
+] as const;
+
 export function loadObjectiveEvidenceAuditInput(
   repoRoot: string = process.cwd(),
 ): ObjectiveEvidenceAuditInput {
@@ -137,6 +151,14 @@ export function analyzeObjectiveEvidenceAudit(
         violations.push(`${group.requirementId}: missing ${group.label} citation ${artifact}`);
       } else if (!existsSync(join(input.repoRoot, artifact))) {
         violations.push(`${group.requirementId}: cited ${group.label} missing ${artifact}`);
+      }
+    }
+  }
+
+  for (const group of REQUIRED_OBJECTIVE_MARKER_GROUPS) {
+    for (const marker of group.markers) {
+      if (!input.auditText.includes(marker)) {
+        violations.push(`${group.requirementId}: missing ${group.label} ${marker}`);
       }
     }
   }
