@@ -259,6 +259,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
+      expect(templates["common/recovery.md"]).toContain("## 復旧手順");
+      expect(templates["common/add-feature.md"]).toContain("## 受け入れ条件");
+      expect(templates["common/PULL_REQUEST_TEMPLATE.md"]).toContain("## V-model artifact");
       expect(templates["team/CODEOWNERS"]).toContain("{{TL_TEAM}}");
       const deps = mockDeps({ repoRoot: repo, templates });
       const plan = planSetup("0-B", {
@@ -1035,6 +1038,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/agents/code-reviewer.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/build.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-status.md"],
+      BUILTIN_GITHUB_TEMPLATES["common/recovery.md"],
+      BUILTIN_GITHUB_TEMPLATES["common/add-feature.md"],
+      BUILTIN_GITHUB_TEMPLATES["common/PULL_REQUEST_TEMPLATE.md"],
     ];
 
     for (const text of samples) {

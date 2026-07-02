@@ -202,6 +202,15 @@ describe("clean distribution local acceptance smoke", () => {
         expect(
           readFileSync(join(consumerRoot, ".claude", "agents", "code-reviewer.md"), "utf8"),
         ).toContain("consumer-safe な HELIX subagent");
+        expect(
+          readFileSync(join(consumerRoot, ".github", "ISSUE_TEMPLATE", "recovery.md"), "utf8"),
+        ).toContain("## 復旧手順");
+        expect(
+          readFileSync(join(consumerRoot, ".github", "ISSUE_TEMPLATE", "add-feature.md"), "utf8"),
+        ).toContain("## 受け入れ条件");
+        expect(
+          readFileSync(join(consumerRoot, ".github", "PULL_REQUEST_TEMPLATE.md"), "utf8"),
+        ).toContain("## V-model artifact");
         const tasks = JSON.parse(readFileSync(join(consumerRoot, ".vscode", "tasks.json"), "utf8"));
         expect(tasks.tasks.map((task: { label: string }) => task.label)).toEqual(
           expect.arrayContaining(["HELIX: status", "HELIX: doctor", "HELIX: handover status"]),

@@ -151,6 +151,10 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `bun run ut-tdd doctor --profile consumer --json`、`bun run ut-tdd handover status --json` を含め、
 > acceptance は同じ `bun run ut-tdd ...` command set を consumer repo で実行し、
 > post-setup verification と CI の command set をずらさない。
+> GitHub Issue / Pull Request template は公式 template 仕様に合わせて `.github/ISSUE_TEMPLATE/*.md` と
+> `.github/PULL_REQUEST_TEMPLATE.md` に配置し、Recovery / Add-feature / V-model artifact / 検証 checklist を
+> consumer doctor が fail-close で検査する。これにより別 project の入口が「ファイルがある」だけでなく、
+> HELIX workflow の起票・PR 証跡として使える状態かを保証する。
 > 2026-07-02 追記: setup が consumer repo へ配布する `AGENTS.md` / `CLAUDE.md` / `.claude/CLAUDE.md` /
 > Claude subagent / Claude slash-command / setup JSON の説明文は日本語-first とし、CLI 名・識別子・
 > stable token だけを原語で残す。`loadTemplates` の built-in fallback と `docs/templates/adapter/` 実体の

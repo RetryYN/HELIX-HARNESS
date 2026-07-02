@@ -1785,6 +1785,9 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".vscode/tasks.json",
     ".vscode/settings.json",
     ".github/workflows/harness-check.yml",
+    ".github/ISSUE_TEMPLATE/recovery.md",
+    ".github/ISSUE_TEMPLATE/add-feature.md",
+    ".github/PULL_REQUEST_TEMPLATE.md",
     ".ut-tdd/memory/.gitkeep",
     ".ut-tdd/handover/.gitkeep",
     ".ut-tdd/evidence/.gitkeep",
@@ -1964,6 +1967,42 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : `doctor: consumer-ci-workflow - violation name=${workflow?.name === "harness-check"} pushMain=${pushMain} pullRequestMain=${pullRequestMain} noPullRequestTarget=${noPullRequestTarget} permissionsRead=${permissionsRead} tokenWrite=${tokenWrite} job=${harnessJob?.["runs-on"] === "ubuntu-latest"} missingUses=${missingUses.join(",")} missingRuns=${missingRuns.join(",")} secrets=${workflowRaw.includes("secrets.")}`,
   );
 
+  const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
+  const addFeatureTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/add-feature.md") ?? "";
+  const pullRequestTemplate = consumerFile(deps, ".github/PULL_REQUEST_TEMPLATE.md") ?? "";
+  const recoveryOk =
+    recoveryTemplate.includes("name: Recovery") &&
+    recoveryTemplate.includes("labels: recovery") &&
+    recoveryTemplate.includes("## 発生事象") &&
+    recoveryTemplate.includes("## 復旧手順") &&
+    recoveryTemplate.includes("## 再発防止") &&
+    recoveryTemplate.includes("## L14 route");
+  const addFeatureOk =
+    addFeatureTemplate.includes("name: Add-feature") &&
+    addFeatureTemplate.includes("labels: add-feature") &&
+    addFeatureTemplate.includes("## 追加する機能") &&
+    addFeatureTemplate.includes("## drive") &&
+    addFeatureTemplate.includes("## 受け入れ条件") &&
+    addFeatureTemplate.includes("## 上位整合");
+  const pullRequestOk =
+    pullRequestTemplate.includes("## 概要") &&
+    pullRequestTemplate.includes("## 関連 PLAN / Issue") &&
+    pullRequestTemplate.includes("Closes #") &&
+    pullRequestTemplate.includes("## V-model artifact") &&
+    pullRequestTemplate.includes("docs/design/") &&
+    pullRequestTemplate.includes("src/") &&
+    pullRequestTemplate.includes("docs/test-design/") &&
+    pullRequestTemplate.includes("tests/") &&
+    pullRequestTemplate.includes("## 検証") &&
+    pullRequestTemplate.includes("typecheck pass") &&
+    pullRequestTemplate.includes("全回帰 pass");
+  const policyTemplatesOk = recoveryOk && addFeatureOk && pullRequestOk;
+  messages.push(
+    policyTemplatesOk
+      ? "doctor: consumer-policy-templates - OK (issue=recovery/add-feature, pr=vmodel-artifacts+verification)"
+      : `doctor: consumer-policy-templates - violation recovery=${recoveryOk} addFeature=${addFeatureOk} pullRequest=${pullRequestOk}`,
+  );
+
   const ok =
     missing.length === 0 &&
     docsOk &&
@@ -1971,7 +2010,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     claudeOk &&
     codexOk &&
     taskSafetyOk &&
-    ciOk;
+    ciOk &&
+    policyTemplatesOk;
   return { ok, messages };
 }
 

@@ -227,6 +227,57 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "      - run: bun run test",
       "",
     ].join("\n"),
+    ".github/ISSUE_TEMPLATE/recovery.md": [
+      "---",
+      "name: Recovery",
+      "about: AI 逸脱・暴走・強制停止からの復旧",
+      "labels: recovery",
+      "---",
+      "",
+      "## 発生事象",
+      "",
+      "## root cause",
+      "",
+      "## 復旧手順 / 再開ポイント",
+      "",
+      "## 再発防止",
+      "",
+      "## L14 route",
+      "",
+    ].join("\n"),
+    ".github/ISSUE_TEMPLATE/add-feature.md": [
+      "---",
+      "name: Add-feature",
+      "about: 機能追加",
+      "labels: add-feature",
+      "---",
+      "",
+      "## 追加する機能",
+      "",
+      "## drive",
+      "",
+      "## 受け入れ条件",
+      "",
+      "## 上位整合",
+      "",
+    ].join("\n"),
+    ".github/PULL_REQUEST_TEMPLATE.md": [
+      "## 概要",
+      "",
+      "## 関連 PLAN / Issue",
+      "Closes #",
+      "",
+      "## V-model artifact",
+      "- [ ] ① 設計 (docs/design/)",
+      "- [ ] ② 実装 (src/)",
+      "- [ ] ③ テスト設計 (docs/test-design/)",
+      "- [ ] ④ テストコード (tests/)",
+      "",
+      "## 検証",
+      "- [ ] typecheck pass",
+      "- [ ] 全回帰 pass",
+      "",
+    ].join("\n"),
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
@@ -247,6 +298,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-ci-workflow - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-policy-templates - OK")).toBe(true);
   });
 
   it("fails closed when the consumer doctor task still points at the product doctor", () => {
@@ -432,6 +484,25 @@ describe("runConsumerDoctor", () => {
         "missingRuns=bun run ut-tdd setup project --dry-run --json",
       ),
     ).toBe(true);
+  });
+
+  it("fails closed when GitHub policy templates lose HELIX workflow evidence fields", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".github/ISSUE_TEMPLATE/recovery.md": "# Recovery\n",
+      ".github/PULL_REQUEST_TEMPLATE.md": "## 概要\n",
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-policy-templates - violation",
+        "recovery=false",
+      ),
+    ).toBe(true);
+    expect(hasDoctorMessage(result.messages, "pullRequest=false")).toBe(true);
   });
 
   it("fails closed when adapter docs omit Japanese/cutover markers", () => {
