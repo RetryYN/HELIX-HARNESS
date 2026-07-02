@@ -432,8 +432,11 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(section).toContain(HANDOVER_NEXT_ACTION_MARKER);
     expect(section).toContain("PLAN-DISCOVERY-10");
     expect(section).toContain("PO/S4 判断を記録してから昇格・却下・Forward merge へ進める");
-    expect(section).toContain("ut-tdd s4 decision-packet --json");
-    expect(section).toContain("ut-tdd action-binding approval-packet --json");
+    expect(section).toContain("ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10");
+    expect(section).toContain(
+      "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
+    );
+    expect(section).toContain("base=`ut-tdd s4 decision-packet --json`");
     expect(section).toContain(
       "packet要約: `ut-tdd s4 decision-packet --json` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8",
     );

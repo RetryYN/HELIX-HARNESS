@@ -456,8 +456,8 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
         ...workflowActions.flatMap((a) => [
           `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(handoverActionText(a.requiredAction))}`,
           `  - 判断経路: ${sanitize(handoverRouteText(a.nextWorkflowRoute))}`,
-          `  - 主 packet: \`${sanitize(a.decisionPacketCommand)}\``,
-          `  - packet一覧: ${a.packetCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
+          `  - 主 packet: \`${sanitize(a.scopedDecisionPacketCommand)}\` (base=\`${sanitize(a.decisionPacketCommand)}\`)`,
+          `  - packet一覧: ${a.scopedPacketCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
             (summary) =>
               `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${sanitize(summary.requiredReviewFields.join(","))} matrix必須field=${sanitize(summary.requiredMatrixFields.join(",") || "none")} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,

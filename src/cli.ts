@@ -853,7 +853,7 @@ program
         process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
         for (const item of workflowNextActions) {
           process.stdout.write(
-            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
+            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
           );
           for (const summary of item.supportingPacketSummaries) {
             process.stdout.write(`packet-summary: ${item.order} ${packetSummaryText(summary)}\n`);
@@ -907,7 +907,7 @@ completion
         `  - ${decision.planId}: ${decision.decisionKind} (${decision.blockerReason})\n`,
       );
       process.stdout.write(
-        `    packet-command: primary=${decision.decisionPacketCommand} packets=${decision.packetCommands.join(" | ")}\n`,
+        `    packet-command: primary=${decision.decisionPacketCommand} scoped-primary=${decision.scopedDecisionPacketCommand} packets=${decision.packetCommands.join(" | ")} scoped-packets=${decision.scopedPacketCommands.join(" | ")}\n`,
       );
       for (const summary of decision.supportingPacketSummaries) {
         process.stdout.write(`    packet-summary: ${packetSummaryText(summary)}\n`);

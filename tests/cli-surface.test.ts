@@ -491,6 +491,11 @@ describe("L7 CLI surface closure", () => {
           decisionKind: "po_s4_decision",
           decisionPacketCommand: "ut-tdd s4 decision-packet --json",
           packetCommands: ["ut-tdd s4 decision-packet --json"],
+          scopedDecisionPacketCommand:
+            "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+          scopedPacketCommands: [
+            "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+          ],
           supportingPacketSummaries: [
             expect.objectContaining({
               command: "ut-tdd s4 decision-packet --json",
@@ -518,6 +523,11 @@ describe("L7 CLI surface closure", () => {
           packetCommands: [
             "ut-tdd rename plan --json",
             "ut-tdd action-binding approval-packet --json",
+          ],
+          scopedDecisionPacketCommand: "ut-tdd rename plan --json",
+          scopedPacketCommands: [
+            "ut-tdd rename plan --json",
+            "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           supportingPacketSummaries: [
             expect.objectContaining({
@@ -593,10 +603,13 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
-        "workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=record the PO/S4 decision before promotion, rejection, or Forward merge route=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json",
+        "workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=record the PO/S4 decision before promotion, rejection, or Forward merge route=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
       );
       expect(blockedText.stdout).toContain(
-        "workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json",
+        "workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json",
+      );
+      expect(blockedText.stdout).toContain(
+        "scoped-supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(blockedText.stdout).toContain(
         "packet-summary: 1 ut-tdd s4 decision-packet --json schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
@@ -648,7 +661,7 @@ describe("L7 CLI surface closure", () => {
   it("verifies objective external ledger with git ls-remote observations", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
     try {
-      writeFakeGitLsRemote(binDir, "69c36cdff9491fba6e19279d8d545e7d37652f4e");
+      writeFakeGitLsRemote(binDir, "43f623392865345d05f41444b9bf68ca278eefa5");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -662,7 +675,7 @@ describe("L7 CLI surface closure", () => {
           ok: true,
           externalObserved: {
             development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-            distribution_pack_repo: "69c36cdff9491fba6e19279d8d545e7d37652f4e",
+            distribution_pack_repo: "43f623392865345d05f41444b9bf68ca278eefa5",
             distribution_pack_latest_tag: "v0.1.3",
           },
         },
@@ -692,7 +705,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=69c36cdff9491fba6e19279d8d545e7d37652f4e actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=43f623392865345d05f41444b9bf68ca278eefa5 actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -702,7 +715,7 @@ describe("L7 CLI surface closure", () => {
   it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
     try {
-      writeFakeGitLsRemote(binDir, "69c36cdff9491fba6e19279d8d545e7d37652f4e", "v0.1.4");
+      writeFakeGitLsRemote(binDir, "43f623392865345d05f41444b9bf68ca278eefa5", "v0.1.4");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -783,10 +796,18 @@ describe("L7 CLI surface closure", () => {
       ]);
       expect(
         packet.decisions.map(
-          (d: { planId: string; decisionPacketCommand: string; packetCommands: string[] }) => [
+          (d: {
+            planId: string;
+            decisionPacketCommand: string;
+            packetCommands: string[];
+            scopedDecisionPacketCommand: string;
+            scopedPacketCommands: string[];
+          }) => [
             d.planId,
             d.decisionPacketCommand,
             d.packetCommands,
+            d.scopedDecisionPacketCommand,
+            d.scopedPacketCommands,
           ],
         ),
       ).toEqual([
@@ -794,11 +815,18 @@ describe("L7 CLI surface closure", () => {
           "PLAN-DISCOVERY-10-fixture",
           "ut-tdd s4 decision-packet --json",
           ["ut-tdd s4 decision-packet --json"],
+          "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+          ["ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture"],
         ],
         [
           "PLAN-M-02-fixture",
           "ut-tdd rename plan --json",
           ["ut-tdd rename plan --json", "ut-tdd action-binding approval-packet --json"],
+          "ut-tdd rename plan --json",
+          [
+            "ut-tdd rename plan --json",
+            "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+          ],
         ],
       ]);
       expect(packet.decisions[0].requiredRecords[0]).toMatchObject({
@@ -860,7 +888,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain(
-        "packet-command: primary=ut-tdd s4 decision-packet --json packets=ut-tdd s4 decision-packet --json",
+        "packet-command: primary=ut-tdd s4 decision-packet --json scoped-primary=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=ut-tdd s4 decision-packet --json scoped-packets=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
         "packet-summary: ut-tdd s4 decision-packet --json schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
@@ -869,7 +897,7 @@ describe("L7 CLI surface closure", () => {
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(text.stdout).toContain(
-        "packet-command: primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+        "packet-command: primary=ut-tdd rename plan --json scoped-primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json scoped-packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(
         "required-action: record required human/action-binding approval before executing the high-impact action",
@@ -1453,7 +1481,7 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "69c36cdff9491fba6e19279d8d545e7d37652f4e",
+              mainHead: "43f623392865345d05f41444b9bf68ca278eefa5",
               latestTag: "v0.1.3",
             },
             versionBinding: {

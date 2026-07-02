@@ -248,7 +248,7 @@ export interface ConsumerReadinessPlan {
     cutoverPacketCommand: "ut-tdd rename plan --json";
     distributionReference: {
       repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";
-      mainHead: "69c36cdff9491fba6e19279d8d545e7d37652f4e";
+      mainHead: "43f623392865345d05f41444b9bf68ca278eefa5";
       latestTag: "v0.1.3";
     };
     versionBinding: {
@@ -328,7 +328,7 @@ const COMMITLINT_DOTFILE = "commitlint.config.js";
 export const LOCAL_DISTRIBUTION_PACKAGE_VERSION = "0.1.0";
 const PACK_DISTRIBUTION_REFERENCE = {
   repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-  mainHead: "69c36cdff9491fba6e19279d8d545e7d37652f4e",
+  mainHead: "43f623392865345d05f41444b9bf68ca278eefa5",
   latestTag: "v0.1.3",
 } as const;
 

@@ -831,6 +831,8 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
         decisionPacketCommand: "ut-tdd s4 decision-packet --json",
         packetCommands: ["ut-tdd s4 decision-packet --json"],
+        scopedDecisionPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07",
+        scopedPacketCommands: ["ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07"],
         supportingPacketSummaries: [
           {
             command: "ut-tdd s4 decision-packet --json",
@@ -864,6 +866,9 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "version-up activation -> add-feature/rejection path, with approval boundary preserved",
         decisionPacketCommand: "ut-tdd version-up activation-packet --json",
         packetCommands: ["ut-tdd version-up activation-packet --json"],
+        scopedDecisionPacketCommand:
+          "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+        scopedPacketCommands: ["ut-tdd version-up activation-packet --json --plan PLAN-L7-146"],
         supportingPacketSummaries: [
           {
             command: "ut-tdd version-up activation-packet --json",
@@ -897,6 +902,8 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
         decisionPacketCommand: "ut-tdd rename plan --json",
         packetCommands: ["ut-tdd rename plan --json"],
+        scopedDecisionPacketCommand: "ut-tdd rename plan --json",
+        scopedPacketCommands: ["ut-tdd rename plan --json"],
         supportingPacketSummaries: [
           {
             command: "ut-tdd rename plan --json",
@@ -962,6 +969,11 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "ut-tdd s4 decision-packet --json",
           "ut-tdd action-binding approval-packet --json",
         ],
+        scopedDecisionPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+        scopedPacketCommands: [
+          "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+          "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
+        ],
         supportingPacketSummaries: [
           expect.objectContaining({
             command: "ut-tdd s4 decision-packet --json",
@@ -980,6 +992,12 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "ut-tdd version-up activation-packet --json",
           "ut-tdd action-binding approval-packet --json",
         ],
+        scopedDecisionPacketCommand:
+          "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+        scopedPacketCommands: [
+          "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+          "ut-tdd action-binding approval-packet --json --plan PLAN-L7-146",
+        ],
         supportingPacketSummaries: [
           expect.objectContaining({
             command: "ut-tdd version-up activation-packet --json",
@@ -997,6 +1015,11 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         packetCommands: [
           "ut-tdd rename plan --json",
           "ut-tdd action-binding approval-packet --json",
+        ],
+        scopedDecisionPacketCommand: "ut-tdd rename plan --json",
+        scopedPacketCommands: [
+          "ut-tdd rename plan --json",
+          "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
         ],
         supportingPacketSummaries: [
           expect.objectContaining({

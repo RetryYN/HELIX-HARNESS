@@ -192,6 +192,10 @@ export interface CompletionDecisionItem {
   decisionPacketCommand: WorkflowDecisionPacketCommand;
   /** Primary + supporting non-destructive packet commands for every blocker on this decision. */
   packetCommands: WorkflowDecisionPacketCommand[];
+  /** PLAN に絞り込んだ primary packet command。rename plan は singleton のため base command と同じ。 */
+  scopedDecisionPacketCommand: string;
+  /** PLAN に絞り込んだ primary + supporting packet commands。複数 pending 時の人間判断導線。 */
+  scopedPacketCommands: string[];
   supportingPacketSummaries: CompletionDecisionSupportingPacketSummary[];
 }
 
@@ -276,6 +280,10 @@ export interface WorkflowNextActionItem {
   decisionPacketCommand: WorkflowDecisionPacketCommand;
   /** Primary + supporting non-destructive packets for every blocker on this PLAN. */
   packetCommands: WorkflowDecisionPacketCommand[];
+  /** PLAN に絞り込んだ primary packet command。rename plan は singleton のため base command と同じ。 */
+  scopedDecisionPacketCommand: string;
+  /** PLAN に絞り込んだ primary + supporting packet commands。複数 pending 時の人間判断導線。 */
+  scopedPacketCommands: string[];
   /**
    * Matrix/review summary for each packet command, so status surfaces can route
    * L14/S4/version-up review without forcing a separate completion packet first.
@@ -684,6 +692,7 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
     )
     .map((item, index) => {
       const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
+      const scopedPacketCommands = scopedPacketCommandsForPlan(item.planId, packetCommands);
       return {
         order: index + 1,
         planId: item.planId,
@@ -696,6 +705,11 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
         decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
         packetCommands,
+        scopedDecisionPacketCommand: scopedPacketCommandForPlan(
+          item.planId,
+          decisionPacketCommandForOutstandingReason(item.reason),
+        ),
+        scopedPacketCommands,
         supportingPacketSummaries: packetCommands.map(supportingPacketSummaryForCommand),
       };
     });
@@ -735,6 +749,7 @@ export function completionDecisionPacketForOutstanding(
     decisions: outstanding.items.map((item) => {
       const requiredRecords = requiredRecordsForBlockers(item.blockers);
       const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
+      const decisionPacketCommand = decisionPacketCommandForOutstandingReason(item.reason);
       return {
         planId: item.planId,
         layer: item.layer,
@@ -753,12 +768,36 @@ export function completionDecisionPacketForOutstanding(
         allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
         nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
-        decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
+        decisionPacketCommand,
         packetCommands,
+        scopedDecisionPacketCommand: scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
+        scopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands),
         supportingPacketSummaries: packetCommands.map(supportingPacketSummaryForCommand),
       };
     }),
   };
+}
+
+function scopedPacketCommandsForPlan(
+  planId: string,
+  commands: WorkflowDecisionPacketCommand[],
+): string[] {
+  return commands.map((command) => scopedPacketCommandForPlan(planId, command));
+}
+
+function scopedPacketCommandForPlan(
+  planId: string,
+  command: WorkflowDecisionPacketCommand,
+): string {
+  switch (command) {
+    case "ut-tdd s4 decision-packet --json":
+    case "ut-tdd version-up activation-packet --json":
+    case "ut-tdd action-binding approval-packet --json":
+      return `${command} --plan ${planId}`;
+    case "ut-tdd rename plan --json":
+    case "ut-tdd completion decision-packet --json":
+      return command;
+  }
 }
 
 function supportingPacketSummaryForCommand(
