@@ -102,6 +102,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `buildIdentifierRenameCutoverPlan` は `snapshotReview` を返し、PLAN に記録済みの
   `cutover_decision_record.cutover_snapshot_id` と `action_binding_approval_record.reviewed_snapshot_binding`、
   current `cutoverSnapshot.snapshotId`、一致/不一致、drift warning、再承認 action を承認前から表示する。
+  `cutoverSnapshot` は `repoHeadSha` と `headDigest` を持ち、snapshotId の入力に frozen HEAD を含める。
+  HEAD が読めない plan は `applyAuthorized=true` に進めず、HEAD 差分は snapshot drift として再承認対象にする。
   approval record が concrete でない draft 状態でも current snapshot と記録済み snapshot の比較 surface を隠さない。
   `cutoverCategoryChecklist` は category count だけでなく代表 `samplePaths[]` と category 別
   `verificationCommand` を持ち、Step 1 blast-radius baseline 凍結時にどの file surface を確認するかを

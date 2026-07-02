@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -243,6 +244,8 @@ export interface IdentifierRenameSourceLedgerFreshness {
 
 export interface IdentifierRenameCutoverSnapshot {
   snapshotId: string;
+  repoHeadSha: string | null;
+  headDigest: string | null;
   blastRadiusDigest: string;
   approvalScopeDigest: string;
   evidenceDigest: string;
@@ -1131,10 +1134,23 @@ function commandWritesLocalStateOrArtifacts(command: string): boolean {
   return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
+function readRepoHeadSha(root: string): string | null {
+  try {
+    const head = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    return /^[a-f0-9]{40}$/.test(head) ? head : null;
+  } catch {
+    return null;
+  }
+}
+
 export function buildIdentifierRenameCutoverPlan(
   root: string,
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[] = computeOutstandingWork(root)
     .semanticFeatureFrontierRecords ?? [],
+  repoHeadSha: string | null = readRepoHeadSha(root),
 ): IdentifierRenameCutoverPlan {
   const audit = auditIdentifierRenameBlastRadius(root);
   const provenance = buildDecisionPacketProvenance({ sourceCommand: RENAME_PLAN_PACKET_COMMAND });
@@ -1176,6 +1192,9 @@ export function buildIdentifierRenameCutoverPlan(
     blockedReasons.push(
       `source ledger missing cutover sources: ${sourceLedgerFreshness.missingRows.join(", ")}`,
     );
+  }
+  if (!repoHeadSha) {
+    blockedReasons.push("cutover snapshot is not bound to a readable git HEAD sha");
   }
   const freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"] = {
     requiresFrozenHead: true,
@@ -1221,6 +1240,7 @@ export function buildIdentifierRenameCutoverPlan(
     freezePolicy,
     provenanceRequirements,
     sourceLedgerFreshness,
+    repoHeadSha,
   });
   const snapshotReview = buildIdentifierRenameSnapshotReview(
     approvalEvaluation,
@@ -1336,7 +1356,9 @@ function buildIdentifierRenameCutoverSnapshot(input: {
   freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"];
   provenanceRequirements: IdentifierRenameCutoverPlan["provenanceRequirements"];
   sourceLedgerFreshness: IdentifierRenameSourceLedgerFreshness;
+  repoHeadSha: string | null;
 }): IdentifierRenameCutoverSnapshot {
+  const headDigest = input.repoHeadSha ? sha256Json({ repoHeadSha: input.repoHeadSha }) : null;
   const blastRadiusDigest = sha256Json({
     tokens: input.audit.tokens,
     hitsByToken: input.audit.hitsByToken,
@@ -1357,6 +1379,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     cutoverCategoryChecklist: input.cutoverCategoryChecklist,
   });
   const evidenceDigest = sha256Json({
+    repoHeadSha: input.repoHeadSha,
     sourceLedgerFreshness: input.sourceLedgerFreshness,
     cutoverRunbook: input.cutoverRunbook,
     verificationCommandMatrix: input.verificationCommandMatrix,
@@ -1365,6 +1388,8 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     provenanceRequirements: input.provenanceRequirements,
   });
   const snapshot = {
+    repoHeadSha: input.repoHeadSha,
+    headDigest,
     blastRadiusDigest,
     approvalScopeDigest,
     evidenceDigest,

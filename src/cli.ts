@@ -1506,6 +1506,9 @@ rename
     process.stdout.write(
       `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
     );
+    process.stdout.write(
+      `  cutover-snapshot-head: ${plan.cutoverSnapshot.repoHeadSha ?? "-"} digest=${plan.cutoverSnapshot.headDigest ?? "-"}\n`,
+    );
     if (plan.blockedReasons.length > 0) {
       for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
     }

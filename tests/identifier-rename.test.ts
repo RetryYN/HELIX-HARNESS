@@ -15,6 +15,8 @@ const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
 const CONCRETE_SNAPSHOT_ID =
   "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+const TEST_HEAD_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+const NEXT_TEST_HEAD_SHA = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
 
 function nameCutoverSemanticRecord() {
   return {
@@ -344,7 +346,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const plan = buildIdentifierRenameCutoverPlan(root);
+      const plan = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
       expect(plan).toMatchObject({
         schemaVersion: "identifier-rename-cutover-plan.v1",
         status: "blocked_pending_cutover_approval",
@@ -611,6 +613,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
       expect(plan.cutoverSnapshot).toMatchObject({
         snapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        repoHeadSha: TEST_HEAD_SHA,
+        headDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         blastRadiusDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
@@ -668,8 +672,58 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
 
       const beforeDigest = plan.cutoverSnapshot.blastRadiusDigest;
       writeFileSync(join(root, "README.md"), "Additional ut-tdd mention after baseline.\n");
-      const changedPlan = buildIdentifierRenameCutoverPlan(root);
+      const changedPlan = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
       expect(changedPlan.cutoverSnapshot.blastRadiusDigest).not.toBe(beforeDigest);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("binds cutover snapshots to git HEAD and changes snapshotId when HEAD changes", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-head-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const first = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+      const second = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        NEXT_TEST_HEAD_SHA,
+      );
+
+      expect(first.cutoverSnapshot.repoHeadSha).toBe(TEST_HEAD_SHA);
+      expect(second.cutoverSnapshot.repoHeadSha).toBe(NEXT_TEST_HEAD_SHA);
+      expect(first.cutoverSnapshot.headDigest).not.toBe(second.cutoverSnapshot.headDigest);
+      expect(first.cutoverSnapshot.snapshotId).not.toBe(second.cutoverSnapshot.snapshotId);
+      expect(first.cutoverSnapshot.invalidatedBy).toContain("HEAD changes after approval");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks cutover authorization when the cutover snapshot is not bound to git HEAD", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-missing-head-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], null);
+
+      expect(plan.applyAuthorized).toBe(false);
+      expect(plan.cutoverSnapshot).toMatchObject({
+        repoHeadSha: null,
+        headDigest: null,
+      });
+      expect(plan.blockedReasons).toContain(
+        "cutover snapshot is not bound to a readable git HEAD sha",
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -681,7 +735,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeApprovedRenamePlan(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
+      const plan = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
       expect(plan.status).toBe("blocked_pending_cutover_approval");
       expect(plan.applyAuthorized).toBe(false);
       expect(plan.mustNotApply).toBe(true);
@@ -714,11 +772,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const currentSnapshotId = buildIdentifierRenameCutoverPlan(root, [
-        nameCutoverSemanticRecord(),
-      ]).cutoverSnapshot.snapshotId;
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      ).cutoverSnapshot.snapshotId;
       writeApprovedRenamePlan(root, currentSnapshotId);
-      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
+      const plan = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
 
       expect(plan.status).toBe("ready_for_cutover_packet");
       expect(plan.applyAuthorized).toBe(true);
@@ -870,6 +934,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const text = runCliIn(root, ["rename", "plan"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("snapshot-review: current=sha256:");
+      expect(text.stdout).toContain("cutover-snapshot-head:");
       expect(text.stdout).toContain("source-ledger: label=Cutover source ledger");
       expect(text.stdout).toContain("cutover-checklist=");
       expect(text.stdout).toContain("runbook=");
