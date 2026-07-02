@@ -284,6 +284,12 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
           problemMatcher: [],
         },
         {
+          label: "HELIX: completion decision-packet",
+          type: "shell",
+          command: "bun run ut-tdd completion decision-packet --json",
+          problemMatcher: [],
+        },
+        {
           label: "HELIX: rename plan",
           type: "shell",
           command: "bun run ut-tdd rename plan --json",
@@ -333,6 +339,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "        run: bun run ut-tdd setup project --dry-run --json",
       "      - name: HELIX status",
       "        run: bun run ut-tdd status --json",
+      "      - name: HELIX completion decision packet",
+      "        run: bun run ut-tdd completion decision-packet --json",
       "      - name: HELIX consumer doctor",
       "        run: bun run ut-tdd doctor --profile consumer --json",
       "      - name: HELIX rename plan",

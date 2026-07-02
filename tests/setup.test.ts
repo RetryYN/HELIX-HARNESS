@@ -105,6 +105,7 @@ const baseTemplates: TemplateSet = {
     '  "tasks": [',
     '    { "label": "HELIX: status", "type": "shell", "command": "bun run ut-tdd status", "problemMatcher": [] },',
     '    { "label": "HELIX: doctor", "type": "shell", "command": "bun run ut-tdd doctor --profile consumer", "problemMatcher": [] },',
+    '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "bun run ut-tdd completion decision-packet --json", "problemMatcher": [] },',
     '    { "label": "HELIX: rename plan", "type": "shell", "command": "bun run ut-tdd rename plan --json", "problemMatcher": [] },',
     '    { "label": "HELIX: handover status", "type": "shell", "command": "bun run ut-tdd handover status --json", "problemMatcher": [] },',
     '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "bun run ut-tdd setup project --dry-run", "problemMatcher": [] },',
@@ -135,6 +136,8 @@ const baseTemplates: TemplateSet = {
     "jobs:",
     "  harness-check:",
     "    steps:",
+    "      - run: bun run ut-tdd status --json",
+    "      - run: bun run ut-tdd completion decision-packet --json",
     "      - run: bun run ut-tdd rename plan --json",
     "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     "",
@@ -583,6 +586,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       command: "bun run ut-tdd --version",
       requiredBefore: expect.arrayContaining([
         "bun run ut-tdd setup project --dry-run --json",
+        "bun run ut-tdd completion decision-packet --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
       ]),
@@ -594,6 +598,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "bun run ut-tdd --version",
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
+        "bun run ut-tdd completion decision-packet --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
         "bun run ut-tdd handover status --json",
@@ -716,6 +721,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         baselineCommands: [
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
+          "ut-tdd completion decision-packet --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -735,6 +741,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
+        completionDecisionPacketTask: "HELIX: completion decision-packet",
         doctorTask: "HELIX: doctor",
         renamePlanTask: "HELIX: rename plan",
         handoverTask: "HELIX: handover status",
@@ -848,6 +855,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.nextCommands).toEqual(
       expect.arrayContaining([
         "ut-tdd status --json",
+        "ut-tdd completion decision-packet --json",
         "ut-tdd doctor --profile consumer",
         "ut-tdd rename plan --json",
         "ut-tdd handover status --json",
@@ -866,6 +874,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
+      "ut-tdd completion decision-packet --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -891,6 +900,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         writePolicy: "no-write",
         expected: expect.stringContaining("objective progress"),
         latestOfficialStatus: expect.stringContaining("local HELIX L3"),
+      }),
+      expect.objectContaining({
+        phase: "completion-decision-packet",
+        command: "ut-tdd completion decision-packet --json",
+        writePolicy: "no-write",
+        expected: expect.stringContaining("completionClaimAllowed=false"),
+        evidence: "completion decision packet JSON attached to the first-run readiness record",
+        source: "HELIX completion decision packet contract",
+        sourceUrl: "docs/design/harness/L6-function-design/function-spec.md",
+        adoptionDecision: expect.stringContaining("L14 完了 claim"),
+        workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
       }),
       expect.objectContaining({
         phase: "consumer-doctor",
@@ -997,6 +1017,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           label: "HELIX: doctor",
           type: "shell",
           command: "bun run ut-tdd doctor --profile consumer",
+          problemMatcher: [],
+        }),
+        expect.objectContaining({
+          label: "HELIX: completion decision-packet",
+          type: "shell",
+          command: "bun run ut-tdd completion decision-packet --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
@@ -1162,6 +1188,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       unmetGates: [],
       nextActions: [
         "`ut-tdd status --json` を実行する",
+        "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
         "`ut-tdd doctor --profile consumer` を実行する",
         "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
         "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
@@ -1171,6 +1198,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.postSetupWorkflow.verificationMatrix.map((row) => row.phase)).toEqual([
       "setup-dry-run",
       "status-frontier",
+      "completion-decision-packet",
       "consumer-doctor",
       "identifier-cutover-packet",
       "handover-route",

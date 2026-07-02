@@ -125,6 +125,7 @@ export interface HelixProjectSetupResult extends SetupResult {
   vscode: {
     tasksPath: string;
     statusTask: "HELIX: status";
+    completionDecisionPacketTask: "HELIX: completion decision-packet";
     doctorTask: "HELIX: doctor";
     renamePlanTask: "HELIX: rename plan";
     handoverTask: "HELIX: handover status";
@@ -183,6 +184,7 @@ export interface HelixProjectDoctorBaseline {
   baselineCommands: [
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
+    "ut-tdd completion decision-packet --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
     "ut-tdd handover status --json",
@@ -433,6 +435,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
   baselineCommands: [
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
+    "ut-tdd completion decision-packet --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
     "ut-tdd handover status --json",
@@ -844,6 +847,7 @@ export function buildConsumerReadinessPlan(input: {
         command: "bun run ut-tdd --version",
         requiredBefore: [
           "bun run ut-tdd setup project --dry-run --json",
+          "bun run ut-tdd completion decision-packet --json",
           "bun run ut-tdd doctor --profile consumer --json",
           "bun run ut-tdd rename plan --json",
           `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
@@ -858,6 +862,7 @@ export function buildConsumerReadinessPlan(input: {
         "bun run ut-tdd --version",
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
+        "bun run ut-tdd completion decision-packet --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
         "bun run ut-tdd handover status --json",
@@ -1021,16 +1026,17 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`ut-tdd status --json` を実行する",
+            "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
             "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
             "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
@@ -1097,6 +1103,26 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "none; completion readiness remains separate from consumer setup success",
       workflowRouteImpact:
         "missing status frontier evidence routes to fix_consumer_readiness before implementation starts",
+    },
+    {
+      phase: "completion-decision-packet",
+      command: "ut-tdd completion decision-packet --json",
+      writePolicy: "no-write",
+      expected:
+        "returns completionStatus=blocked, completionClaimAllowed=false, ordered blocker decisions, scoped packet commands, and supporting packet summaries before any first HELIX work",
+      evidence: "completion decision packet JSON attached to the first-run readiness record",
+      source: "HELIX completion decision packet contract",
+      sourceUrl: "docs/design/harness/L6-function-design/function-spec.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX completion packet contract current at HEAD",
+      sourceStatusDelta:
+        "none; completion packet remains separate from setup readiness and consumer doctor success",
+      adoptionDecision:
+        "setup 初回検証は completion decision packet を保存し、90% progress や consumer readiness を L14 完了 claim に読み替えない",
+      adoptionDecisionDelta:
+        "none; completionClaimAllowed=false remains first-run evidence until blockers close",
+      workflowRouteImpact:
+        "missing completion packet routes to fix_consumer_readiness before implementation starts",
     },
     {
       phase: "consumer-doctor",
@@ -1277,6 +1303,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     vscode: {
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",
+      completionDecisionPacketTask: "HELIX: completion decision-packet",
       doctorTask: "HELIX: doctor",
       renamePlanTask: "HELIX: rename plan",
       handoverTask: "HELIX: handover status",

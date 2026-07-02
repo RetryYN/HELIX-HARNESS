@@ -1053,6 +1053,7 @@ describe("L7 CLI surface closure", () => {
         baselineCommands: [
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
+          "ut-tdd completion decision-packet --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -1070,6 +1071,7 @@ describe("L7 CLI surface closure", () => {
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
+        completionDecisionPacketTask: "HELIX: completion decision-packet",
         doctorTask: "HELIX: doctor",
         handoverTask: "HELIX: handover status",
         teamRunTask: "HELIX: team run dry-run",
@@ -1168,6 +1170,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.postSetupWorkflow.verificationCommands).toEqual([
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
+      "ut-tdd completion decision-packet --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -1190,6 +1193,12 @@ describe("L7 CLI surface closure", () => {
           adoptionDecision: expect.stringContaining("task.allowAutomaticTasks=off"),
         }),
         expect.objectContaining({
+          phase: "completion-decision-packet",
+          command: "ut-tdd completion decision-packet --json",
+          writePolicy: "no-write",
+          source: "HELIX completion decision packet contract",
+        }),
+        expect.objectContaining({
           phase: "team-run-dry-run",
           command:
             "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
@@ -1204,6 +1213,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining([
         "ut-tdd status --json",
+        "ut-tdd completion decision-packet --json",
         "ut-tdd doctor --profile consumer",
         "ut-tdd rename plan --json",
         "ut-tdd handover status --json",
@@ -1223,9 +1233,10 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 6");
+    expect(text.stdout).toContain("verification-matrix: 7");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
+    expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
     expect(text.stdout).toContain(
@@ -1233,6 +1244,9 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain(
       "verification-check: consumer-doctor writePolicy=no-write command=ut-tdd doctor --profile consumer expected=passes the consumer profile",
+    );
+    expect(text.stdout).toContain(
+      "verification-check: completion-decision-packet writePolicy=no-write command=ut-tdd completion decision-packet --json expected=returns completionStatus=blocked",
     );
     expect(text.stdout).toContain(
       "verification-check: identifier-cutover-packet writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",
