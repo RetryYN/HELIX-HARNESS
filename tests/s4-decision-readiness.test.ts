@@ -372,7 +372,7 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "decision-packet-baseline",
           command: "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
           adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
         }),
         expect.objectContaining({
@@ -402,6 +402,7 @@ describe("S4 decision readiness", () => {
     );
     for (const row of packet.decisionVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(row.sourceCheckedAt, row.phase).toBe("2026-06-30");
       expect(row.latestOfficialStatus, row.phase).not.toBe("");
       expect(row.sourceStatusDelta, row.phase).not.toBe("");
       expect(row.adoptionDecision, row.phase).not.toBe("");
@@ -1187,6 +1188,12 @@ describe("S4 decision readiness", () => {
         /^S4 decision source ledger checked date is stale: 2026-01-01 \(\d+d > 90d\)$/,
       ),
     });
+    const packet = buildS4DecisionPackets(
+      input({ discoveryMd: staleModeDoc, scrumMd: staleModeDoc }),
+    )[0];
+    expect(
+      new Set(packet.decisionVerificationCommandMatrix.map((row) => row.sourceCheckedAt)),
+    ).toEqual(new Set(["2026-01-01"]));
   });
 
   it("accepts refreshed S4 decision source ledger checked dates without losing table rows", () => {
@@ -1357,10 +1364,13 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "completion-frontier",
           command: "bun run src/cli.ts status --json",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-06-30",
         }),
       ]),
     );
+    for (const row of packets[0].decisionVerificationCommandMatrix) {
+      expect(row.sourceCheckedAt).toBe("2026-06-30");
+    }
     for (const row of packets[0].decisionVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(row.latestOfficialStatus, row.phase).not.toBe("");

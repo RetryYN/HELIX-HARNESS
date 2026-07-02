@@ -698,7 +698,11 @@ export function analyzeS4DecisionReadiness(
         ),
       );
     }
-    const packet = buildS4DecisionPacket(plan, input.semanticFeatureFrontierRecords);
+    const packet = buildS4DecisionPacket(
+      plan,
+      input.semanticFeatureFrontierRecords,
+      s4DecisionPacketSourceCheckedAt(input),
+    );
     const recordBlockers = [
       "po_decision_pending",
       ...(planTextRequiresActionBindingApproval(plan.text) ? ["human_approval_pending"] : []),
@@ -746,15 +750,27 @@ export function analyzeS4DecisionReadiness(
 }
 
 export function buildS4DecisionPackets(input: S4DecisionReadinessInput): S4DecisionPacket[] {
+  const sourceCheckedAt = s4DecisionPacketSourceCheckedAt(input);
   return input.plans
     .filter(isPocPendingDecision)
-    .map((plan) => buildS4DecisionPacket(plan, input.semanticFeatureFrontierRecords))
+    .map((plan) =>
+      buildS4DecisionPacket(plan, input.semanticFeatureFrontierRecords, sourceCheckedAt),
+    )
     .sort((a, b) => a.planId.localeCompare(b.planId));
+}
+
+function s4DecisionPacketSourceCheckedAt(input: S4DecisionReadinessInput): string {
+  return (
+    sourceLedgerCheckedDate(input.discoveryMd, "S4 decision source ledger") ??
+    sourceLedgerCheckedDate(input.scrumMd, "S4 decision source ledger") ??
+    "unknown"
+  );
 }
 
 export function buildS4DecisionPacket(
   plan: S4DecisionPlan,
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[],
+  sourceCheckedAt = "unknown",
 ): S4DecisionPacket {
   const decisionRecord = recordValues(plan.text, S4_RECORD_NAME, [...S4_RECORD_FIELDS]);
   const recordBlockers = [
@@ -842,7 +858,10 @@ export function buildS4DecisionPacket(
         requiredEvidence: "pivot rationale, route impact, and next sprint/backlog target",
       },
     ],
-    decisionVerificationCommandMatrix: buildS4DecisionVerificationCommandMatrix(plan),
+    decisionVerificationCommandMatrix: buildS4DecisionVerificationCommandMatrix(
+      plan,
+      sourceCheckedAt,
+    ),
     provenanceRequirements: [
       {
         item: "decision_record",
@@ -909,6 +928,7 @@ export function buildS4DecisionPacket(
 
 function buildS4DecisionVerificationCommandMatrix(
   plan: S4DecisionPlan,
+  sourceCheckedAt: string,
 ): S4DecisionPacket["decisionVerificationCommandMatrix"] {
   return [
     {
@@ -919,7 +939,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "S4 decision packet JSON attached to PO/TL decision review",
       source: "HELIX Discovery S4 decision contract",
       sourceUrl: "docs/process/modes/discovery.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "local Discovery S4 decision contract current at HEAD",
       sourceStatusDelta: "none; packet remains plan-only and PO-gated",
       adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
@@ -934,7 +954,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "doctor output with s4-decision-readiness and source ledger freshness gates",
       source: "HELIX source ledger freshness policy",
       sourceUrl: "docs/process/modes/discovery.md#s4-decision-source-ledger",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus:
         "S4 source ledger remains anchored to Scrum Guide 2020, ISO/IEC/IEEE 29148, ISTQB Glossary, and NIST SSDF rows",
       sourceStatusDelta: "none; local source ledger reviewed against current HEAD",
@@ -950,7 +970,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "doctor output with s4-decision-readiness, review-evidence, and trace gates",
       source: "HELIX Scrum S3->S4 verification boundary",
       sourceUrl: "docs/process/modes/scrum.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "Scrum Guide official current version remains November 2020",
       sourceStatusDelta: "none; S3 verify remains evidence before S4 decide",
       adoptionDecision: "adopt-s3-verified-evidence-as-s4-entry-gate",
@@ -965,7 +985,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "doctor output and trace/oracle gate lines",
       source: "HELIX V-model trace gate",
       sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "local V-model trace gate contract current at HEAD",
       sourceStatusDelta: "none; G1/G3 trace remains required before S4 route selection",
       adoptionDecision: "adopt-vmodel-trace-gates-before-s4-outcome-selection",
@@ -980,7 +1000,7 @@ function buildS4DecisionVerificationCommandMatrix(
       source: "HELIX S4 regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "local S4 regression oracle current at HEAD",
       sourceStatusDelta: "none; S4 packet oracle reviewed against current HEAD",
       adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
@@ -994,7 +1014,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "repository AGENTS test rules current at HEAD",
       sourceStatusDelta: "none; static gate policy reviewed against current HEAD",
       adoptionDecision: "adopt-static-gates-before-s4-decision-review",
@@ -1009,7 +1029,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "local HELIX full regression policy current at HEAD",
       sourceStatusDelta: "none; full regression policy reviewed against current HEAD",
       adoptionDecision: "adopt-full-regression-before-terminal-s4-route",
@@ -1024,7 +1044,7 @@ function buildS4DecisionVerificationCommandMatrix(
       evidence: "status JSON completionDecisionPacket and semanticFeatureFrontierRecords",
       source: "HELIX completion frontier contract",
       sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
-      sourceCheckedAt: "2026-07-02",
+      sourceCheckedAt,
       latestOfficialStatus: "local semantic frontier contract current at HEAD",
       sourceStatusDelta: "none; frontier_pending_decision remains completion blocker",
       adoptionDecision: "adopt-semantic-frontier-blocker-before-s4-terminal-status",

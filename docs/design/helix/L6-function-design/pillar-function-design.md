@@ -71,6 +71,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   さらに static gates、full regression、completion frontier の各 phase と command / expected / evidence /
   source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
   adoptionDecisionDelta / workflowRouteImpact を持つ。
+  `decisionVerificationCommandMatrix[]` の `sourceCheckedAt` は `S4 decision source ledger` の checked date から派生させ、
+  ledger heading と matrix metadata の確認日が新旧混在した S4 packet を作らない。
   Scrum Guide 2020、ISO/IEC/IEEE 29148、ISTQB Glossary、NIST SSDF の source ledger を PO/S4 判断前の
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
   進めない。packet は `s4_decision_record` と、同一 PLAN が承認境界を持つ場合の
