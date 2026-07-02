@@ -129,9 +129,18 @@ describe("clean distribution local acceptance smoke", () => {
       expect(build.status, build.stderr || build.stdout).toBe(0);
       const packageJson = JSON.parse(readFileSync(join(cleanRoot, "package.json"), "utf8")) as {
         bin?: { "ut-tdd"?: string };
+        scripts?: { "ut-tdd"?: string };
       };
       expect(packageJson.bin?.["ut-tdd"]).toBe("./dist/ut-tdd");
+      expect(packageJson.scripts?.["ut-tdd"]).toBe("bun run src/cli.ts");
       expect(existsSync(join(cleanRoot, packageJson.bin?.["ut-tdd"] ?? ""))).toBe(true);
+
+      const packageScriptVersion = runBun(cleanRoot, ["run", "ut-tdd", "--version"], env);
+      expect(
+        packageScriptVersion.status,
+        packageScriptVersion.stderr || packageScriptVersion.stdout,
+      ).toBe(0);
+      expect(packageScriptVersion.stdout.trim()).toBe("0.1.0");
 
       const registerLink = runBun(cleanRoot, ["link"], env);
       expect(registerLink.status, registerLink.stderr || registerLink.stdout).toBe(0);

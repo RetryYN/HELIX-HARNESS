@@ -187,7 +187,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `verification-check:` は writePolicy / command / expected / evidence を含め、`verification-source:` も列挙する。
   `HelixProjectSetupResult.githubPlan.branchProtection.scriptPath` を返す場合、0-A/0-B の project setup preview /
   written paths に同じ approval checklist script を含め、JSON が存在しない script を指さない。
-- HC-P6 clean distribution acceptance は `bun run build` で `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、
+- HC-P6 clean distribution acceptance は source / clean artifact の `package.json.scripts.ut-tdd="bun run src/cli.ts"` と
+  `bun run ut-tdd --version` を package-local preflight として持ち、`bun run build` で
+  `package.json.bin.ut-tdd=./dist/ut-tdd` の実体を作り、
   temp-local `BUN_INSTALL` の `bun link` と consumer repo の `bun link ut-tdd --no-save` を通した
   `node_modules/.bin/ut-tdd` で setup / status / doctor / handover / team-run dry-run を実行する。handmade shim や
   `src/cli.ts` 直実行だけでは package/bin 経路の証跡にしない。

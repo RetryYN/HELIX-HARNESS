@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "bun run src/cli.ts",
+    "ut-tdd": "bun run src/cli.ts",
     "build": "bun build src/cli.ts --compile --outfile dist/ut-tdd",
     "typecheck": "tsc --noEmit",
     "lint": "biome check src tests",
