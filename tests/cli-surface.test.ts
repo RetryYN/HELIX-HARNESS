@@ -393,13 +393,22 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("workflow-next-actions: 1");
       expect(text.stdout).toContain("workflow-next-action[1]: PLAN-M-02-fixture");
       expect(text.stdout).toContain(
-        "packet=ut-tdd rename plan --json supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+        "packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json scoped-supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+      );
+      expect(text.stdout).toContain(
+        "action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+      );
+      expect(text.stdout).toContain(
+        "route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
       );
       expect(text.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json",
       );
       expect(text.stdout).toContain(
         "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "scoped-supporting-decision-packets: ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain("semantic_frontier_records: 1");
     } finally {

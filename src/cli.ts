@@ -2497,7 +2497,7 @@ handover
       process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
       for (const item of workflowNextActions) {
         process.stdout.write(
-          `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} supporting=${item.packetCommands.join(" | ")}\n`,
+          `  workflow-next-action[${item.order}]: ${item.planId} reason=${item.reason} action=${item.requiredActionJa} action-id=${item.requiredAction} route=${item.nextWorkflowRouteJa} route-id=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
         );
         for (const summary of item.supportingPacketSummaries) {
           process.stdout.write(`  packet-summary[${item.order}]: ${packetSummaryText(summary)}\n`);
@@ -2510,11 +2510,23 @@ handover
           liveCompletionDecisionPacket.decisions.flatMap((decision) => decision.packetCommands),
         ),
       ];
+      const scopedPacketCommands = [
+        ...new Set(
+          liveCompletionDecisionPacket.decisions.flatMap(
+            (decision) => decision.scopedPacketCommands,
+          ),
+        ),
+      ];
       process.stdout.write(
         "completion-decision-packet: ut-tdd completion decision-packet --json\n",
       );
       if (packetCommands.length > 0) {
         process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
+      }
+      if (scopedPacketCommands.length > 0) {
+        process.stdout.write(
+          `scoped-supporting-decision-packets: ${scopedPacketCommands.join(" | ")}\n`,
+        );
       }
     }
     if ((liveOutstanding.semanticFeatureFrontierRecords ?? []).length > 0) {
