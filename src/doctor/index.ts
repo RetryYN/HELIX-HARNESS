@@ -20,7 +20,9 @@ import {
 } from "../handover/index";
 import {
   actionBindingApprovalReadinessMessages,
+  actionBindingApprovalVerificationCommandViolations,
   analyzeActionBindingApprovalReadiness,
+  buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
 } from "../lint/action-binding-approval-readiness";
 import { analyzeAssetDrift, assetDriftMessages, loadAssetDriftInput } from "../lint/asset-drift";
@@ -267,8 +269,10 @@ import {
 } from "../lint/runtime-portability";
 import {
   analyzeS4DecisionReadiness,
+  buildS4DecisionPackets,
   loadS4DecisionReadinessInput,
   s4DecisionReadinessMessages,
+  s4DecisionVerificationCommandViolations,
 } from "../lint/s4-decision-readiness";
 import {
   analyzeScreenImplPairFreeze,
@@ -2473,24 +2477,120 @@ export function checkCompletionDecisionPacket(repoRoot: string): {
   }
   try {
     const now = new Date().toISOString();
-    const r = analyzeCompletionDecisionPacket(
-      loadCompletionDecisionPacketInput(repoRoot, now),
-      now,
-      {
-        sourcePathExists: (sourcePath) => existsSync(join(repoRoot, sourcePath)),
-        sourceText: (sourcePath) => {
-          const path = join(repoRoot, sourcePath);
-          return existsSync(path) ? readFileSync(path, "utf8") : null;
-        },
+    const packet = loadCompletionDecisionPacketInput(repoRoot, now);
+    const r = analyzeCompletionDecisionPacket(packet, now, {
+      sourcePathExists: (sourcePath) => existsSync(join(repoRoot, sourcePath)),
+      sourceText: (sourcePath) => {
+        const path = join(repoRoot, sourcePath);
+        return existsSync(path) ? readFileSync(path, "utf8") : null;
       },
-    );
-    return { messages: completionDecisionPacketMessages(r), ok: r.ok };
+    });
+    const dedicatedViolations = completionDedicatedPacketBridgeViolations(repoRoot, packet);
+    return {
+      messages: [
+        ...completionDecisionPacketMessages(r),
+        ...dedicatedViolations.map(
+          (violation) => `completion-decision-packet - violation: ${violation}`,
+        ),
+      ],
+      ok: r.ok && dedicatedViolations.length === 0,
+    };
   } catch {
     return {
       messages: ["completion-decision-packet - violation: decision packet check could not run"],
       ok: false,
     };
   }
+}
+
+export function completionDedicatedPacketBridgeViolations(
+  repoRoot: string,
+  packet: ReturnType<typeof loadCompletionDecisionPacketInput>,
+): string[] {
+  const violations: string[] = [];
+  const decisionPlanIdsByCommand = new Map<string, Set<string>>();
+  for (const decision of packet.decisions) {
+    for (const command of decision.packetCommands ?? []) {
+      if (!decisionPlanIdsByCommand.has(command)) {
+        decisionPlanIdsByCommand.set(command, new Set());
+      }
+      decisionPlanIdsByCommand.get(command)?.add(decision.planId);
+    }
+  }
+
+  const hasCommand = (command: string): boolean => decisionPlanIdsByCommand.has(command);
+  const planIdsFor = (command: string): string[] => [
+    ...(decisionPlanIdsByCommand.get(command) ?? new Set<string>()),
+  ];
+
+  if (hasCommand("ut-tdd s4 decision-packet --json")) {
+    const s4Packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(repoRoot));
+    const s4ByPlan = new Map(s4Packets.map((candidate) => [candidate.planId, candidate]));
+    for (const planId of planIdsFor("ut-tdd s4 decision-packet --json")) {
+      const dedicatedPacket = s4ByPlan.get(planId);
+      if (!dedicatedPacket) {
+        violations.push(`missing live S4 decision packet for ${planId}`);
+        continue;
+      }
+      violations.push(
+        ...s4DecisionVerificationCommandViolations(dedicatedPacket).map(
+          (violation) => `S4 ${violation.subject}: ${violation.reason}`,
+        ),
+      );
+    }
+  }
+
+  if (hasCommand("ut-tdd version-up activation-packet --json")) {
+    const versionPackets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(repoRoot));
+    const versionByPlan = new Map(versionPackets.map((candidate) => [candidate.planId, candidate]));
+    for (const planId of planIdsFor("ut-tdd version-up activation-packet --json")) {
+      const dedicatedPacket = versionByPlan.get(planId);
+      if (!dedicatedPacket) {
+        violations.push(`missing live version-up activation packet for ${planId}`);
+        continue;
+      }
+      violations.push(
+        ...versionUpActivationVerificationCommandViolations(dedicatedPacket).map(
+          (violation) => `version-up ${violation.subject}: ${violation.reason}`,
+        ),
+      );
+    }
+  }
+
+  if (hasCommand("ut-tdd rename plan --json")) {
+    const renamePlan = buildIdentifierRenameCutoverPlan(repoRoot);
+    violations.push(
+      ...identifierRenameRunbookCommandViolations(renamePlan).map(
+        (violation) => `rename ${violation.subject}: ${violation.reason}`,
+      ),
+      ...identifierRenameVerificationCommandViolations(renamePlan).map(
+        (violation) => `rename ${violation.subject}: ${violation.reason}`,
+      ),
+    );
+  }
+
+  if (hasCommand("ut-tdd action-binding approval-packet --json")) {
+    const approvalPackets = buildActionBindingApprovalPackets(
+      loadActionBindingApprovalReadinessInput(repoRoot),
+    );
+    const approvalByPlan = new Map(
+      approvalPackets.map((candidate) => [candidate.planId, candidate]),
+    );
+    for (const planId of planIdsFor("ut-tdd action-binding approval-packet --json")) {
+      const dedicatedPacket = approvalByPlan.get(planId);
+      if (!dedicatedPacket) {
+        violations.push(`missing live action-binding approval packet for ${planId}`);
+        continue;
+      }
+      violations.push(
+        ...actionBindingApprovalVerificationCommandViolations(dedicatedPacket).map(
+          (violation) => `action-binding ${violation.subject}: ${violation.reason}`,
+        ),
+      );
+    }
+  }
+
+  return violations;
 }
 
 export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {

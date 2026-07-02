@@ -61,11 +61,16 @@ import {
   checkVerificationGroupsResult,
   checkVerificationProfile,
   checkVersionUpReadiness,
+  completionDedicatedPacketBridgeViolations,
   type DoctorDeps,
   runConsumerDoctor,
   runDoctor,
 } from "../src/doctor/index";
 import { checkGreenCommandDigests } from "../src/lint/green-command-digest";
+import {
+  analyzeOutstandingWork,
+  completionDecisionPacketForOutstanding,
+} from "../src/lint/outstanding";
 import type { AgentSlotsDeps, Slot } from "../src/runtime/agent-slots";
 
 const NOW = "2026-06-04T00:00:00.000Z";
@@ -1051,6 +1056,41 @@ describe("checkAgentSlots (doctor agent-slots surface, IMP-050)", () => {
 });
 
 describe("runDoctor", () => {
+  it("U-OUTSTANDING-003: completion decision doctor bridge accepts the current live dedicated packets", () => {
+    const result = checkCompletionDecisionPacket(process.cwd());
+
+    expect(result.ok).toBe(true);
+    expect(result.messages).toContainEqual(
+      expect.stringContaining("completion-decision-packet - OK"),
+    );
+  });
+
+  it("U-OUTSTANDING-003: completion decision doctor bridge fails when a referenced S4 packet is not live", () => {
+    const packet = completionDecisionPacketForOutstanding(
+      analyzeOutstandingWork(
+        [
+          {
+            planId: "PLAN-NO-SUCH-S3",
+            layer: "cross",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            versionTarget: null,
+          },
+        ],
+        0,
+      ),
+      {
+        generatedAt: "2026-07-02T00:00:00.000Z",
+        now: "2026-07-02T00:00:00.000Z",
+      },
+    );
+
+    expect(completionDedicatedPacketBridgeViolations(process.cwd(), packet)).toContain(
+      "missing live S4 decision packet for PLAN-NO-SUCH-S3",
+    );
+  });
+
   it("ok=true includes handover and agent-slots surfaces as warnings", () => {
     const r = runDoctor(deps());
     expect(r.ok).toBe(false);

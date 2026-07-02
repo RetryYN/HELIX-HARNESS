@@ -203,6 +203,10 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   (`scopedDecisionPacketCommand` / `scopedPacketCommands`) を返す。S4 / version-up / action-binding は
   `--plan <PLAN_ID>` 付きで対象 packet に直行させ、singleton の rename plan は base command のまま残す。
   複数 pending PLAN がある状態で PO が対象 PLAN を手で推測する UI/CLI surface は不可。
+  completion decision packet の summary 宣言だけで完了扱いしない。doctor は各 `packetCommands[]` が指す
+  live S4 / version-up / rename / action-binding 専用 packet を生成し、対象 PLAN の packet 存在、verification
+  matrix command、rename runbook command まで bridge 検証する。summary は正しいが実体 packet / runbook が
+  drift した状態は HC-P9 の completion blocker として扱う。
   version-up activation の `external-rehearsal` / `security-testing` phase は自然文 command ではなく、
   `ut-tdd version-up rehearsal --plan <PLAN> --no-write --json` と
   `ut-tdd version-up security-checklist --plan <PLAN> --no-write --json` の packet-only surface を返す。
