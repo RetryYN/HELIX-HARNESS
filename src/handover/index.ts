@@ -82,7 +82,7 @@ export { inferPlanFromCommit, resolveActivePlan, setActivePlan };
 
 export function countHandoverEntries(md: string | null): number {
   if (!md) return 0;
-  return (md.match(/^# Session Handover\b/gm) ?? []).length;
+  return (md.match(/^#\s+(?:Session Handover\b|セッション引き継ぎ)/gm) ?? []).length;
 }
 
 /** markdown 1 entry の論理内容 (③-⑥ は human placeholder)。 */
@@ -353,11 +353,11 @@ export function capWithBreadcrumb<T>(items: readonly T[], max: number, r: CapRen
 export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpts = {}): string {
   const cap = opts.maxSummaryPlans ?? MAX_SUMMARY_PLANS;
   const lines: string[] = [];
-  lines.push(`# Session Handover — ${doc.date}`, "");
+  lines.push(`# セッション引き継ぎ — ${doc.date}`, "");
   lines.push("## §1 PLAN サマリ", "");
   if (opts.slimSummary) {
     lines.push(
-      "- (同日 first entry 参照 — 全 PLAN registry は本ファイル冒頭エントリ §1 に記載、本 session 固有の進捗は §3 へ)",
+      "- (同日 first entry 参照 — 全 PLAN registry は本ファイル冒頭エントリ §1 に記載、本セッション固有の進捗は §3 へ)",
     );
   } else if (doc.plans.length === 0) {
     lines.push("- (digest なし)");
@@ -375,7 +375,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
   }
   lines.push("", "## §2 成果物 (commit / files)", "");
   if (opts.slimSummary) {
-    lines.push("- (同日 first entry 参照 — 本 session の commit/file は §3 Next Action に記載)");
+    lines.push("- (同日 first entry 参照 — 本セッションの commit/file は §3 次アクションに記載)");
   } else if (doc.deliverables.length === 0) {
     lines.push("- (なし)");
   } else {
@@ -391,24 +391,28 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
       }),
     );
   }
-  lines.push("", "## §3 Next Action", "");
+  lines.push("", "## §3 次アクション", "");
   if (opts.outstanding) {
     const workflowActions = workflowNextActionsForOutstanding(opts.outstanding);
     if (workflowActions.length === 0) {
       lines.push(
-        `> ${HANDOVER_NEXT_ACTION_MARKER}: completion-ready`,
-        "- completion-ready: run completion claim audit before marking the whole objective complete",
+        `> ${HANDOVER_NEXT_ACTION_MARKER}: completion-ready（完了判断監査へ進める）`,
+        "- completion-ready: 目標全体を完了扱いにする前に completion claim audit を実行する",
         "",
       );
     } else {
       lines.push(
-        `> ${HANDOVER_NEXT_ACTION_MARKER}: ${workflowActions.length} item(s); source=\`workflowNextActionsForOutstanding\``,
+        `> ${HANDOVER_NEXT_ACTION_MARKER}: ${workflowActions.length} 件; 正本=\`workflowNextActionsForOutstanding\``,
         "",
         ...workflowActions.flatMap((a) => [
-          `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): ${sanitize(a.requiredAction)}`,
-          `  - route: ${sanitize(a.nextWorkflowRoute)}`,
-          `  - primary packet: \`${sanitize(a.decisionPacketCommand)}\``,
-          `  - packet commands: ${a.packetCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
+          `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(a.requiredAction)}`,
+          `  - 判断経路: ${sanitize(a.nextWorkflowRoute)}`,
+          `  - 主 packet: \`${sanitize(a.decisionPacketCommand)}\``,
+          `  - packet一覧: ${a.packetCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
+          ...a.supportingPacketSummaries.map(
+            (summary) =>
+              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認観点=${sanitize(summary.reviewRoute)}`,
+          ),
         ]),
         "",
       );
@@ -570,11 +574,11 @@ export function checkHandoverDiscipline(deps: HandoverDeps, maxHours = 24): stri
 }
 
 /**
- * PLAN-L7-98 (Q1): 複数 entry md の「最後の # Session Handover entry」内の `## ... <token> ...`
+ * PLAN-L7-98 (Q1): 複数 entry md の「最後の handover entry」内の `## ... <token> ...`
  * セクション本文を返す (純関数)。token 不在は null。
  */
 export function latestEntrySection(md: string, token: string): string | null {
-  const headers = [...md.matchAll(/^#\s+Session Handover\b.*$/gm)];
+  const headers = [...md.matchAll(/^#\s+(?:Session Handover\b|セッション引き継ぎ).*$/gm)];
   const entry = headers.length > 0 ? md.slice(headers[headers.length - 1].index ?? 0) : md;
   const m = entry.match(new RegExp(`^##\\s*[^\\n]*${token}[^\\n]*$`, "m"));
   if (!m || m.index === undefined) return null;
@@ -629,6 +633,8 @@ export function checkHandoverOutstandingAnchor(deps: HandoverDeps): {
  * PLAN-L7-94 continuation: 最新 handover の §3 Next Action を `workflowNextActions` 由来の
  * 機械次手で anchor する。CURRENT.json / status JSON に正しい blocker queue があっても、markdown §3 が
  * TODO のままだと再開者が workflow を外すため、latest entry の §3 marker を fail-close で強制する。
+ * blocked route では packet 要約も必須にし、S4/version-up/cutover/action-binding の matrix/review
+ * 導線が markdown handover で消える旧 entry を通さない。
  */
 export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   messages: string[];
@@ -649,7 +655,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   if (section == null) {
     return {
       messages: [
-        `handover-next-action — violation: 最新 entry に §3 Next Action が無い (${pointer.latest_doc})`,
+        `handover-next-action — violation: 最新 entry に §3 次アクションが無い (${pointer.latest_doc})`,
       ],
       ok: false,
     };
@@ -658,6 +664,14 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
     return {
       messages: [
         `handover-next-action — violation: 最新 handover §3 に機械次手 (${HANDOVER_NEXT_ACTION_MARKER}) が無い → \`ut-tdd handover\` で再生成し workflowNextActions 由来の次手を seed`,
+      ],
+      ok: false,
+    };
+  }
+  if (!section.includes("completion-ready") && !section.includes("packet要約:")) {
+    return {
+      messages: [
+        "handover-next-action — violation: 最新 handover §3 に packet 要約が無い → `ut-tdd handover` で再生成し packet matrix/review 導線を seed",
       ],
       ok: false,
     };
@@ -822,11 +836,11 @@ export function checkHandoverBypass(deps: HandoverDeps): string[] {
 
 /**
  * U-HOVER-014: 同日 markdown の累積上限化 (純関数、PLAN-L7-83)。
- * runHandover が 1 件 append する前提で、append 後に `# Session Handover` entry 数が
+ * runHandover が 1 件 append する前提で、append 後に handover entry 数が
  * `maxEntries` を超えないよう既存を `(maxEntries-1)` まで圧縮する。A-138 の「1 ファイル 1
  * registry anchor」を尊重し、**anchor (entry[0]、full §1) + 直近 (maxEntries-2) entry を残し、
  * 中間 entry を 1 行 breadcrumb へ畳む** (剪定分は git 履歴に全保全 = no silent cap)。
- * breadcrumb は `# Session Handover` に一致しないので `countHandoverEntries`/`doc_entry_count`
+ * breadcrumb は handover 見出しに一致しないので `countHandoverEntries`/`doc_entry_count`
  * の bypass 検知契約は不変。圧縮不要 (entry 数 ≤ maxEntries-1 / header 不在) は入力をそのまま返す。
  * **idempotent**: 過去の prune で挿入した breadcrumb は再 prune 前に除去する。さもないと breadcrumb が
  * 保持 anchor (entry[0]) の slice 末尾へ吸収され、同日反復 handover で breadcrumb が線形累積する
@@ -838,7 +852,7 @@ export function boundSameDayEntries(md: string, maxEntries: number): string {
   // 既存 breadcrumb (+ その直前 separator) を除去してから再 prune (idempotent、累積防止)。
   const stripped = md.replace(/\n+---\n+<!-- ut-tdd handover:[^\n]*-->/g, "");
   const positions: number[] = [];
-  const re = /^# Session Handover\b/gm;
+  const re = /^#\s+(?:Session Handover\b|セッション引き継ぎ)/gm;
   let m: RegExpExecArray | null = re.exec(stripped);
   while (m !== null) {
     positions.push(m.index);

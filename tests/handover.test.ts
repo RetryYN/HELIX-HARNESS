@@ -280,7 +280,7 @@ describe("U-HOVER-004 renderHandoverScaffold", () => {
     for (const s of [
       "§1 PLAN サマリ",
       "§2 成果物",
-      "§3 Next Action",
+      "§3 次アクション",
       "§4 carry",
       "§5 未了 PO 判断",
       "§6 壊さない",
@@ -321,10 +321,10 @@ describe("U-HOVER-004 renderHandoverScaffold", () => {
     expect(slim).not.toContain("FULL TITLE TOKEN");
     expect(slim).toContain("同日 first entry 参照");
     // §1/§2 の見出しと §3-§6 は slim でも維持。
-    for (const s of ["§1 PLAN サマリ", "§2 成果物", "§3 Next Action", "§6 壊さない"]) {
+    for (const s of ["§1 PLAN サマリ", "§2 成果物", "§3 次アクション", "§6 壊さない"]) {
       expect(slim).toContain(s);
     }
-    // bypass 検知契約: `# Session Handover` header は slim でも 1 個 (countHandoverEntries 不変)。
+    // bypass 検知契約: handover header は slim でも 1 個 (countHandoverEntries 不変)。
     expect(countHandoverEntries(slim)).toBe(1);
   });
 });
@@ -423,7 +423,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     return deps;
   }
 
-  it("outstanding 指定で §3 に workflowNextActions 由来の機械次手と packet command を出力する", () => {
+  it("outstanding 指定で §3 に workflowNextActions 由来の機械次手と packet 要約を出力する", () => {
     const md = renderHandoverScaffold(scaffoldFromDigests([digest()], [], "2026-06-04"), {
       outstanding: blockedOutstanding(),
     });
@@ -434,12 +434,28 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(section).toContain("record the PO/S4 decision");
     expect(section).toContain("ut-tdd s4 decision-packet --json");
     expect(section).toContain("ut-tdd action-binding approval-packet --json");
+    expect(section).toContain(
+      "packet要約: `ut-tdd s4 decision-packet --json` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8",
+    );
+    expect(section).toContain(
+      "packet要約: `ut-tdd action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=9",
+    );
+    expect(section).toContain("review S4 decision evidence");
+    expect(section).toContain("review actor/tool/target/params binding");
     expect(section).not.toContain("TODO(human): 順序付き次手");
   });
 
-  it("§3 に marker があれば ok", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n## §4 x\n`;
+  it("§3 に marker と packet 要約があれば ok", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認観点=review S4 decision evidence\n\n## §4 x\n`;
     expect(checkHandoverNextActionAnchor(withDoc(md)).ok).toBe(true);
+  });
+
+  it("§3 に marker があっても packet 要約が無ければ fail-close", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - primary packet: \`ut-tdd s4 decision-packet --json\`\n\n## §4 x\n`;
+    const r = checkHandoverNextActionAnchor(withDoc(md));
+
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("packet 要約");
   });
 
   it("§3 が TODO のままなら fail-close", () => {
@@ -935,7 +951,7 @@ describe("U-HOVER-007 runHandover", () => {
     const r = runHandover({ date: "2026-06-04" }, deps);
     const md = deps.files.get(join("/repo", docRel)) ?? "";
     expect(md).toContain("# 既存 entry"); // 既存を残す
-    expect(md).toContain("§3 Next Action"); // 追記される
+    expect(md).toContain("§3 次アクション"); // 追記される
     expect(r.written).toContain(join(".ut-tdd", "handover", "CURRENT.json"));
   });
 
@@ -988,7 +1004,7 @@ describe("U-HOVER-007 runHandover", () => {
     expect(md).toContain("同日 first entry 参照"); // 2 件目は slim stub
     // 2 件目の content は plan サマリ本体 (kind 行) を持たない = 縮約済。
     expect(second.content).toContain("同日 first entry 参照");
-    expect(second.content).toContain("§3 Next Action");
+    expect(second.content).toContain("§3 次アクション");
   });
 
   // IMP-078 gap①: runHandover は generated_by 署名 + doc_entry_count を刻む。
@@ -1022,7 +1038,7 @@ describe("U-HOVER-014 boundSameDayEntries / runHandover 累積上限 (PLAN-L7-83
     const entries: string[] = [];
     for (let i = 0; i < n; i++) {
       entries.push(
-        `# Session Handover — 2026-06-04\n\n## §1 PLAN サマリ\n\nENTRY-${i}-BODY\n\n## §3 Next Action\n\n- e${i}`,
+        `# セッション引き継ぎ — 2026-06-04\n\n## §1 PLAN サマリ\n\nENTRY-${i}-BODY\n\n## §3 次アクション\n\n- e${i}`,
       );
     }
     return `${entries.join("\n\n---\n\n")}\n`;
@@ -1033,7 +1049,7 @@ describe("U-HOVER-014 boundSameDayEntries / runHandover 累積上限 (PLAN-L7-83
     expect(boundSameDayEntries(md, MAX_SAME_DAY_ENTRIES)).toBe(md);
   });
 
-  it("# Session Handover header が無い md → 無変更", () => {
+  it("handover header が無い md → 無変更", () => {
     const md = "# 既存 entry\n\n本文\n";
     expect(boundSameDayEntries(md, MAX_SAME_DAY_ENTRIES)).toBe(md);
   });
@@ -1050,7 +1066,7 @@ describe("U-HOVER-014 boundSameDayEntries / runHandover 累積上限 (PLAN-L7-83
     expect(out).toContain("累積抑制のため剪定"); // breadcrumb 明示 (silent cap でない)
   });
 
-  it("breadcrumb は # Session Handover に一致せず countHandoverEntries 契約を壊さない", () => {
+  it("breadcrumb は handover header に一致せず countHandoverEntries 契約を壊さない", () => {
     const out = boundSameDayEntries(makeMd(MAX_SAME_DAY_ENTRIES + 3), MAX_SAME_DAY_ENTRIES);
     // breadcrumb 行を含んでも header count は保持エントリ数のみ。
     expect(countHandoverEntries(out)).toBe(MAX_SAME_DAY_ENTRIES - 1);
@@ -1063,7 +1079,7 @@ describe("U-HOVER-014 boundSameDayEntries / runHandover 累積上限 (PLAN-L7-83
     const once = boundSameDayEntries(makeMd(MAX_SAME_DAY_ENTRIES + 2), MAX_SAME_DAY_ENTRIES);
     expect((once.match(bc) ?? []).length).toBe(1);
     // once に新エントリを append して再び超過させ、2 回目の prune。
-    const grown = `${once.replace(/\s*$/, "")}\n\n---\n\n# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n- new\n`;
+    const grown = `${once.replace(/\s*$/, "")}\n\n---\n\n# セッション引き継ぎ — 2026-06-04\n\n## §3 次アクション\n\n- new\n`;
     const twice = boundSameDayEntries(grown, MAX_SAME_DAY_ENTRIES);
     // 旧 breadcrumb は除去され新 breadcrumb 1 個のみ (累積しない)。
     expect((twice.match(bc) ?? []).length).toBe(1);
@@ -1189,8 +1205,10 @@ describe("U-HOVER-011 checkHandoverBypass (IMP-078 gap①)", () => {
     expect(checkHandoverBypass(mockDeps())).toEqual([]);
   });
 
-  it("countHandoverEntries: `# Session Handover` 見出し数を数える / null→0", () => {
+  it("countHandoverEntries: handover 見出し数を数える / null→0 / 旧英語見出し互換", () => {
     expect(countHandoverEntries("# Session Handover — a\n# Session Handover — b")).toBe(2);
+    expect(countHandoverEntries("# セッション引き継ぎ — a\n# セッション引き継ぎ — b")).toBe(2);
+    expect(countHandoverEntries("# Session Handover — a\n# セッション引き継ぎ — b")).toBe(2);
     expect(countHandoverEntries(null)).toBe(0);
   });
 });

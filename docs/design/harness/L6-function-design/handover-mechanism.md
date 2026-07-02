@@ -112,11 +112,11 @@ interface HandoverResult {
 | `resolveHandoverScope` | `(deps: { repoRoot: string; readText; listDir }) => { active_plan: string\|null; digests: PlanDigestRef[] }` | **never throws**。`.ut-tdd/state/current-plan` を読み active_plan を決定 / `.ut-tdd/logs/plan/` を listDir し `*.digest.json` を parse / 不在・壊れ JSON は skip / 何も無ければ `{active_plan:null, digests:[]}`。**`listDir` は本 deps では必須** (session-log の optional `listDir?` と異なり handover は走査が責務) |
 | `buildPointer` | `(input: { scope; latestDoc: string\|null; status: HandoverStatus; now: string }) => HandoverPointer` | **純関数**。source coding rule の max 3 params に従い object input を受ける。**digest_summary は `scope.digests` が非空なら active_plan の null/非 null に関わらず集計** (`commits.length`/`files_touched.length`/`failures.length` 合算) / `scope.digests` が空のときのみ `digest_summary=null` / `active_plan` は scope の値をそのまま透過 (null 可) / `updated_at=now`。**`digest_summary=null` は「digest 不在」を意味し、「active_plan 未設定」とは独立** (両者を混同しない、CLAUDE.md ワークフローの誤読防止) |
 | `scaffoldFromDigests` | `(digests: PlanDigestRef[], planMeta: {plan_id;kind;title}[], date: string) => HandoverDoc` | **純関数**。digest.commits/files_touched → `deliverables` / planMeta.kind/title → `plans.summary` / **③-⑥ は空配列** (human 記入のため scaffold では生成しない) |
-| `renderHandoverScaffold` | `(doc: HandoverDoc, opts?: { outstanding?: OutstandingWork }) => string` | **純関数**。`# Session Handover — <date>` + §0..§6 相当の 6 セクション markdown を render / 機械部 (①②) は埋める。`opts.outstanding` がある場合、③Next Action は `workflowNextActionsForOutstanding` 由来の `HANDOVER_NEXT_ACTION_MARKER`、PLAN ID、required action、route、primary/supporting packet commands を出す。completion-ready なら completion claim audit を出す。`opts.outstanding` が無い後方互換経路では③を `TODO(human)` にする。⑤未了 PO 判断は `HANDOVER_OUTSTANDING_MARKER` と `outstandingSummaryLine` で seed する。④⑥は `TODO(human)` placeholder。**自由テキスト欄 (`plans[].summary` / `deliverables[].*` / digest 由来 failures) は session-log の `sanitize` を render 時にも適用する (defense-in-depth)**。tracked な `docs/handover/*.md` に commit されるため、digest 側 sanitize 済でも render 段で再マスクして credential/PII の流出経路をゼロにする (二重 sanitize は冪等、`SECRET_RE` は `name=value` を `name=***` に) |
+| `renderHandoverScaffold` | `(doc: HandoverDoc, opts?: { outstanding?: OutstandingWork }) => string` | **純関数**。`# セッション引き継ぎ — <date>` + §1..§6 の 6 セクション markdown を render / 機械部 (①②) は埋める。`opts.outstanding` がある場合、③次アクション (Next Action) は `workflowNextActionsForOutstanding` 由来の `HANDOVER_NEXT_ACTION_MARKER`、PLAN ID、required action、route、primary/supporting packet commands、各 supporting packet の schemaVersion / matrixField / expectedMatrixCount / reviewRoute を示す `packet要約` を出す。completion-ready なら completion claim audit を出す。`opts.outstanding` が無い後方互換経路では③を `TODO(human)` にする。⑤未了 PO 判断は `HANDOVER_OUTSTANDING_MARKER` と `outstandingSummaryLine` で seed する。④⑥は `TODO(human)` placeholder。**自由テキスト欄 (`plans[].summary` / `deliverables[].*` / digest 由来 failures) は session-log の `sanitize` を render 時にも適用する (defense-in-depth)**。tracked な `docs/handover/*.md` に commit されるため、digest 側 sanitize 済でも render 段で再マスクして credential/PII の流出経路をゼロにする (二重 sanitize は冪等、`SECRET_RE` は `name=value` を `name=***` に) |
 | `handoverStale` | `(updated_at: string\|null, now: string, maxHours = 24) => boolean` | **純関数**。precondition: `now`/`updated_at` は ISO8601 (`Date.parse` 可能、UTC 推奨)。`updated_at` 無し/parse 不能 → true / `(Date.parse(now) - Date.parse(updated_at)) / 3.6e6 > maxHours` → true / 以内 → false / **境界 (=maxHours ちょうど) は `>` 判定ゆえ stale でない**。**辞書順比較でなく数値差分で判定** (TZ 混入時の silent wrong answer 回避) |
 | `readPointer` | `(deps: { repoRoot; readText }) => HandoverPointer \| null` | `.ut-tdd/handover/CURRENT.json` を read-only に読む。**不在 / parse 不能 / I/O 失敗は null**、正常 JSON は object を返す。`ut-tdd handover status --json` は通常 handover の status envelope を返す: missing は `exists:false, stale:false, stale_reasons:[]` + exit 0、parse 不能は `exists:true, stale:true, stale_reasons:["CURRENT.json is unreadable or invalid"]` + exit 1、正常 pointer は `exists:true` と `handoverStale(updated_at, now)` 由来の `stale/stale_reasons` を additive に付ける。status preflight は read-only であり、CURRENT.json や markdown scaffold を生成しない。`outstanding` が blocked の場合、pointer は同じ生成時点の `completionDecisionPacket` (`sourceCommand="ut-tdd handover"`) を保持し、再開時に PO/S4・version-up・cutover・action-binding record template と専用 packet command (`decisionPacketCommand` / `packetCommands`) を失わない |
 | `checkHandoverCompletionDecisionPacket` | `(deps: HandoverDeps) => { messages: string[]; ok: boolean }` | **doctor hard gate**。CURRENT.json が `outstanding.completionReadiness.ok=false` を持つ場合、同じ pointer に `completionDecisionPacket` が必須。欠落、`sourceCommand!="ut-tdd handover"`、freshness/shape lint violation、`completionReadiness` と packet の ok/status 不一致、`outstanding.items.length` と packet decision count 不一致を fail-close する。pointer 不在、または blocked outstanding が無い場合は skipped/OK。standalone `ut-tdd completion decision-packet --json` が green でも、handover resume surface が packet を持たない旧 pointer は通さない |
-| `checkHandoverNextActionAnchor` | `(deps: HandoverDeps) => { messages: string[]; ok: boolean }` | **doctor hard gate**。最新 handover entry の §3 Next Action に `HANDOVER_NEXT_ACTION_MARKER` が必須。§3 欠落、latest_doc 読取不能、または §3 が `TODO(human): 順序付き次手` のままなら fail-close し、`ut-tdd handover` 再生成を要求する。pointer 不在は skipped/OK。これにより status/CURRENT.json の workflowNextActions と markdown 再開手順が分岐しない |
+| `checkHandoverNextActionAnchor` | `(deps: HandoverDeps) => { messages: string[]; ok: boolean }` | **doctor hard gate**。最新 handover entry の §3 次アクション (Next Action) に `HANDOVER_NEXT_ACTION_MARKER` が必須。blocked route では marker だけでなく `packet要約` も必須にする。§3 欠落、latest_doc 読取不能、§3 が `TODO(human): 順序付き次手` のまま、または旧 marker-only §3 なら fail-close し、`ut-tdd handover` 再生成を要求する。pointer 不在は skipped/OK。これにより status/CURRENT.json の workflowNextActions と markdown 再開手順が分岐せず、S4 / version-up / rename cutover / action-binding の matrix/review 導線も失われない |
 | `writePointer` | `(pointer: HandoverPointer, deps: { repoRoot; writeText }) => void` | `.ut-tdd/handover/CURRENT.json` を **JSON 上書き** (単一機械ポインタ、append しない)。失敗は呼び出し側 (CLI) が warn |
 | `setActivePlan` | `(planId: string\|null, deps: { repoRoot; writeText; removeFile? }) => void` | `.ut-tdd/state/current-plan` を書く (`resolveActivePlan` 読取先と同一)。**`planId!==null` → planId を書く / `planId===null` かつ `removeFile` 有 → file 削除 / `planId===null` かつ `removeFile` 無 → `writeText` で空文字を書く** (`resolveActivePlan` L126-127 は空文字を `trim()` で falsy 判定し branch fallback→null へ落とすため、空文字書込でも実質 clear になる)。deps は `SessionLogDeps` の subset (repoRoot/writeText) ゆえ amendment 経路でアダプタ不要 |
 | `inferPlanFromCommit` | `(commitMessage: string) => string\|null` | **純関数**。`/PLAN-(?:L(?:[0-9]\|1[0-4])\|DISCOVERY\|REVERSE\|RECOVERY\|M)-\d{2}(?:-[a-z0-9-]+)?/` の最初の一致を返す / 無ければ null |
@@ -158,44 +158,43 @@ if (isCommit) {
 |---|---|---|---|
 | ① PLAN サマリ (kind/layer/何を) | kind/title を frontmatter から prefill | 「何を」の要約補正 | CURRENT.json + md |
 | ② 成果物 (commit / files) | digest.commits / files_touched から full prefill | — | CURRENT.json(件数) + md(全列挙) |
-| ③ Next Action | `workflowNextActionsForOutstanding` から PLAN ID / required action / route / packet commands を seed | PO/S4 などの実判断結果を補足 | md + doctor marker |
+| ③ 次アクション (Next Action) | `workflowNextActionsForOutstanding` から PLAN ID / required action / route / packet commands / `packet要約` を seed | PO/S4 などの実判断結果を補足 | md + doctor marker |
 | ④ carry / ⑥ 壊さない注意 | — | **人間記入 (placeholder)** | md のみ |
 | ⑤ 未了 PO 判断 | `outstandingSummaryLine` と outstanding marker を seed | 実在する未了に対する PO 補足 | md + doctor marker |
 | active PLAN / status / stale | 全自動 | — | CURRENT.json |
 | outstanding / completionDecisionPacket / G-SF semantic frontier | `ut-tdd handover` 生成時は CURRENT.json に snapshot 保存。`ut-tdd handover status --json` は read-only preflight として live `computeOutstandingWork` で再計算し、古い snapshot に無い additive field を補う | — | status response = live overlay、CURRENT.json = 保存 snapshot |
 
-→ 「機械可読の**今どこ** (CURRENT.json)」と「人間判断を含む**次どう** (markdown)」を型 (`HandoverPointer` / `HandoverDoc`) で分離。§6.8.6 の役割直交 (state DB=今どこ / handover=次どう) を機構へ落とす。Next Action を AI が捏造しないため、判断結果そのものは人間記入に残す。一方、outstanding / workflowNextActions から機械導出できる blocker queue は §3 に seed し、TODO のまま再開者へ渡さない。
+→ 「機械可読の**今どこ** (CURRENT.json)」と「人間判断を含む**次どう** (markdown)」を型 (`HandoverPointer` / `HandoverDoc`) で分離。§6.8.6 の役割直交 (state DB=今どこ / handover=次どう) を機構へ落とす。Next Action を AI が捏造しないため、判断結果そのものは人間記入に残す。一方、outstanding / workflowNextActions から機械導出できる blocker queue と packet summary は §3 に seed し、TODO や marker-only のまま再開者へ渡さない。
 ただし outstanding / completion decision / G-SF semantic frontier は PLAN/frontier state から機械再計算できるため、`handover status` の preflight 出力では CURRENT.json の古い snapshot をそのまま返さず live overlay を優先する。これにより handover 再生成前でも、再開確認で PO/S4 pending、version-up parked、cutover approval 待ちの意味分類が落ちない。
 
 ### §2.6 markdown scaffold テンプレート (renderHandoverScaffold 出力骨格)
 
 ```text
-# Session Handover — <date>
+# セッション引き継ぎ — <date>
 
-## §0 現在地 (一言)        ← ② digest 要約 + ① から機械生成 + 人間補正
 ## §1 PLAN サマリ           ← ① plans[] (plan_id/kind/summary) prefill
 ## §2 成果物 (commit/files) ← ② deliverables[] full prefill (digest 由来)
-## §3 Next Action          ← workflowNextActions marker + PLAN/route/packet commands
+## §3 次アクション          ← workflowNextActions marker + PLAN/route/packet commands/packet要約
 ## §4 carry (未了・先送り)  ← <!-- TODO(human) -->
 ## §5 未了 PO 判断          ← <!-- TODO(human): escalation -->
 ## §6 壊さない / 再発させない ← <!-- TODO(human) -->
 ```
 
-既存 `docs/handover/session-handover-*.md` の節構成 (現在地 / PLAN サマリ / 成果物 / Next Action / carry / 壊さない) と互換。
+既存 `docs/handover/session-handover-*.md` の旧英語見出し (`# Session Handover` / `§3 Next Action`) は検出ロジックで互換として読む。新規生成は日本語見出しに寄せ、design-language gate で handover prose が英語だけの裸行として増えないようにする。
 
 **同日累積の slim 化 (A-138 ITEM-4、cross_agent TL 裏取り済)**: `runHandover` は同日 doc が既存なら
 `---` 区切りで追記する (per-session の記録を残すため上書きしない)。だが unscoped 生成では §1 (全 PLAN registry)
 と §2 (全 file 一覧) が毎エントリ反復し肥大する (実例: 2026-06-19 doc は 3 エントリ 823 行)。よって
 `renderHandoverScaffold(doc, { slimSummary })` を持ち、**同日 2 件目以降 (existing 非 null)** は §1/§2 を
-「初出エントリ参照」の slim stub へ縮約する (§3-§6 は per-session 固有のため全文)。**`# Session Handover`
-header は 1 エントリ 1 個を維持する**ので `countHandoverEntries`/`doc_entry_count` の手書き bypass 検知契約
+「初出エントリ参照」の slim stub へ縮約する (§3-§6 は per-session 固有のため全文)。**handover header
+は 1 エントリ 1 個を維持する**ので `countHandoverEntries`/`doc_entry_count` の手書き bypass 検知契約
 (§2.7 gap①) は不変。oracle U-HOVER-013 が「slim で plan list 省略 + header 数不変 + §3-§6 維持」を fail-close 検査。
 
 **累積上限化 (bounded entries、PLAN-L7-83)**: slim だけでは §3-§6 + entry 自体が積み増し続け、同日 doc が
 無制限に肥大する (実例: 2026-06-19 doc は 1 日 6 entries / 1004 行)。よって `boundSameDayEntries(md, maxEntries)`
 が **append 前に**同日 entry を上限 `MAX_SAME_DAY_ENTRIES` へ圧縮する。A-138 の「1 ファイル 1 registry anchor」を
 尊重し、**anchor (entry[0]、full §1) + 直近 (maxEntries-2) entry を残し、中間 entry を 1 行 breadcrumb へ畳む**
-(剪定分は git 履歴に全保全 = no silent cap、件数を breadcrumb で明示)。breadcrumb は `# Session Handover` に
+(剪定分は git 履歴に全保全 = no silent cap、件数を breadcrumb で明示)。breadcrumb は handover header に
 一致しないので header 数 = bypass 検知契約は不変。**idempotent**: 過去 prune の breadcrumb は再 prune 前に
 除去する (さもないと breadcrumb が保持 anchor=entry[0] の slice 末尾へ吸収され、同日反復 handover で線形累積
 する — cross_agent review (codex) 指摘)。oracle U-HOVER-014 が「≤maxEntries-1/header 不在は無変更・
