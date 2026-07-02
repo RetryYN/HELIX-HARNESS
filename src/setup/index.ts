@@ -277,7 +277,7 @@ export interface ConsumerReadinessPlan {
     command: "ut-tdd";
     checkedFrom: string;
     resolved: boolean;
-    strategy: "path" | "missing";
+    strategy: "path" | "package-script" | "missing";
     evidence: string;
     fallbackCommands: string[];
   };
@@ -355,6 +355,16 @@ export function packageJsonDeclaresCommitlint(packageJson: string | null): boole
   try {
     const parsed = JSON.parse(packageJson) as Record<string, unknown>;
     return Object.hasOwn(parsed, "commitlint");
+  } catch {
+    return false;
+  }
+}
+
+function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
+  if (!packageJson) return false;
+  try {
+    const parsed = JSON.parse(packageJson) as { scripts?: Record<string, unknown> };
+    return typeof parsed.scripts?.["ut-tdd"] === "string";
   } catch {
     return false;
   }
@@ -744,6 +754,7 @@ export function buildConsumerReadinessPlan(input: {
   hasGit: boolean;
   hasGh: boolean;
   hasUtTddCli?: boolean;
+  hasUtTddPackageScript?: boolean;
   hasClaude: boolean;
   hasCodex: boolean;
   repoRoot: string;
@@ -765,6 +776,9 @@ export function buildConsumerReadinessPlan(input: {
           ? "codex-only"
           : "standalone";
   const runtimeOk = input.hasClaude || input.hasCodex;
+  const cliResolvedByPath = input.hasUtTddCli === true;
+  const cliResolvedByPackageScript = input.hasUtTddPackageScript === true;
+  const cliResolved = cliResolvedByPath || cliResolvedByPackageScript;
   const checks = [
     {
       name: "bun>=1.3",
@@ -792,11 +806,12 @@ export function buildConsumerReadinessPlan(input: {
     },
     {
       name: "ut-tdd-cli",
-      ok: input.hasUtTddCli === true,
-      message:
-        input.hasUtTddCli === true
-          ? "projected hook 用の `ut-tdd` が PATH 上で解決できる"
-          : "setup 前に harness package で `bun link`、consumer repo で `bun link ut-tdd` を実行する",
+      ok: cliResolved,
+      message: cliResolvedByPath
+        ? "projected hook 用の `ut-tdd` が PATH 上で解決できる"
+        : cliResolvedByPackageScript
+          ? "consumer packageRoot の `bun run ut-tdd` script で解決できる"
+          : "setup 前に harness package で `bun link`、consumer repo で `bun link ut-tdd` または package.json scripts.ut-tdd を設定する",
     },
     {
       name: "runtime-cli",
@@ -807,14 +822,8 @@ export function buildConsumerReadinessPlan(input: {
     },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
-  const cliResolved = input.hasUtTddCli === true;
   return {
-    ok:
-      bunOk &&
-      input.hasGit &&
-      requestedTagMatchesPackageVersion &&
-      input.hasUtTddCli === true &&
-      runtimeOk,
+    ok: bunOk && input.hasGit && requestedTagMatchesPackageVersion && cliResolved && runtimeOk,
     checks,
     objectiveBoundary: {
       scope: "consumer_setup_readiness_not_whole_program_completion",
@@ -850,10 +859,16 @@ export function buildConsumerReadinessPlan(input: {
       command: "ut-tdd",
       checkedFrom: packageRoot,
       resolved: cliResolved,
-      strategy: cliResolved ? "path" : "missing",
-      evidence: cliResolved
+      strategy: cliResolvedByPath
+        ? "path"
+        : cliResolvedByPackageScript
+          ? "package-script"
+          : "missing",
+      evidence: cliResolvedByPath
         ? "`ut-tdd --version` resolved for consumer readiness"
-        : "`ut-tdd --version` did not resolve for consumer readiness",
+        : cliResolvedByPackageScript
+          ? "`bun run ut-tdd --version` is available from consumer packageRoot scripts"
+          : "`ut-tdd --version` and consumer packageRoot scripts.ut-tdd did not resolve for consumer readiness",
       fallbackCommands: [
         "bun run ut-tdd --version",
         "bun link ut-tdd",
@@ -1019,11 +1034,15 @@ function buildHelixProjectImportReport(input: {
 
 function buildHelixSetupConsumerReadiness(deps: SetupDeps): ConsumerReadinessPlan {
   const commandAvailable = deps.commandAvailable ?? (() => false);
+  const packageRoot = deps.packageRoot ?? deps.repoRoot;
   return buildConsumerReadinessPlan({
     bunVersion: deps.bunVersion?.() ?? null,
     hasGit: commandAvailable("git"),
     hasGh: commandAvailable("gh"),
     hasUtTddCli: commandAvailable("ut-tdd"),
+    hasUtTddPackageScript: packageJsonDeclaresUtTddScript(
+      deps.readText(join(packageRoot, "package.json")),
+    ),
     hasClaude: commandAvailable("claude"),
     hasCodex: commandAvailable("codex"),
     repoRoot: deps.repoRoot,

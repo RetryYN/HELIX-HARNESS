@@ -653,6 +653,30 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
 
+    const packageScriptReady = buildConsumerReadinessPlan({
+      bunVersion: "1.3.2",
+      hasGit: true,
+      hasGh: false,
+      hasUtTddCli: false,
+      hasUtTddPackageScript: true,
+      hasClaude: false,
+      hasCodex: true,
+      repoRoot: "/repo",
+      packageRoot: "/repo/packages/app",
+      tag: "v0.1.0",
+    });
+    expect(packageScriptReady.ok).toBe(true);
+    expect(packageScriptReady.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
+      ok: true,
+      message: "consumer packageRoot の `bun run ut-tdd` script で解決できる",
+    });
+    expect(packageScriptReady.cliResolution).toMatchObject({
+      checkedFrom: "/repo/packages/app",
+      resolved: true,
+      strategy: "package-script",
+      evidence: "`bun run ut-tdd --version` is available from consumer packageRoot scripts",
+    });
+
     const blocked = buildConsumerReadinessPlan({
       bunVersion: "1.2.9",
       hasGit: false,
@@ -1253,6 +1277,39 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "handover-route",
       "team-run-dry-run",
     ]);
+  });
+
+  it("accepts consumer packageRoot scripts.ut-tdd as CLI resolution evidence", () => {
+    const deps = mockDeps({
+      templates: baseTemplates,
+      packageRoot: "/repo/packages/app",
+      commandAvailable: (name) => ["bun", "git", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+    deps.files.set(
+      join("/repo", "packages", "app", "package.json"),
+      JSON.stringify({ scripts: { "ut-tdd": "bun run ../../src/cli.ts" } }),
+    );
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness).toMatchObject({
+      ok: true,
+      workspace: {
+        repoRoot: "/repo",
+        packageRoot: "/repo/packages/app",
+        monorepo: true,
+      },
+      cliResolution: {
+        checkedFrom: "/repo/packages/app",
+        resolved: true,
+        strategy: "package-script",
+      },
+    });
+    expect(result.postSetupWorkflow.nextRoute).toBe("ready");
   });
 
   it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
