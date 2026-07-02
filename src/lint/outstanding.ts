@@ -1209,13 +1209,16 @@ function supportingPacketSummaryForCommand(
         requiredReviewFields: [
           "activationReadinessSummary",
           "activationSnapshot.snapshotId",
+          "externalRehearsalPlan",
+          "costGuardrails",
+          "securityChecks",
           "reapprovalTriggers",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
-          "review activation readiness, current snapshot id, reapproval triggers, and verification commands",
+          "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checks, reapproval triggers, and verification commands",
         reviewRouteJa: workflowReviewRouteTextJa(
-          "review activation readiness, current snapshot id, reapproval triggers, and verification commands",
+          "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checks, reapproval triggers, and verification commands",
         ),
       };
     case "ut-tdd rename plan --json":
@@ -1316,6 +1319,8 @@ export function workflowReviewRouteTextJa(route: string): string {
       return "S4 decision evidence / outcome route / verification command を確認する";
     case "review activation readiness, current snapshot id, reapproval triggers, and verification commands":
       return "activation readiness / current snapshot id / reapproval trigger / verification command を確認する";
+    case "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checks, reapproval triggers, and verification commands":
+      return "activation readiness / current snapshot id / external rehearsal / cost guardrails / security checks / reapproval trigger / verification command を確認する";
     case "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands":
       return "cutover snapshot / snapshot drift review / blast-radius checklist / verification command を確認する";
     case "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands":

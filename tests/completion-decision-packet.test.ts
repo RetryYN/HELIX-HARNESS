@@ -38,6 +38,30 @@ function basePacket(): CompletionDecisionPacket {
   );
 }
 
+function versionUpPacket(): CompletionDecisionPacket {
+  return completionDecisionPacketForOutstanding(
+    analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "serverless share activation is future parked.",
+        },
+      ],
+      0,
+    ),
+    {
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      now: "2026-06-30T00:30:00.000Z",
+      validForMinutes: 60,
+      sourceCommand: "ut-tdd completion decision-packet --json",
+    },
+  );
+}
+
 describe("completion decision packet lint", () => {
   // U-OUTSTANDING-002
   it("accepts a fresh packet with source command and matching freshness metadata", () => {
@@ -226,6 +250,49 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing matrix field=latestOfficialStatus",
+        },
+      ]),
+    );
+  });
+
+  it("rejects version-up summaries that omit rehearsal, cost, or security review fields", () => {
+    const packet = {
+      ...versionUpPacket(),
+      decisions: versionUpPacket().decisions.map((decision) => ({
+        ...decision,
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) =>
+          summary.command === "ut-tdd version-up activation-packet --json"
+            ? {
+                ...summary,
+                requiredReviewFields: [
+                  "activationReadinessSummary",
+                  "activationSnapshot.snapshotId",
+                  "reapprovalTriggers",
+                ],
+              }
+            : summary,
+        ),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=externalRehearsalPlan",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=costGuardrails",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecks",
         },
       ]),
     );

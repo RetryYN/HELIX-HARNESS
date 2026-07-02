@@ -948,6 +948,9 @@ function requiredSupportingPacketSummary(command: string): {
         requiredReviewFields: [
           "activationReadinessSummary",
           "activationSnapshot.snapshotId",
+          "externalRehearsalPlan",
+          "costGuardrails",
+          "securityChecks",
           "reapprovalTriggers",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],

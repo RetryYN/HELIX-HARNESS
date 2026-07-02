@@ -1023,6 +1023,9 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             requiredReviewFields: [
               "activationReadinessSummary",
               "activationSnapshot.snapshotId",
+              "externalRehearsalPlan",
+              "costGuardrails",
+              "securityChecks",
               "reapprovalTriggers",
             ],
             requiredMatrixFields: expect.arrayContaining([
