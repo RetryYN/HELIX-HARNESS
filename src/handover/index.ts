@@ -337,6 +337,55 @@ export function scaffoldFromDigests(
 
 const TODO = (s: string): string => `<!-- TODO(human): ${s} -->`;
 
+function handoverActionText(action: string): string {
+  switch (action) {
+    case "record the PO/S4 decision before promotion, rejection, or Forward merge":
+      return "PO/S4 判断を記録してから昇格・却下・Forward merge へ進める";
+    case "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion":
+      return "将来 version-up activation 判断が記録されるまで parked のまま保持し、active frontier 完了として数えない";
+    case "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work":
+      return "不可逆 migration/cutover 前に明示的な PO signoff を取得し、通常作業として state move を実装しない";
+    case "record required human/action-binding approval before executing the high-impact action":
+      return "高影響 action の実行前に human/action-binding approval を記録する";
+    case "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present":
+      return "該当 workflow phase を継続し、生成成果物と review evidence が揃った後だけ terminal にする";
+    default:
+      return action;
+  }
+}
+
+function handoverRouteText(route: string): string {
+  switch (route) {
+    case "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded":
+      return "S4 decide -> decision_outcome 記録後にのみ Reverse / Forward merge へ進む";
+    case "version-up activation -> add-feature/rejection path, with approval boundary preserved":
+      return "version-up activation -> approval 境界を保持して add-feature / rejection route へ進む";
+    case "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply":
+      return "L14 cutover -> apply 前に cutover_decision_record / dry-run / rollback / state backup / audit を揃える";
+    case "human/action-binding approval -> bind actor/tool/target/params before execution":
+      return "human/action-binding approval -> 実行前に actor / tool / target / params を固定する";
+    default:
+      return route;
+  }
+}
+
+function handoverReviewRouteText(route: string): string {
+  switch (route) {
+    case "review S4 decision evidence, outcome routes, and verification commands":
+      return "S4 decision evidence / outcome route / verification command を確認する";
+    case "review activation readiness, current snapshot id, reapproval triggers, and verification commands":
+      return "activation readiness / current snapshot id / reapproval trigger / verification command を確認する";
+    case "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands":
+      return "cutover snapshot / snapshot drift review / blast-radius checklist / verification command を確認する";
+    case "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands":
+      return "actor / tool / target / params binding、semantic frontier、related packet、verification command を確認する";
+    case "review completion decision records and route to dedicated packets":
+      return "completion decision record を確認し、必要な dedicated packet へ接続する";
+    default:
+      return route;
+  }
+}
+
 /** render オプション (A-138 ITEM-4: 同日累積の slim 化、cross_agent TL 裏取り済)。 */
 export function capWithBreadcrumb<T>(items: readonly T[], max: number, r: CapRender<T>): string[] {
   if (max <= 0 || items.length <= max) return items.flatMap((item) => r.renderItem(item));
@@ -405,13 +454,13 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
         `> ${HANDOVER_NEXT_ACTION_MARKER}: ${workflowActions.length} 件; 正本=\`workflowNextActionsForOutstanding\``,
         "",
         ...workflowActions.flatMap((a) => [
-          `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(a.requiredAction)}`,
-          `  - 判断経路: ${sanitize(a.nextWorkflowRoute)}`,
+          `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(handoverActionText(a.requiredAction))}`,
+          `  - 判断経路: ${sanitize(handoverRouteText(a.nextWorkflowRoute))}`,
           `  - 主 packet: \`${sanitize(a.decisionPacketCommand)}\``,
           `  - packet一覧: ${a.packetCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
             (summary) =>
-              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認観点=${sanitize(summary.reviewRoute)}`,
+              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,
           ),
         ]),
         "",

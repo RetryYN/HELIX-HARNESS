@@ -431,7 +431,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     const section = latestEntrySection(md, "§3") ?? "";
     expect(section).toContain(HANDOVER_NEXT_ACTION_MARKER);
     expect(section).toContain("PLAN-DISCOVERY-10");
-    expect(section).toContain("record the PO/S4 decision");
+    expect(section).toContain("PO/S4 判断を記録してから昇格・却下・Forward merge へ進める");
     expect(section).toContain("ut-tdd s4 decision-packet --json");
     expect(section).toContain("ut-tdd action-binding approval-packet --json");
     expect(section).toContain(
@@ -440,8 +440,14 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(section).toContain(
       "packet要約: `ut-tdd action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=9",
     );
-    expect(section).toContain("review S4 decision evidence");
-    expect(section).toContain("review actor/tool/target/params binding");
+    expect(section).toContain(
+      "S4 decision evidence / outcome route / verification command を確認する",
+    );
+    expect(section).toContain(
+      "actor / tool / target / params binding、semantic frontier、related packet、verification command を確認する",
+    );
+    expect(section).not.toContain("record the PO/S4 decision before promotion");
+    expect(section).not.toContain("review S4 decision evidence");
     expect(section).not.toContain("TODO(human): 順序付き次手");
   });
 
