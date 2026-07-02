@@ -83,7 +83,7 @@ S3 verified evidence で止まる Discovery PLAN は、PO が何を決めれば 
 | `adoption_decision_delta` | S3 pending PLAN で必須 | 採用判断が前回から `none` / `changed` のどちらか。changed なら route impact を残す |
 | `workflow_route_impact` | S3 pending PLAN で必須 | source 差分が無ければ `none`、差分があれば S4 / Forward / Reverse / backlog など差し戻し先 |
 | `route_impact` | S3 pending PLAN で必須 | confirmed / rejected / pivot ごとの Forward / Reverse / backlog 影響 |
-| `forward_route` | `confirmed` 候補がある場合必須 | L1 / L3-L6 / gap-only 等の Forward 合流候補 |
+| `forward_route` | `confirmed` 候補がある場合必須 | L1 / L3-L6 / gap-only 等の Forward 合流候補。S4 終端判断では PLAN 識別子、`docs/...` パス、または L1/L3-L6 の具体層を含め、`Forward へ進める` だけの抽象説明で代替しない |
 | `reverse_fullback_required` | `confirmed` 候補がある場合必須 | confirmed 後に Reverse fullback で正本化が必要か |
 | `promotion_strategy_or_rejection_pivot_rationale` | S3 pending PLAN で必須 | confirmed なら `promotion_strategy` (`reuse-with-hardening` / `redesign` 等) と後続 descent 方針、rejected/pivot なら却下・再探索理由と backlog / retry route |
 

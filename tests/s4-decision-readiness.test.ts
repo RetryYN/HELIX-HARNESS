@@ -755,7 +755,7 @@ describe("S4 decision readiness", () => {
         {
           subject: "PLAN-DISCOVERY-907",
           reason:
-            "confirmed decision requires forward_route to name a Forward/Reverse promotion target",
+            "confirmed decision requires forward_route to name a concrete Forward/Reverse promotion target",
         },
         {
           subject: "PLAN-DISCOVERY-907",
@@ -768,6 +768,50 @@ describe("S4 decision readiness", () => {
         },
       ]),
     );
+  });
+
+  it("fails confirmed S4 decisions whose forward_route is only abstract workflow prose", () => {
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-DISCOVERY-907A.md",
+            plan_id: "PLAN-DISCOVERY-907A",
+            kind: "poc",
+            status: "confirmed",
+            workflowPhase: "S4",
+            decisionOutcome: "confirmed",
+            text: [
+              "decision_outcome: confirmed",
+              "s4_decision_record:",
+              "- allowed_outcome: `confirmed`",
+              "- decision_owner: PO",
+              "- decision_basis: verified evidence",
+              "- verified_evidence: targeted tests and review evidence",
+              "- stakeholder_review_or_proxy: PO/TL proxy review",
+              "- acceptance_gap: none",
+              "- unresolved_risk: none",
+              "- external_source_basis: docs/process/modes/discovery.md",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_status_delta: none",
+              "- adoption_decision_delta: none",
+              "- workflow_route_impact: none before S4 decision",
+              "- route_impact: confirmed routes forward",
+              "- forward_route: promote through Forward after decision",
+              "- reverse_fullback_required: yes",
+              "- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-907A",
+      reason:
+        "confirmed decision requires forward_route to name a concrete Forward/Reverse promotion target",
+    });
   });
 
   it("fails terminal S4 decisions whose allowed_outcome still lists the enum instead of the selected outcome", () => {
@@ -1058,7 +1102,8 @@ describe("S4 decision readiness", () => {
   });
 
   it("passes against the live repository and lists the current S3 PO decisions", () => {
-    const result = analyzeS4DecisionReadiness(loadS4DecisionReadinessInput());
+    const liveInput = loadS4DecisionReadinessInput();
+    const result = analyzeS4DecisionReadiness(liveInput);
     expect(result.ok).toBe(true);
     expect(result.pendingPlanIds).toEqual([
       "PLAN-DISCOVERY-07-design-bottomup-mode",
@@ -1066,6 +1111,20 @@ describe("S4 decision readiness", () => {
     ]);
     expect(result.missingSourceLedgerRows).toEqual([]);
     expect(result.sourceLedgerViolations).toEqual([]);
+
+    const packets = buildS4DecisionPackets(liveInput);
+    expect(packets.map((packet) => packet.planId).sort()).toEqual([
+      "PLAN-DISCOVERY-07-design-bottomup-mode",
+      "PLAN-DISCOVERY-10-helix-asset-visualization",
+    ]);
+    expect(
+      packets.find((packet) => packet.planId === "PLAN-DISCOVERY-07-design-bottomup-mode")
+        ?.decisionRecord.forward_route,
+    ).toContain("L1/L3-L6");
+    expect(
+      packets.find((packet) => packet.planId === "PLAN-DISCOVERY-10-helix-asset-visualization")
+        ?.decisionRecord.forward_route,
+    ).toContain("L3 visualization");
   });
 
   it("exposes live S3 pending PoC work through the CLI S4 decision packet surface", () => {

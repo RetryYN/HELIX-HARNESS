@@ -72,7 +72,7 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   Scrum Guide 2020、ISO/IEC/IEEE 29148、ISTQB Glossary、NIST SSDF の source ledger を PO/S4 判断前の
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
   進めない。packet は `s4_decision_record` と、同一 PLAN が承認境界を持つ場合の
-  `action_binding_approval_record` の `recordTemplates[]` を返し、text surface も `record-template` 行を出す。
+  `action_binding_approval_record` の `recordTemplates[]` を返し、text surface も `record-template` 行を出す。S4 終端判断の `forward_route` は `Forward` / `Reverse` / `正本化` の抽象説明だけでは不足とし、PLAN 識別子、`docs/...` パス、または L1/L3-L6 の具体的な合流層を含む場合だけ具体昇格先とみなす。これにより S3 検証証跡を「意味上どこへ降ろすか」の設計判断なしに confirmed へ読み替えない。
   text surface は evidence check 件数、outcome route 件数、verification command 件数と、
   checked/adoption/status delta/route impact/writePolicy/command 付き `verification-source:` 行を出す。
   `decisionVerificationCommandMatrix[]` は共通 source metadata validator により、未来日・90 日超 stale・

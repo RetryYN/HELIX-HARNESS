@@ -331,11 +331,11 @@ function validateSelectedOutcomeSemantics(plan: S4DecisionPlan): S4DecisionViola
         reason: "confirmed decision requires route_impact to describe confirmed impact",
       });
     }
-    if (!mentionsPromotionTarget(forwardRoute)) {
+    if (!mentionsConcretePromotionTarget(forwardRoute)) {
       violations.push({
         subject: plan.plan_id,
         reason:
-          "confirmed decision requires forward_route to name a Forward/Reverse promotion target",
+          "confirmed decision requires forward_route to name a concrete Forward/Reverse promotion target",
       });
     }
     if (!/^(yes|no)\b/i.test(reverseFullbackRequired)) {
@@ -443,11 +443,11 @@ function mentions(value: string, needles: string[]): boolean {
   return needles.some((needle) => normalized.includes(needle.toLowerCase()));
 }
 
-function mentionsPromotionTarget(value: string): boolean {
+function mentionsConcretePromotionTarget(value: string): boolean {
   return (
-    /\bPLAN-(?:L|REVERSE)-/i.test(value) ||
-    /\bL(?:1|2|3|4|5|6|7|8|9|10|11|12|13|14)\b/.test(value) ||
-    mentions(value, ["Forward", "Reverse", "requirements", "design", "descent", "正本"])
+    /\bPLAN-(?:L|REVERSE|DISCOVERY)-/i.test(value) ||
+    /\bL(?:1|3|4|5|6)\b/.test(value) ||
+    /docs[\\/](?:design|plans|process|test-design)[\\/]/i.test(value)
   );
 }
 
