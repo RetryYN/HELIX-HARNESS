@@ -1,5 +1,12 @@
 # Reverse Fullback Backprop Audit (2026-06-22)
 
+2026-07-03 更新: IMP-143 の scope-missing 3 件
+(`PLAN-REVERSE-20-runtime-adapter-session-lifecycle` /
+`PLAN-REVERSE-21-fr-unit-coverage` / `PLAN-REVERSE-31-codex-l7-overstep`) は
+各 PLAN に `backprop_scope` を back-fill し、`PLAN-REVERSE-20` には本文で主張していた
+`docs/test-design/harness/L7-unit-test-design.md` を `generates` に追加した。したがって
+「Generated Artifact Present, Backprop Scope Missing」の legacy debt は 0 件になった。
+
 This audit records confirmed/completed `kind=reverse` + `workflow_phase=R4` +
 `confirmed_reverse_type=fullback` PLANs whose frontmatter does not generate a
 `docs/design/`, `docs/governance/`, or `docs/test-design/` artifact.
@@ -54,11 +61,11 @@ These entries were not captured by the first audit because `generates` already
 contains at least one upstream artifact. They still lack the stronger
 `backprop_scope` record introduced by `PLAN-REVERSE-107`.
 
-| PLAN | status | route | generated upstream artifact(s) | observed issue |
+| PLAN | status | route | generated upstream artifact(s) | remediation |
 |---|---|---|---|---|
-| PLAN-REVERSE-20-runtime-adapter-session-lifecycle | confirmed | L4 | requirements, L4 basic design | No `backprop_scope`; body also claims L7 unit test-design back-fill, but `generates` does not list `docs/test-design/harness/L7-unit-test-design.md`. |
-| PLAN-REVERSE-21-fr-unit-coverage | confirmed | L5 | L6 function design, L7 unit test design | No `backprop_scope`; requirements/L4/L5 impact decisions are implicit. |
-| PLAN-REVERSE-31-codex-l7-overstep | confirmed | L5 | requirements, backlog, recovery process | No `backprop_scope`; process/backlog backprop is visible, but requirements/L4/L5 impact decisions are implicit. |
+| PLAN-REVERSE-20-runtime-adapter-session-lifecycle | confirmed | L4 | requirements, L4 basic design, L7 unit test design | 2026-07-03: `backprop_scope` を追加し、L7 unit test-design を `generates` に追加。 |
+| PLAN-REVERSE-21-fr-unit-coverage | confirmed | L5 | L6 function design, L7 unit test design | 2026-07-03: requirements/L4/L5 not impacted と L6/L7 updated を `backprop_scope` に明示。 |
+| PLAN-REVERSE-31-codex-l7-overstep | confirmed | L5 | requirements, backlog, recovery process | 2026-07-03: requirements/process/backlog updated と L4/L5 not impacted を `backprop_scope` に明示。 |
 
 ### Non-Fullback R4 Reverse Artifact Claim Missing
 
@@ -88,8 +95,8 @@ As of 2026-06-23, confirmed/completed R4 fullback PLANs are classified as:
 
 | category | count | meaning |
 |---|---:|---|
-| Generated upstream artifact + `backprop_scope` present | 9 | Current compliant shape. |
-| Generated upstream artifact present, `backprop_scope` missing | 3 | Legacy trace is partial; scope decisions must be backfilled or the PLAN must be reclassified. |
+| Generated upstream artifact + `backprop_scope` present | 12 | Current compliant shape (2026-07-03 に IMP-143 scope-missing 3 件を back-fill 済み)。 |
+| Generated upstream artifact present, `backprop_scope` missing | 0 | IMP-143 の scope-missing legacy debt は解消済み。 |
 | No generated upstream artifact and no `backprop_scope` | 23 | Legacy debt from the original audit table. |
 
 Non-fullback R4 Reverse sweep also found 7 confirmed/completed PLANs with

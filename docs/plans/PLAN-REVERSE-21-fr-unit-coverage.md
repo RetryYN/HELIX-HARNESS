@@ -12,6 +12,24 @@ updated: 2026-06-09
 owner: Codex TL / PO
 forward_routing: L5
 promotion_strategy: reuse-as-is
+backprop_scope:
+  - layer: requirements
+    decision: not_impacted
+    reason: "L6 FR coverage は既存 FR-L1 registry の closure gate 化であり、新規 requirements は追加しない。"
+  - layer: L4-basic-design
+    decision: not_impacted
+    reason: "coverage rule は L6 function design / L7 unit oracle の整合補正であり、L4 基本構造は変更しない。"
+  - layer: L5-detailed-design
+    decision: not_impacted
+    reason: "coverage rule は doc/test trace gate であり、L5 物理データ・内部処理 schema は変更しない。"
+  - layer: L6-function-design
+    decision: updated
+    evidence_path: docs/design/harness/L6-function-design/function-spec.md
+    reason: "FR coverage を L6 closure rule として function-spec へ戻した。"
+  - layer: L7-test-design
+    decision: updated
+    evidence_path: docs/test-design/harness/L7-unit-test-design.md
+    reason: "U-FR-L1-* を Red entry contract として L7 unit test design へ戻した。"
 agent_slots:
   - role: tl
     slot_label: "TL - L6 coverage back-fill review"

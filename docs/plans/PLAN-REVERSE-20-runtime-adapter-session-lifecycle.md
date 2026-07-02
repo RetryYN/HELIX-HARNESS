@@ -21,6 +21,22 @@ review_evidence:
     scope: "PLAN-L6-20/L7-21/REVERSE-20 runtime adapter lifecycle; Critical/High/Important 0 after follow-up review."
 forward_routing: L4
 promotion_strategy: reuse-as-is
+backprop_scope:
+  - layer: requirements
+    decision: updated
+    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    reason: "runtime adapter lifecycle は既存 §6.8 / §6.9 の運用観測・CI dogfood 詳細として requirements へ戻した。"
+  - layer: L4-basic-design
+    decision: updated
+    evidence_path: docs/design/harness/L4-basic-design/function.md
+    reason: "provider invocation / task-file / plan metadata separation を L4 function design の runtime building block へ戻した。"
+  - layer: L5-detailed-design
+    decision: not_impacted
+    reason: "adapter lifecycle wrapper は CLI/runtime 境界の機能設計補正であり、L5 物理データ・内部処理 schema は変更しない。"
+  - layer: L7-test-design
+    decision: updated
+    evidence_path: docs/test-design/harness/L7-unit-test-design.md
+    reason: "U-SLOG / U-ADAPTER oracle に provider surface を接続した。"
 agent_slots:
   - role: tl
     slot_label: "TL - adapter surface back-fill review"
@@ -29,6 +45,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
     artifact_type: markdown_doc
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
+    artifact_type: test_design
 dependencies:
   parent: docs/plans/PLAN-L7-21-runtime-adapter-session-lifecycle.md
   requires:

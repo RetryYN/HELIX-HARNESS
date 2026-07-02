@@ -12,6 +12,25 @@ updated: 2026-06-09
 owner: Codex TL / PO
 forward_routing: L5
 promotion_strategy: reuse-as-is
+backprop_scope:
+  - layer: requirements
+    decision: updated
+    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    reason: "unapproved L7 source work を Recovery + Reverse fullback へ戻す規律を requirements §6.8.8 へ記録した。"
+  - layer: L4-basic-design
+    decision: not_impacted
+    reason: "この Reverse は process/governance gap の補正であり、L4 runtime / module / external interface は変更しない。"
+  - layer: L5-detailed-design
+    decision: not_impacted
+    reason: "source implementation は撤去済みで、L5 物理データ・内部処理 schema は変更しない。"
+  - layer: process
+    decision: updated
+    evidence_path: docs/process/modes/recovery.md
+    reason: "Recovery mode application log に PLAN-RECOVERY-03 の route を戻した。"
+  - layer: backlog
+    decision: updated
+    evidence_path: docs/improvement-backlog.md
+    reason: "IMP-125 と関連する再発防止項目を backlog に登録した。"
 agent_slots:
   - role: tl
     slot_label: "TL - Recovery fullback"
