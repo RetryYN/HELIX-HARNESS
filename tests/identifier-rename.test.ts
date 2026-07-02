@@ -145,6 +145,10 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
       "- audit_record: approver command result rollback monitoring route",
       "- post_cutover_monitoring: quiet window helix doctor status feedback backlog monitoring",
       "- legacy_alias_policy: temporary ut-tdd alias with sunset PLAN",
+      "- source_ledger_freshness: fresh Cutover source ledger checked 2026-07-02",
+      "- source_status_delta: none; live source status reviewed for cutover",
+      "- adoption_decision_delta: none; adoption decisions unchanged for cutover",
+      "- workflow_route_impact: none; L14 cutover route remains approval-gated",
       "action_binding_approval_record:",
       "- allowed_outcome: approve_action_binding",
       "- approval_policy_or_named_approver: PO RetryYN",
@@ -975,6 +979,54 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         actionBindingSnapshotMatchesCurrent: true,
         driftWarning: null,
       });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("does not authorize cutover when source ledger meaning-review fields are omitted", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-missing-source-review-"));
+    try {
+      writeApprovedRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      ).cutoverSnapshot.snapshotId;
+      writeApprovedRenamePlan(root, currentSnapshotId);
+      const planPath = join(root, "docs", "plans", "PLAN-M-02-helix-identifier-rename.md");
+      writeFileSync(
+        planPath,
+        readFileSync(planPath, "utf8")
+          .split("\n")
+          .filter(
+            (line) =>
+              !/source_ledger_freshness|source_status_delta|adoption_decision_delta|workflow_route_impact/.test(
+                line,
+              ),
+          )
+          .join("\n"),
+      );
+
+      const plan = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+
+      expect(plan.status).toBe("blocked_pending_cutover_approval");
+      expect(plan.applyAuthorized).toBe(false);
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          "missing concrete cutover_decision_record.source_ledger_freshness",
+          "missing concrete cutover_decision_record.source_status_delta",
+          "missing concrete cutover_decision_record.adoption_decision_delta",
+          "missing concrete cutover_decision_record.workflow_route_impact",
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

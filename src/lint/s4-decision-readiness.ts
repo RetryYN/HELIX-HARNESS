@@ -1048,10 +1048,16 @@ export function s4DecisionVerificationCommandViolations(
   return packet.decisionVerificationCommandMatrix.flatMap((row) => {
     const violations: S4DecisionCommandViolation[] = [];
     const command = row.command.trim();
-    if (!allowedCommands.has(command)) {
+    if (row.writePolicy !== "no-write" || !allowedCommands.has(command)) {
       violations.push({
         subject: `${packet.planId}.${row.phase}`,
-        reason: `decisionVerificationCommandMatrix command is not an executable approved surface: ${row.command}`,
+        reason: `decisionVerificationCommandMatrix command is not an executable approved no-write surface: ${row.command}`,
+      });
+    }
+    if (commandWritesLocalStateOrArtifacts(command)) {
+      violations.push({
+        subject: `${packet.planId}.${row.phase}`,
+        reason: `decisionVerificationCommandMatrix no-write command may write local state or artifacts: ${row.command}`,
       });
     }
     violations.push(
@@ -1063,6 +1069,10 @@ export function s4DecisionVerificationCommandViolations(
     );
     return violations;
   });
+}
+
+function commandWritesLocalStateOrArtifacts(command: string): boolean {
+  return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
 }
 
 function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): string[] {

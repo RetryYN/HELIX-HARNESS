@@ -1117,6 +1117,28 @@ describe("L7 CLI surface closure", () => {
     );
   }, 20_000);
 
+  it("fails scoped decision packet commands closed when the requested PLAN is not present", () => {
+    for (const args of [
+      ["version-up", "activation-packet", "--plan", "PLAN-NOT-FOUND", "--json"],
+      ["s4", "decision-packet", "--plan", "PLAN-NOT-FOUND", "--json"],
+      ["action-binding", "approval-packet", "--plan", "PLAN-NOT-FOUND", "--json"],
+    ]) {
+      const result = runCli(args);
+      expect(result.status, args.join(" ")).toBe(1);
+      expect(JSON.parse(result.stdout)).toEqual({
+        ok: false,
+        reason: "plan_not_matched",
+        command: args.slice(0, 2).join(" "),
+        planId: "PLAN-NOT-FOUND",
+      });
+    }
+
+    const text = runCli(["s4", "decision-packet", "--plan", "PLAN-NOT-FOUND"]);
+    expect(text.status).toBe(1);
+    expect(text.stderr).toContain("s4 decision-packet: plan_not_matched plan=PLAN-NOT-FOUND");
+    expect(text.stdout).toBe("");
+  });
+
   it("exposes HELIX project setup for VSCode-ready new projects", () => {
     const json = runCli(["setup", "project", "--dry-run", "--json"]);
 

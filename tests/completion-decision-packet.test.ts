@@ -187,6 +187,12 @@ describe("completion decision packet lint", () => {
           "provenanceRequirements",
           "provenanceRequirements.item",
           "provenanceRequirements.evidence",
+          "decisionVerificationCommandMatrix",
+          "decisionVerificationCommandMatrix.phase",
+          "decisionVerificationCommandMatrix.command",
+          "decisionVerificationCommandMatrix.writePolicy",
+          "decisionVerificationCommandMatrix.expected",
+          "decisionVerificationCommandMatrix.evidence",
           "relatedDecisionPackets",
           "relatedDecisionPackets.scopedCommand",
           "nextWorkflowRoutes",
@@ -459,6 +465,11 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=provenanceRequirements",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionVerificationCommandMatrix.command",
         },
         {
           reason: "invalid_supporting_packet_summary",

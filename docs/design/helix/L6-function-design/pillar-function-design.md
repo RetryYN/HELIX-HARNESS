@@ -87,9 +87,13 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `decisionRecord.forward_route`、`decisionRecord.reverse_fullback_required`、
   `decisionRecord.promotion_strategy_or_rejection_pivot_rationale`、`outcomeRouteMatrix.routePolicy`、
   `outcomeRouteMatrix.requiredEvidence`、`provenanceRequirements.evidence`、`relatedDecisionPackets.scopedCommand`、
-  `nextWorkflowRoutes.route` を `requiredReviewFields[]` に列挙する。これにより、Scrum Guide の inspect/adapt、
+  `nextWorkflowRoutes.route` に加え、`decisionVerificationCommandMatrix.command`、
+  `decisionVerificationCommandMatrix.writePolicy`、`decisionVerificationCommandMatrix.evidence` を
+  `requiredReviewFields[]` に列挙する。これにより、Scrum Guide の inspect/adapt、
   NIST SSDF の evidence/artifact、SLSA provenance、GitHub の review/concurrency、SRE の rollback 観点を、
-  PO/S4 判断前の status/handover review で失わない。
+  PO/S4 判断前の status/handover review で失わない。S4 matrix は `writePolicy=no-write` の
+  承認済み CLI/test surface に限定し、DB rebuild、build artifact 出力、redirect/tee など state / artifact を
+  書く command を判断材料に混ぜない。
 - HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
   `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
   PLAN 本文 digest、source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を

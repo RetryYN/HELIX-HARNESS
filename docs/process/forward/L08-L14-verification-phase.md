@@ -107,6 +107,14 @@ fail-close する。S4 / version-up sibling packet は `--plan <PLAN_ID>` 付き
 同じ scoped command は `relatedDecisionPackets[].scopedCommand` にも保持し、text mode の `related-packet:`
 行にも出す。completion/status 画面だけでなく、S4 / version-up / action-binding / rename の専用 packet
 単体をレビューした場合でも、別 PLAN の approval や decision material を流用できないようにする。
+
+S4 decision packet も plan-only の判断材料であり、`decisionVerificationCommandMatrix[]` は
+`writePolicy=no-write` の承認済み CLI/test surface だけを持つ。completion decision packet / status /
+handover の S4 supporting summary は `decisionVerificationCommandMatrix.command`、
+`decisionVerificationCommandMatrix.writePolicy`、`decisionVerificationCommandMatrix.evidence` を落とさず、
+PO/S4 判断前の検証 command と no-write 境界を人間の推測に戻さない。`db rebuild`、build artifact 出力、
+redirect/tee など state / artifact を書く command が S4 の no-write matrix に混入した場合は fail-close する。
+
 `approve_action_binding` に進む場合でも、PLAN 本文へ named approver、approved_actor、
 approved_tool、approved_target、approved_params、reviewed snapshot binding、expiry/trigger、audit evidence を concrete に記録するまで、
 高影響 action を実行してはならない。

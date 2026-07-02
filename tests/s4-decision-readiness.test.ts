@@ -426,7 +426,50 @@ describe("S4 decision readiness", () => {
       {
         subject: "PLAN-DISCOVERY-900.s3-verification-evidence",
         reason:
-          "decisionVerificationCommandMatrix command is not an executable approved surface: run the PLAN-declared S3 verification command(s) cited by verified_evidence",
+          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: run the PLAN-declared S3 verification command(s) cited by verified_evidence",
+      },
+    ]);
+    expect(
+      s4DecisionVerificationCommandViolations({
+        ...packet,
+        decisionVerificationCommandMatrix: packet.decisionVerificationCommandMatrix.map((row) =>
+          row.phase === "static-gates"
+            ? {
+                ...row,
+                command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-DISCOVERY-900.static-gates",
+        reason:
+          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      },
+      {
+        subject: "PLAN-DISCOVERY-900.static-gates",
+        reason:
+          "decisionVerificationCommandMatrix no-write command may write local state or artifacts: bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      },
+    ]);
+    expect(
+      s4DecisionVerificationCommandViolations({
+        ...packet,
+        decisionVerificationCommandMatrix: packet.decisionVerificationCommandMatrix.map((row) =>
+          row.phase === "completion-frontier"
+            ? {
+                ...row,
+                writePolicy: "state-write" as "no-write",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-DISCOVERY-900.completion-frontier",
+        reason:
+          "decisionVerificationCommandMatrix command is not an executable approved no-write surface: bun run src/cli.ts status --json",
       },
     ]);
     expect(

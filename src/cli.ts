@@ -771,6 +771,16 @@ function packetFreshnessLine(packet: {
   return `  packet-freshness: source=${packet.sourceCommand} generatedAt=${packet.generatedAt} validForMinutes=${packet.freshness.validForMinutes} expiresAt=${packet.freshness.expiresAt} stale=${packet.freshness.stale}\n`;
 }
 
+function failPlanNotMatched(command: string, planId: string, json = false): void {
+  process.exitCode = 1;
+  const payload = { ok: false, reason: "plan_not_matched", command, planId };
+  if (json) {
+    process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+    return;
+  }
+  process.stderr.write(`${command}: plan_not_matched plan=${planId}\n`);
+}
+
 function verificationSourceLines(
   rows: Array<{
     phase: string;
@@ -1737,6 +1747,10 @@ versionUp
   .action((opts: { json?: boolean; plan?: string }) => {
     const packets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(process.cwd()));
     const filtered = opts.plan ? packets.filter((packet) => packet.planId === opts.plan) : packets;
+    if (opts.plan && filtered.length === 0) {
+      failPlanNotMatched("version-up activation-packet", opts.plan, opts.json);
+      return;
+    }
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(filtered, null, 2)}\n`);
       return;
@@ -1788,6 +1802,10 @@ s4.command("decision-packet")
   .action((opts: { json?: boolean; plan?: string }) => {
     const packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(process.cwd()));
     const filtered = opts.plan ? packets.filter((packet) => packet.planId === opts.plan) : packets;
+    if (opts.plan && filtered.length === 0) {
+      failPlanNotMatched("s4 decision-packet", opts.plan, opts.json);
+      return;
+    }
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(filtered, null, 2)}\n`);
       return;
@@ -1830,6 +1848,10 @@ actionBinding
       loadActionBindingApprovalReadinessInput(process.cwd()),
     );
     const filtered = opts.plan ? packets.filter((packet) => packet.planId === opts.plan) : packets;
+    if (opts.plan && filtered.length === 0) {
+      failPlanNotMatched("action-binding approval-packet", opts.plan, opts.json);
+      return;
+    }
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(filtered, null, 2)}\n`);
       return;

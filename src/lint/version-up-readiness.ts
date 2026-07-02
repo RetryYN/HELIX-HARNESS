@@ -134,6 +134,7 @@ export interface VersionUpActivationPacket {
   }>;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   activationSnapshot: VersionUpActivationSnapshot;
+  securityChecklistPacket: VersionUpSecurityChecklistPacket;
   relatedDecisionPackets: RelatedDecisionPacket[];
   blockedReasons: string[];
   nextWorkflowRoutes: Array<{ outcome: string; route: string }>;
@@ -1589,6 +1590,21 @@ export function buildVersionUpActivationPacket(
     activationVerificationCommandMatrix,
     reapprovalTriggers,
     activationSnapshot,
+    securityChecklistPacket: {
+      schemaVersion: "version-up-security-checklist.v1",
+      planId: plan.plan_id,
+      planOnly: true,
+      mustNotApply: true,
+      writePolicy: "no-write",
+      sourceCommand: `ut-tdd version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
+      activationSnapshot,
+      securityChecks: buildVersionUpSecurityChecks(),
+      blockedUntil: [
+        "securityChecks have concrete evidence paths, audit ids, or reports",
+        "external_rehearsal_plan and activation_provenance_requirements cite the same evidence",
+        "activation remains approval-gated and no production write is performed by this packet",
+      ],
+    },
     relatedDecisionPackets: uniqueRelatedDecisionPackets([
       relatedDecisionPacket({
         command: VERSION_UP_ACTIVATION_PACKET_COMMAND,
@@ -1658,56 +1674,46 @@ export function buildVersionUpActivationRehearsalPacket(
 export function buildVersionUpSecurityChecklistPacket(
   packet: VersionUpActivationPacket,
 ): VersionUpSecurityChecklistPacket {
-  return {
-    schemaVersion: "version-up-security-checklist.v1",
-    planId: packet.planId,
-    planOnly: true,
-    mustNotApply: true,
-    writePolicy: "no-write",
-    sourceCommand: `ut-tdd version-up security-checklist --plan ${packet.planId} --no-write --json`,
-    activationSnapshot: packet.activationSnapshot,
-    securityChecks: [
-      {
-        check: "github-actions-least-privilege",
-        source: "GitHub Actions secure use",
-        ...VERSION_UP_SOURCE_METADATA.githubActionsSecurity,
-        requiredEvidence:
-          "workflow permissions are least-privilege and GITHUB_TOKEN write permissions are not granted by default",
-      },
-      {
-        check: "pull-request-target-risk-review",
-        source: "GitHub Actions secure use",
-        ...VERSION_UP_SOURCE_METADATA.githubActionsPullRequestTarget,
-        requiredEvidence:
-          "activation workflow does not run untrusted pull_request_target code with secrets or write token",
-      },
-      {
-        check: "webhook-hmac-sha256",
-        source: "GitHub webhook HMAC SHA-256",
-        ...VERSION_UP_SOURCE_METADATA.githubWebhookHmac,
-        requiredEvidence: "staging webhook validates X-Hub-Signature-256 before projection update",
-      },
-      {
-        check: "github-environments-availability",
-        source: "GitHub Environments required reviewers",
-        ...VERSION_UP_SOURCE_METADATA.githubEnvironments,
-        requiredEvidence:
-          "repository visibility, account/org plan, required reviewers, prevent self-review, and environment secrets availability are recorded before relying on GitHub Environments as the approval gate",
-      },
-      {
-        check: "access-control-and-secret-exposure",
-        source: "OWASP Web Security Testing Guide",
-        ...VERSION_UP_SOURCE_METADATA.owaspWstg,
-        requiredEvidence:
-          "OWASP-aligned access-control, secret/PII exclusion, and read-only projection checks produce a report or audit id",
-      },
-    ],
-    blockedUntil: [
-      "securityChecks have concrete evidence paths, audit ids, or reports",
-      "external_rehearsal_plan and activation_provenance_requirements cite the same evidence",
-      "activation remains approval-gated and no production write is performed by this packet",
-    ],
-  };
+  return packet.securityChecklistPacket;
+}
+
+function buildVersionUpSecurityChecks(): VersionUpSecurityChecklistPacket["securityChecks"] {
+  return [
+    {
+      check: "github-actions-least-privilege",
+      source: "GitHub Actions secure use",
+      ...VERSION_UP_SOURCE_METADATA.githubActionsSecurity,
+      requiredEvidence:
+        "workflow permissions are least-privilege and GITHUB_TOKEN write permissions are not granted by default",
+    },
+    {
+      check: "pull-request-target-risk-review",
+      source: "GitHub Actions secure use",
+      ...VERSION_UP_SOURCE_METADATA.githubActionsPullRequestTarget,
+      requiredEvidence:
+        "activation workflow does not run untrusted pull_request_target code with secrets or write token",
+    },
+    {
+      check: "webhook-hmac-sha256",
+      source: "GitHub webhook HMAC SHA-256",
+      ...VERSION_UP_SOURCE_METADATA.githubWebhookHmac,
+      requiredEvidence: "staging webhook validates X-Hub-Signature-256 before projection update",
+    },
+    {
+      check: "github-environments-availability",
+      source: "GitHub Environments required reviewers",
+      ...VERSION_UP_SOURCE_METADATA.githubEnvironments,
+      requiredEvidence:
+        "repository visibility, account/org plan, required reviewers, prevent self-review, and environment secrets availability are recorded before relying on GitHub Environments as the approval gate",
+    },
+    {
+      check: "access-control-and-secret-exposure",
+      source: "OWASP Web Security Testing Guide",
+      ...VERSION_UP_SOURCE_METADATA.owaspWstg,
+      requiredEvidence:
+        "OWASP-aligned access-control, secret/PII exclusion, and read-only projection checks produce a report or audit id",
+    },
+  ];
 }
 
 export function versionUpSecurityChecklistSourceViolations(

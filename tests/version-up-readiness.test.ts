@@ -850,6 +850,20 @@ describe("version-up-readiness", () => {
     });
     expect(rehearsalPacket.activationReadinessChecks.length).toBeGreaterThan(0);
     const securityPacket = buildVersionUpSecurityChecklistPacket(packet);
+    expect(packet.securityChecklistPacket).toMatchObject({
+      schemaVersion: "version-up-security-checklist.v1",
+      planId: "PLAN-L7-900-future",
+      planOnly: true,
+      mustNotApply: true,
+      writePolicy: "no-write",
+    });
+    expect(packet.securityChecklistPacket.securityChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ check: "github-actions-least-privilege" }),
+        expect.objectContaining({ check: "access-control-and-secret-exposure" }),
+      ]),
+    );
+    expect(securityPacket).toEqual(packet.securityChecklistPacket);
     expect(securityPacket).toMatchObject({
       schemaVersion: "version-up-security-checklist.v1",
       planId: "PLAN-L7-900-future",

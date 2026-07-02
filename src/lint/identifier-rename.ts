@@ -509,6 +509,10 @@ function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
     "audit_record",
     "post_cutover_monitoring",
     "legacy_alias_policy",
+    "source_ledger_freshness",
+    "source_status_delta",
+    "adoption_decision_delta",
+    "workflow_route_impact",
   ]) {
     requireConcrete(cutoverBlock, field, "cutover_decision_record");
   }
