@@ -166,6 +166,7 @@ function baseInput(): SemanticFrontierConsistencyInput {
         reason: "blocked",
         blockers: [],
         requiredActions: [],
+        requiredActionsJa: [],
       },
       semanticFeatureFrontierRecords: [
         {

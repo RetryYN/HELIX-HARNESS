@@ -115,6 +115,7 @@ export interface ActionBindingApprovalPacket {
 
 interface ActionBindingSnapshotExpectations {
   versionUpSnapshotId: string | null;
+  versionUpSnapshotValidationMissing: boolean;
   cutoverSnapshotId: string | null;
 }
 
@@ -143,6 +144,8 @@ const ACTION_BINDING_ALLOWED_OUTCOMES = [
   "deny_action",
   "request_scope_reduction",
 ] as const;
+const VERSION_UP_SNAPSHOT_VALIDATION_MISSING_REASON =
+  "activation snapshot cannot be validated without repoHeadSha";
 
 const RIGHT_ARM_MARKERS = [
   "Action-binding approval decision record",
@@ -744,6 +747,12 @@ function validateActionBindingSemantics(
   }
   const expectedVersionUpSnapshot = expectedVersionUpActivationSnapshotId(plan, input);
   const expectedCutoverSnapshot = expectedCutoverSnapshotId(plan, input);
+  if (versionUpSnapshotValidationMissing(plan, input)) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: VERSION_UP_SNAPSHOT_VALIDATION_MISSING_REASON,
+    });
+  }
   if (
     expectedVersionUpSnapshot &&
     hasConcreteSnapshotId(reviewedSnapshotBinding) &&
@@ -828,6 +837,7 @@ function expectedVersionUpActivationSnapshotId(
   >,
 ): string | null {
   if (!requiresVersionUpSnapshot(plan) || !input.versionUpModeDoc) return null;
+  if (!input.repoHeadSha) return null;
   return (
     buildVersionUpActivationPackets({
       charter: "",
@@ -868,8 +878,16 @@ function actionBindingSnapshotExpectations(
 ): ActionBindingSnapshotExpectations {
   return {
     versionUpSnapshotId: expectedVersionUpActivationSnapshotId(plan, input),
+    versionUpSnapshotValidationMissing: versionUpSnapshotValidationMissing(plan, input),
     cutoverSnapshotId: expectedCutoverSnapshotId(plan, input),
   };
+}
+
+function versionUpSnapshotValidationMissing(
+  plan: ActionBindingApprovalPlan,
+  input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc" | "repoHeadSha">,
+): boolean {
+  return requiresVersionUpSnapshot(plan) && Boolean(input.versionUpModeDoc) && !input.repoHeadSha;
 }
 
 function readRepoHeadSha(repoRoot: string): string | null {
@@ -914,6 +932,7 @@ function actionBindingBlockedReasons(
   approvalRecord: Record<string, string>,
   snapshotExpectations: ActionBindingSnapshotExpectations = {
     versionUpSnapshotId: null,
+    versionUpSnapshotValidationMissing: false,
     cutoverSnapshotId: null,
   },
 ): string[] {
@@ -950,6 +969,8 @@ function actionBindingBlockedReasons(
   const reviewedSnapshotBinding = approvalRecord.reviewed_snapshot_binding ?? "";
   if (!hasReviewedSnapshotBinding(plan, reviewedSnapshotBinding)) {
     reasons.push("reviewed_snapshot_binding does not match the required decision packet route");
+  } else if (snapshotExpectations.versionUpSnapshotValidationMissing) {
+    reasons.push(VERSION_UP_SNAPSHOT_VALIDATION_MISSING_REASON);
   } else if (
     requiresSnapshotBinding(plan) &&
     (isPendingApprovalBinding(reviewedSnapshotBinding) ||
@@ -978,6 +999,7 @@ function buildActionBindingApprovalChecks(
   approvalRecord: Record<string, string>,
   snapshotExpectations: ActionBindingSnapshotExpectations = {
     versionUpSnapshotId: null,
+    versionUpSnapshotValidationMissing: false,
     cutoverSnapshotId: null,
   },
 ): ActionBindingApprovalCheck[] {
@@ -1123,6 +1145,16 @@ function actionBindingApprovalCheckForField(
         value,
         reason: "snapshot binding is described as a future approval obligation",
         requiredAction: "record the reviewed snapshot id or no-snapshot basis used for approval",
+      };
+    }
+    if (snapshotExpectations.versionUpSnapshotValidationMissing) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: VERSION_UP_SNAPSHOT_VALIDATION_MISSING_REASON,
+        requiredAction:
+          "re-run the action-binding approval packet from a git worktree with repoHeadSha before approval",
       };
     }
     if (requiresSnapshotBinding(plan) && !hasConcreteSnapshotId(value)) {

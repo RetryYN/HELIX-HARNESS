@@ -345,6 +345,7 @@ describe("U-HOVER-017 §5 outstanding seed + anchor gate (PLAN-L7-98)", () => {
       reason: "",
       blockers: [],
       requiredActions: [],
+      requiredActionsJa: [],
     },
   };
 

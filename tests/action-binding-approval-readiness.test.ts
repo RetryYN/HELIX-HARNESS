@@ -807,6 +807,39 @@ describe("action-binding approval readiness", () => {
     });
   });
 
+  it("blocks version-up snapshot approval validation when repoHeadSha is unavailable", () => {
+    const snapshotFromUnknownHead = currentVersionUpSnapshotId(
+      versionUpPlanWithSnapshot("sha256:0".padEnd(71, "0")),
+      null,
+    );
+    const plan = versionUpPlanWithSnapshot(snapshotFromUnknownHead);
+    const input = {
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      currentVersion: "0.1.0",
+      plans: [plan],
+    };
+
+    const result = analyzeActionBindingApprovalReadiness(input);
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-146",
+      reason: "activation snapshot cannot be validated without repoHeadSha",
+    });
+
+    const packet = buildActionBindingApprovalPackets(input)[0];
+    expect(packet.blockedReasons).toContain(
+      "activation snapshot cannot be validated without repoHeadSha",
+    );
+    expect(
+      packet.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding"),
+    ).toMatchObject({
+      status: "pending",
+      reason: "activation snapshot cannot be validated without repoHeadSha",
+    });
+  });
+
   it("rejects cutover approvals whose concrete snapshot id is stale", () => {
     const staleSnapshot = "sha256:2222222222222222222222222222222222222222222222222222222222222222";
     const currentSnapshot =

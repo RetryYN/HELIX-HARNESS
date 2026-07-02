@@ -795,10 +795,11 @@ function packetSummaryText(summary: {
   requiredReviewFields: string[];
   requiredMatrixFields: string[];
   reviewRoute: string;
+  reviewRouteJa?: string;
 }): string {
   const reviewFields = summary.requiredReviewFields.join(",");
   const matrixFields = summary.requiredMatrixFields.join(",") || "none";
-  return `${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRoute}`;
+  return `${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRouteJa ?? summary.reviewRoute} review-id=${summary.reviewRoute}`;
 }
 
 function writeRecordTemplates(
@@ -853,7 +854,7 @@ program
         process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
         for (const item of workflowNextActions) {
           process.stdout.write(
-            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredAction} route=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
+            `workflow-next-action: ${item.order} ${item.planId} reason=${item.reason} action=${item.requiredActionJa} action-id=${item.requiredAction} route=${item.nextWorkflowRouteJa} route-id=${item.nextWorkflowRoute} packet=${item.decisionPacketCommand} scoped=${item.scopedDecisionPacketCommand} supporting=${item.packetCommands.join(" | ")} scoped-supporting=${item.scopedPacketCommands.join(" | ")}\n`,
           );
           for (const summary of item.supportingPacketSummaries) {
             process.stdout.write(`packet-summary: ${item.order} ${packetSummaryText(summary)}\n`);
@@ -912,11 +913,16 @@ completion
       for (const summary of decision.supportingPacketSummaries) {
         process.stdout.write(`    packet-summary: ${packetSummaryText(summary)}\n`);
       }
-      process.stdout.write(`    action: ${decision.requiredAction}\n`);
-      for (const action of decision.requiredActions) {
-        process.stdout.write(`    required-action: ${action}\n`);
+      process.stdout.write(`    action: ${decision.requiredActionJa}\n`);
+      process.stdout.write(`    action-id: ${decision.requiredAction}\n`);
+      for (const [index, action] of decision.requiredActions.entries()) {
+        process.stdout.write(
+          `    required-action: ${decision.requiredActionsJa[index] ?? action}\n`,
+        );
+        process.stdout.write(`    required-action-id: ${action}\n`);
       }
-      process.stdout.write(`    route: ${decision.nextWorkflowRoute}\n`);
+      process.stdout.write(`    route: ${decision.nextWorkflowRouteJa}\n`);
+      process.stdout.write(`    route-id: ${decision.nextWorkflowRoute}\n`);
       process.stdout.write(`    outcomes: ${decision.allowedOutcomes.join(", ")}\n`);
       for (const record of decision.allowedOutcomesByRecord) {
         process.stdout.write(

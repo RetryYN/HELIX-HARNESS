@@ -125,8 +125,12 @@ export interface OutstandingItem {
   blockers: string[];
   /** この PLAN を完了/合流へ進める前に必要な次アクション。 */
   requiredAction: string;
+  /** requiredAction の PO 向け日本語表示。machine field は requiredAction を正本として残す。 */
+  requiredActionJa: string;
   /** 複数 blocker を持つ PLAN で、補助 blocker の action-binding 要求を落とさないための全アクション。 */
   requiredActions: string[];
+  /** requiredActions の PO 向け日本語表示。 */
+  requiredActionsJa: string[];
   /** requiredAction を満たしたと機械照合するために残すべき証跡。 */
   requiredEvidence: string[];
 }
@@ -154,6 +158,7 @@ export interface CompletionReadiness {
   reason: string;
   blockers: string[];
   requiredActions: string[];
+  requiredActionsJa: string[];
 }
 
 export type CompletionDecisionKind =
@@ -180,7 +185,9 @@ export interface CompletionDecisionItem {
   blockers: string[];
   decisionKind: CompletionDecisionKind;
   requiredAction: string;
+  requiredActionJa: string;
   requiredActions: string[];
+  requiredActionsJa: string[];
   requiredEvidence: string[];
   requiredRecords: CompletionDecisionRecordRequirement[];
   recordTemplates: CompletionDecisionRecordTemplate[];
@@ -188,6 +195,7 @@ export interface CompletionDecisionItem {
   allowedOutcomesByRecord: CompletionDecisionRecordOutcome[];
   nextWorkflowRoutesByRecord: CompletionDecisionRecordRoute[];
   nextWorkflowRoute: string;
+  nextWorkflowRouteJa: string;
   /** Primary non-destructive packet command for the top blocker on this decision. */
   decisionPacketCommand: WorkflowDecisionPacketCommand;
   /** Primary + supporting non-destructive packet commands for every blocker on this decision. */
@@ -217,6 +225,7 @@ export interface CompletionDecisionSupportingPacketSummary {
   requiredReviewFields: string[];
   requiredMatrixFields: string[];
   reviewRoute: string;
+  reviewRouteJa: string;
 }
 
 export interface CompletionDecisionRecordRequirement {
@@ -273,9 +282,12 @@ export interface WorkflowNextActionItem {
   blockers: string[];
   decisionKind: CompletionDecisionKind;
   requiredAction: string;
+  requiredActionJa: string;
   requiredActions: string[];
+  requiredActionsJa: string[];
   requiredEvidence: string[];
   nextWorkflowRoute: string;
+  nextWorkflowRouteJa: string;
   /** Primary non-destructive packet for this PLAN's top blocker. */
   decisionPacketCommand: WorkflowDecisionPacketCommand;
   /** Primary + supporting non-destructive packets for every blocker on this PLAN. */
@@ -314,6 +326,7 @@ export function analyzeOutstandingWork(
     const reason = primaryOutstandingReason(blockers);
     const action = requiredOutstandingAction(reason);
     const requiredActions = requiredActionsForBlockers(blockers);
+    const requiredActionsJa = requiredActions.map(workflowActionTextJa);
     const requiredEvidence = requiredEvidenceForBlockers(blockers);
     for (const blocker of blockers) blockersByKind[blocker] = (blockersByKind[blocker] ?? 0) + 1;
     items.push({
@@ -326,7 +339,9 @@ export function analyzeOutstandingWork(
       reason,
       blockers,
       requiredAction: action.requiredAction,
+      requiredActionJa: workflowActionTextJa(action.requiredAction),
       requiredActions,
+      requiredActionsJa,
       requiredEvidence,
     });
   }
@@ -637,9 +652,13 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
   for (const blocker of Object.keys(o.blockersByKind)) blockers.add(blocker);
 
   const requiredActions = [...new Set(o.items.flatMap((item) => item.requiredActions))].sort();
+  const requiredActionsJa = requiredActions.map(workflowActionTextJa);
   if (o.openDefers > 0) {
     requiredActions.push(
       "resolve open placeholder/spec-backfill defers before claiming whole-program completion",
+    );
+    requiredActionsJa.push(
+      "whole-program completion を主張する前に placeholder/spec-backfill defer を解消する",
     );
   }
 
@@ -650,6 +669,7 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
       reason: "no non-terminal PLANs or open defers remain",
       blockers: [],
       requiredActions: [],
+      requiredActionsJa: [],
     };
   }
 
@@ -660,6 +680,7 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
       "whole-program completion is blocked; doctor green is not a substitute for closing outstanding work",
     blockers: [...blockers].sort(),
     requiredActions,
+    requiredActionsJa,
   };
 }
 
@@ -700,9 +721,14 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
         blockers: item.blockers,
         decisionKind: decisionKindForOutstandingReason(item.reason),
         requiredAction: item.requiredAction,
+        requiredActionJa: item.requiredActionJa,
         requiredActions: item.requiredActions,
+        requiredActionsJa: item.requiredActionsJa,
         requiredEvidence: item.requiredEvidence,
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+        nextWorkflowRouteJa: workflowRouteTextJa(
+          nextWorkflowRouteForOutstandingReason(item.reason),
+        ),
         decisionPacketCommand: decisionPacketCommandForOutstandingReason(item.reason),
         packetCommands,
         scopedDecisionPacketCommand: scopedPacketCommandForPlan(
@@ -760,7 +786,9 @@ export function completionDecisionPacketForOutstanding(
         blockers: item.blockers,
         decisionKind: decisionKindForOutstandingReason(item.reason),
         requiredAction: item.requiredAction,
+        requiredActionJa: item.requiredActionJa,
         requiredActions: item.requiredActions,
+        requiredActionsJa: item.requiredActionsJa,
         requiredEvidence: item.requiredEvidence,
         requiredRecords,
         recordTemplates: recordTemplatesForRecords(requiredRecords),
@@ -768,6 +796,9 @@ export function completionDecisionPacketForOutstanding(
         allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
         nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+        nextWorkflowRouteJa: workflowRouteTextJa(
+          nextWorkflowRouteForOutstandingReason(item.reason),
+        ),
         decisionPacketCommand,
         packetCommands,
         scopedDecisionPacketCommand: scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
@@ -817,6 +848,9 @@ function supportingPacketSummaryForCommand(
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute: "review S4 decision evidence, outcome routes, and verification commands",
+        reviewRouteJa: workflowReviewRouteTextJa(
+          "review S4 decision evidence, outcome routes, and verification commands",
+        ),
       };
     case "ut-tdd version-up activation-packet --json":
       return {
@@ -832,6 +866,9 @@ function supportingPacketSummaryForCommand(
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
           "review activation readiness, current snapshot id, reapproval triggers, and verification commands",
+        reviewRouteJa: workflowReviewRouteTextJa(
+          "review activation readiness, current snapshot id, reapproval triggers, and verification commands",
+        ),
       };
     case "ut-tdd rename plan --json":
       return {
@@ -849,6 +886,9 @@ function supportingPacketSummaryForCommand(
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
           "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",
+        reviewRouteJa: workflowReviewRouteTextJa(
+          "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",
+        ),
       };
     case "ut-tdd action-binding approval-packet --json":
       return {
@@ -864,6 +904,9 @@ function supportingPacketSummaryForCommand(
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
         reviewRoute:
           "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands",
+        reviewRouteJa: workflowReviewRouteTextJa(
+          "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands",
+        ),
       };
     case "ut-tdd completion decision-packet --json":
       return {
@@ -874,7 +917,61 @@ function supportingPacketSummaryForCommand(
         requiredReviewFields: ["requiredRecords", "recordTemplates", "packetCommands"],
         requiredMatrixFields: [],
         reviewRoute: "review completion decision records and route to dedicated packets",
+        reviewRouteJa: workflowReviewRouteTextJa(
+          "review completion decision records and route to dedicated packets",
+        ),
       };
+  }
+}
+
+export function workflowActionTextJa(action: string): string {
+  switch (action) {
+    case "record the PO/S4 decision before promotion, rejection, or Forward merge":
+      return "PO/S4 判断を記録してから昇格・却下・Forward merge へ進める";
+    case "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion":
+      return "将来 version-up activation 判断が記録されるまで parked のまま保持し、active frontier 完了として数えない";
+    case "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work":
+      return "不可逆 migration/cutover 前に明示的な PO signoff を取得し、通常作業として state move を実装しない";
+    case "record required human/action-binding approval before executing the high-impact action":
+      return "高影響 action の実行前に human/action-binding approval を記録する";
+    case "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present":
+      return "該当 workflow phase を継続し、生成成果物と review evidence が揃った後だけ terminal にする";
+    default:
+      return action;
+  }
+}
+
+export function workflowRouteTextJa(route: string): string {
+  switch (route) {
+    case "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded":
+      return "S4 decide -> decision_outcome 記録後にのみ Reverse / Forward merge へ進む";
+    case "version-up activation -> add-feature/rejection path, with approval boundary preserved":
+      return "version-up activation -> approval 境界を保持して add-feature / rejection route へ進む";
+    case "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply":
+      return "L14 cutover -> apply 前に cutover_decision_record / dry-run / rollback / state backup / audit を揃える";
+    case "approval gate -> action-binding approval audit before high-impact action":
+      return "approval gate -> 高影響 action 前に action-binding approval audit を通す";
+    case "continue current workflow phase until terminal evidence exists":
+      return "terminal evidence が揃うまで現在の workflow phase を継続する";
+    default:
+      return route;
+  }
+}
+
+export function workflowReviewRouteTextJa(route: string): string {
+  switch (route) {
+    case "review S4 decision evidence, outcome routes, and verification commands":
+      return "S4 decision evidence / outcome route / verification command を確認する";
+    case "review activation readiness, current snapshot id, reapproval triggers, and verification commands":
+      return "activation readiness / current snapshot id / reapproval trigger / verification command を確認する";
+    case "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands":
+      return "cutover snapshot / snapshot drift review / blast-radius checklist / verification command を確認する";
+    case "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands":
+      return "actor / tool / target / params binding、semantic frontier、related packet、verification command を確認する";
+    case "review completion decision records and route to dedicated packets":
+      return "completion decision record を確認し、必要な dedicated packet へ接続する";
+    default:
+      return route;
   }
 }
 

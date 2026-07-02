@@ -291,6 +291,7 @@ describe("completionReadinessForOutstanding", () => {
       reason: "no non-terminal PLANs or open defers remain",
       blockers: [],
       requiredActions: [],
+      requiredActionsJa: [],
     });
   });
 });
@@ -731,6 +732,7 @@ describe("outstandingSummaryLine", () => {
           reason: "",
           blockers: [],
           requiredActions: [],
+          requiredActionsJa: [],
         },
       }),
     ).toBe(
@@ -754,6 +756,7 @@ describe("outstandingSummaryLine", () => {
           reason: "",
           blockers: [],
           requiredActions: [],
+          requiredActionsJa: [],
         },
       }),
     ).toBe("outstanding: non-terminal PLANs=0 (none); blockers=none; open defers=0");

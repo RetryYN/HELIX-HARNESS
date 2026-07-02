@@ -599,14 +599,16 @@ describe("L7 CLI surface closure", () => {
 
       const blockedText = runCliIn(blockedRoot, ["status"]);
       expect(blockedText.status).toBe(0);
+      const firstWorkflowAction = blockedPayload.workflowNextActions[0];
+      const secondWorkflowAction = blockedPayload.workflowNextActions[1];
       expect(blockedText.stdout).toContain("judgment-review:");
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
-        "workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=record the PO/S4 decision before promotion, rejection, or Forward merge route=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+        `workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=${firstWorkflowAction.requiredActionJa} action-id=record the PO/S4 decision before promotion, rejection, or Forward merge route=${firstWorkflowAction.nextWorkflowRouteJa} route-id=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture`,
       );
       expect(blockedText.stdout).toContain(
-        "workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json",
+        `workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=${secondWorkflowAction.requiredActionJa} action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=${secondWorkflowAction.nextWorkflowRouteJa} route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json`,
       );
       expect(blockedText.stdout).toContain(
         "scoped-supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
@@ -661,7 +663,7 @@ describe("L7 CLI surface closure", () => {
   it("verifies objective external ledger with git ls-remote observations", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
     try {
-      writeFakeGitLsRemote(binDir, "43f623392865345d05f41444b9bf68ca278eefa5");
+      writeFakeGitLsRemote(binDir, "53f709fd5ce1769f54a274c8d150829c5301bc4b");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -675,7 +677,7 @@ describe("L7 CLI surface closure", () => {
           ok: true,
           externalObserved: {
             development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-            distribution_pack_repo: "43f623392865345d05f41444b9bf68ca278eefa5",
+            distribution_pack_repo: "53f709fd5ce1769f54a274c8d150829c5301bc4b",
             distribution_pack_latest_tag: "v0.1.3",
           },
         },
@@ -705,7 +707,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=43f623392865345d05f41444b9bf68ca278eefa5 actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=53f709fd5ce1769f54a274c8d150829c5301bc4b actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -715,7 +717,7 @@ describe("L7 CLI surface closure", () => {
   it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
     try {
-      writeFakeGitLsRemote(binDir, "43f623392865345d05f41444b9bf68ca278eefa5", "v0.1.4");
+      writeFakeGitLsRemote(binDir, "53f709fd5ce1769f54a274c8d150829c5301bc4b", "v0.1.4");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -881,6 +883,7 @@ describe("L7 CLI surface closure", () => {
 
       const text = runCliIn(root, ["completion", "decision-packet"]);
       expect(text.status).toBe(0);
+      const cutoverDecision = packet.decisions[1];
       expect(text.stdout).toContain("completion decision-packet: blocked decisions=2");
       expect(text.stdout).toContain(
         "packet-freshness: source=ut-tdd completion decision-packet --json",
@@ -899,14 +902,17 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "packet-command: primary=ut-tdd rename plan --json scoped-primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json scoped-packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
+      expect(text.stdout).toContain(`required-action: ${cutoverDecision.requiredActionsJa[0]}`);
       expect(text.stdout).toContain(
-        "required-action: record required human/action-binding approval before executing the high-impact action",
+        "required-action-id: record required human/action-binding approval before executing the high-impact action",
       );
+      expect(text.stdout).toContain(`required-action: ${cutoverDecision.requiredActionsJa[1]}`);
       expect(text.stdout).toContain(
-        "required-action: obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
+        "required-action-id: obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
       );
+      expect(text.stdout).toContain(`route: ${cutoverDecision.nextWorkflowRouteJa}`);
       expect(text.stdout).toContain(
-        "route: L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
+        "route-id: L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
       );
       expect(text.stdout).toContain("record-outcomes cutover_decision_record");
       expect(text.stdout).toContain("record-outcomes action_binding_approval_record");
@@ -1481,7 +1487,7 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "43f623392865345d05f41444b9bf68ca278eefa5",
+              mainHead: "53f709fd5ce1769f54a274c8d150829c5301bc4b",
               latestTag: "v0.1.3",
             },
             versionBinding: {
