@@ -110,7 +110,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| Cloudflare Workers limits | https://developers.cloudflare.com/workers/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-worker-budget | read API request budget | cost_guardrails workers_limit external_rehearsal_plan |",
       "| Cloudflare D1 limits | https://developers.cloudflare.com/d1/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-db-budget | projection DB budget | cost_guardrails d1_limit external_rehearsal_plan |",
       "| Cloudflare Workers KV limits | https://developers.cloudflare.com/kv/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget | cost_guardrails kv_limit external_rehearsal_plan |",
-      "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/policies/access/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
+      "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/access-controls/policies/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check dry_run_plan |",
       "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/ | live OWASP WSTG docs | live official OWASP docs | adopt-live-docs-for-security-testing-shape | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
     ].join("\n"),
@@ -1237,6 +1237,24 @@ describe("version-up-readiness", () => {
         },
       ]),
     );
+  });
+
+  it("fails when Cloudflare Access policy source keeps the legacy URL", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input().modeDoc.replace(
+          "https://developers.cloudflare.com/cloudflare-one/access-controls/policies/",
+          "https://developers.cloudflare.com/cloudflare-one/policies/access/",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason:
+        "version-up source ledger Cloudflare Access policies official URL missing expected https://developers.cloudflare.com/cloudflare-one/access-controls/policies/",
+    });
   });
 
   it("fails when the version-up source ledger checked date is stale", () => {

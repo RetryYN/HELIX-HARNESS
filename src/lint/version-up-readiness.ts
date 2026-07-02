@@ -591,7 +591,7 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
     fieldImpacts: ["cost_guardrails", "external_rehearsal_plan"],
   },
   "Cloudflare Access policies": {
-    urls: ["https://developers.cloudflare.com/cloudflare-one/policies/access/"],
+    urls: ["https://developers.cloudflare.com/cloudflare-one/access-controls/policies/"],
     fieldImpacts: ["external_rehearsal_plan", "approval_scope"],
   },
   "GitHub webhook HMAC SHA-256": {
