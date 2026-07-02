@@ -790,6 +790,18 @@ function packetSummaryText(summary: {
   return `${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRoute}`;
 }
 
+function writeRecordTemplates(
+  templates: Array<{ recordName: string; yamlLines: string[] }>,
+  indent = "    ",
+): void {
+  for (const template of templates) {
+    process.stdout.write(`${indent}record-template ${template.recordName}:\n`);
+    for (const line of template.yamlLines) {
+      process.stdout.write(`${indent}  ${line}\n`);
+    }
+  }
+}
+
 const program = new Command();
 program
   .name("ut-tdd")
@@ -905,12 +917,7 @@ completion
           `    record-route ${record.recordName}: ${record.nextWorkflowRoute}\n`,
         );
       }
-      for (const template of decision.recordTemplates) {
-        process.stdout.write(`    record-template ${template.recordName}:\n`);
-        for (const line of template.yamlLines) {
-          process.stdout.write(`      ${line}\n`);
-        }
-      }
+      writeRecordTemplates(decision.recordTemplates);
     }
   });
 
@@ -1382,6 +1389,7 @@ rename
     process.stdout.write(
       `  cutover-checklist=${plan.cutoverCategoryChecklist.length} runbook=${plan.cutoverRunbook.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
     );
+    writeRecordTemplates(plan.recordTemplates, "  ");
     process.stdout.write(verificationSourceLines(plan.verificationCommandMatrix));
     process.stdout.write(
       `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
@@ -1456,6 +1464,7 @@ versionUp
       process.stdout.write(
         `  verification-commands=${packet.activationVerificationCommandMatrix.length}\n`,
       );
+      writeRecordTemplates(packet.recordTemplates, "  ");
       process.stdout.write(verificationSourceLines(packet.activationVerificationCommandMatrix));
       for (const checkName of packet.activationReadinessSummary.pendingCheckNames) {
         process.stdout.write(`  readiness-pending: ${checkName}\n`);
@@ -1500,6 +1509,7 @@ s4.command("decision-packet")
       process.stdout.write(
         `  evidence-checks=${packet.decisionEvidenceChecklist.length} outcome-routes=${packet.outcomeRouteMatrix.length} verification-commands=${packet.decisionVerificationCommandMatrix.length}\n`,
       );
+      writeRecordTemplates(packet.recordTemplates, "  ");
       process.stdout.write(verificationSourceLines(packet.decisionVerificationCommandMatrix));
       for (const reason of packet.blockedReasons) {
         process.stdout.write(`  blocked: ${reason}\n`);
@@ -1548,6 +1558,7 @@ actionBinding
       process.stdout.write(
         `  binding-checks: concrete=${checkCounts.concrete} pending=${checkCounts.pending} invalid=${checkCounts.invalid} verification-commands=${packet.approvalVerificationCommandMatrix.length}\n`,
       );
+      writeRecordTemplates(packet.recordTemplates, "  ");
       process.stdout.write(verificationSourceLines(packet.approvalVerificationCommandMatrix));
       for (const check of packet.approvalBindingChecks.filter(
         (approvalCheck) => approvalCheck.status !== "concrete",

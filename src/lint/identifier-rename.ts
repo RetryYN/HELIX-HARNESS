@@ -1,7 +1,13 @@
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
-import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  type CompletionDecisionRecordTemplate,
+  computeOutstandingWork,
+  recordTemplatesForRecords,
+  requiredRecordsForBlockers,
+  type SemanticFeatureFrontierRecord,
+} from "./outstanding";
 import {
   semanticFrontierBindingForPlan,
   semanticFrontierBindingViolations,
@@ -96,6 +102,7 @@ export interface IdentifierRenameCutoverPlan {
     verificationCommand: string;
   }>;
   blockedReasons: string[];
+  recordTemplates: CompletionDecisionRecordTemplate[];
   dryRunPlan: string[];
   cutoverRunbook: Array<{
     id: string;
@@ -970,6 +977,9 @@ export function buildIdentifierRenameCutoverPlan(
     hitsByCategory,
     cutoverCategoryChecklist,
     blockedReasons,
+    recordTemplates: recordTemplatesForRecords(
+      requiredRecordsForBlockers(["irreversible_migration_pending", "human_approval_pending"]),
+    ),
     dryRunPlan: [
       "run rename audit and freeze the ut-tdd/.ut-tdd/area=harness blast-radius baseline",
       "rehearse source/test/docs codemod on a non-destructive branch",

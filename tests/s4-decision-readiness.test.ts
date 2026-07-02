@@ -220,6 +220,18 @@ describe("S4 decision readiness", () => {
       completionClaimAllowed: false,
     });
     expect(packet.decisionRecord.forward_route).toContain("L3 Forward design");
+    expect(packet.recordTemplates).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          recordName: "s4_decision_record",
+          yamlLines: expect.arrayContaining([
+            "s4_decision_record:",
+            '  - allowed_outcome: "<confirmed|rejected|pivot>"',
+            '  - decision_owner: "<decision_owner>"',
+          ]),
+        }),
+      ]),
+    );
     expect(packet.blockedReasons).toContain(
       "plan remains S3 draft; PO/S4 decision_outcome has not been recorded",
     );
@@ -909,6 +921,21 @@ describe("S4 decision readiness", () => {
       "route_and_fullback",
       "source_ledger",
     ]);
+    expect(packets[0].recordTemplates).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          recordName: "s4_decision_record",
+          yamlLines: expect.arrayContaining(['  - allowed_outcome: "<confirmed|rejected|pivot>"']),
+        }),
+        expect.objectContaining({
+          recordName: "action_binding_approval_record",
+          yamlLines: expect.arrayContaining([
+            '  - approved_actor: "<approved_actor>"',
+            '  - reviewed_snapshot_binding: "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|no-snapshot basis>"',
+          ]),
+        }),
+      ]),
+    );
 
     const text = execFileSync(
       "bun",
@@ -925,6 +952,8 @@ describe("S4 decision readiness", () => {
     expect(text).toContain("evidence-checks=6");
     expect(text).toContain("outcome-routes=3");
     expect(text).toContain("verification-commands=8");
+    expect(text).toContain("record-template s4_decision_record");
+    expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(
       "verification-source: requirements-trace source=HELIX V-model trace gate sourceUrl=docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
     );

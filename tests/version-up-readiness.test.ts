@@ -400,6 +400,33 @@ describe("version-up-readiness", () => {
         "exceed_action",
       ]),
     );
+    expect(packet.recordTemplates).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          recordName: "activation_decision_record",
+          yamlLines: expect.arrayContaining([
+            "activation_decision_record:",
+            '  - activation_snapshot_id: "<activationSnapshot.snapshotId>"',
+          ]),
+        }),
+        expect.objectContaining({
+          recordName: "parked_review_record",
+          yamlLines: expect.arrayContaining([
+            '  - decision_packet_route: "<decision_packet_route>"',
+          ]),
+        }),
+        expect.objectContaining({
+          recordName: "external_rehearsal_plan",
+          yamlLines: expect.arrayContaining([
+            '  - official_source_basis: "<official_source_basis URL or source ledger reference>"',
+          ]),
+        }),
+        expect.objectContaining({
+          recordName: "action_binding_approval_record",
+          yamlLines: expect.arrayContaining(['  - approved_params: "<approved_params>"']),
+        }),
+      ]),
+    );
     expect(packet.activationVerificationCommandMatrix).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -1361,6 +1388,16 @@ describe("version-up-readiness", () => {
       "approval_evidence",
       "audit_record",
     ]);
+    expect(packets[0].recordTemplates.map((row: { recordName: string }) => row.recordName)).toEqual(
+      [
+        "activation_decision_record",
+        "parked_review_record",
+        "external_rehearsal_plan",
+        "cost_guardrails",
+        "activation_provenance_requirements",
+        "action_binding_approval_record",
+      ],
+    );
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
       stale: false,
@@ -1385,6 +1422,8 @@ describe("version-up-readiness", () => {
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
     expect(text).toContain("verification-commands=9");
+    expect(text).toContain("record-template activation_decision_record");
+    expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(
       "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-02",
     );

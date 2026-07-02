@@ -1,7 +1,13 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
-import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  type CompletionDecisionRecordTemplate,
+  computeOutstandingWork,
+  recordTemplatesForRecords,
+  requiredRecordsForBlockers,
+  type SemanticFeatureFrontierRecord,
+} from "./outstanding";
 import {
   type SemanticFrontierBindingExpectation,
   semanticFrontierBindingForPlan,
@@ -81,6 +87,7 @@ export interface ActionBindingApprovalPacket {
   approvalAllowed: false;
   allowedOutcomes: string[];
   approvalRecord: Record<string, string>;
+  recordTemplates: CompletionDecisionRecordTemplate[];
   approvalBindingChecks: ActionBindingApprovalCheck[];
   approvalVerificationCommandMatrix: Array<{
     phase: string;
@@ -341,6 +348,9 @@ export function buildActionBindingApprovalPacket(
     approvalAllowed: false,
     allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
     approvalRecord,
+    recordTemplates: recordTemplatesForRecords(
+      requiredRecordsForBlockers(["human_approval_pending"]),
+    ),
     approvalBindingChecks,
     approvalVerificationCommandMatrix: buildActionBindingApprovalVerificationCommandMatrix(plan),
     semanticFeatureFrontierRecords: semanticFrontierBindingsForActionBindingPlan(

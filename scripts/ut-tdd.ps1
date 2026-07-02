@@ -1,10 +1,12 @@
-# UT-TDD thin Windows PowerShell entrypoint (ADR-001). compiled binary 優先、無ければ bun run。
+# UT-TDD thin Windows PowerShell entrypoint (ADR-001). checkout は source、package は dist。
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
-$bin = Join-Path $root "dist\ut-tdd.exe"
-if (Test-Path $bin) {
-    & $bin @args
+$source = Join-Path $root "src\cli.ts"
+
+if (Test-Path $source) {
+    & bun run $source @args
     exit $LASTEXITCODE
 }
-& bun run (Join-Path $root "src\cli.ts") @args
+
+& (Join-Path $root "dist\ut-tdd.exe") @args
 exit $LASTEXITCODE

@@ -28,6 +28,27 @@ function runCliIn(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.
   });
 }
 
+function runRepoScriptUtTdd(args: string[]) {
+  if (process.platform === "win32") {
+    return spawnSync(
+      "powershell",
+      [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        join(repoRoot, "scripts", "ut-tdd.ps1"),
+        ...args,
+      ],
+      { cwd: repoRoot, encoding: "utf8" },
+    );
+  }
+  return spawnSync(join(repoRoot, "scripts", "ut-tdd"), args, {
+    cwd: repoRoot,
+    encoding: "utf8",
+  });
+}
+
 function writeObjectiveAuditFixture(root: string): void {
   const governanceDir = join(root, "docs", "governance");
   mkdirSync(governanceDir, { recursive: true });
@@ -102,6 +123,34 @@ function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCo
 }
 
 describe("L7 CLI surface closure", () => {
+  it("keeps repo wrapper decision packet commands aligned with live source", () => {
+    const s4 = runRepoScriptUtTdd(["s4", "decision-packet", "--json"]);
+    expect(s4.status, s4.stderr || s4.stdout).toBe(0);
+    const s4Packets = JSON.parse(s4.stdout);
+    expect(s4Packets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          schemaVersion: "s4-decision-packet.v1",
+          recordTemplates: expect.arrayContaining([
+            expect.objectContaining({ recordName: "s4_decision_record" }),
+          ]),
+        }),
+      ]),
+    );
+
+    const completion = runRepoScriptUtTdd(["completion", "decision-packet", "--json"]);
+    expect(completion.status, completion.stderr || completion.stdout).toBe(0);
+    const completionPacket = JSON.parse(completion.stdout);
+    expect(completionPacket.sourceCommand).toBe("ut-tdd completion decision-packet --json");
+    expect(completionPacket.decisions).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+        }),
+      ]),
+    );
+  }, 20_000);
+
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-status-"));
     try {
@@ -786,6 +835,8 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("binding-checks:");
     expect(text.stdout).toContain("verification-commands=9");
+    expect(text.stdout).toContain("record-template action_binding_approval_record");
+    expect(text.stdout).toContain('  - approved_params: "<approved_params>"');
     expect(text.stdout).toContain(
       "verification-source: least-privilege-binding source=NIST least privilege security principle sourceUrl=https://csrc.nist.gov/glossary/term/least_privilege",
     );

@@ -249,6 +249,18 @@ describe("action-binding approval readiness", () => {
         }),
       ]),
     );
+    expect(packet.recordTemplates).toEqual([
+      expect.objectContaining({
+        recordName: "action_binding_approval_record",
+        yamlLines: expect.arrayContaining([
+          "action_binding_approval_record:",
+          '  - approved_actor: "<approved_actor>"',
+          '  - approved_tool: "<approved_tool>"',
+          '  - approved_target: "<approved_target>"',
+          '  - approved_params: "<approved_params>"',
+        ]),
+      }),
+    ]);
     expect(packet.approvalVerificationCommandMatrix).toEqual(
       expect.arrayContaining([
         expect.objectContaining({

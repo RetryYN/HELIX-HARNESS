@@ -423,6 +423,24 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect(row.workflowRouteImpact, row.phase).not.toBe("");
       }
       expect(plan.verificationCommandMatrix).toHaveLength(8);
+      expect(plan.recordTemplates).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            recordName: "cutover_decision_record",
+            yamlLines: expect.arrayContaining([
+              "cutover_decision_record:",
+              '  - cutover_snapshot_id: "<cutoverSnapshot.snapshotId>"',
+            ]),
+          }),
+          expect.objectContaining({
+            recordName: "action_binding_approval_record",
+            yamlLines: expect.arrayContaining([
+              "action_binding_approval_record:",
+              '  - reviewed_snapshot_binding: "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|no-snapshot basis>"',
+            ]),
+          }),
+        ]),
+      );
       expect(plan.sourceLedgerFreshness).toEqual({
         ledgerLabel: "Cutover source ledger",
         checkedDate: "2026-06-30",
@@ -720,6 +738,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         ]),
       );
       expect(payload.cutoverRunbook.length).toBeGreaterThan(0);
+      expect(payload.recordTemplates).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ recordName: "cutover_decision_record" }),
+          expect.objectContaining({ recordName: "action_binding_approval_record" }),
+        ]),
+      );
       expect(payload.sourceLedgerFreshness).toMatchObject({
         ledgerLabel: "Cutover source ledger",
       });
@@ -748,6 +772,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("cutover-checklist=");
       expect(text.stdout).toContain("runbook=");
       expect(text.stdout).toContain("verification-commands=");
+      expect(text.stdout).toContain("record-template cutover_decision_record");
+      expect(text.stdout).toContain("record-template action_binding_approval_record");
       expect(text.stdout).toContain(
         "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md checked=2026-06-30",
       );

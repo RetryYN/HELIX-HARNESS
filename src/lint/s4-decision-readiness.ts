@@ -1,6 +1,12 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  type CompletionDecisionRecordTemplate,
+  computeOutstandingWork,
+  recordTemplatesForRecords,
+  requiredRecordsForBlockers,
+  type SemanticFeatureFrontierRecord,
+} from "./outstanding";
 import {
   semanticFrontierBindingForPlan,
   semanticFrontierBindingViolations,
@@ -74,6 +80,7 @@ export interface S4DecisionPacket {
   allowedOutcomes: string[];
   semanticFeatureFrontierRecord: SemanticFeatureFrontierRecord;
   decisionRecord: Record<string, string>;
+  recordTemplates: CompletionDecisionRecordTemplate[];
   decisionEvidenceChecklist: Array<{
     field: string;
     evidence: string;
@@ -518,6 +525,10 @@ export function buildS4DecisionPacket(
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[],
 ): S4DecisionPacket {
   const decisionRecord = recordValues(plan.text, S4_RECORD_NAME, [...S4_RECORD_FIELDS]);
+  const recordBlockers = [
+    "po_decision_pending",
+    ...(planTextRequiresActionBindingApproval(plan.text) ? ["human_approval_pending"] : []),
+  ];
   const blockedReasons = s4DecisionBlockedReasons(plan, decisionRecord);
   const provenance = buildDecisionPacketProvenance({ sourceCommand: S4_DECISION_PACKET_COMMAND });
   return {
@@ -537,6 +548,7 @@ export function buildS4DecisionPacket(
       classification: "frontier_pending_decision",
     }),
     decisionRecord,
+    recordTemplates: recordTemplatesForRecords(requiredRecordsForBlockers(recordBlockers)),
     decisionEvidenceChecklist: [
       {
         field: "verified_evidence",

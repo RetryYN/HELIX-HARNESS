@@ -136,6 +136,27 @@ describe("clean distribution local acceptance smoke", () => {
       const registerLink = runBun(cleanRoot, ["link"], env);
       expect(registerLink.status, registerLink.stderr || registerLink.stdout).toBe(0);
 
+      const linkedS4Packet = runCommand(
+        cleanRoot,
+        "ut-tdd",
+        ["s4", "decision-packet", "--help"],
+        env,
+      );
+      expect(linkedS4Packet.status, linkedS4Packet.stderr || linkedS4Packet.stdout).toBe(0);
+      expect(linkedS4Packet.stdout).toContain("Usage: ut-tdd s4 decision-packet");
+
+      const linkedCompletionPacket = runCommand(
+        cleanRoot,
+        "ut-tdd",
+        ["completion", "decision-packet", "--help"],
+        env,
+      );
+      expect(
+        linkedCompletionPacket.status,
+        linkedCompletionPacket.stderr || linkedCompletionPacket.stdout,
+      ).toBe(0);
+      expect(linkedCompletionPacket.stdout).toContain("Usage: ut-tdd completion decision-packet");
+
       const status = runBun(cleanRoot, ["src/cli.ts", "status", "--json"], env);
       expect(status.status, status.stderr || status.stdout).toBe(0);
       const statusJson = JSON.parse(status.stdout);

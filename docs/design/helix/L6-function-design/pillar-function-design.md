@@ -68,7 +68,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   adoptionDecisionDelta / workflowRouteImpact を持つ。
   Scrum Guide 2020、ISO/IEC/IEEE 29148、ISTQB Glossary、NIST SSDF の source ledger を PO/S4 判断前の
   実行証跡へ接続し、S3 green / review 済み / 動く increment の単一シグナルだけで S4 terminal 判断へ
-  進めない。text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
+  進めない。packet は `s4_decision_record` と、同一 PLAN が承認境界を持つ場合の
+  `action_binding_approval_record` の `recordTemplates[]` を返し、text surface も `record-template` 行を出す。
+  text surface は evidence check 件数、outcome route 件数、verification command 件数を出す。
 - HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
   `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
   source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
@@ -90,6 +92,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   Environments / Google Cloud Deploy / OWASP WSTG の公式 source は checked date と採用判断を持ち、source 名や URL
   だけの activation review にしない。matrix は
   `activationSnapshot.evidenceDigest` に含め、承認前 review material の drift を snapshot drift として扱う。
+  activation packet は activation / parked review / external rehearsal / cost guardrail / provenance /
+  action-binding の required record を `recordTemplates[]` として返し、PO が packet だけで記入 block を複写できる。
 - HC-P6 `buildIdentifierRenameCutoverPlan` / `analyzeCutoverReadiness` は `Cutover source ledger` も同様に、
   NIST / GitHub Environments / GitHub Actions concurrency / Google SRE / OWASP LLM06 / SLSA の期待
   official URL と required field impact を固定検査する。`https` URL があるだけ、または source 名だけの
@@ -144,6 +148,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。
   text surface は binding check 件数に加えて verification command 件数と `verification-source:` 行を出し、
   JSON を見ない利用者にも承認前に実行すべき証跡確認と公式/正本 source を欠落させない。
+  packet は `action_binding_approval_record` の `recordTemplates[]` を JSON/text の両方に出し、
+  actor / tool / target / params / snapshot binding / expiry / audit の承認 record を自由文に戻さない。
 - HC-P9 / handover resume surface は `ut-tdd status --json` と同じ live outstanding 由来の
   `workflowNextAction` / `workflowNextActions[]` を `ut-tdd handover status --json` と text mode にも出す。
   handover 再開時も completion decision packet command だけでなく、record すべき判断と route を直接読める
@@ -157,6 +163,10 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `workflowRouteImpact` を含み、公式 source の状態差分・採否差分・workflow route 影響が summary で落ちない
   ことを contract とする。text mode は `packet-summary:` 行を出し、completion packet を別途開く前でも L14 判断前に
   見るべき検証 matrix を隠さない。
+- HC-P9 / decision packet surface は `recordTemplates[]` を completion packet だけの補助情報にしない。
+  `ut-tdd s4 decision-packet` / `ut-tdd version-up activation-packet` / `ut-tdd rename plan` /
+  `ut-tdd action-binding approval-packet` はそれぞれ、自分の判断種別と sibling blocker に必要な record template を
+  JSON/text で返し、PO/人間が正規 command から直接 record block を作れることを contract とする。
 
 ## §1 function family
 

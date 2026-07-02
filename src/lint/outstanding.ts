@@ -962,7 +962,7 @@ function nextWorkflowRouteForRecordName(recordName: string): string {
   }
 }
 
-function recordTemplatesForRecords(
+export function recordTemplatesForRecords(
   records: CompletionDecisionRecordRequirement[],
 ): CompletionDecisionRecordTemplate[] {
   return records.map((record) => ({

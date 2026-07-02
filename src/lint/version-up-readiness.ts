@@ -2,7 +2,13 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
+import {
+  type CompletionDecisionRecordTemplate,
+  computeOutstandingWork,
+  recordTemplatesForRecords,
+  requiredRecordsForBlockers,
+  type SemanticFeatureFrontierRecord,
+} from "./outstanding";
 import {
   semanticFrontierBindingForPlan,
   semanticFrontierBindingViolations,
@@ -81,6 +87,7 @@ export interface VersionUpActivationPacket {
   activationDecision: Record<string, string>;
   parkedReview: Record<string, string>;
   actionBindingApproval: Record<string, string>;
+  recordTemplates: CompletionDecisionRecordTemplate[];
   externalBoundaries: string[];
   externalRehearsalPlan: Array<{
     check: string;
@@ -1045,6 +1052,12 @@ export function buildVersionUpActivationPacket(
     activationReadinessChecks,
     sourceLedgerFreshness,
   );
+  const recordBlockers = [
+    "version_up_parked",
+    ...(externalBoundaries.length > 0 || planTextRequiresActionBindingApproval(plan.text)
+      ? ["human_approval_pending"]
+      : []),
+  ];
   const activationVerificationCommandMatrix =
     buildVersionUpActivationVerificationCommandMatrix(plan);
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
@@ -1093,6 +1106,7 @@ export function buildVersionUpActivationPacket(
     activationDecision,
     parkedReview,
     actionBindingApproval,
+    recordTemplates: recordTemplatesForRecords(requiredRecordsForBlockers(recordBlockers)),
     externalBoundaries,
     externalRehearsalPlan: [
       {
