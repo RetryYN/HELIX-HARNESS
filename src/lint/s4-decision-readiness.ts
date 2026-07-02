@@ -67,6 +67,11 @@ export interface S4DecisionReadinessResult {
   ok: boolean;
 }
 
+export interface S4DecisionCommandViolation {
+  subject: string;
+  reason: string;
+}
+
 export interface S4DecisionPacket {
   schemaVersion: "s4-decision-packet.v1";
   planId: string;
@@ -137,6 +142,7 @@ const MODE_DOC_MARKERS = [
   "decisionEvidenceChecklist",
   "outcomeRouteMatrix",
   "decisionVerificationCommandMatrix",
+  "executable verification command",
   "provenanceRequirements",
   "S4 decision source ledger",
   "Scrum Guide 2020",
@@ -503,6 +509,12 @@ export function analyzeS4DecisionReadiness(
         reason: violation.reason,
       })),
     );
+    violations.push(
+      ...s4DecisionVerificationCommandViolations(packet).map((violation) => ({
+        subject: violation.subject,
+        reason: violation.reason,
+      })),
+    );
   }
 
   for (const plan of input.plans.filter(isS4PocDecision)) {
@@ -726,11 +738,10 @@ function buildS4DecisionVerificationCommandMatrix(
     },
     {
       phase: "s3-verification-evidence",
-      command: "run the PLAN-declared S3 verification command(s) cited by verified_evidence",
+      command: "bun run src/cli.ts doctor",
       expected:
         "verified_evidence points to concrete test/review output instead of a planned or prose-only claim",
-      evidence:
-        "test output, review evidence path, audit id, or digest cited by s4_decision_record.verified_evidence",
+      evidence: "doctor output with s4-decision-readiness, review-evidence, and trace gates",
       source: "HELIX Scrum S3->S4 verification boundary",
       sourceUrl: "docs/process/modes/scrum.md",
       sourceCheckedAt: "2026-07-02",
@@ -815,6 +826,31 @@ function buildS4DecisionVerificationCommandMatrix(
       workflowRouteImpact: "none; unresolved frontier keeps completionReadiness blocked",
     },
   ];
+}
+
+export function s4DecisionVerificationCommandViolations(
+  packet: S4DecisionPacket,
+): S4DecisionCommandViolation[] {
+  const allowedCommands = new Set([
+    `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
+    "bun run src/cli.ts doctor",
+    "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+    "bun run lint && bun run typecheck && git diff --check",
+    "bun run test",
+    "bun run src/cli.ts status --json",
+  ]);
+  return packet.decisionVerificationCommandMatrix.flatMap((row) => {
+    const command = row.command.trim();
+    if (allowedCommands.has(command)) {
+      return [];
+    }
+    return [
+      {
+        subject: `${packet.planId}.${row.phase}`,
+        reason: `decisionVerificationCommandMatrix command is not an executable approved surface: ${row.command}`,
+      },
+    ];
+  });
 }
 
 function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): string[] {

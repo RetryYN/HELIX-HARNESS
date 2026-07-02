@@ -1873,6 +1873,9 @@ placement: placeholder-deps / shared を再利用するため解析層 `src/lint
 - [x] doctor `s4-decision-readiness` hard gate が、S4 判断材料の分解不足
   (verified evidence / stakeholder review / acceptance gap / unresolved risk / external source / route impact / promotion strategy or rejection/pivot rationale) と
   S4 decision source ledger 劣化・90 日超過 stale を拒否する。
+- [x] S4 decision packet の `decisionVerificationCommandMatrix[].command` は実行可能な承認済み verification
+  surface に限定し、自然文手順、prose-only command、未実装 command を
+  doctor `s4-decision-readiness` hard gate が拒否する。
 - [x] doctor `cutover-readiness` hard gate が、不可逆 L14 cutover の source ledger 劣化
   (required row / adopted version-date / latest official status / adoption decision / provenance source 欠落) と
   90 日超過 stale を拒否する。

@@ -6,6 +6,7 @@ import {
   loadS4DecisionReadinessInput,
   type S4DecisionReadinessInput,
   s4DecisionReadinessMessages,
+  s4DecisionVerificationCommandViolations,
 } from "../src/lint/s4-decision-readiness";
 
 function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionReadinessInput {
@@ -30,6 +31,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "decisionEvidenceChecklist",
     "outcomeRouteMatrix",
     "decisionVerificationCommandMatrix",
+    "executable verification command",
     "provenanceRequirements",
     "S4 decision source ledger (checked 2026-06-30)",
     "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
@@ -281,6 +283,11 @@ describe("S4 decision readiness", () => {
           adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
         }),
         expect.objectContaining({
+          phase: "s3-verification-evidence",
+          command: "bun run src/cli.ts doctor",
+          evidence: expect.stringContaining("s4-decision-readiness"),
+        }),
+        expect.objectContaining({
           phase: "requirements-trace",
           expected: expect.stringContaining("G1/G3 trace"),
           sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
@@ -308,6 +315,27 @@ describe("S4 decision readiness", () => {
       expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
       expect(row.workflowRouteImpact, row.phase).not.toBe("");
     }
+    expect(s4DecisionVerificationCommandViolations(packet)).toEqual([]);
+    expect(
+      s4DecisionVerificationCommandViolations({
+        ...packet,
+        decisionVerificationCommandMatrix: packet.decisionVerificationCommandMatrix.map((row) =>
+          row.phase === "s3-verification-evidence"
+            ? {
+                ...row,
+                command:
+                  "run the PLAN-declared S3 verification command(s) cited by verified_evidence",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-DISCOVERY-900.s3-verification-evidence",
+        reason:
+          "decisionVerificationCommandMatrix command is not an executable approved surface: run the PLAN-declared S3 verification command(s) cited by verified_evidence",
+      },
+    ]);
     expect(packet.provenanceRequirements).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ item: "decision_record" }),
@@ -917,6 +945,7 @@ describe("S4 decision readiness", () => {
       expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
       expect(row.workflowRouteImpact, row.phase).not.toBe("");
     }
+    expect(s4DecisionVerificationCommandViolations(packets[0])).toEqual([]);
     expect(packets[0].provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
       "decision_record",
       "green_evidence",

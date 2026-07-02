@@ -874,6 +874,7 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
           "ut-tdd doctor --profile consumer",
+          "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
           "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         ],
@@ -988,6 +989,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
       "ut-tdd doctor --profile consumer",
+      "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
       "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
@@ -1020,6 +1022,7 @@ describe("L7 CLI surface closure", () => {
       expect.arrayContaining([
         "ut-tdd status --json",
         "ut-tdd doctor --profile consumer",
+        "ut-tdd rename plan --json",
         "ut-tdd handover status --json",
         "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
@@ -1037,15 +1040,19 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 5");
+    expect(text.stdout).toContain("verification-matrix: 6");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
+    expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
     expect(text.stdout).toContain(
       "verification-command: ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     );
     expect(text.stdout).toContain(
       "verification-check: consumer-doctor ut-tdd doctor --profile consumer",
+    );
+    expect(text.stdout).toContain(
+      "verification-check: identifier-cutover-packet ut-tdd rename plan --json",
     );
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",

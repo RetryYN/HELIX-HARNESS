@@ -113,6 +113,11 @@ S3 verification evidence、requirements trace、targeted regression、static gat
 さらに full regression、completion frontier の各 phase に対して command / expected / evidence / source /
 sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
 adoptionDecisionDelta / workflowRouteImpact を持つ。
+各 command は `bun run ...` / `bun test ...` / `git diff --check` などの実行可能な承認済み verification surface
+（executable verification command）
+でなければならない。`run the PLAN-declared ...` のような自然文手順、後で証跡を記録するだけの prose-only
+command、未実装 command は S4 decision packet の verification material として扱わず、`s4-decision-readiness`
+が fail-close する。
 Scrum Guide 2020 の inspect/adapt、ISO/IEC/IEEE 29148 の requirements trace、ISTQB Glossary の test basis、NIST SSDF の
 review checklist を、PO/S4 判断前の実行証跡へ接続する。matrix は apply/decision 権限ではなく、S4 の
 承認前 review material である。2026-07-02 に公式 Scrum Guide 2020 の現行性を再確認し、動く increment
