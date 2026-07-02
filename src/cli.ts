@@ -804,6 +804,15 @@ function packetSummaryText(summary: {
   return `${summary.command} schema=${summary.schemaVersion} matrix=${summary.matrixField} count=${summary.expectedMatrixCount} reviewFields=${reviewFields} matrixFields=${matrixFields} review=${summary.reviewRouteJa ?? summary.reviewRoute} review-id=${summary.reviewRoute}`;
 }
 
+function semanticMeaningSummaryLine(
+  outstanding: ReturnType<typeof computeOutstandingWork>,
+): string {
+  return [
+    `semantic_frontier_records: ${outstanding.semanticFeatureFrontierRecords?.length ?? 0}`,
+    `confirmed_current_meaning_records: ${outstanding.confirmedCurrentMeaningRecords?.length ?? 0}`,
+  ].join("\n");
+}
+
 function writeRecordTemplates(
   templates: Array<{ recordName: string; yamlLines: string[] }>,
   indent = "    ",
@@ -865,6 +874,7 @@ program
       }
       process.stdout.write(`${outstandingSummaryLine(outstanding)}\n`);
       process.stdout.write(`${completionReadinessLine(outstanding)}\n`);
+      process.stdout.write(`${semanticMeaningSummaryLine(outstanding)}\n`);
       if (objectiveProgress) {
         process.stdout.write(
           `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed})\n`,
@@ -2492,6 +2502,7 @@ handover
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
     process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
     process.stdout.write(`${completionReadinessLine(liveOutstanding)}\n`);
+    process.stdout.write(`${semanticMeaningSummaryLine(liveOutstanding)}\n`);
     if (objectiveProgress) {
       process.stdout.write(
         `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed})\n`,
@@ -2533,11 +2544,6 @@ handover
           `scoped-supporting-decision-packets: ${scopedPacketCommands.join(" | ")}\n`,
         );
       }
-    }
-    if ((liveOutstanding.semanticFeatureFrontierRecords ?? []).length > 0) {
-      process.stdout.write(
-        `semantic_frontier_records: ${liveOutstanding.semanticFeatureFrontierRecords?.length ?? 0}\n`,
-      );
     }
   });
 

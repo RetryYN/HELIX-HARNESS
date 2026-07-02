@@ -411,6 +411,7 @@ describe("L7 CLI surface closure", () => {
         "scoped-supporting-decision-packets: ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain("semantic_frontier_records: 1");
+      expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -635,6 +636,8 @@ describe("L7 CLI surface closure", () => {
         "packet-summary: 2 ut-tdd action-binding approval-packet --json schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
+      expect(blockedText.stdout).toContain("semantic_frontier_records: 2");
+      expect(blockedText.stdout).toContain("confirmed_current_meaning_records: 11");
       expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
       expect(blockedText.stdout).toContain(
         "supporting-decision-packets: ut-tdd s4 decision-packet --json | ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
@@ -667,6 +670,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain(
       "objective-progress: 90% (blocked; completion-claim-allowed=false)",
     );
+    expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
   });
 
   it("verifies objective external ledger with git ls-remote observations", () => {
