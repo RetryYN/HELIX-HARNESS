@@ -411,20 +411,45 @@ describe("version-up-readiness", () => {
           phase: "external-rehearsal",
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+          sourceCheckedAt: "2026-07-02",
+          latestOfficialStatus: expect.stringContaining("GITHUB_TOKEN permissions"),
+          sourceStatusDelta: expect.stringContaining("least-privilege"),
+          adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
+          adoptionDecisionDelta: expect.stringContaining("external rehearsal evidence"),
+          workflowRouteImpact: expect.stringContaining("pending_evidence"),
         }),
         expect.objectContaining({
           phase: "security-testing",
           command: expect.stringContaining("OWASP-aligned"),
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
+          sourceCheckedAt: "2026-07-02",
+          sourceStatusDelta: expect.stringContaining("OWASP WSTG"),
+          adoptionDecision: expect.stringContaining("wstg"),
+          adoptionDecisionDelta: expect.stringContaining("security checks"),
+          workflowRouteImpact: expect.stringContaining("security report absence"),
         }),
         expect.objectContaining({
           phase: "approval-packet",
           command: "bun run src/cli.ts action-binding approval-packet --json",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+          sourceCheckedAt: "2026-07-02",
+          latestOfficialStatus: expect.stringContaining("required reviewers"),
+          sourceStatusDelta: expect.stringContaining("required reviewers"),
+          adoptionDecision: expect.stringContaining("required-reviewer-boundary"),
+          adoptionDecisionDelta: expect.stringContaining("current snapshot binding"),
+          workflowRouteImpact: expect.stringContaining("reviewed_snapshot_binding"),
         }),
       ]),
     );
+    for (const row of packet.activationVerificationCommandMatrix) {
+      expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(row.latestOfficialStatus, row.phase).not.toBe("");
+      expect(row.sourceStatusDelta, row.phase).not.toBe("");
+      expect(row.adoptionDecision, row.phase).not.toBe("");
+      expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
+      expect(row.workflowRouteImpact, row.phase).not.toBe("");
+    }
     expect(packet.reapprovalTriggers).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -1294,10 +1319,18 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "state-and-doctor",
           command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+          sourceCheckedAt: "2026-07-02",
+          sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
+          adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",
+          adoptionDecisionDelta: "none; keep db rebuild and doctor as activation review gates",
         }),
         expect.objectContaining({
           phase: "full-regression",
           command: "bun run test",
+          sourceCheckedAt: "2026-07-02",
+          sourceStatusDelta: "none; local full regression policy reviewed against current HEAD",
+          adoptionDecisionDelta: "none; keep full regression as future activation blocker",
+          workflowRouteImpact: "none; full regression failure blocks activation review",
         }),
       ]),
     );
@@ -1353,13 +1386,17 @@ describe("version-up-readiness", () => {
     expect(text).toContain("total=17");
     expect(text).toContain("verification-commands=9");
     expect(text).toContain(
-      "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use",
+      "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-02",
+    );
+    expect(text).toContain("adoption=adopt-live-docs-for-least-privilege-token-scope");
+    expect(text).toContain("statusDelta=none; official GitHub Actions security guidance");
+    expect(text).toContain("adoptionDelta=none; keep activation workflow hardening");
+    expect(text).toContain("routeImpact=none; missing concrete rehearsal evidence keeps");
+    expect(text).toContain(
+      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/ checked=2026-07-02",
     );
     expect(text).toContain(
-      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/",
-    );
-    expect(text).toContain(
-      "verification-source: approval-packet source=GitHub Environments required reviewers sourceUrl=https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+      "verification-source: approval-packet source=GitHub Environments required reviewers sourceUrl=https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments checked=2026-07-02",
     );
     expect(text).toContain("readiness-pending: webhook_signature_check");
     expect(text).toContain("readiness-pending: pages_limit");

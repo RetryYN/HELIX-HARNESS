@@ -761,13 +761,17 @@ function verificationSourceLines(
     source?: string;
     sourceUrl?: string;
     sourceCheckedAt?: string;
+    latestOfficialStatus?: string;
+    sourceStatusDelta?: string;
     adoptionDecision?: string;
+    adoptionDecisionDelta?: string;
+    workflowRouteImpact?: string;
   }>,
 ): string {
   return rows
     .map(
       (row) =>
-        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"} checked=${row.sourceCheckedAt ?? "-"} adoption=${row.adoptionDecision ?? "-"}\n`,
+        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"} checked=${row.sourceCheckedAt ?? "-"} status=${row.latestOfficialStatus ?? "-"} statusDelta=${row.sourceStatusDelta ?? "-"} adoption=${row.adoptionDecision ?? "-"} adoptionDelta=${row.adoptionDecisionDelta ?? "-"} routeImpact=${row.workflowRouteImpact ?? "-"}\n`,
     )
     .join("");
 }

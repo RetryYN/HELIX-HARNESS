@@ -107,6 +107,12 @@ export interface VersionUpActivationPacket {
     evidence: string;
     source: string;
     sourceUrl: string;
+    sourceCheckedAt: string;
+    latestOfficialStatus: string;
+    sourceStatusDelta: string;
+    adoptionDecision: string;
+    adoptionDecisionDelta: string;
+    workflowRouteImpact: string;
   }>;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   activationSnapshot: VersionUpActivationSnapshot;
@@ -1277,6 +1283,13 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "activation packet JSON attached to the version-up activation review",
       source: "HELIX version-up activation packet contract",
       sourceUrl: "docs/process/modes/version-up.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX workflow contract current at HEAD",
+      sourceStatusDelta: "none; local version-up contract reviewed against current HEAD",
+      adoptionDecision: "adopt-current-version-up-contract-for-plan-only-activation-review",
+      adoptionDecisionDelta: "none; remains plan-only and approval-gated",
+      workflowRouteImpact:
+        "none; packet review remains version-up activation -> action-binding approval",
     },
     {
       phase: "version-dry-run",
@@ -1287,6 +1300,13 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "version-up dry-run JSON for the reviewed current/target release trigger",
       source: "Semantic Versioning 2.0.0",
       sourceUrl: "https://semver.org/",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "SemVer 2.0.0 official specification page remains the adopted compatibility contract",
+      sourceStatusDelta: "none; SemVer 2.0.0 remains the current official compatibility source",
+      adoptionDecision: "adopt-2.0.0-for-current-target-compatibility-classification",
+      adoptionDecisionDelta: "none; continue using SemVer for dry-run classification only",
+      workflowRouteImpact: "none; invalid, same, or downgrade target stays blocked in dry-run",
     },
     {
       phase: "external-rehearsal",
@@ -1298,6 +1318,17 @@ function buildVersionUpActivationVerificationCommandMatrix(
         "artifact paths, audit ids, digests, logs, or reports referenced by external_rehearsal_plan",
       source: "GitHub Actions secure use and pull_request_target guidance",
       sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "GitHub Actions secure-use, pull_request_target, and GITHUB_TOKEN permissions docs remain live official guidance",
+      sourceStatusDelta:
+        "none; official GitHub Actions security guidance still requires least-privilege and pull_request_target risk review",
+      adoptionDecision:
+        "adopt-live-docs-for-least-privilege-token-scope-and-untrusted-pr-trigger-review",
+      adoptionDecisionDelta:
+        "none; keep activation workflow hardening as required external rehearsal evidence",
+      workflowRouteImpact:
+        "none; missing concrete rehearsal evidence keeps activationReadinessSummary pending_evidence",
     },
     {
       phase: "security-testing",
@@ -1309,6 +1340,14 @@ function buildVersionUpActivationVerificationCommandMatrix(
         "security test report or audit record linked from activation_provenance_requirements",
       source: "OWASP Web Security Testing Guide",
       sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "OWASP WSTG stable/latest testing guide remains the adopted web security test source",
+      sourceStatusDelta: "none; OWASP WSTG remains the adopted security-testing source",
+      adoptionDecision:
+        "adopt-wstg-for-access-control-secret-exposure-webhook-and-read-only-projection-checks",
+      adoptionDecisionDelta: "none; keep WSTG-aligned security checks before activation review",
+      workflowRouteImpact: "none; security report absence remains activation evidence pending",
     },
     {
       phase: "state-and-doctor",
@@ -1318,6 +1357,12 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "db rebuild and doctor output",
       source: "HELIX state projection and doctor gate",
       sourceUrl: "docs/adr/ADR-007-harness-db-sqlite-projection.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX state projection contract current at HEAD",
+      sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
+      adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",
+      adoptionDecisionDelta: "none; keep db rebuild and doctor as activation review gates",
+      workflowRouteImpact: "none; doctor failure routes back to version-up readiness repair",
     },
     {
       phase: "targeted-regression",
@@ -1327,6 +1372,12 @@ function buildVersionUpActivationVerificationCommandMatrix(
       source: "HELIX version-up regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX L7 unit oracle current at HEAD",
+      sourceStatusDelta: "none; local version-up regression oracle reviewed against current HEAD",
+      adoptionDecision: "adopt-targeted-regression-before-activation-review",
+      adoptionDecisionDelta: "none; keep targeted regression before activation review",
+      workflowRouteImpact: "none; regression failure routes back to L7 repair",
     },
     {
       phase: "static-gates",
@@ -1335,6 +1386,12 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "repository AGENTS test rules current at HEAD",
+      sourceStatusDelta: "none; repository static gate policy reviewed against current HEAD",
+      adoptionDecision: "adopt-static-gates-before-activation-review",
+      adoptionDecisionDelta: "none; keep static gates before activation review",
+      workflowRouteImpact: "none; static failure routes back to implementation repair",
     },
     {
       phase: "full-regression",
@@ -1343,6 +1400,12 @@ function buildVersionUpActivationVerificationCommandMatrix(
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX full regression policy current at HEAD",
+      sourceStatusDelta: "none; local full regression policy reviewed against current HEAD",
+      adoptionDecision: "adopt-full-regression-before-any-future-activation-apply-route",
+      adoptionDecisionDelta: "none; keep full regression as future activation blocker",
+      workflowRouteImpact: "none; full regression failure blocks activation review",
     },
     {
       phase: "approval-packet",
@@ -1353,6 +1416,17 @@ function buildVersionUpActivationVerificationCommandMatrix(
       source: "GitHub Environments required reviewers",
       sourceUrl:
         "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "GitHub environments required reviewers remain live official approval gate guidance",
+      sourceStatusDelta:
+        "none; GitHub environments required reviewers remain the adopted approval boundary source",
+      adoptionDecision:
+        "adopt-required-reviewer-boundary-for-action-binding-and-environment-secret-review",
+      adoptionDecisionDelta:
+        "none; keep action-binding approval packet and current snapshot binding required",
+      workflowRouteImpact:
+        "none; missing reviewed_snapshot_binding keeps action-binding approval pending",
     },
   ];
 }

@@ -117,7 +117,11 @@ binding ID になる。snapshotId が変わった場合は、旧 approval eviden
 packet は `activationVerificationCommandMatrix[]` も出す。これは `activation-packet-baseline`、
 `version-dry-run`、`external-rehearsal`、`security-testing`、`state-and-doctor` を検証 phase として持つ。
 さらに `targeted-regression`、`static-gates`、`full-regression`、`approval-packet` の各 phase に対して
-command / expected / evidence を持つ。これにより、activation readiness の判断材料を「あとで検証する」という自由文に戻さず、
+command / expected / evidence / source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
+adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持つ。公式 source row は 2026-07-02 に GitHub Actions secure use / GITHUB_TOKEN permissions /
+pull_request_target guidance、GitHub Environments required reviewers、OWASP WSTG stable/latest を確認し、
+Google Cloud Deploy verification / canary / rollback は段階適用・検証・rollback の運用比較根拠として確認済みとする。
+採用判断と route impact を packet に残すことで、activation readiness の判断材料を「あとで検証する」という自由文に戻さず、
 どの command・runbook・report・audit record を承認前 evidence とするかを packet から追えるようにする。
 matrix は apply 権限ではなく、`activationSnapshot.evidenceDigest` に含める承認前 review material である。
 
