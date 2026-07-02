@@ -103,8 +103,18 @@ describe("completion decision packet lint", () => {
         expectedMatrixCount: 8,
         requiredReviewFields: expect.arrayContaining([
           "decisionRecord",
+          "decisionRecord.source_ledger_freshness",
+          "decisionRecord.source_status_delta",
+          "decisionRecord.adoption_decision_delta",
+          "decisionRecord.workflow_route_impact",
           "recordTemplates",
           "decisionEvidenceChecklist",
+          "decisionEvidenceChecklist.verified_evidence",
+          "decisionEvidenceChecklist.stakeholder_review_or_proxy",
+          "decisionEvidenceChecklist.acceptance_gap",
+          "decisionEvidenceChecklist.unresolved_risk",
+          "decisionEvidenceChecklist.external_source_basis",
+          "decisionEvidenceChecklist.route_impact",
           "outcomeRouteMatrix",
           "semanticFeatureFrontierRecord",
           "provenanceRequirements",
@@ -325,6 +335,52 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks",
+        },
+      ]),
+    );
+  });
+
+  it("rejects S4 summaries that omit source-ledger and evidence checklist review fields", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) => ({
+          ...summary,
+          requiredReviewFields: [
+            "decisionRecord",
+            "recordTemplates",
+            "decisionEvidenceChecklist",
+            "outcomeRouteMatrix",
+            "semanticFeatureFrontierRecord",
+            "provenanceRequirements",
+            "relatedDecisionPackets",
+            "nextWorkflowRoutes",
+            "blockedReasons",
+          ],
+        })),
+      })),
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionRecord.source_ledger_freshness",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionEvidenceChecklist.verified_evidence",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionEvidenceChecklist.unresolved_risk",
         },
       ]),
     );

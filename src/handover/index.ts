@@ -395,6 +395,11 @@ export function capWithBreadcrumb<T>(items: readonly T[], max: number, r: CapRen
   return kept;
 }
 
+function renderPacketFieldList(fields: readonly string[], fallback = "none"): string {
+  const maskedFields = fields.map((field) => sanitize(field)).filter(Boolean);
+  return maskedFields.length > 0 ? maskedFields.join(",") : fallback;
+}
+
 /**
  * U-HOVER-004: 純関数。§6.8.5 の 6 セクション markdown を render。③-⑥ は TODO placeholder。
  * 自由テキスト (summary / deliverables) に sanitize を再適用 (defense-in-depth、tracked md への流出ゼロ)。
@@ -461,7 +466,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
           `  - packet一覧: ${a.scopedPacketCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
             (summary) =>
-              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${sanitize(summary.requiredReviewFields.join(","))} matrix必須field=${sanitize(summary.requiredMatrixFields.join(",") || "none")} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,
+              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${renderPacketFieldList(summary.requiredReviewFields)} matrix必須field=${renderPacketFieldList(summary.requiredMatrixFields)} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,
           ),
         ]),
         "",

@@ -119,6 +119,17 @@ route impact を同時に見て、`confirmed` / `rejected` / `pivot` の各 outc
 Reverse / backlog route、追加 fullback にどう影響するかを判断する。これにより S3 green やレビュー済みという
 単一シグナルだけで S4 confirmed を代替しない。
 
+`ut-tdd completion decision-packet --json` が S4 pending PLAN を表示する場合も、supporting packet summary は
+S4 packet の存在だけを示して終わらない。`requiredReviewFields[]` は `decisionRecord.source_ledger_freshness` /
+`decisionRecord.source_status_delta` / `decisionRecord.adoption_decision_delta` /
+`decisionRecord.workflow_route_impact` と、`decisionEvidenceChecklist.verified_evidence` /
+`decisionEvidenceChecklist.stakeholder_review_or_proxy` / `decisionEvidenceChecklist.acceptance_gap` /
+`decisionEvidenceChecklist.unresolved_risk` / `decisionEvidenceChecklist.external_source_basis` /
+`decisionEvidenceChecklist.route_impact` を列挙する。これにより completion packet から S4 判断へ入る場合でも、
+source ledger の鮮度・採否差分・route 影響、requirements trace、test basis、residual risk を PO が同じ
+review 単位で確認できる。summary が `decisionRecord` や `decisionEvidenceChecklist` という親 field だけを
+持ち、具体 field を落とした場合は completion-decision-packet lint が fail-close する。
+
 packet は `decisionVerificationCommandMatrix[]` も出す。これは decision packet baseline、source ledger freshness、
 S3 verification evidence、requirements trace、targeted regression、static gates を含む。
 さらに full regression、completion frontier の各 phase に対して command / expected / evidence / source /
