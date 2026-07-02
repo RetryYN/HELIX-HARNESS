@@ -349,14 +349,17 @@ describe("version-up-readiness", () => {
     expect(packet.activationDecision.activation_snapshot_id).toBe("activationSnapshot.snapshotId");
     expect(packet.activationDecision.activation_route).toContain("add-feature");
     expect(packet.parkedReview.decision_packet_route).toContain("completion packet");
-    expect(packet.externalBoundaries).toEqual([
-      "Cloudflare",
-      "HMAC",
-      "webhook",
-      "access control",
-      "secret",
-      "external",
-    ]);
+    expect(packet.externalBoundaries).toEqual(
+      expect.arrayContaining([
+        "Cloudflare",
+        "HMAC",
+        "webhook",
+        "access control",
+        "secret",
+        "external",
+        "production",
+      ]),
+    );
     expect(packet.blockedReasons).toEqual(
       expect.arrayContaining([
         "plan remains version_target parked; activation decision has not been executed",
@@ -888,6 +891,47 @@ describe("version-up-readiness", () => {
     );
   });
 
+  it("keeps green/ok declarations pending when no concrete evidence locator is cited", () => {
+    const base = input().plans[0];
+    const packets = buildVersionUpActivationPackets(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .replace(
+                ".ut-tdd/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
+                "status: green",
+              )
+              .replace(
+                "docs/process/modes/version-up.md#version-up-source-ledger checked=2026-06-30",
+                "evidence: ok",
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(packets[0].activationReadinessChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "rollback_rehearsal",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "source_ledger",
+          status: "pending_evidence",
+        }),
+      ]),
+    );
+    expect(packets[0].blockedReasons).toEqual(
+      expect.arrayContaining([
+        "activation rehearsal evidence pending: rollback_rehearsal",
+        "activation rehearsal evidence pending: source_ledger",
+      ]),
+    );
+  });
+
   it("surfaces stale source ledger freshness inside activation packets", () => {
     const packets = buildVersionUpActivationPackets(
       input({
@@ -1360,7 +1404,8 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         {
           subject: "PLAN-L7-900-future",
-          reason: "activate_future_version requires an add-feature Forward route",
+          reason:
+            "activate_future_version requires an add-feature route with a concrete PLAN/L2-L7/docs target",
         },
         {
           subject: "PLAN-L7-900-future",
@@ -1380,6 +1425,30 @@ describe("version-up-readiness", () => {
         },
       ]),
     );
+  });
+
+  it("fails parked version-up activation routes that only name abstract Forward descent", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "- activation_route: add-feature -> L2/L3/L4/L6/L7",
+              "- activation_route: add-feature Forward descent",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "activate_future_version requires an add-feature route with a concrete PLAN/L2-L7/docs target",
+    });
   });
 
   it("fails when the feature catalog or requirement trace drops version-up semantics", () => {
@@ -1763,6 +1832,56 @@ describe("version-up-readiness", () => {
               "- decision_packet_route: completion packet",
               "version_target",
               "Cloudflare HMAC webhook",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.reason)).toEqual(
+      expect.arrayContaining([
+        "external activation boundary missing action-binding approval",
+        "external activation boundary missing escalation_boundaries",
+        "external activation boundary missing approval_scope",
+        "external activation boundary missing dry_run_plan",
+        "external activation boundary missing rollback_plan",
+        "external activation boundary missing exit 1",
+        "missing structured external_rehearsal_plan",
+        "missing structured cost_guardrails",
+        "missing structured activation_provenance_requirements",
+      ]),
+    );
+  });
+
+  it("fails infra/auth/production activation candidates even when Cloudflare/HMAC words are absent", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            file: "PLAN-L7-903-auth-infra.md",
+            plan_id: "PLAN-L7-903-auth-infra",
+            status: "draft",
+            versionTarget: "future",
+            text: [
+              "version-up parked",
+              "mode=version-up",
+              "activation",
+              "activation_decision_record:",
+              "- allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+              "- target_version_or_release_trigger: distribution release tag",
+              "- activation_snapshot_id: activationSnapshot.snapshotId",
+              "- activation_route: add-feature -> L2/L3/L4/L6/L7",
+              "- review_by: PO + TL",
+              "parked_review_record:",
+              "- review_owner: PO + TL",
+              "- review_trigger: distribution landing",
+              "- review_by_policy: trigger-bound",
+              "- stale_action: keep_parked_with_review_date or reject_or_archive",
+              "- activation_dependency: production auth infrastructure",
+              "- decision_packet_route: completion packet",
+              "version_target",
+              "production infrastructure authentication authorization activation",
             ].join("\n"),
           },
         ],

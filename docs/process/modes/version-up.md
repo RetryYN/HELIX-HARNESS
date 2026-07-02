@@ -46,13 +46,13 @@ version-up parked PLAN は、将来版へ保全している間も「次に何を
 | `allowed_outcome` | 常時必須 | parked / packet template の段階では `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date` の候補集合を列挙する。`activation_snapshot_id` が concrete `sha256:` になった承認材料では、候補集合ではなく選択済みの単一 outcome にする |
 | `target_version_or_release_trigger` | 常時必須 | どの version / release / tag / trigger で再開するか。`future` のまま曖昧にしない |
 | `activation_snapshot_id` | 常時必須 | `ut-tdd version-up activation-packet --json` の current `activationSnapshot.snapshotId`。snapshot が変わったら旧 approval evidence を流用しない |
-| `activation_route` | `activate_future_version` 候補がある場合必須 | activation 後に add-feature / Forward のどの route へ入るか。外部 activation だけで完了扱いしない |
+| `activation_route` | `activate_future_version` 候補がある場合必須 | activation 後に add-feature / Forward のどの route へ入るか。PLAN ID、L2-L7 層、または `docs/design` / `docs/plans` / `docs/process` / `docs/test-design` 配下の具体対象を明記し、`add-feature Forward descent` のような抽象 route だけでは通さない。外部 activation だけで完了扱いしない |
 | `review_by` | `keep_parked_with_review_date` 選択時必須 | 継続 park を放置にしないための再確認日と owner |
 | `approval_scope` | 外部 API・infra・secret・認証/認可を含む activation で必須 | 承認対象の範囲。Cloudflare / HMAC / webhook / access control 等を明示する |
 | `dry_run_plan` | 外部 boundary を含む activation で必須 | 実適用前に read-only / no-secret / no-prod-write を検証する手順 |
 | `rollback_plan` | 外部 boundary を含む activation で必須 | activation 失敗時に parked 状態へ戻す手順 |
 
-`activation_decision_record` が `activate_future_version` へ進む場合、当該 PLAN は add-feature route に接続し、
+`activation_decision_record` が `activate_future_version` へ進む場合、当該 PLAN は具体的な PLAN/L2-L7/docs 対象を持つ add-feature route に接続し、
 activation 後に `version_target` を外す。`reject_or_archive` の場合は破棄理由を記録して archived 化する。
 `keep_parked_with_review_date` の場合は `review_by` を更新し、completion readiness は引き続き blocked とする。
 

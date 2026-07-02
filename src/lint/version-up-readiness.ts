@@ -420,6 +420,16 @@ const EXTERNAL_BOUNDARY_TERMS = [
   "access control",
   "secret",
   "external",
+  "infrastructure",
+  "infra",
+  "auth",
+  "authentication",
+  "authorization",
+  "production",
+  "schema migration",
+  "本番",
+  "認証",
+  "認可",
 ] as const;
 
 const EXTERNAL_ACTIVATION_MARKERS = [
@@ -1369,7 +1379,8 @@ export function buildVersionUpActivationPacket(
     nextWorkflowRoutes: [
       {
         outcome: "activate_future_version",
-        route: "route through add-feature / Forward descent before any external activation",
+        route:
+          "route through add-feature with a concrete PLAN/L2-L7/docs target before any external activation",
       },
       {
         outcome: "reject_or_archive",
@@ -1959,8 +1970,9 @@ function hasConcreteActivationEvidence(evidence: string): boolean {
   return [
     /sha256:[a-f0-9]{64}/i,
     /\b[A-Z]{1,8}-\d{2,}\b/,
-    /\b(exit_code|exit code|status|result|verdict)\s*[:=]\s*(0|pass|passed|green|ok)\b/i,
-    /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)?\s*[:=]\s*\S+/i,
+    /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
+    /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
+    /https?:\/\/\S+/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
     /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
@@ -2112,10 +2124,14 @@ function validateParkedVersionUpSemantics(
       reason: "version-up activation requires a concrete release/version/trigger",
     });
   }
-  if (!mentions(activationRoute, ["add-feature"]) || !mentionsForwardLayer(activationRoute)) {
+  if (
+    !mentions(activationRoute, ["add-feature"]) ||
+    !mentionsConcreteActivationRoute(activationRoute)
+  ) {
     violations.push({
       subject: plan.plan_id,
-      reason: "activate_future_version requires an add-feature Forward route",
+      reason:
+        "activate_future_version requires an add-feature route with a concrete PLAN/L2-L7/docs target",
     });
   }
   if (!mentions(combinedRoute, ["reject_or_archive", "archive", "archived", "破棄"])) {
@@ -2243,8 +2259,12 @@ function mentions(value: string, needles: string[]): boolean {
   return needles.some((needle) => normalized.includes(needle.toLowerCase()));
 }
 
-function mentionsForwardLayer(value: string): boolean {
-  return /\bL(?:2|3|4|5|6|7)\b/.test(value) || mentions(value, ["Forward", "descent", "再降下"]);
+function mentionsConcreteActivationRoute(value: string): boolean {
+  return (
+    /\bPLAN-(?:L|REVERSE|DISCOVERY)-[A-Za-z0-9-]+\b/.test(value) ||
+    /\bL(?:2|3|4|5|6|7)\b/.test(value) ||
+    /\bdocs\/(?:design|plans|process|test-design)\/\S+/.test(value)
+  );
 }
 
 function parseSemver(value: string): {

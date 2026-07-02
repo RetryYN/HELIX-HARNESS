@@ -56,7 +56,7 @@ activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
 - target_version_or_release_trigger: 配布チャネル (`PLAN-L7-157`) の release/tag 着地、または PO が serverless read-only share を次版 scope に戻す明示 request。
 - activation_snapshot_id: Current `activationSnapshot.snapshotId` from `ut-tdd version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json`; approval evidence becomes stale if this snapshot changes.
-- activation_route: `activate_future_version` の場合は add-feature route で L2/L3/L4/L6/L7 に再降下し、Cloudflare/GitHub webhook activation を Forward 実装 PLAN として扱う。外部 activation だけで terminal にしない。
+- activation_route: `activate_future_version` の場合は add-feature route で具体対象 `PLAN-L7-146-serverless-readonly-share -> L2/L3/L4/L6/L7` に再降下し、Cloudflare/GitHub webhook activation を Forward 実装 PLAN として扱う。外部 activation だけで terminal にしない。
 - review_by: PO + TL が配布チャネル着地後に再確認日を設定する。継続 park の場合は次回日付と owner を本文へ追記する。
 - approval_scope: Cloudflare Pages/Workers/D1/KV、GitHub webhook HMAC、閲覧 access control、secret 管理、外部 infrastructure activation。
 - dry_run_plan: read-only SPA 配信、HMAC 検証、secret/PII 非投影、prod write なし、30 秒 polling/reconcile を staging または dry-run projection で確認する。
@@ -64,7 +64,7 @@ activation_decision_record:
 - source_ledger_freshness: fresh; Version-up source ledger checked 2026-07-02 in docs/process/modes/version-up.md before activation packet use.
 - source_status_delta: changed; 2026-07-02 official-source refresh adds GitHub Actions secure-use / pull_request_target / GITHUB_TOKEN permission guidance as activation workflow hardening evidence, without authorizing activation.
 - adoption_decision_delta: changed; adopt-live-docs-for-activation-workflow-hardening adds least-privilege workflow / unsafe pull_request_target / auto-approval review to approval_scope, dry_run_plan, external_rehearsal_plan, activation_provenance_requirements, and audit_record while activation remains parked and plan-only.
-- workflow_route_impact: none while parked; activation later routes through version-up add-feature/Forward descent or reject/archive.
+- workflow_route_impact: parked 中の影響は無し。activation 時は version-up の add-feature 具体対象 `PLAN-L7-146-serverless-readonly-share -> L2/L3/L4/L6/L7` へ接続するか、reject/archive へ進む。
 
 parked_review_record:
 - review_owner: PO (人間) + TL。activation 可否は PO、technical readiness は TL が判定する。

@@ -1078,7 +1078,7 @@ function nextWorkflowRouteForRecordName(recordName: string): string {
     case "s4_decision_record":
       return "S4 decide -> record decision_outcome, then route to Forward L1/L3-L6, rejected backlog exclusion, or pivot sprint";
     case "activation_decision_record":
-      return "version-up activation -> bind activationSnapshot.snapshotId, then activate via add-feature/Forward route, reject/archive, or keep parked with review_by";
+      return "version-up activation -> bind activationSnapshot.snapshotId, then activate via add-feature Forward route with concrete PLAN/L2-L7/docs target, reject/archive, or keep parked with review_by";
     case "parked_review_record":
       return "version-up parked review -> schedule review, mark stale, or route to activation_decision_record";
     case "external_rehearsal_plan":
@@ -1118,7 +1118,7 @@ function insertionHintForRecordName(recordName: string): string {
     case "s4_decision_record":
       return "Add this block to the PLAN S4 decision evidence before setting decision_outcome or terminal status; distinguish confirmed/rejected/pivot, record route_impact, and bind the Forward/Reverse route or archive/backlog path.";
     case "activation_decision_record":
-      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked; bind activationSnapshot.snapshotId, the add-feature/Forward route, reject/archive route, review_by policy, dry-run, and rollback.";
+      return "Add this block to the version-up PLAN before activating, rejecting, or keeping parked; bind activationSnapshot.snapshotId, the add-feature Forward route with concrete PLAN/L2-L7/docs target, reject/archive route, review_by policy, dry-run, and rollback.";
     case "parked_review_record":
       return "Add this block to the version-up PLAN while the work remains parked for a future release; include review_owner, review_trigger, stale_action, and completion/status decision packet route.";
     case "external_rehearsal_plan":
