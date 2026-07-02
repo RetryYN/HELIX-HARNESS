@@ -1700,6 +1700,62 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
   });
 
+  it("blocks harness-check when required smoke commands are present but an extra run command is added", () => {
+    const extraRunTemplates = {
+      ...baseTemplates,
+      "common/harness-check.yml": [
+        "name: harness-check",
+        "on:",
+        "  push:",
+        "    branches: [main]",
+        "  pull_request:",
+        "    branches: [main]",
+        "permissions:",
+        "  contents: read",
+        "jobs:",
+        "  harness-check:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "      - uses: actions/checkout@v4",
+        "      - uses: oven-sh/setup-bun@v2",
+        "      - run: bun install --frozen-lockfile",
+        "      - run: bun run ut-tdd --version",
+        "      - run: bun run ut-tdd setup project --dry-run --json",
+        "      - run: bun run ut-tdd status --json",
+        "      - run: bun run ut-tdd completion decision-packet --json",
+        "      - run: bun run ut-tdd doctor --profile consumer --json",
+        "      - run: bun run ut-tdd rename plan --json",
+        "      - run: bun run ut-tdd handover status --json",
+        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run typecheck",
+        "      - run: bun run test",
+        "      - run: echo unexpected extra command",
+        "",
+      ].join("\n"),
+    };
+    const deps = mockDeps({
+      templates: extraRunTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "harness-check-ci-is-read-only-consumer-smoke",
+          ok: false,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
+  });
+
   it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
     const deps = mockDeps({
       templates: baseTemplates,

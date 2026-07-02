@@ -797,6 +797,22 @@ describe("runConsumerDoctor", () => {
     ).toBe(true);
   });
 
+  it("fails closed when the consumer CI workflow adds an extra run command outside the fixed smoke set", () => {
+    const files = consumerDoctorFiles("/repo");
+    const workflowPath = join("/repo", ".github", "workflows", "harness-check.yml");
+    files.set(
+      workflowPath,
+      `${files.get(workflowPath) ?? ""}      - run: echo unexpected extra command\n`,
+    );
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(result.messages, "consumer-ci-workflow - violation", "exactRuns=false"),
+    ).toBe(true);
+  });
+
   it("fails closed when GitHub policy templates lose HELIX workflow evidence fields", () => {
     const files = consumerDoctorFiles("/repo", {
       ".github/ISSUE_TEMPLATE/recovery.md": "# Recovery\n",

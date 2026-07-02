@@ -27,6 +27,36 @@ import {
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
 
+export const CONSUMER_CI_RUN_COMMANDS = [
+  "bun install --frozen-lockfile",
+  "bun run ut-tdd --version",
+  "bun run ut-tdd setup project --dry-run --json",
+  "bun run ut-tdd status --json",
+  "bun run ut-tdd completion decision-packet --json",
+  "bun run ut-tdd doctor --profile consumer --json",
+  "bun run ut-tdd rename plan --json",
+  "bun run ut-tdd handover status --json",
+  `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+  "bun run typecheck",
+  "bun run test",
+] as const;
+
+export function extractWorkflowRunCommands(workflow: string): string[] {
+  return workflow
+    .split(/\r?\n/)
+    .map((line) => line.match(/^\s*(?:-\s*)?run:\s*(.+?)\s*$/)?.[1]?.trim())
+    .filter((command): command is string => Boolean(command))
+    .map((command) => command.replace(/^['"]|['"]$/g, ""));
+}
+
+export function workflowRunCommandsExactlyMatchConsumerCi(workflow: string): boolean {
+  const commands = extractWorkflowRunCommands(workflow);
+  return (
+    commands.length === CONSUMER_CI_RUN_COMMANDS.length &&
+    CONSUMER_CI_RUN_COMMANDS.every((command, index) => commands[index] === command)
+  );
+}
+
 /** 検出結果 (生信号、判定しない)。token は含めない。 */
 export interface ProjectScale {
   ownerType: "User" | "Organization" | "unknown";
@@ -1163,18 +1193,9 @@ function buildConsumerArtifactReadinessPlan(
         workflow.includes("pull_request:") &&
         !workflow.includes("pull_request_target") &&
         !workflow.includes("secrets.") &&
-        [
-          "bun run ut-tdd --version",
-          "bun run ut-tdd setup project --dry-run --json",
-          "bun run ut-tdd status --json",
-          "bun run ut-tdd completion decision-packet --json",
-          "bun run ut-tdd doctor --profile consumer --json",
-          "bun run ut-tdd rename plan --json",
-          "bun run ut-tdd handover status --json",
-          `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
-        ].every((command) => workflow.includes(command)),
+        workflowRunCommandsExactlyMatchConsumerCi(workflow),
       message:
-        "harness-check workflow must be a read-only, secret-free consumer smoke with package-local HELIX commands and no pull_request_target",
+        "harness-check workflow must be a read-only, secret-free consumer smoke with the fixed package-local HELIX command set and no extra run commands",
       evidence: ".github/workflows/harness-check.yml permissions/triggers/command surface",
     },
     ...(codeownersRequired

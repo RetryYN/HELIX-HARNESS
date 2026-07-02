@@ -157,6 +157,12 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `bun run ut-tdd ...` smoke command 群を満たさなければ setup readiness を `fix_consumer_readiness` へ戻す。
 > GitHub secure-use の read-only / least privilege 境界を JSON 上の `consumerReadiness.ci` 宣言だけに閉じ込めず、
 > 実テンプレの drift でも fail-close する。
+> 2026-07-03 追補: `harness-check.yml` の `run:` command は「必須 command を含む」だけでは不十分であり、
+> `CONSUMER_CI_RUN_COMMANDS` の固定 11 本 (`bun install --frozen-lockfile`、8 本の `bun run ut-tdd ...` smoke、
+> `bun run typecheck`、`bun run test`) と順序・件数が一致する場合だけ artifact readiness / consumer doctor を green にする。
+> 余分な `run:` (例: `echo` / `curl` / `gh` / install 追加) は、`permissions: contents: read` と必須 smoke が揃っていても
+> `fix_consumer_readiness` に戻す。GitHub Actions の `GITHUB_TOKEN` least-privilege と `pull_request_target` 境界を
+> 「read-only smoke 固定集合」へ落とし込み、初回 setup CI が任意 shell 実行 surface へ広がらないようにする。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
 > `ut-tdd rename plan --json` / handover status /
 > `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含む集約リストである。

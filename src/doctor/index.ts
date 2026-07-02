@@ -347,6 +347,10 @@ import {
 import { detectMode } from "../runtime/detect";
 import { teamDefinitionSchema } from "../schema/team";
 import {
+  CONSUMER_CI_RUN_COMMANDS,
+  workflowRunCommandsExactlyMatchConsumerCi,
+} from "../setup/index";
+import {
   CONSUMER_CLAUDE_AGENT_NAMES,
   CONSUMER_CLAUDE_COMMAND_NAMES,
   CONSUMER_TEAM_DEFINITION_PATH,
@@ -2173,21 +2177,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     .map(recordValue)
     .filter((step): step is Record<string, unknown> => Boolean(step));
   const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
-  const requiredRuns = [
-    "bun install --frozen-lockfile",
-    "bun run ut-tdd --version",
-    "bun run ut-tdd setup project --dry-run --json",
-    "bun run ut-tdd status --json",
-    "bun run ut-tdd completion decision-packet --json",
-    "bun run ut-tdd doctor --profile consumer --json",
-    "bun run ut-tdd rename plan --json",
-    "bun run ut-tdd handover status --json",
-    `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
-    "bun run typecheck",
-    "bun run test",
-  ];
+  const requiredRuns = [...CONSUMER_CI_RUN_COMMANDS];
   const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
   const missingRuns = requiredRuns.filter((run) => !stepRecords.some((step) => step.run === run));
+  const exactRunCommands = workflowRunCommandsExactlyMatchConsumerCi(workflowRaw);
   const ciOk =
     workflow?.name === "harness-check" &&
     pushMain &&
@@ -2198,11 +2191,12 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     harnessJob?.["runs-on"] === "ubuntu-latest" &&
     missingUses.length === 0 &&
     missingRuns.length === 0 &&
+    exactRunCommands &&
     !workflowRaw.includes("secrets.");
   messages.push(
     ciOk
       ? `doctor: consumer-ci-workflow - OK (workflow=harness-check, permissions=contents:read, triggers=push/pull_request:main, commands=${requiredUses.length + requiredRuns.length}, secrets=not-required)`
-      : `doctor: consumer-ci-workflow - violation name=${workflow?.name === "harness-check"} pushMain=${pushMain} pullRequestMain=${pullRequestMain} noPullRequestTarget=${noPullRequestTarget} permissionsRead=${permissionsRead} tokenWrite=${tokenWrite} job=${harnessJob?.["runs-on"] === "ubuntu-latest"} missingUses=${missingUses.join(",")} missingRuns=${missingRuns.join(",")} secrets=${workflowRaw.includes("secrets.")}`,
+      : `doctor: consumer-ci-workflow - violation name=${workflow?.name === "harness-check"} pushMain=${pushMain} pullRequestMain=${pullRequestMain} noPullRequestTarget=${noPullRequestTarget} permissionsRead=${permissionsRead} tokenWrite=${tokenWrite} job=${harnessJob?.["runs-on"] === "ubuntu-latest"} missingUses=${missingUses.join(",")} missingRuns=${missingRuns.join(",")} exactRuns=${exactRunCommands} secrets=${workflowRaw.includes("secrets.")}`,
   );
 
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
