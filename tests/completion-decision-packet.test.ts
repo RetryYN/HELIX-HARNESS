@@ -639,6 +639,34 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("rejects scoped packet command drift even when base packet commands are correct", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        scopedDecisionPacketCommand: decision.decisionPacketCommand,
+        scopedPacketCommands: decision.packetCommands,
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_scoped_decision_packet_command",
+          detail:
+            "decision[0] scopedDecisionPacketCommand mismatch expected=ut-tdd s4 decision-packet --json --plan PLAN-S3 actual=ut-tdd s4 decision-packet --json",
+        },
+        {
+          reason: "invalid_scoped_decision_packet_command",
+          detail:
+            "decision[0] scopedPacketCommands mismatch expected=ut-tdd s4 decision-packet --json --plan PLAN-S3 actual=ut-tdd s4 decision-packet --json",
+        },
+      ]),
+    );
+  });
+
   it("rejects required record drift from secondary blockers", () => {
     const source = loadCompletionDecisionPacketInput(process.cwd(), "2026-06-30T03:00:00.000Z");
     const packet = {

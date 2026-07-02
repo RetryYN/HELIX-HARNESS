@@ -29,6 +29,7 @@ export type CompletionDecisionPacketViolationReason =
   | "decision_count_mismatch"
   | "invalid_decision_kind"
   | "invalid_decision_packet_command"
+  | "invalid_scoped_decision_packet_command"
   | "invalid_supporting_packet_summary"
   | "invalid_decision_allowed_outcomes"
   | "invalid_decision_next_route"
@@ -224,6 +225,26 @@ export function analyzeCompletionDecisionPacket(
       violations.push({
         reason: "invalid_decision_packet_command",
         detail: `decision[${decisionIndex}] packetCommands mismatch expected=${sortedExpectedPacketCommands.join(",")} actual=${actualPacketCommands.join(",")}`,
+      });
+    }
+    const expectedScopedDecisionPacketCommand = scopedDecisionPacketCommandForPlan(
+      decision.planId,
+      expectedPacketCommand,
+    );
+    if (decision.scopedDecisionPacketCommand !== expectedScopedDecisionPacketCommand) {
+      violations.push({
+        reason: "invalid_scoped_decision_packet_command",
+        detail: `decision[${decisionIndex}] scopedDecisionPacketCommand mismatch expected=${expectedScopedDecisionPacketCommand} actual=${String(decision.scopedDecisionPacketCommand)}`,
+      });
+    }
+    const expectedScopedPacketCommands = expectedPacketCommands
+      .map((command) => scopedDecisionPacketCommandForPlan(decision.planId, command))
+      .sort();
+    const actualScopedPacketCommands = [...(decision.scopedPacketCommands ?? [])].sort();
+    if (actualScopedPacketCommands.join("\0") !== expectedScopedPacketCommands.join("\0")) {
+      violations.push({
+        reason: "invalid_scoped_decision_packet_command",
+        detail: `decision[${decisionIndex}] scopedPacketCommands mismatch expected=${expectedScopedPacketCommands.join(",")} actual=${actualScopedPacketCommands.join(",")}`,
       });
     }
     const summaryCommands = [
@@ -696,6 +717,17 @@ function requiredPacketCommands(blockerReason: string, blockers: string[] = []):
       ...blockers.map((blocker) => requiredDecisionPacketCommand(blocker)),
     ]),
   ];
+}
+
+function scopedDecisionPacketCommandForPlan(planId: string, command: string): string {
+  switch (command) {
+    case "ut-tdd s4 decision-packet --json":
+    case "ut-tdd version-up activation-packet --json":
+    case "ut-tdd action-binding approval-packet --json":
+      return `${command} --plan ${planId}`;
+    default:
+      return command;
+  }
 }
 
 function requiredSupportingPacketSummary(command: string): {
