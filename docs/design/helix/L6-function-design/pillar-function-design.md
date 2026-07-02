@@ -176,6 +176,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   実行可能な承認済み CLI/test surface に限定し、`review ...` / `verify ...` の自然文手順を approval evidence として
   通さない。sibling S4 / version-up packet は `--plan <PLAN_ID>` 付き command、rename は singleton
   `rename plan` として出し、複数 pending PLAN 時の対象推測へ戻さない。
+  同 validator は `sourceCheckedAt` の未来日・90 日超 stale・不正形式、および source/adoption/route metadata の
+  空値・placeholder も fail-close し、action-binding approval packet が古い official-source 前提や
+  date-only review で承認材料になることを防ぐ。
   version-up sibling の `reviewed_snapshot_binding` は repo HEAD と current package version を入力にした
   current `activationSnapshot.snapshotId` と照合し、HEAD なしで生成された snapshot や別 HEAD の snapshot を
   current approval evidence と誤認しない。

@@ -325,6 +325,67 @@ describe("action-binding approval readiness", () => {
           "approvalVerificationCommandMatrix command is not an executable approved surface: review approvalBindingChecks[] for concrete approved_actor and approved_tool",
       },
     ]);
+    expect(
+      actionBindingApprovalVerificationCommandViolations({
+        ...packet,
+        approvalVerificationCommandMatrix: packet.approvalVerificationCommandMatrix.map((row) =>
+          row.phase === "least-privilege-binding"
+            ? {
+                ...row,
+                sourceCheckedAt: "2026-01-01",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-X.least-privilege-binding",
+        reason: expect.stringMatching(
+          /^approvalVerificationCommandMatrix sourceCheckedAt is stale: 2026-01-01 \(\d+d > 90d\)$/,
+        ),
+      },
+    ]);
+    expect(
+      actionBindingApprovalVerificationCommandViolations({
+        ...packet,
+        approvalVerificationCommandMatrix: packet.approvalVerificationCommandMatrix.map((row) =>
+          row.phase === "least-privilege-binding"
+            ? {
+                ...row,
+                sourceCheckedAt: "2999-01-01",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-X.least-privilege-binding",
+        reason: "approvalVerificationCommandMatrix sourceCheckedAt is in the future: 2999-01-01",
+      },
+    ]);
+    expect(
+      actionBindingApprovalVerificationCommandViolations({
+        ...packet,
+        approvalVerificationCommandMatrix: packet.approvalVerificationCommandMatrix.map((row) =>
+          row.phase === "least-privilege-binding"
+            ? {
+                ...row,
+                latestOfficialStatus: "TODO",
+                workflowRouteImpact: "-",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-X.least-privilege-binding",
+        reason: "approvalVerificationCommandMatrix latestOfficialStatus is missing or placeholder",
+      },
+      {
+        subject: "PLAN-X.least-privilege-binding",
+        reason: "approvalVerificationCommandMatrix workflowRouteImpact is missing or placeholder",
+      },
+    ]);
     for (const row of packet.approvalVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(row.latestOfficialStatus, row.phase).not.toBe("");

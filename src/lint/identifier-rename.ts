@@ -640,7 +640,10 @@ function samplePathsForCategory(
     .map(([path]) => path);
 }
 
-function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["verificationCommandMatrix"] {
+function buildRenameVerificationCommandMatrix(
+  sourceCheckedAt: string | null,
+): IdentifierRenameCutoverPlan["verificationCommandMatrix"] {
+  const cutoverSourceCheckedAt = sourceCheckedAt ?? "unknown";
   return [
     {
       phase: "baseline",
@@ -650,7 +653,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "rename audit JSON attached to cutover approval record",
       source: "HELIX identifier cutover source ledger",
       sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
-      sourceCheckedAt: "2026-06-30",
+      sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus:
         "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency, Google SRE, OWASP LLM06, and SLSA provenance rows",
       sourceStatusDelta: "none; ledger remains inside the 90-day freshness window",
@@ -1179,10 +1182,12 @@ export function buildIdentifierRenameCutoverPlan(
     cutoverAction: cutoverActionForCategory(summary.category),
     verificationCommand: verificationCommandForCategory(summary.category),
   }));
-  const verificationCommandMatrix = buildRenameVerificationCommandMatrix();
   const cutoverRunbook = buildCutoverRunbook();
   const stateBackupManifest = buildStateBackupManifest();
   const sourceLedgerFreshness = buildCutoverSourceLedgerFreshness(root);
+  const verificationCommandMatrix = buildRenameVerificationCommandMatrix(
+    sourceLedgerFreshness.checkedDate,
+  );
   if (sourceLedgerFreshness.violation) {
     blockedReasons.push(
       `source ledger must be refreshed before cutover: ${sourceLedgerFreshness.violation}`,

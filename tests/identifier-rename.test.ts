@@ -52,7 +52,7 @@ function runCliIn(cwd: string, args: string[]) {
   });
 }
 
-function writeCutoverSourceLedger(root: string, checkedDate = "2026-06-30"): void {
+function writeCutoverSourceLedger(root: string, checkedDate = "2026-07-02"): void {
   mkdirSync(join(root, "docs", "process", "forward"), { recursive: true });
   writeFileSync(
     join(root, "docs", "process", "forward", "L08-L14-verification-phase.md"),
@@ -392,7 +392,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             command: "bun run src/cli.ts rename audit --json",
             writePolicy: "no-write",
             sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
-            sourceCheckedAt: "2026-06-30",
+            sourceCheckedAt: "2026-07-02",
             latestOfficialStatus: expect.stringContaining("NIST SSDF"),
             sourceStatusDelta: expect.stringContaining("90-day freshness"),
             adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
@@ -502,7 +502,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
       expect(plan.sourceLedgerFreshness).toEqual({
         ledgerLabel: "Cutover source ledger",
-        checkedDate: "2026-06-30",
+        checkedDate: "2026-07-02",
         stale: false,
         violation: null,
         maxAgeDays: 90,
@@ -618,7 +618,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         blastRadiusDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
-        sourceLedgerCheckedDate: "2026-06-30",
+        sourceLedgerCheckedDate: "2026-07-02",
         invalidatedBy: plan.freezePolicy.reapprovalTriggers,
       });
       expect(plan.snapshotReview).toMatchObject({
@@ -854,6 +854,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-cli-"));
     try {
       writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const result = runCliIn(root, ["rename", "plan", "--json"]);
@@ -942,7 +943,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("record-template cutover_decision_record");
       expect(text.stdout).toContain("record-template action_binding_approval_record");
       expect(text.stdout).toContain(
-        "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md checked=2026-06-30",
+        "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md checked=2026-07-02",
       );
       expect(text.stdout).toContain("adoption=adopt-cutover-source-ledger-for-l14-approval-review");
       expect(text.stdout).toContain(
