@@ -4258,7 +4258,11 @@ audit
         : analyzeObjectiveEvidenceAudit(input);
     const output = {
       ok: observedResult.ok === true && result.ok,
-      externalObserved: observedResult,
+      externalObserved: observedResult.externalObserved,
+      externalCheck: {
+        ok: observedResult.ok,
+        messages: observedResult.messages,
+      },
       audit: result,
     };
     process.exitCode = output.ok ? 0 : 1;

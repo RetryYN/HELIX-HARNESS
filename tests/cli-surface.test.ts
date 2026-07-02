@@ -725,12 +725,12 @@ describe("L7 CLI surface closure", () => {
       expect(payload).toMatchObject({
         ok: true,
         externalObserved: {
+          development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+          distribution_pack_repo: "b9a42df867ceadbd24fc8e0a50ad756da0591c59",
+          distribution_pack_latest_tag: "v0.1.3",
+        },
+        externalCheck: {
           ok: true,
-          externalObserved: {
-            development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-            distribution_pack_repo: "b9a42df867ceadbd24fc8e0a50ad756da0591c59",
-            distribution_pack_latest_tag: "v0.1.3",
-          },
         },
         audit: {
           ok: true,
@@ -740,6 +740,7 @@ describe("L7 CLI surface closure", () => {
           },
         },
       });
+      expect(payload.externalObserved.externalObserved).toBeUndefined();
     } finally {
       rmSync(binDir, { recursive: true, force: true });
     }
