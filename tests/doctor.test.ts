@@ -1022,6 +1022,77 @@ describe("runConsumerDoctor", () => {
     ).toBe(true);
   });
 
+  it("fails closed when consumer CI overrides job permissions or expression controls", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".github/workflows/harness-check.yml": [
+        "name: harness-check",
+        "on:",
+        "  push:",
+        "    branches: [main]",
+        "  pull_request:",
+        "    branches: [main]",
+        "permissions:",
+        "  contents: read",
+        "concurrency: helix-consumer-smoke",
+        "jobs:",
+        "  harness-check:",
+        "    runs-on: ubuntu-latest",
+        "    permissions:",
+        "      contents: write",
+        "    environment: production",
+        "    concurrency: helix-consumer-smoke-job",
+        "    timeout-minutes: 1",
+        "    continue-on-error: $" + "{{ true }}",
+        "    steps:",
+        "      - uses: actions/checkout@v4",
+        "        with:",
+        "          persist-credentials: false",
+        "      - uses: oven-sh/setup-bun@v2",
+        "      - run: bun install --frozen-lockfile",
+        "      - run: bun run ut-tdd --version",
+        "      - run: bun run ut-tdd setup project --dry-run --json",
+        "      - run: bun run ut-tdd status --json",
+        "      - run: bun run ut-tdd completion decision-packet --json",
+        "      - run: bun run ut-tdd doctor --profile consumer --json",
+        "      - run: bun run ut-tdd rename plan --json",
+        "        continue-on-error: false",
+        "        shell: bash",
+        "        timeout-minutes: 1",
+        "        working-directory: .",
+        "      - run: bun run ut-tdd handover status --json",
+        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run typecheck",
+        "      - run: bun run test",
+        "",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "skipOrSoftFailFree=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "jobPermissionsFixed=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "executionSurfaceFixed=false",
+      ),
+    ).toBe(true);
+  });
+
   it("fails closed when consumer CI adds extra triggers, actions, or bracket secret references", () => {
     const files = consumerDoctorFiles("/repo", {
       ".github/workflows/harness-check.yml": [

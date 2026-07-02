@@ -154,6 +154,7 @@ export interface ConsumerCiWorkflowContract {
   setupBunInputsEmpty: boolean;
   customEnvFree: boolean;
   skipOrSoftFailFree: boolean;
+  jobPermissionsFixed: boolean;
   executionSurfaceFixed: boolean;
   missingUses: string[];
   unexpectedUses: string[];
@@ -222,20 +223,30 @@ export function analyzeConsumerCiWorkflowContract(
     stepRecords.every((step) => !Object.hasOwn(step, "env"));
   const skipOrSoftFailFree =
     !Object.hasOwn(harnessJob ?? {}, "if") &&
-    harnessJob?.["continue-on-error"] !== true &&
-    harnessJob?.["continue-on-error"] !== "true" &&
+    !Object.hasOwn(harnessJob ?? {}, "continue-on-error") &&
+    stepRecords.every(
+      (step) => !Object.hasOwn(step, "if") && !Object.hasOwn(step, "continue-on-error"),
+    );
+  const jobPermissionsFixed = !Object.hasOwn(harnessJob ?? {}, "permissions");
+  const executionSurfaceFixed =
+    !Object.hasOwn(workflow ?? {}, "concurrency") &&
+    !Object.hasOwn(workflow ?? {}, "defaults") &&
+    !Object.hasOwn(harnessJob ?? {}, "concurrency") &&
+    !Object.hasOwn(harnessJob ?? {}, "defaults") &&
+    !Object.hasOwn(harnessJob ?? {}, "environment") &&
+    !Object.hasOwn(harnessJob ?? {}, "needs") &&
+    !Object.hasOwn(harnessJob ?? {}, "strategy") &&
+    !Object.hasOwn(harnessJob ?? {}, "timeout-minutes") &&
+    !Object.hasOwn(harnessJob ?? {}, "container") &&
+    !Object.hasOwn(harnessJob ?? {}, "services") &&
+    !Object.hasOwn(harnessJob ?? {}, "uses") &&
+    !Object.hasOwn(harnessJob ?? {}, "secrets") &&
     stepRecords.every(
       (step) =>
-        !Object.hasOwn(step, "if") &&
-        step["continue-on-error"] !== true &&
-        step["continue-on-error"] !== "true",
+        !Object.hasOwn(step, "shell") &&
+        !Object.hasOwn(step, "timeout-minutes") &&
+        !Object.hasOwn(step, "working-directory"),
     );
-  const executionSurfaceFixed =
-    !Object.hasOwn(workflow ?? {}, "defaults") &&
-    !Object.hasOwn(harnessJob ?? {}, "defaults") &&
-    !Object.hasOwn(harnessJob ?? {}, "strategy") &&
-    !Object.hasOwn(harnessJob ?? {}, "container") &&
-    !Object.hasOwn(harnessJob ?? {}, "services");
   const contract = {
     ok: false,
     nameOk: workflow?.name === "harness-check",
@@ -251,6 +262,7 @@ export function analyzeConsumerCiWorkflowContract(
     setupBunInputsEmpty,
     customEnvFree,
     skipOrSoftFailFree,
+    jobPermissionsFixed,
     executionSurfaceFixed,
     missingUses,
     unexpectedUses,
@@ -275,6 +287,7 @@ export function analyzeConsumerCiWorkflowContract(
       contract.setupBunInputsEmpty &&
       contract.customEnvFree &&
       contract.skipOrSoftFailFree &&
+      contract.jobPermissionsFixed &&
       contract.executionSurfaceFixed &&
       contract.missingUses.length === 0 &&
       contract.unexpectedUses.length === 0 &&

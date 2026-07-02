@@ -168,10 +168,12 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > write permission 不在、`jobs.harness-check.runs-on=ubuntu-latest`、`actions/checkout@v4` の
 > `with.persist-credentials=false` かつ余分な checkout input 不在、`oven-sh/setup-bun@v2` の `with:` 不在、
 > workflow / job / step の custom `env:` 不在、job / step の `if:`・`continue-on-error:` 不在、
-> workflow / job の `defaults`・`strategy`・`container`・`services` 不在、secret 参照不在、固定 `run:` command set をすべて満たす場合だけ green にする。
+> job-level `permissions` override 不在、workflow / job の `defaults`・`concurrency` 不在、
+> job の `strategy`・`container`・`services`・`environment`・`needs`・`timeout-minutes`・`uses`・`secrets` 不在、
+> step の `shell`・`timeout-minutes`・`working-directory` 不在、secret 参照不在、固定 `run:` command set をすべて満たす場合だけ green にする。
 > `run:` が完全一致していても branch が `develop` のみ、setup-bun step 欠落、job 名や runner drift がある場合は
 > consumer doctor に先送りせず `fix_consumer_readiness` へ戻す。`workflow_dispatch` / `schedule` などの追加 trigger、
-> 期待 2 本以外の `uses:` action、skip / soft-pass できる control field、`${{ secrets.NAME }}` / `${{ secrets['NAME'] }}` / 空白入り bracket secret 参照も
+> 期待 2 本以外の `uses:` action、job permission override、skip / soft-pass できる expression control field、`${{ secrets.NAME }}` / `${{ secrets['NAME'] }}` / 空白入り bracket secret 参照も
 > read-only smoke 証跡として扱わない。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
 > `ut-tdd rename plan --json` / handover status /
