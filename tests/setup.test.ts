@@ -67,6 +67,7 @@ const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
 };
 
 const baseTemplates: TemplateSet = {
+  ...BUILTIN_GITHUB_TEMPLATES,
   "adapter/AGENTS.md": [
     "<!-- UT-TDD:managed:start -->",
     "# HELIX アダプター",
@@ -93,10 +94,11 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "adapter/.claude/CLAUDE.md": [
     "<!-- UT-TDD:managed:start -->",
-    "# Claude runtime アダプター",
+    "# HELIX Claude runtime アダプター",
     "",
     "- `ut-tdd status`",
     "- `ut-tdd completion decision-packet --json`",
+    "- `ut-tdd doctor --profile consumer`",
     "- `ut-tdd rename plan --json`",
     "- `ut-tdd handover`",
     "<!-- UT-TDD:managed:end -->",
@@ -1231,6 +1233,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             path: "AGENTS.md",
           }),
           expect.objectContaining({
+            name: "claude-adapter-docs-carry-consumer-boundary",
+            ok: true,
+            path: "CLAUDE.md,.claude/CLAUDE.md",
+          }),
+          expect.objectContaining({
+            name: "claude-surface-templates-carry-completion-preflight",
+            ok: true,
+            path: ".claude/agents,.claude/commands",
+          }),
+          expect.objectContaining({
             name: "vscode-tasks-are-manual-consumer-smoke",
             ok: true,
             path: join(".vscode", "tasks.json"),
@@ -1362,6 +1374,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "<!-- UT-TDD:managed:end -->",
         "",
       ].join("\n"),
+      "adapter/CLAUDE.md": [
+        "<!-- UT-TDD:managed:start -->",
+        "# HELIX 共有コンテキスト",
+        "- `ut-tdd status`",
+        "<!-- UT-TDD:managed:end -->",
+        "",
+      ].join("\n"),
+      "adapter/.claude/commands/helix-test.md": "Run tests only.\n",
       "project/.ut-tdd/teams/default-hybrid.yaml": [
         "name: default-hybrid",
         "members:",
@@ -1387,6 +1407,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       checks: expect.arrayContaining([
         expect.objectContaining({
           name: "adapter-guidance-connects-consumer-verification",
+          ok: false,
+        }),
+        expect.objectContaining({
+          name: "claude-adapter-docs-carry-consumer-boundary",
+          ok: false,
+        }),
+        expect.objectContaining({
+          name: "claude-surface-templates-carry-completion-preflight",
           ok: false,
         }),
         expect.objectContaining({

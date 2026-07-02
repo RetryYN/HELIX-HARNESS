@@ -18,6 +18,8 @@ import { basename, dirname, join, relative, sep } from "node:path";
 import {
   BUILTIN_GITHUB_TEMPLATES,
   COMMON_FILES,
+  CONSUMER_CLAUDE_AGENT_NAMES,
+  CONSUMER_CLAUDE_COMMAND_NAMES,
   CONSUMER_TEAM_DEFINITION_PATH,
   PROJECT_SETUP_FILES,
   type TemplateSet,
@@ -1003,6 +1005,44 @@ function buildConsumerArtifactReadinessPlan(
   const tasks = content(tasksPath);
   const settings = content(settingsPath);
   const team = content(teamPath);
+  const claude = content("CLAUDE.md");
+  const claudeRuntime = content(join(".claude", "CLAUDE.md"));
+  const claudeAgentPaths = CONSUMER_CLAUDE_AGENT_NAMES.map((name) =>
+    join(".claude", "agents", `${name}.md`),
+  );
+  const claudeCommandPaths = CONSUMER_CLAUDE_COMMAND_NAMES.map((name) =>
+    join(".claude", "commands", `${name}.md`),
+  );
+  const adapterDocHasConsumerBoundary = (text: string): boolean =>
+    text.includes(MANAGED_START) &&
+    text.includes(MANAGED_END) &&
+    text.includes("HELIX") &&
+    text.includes("ut-tdd completion decision-packet --json") &&
+    text.includes("ut-tdd doctor --profile consumer") &&
+    text.includes("ut-tdd rename plan --json") &&
+    /[ぁ-んァ-ヶ一-龠]/.test(text);
+  const claudeAgentSurfacesOk = claudeAgentPaths.every((path) => {
+    const text = content(path);
+    return (
+      hasPath(path) &&
+      text.includes("consumer-safe な HELIX subagent") &&
+      text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd doctor --profile consumer") &&
+      text.includes("secret、credential、PII") &&
+      /[ぁ-んァ-ヶ一-龠]/.test(text)
+    );
+  });
+  const claudeCommandSurfacesOk = claudeCommandPaths.every((path) => {
+    const text = content(path);
+    return (
+      hasPath(path) &&
+      text.includes("HELIX") &&
+      text.includes("ut-tdd status --json") &&
+      text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd doctor --profile consumer") &&
+      /[ぁ-んァ-ヶ一-龠]/.test(text)
+    );
+  });
   const checks: ConsumerArtifactReadinessPlan["checks"] = [
     {
       name: "adapter-guidance-connects-consumer-verification",
@@ -1018,6 +1058,26 @@ function buildConsumerArtifactReadinessPlan(
       message:
         "AGENTS managed block must point to consumer doctor and the distributed default-hybrid team dry-run",
       evidence: "AGENTS.md managed block command surface",
+    },
+    {
+      name: "claude-adapter-docs-carry-consumer-boundary",
+      path: "CLAUDE.md,.claude/CLAUDE.md",
+      ok:
+        hasPath("CLAUDE.md") &&
+        hasPath(join(".claude", "CLAUDE.md")) &&
+        adapterDocHasConsumerBoundary(claude) &&
+        adapterDocHasConsumerBoundary(claudeRuntime),
+      message:
+        "CLAUDE adapter docs must keep Japanese HELIX prose, completion packet preflight, consumer doctor, and rename/cutover boundary",
+      evidence: "CLAUDE.md and .claude/CLAUDE.md managed block command surface",
+    },
+    {
+      name: "claude-surface-templates-carry-completion-preflight",
+      path: ".claude/agents,.claude/commands",
+      ok: claudeAgentSurfacesOk && claudeCommandSurfacesOk,
+      message:
+        "distributed Claude subagents and slash commands must keep Japanese HELIX prose, completion packet preflight, consumer doctor, and secret/PII guardrails",
+      evidence: `${claudeAgentPaths.length} agent templates and ${claudeCommandPaths.length} command templates`,
     },
     {
       name: "vscode-tasks-are-manual-consumer-smoke",
