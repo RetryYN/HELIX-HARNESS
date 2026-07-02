@@ -135,6 +135,8 @@ export interface VersionUpActivationPacket {
 export interface VersionUpActivationSnapshot {
   snapshotId: string;
   headSha: string | null;
+  headBound: boolean;
+  validationStatus: "head_bound" | "head_unavailable";
   releaseTrigger: string;
   versionTarget: string | null;
   planStatus: string;
@@ -1545,6 +1547,8 @@ function buildVersionUpActivationSnapshot(input: {
   });
   const snapshot = {
     headSha: input.repoHeadSha,
+    headBound: input.repoHeadSha !== null,
+    validationStatus: input.repoHeadSha === null ? "head_unavailable" : "head_bound",
     releaseTrigger,
     versionTarget: input.plan.versionTarget,
     planStatus: input.plan.status,
@@ -1552,7 +1556,7 @@ function buildVersionUpActivationSnapshot(input: {
     approvalScopeDigest,
     evidenceDigest,
     invalidatedBy: input.reapprovalTriggers.map((trigger) => trigger.trigger),
-  };
+  } satisfies Omit<VersionUpActivationSnapshot, "snapshotId">;
   return {
     snapshotId: sha256Json({
       plan_id: input.plan.plan_id,

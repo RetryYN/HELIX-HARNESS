@@ -565,6 +565,8 @@ describe("version-up-readiness", () => {
     expect(packet.activationSnapshot).toMatchObject({
       releaseTrigger: expect.stringContaining("release"),
       headSha: "0123456789abcdef0123456789abcdef01234567",
+      headBound: true,
+      validationStatus: "head_bound",
       versionTarget: "future",
       planStatus: "draft",
       sourceLedgerCheckedDate: "2026-06-30",
@@ -1556,6 +1558,8 @@ describe("version-up-readiness", () => {
     const packet = buildVersionUpActivationPackets(input({ repoHeadSha: null }))[0];
 
     expect(packet.activationSnapshot.headSha).toBeNull();
+    expect(packet.activationSnapshot.headBound).toBe(false);
+    expect(packet.activationSnapshot.validationStatus).toBe("head_unavailable");
     expect(packet.blockedReasons).toContain(
       "activation snapshot is not bound to a readable git HEAD sha",
     );

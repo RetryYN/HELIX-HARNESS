@@ -840,6 +840,76 @@ describe("action-binding approval readiness", () => {
     });
   });
 
+  it("does not synthesize a null-HEAD activation snapshot when repoHeadSha is unavailable", () => {
+    const currentSnapshot = currentVersionUpSnapshotId(
+      versionUpPlanWithSnapshot("sha256:0".padEnd(71, "0")),
+      ACTION_BINDING_TEST_HEAD_SHA,
+    );
+    const plan = versionUpPlanWithSnapshot(currentSnapshot);
+    const input = {
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      currentVersion: "0.1.0",
+      plans: [plan],
+    };
+
+    const result = analyzeActionBindingApprovalReadiness(input);
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-146",
+      reason: "activation snapshot cannot be validated without repoHeadSha",
+    });
+    expect(result.violations).not.toContainEqual({
+      subject: "PLAN-L7-146",
+      reason: "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    });
+
+    const packet = buildActionBindingApprovalPackets(input)[0];
+    expect(packet.blockedReasons).toContain(
+      "activation snapshot cannot be validated without repoHeadSha",
+    );
+    expect(packet.blockedReasons).not.toContain(
+      "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    );
+    expect(
+      packet.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding"),
+    ).toMatchObject({
+      status: "pending",
+      reason: "activation snapshot cannot be validated without repoHeadSha",
+    });
+  });
+
+  it("does not synthesize a null-HEAD activation snapshot when repoHeadSha is explicitly null", () => {
+    const nullHeadSnapshot = currentVersionUpSnapshotId(
+      versionUpPlanWithSnapshot("sha256:0".padEnd(71, "0")),
+      null,
+    );
+    const plan = versionUpPlanWithSnapshot(nullHeadSnapshot);
+    const input = {
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      repoHeadSha: null,
+      currentVersion: "0.1.0",
+      plans: [plan],
+    };
+
+    const packet = buildActionBindingApprovalPackets(input)[0];
+    expect(packet.blockedReasons).toContain(
+      "activation snapshot cannot be validated without repoHeadSha",
+    );
+    expect(packet.blockedReasons).not.toContain(
+      "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    );
+    expect(
+      packet.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding"),
+    ).toMatchObject({
+      status: "pending",
+      reason: "activation snapshot cannot be validated without repoHeadSha",
+    });
+  });
+
   it("rejects cutover approvals whose concrete snapshot id is stale", () => {
     const staleSnapshot = "sha256:2222222222222222222222222222222222222222222222222222222222222222";
     const currentSnapshot =
