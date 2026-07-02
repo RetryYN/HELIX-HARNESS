@@ -770,6 +770,8 @@ function validateActionBindingSemantics(
   const reviewedSnapshotBinding = record(plan, "reviewed_snapshot_binding");
   const expiry = record(plan, "expires_at_or_trigger");
   const auditRecord = record(plan, "audit_record");
+  const approveSelected =
+    selectedOutcome(record(plan, "allowed_outcome")) === "approve_action_binding";
 
   if (!hasLimitedApprovalScope(approvalScope)) {
     violations.push({
@@ -809,16 +811,12 @@ function validateActionBindingSemantics(
     }
   }
   if (
-    !mentions(reviewEvidence, [
-      "dry-run",
-      "risk",
-      "review",
-      "evidence",
-      "rollback",
-      "no-secret",
-      "full test",
-      "doctor",
-    ])
+    (approveSelected &&
+      (!hasConcreteApprovalEvidenceLocator(reviewEvidence) ||
+        isPendingReviewEvidence(reviewEvidence))) ||
+    (!approveSelected &&
+      !isPendingReviewEvidence(reviewEvidence) &&
+      !hasConcreteApprovalEvidenceLocator(reviewEvidence))
   ) {
     violations.push({
       subject: plan.plan_id,
@@ -867,6 +865,12 @@ function validateActionBindingSemantics(
     });
   }
   if (
+    (approveSelected &&
+      (isPendingApprovalBinding(auditRecord) ||
+        !hasConcreteApprovalEvidenceLocator(auditRecord))) ||
+    (!approveSelected &&
+      !isPendingApprovalBinding(auditRecord) &&
+      !hasConcreteApprovalEvidenceLocator(auditRecord)) ||
     !mentions(auditRecord, ["approver"]) ||
     !mentions(auditRecord, ["action", "command", "commands"]) ||
     !mentions(auditRecord, ["result", "結果"]) ||
@@ -1193,19 +1197,7 @@ function actionBindingApprovalCheckForField(
   }
 
   if (field === "review_approval_evidence") {
-    if (
-      mentions(value, [
-        "dry-run",
-        "risk",
-        "review",
-        "evidence",
-        "rollback",
-        "no-secret",
-        "full test",
-        "doctor",
-      ]) &&
-      !isPendingReviewEvidence(value)
-    ) {
+    if (hasConcreteApprovalEvidenceLocator(value) && !isPendingReviewEvidence(value)) {
       return concreteCheck(field, value, "review evidence is named");
     }
     return {
@@ -1303,7 +1295,7 @@ function actionBindingApprovalCheckForField(
   }
 
   if (field === "audit_record") {
-    if (isPendingApprovalBinding(value)) {
+    if (isPendingApprovalBinding(value) || !hasConcreteApprovalEvidenceLocator(value)) {
       return {
         field,
         status: "pending",
@@ -1375,6 +1367,11 @@ function isPendingApprovalBinding(value: string): boolean {
     "before execution",
     "required before",
     "cannot authorize",
+    "将来",
+    "承認しない",
+    "未承認",
+    "承認前",
+    "approval 前",
   ]);
 }
 
@@ -1384,12 +1381,35 @@ function isPendingReviewEvidence(value: string): boolean {
     "to be reviewed",
     "before approval",
     "before activation",
+    "before apply",
+    "before execution",
     "required before",
+    "将来",
+    "承認前",
+    "approval 前",
   ]);
+}
+
+function hasConcreteApprovalEvidenceLocator(value: string): boolean {
+  const normalized = value.trim();
+  if (!normalized) return false;
+  return [
+    /sha256:[a-f0-9]{64}/i,
+    /\b[A-Z]{1,8}-\d{2,}\b/,
+    /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
+    /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
+    /https?:\/\/\S+/i,
+    /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
+    /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
+    /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
+  ].some((pattern) => pattern.test(normalized));
 }
 
 function hasLimitedApprovalScope(value: string): boolean {
   if (isBroadApproval(value)) {
+    return false;
+  }
+  if (hasOnlyScopeExclusions(value)) {
     return false;
   }
   const hasLimiter = mentions(value, [
@@ -1427,6 +1447,15 @@ function hasLimitedApprovalScope(value: string): boolean {
     "write-capable",
   ]);
   return hasLimiter && hasConcreteBoundary;
+}
+
+function hasOnlyScopeExclusions(value: string): boolean {
+  const normalized = value.toLowerCase();
+  const exclusionMarkers = ["out of scope", "excluded", "対象外", "範囲外"];
+  if (!exclusionMarkers.some((marker) => normalized.includes(marker.toLowerCase()))) {
+    return false;
+  }
+  return !mentions(value, ["only", "limited", "限定", "範囲に限定"]);
 }
 
 function hasExpiryOrTrigger(value: string): boolean {

@@ -429,9 +429,16 @@ function evaluateCutoverApproval(root: string): CutoverApprovalEvaluation {
     if (/^<[^>]+>$/.test(normalized)) return false;
     if (/^No\b/i.test(normalized)) return false;
     if (normalized.includes("`") && normalized.includes("/")) return false;
+    if (/^(TBD|TODO|pending|-|n\/a)$/i.test(normalized)) return false;
     if (/\bmust\s+(name|record|write|cite|review)\b/i.test(normalized)) return false;
+    if (/\bfuture approval\b/i.test(normalized)) return false;
+    if (/\bpending\b/i.test(normalized)) return false;
+    if (/\bwill be (recorded|reviewed|approved|named|written|provided)\b/i.test(normalized)) {
+      return false;
+    }
     if (/\bbefore\s+(apply|approval|cutover|execution)\b/i.test(normalized)) return false;
     if (/\bnot approved\b/i.test(normalized)) return false;
+    if (/(予定|未定|保留|承認前|未承認)/.test(normalized)) return false;
     return true;
   };
   const requireOutcome = (input: {

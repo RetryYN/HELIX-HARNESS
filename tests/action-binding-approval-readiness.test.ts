@@ -48,10 +48,10 @@ const RECORD = [
   "- approved_tool: ut-tdd CLI action wrapper",
   "- approved_target: Cloudflare deployment target",
   "- approved_params: reviewed command parameters hash",
-  "- review_approval_evidence: dry-run and risk review",
+  "- review_approval_evidence: .ut-tdd/evidence/action-binding/review.json result=pass",
   "- reviewed_snapshot_binding: no snapshot-bearing packet applies to this approval",
   "- expires_at_or_trigger: before activation or scope change",
-  "- audit_record: approver/action/result/incident route",
+  "- audit_record: .ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
 ].join("\n");
 
 const VERSION_UP_MODE_DOC = "Version-up source ledger (checked 2026-06-30)";
@@ -728,6 +728,92 @@ describe("action-binding approval readiness", () => {
           plan_id: "PLAN-X",
           status: "draft",
           text: `requires action-binding approval\n${weakScopeRecord}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-X",
+      reason: "approval_scope must limit the approved action scope",
+    });
+  });
+
+  it("rejects review and audit evidence that are only free-text claims without locators", () => {
+    const weakEvidenceRecord = RECORD.replace(
+      ".ut-tdd/evidence/action-binding/review.json result=pass",
+      "dry-run and risk review evidence looked good",
+    ).replace(
+      ".ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+      "approver action command result incident route",
+    );
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${weakEvidenceRecord}`,
+        },
+      ],
+    });
+    const packets = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${weakEvidenceRecord}`,
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-X",
+          reason: "review_approval_evidence must name concrete review evidence before approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason:
+            "audit_record must capture approver, action/command, result, and incident/backlog/rollback route",
+        },
+      ]),
+    );
+    expect(packets[0].approvalBindingChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          field: "review_approval_evidence",
+          status: "pending",
+        }),
+        expect.objectContaining({
+          field: "audit_record",
+          status: "pending",
+        }),
+      ]),
+    );
+  });
+
+  it("rejects approval scope that is exclusion-only without an approved target boundary", () => {
+    const exclusionOnlyScopeRecord = RECORD.replace(
+      "limited scope for actor/tool/target/params for a high-impact action only",
+      "secret and production access are out of scope",
+    );
+    const result = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${exclusionOnlyScopeRecord}`,
         },
       ],
     });

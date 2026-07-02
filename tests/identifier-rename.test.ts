@@ -865,6 +865,55 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
+  it("does not authorize rename cutover when current-snapshot records still contain future-bound fields", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-current-future-bound-"));
+    try {
+      writeApprovedRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      ).cutoverSnapshot.snapshotId;
+      const planPath = join(root, "docs", "plans", "PLAN-M-02-helix-identifier-rename.md");
+      const futureBound = readFileSync(planPath, "utf8")
+        .replaceAll(CONCRETE_SNAPSHOT_ID, currentSnapshotId)
+        .replace(
+          "- approved_params: reviewed command params hash abc123",
+          "- approved_params: Future approval will be recorded before apply",
+        )
+        .replace(
+          "- review_approval_evidence: dry-run risk review rollback full test doctor evidence",
+          "- review_approval_evidence: pending review evidence will be recorded",
+        )
+        .replace(
+          "- audit_record: approver action command result incident rollback route",
+          "- audit_record: audit record予定",
+        );
+      writeFileSync(planPath, futureBound);
+
+      const plan = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+      expect(plan.status).toBe("blocked_pending_cutover_approval");
+      expect(plan.applyAuthorized).toBe(false);
+      expect(plan.mustNotApply).toBe(true);
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          "missing concrete action_binding_approval_record.approved_params",
+          "missing concrete action_binding_approval_record.review_approval_evidence",
+          "missing concrete action_binding_approval_record.audit_record",
+        ]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("authorizes only when concrete approval records cite the current cutover snapshot", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-"));
     try {

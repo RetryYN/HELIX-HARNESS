@@ -508,12 +508,30 @@ function cutoverField(plan: CutoverReadinessPlan, field: string): string {
 }
 
 function hasFrozenWindowPolicy(value: string): boolean {
+  if (isPendingCutoverWindowPolicy(value)) {
+    return false;
+  }
   return (
     mentions(value, ["frozen HEAD", "frozen head"]) &&
     mentions(value, ["quiet window", "apply window", "window"]) &&
     mentions(value, ["single-run", "single run", "concurrency", "concurrent"]) &&
     mentions(value, ["re-approval", "reapproval", "drift"])
   );
+}
+
+function isPendingCutoverWindowPolicy(value: string): boolean {
+  return mentions(value, [
+    "No apply window",
+    "future approval must",
+    "before apply",
+    "not approved",
+    "pending",
+    "TBD",
+    "TODO",
+    "未承認",
+    "未定",
+    "承認前",
+  ]);
 }
 
 function mentions(value: string, needles: string[]): boolean {

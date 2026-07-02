@@ -326,6 +326,30 @@ describe("cutover readiness", () => {
     expect(result.violations).toEqual([]);
   });
 
+  it("rejects execution window policies that only describe a future approval obligation", () => {
+    const base = input().plans[0];
+    const result = analyzeCutoverReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "single cutover quiet window with frozen HEAD, no concurrent apply, and re-approval trigger for HEAD/scope/evidence drift",
+              "No apply window is approved by this draft PLAN. Future approval must name the frozen HEAD, quiet window, single-run/concurrency policy, and re-approval trigger for any drift before apply.",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason:
+        "execution_window_or_freeze_policy must bind frozen HEAD, quiet window, single-run/concurrency, and drift re-approval",
+    });
+  });
+
   it("U-DECISIONREC-003: fails irreversible cutover plans that only say PO signoff", () => {
     const result = analyzeCutoverReadiness(
       input({
