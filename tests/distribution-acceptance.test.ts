@@ -398,6 +398,32 @@ describe("clean distribution local acceptance smoke", () => {
         expect(statusFromGeneratedPath.status, statusFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(statusFromGeneratedPath.stdout).availableRuntimes).toContain("codex");
 
+        const completionPacketFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          ["completion", "decision-packet", "--json"],
+          linkedEnv,
+        );
+        expect(
+          completionPacketFromGeneratedPath.status,
+          completionPacketFromGeneratedPath.stderr || completionPacketFromGeneratedPath.stdout,
+        ).toBe(0);
+        expect(JSON.parse(completionPacketFromGeneratedPath.stdout)).toMatchObject({
+          ok: false,
+          status: "blocked",
+          semanticMeaningSummary: {
+            completionClaimAllowed: false,
+          },
+          blockers: expect.arrayContaining(["consumer_setup_boundary"]),
+          decisions: [
+            expect.objectContaining({
+              planId: "CONSUMER-SETUP-BOUNDARY",
+              blockerReason: "consumer_setup_boundary",
+              decisionPacketCommand: "ut-tdd completion decision-packet --json",
+            }),
+          ],
+        });
+
         const doctorFromGeneratedPath = runCommand(
           consumerRoot,
           "ut-tdd",
@@ -479,6 +505,15 @@ describe("clean distribution local acceptance smoke", () => {
           expect(run.status, run.stderr || run.stdout).toBe(0);
           if (command.endsWith("--version")) {
             expect(run.stdout.trim()).toBe("0.1.0");
+          } else if (command === "bun run ut-tdd completion decision-packet --json") {
+            expect(JSON.parse(run.stdout)).toMatchObject({
+              ok: false,
+              status: "blocked",
+              semanticMeaningSummary: {
+                completionClaimAllowed: false,
+              },
+              blockers: expect.arrayContaining(["consumer_setup_boundary"]),
+            });
           } else {
             expect(JSON.parse(run.stdout)).toBeTruthy();
           }

@@ -49,6 +49,7 @@ function mockDeps(
 
 const codeownersPath = join("/repo", ".github", "CODEOWNERS");
 const statePath = join("/repo", ".ut-tdd", "state", "setup.json");
+const projectSetupStatePath = join("/repo", ".ut-tdd", "state", "project-setup.json");
 
 /** org + 4 collaborators + protection あり + admin を返す gh mock。 */
 const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
@@ -1168,6 +1169,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "task.allowAutomaticTasks": "off",
     });
     expect(wet.files.get(statePath)).toContain('"phase": "0-A"');
+    expect(JSON.parse(wet.files.get(projectSetupStatePath) ?? "{}")).toMatchObject({
+      schemaVersion: "helix-project-setup-state.v1",
+      setupCommand: "ut-tdd setup project",
+      phase: "0-A",
+      objectiveBoundary: {
+        scope: "consumer_setup_readiness_not_whole_program_completion",
+        progressPercent: 90,
+        completionClaimAllowed: false,
+        completionPacketCommand: "ut-tdd completion decision-packet --json",
+      },
+      postSetupWorkflow: {
+        verificationCommands: expect.arrayContaining(["ut-tdd completion decision-packet --json"]),
+      },
+    });
     for (const value of wet.files.values()) {
       expect(value.toLowerCase()).not.toMatch(/(ghp_|github_pat_|token=|bearer )/);
     }

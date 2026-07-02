@@ -610,6 +610,12 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
     .join("\n")
     .toLowerCase();
   const blockers = new Set<string>();
+  if (
+    p.planId === "CONSUMER-SETUP-BOUNDARY" ||
+    /consumer_setup_readiness_not_whole_program_completion|completionclaimallowed=false/i.test(text)
+  ) {
+    blockers.add("consumer_setup_boundary");
+  }
   if ((p.versionTarget ?? "").trim()) blockers.add("version_up_parked");
   if (
     p.kind === "poc" &&
@@ -645,6 +651,7 @@ function primaryOutstandingReason(blockers: string[]): string {
     "version_up_parked",
     "po_decision_pending",
     "human_approval_pending",
+    "consumer_setup_boundary",
     "active_draft",
   ];
   return priority.find((p) => blockers.includes(p)) ?? blockers[0] ?? "active_draft";
@@ -710,6 +717,16 @@ function requiredOutstandingAction(reason: string): {
           "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
         ],
       };
+    case "consumer_setup_boundary":
+      return {
+        requiredAction:
+          "start or select the project PLAN and record real project acceptance evidence before claiming whole-program completion",
+        requiredEvidence: [
+          "project_setup_state with objectiveBoundary.scope=consumer_setup_readiness_not_whole_program_completion and completionClaimAllowed=false",
+          "first project PLAN or handover route selected before implementation starts",
+          "completion decision packet saved as first-run evidence before claiming L14 or whole-program completion",
+        ],
+      };
     default:
       return {
         requiredAction:
@@ -741,8 +758,10 @@ function uniqueInOrder<T extends string>(values: T[]): T[] {
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
 export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] {
   const dir = join(repoRoot, "docs", "plans");
-  if (!existsSync(dir)) return [];
   const rows: OutstandingPlanRow[] = [];
+  const consumerSetupBoundary = consumerSetupBoundaryPlanRow(repoRoot);
+  if (consumerSetupBoundary) rows.push(consumerSetupBoundary);
+  if (!existsSync(dir)) return rows;
   for (const f of readdirSync(dir)) {
     if (!f.endsWith(".md")) continue;
     let content = "";
@@ -762,6 +781,41 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     });
   }
   return rows;
+}
+
+function consumerSetupBoundaryPlanRow(repoRoot: string): OutstandingPlanRow | null {
+  const statePath = join(repoRoot, ".ut-tdd", "state", "project-setup.json");
+  if (!existsSync(statePath)) return null;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(readFileSync(statePath, "utf8"));
+  } catch {
+    return null;
+  }
+  if (!isRecord(parsed)) return null;
+  const objectiveBoundary = parsed.objectiveBoundary;
+  if (!isRecord(objectiveBoundary)) return null;
+  if (objectiveBoundary.scope !== "consumer_setup_readiness_not_whole_program_completion") {
+    return null;
+  }
+  if (objectiveBoundary.completionClaimAllowed !== false) return null;
+  return {
+    planId: "CONSUMER-SETUP-BOUNDARY",
+    layer: "L14",
+    kind: "setup",
+    status: "in_progress",
+    workflowPhase: "post_setup",
+    versionTarget: null,
+    text: [
+      "consumer_setup_readiness_not_whole_program_completion",
+      "completionClaimAllowed=false",
+      "setup readiness is first-run evidence, not L14 or whole-program completion",
+    ].join("\n"),
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 /** repo から outstanding work を集計する (I/O 失敗は fail-open でゼロ寄せ、informational surface)。 */
@@ -897,6 +951,7 @@ function workflowActionRank(reason: string): number {
     "version_up_parked",
     "irreversible_migration_pending",
     "human_approval_pending",
+    "consumer_setup_boundary",
     "active_draft",
   ];
   const rank = priority.indexOf(reason);
@@ -1096,6 +1151,8 @@ export function workflowActionTextJa(action: string): string {
       return "不可逆 migration/cutover 前に明示的な PO signoff を取得し、通常作業として state move を実装しない";
     case "record required human/action-binding approval before executing the high-impact action":
       return "高影響 action の実行前に human/action-binding approval を記録する";
+    case "start or select the project PLAN and record real project acceptance evidence before claiming whole-program completion":
+      return "全体完了を主張する前に project PLAN を開始または選択し、実プロジェクトの acceptance evidence を記録する";
     case "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present":
       return "該当 workflow phase を継続し、生成成果物と review evidence が揃った後だけ terminal にする";
     default:
@@ -1113,6 +1170,8 @@ export function workflowRouteTextJa(route: string): string {
       return "L14 cutover -> apply 前に cutover_decision_record / dry-run / rollback / state backup / audit を揃える";
     case "approval gate -> action-binding approval audit before high-impact action":
       return "approval gate -> 高影響 action 前に action-binding approval audit を通す";
+    case "consumer setup -> first project PLAN before completion claim":
+      return "consumer setup -> completion claim 前に最初の project PLAN へ進む";
     case "continue current workflow phase until terminal evidence exists":
       return "terminal evidence が揃うまで現在の workflow phase を継続する";
     default:
@@ -1187,6 +1246,8 @@ function allowedOutcomesForOutstandingReason(reason: string): string[] {
       return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
     case "human_approval_pending":
       return ["approve_action_binding", "deny_action", "request_scope_reduction"];
+    case "consumer_setup_boundary":
+      return ["start_project_plan", "keep_setup_only", "record_first_run_evidence"];
     default:
       return ["continue_workflow", "mark_terminal_after_required_evidence"];
   }
@@ -1219,6 +1280,8 @@ function allowedOutcomesForRecordName(recordName: string): string[] {
       return ["approve_cutover", "reject_or_defer", "request_runbook_changes"];
     case "action_binding_approval_record":
       return ["approve_action_binding", "deny_action", "request_scope_reduction"];
+    case "consumer_setup_boundary_record":
+      return ["start_project_plan", "keep_setup_only", "record_first_run_evidence"];
     case "terminal_evidence_record":
       return ["continue_workflow", "mark_terminal_after_required_evidence"];
     default:
@@ -1253,6 +1316,8 @@ function nextWorkflowRouteForRecordName(recordName: string): string {
       return "L14 cutover decision -> bind cutoverSnapshot.snapshotId, then approve_cutover, reject/defer, or request runbook changes before any irreversible apply";
     case "action_binding_approval_record":
       return "action-binding approval gate -> approve scoped actor/tool/target/params only after reviewed_snapshot_binding cites the sibling snapshot packet, deny action, or reduce scope before execution";
+    case "consumer_setup_boundary_record":
+      return "consumer setup boundary -> save first-run status/completion/doctor evidence, then start or select the real project PLAN before any completion claim";
     case "terminal_evidence_record":
       return "workflow continuation -> keep current phase open until terminal evidence and green commands exist";
     default:
@@ -1293,6 +1358,8 @@ function insertionHintForRecordName(recordName: string): string {
       return "Add this block to the L14 cutover PLAN before any irreversible apply or migration; bind cutoverSnapshot.snapshotId, frozen HEAD, quiet window, single-run, drift re-approval, dry-run, branch/tag rollback, state backup, and smoke/doctor/status monitoring.";
     case "action_binding_approval_record":
       return "Add this block to the PLAN before executing the high-impact action; approval must be limited to actor/tool/target/params, cite dry-run and risk evidence plus reviewed snapshot binding, set expiry, and capture approver/action/result/incident audit.";
+    case "consumer_setup_boundary_record":
+      return "Add this record to the first project PLAN or handover evidence before claiming whole-program completion from a newly bootstrapped consumer repository.";
     case "terminal_evidence_record":
       return "Add this block before marking the PLAN terminal after artifacts, review_evidence, and green_commands exist.";
     default:
@@ -1511,6 +1578,26 @@ function requiredRecordsForOutstandingReason(
           sourcePaths: ["docs/process/forward/L08-L14-verification-phase.md"],
         },
       ];
+    case "consumer_setup_boundary":
+      return [
+        {
+          recordName: "consumer_setup_boundary_record",
+          fields: [
+            "allowed_outcome",
+            "project_setup_state",
+            "objective_boundary_scope",
+            "completion_claim_allowed",
+            "first_run_completion_packet",
+            "first_project_plan_or_handover_route",
+            "acceptance_evidence_plan",
+          ],
+          sourcePaths: [
+            ".ut-tdd/state/project-setup.json",
+            "docs/design/harness/L6-function-design/setup-solo-team.md",
+            "docs/design/harness/L6-function-design/function-spec.md",
+          ],
+        },
+      ];
     default:
       return [
         {
@@ -1532,6 +1619,8 @@ function nextWorkflowRouteForOutstandingReason(reason: string): string {
       return "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply";
     case "human_approval_pending":
       return "approval gate -> action-binding approval audit before high-impact action";
+    case "consumer_setup_boundary":
+      return "consumer setup -> first project PLAN before completion claim";
     default:
       return "continue current workflow phase until terminal evidence exists";
   }

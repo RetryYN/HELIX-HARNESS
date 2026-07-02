@@ -68,6 +68,19 @@ export interface SetupState {
   signals: ProjectScale; // 4 フィールドのみ (recordSetupState で strip)
 }
 
+export interface HelixProjectSetupState {
+  schemaVersion: "helix-project-setup-state.v1";
+  setupCommand: "ut-tdd setup project";
+  phase: SetupPhase;
+  decidedAt: string;
+  decidedBy: "flag" | "confirm" | "fallback";
+  objectiveBoundary: ConsumerReadinessPlan["objectiveBoundary"];
+  postSetupWorkflow: Pick<
+    HelixProjectPostSetupWorkflow,
+    "nextRoute" | "readinessOk" | "verificationCommands"
+  >;
+}
+
 export interface TeamSlugs {
   tl: string;
   qa: string;
@@ -350,6 +363,7 @@ export interface SetupDeps {
 
 const CODEOWNERS_TARGET = join(".github", "CODEOWNERS");
 const STATE_PATH = join(".ut-tdd", "state", "setup.json");
+const PROJECT_SETUP_STATE_PATH = join(".ut-tdd", "state", "project-setup.json");
 const BP_SCRIPT = join("scripts", "setup-branch-protection.sh");
 const MANAGED_START = "<!-- UT-TDD:managed:start -->";
 const MANAGED_END = "<!-- UT-TDD:managed:end -->";
@@ -1518,6 +1532,13 @@ export function recordSetupState(state: SetupState, deps: SetupDeps): void {
   deps.writeText(join(deps.repoRoot, STATE_PATH), `${JSON.stringify(stripped, null, 2)}\n`);
 }
 
+export function recordHelixProjectSetupState(state: HelixProjectSetupState, deps: SetupDeps): void {
+  deps.writeText(
+    join(deps.repoRoot, PROJECT_SETUP_STATE_PATH),
+    `${JSON.stringify(state, null, 2)}\n`,
+  );
+}
+
 /**
  * U-SETUP-006: apply≠true → emit-only (既定)。isInteractive≠true → non-interactive で gh 非実行。
  * 対話下でも action-binding approval 入力が無い現行 setup では gh api 実行へ進まない。
@@ -1561,8 +1582,9 @@ export function runSetup(args: SetupArgs, deps: SetupDeps): SetupResult {
 export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixProjectSetupResult {
   const scale = detectProjectScale(deps);
   const { phase, decidedBy } = decideSetupPhase(args, deps, scale);
+  const decidedAt = deps.now();
   if (!args.dryRun) {
-    recordSetupState({ phase, decidedAt: deps.now(), decidedBy, signals: scale }, deps);
+    recordSetupState({ phase, decidedAt, decidedBy, signals: scale }, deps);
   }
   const plan = planHelixProjectSetup(phase, { teams: args.teams, dryRun: args.dryRun });
   const existingPaths = existingManagedPaths(plan, deps.templates, deps);
@@ -1578,6 +1600,24 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     importReport,
     consumerReadiness,
   });
+  if (!args.dryRun) {
+    recordHelixProjectSetupState(
+      {
+        schemaVersion: "helix-project-setup-state.v1",
+        setupCommand: "ut-tdd setup project",
+        phase,
+        decidedAt,
+        decidedBy,
+        objectiveBoundary: consumerReadiness.objectiveBoundary,
+        postSetupWorkflow: {
+          nextRoute: postSetupWorkflow.nextRoute,
+          readinessOk: postSetupWorkflow.readinessOk,
+          verificationCommands: postSetupWorkflow.verificationCommands,
+        },
+      },
+      deps,
+    );
+  }
   const branchProtection = helixProjectBranchProtectionDecision(args);
   const currentCommandAvailable =
     consumerReadiness.checks.find((check) => check.name === "ut-tdd-cli")?.ok ?? false;

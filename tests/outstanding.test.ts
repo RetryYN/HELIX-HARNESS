@@ -1162,6 +1162,85 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     }
   });
 
+  it("consumer setup state は setup ready を whole-program completion に読み替えない", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-consumer-setup-"));
+    try {
+      mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
+      writeFileSync(
+        join(root, ".ut-tdd", "state", "project-setup.json"),
+        `${JSON.stringify(
+          {
+            schemaVersion: "helix-project-setup-state.v1",
+            setupCommand: "ut-tdd setup project",
+            phase: "0-A",
+            decidedAt: "2026-07-02T00:00:00.000Z",
+            decidedBy: "fallback",
+            objectiveBoundary: {
+              scope: "consumer_setup_readiness_not_whole_program_completion",
+              progressPercent: 90,
+              completionClaimAllowed: false,
+            },
+            postSetupWorkflow: {
+              nextRoute: "ready",
+              readinessOk: true,
+              verificationCommands: ["ut-tdd completion decision-packet --json"],
+            },
+          },
+          null,
+          2,
+        )}\n`,
+        "utf8",
+      );
+
+      const o = computeOutstandingWork(root);
+      expect(o.completionReadiness).toMatchObject({
+        ok: false,
+        status: "blocked",
+        blockers: ["consumer_setup_boundary", "non_terminal_plans"],
+      });
+      expect(o.items).toEqual([
+        expect.objectContaining({
+          planId: "CONSUMER-SETUP-BOUNDARY",
+          layer: "L14",
+          kind: "setup",
+          status: "in_progress",
+          reason: "consumer_setup_boundary",
+          requiredAction:
+            "start or select the project PLAN and record real project acceptance evidence before claiming whole-program completion",
+        }),
+      ]);
+
+      const packet = completionDecisionPacketForOutstanding(o, {
+        generatedAt: "2026-07-02T00:00:00.000Z",
+        now: "2026-07-02T00:00:00.000Z",
+      });
+      expect(packet).toMatchObject({
+        ok: false,
+        status: "blocked",
+        semanticMeaningSummary: {
+          completionClaimAllowed: false,
+        },
+        decisions: [
+          {
+            planId: "CONSUMER-SETUP-BOUNDARY",
+            blockerReason: "consumer_setup_boundary",
+            decisionKind: "workflow_continuation",
+            decisionPacketCommand: "ut-tdd completion decision-packet --json",
+            allowedOutcomes: ["start_project_plan", "keep_setup_only", "record_first_run_evidence"],
+            requiredRecords: [
+              expect.objectContaining({
+                recordName: "consumer_setup_boundary_record",
+                sourcePaths: expect.arrayContaining([".ut-tdd/state/project-setup.json"]),
+              }),
+            ],
+          },
+        ],
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("docs/plans 不在は空集計 (fail-open)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-empty-"));
     try {
