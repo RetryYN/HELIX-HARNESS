@@ -148,7 +148,24 @@ describe("completion decision packet lint", () => {
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
         requiredReviewFields: expect.arrayContaining([
+          "planOnly",
+          "mustNotDecide",
+          "decisionCommandAvailable",
+          "decisionAllowed",
+          "allowedOutcomes",
           "decisionRecord",
+          "decisionRecord.allowed_outcome",
+          "decisionRecord.decision_owner",
+          "decisionRecord.decision_basis",
+          "decisionRecord.verified_evidence",
+          "decisionRecord.stakeholder_review_or_proxy",
+          "decisionRecord.acceptance_gap",
+          "decisionRecord.unresolved_risk",
+          "decisionRecord.external_source_basis",
+          "decisionRecord.route_impact",
+          "decisionRecord.forward_route",
+          "decisionRecord.reverse_fullback_required",
+          "decisionRecord.promotion_strategy_or_rejection_pivot_rationale",
           "decisionRecord.source_ledger_freshness",
           "decisionRecord.source_status_delta",
           "decisionRecord.adoption_decision_delta",
@@ -162,10 +179,19 @@ describe("completion decision packet lint", () => {
           "decisionEvidenceChecklist.external_source_basis",
           "decisionEvidenceChecklist.route_impact",
           "outcomeRouteMatrix",
+          "outcomeRouteMatrix.outcome",
+          "outcomeRouteMatrix.terminalStatus",
+          "outcomeRouteMatrix.routePolicy",
+          "outcomeRouteMatrix.requiredEvidence",
           "semanticFeatureFrontierRecord",
           "provenanceRequirements",
+          "provenanceRequirements.item",
+          "provenanceRequirements.evidence",
           "relatedDecisionPackets",
+          "relatedDecisionPackets.scopedCommand",
           "nextWorkflowRoutes",
+          "nextWorkflowRoutes.outcome",
+          "nextWorkflowRoutes.route",
           "blockedReasons",
         ]),
         requiredMatrixFields: expect.arrayContaining([
@@ -527,6 +553,16 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=planOnly",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionRecord.allowed_outcome",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
             "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionRecord.source_ledger_freshness",
         },
         {
@@ -538,6 +574,16 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionEvidenceChecklist.unresolved_risk",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=outcomeRouteMatrix.routePolicy",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=provenanceRequirements.evidence",
         },
       ]),
     );

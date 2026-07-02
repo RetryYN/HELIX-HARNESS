@@ -114,6 +114,19 @@ route impact を同時に見て、`confirmed` / `rejected` / `pivot` の各 outc
 Reverse / backlog route、追加 fullback にどう影響するかを判断する。これにより動く increment やレビュー済みという
 単一シグナルだけで S4 confirmed を代替しない。
 
+`ut-tdd completion decision-packet --json` / `ut-tdd status` / handover から S4 pending PLAN へ入る場合も、
+supporting summary は `decisionRecord`、`decisionEvidenceChecklist`、`outcomeRouteMatrix`、
+`provenanceRequirements` という親 field だけで完了しない。`requiredReviewFields[]` は `planOnly`、
+`mustNotDecide`、`decisionAllowed`、`decisionCommandAvailable`、`decisionRecord.allowed_outcome`、
+`decisionRecord.decision_owner`、`decisionRecord.decision_basis`、`decisionRecord.forward_route`、
+`decisionRecord.reverse_fullback_required`、`decisionRecord.source_ledger_freshness`、
+`decisionRecord.source_status_delta`、`decisionRecord.adoption_decision_delta`、
+`decisionRecord.workflow_route_impact`、`decisionEvidenceChecklist.verified_evidence`、
+`decisionEvidenceChecklist.unresolved_risk`、`outcomeRouteMatrix.routePolicy`、
+`outcomeRouteMatrix.requiredEvidence`、`provenanceRequirements.evidence`、`relatedDecisionPackets.scopedCommand`、
+`nextWorkflowRoutes.route` を列挙する。これにより、Scrum の inspect/adapt や動く increment を根拠にする場合も、
+PO が source ledger、test basis、residual risk、route/fullback、provenance、plan-only safety を status から辿れる。
+
 packet は `decisionVerificationCommandMatrix[]` も出す。これは decision packet baseline、source ledger freshness、
 S3 verification evidence、requirements trace、targeted regression、static gates を含む。
 さらに full regression、completion frontier の各 phase に対して command / expected / evidence / source /

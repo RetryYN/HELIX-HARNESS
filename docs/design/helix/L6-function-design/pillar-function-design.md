@@ -80,6 +80,16 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `decisionVerificationCommandMatrix[]` は共通 source metadata validator により、未来日・90 日超 stale・
   非実在日付の `sourceCheckedAt`、および placeholder / future-action prose の source/adoption/route metadata を
   PO 判断前 evidence として通さない。
+  completion decision packet / status / handover の supporting summary でも、S4 decision は
+  `decisionRecord` / `decisionEvidenceChecklist` / `outcomeRouteMatrix` / `provenanceRequirements` の親 field
+  だけに畳まない。`planOnly` / `mustNotDecide` / `decisionAllowed` / `decisionCommandAvailable`、
+  `decisionRecord.allowed_outcome`、`decisionRecord.decision_owner`、`decisionRecord.decision_basis`、
+  `decisionRecord.forward_route`、`decisionRecord.reverse_fullback_required`、
+  `decisionRecord.promotion_strategy_or_rejection_pivot_rationale`、`outcomeRouteMatrix.routePolicy`、
+  `outcomeRouteMatrix.requiredEvidence`、`provenanceRequirements.evidence`、`relatedDecisionPackets.scopedCommand`、
+  `nextWorkflowRoutes.route` を `requiredReviewFields[]` に列挙する。これにより、Scrum Guide の inspect/adapt、
+  NIST SSDF の evidence/artifact、SLSA provenance、GitHub の review/concurrency、SRE の rollback 観点を、
+  PO/S4 判断前の status/handover review で失わない。
 - HC-P1 `buildVersionUpActivationPackets` は `activation_decision_record.activation_snapshot_id` を JSON
   `activationDecision` に保持し、packet 側の `activationSnapshot` は現在の `HEAD` SHA、release trigger、
   PLAN 本文 digest、source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を

@@ -125,10 +125,16 @@ S4 packet の存在だけを示して終わらない。`requiredReviewFields[]` 
 `decisionRecord.workflow_route_impact` と、`decisionEvidenceChecklist.verified_evidence` /
 `decisionEvidenceChecklist.stakeholder_review_or_proxy` / `decisionEvidenceChecklist.acceptance_gap` /
 `decisionEvidenceChecklist.unresolved_risk` / `decisionEvidenceChecklist.external_source_basis` /
-`decisionEvidenceChecklist.route_impact` を列挙する。これにより completion packet から S4 判断へ入る場合でも、
-source ledger の鮮度・採否差分・route 影響、requirements trace、test basis、residual risk を PO が同じ
-review 単位で確認できる。summary が `decisionRecord` や `decisionEvidenceChecklist` という親 field だけを
-持ち、具体 field を落とした場合は completion-decision-packet lint が fail-close する。
+`decisionEvidenceChecklist.route_impact` に加え、`planOnly` / `mustNotDecide` / `decisionAllowed` /
+`decisionCommandAvailable`、`decisionRecord.allowed_outcome`、`decisionRecord.decision_owner`、
+`decisionRecord.decision_basis`、`decisionRecord.forward_route`、`decisionRecord.reverse_fullback_required`、
+`decisionRecord.promotion_strategy_or_rejection_pivot_rationale`、`outcomeRouteMatrix.routePolicy`、
+`outcomeRouteMatrix.requiredEvidence`、`provenanceRequirements.evidence`、`relatedDecisionPackets.scopedCommand`、
+`nextWorkflowRoutes.route` を列挙する。これにより completion packet から S4 判断へ入る場合でも、
+source ledger の鮮度・採否差分・route 影響、requirements trace、test basis、residual risk、provenance、
+route/fullback、plan-only safety を PO が同じ review 単位で確認できる。summary が `decisionRecord` /
+`decisionEvidenceChecklist` / `outcomeRouteMatrix` / `provenanceRequirements` という親 field だけを持ち、
+具体 field を落とした場合は completion-decision-packet lint が fail-close する。
 
 packet は `decisionVerificationCommandMatrix[]` も出す。これは decision packet baseline、source ledger freshness、
 S3 verification evidence、requirements trace、targeted regression、static gates を含む。
