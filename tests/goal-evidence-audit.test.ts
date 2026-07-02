@@ -75,9 +75,16 @@ describe("HELIX objective evidence audit", () => {
       "src/lint/objective-evidence-audit.ts",
       "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
       "docs/test-design/helix/L6-pillar-unit-test-design.md",
+      "CLAUDE.md",
+      "AGENTS.md",
+      "src/lint/design-language.ts",
+      "tests/design-language.test.ts",
       ".claude/settings.json",
       ".codex/config.toml",
       ".codex/hooks.json",
+      "src/setup/index.ts",
+      "src/setup/templates.ts",
+      "tests/setup.test.ts",
       "src/lint/codex-hook-adapter.ts",
       "tests/codex-hook-adapter.test.ts",
       "src/lint/outstanding.ts",
@@ -86,12 +93,43 @@ describe("HELIX objective evidence audit", () => {
       "tests/completion-decision-packet.test.ts",
       "docs/process/forward/L08-L14-verification-phase.md",
       "docs/process/gates.md",
+      "docs/process/modes/version-up.md",
+      "src/lint/version-up-readiness.ts",
+      "tests/version-up-readiness.test.ts",
+      "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      "src/lint/cutover-readiness.ts",
+      "tests/cutover-readiness.test.ts",
+      "tests/identifier-rename.test.ts",
     ];
 
     for (const artifact of requiredArtifacts) {
       expect(text, `${artifact} not cited`).toContain(artifact);
       expect(existsSync(artifact), `${artifact} missing`).toBe(true);
     }
+  });
+
+  it("fails when objective audit drops permanent language, setup, version-up, or cutover evidence", () => {
+    const text = auditText()
+      .replaceAll("CLAUDE.md", "CLAUDE-REMOVED.md")
+      .replaceAll("src/setup/index.ts", "src/setup/removed.ts")
+      .replaceAll("docs/process/modes/version-up.md", "docs/process/modes/version-up-removed.md")
+      .replaceAll("src/lint/cutover-readiness.ts", "src/lint/cutover-readiness-removed.ts");
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-08: missing language and rename artifact citation CLAUDE.md",
+        "G-07: missing setup artifact citation src/setup/index.ts",
+        "G-10: missing version-up and cutover blocker artifact citation docs/process/modes/version-up.md",
+        "G-08: missing language and rename artifact citation src/lint/cutover-readiness.ts",
+      ]),
+    );
   });
 
   it("fails false whole-program completion claims when outstanding blockers remain", () => {
@@ -111,7 +149,7 @@ describe("HELIX objective evidence audit", () => {
     );
     const text = auditText()
       .replace("| blocked |", "| proved |")
-      .replace("PLAN-M-02-helix-identifier-rename", "PLAN-M-XX-missing")
+      .replaceAll("PLAN-M-02-helix-identifier-rename", "PLAN-M-XX-missing")
       .replace(
         "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
         "obtain signoff",

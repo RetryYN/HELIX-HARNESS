@@ -52,6 +52,41 @@ const REQUIRED_COMPLETION_ARTIFACTS = [
   "docs/process/gates.md",
 ] as const;
 
+const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
+  {
+    requirementId: "G-07",
+    label: "setup artifact",
+    artifacts: ["src/setup/index.ts", "src/setup/templates.ts", "tests/setup.test.ts"],
+  },
+  {
+    requirementId: "G-08",
+    label: "language and rename artifact",
+    artifacts: [
+      "CLAUDE.md",
+      "AGENTS.md",
+      "src/lint/design-language.ts",
+      "tests/design-language.test.ts",
+      "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      "src/lint/cutover-readiness.ts",
+      "tests/cutover-readiness.test.ts",
+      "tests/identifier-rename.test.ts",
+    ],
+  },
+  {
+    requirementId: "G-10",
+    label: "version-up and cutover blocker artifact",
+    artifacts: [
+      "docs/process/modes/version-up.md",
+      "src/lint/version-up-readiness.ts",
+      "tests/version-up-readiness.test.ts",
+      "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      "src/lint/cutover-readiness.ts",
+      "tests/cutover-readiness.test.ts",
+      "tests/identifier-rename.test.ts",
+    ],
+  },
+] as const;
+
 export function loadObjectiveEvidenceAuditInput(
   repoRoot: string = process.cwd(),
 ): ObjectiveEvidenceAuditInput {
@@ -93,6 +128,16 @@ export function analyzeObjectiveEvidenceAudit(
       violations.push(`G-10: missing completion artifact citation ${artifact}`);
     } else if (!existsSync(join(input.repoRoot, artifact))) {
       violations.push(`G-10: cited completion artifact missing ${artifact}`);
+    }
+  }
+
+  for (const group of REQUIRED_OBJECTIVE_ARTIFACT_GROUPS) {
+    for (const artifact of group.artifacts) {
+      if (!input.auditText.includes(artifact)) {
+        violations.push(`${group.requirementId}: missing ${group.label} citation ${artifact}`);
+      } else if (!existsSync(join(input.repoRoot, artifact))) {
+        violations.push(`${group.requirementId}: cited ${group.label} missing ${artifact}`);
+      }
     }
   }
 
