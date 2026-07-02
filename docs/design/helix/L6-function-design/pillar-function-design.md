@@ -113,6 +113,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `exceed_action`) は単なる表示ではなく `activationReadinessChecks[]` の `pending_evidence` 判定対象にする。
   cost guardrails と `activationReadinessChecks[]` は `activationSnapshot.evidenceDigest` に含め、
   外部 limit / rehearsal evidence の drift を snapshot drift として扱う。
+  裸の `https://...` や official source URL の転記は source metadata であり、
+  `report_url:` / `audit_id:` / `artifact_path:` などの証跡種別と結び付かない限り
+  `activationReadinessChecks[]` は `pending_evidence` のままにする。
   `sourceLedgerFreshness.rowsDigest` と `activationSnapshot.sourceLedgerRowsDigest` は
   `Version-up source ledger` の全 row 内容を束ね、checked date だけでなく official URL / latest status /
   adoption decision / required field impact の変更も snapshot drift として再承認対象にする。

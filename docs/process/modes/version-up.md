@@ -112,6 +112,8 @@ supporting summary は `activationDecision`、`activationSnapshot`、`versionDry
 GitHub Actions hardening と security checklist のどこを確認すべきかを status だけで辿れる。
 証跡 path、audit id、digest、実行ログ、result/exit code、report artifact などの concrete locator を伴わない
 手順文・予定文・「recorded」宣言文は、実証済み evidence ではなく `pending_evidence` として扱う。
+外部 URL 単体や official source URL の転記は source metadata であり、`report_url:` / `audit_id:` /
+`artifact_path:` などの証跡種別と結び付かない限り activation evidence にはしない。
 これは Google Cloud Deploy の deployment verification
 (<https://cloud.google.com/deploy/docs/deployment-verification>)、canary
 (<https://cloud.google.com/deploy/docs/deployment-strategies/canary>)、rollback-to-earlier-release

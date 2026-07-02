@@ -915,6 +915,41 @@ describe("version-up-readiness", () => {
     ]);
   });
 
+  it("keeps URL-only activation evidence pending while accepting concrete report locators", () => {
+    const base = input().plans[0];
+    const text = base.text
+      .replace(
+        "- free_tier_budget_check: Pages Free deploy/file limits, Workers Free request budget, D1/KV free budget checked before activation",
+        "- free_tier_budget_check: https://developers.cloudflare.com/pages/platform/limits/",
+      )
+      .replace(
+        "- webhook_signature_check: GitHub X-Hub-Signature-256 HMAC validation dry-run",
+        "- webhook_signature_check: report_url: https://example.invalid/evidence/webhook-hmac-report.json result=pass exit_code=0",
+      );
+    const packet = buildVersionUpActivationPackets(
+      input({
+        plans: [{ ...base, text }],
+      }),
+    )[0];
+
+    expect(packet.activationReadinessChecks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          check: "free_tier_budget_check",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "webhook_signature_check",
+          status: "present",
+        }),
+      ]),
+    );
+    expect(packet.activationReadinessSummary.pendingCheckNames).toContain("free_tier_budget_check");
+    expect(packet.blockedReasons).toContain(
+      "activation rehearsal evidence pending: free_tier_budget_check",
+    );
+  });
+
   it("binds activation snapshots to the concrete version-up dry-run result digest", () => {
     const base = input().plans[0];
     const target010 = buildVersionUpActivationPackets(

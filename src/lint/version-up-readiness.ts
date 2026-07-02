@@ -2303,7 +2303,6 @@ function hasConcreteActivationEvidence(evidence: string): boolean {
     /\b[A-Z]{1,8}-\d{2,}\b/,
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
-    /https?:\/\/\S+/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
     /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
