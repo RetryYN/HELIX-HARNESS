@@ -24,6 +24,8 @@ jobs:
         run: bun run ut-tdd status --json
       - name: HELIX consumer doctor
         run: bun run ut-tdd doctor --profile consumer --json
+      - name: HELIX rename plan
+        run: bun run ut-tdd rename plan --json
       - name: Handover route
         run: bun run ut-tdd handover status --json
       - name: typecheck

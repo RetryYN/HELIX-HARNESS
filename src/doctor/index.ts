@@ -4,7 +4,7 @@
  * gate 判定群を runDoctor.ok に連動させて fail-close する。handover / agent-slots は warning surface。
  */
 
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import {
@@ -1744,8 +1744,20 @@ export function nodeDoctorDeps(repoRoot: string): DoctorDeps {
   return {
     repoRoot,
     now: new Date().toISOString(),
-    readText: (path) => (existsSync(path) ? readFileSync(path, "utf8") : null),
-    listDir: (dir) => (existsSync(dir) ? readdirSync(dir) : []),
+    readText: (path) => {
+      try {
+        return existsSync(path) && statSync(path).isFile() ? readFileSync(path, "utf8") : null;
+      } catch {
+        return null;
+      }
+    },
+    listDir: (dir) => {
+      try {
+        return existsSync(dir) && statSync(dir).isDirectory() ? readdirSync(dir) : [];
+      } catch {
+        return [];
+      }
+    },
   };
 }
 
@@ -1755,6 +1767,20 @@ function consumerFile(deps: DoctorDeps, relativePath: string): string | null {
 
 function consumerHasFile(deps: DoctorDeps, relativePath: string): boolean {
   return consumerFile(deps, relativePath) !== null;
+}
+
+function consumerPathsUnder(deps: DoctorDeps, relativeDir: string, maxDepth = 8): string[] {
+  if (maxDepth < 0) return [];
+  const absoluteDir = join(deps.repoRoot, ...relativeDir.split("/").filter(Boolean));
+  return deps
+    .listDir(absoluteDir)
+    .flatMap((entry) => {
+      const child = relativeDir ? `${relativeDir}/${entry}` : entry;
+      const normalized = child.replace(/\\/g, "/");
+      if (consumerHasFile(deps, normalized)) return [normalized];
+      return consumerPathsUnder(deps, normalized, maxDepth - 1);
+    })
+    .sort();
 }
 
 function consumerJson(deps: DoctorDeps, relativePath: string): unknown | null {
@@ -1859,24 +1885,25 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : "doctor: consumer-adapter-docs - violation: adapter docs missing managed/Japanese/consumer-profile/cutover markers",
   );
   const futureStateDir = [".", "helix"].join("");
-  const prematureHelixState = [
-    `${futureStateDir}/.gitkeep`,
-    `${futureStateDir}/memory/.gitkeep`,
-    `${futureStateDir}/handover/.gitkeep`,
-    `${futureStateDir}/evidence/.gitkeep`,
-  ].filter((path) => consumerHasFile(deps, path));
+  const prematureHelixState = consumerPathsUnder(deps, futureStateDir);
   const packageJson = recordValue(consumerJson(deps, "package.json"));
   const packageBin = recordValue(packageJson?.bin);
   const packageScripts = recordValue(packageJson?.scripts);
+  const executableSurfacePaths = [
+    ".vscode/tasks.json",
+    ".github/workflows/harness-check.yml",
+    ".claude/settings.json",
+    ".codex/hooks.json",
+  ];
+  const helixCommandPattern = /\bhelix\s+(setup|doctor|status|handover|team)\b/;
   const prematureHelixAlias = [
     ...(packageBin && Object.hasOwn(packageBin, "helix") ? ["package.json:bin.helix"] : []),
     ...Object.entries(packageScripts ?? {})
-      .filter(
-        ([, value]) =>
-          typeof value === "string" &&
-          /\bhelix\s+(setup|doctor|status|handover|team)\b/.test(value),
-      )
+      .filter(([, value]) => typeof value === "string" && helixCommandPattern.test(value))
       .map(([name]) => `package.json:scripts.${name}`),
+    ...executableSurfacePaths.filter((path) =>
+      helixCommandPattern.test(consumerFile(deps, path) ?? ""),
+    ),
   ];
   messages.push(
     prematureHelixState.length === 0 && prematureHelixAlias.length === 0
@@ -1991,6 +2018,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const expectedTasks = new Map([
     ["HELIX: status", "ut-tdd status"],
     ["HELIX: doctor", "ut-tdd doctor --profile consumer"],
+    ["HELIX: rename plan", "ut-tdd rename plan --json"],
     ["HELIX: handover status", "ut-tdd handover status --json"],
     ["HELIX: setup dry-run", "ut-tdd setup project --dry-run"],
     [
@@ -2062,6 +2090,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     "bun run ut-tdd setup project --dry-run --json",
     "bun run ut-tdd status --json",
     "bun run ut-tdd doctor --profile consumer --json",
+    "bun run ut-tdd rename plan --json",
     "bun run ut-tdd handover status --json",
     `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     "bun run typecheck",

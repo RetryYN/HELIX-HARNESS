@@ -288,6 +288,7 @@ describe("clean distribution local acceptance smoke", () => {
           expect.arrayContaining([
             "HELIX: status",
             "HELIX: doctor",
+            "HELIX: rename plan",
             "HELIX: handover status",
             "HELIX: team run dry-run",
           ]),
@@ -297,6 +298,10 @@ describe("clean distribution local acceptance smoke", () => {
             expect.objectContaining({
               label: "HELIX: doctor",
               command: "ut-tdd doctor --profile consumer",
+            }),
+            expect.objectContaining({
+              label: "HELIX: rename plan",
+              command: "ut-tdd rename plan --json",
             }),
             expect.objectContaining({
               label: "HELIX: team run dry-run",
@@ -322,6 +327,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
         expect(workflow).toContain("bun run ut-tdd status --json");
         expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
+        expect(workflow).toContain("bun run ut-tdd rename plan --json");
         expect(workflow).toContain("bun run ut-tdd handover status --json");
         expect(workflow).toContain(
           "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
@@ -331,6 +337,7 @@ describe("clean distribution local acceptance smoke", () => {
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd status --json",
           "bun run ut-tdd doctor --profile consumer --json",
+          "bun run ut-tdd rename plan --json",
           "bun run ut-tdd handover status --json",
           "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         ];
@@ -355,6 +362,19 @@ describe("clean distribution local acceptance smoke", () => {
         );
         expect(doctorFromGeneratedPath.status, doctorFromGeneratedPath.stderr).toBe(0);
         expect(JSON.parse(doctorFromGeneratedPath.stdout)).toMatchObject({ ok: true });
+
+        const renamePlanFromGeneratedPath = runCommand(
+          consumerRoot,
+          "ut-tdd",
+          ["rename", "plan", "--json"],
+          linkedEnv,
+        );
+        expect(renamePlanFromGeneratedPath.status, renamePlanFromGeneratedPath.stderr).toBe(0);
+        expect(JSON.parse(renamePlanFromGeneratedPath.stdout)).toMatchObject({
+          status: "blocked_pending_cutover_approval",
+          planOnly: true,
+          mustNotApply: true,
+        });
 
         const handoverFromGeneratedPath = runCommand(
           consumerRoot,

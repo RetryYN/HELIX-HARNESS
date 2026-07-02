@@ -73,6 +73,7 @@ const baseTemplates: TemplateSet = {
     "",
     "- Status: `ut-tdd status`",
     "- Doctor: `ut-tdd doctor --profile consumer`",
+    "- Rename packet: `ut-tdd rename plan --json`",
     "- Handover: `ut-tdd handover`",
     "<!-- UT-TDD:managed:end -->",
     "",
@@ -83,6 +84,7 @@ const baseTemplates: TemplateSet = {
     "",
     "- `ut-tdd status`",
     "- `ut-tdd doctor --profile consumer`",
+    "- `ut-tdd rename plan --json`",
     "<!-- UT-TDD:managed:end -->",
     "",
   ].join("\n"),
@@ -90,6 +92,7 @@ const baseTemplates: TemplateSet = {
     "<!-- UT-TDD:managed:start -->",
     "# Claude runtime アダプター",
     "",
+    "- `ut-tdd rename plan --json`",
     "- `ut-tdd handover`",
     "<!-- UT-TDD:managed:end -->",
     "",
@@ -102,6 +105,7 @@ const baseTemplates: TemplateSet = {
     '  "tasks": [',
     '    { "label": "HELIX: status", "type": "shell", "command": "ut-tdd status", "problemMatcher": [] },',
     '    { "label": "HELIX: doctor", "type": "shell", "command": "ut-tdd doctor --profile consumer", "problemMatcher": [] },',
+    '    { "label": "HELIX: rename plan", "type": "shell", "command": "ut-tdd rename plan --json", "problemMatcher": [] },',
     '    { "label": "HELIX: handover status", "type": "shell", "command": "ut-tdd handover status --json", "problemMatcher": [] },',
     '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "ut-tdd setup project --dry-run", "problemMatcher": [] },',
     '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
@@ -126,8 +130,15 @@ const baseTemplates: TemplateSet = {
     "    task: review",
     "",
   ].join("\n"),
-  "common/harness-check.yml":
-    "name: harness-check\nrun: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json\n",
+  "common/harness-check.yml": [
+    "name: harness-check",
+    "jobs:",
+    "  harness-check:",
+    "    steps:",
+    "      - run: bun run ut-tdd rename plan --json",
+    "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+    "",
+  ].join("\n"),
   "common/commitlint.config.js":
     "module.exports = { extends: ['@commitlint/config-conventional'] };\n",
   "common/escalation-stale.yml": "name: escalation-stale\n",
@@ -559,6 +570,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       requiredBefore: expect.arrayContaining([
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd doctor --profile consumer --json",
+        "bun run ut-tdd rename plan --json",
       ]),
       remediation: expect.stringContaining("consumer package.json"),
     });
@@ -569,6 +581,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd doctor --profile consumer --json",
+        "bun run ut-tdd rename plan --json",
         "bun run ut-tdd handover status --json",
         "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
@@ -668,6 +681,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           "ut-tdd setup project --dry-run",
           "ut-tdd status --json",
           "ut-tdd doctor --profile consumer",
+          "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
           "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         ],
@@ -686,6 +700,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
         doctorTask: "HELIX: doctor",
+        renamePlanTask: "HELIX: rename plan",
         handoverTask: "HELIX: handover status",
         teamRunTask: "HELIX: team run dry-run",
       },
@@ -798,6 +813,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.arrayContaining([
         "ut-tdd status --json",
         "ut-tdd doctor --profile consumer",
+        "ut-tdd rename plan --json",
         "ut-tdd handover status --json",
         "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
@@ -815,6 +831,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd setup project --dry-run",
       "ut-tdd status --json",
       "ut-tdd doctor --profile consumer",
+      "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
       "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
@@ -848,6 +865,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         adoptionDecision: expect.stringContaining("task.allowAutomaticTasks=off"),
         adoptionDecisionDelta: expect.stringContaining("none"),
         workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
+      }),
+      expect.objectContaining({
+        phase: "identifier-cutover-packet",
+        command: "ut-tdd rename plan --json",
+        expected: expect.stringContaining("blocked_pending_cutover_approval"),
+        source: "PLAN-M-02 HELIX identifier rename cutover packet",
+        sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+        adoptionDecision: expect.stringContaining("blocked packet"),
+        workflowRouteImpact: expect.stringContaining("L14 cutover review"),
       }),
       expect.objectContaining({
         phase: "handover-route",
@@ -888,6 +914,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("HELIX: rename plan");
+    expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
+      "ut-tdd rename plan --json",
+    );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "HELIX: handover status",
     );
@@ -924,6 +954,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           label: "HELIX: doctor",
           type: "shell",
           command: "ut-tdd doctor --profile consumer",
+          problemMatcher: [],
+        }),
+        expect.objectContaining({
+          label: "HELIX: rename plan",
+          type: "shell",
+          command: "ut-tdd rename plan --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
@@ -1060,6 +1096,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       nextActions: [
         "`ut-tdd status --json` を実行する",
         "`ut-tdd doctor --profile consumer` を実行する",
+        "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
         "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
         "`ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を dry-run し、worker/reviewer の provider 分離を確認する",
       ],
@@ -1068,6 +1105,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "setup-dry-run",
       "status-frontier",
       "consumer-doctor",
+      "identifier-cutover-packet",
       "handover-route",
       "team-run-dry-run",
     ]);

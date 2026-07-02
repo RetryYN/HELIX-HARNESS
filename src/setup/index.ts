@@ -126,6 +126,7 @@ export interface HelixProjectSetupResult extends SetupResult {
     tasksPath: string;
     statusTask: "HELIX: status";
     doctorTask: "HELIX: doctor";
+    renamePlanTask: "HELIX: rename plan";
     handoverTask: "HELIX: handover status";
     teamRunTask: "HELIX: team run dry-run";
   };
@@ -183,6 +184,7 @@ export interface HelixProjectDoctorBaseline {
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
     "ut-tdd doctor --profile consumer",
+    "ut-tdd rename plan --json",
     "ut-tdd handover status --json",
     "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
   ];
@@ -400,6 +402,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "ut-tdd setup project --dry-run",
     "ut-tdd status --json",
     "ut-tdd doctor --profile consumer",
+    "ut-tdd rename plan --json",
     "ut-tdd handover status --json",
     `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
@@ -771,6 +774,7 @@ export function buildConsumerReadinessPlan(input: {
         requiredBefore: [
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd doctor --profile consumer --json",
+          "bun run ut-tdd rename plan --json",
           `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         ],
         remediation:
@@ -784,6 +788,7 @@ export function buildConsumerReadinessPlan(input: {
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd doctor --profile consumer --json",
+        "bun run ut-tdd rename plan --json",
         "bun run ut-tdd handover status --json",
         `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         "bun run typecheck",
@@ -945,17 +950,18 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`ut-tdd status --json` を実行する",
             "`ut-tdd doctor --profile consumer` を実行する",
+            "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
             "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
             `\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を dry-run し、worker/reviewer の provider 分離を確認する`,
           ];
@@ -1036,6 +1042,25 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "Workspace Trust の自動コード実行境界に合わせ、task.allowAutomaticTasks=off と runOn/folderOpen 不使用を consumer doctor で検査する",
       adoptionDecisionDelta: "none; projected VS Code tasks remain manual verification surfaces",
       workflowRouteImpact: "consumer doctor failure routes to fix_consumer_readiness, not ready",
+    },
+    {
+      phase: "identifier-cutover-packet",
+      command: "ut-tdd rename plan --json",
+      expected:
+        "returns blocked_pending_cutover_approval with planOnly=true, mustNotApply=true, applyCommandAvailable=false, and the current cutoverSnapshot before any helix alias/state activation",
+      evidence: "rename plan JSON attached to the first-run readiness record",
+      source: "PLAN-M-02 HELIX identifier rename cutover packet",
+      sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local PLAN-M-02 cutover packet contract current at HEAD",
+      sourceStatusDelta:
+        "none; setup remains on ut-tdd/.ut-tdd until cutover approval records bind the current snapshot",
+      adoptionDecision:
+        "setup 初回検証は rename plan の blocked packet を保存し、HELIX alias/state がまだ有効でないことを証跡化する",
+      adoptionDecisionDelta:
+        "none; future helix command activation stays behind PLAN-M-02 cutover/action-binding approval",
+      workflowRouteImpact:
+        "rename packet drift or accidental ready/apply surface routes back to L14 cutover review before project start",
     },
     {
       phase: "handover-route",
@@ -1176,6 +1201,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",
       doctorTask: "HELIX: doctor",
+      renamePlanTask: "HELIX: rename plan",
       handoverTask: "HELIX: handover status",
       teamRunTask: "HELIX: team run dry-run",
     },

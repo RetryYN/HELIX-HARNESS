@@ -220,6 +220,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。",
       "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
       "`ut-tdd doctor --profile consumer`",
+      "`ut-tdd rename plan --json`",
       "<!-- UT-TDD:managed:end -->",
     ].join("\n"),
     "CLAUDE.md": [
@@ -228,6 +229,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。",
       "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
       "`ut-tdd doctor --profile consumer`",
+      "`ut-tdd rename plan --json`",
       "<!-- UT-TDD:managed:end -->",
     ].join("\n"),
     ".claude/CLAUDE.md": [
@@ -236,6 +238,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。",
       "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
       "`ut-tdd doctor --profile consumer`",
+      "`ut-tdd rename plan --json`",
       "<!-- UT-TDD:managed:end -->",
     ].join("\n"),
     ".claude/settings.json": [
@@ -268,6 +271,12 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
           label: "HELIX: doctor",
           type: "shell",
           command: "ut-tdd doctor --profile consumer",
+          problemMatcher: [],
+        },
+        {
+          label: "HELIX: rename plan",
+          type: "shell",
+          command: "ut-tdd rename plan --json",
           problemMatcher: [],
         },
         {
@@ -316,6 +325,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "        run: bun run ut-tdd status --json",
       "      - name: HELIX consumer doctor",
       "        run: bun run ut-tdd doctor --profile consumer --json",
+      "      - name: HELIX rename plan",
+      "        run: bun run ut-tdd rename plan --json",
       "      - name: Handover route",
       "        run: bun run ut-tdd handover status --json",
       "      - name: HELIX team run dry-run",
@@ -696,7 +707,8 @@ describe("runConsumerDoctor", () => {
 
   it("fails closed when .helix state exists before PLAN-M-02 approval", () => {
     const files = consumerDoctorFiles("/repo", {
-      ".helix/handover/.gitkeep": "",
+      ".helix/teams/default-hybrid.yaml": "name: default-hybrid\nmembers: []\n",
+      ".helix/state/setup.json": "{}\n",
     });
 
     const result = runConsumerDoctor(deps({ files }));
@@ -705,6 +717,9 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-identifier-transition - violation")).toBe(
       true,
     );
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain("premature_future_state=.helix/state/setup.json,.helix/teams/default-hybrid.yaml");
   });
 
   it("fails closed when package/bin or scripts expose helix before PLAN-M-02 approval", () => {
@@ -722,6 +737,34 @@ describe("runConsumerDoctor", () => {
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
     ).toContain("premature_alias=package.json:bin.helix,package.json:scripts.doctor");
+  });
+
+  it("fails closed when executable consumer surfaces expose helix aliases before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo");
+    const tasksPath = join("/repo", ".vscode", "tasks.json");
+    const workflowPath = join("/repo", ".github", "workflows", "harness-check.yml");
+    const hooksPath = join("/repo", ".codex", "hooks.json");
+    files.set(tasksPath, (files.get(tasksPath) ?? "").replace("ut-tdd status", "helix status"));
+    files.set(
+      workflowPath,
+      (files.get(workflowPath) ?? "").replace(
+        "bun run ut-tdd status --json",
+        "helix status --json",
+      ),
+    );
+    files.set(
+      hooksPath,
+      (files.get(hooksPath) ?? "").replace("ut-tdd hook work-guard", "helix doctor"),
+    );
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain(
+      "premature_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.codex/hooks.json",
+    );
   });
 
   it("fails closed when Claude adapter hooks are incomplete", () => {
