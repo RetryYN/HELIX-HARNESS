@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { recordTemplateContractViolations } from "./completion-decision-packet";
 import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
 import {
   type CompletionDecisionRecordTemplate,
@@ -286,6 +287,21 @@ export function analyzeActionBindingApprovalReadiness(
         );
       }
     }
+    const packet = buildActionBindingApprovalPacket(plan, {
+      versionUpModeDoc: input.versionUpModeDoc,
+      currentCutoverSnapshotId: input.currentCutoverSnapshotId,
+      semanticFeatureFrontierRecords: input.semanticFeatureFrontierRecords,
+    });
+    violations.push(
+      ...recordTemplateContractViolations({
+        subject: `${plan.plan_id}.actionBindingApprovalPacket`,
+        requiredRecords: requiredRecordsForBlockers(["human_approval_pending"]),
+        recordTemplates: packet.recordTemplates,
+      }).map((violation) => ({
+        subject: violation.subject,
+        reason: violation.reason,
+      })),
+    );
   }
 
   return {

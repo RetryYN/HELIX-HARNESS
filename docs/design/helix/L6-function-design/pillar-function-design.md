@@ -136,6 +136,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   package/bin resolution preflight (`bun run ut-tdd --version`) と setup dry-run / status / consumer doctor /
   handover route / team-run dry-run の `bun run ut-tdd ...` command set を含み、
   acceptance はその command set を consumer repo で実行する。
+  `cutoverRunbook[]` の command は承認前に実行可能な no-write CLI surface に限定し、
+  未実装の `ut-tdd rename ...` サブコマンドや存在しない `./dist/helix` smoke を証跡経路として出さない。
+  `ut-tdd rename rehearsal --no-write --target helix --json` と
+  `ut-tdd rename state-backup --dry-run --restore-drill --json` は packet-only で、
+  codemod preview / renamed binary smoke preview / state backup restore drill requirements を返すが apply surface を持たない。
 - HC-P8 `requireActionBindingApproval` / `buildActionBindingApprovalPackets` は
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、

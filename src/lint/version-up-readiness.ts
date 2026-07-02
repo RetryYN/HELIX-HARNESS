@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
   type CompletionDecisionRecordTemplate,
   computeOutstandingWork,
@@ -863,6 +864,27 @@ export function analyzeVersionUpReadiness(
         violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
       }
     }
+    const sourceLedgerFreshness = buildVersionUpSourceLedgerFreshness(input.modeDoc, sourceLedger);
+    const packet = buildVersionUpActivationPacket(plan, sourceLedgerFreshness, {
+      semanticFeatureFrontierRecords: input.semanticFeatureFrontierRecords,
+      repoHeadSha: input.repoHeadSha,
+    });
+    const recordBlockers = [
+      "version_up_parked",
+      ...(packet.externalBoundaries.length > 0 || planTextRequiresActionBindingApproval(plan.text)
+        ? ["human_approval_pending"]
+        : []),
+    ];
+    violations.push(
+      ...recordTemplateContractViolations({
+        subject: `${plan.plan_id}.versionUpActivationPacket`,
+        requiredRecords: requiredRecordsForBlockers(recordBlockers),
+        recordTemplates: packet.recordTemplates,
+      }).map((violation) => ({
+        subject: violation.subject,
+        reason: violation.reason,
+      })),
+    );
   }
 
   return {

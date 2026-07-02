@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { recordTemplateContractViolations } from "./completion-decision-packet";
 import {
   type CompletionDecisionRecordTemplate,
   computeOutstandingWork,
@@ -487,6 +488,21 @@ export function analyzeS4DecisionReadiness(
         ),
       );
     }
+    const packet = buildS4DecisionPacket(plan, input.semanticFeatureFrontierRecords);
+    const recordBlockers = [
+      "po_decision_pending",
+      ...(planTextRequiresActionBindingApproval(plan.text) ? ["human_approval_pending"] : []),
+    ];
+    violations.push(
+      ...recordTemplateContractViolations({
+        subject: `${plan.plan_id}.s4DecisionPacket`,
+        requiredRecords: requiredRecordsForBlockers(recordBlockers),
+        recordTemplates: packet.recordTemplates,
+      }).map((violation) => ({
+        subject: violation.subject,
+        reason: violation.reason,
+      })),
+    );
   }
 
   for (const plan of input.plans.filter(isS4PocDecision)) {

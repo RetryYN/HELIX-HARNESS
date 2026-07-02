@@ -50,6 +50,7 @@ import {
   analyzeCompletionDecisionPacket,
   completionDecisionPacketMessages,
   loadCompletionDecisionPacketInput,
+  recordTemplateContractViolations,
 } from "../lint/completion-decision-packet";
 import {
   analyzeCutoverReadiness,
@@ -136,6 +137,10 @@ import {
 import { analyzeGateConfirm, gateConfirmMessages, loadGateConfirmDocs } from "../lint/gate-confirm";
 import { checkGreenCommandDigests } from "../lint/green-command-digest";
 import {
+  buildIdentifierRenameCutoverPlan,
+  identifierRenameRunbookCommandViolations,
+} from "../lint/identifier-rename";
+import {
   analyzeImplPlanTrace,
   implPlanTraceMessages,
   loadImplPlanTraceInput,
@@ -177,6 +182,7 @@ import {
   loadOracleTestTraceInput,
   oracleTestTraceMessages,
 } from "../lint/oracle-test-trace";
+import { requiredRecordsForBlockers } from "../lint/outstanding";
 import {
   analyzePlaceholderDeps,
   loadPlaceholderDepsDocs,
@@ -2351,7 +2357,28 @@ export function checkS4DecisionReadiness(repoRoot: string): { messages: string[]
 export function checkCutoverReadiness(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeCutoverReadiness(loadCutoverReadinessInput(repoRoot));
-    return { messages: cutoverReadinessMessages(r), ok: r.ok };
+    const renamePlan = buildIdentifierRenameCutoverPlan(repoRoot);
+    const templateViolations = recordTemplateContractViolations({
+      subject: "ut-tdd rename plan",
+      requiredRecords: requiredRecordsForBlockers([
+        "irreversible_migration_pending",
+        "human_approval_pending",
+      ]),
+      recordTemplates: renamePlan.recordTemplates,
+    });
+    const runbookCommandViolations = identifierRenameRunbookCommandViolations(renamePlan);
+    return {
+      messages: [
+        ...cutoverReadinessMessages(r),
+        ...templateViolations.map(
+          (violation) => `cutover-readiness - violation: ${violation.reason}`,
+        ),
+        ...runbookCommandViolations.map(
+          (violation) => `cutover-readiness - violation: ${violation.subject}: ${violation.reason}`,
+        ),
+      ],
+      ok: r.ok && templateViolations.length === 0 && runbookCommandViolations.length === 0,
+    };
   } catch {
     return {
       messages: ["cutover-readiness - violation: irreversible cutover docs could not be read"],

@@ -1,5 +1,7 @@
 import {
   type CompletionDecisionPacket,
+  type CompletionDecisionRecordRequirement,
+  type CompletionDecisionRecordTemplate,
   completionDecisionPacketForOutstanding,
   computeOutstandingWork,
   REQUIRED_DECISION_PACKET_MATRIX_FIELDS,
@@ -59,6 +61,11 @@ export interface CompletionDecisionPacketLintOptions {
   sourcePathExists?: (repoRelativePath: string) => boolean;
   /** repo-relative sourcePaths の中身を読んで source ledger freshness を検査するための hook。 */
   sourceText?: (repoRelativePath: string) => string | null;
+}
+
+export interface RecordTemplateContractViolation {
+  subject: string;
+  reason: string;
 }
 
 const POLICY = "decision-packet-freshness.v1";
@@ -500,51 +507,18 @@ export function analyzeCompletionDecisionPacket(
           });
         }
       }
-      const template = templateRecords.get(record.recordName);
-      if (!template) {
-        violations.push({
-          reason: "invalid_record_template",
-          detail: `decision[${decisionIndex}] missing template for ${record.recordName}`,
-        });
-        continue;
-      }
-      if (!template.insertionHint?.trim() || /^(TBD|TODO|-)$/.test(template.insertionHint.trim())) {
-        violations.push({
-          reason: "invalid_record_template",
-          detail: `decision[${decisionIndex}] ${record.recordName} invalid insertionHint`,
-        });
-      }
-      if (!Array.isArray(template.yamlLines) || template.yamlLines.length === 0) {
-        violations.push({
-          reason: "invalid_record_template",
-          detail: `decision[${decisionIndex}] ${record.recordName} missing yamlLines`,
-        });
-        continue;
-      }
-      if (template.yamlLines[0]?.trim() !== `${record.recordName}:`) {
-        violations.push({
-          reason: "invalid_record_template",
-          detail: `decision[${decisionIndex}] ${record.recordName} template header mismatch`,
-        });
-      }
-      const templateText = template.yamlLines.join("\n");
-      for (const field of record.fields) {
-        if (!templateText.includes(`- ${field}:`)) {
-          violations.push({
-            reason: "invalid_record_template",
-            detail: `decision[${decisionIndex}] ${record.recordName} template missing field=${field}`,
-          });
-        }
-      }
-      const guidanceText = `${template.insertionHint}\n${templateText}`.toLowerCase();
-      for (const expectedGuidance of requiredTemplateGuidance(record.recordName)) {
-        if (!guidanceText.includes(expectedGuidance.toLowerCase())) {
-          violations.push({
-            reason: "invalid_record_template",
-            detail: `decision[${decisionIndex}] ${record.recordName} template missing guidance=${expectedGuidance}`,
-          });
-        }
-      }
+      violations.push(
+        ...recordTemplateContractViolations({
+          subject: `decision[${decisionIndex}]`,
+          requiredRecords: [record],
+          recordTemplates: templateRecords.has(record.recordName)
+            ? [templateRecords.get(record.recordName) as CompletionDecisionRecordTemplate]
+            : [],
+        }).map((violation) => ({
+          reason: "invalid_record_template" as const,
+          detail: violation.reason,
+        })),
+      );
     }
   });
 
@@ -558,6 +532,89 @@ export function analyzeCompletionDecisionPacket(
     expiresAt,
     violations,
   };
+}
+
+export function recordTemplateContractViolations(input: {
+  subject: string;
+  requiredRecords: CompletionDecisionRecordRequirement[];
+  recordTemplates: CompletionDecisionRecordTemplate[];
+}): RecordTemplateContractViolation[] {
+  const violations: RecordTemplateContractViolation[] = [];
+  const expectedRecordNames = input.requiredRecords.map((record) => record.recordName);
+  const actualRecordNames = input.recordTemplates.map((template) => template.recordName);
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+  for (const recordName of actualRecordNames) {
+    if (seen.has(recordName)) duplicates.add(recordName);
+    seen.add(recordName);
+  }
+  for (const duplicate of [...duplicates].sort()) {
+    violations.push({
+      subject: input.subject,
+      reason: `${input.subject}.recordTemplates duplicate recordName=${duplicate}`,
+    });
+  }
+  const expected = new Set(expectedRecordNames);
+  for (const recordName of [...expected].sort()) {
+    if (!seen.has(recordName)) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject}.recordTemplates missing recordName=${recordName}`,
+      });
+    }
+  }
+  for (const recordName of [...seen].sort()) {
+    if (!expected.has(recordName)) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject}.recordTemplates unexpected recordName=${recordName}`,
+      });
+    }
+  }
+
+  const templateRecords = new Map(input.recordTemplates.map((entry) => [entry.recordName, entry]));
+  for (const record of input.requiredRecords) {
+    const template = templateRecords.get(record.recordName);
+    if (!template) continue;
+    if (!template.insertionHint?.trim() || /^(TBD|TODO|-)$/.test(template.insertionHint.trim())) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject} ${record.recordName} invalid insertionHint`,
+      });
+    }
+    if (!Array.isArray(template.yamlLines) || template.yamlLines.length === 0) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject} ${record.recordName} missing yamlLines`,
+      });
+      continue;
+    }
+    if (template.yamlLines[0]?.trim() !== `${record.recordName}:`) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject} ${record.recordName} template header mismatch`,
+      });
+    }
+    const templateText = template.yamlLines.join("\n");
+    for (const field of record.fields) {
+      if (!templateText.includes(`- ${field}:`)) {
+        violations.push({
+          subject: input.subject,
+          reason: `${input.subject} ${record.recordName} template missing field=${field}`,
+        });
+      }
+    }
+    const guidanceText = `${template.insertionHint}\n${templateText}`.toLowerCase();
+    for (const expectedGuidance of requiredTemplateGuidance(record.recordName)) {
+      if (!guidanceText.includes(expectedGuidance.toLowerCase())) {
+        violations.push({
+          subject: input.subject,
+          reason: `${input.subject} ${record.recordName} template missing guidance=${expectedGuidance}`,
+        });
+      }
+    }
+  }
+  return violations;
 }
 
 function requiredDecisionKind(blockerReason: string): string {

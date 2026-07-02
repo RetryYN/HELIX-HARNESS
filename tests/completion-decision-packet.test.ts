@@ -5,11 +5,13 @@ import {
   analyzeCompletionDecisionPacket,
   completionDecisionPacketMessages,
   loadCompletionDecisionPacketInput,
+  recordTemplateContractViolations,
 } from "../src/lint/completion-decision-packet";
 import {
   analyzeOutstandingWork,
   type CompletionDecisionPacket,
   completionDecisionPacketForOutstanding,
+  requiredRecordsForBlockers,
 } from "../src/lint/outstanding";
 
 function basePacket(): CompletionDecisionPacket {
@@ -483,6 +485,48 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_record_template",
           detail: "decision[0].recordTemplates unexpected recordName=other_record",
+        },
+      ]),
+    );
+  });
+
+  it("U-OUTSTANDING-011: applies the same record template contract to dedicated packet surfaces", () => {
+    const decision = basePacket().decisions[0];
+
+    expect(
+      recordTemplateContractViolations({
+        subject: "dedicated.s4DecisionPacket",
+        requiredRecords: requiredRecordsForBlockers(["po_decision_pending"]),
+        recordTemplates: decision.recordTemplates,
+      }),
+    ).toEqual([]);
+
+    const weakTemplates = decision.recordTemplates.map((template) =>
+      template.recordName === "s4_decision_record"
+        ? {
+            ...template,
+            insertionHint: "Add this record before deciding.",
+            yamlLines: template.yamlLines.filter((line) => !line.includes("decision_owner")),
+          }
+        : template,
+    );
+
+    expect(
+      recordTemplateContractViolations({
+        subject: "dedicated.s4DecisionPacket",
+        requiredRecords: requiredRecordsForBlockers(["po_decision_pending"]),
+        recordTemplates: weakTemplates,
+      }),
+    ).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "dedicated.s4DecisionPacket",
+          reason:
+            "dedicated.s4DecisionPacket s4_decision_record template missing field=decision_owner",
+        },
+        {
+          subject: "dedicated.s4DecisionPacket",
+          reason: "dedicated.s4DecisionPacket s4_decision_record template missing guidance=archive",
         },
       ]),
     );

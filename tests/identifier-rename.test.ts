@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
+  identifierRenameRunbookCommandViolations,
 } from "../src/lint/identifier-rename";
 
 const repoRoot = process.cwd();
@@ -460,13 +461,31 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             id: "cutover-rb-03",
             phase: "state-backup-restore-drill",
+            command: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
           }),
           expect.objectContaining({
             id: "cutover-rb-05",
-            command: "bun run build && ./dist/ut-tdd doctor && ./dist/helix doctor",
+            command:
+              "bun run build && bun run src/cli.ts rename rehearsal --no-write --target helix --json",
           }),
         ]),
       );
+      expect(identifierRenameRunbookCommandViolations(plan)).toEqual([]);
+      expect(
+        identifierRenameRunbookCommandViolations({
+          cutoverRunbook: plan.cutoverRunbook.map((step) =>
+            step.id === "cutover-rb-02"
+              ? { ...step, command: "ut-tdd rename rehearsal --no-write --target helix" }
+              : step,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "cutover-rb-02",
+          reason:
+            "cutoverRunbook command is not an executable approved no-write surface: ut-tdd rename rehearsal --no-write --target helix",
+        },
+      ]);
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
       expect(plan.rollbackPlan.join("\n")).toContain(".ut-tdd/harness.db");
       expect(plan.monitoringPlan.join("\n")).toContain("helix doctor");
@@ -738,6 +757,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         ]),
       );
       expect(payload.cutoverRunbook.length).toBeGreaterThan(0);
+      expect(identifierRenameRunbookCommandViolations(payload)).toEqual([]);
       expect(payload.recordTemplates).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ recordName: "cutover_decision_record" }),
@@ -793,6 +813,55 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("recordedCutover=-");
       expect(text.stdout).toContain("recordedActionBinding=-");
       expect(text.stdout).toContain("drift=no");
+
+      const rehearsal = runCliIn(root, [
+        "rename",
+        "rehearsal",
+        "--no-write",
+        "--target",
+        "helix",
+        "--json",
+      ]);
+      expect(rehearsal.status, rehearsal.stderr || rehearsal.stdout).toBe(0);
+      const rehearsalPayload = JSON.parse(rehearsal.stdout);
+      expect(rehearsalPayload).toMatchObject({
+        schemaVersion: "identifier-rename-rehearsal.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        target: "helix",
+      });
+      expect(rehearsalPayload.previewCommands).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ phase: "codemod-preview", writesRepo: false }),
+          expect.objectContaining({ phase: "renamed-binary-smoke-preview", writesRepo: false }),
+        ]),
+      );
+
+      const stateBackup = runCliIn(root, [
+        "rename",
+        "state-backup",
+        "--dry-run",
+        "--restore-drill",
+        "--json",
+      ]);
+      expect(stateBackup.status, stateBackup.stderr || stateBackup.stdout).toBe(0);
+      const stateBackupPayload = JSON.parse(stateBackup.stdout);
+      expect(stateBackupPayload).toMatchObject({
+        schemaVersion: "identifier-rename-state-backup-dry-run.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        restoreDrillRequested: true,
+      });
+      expect(stateBackupPayload.restoreChecks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: ".ut-tdd/harness.db",
+            restoreEvidencePath: ".ut-tdd/evidence/rename/restore-harness-db.json",
+          }),
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

@@ -166,6 +166,45 @@ export interface IdentifierRenameCutoverPlan {
   };
 }
 
+export interface IdentifierRenameRehearsalPlan {
+  schemaVersion: "identifier-rename-rehearsal.v1";
+  planOnly: true;
+  mustNotApply: true;
+  writePolicy: "no-write";
+  target: "helix";
+  targetStateDir: ".helix";
+  sourceCommand: "ut-tdd rename rehearsal --no-write --target helix --json";
+  auditStatus: IdentifierRenameAudit["status"];
+  renameMap: IdentifierRenameMapping[];
+  previewCategories: IdentifierRenameCategorySummary[];
+  previewCommands: Array<{
+    phase: string;
+    command: string;
+    writesRepo: false;
+    evidencePath: string;
+  }>;
+  blockedUntil: string[];
+}
+
+export interface IdentifierRenameStateBackupDryRun {
+  schemaVersion: "identifier-rename-state-backup-dry-run.v1";
+  planOnly: true;
+  mustNotApply: true;
+  writePolicy: "no-write";
+  sourceCommand: "ut-tdd rename state-backup --dry-run --restore-drill --json";
+  restoreDrillRequested: boolean;
+  manifest: IdentifierRenameCutoverPlan["stateBackupManifest"];
+  restoreChecks: Array<{
+    path: string;
+    backupTargetPattern: string;
+    restoreEvidencePath: string;
+    checksumRequired: true;
+    restoreRequired: true;
+    sourceExists: boolean;
+  }>;
+  blockedUntil: string[];
+}
+
 export interface IdentifierRenameSourceLedgerFreshness {
   ledgerLabel: "Cutover source ledger";
   checkedDate: string | null;
@@ -193,6 +232,11 @@ export interface IdentifierRenameSnapshotReview {
   actionBindingSnapshotMatchesCurrent: boolean;
   driftWarning: string | null;
   requiredAction: string;
+}
+
+export interface IdentifierRenameRunbookCommandViolation {
+  subject: string;
+  reason: string;
 }
 
 const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
@@ -701,7 +745,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-02",
       phase: "codemod-rehearsal",
-      command: "ut-tdd rename rehearsal --no-write --target helix",
+      command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
       writePolicy: "no-write",
       evidencePath: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
       passCriteria: "source/docs/template rename diff is previewed without touching the worktree",
@@ -712,7 +756,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-03",
       phase: "state-backup-restore-drill",
-      command: "ut-tdd rename state-backup --dry-run --restore-drill",
+      command: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
       writePolicy: "no-write",
       evidencePath: ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
       passCriteria: "DB, memory, state, logs, handover, and hook configs have restorable backups",
@@ -735,11 +779,12 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
     {
       id: "cutover-rb-05",
       phase: "dist-smoke-rehearsal",
-      command: "bun run build && ./dist/ut-tdd doctor && ./dist/helix doctor",
+      command:
+        "bun run build && bun run src/cli.ts rename rehearsal --no-write --target helix --json",
       writePolicy: "no-write",
       evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
       passCriteria:
-        "current CLI, renamed CLI, and alias disposition are all reviewed before cutover",
+        "current CLI, renamed CLI rehearsal, and alias disposition are all reviewed before cutover",
       rollbackCheck: "failed renamed CLI smoke keeps old command/state path active",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
@@ -842,6 +887,107 @@ function buildStateBackupManifest(): IdentifierRenameCutoverPlan["stateBackupMan
       restoreRequired: true,
     },
   ];
+}
+
+export function buildIdentifierRenameRehearsalPlan(
+  root: string,
+  target: "helix" = "helix",
+): IdentifierRenameRehearsalPlan {
+  const audit = auditIdentifierRenameBlastRadius(root);
+  const plan = buildIdentifierRenameCutoverPlan(root);
+  const currentCliToken = ["ut", "-tdd"].join("");
+  const currentStateDirToken = [".ut", "-tdd"].join("");
+  const currentAreaToken = ["area=", "harness"].join("");
+  const futureStateDirToken = [".", "helix"].join("");
+  const targetAreaToken = ["area=", "helix"].join("");
+  return {
+    schemaVersion: "identifier-rename-rehearsal.v1",
+    planOnly: true,
+    mustNotApply: true,
+    writePolicy: "no-write",
+    target,
+    targetStateDir: ".helix",
+    sourceCommand: "ut-tdd rename rehearsal --no-write --target helix --json",
+    auditStatus: audit.status,
+    renameMap: RENAME_MAP,
+    previewCategories: plan.hitsByCategory,
+    previewCommands: [
+      {
+        phase: "codemod-preview",
+        command: `preview ${currentCliToken}/${currentStateDirToken}/${currentAreaToken} -> helix/${futureStateDirToken}/${targetAreaToken} token changes`,
+        writesRepo: false,
+        evidencePath: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+      },
+      {
+        phase: "renamed-binary-smoke-preview",
+        command:
+          "after approval, build the renamed binary on a non-destructive branch and run helix doctor before alias enablement",
+        writesRepo: false,
+        evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+      },
+    ],
+    blockedUntil: [
+      "cutover_decision_record approves the current cutoverSnapshot.snapshotId",
+      "action_binding_approval_record scopes actor/tool/target/params for irreversible rename",
+      "state-backup dry-run and restore drill evidence are recorded",
+    ],
+  };
+}
+
+export function buildIdentifierRenameStateBackupDryRun(
+  root: string,
+  restoreDrillRequested = false,
+): IdentifierRenameStateBackupDryRun {
+  const manifest = buildStateBackupManifest();
+  return {
+    schemaVersion: "identifier-rename-state-backup-dry-run.v1",
+    planOnly: true,
+    mustNotApply: true,
+    writePolicy: "no-write",
+    sourceCommand: "ut-tdd rename state-backup --dry-run --restore-drill --json",
+    restoreDrillRequested,
+    manifest,
+    restoreChecks: manifest.map((entry) => ({
+      path: entry.path,
+      backupTargetPattern: entry.backupTargetPattern,
+      restoreEvidencePath: entry.restoreEvidencePath,
+      checksumRequired: true,
+      restoreRequired: true,
+      sourceExists: existsSync(join(root, entry.path)),
+    })),
+    blockedUntil: [
+      "each restoreCheck has sourceExists=true or an explicit no-state-needed disposition",
+      "restore drill evidence is recorded for every restoreRequired item",
+      "cutover approval cites the resulting state-backup evidence path",
+    ],
+  };
+}
+
+export function identifierRenameRunbookCommandViolations(
+  plan: Pick<IdentifierRenameCutoverPlan, "cutoverRunbook">,
+): IdentifierRenameRunbookCommandViolation[] {
+  const allowedCommands = new Set([
+    "bun run src/cli.ts rename audit --json",
+    "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+    "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+    "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+    "bun run build && bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+    "bun run test",
+  ]);
+  return plan.cutoverRunbook.flatMap((step) => {
+    if (!step.command.trim()) {
+      return [{ subject: step.id, reason: "cutoverRunbook command is empty" }];
+    }
+    if (!allowedCommands.has(step.command)) {
+      return [
+        {
+          subject: step.id,
+          reason: `cutoverRunbook command is not an executable approved no-write surface: ${step.command}`,
+        },
+      ];
+    }
+    return [];
+  });
 }
 
 export function buildIdentifierRenameCutoverPlan(

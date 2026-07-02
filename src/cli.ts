@@ -54,6 +54,8 @@ import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
+  buildIdentifierRenameRehearsalPlan,
+  buildIdentifierRenameStateBackupDryRun,
 } from "./lint/identifier-rename";
 import { loadObjectiveProgress } from "./lint/objective-evidence-audit";
 import {
@@ -1364,6 +1366,78 @@ rename
       process.stdout.write(
         `  required: ${audit.requiredRecords.join(", ")} before .ut-tdd -> .helix apply\n`,
       );
+    }
+  });
+rename
+  .command("rehearsal")
+  .description("emit a no-write HELIX identifier rename rehearsal packet")
+  .option("--no-write", "confirm this command must not mutate files or state")
+  .option("--target <target>", "target CLI name", "helix")
+  .option("--json", "JSON output")
+  .action((opts: { write?: boolean; target?: string; json?: boolean }) => {
+    if (opts.write !== false) {
+      process.stderr.write("rename rehearsal requires --no-write\n");
+      process.exitCode = 1;
+      return;
+    }
+    if (opts.target !== "helix") {
+      process.stderr.write("rename rehearsal currently supports --target helix only\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildIdentifierRenameRehearsalPlan(process.cwd(), "helix");
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename rehearsal: target=${packet.target} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy}\n`,
+    );
+    process.stdout.write(
+      `  preview-categories=${packet.previewCategories.length} preview-commands=${packet.previewCommands.length}\n`,
+    );
+    for (const command of packet.previewCommands) {
+      process.stdout.write(
+        `  preview-command: ${command.phase} writesRepo=${command.writesRepo} evidence=${command.evidencePath}\n`,
+      );
+    }
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+  });
+rename
+  .command("state-backup")
+  .description("emit a no-write state backup and restore-drill packet for HELIX identifier rename")
+  .requiredOption("--dry-run", "confirm no state backup files are written")
+  .option("--restore-drill", "include restore drill requirements")
+  .option("--json", "JSON output")
+  .action((opts: { dryRun?: boolean; restoreDrill?: boolean; json?: boolean }) => {
+    if (!opts.dryRun) {
+      process.stderr.write("rename state-backup requires --dry-run\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildIdentifierRenameStateBackupDryRun(
+      process.cwd(),
+      Boolean(opts.restoreDrill),
+    );
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename state-backup: planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy} restoreDrill=${packet.restoreDrillRequested}\n`,
+    );
+    process.stdout.write(
+      `  manifest=${packet.manifest.length} restore-checks=${packet.restoreChecks.length}\n`,
+    );
+    for (const check of packet.restoreChecks) {
+      process.stdout.write(
+        `  restore-check: ${check.path} exists=${check.sourceExists} evidence=${check.restoreEvidencePath}\n`,
+      );
+    }
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
     }
   });
 rename
