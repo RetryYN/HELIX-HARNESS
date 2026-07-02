@@ -1936,6 +1936,45 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const projectSetupVerificationCommands = stringList(
     projectSetupPostWorkflow?.verificationCommands,
   );
+  const projectSetupVerificationMatrix = Array.isArray(projectSetupPostWorkflow?.verificationMatrix)
+    ? projectSetupPostWorkflow.verificationMatrix.map(recordValue)
+    : [];
+  const projectSetupMatrixCommands = projectSetupVerificationMatrix
+    .map((row) => (typeof row?.command === "string" ? row.command : ""))
+    .filter(Boolean);
+  const projectSetupMatrixPhases = projectSetupVerificationMatrix
+    .map((row) => (typeof row?.phase === "string" ? row.phase : ""))
+    .filter(Boolean);
+  const expectedFirstRunPhases = [
+    "setup-dry-run",
+    "status-frontier",
+    "github-ci-safety",
+    "completion-decision-packet",
+    "consumer-doctor",
+    "identifier-cutover-packet",
+    "handover-route",
+    "team-run-dry-run",
+  ];
+  const projectSetupMatrixOk =
+    projectSetupVerificationMatrix.length === expectedFirstRunPhases.length &&
+    expectedFirstRunPhases.every((phase) => projectSetupMatrixPhases.includes(phase)) &&
+    projectSetupVerificationCommands.length === projectSetupMatrixCommands.length &&
+    projectSetupVerificationCommands.every((command) =>
+      projectSetupMatrixCommands.includes(command),
+    ) &&
+    projectSetupVerificationMatrix.every((row) => {
+      if (!row) return false;
+      return (
+        typeof row.phase === "string" &&
+        typeof row.command === "string" &&
+        row.writePolicy === "no-write" &&
+        Array.isArray(row.requiresMaterializedPaths) &&
+        typeof row.expected === "string" &&
+        row.expected.trim().length > 0 &&
+        typeof row.evidence === "string" &&
+        row.evidence.trim().length > 0
+      );
+    });
   const projectSetupStateOk =
     projectSetupState?.schemaVersion === "helix-project-setup-state.v1" &&
     projectSetupState?.setupCommand === "ut-tdd setup project" &&
@@ -1950,11 +1989,12 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
         : "",
     ) &&
     projectSetupVerificationCommands.includes("ut-tdd completion decision-packet --json") &&
-    projectSetupVerificationCommands.includes("ut-tdd doctor --profile consumer");
+    projectSetupVerificationCommands.includes("ut-tdd doctor --profile consumer") &&
+    projectSetupMatrixOk;
   messages.push(
     projectSetupStateOk
-      ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false)"
-      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")}`,
+      ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false; first-run matrix persisted)"
+      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";

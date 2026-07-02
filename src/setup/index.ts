@@ -77,7 +77,7 @@ export interface HelixProjectSetupState {
   objectiveBoundary: ConsumerReadinessPlan["objectiveBoundary"];
   postSetupWorkflow: Pick<
     HelixProjectPostSetupWorkflow,
-    "nextRoute" | "readinessOk" | "verificationCommands"
+    "nextRoute" | "readinessOk" | "verificationCommands" | "verificationMatrix"
   >;
 }
 
@@ -298,6 +298,8 @@ export interface ConsumerReadinessPlan {
     checkedFrom: string;
     resolved: boolean;
     strategy: "path" | "package-script" | "missing";
+    bareCommandResolved: boolean;
+    packageScriptAvailable: boolean;
     evidence: string;
     fallbackCommands: string[];
   };
@@ -811,7 +813,7 @@ export function buildConsumerReadinessPlan(input: {
   const runtimeOk = input.hasClaude || input.hasCodex;
   const cliResolvedByPath = input.hasUtTddCli === true;
   const cliResolvedByPackageScript = input.hasUtTddPackageScript === true;
-  const cliResolved = cliResolvedByPath || cliResolvedByPackageScript;
+  const hookCliOk = cliResolvedByPath;
   const artifactReadiness = input.artifactReadiness ?? {
     ok: true,
     checks: [
@@ -851,12 +853,19 @@ export function buildConsumerReadinessPlan(input: {
     },
     {
       name: "ut-tdd-cli",
-      ok: cliResolved,
+      ok: hookCliOk,
       message: cliResolvedByPath
         ? "projected hook 用の `ut-tdd` が PATH 上で解決できる"
         : cliResolvedByPackageScript
-          ? "consumer packageRoot の `bun run ut-tdd` script で解決できる"
+          ? "consumer packageRoot の `bun run ut-tdd` script は CI fallback として利用可能だが、projected hook / agent 用の bare `ut-tdd` は PATH 上で解決できない"
           : "setup 前に harness package で `bun link`、consumer repo で `bun link ut-tdd` または package.json scripts.ut-tdd を設定する",
+    },
+    {
+      name: "ut-tdd-package-script",
+      ok: cliResolvedByPackageScript,
+      message: cliResolvedByPackageScript
+        ? "consumer CI / VSCode task fallback 用の `bun run ut-tdd` script が packageRoot で解決できる"
+        : "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.ut-tdd を用意する",
     },
     {
       name: "runtime-cli",
@@ -879,7 +888,7 @@ export function buildConsumerReadinessPlan(input: {
       bunOk &&
       input.hasGit &&
       requestedTagMatchesPackageVersion &&
-      cliResolved &&
+      hookCliOk &&
       runtimeOk &&
       artifactReadiness.ok,
     checks,
@@ -917,16 +926,18 @@ export function buildConsumerReadinessPlan(input: {
     cliResolution: {
       command: "ut-tdd",
       checkedFrom: packageRoot,
-      resolved: cliResolved,
+      resolved: hookCliOk,
       strategy: cliResolvedByPath
         ? "path"
         : cliResolvedByPackageScript
           ? "package-script"
           : "missing",
+      bareCommandResolved: cliResolvedByPath,
+      packageScriptAvailable: cliResolvedByPackageScript,
       evidence: cliResolvedByPath
         ? "`ut-tdd --version` resolved for consumer readiness"
         : cliResolvedByPackageScript
-          ? "`bun run ut-tdd --version` is available from consumer packageRoot scripts"
+          ? "`bun run ut-tdd --version` is available from consumer packageRoot scripts, but bare `ut-tdd --version` did not resolve for hooks"
           : "`ut-tdd --version` and consumer packageRoot scripts.ut-tdd did not resolve for consumer readiness",
       fallbackCommands: [
         "bun run ut-tdd --version",
@@ -1666,6 +1677,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
           nextRoute: postSetupWorkflow.nextRoute,
           readinessOk: postSetupWorkflow.readinessOk,
           verificationCommands: postSetupWorkflow.verificationCommands,
+          verificationMatrix: postSetupWorkflow.verificationMatrix,
         },
       },
       deps,

@@ -620,6 +620,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       checkedFrom: "/repo/packages/app",
       resolved: true,
       strategy: "path",
+      bareCommandResolved: true,
+      packageScriptAvailable: false,
       evidence: "`ut-tdd --version` resolved for consumer readiness",
       fallbackCommands: [
         "bun run ut-tdd --version",
@@ -700,16 +702,27 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       packageRoot: "/repo/packages/app",
       tag: "v0.1.0",
     });
-    expect(packageScriptReady.ok).toBe(true);
+    expect(packageScriptReady.ok).toBe(false);
     expect(packageScriptReady.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
-      ok: true,
-      message: "consumer packageRoot の `bun run ut-tdd` script で解決できる",
+      ok: false,
+      message:
+        "consumer packageRoot の `bun run ut-tdd` script は CI fallback として利用可能だが、projected hook / agent 用の bare `ut-tdd` は PATH 上で解決できない",
     });
+    expect(packageScriptReady.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject(
+      {
+        ok: true,
+        message:
+          "consumer CI / VSCode task fallback 用の `bun run ut-tdd` script が packageRoot で解決できる",
+      },
+    );
     expect(packageScriptReady.cliResolution).toMatchObject({
       checkedFrom: "/repo/packages/app",
-      resolved: true,
+      resolved: false,
       strategy: "package-script",
-      evidence: "`bun run ut-tdd --version` is available from consumer packageRoot scripts",
+      bareCommandResolved: false,
+      packageScriptAvailable: true,
+      evidence:
+        "`bun run ut-tdd --version` is available from consumer packageRoot scripts, but bare `ut-tdd --version` did not resolve for hooks",
     });
 
     const blocked = buildConsumerReadinessPlan({
@@ -727,6 +740,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "git",
       "gh",
       "ut-tdd-cli",
+      "ut-tdd-package-script",
       "runtime-cli",
     ]);
 
@@ -1206,6 +1220,21 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
       postSetupWorkflow: {
         verificationCommands: expect.arrayContaining(["ut-tdd completion decision-packet --json"]),
+        verificationMatrix: expect.arrayContaining([
+          expect.objectContaining({
+            phase: "github-ci-safety",
+            command: "ut-tdd setup project --dry-run --json",
+            writePolicy: "no-write",
+            evidence: "setup project JSON attached to the first-run readiness record",
+          }),
+          expect.objectContaining({
+            phase: "team-run-dry-run",
+            command:
+              "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+            writePolicy: "no-write",
+            requiresMaterializedPaths: [".ut-tdd/teams/default-hybrid.yaml"],
+          }),
+        ]),
       },
     });
     for (const value of wet.files.values()) {
@@ -1492,7 +1521,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     expect(result.consumerReadiness).toMatchObject({
-      ok: true,
+      ok: false,
       workspace: {
         repoRoot: "/repo",
         packageRoot: "/repo/packages/app",
@@ -1500,11 +1529,27 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
       cliResolution: {
         checkedFrom: "/repo/packages/app",
-        resolved: true,
+        resolved: false,
         strategy: "package-script",
+        bareCommandResolved: false,
+        packageScriptAvailable: true,
       },
     });
-    expect(result.postSetupWorkflow.nextRoute).toBe("ready");
+    expect(result.consumerReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "ut-tdd-cli",
+          ok: false,
+          message: expect.stringContaining("bare `ut-tdd`"),
+        }),
+        expect.objectContaining({
+          name: "ut-tdd-package-script",
+          ok: true,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
+    expect(result.postSetupWorkflow.unmetGates).toContain("consumer_readiness:ut-tdd-cli");
   });
 
   it("blocks consumer readiness when projected setup artifacts do not carry the first-run HELIX route", () => {

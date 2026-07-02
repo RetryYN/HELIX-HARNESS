@@ -219,6 +219,92 @@ function consumerTeamDefinitionTemplate(): string {
   ].join("\n");
 }
 
+function consumerProjectSetupStateTemplate(): string {
+  const verificationMatrix = [
+    {
+      phase: "setup-dry-run",
+      command: "ut-tdd setup project --dry-run",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [],
+      expected: "setup dry-run returns import report and readiness plan",
+      evidence: "first-run setup dry-run output",
+    },
+    {
+      phase: "status-frontier",
+      command: "ut-tdd status --json",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [],
+      expected: "status returns objective progress and workflow next actions",
+      evidence: "first-run status JSON",
+    },
+    {
+      phase: "github-ci-safety",
+      command: "ut-tdd setup project --dry-run --json",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [],
+      expected: "setup JSON returns read-only CI and consumer readiness",
+      evidence: "first-run setup JSON",
+    },
+    {
+      phase: "completion-decision-packet",
+      command: "ut-tdd completion decision-packet --json",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [],
+      expected: "completion packet remains blocked and does not allow completion claim",
+      evidence: "first-run completion packet JSON",
+    },
+    {
+      phase: "consumer-doctor",
+      command: "ut-tdd doctor --profile consumer",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: ["AGENTS.md", ".vscode/tasks.json", ".ut-tdd/teams"],
+      expected: "consumer doctor passes projected setup artifacts",
+      evidence: "first-run consumer doctor output",
+    },
+    {
+      phase: "identifier-cutover-packet",
+      command: "ut-tdd rename plan --json",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [],
+      expected: "rename plan remains blocked until PLAN-M-02 approval",
+      evidence: "first-run rename packet JSON",
+    },
+    {
+      phase: "handover-route",
+      command: "ut-tdd handover status --json",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [],
+      expected: "handover status anchors the first project route",
+      evidence: "first-run handover status JSON",
+    },
+    {
+      phase: "team-run-dry-run",
+      command:
+        "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [".ut-tdd/teams/default-hybrid.yaml"],
+      expected: "team run returns a dry-run plan with separated worker/reviewer roles",
+      evidence: "first-run team run dry-run JSON",
+    },
+  ];
+  return JSON.stringify({
+    schemaVersion: "helix-project-setup-state.v1",
+    setupCommand: "ut-tdd setup project",
+    phase: "0-A",
+    objectiveBoundary: {
+      scope: "consumer_setup_readiness_not_whole_program_completion",
+      completionClaimAllowed: false,
+      completionPacketCommand: "ut-tdd completion decision-packet --json",
+    },
+    postSetupWorkflow: {
+      nextRoute: "ready",
+      readinessOk: true,
+      verificationCommands: verificationMatrix.map((row) => row.command),
+      verificationMatrix,
+    },
+  });
+}
+
 function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | null> = {}) {
   const file = (relativePath: string) => join(root, ...relativePath.split("/"));
   const entries: Record<string, string> = {
@@ -414,27 +500,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
-    ".ut-tdd/state/project-setup.json": JSON.stringify({
-      schemaVersion: "helix-project-setup-state.v1",
-      setupCommand: "ut-tdd setup project",
-      phase: "0-A",
-      objectiveBoundary: {
-        scope: "consumer_setup_readiness_not_whole_program_completion",
-        completionClaimAllowed: false,
-        completionPacketCommand: "ut-tdd completion decision-packet --json",
-      },
-      postSetupWorkflow: {
-        nextRoute: "ready",
-        readinessOk: true,
-        verificationCommands: [
-          "ut-tdd setup project --dry-run",
-          "ut-tdd status --json",
-          "ut-tdd completion decision-packet --json",
-          "ut-tdd doctor --profile consumer",
-          "ut-tdd rename plan --json",
-        ],
-      },
-    }),
+    ".ut-tdd/state/project-setup.json": consumerProjectSetupStateTemplate(),
     ".ut-tdd/teams/default-hybrid.yaml": consumerTeamDefinitionTemplate(),
   };
   for (const name of consumerClaudeAgentNames) {
@@ -500,6 +566,48 @@ describe("runConsumerDoctor", () => {
         result.messages,
         "consumer-project-setup-state - violation",
         "verificationCommands=ut-tdd doctor --profile consumer",
+      ),
+    ).toBe(true);
+  });
+
+  it("fails closed when setup state omits the full first-run verification matrix", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/state/project-setup.json": JSON.stringify({
+            schemaVersion: "helix-project-setup-state.v1",
+            setupCommand: "ut-tdd setup project",
+            phase: "0-A",
+            objectiveBoundary: {
+              scope: "consumer_setup_readiness_not_whole_program_completion",
+              completionClaimAllowed: false,
+              completionPacketCommand: "ut-tdd completion decision-packet --json",
+            },
+            postSetupWorkflow: {
+              nextRoute: "ready",
+              readinessOk: true,
+              verificationCommands: [
+                "ut-tdd setup project --dry-run",
+                "ut-tdd status --json",
+                "ut-tdd setup project --dry-run --json",
+                "ut-tdd completion decision-packet --json",
+                "ut-tdd doctor --profile consumer",
+                "ut-tdd rename plan --json",
+                "ut-tdd handover status --json",
+                "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+              ],
+            },
+          }),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "verificationMatrix=false",
       ),
     ).toBe(true);
   });
