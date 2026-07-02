@@ -85,6 +85,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `exceed_action`) は単なる表示ではなく `activationReadinessChecks[]` の `pending_evidence` 判定対象にする。
   cost guardrails と `activationReadinessChecks[]` は `activationSnapshot.evidenceDigest` に含め、
   外部 limit / rehearsal evidence の drift を snapshot drift として扱う。
+  `sourceLedgerFreshness.rowsDigest` と `activationSnapshot.sourceLedgerRowsDigest` は
+  `Version-up source ledger` の全 row 内容を束ね、checked date だけでなく official URL / latest status /
+  adoption decision / required field impact の変更も snapshot drift として再承認対象にする。
   `Version-up source ledger` は source 名だけで通さず、SemVer / GitHub / Cloudflare / HMAC / Access
   の期待 official URL と required field impact を source ごとに検査する。誤 URL や `cost_guardrails` /
   `external_rehearsal_plan` / `dry_run_plan` / `activation_dependency` などの impact 欠落は、
@@ -112,6 +115,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `cutover_decision_record.cutover_snapshot_id` と `action_binding_approval_record.reviewed_snapshot_binding`、
   current `cutoverSnapshot.snapshotId`、一致/不一致、drift warning、再承認 action を承認前から表示する。
   `cutoverSnapshot` は `repoHeadSha` と `headDigest` を持ち、snapshotId の入力に frozen HEAD を含める。
+  `sourceLedgerFreshness.rowsDigest` と `cutoverSnapshot.sourceLedgerRowsDigest` は `Cutover source ledger` の
+  全 row 内容を束ね、source row の status / adoption / field-impact 変更を date-only refresh と別に
+  snapshot drift として扱う。
   HEAD が読めない plan は `applyAuthorized=true` に進めず、HEAD 差分は snapshot drift として再承認対象にする。
   approval record が concrete でない draft 状態でも current snapshot と記録済み snapshot の比較 surface を隠さない。
   `cutoverCategoryChecklist` は category count だけでなく代表 `samplePaths[]` と category 別

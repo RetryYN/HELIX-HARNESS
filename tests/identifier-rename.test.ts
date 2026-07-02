@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -566,6 +566,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         maxAgeDays: 90,
         rowCount: 6,
         missingRows: [],
+        rowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       });
       expect(plan.cutoverRunbook).toEqual(
         expect.arrayContaining([
@@ -677,6 +678,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         sourceLedgerCheckedDate: "2026-07-02",
+        sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         invalidatedBy: plan.freezePolicy.reapprovalTriggers,
       });
       expect(plan.snapshotReview).toMatchObject({
@@ -760,6 +762,46 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(first.cutoverSnapshot.headDigest).not.toBe(second.cutoverSnapshot.headDigest);
       expect(first.cutoverSnapshot.snapshotId).not.toBe(second.cutoverSnapshot.snapshotId);
       expect(first.cutoverSnapshot.invalidatedBy).toContain("HEAD changes after approval");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("binds cutover snapshots to source ledger row content", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-ledger-digest-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const first = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+      const ledgerPath = join(root, "docs", "process", "forward", "L08-L14-verification-phase.md");
+      writeFileSync(
+        ledgerPath,
+        readFileSync(ledgerPath, "utf8").replace(
+          "live official GitHub docs | adopt-live-docs-for-approval-shape",
+          "updated official GitHub docs | adopt-live-docs-for-approval-shape",
+        ),
+        "utf8",
+      );
+      const second = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+
+      expect(first.sourceLedgerFreshness.rowsDigest).not.toBe(
+        second.sourceLedgerFreshness.rowsDigest,
+      );
+      expect(first.cutoverSnapshot.sourceLedgerRowsDigest).not.toBe(
+        second.cutoverSnapshot.sourceLedgerRowsDigest,
+      );
+      expect(first.cutoverSnapshot.evidenceDigest).not.toBe(second.cutoverSnapshot.evidenceDigest);
+      expect(first.cutoverSnapshot.snapshotId).not.toBe(second.cutoverSnapshot.snapshotId);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

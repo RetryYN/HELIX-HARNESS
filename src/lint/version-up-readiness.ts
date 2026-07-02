@@ -142,6 +142,7 @@ export interface VersionUpActivationSnapshot {
   versionTarget: string | null;
   planStatus: string;
   sourceLedgerCheckedDate: string | null;
+  sourceLedgerRowsDigest: string;
   approvalScopeDigest: string;
   evidenceDigest: string;
   invalidatedBy: string[];
@@ -181,6 +182,7 @@ export interface VersionUpSourceLedgerFreshness {
   maxAgeDays: number;
   rowCount: number;
   missingRows: string[];
+  rowsDigest: string;
 }
 
 export interface VersionUpgradeDryRunInput {
@@ -1560,6 +1562,7 @@ function buildVersionUpActivationSnapshot(input: {
     activation_verification_command_matrix: input.activationVerificationCommandMatrix,
     source_ledger_checked_date: input.sourceLedgerFreshness.checkedDate,
     source_ledger_missing_rows: input.sourceLedgerFreshness.missingRows,
+    source_ledger_rows_digest: input.sourceLedgerFreshness.rowsDigest,
   });
   const snapshot = {
     headSha: input.repoHeadSha,
@@ -1569,6 +1572,7 @@ function buildVersionUpActivationSnapshot(input: {
     versionTarget: input.plan.versionTarget,
     planStatus: input.plan.status,
     sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
+    sourceLedgerRowsDigest: input.sourceLedgerFreshness.rowsDigest,
     approvalScopeDigest,
     evidenceDigest,
     invalidatedBy: input.reapprovalTriggers.map((trigger) => trigger.trigger),
@@ -2046,6 +2050,7 @@ function buildVersionUpSourceLedgerFreshness(
     maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
     rowCount: sourceLedger.rows.length,
     missingRows,
+    rowsDigest: sha256Json(sourceLedger.rows),
   };
 }
 

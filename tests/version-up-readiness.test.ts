@@ -571,6 +571,7 @@ describe("version-up-readiness", () => {
       versionTarget: "future",
       planStatus: "draft",
       sourceLedgerCheckedDate: "2026-06-30",
+      sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       invalidatedBy: [
@@ -1540,6 +1541,32 @@ describe("version-up-readiness", () => {
 
     expect(first.activationSnapshot.headSha).toBe("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     expect(second.activationSnapshot.headSha).toBe("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+    expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
+  });
+
+  it("changes activationSnapshot when source ledger row content changes", () => {
+    const first = buildVersionUpActivationPackets(
+      input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }),
+    )[0];
+    const second = buildVersionUpActivationPackets(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        modeDoc: input().modeDoc.replace(
+          "live official GitHub docs | adopt-live-docs-for-release-trigger",
+          "updated official GitHub docs | adopt-live-docs-for-release-trigger",
+        ),
+      }),
+    )[0];
+
+    expect(first.sourceLedgerFreshness.rowsDigest).not.toBe(
+      second.sourceLedgerFreshness.rowsDigest,
+    );
+    expect(first.activationSnapshot.sourceLedgerRowsDigest).not.toBe(
+      second.activationSnapshot.sourceLedgerRowsDigest,
+    );
+    expect(first.activationSnapshot.evidenceDigest).not.toBe(
+      second.activationSnapshot.evidenceDigest,
+    );
     expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
   });
 

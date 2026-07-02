@@ -241,6 +241,7 @@ export interface IdentifierRenameSourceLedgerFreshness {
   maxAgeDays: number;
   rowCount: number;
   missingRows: string[];
+  rowsDigest: string;
 }
 
 export interface IdentifierRenameCutoverSnapshot {
@@ -251,6 +252,7 @@ export interface IdentifierRenameCutoverSnapshot {
   approvalScopeDigest: string;
   evidenceDigest: string;
   sourceLedgerCheckedDate: string | null;
+  sourceLedgerRowsDigest: string;
   invalidatedBy: string[];
 }
 
@@ -1407,6 +1409,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     approvalScopeDigest,
     evidenceDigest,
     sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
+    sourceLedgerRowsDigest: input.sourceLedgerFreshness.rowsDigest,
     invalidatedBy: input.freezePolicy.reapprovalTriggers,
   };
   return {
@@ -1459,6 +1462,7 @@ function buildCutoverSourceLedgerFreshness(root: string): IdentifierRenameSource
       maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
       rowCount: 0,
       missingRows: [...REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS],
+      rowsDigest: sha256Json([]),
     };
   }
   const checkedDate = sourceLedgerCheckedDate(text, ledgerLabel);
@@ -1479,6 +1483,7 @@ function buildCutoverSourceLedgerFreshness(root: string): IdentifierRenameSource
     maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
     rowCount: ledger.rows.length,
     missingRows,
+    rowsDigest: sha256Json(ledger.rows),
   };
 }
 
