@@ -324,6 +324,12 @@ import {
   versionUpReadinessMessages,
 } from "../lint/version-up-readiness";
 import {
+  ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+  RENAME_PLAN_PACKET_COMMAND,
+  S4_DECISION_PACKET_COMMAND,
+  VERSION_UP_ACTIVATION_PACKET_COMMAND,
+} from "../lint/workflow-decision-packets";
+import {
   auditToolContractRegistry,
   toolContractRegistryMessages,
 } from "../orchestration/tool-contract";
@@ -2511,6 +2517,12 @@ export function checkCompletionDecisionPacket(repoRoot: string): {
 export function completionDedicatedPacketBridgeViolations(
   repoRoot: string,
   packet: ReturnType<typeof loadCompletionDecisionPacketInput>,
+  deps: {
+    s4Packets?: ReturnType<typeof buildS4DecisionPackets>;
+    versionPackets?: ReturnType<typeof buildVersionUpActivationPackets>;
+    renamePlan?: ReturnType<typeof buildIdentifierRenameCutoverPlan>;
+    approvalPackets?: ReturnType<typeof buildActionBindingApprovalPackets>;
+  } = {},
 ): string[] {
   const violations: string[] = [];
   const decisionPlanIdsByCommand = new Map<string, Set<string>>();
@@ -2528,16 +2540,22 @@ export function completionDedicatedPacketBridgeViolations(
     ...(decisionPlanIdsByCommand.get(command) ?? new Set<string>()),
   ];
 
-  if (hasCommand("ut-tdd s4 decision-packet --json")) {
-    const s4Packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(repoRoot));
+  if (hasCommand(S4_DECISION_PACKET_COMMAND)) {
+    const s4Packets =
+      deps.s4Packets ?? buildS4DecisionPackets(loadS4DecisionReadinessInput(repoRoot));
     const s4ByPlan = new Map(s4Packets.map((candidate) => [candidate.planId, candidate]));
-    for (const planId of planIdsFor("ut-tdd s4 decision-packet --json")) {
+    for (const planId of planIdsFor(S4_DECISION_PACKET_COMMAND)) {
       const dedicatedPacket = s4ByPlan.get(planId);
       if (!dedicatedPacket) {
         violations.push(`missing live S4 decision packet for ${planId}`);
         continue;
       }
       violations.push(
+        ...relatedDecisionPacketScopedCommandViolations(
+          `S4 ${planId}`,
+          planId,
+          dedicatedPacket.relatedDecisionPackets,
+        ),
         ...s4DecisionVerificationCommandViolations(dedicatedPacket).map(
           (violation) => `S4 ${violation.subject}: ${violation.reason}`,
         ),
@@ -2545,16 +2563,22 @@ export function completionDedicatedPacketBridgeViolations(
     }
   }
 
-  if (hasCommand("ut-tdd version-up activation-packet --json")) {
-    const versionPackets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(repoRoot));
+  if (hasCommand(VERSION_UP_ACTIVATION_PACKET_COMMAND)) {
+    const versionPackets =
+      deps.versionPackets ?? buildVersionUpActivationPackets(loadVersionUpReadinessInput(repoRoot));
     const versionByPlan = new Map(versionPackets.map((candidate) => [candidate.planId, candidate]));
-    for (const planId of planIdsFor("ut-tdd version-up activation-packet --json")) {
+    for (const planId of planIdsFor(VERSION_UP_ACTIVATION_PACKET_COMMAND)) {
       const dedicatedPacket = versionByPlan.get(planId);
       if (!dedicatedPacket) {
         violations.push(`missing live version-up activation packet for ${planId}`);
         continue;
       }
       violations.push(
+        ...relatedDecisionPacketScopedCommandViolations(
+          `version-up ${planId}`,
+          planId,
+          dedicatedPacket.relatedDecisionPackets,
+        ),
         ...versionUpActivationVerificationCommandViolations(dedicatedPacket).map(
           (violation) => `version-up ${violation.subject}: ${violation.reason}`,
         ),
@@ -2562,9 +2586,14 @@ export function completionDedicatedPacketBridgeViolations(
     }
   }
 
-  if (hasCommand("ut-tdd rename plan --json")) {
-    const renamePlan = buildIdentifierRenameCutoverPlan(repoRoot);
+  if (hasCommand(RENAME_PLAN_PACKET_COMMAND)) {
+    const renamePlan = deps.renamePlan ?? buildIdentifierRenameCutoverPlan(repoRoot);
     violations.push(
+      ...relatedDecisionPacketScopedCommandViolations(
+        "rename PLAN-M-02-helix-identifier-rename",
+        "PLAN-M-02-helix-identifier-rename",
+        renamePlan.relatedDecisionPackets,
+      ),
       ...identifierRenameRunbookCommandViolations(renamePlan).map(
         (violation) => `rename ${violation.subject}: ${violation.reason}`,
       ),
@@ -2574,20 +2603,25 @@ export function completionDedicatedPacketBridgeViolations(
     );
   }
 
-  if (hasCommand("ut-tdd action-binding approval-packet --json")) {
-    const approvalPackets = buildActionBindingApprovalPackets(
-      loadActionBindingApprovalReadinessInput(repoRoot),
-    );
+  if (hasCommand(ACTION_BINDING_APPROVAL_PACKET_COMMAND)) {
+    const approvalPackets =
+      deps.approvalPackets ??
+      buildActionBindingApprovalPackets(loadActionBindingApprovalReadinessInput(repoRoot));
     const approvalByPlan = new Map(
       approvalPackets.map((candidate) => [candidate.planId, candidate]),
     );
-    for (const planId of planIdsFor("ut-tdd action-binding approval-packet --json")) {
+    for (const planId of planIdsFor(ACTION_BINDING_APPROVAL_PACKET_COMMAND)) {
       const dedicatedPacket = approvalByPlan.get(planId);
       if (!dedicatedPacket) {
         violations.push(`missing live action-binding approval packet for ${planId}`);
         continue;
       }
       violations.push(
+        ...relatedDecisionPacketScopedCommandViolations(
+          `action-binding ${planId}`,
+          planId,
+          dedicatedPacket.relatedDecisionPackets,
+        ),
         ...actionBindingApprovalVerificationCommandViolations(dedicatedPacket).map(
           (violation) => `action-binding ${violation.subject}: ${violation.reason}`,
         ),
@@ -2596,6 +2630,42 @@ export function completionDedicatedPacketBridgeViolations(
   }
 
   return violations;
+}
+
+function relatedDecisionPacketScopedCommandViolations(
+  subject: string,
+  planId: string,
+  relatedDecisionPackets: Array<{
+    command: string;
+    role: string;
+    scopedCommand?: string;
+  }>,
+): string[] {
+  return relatedDecisionPackets.flatMap((packet) => {
+    const expectedScopedCommand = scopedRelatedDecisionPacketCommand(planId, packet.command);
+    if (!packet.scopedCommand) {
+      return [
+        `${subject} relatedDecisionPackets ${packet.role} ${packet.command} missing scopedCommand`,
+      ];
+    }
+    if (packet.scopedCommand !== expectedScopedCommand) {
+      return [
+        `${subject} relatedDecisionPackets ${packet.role} ${packet.command} scopedCommand mismatch expected=${expectedScopedCommand} actual=${packet.scopedCommand}`,
+      ];
+    }
+    return [];
+  });
+}
+
+function scopedRelatedDecisionPacketCommand(planId: string, command: string): string {
+  switch (command) {
+    case S4_DECISION_PACKET_COMMAND:
+    case VERSION_UP_ACTIVATION_PACKET_COMMAND:
+    case ACTION_BINDING_APPROVAL_PACKET_COMMAND:
+      return `${command} --plan ${planId}`;
+    default:
+      return command;
+  }
 }
 
 export function checkObjectiveEvidenceAudit(repoRoot: string): { messages: string[]; ok: boolean } {

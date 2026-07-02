@@ -71,6 +71,10 @@ import {
   analyzeOutstandingWork,
   completionDecisionPacketForOutstanding,
 } from "../src/lint/outstanding";
+import {
+  buildS4DecisionPackets,
+  loadS4DecisionReadinessInput,
+} from "../src/lint/s4-decision-readiness";
 import type { AgentSlotsDeps, Slot } from "../src/runtime/agent-slots";
 
 const NOW = "2026-06-04T00:00:00.000Z";
@@ -1107,6 +1111,62 @@ describe("runDoctor", () => {
 
     expect(completionDedicatedPacketBridgeViolations(process.cwd(), packet)).toContain(
       "missing live S4 decision packet for PLAN-NO-SUCH-S3",
+    );
+  });
+
+  it("U-OUTSTANDING-011: completion decision doctor bridge rejects unscoped or mis-scoped related dedicated packets", () => {
+    const planId = "PLAN-DISCOVERY-10-helix-asset-visualization";
+    const packet = completionDecisionPacketForOutstanding(
+      analyzeOutstandingWork(
+        [
+          {
+            planId,
+            layer: "cross",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            versionTarget: null,
+            text: "S4 decision pending and requires action-binding approval.",
+          },
+        ],
+        0,
+      ),
+      {
+        generatedAt: "2026-07-02T00:00:00.000Z",
+        now: "2026-07-02T00:00:00.000Z",
+      },
+    );
+    const liveS4Packet = buildS4DecisionPackets(loadS4DecisionReadinessInput(process.cwd())).find(
+      (candidate) => candidate.planId === planId,
+    );
+    if (!liveS4Packet) {
+      throw new Error(`live S4 packet not found: ${planId}`);
+    }
+    const badS4Packet = {
+      ...liveS4Packet,
+      relatedDecisionPackets: liveS4Packet.relatedDecisionPackets.map((related) => {
+        if (related.role === "primary") {
+          return { ...related, scopedCommand: undefined };
+        }
+        if (related.command === "ut-tdd action-binding approval-packet --json") {
+          return {
+            ...related,
+            scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-Y",
+          };
+        }
+        return related;
+      }),
+    };
+
+    expect(
+      completionDedicatedPacketBridgeViolations(process.cwd(), packet, {
+        s4Packets: [badS4Packet],
+      }),
+    ).toEqual(
+      expect.arrayContaining([
+        `S4 ${planId} relatedDecisionPackets primary ut-tdd s4 decision-packet --json missing scopedCommand`,
+        `S4 ${planId} relatedDecisionPackets supporting ut-tdd action-binding approval-packet --json scopedCommand mismatch expected=ut-tdd action-binding approval-packet --json --plan ${planId} actual=ut-tdd action-binding approval-packet --json --plan PLAN-Y`,
+      ]),
     );
   });
 
