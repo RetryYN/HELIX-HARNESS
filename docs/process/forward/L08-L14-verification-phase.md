@@ -172,7 +172,9 @@ date, 90-day freshness result, row count, and required source omissions; stale o
 the cutover back to `request_runbook_changes`. `cutoverRunbook[]` is an approval-review runbook with phase,
 command, `writePolicy`, evidence path, pass criteria, rollback check, and source citation. No-write rows must not hide
 local artifact writes or state rebuilds; DB rebuild and compiled binary rehearsal requirements must be explicit state/artifact
-or packet-only rows. `stateBackupManifest[]` must include backup
+or packet-only rows. legacy `ut-tdd cutover --dry-run --json` helper は、承認レビュー資料に
+Windows-only path や未 quote の ref 引数を混入させないため、`bun run src/cli.ts doctor` のような
+copyable な POSIX-style check command と shell-quote 済み rollback ref を維持する。`stateBackupManifest[]` must include backup
 target pattern, checksum requirement, restore drill requirement, and restore evidence path for harness.db, memory, state,
 logs, handover, provider handover pointer, approval policy, and repo-local hook configs.
 

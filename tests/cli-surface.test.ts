@@ -1579,7 +1579,32 @@ describe("L7 CLI surface closure", () => {
       to: "staging",
       humanApprovalRequired: true,
     });
-    expect(payload.checks).toContain("bun run src\\cli.ts doctor");
+    expect(payload.checks).toContain("bun run src/cli.ts doctor");
+    expect(payload.checks).toContain("bun run src/cli.ts db status --json");
+  });
+
+  it("quotes cutover rollback refs in dry-run output", () => {
+    const run = runCli([
+      "cutover",
+      "--from",
+      "release candidate; echo unsafe",
+      "--to",
+      "staging",
+      "--dry-run",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload.rollback).toBe("git switch 'release candidate; echo unsafe'");
+  });
+
+  it("labels cutover text output as approval-required, not approved", () => {
+    const run = runCli(["cutover", "--to", "staging", "--dry-run"]);
+
+    expect(run.status).toBe(0);
+    expect(run.stdout).toContain("humanApprovalRequired=true");
+    expect(run.stdout).not.toContain("approval=true");
   });
 
   it("refuses cutover apply without a human-approved runbook", () => {

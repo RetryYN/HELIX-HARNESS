@@ -268,6 +268,11 @@ function gitHead(): string | null {
   }
 }
 
+function shellQuote(value: string): string {
+  if (/^[A-Za-z0-9_./:@+=,-]+$/.test(value)) return value;
+  return `'${value.replace(/'/g, "'\\''")}'`;
+}
+
 /** review-guard 用: loadChangedFiles を fail-open でラップ (非 git / 一時失敗で委譲を壊さない、IMP-137)。 */
 function safeLoadChangedFiles(repoRoot: string): string[] {
   try {
@@ -3070,16 +3075,18 @@ program
       mode: opts.dryRun ? "dry-run" : "requires-human-approval",
       from,
       to: opts.to,
-      checks: ["bun run src\\cli.ts doctor", "bun run src\\cli.ts db status --json"],
+      checks: ["bun run src/cli.ts doctor", "bun run src/cli.ts db status --json"],
       rollback:
-        from === "unknown" ? "record source ref before applying cutover" : `git switch ${from}`,
+        from === "unknown"
+          ? "record source ref before applying cutover"
+          : `git switch ${shellQuote(from)}`,
       humanApprovalRequired: true,
     };
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
     } else {
       process.stdout.write(
-        `cutover ${from} -> ${opts.to}: ${output.mode} approval=${output.humanApprovalRequired}\n`,
+        `cutover ${from} -> ${opts.to}: ${output.mode} humanApprovalRequired=${output.humanApprovalRequired}\n`,
       );
       for (const check of output.checks) process.stdout.write(`  - check: ${check}\n`);
       process.stdout.write(`  - rollback: ${output.rollback}\n`);
