@@ -32,8 +32,12 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("外部ソース HEAD 確認日: 2026-07-02");
     expect(text).toContain("7f83ca811353ed90b3e981178a1b0c9977dd5863");
     expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
-    expect(text).toContain("a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721");
+    expect(text).toContain("e899c3a7c18c47380e102446de7fba702635ac6a");
     expect(text).toContain("v0.1.3");
+    expect(text).toContain("package.json version: `0.1.0`");
+    expect(text).toContain("local distribution tag: `v0.1.0`");
+    expect(text).toContain("Pack latest tag: `v0.1.3`");
+    expect(text).toContain("version-up activation required before adopting Pack latest tag");
     expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-02");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
@@ -117,8 +121,15 @@ describe("HELIX objective evidence audit", () => {
     const text = auditText()
       .replaceAll("外部ソース HEAD 確認日: 2026-07-02", "外部ソース HEAD 確認日: 2026-06-30")
       .replaceAll("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack", "unison-ai-product/PACK-MISSING")
-      .replaceAll("a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721", "pack-head-missing")
+      .replaceAll("e899c3a7c18c47380e102446de7fba702635ac6a", "pack-head-missing")
       .replaceAll("v0.1.3", "pack-tag-missing")
+      .replaceAll("package.json version: `0.1.0`", "package.json version: `0.1.9`")
+      .replaceAll("local distribution tag: `v0.1.0`", "local distribution tag: `v0.1.9`")
+      .replaceAll("Pack latest tag: `v0.1.3`", "Pack latest tag: `pack-tag-missing`")
+      .replaceAll(
+        "version-up activation required before adopting Pack latest tag",
+        "version-up activation marker missing",
+      )
       .replaceAll(
         "検証 / 進捗 source basis 再確認日: 2026-07-02",
         "検証 / 進捗 source basis 再確認日: 2026-07-01",
@@ -135,9 +146,13 @@ describe("HELIX objective evidence audit", () => {
       expect.arrayContaining([
         "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-02",
         "G-01: missing external source marker unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-        "G-01: missing external source marker a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+        "G-01: missing external source marker e899c3a7c18c47380e102446de7fba702635ac6a",
         "G-01: missing external source marker v0.1.3",
         "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-02",
+        "G-01: missing distribution version binding marker package.json version: `0.1.0`",
+        "G-01: missing distribution version binding marker local distribution tag: `v0.1.0`",
+        "G-01: missing distribution version binding marker Pack latest tag: `v0.1.3`",
+        "G-01: missing distribution version binding marker version-up activation required before adopting Pack latest tag",
       ]),
     );
   });

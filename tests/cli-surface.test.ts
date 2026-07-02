@@ -123,6 +123,16 @@ function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCo
 }
 
 describe("L7 CLI surface closure", () => {
+  it("keeps CLI --version bound to package.json version", () => {
+    const packageJson = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+      version: string;
+    };
+    const run = runCli(["--version"]);
+
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(run.stdout.trim()).toBe(packageJson.version);
+  });
+
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
     const s4 = runRepoScriptUtTdd(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);
@@ -1319,8 +1329,16 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+              mainHead: "e899c3a7c18c47380e102446de7fba702635ac6a",
               latestTag: "v0.1.3",
+            },
+            versionBinding: {
+              localPackageVersion: "0.1.0",
+              localDistributionTag: "v0.1.0",
+              requestedDistributionTag: "v0.1.0",
+              requestedTagMatchesPackageVersion: true,
+              packLatestTag: "v0.1.3",
+              packLatestRequiresVersionUpActivation: true,
             },
           },
         },
@@ -1336,7 +1354,63 @@ describe("L7 CLI surface closure", () => {
         command: "bun run ut-tdd --version",
         remediation: expect.stringContaining("consumer package.json"),
       });
+      expect(payload.readiness.checks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            name: "distribution-version-binding",
+            ok: true,
+          }),
+        ]),
+      );
       expect(payload.readiness.objectiveBoundary.reason).toContain("does not approve");
+    } finally {
+      rmSync(join(repoRoot, "codex-env.txt"), { force: true });
+      rmSync(binDir, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it("blocks distribution planning when the requested tag is not bound to package version", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-cli-dist-version-drift-"));
+    try {
+      writeFakeCommand(binDir, "git", "2.0.0");
+      writeFakeCommand(binDir, "gh", "2.0.0");
+      const fakeCodex = writeFakeProvider(binDir, "codex");
+      writeFakeCommand(binDir, "ut-tdd", "0.1.0");
+      const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.3", "--json"], {
+        ...process.env,
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+        UT_TDD_CODEX_BIN: fakeCodex,
+      });
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(1);
+      expect(payload).toMatchObject({
+        ok: false,
+        export: {
+          ok: true,
+          sourceTag: "v0.1.3",
+        },
+        readiness: {
+          ok: false,
+          objectiveBoundary: {
+            versionBinding: {
+              localDistributionTag: "v0.1.0",
+              requestedDistributionTag: "v0.1.3",
+              requestedTagMatchesPackageVersion: false,
+              packLatestRequiresVersionUpActivation: true,
+            },
+          },
+        },
+      });
+      expect(payload.readiness.checks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            name: "distribution-version-binding",
+            ok: false,
+            message: expect.stringContaining("version-up activation decision"),
+          }),
+        ]),
+      );
     } finally {
       rmSync(join(repoRoot, "codex-env.txt"), { force: true });
       rmSync(binDir, { recursive: true, force: true });

@@ -248,8 +248,18 @@ export interface ConsumerReadinessPlan {
     cutoverPacketCommand: "ut-tdd rename plan --json";
     distributionReference: {
       repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";
-      mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721";
+      mainHead: "e899c3a7c18c47380e102446de7fba702635ac6a";
       latestTag: "v0.1.3";
+    };
+    versionBinding: {
+      localPackageVersion: string;
+      localDistributionTag: string;
+      requestedDistributionTag: string;
+      requestedTagMatchesPackageVersion: boolean;
+      packLatestTag: "v0.1.3";
+      packLatestRequiresVersionUpActivation: true;
+      versionUpPacketCommand: "ut-tdd version-up activation-packet --json";
+      adoptionDecision: string;
     };
     reason: string;
   };
@@ -315,6 +325,12 @@ const MANAGED_START = "<!-- UT-TDD:managed:start -->";
 const MANAGED_END = "<!-- UT-TDD:managed:end -->";
 const MERGEABLE_ADAPTER_DOCS = new Set(["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")]);
 const COMMITLINT_DOTFILE = "commitlint.config.js";
+export const LOCAL_DISTRIBUTION_PACKAGE_VERSION = "0.1.0";
+const PACK_DISTRIBUTION_REFERENCE = {
+  repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+  mainHead: "e899c3a7c18c47380e102446de7fba702635ac6a",
+  latestTag: "v0.1.3",
+} as const;
 
 /**
  * package.json が既に commitlint 設定 (`"commitlint"` キー) を宣言しているか判定する純関数。
@@ -719,8 +735,13 @@ export function buildConsumerReadinessPlan(input: {
   repoRoot: string;
   packageRoot?: string;
   tag?: string;
+  packageVersion?: string;
 }): ConsumerReadinessPlan {
   const bunOk = Boolean(input.bunVersion && hasMinimumBun(input.bunVersion));
+  const packageVersion = input.packageVersion ?? LOCAL_DISTRIBUTION_PACKAGE_VERSION;
+  const localDistributionTag = `v${packageVersion}`;
+  const tag = input.tag ?? localDistributionTag;
+  const requestedTagMatchesPackageVersion = tag === localDistributionTag;
   const mode =
     input.hasClaude && input.hasCodex
       ? "hybrid"
@@ -740,6 +761,13 @@ export function buildConsumerReadinessPlan(input: {
       name: "git",
       ok: input.hasGit,
       message: input.hasGit ? "git 利用可能" : "tag-pin 更新前に git を install する",
+    },
+    {
+      name: "distribution-version-binding",
+      ok: requestedTagMatchesPackageVersion,
+      message: requestedTagMatchesPackageVersion
+        ? `sourceTag ${tag} は package.json version ${packageVersion} と一致`
+        : `sourceTag ${tag} は package.json version ${packageVersion} 由来の ${localDistributionTag} と不一致。採用前に version-up activation decision を記録する`,
     },
     {
       name: "gh",
@@ -765,9 +793,13 @@ export function buildConsumerReadinessPlan(input: {
     },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
-  const tag = input.tag ?? "v0.1.0";
   return {
-    ok: bunOk && input.hasGit && input.hasUtTddCli === true && runtimeOk,
+    ok:
+      bunOk &&
+      input.hasGit &&
+      requestedTagMatchesPackageVersion &&
+      input.hasUtTddCli === true &&
+      runtimeOk,
     checks,
     objectiveBoundary: {
       scope: "consumer_setup_readiness_not_whole_program_completion",
@@ -777,10 +809,17 @@ export function buildConsumerReadinessPlan(input: {
       completionPacketCommand: "ut-tdd completion decision-packet --json",
       versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
       cutoverPacketCommand: "ut-tdd rename plan --json",
-      distributionReference: {
-        repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-        mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
-        latestTag: "v0.1.3",
+      distributionReference: PACK_DISTRIBUTION_REFERENCE,
+      versionBinding: {
+        localPackageVersion: packageVersion,
+        localDistributionTag,
+        requestedDistributionTag: tag,
+        requestedTagMatchesPackageVersion,
+        packLatestTag: PACK_DISTRIBUTION_REFERENCE.latestTag,
+        packLatestRequiresVersionUpActivation: true,
+        versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
+        adoptionDecision:
+          "Pack latest tag is a reference source only; adopting it over the local package tag requires a recorded version-up activation decision",
       },
       reason:
         "consumer setup readiness only means the projected adapter/package path can run; it does not approve version-up activation, PLAN-M-02 cutover, or whole-program L14 completion",

@@ -96,7 +96,7 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "unison-ai-product/UT-TDD_AGENT-HARNESS",
       "7f83ca811353ed90b3e981178a1b0c9977dd5863",
       "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-      "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+      "e899c3a7c18c47380e102446de7fba702635ac6a",
       "v0.1.3",
       "検証 / 進捗 source basis 再確認日: 2026-07-02",
     ],
@@ -164,6 +164,7 @@ export function analyzeObjectiveEvidenceAudit(
       }
     }
   }
+  checkDistributionVersionBinding(input, violations);
 
   const provedRows = countRowsWithStatus(input.auditText, "proved");
   if (
@@ -180,6 +181,40 @@ export function analyzeObjectiveEvidenceAudit(
     provedRows,
     objectiveProgress: objectiveProgressForAudit(input, provedRows),
   };
+}
+
+function checkDistributionVersionBinding(
+  input: ObjectiveEvidenceAuditInput,
+  violations: string[],
+): void {
+  const packageVersion = readPackageVersion(input.repoRoot);
+  if (!packageVersion) {
+    violations.push("G-01: package.json version missing for distribution version binding");
+    return;
+  }
+  const localTag = `v${packageVersion}`;
+  const requiredMarkers = [
+    `package.json version: \`${packageVersion}\``,
+    `local distribution tag: \`${localTag}\``,
+    "Pack latest tag: `v0.1.3`",
+    "version-up activation required before adopting Pack latest tag",
+  ];
+  for (const marker of requiredMarkers) {
+    if (!input.auditText.includes(marker)) {
+      violations.push(`G-01: missing distribution version binding marker ${marker}`);
+    }
+  }
+}
+
+function readPackageVersion(repoRoot: string): string | null {
+  try {
+    const parsed = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+      version?: unknown;
+    };
+    return typeof parsed.version === "string" && parsed.version.length > 0 ? parsed.version : null;
+  } catch {
+    return null;
+  }
 }
 
 export function objectiveProgressForAudit(

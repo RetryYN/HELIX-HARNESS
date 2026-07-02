@@ -183,6 +183,7 @@ import { findReference } from "./search/index";
 import {
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
+  LOCAL_DISTRIBUTION_PACKAGE_VERSION,
   nodeSetupDeps,
   runHelixProjectSetup,
   runSetup,
@@ -811,7 +812,7 @@ const program = new Command();
 program
   .name("ut-tdd")
   .description("UT-TDD Agent Harness (TypeScript core, ADR-001)")
-  .version("0.1.0");
+  .version(LOCAL_DISTRIBUTION_PACKAGE_VERSION);
 
 program
   .command("status")

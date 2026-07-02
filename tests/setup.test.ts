@@ -559,6 +559,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.workspace.monorepo).toBe(true);
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
+    expect(ready.checks.find((c) => c.name === "distribution-version-binding")).toMatchObject({
+      ok: true,
+      message: expect.stringContaining("package.json version 0.1.0"),
+    });
+    expect(ready.objectiveBoundary.versionBinding).toMatchObject({
+      localPackageVersion: "0.1.0",
+      localDistributionTag: "v0.1.0",
+      requestedDistributionTag: "v0.1.0",
+      requestedTagMatchesPackageVersion: true,
+      packLatestTag: "v0.1.3",
+      packLatestRequiresVersionUpActivation: true,
+      versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
+      adoptionDecision: expect.stringContaining("version-up activation decision"),
+    });
     expect(ready.ci.security).toEqual({
       permissions: "contents:read",
       triggers: ["push:main", "pull_request:main"],
@@ -631,6 +645,28 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(omittedCli.ok).toBe(false);
     expect(omittedCli.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
       ok: false,
+    });
+
+    const tagDrift = buildConsumerReadinessPlan({
+      bunVersion: "1.3.2",
+      hasGit: true,
+      hasGh: true,
+      hasUtTddCli: true,
+      hasClaude: false,
+      hasCodex: true,
+      repoRoot: "/repo",
+      tag: "v0.1.3",
+    });
+    expect(tagDrift.ok).toBe(false);
+    expect(tagDrift.checks.find((c) => c.name === "distribution-version-binding")).toMatchObject({
+      ok: false,
+      message: expect.stringContaining("version-up activation decision"),
+    });
+    expect(tagDrift.objectiveBoundary.versionBinding).toMatchObject({
+      localDistributionTag: "v0.1.0",
+      requestedDistributionTag: "v0.1.3",
+      requestedTagMatchesPackageVersion: false,
+      packLatestRequiresVersionUpActivation: true,
     });
   });
 
@@ -1085,8 +1121,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         cutoverPacketCommand: "ut-tdd rename plan --json",
         distributionReference: {
           repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-          mainHead: "a64622ac6dc5bb6d8c10ed26bfa9cee29b1dc721",
+          mainHead: "e899c3a7c18c47380e102446de7fba702635ac6a",
           latestTag: "v0.1.3",
+        },
+        versionBinding: {
+          localPackageVersion: "0.1.0",
+          localDistributionTag: "v0.1.0",
+          requestedDistributionTag: "v0.1.0",
+          requestedTagMatchesPackageVersion: true,
+          packLatestRequiresVersionUpActivation: true,
         },
       },
     });
