@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
 import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
 import { semanticFrontierBindingViolations } from "./semantic-frontier-binding";
 import {
@@ -9,6 +10,7 @@ import {
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
+  selectedAllowedOutcomeViolation,
   sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
@@ -29,6 +31,7 @@ export interface CutoverReadinessPlan {
 export interface CutoverReadinessInput {
   rightArmMd: string;
   outstandingTs: string;
+  currentCutoverSnapshotId?: string | null;
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: CutoverReadinessPlan[];
 }
@@ -187,12 +190,20 @@ function parsePlan(file: string, content: string): CutoverReadinessPlan {
 export function loadCutoverReadinessInput(repoRoot = process.cwd()): CutoverReadinessInput {
   const plansDir = join(repoRoot, "docs", "plans");
   const outstanding = computeOutstandingWork(repoRoot);
+  const renameCutoverPlan = buildIdentifierRenameCutoverPlan(
+    repoRoot,
+    outstanding.semanticFeatureFrontierRecords ?? [],
+  );
+  const currentCutoverSnapshotId = renameCutoverPlan.cutoverSnapshot.repoHeadSha
+    ? renameCutoverPlan.cutoverSnapshot.snapshotId
+    : null;
   return {
     rightArmMd: readFileSync(
       join(repoRoot, "docs", "process", "forward", "L08-L14-verification-phase.md"),
       "utf8",
     ),
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
+    currentCutoverSnapshotId,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: readdirSync(plansDir)
       .filter((f) => f.startsWith("PLAN-") && f.endsWith(".md"))
@@ -338,11 +349,16 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
     for (const field of missingFields) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
-    const outcomeViolation = allowedOutcomeSetViolation(
-      plan.text,
-      CUTOVER_RECORD_NAME,
-      CUTOVER_ALLOWED_OUTCOMES,
-    );
+    const selectedOutcome = selectedCutoverOutcome(plan);
+    const outcomeViolation = selectedOutcome
+      ? selectedAllowedOutcomeViolation({
+          text: plan.text,
+          recordName: CUTOVER_RECORD_NAME,
+          allowedOutcomes: CUTOVER_ALLOWED_OUTCOMES,
+          selectedOutcome,
+          selectedOutcomeLabel: "cutover_outcome",
+        })
+      : allowedOutcomeSetViolation(plan.text, CUTOVER_RECORD_NAME, CUTOVER_ALLOWED_OUTCOMES);
     if (outcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: outcomeViolation });
     }
@@ -350,7 +366,13 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
       violations.push({ subject: plan.plan_id, reason });
     }
     if (missingFields.length === 0 && !outcomeViolation) {
-      violations.push(...validateCutoverExecutionSemantics(plan, input.rightArmMd));
+      violations.push(
+        ...validateCutoverExecutionSemantics(
+          plan,
+          input.rightArmMd,
+          input.currentCutoverSnapshotId ?? null,
+        ),
+      );
     }
   }
 
@@ -366,6 +388,7 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
 function validateCutoverExecutionSemantics(
   plan: CutoverReadinessPlan,
   rightArmMd: string,
+  currentCutoverSnapshotId: string | null,
 ): CutoverReadinessViolation[] {
   const violations: CutoverReadinessViolation[] = [];
   const executionWindow = cutoverField(plan, "execution_window_or_freeze_policy");
@@ -394,6 +417,20 @@ function validateCutoverExecutionSemantics(
       subject: plan.plan_id,
       reason: "cutover_snapshot_id must record a concrete sha256 current cutover snapshot id",
     });
+  } else if (selectedCutoverOutcome(plan) === "approve_cutover") {
+    const recordedSnapshotId = cutoverSnapshotId.match(/\bsha256:[a-f0-9]{64}\b/)?.[0] ?? "";
+    if (!currentCutoverSnapshotId) {
+      violations.push({
+        subject: plan.plan_id,
+        reason:
+          "cutover_snapshot_id cannot be validated without current cutoverSnapshot.snapshotId",
+      });
+    } else if (recordedSnapshotId !== currentCutoverSnapshotId) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: "cutover_snapshot_id does not match current cutoverSnapshot.snapshotId",
+      });
+    }
   }
   if (!hasFrozenWindowPolicy(executionWindow)) {
     violations.push({
@@ -457,6 +494,13 @@ function validateCutoverExecutionSemantics(
   }
 
   return violations;
+}
+
+function selectedCutoverOutcome(
+  plan: CutoverReadinessPlan,
+): (typeof CUTOVER_ALLOWED_OUTCOMES)[number] | null {
+  const value = cutoverField(plan, "allowed_outcome").trim().replace(/`/g, "");
+  return CUTOVER_ALLOWED_OUTCOMES.find((outcome) => value === outcome) ?? null;
 }
 
 function cutoverField(plan: CutoverReadinessPlan, field: string): string {

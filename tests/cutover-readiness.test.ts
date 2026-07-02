@@ -82,6 +82,7 @@ function input(overrides: Partial<CutoverReadinessInput> = {}): CutoverReadiness
         text: `irreversible state dir cutover\n${cutoverMarkers}`,
       },
     ],
+    currentCutoverSnapshotId: CONCRETE_CUTOVER_SNAPSHOT_ID,
     ...overrides,
   };
 }
@@ -253,6 +254,76 @@ describe("cutover readiness", () => {
       subject: "PLAN-M-900",
       reason: "cutover_snapshot_id must record a concrete sha256 current cutover snapshot id",
     });
+  });
+
+  it("fails approved cutover records whose concrete snapshot id is stale", () => {
+    const staleSnapshotId =
+      "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
+    const result = analyzeCutoverReadiness(
+      input({
+        currentCutoverSnapshotId: CONCRETE_CUTOVER_SNAPSHOT_ID,
+        plans: [
+          {
+            ...input().plans[0],
+            text: input()
+              .plans[0].text.replace(
+                "`approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
+                "approve_cutover",
+              )
+              .replace(CONCRETE_CUTOVER_SNAPSHOT_ID, staleSnapshotId),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason: "cutover_snapshot_id does not match current cutoverSnapshot.snapshotId",
+    });
+  });
+
+  it("fails approved cutover records when the current cutover snapshot is unavailable", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        currentCutoverSnapshotId: null,
+        plans: [
+          {
+            ...input().plans[0],
+            text: input().plans[0].text.replace(
+              "`approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
+              "approve_cutover",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason: "cutover_snapshot_id cannot be validated without current cutoverSnapshot.snapshotId",
+    });
+  });
+
+  it("accepts approved cutover records only when the concrete snapshot id matches the current packet", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        currentCutoverSnapshotId: CONCRETE_CUTOVER_SNAPSHOT_ID,
+        plans: [
+          {
+            ...input().plans[0],
+            text: input().plans[0].text.replace(
+              "`approve_cutover` / `reject_or_defer` / `request_runbook_changes`",
+              "approve_cutover",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.violations).toEqual([]);
   });
 
   it("U-DECISIONREC-003: fails irreversible cutover plans that only say PO signoff", () => {
@@ -598,8 +669,10 @@ describe("cutover readiness", () => {
   });
 
   it("passes against the live repository and lists the current L14 cutover decision", () => {
-    const result = analyzeCutoverReadiness(loadCutoverReadinessInput());
+    const loadedInput = loadCutoverReadinessInput();
+    const result = analyzeCutoverReadiness(loadedInput);
     expect(result.ok).toBe(true);
+    expect(loadedInput.currentCutoverSnapshotId).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(result.pendingPlanIds).toEqual(["PLAN-M-02-helix-identifier-rename"]);
     expect(result.missingSourceLedgerRows).toEqual([]);
     expect(result.sourceLedgerViolations).toEqual([]);

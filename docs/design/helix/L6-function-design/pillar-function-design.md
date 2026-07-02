@@ -121,6 +121,12 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `buildIdentifierRenameCutoverPlan` は `snapshotReview` を返し、PLAN に記録済みの
   `cutover_decision_record.cutover_snapshot_id` と `action_binding_approval_record.reviewed_snapshot_binding`、
   current `cutoverSnapshot.snapshotId`、一致/不一致、drift warning、再承認 action を承認前から表示する。
+  `analyzeCutoverReadiness` は `allowed_outcome=approve_cutover` が選択済みの場合、記録された concrete
+  `cutover_snapshot_id` が HEAD-bound current `cutoverSnapshot.snapshotId` と一致しない限り approval material と扱わない。
+  `loadCutoverReadinessInput` は `buildIdentifierRenameCutoverPlan` の `cutoverSnapshot.repoHeadSha` が読めた
+  current packet のみを照合基準として渡し、HEAD が読めない approval は fail-close にする。
+  enum set を提示する draft review record は承認済み outcome ではないため、過去 review snapshot の保持だけで
+  apply 可能とは扱わない。
   `cutoverSnapshot` は `repoHeadSha` と `headDigest` を持ち、snapshotId の入力に frozen HEAD を含める。
   `sourceLedgerFreshness.rowsDigest` と `cutoverSnapshot.sourceLedgerRowsDigest` は `Cutover source ledger` の
   全 row 内容を束ね、source row の status / adoption / field-impact 変更を date-only refresh と別に
