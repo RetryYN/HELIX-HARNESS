@@ -192,6 +192,8 @@ export interface HelixProjectPostSetupWorkflow {
     evidence: string;
     source: string;
     sourceUrl: string;
+    sourceCheckedAt: string;
+    adoptionDecision: string;
   }>;
   blockedUntil: string[];
 }
@@ -898,6 +900,9 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       evidence: "setup dry-run text or JSON output saved in the consumer repository review record",
       source: "VS Code workspace task contract",
       sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
+      sourceCheckedAt: "2026-07-02",
+      adoptionDecision:
+        "VS Code Tasks は shell task と problemMatcher=[] に限定し、自動実行や外部 install を setup が有効化しない",
     },
     {
       phase: "status-frontier",
@@ -907,6 +912,9 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       evidence: "status JSON attached to the first-run readiness record",
       source: "HELIX status and completion decision packet contract",
       sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      sourceCheckedAt: "2026-07-02",
+      adoptionDecision:
+        "status は objective progress と workflowNextActions を初回稼働証跡として保存し、doctor green を完了 claim に読み替えない",
     },
     {
       phase: "consumer-doctor",
@@ -916,6 +924,9 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       evidence: "consumer doctor output with profile=consumer",
       source: "VS Code Workspace Trust and consumer adapter safety contract",
       sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+      sourceCheckedAt: "2026-07-02",
+      adoptionDecision:
+        "Workspace Trust の自動コード実行境界に合わせ、task.allowAutomaticTasks=off と runOn/folderOpen 不使用を consumer doctor で検査する",
     },
     {
       phase: "handover-route",
@@ -925,6 +936,9 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       evidence: "handover status JSON attached to the first-run readiness record",
       source: "handover route contract",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md#18-u-hover-handover",
+      sourceCheckedAt: "2026-07-02",
+      adoptionDecision:
+        "handover status で active handover または通常開始を確認してから最初の HELIX 作業へ入る",
     },
   ];
 }

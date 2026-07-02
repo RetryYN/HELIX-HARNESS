@@ -735,6 +735,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         command: "ut-tdd setup project --dry-run",
         source: "VS Code workspace task contract",
         sourceUrl: "https://code.visualstudio.com/docs/debugtest/tasks",
+        sourceCheckedAt: "2026-07-02",
+        adoptionDecision: expect.stringContaining("自動実行"),
       }),
       expect.objectContaining({
         phase: "status-frontier",
@@ -746,6 +748,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         command: "ut-tdd doctor --profile consumer",
         source: "VS Code Workspace Trust and consumer adapter safety contract",
         sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+        sourceCheckedAt: "2026-07-02",
+        adoptionDecision: expect.stringContaining("task.allowAutomaticTasks=off"),
       }),
       expect.objectContaining({
         phase: "handover-route",

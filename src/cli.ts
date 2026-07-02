@@ -756,12 +756,18 @@ function packetFreshnessLine(packet: {
 }
 
 function verificationSourceLines(
-  rows: Array<{ phase: string; source?: string; sourceUrl?: string }>,
+  rows: Array<{
+    phase: string;
+    source?: string;
+    sourceUrl?: string;
+    sourceCheckedAt?: string;
+    adoptionDecision?: string;
+  }>,
 ): string {
   return rows
     .map(
       (row) =>
-        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"}\n`,
+        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"} checked=${row.sourceCheckedAt ?? "-"} adoption=${row.adoptionDecision ?? "-"}\n`,
     )
     .join("");
 }

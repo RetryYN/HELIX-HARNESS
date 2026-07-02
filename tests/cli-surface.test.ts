@@ -890,6 +890,8 @@ describe("L7 CLI surface closure", () => {
           command: "ut-tdd doctor --profile consumer",
           source: "VS Code Workspace Trust and consumer adapter safety contract",
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+          sourceCheckedAt: "2026-07-02",
+          adoptionDecision: expect.stringContaining("task.allowAutomaticTasks=off"),
         }),
       ]),
     );
@@ -919,9 +921,12 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
     );
+    expect(text.stdout).toContain("checked=2026-07-02");
+    expect(text.stdout).toContain("adoption=VS Code Tasks は shell task");
     expect(text.stdout).toContain(
       "verification-source: consumer-doctor source=VS Code Workspace Trust and consumer adapter safety contract sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     );
+    expect(text.stdout).toContain("adoption=Workspace Trust の自動コード実行境界");
     expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
     expect(text.stdout).toContain(
       "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",

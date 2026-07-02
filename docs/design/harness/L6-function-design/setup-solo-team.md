@@ -121,9 +121,10 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > handover status を含め、
 > ready route は active handover または current PLAN route に接続する。
 > `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / status-frontier / consumer-doctor /
-> handover-route の phase / command / expected / evidence / source / sourceUrl を持つ。VS Code workspace task と
+> handover-route の phase / command / expected / evidence / source / sourceUrl / sourceCheckedAt / adoptionDecision を持つ。VS Code workspace task と
 > Workspace Trust の実行境界、HELIX status/handover contract を初回稼働の検証証跡へ接続し、
-> command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。text surface は
+> command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。VS Code Tasks / Workspace Trust の
+> 公式 source は checked date と採用判断を matrix に残し、source 名だけの stale な根拠にしない。text surface は
 > `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
 > `ut-tdd doctor --profile consumer` は `.vscode/tasks.json` の label/command だけでなく、各 task が
 > `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、task-level `options` なしであること、
