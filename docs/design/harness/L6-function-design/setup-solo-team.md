@@ -140,6 +140,11 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 初回稼働契約として検査する。これらが日本語 HELIX prose、`ut-tdd completion decision-packet --json`、
 > `ut-tdd doctor --profile consumer`、PLAN-M-02 rename/cutover 境界、secret/PII guardrail を落とした場合は
 > setup JSON の readiness 自体を `fix_consumer_readiness` へ戻し、consumer doctor だけに検出を先送りしない。
+> さらに配布 `harness-check.yml` は artifact readiness の時点で検査し、`permissions: contents: read`、
+> `push` / `pull_request`、`pull_request_target` 不使用、secret 不要、package-local
+> `bun run ut-tdd ...` smoke command 群を満たさなければ setup readiness を `fix_consumer_readiness` へ戻す。
+> GitHub secure-use の read-only / least privilege 境界を JSON 上の `consumerReadiness.ci` 宣言だけに閉じ込めず、
+> 実テンプレの drift でも fail-close する。
 > `postSetupWorkflow.verificationCommands` は setup dry-run / status / setup dry-run JSON による GitHub CI safety / `ut-tdd completion decision-packet --json` / `ut-tdd doctor --profile consumer` /
 > `ut-tdd rename plan --json` / handover status /
 > `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含む集約リストである。

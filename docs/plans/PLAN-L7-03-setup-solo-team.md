@@ -302,6 +302,11 @@ review_evidence:
 
 2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。brownfield では `importReport` に managed/preview/existing/written/skipped/mergeable path と `requiresReview` / `nextRoute=review_import_report` を返し、既存 non-mergeable config を黙って成功扱いにしない。さらに `consumerReadiness` で projected hook が呼ぶ `ut-tdd` CLI の PATH 解決性、Bun/Git/GitHub CLI、Claude/Codex runtime mode、secret 不要の consumer CI smoke を返し、PATH 未解決時は `bun link` / `bun link ut-tdd` remediation を出して silent pass させない。`postSetupWorkflow` は `importReport` と `consumerReadiness` を合成し、fresh/ready は `ready`、brownfield conflict は `review_import_report`、readiness 未充足は `fix_consumer_readiness` へ導く first-run route、未充足 gate、次 action、検証 command を返す。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
 
+2026-07-03 continuation: `consumerReadiness.ci` の read-only / secret 不要 / package-local smoke 宣言を
+実テンプレ `harness-check.yml` の artifact readiness と接続する。`permissions: contents: read`、`push` /
+`pull_request`、`pull_request_target` 不使用、secret 参照なし、`bun run ut-tdd ...` command 群を満たさない
+配布 workflow は `fix_consumer_readiness` へ戻し、GitHub secure-use 境界を JSON 宣言だけで green にしない。
+
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
 - **dependencies**: `parent=PLAN-L6-05` で lineage 連結。`requires` には置かない (confirmed 段階の design PLAN を `status=completed` 検証対象にしないため = §1.10.E の latent fail-close 回避。bottom-up Add-feature で L7 impl は confirmed L6 設計に依存するのが常態)。
 - パターン: `src/runtime/session-log.ts` (deps 注入 + 純粋関数分離 + never-throw) / `src/runtime/detect.ts` (`onPath`) / `src/cli.ts` (commander) を踏襲・再利用。drive=fullstack (親一致)。

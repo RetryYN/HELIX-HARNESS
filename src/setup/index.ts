@@ -1012,6 +1012,7 @@ function buildConsumerArtifactReadinessPlan(
   const content = (path: string): string => byPath.get(path) ?? "";
   const tasksPath = join(".vscode", "tasks.json");
   const settingsPath = join(".vscode", "settings.json");
+  const workflowPath = join(".github", "workflows", "harness-check.yml");
   const teamPath = CONSUMER_TEAM_DEFINITION_PATH;
   const baselinePaths = [
     join(".ut-tdd", "memory", ".gitkeep"),
@@ -1022,6 +1023,7 @@ function buildConsumerArtifactReadinessPlan(
   const ag = content("AGENTS.md");
   const tasks = content(tasksPath);
   const settings = content(settingsPath);
+  const workflow = content(workflowPath);
   const team = content(teamPath);
   const claude = content("CLAUDE.md");
   const claudeRuntime = content(join(".claude", "CLAUDE.md"));
@@ -1123,6 +1125,31 @@ function buildConsumerArtifactReadinessPlan(
         settings.includes('"off"'),
       message: "VSCode workspace settings must disable automatic tasks for consumer setup",
       evidence: ".vscode/settings.json task.allowAutomaticTasks",
+    },
+    {
+      name: "harness-check-ci-is-read-only-consumer-smoke",
+      path: workflowPath,
+      ok:
+        hasPath(workflowPath) &&
+        workflow.includes("permissions:") &&
+        workflow.includes("contents: read") &&
+        workflow.includes("push:") &&
+        workflow.includes("pull_request:") &&
+        !workflow.includes("pull_request_target") &&
+        !workflow.includes("secrets.") &&
+        [
+          "bun run ut-tdd --version",
+          "bun run ut-tdd setup project --dry-run --json",
+          "bun run ut-tdd status --json",
+          "bun run ut-tdd completion decision-packet --json",
+          "bun run ut-tdd doctor --profile consumer --json",
+          "bun run ut-tdd rename plan --json",
+          "bun run ut-tdd handover status --json",
+          `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+        ].every((command) => workflow.includes(command)),
+      message:
+        "harness-check workflow must be a read-only, secret-free consumer smoke with package-local HELIX commands and no pull_request_target",
+      evidence: ".github/workflows/harness-check.yml permissions/triggers/command surface",
     },
     {
       name: "ut-tdd-baseline-paths-projected",
