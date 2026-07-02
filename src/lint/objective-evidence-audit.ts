@@ -98,7 +98,7 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "unison-ai-product/UT-TDD_AGENT-HARNESS",
       "7f83ca811353ed90b3e981178a1b0c9977dd5863",
       "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-      "714a94a2b5a70a5e21c22f8b9e59530aa587dff3",
+      "21ddd4fed411c04cb19694356570b312c4f4eae6",
       "v0.1.3",
       "検証 / 進捗 source basis 再確認日: 2026-07-02",
     ],
@@ -133,7 +133,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     command:
       "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "714a94a2b5a70a5e21c22f8b9e59530aa587dff3",
+    observed: "21ddd4fed411c04cb19694356570b312c4f4eae6",
     latestOfficialStatus: "main branch reachable",
     sourceStatusDelta: "changed from previous audit; objective audit refreshed",
     adoptionDecision:

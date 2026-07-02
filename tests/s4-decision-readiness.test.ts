@@ -111,6 +111,29 @@ describe("S4 decision readiness", () => {
     expect(s4DecisionReadinessMessages(result)[0]).toContain("s4-decision-readiness - OK");
   });
 
+  it("fails S4 records whose source_ledger_freshness does not cite the current ledger checked date", () => {
+    const base = input();
+    const result = analyzeS4DecisionReadiness(
+      input({
+        discoveryMd: base.discoveryMd.replace(
+          "S4 decision source ledger (checked 2026-06-30)",
+          "S4 decision source ledger (checked 2026-07-02)",
+        ),
+        scrumMd: base.scrumMd.replace(
+          "S4 decision source ledger (checked 2026-06-30)",
+          "S4 decision source ledger (checked 2026-07-02)",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-900",
+      reason:
+        "source_ledger_freshness checked date must match current S4 decision source ledger checked 2026-07-02",
+    });
+  });
+
   it("fails S4 records that omit source ledger meaning-review fields", () => {
     const result = analyzeS4DecisionReadiness(
       input({
@@ -790,13 +813,21 @@ describe("S4 decision readiness", () => {
 
   it("accepts refreshed S4 decision source ledger checked dates without losing table rows", () => {
     // U-SOURCELEDGER-005
-    const refreshed = input().discoveryMd.replace(
+    const base = input();
+    const refreshed = base.discoveryMd.replace(
       "S4 decision source ledger (checked 2026-06-30)",
       "S4 decision source ledger (checked 2026-06-15)",
     );
+    const refreshedPlan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        "fresh S4 decision source ledger checked 2026-06-30",
+        "fresh S4 decision source ledger checked 2026-06-15",
+      ),
+    };
 
     const result = analyzeS4DecisionReadiness(
-      input({ discoveryMd: refreshed, scrumMd: refreshed }),
+      input({ discoveryMd: refreshed, scrumMd: refreshed, plans: [refreshedPlan] }),
     );
 
     expect(result.ok).toBe(true);

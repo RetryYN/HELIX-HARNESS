@@ -12,6 +12,7 @@ import {
   sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
+  sourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
@@ -349,7 +350,7 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
       violations.push({ subject: plan.plan_id, reason });
     }
     if (missingFields.length === 0 && !outcomeViolation) {
-      violations.push(...validateCutoverExecutionSemantics(plan));
+      violations.push(...validateCutoverExecutionSemantics(plan, input.rightArmMd));
     }
   }
 
@@ -364,6 +365,7 @@ export function analyzeCutoverReadiness(input: CutoverReadinessInput): CutoverRe
 
 function validateCutoverExecutionSemantics(
   plan: CutoverReadinessPlan,
+  rightArmMd: string,
 ): CutoverReadinessViolation[] {
   const violations: CutoverReadinessViolation[] = [];
   const executionWindow = cutoverField(plan, "execution_window_or_freeze_policy");
@@ -373,6 +375,19 @@ function validateCutoverExecutionSemantics(
   const stateBackupPlan = cutoverField(plan, "state_backup_plan");
   const auditRecord = cutoverField(plan, "audit_record");
   const postCutoverMonitoring = cutoverField(plan, "post_cutover_monitoring");
+  const currentLedgerCheckedDate = sourceLedgerCheckedDate(rightArmMd, "Cutover source ledger");
+  const recordedFreshness = cutoverField(plan, "source_ledger_freshness");
+
+  if (
+    currentLedgerCheckedDate &&
+    recordedFreshness &&
+    !recordedFreshness.includes(currentLedgerCheckedDate)
+  ) {
+    violations.push({
+      subject: plan.plan_id,
+      reason: `source_ledger_freshness checked date must match current Cutover source ledger checked ${currentLedgerCheckedDate}`,
+    });
+  }
 
   if (!/\bsha256:[a-f0-9]{64}\b/.test(cutoverSnapshotId)) {
     violations.push({

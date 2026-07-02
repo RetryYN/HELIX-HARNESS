@@ -1121,7 +1121,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         cutoverPacketCommand: "ut-tdd rename plan --json",
         distributionReference: {
           repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-          mainHead: "714a94a2b5a70a5e21c22f8b9e59530aa587dff3",
+          mainHead: "21ddd4fed411c04cb19694356570b312c4f4eae6",
           latestTag: "v0.1.3",
         },
         versionBinding: {

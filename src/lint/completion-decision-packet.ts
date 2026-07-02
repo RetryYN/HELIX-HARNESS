@@ -6,6 +6,9 @@ import {
   computeOutstandingWork,
   REQUIRED_DECISION_PACKET_MATRIX_FIELDS,
   requiredRecordsForBlockers,
+  workflowActionTextJa,
+  workflowReviewRouteTextJa,
+  workflowRouteTextJa,
 } from "./outstanding";
 import {
   hasSourceLedgerCheckedDate,
@@ -38,7 +41,8 @@ export type CompletionDecisionPacketViolationReason =
   | "missing_next_routes_by_record"
   | "invalid_next_routes_by_record"
   | "invalid_required_record_source_path"
-  | "invalid_required_record_source_ledger";
+  | "invalid_required_record_source_ledger"
+  | "invalid_japanese_display_field";
 
 export interface CompletionDecisionPacketViolation {
   reason: CompletionDecisionPacketViolationReason;
@@ -186,6 +190,30 @@ export function analyzeCompletionDecisionPacket(
         detail: `decision[${decisionIndex}] blockerReason=${decision.blockerReason} decisionPacketCommand=${String(decision.decisionPacketCommand)} expected=${expectedPacketCommand}`,
       });
     }
+    const expectedRequiredActionJa = workflowActionTextJa(decision.requiredAction);
+    if (decision.requiredActionJa !== expectedRequiredActionJa) {
+      violations.push({
+        reason: "invalid_japanese_display_field",
+        detail: `decision[${decisionIndex}] requiredActionJa mismatch expected=${expectedRequiredActionJa} actual=${String(decision.requiredActionJa)}`,
+      });
+    }
+    const requiredActions = decision.requiredActions ?? [];
+    const requiredActionsJa = decision.requiredActionsJa ?? [];
+    if (requiredActionsJa.length !== requiredActions.length) {
+      violations.push({
+        reason: "invalid_japanese_display_field",
+        detail: `decision[${decisionIndex}] requiredActionsJa length=${requiredActionsJa.length} expected=${requiredActions.length}`,
+      });
+    }
+    requiredActions.forEach((action, actionIndex) => {
+      const expectedActionJa = workflowActionTextJa(action);
+      if (requiredActionsJa[actionIndex] !== expectedActionJa) {
+        violations.push({
+          reason: "invalid_japanese_display_field",
+          detail: `decision[${decisionIndex}] requiredActionsJa[${actionIndex}] mismatch expected=${expectedActionJa} actual=${String(requiredActionsJa[actionIndex])}`,
+        });
+      }
+    });
     const expectedPacketCommands = requiredPacketCommands(
       decision.blockerReason,
       decision.blockers,
@@ -251,6 +279,13 @@ export function analyzeCompletionDecisionPacket(
           detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} missing reviewRoute`,
         });
       }
+      const expectedReviewRouteJa = workflowReviewRouteTextJa(summary.reviewRoute ?? "");
+      if (summary.reviewRouteJa !== expectedReviewRouteJa) {
+        violations.push({
+          reason: "invalid_japanese_display_field",
+          detail: `decision[${decisionIndex}] supportingPacketSummary command=${command} reviewRouteJa mismatch expected=${expectedReviewRouteJa} actual=${String(summary.reviewRouteJa)}`,
+        });
+      }
     }
     const expectedDecisionOutcomes = requiredDecisionAllowedOutcomes(decision.blockerReason);
     if (expectedDecisionOutcomes) {
@@ -264,6 +299,13 @@ export function analyzeCompletionDecisionPacket(
       }
     }
     const decisionRoute = decision.nextWorkflowRoute ?? "";
+    const expectedDecisionRouteJa = workflowRouteTextJa(decisionRoute);
+    if (decision.nextWorkflowRouteJa !== expectedDecisionRouteJa) {
+      violations.push({
+        reason: "invalid_japanese_display_field",
+        detail: `decision[${decisionIndex}] nextWorkflowRouteJa mismatch expected=${expectedDecisionRouteJa} actual=${String(decision.nextWorkflowRouteJa)}`,
+      });
+    }
     if (!decisionRoute.trim() || /^(TBD|TODO|-)$/.test(decisionRoute.trim())) {
       violations.push({
         reason: "invalid_decision_next_route",

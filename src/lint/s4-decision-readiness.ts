@@ -22,6 +22,7 @@ import {
 } from "./shared";
 import {
   hasSourceLedgerCheckedDate,
+  sourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
@@ -244,7 +245,10 @@ function isS4PocDecision(plan: S4DecisionPlan): boolean {
   return plan.kind === "poc" && plan.workflowPhase === "S4" && !!plan.decisionOutcome;
 }
 
-function validateS4DecisionRecord(plan: S4DecisionPlan): S4DecisionViolation[] {
+function validateS4DecisionRecord(
+  plan: S4DecisionPlan,
+  currentLedgerCheckedDates: string[],
+): S4DecisionViolation[] {
   const violations: S4DecisionViolation[] = [];
   const missingFields = missingRecordFields(plan.text, S4_RECORD_NAME, S4_RECORD_FIELDS);
   for (const field of missingFields) {
@@ -260,6 +264,15 @@ function validateS4DecisionRecord(plan: S4DecisionPlan): S4DecisionViolation[] {
   }
   for (const reason of sourceLedgerMeaningReviewFieldViolations(plan.text, S4_RECORD_NAME)) {
     violations.push({ subject: plan.plan_id, reason });
+  }
+  for (const currentLedgerCheckedDate of currentLedgerCheckedDates) {
+    const recordedFreshness = s4RecordField(plan, "source_ledger_freshness");
+    if (recordedFreshness && !recordedFreshness.includes(currentLedgerCheckedDate)) {
+      violations.push({
+        subject: plan.plan_id,
+        reason: `source_ledger_freshness checked date must match current S4 decision source ledger checked ${currentLedgerCheckedDate}`,
+      });
+    }
   }
   if (missingFields.length === 0 && !outcomeViolation) {
     violations.push(...validateSelectedOutcomeSemantics(plan));
@@ -435,6 +448,14 @@ export function analyzeS4DecisionReadiness(
   input: S4DecisionReadinessInput,
 ): S4DecisionReadinessResult {
   const violations: S4DecisionViolation[] = [];
+  const currentLedgerCheckedDates = [
+    ...new Set(
+      [
+        sourceLedgerCheckedDate(input.discoveryMd, "S4 decision source ledger"),
+        sourceLedgerCheckedDate(input.scrumMd, "S4 decision source ledger"),
+      ].filter((date): date is string => Boolean(date)),
+    ),
+  ];
 
   for (const doc of [
     ["docs/process/modes/discovery.md", input.discoveryMd],
@@ -481,7 +502,7 @@ export function analyzeS4DecisionReadiness(
 
   const pending = input.plans.filter(isS3PocPendingDecision);
   for (const plan of pending) {
-    violations.push(...validateS4DecisionRecord(plan));
+    violations.push(...validateS4DecisionRecord(plan, currentLedgerCheckedDates));
     if (input.semanticFeatureFrontierRecords !== undefined) {
       violations.push(
         ...semanticFrontierBindingViolations(
@@ -518,7 +539,7 @@ export function analyzeS4DecisionReadiness(
   }
 
   for (const plan of input.plans.filter(isS4PocDecision)) {
-    violations.push(...validateS4DecisionRecord(plan));
+    violations.push(...validateS4DecisionRecord(plan, currentLedgerCheckedDates));
   }
 
   return {

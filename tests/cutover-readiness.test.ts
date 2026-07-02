@@ -94,6 +94,24 @@ describe("cutover readiness", () => {
     expect(cutoverReadinessMessages(result)[0]).toContain("cutover-readiness - OK");
   });
 
+  it("fails cutover records whose source_ledger_freshness does not cite the current ledger checked date", () => {
+    const result = analyzeCutoverReadiness(
+      input({
+        rightArmMd: cutoverMarkers.replace(
+          "Cutover source ledger (checked 2026-06-30):",
+          "Cutover source ledger (checked 2026-07-02):",
+        ),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-M-900",
+      reason:
+        "source_ledger_freshness checked date must match current Cutover source ledger checked 2026-07-02",
+    });
+  });
+
   it("fails cutover records that omit source ledger meaning-review fields", () => {
     const base = input().plans[0];
     const result = analyzeCutoverReadiness(
@@ -467,12 +485,21 @@ describe("cutover readiness", () => {
 
   it("accepts refreshed cutover source ledger checked dates without losing table rows", () => {
     // U-SOURCELEDGER-005
+    const base = input();
+    const refreshedPlan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        "fresh Cutover source ledger checked 2026-06-30",
+        "fresh Cutover source ledger checked 2026-06-15",
+      ),
+    };
     const result = analyzeCutoverReadiness(
       input({
         rightArmMd: cutoverMarkers.replace(
           "Cutover source ledger (checked 2026-06-30):",
           "Cutover source ledger (checked 2026-06-15):",
         ),
+        plans: [refreshedPlan],
       }),
     );
 

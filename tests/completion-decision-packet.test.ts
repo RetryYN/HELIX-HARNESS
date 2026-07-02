@@ -118,6 +118,52 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  it("U-OUTSTANDING-015: rejects packets whose Japanese display fields drift from machine actions and routes", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        requiredActionJa: "record the PO/S4 decision before promotion, rejection, or Forward merge",
+        requiredActionsJa: [
+          "record the PO/S4 decision before promotion, rejection, or Forward merge",
+        ],
+        nextWorkflowRouteJa:
+          "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) => ({
+          ...summary,
+          reviewRouteJa: summary.reviewRoute,
+        })),
+      })),
+    };
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          reason: "invalid_japanese_display_field",
+          detail:
+            "decision[0] requiredActionJa mismatch expected=PO/S4 判断を記録してから昇格・却下・Forward merge へ進める actual=record the PO/S4 decision before promotion, rejection, or Forward merge",
+        }),
+        expect.objectContaining({
+          reason: "invalid_japanese_display_field",
+          detail:
+            "decision[0] requiredActionsJa[0] mismatch expected=PO/S4 判断を記録してから昇格・却下・Forward merge へ進める actual=record the PO/S4 decision before promotion, rejection, or Forward merge",
+        }),
+        expect.objectContaining({
+          reason: "invalid_japanese_display_field",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json reviewRouteJa mismatch expected=S4 decision evidence / outcome route / verification command を確認する actual=review S4 decision evidence, outcome routes, and verification commands",
+        }),
+        expect.objectContaining({
+          reason: "invalid_japanese_display_field",
+          detail:
+            "decision[0] nextWorkflowRouteJa mismatch expected=S4 decide -> decision_outcome 記録後にのみ Reverse / Forward merge へ進む actual=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
+        }),
+      ]),
+    );
+  });
+
   it("rejects stale packets after the freshness window", () => {
     const result = analyzeCompletionDecisionPacket(basePacket(), "2026-06-30T01:00:00.001Z");
 
