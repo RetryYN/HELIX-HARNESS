@@ -920,6 +920,9 @@ completion
     process.stdout.write(
       `authority-boundary: ${packet.authorityBoundary} next-authority=${packet.nextAuthority} human-decision-required=${packet.humanDecisionRequired}\n`,
     );
+    process.stdout.write(
+      `authority-blockers: human=${packet.humanDecisionBlockers.join(",") || "none"} workflow-state=${packet.workflowStateBlockers.join(",") || "none"} automation=${packet.autonomousWorkBlockers.join(",") || "none"}\n`,
+    );
     process.stdout.write(packetFreshnessLine(packet));
     for (const decision of packet.decisions) {
       process.stdout.write(

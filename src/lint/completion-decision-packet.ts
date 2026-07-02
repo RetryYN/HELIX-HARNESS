@@ -87,6 +87,7 @@ const HUMAN_DECISION_BLOCKERS = new Set([
   "po_decision_pending",
   "version_up_parked",
 ]);
+const WORKFLOW_STATE_BLOCKERS = new Set(["non_terminal_plans"]);
 
 export function analyzeCompletionDecisionPacket(
   packet: CompletionDecisionPacket,
@@ -119,8 +120,13 @@ export function analyzeCompletionDecisionPacket(
   const expectedHumanDecisionBlockers = packetBlockers
     .filter((blocker) => HUMAN_DECISION_BLOCKERS.has(blocker))
     .sort();
+  const expectedWorkflowStateBlockers = packetBlockers
+    .filter((blocker) => WORKFLOW_STATE_BLOCKERS.has(blocker))
+    .sort();
   const expectedAutonomousWorkBlockers = packetBlockers
-    .filter((blocker) => !HUMAN_DECISION_BLOCKERS.has(blocker))
+    .filter(
+      (blocker) => !HUMAN_DECISION_BLOCKERS.has(blocker) && !WORKFLOW_STATE_BLOCKERS.has(blocker),
+    )
     .sort();
   const expectedHumanDecisionRequired = expectedHumanDecisionBlockers.length > 0;
   const expectedAuthorityBoundary =
@@ -154,6 +160,15 @@ export function analyzeCompletionDecisionPacket(
     violations.push({
       reason: "invalid_authority_boundary",
       detail: `humanDecisionBlockers=${(packet.humanDecisionBlockers ?? []).join(",")} expected=${expectedHumanDecisionBlockers.join(",")}`,
+    });
+  }
+  if (
+    JSON.stringify(packet.workflowStateBlockers ?? []) !==
+    JSON.stringify(expectedWorkflowStateBlockers)
+  ) {
+    violations.push({
+      reason: "invalid_authority_boundary",
+      detail: `workflowStateBlockers=${(packet.workflowStateBlockers ?? []).join(",")} expected=${expectedWorkflowStateBlockers.join(",")}`,
     });
   }
   if (

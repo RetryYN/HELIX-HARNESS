@@ -269,7 +269,8 @@ describe("completionReadinessForOutstanding", () => {
       authorityBoundary: "human_decision_required",
       humanDecisionRequired: true,
       humanDecisionBlockers: ["human_approval_pending", "irreversible_migration_pending"],
-      autonomousWorkBlockers: ["non_terminal_plans", "open_defers"],
+      workflowStateBlockers: ["non_terminal_plans"],
+      autonomousWorkBlockers: ["open_defers"],
       nextAuthority: "human",
     });
     expect(o.completionReadiness.reason).toContain("doctor green is not a substitute");
@@ -300,6 +301,7 @@ describe("completionReadinessForOutstanding", () => {
       authorityBoundary: "none",
       humanDecisionRequired: false,
       humanDecisionBlockers: [],
+      workflowStateBlockers: [],
       autonomousWorkBlockers: [],
       nextAuthority: "none",
       requiredActions: [],
@@ -344,7 +346,8 @@ describe("completionReadinessForOutstanding", () => {
       authorityBoundary: "automation_work_required",
       humanDecisionRequired: false,
       humanDecisionBlockers: [],
-      autonomousWorkBlockers: ["active_draft", "non_terminal_plans"],
+      workflowStateBlockers: ["non_terminal_plans"],
+      autonomousWorkBlockers: ["active_draft"],
       nextAuthority: "automation",
     });
   });
@@ -409,7 +412,8 @@ describe("completionDecisionPacketForOutstanding", () => {
         "po_decision_pending",
         "version_up_parked",
       ],
-      autonomousWorkBlockers: ["non_terminal_plans"],
+      workflowStateBlockers: ["non_terminal_plans"],
+      autonomousWorkBlockers: [],
       nextAuthority: "human",
       decisionCount: 3,
       blockers: expect.arrayContaining([
@@ -790,6 +794,7 @@ describe("completionDecisionPacketForOutstanding", () => {
       authorityBoundary: "none",
       humanDecisionRequired: false,
       humanDecisionBlockers: [],
+      workflowStateBlockers: [],
       autonomousWorkBlockers: [],
       nextAuthority: "none",
       semanticMeaningSummary: {
@@ -830,6 +835,7 @@ describe("outstandingSummaryLine", () => {
           authorityBoundary: "automation_work_required",
           humanDecisionRequired: false,
           humanDecisionBlockers: [],
+          workflowStateBlockers: [],
           autonomousWorkBlockers: [],
           nextAuthority: "automation",
           requiredActions: [],
@@ -859,6 +865,7 @@ describe("outstandingSummaryLine", () => {
           authorityBoundary: "none",
           humanDecisionRequired: false,
           humanDecisionBlockers: [],
+          workflowStateBlockers: [],
           autonomousWorkBlockers: [],
           nextAuthority: "none",
           requiredActions: [],

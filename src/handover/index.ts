@@ -784,6 +784,7 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
     (pointerPacket.authorityBoundary === undefined ||
       pointerPacket.humanDecisionRequired === undefined ||
       pointerPacket.humanDecisionBlockers === undefined ||
+      pointerPacket.workflowStateBlockers === undefined ||
       pointerPacket.autonomousWorkBlockers === undefined ||
       pointerPacket.nextAuthority === undefined ||
       pointerPacket.semanticMeaningSummary === undefined ||

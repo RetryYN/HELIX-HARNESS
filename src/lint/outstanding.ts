@@ -178,6 +178,7 @@ export interface CompletionReadiness {
   authorityBoundary: CompletionAuthorityBoundary;
   humanDecisionRequired: boolean;
   humanDecisionBlockers: string[];
+  workflowStateBlockers: string[];
   autonomousWorkBlockers: string[];
   nextAuthority: CompletionNextAuthority;
   requiredActions: string[];
@@ -296,6 +297,7 @@ export interface CompletionDecisionPacket {
   authorityBoundary: CompletionAuthorityBoundary;
   humanDecisionRequired: boolean;
   humanDecisionBlockers: string[];
+  workflowStateBlockers: string[];
   autonomousWorkBlockers: string[];
   nextAuthority: CompletionNextAuthority;
   semanticMeaningSummary: CompletionDecisionSemanticMeaningSummary;
@@ -873,18 +875,26 @@ const HUMAN_DECISION_BLOCKERS = new Set([
   "version_up_parked",
 ]);
 
+const WORKFLOW_STATE_BLOCKERS = new Set(["non_terminal_plans"]);
+
 function completionAuthorityBoundaryForBlockers(blockers: string[]): {
   authorityBoundary: CompletionAuthorityBoundary;
   humanDecisionRequired: boolean;
   humanDecisionBlockers: string[];
+  workflowStateBlockers: string[];
   autonomousWorkBlockers: string[];
   nextAuthority: CompletionNextAuthority;
 } {
   const humanDecisionBlockers = blockers
     .filter((blocker) => HUMAN_DECISION_BLOCKERS.has(blocker))
     .sort();
+  const workflowStateBlockers = blockers
+    .filter((blocker) => WORKFLOW_STATE_BLOCKERS.has(blocker))
+    .sort();
   const autonomousWorkBlockers = blockers
-    .filter((blocker) => !HUMAN_DECISION_BLOCKERS.has(blocker))
+    .filter(
+      (blocker) => !HUMAN_DECISION_BLOCKERS.has(blocker) && !WORKFLOW_STATE_BLOCKERS.has(blocker),
+    )
     .sort();
   const humanDecisionRequired = humanDecisionBlockers.length > 0;
   const authorityBoundary: CompletionAuthorityBoundary =
@@ -903,6 +913,7 @@ function completionAuthorityBoundaryForBlockers(blockers: string[]): {
     authorityBoundary,
     humanDecisionRequired,
     humanDecisionBlockers,
+    workflowStateBlockers,
     autonomousWorkBlockers,
     nextAuthority,
   };
@@ -1042,6 +1053,7 @@ export function completionDecisionPacketForOutstanding(
     authorityBoundary: outstanding.completionReadiness.authorityBoundary,
     humanDecisionRequired: outstanding.completionReadiness.humanDecisionRequired,
     humanDecisionBlockers: outstanding.completionReadiness.humanDecisionBlockers,
+    workflowStateBlockers: outstanding.completionReadiness.workflowStateBlockers,
     autonomousWorkBlockers: outstanding.completionReadiness.autonomousWorkBlockers,
     nextAuthority: outstanding.completionReadiness.nextAuthority,
     semanticMeaningSummary: {

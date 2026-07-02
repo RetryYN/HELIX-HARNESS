@@ -295,6 +295,7 @@ function baseInput(): SemanticFrontierConsistencyInput {
         authorityBoundary: "automation_work_required",
         humanDecisionRequired: false,
         humanDecisionBlockers: [],
+        workflowStateBlockers: [],
         autonomousWorkBlockers: [],
         nextAuthority: "automation",
         requiredActions: [],
