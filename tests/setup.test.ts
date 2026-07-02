@@ -1268,6 +1268,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       schemaVersion: "helix-project-post-setup-workflow.v1",
       nextRoute: "review_import_report",
       importReportRoute: "review_import_report",
+      readinessOk: false,
       manualDocSearchRequired: false,
     });
     expect(result.postSetupWorkflow.unmetGates).toContain("import_report_review");

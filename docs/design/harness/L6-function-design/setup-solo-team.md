@@ -125,6 +125,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > これは GitHub branch protection / required status checks が repository workflow を変える外部設定であり、
 > bootstrap command の副作用として実適用しないための U-SETUP-021 境界である。
 > brownfield では `importReport` で既存 non-mergeable path を skipped/review_required として返す。
+> `importReport.requiresReview=true` の間は、consumer CLI / artifact preflight が green でも
+> `postSetupWorkflow.readinessOk=false` とし、`review_import_report` を解消するまで HELIX work ready とは扱わない。
 > projected hook が呼ぶ bare `ut-tdd` CLI は `consumerReadiness` で PATH 解決性を preflight し、
 > `not spawnable on PATH` を unresolved signal として扱う。
 > 解決不能なら `bun link` remediation を出して silent pass させない。

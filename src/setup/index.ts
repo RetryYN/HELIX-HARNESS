@@ -1360,7 +1360,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
     schemaVersion: "helix-project-post-setup-workflow.v1",
     nextRoute,
     importReportRoute: input.importReport.nextRoute,
-    readinessOk: input.consumerReadiness.ok,
+    readinessOk: !input.importReport.requiresReview && input.consumerReadiness.ok,
     manualDocSearchRequired: false,
     unmetGates,
     nextActions,
