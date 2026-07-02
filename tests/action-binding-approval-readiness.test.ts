@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   actionBindingApprovalReadinessMessages,
+  actionBindingApprovalVerificationCommandViolations,
   analyzeActionBindingApprovalReadiness,
   buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
@@ -279,6 +280,7 @@ describe("action-binding approval readiness", () => {
         }),
         expect.objectContaining({
           phase: "least-privilege-binding",
+          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           expected:
             "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
           sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
@@ -286,6 +288,7 @@ describe("action-binding approval readiness", () => {
         }),
         expect.objectContaining({
           phase: "snapshot-binding",
+          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
           expected:
             "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
           sourceUrl:
@@ -301,6 +304,27 @@ describe("action-binding approval readiness", () => {
         }),
       ]),
     );
+    expect(actionBindingApprovalVerificationCommandViolations(packet)).toEqual([]);
+    expect(
+      actionBindingApprovalVerificationCommandViolations({
+        ...packet,
+        approvalVerificationCommandMatrix: packet.approvalVerificationCommandMatrix.map((row) =>
+          row.phase === "least-privilege-binding"
+            ? {
+                ...row,
+                command:
+                  "review approvalBindingChecks[] for concrete approved_actor and approved_tool",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-X.least-privilege-binding",
+        reason:
+          "approvalVerificationCommandMatrix command is not an executable approved surface: review approvalBindingChecks[] for concrete approved_actor and approved_tool",
+      },
+    ]);
     for (const row of packet.approvalVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(row.latestOfficialStatus, row.phase).not.toBe("");
@@ -1066,7 +1090,9 @@ describe("action-binding approval readiness", () => {
         ?.approvalVerificationCommandMatrix.find(
           (command) => command.phase === "sibling-decision-packets",
         )?.command,
-    ).toContain("bun run src/cli.ts version-up activation-packet --json");
+    ).toContain(
+      "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+    );
     expect(
       packets.map(
         (packet) =>
@@ -1075,10 +1101,19 @@ describe("action-binding approval readiness", () => {
           )?.command,
       ),
     ).toEqual([
-      expect.stringContaining("bun run src/cli.ts s4 decision-packet --json"),
-      expect.stringContaining("bun run src/cli.ts version-up activation-packet --json"),
+      expect.stringContaining(
+        "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-10-helix-asset-visualization --json",
+      ),
+      expect.stringContaining(
+        "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
+      ),
       expect.stringContaining("bun run src/cli.ts rename plan --json"),
     ]);
+    expect(
+      packets.every(
+        (packet) => actionBindingApprovalVerificationCommandViolations(packet).length === 0,
+      ),
+    ).toBe(true);
     expect(
       packets.every(
         (packet) =>

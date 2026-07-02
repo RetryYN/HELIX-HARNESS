@@ -1456,7 +1456,7 @@ export function versionUpActivationVerificationCommandViolations(
     "bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts",
     "bun run lint && bun run typecheck && git diff --check",
     "bun run test",
-    "bun run src/cli.ts action-binding approval-packet --json",
+    `bun run src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`,
   ]);
   const allowedStateWriteCommands = new Set([
     "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
@@ -1734,7 +1734,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
     },
     {
       phase: "approval-packet",
-      command: "bun run src/cli.ts action-binding approval-packet --json",
+      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       writePolicy: "no-write",
       expected:
         "approved actor/tool/target/params and reviewed_snapshot_binding cite the current activationSnapshot before activation",

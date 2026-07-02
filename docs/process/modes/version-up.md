@@ -135,6 +135,9 @@ local state/artifact write が混入した場合は fail-close する。
 Cloudflare / GitHub / HMAC / access-control / secret / external activation を実行しない。
 doctor の `version-up-readiness` は matrix command と `writePolicy` が allowlist に一致しない場合 fail-close するため、
 承認前 evidence が未実装 command、placeholder、または prose-only 手順へ戻らない。
+`approval-packet` phase は `ut-tdd action-binding approval-packet --plan <PLAN> --json` を指し、
+version-up activation の承認材料を別 PLAN の action-binding packet と取り違えない。`--plan` が欠落した
+approval packet command は activation verification matrix の承認済み surface として扱わない。
 
 ### 4.1.2 version upgrade dry-run surface
 

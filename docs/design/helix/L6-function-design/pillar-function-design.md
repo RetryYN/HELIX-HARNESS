@@ -172,6 +172,10 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   full regression、completion frontier の command / expected / evidence / source / sourceUrl / sourceCheckedAt /
   latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を
   plan-only に列挙する。
+  `approvalVerificationCommandMatrix[]` の command は `actionBindingApprovalVerificationCommandViolations` で
+  実行可能な承認済み CLI/test surface に限定し、`review ...` / `verify ...` の自然文手順を approval evidence として
+  通さない。sibling S4 / version-up packet は `--plan <PLAN_ID>` 付き command、rename は singleton
+  `rename plan` として出し、複数 pending PLAN 時の対象推測へ戻さない。
   version-up sibling の `reviewed_snapshot_binding` は repo HEAD と current package version を入力にした
   current `activationSnapshot.snapshotId` と照合し、HEAD なしで生成された snapshot や別 HEAD の snapshot を
   current approval evidence と誤認しない。

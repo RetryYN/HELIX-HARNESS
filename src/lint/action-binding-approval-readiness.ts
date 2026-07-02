@@ -62,6 +62,11 @@ export interface ActionBindingApprovalViolation {
   reason: string;
 }
 
+export interface ActionBindingApprovalCommandViolation {
+  subject: string;
+  reason: string;
+}
+
 export interface ActionBindingApprovalReadinessResult {
   pendingPlanIds: string[];
   violations: ActionBindingApprovalViolation[];
@@ -310,6 +315,12 @@ export function analyzeActionBindingApprovalReadiness(
         reason: violation.reason,
       })),
     );
+    violations.push(
+      ...actionBindingApprovalVerificationCommandViolations(packet).map((violation) => ({
+        subject: violation.subject,
+        reason: violation.reason,
+      })),
+    );
   }
 
   return {
@@ -448,8 +459,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "least-privilege-binding",
-      command:
-        "review approvalBindingChecks[] for concrete approved_actor, approved_tool, approved_target, approved_params, and non-wildcard approval_scope",
+      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "approval scope is limited to the named actor/tool/target/params and does not grant broad or wildcard authority",
       evidence:
@@ -467,8 +477,7 @@ function buildActionBindingApprovalVerificationCommandMatrix(
     },
     {
       phase: "snapshot-binding",
-      command:
-        "verify reviewed_snapshot_binding against activationSnapshot.snapshotId, cutoverSnapshot.snapshotId, or a no-snapshot basis from the sibling packet",
+      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
       expected:
         "snapshot-bound approvals cite the current sha256 snapshot id and stale snapshot ids remain blocked",
       evidence:
@@ -659,8 +668,51 @@ function siblingDecisionPacketCommandsForActionBindingPlan(
 ): string[] {
   const commands = relatedDecisionPacketsForActionBindingPlan(plan)
     .filter((packet) => packet.command !== ACTION_BINDING_APPROVAL_PACKET_COMMAND)
-    .map((packet) => packet.command.replace(/^ut-tdd /, "bun run src/cli.ts "));
-  return commands.length > 0 ? commands : ["no sibling decision packet required for this PLAN"];
+    .map((packet) => scopedSiblingDecisionPacketCommand(plan.plan_id, packet.command));
+  return commands.length > 0 ? commands : ["bun run src/cli.ts status --json"];
+}
+
+function scopedSiblingDecisionPacketCommand(planId: string, command: string): string {
+  switch (command) {
+    case S4_DECISION_PACKET_COMMAND:
+      return `bun run src/cli.ts s4 decision-packet --plan ${planId} --json`;
+    case VERSION_UP_ACTIVATION_PACKET_COMMAND:
+      return `bun run src/cli.ts version-up activation-packet --plan ${planId} --json`;
+    case RENAME_PLAN_PACKET_COMMAND:
+      return "bun run src/cli.ts rename plan --json";
+    default:
+      return command.replace(/^ut-tdd /, "bun run src/cli.ts ");
+  }
+}
+
+export function actionBindingApprovalVerificationCommandViolations(
+  packet: Pick<ActionBindingApprovalPacket, "planId" | "approvalVerificationCommandMatrix">,
+): ActionBindingApprovalCommandViolation[] {
+  const approvalPacketCommand = `bun run src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`;
+  const allowedCommands = new Set([
+    approvalPacketCommand,
+    `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
+    `bun run src/cli.ts version-up activation-packet --plan ${packet.planId} --json`,
+    "bun run src/cli.ts rename plan --json",
+    "bun run src/cli.ts status --json",
+    "bun run src/cli.ts doctor",
+    "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
+    "bun run lint && bun run typecheck && git diff --check",
+    "bun run test",
+  ]);
+  return packet.approvalVerificationCommandMatrix.flatMap((row) => {
+    const command = row.command.trim();
+    if (allowedCommands.has(command)) return [];
+    const parts = command.split(/\s+&&\s+/).map((part) => part.trim());
+    const invalidParts = parts.filter((part) => !allowedCommands.has(part));
+    if (invalidParts.length === 0) return [];
+    return [
+      {
+        subject: `${packet.planId}.${row.phase}`,
+        reason: `approvalVerificationCommandMatrix command is not an executable approved surface: ${invalidParts.join(" && ")}`,
+      },
+    ];
+  });
 }
 
 function validateActionBindingSemantics(

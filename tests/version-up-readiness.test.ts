@@ -521,7 +521,8 @@ describe("version-up-readiness", () => {
         }),
         expect.objectContaining({
           phase: "approval-packet",
-          command: "bun run src/cli.ts action-binding approval-packet --json",
+          command:
+            "bun run src/cli.ts action-binding approval-packet --plan PLAN-L7-900-future --json",
           writePolicy: "no-write",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
