@@ -913,7 +913,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             command: "ut-tdd rename plan --json",
             schemaVersion: "identifier-rename-cutover-plan.v1",
             matrixField: "verificationCommandMatrix",
-            expectedMatrixCount: 8,
+            expectedMatrixCount: 9,
             requiredReviewFields: [
               "cutoverSnapshot.snapshotId",
               "snapshotReview",

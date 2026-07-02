@@ -1488,6 +1488,9 @@ rename
     process.stdout.write(
       `  current-smoke: ${packet.currentBinary.smokeCommand}\n  renamed-after-approval: ${packet.renamedBinaryPreview.smokeCommandAfterApproval}\n`,
     );
+    process.stdout.write(
+      `  setup-after-approval: ${packet.postCutoverConsumerSetupPreview.commandAfterApproval}\n  setup-current-proxy: ${packet.postCutoverConsumerSetupPreview.currentNoWriteProxyCommand}\n`,
+    );
     for (const blocker of packet.blockedUntil) {
       process.stdout.write(`  blocked-until: ${blocker}\n`);
     }

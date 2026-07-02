@@ -226,6 +226,12 @@ export interface IdentifierRenameDistSmokeDryRun {
     exists: boolean;
     smokeCommandAfterApproval: "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor";
   };
+  postCutoverConsumerSetupPreview: {
+    commandAfterApproval: "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json";
+    expected: "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover";
+    evidencePath: ".ut-tdd/evidence/rename/post-cutover-consumer-setup-smoke.json";
+    currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json";
+  };
   legacyAliasPreview: {
     path: "dist/ut-tdd";
     dispositionRequired: "preserve_with_sunset_plan_or_remove_with_migration_notes";
@@ -321,10 +327,26 @@ const TEXT_EXTENSIONS = new Set([
   ".yaml",
   ".yml",
 ]);
+const TEXT_DOTFILES = new Set([".gitattributes", ".gitignore"]);
 
 function hasTextExtension(path: string): boolean {
   const match = path.match(/\.[^.\\/]+$/);
   return match ? TEXT_EXTENSIONS.has(match[0] ?? "") : false;
+}
+
+function isLikelyBinaryFile(path: string): boolean {
+  const sample = readFileSync(path).subarray(0, 4096);
+  return sample.includes(0);
+}
+
+function isTextCandidate(path: string, root: string): boolean {
+  if (hasTextExtension(path)) return true;
+  const rel = relative(root, path).replace(/\\/g, "/");
+  if (TEXT_DOTFILES.has(rel)) return true;
+  if (rel.startsWith("scripts/") && !rel.split("/").pop()?.includes(".")) {
+    return !isLikelyBinaryFile(path);
+  }
+  return false;
 }
 
 function countToken(text: string, token: IdentifierRenameToken): number {
@@ -359,6 +381,8 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
   if (
     path === "package.json" ||
     path === "bun.lock" ||
+    path === ".gitattributes" ||
+    path === ".gitignore" ||
     path.startsWith("scripts/") ||
     path.startsWith(".github/")
   ) {
@@ -378,7 +402,7 @@ function walkTextFiles(root: string): string[] {
         continue;
       }
       if (!entry.isFile()) continue;
-      if (!hasTextExtension(abs)) continue;
+      if (!isTextCandidate(abs, root)) continue;
       files.push(abs);
     }
   };
@@ -767,6 +791,27 @@ function buildRenameVerificationCommandMatrix(
         "none; renamed helix smoke is rehearsal evidence and does not authorize apply",
     },
     {
+      phase: "post-cutover-consumer-setup-smoke",
+      command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+      writePolicy: "no-write",
+      expected:
+        "emits the approved-after-cutover helix setup project dry-run smoke and current no-write proxy command for consumer bootstrap readiness",
+      evidence:
+        "identifier-rename-dist-smoke-dry-run.v1 postCutoverConsumerSetupPreview attached to cutover approval review",
+      source: "HELIX project setup command transition contract",
+      sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus:
+        "L3 HR-FR-P6-03 keeps ut-tdd setup project current and helix setup project future until PLAN-M-02 approval",
+      sourceStatusDelta:
+        "none; consumer setup command transition remains blocked pending cutover approval",
+      adoptionDecision: "adopt-post-cutover-helix-setup-smoke-as-cutover-review-material",
+      adoptionDecisionDelta:
+        "none; do not expose helix setup project as available before cutover approval",
+      workflowRouteImpact:
+        "none; missing consumer setup smoke routes cutover back to request_runbook_changes",
+    },
+    {
       phase: "legacy-alias-smoke",
       command: "bun run build && ./dist/ut-tdd doctor",
       writePolicy: "local-artifact-write",
@@ -839,7 +884,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       writePolicy: "no-write",
       evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
       passCriteria:
-        "current CLI, renamed CLI rehearsal, and alias disposition are all reviewed before cutover",
+        "current CLI, renamed CLI rehearsal, post-cutover consumer setup smoke, and alias disposition are all reviewed before cutover",
       rollbackCheck: "failed renamed CLI smoke keeps old command/state path active",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
@@ -1040,6 +1085,14 @@ export function buildIdentifierRenameDistSmokeDryRun(
       smokeCommandAfterApproval:
         "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor",
     },
+    postCutoverConsumerSetupPreview: {
+      commandAfterApproval:
+        "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json",
+      expected:
+        "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
+      evidencePath: ".ut-tdd/evidence/rename/post-cutover-consumer-setup-smoke.json",
+      currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json",
+    },
     legacyAliasPreview: {
       path: "dist/ut-tdd",
       dispositionRequired: "preserve_with_sunset_plan_or_remove_with_migration_notes",
@@ -1048,6 +1101,7 @@ export function buildIdentifierRenameDistSmokeDryRun(
       "cutover_decision_record approves the current cutoverSnapshot.snapshotId",
       "action_binding_approval_record scopes actor/tool/target/params for package/bin alias changes",
       "renamed dist/helix binary is built only in an approved cutover rehearsal branch or release job",
+      "post-cutover `helix setup project --dry-run --json` consumer bootstrap smoke is recorded before package/bin alias activation",
       "legacy ut-tdd alias disposition is recorded before package/bin alias activation",
     ],
   };

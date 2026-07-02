@@ -767,7 +767,7 @@ function requiredSupportingPacketSummary(command: string): {
       return {
         schemaVersion: "identifier-rename-cutover-plan.v1",
         matrixField: "verificationCommandMatrix",
-        expectedMatrixCount: 8,
+        expectedMatrixCount: 9,
         requiredReviewFields: [
           "cutoverSnapshot.snapshotId",
           "snapshotReview",

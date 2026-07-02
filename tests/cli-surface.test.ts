@@ -543,7 +543,7 @@ describe("L7 CLI surface closure", () => {
               command: "ut-tdd rename plan --json",
               schemaVersion: "identifier-rename-cutover-plan.v1",
               matrixField: "verificationCommandMatrix",
-              expectedMatrixCount: 8,
+              expectedMatrixCount: 9,
               requiredReviewFields: expect.arrayContaining(["cutoverSnapshot.snapshotId"]),
               requiredMatrixFields: expect.arrayContaining([
                 "sourceCheckedAt",
@@ -629,7 +629,7 @@ describe("L7 CLI surface closure", () => {
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=8",
+        "packet-summary: 2 ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=9",
       );
       expect(blockedText.stdout).toContain(
         "packet-summary: 2 ut-tdd action-binding approval-packet --json schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",

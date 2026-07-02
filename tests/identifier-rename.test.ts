@@ -194,6 +194,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       mkdirSync(join(root, "docs", "templates", "adapter"), { recursive: true });
       mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
       mkdirSync(join(root, ".codex"), { recursive: true });
+      mkdirSync(join(root, "scripts"), { recursive: true });
       writeFileSync(
         join(root, "src", "sample.ts"),
         [
@@ -203,6 +204,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         ].join("\n"),
       );
       writeFileSync(join(root, "tests", "sample.test.ts"), 'expect(".ut-tdd").toBeTruthy();\n');
+      writeFileSync(
+        join(root, "scripts", "ut-tdd"),
+        '#!/usr/bin/env bash\nexec bun run src/cli.ts "$@" # ut-tdd wrapper\n',
+      );
+      writeFileSync(join(root, ".gitignore"), ".ut-tdd/backups/\n");
       writeFileSync(
         join(root, "docs", "templates", "adapter", "AGENTS.md"),
         "Generated projects use ut-tdd until cutover.\n",
@@ -222,6 +228,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({ path: "src/sample.ts", category: "source_code" }),
           expect.objectContaining({ path: "tests/sample.test.ts", category: "test_code" }),
           expect.objectContaining({
+            path: "scripts/ut-tdd",
+            category: "distribution_surface",
+          }),
+          expect.objectContaining({
+            path: ".gitignore",
+            category: "distribution_surface",
+          }),
+          expect.objectContaining({
             path: "docs/templates/adapter/AGENTS.md",
             category: "consumer_template",
           }),
@@ -238,14 +252,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         "consumer_template",
         "runtime_state",
         "adapter_config",
+        "distribution_surface",
       ]) {
         expect(audit.hitsByCategory).toEqual(
-          expect.arrayContaining([
-            expect.objectContaining({ category, files: 1, hits: expect.any(Number) }),
-          ]),
+          expect.arrayContaining([expect.objectContaining({ category, hits: expect.any(Number) })]),
         );
         expect(
           audit.hitsByCategory.find((entry) => entry.category === category)?.hits,
+        ).toBeGreaterThan(0);
+        expect(
+          audit.hitsByCategory.find((entry) => entry.category === category)?.files,
         ).toBeGreaterThan(0);
       }
       expect(audit.requiredRecords).toEqual([
@@ -421,6 +437,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             workflowRouteImpact: expect.stringContaining("does not authorize apply"),
           }),
           expect.objectContaining({
+            phase: "post-cutover-consumer-setup-smoke",
+            command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+            writePolicy: "no-write",
+            expected: expect.stringContaining("helix setup project dry-run smoke"),
+            evidence: expect.stringContaining("postCutoverConsumerSetupPreview"),
+            source: "HELIX project setup command transition contract",
+            sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+            adoptionDecision: "adopt-post-cutover-helix-setup-smoke-as-cutover-review-material",
+            workflowRouteImpact: expect.stringContaining("request_runbook_changes"),
+          }),
+          expect.objectContaining({
             phase: "legacy-alias-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
             writePolicy: "local-artifact-write",
@@ -437,7 +464,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
         expect(row.workflowRouteImpact, row.phase).not.toBe("");
       }
-      expect(plan.verificationCommandMatrix).toHaveLength(8);
+      expect(plan.verificationCommandMatrix).toHaveLength(9);
       expect(identifierRenameVerificationCommandViolations(plan)).toEqual([]);
       expect(
         identifierRenameVerificationCommandViolations({
@@ -588,6 +615,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             id: "cutover-rb-05",
             command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+            passCriteria: expect.stringContaining("post-cutover consumer setup smoke"),
           }),
         ]),
       );
@@ -1115,6 +1143,9 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain(
         "verification-source: renamed-helix-dist-smoke source=PLAN-M-02 HELIX identifier rename runbook sourceUrl=docs/plans/PLAN-M-02-helix-identifier-rename.md checked=2026-07-02",
       );
+      expect(text.stdout).toContain(
+        "verification-source: post-cutover-consumer-setup-smoke source=HELIX project setup command transition contract sourceUrl=docs/design/helix/L3-requirements/pillar-functional-requirements.md checked=2026-07-02",
+      );
       expect(text.stdout).toContain("recordedCutover=-");
       expect(text.stdout).toContain("recordedActionBinding=-");
       expect(text.stdout).toContain("drift=no");
@@ -1193,10 +1224,19 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           smokeCommandAfterApproval:
             "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix doctor",
         },
+        postCutoverConsumerSetupPreview: {
+          commandAfterApproval:
+            "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json",
+          expected:
+            "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
+          evidencePath: ".ut-tdd/evidence/rename/post-cutover-consumer-setup-smoke.json",
+          currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json",
+        },
       });
       expect(distSmokePayload.blockedUntil).toEqual(
         expect.arrayContaining([
           expect.stringContaining("cutover_decision_record approves"),
+          expect.stringContaining("helix setup project --dry-run --json"),
           expect.stringContaining("legacy ut-tdd alias disposition"),
         ]),
       );
@@ -1222,6 +1262,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         renamedBinaryPreview: {
           path: "dist/helix",
           exists: false,
+        },
+        postCutoverConsumerSetupPreview: {
+          commandAfterApproval:
+            "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json",
+          currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json",
         },
       });
     } finally {
