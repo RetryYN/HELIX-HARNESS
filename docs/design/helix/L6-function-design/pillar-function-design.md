@@ -76,8 +76,12 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   source ledger の確認日、approval scope digest、rehearsal/provenance digest、reapproval trigger を
   `snapshotId` に混ぜる。`HEAD` が読めない場合は activation blocker とし、source ledger 見出しの確認日
   と PLAN record の `source_ledger_freshness` 確認日がずれた場合は readiness violation にする。
+  `activation_decision_record.activation_snapshot_id` は field 名だけでは足りず、current
+  `activationSnapshot.snapshotId` の concrete sha256 と一致しなければ blocker にする。
   外部 activation の cost guardrails (`pages_limit` / `workers_limit` / `d1_limit` / `kv_limit` /
   `exceed_action`) は単なる表示ではなく `activationReadinessChecks[]` の `pending_evidence` 判定対象にする。
+  cost guardrails と `activationReadinessChecks[]` は `activationSnapshot.evidenceDigest` に含め、
+  外部 limit / rehearsal evidence の drift を snapshot drift として扱う。
   `Version-up source ledger` は source 名だけで通さず、SemVer / GitHub / Cloudflare / HMAC / Access
   の期待 official URL と required field impact を source ごとに検査する。誤 URL や `cost_guardrails` /
   `external_rehearsal_plan` / `dry_run_plan` / `activation_dependency` などの impact 欠落は、
@@ -162,6 +166,9 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   full regression、completion frontier の command / expected / evidence / source / sourceUrl / sourceCheckedAt /
   latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を
   plan-only に列挙する。
+  version-up sibling の `reviewed_snapshot_binding` は repo HEAD と current package version を入力にした
+  current `activationSnapshot.snapshotId` と照合し、HEAD なしで生成された snapshot や別 HEAD の snapshot を
+  current approval evidence と誤認しない。
   GitHub Environments required reviewers / prevent self-review、NIST least privilege、VS Code Workspace Trust、
   OWASP WSTG、OWASP LLM06:2025 Excessive Agency の
   公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。

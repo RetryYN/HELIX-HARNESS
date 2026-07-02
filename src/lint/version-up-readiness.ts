@@ -1168,9 +1168,17 @@ export function buildVersionUpActivationPacket(
     sourceLedgerFreshness,
     reapprovalTriggers,
     repoHeadSha,
+    costGuardrails,
+    activationReadinessChecks,
   });
   const blockedReasons = [
-    ...blockedActivationReasons(plan, actionBindingApproval, externalBoundaries),
+    ...blockedActivationReasons({
+      plan,
+      activationDecision,
+      actionBindingApproval,
+      externalBoundaries,
+      currentActivationSnapshotId: activationSnapshot.snapshotId,
+    }),
     ...(repoHeadSha ? [] : ["activation snapshot is not bound to a readable git HEAD sha"]),
     ...activationReadinessBlockedReasons(activationReadinessChecks),
     ...sourceLedgerActivationBlockedReasons(sourceLedgerFreshness),
@@ -1486,6 +1494,8 @@ function buildVersionUpActivationSnapshot(input: {
   sourceLedgerFreshness: VersionUpSourceLedgerFreshness;
   reapprovalTriggers: VersionUpActivationReapprovalTrigger[];
   repoHeadSha: string | null;
+  costGuardrails: Record<string, string>;
+  activationReadinessChecks: VersionUpActivationReadinessCheck[];
 }): VersionUpActivationSnapshot {
   const releaseTrigger =
     input.activationDecision.target_version_or_release_trigger || input.plan.versionTarget || "";
@@ -1498,6 +1508,13 @@ function buildVersionUpActivationSnapshot(input: {
   });
   const evidenceDigest = sha256Json({
     external_rehearsal_plan: input.externalRehearsal,
+    cost_guardrails: input.costGuardrails,
+    activation_readiness_checks: input.activationReadinessChecks.map((check) => ({
+      check: check.check,
+      status: check.status,
+      evidence: check.evidence,
+      reason: check.reason,
+    })),
     activation_provenance_requirements: input.provenance,
     activation_verification_command_matrix: input.activationVerificationCommandMatrix,
     source_ledger_checked_date: input.sourceLedgerFreshness.checkedDate,
@@ -1988,16 +2005,29 @@ function sourceLedgerActivationBlockedReasons(freshness: VersionUpSourceLedgerFr
   return reasons;
 }
 
-function blockedActivationReasons(
-  plan: VersionUpReadinessPlan,
-  actionBindingApproval: Record<string, string>,
-  externalBoundaries: readonly string[],
-): string[] {
+function blockedActivationReasons(input: {
+  plan: VersionUpReadinessPlan;
+  activationDecision: Record<string, string>;
+  actionBindingApproval: Record<string, string>;
+  externalBoundaries: readonly string[];
+  currentActivationSnapshotId: string;
+}): string[] {
   const reasons: string[] = [];
+  const { plan, activationDecision, actionBindingApproval, externalBoundaries } = input;
   if (plan.versionTarget !== null) {
     reasons.push("plan remains version_target parked; activation decision has not been executed");
   } else {
     reasons.push("plan is not a version-up parked plan");
+  }
+  const activationSnapshotId = concreteSnapshotId(activationDecision.activation_snapshot_id ?? "");
+  if (!activationSnapshotId) {
+    reasons.push(
+      "activation_decision_record.activation_snapshot_id lacks concrete current activationSnapshot.snapshotId",
+    );
+  } else if (activationSnapshotId !== input.currentActivationSnapshotId) {
+    reasons.push(
+      "activation_decision_record.activation_snapshot_id does not match current activationSnapshot.snapshotId",
+    );
   }
   if ((actionBindingApproval.allowed_outcome ?? "").trim() !== "approve_action_binding") {
     reasons.push("missing concrete approve_action_binding outcome");
@@ -2014,6 +2044,10 @@ function blockedActivationReasons(
     );
   }
   return [...new Set(reasons)];
+}
+
+function concreteSnapshotId(value: string): string | null {
+  return value.match(/\bsha256:[a-f0-9]{64}\b/)?.[0] ?? null;
 }
 
 function mentions(value: string, needles: string[]): boolean {

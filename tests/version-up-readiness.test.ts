@@ -321,6 +321,7 @@ describe("version-up-readiness", () => {
     expect(packet.blockedReasons).toEqual(
       expect.arrayContaining([
         "plan remains version_target parked; activation decision has not been executed",
+        "activation_decision_record.activation_snapshot_id lacks concrete current activationSnapshot.snapshotId",
         "missing concrete approve_action_binding outcome",
       ]),
     );
@@ -1314,6 +1315,83 @@ describe("version-up-readiness", () => {
     expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
   });
 
+  it("checks activation_decision_record.activation_snapshot_id against the current activationSnapshot", () => {
+    const base = input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" });
+    const placeholderPacket = buildVersionUpActivationPackets(base)[0];
+    expect(placeholderPacket.blockedReasons).toContain(
+      "activation_decision_record.activation_snapshot_id lacks concrete current activationSnapshot.snapshotId",
+    );
+
+    const currentPlan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        "- activation_snapshot_id: activationSnapshot.snapshotId",
+        `- activation_snapshot_id: activationSnapshot.snapshotId ${placeholderPacket.activationSnapshot.snapshotId}`,
+      ),
+    };
+    const currentPacket = buildVersionUpActivationPackets(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        plans: [currentPlan],
+      }),
+    )[0];
+    expect(currentPacket.blockedReasons).not.toContain(
+      "activation_decision_record.activation_snapshot_id lacks concrete current activationSnapshot.snapshotId",
+    );
+    expect(currentPacket.blockedReasons).not.toContain(
+      "activation_decision_record.activation_snapshot_id does not match current activationSnapshot.snapshotId",
+    );
+
+    const stalePlan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        "- activation_snapshot_id: activationSnapshot.snapshotId",
+        "- activation_snapshot_id: activationSnapshot.snapshotId sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      ),
+    };
+    const stalePacket = buildVersionUpActivationPackets(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        plans: [stalePlan],
+      }),
+    )[0];
+    expect(stalePacket.blockedReasons).toContain(
+      "activation_decision_record.activation_snapshot_id does not match current activationSnapshot.snapshotId",
+    );
+  });
+
+  it("changes activationSnapshot when cost guardrail evidence changes", () => {
+    const first = buildVersionUpActivationPackets(
+      input({ repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }),
+    )[0];
+    const changedPlan = {
+      ...input().plans[0],
+      text: input().plans[0].text.replace(
+        "- workers_limit: Workers Free request budget must fit read API and Pages Functions usage",
+        "- workers_limit: Workers Free request budget changed after source ledger refresh",
+      ),
+    };
+    const second = buildVersionUpActivationPackets(
+      input({
+        repoHeadSha: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        plans: [changedPlan],
+      }),
+    )[0];
+
+    expect(second.costGuardrails).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          surface: "Cloudflare Workers",
+          freeLimit: "Workers Free request budget changed after source ledger refresh",
+        }),
+      ]),
+    );
+    expect(first.activationSnapshot.evidenceDigest).not.toBe(
+      second.activationSnapshot.evidenceDigest,
+    );
+    expect(first.activationSnapshot.snapshotId).not.toBe(second.activationSnapshot.snapshotId);
+  });
+
   it("blocks activation packets when the git HEAD sha is unavailable", () => {
     const packet = buildVersionUpActivationPackets(input({ repoHeadSha: null }))[0];
 
@@ -1420,6 +1498,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].blockedReasons).toEqual(
       expect.arrayContaining([
         "plan remains version_target parked; activation decision has not been executed",
+        "activation_decision_record.activation_snapshot_id lacks concrete current activationSnapshot.snapshotId",
         "missing concrete approve_action_binding outcome",
       ]),
     );

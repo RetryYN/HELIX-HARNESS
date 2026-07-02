@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
@@ -49,6 +50,8 @@ export interface ActionBindingApprovalReadinessInput {
   rightArmMd: string;
   outstandingTs: string;
   versionUpModeDoc?: string;
+  repoHeadSha?: string | null;
+  currentVersion?: string;
   currentCutoverSnapshotId?: string;
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: ActionBindingApprovalPlan[];
@@ -207,6 +210,8 @@ export function loadActionBindingApprovalReadinessInput(
       join(repoRoot, "docs", "process", "modes", "version-up.md"),
       "utf8",
     ),
+    repoHeadSha: readRepoHeadSha(repoRoot),
+    currentVersion: readPackageVersion(repoRoot) ?? undefined,
     currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: readdirSync(plansDir)
@@ -324,7 +329,11 @@ export function buildActionBindingApprovalPacket(
   plan: ActionBindingApprovalPlan,
   input: Pick<
     ActionBindingApprovalReadinessInput,
-    "versionUpModeDoc" | "currentCutoverSnapshotId" | "semanticFeatureFrontierRecords"
+    | "versionUpModeDoc"
+    | "repoHeadSha"
+    | "currentVersion"
+    | "currentCutoverSnapshotId"
+    | "semanticFeatureFrontierRecords"
   > = {},
 ): ActionBindingApprovalPacket {
   const approvalRecord = recordValues(plan.text, ACTION_BINDING_RECORD_NAME, [
@@ -813,7 +822,10 @@ function concreteSnapshotId(value: string): string | null {
 
 function expectedVersionUpActivationSnapshotId(
   plan: ActionBindingApprovalPlan,
-  input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc">,
+  input: Pick<
+    ActionBindingApprovalReadinessInput,
+    "versionUpModeDoc" | "repoHeadSha" | "currentVersion"
+  >,
 ): string | null {
   if (!requiresVersionUpSnapshot(plan) || !input.versionUpModeDoc) return null;
   return (
@@ -824,6 +836,8 @@ function expectedVersionUpActivationSnapshotId(
       modeCatalog: "",
       modeDoc: input.versionUpModeDoc,
       discoveryPlan: "",
+      currentVersion: input.currentVersion ?? undefined,
+      repoHeadSha: input.repoHeadSha ?? null,
       plans: [
         {
           file: plan.file,
@@ -847,12 +861,38 @@ function expectedCutoverSnapshotId(
 
 function actionBindingSnapshotExpectations(
   plan: ActionBindingApprovalPlan,
-  input: Pick<ActionBindingApprovalReadinessInput, "versionUpModeDoc" | "currentCutoverSnapshotId">,
+  input: Pick<
+    ActionBindingApprovalReadinessInput,
+    "versionUpModeDoc" | "repoHeadSha" | "currentVersion" | "currentCutoverSnapshotId"
+  >,
 ): ActionBindingSnapshotExpectations {
   return {
     versionUpSnapshotId: expectedVersionUpActivationSnapshotId(plan, input),
     cutoverSnapshotId: expectedCutoverSnapshotId(plan, input),
   };
+}
+
+function readRepoHeadSha(repoRoot: string): string | null {
+  try {
+    const head = execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    return /^[a-f0-9]{40}$/.test(head) ? head : null;
+  } catch {
+    return null;
+  }
+}
+
+function readPackageVersion(repoRoot: string): string | null {
+  try {
+    const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+      version?: unknown;
+    };
+    return typeof pkg.version === "string" && pkg.version.trim() ? pkg.version.trim() : null;
+  } catch {
+    return null;
+  }
 }
 
 function record(plan: ActionBindingApprovalPlan, field: string): string {

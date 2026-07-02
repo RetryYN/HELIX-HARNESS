@@ -54,6 +54,8 @@ const RECORD = [
 ].join("\n");
 
 const VERSION_UP_MODE_DOC = "Version-up source ledger (checked 2026-06-30)";
+const ACTION_BINDING_TEST_HEAD_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+const NEXT_ACTION_BINDING_TEST_HEAD_SHA = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
 
 function semanticRecord(
   planId: string,
@@ -108,7 +110,10 @@ function versionUpPlanWithSnapshot(snapshotId: string) {
   };
 }
 
-function currentVersionUpSnapshotId(plan = versionUpPlanWithSnapshot("sha256:0".padEnd(71, "0"))) {
+function currentVersionUpSnapshotId(
+  plan = versionUpPlanWithSnapshot("sha256:0".padEnd(71, "0")),
+  repoHeadSha: string | null = null,
+) {
   return buildVersionUpActivationPackets({
     charter: "",
     pillarRequirements: "",
@@ -116,6 +121,8 @@ function currentVersionUpSnapshotId(plan = versionUpPlanWithSnapshot("sha256:0".
     modeCatalog: "",
     modeDoc: VERSION_UP_MODE_DOC,
     discoveryPlan: "",
+    currentVersion: "0.1.0",
+    repoHeadSha,
     plans: [plan],
   })[0].activationSnapshot.snapshotId;
 }
@@ -728,6 +735,8 @@ describe("action-binding approval readiness", () => {
       rightArmMd: RIGHT_ARM,
       outstandingTs: OUTSTANDING,
       versionUpModeDoc: VERSION_UP_MODE_DOC,
+      repoHeadSha: ACTION_BINDING_TEST_HEAD_SHA,
+      currentVersion: "0.1.0",
       plans: [stalePlan],
     });
 
@@ -741,6 +750,8 @@ describe("action-binding approval readiness", () => {
       rightArmMd: RIGHT_ARM,
       outstandingTs: OUTSTANDING,
       versionUpModeDoc: VERSION_UP_MODE_DOC,
+      repoHeadSha: ACTION_BINDING_TEST_HEAD_SHA,
+      currentVersion: "0.1.0",
       plans: [stalePlan],
     })[0];
     expect(stalePacket.blockedReasons).toContain(
@@ -755,11 +766,35 @@ describe("action-binding approval readiness", () => {
       reason: "snapshot binding does not match current activationSnapshot.snapshotId",
     });
 
-    const currentPlan = versionUpPlanWithSnapshot(currentVersionUpSnapshotId(stalePlan));
+    const nullHeadSnapshot = currentVersionUpSnapshotId(stalePlan, null);
+    const nullHeadPlan = versionUpPlanWithSnapshot(nullHeadSnapshot);
+    const nullHeadPacket = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      versionUpModeDoc: VERSION_UP_MODE_DOC,
+      repoHeadSha: ACTION_BINDING_TEST_HEAD_SHA,
+      currentVersion: "0.1.0",
+      plans: [nullHeadPlan],
+    })[0];
+    expect(nullHeadPacket.blockedReasons).toContain(
+      "reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
+    );
+
+    const currentSnapshot = currentVersionUpSnapshotId(stalePlan, ACTION_BINDING_TEST_HEAD_SHA);
+    const changedHeadSnapshot = currentVersionUpSnapshotId(
+      stalePlan,
+      NEXT_ACTION_BINDING_TEST_HEAD_SHA,
+    );
+    expect(currentSnapshot).not.toBe(nullHeadSnapshot);
+    expect(currentSnapshot).not.toBe(changedHeadSnapshot);
+
+    const currentPlan = versionUpPlanWithSnapshot(currentSnapshot);
     const currentPacket = buildActionBindingApprovalPackets({
       rightArmMd: RIGHT_ARM,
       outstandingTs: OUTSTANDING,
       versionUpModeDoc: VERSION_UP_MODE_DOC,
+      repoHeadSha: ACTION_BINDING_TEST_HEAD_SHA,
+      currentVersion: "0.1.0",
       plans: [currentPlan],
     })[0];
     expect(
