@@ -102,8 +102,11 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `verificationCommand` を持ち、Step 1 blast-radius baseline 凍結時にどの file surface を確認するかを
   reviewer が追える形にする。`verificationCommandMatrix[]` は baseline / targeted regression / static gates /
   state+doctor / full regression / compiled dist smoke を plan-only に列挙し、承認前の dry-run evidence を
-  自由文だけにしない。各 row は source / sourceUrl を持ち、L14 cutover source ledger、ADR-001 配布判断、
-  doctor/state projection、full regression policy へ直接接続する。
+  自由文だけにしない。各 row は source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
+  adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持ち、L14 cutover source ledger、ADR-001 配布判断、
+  doctor/state projection、full regression policy へ直接接続する。GitHub Actions concurrency / Google SRE /
+  SLSA provenance / OWASP LLM06 の公式 source は確認日と採用判断を持ち、source 名や URL だけの
+  irreversible cutover review にしない。
 - HC-P6 `runHelixProjectSetup` の `commandAvailability.currentCommandAvailable` は固定 `true` ではなく
   `consumerReadiness` の `ut-tdd-cli` check と同じ真偽を返す。text surface は `postSetupWorkflow.nextActions` /
   `blockedUntil` / `verificationCommands` を列挙し、JSON を見ない利用者にも次 action を欠落させない。

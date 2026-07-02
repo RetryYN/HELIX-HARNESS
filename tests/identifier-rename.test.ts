@@ -382,26 +382,46 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             phase: "baseline",
             command: "bun run src/cli.ts rename audit --json",
             sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
+            sourceCheckedAt: "2026-06-30",
+            latestOfficialStatus: expect.stringContaining("NIST SSDF"),
+            sourceStatusDelta: expect.stringContaining("90-day freshness"),
+            adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
+            adoptionDecisionDelta: expect.stringContaining("approval-gated"),
+            workflowRouteImpact: expect.stringContaining("request_runbook_changes"),
           }),
           expect.objectContaining({
             phase: "targeted-regression",
             command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+            sourceCheckedAt: "2026-07-02",
+            adoptionDecision: "adopt-targeted-regression-before-cutover-approval-review",
           }),
           expect.objectContaining({
             phase: "current-dist-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
             sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+            sourceStatusDelta: expect.stringContaining("pre-cutover baseline"),
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
             command: "bun run build && ./dist/helix doctor",
+            adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
+            workflowRouteImpact: expect.stringContaining("does not authorize apply"),
           }),
           expect.objectContaining({
             phase: "legacy-alias-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
+            adoptionDecision: expect.stringContaining("legacy-alias-smoke"),
           }),
         ]),
       );
+      for (const row of plan.verificationCommandMatrix) {
+        expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(row.latestOfficialStatus, row.phase).not.toBe("");
+        expect(row.sourceStatusDelta, row.phase).not.toBe("");
+        expect(row.adoptionDecision, row.phase).not.toBe("");
+        expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
+        expect(row.workflowRouteImpact, row.phase).not.toBe("");
+      }
       expect(plan.verificationCommandMatrix).toHaveLength(8);
       expect(plan.sourceLedgerFreshness).toEqual({
         ledgerLabel: "Cutover source ledger",
@@ -689,10 +709,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             phase: "full-regression",
             command: "bun run test",
+            sourceCheckedAt: "2026-07-02",
+            adoptionDecision: "adopt-full-regression-before-irreversible-cutover",
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
             command: "bun run build && ./dist/helix doctor",
+            adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
           }),
         ]),
       );
@@ -726,13 +749,20 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("runbook=");
       expect(text.stdout).toContain("verification-commands=");
       expect(text.stdout).toContain(
-        "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md",
+        "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md checked=2026-06-30",
+      );
+      expect(text.stdout).toContain("adoption=adopt-cutover-source-ledger-for-l14-approval-review");
+      expect(text.stdout).toContain(
+        "statusDelta=none; ledger remains inside the 90-day freshness window",
       );
       expect(text.stdout).toContain(
-        "verification-source: current-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+        "routeImpact=none; stale or incomplete source ledger routes cutover back",
       );
       expect(text.stdout).toContain(
-        "verification-source: renamed-helix-dist-smoke source=PLAN-M-02 HELIX identifier rename runbook sourceUrl=docs/plans/PLAN-M-02-helix-identifier-rename.md",
+        "verification-source: current-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md checked=2026-07-02",
+      );
+      expect(text.stdout).toContain(
+        "verification-source: renamed-helix-dist-smoke source=PLAN-M-02 HELIX identifier rename runbook sourceUrl=docs/plans/PLAN-M-02-helix-identifier-rename.md checked=2026-07-02",
       );
       expect(text.stdout).toContain("recordedCutover=-");
       expect(text.stdout).toContain("recordedActionBinding=-");

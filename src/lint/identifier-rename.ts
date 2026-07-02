@@ -115,6 +115,12 @@ export interface IdentifierRenameCutoverPlan {
     evidence: string;
     source: string;
     sourceUrl: string;
+    sourceCheckedAt: string;
+    latestOfficialStatus: string;
+    sourceStatusDelta: string;
+    adoptionDecision: string;
+    adoptionDecisionDelta: string;
+    workflowRouteImpact: string;
   }>;
   rollbackPlan: string[];
   monitoringPlan: string[];
@@ -557,6 +563,14 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "rename audit JSON attached to cutover approval record",
       source: "HELIX identifier cutover source ledger",
       sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
+      sourceCheckedAt: "2026-06-30",
+      latestOfficialStatus:
+        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency, Google SRE, OWASP LLM06, and SLSA provenance rows",
+      sourceStatusDelta: "none; ledger remains inside the 90-day freshness window",
+      adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
+      adoptionDecisionDelta: "none; keep irreversible cutover approval-gated and plan-only",
+      workflowRouteImpact:
+        "none; stale or incomplete source ledger routes cutover back to request_runbook_changes",
     },
     {
       phase: "targeted-regression",
@@ -567,6 +581,12 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       source: "HELIX L14 cutover regression oracle",
       sourceUrl:
         "docs/test-design/harness/L7-unit-test-design.md#decision-record-and-completion-frontier",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local L14 cutover regression oracle current at HEAD",
+      sourceStatusDelta: "none; regression oracle remains the cutover packet safety net",
+      adoptionDecision: "adopt-targeted-regression-before-cutover-approval-review",
+      adoptionDecisionDelta: "none; keep targeted regression before any irreversible apply",
+      workflowRouteImpact: "none; regression failure routes back to L7 repair",
     },
     {
       phase: "static-gates",
@@ -575,6 +595,12 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
       sourceUrl: "AGENTS.md#test-rules",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "repository AGENTS test rules current at HEAD",
+      sourceStatusDelta: "none; static gate policy reviewed against current HEAD",
+      adoptionDecision: "adopt-static-gates-before-cutover-approval-review",
+      adoptionDecisionDelta: "none; keep static gates before irreversible cutover review",
+      workflowRouteImpact: "none; static failure routes back to implementation repair",
     },
     {
       phase: "state-and-doctor",
@@ -583,6 +609,12 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "db rebuild and doctor output",
       source: "HELIX state projection and doctor gate",
       sourceUrl: "docs/adr/ADR-007-harness-db-sqlite-projection.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX state projection contract current at HEAD",
+      sourceStatusDelta: "none; state projection contract reviewed against current HEAD",
+      adoptionDecision: "adopt-db-rebuild-and-doctor-before-cutover-approval-review",
+      adoptionDecisionDelta: "none; keep db rebuild and doctor as cutover approval gates",
+      workflowRouteImpact: "none; doctor failure routes back to cutover packet repair",
     },
     {
       phase: "full-regression",
@@ -591,6 +623,12 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "full vitest output",
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "local HELIX full regression policy current at HEAD",
+      sourceStatusDelta: "none; full regression policy reviewed against current HEAD",
+      adoptionDecision: "adopt-full-regression-before-irreversible-cutover",
+      adoptionDecisionDelta: "none; keep full regression as irreversible cutover blocker",
+      workflowRouteImpact: "none; full regression failure blocks cutover approval review",
     },
     {
       phase: "current-dist-smoke",
@@ -599,6 +637,12 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "build output and current compiled doctor smoke",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "ADR-001 TypeScript/Bun distribution decision remains current at HEAD",
+      sourceStatusDelta: "none; current ut-tdd binary remains the pre-cutover baseline",
+      adoptionDecision: "adopt-current-dist-smoke-as-pre-cutover-baseline",
+      adoptionDecisionDelta: "none; keep current CLI smoke before alias changes",
+      workflowRouteImpact: "none; current dist smoke failure blocks cutover approval review",
     },
     {
       phase: "renamed-helix-dist-smoke",
@@ -608,6 +652,13 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "renamed compiled doctor smoke captured in cutover dry-run evidence",
       source: "PLAN-M-02 HELIX identifier rename runbook",
       sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "PLAN-M-02 rename runbook remains draft approval material at HEAD",
+      sourceStatusDelta: "none; helix binary target remains blocked pending cutover approval",
+      adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
+      adoptionDecisionDelta: "none; do not enable package/bin alias before approval",
+      workflowRouteImpact:
+        "none; renamed helix smoke is rehearsal evidence and does not authorize apply",
     },
     {
       phase: "legacy-alias-smoke",
@@ -617,6 +668,12 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
       evidence: "legacy alias smoke or no-alias disposition recorded in audit_record",
       source: "PLAN-M-02 legacy alias policy",
       sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+      sourceCheckedAt: "2026-07-02",
+      latestOfficialStatus: "PLAN-M-02 legacy alias policy remains approval-gated at HEAD",
+      sourceStatusDelta: "none; legacy ut-tdd alias disposition is still pending cutover decision",
+      adoptionDecision: "adopt-legacy-alias-smoke-or-explicit-no-alias-disposition-before-cutover",
+      adoptionDecisionDelta: "none; keep compatibility policy review before irreversible rename",
+      workflowRouteImpact: "none; alias smoke/disposition absence blocks cutover approval review",
     },
   ];
 }

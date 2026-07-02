@@ -164,12 +164,17 @@ command, evidence path, pass criteria, rollback check, and source citation. `sta
 target pattern, checksum requirement, restore drill requirement, and restore evidence path for harness.db, memory, state,
 logs, handover, provider handover pointer, approval policy, and repo-local hook configs.
 
-`verificationCommandMatrix[]` must separate current `ut-tdd` dist smoke, renamed `helix` dist smoke, and legacy alias
-smoke instead of hiding them under one compiled smoke row. `cutoverSnapshot.snapshotId` binds the current blast-radius
-digest, approval scope digest, source-ledger/runbook/backup/provenance/monitoring evidence digest, and freeze-policy
-reapproval triggers. This snapshot does not authorize apply; it lets PO/TL compare the approval evidence with the current
-rename packet and reject stale approvals when HEAD, hit set, source ledger, scope, dry-run, backup, rollback, provenance,
-monitoring, dist smoke, or quiet-window evidence changes.
+`verificationCommandMatrix[]` は、現行 `ut-tdd` dist smoke、改名後 `helix` dist smoke、legacy alias smoke を
+1 つの compiled smoke row に隠さず分離する。各 row は command / expected / evidence / source /
+sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta /
+workflowRouteImpact を持ち、L14 review が source 名や URL だけの evidence に退行しないようにする。
+GitHub Actions concurrency、Google SRE release engineering、SLSA provenance、OWASP LLM06 の公式 source は、
+この matrix metadata 用に 2026-07-02 に再確認済みであり、ledger heading は source-ledger freshness の
+anchor として残す。`cutoverSnapshot.snapshotId` は current blast-radius digest、approval scope digest、
+source-ledger/runbook/backup/provenance/monitoring evidence digest、freeze-policy reapproval trigger を束ねる。
+この snapshot は apply を許可しない。PO/TL が approval evidence と current rename packet を比較し、HEAD、
+hit set、source ledger、scope、dry-run、backup、rollback、provenance、monitoring、dist smoke、quiet-window
+evidence が変わった stale approval を拒否するための binding である。
 
 Whole-program completion readiness: `ut-tdd status --json` の
 `outstanding.completionReadiness.ok` が `false` の間は、G8-G14 個別証跡や
