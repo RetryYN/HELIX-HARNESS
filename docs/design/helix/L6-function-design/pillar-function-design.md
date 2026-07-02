@@ -107,7 +107,7 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `verificationCommand` を持ち、Step 1 blast-radius baseline 凍結時にどの file surface を確認するかを
   reviewer が追える形にする。`verificationCommandMatrix[]` は baseline / targeted regression / static gates /
   state+doctor / full regression / compiled dist smoke を plan-only に列挙し、承認前の dry-run evidence を
-  自由文だけにしない。各 row は source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
+  自由文だけにしない。各 row は command / writePolicy / source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta /
   adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持ち、L14 cutover source ledger、ADR-001 配布判断、
   doctor/state projection、full regression policy へ直接接続する。GitHub Actions concurrency / Google SRE /
   SLSA provenance / OWASP LLM06 の公式 source は確認日と採用判断を持ち、source 名や URL だけの
@@ -144,6 +144,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `no-write` / `state-write` / `local-artifact-write` で明示する。`no-write` row に build、DB rebuild、
   file output などの local state/artifact write が混入したら fail-close し、未実装の
   `ut-tdd rename ...` サブコマンドや存在しない `./dist/helix` smoke を証跡経路として出さない。
+  `verificationCommandMatrix[]` も同じ write policy を持ち、current / legacy dist smoke の build は
+  `local-artifact-write`、DB rebuild は `state-write`、packet-only rehearsal は `no-write` として doctor が検査する。
   `ut-tdd rename rehearsal --no-write --target helix --json` と
   `ut-tdd rename state-backup --dry-run --restore-drill --json` と
   `ut-tdd rename dist-smoke --no-write --target helix --json` は packet-only で、

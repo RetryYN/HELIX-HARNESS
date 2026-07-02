@@ -8,6 +8,7 @@ import {
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
   identifierRenameRunbookCommandViolations,
+  identifierRenameVerificationCommandViolations,
 } from "../src/lint/identifier-rename";
 
 const repoRoot = process.cwd();
@@ -387,6 +388,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             phase: "baseline",
             command: "bun run src/cli.ts rename audit --json",
+            writePolicy: "no-write",
             sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
             sourceCheckedAt: "2026-06-30",
             latestOfficialStatus: expect.stringContaining("NIST SSDF"),
@@ -398,30 +400,35 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             phase: "targeted-regression",
             command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+            writePolicy: "no-write",
             sourceCheckedAt: "2026-07-02",
             adoptionDecision: "adopt-targeted-regression-before-cutover-approval-review",
           }),
           expect.objectContaining({
             phase: "current-dist-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
+            writePolicy: "local-artifact-write",
             sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
             sourceStatusDelta: expect.stringContaining("pre-cutover baseline"),
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
             command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+            writePolicy: "no-write",
             adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
             workflowRouteImpact: expect.stringContaining("does not authorize apply"),
           }),
           expect.objectContaining({
             phase: "legacy-alias-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
+            writePolicy: "local-artifact-write",
             adoptionDecision: expect.stringContaining("legacy-alias-smoke"),
           }),
         ]),
       );
       for (const row of plan.verificationCommandMatrix) {
         expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(row.writePolicy, row.phase).toMatch(/^(no-write|state-write|local-artifact-write)$/);
         expect(row.latestOfficialStatus, row.phase).not.toBe("");
         expect(row.sourceStatusDelta, row.phase).not.toBe("");
         expect(row.adoptionDecision, row.phase).not.toBe("");
@@ -429,6 +436,50 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect(row.workflowRouteImpact, row.phase).not.toBe("");
       }
       expect(plan.verificationCommandMatrix).toHaveLength(8);
+      expect(identifierRenameVerificationCommandViolations(plan)).toEqual([]);
+      expect(
+        identifierRenameVerificationCommandViolations({
+          verificationCommandMatrix: plan.verificationCommandMatrix.map((row) =>
+            row.phase === "renamed-helix-dist-smoke"
+              ? { ...row, command: "bun run build && ./dist/ut-tdd doctor" }
+              : row,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "renamed-helix-dist-smoke",
+          reason:
+            "verificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run build && ./dist/ut-tdd doctor",
+        },
+        {
+          subject: "renamed-helix-dist-smoke",
+          reason:
+            "verificationCommandMatrix no-write command may write local state or artifacts: bun run build && ./dist/ut-tdd doctor",
+        },
+      ]);
+      expect(
+        identifierRenameVerificationCommandViolations({
+          verificationCommandMatrix: plan.verificationCommandMatrix.map((row) =>
+            row.phase === "current-dist-smoke"
+              ? {
+                  ...row,
+                  command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+                }
+              : row,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "current-dist-smoke",
+          reason:
+            "verificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+        },
+        {
+          subject: "current-dist-smoke",
+          reason:
+            "verificationCommandMatrix local-artifact-write command must be explicit about local artifact output: bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+        },
+      ]);
       expect(plan.recordTemplates).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -775,12 +826,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             phase: "full-regression",
             command: "bun run test",
+            writePolicy: "no-write",
             sourceCheckedAt: "2026-07-02",
             adoptionDecision: "adopt-full-regression-before-irreversible-cutover",
           }),
           expect.objectContaining({
             phase: "renamed-helix-dist-smoke",
             command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+            writePolicy: "no-write",
             adoptionDecision: "adopt-renamed-helix-dist-smoke-as-cutover-rehearsal-only",
           }),
         ]),

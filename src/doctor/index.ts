@@ -139,6 +139,7 @@ import { checkGreenCommandDigests } from "../lint/green-command-digest";
 import {
   buildIdentifierRenameCutoverPlan,
   identifierRenameRunbookCommandViolations,
+  identifierRenameVerificationCommandViolations,
 } from "../lint/identifier-rename";
 import {
   analyzeImplPlanTrace,
@@ -2396,6 +2397,7 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
       recordTemplates: renamePlan.recordTemplates,
     });
     const runbookCommandViolations = identifierRenameRunbookCommandViolations(renamePlan);
+    const verificationCommandViolations = identifierRenameVerificationCommandViolations(renamePlan);
     return {
       messages: [
         ...cutoverReadinessMessages(r),
@@ -2405,8 +2407,15 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
         ...runbookCommandViolations.map(
           (violation) => `cutover-readiness - violation: ${violation.subject}: ${violation.reason}`,
         ),
+        ...verificationCommandViolations.map(
+          (violation) => `cutover-readiness - violation: ${violation.subject}: ${violation.reason}`,
+        ),
       ],
-      ok: r.ok && templateViolations.length === 0 && runbookCommandViolations.length === 0,
+      ok:
+        r.ok &&
+        templateViolations.length === 0 &&
+        runbookCommandViolations.length === 0 &&
+        verificationCommandViolations.length === 0,
     };
   } catch {
     return {

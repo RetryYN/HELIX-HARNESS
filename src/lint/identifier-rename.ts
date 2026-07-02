@@ -119,6 +119,7 @@ export interface IdentifierRenameCutoverPlan {
   verificationCommandMatrix: Array<{
     phase: string;
     command: string;
+    writePolicy: "no-write" | "local-artifact-write" | "state-write";
     expected: string;
     evidence: string;
     source: string;
@@ -260,6 +261,11 @@ export interface IdentifierRenameSnapshotReview {
 }
 
 export interface IdentifierRenameRunbookCommandViolation {
+  subject: string;
+  reason: string;
+}
+
+export interface IdentifierRenameVerificationCommandViolation {
   subject: string;
   reason: string;
 }
@@ -636,6 +642,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "baseline",
       command: "bun run src/cli.ts rename audit --json",
+      writePolicy: "no-write",
       expected: "captures token/file/category/sample-path blast-radius at frozen HEAD",
       evidence: "rename audit JSON attached to cutover approval record",
       source: "HELIX identifier cutover source ledger",
@@ -652,6 +659,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "targeted-regression",
       command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+      writePolicy: "no-write",
       expected:
         "rename packet, approval, snapshot, category checklist, and cutover readiness regressions stay green",
       evidence: "targeted vitest output",
@@ -668,6 +676,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "static-gates",
       command: "bun run lint && bun run typecheck && git diff --check",
+      writePolicy: "no-write",
       expected: "format, type, and whitespace gates pass before cutover approval",
       evidence: "lint/typecheck/diff-check command output",
       source: "HELIX repository static gate policy",
@@ -682,6 +691,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "state-and-doctor",
       command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+      writePolicy: "state-write",
       expected: "state projection rebuild and workflow gates pass against the renamed rehearsal",
       evidence: "db rebuild and doctor output",
       source: "HELIX state projection and doctor gate",
@@ -696,6 +706,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "full-regression",
       command: "bun run test",
+      writePolicy: "no-write",
       expected: "full repository regression suite passes before irreversible cutover",
       evidence: "full vitest output",
       source: "HELIX full regression policy",
@@ -710,6 +721,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "current-dist-smoke",
       command: "bun run build && ./dist/ut-tdd doctor",
+      writePolicy: "local-artifact-write",
       expected: "current compiled ut-tdd CLI remains runnable before rename cutover approval",
       evidence: "build output and current compiled doctor smoke",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
@@ -724,6 +736,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "renamed-helix-dist-smoke",
       command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+      writePolicy: "no-write",
       expected:
         "renamed compiled helix CLI smoke requirements are emitted as a no-write packet before alias enablement",
       evidence: "identifier-rename-dist-smoke-dry-run.v1 attached to cutover approval review",
@@ -740,6 +753,7 @@ function buildRenameVerificationCommandMatrix(): IdentifierRenameCutoverPlan["ve
     {
       phase: "legacy-alias-smoke",
       command: "bun run build && ./dist/ut-tdd doctor",
+      writePolicy: "local-artifact-write",
       expected:
         "legacy ut-tdd alias behavior is either intentionally preserved with a sunset plan or explicitly absent with migration notes",
       evidence: "legacy alias smoke or no-alias disposition recorded in audit_record",
@@ -1055,6 +1069,58 @@ export function identifierRenameRunbookCommandViolations(
       violations.push({
         subject: step.id,
         reason: `cutoverRunbook state-write command must be explicit about state rebuild: ${step.command}`,
+      });
+    }
+    return violations;
+  });
+}
+
+export function identifierRenameVerificationCommandViolations(
+  plan: Pick<IdentifierRenameCutoverPlan, "verificationCommandMatrix">,
+): IdentifierRenameVerificationCommandViolation[] {
+  const allowedNoWriteCommands = new Set([
+    "bun run src/cli.ts rename audit --json",
+    "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
+    "bun run lint && bun run typecheck && git diff --check",
+    "bun run test",
+    "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+  ]);
+  const allowedStateWriteCommands = new Set([
+    "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
+  ]);
+  const allowedLocalArtifactWriteCommands = new Set(["bun run build && ./dist/ut-tdd doctor"]);
+  return plan.verificationCommandMatrix.flatMap((row) => {
+    const violations: IdentifierRenameVerificationCommandViolation[] = [];
+    const allowedForPolicy =
+      (row.writePolicy === "no-write" && allowedNoWriteCommands.has(row.command)) ||
+      (row.writePolicy === "state-write" && allowedStateWriteCommands.has(row.command)) ||
+      (row.writePolicy === "local-artifact-write" &&
+        allowedLocalArtifactWriteCommands.has(row.command));
+    if (!allowedForPolicy) {
+      violations.push({
+        subject: row.phase,
+        reason: `verificationCommandMatrix command is not an executable approved surface for its writePolicy: ${row.command}`,
+      });
+    }
+    if (row.writePolicy === "no-write" && commandWritesLocalStateOrArtifacts(row.command)) {
+      violations.push({
+        subject: row.phase,
+        reason: `verificationCommandMatrix no-write command may write local state or artifacts: ${row.command}`,
+      });
+    }
+    if (row.writePolicy === "state-write" && !row.command.includes("db rebuild")) {
+      violations.push({
+        subject: row.phase,
+        reason: `verificationCommandMatrix state-write command must be explicit about state rebuild: ${row.command}`,
+      });
+    }
+    if (
+      row.writePolicy === "local-artifact-write" &&
+      !commandWritesLocalStateOrArtifacts(row.command)
+    ) {
+      violations.push({
+        subject: row.phase,
+        reason: `verificationCommandMatrix local-artifact-write command must be explicit about local artifact output: ${row.command}`,
       });
     }
     return violations;
