@@ -18,7 +18,7 @@
 - LLM / agentic workflow の自律実行は、OWASP LLM06:2025 Excessive Agency のリスクモデルに従い、人間承認・権限境界・不可逆操作の gate evidence が無い限り completion evidence にしない。
 - 外部基準の参照元: NIST SSDF SP 800-218 (<https://csrc.nist.gov/pubs/sp/800/218/final>、Rev. 1 IPD は <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> で追跡) / Scrum Guide 2020 (<https://scrumguides.org/scrum-guide.html>) / ISTQB Glossary (<https://glossary.istqb.org/>) / OWASP LLM06:2025 Excessive Agency (<https://genai.owasp.org/llmrisk/llm062025-excessive-agency/>) / NASA Systems Engineering Handbook Appendix (<https://www.nasa.gov/reference/system-engineering-handbook-appendix/>) / W3C WCAG 2.2 (<https://www.w3.org/TR/WCAG22/>) / Playwright Test (<https://playwright.dev/docs/intro>、visual comparisons は <https://playwright.dev/docs/test-snapshots>、accessibility testing は <https://playwright.dev/docs/accessibility-testing>) / GitHub Environments required reviewers (<https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>) / VS Code Webview Security (<https://code.visualstudio.com/api/extension-guides/webview#security>) / Google SRE Release Engineering (<https://sre.google/sre-book/release-engineering/>)
 
-### Verification source ledger (checked 2026-07-01)
+### Verification source ledger (checked 2026-07-02)
 
 | source | official URL | adopted version/date | latest official status | adoption decision | verification use | gate impact |
 |--------|--------------|----------------------|------------------------|-------------------|------------------|-------------|
@@ -44,10 +44,10 @@ verification use が噛み合わなくなった場合は、ledger refresh では
 
 Source ledger 意味レビュー証跡:
 
-- `source_ledger_freshness`: checked 2026-07-01、90 日鮮度 window 内。
-- `source_status_delta`: 2026-07-01 none。公式 source status/version/date の各 row は表の採用・追跡判断どおり。
-- `adoption_decision_delta`: 2026-07-01 none。右腕 evidence 用の adoption decision に変更なし。
-- `workflow_route_impact`: 2026-07-01 none。G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。
+- `source_ledger_freshness`: checked 2026-07-02、90 日鮮度 window 内。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering を公式 URL で再確認。
+- `source_status_delta`: 2026-07-02 none。NIST SSDF SP 800-218 final 1.1 と Rev. 1 IPD v1.2、Scrum Guide 2020、ISTQB Glossary、OWASP LLM06:2025 Excessive Agency、NASA Systems Engineering Handbook Appendix、W3C WCAG 2.2、Playwright Test、GitHub Environments required reviewers、VS Code Webview Security、Google SRE Release Engineering の status/version/date は表の採用・追跡判断どおり。
+- `adoption_decision_delta`: 2026-07-02 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の右腕 evidence 用 adoption decision に変更なし。
+- `workflow_route_impact`: 2026-07-02 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。
 
 > **正規式モデル: 右腕 = データ実在性エスカレーション (PLAN-RECOVERY-02、2026-06-04 PO 確定、非破壊)**: 右腕は使うデータ・環境の実在性が段階的に上がる検証の上昇。**合成/テストデータ (L8 結合 ⇔ L5 / L9 総合 ⇔ L4)** → **本番実データ (L10 実データ検証 ⇔ L2 画面 / L12 本番受入 ⇔ L3 要件)** → **L14 運用 (実データ×時間 ⇔ L1 要求)** → **L0 価値検証 (実成果)**。各層の検証本質 = L8 結合 / L9 総合 / L10 実データ検証 (画面を本番実データで) / L12 本番受入 (要件を本番で満たすか) / L14 運用。**L14 の「次サイクル L0 企画へ feedback」が L0 企画の価値検証ペア**を成し V の頂点を閉じる (従来 L0 はペア無しだった穴埋め)。番号・既存ペアは据え置き (overview §4 / concept §2.3 正規式表)。
 

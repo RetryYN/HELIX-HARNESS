@@ -128,6 +128,11 @@ describe("verification profile recommendation", () => {
     expect(result.coverage.gates.G8).toEqual(expect.arrayContaining(["msw", "testcontainers"]));
     expect(result.coverage.gates.G10).toEqual(["playwright-mcp", "vitest-browser-playwright"]);
     expect(result.coverage.gates.G14).toEqual(["doctor", "github-mcp-readonly"]);
+    expect(mustProfile("playwright-mcp").sourceLedgerSources).toEqual([
+      "Playwright Test",
+      "W3C WCAG 2.2",
+    ]);
+    expect(mustProfile("playwright-mcp").sourceLedgerCheckedAt).toBe("2026-07-02");
     for (const drive of ["agent", "fe", "fullstack"] as const) {
       expect(result.coverage.drives[drive].l10Requirement).toBe("always");
       expect(result.coverage.drives[drive].g10Profiles).toEqual([
@@ -137,6 +142,54 @@ describe("verification profile recommendation", () => {
     }
     expect(result.coverage.drives.be.l10Requirement).toBe("ui_only");
     expect(result.coverage.drives.db.l10Requirement).toBe("ui_only");
+  });
+
+  it("U-MCPPROFILE-018: fails right-arm profiles detached from the verification source ledger", () => {
+    const profiles = listVerificationProfiles().map((profile) =>
+      profile.id === "playwright-mcp"
+        ? {
+            ...profile,
+            sourceLedgerSources: [],
+          }
+        : profile.id === "github-mcp-readonly"
+          ? {
+              ...profile,
+              sourceLedgerCheckedAt: "2026-01-01",
+            }
+          : profile.id === "msw"
+            ? {
+                ...profile,
+                sourceLedgerSources: ["W3C WCAG 2.2"],
+              }
+            : profile,
+    );
+    const result = analyzeRightArmVerificationProfileCoverage(profiles);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "missing-source-ledger-binding",
+          profileId: "playwright-mcp",
+        }),
+        expect.objectContaining({
+          code: "stale-source-ledger-binding",
+          profileId: "github-mcp-readonly",
+        }),
+        expect.objectContaining({
+          code: "source-ledger-gate-mismatch",
+          profileId: "msw",
+          message:
+            "msw recommends G8 but its Verification source ledger bindings do not cover that gate",
+        }),
+        expect.objectContaining({
+          code: "source-ledger-gate-mismatch",
+          profileId: "msw",
+          message:
+            "msw recommends G12 but its Verification source ledger bindings do not cover that gate",
+        }),
+      ]),
+    );
   });
 
   it("U-MCPPROFILE-016: fails closed when always-L10 drives lose their G10 browser profile mapping", () => {

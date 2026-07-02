@@ -175,6 +175,34 @@ describe("right-arm verification strategy", () => {
     );
   });
 
+  it("fails source ledger meaning reviews that do not name the rechecked official sources", () => {
+    const rightArm = text("docs/process/forward/L08-L14-verification-phase.md");
+    const genericMeaningReview = rightArm.replace(
+      /- `source_ledger_freshness`:[\s\S]*?- `workflow_route_impact`: [^\n]+/,
+      [
+        "- `source_ledger_freshness`: checked 2026-07-02、90 日鮮度 window 内。",
+        "- `source_status_delta`: 2026-07-02 none。公式 source status/version/date の各 row は表の採用・追跡判断どおり。",
+        "- `adoption_decision_delta`: 2026-07-02 none。右腕 evidence 用の adoption decision に変更なし。",
+        "- `workflow_route_impact`: 2026-07-02 none。G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
+      ].join("\n"),
+    );
+    expect(genericMeaningReview).not.toBe(rightArm);
+
+    const result = analyzeRightArmVerificationStrategy({
+      gatesMd: text("docs/process/gates.md"),
+      rightArmMd: genericMeaningReview,
+      now: "2026-07-02T00:00:00.000Z",
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toEqual(
+      expect.arrayContaining([
+        "Verification source ledger meaning review missing source coverage: NIST SSDF SP 800-218",
+        "Verification source ledger meaning review missing source coverage: Google SRE Release Engineering",
+      ]),
+    );
+  });
+
   it("fails source ledgers whose gate impact does not cover the G8-G14 verification band", () => {
     const gatesMd = [
       "G8 has an executable workflow gate",
@@ -282,7 +310,7 @@ describe("right-arm verification strategy", () => {
       "NASA Systems Engineering Handbook Appendix",
       "W3C WCAG 2.2",
       "Playwright Test",
-      "official source ledger checked 2026-07-01",
+      "official source ledger checked 2026-07-02",
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://scrumguides.org/scrum-guide.html",
       "https://glossary.istqb.org/",
@@ -301,7 +329,7 @@ describe("right-arm verification strategy", () => {
     }
 
     expect(rightArm).toContain("### 右腕 evidence profile (G8-G14)");
-    expect(rightArm).toContain("### Verification source ledger (checked 2026-07-01)");
+    expect(rightArm).toContain("### Verification source ledger (checked 2026-07-02)");
     expect(rightArm).toContain("NIST SSDF SP 800-218");
     expect(rightArm).toContain("Scrum Guide 2020");
     expect(rightArm).toContain("ISTQB Glossary");

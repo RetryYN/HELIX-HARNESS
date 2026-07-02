@@ -142,7 +142,9 @@ const REQUIRED_SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
   "workflow_route_impact",
 ] as const;
 
-const REQUIRED_SOURCE_LEDGER_ROWS = [
+export const VERIFICATION_SOURCE_LEDGER_CHECKED_AT = "2026-07-02";
+
+export const REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS = [
   "NIST SSDF SP 800-218",
   "Scrum Guide 2020",
   "ISTQB Glossary",
@@ -155,8 +157,8 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Google SRE Release Engineering",
 ] as const;
 
-const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
-  (typeof REQUIRED_SOURCE_LEDGER_ROWS)[number],
+export const EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS: Record<
+  (typeof REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS)[number],
   { urls: string[]; gateImpacts: string[] }
 > = {
   "NIST SSDF SP 800-218": {
@@ -210,6 +212,16 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
   },
 };
 
+export function expectedVerificationSourceLedgerBinding(
+  source: string,
+): { urls: string[]; gateImpacts: string[] } | null {
+  return Object.hasOwn(EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS, source)
+    ? EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS[
+        source as keyof typeof EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS
+      ]
+    : null;
+}
+
 export function loadRightArmVerificationStrategyInput(
   repoRoot = process.cwd(),
 ): RightArmVerificationStrategyInput {
@@ -239,7 +251,7 @@ export function analyzeRightArmVerificationStrategy(
     (gate) => !input.rightArmMd.includes(`| ${gate} |`),
   );
   const sourceLedger = parseVerificationSourceLedger(input.rightArmMd);
-  const missingSourceLedgerRows = REQUIRED_SOURCE_LEDGER_ROWS.filter(
+  const missingSourceLedgerRows = REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS.filter(
     (source) => !sourceLedger.rows.some((row) => row.source === source),
   );
   const sourceLedgerFreshnessViolation = sourceLedgerCheckedDateViolation(
@@ -250,6 +262,7 @@ export function analyzeRightArmVerificationStrategy(
   const sourceLedgerViolations = [
     ...(sourceLedgerFreshnessViolation ? [sourceLedgerFreshnessViolation] : []),
     ...sourceLedgerMeaningReviewViolations(input.rightArmMd, "Verification source ledger"),
+    ...sourceLedgerMeaningReviewCoverageViolations(input.rightArmMd),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => `verification source ledger missing column: ${column}`),
@@ -280,9 +293,9 @@ export function analyzeRightArmVerificationStrategy(
             `verification source ledger ${row.source} has invalid gate impact: ${row["gate impact"] ?? ""}`,
           ];
     }),
-    ...REQUIRED_SOURCE_LEDGER_ROWS.flatMap((source) => {
+    ...REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS.flatMap((source) => {
       const row = sourceLedger.rows.find((candidate) => candidate.source === source);
-      const expected = EXPECTED_SOURCE_LEDGER_BINDINGS[source];
+      const expected = EXPECTED_VERIFICATION_SOURCE_LEDGER_BINDINGS[source];
       if (!row) return [];
       const officialUrl = row["official URL"] ?? "";
       const impacts = gateImpactTokens(row["gate impact"] ?? "");
@@ -341,6 +354,30 @@ function sourceLedgerMeaningReviewViolations(text: string, ledgerLabel: string):
       ? []
       : [`${ledgerLabel} missing ${field} evidence for checked date ${checkedDate}`];
   });
+}
+
+function sourceLedgerMeaningReviewCoverageViolations(text: string): string[] {
+  const section = sourceLedgerMeaningReviewSection(text);
+  if (!section.trim()) {
+    return ["Verification source ledger meaning review missing source coverage section"];
+  }
+  return REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS.flatMap((source) =>
+    section.includes(source)
+      ? []
+      : [`Verification source ledger meaning review missing source coverage: ${source}`],
+  );
+}
+
+function sourceLedgerMeaningReviewSection(text: string): string {
+  const lines = text.split(/\r?\n/);
+  const start = lines.findIndex((line) => line.trim() === "Source ledger 意味レビュー証跡:");
+  if (start < 0) return "";
+  const body: string[] = [];
+  for (const line of lines.slice(start + 1)) {
+    if (/^#{1,6}\s/.test(line)) break;
+    body.push(line);
+  }
+  return body.join("\n");
 }
 
 function gateImpactTokens(value: string): string[] {
@@ -402,7 +439,7 @@ export function rightArmVerificationStrategyMessages(
 ): string[] {
   if (result.ok) {
     return [
-      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=${REQUIRED_SOURCE_LEDGER_ROWS.length})`,
+      `right-arm-verification-strategy - OK (G8-G14 evidence profiles=${REQUIRED_GATE_ROWS.length}, official sources=${REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS.length})`,
     ];
   }
   return [`right-arm-verification-strategy - violation: ${result.violations.join("; ")}`];

@@ -38,6 +38,8 @@ interface VerificationProfile {
   riskTier: "low" | "medium" | "high";
   installHint: string | null;
   sourceUrl?: string;
+  sourceLedgerSources?: string[];
+  sourceLedgerCheckedAt?: string;
   triggerSignals?: VerificationSignal[];
   recommendedGates?: VerificationGate[];
   recommendedDrives?: VerificationDrive[];
@@ -76,7 +78,11 @@ type VerificationProfileGateFindingCode =
   | "recommendation-without-signal"
   | "invalid-right-arm-gate"
   | "missing-right-arm-gate-profile"
-  | "missing-drive-g10-profile";
+  | "missing-drive-g10-profile"
+  | "missing-source-ledger-binding"
+  | "stale-source-ledger-binding"
+  | "unknown-source-ledger-binding"
+  | "source-ledger-gate-mismatch";
 
 interface VerificationProfileGateFinding {
   code: VerificationProfileGateFindingCode;

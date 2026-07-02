@@ -2,6 +2,10 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { loadChangedFiles } from "./change-impact";
+import {
+  expectedVerificationSourceLedgerBinding,
+  VERIFICATION_SOURCE_LEDGER_CHECKED_AT,
+} from "./right-arm-verification-strategy";
 import { normalizePath } from "./shared";
 import { PROFILE_RUNNERS, PROFILES, SIGNAL_TO_PROFILE } from "./verification-profile-catalog";
 import { planExternalProfileActivation } from "./verification-profile-safety";
@@ -402,6 +406,7 @@ export function analyzeRightArmVerificationProfileCoverage(
   const drives = driveCoverageSeed();
 
   for (const profile of profiles) {
+    findings.push(...profileSourceLedgerBindingFindings(profile));
     for (const gate of profile.recommendedGates ?? []) {
       if (!allowedGates.has(gate)) {
         findings.push({
@@ -446,6 +451,61 @@ export function analyzeRightArmVerificationProfileCoverage(
     ),
     ok: findings.length === 0,
   };
+}
+
+function profileSourceLedgerBindingFindings(
+  profile: VerificationProfile,
+): VerificationProfileGateFinding[] {
+  const findings: VerificationProfileGateFinding[] = [];
+  const recommendedGates = profile.recommendedGates ?? [];
+  if (recommendedGates.length === 0) return findings;
+
+  if (!profile.sourceLedgerSources || profile.sourceLedgerSources.length === 0) {
+    return [
+      {
+        code: "missing-source-ledger-binding",
+        profileId: profile.id,
+        message: `${profile.id} declares right-arm gates but no Verification source ledger binding`,
+      },
+    ];
+  }
+
+  if (profile.sourceLedgerCheckedAt !== VERIFICATION_SOURCE_LEDGER_CHECKED_AT) {
+    findings.push({
+      code: "stale-source-ledger-binding",
+      profileId: profile.id,
+      message: `${profile.id} source ledger binding checkedAt=${profile.sourceLedgerCheckedAt ?? "missing"} does not match Verification source ledger checkedAt=${VERIFICATION_SOURCE_LEDGER_CHECKED_AT}`,
+    });
+  }
+
+  const coveredGateImpacts = new Set<VerificationGate>();
+  for (const source of profile.sourceLedgerSources) {
+    const binding = expectedVerificationSourceLedgerBinding(source);
+    if (!binding) {
+      findings.push({
+        code: "unknown-source-ledger-binding",
+        profileId: profile.id,
+        message: `${profile.id} binds to unknown Verification source ledger row ${source}`,
+      });
+      continue;
+    }
+    for (const impact of binding.gateImpacts) {
+      if (RIGHT_ARM_GATES.includes(impact as VerificationGate)) {
+        coveredGateImpacts.add(impact as VerificationGate);
+      }
+    }
+  }
+
+  for (const gate of recommendedGates) {
+    if (!coveredGateImpacts.has(gate)) {
+      findings.push({
+        code: "source-ledger-gate-mismatch",
+        profileId: profile.id,
+        message: `${profile.id} recommends ${gate} but its Verification source ledger bindings do not cover that gate`,
+      });
+    }
+  }
+  return findings;
 }
 
 function signalForPath(path: string): VerificationSignal[] {
