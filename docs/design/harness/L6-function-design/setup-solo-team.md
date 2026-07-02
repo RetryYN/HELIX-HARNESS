@@ -126,8 +126,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。VS Code Tasks / Workspace Trust の
 > 公式 source は checked date と採用判断を matrix に残し、source 名だけの stale な根拠にしない。text surface は
 > `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
-> `ut-tdd doctor --profile consumer` は `.vscode/tasks.json` の label/command だけでなく、各 task が
-> `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、task-level `options` なしであること、
+> `ut-tdd doctor --profile consumer` は `.vscode/tasks.json` の label/command だけでなく、schema version が
+> `2.0.0`、`tasks` が配列、各 task が `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、task-level `options` なしであること、
 > かつ `.vscode/settings.json` が `task.allowAutomaticTasks=off` であることを検査する。
 > 期待 task 以外の余分な task でも `runOptions.runOn=folderOpen` などの自動実行があれば fail-close する。
 > これにより VS Code Tasks / Workspace Trust の境界を「生成した」だけでなく、consumer repo で自動実行に開いていない

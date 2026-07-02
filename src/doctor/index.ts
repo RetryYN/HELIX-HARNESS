@@ -1833,6 +1833,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const tasks = consumerJson(deps, ".vscode/tasks.json") as {
+    version?: unknown;
     tasks?: {
       label?: string;
       command?: string;
@@ -1842,7 +1843,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       options?: unknown;
     }[];
   } | null;
-  const tasksByLabel = new Map((tasks?.tasks ?? []).map((task) => [task.label ?? "", task]));
+  const tasksVersionOk = tasks?.version === "2.0.0";
+  const tasksArrayOk = Array.isArray(tasks?.tasks);
+  const taskList = tasksArrayOk ? (tasks.tasks ?? []) : [];
+  const tasksByLabel = new Map(taskList.map((task) => [task.label ?? "", task]));
   const expectedTasks = new Map([
     ["HELIX: status", "ut-tdd status"],
     ["HELIX: doctor", "ut-tdd doctor --profile consumer"],
@@ -1860,7 +1864,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     if (task.runOptions?.runOn && task.runOptions.runOn !== "default") return true;
     return task.options !== undefined;
   });
-  const autoRunTasks = (tasks?.tasks ?? [])
+  const autoRunTasks = taskList
     .filter((task) => task.runOptions?.runOn && task.runOptions.runOn !== "default")
     .map((task) => task.label ?? "<unlabeled>");
   const vscodeSettings = consumerJson(deps, ".vscode/settings.json") as Record<
@@ -1869,14 +1873,16 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   > | null;
   const automaticTasksOff = vscodeSettings?.["task.allowAutomaticTasks"] === "off";
   const taskSafetyOk =
+    tasksVersionOk &&
+    tasksArrayOk &&
     missingTasks.length === 0 &&
     unsafeTasks.length === 0 &&
     autoRunTasks.length === 0 &&
     automaticTasksOff;
   messages.push(
     taskSafetyOk
-      ? `doctor: consumer-vscode-tasks - OK (tasks=${expectedTasks.size}, safety=automatic-off,no-runOn,problemMatcher-empty)`
-      : `doctor: consumer-vscode-tasks - violation missing_or_wrong=${missingTasks
+      ? `doctor: consumer-vscode-tasks - OK (version=2.0.0, tasks=${expectedTasks.size}, safety=automatic-off,no-runOn,problemMatcher-empty)`
+      : `doctor: consumer-vscode-tasks - violation version=${tasksVersionOk} tasksArray=${tasksArrayOk} missing_or_wrong=${missingTasks
           .map(([label]) => label)
           .join(
             ",",

@@ -316,6 +316,48 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "autoRun=HELIX: status,consumer-extra")).toBe(true);
   });
 
+  it("fails closed when VS Code task schema version or task list shape drifts", () => {
+    const tasksPath = join("/repo", ".vscode", "tasks.json");
+    const generatedTasks = JSON.parse(consumerDoctorFiles("/repo").get(tasksPath) ?? "{}") as {
+      tasks: unknown;
+    };
+    const wrongVersion = consumerDoctorFiles("/repo", {
+      ".vscode/tasks.json": JSON.stringify({
+        ...generatedTasks,
+        version: "0.1.0",
+      }),
+    });
+
+    const wrongVersionResult = runConsumerDoctor(deps({ files: wrongVersion }));
+
+    expect(wrongVersionResult.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        wrongVersionResult.messages,
+        "consumer-vscode-tasks - violation",
+        "version=false",
+      ),
+    ).toBe(true);
+
+    const nonArrayTasks = consumerDoctorFiles("/repo", {
+      ".vscode/tasks.json": JSON.stringify({
+        version: "2.0.0",
+        tasks: { label: "HELIX: status" },
+      }),
+    });
+
+    const nonArrayResult = runConsumerDoctor(deps({ files: nonArrayTasks }));
+
+    expect(nonArrayResult.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        nonArrayResult.messages,
+        "consumer-vscode-tasks - violation",
+        "tasksArray=false",
+      ),
+    ).toBe(true);
+  });
+
   it("fails closed when adapter docs omit Japanese/cutover markers", () => {
     const files = consumerDoctorFiles("/repo", {
       ".claude/CLAUDE.md": [
