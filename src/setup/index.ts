@@ -150,6 +150,9 @@ export interface ConsumerCiWorkflowContract {
   tokenWrite: boolean;
   jobOk: boolean;
   checkoutPersistCredentialsFalse: boolean;
+  checkoutInputsExact: boolean;
+  setupBunInputsEmpty: boolean;
+  customEnvFree: boolean;
   missingUses: string[];
   unexpectedUses: string[];
   missingRuns: string[];
@@ -185,6 +188,13 @@ export function analyzeConsumerCiWorkflowContract(
   const checkoutPersistCredentialsFalse =
     checkoutWith?.["persist-credentials"] === false ||
     checkoutWith?.["persist-credentials"] === "false";
+  const checkoutInputsExact =
+    checkoutWith !== null &&
+    Object.keys(checkoutWith).length === 1 &&
+    Object.hasOwn(checkoutWith, "persist-credentials");
+  const setupBunStep = stepRecords.find((step) => step.uses === "oven-sh/setup-bun@v2");
+  const setupBunWith = recordFromUnknown(setupBunStep?.with);
+  const setupBunInputsEmpty = setupBunWith === null || Object.keys(setupBunWith).length === 0;
   const actualUses = stepRecords
     .map((step) => step.uses)
     .filter((use): use is string => typeof use === "string");
@@ -204,6 +214,10 @@ export function analyzeConsumerCiWorkflowContract(
   const exactSteps =
     stepRecords.length === expectedSteps.length &&
     expectedSteps.every((expected, index) => stepRecords[index]?.[expected.key] === expected.value);
+  const customEnvFree =
+    !Object.hasOwn(workflow ?? {}, "env") &&
+    !Object.hasOwn(harnessJob ?? {}, "env") &&
+    stepRecords.every((step) => !Object.hasOwn(step, "env"));
   const contract = {
     ok: false,
     nameOk: workflow?.name === "harness-check",
@@ -215,6 +229,9 @@ export function analyzeConsumerCiWorkflowContract(
     tokenWrite,
     jobOk: harnessJob?.["runs-on"] === "ubuntu-latest",
     checkoutPersistCredentialsFalse,
+    checkoutInputsExact,
+    setupBunInputsEmpty,
+    customEnvFree,
     missingUses,
     unexpectedUses,
     missingRuns,
@@ -234,6 +251,9 @@ export function analyzeConsumerCiWorkflowContract(
       !contract.tokenWrite &&
       contract.jobOk &&
       contract.checkoutPersistCredentialsFalse &&
+      contract.checkoutInputsExact &&
+      contract.setupBunInputsEmpty &&
+      contract.customEnvFree &&
       contract.missingUses.length === 0 &&
       contract.unexpectedUses.length === 0 &&
       contract.missingRuns.length === 0 &&
@@ -1358,9 +1378,9 @@ function buildConsumerArtifactReadinessPlan(
       path: workflowPath,
       ok: hasPath(workflowPath) && workflowContract.ok,
       message:
-        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with checkout credentials disabled, setup-bun, and the fixed package-local HELIX command set",
+        "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with fixed checkout/setup-bun inputs, no custom env, and the fixed package-local HELIX command set",
       evidence:
-        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, checkout credential persistence, setup steps, and command surface",
+        ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, action inputs, env, setup steps, and command surface",
     },
     ...(codeownersRequired
       ? [

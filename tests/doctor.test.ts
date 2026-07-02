@@ -895,6 +895,71 @@ describe("runConsumerDoctor", () => {
     ).toBe(true);
   });
 
+  it("fails closed when consumer CI adds custom env or setup-bun inputs", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".github/workflows/harness-check.yml": [
+        "name: harness-check",
+        "on:",
+        "  push:",
+        "    branches: [main]",
+        "  pull_request:",
+        "    branches: [main]",
+        "permissions:",
+        "  contents: read",
+        "jobs:",
+        "  harness-check:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "      - uses: actions/checkout@v4",
+        "        with:",
+        "          persist-credentials: false",
+        "          token: $" + "{{ github.token }}",
+        "      - uses: oven-sh/setup-bun@v2",
+        "        with:",
+        "          token: $" + "{{ github.token }}",
+        "      - run: bun install --frozen-lockfile",
+        "      - run: bun run ut-tdd --version",
+        "      - run: bun run ut-tdd setup project --dry-run --json",
+        "      - run: bun run ut-tdd status --json",
+        "      - run: bun run ut-tdd completion decision-packet --json",
+        "      - run: bun run ut-tdd doctor --profile consumer --json",
+        "      - run: bun run ut-tdd rename plan --json",
+        "        env:",
+        "          HELIX_CI_MODE: read-only",
+        "      - run: bun run ut-tdd handover status --json",
+        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run typecheck",
+        "      - run: bun run test",
+        "",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "checkoutInputsExact=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "setupBunInputsEmpty=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-ci-workflow - violation",
+        "customEnvFree=false",
+      ),
+    ).toBe(true);
+  });
+
   it("fails closed when consumer CI adds extra triggers, actions, or bracket secret references", () => {
     const files = consumerDoctorFiles("/repo", {
       ".github/workflows/harness-check.yml": [
