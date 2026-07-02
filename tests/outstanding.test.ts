@@ -6,6 +6,7 @@ import {
   analyzeOutstandingWork,
   completionDecisionPacketForOutstanding,
   completionReadinessForOutstanding,
+  completionReadinessLine,
   computeOutstandingWork,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
@@ -873,6 +874,33 @@ describe("outstandingSummaryLine", () => {
         },
       }),
     ).toBe("outstanding: non-terminal PLANs=0 (none); blockers=none; open defers=0");
+  });
+});
+
+describe("completionReadinessLine", () => {
+  it("prints authority blocker classes in text status output", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible cutover requires PO signoff and approval",
+        },
+      ],
+      1,
+    );
+
+    expect(completionReadinessLine(o)).toContain(
+      "authority-blockers=human:human_approval_pending,irreversible_migration_pending workflow-state:non_terminal_plans automation:open_defers",
+    );
+  });
+
+  it("prints ready without blocker classes when completion is ready", () => {
+    const o = analyzeOutstandingWork([{ layer: "L7", status: "confirmed" }], 0);
+
+    expect(completionReadinessLine(o)).toBe("completion: ready (no outstanding work)");
   });
 });
 

@@ -966,7 +966,7 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
 export function completionReadinessLine(o: OutstandingWork): string {
   const readiness = o.completionReadiness;
   if (readiness.ok) return "completion: ready (no outstanding work)";
-  return `completion: blocked (${readiness.blockers.join(", ")}); authority=${readiness.authorityBoundary}; next-authority=${readiness.nextAuthority}; required actions=${readiness.requiredActions.length}`;
+  return `completion: blocked (${readiness.blockers.join(", ")}); authority=${readiness.authorityBoundary}; next-authority=${readiness.nextAuthority}; authority-blockers=human:${readiness.humanDecisionBlockers.join(",") || "none"} workflow-state:${readiness.workflowStateBlockers.join(",") || "none"} automation:${readiness.autonomousWorkBlockers.join(",") || "none"}; required actions=${readiness.requiredActions.length}`;
 }
 
 export function workflowNextActionForOutstanding(o: OutstandingWork): string {
