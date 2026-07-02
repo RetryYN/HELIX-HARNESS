@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
@@ -85,6 +86,19 @@ export interface ActionBindingApprovalCheck {
   requiredAction: string;
 }
 
+export interface ActionBindingApprovalSnapshot {
+  snapshotId: string;
+  planTextDigest: string;
+  approvalScopeDigest: string;
+  reviewEvidenceDigest: string;
+  auditDigest: string;
+  siblingDecisionPacketDigest: string;
+  reviewedSnapshotId: string | null;
+  reviewedSnapshotKind: "activationSnapshot" | "cutoverSnapshot" | "no-snapshot" | "unknown";
+  headSha: string | null;
+  invalidatedBy: string[];
+}
+
 export interface ActionBindingApprovalPacket {
   schemaVersion: "action-binding-approval-packet.v1";
   planId: string;
@@ -98,6 +112,7 @@ export interface ActionBindingApprovalPacket {
   approvalAllowed: false;
   allowedOutcomes: string[];
   approvalRecord: Record<string, string>;
+  approvalSnapshot: ActionBindingApprovalSnapshot;
   recordTemplates: CompletionDecisionRecordTemplate[];
   approvalBindingChecks: ActionBindingApprovalCheck[];
   approvalVerificationCommandMatrix: Array<{
@@ -350,6 +365,15 @@ export function buildActionBindingApprovalPacket(
     approvalRecord,
     snapshotExpectations,
   );
+  const relatedDecisionPackets = relatedDecisionPacketsForActionBindingPlan(plan);
+  const approvalSnapshot = buildActionBindingApprovalSnapshot({
+    plan,
+    approvalRecord,
+    approvalBindingChecks,
+    relatedDecisionPackets,
+    snapshotExpectations,
+    repoHeadSha: input.repoHeadSha ?? null,
+  });
   const provenance = buildDecisionPacketProvenance({
     sourceCommand: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   });
@@ -378,6 +402,7 @@ export function buildActionBindingApprovalPacket(
     approvalAllowed: false,
     allowedOutcomes: [...ACTION_BINDING_ALLOWED_OUTCOMES],
     approvalRecord,
+    approvalSnapshot,
     recordTemplates: recordTemplatesForRecords(
       requiredRecordsForBlockers(["human_approval_pending"]),
     ),
@@ -387,7 +412,7 @@ export function buildActionBindingApprovalPacket(
       plan,
       input.semanticFeatureFrontierRecords,
     ),
-    relatedDecisionPackets: relatedDecisionPacketsForActionBindingPlan(plan),
+    relatedDecisionPackets,
     blockedReasons: [
       ...actionBindingBlockedReasons(plan, approvalRecord, snapshotExpectations),
       ...semanticFrontierViolations.map((violation) => violation.reason),
@@ -410,6 +435,91 @@ export function buildActionBindingApprovalPacket(
       },
     ],
   };
+}
+
+function buildActionBindingApprovalSnapshot(input: {
+  plan: ActionBindingApprovalPlan;
+  approvalRecord: Record<string, string>;
+  approvalBindingChecks: ActionBindingApprovalCheck[];
+  relatedDecisionPackets: RelatedDecisionPacket[];
+  snapshotExpectations: ActionBindingSnapshotExpectations;
+  repoHeadSha: string | null;
+}): ActionBindingApprovalSnapshot {
+  const reviewedSnapshotId = concreteSnapshotId(
+    input.approvalRecord.reviewed_snapshot_binding ?? "",
+  );
+  const reviewedSnapshotKind = reviewedSnapshotKindForPlan(input.plan, reviewedSnapshotId);
+  const planTextDigest = sha256Json({
+    file: input.plan.file,
+    plan_id: input.plan.plan_id,
+    text: input.plan.text,
+  });
+  const approvalScopeDigest = sha256Json({
+    approval_scope: input.approvalRecord.approval_scope ?? "",
+    approved_actor: input.approvalRecord.approved_actor ?? "",
+    approved_tool: input.approvalRecord.approved_tool ?? "",
+    approved_target: input.approvalRecord.approved_target ?? "",
+    approved_params: input.approvalRecord.approved_params ?? "",
+  });
+  const reviewEvidenceDigest = sha256Json({
+    review_approval_evidence: input.approvalRecord.review_approval_evidence ?? "",
+    approval_policy_or_named_approver: input.approvalRecord.approval_policy_or_named_approver ?? "",
+    reviewed_snapshot_binding: input.approvalRecord.reviewed_snapshot_binding ?? "",
+    approval_binding_checks: input.approvalBindingChecks.map((check) => ({
+      field: check.field,
+      status: check.status,
+      reason: check.reason,
+      requiredAction: check.requiredAction,
+    })),
+  });
+  const auditDigest = sha256Json({
+    expires_at_or_trigger: input.approvalRecord.expires_at_or_trigger ?? "",
+    audit_record: input.approvalRecord.audit_record ?? "",
+  });
+  const siblingDecisionPacketDigest = sha256Json({
+    relatedDecisionPackets: input.relatedDecisionPackets,
+    expectedVersionUpSnapshotId: input.snapshotExpectations.versionUpSnapshotId,
+    expectedCutoverSnapshotId: input.snapshotExpectations.cutoverSnapshotId,
+    versionUpSnapshotValidationMissing:
+      input.snapshotExpectations.versionUpSnapshotValidationMissing,
+  });
+  const invalidatedBy = [
+    "plan_text_change",
+    "approval_scope_change",
+    "review_evidence_change",
+    "audit_record_change",
+    "sibling_decision_packet_change",
+    "repo_head_change",
+  ];
+  const snapshot = {
+    planTextDigest,
+    approvalScopeDigest,
+    reviewEvidenceDigest,
+    auditDigest,
+    siblingDecisionPacketDigest,
+    reviewedSnapshotId,
+    reviewedSnapshotKind,
+    headSha: input.repoHeadSha,
+    invalidatedBy,
+  };
+  return {
+    snapshotId: sha256Json({
+      schemaVersion: "action-binding-approval-packet.v1",
+      plan_id: input.plan.plan_id,
+      ...snapshot,
+    }),
+    ...snapshot,
+  };
+}
+
+function reviewedSnapshotKindForPlan(
+  plan: ActionBindingApprovalPlan,
+  reviewedSnapshotId: string | null,
+): ActionBindingApprovalSnapshot["reviewedSnapshotKind"] {
+  if (requiresVersionUpSnapshot(plan)) return "activationSnapshot";
+  if (requiresCutoverSnapshot(plan)) return "cutoverSnapshot";
+  if (reviewedSnapshotId === null) return "no-snapshot";
+  return "unknown";
 }
 
 function buildActionBindingApprovalVerificationCommandMatrix(
@@ -1015,6 +1125,10 @@ function recordValues(
   return Object.fromEntries(
     fields.map((field) => [field, recordFieldValue(text, recordName, field) ?? ""]),
   );
+}
+
+function sha256Json(value: unknown): string {
+  return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
 }
 
 function actionBindingBlockedReasons(

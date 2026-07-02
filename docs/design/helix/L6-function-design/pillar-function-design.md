@@ -269,6 +269,10 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   version-up sibling の `reviewed_snapshot_binding` は repo HEAD と current package version を入力にした
   current `activationSnapshot.snapshotId` と照合し、HEAD なしで生成された snapshot や別 HEAD の snapshot を
   current approval evidence と誤認しない。
+  packet は `approvalSnapshot` を持ち、`planTextDigest` / `approvalScopeDigest` /
+  `reviewEvidenceDigest` / `auditDigest` / `siblingDecisionPacketDigest` と reviewed snapshot id/kind、repo HEAD を
+  `snapshotId` へ束ねる。これにより approved actor/tool/target/params、review evidence、audit、
+  sibling S4/version-up/rename packet、または HEAD が変わった旧 action-binding material を承認材料へ流用しない。
   GitHub Environments required reviewers / prevent self-review、NIST least privilege、VS Code Workspace Trust、
   OWASP WSTG、OWASP LLM06:2025 Excessive Agency の
   公式 source を、actor / tool / target / params / snapshot / expiry / audit の承認前検証へ接続する。版上げ系の関連承認は `github-environment-approval-boundary` で `ut-tdd version-up security-checklist --plan <PLAN_ID> --no-write --json` を指し、リポジトリ公開範囲・契約プラン可用性・自己承認防止・環境シークレット可用性を承認前証跡とする。
@@ -276,7 +280,8 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `approvalRecord` / `approvalBindingChecks` という親 field だけに畳まない。`allowed_outcome`、
   `approval_policy_or_named_approver`、`approval_scope`、`approved_actor`、`approved_tool`、`approved_target`、
   `approved_params`、`review_approval_evidence`、`reviewed_snapshot_binding`、`expires_at_or_trigger`、
-  `audit_record` と対応する binding check field を `requiredReviewFields[]` に列挙する。加えて `planOnly`、
+  `audit_record` と対応する binding check field、`approvalSnapshot.*Digest`、`approvalSnapshot.snapshotId`、
+  `approvalSnapshot.reviewedSnapshotKind` を `requiredReviewFields[]` に列挙する。加えて `planOnly`、
   `mustNotApprove`、`approvalCommandAvailable`、`approvalAllowed`、`approvalBindingChecks.status`、
   `approvalBindingChecks.reason`、`approvalBindingChecks.requiredAction`、
   `approvalVerificationCommandMatrix.command`、`approvalVerificationCommandMatrix.writePolicy`、

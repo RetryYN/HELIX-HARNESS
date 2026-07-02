@@ -294,6 +294,13 @@ describe("completion decision packet lint", () => {
         "approvalRecord.reviewed_snapshot_binding",
         "approvalRecord.expires_at_or_trigger",
         "approvalRecord.audit_record",
+        "approvalSnapshot",
+        "approvalSnapshot.snapshotId",
+        "approvalSnapshot.approvalScopeDigest",
+        "approvalSnapshot.reviewEvidenceDigest",
+        "approvalSnapshot.auditDigest",
+        "approvalSnapshot.siblingDecisionPacketDigest",
+        "approvalSnapshot.reviewedSnapshotKind",
         "approvalBindingChecks.allowed_outcome",
         "approvalBindingChecks.approval_scope",
         "approvalBindingChecks.approved_actor",
@@ -653,6 +660,11 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalRecord.reviewed_snapshot_binding",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalSnapshot.approvalScopeDigest",
         },
         {
           reason: "invalid_supporting_packet_summary",

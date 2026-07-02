@@ -300,6 +300,23 @@ describe("action-binding approval readiness", () => {
         ]),
       }),
     ]);
+    expect(packet.approvalSnapshot).toMatchObject({
+      snapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      planTextDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      reviewEvidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      auditDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      siblingDecisionPacketDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+      reviewedSnapshotId: null,
+      reviewedSnapshotKind: "no-snapshot",
+      headSha: null,
+      invalidatedBy: expect.arrayContaining([
+        "approval_scope_change",
+        "review_evidence_change",
+        "audit_record_change",
+        "sibling_decision_packet_change",
+      ]),
+    });
     expect(packet.approvalVerificationCommandMatrix).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -576,6 +593,58 @@ describe("action-binding approval readiness", () => {
       subject: "PLAN-L7-146",
       reason: "missing semantic_feature_frontier_record for parked_future_version",
     });
+  });
+
+  it("changes approvalSnapshot when approval material changes", () => {
+    const basePlan = {
+      file: "PLAN-X.md",
+      plan_id: "PLAN-X",
+      status: "draft",
+      versionTarget: null,
+      text: `requires action-binding approval\n${RECORD}`,
+    };
+    const changedParamsPlan = {
+      ...basePlan,
+      text: basePlan.text.replace(
+        "- approved_params: reviewed command parameters hash",
+        "- approved_params: narrowed command parameters hash",
+      ),
+    };
+    const changedReviewPlan = {
+      ...basePlan,
+      text: basePlan.text.replace(
+        "- review_approval_evidence: .ut-tdd/evidence/action-binding/review.json result=pass",
+        "- review_approval_evidence: .ut-tdd/evidence/action-binding/review-v2.json result=pass",
+      ),
+    };
+    const [basePacket] = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [basePlan],
+    });
+    const [changedParamsPacket] = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [changedParamsPlan],
+    });
+    const [changedReviewPacket] = buildActionBindingApprovalPackets({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [changedReviewPlan],
+    });
+
+    expect(changedParamsPacket.approvalSnapshot.approvalScopeDigest).not.toBe(
+      basePacket.approvalSnapshot.approvalScopeDigest,
+    );
+    expect(changedParamsPacket.approvalSnapshot.snapshotId).not.toBe(
+      basePacket.approvalSnapshot.snapshotId,
+    );
+    expect(changedReviewPacket.approvalSnapshot.reviewEvidenceDigest).not.toBe(
+      basePacket.approvalSnapshot.reviewEvidenceDigest,
+    );
+    expect(changedReviewPacket.approvalSnapshot.snapshotId).not.toBe(
+      basePacket.approvalSnapshot.snapshotId,
+    );
   });
 
   it("fails sibling action-binding semantic frontier records with wrong classification", () => {
