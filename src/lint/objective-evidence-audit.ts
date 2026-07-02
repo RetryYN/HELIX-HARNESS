@@ -75,6 +75,15 @@ const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
     ],
   },
   {
+    requirementId: "G-09",
+    label: "meaning-based frontier hard-gate artifact",
+    artifacts: [
+      "docs/governance/helix-l0-l8-design-consistency-audit.md",
+      "src/lint/semantic-frontier-consistency.ts",
+      "tests/semantic-frontier-consistency.test.ts",
+    ],
+  },
+  {
     requirementId: "G-10",
     label: "version-up and cutover blocker artifact",
     artifacts: [
@@ -101,6 +110,16 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "6aac7305f2c369387d236217a9d18d87841d8bc8",
       "v0.1.3",
       "検証 / 進捗 source basis 再確認日: 2026-07-02",
+    ],
+  },
+  {
+    requirementId: "G-09",
+    label: "meaning-based frontier hard-gate marker",
+    markers: [
+      "semantic-frontier-consistency",
+      "C-18",
+      "live `semanticFeatureFrontierRecords[]`",
+      "prose-only feature list",
     ],
   },
 ] as const;

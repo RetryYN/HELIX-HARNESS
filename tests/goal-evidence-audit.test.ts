@@ -92,6 +92,9 @@ describe("HELIX objective evidence audit", () => {
       "src/lint/roadmap-registry.ts",
       "tests/roadmap.test.ts",
       "src/lint/objective-evidence-audit.ts",
+      "docs/governance/helix-l0-l8-design-consistency-audit.md",
+      "src/lint/semantic-frontier-consistency.ts",
+      "tests/semantic-frontier-consistency.test.ts",
       "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
       "docs/test-design/helix/L6-pillar-unit-test-design.md",
       "CLAUDE.md",
@@ -223,6 +226,45 @@ describe("HELIX objective evidence audit", () => {
         "G-07: missing setup artifact citation src/setup/index.ts",
         "G-10: missing version-up and cutover blocker artifact citation docs/process/modes/version-up.md",
         "G-08: missing language and rename artifact citation src/lint/cutover-readiness.ts",
+      ]),
+    );
+  });
+
+  it("fails when the meaning-based feature-list hard gate is detached from objective progress", () => {
+    const text = auditText()
+      .replaceAll(
+        "docs/governance/helix-l0-l8-design-consistency-audit.md",
+        "docs/governance/helix-l0-l8-design-consistency-audit-removed.md",
+      )
+      .replaceAll(
+        "src/lint/semantic-frontier-consistency.ts",
+        "src/lint/semantic-frontier-consistency-removed.ts",
+      )
+      .replaceAll(
+        "tests/semantic-frontier-consistency.test.ts",
+        "tests/semantic-frontier-consistency-removed.test.ts",
+      )
+      .replaceAll("C-18", "consistency-row-removed")
+      .replaceAll("semantic-frontier-consistency", "frontier-hard-gate-removed")
+      .replaceAll("live `semanticFeatureFrontierRecords[]`", "live frontier records removed")
+      .replaceAll("prose-only feature list", "prose-only marker removed");
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-09: missing meaning-based frontier hard-gate artifact citation docs/governance/helix-l0-l8-design-consistency-audit.md",
+        "G-09: missing meaning-based frontier hard-gate artifact citation src/lint/semantic-frontier-consistency.ts",
+        "G-09: missing meaning-based frontier hard-gate artifact citation tests/semantic-frontier-consistency.test.ts",
+        "G-09: missing meaning-based frontier hard-gate marker semantic-frontier-consistency",
+        "G-09: missing meaning-based frontier hard-gate marker C-18",
+        "G-09: missing meaning-based frontier hard-gate marker live `semanticFeatureFrontierRecords[]`",
+        "G-09: missing meaning-based frontier hard-gate marker prose-only feature list",
       ]),
     );
   });

@@ -240,6 +240,19 @@ function isS3PocPendingDecision(plan: S4DecisionPlan): boolean {
   );
 }
 
+function isS4PocPendingDecision(plan: S4DecisionPlan): boolean {
+  return (
+    plan.kind === "poc" &&
+    plan.status === "draft" &&
+    plan.workflowPhase === "S4" &&
+    !plan.decisionOutcome
+  );
+}
+
+function isPocPendingDecision(plan: S4DecisionPlan): boolean {
+  return isS3PocPendingDecision(plan) || isS4PocPendingDecision(plan);
+}
+
 function isMisplacedPocDecisionOutcome(plan: S4DecisionPlan): boolean {
   return plan.kind === "poc" && !!plan.decisionOutcome && plan.workflowPhase !== "S4";
 }
@@ -507,7 +520,7 @@ export function analyzeS4DecisionReadiness(
     });
   }
 
-  const pending = input.plans.filter(isS3PocPendingDecision);
+  const pending = input.plans.filter(isPocPendingDecision);
   for (const plan of pending) {
     violations.push(...validateS4DecisionRecord(plan, currentLedgerCheckedDates));
     if (input.semanticFeatureFrontierRecords !== undefined) {
@@ -571,7 +584,7 @@ export function analyzeS4DecisionReadiness(
 
 export function buildS4DecisionPackets(input: S4DecisionReadinessInput): S4DecisionPacket[] {
   return input.plans
-    .filter(isS3PocPendingDecision)
+    .filter(isPocPendingDecision)
     .map((plan) => buildS4DecisionPacket(plan, input.semanticFeatureFrontierRecords))
     .sort((a, b) => a.planId.localeCompare(b.planId));
 }
@@ -598,7 +611,7 @@ export function buildS4DecisionPacket(
     generatedAt: provenance.generatedAt,
     sourceCommand: S4_DECISION_PACKET_COMMAND,
     freshness: provenance.freshness,
-    status: isS3PocPendingDecision(plan) ? "pending_po_decision" : "invalid_not_pending_s3",
+    status: isPocPendingDecision(plan) ? "pending_po_decision" : "invalid_not_pending_s3",
     planOnly: true,
     mustNotDecide: true,
     decisionCommandAvailable: false,
@@ -1002,8 +1015,10 @@ function s4DecisionBlockedReasons(
   decisionRecord: Record<string, string>,
 ): string[] {
   const reasons: string[] = [];
-  if (!isS3PocPendingDecision(plan)) {
-    reasons.push("plan is not an S3 draft PoC pending PO decision");
+  if (!isPocPendingDecision(plan)) {
+    reasons.push("plan is not an S3/S4 draft PoC pending PO decision");
+  } else if (isS4PocPendingDecision(plan)) {
+    reasons.push("plan is already in S4 draft; PO/S4 decision_outcome has not been recorded");
   } else {
     reasons.push("plan remains S3 draft; PO/S4 decision_outcome has not been recorded");
   }

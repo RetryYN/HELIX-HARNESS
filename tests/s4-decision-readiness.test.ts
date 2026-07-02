@@ -443,6 +443,36 @@ describe("S4 decision readiness", () => {
     });
   });
 
+  it("keeps S4 draft PoC plans without decision_outcome in the PO decision packet frontier", () => {
+    const s4PendingPlan = {
+      ...input().plans[0],
+      workflowPhase: "S4",
+      decisionOutcome: null,
+    };
+    const result = analyzeS4DecisionReadiness(
+      input({
+        plans: [s4PendingPlan],
+      }),
+    );
+    const packets = buildS4DecisionPackets(
+      input({
+        plans: [s4PendingPlan],
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.pendingPlanIds).toEqual(["PLAN-DISCOVERY-900"]);
+    expect(packets).toHaveLength(1);
+    expect(packets[0]).toMatchObject({
+      planId: "PLAN-DISCOVERY-900",
+      status: "pending_po_decision",
+      decisionAllowed: false,
+    });
+    expect(packets[0].blockedReasons).toContain(
+      "plan is already in S4 draft; PO/S4 decision_outcome has not been recorded",
+    );
+  });
+
   it("fails S3 pending PoC plans that are detached from live semantic frontier records", () => {
     const result = analyzeS4DecisionReadiness(
       input({
