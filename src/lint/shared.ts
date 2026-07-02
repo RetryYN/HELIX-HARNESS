@@ -175,6 +175,66 @@ export function allowedOutcomeSetViolation(
   return `invalid allowed_outcome set for ${recordName}: ${parts.join("; ")}`;
 }
 
+export function selectedAllowedOutcomeViolation(input: {
+  text: string;
+  recordName: string;
+  allowedOutcomes: readonly string[];
+  selectedOutcome?: string | null;
+  selectedOutcomeLabel?: string;
+}): string | null {
+  const value = recordFieldValue(input.text, input.recordName, "allowed_outcome");
+  if (!value || value === "TBD" || value === "TODO" || value === "-") {
+    return null;
+  }
+
+  const selectedOutcomeLabel = input.selectedOutcomeLabel ?? "selected_outcome";
+  if (
+    input.selectedOutcome !== undefined &&
+    input.selectedOutcome !== null &&
+    !input.allowedOutcomes.includes(input.selectedOutcome)
+  ) {
+    return `invalid ${selectedOutcomeLabel} for ${input.recordName}: ${input.selectedOutcome}`;
+  }
+
+  const escaped = input.allowedOutcomes.map((outcome) =>
+    outcome.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+  );
+  const known = new RegExp(`\\b(?:${escaped.join("|")})\\b`, "g");
+  const found = value.match(known) ?? [];
+  const unknown = value
+    .replace(known, " ")
+    .replace(/[<>"'`|,]/g, " ")
+    .replace(/\//g, " ")
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(Boolean)
+    .filter((token) => token !== "or" && token !== "and");
+
+  if (
+    found.length === 1 &&
+    unknown.length === 0 &&
+    (input.selectedOutcome === undefined ||
+      input.selectedOutcome === null ||
+      found[0] === input.selectedOutcome)
+  ) {
+    return null;
+  }
+
+  const details = [
+    found.length !== 1
+      ? `allowed_outcome must select exactly one outcome, found=${found.join(",") || "none"}`
+      : "",
+    input.selectedOutcome !== undefined &&
+    input.selectedOutcome !== null &&
+    found.length === 1 &&
+    found[0] !== input.selectedOutcome
+      ? `allowed_outcome ${found[0]} does not match ${selectedOutcomeLabel} ${input.selectedOutcome}`
+      : "",
+    unknown.length > 0 ? `unknown allowed_outcome ${unknown.join(",")}` : "",
+  ].filter(Boolean);
+  return `invalid selected allowed_outcome for ${input.recordName}: ${details.join("; ")}`;
+}
+
 // L6 機能設計の DbC テーブル見出し (関数仕様の substance マーカー)。
 // l6-completion (freeze readiness) と l6-fr-coverage (FR 被覆) が同一判定を要するため共有する。
 const DBC_TABLE_FULL =

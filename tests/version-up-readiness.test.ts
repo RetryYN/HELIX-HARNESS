@@ -1117,6 +1117,57 @@ describe("version-up-readiness", () => {
     );
   });
 
+  it("U-DECISIONREC-004: fails concrete activation snapshots whose allowed_outcome still lists the enum", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text.replace(
+              "activationSnapshot.snapshotId",
+              "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-L7-900-future",
+      reason:
+        "invalid selected allowed_outcome for activation_decision_record: allowed_outcome must select exactly one outcome, found=activate_future_version,reject_or_archive,keep_parked_with_review_date",
+    });
+  });
+
+  it("U-DECISIONREC-004: accepts concrete activation snapshots whose allowed_outcome selects one outcome", () => {
+    const base = input().plans[0];
+    const result = analyzeVersionUpReadiness(
+      input({
+        plans: [
+          {
+            ...base,
+            text: base.text
+              .replace(
+                "`activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`",
+                "`activate_future_version`",
+              )
+              .replace(
+                "activationSnapshot.snapshotId",
+                "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              ),
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.violations.map((v) => v.reason)).not.toContain(
+      "invalid selected allowed_outcome for activation_decision_record: allowed_outcome must select exactly one outcome, found=activate_future_version,reject_or_archive,keep_parked_with_review_date",
+    );
+  });
+
   it("U-DECISIONREC-007: fails parked version-up plans whose activation record has outcomes but no matching routes", () => {
     const base = input().plans[0];
     const result = analyzeVersionUpReadiness(

@@ -18,6 +18,7 @@ import {
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
+  selectedAllowedOutcomeViolation,
   sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
@@ -255,7 +256,13 @@ function validateS4DecisionRecord(
     violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
   }
   const outcomeViolation = plan.decisionOutcome
-    ? selectedAllowedOutcomeViolation(plan)
+    ? selectedAllowedOutcomeViolation({
+        text: plan.text,
+        recordName: S4_RECORD_NAME,
+        allowedOutcomes: S4_ALLOWED_OUTCOMES,
+        selectedOutcome: plan.decisionOutcome,
+        selectedOutcomeLabel: "decision_outcome",
+      })
     : allowedOutcomeSetViolation(plan.text, S4_RECORD_NAME, S4_ALLOWED_OUTCOMES);
   if (outcomeViolation) {
     violations.push({ subject: plan.plan_id, reason: outcomeViolation });
@@ -406,47 +413,6 @@ function validateSelectedOutcomeSemantics(plan: S4DecisionPlan): S4DecisionViola
   }
 
   return violations;
-}
-
-function selectedAllowedOutcomeViolation(plan: S4DecisionPlan): string | null {
-  const selectedOutcome = plan.decisionOutcome;
-  const value = s4RecordField(plan, "allowed_outcome");
-  if (!selectedOutcome || !value || value === "TBD" || value === "TODO" || value === "-") {
-    return null;
-  }
-
-  if (!isS4AllowedOutcome(selectedOutcome)) {
-    return `invalid decision_outcome for ${S4_RECORD_NAME}: ${selectedOutcome}`;
-  }
-
-  const escaped = S4_ALLOWED_OUTCOMES.map((outcome) =>
-    outcome.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-  );
-  const known = new RegExp(`\\b(?:${escaped.join("|")})\\b`, "g");
-  const found = value.match(known) ?? [];
-  const unknown = value
-    .replace(known, " ")
-    .replace(/[<>"'`|,]/g, " ")
-    .replace(/\//g, " ")
-    .split(/\s+/)
-    .map((token) => token.trim())
-    .filter(Boolean)
-    .filter((token) => token !== "or" && token !== "and");
-
-  if (found.length === 1 && found[0] === selectedOutcome && unknown.length === 0) {
-    return null;
-  }
-
-  const details = [
-    found.length !== 1
-      ? `allowed_outcome must select exactly one outcome, found=${found.join(",") || "none"}`
-      : "",
-    found.length === 1 && found[0] !== selectedOutcome
-      ? `allowed_outcome ${found[0]} does not match decision_outcome ${selectedOutcome}`
-      : "",
-    unknown.length > 0 ? `unknown allowed_outcome ${unknown.join(",")}` : "",
-  ].filter(Boolean);
-  return `invalid selected allowed_outcome for ${S4_RECORD_NAME}: ${details.join("; ")}`;
 }
 
 function isS4AllowedOutcome(outcome: string): outcome is S4AllowedOutcome {

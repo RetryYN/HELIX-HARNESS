@@ -43,7 +43,7 @@ version-up parked PLAN は、将来版へ保全している間も「次に何を
 | field | 必須条件 | 意味 |
 |---|---|---|
 | `activation_decision_record` | 常時必須 | 将来版 activation の判断単位。これが無い parked PLAN は plain draft と区別できない |
-| `allowed_outcome` | 常時必須 | `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date` のいずれか |
+| `allowed_outcome` | 常時必須 | parked / packet template の段階では `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date` の候補集合を列挙する。`activation_snapshot_id` が concrete `sha256:` になった承認材料では、候補集合ではなく選択済みの単一 outcome にする |
 | `target_version_or_release_trigger` | 常時必須 | どの version / release / tag / trigger で再開するか。`future` のまま曖昧にしない |
 | `activation_snapshot_id` | 常時必須 | `ut-tdd version-up activation-packet --json` の current `activationSnapshot.snapshotId`。snapshot が変わったら旧 approval evidence を流用しない |
 | `activation_route` | `activate_future_version` 候補がある場合必須 | activation 後に add-feature / Forward のどの route へ入るか。外部 activation だけで完了扱いしない |

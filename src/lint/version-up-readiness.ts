@@ -20,6 +20,7 @@ import {
   missingRecordFields,
   recordFieldValue,
   SOURCE_LEDGER_MEANING_REVIEW_FIELDS,
+  selectedAllowedOutcomeViolation,
   sourceLedgerMeaningReviewFieldViolations,
 } from "./shared";
 import {
@@ -844,11 +845,14 @@ export function analyzeVersionUpReadiness(
     )) {
       violations.push({ subject: plan.plan_id, reason: `missing structured ${field}` });
     }
-    const activationOutcomeViolation = allowedOutcomeSetViolation(
-      plan.text,
-      ACTIVATION_RECORD_NAME,
-      ACTIVATION_ALLOWED_OUTCOMES,
-    );
+    const activationOutcomeViolation = hasConcreteActivationSnapshotId(plan)
+      ? selectedAllowedOutcomeViolation({
+          text: plan.text,
+          recordName: ACTIVATION_RECORD_NAME,
+          allowedOutcomes: ACTIVATION_ALLOWED_OUTCOMES,
+          selectedOutcomeLabel: "activation_outcome",
+        })
+      : allowedOutcomeSetViolation(plan.text, ACTIVATION_RECORD_NAME, ACTIVATION_ALLOWED_OUTCOMES);
     if (activationOutcomeViolation) {
       violations.push({ subject: plan.plan_id, reason: activationOutcomeViolation });
     }
@@ -1908,6 +1912,12 @@ function activationEvidenceIsPending(evidence: string): boolean {
   ].some((marker) => normalized.includes(marker));
   if (isExplicitlyPending) return true;
   return !hasConcreteActivationEvidence(evidence);
+}
+
+function hasConcreteActivationSnapshotId(plan: VersionUpReadinessPlan): boolean {
+  return /^sha256:[a-f0-9]{64}$/i.test(
+    record(plan, ACTIVATION_RECORD_NAME, "activation_snapshot_id").trim(),
+  );
 }
 
 function hasConcreteActivationEvidence(evidence: string): boolean {
