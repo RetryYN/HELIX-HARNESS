@@ -142,6 +142,15 @@ const REQUIRED_SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
   "workflow_route_impact",
 ] as const;
 
+const REQUIRED_WORKFLOW_ROUTE_IMPACT_SCOPES = [
+  "G8-G14",
+  "S4",
+  "version-up",
+  "action-binding",
+  "cutover",
+  "completion",
+] as const;
+
 export const VERIFICATION_SOURCE_LEDGER_CHECKED_AT = "2026-07-02";
 
 export const REQUIRED_VERIFICATION_SOURCE_LEDGER_ROWS = [
@@ -263,6 +272,7 @@ export function analyzeRightArmVerificationStrategy(
     ...(sourceLedgerFreshnessViolation ? [sourceLedgerFreshnessViolation] : []),
     ...sourceLedgerMeaningReviewViolations(input.rightArmMd, "Verification source ledger"),
     ...sourceLedgerMeaningReviewCoverageViolations(input.rightArmMd),
+    ...sourceLedgerWorkflowRouteImpactScopeViolations(input.rightArmMd),
     ...REQUIRED_SOURCE_LEDGER_COLUMNS.filter(
       (column) => !sourceLedger.columns.includes(column),
     ).map((column) => `verification source ledger missing column: ${column}`),
@@ -365,6 +375,20 @@ function sourceLedgerMeaningReviewCoverageViolations(text: string): string[] {
     section.includes(source)
       ? []
       : [`Verification source ledger meaning review missing source coverage: ${source}`],
+  );
+}
+
+function sourceLedgerWorkflowRouteImpactScopeViolations(text: string): string[] {
+  const section = sourceLedgerMeaningReviewSection(text);
+  const workflowRouteImpactLine =
+    section.split(/\r?\n/).find((line) => line.includes("`workflow_route_impact`")) ?? "";
+  if (!workflowRouteImpactLine.trim()) {
+    return ["Verification source ledger meaning review missing workflow_route_impact scope line"];
+  }
+  return REQUIRED_WORKFLOW_ROUTE_IMPACT_SCOPES.flatMap((scope) =>
+    workflowRouteImpactLine.includes(scope)
+      ? []
+      : [`Verification source ledger workflow_route_impact missing route scope: ${scope}`],
   );
 }
 

@@ -203,6 +203,25 @@ describe("right-arm verification strategy", () => {
     );
   });
 
+  it("fails source ledger meaning reviews that omit version-up from workflow route impact", () => {
+    const rightArm = text("docs/process/forward/L08-L14-verification-phase.md").replace(
+      "- `workflow_route_impact`: 2026-07-02 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / version-up / action-binding / cutover / completion の route 変更なし。",
+      "- `workflow_route_impact`: 2026-07-02 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
+    );
+    expect(rightArm).not.toBe(text("docs/process/forward/L08-L14-verification-phase.md"));
+
+    const result = analyzeRightArmVerificationStrategy({
+      gatesMd: text("docs/process/gates.md"),
+      rightArmMd: rightArm,
+      now: "2026-07-02T00:00:00.000Z",
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.sourceLedgerViolations).toContain(
+      "Verification source ledger workflow_route_impact missing route scope: version-up",
+    );
+  });
+
   it("fails source ledgers whose gate impact does not cover the G8-G14 verification band", () => {
     const gatesMd = [
       "G8 has an executable workflow gate",

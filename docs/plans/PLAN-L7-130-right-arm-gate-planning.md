@@ -255,6 +255,10 @@ untraceable.
   G8-G14/S3/S4/action-binding routes, and require the ledger as a whole to cover
   every G8-G14 gate. This prevents a live official-source table from drifting
   away from the right-arm verification band it is supposed to justify.
+- source ledger の `workflow_route_impact` 意味レビューでは、G8-G14 / S4 /
+  version-up / action-binding / cutover / completion を明示必須にする。source
+  refresh が version-up activation や他の completion frontier route を暗黙に
+  迂回しないための fail-close 条件として扱う。
 - Require the source-ledger `checked` date to be non-future and no more than 90
   days old. A stale official-source ledger is not valid G8-G14 evidence even
   when rows, URLs, and adoption decisions are present.
@@ -279,6 +283,8 @@ untraceable.
 - Doctor fails when source-ledger `gate impact` values are not recognized
   G8-G14/S3/S4/action-binding routes, or when the source ledger no longer covers
   the full G8-G14 verification band.
+- source-ledger 意味レビューが `workflow_route_impact` から version-up または
+  他の completion frontier route を落とした場合、doctor は fail する。
 - Doctor fails when the right-arm verification source ledger has a future
   `checked` date or is older than 90 days.
 - Doctor continues to pass when the right-arm verification source ledger is
