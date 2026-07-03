@@ -760,6 +760,9 @@ describe("L7 CLI surface closure", () => {
         "packet-summary: 2 ut-tdd rename approval-draft --json runnable=bun run ut-tdd rename approval-draft --json scoped=ut-tdd rename approval-draft --json runnable-scoped=bun run ut-tdd rename approval-draft --json schema=identifier-rename-approval-draft.v1 matrix=none count=0",
       );
       expect(blockedText.stdout).toContain(
+        "review=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む review-id=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
+      );
+      expect(blockedText.stdout).toContain(
         "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain("completion: blocked");

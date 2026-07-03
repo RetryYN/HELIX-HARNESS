@@ -470,7 +470,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
           `  - packet一覧: ${a.scopedPacketCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
             (summary) =>
-              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${renderPacketFieldList(summary.requiredReviewFields)} matrix必須field=${renderPacketFieldList(summary.requiredMatrixFields)} 確認観点=${sanitize(handoverReviewRouteText(summary.reviewRoute))}`,
+              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${renderPacketFieldList(summary.requiredReviewFields)} matrix必須field=${renderPacketFieldList(summary.requiredMatrixFields)} 確認観点=${sanitize(summary.reviewRouteJa ?? handoverReviewRouteText(summary.reviewRoute))} 確認観点ID=${sanitize(summary.reviewRoute)}`,
           ),
         ]),
         "",
@@ -775,6 +775,14 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
     return {
       messages: [
         "handover-next-action — violation: 最新 handover §3 の packet 要約に確認field/matrix必須field が無い → `ut-tdd handover` で再生成し source-delta review 導線を seed",
+      ],
+      ok: false,
+    };
+  }
+  if (!section.includes("completion-ready") && !section.includes("確認観点ID=")) {
+    return {
+      messages: [
+        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認観点ID が無い → `ut-tdd handover` で再生成し日本語確認観点と machine review route を分離",
       ],
       ok: false,
     };

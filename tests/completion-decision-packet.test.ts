@@ -558,6 +558,8 @@ describe("completion decision packet lint", () => {
       schemaVersion: "identifier-rename-approval-draft.v1",
       matrixField: "none",
       expectedMatrixCount: 0,
+      reviewRouteJa:
+        "非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む",
     });
     expect(approvalDraftSummary?.requiredReviewFields).toEqual(
       expect.arrayContaining([

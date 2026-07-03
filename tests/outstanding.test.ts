@@ -1597,6 +1597,8 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             schemaVersion: "identifier-rename-approval-draft.v1",
             matrixField: "none",
             expectedMatrixCount: 0,
+            reviewRouteJa:
+              "非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む",
             requiredReviewFields: expect.arrayContaining([
               "planOnly",
               "mustNotApply",

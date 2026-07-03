@@ -2143,6 +2143,8 @@ export function workflowReviewRouteTextJa(route: string): string {
       return "activation readiness / current snapshot id / external rehearsal / cost guardrails / security checklist packet / reapproval trigger / verification command を確認する";
     case "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands":
       return "cutover snapshot / snapshot drift review / blast-radius checklist / verification command を確認する";
+    case "review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy":
+      return "非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む";
     case "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands":
       return "actor / tool / target / params binding、semantic frontier、related packet、verification command を確認する";
     case "review completion decision records and route to dedicated packets":
