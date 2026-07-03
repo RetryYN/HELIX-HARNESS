@@ -912,6 +912,69 @@ describe("action-binding approval readiness", () => {
     );
   });
 
+  it("rejects untrusted external URLs as action-binding review or audit evidence", () => {
+    const weakEvidenceRecord = RECORD.replace(
+      ".ut-tdd/evidence/action-binding/review.json result=pass",
+      "review_url=https://example.invalid/manual-approval result=pass",
+    ).replace(
+      ".ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+      "audit_url=https://example.invalid/audit/123 approver action command result incident route",
+    );
+    const trustedEvidenceRecord = RECORD.replace(
+      ".ut-tdd/evidence/action-binding/review.json result=pass",
+      "review_url=https://github.com/example/repo/actions/runs/123456789 result=pass",
+    ).replace(
+      ".ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+      "audit_url=https://github.com/example/repo/commit/0123456789abcdef approver action command result incident route",
+    );
+
+    const weakResult = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${weakEvidenceRecord}`,
+        },
+      ],
+    });
+    const trustedResult = analyzeActionBindingApprovalReadiness({
+      rightArmMd: RIGHT_ARM,
+      outstandingTs: OUTSTANDING,
+      plans: [
+        {
+          file: "PLAN-X.md",
+          plan_id: "PLAN-X",
+          status: "draft",
+          text: `requires action-binding approval\n${trustedEvidenceRecord}`,
+        },
+      ],
+    });
+
+    expect(weakResult.ok).toBe(false);
+    expect(weakResult.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-X",
+          reason: "review_approval_evidence must name concrete review evidence before approval",
+        },
+        {
+          subject: "PLAN-X",
+          reason:
+            "audit_record must capture approver, action/command, result, and incident/backlog/rollback route",
+        },
+      ]),
+    );
+    expect(trustedResult.violations.map((violation) => violation.reason)).not.toContain(
+      "review_approval_evidence must name concrete review evidence before approval",
+    );
+    expect(trustedResult.violations.map((violation) => violation.reason)).not.toContain(
+      "audit_record must capture approver, action/command, result, and incident/backlog/rollback route",
+    );
+  });
+
   it("rejects approval scope that is exclusion-only without an approved target boundary", () => {
     const exclusionOnlyScopeRecord = RECORD.replace(
       "limited scope for actor/tool/target/params for a high-impact action only",

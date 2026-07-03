@@ -1500,16 +1500,27 @@ function isPendingReviewEvidence(value: string): boolean {
 function hasConcreteApprovalEvidenceLocator(value: string): boolean {
   const normalized = value.trim();
   if (!normalized) return false;
+  if (containsUntrustedExternalEvidenceUrl(normalized)) return false;
   return [
     /sha256:[a-f0-9]{64}/i,
     /\b[A-Z]{1,8}-\d{2,}\b/,
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
-    /https?:\/\/\S+/i,
+    /https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:actions\/runs\/\d+|pull\/\d+|commit\/[a-f0-9]{7,40})(?:[/?#]\S*)?/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
     /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));
+}
+
+function containsUntrustedExternalEvidenceUrl(value: string): boolean {
+  const urls = value.match(/https?:\/\/\S+/gi) ?? [];
+  return urls.some(
+    (url) =>
+      !/^https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:actions\/runs\/\d+|pull\/\d+|commit\/[a-f0-9]{7,40})(?:[/?#]\S*)?$/i.test(
+        url,
+      ),
+  );
 }
 
 function hasLimitedApprovalScope(value: string): boolean {

@@ -153,6 +153,8 @@ U-DECISIONREC-013 も `S4 decision source ledger` の checked date を `decision
 U-DECISIONREC-013 は `verified_evidence` と `external_source_basis` の concrete 判定を分離し、URL / repo doc path /
 PLAN ID だけの source 参照を `verified_evidence` としては fail-close する。実行済み test/review command、test path、
 artifact/audit/evidence/report/log path、run/workflow/job id、hash のいずれかに接続しない S4 判断材料は検証証跡にしない。
+U-DECISIONREC-014 は `review_approval_evidence` / `audit_record` の concrete 判定で任意の外部 URL や自由文 claim を許可しない。
+repo-local artifact path、digest / run id、GitHub Actions run / PR / commit URL のような監査可能 locator のみを承認前 evidence として扱う。
 U-DECISIONREC-014 は `approvalSnapshot` を持ち、`planTextDigest` / `approvalScopeDigest` /
 `reviewEvidenceDigest` / `auditDigest` / `siblingDecisionPacketDigest` を `snapshotId` へ束ねる。
 approved actor/tool/target/params、review evidence、audit、関連 decision packet のどれかが変わった旧承認材料を
