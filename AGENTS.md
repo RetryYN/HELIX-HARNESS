@@ -39,6 +39,15 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 - `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md` - redesign policy と TypeScript/Bun 実装言語
 - `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
 
+## 配布パッケージ（Distribution）
+
+- **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-OS.git`
+  （consumer 側が `ut-tdd` を取得するパッケージ配布先。本 development リポジトリとは分離）。
+- この development リポジトリが正本 source。tag 済みリリースを上記配布リポジトリへ publish し、
+  consumer は配布リポジトリ経由で導入する。
+- `src/setup/templates.ts` 等に残る `unison-ai-product/UT-TDD_AGENT-HARNESS-Pack` は旧プレースホルダで、
+  正式配布先は上記 `RetryYN/HELIX-HARNESS-OS`。配布 surface の実切替は PLAN-M-02 cutover 承認まで行わない。
+
 Migration snapshots と inventories は Core Reads ではない。`docs/migration/` は migration、gap audit、
 regression-source inspection が必要なときだけ読む。UT-TDD runtime state や execution paths として扱わない。
 
