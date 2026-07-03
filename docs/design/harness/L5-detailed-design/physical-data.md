@@ -304,8 +304,10 @@ Required UT-derived metrics:
 - `review_evidence.green_commands[].evidence_path` が structured JSON を指し、`cases[]` を含む場合、
   deterministic rebuild は既存 `test_runs` に紐づけて `test_cases` / `test_results` /
   `test_artifact_edges` を投影し、DB から UT history input を復元して `test_flake_events` /
-  `quality_signals` / `feedback_events` へ接続する。Vitest / Playwright / JUnit の生 reporter parser は
-  別 slice とする。
+  `quality_signals` / `feedback_events` へ接続する。2026-07-03 の PLAN-L7-240 以降は、同じ
+  `evidence_path` で Vitest/Jest-compatible JSON reporter、Playwright JSON reporter、JUnit XML の
+  最小 reporter artifact も正規化し、既存 table に投影する。parser は DB schema を増やさず、
+  HTML / trace / coverage / attachment / 任意 XML 仕様全体は扱わない。
 - `green_definition_compliance = every test_runs.green_definition_id resolves and every required command in that definition has exit_code=0`.
 - `review_green_command_compliance = every 2026-06-23-or-later confirmed/completed review_evidence entry has at least one projected test_runs row with exit_code=0, evidence_path, and output_digest`.
 

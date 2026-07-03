@@ -845,6 +845,148 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("projects Vitest, Playwright, and JUnit reporter evidence into UT history signals on rebuild", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-reporter-ut-evidence-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "green-command"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-240-reporter-ut-evidence.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-240-reporter-ut-evidence",
+          "title: reporter UT evidence fixture",
+          "kind: impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "created: 2026-07-03",
+          "updated: 2026-07-03",
+          "review_evidence:",
+          "  - reviewer: codex-tl",
+          "    review_kind: intra_runtime_subagent",
+          "    reviewed_at: \"2026-07-03T00:10:00.000Z\"",
+          "    tests_green_at: \"2026-07-03T00:10:00.000Z\"",
+          "    verdict: approve",
+          "    worker_model: codex",
+          "    reviewer_model: codex-intra-runtime",
+          "    green_commands:",
+          "      - kind: unit_test",
+          "        command: \"bun test tests/reporter.test.ts --reporter=json\"",
+          "        runner: bun",
+          "        scope: targeted",
+          "        exit_code: 0",
+          "        completed_at: \"2026-07-03T00:01:00.000Z\"",
+          "        evidence_path: .ut-tdd/evidence/green-command/vitest.json",
+          "        output_digest: \"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+          "      - kind: integration_test",
+          "        command: \"bunx playwright test tests/e2e/reporter.spec.ts --reporter=json\"",
+          "        runner: bun",
+          "        scope: targeted",
+          "        exit_code: 0",
+          "        completed_at: \"2026-07-03T00:02:00.000Z\"",
+          "        evidence_path: .ut-tdd/evidence/green-command/playwright.json",
+          "        output_digest: \"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+          "      - kind: unit_test",
+          "        command: \"bun test tests/reporter.test.ts --reporter=junit\"",
+          "        runner: bun",
+          "        scope: targeted",
+          "        exit_code: 0",
+          "        completed_at: \"2026-07-03T00:03:00.000Z\"",
+          "        evidence_path: .ut-tdd/evidence/green-command/junit.xml",
+          "        output_digest: \"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\"",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "green-command", "vitest.json"),
+        JSON.stringify({
+          testResults: [
+            {
+              name: "tests/reporter.test.ts",
+              assertionResults: [
+                {
+                  fullName: "reporter U-VITEST-A passes",
+                  status: "passed",
+                  duration: 10,
+                },
+                {
+                  ancestorTitles: ["reporter"],
+                  title: "U-VITEST-B skipped",
+                  status: "pending",
+                },
+              ],
+            },
+          ],
+        }),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "green-command", "playwright.json"),
+        JSON.stringify({
+          suites: [
+            {
+              title: "dashboard",
+              file: "tests/e2e/reporter.spec.ts",
+              specs: [
+                {
+                  title: "U-PW-FLAKE renders progress",
+                  tests: [
+                    {
+                      projectName: "chromium",
+                      results: [
+                        { status: "failed", duration: 100, error: { message: "first attempt" } },
+                        { status: "passed", duration: 80 },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        }),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "green-command", "junit.xml"),
+        [
+          '<testsuite name="reporter">',
+          '  <testcase classname="tests/reporter.test.ts" name="U-JUNIT-A passes" time="0.020" />',
+          '  <testcase classname="tests/reporter.test.ts" name="U-JUNIT-B fails" time="0.030">',
+          '    <failure message="junit failure">stack</failure>',
+          "  </testcase>",
+          '  <testcase classname="tests/reporter.test.ts" name="U-JUNIT-C skipped"><skipped /></testcase>',
+          "</testsuite>",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:");
+      try {
+        const result = rebuildHarnessDb({ repoRoot, db });
+
+        expect(result.ok).toBe(true);
+        expect(rowCounts(db).test_runs).toBe(3);
+        expect(rowCounts(db).test_results).toBe(7);
+        expect(
+          db
+            .prepare(
+              "SELECT pass_count, fail_count, flake_score FROM test_flake_events WHERE test_case_id = ?",
+            )
+            .get("test-case-oracle:PLAN-L7-240-reporter-ut-evidence:U-PW-FLAKE"),
+        ).toEqual({ pass_count: 1, fail_count: 1, flake_score: 0.5 });
+        expect(
+          db
+            .prepare("SELECT COUNT(*) AS n FROM test_artifact_edges WHERE artifact_path = ?")
+            .get("tests/reporter.test.ts")?.n,
+        ).toBeGreaterThan(0);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it("U-RUNDEBUG-007: projects L7.5 runtime verification logs into harness.db runtime evidence rows", () => {
     const repoRoot = join(tmpdir(), `ut-tdd-runtime-verification-projection-${randomUUID()}`);
     try {

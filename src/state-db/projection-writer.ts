@@ -65,6 +65,7 @@ import {
   upsertRow,
 } from "./index";
 import { migrate, rowCounts } from "./migration";
+import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
 
 type ProjectedUtCase = {
@@ -879,15 +880,15 @@ function projectStructuredGreenCommandCaseEvidence(input: {
   const fullPath = join(repoRoot, command.evidence_path);
   const relPath = normalizePath(relative(repoRoot, fullPath));
   if (relPath.startsWith("..") || isAbsolute(relPath) || !existsSync(fullPath)) return;
-  if (!command.evidence_path.endsWith(".json")) return;
   try {
-    const raw = JSON.parse(readFileSync(fullPath, "utf8")) as Record<string, unknown>;
-    const cases = normalizeStructuredTestCases(raw.cases);
+    const content = readFileSync(fullPath, "utf8");
+    const parsed = parseGreenCommandEvidence(command.evidence_path, content);
+    const cases = parsed?.cases ?? [];
     if (cases.length === 0) return;
-    const recordedAt = asString(raw.recorded_at) ?? command.completed_at ?? nowIso();
-    const startedAt = asString(raw.started_at) ?? recordedAt;
-    const completedAt = asString(raw.completed_at) ?? recordedAt;
-    const planId = asString(raw.plan_id) ?? fallbackPlanId;
+    const recordedAt = parsed?.recorded_at ?? command.completed_at ?? nowIso();
+    const startedAt = parsed?.started_at ?? recordedAt;
+    const completedAt = parsed?.completed_at ?? recordedAt;
+    const planId = parsed?.plan_id ?? fallbackPlanId;
     for (const [index, testCase] of cases.entries()) {
       const testCaseId = stableId("test-case", `${testRunId}:${testCase.oracle_id ?? index}`);
       const resultId = stableId("test-result", `${testCaseId}:${testCase.status}`);
@@ -948,29 +949,6 @@ function projectStructuredGreenCommandCaseEvidence(input: {
   } catch {
     return;
   }
-}
-
-function normalizeStructuredTestCases(value: unknown): ProjectedUtCase[] {
-  if (!Array.isArray(value)) return [];
-  return value
-    .filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null)
-    .map((item) => {
-      const status = asString(item.status);
-      if (status !== "passed" && status !== "failed" && status !== "skipped") return null;
-      const testCase: ProjectedUtCase = {
-        oracle_id: asString(item.oracle_id) ?? undefined,
-        name: asString(item.name) ?? asString(item.test_name) ?? asString(item.oracle_id) ?? "unknown",
-        status,
-      };
-      const durationMs = asFiniteNumber(item.duration_ms);
-      if (durationMs !== null) testCase.duration_ms = durationMs;
-      const message = asString(item.message);
-      if (message) testCase.message = message;
-      const artifactPath = asString(item.artifact_path);
-      if (artifactPath) testCase.artifact_path = artifactPath;
-      return testCase;
-    })
-    .filter((item): item is ProjectedUtCase => item !== null);
 }
 
 function projectUtHistorySignalsFromProjectedRuns(db: HarnessDb): void {
