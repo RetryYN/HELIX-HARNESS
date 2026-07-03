@@ -300,6 +300,9 @@ describe("completion decision packet lint", () => {
         "versionDryRunEvidence.releaseTagExists",
         "versionDryRunEvidence.releaseTriggerResolved",
         "securityChecklistPacket.securityChecks",
+        "securityChecklistPacket.securityChecks.status",
+        "securityChecklistPacket.securityChecks.evidence",
+        "securityChecklistPacket.securityChecks.reason",
         "securityChecklistPacket.securityChecks.requiredEvidence",
         "securityChecklistPacket.securityChecks.adoptionDecision",
         "securityChecklistPacket.securityChecks.workflowRouteImpact",
@@ -644,6 +647,21 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.status",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.evidence",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.reason",
         },
         {
           reason: "invalid_supporting_packet_summary",

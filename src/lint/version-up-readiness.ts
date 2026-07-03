@@ -242,6 +242,9 @@ export interface VersionUpSecurityChecklistPacket {
   activationSnapshot: VersionUpActivationSnapshot;
   securityChecks: Array<{
     check: string;
+    status: "present" | "pending_evidence";
+    evidence: string;
+    reason: string;
     source: string;
     sourceUrl: string;
     sourceCheckedAt: string;
@@ -1538,6 +1541,7 @@ export function buildVersionUpActivationPacket(
     plan,
     options.currentVersion ?? "0.1.0",
   );
+  const securityChecks = buildVersionUpSecurityChecks(sourceMetadata);
   const reapprovalTriggers = buildVersionUpActivationReapprovalTriggers();
   const activationSnapshot = buildVersionUpActivationSnapshot({
     plan,
@@ -1554,6 +1558,7 @@ export function buildVersionUpActivationPacket(
     externalRehearsalPlan,
     costGuardrailRows,
     activationReadinessChecks,
+    securityChecks,
   });
   const blockedReasons = [
     ...blockedActivationReasons({
@@ -1632,7 +1637,7 @@ export function buildVersionUpActivationPacket(
       writePolicy: "no-write",
       sourceCommand: `ut-tdd version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
       activationSnapshot,
-      securityChecks: buildVersionUpSecurityChecks(sourceMetadata),
+      securityChecks,
       blockedUntil: [
         "securityChecks have concrete evidence paths, audit ids, or reports",
         "external_rehearsal_plan and activation_provenance_requirements cite the same evidence",
@@ -1714,7 +1719,7 @@ export function buildVersionUpSecurityChecklistPacket(
 function buildVersionUpSecurityChecks(
   sourceMetadata: VersionUpSourceMetadata,
 ): VersionUpSecurityChecklistPacket["securityChecks"] {
-  return [
+  const rows = [
     {
       check: "github-actions-least-privilege",
       source: "GitHub Actions secure use",
@@ -1750,18 +1755,53 @@ function buildVersionUpSecurityChecks(
         "OWASP-aligned access-control, secret/PII exclusion, and read-only projection checks produce a report or audit id",
     },
   ];
+  return rows.map((row) => ({
+    ...row,
+    status: "pending_evidence" as const,
+    evidence: `pending evidence: ${row.requiredEvidence}`,
+    reason:
+      "security checklist requires a concrete evidence path, audit id, report, or run log before activation approval",
+  }));
 }
 
 export function versionUpSecurityChecklistSourceViolations(
   packet: VersionUpSecurityChecklistPacket,
 ): VersionUpActivationCommandViolation[] {
-  return packet.securityChecks.flatMap((row) =>
-    verificationSourceMetadataViolations({
-      subject: `${packet.planId}.securityChecks.${row.check}`,
-      matrixName: "securityChecks",
-      row,
-    }),
-  );
+  return packet.securityChecks.flatMap((row) => {
+    const subject = `${packet.planId}.securityChecks.${row.check}`;
+    const violations: VersionUpActivationCommandViolation[] = [
+      ...verificationSourceMetadataViolations({
+        subject,
+        matrixName: "securityChecks",
+        row,
+      }),
+    ];
+    if (row.status !== "present" && row.status !== "pending_evidence") {
+      violations.push({
+        subject,
+        reason: `securityChecks status is invalid: ${String(row.status)}`,
+      });
+    }
+    if (isBlankOrPlaceholderActivationField(row.evidence)) {
+      violations.push({
+        subject,
+        reason: "securityChecks evidence is missing or placeholder",
+      });
+    }
+    if (isBlankOrPlaceholderActivationField(row.reason)) {
+      violations.push({
+        subject,
+        reason: "securityChecks reason is missing or placeholder",
+      });
+    }
+    if (row.status === "present" && activationEvidenceIsPending(row.evidence)) {
+      violations.push({
+        subject,
+        reason: "securityChecks present evidence lacks a concrete locator",
+      });
+    }
+    return violations;
+  });
 }
 
 export function versionUpActivationVerificationCommandViolations(
@@ -1884,6 +1924,7 @@ function buildVersionUpActivationSnapshot(input: {
   externalRehearsalPlan: VersionUpActivationPacket["externalRehearsalPlan"];
   costGuardrailRows: VersionUpActivationPacket["costGuardrails"];
   activationReadinessChecks: VersionUpActivationReadinessCheck[];
+  securityChecks: VersionUpSecurityChecklistPacket["securityChecks"];
 }): VersionUpActivationSnapshot {
   const releaseTrigger =
     input.activationDecision.target_version_or_release_trigger || input.plan.versionTarget || "";
@@ -1909,6 +1950,20 @@ function buildVersionUpActivationSnapshot(input: {
       status: check.status,
       evidence: check.evidence,
       reason: check.reason,
+    })),
+    security_checklist_rows: input.securityChecks.map((check) => ({
+      check: check.check,
+      status: check.status,
+      evidence: check.evidence,
+      reason: check.reason,
+      requiredEvidence: check.requiredEvidence,
+      sourceUrl: check.sourceUrl,
+      sourceCheckedAt: check.sourceCheckedAt,
+      latestOfficialStatus: check.latestOfficialStatus,
+      sourceStatusDelta: check.sourceStatusDelta,
+      adoptionDecision: check.adoptionDecision,
+      adoptionDecisionDelta: check.adoptionDecisionDelta,
+      workflowRouteImpact: check.workflowRouteImpact,
     })),
     activation_provenance_requirements: input.provenance,
     version_dry_run_evidence: input.versionDryRunEvidence,
@@ -2320,6 +2375,13 @@ function activationEvidenceIsPending(evidence: string): boolean {
   ].some((marker) => normalized.includes(marker));
   if (isExplicitlyPending) return true;
   return !hasConcreteActivationEvidence(evidence);
+}
+
+function isBlankOrPlaceholderActivationField(value: string): boolean {
+  const trimmed = value.trim();
+  if (!trimmed || /^(TBD|TODO|N\/A|-|placeholder)$/i.test(trimmed)) return true;
+  if (/^<[^>]+>$/.test(trimmed)) return true;
+  return /\b(record later|to be recorded|fill in|must cite|cite before approval)\b/i.test(trimmed);
 }
 
 function hasConcreteActivationEvidence(evidence: string): boolean {

@@ -82,7 +82,12 @@ secret/PII 非投影、no-prod-write、rollback rehearsal、source ledger freshn
 `externalRehearsalPlan[]`、`costGuardrails[]`、`version-up security-checklist` の `securityChecks[]` は
 source 名だけでは不可とし、各 row が `sourceUrl` / `sourceCheckedAt` / `latestOfficialStatus` /
 `sourceStatusDelta` / `adoptionDecision` / `adoptionDecisionDelta` / `workflowRouteImpact` を持つ。
-source metadata が空、placeholder、未来日、90 日超 stale の場合は activation evidence とみなさず
+`securityChecks[]` はさらに `status` / `evidence` / `reason` を持ち、`requiredEvidence` だけで
+「要求した」状態を実証済みと扱わない。証跡 path、audit id、report、run log などの concrete locator が
+未接続の row は `pending_evidence` とし、`evidence` と `reason` に未完了理由を明示する。`status=present`
+を名乗る row が concrete locator を持たない場合、または `evidence` / `reason` が空・placeholder の場合は
+fail-close する。
+source metadata が空、placeholder、未来日、90 日超 stale の場合も activation evidence とみなさず
 fail-close する。
 packet 内の `sourceCheckedAt` は `Version-up source ledger (checked YYYY-MM-DD)` と同じ日付から派生し、
 ledger heading と verification matrix / rehearsal / security checklist の確認日を別々に進めない。
@@ -108,6 +113,8 @@ supporting summary は `activationDecision`、`activationSnapshot`、`versionDry
 `activationSnapshot.versionDryRunDigest`、`activationSnapshot.evidenceDigest`、
 `versionDryRunEvidence.digest`、`versionDryRunEvidence.semverChange`、
 `versionDryRunEvidence.releaseTagExists`、`versionDryRunEvidence.releaseTriggerResolved`、
+`securityChecklistPacket.securityChecks.status`、`securityChecklistPacket.securityChecks.evidence`、
+`securityChecklistPacket.securityChecks.reason`、
 `securityChecklistPacket.securityChecks.requiredEvidence`、
 `securityChecklistPacket.securityChecks.workflowRouteImpact`、`reapprovalTriggers.requiredAction` などを列挙する。
 これにより、承認者が SemVer dry-run、release tag 解決、snapshot drift、rehearsal / cost / provenance、

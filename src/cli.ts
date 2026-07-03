@@ -1769,7 +1769,11 @@ versionUp
       `version-up security-checklist: ${packet.planId} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy} checks=${packet.securityChecks.length}\n`,
     );
     for (const check of packet.securityChecks) {
-      process.stdout.write(`  security-check: ${check.check} source=${check.sourceUrl}\n`);
+      process.stdout.write(
+        `  security-check: ${check.check} status=${check.status} source=${check.sourceUrl}\n`,
+      );
+      process.stdout.write(`    evidence=${check.evidence}\n`);
+      process.stdout.write(`    reason=${check.reason}\n`);
     }
     for (const blocker of packet.blockedUntil) {
       process.stdout.write(`  blocked-until: ${blocker}\n`);

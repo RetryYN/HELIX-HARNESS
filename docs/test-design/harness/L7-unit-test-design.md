@@ -973,3 +973,11 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-ID | Target | Oracle |
 |---|---|---|
 | U-SETUP-025 | `runHelixProjectSetup` / `runConsumerDoctor` | consumer setup が配布する `.claude/settings.json` / `.codex/hooks.json` は文字列検索ではなく JSON として parse し、必要 event、matcher、hook `type=command`、command、hard guard の `blockOnFailure=true` を構造で検査する。`.codex/config.toml` は `[features]` と `hooks = true` を持つ。command 文字列だけが別 field に残る、matcher が drift する、hard guard が non-command または `blockOnFailure=false` になる、PostToolUse / Stop / SubagentStop 等の lifecycle hook が欠ける場合は setup readiness と consumer doctor の両方で fail-close する。 |
+
+## PLAN-L7-265 version-up security checklist evidence 追補
+
+| U-ID | Target | Oracle |
+|---|---|---|
+| U-VERSIONUP-SEC-001 | `buildVersionUpActivationPacket` / `buildVersionUpSecurityChecklistPacket` | `securityChecklistPacket.securityChecks[]` は `requiredEvidence` だけでなく `status` / `evidence` / `reason` を持つ。concrete locator 未接続の row は `pending_evidence` として公開され、`requiredEvidence` は要求であって実証済み evidence ではない。 |
+| U-VERSIONUP-SEC-002 | `versionUpSecurityChecklistSourceViolations` | `sourceUrl` / `sourceCheckedAt` 等の source metadata 欠落に加え、`evidence` / `reason` の空・placeholder、または `status=present` なのに concrete locator がない row を fail-close する。`pending_evidence` は parked activation の正当な未完了状態として表現される。 |
+| U-VERSIONUP-SEC-003 | `VersionUpActivationSnapshot.evidenceDigest` / supporting packet summary | activation snapshot の evidence digest は security checklist row の `status` / `evidence` / `reason` / source metadata を含む。completion/status の `requiredReviewFields[]` は `securityChecklistPacket.securityChecks.status` / `.evidence` / `.reason` を列挙し、承認者が security evidence の実証状態を review surface から辿れる。 |

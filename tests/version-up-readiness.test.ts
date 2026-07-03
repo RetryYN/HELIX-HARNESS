@@ -878,15 +878,22 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           check: "github-actions-least-privilege",
+          status: "pending_evidence",
+          evidence: expect.stringContaining("pending evidence: workflow permissions"),
+          reason: expect.stringContaining("concrete evidence path"),
           sourceCheckedAt: "2026-06-30",
           adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
         }),
         expect.objectContaining({
           check: "github-environments-availability",
+          status: "pending_evidence",
+          evidence: expect.stringContaining("pending evidence: repository visibility"),
           requiredEvidence: expect.stringContaining("repository visibility"),
         }),
         expect.objectContaining({
           check: "access-control-and-secret-exposure",
+          status: "pending_evidence",
+          reason: expect.stringContaining("activation approval"),
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
           latestOfficialStatus: expect.stringContaining("latest page is explicitly volatile"),
         }),
@@ -914,6 +921,43 @@ describe("version-up-readiness", () => {
       {
         subject: "PLAN-L7-900-future.securityChecks.access-control-and-secret-exposure",
         reason: "securityChecks workflowRouteImpact is missing or placeholder",
+      },
+    ]);
+    expect(
+      versionUpSecurityChecklistSourceViolations({
+        ...securityPacket,
+        securityChecks: securityPacket.securityChecks.map((row) =>
+          row.check === "github-actions-least-privilege"
+            ? {
+                ...row,
+                status: "present",
+                evidence: "least privilege checked before activation",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.securityChecks.github-actions-least-privilege",
+        reason: "securityChecks present evidence lacks a concrete locator",
+      },
+    ]);
+    expect(
+      versionUpSecurityChecklistSourceViolations({
+        ...securityPacket,
+        securityChecks: securityPacket.securityChecks.map((row) =>
+          row.check === "github-actions-least-privilege"
+            ? {
+                ...row,
+                reason: "TODO",
+              }
+            : row,
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.securityChecks.github-actions-least-privilege",
+        reason: "securityChecks reason is missing or placeholder",
       },
     ]);
   });
@@ -2521,11 +2565,41 @@ describe("version-up-readiness", () => {
     });
     expect(security.securityChecks).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ check: "github-actions-least-privilege" }),
-        expect.objectContaining({ check: "pull-request-target-risk-review" }),
-        expect.objectContaining({ check: "access-control-and-secret-exposure" }),
+        expect.objectContaining({
+          check: "github-actions-least-privilege",
+          status: "pending_evidence",
+          evidence: expect.stringContaining("pending evidence: workflow permissions"),
+          reason: expect.stringContaining("concrete evidence path"),
+        }),
+        expect.objectContaining({
+          check: "pull-request-target-risk-review",
+          status: "pending_evidence",
+        }),
+        expect.objectContaining({
+          check: "access-control-and-secret-exposure",
+          status: "pending_evidence",
+        }),
       ]),
     );
+
+    const securityText = execFileSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "security-checklist",
+        "--plan",
+        "PLAN-L7-146-serverless-readonly-share",
+        "--no-write",
+      ],
+      { encoding: "utf8" },
+    );
+    expect(securityText).toContain(
+      "security-check: github-actions-least-privilege status=pending_evidence",
+    );
+    expect(securityText).toContain("evidence=pending evidence: workflow permissions");
+    expect(securityText).toContain("reason=security checklist requires a concrete evidence path");
 
     const text = execFileSync(
       "bun",
