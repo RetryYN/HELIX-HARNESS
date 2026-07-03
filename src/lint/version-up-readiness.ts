@@ -343,6 +343,7 @@ const MODE_DOC_MARKERS = [
   "Cloudflare Access policies",
   "GitHub webhook HMAC SHA-256",
   "OWASP Web Security Testing Guide",
+  "SLSA Provenance",
   "external_rehearsal_plan",
   "cost_guardrails",
   "activation_provenance_requirements",
@@ -555,6 +556,7 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Cloudflare Access policies",
   "GitHub webhook HMAC SHA-256",
   "OWASP Web Security Testing Guide",
+  "SLSA Provenance",
 ] as const;
 
 const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
@@ -654,9 +656,13 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
     ],
     fieldImpacts: ["external_rehearsal_plan", "dry_run_plan", "activation_provenance_requirements"],
   },
+  "SLSA Provenance": {
+    urls: ["https://slsa.dev/spec/v1.2/provenance"],
+    fieldImpacts: ["activation_provenance_requirements", "dry_run_evidence", "audit_record"],
+  },
 };
 
-const VERSION_UP_SOURCE_CHECKED_AT = "2026-07-02";
+const VERSION_UP_SOURCE_CHECKED_AT = "2026-07-03";
 
 const VERSION_UP_SOURCE_METADATA = {
   sourceLedger: {

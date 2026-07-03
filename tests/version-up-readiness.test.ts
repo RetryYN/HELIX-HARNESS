@@ -125,6 +125,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "Cloudflare Access policies",
       "GitHub webhook HMAC SHA-256",
       "OWASP Web Security Testing Guide",
+      "SLSA Provenance",
       "external_rehearsal_plan",
       "cost_guardrails",
       "activation_provenance_requirements",
@@ -163,6 +164,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/access-controls/policies/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check dry_run_plan |",
       "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/stable/ / https://owasp.org/www-project-web-security-testing-guide/latest/ | stable WSTG baseline + latest volatility watch | stable current; latest may change frequently | adopt-stable-wstg-baseline-track-latest-volatility | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
+      "| SLSA Provenance | https://slsa.dev/spec/v1.2/provenance | SLSA Provenance v1.2 | current SLSA v1.2 provenance specification | adopt-v1.2-for-activation-artifact-provenance | activation artifact provenance | activation_provenance_requirements dry_run_evidence audit_record |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     currentVersion: "0.1.0",
@@ -659,7 +661,7 @@ describe("version-up-readiness", () => {
       checkedDate: "2026-06-30",
       stale: false,
       maxAgeDays: 90,
-      rowCount: 16,
+      rowCount: 17,
       missingRows: [],
     });
     expect(packet.relatedDecisionPackets).toEqual(
@@ -1907,6 +1909,24 @@ describe("version-up-readiness", () => {
     });
   });
 
+  it("fails when SLSA provenance is cited for reapproval but missing from the version-up source ledger", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input()
+          .modeDoc.split("\n")
+          .filter((line) => !line.startsWith("| SLSA Provenance |"))
+          .join("\n"),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.missingSourceLedgerRows).toContain("SLSA Provenance");
+    expect(result.violations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason: "version-up source ledger missing row: SLSA Provenance",
+    });
+  });
+
   it("fails when the version-up source ledger checked date is stale", () => {
     // U-SOURCELEDGER-003
     const result = analyzeVersionUpReadiness(
@@ -2393,7 +2413,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "state-and-doctor",
           command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-07-03",
           sourceStatusDelta: "none; local state projection contract reviewed against current HEAD",
           adoptionDecision: "adopt-current-doctor-and-db-rebuild-as-state-convergence-gate",
           adoptionDecisionDelta: "none; keep db rebuild and doctor as activation review gates",
@@ -2401,7 +2421,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           phase: "full-regression",
           command: "bun run test",
-          sourceCheckedAt: "2026-07-02",
+          sourceCheckedAt: "2026-07-03",
           sourceStatusDelta: "none; local full regression policy reviewed against current HEAD",
           adoptionDecisionDelta: "none; keep full regression as future activation blocker",
           workflowRouteImpact: "none; full regression failure blocks activation review",
@@ -2448,7 +2468,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
       stale: false,
-      rowCount: 16,
+      rowCount: 17,
       missingRows: [],
     });
     expect(versionUpActivationVerificationCommandViolations(packets[0])).toEqual([]);
@@ -2536,7 +2556,7 @@ describe("version-up-readiness", () => {
       "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-L7-146-serverless-readonly-share",
     );
     expect(text).toContain(
-      "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-02",
+      "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-03",
     );
     expect(text).toContain(
       "writePolicy=no-write command=bun run src/cli.ts version-up rehearsal --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
@@ -2549,11 +2569,11 @@ describe("version-up-readiness", () => {
     expect(text).toContain("adoptionDelta=keep activation workflow hardening");
     expect(text).toContain("routeImpact=missing concrete rehearsal evidence keeps");
     expect(text).toContain(
-      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/stable/ checked=2026-07-02",
+      "verification-source: security-testing source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/stable/ checked=2026-07-03",
     );
     expect(text).toContain("statusDelta=stable baseline remains adopted while latest volatility");
     expect(text).toContain(
-      "verification-source: approval-packet source=GitHub Environments required reviewers sourceUrl=https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments checked=2026-07-02",
+      "verification-source: approval-packet source=GitHub Environments required reviewers sourceUrl=https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments checked=2026-07-03",
     );
     expect(text).toContain("readiness-pending: webhook_signature_check");
     expect(text).toContain("readiness-pending: pages_limit");
