@@ -1,4 +1,11 @@
-import { REASONING_EFFORTS, type ReasoningEffort } from "./model-policy";
+import type { ReasoningEffort } from "../schema/team";
+
+/**
+ * effort ladder (low→medium→high)。適応の 1 段上げ/下げに使う内部順序。
+ * model-policy の REASONING_EFFORTS と同値だが、model-policy → model-effort の一方向依存
+ * (selectTeamModel が本 module を使う) を保つため、循環を避けてここに閉じる。
+ */
+const EFFORT_LADDER: readonly ReasoningEffort[] = ["low", "medium", "high"];
 
 /**
  * モデル別「標準 reasoning effort」と適応調整ルール (PLAN-L7-310)。
@@ -71,13 +78,13 @@ export interface EffortObservation {
 }
 
 function raise(effort: ReasoningEffort): ReasoningEffort {
-  const idx = REASONING_EFFORTS.indexOf(effort);
-  return REASONING_EFFORTS[Math.min(idx + 1, REASONING_EFFORTS.length - 1)];
+  const idx = EFFORT_LADDER.indexOf(effort);
+  return EFFORT_LADDER[Math.min(idx + 1, EFFORT_LADDER.length - 1)];
 }
 
 function lower(effort: ReasoningEffort): ReasoningEffort {
-  const idx = REASONING_EFFORTS.indexOf(effort);
-  return REASONING_EFFORTS[Math.max(idx - 1, 0)];
+  const idx = EFFORT_LADDER.indexOf(effort);
+  return EFFORT_LADDER[Math.max(idx - 1, 0)];
 }
 
 /**

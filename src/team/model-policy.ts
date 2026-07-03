@@ -1,4 +1,9 @@
 import { recommendModelEffort } from "../workflow/contracts";
+import {
+  adaptReasoningEffort,
+  type EffortObservation,
+  standardEffortForModel,
+} from "./model-effort";
 import type { TeamProvider } from "./run";
 
 /**
@@ -45,7 +50,7 @@ export interface TeamModelSelection {
   model: string;
   model_source: "explicit" | "engine" | "policy";
   reasoning_effort: ReasoningEffort;
-  effort_source: "explicit" | "policy";
+  effort_source: "explicit" | "standard" | "adaptive";
   evidence_path: string;
 }
 
@@ -199,6 +204,8 @@ export function selectTeamModel(input: {
   difficulty?: TaskDifficulty;
   model?: string;
   effort?: ReasoningEffort;
+  /** runtime 観測 (回答が浅い / 思考が長すぎる)。標準 effort をこの観測で 1 段適応する (PLAN-L7-311)。 */
+  observation?: EffortObservation;
 }): TeamModelSelection {
   const difficulty = inferTaskDifficulty(input);
   const recInput = recommendationInput(difficulty.difficulty);
@@ -215,15 +222,30 @@ export function selectTeamModel(input: {
     modelFamily: recommendation.model_family,
   });
 
+  // effort 選定 (PO ルール、PLAN-L7-310/311): 既定は「選定 model の標準 effort」で投げる
+  // (recommendModelEffort の task-size 由来値ではない)。runtime 観測 (shallow→上げ / too-slow→下げ)
+  // があれば 1 段適応する。明示 effort override は最優先。model_family 選定は従来どおり recommendation。
+  const resolvedModel = input.model ?? selectedModel.model;
+  const standardEffort = standardEffortForModel(resolvedModel);
+  const adaptedEffort = adaptReasoningEffort(standardEffort, input.observation ?? {});
+  const reasoningEffort = input.effort ?? adaptedEffort;
+  // "adaptive" は観測で effort が実際に動いたときだけ。矛盾観測 (shallow かつ too-slow) や
+  // 無信号は adaptedEffort===standardEffort となり "standard" のまま (誤読防止、reviewer 指摘)。
+  const effortSource: TeamModelSelection["effort_source"] = input.effort
+    ? "explicit"
+    : adaptedEffort !== standardEffort
+      ? "adaptive"
+      : "standard";
+
   return {
     provider: input.provider,
     difficulty: difficulty.difficulty,
     difficulty_source: difficulty.source,
     model_family: recommendation.model_family,
-    model: input.model ?? selectedModel.model,
+    model: resolvedModel,
     model_source: input.model ? "explicit" : selectedModel.source,
-    reasoning_effort: input.effort ?? recommendation.reasoning_effort,
-    effort_source: input.effort ? "explicit" : "policy",
+    reasoning_effort: reasoningEffort,
+    effort_source: effortSource,
     evidence_path: recommendation.evidence_path,
   };
 }

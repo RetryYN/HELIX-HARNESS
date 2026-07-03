@@ -41,9 +41,19 @@ describe("U-TEAM-003 team launch policy", () => {
     expect(plan.ok).toBe(true);
     expect(plan.strategy).toBe("sequential");
     expect(plan.members.map((member) => member.provider)).toEqual(["codex", "claude", "claude"]);
-    expect(plan.members.every((member) => member.model_selection.reasoning_effort === "high")).toBe(
-      true,
-    );
+    // effort は選定 model の標準 effort が既定 (PLAN-L7-310/311)。se=gpt-5.5(high)/qa=opus(high) は
+    // frontier 標準 high、tl=pmo-sonnet(claude-sonnet-5) は sonnet 標準 medium (旧 task-based 一律 high から是正)。
+    // 浅い回答を観測したら runtime が medium→high へ 1 段上げる。
+    expect(plan.members.map((member) => member.model_selection.reasoning_effort)).toEqual([
+      "high",
+      "medium",
+      "high",
+    ]);
+    expect(plan.members.map((member) => member.model_selection.effort_source)).toEqual([
+      "standard",
+      "standard",
+      "standard",
+    ]);
   });
 
   it("U-TEAM-003: launches for standard non-risk work by difficulty", () => {
