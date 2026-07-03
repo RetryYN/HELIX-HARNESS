@@ -887,6 +887,7 @@ describe("completion decision packet lint", () => {
         requiredActionsJa: [
           "record the PO/S4 decision before promotion, rejection, or Forward merge",
         ],
+        requiredEvidenceJa: decision.requiredEvidence,
         nextWorkflowRouteJa:
           "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
         supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) => ({
@@ -909,6 +910,16 @@ describe("completion decision packet lint", () => {
           reason: "invalid_japanese_display_field",
           detail:
             "decision[0] requiredActionsJa[0] mismatch expected=PO/S4 判断を記録してから昇格・却下・Forward merge へ進める actual=record the PO/S4 decision before promotion, rejection, or Forward merge",
+        }),
+        expect.objectContaining({
+          reason: "invalid_japanese_display_field",
+          detail:
+            "decision[0] requiredEvidenceJa[0] mismatch expected=s4_decision_record に allowed_outcome confirmed / rejected / pivot のいずれかを記録する actual=s4_decision_record with allowed_outcome confirmed / rejected / pivot",
+        }),
+        expect.objectContaining({
+          reason: "invalid_japanese_display_field",
+          detail:
+            "decision[0] requiredEvidenceJa[0] is not Japanese guidance actual=s4_decision_record with allowed_outcome confirmed / rejected / pivot",
         }),
         expect.objectContaining({
           reason: "invalid_japanese_display_field",

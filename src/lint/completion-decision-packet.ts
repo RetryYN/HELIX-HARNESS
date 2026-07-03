@@ -8,6 +8,7 @@ import {
   requiredRecordsForBlockers,
   runnablePacketCommand,
   workflowActionTextJa,
+  workflowEvidenceTextJa,
   workflowReviewRouteTextJa,
   workflowRouteTextJa,
 } from "./outstanding";
@@ -544,6 +545,30 @@ export function analyzeCompletionDecisionPacket(
         violations.push({
           reason: "invalid_japanese_display_field",
           detail: `decision[${decisionIndex}] requiredActionsJa[${actionIndex}] mismatch expected=${expectedActionJa} actual=${String(requiredActionsJa[actionIndex])}`,
+        });
+      }
+    });
+    const requiredEvidence = decision.requiredEvidence ?? [];
+    const requiredEvidenceJa = decision.requiredEvidenceJa ?? [];
+    if (requiredEvidenceJa.length !== requiredEvidence.length) {
+      violations.push({
+        reason: "invalid_japanese_display_field",
+        detail: `decision[${decisionIndex}] requiredEvidenceJa length=${requiredEvidenceJa.length} expected=${requiredEvidence.length}`,
+      });
+    }
+    requiredEvidence.forEach((evidence, evidenceIndex) => {
+      const expectedEvidenceJa = workflowEvidenceTextJa(evidence);
+      const actualEvidenceJa = String(requiredEvidenceJa[evidenceIndex] ?? "");
+      if (actualEvidenceJa !== expectedEvidenceJa) {
+        violations.push({
+          reason: "invalid_japanese_display_field",
+          detail: `decision[${decisionIndex}] requiredEvidenceJa[${evidenceIndex}] mismatch expected=${expectedEvidenceJa} actual=${actualEvidenceJa}`,
+        });
+      }
+      if (!JAPANESE_GUIDANCE_PATTERN.test(actualEvidenceJa)) {
+        violations.push({
+          reason: "invalid_japanese_display_field",
+          detail: `decision[${decisionIndex}] requiredEvidenceJa[${evidenceIndex}] is not Japanese guidance actual=${actualEvidenceJa}`,
         });
       }
     });

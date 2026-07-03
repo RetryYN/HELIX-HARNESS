@@ -140,6 +140,8 @@ export interface OutstandingItem {
   requiredActionsJa: string[];
   /** requiredAction を満たしたと機械照合するために残すべき証跡。 */
   requiredEvidence: string[];
+  /** requiredEvidence の PO 向け日本語表示。machine field は requiredEvidence を正本として残す。 */
+  requiredEvidenceJa: string[];
 }
 
 export type SemanticFeatureFrontierClassification =
@@ -221,6 +223,7 @@ export interface CompletionDecisionItem {
   requiredActions: string[];
   requiredActionsJa: string[];
   requiredEvidence: string[];
+  requiredEvidenceJa: string[];
   requiredRecords: CompletionDecisionRecordRequirement[];
   recordTemplates: CompletionDecisionRecordTemplate[];
   allowedOutcomes: string[];
@@ -379,6 +382,7 @@ export interface WorkflowNextActionItem {
   requiredActions: string[];
   requiredActionsJa: string[];
   requiredEvidence: string[];
+  requiredEvidenceJa: string[];
   nextWorkflowRoute: string;
   nextWorkflowRouteJa: string;
   /** Primary non-destructive packet for this PLAN's top blocker. */
@@ -435,6 +439,7 @@ export function analyzeOutstandingWork(
     const requiredActions = requiredActionsForBlockers(blockers);
     const requiredActionsJa = requiredActions.map(workflowActionTextJa);
     const requiredEvidence = requiredEvidenceForBlockers(blockers);
+    const requiredEvidenceJa = requiredEvidenceJaForEvidenceList(requiredEvidence);
     for (const blocker of blockers) blockersByKind[blocker] = (blockersByKind[blocker] ?? 0) + 1;
     items.push({
       planId: (p.planId ?? "unknown").trim() || "unknown",
@@ -450,6 +455,7 @@ export function analyzeOutstandingWork(
       requiredActions,
       requiredActionsJa,
       requiredEvidence,
+      requiredEvidenceJa,
     });
   }
   // 決定論順 (layer key 昇順) で再構築する (出力安定性)。
@@ -853,6 +859,89 @@ function requiredEvidenceForBlockers(blockers: string[]): string[] {
   );
 }
 
+function requiredEvidenceJaForEvidenceList(requiredEvidence: string[]): string[] {
+  return requiredEvidence.map(workflowEvidenceTextJa);
+}
+
+export function workflowEvidenceTextJa(evidence: string): string {
+  switch (evidence) {
+    case "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes":
+      return "cutover_decision_record に allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes のいずれかを記録する";
+    case "decision_owner and approval_scope recorded before irreversible migration":
+      return "不可逆 migration 前に decision_owner と approval_scope を記録する";
+    case "cutover_snapshot_id from the current cutoverSnapshot.snapshotId recorded before irreversible migration approval":
+      return "不可逆 migration approval 前に current cutoverSnapshot.snapshotId 由来の cutover_snapshot_id を記録する";
+    case "trigger_condition and blast_radius_baseline recorded before irreversible migration":
+      return "不可逆 migration 前に trigger_condition と blast_radius_baseline を記録する";
+    case "dry_run_plan, rollback_plan, state_backup_plan, and audit_record recorded before apply":
+      return "apply 前に dry_run_plan / rollback_plan / state_backup_plan / audit_record を記録する";
+    case "execution_window_or_freeze_policy recorded before irreversible apply":
+      return "不可逆 apply 前に execution_window_or_freeze_policy を記録する";
+    case "post_cutover_monitoring and legacy_alias_policy recorded before terminal status":
+      return "terminal status 前に post_cutover_monitoring と legacy_alias_policy を記録する";
+    case "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route":
+      return "activation_decision_record に allowed_outcome / target_version_or_release_trigger / activation_route を記録する";
+    case "activation_snapshot_id from the current activationSnapshot.snapshotId recorded before activation approval":
+      return "activation approval 前に current activationSnapshot.snapshotId 由来の activation_snapshot_id を記録する";
+    case "parked_review_record with review_owner, review_trigger, review_by_policy, stale_action, activation_dependency, and decision_packet_route":
+      return "parked_review_record に review_owner / review_trigger / review_by_policy / stale_action / activation_dependency / decision_packet_route を記録する";
+    case "review_by date/owner recorded when keep_parked_with_review_date is chosen":
+      return "keep_parked_with_review_date を選ぶ場合は review_by の日付と owner を記録する";
+    case "approval_scope, dry_run_plan, and rollback_plan recorded before external infra/auth/secret activation":
+      return "外部 infra/auth/secret activation 前に approval_scope / dry_run_plan / rollback_plan を記録する";
+    case "required action-binding approval evidence when activation touches infra/auth/secrets":
+      return "activation が infra/auth/secrets に触れる場合は action-binding approval evidence を記録する";
+    case "external_rehearsal_plan records official source basis, budget, signature, access, no-secret/PII, no-prod-write, and rollback rehearsal evidence":
+      return "external_rehearsal_plan に公式 source basis / budget / signature / access / no-secret・PII / no-prod-write / rollback rehearsal evidence を記録する";
+    case "cost_guardrails records provider free-tier limits and exceed_action before activation":
+      return "activation 前に cost_guardrails へ provider free-tier limit と exceed_action を記録する";
+    case "activation_provenance_requirements records source ledger, dry-run evidence, approval evidence, and audit record before activation":
+      return "activation 前に activation_provenance_requirements へ source ledger / dry-run evidence / approval evidence / audit record を記録する";
+    case "version_target frontmatter records the future release target before status/outstanding can classify the PLAN as parked":
+      return "status/outstanding が PLAN を parked と分類する前に version_target frontmatter で将来 release target を記録する";
+    case "activation_decision_record and parked_review_record remain plan-only until version-up activation is approved":
+      return "note: version-up activation が approved になるまで activation_decision_record と parked_review_record は plan-only のまま保持する";
+    case "s4_decision_record with allowed_outcome confirmed / rejected / pivot":
+      return "s4_decision_record に allowed_outcome confirmed / rejected / pivot のいずれかを記録する";
+    case "decision_owner and decision_basis recorded before terminal status":
+      return "terminal status 前に decision_owner と decision_basis を記録する";
+    case "verified_evidence, stakeholder_review_or_proxy, acceptance_gap, unresolved_risk, external_source_basis, and route_impact recorded before S4 decision":
+      return "S4 decision 前に verified_evidence / stakeholder_review_or_proxy / acceptance_gap / unresolved_risk / external_source_basis / route_impact を記録する";
+    case "forward_route / reverse_fullback_required recorded when confirmed":
+      return "confirmed の場合は forward_route / reverse_fullback_required を記録する";
+    case "decision_outcome recorded in the PLAN at S4":
+      return "S4 で PLAN に decision_outcome を記録する";
+    case "promotion_strategy_or_rejection_pivot_rationale recorded before terminal status":
+      return "terminal status 前に promotion_strategy_or_rejection_pivot_rationale を記録する";
+    case "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record":
+      return "action_binding_approval_record に allowed_outcome / approver / scope / actor / tool / target / params / review evidence / snapshot binding / expiry / audit を記録する";
+    case "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation":
+      return "activation 前に approval scope が approved_actor / approved_tool / approved_target / approved_params を拘束する";
+    case "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation":
+      return "activation 前に review/approval evidence / reviewed snapshot binding / expiry または trigger condition を記録する";
+    case "project_setup_state with objectiveBoundary.scope=consumer_setup_readiness_not_whole_program_completion and completionClaimAllowed=false":
+      return "project_setup_state に objectiveBoundary.scope=consumer_setup_readiness_not_whole_program_completion と completionClaimAllowed=false を記録する";
+    case "first project PLAN or handover route selected before implementation starts":
+      return "実装開始前に最初の project PLAN または handover route を選択する";
+    case "completion decision packet saved as first-run evidence before claiming L14 or whole-program completion":
+      return "L14 または whole-program completion を主張する前に completion decision packet を first-run evidence として保存する";
+    case "required generated artifacts are present":
+      return "必要な generated artifact が存在する";
+    case "review_evidence and green_commands are recorded before terminal status":
+      return "terminal status 前に review_evidence と green_commands を記録する";
+    case "source_ledger_freshness records the fresh checked ledger label before terminal decision use":
+      return "terminal decision に使う前に source_ledger_freshness へ fresh checked ledger label を記録する";
+    case "source_status_delta records none/changed official source status impact before terminal decision use":
+      return "terminal decision に使う前に source_status_delta へ none/changed の official source status impact を記録する";
+    case "adoption_decision_delta records none/changed adoption decision impact before terminal decision use":
+      return "terminal decision に使う前に adoption_decision_delta へ none/changed の adoption decision impact を記録する";
+    case "workflow_route_impact records none or the named workflow reroute before terminal decision use":
+      return "terminal decision に使う前に workflow_route_impact へ none または named workflow reroute を記録する";
+    default:
+      return evidence;
+  }
+}
+
 function uniqueInOrder<T extends string>(values: T[]): T[] {
   return [...new Set(values)];
 }
@@ -1092,6 +1181,7 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
         requiredActions: item.requiredActions,
         requiredActionsJa: item.requiredActionsJa,
         requiredEvidence: item.requiredEvidence,
+        requiredEvidenceJa: item.requiredEvidenceJa,
         nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
         nextWorkflowRouteJa: workflowRouteTextJa(
           nextWorkflowRouteForOutstandingReason(item.reason),
@@ -1153,6 +1243,7 @@ export function completionDecisionPacketForOutstanding(
       requiredActions: item.requiredActions,
       requiredActionsJa: item.requiredActionsJa,
       requiredEvidence: item.requiredEvidence,
+      requiredEvidenceJa: item.requiredEvidenceJa,
       requiredRecords,
       recordTemplates: recordTemplatesForRecords(requiredRecords),
       allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),

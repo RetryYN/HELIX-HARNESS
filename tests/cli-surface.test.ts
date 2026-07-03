@@ -1046,6 +1046,12 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "required-action-id: obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
       );
+      expect(text.stdout).toContain(
+        "required-evidence: cutover_decision_record に allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes のいずれかを記録する",
+      );
+      expect(text.stdout).toContain(
+        "required-evidence-id: cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
+      );
       expect(text.stdout).toContain(`route: ${cutoverDecision.nextWorkflowRouteJa}`);
       expect(text.stdout).toContain(
         "route-id: L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",

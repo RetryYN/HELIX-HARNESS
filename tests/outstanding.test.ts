@@ -136,8 +136,17 @@ describe("analyzeOutstandingWork", () => {
     expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence).toEqual(
       expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
     );
+    expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidenceJa).toContain(
+      "cutover_decision_record に allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes のいずれかを記録する",
+    );
+    expect(o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidenceJa).toHaveLength(
+      o.items.find((item) => item.planId === "PLAN-M-02")?.requiredEvidence.length ?? 0,
+    );
     expect(o.items.find((item) => item.planId === "PLAN-DISCOVERY-10")?.requiredEvidence).toEqual(
       expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
+    );
+    expect(o.items.find((item) => item.planId === "PLAN-DISCOVERY-10")?.requiredEvidenceJa).toContain(
+      "S4 で PLAN に decision_outcome を記録する",
     );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
@@ -148,6 +157,9 @@ describe("analyzeOutstandingWork", () => {
         "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
         ...sourceLedgerMeaningReviewEvidence,
       ]),
+    );
+    expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidenceJa).toContain(
+      "activation approval 前に current activationSnapshot.snapshotId 由来の activation_snapshot_id を記録する",
     );
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredActions).toEqual(
       expect.arrayContaining([
@@ -431,6 +443,7 @@ describe("completionReadinessForOutstanding", () => {
           ],
           requiredActionsJa: ["PLAN を宣言済み workflow に沿って進めてから completion を主張する"],
           requiredEvidence: [],
+          requiredEvidenceJa: [],
         },
       ],
     });
@@ -681,6 +694,12 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(packet.decisions[0].requiredEvidence).toContain(
       "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
     );
+    expect(packet.decisions[0].requiredEvidenceJa).toContain(
+      "s4_decision_record に allowed_outcome confirmed / rejected / pivot のいずれかを記録する",
+    );
+    expect(packet.decisions[0].requiredEvidenceJa).toHaveLength(
+      packet.decisions[0].requiredEvidence.length,
+    );
     expect(packet.decisions[0].requiredEvidence).toEqual(
       expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
     );
@@ -692,6 +711,9 @@ describe("completionDecisionPacketForOutstanding", () => {
     );
     expect(packet.decisions[0].requiredEvidence).toContain(
       "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
+    );
+    expect(packet.decisions[0].requiredEvidenceJa).toContain(
+      "action_binding_approval_record に allowed_outcome / approver / scope / actor / tool / target / params / review evidence / snapshot binding / expiry / audit を記録する",
     );
     expect(packet.decisions[1].nextWorkflowRoute).toContain("version-up activation");
     expect(packet.decisions[1].requiredRecords.map((record) => record.recordName)).toEqual([

@@ -925,6 +925,11 @@ program
           process.stdout.write(
             `runnable-workflow-next-action: ${item.order} ${item.planId} packet=${item.runnableDecisionPacketCommand} scoped=${item.runnableScopedDecisionPacketCommand} supporting=${item.runnablePacketCommands.join(" | ")} scoped-supporting=${item.runnableScopedPacketCommands.join(" | ")}\n`,
           );
+          for (const [index, evidence] of item.requiredEvidence.entries()) {
+            process.stdout.write(
+              `workflow-required-evidence: ${item.order}.${index + 1} ${item.planId} evidence=${item.requiredEvidenceJa[index] ?? evidence} evidence-id=${evidence}\n`,
+            );
+          }
           for (const summary of item.supportingPacketSummaries) {
             process.stdout.write(`packet-summary: ${item.order} ${packetSummaryText(summary)}\n`);
           }
@@ -1016,6 +1021,12 @@ completion
           `    required-action: ${decision.requiredActionsJa[index] ?? action}\n`,
         );
         process.stdout.write(`    required-action-id: ${action}\n`);
+      }
+      for (const [index, evidence] of decision.requiredEvidence.entries()) {
+        process.stdout.write(
+          `    required-evidence: ${decision.requiredEvidenceJa[index] ?? evidence}\n`,
+        );
+        process.stdout.write(`    required-evidence-id: ${evidence}\n`);
       }
       process.stdout.write(`    route: ${decision.nextWorkflowRouteJa}\n`);
       process.stdout.write(`    route-id: ${decision.nextWorkflowRoute}\n`);

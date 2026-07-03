@@ -462,6 +462,10 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
         ...workflowActions.flatMap((a) => [
           `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(handoverActionText(a.requiredAction))}`,
           `  - 判断経路: ${sanitize(handoverRouteText(a.nextWorkflowRoute))}`,
+          ...a.requiredEvidence.map(
+            (evidence, index) =>
+              `  - 必要証跡: ${sanitize(a.requiredEvidenceJa[index] ?? evidence)} (id=\`${sanitize(evidence)}\`)`,
+          ),
           `  - 主 packet: \`${sanitize(a.scopedDecisionPacketCommand)}\` (base=\`${sanitize(a.decisionPacketCommand)}\`)`,
           `  - packet一覧: ${a.scopedPacketCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
