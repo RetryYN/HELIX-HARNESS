@@ -837,9 +837,11 @@ export function checkChangeSetIntegrity(repoRoot: string): { messages: string[];
   }
   try {
     const dependencyDrift = analyzeDependencyDrift(loadDependencyDriftInput(repoRoot));
+    const changedFiles = loadChangedFiles(repoRoot);
     const result = analyzeChangeSetIntegrity({
-      changedFiles: loadChangedFiles(repoRoot),
+      changedFiles,
       dependencyDrift,
+      planDocs: loadChangedPlanDocs(repoRoot, changedFiles),
     });
     return { messages: changeSetIntegrityMessages(result), ok: result.ok };
   } catch {
@@ -848,6 +850,21 @@ export function checkChangeSetIntegrity(repoRoot: string): { messages: string[];
       ok: false,
     };
   }
+}
+
+function loadChangedPlanDocs(
+  repoRoot: string,
+  changedFiles: string[],
+): { path: string; text: string }[] {
+  return changedFiles
+    .filter((path) => /^docs\/plans\/PLAN-.+\.md$/.test(path.replaceAll("\\", "/")))
+    .map((path) => {
+      const normalized = path.replaceAll("\\", "/");
+      return {
+        path: normalized,
+        text: readFileSync(join(repoRoot, ...normalized.split("/")), "utf8"),
+      };
+    });
 }
 
 function loadChangedFilesForDoctor(repoRoot: string): string[] {

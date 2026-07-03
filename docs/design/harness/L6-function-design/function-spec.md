@@ -311,6 +311,7 @@ module-decomposition の公開 IF に**関数 signature・pseudocode・型・WBS
 | `analyzeFrRegistry` | `(docs?: FrDocSource) => FrRegistryAuditResult` | 同上 | 漏れ 5 型 == 0 で ok |
 | `analyzeDocConsistency` | `(docs?: DocConsistencySource) => DocConsistencyResult` | 同上 | carry/screenId/nfr 違反 == 0 で ok |
 | `analyzeImprovementBacklog` | `(md?: string) => ImprovementBacklogResult` | 同上 | IMP 形式/status/候補 enum 妥当で ok |
+| `analyzeChangeSetIntegrity` | `(input: ChangeSetIntegrityInput) => ChangeSetIntegrityResult` | `changedFiles` は git status 由来の repo 相対 path。`planDocs` が与えられる場合は changed set 内の PLAN text に限定する | `src/**` 変更時、changed set 内に L7 実装系 PLAN (`impl` / `add-impl` / `refactor` / `retrofit` / `troubleshoot`) が無ければ `source-plan-missing` blocker。該当 PLAN が parent L6 design / pair artifact / test evidence を欠く場合は `source-plan-contract-missing` blocker。docs-only は従来どおり warning surface に留める |
 | `loadDocs` / `loadBusiness` / `loadFrDocs` / `loadDocConsistencyDocs` / `loadBacklog` | 各 `() => DocSource \| string \| FrDocSource \| DocConsistencySource \| string` (lint 別、統一型なし) | repo doc path 解決可 | 副作用 = fs read のみ (write なし) |
 
 > 共通 invariant: `analyzeX` は純粋関数 (同入力→同出力、FR-05 決定論)。`loadX` が唯一の fs 端点 (module-decomposition §4)。**引数/戻り型は lint ごとに固有** (統一 `XSource` 型は存在しない。実 export 名・型は `src/lint/*.ts` を正本)。

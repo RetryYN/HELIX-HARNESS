@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import type { DependencyDriftResult } from "./dependency-drift";
+import { fmValue } from "./shared";
 
 export interface ChangeImpactInput {
   changedFiles: string[];
@@ -33,7 +34,9 @@ export type ChangeSetCategory = "source" | "design" | "test";
 export type ChangeSetIntegrityFindingCode =
   | "incomplete-artifact-set"
   | "singleton-artifact-set"
-  | "dependent-regression-untouched";
+  | "dependent-regression-untouched"
+  | "source-plan-missing"
+  | "source-plan-contract-missing";
 
 export interface ChangeSetIntegrityFinding {
   code: ChangeSetIntegrityFindingCode;
@@ -46,6 +49,12 @@ export interface ChangeSetIntegrityFinding {
 export interface ChangeSetIntegrityInput {
   changedFiles: string[];
   dependencyDrift?: DependencyDriftResult | null;
+  planDocs?: ChangeSetPlanDoc[];
+}
+
+export interface ChangeSetPlanDoc {
+  path: string;
+  text: string;
 }
 
 export interface ChangeSetIntegrityResult {
@@ -78,6 +87,10 @@ function isDesignUpdate(path: string): boolean {
   );
 }
 
+function isPlanDoc(path: string): boolean {
+  return /^docs\/plans\/PLAN-.+\.md$/.test(path);
+}
+
 function isTestUpdate(path: string): boolean {
   return (
     /^tests\/.+\.test\.ts$/.test(path) ||
@@ -95,6 +108,46 @@ function sourceModule(path: string): string | null {
 
 function uniqueSorted(values: string[]): string[] {
   return [...new Set(values)].sort();
+}
+
+const L7_SOURCE_PLAN_KINDS = new Set(["impl", "add-impl", "refactor", "retrofit", "troubleshoot"]);
+
+function fmScalar(text: string, key: string): string | undefined {
+  return fmValue(text, key)
+    ?.replace(/^["']|["']$/g, "")
+    .trim();
+}
+
+function hasNonEmptyFrontmatterScalar(text: string, key: string): boolean {
+  const value = fmScalar(text, key);
+  return value != null && value !== "" && value !== "null" && value !== "[]";
+}
+
+function hasParentDependency(text: string): boolean {
+  const match = text.match(/^dependencies:\s*\n([\s\S]*?)(?:\n\S|$)/m);
+  if (!match) return false;
+  const value = match[1]?.match(/^ {2}parent:\s*(.+?)\s*$/m)?.[1]?.trim();
+  return value != null && value !== "" && value !== "null";
+}
+
+function isEligibleL7SourcePlan(doc: ChangeSetPlanDoc): boolean {
+  const kind = fmScalar(doc.text, "kind") ?? "";
+  const layer = fmScalar(doc.text, "layer") ?? "";
+  return layer === "L7" && L7_SOURCE_PLAN_KINDS.has(kind);
+}
+
+function l7SourcePlanContractGaps(doc: ChangeSetPlanDoc, testFiles: string[]): string[] {
+  const gaps: string[] = [];
+  if (!hasNonEmptyFrontmatterScalar(doc.text, "parent_design") && !hasParentDependency(doc.text)) {
+    gaps.push("parent L6 design");
+  }
+  if (!hasNonEmptyFrontmatterScalar(doc.text, "pair_artifact")) {
+    gaps.push("pair artifact");
+  }
+  if (testFiles.length === 0) {
+    gaps.push("test evidence");
+  }
+  return gaps;
 }
 
 export function analyzeChangeImpact(input: ChangeImpactInput): ChangeImpactResult {
@@ -164,6 +217,37 @@ export function analyzeChangeSetIntegrity(
       message: `source changes are missing ${missing}`,
       files: sourceFiles,
     });
+  }
+
+  if (sourceFiles.length > 0 && input.planDocs != null) {
+    const changedPlanPaths = new Set(changedFiles.filter(isPlanDoc));
+    const changedPlans = input.planDocs
+      .map((doc) => ({ path: norm(doc.path), text: doc.text }))
+      .filter((doc) => changedPlanPaths.has(doc.path));
+    const eligiblePlans = changedPlans.filter(isEligibleL7SourcePlan);
+    if (eligiblePlans.length === 0) {
+      blockers.push({
+        code: "source-plan-missing",
+        severity: "error",
+        message:
+          "source changes require a changed L7 implementation PLAN (impl/add-impl/refactor/retrofit/troubleshoot)",
+        files: sourceFiles,
+      });
+    } else {
+      const incompletePlans = eligiblePlans
+        .map((doc) => ({ path: doc.path, gaps: l7SourcePlanContractGaps(doc, testFiles) }))
+        .filter((entry) => entry.gaps.length > 0);
+      if (incompletePlans.length === eligiblePlans.length) {
+        blockers.push({
+          code: "source-plan-contract-missing",
+          severity: "error",
+          message: `L7 source PLAN must cite parent design, pair artifact, and test evidence (${incompletePlans
+            .map((entry) => `${entry.path}: missing ${entry.gaps.join("/")}`)
+            .join("; ")})`,
+          files: incompletePlans.map((entry) => entry.path),
+        });
+      }
+    }
   }
 
   const drift = input.dependencyDrift;

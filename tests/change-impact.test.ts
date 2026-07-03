@@ -160,4 +160,83 @@ describe("change-impact lint", () => {
     expect(result.ok).toBe(true);
     expect(result.blockers).toEqual([]);
   });
+
+  it("U-CHGIMPACT-005 blocks source changes without a changed L7 implementation PLAN", () => {
+    const result = analyzeChangeSetIntegrity({
+      changedFiles: [
+        "src/lint/new-rule.ts",
+        "docs/design/harness/L6-function-design/function-spec.md",
+        "tests/change-impact.test.ts",
+      ],
+      planDocs: [],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.blockers).toContainEqual(
+      expect.objectContaining({
+        code: "source-plan-missing",
+        severity: "error",
+      }),
+    );
+  });
+
+  it("U-CHGIMPACT-006 blocks incomplete L7 source PLAN contracts", () => {
+    const planPath = "docs/plans/PLAN-L7-231-rule.md";
+    const result = analyzeChangeSetIntegrity({
+      changedFiles: ["src/lint/new-rule.ts", planPath, "tests/change-impact.test.ts"],
+      planDocs: [
+        {
+          path: planPath,
+          text: [
+            "---",
+            "plan_id: PLAN-L7-231-rule",
+            "kind: impl",
+            "layer: L7",
+            "status: confirmed",
+            "dependencies:",
+            "  parent: null",
+            "---",
+          ].join("\n"),
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.blockers).toContainEqual(
+      expect.objectContaining({
+        code: "source-plan-contract-missing",
+        severity: "error",
+      }),
+    );
+    expect(result.blockers.map((finding) => finding.message).join("\n")).toContain(
+      "parent L6 design",
+    );
+  });
+
+  it("U-CHGIMPACT-007 accepts a complete L7 source PLAN contract with test evidence", () => {
+    const planPath = "docs/plans/PLAN-L7-231-rule.md";
+    const result = analyzeChangeSetIntegrity({
+      changedFiles: ["src/lint/new-rule.ts", planPath, "tests/change-impact.test.ts"],
+      planDocs: [
+        {
+          path: planPath,
+          text: [
+            "---",
+            "plan_id: PLAN-L7-231-rule",
+            "kind: troubleshoot",
+            "layer: L7",
+            "status: confirmed",
+            "parent_design: docs/design/harness/L6-function-design/function-spec.md",
+            "pair_artifact: docs/test-design/harness/L7-unit-test-design.md",
+            "dependencies:",
+            "  parent: docs/plans/PLAN-L7-60-change-set-integrity.md",
+            "---",
+          ].join("\n"),
+        },
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.blockers).toEqual([]);
+  });
 });

@@ -438,6 +438,9 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-CHGIMPACT-002 | `analyzeChangeImpact` (covered) | `src/**` + design 更新 + tests または test-design 更新 → `ok=true` |
 | U-CHGIMPACT-003 | `analyzeChangeImpact` (docs-only) | docs/test のみで `src/**` 変更なし → `sourceFiles=[]` / `ok=true` |
 | U-CHGIMPACT-004 | `parseGitPorcelain` | modified / rename / untracked の porcelain path を正規化し、rename は新 path を採用 |
+| U-CHGIMPACT-005 | `analyzeChangeSetIntegrity` (source plan missing) | `src/**` 変更があり changed set 内に L7 実装系 PLAN (`impl` / `add-impl` / `refactor` / `retrofit` / `troubleshoot`) が無い場合、`source-plan-missing` blocker で `ok=false` |
+| U-CHGIMPACT-006 | `analyzeChangeSetIntegrity` (source plan contract missing) | L7 実装系 PLAN があっても parent L6 design / pair artifact / test evidence のいずれかを欠く場合、`source-plan-contract-missing` blocker で `ok=false` |
+| U-CHGIMPACT-007 | `analyzeChangeSetIntegrity` (source plan contract covered) | L7 実装系 PLAN が parent design、pair artifact、test evidence を持つ場合、未承認 L7 実装 blocker は出ない |
 
 ### §1.16.1a U-RELGRAPH (cross-artifact relation graph = docs/code/DB/evidence impact)
 
@@ -725,7 +728,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 - **agent-slots.md §2.3 関数 (loadSlots/fireSlot/releaseSlot/releaseOldestGuardSlot/sweepStaleGuardSlots/listActiveSlots/listStaleSlots/peakParallel/exceedsParallelLimit/recordGuardFire) → U-SLOT-001〜008** (add-feature 差分、IMP-050 + IMP-106 SubagentStop release。nodeAgentSlotsDeps は実 I/O deps で unit では mock 代替。孤児 0)
 - **module-drift.md §2-§3 関数 (parseListedModules/scanActualModules/analyzeModuleDrift/loadModuleDocs/moduleDriftMessages) → U-MDRIFT-001〜005** (add-feature 差分、PLAN-L7-16/IMP-075。moduleDriftMessages は U-MDRIFT-003/004 経路 + 専用 assert で被覆、loadModuleDocs は U-MDRIFT-005 実 repo ガードに内包。孤児 0)
 - **module-drift.md asset-drift alias (loadAssetDriftInput/analyzeAssetDrift/assetDriftMessages/checkAssetDrift) → U-ASSETDRIFT-001〜006** (内部資産 + prompt template cutover 差分、FR-L1-49。legacy source path residue / legacy command residue / docs-skills vacancy / guard allowlist missing を doctor hard guard。孤児 0)
-- **module-drift.md change-impact addendum (analyzeChangeImpact/parseGitPorcelain/loadChangedFiles/changeImpactMessages) → U-CHGIMPACT-001〜004** (コード変更に対する設計・テスト更新漏れ検出。doctor hard guard。孤児 0)
+- **module-drift.md change-impact addendum (analyzeChangeImpact/analyzeChangeSetIntegrity/parseGitPorcelain/loadChangedFiles/changeImpactMessages) → U-CHGIMPACT-001〜007** (コード変更に対する設計・テスト更新漏れ検出と、未承認 L7 実装着手の PLAN 契約検出。doctor hard guard。孤児 0)
 - **module-drift.md coding-rules addendum (analyzeCodingRules/loadCodingRuleDocs/loadCodingWorkflowDocs/codingRulesMessages/checkCodingRules) → U-CODE-001〜010** (requirements-level coding rule SSoT + workflow placement + error/module-boundary + machine-surface-language の機械検出。doctor hard guard。孤児 0)
 - **module-drift.md design-language addendum (analyzeDesignLanguage/loadDesignLanguageDocs/designLanguageMessages/checkDesignLanguage) → U-DESLANG-001〜005** (PLAN / 設計 / テスト設計 / process / governance / handover / adapter ルールの日本語 prose baseline + fingerprint ratchet。doctor hard guard。孤児 0)
 - **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜008** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT の機械検出。doctor hard guard。孤児 0)
