@@ -88,19 +88,31 @@ describe("gate review tier", () => {
         "worker_model recorded",
         "reviewer_model recorded",
       ]),
+      requiredEvidenceJa: expect.arrayContaining([
+        "worker_model を記録する",
+        "reviewer_model を記録する",
+      ]),
     });
     expect(judgmentReviewPlanForMode("codex-only")).toMatchObject({
       mode: "codex-only",
       requiredReviewKind: "intra_runtime_subagent",
       crossAgentReview: "unavailable",
       gateCommandTemplate: expect.stringContaining("--checklist <review-checklist.yaml>"),
+      requiredEvidenceJa: expect.arrayContaining([
+        "judgment checklist に全必須項目が含まれることを記録する",
+      ]),
     });
     expect(judgmentReviewPlanForMode("standalone")).toMatchObject({
       mode: "standalone",
       requiredReviewKind: "human",
       crossAgentReview: "unavailable",
       gateCommandTemplate: expect.stringContaining("--human-approved"),
+      requiredEvidenceJa: expect.arrayContaining(["human approval evidence を記録する"]),
     });
+    for (const mode of ["hybrid", "codex-only", "standalone"] as const) {
+      const plan = judgmentReviewPlanForMode(mode);
+      expect(plan.requiredEvidenceJa).toHaveLength(plan.requiredEvidence.length);
+    }
   });
 
   it("fails checklist item fail and n-a without evidence", () => {

@@ -49,6 +49,7 @@ export interface JudgmentReviewPlan {
   requiredAction: string;
   gateCommandTemplate: string;
   requiredEvidence: string[];
+  requiredEvidenceJa: string[];
 }
 
 export function isJudgmentGate(gate: string): boolean {
@@ -149,6 +150,12 @@ export function evaluateGateReview(input: GateReviewInput): GateReviewResult {
 
 export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPlan {
   if (mode === "hybrid") {
+    const requiredEvidence = [
+      "review_kind=cross_agent",
+      "worker_model recorded",
+      "reviewer_model recorded",
+      "worker_model and reviewer_model resolve to different providers",
+    ];
     return {
       mode,
       requiredReviewKind: "cross_agent",
@@ -157,16 +164,18 @@ export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPl
         "route judgment gates to the opposite provider/model family and record worker_model plus reviewer_model",
       gateCommandTemplate:
         "ut-tdd gate <gate-id> --review-kind cross_agent --worker-model <worker-provider:model> --reviewer-model <reviewer-provider:model> --json",
-      requiredEvidence: [
-        "review_kind=cross_agent",
-        "worker_model recorded",
-        "reviewer_model recorded",
-        "worker_model and reviewer_model resolve to different providers",
-      ],
+      requiredEvidence,
+      requiredEvidenceJa: requiredEvidence.map(judgmentReviewEvidenceTextJa),
     };
   }
 
   if (mode === "claude-only" || mode === "codex-only") {
+    const requiredEvidence = [
+      "review_kind=intra_runtime_subagent",
+      "checklist contains every required judgment item",
+      "failed checklist items block the gate",
+      "n-a checklist items include evidence",
+    ];
     return {
       mode,
       requiredReviewKind: "intra_runtime_subagent",
@@ -175,15 +184,16 @@ export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPl
         "record intra_runtime_subagent review evidence with a complete judgment checklist; do not claim cross_agent review",
       gateCommandTemplate:
         "ut-tdd gate <gate-id> --review-kind intra_runtime_subagent --checklist <review-checklist.yaml> --json",
-      requiredEvidence: [
-        "review_kind=intra_runtime_subagent",
-        "checklist contains every required judgment item",
-        "failed checklist items block the gate",
-        "n-a checklist items include evidence",
-      ],
+      requiredEvidence,
+      requiredEvidenceJa: requiredEvidence.map(judgmentReviewEvidenceTextJa),
     };
   }
 
+  const requiredEvidence = [
+    "review_kind=human",
+    "human approval evidence recorded",
+    "no automatic judgment-gate pass without approval",
+  ];
   return {
     mode,
     requiredReviewKind: "human",
@@ -191,12 +201,38 @@ export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPl
     requiredAction:
       "obtain human review evidence because no AI reviewer runtime is spawnable; do not auto-pass judgment gates",
     gateCommandTemplate: "ut-tdd gate <gate-id> --review-kind human --human-approved --json",
-    requiredEvidence: [
-      "review_kind=human",
-      "human approval evidence recorded",
-      "no automatic judgment-gate pass without approval",
-    ],
+    requiredEvidence,
+    requiredEvidenceJa: requiredEvidence.map(judgmentReviewEvidenceTextJa),
   };
+}
+
+export function judgmentReviewEvidenceTextJa(evidence: string): string {
+  switch (evidence) {
+    case "review_kind=cross_agent":
+      return "review_kind=cross_agent を記録する";
+    case "worker_model recorded":
+      return "worker_model を記録する";
+    case "reviewer_model recorded":
+      return "reviewer_model を記録する";
+    case "worker_model and reviewer_model resolve to different providers":
+      return "worker_model と reviewer_model が別 provider に解決されることを記録する";
+    case "review_kind=intra_runtime_subagent":
+      return "review_kind=intra_runtime_subagent を記録する";
+    case "checklist contains every required judgment item":
+      return "judgment checklist に全必須項目が含まれることを記録する";
+    case "failed checklist items block the gate":
+      return "fail の checklist item が gate を block することを記録する";
+    case "n-a checklist items include evidence":
+      return "n-a の checklist item には evidence を記録する";
+    case "review_kind=human":
+      return "review_kind=human を記録する";
+    case "human approval evidence recorded":
+      return "human approval evidence を記録する";
+    case "no automatic judgment-gate pass without approval":
+      return "approval なしに judgment gate を自動 pass しないことを記録する";
+    default:
+      return evidence;
+  }
 }
 
 export function loadReviewChecklist(path: string): ReviewChecklist {

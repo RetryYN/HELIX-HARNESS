@@ -915,6 +915,11 @@ program
       );
       process.stdout.write(`next: ${nextAction}\n`);
       process.stdout.write(`judgment-review: ${judgmentReview.requiredAction}\n`);
+      for (const [index, evidence] of judgmentReview.requiredEvidence.entries()) {
+        process.stdout.write(
+          `judgment-review-evidence: ${index + 1} evidence=${judgmentReview.requiredEvidenceJa[index] ?? evidence} evidence-id=${evidence}\n`,
+        );
+      }
       process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
       if (workflowNextActions.length > 0) {
         process.stdout.write(`workflow-next-actions: ${workflowNextActions.length}\n`);
