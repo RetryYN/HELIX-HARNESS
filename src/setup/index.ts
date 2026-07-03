@@ -851,6 +851,7 @@ export interface ConsumerReadinessPlan {
     completionClaimAllowed: false;
     objectiveAuditCommand: "ut-tdd status --json";
     completionPacketCommand: "ut-tdd completion decision-packet --json";
+    completionReviewBundleCommand: "ut-tdd completion review-bundle --json";
     versionUpPacketCommand: "ut-tdd version-up activation-packet --json";
     cutoverPacketCommand: "ut-tdd rename plan --json";
     distributionReference: {
@@ -1485,6 +1486,7 @@ export function buildConsumerReadinessPlan(input: {
       completionClaimAllowed: false,
       objectiveAuditCommand: "ut-tdd status --json",
       completionPacketCommand: "ut-tdd completion decision-packet --json",
+      completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
       versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
       cutoverPacketCommand: "ut-tdd rename plan --json",
       distributionReference: PACK_DISTRIBUTION_REFERENCE,

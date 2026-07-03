@@ -1394,6 +1394,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         progressPercent: 90,
         completionClaimAllowed: false,
         completionPacketCommand: "ut-tdd completion decision-packet --json",
+        completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
       },
       postSetupWorkflow: {
         verificationCommands: expect.arrayContaining([
@@ -1626,6 +1627,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         completionClaimAllowed: false,
         objectiveAuditCommand: "ut-tdd status --json",
         completionPacketCommand: "ut-tdd completion decision-packet --json",
+        completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
         versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
         cutoverPacketCommand: "ut-tdd rename plan --json",
         distributionReference: {

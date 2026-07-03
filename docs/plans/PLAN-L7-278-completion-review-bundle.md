@@ -95,6 +95,7 @@ review_evidence:
 - text surface は `completion-review-bundle: ut-tdd completion review-bundle --json` を表示する。
 - `completion-review-bundle` は doctor hard gate で `completion decision-packet` と突き合わせ、safety flag、scoped packet、review packet count、digest drift を fail-close する。
 - `ut-tdd setup project` の初回導入 contract、VS Code task、consumer CI、escalation workflow、consumer doctor first-run matrix は `completion decision-packet` の直後に `completion review-bundle` を必須証跡として含める。
+- `.ut-tdd/state/project-setup.json` の `objectiveBoundary` は `completionReviewBundleCommand=ut-tdd completion review-bundle --json` を永続化し、consumer doctor は欠落を fail-close する。
 - 実 cutover、approval 記録、activation、外部実行は行わない。
 
 ## 外部確認
@@ -110,4 +111,5 @@ review_evidence:
 - `completion-decision-packet` tests が review bundle analyzer の OK / safety drift / review packet 欠落 / digest drift を検証する。
 - `doctor` tests が review bundle hard gate の実行と missing root fail-close を検証する。
 - `setup` tests が新規 VSCode project の初回 verification matrix、CI workflow、task template、consumer doctor profile に review-bundle が伝播することを検証する。
+- `doctor` / `setup` / `cli-surface` tests が setup state objective boundary に review-bundle command が永続化されることを検証する。
 - `typecheck`、`lint`、`plan lint`、`doctor` が成功する。

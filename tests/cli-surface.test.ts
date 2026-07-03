@@ -2074,6 +2074,7 @@ describe("L7 CLI surface closure", () => {
             scope: "consumer_setup_readiness_not_whole_program_completion",
             progressPercent: 90,
             completionClaimAllowed: false,
+            completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
               mainHead: "e454190d433292f5e9409033823a05e9dad61b67",
@@ -2140,6 +2141,7 @@ describe("L7 CLI surface closure", () => {
         readiness: {
           ok: false,
           objectiveBoundary: {
+            completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             versionBinding: {
               localDistributionTag: "v0.1.0",
               requestedDistributionTag: "v0.1.3",

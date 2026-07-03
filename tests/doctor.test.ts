@@ -313,6 +313,7 @@ function consumerProjectSetupStateTemplate(): string {
       scope: "consumer_setup_readiness_not_whole_program_completion",
       completionClaimAllowed: false,
       completionPacketCommand: "ut-tdd completion decision-packet --json",
+      completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
     },
     postSetupWorkflow: {
       nextRoute: "ready",
@@ -631,6 +632,7 @@ describe("runConsumerDoctor", () => {
               scope: "consumer_setup_readiness_not_whole_program_completion",
               completionClaimAllowed: true,
               completionPacketCommand: "ut-tdd completion decision-packet --json",
+              completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             },
             postSetupWorkflow: {
               nextRoute: "ready",
@@ -659,6 +661,30 @@ describe("runConsumerDoctor", () => {
     ).toBe(true);
   });
 
+  it("fails closed when setup state omits the completion review-bundle boundary command", () => {
+    const setupState = JSON.parse(consumerProjectSetupStateTemplate()) as {
+      objectiveBoundary: Record<string, unknown>;
+    };
+    delete setupState.objectiveBoundary.completionReviewBundleCommand;
+
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/state/project-setup.json": JSON.stringify(setupState),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "completionReviewBundle=false",
+      ),
+    ).toBe(true);
+  });
+
   it("fails closed when setup state omits the full first-run verification matrix", () => {
     const result = runConsumerDoctor(
       deps({
@@ -671,6 +697,7 @@ describe("runConsumerDoctor", () => {
               scope: "consumer_setup_readiness_not_whole_program_completion",
               completionClaimAllowed: false,
               completionPacketCommand: "ut-tdd completion decision-packet --json",
+              completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             },
             postSetupWorkflow: {
               nextRoute: "ready",
