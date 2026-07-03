@@ -33,11 +33,11 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     "decisionVerificationCommandMatrix",
     "executable verification command",
     "provenanceRequirements",
-    "S4 decision source ledger (checked 2026-06-30)",
+    "S4 decision source ledger (checked 2026-07-03)",
     "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
     "|---|---|---|---|---|---|---|",
     "| Scrum Guide 2020 | https://scrumguides.org/scrum-guide.html | November 2020 guide | current official Scrum Guide page | adopt-current-guide | inspect-adapt input | stakeholder_review_or_proxy |",
-    "| ISO/IEC/IEEE 29148 | https://www.iso.org/standard/72089.html | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements trace | acceptance_gap |",
+    "| ISO/IEC/IEEE 29148 | https://www.iso.org/standard/72089.html | ISO/IEC/IEEE 29148:2018 | published 2018, 2024 confirmed, 2026-02-16 stage 90.92 to be revised | adopt-2018-page-as-official-reference; track-under-development-revision | requirements trace | acceptance_gap |",
     "| ISTQB Glossary | https://glossary.istqb.org/ | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis terms | verified_evidence |",
     "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | residual risk | unresolved_risk |",
     "source_status_delta",
@@ -88,7 +88,7 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
           "- acceptance_gap: none",
           "- unresolved_risk: none",
           "- external_source_basis: docs/process/modes/discovery.md",
-          "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+          "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
           "- source_status_delta: none",
           "- adoption_decision_delta: none",
           "- workflow_route_impact: none before S4 decision",
@@ -116,11 +116,11 @@ describe("S4 decision readiness", () => {
     const result = analyzeS4DecisionReadiness(
       input({
         discoveryMd: base.discoveryMd.replace(
-          "S4 decision source ledger (checked 2026-06-30)",
+          "S4 decision source ledger (checked 2026-07-03)",
           "S4 decision source ledger (checked 2026-07-02)",
         ),
         scrumMd: base.scrumMd.replace(
-          "S4 decision source ledger (checked 2026-06-30)",
+          "S4 decision source ledger (checked 2026-07-03)",
           "S4 decision source ledger (checked 2026-07-02)",
         ),
       }),
@@ -243,7 +243,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: good",
               "- unresolved_risk: done",
               "- external_source_basis: looks fine",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -419,7 +419,7 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "decision-packet-baseline",
           command: "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-900 --json",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: "2026-07-03",
           adoptionDecision: "adopt-current-s4-packet-contract-for-po-decision-review",
         }),
         expect.objectContaining({
@@ -449,7 +449,7 @@ describe("S4 decision readiness", () => {
     );
     for (const row of packet.decisionVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      expect(row.sourceCheckedAt, row.phase).toBe("2026-06-30");
+      expect(row.sourceCheckedAt, row.phase).toBe("2026-07-03");
       expect(row.latestOfficialStatus, row.phase).not.toBe("");
       expect(row.sourceStatusDelta, row.phase).not.toBe("");
       expect(row.adoptionDecision, row.phase).not.toBe("");
@@ -899,7 +899,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: none",
               "- unresolved_risk: none",
               "- external_source_basis: docs/process/modes/discovery.md",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -956,7 +956,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: none",
               "- unresolved_risk: none",
               "- external_source_basis: docs/process/modes/discovery.md",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -1000,7 +1000,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: none",
               "- unresolved_risk: none",
               "- external_source_basis: docs/process/modes/discovery.md",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -1044,7 +1044,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: none",
               "- unresolved_risk: none",
               "- external_source_basis: docs/process/modes/discovery.md",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -1088,7 +1088,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: none",
               "- unresolved_risk: none",
               "- external_source_basis: docs/process/modes/discovery.md",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -1127,7 +1127,7 @@ describe("S4 decision readiness", () => {
               "- acceptance_gap: mandatory scenario failed",
               "- unresolved_risk: unbounded implementation risk",
               "- external_source_basis: docs/process/modes/discovery.md",
-              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-06-30",
+              "- source_ledger_freshness: fresh S4 decision source ledger checked 2026-07-03",
               "- source_status_delta: none",
               "- adoption_decision_delta: none",
               "- workflow_route_impact: none before S4 decision",
@@ -1174,7 +1174,7 @@ describe("S4 decision readiness", () => {
       "s4-decision-packet.v1",
       "planOnly=true",
       "decisionAllowed=false",
-      "S4 decision source ledger (checked 2026-06-30)",
+      "S4 decision source ledger (checked 2026-07-03)",
       "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
       "|---|---|---|---|---|---|---|",
       "| Scrum Guide 2020 | https://scrumguides.org/scrum-guide.html | November 2020 guide | current official Scrum Guide page | - | inspect-adapt input | stakeholder_review_or_proxy |",
@@ -1213,7 +1213,7 @@ describe("S4 decision readiness", () => {
       "| source | official URL | adopted version/date | latest official status | adoption decision | S4 decision use | required field impact |",
       "|---|---|---|---|---|---|---|",
       "| Scrum Guide 2020 | https://scrumguides.org/scrum-guide.html | November 2020 guide | current official Scrum Guide page | adopt-current-guide | inspect-adapt input | stakeholder_review_or_proxy |",
-      "| ISO/IEC/IEEE 29148 | https://www.iso.org/standard/72089.html | ISO/IEC/IEEE 29148:2018 | current ISO standard page | adopt-2018-page-as-official-reference | requirements trace | acceptance_gap |",
+      "| ISO/IEC/IEEE 29148 | https://www.iso.org/standard/72089.html | ISO/IEC/IEEE 29148:2018 | published 2018, 2024 confirmed, 2026-02-16 stage 90.92 to be revised | adopt-2018-page-as-official-reference; track-under-development-revision | requirements trace | acceptance_gap |",
       "| ISTQB Glossary | https://glossary.istqb.org/ | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis terms | verified_evidence |",
       "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | residual risk | unresolved_risk |",
     ].join("\n");
@@ -1247,13 +1247,13 @@ describe("S4 decision readiness", () => {
     // U-SOURCELEDGER-005
     const base = input();
     const refreshed = base.discoveryMd.replace(
-      "S4 decision source ledger (checked 2026-06-30)",
+      "S4 decision source ledger (checked 2026-07-03)",
       "S4 decision source ledger (checked 2026-06-15)",
     );
     const refreshedPlan = {
       ...base.plans[0],
       text: base.plans[0].text.replace(
-        "fresh S4 decision source ledger checked 2026-06-30",
+        "fresh S4 decision source ledger checked 2026-07-03",
         "fresh S4 decision source ledger checked 2026-06-15",
       ),
     };
@@ -1411,12 +1411,12 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "completion-frontier",
           command: "bun run src/cli.ts status --json",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: "2026-07-03",
         }),
       ]),
     );
     for (const row of packets[0].decisionVerificationCommandMatrix) {
-      expect(row.sourceCheckedAt).toBe("2026-06-30");
+      expect(row.sourceCheckedAt).toBe("2026-07-03");
     }
     for (const row of packets[0].decisionVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);

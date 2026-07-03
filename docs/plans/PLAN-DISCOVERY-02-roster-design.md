@@ -45,9 +45,9 @@ s4_decision_record:
 - acceptance_gap: spike quality was not accepted as product implementation; redesign path closed the gap.
 - unresolved_risk: parse zod hardening and agent directory path resolution were carried to L6/L7 instead of hidden in the PoC.
 - external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in discovery/scrum mode docs during current audit.
-- source_status_delta: none; official source status changes do not alter this historical confirmed S4 decision.
-- adoption_decision_delta: none; S4 adoption decision remains aligned with the current route policy.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
+- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
+- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
 - workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
 - route_impact: confirmed with redesign discards spike code and keeps the design outcome for Forward implementation.
 - forward_route: PLAN-L5-05-roster / PLAN-L4-11-roster Forward design path.

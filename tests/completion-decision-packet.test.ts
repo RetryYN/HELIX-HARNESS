@@ -1330,8 +1330,8 @@ describe("completion decision packet lint", () => {
   // U-OUTSTANDING-003
   // U-OUTSTANDING-006
   it("loads the current repo packet as fresh doctor input", () => {
-    const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-07-02T03:00:00.000Z");
-    const result = analyzeCompletionDecisionPacket(packet, "2026-07-02T03:00:00.000Z", {
+    const packet = loadCompletionDecisionPacketInput(process.cwd(), "2026-07-03T03:00:00.000Z");
+    const result = analyzeCompletionDecisionPacket(packet, "2026-07-03T03:00:00.000Z", {
       sourcePathExists: (sourcePath) => existsSync(join(process.cwd(), sourcePath)),
       sourceText: (sourcePath) => {
         const path = join(process.cwd(), sourcePath);

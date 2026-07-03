@@ -153,9 +153,9 @@ s4_decision_record:
 - acceptance_gap: S3 scope の AC-1〜AC-5 は充足。中央 UI dogfood、concept / requirements / process modes の正本 back-merge は S4 confirmed 後の gap。
 - unresolved_risk: concept §2.5 9→10 mode 変更、requirements / process modes の規範変更、中央 UI dogfood 前に正本を書き換える risk。
 - external_source_basis: docs/process/modes/discovery.md の S4 decision source ledger、既存 routeSignalToMode / Discovery 合成、code-reviewer review evidence。
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-06-30 in docs/process/modes/discovery.md and docs/process/modes/scrum.md before S4 decision use.
-- source_status_delta: none; Scrum Guide / ISO 29148 / ISTQB / NIST SSDF source status changes do not alter the current S4 packet route.
-- adoption_decision_delta: none; adopted S4 decision evidence fields and route policy remain unchanged for this pending PO decision.
+- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in docs/process/modes/discovery.md and docs/process/modes/scrum.md before S4 decision use.
+- source_status_delta: changed; ISO/IEC/IEEE 29148:2018 is still the adopted requirements trace basis, but the official page now shows 2026-02-16 stage 90.92 to be revised.
+- adoption_decision_delta: changed; keep 2018 ISO/IEC/IEEE 29148 adopted for this S4 decision material and track the under-development revision until publication.
 - workflow_route_impact: none until S4; after PO decision route to Forward/Reverse back-merge, archive rejection, or S0 pivot.
 - route_impact: confirmed なら L1/L3-L6 back-merge + Reverse fullback + 中央 UI dogfood、rejected なら design-bottomup mode を採用せず engine を archive、pivot なら Discovery 合成方針を再設計する。
 - forward_route: `confirmed` の場合は L1/L3-L6 へ design-bottomup 要求・設計を back-merge し、中央 UI dogfood を別 PLAN で descent する。

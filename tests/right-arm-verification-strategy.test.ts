@@ -160,7 +160,7 @@ describe("right-arm verification strategy", () => {
     const result = analyzeRightArmVerificationStrategy({
       gatesMd: text("docs/process/gates.md"),
       rightArmMd: refreshed,
-      now: "2026-07-02T00:00:00.000Z",
+      now: "2026-07-03T00:00:00.000Z",
     });
 
     expect(result.ok).toBe(false);
@@ -180,10 +180,10 @@ describe("right-arm verification strategy", () => {
     const genericMeaningReview = rightArm.replace(
       /- `source_ledger_freshness`:[\s\S]*?- `workflow_route_impact`: [^\n]+/,
       [
-        "- `source_ledger_freshness`: checked 2026-07-02、90 日鮮度 window 内。",
-        "- `source_status_delta`: 2026-07-02 none。公式 source status/version/date の各 row は表の採用・追跡判断どおり。",
-        "- `adoption_decision_delta`: 2026-07-02 none。右腕 evidence 用の adoption decision に変更なし。",
-        "- `workflow_route_impact`: 2026-07-02 none。G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
+        "- `source_ledger_freshness`: checked 2026-07-03、90 日鮮度 window 内。",
+        "- `source_status_delta`: 2026-07-03 none。公式 source status/version/date の各 row は表の採用・追跡判断どおり。",
+        "- `adoption_decision_delta`: 2026-07-03 none。右腕 evidence 用の adoption decision に変更なし。",
+        "- `workflow_route_impact`: 2026-07-03 none。G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
       ].join("\n"),
     );
     expect(genericMeaningReview).not.toBe(rightArm);
@@ -191,7 +191,7 @@ describe("right-arm verification strategy", () => {
     const result = analyzeRightArmVerificationStrategy({
       gatesMd: text("docs/process/gates.md"),
       rightArmMd: genericMeaningReview,
-      now: "2026-07-02T00:00:00.000Z",
+      now: "2026-07-03T00:00:00.000Z",
     });
 
     expect(result.ok).toBe(false);
@@ -205,15 +205,15 @@ describe("right-arm verification strategy", () => {
 
   it("fails source ledger meaning reviews that omit version-up from workflow route impact", () => {
     const rightArm = text("docs/process/forward/L08-L14-verification-phase.md").replace(
-      "- `workflow_route_impact`: 2026-07-02 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / version-up / action-binding / cutover / completion の route 変更なし。",
-      "- `workflow_route_impact`: 2026-07-02 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
+      "- `workflow_route_impact`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / version-up / action-binding / cutover / completion の route 変更なし。",
+      "- `workflow_route_impact`: 2026-07-03 none。NIST SSDF SP 800-218 / Scrum Guide 2020 / ISTQB Glossary / OWASP LLM06:2025 Excessive Agency / NASA Systems Engineering Handbook Appendix / W3C WCAG 2.2 / Playwright Test / GitHub Environments required reviewers / VS Code Webview Security / Google SRE Release Engineering の再確認により G8-G14 / S4 / action-binding / cutover / completion の route 変更なし。",
     );
     expect(rightArm).not.toBe(text("docs/process/forward/L08-L14-verification-phase.md"));
 
     const result = analyzeRightArmVerificationStrategy({
       gatesMd: text("docs/process/gates.md"),
       rightArmMd: rightArm,
-      now: "2026-07-02T00:00:00.000Z",
+      now: "2026-07-03T00:00:00.000Z",
     });
 
     expect(result.ok).toBe(false);
@@ -297,7 +297,7 @@ describe("right-arm verification strategy", () => {
     const result = analyzeRightArmVerificationStrategy({
       gatesMd: text("docs/process/gates.md"),
       rightArmMd,
-      now: "2026-07-02T00:00:00.000Z",
+      now: "2026-07-03T00:00:00.000Z",
     });
 
     expect(result.ok).toBe(false);
@@ -329,7 +329,7 @@ describe("right-arm verification strategy", () => {
       "NASA Systems Engineering Handbook Appendix",
       "W3C WCAG 2.2",
       "Playwright Test",
-      "official source ledger checked 2026-07-02",
+      "official source ledger checked 2026-07-03",
       "https://csrc.nist.gov/pubs/sp/800/218/final",
       "https://scrumguides.org/scrum-guide.html",
       "https://glossary.istqb.org/",
@@ -348,7 +348,7 @@ describe("right-arm verification strategy", () => {
     }
 
     expect(rightArm).toContain("### 右腕 evidence profile (G8-G14)");
-    expect(rightArm).toContain("### Verification source ledger (checked 2026-07-02)");
+    expect(rightArm).toContain("### Verification source ledger (checked 2026-07-03)");
     expect(rightArm).toContain("NIST SSDF SP 800-218");
     expect(rightArm).toContain("Scrum Guide 2020");
     expect(rightArm).toContain("ISTQB Glossary");
@@ -428,7 +428,7 @@ describe("right-arm verification strategy", () => {
   it("passes through the live repo loader", () => {
     const result = analyzeRightArmVerificationStrategy({
       ...loadRightArmVerificationStrategyInput(),
-      now: "2026-07-02T00:00:00.000Z",
+      now: "2026-07-03T00:00:00.000Z",
     });
     expect(result.ok).toBe(true);
     expect(result.missingSourceLedgerGateCoverage).toEqual([]);
