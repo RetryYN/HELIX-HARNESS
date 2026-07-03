@@ -1340,6 +1340,7 @@ function buildConsumerArtifactReadinessPlan(
     text.includes(MANAGED_END) &&
     text.includes("HELIX") &&
     text.includes("ut-tdd completion decision-packet --json") &&
+    text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
     text.includes("ut-tdd doctor --profile consumer") &&
     text.includes("ut-tdd rename plan --json") &&
     /[ぁ-んァ-ヶ一-龠]/.test(text);
@@ -1349,6 +1350,7 @@ function buildConsumerArtifactReadinessPlan(
       hasPath(path) &&
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
@@ -1361,6 +1363,7 @@ function buildConsumerArtifactReadinessPlan(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
@@ -1391,7 +1394,7 @@ function buildConsumerArtifactReadinessPlan(
         adapterDocHasConsumerBoundary(claude) &&
         adapterDocHasConsumerBoundary(claudeRuntime),
       message:
-        "CLAUDE adapter docs must keep Japanese HELIX prose, completion packet preflight, consumer doctor, and rename/cutover boundary",
+        "CLAUDE adapter docs must keep Japanese HELIX prose, completion packet preflight, version-up dry-run, consumer doctor, and rename/cutover boundary",
       evidence: "CLAUDE.md and .claude/CLAUDE.md managed block command surface",
     },
     {
@@ -1399,7 +1402,7 @@ function buildConsumerArtifactReadinessPlan(
       path: ".claude/agents,.claude/commands",
       ok: claudeAgentSurfacesOk && claudeCommandSurfacesOk,
       message:
-        "distributed Claude subagents and slash commands must keep Japanese HELIX prose, completion packet preflight, consumer doctor, and secret/PII guardrails",
+        "distributed Claude subagents and slash commands must keep Japanese HELIX prose, completion packet preflight, version-up dry-run, consumer doctor, and secret/PII guardrails",
       evidence: `${claudeAgentPaths.length} agent templates and ${claudeCommandPaths.length} command templates`,
     },
     {
