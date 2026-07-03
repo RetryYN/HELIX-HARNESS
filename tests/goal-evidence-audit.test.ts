@@ -322,7 +322,11 @@ describe("HELIX objective evidence audit", () => {
       blockedRequirements: 1,
       completionStatus: "blocked",
       completionClaimAllowed: false,
+      auditOk: false,
+      progressEvidenceTrusted: false,
     });
+    expect(result.objectiveProgress.auditViolationCount).toBeGreaterThan(0);
+    expect(result.objectiveProgress.evidenceTrustReason).toContain("diagnostic only");
     expect(result.violations).toEqual(
       expect.arrayContaining([
         "G-10: completion row must be blocked",
@@ -345,10 +349,37 @@ describe("HELIX objective evidence audit", () => {
       blockedRequirements: 1,
       completionStatus: "blocked",
       completionClaimAllowed: false,
+      auditOk: true,
+      auditViolationCount: 0,
+      progressEvidenceTrusted: true,
     });
     expect(result.objectiveProgress.basis).toContain("G-10 is blocked");
     expect(objectiveEvidenceAuditMessages(result)[0]).toContain(
       "objective-evidence-audit - OK (completion=blocked, progress=90%, proved=9/10)",
     );
+  });
+
+  it("keeps completion claim blocked when readiness is ready but audit evidence is invalid", () => {
+    const readyOutstanding = analyzeOutstandingWork([], 0);
+    const invalidText = auditText().replace(
+      "外部ソース HEAD 確認日: 2026-07-03",
+      "外部ソース HEAD 確認日: missing",
+    );
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: invalidText.replace("| G-10 |", "| G-10 |").replace("| blocked |", "| proved |"),
+      outstanding: readyOutstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.objectiveProgress).toMatchObject({
+      percent: 100,
+      completionStatus: "ready",
+      completionClaimAllowed: false,
+      auditOk: false,
+      progressEvidenceTrusted: false,
+    });
+    expect(result.objectiveProgress.auditViolationCount).toBeGreaterThan(0);
   });
 });

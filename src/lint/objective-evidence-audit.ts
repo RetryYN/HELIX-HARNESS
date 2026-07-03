@@ -26,6 +26,10 @@ export interface ObjectiveProgress {
   blockedRequirements: number;
   completionStatus: "ready" | "blocked";
   completionClaimAllowed: boolean;
+  auditOk: boolean;
+  auditViolationCount: number;
+  progressEvidenceTrusted: boolean;
+  evidenceTrustReason: string;
   basis: string;
 }
 
@@ -249,7 +253,10 @@ export function analyzeObjectiveEvidenceAudit(
     violations,
     completionStatus: input.outstanding.completionReadiness.status,
     provedRows,
-    objectiveProgress: objectiveProgressForAudit(input, provedRows),
+    objectiveProgress: objectiveProgressForAudit(input, provedRows, {
+      auditOk: violations.length === 0,
+      auditViolationCount: violations.length,
+    }),
   };
 }
 
@@ -371,8 +378,12 @@ function readPackageVersion(repoRoot: string): string | null {
 export function objectiveProgressForAudit(
   input: ObjectiveEvidenceAuditInput,
   provedRows: number = countRowsWithStatus(input.auditText, "proved"),
+  auditState: { auditOk?: boolean; auditViolationCount?: number } = {},
 ): ObjectiveProgress {
   const readiness = input.outstanding.completionReadiness;
+  const auditOk = auditState.auditOk ?? false;
+  const auditViolationCount = auditState.auditViolationCount ?? 1;
+  const progressEvidenceTrusted = auditOk && auditViolationCount === 0;
   const effectiveProvedRows = readiness.ok
     ? Math.min(provedRows, TOTAL_OBJECTIVE_REQUIREMENTS)
     : Math.min(provedRows, PROVED_REQUIREMENT_IDS.length);
@@ -388,7 +399,13 @@ export function objectiveProgressForAudit(
     totalRequirements: TOTAL_OBJECTIVE_REQUIREMENTS,
     blockedRequirements,
     completionStatus: readiness.status,
-    completionClaimAllowed: readiness.ok && percent === 100,
+    completionClaimAllowed: progressEvidenceTrusted && readiness.ok && percent === 100,
+    auditOk,
+    auditViolationCount,
+    progressEvidenceTrusted,
+    evidenceTrustReason: progressEvidenceTrusted
+      ? "objective evidence audit passed; percent may be shown as trusted progress indicator"
+      : "objective evidence audit has violations; percent is diagnostic only and must not be used as completion evidence",
     basis,
   };
 }

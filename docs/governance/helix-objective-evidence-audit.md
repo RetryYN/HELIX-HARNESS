@@ -64,9 +64,15 @@
 - totalRequirements: 10
 - blockedRequirements: 1
 - completionClaimAllowed: false
+- auditOk: true
+- auditViolationCount: 0
+- progressEvidenceTrusted: true
 
 G-10 が残る blocked requirement である。`outstanding.completionReadiness.ok=true` になるまで、
 percent は `completionClaimAllowed=false` と結合したままにする。
+監査マトリクスが invalid の場合、percent は診断用に残すが `progressEvidenceTrusted=false` /
+`completionClaimAllowed=false` とし、text status は `objective-progress-evidence: invalid` を出す。
+これにより 90% または 100% の数値だけを L14 / whole-program completion 証跡として扱わない。
 
 ## 既知の非ゴール
 

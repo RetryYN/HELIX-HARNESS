@@ -950,8 +950,13 @@ program
       process.stdout.write(`${semanticMeaningSummaryLine(outstanding)}\n`);
       if (objectiveProgress) {
         process.stdout.write(
-          `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed})\n`,
+          `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed}; evidence=${objectiveProgress.progressEvidenceTrusted ? "trusted" : "invalid"}; audit-ok=${objectiveProgress.auditOk}; violations=${objectiveProgress.auditViolationCount})\n`,
         );
+        if (!objectiveProgress.progressEvidenceTrusted) {
+          process.stdout.write(
+            `objective-progress-evidence: invalid audit-ok=${objectiveProgress.auditOk} violations=${objectiveProgress.auditViolationCount} reason=${objectiveProgress.evidenceTrustReason}\n`,
+          );
+        }
       }
       if (!completionDecisionPacket.ok) {
         const primaryPacket =
@@ -2813,8 +2818,13 @@ handover
     process.stdout.write(`${semanticMeaningSummaryLine(liveOutstanding)}\n`);
     if (objectiveProgress) {
       process.stdout.write(
-        `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed})\n`,
+        `objective-progress: ${objectiveProgress.percent}% (${objectiveProgress.completionStatus}; completion-claim-allowed=${objectiveProgress.completionClaimAllowed}; evidence=${objectiveProgress.progressEvidenceTrusted ? "trusted" : "invalid"}; audit-ok=${objectiveProgress.auditOk}; violations=${objectiveProgress.auditViolationCount})\n`,
       );
+      if (!objectiveProgress.progressEvidenceTrusted) {
+        process.stdout.write(
+          `objective-progress-evidence: invalid audit-ok=${objectiveProgress.auditOk} violations=${objectiveProgress.auditViolationCount} reason=${objectiveProgress.evidenceTrustReason}\n`,
+        );
+      }
     }
     process.stdout.write(`workflow-next: ${workflowNextAction}\n`);
     if (workflowNextActions.length > 0) {

@@ -266,8 +266,11 @@ describe("L7 CLI surface closure", () => {
         method: "objective-evidence-audit.v1",
         percent: 100,
         completionStatus: "ready",
-        completionClaimAllowed: true,
+        completionClaimAllowed: false,
+        auditOk: false,
+        progressEvidenceTrusted: false,
       });
+      expect(payload.objectiveProgress.auditViolationCount).toBeGreaterThan(0);
       expect(payload.completionDecisionPacket).toMatchObject({
         ok: true,
         status: "ready",
@@ -284,7 +287,10 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("latest_doc:");
       expect(text.stdout).toContain("completion: ready");
       expect(text.stdout).toContain(
-        "objective-progress: 100% (ready; completion-claim-allowed=true)",
+        "objective-progress: 100% (ready; completion-claim-allowed=false; evidence=invalid; audit-ok=false; violations=",
+      );
+      expect(text.stdout).toContain(
+        "objective-progress-evidence: invalid audit-ok=false violations=",
       );
 
       const stalePointer = {
@@ -781,13 +787,17 @@ describe("L7 CLI surface closure", () => {
       blockedRequirements: 1,
       completionStatus: "blocked",
       completionClaimAllowed: false,
+      auditOk: true,
+      auditViolationCount: 0,
+      progressEvidenceTrusted: true,
     });
 
     const text = runCli(["status"]);
     expect(text.status).toBe(0);
     expect(text.stdout).toContain(
-      "objective-progress: 90% (blocked; completion-claim-allowed=false)",
+      "objective-progress: 90% (blocked; completion-claim-allowed=false; evidence=trusted; audit-ok=true; violations=0)",
     );
+    expect(text.stdout).not.toContain("objective-progress-evidence: invalid");
     expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
   });
 
