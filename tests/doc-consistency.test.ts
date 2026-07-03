@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 import {
   analyzeDocConsistency,
   checkCarryConsistency,
+  checkHelixSetupReviewBundleConsistency,
   checkNfrCount,
   checkScreenIdValidity,
   expandFrL1Refs,
@@ -48,5 +49,10 @@ describe("doc consistency (doc 間整合の自動化)", () => {
     expect(result.screenIdOrphans).toEqual([]);
     expect(result.nfrCount.mismatch).toBe(false);
     expect(result.definedScreenCount).toBe(15);
+    expect(result.helixSetupReviewBundleMissing).toEqual([]);
+  });
+
+  it("HELIX setup 設計は completion review-bundle と semantic digest を初回検証に含める", () => {
+    expect(checkHelixSetupReviewBundleConsistency(docs).missing).toEqual([]);
   });
 });

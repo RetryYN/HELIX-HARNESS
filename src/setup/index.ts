@@ -978,7 +978,7 @@ export function packageJsonDeclaresCommitlint(packageJson: string | null): boole
   }
 }
 
-function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
+export function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
   if (!packageJson) return false;
   try {
     const parsed = JSON.parse(packageJson) as { scripts?: Record<string, unknown> };
@@ -1476,6 +1476,7 @@ export function buildConsumerReadinessPlan(input: {
       input.hasGit &&
       requestedTagMatchesPackageVersion &&
       hookCliOk &&
+      cliResolvedByPackageScript &&
       runtimeOk &&
       artifactReadiness.ok,
     checks,

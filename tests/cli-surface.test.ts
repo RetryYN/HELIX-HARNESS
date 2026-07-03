@@ -419,7 +419,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("completion: blocked");
       expect(text.stdout).toContain(
-        "authority-blockers=human:human_approval_pending,irreversible_migration_pending workflow-state:non_terminal_plans automation:none",
+        "authority-blockers=human:human_approval_pending,irreversible_migration_pending workflow-state:non_terminal_plans automation:semantic_frontier_blocked",
       );
       expect(text.stdout).toContain("objective-progress:");
       expect(text.stdout).toContain("completion-claim-allowed=false");
@@ -748,7 +748,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("authority-blockers=human:");
-      expect(blockedText.stdout).toContain("workflow-state:non_terminal_plans automation:none");
+      expect(blockedText.stdout).toContain(
+        "workflow-state:non_terminal_plans automation:semantic_frontier_blocked",
+      );
       expect(blockedText.stdout).toContain("semantic_frontier_records: 2");
       expect(blockedText.stdout).toContain("confirmed_current_meaning_records: 11");
       expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");

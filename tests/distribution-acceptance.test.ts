@@ -279,6 +279,11 @@ describe("clean distribution local acceptance smoke", () => {
         const linkedVersion = runCommand(consumerRoot, "ut-tdd", ["--version"], linkedEnv);
         expect(linkedVersion.status, linkedVersion.stderr || linkedVersion.stdout).toBe(0);
         expect(linkedVersion.stdout.trim()).toBe("0.1.0");
+        writeFileSync(
+          join(consumerRoot, "package.json"),
+          `${JSON.stringify({ scripts: { "ut-tdd": "ut-tdd" } }, null, 2)}\n`,
+          "utf8",
+        );
 
         const setup = runCommand(consumerRoot, "ut-tdd", ["setup", "project", "--json"], linkedEnv);
         expect(setup.status, setup.stderr || setup.stdout).toBe(0);

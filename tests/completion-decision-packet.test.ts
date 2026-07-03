@@ -269,7 +269,7 @@ describe("completion decision packet lint", () => {
       humanDecisionRequired: true,
       humanDecisionBlockers: ["po_decision_pending"],
       workflowStateBlockers: ["non_terminal_plans"],
-      autonomousWorkBlockers: [],
+      autonomousWorkBlockers: ["semantic_frontier_blocked"],
       nextAuthority: "human",
     });
     expect(packet.semanticMeaningSummary).toMatchObject({
@@ -623,7 +623,8 @@ describe("completion decision packet lint", () => {
         },
         {
           reason: "invalid_authority_boundary",
-          detail: "autonomousWorkBlockers=non_terminal_plans,po_decision_pending expected=",
+          detail:
+            "autonomousWorkBlockers=non_terminal_plans,po_decision_pending expected=semantic_frontier_blocked",
         },
         {
           reason: "invalid_authority_boundary",

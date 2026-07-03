@@ -732,6 +732,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasGit: true,
       hasGh: false,
       hasUtTddCli: true,
+      hasUtTddPackageScript: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -748,7 +749,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       resolved: true,
       strategy: "path",
       bareCommandResolved: true,
-      packageScriptAvailable: false,
+      packageScriptAvailable: true,
       evidence: "`ut-tdd --version` resolved for consumer readiness",
       fallbackCommands: [
         "bun run ut-tdd --version",
@@ -758,6 +759,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
+    expect(ready.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject({
+      ok: true,
+    });
     expect(ready.checks.find((c) => c.name === "distribution-version-binding")).toMatchObject({
       ok: true,
       message: expect.stringContaining("package.json version 0.1.0"),
@@ -820,6 +824,25 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "monorepo package root -> adapter path は repo-root scoped のまま",
       ]),
     );
+
+    const pathOnly = buildConsumerReadinessPlan({
+      bunVersion: "1.3.2",
+      hasGit: true,
+      hasGh: true,
+      hasUtTddCli: true,
+      hasUtTddPackageScript: false,
+      hasClaude: false,
+      hasCodex: true,
+      repoRoot: "/repo",
+      packageRoot: "/repo/packages/app",
+      tag: "v0.1.0",
+    });
+    expect(pathOnly.ok).toBe(false);
+    expect(pathOnly.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject({
+      ok: false,
+      message:
+        "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.ut-tdd を用意する",
+    });
 
     const packageScriptReady = buildConsumerReadinessPlan({
       bunVersion: "1.3.2",
@@ -893,6 +916,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasGit: true,
       hasGh: true,
       hasUtTddCli: true,
+      hasUtTddPackageScript: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -1510,6 +1534,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
+    deps.files.set(
+      join("/repo", "package.json"),
+      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+    );
 
     const first = runHelixProjectSetup(
       { phase: "0-A", dryRun: false, applyBranchProtection: false },
@@ -1566,6 +1594,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
+    deps.files.set(
+      join("/repo", "package.json"),
+      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+    );
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
@@ -1844,6 +1876,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
+    deps.files.set(
+      join("/repo", "package.json"),
+      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+    );
 
     const result = runHelixProjectSetup(
       {

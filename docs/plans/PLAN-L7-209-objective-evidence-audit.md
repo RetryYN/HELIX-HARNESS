@@ -6,7 +6,7 @@ layer: L7
 drive: fullstack
 status: confirmed
 created: 2026-06-30
-updated: 2026-07-02
+updated: 2026-07-03
 owner: Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -57,6 +57,23 @@ dependencies:
     - tests/cli-surface.test.ts
     - tests/doctor.test.ts
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-03T19:27:00+09:00"
+    tests_green_at: "2026-07-03T19:27:00+09:00"
+    verdict: approve
+    scope: "Continuation: G-10 objective completion row now follows completionReadiness semantic frontier blockers. `semantic_frontier_blocked` and `resolve semantic feature frontier records before claiming whole-program completion` are cited alongside existing human/S4/version-up/cutover blockers, so objective-external / doctor cannot pass stale completion evidence after semantic frontier hardening."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/cli-surface.test.ts tests/doctor.test.ts tests/completion-decision-packet.test.ts tests/goal-evidence-audit.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-03T19:27:00+09:00"
+        evidence_path: tests/goal-evidence-audit.test.ts
+        output_digest: "sha256:bb85ed8d8676bad46cae90af6519b2e8178aa3e3e5b8b989e5bdfc285b8b5a2d"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-01T09:10:00+09:00"

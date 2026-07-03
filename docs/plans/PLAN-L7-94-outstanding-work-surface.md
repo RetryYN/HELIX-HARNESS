@@ -7,9 +7,26 @@ drive: db
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 status: confirmed
 created: 2026-06-22
-updated: 2026-07-02
+updated: 2026-07-03
 owner: PM (Opus) / PO (人間)
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-03T19:27:00+09:00"
+    tests_green_at: "2026-07-03T19:27:00+09:00"
+    verdict: pass
+    scope: "Continuation 49: completion readiness now treats live `semanticFeatureFrontierRecords[].completionClaimAllowed=false` as a direct whole-program blocker. Even when non-terminal PLAN count and open defers are zero, blocked semantic frontier records add `semantic_frontier_blocked` plus their underlying human blockers, so status / completion decision packet cannot claim ready from count-only evidence."
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/doc-consistency.test.ts tests/setup.test.ts tests/outstanding.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-03T19:27:00+09:00"
+        evidence_path: tests/outstanding.test.ts
+        output_digest: "sha256:bb85ed8d8676bad46cae90af6519b2e8178aa3e3e5b8b989e5bdfc285b8b5a2d"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-02T05:52:00+09:00"

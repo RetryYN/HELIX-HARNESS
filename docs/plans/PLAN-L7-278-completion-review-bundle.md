@@ -37,6 +37,12 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/workflow-decision-packets.ts
     artifact_type: source_module
+  - artifact_path: src/lint/doc-consistency.ts
+    artifact_type: source_module
+  - artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
+    artifact_type: design_doc
   - artifact_path: tests/completion-decision-packet.test.ts
     artifact_type: test_code
   - artifact_path: tests/doctor.test.ts
@@ -47,6 +53,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/setup.test.ts
     artifact_type: test_code
+  - artifact_path: tests/doc-consistency.test.ts
+    artifact_type: test_code
   - artifact_path: tests/version-up-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/distribution-acceptance.test.ts
@@ -56,6 +64,23 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-277-rename-approval-draft-packet.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-03T19:27:00+09:00"
+    tests_green_at: "2026-07-03T19:27:00+09:00"
+    verdict: approve
+    scope: "Continuation: HELIX project setup の初回稼働契約へ `completion review-bundle` と `semanticBundleDigest` を明示し、L3/L6 設計・doc-consistency gate・setup readiness を同期した。consumer readiness は bare `ut-tdd --version` と packageRoot `package.json.scripts.ut-tdd` の両方が揃う場合だけ ready に進み、片方だけなら `fix_consumer_readiness` に戻る。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/doc-consistency.test.ts tests/setup.test.ts tests/outstanding.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-03T19:27:00+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:bb85ed8d8676bad46cae90af6519b2e8178aa3e3e5b8b989e5bdfc285b8b5a2d"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-03T19:30:00+09:00"

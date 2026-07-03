@@ -24,6 +24,8 @@ const NFR_ROW_REGEX = /\|\s*\*\*NFR-(\d{2})\*\*\s*\|/g;
 export interface DocConsistencySource {
   l1Functional: string;
   l3Functional: string;
+  l3HelixPillar: string;
+  l6SetupSoloTeam: string;
   screen: string;
   nfr: string;
 }
@@ -34,6 +36,8 @@ export function loadDocConsistencyDocs(repoRoot: string = ROOT): DocConsistencyS
   return {
     l1Functional: read("docs/design/harness/L1-requirements/functional-requirements.md"),
     l3Functional: read("docs/design/harness/L3-functional/functional-requirements.md"),
+    l3HelixPillar: read("docs/design/helix/L3-requirements/pillar-functional-requirements.md"),
+    l6SetupSoloTeam: read("docs/design/harness/L6-function-design/setup-solo-team.md"),
     screen: read("docs/design/harness/L1-requirements/screen-requirements.md"),
     nfr: read("docs/design/harness/L1-requirements/nfr.md"),
   };
@@ -126,12 +130,73 @@ export function checkNfrCount(nfr: string): {
   return { declared, actual, mismatch: declared !== null && declared !== actual };
 }
 
+export function checkHelixSetupReviewBundleConsistency(docs: {
+  l3HelixPillar: string;
+  l6SetupSoloTeam: string;
+}): { missing: string[] } {
+  const required: Array<{ id: string; text: string; pattern: RegExp }> = [
+    {
+      id: "l3-hac-p6-03a-review-bundle-command",
+      text: docs.l3HelixPillar,
+      pattern: /ut-tdd completion review-bundle --json/,
+    },
+    {
+      id: "l3-hac-p6-03a-semantic-digest",
+      text: docs.l3HelixPillar,
+      pattern: /semanticBundleDigest|semantic digest/,
+    },
+    {
+      id: "l6-setup-verification-commands-review-bundle",
+      text: docs.l6SetupSoloTeam,
+      pattern:
+        /postSetupWorkflow\.verificationCommands[\s\S]*ut-tdd completion review-bundle --json/,
+    },
+    {
+      id: "l6-setup-verification-matrix-review-bundle",
+      text: docs.l6SetupSoloTeam,
+      pattern: /postSetupWorkflow\.verificationMatrix\[\][\s\S]*completion-review-bundle/,
+    },
+    {
+      id: "l6-setup-consumer-doctor-ten-rows",
+      text: docs.l6SetupSoloTeam,
+      pattern: /consumer doctor[\s\S]*10 行/,
+    },
+    {
+      id: "l6-setup-vscode-nine-tasks",
+      text: docs.l6SetupSoloTeam,
+      pattern: /期待 task 9 本[\s\S]*completion review-bundle/,
+    },
+    {
+      id: "l6-setup-semantic-digest",
+      text: docs.l6SetupSoloTeam,
+      pattern: /semanticBundleDigest|semantic digest/,
+    },
+  ];
+  const forbidden: Array<{ id: string; text: string; pattern: RegExp }> = [
+    {
+      id: "l6-setup-no-stale-nine-row-contract",
+      text: docs.l6SetupSoloTeam,
+      pattern: /first-run matrix 全9行|consumer doctor[\s\S]{0,80}9 行/,
+    },
+    {
+      id: "l6-setup-no-stale-review-bundle-gap",
+      text: docs.l6SetupSoloTeam,
+      pattern:
+        /completion decision-packet --json` (?:と|\/) `ut-tdd version-up|completion packet preflight(?:、| と )version-up/,
+    },
+  ];
+  const missing = required.filter((row) => !row.pattern.test(row.text)).map((row) => row.id);
+  const stale = forbidden.filter((row) => row.pattern.test(row.text)).map((row) => row.id);
+  return { missing: [...missing, ...stale] };
+}
+
 export interface DocConsistencyResult {
   carryOrphans: string[];
   carryRequired: number[];
   screenIdOrphans: string[];
   definedScreenCount: number;
   nfrCount: { declared: number | null; actual: number; mismatch: boolean };
+  helixSetupReviewBundleMissing: string[];
 }
 
 export function analyzeDocConsistency(docs?: DocConsistencySource): DocConsistencyResult {
@@ -145,5 +210,6 @@ export function analyzeDocConsistency(docs?: DocConsistencySource): DocConsisten
     screenIdOrphans: screen.orphans,
     definedScreenCount: screen.definedScreens.length,
     nfrCount: nfr,
+    helixSetupReviewBundleMissing: checkHelixSetupReviewBundleConsistency(d).missing,
   };
 }

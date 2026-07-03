@@ -1147,6 +1147,15 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
   if (o.nonTerminalPlansTotal > 0) blockers.add("non_terminal_plans");
   if (o.openDefers > 0) blockers.add("open_defers");
   for (const blocker of Object.keys(o.blockersByKind)) blockers.add(blocker);
+  const blockedFrontierRecords = (o.semanticFeatureFrontierRecords ?? []).filter(
+    (record) => record.completionClaimAllowed === false,
+  );
+  if (blockedFrontierRecords.length > 0) {
+    blockers.add("semantic_frontier_blocked");
+    for (const record of blockedFrontierRecords) {
+      for (const blocker of record.blockers) blockers.add(blocker);
+    }
+  }
 
   const requiredActions = [...new Set(o.items.flatMap((item) => item.requiredActions))].sort();
   const requiredActionsJa = requiredActions.map(workflowActionTextJa);
@@ -1156,6 +1165,14 @@ export function completionReadinessForOutstanding(o: OutstandingWorkBase): Compl
     );
     requiredActionsJa.push(
       "whole-program completion を主張する前に placeholder/spec-backfill defer を解消する",
+    );
+  }
+  if (blockedFrontierRecords.length > 0) {
+    requiredActions.push(
+      "resolve semantic feature frontier records before claiming whole-program completion",
+    );
+    requiredActionsJa.push(
+      "whole-program completion を主張する前に semantic feature frontier record を解消する",
     );
   }
 

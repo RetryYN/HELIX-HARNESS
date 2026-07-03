@@ -371,13 +371,14 @@ describe("completionReadinessForOutstanding", () => {
       "irreversible_migration_pending",
       "non_terminal_plans",
       "open_defers",
+      "semantic_frontier_blocked",
     ]);
     expect(o.completionReadiness).toMatchObject({
       authorityBoundary: "human_decision_required",
       humanDecisionRequired: true,
       humanDecisionBlockers: ["human_approval_pending", "irreversible_migration_pending"],
       workflowStateBlockers: ["non_terminal_plans"],
-      autonomousWorkBlockers: ["open_defers"],
+      autonomousWorkBlockers: ["open_defers", "semantic_frontier_blocked"],
       nextAuthority: "human",
     });
     expect(o.completionReadiness.reason).toContain("doctor green is not a substitute");
@@ -385,6 +386,7 @@ describe("completionReadinessForOutstanding", () => {
       expect.arrayContaining([
         "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
         "resolve open placeholder/spec-backfill defers before claiming whole-program completion",
+        "resolve semantic feature frontier records before claiming whole-program completion",
       ]),
     );
   });
@@ -414,6 +416,43 @@ describe("completionReadinessForOutstanding", () => {
       requiredActions: [],
       requiredActionsJa: [],
     });
+  });
+
+  it("blocks completion when semantic frontier records still deny completion", () => {
+    const readiness = completionReadinessForOutstanding({
+      nonTerminalPlansByLayer: {},
+      nonTerminalPlansTotal: 0,
+      versionUpParked: 0,
+      activeDraftTotal: 0,
+      openDefers: 0,
+      blockersByKind: {},
+      items: [],
+      semanticFeatureFrontierRecords: [
+        {
+          recordName: "semantic_feature_frontier_record",
+          planId: "PLAN-DISCOVERY-07-design-bottomup-mode",
+          featureId: "design_bottomup_mode",
+          classification: "frontier_pending_decision",
+          completionClaimAllowed: false,
+          blockers: ["po_decision_pending"],
+          requiredRoute:
+            "S4 decide -> decision_outcome 記録後にのみ Reverse / Forward merge へ進む",
+          reason: "po_decision_pending",
+          sourcePaths: ["docs/process/modes/discovery.md"],
+        },
+      ],
+    });
+
+    expect(readiness).toMatchObject({
+      ok: false,
+      status: "blocked",
+      blockers: ["po_decision_pending", "semantic_frontier_blocked"],
+      humanDecisionRequired: true,
+      nextAuthority: "human",
+    });
+    expect(readiness.requiredActions).toContain(
+      "resolve semantic feature frontier records before claiming whole-program completion",
+    );
   });
 
   it("keeps autonomous blockers separate from human decision blockers", () => {
@@ -521,13 +560,14 @@ describe("completionDecisionPacketForOutstanding", () => {
         "version_up_parked",
       ],
       workflowStateBlockers: ["non_terminal_plans"],
-      autonomousWorkBlockers: [],
+      autonomousWorkBlockers: ["semantic_frontier_blocked"],
       nextAuthority: "human",
       decisionCount: 3,
       blockers: expect.arrayContaining([
         "irreversible_migration_pending",
         "non_terminal_plans",
         "po_decision_pending",
+        "semantic_frontier_blocked",
         "version_up_parked",
       ]),
       semanticMeaningSummary: {
