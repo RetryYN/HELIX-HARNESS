@@ -490,7 +490,10 @@ function workflowModesForPlan(planId: string, kind: string, content: string): st
   const modes: string[] = [];
   addUniqueMode(modes, explicitWorkflowMode(content));
 
-  if (frontmatterValue(content, "version_target") || /version-up/i.test(frontmatterValue(content, "title"))) {
+  if (
+    frontmatterValue(content, "version_target") ||
+    /version-up/i.test(frontmatterValue(content, "title"))
+  ) {
     addUniqueMode(modes, "version-up");
   }
 
@@ -1835,6 +1838,76 @@ function projectPairAgentRunEvidence(
         },
       });
     }
+  }
+}
+
+interface LoopIterationJsonlRecord {
+  planId?: unknown;
+  iteration?: unknown;
+  workerProvider?: unknown;
+  verifierProvider?: unknown;
+  verdict?: unknown;
+  stopReason?: unknown;
+  blockedReason?: unknown;
+}
+
+function loopIterationFiles(repoRoot: string): string[] {
+  const dir = join(repoRoot, ".ut-tdd", "state", "loop");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((name) => name.endsWith(".iterations.jsonl"))
+    .map((name) => join(dir, name))
+    .sort();
+}
+
+// §9.12 loop observability (PLAN-L7-304、PLAN-L7-176/177 §4 carry): loop-store が追記する
+// iteration jsonl を loop_iterations へ projection する。verifier-provider-mismatch doctor gate
+// (hybrid 自己評価検出) はこの投影行を検査する。壊れた行は silent skip せず findings に落とす。
+function projectLoopIterations(repoRoot: string, db: HarnessDb): void {
+  for (const file of loopIterationFiles(repoRoot)) {
+    const relPath = normalizePath(relative(repoRoot, file));
+    const lines = readFileSync(file, "utf8")
+      .split("\n")
+      .filter((line) => line.trim().length > 0);
+    lines.forEach((line, index) => {
+      let record: LoopIterationJsonlRecord | null = null;
+      try {
+        record = JSON.parse(line) as LoopIterationJsonlRecord;
+      } catch {
+        record = null;
+      }
+      const planId = asString(record?.planId);
+      const iteration = asFiniteNumber(record?.iteration);
+      const workerProvider = asString(record?.workerProvider);
+      if (!record || !planId || iteration === null || !workerProvider) {
+        recordFinding(db, {
+          kind: "loop-iteration-invalid",
+          severity: "warn",
+          subjectId: `${relPath}:${index + 1}`,
+          source: "loop-iterations",
+          evidencePath: relPath,
+        });
+        return;
+      }
+      const id = stableId("loop-iteration", `${planId}:${iteration}`);
+      recordProjectionEvent(db, {
+        table: "loop_iterations",
+        id,
+        row: {
+          loop_iteration_id: id,
+          plan_id: planId,
+          iteration,
+          worker_provider: workerProvider,
+          verifier_provider: asString(record.verifierProvider) ?? null,
+          verdict: asString(record.verdict) ?? "",
+          stop_reason: asString(record.stopReason) ?? null,
+          blocked_reason: asString(record.blockedReason) ?? null,
+          cost_usd: null,
+          evidence_path: relPath,
+          recorded_at: "",
+        },
+      });
+    });
   }
 }
 
@@ -3820,6 +3893,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       projectReviewEvidenceRegistry(repoRoot, db);
       projectRuntimeVerificationEvents(repoRoot, db);
       projectPairAgentRunEvidence(repoRoot, db, plans);
+      projectLoopIterations(repoRoot, db);
       projectGuardrailInvariantAdvisories(db);
       projectDescentObligations(repoRoot, db);
       projectVerificationBandExecution(db);

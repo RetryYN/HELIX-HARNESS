@@ -57,6 +57,8 @@ export const EVIDENCE_GATED_DB_PROJECTION_TABLES = [
   "document_export_artifacts",
   "model_evaluations",
   "retry_events",
+  // loop 実行が無い repo では 0 行が正常 (loop run 実行時のみ jsonl 証跡から投影される)。
+  "loop_iterations",
 ];
 
 export function analyzeDbProjectionIngestion(

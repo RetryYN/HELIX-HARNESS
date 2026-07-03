@@ -144,4 +144,25 @@ export const HARNESS_DB_EVALUATION_TABLES: TableDef[] = [
       col("source"),
     ],
   },
+  // --- §9.12 loop observability projection (PLAN-L7-304、PLAN-L7-176/177 §4 carry) ---
+  // source = .ut-tdd/state/loop/<planId>.iterations.jsonl (LoopIterationRecord)。
+  // hybrid 自己評価 (worker===verifier かつ blocked_reason なし) を doctor
+  // verifier-provider-mismatch が機械検査できるようにする。cost_usd は per-iteration
+  // 記録が未実装のため NULL 許容 (effort budget の enforcement は loop state 側で既済)。
+  {
+    name: "loop_iterations",
+    columns: [
+      pk("loop_iteration_id"),
+      col("plan_id"),
+      col("iteration", "INTEGER"),
+      col("worker_provider"),
+      col("verifier_provider"),
+      col("verdict"),
+      col("stop_reason"),
+      col("blocked_reason"),
+      col("cost_usd", "REAL"),
+      col("evidence_path"),
+      col("recorded_at"),
+    ],
+  },
 ];

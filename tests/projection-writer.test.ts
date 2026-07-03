@@ -2397,4 +2397,176 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       rmSync(repoRoot, { recursive: true, force: true });
     }
   });
+
+  it("projects loop iteration JSONL rows and records malformed rows as findings", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-loop-iterations-${randomUUID()}`);
+    try {
+      const loopDir = join(repoRoot, ".ut-tdd", "state", "loop");
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(loopDir, { recursive: true });
+      writeFileSync(
+        join(loopDir, "PLAN-L7-304.iterations.jsonl"),
+        [
+          JSON.stringify({
+            planId: "PLAN-L7-304",
+            iteration: 1,
+            workerProvider: "codex",
+            verifierProvider: "claude",
+            verdict: "pass",
+            stopReason: "",
+            blockedReason: "",
+          }),
+          "{invalid",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const row = db
+          .prepare(
+            "SELECT plan_id, iteration, worker_provider, verifier_provider, verdict, evidence_path FROM loop_iterations LIMIT 1",
+          )
+          .get();
+        expect(row).toMatchObject({
+          plan_id: "PLAN-L7-304",
+          iteration: 1,
+          worker_provider: "codex",
+          verifier_provider: "claude",
+          verdict: "pass",
+          evidence_path: ".ut-tdd/state/loop/PLAN-L7-304.iterations.jsonl",
+        });
+
+        const finding = db
+          .prepare("SELECT kind, source FROM findings WHERE kind = ? LIMIT 1")
+          .get("loop-iteration-invalid");
+        expect(finding).toMatchObject({
+          kind: "loop-iteration-invalid",
+          source: "loop-iterations",
+        });
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
+  it("U-ORCH-007: projects loop iteration jsonl rows and downgrades broken lines to findings", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-loop-projection-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "state", "loop"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "state", "loop", "PLAN-L7-999.iterations.jsonl"),
+        [
+          JSON.stringify({
+            planId: "PLAN-L7-999",
+            iteration: 1,
+            workerProvider: "codex",
+            verifierProvider: "claude",
+            verdict: "pass",
+            stopReason: null,
+            blockedReason: null,
+          }),
+          JSON.stringify({
+            planId: "PLAN-L7-999",
+            iteration: 2,
+            workerProvider: "codex",
+            verifierProvider: "codex",
+            verdict: "pending",
+            stopReason: null,
+            blockedReason: "intra_runtime_fallback",
+          }),
+          "{ broken json line",
+          "",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+        expect(result.ok).toBe(true);
+        expect(result.rowCounts.loop_iterations).toBe(2);
+
+        const rows = db
+          .prepare(
+            "SELECT plan_id, iteration, worker_provider, verifier_provider, verdict, blocked_reason, evidence_path FROM loop_iterations ORDER BY iteration",
+          )
+          .all() as Array<Record<string, unknown>>;
+        expect(rows[0]).toMatchObject({
+          plan_id: "PLAN-L7-999",
+          iteration: 1,
+          worker_provider: "codex",
+          verifier_provider: "claude",
+          verdict: "pass",
+          blocked_reason: null,
+          evidence_path: ".ut-tdd/state/loop/PLAN-L7-999.iterations.jsonl",
+        });
+        expect(rows[1]).toMatchObject({
+          iteration: 2,
+          worker_provider: "codex",
+          verifier_provider: "codex",
+          blocked_reason: "intra_runtime_fallback",
+        });
+
+        const finding = db
+          .prepare("SELECT kind, severity, subject_id FROM findings WHERE source = ?")
+          .get("loop-iterations") as Record<string, unknown> | undefined;
+        expect(finding).toMatchObject({
+          kind: "loop-iteration-invalid",
+          severity: "warn",
+          subject_id: ".ut-tdd/state/loop/PLAN-L7-999.iterations.jsonl:3",
+        });
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
 });

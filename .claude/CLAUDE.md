@@ -112,8 +112,9 @@ Rules:
    evidence.
 5. Invalid stdin JSON or unverifiable state fails closed.
 
-Allowlist:
+Allowlist（正本 = `src/runtime/agent-guard-policy.ts` の `SUBAGENT_ALLOWLIST`。本一覧は同期写し）:
 
+- `advisor-fable`
 - `pmo-sonnet`
 - `pmo-haiku`
 - `pmo-project-explorer`
@@ -121,12 +122,28 @@ Allowlist:
 - `pmo-tech-docs`
 - `pmo-tech-fork`
 - `pmo-tech-news`
+- `refactor-scout`
 - `pdm-tech-innovation`
 - `pdm-marketing-innovation`
 - `pdm-innovation-manager`
 - `code-reviewer`
 - `security-audit`
 - `qa-test`
+
+### Fable advisor（最上位セカンドオピニオン、PLAN-L7-306）
+
+`advisor-fable`（model=claude-fable-5、advisory-only・read-only）は TL advisor の一段上。
+呼び出し条件（いずれか該当時のみ。日常判断には呼ばない）:
+
+1. TL advisor 相談後も技術判断の疑問が残る（tl_advisor_evidence があるのに結論が出ない）。
+2. cross-runtime（Claude↔Codex）の判定が同一論点で対立し 2 回目でも収束しない。
+3. 不可逆・高影響操作（cutover / migration / 履歴書換え / 外部公開 / production / auth / payments / PII）の
+   action-binding approval 前段の技術妥当性確認。
+4. PO へのエスカレーション質問を出す直前の最終確認（AI 側で解決可能な情報が残っていないか）。
+5. 同一問題で 3 回以上の試行失敗、または V-model 正本間の矛盾を発見。
+
+観点は 5 軸固定（根拠の強度 / 正本整合 / 不可逆性と blast radius / 代替案 / エスカレーション適切性）。
+結論・根拠・残リスク・次の一手を受け取り、呼び出し側が review_evidence / IMP に記録する。
 
 Source-snapshot exploration は active Claude Code subagent route ではない。repository inspection には
 project-focused agents を使い、migration snapshots は read-only material として扱う。

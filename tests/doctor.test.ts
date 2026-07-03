@@ -59,6 +59,7 @@ import {
   checkTelemetryClosure,
   checkToolContractRegistry,
   checkTrackedCanonical,
+  checkVerifierProviderMismatch,
   checkVerificationGroupsResult,
   checkVerificationProfile,
   checkVersionUpReadiness,
@@ -2808,6 +2809,7 @@ describe("runDoctor", () => {
       "runtimePortability",
       "dbProjectionCoverage",
       "dbProjectionIngestion",
+      "verifierProviderMismatch",
       "ruleDrift",
       "gateConfirm",
       "planSchedule",
@@ -2846,5 +2848,28 @@ describe("runDoctor", () => {
     ];
 
     expect(expectedHardGates.filter((name) => !okExpression.includes(`${name}.ok`))).toEqual([]);
+  });
+
+  it("verifier-provider-mismatch doctor check blocks self-evaluation evidence", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-doctor-verifier-mismatch-"));
+    try {
+      const loopDir = join(root, ".ut-tdd", "state", "loop");
+      mkdirSync(loopDir, { recursive: true });
+      writeFileSync(
+        join(loopDir, "PLAN-X.iterations.jsonl"),
+        JSON.stringify({
+          planId: "PLAN-X",
+          iteration: 1,
+          workerProvider: "codex",
+          verifierProvider: "codex",
+        }),
+      );
+
+      const result = checkVerifierProviderMismatch(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("hybrid self-evaluation rows=1");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

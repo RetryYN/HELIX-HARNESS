@@ -83,6 +83,42 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     db.close();
   });
 
+  it("loop_iterations schema と plan/iteration index を registry から作成する", () => {
+    const db = openHarnessDb(":memory:");
+    migrate(db);
+
+    const loopColumns = db
+      .prepare("PRAGMA table_info(loop_iterations)")
+      .all()
+      .map((row) => String(row.name));
+    expect(loopColumns).toEqual([
+      "loop_iteration_id",
+      "plan_id",
+      "iteration",
+      "worker_provider",
+      "verifier_provider",
+      "verdict",
+      "stop_reason",
+      "blocked_reason",
+      "cost_usd",
+      "evidence_path",
+      "recorded_at",
+    ]);
+
+    const loopIndexes = db
+      .prepare("PRAGMA index_list(loop_iterations)")
+      .all()
+      .map((row) => String(row.name));
+    expect(loopIndexes).toContain("idx_loop_iterations_plan");
+
+    const indexedColumns = db
+      .prepare("PRAGMA index_info(idx_loop_iterations_plan)")
+      .all()
+      .map((row) => String(row.name));
+    expect(indexedColumns).toEqual(["plan_id", "iteration"]);
+    db.close();
+  });
+
   it("migrate は冪等 (2 回目は no-op、version 安定、例外なし)", () => {
     const db = openHarnessDb(":memory:");
     const first = migrate(db);

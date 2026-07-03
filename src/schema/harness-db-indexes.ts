@@ -196,4 +196,9 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     table: "screen_trace",
     columns: ["screen_id", "requirement_kind"],
   },
+  {
+    name: "idx_loop_iterations_plan",
+    table: "loop_iterations",
+    columns: ["plan_id", "iteration"],
+  },
 ];

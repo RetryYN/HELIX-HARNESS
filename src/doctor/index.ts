@@ -25,6 +25,12 @@ import {
   buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
 } from "../lint/action-binding-approval-readiness";
+import {
+  agentModelSsotMessages,
+  analyzeAgentModelSsot,
+  loadAgentModelEntries,
+  loadCanonicalModelIds,
+} from "../lint/agent-model-ssot";
 import { analyzeAssetDrift, assetDriftMessages, loadAssetDriftInput } from "../lint/asset-drift";
 import { analyzeBackfill, backfillMessages, loadBackfillDocs } from "../lint/backfill-pairing";
 import { analyzeBranchKind, branchKindMessages, loadBranchKindInput } from "../lint/branch-kind";
@@ -320,6 +326,11 @@ import {
   loadVerificationRecommendation,
   verificationProfileGateMessages,
 } from "../lint/verification-profile";
+import {
+  analyzeVerifierProviderMismatch,
+  loadLoopIterationFiles,
+  verifierProviderMismatchMessages,
+} from "../lint/verifier-provider-mismatch";
 import {
   analyzeVersionUpReadiness,
   buildVersionUpActivationPackets,
@@ -980,6 +991,47 @@ export function checkDbProjectionCoverage(repoRoot: string): { messages: string[
   } catch {
     return {
       messages: ["db-projection-coverage - violation: physical-data/schema coverage could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkAgentModelSsot(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return { messages: ["agent-model-ssot - violation: repo root could not be read"], ok: false };
+  }
+  try {
+    const result = analyzeAgentModelSsot(
+      loadAgentModelEntries(repoRoot),
+      loadCanonicalModelIds(repoRoot),
+    );
+    return { messages: agentModelSsotMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["agent-model-ssot - violation: agent frontmatter could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkVerifierProviderMismatch(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["verifier-provider-mismatch - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const result = analyzeVerifierProviderMismatch(loadLoopIterationFiles(repoRoot));
+    return { messages: verifierProviderMismatchMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: [
+        "verifier-provider-mismatch - violation: loop iteration evidence could not be read",
+      ],
       ok: false,
     };
   }
@@ -3059,6 +3111,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const guardrailInvariants = checkGuardrailInvariants(deps.repoRoot);
   const dbProjectionCoverage = checkDbProjectionCoverage(deps.repoRoot);
   const dbProjectionIngestion = checkDbProjectionIngestion(deps.repoRoot);
+  const verifierProviderMismatch = checkVerifierProviderMismatch(deps.repoRoot);
+  const agentModelSsot = checkAgentModelSsot(deps.repoRoot);
   const docConsistency = checkDocConsistency(deps.repoRoot);
   const entityCoverage = checkEntityCoverage(deps.repoRoot);
   const frRegistryAudit = checkFrRegistryAudit(deps.repoRoot);
@@ -3146,6 +3200,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       regressionExpansion.ok &&
       dbProjectionCoverage.ok &&
       dbProjectionIngestion.ok &&
+      verifierProviderMismatch.ok &&
+      agentModelSsot.ok &&
       docConsistency.ok &&
       entityCoverage.ok &&
       frRegistryAudit.ok &&
@@ -3234,6 +3290,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...regressionExpansion.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionCoverage.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionIngestion.messages.map((m) => `doctor: ${m}`),
+      ...verifierProviderMismatch.messages.map((m) => `doctor: ${m}`),
+      ...agentModelSsot.messages.map((m) => `doctor: ${m}`),
       ...docConsistency.messages.map((m) => `doctor: ${m}`),
       ...entityCoverage.messages.map((m) => `doctor: ${m}`),
       ...frRegistryAudit.messages.map((m) => `doctor: ${m}`),

@@ -19,7 +19,7 @@ import {
   SUBAGENT_ALLOWLIST,
 } from "./agent-guard-policy";
 
-export type ModelFamily = "haiku" | "sonnet" | "opus";
+export type ModelFamily = "haiku" | "sonnet" | "opus" | "fable";
 
 export { SUBAGENT_ALLOWLIST } from "./agent-guard-policy";
 
@@ -59,6 +59,7 @@ export function normalizeModelFamily(raw: string | null | undefined): ModelFamil
   if (/\bhaiku\b/i.test(raw)) hits.push("haiku");
   if (/\bsonnet\b/i.test(raw)) hits.push("sonnet");
   if (/\bopus\b/i.test(raw)) hits.push("opus");
+  if (/\bfable\b/i.test(raw)) hits.push("fable");
   return hits.length === 1 ? hits[0] : null;
 }
 

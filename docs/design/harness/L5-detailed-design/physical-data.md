@@ -246,6 +246,11 @@ External reinforcement: SQLite FTS5 supports external/contentless index patterns
 | `workflow_runs` | `workflow_run_id` | `plan_id`, `drive_run_id`, `workflow`, `phase`, `ready_status`, `blocked_reason`, `human_required`, `checked_at` | Make workflow automation readiness queryable and data-backed. |
 | `guardrail_decisions` | `guardrail_decision_id` | `plan_id`, `session_id`, `guardrail`, `decision`, `mode`, `human_signoff_required`, `evidence_path`, `decided_at` | Persist safety decisions for agent-guard, review evidence, escalation, and same-model approval checks. |
 | `automation_assets` | `asset_id` | `asset_type`, `path`, `trigger`, `role`, `capability`, `drift_status`, `indexed_at` | Catalog skill/roster/command docs as automation inputs and search subjects. |
+| `loop_iterations` | `loop_iteration_id` | `plan_id`, `iteration`, `worker_provider`, `verifier_provider`, `verdict`, `stop_reason`, `blocked_reason`, `cost_usd`, `evidence_path`, `recorded_at` | P2 loop の iteration 証跡 (`.ut-tdd/state/loop/*.iterations.jsonl`) を projection し、hybrid 自己評価 (worker===verifier) を `verifier-provider-mismatch` doctor gate で機械検査可能にする (PLAN-L7-176/177 §4 carry、PLAN-L7-304)。 |
+
+PLAN-L7-304 は、上記 `loop_iterations` の schema registry と `idx_loop_iterations_plan` を扱う L7 impl slice である。
+PLAN-L7-305 は、既存 `loop-store` が出す iteration 証跡の JSONL rebuild 投影と
+`verifier-provider-mismatch` doctor gate を扱う。runtime provider dispatch の変更は対象外とする。
 
 Existing tables in §2.7 remain required. New rows must reference existing `plan_registry`, `artifact_registry`, `model_runs`, `findings`, or `gate_runs` when such source IDs exist. Missing join keys become `findings` rows instead of silent skips.
 
