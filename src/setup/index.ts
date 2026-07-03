@@ -43,6 +43,13 @@ export const CONSUMER_CI_RUN_COMMANDS = [
   "bun run test",
 ] as const;
 
+export const CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS = [
+  "bun install --frozen-lockfile",
+  "bun run ut-tdd handover status --json",
+  "bun run ut-tdd completion decision-packet --json",
+  "bun run ut-tdd doctor --profile consumer --json",
+] as const;
+
 export const CONSUMER_VSCODE_TASK_COMMANDS = [
   ["HELIX: status", "bun run ut-tdd status"],
   ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
@@ -167,6 +174,31 @@ export interface ConsumerCiWorkflowContract {
   exactSteps: boolean;
   exactRuns: boolean;
   secretsFree: boolean;
+}
+
+export interface ConsumerEscalationWorkflowContract {
+  ok: boolean;
+  nameOk: boolean;
+  scheduleOk: boolean;
+  unexpectedTriggers: string[];
+  noPullRequestTarget: boolean;
+  permissionsRead: boolean;
+  tokenWrite: boolean;
+  jobOk: boolean;
+  checkoutPersistCredentialsFalse: boolean;
+  checkoutInputsExact: boolean;
+  setupBunInputsEmpty: boolean;
+  customEnvFree: boolean;
+  skipOrSoftFailFree: boolean;
+  jobPermissionsFixed: boolean;
+  executionSurfaceFixed: boolean;
+  missingUses: string[];
+  unexpectedUses: string[];
+  missingRuns: string[];
+  exactSteps: boolean;
+  exactRuns: boolean;
+  secretsFree: boolean;
+  placeholderFree: boolean;
 }
 
 export function analyzeConsumerCiWorkflowContract(
@@ -300,6 +332,143 @@ export function analyzeConsumerCiWorkflowContract(
       contract.exactSteps &&
       contract.exactRuns &&
       contract.secretsFree,
+  };
+}
+
+export function analyzeConsumerEscalationWorkflowContract(
+  workflowText: string,
+): ConsumerEscalationWorkflowContract {
+  const workflow = parseYamlRecord(workflowText);
+  const workflowOn = recordFromUnknown(workflow?.on);
+  const schedule = Array.isArray(workflowOn?.schedule) ? workflowOn.schedule : [];
+  const permissionsRaw = workflow?.permissions;
+  const permissions = recordFromUnknown(permissionsRaw);
+  const jobs = recordFromUnknown(workflow?.jobs);
+  const auditJob = recordFromUnknown(jobs?.["escalation-audit"]);
+  const steps = Array.isArray(auditJob?.steps) ? auditJob.steps : [];
+  const stepRecords = steps
+    .map(recordFromUnknown)
+    .filter((step): step is Record<string, unknown> => Boolean(step));
+  const requiredUses = ["actions/checkout@v4", "oven-sh/setup-bun@v2"];
+  const requiredRuns = [...CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS];
+  const expectedSteps = [
+    ...requiredUses.map((use) => ({ key: "uses", value: use })),
+    ...requiredRuns.map((run) => ({ key: "run", value: run })),
+  ];
+  const actualUses = stepRecords
+    .map((step) => step.uses)
+    .filter((use): use is string => typeof use === "string");
+  const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
+  const unexpectedUses = actualUses.filter((use) => !requiredUses.includes(use));
+  const missingRuns = requiredRuns.filter((run) => !stepRecords.some((step) => step.run === run));
+  const checkoutStep = stepRecords.find((step) => step.uses === "actions/checkout@v4");
+  const checkoutWith = recordFromUnknown(checkoutStep?.with);
+  const checkoutPersistCredentialsFalse =
+    checkoutWith?.["persist-credentials"] === false ||
+    checkoutWith?.["persist-credentials"] === "false";
+  const checkoutInputsExact =
+    checkoutWith !== null &&
+    Object.keys(checkoutWith).length === 1 &&
+    Object.hasOwn(checkoutWith, "persist-credentials");
+  const setupBunStep = stepRecords.find((step) => step.uses === "oven-sh/setup-bun@v2");
+  const setupBunWith = recordFromUnknown(setupBunStep?.with);
+  const setupBunInputsEmpty = setupBunWith === null || Object.keys(setupBunWith).length === 0;
+  const workflowOnKeys = workflowOn ? Object.keys(workflowOn).sort() : [];
+  const unexpectedTriggers = workflowOnKeys.filter((key) => key !== "schedule");
+  const permissionsRead = permissions?.contents === "read";
+  const tokenWrite =
+    typeof permissionsRaw === "string"
+      ? /write/i.test(permissionsRaw)
+      : permissions
+        ? Object.values(permissions).some((value) => value === "write")
+        : false;
+  const customEnvFree =
+    !Object.hasOwn(workflow ?? {}, "env") &&
+    !Object.hasOwn(auditJob ?? {}, "env") &&
+    stepRecords.every((step) => !Object.hasOwn(step, "env"));
+  const skipOrSoftFailFree =
+    !Object.hasOwn(auditJob ?? {}, "if") &&
+    !Object.hasOwn(auditJob ?? {}, "continue-on-error") &&
+    stepRecords.every(
+      (step) => !Object.hasOwn(step, "if") && !Object.hasOwn(step, "continue-on-error"),
+    );
+  const jobPermissionsFixed = !Object.hasOwn(auditJob ?? {}, "permissions");
+  const executionSurfaceFixed =
+    !Object.hasOwn(workflow ?? {}, "concurrency") &&
+    !Object.hasOwn(workflow ?? {}, "defaults") &&
+    !Object.hasOwn(auditJob ?? {}, "concurrency") &&
+    !Object.hasOwn(auditJob ?? {}, "defaults") &&
+    !Object.hasOwn(auditJob ?? {}, "environment") &&
+    !Object.hasOwn(auditJob ?? {}, "needs") &&
+    !Object.hasOwn(auditJob ?? {}, "strategy") &&
+    !Object.hasOwn(auditJob ?? {}, "timeout-minutes") &&
+    !Object.hasOwn(auditJob ?? {}, "container") &&
+    !Object.hasOwn(auditJob ?? {}, "services") &&
+    !Object.hasOwn(auditJob ?? {}, "uses") &&
+    !Object.hasOwn(auditJob ?? {}, "secrets") &&
+    stepRecords.every(
+      (step) =>
+        !Object.hasOwn(step, "shell") &&
+        !Object.hasOwn(step, "timeout-minutes") &&
+        !Object.hasOwn(step, "working-directory"),
+    );
+  const exactSteps =
+    stepRecords.length === expectedSteps.length &&
+    expectedSteps.every((expected, index) => stepRecords[index]?.[expected.key] === expected.value);
+  const commands = extractWorkflowRunCommands(workflowText);
+  const exactRuns =
+    commands.length === requiredRuns.length &&
+    requiredRuns.every((command, index) => commands[index] === command);
+  const contract = {
+    ok: false,
+    nameOk: workflow?.name === "escalation-stale",
+    scheduleOk:
+      schedule.length === 1 &&
+      recordFromUnknown(schedule[0])?.cron === "0 0 * * 1",
+    unexpectedTriggers,
+    noPullRequestTarget: workflowOn ? !Object.hasOwn(workflowOn, "pull_request_target") : false,
+    permissionsRead,
+    tokenWrite,
+    jobOk: auditJob?.["runs-on"] === "ubuntu-latest",
+    checkoutPersistCredentialsFalse,
+    checkoutInputsExact,
+    setupBunInputsEmpty,
+    customEnvFree,
+    skipOrSoftFailFree,
+    jobPermissionsFixed,
+    executionSurfaceFixed,
+    missingUses,
+    unexpectedUses,
+    missingRuns,
+    exactSteps,
+    exactRuns,
+    secretsFree: !/\bsecrets\s*(?:\.|\[)/i.test(workflowText),
+    placeholderFree: !/\b(?:placeholder|TODO|TBD|FIXME)\b/i.test(workflowText),
+  };
+  return {
+    ...contract,
+    ok:
+      contract.nameOk &&
+      contract.scheduleOk &&
+      contract.unexpectedTriggers.length === 0 &&
+      contract.noPullRequestTarget &&
+      contract.permissionsRead &&
+      !contract.tokenWrite &&
+      contract.jobOk &&
+      contract.checkoutPersistCredentialsFalse &&
+      contract.checkoutInputsExact &&
+      contract.setupBunInputsEmpty &&
+      contract.customEnvFree &&
+      contract.skipOrSoftFailFree &&
+      contract.jobPermissionsFixed &&
+      contract.executionSurfaceFixed &&
+      contract.missingUses.length === 0 &&
+      contract.unexpectedUses.length === 0 &&
+      contract.missingRuns.length === 0 &&
+      contract.exactSteps &&
+      contract.exactRuns &&
+      contract.secretsFree &&
+      contract.placeholderFree,
   };
 }
 
@@ -739,6 +908,7 @@ const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
   requiredChecks: ["harness-check"],
   generatedPolicyFiles: [
     ".github/workflows/harness-check.yml",
+    ".github/workflows/escalation-stale.yml",
     ".github/ISSUE_TEMPLATE/recovery.md",
     ".github/ISSUE_TEMPLATE/add-feature.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
@@ -1305,6 +1475,7 @@ function buildConsumerArtifactReadinessPlan(
   const tasksPath = join(".vscode", "tasks.json");
   const settingsPath = join(".vscode", "settings.json");
   const workflowPath = join(".github", "workflows", "harness-check.yml");
+  const escalationWorkflowPath = join(".github", "workflows", "escalation-stale.yml");
   const teamPath = CONSUMER_TEAM_DEFINITION_PATH;
   const baselinePaths = [
     join(".ut-tdd", "memory", ".gitkeep"),
@@ -1316,6 +1487,7 @@ function buildConsumerArtifactReadinessPlan(
   const tasks = content(tasksPath);
   const settings = content(settingsPath);
   const workflow = content(workflowPath);
+  const escalationWorkflow = content(escalationWorkflowPath);
   const team = content(teamPath);
   const codeowners = content(CODEOWNERS_TARGET);
   const codeownersRequired = plan.files.some((file) => file.path === CODEOWNERS_TARGET);
@@ -1370,6 +1542,8 @@ function buildConsumerArtifactReadinessPlan(
     );
   });
   const workflowContract = analyzeConsumerCiWorkflowContract(workflow);
+  const escalationWorkflowContract =
+    analyzeConsumerEscalationWorkflowContract(escalationWorkflow);
   const checks: ConsumerArtifactReadinessPlan["checks"] = [
     {
       name: "adapter-guidance-connects-consumer-verification",
@@ -1429,6 +1603,15 @@ function buildConsumerArtifactReadinessPlan(
         "harness-check workflow must be a read-only, secret-free consumer smoke on push/pull_request main with fixed action inputs, no custom env, no skip or soft-pass controls, and the fixed package-local HELIX command set",
       evidence:
         ".github/workflows/harness-check.yml YAML contract for permissions, triggers, job, action inputs, env, execution controls, setup steps, and command surface",
+    },
+    {
+      name: "escalation-stale-is-no-write-route-audit",
+      path: escalationWorkflowPath,
+      ok: hasPath(escalationWorkflowPath) && escalationWorkflowContract.ok,
+      message:
+        "escalation-stale workflow must be a scheduled read-only HELIX route audit with no placeholder step, no secret use, and the fixed handover/completion/consumer-doctor command set",
+      evidence:
+        ".github/workflows/escalation-stale.yml YAML contract for schedule, read-only permissions, action inputs, placeholder-free commands, and no-write route audit",
     },
     ...(codeownersRequired
       ? [

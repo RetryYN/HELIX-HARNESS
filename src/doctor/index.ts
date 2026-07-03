@@ -349,7 +349,9 @@ import { detectMode } from "../runtime/detect";
 import { teamDefinitionSchema } from "../schema/team";
 import {
   analyzeConsumerCiWorkflowContract,
+  analyzeConsumerEscalationWorkflowContract,
   CONSUMER_CI_RUN_COMMANDS,
+  CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
   CONSUMER_VSCODE_TASK_COMMANDS,
 } from "../setup/index";
 import {
@@ -1877,6 +1879,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".vscode/tasks.json",
     ".vscode/settings.json",
     ".github/workflows/harness-check.yml",
+    ".github/workflows/escalation-stale.yml",
     ".github/ISSUE_TEMPLATE/recovery.md",
     ".github/ISSUE_TEMPLATE/add-feature.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
@@ -2187,6 +2190,16 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} checkoutPersistCredentialsFalse=${ciContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${ciContract.checkoutInputsExact} setupBunInputsEmpty=${ciContract.setupBunInputsEmpty} customEnvFree=${ciContract.customEnvFree} skipOrSoftFailFree=${ciContract.skipOrSoftFailFree} jobPermissionsFixed=${ciContract.jobPermissionsFixed} executionSurfaceFixed=${ciContract.executionSurfaceFixed} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
   );
 
+  const escalationWorkflowRaw =
+    consumerFile(deps, ".github/workflows/escalation-stale.yml") ?? "";
+  const escalationContract =
+    analyzeConsumerEscalationWorkflowContract(escalationWorkflowRaw);
+  messages.push(
+    escalationContract.ok
+      ? `doctor: consumer-escalation-workflow - OK (workflow=escalation-stale, permissions=contents:read, schedule=weekly, commands=${2 + CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS.length}, placeholder-free)`
+      : `doctor: consumer-escalation-workflow - violation name=${escalationContract.nameOk} schedule=${escalationContract.scheduleOk} unexpectedTriggers=${escalationContract.unexpectedTriggers.join(",")} noPullRequestTarget=${escalationContract.noPullRequestTarget} permissionsRead=${escalationContract.permissionsRead} tokenWrite=${escalationContract.tokenWrite} job=${escalationContract.jobOk} checkoutPersistCredentialsFalse=${escalationContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${escalationContract.checkoutInputsExact} setupBunInputsEmpty=${escalationContract.setupBunInputsEmpty} customEnvFree=${escalationContract.customEnvFree} skipOrSoftFailFree=${escalationContract.skipOrSoftFailFree} jobPermissionsFixed=${escalationContract.jobPermissionsFixed} executionSurfaceFixed=${escalationContract.executionSurfaceFixed} missingUses=${escalationContract.missingUses.join(",")} unexpectedUses=${escalationContract.unexpectedUses.join(",")} missingRuns=${escalationContract.missingRuns.join(",")} exactSteps=${escalationContract.exactSteps} exactRuns=${escalationContract.exactRuns} secrets=${!escalationContract.secretsFree} placeholderFree=${escalationContract.placeholderFree}`,
+  );
+
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
   const addFeatureTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/add-feature.md") ?? "";
   const pullRequestTemplate = consumerFile(deps, ".github/PULL_REQUEST_TEMPLATE.md") ?? "";
@@ -2235,6 +2248,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     teamSurfaceOk &&
     taskSafetyOk &&
     ciContract.ok &&
+    escalationContract.ok &&
     policyTemplatesOk;
   return { ok, messages };
 }

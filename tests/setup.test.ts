@@ -192,7 +192,30 @@ const baseTemplates: TemplateSet = {
   ].join("\n"),
   "common/commitlint.config.js":
     "module.exports = { extends: ['@commitlint/config-conventional'] };\n",
-  "common/escalation-stale.yml": "name: escalation-stale\n",
+  "common/escalation-stale.yml": [
+    "name: escalation-stale",
+    "on:",
+    "  schedule:",
+    "    - cron: '0 0 * * 1'",
+    "permissions:",
+    "  contents: read",
+    "jobs:",
+    "  escalation-audit:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "        with:",
+    "          persist-credentials: false",
+    "      - uses: oven-sh/setup-bun@v2",
+    "      - run: bun install --frozen-lockfile",
+    "      - name: Handover route",
+    "        run: bun run ut-tdd handover status --json",
+    "      - name: HELIX completion decision packet",
+    "        run: bun run ut-tdd completion decision-packet --json",
+    "      - name: HELIX consumer doctor",
+    "        run: bun run ut-tdd doctor --profile consumer --json",
+    "",
+  ].join("\n"),
   "common/recovery.md": "# Recovery\n",
   "common/add-feature.md": "# Add-feature\n",
   "common/PULL_REQUEST_TEMPLATE.md": "## 概要\nCloses #\n",
@@ -377,6 +400,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
+      expect(templates["common/escalation-stale.yml"]).toContain("escalation-audit");
+      expect(templates["common/escalation-stale.yml"]).toContain(
+        "bun run ut-tdd handover status --json",
+      );
+      expect(templates["common/escalation-stale.yml"]).not.toMatch(/placeholder|TODO|TBD/i);
       expect(templates["common/recovery.md"]).toContain("## 復旧手順");
       expect(templates["common/add-feature.md"]).toContain("## 受け入れ条件");
       expect(templates["common/PULL_REQUEST_TEMPLATE.md"]).toContain("## V-model artifact");
@@ -1486,11 +1514,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             ok: true,
             path: join(".vscode", "tasks.json"),
           }),
-          expect.objectContaining({
-            name: "harness-check-ci-is-read-only-consumer-smoke",
-            ok: true,
-            path: join(".github", "workflows", "harness-check.yml"),
-          }),
+        expect.objectContaining({
+          name: "harness-check-ci-is-read-only-consumer-smoke",
+          ok: true,
+          path: join(".github", "workflows", "harness-check.yml"),
+        }),
+        expect.objectContaining({
+          name: "escalation-stale-is-no-write-route-audit",
+          ok: true,
+          path: join(".github", "workflows", "escalation-stale.yml"),
+        }),
           expect.objectContaining({
             name: "ut-tdd-baseline-paths-projected",
             ok: true,
@@ -1970,6 +2003,50 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
+  });
+
+  it("U-SETUP-024: blocks consumer readiness when escalation workflow keeps placeholder or write-capable policy", () => {
+    const brokenTemplates = {
+      ...baseTemplates,
+      "common/escalation-stale.yml": [
+        "name: escalation-stale",
+        "on:",
+        "  schedule:",
+        "    - cron: '0 0 * * 1'",
+        "permissions:",
+        "  issues: write",
+        "jobs:",
+        "  escalation-audit:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "      - run: echo escalation policy placeholder",
+        "",
+      ].join("\n"),
+    };
+    const deps = mockDeps({
+      templates: brokenTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "escalation-stale-is-no-write-route-audit",
+          ok: false,
+          path: join(".github", "workflows", "escalation-stale.yml"),
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.unmetGates).toContain(
+      "consumer_readiness:projected-consumer-artifacts",
+    );
   });
 
   it("blocks harness-check when required smoke commands are present but an extra run command is added", () => {

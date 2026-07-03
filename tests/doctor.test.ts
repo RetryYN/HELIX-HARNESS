@@ -469,6 +469,30 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "      - run: bun run test",
       "",
     ].join("\n"),
+    ".github/workflows/escalation-stale.yml": [
+      "name: escalation-stale",
+      "on:",
+      "  schedule:",
+      "    - cron: '0 0 * * 1'",
+      "permissions:",
+      "  contents: read",
+      "jobs:",
+      "  escalation-audit:",
+      "    runs-on: ubuntu-latest",
+      "    steps:",
+      "      - uses: actions/checkout@v4",
+      "        with:",
+      "          persist-credentials: false",
+      "      - uses: oven-sh/setup-bun@v2",
+      "      - run: bun install --frozen-lockfile",
+      "      - name: Handover route",
+      "        run: bun run ut-tdd handover status --json",
+      "      - name: HELIX completion decision packet",
+      "        run: bun run ut-tdd completion decision-packet --json",
+      "      - name: HELIX consumer doctor",
+      "        run: bun run ut-tdd doctor --profile consumer --json",
+      "",
+    ].join("\n"),
     ".github/ISSUE_TEMPLATE/recovery.md": [
       "---",
       "name: Recovery",
@@ -548,6 +572,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-ci-workflow - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-escalation-workflow - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-policy-templates - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-claude-surface - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-team-run-surface - OK")).toBe(true);
@@ -1190,6 +1215,37 @@ describe("runConsumerDoctor", () => {
       ),
     ).toBe(true);
     expect(hasDoctorMessage(result.messages, "pullRequest=false")).toBe(true);
+  });
+
+  it("U-SETUP-024: fails closed when escalation workflow is placeholder or write-capable", () => {
+    const files = consumerDoctorFiles("/repo", {
+      ".github/workflows/escalation-stale.yml": [
+        "name: escalation-stale",
+        "on:",
+        "  schedule:",
+        "    - cron: '0 0 * * 1'",
+        "permissions:",
+        "  issues: write",
+        "jobs:",
+        "  escalation-audit:",
+        "    runs-on: ubuntu-latest",
+        "    steps:",
+        "      - run: echo escalation policy placeholder",
+        "",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-escalation-workflow - violation",
+        "placeholderFree=false",
+      ),
+    ).toBe(true);
+    expect(hasDoctorMessage(result.messages, "permissionsRead=false")).toBe(true);
   });
 
   it("fails closed when distributed Claude subagent or slash-command templates drift", () => {
