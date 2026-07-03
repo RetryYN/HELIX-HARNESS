@@ -23,7 +23,7 @@ describe("review green command projection", () => {
       expect(rows.length).toBeGreaterThanOrEqual(4);
       expect(rows.every((row) => row.exit_code === 0)).toBe(true);
       expect(rows.map((row) => row.evidence_path)).toContain("tests/review-evidence.test.ts");
-      expect(rows.every((row) => /^sha256:[a-f0-9]{16,64}$/i.test(row.output_digest))).toBe(true);
+      expect(rows.every((row) => /^sha256:[a-f0-9]{64}$/i.test(row.output_digest))).toBe(true);
     } finally {
       db.close();
     }

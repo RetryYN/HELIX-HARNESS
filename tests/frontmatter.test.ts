@@ -303,7 +303,8 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
                 exit_code: 0,
                 completed_at: "2026-06-23",
                 evidence_path: "tests/review-evidence.test.ts",
-                output_digest: "sha256:0123456789abcdef",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
               },
             ],
           },
@@ -329,7 +330,8 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
                 scope: "gate",
                 exit_code: 1,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
-                output_digest: "sha256:0123456789abcdef",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
               },
             ],
           },
@@ -337,5 +339,58 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
       }),
     );
     expect(bad.success).toBe(false);
+
+    const kindMismatch = frontmatterSchema.safeParse(
+      implBase({
+        review_evidence: [
+          {
+            reviewer: "codex-intra-runtime",
+            review_kind: "intra_runtime_subagent",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+            verdict: "approve",
+            green_commands: [
+              {
+                kind: "doctor",
+                command: "bun run lint",
+                runner: "bun",
+                scope: "gate",
+                exit_code: 0,
+                evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+              },
+            ],
+          },
+        ],
+      }),
+    );
+    expect(kindMismatch.success).toBe(false);
+
+    const shortDigest = frontmatterSchema.safeParse(
+      implBase({
+        review_evidence: [
+          {
+            reviewer: "codex-intra-runtime",
+            review_kind: "intra_runtime_subagent",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+            verdict: "approve",
+            green_commands: [
+              {
+                kind: "doctor",
+                command: "bun run src/cli.ts doctor",
+                runner: "bun",
+                scope: "gate",
+                exit_code: 0,
+                evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
+                output_digest: "sha256:0123456789abcdef",
+              },
+            ],
+          },
+        ],
+      }),
+    );
+    expect(shortDigest.success).toBe(false);
   });
 });

@@ -16,6 +16,12 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { type CrossAgentModelIssue, checkCrossAgentModelPair } from "../schema";
+import {
+  GREEN_COMMAND_KINDS,
+  GREEN_COMMAND_RUNNERS,
+  GREEN_COMMAND_SCOPES,
+  greenCommandMatchesKind,
+} from "../schema/green-command";
 import { fmValue } from "./shared";
 
 /**
@@ -81,17 +87,9 @@ export interface ReviewEvidenceResult {
 }
 
 const GREEN_COMMAND_ENFORCEMENT_DATE = "2026-06-23";
-const GREEN_COMMAND_KINDS = new Set([
-  "unit_test",
-  "integration_test",
-  "typecheck",
-  "lint",
-  "doctor",
-  "vmodel_lint",
-  "smoke",
-]);
-const GREEN_COMMAND_RUNNERS = new Set(["bun", "powershell", "bash", "ci"]);
-const GREEN_COMMAND_SCOPES = new Set(["full", "targeted", "changed-files", "gate"]);
+const GREEN_COMMAND_KIND_SET = new Set<string>(GREEN_COMMAND_KINDS);
+const GREEN_COMMAND_RUNNER_SET = new Set<string>(GREEN_COMMAND_RUNNERS);
+const GREEN_COMMAND_SCOPE_SET = new Set<string>(GREEN_COMMAND_SCOPES);
 
 function reviewViolationReason(issue: CrossAgentModelIssue | undefined): string {
   if (issue === "same_provider") return "same_provider";
@@ -178,13 +176,14 @@ function greenCommandViolationReason(entry: ReviewEntry): string | null {
   const commands = entry.green_commands ?? [];
   if (commands.length === 0) return "missing_green_commands";
   for (const command of commands) {
-    if (!GREEN_COMMAND_KINDS.has(command.kind)) return "invalid_kind";
+    if (!GREEN_COMMAND_KIND_SET.has(command.kind)) return "invalid_kind";
     if (!command.command.trim()) return "missing_command";
-    if (!GREEN_COMMAND_RUNNERS.has(command.runner)) return "invalid_runner";
-    if (!GREEN_COMMAND_SCOPES.has(command.scope)) return "invalid_scope";
+    if (!greenCommandMatchesKind(command.kind, command.command)) return "command_kind_mismatch";
+    if (!GREEN_COMMAND_RUNNER_SET.has(command.runner)) return "invalid_runner";
+    if (!GREEN_COMMAND_SCOPE_SET.has(command.scope)) return "invalid_scope";
     if (command.exit_code !== 0) return "nonzero_exit_code";
     if (!command.evidence_path.trim()) return "missing_evidence_path";
-    if (!/^sha256:[a-f0-9]{16,64}$/i.test(command.output_digest)) return "invalid_output_digest";
+    if (!/^sha256:[a-f0-9]{64}$/i.test(command.output_digest)) return "invalid_output_digest";
     if (
       entry.tests_green_at &&
       command.completed_at &&

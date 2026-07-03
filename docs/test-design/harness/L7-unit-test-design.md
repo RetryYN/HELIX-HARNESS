@@ -401,6 +401,8 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-TORDER-003 | `analyzeReviewEvidence` (欠落) | tests_green_at 欠落 → `missing_tests_green_at` violation |
 | U-TORDER-004 | `analyzeReviewEvidence` (全駆動モデル普遍) | kind=reverse 等 非 design/impl でも review_evidence entry があれば順序対象 |
 | U-TORDER-005 | `analyzeReviewEvidence` (対象外) | draft (未確定) は順序対象外 |
+| U-GREENDEF-005 | `greenCommandMatchesKind` / `frontmatterSchema` / `analyzeReviewEvidence` | `green_commands[].kind` と `command` の意味が一致しない場合 (`kind=doctor` だが `bun run lint` など) は schema と review-evidence lint の両方で fail。`unit_test` は test/vitest、`typecheck` は typecheck/tsc、`lint` は lint/biome/plan lint、`doctor` は doctor、`vmodel_lint` は vmodel lint を command text に含む |
+| U-GREENDEF-006 | `frontmatterSchema` / `analyzeReviewEvidence` | `green_commands[].output_digest` は `sha256:<64 hex>` のみ許可する。16 桁などの短縮 digest は `invalid_output_digest` または schema error で fail |
 
 ### §1.16 U-MDRIFT (module-drift lint = 設計⊇実在の包含、PLAN-L7-16 / IMP-075)
 
@@ -736,7 +738,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 - **backfill-pairing.md §2.3 関数 (parseRequires/parseGlossaryTerms/normalizeTerm/parsePlan/analyzeBackfill/loadBackfillDocs/backfillMessages/checkBackfill) → U-BACKFILL-001〜006** (add-feature 差分、IMP-051。normalizeTerm は parseGlossaryTerms/analyzeBackfill の内部パス経由で被覆。checkBackfill は doctor/index.ts の try-catch ラッパーで U-BACKFILL-006 実 repo ガードに内包。孤児 0)
 - **vmodel-pair-freeze.md §1-§3 関数 (loadPairDocs/analyzePairFreeze/pairFreezeMessages/lintVmodel) → U-VPAIR-001〜006** (add-feature 差分、PLAN-L7-11/IMP-067。lintVmodel は loadPairDocs→analyzePairFreeze→pairFreezeMessages の orchestration で U-VPAIR-005 実 repo ガードに内包。孤児 0)
 - **vmodel-pair-freeze.md §7 関数 (analyzeVerificationGroups/verificationGroupMessages、loadPairDocs status 拡張) → U-VTRIG-001〜005** (add-feature 差分、PLAN-L7-12/IMP-068。doctor checkVerificationGroups は U-VTRIG-005 実 repo ガードに内包。孤児 0)
-- **review-evidence.md §2-§4 関数 (hasReviewEvidence/parseReviewPlan/analyzeReviewEvidence/loadReviewPlans/reviewEvidenceMessages、schema review_evidence、doctor checkReviewEvidence) → U-REVIEW-001〜006** (add-feature 差分、PLAN-L7-13/IMP-071。reviewEvidenceMessages は U-REVIEW-003/006 経路で被覆、checkReviewEvidence は doctor try-catch ラッパーで U-REVIEW-006 実 repo ガードに内包。孤児 0)
+- **review-evidence.md §2-§4 関数 (hasReviewEvidence/parseReviewPlan/analyzeReviewEvidence/loadReviewPlans/reviewEvidenceMessages、schema review_evidence、doctor checkReviewEvidence、greenCommandMatchesKind) → U-REVIEW-001〜006 + U-GREENDEF-005〜006** (add-feature 差分、PLAN-L7-13/IMP-071 + PLAN-L7-232/IMP-108。reviewEvidenceMessages は U-REVIEW-003/006 経路で被覆、checkReviewEvidence は doctor try-catch ラッパーで U-REVIEW-006 実 repo ガードに内包。green command kind/command 意味一致と 64 桁 digest schema は schema と lint の両方で fail-close。孤児 0)
 - **review-evidence-stale.md §2-§4 関数 (draft/降格 PLAN に残る stale approval の検出) → U-REVIEW-007〜008** (add-feature 差分、PLAN-L7-19/IMP-080。review-evidence 双方向性の逆向き検出。孤児 0)
 - **cross-review-enforcement.md §1-§2 関数 (extractReviewEntries/analyzeReviewEvidence の crossReviewViolations、schema worker_model/reviewer_model) → U-XREVIEW-001〜005** (add-feature 差分、PLAN-L7-14/IMP-076。doctor 連動は U-REVIEW-006 実 repo ガードの crossReviewViolations==[] に内包。孤児 0)
 - **test-before-review.md §2-§3 関数 (analyzeReviewEvidence の testBeforeReviewViolations、schema tests_green_at、reviewed_at/tests_green_at 抽出) → U-TORDER-001〜005** (add-feature 差分、PLAN-L7-15/IMP-077。doctor 連動は U-REVIEW-006 実 repo ガードの testBeforeReviewViolations==[] に内包。全駆動モデル普遍。孤児 0)

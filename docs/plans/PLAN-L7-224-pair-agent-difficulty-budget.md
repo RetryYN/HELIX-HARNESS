@@ -86,7 +86,7 @@ review_evidence:
         completed_at: "2026-07-01T11:26:22+09:00"
         evidence_path: src/cli.ts
         output_digest: "sha256:c4af538d67f60f0f6650eab92ca5b8f47f6d8e33fdffe584db3ca8eae24f3d78"
-      - kind: lint
+      - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full

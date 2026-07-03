@@ -238,7 +238,7 @@ review_evidence:
         completed_at: "2026-07-01T14:06:12+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
         output_digest: "sha256:eb99cbfabed61c39b298b79939b022e4037a81457ba98a190b4f23faf8e6b8b2"
-      - kind: lint
+      - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
@@ -295,7 +295,7 @@ review_evidence:
         completed_at: "2026-07-01T13:49:34+09:00"
         evidence_path: src/lint/action-binding-approval-readiness.ts
         output_digest: "sha256:c14138ebd4e8b5520dc1b6bdc0e152e07a051b206678f90a6e3e0e50b70d22b1"
-      - kind: lint
+      - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full
@@ -360,7 +360,7 @@ review_evidence:
         completed_at: "2026-07-01T11:42:19+09:00"
         evidence_path: src/lint/identifier-rename.ts
         output_digest: "sha256:f6531489dd82d03dd5a6a696c1537310f4aac66512bf417fd134c39aef3176a9"
-      - kind: lint
+      - kind: doctor
         command: "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor"
         runner: bun
         scope: full

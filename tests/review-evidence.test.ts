@@ -83,7 +83,8 @@ describe("green command evidence (IMP-108)", () => {
                 scope: "targeted",
                 exit_code: 0,
                 evidence_path: "tests/review-evidence.test.ts",
-                output_digest: "sha256:0123456789abcdef",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
                 completed_at: "2026-06-23",
               },
             ],
@@ -115,7 +116,8 @@ describe("green command evidence (IMP-108)", () => {
                 scope: "gate",
                 exit_code: 1,
                 evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
-                output_digest: "sha256:0123456789abcdef",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
                 completed_at: "2026-06-23",
               },
             ],
@@ -126,6 +128,75 @@ describe("green command evidence (IMP-108)", () => {
 
     expect(r.greenCommandViolations).toEqual([
       { plan_id: "PLAN-NEW-GREEN-BAD", reason: "nonzero_exit_code" },
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-GREENDEF-005: green command kind must match the command text", () => {
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-NEW-GREEN-KIND-MISMATCH",
+        updated: "2026-06-23",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+            green_commands: [
+              {
+                kind: "doctor",
+                command: "bun run lint",
+                runner: "bun",
+                scope: "gate",
+                exit_code: 0,
+                evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
+                output_digest:
+                  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+                completed_at: "2026-06-23",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+
+    expect(r.greenCommandViolations).toEqual([
+      { plan_id: "PLAN-NEW-GREEN-KIND-MISMATCH", reason: "command_kind_mismatch" },
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-GREENDEF-006: green command output digest must be full sha256", () => {
+    const r = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-NEW-GREEN-SHORT-DIGEST",
+        updated: "2026-06-23",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            review_kind: "intra_runtime_subagent",
+            reviewed_at: "2026-06-23",
+            tests_green_at: "2026-06-23",
+            green_commands: [
+              {
+                kind: "doctor",
+                command: "bun run src/cli.ts doctor",
+                runner: "bun",
+                scope: "gate",
+                exit_code: 0,
+                evidence_path: "docs/plans/PLAN-L7-108-review-green-command-evidence.md",
+                output_digest: "sha256:0123456789abcdef",
+                completed_at: "2026-06-23",
+              },
+            ],
+          },
+        ],
+      }),
+    ]);
+
+    expect(r.greenCommandViolations).toEqual([
+      { plan_id: "PLAN-NEW-GREEN-SHORT-DIGEST", reason: "invalid_output_digest" },
     ]);
     expect(r.ok).toBe(false);
   });
