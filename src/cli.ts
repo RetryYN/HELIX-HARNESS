@@ -985,6 +985,9 @@ program
         process.stdout.write(
           "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json\n",
         );
+        process.stdout.write(
+          `completion-review-coverage: covered=${completionReviewBundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${completionReviewBundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
+        );
       }
     }
   });
@@ -2869,6 +2872,9 @@ handover
       process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
       process.stdout.write(
         "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json\n",
+      );
+      process.stdout.write(
+        `completion-review-coverage: covered=${liveCompletionReviewBundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${liveCompletionReviewBundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
       );
       if (packetCommands.length > 0) {
         process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);

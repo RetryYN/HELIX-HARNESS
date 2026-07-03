@@ -383,6 +383,8 @@ describe("L7 CLI surface closure", () => {
         completionClaimAllowed: false,
         humanDecisionRequired: true,
         decisionCount: 1,
+        reviewCoveredBlockers: ["human_approval_pending", "irreversible_migration_pending"],
+        nonPacketBlockers: ["non_terminal_plans", "semantic_frontier_blocked"],
       });
       expect(payload.workflowNextAction).toContain(
         "obtain explicit PO signoff before irreversible migration/cutover",
@@ -450,6 +452,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(text.stdout).toContain(
         "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json",
+      );
+      expect(text.stdout).toContain(
+        "completion-review-coverage: covered=human_approval_pending,irreversible_migration_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
       );
       expect(text.stdout).toContain(
         "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
@@ -704,6 +709,12 @@ describe("L7 CLI surface closure", () => {
         completionClaimAllowed: false,
         humanDecisionRequired: true,
         decisionCount: 2,
+        reviewCoveredBlockers: [
+          "human_approval_pending",
+          "irreversible_migration_pending",
+          "po_decision_pending",
+        ],
+        nonPacketBlockers: ["non_terminal_plans", "semantic_frontier_blocked"],
       });
       expect(blockedPayload.completionDecisionPacket.generatedAt).toEqual(expect.any(String));
       expect(blockedPayload.completionDecisionPacket.freshness.expiresAt).toEqual(
@@ -784,6 +795,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(blockedText.stdout).toContain(
         "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json",
+      );
+      expect(blockedText.stdout).toContain(
+        "completion-review-coverage: covered=human_approval_pending,irreversible_migration_pending,po_decision_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
       );
     } finally {
       rmSync(readyRoot, { recursive: true, force: true });
