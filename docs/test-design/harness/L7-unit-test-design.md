@@ -1000,3 +1000,9 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-SETUP-033 | `loadTemplates(process.cwd())` / `runHelixProjectSetup` | 実配布される `docs/templates/*` を読み込んだ `ut-tdd setup project --dry-run` は `consumerReadiness.ok=true` になる。built-in fallback が green でも、docs/templates 実体が古く `completion review-bundle` / `version-up dry-run v0.1.4 --release-remote` / `team run dry-run` / read-only escalation workflow を欠く場合は `projected-consumer-artifacts` で fail-close する。 |
 | U-SETUP-034 | `CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` | root / Codex / Claude runtime instruction の setup command surface は `ut-tdd setup project` を正規 entrypoint として示す。`Setup: ut-tdd setup` の legacy 表記が戻った場合は fail-close し、HELIX 導入済み VSCode の新規 project bootstrap と legacy solo/team adapter setup を混同させない。 |
 | U-SETUP-035 | `CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` | setup command surface 近傍の managed block / runtime prose は日本語-first にする。`ut-tdd setup project` の説明が `bootstraps a HELIX-ready project` など英語 prose に戻った場合は fail-close し、CLI 名・識別子以外の instruction prose を日本語へ寄せる。 |
+
+## PLAN-L7-294 completion review-bundle field surface 追補
+
+| U-ID | Target | Oracle |
+|---|---|---|
+| U-OUTSTANDING-016 | `completionReviewBundleForOutstanding` / `analyzeCompletionReviewBundle` | `completion-review-bundle.v1.reviewPackets[]` は `requiredReviewFieldsDigest` だけでなく `requiredReviewFields[]` の実配列を持つ。S4 / version-up / rename / action-binding の判断前に見るべき field を bundle 単体から辿れることを保証し、実配列を削る・digest と不一致にする・supporting summary と drift させる場合は `invalid_review_packet` / `invalid_digest` で fail-close する。 |

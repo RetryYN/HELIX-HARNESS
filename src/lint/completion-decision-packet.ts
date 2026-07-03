@@ -2134,6 +2134,7 @@ function reviewBundlePacketsForDecisionPacket(
       expectedMatrixCount: summary.expectedMatrixCount,
       writePolicy: summary.matrixField === "none" ? "no-write" : "see-packet-matrix",
       reviewPolicy: "non_destructive_review_only",
+      requiredReviewFields: summary.requiredReviewFields,
       requiredReviewFieldsDigest: sha256Json(summary.requiredReviewFields),
       requiredMatrixFields: summary.requiredMatrixFields,
       requiredSafetyFields: summary.requiredReviewFields.filter(isReviewBundleSafetyField),

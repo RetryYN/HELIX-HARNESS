@@ -155,7 +155,7 @@ describe("completion decision packet lint", () => {
     );
   });
 
-  it("accepts a fresh completion review bundle with digest-bound scoped packet review", () => {
+  it("U-OUTSTANDING-016: accepts a fresh completion review bundle with review field arrays", () => {
     const { bundle, decisionPacket } = baseBundle();
     const result = analyzeCompletionReviewBundle(
       bundle,
@@ -179,6 +179,17 @@ describe("completion decision packet lint", () => {
       "non_terminal_plans",
       "semantic_frontier_blocked",
     ]);
+    expect(bundle.reviewPackets[0].requiredReviewFields).toEqual(
+      decisionPacket.decisions[0].supportingPacketSummaries[0].requiredReviewFields,
+    );
+    expect(bundle.reviewPackets[0].requiredReviewFields).toEqual(
+      expect.arrayContaining([
+        "decisionRecord.source_ledger_freshness",
+        "decisionEvidenceChecklist.verified_evidence",
+        "outcomeRouteMatrix.routePolicy",
+        "semanticFeatureFrontierRecord",
+      ]),
+    );
     expect(result.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(result.semanticBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(completionReviewBundleMessages(result)[0]).toContain("completion-review-bundle - OK");
@@ -223,6 +234,8 @@ describe("completion decision packet lint", () => {
     drifted.nonPacketBlockers = [];
     drifted.reviewPackets[0].requiredSafetyFields =
       drifted.reviewPackets[0].requiredSafetyFields.filter((field) => field !== "mustNotDecide");
+    drifted.reviewPackets[0].requiredReviewFields =
+      drifted.reviewPackets[0].requiredReviewFields.filter((field) => field !== "mustNotDecide");
     drifted.reviewPacketsDigest = `sha256:${"0".repeat(64)}`;
 
     const result = analyzeCompletionReviewBundle(

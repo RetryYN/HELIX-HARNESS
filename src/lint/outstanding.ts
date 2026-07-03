@@ -373,6 +373,7 @@ export interface CompletionReviewBundlePacket {
   expectedMatrixCount: number;
   writePolicy: "no-write" | "see-packet-matrix";
   reviewPolicy: "non_destructive_review_only";
+  requiredReviewFields: string[];
   requiredReviewFieldsDigest: string;
   requiredMatrixFields: string[];
   requiredSafetyFields: string[];
@@ -1412,6 +1413,7 @@ export function completionReviewBundleForOutstanding(
       writePolicy:
         summary.matrixField === "none" ? ("no-write" as const) : ("see-packet-matrix" as const),
       reviewPolicy: "non_destructive_review_only" as const,
+      requiredReviewFields: summary.requiredReviewFields,
       requiredReviewFieldsDigest: sha256Json(summary.requiredReviewFields),
       requiredMatrixFields: summary.requiredMatrixFields,
       requiredSafetyFields: summary.requiredReviewFields.filter(isSafetyReviewField),
