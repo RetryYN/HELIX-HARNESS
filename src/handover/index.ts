@@ -16,9 +16,11 @@ import { dirname, join } from "node:path";
 import { analyzeCompletionDecisionPacket } from "../lint/completion-decision-packet";
 import {
   completionDecisionPacketForOutstanding,
+  completionReviewBundleForOutstanding,
   completionReadinessForOutstanding,
   computeOutstandingWork,
   outstandingSummaryLine,
+  type OutstandingWork,
   workflowNextActionsForOutstanding,
 } from "../lint/outstanding";
 import {
@@ -400,6 +402,16 @@ function renderPacketFieldList(fields: readonly string[], fallback = "none"): st
   return maskedFields.length > 0 ? maskedFields.join(",") : fallback;
 }
 
+function handoverCompletionReviewCoverageLine(outstanding: OutstandingWork): string {
+  const bundle = completionReviewBundleForOutstanding(outstanding);
+  return [
+    "completion-review-coverage:",
+    `covered=${bundle.reviewCoveredBlockers.map((blocker) => sanitize(blocker)).join(",") || "none"}`,
+    `non-packet=${bundle.nonPacketBlockers.map((blocker) => sanitize(blocker)).join(",") || "none"}`,
+    "policy=review-packets-cover-decision-blockers-only",
+  ].join(" ");
+}
+
 /**
  * U-HOVER-004: 純関数。§6.8.5 の 6 セクション markdown を render。③-⑥ は TODO placeholder。
  * 自由テキスト (summary / deliverables) に sanitize を再適用 (defense-in-depth、tracked md への流出ゼロ)。
@@ -458,6 +470,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
     } else {
       lines.push(
         `> ${HANDOVER_NEXT_ACTION_MARKER}: ${workflowActions.length} 件; 正本=\`workflowNextActionsForOutstanding\``,
+        `> ${handoverCompletionReviewCoverageLine(opts.outstanding)}`,
         "",
         ...workflowActions.flatMap((a) => [
           `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(handoverActionText(a.requiredAction))}`,
@@ -783,6 +796,20 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
     return {
       messages: [
         "handover-next-action — violation: 最新 handover §3 の packet 要約に確認観点ID が無い → `ut-tdd handover` で再生成し日本語確認観点と machine review route を分離",
+      ],
+      ok: false,
+    };
+  }
+  if (
+    !section.includes("completion-ready") &&
+    (!section.includes("completion-review-coverage:") ||
+      !section.includes("covered=") ||
+      !section.includes("non-packet=") ||
+      !section.includes("policy=review-packets-cover-decision-blockers-only"))
+  ) {
+    return {
+      messages: [
+        "handover-next-action — violation: 最新 handover §3 に completion-review-coverage 行が無い → `ut-tdd handover` で再生成し review packet で閉じる blocker と packet 外 blocker を分離",
       ],
       ok: false,
     };

@@ -453,6 +453,9 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
 
     const section = latestEntrySection(md, "§3") ?? "";
     expect(section).toContain(HANDOVER_NEXT_ACTION_MARKER);
+    expect(section).toContain(
+      "completion-review-coverage: covered=human_approval_pending,po_decision_pending,version_up_parked non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
+    );
     expect(section).toContain("PLAN-DISCOVERY-10");
     expect(section).toContain("PO/S4 判断を記録してから昇格・却下・Forward merge へ進める");
     expect(section).toContain("ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10");
@@ -513,8 +516,16 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 に marker と packet 要約があれば ok", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
     expect(checkHandoverNextActionAnchor(withDoc(md)).ok).toBe(true);
+  });
+
+  it("§3 の packet 要約に completion-review-coverage が無ければ fail-close", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
+    const r = checkHandoverNextActionAnchor(withDoc(md));
+
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("completion-review-coverage");
   });
 
   it("§3 の packet 要約に source-delta field が無ければ fail-close", () => {
@@ -534,7 +545,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 の packet 要約が machine review route を確認観点に露出したら fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=review S4 decision evidence, outcome routes, and verification commands 確認観点ID=review S4 decision evidence, outcome routes, and verification commands\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=review S4 decision evidence, outcome routes, and verification commands 確認観点ID=review S4 decision evidence, outcome routes, and verification commands\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
