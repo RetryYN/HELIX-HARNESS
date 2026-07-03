@@ -3215,4 +3215,21 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       );
     }
   });
+
+  it("U-SETUP-036: setup test-design keeps the VS Code task contract aligned with completion review-bundle", () => {
+    const testDesign = readFileSync(
+      join(process.cwd(), "docs", "test-design", "harness", "L7-unit-test-design.md"),
+      "utf8",
+    );
+    const setup017 =
+      testDesign.match(/\| U-SETUP-017 \|[\s\S]*?\n(?=\| U-SETUP-018 \|)/)?.[0] ?? "";
+    const setup019 =
+      testDesign.match(/\| U-SETUP-019 \|[\s\S]*?\n(?=\| U-SETUP-020 \|)/)?.[0] ?? "";
+
+    expect(setup017).toContain("期待 task 9 本");
+    expect(setup017).toContain("completion review-bundle");
+    expect(setup017).not.toContain("期待 task 8 本");
+    expect(setup019).toContain("ut-tdd completion review-bundle --json");
+    expect(setup019).toContain("postSetupWorkflow.verificationCommands");
+  });
 });

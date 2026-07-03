@@ -4,6 +4,7 @@ import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { REQUIRED_DRIVE_MODELS } from "../src/lint/drive-db-registration";
 import type { RelationGraphProjection } from "../src/lint/relation-graph";
 import { deriveArtifactProgressDecision } from "../src/state-db/artifact-progress-decision";
 import { projectRefactorCandidateSignals } from "../src/state-db/feedback-projections";
@@ -2102,6 +2103,16 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).review_evidence_registry).toBeGreaterThan(0);
       expect(rowCounts(db).descent_obligations).toBeGreaterThan(0);
       expect(rowCounts(db).drive_runs).toBeGreaterThan(0);
+      const projectedDriveModels = db
+        .prepare("SELECT DISTINCT mode FROM drive_runs WHERE mode <> '' ORDER BY mode")
+        .all()
+        .map((row) => String((row as { mode: unknown }).mode));
+      expect(projectedDriveModels).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
+      expect(
+        db
+          .prepare("SELECT mode FROM drive_runs WHERE plan_id = ? AND mode = ? LIMIT 1")
+          .get("PLAN-L7-146-serverless-readonly-share", "version-up"),
+      ).toMatchObject({ mode: "version-up" });
       expect(rowCounts(db).hook_events).toBeGreaterThan(0);
       expect(rowCounts(db).model_runs).toBeGreaterThan(0);
       expect(rowCounts(db).automation_assets).toBeGreaterThan(0);

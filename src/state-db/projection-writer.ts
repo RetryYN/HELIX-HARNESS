@@ -216,6 +216,7 @@ interface ProjectedPlan {
   drive: string;
   status: string;
   updatedAt: string;
+  workflowModes: string[];
 }
 
 interface PlanDigestProjection {
@@ -458,6 +459,68 @@ function stringList(value: unknown): string[] {
   return [];
 }
 
+const PROCESS_MODE_TO_DRIVE_MODEL: Record<string, string> = {
+  "add-feature": "Add-feature",
+  discovery: "Discovery",
+  incident: "Incident",
+  recovery: "Recovery",
+  refactor: "Refactor",
+  research: "Research",
+  retrofit: "Retrofit",
+  reverse: "Reverse",
+  scrum: "Scrum",
+  "version-up": "version-up",
+};
+
+function addUniqueMode(modes: string[], mode: string): void {
+  if (mode && !modes.includes(mode)) modes.push(mode);
+}
+
+function modeFromProcessModeDoc(path: string): string {
+  const match = path.match(/docs\/process\/modes\/([a-z-]+)\.md/);
+  return match ? (PROCESS_MODE_TO_DRIVE_MODEL[match[1]] ?? "") : "";
+}
+
+function explicitWorkflowMode(content: string): string {
+  const mode = frontmatterValue(content, "workflow_mode") || frontmatterValue(content, "mode");
+  return Object.values(PROCESS_MODE_TO_DRIVE_MODEL).includes(mode) ? mode : "";
+}
+
+function workflowModesForPlan(planId: string, kind: string, content: string): string[] {
+  const modes: string[] = [];
+  addUniqueMode(modes, explicitWorkflowMode(content));
+
+  if (frontmatterValue(content, "version_target") || /version-up/i.test(frontmatterValue(content, "title"))) {
+    addUniqueMode(modes, "version-up");
+  }
+
+  if (planId.startsWith("PLAN-DISCOVERY-")) addUniqueMode(modes, "Discovery");
+  if (planId.startsWith("PLAN-REVERSE-")) addUniqueMode(modes, "Reverse");
+  if (planId.startsWith("PLAN-RECOVERY-")) addUniqueMode(modes, "Recovery");
+  if (planId.startsWith("PLAN-M-")) addUniqueMode(modes, "Verification");
+
+  const normalizedKind = kind.trim().toLowerCase();
+  if (normalizedKind === "poc") addUniqueMode(modes, "Discovery");
+  if (normalizedKind === "reverse") addUniqueMode(modes, "Reverse");
+  if (normalizedKind === "recovery") addUniqueMode(modes, "Recovery");
+  if (normalizedKind === "troubleshoot") addUniqueMode(modes, "Incident");
+  if (normalizedKind === "refactor") addUniqueMode(modes, "Refactor");
+  if (normalizedKind === "retrofit") addUniqueMode(modes, "Retrofit");
+  if (normalizedKind === "research") addUniqueMode(modes, "Research");
+  if (normalizedKind === "add-design" || normalizedKind === "add-impl") {
+    addUniqueMode(modes, "Add-feature");
+  }
+
+  const frontmatter = markdownFrontmatter(content);
+  const modeDocRegex = /docs\/process\/modes\/[a-z-]+\.md/g;
+  for (const match of frontmatter.matchAll(modeDocRegex)) {
+    addUniqueMode(modes, modeFromProcessModeDoc(match[0]));
+  }
+
+  if (modes.length === 0) addUniqueMode(modes, "Forward");
+  return modes;
+}
+
 function workflowModeForPlan(planId: string): string {
   if (planId.startsWith("PLAN-DISCOVERY-")) return "Discovery";
   if (planId.startsWith("PLAN-REVERSE-")) return "Reverse";
@@ -466,7 +529,9 @@ function workflowModeForPlan(planId: string): string {
   return "Forward";
 }
 
-function skillDriveModelForPlan(planId: string): string {
+function skillDriveModelForPlan(planId: string, planModes?: string[]): string {
+  const primaryMode = planModes?.find((mode) => mode !== "Verification" && mode !== "Forward");
+  if (primaryMode) return primaryMode;
   if (planId.startsWith("PLAN-DISCOVERY-")) return "Discovery";
   if (planId.startsWith("PLAN-REVERSE-")) return "Reverse";
   if (planId.startsWith("PLAN-RECOVERY-")) return "Recovery";
@@ -499,7 +564,15 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
     // Stored as "" when absent so the column is always TEXT (single-source: harness-db.ts §plan_registry).
     const decisionOutcome =
       frontmatterValue(content, "decision_outcome") || frontmatterValue(content, "decision") || "";
-    plans.set(planId, { planId, kind, layer, drive, status, updatedAt });
+    plans.set(planId, {
+      planId,
+      kind,
+      layer,
+      drive,
+      status,
+      updatedAt,
+      workflowModes: workflowModesForPlan(planId, kind, content),
+    });
     const relPath = normalizePath(relative(repoRoot, path));
     recordProjectionEvent(db, {
       table: "plan_registry",
@@ -567,7 +640,7 @@ function projectDriveRuns(
           plan_id: plan.planId,
           session_id: sessionId,
           drive: plan.drive,
-          mode: workflowModeForPlan(plan.planId),
+          mode: plan.workflowModes[0] ?? workflowModeForPlan(plan.planId),
           layer: plan.layer,
           kind: plan.kind,
           started_at: plan.updatedAt || digest?.updated_at || "",
@@ -576,6 +649,49 @@ function projectDriveRuns(
         },
       });
     }
+    for (const mode of plan.workflowModes.slice(1)) {
+      const id = stableId("drive-run", `${plan.planId}:mode-ledger:${mode}`);
+      recordProjectionEvent(db, {
+        table: "drive_runs",
+        id,
+        row: {
+          drive_run_id: id,
+          plan_id: plan.planId,
+          session_id: `mode-ledger:${mode}`,
+          drive: plan.drive,
+          mode,
+          layer: plan.layer,
+          kind: plan.kind,
+          started_at: plan.updatedAt || digest?.updated_at || "",
+          completed_at: "",
+          status: "documented",
+        },
+      });
+    }
+  }
+
+  const modeLedgerPlan = plans.get("PLAN-REVERSE-01-process-docs");
+  if (!modeLedgerPlan) return;
+  for (const [modeDoc, mode] of Object.entries(PROCESS_MODE_TO_DRIVE_MODEL)) {
+    const modeDocPath = join(repoRoot, "docs", "process", "modes", `${modeDoc}.md`);
+    if (!existsSync(modeDocPath)) continue;
+    const id = stableId("drive-run", `${modeLedgerPlan.planId}:canonical-mode:${mode}`);
+    recordProjectionEvent(db, {
+      table: "drive_runs",
+      id,
+      row: {
+        drive_run_id: id,
+        plan_id: modeLedgerPlan.planId,
+        session_id: `canonical-mode:${mode}`,
+        drive: modeLedgerPlan.drive,
+        mode,
+        layer: modeLedgerPlan.layer,
+        kind: modeLedgerPlan.kind,
+        started_at: modeLedgerPlan.updatedAt,
+        completed_at: "",
+        status: "documented",
+      },
+    });
   }
 }
 
@@ -3054,7 +3170,7 @@ function skillScore(plan: ProjectedPlan, asset: Record<string, unknown>): number
   const appliesDriveModels = String(asset.applies_drive_models ?? "")
     .split(",")
     .filter(Boolean);
-  const driveModel = skillDriveModelForPlan(plan.planId);
+  const driveModel = skillDriveModelForPlan(plan.planId, plan.workflowModes);
   let score = 0.2;
   if (appliesLayers.includes(plan.layer)) score += 0.35;
   if (appliesDriveModels.includes(driveModel)) score += 0.35;
@@ -3099,7 +3215,7 @@ function projectSkillTelemetry(db: HarnessDb, plans: Map<string, ProjectedPlan>)
           skill_id: skillId,
           rank: index + 1,
           score: entry.score,
-          reason: `layer=${plan.layer}; technical_drive=${plan.drive}; drive_model=${skillDriveModelForPlan(plan.planId)}; kind=${plan.kind}`,
+          reason: `layer=${plan.layer}; technical_drive=${plan.drive}; drive_model=${skillDriveModelForPlan(plan.planId, plan.workflowModes)}; kind=${plan.kind}`,
           recommended_at: recordedAt,
         },
       });

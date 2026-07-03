@@ -46,7 +46,18 @@ export interface DriveDbRegistrationResult {
   ok: boolean;
 }
 
-const REQUIRED_CURRENT_MODES = ["Discovery", "Forward", "Recovery", "Reverse", "Verification"];
+export const REQUIRED_DRIVE_MODELS = [
+  "Discovery",
+  "Scrum",
+  "Reverse",
+  "Recovery",
+  "Incident",
+  "Refactor",
+  "Retrofit",
+  "Add-feature",
+  "version-up",
+  "Research",
+];
 
 export function analyzeDriveDbRegistration(
   stats: DriveDbRegistrationStats | null,
@@ -101,7 +112,7 @@ export function analyzeDriveDbRegistration(
   if (stats.registeredHookEvents <= 0) {
     violations.push({ reason: "missing_registered_hook_events" });
   }
-  for (const mode of REQUIRED_CURRENT_MODES) {
+  for (const mode of REQUIRED_DRIVE_MODELS) {
     if (!stats.modes.includes(mode)) violations.push({ reason: "missing_required_mode", mode });
   }
 

@@ -3,6 +3,7 @@ import {
   analyzeDriveDbRegistration,
   type DriveDbRegistrationStats,
   driveDbRegistrationMessages,
+  REQUIRED_DRIVE_MODELS,
 } from "../src/lint/drive-db-registration";
 import { loadReviewPlans } from "../src/lint/review-evidence";
 import {
@@ -30,7 +31,7 @@ const compliant: DriveDbRegistrationStats = {
   skillInvocationOrphans: 0,
   registeredHookEvents: 3,
   hookOrphans: 99,
-  modes: ["Discovery", "Forward", "Recovery", "Reverse", "Verification"],
+  modes: REQUIRED_DRIVE_MODELS,
 };
 
 describe("drive DB registration lint", () => {
@@ -66,6 +67,19 @@ describe("drive DB registration lint", () => {
         "missing_required_mode",
       ]),
     );
+  });
+
+  it("U-DDBREG-007: fails when the Forward-spine plus 10 drive-model registration is incomplete", () => {
+    const r = analyzeDriveDbRegistration({
+      ...compliant,
+      modes: REQUIRED_DRIVE_MODELS.filter((mode) => mode !== "Research"),
+    });
+
+    expect(r.ok).toBe(false);
+    expect(r.violations).toContainEqual(
+      expect.objectContaining({ reason: "missing_required_mode", mode: "Research" }),
+    );
+    expect(driveDbRegistrationMessages(r)[0]).toContain("missing_required_mode:Research");
   });
 
   it("U-DDBREG-005: fails when persisted harness.db plan count is stale", () => {
@@ -178,6 +192,7 @@ describe("drive DB registration lint", () => {
       expect(stats?.skillRecommendationOrphans).toBe(0);
       expect(stats?.skillInvocationOrphans).toBe(0);
       expect(stats?.registeredHookEvents).toBeGreaterThan(0);
+      expect(stats.modes).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
     } finally {
       db.close();
     }
