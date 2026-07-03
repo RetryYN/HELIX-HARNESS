@@ -158,6 +158,97 @@ describe("L7 workflow contract implementations", () => {
       ],
     });
     expect(signals.signals.find((s) => s.signal_type === "oracle_coverage")?.score).toBe(0.5);
+    expect(signals.signals.find((s) => s.signal_type === "flake_score")?.score).toBe(0);
+    expect(signals.signals.find((s) => s.signal_type === "duration_regression")?.score).toBe(0);
+  });
+
+  it("detects UT history flake and duration regression signals from oracle history", () => {
+    const signals = computeUtHistorySignals({
+      duration_regression_ratio: 1.5,
+      test_runs: [
+        {
+          command: "test",
+          runner: "vitest",
+          scope: "unit",
+          started_at: "2026-06-12T00:00:00.000Z",
+          completed_at: "2026-06-12T00:01:00.000Z",
+          exit_code: 1,
+          evidence_path: "run-1.log",
+          cases: [
+            { oracle_id: "U-FLAKE", name: "flaky", status: "failed", duration_ms: 10 },
+            { oracle_id: "U-SLOW", name: "slow", status: "passed", duration_ms: 100 },
+          ],
+        },
+        {
+          command: "test",
+          runner: "vitest",
+          scope: "unit",
+          started_at: "2026-06-12T00:02:00.000Z",
+          completed_at: "2026-06-12T00:03:00.000Z",
+          exit_code: 0,
+          evidence_path: "run-2.log",
+          cases: [
+            { oracle_id: "U-FLAKE", name: "flaky", status: "passed", duration_ms: 12 },
+            { oracle_id: "U-SLOW", name: "slow", status: "passed", duration_ms: 180 },
+          ],
+        },
+      ],
+    });
+
+    expect(signals.signals.find((s) => s.signal_type === "flake_score")?.score).toBe(0.5);
+    expect(signals.signals.find((s) => s.signal_type === "duration_regression")?.score).toBe(0.5);
+  });
+
+  it("keeps UT history signals oracle-scoped and uses prior median for duration regression", () => {
+    const signals = computeUtHistorySignals({
+      duration_regression_ratio: 2,
+      test_runs: [
+        {
+          command: "test",
+          runner: "vitest",
+          scope: "unit",
+          started_at: "2026-06-12T00:04:00.000Z",
+          completed_at: "2026-06-12T00:05:00.000Z",
+          exit_code: 0,
+          evidence_path: "run-3.log",
+          cases: [
+            { oracle_id: "U-STABLE", name: "stable", status: "passed", duration_ms: 300 },
+            { oracle_id: "U-SKIP", name: "skip", status: "skipped" },
+          ],
+        },
+        {
+          command: "test",
+          runner: "vitest",
+          scope: "unit",
+          started_at: "2026-06-12T00:00:00.000Z",
+          completed_at: "2026-06-12T00:01:00.000Z",
+          exit_code: 1,
+          evidence_path: "run-1.log",
+          cases: [
+            { oracle_id: "U-STABLE", name: "stable", status: "passed", duration_ms: 100 },
+            { oracle_id: "U-OTHER", name: "other", status: "failed", duration_ms: 20 },
+          ],
+        },
+        {
+          command: "test",
+          runner: "vitest",
+          scope: "unit",
+          started_at: "2026-06-12T00:02:00.000Z",
+          completed_at: "2026-06-12T00:03:00.000Z",
+          exit_code: 0,
+          evidence_path: "run-2.log",
+          cases: [
+            { oracle_id: "U-STABLE", name: "stable", status: "passed", duration_ms: 200 },
+            { oracle_id: "U-OTHER", name: "other", status: "passed", duration_ms: 0 },
+          ],
+        },
+      ],
+    });
+
+    expect(signals.signals.find((s) => s.signal_type === "flake_score")?.score).toBe(1 / 3);
+    expect(signals.signals.find((s) => s.signal_type === "duration_regression")?.score).toBe(
+      1 / 3,
+    );
   });
 
   it("implements routing, workflow, FE/design, asset, model, drive, skill, and command contracts", () => {

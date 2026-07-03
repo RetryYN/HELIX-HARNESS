@@ -296,7 +296,7 @@ Required UT-derived metrics:
 
 - `ut_oracle_coverage = count(test_cases where oracle_id is not null) / expected U-* oracle count by plan`.
 - `ut_plan_green_rate = count(test_runs where plan_id=X and exit_code=0) / count(test_runs where plan_id=X)`.
-- `ut_flake_score` is computed from alternating pass/fail history and stored in `test_flake_events`; non-zero score creates a `quality_signals` row.
+- `ut_flake_score` is computed from oracle-level pass/fail history variation and stored in `test_flake_events`; non-zero score creates a `quality_signals` row.
 - `green_definition_compliance = every test_runs.green_definition_id resolves and every required command in that definition has exit_code=0`.
 - `review_green_command_compliance = every 2026-06-23-or-later confirmed/completed review_evidence entry has at least one projected test_runs row with exit_code=0, evidence_path, and output_digest`.
 

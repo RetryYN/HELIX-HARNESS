@@ -217,24 +217,53 @@ export function evaluateGreenDefinition(input: {
 export function computeUtHistorySignals(input: {
   test_runs: TestRunEvidenceInput[];
   required_oracles?: string[];
+  duration_regression_ratio?: number;
 }): {
   signals: { signal_type: string; subject_id: string; score: number; evidence_path: string }[];
 } {
-  const runs = input.test_runs;
+  const runs = [...input.test_runs].sort((a, b) =>
+    `${a.completed_at}:${a.started_at}`.localeCompare(`${b.completed_at}:${b.started_at}`),
+  );
   const cases = runs.flatMap((run) => nonEmpty(run.cases));
   const required = new Set(input.required_oracles ?? []);
   const covered = new Set(cases.map((c) => c.oracle_id).filter((id): id is string => !!id));
   const passedRuns = runs.filter((run) => run.exit_code === 0).length;
-  const failedByOracle = new Map<string, number>();
-  for (const c of cases.filter((c) => c.oracle_id && c.status === "failed")) {
-    failedByOracle.set(c.oracle_id ?? "", (failedByOracle.get(c.oracle_id ?? "") ?? 0) + 1);
+  const historyByOracle = new Map<
+    string,
+    { status: "passed" | "failed" | "skipped"; duration_ms?: number; evidence_path: string }[]
+  >();
+  for (const run of runs) {
+    for (const testCase of nonEmpty(run.cases).filter((c) => c.oracle_id)) {
+      const oracleId = testCase.oracle_id ?? "";
+      const history = historyByOracle.get(oracleId) ?? [];
+      history.push({
+        status: testCase.status,
+        duration_ms: testCase.duration_ms,
+        evidence_path: run.evidence_path,
+      });
+      historyByOracle.set(oracleId, history);
+    }
   }
   const oracleCoverage = required.size === 0 ? 1 : covered.size / required.size;
   const planGreenRate = runs.length === 0 ? 0 : passedRuns / runs.length;
-  const flakeScore =
-    covered.size === 0
-      ? 0
-      : [...failedByOracle.values()].filter((n) => n === 1).length / covered.size;
+  const histories = [...historyByOracle.values()];
+  const flakyHistories = histories.filter((history) => {
+    const statuses = new Set(history.map((item) => item.status));
+    return statuses.has("passed") && statuses.has("failed");
+  });
+  const flakeScore = histories.length === 0 ? 0 : flakyHistories.length / histories.length;
+  const durationRegressionRatio = input.duration_regression_ratio ?? 1.5;
+  const durationRegressions = histories.filter((history) => {
+    const durations = history
+      .map((item) => item.duration_ms)
+      .filter((duration): duration is number => typeof duration === "number" && duration > 0);
+    if (durations.length < 2) return false;
+    const latest = durations.at(-1) ?? 0;
+    const baseline = median(durations.slice(0, -1));
+    return baseline > 0 && latest / baseline >= durationRegressionRatio;
+  });
+  const durationRegressionScore =
+    histories.length === 0 ? 0 : durationRegressions.length / histories.length;
   const evidencePath = runs.find((run) => run.evidence_path)?.evidence_path ?? "";
   return {
     signals: [
@@ -257,6 +286,12 @@ export function computeUtHistorySignals(input: {
         evidence_path: evidencePath,
       },
       {
+        signal_type: "duration_regression",
+        subject_id: "ut-history",
+        score: durationRegressionScore,
+        evidence_path: evidencePath,
+      },
+      {
         signal_type: "green_definition_compliance",
         subject_id: "ut-history",
         score: planGreenRate === 1 ? 1 : 0,
@@ -264,6 +299,14 @@ export function computeUtHistorySignals(input: {
       },
     ],
   };
+}
+
+function median(values: number[]): number {
+  const sorted = [...values].sort((a, b) => a - b);
+  if (sorted.length === 0) return 0;
+  const midpoint = Math.floor(sorted.length / 2);
+  if (sorted.length % 2 === 1) return sorted[midpoint] ?? 0;
+  return ((sorted[midpoint - 1] ?? 0) + (sorted[midpoint] ?? 0)) / 2;
 }
 
 export type {
