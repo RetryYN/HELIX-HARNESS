@@ -279,7 +279,7 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["handover", "status"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain(
-        "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress stale=false",
+        "handover status: active=PLAN-L7-04-handover-mechanism status=in_progress owner=- stale=false",
       );
       expect(text.stdout).toContain("latest_doc:");
       expect(text.stdout).toContain("completion: ready");
@@ -300,6 +300,26 @@ describe("L7 CLI surface closure", () => {
         stale: true,
       });
       expect(stalePayload.stale_reasons[0]).toContain("updated_at is older than 24h");
+
+      const update = runCliIn(root, ["handover", "update", "--owner", "codex", "--json"]);
+      expect(update.status).toBe(0);
+      const updatePayload = JSON.parse(update.stdout);
+      expect(updatePayload).toMatchObject({
+        ok: true,
+        pointer: {
+          owner: "codex",
+          updated_at: "2026-06-01T00:00:00.000Z",
+        },
+        written: [".ut-tdd/handover/CURRENT.json"],
+      });
+      expect(updatePayload.pointer.owner_updated_at).toEqual(expect.any(String));
+
+      const stillStale = runCliIn(root, ["handover", "status", "--json"]);
+      expect(stillStale.status).toBe(0);
+      expect(JSON.parse(stillStale.stdout)).toMatchObject({
+        owner: "codex",
+        stale: true,
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

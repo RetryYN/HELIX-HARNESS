@@ -46,6 +46,7 @@ import {
   readPointer,
   runHandover,
   setActivePlanCli,
+  updatePointerOwner,
 } from "./handover/index";
 import {
   buildActionBindingApprovalPackets,
@@ -2641,9 +2642,10 @@ handover
       process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
       return;
     }
-    process.stdout.write(
-      `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} stale=${stale} updated_at=${pointer.updated_at}\n`,
-    );
+      process.stdout.write(
+        `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} owner=${pointer.owner ?? "-"} stale=${stale} updated_at=${pointer.updated_at}\n`,
+      );
+      if (pointer.owner_updated_at) process.stdout.write(`owner_updated_at: ${pointer.owner_updated_at}\n`);
     for (const reason of status.stale_reasons) process.stdout.write(`stale_reason: ${reason}\n`);
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
     process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
@@ -2705,6 +2707,35 @@ handover
             .join(" | ")}\n`,
         );
       }
+    }
+  });
+
+handover
+  .command("update")
+  .description("update the machine handover pointer without regenerating the human markdown scaffold")
+  .option("--owner <owner>", "runtime/actor that currently owns the handover baton")
+  .option("--json", "JSON output")
+  .action((opts: { owner?: string; json?: boolean }) => {
+    if (!opts.owner) {
+      process.stderr.write("handover update requires --owner <owner>\n");
+      process.exitCode = 1;
+      return;
+    }
+    try {
+      const result = updatePointerOwner(opts.owner, nodeHandoverDeps(process.cwd()));
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify({ ok: true, ...result }, null, 2)}\n`);
+        return;
+      }
+      process.stdout.write(
+        `handover update: owner=${result.pointer.owner} owner_updated_at=${result.pointer.owner_updated_at}\n`,
+      );
+      for (const w of result.written) process.stdout.write(`  + ${w}\n`);
+    } catch (error) {
+      process.stderr.write(
+        `handover update failed: ${error instanceof Error ? error.message : String(error)}\n`,
+      );
+      process.exitCode = 1;
     }
   });
 

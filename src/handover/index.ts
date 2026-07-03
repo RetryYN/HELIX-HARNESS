@@ -521,6 +521,36 @@ export function readPointer(deps: {
   }
 }
 
+function normalizeHandoverOwner(owner: string): string {
+  return owner.trim();
+}
+
+export function updatePointerOwner(
+  owner: string,
+  deps: HandoverDeps,
+): { pointer: HandoverPointer; written: string[] } {
+  const normalized = normalizeHandoverOwner(owner);
+  if (!normalized) {
+    throw new Error("handover owner is required");
+  }
+  if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$/.test(normalized)) {
+    throw new Error(
+      "handover owner must start with an alphanumeric character and use only alphanumeric, dot, underscore, colon, or hyphen characters",
+    );
+  }
+  const pointer = readPointer(deps);
+  if (!pointer) {
+    throw new Error("CURRENT.json is missing or invalid; run `ut-tdd handover status --json` first");
+  }
+  const updated: HandoverPointer = {
+    ...pointer,
+    owner: normalized,
+    owner_updated_at: deps.now(),
+  };
+  writePointer(updated, deps);
+  return { pointer: updated, written: [POINTER_PATH] };
+}
+
 const NON_CLOSED_RESIDUAL_STATUSES = new Set(["gap", "scheduled", "parked", "po decision"]);
 const NO_NEXT_ACTION_PATTERNS = [
   /\bno\s+next\s+action\b/i,

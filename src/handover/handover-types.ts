@@ -11,6 +11,8 @@ type PlanDigestRef = Pick<
 interface HandoverPointer {
   active_plan: string | null;
   status: HandoverStatus;
+  owner?: string;
+  owner_updated_at?: string;
   latest_doc: string | null;
   digest_summary: { commits: number; files: number; failures: number } | null;
   updated_at: string;

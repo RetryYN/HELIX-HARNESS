@@ -41,6 +41,7 @@ import {
   sameFamilyPlan,
   scaffoldFromDigests,
   setActivePlan,
+  updatePointerOwner,
 } from "../src/handover/index";
 import {
   analyzeOutstandingWork,
@@ -933,6 +934,31 @@ describe("U-HOVER-010 readPointer / checkHandoverDiscipline (IMP-047)", () => {
     expect(readPointer(deps)).toBeNull();
     deps.files.set(pointerPath, JSON.stringify(pointer()));
     expect(readPointer(deps)?.active_plan).toBe("PLAN-L7-04-handover-mechanism");
+  });
+
+  it("updatePointerOwner: CURRENT.json の owner だけを移譲し、handover updated_at は freshness 根拠として温存する", () => {
+    const deps = mockDeps({ now: () => "2026-06-04T01:00:00.000Z" });
+    deps.files.set(pointerPath, JSON.stringify(pointer()));
+    const result = updatePointerOwner("codex", deps);
+    expect(result.written).toEqual([".ut-tdd/handover/CURRENT.json"]);
+    expect(result.pointer).toMatchObject({
+      owner: "codex",
+      owner_updated_at: "2026-06-04T01:00:00.000Z",
+      updated_at: NOW,
+    });
+    expect(readPointer(deps)).toMatchObject({
+      owner: "codex",
+      owner_updated_at: "2026-06-04T01:00:00.000Z",
+      updated_at: NOW,
+    });
+  });
+
+  it("updatePointerOwner: CURRENT.json 不在・空 owner・危険文字を fail-close する", () => {
+    expect(() => updatePointerOwner("codex", mockDeps())).toThrow(/CURRENT\.json/);
+    const deps = mockDeps();
+    deps.files.set(pointerPath, JSON.stringify(pointer()));
+    expect(() => updatePointerOwner("   ", deps)).toThrow(/owner is required/);
+    expect(() => updatePointerOwner("../codex", deps)).toThrow(/handover owner must/);
   });
 
   it("活動なし (digest 空) → 規律対象外で警告ゼロ", () => {
