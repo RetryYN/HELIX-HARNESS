@@ -120,6 +120,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "GitHub Merge Queue",
       "Cloudflare Pages limits",
       "Cloudflare Workers limits",
+      "Cloudflare Workers pricing",
       "Cloudflare D1 limits",
       "Cloudflare Workers KV limits",
       "Cloudflare Access policies",
@@ -162,6 +163,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| GitHub Actions secure use | https://docs.github.com/en/actions/reference/security/secure-use / https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target / https://docs.github.com/actions/reference/authentication-in-a-workflow | live GitHub Actions security docs | live official GitHub docs | adopt-live-docs-for-activation-workflow-hardening | activation workflow hardening | approval_scope dry_run_plan external_rehearsal_plan activation_provenance_requirements audit_record |",
       "| Cloudflare Pages limits | https://developers.cloudflare.com/pages/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-static-hosting-budget | $0 static SPA budget check | cost_guardrails pages_limit external_rehearsal_plan |",
       "| Cloudflare Workers limits | https://developers.cloudflare.com/workers/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-worker-budget | read API request budget | cost_guardrails workers_limit external_rehearsal_plan |",
+      "| Cloudflare Workers pricing | https://developers.cloudflare.com/workers/platform/pricing/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-free-plan-scope | Workers Free plan scope | cost_guardrails workers_limit external_rehearsal_plan |",
       "| Cloudflare D1 limits | https://developers.cloudflare.com/d1/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-db-budget | projection DB budget | cost_guardrails d1_limit external_rehearsal_plan |",
       "| Cloudflare Workers KV limits | https://developers.cloudflare.com/kv/platform/limits/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-projection-cache-budget | projection cache budget | cost_guardrails kv_limit external_rehearsal_plan |",
       "| Cloudflare Access policies | https://developers.cloudflare.com/cloudflare-one/access-controls/policies/ | live Cloudflare docs | live official Cloudflare docs | adopt-live-docs-for-viewer-access-control | read-only dashboard access control | external_rehearsal_plan access_control_check approval_scope |",
@@ -678,7 +680,7 @@ describe("version-up-readiness", () => {
       checkedDate: "2026-06-30",
       stale: false,
       maxAgeDays: 90,
-      rowCount: 20,
+      rowCount: 21,
       missingRows: [],
     });
     expect(packet.relatedDecisionPackets).toEqual(
@@ -1914,6 +1916,7 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         "Cloudflare Pages limits",
         "Cloudflare Workers limits",
+        "Cloudflare Workers pricing",
         "Cloudflare D1 limits",
         "Cloudflare Workers KV limits",
         "Cloudflare Access policies",
@@ -1954,6 +1957,24 @@ describe("version-up-readiness", () => {
         },
       ]),
     );
+  });
+
+  it("fails when Workers pricing source is missing from the version-up source ledger", () => {
+    const result = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input()
+          .modeDoc.split("\n")
+          .filter((line) => !line.startsWith("| Cloudflare Workers pricing |"))
+          .join("\n"),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.missingSourceLedgerRows).toContain("Cloudflare Workers pricing");
+    expect(result.violations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason: "version-up source ledger missing row: Cloudflare Workers pricing",
+    });
   });
 
   it("fails when Cloudflare Access policy source keeps the legacy URL", () => {
@@ -2587,7 +2608,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
       stale: false,
-      rowCount: 20,
+      rowCount: 21,
       missingRows: [],
     });
     expect(versionUpActivationVerificationCommandViolations(packets[0])).toEqual([]);

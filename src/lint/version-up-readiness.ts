@@ -353,6 +353,7 @@ const MODE_DOC_MARKERS = [
   "GitHub Actions secure use",
   "Cloudflare Pages limits",
   "Cloudflare Workers limits",
+  "Cloudflare Workers pricing",
   "Cloudflare D1 limits",
   "Cloudflare Workers KV limits",
   "Cloudflare Access policies",
@@ -569,6 +570,7 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "GitHub Actions secure use",
   "Cloudflare Pages limits",
   "Cloudflare Workers limits",
+  "Cloudflare Workers pricing",
   "Cloudflare D1 limits",
   "Cloudflare Workers KV limits",
   "Cloudflare Access policies",
@@ -653,6 +655,10 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
   "Cloudflare Workers limits": {
     urls: ["https://developers.cloudflare.com/workers/platform/limits/"],
     fieldImpacts: ["cost_guardrails", "external_rehearsal_plan"],
+  },
+  "Cloudflare Workers pricing": {
+    urls: ["https://developers.cloudflare.com/workers/platform/pricing/"],
+    fieldImpacts: ["cost_guardrails", "workers_limit", "external_rehearsal_plan"],
   },
   "Cloudflare D1 limits": {
     urls: ["https://developers.cloudflare.com/d1/platform/limits/"],
