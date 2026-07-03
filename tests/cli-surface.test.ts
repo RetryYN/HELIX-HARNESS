@@ -1004,8 +1004,15 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "human-review-item: 1 PLAN-DISCOVERY-10-fixture kind=po_s4_decision primary=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
+      expect(text.stdout).toContain("owner-fields=s4_decision_record.decision_owner");
+      expect(text.stdout).toContain(
+        "freshness-fields=s4_decision_record.source_ledger_freshness,s4_decision_record.source_status_delta,s4_decision_record.adoption_decision_delta,s4_decision_record.workflow_route_impact",
+      );
       expect(text.stdout).toContain(
         "human-review-item: 2 PLAN-M-02-fixture kind=irreversible_migration_signoff primary=ut-tdd rename plan --json",
+      );
+      expect(text.stdout).toContain(
+        "timing-fields=cutover_decision_record.trigger_condition,cutover_decision_record.execution_window_or_freeze_policy,action_binding_approval_record.expires_at_or_trigger",
       );
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");

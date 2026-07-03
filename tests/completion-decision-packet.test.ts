@@ -233,6 +233,14 @@ describe("completion decision packet lint", () => {
           decisionKind: "po_s4_decision",
           blockerReason: "po_decision_pending",
           requiredRecords: ["s4_decision_record"],
+          ownerReviewFields: ["s4_decision_record.decision_owner"],
+          timingReviewFields: [],
+          freshnessReviewFields: [
+            "s4_decision_record.source_ledger_freshness",
+            "s4_decision_record.source_status_delta",
+            "s4_decision_record.adoption_decision_delta",
+            "s4_decision_record.workflow_route_impact",
+          ],
           scopedPrimaryPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-S3",
           runnableScopedPrimaryPacketCommand:
             "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
@@ -448,6 +456,8 @@ describe("completion decision packet lint", () => {
           {
             ...basePacket().humanReviewBundle.items[0],
             scopedPrimaryPacketCommand: "ut-tdd completion decision-packet --json",
+            ownerReviewFields: [],
+            freshnessReviewFields: [],
           },
         ],
       },
@@ -461,6 +471,16 @@ describe("completion decision packet lint", () => {
           reason: "invalid_human_review_bundle",
           detail:
             "items[0].scopedPrimaryPacketCommand=ut-tdd completion decision-packet --json expected=ut-tdd s4 decision-packet --json --plan PLAN-S3",
+        },
+        {
+          reason: "invalid_human_review_bundle",
+          detail:
+            "items[0].ownerReviewFields mismatch expected=s4_decision_record.decision_owner actual=",
+        },
+        {
+          reason: "invalid_human_review_bundle",
+          detail:
+            "items[0].freshnessReviewFields mismatch expected=s4_decision_record.source_ledger_freshness,s4_decision_record.source_status_delta,s4_decision_record.adoption_decision_delta,s4_decision_record.workflow_route_impact actual=",
         },
       ]),
     );

@@ -340,6 +340,9 @@ export interface CompletionDecisionHumanReviewItem {
   blockers: string[];
   requiredActionsJa: string[];
   requiredRecords: string[];
+  ownerReviewFields: string[];
+  timingReviewFields: string[];
+  freshnessReviewFields: string[];
   scopedPrimaryPacketCommand: string;
   runnableScopedPrimaryPacketCommand: string;
   scopedSupportingPacketCommands: string[];
@@ -1235,6 +1238,18 @@ function buildCompletionDecisionHumanReviewBundle(input: {
       blockers: decision.blockers,
       requiredActionsJa: decision.requiredActionsJa,
       requiredRecords: decision.requiredRecords.map((record) => record.recordName),
+      ownerReviewFields: humanReviewRecordFields(
+        decision.requiredRecords,
+        HUMAN_REVIEW_OWNER_FIELDS,
+      ),
+      timingReviewFields: humanReviewRecordFields(
+        decision.requiredRecords,
+        HUMAN_REVIEW_TIMING_FIELDS,
+      ),
+      freshnessReviewFields: humanReviewRecordFields(
+        decision.requiredRecords,
+        HUMAN_REVIEW_FRESHNESS_FIELDS,
+      ),
       scopedPrimaryPacketCommand: decision.scopedDecisionPacketCommand,
       runnableScopedPrimaryPacketCommand: decision.runnableScopedDecisionPacketCommand,
       scopedSupportingPacketCommands: decision.scopedPacketCommands,
@@ -1245,6 +1260,44 @@ function buildCompletionDecisionHumanReviewBundle(input: {
       reviewRouteIds: decision.supportingPacketSummaries.map((summary) => summary.reviewRoute),
     })),
   };
+}
+
+const HUMAN_REVIEW_OWNER_FIELDS = new Set([
+  "decision_owner",
+  "review_owner",
+  "approval_policy_or_named_approver",
+  "approved_actor",
+]);
+
+const HUMAN_REVIEW_TIMING_FIELDS = new Set([
+  "target_version_or_release_trigger",
+  "review_trigger",
+  "review_by_policy",
+  "stale_action",
+  "trigger_condition",
+  "execution_window_or_freeze_policy",
+  "expires_at_or_trigger",
+]);
+
+const HUMAN_REVIEW_FRESHNESS_FIELDS = new Set([
+  "activation_snapshot_id",
+  "cutover_snapshot_id",
+  "reviewed_snapshot_binding",
+  "source_ledger_freshness",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+]);
+
+function humanReviewRecordFields(
+  records: CompletionDecisionRecordRequirement[],
+  targetFields: ReadonlySet<string>,
+): string[] {
+  return records.flatMap((record) =>
+    record.fields
+      .filter((field) => targetFields.has(field))
+      .map((field) => `${record.recordName}.${field}`),
+  );
 }
 
 export function runnablePacketCommand(command: string): string {

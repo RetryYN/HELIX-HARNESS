@@ -91,6 +91,41 @@ const HUMAN_DECISION_BLOCKERS = new Set([
   "version_up_parked",
 ]);
 const WORKFLOW_STATE_BLOCKERS = new Set(["non_terminal_plans"]);
+const HUMAN_REVIEW_OWNER_FIELDS = new Set([
+  "decision_owner",
+  "review_owner",
+  "approval_policy_or_named_approver",
+  "approved_actor",
+]);
+const HUMAN_REVIEW_TIMING_FIELDS = new Set([
+  "target_version_or_release_trigger",
+  "review_trigger",
+  "review_by_policy",
+  "stale_action",
+  "trigger_condition",
+  "execution_window_or_freeze_policy",
+  "expires_at_or_trigger",
+]);
+const HUMAN_REVIEW_FRESHNESS_FIELDS = new Set([
+  "activation_snapshot_id",
+  "cutover_snapshot_id",
+  "reviewed_snapshot_binding",
+  "source_ledger_freshness",
+  "source_status_delta",
+  "adoption_decision_delta",
+  "workflow_route_impact",
+]);
+
+function humanReviewRecordFields(
+  records: CompletionDecisionRecordRequirement[],
+  targetFields: ReadonlySet<string>,
+): string[] {
+  return records.flatMap((record) =>
+    record.fields
+      .filter((field) => targetFields.has(field))
+      .map((field) => `${record.recordName}.${field}`),
+  );
+}
 
 export function analyzeCompletionDecisionPacket(
   packet: CompletionDecisionPacket,
@@ -371,6 +406,18 @@ export function analyzeCompletionDecisionPacket(
       const expectedReviewRouteIds = decision.supportingPacketSummaries.map(
         (summary) => summary.reviewRoute,
       );
+      const expectedOwnerReviewFields = humanReviewRecordFields(
+        decision.requiredRecords,
+        HUMAN_REVIEW_OWNER_FIELDS,
+      );
+      const expectedTimingReviewFields = humanReviewRecordFields(
+        decision.requiredRecords,
+        HUMAN_REVIEW_TIMING_FIELDS,
+      );
+      const expectedFreshnessReviewFields = humanReviewRecordFields(
+        decision.requiredRecords,
+        HUMAN_REVIEW_FRESHNESS_FIELDS,
+      );
       const bundleChecks: Array<[string, unknown, unknown]> = [
         ["order", bundleItem.order, decisionIndex + 1],
         ["planId", bundleItem.planId, decision.planId],
@@ -395,6 +442,13 @@ export function analyzeCompletionDecisionPacket(
         ["blockers", bundleItem.blockers ?? [], decision.blockers ?? []],
         ["requiredActionsJa", bundleItem.requiredActionsJa ?? [], decision.requiredActionsJa ?? []],
         ["requiredRecords", bundleItem.requiredRecords ?? [], expectedRecordNames],
+        ["ownerReviewFields", bundleItem.ownerReviewFields ?? [], expectedOwnerReviewFields],
+        ["timingReviewFields", bundleItem.timingReviewFields ?? [], expectedTimingReviewFields],
+        [
+          "freshnessReviewFields",
+          bundleItem.freshnessReviewFields ?? [],
+          expectedFreshnessReviewFields,
+        ],
         [
           "scopedSupportingPacketCommands",
           bundleItem.scopedSupportingPacketCommands ?? [],
