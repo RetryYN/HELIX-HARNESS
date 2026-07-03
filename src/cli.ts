@@ -897,11 +897,13 @@ program
   .action((opts: { json?: boolean }) => {
     const d = detectMode();
     const nextAction = nextActionForMode(d.mode);
+    const runtimeNextAction = nextAction;
     const judgmentReview = judgmentReviewPlanForMode(d.mode);
     // IMP-139: 未了の正の集計 (非終端 PLAN 層別 + open defer) を additive に surface し
     // 「doctor green = 完了」誤読を機械照合可能にする (gate ではない informational surface)。
     const outstanding = computeOutstandingWork(process.cwd());
     const workflowNextAction = workflowNextActionForOutstanding(outstanding);
+    const completionNextAction = workflowNextAction;
     const workflowNextActions = workflowNextActionsForOutstanding(outstanding);
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
       sourceCommand: "ut-tdd status --json",
@@ -912,13 +914,14 @@ program
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
         `mode: ${d.mode}  (claude=${d.claude}, codex=${d.codex}, current=${d.currentRuntime ?? "-"})\n`,
       );
-      process.stdout.write(`next: ${nextAction}\n`);
+      process.stdout.write(`runtime-next: ${runtimeNextAction}\n`);
+      process.stdout.write(`completion-next: ${completionNextAction}\n`);
       process.stdout.write(`judgment-review: ${judgmentReview.requiredAction}\n`);
       for (const [index, evidence] of judgmentReview.requiredEvidence.entries()) {
         process.stdout.write(

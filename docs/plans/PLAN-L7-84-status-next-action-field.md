@@ -116,8 +116,10 @@ In scope:
   hybrid は `cross_agent` + worker/reviewer model、単一 runtime は `intra_runtime_subagent`
   + checklist、standalone は human approval を要求する。
 - **`src/cli.ts`** — `status` action が `{ ...detectMode(), nextAction }` を JSON 出力
-  (additive)。さらに `judgmentReview` を JSON 出力し、plain 出力にも `next:` /
-  `judgment-review:` 行を付加する。
+  (additive)。さらに `runtimeNextAction` を同値 alias、`completionNextAction` を
+  `workflowNextAction` alias として出し、runtime/judgment guidance と whole-program/L14
+  completion guidance を分離する。さらに `judgmentReview` を JSON 出力し、plain 出力には
+  `runtime-next:` / `completion-next:` / `judgment-review:` 行を付加する。
 
 Out of scope:
 
@@ -130,8 +132,12 @@ Out of scope:
 
 - `ut-tdd status --json` が 7 フィールド目 `nextAction` を含み、既存 6 フィールドは不変
   (後方互換・additive)。
+- `ut-tdd status --json` は `runtimeNextAction === nextAction` と
+  `completionNextAction === workflowNextAction` を返し、runtime guidance と completion
+  blocker guidance を機械的に分離する。
 - `ut-tdd status --json` が `judgmentReview` を additive に含み、mode ごとに必要な
   review tier、gate command template、required evidence を返す。
+- `ut-tdd status` text は `runtime-next:` と `completion-next:` を出し、曖昧な `next:` 行を出さない。
 - `nextActionForMode` は 4 mode 全てに `NEXT_ACTION_BY_MODE` の値を返す純関数。
 - 値は先頭 token (`:` 手前) で機械 switch でき、ASCII のみ (公開 JSON 契約 /
   machine-surface-language 整合)。standalone=human-review-required / 単一 runtime=

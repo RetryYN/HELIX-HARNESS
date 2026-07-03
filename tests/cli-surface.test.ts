@@ -531,6 +531,8 @@ describe("L7 CLI surface closure", () => {
       expect(blockedJson.status).toBe(0);
       const blockedPayload = JSON.parse(blockedJson.stdout);
       expect(blockedPayload.nextAction).toEqual(expect.stringMatching(/^[a-z][a-z-]*: /));
+      expect(blockedPayload.runtimeNextAction).toBe(blockedPayload.nextAction);
+      expect(blockedPayload.completionNextAction).toBe(blockedPayload.workflowNextAction);
       expect(blockedPayload.judgmentReview).toMatchObject({
         mode: expect.any(String),
         requiredReviewKind: expect.stringMatching(/^(cross_agent|intra_runtime_subagent|human)$/),
@@ -726,6 +728,9 @@ describe("L7 CLI surface closure", () => {
       const secondWorkflowAction = blockedPayload.workflowNextActions[1];
       expect(blockedText.stdout).toContain("judgment-review:");
       expect(blockedText.stdout).toContain("judgment-review-evidence:");
+      expect(blockedText.stdout).toContain("runtime-next:");
+      expect(blockedText.stdout).toContain("completion-next: completion-blocked:");
+      expect(blockedText.stdout).not.toContain("\nnext:");
       expect(blockedText.stdout).toContain("evidence=worker_model を記録する");
       expect(blockedText.stdout).toContain("evidence-id=worker_model recorded");
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
