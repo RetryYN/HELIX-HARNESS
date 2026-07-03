@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join, relative } from "node:path";
+import { isAbsolute, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import type { DocumentExportProjectionRows } from "../export/document-export";
 import {
@@ -66,6 +66,34 @@ import {
 } from "./index";
 import { migrate, rowCounts } from "./migration";
 import type { RunUsage } from "./token-tracker";
+
+type ProjectedUtCase = {
+  oracle_id?: string;
+  name: string;
+  status: "passed" | "failed" | "skipped";
+  duration_ms?: number;
+  message?: string;
+  artifact_path?: string;
+};
+
+type ProjectedUtRun = {
+  plan_id: string;
+  started_at: string;
+  completed_at: string;
+  exit_code: number;
+  evidence_path: string;
+  cases: ProjectedUtCase[];
+};
+
+type GreenCommandProjectionInput = {
+  evidence_path: string;
+  command: string;
+  runner: string;
+  scope: string;
+  exit_code: number | null;
+  completed_at?: string;
+  output_digest: string;
+};
 
 interface PairAgentEvidencePhaseSpan {
   span_id?: unknown;
@@ -827,9 +855,387 @@ function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
             status: command.exit_code === 0 ? "passed" : "failed",
           },
         });
+        projectStructuredGreenCommandCaseEvidence({
+          repoRoot,
+          db,
+          fallbackPlanId: plan.plan_id,
+          testRunId,
+          command,
+        });
       }
     }
   }
+}
+
+function projectStructuredGreenCommandCaseEvidence(input: {
+  repoRoot: string;
+  db: HarnessDb;
+  fallbackPlanId: string;
+  testRunId: string;
+  command: GreenCommandProjectionInput;
+}): void {
+  const { repoRoot, db, fallbackPlanId, testRunId, command } = input;
+  if (!command.evidence_path || isAbsolute(command.evidence_path)) return;
+  const fullPath = join(repoRoot, command.evidence_path);
+  const relPath = normalizePath(relative(repoRoot, fullPath));
+  if (relPath.startsWith("..") || isAbsolute(relPath) || !existsSync(fullPath)) return;
+  if (!command.evidence_path.endsWith(".json")) return;
+  try {
+    const raw = JSON.parse(readFileSync(fullPath, "utf8")) as Record<string, unknown>;
+    const cases = normalizeStructuredTestCases(raw.cases);
+    if (cases.length === 0) return;
+    const recordedAt = asString(raw.recorded_at) ?? command.completed_at ?? nowIso();
+    const startedAt = asString(raw.started_at) ?? recordedAt;
+    const completedAt = asString(raw.completed_at) ?? recordedAt;
+    const planId = asString(raw.plan_id) ?? fallbackPlanId;
+    for (const [index, testCase] of cases.entries()) {
+      const testCaseId = stableId("test-case", `${testRunId}:${testCase.oracle_id ?? index}`);
+      const resultId = stableId("test-result", `${testCaseId}:${testCase.status}`);
+      recordProjectionEvent(db, {
+        table: "test_cases",
+        id: testCaseId,
+        row: {
+          test_case_id: testCaseId,
+          test_run_id: testRunId,
+          plan_id: planId,
+          oracle_id: testCase.oracle_id ?? "",
+          name: testCase.name,
+          status: testCase.status,
+          duration_ms: testCase.duration_ms ?? 0,
+          first_seen_at: startedAt,
+          last_seen_at: completedAt,
+          evidence_path: relPath,
+        },
+      });
+      recordProjectionEvent(db, {
+        table: "test_results",
+        id: resultId,
+        row: {
+          test_result_id: resultId,
+          test_case_id: testCaseId,
+          test_run_id: testRunId,
+          oracle_id: testCase.oracle_id ?? "",
+          status: testCase.status,
+          duration_ms: testCase.duration_ms ?? 0,
+          failure_digest: testCase.status === "failed" ? stableHash(testCase.message ?? "") : "",
+          started_at: startedAt,
+          completed_at: completedAt,
+          message: testCase.message ?? "",
+          evidence_path: relPath,
+        },
+      });
+      if (testCase.artifact_path) {
+        const edgeId = stableId("test-edge", `${testRunId}:${testCase.artifact_path}:${index}`);
+        recordProjectionEvent(db, {
+          table: "test_artifact_edges",
+          id: edgeId,
+          row: {
+            edge_id: edgeId,
+            test_artifact_edge_id: stableId("test-edge-compat", stableHash(edgeId)),
+            test_case_id: testCaseId,
+            test_run_id: testRunId,
+            artifact_path: testCase.artifact_path,
+            artifact_id: testCase.artifact_path,
+            plan_id: planId,
+            source_path: relPath,
+            edge_kind: "covers",
+            oracle_id: testCase.oracle_id ?? "",
+            evidence_path: relPath,
+          },
+        });
+      }
+    }
+  } catch {
+    return;
+  }
+}
+
+function normalizeStructuredTestCases(value: unknown): ProjectedUtCase[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null)
+    .map((item) => {
+      const status = asString(item.status);
+      if (status !== "passed" && status !== "failed" && status !== "skipped") return null;
+      const testCase: ProjectedUtCase = {
+        oracle_id: asString(item.oracle_id) ?? undefined,
+        name: asString(item.name) ?? asString(item.test_name) ?? asString(item.oracle_id) ?? "unknown",
+        status,
+      };
+      const durationMs = asFiniteNumber(item.duration_ms);
+      if (durationMs !== null) testCase.duration_ms = durationMs;
+      const message = asString(item.message);
+      if (message) testCase.message = message;
+      const artifactPath = asString(item.artifact_path);
+      if (artifactPath) testCase.artifact_path = artifactPath;
+      return testCase;
+    })
+    .filter((item): item is ProjectedUtCase => item !== null);
+}
+
+function projectUtHistorySignalsFromProjectedRuns(db: HarnessDb): void {
+  for (const [planId, testRuns] of collectUtHistoryInputsFromDb(db)) {
+    projectUtHistorySignalsForPlan(db, planId, testRuns);
+  }
+}
+
+function collectUtHistoryInputsFromDb(db: HarnessDb): Map<string, ProjectedUtRun[]> {
+  const byRunId = new Map<string, ProjectedUtRun>();
+  const byPlan = new Map<string, ProjectedUtRun[]>();
+  const runRows = db
+    .prepare(
+      `SELECT test_run_id, plan_id, command, runner, scope,
+              started_at, completed_at, exit_code, evidence_path, output_digest
+       FROM test_runs
+       WHERE plan_id <> ''
+       ORDER BY plan_id, completed_at, started_at, test_run_id`,
+    )
+    .all();
+  for (const row of runRows) {
+    const testRunId = asString(row.test_run_id);
+    const planId = asString(row.plan_id);
+    const exitCode = asFiniteNumber(row.exit_code);
+    if (!testRunId || !planId || exitCode === null) continue;
+    const completedAt = asString(row.completed_at) ?? "";
+    const startedAt = asString(row.started_at) ?? completedAt;
+    const run: ProjectedUtRun = {
+      plan_id: planId,
+      started_at: startedAt,
+      completed_at: completedAt || startedAt,
+      exit_code: exitCode,
+      evidence_path: asString(row.evidence_path) ?? "",
+      cases: [],
+    };
+    byRunId.set(testRunId, run);
+    const planRuns = byPlan.get(planId) ?? [];
+    planRuns.push(run);
+    byPlan.set(planId, planRuns);
+  }
+
+  const resultRows = db
+    .prepare(
+      `SELECT r.test_run_id,
+              COALESCE(NULLIF(c.oracle_id, ''), NULLIF(r.oracle_id, '')) AS oracle_id,
+              COALESCE(NULLIF(c.name, ''), NULLIF(c.test_name, ''), NULLIF(r.oracle_id, ''), r.test_result_id) AS name,
+              r.status,
+              r.duration_ms,
+              r.message,
+              (
+                SELECT e.artifact_path
+                FROM test_artifact_edges e
+                WHERE e.test_case_id = r.test_case_id
+                  AND (e.test_run_id = r.test_run_id OR e.test_run_id = '')
+                ORDER BY e.edge_id
+                LIMIT 1
+              ) AS artifact_path
+       FROM test_results r
+       LEFT JOIN test_cases c ON c.test_case_id = r.test_case_id
+       ORDER BY r.test_run_id, r.test_result_id`,
+    )
+    .all();
+  for (const row of resultRows) {
+    const run = byRunId.get(asString(row.test_run_id) ?? "");
+    const status = asString(row.status);
+    if (!run || (status !== "passed" && status !== "failed" && status !== "skipped")) continue;
+    const testCase: ProjectedUtCase = {
+      oracle_id: asString(row.oracle_id) ?? undefined,
+      name: asString(row.name) ?? asString(row.oracle_id) ?? "unknown",
+      status,
+    };
+    const durationMs = asFiniteNumber(row.duration_ms);
+    if (durationMs !== null) testCase.duration_ms = durationMs;
+    const message = asString(row.message);
+    if (message) testCase.message = message;
+    const artifactPath = asString(row.artifact_path);
+    if (artifactPath) testCase.artifact_path = artifactPath;
+    run.cases?.push(testCase);
+  }
+
+  for (const [planId, runs] of [...byPlan]) {
+    const runsWithCases = runs.filter((run) => (run.cases?.length ?? 0) > 0);
+    if (runsWithCases.length === 0) byPlan.delete(planId);
+    else byPlan.set(planId, runsWithCases);
+  }
+  return byPlan;
+}
+
+function projectUtHistorySignalsForPlan(db: HarnessDb, planId: string, runs: ProjectedUtRun[]): void {
+  const sortedRuns = [...runs].sort((a, b) =>
+    `${a.completed_at}:${a.started_at}`.localeCompare(`${b.completed_at}:${b.started_at}`),
+  );
+  const window = `${sortedRuns.at(0)?.started_at ?? "unknown"}..${
+    sortedRuns.at(-1)?.completed_at ?? "unknown"
+  }`;
+  const histories = new Map<string, Array<ProjectedUtCase & { evidence_path: string; completed_at: string }>>();
+  for (const run of sortedRuns) {
+    for (const testCase of run.cases.filter((item) => item.oracle_id)) {
+      const oracleId = testCase.oracle_id ?? "";
+      const history = histories.get(oracleId) ?? [];
+      history.push({ ...testCase, evidence_path: run.evidence_path, completed_at: run.completed_at });
+      histories.set(oracleId, history);
+    }
+  }
+  const historyValues = [...histories.values()];
+  const flaky = historyValues.filter((history) => {
+    const statuses = new Set(history.map((item) => item.status));
+    return statuses.has("passed") && statuses.has("failed");
+  });
+  const durationRegressions = historyValues.filter((history) => {
+    const durations = history
+      .map((item) => item.duration_ms)
+      .filter((duration): duration is number => typeof duration === "number" && duration > 0);
+    if (durations.length < 2) return false;
+    const baseline = medianNumber(durations.slice(0, -1));
+    const latest = durations.at(-1) ?? 0;
+    return baseline > 0 && latest / baseline >= 1.5;
+  });
+  const aggregateSignals = [
+    { metric: "oracle_coverage", value: historyValues.length > 0 ? 1 : 0, threshold: 1 },
+    {
+      metric: "plan_green_rate",
+      value: sortedRuns.length === 0 ? 0 : sortedRuns.filter((run) => run.exit_code === 0).length / sortedRuns.length,
+      threshold: 1,
+    },
+    {
+      metric: "flake_score",
+      value: historyValues.length === 0 ? 0 : flaky.length / historyValues.length,
+      threshold: 0,
+    },
+    {
+      metric: "duration_regression",
+      value: historyValues.length === 0 ? 0 : durationRegressions.length / historyValues.length,
+      threshold: 0,
+    },
+    {
+      metric: "green_definition_compliance",
+      value: sortedRuns.length > 0 && sortedRuns.every((run) => run.exit_code === 0) ? 1 : 0,
+      threshold: 1,
+    },
+  ];
+  for (const signal of aggregateSignals) {
+    const signalId = stableId("ut-history-signal", `${planId}:${signal.metric}`);
+    recordProjectionEvent(db, {
+      table: "quality_signals",
+      id: signalId,
+      row: {
+        signal_id: signalId,
+        source: "ut-history",
+        subject_id: planId,
+        metric: signal.metric,
+        value: Number(signal.value.toFixed(4)),
+        threshold: signal.threshold,
+        status:
+          signal.metric === "flake_score" || signal.metric === "duration_regression"
+            ? signal.value > 0
+              ? "warn"
+              : "pass"
+            : signal.value >= 1
+              ? "pass"
+              : "warn",
+        computed_at: nowIso(),
+      },
+    });
+  }
+  for (const [oracleId, history] of histories) {
+    const passCount = history.filter((item) => item.status === "passed").length;
+    const failCount = history.filter((item) => item.status === "failed").length;
+    const latest = history.at(-1);
+    if (latest && passCount > 0 && failCount > 0) {
+      const score = Number((Math.min(passCount, failCount) / (passCount + failCount)).toFixed(4));
+      const testCaseId = stableId("test-case-oracle", `${planId}:${oracleId}`);
+      const flakeEventId = stableId("test-flake", `${planId}:${oracleId}:${window}`);
+      recordProjectionEvent(db, {
+        table: "test_cases",
+        id: testCaseId,
+        row: {
+          test_case_id: testCaseId,
+          test_run_id: "",
+          plan_id: planId,
+          oracle_id: oracleId,
+          name: latest.name,
+          first_seen_at: history.at(0)?.completed_at ?? "",
+          last_seen_at: latest.completed_at,
+          status: latest.status,
+          duration_ms: latest.duration_ms ?? 0,
+          evidence_path: latest.evidence_path,
+        },
+      });
+      recordProjectionEvent(db, {
+        table: "test_flake_events",
+        id: flakeEventId,
+        row: {
+          flake_event_id: flakeEventId,
+          test_case_id: testCaseId,
+          window,
+          pass_count: passCount,
+          fail_count: failCount,
+          flake_score: score,
+          computed_at: nowIso(),
+          evidence_path: latest.evidence_path,
+        },
+      });
+      projectUtOracleSignal({
+        db,
+        planId,
+        oracleId,
+        metric: "flake_score",
+        value: score,
+        threshold: 0,
+      });
+    }
+    const durations = history
+      .map((item) => item.duration_ms)
+      .filter((duration): duration is number => typeof duration === "number" && duration > 0);
+    if (durations.length >= 2) {
+      const baseline = medianNumber(durations.slice(0, -1));
+      const latestDuration = durations.at(-1) ?? 0;
+      const ratio = baseline > 0 ? latestDuration / baseline : 0;
+      if (ratio >= 1.5) {
+        projectUtOracleSignal({
+          db,
+          planId,
+          oracleId,
+          metric: "duration_regression",
+          value: Number(ratio.toFixed(4)),
+          threshold: 1.5,
+        });
+      }
+    }
+  }
+}
+
+function projectUtOracleSignal(input: {
+  db: HarnessDb;
+  planId: string;
+  oracleId: string;
+  metric: "flake_score" | "duration_regression";
+  value: number;
+  threshold: number;
+}): void {
+  const { db, planId, oracleId, metric, value, threshold } = input;
+  const signalId = stableId("ut-history-oracle-signal", `${planId}:${oracleId}:${metric}`);
+  recordProjectionEvent(db, {
+    table: "quality_signals",
+    id: signalId,
+    row: {
+      signal_id: signalId,
+      source: "ut-history",
+      subject_id: `oracle:${planId}:${oracleId}`,
+      metric,
+      value,
+      threshold,
+      status: "warn",
+      computed_at: nowIso(),
+    },
+  });
+}
+
+function medianNumber(values: number[]): number {
+  const sorted = [...values].sort((a, b) => a - b);
+  if (sorted.length === 0) return 0;
+  const midpoint = Math.floor(sorted.length / 2);
+  if (sorted.length % 2 === 1) return sorted[midpoint] ?? 0;
+  return ((sorted[midpoint - 1] ?? 0) + (sorted[midpoint] ?? 0)) / 2;
 }
 
 function parseRuntimeVerificationLogRows(
@@ -3211,6 +3617,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       projectDocumentExports(db, documentExports);
       projectVerificationEvidence(db, input.verificationEvidence);
       projectTestCaseCatalog(repoRoot, db);
+      projectUtHistorySignalsFromProjectedRuns(db);
       projectFeedbackEvents(db, projectionDeps);
       projectTroubleEvents(db, projectionDeps);
       projectRetryEvents(db, projectionDeps);

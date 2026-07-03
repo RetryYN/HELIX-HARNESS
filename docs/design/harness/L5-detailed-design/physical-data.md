@@ -301,6 +301,11 @@ Required UT-derived metrics:
   非 0 の flake は oracle 単位の `quality_signals(source=ut-history, metric=flake_score)` も作る。
 - `duration_regression` は直近 duration と過去中央値の比率で算出し、aggregate signal に加えて
   原因 oracle の `quality_signals(source=ut-history, metric=duration_regression)` として保存する。
+- `review_evidence.green_commands[].evidence_path` が structured JSON を指し、`cases[]` を含む場合、
+  deterministic rebuild は既存 `test_runs` に紐づけて `test_cases` / `test_results` /
+  `test_artifact_edges` を投影し、DB から UT history input を復元して `test_flake_events` /
+  `quality_signals` / `feedback_events` へ接続する。Vitest / Playwright / JUnit の生 reporter parser は
+  別 slice とする。
 - `green_definition_compliance = every test_runs.green_definition_id resolves and every required command in that definition has exit_code=0`.
 - `review_green_command_compliance = every 2026-06-23-or-later confirmed/completed review_evidence entry has at least one projected test_runs row with exit_code=0, evidence_path, and output_digest`.
 

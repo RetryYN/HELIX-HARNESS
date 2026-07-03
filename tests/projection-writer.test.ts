@@ -691,6 +691,160 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("projects structured green-command case evidence into UT history signals on rebuild", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-structured-ut-evidence-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "green-command"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-239-structured-ut-evidence.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-239-structured-ut-evidence",
+          "title: structured UT evidence fixture",
+          "kind: impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "created: 2026-07-03",
+          "updated: 2026-07-03",
+          "review_evidence:",
+          "  - reviewer: codex-tl",
+          "    review_kind: intra_runtime_subagent",
+          "    reviewed_at: \"2026-07-03T00:05:00.000Z\"",
+          "    tests_green_at: \"2026-07-03T00:05:00.000Z\"",
+          "    verdict: approve",
+          "    worker_model: codex",
+          "    reviewer_model: codex-intra-runtime",
+          "    green_commands:",
+          "      - kind: unit_test",
+          "        command: \"bun test tests/structured.test.ts\"",
+          "        runner: bun",
+          "        scope: targeted",
+          "        exit_code: 1",
+          "        completed_at: \"2026-07-03T00:01:00.000Z\"",
+          "        evidence_path: .ut-tdd/evidence/green-command/run-1.json",
+          "        output_digest: \"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+          "      - kind: unit_test",
+          "        command: \"bun test tests/structured.test.ts\"",
+          "        runner: bun",
+          "        scope: targeted",
+          "        exit_code: 0",
+          "        completed_at: \"2026-07-03T00:03:00.000Z\"",
+          "        evidence_path: .ut-tdd/evidence/green-command/run-2.json",
+          "        output_digest: \"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "green-command", "run-1.json"),
+        JSON.stringify(
+          {
+            schema_version: "green-command-evidence-v1",
+            plan_id: "PLAN-L7-239-structured-ut-evidence",
+            recorded_at: "2026-07-03T00:01:00.000Z",
+            command: "bun test tests/structured.test.ts",
+            runner: "bun",
+            scope: "targeted",
+            exit_code: 1,
+            cases: [
+              {
+                oracle_id: "U-STRUCT-FLAKE",
+                name: "structured flake",
+                status: "failed",
+                duration_ms: 100,
+                message: "first failure",
+                artifact_path: "src/workflow/contracts.ts",
+              },
+              {
+                oracle_id: "U-STRUCT-SLOW",
+                name: "structured slow",
+                status: "passed",
+                duration_ms: 100,
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "evidence", "green-command", "run-2.json"),
+        JSON.stringify(
+          {
+            schema_version: "green-command-evidence-v1",
+            plan_id: "PLAN-L7-239-structured-ut-evidence",
+            recorded_at: "2026-07-03T00:03:00.000Z",
+            command: "bun test tests/structured.test.ts",
+            runner: "bun",
+            scope: "targeted",
+            exit_code: 0,
+            cases: [
+              {
+                oracle_id: "U-STRUCT-FLAKE",
+                name: "structured flake",
+                status: "passed",
+                duration_ms: 110,
+              },
+              {
+                oracle_id: "U-STRUCT-SLOW",
+                name: "structured slow",
+                status: "passed",
+                duration_ms: 180,
+              },
+            ],
+          },
+          null,
+          2,
+        ),
+      );
+
+      const db = openHarnessDb(":memory:");
+      try {
+        const result = rebuildHarnessDb({ repoRoot, db });
+
+        expect(result.ok).toBe(true);
+        expect(rowCounts(db).test_results).toBe(4);
+        expect(rowCounts(db).test_flake_events).toBe(1);
+        expect(
+          db
+            .prepare(
+              "SELECT pass_count, fail_count, flake_score FROM test_flake_events WHERE test_case_id = ?",
+            )
+            .get("test-case-oracle:PLAN-L7-239-structured-ut-evidence:U-STRUCT-FLAKE"),
+        ).toEqual({ pass_count: 1, fail_count: 1, flake_score: 0.5 });
+        expect(
+          db
+            .prepare(
+              "SELECT status, value FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ?",
+            )
+            .get(
+              "ut-history",
+              "oracle:PLAN-L7-239-structured-ut-evidence:U-STRUCT-SLOW",
+              "duration_regression",
+            ),
+        ).toEqual({ status: "warn", value: 1.8 });
+        expect(
+          db
+            .prepare(
+              "SELECT source_table, signal_type, severity FROM feedback_events WHERE source_table = ? AND signal_type = ? LIMIT 1",
+            )
+            .get("quality_signals", "duration_regression"),
+        ).toMatchObject({
+          source_table: "quality_signals",
+          signal_type: "duration_regression",
+          severity: "info",
+        });
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it("U-RUNDEBUG-007: projects L7.5 runtime verification logs into harness.db runtime evidence rows", () => {
     const repoRoot = join(tmpdir(), `ut-tdd-runtime-verification-projection-${randomUUID()}`);
     try {
