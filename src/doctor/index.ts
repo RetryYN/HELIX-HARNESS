@@ -1902,6 +1902,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("docs / handover / adapter prose も日本語") &&
     text.includes("PLAN-M-02") &&
     text.includes("ut-tdd completion decision-packet --json") &&
+    text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
     text.includes("ut-tdd doctor --profile consumer");
   const docsOk =
     agents.includes("HELIX アダプター") &&
@@ -1972,6 +1973,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     { phase: "status-frontier", command: "ut-tdd status --json" },
     { phase: "github-ci-safety", command: "ut-tdd setup project --dry-run --json" },
     { phase: "completion-decision-packet", command: "ut-tdd completion decision-packet --json" },
+    {
+      phase: "version-up-dry-run",
+      command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+    },
     { phase: "consumer-doctor", command: "ut-tdd doctor --profile consumer" },
     { phase: "identifier-cutover-packet", command: "ut-tdd rename plan --json" },
     { phase: "handover-route", command: "ut-tdd handover status --json" },
@@ -2065,6 +2070,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd status") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       text.includes("findings") &&
@@ -2080,6 +2086,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
@@ -2088,7 +2095,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     invalidAgentTemplates.length === 0 && invalidCommandTemplates.length === 0;
   messages.push(
     claudeSurfaceOk
-      ? `doctor: consumer-claude-surface - OK (agents=${expectedClaudeAgentPaths.length}, commands=${expectedClaudeCommandPaths.length}, Japanese+completion-packet+consumer-doctor baseline)`
+      ? `doctor: consumer-claude-surface - OK (agents=${expectedClaudeAgentPaths.length}, commands=${expectedClaudeCommandPaths.length}, Japanese+completion-packet+version-up+consumer-doctor baseline)`
       : `doctor: consumer-claude-surface - violation invalidAgents=${invalidAgentTemplates.join(",")} invalidCommands=${invalidCommandTemplates.join(",")}`,
   );
 

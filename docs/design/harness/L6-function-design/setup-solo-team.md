@@ -193,8 +193,9 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `verification-check:` と `verification-source:` を出し、JSON を見ない利用者にも公式/正本 source を落とさない。
 > wet run はこの matrix のうち初回稼働 state に必要な `phase` / `command` / `writePolicy` /
 > `requiresMaterializedPaths[]` / `expected` / `evidence` を `.ut-tdd/state/project-setup.json` に永続化する。
-> consumer doctor は command list だけが残って matrix が欠落した state、`writePolicy` が no-write でない row、
-> evidence/expected が空の row を fail-close し、初回稼働証跡を薄い command 一覧へ退行させない。
+> consumer doctor は command list だけが残って matrix が欠落した state、9 行のうち
+> `version-up-dry-run` が欠落した state、`writePolicy` が no-write でない row、evidence/expected が空の row を
+> fail-close し、初回稼働証跡を薄い command 一覧へ退行させない。
 > `ut-tdd doctor --profile consumer` は `.vscode/tasks.json` の label/command だけでなく、schema version が
 > `2.0.0`、`tasks` が配列、各 task が `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、task-level `options` なしであること、
 > かつ `.vscode/settings.json` が `task.allowAutomaticTasks=off` であることを検査する。

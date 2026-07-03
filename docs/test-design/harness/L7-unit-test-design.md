@@ -271,7 +271,8 @@ expected / evidence を出す。
 ただし package-local `bun run ut-tdd` は hook / agent が呼ぶ bare `ut-tdd` の PATH 証跡ではないため、
 `consumerReadiness.checks[name=ut-tdd-cli]` は bare PATH 解決だけで green になり、package script のみでは
 `fix_consumer_readiness` に戻る。wet setup state には first-run matrix を永続化し、consumer doctor は
-matrix 欠落、command 不一致、`writePolicy` drift、evidence/expected 欠落を fail-close する。
+matrix 欠落、`version-up-dry-run` 欠落、command 不一致、`writePolicy` drift、evidence/expected 欠落を
+fail-close する。
 | U-SETUP-022 | `loadTemplates` / `BUILTIN_GITHUB_TEMPLATES` | legacy `ut-tdd setup` が生成する `team/setup-branch-protection.sh` と built-in fallback は approval checklist のみであり、`action-binding approval` と `exit 2` を含み、`gh api -X PUT` / `/branches/main/protection` の mutating endpoint を含まない。 |
 | U-SETUP-023 | `loadTemplates` / `PROJECT_SETUP_FILES` / `runConsumerDoctor` / `tests/distribution-acceptance.test.ts` | setup は `.ut-tdd/teams/default-hybrid.yaml` を built-in fallback と `docs/templates/project/` 実体の両方から配布し、consumer doctor は file 存在、YAML parse、`teamDefinitionSchema`、`buildTeamRunPlan(definition, "hybrid")` dry-run を検査する。valid YAML は Codex worker と Claude reviewer の provider 分離を持ち、missing / malformed / single-provider worker-reviewer は fail-close。VS Code task、consumer CI、clean distribution acceptance は同じ `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を実行し、AGENTS の team-run 案内だけが先行する状態を許さない。 |
 
