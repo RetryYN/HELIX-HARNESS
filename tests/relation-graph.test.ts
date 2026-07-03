@@ -299,6 +299,38 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
     expect(stale.ok).toBe(false);
     expect(stale.findings.some((f) => f.code === "stale-edge")).toBe(true);
   });
+
+  it("U-RELGRAPH-006b: グラフ対象外 path (config / skill / directory / archived plan) は non-graph-path (info) で ok を落とさない", () => {
+    const projection = collectRelationGraphProjection({
+      sourceFiles: [
+        { path: "src/lint/relation-graph.ts", tests: ["tests/relation-graph.test.ts"] },
+      ],
+      tests: [{ path: "tests/relation-graph.test.ts" }],
+      trackedExcludedPaths: ["docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md"],
+    });
+
+    const nonGraph = analyzeRelationImpact({
+      changedPaths: [
+        ".claude/CLAUDE.md",
+        "docs/skills/api.md",
+        "README.md",
+        "docs/design/helix/L2-screen/",
+        "docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md",
+      ],
+      projection,
+    });
+    expect(nonGraph.ok).toBe(true);
+    expect(nonGraph.findings.every((f) => f.code !== "missing-projection")).toBe(true);
+    expect(nonGraph.findings.filter((f) => f.code === "non-graph-path")).toHaveLength(5);
+
+    // 走査対象クラス配下 (src/) の node 欠落は引き続き missing-projection error のまま (規律維持)。
+    const trackedMissing = analyzeRelationImpact({
+      changedPaths: ["src/runtime/unknown-module.ts"],
+      projection,
+    });
+    expect(trackedMissing.ok).toBe(false);
+    expect(trackedMissing.findings.some((f) => f.code === "missing-projection")).toBe(true);
+  });
 });
 
 describe("exportRelationDiagram (U-RELGRAPH-007..008)", () => {

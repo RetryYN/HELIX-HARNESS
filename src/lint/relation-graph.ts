@@ -211,7 +211,36 @@ export function collectRelationGraphProjection(
     edges: sortEdges([...edges.values()]),
     verificationProfiles: verificationProfiles.sort((a, b) => a.nodeId.localeCompare(b.nodeId)),
     findings: sortFindings(findings),
+    trackedExcludedPaths: input.trackedExcludedPaths
+      ? [...input.trackedExcludedPaths].map(normalizePath).sort()
+      : undefined,
   };
+}
+
+/**
+ * relation graph が node 化する path クラス (src/graph/loader.ts の走査対象と一致)。
+ * これ以外の path (docs/skills, README, .claude/CLAUDE.md, AGENTS.md, codex-env.txt, .ut-tdd state 等) は
+ * 定義上グラフ対象外であり、変更されても impact 分析は missing-projection error でなく
+ * non-graph-path (info) として扱う。ディレクトリ path (末尾 "/") と archived plan
+ * (projection.trackedExcludedPaths) も同様に非グラフ扱いにする。
+ */
+export const GRAPH_TRACKED_PATH_PREFIXES = [
+  "src/",
+  "tests/",
+  "docs/plans/",
+  "docs/design/",
+  "docs/test-design/",
+  "docs/process/",
+  ".claude/agents/",
+  ".ut-tdd/review/",
+  ".ut-tdd/evidence/g8-integration/",
+] as const;
+
+/** path が relation graph の node 走査対象クラス配下か (missing-projection を error にすべきか) を判定する。 */
+export function isGraphTrackedPath(path: string): boolean {
+  const normalized = normalizePath(path);
+  if (normalized.endsWith("/")) return false; // ディレクトリはファイル node にならない
+  return GRAPH_TRACKED_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix));
 }
 
 function sortEdges(list: RelationEdge[]): RelationEdge[] {
@@ -487,11 +516,24 @@ export function analyzeRelationImpact(input: RelationImpactInput): RelationImpac
   const impacted: RelationNode[] = [];
   const actions: RelationImpactAction[] = [];
   const findings: RelationFinding[] = detectStaleEdges(input.projection, index);
+  const excludedPaths = new Set((input.projection.trackedExcludedPaths ?? []).map(normalizePath));
 
   for (const raw of input.changedPaths) {
     const path = normalizePath(raw);
     const node = nodeByPath.get(path);
     if (!node) {
+      // 定義上グラフ対象外の path (走査対象クラス外 / ディレクトリ / archived plan) は、
+      // missing-projection error でなく non-graph-path (info) として分類する。node を期待する
+      // 走査対象 path のみ error にする — 弱い分析への無音 fallback ではなく、正しい分類
+      // (U-RELGRAPH-006 の規律は node 期待 path に対して維持)。
+      if (!isGraphTrackedPath(path) || excludedPaths.has(path)) {
+        findings.push({
+          code: "non-graph-path",
+          severity: "info",
+          message: `changed path ${path} is outside relation-graph scope (config/skill/archived-plan/directory); impact not applicable`,
+        });
+        continue;
+      }
       findings.push({
         code: "missing-projection",
         severity: "error",

@@ -25,6 +25,7 @@ type RelationFindingCode =
   | "invalid-evidence"
   | "external-not-allowed"
   | "missing-projection"
+  | "non-graph-path"
   | "stale-edge"
   | "missing-test-coverage";
 
@@ -109,6 +110,12 @@ interface RelationGraphSourceSet {
   tests?: TestFileInput[];
   dbTables?: DbTableInput[];
   verificationEvidence?: VerificationEvidenceInput[];
+  /**
+   * グラフ走査対象 path クラス配下だが node を意図的に生成しない path
+   * (現状は archived plan。loader が live graph から除外する)。impact 分析が
+   * これらを missing-projection error でなく non-graph-path として扱えるようにする。
+   */
+  trackedExcludedPaths?: string[];
 }
 
 interface VerificationProfileRow {
@@ -124,6 +131,8 @@ interface RelationGraphProjection {
   edges: RelationEdge[];
   verificationProfiles: VerificationProfileRow[];
   findings: RelationFinding[];
+  /** グラフ走査対象配下だが意図的に node 化しない path (archived plan 等)。impact 分類に使う。 */
+  trackedExcludedPaths?: string[];
 }
 
 type RelationImpactActionKind =

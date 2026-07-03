@@ -1,0 +1,72 @@
+---
+plan_id: PLAN-L7-308-relation-impact-non-graph-path
+title: "PLAN-L7-308 (impl): relation graph impact の非グラフ path 分類"
+kind: impl
+layer: L7
+drive: agent
+status: confirmed
+created: 2026-07-04
+updated: 2026-07-04
+owner: Claude
+parent_design: docs/design/harness/L6-function-design/module-drift.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+backprop_decision: not_required
+backprop_decision_reason: "既存 analyzeRelationImpact (PLAN-L7-32/36/142) の誤分類是正。missing-projection の対象を『グラフ走査対象クラス配下の node 欠落』に限定し、定義上グラフ外の path (config doc / skill doc / directory / archived plan) を non-graph-path (info) に分類する。新規 L1/L3 要求なし。U-RELGRAPH-006 の no-silent-fallback 規律は node 期待 path に対して維持。"
+agent_slots:
+  - role: tl
+    slot_label: "TL - relation impact path 分類境界"
+generates:
+  - artifact_path: docs/plans/PLAN-L7-308-relation-impact-non-graph-path.md
+    artifact_type: markdown_doc
+  - artifact_path: src/lint/relation-graph.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/relation-graph-types.ts
+    artifact_type: source_module
+  - artifact_path: src/graph/loader.ts
+    artifact_type: source_module
+  - artifact_path: tests/relation-graph.test.ts
+    artifact_type: test_code
+dependencies:
+  parent: docs/plans/PLAN-L7-142-relation-graph-stale-edge-fence.md
+  requires:
+    - docs/plans/PLAN-L7-142-relation-graph-stale-edge-fence.md
+---
+
+# PLAN-L7-308: relation graph impact の非グラフ path 分類
+
+## 0. 目的
+
+`ut-tdd graph impact` が「変更 path に relation-graph node が無い」場合、その path が
+**グラフ走査対象クラス配下か否かを問わず** `missing-projection` error にしていた。このため
+config doc (`.claude/CLAUDE.md`)、skill doc (`docs/skills/*`)、未追跡 directory、archived plan
+(`docs/plans/*` の status=archived) を変更しただけで impact gate が fail していた
+(Codex stop-review が Claude commit で検出)。
+
+`analyzeRelationImpact` は loader (`src/graph/loader.ts`) が node 化する path クラス配下の
+node 欠落のみを `missing-projection` (error) とし、定義上グラフ外の path は `non-graph-path`
+(info) に分類する。これにより gate は正しい signal を返す。
+
+## 1. スコープ
+
+- `GRAPH_TRACKED_PATH_PREFIXES` / `isGraphTrackedPath` を relation-graph.ts に追加
+  (loader の走査対象 = src/ tests/ docs/plans/ docs/design/ docs/test-design/ docs/process/
+  .claude/agents/ .ut-tdd/review/ .ut-tdd/evidence/g8-integration/ と一致)。
+- loader が archived plan の path を `trackedExcludedPaths` として source set → projection に運ぶ。
+- `analyzeRelationImpact`: node 欠落 path が非走査対象 / directory / archived plan なら
+  `non-graph-path` (info、ok を落とさない)、走査対象配下の node 欠落は従来どおり
+  `missing-projection` (error)。
+
+## 2. 対象外
+
+- 走査対象クラス配下の node 欠落を error にする規律 (U-RELGRAPH-006) の緩和はしない。
+- doctor `change-impact` gate (別実装、カテゴリ分類式) の変更。
+- Codex in-flight (docs/skills, cli.ts distribution 等) のファイル内容。
+
+## 3. 受入条件
+
+- U-RELGRAPH-006b: config / skill / directory / archived plan の変更は non-graph-path (info)
+  で ok=true、走査対象 (src/) の node 欠落は missing-projection (error) のまま
+  (tests/relation-graph.test.ts)。
+- `bun run vitest run tests/relation-graph.test.ts tests/relation-graph-loader.test.ts` green、
+  `bun run typecheck` green、`ut-tdd graph impact` が現行 working tree で exit 0。

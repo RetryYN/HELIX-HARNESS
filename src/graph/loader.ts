@@ -265,6 +265,9 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
   const plans: PlanInput[] = [];
   // plan が derives-from する全 requirement id を集約 (requirement node 供給用、stale-edge 是正)。
   const referencedReqs = new Set<string>();
+  // archived plan の path (docs/plans 配下だが node 化しない)。impact 分析が missing-projection
+  // error でなく non-graph-path として扱えるよう、除外理由を明示的に運ぶ (PLAN-L7-308)。
+  const archivedPlanPaths: string[] = [];
   try {
     const reviewPlans = loadReviewPlans(repoRoot);
     const plansDir = join(repoRoot, "docs", "plans");
@@ -278,7 +281,10 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
       const fm = parsePlanFrontmatter(content);
       // archived plan は live graph に edge/node を出さない (historical、generates が削除済 artifact を
       // 指して dangling 化するのを防ぐ)。status は frontmatter から判定 (PLAN-L7-142)。
-      if (fm.status === "archived") continue;
+      if (fm.status === "archived") {
+        archivedPlanPaths.push(`docs/plans/${rp.file}`);
+        continue;
+      }
       // generates: src/*.ts artifact のみ抽出 (generates edge = plan→source)
       const generatesSrc = (fm.generates ?? [])
         .map((g) => g.artifact_path ?? "")
@@ -396,5 +402,6 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
     testDesignDocs,
     // dbTables: 省略 (projection-writer 経由で供給)
     dbTables: [],
+    trackedExcludedPaths: archivedPlanPaths,
   };
 }
