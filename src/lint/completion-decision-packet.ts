@@ -20,6 +20,7 @@ import {
 const JAPANESE_GUIDANCE_PATTERN = /[ぁ-んァ-ン一-龯]/;
 
 export type CompletionDecisionPacketViolationReason =
+  | "invalid_schema_version"
   | "invalid_generated_from"
   | "invalid_status_ok_consistency"
   | "invalid_authority_boundary"
@@ -81,6 +82,7 @@ export interface RecordTemplateContractViolation {
   reason: string;
 }
 
+const SCHEMA_VERSION = "completion-decision-packet.v1";
 const POLICY = "decision-packet-freshness.v1";
 const ALLOWED_SOURCE_COMMANDS = new Set([
   "ut-tdd handover",
@@ -169,6 +171,13 @@ export function analyzeCompletionDecisionPacket(
   const validForMinutes = packet.freshness?.validForMinutes;
   const expiresAt = packet.freshness?.expiresAt ?? "";
   const expiresMs = Date.parse(expiresAt);
+
+  if (packet.schemaVersion !== SCHEMA_VERSION) {
+    violations.push({
+      reason: "invalid_schema_version",
+      detail: `schemaVersion=${String(packet.schemaVersion)} expected=${SCHEMA_VERSION}`,
+    });
+  }
 
   if (packet.generatedFrom !== "outstanding.completionReadiness") {
     violations.push({

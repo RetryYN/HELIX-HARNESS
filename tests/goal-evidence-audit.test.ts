@@ -42,7 +42,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("workflowRouteImpact");
     expect(text).toContain("7f83ca811353ed90b3e981178a1b0c9977dd5863");
     expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
-    expect(text).toContain("3196ee5b2f564fd3523d010ddbb854d3c54a2523");
+    expect(text).toContain("e454190d433292f5e9409033823a05e9dad61b67");
     expect(text).toContain("v0.1.3");
     expect(text).toContain("package.json version: `0.1.0`");
     expect(text).toContain("local distribution tag: `v0.1.0`");
@@ -138,7 +138,7 @@ describe("HELIX objective evidence audit", () => {
         "外部 source ledger (checked 2026-01-01)",
       )
       .replaceAll("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack", "unison-ai-product/PACK-MISSING")
-      .replaceAll("3196ee5b2f564fd3523d010ddbb854d3c54a2523", "pack-head-missing")
+      .replaceAll("e454190d433292f5e9409033823a05e9dad61b67", "pack-head-missing")
       .replaceAll("distribution_pack_latest_tag", "distribution_pack_latest_tag_missing")
       .replaceAll("v0.1.3", "pack-tag-missing")
       .replaceAll("package.json version: `0.1.0`", "package.json version: `0.1.9`")
@@ -164,12 +164,12 @@ describe("HELIX objective evidence audit", () => {
       expect.arrayContaining([
         "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-03",
         "G-01: missing external source marker unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-        "G-01: missing external source marker 3196ee5b2f564fd3523d010ddbb854d3c54a2523",
+        "G-01: missing external source marker e454190d433292f5e9409033823a05e9dad61b67",
         "G-01: missing external source marker v0.1.3",
         "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-03",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
         "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
-        "G-01: 外部 source ledger distribution_pack_repo observed missing 3196ee5b2f564fd3523d010ddbb854d3c54a2523",
+        "G-01: 外部 source ledger distribution_pack_repo observed missing e454190d433292f5e9409033823a05e9dad61b67",
         "G-01: 外部 source ledger missing row distribution_pack_latest_tag",
         "G-01: missing distribution version binding marker package.json version: `0.1.0`",
         "G-01: missing distribution version binding marker local distribution tag: `v0.1.0`",
@@ -185,7 +185,7 @@ describe("HELIX objective evidence audit", () => {
       ...baseInput,
       externalObserved: {
         development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-        distribution_pack_repo: "3196ee5b2f564fd3523d010ddbb854d3c54a2523",
+        distribution_pack_repo: "e454190d433292f5e9409033823a05e9dad61b67",
         distribution_pack_latest_tag: "v0.1.3",
       },
     });
@@ -202,7 +202,7 @@ describe("HELIX objective evidence audit", () => {
 
     expect(drifted.ok).toBe(false);
     expect(drifted.violations).toContain(
-      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=3196ee5b2f564fd3523d010ddbb854d3c54a2523 actual=different-pack-head",
+      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=e454190d433292f5e9409033823a05e9dad61b67 actual=different-pack-head",
     );
   });
 

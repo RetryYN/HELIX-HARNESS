@@ -743,7 +743,7 @@ describe("L7 CLI surface closure", () => {
   it("verifies objective external ledger with git ls-remote observations", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
     try {
-      writeFakeGitLsRemote(binDir, "3196ee5b2f564fd3523d010ddbb854d3c54a2523");
+      writeFakeGitLsRemote(binDir, "e454190d433292f5e9409033823a05e9dad61b67");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -755,7 +755,7 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         externalObserved: {
           development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-          distribution_pack_repo: "3196ee5b2f564fd3523d010ddbb854d3c54a2523",
+          distribution_pack_repo: "e454190d433292f5e9409033823a05e9dad61b67",
           distribution_pack_latest_tag: "v0.1.3",
         },
         externalCheck: {
@@ -788,7 +788,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=3196ee5b2f564fd3523d010ddbb854d3c54a2523 actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=e454190d433292f5e9409033823a05e9dad61b67 actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -798,7 +798,7 @@ describe("L7 CLI surface closure", () => {
   it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
     try {
-      writeFakeGitLsRemote(binDir, "3196ee5b2f564fd3523d010ddbb854d3c54a2523", "v0.1.4");
+      writeFakeGitLsRemote(binDir, "e454190d433292f5e9409033823a05e9dad61b67", "v0.1.4");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -855,6 +855,7 @@ describe("L7 CLI surface closure", () => {
       expect(json.status).toBe(0);
       const packet = JSON.parse(json.stdout);
       expect(packet).toMatchObject({
+        schemaVersion: "completion-decision-packet.v1",
         ok: false,
         status: "blocked",
         generatedFrom: "outstanding.completionReadiness",
@@ -1248,7 +1249,7 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd status --json",
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -1370,7 +1371,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd status --json",
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -1408,7 +1409,7 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           phase: "version-up-dry-run",
-          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           writePolicy: "no-write",
           source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
           sourceUrl: "https://semver.org/",
@@ -1454,7 +1455,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
     expect(text.stdout).toContain(
-      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     );
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
@@ -1890,7 +1891,7 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "3196ee5b2f564fd3523d010ddbb854d3c54a2523",
+              mainHead: "e454190d433292f5e9409033823a05e9dad61b67",
               latestTag: "v0.1.3",
             },
             versionBinding: {

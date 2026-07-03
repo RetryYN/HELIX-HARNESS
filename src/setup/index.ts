@@ -27,6 +27,10 @@ import {
 } from "./templates";
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
+export const PACK_DISTRIBUTION_REMOTE_URL =
+  "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+export const CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND = `bun run ${CONSUMER_VERSION_UP_DRY_RUN_COMMAND}`;
 
 export const CONSUMER_CI_RUN_COMMANDS = [
   "bun install --frozen-lockfile",
@@ -34,7 +38,7 @@ export const CONSUMER_CI_RUN_COMMANDS = [
   "bun run ut-tdd setup project --dry-run --json",
   "bun run ut-tdd status --json",
   "bun run ut-tdd completion decision-packet --json",
-  "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+  CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
   "bun run ut-tdd doctor --profile consumer --json",
   "bun run ut-tdd rename plan --json",
   "bun run ut-tdd handover status --json",
@@ -56,7 +60,7 @@ export const CONSUMER_VSCODE_TASK_COMMANDS = [
   ["HELIX: completion decision-packet", "bun run ut-tdd completion decision-packet --json"],
   [
     "HELIX: version-up dry-run",
-    "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+    CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
   ],
   ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
   ["HELIX: handover status", "bun run ut-tdd handover status --json"],
@@ -779,7 +783,7 @@ export interface HelixProjectDoctorBaseline {
     "ut-tdd status --json",
     "ut-tdd setup project --dry-run --json",
     "ut-tdd completion decision-packet --json",
-    "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+    "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
     "ut-tdd handover status --json",
@@ -851,7 +855,7 @@ export interface ConsumerReadinessPlan {
     cutoverPacketCommand: "ut-tdd rename plan --json";
     distributionReference: {
       repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";
-      mainHead: "3196ee5b2f564fd3523d010ddbb854d3c54a2523";
+      mainHead: "e454190d433292f5e9409033823a05e9dad61b67";
       latestTag: "v0.1.3";
     };
     versionBinding: {
@@ -953,7 +957,7 @@ const COMMITLINT_DOTFILE = "commitlint.config.js";
 export const LOCAL_DISTRIBUTION_PACKAGE_VERSION = "0.1.0";
 const PACK_DISTRIBUTION_REFERENCE = {
   repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-  mainHead: "3196ee5b2f564fd3523d010ddbb854d3c54a2523",
+  mainHead: "e454190d433292f5e9409033823a05e9dad61b67",
   latestTag: "v0.1.3",
 } as const;
 
@@ -1070,7 +1074,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "ut-tdd status --json",
     "ut-tdd setup project --dry-run --json",
     "ut-tdd completion decision-packet --json",
-    "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+    "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
     "ut-tdd handover status --json",
@@ -1539,7 +1543,7 @@ export function buildConsumerReadinessPlan(input: {
         requiredBefore: [
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd completion decision-packet --json",
-          "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+          "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           "bun run ut-tdd doctor --profile consumer --json",
           "bun run ut-tdd rename plan --json",
           `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
@@ -1555,7 +1559,7 @@ export function buildConsumerReadinessPlan(input: {
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd completion decision-packet --json",
-        "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+        "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
         "bun run ut-tdd handover status --json",
@@ -1653,7 +1657,7 @@ function buildConsumerArtifactReadinessPlan(
     text.includes(MANAGED_END) &&
     text.includes("HELIX") &&
     text.includes("ut-tdd completion decision-packet --json") &&
-    text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
+    text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
     text.includes("ut-tdd doctor --profile consumer") &&
     text.includes("ut-tdd rename plan --json") &&
     /[ぁ-んァ-ヶ一-龠]/.test(text);
@@ -1663,7 +1667,7 @@ function buildConsumerArtifactReadinessPlan(
       hasPath(path) &&
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
+      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
@@ -1676,7 +1680,7 @@ function buildConsumerArtifactReadinessPlan(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json") &&
+      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
@@ -1960,19 +1964,19 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`ut-tdd status --json` を実行する",
             "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
             "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
-            "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
+            "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
             "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
             "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
@@ -2096,7 +2100,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "version-up-dry-run",
-      command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+      command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],

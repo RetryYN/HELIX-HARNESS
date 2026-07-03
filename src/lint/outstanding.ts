@@ -305,6 +305,7 @@ export interface CompletionDecisionRecordTemplate {
 }
 
 export interface CompletionDecisionPacket {
+  schemaVersion: "completion-decision-packet.v1";
   ok: boolean;
   status: "ready" | "blocked";
   generatedFrom: "outstanding.completionReadiness";
@@ -1269,6 +1270,7 @@ export function completionDecisionPacketForOutstanding(
     };
   });
   return {
+    schemaVersion: "completion-decision-packet.v1",
     ok: outstanding.completionReadiness.ok,
     status: outstanding.completionReadiness.status,
     generatedFrom: "outstanding.completionReadiness",

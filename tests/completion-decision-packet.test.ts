@@ -124,6 +124,7 @@ describe("completion decision packet lint", () => {
     const packet = basePacket();
 
     expect(packet).toMatchObject({
+      schemaVersion: "completion-decision-packet.v1",
       authorityBoundary: "human_decision_required",
       humanDecisionRequired: true,
       humanDecisionBlockers: ["po_decision_pending"],
@@ -401,6 +402,21 @@ describe("completion decision packet lint", () => {
         "approvalGate.reviewedSnapshotBindingRequired",
       ]),
     );
+  });
+
+  it("fails completion packets without the top-level schema version", () => {
+    const packet = {
+      ...basePacket(),
+      schemaVersion: undefined,
+    } as unknown as CompletionDecisionPacket;
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      reason: "invalid_schema_version",
+      detail: "schemaVersion=undefined expected=completion-decision-packet.v1",
+    });
   });
 
   it("rejects packets whose authority boundary hides required human decisions", () => {
