@@ -417,6 +417,19 @@ describe("clean distribution local acceptance smoke", () => {
                 packLatestRequiresVersionUpActivation: true,
               },
             },
+            ci: {
+              distributionPackageSurface: {
+                checked: true,
+                ok: true,
+                source: "package-script-probe",
+                requiredCommands: expect.arrayContaining([
+                  "bun run ut-tdd setup project --dry-run --json",
+                  "bun run ut-tdd completion review-bundle --json",
+                  "bun run ut-tdd doctor --profile consumer --json",
+                ]),
+                workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
+              },
+            },
           },
           postSetupWorkflow: { nextRoute: "ready", manualDocSearchRequired: false },
         });

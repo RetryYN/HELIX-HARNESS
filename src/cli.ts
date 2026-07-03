@@ -4913,6 +4913,26 @@ distribution
     const packageJsonText = existsSync(join(packageRoot, "package.json"))
       ? readFileSync(join(packageRoot, "package.json"), "utf8")
       : null;
+    const previousProbe = process.env.UT_TDD_SETUP_SURFACE_PROBE;
+    process.env.UT_TDD_SETUP_SURFACE_PROBE = "1";
+    const packageSurfaceProbe = spawnSync(
+      "bun",
+      ["run", "ut-tdd", "setup", "project", "--help"],
+      {
+        cwd: packageRoot,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+        timeout: 30_000,
+      },
+    );
+    if (previousProbe === undefined) delete process.env.UT_TDD_SETUP_SURFACE_PROBE;
+    else process.env.UT_TDD_SETUP_SURFACE_PROBE = previousProbe;
+    const packageSurfaceOutput =
+      `${packageSurfaceProbe.stdout ?? ""}\n${packageSurfaceProbe.stderr ?? ""}`.trim();
+    const packageSurfaceOk =
+      packageSurfaceProbe.status === 0 &&
+      packageSurfaceOutput.includes("--json") &&
+      packageSurfaceOutput.includes("--dry-run");
     const readiness = buildConsumerReadinessPlan({
       bunVersion,
       hasGit,
@@ -4928,6 +4948,20 @@ distribution
       repoRoot,
       packageRoot,
       tag: opts.tag,
+      distributionPackageSurface: {
+        checked: true,
+        ok: packageSurfaceOk,
+        source: "package-script-probe",
+        tag: opts.tag,
+        evidence:
+          packageSurfaceOk
+            ? "`bun run ut-tdd setup project --help` exposed --dry-run and --json from distribution packageRoot"
+            : `\`bun run ut-tdd setup project --help\` did not expose required setup surface (status ${packageSurfaceProbe.status ?? 1}): ${packageSurfaceOutput.slice(0, 240)}`,
+        latestObservedStatus:
+          packageSurfaceOk
+            ? "distribution packageRoot generated CI setup command exposes dry-run JSON surface"
+            : "distribution packageRoot generated CI setup command surface failed",
+      },
     });
     const output = {
       ok: exportPlan.ok && readiness.ok,

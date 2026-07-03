@@ -925,6 +925,22 @@ export interface ConsumerReadinessPlan {
       adoptionDecision: string;
       workflowRouteImpact: string;
     };
+    distributionPackageSurface: {
+      checked: boolean;
+      source:
+        | "current-clean-artifact-link"
+        | "package-script-probe"
+        | "released-pack-tag"
+        | "not-supplied";
+      tag: string;
+      requiredCommands: string[];
+      ok: boolean;
+      evidence: string;
+      remediation: string;
+      sourceCheckedAt: "2026-07-04";
+      latestObservedStatus: string;
+      workflowRouteImpact: string;
+    };
     requires: string[];
     forkPullRequestSecrets: "not-required";
   };
@@ -1469,6 +1485,18 @@ export function buildConsumerReadinessPlan(input: {
   packageRoot?: string;
   tag?: string;
   packageVersion?: string;
+  distributionPackageSurface?: {
+    checked: boolean;
+    ok: boolean;
+    source:
+      | "current-clean-artifact-link"
+      | "package-script-probe"
+      | "released-pack-tag"
+      | "not-supplied";
+    evidence: string;
+    latestObservedStatus: string;
+    tag?: string;
+  };
 }): ConsumerReadinessPlan {
   const bunOk = Boolean(input.bunVersion && hasMinimumBun(input.bunVersion));
   const packageVersion = input.packageVersion ?? LOCAL_DISTRIBUTION_PACKAGE_VERSION;
@@ -1501,6 +1529,32 @@ export function buildConsumerReadinessPlan(input: {
         evidence: "buildConsumerReadinessPlan.artifactReadiness omitted",
       },
     ],
+  };
+  const distributionPackageSurface = {
+    checked: input.distributionPackageSurface?.checked ?? false,
+    source: input.distributionPackageSurface?.source ?? "not-supplied",
+    tag: input.distributionPackageSurface?.tag ?? tag,
+    requiredCommands: [
+      "bun run ut-tdd setup project --dry-run --json",
+      "bun run ut-tdd status --json",
+      "bun run ut-tdd completion decision-packet --json",
+      "bun run ut-tdd completion review-bundle --json",
+      "bun run ut-tdd doctor --profile consumer --json",
+      "bun run ut-tdd rename plan --json",
+      `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+    ],
+    ok: input.distributionPackageSurface?.ok ?? false,
+    evidence:
+      input.distributionPackageSurface?.evidence ??
+      "generated consumer CI command surface was not probed; readiness fails closed to avoid treating stale Pack tags as runnable",
+    remediation:
+      "current clean artifact link smoke または version-up activation で公開 Pack tag の CLI surface を更新してから consumer readiness を再判定する",
+    sourceCheckedAt: "2026-07-04" as const,
+    latestObservedStatus:
+      input.distributionPackageSurface?.latestObservedStatus ??
+      "not observed in this readiness input; Pack v0.1.0/v0.1.4 external probe on 2026-07-04 returned unknown option '--json' for setup project --dry-run --json",
+    workflowRouteImpact:
+      "missing or failing distribution package surface routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
   };
   const checks = [
     {
@@ -1578,6 +1632,13 @@ export function buildConsumerReadinessPlan(input: {
         ? "projected adapter / VSCode task / .ut-tdd baseline / default-hybrid team が初回 HELIX 稼働契約を満たす"
         : "projected consumer artifacts が不足または意味ずれしている。artifactReadiness.checks を修正してから setup を再実行する",
     },
+    {
+      name: "distribution-package-surface",
+      ok: distributionPackageSurface.ok,
+      message: distributionPackageSurface.ok
+        ? `generated consumer CI の必須 CLI surface は ${distributionPackageSurface.source} で実測済み`
+        : "公開 Pack または package-local CLI が生成 consumer CI の必須 command surface を満たす証跡がない。current clean artifact link smoke または version-up activation 後に再確認する",
+    },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
   return {
@@ -1591,7 +1652,8 @@ export function buildConsumerReadinessPlan(input: {
       typecheckPackageScriptAvailable &&
       testPackageScriptAvailable &&
       runtimeOk &&
-      artifactReadiness.ok,
+      artifactReadiness.ok &&
+      distributionPackageSurface.ok,
     checks,
     artifactReadiness,
     objectiveBoundary: {
@@ -1688,6 +1750,7 @@ export function buildConsumerReadinessPlan(input: {
         workflowRouteImpact:
           "missing lockfile or required package script routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
       },
+      distributionPackageSurface,
       requires: [
         "actions/checkout@v4 with persist-credentials=false",
         "oven-sh/setup-bun@v2",
@@ -2087,6 +2150,7 @@ function buildHelixProjectImportReport(input: {
 function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): ConsumerReadinessPlan {
   const commandAvailable = deps.commandAvailable ?? (() => false);
   const packageRoot = deps.packageRoot ?? deps.repoRoot;
+  const distributionPackageSurface = probeDistributionPackageSurface(deps, packageRoot);
   return buildConsumerReadinessPlan({
     bunVersion: deps.bunVersion?.() ?? null,
     hasGit: commandAvailable("git"),
@@ -2111,8 +2175,60 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
     hasClaude: commandAvailable("claude"),
     hasCodex: commandAvailable("codex"),
     repoRoot: deps.repoRoot,
+    distributionPackageSurface,
     ...(deps.packageRoot ? { packageRoot: deps.packageRoot } : {}),
   });
+}
+
+function probeDistributionPackageSurface(
+  deps: SetupDeps,
+  packageRoot: string,
+): NonNullable<Parameters<typeof buildConsumerReadinessPlan>[0]["distributionPackageSurface"]> {
+  if (!deps.runCommand) {
+    return {
+      checked: false,
+      ok: false,
+      source: "not-supplied",
+      tag: `v${LOCAL_DISTRIBUTION_PACKAGE_VERSION}`,
+      evidence: "runCommand seam is unavailable; package-local generated CI surface was not probed",
+      latestObservedStatus: "not observed",
+    };
+  }
+  if (process.env.UT_TDD_SETUP_SURFACE_PROBE === "1") {
+    return {
+      checked: false,
+      ok: false,
+      source: "not-supplied",
+      tag: `v${LOCAL_DISTRIBUTION_PACKAGE_VERSION}`,
+      evidence: "nested setup surface probe suppressed to avoid recursive self-probing",
+      latestObservedStatus: "nested probe suppressed",
+    };
+  }
+  const previousProbe = process.env.UT_TDD_SETUP_SURFACE_PROBE;
+  process.env.UT_TDD_SETUP_SURFACE_PROBE = "1";
+  let result: { status: number; stderr: string; stdout: string };
+  try {
+    result = deps.runCommand(packageRoot, "bun", ["run", "ut-tdd", "setup", "project", "--help"]);
+  } finally {
+    if (previousProbe === undefined) delete process.env.UT_TDD_SETUP_SURFACE_PROBE;
+    else process.env.UT_TDD_SETUP_SURFACE_PROBE = previousProbe;
+  }
+  const output = `${result.stdout}\n${result.stderr}`.trim();
+  const surfaceOk = result.status === 0 && output.includes("--json") && output.includes("--dry-run");
+  return {
+    checked: true,
+    ok: surfaceOk,
+    source: "package-script-probe",
+    tag: `v${LOCAL_DISTRIBUTION_PACKAGE_VERSION}`,
+    evidence:
+      surfaceOk
+        ? "`bun run ut-tdd setup project --help` exposed --dry-run and --json from consumer packageRoot"
+        : `\`bun run ut-tdd setup project --help\` did not expose required setup surface (status ${result.status}): ${output.slice(0, 240)}`,
+    latestObservedStatus:
+      surfaceOk
+        ? "package-local generated CI setup command exposes dry-run JSON surface"
+        : "package-local generated CI setup command surface failed",
+  };
 }
 
 function packageRootPath(deps: SetupDeps): string {

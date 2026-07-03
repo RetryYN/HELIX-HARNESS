@@ -726,7 +726,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ]);
   });
 
-  it("U-SETUP-012/U-SETUP-032: consumer readiness covers preflight, setup project rollback, contracts, CI, and monorepo root", () => {
+  it("U-SETUP-012/U-SETUP-032/U-SETUP-039: consumer readiness covers preflight, setup project rollback, distribution package surface, contracts, CI, and monorepo root", () => {
     const ready = buildConsumerReadinessPlan({
       bunVersion: "1.3.2",
       hasGit: true,
@@ -741,6 +741,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoRoot: "/repo",
       packageRoot: "/repo/packages/app",
       tag: "v0.1.0",
+      distributionPackageSurface: {
+        checked: true,
+        ok: true,
+        source: "current-clean-artifact-link",
+        evidence: "linked clean artifact supports generated consumer CI commands",
+        latestObservedStatus: "setup project --dry-run --json exited 0",
+      },
     });
 
     expect(ready.ok).toBe(true);
@@ -819,6 +826,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       adoptionDecision: expect.stringContaining("scripts.ut-tdd/typecheck/test"),
       workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
     });
+    expect(ready.checks.find((c) => c.name === "distribution-package-surface")).toMatchObject({
+      ok: true,
+      message: expect.stringContaining("current-clean-artifact-link"),
+    });
+    expect(ready.ci.distributionPackageSurface).toMatchObject({
+      checked: true,
+      source: "current-clean-artifact-link",
+      tag: "v0.1.0",
+      ok: true,
+      requiredCommands: expect.arrayContaining([
+        "bun run ut-tdd setup project --dry-run --json",
+        "bun run ut-tdd completion review-bundle --json",
+        "bun run ut-tdd doctor --profile consumer --json",
+      ]),
+      sourceCheckedAt: "2026-07-04",
+      workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
+    });
     expect(ready.ci.requires).toContain("bun run test");
     expect(ready.ci.requires).toEqual(
       expect.arrayContaining([
@@ -871,6 +895,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoRoot: "/repo",
       packageRoot: "/repo/packages/app",
       tag: "v0.1.0",
+      distributionPackageSurface: {
+        checked: true,
+        ok: true,
+        source: "current-clean-artifact-link",
+        evidence: "linked clean artifact supports generated consumer CI commands",
+        latestObservedStatus: "setup project --dry-run --json exited 0",
+      },
     });
     expect(pathOnly.ok).toBe(false);
     expect(pathOnly.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject({
@@ -893,6 +924,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoRoot: "/repo",
       packageRoot: "/repo/packages/app",
       tag: "v0.1.0",
+      distributionPackageSurface: {
+        checked: true,
+        ok: true,
+        source: "current-clean-artifact-link",
+        evidence: "linked clean artifact supports generated consumer CI commands",
+        latestObservedStatus: "setup project --dry-run --json exited 0",
+      },
     });
     expect(packageScriptReady.ok).toBe(false);
     expect(packageScriptReady.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
@@ -937,6 +975,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "typecheck-package-script",
       "test-package-script",
       "runtime-cli",
+      "distribution-package-surface",
     ]);
 
     const omittedCli = buildConsumerReadinessPlan({
@@ -965,6 +1004,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasCodex: true,
       repoRoot: "/repo",
       tag: "v0.1.4",
+      distributionPackageSurface: {
+        checked: true,
+        ok: true,
+        source: "current-clean-artifact-link",
+        evidence: "linked clean artifact supports generated consumer CI commands",
+        latestObservedStatus: "setup project --dry-run --json exited 0",
+      },
     });
     expect(tagDrift.ok).toBe(false);
     expect(tagDrift.checks.find((c) => c.name === "distribution-version-binding")).toMatchObject({
@@ -976,6 +1022,44 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       requestedDistributionTag: "v0.1.4",
       requestedTagMatchesPackageVersion: false,
       packLatestRequiresVersionUpActivation: true,
+    });
+
+    const stalePackSurface = buildConsumerReadinessPlan({
+      bunVersion: "1.3.2",
+      hasGit: true,
+      hasGh: true,
+      hasUtTddCli: true,
+      hasUtTddPackageScript: true,
+      hasBunLockfile: true,
+      hasTypecheckPackageScript: true,
+      hasTestPackageScript: true,
+      hasClaude: false,
+      hasCodex: true,
+      repoRoot: "/repo",
+      tag: "v0.1.0",
+      distributionPackageSurface: {
+        checked: true,
+        ok: false,
+        source: "released-pack-tag",
+        tag: "v0.1.0",
+        evidence:
+          "Pack v0.1.0 installed but `bun run ut-tdd setup project --dry-run --json` returned unknown option '--json'",
+        latestObservedStatus: "unknown option '--json'",
+      },
+    });
+    expect(stalePackSurface.ok).toBe(false);
+    expect(
+      stalePackSurface.checks.find((c) => c.name === "distribution-package-surface"),
+    ).toMatchObject({
+      ok: false,
+      message: expect.stringContaining("version-up activation"),
+    });
+    expect(stalePackSurface.ci.distributionPackageSurface).toMatchObject({
+      checked: true,
+      source: "released-pack-tag",
+      ok: false,
+      evidence: expect.stringContaining("unknown option '--json'"),
+      remediation: expect.stringContaining("version-up activation"),
     });
   });
 
@@ -1533,19 +1617,22 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
-      deps.files.set(
-        join(cwd, "bun.lock"),
-        [
-          "{",
-          '  "lockfileVersion": 1,',
-          '  "configVersion": 1,',
-          '  "workspaces": { "": { "devDependencies": { "typescript": "^5.6.3", "ut-tdd": "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0" } } },',
-          '  "packages": {}',
-          "}",
-          "",
-        ].join("\n"),
-      );
-      return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+      if (args.join(" ") === "install --lockfile-only") {
+        deps.files.set(
+          join(cwd, "bun.lock"),
+          [
+            "{",
+            '  "lockfileVersion": 1,',
+            '  "configVersion": 1,',
+            '  "workspaces": { "": { "devDependencies": { "typescript": "^5.6.3", "ut-tdd": "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0" } } },',
+            '  "packages": {}',
+            "}",
+            "",
+          ].join("\n"),
+        );
+        return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+      }
+      return { status: 0, stderr: "", stdout: "Options:\n  --dry-run\n  --json\n" };
     };
 
     const result = runHelixProjectSetup(
@@ -1555,6 +1642,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(commands).toEqual([
       { cwd: "/repo", command: "bun", args: ["install", "--lockfile-only"] },
+      {
+        cwd: "/repo",
+        command: "bun",
+        args: ["run", "ut-tdd", "setup", "project", "--help"],
+      },
     ]);
     expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
     expect(result.importReport).toMatchObject({
@@ -1567,6 +1659,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       cliResolution: {
         bareCommandResolved: true,
         packageScriptAvailable: true,
+      },
+      ci: {
+        distributionPackageSurface: {
+          checked: true,
+          ok: true,
+          source: "package-script-probe",
+        },
       },
     });
     expect(result.postSetupWorkflow).toMatchObject({
@@ -1603,8 +1702,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     deps.files.set(join("/repo", "bun.lock"), "stale lockfile\n");
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
-      deps.files.set(join(cwd, "bun.lock"), "lockfileVersion = 1\n");
-      return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+      if (args.join(" ") === "install --lockfile-only") {
+        deps.files.set(join(cwd, "bun.lock"), "lockfileVersion = 1\n");
+        return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+      }
+      return { status: 0, stderr: "", stdout: "Options:\n  --dry-run\n  --json\n" };
     };
 
     const result = runHelixProjectSetup(
@@ -1614,6 +1716,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(commands).toEqual([
       { cwd: "/repo", command: "bun", args: ["install", "--lockfile-only"] },
+      {
+        cwd: "/repo",
+        command: "bun",
+        args: ["run", "ut-tdd", "setup", "project", "--help"],
+      },
     ]);
     expect(result.importReport).toMatchObject({
       mode: "brownfield",
@@ -1716,6 +1823,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
+      runCommand: () => ({
+        status: 0,
+        stderr: "",
+        stdout: "Options:\n  --dry-run\n  --json\n",
+      }),
     });
     deps.files.set(
       join("/repo", "package.json"),
@@ -1783,6 +1895,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       templates: baseTemplates,
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
+      runCommand: () => ({
+        status: 0,
+        stderr: "",
+        stdout: "Options:\n  --dry-run\n  --json\n",
+      }),
     });
     deps.files.set(
       join("/repo", "package.json"),
@@ -1938,6 +2055,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       templates: loadTemplates(process.cwd()),
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
+      runCommand: () => ({
+        status: 0,
+        stderr: "",
+        stdout: "Options:\n  --dry-run\n  --json\n",
+      }),
     });
     deps.files.set(
       join("/repo", "package.json"),
@@ -2124,6 +2246,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       templates: baseTemplates,
       commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
       bunVersion: () => "1.3.14",
+      runCommand: () => ({
+        status: 0,
+        stderr: "",
+        stdout: "Options:\n  --dry-run\n  --json\n",
+      }),
     });
     deps.files.set(
       join("/repo", "package.json"),
