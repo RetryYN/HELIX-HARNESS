@@ -36,6 +36,9 @@ const cutoverMarkers = [
   "| GitHub Actions concurrency | https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | prevent concurrent cutover apply | execution_window_or_freeze_policy |",
   "| GitHub repository rename | https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository | live GitHub repository rename docs | live official GitHub docs with redirects and Pages exception | adopt-live-docs-for-repository-rename-redirect-review | review repo/package/docs references and remote update before external rename | blast_radius_baseline rollback_plan post_cutover_monitoring legacy_alias_policy |",
   "| Google SRE Release Engineering | https://sre.google/sre-book/release-engineering/ | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback process | dry_run_plan rollback_plan post_cutover_monitoring |",
+  "| Google SRE Canarying Releases | https://sre.google/workbook/canarying-releases/ | SRE workbook canarying chapter | live official Google SRE workbook | adopt-canary-risk-reduction-for-staged-cutover-review | staged exposure, health comparison, rollback trigger review before full cutover | dry_run_plan post_cutover_monitoring rollback_plan |",
+  "| Microsoft Safe Deployment Practices | https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments | Azure Well-Architected safe deployment guidance | live official Microsoft Learn guidance | adopt-safe-deployment-risk-controls | progressive exposure, health model, rollback and blast-radius reduction for L14 cutover | execution_window_or_freeze_policy post_cutover_monitoring rollback_plan |",
+  "| Microsoft Testing Strategy | https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/testing | Azure Well-Architected testing guidance | live official Microsoft Learn guidance | adopt-testing-strategy-for-cutover-evidence | pre-release security/regression/load evidence before irreversible state move | dry_run_plan audit_record blast_radius_baseline |",
   "| OWASP LLM06:2025 Excessive Agency | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | approval_scope legacy_alias_policy audit_record |",
   "| SLSA Provenance | https://slsa.dev/spec/v1.2/provenance | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | artifact provenance | audit_record blast_radius_baseline state_backup_plan |",
   "Cutover source ledger meaning review",
@@ -527,6 +530,9 @@ describe("cutover readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.missingSourceLedgerRows).toContain("SLSA Provenance");
     expect(result.missingSourceLedgerRows).toContain("GitHub Actions concurrency");
+    expect(result.missingSourceLedgerRows).toContain("Google SRE Canarying Releases");
+    expect(result.missingSourceLedgerRows).toContain("Microsoft Safe Deployment Practices");
+    expect(result.missingSourceLedgerRows).toContain("Microsoft Testing Strategy");
     expect(result.sourceLedgerViolations).toContainEqual({
       subject: "docs/process/forward/L08-L14-verification-phase.md",
       reason: "cutover source ledger NIST SSDF SP 800-218 has empty adoption decision",
@@ -538,6 +544,14 @@ describe("cutover readiness", () => {
       input({
         rightArmMd: cutoverMarkers
           .replace("https://slsa.dev/spec/v1.2/provenance", "https://example.com/provenance")
+          .replace(
+            "https://sre.google/workbook/canarying-releases/",
+            "https://sre.google/sre-book/release-engineering/",
+          )
+          .replace(
+            "execution_window_or_freeze_policy post_cutover_monitoring rollback_plan",
+            "post_cutover_monitoring rollback_plan",
+          )
           .replace("audit_record blast_radius_baseline state_backup_plan", "audit_record"),
       }),
     );
@@ -554,6 +568,16 @@ describe("cutover readiness", () => {
           subject: "docs/process/forward/L08-L14-verification-phase.md",
           reason:
             "cutover source ledger SLSA Provenance required field impact missing expected blast_radius_baseline",
+        },
+        {
+          subject: "docs/process/forward/L08-L14-verification-phase.md",
+          reason:
+            "cutover source ledger Google SRE Canarying Releases official URL missing expected https://sre.google/workbook/canarying-releases/",
+        },
+        {
+          subject: "docs/process/forward/L08-L14-verification-phase.md",
+          reason:
+            "cutover source ledger Microsoft Safe Deployment Practices required field impact missing expected execution_window_or_freeze_policy",
         },
       ]),
     );
