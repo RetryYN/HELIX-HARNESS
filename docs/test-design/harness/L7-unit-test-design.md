@@ -991,3 +991,10 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 |---|---|---|
 | U-VERSIONUP-SOURCE-007 | `analyzeVersionUpReadiness` | version-up mode doc が Google Cloud Deploy の deployment verification / canary / rollback を比較根拠として使う場合、`Version-up source ledger` table に `Google Cloud Deploy verification` / `Google Cloud Deploy canary` / `Google Cloud Deploy rollback` の 3 行が必須。本文 prose だけに残って table row が無い場合は `missingSourceLedgerRows` で fail-close する。 |
 | U-VERSIONUP-SOURCE-008 | `EXPECTED_SOURCE_LEDGER_BINDINGS` | Google Cloud Deploy rollback row は `https://docs.cloud.google.com/deploy/docs/roll-back` と `rollback_plan` impact を持つ。旧 URL や field impact 欠落は source ledger drift として fail-close し、version-up activation の rollback 比較根拠を自由文に戻さない。 |
+
+## PLAN-L7-290 setup project rollback command 追補
+
+| U-ID | Target | Oracle |
+|---|---|---|
+| U-SETUP-032 | `buildConsumerReadinessPlan().rollback.commands` | HELIX project bootstrap の rollback 手順は `ut-tdd setup project --dry-run --json` と `ut-tdd setup project --solo` を返す。旧 solo/team adapter 入口の `ut-tdd setup --dry-run` / `ut-tdd setup --solo` が consumer readiness に混入した場合は fail-close し、新規プロジェクト導入の復旧導線を正規 `setup project` から逸脱させない。 |
+| U-SETUP-033 | `loadTemplates(process.cwd())` / `runHelixProjectSetup` | 実配布される `docs/templates/*` を読み込んだ `ut-tdd setup project --dry-run` は `consumerReadiness.ok=true` になる。built-in fallback が green でも、docs/templates 実体が古く `completion review-bundle` / `version-up dry-run v0.1.4 --release-remote` / `team run dry-run` / read-only escalation workflow を欠く場合は `projected-consumer-artifacts` で fail-close する。 |

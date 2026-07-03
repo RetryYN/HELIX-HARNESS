@@ -1581,7 +1581,11 @@ export function buildConsumerReadinessPlan(input: {
         ".ut-tdd/state/setup.json",
       ],
       backupRequired: true,
-      commands: [`git switch ${tag}`, "ut-tdd setup --dry-run", "ut-tdd setup --solo"],
+      commands: [
+        `git switch ${tag}`,
+        "ut-tdd setup project --dry-run --json",
+        "ut-tdd setup project --solo",
+      ],
     },
     contracts: {
       semver: "0.x may add capabilities; breaking public contract changes require migration notes",

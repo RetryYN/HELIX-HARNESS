@@ -726,7 +726,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ]);
   });
 
-  it("U-SETUP-012: consumer readiness covers preflight, rollback, contracts, CI, and monorepo root", () => {
+  it("U-SETUP-012/U-SETUP-032: consumer readiness covers preflight, setup project rollback, contracts, CI, and monorepo root", () => {
     const ready = buildConsumerReadinessPlan({
       bunVersion: "1.3.2",
       hasGit: true,
@@ -814,6 +814,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.rollback.managedPaths).toContain(join(".codex", "hooks.json"));
     expect(ready.rollback.managedPaths).toContain(join(".claude", "agents", "code-reviewer.md"));
     expect(ready.rollback.managedPaths).toContain(join(".claude", "commands", "build.md"));
+    expect(ready.rollback.commands).toEqual([
+      "git switch v0.1.0",
+      "ut-tdd setup project --dry-run --json",
+      "ut-tdd setup project --solo",
+    ]);
+    expect(ready.rollback.commands).not.toContain("ut-tdd setup --dry-run");
+    expect(ready.rollback.commands).not.toContain("ut-tdd setup --solo");
     expect(ready.contracts.tagPin).toContain("#v0.1.0");
     expect(ready.contracts.stable).toContain("adapter managed markers");
     expect(ready.contracts.stable).toContain("Claude/Codex adapter hook templates");
@@ -1733,6 +1740,50 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "handover-route",
       "team-run-dry-run",
     ]);
+  });
+
+  it("U-SETUP-033: docs/templates materialized setup project readiness stays green", () => {
+    const deps = mockDeps({
+      templates: loadTemplates(process.cwd()),
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+    deps.files.set(
+      join("/repo", "package.json"),
+      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+    );
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(true);
+    expect(result.postSetupWorkflow).toMatchObject({
+      nextRoute: "ready",
+      readinessOk: true,
+      unmetGates: [],
+    });
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "claude-adapter-docs-carry-consumer-boundary",
+          ok: true,
+        }),
+        expect.objectContaining({
+          name: "claude-surface-templates-carry-completion-preflight",
+          ok: true,
+        }),
+        expect.objectContaining({
+          name: "harness-check-ci-is-read-only-consumer-smoke",
+          ok: true,
+        }),
+        expect.objectContaining({
+          name: "escalation-stale-is-no-write-route-audit",
+          ok: true,
+        }),
+      ]),
+    );
   });
 
   it("blocks setup readiness when projected VS Code tasks contain extra or automatic tasks", () => {

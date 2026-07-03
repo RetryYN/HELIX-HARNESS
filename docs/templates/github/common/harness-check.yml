@@ -1,6 +1,3 @@
-# harness-check — UT-TDD 利用者チーム repo に配備する CI (要件 §6.9)。
-# Phase 0-A では Required 化しない / Phase 0-B で Required Status Checks に登録 (§6.5)。
-# typecheck + 全回帰を push/PR (main) で実行。biome lint / branch-type matrix は段階追加。
 name: harness-check
 on:
   push:
@@ -26,13 +23,17 @@ jobs:
         run: bun run ut-tdd status --json
       - name: HELIX completion decision packet
         run: bun run ut-tdd completion decision-packet --json
+      - name: HELIX completion review bundle
+        run: bun run ut-tdd completion review-bundle --json
+      - name: HELIX version-up dry-run
+        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json
       - name: HELIX consumer doctor
         run: bun run ut-tdd doctor --profile consumer --json
       - name: HELIX rename plan
         run: bun run ut-tdd rename plan --json
       - name: Handover route
         run: bun run ut-tdd handover status --json
-      - name: typecheck
-        run: bun run typecheck
-      - name: test
-        run: bun run test
+      - name: HELIX team run dry-run
+        run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json
+      - run: bun run typecheck
+      - run: bun run test
