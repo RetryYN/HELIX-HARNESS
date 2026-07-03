@@ -9,6 +9,7 @@ created: 2026-06-30
 updated: 2026-07-03
 owner: Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: tl
@@ -57,6 +58,79 @@ dependencies:
     - tests/cli-surface.test.ts
     - tests/doctor.test.ts
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-03T19:58:09+09:00"
+    tests_green_at: "2026-07-03T19:58:09+09:00"
+    verdict: approve
+    scope: "Continuation: `externalObserved` の部分入力を fail-close にし、Pack source ledger を 2026-07-03 の実測 `distribution_pack_repo=a13eb78a87dbbc1f60fa0b53e3a55413853c68b2` / `distribution_pack_latest_tag=v0.1.4` へ同期した。consumer setup / distribution readiness の version-up dry-run も Pack latest `v0.1.4` を plan-only target として示し、local package version `0.1.0` / local distribution tag `v0.1.0` の採用境界は維持する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/goal-evidence-audit.test.ts tests/cli-surface.test.ts tests/doctor.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-03T19:56:00+09:00"
+        evidence_path: tests/goal-evidence-audit.test.ts
+        output_digest: "sha256:dcb5dbaa8059b8350946eba2976c06e656b8a3171070e8f04f6c8989c8456b41"
+      - kind: smoke
+        command: "bun run src/cli.ts audit objective-external --json"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-03T19:48:00+09:00"
+        evidence_path: docs/governance/helix-objective-evidence-audit.md
+        output_digest: "sha256:cc928ca3f1f7ad8a75a400d23a78fd5ad9103b03aeea1165a6a3a5127b8382f4"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T19:48:00+09:00"
+        evidence_path: src/lint/objective-evidence-audit.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      - kind: lint
+        command: "bun run lint"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T19:55:00+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:85e5b5d1d7d7116edd572f2c2aadda8bd53ee07ef07fb48f4c696b3e30dc5717"
+      - kind: smoke
+        command: "bun run src/cli.ts db rebuild --json"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T19:53:00+09:00"
+        evidence_path: src/state-db/index.ts
+        output_digest: "sha256:c05aade241e5a66032763c60eaa6a5dde9dd810dd4bfb01646c2abef829e68dc"
+      - kind: doctor
+        command: "bun run src/cli.ts doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T19:57:00+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:2f0bdadafa19f55d5375abb1aaa9c7082864c329366178802bd981d1cb29c707"
+      - kind: lint
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T19:57:00+09:00"
+        evidence_path: docs/plans/PLAN-L7-209-objective-evidence-audit.md
+        output_digest: "sha256:67d7cd7659d5874e943e942ff332f62948d39961baed18e8eadd5df64a7fffd7"
+      - kind: smoke
+        command: "git diff --check"
+        runner: bash
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T19:57:00+09:00"
+        evidence_path: docs/plans/PLAN-L7-209-objective-evidence-audit.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-03T19:27:00+09:00"
@@ -193,4 +267,6 @@ adapter config, performance NFR, and naming migration.
   `distribution_pack_repo`, and `distribution_pack_latest_tag` through
   `git ls-remote`, passes them as `externalObserved`, and exits non-zero when
   any observed HEAD or semver-latest Pack tag drifts from the ledger.
+- `externalObserved` を audit に渡す場合は 3 件すべての observed source key
+  を必須にする。部分観測は未観測 source を unchanged と扱わず fail-close する。
 - Targeted audit tests, doctor, and full tests pass before commit.

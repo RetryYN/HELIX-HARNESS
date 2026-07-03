@@ -122,7 +122,7 @@ function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCo
   return path;
 }
 
-function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.1.3"): string {
+function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.1.4"): string {
   if (process.platform === "win32") {
     const path = join(binDir, "git.cmd");
     writeFileSync(
@@ -794,7 +794,7 @@ describe("L7 CLI surface closure", () => {
   it("verifies objective external ledger with git ls-remote observations", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
     try {
-      writeFakeGitLsRemote(binDir, "e454190d433292f5e9409033823a05e9dad61b67");
+      writeFakeGitLsRemote(binDir, "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -806,8 +806,8 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         externalObserved: {
           development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-          distribution_pack_repo: "e454190d433292f5e9409033823a05e9dad61b67",
-          distribution_pack_latest_tag: "v0.1.3",
+          distribution_pack_repo: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+          distribution_pack_latest_tag: "v0.1.4",
         },
         externalCheck: {
           ok: true,
@@ -839,7 +839,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=e454190d433292f5e9409033823a05e9dad61b67 actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a13eb78a87dbbc1f60fa0b53e3a55413853c68b2 actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -849,7 +849,7 @@ describe("L7 CLI surface closure", () => {
   it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
     try {
-      writeFakeGitLsRemote(binDir, "e454190d433292f5e9409033823a05e9dad61b67", "v0.1.4");
+      writeFakeGitLsRemote(binDir, "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2", "v0.1.5");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -859,7 +859,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_latest_tag observed drift expected=v0.1.3 actual=v0.1.4",
+        "G-01: 外部 source ledger distribution_pack_latest_tag observed drift expected=v0.1.4 actual=v0.1.5",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -1423,7 +1423,7 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
           "ut-tdd completion review-bundle --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -1547,7 +1547,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
       "ut-tdd completion review-bundle --json",
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -1595,7 +1595,7 @@ describe("L7 CLI surface closure", () => {
         expect.objectContaining({
           phase: "version-up-dry-run",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           writePolicy: "no-write",
           source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
           sourceUrl: "https://semver.org/",
@@ -1643,7 +1643,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
     expect(text.stdout).toContain("verification-command: ut-tdd completion review-bundle --json");
     expect(text.stdout).toContain(
-      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     );
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
@@ -2084,15 +2084,15 @@ describe("L7 CLI surface closure", () => {
             completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "e454190d433292f5e9409033823a05e9dad61b67",
-              latestTag: "v0.1.3",
+              mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+              latestTag: "v0.1.4",
             },
             versionBinding: {
               localPackageVersion: "0.1.0",
               localDistributionTag: "v0.1.0",
               requestedDistributionTag: "v0.1.0",
               requestedTagMatchesPackageVersion: true,
-              packLatestTag: "v0.1.3",
+              packLatestTag: "v0.1.4",
               packLatestRequiresVersionUpActivation: true,
             },
           },
@@ -2131,7 +2131,7 @@ describe("L7 CLI surface closure", () => {
       writeFakeCommand(binDir, "gh", "2.0.0");
       const fakeCodex = writeFakeProvider(binDir, "codex");
       writeFakeCommand(binDir, "ut-tdd", "0.1.0");
-      const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.3", "--json"], {
+      const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.4", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
         UT_TDD_CODEX_BIN: fakeCodex,
@@ -2143,7 +2143,7 @@ describe("L7 CLI surface closure", () => {
         ok: false,
         export: {
           ok: true,
-          sourceTag: "v0.1.3",
+          sourceTag: "v0.1.4",
         },
         readiness: {
           ok: false,
@@ -2151,7 +2151,7 @@ describe("L7 CLI surface closure", () => {
             completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             versionBinding: {
               localDistributionTag: "v0.1.0",
-              requestedDistributionTag: "v0.1.3",
+              requestedDistributionTag: "v0.1.4",
               requestedTagMatchesPackageVersion: false,
               packLatestRequiresVersionUpActivation: true,
             },

@@ -240,15 +240,15 @@ describe("clean distribution local acceptance smoke", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "e454190d433292f5e9409033823a05e9dad61b67",
-              latestTag: "v0.1.3",
+              mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+              latestTag: "v0.1.4",
             },
             versionBinding: {
               localPackageVersion: "0.1.0",
               localDistributionTag: "v0.1.0",
               requestedDistributionTag: "v0.1.0",
               requestedTagMatchesPackageVersion: true,
-              packLatestTag: "v0.1.3",
+              packLatestTag: "v0.1.4",
               packLatestRequiresVersionUpActivation: true,
             },
           },

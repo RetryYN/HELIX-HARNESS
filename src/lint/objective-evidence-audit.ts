@@ -107,8 +107,8 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "unison-ai-product/UT-TDD_AGENT-HARNESS",
       "7f83ca811353ed90b3e981178a1b0c9977dd5863",
       "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-      "e454190d433292f5e9409033823a05e9dad61b67",
-      "v0.1.3",
+      "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+      "v0.1.4",
       "検証 / 進捗 source basis 再確認日: 2026-07-03",
     ],
   },
@@ -152,7 +152,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     command:
       "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "e454190d433292f5e9409033823a05e9dad61b67",
+    observed: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
     latestOfficialStatus: "main branch reachable",
     sourceStatusDelta: "changed from previous audit; objective audit refreshed",
     adoptionDecision:
@@ -163,8 +163,8 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     source: "distribution_pack_latest_tag",
     command:
       "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
-    ref: "refs/tags/v0.1.3",
-    observed: "v0.1.3",
+    ref: "refs/tags/v0.1.4",
+    observed: "v0.1.4",
     latestOfficialStatus: "latest tag reachable",
     sourceStatusDelta: "none",
     adoptionDecision: "reference source only; local distribution tag remains v0.1.0",
@@ -266,6 +266,16 @@ function checkExternalSourceLedger(input: ObjectiveEvidenceAuditInput, violation
     violations.push(`G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} rows missing`);
     return;
   }
+  const externalObserved = input.externalObserved;
+  if (externalObserved !== undefined) {
+    for (const expected of EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS) {
+      if (externalObserved[expected.source] === undefined) {
+        violations.push(
+          `G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} externalObserved missing ${expected.source}`,
+        );
+      }
+    }
+  }
   for (const expected of EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS) {
     const row = rows.find((candidate) => candidate.source === expected.source);
     if (!row) {
@@ -284,7 +294,7 @@ function checkExternalSourceLedger(input: ObjectiveEvidenceAuditInput, violation
         );
       }
     }
-    const observed = input.externalObserved?.[expected.source];
+    const observed = externalObserved?.[expected.source];
     if (observed !== undefined && row.observed !== observed) {
       violations.push(
         `G-01: ${EXTERNAL_SOURCE_LEDGER_LABEL} ${expected.source} observed drift expected=${row.observed} actual=${observed}`,
@@ -337,7 +347,7 @@ function checkDistributionVersionBinding(
   const requiredMarkers = [
     `package.json version: \`${packageVersion}\``,
     `local distribution tag: \`${localTag}\``,
-    "Pack latest tag: `v0.1.3`",
+    "Pack latest tag: `v0.1.4`",
     "version-up activation required before adopting Pack latest tag",
   ];
   for (const marker of requiredMarkers) {
