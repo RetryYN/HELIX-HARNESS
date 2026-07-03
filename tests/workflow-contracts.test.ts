@@ -13,6 +13,7 @@ import {
   evaluateResearchDecision,
   evaluateRetrofitMatrix,
   mergeTwoStageAgentDesign,
+  projectUtHistorySignals,
   recordCrossCuttingEvent,
   recordTestRunEvidence,
   routeReverseR4,
@@ -105,6 +106,18 @@ describe("L7 workflow contract implementations", () => {
         db.prepare("SELECT output_digest FROM test_runs WHERE plan_id = ?").get("PLAN-L7-X")
           ?.output_digest,
       ).toBe("sha256:0123456789abcdef");
+      expect(
+        db
+          .prepare(
+            "SELECT duration_ms, started_at, completed_at, failure_digest FROM test_results WHERE oracle_id = ?",
+          )
+          .get("U-FR-L1-06"),
+      ).toEqual({
+        duration_ms: 0,
+        started_at: "2026-06-12T00:00:00.000Z",
+        completed_at: "2026-06-12T00:01:00.000Z",
+        failure_digest: "",
+      });
       expect(db.prepare("SELECT COUNT(*) AS n FROM test_artifact_edges").get()?.n).toBe(1);
     } finally {
       db.close();
@@ -249,6 +262,141 @@ describe("L7 workflow contract implementations", () => {
     expect(signals.signals.find((s) => s.signal_type === "duration_regression")?.score).toBe(
       1 / 3,
     );
+  });
+
+  it("projects UT history flake and duration signals into harness.db", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      const result = projectUtHistorySignals(
+        {
+          plan_id: "PLAN-L7-238",
+          window: "2026-07-03T00:00:00.000Z..2026-07-03T00:03:00.000Z",
+          duration_regression_ratio: 1.5,
+          required_oracles: ["U-FLAKE", "U-SLOW"],
+          test_runs: [
+            {
+              plan_id: "PLAN-L7-238",
+              command: "bun test",
+              runner: "vitest",
+              scope: "unit",
+              started_at: "2026-07-03T00:00:00.000Z",
+              completed_at: "2026-07-03T00:01:00.000Z",
+              exit_code: 1,
+              evidence_path: ".ut-tdd/evidence/run-1.json",
+              cases: [
+                { oracle_id: "U-FLAKE", name: "flaky", status: "failed", duration_ms: 10 },
+                { oracle_id: "U-SLOW", name: "slow", status: "passed", duration_ms: 100 },
+              ],
+            },
+            {
+              plan_id: "PLAN-L7-238",
+              command: "bun test",
+              runner: "vitest",
+              scope: "unit",
+              started_at: "2026-07-03T00:02:00.000Z",
+              completed_at: "2026-07-03T00:03:00.000Z",
+              exit_code: 0,
+              evidence_path: ".ut-tdd/evidence/run-2.json",
+              cases: [
+                { oracle_id: "U-FLAKE", name: "flaky", status: "passed", duration_ms: 12 },
+                { oracle_id: "U-SLOW", name: "slow", status: "passed", duration_ms: 180 },
+              ],
+            },
+          ],
+        },
+        { db, now: () => "2026-07-03T00:04:00.000Z" },
+      );
+
+      expect(result.ok).toBe(true);
+      expect(result.refs.map((ref) => ref.table)).toContain("test_flake_events");
+      expect(result.refs.map((ref) => ref.table)).toContain("quality_signals");
+      expect(db.prepare("SELECT COUNT(*) AS n FROM test_flake_events").get()?.n).toBe(1);
+      expect(
+        db
+          .prepare(
+            "SELECT pass_count, fail_count, flake_score FROM test_flake_events WHERE test_case_id = ?",
+          )
+          .get("test-case-oracle:PLAN-L7-238:U-FLAKE"),
+      ).toEqual({ pass_count: 1, fail_count: 1, flake_score: 0.5 });
+      expect(
+        db
+          .prepare(
+            "SELECT plan_id, oracle_id, first_seen_at, last_seen_at FROM test_cases WHERE test_case_id = ?",
+          )
+          .get("test-case-oracle:PLAN-L7-238:U-FLAKE"),
+      ).toEqual({
+        plan_id: "PLAN-L7-238",
+        oracle_id: "U-FLAKE",
+        first_seen_at: "2026-07-03T00:01:00.000Z",
+        last_seen_at: "2026-07-03T00:03:00.000Z",
+      });
+      expect(
+        db
+          .prepare(
+            "SELECT status, value FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ?",
+          )
+          .get("ut-history", "oracle:PLAN-L7-238:U-SLOW", "duration_regression"),
+      ).toEqual({ status: "warn", value: 1.8 });
+      expect(
+        db
+          .prepare(
+            "SELECT status, value FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ?",
+          )
+          .get("ut-history", "PLAN-L7-238", "duration_regression"),
+      ).toEqual({ status: "warn", value: 0.5 });
+    } finally {
+      db.close();
+    }
+  });
+
+  it("keeps UT history projection IDs scoped by plan", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      for (const planId of ["PLAN-A", "PLAN-B"]) {
+        projectUtHistorySignals(
+          {
+            plan_id: planId,
+            window: "same-window",
+            test_runs: [
+              {
+                plan_id: planId,
+                command: "bun test",
+                runner: "vitest",
+                scope: "unit",
+                started_at: "2026-07-03T00:00:00.000Z",
+                completed_at: "2026-07-03T00:01:00.000Z",
+                exit_code: 1,
+                evidence_path: `${planId}-1.json`,
+                cases: [{ oracle_id: "U-SHARED", name: "shared", status: "failed" }],
+              },
+              {
+                plan_id: planId,
+                command: "bun test",
+                runner: "vitest",
+                scope: "unit",
+                started_at: "2026-07-03T00:02:00.000Z",
+                completed_at: "2026-07-03T00:03:00.000Z",
+                exit_code: 0,
+                evidence_path: `${planId}-2.json`,
+                cases: [{ oracle_id: "U-SHARED", name: "shared", status: "passed" }],
+              },
+            ],
+          },
+          { db, now: () => "2026-07-03T00:04:00.000Z" },
+        );
+      }
+
+      expect(db.prepare("SELECT COUNT(*) AS n FROM test_flake_events").get()?.n).toBe(2);
+      expect(
+        db
+          .prepare("SELECT COUNT(DISTINCT subject_id) AS n FROM quality_signals WHERE metric = ?")
+          .get("flake_score")?.n,
+      ).toBe(4);
+    } finally {
+      db.close();
+    }
   });
 
   it("implements routing, workflow, FE/design, asset, model, drive, skill, and command contracts", () => {

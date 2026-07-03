@@ -296,7 +296,11 @@ Required UT-derived metrics:
 
 - `ut_oracle_coverage = count(test_cases where oracle_id is not null) / expected U-* oracle count by plan`.
 - `ut_plan_green_rate = count(test_runs where plan_id=X and exit_code=0) / count(test_runs where plan_id=X)`.
-- `ut_flake_score` is computed from oracle-level pass/fail history variation and stored in `test_flake_events`; non-zero score creates a `quality_signals` row.
+- `ut_flake_score` は概念名であり、DB metric 名は `flake_score` とする。oracle 単位の pass/fail
+  履歴揺れから算出し、plan scoped ID (`plan_id + oracle_id + window`) で `test_flake_events` に保存する。
+  非 0 の flake は oracle 単位の `quality_signals(source=ut-history, metric=flake_score)` も作る。
+- `duration_regression` は直近 duration と過去中央値の比率で算出し、aggregate signal に加えて
+  原因 oracle の `quality_signals(source=ut-history, metric=duration_regression)` として保存する。
 - `green_definition_compliance = every test_runs.green_definition_id resolves and every required command in that definition has exit_code=0`.
 - `review_green_command_compliance = every 2026-06-23-or-later confirmed/completed review_evidence entry has at least one projected test_runs row with exit_code=0, evidence_path, and output_digest`.
 

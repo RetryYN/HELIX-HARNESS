@@ -8,6 +8,7 @@ import type {
   Finding,
   ProjectionRef,
   Severity,
+  TestCaseEvidence,
   TestRunEvidenceInput,
 } from "./contracts-types";
 
@@ -128,6 +129,10 @@ export function recordTestRunEvidence(
           test_run_id: testRunId,
           oracle_id: testCase.oracle_id ?? "",
           status: testCase.status,
+          duration_ms: testCase.duration_ms ?? 0,
+          failure_digest: testCase.status === "failed" ? stableHash(testCase.message ?? "") : "",
+          started_at: input.started_at,
+          completed_at: input.completed_at,
           message: testCase.message ?? "",
           evidence_path: input.evidence_path,
         },
@@ -298,6 +303,207 @@ export function computeUtHistorySignals(input: {
         evidence_path: evidencePath,
       },
     ],
+  };
+}
+
+type UtOracleHistoryItem = {
+  oracle_id: string;
+  test_case: TestCaseEvidence;
+  completed_at: string;
+  started_at: string;
+  evidence_path: string;
+};
+
+function buildUtOracleHistories(
+  runs: TestRunEvidenceInput[],
+): Map<string, UtOracleHistoryItem[]> {
+  const histories = new Map<string, UtOracleHistoryItem[]>();
+  for (const run of [...runs].sort((a, b) =>
+    `${a.completed_at}:${a.started_at}`.localeCompare(`${b.completed_at}:${b.started_at}`),
+  )) {
+    for (const testCase of nonEmpty(run.cases).filter((c) => c.oracle_id)) {
+      const oracleId = testCase.oracle_id ?? "";
+      const history = histories.get(oracleId) ?? [];
+      history.push({
+        oracle_id: oracleId,
+        test_case: testCase,
+        completed_at: run.completed_at,
+        started_at: run.started_at,
+        evidence_path: run.evidence_path,
+      });
+      histories.set(oracleId, history);
+    }
+  }
+  return histories;
+}
+
+function qualitySignalStatus(metric: string, value: number): string {
+  if (metric === "flake_score" || metric === "duration_regression") {
+    return value > 0 ? "warn" : "pass";
+  }
+  return value >= 1 ? "pass" : "warn";
+}
+
+function qualitySignalThreshold(metric: string): number {
+  return metric === "flake_score" || metric === "duration_regression" ? 0 : 1;
+}
+
+export function projectUtHistorySignals(
+  input: {
+    test_runs: TestRunEvidenceInput[];
+    required_oracles?: string[];
+    duration_regression_ratio?: number;
+    window?: string;
+    plan_id?: string;
+  },
+  deps: { db?: HarnessDb; now?: () => string } = {},
+): {
+  ok: boolean;
+  findings: Finding[];
+  refs: ProjectionRef[];
+  evidence_paths: string[];
+  signals: { signal_type: string; subject_id: string; score: number; evidence_path: string }[];
+} {
+  const computedAt = deps.now?.() ?? new Date().toISOString();
+  const signalResult = computeUtHistorySignals(input);
+  const refs: ProjectionRef[] = [];
+  const evidencePaths = [
+    ...new Set([
+      ...input.test_runs.map((run) => run.evidence_path).filter(Boolean),
+      ...signalResult.signals.map((signal) => signal.evidence_path).filter(Boolean),
+    ]),
+  ];
+  const subjectPrefix = input.plan_id ?? "ut-history";
+  const planScope = input.plan_id ?? "no-plan";
+  const sortedRuns = [...input.test_runs].sort((a, b) =>
+    `${a.completed_at}:${a.started_at}`.localeCompare(`${b.completed_at}:${b.started_at}`),
+  );
+  const window =
+    input.window ??
+    `${sortedRuns.at(0)?.started_at ?? "unknown"}..${sortedRuns.at(-1)?.completed_at ?? "unknown"}`;
+
+  if (deps.db) {
+    for (const signal of signalResult.signals) {
+      const subjectId = signal.subject_id === "ut-history" ? subjectPrefix : signal.subject_id;
+      const signalId = stableId("ut-history-signal", `${subjectId}:${signal.signal_type}`);
+      upsertRow(deps.db, {
+        table: "quality_signals",
+        primaryKey: "signal_id",
+        row: {
+          signal_id: signalId,
+          source: "ut-history",
+          subject_id: subjectId,
+          metric: signal.signal_type,
+          value: Number(signal.score.toFixed(4)),
+          threshold: qualitySignalThreshold(signal.signal_type),
+          status: qualitySignalStatus(signal.signal_type, signal.score),
+          computed_at: computedAt,
+        },
+      });
+      refs.push({ table: "quality_signals", id: signalId, evidence_path: signal.evidence_path });
+    }
+
+    for (const [oracleId, history] of buildUtOracleHistories(input.test_runs)) {
+      const passCount = history.filter((item) => item.test_case.status === "passed").length;
+      const failCount = history.filter((item) => item.test_case.status === "failed").length;
+      if (passCount > 0 && failCount > 0) {
+        const score = Number((Math.min(passCount, failCount) / (passCount + failCount)).toFixed(4));
+        const evidencePath = history.at(-1)?.evidence_path ?? "";
+        const latest = history.at(-1);
+        const first = history.at(0);
+        const testCaseId = stableId("test-case-oracle", `${planScope}:${oracleId}`);
+        const flakeEventId = stableId("test-flake", `${planScope}:${oracleId}:${window}`);
+        upsertRow(deps.db, {
+          table: "test_cases",
+          primaryKey: "test_case_id",
+          row: {
+            test_case_id: testCaseId,
+            test_run_id: "",
+            plan_id: input.plan_id ?? "",
+            oracle_id: oracleId,
+            name: latest?.test_case.name ?? oracleId,
+            first_seen_at: first?.completed_at ?? "",
+            last_seen_at: latest?.completed_at ?? "",
+            status: latest?.test_case.status ?? "",
+            duration_ms: latest?.test_case.duration_ms ?? 0,
+            evidence_path: evidencePath,
+          },
+        });
+        refs.push({ table: "test_cases", id: testCaseId, evidence_path: evidencePath });
+        upsertRow(deps.db, {
+          table: "test_flake_events",
+          primaryKey: "flake_event_id",
+          row: {
+            flake_event_id: flakeEventId,
+            test_case_id: testCaseId,
+            window,
+            pass_count: passCount,
+            fail_count: failCount,
+            flake_score: score,
+            computed_at: computedAt,
+            evidence_path: evidencePath,
+          },
+        });
+        refs.push({ table: "test_flake_events", id: flakeEventId, evidence_path: evidencePath });
+
+        const signalId = stableId("ut-history-flake-oracle", `${planScope}:${oracleId}:${window}`);
+        upsertRow(deps.db, {
+          table: "quality_signals",
+          primaryKey: "signal_id",
+          row: {
+            signal_id: signalId,
+            source: "ut-history",
+            subject_id: `oracle:${planScope}:${oracleId}`,
+            metric: "flake_score",
+            value: score,
+            threshold: 0,
+            status: "warn",
+            computed_at: computedAt,
+          },
+        });
+        refs.push({ table: "quality_signals", id: signalId, evidence_path: evidencePath });
+      }
+
+      const durations = history
+        .map((item) => item.test_case.duration_ms)
+        .filter((duration): duration is number => typeof duration === "number" && duration > 0);
+      if (durations.length >= 2) {
+        const baseline = median(durations.slice(0, -1));
+        const latest = durations.at(-1) ?? 0;
+        const ratio = baseline > 0 ? latest / baseline : 0;
+        const threshold = input.duration_regression_ratio ?? 1.5;
+        if (ratio >= threshold) {
+          const evidencePath = history.at(-1)?.evidence_path ?? "";
+          const signalId = stableId(
+            "ut-history-duration-oracle",
+            `${planScope}:${oracleId}:${window}`,
+          );
+          upsertRow(deps.db, {
+            table: "quality_signals",
+            primaryKey: "signal_id",
+            row: {
+              signal_id: signalId,
+              source: "ut-history",
+              subject_id: `oracle:${planScope}:${oracleId}`,
+              metric: "duration_regression",
+              value: Number(ratio.toFixed(4)),
+              threshold,
+              status: "warn",
+              computed_at: computedAt,
+            },
+          });
+          refs.push({ table: "quality_signals", id: signalId, evidence_path: evidencePath });
+        }
+      }
+    }
+  }
+
+  return {
+    ok: true,
+    findings: [],
+    refs,
+    evidence_paths: evidencePaths,
+    signals: signalResult.signals,
   };
 }
 
