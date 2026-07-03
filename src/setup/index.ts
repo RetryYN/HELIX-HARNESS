@@ -724,6 +724,10 @@ export interface HelixProjectSetupResult extends SetupResult {
   postSetupWorkflow: HelixProjectPostSetupWorkflow;
   vscode: {
     tasksPath: string;
+    profileName: "HELIX";
+    profileOpenCommand: "code --profile HELIX .";
+    profileSourceUrl: "https://code.visualstudio.com/docs/configure/command-line";
+    profileSourceCheckedAt: "2026-07-03";
     statusTask: "HELIX: status";
     completionDecisionPacketTask: "HELIX: completion decision-packet";
     completionReviewBundleTask: "HELIX: completion review-bundle";
@@ -809,13 +813,14 @@ export interface HelixProjectPostSetupWorkflow {
   unmetGates: string[];
   nextActions: string[];
   verificationCommands: string[];
+  manualVerificationCommands: string[];
   dryRunVerificationCommands: string[];
   postApplyVerificationCommands: string[];
   verificationMatrix: Array<{
     phase: string;
     command: string;
     writePolicy: "no-write";
-    availability: "dry-run-immediate" | "post-apply-or-projected";
+    availability: "dry-run-immediate" | "post-apply-or-projected" | "manual-local";
     requiresMaterializedPaths: string[];
     expected: string;
     evidence: string;
@@ -2015,7 +2020,12 @@ function buildHelixProjectPostSetupWorkflow(input: {
     manualDocSearchRequired: false,
     unmetGates,
     nextActions,
-    verificationCommands: verificationMatrix.map((row) => row.command),
+    verificationCommands: verificationMatrix
+      .filter((row) => row.availability !== "manual-local")
+      .map((row) => row.command),
+    manualVerificationCommands: verificationMatrix
+      .filter((row) => row.availability === "manual-local")
+      .map((row) => row.command),
     dryRunVerificationCommands: verificationMatrix
       .filter((row) => row.availability === "dry-run-immediate")
       .map((row) => row.command),
@@ -2050,6 +2060,29 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       adoptionDecisionDelta: "none; keep task projection non-automatic and reviewable",
       workflowRouteImpact:
         "task contract drift routes to consumer doctor/template repair before first HELIX work",
+    },
+    {
+      phase: "vscode-profile-open",
+      command: "code --profile HELIX .",
+      writePolicy: "no-write",
+      availability: "manual-local",
+      requiresMaterializedPaths: [".vscode/tasks.json", ".vscode/settings.json"],
+      expected:
+        "opens the consumer folder in a named HELIX VS Code profile while keeping generated tasks manual and repository writes out of the open step",
+      evidence: "local operator records VS Code profile-open command output or screenshot in first-run readiness evidence",
+      source: "VS Code command line profile launch",
+      sourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
+      sourceCheckedAt: "2026-07-03",
+      latestOfficialStatus:
+        "VS Code CLI official docs expose the --profile option for launching a folder or workspace with a selected profile",
+      sourceStatusDelta:
+        "changed; setup first-run workflow now records the HELIX profile-open entrypoint instead of only projecting tasks",
+      adoptionDecision:
+        "HELIX 導入済み VSCode では `code --profile HELIX .` を手動 local verification とし、profile 起動を setup 完了や automatic task 許可に読み替えない",
+      adoptionDecisionDelta:
+        "add VS Code profile launch evidence as a manual-local first-run check",
+      workflowRouteImpact:
+        "missing local profile-open evidence keeps operator onboarding evidence incomplete but does not authorize cutover or external apply",
     },
     {
       phase: "status-frontier",
@@ -2387,6 +2420,10 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     postSetupWorkflow,
     vscode: {
       tasksPath: join(".vscode", "tasks.json"),
+      profileName: "HELIX",
+      profileOpenCommand: "code --profile HELIX .",
+      profileSourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
+      profileSourceCheckedAt: "2026-07-03",
       statusTask: "HELIX: status",
       completionDecisionPacketTask: "HELIX: completion decision-packet",
       completionReviewBundleTask: "HELIX: completion review-bundle",

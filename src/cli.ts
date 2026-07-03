@@ -4845,6 +4845,9 @@ setupCommand
     for (const command of r.postSetupWorkflow.verificationCommands) {
       process.stdout.write(`verification-command: ${command}\n`);
     }
+    for (const command of r.postSetupWorkflow.manualVerificationCommands) {
+      process.stdout.write(`manual-verification-command: ${command}\n`);
+    }
     for (const row of r.postSetupWorkflow.verificationMatrix) {
       process.stdout.write(
         `verification-check: ${row.phase} availability=${row.availability ?? "-"} requiresMaterializedPaths=${(row.requiresMaterializedPaths ?? []).join(",") || "-"} writePolicy=${row.writePolicy} command=${row.command} expected=${row.expected} evidence=${row.evidence}\n`,
@@ -4859,6 +4862,9 @@ setupCommand
     );
     process.stdout.write(
       `vscode-task: ${r.vscode.tasksPath} (${r.vscode.doctorTask}, ${r.vscode.handoverTask})\n`,
+    );
+    process.stdout.write(
+      `vscode-profile: ${r.vscode.profileName} command=${r.vscode.profileOpenCommand} source=${r.vscode.profileSourceUrl} checked=${r.vscode.profileSourceCheckedAt}\n`,
     );
     process.stdout.write(
       `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,

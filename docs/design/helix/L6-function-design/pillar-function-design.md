@@ -216,15 +216,17 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   task-level `options` なし、`.vscode/settings.json` の `task.allowAutomaticTasks=off` まで doctor で検査し、
   期待 task 以外の余分な task でも自動実行があれば fail-close する。Workspace Trust の自動実行抑止を
   別 project 稼働証跡に含める。
+  `runHelixProjectSetup` は `vscode.profileName=HELIX` と `profileOpenCommand="code --profile HELIX ."` を返し、
+  HELIX 導入済み VSCode で新規 folder を開く導線を manual-local 証跡として扱う。
   生成 task の command は package-local `bun run ut-tdd ...` とし、consumer shell の PATH に bare
   `ut-tdd` が無い場合でも package/bin resolution 経路へ寄せる。
 - HC-P6 `runHelixProjectSetup` の `postSetupWorkflow.verificationMatrix[]` は setup-dry-run /
-  status-frontier / completion-decision-packet / consumer-doctor / identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / writePolicy / expected / evidence /
+  vscode-profile-open / status-frontier / completion-decision-packet / consumer-doctor / identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / writePolicy / expected / evidence /
   source / sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
   adoptionDecisionDelta / workflowRouteImpact を返す。
   各 row は `writePolicy=no-write` で、初回 consumer verification が state/file/remote apply surface へ
   変わらないことを text/JSON の両方で示す。
-  VS Code workspace task、Workspace Trust、PLAN-M-02 rename packet、HELIX status/handover contract、team definition contract を初回稼働証跡へ接続し、
+  VS Code workspace task、VS Code profile CLI、Workspace Trust、PLAN-M-02 rename packet、HELIX status/handover contract、team definition contract を初回稼働証跡へ接続し、
   command 列挙や source 名だけで「別プロジェクトで HELIX が動く」claim を閉じない。text surface は
   `verification-check:` は writePolicy / command / expected / evidence を含め、`verification-source:` も列挙する。
   `HelixProjectSetupResult.githubPlan.branchProtection.scriptPath` を返す場合、0-A/0-B の project setup preview /

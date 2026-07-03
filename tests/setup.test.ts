@@ -1010,6 +1010,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
+        profileName: "HELIX",
+        profileOpenCommand: "code --profile HELIX .",
+        profileSourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
+        profileSourceCheckedAt: "2026-07-03",
         statusTask: "HELIX: status",
         completionDecisionPacketTask: "HELIX: completion decision-packet",
         completionReviewBundleTask: "HELIX: completion review-bundle",
@@ -1166,11 +1170,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
     ]);
+    expect(preview.postSetupWorkflow.manualVerificationCommands).toEqual([
+      "code --profile HELIX .",
+    ]);
     expect(preview.postSetupWorkflow.postApplyVerificationCommands).toEqual([
       "ut-tdd doctor --profile consumer",
       "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
-    expect(preview.postSetupWorkflow.verificationMatrix).toHaveLength(10);
+    expect(preview.postSetupWorkflow.verificationMatrix).toHaveLength(11);
     for (const expectedRow of [
       expect.objectContaining({
         phase: "setup-dry-run",
@@ -1186,6 +1193,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         adoptionDecision: expect.stringContaining("自動実行"),
         adoptionDecisionDelta: expect.stringContaining("none"),
         workflowRouteImpact: expect.stringContaining("consumer doctor"),
+      }),
+      expect.objectContaining({
+        phase: "vscode-profile-open",
+        command: "code --profile HELIX .",
+        writePolicy: "no-write",
+        availability: "manual-local",
+        requiresMaterializedPaths: [".vscode/tasks.json", ".vscode/settings.json"],
+        source: "VS Code command line profile launch",
+        sourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
+        sourceCheckedAt: "2026-07-03",
+        latestOfficialStatus: expect.stringContaining("--profile"),
+        adoptionDecision: expect.stringContaining("HELIX 導入済み VSCode"),
+        workflowRouteImpact: expect.stringContaining("profile-open evidence"),
       }),
       expect.objectContaining({
         phase: "status-frontier",
@@ -1315,7 +1335,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           row.sourceStatusDelta &&
           row.writePolicy === "no-write" &&
           row.availability &&
-          (row.availability === "dry-run-immediate" || row.requiresMaterializedPaths.length > 0) &&
+          (row.availability === "dry-run-immediate" ||
+            row.availability === "manual-local" ||
+            row.requiresMaterializedPaths.length > 0) &&
           row.adoptionDecisionDelta &&
           row.workflowRouteImpact,
       ),
@@ -1730,6 +1752,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(result.postSetupWorkflow.verificationMatrix.map((row) => row.phase)).toEqual([
       "setup-dry-run",
+      "vscode-profile-open",
       "status-frontier",
       "github-ci-safety",
       "completion-decision-packet",

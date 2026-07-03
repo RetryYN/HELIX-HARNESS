@@ -171,9 +171,9 @@ export function checkHelixSetupReviewBundleConsistency(docs: {
       pattern: /postSetupWorkflow\.verificationMatrix\[\][\s\S]*completion-review-bundle/,
     },
     {
-      id: "l6-setup-consumer-doctor-ten-rows",
+      id: "l6-setup-consumer-doctor-eleven-rows",
       text: docs.l6SetupSoloTeam,
-      pattern: /consumer doctor[\s\S]*10 行/,
+      pattern: /consumer doctor[\s\S]*11 行/,
     },
     {
       id: "l6-setup-vscode-nine-tasks",
@@ -188,9 +188,9 @@ export function checkHelixSetupReviewBundleConsistency(docs: {
   ];
   const forbidden: Array<{ id: string; text: string; pattern: RegExp }> = [
     {
-      id: "l6-setup-no-stale-nine-row-contract",
+      id: "l6-setup-no-stale-nine-or-ten-row-contract",
       text: docs.l6SetupSoloTeam,
-      pattern: /first-run matrix 全9行|consumer doctor[\s\S]{0,80}9 行/,
+      pattern: /first-run matrix 全9行|consumer doctor[\s\S]{0,80}(?:9|10) 行/,
     },
     {
       id: "l6-setup-no-stale-review-bundle-gap",

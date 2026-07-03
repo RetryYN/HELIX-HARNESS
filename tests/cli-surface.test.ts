@@ -1502,6 +1502,10 @@ describe("L7 CLI surface closure", () => {
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
         tasksPath: join(".vscode", "tasks.json"),
+        profileName: "HELIX",
+        profileOpenCommand: "code --profile HELIX .",
+        profileSourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
+        profileSourceCheckedAt: "2026-07-03",
         statusTask: "HELIX: status",
         completionDecisionPacketTask: "HELIX: completion decision-packet",
         completionReviewBundleTask: "HELIX: completion review-bundle",
@@ -1623,6 +1627,16 @@ describe("L7 CLI surface closure", () => {
           writePolicy: "no-write",
         }),
         expect.objectContaining({
+          phase: "vscode-profile-open",
+          command: "code --profile HELIX .",
+          writePolicy: "no-write",
+          availability: "manual-local",
+          source: "VS Code command line profile launch",
+          sourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
+          sourceCheckedAt: "2026-07-03",
+          adoptionDecision: expect.stringContaining("HELIX 導入済み VSCode"),
+        }),
+        expect.objectContaining({
           phase: "github-ci-safety",
           command: "ut-tdd setup project --dry-run --json",
           writePolicy: "no-write",
@@ -1699,7 +1713,7 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 10");
+    expect(text.stdout).toContain("verification-matrix: 11");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
@@ -1711,6 +1725,10 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
     expect(text.stdout).toContain(
       "verification-command: ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+    );
+    expect(text.stdout).toContain("manual-verification-command: code --profile HELIX .");
+    expect(text.stdout).toContain(
+      "verification-check: vscode-profile-open availability=manual-local requiresMaterializedPaths=.vscode/tasks.json,.vscode/settings.json writePolicy=no-write command=code --profile HELIX . expected=opens the consumer folder in a named HELIX VS Code profile",
     );
     expect(text.stdout).toContain(
       "verification-check: consumer-doctor availability=post-apply-or-projected requiresMaterializedPaths=AGENTS.md,CLAUDE.md,.claude/CLAUDE.md,.vscode/tasks.json,.vscode/settings.json,.ut-tdd/memory,.ut-tdd/handover,.ut-tdd/evidence,.ut-tdd/teams writePolicy=no-write command=ut-tdd doctor --profile consumer expected=passes the consumer profile",
@@ -1727,6 +1745,9 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
+    );
+    expect(text.stdout).toContain(
+      "verification-source: vscode-profile-open source=VS Code command line profile launch sourceUrl=https://code.visualstudio.com/docs/configure/command-line",
     );
     expect(text.stdout).toContain(
       "verification-source: github-ci-safety source=GitHub Actions secure use and workflow token permissions sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use",
@@ -1752,6 +1773,9 @@ describe("L7 CLI surface closure", () => {
       "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",
     );
     expect(text.stdout).toContain("HELIX: handover status");
+    expect(text.stdout).toContain(
+      "vscode-profile: HELIX command=code --profile HELIX . source=https://code.visualstudio.com/docs/configure/command-line checked=2026-07-03",
+    );
     const currentAvailable = payload.commandAvailability.currentCommandAvailable;
     expect(text.stdout).toContain(
       `command-availability: ut-tdd setup project available=${currentAvailable}; helix setup project available=false`,

@@ -1986,6 +1986,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     .filter(Boolean);
   const expectedFirstRunRows = [
     { phase: "setup-dry-run", command: "ut-tdd setup project --dry-run" },
+    { phase: "vscode-profile-open", command: "code --profile HELIX ." },
     { phase: "status-frontier", command: "ut-tdd status --json" },
     { phase: "github-ci-safety", command: "ut-tdd setup project --dry-run --json" },
     { phase: "completion-decision-packet", command: "ut-tdd completion decision-packet --json" },
@@ -2003,7 +2004,9 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       command: `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     },
   ];
-  const expectedFirstRunCommands = expectedFirstRunRows.map((row) => row.command);
+  const expectedFirstRunCommands = expectedFirstRunRows
+    .filter((row) => row.phase !== "vscode-profile-open")
+    .map((row) => row.command);
   const completionReviewMatrixRow = projectSetupVerificationMatrix.find(
     (row) => row?.phase === "completion-review-bundle",
   );

@@ -231,6 +231,14 @@ function consumerProjectSetupStateTemplate(): string {
       evidence: "first-run setup dry-run output",
     },
     {
+      phase: "vscode-profile-open",
+      command: "code --profile HELIX .",
+      writePolicy: "no-write",
+      requiresMaterializedPaths: [".vscode/tasks.json", ".vscode/settings.json"],
+      expected: "VS Code opens the consumer folder with the HELIX profile",
+      evidence: "first-run local VS Code profile-open evidence",
+    },
+    {
       phase: "status-frontier",
       command: "ut-tdd status --json",
       writePolicy: "no-write",
@@ -321,7 +329,12 @@ function consumerProjectSetupStateTemplate(): string {
     postSetupWorkflow: {
       nextRoute: "ready",
       readinessOk: true,
-      verificationCommands: verificationMatrix.map((row) => row.command),
+      verificationCommands: verificationMatrix
+        .filter((row) => row.phase !== "vscode-profile-open")
+        .map((row) => row.command),
+      manualVerificationCommands: verificationMatrix
+        .filter((row) => row.phase === "vscode-profile-open")
+        .map((row) => row.command),
       verificationMatrix,
     },
   });
