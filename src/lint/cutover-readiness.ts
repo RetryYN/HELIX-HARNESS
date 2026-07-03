@@ -117,6 +117,7 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "NIST SSDF SP 800-218",
   "GitHub Environments required reviewers",
   "GitHub Actions concurrency",
+  "GitHub repository rename",
   "Google SRE Release Engineering",
   "OWASP LLM06:2025 Excessive Agency",
   "SLSA Provenance",
@@ -155,6 +156,17 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
       "https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs",
     ],
     fieldImpacts: ["execution_window_or_freeze_policy"],
+  },
+  "GitHub repository rename": {
+    urls: [
+      "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+    ],
+    fieldImpacts: [
+      "blast_radius_baseline",
+      "rollback_plan",
+      "post_cutover_monitoring",
+      "legacy_alias_policy",
+    ],
   },
   "Google SRE Release Engineering": {
     urls: ["https://sre.google/sre-book/release-engineering/"],

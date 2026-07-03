@@ -548,7 +548,7 @@ describe("completion decision packet lint", () => {
           {
             ...decision.supportingPacketSummaries[0],
             matrixField: "approvalVerificationCommandMatrix" as const,
-            expectedMatrixCount: 9,
+            expectedMatrixCount: 10,
             requiredReviewFields: ["decisionEvidenceChecklist"],
             requiredMatrixFields: ["sourceCheckedAt"],
           },
@@ -563,7 +563,7 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json drift expected=s4-decision-packet.v1/decisionVerificationCommandMatrix/8 actual=s4-decision-packet.v1/approvalVerificationCommandMatrix/9",
+            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json drift expected=s4-decision-packet.v1/decisionVerificationCommandMatrix/8 actual=s4-decision-packet.v1/approvalVerificationCommandMatrix/10",
         },
         {
           reason: "invalid_supporting_packet_summary",

@@ -1439,7 +1439,7 @@ function supportingPacketSummaryForCommand(
         ...base,
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
-        expectedMatrixCount: 9,
+        expectedMatrixCount: 10,
         requiredReviewFields: [
           "semanticFeatureFrontierRecord",
           "activationDecision",
@@ -1548,7 +1548,7 @@ function supportingPacketSummaryForCommand(
         ...base,
         schemaVersion: "identifier-rename-cutover-plan.v1",
         matrixField: "verificationCommandMatrix",
-        expectedMatrixCount: 9,
+        expectedMatrixCount: 10,
         requiredReviewFields: [
           "semanticFeatureFrontierRecord",
           "recordTemplates",

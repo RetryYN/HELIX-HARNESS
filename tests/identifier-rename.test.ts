@@ -65,6 +65,7 @@ function writeCutoverSourceLedger(root: string, checkedDate = "2026-07-02"): voi
       "| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 | Rev. 1 draft | adopt-final-1.1 | release integrity | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |",
       "| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |",
       "| GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently | `execution_window_or_freeze_policy` |",
+      "| GitHub repository rename | <https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository> | live GitHub repository rename docs | live official GitHub docs; redirects and Pages exception documented | adopt-live-docs-for-repository-rename-redirect-review | review repo/package/docs references and remote update before external rename | `blast_radius_baseline`, `rollback_plan`, `post_cutover_monitoring`, `legacy_alias_policy` |",
       "| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book | live official Google SRE book | adopt-operational-guidance | rollback and release process | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |",
       "| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | `approval_scope`, `legacy_alias_policy`, `audit_record` |",
       "| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | reproducible cutover provenance | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |",
@@ -415,11 +416,22 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             writePolicy: "no-write",
             sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
             sourceCheckedAt: "2026-07-02",
-            latestOfficialStatus: expect.stringContaining("NIST SSDF"),
+            latestOfficialStatus: expect.stringContaining("repository rename"),
             sourceStatusDelta: expect.stringContaining("90-day freshness"),
             adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
             adoptionDecisionDelta: expect.stringContaining("approval-gated"),
             workflowRouteImpact: expect.stringContaining("request_runbook_changes"),
+          }),
+          expect.objectContaining({
+            phase: "repository-redirect-review",
+            command: "bun run src/cli.ts rename plan --json",
+            writePolicy: "no-write",
+            source: "GitHub repository rename",
+            sourceUrl:
+              "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+            latestOfficialStatus: expect.stringContaining("project site URLs are an exception"),
+            adoptionDecision: "adopt-live-docs-for-repository-rename-redirect-review",
+            workflowRouteImpact: expect.stringContaining("distribution references"),
           }),
           expect.objectContaining({
             phase: "targeted-regression",
@@ -471,7 +483,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
         expect(row.workflowRouteImpact, row.phase).not.toBe("");
       }
-      expect(plan.verificationCommandMatrix).toHaveLength(9);
+      expect(plan.verificationCommandMatrix).toHaveLength(10);
       expect(identifierRenameVerificationCommandViolations(plan)).toEqual([]);
       expect(
         identifierRenameVerificationCommandViolations({
@@ -598,7 +610,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         stale: false,
         violation: null,
         maxAgeDays: 90,
-        rowCount: 6,
+        rowCount: 7,
         missingRows: [],
         rowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       });
@@ -618,6 +630,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             id: "cutover-rb-03",
             phase: "state-backup-restore-drill",
             command: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+          }),
+          expect.objectContaining({
+            id: "cutover-rb-02a",
+            phase: "repository-redirect-and-remote-review",
+            command: "bun run src/cli.ts rename plan --json",
+            writePolicy: "no-write",
+            evidencePath: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+            source: "GitHub repository rename",
           }),
           expect.objectContaining({
             id: "cutover-rb-05",

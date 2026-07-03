@@ -1182,7 +1182,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             command: "ut-tdd version-up activation-packet --json",
             schemaVersion: "version-up-activation-packet.v1",
             matrixField: "activationVerificationCommandMatrix",
-            expectedMatrixCount: 9,
+            expectedMatrixCount: 10,
             requiredReviewFields: expect.arrayContaining([
               "semanticFeatureFrontierRecord",
               "activationDecision",
@@ -1268,7 +1268,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             command: "ut-tdd rename plan --json",
             schemaVersion: "identifier-rename-cutover-plan.v1",
             matrixField: "verificationCommandMatrix",
-            expectedMatrixCount: 9,
+            expectedMatrixCount: 10,
             requiredReviewFields: expect.arrayContaining([
               "semanticFeatureFrontierRecord",
               "recordTemplates",

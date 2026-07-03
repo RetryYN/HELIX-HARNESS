@@ -313,6 +313,7 @@ const REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS = [
   "NIST SSDF SP 800-218",
   "GitHub Environments required reviewers",
   "GitHub Actions concurrency",
+  "GitHub repository rename",
   "Google SRE Release Engineering",
   "OWASP LLM06:2025 Excessive Agency",
   "SLSA Provenance",
@@ -723,12 +724,32 @@ function buildRenameVerificationCommandMatrix(
       sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus:
-        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency, Google SRE, OWASP LLM06, and SLSA provenance rows",
+        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency/repository rename, Google SRE, OWASP LLM06, and SLSA provenance rows",
       sourceStatusDelta: "none; ledger remains inside the 90-day freshness window",
       adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
       adoptionDecisionDelta: "none; keep irreversible cutover approval-gated and plan-only",
       workflowRouteImpact:
         "none; stale or incomplete source ledger routes cutover back to request_runbook_changes",
+    },
+    {
+      phase: "repository-redirect-review",
+      command: "bun run src/cli.ts rename plan --json",
+      writePolicy: "no-write",
+      expected:
+        "GitHub repository rename redirect behavior, Pages exception, git remote update, and distribution reference impact are reviewed before external repo/package rename",
+      evidence: "rename plan JSON attached to cutover approval record with GitHub repository rename source metadata",
+      source: "GitHub repository rename",
+      sourceUrl: "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+      sourceCheckedAt: cutoverSourceCheckedAt,
+      latestOfficialStatus:
+        "official GitHub docs state repository rename redirects repository information and git operations while project site URLs are an exception",
+      sourceStatusDelta:
+        "none; repository redirect behavior and Pages exception remain explicit cutover review inputs",
+      adoptionDecision: "adopt-live-docs-for-repository-rename-redirect-review",
+      adoptionDecisionDelta:
+        "none; GitHub rename redirects do not authorize HELIX identifier/state cutover by themselves",
+      workflowRouteImpact:
+        "none; repo remote/package/docs distribution references must be reviewed before irreversible cutover approval",
     },
     {
       phase: "targeted-regression",
@@ -887,6 +908,19 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       rollbackCheck: "preview diff can be discarded without git or state mutation",
       source: "PLAN-M-02 non-destructive rehearsal policy",
       sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+    },
+    {
+      id: "cutover-rb-02a",
+      phase: "repository-redirect-and-remote-review",
+      command: "bun run src/cli.ts rename plan --json",
+      writePolicy: "no-write",
+      evidencePath: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+      passCriteria:
+        "GitHub repository rename redirect behavior, project-site exception, git remote update, and distribution references are reviewed before external repository/package rename",
+      rollbackCheck: "remote URL and published documentation references can stay on the pre-cutover repository path until PO approval",
+      source: "GitHub repository rename",
+      sourceUrl:
+        "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
     },
     {
       id: "cutover-rb-03",
@@ -1148,6 +1182,7 @@ export function identifierRenameRunbookCommandViolations(
 ): IdentifierRenameRunbookCommandViolation[] {
   const allowedCommands = new Set([
     "bun run src/cli.ts rename audit --json",
+    "bun run src/cli.ts rename plan --json",
     "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
     "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
     "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
@@ -1246,6 +1281,7 @@ export function identifierRenameVerificationCommandViolations(
 ): IdentifierRenameVerificationCommandViolation[] {
   const allowedNoWriteCommands = new Set([
     "bun run src/cli.ts rename audit --json",
+    "bun run src/cli.ts rename plan --json",
     "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts",
     "bun run lint && bun run typecheck && git diff --check",
     "bun run test",

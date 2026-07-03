@@ -184,6 +184,7 @@ Cutover source ledger (checked 2026-07-03):
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity / archive / protection traceability | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |
 | GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live GitHub Actions environments docs | live official GitHub docs; required reviewers and prevent self-review remain available protection rules | adopt-live-docs-for-approval-shape | action-binding deployment approval pattern | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |
 | GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live GitHub Actions concurrency docs | live official GitHub docs; workflow/job `concurrency` remains the single-run control surface | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently or outside the approved frozen window | `execution_window_or_freeze_policy` |
+| GitHub repository rename | <https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository> | live GitHub repository rename docs | 公式 GitHub docs は rename 後の repository 情報と git 操作 redirect を示すが、project site URL は例外として扱う | adopt-live-docs-for-repository-rename-redirect-review | 外部 repository/package rename 前に repo/package/docs distribution references と git remote update を審査する | `blast_radius_baseline`, `rollback_plan`, `post_cutover_monitoring`, `legacy_alias_policy` |
 | Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback and release process as operational controls | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |
 | OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 LLM risk entry | 2025 official LLM risk entry | adopt-2025-entry | irreversible agentic actions require constrained authority and human oversight | `approval_scope`, `legacy_alias_policy`, `audit_record` |
 | SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | cutover artifact, command, builder, and material provenance must be reproducible from audit evidence | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |
@@ -205,12 +206,16 @@ Windows-only path や未 quote の ref 引数を混入させないため、`bun 
 copyable な POSIX-style check command と shell-quote 済み rollback ref を維持する。`stateBackupManifest[]` must include backup
 target pattern, checksum requirement, restore drill requirement, and restore evidence path for harness.db, memory, state,
 logs, handover, provider handover pointer, approval policy, and repo-local hook configs.
+GitHub repository rename は repository 情報や git 操作の redirect がある一方で project site URL 例外があるため、
+repo/package/docs distribution references、git remote update、Pages / published documentation の扱いを
+承認前に `rename plan` の runbook / verification matrix で審査する。redirect があることをもって
+HELIX CLI/bin、state dir、consumer template、package/bin alias の改名承認に読み替えない。
 
 `verificationCommandMatrix[]` は、現行 `ut-tdd` dist smoke、改名後 `helix` dist smoke、legacy alias smoke を
 1 つの compiled smoke row に隠さず分離する。各 row は command / expected / evidence / source /
 sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta /
 workflowRouteImpact を持ち、L14 review が source 名や URL だけの evidence に退行しないようにする。
-GitHub Actions concurrency、Google SRE release engineering、SLSA provenance、OWASP LLM06 の公式 source は、
+GitHub Actions concurrency、GitHub repository rename、Google SRE release engineering、SLSA provenance、OWASP LLM06 の公式 source は、
 この matrix metadata 用に 2026-07-03 に再確認済みであり、ledger heading は source-ledger freshness の
 anchor として残す。`sourceCheckedAt` は `Cutover source ledger (checked YYYY-MM-DD)` から派生させ、
 ledger heading と verification matrix の確認日を別々に進めない。`cutoverSnapshot.snapshotId` は current blast-radius digest、approval scope digest、

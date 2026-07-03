@@ -592,7 +592,7 @@ describe("L7 CLI surface closure", () => {
               runnableScopedCommand: "bun run ut-tdd rename plan --json",
               schemaVersion: "identifier-rename-cutover-plan.v1",
               matrixField: "verificationCommandMatrix",
-              expectedMatrixCount: 9,
+              expectedMatrixCount: 10,
               requiredReviewFields: expect.arrayContaining(["cutoverSnapshot.snapshotId"]),
               requiredMatrixFields: expect.arrayContaining([
                 "sourceCheckedAt",
@@ -686,7 +686,7 @@ describe("L7 CLI surface closure", () => {
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd rename plan --json runnable=bun run ut-tdd rename plan --json scoped=ut-tdd rename plan --json runnable-scoped=bun run ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=9",
+        "packet-summary: 2 ut-tdd rename plan --json runnable=bun run ut-tdd rename plan --json scoped=ut-tdd rename plan --json runnable-scoped=bun run ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain(
         "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
