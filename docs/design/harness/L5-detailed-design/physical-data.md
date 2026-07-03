@@ -353,6 +353,10 @@ The DB must make cross-cutting impact analysis queryable. The authoring sources 
 標準 text export 行を `diagram_artifacts` へ射影する。Graphviz / D2 CLI で SVG/PDF/PNG 等を
 生成する外部 renderer 実行、`visualizes` edge から diagram refresh action への接続は `IMP-148`
 の継続 scope とする。`graph export --scope` の repo-relative filtering は PLAN-L7-244 で実装済み。
+`dependency_edges.edge_kind` は PLAN-L7-245 で、内部 relation graph edge のうち `derives-from` を
+`references`、`generates` を向き反転して `implements`、`covered-by` を向き反転して `tests`、
+`behavioral-contract` を `declares_module` として投影する。`pairs` / `upstream`、`projects_to`、
+`visualizes`、`impact_rules.trigger_edge_kind` との完全同期は `IMP-148` の継続 scope とする。
 
 Required edge kinds:
 

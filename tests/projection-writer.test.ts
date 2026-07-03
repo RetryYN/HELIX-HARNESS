@@ -694,6 +694,87 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("projects relation graph edges into the physical dependency_edges vocabulary", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-physical-edge-vocabulary-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-TEST-01-edge-vocabulary.md"),
+        [
+          "---",
+          "plan_id: PLAN-TEST-01-edge-vocabulary",
+          "status: confirmed",
+          "kind: impl",
+          "---",
+          "",
+          "fixture",
+          "",
+        ].join("\n"),
+      );
+      const db = openHarnessDb(":memory:");
+      try {
+        const relationGraph: RelationGraphProjection = {
+          nodes: [
+            { id: "plan:PLAN-TEST-01", kind: "plan", path: "docs/plans/PLAN-TEST-01.md" },
+            { id: "requirement:FR-L1-99", kind: "requirement", path: "docs/requirements.md" },
+            { id: "source:src/widget/core.ts", kind: "source", path: "src/widget/core.ts" },
+            { id: "test:tests/core.test.ts", kind: "test", path: "tests/core.test.ts" },
+            { id: "design:widget-design", kind: "design", path: "docs/design/widget.md" },
+          ],
+          edges: [
+            { from: "plan:PLAN-TEST-01", to: "requirement:FR-L1-99", kind: "derives-from" },
+            { from: "plan:PLAN-TEST-01", to: "source:src/widget/core.ts", kind: "generates" },
+            { from: "source:src/widget/core.ts", to: "test:tests/core.test.ts", kind: "covered-by" },
+            {
+              from: "design:widget-design",
+              to: "source:src/widget/core.ts",
+              kind: "behavioral-contract",
+            },
+          ],
+          verificationProfiles: [],
+          findings: [],
+        };
+
+        rebuildHarnessDb({ repoRoot, db, relationGraph });
+        const rows = db
+          .prepare(
+            `SELECT from_node_id, to_node_id, edge_kind
+             FROM dependency_edges
+             WHERE source = 'relation-graph'
+             ORDER BY edge_kind, from_node_id, to_node_id`,
+          )
+          .all() as Array<{ from_node_id: string; to_node_id: string; edge_kind: string }>;
+
+        expect(rows).toEqual([
+          {
+            from_node_id: "design:widget-design",
+            to_node_id: "source:src/widget/core.ts",
+            edge_kind: "declares_module",
+          },
+          {
+            from_node_id: "source:src/widget/core.ts",
+            to_node_id: "plan:PLAN-TEST-01",
+            edge_kind: "implements",
+          },
+          {
+            from_node_id: "plan:PLAN-TEST-01",
+            to_node_id: "requirement:FR-L1-99",
+            edge_kind: "references",
+          },
+          {
+            from_node_id: "test:tests/core.test.ts",
+            to_node_id: "source:src/widget/core.ts",
+            edge_kind: "tests",
+          },
+        ]);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it("projects impact_results with the changed root node separated from the required action target", () => {
     const repoRoot = join(tmpdir(), `ut-tdd-impact-results-${randomUUID()}`);
     try {

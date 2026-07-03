@@ -2007,15 +2007,16 @@ function projectRelationGraph(db: HarnessDb, graph: RelationGraphProjection | un
     });
   }
   for (const edge of graph.edges) {
-    const id = stableId("edge", `${edge.from}->${edge.kind}->${edge.to}`);
+    const projected = projectRelationEdgeForDependencyTable(edge);
+    const id = stableId("edge", `${projected.from}->${projected.kind}->${projected.to}`);
     recordProjectionEvent(db, {
       table: "dependency_edges",
       id,
       row: {
         edge_id: id,
-        from_node_id: edge.from,
-        to_node_id: edge.to,
-        edge_kind: edge.kind,
+        from_node_id: projected.from,
+        to_node_id: projected.to,
+        edge_kind: projected.kind,
         strength: 1,
         source: "relation-graph",
         evidence_path: "",
@@ -2050,6 +2051,26 @@ function projectRelationGraph(db: HarnessDb, graph: RelationGraphProjection | un
       evidencePath: finding.evidencePath,
     });
   }
+}
+
+function projectRelationEdgeForDependencyTable(edge: {
+  from: string;
+  to: string;
+  kind: string;
+}): { from: string; to: string; kind: string } {
+  if (edge.kind === "derives-from") {
+    return { from: edge.from, to: edge.to, kind: "references" };
+  }
+  if (edge.kind === "generates") {
+    return { from: edge.to, to: edge.from, kind: "implements" };
+  }
+  if (edge.kind === "covered-by") {
+    return { from: edge.to, to: edge.from, kind: "tests" };
+  }
+  if (edge.kind === "behavioral-contract") {
+    return { from: edge.from, to: edge.to, kind: "declares_module" };
+  }
+  return edge;
 }
 
 function projectDocumentExports(
