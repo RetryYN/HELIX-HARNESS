@@ -7,6 +7,7 @@ import {
   completionDecisionPacketForOutstanding,
   completionReadinessForOutstanding,
   completionReadinessLine,
+  completionReviewBundleForOutstanding,
   computeOutstandingWork,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
@@ -918,6 +919,178 @@ describe("completionDecisionPacketForOutstanding", () => {
       ]),
     });
     expect(packet.decisions[2].nextWorkflowRoute).toContain("cutover_decision_record");
+  });
+
+  it("bundles completion review packets without deciding or applying gated work", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision_outcome is PO gated; external visualization activation requires human approval before execution.",
+        },
+        {
+          planId: "PLAN-L7-146",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: "version-up parked Cloudflare HMAC webhook activation requires action-binding approval before external execution.",
+        },
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "irreversible cutover requires PO signoff",
+        },
+      ],
+      0,
+    );
+
+    const bundle = completionReviewBundleForOutstanding(outstanding, {
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      now: "2026-06-30T00:30:00.000Z",
+      validForMinutes: 60,
+    });
+
+    expect(bundle).toMatchObject({
+      schemaVersion: "completion-review-bundle.v1",
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      sourceCommand: "ut-tdd completion review-bundle --json",
+      freshness: {
+        validForMinutes: 60,
+        expiresAt: "2026-06-30T01:00:00.000Z",
+        stale: false,
+        policy: "decision-packet-freshness.v1",
+      },
+      planOnly: true,
+      mustNotDecide: true,
+      mustNotApply: true,
+      completionClaimAllowed: false,
+      humanDecisionRequired: true,
+      nextAuthority: "human",
+      status: "blocked",
+      decisionCount: 3,
+      reviewPacketCount: 7,
+      completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
+      runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
+    });
+    expect(bundle.completionDecisionPacketDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(bundle.humanReviewBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(bundle.reviewPacketsDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(bundle.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(bundle.requiredOperatorActionsJa).toEqual(
+      expect.arrayContaining([
+        "将来 version-up activation 判断が記録されるまで parked のまま保持し、active frontier 完了として数えない",
+        "高影響 action の実行前に human/action-binding approval を記録する",
+        "PO/S4 判断を記録してから昇格・却下・Forward merge へ進める",
+        "不可逆 migration/cutover 前に明示的な PO signoff を取得し、通常作業として state move を実装しない",
+      ]),
+    );
+    expect(bundle.blockedUntil).toEqual(
+      expect.arrayContaining([
+        "po_decision_pending",
+        "version_up_parked",
+        "human_approval_pending",
+        "irreversible_migration_pending",
+      ]),
+    );
+    expect(
+      bundle.reviewPackets.map((packet) => [
+        packet.planId,
+        packet.command,
+        packet.scopedCommand,
+        packet.writePolicy,
+        packet.matrixField,
+      ]),
+    ).toEqual([
+      [
+        "PLAN-DISCOVERY-10",
+        "ut-tdd s4 decision-packet --json",
+        "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+        "see-packet-matrix",
+        "decisionVerificationCommandMatrix",
+      ],
+      [
+        "PLAN-DISCOVERY-10",
+        "ut-tdd action-binding approval-packet --json",
+        "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
+        "see-packet-matrix",
+        "approvalVerificationCommandMatrix",
+      ],
+      [
+        "PLAN-L7-146",
+        "ut-tdd version-up activation-packet --json",
+        "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+        "see-packet-matrix",
+        "activationVerificationCommandMatrix",
+      ],
+      [
+        "PLAN-L7-146",
+        "ut-tdd action-binding approval-packet --json",
+        "ut-tdd action-binding approval-packet --json --plan PLAN-L7-146",
+        "see-packet-matrix",
+        "approvalVerificationCommandMatrix",
+      ],
+      [
+        "PLAN-M-02",
+        "ut-tdd rename plan --json",
+        "ut-tdd rename plan --json",
+        "see-packet-matrix",
+        "verificationCommandMatrix",
+      ],
+      [
+        "PLAN-M-02",
+        "ut-tdd rename approval-draft --json",
+        "ut-tdd rename approval-draft --json",
+        "no-write",
+        "none",
+      ],
+      [
+        "PLAN-M-02",
+        "ut-tdd action-binding approval-packet --json",
+        "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
+        "see-packet-matrix",
+        "approvalVerificationCommandMatrix",
+      ],
+    ]);
+    expect(bundle.reviewPackets[0].requiredSafetyFields).toEqual(
+      expect.arrayContaining([
+        "planOnly",
+        "mustNotDecide",
+        "decisionCommandAvailable",
+        "decisionAllowed",
+      ]),
+    );
+    expect(bundle.reviewPackets[2].requiredSafetyFields).toEqual(
+      expect.arrayContaining([
+        "planOnly",
+        "mustNotApply",
+        "activationReadinessSummary.activationAllowed",
+      ]),
+    );
+    expect(bundle.reviewPackets[5].requiredSafetyFields).toEqual(
+      expect.arrayContaining([
+        "planOnly",
+        "mustNotApply",
+        "approvalCommandAvailable",
+        "applyAuthorized",
+        "approvalAllowed",
+      ]),
+    );
+    expect(bundle.reviewPackets[6].requiredSafetyFields).toEqual(
+      expect.arrayContaining([
+        "planOnly",
+        "mustNotApprove",
+        "approvalCommandAvailable",
+        "approvalAllowed",
+      ]),
+    );
+    expect(bundle.reviewPackets.every((packet) => packet.reviewPolicy)).toBe(true);
   });
 
   it("marks old decision packets stale after the configured freshness window", () => {

@@ -8,6 +8,7 @@ export type WorkflowDecisionPacketCommand =
 
 export type DecisionPacketSourceCommand =
   | WorkflowDecisionPacketCommand
+  | "ut-tdd completion review-bundle --json"
   | "ut-tdd handover"
   | "ut-tdd status --json";
 
@@ -60,6 +61,7 @@ export const RENAME_APPROVAL_DRAFT_PACKET_COMMAND = "ut-tdd rename approval-draf
 export const ACTION_BINDING_APPROVAL_PACKET_COMMAND =
   "ut-tdd action-binding approval-packet --json";
 export const COMPLETION_DECISION_PACKET_COMMAND = "ut-tdd completion decision-packet --json";
+export const COMPLETION_REVIEW_BUNDLE_COMMAND = "ut-tdd completion review-bundle --json";
 
 export function buildDecisionPacketProvenance(
   opts: DecisionPacketProvenanceOptions,

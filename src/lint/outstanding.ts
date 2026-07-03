@@ -20,6 +20,7 @@
  * placeholder-deps / shared を再利用するため解析層 (src/lint) に置く (runtime→lint は coding-rules の
  * module-boundary 違反ゆえ、消費側 cli / handover が lint を import する形にする)。
  */
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
@@ -27,6 +28,7 @@ import { fmValue, isTerminalPlanStatus } from "./shared";
 import {
   buildDecisionPacketProvenance,
   COMPLETION_DECISION_PACKET_COMMAND,
+  COMPLETION_REVIEW_BUNDLE_COMMAND,
   type DecisionPacketFreshness,
   type DecisionPacketSourceCommand,
   planTextRequiresActionBindingApproval,
@@ -327,6 +329,51 @@ export interface CompletionDecisionPacket {
   blockers: string[];
   humanReviewBundle: CompletionDecisionHumanReviewBundle;
   decisions: CompletionDecisionItem[];
+}
+
+export interface CompletionReviewBundle {
+  schemaVersion: "completion-review-bundle.v1";
+  generatedAt: string;
+  sourceCommand: typeof COMPLETION_REVIEW_BUNDLE_COMMAND;
+  freshness: DecisionPacketFreshness;
+  planOnly: true;
+  mustNotDecide: true;
+  mustNotApply: true;
+  completionClaimAllowed: boolean;
+  humanDecisionRequired: boolean;
+  nextAuthority: CompletionNextAuthority;
+  status: CompletionDecisionPacket["status"];
+  decisionCount: number;
+  reviewPacketCount: number;
+  completionDecisionPacketCommand: typeof COMPLETION_DECISION_PACKET_COMMAND;
+  runnableCompletionDecisionPacketCommand: string;
+  completionDecisionPacketDigest: string;
+  humanReviewBundleDigest: string;
+  reviewPacketsDigest: string;
+  bundleDigest: string;
+  requiredOperatorActionsJa: string[];
+  blockedUntil: string[];
+  reviewPackets: CompletionReviewBundlePacket[];
+}
+
+export interface CompletionReviewBundlePacket {
+  order: number;
+  planId: string;
+  decisionKind: CompletionDecisionKind;
+  blockerReason: string;
+  command: WorkflowDecisionPacketCommand;
+  scopedCommand: string;
+  runnableScopedCommand: string;
+  schemaVersion: CompletionDecisionSupportingPacketSummary["schemaVersion"];
+  matrixField: CompletionDecisionSupportingPacketSummary["matrixField"];
+  expectedMatrixCount: number;
+  writePolicy: "no-write" | "see-packet-matrix";
+  reviewPolicy: "non_destructive_review_only";
+  requiredReviewFieldsDigest: string;
+  requiredMatrixFields: string[];
+  requiredSafetyFields: string[];
+  reviewRoute: string;
+  reviewRouteJa: string;
 }
 
 export interface CompletionDecisionHumanReviewBundle {
@@ -1311,6 +1358,80 @@ export function completionDecisionPacketForOutstanding(
   };
 }
 
+export function completionReviewBundleForOutstanding(
+  outstanding: OutstandingWork,
+  opts: CompletionDecisionPacketOptions = {},
+): CompletionReviewBundle {
+  const provenance = buildDecisionPacketProvenance({
+    generatedAt: opts.generatedAt,
+    now: opts.now,
+    validForMinutes: opts.validForMinutes,
+    sourceCommand: COMPLETION_REVIEW_BUNDLE_COMMAND,
+  });
+  const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
+    generatedAt: provenance.generatedAt,
+    now: opts.now ?? provenance.generatedAt,
+    validForMinutes: provenance.freshness.validForMinutes,
+    sourceCommand: COMPLETION_DECISION_PACKET_COMMAND,
+  });
+  const reviewPackets = completionDecisionPacket.decisions.flatMap((decision) =>
+    decision.supportingPacketSummaries.map((summary, index) => ({
+      order: index + 1,
+      planId: decision.planId,
+      decisionKind: decision.decisionKind,
+      blockerReason: decision.blockerReason,
+      command: summary.command,
+      scopedCommand: summary.scopedCommand ?? summary.command,
+      runnableScopedCommand:
+        summary.runnableScopedCommand ??
+        runnablePacketCommand(summary.scopedCommand ?? summary.command),
+      schemaVersion: summary.schemaVersion,
+      matrixField: summary.matrixField,
+      expectedMatrixCount: summary.expectedMatrixCount,
+      writePolicy:
+        summary.matrixField === "none" ? ("no-write" as const) : ("see-packet-matrix" as const),
+      reviewPolicy: "non_destructive_review_only" as const,
+      requiredReviewFieldsDigest: sha256Json(summary.requiredReviewFields),
+      requiredMatrixFields: summary.requiredMatrixFields,
+      requiredSafetyFields: summary.requiredReviewFields.filter(isSafetyReviewField),
+      reviewRoute: summary.reviewRoute,
+      reviewRouteJa: summary.reviewRouteJa,
+    })),
+  );
+  const completionDecisionPacketDigest = sha256Json(completionDecisionPacket);
+  const humanReviewBundleDigest = sha256Json(completionDecisionPacket.humanReviewBundle);
+  const reviewPacketsDigest = sha256Json(reviewPackets);
+  const bundleWithoutDigest = {
+    schemaVersion: "completion-review-bundle.v1" as const,
+    generatedAt: provenance.generatedAt,
+    sourceCommand: COMPLETION_REVIEW_BUNDLE_COMMAND as typeof COMPLETION_REVIEW_BUNDLE_COMMAND,
+    freshness: provenance.freshness,
+    planOnly: true as const,
+    mustNotDecide: true as const,
+    mustNotApply: true as const,
+    completionClaimAllowed: completionDecisionPacket.ok,
+    humanDecisionRequired: completionDecisionPacket.humanDecisionRequired,
+    nextAuthority: completionDecisionPacket.nextAuthority,
+    status: completionDecisionPacket.status,
+    decisionCount: completionDecisionPacket.decisionCount,
+    reviewPacketCount: reviewPackets.length,
+    completionDecisionPacketCommand: COMPLETION_DECISION_PACKET_COMMAND,
+    runnableCompletionDecisionPacketCommand: runnablePacketCommand(
+      COMPLETION_DECISION_PACKET_COMMAND,
+    ),
+    completionDecisionPacketDigest,
+    humanReviewBundleDigest,
+    reviewPacketsDigest,
+    requiredOperatorActionsJa: outstanding.completionReadiness.requiredActionsJa,
+    blockedUntil: outstanding.completionReadiness.blockers,
+    reviewPackets,
+  } satisfies Omit<CompletionReviewBundle, "bundleDigest">;
+  return {
+    ...bundleWithoutDigest,
+    bundleDigest: sha256Json(bundleWithoutDigest),
+  };
+}
+
 function buildCompletionDecisionHumanReviewBundle(input: {
   status: CompletionDecisionPacket["status"];
   sourceCommand: string;
@@ -1425,6 +1546,23 @@ function humanReviewSafetyFields(summaries: CompletionDecisionSupportingPacketSu
   );
 }
 
+function isSafetyReviewField(field: string): boolean {
+  return (
+    field === "planOnly" ||
+    field.startsWith("mustNot") ||
+    field.endsWith("Allowed") ||
+    field.endsWith("Available") ||
+    field === "applyAuthorized" ||
+    field === "activationAllowed" ||
+    field === "decisionAllowed" ||
+    field === "approvalAllowed"
+  );
+}
+
+function sha256Json(value: unknown): string {
+  return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
+}
+
 export function runnablePacketCommand(command: string): string {
   return command.startsWith("ut-tdd ") ? `bun run ${command}` : command;
 }
@@ -1537,6 +1675,8 @@ function supportingPacketSummaryForCommand(
         matrixField: "activationVerificationCommandMatrix",
         expectedMatrixCount: 10,
         requiredReviewFields: [
+          "planOnly",
+          "mustNotApply",
           "semanticFeatureFrontierRecord",
           "activationDecision",
           "activationDecision.allowed_outcome",

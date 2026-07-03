@@ -71,6 +71,7 @@ import {
 import {
   completionDecisionPacketForOutstanding,
   completionReadinessLine,
+  completionReviewBundleForOutstanding,
   computeOutstandingWork,
   outstandingSummaryLine,
   workflowNextActionForOutstanding,
@@ -904,12 +905,13 @@ program
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
       sourceCommand: "ut-tdd status --json",
     });
+    const completionReviewBundle = completionReviewBundleForOutstanding(outstanding);
     const objectiveProgress = loadObjectiveProgress(process.cwd(), outstanding);
     if (opts.json) {
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
@@ -970,6 +972,7 @@ program
         process.stdout.write(
           "completion-decision-packet: ut-tdd completion decision-packet --json\n",
         );
+        process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
       }
     }
   });
@@ -1050,6 +1053,40 @@ completion
       }
       writeRecordTemplates(decision.recordTemplates);
     }
+  });
+
+completion
+  .command("review-bundle")
+  .description(
+    "emit the non-destructive review bundle for all packets required before whole-program completion",
+  )
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const bundle = completionReviewBundleForOutstanding(computeOutstandingWork(process.cwd()));
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(bundle, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `completion review-bundle: ${bundle.status} decisions=${bundle.decisionCount} reviewPackets=${bundle.reviewPacketCount}\n`,
+    );
+    process.stdout.write(
+      `safety: planOnly=${bundle.planOnly} mustNotDecide=${bundle.mustNotDecide} mustNotApply=${bundle.mustNotApply} completionClaimAllowed=${bundle.completionClaimAllowed} humanDecisionRequired=${bundle.humanDecisionRequired} nextAuthority=${bundle.nextAuthority}\n`,
+    );
+    process.stdout.write(`bundle-digest: ${bundle.bundleDigest}\n`);
+    process.stdout.write(
+      `completion-decision-packet: ${bundle.completionDecisionPacketCommand} runnable=${bundle.runnableCompletionDecisionPacketCommand} digest=${bundle.completionDecisionPacketDigest}\n`,
+    );
+    process.stdout.write(
+      `review-digests: human=${bundle.humanReviewBundleDigest} packets=${bundle.reviewPacketsDigest}\n`,
+    );
+    for (const packet of bundle.reviewPackets) {
+      process.stdout.write(
+        `review-packet: ${packet.planId} ${packet.command} scoped=${packet.scopedCommand} runnable=${packet.runnableScopedCommand} schema=${packet.schemaVersion} matrix=${packet.matrixField} count=${packet.expectedMatrixCount} writePolicy=${packet.writePolicy} safety=${packet.requiredSafetyFields.join(",") || "none"} route=${packet.reviewRouteJa}\n`,
+      );
+    }
+    process.stdout.write(`blocked-until: ${bundle.blockedUntil.join(",") || "none"}\n`);
+    process.stdout.write(packetFreshnessLine(bundle));
   });
 
 program
@@ -2742,6 +2779,7 @@ handover
     const liveCompletionDecisionPacket = completionDecisionPacketForOutstanding(liveOutstanding, {
       sourceCommand: "ut-tdd handover",
     });
+    const liveCompletionReviewBundle = completionReviewBundleForOutstanding(liveOutstanding);
     const workflowNextAction = workflowNextActionForOutstanding(liveOutstanding);
     const workflowNextActions = workflowNextActionsForOutstanding(liveOutstanding);
     const objectiveProgress = loadObjectiveProgress(repoRoot, liveOutstanding);
@@ -2749,6 +2787,7 @@ handover
       ...pointer,
       outstanding: liveOutstanding,
       completionDecisionPacket: liveCompletionDecisionPacket,
+      completionReviewBundle: liveCompletionReviewBundle,
       workflowNextAction,
       workflowNextActions,
       ...(objectiveProgress ? { objectiveProgress } : {}),
@@ -2806,6 +2845,7 @@ handover
       process.stdout.write(
         "completion-decision-packet: ut-tdd completion decision-packet --json\n",
       );
+      process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
       if (packetCommands.length > 0) {
         process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
         process.stdout.write(

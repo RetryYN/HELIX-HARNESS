@@ -367,6 +367,16 @@ describe("L7 CLI surface closure", () => {
         sourceCommand: "ut-tdd handover",
         decisionCount: 1,
       });
+      expect(payload.completionReviewBundle).toMatchObject({
+        schemaVersion: "completion-review-bundle.v1",
+        sourceCommand: "ut-tdd completion review-bundle --json",
+        planOnly: true,
+        mustNotDecide: true,
+        mustNotApply: true,
+        completionClaimAllowed: false,
+        humanDecisionRequired: true,
+        decisionCount: 1,
+      });
       expect(payload.workflowNextAction).toContain(
         "obtain explicit PO signoff before irreversible migration/cutover",
       );
@@ -427,6 +437,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(text.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "completion-review-bundle: ut-tdd completion review-bundle --json",
       );
       expect(text.stdout).toContain(
         "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
@@ -669,6 +682,16 @@ describe("L7 CLI surface closure", () => {
         },
         decisionCount: 2,
       });
+      expect(blockedPayload.completionReviewBundle).toMatchObject({
+        schemaVersion: "completion-review-bundle.v1",
+        sourceCommand: "ut-tdd completion review-bundle --json",
+        planOnly: true,
+        mustNotDecide: true,
+        mustNotApply: true,
+        completionClaimAllowed: false,
+        humanDecisionRequired: true,
+        decisionCount: 2,
+      });
       expect(blockedPayload.completionDecisionPacket.generatedAt).toEqual(expect.any(String));
       expect(blockedPayload.completionDecisionPacket.freshness.expiresAt).toEqual(
         expect.any(String),
@@ -734,6 +757,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(blockedText.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json",
+      );
+      expect(blockedText.stdout).toContain(
+        "completion-review-bundle: ut-tdd completion review-bundle --json",
       );
     } finally {
       rmSync(readyRoot, { recursive: true, force: true });
@@ -1107,6 +1133,118 @@ describe("L7 CLI surface closure", () => {
         '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
       );
       expect(text.stdout).toContain('  - cutover_snapshot_id: "<cutoverSnapshot.snapshotId>"');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("exposes a completion review bundle for scoped non-destructive packet review", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-review-bundle-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-DISCOVERY-10-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-DISCOVERY-10-fixture",
+          "kind: poc",
+          "layer: cross",
+          "status: draft",
+          "workflow_phase: S3",
+          "---",
+          "",
+          "# fixture",
+          "S4 decision_outcome is PO gated.",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-M-02-fixture.md"),
+        [
+          "---",
+          "plan_id: PLAN-M-02-fixture",
+          "kind: design",
+          "layer: L14",
+          "status: draft",
+          "---",
+          "",
+          "# fixture",
+          "irreversible cutover requires PO signoff, rollback evidence, and action-binding approval.",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const json = runCliIn(root, ["completion", "review-bundle", "--json"]);
+      expect(json.status).toBe(0);
+      const bundle = JSON.parse(json.stdout);
+      expect(bundle).toMatchObject({
+        schemaVersion: "completion-review-bundle.v1",
+        sourceCommand: "ut-tdd completion review-bundle --json",
+        planOnly: true,
+        mustNotDecide: true,
+        mustNotApply: true,
+        completionClaimAllowed: false,
+        humanDecisionRequired: true,
+        nextAuthority: "human",
+        status: "blocked",
+        decisionCount: 2,
+        reviewPacketCount: 4,
+        completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
+        runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
+      });
+      expect(bundle.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(bundle.completionDecisionPacketDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(bundle.reviewPackets).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            planId: "PLAN-DISCOVERY-10-fixture",
+            command: "ut-tdd s4 decision-packet --json",
+            scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+            writePolicy: "see-packet-matrix",
+            requiredSafetyFields: expect.arrayContaining([
+              "planOnly",
+              "mustNotDecide",
+              "decisionAllowed",
+            ]),
+          }),
+          expect.objectContaining({
+            planId: "PLAN-M-02-fixture",
+            command: "ut-tdd rename approval-draft --json",
+            scopedCommand: "ut-tdd rename approval-draft --json",
+            writePolicy: "no-write",
+            requiredSafetyFields: expect.arrayContaining(["planOnly", "approvalAllowed"]),
+          }),
+          expect.objectContaining({
+            planId: "PLAN-M-02-fixture",
+            command: "ut-tdd action-binding approval-packet --json",
+            scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            runnableScopedCommand:
+              "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            writePolicy: "see-packet-matrix",
+          }),
+        ]),
+      );
+
+      const text = runCliIn(root, ["completion", "review-bundle"]);
+      expect(text.status).toBe(0);
+      expect(text.stdout).toContain("completion review-bundle: blocked decisions=2");
+      expect(text.stdout).toContain(
+        "safety: planOnly=true mustNotDecide=true mustNotApply=true completionClaimAllowed=false humanDecisionRequired=true nextAuthority=human",
+      );
+      expect(text.stdout).toContain("bundle-digest: sha256:");
+      expect(text.stdout).toContain(
+        "completion-decision-packet: ut-tdd completion decision-packet --json runnable=bun run ut-tdd completion decision-packet --json digest=sha256:",
+      );
+      expect(text.stdout).toContain(
+        "review-packet: PLAN-DISCOVERY-10-fixture ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+      );
+      expect(text.stdout).toContain(
+        "review-packet: PLAN-M-02-fixture ut-tdd rename approval-draft --json scoped=ut-tdd rename approval-draft --json",
+      );
+      expect(text.stdout).toContain("writePolicy=no-write");
+      expect(text.stdout).toContain(
+        "packet-freshness: source=ut-tdd completion review-bundle --json",
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
