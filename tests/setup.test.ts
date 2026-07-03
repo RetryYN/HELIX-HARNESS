@@ -984,6 +984,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(plan.files).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({ path: "package.json", category: "A" }),
         expect.objectContaining({ path: join(".vscode", "tasks.json"), category: "A" }),
         expect.objectContaining({ path: join(".vscode", "settings.json"), category: "A" }),
         expect.objectContaining({ path: join(".ut-tdd", "memory", ".gitkeep"), category: "A" }),
@@ -1114,6 +1115,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
+    expect(preview.written).toContain("package.json");
     expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
     expect(preview.written).toContain(join(".ut-tdd", "teams", "default-hybrid.yaml"));
     expect(preview.written).toContain(preview.githubPlan.branchProtection.scriptPath);
@@ -1397,6 +1399,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
+    expect(wet.files.get(join("/repo", "package.json"))).toContain(
+      "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0",
+    );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("HELIX: rename plan");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "bun run ut-tdd rename plan --json",
@@ -1518,6 +1523,118 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     }
   });
 
+  it("U-SETUP-037: fresh HELIX project setup bootstraps package scripts and lockfile for runnable VSCode tasks", () => {
+    const commands: Array<{ args: string[]; command: string; cwd: string }> = [];
+    const deps = mockDeps({
+      templates: baseTemplates,
+      isInteractive: false,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+    deps.runCommand = (cwd, command, args) => {
+      commands.push({ cwd, command, args });
+      deps.files.set(
+        join(cwd, "bun.lock"),
+        [
+          "{",
+          '  "lockfileVersion": 1,',
+          '  "configVersion": 1,',
+          '  "workspaces": { "": { "devDependencies": { "typescript": "^5.6.3", "ut-tdd": "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0" } } },',
+          '  "packages": {}',
+          "}",
+          "",
+        ].join("\n"),
+      );
+      return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+    };
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: false, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(commands).toEqual([
+      { cwd: "/repo", command: "bun", args: ["install", "--lockfile-only"] },
+    ]);
+    expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
+    expect(result.importReport).toMatchObject({
+      mode: "fresh",
+      requiresReview: false,
+      nextRoute: "ready",
+    });
+    expect(result.consumerReadiness).toMatchObject({
+      ok: true,
+      cliResolution: {
+        bareCommandResolved: true,
+        packageScriptAvailable: true,
+      },
+    });
+    expect(result.postSetupWorkflow).toMatchObject({
+      nextRoute: "ready",
+      readinessOk: true,
+      unmetGates: [],
+    });
+    expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
+      private: true,
+      scripts: {
+        "ut-tdd": "ut-tdd",
+        typecheck: "bun run ut-tdd status --json",
+        test: "bun run ut-tdd completion review-bundle --json",
+      },
+      devDependencies: {
+        typescript: "^5.6.3",
+        "ut-tdd": "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0",
+      },
+    });
+  });
+
+  it("U-SETUP-038: brownfield HELIX project setup refreshes lockfile when package surface changes", () => {
+    const commands: Array<{ args: string[]; command: string; cwd: string }> = [];
+    const deps = mockDeps({
+      templates: baseTemplates,
+      isInteractive: false,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+    deps.files.set(
+      join("/repo", "package.json"),
+      `${JSON.stringify({ scripts: { "ut-tdd": "ut-tdd" } }, null, 2)}\n`,
+    );
+    deps.files.set(join("/repo", "bun.lock"), "stale lockfile\n");
+    deps.runCommand = (cwd, command, args) => {
+      commands.push({ cwd, command, args });
+      deps.files.set(join(cwd, "bun.lock"), "lockfileVersion = 1\n");
+      return { status: 0, stderr: "", stdout: "Saved bun.lock" };
+    };
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: false, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(commands).toEqual([
+      { cwd: "/repo", command: "bun", args: ["install", "--lockfile-only"] },
+    ]);
+    expect(result.importReport).toMatchObject({
+      mode: "brownfield",
+      requiresReview: false,
+      nextRoute: "ready",
+    });
+    expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
+    expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
+      scripts: {
+        "ut-tdd": "ut-tdd",
+        typecheck: "bun run ut-tdd status --json",
+        test: "bun run ut-tdd completion review-bundle --json",
+      },
+      devDependencies: {
+        typescript: "^5.6.3",
+        "ut-tdd": "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0",
+      },
+    });
+    expect(deps.files.get(join("/repo", "bun.lock"))).toContain("lockfileVersion");
+  });
+
   it("U-SETUP-016: brownfield HELIX project setup emits an import report instead of hiding skipped conflicts", () => {
     const deps = mockDeps({ templates: baseTemplates, isInteractive: false });
     deps.files.set(
@@ -1622,7 +1739,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     expect(first.importReport).toMatchObject({
-      mode: "fresh",
+      mode: "brownfield",
       requiresReview: false,
       nextRoute: "ready",
     });

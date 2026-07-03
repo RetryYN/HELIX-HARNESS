@@ -403,7 +403,7 @@ describe("clean distribution local acceptance smoke", () => {
         ];
         expect(setupJson).toMatchObject({
           schemaVersion: "helix-project-setup.v1",
-          importReport: { mode: "fresh", requiresReview: false },
+          importReport: { mode: "brownfield", requiresReview: false },
           consumerReadiness: {
             ok: true,
             objectiveBoundary: {
@@ -721,6 +721,15 @@ describe("clean distribution local acceptance smoke", () => {
             expect(readFileSync(join(consumerRoot, "bun.lock"), "utf8")).toContain(
               "lockfileVersion",
             );
+            const relinkCurrentCleanArtifact = runBun(
+              consumerRoot,
+              ["link", "ut-tdd", "--no-save"],
+              env,
+            );
+            expect(
+              relinkCurrentCleanArtifact.status,
+              relinkCurrentCleanArtifact.stderr || relinkCurrentCleanArtifact.stdout,
+            ).toBe(0);
           } else if (command === "bun run typecheck" || command === "bun run test") {
             expect(run.stderr).toContain('bun -e "process.exit(0)"');
           } else {
@@ -735,6 +744,71 @@ describe("clean distribution local acceptance smoke", () => {
         }
       } finally {
         rmSync(consumerRoot, { recursive: true, force: true });
+      }
+
+      const freshConsumerRoot = mkdtempSync(join(tmpdir(), "helix-fresh-consumer-"));
+      try {
+        const freshLinkedEnv = {
+          ...env,
+          PATH: pathWith(join(freshConsumerRoot, "node_modules", ".bin"), env.PATH ?? ""),
+        };
+        const freshSetup = runCommand(
+          freshConsumerRoot,
+          "ut-tdd",
+          ["setup", "project", "--json"],
+          freshLinkedEnv,
+        );
+        expect(freshSetup.status, freshSetup.stderr || freshSetup.stdout).toBe(0);
+        const freshSetupJson = JSON.parse(freshSetup.stdout);
+        expect(freshSetupJson).toMatchObject({
+          schemaVersion: "helix-project-setup.v1",
+          importReport: { mode: "fresh", requiresReview: false },
+          consumerReadiness: { ok: true },
+          postSetupWorkflow: { nextRoute: "ready", readinessOk: true },
+        });
+        expect(freshSetupJson.written).toEqual(
+          expect.arrayContaining(["package.json", "bun.lock", ".vscode/tasks.json"]),
+        );
+        const generatedPackage = JSON.parse(
+          readFileSync(join(freshConsumerRoot, "package.json"), "utf8"),
+        ) as {
+          devDependencies?: Record<string, string>;
+          scripts?: Record<string, string>;
+        };
+        expect(generatedPackage.scripts).toMatchObject({
+          "ut-tdd": "ut-tdd",
+          typecheck: "bun run ut-tdd status --json",
+          test: "bun run ut-tdd completion review-bundle --json",
+        });
+        expect(generatedPackage.devDependencies?.["ut-tdd"]).toBe(
+          "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0",
+        );
+        expect(generatedPackage.devDependencies?.typescript).toBe("^5.6.3");
+        expect(readFileSync(join(freshConsumerRoot, "bun.lock"), "utf8")).toContain(
+          "lockfileVersion",
+        );
+        const linkFreshConsumer = runBun(freshConsumerRoot, ["link", "ut-tdd", "--no-save"], env);
+        expect(linkFreshConsumer.status, linkFreshConsumer.stderr || linkFreshConsumer.stdout).toBe(
+          0,
+        );
+        for (const args of [
+          ["run", "ut-tdd", "--version"],
+          ["run", "typecheck"],
+          ["run", "test"],
+        ]) {
+          const run = runBun(freshConsumerRoot, args, freshLinkedEnv);
+          expect(run.status, run.stderr || run.stdout).toBe(0);
+        }
+        const freshDoctor = runCommand(
+          freshConsumerRoot,
+          "ut-tdd",
+          ["doctor", "--profile", "consumer", "--json"],
+          freshLinkedEnv,
+        );
+        expect(freshDoctor.status, freshDoctor.stderr || freshDoctor.stdout).toBe(0);
+        expect(JSON.parse(freshDoctor.stdout)).toMatchObject({ ok: true });
+      } finally {
+        rmSync(freshConsumerRoot, { recursive: true, force: true });
       }
 
       const brownfieldRoot = mkdtempSync(join(tmpdir(), "helix-brownfield-"));

@@ -257,6 +257,13 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > (`ut-tdd` / `typecheck` / `test`)、対応 `bun run ...` command、sourceUrl、lockfileSourceUrl、
 > scriptsSourceUrl、sourceCheckedAt、latestOfficialStatus、sourceStatusDelta、adoptionDecision、
 > workflowRouteImpact を出し、lockfile や scripts 欠落時は `fix_consumer_readiness` へ戻す根拠を JSON から追える。
+> 2026-07-04 追補5: fresh consumer repo では `ut-tdd setup project` が `package.json` と `bun.lock`
+> を生成し、`scripts.ut-tdd` / `scripts.typecheck` / `scripts.test`、`devDependencies.ut-tdd`、
+> `devDependencies.typescript` を materialize する。brownfield repo で package surface を merge した場合も、
+> `bun install --lockfile-only` で lockfile を再生成し、`bun install --frozen-lockfile` が stale lockfile で
+> 落ちる状態を ready と誤認させない。配布済み Pack tag は runtime import する `typescript` を transitive
+> dependency として解決できないため、consumer setup package surface は当面 `typescript` を明示し、
+> release/version-up activation 前の既存 tag でも package-local `bun run ut-tdd --version` が解決できるようにする。
 > GitHub Issue / Pull Request template は公式 template 仕様に合わせて `.github/ISSUE_TEMPLATE/*.md` と
 > `.github/PULL_REQUEST_TEMPLATE.md` に配置し、Recovery / Add-feature / V-model artifact / 検証 checklist を
 > consumer doctor が fail-close で検査する。これにより別 project の入口が「ファイルがある」だけでなく、
@@ -299,6 +306,8 @@ U-SETUP-001 (`detectProjectScale` never-throws / gh 失敗→unknown) / U-SETUP-
 2026-07-03 追補3: 現行正本では、U-SETUP-015/017/018/019/020 は completion review-bundle を含む。`verificationMatrix[]` は `completion-review-bundle` と `vscode-profile-open` を含む全11行で、consumer doctor は `semanticBundleDigest` と VS Code profile open 証跡を fail-close で検査する。`consumerReadiness` は projected hook 用 bare `ut-tdd --version`、CI / VS Code task 用 `package.json.scripts.ut-tdd`、`bun install --frozen-lockfile` 用 lockfile、CI 用 `package.json.scripts.typecheck` / `scripts.test` を ready 条件にし、どれかが欠ければ `fix_consumer_readiness` へ戻す。doctor baseline、配布 subagent、slash-command、setup next action は `ut-tdd completion decision-packet --json` / `ut-tdd completion review-bundle --json` / `ut-tdd version-up dry-run ...` を初回検証の no-write 証跡として扱い、`code --profile HELIX .` は自動実行 command ではなく manual-local 証跡として扱う。
 
 U-SETUP-016 追加境界: 生成済み HELIX project への同一内容再実行は `identicalManagedPaths` として分類し、`skippedExistingPaths=[]`、prompt なし、`importReport.nextRoute=ready` を維持する。既存 consumer-owned non-mergeable path の review route と、前回 setup 生成物の idempotent rerun を同じ brownfield として扱わない。
+
+2026-07-04 追補4: U-SETUP-037 は fresh repo の package bootstrap を固定し、`package.json` / `bun.lock` / VSCode task が同時に生成されること、`consumerReadiness.ok=true` と `postSetupWorkflow.nextRoute=ready` が package-local command surface に裏付くことを検査する。U-SETUP-038 は brownfield repo で package surface を merge したときに lockfile を再生成することを固定し、既存 `bun.lock` を stale のまま CI preflight green にしない。source package 自身は runtime import に必要な `typescript` を `dependencies` に置き、clean distribution acceptance は released Pack tag の install 再現性と現行 clean artifact の local-link command smoke を分けて検証する。
 
 U-SETUP-024 追加境界: `common/escalation-stale.yml` は `schedule` 起動の no-write route audit であり、placeholder/noop workflow ではない。built-in fallback、setup artifact readiness、consumer doctor は、workflow 名、weekly cron、top-level `permissions.contents=read`、write permission 不在、`pull_request_target` 不在、checkout credential 非保持、setup-bun 入力不在、custom env / skip / soft-pass / job permission override 不在、secret 参照不在、placeholder/TODO/TBD 不在、固定 handover / completion decision packet / consumer doctor command set を fail-close で検査する。
 

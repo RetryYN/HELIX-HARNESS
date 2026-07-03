@@ -72,16 +72,16 @@ HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
   `cutover_decision_record` と action-binding approval、dry-run、backup、rollback、monitoring evidence が揃うまで
   実 state move や alias 有効化を行わない。承認後は漏れのない atomic migration として実施する。
 
-## Purpose（目的）
+## 目的
 
 UT-TDD Agent Harness は、社内 product development で AI implementation agents を安全に使うための
-verification and development foundation である。harness は最終 product ではなく、他の product work を載せる土台である。
+検証・開発基盤である。harness は最終 product ではなく、他の product work を載せる土台である。
 
-Design と implementation は以下の pillars で判断する。
+Design と implementation は以下の柱で判断する。
 
-1. Foundation first: harness は downstream product development をより安全にしなければならない。
+1. Foundation first: harness は downstream product development をより安全にする。
 2. Document-first plus machine enforcement: workflow rules は必要に応じて schema、lint、doctor、hooks、tests で裏付ける。
-3. Automatic state and feedback: `.ut-tdd/` state と harness DB projections は progress、gaps、drift を可視化する。
+3. Automatic state and feedback: `.ut-tdd/` state と harness DB projections は進捗、gap、drift を可視化する。
 4. Dynamic context / skill injection: relevant context と skills だけを load する。
 5. Practical orchestration: risk または cost を下げる場合だけ work を roles/runtimes に分割する。
 6. Strict verification: tests または explicit evidence なしに completion claim しない。
@@ -106,7 +106,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
 英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。
 
-## Canonical Docs（正本）
+## 正本 Docs
 
 - `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
 - `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`
@@ -114,7 +114,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 - `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md`
 - `docs/governance/repository-structure.md`
 
-## Architecture Boundary（構成境界）
+## 構成境界
 
 - `docs/`: governance、requirements、ADRs、plans、design、test design、migration、archive
 - `src/`: TypeScript/Bun harness core
@@ -131,7 +131,7 @@ V-model artifacts は分離を保つ。
 - test design: `docs/test-design/`
 - tests: `tests/`
 
-## Coding Rules（実装規則）
+## 実装規則
 
 - 編集前に relevant files を読む。
 - local naming、structure、test placement に合わせる。
@@ -201,7 +201,7 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
 単一 runtime の場合は、代替証跡として `intra_runtime_subagent` review evidence を記録する。
 
-## Safety Boundaries（安全境界）
+## 安全境界
 
 - rules、docs、examples、audit evidence に API keys、secrets、PII、credentials を書かない。
 - authentication、authorization、payments、PII、licenses、destructive data operations、
@@ -215,20 +215,20 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
 - Handover: `.ut-tdd/handover/CURRENT.json` が存在し non-stale なら確認する。
 
-## Instruction Files（指示ファイル）
+## 指示ファイル
 
 - 共有 project context: `CLAUDE.md`
 - Claude Code runtime / hook policy: `.claude/CLAUDE.md`
 - Codex CLI project rules: `AGENTS.md`
-- Personal overrides: `CLAUDE.local.md` / `AGENTS.override.md`
+- 個人 overrides: `CLAUDE.local.md` / `AGENTS.override.md`
 
 ## UT-TDD Adapter Rule Markers
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
-- Codex project rules: `AGENTS.md`
-- Claude runtime policy: `.claude/CLAUDE.md`
-- Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- Codex project rules（Codex ルール）: `AGENTS.md`
+- Claude runtime policy（Claude runtime 方針）: `.claude/CLAUDE.md`
+- Modes（実行モード）: `standalone` / `claude-only` / `codex-only` / `hybrid`
 - セットアップ: `ut-tdd setup project`
 - 状態確認: `ut-tdd status`
 - 診断: `ut-tdd doctor`

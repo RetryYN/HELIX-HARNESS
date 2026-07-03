@@ -114,7 +114,7 @@ gate decision まで担えるという意味である。
 Codex と Claude Code は、contract plans、local CLIs、hooks を通じて UT-TDD Agent Harness が管理する。
 この product では direct API call ではない。
 
-Runtime modes:
+Runtime modes（実行モード）:
 
 - `standalone`
 - `claude-only`
@@ -169,7 +169,7 @@ Codex tool names は Claude と異なるため、matcher は copy ではなく m
 guard が diverge する、`blockOnFailure` を落とす、`$CLAUDE_PROJECT_DIR` に依存する、global `~/.codex/` を参照する場合は
 fail closed する。
 
-Scope boundary: `.codex/hooks.json` が guard するのは direct Codex CLI / Codex IDE sessions のみ。
+Scope boundary（適用境界）: `.codex/hooks.json` が guard するのは direct Codex CLI / Codex IDE sessions のみ。
 この chat runtime が提供する hosted API/developer tools（この環境の `apply_patch` など）は Codex hook engine を通らないため、
 repo hooks は機械的に intercept できない。この surface では Codex は hook を non-enforcing と扱い、編集前に明示的な
 git/status preflight を行う。API tool calls について mechanical hook coverage を主張しない。
@@ -191,8 +191,8 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 
 ## Git Rules (hybrid 多ランタイム協調)
 
-- Use Conventional Commits. Stage explicit paths only (`git add <path>`; never
-  `git add -A` / `git add .`).
+- Conventional Commits を使う。stage は explicit paths のみとする (`git add <path>`; `git add -A` /
+  `git add .` は使わない)。
 - **history を書き換える前に `git log` / `git reflog` を確認**し、もう一方のランタイム
   (Claude) の commit を `reset` / `revert` / `checkout` / force で破棄・デグレさせない。
   working tree の foreign 変更は既定で「相手ランタイムの正規作業」とみなす。判断不能なら
@@ -222,15 +222,15 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 
 ## Local Overrides（個人設定）
 
-Personal overrides は `AGENTS.override.md` に置く。これは Git tracked ではない。
+個人 overrides は `AGENTS.override.md` に置く。これは Git 追跡対象ではない。
 
 ## UT-TDD Adapter Rule Markers
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
 - 共有 context: `CLAUDE.md`
-- Claude runtime policy: `.claude/CLAUDE.md`
-- Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- Claude runtime policy（Claude runtime 方針）: `.claude/CLAUDE.md`
+- Modes（実行モード）: `standalone` / `claude-only` / `codex-only` / `hybrid`
 - セットアップ: `ut-tdd setup project`
 - 状態確認: `ut-tdd status`
 - 診断: `ut-tdd doctor`

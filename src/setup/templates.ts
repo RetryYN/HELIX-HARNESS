@@ -457,6 +457,23 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "",
   ].join("\n"),
   "project/.vscode/settings.json": ["{", '  "task.allowAutomaticTasks": "off"', "}", ""].join("\n"),
+  "project/package.json": [
+    "{",
+    '  "name": "helix-consumer-project",',
+    '  "version": "0.0.0",',
+    '  "private": true,',
+    '  "scripts": {',
+    '    "ut-tdd": "ut-tdd",',
+    '    "typecheck": "bun run ut-tdd status --json",',
+    '    "test": "bun run ut-tdd completion review-bundle --json"',
+    "  },",
+    '  "devDependencies": {',
+    '    "typescript": "^5.6.3",',
+    '    "ut-tdd": "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0"',
+    "  }",
+    "}",
+    "",
+  ].join("\n"),
   "project/.ut-tdd/memory/.gitkeep": "",
   "project/.ut-tdd/handover/.gitkeep": "",
   "project/.ut-tdd/evidence/.gitkeep": "",
@@ -737,6 +754,15 @@ export const COMMON_FILES: { template: string; file: GeneratedFile }[] = [
 ];
 
 export const PROJECT_SETUP_FILES: { template: string; file: GeneratedFile }[] = [
+  {
+    template: "project/package.json",
+    file: {
+      path: "package.json",
+      category: "A",
+      purpose:
+        "HELIX consumer package scripts and tag-pinned harness dependency for VSCode tasks / CI",
+    },
+  },
   {
     template: "project/.vscode/tasks.json",
     file: {

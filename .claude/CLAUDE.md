@@ -1,31 +1,30 @@
 # Claude Code Runtime Policy - UT-TDD Agent Harness
 
-## Active Runtime Boundary
+## 現行 Runtime 境界
 
-This repository's Claude Code runtime is part of UT-TDD Agent Harness.
-Legacy-source-derived hooks, subagents, memory, and `legacy local state/`
-are historical or migration material. They are not current runtime state or
-execution paths.
+この repository の Claude Code runtime は UT-TDD Agent Harness の一部である。
+legacy source 由来の hooks、subagents、memory、`legacy local state/` は historical / migration material であり、
+current runtime state や execution paths ではない。
 
-Current runtime boundary:
+現行 runtime 境界:
 
 - Runtime CLI: `ut-tdd`
 - Runtime state: `.ut-tdd/`
 - Core implementation: `src/`
 - Hook configuration: `.claude/settings.json`
 
-## Communication
+## コミュニケーション
 
 PO への進捗報告・調査結論・確認依頼など chat 出力は日本語を既定とする。
 docs / handover / adapter prose も日本語を基本とし、CLI 名・識別子・技術用語は原語のまま扱ってよい。
 
-Claude Code read priority is `../CLAUDE.md` -> this file ->
-`../docs/governance/README.md`. Codex project rules are in `../AGENTS.md`.
+Claude Code の read priority は `../CLAUDE.md` -> this file -> `../docs/governance/README.md` とする。
+Codex project rules は `../AGENTS.md` にある。
 
-## Hooks
+## Hook 方針
 
-Active hooks in `.claude/settings.json` must call package-local UT-TDD commands
-only. Do not enable hooks that depend on personal legacy runtime paths.
+`.claude/settings.json` の active hooks は package-local UT-TDD commands だけを呼ぶ。
+personal legacy runtime paths に依存する hooks は有効化しない。
 
 - `PreToolUse(Agent)`: `bun "$CLAUDE_PROJECT_DIR/.claude/hooks/agent-guard.ts"`
 - `PreToolUse(Edit|Write|MultiEdit)`: `bun "$CLAUDE_PROJECT_DIR/.claude/hooks/work-guard.ts"`
@@ -34,13 +33,12 @@ only. Do not enable hooks that depend on personal legacy runtime paths.
 - `Stop`: `bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary`
 - `SubagentStop`: `bun "$CLAUDE_PROJECT_DIR/src/cli.ts" hook subagent-stop`
 
-Historical behavior may be referenced for migration, but implementation must
-live in UT-TDD-owned paths.
+Historical behavior は migration 目的で参照してよいが、implementation は UT-TDD-owned paths に置く。
 
-## PLAN Rules
+## PLAN 規則
 
-Before creating or updating PLAN files, inspect existing `docs/plans/` entries.
-Prefer extending an existing PLAN over creating an overlapping one.
+PLAN files を作成・更新する前に、既存の `docs/plans/` entries を確認する。
+重複 PLAN を作るより、既存 PLAN の延長を優先する。
 
 PLAN requirements:
 
@@ -87,17 +85,15 @@ Runtime mode は `standalone` / `claude-only` / `codex-only` / `hybrid` のい�
 UT-TDD work の通常経路として raw `codex exec` や raw `claude` を使わない。
 session lifecycle、handover warning、audit evidence を記録できるように UT-TDD wrapper を使う。
 
-## Native Tool Invocation
+## Native Tool 呼び出し
 
-Claude Code tools must be invoked through Claude Code's native tool-use
-mechanism only. Never print or continue XML-like pseudo tool calls such as
-`<invoke name="Bash">`, `<parameter name="command">`, or role markers such as
-`court`.
+Claude Code tools は Claude Code の native tool-use mechanism だけで呼び出す。
+`<invoke name="Bash">`、`<parameter name="command">`、`court` のような role markers など、
+XML-like pseudo tool calls を表示・継続しない。
 
-If a previous transcript contains XML-like pseudo tool calls, treat that
-transcript as corrupted context. Do not echo, repair, or continue the XML. Use
-the native Claude Code tool UI for Read/Grep/Bash/Edit/Write, or provide a
-plain fenced command for a human to run if the native tool is unavailable.
+過去 transcript に XML-like pseudo tool calls が含まれる場合は corrupted context として扱う。
+XML を echo / repair / continue しない。Read/Grep/Bash/Edit/Write は native Claude Code tool UI を使い、
+native tool が使えない場合だけ人間向けに plain fenced command を提示する。
 
 ## Subagent Guard
 
@@ -132,40 +128,31 @@ Allowlist:
 - `security-audit`
 - `qa-test`
 
-Source-snapshot exploration is not an active Claude Code subagent route. Use
-project-focused agents for repository inspection and treat migration snapshots
-as read-only material.
+Source-snapshot exploration は active Claude Code subagent route ではない。repository inspection には
+project-focused agents を使い、migration snapshots は read-only material として扱う。
 
-## Guard Rules
+## Guard 規則
 
-- Escalate before changing authentication, authorization, payments, PII,
-  licenses, production infrastructure, destructive operations, or external API
-  assumptions.
-- `PreToolUse(Edit|Write|MultiEdit)` blocks edits to uncommitted files not
-  touched by the current Claude session. This prevents one runtime from
-  overwriting the other runtime's in-flight work. Override with
-  `UT_TDD_ALLOW_FOREIGN_EDIT=1` (env, human/out-of-band) or, mid-session, by
-  writing a non-empty reason to `.ut-tdd/state/foreign-edit-override`; marker
-  bypasses are audited to `.ut-tdd/logs/foreign-edit-overrides.jsonl`. An empty
-  marker does not bypass (no silent override without a recorded reason). The
-  marker is **one-shot**: it is consumed (deleted) on the foreign edit it
-  authorizes, so a stale marker cannot keep bypassing the guard. The env
-  override is human-managed and not consumed.
-- Do not treat `legacy local state/` as active runtime state.
-- Do not write secrets, PII, or credentials into docs, examples, or audit
-  evidence.
-- Respect explicit fail-open / fail-close hook design; do not ignore hook
-  failures silently.
-- Native Windows behavior is first-class. WSL2 is optional compatibility, not a
-  required condition.
+- authentication、authorization、payments、PII、licenses、production infrastructure、destructive operations、
+  external API assumptions を変える前に escalate する。
+- `PreToolUse(Edit|Write|MultiEdit)` は、current Claude session が触っていない uncommitted files への編集を block する。
+  これにより、一方の runtime が他方の in-flight work を上書きすることを防ぐ。override は
+  `UT_TDD_ALLOW_FOREIGN_EDIT=1`（env、human/out-of-band）または session 中に
+  `.ut-tdd/state/foreign-edit-override` へ non-empty reason を書く方法だけを認める。marker bypass は
+  `.ut-tdd/logs/foreign-edit-overrides.jsonl` に audit される。empty marker は bypass しない
+  （recorded reason なしの silent override を許可しない）。marker は **one-shot** であり、許可した foreign edit で
+  consume（delete）されるため stale marker は guard bypass を継続できない。env override は human-managed で消費しない。
+- `legacy local state/` を active runtime state として扱わない。
+- docs、examples、audit evidence に secrets、PII、credentials を書かない。
+- 明示された fail-open / fail-close hook design を尊重し、hook failures を silent に無視しない。
+- Native Windows behavior は first-class。WSL2 は optional compatibility であり required condition ではない。
 
-## Cutover Boundary
+## Cutover 境界
 
-UT-TDD imports design concepts from previous framework but current product code is
-TypeScript/Bun. Do not describe legacy Python modules or legacy commands as the
-current operating path.
+UT-TDD は previous framework から design concepts を取り込むが、current product code は TypeScript/Bun である。
+legacy Python modules や legacy commands を current operating path として説明しない。
 
-Current cutover evidence:
+現行 cutover evidence:
 
 - migration strategy docs under `docs/migration/`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
@@ -173,21 +160,21 @@ Current cutover evidence:
 - `tests/projection-writer.test.ts`
 - `src/state-db/projection-writer.ts`
 
-## Local Preconditions
+## Local 前提
 
 - `bun` is available on PATH.
 - `CLAUDE_PROJECT_DIR` points to the repository root during hook execution.
 - `.ut-tdd/` is writable generated runtime state.
 - `.claude/settings.json` uses package-local commands only.
-- Personal absolute paths are not required for normal operation.
+- Personal absolute paths は通常運用では不要である。
 
 ## UT-TDD Adapter Rule Markers
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
-- Shared project context: `../CLAUDE.md`
-- Codex project rules: `../AGENTS.md`
-- Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- Shared project context（共有 project context）: `../CLAUDE.md`
+- Codex project rules（Codex ルール）: `../AGENTS.md`
+- Modes（実行モード）: `standalone` / `claude-only` / `codex-only` / `hybrid`
 - セットアップ: `ut-tdd setup project`
 - 状態確認: `ut-tdd status`
 - 診断: `ut-tdd doctor`

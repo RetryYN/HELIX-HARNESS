@@ -12,9 +12,9 @@
  *   ③ 既定は emit-only (スクリプト + 手順生成、適用は人間)。
  *   ④ 検出不能は solo に安全フォールバック (緩い側に倒す)。
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, readSync, writeFileSync } from "node:fs";
-import { basename, dirname, join, relative, sep } from "node:path";
+import { basename, dirname, isAbsolute, join, relative, sep } from "node:path";
 import { parse as parseYaml } from "yaml";
 import {
   BUILTIN_GITHUB_TEMPLATES,
@@ -969,18 +969,29 @@ export interface SetupDeps {
   templates: TemplateSet;
   commandAvailable?: (name: string) => boolean;
   bunVersion?: () => string | null;
+  runCommand?: (
+    cwd: string,
+    command: string,
+    args: string[],
+  ) => { status: number; stderr: string; stdout: string };
   packageRoot?: string;
 }
 
 const CODEOWNERS_TARGET = join(".github", "CODEOWNERS");
 const STATE_PATH = join(".ut-tdd", "state", "setup.json");
 const PROJECT_SETUP_STATE_PATH = join(".ut-tdd", "state", "project-setup.json");
+const PROJECT_PACKAGE_JSON = "package.json";
+const PROJECT_BUN_LOCK = "bun.lock";
 const BP_SCRIPT = join("scripts", "setup-branch-protection.sh");
 const MANAGED_START = "<!-- UT-TDD:managed:start -->";
 const MANAGED_END = "<!-- UT-TDD:managed:end -->";
 const MERGEABLE_ADAPTER_DOCS = new Set(["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")]);
+const MERGEABLE_PACKAGE_JSON = new Set([PROJECT_PACKAGE_JSON]);
 const COMMITLINT_DOTFILE = "commitlint.config.js";
 export const LOCAL_DISTRIBUTION_PACKAGE_VERSION = "0.1.0";
+const LOCAL_DISTRIBUTION_PACKAGE_SPEC =
+  "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0";
+const LOCAL_TYPESCRIPT_PACKAGE_SPEC = "^5.6.3";
 
 /**
  * package.json が既に commitlint 設定 (`"commitlint"` キー) を宣言しているか判定する純関数。
@@ -1010,6 +1021,53 @@ export function packageJsonDeclaresScript(packageJson: string | null, scriptName
 
 export function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
   return packageJsonDeclaresScript(packageJson, "ut-tdd");
+}
+
+function mergeConsumerPackageJson(existing: string | null, scaffold: string): string | null {
+  try {
+    const base = existing
+      ? (JSON.parse(existing) as Record<string, unknown>)
+      : (JSON.parse(scaffold) as Record<string, unknown>);
+    const wanted = JSON.parse(scaffold) as {
+      devDependencies?: Record<string, string>;
+      scripts?: Record<string, string>;
+    };
+    const scripts =
+      base.scripts && typeof base.scripts === "object" && !Array.isArray(base.scripts)
+        ? (base.scripts as Record<string, unknown>)
+        : {};
+    for (const [key, value] of Object.entries(wanted.scripts ?? {})) {
+      if (typeof scripts[key] !== "string") scripts[key] = value;
+    }
+    base.scripts = scripts;
+    const devDependencies =
+      base.devDependencies &&
+      typeof base.devDependencies === "object" &&
+      !Array.isArray(base.devDependencies)
+        ? (base.devDependencies as Record<string, unknown>)
+        : {};
+    if (
+      typeof devDependencies["ut-tdd"] !== "string" &&
+      !(
+        base.dependencies &&
+        typeof base.dependencies === "object" &&
+        !Array.isArray(base.dependencies) &&
+        typeof (base.dependencies as Record<string, unknown>)["ut-tdd"] === "string"
+      )
+    ) {
+      devDependencies["ut-tdd"] =
+        wanted.devDependencies?.["ut-tdd"] ?? LOCAL_DISTRIBUTION_PACKAGE_SPEC;
+    }
+    if (typeof devDependencies.typescript !== "string") {
+      devDependencies.typescript =
+        wanted.devDependencies?.typescript ?? LOCAL_TYPESCRIPT_PACKAGE_SPEC;
+    }
+    base.devDependencies = devDependencies;
+    if (typeof base.private !== "boolean") base.private = true;
+    return `${JSON.stringify(base, null, 2)}\n`;
+  } catch {
+    return null;
+  }
 }
 const CLEAN_REQUIRED_PATHS = [
   "README.md",
@@ -1286,6 +1344,7 @@ function renderArtifacts(
 function templateNameFor(targetPath: string): string {
   if (targetPath === CODEOWNERS_TARGET) return "team/CODEOWNERS";
   if (targetPath === BP_SCRIPT) return "team/setup-branch-protection.sh";
+  if (targetPath === PROJECT_PACKAGE_JSON) return "project/package.json";
   if (targetPath === "AGENTS.md") return "adapter/AGENTS.md";
   if (targetPath === "CLAUDE.md") return "adapter/CLAUDE.md";
   if (targetPath === join(".codex", "config.toml")) return "adapter/.codex/config.toml";
@@ -1936,6 +1995,13 @@ export function emitSetup(plan: SetupPlan, templates: TemplateSet, deps: SetupDe
     const existing = deps.readText(abs);
     const exists = existing !== null;
     if (existing === r.content) continue;
+    if (exists && MERGEABLE_PACKAGE_JSON.has(r.path)) {
+      const merged = mergeConsumerPackageJson(existing, r.content);
+      if (merged === null || merged === existing) continue;
+      deps.writeText(abs, merged);
+      written.push(r.path);
+      continue;
+    }
     if (exists && MERGEABLE_ADAPTER_DOCS.has(r.path)) {
       const merged = mergeManagedBlock(existing, r.content);
       if (merged === null) continue;
@@ -1977,7 +2043,9 @@ function buildHelixProjectImportReport(input: {
   const existingSet = new Set(input.existingPaths);
   const identicalSet = new Set(input.identicalPaths);
   const mergeableManagedBlockPaths = managedPaths.filter(
-    (path) => existingSet.has(path) && MERGEABLE_ADAPTER_DOCS.has(path),
+    (path) =>
+      existingSet.has(path) &&
+      (MERGEABLE_ADAPTER_DOCS.has(path) || MERGEABLE_PACKAGE_JSON.has(path)),
   );
   const mergeableSet = new Set(mergeableManagedBlockPaths);
   const skippedExistingPaths = input.existingPaths.filter(
@@ -2045,6 +2113,39 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
     repoRoot: deps.repoRoot,
     ...(deps.packageRoot ? { packageRoot: deps.packageRoot } : {}),
   });
+}
+
+function packageRootPath(deps: SetupDeps): string {
+  const root = deps.packageRoot ?? deps.repoRoot;
+  return isAbsolute(root) ? root : join(deps.repoRoot, root);
+}
+
+function repoRelativePath(deps: SetupDeps, absolutePath: string): string {
+  const rel = relative(deps.repoRoot, absolutePath).split(sep).join("/");
+  return rel && !rel.startsWith("..") ? rel : absolutePath;
+}
+
+function bootstrapProjectPackageLockfile(input: {
+  deps: SetupDeps;
+  packageJsonWritten: boolean;
+  plan: SetupPlan;
+}): string[] {
+  if (input.plan.dryRun || !input.deps.runCommand) return [];
+  const packageRoot = packageRootPath(input.deps);
+  const packageJsonPath = join(packageRoot, PROJECT_PACKAGE_JSON);
+  const bunLockPath = join(packageRoot, PROJECT_BUN_LOCK);
+  const bunLockbPath = join(packageRoot, "bun.lockb");
+  if (input.deps.readText(packageJsonPath) === null) return [];
+  const hasLockfile =
+    input.deps.readText(bunLockPath) !== null || input.deps.readText(bunLockbPath) !== null;
+  if (!input.packageJsonWritten && hasLockfile) {
+    return [];
+  }
+  const result = input.deps.runCommand(packageRoot, "bun", ["install", "--lockfile-only"]);
+  if (result.status !== 0) return [];
+  if (input.deps.readText(bunLockPath) !== null) return [repoRelativePath(input.deps, bunLockPath)];
+  if (input.deps.readText(bunLockbPath) !== null) return [repoRelativePath(input.deps, bunLockbPath)];
+  return [];
 }
 
 function buildHelixProjectPostSetupWorkflow(input: {
@@ -2452,7 +2553,13 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
   const plan = planHelixProjectSetup(phase, { teams: args.teams, dryRun: args.dryRun });
   const existingPaths = existingManagedPaths(plan, deps.templates, deps);
   const identicalPaths = identicalManagedPaths(plan, deps.templates, deps);
-  const written = emitSetup(plan, deps.templates, deps);
+  const emitted = emitSetup(plan, deps.templates, deps);
+  const packageBootstrapWritten = bootstrapProjectPackageLockfile({
+    deps,
+    packageJsonWritten: emitted.includes(PROJECT_PACKAGE_JSON),
+    plan,
+  });
+  const written = [...emitted, ...packageBootstrapWritten];
   const importReport = buildHelixProjectImportReport({
     plan,
     templates: deps.templates,
@@ -2659,6 +2766,18 @@ export function nodeSetupDeps(repoRoot: string, packageRoot?: string): SetupDeps
     templates: loadTemplates(repoRoot),
     commandAvailable: nodeCommandAvailable,
     bunVersion: nodeBunVersion,
+    runCommand: (cwd, command, args) => {
+      const result = spawnSync(command, args, {
+        cwd,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+      return {
+        status: result.status ?? 1,
+        stderr: result.stderr ?? "",
+        stdout: result.stdout ?? "",
+      };
+    },
     ...(packageRoot ? { packageRoot } : {}),
   };
 }
