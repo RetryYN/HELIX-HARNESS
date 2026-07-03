@@ -637,6 +637,8 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(s4Template?.insertionHint).toContain("Forward/Reverse");
     expect(s4Template?.insertionHint).toContain("archive/backlog");
     expect(s4Template?.insertionHint).toContain("route_impact");
+    expect(s4Template?.insertionHintJa).toContain("S4 判断前");
+    expect(s4Template?.insertionHintJa).toContain("進路を記録");
     expect(s4Template?.yamlLines).toEqual(
       expect.arrayContaining([
         "s4_decision_record:",
@@ -645,12 +647,21 @@ describe("completionDecisionPacketForOutstanding", () => {
         '  - reverse_fullback_required: "<true|false plus route basis>"',
       ]),
     );
+    expect(s4Template?.yamlLinesJa).toEqual(
+      expect.arrayContaining([
+        "s4_decision_record:",
+        '  - allowed_outcome: "<confirmed|rejected|pivot のどれか>"',
+        '  - reverse_fullback_required: "<true|false と route 根拠>"',
+      ]),
+    );
     const actionBindingTemplate = packet.decisions[0].recordTemplates[1];
     expect(actionBindingTemplate?.recordName).toBe("action_binding_approval_record");
     expect(actionBindingTemplate?.insertionHint).toContain("actor/tool/target/params");
     expect(actionBindingTemplate?.insertionHint).toContain("dry-run");
     expect(actionBindingTemplate?.insertionHint).toContain("risk");
     expect(actionBindingTemplate?.insertionHint).toContain("approver/action/result/incident");
+    expect(actionBindingTemplate?.insertionHintJa).toContain("高影響 action 実行前");
+    expect(actionBindingTemplate?.insertionHintJa).toContain("最小権限");
     expect(actionBindingTemplate?.yamlLines).toEqual(
       expect.arrayContaining([
         "action_binding_approval_record:",
@@ -658,6 +669,13 @@ describe("completionDecisionPacketForOutstanding", () => {
         '  - approved_actor: "<approved_actor>"',
         '  - reviewed_snapshot_binding: "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|no-snapshot basis>"',
         '  - audit_record: "<evidence path or audit id>"',
+      ]),
+    );
+    expect(actionBindingTemplate?.yamlLinesJa).toEqual(
+      expect.arrayContaining([
+        "action_binding_approval_record:",
+        '  - reviewed_snapshot_binding: "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|snapshot 不要の根拠>"',
+        '  - audit_record: "<evidence path または audit id>"',
       ]),
     );
     expect(packet.decisions[0].requiredEvidence).toContain(

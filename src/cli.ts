@@ -855,13 +855,27 @@ function semanticMeaningSummaryLine(
 }
 
 function writeRecordTemplates(
-  templates: Array<{ recordName: string; yamlLines: string[] }>,
+  templates: Array<{
+    recordName: string;
+    insertionHintJa?: string;
+    yamlLines: string[];
+    yamlLinesJa?: string[];
+  }>,
   indent = "    ",
 ): void {
   for (const template of templates) {
     process.stdout.write(`${indent}record-template ${template.recordName}:\n`);
+    if (template.insertionHintJa) {
+      process.stdout.write(`${indent}  record-template-hint-ja: ${template.insertionHintJa}\n`);
+    }
     for (const line of template.yamlLines) {
       process.stdout.write(`${indent}  ${line}\n`);
+    }
+    if (template.yamlLinesJa && template.yamlLinesJa.length > 0) {
+      process.stdout.write(`${indent}  record-template-ja:\n`);
+      for (const line of template.yamlLinesJa) {
+        process.stdout.write(`${indent}    ${line}\n`);
+      }
     }
   }
 }

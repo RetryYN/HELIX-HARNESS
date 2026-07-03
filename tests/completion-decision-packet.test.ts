@@ -1139,6 +1139,40 @@ describe("completion decision packet lint", () => {
     });
   });
 
+  it("rejects record templates that omit Japanese human guidance", () => {
+    const packet = {
+      ...basePacket(),
+      decisions: basePacket().decisions.map((decision) => ({
+        ...decision,
+        recordTemplates: decision.requiredRecords.map((record) => ({
+          recordName: record.recordName,
+          insertionHint:
+            "Add this block to the PLAN S4 decision evidence before setting decision_outcome or terminal status; distinguish confirmed/rejected/pivot, record route_impact, and bind the Forward/Reverse route or archive/backlog path.",
+          yamlLines: [
+            `${record.recordName}:`,
+            ...record.fields.map((field) => `  - ${field}: "<${field}>"`),
+          ],
+        })),
+      })),
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_record_template",
+          detail: "decision[0] s4_decision_record invalid insertionHintJa",
+        },
+        {
+          reason: "invalid_record_template",
+          detail: "decision[0] s4_decision_record missing yamlLinesJa",
+        },
+      ]),
+    );
+  });
+
   it("rejects decisions whose required records lack record-level allowed outcomes", () => {
     const packet = {
       ...basePacket(),

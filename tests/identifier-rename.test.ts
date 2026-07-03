@@ -1497,6 +1497,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("verification-commands=");
       expect(text.stdout).toContain("record-template cutover_decision_record");
       expect(text.stdout).toContain("record-template action_binding_approval_record");
+      expect(text.stdout).toContain("record-template-hint-ja:");
+      expect(text.stdout).toContain("record-template-ja:");
       expect(text.stdout).toContain(
         "verification-source: baseline source=HELIX identifier cutover source ledger sourceUrl=docs/process/forward/L08-L14-verification-phase.md checked=2026-07-02",
       );

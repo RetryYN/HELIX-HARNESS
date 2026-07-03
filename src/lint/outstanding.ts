@@ -296,7 +296,9 @@ export interface CompletionDecisionRecordRoute {
 export interface CompletionDecisionRecordTemplate {
   recordName: string;
   insertionHint: string;
+  insertionHintJa?: string;
   yamlLines: string[];
+  yamlLinesJa?: string[];
 }
 
 export interface CompletionDecisionPacket {
@@ -1925,13 +1927,47 @@ export function recordTemplatesForRecords(
   return records.map((record) => ({
     recordName: record.recordName,
     insertionHint: insertionHintForRecordName(record.recordName),
+    insertionHintJa: insertionHintJaForRecordName(record.recordName),
     yamlLines: [
       `${record.recordName}:`,
       ...record.fields.map(
         (field) => `  - ${field}: "${placeholderForRecordField(record, field)}"`,
       ),
     ],
+    yamlLinesJa: [
+      `${record.recordName}:`,
+      ...record.fields.map(
+        (field) => `  - ${field}: "${placeholderJaForRecordField(record, field)}"`,
+      ),
+    ],
   }));
+}
+
+function insertionHintJaForRecordName(recordName: string): string {
+  switch (recordName) {
+    case "s4_decision_record":
+      return "S4 判断前に PLAN へ追加する。confirmed / rejected / pivot のどれかを選び、route_impact と Forward / Reverse / archive / backlog の進路を記録する。";
+    case "activation_decision_record":
+      return "version-up activation 前に PLAN へ追加する。activationSnapshot.snapshotId、add-feature Forward 進路、reject/archive 進路、review_by、dry-run、rollback を束縛する。";
+    case "parked_review_record":
+      return "将来版として parked のまま保持する間に PLAN へ追加する。review_owner、review_trigger、stale_action、completion/status decision packet route を記録する。";
+    case "external_rehearsal_plan":
+      return "外部 activation 前に PLAN へ追加する。公式 source basis、free-tier budget、webhook signature、access control、secret/PII 無し、本番 write 無し、rollback rehearsal evidence を記録する。";
+    case "cost_guardrails":
+      return "外部 activation 前に PLAN へ追加する。Pages / Workers / D1 / KV の上限と exceed_action または scope reduction route を記録する。";
+    case "activation_provenance_requirements":
+      return "外部 activation 前に PLAN へ追加する。source ledger、dry-run evidence、approval evidence、audit record を束縛し、activation を追跡可能にする。";
+    case "cutover_decision_record":
+      return "L14 cutover の不可逆 apply / migration 前に PLAN へ追加する。cutoverSnapshot.snapshotId、frozen HEAD、quiet window、single-run、再承認 trigger、dry-run、branch/tag rollback、state backup、smoke/doctor/status monitoring を束縛する。";
+    case "action_binding_approval_record":
+      return "高影響 action 実行前に PLAN へ追加する。actor/tool/target/params を最小権限に限定し、dry-run/risk evidence、reviewed snapshot binding、expiry、approver/action/result/incident audit を記録する。";
+    case "consumer_setup_boundary_record":
+      return "新規 consumer repository の bootstrap だけで whole-program completion を主張する前に、最初の project PLAN または handover evidence へ追加する。";
+    case "terminal_evidence_record":
+      return "PLAN を terminal status にする前に追加する。artifact、review_evidence、green_commands が実在することを記録する。";
+    default:
+      return "blocker 解消を主張する前に、この record block を PLAN へ追加する。";
+  }
 }
 
 function insertionHintForRecordName(recordName: string): string {
@@ -1959,6 +1995,49 @@ function insertionHintForRecordName(recordName: string): string {
     default:
       return "Add this record block to the PLAN before claiming the blocker is resolved.";
   }
+}
+
+function placeholderJaForRecordField(
+  record: CompletionDecisionRecordRequirement,
+  field: string,
+): string {
+  if (field === "allowed_outcome") {
+    return `<${allowedOutcomesForRecordName(record.recordName).join("|")} のどれか>`;
+  }
+  if (field === "reverse_fullback_required") return "<true|false と route 根拠>";
+  if (field === "activation_snapshot_id") return "<activationSnapshot.snapshotId>";
+  if (field === "cutover_snapshot_id") return "<cutoverSnapshot.snapshotId>";
+  if (field === "dry_run_plan" || field === "rollback_plan" || field === "state_backup_plan") {
+    return `<${field} の evidence path または runbook id>`;
+  }
+  if (field === "review_by" || field === "expires_at_or_trigger") {
+    return "<ISO timestamp、日付、または trigger condition>";
+  }
+  if (field === "audit_record" || field === "review_approval_evidence") {
+    return "<evidence path または audit id>";
+  }
+  if (field === "reviewed_snapshot_binding") {
+    return "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|snapshot 不要の根拠>";
+  }
+  if (field === "source_ledger_freshness") {
+    return "<fresh|stale と checked date / ledger label>";
+  }
+  if (field === "source_status_delta" || field === "adoption_decision_delta") {
+    return "<none|changed と公式 source evidence>";
+  }
+  if (field === "workflow_route_impact") {
+    return "<none または S4/version-up/cutover/action-binding backfill route>";
+  }
+  if (field === "official_source_basis" || field === "source_ledger") {
+    return "<公式 source 名、checked date、URL>";
+  }
+  if (field.endsWith("_check")) {
+    return "<pass|fail と evidence path>";
+  }
+  if (field.endsWith("_limit")) {
+    return "<provider limit、使用量、超過時 action>";
+  }
+  return `<${field} の具体値>`;
 }
 
 function placeholderForRecordField(

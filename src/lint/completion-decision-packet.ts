@@ -16,6 +16,8 @@ import {
   sourceLedgerCheckedDateViolation,
 } from "./source-ledger-freshness";
 
+const JAPANESE_GUIDANCE_PATTERN = /[ぁ-んァ-ン一-龯]/;
+
 export type CompletionDecisionPacketViolationReason =
   | "invalid_generated_from"
   | "invalid_status_ok_consistency"
@@ -1035,12 +1037,50 @@ export function recordTemplateContractViolations(input: {
         reason: `${input.subject} ${record.recordName} invalid insertionHint`,
       });
     }
+    if (
+      !template.insertionHintJa?.trim() ||
+      /^(TBD|TODO|-)$/.test(template.insertionHintJa.trim()) ||
+      !JAPANESE_GUIDANCE_PATTERN.test(template.insertionHintJa)
+    ) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject} ${record.recordName} invalid insertionHintJa`,
+      });
+    }
     if (!Array.isArray(template.yamlLines) || template.yamlLines.length === 0) {
       violations.push({
         subject: input.subject,
         reason: `${input.subject} ${record.recordName} missing yamlLines`,
       });
       continue;
+    }
+    if (!Array.isArray(template.yamlLinesJa) || template.yamlLinesJa.length === 0) {
+      violations.push({
+        subject: input.subject,
+        reason: `${input.subject} ${record.recordName} missing yamlLinesJa`,
+      });
+    } else {
+      if (template.yamlLinesJa[0]?.trim() !== `${record.recordName}:`) {
+        violations.push({
+          subject: input.subject,
+          reason: `${input.subject} ${record.recordName} template ja header mismatch`,
+        });
+      }
+      const templateTextJa = template.yamlLinesJa.join("\n");
+      for (const field of record.fields) {
+        if (!templateTextJa.includes(`- ${field}:`)) {
+          violations.push({
+            subject: input.subject,
+            reason: `${input.subject} ${record.recordName} template ja missing field=${field}`,
+          });
+        }
+      }
+      if (!JAPANESE_GUIDANCE_PATTERN.test(templateTextJa)) {
+        violations.push({
+          subject: input.subject,
+          reason: `${input.subject} ${record.recordName} yamlLinesJa lacks Japanese guidance`,
+        });
+      }
     }
     if (template.yamlLines[0]?.trim() !== `${record.recordName}:`) {
       violations.push({
