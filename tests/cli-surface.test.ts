@@ -1614,6 +1614,8 @@ describe("L7 CLI surface closure", () => {
         "utf8",
       );
       writeFileSync(join(root, "src", "widget", "core.ts"), "export const core = 1;\n", "utf8");
+      mkdirSync(join(root, "src", "other"), { recursive: true });
+      writeFileSync(join(root, "src", "other", "unused.ts"), "export const unused = 1;\n", "utf8");
       writeFileSync(
         join(root, "tests", "core.test.ts"),
         'import { core } from "../src/widget/core";\nexport const t = core;\n',
@@ -1632,6 +1634,30 @@ describe("L7 CLI surface closure", () => {
       expect(d2.status).toBe(0);
       expect(d2.stdout).toContain('source_src_widget_core_ts: "source:src/widget/core.ts"');
       expect(d2.stdout).not.toContain("flowchart TD");
+
+      const scoped = runCliIn(root, [
+        "graph",
+        "export",
+        "--format",
+        "mermaid",
+        "--scope",
+        "src/widget",
+      ]);
+      expect(scoped.status).toBe(0);
+      expect(scoped.stdout).toContain("# scope=src/widget");
+      expect(scoped.stdout).toContain("source:src/widget/core.ts");
+      expect(scoped.stdout).not.toContain("source:src/other/unused.ts");
+
+      const outsideScope = runCliIn(root, [
+        "graph",
+        "export",
+        "--format",
+        "mermaid",
+        "--scope",
+        "../src",
+      ]);
+      expect(outsideScope.status).toBe(1);
+      expect(outsideScope.stderr).toContain("invalid-scope");
 
       const invalid = runCliIn(root, ["graph", "export", "--format", "svg"]);
       expect(invalid.status).toBe(1);

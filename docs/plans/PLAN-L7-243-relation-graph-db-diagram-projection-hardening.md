@@ -153,7 +153,7 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 
 - L5 §9.5 の `imports` / `references` / `declares_module` / `implements` / `tests` /
   `projects_to` / `visualizes` と、現 `RelationEdgeKind` の完全同期。
-- `graph export --scope` の実フィルタリング。
+- `graph export --scope` の実フィルタリング (**PLAN-L7-244 で解消済み**)。
 - Graphviz SVG/PDF/PNG や D2 CLI renderer の実行・成果物ファイル保存。
 - `visualizes` edge と diagram refresh action の graph collector / impact expansion 接続。
 

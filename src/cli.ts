@@ -77,6 +77,8 @@ import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
   exportRelationDiagram,
+  filterRelationGraphProjectionByScope,
+  isSafeRelationGraphScope,
   type RelationDiagramAdapter,
 } from "./lint/relation-graph";
 import { buildS4DecisionPackets, loadS4DecisionReadinessInput } from "./lint/s4-decision-readiness";
@@ -2163,10 +2165,20 @@ graph
   .command("export")
   .description("export the relation graph as a diagram (mermaid|dot|d2)")
   .option("--format <format>", "mermaid | dot | d2", "mermaid")
-  .option("--scope <scope>", "scope label (full export; per-scope filtering is a follow-up)")
+  .option("--scope <scope>", "filter diagram to matching graph nodes plus adjacent edges")
   .action((opts: { format?: string; scope?: string }) => {
     const repoRoot = process.cwd();
-    const projection = collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot));
+    if (!isSafeRelationGraphScope(opts.scope)) {
+      process.stderr.write(
+        `[error] invalid-scope: graph export scope must be a repo-relative prefix (got ${opts.scope})\n`,
+      );
+      process.exitCode = 1;
+      return;
+    }
+    const projection = filterRelationGraphProjectionByScope(
+      collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot)),
+      opts.scope,
+    );
     const requestedFormat = opts.format ?? "mermaid";
     if (
       requestedFormat !== "mermaid" &&
@@ -2185,11 +2197,7 @@ graph
     const availableAdapters: RelationDiagramAdapter[] =
       format === "mermaid" ? [] : [format];
     const artifact = exportRelationDiagram({ snapshot: projection, format, availableAdapters });
-    if (opts.scope) {
-      process.stdout.write(
-        `# scope=${opts.scope} (full export; per-scope filtering is a follow-up)\n`,
-      );
-    }
+    if (opts.scope) process.stdout.write(`# scope=${opts.scope}\n`);
     if (!artifact.ok) {
       for (const f of artifact.findings) {
         process.stderr.write(`[${f.severity}] ${f.code}: ${f.message}\n`);

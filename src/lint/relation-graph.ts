@@ -610,4 +610,64 @@ export function exportRelationDiagram(input: ExportRelationDiagramInput): Diagra
   };
 }
 
+function nodeMatchesScope(node: RelationNode, normalizedScope: string): boolean {
+  return [node.id, node.path, node.label]
+    .filter((value): value is string => typeof value === "string" && value.length > 0)
+    .some((value) => normalizePath(value).includes(normalizedScope));
+}
+
+export function filterRelationGraphProjectionByScope(
+  snapshot: RelationGraphProjection,
+  scope: string | undefined,
+): RelationGraphProjection {
+  const normalizedScope = normalizePath(scope ?? "").replace(/^\/+|\/+$/g, "");
+  if (!normalizedScope || normalizedScope === "repo" || normalizedScope === ".") {
+    return snapshot;
+  }
+
+  const seedIds = new Set(
+    snapshot.nodes.filter((node) => nodeMatchesScope(node, normalizedScope)).map((node) => node.id),
+  );
+  if (seedIds.size === 0) {
+    return {
+      ...snapshot,
+      nodes: [],
+      edges: [],
+      verificationProfiles: [],
+      findings: sortFindings(
+        snapshot.findings.filter((finding) => finding.nodeId && seedIds.has(finding.nodeId)),
+      ),
+    };
+  }
+
+  const includedIds = new Set(seedIds);
+  const edges = snapshot.edges.filter((edge) => {
+    const adjacent = seedIds.has(edge.from) || seedIds.has(edge.to);
+    if (adjacent) {
+      includedIds.add(edge.from);
+      includedIds.add(edge.to);
+    }
+    return adjacent;
+  });
+
+  return {
+    nodes: snapshot.nodes.filter((node) => includedIds.has(node.id)),
+    edges: sortEdges(edges),
+    verificationProfiles: snapshot.verificationProfiles.filter((row) =>
+      includedIds.has(row.nodeId),
+    ),
+    findings: sortFindings(
+      snapshot.findings.filter((finding) => !finding.nodeId || includedIds.has(finding.nodeId)),
+    ),
+  };
+}
+
+export function isSafeRelationGraphScope(scope: string | undefined): boolean {
+  if (!scope) return true;
+  const normalized = normalizePath(scope).trim();
+  if (!normalized || normalized === "." || normalized === "repo") return true;
+  if (normalized.startsWith("/") || /^[A-Za-z]:\//.test(normalized)) return false;
+  return !normalized.split("/").some((segment) => segment === "..");
+}
+
 export * from "./relation-graph-evidence";

@@ -351,8 +351,8 @@ The DB must make cross-cutting impact analysis queryable. The authoring sources 
 
 現 L7 実装では、`rebuildHarnessDb` が repo scope の `graph_snapshots` から Mermaid / DOT / D2 の
 標準 text export 行を `diagram_artifacts` へ射影する。Graphviz / D2 CLI で SVG/PDF/PNG 等を
-生成する外部 renderer 実行、`graph export --scope` の実フィルタリング、`visualizes` edge から
-diagram refresh action への接続は `IMP-148` の継続 scope とする。
+生成する外部 renderer 実行、`visualizes` edge から diagram refresh action への接続は `IMP-148`
+の継続 scope とする。`graph export --scope` の repo-relative filtering は PLAN-L7-244 で実装済み。
 
 Required edge kinds:
 

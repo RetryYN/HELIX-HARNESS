@@ -13,6 +13,8 @@ import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
   exportRelationDiagram,
+  filterRelationGraphProjectionByScope,
+  isSafeRelationGraphScope,
   type RelationGraphSourceSet,
   type RelationImpactActionKind,
 } from "../src/lint/relation-graph";
@@ -365,6 +367,42 @@ describe("exportRelationDiagram (U-RELGRAPH-007..008)", () => {
     expect(d2.content).toBe("");
     expect(d2.findings[0]?.message).toContain("d2");
     expect(d2.invokedAdapters).toEqual([]);
+  });
+});
+
+describe("filterRelationGraphProjectionByScope (IMP-148)", () => {
+  it("keeps matching nodes and adjacent edges while dropping unrelated graph rows", () => {
+    const projection = collectRelationGraphProjection({
+      plans: [
+        { id: "PLAN-A", generates: ["src/widget/core.ts"] },
+        { id: "PLAN-B", generates: ["src/other/unused.ts"] },
+      ],
+      sourceFiles: [
+        { path: "src/widget/core.ts", tests: ["tests/core.test.ts"] },
+        { path: "src/other/unused.ts", tests: ["tests/unused.test.ts"] },
+      ],
+      tests: [{ path: "tests/core.test.ts" }, { path: "tests/unused.test.ts" }],
+    });
+
+    const scoped = filterRelationGraphProjectionByScope(projection, "src/widget");
+
+    expect(scoped.nodes.map((node) => node.id)).toEqual([
+      "plan:PLAN-A",
+      "source:src/widget/core.ts",
+      "test:tests/core.test.ts",
+    ]);
+    expect(scoped.edges.map((edge) => `${edge.from}->${edge.kind}->${edge.to}`)).toEqual([
+      "plan:PLAN-A->generates->source:src/widget/core.ts",
+      "source:src/widget/core.ts->covered-by->test:tests/core.test.ts",
+    ]);
+  });
+
+  it("accepts only repo-relative scope prefixes", () => {
+    expect(isSafeRelationGraphScope("src/widget")).toBe(true);
+    expect(isSafeRelationGraphScope("repo")).toBe(true);
+    expect(isSafeRelationGraphScope("../src")).toBe(false);
+    expect(isSafeRelationGraphScope("/tmp/repo/src")).toBe(false);
+    expect(isSafeRelationGraphScope("C:/repo/src")).toBe(false);
   });
 });
 
