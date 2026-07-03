@@ -412,6 +412,34 @@ function handoverCompletionReviewCoverageLine(outstanding: OutstandingWork): str
   ].join(" ");
 }
 
+function handoverSemanticFrontierLine(outstanding: OutstandingWork): string {
+  const records = outstanding.semanticFeatureFrontierRecords ?? [];
+  const ids =
+    records
+      .map(
+        (record) =>
+          `${sanitize(record.featureId)}:${sanitize(record.classification)}:${sanitize(record.planId)}`,
+      )
+      .join(",") || "none";
+  return [
+    "semantic-frontier-records:",
+    `count=${records.length}`,
+    `ids=${ids}`,
+    `completion-claim-allowed=${records.some((record) => record.completionClaimAllowed) ? "true" : "false"}`,
+  ].join(" ");
+}
+
+function handoverConfirmedMeaningLine(outstanding: OutstandingWork): string {
+  const records = outstanding.confirmedCurrentMeaningRecords ?? [];
+  const ids = records.map((record) => sanitize(record.featureId)).join(",") || "none";
+  return [
+    "confirmed-current-meaning-records:",
+    `count=${records.length}`,
+    `ids=${ids}`,
+    "boundary=downstream_evidence_required",
+  ].join(" ");
+}
+
 /**
  * U-HOVER-004: 純関数。§6.8.5 の 6 セクション markdown を render。③-⑥ は TODO placeholder。
  * 自由テキスト (summary / deliverables) に sanitize を再適用 (defense-in-depth、tracked md への流出ゼロ)。
@@ -471,6 +499,8 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
       lines.push(
         `> ${HANDOVER_NEXT_ACTION_MARKER}: ${workflowActions.length} 件; 正本=\`workflowNextActionsForOutstanding\``,
         `> ${handoverCompletionReviewCoverageLine(opts.outstanding)}`,
+        `> ${handoverSemanticFrontierLine(opts.outstanding)}`,
+        `> ${handoverConfirmedMeaningLine(opts.outstanding)}`,
         "",
         ...workflowActions.flatMap((a) => [
           `- ${a.order}. \`${sanitize(a.planId)}\` (${sanitize(a.reason)}): 必要作業=${sanitize(handoverActionText(a.requiredAction))}`,
@@ -810,6 +840,22 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
     return {
       messages: [
         "handover-next-action — violation: 最新 handover §3 に completion-review-coverage 行が無い → `ut-tdd handover` で再生成し review packet で閉じる blocker と packet 外 blocker を分離",
+      ],
+      ok: false,
+    };
+  }
+  if (
+    !section.includes("completion-ready") &&
+    (!section.includes("semantic-frontier-records:") ||
+      !section.includes("confirmed-current-meaning-records:") ||
+      !section.includes("count=") ||
+      !section.includes("ids=") ||
+      !section.includes("completion-claim-allowed=false") ||
+      !section.includes("boundary=downstream_evidence_required"))
+  ) {
+    return {
+      messages: [
+        "handover-next-action — violation: 最新 handover §3 に semantic frontier / confirmed meaning 行が無い → `ut-tdd handover` で再生成し意味ベース機能一覧と frontier 境界を seed",
       ],
       ok: false,
     };
