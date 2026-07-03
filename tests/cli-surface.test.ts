@@ -1272,7 +1272,13 @@ describe("L7 CLI surface closure", () => {
         "review-packet: PLAN-DISCOVERY-10-fixture ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
+        "route=S4 decision evidence / outcome route / verification command を確認する route-id=review S4 decision evidence, outcome routes, and verification commands",
+      );
+      expect(text.stdout).toContain(
         "review-packet: PLAN-M-02-fixture ut-tdd rename approval-draft --json scoped=ut-tdd rename approval-draft --json",
+      );
+      expect(text.stdout).toContain(
+        "route=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む route-id=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
       );
       expect(text.stdout).toContain("writePolicy=no-write");
       expect(text.stdout).toContain(

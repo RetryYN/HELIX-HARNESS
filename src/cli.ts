@@ -1095,7 +1095,7 @@ completion
     );
     for (const packet of bundle.reviewPackets) {
       process.stdout.write(
-        `review-packet: ${packet.planId} ${packet.command} scoped=${packet.scopedCommand} runnable=${packet.runnableScopedCommand} schema=${packet.schemaVersion} matrix=${packet.matrixField} count=${packet.expectedMatrixCount} writePolicy=${packet.writePolicy} safety=${packet.requiredSafetyFields.join(",") || "none"} route=${packet.reviewRouteJa}\n`,
+        `review-packet: ${packet.planId} ${packet.command} scoped=${packet.scopedCommand} runnable=${packet.runnableScopedCommand} schema=${packet.schemaVersion} matrix=${packet.matrixField} count=${packet.expectedMatrixCount} writePolicy=${packet.writePolicy} safety=${packet.requiredSafetyFields.join(",") || "none"} route=${packet.reviewRouteJa} route-id=${packet.reviewRoute}\n`,
       );
     }
     process.stdout.write(`blocked-until: ${bundle.blockedUntil.join(",") || "none"}\n`);
