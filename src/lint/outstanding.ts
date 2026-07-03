@@ -317,7 +317,35 @@ export interface CompletionDecisionPacket {
   confirmedCurrentMeaningRecords: ConfirmedCurrentMeaningRecord[];
   decisionCount: number;
   blockers: string[];
+  humanReviewBundle: CompletionDecisionHumanReviewBundle;
   decisions: CompletionDecisionItem[];
+}
+
+export interface CompletionDecisionHumanReviewBundle {
+  schemaVersion: "completion-decision-human-review-bundle.v1";
+  status: CompletionDecisionPacket["status"];
+  sourceCommand: string;
+  generatedAt: string;
+  decisionCount: number;
+  nextAuthority: CompletionNextAuthority;
+  completionClaimAllowed: boolean;
+  items: CompletionDecisionHumanReviewItem[];
+}
+
+export interface CompletionDecisionHumanReviewItem {
+  order: number;
+  planId: string;
+  decisionKind: CompletionDecisionKind;
+  blockerReason: string;
+  blockers: string[];
+  requiredActionsJa: string[];
+  requiredRecords: string[];
+  scopedPrimaryPacketCommand: string;
+  runnableScopedPrimaryPacketCommand: string;
+  scopedSupportingPacketCommands: string[];
+  runnableScopedSupportingPacketCommands: string[];
+  reviewRoutesJa: string[];
+  reviewRouteIds: string[];
 }
 
 export interface CompletionDecisionSemanticMeaningSummary {
@@ -1101,6 +1129,48 @@ export function completionDecisionPacketForOutstanding(
     validForMinutes: opts.validForMinutes,
     sourceCommand: opts.sourceCommand ?? COMPLETION_DECISION_PACKET_COMMAND,
   });
+  const decisions = outstanding.items.map((item) => {
+    const requiredRecords = requiredRecordsForBlockers(item.blockers);
+    const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
+    const decisionPacketCommand = decisionPacketCommandForOutstandingReason(item.reason);
+    return {
+      planId: item.planId,
+      layer: item.layer,
+      kind: item.kind,
+      status: item.status,
+      workflowPhase: item.workflowPhase,
+      blockerReason: item.reason,
+      blockers: item.blockers,
+      decisionKind: decisionKindForOutstandingReason(item.reason),
+      requiredAction: item.requiredAction,
+      requiredActionJa: item.requiredActionJa,
+      requiredActions: item.requiredActions,
+      requiredActionsJa: item.requiredActionsJa,
+      requiredEvidence: item.requiredEvidence,
+      requiredRecords,
+      recordTemplates: recordTemplatesForRecords(requiredRecords),
+      allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
+      allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
+      nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
+      nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
+      nextWorkflowRouteJa: workflowRouteTextJa(nextWorkflowRouteForOutstandingReason(item.reason)),
+      decisionPacketCommand,
+      runnableDecisionPacketCommand: runnablePacketCommand(decisionPacketCommand),
+      packetCommands,
+      runnablePacketCommands: packetCommands.map(runnablePacketCommand),
+      scopedDecisionPacketCommand: scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
+      runnableScopedDecisionPacketCommand: runnablePacketCommand(
+        scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
+      ),
+      scopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands),
+      runnableScopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands).map(
+        runnablePacketCommand,
+      ),
+      supportingPacketSummaries: packetCommands.map((command) =>
+        supportingPacketSummaryForCommand(command, item.planId),
+      ),
+    };
+  });
   return {
     ok: outstanding.completionReadiness.ok,
     status: outstanding.completionReadiness.status,
@@ -1127,50 +1197,53 @@ export function completionDecisionPacketForOutstanding(
     confirmedCurrentMeaningRecords: outstanding.confirmedCurrentMeaningRecords ?? [],
     decisionCount: outstanding.items.length,
     blockers: outstanding.completionReadiness.blockers,
-    decisions: outstanding.items.map((item) => {
-      const requiredRecords = requiredRecordsForBlockers(item.blockers);
-      const packetCommands = packetCommandsForOutstandingBlockers(item.reason, item.blockers);
-      const decisionPacketCommand = decisionPacketCommandForOutstandingReason(item.reason);
-      return {
-        planId: item.planId,
-        layer: item.layer,
-        kind: item.kind,
-        status: item.status,
-        workflowPhase: item.workflowPhase,
-        blockerReason: item.reason,
-        blockers: item.blockers,
-        decisionKind: decisionKindForOutstandingReason(item.reason),
-        requiredAction: item.requiredAction,
-        requiredActionJa: item.requiredActionJa,
-        requiredActions: item.requiredActions,
-        requiredActionsJa: item.requiredActionsJa,
-        requiredEvidence: item.requiredEvidence,
-        requiredRecords,
-        recordTemplates: recordTemplatesForRecords(requiredRecords),
-        allowedOutcomes: allowedOutcomesForOutstandingReason(item.reason),
-        allowedOutcomesByRecord: allowedOutcomesForRecords(requiredRecords),
-        nextWorkflowRoutesByRecord: nextWorkflowRoutesForRecords(requiredRecords),
-        nextWorkflowRoute: nextWorkflowRouteForOutstandingReason(item.reason),
-        nextWorkflowRouteJa: workflowRouteTextJa(
-          nextWorkflowRouteForOutstandingReason(item.reason),
-        ),
-        decisionPacketCommand,
-        runnableDecisionPacketCommand: runnablePacketCommand(decisionPacketCommand),
-        packetCommands,
-        runnablePacketCommands: packetCommands.map(runnablePacketCommand),
-        scopedDecisionPacketCommand: scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
-        runnableScopedDecisionPacketCommand: runnablePacketCommand(
-          scopedPacketCommandForPlan(item.planId, decisionPacketCommand),
-        ),
-        scopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands),
-        runnableScopedPacketCommands: scopedPacketCommandsForPlan(item.planId, packetCommands).map(
-          runnablePacketCommand,
-        ),
-        supportingPacketSummaries: packetCommands.map((command) =>
-          supportingPacketSummaryForCommand(command, item.planId),
-        ),
-      };
+    humanReviewBundle: buildCompletionDecisionHumanReviewBundle({
+      status: outstanding.completionReadiness.status,
+      sourceCommand: provenance.sourceCommand,
+      generatedAt: provenance.generatedAt,
+      decisionCount: outstanding.items.length,
+      nextAuthority: outstanding.completionReadiness.nextAuthority,
+      completionClaimAllowed: outstanding.completionReadiness.ok,
+      decisions,
     }),
+    decisions,
+  };
+}
+
+function buildCompletionDecisionHumanReviewBundle(input: {
+  status: CompletionDecisionPacket["status"];
+  sourceCommand: string;
+  generatedAt: string;
+  decisionCount: number;
+  nextAuthority: CompletionNextAuthority;
+  completionClaimAllowed: boolean;
+  decisions: CompletionDecisionItem[];
+}): CompletionDecisionHumanReviewBundle {
+  return {
+    schemaVersion: "completion-decision-human-review-bundle.v1",
+    status: input.status,
+    sourceCommand: input.sourceCommand,
+    generatedAt: input.generatedAt,
+    decisionCount: input.decisionCount,
+    nextAuthority: input.nextAuthority,
+    completionClaimAllowed: input.completionClaimAllowed,
+    items: input.decisions.map((decision, index) => ({
+      order: index + 1,
+      planId: decision.planId,
+      decisionKind: decision.decisionKind,
+      blockerReason: decision.blockerReason,
+      blockers: decision.blockers,
+      requiredActionsJa: decision.requiredActionsJa,
+      requiredRecords: decision.requiredRecords.map((record) => record.recordName),
+      scopedPrimaryPacketCommand: decision.scopedDecisionPacketCommand,
+      runnableScopedPrimaryPacketCommand: decision.runnableScopedDecisionPacketCommand,
+      scopedSupportingPacketCommands: decision.scopedPacketCommands,
+      runnableScopedSupportingPacketCommands: decision.runnableScopedPacketCommands,
+      reviewRoutesJa: decision.supportingPacketSummaries.map(
+        (summary) => summary.reviewRouteJa ?? summary.reviewRoute,
+      ),
+      reviewRouteIds: decision.supportingPacketSummaries.map((summary) => summary.reviewRoute),
+    })),
   };
 }
 

@@ -972,6 +972,14 @@ completion
     process.stdout.write(
       `authority-blockers: human=${packet.humanDecisionBlockers.join(",") || "none"} workflow-state=${packet.workflowStateBlockers.join(",") || "none"} automation=${packet.autonomousWorkBlockers.join(",") || "none"}\n`,
     );
+    process.stdout.write(
+      `human-review-bundle: schema=${packet.humanReviewBundle.schemaVersion} decisions=${packet.humanReviewBundle.decisionCount} next-authority=${packet.humanReviewBundle.nextAuthority} completion-claim-allowed=${packet.humanReviewBundle.completionClaimAllowed}\n`,
+    );
+    for (const item of packet.humanReviewBundle.items) {
+      process.stdout.write(
+        `human-review-item: ${item.order} ${item.planId} kind=${item.decisionKind} primary=${item.scopedPrimaryPacketCommand} runnable=${item.runnableScopedPrimaryPacketCommand} supporting=${item.scopedSupportingPacketCommands.join(" | ") || "none"} records=${item.requiredRecords.join(",") || "none"}\n`,
+      );
+    }
     process.stdout.write(packetFreshnessLine(packet));
     for (const decision of packet.decisions) {
       process.stdout.write(

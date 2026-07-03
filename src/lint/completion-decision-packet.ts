@@ -47,6 +47,7 @@ export type CompletionDecisionPacketViolationReason =
   | "invalid_next_routes_by_record"
   | "invalid_required_record_source_path"
   | "invalid_required_record_source_ledger"
+  | "invalid_human_review_bundle"
   | "invalid_japanese_display_field";
 
 export interface CompletionDecisionPacketViolation {
@@ -253,6 +254,68 @@ export function analyzeCompletionDecisionPacket(
     });
   }
 
+  const humanReviewBundle = packet.humanReviewBundle;
+  if (!humanReviewBundle) {
+    violations.push({
+      reason: "invalid_human_review_bundle",
+      detail: "humanReviewBundle is required",
+    });
+  } else {
+    if (humanReviewBundle.schemaVersion !== "completion-decision-human-review-bundle.v1") {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `schemaVersion=${String(humanReviewBundle.schemaVersion)}`,
+      });
+    }
+    if (humanReviewBundle.status !== packet.status) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `status=${String(humanReviewBundle.status)} expected=${packet.status}`,
+      });
+    }
+    if (humanReviewBundle.sourceCommand !== packet.sourceCommand) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `sourceCommand=${String(humanReviewBundle.sourceCommand)} expected=${packet.sourceCommand}`,
+      });
+    }
+    if (humanReviewBundle.generatedAt !== packet.generatedAt) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `generatedAt=${String(humanReviewBundle.generatedAt)} expected=${packet.generatedAt}`,
+      });
+    }
+    if (humanReviewBundle.decisionCount !== packet.decisions.length) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `decisionCount=${String(humanReviewBundle.decisionCount)} actual=${packet.decisions.length}`,
+      });
+    }
+    if (humanReviewBundle.nextAuthority !== packet.nextAuthority) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `nextAuthority=${String(humanReviewBundle.nextAuthority)} expected=${packet.nextAuthority}`,
+      });
+    }
+    if (humanReviewBundle.completionClaimAllowed !== packet.ok) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `completionClaimAllowed=${String(humanReviewBundle.completionClaimAllowed)} expected=${String(packet.ok)}`,
+      });
+    }
+    if (!Array.isArray(humanReviewBundle.items)) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: "items is required",
+      });
+    } else if (humanReviewBundle.items.length !== packet.decisions.length) {
+      violations.push({
+        reason: "invalid_human_review_bundle",
+        detail: `items.length=${humanReviewBundle.items.length} expected=${packet.decisions.length}`,
+      });
+    }
+  }
+
   const semanticSummary = packet.semanticMeaningSummary;
   const frontierRecords = packet.semanticFeatureFrontierRecords ?? [];
   const confirmedRecords = packet.confirmedCurrentMeaningRecords ?? [];
@@ -299,6 +362,61 @@ export function analyzeCompletionDecisionPacket(
     sourcePath.split(/[\\/]+/).includes("..");
 
   packet.decisions.forEach((decision, decisionIndex) => {
+    const bundleItem = humanReviewBundle?.items?.[decisionIndex];
+    if (bundleItem) {
+      const expectedRecordNames = decision.requiredRecords.map((record) => record.recordName);
+      const expectedReviewRoutesJa = decision.supportingPacketSummaries.map(
+        (summary) => summary.reviewRouteJa ?? summary.reviewRoute,
+      );
+      const expectedReviewRouteIds = decision.supportingPacketSummaries.map(
+        (summary) => summary.reviewRoute,
+      );
+      const bundleChecks: Array<[string, unknown, unknown]> = [
+        ["order", bundleItem.order, decisionIndex + 1],
+        ["planId", bundleItem.planId, decision.planId],
+        ["decisionKind", bundleItem.decisionKind, decision.decisionKind],
+        ["blockerReason", bundleItem.blockerReason, decision.blockerReason],
+        ["scopedPrimaryPacketCommand", bundleItem.scopedPrimaryPacketCommand, decision.scopedDecisionPacketCommand],
+        [
+          "runnableScopedPrimaryPacketCommand",
+          bundleItem.runnableScopedPrimaryPacketCommand,
+          decision.runnableScopedDecisionPacketCommand,
+        ],
+      ];
+      for (const [field, actual, expected] of bundleChecks) {
+        if (actual !== expected) {
+          violations.push({
+            reason: "invalid_human_review_bundle",
+            detail: `items[${decisionIndex}].${field}=${String(actual)} expected=${String(expected)}`,
+          });
+        }
+      }
+      const arrayChecks: Array<[string, unknown[], unknown[]]> = [
+        ["blockers", bundleItem.blockers ?? [], decision.blockers ?? []],
+        ["requiredActionsJa", bundleItem.requiredActionsJa ?? [], decision.requiredActionsJa ?? []],
+        ["requiredRecords", bundleItem.requiredRecords ?? [], expectedRecordNames],
+        [
+          "scopedSupportingPacketCommands",
+          bundleItem.scopedSupportingPacketCommands ?? [],
+          decision.scopedPacketCommands ?? [],
+        ],
+        [
+          "runnableScopedSupportingPacketCommands",
+          bundleItem.runnableScopedSupportingPacketCommands ?? [],
+          decision.runnableScopedPacketCommands ?? [],
+        ],
+        ["reviewRoutesJa", bundleItem.reviewRoutesJa ?? [], expectedReviewRoutesJa],
+        ["reviewRouteIds", bundleItem.reviewRouteIds ?? [], expectedReviewRouteIds],
+      ];
+      for (const [field, actual, expected] of arrayChecks) {
+        if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+          violations.push({
+            reason: "invalid_human_review_bundle",
+            detail: `items[${decisionIndex}].${field} mismatch expected=${expected.join(",")} actual=${actual.join(",")}`,
+          });
+        }
+      }
+    }
     const expectedDecisionKind = requiredDecisionKind(decision.blockerReason);
     if (decision.decisionKind !== expectedDecisionKind) {
       violations.push({

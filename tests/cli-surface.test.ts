@@ -841,6 +841,34 @@ describe("L7 CLI surface closure", () => {
           confirmedCurrentMeaningRecordCount: 11,
           completionClaimAllowed: false,
         },
+        humanReviewBundle: {
+          schemaVersion: "completion-decision-human-review-bundle.v1",
+          status: "blocked",
+          decisionCount: 2,
+          nextAuthority: "human",
+          completionClaimAllowed: false,
+          items: [
+            {
+              order: 1,
+              planId: "PLAN-DISCOVERY-10-fixture",
+              decisionKind: "po_s4_decision",
+              scopedPrimaryPacketCommand:
+                "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+              requiredRecords: ["s4_decision_record"],
+            },
+            {
+              order: 2,
+              planId: "PLAN-M-02-fixture",
+              decisionKind: "irreversible_migration_signoff",
+              scopedPrimaryPacketCommand: "ut-tdd rename plan --json",
+              scopedSupportingPacketCommands: [
+                "ut-tdd rename plan --json",
+                "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+              ],
+              requiredRecords: ["cutover_decision_record", "action_binding_approval_record"],
+            },
+          ],
+        },
       });
       expect(packet.semanticFeatureFrontierRecords).toHaveLength(2);
       expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
@@ -949,6 +977,15 @@ describe("L7 CLI surface closure", () => {
       );
       expect(text.stdout).toContain(
         "packet-freshness: source=ut-tdd completion decision-packet --json",
+      );
+      expect(text.stdout).toContain(
+        "human-review-bundle: schema=completion-decision-human-review-bundle.v1 decisions=2 next-authority=human completion-claim-allowed=false",
+      );
+      expect(text.stdout).toContain(
+        "human-review-item: 1 PLAN-DISCOVERY-10-fixture kind=po_s4_decision primary=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+      );
+      expect(text.stdout).toContain(
+        "human-review-item: 2 PLAN-M-02-fixture kind=irreversible_migration_signoff primary=ut-tdd rename plan --json",
       );
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");

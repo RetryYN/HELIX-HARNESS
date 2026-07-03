@@ -933,6 +933,16 @@ describe("completionDecisionPacketForOutstanding", () => {
       confirmedCurrentMeaningRecords: expect.any(Array),
       decisionCount: 0,
       blockers: [],
+      humanReviewBundle: {
+        schemaVersion: "completion-decision-human-review-bundle.v1",
+        status: "ready",
+        sourceCommand: "ut-tdd completion decision-packet --json",
+        generatedAt: expect.any(String),
+        decisionCount: 0,
+        nextAuthority: "none",
+        completionClaimAllowed: true,
+        items: [],
+      },
       decisions: [],
     });
     expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
