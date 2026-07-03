@@ -1180,7 +1180,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("exposes a completion review bundle for scoped non-destructive packet review", () => {
+  it("U-OUTSTANDING-017: exposes a completion review bundle for scoped non-destructive packet review", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-review-bundle-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
@@ -1294,6 +1294,10 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "review-packet: PLAN-DISCOVERY-10-fixture ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
+      expect(text.stdout).toContain("reviewFieldCount=");
+      expect(text.stdout).toContain("reviewFields=planOnly,mustNotDecide");
+      expect(text.stdout).toContain("decisionRecord.source_ledger_freshness");
+      expect(text.stdout).toContain("decisionEvidenceChecklist.verified_evidence");
       expect(text.stdout).toContain(
         "route=S4 decision evidence / outcome route / verification command を確認する route-id=review S4 decision evidence, outcome routes, and verification commands",
       );

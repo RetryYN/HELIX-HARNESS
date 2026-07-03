@@ -102,6 +102,7 @@ export interface CompletionReviewBundleLintResult {
   status: CompletionReviewBundle["status"] | "unknown";
   decisionCount: number;
   reviewPacketCount: number;
+  reviewFieldCounts: string[];
   sourceCommand: string;
   validForMinutes: number;
   stale: boolean;
@@ -2105,6 +2106,9 @@ export function analyzeCompletionReviewBundle(
     status: bundle.status ?? "unknown",
     decisionCount: bundle.decisionCount ?? 0,
     reviewPacketCount: bundle.reviewPacketCount ?? 0,
+    reviewFieldCounts: (bundle.reviewPackets ?? []).map(
+      (packet) => `${packet.planId}:${packet.command}:${packet.requiredReviewFields?.length ?? 0}`,
+    ),
     sourceCommand: bundle.sourceCommand ?? "",
     validForMinutes: Number.isFinite(validForMinutes) ? validForMinutes : 0,
     stale: Boolean(bundle.freshness?.stale),
@@ -2178,7 +2182,7 @@ export function completionDecisionPacketMessages(
 export function completionReviewBundleMessages(result: CompletionReviewBundleLintResult): string[] {
   if (result.ok) {
     return [
-      `completion-review-bundle - OK (status=${result.status}, decisions=${result.decisionCount}, reviewPackets=${result.reviewPacketCount}, freshness=${result.validForMinutes}m stale=${result.stale}, source=${result.sourceCommand}, digest=${result.bundleDigest}, semanticDigest=${result.semanticBundleDigest})`,
+      `completion-review-bundle - OK (status=${result.status}, decisions=${result.decisionCount}, reviewPackets=${result.reviewPacketCount}, reviewFieldCounts=${result.reviewFieldCounts.join("|") || "none"}, freshness=${result.validForMinutes}m stale=${result.stale}, source=${result.sourceCommand}, digest=${result.bundleDigest}, semanticDigest=${result.semanticBundleDigest})`,
     ];
   }
   return result.violations.map(

@@ -1945,12 +1945,16 @@ describe("runDoctor", () => {
     );
   });
 
-  it("U-OUTSTANDING-003: completion review-bundle doctor bridge accepts the current live scoped packet bundle", () => {
+  it("U-OUTSTANDING-003/U-OUTSTANDING-018: completion review-bundle doctor bridge accepts the current live scoped packet bundle", () => {
     const result = checkCompletionReviewBundle(process.cwd());
 
     expect(result.ok).toBe(true);
     expect(result.messages).toContainEqual(
       expect.stringContaining("completion-review-bundle - OK"),
+    );
+    expect(result.messages).toContainEqual(expect.stringContaining("reviewFieldCounts="));
+    expect(result.messages).toContainEqual(
+      expect.stringContaining("ut-tdd s4 decision-packet --json:"),
     );
     expect(result.messages).toContainEqual(expect.stringContaining("semanticDigest=sha256:"));
   });

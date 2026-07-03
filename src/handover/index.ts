@@ -513,7 +513,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
           `  - packet一覧: ${a.scopedPacketCommands.map((c) => `\`${sanitize(c)}\``).join(", ")}`,
           ...a.supportingPacketSummaries.map(
             (summary) =>
-              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field=${renderPacketFieldList(summary.requiredReviewFields)} matrix必須field=${renderPacketFieldList(summary.requiredMatrixFields)} 確認観点=${sanitize(summary.reviewRouteJa ?? handoverReviewRouteText(summary.reviewRoute))} 確認観点ID=${sanitize(summary.reviewRoute)}`,
+              `  - packet要約: \`${sanitize(summary.command)}\` schema=${sanitize(summary.schemaVersion)} 検証matrix=${sanitize(summary.matrixField)} 件数=${summary.expectedMatrixCount} 確認field件数=${summary.requiredReviewFields.length} 確認field=${renderPacketFieldList(summary.requiredReviewFields)} matrix必須field=${renderPacketFieldList(summary.requiredMatrixFields)} 確認観点=${sanitize(summary.reviewRouteJa ?? handoverReviewRouteText(summary.reviewRoute))} 確認観点ID=${sanitize(summary.reviewRoute)}`,
           ),
         ]),
         "",
@@ -813,11 +813,13 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   }
   if (
     !section.includes("completion-ready") &&
-    (!section.includes("確認field=") || !section.includes("matrix必須field="))
+    (!section.includes("確認field件数=") ||
+      !section.includes("確認field=") ||
+      !section.includes("matrix必須field="))
   ) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認field/matrix必須field が無い → `ut-tdd handover` で再生成し source-delta review 導線を seed",
+        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認field件数/確認field/matrix必須field が無い → `ut-tdd handover` で再生成し source-delta review 導線を seed",
       ],
       ok: false,
     };
