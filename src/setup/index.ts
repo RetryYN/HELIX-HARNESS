@@ -38,6 +38,7 @@ export const CONSUMER_CI_RUN_COMMANDS = [
   "bun run ut-tdd setup project --dry-run --json",
   "bun run ut-tdd status --json",
   "bun run ut-tdd completion decision-packet --json",
+  "bun run ut-tdd completion review-bundle --json",
   CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
   "bun run ut-tdd doctor --profile consumer --json",
   "bun run ut-tdd rename plan --json",
@@ -51,6 +52,7 @@ export const CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS = [
   "bun install --frozen-lockfile",
   "bun run ut-tdd handover status --json",
   "bun run ut-tdd completion decision-packet --json",
+  "bun run ut-tdd completion review-bundle --json",
   "bun run ut-tdd doctor --profile consumer --json",
 ] as const;
 
@@ -58,6 +60,7 @@ export const CONSUMER_VSCODE_TASK_COMMANDS = [
   ["HELIX: status", "bun run ut-tdd status"],
   ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
   ["HELIX: completion decision-packet", "bun run ut-tdd completion decision-packet --json"],
+  ["HELIX: completion review-bundle", "bun run ut-tdd completion review-bundle --json"],
   ["HELIX: version-up dry-run", CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND],
   ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
   ["HELIX: handover status", "bun run ut-tdd handover status --json"],
@@ -718,6 +721,7 @@ export interface HelixProjectSetupResult extends SetupResult {
     tasksPath: string;
     statusTask: "HELIX: status";
     completionDecisionPacketTask: "HELIX: completion decision-packet";
+    completionReviewBundleTask: "HELIX: completion review-bundle";
     doctorTask: "HELIX: doctor";
     renamePlanTask: "HELIX: rename plan";
     handoverTask: "HELIX: handover status";
@@ -778,6 +782,7 @@ export interface HelixProjectDoctorBaseline {
     "ut-tdd status --json",
     "ut-tdd setup project --dry-run --json",
     "ut-tdd completion decision-packet --json",
+    "ut-tdd completion review-bundle --json",
     "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
@@ -1069,6 +1074,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "ut-tdd status --json",
     "ut-tdd setup project --dry-run --json",
     "ut-tdd completion decision-packet --json",
+    "ut-tdd completion review-bundle --json",
     "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     "ut-tdd doctor --profile consumer",
     "ut-tdd rename plan --json",
@@ -1538,6 +1544,7 @@ export function buildConsumerReadinessPlan(input: {
         requiredBefore: [
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd completion decision-packet --json",
+          "bun run ut-tdd completion review-bundle --json",
           "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           "bun run ut-tdd doctor --profile consumer --json",
           "bun run ut-tdd rename plan --json",
@@ -1554,6 +1561,7 @@ export function buildConsumerReadinessPlan(input: {
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd completion decision-packet --json",
+        "bun run ut-tdd completion review-bundle --json",
         "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
@@ -1652,6 +1660,7 @@ function buildConsumerArtifactReadinessPlan(
     text.includes(MANAGED_END) &&
     text.includes("HELIX") &&
     text.includes("ut-tdd completion decision-packet --json") &&
+    text.includes("ut-tdd completion review-bundle --json") &&
     text.includes(
       "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     ) &&
@@ -1664,6 +1673,7 @@ function buildConsumerArtifactReadinessPlan(
       hasPath(path) &&
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd completion review-bundle --json") &&
       text.includes(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       ) &&
@@ -1679,6 +1689,7 @@ function buildConsumerArtifactReadinessPlan(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd completion review-bundle --json") &&
       text.includes(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       ) &&
@@ -1964,18 +1975,19 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd completion review-bundle --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd completion review-bundle --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`ut-tdd status --json` を実行する",
             "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
             "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
+            "`ut-tdd completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束と digest を初回稼働証跡に保存する",
             "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
             "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
@@ -2097,6 +2109,28 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         "none; completionClaimAllowed=false remains first-run evidence until blockers close",
       workflowRouteImpact:
         "missing completion packet routes to fix_consumer_readiness before implementation starts",
+    },
+    {
+      phase: "completion-review-bundle",
+      command: "ut-tdd completion review-bundle --json",
+      writePolicy: "no-write",
+      availability: "dry-run-immediate",
+      requiresMaterializedPaths: [],
+      expected:
+        "returns completion-review-bundle.v1 with planOnly=true, mustNotDecide=true, mustNotApply=true, scoped reviewPackets, bundleDigest, and completionClaimAllowed=false",
+      evidence: "completion review-bundle JSON attached to the first-run readiness record",
+      source: "HELIX completion review-bundle contract",
+      sourceUrl: "docs/plans/PLAN-L7-278-completion-review-bundle.md",
+      sourceCheckedAt: "2026-07-03",
+      latestOfficialStatus: "local HELIX completion review-bundle contract current at HEAD",
+      sourceStatusDelta:
+        "changed; setup first-run verification now saves the scoped review packet bundle, not only the decision list",
+      adoptionDecision:
+        "setup 初回検証は completion review-bundle を保存し、S4 / version-up / rename / action-binding の supporting packet と digest を人間判断前に照合できるようにする",
+      adoptionDecisionDelta:
+        "changed; completion decision-packet の判断一覧に加えて scoped review packet bundle を初回証跡にする",
+      workflowRouteImpact:
+        "missing or drifted completion review-bundle routes to fix_consumer_readiness before implementation starts",
     },
     {
       phase: "version-up-dry-run",
@@ -2348,6 +2382,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       tasksPath: join(".vscode", "tasks.json"),
       statusTask: "HELIX: status",
       completionDecisionPacketTask: "HELIX: completion decision-packet",
+      completionReviewBundleTask: "HELIX: completion review-bundle",
       doctorTask: "HELIX: doctor",
       renamePlanTask: "HELIX: rename plan",
       handoverTask: "HELIX: handover status",

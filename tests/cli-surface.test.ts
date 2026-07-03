@@ -1418,6 +1418,7 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd status --json",
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
+          "ut-tdd completion review-bundle --json",
           "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
@@ -1437,6 +1438,7 @@ describe("L7 CLI surface closure", () => {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
         completionDecisionPacketTask: "HELIX: completion decision-packet",
+        completionReviewBundleTask: "HELIX: completion review-bundle",
         doctorTask: "HELIX: doctor",
         handoverTask: "HELIX: handover status",
         teamRunTask: "HELIX: team run dry-run",
@@ -1540,6 +1542,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd status --json",
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
+      "ut-tdd completion review-bundle --json",
       "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
@@ -1577,6 +1580,13 @@ describe("L7 CLI surface closure", () => {
           source: "HELIX completion decision packet contract",
         }),
         expect.objectContaining({
+          phase: "completion-review-bundle",
+          command: "ut-tdd completion review-bundle --json",
+          writePolicy: "no-write",
+          source: "HELIX completion review-bundle contract",
+          sourceUrl: "docs/plans/PLAN-L7-278-completion-review-bundle.md",
+        }),
+        expect.objectContaining({
           phase: "version-up-dry-run",
           command:
             "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
@@ -1601,6 +1611,7 @@ describe("L7 CLI surface closure", () => {
       expect.arrayContaining([
         "ut-tdd status --json",
         "ut-tdd completion decision-packet --json",
+        "ut-tdd completion review-bundle --json",
         "ut-tdd doctor --profile consumer",
         "ut-tdd rename plan --json",
         "ut-tdd handover status --json",
@@ -1620,10 +1631,11 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 9");
+    expect(text.stdout).toContain("verification-matrix: 10");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
+    expect(text.stdout).toContain("verification-command: ut-tdd completion review-bundle --json");
     expect(text.stdout).toContain(
       "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     );
@@ -1637,6 +1649,9 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain(
       "verification-check: completion-decision-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd completion decision-packet --json expected=returns completionStatus=blocked",
+    );
+    expect(text.stdout).toContain(
+      "verification-check: completion-review-bundle availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd completion review-bundle --json expected=returns completion-review-bundle.v1",
     );
     expect(text.stdout).toContain(
       "verification-check: identifier-cutover-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",

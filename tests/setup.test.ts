@@ -76,6 +76,7 @@ const baseTemplates: TemplateSet = {
     "",
     "- Status: `ut-tdd status`",
     "- Completion packet: `ut-tdd completion decision-packet --json`",
+    "- Completion review bundle: `ut-tdd completion review-bundle --json`",
     "- Version-up dry-run: `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
     "- Doctor: `ut-tdd doctor --profile consumer`",
     "- Rename packet: `ut-tdd rename plan --json`",
@@ -90,6 +91,7 @@ const baseTemplates: TemplateSet = {
     "",
     "- `ut-tdd status`",
     "- `ut-tdd completion decision-packet --json`",
+    "- `ut-tdd completion review-bundle --json`",
     "- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
     "- `ut-tdd doctor --profile consumer`",
     "- `ut-tdd rename plan --json`",
@@ -102,6 +104,7 @@ const baseTemplates: TemplateSet = {
     "",
     "- `ut-tdd status`",
     "- `ut-tdd completion decision-packet --json`",
+    "- `ut-tdd completion review-bundle --json`",
     "- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
     "- `ut-tdd doctor --profile consumer`",
     "- `ut-tdd rename plan --json`",
@@ -118,6 +121,7 @@ const baseTemplates: TemplateSet = {
     '    { "label": "HELIX: status", "type": "shell", "command": "bun run ut-tdd status", "problemMatcher": [] },',
     '    { "label": "HELIX: doctor", "type": "shell", "command": "bun run ut-tdd doctor --profile consumer", "problemMatcher": [] },',
     '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "bun run ut-tdd completion decision-packet --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: completion review-bundle", "type": "shell", "command": "bun run ut-tdd completion review-bundle --json", "problemMatcher": [] },',
     '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json", "problemMatcher": [] },',
     '    { "label": "HELIX: rename plan", "type": "shell", "command": "bun run ut-tdd rename plan --json", "problemMatcher": [] },',
     '    { "label": "HELIX: handover status", "type": "shell", "command": "bun run ut-tdd handover status --json", "problemMatcher": [] },',
@@ -177,6 +181,8 @@ const baseTemplates: TemplateSet = {
     "        run: bun run ut-tdd status --json",
     "      - name: HELIX completion decision packet",
     "        run: bun run ut-tdd completion decision-packet --json",
+    "      - name: HELIX completion review bundle",
+    "        run: bun run ut-tdd completion review-bundle --json",
     "      - name: HELIX version-up dry-run",
     "        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     "      - name: HELIX consumer doctor",
@@ -213,6 +219,8 @@ const baseTemplates: TemplateSet = {
     "        run: bun run ut-tdd handover status --json",
     "      - name: HELIX completion decision packet",
     "        run: bun run ut-tdd completion decision-packet --json",
+    "      - name: HELIX completion review bundle",
+    "        run: bun run ut-tdd completion review-bundle --json",
     "      - name: HELIX consumer doctor",
     "        run: bun run ut-tdd doctor --profile consumer --json",
     "",
@@ -355,15 +363,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["adapter/AGENTS.md"]).toContain("HELIX アダプター");
       expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
       expect(templates["adapter/AGENTS.md"]).toContain("ut-tdd completion decision-packet --json");
+      expect(templates["adapter/AGENTS.md"]).toContain("ut-tdd completion review-bundle --json");
       expect(templates["adapter/AGENTS.md"]).toContain(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       );
       expect(templates["adapter/CLAUDE.md"]).toContain("ut-tdd completion decision-packet --json");
+      expect(templates["adapter/CLAUDE.md"]).toContain("ut-tdd completion review-bundle --json");
       expect(templates["adapter/CLAUDE.md"]).toContain(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
         "ut-tdd completion decision-packet --json",
+      );
+      expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
+        "ut-tdd completion review-bundle --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
@@ -383,6 +396,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "ut-tdd completion decision-packet --json",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
+        "ut-tdd completion review-bundle --json",
+      );
+      expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       );
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
@@ -392,6 +408,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain("ut-tdd status --json");
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
         "ut-tdd completion decision-packet --json",
+      );
+      expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
+        "ut-tdd completion review-bundle --json",
+      );
+      expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
+        "ut-tdd completion review-bundle --json",
       );
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
@@ -409,9 +431,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
+      expect(templates["common/harness-check.yml"]).toContain(
+        "bun run ut-tdd completion review-bundle --json",
+      );
       expect(templates["common/escalation-stale.yml"]).toContain("escalation-audit");
       expect(templates["common/escalation-stale.yml"]).toContain(
         "bun run ut-tdd handover status --json",
+      );
+      expect(templates["common/escalation-stale.yml"]).toContain(
+        "bun run ut-tdd completion review-bundle --json",
       );
       expect(templates["common/escalation-stale.yml"]).not.toMatch(/placeholder|TODO|TBD/i);
       expect(templates["common/recovery.md"]).toContain("## 復旧手順");
@@ -755,6 +783,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       requiredBefore: expect.arrayContaining([
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd completion decision-packet --json",
+        "bun run ut-tdd completion review-bundle --json",
         "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
@@ -768,6 +797,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "bun run ut-tdd setup project --dry-run --json",
         "bun run ut-tdd status --json",
         "bun run ut-tdd completion decision-packet --json",
+        "bun run ut-tdd completion review-bundle --json",
         "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         "bun run ut-tdd doctor --profile consumer --json",
         "bun run ut-tdd rename plan --json",
@@ -929,6 +959,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           "ut-tdd status --json",
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
+          "ut-tdd completion review-bundle --json",
           "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
@@ -950,6 +981,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         tasksPath: join(".vscode", "tasks.json"),
         statusTask: "HELIX: status",
         completionDecisionPacketTask: "HELIX: completion decision-packet",
+        completionReviewBundleTask: "HELIX: completion review-bundle",
         doctorTask: "HELIX: doctor",
         renamePlanTask: "HELIX: rename plan",
         handoverTask: "HELIX: handover status",
@@ -1064,6 +1096,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.arrayContaining([
         "ut-tdd status --json",
         "ut-tdd completion decision-packet --json",
+        "ut-tdd completion review-bundle --json",
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         "ut-tdd doctor --profile consumer",
         "ut-tdd rename plan --json",
@@ -1085,6 +1118,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd status --json",
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
+      "ut-tdd completion review-bundle --json",
       "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
@@ -1096,6 +1130,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd status --json",
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
+      "ut-tdd completion review-bundle --json",
       "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -1104,7 +1139,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "ut-tdd doctor --profile consumer",
       "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
-    expect(preview.postSetupWorkflow.verificationMatrix).toEqual([
+    expect(preview.postSetupWorkflow.verificationMatrix).toHaveLength(10);
+    for (const expectedRow of [
       expect.objectContaining({
         phase: "setup-dry-run",
         command: "ut-tdd setup project --dry-run",
@@ -1155,6 +1191,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         source: "HELIX completion decision packet contract",
         sourceUrl: "docs/design/harness/L6-function-design/function-spec.md",
         adoptionDecision: expect.stringContaining("L14 完了 claim"),
+        workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
+      }),
+      expect.objectContaining({
+        phase: "completion-review-bundle",
+        command: "ut-tdd completion review-bundle --json",
+        writePolicy: "no-write",
+        availability: "dry-run-immediate",
+        requiresMaterializedPaths: [],
+        expected: expect.stringContaining("completion-review-bundle.v1"),
+        evidence: "completion review-bundle JSON attached to the first-run readiness record",
+        source: "HELIX completion review-bundle contract",
+        sourceUrl: "docs/plans/PLAN-L7-278-completion-review-bundle.md",
+        sourceCheckedAt: "2026-07-03",
+        adoptionDecision: expect.stringContaining("人間判断前"),
         workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
       }),
       expect.objectContaining({
@@ -1219,7 +1269,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         requiresMaterializedPaths: [".ut-tdd/teams/default-hybrid.yaml"],
         source: "HELIX team definition schema and provider handover contract",
       }),
-    ]);
+    ]) {
+      expect(preview.postSetupWorkflow.verificationMatrix).toContainEqual(expectedRow);
+    }
     expect(
       preview.postSetupWorkflow.verificationMatrix.every(
         (row) =>
@@ -1299,6 +1351,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           problemMatcher: [],
         }),
         expect.objectContaining({
+          label: "HELIX: completion review-bundle",
+          type: "shell",
+          command: "bun run ut-tdd completion review-bundle --json",
+          problemMatcher: [],
+        }),
+        expect.objectContaining({
           label: "HELIX: rename plan",
           type: "shell",
           command: "bun run ut-tdd rename plan --json",
@@ -1338,7 +1396,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         completionPacketCommand: "ut-tdd completion decision-packet --json",
       },
       postSetupWorkflow: {
-        verificationCommands: expect.arrayContaining(["ut-tdd completion decision-packet --json"]),
+        verificationCommands: expect.arrayContaining([
+          "ut-tdd completion decision-packet --json",
+          "ut-tdd completion review-bundle --json",
+        ]),
         verificationMatrix: expect.arrayContaining([
           expect.objectContaining({
             phase: "github-ci-safety",
@@ -1613,6 +1674,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "`ut-tdd status --json` を実行する",
         "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
         "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
+        "`ut-tdd completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束と digest を初回稼働証跡に保存する",
         "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
         "`ut-tdd doctor --profile consumer` を実行する",
         "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
@@ -1625,6 +1687,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "status-frontier",
       "github-ci-safety",
       "completion-decision-packet",
+      "completion-review-bundle",
       "version-up-dry-run",
       "consumer-doctor",
       "identifier-cutover-packet",

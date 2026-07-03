@@ -1914,6 +1914,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("docs / handover / adapter prose も日本語") &&
     text.includes("PLAN-M-02") &&
     text.includes("ut-tdd completion decision-packet --json") &&
+    text.includes("ut-tdd completion review-bundle --json") &&
     text.includes(
       "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     ) &&
@@ -1987,6 +1988,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     { phase: "status-frontier", command: "ut-tdd status --json" },
     { phase: "github-ci-safety", command: "ut-tdd setup project --dry-run --json" },
     { phase: "completion-decision-packet", command: "ut-tdd completion decision-packet --json" },
+    { phase: "completion-review-bundle", command: "ut-tdd completion review-bundle --json" },
     {
       phase: "version-up-dry-run",
       command:
@@ -2038,6 +2040,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
         : "",
     ) &&
     projectSetupVerificationCommands.includes("ut-tdd completion decision-packet --json") &&
+    projectSetupVerificationCommands.includes("ut-tdd completion review-bundle --json") &&
     projectSetupVerificationCommands.includes("ut-tdd doctor --profile consumer") &&
     projectSetupMatrixOk;
   messages.push(
@@ -2078,6 +2081,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd status") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd completion review-bundle --json") &&
       text.includes(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       ) &&
@@ -2096,6 +2100,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
+      text.includes("ut-tdd completion review-bundle --json") &&
       text.includes(
         "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       ) &&

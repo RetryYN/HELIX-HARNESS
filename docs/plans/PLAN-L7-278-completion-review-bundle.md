@@ -25,6 +25,10 @@ generates:
     artifact_type: source_module
   - artifact_path: src/doctor/index.ts
     artifact_type: source_module
+  - artifact_path: src/setup/index.ts
+    artifact_type: source_module
+  - artifact_path: src/setup/templates.ts
+    artifact_type: source_module
   - artifact_path: src/lint/completion-decision-packet.ts
     artifact_type: source_module
   - artifact_path: src/lint/outstanding.ts
@@ -38,6 +42,8 @@ generates:
   - artifact_path: tests/outstanding.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/setup.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/process/forward/L08-L14-verification-phase.md
@@ -88,6 +94,7 @@ review_evidence:
 - `status --json` / `handover status --json` は `completionReviewBundle` を additive に返す。
 - text surface は `completion-review-bundle: ut-tdd completion review-bundle --json` を表示する。
 - `completion-review-bundle` は doctor hard gate で `completion decision-packet` と突き合わせ、safety flag、scoped packet、review packet count、digest drift を fail-close する。
+- `ut-tdd setup project` の初回導入 contract、VS Code task、consumer CI、escalation workflow、consumer doctor first-run matrix は `completion decision-packet` の直後に `completion review-bundle` を必須証跡として含める。
 - 実 cutover、approval 記録、activation、外部実行は行わない。
 
 ## 外部確認
@@ -102,4 +109,5 @@ review_evidence:
 - `cli-surface` tests が JSON/text/status/handover の surface を検証する。
 - `completion-decision-packet` tests が review bundle analyzer の OK / safety drift / review packet 欠落 / digest drift を検証する。
 - `doctor` tests が review bundle hard gate の実行と missing root fail-close を検証する。
+- `setup` tests が新規 VSCode project の初回 verification matrix、CI workflow、task template、consumer doctor profile に review-bundle が伝播することを検証する。
 - `typecheck`、`lint`、`plan lint`、`doctor` が成功する。
