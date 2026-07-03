@@ -1989,7 +1989,7 @@ function buildHelixProjectPostSetupWorkflow(input: {
             "`ut-tdd status --json` を実行する",
             "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
             "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
-            "`ut-tdd completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束と digest を初回稼働証跡に保存する",
+            "`ut-tdd completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
             "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
             "`ut-tdd doctor --profile consumer` を実行する",
             "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
@@ -2119,7 +2119,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
       expected:
-        "returns completion-review-bundle.v1 with planOnly=true, mustNotDecide=true, mustNotApply=true, scoped reviewPackets, bundleDigest, and completionClaimAllowed=false",
+        "returns completion-review-bundle.v1 with planOnly=true, mustNotDecide=true, mustNotApply=true, scoped reviewPackets, bundleDigest, semanticBundleDigest, and completionClaimAllowed=false",
       evidence: "completion review-bundle JSON attached to the first-run readiness record",
       source: "HELIX completion review-bundle contract",
       sourceUrl: "docs/plans/PLAN-L7-278-completion-review-bundle.md",
@@ -2128,7 +2128,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       sourceStatusDelta:
         "changed; setup first-run verification now saves the scoped review packet bundle, not only the decision list",
       adoptionDecision:
-        "setup 初回検証は completion review-bundle を保存し、S4 / version-up / rename / action-binding の supporting packet と digest を人間判断前に照合できるようにする",
+        "setup 初回検証は completion review-bundle を保存し、S4 / version-up / rename / action-binding の supporting packet、exact digest、semantic digest を人間判断前に照合できるようにする",
       adoptionDecisionDelta:
         "changed; completion decision-packet の判断一覧に加えて scoped review packet bundle を初回証跡にする",
       workflowRouteImpact:

@@ -1324,7 +1324,7 @@ function requiredSupportingPacketSummary(command: string): {
       return {
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
-        expectedMatrixCount: 10,
+        expectedMatrixCount: 9,
         requiredReviewFields: [
           "semanticFeatureFrontierRecord",
           "activationDecision",
@@ -2149,7 +2149,7 @@ export function completionDecisionPacketMessages(
 export function completionReviewBundleMessages(result: CompletionReviewBundleLintResult): string[] {
   if (result.ok) {
     return [
-      `completion-review-bundle - OK (status=${result.status}, decisions=${result.decisionCount}, reviewPackets=${result.reviewPacketCount}, freshness=${result.validForMinutes}m stale=${result.stale}, source=${result.sourceCommand}, digest=${result.bundleDigest})`,
+      `completion-review-bundle - OK (status=${result.status}, decisions=${result.decisionCount}, reviewPackets=${result.reviewPacketCount}, freshness=${result.validForMinutes}m stale=${result.stale}, source=${result.sourceCommand}, digest=${result.bundleDigest}, semanticDigest=${result.semanticBundleDigest})`,
     ];
   }
   return result.violations.map(

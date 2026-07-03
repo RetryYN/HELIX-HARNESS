@@ -175,7 +175,7 @@ function consumerClaudeAgentTemplate(name: string): string {
     "---",
     "",
     "現在の repository に対して、consumer-safe な HELIX subagent として振る舞う。",
-    "- `ut-tdd status`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`、`ut-tdd doctor --profile consumer` を HELIX local state evidence として使う。",
+    "- `ut-tdd status`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`、`ut-tdd doctor --profile consumer` を HELIX local state evidence として使う。completion review-bundle は exact digest と semantic digest を確認する。",
     "- summary より先に findings を出す。",
     "- secret、credential、PII、machine-local absolute path を書かない。",
     "",
@@ -190,7 +190,7 @@ function consumerClaudeCommandTemplate(name: string): string {
     "",
     `Command: ${name}`,
     "",
-    "現行 `ut-tdd` CLI 経由で repository-local HELIX command を使う。最初に `ut-tdd status --json`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、必要な verification を走らせ、workflow または gate behavior に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
+    "現行 `ut-tdd` CLI 経由で repository-local HELIX command を使う。最初に `ut-tdd status --json`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、completion review-bundle の exact digest と semantic digest を確認する。必要な verification を走らせ、workflow または gate behavior に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
     "",
   ].join("\n");
 }
@@ -259,8 +259,11 @@ function consumerProjectSetupStateTemplate(): string {
       command: "ut-tdd completion review-bundle --json",
       writePolicy: "no-write",
       requiresMaterializedPaths: [],
-      expected: "completion review bundle remains plan-only and mustNotApply",
+      expected:
+        "completion review bundle remains plan-only and mustNotApply with bundleDigest and semanticBundleDigest",
       evidence: "first-run completion review-bundle JSON",
+      adoptionDecision:
+        "setup 初回検証は completion review-bundle の exact digest と semantic digest を保存する",
     },
     {
       phase: "version-up-dry-run",
@@ -335,6 +338,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
       "`ut-tdd completion decision-packet --json`",
       "`ut-tdd completion review-bundle --json`",
+      "completion review-bundle は exact digest と semantic digest を確認する。",
       "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
       "`ut-tdd doctor --profile consumer`",
       "`ut-tdd rename plan --json`",
@@ -347,6 +351,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
       "`ut-tdd completion decision-packet --json`",
       "`ut-tdd completion review-bundle --json`",
+      "completion review-bundle は exact digest と semantic digest を確認する。",
       "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
       "`ut-tdd doctor --profile consumer`",
       "`ut-tdd rename plan --json`",
@@ -359,6 +364,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "PLAN-M-02 までは現行 command 名を `ut-tdd` とする。",
       "`ut-tdd completion decision-packet --json`",
       "`ut-tdd completion review-bundle --json`",
+      "completion review-bundle は exact digest と semantic digest を確認する。",
       "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
       "`ut-tdd doctor --profile consumer`",
       "`ut-tdd rename plan --json`",
@@ -760,6 +766,38 @@ describe("runConsumerDoctor", () => {
         result.messages,
         "consumer-project-setup-state - violation",
         "matrixCommands=ut-tdd setup project --dry-run,ut-tdd doctor --profile consumer",
+      ),
+    ).toBe(true);
+  });
+
+  it("fails closed when the completion review-bundle matrix omits semantic digest evidence", () => {
+    const setupState = JSON.parse(consumerProjectSetupStateTemplate()) as {
+      postSetupWorkflow: {
+        verificationMatrix: Array<{ phase: string; expected?: string; adoptionDecision?: string }>;
+      };
+    };
+    const row = setupState.postSetupWorkflow.verificationMatrix.find(
+      (candidate) => candidate.phase === "completion-review-bundle",
+    );
+    if (row) {
+      row.expected = "completion review bundle remains plan-only and mustNotApply";
+      row.adoptionDecision = "setup 初回検証は completion review-bundle を保存する";
+    }
+
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/state/project-setup.json": JSON.stringify(setupState),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "completionReviewSemanticDigest=false",
       ),
     ).toBe(true);
   });
@@ -1914,6 +1952,7 @@ describe("runDoctor", () => {
     expect(result.messages).toContainEqual(
       expect.stringContaining("completion-review-bundle - OK"),
     );
+    expect(result.messages).toContainEqual(expect.stringContaining("semanticDigest=sha256:"));
   });
 
   it("U-OUTSTANDING-003: completion decision doctor bridge fails when a referenced S4 packet is not live", () => {

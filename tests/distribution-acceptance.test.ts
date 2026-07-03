@@ -374,6 +374,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
         expect(workflow).toContain("bun run ut-tdd status --json");
         expect(workflow).toContain("bun run ut-tdd completion decision-packet --json");
+        expect(workflow).toContain("bun run ut-tdd completion review-bundle --json");
         expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
         expect(workflow).toContain("bun run ut-tdd rename plan --json");
         expect(workflow).toContain("bun run ut-tdd handover status --json");
@@ -385,6 +386,7 @@ describe("clean distribution local acceptance smoke", () => {
           "bun run ut-tdd setup project --dry-run --json",
           "bun run ut-tdd status --json",
           "bun run ut-tdd completion decision-packet --json",
+          "bun run ut-tdd completion review-bundle --json",
           "bun run ut-tdd doctor --profile consumer --json",
           "bun run ut-tdd rename plan --json",
           "bun run ut-tdd handover status --json",
@@ -541,6 +543,15 @@ describe("clean distribution local acceptance smoke", () => {
                 completionClaimAllowed: false,
               },
               blockers: expect.arrayContaining(["consumer_setup_boundary"]),
+            });
+          } else if (command === "bun run ut-tdd completion review-bundle --json") {
+            expect(JSON.parse(run.stdout)).toMatchObject({
+              schemaVersion: "completion-review-bundle.v1",
+              planOnly: true,
+              mustNotDecide: true,
+              mustNotApply: true,
+              completionClaimAllowed: false,
+              semanticBundleDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
             });
           } else {
             expect(JSON.parse(run.stdout)).toBeTruthy();

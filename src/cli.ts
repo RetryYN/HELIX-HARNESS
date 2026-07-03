@@ -1954,7 +1954,7 @@ versionUp
       );
       process.stdout.write(packetFreshnessLine(packet));
       process.stdout.write(
-        `  activation-snapshot: snapshotId=${packet.activationSnapshot.snapshotId} headSha=${packet.activationSnapshot.headSha ?? "-"} sourceLedgerCheckedDate=${packet.activationSnapshot.sourceLedgerCheckedDate ?? "-"} sourceLedgerRowsDigest=${packet.activationSnapshot.sourceLedgerRowsDigest} approvalScopeDigest=${packet.activationSnapshot.approvalScopeDigest} evidenceDigest=${packet.activationSnapshot.evidenceDigest}\n`,
+        `  activation-snapshot: snapshotId=${packet.activationSnapshot.snapshotId} headSha=${packet.activationSnapshot.headSha ?? "-"} sourceLedgerCheckedDate=${packet.activationSnapshot.sourceLedgerCheckedDate ?? "-"} sourceLedgerRowsDigest=${packet.activationSnapshot.sourceLedgerRowsDigest} approvalScopeDigest=${packet.activationSnapshot.approvalScopeDigest} versionDryRunDigest=${packet.activationSnapshot.versionDryRunDigest} evidenceDigest=${packet.activationSnapshot.evidenceDigest}\n`,
       );
       process.stdout.write(
         `  readiness: status=${packet.activationReadinessSummary.status} present=${packet.activationReadinessSummary.presentChecks} pending=${packet.activationReadinessSummary.pendingChecks} total=${packet.activationReadinessSummary.totalChecks} sourceLedgerFresh=${packet.activationReadinessSummary.sourceLedgerFresh}\n`,

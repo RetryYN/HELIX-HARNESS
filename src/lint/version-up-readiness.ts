@@ -42,6 +42,18 @@ import {
   VERSION_UP_ACTIVATION_PACKET_COMMAND,
 } from "./workflow-decision-packets";
 
+const VERSION_UP_ACTIVATION_VERIFICATION_PHASES = [
+  "activation-packet-baseline",
+  "version-dry-run",
+  "external-rehearsal",
+  "security-testing",
+  "state-and-doctor",
+  "targeted-regression",
+  "static-gates",
+  "full-regression",
+  "approval-packet",
+] as const;
+
 export interface VersionUpReadinessPlan {
   file: string;
   plan_id: string;
@@ -1836,6 +1848,7 @@ export function versionUpActivationVerificationCommandViolations(
   const securityChecklistViolations = versionUpSecurityChecklistSourceViolations(
     buildVersionUpSecurityChecklistPacket(packet),
   );
+  const phaseViolations = versionUpActivationVerificationPhaseViolations(packet);
   const commandMatrixViolations = packet.activationVerificationCommandMatrix.flatMap((row) => {
     const violations: VersionUpActivationCommandViolation[] = [];
     const command = row.command.trim();
@@ -1873,8 +1886,44 @@ export function versionUpActivationVerificationCommandViolations(
     ...externalRehearsalViolations,
     ...costGuardrailViolations,
     ...securityChecklistViolations,
+    ...phaseViolations,
     ...commandMatrixViolations,
   ];
+}
+
+function versionUpActivationVerificationPhaseViolations(
+  packet: VersionUpActivationPacket,
+): VersionUpActivationCommandViolation[] {
+  const subject = `${packet.planId}.activationVerificationCommandMatrix`;
+  const phases = packet.activationVerificationCommandMatrix.map((row) => row.phase);
+  const expected = [...VERSION_UP_ACTIVATION_VERIFICATION_PHASES];
+  const violations: VersionUpActivationCommandViolation[] = [];
+  if (phases.length !== expected.length) {
+    violations.push({
+      subject,
+      reason: `activationVerificationCommandMatrix must contain exactly ${expected.length} phases: ${expected.join(",")}`,
+    });
+  }
+  for (const phase of expected) {
+    const count = phases.filter((actual) => actual === phase).length;
+    if (count !== 1) {
+      violations.push({
+        subject,
+        reason: `activationVerificationCommandMatrix phase ${phase} count=${count} expected=1`,
+      });
+    }
+  }
+  const unexpected = phases.filter(
+    (phase) =>
+      !expected.includes(phase as (typeof VERSION_UP_ACTIVATION_VERIFICATION_PHASES)[number]),
+  );
+  if (unexpected.length > 0) {
+    violations.push({
+      subject,
+      reason: `activationVerificationCommandMatrix has unexpected phases: ${unexpected.join(",")}`,
+    });
+  }
+  return violations;
 }
 
 function isApprovedVersionDryRunCommand(command: string): boolean {

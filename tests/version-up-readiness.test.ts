@@ -570,6 +570,17 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+    expect(packet.activationVerificationCommandMatrix.map((row) => row.phase)).toEqual([
+      "activation-packet-baseline",
+      "version-dry-run",
+      "external-rehearsal",
+      "security-testing",
+      "state-and-doctor",
+      "targeted-regression",
+      "static-gates",
+      "full-regression",
+      "approval-packet",
+    ]);
     for (const row of packet.activationVerificationCommandMatrix) {
       expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(row.sourceCheckedAt, row.phase).toBe(packet.sourceLedgerFreshness.checkedDate);
@@ -679,6 +690,24 @@ describe("version-up-readiness", () => {
       ]),
     );
     expect(versionUpActivationVerificationCommandViolations(packet)).toEqual([]);
+    expect(
+      versionUpActivationVerificationCommandViolations({
+        ...packet,
+        activationVerificationCommandMatrix: packet.activationVerificationCommandMatrix.filter(
+          (row) => row.phase !== "approval-packet",
+        ),
+      }),
+    ).toEqual([
+      {
+        subject: "PLAN-L7-900-future.activationVerificationCommandMatrix",
+        reason:
+          "activationVerificationCommandMatrix must contain exactly 9 phases: activation-packet-baseline,version-dry-run,external-rehearsal,security-testing,state-and-doctor,targeted-regression,static-gates,full-regression,approval-packet",
+      },
+      {
+        subject: "PLAN-L7-900-future.activationVerificationCommandMatrix",
+        reason: "activationVerificationCommandMatrix phase approval-packet count=0 expected=1",
+      },
+    ]);
     expect(
       versionUpActivationVerificationCommandViolations({
         ...packet,
@@ -2617,6 +2646,7 @@ describe("version-up-readiness", () => {
     expect(text).toContain("sourceLedgerCheckedDate=");
     expect(text).toContain("sourceLedgerRowsDigest=sha256:");
     expect(text).toContain("approvalScopeDigest=sha256:");
+    expect(text).toContain("versionDryRunDigest=sha256:");
     expect(text).toContain("evidenceDigest=sha256:");
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");

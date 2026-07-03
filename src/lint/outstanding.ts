@@ -1725,7 +1725,7 @@ function supportingPacketSummaryForCommand(
         ...base,
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
-        expectedMatrixCount: 10,
+        expectedMatrixCount: 9,
         requiredReviewFields: [
           "planOnly",
           "mustNotApply",

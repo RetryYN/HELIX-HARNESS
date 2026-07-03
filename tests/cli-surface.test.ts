@@ -1587,6 +1587,8 @@ describe("L7 CLI surface closure", () => {
           writePolicy: "no-write",
           source: "HELIX completion review-bundle contract",
           sourceUrl: "docs/plans/PLAN-L7-278-completion-review-bundle.md",
+          expected: expect.stringContaining("semanticBundleDigest"),
+          adoptionDecision: expect.stringContaining("semantic digest"),
         }),
         expect.objectContaining({
           phase: "version-up-dry-run",
@@ -1655,6 +1657,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain(
       "verification-check: completion-review-bundle availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd completion review-bundle --json expected=returns completion-review-bundle.v1",
     );
+    expect(text.stdout).toContain("semanticBundleDigest");
     expect(text.stdout).toContain(
       "verification-check: identifier-cutover-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",
     );

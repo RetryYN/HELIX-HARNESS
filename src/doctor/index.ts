@@ -1915,6 +1915,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("PLAN-M-02") &&
     text.includes("ut-tdd completion decision-packet --json") &&
     text.includes("ut-tdd completion review-bundle --json") &&
+    text.includes("semantic digest") &&
     text.includes(
       "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     ) &&
@@ -2003,6 +2004,15 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     },
   ];
   const expectedFirstRunCommands = expectedFirstRunRows.map((row) => row.command);
+  const completionReviewMatrixRow = projectSetupVerificationMatrix.find(
+    (row) => row?.phase === "completion-review-bundle",
+  );
+  const completionReviewSemanticDigestOk =
+    typeof completionReviewMatrixRow?.expected === "string" &&
+    completionReviewMatrixRow.expected.includes("bundleDigest") &&
+    completionReviewMatrixRow.expected.includes("semanticBundleDigest") &&
+    typeof completionReviewMatrixRow?.adoptionDecision === "string" &&
+    completionReviewMatrixRow.adoptionDecision.includes("semantic digest");
   const projectSetupMatrixOk =
     projectSetupVerificationMatrix.length === expectedFirstRunRows.length &&
     projectSetupVerificationCommands.length === expectedFirstRunCommands.length &&
@@ -2025,7 +2035,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
         typeof row.evidence === "string" &&
         row.evidence.trim().length > 0
       );
-    });
+    }) &&
+    completionReviewSemanticDigestOk;
   const projectSetupStateOk =
     projectSetupState?.schemaVersion === "helix-project-setup-state.v1" &&
     projectSetupState?.setupCommand === "ut-tdd setup project" &&
@@ -2048,7 +2059,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     projectSetupStateOk
       ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false; first-run matrix persisted)"
-      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "ut-tdd completion review-bundle --json"} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
+      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "ut-tdd completion review-bundle --json"} completionReviewSemanticDigest=${completionReviewSemanticDigestOk} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
