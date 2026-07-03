@@ -343,6 +343,7 @@ export interface CompletionDecisionHumanReviewItem {
   ownerReviewFields: string[];
   timingReviewFields: string[];
   freshnessReviewFields: string[];
+  safetyReviewFields: string[];
   scopedPrimaryPacketCommand: string;
   runnableScopedPrimaryPacketCommand: string;
   scopedSupportingPacketCommands: string[];
@@ -1250,6 +1251,7 @@ function buildCompletionDecisionHumanReviewBundle(input: {
         decision.requiredRecords,
         HUMAN_REVIEW_FRESHNESS_FIELDS,
       ),
+      safetyReviewFields: humanReviewSafetyFields(decision.supportingPacketSummaries),
       scopedPrimaryPacketCommand: decision.scopedDecisionPacketCommand,
       runnableScopedPrimaryPacketCommand: decision.runnableScopedDecisionPacketCommand,
       scopedSupportingPacketCommands: decision.scopedPacketCommands,
@@ -1289,6 +1291,24 @@ const HUMAN_REVIEW_FRESHNESS_FIELDS = new Set([
   "workflow_route_impact",
 ]);
 
+const HUMAN_REVIEW_SAFETY_FIELD_SUFFIXES = [
+  "planOnly",
+  "mustNotDecide",
+  "decisionCommandAvailable",
+  "decisionAllowed",
+  "mustNotApprove",
+  "approvalCommandAvailable",
+  "approvalAllowed",
+  "activationReadinessSummary.activationAllowed",
+  "approvalGate.requiredDecision",
+  "approvalGate.requiredActionBinding",
+  "approvalGate.approvedActorRequired",
+  "approvalGate.approvedToolRequired",
+  "approvalGate.approvedTargetRequired",
+  "approvalGate.approvedParamsRequired",
+  "approvalGate.reviewedSnapshotBindingRequired",
+];
+
 function humanReviewRecordFields(
   records: CompletionDecisionRecordRequirement[],
   targetFields: ReadonlySet<string>,
@@ -1297,6 +1317,16 @@ function humanReviewRecordFields(
     record.fields
       .filter((field) => targetFields.has(field))
       .map((field) => `${record.recordName}.${field}`),
+  );
+}
+
+function humanReviewSafetyFields(
+  summaries: CompletionDecisionSupportingPacketSummary[],
+): string[] {
+  return summaries.flatMap((summary) =>
+    summary.requiredReviewFields
+      .filter((field) => HUMAN_REVIEW_SAFETY_FIELD_SUFFIXES.includes(field))
+      .map((field) => `${summary.schemaVersion}.${field}`),
   );
 }
 

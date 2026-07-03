@@ -1009,11 +1009,15 @@ describe("L7 CLI surface closure", () => {
         "freshness-fields=s4_decision_record.source_ledger_freshness,s4_decision_record.source_status_delta,s4_decision_record.adoption_decision_delta,s4_decision_record.workflow_route_impact",
       );
       expect(text.stdout).toContain(
+        "safety-fields=s4-decision-packet.v1.planOnly,s4-decision-packet.v1.mustNotDecide,s4-decision-packet.v1.decisionCommandAvailable,s4-decision-packet.v1.decisionAllowed",
+      );
+      expect(text.stdout).toContain(
         "human-review-item: 2 PLAN-M-02-fixture kind=irreversible_migration_signoff primary=ut-tdd rename plan --json",
       );
       expect(text.stdout).toContain(
         "timing-fields=cutover_decision_record.trigger_condition,cutover_decision_record.execution_window_or_freeze_policy,action_binding_approval_record.expires_at_or_trigger",
       );
+      expect(text.stdout).toContain("identifier-rename-cutover-plan.v1.approvalGate.requiredDecision");
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain(

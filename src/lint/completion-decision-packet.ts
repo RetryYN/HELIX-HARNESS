@@ -115,6 +115,23 @@ const HUMAN_REVIEW_FRESHNESS_FIELDS = new Set([
   "adoption_decision_delta",
   "workflow_route_impact",
 ]);
+const HUMAN_REVIEW_SAFETY_FIELD_SUFFIXES = [
+  "planOnly",
+  "mustNotDecide",
+  "decisionCommandAvailable",
+  "decisionAllowed",
+  "mustNotApprove",
+  "approvalCommandAvailable",
+  "approvalAllowed",
+  "activationReadinessSummary.activationAllowed",
+  "approvalGate.requiredDecision",
+  "approvalGate.requiredActionBinding",
+  "approvalGate.approvedActorRequired",
+  "approvalGate.approvedToolRequired",
+  "approvalGate.approvedTargetRequired",
+  "approvalGate.approvedParamsRequired",
+  "approvalGate.reviewedSnapshotBindingRequired",
+];
 
 function humanReviewRecordFields(
   records: CompletionDecisionRecordRequirement[],
@@ -124,6 +141,16 @@ function humanReviewRecordFields(
     record.fields
       .filter((field) => targetFields.has(field))
       .map((field) => `${record.recordName}.${field}`),
+  );
+}
+
+function humanReviewSafetyFields(
+  summaries: CompletionDecisionPacket["decisions"][number]["supportingPacketSummaries"],
+): string[] {
+  return summaries.flatMap((summary) =>
+    summary.requiredReviewFields
+      .filter((field) => HUMAN_REVIEW_SAFETY_FIELD_SUFFIXES.includes(field))
+      .map((field) => `${summary.schemaVersion}.${field}`),
   );
 }
 
@@ -418,6 +445,7 @@ export function analyzeCompletionDecisionPacket(
         decision.requiredRecords,
         HUMAN_REVIEW_FRESHNESS_FIELDS,
       );
+      const expectedSafetyReviewFields = humanReviewSafetyFields(decision.supportingPacketSummaries);
       const bundleChecks: Array<[string, unknown, unknown]> = [
         ["order", bundleItem.order, decisionIndex + 1],
         ["planId", bundleItem.planId, decision.planId],
@@ -449,6 +477,7 @@ export function analyzeCompletionDecisionPacket(
           bundleItem.freshnessReviewFields ?? [],
           expectedFreshnessReviewFields,
         ],
+        ["safetyReviewFields", bundleItem.safetyReviewFields ?? [], expectedSafetyReviewFields],
         [
           "scopedSupportingPacketCommands",
           bundleItem.scopedSupportingPacketCommands ?? [],

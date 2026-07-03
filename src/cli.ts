@@ -978,7 +978,7 @@ completion
     );
     for (const item of packet.humanReviewBundle.items) {
       process.stdout.write(
-        `human-review-item: ${item.order} ${item.planId} kind=${item.decisionKind} primary=${item.scopedPrimaryPacketCommand} runnable=${item.runnableScopedPrimaryPacketCommand} supporting=${item.scopedSupportingPacketCommands.join(" | ") || "none"} records=${item.requiredRecords.join(",") || "none"} owner-fields=${item.ownerReviewFields.join(",") || "none"} timing-fields=${item.timingReviewFields.join(",") || "none"} freshness-fields=${item.freshnessReviewFields.join(",") || "none"}\n`,
+        `human-review-item: ${item.order} ${item.planId} kind=${item.decisionKind} primary=${item.scopedPrimaryPacketCommand} runnable=${item.runnableScopedPrimaryPacketCommand} supporting=${item.scopedSupportingPacketCommands.join(" | ") || "none"} records=${item.requiredRecords.join(",") || "none"} owner-fields=${item.ownerReviewFields.join(",") || "none"} timing-fields=${item.timingReviewFields.join(",") || "none"} freshness-fields=${item.freshnessReviewFields.join(",") || "none"} safety-fields=${item.safetyReviewFields.join(",") || "none"}\n`,
       );
     }
     process.stdout.write(packetFreshnessLine(packet));

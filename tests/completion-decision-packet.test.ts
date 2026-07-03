@@ -241,6 +241,12 @@ describe("completion decision packet lint", () => {
             "s4_decision_record.adoption_decision_delta",
             "s4_decision_record.workflow_route_impact",
           ],
+          safetyReviewFields: [
+            "s4-decision-packet.v1.planOnly",
+            "s4-decision-packet.v1.mustNotDecide",
+            "s4-decision-packet.v1.decisionCommandAvailable",
+            "s4-decision-packet.v1.decisionAllowed",
+          ],
           scopedPrimaryPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-S3",
           runnableScopedPrimaryPacketCommand:
             "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
@@ -458,6 +464,7 @@ describe("completion decision packet lint", () => {
             scopedPrimaryPacketCommand: "ut-tdd completion decision-packet --json",
             ownerReviewFields: [],
             freshnessReviewFields: [],
+            safetyReviewFields: [],
           },
         ],
       },
@@ -481,6 +488,11 @@ describe("completion decision packet lint", () => {
           reason: "invalid_human_review_bundle",
           detail:
             "items[0].freshnessReviewFields mismatch expected=s4_decision_record.source_ledger_freshness,s4_decision_record.source_status_delta,s4_decision_record.adoption_decision_delta,s4_decision_record.workflow_route_impact actual=",
+        },
+        {
+          reason: "invalid_human_review_bundle",
+          detail:
+            "items[0].safetyReviewFields mismatch expected=s4-decision-packet.v1.planOnly,s4-decision-packet.v1.mustNotDecide,s4-decision-packet.v1.decisionCommandAvailable,s4-decision-packet.v1.decisionAllowed actual=",
         },
       ]),
     );
