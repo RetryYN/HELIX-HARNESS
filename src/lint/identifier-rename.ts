@@ -256,12 +256,43 @@ export interface IdentifierRenameCutoverSnapshot {
   snapshotId: string;
   repoHeadSha: string | null;
   headDigest: string | null;
+  worktreeStatusReadable: boolean;
+  worktreeClean: boolean;
+  worktreeStatusDigest: string | null;
+  worktreeDirtyPathCount: number;
+  worktreeDirtyPaths: string[];
   blastRadiusDigest: string;
   approvalScopeDigest: string;
   evidenceDigest: string;
+  evidenceArtifactsDigest: string;
+  evidenceArtifactsRequired: number;
+  evidenceArtifactsPresent: number;
+  missingEvidenceArtifacts: string[];
+  evidenceArtifacts: IdentifierRenameEvidenceArtifact[];
   sourceLedgerCheckedDate: string | null;
   sourceLedgerRowsDigest: string;
   invalidatedBy: string[];
+}
+
+export interface IdentifierRenameWorktreeSnapshot {
+  readable: boolean;
+  clean: boolean;
+  statusDigest: string | null;
+  dirtyPathCount: number;
+  dirtyPaths: string[];
+}
+
+export interface IdentifierRenameCutoverPlanOptions {
+  repoHeadSha?: string | null;
+  worktreeSnapshot?: IdentifierRenameWorktreeSnapshot;
+}
+
+export interface IdentifierRenameEvidenceArtifact {
+  path: string;
+  source: "cutoverRunbook" | "stateBackupManifest";
+  exists: boolean;
+  sha256: string | null;
+  sizeBytes: number | null;
 }
 
 export interface IdentifierRenameSnapshotReview {
@@ -1402,12 +1433,96 @@ function readRepoHeadSha(root: string): string | null {
   }
 }
 
+function readRepoWorktreeSnapshot(root: string): IdentifierRenameWorktreeSnapshot {
+  try {
+    const status = execFileSync(
+      "git",
+      ["-C", root, "status", "--porcelain=v1", "--untracked-files=all"],
+      {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      },
+    );
+    const lines = status
+      .split(/\r?\n/)
+      .map((line) => line.trimEnd())
+      .filter(Boolean)
+      .sort();
+    const dirtyPaths = lines.map((line) => line.slice(3).trim()).filter(Boolean).sort();
+    return {
+      readable: true,
+      clean: dirtyPaths.length === 0,
+      statusDigest: sha256Json({ porcelainV1: lines }),
+      dirtyPathCount: dirtyPaths.length,
+      dirtyPaths,
+    };
+  } catch {
+    return {
+      readable: false,
+      clean: false,
+      statusDigest: null,
+      dirtyPathCount: 0,
+      dirtyPaths: [],
+    };
+  }
+}
+
+function readEvidenceArtifacts(
+  root: string,
+  cutoverRunbook: IdentifierRenameCutoverPlan["cutoverRunbook"],
+  stateBackupManifest: IdentifierRenameCutoverPlan["stateBackupManifest"],
+): IdentifierRenameEvidenceArtifact[] {
+  const artifacts = [
+    ...cutoverRunbook.map((step) => ({
+      path: step.evidencePath,
+      source: "cutoverRunbook" as const,
+    })),
+    ...stateBackupManifest.map((entry) => ({
+      path: entry.restoreEvidencePath,
+      source: "stateBackupManifest" as const,
+    })),
+  ];
+  return artifacts
+    .filter(
+      (artifact, index, self) =>
+        self.findIndex(
+          (candidate) =>
+            candidate.path === artifact.path && candidate.source === artifact.source,
+        ) === index,
+    )
+    .sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`))
+    .map((artifact) => {
+      const absolutePath = join(root, artifact.path);
+      if (!existsSync(absolutePath)) {
+        return { ...artifact, exists: false, sha256: null, sizeBytes: null };
+      }
+      const stats = statSync(absolutePath);
+      if (!stats.isFile()) {
+        return { ...artifact, exists: false, sha256: null, sizeBytes: null };
+      }
+      return {
+        ...artifact,
+        exists: true,
+        sha256: `sha256:${createHash("sha256").update(readFileSync(absolutePath)).digest("hex")}`,
+        sizeBytes: stats.size,
+      };
+    });
+}
+
 export function buildIdentifierRenameCutoverPlan(
   root: string,
   semanticFeatureFrontierRecords: SemanticFeatureFrontierRecord[] = computeOutstandingWork(root)
     .semanticFeatureFrontierRecords ?? [],
-  repoHeadSha: string | null = readRepoHeadSha(root),
+  options: IdentifierRenameCutoverPlanOptions | string | null = {},
 ): IdentifierRenameCutoverPlan {
+  const repoHeadSha =
+    typeof options === "string" || options === null
+      ? options
+      : (options.repoHeadSha ?? readRepoHeadSha(root));
+  const worktreeSnapshot =
+    typeof options === "object" && options !== null && options.worktreeSnapshot
+      ? options.worktreeSnapshot
+      : readRepoWorktreeSnapshot(root);
   const audit = auditIdentifierRenameBlastRadius(root);
   const provenance = buildDecisionPacketProvenance({ sourceCommand: RENAME_PLAN_PACKET_COMMAND });
   const approvalEvaluation = evaluateCutoverApproval(root);
@@ -1437,6 +1552,7 @@ export function buildIdentifierRenameCutoverPlan(
   }));
   const cutoverRunbook = buildCutoverRunbook();
   const stateBackupManifest = buildStateBackupManifest();
+  const evidenceArtifacts = readEvidenceArtifacts(root, cutoverRunbook, stateBackupManifest);
   const sourceLedgerFreshness = buildCutoverSourceLedgerFreshness(root);
   const verificationCommandMatrix = buildRenameVerificationCommandMatrix(
     sourceLedgerFreshness.checkedDate,
@@ -1454,15 +1570,32 @@ export function buildIdentifierRenameCutoverPlan(
   if (!repoHeadSha) {
     blockedReasons.push("cutover snapshot is not bound to a readable git HEAD sha");
   }
+  if (!worktreeSnapshot.readable) {
+    blockedReasons.push("cutover snapshot is not bound to readable git worktree status");
+  } else if (!worktreeSnapshot.clean) {
+    blockedReasons.push(
+      `cutover snapshot requires a clean git worktree before approval; dirtyPathCount=${worktreeSnapshot.dirtyPathCount}`,
+    );
+  }
+  const missingEvidenceArtifacts = evidenceArtifacts
+    .filter((artifact) => !artifact.exists)
+    .map((artifact) => artifact.path);
+  if (missingEvidenceArtifacts.length > 0) {
+    blockedReasons.push(
+      `cutover evidence artifacts missing before approval: ${missingEvidenceArtifacts.slice(0, 5).join(", ")}${missingEvidenceArtifacts.length > 5 ? `, ... +${missingEvidenceArtifacts.length - 5}` : ""}`,
+    );
+  }
   const freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"] = {
     requiresFrozenHead: true,
     requiresQuietWindow: true,
     concurrencyPolicy: "single-run-no-concurrent-apply" as const,
     reapprovalTriggers: [
       "HEAD changes after approval",
+      "git worktree dirty path set changes after approval",
       "blast-radius hit set changes after approval",
       "approval scope or approved params change",
       "dry-run, rollback, backup, or monitoring plan changes",
+      "cutover evidence artifact file hashes change after approval",
       "doctor, full test, or distribution smoke evidence becomes stale or red",
     ],
   };
@@ -1499,6 +1632,8 @@ export function buildIdentifierRenameCutoverPlan(
     provenanceRequirements,
     sourceLedgerFreshness,
     repoHeadSha,
+    worktreeSnapshot,
+    evidenceArtifacts,
   });
   const snapshotReview = buildIdentifierRenameSnapshotReview(
     approvalEvaluation,
@@ -1619,6 +1754,8 @@ function buildIdentifierRenameCutoverSnapshot(input: {
   provenanceRequirements: IdentifierRenameCutoverPlan["provenanceRequirements"];
   sourceLedgerFreshness: IdentifierRenameSourceLedgerFreshness;
   repoHeadSha: string | null;
+  worktreeSnapshot: IdentifierRenameWorktreeSnapshot;
+  evidenceArtifacts: IdentifierRenameEvidenceArtifact[];
 }): IdentifierRenameCutoverSnapshot {
   const headDigest = input.repoHeadSha ? sha256Json({ repoHeadSha: input.repoHeadSha }) : null;
   const blastRadiusDigest = sha256Json({
@@ -1640,21 +1777,45 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     requiredRecords: input.audit.requiredRecords,
     cutoverCategoryChecklist: input.cutoverCategoryChecklist,
   });
+  const evidenceArtifactsDigest = sha256Json({
+    artifacts: input.evidenceArtifacts.map((artifact) => ({
+      path: artifact.path,
+      source: artifact.source,
+      exists: artifact.exists,
+      sha256: artifact.sha256,
+      sizeBytes: artifact.sizeBytes,
+    })),
+  });
   const evidenceDigest = sha256Json({
     repoHeadSha: input.repoHeadSha,
+    worktreeSnapshot: input.worktreeSnapshot,
     sourceLedgerFreshness: input.sourceLedgerFreshness,
     cutoverRunbook: input.cutoverRunbook,
     verificationCommandMatrix: input.verificationCommandMatrix,
     stateBackupManifest: input.stateBackupManifest,
     freezePolicy: input.freezePolicy,
     provenanceRequirements: input.provenanceRequirements,
+    evidenceArtifactsDigest,
   });
+  const missingEvidenceArtifacts = input.evidenceArtifacts
+    .filter((artifact) => !artifact.exists)
+    .map((artifact) => artifact.path);
   const snapshot = {
     repoHeadSha: input.repoHeadSha,
     headDigest,
+    worktreeStatusReadable: input.worktreeSnapshot.readable,
+    worktreeClean: input.worktreeSnapshot.clean,
+    worktreeStatusDigest: input.worktreeSnapshot.statusDigest,
+    worktreeDirtyPathCount: input.worktreeSnapshot.dirtyPathCount,
+    worktreeDirtyPaths: input.worktreeSnapshot.dirtyPaths,
     blastRadiusDigest,
     approvalScopeDigest,
     evidenceDigest,
+    evidenceArtifactsDigest,
+    evidenceArtifactsRequired: input.evidenceArtifacts.length,
+    evidenceArtifactsPresent: input.evidenceArtifacts.filter((artifact) => artifact.exists).length,
+    missingEvidenceArtifacts,
+    evidenceArtifacts: input.evidenceArtifacts,
     sourceLedgerCheckedDate: input.sourceLedgerFreshness.checkedDate,
     sourceLedgerRowsDigest: input.sourceLedgerFreshness.rowsDigest,
     invalidatedBy: input.freezePolicy.reapprovalTriggers,

@@ -1,12 +1,13 @@
 import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
+  type IdentifierRenameWorktreeSnapshot,
   identifierRenameRunbookCommandViolations,
   identifierRenameStateBackupManifestViolations,
   identifierRenameVerificationCommandViolations,
@@ -18,6 +19,20 @@ const CONCRETE_SNAPSHOT_ID =
   "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 const TEST_HEAD_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 const NEXT_TEST_HEAD_SHA = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+const CLEAN_WORKTREE: IdentifierRenameWorktreeSnapshot = {
+  readable: true,
+  clean: true,
+  statusDigest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  dirtyPathCount: 0,
+  dirtyPaths: [],
+};
+const DIRTY_WORKTREE: IdentifierRenameWorktreeSnapshot = {
+  readable: true,
+  clean: false,
+  statusDigest: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  dirtyPathCount: 1,
+  dirtyPaths: ["README.md"],
+};
 
 function nameCutoverSemanticRecord() {
   return {
@@ -165,6 +180,32 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
       "- audit_record: approver action command result incident rollback route",
     ].join("\n"),
   );
+}
+
+function writeCutoverEvidenceArtifacts(root: string) {
+  const paths = [
+    ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+    ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+    ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+    ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
+    ".ut-tdd/evidence/rename/static-state-gates.txt",
+    ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+    ".ut-tdd/evidence/rename/full-regression.txt",
+    ".ut-tdd/evidence/rename/restore-harness-db.json",
+    ".ut-tdd/evidence/rename/restore-memory.json",
+    ".ut-tdd/evidence/rename/restore-state.json",
+    ".ut-tdd/evidence/rename/restore-logs.json",
+    ".ut-tdd/evidence/rename/restore-handover.json",
+    ".ut-tdd/evidence/rename/restore-provider-handover.json",
+    ".ut-tdd/evidence/rename/restore-approval-policy.json",
+    ".ut-tdd/evidence/rename/restore-claude-settings.json",
+    ".ut-tdd/evidence/rename/restore-codex-hooks.json",
+  ];
+  for (const path of paths) {
+    const absolutePath = join(root, path);
+    mkdirSync(dirname(absolutePath), { recursive: true });
+    writeFileSync(absolutePath, `${JSON.stringify({ path, ok: true })}\n`, "utf8");
+  }
 }
 
 function writeMinimalApprovedRenamePlan(root: string) {
@@ -778,9 +819,21 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         snapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         repoHeadSha: TEST_HEAD_SHA,
         headDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        worktreeStatusReadable: false,
+        worktreeClean: false,
+        worktreeStatusDigest: null,
+        worktreeDirtyPathCount: 0,
+        worktreeDirtyPaths: [],
         blastRadiusDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        evidenceArtifactsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        evidenceArtifactsRequired: 16,
+        evidenceArtifactsPresent: 0,
+        missingEvidenceArtifacts: expect.arrayContaining([
+          ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+          ".ut-tdd/evidence/rename/restore-harness-db.json",
+        ]),
         sourceLedgerCheckedDate: "2026-07-02",
         sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         invalidatedBy: plan.freezePolicy.reapprovalTriggers,
@@ -869,6 +922,91 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(first.cutoverSnapshot.headDigest).not.toBe(second.cutoverSnapshot.headDigest);
       expect(first.cutoverSnapshot.snapshotId).not.toBe(second.cutoverSnapshot.snapshotId);
       expect(first.cutoverSnapshot.invalidatedBy).toContain("HEAD changes after approval");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("binds cutover snapshots to clean git worktree status", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-worktree-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const clean = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
+      );
+      const dirty = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: DIRTY_WORKTREE },
+      );
+
+      expect(clean.cutoverSnapshot).toMatchObject({
+        worktreeStatusReadable: true,
+        worktreeClean: true,
+        worktreeDirtyPathCount: 0,
+      });
+      expect(dirty.cutoverSnapshot).toMatchObject({
+        worktreeStatusReadable: true,
+        worktreeClean: false,
+        worktreeDirtyPathCount: 1,
+        worktreeDirtyPaths: ["README.md"],
+      });
+      expect(dirty.blockedReasons).toContain(
+        "cutover snapshot requires a clean git worktree before approval; dirtyPathCount=1",
+      );
+      expect(clean.cutoverSnapshot.worktreeStatusDigest).not.toBe(
+        dirty.cutoverSnapshot.worktreeStatusDigest,
+      );
+      expect(clean.cutoverSnapshot.snapshotId).not.toBe(dirty.cutoverSnapshot.snapshotId);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("binds cutover snapshots to concrete evidence artifact file hashes", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-evidence-artifacts-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const missing = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
+      );
+      writeCutoverEvidenceArtifacts(root);
+      const present = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
+      );
+
+      expect(missing.cutoverSnapshot.evidenceArtifactsRequired).toBe(16);
+      expect(missing.cutoverSnapshot.evidenceArtifactsPresent).toBe(0);
+      expect(missing.cutoverSnapshot.missingEvidenceArtifacts).toContain(
+        ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+      );
+      expect(present.cutoverSnapshot.evidenceArtifactsPresent).toBe(16);
+      expect(present.cutoverSnapshot.missingEvidenceArtifacts).toEqual([]);
+      expect(present.cutoverSnapshot.evidenceArtifacts).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+            exists: true,
+            sha256: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+          }),
+        ]),
+      );
+      expect(missing.cutoverSnapshot.evidenceArtifactsDigest).not.toBe(
+        present.cutoverSnapshot.evidenceArtifactsDigest,
+      );
+      expect(missing.cutoverSnapshot.snapshotId).not.toBe(present.cutoverSnapshot.snapshotId);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -1090,8 +1228,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("marks approval material ready only when concrete approval records cite the current cutover snapshot", () => {
-    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-"));
+  it("does not mark approval material ready when current snapshot records lack evidence artifacts", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-no-evidence-"));
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
@@ -1100,13 +1238,45 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
         [nameCutoverSemanticRecord()],
-        TEST_HEAD_SHA,
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
       ).cutoverSnapshot.snapshotId;
       writeApprovedRenamePlan(root, currentSnapshotId);
       const plan = buildIdentifierRenameCutoverPlan(
         root,
         [nameCutoverSemanticRecord()],
-        TEST_HEAD_SHA,
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
+      );
+
+      expect(plan.approvalMaterialReady).toBe(false);
+      expect(plan.applyAuthorized).toBe(false);
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("cutover evidence artifacts missing before approval"),
+        ]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("marks approval material ready only when concrete approval records cite the current cutover snapshot with clean evidence", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-current-snapshot-"));
+    try {
+      writeApprovedRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeCutoverEvidenceArtifacts(root);
+
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
+      ).cutoverSnapshot.snapshotId;
+      writeApprovedRenamePlan(root, currentSnapshotId);
+      const plan = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
       );
 
       expect(plan.status).toBe("ready_for_cutover_packet");
@@ -1318,6 +1488,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("blastRadiusDigest=sha256:");
       expect(text.stdout).toContain("approvalScopeDigest=sha256:");
       expect(text.stdout).toContain("evidenceDigest=sha256:");
+      expect(text.stdout).toContain("cutover-snapshot-worktree:");
+      expect(text.stdout).toContain("dirtyPathCount=");
+      expect(text.stdout).toContain("cutover-snapshot-evidence:");
+      expect(text.stdout).toContain("artifactsDigest=sha256:");
       expect(text.stdout).toContain("cutover-checklist=");
       expect(text.stdout).toContain("runbook=");
       expect(text.stdout).toContain("verification-commands=");

@@ -1606,6 +1606,12 @@ rename
     process.stdout.write(
       `  cutover-snapshot-head: ${plan.cutoverSnapshot.repoHeadSha ?? "-"} digest=${plan.cutoverSnapshot.headDigest ?? "-"} sourceLedgerRowsDigest=${plan.cutoverSnapshot.sourceLedgerRowsDigest} blastRadiusDigest=${plan.cutoverSnapshot.blastRadiusDigest} approvalScopeDigest=${plan.cutoverSnapshot.approvalScopeDigest} evidenceDigest=${plan.cutoverSnapshot.evidenceDigest}\n`,
     );
+    process.stdout.write(
+      `  cutover-snapshot-worktree: readable=${plan.cutoverSnapshot.worktreeStatusReadable ? "yes" : "no"} clean=${plan.cutoverSnapshot.worktreeClean ? "yes" : "no"} dirtyPathCount=${plan.cutoverSnapshot.worktreeDirtyPathCount} statusDigest=${plan.cutoverSnapshot.worktreeStatusDigest ?? "-"}\n`,
+    );
+    process.stdout.write(
+      `  cutover-snapshot-evidence: required=${plan.cutoverSnapshot.evidenceArtifactsRequired} present=${plan.cutoverSnapshot.evidenceArtifactsPresent} missing=${plan.cutoverSnapshot.missingEvidenceArtifacts.length} artifactsDigest=${plan.cutoverSnapshot.evidenceArtifactsDigest}\n`,
+    );
     if (plan.blockedReasons.length > 0) {
       for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
     }

@@ -219,14 +219,19 @@ GitHub Actions concurrency、GitHub repository rename、Google SRE release engin
 この matrix metadata 用に 2026-07-03 に再確認済みであり、ledger heading は source-ledger freshness の
 anchor として残す。`sourceCheckedAt` は `Cutover source ledger (checked YYYY-MM-DD)` から派生させ、
 ledger heading と verification matrix の確認日を別々に進めない。`cutoverSnapshot.snapshotId` は current blast-radius digest、approval scope digest、
-source-ledger/runbook/backup/provenance/monitoring evidence digest、freeze-policy reapproval trigger を束ねる。
+clean worktree status digest、source-ledger/runbook/backup/provenance/monitoring evidence digest、evidence artifact file hash などの
+承認前証跡と freeze-policy reapproval trigger を束ねる。
 この snapshot は apply を許可しない。PO/TL が approval evidence と current rename packet を比較し、HEAD、
-hit set、source ledger、scope、dry-run、backup、rollback、provenance、monitoring、dist smoke、quiet-window
-evidence が変わった stale approval を拒否するための binding である。
+worktree dirty path set、hit set、source ledger、scope、dry-run、backup、rollback、provenance、monitoring、dist smoke、
+quiet-window evidence の変化を stale approval として拒否するための binding である。
 `ut-tdd completion decision-packet --json` / `ut-tdd status` / handover から rename plan へ入る場合も、
 supporting summary は `cutoverSnapshot`、`snapshotReview`、`cutoverRunbook`、`stateBackupManifest` などの
 親 field だけで完了しない。`requiredReviewFields[]` は `cutoverSnapshot.repoHeadSha`、
-`cutoverSnapshot.blastRadiusDigest`、`cutoverSnapshot.approvalScopeDigest`、`cutoverSnapshot.evidenceDigest`、
+`cutoverSnapshot.worktreeClean`、`cutoverSnapshot.worktreeStatusDigest`、
+`cutoverSnapshot.worktreeDirtyPathCount`、`cutoverSnapshot.blastRadiusDigest`、
+`cutoverSnapshot.approvalScopeDigest`、`cutoverSnapshot.evidenceDigest`、
+`cutoverSnapshot.evidenceArtifactsDigest`、`cutoverSnapshot.evidenceArtifactsPresent`、
+`cutoverSnapshot.missingEvidenceArtifacts`、`cutoverSnapshot.evidenceArtifacts.sha256`、
 `cutoverSnapshot.sourceLedgerRowsDigest`、`snapshotReview.currentSnapshotId`、
 `snapshotReview.cutoverSnapshotMatchesCurrent`、`snapshotReview.actionBindingSnapshotMatchesCurrent`、
 `cutoverCategoryChecklist.samplePaths`、`cutoverCategoryChecklist.verificationCommand`、
