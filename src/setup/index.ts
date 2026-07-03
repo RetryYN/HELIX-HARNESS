@@ -910,6 +910,21 @@ export interface ConsumerReadinessPlan {
       requiredBefore: string[];
       remediation: string;
     };
+    packagePreflight: {
+      installCommand: "bun install --frozen-lockfile";
+      lockfiles: ["bun.lock", "bun.lockb"];
+      requiredScripts: ["ut-tdd", "typecheck", "test"];
+      scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"];
+      source: "Bun install / lockfile / package scripts official documentation";
+      sourceUrl: "https://bun.com/docs/pm/cli/install";
+      lockfileSourceUrl: "https://bun.com/docs/pm/lockfile";
+      scriptsSourceUrl: "https://bun.com/docs/quickstart";
+      sourceCheckedAt: "2026-07-03";
+      latestOfficialStatus: string;
+      sourceStatusDelta: string;
+      adoptionDecision: string;
+      workflowRouteImpact: string;
+    };
     requires: string[];
     forkPullRequestSecrets: "not-required";
   };
@@ -1594,6 +1609,25 @@ export function buildConsumerReadinessPlan(input: {
         ],
         remediation:
           "consumer package.json に HELIX harness package/bin を解決できる dependency または approved link/install route を追加する",
+      },
+      packagePreflight: {
+        installCommand: "bun install --frozen-lockfile",
+        lockfiles: ["bun.lock", "bun.lockb"],
+        requiredScripts: ["ut-tdd", "typecheck", "test"],
+        scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+        source: "Bun install / lockfile / package scripts official documentation",
+        sourceUrl: "https://bun.com/docs/pm/cli/install",
+        lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
+        scriptsSourceUrl: "https://bun.com/docs/quickstart",
+        sourceCheckedAt: "2026-07-03",
+        latestOfficialStatus:
+          "`bun install --frozen-lockfile` installs exact lockfile versions without updating the lockfile, errors when package.json and bun.lock disagree, and CI usage requires committing bun.lock; Bun v1.2+ uses text bun.lock while older projects may still have bun.lockb",
+        sourceStatusDelta:
+          "changed; consumer readiness now records Bun frozen-lockfile, lockfile, and package-script semantics as structured CI preflight metadata",
+        adoptionDecision:
+          "consumer CI は `bun.lock` または `bun.lockb` と package.json scripts.ut-tdd/typecheck/test が揃う場合だけ再現可能な package/bin smoke として扱う",
+        workflowRouteImpact:
+          "missing lockfile or required package script routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
       },
       requires: [
         "actions/checkout@v4 with persist-credentials=false",

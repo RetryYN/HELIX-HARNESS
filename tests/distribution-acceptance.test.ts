@@ -452,6 +452,18 @@ describe("clean distribution local acceptance smoke", () => {
           "oven-sh/setup-bun@v2",
           ...CONSUMER_CI_RUN_COMMANDS,
         ]);
+        expect(setupJson.consumerReadiness.ci.packagePreflight).toMatchObject({
+          installCommand: "bun install --frozen-lockfile",
+          lockfiles: ["bun.lock", "bun.lockb"],
+          requiredScripts: ["ut-tdd", "typecheck", "test"],
+          scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+          sourceUrl: "https://bun.com/docs/pm/cli/install",
+          lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
+          scriptsSourceUrl: "https://bun.com/docs/quickstart",
+          sourceCheckedAt: "2026-07-03",
+          latestOfficialStatus: expect.stringContaining("bun.lock"),
+          adoptionDecision: expect.stringContaining("package.json scripts.ut-tdd/typecheck/test"),
+        });
         expect(setupJson.consumerReadiness.objectiveBoundary.cutoverPacketCommand).toBe(
           "ut-tdd rename plan --json",
         );

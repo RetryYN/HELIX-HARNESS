@@ -249,6 +249,14 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を含め、
 > acceptance は `CONSUMER_CI_RUN_COMMANDS` 全体を consumer repo で実行し、
 > post-setup verification と CI の command set をずらさない。
+> 2026-07-03 追補4: `consumerReadiness.ci.packagePreflight` は Bun 公式 docs を source として持ち、
+> `bun install --frozen-lockfile` が lockfile の exact version を使い lockfile を更新せず、`package.json` と
+> `bun.lock` が不一致なら error になること、CI では `bun.lock` commit が必要であること、Bun v1.2 以降の
+> text lockfile は `bun.lock` で旧 binary lockfile は `bun.lockb` であることを構造化して返す。
+> `checks[]` の boolean だけでなく、`installCommand`、許容 lockfile 名、必須 scripts
+> (`ut-tdd` / `typecheck` / `test`)、対応 `bun run ...` command、sourceUrl、lockfileSourceUrl、
+> scriptsSourceUrl、sourceCheckedAt、latestOfficialStatus、sourceStatusDelta、adoptionDecision、
+> workflowRouteImpact を出し、lockfile や scripts 欠落時は `fix_consumer_readiness` へ戻す根拠を JSON から追える。
 > GitHub Issue / Pull Request template は公式 template 仕様に合わせて `.github/ISSUE_TEMPLATE/*.md` と
 > `.github/PULL_REQUEST_TEMPLATE.md` に配置し、Recovery / Add-feature / V-model artifact / 検証 checklist を
 > consumer doctor が fail-close で検査する。これにより別 project の入口が「ファイルがある」だけでなく、

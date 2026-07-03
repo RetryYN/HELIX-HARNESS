@@ -804,6 +804,21 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
       remediation: expect.stringContaining("consumer package.json"),
     });
+    expect(ready.ci.packagePreflight).toMatchObject({
+      installCommand: "bun install --frozen-lockfile",
+      lockfiles: ["bun.lock", "bun.lockb"],
+      requiredScripts: ["ut-tdd", "typecheck", "test"],
+      scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+      source: "Bun install / lockfile / package scripts official documentation",
+      sourceUrl: "https://bun.com/docs/pm/cli/install",
+      lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
+      scriptsSourceUrl: "https://bun.com/docs/quickstart",
+      sourceCheckedAt: "2026-07-03",
+      latestOfficialStatus: expect.stringContaining("frozen-lockfile"),
+      sourceStatusDelta: expect.stringContaining("structured CI preflight metadata"),
+      adoptionDecision: expect.stringContaining("scripts.ut-tdd/typecheck/test"),
+      workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
+    });
     expect(ready.ci.requires).toContain("bun run test");
     expect(ready.ci.requires).toEqual(
       expect.arrayContaining([
