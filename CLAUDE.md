@@ -194,22 +194,21 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 - **引き継ぎ feedback は harness.db から受け取る** (`feedback_events`、SessionStart で surface、
   PLAN-L7-110)。stale 化する prose handover を現状把握の正本にしない。CURRENT.json / prose は補助。
 
-## Canonical Commands
+## 正規コマンド
 
-- Setup: `ut-tdd setup project`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
-- Plan lint: `ut-tdd plan lint`
-- Review: `ut-tdd review --uncommitted`
-- Codex delegation: `ut-tdd codex --role <role> --task "..."`
-- Claude prompt generation: `ut-tdd claude --role <role> --task "..." --dry-run`
-- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
-- Task classification: `ut-tdd task classify --text "..."`
-- Skill suggestion: `ut-tdd skill suggest --plan <path>`
+- セットアップ: `ut-tdd setup project`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
+- PLAN lint: `ut-tdd plan lint`
+- レビュー: `ut-tdd review --uncommitted`
+- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
+- Claude prompt 生成: `ut-tdd claude --role <role> --task "..." --dry-run`
+- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- タスク分類: `ut-tdd task classify --text "..."`
+- スキル推薦: `ut-tdd skill suggest --plan <path>`
 
-When multiple AI runtimes are available, separate creation from judgement. In
-single-runtime modes, record `intra_runtime_subagent` review evidence as the
-fallback.
+複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
+単一 runtime の場合は、代替証跡として `intra_runtime_subagent` review evidence を記録する。
 
 ## Safety Boundaries
 
@@ -237,31 +236,30 @@ fallback.
 
 ## UT-TDD Adapter Rule Markers
 
-This section is machine-checked by `rule-drift` so Codex and Claude adapters do
-not silently diverge.
+この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
 - Codex project rules: `AGENTS.md`
 - Claude runtime policy: `.claude/CLAUDE.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
-- Setup: `ut-tdd setup project`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
-- Handover: `ut-tdd handover`
-- Codex delegation: `ut-tdd codex --role <role> --task "..."`
-- Claude delegation: `ut-tdd claude --role <role> --task "..."`
-- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `ut-tdd setup project`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
+- 引き継ぎ: `ut-tdd handover`
+- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
+- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
+- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
 
 <!-- UT-TDD:managed:start -->
-# UT-TDD Agent Harness Shared Context
+# UT-TDD Agent Harness 共有コンテキスト
 
-Use repository-local UT-TDD commands for harness state and delegation.
+repository-local な UT-TDD command で harness state と delegation を扱う。
 
-- `ut-tdd setup project` bootstraps a HELIX-ready project and is the current setup entrypoint.
-- `ut-tdd status` reports the local runtime mode.
-- `ut-tdd doctor` runs repository health checks.
-- `ut-tdd handover` reads and writes cross-runtime handover state.
-- `ut-tdd codex --role <role> --task "..."` delegates to Codex.
-- `ut-tdd claude --role <role> --task "..."` delegates to Claude.
+- `ut-tdd setup project` は HELIX 対応 project を初期化する現行 setup 入口である。
+- `ut-tdd status` は local runtime mode を報告する。
+- `ut-tdd doctor` は repository health check を実行する。
+- `ut-tdd handover` は cross-runtime handover state を読み書きする。
+- `ut-tdd codex --role <role> --task "..."` は Codex へ委譲する。
+- `ut-tdd claude --role <role> --task "..."` は Claude へ委譲する。
 
-Do not put secrets, tokens, or machine-local absolute paths in adapter docs.
+adapter docs に secret、token、machine-local absolute path を書かない。
 <!-- UT-TDD:managed:end -->

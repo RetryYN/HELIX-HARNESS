@@ -131,25 +131,24 @@ Runtime modes:
 - `codex-only`
 - `hybrid`
 
-Canonical commands:
+正規コマンド:
 
-- Project setup: `ut-tdd setup project`
-- Codex execution: `ut-tdd codex --role <role> --task "..."`
-- Claude prompt generation: `ut-tdd claude --role <role> --task "..." --dry-run`
-- Team delegation: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
-- Task classification: `ut-tdd task classify --text "..."` / `ut-tdd task estimate --plan <path>`
-- Skill recommendation: `ut-tdd skill suggest --plan <path>`
-- Review packet: `ut-tdd review --uncommitted`
-- Handover: `ut-tdd handover`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
+- セットアップ: `ut-tdd setup project`
+- Codex 実行: `ut-tdd codex --role <role> --task "..."`
+- Claude prompt 生成: `ut-tdd claude --role <role> --task "..." --dry-run`
+- チーム委譲: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- タスク分類: `ut-tdd task classify --text "..."` / `ut-tdd task estimate --plan <path>`
+- スキル推薦: `ut-tdd skill suggest --plan <path>`
+- レビュー packet: `ut-tdd review --uncommitted`
+- 引き継ぎ: `ut-tdd handover`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
 
-When multiple AI runtimes are available, separate creation from judgement.
-Design decisions, judgement gates, and R4 merge decisions should go through a
-different runtime / model family when feasible. In single-runtime modes, record
-`intra_runtime_subagent` as the review substitute and leave evidence.
+複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
+設計判断、judgement gate、R4 merge 判断は、可能な限り別 runtime / model family へ回す。
+単一 runtime では `intra_runtime_subagent` を review substitute として記録し、証跡を残す。
 
-Do not add legacy commands as current company/product execution paths.
+legacy command を現行 company/product execution path として追加しない。
 
 ## Hooks (Codex orchestrator parity)
 
@@ -252,32 +251,31 @@ Personal overrides go in `AGENTS.override.md`. It is not tracked by Git.
 
 ## UT-TDD Adapter Rule Markers
 
-This section is machine-checked by `rule-drift` so Codex and Claude adapters do
-not silently diverge.
+この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
 - Shared context: `CLAUDE.md`
 - Claude runtime policy: `.claude/CLAUDE.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
-- Setup: `ut-tdd setup project`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
-- Handover: `ut-tdd handover`
-- Codex delegation: `ut-tdd codex --role <role> --task "..."`
-- Claude delegation: `ut-tdd claude --role <role> --task "..."`
-- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `ut-tdd setup project`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
+- 引き継ぎ: `ut-tdd handover`
+- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
+- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
+- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
 
 <!-- UT-TDD:managed:start -->
-# UT-TDD Agent Harness Adapter
+# UT-TDD Agent Harness アダプター
 
-This project uses UT-TDD Agent Harness commands as the local orchestration surface.
+この project は local orchestration surface として UT-TDD Agent Harness command を使う。
 
-- Setup: `ut-tdd setup project`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
-- Handover: `ut-tdd handover`
-- Codex delegation: `ut-tdd codex --role <role> --task "..."`
-- Claude delegation: `ut-tdd claude --role <role> --task "..."`
-- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `ut-tdd setup project`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
+- 引き継ぎ: `ut-tdd handover`
+- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
+- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
+- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
 
-Project-owned instructions outside this managed block remain consumer-owned.
+この managed block の外側にある project-owned instruction は consumer 側所有として扱う。
 <!-- UT-TDD:managed:end -->

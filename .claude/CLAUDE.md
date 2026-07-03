@@ -68,26 +68,24 @@ PLAN claim discipline (errata countermeasure, PLAN-L7-89):
 
 Use `ut-tdd plan lint`, targeted tests, and `ut-tdd doctor`.
 
-## Runtime And Delegation
+## Runtime と委譲
 
-Current command path:
+現行コマンド経路:
 
-- Setup: `ut-tdd setup project`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
-- Handover: `ut-tdd handover`
-- Codex delegation: `ut-tdd codex --role <role> --task "..."`
-- Claude delegation: `ut-tdd claude --role <role> --task "..."`
-- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `ut-tdd setup project`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
+- 引き継ぎ: `ut-tdd handover`
+- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
+- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
+- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
 
-Runtime mode is one of `standalone`, `claude-only`, `codex-only`, or `hybrid`.
-In `hybrid`, judgement gates should use a different runtime / model family when
-feasible. In single-runtime modes, record `intra_runtime_subagent` review
-evidence as the substitute.
+Runtime mode は `standalone` / `claude-only` / `codex-only` / `hybrid` のいずれかである。
+`hybrid` では、可能な限り judgement gate を別 runtime / model family へ回す。
+単一 runtime では `intra_runtime_subagent` review evidence を代替証跡として記録する。
 
-Do not make raw `codex exec` or raw `claude` the normal path for UT-TDD work.
-Use UT-TDD wrappers so session lifecycle, handover warnings, and audit evidence
-can be recorded.
+UT-TDD work の通常経路として raw `codex exec` や raw `claude` を使わない。
+session lifecycle、handover warning、audit evidence を記録できるように UT-TDD wrapper を使う。
 
 ## Native Tool Invocation
 
@@ -185,29 +183,28 @@ Current cutover evidence:
 
 ## UT-TDD Adapter Rule Markers
 
-This section is machine-checked by `rule-drift` so Codex and Claude adapters do
-not silently diverge.
+この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
 - Shared project context: `../CLAUDE.md`
 - Codex project rules: `../AGENTS.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
-- Setup: `ut-tdd setup project`
-- Status: `ut-tdd status`
-- Doctor: `ut-tdd doctor`
-- Handover: `ut-tdd handover`
-- Codex delegation: `ut-tdd codex --role <role> --task "..."`
-- Claude delegation: `ut-tdd claude --role <role> --task "..."`
-- Team run: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `ut-tdd setup project`
+- 状態確認: `ut-tdd status`
+- 診断: `ut-tdd doctor`
+- 引き継ぎ: `ut-tdd handover`
+- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
+- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
+- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
 
 <!-- UT-TDD:managed:start -->
-# Claude Runtime Adapter
+# Claude runtime アダプター
 
-Claude Code sessions should route harness lifecycle work through `ut-tdd`.
-Consumer-owned Claude instructions can be added outside this managed block.
+Claude Code session の harness lifecycle work は `ut-tdd` 経由で扱う。
+consumer 側所有の Claude instruction は、この managed block の外側へ追加できる。
 
-- Setup: `ut-tdd setup project`
-- Session evidence: `ut-tdd status` and `ut-tdd handover`
-- Health check: `ut-tdd doctor`
-- Review separation: use another runtime/model family when feasible
+- セットアップ: `ut-tdd setup project`
+- セッション証跡: `ut-tdd status` / `ut-tdd handover`
+- 診断: `ut-tdd doctor`
+- レビュー分離: 可能な場合は別 runtime / model family を使う
 
 <!-- UT-TDD:managed:end -->

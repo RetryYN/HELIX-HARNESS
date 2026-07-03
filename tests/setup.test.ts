@@ -2919,7 +2919,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     for (const text of samples) {
       expect(text).toMatch(/[ぁ-んァ-ヶ一-龠]/);
       expect(text).not.toMatch(
-        /This project uses|Use repository-local|Act as a|Required baseline|Run `ut-tdd|Do not put secrets|Project-owned instructions|Target: \$ARGUMENTS/,
+        /This project uses|Use repository-local|Act as a|Required baseline|Run `ut-tdd|Do not put secrets|Project-owned instructions|Target: \$ARGUMENTS|Status: `ut-tdd|Doctor: `ut-tdd|Codex delegation:|Claude delegation:|Team run dry-run:|Session evidence:|Health check:|Review separation:|consumer-owned/,
       );
     }
   });
@@ -3091,11 +3091,29 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const claudeRuntime = readFileSync(join(process.cwd(), ".claude", "CLAUDE.md"), "utf8");
 
     for (const text of [claude, agents, claudeRuntime]) {
-      expect(text).toContain("Setup: `ut-tdd setup project`");
+      expect(text).toContain("`ut-tdd setup project`");
       expect(text).not.toContain("Setup: `ut-tdd setup`");
     }
-    expect(claude).toContain("`ut-tdd setup project` bootstraps a HELIX-ready project");
-    expect(agents).toContain("Project setup: `ut-tdd setup project`");
-    expect(claudeRuntime).toContain("Current command path:");
+    expect(claude).toContain(
+      "`ut-tdd setup project` は HELIX 対応 project を初期化する現行 setup 入口である。",
+    );
+    expect(claude).not.toContain("bootstraps a HELIX-ready project");
+    expect(agents).toContain("セットアップ: `ut-tdd setup project`");
+    expect(agents).toContain("legacy command を現行 company/product execution path として追加しない。");
+    expect(claudeRuntime).toContain("現行コマンド経路:");
+    expect(claudeRuntime).toContain("Claude Code session の harness lifecycle work は `ut-tdd` 経由で扱う。");
+  });
+
+  it("U-SETUP-035: runtime instruction setup surfaces stay Japanese-first", () => {
+    const claude = readFileSync(join(process.cwd(), "CLAUDE.md"), "utf8");
+    const agents = readFileSync(join(process.cwd(), "AGENTS.md"), "utf8");
+    const claudeRuntime = readFileSync(join(process.cwd(), ".claude", "CLAUDE.md"), "utf8");
+
+    for (const text of [claude, agents, claudeRuntime]) {
+      expect(text).toMatch(/[ぁ-んァ-ヶ一-龠]/);
+      expect(text).not.toMatch(
+        /Canonical Commands|Canonical commands|Current command path|Project setup:|Setup: `ut-tdd|Status: `ut-tdd|Doctor: `ut-tdd|Codex delegation:|Claude delegation:|Team run:|Session evidence:|Health check:|Review separation:|bootstraps a HELIX-ready project|This section is machine-checked|This project uses UT-TDD|Project-owned instructions outside this managed block|Use UT-TDD wrappers/,
+      );
+    }
   });
 });
