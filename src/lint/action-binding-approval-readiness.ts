@@ -637,6 +637,26 @@ function buildActionBindingApprovalVerificationCommandMatrix(
       workflowRouteImpact: "none; trust-boundary failure blocks approval review",
     },
     {
+      phase: "web-security-testing-boundary",
+      command: `bun run src/cli.ts action-binding approval-packet --plan ${plan.plan_id} --json`,
+      expected:
+        "web-facing or remotely published action scopes map required security-testing evidence to the approval review before any irreversible execution",
+      evidence:
+        "approval packet source row records OWASP WSTG as a security-testing boundary and keeps the action plan-only until explicit approval",
+      source: "OWASP Web Security Testing Guide",
+      sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
+      sourceCheckedAt: "2026-07-03",
+      latestOfficialStatus:
+        "OWASP WSTG remains the official OWASP web application and web service security testing guide with stable/latest published pages",
+      sourceStatusDelta:
+        "none; WSTG remains a review source for security testing scope rather than an apply authority",
+      adoptionDecision: "adopt-wstg-as-web-security-testing-boundary-for-action-approval",
+      adoptionDecisionDelta:
+        "none; approval packet must expose WSTG source metadata when reviewing action-binding safety",
+      workflowRouteImpact:
+        "none; missing web security testing boundary routes back to approval packet repair",
+    },
+    {
       phase: "targeted-regression",
       command: "bun test tests/action-binding-approval-readiness.test.ts tests/cli-surface.test.ts",
       expected: "action-binding packet and CLI surface regressions stay green",

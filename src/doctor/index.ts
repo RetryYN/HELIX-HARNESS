@@ -2050,11 +2050,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       "ut-tdd completion decision-packet --json" &&
     projectSetupObjectiveBoundary?.completionReviewBundleCommand ===
       "ut-tdd completion review-bundle --json" &&
-    ["ready", "review_import_report", "fix_consumer_readiness"].includes(
-      typeof projectSetupPostWorkflow?.nextRoute === "string"
-        ? projectSetupPostWorkflow.nextRoute
-        : "",
-    ) &&
+    projectSetupPostWorkflow?.readinessOk === true &&
+    projectSetupPostWorkflow?.nextRoute === "ready" &&
     projectSetupVerificationCommands.includes("ut-tdd completion decision-packet --json") &&
     projectSetupVerificationCommands.includes("ut-tdd completion review-bundle --json") &&
     projectSetupVerificationCommands.includes("ut-tdd doctor --profile consumer") &&
@@ -2062,7 +2059,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   messages.push(
     projectSetupStateOk
       ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false; first-run matrix persisted)"
-      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "ut-tdd completion review-bundle --json"} completionReviewSemanticDigest=${completionReviewSemanticDigestOk} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
+      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "ut-tdd completion review-bundle --json"} completionReviewSemanticDigest=${completionReviewSemanticDigestOk} readinessOk=${String(projectSetupPostWorkflow?.readinessOk ?? "")} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";

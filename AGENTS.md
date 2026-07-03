@@ -1,12 +1,12 @@
 # Codex CLI — HELIX（UT-TDD Agent Harness 土台）
 
-This file is the Codex CLI project rules for this repository.
+このファイルは、このリポジトリにおける Codex CLI 向け project ルールである。
 
-Separation of responsibilities:
+責務分離:
 
-- `CLAUDE.md`: shared project context.
-- `.claude/CLAUDE.md`: Claude Code runtime / hook policy.
-- `AGENTS.md`: Codex CLI project rules.
+- `CLAUDE.md`: 共有 project context。
+- `.claude/CLAUDE.md`: Claude Code runtime / hook policy。
+- `AGENTS.md`: Codex CLI project rules。
 
 ## コミュニケーション (報連相)
 
@@ -29,35 +29,30 @@ Separation of responsibilities:
 adapter ルールなどの人間向け docs にある英語 prose debt が baseline から増えないことを検査する。baseline は
 既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
 
-## Core Reads
+## Core Reads（必読正本）
 
-For work in this repository, read the repository-owned sources below and follow
-their workflow.
+このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
 
-- `docs/governance/ut-tdd-agent-harness-concept_v3.1.md` - concept for internal rollout
-- `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` - requirements and acceptance criteria
-- `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md` - extraction / cutover plan from the source snapshot
-- `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md` - redesign policy and TypeScript/Bun implementation language
-- `docs/governance/README.md` - canonical / reference / archive boundary under governance
+- `docs/governance/ut-tdd-agent-harness-concept_v3.1.md` - 内部展開向け concept
+- `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` - requirements と acceptance criteria
+- `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
+- `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md` - redesign policy と TypeScript/Bun 実装言語
+- `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
 
-Migration snapshots and inventories are not Core Reads. Read `docs/migration/`
-only when migration, gap audit, or regression-source inspection requires it. Do
-not treat it as UT-TDD runtime state or execution paths.
+Migration snapshots と inventories は Core Reads ではない。`docs/migration/` は migration、gap audit、
+regression-source inspection が必要なときだけ読む。UT-TDD runtime state や execution paths として扱わない。
 
-Do not load `docs/design/harness/L3-functional/roadmap.md` as a normal startup
-read. The verification roadmap is read dynamically only at V-model freeze
-boundaries when a verification cycle is being run. Normal work follows the
-Forward descent path from L0 to L14.
+`docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない。verification roadmap は
+V-model freeze 境界で verification cycle を走らせるときだけ動的に読む。通常作業は L0 から L14 への
+Forward descent path に従う。
 
-ADR-001 is binding: The previous framework is a design source only. UT-TDD core implementation is
-TypeScript/Bun. old W1-W3a Python is not ported as product runtime.
-Thin `.ps1` / `.sh` entrypoints may call the compiled or Bun-based TypeScript
-core. The language of repositories governed by UT-TDD is independent of the
-harness implementation language.
+ADR-001 は拘束力を持つ。previous framework は design source のみであり、UT-TDD core implementation は
+TypeScript/Bun とする。old W1-W3a Python は product runtime として port しない。薄い `.ps1` / `.sh`
+entrypoint は compiled または Bun-based TypeScript core を呼んでよい。UT-TDD が govern する repository の言語は、
+harness implementation language とは独立である。
 
-`docs/archive/` is not canonical; it is historical material only. The HELIX
-vendor snapshot has been removed now that the fork is complete (see
-`docs/migration/helix-fork-completion-plan.md` §11).
+`docs/archive/` は canonical ではなく historical material のみ。fork 完了に伴い HELIX vendor snapshot は削除済み
+（`docs/migration/helix-fork-completion-plan.md` §11）。
 
 ## HELIX 再構築方針（現行・最優先 / Claude と共通）
 
@@ -85,44 +80,39 @@ vendor snapshot has been removed now that the fork is complete (see
   `cutover_decision_record` と action-binding approval、dry-run、backup、rollback、monitoring evidence が揃うまで
   実 state move や alias 有効化を行わない。承認後は漏れのない atomic migration として実施する。
 
-## Session Start
+## Session Start（開始確認）
 
-1. Confirm the Core Reads above exist.
-2. If `.ut-tdd/handover/CURRENT.json` exists, check it and follow any non-stale
-   next action.
-3. If `legacy local state/` exists, treat it as historical source state, not UT-TDD state.
-4. If there is no active handover, start normally and say
+1. 上記 Core Reads が存在することを確認する。
+2. `.ut-tdd/handover/CURRENT.json` が存在する場合は確認し、stale でない next action に従う。
+3. `legacy local state/` が存在する場合は historical source state として扱い、UT-TDD state とは扱わない。
+4. active handover が無ければ通常開始し、次を宣言する。
    `OK: UT-TDD session initialized`.
 
-## TL Driven Mode
+## TL Driven Mode（TL 主導）
 
-When Codex CLI is used without another active runtime, act as the technical lead
-for the current slice. This does not replace Claude Code; it means Codex can
-execute, verify, and make gate decisions in `codex-only` or `standalone` modes.
+Codex CLI が別の active runtime なしで使われる場合、現在の slice の technical lead として動作する。
+これは Claude Code の置換ではない。`codex-only` または `standalone` mode で Codex が実行、検証、
+gate decision まで担えるという意味である。
 
-- Carry design, implementation, review, tests, and verification through when
-  feasible.
-- Read relevant existing files before editing.
-- Match existing structure, naming, and test placement.
-- State gate outcomes in the final response when the change size requires them.
-- Escalate before changing production infrastructure, authentication,
-  authorization, payment, PII, secrets, licensing, external APIs, or other
-  high-impact environment assumptions.
+- feasible な範囲で design、implementation、review、tests、verification を一気通貫で行う。
+- 編集前に relevant existing files を読む。
+- 既存の structure、naming、test placement に合わせる。
+- 変更規模が必要とする場合は final response で gate outcomes を明示する。
+- production infrastructure、authentication、authorization、payment、PII、secrets、licensing、
+  external APIs、その他 high-impact environment assumptions を変える前に escalate する。
 
-## UT-TDD Workflow
+## UT-TDD Workflow（工程）
 
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
-- Additive change: preserve existing design and add deltas through `add-design`
-  / `add-impl`.
-- Handover: use `.ut-tdd/handover/` as the session / cross-runtime handover
-  source.
+- Additive change: 既存 design を保ち、`add-design` / `add-impl` で delta を追加する。
+- Handover: `.ut-tdd/handover/` を session / cross-runtime handover source として使う。
 
-## Codex / Claude Code Harness
+## Codex / Claude Code Harness（実行面）
 
-Codex and Claude Code are managed by UT-TDD Agent Harness through contract
-plans, local CLIs, and hooks. They are not direct API calls in this product.
+Codex と Claude Code は、contract plans、local CLIs、hooks を通じて UT-TDD Agent Harness が管理する。
+この product では direct API call ではない。
 
 Runtime modes:
 
@@ -150,67 +140,54 @@ Runtime modes:
 
 legacy command を現行 company/product execution path として追加しない。
 
-## Hooks (Codex orchestrator parity)
+## Hooks（Codex orchestrator parity）
 
-Codex enforces the same guardrails as Claude through repo-local
-`.codex/hooks.json` (PLAN-L7-139). It is **repo-relative only**; never write
-hook config to global `~/.codex/`. It reuses the SAME TypeScript hook entrypoints
-as Claude (`.claude/hooks/work-guard.ts`, `src/cli.ts session ...`) with NO logic
-fork — the guard logic lives in `src/runtime/*.ts` and is runtime-agnostic.
+Codex は repo-local `.codex/hooks.json`（PLAN-L7-139）を通じて Claude と同じ guardrails を強制する。
+これは **repo-relative only** であり、global `~/.codex/` に hook config を書かない。Claude と同じ
+TypeScript hook entrypoints（`.claude/hooks/work-guard.ts`、`src/cli.ts session ...`）を再利用し、
+logic fork は作らない。guard logic は `src/runtime/*.ts` にあり runtime-agnostic である。
 
-Codex tool names differ from Claude, so matchers are mapped (not copied):
+Codex tool names は Claude と異なるため、matcher は copy ではなく map する。
 
-- `Edit|Write|MultiEdit` (Claude) -> `apply_patch|write_file` (Codex) for the
-  foreign-edit `work-guard`. Codex's `apply_patch` is **freeform** and carries no
-  `file_path` field — the edited paths live in the patch body
-  (`*** Update File:` / `*** Add File:` / `*** Delete File:` / `*** Move to:`,
-  multi-file). `work-guard` parses those headers so the foreign-edit block
-  actually fires for `apply_patch` (Codex's primary edit tool), not just
-  `write_file`.
-- `Bash` (Claude) -> `exec_command|local_shell` (Codex) for `PostToolUse`
-  session logging.
-- `Bash` (Claude) -> `exec_command|local_shell` (Codex) for `PreToolUse`
-  `git-command-guard`, which blocks destructive git reset/restore/revert/checkout/force-push
-  unless an explicit one-shot override reason is recorded.
-- `subagent-stop` (`SubagentStop`) has **no Codex surface** and is genuinely N/A:
-  codex.exe 0.128.0 exposes only `PreToolUse` / `PostToolUse` / `SessionStart` /
-  `Stop` / `UserPromptSubmit` hook events (no `SubagentStop`).
-- `agent-guard` (`Agent`) maps to Codex `spawn_agent|spawn_agents_on_csv`.
-  Codex `spawn_agent` semantics differ from Claude `subagent_type`, so the shared
-  guard normalizes the Codex payload separately: `agent_type` must be explicit and
-  allowlisted, direct model overrides are blocked, task body is required, and bulk
-  spawn is denied unless routed through the team/pair-agent workflow.
+- `Edit|Write|MultiEdit`（Claude） -> `apply_patch|write_file`（Codex）:
+  foreign-edit `work-guard` 用。Codex の `apply_patch` は **freeform** で `file_path` field を持たず、
+  edited paths は patch body（`*** Update File:` / `*** Add File:` / `*** Delete File:` /
+  `*** Move to:`、multi-file）にある。`work-guard` はこれらの header を parse し、`write_file` だけでなく
+  Codex の primary edit tool である `apply_patch` でも foreign-edit block が発火する。
+- `Bash`（Claude） -> `exec_command|local_shell`（Codex）: `PostToolUse` session logging 用。
+- `Bash`（Claude） -> `exec_command|local_shell`（Codex）: `PreToolUse` `git-command-guard` 用。
+  明示的な one-shot override reason が記録されていない destructive git reset/restore/revert/checkout/force-push を block する。
+- `subagent-stop`（`SubagentStop`）は **Codex surface が無く** 本当に N/A。codex.exe 0.128.0 は
+  `PreToolUse` / `PostToolUse` / `SessionStart` / `Stop` / `UserPromptSubmit` hook events だけを exposed し、
+  `SubagentStop` はない。
+- `agent-guard`（`Agent`）は Codex `spawn_agent|spawn_agents_on_csv` へ map する。Codex `spawn_agent`
+  semantics は Claude `subagent_type` と異なるため、shared guard は Codex payload を別途 normalize する。
+  `agent_type` は explicit かつ allowlisted、direct model override は block、task body は必須、bulk spawn は
+  team/pair-agent workflow 経由でなければ deny する。
 
-`.codex/hooks.json` parity with `.claude/settings.json` is machine-checked by `doctor`
-`codex-hook-adapter`, which fails closed if a guard diverges, drops
-`blockOnFailure`, depends on `$CLAUDE_PROJECT_DIR`, or references global
-`~/.codex/`.
+`.codex/hooks.json` と `.claude/settings.json` の parity は `doctor` の `codex-hook-adapter` が機械検査する。
+guard が diverge する、`blockOnFailure` を落とす、`$CLAUDE_PROJECT_DIR` に依存する、global `~/.codex/` を参照する場合は
+fail closed する。
 
-Scope boundary: `.codex/hooks.json` guards direct Codex CLI / Codex IDE sessions
-only. Hosted API/developer tools supplied by the surrounding chat runtime (such
-as this environment's `apply_patch`) do not execute through the Codex hook
-engine, so repo hooks cannot mechanically intercept them. In that surface,
-Codex must treat the hook as non-enforcing and perform explicit git/status
-preflight before edits; do not claim mechanical hook coverage for API tool
-calls.
+Scope boundary: `.codex/hooks.json` が guard するのは direct Codex CLI / Codex IDE sessions のみ。
+この chat runtime が提供する hosted API/developer tools（この環境の `apply_patch` など）は Codex hook engine を通らないため、
+repo hooks は機械的に intercept できない。この surface では Codex は hook を non-enforcing と扱い、編集前に明示的な
+git/status preflight を行う。API tool calls について mechanical hook coverage を主張しない。
 
-## Skills
+## Skills（スキル）
 
-- Read only the relevant `SKILL.md` for matching triggers.
-- Do not bulk-load all skills.
-- Resolve `references/` relative to the skill directory.
-- Legacy-derived skill material is migration source material. UT-TDD skill docs
-  live under `docs/skills/`.
+- matching triggers に該当する relevant `SKILL.md` だけを読む。
+- 全 skills を bulk-load しない。
+- `references/` は skill directory からの相対パスとして解決する。
+- Legacy-derived skill material は migration source material。UT-TDD skill docs は `docs/skills/` 配下に置く。
 
-## Editing Rules
+## Editing Rules（編集規則）
 
-- Read target files before editing them.
-- Match existing code structure, naming, and test placement.
-- Treat existing uncommitted changes and **commits made by the other runtime
-  (Claude)** as legitimate work; do not revert/reset/checkout them without
-  explicit instruction.
-- Do not write secrets, PII, or credentials into docs, rules, examples, or audit
-  evidence.
+- 編集前に target files を読む。
+- 既存の code structure、naming、test placement に合わせる。
+- 既存 uncommitted changes と **other runtime（Claude）が作った commits** は正規作業として扱う。
+  明示指示なしに revert/reset/checkout しない。
+- docs、rules、examples、audit evidence に secrets、PII、credentials を書かない。
 
 ## Git Rules (hybrid 多ランタイム協調)
 
@@ -234,26 +211,24 @@ calls.
   (foreign tree の transient を相手の退行と帰責しない)。引き継ぎ feedback は harness.db
   (`feedback_events`、PLAN-L7-110) から受け取り、stale 化する prose handover を正本にしない。
 
-## Test Rules
+## Test Rules（検証規則）
 
-- Docs changes: use `rg` to check old assumptions such as WSL2-required wording,
-  migration-source-as-current wording, personal absolute paths, and mojibake
-  markers.
-- Bash changes: `bash -n <changed-script>`.
-- PowerShell changes: `powershell -NoProfile -ExecutionPolicy Bypass -File <changed-script>`.
-- TypeScript core changes: `tsc --noEmit` plus targeted `vitest`.
-- CLI / hook changes: smoke test Windows PowerShell and POSIX shell paths when
-  relevant.
+- Docs changes: `rg` で WSL2-required wording、migration-source-as-current wording、personal absolute paths、
+  mojibake markers などの古い前提を確認する。
+- Bash changes: `bash -n <changed-script>`。
+- PowerShell changes: `powershell -NoProfile -ExecutionPolicy Bypass -File <changed-script>`。
+- TypeScript core changes: `tsc --noEmit` と targeted `vitest`。
+- CLI / hook changes: relevant な場合は Windows PowerShell と POSIX shell paths を smoke test する。
 
-## Local Overrides
+## Local Overrides（個人設定）
 
-Personal overrides go in `AGENTS.override.md`. It is not tracked by Git.
+Personal overrides は `AGENTS.override.md` に置く。これは Git tracked ではない。
 
 ## UT-TDD Adapter Rule Markers
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
-- Shared context: `CLAUDE.md`
+- 共有 context: `CLAUDE.md`
 - Claude runtime policy: `.claude/CLAUDE.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
 - セットアップ: `ut-tdd setup project`

@@ -261,10 +261,13 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
 - HC-P8 `requireActionBindingApproval` / `buildActionBindingApprovalPackets` は
   `approvalBindingChecks[]` と sibling `relatedDecisionPackets[]` だけでなく
   `approvalVerificationCommandMatrix[]` を返す。matrix は approval packet baseline、sibling decision packet、
-  least-privilege binding、snapshot binding、security boundary、targeted regression、static gates を検証し、
-  full regression、completion frontier の command / expected / evidence / source / sourceUrl / sourceCheckedAt /
+  least-privilege binding、snapshot binding、github environment approval boundary、security boundary、
+  web-security-testing boundary、targeted regression、static gates を検証し、full regression、completion frontier の
+  command / expected / evidence / source / sourceUrl / sourceCheckedAt /
   latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を
   plan-only に列挙する。
+  web-security-testing boundary は OWASP WSTG の公式 source metadata を matrix row として出し、承認者が
+  security testing 境界を packet 単体で確認できるようにする。
   `approvalVerificationCommandMatrix[]` の command は `actionBindingApprovalVerificationCommandViolations` で
   実行可能な承認済み CLI/test surface に限定し、`review ...` / `verify ...` の自然文手順を approval evidence として
   通さない。sibling S4 / version-up packet は `--plan <PLAN_ID>` 付き command、rename は singleton

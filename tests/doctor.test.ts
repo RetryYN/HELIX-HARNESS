@@ -704,6 +704,42 @@ describe("runConsumerDoctor", () => {
     ).toBe(true);
   });
 
+  it("fails closed when setup state still routes to consumer readiness repair", () => {
+    const setupState = JSON.parse(consumerProjectSetupStateTemplate()) as {
+      postSetupWorkflow: {
+        nextRoute: string;
+        readinessOk: boolean;
+        verificationCommands: string[];
+      };
+    };
+    setupState.postSetupWorkflow.nextRoute = "fix_consumer_readiness";
+    setupState.postSetupWorkflow.readinessOk = false;
+
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".ut-tdd/state/project-setup.json": JSON.stringify(setupState),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "readinessOk=false",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-project-setup-state - violation",
+        "nextRoute=fix_consumer_readiness",
+      ),
+    ).toBe(true);
+  });
+
   it("fails closed when setup state omits the full first-run verification matrix", () => {
     const result = runConsumerDoctor(
       deps({

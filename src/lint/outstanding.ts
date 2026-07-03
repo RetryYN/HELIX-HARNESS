@@ -2021,7 +2021,7 @@ function supportingPacketSummaryForCommand(
         ...base,
         schemaVersion: "action-binding-approval-packet.v1",
         matrixField: "approvalVerificationCommandMatrix",
-        expectedMatrixCount: 10,
+        expectedMatrixCount: 11,
         requiredReviewFields: [
           "planOnly",
           "mustNotApprove",

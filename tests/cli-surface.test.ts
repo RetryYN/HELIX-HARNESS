@@ -668,7 +668,7 @@ describe("L7 CLI surface closure", () => {
                 "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
               schemaVersion: "action-binding-approval-packet.v1",
               matrixField: "approvalVerificationCommandMatrix",
-              expectedMatrixCount: 10,
+              expectedMatrixCount: 11,
               requiredReviewFields: expect.arrayContaining(["approvalBindingChecks"]),
               requiredMatrixFields: expect.arrayContaining([
                 "sourceCheckedAt",
@@ -774,7 +774,7 @@ describe("L7 CLI surface closure", () => {
         "review=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む review-id=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
+        "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=11",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("authority-blockers=human:");
@@ -1362,6 +1362,11 @@ describe("L7 CLI surface closure", () => {
           sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
         }),
         expect.objectContaining({
+          phase: "web-security-testing-boundary",
+          source: "OWASP Web Security Testing Guide",
+          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
+        }),
+        expect.objectContaining({
           phase: "completion-frontier",
           command: "bun run src/cli.ts status --json",
         }),
@@ -1407,7 +1412,7 @@ describe("L7 CLI surface closure", () => {
       "packet-freshness: source=ut-tdd action-binding approval-packet --json",
     );
     expect(text.stdout).toContain("binding-checks:");
-    expect(text.stdout).toContain("verification-commands=10");
+    expect(text.stdout).toContain("verification-commands=11");
     expect(text.stdout).toContain("record-template action_binding_approval_record");
     expect(text.stdout).toContain('  - approved_params: "<approved_params>"');
     expect(text.stdout).toContain(
@@ -1418,6 +1423,9 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain(
       "verification-source: security-boundary source=VS Code Workspace Trust execution boundary sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+    );
+    expect(text.stdout).toContain(
+      "verification-source: web-security-testing-boundary source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/",
     );
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");
     expect(text.stdout).toContain(

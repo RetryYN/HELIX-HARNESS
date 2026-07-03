@@ -360,6 +360,13 @@ describe("action-binding approval readiness", () => {
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
           adoptionDecision: "adopt-workspace-trust-as-local-execution-boundary",
         }),
+        expect.objectContaining({
+          phase: "web-security-testing-boundary",
+          command: "bun run src/cli.ts action-binding approval-packet --plan PLAN-X --json",
+          source: "OWASP Web Security Testing Guide",
+          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
+          adoptionDecision: "adopt-wstg-as-web-security-testing-boundary-for-action-approval",
+        }),
       ]),
     );
     expect(actionBindingApprovalVerificationCommandViolations(packet)).toEqual([]);
@@ -1434,9 +1441,19 @@ describe("action-binding approval readiness", () => {
         }),
       ]),
     );
-    expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 10)).toBe(
+    expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 11)).toBe(
       true,
     );
+    expect(
+      packets.every((packet) =>
+        packet.approvalVerificationCommandMatrix.some(
+          (row) =>
+            row.phase === "web-security-testing-boundary" &&
+            row.source === "OWASP Web Security Testing Guide" &&
+            row.sourceUrl === "https://owasp.org/www-project-web-security-testing-guide/",
+        ),
+      ),
+    ).toBe(true);
     expect(
       packets.every((packet) =>
         packet.approvalVerificationCommandMatrix.every(

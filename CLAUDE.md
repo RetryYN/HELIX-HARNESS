@@ -1,8 +1,8 @@
 # HELIX — 超個人開発システム（UT-TDD Agent Harness を土台とする）
 
-## Claude Code Read Order
+## Claude Code Read Order（読込順）
 
-Claude Code treats the following as canonical in this repository:
+Claude Code はこのリポジトリでは以下を canonical として扱う。
 
 1. `CLAUDE.md`
 2. `.claude/CLAUDE.md`
@@ -12,21 +12,18 @@ Claude Code treats the following as canonical in this repository:
 6. `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md`
 7. `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md`
 
-Migration snapshots and migration docs are not normal startup reads. Read them
-only when migration, gap audit, or regression-source inspection requires it.
+Migration snapshots と migration docs は通常 startup reads ではない。migration、gap audit、
+regression-source inspection が必要なときだけ読む。
 
-Do not load `docs/design/harness/L3-functional/roadmap.md` as a normal startup
-read. The verification roadmap is read dynamically only when a V-model layer
-group has completed Forward freeze and a verification cycle is being run.
+`docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない。verification roadmap は
+V-model layer group が Forward freeze を完了し、verification cycle を走らせるときだけ動的に読む。
 
-`docs/archive/`, `legacy local state/`, and pre-migration
-`.claude/agents` / `.claude/hooks` are not canonical runtime state. Migration
-source material is historical reference only; current UT-TDD runtime commands
-use `ut-tdd`, not legacy commands.
+`docs/archive/`、`legacy local state/`、pre-migration の `.claude/agents` / `.claude/hooks` は
+canonical runtime state ではない。Migration source material は historical reference のみであり、
+現行 UT-TDD runtime commands は legacy commands ではなく `ut-tdd` を使う。
 
-ADR-001 is binding: source concepts may be used as design source material, but
-UT-TDD implementation is TypeScript/Bun. old W1-W3a Python is not
-current product runtime.
+ADR-001 は拘束力を持つ。source concepts は design source material として使ってよいが、
+UT-TDD implementation は TypeScript/Bun である。old W1-W3a Python は current product runtime ではない。
 
 ## HELIX 再構築方針（現行・最優先）
 
@@ -75,23 +72,19 @@ HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
   `cutover_decision_record` と action-binding approval、dry-run、backup、rollback、monitoring evidence が揃うまで
   実 state move や alias 有効化を行わない。承認後は漏れのない atomic migration として実施する。
 
-## Purpose
+## Purpose（目的）
 
-UT-TDD Agent Harness is the verification and development foundation for safely
-using AI implementation agents in internal product development. The harness is
-not the end product; it is the ground on which other product work runs.
+UT-TDD Agent Harness は、社内 product development で AI implementation agents を安全に使うための
+verification and development foundation である。harness は最終 product ではなく、他の product work を載せる土台である。
 
-Design and implementation should be judged by these pillars:
+Design と implementation は以下の pillars で判断する。
 
-1. Foundation first: the harness must make downstream product development safer.
-2. Document-first plus machine enforcement: workflow rules must be backed by
-   schema, lint, doctor, hooks, or tests where appropriate.
-3. Automatic state and feedback: `.ut-tdd/` state and harness DB projections
-   should make progress, gaps, and drift visible.
-4. Dynamic context / skill injection: load only relevant context and skills.
-5. Practical orchestration: split work across roles/runtimes only where it
-   reduces risk or cost.
-6. Strict verification: no completion claim without tests or explicit evidence.
+1. Foundation first: harness は downstream product development をより安全にしなければならない。
+2. Document-first plus machine enforcement: workflow rules は必要に応じて schema、lint、doctor、hooks、tests で裏付ける。
+3. Automatic state and feedback: `.ut-tdd/` state と harness DB projections は progress、gaps、drift を可視化する。
+4. Dynamic context / skill injection: relevant context と skills だけを load する。
+5. Practical orchestration: risk または cost を下げる場合だけ work を roles/runtimes に分割する。
+6. Strict verification: tests または explicit evidence なしに completion claim しない。
 
 ## コミュニケーション (報連相)
 
@@ -113,7 +106,7 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
 英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。
 
-## Canonical Docs
+## Canonical Docs（正本）
 
 - `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
 - `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`
@@ -121,45 +114,43 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 - `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md`
 - `docs/governance/repository-structure.md`
 
-## Architecture Boundary
+## Architecture Boundary（構成境界）
 
-- `docs/`: governance, requirements, ADRs, plans, design, test design, migration, archive
+- `docs/`: governance、requirements、ADRs、plans、design、test design、migration、archive
 - `src/`: TypeScript/Bun harness core
 - `tests/`: Vitest tests
 - `scripts/`: thin OS entrypoints only
-- `.ut-tdd/`: UT-TDD runtime state and audit/handover evidence
+- `.ut-tdd/`: UT-TDD runtime state と audit/handover evidence
 - `.claude/`: Claude Code runtime / hook policy
-- `legacy local state/`: historical source state, not UT-TDD state
+- `legacy local state/`: historical source state。UT-TDD state ではない。
 
-V-model artifacts must stay separated:
+V-model artifacts は分離を保つ。
 
 - design: `docs/design/`
 - implementation: `src/`
 - test design: `docs/test-design/`
 - tests: `tests/`
 
-## Coding Rules
+## Coding Rules（実装規則）
 
-- Read the relevant files before editing.
-- Match local naming, structure, and test placement.
-- Do not declare completion without tests or explicit verification.
-- Treat Codex / Claude Code as local CLI + hook surfaces managed by UT-TDD, not
-  direct API calls.
-- Remove or clearly supersede wrong development residue when it is discovered;
-  do not leave misleading comments or dead paths as technical debt.
-- Use Claude Code native tool-use only. Never write XML-like pseudo tool calls
-  such as `<invoke name="Bash">` / `<parameter name="command">` or role markers
-  such as `court` into assistant text. If such text appears in prior context,
-  treat it as corrupted transcript residue and do not continue it.
+- 編集前に relevant files を読む。
+- local naming、structure、test placement に合わせる。
+- tests または explicit verification なしに completion を宣言しない。
+- Codex / Claude Code は UT-TDD が管理する local CLI + hook surfaces として扱い、direct API calls として扱わない。
+- 誤った development residue を見つけたら削除または明確に supersede し、misleading comments や dead paths を
+  technical debt として残さない。
+- Claude Code native tool-use だけを使う。`<invoke name="Bash">` / `<parameter name="command">` のような
+  XML-like pseudo tool calls や `court` のような role markers を assistant text に書かない。prior context に
+  そのような text がある場合は corrupted transcript residue として扱い、継続しない。
 
-## Git Rules
+## Git Rules（Git 規則）
 
-- Use Conventional Commits.
-- Stage explicit files only.
-- Keep unrelated user changes out of commits.
-- Push at coherent PLAN / task boundaries when requested.
-- CI is `harness-check`: typecheck, Vitest, Biome lint, and doctor.
-- Review evidence is required before confirmation gates where applicable.
+- Conventional Commits を使う。
+- explicit files だけを stage する。
+- unrelated user changes を commits に含めない。
+- requested の場合、coherent PLAN / task boundary で push する。
+- CI は `harness-check`: typecheck、Vitest、Biome lint、doctor。
+- applicable な confirmation gates の前には review evidence を必須とする。
 
 ### Hybrid 多ランタイム commit 協調 (Claude ↔ Codex、必須)
 
@@ -210,26 +201,23 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
 単一 runtime の場合は、代替証跡として `intra_runtime_subagent` review evidence を記録する。
 
-## Safety Boundaries
+## Safety Boundaries（安全境界）
 
-- Do not write API keys, secrets, PII, or credentials into rules, docs,
-  examples, or audit evidence.
-- Escalate before changing authentication, authorization, payments, PII,
-  licenses, destructive data operations, production infrastructure, or external
-  API assumptions.
-- Do not track local runtime artifacts except explicitly tracked audit /
-  provider-handover evidence.
+- rules、docs、examples、audit evidence に API keys、secrets、PII、credentials を書かない。
+- authentication、authorization、payments、PII、licenses、destructive data operations、
+  production infrastructure、external API assumptions を変更する前に escalate する。
+- 明示的に tracked する audit / provider-handover evidence 以外の local runtime artifacts は track しない。
 
-## UT-TDD Workflow
+## UT-TDD Workflow（工程）
 
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
-- Handover: check `.ut-tdd/handover/CURRENT.json` if present and non-stale.
+- Handover: `.ut-tdd/handover/CURRENT.json` が存在し non-stale なら確認する。
 
-## Instruction Files
+## Instruction Files（指示ファイル）
 
-- Shared project context: `CLAUDE.md`
+- 共有 project context: `CLAUDE.md`
 - Claude Code runtime / hook policy: `.claude/CLAUDE.md`
 - Codex CLI project rules: `AGENTS.md`
 - Personal overrides: `CLAUDE.local.md` / `AGENTS.override.md`
