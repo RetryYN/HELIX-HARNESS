@@ -1,8 +1,12 @@
+import { createHash } from "node:crypto";
 import {
   type CompletionDecisionPacket,
   type CompletionDecisionRecordRequirement,
   type CompletionDecisionRecordTemplate,
+  type CompletionReviewBundle,
+  type CompletionReviewBundlePacket,
   completionDecisionPacketForOutstanding,
+  completionReviewBundleForOutstanding,
   computeOutstandingWork,
   REQUIRED_DECISION_PACKET_MATRIX_FIELDS,
   requiredRecordsForBlockers,
@@ -68,6 +72,41 @@ export interface CompletionDecisionPacketLintResult {
   stale: boolean;
   expiresAt: string;
   violations: CompletionDecisionPacketViolation[];
+}
+
+export type CompletionReviewBundleViolationReason =
+  | "invalid_schema_version"
+  | "missing_generated_at"
+  | "invalid_generated_at"
+  | "invalid_source_command"
+  | "invalid_freshness_policy"
+  | "invalid_freshness_window"
+  | "invalid_expires_at"
+  | "stale_flag_mismatch"
+  | "stale_bundle"
+  | "invalid_safety_flags"
+  | "invalid_completion_state"
+  | "invalid_completion_decision_packet_bridge"
+  | "invalid_review_packet_count"
+  | "invalid_review_packet"
+  | "invalid_digest";
+
+export interface CompletionReviewBundleViolation {
+  reason: CompletionReviewBundleViolationReason;
+  detail: string;
+}
+
+export interface CompletionReviewBundleLintResult {
+  ok: boolean;
+  status: CompletionReviewBundle["status"] | "unknown";
+  decisionCount: number;
+  reviewPacketCount: number;
+  sourceCommand: string;
+  validForMinutes: number;
+  stale: boolean;
+  expiresAt: string;
+  bundleDigest: string;
+  violations: CompletionReviewBundleViolation[];
 }
 
 export interface CompletionDecisionPacketLintOptions {
@@ -1824,6 +1863,258 @@ export function loadCompletionDecisionPacketInput(
   });
 }
 
+export function loadCompletionReviewBundleInput(
+  repoRoot: string,
+  now: string = new Date().toISOString(),
+): CompletionReviewBundle {
+  return completionReviewBundleForOutstanding(computeOutstandingWork(repoRoot), {
+    generatedAt: now,
+    now,
+  });
+}
+
+export function analyzeCompletionReviewBundle(
+  bundle: CompletionReviewBundle,
+  decisionPacket: CompletionDecisionPacket,
+  now: string = new Date().toISOString(),
+): CompletionReviewBundleLintResult {
+  const violations: CompletionReviewBundleViolation[] = [];
+  const generatedAt = bundle.generatedAt;
+  const generatedMs = Date.parse(generatedAt ?? "");
+  const nowMs = Date.parse(now);
+  const validForMinutes = bundle.freshness?.validForMinutes;
+  const expiresAt = bundle.freshness?.expiresAt ?? "";
+  const expiresMs = Date.parse(expiresAt);
+
+  if (bundle.schemaVersion !== "completion-review-bundle.v1") {
+    violations.push({
+      reason: "invalid_schema_version",
+      detail: `schemaVersion=${String(bundle.schemaVersion)} expected=completion-review-bundle.v1`,
+    });
+  }
+  if (!generatedAt) {
+    violations.push({ reason: "missing_generated_at", detail: "generatedAt is required" });
+  } else if (Number.isNaN(generatedMs)) {
+    violations.push({ reason: "invalid_generated_at", detail: `generatedAt=${generatedAt}` });
+  }
+  if (bundle.sourceCommand !== "ut-tdd completion review-bundle --json") {
+    violations.push({
+      reason: "invalid_source_command",
+      detail: `sourceCommand=${String(bundle.sourceCommand)}`,
+    });
+  }
+  if (bundle.freshness?.policy !== POLICY) {
+    violations.push({
+      reason: "invalid_freshness_policy",
+      detail: `policy=${String(bundle.freshness?.policy)}`,
+    });
+  }
+  if (!Number.isFinite(validForMinutes) || validForMinutes <= 0) {
+    violations.push({
+      reason: "invalid_freshness_window",
+      detail: `validForMinutes=${String(validForMinutes)}`,
+    });
+  }
+  if (Number.isNaN(expiresMs)) {
+    violations.push({ reason: "invalid_expires_at", detail: `expiresAt=${expiresAt}` });
+  } else if (!Number.isNaN(generatedMs) && Number.isFinite(validForMinutes)) {
+    const expectedExpiresAt = new Date(generatedMs + validForMinutes * 60_000).toISOString();
+    if (expiresAt !== expectedExpiresAt) {
+      violations.push({
+        reason: "invalid_expires_at",
+        detail: `expiresAt=${expiresAt} expected=${expectedExpiresAt}`,
+      });
+    }
+  }
+  const computedStale =
+    !Number.isNaN(nowMs) && !Number.isNaN(expiresMs)
+      ? nowMs > expiresMs
+      : Boolean(bundle.freshness?.stale);
+  if (bundle.freshness?.stale !== computedStale) {
+    violations.push({
+      reason: "stale_flag_mismatch",
+      detail: `stale=${String(bundle.freshness?.stale)} expected=${String(computedStale)}`,
+    });
+  }
+  if (computedStale) {
+    violations.push({
+      reason: "stale_bundle",
+      detail: `expiresAt=${expiresAt} now=${Number.isNaN(nowMs) ? now : new Date(nowMs).toISOString()}`,
+    });
+  }
+
+  const safetyChecks: Array<[string, unknown, unknown]> = [
+    ["planOnly", bundle.planOnly, true],
+    ["mustNotDecide", bundle.mustNotDecide, true],
+    ["mustNotApply", bundle.mustNotApply, true],
+  ];
+  for (const [field, actual, expected] of safetyChecks) {
+    if (actual !== expected) {
+      violations.push({
+        reason: "invalid_safety_flags",
+        detail: `${field}=${String(actual)} expected=${String(expected)}`,
+      });
+    }
+  }
+
+  const completionStateChecks: Array<[string, unknown, unknown]> = [
+    ["completionClaimAllowed", bundle.completionClaimAllowed, decisionPacket.ok],
+    ["humanDecisionRequired", bundle.humanDecisionRequired, decisionPacket.humanDecisionRequired],
+    ["nextAuthority", bundle.nextAuthority, decisionPacket.nextAuthority],
+    ["status", bundle.status, decisionPacket.status],
+    ["decisionCount", bundle.decisionCount, decisionPacket.decisionCount],
+  ];
+  for (const [field, actual, expected] of completionStateChecks) {
+    if (actual !== expected) {
+      violations.push({
+        reason: "invalid_completion_state",
+        detail: `${field}=${String(actual)} expected=${String(expected)}`,
+      });
+    }
+  }
+  for (const blocker of decisionPacket.blockers ?? []) {
+    if (!(bundle.blockedUntil ?? []).includes(blocker)) {
+      violations.push({
+        reason: "invalid_completion_state",
+        detail: `blockedUntil missing blocker=${blocker}`,
+      });
+    }
+  }
+  const requiredActionJa = [
+    ...new Set(decisionPacket.decisions.flatMap((decision) => decision.requiredActionsJa ?? [])),
+  ];
+  for (const action of requiredActionJa) {
+    if (!(bundle.requiredOperatorActionsJa ?? []).includes(action)) {
+      violations.push({
+        reason: "invalid_completion_state",
+        detail: `requiredOperatorActionsJa missing action=${action}`,
+      });
+    }
+  }
+
+  if (bundle.completionDecisionPacketCommand !== "ut-tdd completion decision-packet --json") {
+    violations.push({
+      reason: "invalid_completion_decision_packet_bridge",
+      detail: `completionDecisionPacketCommand=${String(bundle.completionDecisionPacketCommand)}`,
+    });
+  }
+  if (
+    bundle.runnableCompletionDecisionPacketCommand !==
+    runnablePacketCommand("ut-tdd completion decision-packet --json")
+  ) {
+    violations.push({
+      reason: "invalid_completion_decision_packet_bridge",
+      detail: `runnableCompletionDecisionPacketCommand=${String(bundle.runnableCompletionDecisionPacketCommand)}`,
+    });
+  }
+
+  const expectedReviewPackets = reviewBundlePacketsForDecisionPacket(decisionPacket);
+  if (bundle.reviewPacketCount !== expectedReviewPackets.length) {
+    violations.push({
+      reason: "invalid_review_packet_count",
+      detail: `reviewPacketCount=${String(bundle.reviewPacketCount)} expected=${expectedReviewPackets.length}`,
+    });
+  }
+  if ((bundle.reviewPackets ?? []).length !== expectedReviewPackets.length) {
+    violations.push({
+      reason: "invalid_review_packet_count",
+      detail: `reviewPackets.length=${String((bundle.reviewPackets ?? []).length)} expected=${expectedReviewPackets.length}`,
+    });
+  }
+  if (JSON.stringify(bundle.reviewPackets ?? []) !== JSON.stringify(expectedReviewPackets)) {
+    violations.push({
+      reason: "invalid_review_packet",
+      detail: "reviewPackets drift from completion decision supporting packet summaries",
+    });
+  }
+
+  const expectedCompletionDecisionPacketDigest = sha256Json(decisionPacket);
+  const expectedHumanReviewBundleDigest = sha256Json(decisionPacket.humanReviewBundle);
+  const expectedReviewPacketsDigest = sha256Json(expectedReviewPackets);
+  const { bundleDigest: _bundleDigest, ...bundleWithoutDigest } = bundle;
+  const expectedBundleDigest = sha256Json(bundleWithoutDigest);
+  const digestChecks: Array<[string, string, string]> = [
+    [
+      "completionDecisionPacketDigest",
+      String(bundle.completionDecisionPacketDigest ?? ""),
+      expectedCompletionDecisionPacketDigest,
+    ],
+    [
+      "humanReviewBundleDigest",
+      String(bundle.humanReviewBundleDigest ?? ""),
+      expectedHumanReviewBundleDigest,
+    ],
+    ["reviewPacketsDigest", String(bundle.reviewPacketsDigest ?? ""), expectedReviewPacketsDigest],
+    ["bundleDigest", String(bundle.bundleDigest ?? ""), expectedBundleDigest],
+  ];
+  for (const [field, actual, expected] of digestChecks) {
+    if (actual !== expected) {
+      violations.push({
+        reason: "invalid_digest",
+        detail: `${field}=${actual} expected=${expected}`,
+      });
+    }
+  }
+
+  return {
+    ok: violations.length === 0,
+    status: bundle.status ?? "unknown",
+    decisionCount: bundle.decisionCount ?? 0,
+    reviewPacketCount: bundle.reviewPacketCount ?? 0,
+    sourceCommand: bundle.sourceCommand ?? "",
+    validForMinutes: Number.isFinite(validForMinutes) ? validForMinutes : 0,
+    stale: Boolean(bundle.freshness?.stale),
+    expiresAt,
+    bundleDigest: bundle.bundleDigest ?? "",
+    violations,
+  };
+}
+
+function reviewBundlePacketsForDecisionPacket(
+  decisionPacket: CompletionDecisionPacket,
+): CompletionReviewBundlePacket[] {
+  return decisionPacket.decisions.flatMap((decision) =>
+    decision.supportingPacketSummaries.map((summary, index) => ({
+      order: index + 1,
+      planId: decision.planId,
+      decisionKind: decision.decisionKind,
+      blockerReason: decision.blockerReason,
+      command: summary.command,
+      scopedCommand: summary.scopedCommand ?? summary.command,
+      runnableScopedCommand:
+        summary.runnableScopedCommand ??
+        runnablePacketCommand(summary.scopedCommand ?? summary.command),
+      schemaVersion: summary.schemaVersion,
+      matrixField: summary.matrixField,
+      expectedMatrixCount: summary.expectedMatrixCount,
+      writePolicy: summary.matrixField === "none" ? "no-write" : "see-packet-matrix",
+      reviewPolicy: "non_destructive_review_only",
+      requiredReviewFieldsDigest: sha256Json(summary.requiredReviewFields),
+      requiredMatrixFields: summary.requiredMatrixFields,
+      requiredSafetyFields: summary.requiredReviewFields.filter(isReviewBundleSafetyField),
+      reviewRoute: summary.reviewRoute,
+      reviewRouteJa: summary.reviewRouteJa,
+    })),
+  );
+}
+
+function isReviewBundleSafetyField(field: string): boolean {
+  return (
+    field === "planOnly" ||
+    field.startsWith("mustNot") ||
+    field.endsWith("Allowed") ||
+    field.endsWith("Available") ||
+    field === "applyAuthorized" ||
+    field === "activationAllowed" ||
+    field === "decisionAllowed" ||
+    field === "approvalAllowed"
+  );
+}
+
+function sha256Json(value: unknown): string {
+  return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
+}
+
 export function completionDecisionPacketMessages(
   result: CompletionDecisionPacketLintResult,
 ): string[] {
@@ -1835,5 +2126,17 @@ export function completionDecisionPacketMessages(
   return result.violations.map(
     (violation) =>
       `completion-decision-packet - violation: ${violation.reason} (${violation.detail})`,
+  );
+}
+
+export function completionReviewBundleMessages(result: CompletionReviewBundleLintResult): string[] {
+  if (result.ok) {
+    return [
+      `completion-review-bundle - OK (status=${result.status}, decisions=${result.decisionCount}, reviewPackets=${result.reviewPacketCount}, freshness=${result.validForMinutes}m stale=${result.stale}, source=${result.sourceCommand}, digest=${result.bundleDigest})`,
+    ];
+  }
+  return result.violations.map(
+    (violation) =>
+      `completion-review-bundle - violation: ${violation.reason} (${violation.detail})`,
   );
 }

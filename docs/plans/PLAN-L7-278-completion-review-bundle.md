@@ -23,10 +23,18 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/completion-decision-packet.ts
+    artifact_type: source_module
   - artifact_path: src/lint/outstanding.ts
     artifact_type: source_module
   - artifact_path: src/lint/workflow-decision-packets.ts
     artifact_type: source_module
+  - artifact_path: tests/completion-decision-packet.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/doctor.test.ts
+    artifact_type: test_code
   - artifact_path: tests/outstanding.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
@@ -79,6 +87,7 @@ review_evidence:
 - S4、version-up、rename plan、rename approval-draft、action-binding approval の matrix / safety field が欠けないことをテストで固定する。
 - `status --json` / `handover status --json` は `completionReviewBundle` を additive に返す。
 - text surface は `completion-review-bundle: ut-tdd completion review-bundle --json` を表示する。
+- `completion-review-bundle` は doctor hard gate で `completion decision-packet` と突き合わせ、safety flag、scoped packet、review packet count、digest drift を fail-close する。
 - 実 cutover、approval 記録、activation、外部実行は行わない。
 
 ## 外部確認
@@ -91,4 +100,6 @@ review_evidence:
 
 - `outstanding` tests が review bundle の digest、safety flag、supporting packet の完全性を検証する。
 - `cli-surface` tests が JSON/text/status/handover の surface を検証する。
+- `completion-decision-packet` tests が review bundle analyzer の OK / safety drift / review packet 欠落 / digest drift を検証する。
+- `doctor` tests が review bundle hard gate の実行と missing root fail-close を検証する。
 - `typecheck`、`lint`、`plan lint`、`doctor` が成功する。

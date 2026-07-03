@@ -12,6 +12,7 @@ import {
   checkCodexWrapperParity,
   checkCodingRules,
   checkCompletionDecisionPacket,
+  checkCompletionReviewBundle,
   checkCutoverReadiness,
   checkCycleP4Verification,
   checkDbProjectionCoverage,
@@ -1858,6 +1859,15 @@ describe("runDoctor", () => {
     );
   });
 
+  it("U-OUTSTANDING-003: completion review-bundle doctor bridge accepts the current live scoped packet bundle", () => {
+    const result = checkCompletionReviewBundle(process.cwd());
+
+    expect(result.ok).toBe(true);
+    expect(result.messages).toContainEqual(
+      expect.stringContaining("completion-review-bundle - OK"),
+    );
+  });
+
   it("U-OUTSTANDING-003: completion decision doctor bridge fails when a referenced S4 packet is not live", () => {
     const packet = completionDecisionPacketForOutstanding(
       analyzeOutstandingWork(
@@ -2357,6 +2367,7 @@ describe("runDoctor", () => {
       ["guardrail-invariants", checkGuardrailInvariants(missingRoot)],
       ["asset-drift", checkAssetDrift(missingRoot)],
       ["completion-decision-packet", checkCompletionDecisionPacket(missingRoot)],
+      ["completion-review-bundle", checkCompletionReviewBundle(missingRoot)],
       ["green-command-digest", checkGreenCommandDigests(missingRoot)],
       ["skill-assignment", checkSkillAssignment(missingRoot)],
       ["descent-obligation", checkDescentObligation(missingRoot)],

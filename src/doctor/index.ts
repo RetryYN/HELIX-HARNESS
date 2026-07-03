@@ -50,8 +50,11 @@ import {
 } from "../lint/coding-rules";
 import {
   analyzeCompletionDecisionPacket,
+  analyzeCompletionReviewBundle,
   completionDecisionPacketMessages,
+  completionReviewBundleMessages,
   loadCompletionDecisionPacketInput,
+  loadCompletionReviewBundleInput,
   recordTemplateContractViolations,
 } from "../lint/completion-decision-packet";
 import {
@@ -2596,6 +2599,33 @@ export function checkCompletionDecisionPacket(repoRoot: string): {
   }
 }
 
+export function checkCompletionReviewBundle(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["completion-review-bundle - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const now = new Date().toISOString();
+    const bundle = loadCompletionReviewBundleInput(repoRoot, now);
+    const decisionPacket = loadCompletionDecisionPacketInput(repoRoot, bundle.generatedAt);
+    const r = analyzeCompletionReviewBundle(bundle, decisionPacket, now);
+    return {
+      messages: completionReviewBundleMessages(r),
+      ok: r.ok,
+    };
+  } catch {
+    return {
+      messages: ["completion-review-bundle - violation: review bundle check could not run"],
+      ok: false,
+    };
+  }
+}
+
 export function completionDedicatedPacketBridgeViolations(
   repoRoot: string,
   packet: ReturnType<typeof loadCompletionDecisionPacketInput>,
@@ -2950,6 +2980,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const s4DecisionReadiness = checkS4DecisionReadiness(deps.repoRoot);
   const cutoverReadiness = checkCutoverReadiness(deps.repoRoot);
   const completionDecisionPacket = checkCompletionDecisionPacket(deps.repoRoot);
+  const completionReviewBundle = checkCompletionReviewBundle(deps.repoRoot);
   const objectiveEvidenceAudit = checkObjectiveEvidenceAudit(deps.repoRoot);
   const semanticFrontierConsistency = checkSemanticFrontierConsistency(deps.repoRoot);
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
@@ -3031,6 +3062,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       s4DecisionReadiness.ok &&
       cutoverReadiness.ok &&
       completionDecisionPacket.ok &&
+      completionReviewBundle.ok &&
       objectiveEvidenceAudit.ok &&
       semanticFrontierConsistency.ok &&
       forwardConvergenceAudit.ok &&
@@ -3121,6 +3153,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...s4DecisionReadiness.messages.map((m) => `doctor: ${m}`),
       ...cutoverReadiness.messages.map((m) => `doctor: ${m}`),
       ...completionDecisionPacket.messages.map((m) => `doctor: ${m}`),
+      ...completionReviewBundle.messages.map((m) => `doctor: ${m}`),
       ...objectiveEvidenceAudit.messages.map((m) => `doctor: ${m}`),
       ...semanticFrontierConsistency.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),

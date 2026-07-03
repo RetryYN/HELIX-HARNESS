@@ -3,14 +3,18 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeCompletionDecisionPacket,
+  analyzeCompletionReviewBundle,
   completionDecisionPacketMessages,
+  completionReviewBundleMessages,
   loadCompletionDecisionPacketInput,
   recordTemplateContractViolations,
 } from "../src/lint/completion-decision-packet";
 import {
   analyzeOutstandingWork,
   type CompletionDecisionPacket,
+  type CompletionReviewBundle,
   completionDecisionPacketForOutstanding,
+  completionReviewBundleForOutstanding,
   requiredRecordsForBlockers,
 } from "../src/lint/outstanding";
 
@@ -36,6 +40,37 @@ function basePacket(): CompletionDecisionPacket {
       sourceCommand: "ut-tdd completion decision-packet --json",
     },
   );
+}
+
+function baseBundle(): {
+  bundle: CompletionReviewBundle;
+  decisionPacket: CompletionDecisionPacket;
+} {
+  const outstanding = analyzeOutstandingWork(
+    [
+      {
+        planId: "PLAN-S3",
+        layer: "cross",
+        kind: "poc",
+        status: "draft",
+        workflowPhase: "S3",
+        text: "S4 decision pending.",
+      },
+    ],
+    0,
+  );
+  const bundle = completionReviewBundleForOutstanding(outstanding, {
+    generatedAt: "2026-06-30T00:00:00.000Z",
+    now: "2026-06-30T00:30:00.000Z",
+    validForMinutes: 60,
+  });
+  const decisionPacket = completionDecisionPacketForOutstanding(outstanding, {
+    generatedAt: "2026-06-30T00:00:00.000Z",
+    now: "2026-06-30T00:30:00.000Z",
+    validForMinutes: 60,
+    sourceCommand: "ut-tdd completion decision-packet --json",
+  });
+  return { bundle, decisionPacket };
 }
 
 function versionUpPacket(): CompletionDecisionPacket {
@@ -117,6 +152,79 @@ describe("completion decision packet lint", () => {
     expect(result.violations).toEqual([]);
     expect(completionDecisionPacketMessages(result)[0]).toContain(
       "completion-decision-packet - OK",
+    );
+  });
+
+  it("accepts a fresh completion review bundle with digest-bound scoped packet review", () => {
+    const { bundle, decisionPacket } = baseBundle();
+    const result = analyzeCompletionReviewBundle(
+      bundle,
+      decisionPacket,
+      "2026-06-30T00:30:00.000Z",
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.violations).toEqual([]);
+    expect(result).toMatchObject({
+      status: "blocked",
+      decisionCount: 1,
+      reviewPacketCount: 1,
+      sourceCommand: "ut-tdd completion review-bundle --json",
+      validForMinutes: 60,
+      stale: false,
+    });
+    expect(result.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(completionReviewBundleMessages(result)[0]).toContain("completion-review-bundle - OK");
+  });
+
+  it("fails completion review bundles closed when safety fields or digests drift", () => {
+    const { bundle, decisionPacket } = baseBundle();
+    const drifted = JSON.parse(JSON.stringify(bundle)) as CompletionReviewBundle;
+    drifted.planOnly = false as unknown as true;
+    drifted.reviewPackets[0].requiredSafetyFields =
+      drifted.reviewPackets[0].requiredSafetyFields.filter((field) => field !== "mustNotDecide");
+    drifted.reviewPacketsDigest = `sha256:${"0".repeat(64)}`;
+
+    const result = analyzeCompletionReviewBundle(
+      drifted,
+      decisionPacket,
+      "2026-06-30T00:30:00.000Z",
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ reason: "invalid_safety_flags" }),
+        expect.objectContaining({ reason: "invalid_review_packet" }),
+        expect.objectContaining({ reason: "invalid_digest" }),
+      ]),
+    );
+    expect(completionReviewBundleMessages(result)).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("completion-review-bundle - violation: invalid_review_packet"),
+        expect.stringContaining("completion-review-bundle - violation: invalid_digest"),
+      ]),
+    );
+  });
+
+  it("fails completion review bundles closed when review packet rows are missing", () => {
+    const { bundle, decisionPacket } = baseBundle();
+    const drifted = JSON.parse(JSON.stringify(bundle)) as CompletionReviewBundle;
+    drifted.reviewPackets = [];
+
+    const result = analyzeCompletionReviewBundle(
+      drifted,
+      decisionPacket,
+      "2026-06-30T00:30:00.000Z",
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ reason: "invalid_review_packet_count" }),
+        expect.objectContaining({ reason: "invalid_review_packet" }),
+        expect.objectContaining({ reason: "invalid_digest" }),
+      ]),
     );
   });
 
