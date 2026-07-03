@@ -1236,6 +1236,9 @@ describe("L7 CLI surface closure", () => {
     expect(payload.importReport.existingPaths).toEqual(
       expect.arrayContaining(["AGENTS.md", join(".codex", "config.toml")]),
     );
+    expect(payload.importReport.identicalManagedPaths).toEqual(
+      expect.arrayContaining([join(".codex", "config.toml")]),
+    );
     expect(payload.importReport.skipSubDocs).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -1247,7 +1250,7 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           marker: "skip_sub_doc",
-          path: join(".codex", "config.toml"),
+          path: join(".codex", "hooks.json"),
           reason: "consumer_owned_path_preserved_for_staged_migration",
           nextRoute: "review_import_report",
           evidence: "importReport.skippedExistingPaths",
@@ -1359,7 +1362,7 @@ describe("L7 CLI surface closure", () => {
       "skip-sub-doc: docs/plans marker=skip_sub_doc route=consumer_doctor_profile reason=dogfood_sub_doc_not_required_for_consumer_setup gate=consumer_doctor",
     );
     expect(text.stdout).toContain(
-      "skip-sub-doc: .codex/config.toml marker=skip_sub_doc route=review_import_report reason=consumer_owned_path_preserved_for_staged_migration gate=import_report_review",
+      "skip-sub-doc: .codex/hooks.json marker=skip_sub_doc route=review_import_report reason=consumer_owned_path_preserved_for_staged_migration gate=import_report_review",
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");

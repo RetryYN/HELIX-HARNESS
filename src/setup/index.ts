@@ -384,6 +384,7 @@ export interface HelixProjectImportReport {
   managedPaths: string[];
   previewPaths: string[];
   existingPaths: string[];
+  identicalManagedPaths: string[];
   writtenPaths: string[];
   skippedExistingPaths: string[];
   mergeableManagedBlockPaths: string[];
@@ -1486,6 +1487,7 @@ export function emitSetup(plan: SetupPlan, templates: TemplateSet, deps: SetupDe
     const abs = join(deps.repoRoot, r.path);
     const existing = deps.readText(abs);
     const exists = existing !== null;
+    if (existing === r.content) continue;
     if (exists && MERGEABLE_ADAPTER_DOCS.has(r.path)) {
       const merged = mergeManagedBlock(existing, r.content);
       if (merged === null) continue;
@@ -1508,22 +1510,30 @@ function existingManagedPaths(plan: SetupPlan, templates: TemplateSet, deps: Set
     .filter((path) => deps.readText(join(deps.repoRoot, path)) !== null);
 }
 
+function identicalManagedPaths(plan: SetupPlan, templates: TemplateSet, deps: SetupDeps): string[] {
+  return renderArtifacts(plan, templates)
+    .filter((r) => deps.readText(join(deps.repoRoot, r.path)) === r.content)
+    .map((r) => r.path);
+}
+
 function buildHelixProjectImportReport(input: {
   plan: SetupPlan;
   templates: TemplateSet;
   existingPaths: string[];
+  identicalPaths: string[];
   emittedPaths: string[];
 }): HelixProjectImportReport {
   const managedPaths = renderArtifacts(input.plan, input.templates).map((r) => r.path);
   const actualWrittenPaths = input.plan.dryRun ? [] : input.emittedPaths;
   const writtenSet = new Set(actualWrittenPaths);
   const existingSet = new Set(input.existingPaths);
+  const identicalSet = new Set(input.identicalPaths);
   const mergeableManagedBlockPaths = managedPaths.filter(
     (path) => existingSet.has(path) && MERGEABLE_ADAPTER_DOCS.has(path),
   );
   const mergeableSet = new Set(mergeableManagedBlockPaths);
   const skippedExistingPaths = input.existingPaths.filter(
-    (path) => !writtenSet.has(path) && !mergeableSet.has(path),
+    (path) => !writtenSet.has(path) && !mergeableSet.has(path) && !identicalSet.has(path),
   );
   const requiresReview = skippedExistingPaths.length > 0;
   const skipSubDocs = [
@@ -1547,6 +1557,7 @@ function buildHelixProjectImportReport(input: {
     managedPaths,
     previewPaths: managedPaths,
     existingPaths: input.existingPaths,
+    identicalManagedPaths: input.identicalPaths,
     writtenPaths: actualWrittenPaths,
     skippedExistingPaths,
     mergeableManagedBlockPaths,
@@ -1927,11 +1938,13 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
   }
   const plan = planHelixProjectSetup(phase, { teams: args.teams, dryRun: args.dryRun });
   const existingPaths = existingManagedPaths(plan, deps.templates, deps);
+  const identicalPaths = identicalManagedPaths(plan, deps.templates, deps);
   const written = emitSetup(plan, deps.templates, deps);
   const importReport = buildHelixProjectImportReport({
     plan,
     templates: deps.templates,
     existingPaths,
+    identicalPaths,
     emittedPaths: written,
   });
   const consumerReadiness = buildHelixSetupConsumerReadiness(deps, plan);

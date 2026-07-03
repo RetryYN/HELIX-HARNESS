@@ -1385,6 +1385,68 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(deps.files.get(join("/repo", "AGENTS.md"))).toContain("UT-TDD:managed:start");
   });
 
+  it("U-SETUP-016: generated HELIX project setup reruns are idempotent and do not require import review", () => {
+    const confirmMessages: string[] = [];
+    const deps = mockDeps({
+      templates: baseTemplates,
+      isInteractive: false,
+      confirm: (message) => {
+        confirmMessages.push(message);
+        return false;
+      },
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const first = runHelixProjectSetup(
+      { phase: "0-A", dryRun: false, applyBranchProtection: false },
+      deps,
+    );
+    const second = runHelixProjectSetup(
+      { phase: "0-A", dryRun: false, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(first.importReport).toMatchObject({
+      mode: "fresh",
+      requiresReview: false,
+      nextRoute: "ready",
+    });
+    expect(second.importReport).toMatchObject({
+      mode: "brownfield",
+      requiresReview: false,
+      nextRoute: "ready",
+      skippedExistingPaths: [],
+      reviewRequiredReasons: [],
+    });
+    expect(second.importReport.identicalManagedPaths).toEqual(
+      expect.arrayContaining([
+        "AGENTS.md",
+        join(".vscode", "tasks.json"),
+        join(".ut-tdd", "teams", "default-hybrid.yaml"),
+      ]),
+    );
+    expect(second.importReport.skipSubDocs).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: join(".vscode", "tasks.json"),
+          nextRoute: "review_import_report",
+        }),
+      ]),
+    );
+    expect(second.written).toEqual([]);
+    expect(second.postSetupWorkflow).toMatchObject({
+      nextRoute: "ready",
+      importReportRoute: "ready",
+      readinessOk: true,
+      unmetGates: [],
+    });
+    expect(confirmMessages).toEqual([]);
+
+    const agents = deps.files.get(join("/repo", "AGENTS.md")) as string;
+    expect(agents.match(/UT-TDD:managed:start/g)).toHaveLength(1);
+  });
+
   it("U-SETUP-017: HELIX project setup readiness records consumer CLI PATH resolution", () => {
     const deps = mockDeps({
       templates: baseTemplates,
