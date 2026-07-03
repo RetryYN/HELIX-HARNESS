@@ -152,7 +152,7 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
   },
   "GitHub Actions concurrency": {
     urls: [
-      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+      "https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs",
     ],
     fieldImpacts: ["execution_window_or_freeze_policy"],
   },

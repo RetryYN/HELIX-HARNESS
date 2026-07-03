@@ -63,7 +63,7 @@ function writeCutoverSourceLedger(root: string, checkedDate = "2026-07-02"): voi
       "|---|---|---|---|---|---|---|",
       "| NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 | Rev. 1 draft | adopt-final-1.1 | release integrity | `audit_record`, `state_backup_plan`, `blast_radius_baseline` |",
       "| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |",
-      "| GitHub Actions concurrency | <https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency> | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently | `execution_window_or_freeze_policy` |",
+      "| GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently | `execution_window_or_freeze_policy` |",
       "| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book | live official Google SRE book | adopt-operational-guidance | rollback and release process | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |",
       "| OWASP LLM06:2025 Excessive Agency | <https://genai.owasp.org/llmrisk/llm062025-excessive-agency/> | 2025 entry | 2025 official LLM risk entry | adopt-2025-entry | constrained authority | `approval_scope`, `legacy_alias_policy`, `audit_record` |",
       "| SLSA Provenance | <https://slsa.dev/spec/v1.2/provenance> | SLSA Provenance v1.2 | current SLSA provenance specification | adopt-v1.2-for-cutover-artifact-provenance | reproducible cutover provenance | `audit_record`, `blast_radius_baseline`, `state_backup_plan` |",
@@ -839,6 +839,46 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
       expect(first.cutoverSnapshot.evidenceDigest).not.toBe(second.cutoverSnapshot.evidenceDigest);
       expect(first.cutoverSnapshot.snapshotId).not.toBe(second.cutoverSnapshot.snapshotId);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("binds cutover snapshots to path-only .ut-tdd blast-radius hits", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-path-hit-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd until cutover.\n");
+
+      const before = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+      mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
+      writeFileSync(join(root, ".ut-tdd", "state", "path-only.json"), '{"ready":true}\n');
+      const after = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        TEST_HEAD_SHA,
+      );
+
+      expect(after.audit.hitsByToken[".ut-tdd"]).toBeGreaterThan(
+        before.audit.hitsByToken[".ut-tdd"],
+      );
+      expect(after.cutoverCategoryChecklist).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            category: "runtime_state",
+            samplePaths: expect.arrayContaining([".ut-tdd/state/path-only.json"]),
+          }),
+        ]),
+      );
+      expect(after.cutoverSnapshot.blastRadiusDigest).not.toBe(
+        before.cutoverSnapshot.blastRadiusDigest,
+      );
+      expect(after.cutoverSnapshot.snapshotId).not.toBe(before.cutoverSnapshot.snapshotId);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

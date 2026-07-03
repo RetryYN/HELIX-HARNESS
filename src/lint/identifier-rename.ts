@@ -564,6 +564,11 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     ".ut-tdd": 0,
     "area=harness": 0,
   };
+  const fileSetsByToken: Record<IdentifierRenameToken, Set<string>> = {
+    "ut-tdd": new Set(),
+    ".ut-tdd": new Set(),
+    "area=harness": new Set(),
+  };
   const categoryStats = new Map<
     IdentifierRenameHitCategory,
     { hits: number; files: Set<string> }
@@ -573,19 +578,35 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
   for (const file of walkTextFiles(root)) {
     const rel = relative(root, file).replace(/\\/g, "/");
     const category = classifyRenameHitPath(rel);
+    for (const token of TOKENS) {
+      const pathCount = countToken(rel, token);
+      if (pathCount > 0) {
+        hits.push({ token, path: rel, count: pathCount, category });
+        hitsByToken[token] += pathCount;
+        fileSetsByToken[token].add(rel);
+        const stats = categoryStats.get(category);
+        if (stats) {
+          stats.hits += pathCount;
+          stats.files.add(rel);
+        }
+      }
+    }
     const text = readFileSync(file, "utf8");
     for (const token of TOKENS) {
       const count = countToken(text, token);
       if (count === 0) continue;
       hits.push({ token, path: rel, count, category });
       hitsByToken[token] += count;
-      filesByToken[token] += 1;
+      fileSetsByToken[token].add(rel);
       const stats = categoryStats.get(category);
       if (stats) {
         stats.hits += count;
         stats.files.add(rel);
       }
     }
+  }
+  for (const token of TOKENS) {
+    filesByToken[token] = fileSetsByToken[token].size;
   }
 
   const approvalRecordsConcrete = cutoverApprovalPresent(root);
