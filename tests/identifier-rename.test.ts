@@ -8,6 +8,7 @@ import {
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
   identifierRenameRunbookCommandViolations,
+  identifierRenameStateBackupManifestViolations,
   identifierRenameVerificationCommandViolations,
 } from "../src/lint/identifier-rename";
 
@@ -661,6 +662,25 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             "cutoverRunbook no-write command may write local state or artifacts: bun run build && ./dist/ut-tdd doctor",
         },
       ]);
+      expect(
+        identifierRenameRunbookCommandViolations({
+          cutoverRunbook: plan.cutoverRunbook.map((step) =>
+            step.id === "cutover-rb-01"
+              ? {
+                  ...step,
+                  evidencePath:
+                    "https://example.invalid/review the blast radius evidence before approval",
+                }
+              : step,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: "cutover-rb-01",
+          reason:
+            "cutoverRunbook.evidencePath must be a repo-local relative path, not a URL: https://example.invalid/review the blast radius evidence before approval",
+        },
+      ]);
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
       expect(plan.rollbackPlan.join("\n")).toContain(".ut-tdd/harness.db");
       expect(plan.monitoringPlan.join("\n")).toContain("helix doctor");
@@ -693,6 +713,36 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
         ]),
       );
+      expect(identifierRenameStateBackupManifestViolations(plan)).toEqual([]);
+      expect(
+        identifierRenameStateBackupManifestViolations({
+          stateBackupManifest: plan.stateBackupManifest.map((entry) =>
+            entry.path === ".ut-tdd/harness.db"
+              ? {
+                  ...entry,
+                  backupTargetPattern: "../outside/harness.db",
+                  restoreEvidencePath: "review restore drill evidence in the approval packet",
+                  restoreRequired: false as true,
+                }
+              : entry,
+          ),
+        }),
+      ).toEqual([
+        {
+          subject: ".ut-tdd/harness.db",
+          reason:
+            "stateBackupManifest.backupTargetPattern must not traverse outside the repository: ../outside/harness.db",
+        },
+        {
+          subject: ".ut-tdd/harness.db",
+          reason:
+            "stateBackupManifest.restoreEvidencePath must be a concrete repo-local artifact path, not prose: review restore drill evidence in the approval packet",
+        },
+        {
+          subject: ".ut-tdd/harness.db",
+          reason: "stateBackupManifest.restoreRequired must be true",
+        },
+      ]);
       expect(plan.freezePolicy).toMatchObject({
         requiresFrozenHead: true,
         requiresQuietWindow: true,

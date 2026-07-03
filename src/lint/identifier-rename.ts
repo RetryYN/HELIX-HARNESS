@@ -284,6 +284,11 @@ export interface IdentifierRenameVerificationCommandViolation {
   reason: string;
 }
 
+export interface IdentifierRenameStateBackupManifestViolation {
+  subject: string;
+  reason: string;
+}
+
 const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
 const HIT_CATEGORIES: IdentifierRenameHitCategory[] = [
   "source_code",
@@ -302,6 +307,8 @@ const RENAME_MAP: IdentifierRenameMapping[] = [
   { from: ".ut-tdd", to: ".helix" },
   { from: "area=harness", to: "area=helix" },
 ];
+const RENAME_EVIDENCE_PATH_PREFIX = ".ut-tdd/evidence/rename/";
+const RENAME_BACKUP_PATH_PREFIX = ".ut-tdd/backups/rename/<timestamp>/";
 const REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS = [
   "NIST SSDF SP 800-218",
   "GitHub Environments required reviewers",
@@ -1170,6 +1177,66 @@ export function identifierRenameRunbookCommandViolations(
         reason: `cutoverRunbook state-write command must be explicit about state rebuild: ${step.command}`,
       });
     }
+    const evidencePathViolation = renameEvidencePathViolation(step.evidencePath, {
+      field: "cutoverRunbook.evidencePath",
+      allowedExtensions: [".json", ".txt"],
+    });
+    if (evidencePathViolation) {
+      violations.push({
+        subject: step.id,
+        reason: evidencePathViolation,
+      });
+    }
+    return violations;
+  });
+}
+
+export function identifierRenameStateBackupManifestViolations(
+  plan: Pick<IdentifierRenameCutoverPlan, "stateBackupManifest">,
+): IdentifierRenameStateBackupManifestViolation[] {
+  return plan.stateBackupManifest.flatMap((entry) => {
+    const violations: IdentifierRenameStateBackupManifestViolation[] = [];
+    const subject = entry.path;
+    const sourcePathViolation = repoLocalPathViolation(entry.path, {
+      field: "stateBackupManifest.path",
+      allowedPrefixes: [".ut-tdd/", ".claude/", ".codex/"],
+    });
+    if (sourcePathViolation) {
+      violations.push({ subject, reason: sourcePathViolation });
+    }
+    const backupPatternViolation = repoLocalPathViolation(entry.backupTargetPattern, {
+      field: "stateBackupManifest.backupTargetPattern",
+      allowedPrefixes: [RENAME_BACKUP_PATH_PREFIX],
+      allowTimestampPlaceholder: true,
+    });
+    if (backupPatternViolation) {
+      violations.push({ subject, reason: backupPatternViolation });
+    }
+    const restoreEvidencePathViolation = renameEvidencePathViolation(entry.restoreEvidencePath, {
+      field: "stateBackupManifest.restoreEvidencePath",
+      allowedExtensions: [".json"],
+    });
+    if (restoreEvidencePathViolation) {
+      violations.push({ subject, reason: restoreEvidencePathViolation });
+    }
+    if (entry.checksumRequired !== true) {
+      violations.push({
+        subject,
+        reason: "stateBackupManifest.checksumRequired must be true",
+      });
+    }
+    if (entry.restoreDrillRequired !== true) {
+      violations.push({
+        subject,
+        reason: "stateBackupManifest.restoreDrillRequired must be true",
+      });
+    }
+    if (entry.restoreRequired !== true) {
+      violations.push({
+        subject,
+        reason: "stateBackupManifest.restoreRequired must be true",
+      });
+    }
     return violations;
   });
 }
@@ -1235,6 +1302,56 @@ export function identifierRenameVerificationCommandViolations(
 
 function commandWritesLocalStateOrArtifacts(command: string): boolean {
   return /\b(bun run build|bun build|db rebuild|--outfile|>\s*|tee\b)\b/.test(command);
+}
+
+function renameEvidencePathViolation(
+  path: string,
+  input: { field: string; allowedExtensions: readonly string[] },
+): string | null {
+  const baseViolation = repoLocalPathViolation(path, {
+    field: input.field,
+    allowedPrefixes: [RENAME_EVIDENCE_PATH_PREFIX],
+  });
+  if (baseViolation) return baseViolation;
+  if (!input.allowedExtensions.some((extension) => path.endsWith(extension))) {
+    return `${input.field} must end with ${input.allowedExtensions.join(" or ")}: ${path}`;
+  }
+  return null;
+}
+
+function repoLocalPathViolation(
+  path: string,
+  input: {
+    field: string;
+    allowedPrefixes: readonly string[];
+    allowTimestampPlaceholder?: boolean;
+  },
+): string | null {
+  const value = path.trim();
+  if (!value) return `${input.field} is empty`;
+  if (value !== path) return `${input.field} must not contain leading or trailing whitespace`;
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(value)) {
+    return `${input.field} must be a repo-local relative path, not a URL: ${value}`;
+  }
+  if (value.startsWith("/") || /^[A-Za-z]:[\\/]/.test(value)) {
+    return `${input.field} must be a repo-local relative path, not an absolute path: ${value}`;
+  }
+  if (value.includes("\\") || value.includes("\0")) {
+    return `${input.field} must use POSIX repo-relative path syntax: ${value}`;
+  }
+  if (value.split("/").includes("..")) {
+    return `${input.field} must not traverse outside the repository: ${value}`;
+  }
+  const normalizedForPattern = input.allowTimestampPlaceholder
+    ? value.replace("<timestamp>", "timestamp")
+    : value;
+  if (!/^[A-Za-z0-9._/-]+$/.test(normalizedForPattern)) {
+    return `${input.field} must be a concrete repo-local artifact path, not prose: ${value}`;
+  }
+  if (!input.allowedPrefixes.some((prefix) => value.startsWith(prefix))) {
+    return `${input.field} must stay under ${input.allowedPrefixes.join(" or ")}: ${value}`;
+  }
+  return null;
 }
 
 function readRepoHeadSha(root: string): string | null {

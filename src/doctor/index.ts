@@ -141,6 +141,7 @@ import { checkGreenCommandDigests } from "../lint/green-command-digest";
 import {
   buildIdentifierRenameCutoverPlan,
   identifierRenameRunbookCommandViolations,
+  identifierRenameStateBackupManifestViolations,
   identifierRenameVerificationCommandViolations,
 } from "../lint/identifier-rename";
 import {
@@ -2498,6 +2499,8 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
       recordTemplates: renamePlan.recordTemplates,
     });
     const runbookCommandViolations = identifierRenameRunbookCommandViolations(renamePlan);
+    const stateBackupManifestViolations =
+      identifierRenameStateBackupManifestViolations(renamePlan);
     const verificationCommandViolations = identifierRenameVerificationCommandViolations(renamePlan);
     return {
       messages: [
@@ -2508,6 +2511,9 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
         ...runbookCommandViolations.map(
           (violation) => `cutover-readiness - violation: ${violation.subject}: ${violation.reason}`,
         ),
+        ...stateBackupManifestViolations.map(
+          (violation) => `cutover-readiness - violation: ${violation.subject}: ${violation.reason}`,
+        ),
         ...verificationCommandViolations.map(
           (violation) => `cutover-readiness - violation: ${violation.subject}: ${violation.reason}`,
         ),
@@ -2516,6 +2522,7 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
         r.ok &&
         templateViolations.length === 0 &&
         runbookCommandViolations.length === 0 &&
+        stateBackupManifestViolations.length === 0 &&
         verificationCommandViolations.length === 0,
     };
   } catch {
@@ -2645,6 +2652,9 @@ export function completionDedicatedPacketBridgeViolations(
         renamePlan.relatedDecisionPackets,
       ),
       ...identifierRenameRunbookCommandViolations(renamePlan).map(
+        (violation) => `rename ${violation.subject}: ${violation.reason}`,
+      ),
+      ...identifierRenameStateBackupManifestViolations(renamePlan).map(
         (violation) => `rename ${violation.subject}: ${violation.reason}`,
       ),
       ...identifierRenameVerificationCommandViolations(renamePlan).map(
