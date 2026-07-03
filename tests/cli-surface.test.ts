@@ -376,6 +376,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload.completionReviewBundle).toMatchObject({
         schemaVersion: "completion-review-bundle.v1",
         sourceCommand: "ut-tdd completion review-bundle --json",
+        runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
         planOnly: true,
         mustNotDecide: true,
         mustNotApply: true,
@@ -446,6 +447,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(text.stdout).toContain(
         "completion-review-bundle: ut-tdd completion review-bundle --json",
+      );
+      expect(text.stdout).toContain(
+        "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json",
       );
       expect(text.stdout).toContain(
         "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
@@ -691,6 +695,7 @@ describe("L7 CLI surface closure", () => {
       expect(blockedPayload.completionReviewBundle).toMatchObject({
         schemaVersion: "completion-review-bundle.v1",
         sourceCommand: "ut-tdd completion review-bundle --json",
+        runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
         planOnly: true,
         mustNotDecide: true,
         mustNotApply: true,
@@ -768,6 +773,9 @@ describe("L7 CLI surface closure", () => {
       );
       expect(blockedText.stdout).toContain(
         "completion-review-bundle: ut-tdd completion review-bundle --json",
+      );
+      expect(blockedText.stdout).toContain(
+        "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json",
       );
     } finally {
       rmSync(readyRoot, { recursive: true, force: true });
@@ -1201,6 +1209,7 @@ describe("L7 CLI surface closure", () => {
         status: "blocked",
         decisionCount: 2,
         reviewPacketCount: 4,
+        runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
         completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
         runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
       });
@@ -1240,7 +1249,9 @@ describe("L7 CLI surface closure", () => {
 
       const text = runCliIn(root, ["completion", "review-bundle"]);
       expect(text.status).toBe(0);
-      expect(text.stdout).toContain("completion review-bundle: blocked decisions=2");
+      expect(text.stdout).toContain(
+        "completion review-bundle: blocked decisions=2 reviewPackets=4 source=ut-tdd completion review-bundle --json runnable=bun run ut-tdd completion review-bundle --json",
+      );
       expect(text.stdout).toContain(
         "safety: planOnly=true mustNotDecide=true mustNotApply=true completionClaimAllowed=false humanDecisionRequired=true nextAuthority=human",
       );

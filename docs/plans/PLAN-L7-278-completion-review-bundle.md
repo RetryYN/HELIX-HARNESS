@@ -242,8 +242,10 @@ review_evidence:
 ## 要件
 
 - `completion-review-bundle.v1` は `planOnly=true`、`mustNotDecide=true`、`mustNotApply=true` を固定する。
+- `completion-review-bundle.v1` は `sourceCommand` と `runnableSourceCommand` を両方持ち、repo-local 再生成 command を reviewer が JSON/text から辿れる。
 - `completionClaimAllowed`、`humanDecisionRequired`、`nextAuthority`、`blockedUntil` は `outstanding.completionReadiness` と `completion decision-packet` から派生する。
 - `reviewPackets` は各 decision の supporting packet を PLAN scoped command と runnable command 付きで列挙する。
+- rename plan review packet は `planOnly` / `mustNotApply` / `applyAuthorized` を safety field として保持し、不可逆 cutover 前レビューの安全境界が空にならない。
 - S4、version-up、rename plan、rename approval-draft、action-binding approval の matrix / safety field が欠けないことをテストで固定する。
 - `status --json` / `handover status --json` は `completionReviewBundle` を additive に返す。
 - text surface は `completion-review-bundle: ut-tdd completion review-bundle --json` を表示する。

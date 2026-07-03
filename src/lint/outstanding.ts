@@ -335,6 +335,7 @@ export interface CompletionReviewBundle {
   schemaVersion: "completion-review-bundle.v1";
   generatedAt: string;
   sourceCommand: typeof COMPLETION_REVIEW_BUNDLE_COMMAND;
+  runnableSourceCommand: string;
   freshness: DecisionPacketFreshness;
   planOnly: true;
   mustNotDecide: true;
@@ -1423,6 +1424,7 @@ export function completionReviewBundleForOutstanding(
     schemaVersion: "completion-review-bundle.v1" as const,
     generatedAt: provenance.generatedAt,
     sourceCommand: COMPLETION_REVIEW_BUNDLE_COMMAND as typeof COMPLETION_REVIEW_BUNDLE_COMMAND,
+    runnableSourceCommand: runnablePacketCommand(COMPLETION_REVIEW_BUNDLE_COMMAND),
     freshness: provenance.freshness,
     planOnly: true as const,
     mustNotDecide: true as const,
@@ -1855,6 +1857,9 @@ function supportingPacketSummaryForCommand(
         matrixField: "verificationCommandMatrix",
         expectedMatrixCount: 10,
         requiredReviewFields: [
+          "planOnly",
+          "mustNotApply",
+          "applyAuthorized",
           "semanticFeatureFrontierRecord",
           "recordTemplates",
           "cutoverSnapshot",

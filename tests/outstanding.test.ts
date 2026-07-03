@@ -1016,6 +1016,7 @@ describe("completionDecisionPacketForOutstanding", () => {
       status: "blocked",
       decisionCount: 3,
       reviewPacketCount: 7,
+      runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
       completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
       runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
     });
@@ -1112,6 +1113,9 @@ describe("completionDecisionPacketForOutstanding", () => {
         "mustNotApply",
         "activationReadinessSummary.activationAllowed",
       ]),
+    );
+    expect(bundle.reviewPackets[4].requiredSafetyFields).toEqual(
+      expect.arrayContaining(["planOnly", "mustNotApply", "applyAuthorized"]),
     );
     expect(bundle.reviewPackets[5].requiredSafetyFields).toEqual(
       expect.arrayContaining([

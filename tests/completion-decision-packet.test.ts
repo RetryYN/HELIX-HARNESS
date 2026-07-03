@@ -173,6 +173,7 @@ describe("completion decision packet lint", () => {
       validForMinutes: 60,
       stale: false,
     });
+    expect(bundle.runnableSourceCommand).toBe("bun run ut-tdd completion review-bundle --json");
     expect(result.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(result.semanticBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(completionReviewBundleMessages(result)[0]).toContain("completion-review-bundle - OK");
@@ -213,6 +214,7 @@ describe("completion decision packet lint", () => {
     const { bundle, decisionPacket } = baseBundle();
     const drifted = JSON.parse(JSON.stringify(bundle)) as CompletionReviewBundle;
     drifted.planOnly = false as unknown as true;
+    drifted.runnableSourceCommand = "ut-tdd completion review-bundle --json";
     drifted.reviewPackets[0].requiredSafetyFields =
       drifted.reviewPackets[0].requiredSafetyFields.filter((field) => field !== "mustNotDecide");
     drifted.reviewPacketsDigest = `sha256:${"0".repeat(64)}`;
@@ -226,6 +228,7 @@ describe("completion decision packet lint", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
+        expect.objectContaining({ reason: "invalid_source_command" }),
         expect.objectContaining({ reason: "invalid_safety_flags" }),
         expect.objectContaining({ reason: "invalid_review_packet" }),
         expect.objectContaining({ reason: "invalid_digest" }),
@@ -510,6 +513,9 @@ describe("completion decision packet lint", () => {
     );
     expect(renameSummary?.requiredReviewFields).toEqual(
       expect.arrayContaining([
+        "planOnly",
+        "mustNotApply",
+        "applyAuthorized",
         "cutoverSnapshot.snapshotId",
         "cutoverSnapshot.repoHeadSha",
         "cutoverSnapshot.worktreeClean",

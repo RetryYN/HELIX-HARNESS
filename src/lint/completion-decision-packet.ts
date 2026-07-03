@@ -1905,6 +1905,14 @@ export function analyzeCompletionReviewBundle(
       detail: `sourceCommand=${String(bundle.sourceCommand)}`,
     });
   }
+  if (
+    bundle.runnableSourceCommand !== runnablePacketCommand("ut-tdd completion review-bundle --json")
+  ) {
+    violations.push({
+      reason: "invalid_source_command",
+      detail: `runnableSourceCommand=${String(bundle.runnableSourceCommand)}`,
+    });
+  }
   if (bundle.freshness?.policy !== POLICY) {
     violations.push({
       reason: "invalid_freshness_policy",

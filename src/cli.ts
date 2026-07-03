@@ -979,6 +979,9 @@ program
           "completion-decision-packet: ut-tdd completion decision-packet --json\n",
         );
         process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
+        process.stdout.write(
+          "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json\n",
+        );
       }
     }
   });
@@ -1074,7 +1077,7 @@ completion
       return;
     }
     process.stdout.write(
-      `completion review-bundle: ${bundle.status} decisions=${bundle.decisionCount} reviewPackets=${bundle.reviewPacketCount}\n`,
+      `completion review-bundle: ${bundle.status} decisions=${bundle.decisionCount} reviewPackets=${bundle.reviewPacketCount} source=${bundle.sourceCommand} runnable=${bundle.runnableSourceCommand}\n`,
     );
     process.stdout.write(
       `safety: planOnly=${bundle.planOnly} mustNotDecide=${bundle.mustNotDecide} mustNotApply=${bundle.mustNotApply} completionClaimAllowed=${bundle.completionClaimAllowed} humanDecisionRequired=${bundle.humanDecisionRequired} nextAuthority=${bundle.nextAuthority}\n`,
@@ -2858,6 +2861,9 @@ handover
         "completion-decision-packet: ut-tdd completion decision-packet --json\n",
       );
       process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
+      process.stdout.write(
+        "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json\n",
+      );
       if (packetCommands.length > 0) {
         process.stdout.write(`supporting-decision-packets: ${packetCommands.join(" | ")}\n`);
         process.stdout.write(
