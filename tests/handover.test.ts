@@ -424,6 +424,21 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     );
   }
 
+  function renameOutstanding(): OutstandingWork {
+    return analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-M-02",
+          layer: "L14",
+          kind: "design",
+          status: "draft",
+          text: "Irreversible .ut-tdd to .helix rename cutover requires human approval and action-binding approval before apply.",
+        },
+      ],
+      0,
+    );
+  }
+
   function withDoc(md: string | null): ReturnType<typeof mockDeps> {
     const deps = mockDeps();
     deps.files.set(pointerPath, JSON.stringify({ latest_doc: "docs/handover/h.md" }));
@@ -478,6 +493,23 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(section).not.toContain("record the PO/S4 decision before promotion");
     expect(section).not.toContain("確認観点=review S4 decision evidence");
     expect(section).not.toContain("TODO(human): 順序付き次手");
+  });
+
+  it("PLAN-M-02 approval-draft の handover packet 要約は日本語確認観点と machine ID を分離する", () => {
+    const md = renderHandoverScaffold(scaffoldFromDigests([digest()], [], "2026-06-04"), {
+      outstanding: renameOutstanding(),
+    });
+
+    const section = latestEntrySection(md, "§3") ?? "";
+    expect(section).toContain("PLAN-M-02");
+    expect(section).toContain("ut-tdd rename approval-draft --json");
+    expect(section).toContain(
+      "確認観点=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む",
+    );
+    expect(section).toContain(
+      "確認観点ID=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
+    );
+    expect(section).not.toContain("確認観点=review non-authorizing approval draft records");
   });
 
   it("§3 に marker と packet 要約があれば ok", () => {

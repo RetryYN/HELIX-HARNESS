@@ -44,8 +44,8 @@ dependencies:
 review_evidence:
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-03T20:59:37+09:00"
-    tests_green_at: "2026-07-03T20:59:37+09:00"
+    reviewed_at: "2026-07-03T21:04:48+09:00"
+    tests_green_at: "2026-07-03T21:04:48+09:00"
     verdict: approve
     scope: "approval-draft supporting packet と handover Markdown の reviewRouteJa が machine reviewRoute の英語文を流用しないことを固定する。"
     worker_model: codex
@@ -56,15 +56,15 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-03T20:59:37+09:00"
+        completed_at: "2026-07-03T21:04:48+09:00"
         evidence_path: tests/completion-decision-packet.test.ts
-        output_digest: "sha256:366d323a60a95b6c443db5dce0021ce9b0fa1cd2917c0c24932c75436fa8376c"
+        output_digest: "sha256:210674360f2ec96d0ab15c88e5a3f58c8902cdd0186edb59684a6a65ddf3d038"
       - kind: typecheck
         command: "bun run typecheck"
         runner: bun
         scope: full
         exit_code: 0
-        completed_at: "2026-07-03T20:59:37+09:00"
+        completed_at: "2026-07-03T21:04:48+09:00"
         evidence_path: src/lint/outstanding.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
@@ -83,3 +83,4 @@ review_evidence:
 - [x] `workflowNextActions` の approval-draft summary が日本語 `reviewRouteJa` を持つ。
 - [x] status text の `packet-summary` が日本語 `review=` と英語 machine `review-id=` を分離して出す。
 - [x] handover Markdown の `packet要約` が日本語 `確認観点=` と machine `確認観点ID=` を分離して出す。
+- [x] handover unit test が PLAN-M-02 approval-draft の日本語 `確認観点=` と machine `確認観点ID=` を直接固定する。
