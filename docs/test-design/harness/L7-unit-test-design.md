@@ -967,3 +967,9 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 |---|---|---|
 | U-VERSIONUP-EXIT-001 | `ut-tdd version-up dry-run --json` | 既定の dry-run は承認前 evidence 収集 surface であり、`ok=false` / `blockedReasons` を JSON に出しても exit 0 を維持する。activation verification matrix の `version-dry-run` row はこの既定 exit を使い、抽象 target (`future` 等) の blocker を no-write evidence として読む。 |
 | U-VERSIONUP-EXIT-002 | `ut-tdd version-up dry-run --fail-on-blocked --json` | CI / release gate / scripted readiness check が process status を読む場合は `--fail-on-blocked` を使う。`ok=false` の dry-run は JSON を出した後に exit 1 になり、`ok=true` の dry-run は同 flag 付きでも exit 0 になる。 |
+
+## PLAN-L7-264 consumer hook artifact 構造 gate 追補
+
+| U-ID | Target | Oracle |
+|---|---|---|
+| U-SETUP-025 | `runHelixProjectSetup` / `runConsumerDoctor` | consumer setup が配布する `.claude/settings.json` / `.codex/hooks.json` は文字列検索ではなく JSON として parse し、必要 event、matcher、hook `type=command`、command、hard guard の `blockOnFailure=true` を構造で検査する。`.codex/config.toml` は `[features]` と `hooks = true` を持つ。command 文字列だけが別 field に残る、matcher が drift する、hard guard が non-command または `blockOnFailure=false` になる、PostToolUse / Stop / SubagentStop 等の lifecycle hook が欠ける場合は setup readiness と consumer doctor の両方で fail-close する。 |

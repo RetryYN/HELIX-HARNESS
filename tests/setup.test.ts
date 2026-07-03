@@ -6,6 +6,7 @@ import {
   applyBranchProtection,
   buildCleanDistributionPlan,
   buildConsumerReadinessPlan,
+  consumerCodexConfigEnablesHooks,
   detectProjectScale,
   emitSetup,
   loadTemplates,
@@ -108,7 +109,7 @@ const baseTemplates: TemplateSet = {
     "<!-- UT-TDD:managed:end -->",
     "",
   ].join("\n"),
-  "adapter/.claude/settings.json": '{"hooks":{"SessionStart":[]}}\n',
+  "adapter/.claude/settings.json": BUILTIN_GITHUB_TEMPLATES["adapter/.claude/settings.json"],
   "adapter/.codex/config.toml": "[features]\nhooks = true\n",
   "project/.vscode/tasks.json": [
     "{",
@@ -542,6 +543,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }
+  });
+
+  it("U-SETUP-025: parses Codex hook config as a features-section contract", () => {
+    expect(consumerCodexConfigEnablesHooks("[features]\nhooks = true\n")).toBe(true);
+    expect(
+      consumerCodexConfigEnablesHooks("# [features]\n[other]\nhooks = true\n"),
+    ).toBe(false);
+    expect(
+      consumerCodexConfigEnablesHooks("[features]\nhooks = false\n[other]\nhooks = true\n"),
+    ).toBe(false);
   });
 
   it("U-SETUP-014: emitSetup skips the commitlint dotfile when package.json already declares commitlint", () => {
@@ -2095,6 +2106,122 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         }),
       ]),
     );
+  });
+
+  it("U-SETUP-025: blocks consumer readiness when adapter hook JSON loses structured guard contract", () => {
+    const brokenHookTemplates = {
+      ...baseTemplates,
+      "adapter/.claude/settings.json": JSON.stringify({
+        hooks: {
+          PreToolUse: [
+            {
+              matcher: "Agent|Task",
+              hooks: [
+                {
+                  type: "command",
+                  command: "ut-tdd hook agent-guard",
+                  blockOnFailure: true,
+                },
+              ],
+            },
+            {
+              matcher: "Edit|Write|MultiEdit",
+              hooks: [
+                {
+                  type: "note",
+                  command: "ut-tdd hook work-guard",
+                  blockOnFailure: true,
+                },
+              ],
+            },
+            {
+              matcher: "Bash",
+              hooks: [
+                {
+                  type: "command",
+                  command: "ut-tdd hook git-command-guard",
+                  blockOnFailure: true,
+                },
+              ],
+            },
+          ],
+          SessionStart: [{ hooks: [{ type: "command", command: "ut-tdd session start" }] }],
+          Stop: [{ hooks: [{ type: "command", command: "ut-tdd session summary" }] }],
+          SubagentStop: [{ hooks: [{ type: "command", command: "ut-tdd hook subagent-stop" }] }],
+        },
+      }),
+      "adapter/.codex/hooks.json": JSON.stringify({
+        hooks: {
+          PreToolUse: [
+            {
+              matcher: "spawn_agent|spawn_agents_on_csv",
+              hooks: [
+                {
+                  type: "command",
+                  command: "ut-tdd hook agent-guard",
+                  blockOnFailure: true,
+                },
+              ],
+            },
+            {
+              matcher: "apply_patch|write_file",
+              hooks: [
+                {
+                  type: "command",
+                  command: "ut-tdd hook work-guard",
+                  blockOnFailure: false,
+                },
+              ],
+            },
+            {
+              matcher: "exec_command|local_shell",
+              hooks: [
+                {
+                  type: "command",
+                  command: "ut-tdd hook git-command-guard",
+                  blockOnFailure: true,
+                },
+              ],
+            },
+          ],
+          SessionStart: [{ hooks: [{ type: "command", command: "ut-tdd session start" }] }],
+          PostToolUse: [
+            {
+              matcher: "apply_patch|write_file|exec_command|local_shell",
+              hooks: [{ type: "command", command: "ut-tdd hook post-tool-use" }],
+            },
+          ],
+          Stop: [{ hooks: [{ type: "command", command: "ut-tdd session summary" }] }],
+        },
+      }),
+    };
+    const deps = mockDeps({
+      templates: brokenHookTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "claude-adapter-hooks-are-structured",
+          ok: false,
+          path: join(".claude", "settings.json"),
+        }),
+        expect.objectContaining({
+          name: "codex-adapter-hooks-are-structured",
+          ok: false,
+          path: `${join(".codex", "config.toml")},${join(".codex", "hooks.json")}`,
+        }),
+      ]),
+    );
+    expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
   });
 
   it("blocks harness-check when required smoke commands are present but an extra run command is added", () => {

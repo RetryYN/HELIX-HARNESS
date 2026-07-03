@@ -358,7 +358,10 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       '      { "matcher": "Edit|Write|MultiEdit", "hooks": [{ "type": "command", "command": "ut-tdd hook work-guard", "blockOnFailure": true }] },',
       '      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "ut-tdd hook git-command-guard", "blockOnFailure": true }] }',
       "    ],",
-      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "ut-tdd session start" }] }]',
+      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "ut-tdd session start" }] }],',
+      '    "PostToolUse": [{ "matcher": "Edit|Write|MultiEdit|Bash", "hooks": [{ "type": "command", "command": "ut-tdd hook post-tool-use" }] }],',
+      '    "Stop": [{ "hooks": [{ "type": "command", "command": "ut-tdd session summary" }] }],',
+      '    "SubagentStop": [{ "hooks": [{ "type": "command", "command": "ut-tdd hook subagent-stop" }] }]',
       "  }",
       "}",
     ].join("\n"),
@@ -370,7 +373,10 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       '      { "matcher": "spawn_agent|spawn_agents_on_csv", "hooks": [{ "type": "command", "command": "ut-tdd hook agent-guard", "blockOnFailure": true }] },',
       '      { "matcher": "apply_patch|write_file", "hooks": [{ "type": "command", "command": "ut-tdd hook work-guard", "blockOnFailure": true }] },',
       '      { "matcher": "exec_command|local_shell", "hooks": [{ "type": "command", "command": "ut-tdd hook git-command-guard", "blockOnFailure": true }] }',
-      "    ]",
+      "    ],",
+      '    "SessionStart": [{ "hooks": [{ "type": "command", "command": "ut-tdd session start" }] }],',
+      '    "PostToolUse": [{ "matcher": "apply_patch|write_file|exec_command|local_shell", "hooks": [{ "type": "command", "command": "ut-tdd hook post-tool-use" }] }],',
+      '    "Stop": [{ "hooks": [{ "type": "command", "command": "ut-tdd session summary" }] }]',
       "  }",
       "}",
     ].join("\n"),
@@ -1513,6 +1519,137 @@ describe("runConsumerDoctor", () => {
 
     expect(result.ok).toBe(false);
     expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - violation")).toBe(true);
+  });
+
+  it("U-SETUP-025: fails closed when adapter hooks only contain command strings without schema-valid guard hooks", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".claude/settings.json": JSON.stringify({
+            hooks: {
+              PreToolUse: [
+                {
+                  matcher: "Agent|Task",
+                  hooks: [
+                    {
+                      type: "command",
+                      command: "ut-tdd hook agent-guard",
+                      blockOnFailure: true,
+                    },
+                  ],
+                },
+                {
+                  matcher: "Edit|Write|MultiEdit",
+                  hooks: [
+                    {
+                      type: "note",
+                      command: "ut-tdd hook work-guard",
+                      blockOnFailure: true,
+                    },
+                  ],
+                },
+                {
+                  matcher: "Bash",
+                  hooks: [
+                    {
+                      type: "command",
+                      command: "ut-tdd hook git-command-guard",
+                      blockOnFailure: true,
+                    },
+                  ],
+                },
+              ],
+              SessionStart: [{ hooks: [{ type: "command", command: "ut-tdd session start" }] }],
+              PostToolUse: [
+                {
+                  matcher: "Edit|Write|MultiEdit|Bash",
+                  hooks: [{ type: "command", command: "ut-tdd hook post-tool-use" }],
+                },
+              ],
+              Stop: [{ hooks: [{ type: "command", command: "ut-tdd session summary" }] }],
+              SubagentStop: [
+                { hooks: [{ type: "command", command: "ut-tdd hook subagent-stop" }] },
+              ],
+            },
+          }),
+          ".codex/hooks.json": JSON.stringify({
+            hooks: {
+              PreToolUse: [
+                {
+                  matcher: "spawn_agent|spawn_agents_on_csv",
+                  hooks: [
+                    {
+                      type: "command",
+                      command: "ut-tdd hook agent-guard",
+                      blockOnFailure: true,
+                    },
+                  ],
+                },
+                {
+                  matcher: "apply_patch|write_file",
+                  hooks: [
+                    {
+                      type: "command",
+                      command: "ut-tdd hook work-guard",
+                      blockOnFailure: false,
+                    },
+                  ],
+                },
+                {
+                  matcher: "exec_command|local_shell",
+                  hooks: [
+                    {
+                      type: "command",
+                      command: "ut-tdd hook git-command-guard",
+                      blockOnFailure: true,
+                    },
+                  ],
+                },
+              ],
+              SessionStart: [{ hooks: [{ type: "command", command: "ut-tdd session start" }] }],
+              PostToolUse: [
+                {
+                  matcher: "apply_patch|write_file|exec_command|local_shell",
+                  hooks: [{ type: "command", command: "ut-tdd hook post-tool-use" }],
+                },
+              ],
+              Stop: [{ hooks: [{ type: "command", command: "ut-tdd session summary" }] }],
+            },
+          }),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(hasDoctorMessage(result.messages, "consumer-claude-adapter - violation")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-codex-adapter - violation")).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-claude-adapter - violation",
+        "JSON/schema baseline incomplete",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-codex-adapter - violation",
+        "JSON/schema baseline incomplete",
+      ),
+    ).toBe(true);
+  });
+
+  it("U-SETUP-025: fails closed when Codex hooks=true is outside the features section", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".codex/config.toml": "# [features]\n[other]\nhooks = true\n",
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(hasDoctorMessage(result.messages, "consumer-codex-adapter - violation")).toBe(true);
   });
 });
 

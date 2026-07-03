@@ -351,6 +351,9 @@ import {
   analyzeConsumerCiWorkflowContract,
   analyzeConsumerEscalationWorkflowContract,
   branchProtectionScriptIsApprovalOnly,
+  consumerClaudeHookSettingsMatchContract,
+  consumerCodexConfigEnablesHooks,
+  consumerCodexHookSettingsMatchContract,
   CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
   CONSUMER_VSCODE_TASK_COMMANDS,
@@ -2038,29 +2041,22 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
-  const claudeOk =
-    claudeSettings.includes("ut-tdd hook agent-guard") &&
-    claudeSettings.includes("ut-tdd hook work-guard") &&
-    claudeSettings.includes("ut-tdd hook git-command-guard") &&
-    claudeSettings.includes("ut-tdd session start");
+  const claudeOk = consumerClaudeHookSettingsMatchContract(claudeSettings);
   messages.push(
     claudeOk
-      ? "doctor: consumer-claude-adapter - OK (work/agent/git guard and session hook present)"
-      : "doctor: consumer-claude-adapter - violation: Claude hooks baseline incomplete",
+      ? "doctor: consumer-claude-adapter - OK (structured work/agent/git guard, session hooks, and blockOnFailure contract present)"
+      : "doctor: consumer-claude-adapter - violation: Claude hooks JSON/schema baseline incomplete",
   );
 
   const codexHooks = consumerFile(deps, ".codex/hooks.json") ?? "";
   const codexConfig = consumerFile(deps, ".codex/config.toml") ?? "";
   const codexOk =
-    codexConfig.includes("[features]") &&
-    codexConfig.includes("hooks = true") &&
-    codexHooks.includes("ut-tdd hook work-guard") &&
-    codexHooks.includes("ut-tdd hook git-command-guard") &&
-    codexHooks.includes("ut-tdd hook agent-guard");
+    consumerCodexConfigEnablesHooks(codexConfig) &&
+    consumerCodexHookSettingsMatchContract(codexHooks);
   messages.push(
     codexOk
-      ? "doctor: consumer-codex-adapter - OK (hooks enabled; work/agent/git guard present)"
-      : "doctor: consumer-codex-adapter - violation: Codex hooks/config baseline incomplete",
+      ? "doctor: consumer-codex-adapter - OK (hooks enabled; structured work/agent/git guard, session hooks, and blockOnFailure contract present)"
+      : "doctor: consumer-codex-adapter - violation: Codex hooks/config JSON/schema baseline incomplete",
   );
 
   const invalidAgentTemplates = expectedClaudeAgentPaths.filter((path) => {

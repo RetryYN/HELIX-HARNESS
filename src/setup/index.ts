@@ -151,6 +151,120 @@ function stringList(value: unknown): string[] {
     : [];
 }
 
+type RequiredHookCommand = {
+  event: string;
+  matcher?: string;
+  command: string;
+  blockOnFailure?: true;
+};
+
+const CONSUMER_CLAUDE_REQUIRED_HOOKS: RequiredHookCommand[] = [
+  {
+    event: "PreToolUse",
+    matcher: "Agent|Task",
+    command: "ut-tdd hook agent-guard",
+    blockOnFailure: true,
+  },
+  {
+    event: "PreToolUse",
+    matcher: "Edit|Write|MultiEdit",
+    command: "ut-tdd hook work-guard",
+    blockOnFailure: true,
+  },
+  {
+    event: "PreToolUse",
+    matcher: "Bash",
+    command: "ut-tdd hook git-command-guard",
+    blockOnFailure: true,
+  },
+  { event: "SessionStart", command: "ut-tdd session start" },
+  {
+    event: "PostToolUse",
+    matcher: "Edit|Write|MultiEdit|Bash",
+    command: "ut-tdd hook post-tool-use",
+  },
+  { event: "Stop", command: "ut-tdd session summary" },
+  { event: "SubagentStop", command: "ut-tdd hook subagent-stop" },
+];
+
+const CONSUMER_CODEX_REQUIRED_HOOKS: RequiredHookCommand[] = [
+  {
+    event: "PreToolUse",
+    matcher: "spawn_agent|spawn_agents_on_csv",
+    command: "ut-tdd hook agent-guard",
+    blockOnFailure: true,
+  },
+  {
+    event: "PreToolUse",
+    matcher: "apply_patch|write_file",
+    command: "ut-tdd hook work-guard",
+    blockOnFailure: true,
+  },
+  {
+    event: "PreToolUse",
+    matcher: "exec_command|local_shell",
+    command: "ut-tdd hook git-command-guard",
+    blockOnFailure: true,
+  },
+  { event: "SessionStart", command: "ut-tdd session start" },
+  {
+    event: "PostToolUse",
+    matcher: "apply_patch|write_file|exec_command|local_shell",
+    command: "ut-tdd hook post-tool-use",
+  },
+  { event: "Stop", command: "ut-tdd session summary" },
+];
+
+function hookConfigMatchesContract(text: string, requiredHooks: RequiredHookCommand[]): boolean {
+  const parsed = parseJsonRecord(text);
+  const hooksByEvent = recordFromUnknown(parsed?.hooks);
+  if (!hooksByEvent) return false;
+
+  return requiredHooks.every((required) => {
+    const entries = hooksByEvent[required.event];
+    if (!Array.isArray(entries)) return false;
+    return entries.some((entry) => {
+      if (!isRecord(entry)) return false;
+      if (required.matcher !== undefined && entry.matcher !== required.matcher) return false;
+      const hooks = entry.hooks;
+      if (!Array.isArray(hooks)) return false;
+      return hooks.some((hook) => {
+        if (!isRecord(hook)) return false;
+        return (
+          hook.type === "command" &&
+          hook.command === required.command &&
+          (required.blockOnFailure !== true || hook.blockOnFailure === true)
+        );
+      });
+    });
+  });
+}
+
+export function consumerClaudeHookSettingsMatchContract(settingsText: string): boolean {
+  return hookConfigMatchesContract(settingsText, CONSUMER_CLAUDE_REQUIRED_HOOKS);
+}
+
+export function consumerCodexHookSettingsMatchContract(hooksText: string): boolean {
+  return hookConfigMatchesContract(hooksText, CONSUMER_CODEX_REQUIRED_HOOKS);
+}
+
+export function consumerCodexConfigEnablesHooks(configText: string): boolean {
+  let inFeatures = false;
+  for (const rawLine of configText.split(/\r?\n/)) {
+    const line = rawLine.replace(/#.*/, "").trim();
+    if (line.length === 0) continue;
+    const section = line.match(/^\[([^\]]+)\]$/)?.[1]?.trim();
+    if (section) {
+      inFeatures = section === "features";
+      continue;
+    }
+    if (inFeatures && /^hooks\s*=\s*true$/.test(line)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export interface ConsumerCiWorkflowContract {
   ok: boolean;
   nameOk: boolean;
@@ -1492,6 +1606,9 @@ function buildConsumerArtifactReadinessPlan(
   const content = (path: string): string => byPath.get(path) ?? "";
   const tasksPath = join(".vscode", "tasks.json");
   const settingsPath = join(".vscode", "settings.json");
+  const claudeSettingsPath = join(".claude", "settings.json");
+  const codexHooksPath = join(".codex", "hooks.json");
+  const codexConfigPath = join(".codex", "config.toml");
   const workflowPath = join(".github", "workflows", "harness-check.yml");
   const escalationWorkflowPath = join(".github", "workflows", "escalation-stale.yml");
   const branchProtectionScriptPath = BP_SCRIPT;
@@ -1505,6 +1622,9 @@ function buildConsumerArtifactReadinessPlan(
   const ag = content("AGENTS.md");
   const tasks = content(tasksPath);
   const settings = content(settingsPath);
+  const claudeSettings = content(claudeSettingsPath);
+  const codexHooks = content(codexHooksPath);
+  const codexConfig = content(codexConfigPath);
   const workflow = content(workflowPath);
   const escalationWorkflow = content(escalationWorkflowPath);
   const branchProtectionScript = content(branchProtectionScriptPath);
@@ -1599,6 +1719,26 @@ function buildConsumerArtifactReadinessPlan(
       message:
         "distributed Claude subagents and slash commands must keep Japanese HELIX prose, completion packet preflight, version-up dry-run, consumer doctor, and secret/PII guardrails",
       evidence: `${claudeAgentPaths.length} agent templates and ${claudeCommandPaths.length} command templates`,
+    },
+    {
+      name: "claude-adapter-hooks-are-structured",
+      path: claudeSettingsPath,
+      ok: hasPath(claudeSettingsPath) && consumerClaudeHookSettingsMatchContract(claudeSettings),
+      message:
+        "Claude adapter hook settings must be parseable JSON with exact guard matchers, command hooks, and blockOnFailure on hard guards",
+      evidence: ".claude/settings.json structured hook contract",
+    },
+    {
+      name: "codex-adapter-hooks-are-structured",
+      path: `${codexConfigPath},${codexHooksPath}`,
+      ok:
+        hasPath(codexConfigPath) &&
+        hasPath(codexHooksPath) &&
+        consumerCodexConfigEnablesHooks(codexConfig) &&
+        consumerCodexHookSettingsMatchContract(codexHooks),
+      message:
+        "Codex adapter hooks must be enabled and parseable JSON with exact guard matchers, command hooks, and blockOnFailure on hard guards",
+      evidence: ".codex/config.toml and .codex/hooks.json structured hook contract",
     },
     {
       name: "vscode-tasks-are-manual-consumer-smoke",
