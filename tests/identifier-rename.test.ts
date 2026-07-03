@@ -7,6 +7,7 @@ import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
+  buildIdentifierRenameEvidencePack,
   type IdentifierRenameWorktreeSnapshot,
   identifierRenameRunbookCommandViolations,
   identifierRenameStateBackupManifestViolations,
@@ -81,6 +82,7 @@ function writeCutoverSourceLedger(root: string, checkedDate = "2026-07-02"): voi
       "| GitHub Environments required reviewers | <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments> | live docs | live official GitHub docs | adopt-live-docs-for-approval-shape | action-binding approval | `decision_owner`, `allowed_outcome`, `approval_policy_or_named_approver`, `approval_scope`, `approved_actor`, `approved_tool`, `approved_target`, `approved_params`, `review_approval_evidence`, `expires_at_or_trigger` |",
       "| GitHub Actions concurrency | <https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs> | live GitHub Actions concurrency docs | live official GitHub docs | adopt-live-docs-for-single-cutover-window | cutover apply must not run concurrently | `execution_window_or_freeze_policy` |",
       "| GitHub repository rename | <https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository> | live GitHub repository rename docs | live official GitHub docs; redirects and Pages exception documented | adopt-live-docs-for-repository-rename-redirect-review | review repo/package/docs references and remote update before external rename | `blast_radius_baseline`, `rollback_plan`, `post_cutover_monitoring`, `legacy_alias_policy` |",
+      "| VS Code Tasks and Workspace Trust automatic task execution | <https://code.visualstudio.com/docs/debugtest/tasks> / <https://code.visualstudio.com/docs/editing/workspaces/workspace-trust> | live VS Code Tasks / Workspace Trust docs | live official VS Code docs | adopt-live-docs-for-consumer-task-execution-boundary | consumer template and `.vscode/tasks.json` automatic execution boundary | `blast_radius_baseline`, `approval_scope`, `post_cutover_monitoring`, `legacy_alias_policy` |",
       "| Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book | live official Google SRE book | adopt-operational-guidance | rollback and release process | `dry_run_plan`, `rollback_plan`, `post_cutover_monitoring` |",
       "| Google SRE Canarying Releases | <https://sre.google/workbook/canarying-releases/> | SRE workbook canarying chapter | live official Google SRE workbook | adopt-canary-risk-reduction-for-staged-cutover-review | staged exposure, health comparison, rollback trigger review before full cutover | `dry_run_plan`, `post_cutover_monitoring`, `rollback_plan` |",
       "| Microsoft Safe Deployment Practices | <https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments> | Azure Well-Architected safe deployment guidance | live official Microsoft Learn guidance | adopt-safe-deployment-risk-controls | progressive exposure, health model, rollback and blast-radius reduction for L14 cutover | `execution_window_or_freeze_policy`, `post_cutover_monitoring`, `rollback_plan` |",
@@ -654,7 +656,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         stale: false,
         violation: null,
         maxAgeDays: 90,
-        rowCount: 10,
+        rowCount: 11,
         missingRows: [],
         rowViolations: [],
         rowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
@@ -938,16 +940,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const clean = buildIdentifierRenameCutoverPlan(
-        root,
-        [nameCutoverSemanticRecord()],
-        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
-      );
-      const dirty = buildIdentifierRenameCutoverPlan(
-        root,
-        [nameCutoverSemanticRecord()],
-        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: DIRTY_WORKTREE },
-      );
+      const clean = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: CLEAN_WORKTREE,
+      });
+      const dirty = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: DIRTY_WORKTREE,
+      });
 
       expect(clean.cutoverSnapshot).toMatchObject({
         worktreeStatusReadable: true,
@@ -979,17 +979,15 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeCutoverSourceLedger(root);
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
-      const missing = buildIdentifierRenameCutoverPlan(
-        root,
-        [nameCutoverSemanticRecord()],
-        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
-      );
+      const missing = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: CLEAN_WORKTREE,
+      });
       writeCutoverEvidenceArtifacts(root);
-      const present = buildIdentifierRenameCutoverPlan(
-        root,
-        [nameCutoverSemanticRecord()],
-        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
-      );
+      const present = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: CLEAN_WORKTREE,
+      });
 
       expect(missing.cutoverSnapshot.evidenceArtifactsRequired).toBe(16);
       expect(missing.cutoverSnapshot.evidenceArtifactsPresent).toBe(0);
@@ -1011,6 +1009,134 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         present.cutoverSnapshot.evidenceArtifactsDigest,
       );
       expect(missing.cutoverSnapshot.snapshotId).not.toBe(present.cutoverSnapshot.snapshotId);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("generates a safe local evidence pack while keeping command-result evidence pending", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-evidence-pack-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const dryRun = buildIdentifierRenameEvidencePack(root);
+      expect(dryRun).toMatchObject({
+        schemaVersion: "identifier-rename-evidence-pack.v1",
+        sourceCommand: "ut-tdd rename evidence-pack --dry-run --json",
+        planOnly: true,
+        mustNotApply: true,
+        appliesCutover: false,
+        approvalStillRequired: true,
+        writePolicy: "no-write",
+        targetDir: ".ut-tdd/evidence/rename",
+      });
+      expect(dryRun.generatedArtifacts).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+            schemaVersion: "identifier-rename-audit.v1",
+            written: false,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+            schemaVersion: "identifier-rename-rehearsal.v1",
+            written: false,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+            schemaVersion: "identifier-rename-github-repository-redirect-review.v1",
+            written: false,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
+            schemaVersion: "identifier-rename-state-backup-dry-run.v1",
+            written: false,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+            schemaVersion: "identifier-rename-dist-smoke-dry-run.v1",
+            written: false,
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/evidence/rename/restore-harness-db.json",
+            source: "stateBackupManifest",
+            schemaVersion: "identifier-rename-restore-check-evidence.v1",
+            written: false,
+          }),
+        ]),
+      );
+      expect(dryRun.generatedArtifacts).toHaveLength(14);
+      for (const artifact of dryRun.generatedArtifacts) {
+        expect(artifact.contentSha256).toMatch(/^sha256:[a-f0-9]{64}$/);
+        expect(artifact.sizeBytes).toBeGreaterThan(0);
+      }
+      expect(dryRun.pendingArtifacts).toEqual([
+        expect.objectContaining({
+          path: ".ut-tdd/evidence/rename/full-regression.txt",
+          source: "cutoverRunbook",
+          reason: expect.stringContaining("実コマンドの成功出力"),
+        }),
+        expect.objectContaining({
+          path: ".ut-tdd/evidence/rename/static-state-gates.txt",
+          source: "cutoverRunbook",
+          reason: expect.stringContaining("実コマンドの成功出力"),
+        }),
+      ]);
+      expect(dryRun.blockedUntil).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("pendingArtifacts"),
+          expect.stringContaining("cutover_decision_record"),
+          expect.stringContaining("action_binding_approval_record"),
+        ]),
+      );
+
+      const writePacket = buildIdentifierRenameEvidencePack(root, { write: true });
+      expect(writePacket).toMatchObject({
+        sourceCommand: "ut-tdd rename evidence-pack --write --json",
+        writePolicy: "local-evidence-write",
+      });
+      expect(writePacket.generatedArtifacts.every((artifact) => artifact.written)).toBe(true);
+      expect(writePacket.pendingArtifacts.map((artifact) => artifact.path)).toEqual([
+        ".ut-tdd/evidence/rename/full-regression.txt",
+        ".ut-tdd/evidence/rename/static-state-gates.txt",
+      ]);
+
+      const blastRadius = JSON.parse(
+        readFileSync(join(root, ".ut-tdd/evidence/rename/blast-radius-baseline.json"), "utf8"),
+      );
+      expect(blastRadius).toMatchObject({
+        status: "blocked_pending_cutover_approval",
+        targetCli: "helix",
+        targetStateDir: ".helix",
+      });
+      const redirectReview = JSON.parse(
+        readFileSync(
+          join(root, ".ut-tdd/evidence/rename/github-repository-redirect-review.json"),
+          "utf8",
+        ),
+      );
+      expect(redirectReview).toMatchObject({
+        schemaVersion: "identifier-rename-github-repository-redirect-review.v1",
+        appliesRemote: false,
+        sourceUrl:
+          "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+      });
+      expect(redirectReview.reviewedFacts).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("Pages project site URLs"),
+          expect.stringContaining("actions hosted from renamed repositories are not redirected"),
+        ]),
+      );
+      expect(
+        readFileSync(join(root, ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt"), "utf8"),
+      ).toContain("identifier-rename-dist-smoke-dry-run.v1");
+      expect(
+        auditIdentifierRenameBlastRadius(root).hits.some((hit) =>
+          hit.path.startsWith(".ut-tdd/evidence/rename/"),
+        ),
+      ).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -1159,9 +1285,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         ]),
       );
       expect(plan.blockedReasons).toEqual(
-        expect.arrayContaining([
-          expect.stringContaining("source ledger cutover row violations:"),
-        ]),
+        expect.arrayContaining([expect.stringContaining("source ledger cutover row violations:")]),
       );
     } finally {
       rmSync(root, { recursive: true, force: true });
@@ -1288,11 +1412,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
       ).cutoverSnapshot.snapshotId;
       writeApprovedRenamePlan(root, currentSnapshotId);
-      const plan = buildIdentifierRenameCutoverPlan(
-        root,
-        [nameCutoverSemanticRecord()],
-        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
-      );
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: CLEAN_WORKTREE,
+      });
 
       expect(plan.approvalMaterialReady).toBe(false);
       expect(plan.applyAuthorized).toBe(false);
@@ -1320,11 +1443,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
       ).cutoverSnapshot.snapshotId;
       writeApprovedRenamePlan(root, currentSnapshotId);
-      const plan = buildIdentifierRenameCutoverPlan(
-        root,
-        [nameCutoverSemanticRecord()],
-        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
-      );
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: CLEAN_WORKTREE,
+      });
 
       expect(plan.status).toBe("ready_for_cutover_packet");
       expect(plan.approvalMaterialReady).toBe(true);
@@ -1676,6 +1798,75 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.stringContaining("legacy ut-tdd alias disposition"),
         ]),
       );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("exposes rename evidence-pack as a CLI surface with explicit write mode", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-evidence-pack-cli-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+
+      const missingMode = runCliIn(root, ["rename", "evidence-pack", "--json"]);
+      expect(missingMode.status).toBe(1);
+      expect(missingMode.stderr).toContain(
+        "rename evidence-pack requires exactly one of --dry-run or --write",
+      );
+
+      const bothModes = runCliIn(root, [
+        "rename",
+        "evidence-pack",
+        "--dry-run",
+        "--write",
+        "--json",
+      ]);
+      expect(bothModes.status).toBe(1);
+      expect(bothModes.stderr).toContain(
+        "rename evidence-pack requires exactly one of --dry-run or --write",
+      );
+
+      const dryRun = runCliIn(root, ["rename", "evidence-pack", "--dry-run", "--json"]);
+      expect(dryRun.status, dryRun.stderr || dryRun.stdout).toBe(0);
+      const dryRunPayload = JSON.parse(dryRun.stdout);
+      expect(dryRunPayload).toMatchObject({
+        schemaVersion: "identifier-rename-evidence-pack.v1",
+        sourceCommand: "ut-tdd rename evidence-pack --dry-run --json",
+        writePolicy: "no-write",
+        appliesCutover: false,
+        approvalStillRequired: true,
+      });
+      expect(dryRunPayload.generatedArtifacts).toHaveLength(14);
+      expect(dryRunPayload.pendingArtifacts).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ path: ".ut-tdd/evidence/rename/static-state-gates.txt" }),
+          expect.objectContaining({ path: ".ut-tdd/evidence/rename/full-regression.txt" }),
+        ]),
+      );
+
+      const write = runCliIn(root, ["rename", "evidence-pack", "--write", "--json"]);
+      expect(write.status, write.stderr || write.stdout).toBe(0);
+      const writePayload = JSON.parse(write.stdout);
+      expect(writePayload).toMatchObject({
+        sourceCommand: "ut-tdd rename evidence-pack --write --json",
+        writePolicy: "local-evidence-write",
+      });
+      expect(
+        writePayload.generatedArtifacts.every((artifact: { written: boolean }) => artifact.written),
+      ).toBe(true);
+      expect(
+        readFileSync(join(root, ".ut-tdd/evidence/rename/blast-radius-baseline.json"), "utf8"),
+      ).toContain("blocked_pending_cutover_approval");
+
+      const text = runCliIn(root, ["rename", "evidence-pack", "--dry-run"]);
+      expect(text.status, text.stderr || text.stdout).toBe(0);
+      expect(text.stdout).toContain("rename evidence-pack: writePolicy=no-write");
+      expect(text.stdout).toContain(
+        "pending-artifact: .ut-tdd/evidence/rename/full-regression.txt",
+      );
+      expect(text.stdout).toContain("blocked-until: pendingArtifacts");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

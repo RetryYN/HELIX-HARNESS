@@ -1027,7 +1027,9 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "timing-fields=cutover_decision_record.trigger_condition,cutover_decision_record.execution_window_or_freeze_policy,action_binding_approval_record.expires_at_or_trigger",
       );
-      expect(text.stdout).toContain("identifier-rename-cutover-plan.v1.approvalGate.requiredDecision");
+      expect(text.stdout).toContain(
+        "identifier-rename-cutover-plan.v1.approvalGate.requiredDecision",
+      );
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain(
@@ -1409,7 +1411,8 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           phase: "version-up-dry-run",
-          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          command:
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           writePolicy: "no-write",
           source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
           sourceUrl: "https://semver.org/",

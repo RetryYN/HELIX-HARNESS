@@ -1,5 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
+  REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS,
+} from "./cutover-source-ledger";
 import { buildIdentifierRenameCutoverPlan } from "./identifier-rename";
 import { computeOutstandingWork, type SemanticFeatureFrontierRecord } from "./outstanding";
 import { semanticFrontierBindingViolations } from "./semantic-frontier-binding";
@@ -18,10 +22,6 @@ import {
   sourceLedgerCheckedDateViolation,
   sourceLedgerHeadingPattern,
 } from "./source-ledger-freshness";
-import {
-  CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
-  REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS,
-} from "./cutover-source-ledger";
 
 export interface CutoverReadinessPlan {
   file: string;

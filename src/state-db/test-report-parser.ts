@@ -19,7 +19,10 @@ export type ParsedGreenCommandEvidence = {
 
 type ReporterKind = "vitest" | "playwright";
 
-export function parseGreenCommandEvidence(path: string, content: string): ParsedGreenCommandEvidence | null {
+export function parseGreenCommandEvidence(
+  path: string,
+  content: string,
+): ParsedGreenCommandEvidence | null {
   const format = reporterEvidenceFormat(path);
   if (!format) return null;
   if (format === "xml") {
@@ -57,7 +60,8 @@ function normalizeStructuredTestCases(value: unknown): TestCaseEvidence[] {
       if (status !== "passed" && status !== "failed" && status !== "skipped") return null;
       const testCase: TestCaseEvidence = {
         oracle_id: asString(item.oracle_id) ?? undefined,
-        name: asString(item.name) ?? asString(item.test_name) ?? asString(item.oracle_id) ?? "unknown",
+        name:
+          asString(item.name) ?? asString(item.test_name) ?? asString(item.oracle_id) ?? "unknown",
         status,
       };
       const durationMs = asFiniteNumber(item.duration_ms);
@@ -124,7 +128,11 @@ function parsePlaywrightSuite(value: unknown, parentTitles: string[]): TestCaseE
   return cases;
 }
 
-function parsePlaywrightSpec(value: unknown, parentTitles: string[], suiteFile?: string): TestCaseEvidence[] {
+function parsePlaywrightSpec(
+  value: unknown,
+  parentTitles: string[],
+  suiteFile?: string,
+): TestCaseEvidence[] {
   if (!isRecord(value)) return [];
   const specTitle = asString(value.title);
   const artifactPath = normalizeReporterArtifactPath(asString(value.file)) ?? suiteFile;
@@ -134,13 +142,19 @@ function parsePlaywrightSpec(value: unknown, parentTitles: string[], suiteFile?:
   for (const test of value.tests) {
     if (!isRecord(test) || !Array.isArray(test.results)) continue;
     const projectName = asString(test.projectName);
-    const testTitle = projectName ? titleParts.concat(projectName).join(" > ") : titleParts.join(" > ");
+    const testTitle = projectName
+      ? titleParts.concat(projectName).join(" > ")
+      : titleParts.join(" > ");
     for (const result of test.results) {
       if (!isRecord(result)) continue;
       const status = normalizeReporterStatus(asString(result.status), "playwright");
       if (!status) continue;
       const testCase: TestCaseEvidence = {
-        oracle_id: explicitOracleId(result) ?? explicitOracleId(test) ?? explicitOracleId(value) ?? extractOracleMarker(testTitle),
+        oracle_id:
+          explicitOracleId(result) ??
+          explicitOracleId(test) ??
+          explicitOracleId(value) ??
+          extractOracleMarker(testTitle),
         name: testTitle || "unknown",
         status,
       };
@@ -165,7 +179,11 @@ function parseJunitTestCases(xml: string): TestCaseEvidence[] {
     const rawName = attrs.get("name") ?? attrs.get("classname") ?? "unknown";
     const className = attrs.get("classname");
     const name = className && className !== rawName ? `${className} > ${rawName}` : rawName;
-    const status = body.match(/<failure\b|<error\b/i) ? "failed" : body.match(/<skipped\b/i) ? "skipped" : "passed";
+    const status = body.match(/<failure\b|<error\b/i)
+      ? "failed"
+      : body.match(/<skipped\b/i)
+        ? "skipped"
+        : "passed";
     const testCase: TestCaseEvidence = {
       oracle_id: attrs.get("oracle_id") ?? extractOracleMarker(name),
       name,
@@ -175,7 +193,9 @@ function parseJunitTestCases(xml: string): TestCaseEvidence[] {
     if (timeSeconds !== null) testCase.duration_ms = Math.round(timeSeconds * 1000);
     const message = junitFailureMessage(body);
     if (message) testCase.message = truncateMessage(message);
-    const artifactPath = normalizeReporterArtifactPath(attrs.get("file") ?? pathLikeClassName(className));
+    const artifactPath = normalizeReporterArtifactPath(
+      attrs.get("file") ?? pathLikeClassName(className),
+    );
     if (artifactPath) testCase.artifact_path = artifactPath;
     cases.push(testCase);
   }
@@ -186,24 +206,33 @@ function buildVitestReporterCaseName(assertion: Record<string, unknown>): string
   const fullName = asString(assertion.fullName);
   if (fullName) return fullName.trim() || "unknown";
   const ancestors = Array.isArray(assertion.ancestorTitles)
-    ? assertion.ancestorTitles.map(asString).filter((item): item is string => item !== null && item.trim().length > 0)
+    ? assertion.ancestorTitles
+        .map(asString)
+        .filter((item): item is string => item !== null && item.trim().length > 0)
     : [];
   const title = asString(assertion.title);
   return ancestors.concat(title ?? []).join(" > ") || title || "unknown";
 }
 
-function normalizeReporterStatus(status: string | null, reporter: ReporterKind): TestCaseEvidence["status"] | null {
+function normalizeReporterStatus(
+  status: string | null,
+  reporter: ReporterKind,
+): TestCaseEvidence["status"] | null {
   if (status === "passed") return "passed";
   if (status === "failed") return "failed";
   if (status === "skipped") return "skipped";
   if (reporter === "vitest" && (status === "pending" || status === "todo")) return "skipped";
-  if (reporter === "playwright" && (status === "timedOut" || status === "interrupted")) return "failed";
+  if (reporter === "playwright" && (status === "timedOut" || status === "interrupted"))
+    return "failed";
   return null;
 }
 
 function explicitOracleId(value: Record<string, unknown>): string | undefined {
   const direct =
-    asString(value.oracle_id) ?? asString(value.oracleId) ?? asString(value.test_oracle_id) ?? asString(value.testOracleId);
+    asString(value.oracle_id) ??
+    asString(value.oracleId) ??
+    asString(value.test_oracle_id) ??
+    asString(value.testOracleId);
   if (direct) return direct;
   for (const key of ["meta", "metadata"]) {
     const nested = value[key];
@@ -234,7 +263,9 @@ function normalizeReporterArtifactPath(path: string | null | undefined): string 
 
 function pathLikeClassName(value: string | undefined): string | undefined {
   if (!value) return undefined;
-  return value.includes("/") || value.includes("\\") || value.match(/\.[cm]?[jt]sx?$/) ? value : undefined;
+  return value.includes("/") || value.includes("\\") || value.match(/\.[cm]?[jt]sx?$/)
+    ? value
+    : undefined;
 }
 
 function extractOracleMarker(value: string): string | undefined {

@@ -1,7 +1,11 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { dirname, join, relative } from "node:path";
+import {
+  CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
+  REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS,
+} from "./cutover-source-ledger";
 import {
   type CompletionDecisionRecordTemplate,
   computeOutstandingWork,
@@ -20,10 +24,6 @@ import {
   sourceLedgerHeadingPattern,
   verificationSourceMetadataViolations,
 } from "./source-ledger-freshness";
-import {
-  CUTOVER_SOURCE_LEDGER_EXPECTATIONS,
-  REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS,
-} from "./cutover-source-ledger";
 import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   buildDecisionPacketProvenance,
@@ -245,6 +245,39 @@ export interface IdentifierRenameDistSmokeDryRun {
   blockedUntil: string[];
 }
 
+export interface IdentifierRenameEvidencePack {
+  schemaVersion: "identifier-rename-evidence-pack.v1";
+  sourceCommand:
+    | "ut-tdd rename evidence-pack --dry-run --json"
+    | "ut-tdd rename evidence-pack --write --json";
+  planOnly: true;
+  mustNotApply: true;
+  appliesCutover: false;
+  approvalStillRequired: true;
+  writePolicy: "no-write" | "local-evidence-write";
+  targetDir: ".ut-tdd/evidence/rename";
+  generatedArtifacts: IdentifierRenameGeneratedEvidenceArtifact[];
+  pendingArtifacts: IdentifierRenamePendingEvidenceArtifact[];
+  blockedUntil: string[];
+}
+
+export interface IdentifierRenameGeneratedEvidenceArtifact {
+  path: string;
+  source: "cutoverRunbook" | "stateBackupManifest";
+  generatorCommand: string;
+  schemaVersion: string;
+  contentSha256: string;
+  sizeBytes: number;
+  written: boolean;
+}
+
+export interface IdentifierRenamePendingEvidenceArtifact {
+  path: string;
+  source: "cutoverRunbook" | "stateBackupManifest";
+  requiredCommand: string;
+  reason: string;
+}
+
 export interface IdentifierRenameSourceLedgerFreshness {
   ledgerLabel: "Cutover source ledger";
   checkedDate: string | null;
@@ -346,6 +379,7 @@ const RENAME_MAP: IdentifierRenameMapping[] = [
 const RENAME_EVIDENCE_PATH_PREFIX = ".ut-tdd/evidence/rename/";
 const RENAME_BACKUP_PATH_PREFIX = ".ut-tdd/backups/rename/<timestamp>/";
 const IGNORED_DIRS = new Set([".git", "node_modules", "dist", "coverage"]);
+const IGNORED_PATH_PREFIXES = [".ut-tdd/evidence/", ".ut-tdd/backups/"];
 const TEXT_EXTENSIONS = new Set([
   ".cjs",
   ".css",
@@ -434,6 +468,14 @@ function walkTextFiles(root: string): string[] {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (IGNORED_DIRS.has(entry.name)) continue;
       const abs = join(dir, entry.name);
+      const rel = relative(root, abs).replace(/\\/g, "/");
+      if (
+        IGNORED_PATH_PREFIXES.some(
+          (prefix) => rel === prefix.slice(0, -1) || rel.startsWith(prefix),
+        )
+      ) {
+        continue;
+      }
       if (entry.isDirectory()) {
         walk(abs);
         continue;
@@ -751,7 +793,7 @@ function buildRenameVerificationCommandMatrix(
       sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus:
-        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency/repository rename, Google SRE release/canary guidance, Microsoft safe deployment/testing, OWASP LLM06, and SLSA provenance rows",
+        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency/repository rename, VS Code task execution boundary, Google SRE release/canary guidance, Microsoft safe deployment/testing, OWASP LLM06, and SLSA provenance rows",
       sourceStatusDelta: "none; ledger remains inside the 90-day freshness window",
       adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
       adoptionDecisionDelta: "none; keep irreversible cutover approval-gated and plan-only",
@@ -764,9 +806,11 @@ function buildRenameVerificationCommandMatrix(
       writePolicy: "no-write",
       expected:
         "GitHub repository rename redirect behavior, Pages exception, git remote update, and distribution reference impact are reviewed before external repo/package rename",
-      evidence: "rename plan JSON attached to cutover approval record with GitHub repository rename source metadata",
+      evidence:
+        "rename plan JSON attached to cutover approval record with GitHub repository rename source metadata",
       source: "GitHub repository rename",
-      sourceUrl: "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+      sourceUrl:
+        "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus:
         "official GitHub docs state repository rename redirects repository information and git operations while project site URLs are an exception",
@@ -944,7 +988,8 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       evidencePath: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
       passCriteria:
         "GitHub repository rename redirect behavior, project-site exception, git remote update, and distribution references are reviewed before external repository/package rename",
-      rollbackCheck: "remote URL and published documentation references can stay on the pre-cutover repository path until PO approval",
+      rollbackCheck:
+        "remote URL and published documentation references can stay on the pre-cutover repository path until PO approval",
       source: "GitHub repository rename",
       sourceUrl:
         "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
@@ -1204,6 +1249,174 @@ export function buildIdentifierRenameDistSmokeDryRun(
   };
 }
 
+const RENAME_EVIDENCE_PACK_GENERATED_RUNBOOK_PHASES = new Set([
+  "blast-radius-baseline",
+  "codemod-rehearsal",
+  "repository-redirect-and-remote-review",
+  "state-backup-restore-drill",
+  "dist-smoke-rehearsal",
+]);
+
+export function buildIdentifierRenameEvidencePack(
+  root: string,
+  options: { write?: boolean } = {},
+): IdentifierRenameEvidencePack {
+  const write = Boolean(options.write);
+  const plan = buildIdentifierRenameCutoverPlan(root);
+  const backupDryRun = buildIdentifierRenameStateBackupDryRun(root, true);
+  const generatedCandidates = [
+    ...plan.cutoverRunbook
+      .filter((step) => RENAME_EVIDENCE_PACK_GENERATED_RUNBOOK_PHASES.has(step.phase))
+      .map((step) => ({
+        path: step.evidencePath,
+        source: "cutoverRunbook" as const,
+        generatorCommand: step.command,
+      })),
+    ...backupDryRun.restoreChecks.map((check) => ({
+      path: check.restoreEvidencePath,
+      source: "stateBackupManifest" as const,
+      generatorCommand: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+    })),
+  ].sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`));
+
+  const generatedArtifacts = generatedCandidates.map((candidate) => {
+    const content = renameEvidencePackContent(root, candidate.path);
+    if (write) {
+      const abs = join(root, candidate.path);
+      mkdirSync(dirname(abs), { recursive: true });
+      writeFileSync(abs, content, "utf8");
+    }
+    return {
+      ...candidate,
+      schemaVersion: renameEvidencePackSchemaVersionForPath(candidate.path),
+      contentSha256: sha256Text(content),
+      sizeBytes: Buffer.byteLength(content, "utf8"),
+      written: write,
+    };
+  });
+
+  const generatedPaths = new Set(generatedArtifacts.map((artifact) => artifact.path));
+  const pendingArtifacts: IdentifierRenamePendingEvidenceArtifact[] = [
+    ...plan.cutoverRunbook
+      .filter((step) => !generatedPaths.has(step.evidencePath))
+      .map((step) => ({
+        path: step.evidencePath,
+        source: "cutoverRunbook" as const,
+        requiredCommand: step.command,
+        reason:
+          step.phase === "static-and-state-gates" || step.phase === "full-regression"
+            ? "この evidence は実コマンドの成功出力でなければならないため evidence-pack では代替生成しない"
+            : "専用 command の実行証跡が必要",
+      })),
+    ...plan.stateBackupManifest
+      .filter((entry) => !generatedPaths.has(entry.restoreEvidencePath))
+      .map((entry) => ({
+        path: entry.restoreEvidencePath,
+        source: "stateBackupManifest" as const,
+        requiredCommand: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
+        reason: "state backup restore evidence が未生成",
+      })),
+  ].sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`));
+
+  return {
+    schemaVersion: "identifier-rename-evidence-pack.v1",
+    sourceCommand: write
+      ? "ut-tdd rename evidence-pack --write --json"
+      : "ut-tdd rename evidence-pack --dry-run --json",
+    planOnly: true,
+    mustNotApply: true,
+    appliesCutover: false,
+    approvalStillRequired: true,
+    writePolicy: write ? "local-evidence-write" : "no-write",
+    targetDir: ".ut-tdd/evidence/rename",
+    generatedArtifacts,
+    pendingArtifacts,
+    blockedUntil: [
+      "pendingArtifacts が 0 になるまで実コマンド証跡を記録する",
+      "git worktree を clean にして cutoverSnapshot を再生成する",
+      "cutover_decision_record が current cutoverSnapshot.snapshotId を approve_cutover として明示する",
+      "action_binding_approval_record が actor/tool/target/params と reviewed_snapshot_binding を束縛する",
+    ],
+  };
+}
+
+function renameEvidencePackContent(root: string, path: string): string {
+  if (path === ".ut-tdd/evidence/rename/blast-radius-baseline.json") {
+    return jsonEvidence(auditIdentifierRenameBlastRadius(root));
+  }
+  if (path === ".ut-tdd/evidence/rename/codemod-rehearsal.json") {
+    return jsonEvidence(buildIdentifierRenameRehearsalPlan(root));
+  }
+  if (path === ".ut-tdd/evidence/rename/github-repository-redirect-review.json") {
+    const plan = buildIdentifierRenameCutoverPlan(root);
+    return jsonEvidence({
+      schemaVersion: "identifier-rename-github-repository-redirect-review.v1",
+      sourceCommand: "ut-tdd rename evidence-pack --write --json",
+      planOnly: true,
+      mustNotApply: true,
+      appliesRemote: false,
+      source: "GitHub repository rename",
+      sourceUrl:
+        "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+      verificationRow: plan.verificationCommandMatrix.find(
+        (row) => row.phase === "repository-redirect-review",
+      ),
+      reviewedFacts: [
+        "repository information and git operations are redirected after rename",
+        "GitHub Pages project site URLs are an explicit exception",
+        "actions hosted from renamed repositories are not redirected",
+        "local clones should update origin with git remote set-url",
+      ],
+    });
+  }
+  if (path === ".ut-tdd/evidence/rename/state-backup-restore-drill.json") {
+    return jsonEvidence(buildIdentifierRenameStateBackupDryRun(root, true));
+  }
+  if (path === ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt") {
+    return `identifier-rename-dist-smoke-dry-run.v1\n${jsonEvidence(
+      buildIdentifierRenameDistSmokeDryRun(root),
+    )}`;
+  }
+  if (path.startsWith(".ut-tdd/evidence/rename/restore-") && path.endsWith(".json")) {
+    const backupDryRun = buildIdentifierRenameStateBackupDryRun(root, true);
+    const check = backupDryRun.restoreChecks.find((item) => item.restoreEvidencePath === path);
+    return jsonEvidence({
+      schemaVersion: "identifier-rename-restore-check-evidence.v1",
+      sourceCommand: "ut-tdd rename evidence-pack --write --json",
+      planOnly: true,
+      mustNotApply: true,
+      restoreDrillRequested: true,
+      check,
+      status: check?.sourceExists
+        ? "source_present_for_restore_drill"
+        : "source_missing_requires_disposition",
+    });
+  }
+  throw new Error(`unsupported rename evidence-pack artifact path: ${path}`);
+}
+
+function renameEvidencePackSchemaVersionForPath(path: string): string {
+  if (path.endsWith("blast-radius-baseline.json")) return "identifier-rename-audit.v1";
+  if (path.endsWith("codemod-rehearsal.json")) return "identifier-rename-rehearsal.v1";
+  if (path.endsWith("github-repository-redirect-review.json")) {
+    return "identifier-rename-github-repository-redirect-review.v1";
+  }
+  if (path.endsWith("state-backup-restore-drill.json")) {
+    return "identifier-rename-state-backup-dry-run.v1";
+  }
+  if (path.endsWith("dist-smoke-rehearsal.txt")) {
+    return "identifier-rename-dist-smoke-dry-run.v1";
+  }
+  if (path.includes("/restore-") && path.endsWith(".json")) {
+    return "identifier-rename-restore-check-evidence.v1";
+  }
+  return "identifier-rename-evidence.v1";
+}
+
+function jsonEvidence(value: unknown): string {
+  return `${JSON.stringify(value, null, 2)}\n`;
+}
+
 export function identifierRenameRunbookCommandViolations(
   plan: Pick<IdentifierRenameCutoverPlan, "cutoverRunbook">,
 ): IdentifierRenameRunbookCommandViolation[] {
@@ -1444,7 +1657,10 @@ function readRepoWorktreeSnapshot(root: string): IdentifierRenameWorktreeSnapsho
       .map((line) => line.trimEnd())
       .filter(Boolean)
       .sort();
-    const dirtyPaths = lines.map((line) => line.slice(3).trim()).filter(Boolean).sort();
+    const dirtyPaths = lines
+      .map((line) => line.slice(3).trim())
+      .filter(Boolean)
+      .sort();
     return {
       readable: true,
       clean: dirtyPaths.length === 0,
@@ -1482,8 +1698,7 @@ function readEvidenceArtifacts(
     .filter(
       (artifact, index, self) =>
         self.findIndex(
-          (candidate) =>
-            candidate.path === artifact.path && candidate.source === artifact.source,
+          (candidate) => candidate.path === artifact.path && candidate.source === artifact.source,
         ) === index,
     )
     .sort((a, b) => `${a.source}:${a.path}`.localeCompare(`${b.source}:${b.path}`))
@@ -1959,4 +2174,8 @@ function tableCells(line: string): string[] {
 
 function sha256Json(value: unknown): string {
   return `sha256:${createHash("sha256").update(JSON.stringify(value)).digest("hex")}`;
+}
+
+function sha256Text(value: string): string {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }

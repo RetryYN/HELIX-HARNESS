@@ -57,6 +57,7 @@ import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
+  buildIdentifierRenameEvidencePack,
   buildIdentifierRenameRehearsalPlan,
   buildIdentifierRenameStateBackupDryRun,
 } from "./lint/identifier-rename";
@@ -1606,6 +1607,42 @@ rename
     }
   });
 rename
+  .command("evidence-pack")
+  .description("generate or preview local evidence artifacts for PLAN-M-02 rename cutover review")
+  .option("--dry-run", "preview generated evidence without writing files")
+  .option("--write", "write safe local evidence artifacts under .ut-tdd/evidence/rename")
+  .option("--json", "JSON output")
+  .action((opts: { dryRun?: boolean; write?: boolean; json?: boolean }) => {
+    if (Boolean(opts.dryRun) === Boolean(opts.write)) {
+      process.stderr.write("rename evidence-pack requires exactly one of --dry-run or --write\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildIdentifierRenameEvidencePack(process.cwd(), {
+      write: Boolean(opts.write),
+    });
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename evidence-pack: writePolicy=${packet.writePolicy} generated=${packet.generatedArtifacts.length} pending=${packet.pendingArtifacts.length} appliesCutover=${packet.appliesCutover} approvalStillRequired=${packet.approvalStillRequired}\n`,
+    );
+    for (const artifact of packet.generatedArtifacts) {
+      process.stdout.write(
+        `  generated-artifact: ${artifact.path} written=${artifact.written} schema=${artifact.schemaVersion} sha256=${artifact.contentSha256} bytes=${artifact.sizeBytes}\n`,
+      );
+    }
+    for (const artifact of packet.pendingArtifacts) {
+      process.stdout.write(
+        `  pending-artifact: ${artifact.path} command=${artifact.requiredCommand} reason=${artifact.reason}\n`,
+      );
+    }
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+  });
+rename
   .command("plan")
   .description("emit a non-destructive PLAN-M-02 cutover packet without applying rename")
   .option("--json", "JSON output")
@@ -2237,11 +2274,7 @@ graph
       opts.scope,
     );
     const requestedFormat = opts.format ?? "mermaid";
-    if (
-      requestedFormat !== "mermaid" &&
-      requestedFormat !== "dot" &&
-      requestedFormat !== "d2"
-    ) {
+    if (requestedFormat !== "mermaid" && requestedFormat !== "dot" && requestedFormat !== "d2") {
       process.stderr.write(
         `[error] invalid-format: graph export format must be mermaid, dot, or d2 (got ${requestedFormat})\n`,
       );
@@ -2251,8 +2284,7 @@ graph
     const format = requestedFormat;
     // dot/d2 はこの段階では純粋なテキスト表現を emit する。Graphviz / D2 CLI での
     // SVG/PDF/PNG rendering は後段 adapter の責務で、ここでは外部コマンドを起動しない。
-    const availableAdapters: RelationDiagramAdapter[] =
-      format === "mermaid" ? [] : [format];
+    const availableAdapters: RelationDiagramAdapter[] = format === "mermaid" ? [] : [format];
     const artifact = exportRelationDiagram({ snapshot: projection, format, availableAdapters });
     if (opts.scope) process.stdout.write(`# scope=${opts.scope}\n`);
     if (!artifact.ok) {
@@ -2690,10 +2722,11 @@ handover
       process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
       return;
     }
-      process.stdout.write(
-        `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} owner=${pointer.owner ?? "-"} stale=${stale} updated_at=${pointer.updated_at}\n`,
-      );
-      if (pointer.owner_updated_at) process.stdout.write(`owner_updated_at: ${pointer.owner_updated_at}\n`);
+    process.stdout.write(
+      `handover status: active=${pointer.active_plan ?? "-"} status=${pointer.status} owner=${pointer.owner ?? "-"} stale=${stale} updated_at=${pointer.updated_at}\n`,
+    );
+    if (pointer.owner_updated_at)
+      process.stdout.write(`owner_updated_at: ${pointer.owner_updated_at}\n`);
     for (const reason of status.stale_reasons) process.stdout.write(`stale_reason: ${reason}\n`);
     if (pointer.latest_doc) process.stdout.write(`latest_doc: ${pointer.latest_doc}\n`);
     process.stdout.write(`${outstandingSummaryLine(liveOutstanding)}\n`);
@@ -2760,7 +2793,9 @@ handover
 
 handover
   .command("update")
-  .description("update the machine handover pointer without regenerating the human markdown scaffold")
+  .description(
+    "update the machine handover pointer without regenerating the human markdown scaffold",
+  )
   .option("--owner <owner>", "runtime/actor that currently owns the handover baton")
   .option("--json", "JSON output")
   .action((opts: { owner?: string; json?: boolean }) => {

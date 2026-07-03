@@ -58,10 +58,7 @@ export const CONSUMER_VSCODE_TASK_COMMANDS = [
   ["HELIX: status", "bun run ut-tdd status"],
   ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
   ["HELIX: completion decision-packet", "bun run ut-tdd completion decision-packet --json"],
-  [
-    "HELIX: version-up dry-run",
-    CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
-  ],
+  ["HELIX: version-up dry-run", CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND],
   ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
   ["HELIX: handover status", "bun run ut-tdd handover status --json"],
   ["HELIX: setup dry-run", "bun run ut-tdd setup project --dry-run"],
@@ -540,9 +537,7 @@ export function analyzeConsumerEscalationWorkflowContract(
   const contract = {
     ok: false,
     nameOk: workflow?.name === "escalation-stale",
-    scheduleOk:
-      schedule.length === 1 &&
-      recordFromUnknown(schedule[0])?.cron === "0 0 * * 1",
+    scheduleOk: schedule.length === 1 && recordFromUnknown(schedule[0])?.cron === "0 0 * * 1",
     unexpectedTriggers,
     noPullRequestTarget: workflowOn ? !Object.hasOwn(workflowOn, "pull_request_target") : false,
     permissionsRead,
@@ -1657,7 +1652,9 @@ function buildConsumerArtifactReadinessPlan(
     text.includes(MANAGED_END) &&
     text.includes("HELIX") &&
     text.includes("ut-tdd completion decision-packet --json") &&
-    text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
+    text.includes(
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+    ) &&
     text.includes("ut-tdd doctor --profile consumer") &&
     text.includes("ut-tdd rename plan --json") &&
     /[ぁ-んァ-ヶ一-龠]/.test(text);
@@ -1667,7 +1664,9 @@ function buildConsumerArtifactReadinessPlan(
       hasPath(path) &&
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
+      text.includes(
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      ) &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
@@ -1680,14 +1679,15 @@ function buildConsumerArtifactReadinessPlan(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
+      text.includes(
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      ) &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
   });
   const workflowContract = analyzeConsumerCiWorkflowContract(workflow);
-  const escalationWorkflowContract =
-    analyzeConsumerEscalationWorkflowContract(escalationWorkflow);
+  const escalationWorkflowContract = analyzeConsumerEscalationWorkflowContract(escalationWorkflow);
   const checks: ConsumerArtifactReadinessPlan["checks"] = [
     {
       name: "adapter-guidance-connects-consumer-verification",
@@ -2100,7 +2100,8 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "version-up-dry-run",
-      command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      command:
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],

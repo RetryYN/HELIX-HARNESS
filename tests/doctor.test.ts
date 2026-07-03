@@ -255,7 +255,8 @@ function consumerProjectSetupStateTemplate(): string {
     },
     {
       phase: "version-up-dry-run",
-      command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      command:
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
       writePolicy: "no-write",
       requiresMaterializedPaths: [],
       expected: "version-up dry-run remains plan-only and mustNotApply",
@@ -404,7 +405,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
         {
           label: "HELIX: version-up dry-run",
           type: "shell",
-          command: "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          command:
+            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
           problemMatcher: [],
         },
         {
@@ -1279,12 +1281,9 @@ describe("runConsumerDoctor", () => {
     const result = runConsumerDoctor(deps({ files }));
 
     expect(result.ok).toBe(false);
-    expect(
-      hasDoctorMessage(
-        result.messages,
-        "consumer-branch-protection-script - violation",
-      ),
-    ).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-branch-protection-script - violation")).toBe(
+      true,
+    );
   });
 
   it("fails closed when distributed Claude subagent or slash-command templates drift", () => {

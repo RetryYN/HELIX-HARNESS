@@ -3,6 +3,7 @@ export const REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS = [
   "GitHub Environments required reviewers",
   "GitHub Actions concurrency",
   "GitHub repository rename",
+  "VS Code Tasks and Workspace Trust automatic task execution",
   "Google SRE Release Engineering",
   "Google SRE Canarying Releases",
   "Microsoft Safe Deployment Practices",
@@ -54,6 +55,18 @@ export const CUTOVER_SOURCE_LEDGER_EXPECTATIONS: Record<
     impacts: [
       "blast_radius_baseline",
       "rollback_plan",
+      "post_cutover_monitoring",
+      "legacy_alias_policy",
+    ],
+  },
+  "VS Code Tasks and Workspace Trust automatic task execution": {
+    urls: [
+      "https://code.visualstudio.com/docs/debugtest/tasks",
+      "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
+    ],
+    impacts: [
+      "blast_radius_baseline",
+      "approval_scope",
       "post_cutover_monitoring",
       "legacy_alias_policy",
     ],

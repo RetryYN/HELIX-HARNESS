@@ -107,6 +107,8 @@ describe("green command reporter parser", () => {
       artifact_path: "tests/unit/parser.test.ts",
     });
     expect(parsed?.cases[1]?.message).toBe("boom");
-    expect(parseGreenCommandEvidence("junit.xml", "<!DOCTYPE testsuite><testsuite />")?.cases).toEqual([]);
+    expect(
+      parseGreenCommandEvidence("junit.xml", "<!DOCTYPE testsuite><testsuite />")?.cases,
+    ).toEqual([]);
   });
 });

@@ -544,7 +544,9 @@ export function updatePointerOwner(
   }
   const pointer = readPointer(deps);
   if (!pointer) {
-    throw new Error("CURRENT.json is missing or invalid; run `ut-tdd handover status --json` first");
+    throw new Error(
+      "CURRENT.json is missing or invalid; run `ut-tdd handover status --json` first",
+    );
   }
   const updated: HandoverPointer = {
     ...pointer,

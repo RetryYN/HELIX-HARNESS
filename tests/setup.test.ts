@@ -221,17 +221,16 @@ const baseTemplates: TemplateSet = {
   "common/add-feature.md": "# Add-feature\n",
   "common/PULL_REQUEST_TEMPLATE.md": "## 概要\nCloses #\n",
   "team/CODEOWNERS": "* {{TL_TEAM}}\n/docs/ {{PO_TEAM}}\n/tests/ {{QA_TEAM}}\n",
-  "team/setup-branch-protection.sh":
-    [
-      "#!/usr/bin/env bash",
-      "set -euo pipefail",
-      'REPO="${1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
-      'echo "main の branch protection は action-binding approval が必要です: ${REPO}"',
-      'echo "harness-check required / review count / admin enforcement は approval packet で確認してください"',
-      'echo "この script は remote GitHub API を呼びません"',
-      "exit 2",
-      "",
-    ].join("\n"),
+  "team/setup-branch-protection.sh": [
+    "#!/usr/bin/env bash",
+    "set -euo pipefail",
+    'REPO="${1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
+    'echo "main の branch protection は action-binding approval が必要です: ${REPO}"',
+    'echo "harness-check required / review count / admin enforcement は approval packet で確認してください"',
+    'echo "この script は remote GitHub API を呼びません"',
+    "exit 2",
+    "",
+  ].join("\n"),
 };
 
 describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
@@ -547,9 +546,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
   it("U-SETUP-025: parses Codex hook config as a features-section contract", () => {
     expect(consumerCodexConfigEnablesHooks("[features]\nhooks = true\n")).toBe(true);
-    expect(
-      consumerCodexConfigEnablesHooks("# [features]\n[other]\nhooks = true\n"),
-    ).toBe(false);
+    expect(consumerCodexConfigEnablesHooks("# [features]\n[other]\nhooks = true\n")).toBe(false);
     expect(
       consumerCodexConfigEnablesHooks("[features]\nhooks = false\n[other]\nhooks = true\n"),
     ).toBe(false);
@@ -1162,7 +1159,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "version-up-dry-run",
-        command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+        command:
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1534,21 +1532,21 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             ok: true,
             path: join(".vscode", "tasks.json"),
           }),
-        expect.objectContaining({
-          name: "harness-check-ci-is-read-only-consumer-smoke",
-          ok: true,
-          path: join(".github", "workflows", "harness-check.yml"),
-        }),
-        expect.objectContaining({
-          name: "escalation-stale-is-no-write-route-audit",
-          ok: true,
-          path: join(".github", "workflows", "escalation-stale.yml"),
-        }),
-        expect.objectContaining({
-          name: "branch-protection-script-is-approval-only",
-          ok: true,
-          path: join("scripts", "setup-branch-protection.sh"),
-        }),
+          expect.objectContaining({
+            name: "harness-check-ci-is-read-only-consumer-smoke",
+            ok: true,
+            path: join(".github", "workflows", "harness-check.yml"),
+          }),
+          expect.objectContaining({
+            name: "escalation-stale-is-no-write-route-audit",
+            ok: true,
+            path: join(".github", "workflows", "escalation-stale.yml"),
+          }),
+          expect.objectContaining({
+            name: "branch-protection-script-is-approval-only",
+            ok: true,
+            path: join("scripts", "setup-branch-protection.sh"),
+          }),
           expect.objectContaining({
             name: "ut-tdd-baseline-paths-projected",
             ok: true,

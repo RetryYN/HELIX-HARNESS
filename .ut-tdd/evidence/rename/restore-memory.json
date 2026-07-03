@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "identifier-rename-restore-check-evidence.v1",
+  "sourceCommand": "ut-tdd rename evidence-pack --write --json",
+  "planOnly": true,
+  "mustNotApply": true,
+  "restoreDrillRequested": true,
+  "check": {
+    "path": ".ut-tdd/memory",
+    "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/memory/",
+    "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-memory.json",
+    "checksumRequired": true,
+    "restoreRequired": true,
+    "sourceExists": true
+  },
+  "status": "source_present_for_restore_drill"
+}

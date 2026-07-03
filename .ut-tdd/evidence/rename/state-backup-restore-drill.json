@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "identifier-rename-state-backup-dry-run.v1",
+  "planOnly": true,
+  "mustNotApply": true,
+  "writePolicy": "no-write",
+  "sourceCommand": "ut-tdd rename state-backup --dry-run --restore-drill --json",
+  "restoreDrillRequested": true,
+  "manifest": [
+    {
+      "path": ".ut-tdd/harness.db",
+      "purpose": "state DB projection and completion evidence baseline",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/harness.db",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-harness-db.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".ut-tdd/memory",
+      "purpose": "HELIX shared memory before state-dir rename",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/memory/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-memory.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".ut-tdd/state",
+      "purpose": "active plan, setup, and runtime state before migration",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/state/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-state.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".ut-tdd/logs",
+      "purpose": "runtime/session/gate logs used as verification provenance",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/logs/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-logs.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".ut-tdd/handover",
+      "purpose": "handover pointer and completion decision packet continuity",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/handover/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-handover.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".ut-tdd/handover/provider",
+      "purpose": "provider handover pointer used by cross-runtime continuation",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/handover/provider/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-provider-handover.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".ut-tdd/config/approval-policy.yaml",
+      "purpose": "action-binding approval policy before irreversible rename",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/config/approval-policy.yaml",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-approval-policy.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".claude/settings.json",
+      "purpose": "Claude hook/adapter config before marker rename",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/.claude/settings.json",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-claude-settings.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".codex/hooks.json",
+      "purpose": "Codex hook adapter config before marker rename",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/.codex/hooks.json",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-codex-hooks.json",
+      "restoreRequired": true
+    }
+  ],
+  "restoreChecks": [
+    {
+      "path": ".ut-tdd/harness.db",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/harness.db",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-harness-db.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".ut-tdd/memory",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/memory/",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-memory.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".ut-tdd/state",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/state/",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-state.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".ut-tdd/logs",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/logs/",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-logs.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".ut-tdd/handover",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/handover/",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-handover.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".ut-tdd/handover/provider",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/handover/provider/",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-provider-handover.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".ut-tdd/config/approval-policy.yaml",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/config/approval-policy.yaml",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-approval-policy.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": false
+    },
+    {
+      "path": ".claude/settings.json",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/.claude/settings.json",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-claude-settings.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".codex/hooks.json",
+      "backupTargetPattern": ".ut-tdd/backups/rename/<timestamp>/.codex/hooks.json",
+      "restoreEvidencePath": ".ut-tdd/evidence/rename/restore-codex-hooks.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    }
+  ],
+  "blockedUntil": [
+    "each restoreCheck has sourceExists=true or an explicit no-state-needed disposition",
+    "restore drill evidence is recorded for every restoreRequired item",
+    "cutover approval cites the resulting state-backup evidence path"
+  ]
+}

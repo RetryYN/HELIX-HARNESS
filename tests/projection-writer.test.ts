@@ -1,9 +1,10 @@
-import { randomUUID } from "node:crypto";
 import { spawnSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import type { RelationGraphProjection } from "../src/lint/relation-graph";
 import { deriveArtifactProgressDecision } from "../src/state-db/artifact-progress-decision";
 import { projectRefactorCandidateSignals } from "../src/state-db/feedback-projections";
 import { type HarnessDb, isSecretLike, openHarnessDb } from "../src/state-db/index";
@@ -14,7 +15,6 @@ import {
   REFACTOR_POLICY_TERMS,
 } from "../src/state-db/refactor-candidate-policy";
 import { analyzeRefactorCandidates } from "../src/state-db/refactor-candidates";
-import type { RelationGraphProjection } from "../src/lint/relation-graph";
 
 interface VerificationWorkflowRow {
   phase: string;
@@ -724,7 +724,11 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           edges: [
             { from: "plan:PLAN-TEST-01", to: "requirement:FR-L1-99", kind: "derives-from" },
             { from: "plan:PLAN-TEST-01", to: "source:src/widget/core.ts", kind: "generates" },
-            { from: "source:src/widget/core.ts", to: "test:tests/core.test.ts", kind: "covered-by" },
+            {
+              from: "source:src/widget/core.ts",
+              to: "test:tests/core.test.ts",
+              kind: "covered-by",
+            },
             {
               from: "design:widget-design",
               to: "source:src/widget/core.ts",
@@ -872,28 +876,28 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "review_evidence:",
           "  - reviewer: codex-tl",
           "    review_kind: intra_runtime_subagent",
-          "    reviewed_at: \"2026-07-03T00:05:00.000Z\"",
-          "    tests_green_at: \"2026-07-03T00:05:00.000Z\"",
+          '    reviewed_at: "2026-07-03T00:05:00.000Z"',
+          '    tests_green_at: "2026-07-03T00:05:00.000Z"',
           "    verdict: approve",
           "    worker_model: codex",
           "    reviewer_model: codex-intra-runtime",
           "    green_commands:",
           "      - kind: unit_test",
-          "        command: \"bun test tests/structured.test.ts\"",
+          '        command: "bun test tests/structured.test.ts"',
           "        runner: bun",
           "        scope: targeted",
           "        exit_code: 1",
-          "        completed_at: \"2026-07-03T00:01:00.000Z\"",
+          '        completed_at: "2026-07-03T00:01:00.000Z"',
           "        evidence_path: .ut-tdd/evidence/green-command/run-1.json",
-          "        output_digest: \"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+          '        output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
           "      - kind: unit_test",
-          "        command: \"bun test tests/structured.test.ts\"",
+          '        command: "bun test tests/structured.test.ts"',
           "        runner: bun",
           "        scope: targeted",
           "        exit_code: 0",
-          "        completed_at: \"2026-07-03T00:03:00.000Z\"",
+          '        completed_at: "2026-07-03T00:03:00.000Z"',
           "        evidence_path: .ut-tdd/evidence/green-command/run-2.json",
-          "        output_digest: \"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+          '        output_digest: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"',
           "---",
           "",
           "# Fixture",
@@ -1053,36 +1057,36 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "review_evidence:",
           "  - reviewer: codex-tl",
           "    review_kind: intra_runtime_subagent",
-          "    reviewed_at: \"2026-07-03T00:10:00.000Z\"",
-          "    tests_green_at: \"2026-07-03T00:10:00.000Z\"",
+          '    reviewed_at: "2026-07-03T00:10:00.000Z"',
+          '    tests_green_at: "2026-07-03T00:10:00.000Z"',
           "    verdict: approve",
           "    worker_model: codex",
           "    reviewer_model: codex-intra-runtime",
           "    green_commands:",
           "      - kind: unit_test",
-          "        command: \"bun test tests/reporter.test.ts --reporter=json\"",
+          '        command: "bun test tests/reporter.test.ts --reporter=json"',
           "        runner: bun",
           "        scope: targeted",
           "        exit_code: 0",
-          "        completed_at: \"2026-07-03T00:01:00.000Z\"",
+          '        completed_at: "2026-07-03T00:01:00.000Z"',
           "        evidence_path: .ut-tdd/evidence/green-command/vitest.json",
-          "        output_digest: \"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+          '        output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
           "      - kind: integration_test",
-          "        command: \"bunx playwright test tests/e2e/reporter.spec.ts --reporter=json\"",
+          '        command: "bunx playwright test tests/e2e/reporter.spec.ts --reporter=json"',
           "        runner: bun",
           "        scope: targeted",
           "        exit_code: 0",
-          "        completed_at: \"2026-07-03T00:02:00.000Z\"",
+          '        completed_at: "2026-07-03T00:02:00.000Z"',
           "        evidence_path: .ut-tdd/evidence/green-command/playwright.json",
-          "        output_digest: \"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"",
+          '        output_digest: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"',
           "      - kind: unit_test",
-          "        command: \"bun test tests/reporter.test.ts --reporter=junit\"",
+          '        command: "bun test tests/reporter.test.ts --reporter=junit"',
           "        runner: bun",
           "        scope: targeted",
           "        exit_code: 0",
-          "        completed_at: \"2026-07-03T00:03:00.000Z\"",
+          '        completed_at: "2026-07-03T00:03:00.000Z"',
           "        evidence_path: .ut-tdd/evidence/green-command/junit.xml",
-          "        output_digest: \"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\"",
+          '        output_digest: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"',
           "---",
           "",
           "# Fixture",

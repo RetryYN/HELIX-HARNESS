@@ -145,9 +145,9 @@ describe("analyzeOutstandingWork", () => {
     expect(o.items.find((item) => item.planId === "PLAN-DISCOVERY-10")?.requiredEvidence).toEqual(
       expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
     );
-    expect(o.items.find((item) => item.planId === "PLAN-DISCOVERY-10")?.requiredEvidenceJa).toContain(
-      "S4 で PLAN に decision_outcome を記録する",
-    );
+    expect(
+      o.items.find((item) => item.planId === "PLAN-DISCOVERY-10")?.requiredEvidenceJa,
+    ).toContain("S4 で PLAN に decision_outcome を記録する");
     expect(o.items.find((item) => item.planId === "PLAN-L7-146")?.requiredEvidence).toEqual(
       expect.arrayContaining([
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
@@ -943,6 +943,7 @@ describe("completionDecisionPacketForOutstanding", () => {
     );
 
     expect(packet).toEqual({
+      schemaVersion: "completion-decision-packet.v1",
       ok: true,
       status: "ready",
       generatedFrom: "outstanding.completionReadiness",

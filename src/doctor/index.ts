@@ -351,12 +351,12 @@ import {
   analyzeConsumerCiWorkflowContract,
   analyzeConsumerEscalationWorkflowContract,
   branchProtectionScriptIsApprovalOnly,
-  consumerClaudeHookSettingsMatchContract,
-  consumerCodexConfigEnablesHooks,
-  consumerCodexHookSettingsMatchContract,
   CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
   CONSUMER_VSCODE_TASK_COMMANDS,
+  consumerClaudeHookSettingsMatchContract,
+  consumerCodexConfigEnablesHooks,
+  consumerCodexHookSettingsMatchContract,
 } from "../setup/index";
 import {
   CONSUMER_CLAUDE_AGENT_NAMES,
@@ -1911,7 +1911,9 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("docs / handover / adapter prose も日本語") &&
     text.includes("PLAN-M-02") &&
     text.includes("ut-tdd completion decision-packet --json") &&
-    text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
+    text.includes(
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+    ) &&
     text.includes("ut-tdd doctor --profile consumer");
   const docsOk =
     agents.includes("HELIX アダプター") &&
@@ -1984,7 +1986,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     { phase: "completion-decision-packet", command: "ut-tdd completion decision-packet --json" },
     {
       phase: "version-up-dry-run",
-      command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      command:
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
     },
     { phase: "consumer-doctor", command: "ut-tdd doctor --profile consumer" },
     { phase: "identifier-cutover-packet", command: "ut-tdd rename plan --json" },
@@ -2072,7 +2075,9 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("consumer-safe な HELIX subagent") &&
       text.includes("ut-tdd status") &&
       text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
+      text.includes(
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      ) &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       text.includes("findings") &&
@@ -2088,7 +2093,9 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("HELIX") &&
       text.includes("ut-tdd status --json") &&
       text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json") &&
+      text.includes(
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      ) &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
@@ -2188,10 +2195,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : `doctor: consumer-ci-workflow - violation name=${ciContract.nameOk} pushMain=${ciContract.pushMain} pullRequestMain=${ciContract.pullRequestMain} unexpectedTriggers=${ciContract.unexpectedTriggers.join(",")} noPullRequestTarget=${ciContract.noPullRequestTarget} permissionsRead=${ciContract.permissionsRead} tokenWrite=${ciContract.tokenWrite} job=${ciContract.jobOk} checkoutPersistCredentialsFalse=${ciContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${ciContract.checkoutInputsExact} setupBunInputsEmpty=${ciContract.setupBunInputsEmpty} customEnvFree=${ciContract.customEnvFree} skipOrSoftFailFree=${ciContract.skipOrSoftFailFree} jobPermissionsFixed=${ciContract.jobPermissionsFixed} executionSurfaceFixed=${ciContract.executionSurfaceFixed} missingUses=${ciContract.missingUses.join(",")} unexpectedUses=${ciContract.unexpectedUses.join(",")} missingRuns=${ciContract.missingRuns.join(",")} exactSteps=${ciContract.exactSteps} exactRuns=${ciContract.exactRuns} secrets=${!ciContract.secretsFree}`,
   );
 
-  const escalationWorkflowRaw =
-    consumerFile(deps, ".github/workflows/escalation-stale.yml") ?? "";
-  const escalationContract =
-    analyzeConsumerEscalationWorkflowContract(escalationWorkflowRaw);
+  const escalationWorkflowRaw = consumerFile(deps, ".github/workflows/escalation-stale.yml") ?? "";
+  const escalationContract = analyzeConsumerEscalationWorkflowContract(escalationWorkflowRaw);
   messages.push(
     escalationContract.ok
       ? `doctor: consumer-escalation-workflow - OK (workflow=escalation-stale, permissions=contents:read, schedule=weekly, commands=${2 + CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS.length}, placeholder-free)`
@@ -2199,8 +2204,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const branchProtectionScript = consumerFile(deps, "scripts/setup-branch-protection.sh") ?? "";
-  const branchProtectionScriptOk =
-    branchProtectionScriptIsApprovalOnly(branchProtectionScript);
+  const branchProtectionScriptOk = branchProtectionScriptIsApprovalOnly(branchProtectionScript);
   messages.push(
     branchProtectionScriptOk
       ? "doctor: consumer-branch-protection-script - OK (approval-only, no mutating GitHub API/auth endpoint)"
@@ -2521,8 +2525,7 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
       recordTemplates: renamePlan.recordTemplates,
     });
     const runbookCommandViolations = identifierRenameRunbookCommandViolations(renamePlan);
-    const stateBackupManifestViolations =
-      identifierRenameStateBackupManifestViolations(renamePlan);
+    const stateBackupManifestViolations = identifierRenameStateBackupManifestViolations(renamePlan);
     const verificationCommandViolations = identifierRenameVerificationCommandViolations(renamePlan);
     return {
       messages: [

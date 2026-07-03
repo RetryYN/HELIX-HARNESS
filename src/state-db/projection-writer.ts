@@ -1040,19 +1040,30 @@ function collectUtHistoryInputsFromDb(db: HarnessDb): Map<string, ProjectedUtRun
   return byPlan;
 }
 
-function projectUtHistorySignalsForPlan(db: HarnessDb, planId: string, runs: ProjectedUtRun[]): void {
+function projectUtHistorySignalsForPlan(
+  db: HarnessDb,
+  planId: string,
+  runs: ProjectedUtRun[],
+): void {
   const sortedRuns = [...runs].sort((a, b) =>
     `${a.completed_at}:${a.started_at}`.localeCompare(`${b.completed_at}:${b.started_at}`),
   );
   const window = `${sortedRuns.at(0)?.started_at ?? "unknown"}..${
     sortedRuns.at(-1)?.completed_at ?? "unknown"
   }`;
-  const histories = new Map<string, Array<ProjectedUtCase & { evidence_path: string; completed_at: string }>>();
+  const histories = new Map<
+    string,
+    Array<ProjectedUtCase & { evidence_path: string; completed_at: string }>
+  >();
   for (const run of sortedRuns) {
     for (const testCase of run.cases.filter((item) => item.oracle_id)) {
       const oracleId = testCase.oracle_id ?? "";
       const history = histories.get(oracleId) ?? [];
-      history.push({ ...testCase, evidence_path: run.evidence_path, completed_at: run.completed_at });
+      history.push({
+        ...testCase,
+        evidence_path: run.evidence_path,
+        completed_at: run.completed_at,
+      });
       histories.set(oracleId, history);
     }
   }
@@ -1074,7 +1085,10 @@ function projectUtHistorySignalsForPlan(db: HarnessDb, planId: string, runs: Pro
     { metric: "oracle_coverage", value: historyValues.length > 0 ? 1 : 0, threshold: 1 },
     {
       metric: "plan_green_rate",
-      value: sortedRuns.length === 0 ? 0 : sortedRuns.filter((run) => run.exit_code === 0).length / sortedRuns.length,
+      value:
+        sortedRuns.length === 0
+          ? 0
+          : sortedRuns.filter((run) => run.exit_code === 0).length / sortedRuns.length,
       threshold: 1,
     },
     {
@@ -1199,8 +1213,9 @@ function projectUtDurationTrendSignals(input: {
       completed_at: item.completed_at,
       evidence_path: item.evidence_path,
     }))
-    .filter((item): item is { duration_ms: number; completed_at: string; evidence_path: string } =>
-      typeof item.duration_ms === "number" && item.duration_ms > 0,
+    .filter(
+      (item): item is { duration_ms: number; completed_at: string; evidence_path: string } =>
+        typeof item.duration_ms === "number" && item.duration_ms > 0,
     );
   for (const [durationIndex, item] of durationHistory.entries()) {
     const priorDurations = durationHistory
@@ -2053,11 +2068,11 @@ function projectRelationGraph(db: HarnessDb, graph: RelationGraphProjection | un
   }
 }
 
-function projectRelationEdgeForDependencyTable(edge: {
+function projectRelationEdgeForDependencyTable(edge: { from: string; to: string; kind: string }): {
   from: string;
   to: string;
   kind: string;
-}): { from: string; to: string; kind: string } {
+} {
   if (edge.kind === "derives-from") {
     return { from: edge.from, to: edge.to, kind: "references" };
   }
@@ -2335,7 +2350,10 @@ function projectCurrentImpactResults(
   const computedAt = nowIso();
   for (const root of result.changedNodes) {
     for (const action of result.actions) {
-      const id = stableId("impact-result", `working-tree:${root.id}:${action.kind}:${action.nodeId}`);
+      const id = stableId(
+        "impact-result",
+        `working-tree:${root.id}:${action.kind}:${action.nodeId}`,
+      );
       recordProjectionEvent(db, {
         table: "impact_results",
         id,

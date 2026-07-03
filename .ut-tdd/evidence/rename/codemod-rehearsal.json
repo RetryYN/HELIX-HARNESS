@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "identifier-rename-rehearsal.v1",
+  "planOnly": true,
+  "mustNotApply": true,
+  "writePolicy": "no-write",
+  "target": "helix",
+  "targetStateDir": ".helix",
+  "sourceCommand": "ut-tdd rename rehearsal --no-write --target helix --json",
+  "auditStatus": "blocked_pending_cutover_approval",
+  "renameMap": [
+    {
+      "from": "ut-tdd",
+      "to": "helix"
+    },
+    {
+      "from": ".ut-tdd",
+      "to": ".helix"
+    },
+    {
+      "from": "area=harness",
+      "to": "area=helix"
+    }
+  ],
+  "previewCategories": [
+    {
+      "category": "source_code",
+      "hits": 1038,
+      "files": 71
+    },
+    {
+      "category": "test_code",
+      "hits": 2056,
+      "files": 77
+    },
+    {
+      "category": "runtime_state",
+      "hits": 429,
+      "files": 99
+    },
+    {
+      "category": "adapter_config",
+      "hits": 173,
+      "files": 16
+    },
+    {
+      "category": "consumer_template",
+      "hits": 184,
+      "files": 39
+    },
+    {
+      "category": "plan_doc",
+      "hits": 1666,
+      "files": 343
+    },
+    {
+      "category": "design_doc",
+      "hits": 1569,
+      "files": 70
+    },
+    {
+      "category": "governance_doc",
+      "hits": 587,
+      "files": 37
+    },
+    {
+      "category": "distribution_surface",
+      "hits": 42,
+      "files": 4
+    },
+    {
+      "category": "other",
+      "hits": 1362,
+      "files": 86
+    }
+  ],
+  "previewCommands": [
+    {
+      "phase": "codemod-preview",
+      "command": "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
+      "description": "preview ut-tdd/.ut-tdd/area=harness -> helix/.helix/area=helix token changes without applying them",
+      "writesRepo": false,
+      "evidencePath": ".ut-tdd/evidence/rename/codemod-rehearsal.json"
+    },
+    {
+      "phase": "renamed-binary-smoke-preview",
+      "command": "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+      "description": "after approval, build the renamed binary on a non-destructive branch and run helix doctor before alias enablement",
+      "writesRepo": false,
+      "evidencePath": ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt"
+    }
+  ],
+  "blockedUntil": [
+    "cutover_decision_record approves the current cutoverSnapshot.snapshotId",
+    "action_binding_approval_record scopes actor/tool/target/params for irreversible rename",
+    "state-backup dry-run and restore drill evidence are recorded"
+  ]
+}

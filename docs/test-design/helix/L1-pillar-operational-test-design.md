@@ -16,6 +16,7 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 > OT-* ⇔ HBR/HNFR を **1:1** で立てる。ID は HELIX 名前空間 **HOT-** で harness の OT-01..47 と非衝突。
 > **PO（charter §3: L1 は人間承認）により PLAN-L1-06 Step 6 G-REQ.L1 re-freeze で対凍結済み**。
 > 実装状態は虚偽宣言を禁じる（NFR-08）: P2/P7 は **partial**（loop/memory architecture + 実 runtime bridge は green: PLAN-L7-175/176/177 で U-ORCH/U-MEM/BRIDGE oracle green。typed agent↔tool request/response registry core は PLAN-L7-213、loop effort-budget core は PLAN-L7-214、hosted/API preflight core は PLAN-L7-215 で green。ただし残 GAP: 全 agent rule/memory 一般化 / Glossary SSoT）。他柱を含む未実装/partial 能力は PLAN-L3-06 / PLAN-L4-51 で要求・block へ詳細化済みで、実装完了とは扱わない。
+> 本書上の `not-implemented` は runtime 実装未完了の状態を指し、要求・設計・テスト設計が未定義であることを意味しない。
 
 ## §0 量閉じ原則 (L1↔L14)
 

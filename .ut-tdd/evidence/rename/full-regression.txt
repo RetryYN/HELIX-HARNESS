@@ -1,0 +1,288 @@
+identifier-rename-full-regression.v1
+generated_at=2026-07-03T16:52:42+09:00
+head=7e1ab9c8475188d6bd3400ada501859b3484f3ab
+command=bun run test
+$ vitest run
+
+ RUN  v2.1.9 /home/tenni/HELIX-HARNESS
+
+ ✓ tests/right-arm-verification-strategy.test.ts (12 tests) 16ms
+ ✓ tests/vmodel-pair.test.ts (43 tests) 74ms
+ ✓ tests/frontmatter.test.ts (16 tests) 15ms
+ ✓ tests/relation-graph.test.ts (12 tests) 15ms
+ ✓ tests/outstanding.test.ts (28 tests) 49ms
+ ✓ tests/semantic-frontier-consistency.test.ts (10 tests) 75ms
+ ✓ tests/verification-profile.test.ts (33 tests) 35ms
+ ✓ tests/setup.test.ts (42 tests) 198ms
+ ✓ tests/descent-obligation.test.ts (14 tests) 212ms
+ ✓ tests/handover.test.ts (88 tests) 89ms
+ ✓ tests/orchestration/orchestration.test.ts (8 tests) 119ms
+(node:1772639) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/plan-lint.test.ts (38 tests) 114ms
+ ✓ tests/goal-evidence-audit.test.ts (8 tests) 224ms
+ ✓ tests/completion-decision-packet.test.ts (42 tests) 260ms
+ ✓ tests/cutover-readiness.test.ts (22 tests) 252ms
+ ✓ tests/session-log.test.ts (12 tests) 11ms
+ ✓ tests/agent-slots.test.ts (22 tests) 32ms
+(node:1772447) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/l0-l8-design-consistency-audit.test.ts (8 tests) 16ms
+ ✓ tests/workflow-contracts.test.ts (7 tests) 66ms
+ ✓ tests/runtime-adapter.test.ts (13 tests) 25ms
+ ✓ tests/backfill-pairing.test.ts (21 tests) 51ms
+ ✓ tests/action-binding-approval-readiness.test.ts (26 tests) 567ms
+   ✓ action-binding approval readiness > loads the current repo pending approval records 321ms
+ ✓ tests/review-evidence.test.ts (25 tests) 656ms
+   ✓ review-evidence lint (review 前置の機械強制、IMP-071) > U-REVIEW-006: 実 repo CI fail-close ガード — confirmed design/impl PLAN は全件 review_evidence あり (missing 0) 647ms
+ ✓ tests/work-guard.test.ts (21 tests) 130ms
+ ✓ tests/task-classify.test.ts (28 tests) 20ms
+ ✓ tests/document-export.test.ts (16 tests) 16ms
+ ✓ tests/legacy-adoption.test.ts (13 tests) 8ms
+ ✓ tests/codex-hook-adapter.test.ts (16 tests) 10ms
+ ✓ tests/forced-stop.test.ts (7 tests) 8ms
+ ✓ tests/forward-convergence.test.ts (26 tests) 12ms
+ ✓ tests/tier-router.test.ts (15 tests) 16ms
+(node:1773352) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/visualization-read-model.test.ts (2 tests) 28ms
+(node:1772490) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/token-tracker.test.ts (23 tests) 107ms
+ ✓ tests/upstream-adoption.test.ts (9 tests) 9ms
+ ✓ tests/g8-integration-workflow.test.ts (7 tests) 9ms
+ ✓ tests/team-run.test.ts (18 tests) 63ms
+(node:1772902) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/skill-recommend.test.ts (8 tests) 105ms
+ ✓ tests/design-elicitation.test.ts (10 tests) 16ms
+ ✓ tests/roadmap.test.ts (28 tests) 1186ms
+   ✓ roadmap park / program rollup (U-ROADMAP-019..022) > U-ROADMAP-024: real repo verification/cutover bands are covered by PLAN-M-00/M-01 647ms
+   ✓ analyzeL7FeaturePackCoverage (U-ROADMAP-026/027、L7 意味責務被覆) > U-ROADMAP-028: real repo L7 roadmap covers database/service/frontend/ui feature packs 525ms
+(node:1773147) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/guardrail-invariant-advisory.test.ts (3 tests) 48ms
+fatal: not a git repository (or any of the parent directories): .git
+ ✓ tests/runtime-portability.test.ts (8 tests) 108ms
+ ✓ tests/s4-decision-readiness.test.ts (29 tests) 1233ms
+   ✓ S4 decision readiness > exposes live S3 pending PoC work through the CLI S4 decision packet surface 1057ms
+(node:1773266) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/model-evaluation.test.ts (8 tests) 154ms
+ ✓ tests/attempt-escalation.test.ts (14 tests) 9ms
+ ✓ tests/relation-graph-loader.test.ts (4 tests) 1265ms
+   ✓ relation graph real-repo loader (PLAN-L7-142 stale-edge fence) > has zero stale-edge findings through the real loader and materializes requirement nodes 1213ms
+ ✓ tests/fr-roadmap-coverage.test.ts (6 tests) 9ms
+ ✓ tests/readability.test.ts (12 tests) 109ms
+ ✓ tests/l6-fr-coverage.test.ts (7 tests) 96ms
+(node:1773565) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/poc-evaluation.test.ts (7 tests) 85ms
+ ✓ tests/change-impact.test.ts (14 tests) 29ms
+ ✓ tests/skill-evaluation.test.ts (6 tests) 83ms
+(node:1773579) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/search-feedback.test.ts (4 tests) 69ms
+(node:1773775) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1773890) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/feedback-surface.test.ts (7 tests) 67ms
+ ✓ tests/gate-review-tier.test.ts (10 tests) 11ms
+ ✓ tests/screen-impl-pair-freeze.test.ts (11 tests) 34ms
+ ✓ tests/l6-completion.test.ts (4 tests) 9ms
+ ✓ tests/tool-adapter.test.ts (10 tests) 27ms
+ ✓ tests/cycle-p4-verification.test.ts (5 tests) 13ms
+(node:1773989) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/readiness-guardrail.test.ts (4 tests) 52ms
+ ✓ tests/sub-doc-catalog-drift.test.ts (10 tests) 20ms
+ ✓ tests/run-debug.test.ts (6 tests) 8ms
+ ✓ tests/frontend-design-coverage.test.ts (8 tests) 15ms
+ ✓ tests/fr-registry-audit.test.ts (12 tests) 18ms
+ ✓ tests/improvement-backlog.test.ts (10 tests) 7ms
+ ✓ tests/memory/memory.test.ts (3 tests) 19ms
+ ✓ tests/asset-drift.test.ts (8 tests) 29ms
+ ✓ tests/lint-wiring.test.ts (8 tests) 62ms
+ ✓ tests/green-command-digest.test.ts (7 tests) 9ms
+ ✓ tests/scrum-reverse.test.ts (9 tests) 48ms
+ ✓ tests/gate-static.test.ts (14 tests) 782ms
+   ✓ static gates > U-GATE-006: reports invalid checklist YAML as a gate failure instead of crashing 620ms
+ ✓ tests/memory/memory-store.test.ts (5 tests) 33ms
+ ✓ tests/review-guard.test.ts (12 tests) 10ms
+ ✓ tests/model-id-ssot.test.ts (5 tests) 8ms
+ ✓ tests/feedback-log.test.ts (8 tests) 11ms
+ ✓ tests/test-report-parser.test.ts (3 tests) 10ms
+ ✓ tests/hosted-preflight.test.ts (6 tests) 653ms
+   ✓ HC-AC hosted/API preflight > HU-PILLAR-P2-03: guard preflight CLI exposes hosted preflight evidence in JSON 645ms
+ ✓ tests/proposal-document-coverage.test.ts (4 tests) 34ms
+ ✓ tests/plan-artifact-existence.test.ts (12 tests) 68ms
+ ✓ tests/merged-plan-status.test.ts (14 tests) 80ms
+ ✓ tests/module-drift.test.ts (7 tests) 12ms
+ ✓ tests/team-schema.test.ts (8 tests) 16ms
+ ✓ tests/plan-completion-drift.test.ts (14 tests) 40ms
+ ✓ tests/dependency-drift.test.ts (6 tests) 46ms
+ ✓ tests/g3-trace.test.ts (11 tests) 9ms
+ ✓ tests/tool-contract.test.ts (6 tests) 9ms
+ ✓ tests/project-hook.test.ts (4 tests) 9ms
+ ✓ tests/agent-guard.test.ts (21 tests) 1774ms
+   ✓ evaluateAgentGuard > exposes ut-tdd hook agent-guard as a blocking CLI hook 1765ms
+ ✓ tests/plan-id-naming.test.ts (4 tests) 81ms
+(node:1774820) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/asset-catalog.test.ts (2 tests) 77ms
+ ✓ tests/propagation.test.ts (6 tests) 16ms
+ ✓ tests/telemetry-closure.test.ts (4 tests) 12ms
+ ✓ tests/poc-s3-s4-boundary.test.ts (3 tests) 9ms
+ ✓ tests/team-launch-policy.test.ts (6 tests) 11ms
+ ✓ tests/gate-confirm.test.ts (8 tests) 8ms
+ ✓ tests/handover-completion-wording.test.ts (3 tests) 14ms
+ ✓ tests/ddd-tdd-rules.test.ts (12 tests) 1626ms
+   ✓ U-DDDTDD DDD/TDD strictness lint > real repo guard has no DDD/TDD strictness violations 1595ms
+ ✓ tests/web.test.ts (6 tests) 791ms
+   ✓ component-derived web UI registry (PLAN-L7-141) > exposes a CLI render surface for the static read-only UI 720ms
+ ✓ tests/rule-drift.test.ts (5 tests) 24ms
+ ✓ tests/orchestration/loop-bridge.test.ts (2 tests) 1957ms
+   ✓ P2 orchestration runtime bridge (PLAN-L7-177) > U-ORCH-BRIDGE-02: loop run drives ticks until canResume false and dry-run does not dispatch 1949ms
+ ✓ tests/branch-audit.test.ts (3 tests) 21ms
+ ✓ tests/plan-supersession.test.ts (9 tests) 28ms
+ ✓ tests/placeholder-deps.test.ts (6 tests) 6ms
+ ✓ tests/schema.test.ts (9 tests) 14ms
+ ✓ tests/verb-classify.test.ts (6 tests) 11ms
+ ✓ tests/entity-coverage.test.ts (4 tests) 9ms
+ ✓ tests/drive-model-passage.test.ts (4 tests) 10ms
+ ✓ tests/sub-doc-section-structure.test.ts (8 tests) 1052ms
+   ✓ loadSubDocSectionStructureInput real repo (U-SDSS-008) > U-SDSS-008: 実 repo に標準成果物 PLAN は無い (subject 0) ゆえ ok (downstream 起票時に発火) 1027ms
+ ✓ tests/design-language.test.ts (5 tests) 265ms
+(node:1773265) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/state-db.test.ts (12 tests) 2601ms
+   ✓ IT-DB-01: db status / rebuild maintenance > ensureHarnessSchema が schema を適用し harnessDbStatus が報告する (rebuild 冪等) 2513ms
+ ✓ tests/g1-trace.test.ts (5 tests) 12ms
+ ✓ tests/doc-consistency.test.ts (5 tests) 6ms
+ ✓ tests/provider-handover.test.ts (4 tests) 8ms
+ ✓ tests/issue-queue.test.ts (2 tests) 35ms
+(node:1775254) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/git-command-guard.test.ts (6 tests) 1506ms
+   ✓ git-command-guard > U-GITGUARD-002: exposes a blocking CLI hook surface 1340ms
+ ✓ tests/branch-kind.test.ts (5 tests) 6ms
+ ✓ tests/rule-automation-closure.test.ts (4 tests) 8ms
+ ✓ tests/impl-plan-trace.test.ts (5 tests) 29ms
+ ✓ tests/right-arm-gate-planning.test.ts (2 tests) 10ms
+ ✓ tests/team-model-policy.test.ts (5 tests) 7ms
+ ✓ tests/source-ledger-freshness.test.ts (2 tests) 4ms
+ ✓ tests/vmodel-injection.test.ts (4 tests) 11ms
+ ✓ tests/tracked-canonical.test.ts (5 tests) 12ms
+ ✓ tests/oracle-test-trace.test.ts (5 tests) 21ms
+ ✓ tests/db-projection-coverage.test.ts (2 tests) 8ms
+ ✓ tests/cli.test.ts (1 test) 4ms
+ ✓ tests/quality-audit.test.ts (2 tests) 11ms
+ ✓ tests/skill-assignment.test.ts (3 tests) 60ms
+ ✓ tests/plan-body-substance.test.ts (10 tests) 20ms
+ ✓ tests/coding-rules.test.ts (10 tests) 2074ms
+   ✓ U-CODE coding-rules lint > real repo guard has no coding-rule violations 2041ms
+ ✓ tests/runtime.test.ts (9 tests) 2264ms
+   ✓ detectMode (requirements_v1.2 §7.1) > returns one of the 4 valid modes 1381ms
+   ✓ detectMode (requirements_v1.2 §7.1) > hybrid iff both runtimes available 879ms
+ ✓ tests/version-up-readiness.test.ts (47 tests) 5365ms
+   ✓ version-up-readiness > exposes live parked work through the CLI activation packet surface 3181ms
+   ✓ version-up-readiness > exposes version-up dry-run through the CLI as JSON 973ms
+   ✓ version-up-readiness > can fail version-up dry-run on blocked plans without changing the default evidence exit 647ms
+   ✓ version-up-readiness > resolves Pack release tags through an explicit remote in the CLI dry-run 367ms
+ ✓ tests/identifier-rename.test.ts (25 tests) 5860ms
+   ✓ PLAN-M-02 identifier rename blast-radius audit > exposes rename audit as a CLI JSON surface 931ms
+   ✓ PLAN-M-02 identifier rename blast-radius audit > exposes rename plan as a CLI JSON surface 2872ms
+   ✓ PLAN-M-02 identifier rename blast-radius audit > exposes rename evidence-pack as a CLI surface with explicit write mode 1665ms
+(node:1773739) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/drive-db-registration.test.ts (6 tests) 5841ms
+   ✓ drive DB registration lint > U-DDBREG-003: current harness.db has automatic registration evidence 5818ms
+(node:1774966) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/db-projection-ingestion.test.ts (4 tests) 4453ms
+   ✓ db projection ingestion detector > passes when rebuildHarnessDb auto-populates catalog and graph projection tables 4451ms
+ ✓ tests/runtime-hook-entrypoints.test.ts (7 tests) 7805ms
+   ✓ runtime hook entrypoints > shared CLI session/hook commands record a PLAN digest in a temp repo 2073ms
+   ✓ runtime hook entrypoints > ut-tdd codex --execute records the same session lifecycle through the adapter wrapper 2344ms
+   ✓ runtime hook entrypoints > ut-tdd codex --task-file feeds file content through the same adapter wrapper 1478ms
+   ✓ runtime hook entrypoints > ut-tdd codex --plan records wrapper lifecycle without forwarding plan flags to Codex 1155ms
+   ✓ runtime hook entrypoints > ut-tdd claude --execute records lifecycle without legacy raw-wrapper env 423ms
+   ✓ runtime hook entrypoints > ut-tdd team run --execute records lifecycle for each provider member 329ms
+(node:1775703) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/review-green-command-projection.test.ts (1 test) 4304ms
+   ✓ review green command projection > projects review_evidence.green_commands into test_runs 4303ms
+ ✓ tests/pair-agent.test.ts (29 tests) 9880ms
+   ✓ P2/P3 pair-agent TDD programming route > exposes the pair-agent plan through the CLI as JSON 2557ms
+   ✓ P2/P3 pair-agent TDD programming route > exposes explicit difficulty through the CLI plan surface 1605ms
+   ✓ P2/P3 pair-agent TDD programming route > rejects invalid CLI difficulty values 322ms
+   ✓ P2/P3 pair-agent TDD programming route > rejects non-integer CLI plan max fix cycle values 864ms
+   ✓ P2/P3 pair-agent TDD programming route > persists pair-agent plan evidence when requested 1134ms
+   ✓ P2/P3 pair-agent TDD programming route > prints pair-agent adapter plans in text mode without invalid stdout encoding 1086ms
+   ✓ P2/P3 pair-agent TDD programming route > exposes pair-agent run as a dry-run CLI surface 1012ms
+   ✓ P2/P3 pair-agent TDD programming route > persists pair-agent run evidence when requested 1018ms
+(node:1772275) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/projection-writer.test.ts (25 tests) 20032ms
+   ✓ IT-DB-01/02: harness.db projection writer > rebuildHarnessDb is atomic: a mid-rebuild failure rolls back, leaving the prior projection intact 6558ms
+   ✓ IT-DB-01/02: harness.db projection writer > auto-populates relation, profile, document export, and test catalog projections on rebuild 3386ms
+   ✓ IT-DB-01/02: harness.db projection writer > projects artifact progress rows as yellow until linked tests have passing runs 2228ms
+   ✓ IT-DB-01/02: harness.db projection writer > IMP-140: projects 15 screens and FR/BR→screen trace from doc source on rebuild 3287ms
+   ✓ IT-DB-01/02: harness.db projection writer > rebuildHarnessDb deterministically projects plans and Phase3 outputs without source mutation 4205ms
+ ✓ tests/distribution-acceptance.test.ts (1 test) 26733ms
+   ✓ clean distribution local acceptance smoke > U-SETUP-013 / AT-DIST-001: clean artifact installs and exposes the same core CLI surfaces 26732ms
+ ✓ tests/cli-surface.test.ts (42 tests) 43008ms
+   ✓ L7 CLI surface closure > keeps CLI --version bound to package.json version 341ms
+   ✓ L7 CLI surface closure > keeps repo wrapper decision packet commands aligned with live source 1049ms
+   ✓ L7 CLI surface closure > U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface 3949ms
+   ✓ L7 CLI surface closure > exposes completion decision packet templates through handover status JSON 941ms
+   ✓ L7 CLI surface closure > exposes plan complete as the completed handover lifecycle entrypoint 588ms
+   ✓ L7 CLI surface closure > exposes whole-program completion readiness on status surfaces 3316ms
+   ✓ L7 CLI surface closure > U-OUTSTANDING-012: exposes active objective progress as a percentage on the live status surface 2038ms
+   ✓ L7 CLI surface closure > exposes a completion decision packet for outstanding PO and approval blockers 516ms
+   ✓ L7 CLI surface closure > exposes action-binding approval packets as a non-destructive planning surface 1340ms
+   ✓ L7 CLI surface closure > fails scoped decision packet commands closed when the requested PLAN is not present 1236ms
+   ✓ L7 CLI surface closure > exposes HELIX project setup for VSCode-ready new projects 2250ms
+   ✓ L7 CLI surface closure > exposes HELIX project setup package-root evidence for monorepo consumers 1136ms
+   ✓ L7 CLI surface closure > exposes skill suggest as a JSON command surface 4072ms
+   ✓ L7 CLI surface closure > exposes skill injection as a provider-neutral JSON manifest 3662ms
+   ✓ L7 CLI surface closure > passes plan skill injection through task route adapter plans 4111ms
+   ✓ L7 CLI surface closure > keeps proposal advisory lanes aligned with executable task routing 1199ms
+   ✓ L7 CLI surface closure > exports relation graph diagrams through mermaid, dot, and d2 CLI formats without silent fallback 1489ms
+   ✓ L7 CLI surface closure > exposes progress snapshot as a deterministic visualization JSON surface 831ms
+   ✓ L7 CLI surface closure > exposes clean distribution planning with preflight, rollback, and contract metadata 922ms
+   ✓ L7 CLI surface closure > blocks distribution planning when the requested tag is not bound to package version 943ms
+   ✓ L7 CLI surface closure > blocks distribution planning when the bare ut-tdd CLI is not available 953ms
+   ✓ L7 CLI surface closure > exposes telemetry scan as a JSON command surface without provider CLI execution 792ms
+   ✓ L7 CLI surface closure > appends L7.5 RUN & Debug runtime verification logs 491ms
+   ✓ L7 CLI surface closure > exposes quality audit as a JSON command surface 304ms
+(node:1772273) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/doctor.test.ts (74 tests) 167685ms
+   ✓ checkHandover (doctor handover staleness surface) > runDoctor fails closed when blocked handover pointer lacks completionDecisionPacket 1518ms
+   ✓ checkHandoverDisciplineMessages > runDoctor surfaces handover discipline as warning-only 900ms
+   ✓ runDoctor > U-OUTSTANDING-003: completion decision doctor bridge accepts the current live dedicated packets 347ms
+   ✓ runDoctor > ok=true includes handover and agent-slots surfaces as warnings 848ms
+   ✓ runDoctor > includes asset-drift hard gate in doctor output 11457ms
+   ✓ runDoctor > includes skill-assignment hard gate in doctor output 10943ms
+   ✓ runDoctor > invokes the 4 newly-wired lint audits + lint-wiring meta-gate in doctor output 10624ms
+   ✓ runDoctor > includes branch-kind-check in doctor output 10226ms
+   ✓ runDoctor > includes right-arm verification strategy hard gate in doctor output 10058ms
+   ✓ runDoctor > includes version-up readiness hard gate in doctor output 10054ms
+   ✓ runDoctor > includes action-binding approval readiness hard gate in doctor output 10098ms
+   ✓ runDoctor > includes S4 decision readiness hard gate in doctor output 10139ms
+   ✓ runDoctor > includes cutover readiness hard gate in doctor output 10123ms
+   ✓ runDoctor > includes objective evidence audit hard gate in doctor output 10019ms
+   ✓ runDoctor > includes semantic frontier consistency hard gate in doctor output 10080ms
+   ✓ runDoctor > includes G1/G3 trace gates in doctor output 10150ms
+   ✓ runDoctor > hard-gates PLAN governance once repo frontmatter debt is closed 10189ms
+   ✓ runDoctor > surfaces dependency-drift and regression expansion instead of scaffold stub 9837ms
+   ✓ runDoctor > surfaces roadmap-rollup as a hard gate summary line 9719ms
+   ✓ runDoctor > surfaces Cycle P4 closure audit as a hard gate 9795ms
+
+ Test Files  141 passed (141)
+      Tests  1695 passed (1695)
+   Start at  16:52:42
+   Duration  171.34s (transform 18.79s, setup 0ms, collect 54.11s, tests 327.99s, environment 40ms, prepare 11.70s)
+

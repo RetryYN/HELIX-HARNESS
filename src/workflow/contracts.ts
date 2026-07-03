@@ -314,9 +314,7 @@ type UtOracleHistoryItem = {
   evidence_path: string;
 };
 
-function buildUtOracleHistories(
-  runs: TestRunEvidenceInput[],
-): Map<string, UtOracleHistoryItem[]> {
+function buildUtOracleHistories(runs: TestRunEvidenceInput[]): Map<string, UtOracleHistoryItem[]> {
   const histories = new Map<string, UtOracleHistoryItem[]>();
   for (const run of [...runs].sort((a, b) =>
     `${a.completed_at}:${a.started_at}`.localeCompare(`${b.completed_at}:${b.started_at}`),
@@ -531,11 +529,14 @@ function projectUtDurationTrendSignals(input: {
       completed_at: item.completed_at,
       evidence_path: item.evidence_path,
     }))
-    .filter((item): item is { duration_ms: number; completed_at: string; evidence_path: string } =>
-      typeof item.duration_ms === "number" && item.duration_ms > 0,
+    .filter(
+      (item): item is { duration_ms: number; completed_at: string; evidence_path: string } =>
+        typeof item.duration_ms === "number" && item.duration_ms > 0,
     );
   for (const [durationIndex, item] of durationHistory.entries()) {
-    const baseline = median(durationHistory.slice(0, durationIndex).map((prior) => prior.duration_ms));
+    const baseline = median(
+      durationHistory.slice(0, durationIndex).map((prior) => prior.duration_ms),
+    );
     const ratio = baseline > 0 ? item.duration_ms / baseline : 0;
     const signalId = stableId(
       "ut-duration-trend",

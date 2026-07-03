@@ -1415,9 +1415,7 @@ function humanReviewRecordFields(
   );
 }
 
-function humanReviewSafetyFields(
-  summaries: CompletionDecisionSupportingPacketSummary[],
-): string[] {
+function humanReviewSafetyFields(summaries: CompletionDecisionSupportingPacketSummary[]): string[] {
   return summaries.flatMap((summary) =>
     summary.requiredReviewFields
       .filter((field) => HUMAN_REVIEW_SAFETY_FIELD_SUFFIXES.includes(field))

@@ -259,9 +259,7 @@ describe("L7 workflow contract implementations", () => {
     });
 
     expect(signals.signals.find((s) => s.signal_type === "flake_score")?.score).toBe(1 / 3);
-    expect(signals.signals.find((s) => s.signal_type === "duration_regression")?.score).toBe(
-      1 / 3,
-    );
+    expect(signals.signals.find((s) => s.signal_type === "duration_regression")?.score).toBe(1 / 3);
   });
 
   it("projects UT history flake and duration signals into harness.db", () => {

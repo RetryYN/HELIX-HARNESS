@@ -457,13 +457,19 @@ export function analyzeCompletionDecisionPacket(
         decision.requiredRecords,
         HUMAN_REVIEW_FRESHNESS_FIELDS,
       );
-      const expectedSafetyReviewFields = humanReviewSafetyFields(decision.supportingPacketSummaries);
+      const expectedSafetyReviewFields = humanReviewSafetyFields(
+        decision.supportingPacketSummaries,
+      );
       const bundleChecks: Array<[string, unknown, unknown]> = [
         ["order", bundleItem.order, decisionIndex + 1],
         ["planId", bundleItem.planId, decision.planId],
         ["decisionKind", bundleItem.decisionKind, decision.decisionKind],
         ["blockerReason", bundleItem.blockerReason, decision.blockerReason],
-        ["scopedPrimaryPacketCommand", bundleItem.scopedPrimaryPacketCommand, decision.scopedDecisionPacketCommand],
+        [
+          "scopedPrimaryPacketCommand",
+          bundleItem.scopedPrimaryPacketCommand,
+          decision.scopedDecisionPacketCommand,
+        ],
         [
           "runnableScopedPrimaryPacketCommand",
           bundleItem.runnableScopedPrimaryPacketCommand,

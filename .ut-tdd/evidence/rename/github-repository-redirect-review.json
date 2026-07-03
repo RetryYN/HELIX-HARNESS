@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "identifier-rename-github-repository-redirect-review.v1",
+  "sourceCommand": "ut-tdd rename evidence-pack --write --json",
+  "planOnly": true,
+  "mustNotApply": true,
+  "appliesRemote": false,
+  "source": "GitHub repository rename",
+  "sourceUrl": "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+  "verificationRow": {
+    "phase": "repository-redirect-review",
+    "command": "bun run src/cli.ts rename plan --json",
+    "writePolicy": "no-write",
+    "expected": "GitHub repository rename redirect behavior, Pages exception, git remote update, and distribution reference impact are reviewed before external repo/package rename",
+    "evidence": "rename plan JSON attached to cutover approval record with GitHub repository rename source metadata",
+    "source": "GitHub repository rename",
+    "sourceUrl": "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+    "sourceCheckedAt": "2026-07-03",
+    "latestOfficialStatus": "official GitHub docs state repository rename redirects repository information and git operations while project site URLs are an exception",
+    "sourceStatusDelta": "none; repository redirect behavior and Pages exception remain explicit cutover review inputs",
+    "adoptionDecision": "adopt-live-docs-for-repository-rename-redirect-review",
+    "adoptionDecisionDelta": "none; GitHub rename redirects do not authorize HELIX identifier/state cutover by themselves",
+    "workflowRouteImpact": "none; repo remote/package/docs distribution references must be reviewed before irreversible cutover approval"
+  },
+  "reviewedFacts": [
+    "repository information and git operations are redirected after rename",
+    "GitHub Pages project site URLs are an explicit exception",
+    "actions hosted from renamed repositories are not redirected",
+    "local clones should update origin with git remote set-url"
+  ]
+}
