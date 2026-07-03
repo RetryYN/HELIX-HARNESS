@@ -5,7 +5,7 @@
  */
 
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import {
   checkHandoverBypass,
@@ -1807,6 +1807,16 @@ function consumerFile(deps: DoctorDeps, relativePath: string): string | null {
   return deps.readText(join(deps.repoRoot, ...relativePath.split("/")));
 }
 
+function consumerPackageFile(
+  deps: DoctorDeps,
+  packageRoot: string | undefined,
+  relativePath: string,
+): string | null {
+  const root = packageRoot && packageRoot.trim().length > 0 ? packageRoot : deps.repoRoot;
+  const absoluteRoot = isAbsolute(root) ? root : join(deps.repoRoot, ...root.split("/"));
+  return deps.readText(join(absoluteRoot, ...relativePath.split("/")));
+}
+
 function consumerHasFile(deps: DoctorDeps, relativePath: string): boolean {
   return consumerFile(deps, relativePath) !== null;
 }
@@ -1970,6 +1980,11 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const projectSetupState = recordValue(consumerJson(deps, ".ut-tdd/state/project-setup.json"));
+  const projectSetupWorkspace = recordValue(projectSetupState?.workspace);
+  const projectSetupPackageRoot =
+    typeof projectSetupWorkspace?.packageRoot === "string"
+      ? projectSetupWorkspace.packageRoot
+      : deps.repoRoot;
   const projectSetupObjectiveBoundary = recordValue(projectSetupState?.objectiveBoundary);
   const projectSetupPostWorkflow = recordValue(projectSetupState?.postSetupWorkflow);
   const projectSetupVerificationCommands = stringList(
@@ -2060,6 +2075,42 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     projectSetupStateOk
       ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false; first-run matrix persisted)"
       : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "ut-tdd completion review-bundle --json"} completionReviewSemanticDigest=${completionReviewSemanticDigestOk} readinessOk=${String(projectSetupPostWorkflow?.readinessOk ?? "")} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
+  );
+
+  const consumerPackageJson = recordValue(
+    (() => {
+      const raw = consumerPackageFile(deps, projectSetupPackageRoot, "package.json");
+      if (raw === null) return null;
+      try {
+        return JSON.parse(raw) as unknown;
+      } catch {
+        return null;
+      }
+    })(),
+  );
+  const consumerPackageScripts = recordValue(consumerPackageJson?.scripts);
+  const missingPackageReadiness = [
+    ...(consumerPackageJson ? [] : ["consumer_readiness:package-json"]),
+    ...[
+      ["ut-tdd", "consumer_readiness:ut-tdd-package-script"],
+      ["typecheck", "consumer_readiness:typecheck-package-script"],
+      ["test", "consumer_readiness:test-package-script"],
+    ]
+      .filter(([script]) => {
+        const value = consumerPackageScripts?.[script];
+        return typeof value !== "string" || value.trim().length === 0;
+      })
+      .map(([, violation]) => violation),
+    ...(consumerPackageFile(deps, projectSetupPackageRoot, "bun.lock") !== null ||
+    consumerPackageFile(deps, projectSetupPackageRoot, "bun.lockb") !== null
+      ? []
+      : ["consumer_readiness:bun-lockfile"]),
+  ];
+  const consumerPackagePreflightOk = missingPackageReadiness.length === 0;
+  messages.push(
+    consumerPackagePreflightOk
+      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=ut-tdd,typecheck,test, lockfile=bun.lock|bun.lockb)`
+      : `doctor: consumer-package-preflight - violation packageRoot=${projectSetupPackageRoot} missing=${missingPackageReadiness.join(",")}`,
   );
 
   const claudeSettings = consumerFile(deps, ".claude/settings.json") ?? "";
@@ -2274,6 +2325,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     prematureHelixState.length === 0 &&
     prematureHelixAlias.length === 0 &&
     projectSetupStateOk &&
+    consumerPackagePreflightOk &&
     claudeOk &&
     codexOk &&
     claudeSurfaceOk &&

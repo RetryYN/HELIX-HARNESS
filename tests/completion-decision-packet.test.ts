@@ -600,6 +600,14 @@ describe("completion decision packet lint", () => {
         "relatedDecisionPackets.scopedCommand",
       ]),
     );
+    expect(renameDecisionPacket.humanReviewBundle.items[0].safetyReviewFields).toEqual(
+      expect.arrayContaining([
+        "identifier-rename-cutover-plan.v1.mustNotApply",
+        "identifier-rename-cutover-plan.v1.applyAuthorized",
+        "identifier-rename-approval-draft.v1.mustNotApply",
+        "identifier-rename-approval-draft.v1.applyAuthorized",
+      ]),
+    );
   });
 
   it("fails completion packets without the top-level schema version", () => {

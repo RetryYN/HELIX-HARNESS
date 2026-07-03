@@ -165,8 +165,10 @@ const HUMAN_REVIEW_FRESHNESS_FIELDS = new Set([
 const HUMAN_REVIEW_SAFETY_FIELD_SUFFIXES = [
   "planOnly",
   "mustNotDecide",
+  "mustNotApply",
   "decisionCommandAvailable",
   "decisionAllowed",
+  "applyAuthorized",
   "mustNotApprove",
   "approvalCommandAvailable",
   "approvalAllowed",

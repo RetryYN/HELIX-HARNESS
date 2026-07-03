@@ -399,6 +399,18 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "}",
     ].join("\n"),
     ".codex/config.toml": "[features]\nhooks = true\n",
+    "package.json": JSON.stringify({
+      name: "consumer",
+      scripts: {
+        "ut-tdd": "ut-tdd",
+        typecheck: "tsc --noEmit",
+        test: "vitest",
+      },
+      devDependencies: {
+        "ut-tdd": "workspace:*",
+      },
+    }),
+    "bun.lock": "",
     ".codex/hooks.json": [
       "{",
       '  "hooks": {',
@@ -638,6 +650,76 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-claude-surface - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-team-run-surface - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-project-setup-state - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-package-preflight - OK")).toBe(true);
+  });
+
+  it("fails closed when saved setup state is ready but package.json is missing", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          "package.json": null,
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-package-preflight - violation",
+        "consumer_readiness:package-json",
+      ),
+    ).toBe(true);
+  });
+
+  it("fails closed when saved setup state is ready but package scripts drift", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          "package.json": JSON.stringify({
+            name: "consumer",
+            scripts: {
+              "ut-tdd": "ut-tdd",
+            },
+          }),
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-package-preflight - violation",
+        "consumer_readiness:typecheck-package-script",
+      ),
+    ).toBe(true);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-package-preflight - violation",
+        "consumer_readiness:test-package-script",
+      ),
+    ).toBe(true);
+  });
+
+  it("fails closed when saved setup state is ready but the Bun lockfile is missing", () => {
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          "bun.lock": null,
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-package-preflight - violation",
+        "consumer_readiness:bun-lockfile",
+      ),
+    ).toBe(true);
   });
 
   it("fails closed when setup state loses the completion boundary", () => {
