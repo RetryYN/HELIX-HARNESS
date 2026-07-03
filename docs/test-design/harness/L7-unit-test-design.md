@@ -984,3 +984,10 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-VERSIONUP-SEC-001 | `buildVersionUpActivationPacket` / `buildVersionUpSecurityChecklistPacket` | `securityChecklistPacket.securityChecks[]` は `requiredEvidence` だけでなく `status` / `evidence` / `reason` を持つ。concrete locator 未接続の row は `pending_evidence` として公開され、`requiredEvidence` は要求であって実証済み evidence ではない。 |
 | U-VERSIONUP-SEC-002 | `versionUpSecurityChecklistSourceViolations` | `sourceUrl` / `sourceCheckedAt` 等の source metadata 欠落に加え、`evidence` / `reason` の空・placeholder、または `status=present` なのに concrete locator がない row を fail-close する。`pending_evidence` は parked activation の正当な未完了状態として表現される。 |
 | U-VERSIONUP-SEC-003 | `VersionUpActivationSnapshot.evidenceDigest` / supporting packet summary | activation snapshot の evidence digest は security checklist row の `status` / `evidence` / `reason` / source metadata を含む。completion/status の `requiredReviewFields[]` は `securityChecklistPacket.securityChecks.status` / `.evidence` / `.reason` を列挙し、承認者が security evidence の実証状態を review surface から辿れる。 |
+
+## PLAN-L7-289 version-up Cloud Deploy source ledger 追補
+
+| U-ID | Target | Oracle |
+|---|---|---|
+| U-VERSIONUP-SOURCE-007 | `analyzeVersionUpReadiness` | version-up mode doc が Google Cloud Deploy の deployment verification / canary / rollback を比較根拠として使う場合、`Version-up source ledger` table に `Google Cloud Deploy verification` / `Google Cloud Deploy canary` / `Google Cloud Deploy rollback` の 3 行が必須。本文 prose だけに残って table row が無い場合は `missingSourceLedgerRows` で fail-close する。 |
+| U-VERSIONUP-SOURCE-008 | `EXPECTED_SOURCE_LEDGER_BINDINGS` | Google Cloud Deploy rollback row は `https://docs.cloud.google.com/deploy/docs/roll-back` と `rollback_plan` impact を持つ。旧 URL や field impact 欠落は source ledger drift として fail-close し、version-up activation の rollback 比較根拠を自由文に戻さない。 |

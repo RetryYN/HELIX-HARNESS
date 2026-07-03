@@ -359,6 +359,9 @@ const MODE_DOC_MARKERS = [
   "GitHub webhook HMAC SHA-256",
   "OWASP Web Security Testing Guide",
   "SLSA Provenance",
+  "Google Cloud Deploy verification",
+  "Google Cloud Deploy canary",
+  "Google Cloud Deploy rollback",
   "external_rehearsal_plan",
   "cost_guardrails",
   "activation_provenance_requirements",
@@ -572,6 +575,9 @@ const REQUIRED_SOURCE_LEDGER_ROWS = [
   "GitHub webhook HMAC SHA-256",
   "OWASP Web Security Testing Guide",
   "SLSA Provenance",
+  "Google Cloud Deploy verification",
+  "Google Cloud Deploy canary",
+  "Google Cloud Deploy rollback",
 ] as const;
 
 const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
@@ -674,6 +680,18 @@ const EXPECTED_SOURCE_LEDGER_BINDINGS: Record<
   "SLSA Provenance": {
     urls: ["https://slsa.dev/spec/v1.2/provenance"],
     fieldImpacts: ["activation_provenance_requirements", "dry_run_evidence", "audit_record"],
+  },
+  "Google Cloud Deploy verification": {
+    urls: ["https://docs.cloud.google.com/deploy/docs/verify-deployment"],
+    fieldImpacts: ["activationVerificationCommandMatrix", "external_rehearsal_plan"],
+  },
+  "Google Cloud Deploy canary": {
+    urls: ["https://docs.cloud.google.com/deploy/docs/deployment-strategies/canary"],
+    fieldImpacts: ["activationVerificationCommandMatrix", "dry_run_plan"],
+  },
+  "Google Cloud Deploy rollback": {
+    urls: ["https://docs.cloud.google.com/deploy/docs/roll-back"],
+    fieldImpacts: ["activationVerificationCommandMatrix", "rollback_plan"],
   },
 };
 

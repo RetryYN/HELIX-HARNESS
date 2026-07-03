@@ -126,6 +126,9 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "GitHub webhook HMAC SHA-256",
       "OWASP Web Security Testing Guide",
       "SLSA Provenance",
+      "Google Cloud Deploy verification",
+      "Google Cloud Deploy canary",
+      "Google Cloud Deploy rollback",
       "external_rehearsal_plan",
       "cost_guardrails",
       "activation_provenance_requirements",
@@ -165,6 +168,9 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "| GitHub webhook HMAC SHA-256 | https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries | live GitHub docs | live official GitHub docs | adopt-live-docs-for-webhook-signature | webhook authenticity rehearsal | external_rehearsal_plan webhook_signature_check dry_run_plan |",
       "| OWASP Web Security Testing Guide | https://owasp.org/www-project-web-security-testing-guide/stable/ / https://owasp.org/www-project-web-security-testing-guide/latest/ | stable WSTG baseline + latest volatility watch | stable current; latest may change frequently | adopt-stable-wstg-baseline-track-latest-volatility | security testing checklist for access-control / input / secret exposure surfaces | external_rehearsal_plan dry_run_plan activation_provenance_requirements |",
       "| SLSA Provenance | https://slsa.dev/spec/v1.2/provenance | SLSA Provenance v1.2 | current SLSA v1.2 provenance specification | adopt-v1.2-for-activation-artifact-provenance | activation artifact provenance | activation_provenance_requirements dry_run_evidence audit_record |",
+      "| Google Cloud Deploy verification | https://docs.cloud.google.com/deploy/docs/verify-deployment | live Google Cloud Deploy docs | live official Google Cloud docs | adopt-live-docs-for-deployment-verification-shape | post-deploy verification comparison source | activationVerificationCommandMatrix external_rehearsal_plan |",
+      "| Google Cloud Deploy canary | https://docs.cloud.google.com/deploy/docs/deployment-strategies/canary | live Google Cloud Deploy docs | live official Google Cloud docs | adopt-live-docs-for-progressive-rollout-comparison | canary/progressive rollout comparison source | activationVerificationCommandMatrix dry_run_plan |",
+      "| Google Cloud Deploy rollback | https://docs.cloud.google.com/deploy/docs/roll-back | live Google Cloud Deploy docs | live official Google Cloud docs | adopt-live-docs-for-rollback-comparison | rollback comparison source | activationVerificationCommandMatrix rollback_plan |",
     ].join("\n"),
     discoveryPlan: "decision_outcome: confirmed\nactivation note (2026-06-30)",
     currentVersion: "0.1.0",
@@ -672,7 +678,7 @@ describe("version-up-readiness", () => {
       checkedDate: "2026-06-30",
       stale: false,
       maxAgeDays: 90,
-      rowCount: 17,
+      rowCount: 20,
       missingRows: [],
     });
     expect(packet.relatedDecisionPackets).toEqual(
@@ -1893,7 +1899,8 @@ describe("version-up-readiness", () => {
           !line.startsWith("| Cloudflare") &&
           !line.startsWith("| GitHub Actions secure use |") &&
           !line.startsWith("| GitHub webhook HMAC SHA-256 |") &&
-          !line.startsWith("| OWASP Web Security Testing Guide |"),
+          !line.startsWith("| OWASP Web Security Testing Guide |") &&
+          !line.startsWith("| Google Cloud Deploy"),
       )
       .join("\n");
     const result = analyzeVersionUpReadiness(
@@ -1913,6 +1920,9 @@ describe("version-up-readiness", () => {
         "GitHub Actions secure use",
         "GitHub webhook HMAC SHA-256",
         "OWASP Web Security Testing Guide",
+        "Google Cloud Deploy verification",
+        "Google Cloud Deploy canary",
+        "Google Cloud Deploy rollback",
       ]),
     );
   });
@@ -1997,6 +2007,42 @@ describe("version-up-readiness", () => {
     expect(result.violations).toContainEqual({
       subject: "docs/process/modes/version-up.md",
       reason: "version-up source ledger missing row: SLSA Provenance",
+    });
+  });
+
+  it("fails when Cloud Deploy comparison sources are prose-only or drift from expected URLs", () => {
+    const withoutCloudDeployRows = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input()
+          .modeDoc.split("\n")
+          .filter((line) => !line.startsWith("| Google Cloud Deploy"))
+          .join("\n"),
+      }),
+    );
+
+    expect(withoutCloudDeployRows.ok).toBe(false);
+    expect(withoutCloudDeployRows.missingSourceLedgerRows).toEqual(
+      expect.arrayContaining([
+        "Google Cloud Deploy verification",
+        "Google Cloud Deploy canary",
+        "Google Cloud Deploy rollback",
+      ]),
+    );
+
+    const driftedUrl = analyzeVersionUpReadiness(
+      input({
+        modeDoc: input().modeDoc.replace(
+          "https://docs.cloud.google.com/deploy/docs/roll-back",
+          "https://cloud.google.com/deploy/docs/rollbacks",
+        ),
+      }),
+    );
+
+    expect(driftedUrl.ok).toBe(false);
+    expect(driftedUrl.sourceLedgerViolations).toContainEqual({
+      subject: "docs/process/modes/version-up.md",
+      reason:
+        "version-up source ledger Google Cloud Deploy rollback official URL missing expected https://docs.cloud.google.com/deploy/docs/roll-back",
     });
   });
 
@@ -2541,7 +2587,7 @@ describe("version-up-readiness", () => {
     expect(packets[0].sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
       stale: false,
-      rowCount: 17,
+      rowCount: 20,
       missingRows: [],
     });
     expect(versionUpActivationVerificationCommandViolations(packets[0])).toEqual([]);
