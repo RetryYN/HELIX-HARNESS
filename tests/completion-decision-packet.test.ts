@@ -174,7 +174,39 @@ describe("completion decision packet lint", () => {
       stale: false,
     });
     expect(result.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(result.semanticBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(completionReviewBundleMessages(result)[0]).toContain("completion-review-bundle - OK");
+  });
+
+  it("keeps the semantic review bundle digest stable across freshness regeneration", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-S3",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          text: "S4 decision pending.",
+        },
+      ],
+      0,
+    );
+    const first = completionReviewBundleForOutstanding(outstanding, {
+      generatedAt: "2026-06-30T00:00:00.000Z",
+      now: "2026-06-30T00:30:00.000Z",
+      validForMinutes: 60,
+    });
+    const second = completionReviewBundleForOutstanding(outstanding, {
+      generatedAt: "2026-06-30T01:00:00.000Z",
+      now: "2026-06-30T01:30:00.000Z",
+      validForMinutes: 60,
+    });
+
+    expect(first.bundleDigest).not.toEqual(second.bundleDigest);
+    expect(first.completionDecisionPacketDigest).not.toEqual(second.completionDecisionPacketDigest);
+    expect(first.freshness.expiresAt).not.toEqual(second.freshness.expiresAt);
+    expect(first.semanticBundleDigest).toEqual(second.semanticBundleDigest);
   });
 
   it("fails completion review bundles closed when safety fields or digests drift", () => {

@@ -350,6 +350,7 @@ export interface CompletionReviewBundle {
   completionDecisionPacketDigest: string;
   humanReviewBundleDigest: string;
   reviewPacketsDigest: string;
+  semanticBundleDigest: string;
   bundleDigest: string;
   requiredOperatorActionsJa: string[];
   blockedUntil: string[];
@@ -1401,7 +1402,7 @@ export function completionReviewBundleForOutstanding(
   const completionDecisionPacketDigest = sha256Json(completionDecisionPacket);
   const humanReviewBundleDigest = sha256Json(completionDecisionPacket.humanReviewBundle);
   const reviewPacketsDigest = sha256Json(reviewPackets);
-  const bundleWithoutDigest = {
+  const bundleWithoutDigests = {
     schemaVersion: "completion-review-bundle.v1" as const,
     generatedAt: provenance.generatedAt,
     sourceCommand: COMPLETION_REVIEW_BUNDLE_COMMAND as typeof COMPLETION_REVIEW_BUNDLE_COMMAND,
@@ -1425,10 +1426,61 @@ export function completionReviewBundleForOutstanding(
     requiredOperatorActionsJa: outstanding.completionReadiness.requiredActionsJa,
     blockedUntil: outstanding.completionReadiness.blockers,
     reviewPackets,
+  } satisfies Omit<CompletionReviewBundle, "bundleDigest" | "semanticBundleDigest">;
+  const bundleWithoutDigest = {
+    ...bundleWithoutDigests,
+    semanticBundleDigest: completionReviewBundleSemanticDigest(
+      bundleWithoutDigests,
+      completionDecisionPacket,
+    ),
   } satisfies Omit<CompletionReviewBundle, "bundleDigest">;
   return {
     ...bundleWithoutDigest,
     bundleDigest: sha256Json(bundleWithoutDigest),
+  };
+}
+
+export function completionReviewBundleSemanticDigest(
+  bundle: Omit<CompletionReviewBundle, "bundleDigest" | "semanticBundleDigest">,
+  decisionPacket: CompletionDecisionPacket,
+): string {
+  return sha256Json({
+    ...bundle,
+    generatedAt: "<volatile-generated-at>",
+    freshness: semanticFreshness(bundle.freshness),
+    completionDecisionPacketDigest: completionDecisionPacketSemanticDigest(decisionPacket),
+    humanReviewBundleDigest: completionHumanReviewBundleSemanticDigest(
+      decisionPacket.humanReviewBundle,
+    ),
+  });
+}
+
+function completionDecisionPacketSemanticDigest(packet: CompletionDecisionPacket): string {
+  return sha256Json({
+    ...packet,
+    generatedAt: "<volatile-generated-at>",
+    freshness: semanticFreshness(packet.freshness),
+    humanReviewBundle: {
+      ...packet.humanReviewBundle,
+      generatedAt: "<volatile-generated-at>",
+    },
+  });
+}
+
+function completionHumanReviewBundleSemanticDigest(
+  bundle: CompletionDecisionHumanReviewBundle,
+): string {
+  return sha256Json({
+    ...bundle,
+    generatedAt: "<volatile-generated-at>",
+  });
+}
+
+function semanticFreshness(freshness: DecisionPacketFreshness): DecisionPacketFreshness {
+  return {
+    ...freshness,
+    expiresAt: "<volatile-expires-at>",
+    stale: false,
   };
 }
 

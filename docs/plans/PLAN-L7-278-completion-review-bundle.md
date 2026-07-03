@@ -75,6 +75,39 @@ review_evidence:
         completed_at: "2026-07-03T19:30:00+09:00"
         evidence_path: src/lint/outstanding.ts
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-03T18:37:00+09:00"
+    tests_green_at: "2026-07-03T18:37:00+09:00"
+    verdict: approve
+    scope: "Continuation: `bundleDigest` を exact artifact integrity として維持し、`semanticBundleDigest` を追加して generatedAt / freshness 由来の揺れを正規化する。意味が同じ review bundle を再生成比較できるようにしつつ、freshness 検査と exact digest drift fail-close は残す。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/completion-decision-packet.test.ts tests/cli-surface.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-03T18:37:00+09:00"
+        evidence_path: tests/completion-decision-packet.test.ts
+        output_digest: "sha256:0b566a7bc27258a101c526217066aa2566ff051e9b04de66651052457e860a81"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T18:37:00+09:00"
+        evidence_path: src/lint/outstanding.ts
+        output_digest: "sha256:7ade77e1ebf2a9c6b15e1b9f66b38f8f239b539d3c2418d3e7865b826722f811"
+      - kind: unit_test
+        command: "bun run test -- --reporter=dot"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-03T18:37:00+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:d1ca83003f322001e3216a90daa1396309eac135aa4f8ebec828d63dcc75a34b"
 ---
 
 # PLAN-L7-278: completion review-bundle と判断前レビュー束
@@ -96,6 +129,7 @@ review_evidence:
 - `completion-review-bundle` は doctor hard gate で `completion decision-packet` と突き合わせ、safety flag、scoped packet、review packet count、digest drift を fail-close する。
 - `ut-tdd setup project` の初回導入 contract、VS Code task、consumer CI、escalation workflow、consumer doctor first-run matrix は `completion decision-packet` の直後に `completion review-bundle` を必須証跡として含める。
 - `.ut-tdd/state/project-setup.json` の `objectiveBoundary` は `completionReviewBundleCommand=ut-tdd completion review-bundle --json` を永続化し、consumer doctor は欠落を fail-close する。
+- `bundleDigest` は exact artifact integrity digest として生成時刻・freshness を含む。別に `semanticBundleDigest` を出し、`generatedAt` / `expiresAt` / `stale` と時刻入り nested digest を正規化した意味比較用 digest とする。
 - 実 cutover、approval 記録、activation、外部実行は行わない。
 
 ## 外部確認
@@ -112,4 +146,5 @@ review_evidence:
 - `doctor` tests が review bundle hard gate の実行と missing root fail-close を検証する。
 - `setup` tests が新規 VSCode project の初回 verification matrix、CI workflow、task template、consumer doctor profile に review-bundle が伝播することを検証する。
 - `doctor` / `setup` / `cli-surface` tests が setup state objective boundary に review-bundle command が永続化されることを検証する。
+- `completion-decision-packet` tests が、freshness 再生成で `bundleDigest` は変わるが `semanticBundleDigest` は同一意味なら変わらないことを検証する。
 - `typecheck`、`lint`、`plan lint`、`doctor` が成功する。

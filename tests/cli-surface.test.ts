@@ -1193,6 +1193,7 @@ describe("L7 CLI surface closure", () => {
         runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
       });
       expect(bundle.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(bundle.semanticBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
       expect(bundle.completionDecisionPacketDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
       expect(bundle.reviewPackets).toEqual(
         expect.arrayContaining([
@@ -1232,6 +1233,7 @@ describe("L7 CLI surface closure", () => {
         "safety: planOnly=true mustNotDecide=true mustNotApply=true completionClaimAllowed=false humanDecisionRequired=true nextAuthority=human",
       );
       expect(text.stdout).toContain("bundle-digest: sha256:");
+      expect(text.stdout).toContain("semantic-bundle-digest: sha256:");
       expect(text.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json runnable=bun run ut-tdd completion decision-packet --json digest=sha256:",
       );

@@ -7,6 +7,7 @@ import {
   type CompletionReviewBundlePacket,
   completionDecisionPacketForOutstanding,
   completionReviewBundleForOutstanding,
+  completionReviewBundleSemanticDigest,
   computeOutstandingWork,
   REQUIRED_DECISION_PACKET_MATRIX_FIELDS,
   requiredRecordsForBlockers,
@@ -106,6 +107,7 @@ export interface CompletionReviewBundleLintResult {
   stale: boolean;
   expiresAt: string;
   bundleDigest: string;
+  semanticBundleDigest: string;
   violations: CompletionReviewBundleViolation[];
 }
 
@@ -2033,6 +2035,15 @@ export function analyzeCompletionReviewBundle(
   const expectedReviewPacketsDigest = sha256Json(expectedReviewPackets);
   const { bundleDigest: _bundleDigest, ...bundleWithoutDigest } = bundle;
   const expectedBundleDigest = sha256Json(bundleWithoutDigest);
+  const {
+    bundleDigest: _exactDigest,
+    semanticBundleDigest: _semanticDigest,
+    ...bundleWithoutDigests
+  } = bundle;
+  const expectedSemanticBundleDigest = completionReviewBundleSemanticDigest(
+    bundleWithoutDigests,
+    decisionPacket,
+  );
   const digestChecks: Array<[string, string, string]> = [
     [
       "completionDecisionPacketDigest",
@@ -2045,6 +2056,11 @@ export function analyzeCompletionReviewBundle(
       expectedHumanReviewBundleDigest,
     ],
     ["reviewPacketsDigest", String(bundle.reviewPacketsDigest ?? ""), expectedReviewPacketsDigest],
+    [
+      "semanticBundleDigest",
+      String(bundle.semanticBundleDigest ?? ""),
+      expectedSemanticBundleDigest,
+    ],
     ["bundleDigest", String(bundle.bundleDigest ?? ""), expectedBundleDigest],
   ];
   for (const [field, actual, expected] of digestChecks) {
@@ -2066,6 +2082,7 @@ export function analyzeCompletionReviewBundle(
     stale: Boolean(bundle.freshness?.stale),
     expiresAt,
     bundleDigest: bundle.bundleDigest ?? "",
+    semanticBundleDigest: bundle.semanticBundleDigest ?? "",
     violations,
   };
 }

@@ -1074,6 +1074,7 @@ completion
       `safety: planOnly=${bundle.planOnly} mustNotDecide=${bundle.mustNotDecide} mustNotApply=${bundle.mustNotApply} completionClaimAllowed=${bundle.completionClaimAllowed} humanDecisionRequired=${bundle.humanDecisionRequired} nextAuthority=${bundle.nextAuthority}\n`,
     );
     process.stdout.write(`bundle-digest: ${bundle.bundleDigest}\n`);
+    process.stdout.write(`semantic-bundle-digest: ${bundle.semanticBundleDigest}\n`);
     process.stdout.write(
       `completion-decision-packet: ${bundle.completionDecisionPacketCommand} runnable=${bundle.runnableCompletionDecisionPacketCommand} digest=${bundle.completionDecisionPacketDigest}\n`,
     );
