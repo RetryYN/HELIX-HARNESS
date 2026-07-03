@@ -2161,16 +2161,29 @@ graph
   });
 graph
   .command("export")
-  .description("export the relation graph as a diagram (mermaid|dot)")
-  .option("--format <format>", "mermaid | dot", "mermaid")
+  .description("export the relation graph as a diagram (mermaid|dot|d2)")
+  .option("--format <format>", "mermaid | dot | d2", "mermaid")
   .option("--scope <scope>", "scope label (full export; per-scope filtering is a follow-up)")
   .action((opts: { format?: string; scope?: string }) => {
     const repoRoot = process.cwd();
     const projection = collectRelationGraphProjection(loadRelationGraphSourceSet(repoRoot));
-    const format = opts.format === "dot" ? "dot" : "mermaid";
-    // dot は renderDot が純粋に DOT テキストを生成する (外部 graphviz は SVG 化の後段でのみ要る)
-    // ため CLI からは常に emit 可能。adapter を available 宣言して text 出力を有効化する。
-    const availableAdapters: RelationDiagramAdapter[] = format === "dot" ? ["dot"] : [];
+    const requestedFormat = opts.format ?? "mermaid";
+    if (
+      requestedFormat !== "mermaid" &&
+      requestedFormat !== "dot" &&
+      requestedFormat !== "d2"
+    ) {
+      process.stderr.write(
+        `[error] invalid-format: graph export format must be mermaid, dot, or d2 (got ${requestedFormat})\n`,
+      );
+      process.exitCode = 1;
+      return;
+    }
+    const format = requestedFormat;
+    // dot/d2 はこの段階では純粋なテキスト表現を emit する。Graphviz / D2 CLI での
+    // SVG/PDF/PNG rendering は後段 adapter の責務で、ここでは外部コマンドを起動しない。
+    const availableAdapters: RelationDiagramAdapter[] =
+      format === "mermaid" ? [] : [format];
     const artifact = exportRelationDiagram({ snapshot: projection, format, availableAdapters });
     if (opts.scope) {
       process.stdout.write(

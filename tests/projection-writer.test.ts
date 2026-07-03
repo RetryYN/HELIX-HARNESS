@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -13,6 +14,7 @@ import {
   REFACTOR_POLICY_TERMS,
 } from "../src/state-db/refactor-candidate-policy";
 import { analyzeRefactorCandidates } from "../src/state-db/refactor-candidates";
+import type { RelationGraphProjection } from "../src/lint/relation-graph";
 
 interface VerificationWorkflowRow {
   phase: string;
@@ -675,6 +677,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).graph_nodes).toBeGreaterThan(0);
       expect(rowCounts(db).dependency_edges).toBeGreaterThan(0);
       expect(rowCounts(db).graph_snapshots).toBeGreaterThan(0);
+      expect(rowCounts(db).diagram_artifacts).toBeGreaterThan(0);
       expect(rowCounts(db).impact_rules).toBeGreaterThan(0);
       expect(rowCounts(db).verification_profiles).toBeGreaterThan(0);
       expect(rowCounts(db).mcp_server_profiles).toBeGreaterThan(0);
@@ -688,6 +691,83 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).artifact_progress).toBeGreaterThan(0);
     } finally {
       db.close();
+    }
+  });
+
+  it("projects impact_results with the changed root node separated from the required action target", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-impact-results-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, "src", "widget"), { recursive: true });
+      mkdirSync(join(repoRoot, "tests"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-TEST-01-widget.md"),
+        [
+          "---",
+          "plan_id: PLAN-TEST-01-widget",
+          "status: confirmed",
+          "kind: impl",
+          "---",
+          "",
+          "fixture",
+          "",
+        ].join("\n"),
+      );
+      writeFileSync(join(repoRoot, "src", "widget", "core.ts"), "export const core = 1;\n");
+      writeFileSync(join(repoRoot, "tests", "core.test.ts"), "import '../src/widget/core';\n");
+      const git = spawnSync("git", ["init"], { cwd: repoRoot, encoding: "utf8" });
+      expect(git.status).toBe(0);
+      const add = spawnSync("git", ["add", "."], { cwd: repoRoot, encoding: "utf8" });
+      expect(add.status).toBe(0);
+      writeFileSync(join(repoRoot, "src", "widget", "core.ts"), "export const core = 2;\n");
+
+      const relationGraph: RelationGraphProjection = {
+        nodes: [
+          {
+            id: "source:src/widget/core.ts",
+            kind: "source",
+            path: "src/widget/core.ts",
+          },
+          {
+            id: "test:tests/core.test.ts",
+            kind: "test",
+            path: "tests/core.test.ts",
+          },
+        ],
+        edges: [
+          {
+            from: "source:src/widget/core.ts",
+            to: "test:tests/core.test.ts",
+            kind: "covered-by",
+          },
+        ],
+        verificationProfiles: [],
+        findings: [],
+      };
+      const db = openHarnessDb(":memory:");
+      try {
+        rebuildHarnessDb({ repoRoot, db, relationGraph });
+        const row = db
+          .prepare(
+            `SELECT root_node_id, impacted_node_id, required_action
+             FROM impact_results
+             WHERE required_action = 'require-sibling-test'
+             LIMIT 1`,
+          )
+          .get() as
+          | { root_node_id?: string; impacted_node_id?: string; required_action?: string }
+          | undefined;
+
+        expect(row).toEqual({
+          root_node_id: "source:src/widget/core.ts",
+          impacted_node_id: "test:tests/core.test.ts",
+          required_action: "require-sibling-test",
+        });
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
     }
   });
 

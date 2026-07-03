@@ -1590,6 +1590,58 @@ describe("L7 CLI surface closure", () => {
     );
   });
 
+  it("exports relation graph diagrams through mermaid, dot, and d2 CLI formats without silent fallback", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-graph-export-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "src", "widget"), { recursive: true });
+      mkdirSync(join(root, "tests"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-TEST-01-widget.md"),
+        [
+          "---",
+          "plan_id: PLAN-TEST-01-widget",
+          "status: confirmed",
+          "kind: impl",
+          "generates:",
+          "  - artifact_path: src/widget/core.ts",
+          "    artifact_type: source_module",
+          "---",
+          "",
+          "fixture",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      writeFileSync(join(root, "src", "widget", "core.ts"), "export const core = 1;\n", "utf8");
+      writeFileSync(
+        join(root, "tests", "core.test.ts"),
+        'import { core } from "../src/widget/core";\nexport const t = core;\n',
+        "utf8",
+      );
+
+      const mermaid = runCliIn(root, ["graph", "export", "--format", "mermaid"]);
+      expect(mermaid.status).toBe(0);
+      expect(mermaid.stdout).toContain("flowchart TD");
+
+      const dot = runCliIn(root, ["graph", "export", "--format", "dot"]);
+      expect(dot.status).toBe(0);
+      expect(dot.stdout).toContain("digraph relation_graph");
+
+      const d2 = runCliIn(root, ["graph", "export", "--format", "d2"]);
+      expect(d2.status).toBe(0);
+      expect(d2.stdout).toContain('source_src_widget_core_ts: "source:src/widget/core.ts"');
+      expect(d2.stdout).not.toContain("flowchart TD");
+
+      const invalid = runCliIn(root, ["graph", "export", "--format", "svg"]);
+      expect(invalid.status).toBe(1);
+      expect(invalid.stderr).toContain("invalid-format");
+      expect(invalid.stderr).toContain("mermaid, dot, or d2");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("exposes progress snapshot as a deterministic visualization JSON surface", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-progress-snapshot-"));
     try {

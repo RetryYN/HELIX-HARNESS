@@ -19,6 +19,9 @@ import {
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
+  exportRelationDiagram,
+  type RelationDiagramAdapter,
+  type RelationDiagramFormat,
   type RelationGraphProjection,
   type VerificationEvidenceProjection,
 } from "../lint/relation-graph";
@@ -2177,8 +2180,11 @@ function defaultRelationGraphProjection(repoRoot: string): RelationGraphProjecti
   });
 }
 
-function projectGraphSnapshot(db: HarnessDb, graph: RelationGraphProjection | undefined): void {
-  if (!graph) return;
+function projectGraphSnapshot(
+  db: HarnessDb,
+  graph: RelationGraphProjection | undefined,
+): string | undefined {
+  if (!graph) return undefined;
   const createdAt = nowIso();
   const sourceDigest = stableHash(JSON.stringify({ nodes: graph.nodes, edges: graph.edges }));
   const id = stableId("graph-snapshot", sourceDigest);
@@ -2195,6 +2201,45 @@ function projectGraphSnapshot(db: HarnessDb, graph: RelationGraphProjection | un
       source_digest: sourceDigest,
     },
   });
+  return id;
+}
+
+const STANDARD_RELATION_DIAGRAM_FORMATS: RelationDiagramFormat[] = ["mermaid", "dot", "d2"];
+
+function relationDiagramAdapters(format: RelationDiagramFormat): RelationDiagramAdapter[] {
+  return format === "mermaid" ? [] : [format];
+}
+
+function projectRelationDiagramArtifacts(
+  db: HarnessDb,
+  graph: RelationGraphProjection | undefined,
+  graphSnapshotId: string | undefined,
+): void {
+  if (!graph || !graphSnapshotId) return;
+  const createdAt = nowIso();
+  for (const format of STANDARD_RELATION_DIAGRAM_FORMATS) {
+    const artifact = exportRelationDiagram({
+      snapshot: graph,
+      format,
+      availableAdapters: relationDiagramAdapters(format),
+    });
+    if (!artifact.ok) continue;
+    const id = stableId("diagram-artifact", `${graphSnapshotId}:${format}`);
+    recordProjectionEvent(db, {
+      table: "diagram_artifacts",
+      id,
+      row: {
+        diagram_id: id,
+        graph_snapshot_id: graphSnapshotId,
+        format,
+        path: `stdout:ut-tdd graph export --format ${format}`,
+        renderer: format === "mermaid" ? "builtin-mermaid-text" : `builtin-${format}-text`,
+        scope: "repo",
+        created_at: createdAt,
+        evidence_path: "src/lint/relation-graph.ts:exportRelationDiagram",
+      },
+    });
+  }
 }
 
 const DEFAULT_IMPACT_RULES = [
@@ -2267,23 +2312,25 @@ function projectCurrentImpactResults(
   if (changedFiles.length === 0) return;
   const result = analyzeRelationImpact({ changedPaths: changedFiles, projection: graph });
   const computedAt = nowIso();
-  for (const action of result.actions) {
-    const id = stableId("impact-result", `working-tree:${action.kind}:${action.nodeId}`);
-    recordProjectionEvent(db, {
-      table: "impact_results",
-      id,
-      row: {
-        impact_result_id: id,
-        change_set_id: "working-tree",
-        root_node_id: action.nodeId,
-        impacted_node_id: action.nodeId,
-        required_action: action.kind,
-        status: "open",
-        reason: action.reason,
-        evidence_path: "git status --porcelain",
-        computed_at: computedAt,
-      },
-    });
+  for (const root of result.changedNodes) {
+    for (const action of result.actions) {
+      const id = stableId("impact-result", `working-tree:${root.id}:${action.kind}:${action.nodeId}`);
+      recordProjectionEvent(db, {
+        table: "impact_results",
+        id,
+        row: {
+          impact_result_id: id,
+          change_set_id: "working-tree",
+          root_node_id: root.id,
+          impacted_node_id: action.nodeId,
+          required_action: action.kind,
+          status: "open",
+          reason: action.reason,
+          evidence_path: "git status --porcelain",
+          computed_at: computedAt,
+        },
+      });
+    }
   }
   for (const finding of result.findings) {
     recordFinding(db, {
@@ -3631,7 +3678,8 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       const projectionDeps = { nowIso, stableId, recordProjectionEvent };
       projectRefactorCandidateSignals(repoRoot, db, projectionDeps);
       projectRelationGraph(db, relationGraph);
-      projectGraphSnapshot(db, relationGraph);
+      const graphSnapshotId = projectGraphSnapshot(db, relationGraph);
+      projectRelationDiagramArtifacts(db, relationGraph, graphSnapshotId);
       projectImpactRules(db);
       projectCurrentImpactResults(repoRoot, db, relationGraph);
       projectArtifactProgress(db, relationGraph);

@@ -19,6 +19,10 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
   { table: "dependency_edges", reason: "relation graph edges are derived from trace links" },
   { table: "trace_edges", reason: "trace edges are derived from relation graph edges" },
   { table: "graph_snapshots", reason: "graph snapshot is derived from the relation graph" },
+  {
+    table: "diagram_artifacts",
+    reason: "standard relation graph diagram artifacts are derived from graph snapshots",
+  },
   { table: "impact_rules", reason: "impact rules are built-in workflow policy" },
   { table: "verification_profiles", reason: "verification profile catalog is built-in" },
   {
@@ -47,7 +51,6 @@ export const EVIDENCE_GATED_DB_PROJECTION_TABLES = [
   "test_flake_events",
   "impact_results",
   "tool_runs",
-  "diagram_artifacts",
   "verification_recommendations",
   "mcp_server_runs",
   "external_tool_findings",

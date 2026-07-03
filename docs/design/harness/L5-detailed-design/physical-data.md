@@ -349,6 +349,11 @@ The DB must make cross-cutting impact analysis queryable. The authoring sources 
 | `diagram_artifacts` | `diagram_id` | `graph_snapshot_id`, `format`, `path`, `renderer`, `scope`, `created_at`, `evidence_path` | Store generated Mermaid/DOT/D2/SVG/PNG diagram outputs as traceable artifacts. |
 | `graph_snapshots` | `graph_snapshot_id` | `scope`, `node_count`, `edge_count`, `hash`, `created_at`, `source_digest` | Make diagrams and impact results reproducible from a stable graph snapshot. |
 
+現 L7 実装では、`rebuildHarnessDb` が repo scope の `graph_snapshots` から Mermaid / DOT / D2 の
+標準 text export 行を `diagram_artifacts` へ射影する。Graphviz / D2 CLI で SVG/PDF/PNG 等を
+生成する外部 renderer 実行、`graph export --scope` の実フィルタリング、`visualizes` edge から
+diagram refresh action への接続は `IMP-148` の継続 scope とする。
+
 Required edge kinds:
 
 - `imports`: TS/JS import relation.
