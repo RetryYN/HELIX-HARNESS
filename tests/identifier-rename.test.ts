@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   auditIdentifierRenameBlastRadius,
+  buildIdentifierRenameApprovalDraft,
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
   buildIdentifierRenameEvidencePack,
@@ -1142,6 +1143,83 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
+  it("builds a non-authorizing approval draft bound to the current cutover snapshot", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-approval-draft-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeCutoverEvidenceArtifacts(root);
+
+      const draft = buildIdentifierRenameApprovalDraft(root);
+      const snapshotId = draft.currentSnapshot.cutoverSnapshotId;
+      expect(draft).toMatchObject({
+        schemaVersion: "identifier-rename-approval-draft.v1",
+        sourceCommand: "ut-tdd rename approval-draft --json",
+        planOnly: true,
+        mustNotApply: true,
+        approvalCommandAvailable: false,
+        approvalAllowed: false,
+        applyAuthorized: false,
+        targetPlanId: "PLAN-M-02-helix-identifier-rename",
+        targetCli: "helix",
+        targetStateDir: ".helix",
+        recommendedOutcome: "request_runbook_changes",
+      });
+      expect(draft.currentSnapshot).toMatchObject({
+        cutoverSnapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
+        evidenceArtifactsRequired: 16,
+        evidenceArtifactsPresent: 16,
+        missingEvidenceArtifacts: [],
+        worktreeClean: false,
+      });
+      expect(draft.readiness).toMatchObject({
+        evidenceComplete: true,
+        worktreeClean: false,
+        sourceLedgerFresh: true,
+        sourceLedgerComplete: true,
+        approvalRecordsConcrete: false,
+      });
+      const cutoverRecord = draft.draftRecords.find(
+        (record) => record.recordName === "cutover_decision_record",
+      );
+      expect(cutoverRecord).toMatchObject({
+        pasteReady: false,
+        unsafeToTreatAsApproval: true,
+      });
+      expect(cutoverRecord?.yamlLines).toContain(
+        `  - cutover_snapshot_id: "cutoverSnapshot.snapshotId ${snapshotId}"`,
+      );
+      expect(
+        cutoverRecord?.yamlLines.some((line) =>
+          line.includes(".ut-tdd/evidence/rename/blast-radius-baseline.json"),
+        ),
+      ).toBe(true);
+      const approvalRecord = draft.draftRecords.find(
+        (record) => record.recordName === "action_binding_approval_record",
+      );
+      expect(approvalRecord).toMatchObject({
+        pasteReady: false,
+        unsafeToTreatAsApproval: true,
+      });
+      expect(approvalRecord?.yamlLines).toContain(
+        `  - reviewed_snapshot_binding: "cutoverSnapshot.snapshotId ${snapshotId}"`,
+      );
+      expect(
+        approvalRecord?.yamlLines.some((line) => line.includes(`cutoverSnapshot=${snapshotId}`)),
+      ).toBe(true);
+      expect(draft.blockedUntil).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("人間が判断"),
+          expect.stringContaining("git worktree が clean"),
+          expect.stringContaining("applyAuthorized=false"),
+        ]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("binds cutover snapshots to source ledger row content", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-ledger-digest-"));
     try {
@@ -1867,6 +1945,62 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         "pending-artifact: .ut-tdd/evidence/rename/full-regression.txt",
       );
       expect(text.stdout).toContain("blocked-until: pendingArtifacts");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("exposes rename approval-draft as a non-authorizing CLI surface", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-approval-draft-cli-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeCutoverEvidenceArtifacts(root);
+
+      const result = runCliIn(root, ["rename", "approval-draft", "--json"]);
+      expect(result.status, result.stderr || result.stdout).toBe(0);
+      const payload = JSON.parse(result.stdout);
+      expect(payload).toMatchObject({
+        schemaVersion: "identifier-rename-approval-draft.v1",
+        sourceCommand: "ut-tdd rename approval-draft --json",
+        planOnly: true,
+        mustNotApply: true,
+        approvalCommandAvailable: false,
+        approvalAllowed: false,
+        applyAuthorized: false,
+        recommendedOutcome: "request_runbook_changes",
+      });
+      expect(payload.currentSnapshot).toMatchObject({
+        evidenceArtifactsRequired: 16,
+        evidenceArtifactsPresent: 16,
+        missingEvidenceArtifacts: [],
+        worktreeClean: false,
+      });
+      expect(payload.draftRecords).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            recordName: "cutover_decision_record",
+            pasteReady: false,
+            unsafeToTreatAsApproval: true,
+          }),
+          expect.objectContaining({
+            recordName: "action_binding_approval_record",
+            pasteReady: false,
+            unsafeToTreatAsApproval: true,
+          }),
+        ]),
+      );
+
+      const text = runCliIn(root, ["rename", "approval-draft"]);
+      expect(text.status, text.stderr || text.stdout).toBe(0);
+      expect(text.stdout).toContain(
+        "rename approval-draft: recommendedOutcome=request_runbook_changes",
+      );
+      expect(text.stdout).toContain("approvalAllowed=false applyAuthorized=false");
+      expect(text.stdout).toContain("approval-draft-record: cutover_decision_record");
+      expect(text.stdout).toContain("unsafeToTreatAsApproval=true");
+      expect(text.stdout).toContain("blocked-until:");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

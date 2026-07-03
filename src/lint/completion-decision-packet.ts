@@ -1181,12 +1181,21 @@ function requiredDecisionPacketCommand(blockerReason: string): string {
 }
 
 function requiredPacketCommands(blockerReason: string, blockers: string[] = []): string[] {
-  return [
+  const commands = [
     ...new Set([
       requiredDecisionPacketCommand(blockerReason),
       ...blockers.map((blocker) => requiredDecisionPacketCommand(blocker)),
     ]),
   ];
+  if (
+    blockerReason === "irreversible_migration_pending" ||
+    blockers.includes("irreversible_migration_pending")
+  ) {
+    const renamePlanIndex = commands.indexOf("ut-tdd rename plan --json");
+    const insertIndex = renamePlanIndex >= 0 ? renamePlanIndex + 1 : commands.length;
+    commands.splice(insertIndex, 0, "ut-tdd rename approval-draft --json");
+  }
+  return [...new Set(commands)];
 }
 
 function scopedDecisionPacketCommandForPlan(planId: string, command: string): string {
@@ -1195,6 +1204,8 @@ function scopedDecisionPacketCommandForPlan(planId: string, command: string): st
     case "ut-tdd version-up activation-packet --json":
     case "ut-tdd action-binding approval-packet --json":
       return `${command} --plan ${planId}`;
+    case "ut-tdd rename approval-draft --json":
+      return command;
     default:
       return command;
   }
@@ -1460,6 +1471,55 @@ function requiredSupportingPacketSummary(command: string): {
           "blockedReasons",
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
+      };
+    case "ut-tdd rename approval-draft --json":
+      return {
+        schemaVersion: "identifier-rename-approval-draft.v1",
+        matrixField: "none",
+        expectedMatrixCount: 0,
+        requiredReviewFields: [
+          "planOnly",
+          "mustNotApply",
+          "approvalCommandAvailable",
+          "approvalAllowed",
+          "applyAuthorized",
+          "targetPlanId",
+          "targetCli",
+          "targetStateDir",
+          "recommendedOutcome",
+          "readiness",
+          "readiness.evidenceComplete",
+          "readiness.worktreeClean",
+          "readiness.sourceLedgerFresh",
+          "readiness.sourceLedgerComplete",
+          "readiness.approvalRecordsConcrete",
+          "readiness.blockedReasonCount",
+          "currentSnapshot",
+          "currentSnapshot.cutoverSnapshotId",
+          "currentSnapshot.repoHeadSha",
+          "currentSnapshot.worktreeClean",
+          "currentSnapshot.worktreeDirtyPathCount",
+          "currentSnapshot.worktreeDirtyPaths",
+          "currentSnapshot.evidenceArtifactsRequired",
+          "currentSnapshot.evidenceArtifactsPresent",
+          "currentSnapshot.missingEvidenceArtifacts",
+          "currentSnapshot.blastRadiusDigest",
+          "currentSnapshot.approvalScopeDigest",
+          "currentSnapshot.evidenceDigest",
+          "currentSnapshot.evidenceArtifactsDigest",
+          "currentSnapshot.sourceLedgerCheckedDate",
+          "currentSnapshot.sourceLedgerRowsDigest",
+          "draftRecords",
+          "draftRecords.recordName",
+          "draftRecords.pasteReady",
+          "draftRecords.unsafeToTreatAsApproval",
+          "draftRecords.insertionHintJa",
+          "draftRecords.yamlLines",
+          "blockedUntil",
+          "relatedDecisionPackets",
+          "relatedDecisionPackets.scopedCommand",
+        ],
+        requiredMatrixFields: [],
       };
     case "ut-tdd action-binding approval-packet --json":
       return {

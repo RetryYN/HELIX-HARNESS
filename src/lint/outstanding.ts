@@ -206,6 +206,7 @@ export type WorkflowDecisionPacketCommand =
   | "ut-tdd s4 decision-packet --json"
   | "ut-tdd version-up activation-packet --json"
   | "ut-tdd rename plan --json"
+  | "ut-tdd rename approval-draft --json"
   | "ut-tdd action-binding approval-packet --json"
   | "ut-tdd completion decision-packet --json";
 
@@ -259,6 +260,7 @@ export interface CompletionDecisionSupportingPacketSummary {
     | "s4-decision-packet.v1"
     | "version-up-activation-packet.v1"
     | "identifier-rename-cutover-plan.v1"
+    | "identifier-rename-approval-draft.v1"
     | "action-binding-approval-packet.v1"
     | "completion-decision-packet.v1";
   matrixField:
@@ -1444,6 +1446,7 @@ function scopedPacketCommandForPlan(
     case "ut-tdd action-binding approval-packet --json":
       return `${command} --plan ${planId}`;
     case "ut-tdd rename plan --json":
+    case "ut-tdd rename approval-draft --json":
     case "ut-tdd completion decision-packet --json":
       return command;
   }
@@ -1732,6 +1735,61 @@ function supportingPacketSummaryForCommand(
           "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",
         ),
       };
+    case "ut-tdd rename approval-draft --json":
+      return {
+        ...base,
+        schemaVersion: "identifier-rename-approval-draft.v1",
+        matrixField: "none",
+        expectedMatrixCount: 0,
+        requiredReviewFields: [
+          "planOnly",
+          "mustNotApply",
+          "approvalCommandAvailable",
+          "approvalAllowed",
+          "applyAuthorized",
+          "targetPlanId",
+          "targetCli",
+          "targetStateDir",
+          "recommendedOutcome",
+          "readiness",
+          "readiness.evidenceComplete",
+          "readiness.worktreeClean",
+          "readiness.sourceLedgerFresh",
+          "readiness.sourceLedgerComplete",
+          "readiness.approvalRecordsConcrete",
+          "readiness.blockedReasonCount",
+          "currentSnapshot",
+          "currentSnapshot.cutoverSnapshotId",
+          "currentSnapshot.repoHeadSha",
+          "currentSnapshot.worktreeClean",
+          "currentSnapshot.worktreeDirtyPathCount",
+          "currentSnapshot.worktreeDirtyPaths",
+          "currentSnapshot.evidenceArtifactsRequired",
+          "currentSnapshot.evidenceArtifactsPresent",
+          "currentSnapshot.missingEvidenceArtifacts",
+          "currentSnapshot.blastRadiusDigest",
+          "currentSnapshot.approvalScopeDigest",
+          "currentSnapshot.evidenceDigest",
+          "currentSnapshot.evidenceArtifactsDigest",
+          "currentSnapshot.sourceLedgerCheckedDate",
+          "currentSnapshot.sourceLedgerRowsDigest",
+          "draftRecords",
+          "draftRecords.recordName",
+          "draftRecords.pasteReady",
+          "draftRecords.unsafeToTreatAsApproval",
+          "draftRecords.insertionHintJa",
+          "draftRecords.yamlLines",
+          "blockedUntil",
+          "relatedDecisionPackets",
+          "relatedDecisionPackets.scopedCommand",
+        ],
+        requiredMatrixFields: [],
+        reviewRoute:
+          "review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
+        reviewRouteJa: workflowReviewRouteTextJa(
+          "review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
+        ),
+      };
     case "ut-tdd action-binding approval-packet --json":
       return {
         ...base,
@@ -1916,10 +1974,19 @@ function packetCommandsForOutstandingBlockers(
   primaryReason: string,
   blockers: string[],
 ): WorkflowDecisionPacketCommand[] {
-  return uniqueInOrder([
+  const commands = uniqueInOrder([
     decisionPacketCommandForOutstandingReason(primaryReason),
     ...blockers.map((blocker) => decisionPacketCommandForOutstandingReason(blocker)),
   ]);
+  if (
+    primaryReason === "irreversible_migration_pending" ||
+    blockers.includes("irreversible_migration_pending")
+  ) {
+    const renamePlanIndex = commands.indexOf("ut-tdd rename plan --json");
+    const insertIndex = renamePlanIndex >= 0 ? renamePlanIndex + 1 : commands.length;
+    commands.splice(insertIndex, 0, "ut-tdd rename approval-draft --json");
+  }
+  return uniqueInOrder(commands);
 }
 
 function allowedOutcomesForOutstandingReason(reason: string): string[] {

@@ -55,6 +55,7 @@ import {
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
 import {
   auditIdentifierRenameBlastRadius,
+  buildIdentifierRenameApprovalDraft,
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
   buildIdentifierRenameEvidencePack,
@@ -1604,6 +1605,43 @@ rename
     );
     for (const blocker of packet.blockedUntil) {
       process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+  });
+rename
+  .command("approval-draft")
+  .description(
+    "emit a non-authorizing PLAN-M-02 cutover approval record draft bound to current evidence",
+  )
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const packet = buildIdentifierRenameApprovalDraft(process.cwd());
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename approval-draft: recommendedOutcome=${packet.recommendedOutcome} approvalAllowed=${packet.approvalAllowed} applyAuthorized=${packet.applyAuthorized} evidence=${packet.currentSnapshot.evidenceArtifactsPresent}/${packet.currentSnapshot.evidenceArtifactsRequired} clean=${packet.currentSnapshot.worktreeClean}\n`,
+    );
+    process.stdout.write(packetFreshnessLine(packet));
+    process.stdout.write(
+      `  current-snapshot: ${packet.currentSnapshot.cutoverSnapshotId} head=${packet.currentSnapshot.repoHeadSha ?? "-"} dirtyPathCount=${packet.currentSnapshot.worktreeDirtyPathCount} evidenceDigest=${packet.currentSnapshot.evidenceDigest}\n`,
+    );
+    for (const record of packet.draftRecords) {
+      process.stdout.write(
+        `  approval-draft-record: ${record.recordName} pasteReady=${record.pasteReady} unsafeToTreatAsApproval=${record.unsafeToTreatAsApproval}\n`,
+      );
+      process.stdout.write(`    hint-ja: ${record.insertionHintJa}\n`);
+      for (const line of record.yamlLines) {
+        process.stdout.write(`    ${line}\n`);
+      }
+    }
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+    for (const related of packet.relatedDecisionPackets) {
+      process.stdout.write(
+        `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
+      );
     }
   });
 rename

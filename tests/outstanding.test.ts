@@ -569,7 +569,11 @@ describe("completionDecisionPacketForOutstanding", () => {
       [
         "PLAN-M-02",
         "ut-tdd rename plan --json",
-        ["ut-tdd rename plan --json", "ut-tdd action-binding approval-packet --json"],
+        [
+          "ut-tdd rename plan --json",
+          "ut-tdd rename approval-draft --json",
+          "ut-tdd action-binding approval-packet --json",
+        ],
       ],
     ]);
     expect(packet.decisions[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
@@ -1297,11 +1301,13 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         decisionPacketCommand: "ut-tdd rename plan --json",
         packetCommands: [
           "ut-tdd rename plan --json",
+          "ut-tdd rename approval-draft --json",
           "ut-tdd action-binding approval-packet --json",
         ],
         scopedDecisionPacketCommand: "ut-tdd rename plan --json",
         scopedPacketCommands: [
           "ut-tdd rename plan --json",
+          "ut-tdd rename approval-draft --json",
           "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
         ],
         supportingPacketSummaries: [
@@ -1368,6 +1374,28 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
               "adoptionDecisionDelta",
               "workflowRouteImpact",
             ]),
+          },
+          {
+            command: "ut-tdd rename approval-draft --json",
+            schemaVersion: "identifier-rename-approval-draft.v1",
+            matrixField: "none",
+            expectedMatrixCount: 0,
+            requiredReviewFields: expect.arrayContaining([
+              "planOnly",
+              "mustNotApply",
+              "approvalAllowed",
+              "applyAuthorized",
+              "recommendedOutcome",
+              "currentSnapshot.cutoverSnapshotId",
+              "currentSnapshot.evidenceArtifactsDigest",
+              "draftRecords.recordName",
+              "draftRecords.pasteReady",
+              "draftRecords.unsafeToTreatAsApproval",
+              "draftRecords.yamlLines",
+              "blockedUntil",
+              "relatedDecisionPackets.scopedCommand",
+            ]),
+            requiredMatrixFields: [],
           },
           {
             command: "ut-tdd action-binding approval-packet --json",
@@ -1565,11 +1593,13 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         decisionPacketCommand: "ut-tdd rename plan --json",
         packetCommands: [
           "ut-tdd rename plan --json",
+          "ut-tdd rename approval-draft --json",
           "ut-tdd action-binding approval-packet --json",
         ],
         scopedDecisionPacketCommand: "ut-tdd rename plan --json",
         scopedPacketCommands: [
           "ut-tdd rename plan --json",
+          "ut-tdd rename approval-draft --json",
           "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
         ],
         supportingPacketSummaries: [
@@ -1591,6 +1621,17 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
               "freezePolicy.concurrencyPolicy",
               "provenanceRequirements.evidence",
               "approvalGate.reviewedSnapshotBindingRequired",
+            ]),
+          }),
+          expect.objectContaining({
+            command: "ut-tdd rename approval-draft --json",
+            matrixField: "none",
+            expectedMatrixCount: 0,
+            requiredReviewFields: expect.arrayContaining([
+              "mustNotApply",
+              "applyAuthorized",
+              "currentSnapshot.cutoverSnapshotId",
+              "draftRecords.unsafeToTreatAsApproval",
             ]),
           }),
           expect.objectContaining({

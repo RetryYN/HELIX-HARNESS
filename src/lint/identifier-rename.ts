@@ -28,6 +28,7 @@ import {
   ACTION_BINDING_APPROVAL_PACKET_COMMAND,
   buildDecisionPacketProvenance,
   type DecisionPacketFreshness,
+  RENAME_APPROVAL_DRAFT_PACKET_COMMAND,
   RENAME_PLAN_PACKET_COMMAND,
   type RelatedDecisionPacket,
   relatedDecisionPacket,
@@ -269,6 +270,57 @@ export interface IdentifierRenameGeneratedEvidenceArtifact {
   contentSha256: string;
   sizeBytes: number;
   written: boolean;
+}
+
+export interface IdentifierRenameApprovalDraftPacket {
+  schemaVersion: "identifier-rename-approval-draft.v1";
+  generatedAt: string;
+  sourceCommand: typeof RENAME_APPROVAL_DRAFT_PACKET_COMMAND;
+  freshness: DecisionPacketFreshness;
+  planOnly: true;
+  mustNotApply: true;
+  approvalCommandAvailable: false;
+  approvalAllowed: false;
+  applyAuthorized: false;
+  targetPlanId: "PLAN-M-02-helix-identifier-rename";
+  targetCli: "helix";
+  targetStateDir: ".helix";
+  recommendedOutcome: "request_runbook_changes" | "ready_for_human_cutover_review";
+  readiness: {
+    evidenceComplete: boolean;
+    worktreeClean: boolean;
+    sourceLedgerFresh: boolean;
+    sourceLedgerComplete: boolean;
+    approvalRecordsConcrete: boolean;
+    blockedReasonCount: number;
+  };
+  currentSnapshot: {
+    cutoverSnapshotId: string;
+    repoHeadSha: string | null;
+    worktreeClean: boolean;
+    worktreeDirtyPathCount: number;
+    worktreeDirtyPaths: string[];
+    evidenceArtifactsRequired: number;
+    evidenceArtifactsPresent: number;
+    missingEvidenceArtifacts: string[];
+    blastRadiusDigest: string;
+    approvalScopeDigest: string;
+    evidenceDigest: string;
+    evidenceArtifactsDigest: string;
+    sourceLedgerCheckedDate: string | null;
+    sourceLedgerRowsDigest: string;
+  };
+  draftRecords: IdentifierRenameApprovalDraftRecord[];
+  blockedUntil: string[];
+  relatedDecisionPackets: RelatedDecisionPacket[];
+}
+
+export interface IdentifierRenameApprovalDraftRecord {
+  recordName: "cutover_decision_record" | "action_binding_approval_record";
+  pasteReady: false;
+  unsafeToTreatAsApproval: true;
+  insertionHintJa: string;
+  yamlLines: string[];
 }
 
 export interface IdentifierRenamePendingEvidenceArtifact {
@@ -1336,6 +1388,157 @@ export function buildIdentifierRenameEvidencePack(
       "git worktree を clean にして cutoverSnapshot を再生成する",
       "cutover_decision_record が current cutoverSnapshot.snapshotId を approve_cutover として明示する",
       "action_binding_approval_record が actor/tool/target/params と reviewed_snapshot_binding を束縛する",
+    ],
+  };
+}
+
+export function buildIdentifierRenameApprovalDraft(
+  root: string,
+): IdentifierRenameApprovalDraftPacket {
+  const plan = buildIdentifierRenameCutoverPlan(root);
+  const provenance = buildDecisionPacketProvenance({
+    sourceCommand: RENAME_APPROVAL_DRAFT_PACKET_COMMAND,
+  });
+  const evidenceComplete =
+    plan.cutoverSnapshot.evidenceArtifactsPresent ===
+      plan.cutoverSnapshot.evidenceArtifactsRequired &&
+    plan.cutoverSnapshot.missingEvidenceArtifacts.length === 0;
+  const sourceLedgerFresh =
+    !plan.sourceLedgerFreshness.stale && plan.sourceLedgerFreshness.violation === null;
+  const sourceLedgerComplete =
+    plan.sourceLedgerFreshness.missingRows.length === 0 &&
+    plan.sourceLedgerFreshness.rowViolations.length === 0;
+  const readyForHumanReview =
+    evidenceComplete &&
+    plan.cutoverSnapshot.worktreeClean &&
+    sourceLedgerFresh &&
+    sourceLedgerComplete;
+  return {
+    schemaVersion: "identifier-rename-approval-draft.v1",
+    generatedAt: provenance.generatedAt,
+    sourceCommand: RENAME_APPROVAL_DRAFT_PACKET_COMMAND,
+    freshness: provenance.freshness,
+    planOnly: true,
+    mustNotApply: true,
+    approvalCommandAvailable: false,
+    approvalAllowed: false,
+    applyAuthorized: false,
+    targetPlanId: "PLAN-M-02-helix-identifier-rename",
+    targetCli: plan.targetCli,
+    targetStateDir: plan.targetStateDir,
+    recommendedOutcome: readyForHumanReview
+      ? "ready_for_human_cutover_review"
+      : "request_runbook_changes",
+    readiness: {
+      evidenceComplete,
+      worktreeClean: plan.cutoverSnapshot.worktreeClean,
+      sourceLedgerFresh,
+      sourceLedgerComplete,
+      approvalRecordsConcrete:
+        plan.snapshotReview.cutoverSnapshotMatchesCurrent &&
+        plan.snapshotReview.actionBindingSnapshotMatchesCurrent,
+      blockedReasonCount: plan.blockedReasons.length,
+    },
+    currentSnapshot: {
+      cutoverSnapshotId: plan.cutoverSnapshot.snapshotId,
+      repoHeadSha: plan.cutoverSnapshot.repoHeadSha,
+      worktreeClean: plan.cutoverSnapshot.worktreeClean,
+      worktreeDirtyPathCount: plan.cutoverSnapshot.worktreeDirtyPathCount,
+      worktreeDirtyPaths: plan.cutoverSnapshot.worktreeDirtyPaths,
+      evidenceArtifactsRequired: plan.cutoverSnapshot.evidenceArtifactsRequired,
+      evidenceArtifactsPresent: plan.cutoverSnapshot.evidenceArtifactsPresent,
+      missingEvidenceArtifacts: plan.cutoverSnapshot.missingEvidenceArtifacts,
+      blastRadiusDigest: plan.cutoverSnapshot.blastRadiusDigest,
+      approvalScopeDigest: plan.cutoverSnapshot.approvalScopeDigest,
+      evidenceDigest: plan.cutoverSnapshot.evidenceDigest,
+      evidenceArtifactsDigest: plan.cutoverSnapshot.evidenceArtifactsDigest,
+      sourceLedgerCheckedDate: plan.cutoverSnapshot.sourceLedgerCheckedDate,
+      sourceLedgerRowsDigest: plan.cutoverSnapshot.sourceLedgerRowsDigest,
+    },
+    draftRecords: [
+      buildCutoverDecisionDraftRecord(plan),
+      buildActionBindingApprovalDraftRecord(plan),
+    ],
+    blockedUntil: [
+      "この packet は approval draft であり、allowed_outcome / approver / audit_record は人間が判断して記録する",
+      "git worktree が clean な current cutoverSnapshot.snapshotId で approval evidence を取り直す",
+      "action_binding_approval_record が approved_actor / approved_tool / approved_target / approved_params と reviewed_snapshot_binding を明示する",
+      "approval 後も applyAuthorized=false の rename plan を review し、別 action-binding apply surface なしに cutover を実行しない",
+    ],
+    relatedDecisionPackets: uniqueRelatedDecisionPackets([
+      relatedDecisionPacket({
+        command: RENAME_PLAN_PACKET_COMMAND,
+        scopedCommand: RENAME_PLAN_PACKET_COMMAND,
+        role: "primary",
+        reason: "approval draft is bound to the current rename plan cutover snapshot",
+        route: "review rename plan before copying any record draft into PLAN-M-02",
+      }),
+      relatedDecisionPacket({
+        command: ACTION_BINDING_APPROVAL_PACKET_COMMAND,
+        scopedCommand: `${ACTION_BINDING_APPROVAL_PACKET_COMMAND} --plan PLAN-M-02-helix-identifier-rename`,
+        role: "supporting",
+        reason:
+          "action-binding approval packet remains the authority boundary for actor/tool/target/params",
+        route: "review action-binding packet before any high-impact action approval",
+      }),
+    ]),
+  };
+}
+
+function buildCutoverDecisionDraftRecord(
+  plan: IdentifierRenameCutoverPlan,
+): IdentifierRenameApprovalDraftRecord {
+  return {
+    recordName: "cutover_decision_record",
+    pasteReady: false,
+    unsafeToTreatAsApproval: true,
+    insertionHintJa:
+      "PLAN-M-02 の cutover_decision_record 草案。allowed_outcome / decision_owner / audit_record は PO が判断して具体化する。",
+    yamlLines: [
+      "cutover_decision_record:",
+      '  - allowed_outcome: "<approve_cutover|reject_or_defer|request_runbook_changes>"',
+      '  - decision_owner: "<PO or named approver>"',
+      `  - cutover_snapshot_id: "cutoverSnapshot.snapshotId ${plan.cutoverSnapshot.snapshotId}"`,
+      '  - trigger_condition: "frozen HEAD, clean worktree, evidenceArtifactsPresent equals evidenceArtifactsRequired, and action-binding approval record reviewed"',
+      `  - blast_radius_baseline: ".ut-tdd/evidence/rename/blast-radius-baseline.json ${plan.cutoverSnapshot.blastRadiusDigest}"`,
+      '  - dry_run_plan: ".ut-tdd/evidence/rename/codemod-rehearsal.json, .ut-tdd/evidence/rename/dist-smoke-rehearsal.txt, .ut-tdd/evidence/rename/static-state-gates.txt, .ut-tdd/evidence/rename/full-regression.txt"',
+      '  - rollback_plan: "pre-cutover branch/tag plus .ut-tdd backup restore route; legacy alias disposition remains explicit"',
+      '  - state_backup_plan: ".ut-tdd/evidence/rename/state-backup-restore-drill.json and restore-*.json"',
+      '  - execution_window_or_freeze_policy: "single-run quiet window; reapprove if HEAD, dirty path set, evidence digest, source ledger, or approval scope changes"',
+      '  - approval_scope: "CLI/bin rename and .ut-tdd -> .helix state dir migration only; external repo/package rename requires separate approval"',
+      '  - audit_record: "<approver, timestamp, command args, result, incident route, rollback decision>"',
+      '  - post_cutover_monitoring: "helix doctor/status/completion packet, legacy alias smoke, feedback backlog, handover, and runtime logs during quiet window"',
+      '  - legacy_alias_policy: "temporary ut-tdd alias/shim only with explicit sunset PLAN, or no-alias decision recorded here"',
+      `  - source_ledger_freshness: "fresh Cutover source ledger checked ${plan.sourceLedgerFreshness.checkedDate ?? "<checked-date>"}"`,
+      '  - source_status_delta: "none; official cutover sources reviewed for this snapshot"',
+      '  - adoption_decision_delta: "none; adoption decisions unchanged for this snapshot"',
+      '  - workflow_route_impact: "none; L14 cutover remains approval-gated and applyAuthorized=false until a separate approved apply surface exists"',
+    ],
+  };
+}
+
+function buildActionBindingApprovalDraftRecord(
+  plan: IdentifierRenameCutoverPlan,
+): IdentifierRenameApprovalDraftRecord {
+  return {
+    recordName: "action_binding_approval_record",
+    pasteReady: false,
+    unsafeToTreatAsApproval: true,
+    insertionHintJa:
+      "PLAN-M-02 の action_binding_approval_record 草案。approved_actor/tool/target/params と approver は人間が確定する。",
+    yamlLines: [
+      "action_binding_approval_record:",
+      '  - allowed_outcome: "<approve_action_binding|deny_action|request_scope_reduction>"',
+      '  - approval_policy_or_named_approver: "<PO or named approval policy>"',
+      '  - approval_scope: "CLI/bin rename and .ut-tdd -> .helix state dir migration only; no secrets, no external infra, no repository/package rename"',
+      '  - approved_actor: "<codex|claude|named human/runtime>"',
+      '  - approved_tool: "<exact non-destructive review command or future approved apply command>"',
+      '  - approved_target: ".ut-tdd -> .helix state dir and ut-tdd -> helix CLI/bin identifiers only"',
+      `  - approved_params: "cutoverSnapshot=${plan.cutoverSnapshot.snapshotId}; evidenceArtifactsDigest=${plan.cutoverSnapshot.evidenceArtifactsDigest}; approvalScopeDigest=${plan.cutoverSnapshot.approvalScopeDigest}"`,
+      '  - review_approval_evidence: "rename plan, approval-draft packet, action-binding packet, static-state-gates, full-regression, and evidence artifact hashes reviewed"',
+      `  - reviewed_snapshot_binding: "cutoverSnapshot.snapshotId ${plan.cutoverSnapshot.snapshotId}"`,
+      '  - expires_at_or_trigger: "expires if HEAD, dirty path set, evidence digest, source ledger, approval scope, actor/tool/target/params, or quiet window changes"',
+      '  - audit_record: "<approver, timestamp, reviewed packet digests, decision outcome, incident route>"',
     ],
   };
 }

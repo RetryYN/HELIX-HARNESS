@@ -402,6 +402,36 @@ describe("completion decision packet lint", () => {
         "approvalGate.reviewedSnapshotBindingRequired",
       ]),
     );
+    const approvalDraftSummary = renameDecisionPacket.decisions[0].supportingPacketSummaries.find(
+      (summary) => summary.command === "ut-tdd rename approval-draft --json",
+    );
+    expect(approvalDraftSummary).toMatchObject({
+      runnableCommand: "bun run ut-tdd rename approval-draft --json",
+      scopedCommand: "ut-tdd rename approval-draft --json",
+      runnableScopedCommand: "bun run ut-tdd rename approval-draft --json",
+      schemaVersion: "identifier-rename-approval-draft.v1",
+      matrixField: "none",
+      expectedMatrixCount: 0,
+    });
+    expect(approvalDraftSummary?.requiredReviewFields).toEqual(
+      expect.arrayContaining([
+        "planOnly",
+        "mustNotApply",
+        "approvalAllowed",
+        "applyAuthorized",
+        "recommendedOutcome",
+        "readiness.evidenceComplete",
+        "readiness.worktreeClean",
+        "currentSnapshot.cutoverSnapshotId",
+        "currentSnapshot.evidenceArtifactsDigest",
+        "draftRecords.recordName",
+        "draftRecords.pasteReady",
+        "draftRecords.unsafeToTreatAsApproval",
+        "draftRecords.yamlLines",
+        "blockedUntil",
+        "relatedDecisionPackets.scopedCommand",
+      ]),
+    );
   });
 
   it("fails completion packets without the top-level schema version", () => {
@@ -835,28 +865,32 @@ describe("completion decision packet lint", () => {
       ...renamePacket(),
       decisions: renamePacket().decisions.map((decision) => ({
         ...decision,
-        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) => ({
-          ...summary,
-          requiredReviewFields: [
-            "semanticFeatureFrontierRecord",
-            "recordTemplates",
-            "cutoverSnapshot",
-            "cutoverSnapshot.snapshotId",
-            "snapshotReview",
-            "cutoverCategoryChecklist",
-            "sourceLedgerFreshness",
-            "cutoverRunbook",
-            "dryRunPlan",
-            "rollbackPlan",
-            "monitoringPlan",
-            "stateBackupManifest",
-            "freezePolicy",
-            "provenanceRequirements",
-            "relatedDecisionPackets",
-            "approvalGate",
-            "blockedReasons",
-          ],
-        })),
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) =>
+          summary.command === "ut-tdd rename plan --json"
+            ? {
+                ...summary,
+                requiredReviewFields: [
+                  "semanticFeatureFrontierRecord",
+                  "recordTemplates",
+                  "cutoverSnapshot",
+                  "cutoverSnapshot.snapshotId",
+                  "snapshotReview",
+                  "cutoverCategoryChecklist",
+                  "sourceLedgerFreshness",
+                  "cutoverRunbook",
+                  "dryRunPlan",
+                  "rollbackPlan",
+                  "monitoringPlan",
+                  "stateBackupManifest",
+                  "freezePolicy",
+                  "provenanceRequirements",
+                  "relatedDecisionPackets",
+                  "approvalGate",
+                  "blockedReasons",
+                ],
+              }
+            : summary,
+        ),
       })),
     };
 
@@ -889,6 +923,50 @@ describe("completion decision packet lint", () => {
           reason: "invalid_supporting_packet_summary",
           detail:
             "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=approvalGate.reviewedSnapshotBindingRequired",
+        },
+      ]),
+    );
+  });
+
+  it("rejects approval-draft summaries that omit non-authorizing safety fields", () => {
+    const packet = {
+      ...renamePacket(),
+      decisions: renamePacket().decisions.map((decision) => ({
+        ...decision,
+        supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) =>
+          summary.command === "ut-tdd rename approval-draft --json"
+            ? {
+                ...summary,
+                requiredReviewFields: [
+                  "planOnly",
+                  "currentSnapshot.cutoverSnapshotId",
+                  "draftRecords",
+                ],
+              }
+            : summary,
+        ),
+      })),
+    };
+
+    const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename approval-draft --json missing review field=mustNotApply",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename approval-draft --json missing review field=applyAuthorized",
+        },
+        {
+          reason: "invalid_supporting_packet_summary",
+          detail:
+            "decision[0] supportingPacketSummary command=ut-tdd rename approval-draft --json missing review field=draftRecords.unsafeToTreatAsApproval",
         },
       ]),
     );

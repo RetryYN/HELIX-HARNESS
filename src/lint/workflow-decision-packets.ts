@@ -2,6 +2,7 @@ export type WorkflowDecisionPacketCommand =
   | "ut-tdd s4 decision-packet --json"
   | "ut-tdd version-up activation-packet --json"
   | "ut-tdd rename plan --json"
+  | "ut-tdd rename approval-draft --json"
   | "ut-tdd action-binding approval-packet --json"
   | "ut-tdd completion decision-packet --json";
 
@@ -55,6 +56,7 @@ export interface DecisionPacketProvenanceOptions {
 export const S4_DECISION_PACKET_COMMAND = "ut-tdd s4 decision-packet --json";
 export const VERSION_UP_ACTIVATION_PACKET_COMMAND = "ut-tdd version-up activation-packet --json";
 export const RENAME_PLAN_PACKET_COMMAND = "ut-tdd rename plan --json";
+export const RENAME_APPROVAL_DRAFT_PACKET_COMMAND = "ut-tdd rename approval-draft --json";
 export const ACTION_BINDING_APPROVAL_PACKET_COMMAND =
   "ut-tdd action-binding approval-packet --json";
 export const COMPLETION_DECISION_PACKET_COMMAND = "ut-tdd completion decision-packet --json";

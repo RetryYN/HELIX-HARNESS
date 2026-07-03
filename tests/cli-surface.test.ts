@@ -417,7 +417,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("workflow-next-actions: 1");
       expect(text.stdout).toContain("workflow-next-action[1]: PLAN-M-02-fixture");
       expect(text.stdout).toContain(
-        "packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json scoped-supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json supporting=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json scoped-supporting=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(
         "action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
@@ -429,10 +429,10 @@ describe("L7 CLI surface closure", () => {
         "completion-decision-packet: ut-tdd completion decision-packet --json",
       );
       expect(text.stdout).toContain(
-        "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+        "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
       );
       expect(text.stdout).toContain(
-        "scoped-supporting-decision-packets: ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "scoped-supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain("semantic_frontier_records: 1");
       expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
@@ -574,20 +574,24 @@ describe("L7 CLI surface closure", () => {
           runnableDecisionPacketCommand: "bun run ut-tdd rename plan --json",
           packetCommands: [
             "ut-tdd rename plan --json",
+            "ut-tdd rename approval-draft --json",
             "ut-tdd action-binding approval-packet --json",
           ],
           runnablePacketCommands: [
             "bun run ut-tdd rename plan --json",
+            "bun run ut-tdd rename approval-draft --json",
             "bun run ut-tdd action-binding approval-packet --json",
           ],
           scopedDecisionPacketCommand: "ut-tdd rename plan --json",
           runnableScopedDecisionPacketCommand: "bun run ut-tdd rename plan --json",
           scopedPacketCommands: [
             "ut-tdd rename plan --json",
+            "ut-tdd rename approval-draft --json",
             "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           runnableScopedPacketCommands: [
             "bun run ut-tdd rename plan --json",
+            "bun run ut-tdd rename approval-draft --json",
             "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           supportingPacketSummaries: [
@@ -608,6 +612,22 @@ describe("L7 CLI surface closure", () => {
                 "adoptionDecisionDelta",
                 "workflowRouteImpact",
               ]),
+            }),
+            expect.objectContaining({
+              command: "ut-tdd rename approval-draft --json",
+              runnableCommand: "bun run ut-tdd rename approval-draft --json",
+              scopedCommand: "ut-tdd rename approval-draft --json",
+              runnableScopedCommand: "bun run ut-tdd rename approval-draft --json",
+              schemaVersion: "identifier-rename-approval-draft.v1",
+              matrixField: "none",
+              expectedMatrixCount: 0,
+              requiredReviewFields: expect.arrayContaining([
+                "mustNotApply",
+                "applyAuthorized",
+                "currentSnapshot.cutoverSnapshotId",
+                "draftRecords.unsafeToTreatAsApproval",
+              ]),
+              requiredMatrixFields: [],
             }),
             expect.objectContaining({
               command: "ut-tdd action-binding approval-packet --json",
@@ -686,7 +706,7 @@ describe("L7 CLI surface closure", () => {
         `workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=${secondWorkflowAction.requiredActionJa} action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=${secondWorkflowAction.nextWorkflowRouteJa} route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json`,
       );
       expect(blockedText.stdout).toContain(
-        "scoped-supporting=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "scoped-supporting=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(blockedText.stdout).toContain(
         "packet-summary: 1 ut-tdd s4 decision-packet --json runnable=bun run ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture runnable-scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
@@ -698,6 +718,9 @@ describe("L7 CLI surface closure", () => {
         "packet-summary: 2 ut-tdd rename plan --json runnable=bun run ut-tdd rename plan --json scoped=ut-tdd rename plan --json runnable-scoped=bun run ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain(
+        "packet-summary: 2 ut-tdd rename approval-draft --json runnable=bun run ut-tdd rename approval-draft --json scoped=ut-tdd rename approval-draft --json runnable-scoped=bun run ut-tdd rename approval-draft --json schema=identifier-rename-approval-draft.v1 matrix=none count=0",
+      );
+      expect(blockedText.stdout).toContain(
         "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
@@ -707,7 +730,7 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("confirmed_current_meaning_records: 11");
       expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
       expect(blockedText.stdout).toContain(
-        "supporting-decision-packets: ut-tdd s4 decision-packet --json | ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json",
+        "supporting-decision-packets: ut-tdd s4 decision-packet --json | ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
       );
       expect(blockedText.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json",
@@ -893,6 +916,7 @@ describe("L7 CLI surface closure", () => {
               scopedPrimaryPacketCommand: "ut-tdd rename plan --json",
               scopedSupportingPacketCommands: [
                 "ut-tdd rename plan --json",
+                "ut-tdd rename approval-draft --json",
                 "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
               ],
               requiredRecords: ["cutover_decision_record", "action_binding_approval_record"],
@@ -940,10 +964,15 @@ describe("L7 CLI surface closure", () => {
         [
           "PLAN-M-02-fixture",
           "ut-tdd rename plan --json",
-          ["ut-tdd rename plan --json", "ut-tdd action-binding approval-packet --json"],
+          [
+            "ut-tdd rename plan --json",
+            "ut-tdd rename approval-draft --json",
+            "ut-tdd action-binding approval-packet --json",
+          ],
           "ut-tdd rename plan --json",
           [
             "ut-tdd rename plan --json",
+            "ut-tdd rename approval-draft --json",
             "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
         ],
@@ -1045,10 +1074,10 @@ describe("L7 CLI surface closure", () => {
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(text.stdout).toContain(
-        "packet-command: primary=ut-tdd rename plan --json scoped-primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json scoped-packets=ut-tdd rename plan --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "packet-command: primary=ut-tdd rename plan --json scoped-primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json scoped-packets=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(
-        "runnable-packet-command: primary=bun run ut-tdd rename plan --json scoped-primary=bun run ut-tdd rename plan --json packets=bun run ut-tdd rename plan --json | bun run ut-tdd action-binding approval-packet --json scoped-packets=bun run ut-tdd rename plan --json | bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "runnable-packet-command: primary=bun run ut-tdd rename plan --json scoped-primary=bun run ut-tdd rename plan --json packets=bun run ut-tdd rename plan --json | bun run ut-tdd rename approval-draft --json | bun run ut-tdd action-binding approval-packet --json scoped-packets=bun run ut-tdd rename plan --json | bun run ut-tdd rename approval-draft --json | bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(`required-action: ${cutoverDecision.requiredActionsJa[0]}`);
       expect(text.stdout).toContain(
