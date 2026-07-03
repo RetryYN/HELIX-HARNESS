@@ -2037,6 +2037,27 @@ describe("runDoctor", () => {
     );
   });
 
+  it("U-OUTSTANDING-014: completion review-bundle doctor bridge also rejects stale dedicated packets", () => {
+    const planId = "PLAN-DISCOVERY-10-helix-asset-visualization";
+    const liveS4Packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(process.cwd()));
+    const badS4Packets = liveS4Packets.map((candidate) =>
+      candidate.planId === planId
+        ? {
+            ...candidate,
+            relatedDecisionPackets: candidate.relatedDecisionPackets.map((related) =>
+              related.role === "primary" ? { ...related, scopedCommand: undefined } : related,
+            ),
+          }
+        : candidate,
+    );
+
+    const result = checkCompletionReviewBundle(process.cwd(), { s4Packets: badS4Packets });
+    expect(result.ok).toBe(false);
+    expect(result.messages).toContain(
+      `completion-review-bundle - violation: S4 ${planId} relatedDecisionPackets primary ut-tdd s4 decision-packet --json missing scopedCommand`,
+    );
+  });
+
   it("ok=true includes handover and agent-slots surfaces as warnings", () => {
     const r = runDoctor(deps());
     expect(r.ok).toBe(false);

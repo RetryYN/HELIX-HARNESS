@@ -8,6 +8,7 @@ import {
   analyzeDocConsistency,
   checkCarryConsistency,
   checkHelixSetupReviewBundleConsistency,
+  checkHelixSetupVersionUpTargetConsistency,
   checkNfrCount,
   checkScreenIdValidity,
   expandFrL1Refs,
@@ -50,9 +51,29 @@ describe("doc consistency (doc 間整合の自動化)", () => {
     expect(result.nfrCount.mismatch).toBe(false);
     expect(result.definedScreenCount).toBe(15);
     expect(result.helixSetupReviewBundleMissing).toEqual([]);
+    expect(result.helixSetupVersionUpTargetMissing).toEqual([]);
   });
 
   it("HELIX setup 設計は completion review-bundle と semantic digest を初回検証に含める", () => {
     expect(checkHelixSetupReviewBundleConsistency(docs).missing).toEqual([]);
+  });
+
+  it("HELIX setup の version-up dry-run target は Pack 最新タグと release remote に固定する", () => {
+    expect(checkHelixSetupVersionUpTargetConsistency(docs).missing).toEqual([]);
+  });
+
+  it("HELIX setup の version-up dry-run target が古い Pack tag に戻ったら検出する", () => {
+    const expectedCommand =
+      "--target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json";
+    const staleDocs = {
+      ...docs,
+      l6SetupSoloTeam: docs.l6SetupSoloTeam.split(expectedCommand).join("--target v0.1.3 --json"),
+    };
+    expect(checkHelixSetupVersionUpTargetConsistency(staleDocs).missing).toEqual(
+      expect.arrayContaining([
+        "l6-setup-version-up-pack-target",
+        "l6SetupSoloTeam-stale-version-up-target-v0.1.3",
+      ]),
+    );
   });
 });

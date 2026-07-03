@@ -29,7 +29,12 @@ import {
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
 export const PACK_DISTRIBUTION_REMOTE_URL =
   "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
-export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+export const PACK_DISTRIBUTION_REFERENCE = {
+  repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+  mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+  latestTag: "v0.1.4",
+} as const;
+export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target ${PACK_DISTRIBUTION_REFERENCE.latestTag} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
 export const CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND = `bun run ${CONSUMER_VERSION_UP_DRY_RUN_COMMAND}`;
 
 export const CONSUMER_CI_RUN_COMMANDS = [
@@ -956,11 +961,6 @@ const MANAGED_END = "<!-- UT-TDD:managed:end -->";
 const MERGEABLE_ADAPTER_DOCS = new Set(["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")]);
 const COMMITLINT_DOTFILE = "commitlint.config.js";
 export const LOCAL_DISTRIBUTION_PACKAGE_VERSION = "0.1.0";
-const PACK_DISTRIBUTION_REFERENCE = {
-  repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-  mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
-  latestTag: "v0.1.4",
-} as const;
 
 /**
  * package.json が既に commitlint 設定 (`"commitlint"` キー) を宣言しているか判定する純関数。

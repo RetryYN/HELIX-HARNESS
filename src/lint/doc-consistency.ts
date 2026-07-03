@@ -20,12 +20,22 @@ const ROOT = resolve(HERE, "..", "..");
 
 const SCREEN_ID_REGEX = /\b(?:PM|HM|GD)-\d{2}\b/g;
 const NFR_ROW_REGEX = /\|\s*\*\*NFR-(\d{2})\*\*\s*\|/g;
+const PACK_DISTRIBUTION_REMOTE_URL =
+  "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+const SETUP_VERSION_UP_TARGET = "v0.1.4";
+const SETUP_VERSION_UP_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target ${SETUP_VERSION_UP_TARGET} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+const STALE_SETUP_VERSION_UP_TARGET_REGEX =
+  /ut-tdd version-up dry-run --current v0\.1\.0 --target (v\d+\.\d+\.\d+)(?:\s|`)/g;
 
 export interface DocConsistencySource {
   l1Functional: string;
   l3Functional: string;
   l3HelixPillar: string;
   l6SetupSoloTeam: string;
+  l7UnitTestDesign: string;
+  setupIndex: string;
+  setupTemplates: string;
+  doctorIndex: string;
   screen: string;
   nfr: string;
 }
@@ -38,6 +48,10 @@ export function loadDocConsistencyDocs(repoRoot: string = ROOT): DocConsistencyS
     l3Functional: read("docs/design/harness/L3-functional/functional-requirements.md"),
     l3HelixPillar: read("docs/design/helix/L3-requirements/pillar-functional-requirements.md"),
     l6SetupSoloTeam: read("docs/design/harness/L6-function-design/setup-solo-team.md"),
+    l7UnitTestDesign: read("docs/test-design/harness/L7-unit-test-design.md"),
+    setupIndex: read("src/setup/index.ts"),
+    setupTemplates: read("src/setup/templates.ts"),
+    doctorIndex: read("src/doctor/index.ts"),
     screen: read("docs/design/harness/L1-requirements/screen-requirements.md"),
     nfr: read("docs/design/harness/L1-requirements/nfr.md"),
   };
@@ -190,6 +204,65 @@ export function checkHelixSetupReviewBundleConsistency(docs: {
   return { missing: [...missing, ...stale] };
 }
 
+export function checkHelixSetupVersionUpTargetConsistency(docs: {
+  l3HelixPillar: string;
+  l6SetupSoloTeam: string;
+  l7UnitTestDesign: string;
+  setupIndex: string;
+  setupTemplates: string;
+  doctorIndex: string;
+}): { missing: string[] } {
+  const required: Array<{ id: string; text: string; pattern: RegExp }> = [
+    {
+      id: "l3-helix-setup-version-up-pack-target",
+      text: docs.l3HelixPillar,
+      pattern: new RegExp(escapeRegExp(SETUP_VERSION_UP_COMMAND)),
+    },
+    {
+      id: "l6-setup-version-up-pack-target",
+      text: docs.l6SetupSoloTeam,
+      pattern: new RegExp(escapeRegExp(SETUP_VERSION_UP_COMMAND)),
+    },
+    {
+      id: "l7-setup-test-design-version-up-pack-target",
+      text: docs.l7UnitTestDesign,
+      pattern: new RegExp(escapeRegExp(SETUP_VERSION_UP_COMMAND)),
+    },
+    {
+      id: "setup-index-version-up-target-derived-from-pack-latest",
+      text: docs.setupIndex,
+      pattern:
+        /CONSUMER_VERSION_UP_DRY_RUN_COMMAND\s*=\s*`ut-tdd version-up dry-run --current v0\.1\.0 --target \$\{PACK_DISTRIBUTION_REFERENCE\.latestTag\} --release-remote \$\{PACK_DISTRIBUTION_REMOTE_URL\} --json`/,
+    },
+    {
+      id: "setup-index-pack-latest-tag",
+      text: docs.setupIndex,
+      pattern: /latestTag:\s*"v0\.1\.4"/,
+    },
+    {
+      id: "setup-templates-version-up-pack-target",
+      text: docs.setupTemplates,
+      pattern: new RegExp(escapeRegExp(SETUP_VERSION_UP_COMMAND)),
+    },
+    {
+      id: "doctor-version-up-pack-target",
+      text: docs.doctorIndex,
+      pattern: new RegExp(escapeRegExp(SETUP_VERSION_UP_COMMAND)),
+    },
+  ];
+  const missing = required.filter((row) => !row.pattern.test(row.text)).map((row) => row.id);
+  const stale = Object.entries(docs).flatMap(([sourceId, text]) =>
+    [...text.matchAll(STALE_SETUP_VERSION_UP_TARGET_REGEX)]
+      .filter((match) => match[1] !== SETUP_VERSION_UP_TARGET)
+      .map((match) => `${sourceId}-stale-version-up-target-${match[1]}`),
+  );
+  return { missing: [...missing, ...stale] };
+}
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 export interface DocConsistencyResult {
   carryOrphans: string[];
   carryRequired: number[];
@@ -197,6 +270,7 @@ export interface DocConsistencyResult {
   definedScreenCount: number;
   nfrCount: { declared: number | null; actual: number; mismatch: boolean };
   helixSetupReviewBundleMissing: string[];
+  helixSetupVersionUpTargetMissing: string[];
 }
 
 export function analyzeDocConsistency(docs?: DocConsistencySource): DocConsistencyResult {
@@ -211,5 +285,6 @@ export function analyzeDocConsistency(docs?: DocConsistencySource): DocConsisten
     definedScreenCount: screen.definedScreens.length,
     nfrCount: nfr,
     helixSetupReviewBundleMissing: checkHelixSetupReviewBundleConsistency(d).missing,
+    helixSetupVersionUpTargetMissing: checkHelixSetupVersionUpTargetConsistency(d).missing,
   };
 }

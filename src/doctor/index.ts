@@ -2293,18 +2293,23 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
 export function checkDocConsistency(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeDocConsistency(loadDocConsistencyDocs(repoRoot));
-    const bad = r.carryOrphans.length + r.screenIdOrphans.length + (r.nfrCount.mismatch ? 1 : 0);
+    const bad =
+      r.carryOrphans.length +
+      r.screenIdOrphans.length +
+      (r.nfrCount.mismatch ? 1 : 0) +
+      r.helixSetupReviewBundleMissing.length +
+      r.helixSetupVersionUpTargetMissing.length;
     if (bad === 0) {
       return {
         messages: [
-          `doc-consistency — OK (carry/screen-id/NFR 整合, screens=${r.definedScreenCount}, NFR=${r.nfrCount.actual})`,
+          `doc-consistency — OK (carry/screen-id/NFR/setup 整合, screens=${r.definedScreenCount}, NFR=${r.nfrCount.actual})`,
         ],
         ok: true,
       };
     }
     return {
       messages: [
-        `doc-consistency — violation: carryOrphans=${r.carryOrphans.length}, screenIdOrphans=${r.screenIdOrphans.length}, nfrMismatch=${r.nfrCount.mismatch} (declared=${r.nfrCount.declared}/actual=${r.nfrCount.actual})`,
+        `doc-consistency — violation: carryOrphans=${r.carryOrphans.length}, screenIdOrphans=${r.screenIdOrphans.length}, nfrMismatch=${r.nfrCount.mismatch} (declared=${r.nfrCount.declared}/actual=${r.nfrCount.actual}), helixSetupReviewBundleMissing=${r.helixSetupReviewBundleMissing.length}, helixSetupVersionUpTargetMissing=${r.helixSetupVersionUpTargetMissing.length}`,
       ],
       ok: false,
     };
@@ -2579,6 +2584,13 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
   }
 }
 
+type CompletionDedicatedPacketBridgeDeps = {
+  s4Packets?: ReturnType<typeof buildS4DecisionPackets>;
+  versionPackets?: ReturnType<typeof buildVersionUpActivationPackets>;
+  renamePlan?: ReturnType<typeof buildIdentifierRenameCutoverPlan>;
+  approvalPackets?: ReturnType<typeof buildActionBindingApprovalPackets>;
+};
+
 export function checkCompletionDecisionPacket(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -2620,6 +2632,20 @@ export function checkCompletionDecisionPacket(repoRoot: string): {
 export function checkCompletionReviewBundle(repoRoot: string): {
   messages: string[];
   ok: boolean;
+};
+export function checkCompletionReviewBundle(
+  repoRoot: string,
+  bridgeDeps: CompletionDedicatedPacketBridgeDeps,
+): {
+  messages: string[];
+  ok: boolean;
+};
+export function checkCompletionReviewBundle(
+  repoRoot: string,
+  bridgeDeps: CompletionDedicatedPacketBridgeDeps = {},
+): {
+  messages: string[];
+  ok: boolean;
 } {
   if (!existsSync(repoRoot)) {
     return {
@@ -2632,9 +2658,19 @@ export function checkCompletionReviewBundle(repoRoot: string): {
     const bundle = loadCompletionReviewBundleInput(repoRoot, now);
     const decisionPacket = loadCompletionDecisionPacketInput(repoRoot, bundle.generatedAt);
     const r = analyzeCompletionReviewBundle(bundle, decisionPacket, now);
+    const dedicatedViolations = completionDedicatedPacketBridgeViolations(
+      repoRoot,
+      decisionPacket,
+      bridgeDeps,
+    );
     return {
-      messages: completionReviewBundleMessages(r),
-      ok: r.ok,
+      messages: [
+        ...completionReviewBundleMessages(r),
+        ...dedicatedViolations.map(
+          (violation) => `completion-review-bundle - violation: ${violation}`,
+        ),
+      ],
+      ok: r.ok && dedicatedViolations.length === 0,
     };
   } catch {
     return {
@@ -2647,12 +2683,7 @@ export function checkCompletionReviewBundle(repoRoot: string): {
 export function completionDedicatedPacketBridgeViolations(
   repoRoot: string,
   packet: ReturnType<typeof loadCompletionDecisionPacketInput>,
-  deps: {
-    s4Packets?: ReturnType<typeof buildS4DecisionPackets>;
-    versionPackets?: ReturnType<typeof buildVersionUpActivationPackets>;
-    renamePlan?: ReturnType<typeof buildIdentifierRenameCutoverPlan>;
-    approvalPackets?: ReturnType<typeof buildActionBindingApprovalPackets>;
-  } = {},
+  deps: CompletionDedicatedPacketBridgeDeps = {},
 ): string[] {
   const violations: string[] = [];
   const decisionPlanIdsByCommand = new Map<string, Set<string>>();
