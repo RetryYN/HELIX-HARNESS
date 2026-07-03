@@ -108,6 +108,28 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.map((v) => v.rule)).toContain("domain-boundary");
   });
 
+  it("U-DDDTDD-010: applies the same canonical source-boundary matrix as module-boundary", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        docs: [
+          {
+            path: "src/lint/bad-gate-boundary.ts",
+            scope: "source",
+            text: 'import { runGate } from "../gate/run";\nexport const x = runGate;',
+          },
+          {
+            path: "tests/strong.test.ts",
+            scope: "test",
+            text: 'import { it, expect } from "vitest";\nit("checks value", () => { expect(1).toBe(1); });',
+          },
+        ],
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.rule)).toContain("domain-boundary");
+  });
+
   it("detects invariant rows without L7 oracle trace", () => {
     const result = analyzeDddTddRules(baseInputs({ l7Text: "" }));
     expect(result.ok).toBe(false);

@@ -246,8 +246,34 @@ export function hasDbcTable(text: string): boolean {
   return DBC_TABLE_FULL.test(text) || DBC_TABLE_MIN.test(text);
 }
 
-// A-120 I-2: coding-rules / ddd-tdd-rules の境界チェックが各自コピペしていた
-// TS module 解決 helper を単一正本化する (boundary 判定そのものは各 lint で別ルール = 統合しない)。
+// A-120 I-2 / IMP-105: coding-rules / ddd-tdd-rules の import 境界判定を単一正本化する。
+// rule id は module-boundary / domain-boundary のまま分け、禁止 matrix は共有する。
+const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<string, ReadonlySet<string>> = {
+  lint: new Set([
+    "cli",
+    "doctor",
+    "gate",
+    "handover",
+    "plan",
+    "runtime",
+    "setup",
+    "team",
+    "vmodel",
+  ]),
+  runtime: new Set(["cli", "doctor", "handover", "lint", "plan", "setup", "team", "vmodel"]),
+  schema: new Set([
+    "cli",
+    "doctor",
+    "gate",
+    "handover",
+    "lint",
+    "plan",
+    "runtime",
+    "setup",
+    "team",
+    "vmodel",
+  ]),
+};
 
 /** OS path 区切りを `/` に正規化。 */
 export function normalizePath(path: string): string {
@@ -284,4 +310,12 @@ export function importedSourceModule(fromPath: string, specifier: string): strin
   if (resolvedParts[0] !== "src") return null;
   if (resolvedParts.length === 2) return basename(resolvedParts[1], ".ts");
   return resolvedParts[1] ?? null;
+}
+
+export function violatesSourceBoundary(
+  fromModule: string | null,
+  toModule: string | null,
+): boolean {
+  if (!fromModule || !toModule) return false;
+  return DISALLOWED_SOURCE_BOUNDARY_IMPORTS[fromModule]?.has(toModule) ?? false;
 }

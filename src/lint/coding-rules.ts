@@ -1,7 +1,13 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import ts from "typescript";
-import { importedSourceModule, lineOf, normalizePath, sourceModule } from "./shared";
+import {
+  importedSourceModule,
+  lineOf,
+  normalizePath,
+  sourceModule,
+  violatesSourceBoundary,
+} from "./shared";
 
 export type CodingRulesScope = "source" | "test";
 
@@ -124,33 +130,6 @@ const MACHINE_SURFACE_LINE_PATTERN =
 const NON_ASCII_DECISION_WORD_PATTERN = /警告|成功|失敗|承認|却下|未完了|完了/;
 const ASCII_DECISION_TOKEN_PATTERN =
   /\b(OK|violation|warning|skipped|note|error|ready|not ready|completed|confirmed|draft|accepted|rejected|blocked|PASS|FAIL|green|red)\b/i;
-const DISALLOWED_SOURCE_IMPORTS: Record<string, Set<string>> = {
-  lint: new Set([
-    "cli",
-    "doctor",
-    "gate",
-    "handover",
-    "plan",
-    "runtime",
-    "setup",
-    "team",
-    "vmodel",
-  ]),
-  runtime: new Set(["cli", "doctor", "handover", "lint", "plan", "setup", "team", "vmodel"]),
-  schema: new Set([
-    "cli",
-    "doctor",
-    "gate",
-    "handover",
-    "lint",
-    "plan",
-    "runtime",
-    "setup",
-    "team",
-    "vmodel",
-  ]),
-};
-
 function firstMatchingLine(text: string, pattern: RegExp): number {
   const lines = text.split(/\r?\n/);
   for (let i = 0; i < lines.length; i += 1) {
@@ -352,7 +331,7 @@ export function analyzeCodingRules(
         if (ts.isStringLiteral(specifier)) {
           const fromModule = sourceModule(doc.path);
           const toModule = importedSourceModule(doc.path, specifier.text);
-          if (fromModule && toModule && DISALLOWED_SOURCE_IMPORTS[fromModule]?.has(toModule)) {
+          if (violatesSourceBoundary(fromModule, toModule)) {
             violations.push({
               path: doc.path,
               line: lineOf(sourceFile, specifier.getStart(sourceFile)),

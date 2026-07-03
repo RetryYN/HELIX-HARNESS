@@ -572,6 +572,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-CODE-008 | structured error handling | source catch block with undocumented empty body or rethrow-only body -> `structured-error-handling` violation |
 | U-CODE-009 | module boundary | disallowed reverse dependency such as `src/lint/*` importing `../runtime/*` -> `module-boundary` violation |
 | U-CODE-010 | machine surface language | machine-facing CLI/doctor/lint/gate message line with Japanese-only decision words and no ASCII token (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) -> `machine-surface-language` violation; Japanese explanatory prose after the ASCII token remains allowed |
+| U-CODE-011 | canonical source-boundary matrix | `src/lint/*` importing `../gate/*` など、共有 matrix 上の禁止 import は `module-boundary` violation になる |
 
 ### U-DESLANG Addendum (design-language)
 
@@ -601,6 +602,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-DDDTDD-007 | domain boundary | disallowed reverse dependency such as `src/lint/*` importing runtime/doctor/CLI feature modules -> violation |
 | U-DDDTDD-008 | real repo guard | `loadDddTddInputs(process.cwd())` + `analyzeDddTddRules` returns violations `[]`; `doctor` surfaces `ddd-tdd-rules` and links `ok` |
 | U-DDDTDD-009 | unit-oracle-substance (IMP-083 残差) | L7 unit test-design の `U-XXX-NNN` 行 (末尾数字 = `U-ID` ヘッダ除外) の expected-behavior セルが空 / trivial (< 6 字) / skeleton marker (`-`/TODO/骨格 等) -> violation。substantive 行は非違反 (false-positive 回避) |
+| U-DDDTDD-010 | canonical source-boundary matrix | `domain-boundary` は `module-boundary` と同じ共有 matrix を使い、`src/lint/*` importing `../gate/*` も violation になる |
 
 ### §1.16.2 U-READABILITY (freeze doc readability lint、A-110 / IMP-089)
 
@@ -731,9 +733,9 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 - **module-drift.md §2-§3 関数 (parseListedModules/scanActualModules/analyzeModuleDrift/loadModuleDocs/moduleDriftMessages) → U-MDRIFT-001〜005** (add-feature 差分、PLAN-L7-16/IMP-075。moduleDriftMessages は U-MDRIFT-003/004 経路 + 専用 assert で被覆、loadModuleDocs は U-MDRIFT-005 実 repo ガードに内包。孤児 0)
 - **module-drift.md asset-drift alias (loadAssetDriftInput/analyzeAssetDrift/assetDriftMessages/checkAssetDrift) → U-ASSETDRIFT-001〜006** (内部資産 + prompt template cutover 差分、FR-L1-49。legacy source path residue / legacy command residue / docs-skills vacancy / guard allowlist missing を doctor hard guard。孤児 0)
 - **module-drift.md change-impact addendum (analyzeChangeImpact/analyzeChangeSetIntegrity/parseGitPorcelain/loadChangedFiles/changeImpactMessages) → U-CHGIMPACT-001〜007** (コード変更に対する設計・テスト更新漏れ検出と、未承認 L7 実装着手の PLAN 契約検出。doctor hard guard。孤児 0)
-- **module-drift.md coding-rules addendum (analyzeCodingRules/loadCodingRuleDocs/loadCodingWorkflowDocs/codingRulesMessages/checkCodingRules) → U-CODE-001〜010** (requirements-level coding rule SSoT + workflow placement + error/module-boundary + machine-surface-language の機械検出。doctor hard guard。孤児 0)
+- **module-drift.md coding-rules addendum (analyzeCodingRules/loadCodingRuleDocs/loadCodingWorkflowDocs/codingRulesMessages/checkCodingRules) → U-CODE-001〜011** (requirements-level coding rule SSoT + workflow placement + error/module-boundary + machine-surface-language + canonical source-boundary matrix の機械検出。doctor hard guard。孤児 0)
 - **module-drift.md design-language addendum (analyzeDesignLanguage/loadDesignLanguageDocs/designLanguageMessages/checkDesignLanguage) → U-DESLANG-001〜005** (PLAN / 設計 / テスト設計 / process / governance / handover / adapter ルールの日本語 prose baseline + fingerprint ratchet。doctor hard guard。孤児 0)
-- **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜008** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT の機械検出。doctor hard guard。孤児 0)
+- **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜010** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT + canonical source-boundary matrix の機械検出。doctor hard guard。孤児 0)
 - **team.ts §2.2 schema / 関数 (teamDefinitionSchema/mustSerialize) + team/launch-policy.ts → U-TEAM-001〜003** (add-feature 差分、IMP-050。孤児 0)
 - **backfill-pairing.md §2.3 関数 (parseRequires/parseGlossaryTerms/normalizeTerm/parsePlan/analyzeBackfill/loadBackfillDocs/backfillMessages/checkBackfill) → U-BACKFILL-001〜006** (add-feature 差分、IMP-051。normalizeTerm は parseGlossaryTerms/analyzeBackfill の内部パス経由で被覆。checkBackfill は doctor/index.ts の try-catch ラッパーで U-BACKFILL-006 実 repo ガードに内包。孤児 0)
 - **vmodel-pair-freeze.md §1-§3 関数 (loadPairDocs/analyzePairFreeze/pairFreezeMessages/lintVmodel) → U-VPAIR-001〜006** (add-feature 差分、PLAN-L7-11/IMP-067。lintVmodel は loadPairDocs→analyzePairFreeze→pairFreezeMessages の orchestration で U-VPAIR-005 実 repo ガードに内包。孤児 0)

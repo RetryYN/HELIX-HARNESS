@@ -1,7 +1,13 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import ts from "typescript";
-import { importedSourceModule, lineOf, normalizePath, sourceModule } from "./shared";
+import {
+  importedSourceModule,
+  lineOf,
+  normalizePath,
+  sourceModule,
+  violatesSourceBoundary,
+} from "./shared";
 
 export type DddTddDocScope = "source" | "test";
 
@@ -116,12 +122,6 @@ const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
     ],
   },
 ];
-
-const DISALLOWED_DOMAIN_IMPORTS: Record<string, Set<string>> = {
-  lint: new Set(["cli", "doctor", "handover", "runtime", "setup", "team"]),
-  runtime: new Set(["cli", "doctor", "lint", "plan", "team", "vmodel"]),
-  schema: new Set(["cli", "doctor", "gate", "handover", "lint", "plan", "runtime", "team"]),
-};
 
 function collectDocs(repoRoot: string, relDir: string, scope: DddTddDocScope): DddTddDoc[] {
   const root = join(repoRoot, relDir);
@@ -271,7 +271,7 @@ function domainBoundaryViolations(docs: DddTddDoc[]): DddTddViolation[] {
       }
       const fromModule = sourceModule(doc.path);
       const toModule = importedSourceModule(doc.path, node.moduleSpecifier.text);
-      if (fromModule && toModule && DISALLOWED_DOMAIN_IMPORTS[fromModule]?.has(toModule)) {
+      if (violatesSourceBoundary(fromModule, toModule)) {
         violations.push({
           path: doc.path,
           line: lineOf(sourceFile, node.moduleSpecifier.getStart(sourceFile)),

@@ -136,6 +136,19 @@ export function rethrowOnly(): void {
     expect(result.violations.map((v) => v.rule)).toContain("module-boundary");
   });
 
+  it("U-CODE-011: applies the canonical source-boundary matrix beyond runtime imports", () => {
+    const result = analyzeCodingRules([
+      {
+        path: "src/lint/bad-gate-boundary.ts",
+        scope: "source",
+        text: 'import { runGate } from "../gate/run";\nexport const x = runGate;',
+      },
+    ]);
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.rule)).toContain("module-boundary");
+  });
+
   it("U-CODE-010: detects machine-facing status messages without ASCII decision tokens", () => {
     const result = analyzeCodingRules([
       {
