@@ -137,7 +137,8 @@ official reporter artifact を `TestCaseEvidence[]` に正規化し、既存 `te
 対象外:
 
 - DB schema / migration 追加。
-- duration trend 専用 table / dashboard 永続化。
+- duration trend 専用 table / dashboard 永続化。PLAN-L7-241 は既存 `quality_signals` に
+  `duration_trend_ms` を保存する schema-less persistence として扱う。
 - reporter の実行、外部依存追加、ネットワーク利用。
 - HTML / trace / coverage / attachment / blob parser。
 - JUnit XML 全方言への完全対応。

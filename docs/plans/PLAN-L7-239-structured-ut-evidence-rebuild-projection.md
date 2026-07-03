@@ -128,7 +128,8 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 - Vitest / Playwright / JUnit reporter の生出力 parser。
 - `RebuildHarnessDbInput` の public API 拡張。
 - DB schema / migration 追加。
-- duration trend 専用 table または dashboard 表示。
+- duration trend 専用 table または dashboard 表示。PLAN-L7-241 は既存 `quality_signals` に
+  `duration_trend_ms` を保存する schema-less persistence として扱う。
 - L14 completion / version-up activation / `.ut-tdd` irreversible cutover の承認。
 
 ## 2. 受入条件

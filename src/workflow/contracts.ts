@@ -404,6 +404,15 @@ export function projectUtHistorySignals(
     }
 
     for (const [oracleId, history] of buildUtOracleHistories(input.test_runs)) {
+      refs.push(
+        ...projectUtDurationTrendSignals({
+          db: deps.db,
+          planScope,
+          oracleId,
+          history,
+          threshold: input.duration_regression_ratio ?? 1.5,
+        }),
+      );
       const passCount = history.filter((item) => item.test_case.status === "passed").length;
       const failCount = history.filter((item) => item.test_case.status === "failed").length;
       if (passCount > 0 && failCount > 0) {
@@ -505,6 +514,50 @@ export function projectUtHistorySignals(
     evidence_paths: evidencePaths,
     signals: signalResult.signals,
   };
+}
+
+function projectUtDurationTrendSignals(input: {
+  db: HarnessDb;
+  planScope: string;
+  oracleId: string;
+  history: UtOracleHistoryItem[];
+  threshold: number;
+}): ProjectionRef[] {
+  const { db, planScope, oracleId, history, threshold } = input;
+  const refs: ProjectionRef[] = [];
+  const durationHistory = history
+    .map((item) => ({
+      duration_ms: item.test_case.duration_ms,
+      completed_at: item.completed_at,
+      evidence_path: item.evidence_path,
+    }))
+    .filter((item): item is { duration_ms: number; completed_at: string; evidence_path: string } =>
+      typeof item.duration_ms === "number" && item.duration_ms > 0,
+    );
+  for (const [durationIndex, item] of durationHistory.entries()) {
+    const baseline = median(durationHistory.slice(0, durationIndex).map((prior) => prior.duration_ms));
+    const ratio = baseline > 0 ? item.duration_ms / baseline : 0;
+    const signalId = stableId(
+      "ut-duration-trend",
+      `${planScope}:${oracleId}:${item.completed_at}:${item.duration_ms}:${durationIndex}`,
+    );
+    upsertRow(db, {
+      table: "quality_signals",
+      primaryKey: "signal_id",
+      row: {
+        signal_id: signalId,
+        source: "ut-history",
+        subject_id: `oracle:${planScope}:${oracleId}`,
+        metric: "duration_trend_ms",
+        value: item.duration_ms,
+        threshold: baseline,
+        status: ratio >= threshold ? "warn" : "pass",
+        computed_at: item.completed_at,
+      },
+    });
+    refs.push({ table: "quality_signals", id: signalId, evidence_path: item.evidence_path });
+  }
+  return refs;
 }
 
 function median(values: number[]): number {

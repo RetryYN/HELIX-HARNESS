@@ -301,6 +301,10 @@ Required UT-derived metrics:
   非 0 の flake は oracle 単位の `quality_signals(source=ut-history, metric=flake_score)` も作る。
 - `duration_regression` は直近 duration と過去中央値の比率で算出し、aggregate signal に加えて
   原因 oracle の `quality_signals(source=ut-history, metric=duration_regression)` として保存する。
+- `duration_trend_ms` は oracle/run 時点ごとの duration 観測点として
+  `quality_signals(source=ut-history, subject_id=oracle:<plan_id>:<oracle_id>, metric=duration_trend_ms)` に保存する。
+  `value` は duration ms、`threshold` はその時点より前の duration 中央値、`computed_at` は run completed_at
+  とする。これにより専用 table / migration を増やさず、rebuild 可能な時系列 trend を query できる。
 - `review_evidence.green_commands[].evidence_path` が structured JSON を指し、`cases[]` を含む場合、
   deterministic rebuild は既存 `test_runs` に紐づけて `test_cases` / `test_results` /
   `test_artifact_edges` を投影し、DB から UT history input を復元して `test_flake_events` /

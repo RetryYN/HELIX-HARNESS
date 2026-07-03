@@ -829,6 +829,33 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         expect(
           db
             .prepare(
+              "SELECT COUNT(*) AS n FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ?",
+            )
+            .get(
+              "ut-history",
+              "oracle:PLAN-L7-239-structured-ut-evidence:U-STRUCT-SLOW",
+              "duration_trend_ms",
+            )?.n,
+        ).toBe(2);
+        expect(
+          db
+            .prepare(
+              "SELECT value, threshold, status, computed_at FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ? ORDER BY computed_at DESC LIMIT 1",
+            )
+            .get(
+              "ut-history",
+              "oracle:PLAN-L7-239-structured-ut-evidence:U-STRUCT-SLOW",
+              "duration_trend_ms",
+            ),
+        ).toEqual({
+          value: 180,
+          threshold: 100,
+          status: "warn",
+          computed_at: "2026-07-03T00:03:00.000Z",
+        });
+        expect(
+          db
+            .prepare(
               "SELECT source_table, signal_type, severity FROM feedback_events WHERE source_table = ? AND signal_type = ? LIMIT 1",
             )
             .get("quality_signals", "duration_regression"),

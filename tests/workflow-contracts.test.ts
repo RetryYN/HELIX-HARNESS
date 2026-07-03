@@ -345,6 +345,25 @@ describe("L7 workflow contract implementations", () => {
           )
           .get("ut-history", "PLAN-L7-238", "duration_regression"),
       ).toEqual({ status: "warn", value: 0.5 });
+      expect(
+        db
+          .prepare(
+            "SELECT COUNT(*) AS n FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ?",
+          )
+          .get("ut-history", "oracle:PLAN-L7-238:U-SLOW", "duration_trend_ms")?.n,
+      ).toBe(2);
+      expect(
+        db
+          .prepare(
+            "SELECT value, threshold, status, computed_at FROM quality_signals WHERE source = ? AND subject_id = ? AND metric = ? ORDER BY computed_at DESC LIMIT 1",
+          )
+          .get("ut-history", "oracle:PLAN-L7-238:U-SLOW", "duration_trend_ms"),
+      ).toEqual({
+        value: 180,
+        threshold: 100,
+        status: "warn",
+        computed_at: "2026-07-03T00:03:00.000Z",
+      });
     } finally {
       db.close();
     }

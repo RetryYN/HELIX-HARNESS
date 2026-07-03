@@ -1115,6 +1115,7 @@ function projectUtHistorySignalsForPlan(db: HarnessDb, planId: string, runs: Pro
     });
   }
   for (const [oracleId, history] of histories) {
+    projectUtDurationTrendSignals({ db, planId, oracleId, history });
     const passCount = history.filter((item) => item.status === "passed").length;
     const failCount = history.filter((item) => item.status === "failed").length;
     const latest = history.at(-1);
@@ -1179,6 +1180,50 @@ function projectUtHistorySignalsForPlan(db: HarnessDb, planId: string, runs: Pro
         });
       }
     }
+  }
+}
+
+function projectUtDurationTrendSignals(input: {
+  db: HarnessDb;
+  planId: string;
+  oracleId: string;
+  history: Array<ProjectedUtCase & { evidence_path: string; completed_at: string }>;
+}): void {
+  const { db, planId, oracleId, history } = input;
+  const durationHistory = history
+    .map((item) => ({
+      duration_ms: item.duration_ms,
+      completed_at: item.completed_at,
+      evidence_path: item.evidence_path,
+    }))
+    .filter((item): item is { duration_ms: number; completed_at: string; evidence_path: string } =>
+      typeof item.duration_ms === "number" && item.duration_ms > 0,
+    );
+  for (const [durationIndex, item] of durationHistory.entries()) {
+    const priorDurations = durationHistory
+      .slice(0, durationIndex)
+      .map((prior) => prior.duration_ms)
+      .filter((duration) => duration > 0);
+    const baseline = medianNumber(priorDurations);
+    const ratio = baseline > 0 ? item.duration_ms / baseline : 0;
+    const signalId = stableId(
+      "ut-duration-trend",
+      `${planId}:${oracleId}:${item.completed_at}:${item.duration_ms}:${durationIndex}`,
+    );
+    recordProjectionEvent(db, {
+      table: "quality_signals",
+      id: signalId,
+      row: {
+        signal_id: signalId,
+        source: "ut-history",
+        subject_id: `oracle:${planId}:${oracleId}`,
+        metric: "duration_trend_ms",
+        value: item.duration_ms,
+        threshold: baseline,
+        status: ratio >= 1.5 ? "warn" : "pass",
+        computed_at: item.completed_at,
+      },
+    });
   }
 }
 
