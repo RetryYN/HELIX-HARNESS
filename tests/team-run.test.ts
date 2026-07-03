@@ -141,11 +141,11 @@ describe("team run validation", () => {
       model: "gpt-5.3-codex",
     });
     expect(result.members[0].adapter?.args).toContain("-m");
-    expect(result.members[1].model_selection.model).toBe("claude-sonnet-4-6");
+    expect(result.members[1].model_selection.model).toBe("claude-sonnet-5");
     expect(result.members[1].adapter).toMatchObject({
       command: "claude",
       dry_run: true,
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5",
     });
   });
 

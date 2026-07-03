@@ -51,7 +51,7 @@ describe("team model policy", () => {
     });
 
     expect(selection.model_family).toBe("frontier");
-    expect(selection.model).toBe("claude-sonnet-4-6");
+    expect(selection.model).toBe("claude-sonnet-5");
     expect(selection.model_source).toBe("engine");
     expect(selection.reasoning_effort).toBe("high");
   });

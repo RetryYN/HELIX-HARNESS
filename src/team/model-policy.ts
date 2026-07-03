@@ -13,7 +13,7 @@ import type { TeamProvider } from "./run";
 export const MODEL_IDS = {
   claude: {
     opus: "claude-opus-4-8",
-    sonnet: "claude-sonnet-4-6",
+    sonnet: "claude-sonnet-5",
     haiku: "claude-haiku-4-5",
     /** advisor 専用最上位帯 (advisor-fable、PLAN-L7-306)。tier-router の worker 帯には載せない。 */
     fable: "claude-fable-5",

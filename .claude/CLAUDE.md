@@ -115,6 +115,8 @@ Rules:
 Allowlist（正本 = `src/runtime/agent-guard-policy.ts` の `SUBAGENT_ALLOWLIST`。本一覧は同期写し）:
 
 - `advisor-fable`
+- `fe-lead`
+- `fe-ui`
 - `pmo-sonnet`
 - `pmo-haiku`
 - `pmo-project-explorer`
@@ -141,9 +143,30 @@ Allowlist（正本 = `src/runtime/agent-guard-policy.ts` の `SUBAGENT_ALLOWLIST
    action-binding approval 前段の技術妥当性確認。
 4. PO へのエスカレーション質問を出す直前の最終確認（AI 側で解決可能な情報が残っていないか）。
 5. 同一問題で 3 回以上の試行失敗、または V-model 正本間の矛盾を発見。
+6. **FE の UX/ユーザビリティ判断**（情報設計・操作フロー・エラー表現・アクセシビリティ等）。
+   これは **相談（助言のみ）** であり、Fable が FE を実装するのではない（実装は fe-lead/fe-ui）。
 
 観点は 5 軸固定（根拠の強度 / 正本整合 / 不可逆性と blast radius / 代替案 / エスカレーション適切性）。
 結論・根拠・残リスク・次の一手を受け取り、呼び出し側が review_evidence / IMP に記録する。
+
+### FE ロスター（Opus + Sonnet worker オーケストレーション、PLAN-L7-309）
+
+FE 実装は **`fe-lead`（Opus, 設計・分割・レビュー主導）+ `fe-ui`（Sonnet 5, 実装 worker）** の
+オーケストレーションで進める（両者 allowlist 済み、Claude 内で opus→sonnet を回す）。
+UX/ユーザビリティ判断が必要になったら `advisor-fable` に **相談** する（助言のみ、Fable 経由で
+実装しない）。be-* が Codex 委譲組なのと対照的に、FE は Claude 内オーケストレーションである。
+
+### モデル別 標準 effort と適応調整（PLAN-L7-310）
+
+モデル世代で reasoning effort の置き方が違う（PO ルール 2026-07-04）。SSoT は
+`src/team/model-effort.ts`（`standardEffortForModel` / `adaptReasoningEffort`）。
+
+- **各モデルの標準 effort を既定として投げる**。family 既定: fable/opus=high、**sonnet=medium
+  （claude-sonnet-5 の標準。旧 claude-sonnet-4-6 は high 扱いで世代差あり）**、haiku=low、
+  frontier=high、worker=medium、spark=low。未知 model は安全側 medium。
+- **適応調整**: 回答が**浅い（shallow）→ 一段上げる**、**思考が長すぎる（too slow）→ 一段下げる**。
+  矛盾・無信号は現状維持。既定（観測なし）は標準 effort のまま。
+- agent frontmatter の `effort:` は明示 override。未指定/標準運用では上記 registry の標準に従う。
 
 Source-snapshot exploration は active Claude Code subagent route ではない。repository inspection には
 project-focused agents を使い、migration snapshots は read-only material として扱う。
