@@ -249,6 +249,7 @@ export interface IdentifierRenameSourceLedgerFreshness {
   maxAgeDays: number;
   rowCount: number;
   missingRows: string[];
+  rowViolations: string[];
   rowsDigest: string;
 }
 
@@ -346,9 +347,81 @@ const REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS = [
   "GitHub Actions concurrency",
   "GitHub repository rename",
   "Google SRE Release Engineering",
+  "Google SRE Canarying Releases",
+  "Microsoft Safe Deployment Practices",
+  "Microsoft Testing Strategy",
   "OWASP LLM06:2025 Excessive Agency",
   "SLSA Provenance",
 ] as const;
+const CUTOVER_SOURCE_LEDGER_EXPECTATIONS: Record<
+  (typeof REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS)[number],
+  { urls: string[]; impacts: string[] }
+> = {
+  "NIST SSDF SP 800-218": {
+    urls: ["https://csrc.nist.gov/pubs/sp/800/218/final"],
+    impacts: ["audit_record", "state_backup_plan", "blast_radius_baseline"],
+  },
+  "GitHub Environments required reviewers": {
+    urls: ["https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments"],
+    impacts: [
+      "decision_owner",
+      "allowed_outcome",
+      "approval_policy_or_named_approver",
+      "approval_scope",
+      "approved_actor",
+      "approved_tool",
+      "approved_target",
+      "approved_params",
+      "review_approval_evidence",
+      "expires_at_or_trigger",
+    ],
+  },
+  "GitHub Actions concurrency": {
+    urls: [
+      "https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs",
+    ],
+    impacts: ["execution_window_or_freeze_policy"],
+  },
+  "GitHub repository rename": {
+    urls: [
+      "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+    ],
+    impacts: [
+      "blast_radius_baseline",
+      "rollback_plan",
+      "post_cutover_monitoring",
+      "legacy_alias_policy",
+    ],
+  },
+  "Google SRE Release Engineering": {
+    urls: ["https://sre.google/sre-book/release-engineering/"],
+    impacts: ["dry_run_plan", "rollback_plan", "post_cutover_monitoring"],
+  },
+  "Google SRE Canarying Releases": {
+    urls: ["https://sre.google/workbook/canarying-releases/"],
+    impacts: ["dry_run_plan", "post_cutover_monitoring", "rollback_plan"],
+  },
+  "Microsoft Safe Deployment Practices": {
+    urls: [
+      "https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments",
+    ],
+    impacts: ["execution_window_or_freeze_policy", "post_cutover_monitoring", "rollback_plan"],
+  },
+  "Microsoft Testing Strategy": {
+    urls: [
+      "https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/testing",
+    ],
+    impacts: ["dry_run_plan", "audit_record", "blast_radius_baseline"],
+  },
+  "OWASP LLM06:2025 Excessive Agency": {
+    urls: ["https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"],
+    impacts: ["approval_scope", "legacy_alias_policy", "audit_record"],
+  },
+  "SLSA Provenance": {
+    urls: ["https://slsa.dev/spec/v1.2/provenance"],
+    impacts: ["audit_record", "blast_radius_baseline", "state_backup_plan"],
+  },
+};
 const IGNORED_DIRS = new Set([".git", "node_modules", "dist", "coverage"]);
 const TEXT_EXTENSIONS = new Set([
   ".cjs",
@@ -755,7 +828,7 @@ function buildRenameVerificationCommandMatrix(
       sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus:
-        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency/repository rename, Google SRE, OWASP LLM06, and SLSA provenance rows",
+        "Cutover source ledger includes NIST SSDF, GitHub approval/concurrency/repository rename, Google SRE release/canary guidance, Microsoft safe deployment/testing, OWASP LLM06, and SLSA provenance rows",
       sourceStatusDelta: "none; ledger remains inside the 90-day freshness window",
       adoptionDecision: "adopt-cutover-source-ledger-for-l14-approval-review",
       adoptionDecisionDelta: "none; keep irreversible cutover approval-gated and plan-only",
@@ -1567,6 +1640,11 @@ export function buildIdentifierRenameCutoverPlan(
       `source ledger missing cutover sources: ${sourceLedgerFreshness.missingRows.join(", ")}`,
     );
   }
+  if (sourceLedgerFreshness.rowViolations.length > 0) {
+    blockedReasons.push(
+      `source ledger cutover row violations: ${sourceLedgerFreshness.rowViolations.join("; ")}`,
+    );
+  }
   if (!repoHeadSha) {
     blockedReasons.push("cutover snapshot is not bound to a readable git HEAD sha");
   }
@@ -1870,6 +1948,7 @@ function buildCutoverSourceLedgerFreshness(root: string): IdentifierRenameSource
       maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
       rowCount: 0,
       missingRows: [...REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS],
+      rowViolations: [],
       rowsDigest: sha256Json([]),
     };
   }
@@ -1883,16 +1962,40 @@ function buildCutoverSourceLedgerFreshness(root: string): IdentifierRenameSource
   const missingRows = REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS.filter(
     (source) => !rowSources.has(source),
   );
+  const rowViolations = cutoverSourceLedgerRowViolations(ledger.rows);
   return {
     ledgerLabel,
     checkedDate,
-    stale: violation !== null || missingRows.length > 0,
+    stale: violation !== null || missingRows.length > 0 || rowViolations.length > 0,
     violation,
     maxAgeDays: SOURCE_LEDGER_MAX_AGE_DAYS,
     rowCount: ledger.rows.length,
     missingRows,
+    rowViolations,
     rowsDigest: sha256Json(ledger.rows),
   };
+}
+
+function cutoverSourceLedgerRowViolations(rows: Record<string, string>[]): string[] {
+  const rowsBySource = new Map(rows.map((row) => [row.source ?? "", row]));
+  return REQUIRED_CUTOVER_SOURCE_LEDGER_ROWS.flatMap((source) => {
+    const row = rowsBySource.get(source);
+    if (!row) return [];
+    const officialUrl = row["official URL"] ?? "";
+    const impact = row["required field impact"] ?? "";
+    const expected = CUTOVER_SOURCE_LEDGER_EXPECTATIONS[source];
+    return [
+      ...expected.urls
+        .filter((url) => !officialUrl.includes(url))
+        .map((url) => `cutover source ledger ${source} official URL missing expected ${url}`),
+      ...expected.impacts
+        .filter((field) => !impact.includes(field))
+        .map(
+          (field) =>
+            `cutover source ledger ${source} required field impact missing expected ${field}`,
+        ),
+    ];
+  });
 }
 
 function parseCutoverSourceLedger(text: string): { rows: Record<string, string>[] } {

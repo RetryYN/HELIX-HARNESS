@@ -126,7 +126,7 @@ cutover_decision_record:
 - post_cutover_monitoring: quiet window 中に `helix doctor`、旧 alias smoke、status/completion packet、harness.db rebuild、feedback backlog を確認する。
 - legacy_alias_policy: `ut-tdd` alias/shim は Step 6 review で keep/remove を決め、残す場合は removal PLAN と sunset 条件を持つ。
 - source_ledger_freshness: fresh; Cutover source ledger checked 2026-07-03 in docs/process/forward/L08-L14-verification-phase.md before any cutover decision use.
-- source_status_delta: none; NIST SSDF / GitHub approvals and concurrency / Google SRE / OWASP LLM06 / SLSA source status changes do not authorize rename apply by themselves.
+- source_status_delta: none; NIST SSDF / GitHub approvals and concurrency / Google SRE release/canary guidance / Microsoft safe deployment/testing / OWASP LLM06 / SLSA の source status change は、それ単体では rename apply を承認しない。
 - adoption_decision_delta: none; `.ut-tdd -> .helix` remains approval-gated and plan-only until cutover approval evidence is concrete.
 - workflow_route_impact: none while draft; future approval routes through L14 cutover decision, action-binding approval, and post-cutover monitoring.
 
@@ -149,7 +149,7 @@ action_binding_approval_record:
 |------|------|------|
 | 1 | 全機械識別子サイト | 再 grep 計測 → 対応表凍結（prose 除外を明示） |
 | 1a | blast-radius audit CLI | `auditIdentifierRenameBlastRadius` + `ut-tdd rename audit --json` で旧 token 残渣、category 別 hit、approval 不足を機械出力 |
-| 1b | non-destructive cutover packet | `ut-tdd rename plan --json` で rename map、category 別 cutover checklist、sourceLedgerFreshness、no-write cutoverRunbook、dry-run、rollback、monitoring、restore drill 付き state backup manifest、freeze policy、cutoverSnapshot、provenance requirements、approval gate を出す。verification matrix は current `ut-tdd` dist smoke、renamed `helix` dist smoke、legacy alias smoke を分け、各 row に sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持たせる。apply は提供しない |
+| 1b | non-destructive cutover packet | `ut-tdd rename plan --json` で rename map、category 別 cutover checklist、sourceLedgerFreshness、no-write cutoverRunbook、dry-run、rollback、monitoring、restore drill 付き state backup manifest、freeze policy、cutoverSnapshot、provenance requirements、approval gate を出す。verification matrix は current `ut-tdd` dist smoke、renamed `helix` dist smoke、legacy alias smoke を分け、各 row に sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持たせる。Google SRE canarying と Microsoft safe deployment/testing は staged exposure、health comparison、rollback trigger、pre-release security/regression/load evidence を承認前 review 材料に束ねる。apply は提供しない |
 | 2 | src/ tests/ | codemod + full vitest で behavior 不変担保 |
 | 3 | `.ut-tdd/` 実 dir + コード | atomic dir move + harness.db/projection/store パス更新（冪等手順） |
 | 4 | hooks + marker | 両 adapter 同コミット改名（rule-drift green 維持） |
