@@ -350,6 +350,7 @@ import { teamDefinitionSchema } from "../schema/team";
 import {
   analyzeConsumerCiWorkflowContract,
   analyzeConsumerEscalationWorkflowContract,
+  branchProtectionScriptIsApprovalOnly,
   CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
   CONSUMER_VSCODE_TASK_COMMANDS,
@@ -1883,6 +1884,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ".github/ISSUE_TEMPLATE/recovery.md",
     ".github/ISSUE_TEMPLATE/add-feature.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
+    "scripts/setup-branch-protection.sh",
     ...expectedClaudeAgentPaths,
     ...expectedClaudeCommandPaths,
     CONSUMER_TEAM_DEFINITION_PATH,
@@ -2200,6 +2202,15 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : `doctor: consumer-escalation-workflow - violation name=${escalationContract.nameOk} schedule=${escalationContract.scheduleOk} unexpectedTriggers=${escalationContract.unexpectedTriggers.join(",")} noPullRequestTarget=${escalationContract.noPullRequestTarget} permissionsRead=${escalationContract.permissionsRead} tokenWrite=${escalationContract.tokenWrite} job=${escalationContract.jobOk} checkoutPersistCredentialsFalse=${escalationContract.checkoutPersistCredentialsFalse} checkoutInputsExact=${escalationContract.checkoutInputsExact} setupBunInputsEmpty=${escalationContract.setupBunInputsEmpty} customEnvFree=${escalationContract.customEnvFree} skipOrSoftFailFree=${escalationContract.skipOrSoftFailFree} jobPermissionsFixed=${escalationContract.jobPermissionsFixed} executionSurfaceFixed=${escalationContract.executionSurfaceFixed} missingUses=${escalationContract.missingUses.join(",")} unexpectedUses=${escalationContract.unexpectedUses.join(",")} missingRuns=${escalationContract.missingRuns.join(",")} exactSteps=${escalationContract.exactSteps} exactRuns=${escalationContract.exactRuns} secrets=${!escalationContract.secretsFree} placeholderFree=${escalationContract.placeholderFree}`,
   );
 
+  const branchProtectionScript = consumerFile(deps, "scripts/setup-branch-protection.sh") ?? "";
+  const branchProtectionScriptOk =
+    branchProtectionScriptIsApprovalOnly(branchProtectionScript);
+  messages.push(
+    branchProtectionScriptOk
+      ? "doctor: consumer-branch-protection-script - OK (approval-only, no mutating GitHub API/auth endpoint)"
+      : "doctor: consumer-branch-protection-script - violation: script must contain action-binding approval checklist, remote GitHub API warning, exit 2, and no gh api/auth mutating endpoint",
+  );
+
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
   const addFeatureTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/add-feature.md") ?? "";
   const pullRequestTemplate = consumerFile(deps, ".github/PULL_REQUEST_TEMPLATE.md") ?? "";
@@ -2249,6 +2260,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     taskSafetyOk &&
     ciContract.ok &&
     escalationContract.ok &&
+    branchProtectionScriptOk &&
     policyTemplatesOk;
   return { ok, messages };
 }

@@ -221,7 +221,16 @@ const baseTemplates: TemplateSet = {
   "common/PULL_REQUEST_TEMPLATE.md": "## 概要\nCloses #\n",
   "team/CODEOWNERS": "* {{TL_TEAM}}\n/docs/ {{PO_TEAM}}\n/tests/ {{QA_TEAM}}\n",
   "team/setup-branch-protection.sh":
-    '#!/usr/bin/env bash\necho "action-binding approval required"\nexit 2\n',
+    [
+      "#!/usr/bin/env bash",
+      "set -euo pipefail",
+      'REPO="${1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
+      'echo "main の branch protection は action-binding approval が必要です: ${REPO}"',
+      'echo "harness-check required / review count / admin enforcement は approval packet で確認してください"',
+      'echo "この script は remote GitHub API を呼びません"',
+      "exit 2",
+      "",
+    ].join("\n"),
 };
 
 describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
@@ -1524,6 +1533,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           ok: true,
           path: join(".github", "workflows", "escalation-stale.yml"),
         }),
+        expect.objectContaining({
+          name: "branch-protection-script-is-approval-only",
+          ok: true,
+          path: join("scripts", "setup-branch-protection.sh"),
+        }),
           expect.objectContaining({
             name: "ut-tdd-baseline-paths-projected",
             ok: true,
@@ -2046,6 +2060,40 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(result.postSetupWorkflow.unmetGates).toContain(
       "consumer_readiness:projected-consumer-artifacts",
+    );
+  });
+
+  it("U-SETUP-022: blocks consumer readiness when branch protection script can mutate GitHub settings", () => {
+    const mutatingTemplates = {
+      ...baseTemplates,
+      "team/setup-branch-protection.sh": [
+        "#!/usr/bin/env bash",
+        "set -euo pipefail",
+        "gh auth status",
+        "gh api -X PUT repos/example/repo/branches/main/protection",
+        "",
+      ].join("\n"),
+    };
+    const deps = mockDeps({
+      templates: mutatingTemplates,
+      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      bunVersion: () => "1.3.14",
+    });
+
+    const result = runHelixProjectSetup(
+      { phase: "0-A", dryRun: true, applyBranchProtection: false },
+      deps,
+    );
+
+    expect(result.consumerReadiness.ok).toBe(false);
+    expect(result.consumerReadiness.artifactReadiness.checks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: "branch-protection-script-is-approval-only",
+          ok: false,
+          path: join("scripts", "setup-branch-protection.sh"),
+        }),
+      ]),
     );
   });
 

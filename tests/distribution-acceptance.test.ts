@@ -12,7 +12,10 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { buildCleanDistributionPlan } from "../src/setup/index";
+import {
+  buildCleanDistributionPlan,
+  CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
+} from "../src/setup/index";
 
 const repoRoot = process.cwd();
 
@@ -390,6 +393,29 @@ describe("clean distribution local acceptance smoke", () => {
         for (const command of workflowUtTddCommands) {
           expect(workflow).toContain(command);
         }
+        const escalationWorkflow = readFileSync(
+          join(consumerRoot, ".github", "workflows", "escalation-stale.yml"),
+          "utf8",
+        );
+        expect(escalationWorkflow).toContain("name: escalation-stale");
+        expect(escalationWorkflow).toContain("permissions:");
+        expect(escalationWorkflow).toContain("contents: read");
+        expect(escalationWorkflow).toContain("uses: actions/checkout@v4");
+        expect(escalationWorkflow).toContain("persist-credentials: false");
+        expect(escalationWorkflow).not.toMatch(/\b(?:placeholder|TODO|TBD|FIXME)\b/i);
+        for (const command of CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS) {
+          expect(escalationWorkflow).toContain(command);
+        }
+        const branchProtectionScript = readFileSync(
+          join(consumerRoot, "scripts", "setup-branch-protection.sh"),
+          "utf8",
+        );
+        expect(branchProtectionScript).toContain("action-binding approval");
+        expect(branchProtectionScript).toContain("remote GitHub API");
+        expect(branchProtectionScript).toContain("exit 2");
+        expect(branchProtectionScript).not.toContain("gh auth");
+        expect(branchProtectionScript).not.toContain("gh api -X PUT");
+        expect(branchProtectionScript).not.toContain("/branches/main/protection");
 
         const statusFromGeneratedPath = runCommand(
           consumerRoot,
@@ -519,6 +545,12 @@ describe("clean distribution local acceptance smoke", () => {
           } else {
             expect(JSON.parse(run.stdout)).toBeTruthy();
           }
+        }
+        for (const command of CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS) {
+          if (!command.startsWith("bun run ut-tdd ")) continue;
+          const run = runWorkflowUtTdd(consumerRoot, command, linkedEnv);
+          expect(run.status, run.stderr || run.stdout).toBe(0);
+          expect(JSON.parse(run.stdout)).toBeTruthy();
         }
       } finally {
         rmSync(consumerRoot, { recursive: true, force: true });

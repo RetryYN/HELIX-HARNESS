@@ -544,6 +544,16 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "- [ ] 全回帰 pass",
       "",
     ].join("\n"),
+    "scripts/setup-branch-protection.sh": [
+      "#!/usr/bin/env bash",
+      "set -euo pipefail",
+      'REPO="${1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
+      'echo "main の branch protection は action-binding approval が必要です: ${REPO}"',
+      'echo "harness-check required / review count / admin enforcement は approval packet で確認してください"',
+      'echo "この script は remote GitHub API を呼びません"',
+      "exit 2",
+      "",
+    ].join("\n"),
     ".ut-tdd/memory/.gitkeep": "",
     ".ut-tdd/handover/.gitkeep": "",
     ".ut-tdd/evidence/.gitkeep": "",
@@ -573,6 +583,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-vscode-tasks - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-ci-workflow - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-escalation-workflow - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-branch-protection-script - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-policy-templates - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-claude-surface - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-team-run-surface - OK")).toBe(true);
@@ -1246,6 +1257,28 @@ describe("runConsumerDoctor", () => {
       ),
     ).toBe(true);
     expect(hasDoctorMessage(result.messages, "permissionsRead=false")).toBe(true);
+  });
+
+  it("U-SETUP-022: fails closed when branch protection script can mutate GitHub settings", () => {
+    const files = consumerDoctorFiles("/repo", {
+      "scripts/setup-branch-protection.sh": [
+        "#!/usr/bin/env bash",
+        "set -euo pipefail",
+        "gh auth status",
+        "gh api -X PUT repos/example/repo/branches/main/protection",
+        "",
+      ].join("\n"),
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessage(
+        result.messages,
+        "consumer-branch-protection-script - violation",
+      ),
+    ).toBe(true);
   });
 
   it("fails closed when distributed Claude subagent or slash-command templates drift", () => {

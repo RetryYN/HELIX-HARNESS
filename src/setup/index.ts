@@ -472,6 +472,24 @@ export function analyzeConsumerEscalationWorkflowContract(
   };
 }
 
+export function branchProtectionScriptIsApprovalOnly(scriptText: string): boolean {
+  const mutatingPatterns = [
+    /\bgh\s+api\b/i,
+    /\bgh\s+auth\b/i,
+    /\b-X\s+(?:PUT|POST|PATCH|DELETE)\b/i,
+    /\/branches\/main\/protection/i,
+    /\brulesets?\b/i,
+    /\bGITHUB_TOKEN\b/i,
+    /\bsecrets?\s*(?:\.|\[)/i,
+  ];
+  return (
+    scriptText.includes("action-binding approval") &&
+    scriptText.includes("remote GitHub API") &&
+    scriptText.includes("exit 2") &&
+    !mutatingPatterns.some((pattern) => pattern.test(scriptText))
+  );
+}
+
 /** 検出結果 (生信号、判定しない)。token は含めない。 */
 export interface ProjectScale {
   ownerType: "User" | "Organization" | "unknown";
@@ -1476,6 +1494,7 @@ function buildConsumerArtifactReadinessPlan(
   const settingsPath = join(".vscode", "settings.json");
   const workflowPath = join(".github", "workflows", "harness-check.yml");
   const escalationWorkflowPath = join(".github", "workflows", "escalation-stale.yml");
+  const branchProtectionScriptPath = BP_SCRIPT;
   const teamPath = CONSUMER_TEAM_DEFINITION_PATH;
   const baselinePaths = [
     join(".ut-tdd", "memory", ".gitkeep"),
@@ -1488,6 +1507,7 @@ function buildConsumerArtifactReadinessPlan(
   const settings = content(settingsPath);
   const workflow = content(workflowPath);
   const escalationWorkflow = content(escalationWorkflowPath);
+  const branchProtectionScript = content(branchProtectionScriptPath);
   const team = content(teamPath);
   const codeowners = content(CODEOWNERS_TARGET);
   const codeownersRequired = plan.files.some((file) => file.path === CODEOWNERS_TARGET);
@@ -1612,6 +1632,16 @@ function buildConsumerArtifactReadinessPlan(
         "escalation-stale workflow must be a scheduled read-only HELIX route audit with no placeholder step, no secret use, and the fixed handover/completion/consumer-doctor command set",
       evidence:
         ".github/workflows/escalation-stale.yml YAML contract for schedule, read-only permissions, action inputs, placeholder-free commands, and no-write route audit",
+    },
+    {
+      name: "branch-protection-script-is-approval-only",
+      path: branchProtectionScriptPath,
+      ok:
+        hasPath(branchProtectionScriptPath) &&
+        branchProtectionScriptIsApprovalOnly(branchProtectionScript),
+      message:
+        "branch protection setup script must remain an approval checklist only and must not call mutating GitHub API/auth endpoints",
+      evidence: "scripts/setup-branch-protection.sh approval-only script contract",
     },
     ...(codeownersRequired
       ? [
