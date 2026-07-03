@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -2644,6 +2644,78 @@ describe("version-up-readiness", () => {
         }),
       ]),
     );
+  });
+
+  it("can fail version-up dry-run on blocked plans without changing the default evidence exit", () => {
+    const blocked = spawnSync(
+      "bun",
+      [
+        "run",
+        "src/cli.ts",
+        "version-up",
+        "dry-run",
+        "--current",
+        "v0.1.0",
+        "--target",
+        "future",
+        "--json",
+        "--fail-on-blocked",
+      ],
+      { encoding: "utf8" },
+    );
+    expect(blocked.status).toBe(1);
+    expect(blocked.stderr).toBe("");
+    const blockedPlan = JSON.parse(blocked.stdout);
+    expect(blockedPlan).toMatchObject({
+      schemaVersion: "version-up-dry-run-plan.v1",
+      ok: false,
+      planOnly: true,
+      mustNotApply: true,
+      applyCommandAvailable: false,
+      semverChange: "invalid",
+    });
+    expect(blockedPlan.blockedReasons).toContain("current and target versions must be SemVer");
+
+    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-version-up-fail-on-blocked-ok-"));
+    try {
+      writeFakeRemoteTagGit(binDir, "v0.1.3");
+      const allowed = spawnSync(
+        "bun",
+        [
+          "run",
+          "src/cli.ts",
+          "version-up",
+          "dry-run",
+          "--current",
+          "v0.1.0",
+          "--target",
+          "v0.1.3",
+          "--release-remote",
+          "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+          "--json",
+          "--fail-on-blocked",
+        ],
+        {
+          encoding: "utf8",
+          env: {
+            ...process.env,
+            PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+          },
+        },
+      );
+      expect(allowed.status).toBe(0);
+      const allowedPlan = JSON.parse(allowed.stdout);
+      expect(allowedPlan).toMatchObject({
+        schemaVersion: "version-up-dry-run-plan.v1",
+        ok: true,
+        semverChange: "patch",
+        releaseTagExists: true,
+        releaseTriggerResolved: true,
+      });
+      expect(allowedPlan.blockedReasons).toEqual([]);
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
+    }
   });
 
   it("resolves Pack release tags through an explicit remote in the CLI dry-run", () => {

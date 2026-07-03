@@ -201,6 +201,11 @@ SemVer 判定は Semantic Versioning 2.0.0 に合わせ、空 prerelease identif
 leading zero (`1.0.1-01` 等) は invalid として `ok=false` にする。dry-run は release readiness ではなく
 current/target compatibility と承認前証跡の plan-only packet であり、invalid target や未解決 release tag を
 activation readiness と誤認させない。
+既定の `dry-run` は承認前 review 用の JSON evidence を必ず出すため、`ok=false` でも process exit は成功扱いにする。
+CI / release gate / scripted check が終了コードを readiness 判定に使う場合は
+`--fail-on-blocked` を付け、JSON を出力したうえで `ok=false` を non-zero exit に昇格させる。
+activation verification matrix の `version-dry-run` row は、抽象 target (`future` 等) の blocker を読む no-write
+evidence なので、既定 exit のままにし、gate 用 command とは分離する。
 
 ### 4.2 parked review record
 
@@ -297,6 +302,8 @@ version-up の機能一覧は、単に `version_target` を受理することで
      security checklist は GitHub Environments required reviewers の repo visibility / account or org plan /
      prevent self-review / environment secrets availability を承認前 evidence とし、CI workflow や environment 名の
      存在だけで approval boundary とみなさない。
+     scripted gate がこの結果を process status で読む場合は `--fail-on-blocked` を必須にし、`ok=false` の JSON を
+     成功 exit として読み飛ばさない。
 
 ## 6. 他 mode との非重複
 

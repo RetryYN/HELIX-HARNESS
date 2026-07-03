@@ -960,3 +960,10 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-RGUARD-010 | `reviewGuardMessages` | 非 violation → 空 (worker / clean は無音)。 |
 | U-RGUARD-011 | `summarizeStagedReview` | staged 集合は sorted/unique、suspect = staged ∩ review-mutated (混入疑い)、suspect 非空で ok=false (commit 前 staged-diff の機械化)。 |
 | U-RGUARD-012 | `summarizeStagedReview` | review-mutated 未提供 → suspect 空 + ok=true (純列挙)。 |
+
+## PLAN-L7-263 Version-up Dry-run Exit Policy Addendum
+
+| U-ID | Target | Oracle |
+|---|---|---|
+| U-VERSIONUP-EXIT-001 | `ut-tdd version-up dry-run --json` | 既定の dry-run は承認前 evidence 収集 surface であり、`ok=false` / `blockedReasons` を JSON に出しても exit 0 を維持する。activation verification matrix の `version-dry-run` row はこの既定 exit を使い、抽象 target (`future` 等) の blocker を no-write evidence として読む。 |
+| U-VERSIONUP-EXIT-002 | `ut-tdd version-up dry-run --fail-on-blocked --json` | CI / release gate / scripted readiness check が process status を読む場合は `--fail-on-blocked` を使う。`ok=false` の dry-run は JSON を出した後に exit 1 になり、`ok=true` の dry-run は同 flag 付きでも exit 0 になる。 |

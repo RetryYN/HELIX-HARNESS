@@ -1665,6 +1665,7 @@ versionUp
   .option("--release-trigger <trigger>", "release/tag trigger text")
   .option("--release-remote <url>", "remote repository URL used to verify the target release tag")
   .option("--json", "JSON output")
+  .option("--fail-on-blocked", "exit non-zero when the dry-run plan is blocked")
   .action(
     (opts: {
       current: string;
@@ -1672,6 +1673,7 @@ versionUp
       releaseTrigger?: string;
       releaseRemote?: string;
       json?: boolean;
+      failOnBlocked?: boolean;
     }) => {
       const targetRef = versionUpTargetTagRef(opts.target);
       const releaseTagExists = opts.releaseRemote
@@ -1686,6 +1688,9 @@ versionUp
       });
       if (opts.json) {
         process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
+        if (opts.failOnBlocked && !plan.ok) {
+          process.exitCode = 1;
+        }
         return;
       }
       process.stdout.write(
@@ -1697,6 +1702,9 @@ versionUp
       process.stdout.write(
         `  migration=${plan.migrationPlan.length} rollback=${plan.rollbackPlan.length} idempotency=${plan.idempotencyChecks.length} release-gates=${plan.releaseGateChecks.length}\n`,
       );
+      if (opts.failOnBlocked && !plan.ok) {
+        process.exitCode = 1;
+      }
     },
   );
 versionUp
