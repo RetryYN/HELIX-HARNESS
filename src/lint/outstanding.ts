@@ -355,6 +355,8 @@ export interface CompletionReviewBundle {
   bundleDigest: string;
   requiredOperatorActionsJa: string[];
   blockedUntil: string[];
+  reviewCoveredBlockers: string[];
+  nonPacketBlockers: string[];
   reviewPackets: CompletionReviewBundlePacket[];
 }
 
@@ -1420,6 +1422,12 @@ export function completionReviewBundleForOutstanding(
   const completionDecisionPacketDigest = sha256Json(completionDecisionPacket);
   const humanReviewBundleDigest = sha256Json(completionDecisionPacket.humanReviewBundle);
   const reviewPacketsDigest = sha256Json(reviewPackets);
+  const blockedUntil = outstanding.completionReadiness.blockers;
+  const decisionBlockers = new Set(
+    completionDecisionPacket.decisions.flatMap((decision) => decision.blockers),
+  );
+  const reviewCoveredBlockers = blockedUntil.filter((blocker) => decisionBlockers.has(blocker));
+  const nonPacketBlockers = blockedUntil.filter((blocker) => !decisionBlockers.has(blocker));
   const bundleWithoutDigests = {
     schemaVersion: "completion-review-bundle.v1" as const,
     generatedAt: provenance.generatedAt,
@@ -1443,7 +1451,9 @@ export function completionReviewBundleForOutstanding(
     humanReviewBundleDigest,
     reviewPacketsDigest,
     requiredOperatorActionsJa: outstanding.completionReadiness.requiredActionsJa,
-    blockedUntil: outstanding.completionReadiness.blockers,
+    blockedUntil,
+    reviewCoveredBlockers,
+    nonPacketBlockers,
     reviewPackets,
   } satisfies Omit<CompletionReviewBundle, "bundleDigest" | "semanticBundleDigest">;
   const bundleWithoutDigest = {

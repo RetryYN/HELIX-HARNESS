@@ -1982,11 +1982,31 @@ export function analyzeCompletionReviewBundle(
       });
     }
   }
-  for (const blocker of decisionPacket.blockers ?? []) {
-    if (!(bundle.blockedUntil ?? []).includes(blocker)) {
+  const expectedBlockedUntil = decisionPacket.blockers ?? [];
+  if (JSON.stringify(bundle.blockedUntil ?? []) !== JSON.stringify(expectedBlockedUntil)) {
+    violations.push({
+      reason: "invalid_completion_state",
+      detail: `blockedUntil mismatch expected=${expectedBlockedUntil.join(",")} actual=${(bundle.blockedUntil ?? []).join(",")}`,
+    });
+  }
+  const decisionBlockers = new Set(
+    (decisionPacket.decisions ?? []).flatMap((decision) => decision.blockers ?? []),
+  );
+  const expectedReviewCoveredBlockers = expectedBlockedUntil.filter((blocker) =>
+    decisionBlockers.has(blocker),
+  );
+  const expectedNonPacketBlockers = expectedBlockedUntil.filter(
+    (blocker) => !decisionBlockers.has(blocker),
+  );
+  const blockerCoverageChecks: Array<[string, unknown[], string[]]> = [
+    ["reviewCoveredBlockers", bundle.reviewCoveredBlockers ?? [], expectedReviewCoveredBlockers],
+    ["nonPacketBlockers", bundle.nonPacketBlockers ?? [], expectedNonPacketBlockers],
+  ];
+  for (const [field, actual, expected] of blockerCoverageChecks) {
+    if (JSON.stringify(actual) !== JSON.stringify(expected)) {
       violations.push({
         reason: "invalid_completion_state",
-        detail: `blockedUntil missing blocker=${blocker}`,
+        detail: `${field} mismatch expected=${expected.join(",")} actual=${actual.join(",")}`,
       });
     }
   }

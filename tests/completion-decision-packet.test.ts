@@ -174,6 +174,11 @@ describe("completion decision packet lint", () => {
       stale: false,
     });
     expect(bundle.runnableSourceCommand).toBe("bun run ut-tdd completion review-bundle --json");
+    expect(bundle.reviewCoveredBlockers).toEqual(["po_decision_pending"]);
+    expect(bundle.nonPacketBlockers).toEqual([
+      "non_terminal_plans",
+      "semantic_frontier_blocked",
+    ]);
     expect(result.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(result.semanticBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(completionReviewBundleMessages(result)[0]).toContain("completion-review-bundle - OK");
@@ -215,6 +220,7 @@ describe("completion decision packet lint", () => {
     const drifted = JSON.parse(JSON.stringify(bundle)) as CompletionReviewBundle;
     drifted.planOnly = false as unknown as true;
     drifted.runnableSourceCommand = "ut-tdd completion review-bundle --json";
+    drifted.nonPacketBlockers = [];
     drifted.reviewPackets[0].requiredSafetyFields =
       drifted.reviewPackets[0].requiredSafetyFields.filter((field) => field !== "mustNotDecide");
     drifted.reviewPacketsDigest = `sha256:${"0".repeat(64)}`;
@@ -230,6 +236,7 @@ describe("completion decision packet lint", () => {
       expect.arrayContaining([
         expect.objectContaining({ reason: "invalid_source_command" }),
         expect.objectContaining({ reason: "invalid_safety_flags" }),
+        expect.objectContaining({ reason: "invalid_completion_state" }),
         expect.objectContaining({ reason: "invalid_review_packet" }),
         expect.objectContaining({ reason: "invalid_digest" }),
       ]),

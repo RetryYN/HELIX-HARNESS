@@ -1093,6 +1093,9 @@ completion
     process.stdout.write(
       `review-digests: human=${bundle.humanReviewBundleDigest} packets=${bundle.reviewPacketsDigest}\n`,
     );
+    process.stdout.write(
+      `review-coverage: covered=${bundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${bundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
+    );
     for (const packet of bundle.reviewPackets) {
       process.stdout.write(
         `review-packet: ${packet.planId} ${packet.command} scoped=${packet.scopedCommand} runnable=${packet.runnableScopedCommand} schema=${packet.schemaVersion} matrix=${packet.matrixField} count=${packet.expectedMatrixCount} writePolicy=${packet.writePolicy} safety=${packet.requiredSafetyFields.join(",") || "none"} route=${packet.reviewRouteJa} route-id=${packet.reviewRoute}\n`,

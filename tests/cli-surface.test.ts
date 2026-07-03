@@ -1220,6 +1220,12 @@ describe("L7 CLI surface closure", () => {
         runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
         completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
         runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
+        reviewCoveredBlockers: [
+          "human_approval_pending",
+          "irreversible_migration_pending",
+          "po_decision_pending",
+        ],
+        nonPacketBlockers: ["non_terminal_plans", "semantic_frontier_blocked"],
       });
       expect(bundle.bundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
       expect(bundle.semanticBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -1267,6 +1273,9 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("semantic-bundle-digest: sha256:");
       expect(text.stdout).toContain(
         "completion-decision-packet: ut-tdd completion decision-packet --json runnable=bun run ut-tdd completion decision-packet --json digest=sha256:",
+      );
+      expect(text.stdout).toContain(
+        "review-coverage: covered=human_approval_pending,irreversible_migration_pending,po_decision_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
       );
       expect(text.stdout).toContain(
         "review-packet: PLAN-DISCOVERY-10-fixture ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
