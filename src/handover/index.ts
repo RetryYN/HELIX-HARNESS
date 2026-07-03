@@ -787,6 +787,14 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
       ok: false,
     };
   }
+  if (!section.includes("completion-ready") && /確認観点=review\b/.test(section)) {
+    return {
+      messages: [
+        "handover-next-action — violation: 最新 handover §3 の packet 要約が machine review route を確認観点へ露出している → `ut-tdd handover` で再生成し確認観点=日本語 / 確認観点ID=machine に分離",
+      ],
+      ok: false,
+    };
+  }
   return { messages: ["handover-next-action — OK (§3 が機械次手で anchor 済)"], ok: true };
 }
 

@@ -533,6 +533,14 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(r.messages[0]).toContain("確認観点ID");
   });
 
+  it("§3 の packet 要約が machine review route を確認観点に露出したら fail-close", () => {
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=review S4 decision evidence, outcome routes, and verification commands 確認観点ID=review S4 decision evidence, outcome routes, and verification commands\n\n## §4 x\n`;
+    const r = checkHandoverNextActionAnchor(withDoc(md));
+
+    expect(r.ok).toBe(false);
+    expect(r.messages[0]).toContain("確認観点へ露出");
+  });
+
   it("§3 に marker があっても packet 要約が無ければ fail-close", () => {
     const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - primary packet: \`ut-tdd s4 decision-packet --json\`\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
