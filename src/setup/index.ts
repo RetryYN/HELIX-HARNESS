@@ -983,14 +983,18 @@ export function packageJsonDeclaresCommitlint(packageJson: string | null): boole
   }
 }
 
-export function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
+export function packageJsonDeclaresScript(packageJson: string | null, scriptName: string): boolean {
   if (!packageJson) return false;
   try {
     const parsed = JSON.parse(packageJson) as { scripts?: Record<string, unknown> };
-    return typeof parsed.scripts?.["ut-tdd"] === "string";
+    return typeof parsed.scripts?.[scriptName] === "string";
   } catch {
     return false;
   }
+}
+
+export function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
+  return packageJsonDeclaresScript(packageJson, "ut-tdd");
 }
 const CLEAN_REQUIRED_PATHS = [
   "README.md",
@@ -1381,6 +1385,9 @@ export function buildConsumerReadinessPlan(input: {
   hasGh: boolean;
   hasUtTddCli?: boolean;
   hasUtTddPackageScript?: boolean;
+  hasTypecheckPackageScript?: boolean;
+  hasTestPackageScript?: boolean;
+  hasBunLockfile?: boolean;
   artifactReadiness?: ConsumerArtifactReadinessPlan;
   hasClaude: boolean;
   hasCodex: boolean;
@@ -1405,6 +1412,9 @@ export function buildConsumerReadinessPlan(input: {
   const runtimeOk = input.hasClaude || input.hasCodex;
   const cliResolvedByPath = input.hasUtTddCli === true;
   const cliResolvedByPackageScript = input.hasUtTddPackageScript === true;
+  const typecheckPackageScriptAvailable = input.hasTypecheckPackageScript === true;
+  const testPackageScriptAvailable = input.hasTestPackageScript === true;
+  const bunLockfileAvailable = input.hasBunLockfile === true;
   const hookCliOk = cliResolvedByPath;
   const artifactReadiness = input.artifactReadiness ?? {
     ok: true,
@@ -1460,6 +1470,27 @@ export function buildConsumerReadinessPlan(input: {
         : "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.ut-tdd を用意する",
     },
     {
+      name: "bun-lockfile",
+      ok: bunLockfileAvailable,
+      message: bunLockfileAvailable
+        ? "consumer CI 用の lockfile があり `bun install --frozen-lockfile` を実行できる"
+        : "生成 harness-check.yml は `bun install --frozen-lockfile` を実行するため、packageRoot に bun.lock または bun.lockb を用意する",
+    },
+    {
+      name: "typecheck-package-script",
+      ok: typecheckPackageScriptAvailable,
+      message: typecheckPackageScriptAvailable
+        ? "consumer CI 用の `bun run typecheck` script が packageRoot で解決できる"
+        : "生成 harness-check.yml は `bun run typecheck` を実行するため、packageRoot の package.json scripts.typecheck を用意する",
+    },
+    {
+      name: "test-package-script",
+      ok: testPackageScriptAvailable,
+      message: testPackageScriptAvailable
+        ? "consumer CI 用の `bun run test` script が packageRoot で解決できる"
+        : "生成 harness-check.yml は `bun run test` を実行するため、packageRoot の package.json scripts.test を用意する",
+    },
+    {
       name: "runtime-cli",
       ok: runtimeOk,
       message: runtimeOk
@@ -1482,6 +1513,9 @@ export function buildConsumerReadinessPlan(input: {
       requestedTagMatchesPackageVersion &&
       hookCliOk &&
       cliResolvedByPackageScript &&
+      bunLockfileAvailable &&
+      typecheckPackageScriptAvailable &&
+      testPackageScriptAvailable &&
       runtimeOk &&
       artifactReadiness.ok,
     checks,
@@ -1956,9 +1990,21 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
     hasGit: commandAvailable("git"),
     hasGh: commandAvailable("gh"),
     hasUtTddCli: commandAvailable("ut-tdd"),
-    hasUtTddPackageScript: packageJsonDeclaresUtTddScript(
+    hasUtTddPackageScript: packageJsonDeclaresScript(
       deps.readText(join(packageRoot, "package.json")),
+      "ut-tdd",
     ),
+    hasTypecheckPackageScript: packageJsonDeclaresScript(
+      deps.readText(join(packageRoot, "package.json")),
+      "typecheck",
+    ),
+    hasTestPackageScript: packageJsonDeclaresScript(
+      deps.readText(join(packageRoot, "package.json")),
+      "test",
+    ),
+    hasBunLockfile:
+      deps.readText(join(packageRoot, "bun.lock")) !== null ||
+      deps.readText(join(packageRoot, "bun.lockb")) !== null,
     artifactReadiness: buildConsumerArtifactReadinessPlan(plan, deps.templates),
     hasClaude: commandAvailable("claude"),
     hasCodex: commandAvailable("codex"),
@@ -2069,7 +2115,8 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       requiresMaterializedPaths: [".vscode/tasks.json", ".vscode/settings.json"],
       expected:
         "opens the consumer folder in a named HELIX VS Code profile while keeping generated tasks manual and repository writes out of the open step",
-      evidence: "local operator records VS Code profile-open command output or screenshot in first-run readiness evidence",
+      evidence:
+        "local operator records VS Code profile-open command output or screenshot in first-run readiness evidence",
       source: "VS Code command line profile launch",
       sourceUrl: "https://code.visualstudio.com/docs/configure/command-line",
       sourceCheckedAt: "2026-07-03",

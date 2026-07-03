@@ -202,6 +202,7 @@ import {
   buildConsumerReadinessPlan,
   LOCAL_DISTRIBUTION_PACKAGE_VERSION,
   nodeSetupDeps,
+  packageJsonDeclaresScript,
   packageJsonDeclaresUtTddScript,
   runHelixProjectSetup,
   runSetup,
@@ -4909,16 +4910,19 @@ distribution
       cleanRepo: opts.cleanRepo,
     });
     const packageRoot = opts.packageRoot ? join(repoRoot, opts.packageRoot) : repoRoot;
+    const packageJsonText = existsSync(join(packageRoot, "package.json"))
+      ? readFileSync(join(packageRoot, "package.json"), "utf8")
+      : null;
     const readiness = buildConsumerReadinessPlan({
       bunVersion,
       hasGit,
       hasGh,
       hasUtTddCli,
-      hasUtTddPackageScript: packageJsonDeclaresUtTddScript(
-        existsSync(join(packageRoot, "package.json"))
-          ? readFileSync(join(packageRoot, "package.json"), "utf8")
-          : null,
-      ),
+      hasUtTddPackageScript: packageJsonDeclaresUtTddScript(packageJsonText),
+      hasTypecheckPackageScript: packageJsonDeclaresScript(packageJsonText, "typecheck"),
+      hasTestPackageScript: packageJsonDeclaresScript(packageJsonText, "test"),
+      hasBunLockfile:
+        existsSync(join(packageRoot, "bun.lock")) || existsSync(join(packageRoot, "bun.lockb")),
       hasClaude: detection.claude,
       hasCodex: detection.codex,
       repoRoot,

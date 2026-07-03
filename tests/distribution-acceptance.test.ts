@@ -14,7 +14,10 @@ import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildCleanDistributionPlan,
+  CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
+  CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
+  extractWorkflowRunCommands,
 } from "../src/setup/index";
 
 const repoRoot = process.cwd();
@@ -82,6 +85,45 @@ function writeFakeCommand(root: string, name: string, output: string): string {
   return path;
 }
 
+function writeFakeRemoteTagGit(root: string, tag: string): string {
+  const binDir = join(root, ".fake-git-bin");
+  mkdirSync(binDir, { recursive: true });
+  const remoteUrl = "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+  const ref = `refs/tags/${tag}`;
+  if (process.platform === "win32") {
+    const path = join(binDir, "git.cmd");
+    writeFileSync(
+      path,
+      [
+        "@echo off",
+        'if not "%1"=="ls-remote" exit /b 11',
+        'if not "%2"=="--tags" exit /b 12',
+        `if not "%3"=="${remoteUrl}" exit /b 13`,
+        `if not "%4"=="${ref}" exit /b 14`,
+        `echo a148fd304a455e21e631d4dab3c36d59725b1034	${ref}`,
+        "",
+      ].join("\r\n"),
+      "utf8",
+    );
+    return binDir;
+  }
+  const path = join(binDir, "git");
+  writeFileSync(
+    path,
+    [
+      "#!/bin/sh",
+      `test "$1" = "ls-remote" || exit 11`,
+      `test "$2" = "--tags" || exit 12`,
+      `test "$3" = "${remoteUrl}" || exit 13`,
+      `test "$4" = "${ref}" || exit 14`,
+      `printf '%s\\t%s\\n' 'a148fd304a455e21e631d4dab3c36d59725b1034' '${ref}'`,
+      "",
+    ].join("\n"),
+    { encoding: "utf8", mode: 0o755 },
+  );
+  return binDir;
+}
+
 function pathWith(...parts: string[]): string {
   return parts.filter(Boolean).join(process.platform === "win32" ? ";" : ":");
 }
@@ -94,6 +136,33 @@ function runWorkflowUtTdd(
   const prefix = "bun run ut-tdd ";
   expect(workflowCommand.startsWith(prefix)).toBe(true);
   return runBun(cwd, ["run", "ut-tdd", ...workflowCommand.slice(prefix.length).split(" ")], env);
+}
+
+function runWorkflowCommand(
+  cwd: string,
+  workflowCommand: string,
+  env: NodeJS.ProcessEnv = process.env,
+) {
+  if (workflowCommand === "bun install --frozen-lockfile") {
+    return runBun(cwd, ["install", "--frozen-lockfile"], env);
+  }
+  if (workflowCommand === "bun run typecheck") {
+    return runBun(cwd, ["run", "typecheck"], env);
+  }
+  if (workflowCommand === "bun run test") {
+    return runBun(cwd, ["run", "test"], env);
+  }
+  if (workflowCommand === CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND) {
+    const fakeGitBin = writeFakeRemoteTagGit(cwd, "v0.1.4");
+    return runWorkflowUtTdd(cwd, workflowCommand, {
+      ...env,
+      PATH: pathWith(fakeGitBin, env.PATH ?? ""),
+    });
+  }
+  if (workflowCommand.startsWith("bun run ut-tdd ")) {
+    return runWorkflowUtTdd(cwd, workflowCommand, env);
+  }
+  throw new Error(`unsupported generated workflow command: ${workflowCommand}`);
 }
 
 describe("clean distribution local acceptance smoke", () => {
@@ -269,6 +338,33 @@ describe("clean distribution local acceptance smoke", () => {
 
       const consumerRoot = mkdtempSync(join(tmpdir(), "helix-consumer-"));
       try {
+        mkdirSync(join(consumerRoot, "packages", "noop"), { recursive: true });
+        writeFileSync(
+          join(consumerRoot, "packages", "noop", "package.json"),
+          `${JSON.stringify({ name: "@consumer/noop", version: "0.0.0" }, null, 2)}\n`,
+          "utf8",
+        );
+        writeFileSync(
+          join(consumerRoot, "package.json"),
+          `${JSON.stringify(
+            {
+              dependencies: {
+                "@consumer/noop": "file:./packages/noop",
+              },
+              scripts: {
+                "ut-tdd": "ut-tdd",
+                typecheck: 'bun -e "process.exit(0)"',
+                test: 'bun -e "process.exit(0)"',
+              },
+            },
+            null,
+            2,
+          )}\n`,
+          "utf8",
+        );
+        const consumerInstall = runBun(consumerRoot, ["install"], env);
+        expect(consumerInstall.status, consumerInstall.stderr || consumerInstall.stdout).toBe(0);
+
         const linkConsumer = runBun(consumerRoot, ["link", "ut-tdd", "--no-save"], env);
         expect(linkConsumer.status, linkConsumer.stderr || linkConsumer.stdout).toBe(0);
         const linkedEnv = {
@@ -279,15 +375,32 @@ describe("clean distribution local acceptance smoke", () => {
         const linkedVersion = runCommand(consumerRoot, "ut-tdd", ["--version"], linkedEnv);
         expect(linkedVersion.status, linkedVersion.stderr || linkedVersion.stdout).toBe(0);
         expect(linkedVersion.stdout.trim()).toBe("0.1.0");
-        writeFileSync(
-          join(consumerRoot, "package.json"),
-          `${JSON.stringify({ scripts: { "ut-tdd": "ut-tdd" } }, null, 2)}\n`,
-          "utf8",
-        );
 
         const setup = runCommand(consumerRoot, "ut-tdd", ["setup", "project", "--json"], linkedEnv);
         expect(setup.status, setup.stderr || setup.stdout).toBe(0);
         const setupJson = JSON.parse(setup.stdout);
+        const expectedPostSetupVerificationCommands = [
+          "ut-tdd setup project --dry-run",
+          "ut-tdd status --json",
+          "ut-tdd setup project --dry-run --json",
+          "ut-tdd completion decision-packet --json",
+          "ut-tdd completion review-bundle --json",
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          "ut-tdd doctor --profile consumer",
+          "ut-tdd rename plan --json",
+          "ut-tdd handover status --json",
+          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        ];
+        const expectedDryRunVerificationCommands = expectedPostSetupVerificationCommands.filter(
+          (command) =>
+            command !== "ut-tdd doctor --profile consumer" &&
+            command !==
+              "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        );
+        const expectedPostApplyVerificationCommands = [
+          "ut-tdd doctor --profile consumer",
+          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        ];
         expect(setupJson).toMatchObject({
           schemaVersion: "helix-project-setup.v1",
           importReport: { mode: "fresh", requiresReview: false },
@@ -307,6 +420,38 @@ describe("clean distribution local acceptance smoke", () => {
           },
           postSetupWorkflow: { nextRoute: "ready", manualDocSearchRequired: false },
         });
+        expect(setupJson.postSetupWorkflow.verificationCommands).toEqual(
+          expectedPostSetupVerificationCommands,
+        );
+        expect(setupJson.postSetupWorkflow.manualVerificationCommands).toEqual([
+          "code --profile HELIX .",
+        ]);
+        expect(setupJson.postSetupWorkflow.dryRunVerificationCommands).toEqual(
+          expectedDryRunVerificationCommands,
+        );
+        expect(setupJson.postSetupWorkflow.postApplyVerificationCommands).toEqual(
+          expectedPostApplyVerificationCommands,
+        );
+        expect(
+          setupJson.postSetupWorkflow.verificationMatrix.map((row: { phase: string }) => row.phase),
+        ).toEqual([
+          "setup-dry-run",
+          "vscode-profile-open",
+          "status-frontier",
+          "github-ci-safety",
+          "completion-decision-packet",
+          "completion-review-bundle",
+          "version-up-dry-run",
+          "consumer-doctor",
+          "identifier-cutover-packet",
+          "handover-route",
+          "team-run-dry-run",
+        ]);
+        expect(setupJson.consumerReadiness.ci.requires).toEqual([
+          "actions/checkout@v4 with persist-credentials=false",
+          "oven-sh/setup-bun@v2",
+          ...CONSUMER_CI_RUN_COMMANDS,
+        ]);
         expect(setupJson.consumerReadiness.objectiveBoundary.cutoverPacketCommand).toBe(
           "ut-tdd rename plan --json",
         );
@@ -371,6 +516,7 @@ describe("clean distribution local acceptance smoke", () => {
           join(consumerRoot, ".github", "workflows", "harness-check.yml"),
           "utf8",
         );
+        expect(extractWorkflowRunCommands(workflow)).toEqual([...CONSUMER_CI_RUN_COMMANDS]);
         expect(workflow).toContain("permissions:");
         expect(workflow).toContain("contents: read");
         expect(workflow).toContain("uses: actions/checkout@v4");
@@ -386,18 +532,15 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain(
           "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
         );
-        const workflowUtTddCommands = [
-          "bun run ut-tdd --version",
-          "bun run ut-tdd setup project --dry-run --json",
-          "bun run ut-tdd status --json",
-          "bun run ut-tdd completion decision-packet --json",
-          "bun run ut-tdd completion review-bundle --json",
-          "bun run ut-tdd doctor --profile consumer --json",
-          "bun run ut-tdd rename plan --json",
-          "bun run ut-tdd handover status --json",
-          "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
-        ];
-        for (const command of workflowUtTddCommands) {
+        expect(CONSUMER_CI_RUN_COMMANDS).toEqual(
+          expect.arrayContaining([
+            "bun install --frozen-lockfile",
+            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "bun run typecheck",
+            "bun run test",
+          ]),
+        );
+        for (const command of CONSUMER_CI_RUN_COMMANDS) {
           expect(workflow).toContain(command);
         }
         const escalationWorkflow = readFileSync(
@@ -523,6 +666,10 @@ describe("clean distribution local acceptance smoke", () => {
           importReport: { dryRun: true },
           postSetupWorkflow: {
             manualDocSearchRequired: false,
+            verificationCommands: expectedPostSetupVerificationCommands,
+            manualVerificationCommands: ["code --profile HELIX ."],
+            dryRunVerificationCommands: expectedDryRunVerificationCommands,
+            postApplyVerificationCommands: expectedPostApplyVerificationCommands,
             verificationMatrix: expect.arrayContaining([
               expect.objectContaining({
                 phase: "setup-dry-run",
@@ -535,8 +682,8 @@ describe("clean distribution local acceptance smoke", () => {
             ]),
           },
         });
-        for (const command of workflowUtTddCommands) {
-          const run = runWorkflowUtTdd(consumerRoot, command, linkedEnv);
+        for (const command of CONSUMER_CI_RUN_COMMANDS) {
+          const run = runWorkflowCommand(consumerRoot, command, linkedEnv);
           expect(run.status, run.stderr || run.stdout).toBe(0);
           if (command.endsWith("--version")) {
             expect(run.stdout.trim()).toBe("0.1.0");
@@ -558,6 +705,12 @@ describe("clean distribution local acceptance smoke", () => {
               completionClaimAllowed: false,
               semanticBundleDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
             });
+          } else if (command === "bun install --frozen-lockfile") {
+            expect(readFileSync(join(consumerRoot, "bun.lock"), "utf8")).toContain(
+              "lockfileVersion",
+            );
+          } else if (command === "bun run typecheck" || command === "bun run test") {
+            expect(run.stderr).toContain('bun -e "process.exit(0)"');
           } else {
             expect(JSON.parse(run.stdout)).toBeTruthy();
           }

@@ -733,6 +733,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasGh: false,
       hasUtTddCli: true,
       hasUtTddPackageScript: true,
+      hasBunLockfile: true,
+      hasTypecheckPackageScript: true,
+      hasTestPackageScript: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -760,6 +763,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
     expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
     expect(ready.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject({
+      ok: true,
+    });
+    expect(ready.checks.find((c) => c.name === "bun-lockfile")).toMatchObject({ ok: true });
+    expect(ready.checks.find((c) => c.name === "typecheck-package-script")).toMatchObject({
+      ok: true,
+    });
+    expect(ready.checks.find((c) => c.name === "test-package-script")).toMatchObject({
       ok: true,
     });
     expect(ready.checks.find((c) => c.name === "distribution-version-binding")).toMatchObject({
@@ -838,6 +848,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasGh: true,
       hasUtTddCli: true,
       hasUtTddPackageScript: false,
+      hasBunLockfile: true,
+      hasTypecheckPackageScript: true,
+      hasTestPackageScript: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -857,6 +870,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasGh: false,
       hasUtTddCli: false,
       hasUtTddPackageScript: true,
+      hasBunLockfile: true,
+      hasTypecheckPackageScript: true,
+      hasTestPackageScript: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -902,6 +918,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "gh",
       "ut-tdd-cli",
       "ut-tdd-package-script",
+      "bun-lockfile",
+      "typecheck-package-script",
+      "test-package-script",
       "runtime-cli",
     ]);
 
@@ -924,6 +943,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       hasGh: true,
       hasUtTddCli: true,
       hasUtTddPackageScript: true,
+      hasBunLockfile: true,
+      hasTypecheckPackageScript: true,
+      hasTestPackageScript: true,
       hasClaude: false,
       hasCodex: true,
       repoRoot: "/repo",
@@ -1565,8 +1587,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.files.set(
       join("/repo", "package.json"),
-      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+      JSON.stringify({
+        scripts: {
+          "ut-tdd": "bun run src/cli.ts",
+          typecheck: "bun run ut-tdd status --json",
+          test: "bun run ut-tdd completion review-bundle --json",
+        },
+      }),
     );
+    deps.files.set(join("/repo", "bun.lock"), "");
 
     const first = runHelixProjectSetup(
       { phase: "0-A", dryRun: false, applyBranchProtection: false },
@@ -1625,8 +1654,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.files.set(
       join("/repo", "package.json"),
-      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+      JSON.stringify({
+        scripts: {
+          "ut-tdd": "bun run src/cli.ts",
+          typecheck: "bun run ut-tdd status --json",
+          test: "bun run ut-tdd completion review-bundle --json",
+        },
+      }),
     );
+    deps.files.set(join("/repo", "bun.lock"), "");
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
@@ -1773,8 +1809,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.files.set(
       join("/repo", "package.json"),
-      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+      JSON.stringify({
+        scripts: {
+          "ut-tdd": "bun run src/cli.ts",
+          typecheck: "bun run ut-tdd status --json",
+          test: "bun run ut-tdd completion review-bundle --json",
+        },
+      }),
     );
+    deps.files.set(join("/repo", "bun.lock"), "");
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
@@ -1952,8 +1995,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.files.set(
       join("/repo", "package.json"),
-      JSON.stringify({ scripts: { "ut-tdd": "bun run src/cli.ts" } }),
+      JSON.stringify({
+        scripts: {
+          "ut-tdd": "bun run src/cli.ts",
+          typecheck: "bun run ut-tdd status --json",
+          test: "bun run ut-tdd completion review-bundle --json",
+        },
+      }),
     );
+    deps.files.set(join("/repo", "bun.lock"), "");
 
     const result = runHelixProjectSetup(
       {
@@ -2020,8 +2070,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.files.set(
       join("/repo", "packages", "app", "package.json"),
-      JSON.stringify({ scripts: { "ut-tdd": "bun run ../../src/cli.ts" } }),
+      JSON.stringify({
+        scripts: {
+          "ut-tdd": "bun run ../../src/cli.ts",
+          typecheck: "bun run ut-tdd status --json",
+          test: "bun run ut-tdd completion review-bundle --json",
+        },
+      }),
     );
+    deps.files.set(join("/repo", "packages", "app", "bun.lock"), "");
 
     const result = runHelixProjectSetup(
       { phase: "0-A", dryRun: true, applyBranchProtection: false },
@@ -3122,9 +3179,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(claude).not.toContain("bootstraps a HELIX-ready project");
     expect(agents).toContain("セットアップ: `ut-tdd setup project`");
-    expect(agents).toContain("legacy command を現行 company/product execution path として追加しない。");
+    expect(agents).toContain(
+      "legacy command を現行 company/product execution path として追加しない。",
+    );
     expect(claudeRuntime).toContain("現行コマンド経路:");
-    expect(claudeRuntime).toContain("Claude Code session の harness lifecycle work は `ut-tdd` 経由で扱う。");
+    expect(claudeRuntime).toContain(
+      "Claude Code session の harness lifecycle work は `ut-tdd` 経由で扱う。",
+    );
   });
 
   it("U-SETUP-035: runtime instruction setup surfaces stay Japanese-first", () => {
