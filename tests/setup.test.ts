@@ -3084,4 +3084,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(readme).toContain("`.helix`");
     expect(quickstart).not.toContain("setup --solo");
   });
+
+  it("U-SETUP-034: runtime instruction files name setup project as the canonical setup entrypoint", () => {
+    const claude = readFileSync(join(process.cwd(), "CLAUDE.md"), "utf8");
+    const agents = readFileSync(join(process.cwd(), "AGENTS.md"), "utf8");
+    const claudeRuntime = readFileSync(join(process.cwd(), ".claude", "CLAUDE.md"), "utf8");
+
+    for (const text of [claude, agents, claudeRuntime]) {
+      expect(text).toContain("Setup: `ut-tdd setup project`");
+      expect(text).not.toContain("Setup: `ut-tdd setup`");
+    }
+    expect(claude).toContain("`ut-tdd setup project` bootstraps a HELIX-ready project");
+    expect(agents).toContain("Project setup: `ut-tdd setup project`");
+    expect(claudeRuntime).toContain("Current command path:");
+  });
 });

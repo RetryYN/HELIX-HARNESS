@@ -196,7 +196,7 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 
 ## Canonical Commands
 
-- Setup: `ut-tdd setup`
+- Setup: `ut-tdd setup project`
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
 - Plan lint: `ut-tdd plan lint`
@@ -243,6 +243,7 @@ not silently diverge.
 - Codex project rules: `AGENTS.md`
 - Claude runtime policy: `.claude/CLAUDE.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- Setup: `ut-tdd setup project`
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
 - Handover: `ut-tdd handover`
@@ -255,6 +256,7 @@ not silently diverge.
 
 Use repository-local UT-TDD commands for harness state and delegation.
 
+- `ut-tdd setup project` bootstraps a HELIX-ready project and is the current setup entrypoint.
 - `ut-tdd status` reports the local runtime mode.
 - `ut-tdd doctor` runs repository health checks.
 - `ut-tdd handover` reads and writes cross-runtime handover state.

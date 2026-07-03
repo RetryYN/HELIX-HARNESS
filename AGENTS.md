@@ -133,6 +133,7 @@ Runtime modes:
 
 Canonical commands:
 
+- Project setup: `ut-tdd setup project`
 - Codex execution: `ut-tdd codex --role <role> --task "..."`
 - Claude prompt generation: `ut-tdd claude --role <role> --task "..." --dry-run`
 - Team delegation: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
@@ -257,6 +258,7 @@ not silently diverge.
 - Shared context: `CLAUDE.md`
 - Claude runtime policy: `.claude/CLAUDE.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- Setup: `ut-tdd setup project`
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
 - Handover: `ut-tdd handover`
@@ -269,6 +271,7 @@ not silently diverge.
 
 This project uses UT-TDD Agent Harness commands as the local orchestration surface.
 
+- Setup: `ut-tdd setup project`
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
 - Handover: `ut-tdd handover`

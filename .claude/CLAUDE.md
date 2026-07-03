@@ -72,6 +72,7 @@ Use `ut-tdd plan lint`, targeted tests, and `ut-tdd doctor`.
 
 Current command path:
 
+- Setup: `ut-tdd setup project`
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
 - Handover: `ut-tdd handover`
@@ -190,6 +191,7 @@ not silently diverge.
 - Shared project context: `../CLAUDE.md`
 - Codex project rules: `../AGENTS.md`
 - Modes: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- Setup: `ut-tdd setup project`
 - Status: `ut-tdd status`
 - Doctor: `ut-tdd doctor`
 - Handover: `ut-tdd handover`
@@ -203,6 +205,7 @@ not silently diverge.
 Claude Code sessions should route harness lifecycle work through `ut-tdd`.
 Consumer-owned Claude instructions can be added outside this managed block.
 
+- Setup: `ut-tdd setup project`
 - Session evidence: `ut-tdd status` and `ut-tdd handover`
 - Health check: `ut-tdd doctor`
 - Review separation: use another runtime/model family when feasible
