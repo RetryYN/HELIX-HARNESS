@@ -1165,6 +1165,7 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd status --json",
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -1283,6 +1284,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd status --json",
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -1319,6 +1321,14 @@ describe("L7 CLI surface closure", () => {
           source: "HELIX completion decision packet contract",
         }),
         expect.objectContaining({
+          phase: "version-up-dry-run",
+          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+          writePolicy: "no-write",
+          source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
+          sourceUrl: "https://semver.org/",
+          sourceCheckedAt: "2026-07-03",
+        }),
+        expect.objectContaining({
           phase: "team-run-dry-run",
           command:
             "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
@@ -1353,10 +1363,13 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("consumer-readiness:");
     expect(text.stdout).toContain("post-setup-workflow: review_import_report");
-    expect(text.stdout).toContain("verification-matrix: 8");
+    expect(text.stdout).toContain("verification-matrix: 9");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
+    expect(text.stdout).toContain(
+      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
+    );
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
     expect(text.stdout).toContain(

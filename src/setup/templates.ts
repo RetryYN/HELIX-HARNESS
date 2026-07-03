@@ -413,6 +413,12 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     '      "problemMatcher": []',
     "    },",
     "    {",
+    '      "label": "HELIX: version-up dry-run",',
+    '      "type": "shell",',
+    '      "command": "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",',
+    '      "problemMatcher": []',
+    "    },",
+    "    {",
     '      "label": "HELIX: rename plan",',
     '      "type": "shell",',
     '      "command": "bun run ut-tdd rename plan --json",',
@@ -492,6 +498,8 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
     "        run: bun run ut-tdd status --json",
     "      - name: HELIX completion decision packet",
     "        run: bun run ut-tdd completion decision-packet --json",
+    "      - name: HELIX version-up dry-run",
+    "        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json",
     "      - name: HELIX consumer doctor",
     "        run: bun run ut-tdd doctor --profile consumer --json",
     "      - name: HELIX rename plan",
@@ -708,7 +716,8 @@ export const PROJECT_SETUP_FILES: { template: string; file: GeneratedFile }[] = 
     file: {
       path: join(".vscode", "tasks.json"),
       category: "A",
-      purpose: "VSCode HELIX task shortcuts for status, doctor, rename plan, and setup dry-run",
+      purpose:
+        "VSCode HELIX task shortcuts for status, doctor, version-up dry-run, rename plan, and setup dry-run",
     },
   },
   {
