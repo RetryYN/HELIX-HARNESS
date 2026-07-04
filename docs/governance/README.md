@@ -1,6 +1,6 @@
 # Governance Documents（governance 文書）
 
-このディレクトリは HELIX-HARNESS（UT-TDD Agent Harness 土台）の現行正本だけを置く。
+このディレクトリは HELIX-HARNESS の現行 governance 正本だけを置く。
 本 README は governance 配下の案内 index であり、gate、証跡、完了条件の判定 surface ではない。
 
 ## Current Source Of Truth（現行正本）
