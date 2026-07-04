@@ -671,6 +671,8 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-PLANGOV-015 | `analyzePlanGovernance` scope integrity | `scope_digest` を持つ PLAN の DoD checkbox 行が削除・変更された場合、`scope_integrity_mismatch` violation |
 | U-PLANGOV-016 | `analyzePlanGovernance` waiver | `- [~] (waived: reason/approver/YYYY-MM-DD) ...` 形式の waiver は scope digest 入力として受理し、scope shrink 免責を明示できる |
 | U-PLANGOV-017 | `analyzePlanGovernance` malformed waiver | `- [~]` 行が `waived: reason/approver/YYYY-MM-DD` を欠く場合、`scope_integrity_invalid_waiver` violation |
+| U-PLANGOV-018 | `analyzePlanGovernance` forward route scope | `forward_routing` が `kind=reverse` 以外、または `workflow_phase=R4` 以外に置かれた場合、`forward_routing_scope_mismatch` violation |
+| U-PLANGOV-019 | `analyzePlanGovernance` reverse R4 route scope | `kind=reverse` + `workflow_phase=R4` の `forward_routing` は route scope として受理し、余計な violation を出さない |
 
 ### §1.20 U-FRCOV (FR unit coverage substance 検査、PLAN-L7-22 / A-110)
 

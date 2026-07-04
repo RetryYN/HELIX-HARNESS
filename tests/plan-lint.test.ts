@@ -386,6 +386,54 @@ describe("plan schedule lint (IMP-081)", () => {
     expect(result.violations.map((v) => v.reason)).toContain("scope_integrity_invalid_waiver");
   });
 
+  it("U-PLANGOV-018: forward_routing is rejected outside reverse R4", () => {
+    const docs = [
+      planDoc("PLAN-DISCOVERY-198-poc-forward-route", {
+        kind: "poc",
+        layer: "cross",
+        status: "draft",
+        subDoc: null,
+        extra: "workflow_phase: S2\nforward_routing: L3\n",
+      }),
+      (() => {
+        const doc = reverseR4PlanDoc(
+          "PLAN-REVERSE-198-r3-forward-route",
+          "design",
+          ["docs/plans/PLAN-REVERSE-198-r3-forward-route.md"],
+          { status: "draft" },
+        );
+        return { ...doc, content: doc.content.replace("workflow_phase: R4", "workflow_phase: R3") };
+      })(),
+    ];
+
+    const violations = analyzePlanGovernance(docs).violations.filter(
+      (v) => v.reason === "forward_routing_scope_mismatch",
+    );
+
+    expect(violations.map((v) => v.detail)).toEqual([
+      "poc:S2:L3:expected_reverse_R4",
+      "reverse:R3:L5:expected_R4",
+    ]);
+  });
+
+  it("U-PLANGOV-019: reverse R4 forward_routing remains valid", () => {
+    const docs = [
+      reverseR4PlanDoc(
+        "PLAN-REVERSE-198-route-scope-ok",
+        "normalization",
+        ["docs/plans/PLAN-REVERSE-198-route-scope-ok.md"],
+        {
+          extra:
+            'backprop_decision: not_required\nbackprop_decision_reason: "routing-only fixture; no upstream artifact is changed"\n',
+        },
+      ),
+    ];
+
+    const reasons = analyzePlanGovernance(docs).violations.map((v) => v.reason);
+
+    expect(reasons).not.toContain("forward_routing_scope_mismatch");
+  });
+
   it("U-PLANGOV-007: progress color DB projection requires Reverse and upstream design backprop", () => {
     const docs = [
       dbProgressPlanDoc("PLAN-L7-98-progress-leak", [

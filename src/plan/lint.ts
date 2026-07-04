@@ -292,6 +292,21 @@ function kindLayerViolations(raw: Record<string, unknown>): string[] {
   return [];
 }
 
+function forwardRoutingScopeViolations(raw: Record<string, unknown>): string[] {
+  const route = stringField(raw.forward_routing);
+  if (!route) return [];
+
+  const kind = stringField(raw.kind);
+  const phase = stringField(raw.workflow_phase);
+  if (kind !== "reverse") {
+    return [`${kind ?? "-"}:${phase ?? "-"}:${route}:expected_reverse_R4`];
+  }
+  if (phase !== "R4") {
+    return [`reverse:${phase ?? "-"}:${route}:expected_R4`];
+  }
+  return [];
+}
+
 function expectedArtifactTypeForPath(path: string): string | null {
   if (path.startsWith("docs/design/")) return "design_doc";
   if (path.startsWith("docs/test-design/")) return "test_design";
@@ -539,6 +554,14 @@ export function analyzePlanGovernance(
         file: entry.file,
         reason: "kind_layer_mismatch",
         detail: invalidKindLayers.join(", "),
+      });
+    }
+    const invalidForwardRoutes = forwardRoutingScopeViolations(raw);
+    if (invalidForwardRoutes.length > 0) {
+      violations.push({
+        file: entry.file,
+        reason: "forward_routing_scope_mismatch",
+        detail: invalidForwardRoutes.join(", "),
       });
     }
 
