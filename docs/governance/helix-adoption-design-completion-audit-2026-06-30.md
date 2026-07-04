@@ -4,7 +4,7 @@ status: confirmed
 created: 2026-06-30
 owner: TL (Codex)
 scope:
-  - upstream_ut_tdd_agent_harness_adoption
+  - upstream_helix_harness_adoption
   - legacy_helix_extension_adoption
   - l7_5_run_debug_runtime_verification
   - visualization_discovery_ticket
