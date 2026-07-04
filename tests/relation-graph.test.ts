@@ -1,13 +1,11 @@
-// PLAN-L7-32 (add-impl) Step 1: cross-artifact relation graph の TDD Red oracle scaffold。
+// PLAN-L7-32 / PLAN-L7-36: cross-artifact relation graph の回帰 oracle。
 //
 // L6-31 (module-drift.md addendum) の 4 契約 = collectRelationGraphProjection /
 // analyzeRelationImpact / exportRelationDiagram / collectVerificationEvidenceProjection。
 // U-RELGRAPH-001..010 を L7 unit oracle として敷く。
 //
-// 注: これは L7-32 ワークフローの「初手」= oracle 契約の scaffold。実装 (src/lint/relation-graph.ts)
-// は Step 2 (pure projection functions) で Red→Green に着地させる。確定基準 (vitest 全 green) を
-// 壊さないため未実装オラクルは it.todo で可視化する (起こすと Red、実装で it に昇格)。
-// entry 条件 (PLAN-L7-32 §1): src/** relation-graph source を作る前に本 Red 契約が存在すること。
+// 現在は U-RELGRAPH-001..010 すべて green 化済み。未実装 scaffold ではなく、
+// projection / impact / diagram / verification evidence の退行を検出する active regression test として扱う。
 import { describe, expect, it } from "vitest";
 import {
   analyzeRelationImpact,
