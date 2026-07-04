@@ -49,6 +49,7 @@ const DESIGN_LANGUAGE_ROOTS = [
   join("docs", "migration"),
   join("docs", "plans"),
   join("docs", "process"),
+  join("docs", "reference"),
   join("docs", "research"),
   join("docs", "templates"),
   join("docs", "test-design"),
