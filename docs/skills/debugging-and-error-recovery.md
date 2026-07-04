@@ -18,69 +18,66 @@ applies_to:
     - Reverse
 ---
 
-# debugging and error recovery
+# debugging and error recovery（debug と recovery）
 
-Detection-to-routing protocol for defects and failures in UT-TDD (FR-L1-08
-defect detection, FR-L1-10 recovery routing, FR-L1-16 incident classification).
-This skill covers the triage and routing phase — once root cause is confirmed
-and a PLAN is open, apply the error-fix skill for the fix itself.
+UT-TDD における defects/failures の detection-to-routing protocol
+（FR-L1-08 defect detection、FR-L1-10 recovery routing、FR-L1-16 incident classification の方針）。
+この skill は triage と routing phase を扱う。root cause が確認され PLAN が開いた後の fix 自体には、
+error-fix skill を適用する。
 
-## When to load this skill
+## この skill を読む条件
 
-- `ut-tdd doctor` exits non-zero and the root cause is not obvious.
-- `bun run test`, `bun run typecheck`, or `bun run lint` fails on CI or locally.
-- A runtime error appears in `.ut-tdd/` state or a hook entrypoint.
-- An agent subagent output is inconsistent with expected harness state.
-- A forced stop or unexpected session termination occurred (highest-severity
-  Recovery signal).
+- `ut-tdd doctor` が non-zero で終了し、root cause が明らかではない。
+- `bun run test`、`bun run typecheck`、`bun run lint` が CI または local で失敗する。
+- `.ut-tdd/` state または hook entrypoint に runtime error が出る。
+- agent/subagent output が expected harness state と一致しない。
+- forced stop または unexpected session termination が発生した
+  （最も high-severity な Recovery signal）。
 
-## Detection sources and their meaning
+## Detection sources と意味
 
-| Signal | Tool | First action |
+| Signal | Tool | 最初の action |
 |--------|------|--------------|
-| `ut-tdd doctor` non-zero | `ut-tdd doctor` | Read full output — never `| tail` |
-| CI harness-check red | CI log | Identify sub-gate (typecheck / lint / test / doctor) |
-| `.ut-tdd/` state inconsistency | `ut-tdd status` | Compare expected vs actual state |
-| Hook entrypoint status null | `ut-tdd doctor` | Verify `PATH` includes System32 (Windows) |
-| Subagent output mismatch | `git status` + file read | Check actual files, not agent narrative |
+| `ut-tdd doctor` non-zero | `ut-tdd doctor` | full output を読む。`| tail` しない |
+| CI harness-check red | CI log | sub-gate（typecheck / lint / test / doctor）を特定 |
+| `.ut-tdd/` state inconsistency | `ut-tdd status` | expected と actual state を比較 |
+| Hook entrypoint status null | `ut-tdd doctor` | `PATH` に System32 が含まれるか確認（Windows） |
+| Subagent output mismatch | `git status` + file read | agent narrative ではなく actual files を確認 |
 
-Always read the **full** output of a failing command. Truncating with `| head`
-or `| tail` hides the root error — this has caused repeated false-diagnoses
-where a downstream error message was treated as the root cause.
+失敗した command の output は必ず **full** で読む。`| head` や `| tail` で切ると root error が隠れる。
+downstream error message を root cause と誤認する false-diagnosis が繰り返し発生している。
 
-## Triage protocol
+## Triage protocol（triage 手順）
 
-### Step 1 — classify the failure
+### Step 1 — failure を分類する
 
-Determine whether the failure is:
+failure が次のどれかを判断する。
 
-- **Environmental** — PATH, missing runtime, `.ut-tdd/` directory permissions,
-  `CLAUDE_PROJECT_DIR` not set. Check `ut-tdd doctor` environment checks first.
-- **Governance** — orphaned PLAN, missing design doc, broken dependency link,
-  schema mismatch. Check `ut-tdd doctor` governance checks and `ut-tdd plan lint`.
-- **Implementation** — a logic error in `src/`. Confirm with `bun run test` and
-  a targeted test run.
-- **Test oracle** — a test is asserting the wrong thing, or a false-green was
-  accepted. Confirm by reading the test and the spec it should be testing.
+- **Environmental** — PATH、runtime 不足、`.ut-tdd/` directory permissions、
+  `CLAUDE_PROJECT_DIR` 未設定。最初に `ut-tdd doctor` environment checks を確認する。
+- **Governance** — orphaned PLAN、design doc 欠落、broken dependency link、
+  schema mismatch。`ut-tdd doctor` governance checks と `ut-tdd plan lint` を確認する。
+- **Implementation** — `src/` の logic error。`bun run test` と targeted test run で確認する。
+- **Test oracle** — test が誤った内容を assert している、または false-green が受け入れられた。
+  test と、その test が検証すべき spec を読んで確認する。
 
-Do not move to Step 2 until the class is clear. Misclassifying environmental
-as implementation is a common source of wasted work.
+class が明確になるまで Step 2 へ進まない。environmental を implementation と誤分類すると、
+無駄な作業が発生しやすい。
 
-### Step 2 — route to the correct PLAN type
+### Step 2 — 正しい PLAN type へ route する
 
 | Class | Route |
 |-------|-------|
-| Environmental | Recovery PLAN; fix environment, add a `ut-tdd doctor` check for future detection |
-| Governance | Recovery PLAN or inline fix depending on severity; update the relevant design doc |
-| Implementation defect | Recovery PLAN (if severity warrants) or error-fix skill inline |
-| Incident (production / user-visible) | Incident PLAN; priority over all other work |
+| Environmental | Recovery PLAN。environment を直し、future detection 用の `ut-tdd doctor` check を追加 |
+| Governance | severity に応じて Recovery PLAN または inline fix。relevant design doc を更新 |
+| Implementation defect | severity が必要なら Recovery PLAN、軽微なら error-fix skill inline |
+| Incident (production / user-visible) | Incident PLAN。他の work より優先 |
 
-A forced stop by the user is classified as Incident-level Recovery regardless
-of apparent technical severity.
+user による forced stop は、見かけの technical severity に関係なく Incident-level Recovery として分類する。
 
-### Step 3 — reproduce before routing
+### Step 3 — routing 前に再現する
 
-Before opening a PLAN, confirm the failure is reproducible:
+PLAN を開く前に、failure が reproducible であることを確認する。
 
 ```
 bun run typecheck
@@ -90,75 +87,66 @@ ut-tdd doctor
 ut-tdd status
 ```
 
-Record the exact failing command, the first error line, and the HEAD SHA in the
-PLAN's `review_evidence` field. "It failed earlier but I can't reproduce it"
-is not a valid PLAN basis — diagnose the flakiness first.
+exact failing command、first error line、HEAD SHA を PLAN の `review_evidence` field に記録する。
+「以前失敗したが再現できない」は valid PLAN basis ではない。先に flakiness を診断する。
 
-## Recovery routing checklist
+## Recovery routing checklist（routing チェックリスト）
 
-- [ ] Failure class identified (environmental / governance / implementation /
-  oracle).
-- [ ] Failure is reproducible on current HEAD.
-- [ ] Failing command and first error line recorded in PLAN or `.ut-tdd/audit/`.
-- [ ] Correct PLAN type opened (Recovery / Incident / inline fix).
-- [ ] Root cause documented — what condition allowed the defect, not only what
-  the symptom was.
-- [ ] Prevention measure identified for after the fix (see error-fix skill).
+- [ ] failure class が特定済み（environmental / governance / implementation / oracle）。
+- [ ] current HEAD で failure が reproducible。
+- [ ] failing command と first error line を PLAN または `.ut-tdd/audit/` に記録済み。
+- [ ] 正しい PLAN type を開いている（Recovery / Incident / inline fix）。
+- [ ] root cause を記録済み。symptom だけでなく、どの condition が defect を許したかを書く。
+- [ ] fix 後の prevention measure を特定済み（error-fix skill 参照）。
 
-## Iron Law and 3-attempt escalation (PLAN-RECOVERY-05)
+## Iron Law と 3-attempt escalation（PLAN-RECOVERY-05）
 
-Source concept: the `systematic-debugging` skill from obra/superpowers (reference
-only — the rule below is authored from UT-TDD's Recovery/troubleshoot drive, not
-imported).
+source concept は obra/superpowers の `systematic-debugging` skill
+（reference only）。以下の rule は import ではなく、UT-TDD の Recovery/troubleshoot drive から作成している。
 
-**Iron Law — no fix without root-cause first.** Before changing code, complete
-the root-cause pass: read the error fully, reproduce on HEAD, trace the bad value
-upstream to its origin, and write a single specific hypothesis. State one
-hypothesis, change one variable, verify before the next. The Recovery exit
-contract already requires a prevention measure; this makes root-cause a *gate in
-front of the fix*, not only a post-hoc note.
+**Iron Law — root-cause なしに fix しない。** code を変更する前に root-cause pass を完了する。
+error を full で読み、HEAD で再現し、bad value を upstream の origin まで trace し、
+single specific hypothesis を書く。hypothesis は 1 つ、変更する variable も 1 つにし、次へ進む前に検証する。
+Recovery exit contract は prevention measure を要求している。これにより root-cause は post-hoc note ではなく、
+fix の前にある *gate* になる。
 
-**3-attempt architectural escalation (hard stop).** If the same subject (file,
-gate, or test) fails **3 consecutive times**, STOP fixing. Three failed attempts
-mean the working hypothesis — or the architecture — is wrong, not that the next
-tweak will land. Escalate: re-run the root-cause pass one level up (design /
-contract / baseline), or open a Recovery PLAN. A success on the subject resets
-the streak.
+**3-attempt architectural escalation（hard stop）。** 同じ subject（file、gate、test）が
+**3 consecutive times** 失敗したら、fix を停止する。3 回の failed attempts は、
+次の tweak が当たるという意味ではなく、working hypothesis または architecture が間違っているという意味である。
+escalate し、root-cause pass を 1 段上（design / contract / baseline）で再実行するか、
+Recovery PLAN を開く。subject の success で streak は reset される。
 
-This is mechanized by `src/runtime/attempt-escalation.ts`
-(`evaluateAttemptEscalation`): it counts consecutive `error` outcomes per subject
-from the session log and emits a STOP signal at the threshold (default 3). The
-signal is a `finding`, so it reaches the agent through the takeover feedback
-surface (PLAN-L7-110) on the next session start — feedback from the DB, not prose.
+これは `src/runtime/attempt-escalation.ts`（`evaluateAttemptEscalation`）で機械化されている。
+session log から subject ごとの consecutive `error` outcomes を数え、threshold（default 3）で
+STOP signal を emit する。signal は `finding` なので、次回 session start 時に takeover feedback surface
+（PLAN-L7-110）経由で agent へ届く。prose ではなく DB からの feedback である。
 
-> Worked example (2026-06-23): a takeover session measured a shared, concurrently
-> mutated working tree repeatedly, got shifting test counts, and chased each shift
-> with a new fix while blaming the other runtime. The Iron Law (anchor to HEAD,
-> root-cause the moving baseline first) and the 3-attempt stop would have halted
-> the spiral after the third re-measurement.
+> Worked example（2026-06-23）: takeover session が shared/concurrently mutated working tree を繰り返し測定し、
+> shifting test counts を得て、other runtime の責任にしながら各 shift を new fix で追った。
+> Iron Law（HEAD に anchor し、moving baseline を先に root-cause する）と 3-attempt stop があれば、
+> 3 回目の re-measurement 後に spiral を止められた。
 
-## Doctor signal catalogue
+## Doctor signal catalogue（doctor signal 一覧）
 
-Common `ut-tdd doctor` non-zero causes and their meaning:
+よくある `ut-tdd doctor` non-zero causes とその意味。
 
-- **plan-governance**: orphaned PLAN, missing `requires` target, broken pair.
-  Read the full governance output; each line is a separate violation.
-- **readability**: mojibake marker (`U+FFFD`, half-width kana) detected in a
-  doc. Do not attempt to reconstruct from a lossy conversion — restore from
-  git history before the encoding error was introduced.
-- **env-path**: `PATH` is missing a required directory. On Windows, verify
-  `System32` is present; `ut-tdd doctor` will emit the missing segment.
-- **descent-obligation**: an L7 source file has no paired L5/L6 design doc.
-  Do not create a stub doc to pass the check — write the actual design.
+- **plan-governance**: orphaned PLAN、`requires` target 欠落、broken pair。
+  full governance output を読む。各 line は separate violation。
+- **readability**: doc 内に mojibake marker（`U+FFFD`、half-width kana）が検出された。
+  lossy conversion から復元しようとせず、encoding error 導入前の git history から restore する。
+- **env-path**: `PATH` に required directory が無い。Windows では `System32` が存在するか確認する。
+  `ut-tdd doctor` は missing segment を emit する。
+- **descent-obligation**: L7 source file に paired L5/L6 design doc が無い。
+  check を通すための stub doc は作らず、actual design を書く。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Treating `ut-tdd doctor` green as "nothing is wrong" — doctor checks
-  structural governance; a false-green gate (coverage without substance) can
-  co-exist with a real defect.
-- Fixing the symptom without identifying root cause — the Recovery exit contract
-  requires a prevention measure, not only a symptom removal.
-- Opening a new PLAN without a reproducible failure — creates governance noise
-  and makes future triage harder.
-- Diagnosing from agent narrative output — always verify with `git status`,
-  file reads, and `ut-tdd status` against actual harness state.
+- `ut-tdd doctor` green を「何も問題がない」と扱う。
+  doctor は structural governance を確認する。substance の無い coverage による false-green gate は、
+  real defect と共存しうる。
+- root cause を特定せず symptom だけを fix する。
+  Recovery exit contract は symptom removal だけでなく prevention measure を要求する。
+- reproducible failure なしに new PLAN を開く。
+  governance noise を作り、future triage を難しくする。
+- agent narrative output から診断する。
+  必ず `git status`、file reads、`ut-tdd status` で actual harness state を確認する。
