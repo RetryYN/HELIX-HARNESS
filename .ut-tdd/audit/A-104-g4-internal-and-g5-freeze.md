@@ -1,17 +1,17 @@
-# A-104 - G4 Internal Asset Closure + G5 L5 Freeze (2026-06-08)
+# A-104 - G4 internal asset closure と G5 L5 freeze (2026-06-08)
 
 ## Verdict
 
-G4 residual scope and G5 freeze are PASS.
+G4 residual scope と G5 freeze は PASS。
 
-- G4 residual: PLAN-L4-10 through PLAN-L4-13 were the only L4 items still recorded as separate-scope, not frozen.
-- G5 scope: PLAN-L5-00 through PLAN-L5-07, the four L5 detailed-design docs, and L8 integration test design.
-- Reviewer mode: intra_runtime_subagent (`codex-tl`) because this session is CLI TL driven.
-- Blocking issues: 0.
+- G4 residual: PLAN-L4-10 から PLAN-L4-13 が、まだ separate-scope かつ未 freeze として記録されていた唯一の L4 items。
+- G5 scope: PLAN-L5-00 から PLAN-L5-07、4 件の L5 detailed-design docs、L8 integration test design。
+- Reviewer mode: この session は CLI TL driven のため intra_runtime_subagent (`codex-tl`)。
+- Blocking issues: 0。
 
-## G4 Residual Closure
+## G4 residual の closure
 
-The remaining L4 scope was not the core L4 design set. Core L4 had already passed A-101/A-102/A-103. The residual was the internal asset branch:
+残っていた L4 scope は core L4 design set ではない。Core L4 は A-101/A-102/A-103 で既に pass 済みだった。residual は internal asset branch だった:
 
 - PLAN-L4-10 internal asset master
 - PLAN-L4-11 roster
@@ -21,31 +21,31 @@ The remaining L4 scope was not the core L4 design set. Core L4 had already passe
 Closure evidence:
 
 - Each PLAN is now `status: confirmed`.
-- Each has review evidence with `tests_green_at <= reviewed_at`.
-- Each is paired to L9 and decomposed through L5-05/L5-06/L5-07.
-- L8 IT-ASSET-01 through IT-ASSET-07 now covers the integration boundary.
+- 各 PLAN は `tests_green_at <= reviewed_at` の review evidence を持つ。
+- 各 PLAN は L9 と pair 済みで、L5-05/L5-06/L5-07 へ decomposed 済み。
+- L8 IT-ASSET-01 から IT-ASSET-07 が integration boundary を cover している。
 
-## G5 Freeze Scope
+## G5 freeze の scope
 
 L5 confirmed artifacts:
 
-- docs/design/harness/L5-detailed-design/physical-data.md
-- docs/design/harness/L5-detailed-design/module-decomposition.md
-- docs/design/harness/L5-detailed-design/internal-processing.md
-- docs/design/harness/L5-detailed-design/if-detail.md
-- docs/test-design/harness/L8-integration-test-design.md
-- docs/plans/PLAN-L5-00-master.md
-- docs/plans/PLAN-L5-01-physical-data.md
-- docs/plans/PLAN-L5-02-module-decomposition.md
-- docs/plans/PLAN-L5-03-internal-processing.md
-- docs/plans/PLAN-L5-04-if-detail.md
-- docs/plans/PLAN-L5-05-roster.md
-- docs/plans/PLAN-L5-06-skill.md
-- docs/plans/PLAN-L5-07-drift.md
+- `docs/design/harness/L5-detailed-design/physical-data.md`
+- `docs/design/harness/L5-detailed-design/module-decomposition.md`
+- `docs/design/harness/L5-detailed-design/internal-processing.md`
+- `docs/design/harness/L5-detailed-design/if-detail.md`
+- `docs/test-design/harness/L8-integration-test-design.md`
+- `docs/plans/PLAN-L5-00-master.md`
+- `docs/plans/PLAN-L5-01-physical-data.md`
+- `docs/plans/PLAN-L5-02-module-decomposition.md`
+- `docs/plans/PLAN-L5-03-internal-processing.md`
+- `docs/plans/PLAN-L5-04-if-detail.md`
+- `docs/plans/PLAN-L5-05-roster.md`
+- `docs/plans/PLAN-L5-06-skill.md`
+- `docs/plans/PLAN-L5-07-drift.md`
 
-## L8 Granularity Correction
+## L8 granularity の補正
 
-L8 was previously a candidate skeleton and could not support G5. This audit freezes L8 by adding GWT-level rows for:
+L8 は以前 candidate skeleton であり、G5 を支えられなかった。この audit では、以下の GWT-level rows を追加して L8 を freeze する:
 
 - IT-CONTRACT-01 through IT-CONTRACT-03
 - IT-ADAPTER-01 through IT-ADAPTER-03
@@ -53,22 +53,22 @@ L8 was previously a candidate skeleton and could not support G5. This audit free
 - IT-STATE-01 through IT-STATE-02
 - IT-ASSET-01 through IT-ASSET-07
 
-Each row now includes Given, When, Then, fixture/boundary, assertions, and negative/edge coverage.
+各 row は Given、When、Then、fixture/boundary、assertions、negative/edge coverage を含む。
 
 ## Carry
 
-These are not G5 blockers:
+以下は G5 blocker ではない:
 
-- L6: function signatures, pseudocode, resolver/scoring/regex details.
-- L7: TypeScript implementation and vitest materialization.
-- Security/PO: authentication and secret-management operational decision remains human/security approval carry. G5 freezes the policy boundary, not credentials or production authentication choices.
+- L6: function signatures、pseudocode、resolver/scoring/regex details を扱う。
+- L7: TypeScript implementation と vitest materialization。
+- Security/PO: authentication と secret-management の operational decision は human/security approval carry のまま。G5 は policy boundary を freeze するが、credentials や production authentication choices は freeze しない。
 
-## Verification Commands
+## Verification commands の一覧
 
-Final verification for this audit must include:
+この audit の final verification には以下を含める必要がある:
 
 - `bun run lint`
 - `bun run typecheck`
 - `npx vitest run`
 - `bun run src/cli.ts doctor`
-- targeted `ut-tdd plan lint` for PLAN-L4-10 through PLAN-L4-13 and PLAN-L5-00 through PLAN-L5-07
+- PLAN-L4-10 から PLAN-L4-13、および PLAN-L5-00 から PLAN-L5-07 に対する targeted `ut-tdd plan lint`
