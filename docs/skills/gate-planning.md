@@ -18,10 +18,10 @@ applies_to:
     - Discovery
 ---
 
-# gate planning（gate 計画）
+# gate 計画（gate planning）
 
 HELIX で Definition-of-Done (DoD) gate を作成し、強制する方法を扱う
-（FR-L1-05 deterministic static gate、FR-L1-13 Forward workflow）を扱う。
+（FR-L1-05 の deterministic gate、FR-L1-13 の Forward workflow）。
 gate は skippable checklist ではなく machine-checked boundary である。
 強制されない gate は false-green state を蓄積し、V-model descent gap を隠す。
 
@@ -40,23 +40,23 @@ unit of work は、次のすべてを満たす場合だけ complete である:
 2. `ut-tdd doctor` が 0 で終了する（governance violation なし）。
 3. `ut-tdd plan lint` が 0 で終了する（PLAN schema valid、dependencies exist、
    `§工程表` schedule section checked）。
-4. `ut-tdd review --uncommitted` が layer に対する blocking findings を出さない。
+4. `ut-tdd review --uncommitted` が layer に対する blocking finding を出さない。
 5. layer の design doc が freeze readability check を pass する（Objective、Scope、mojibake なし）。
 6. new terms が L0 glossary に追加されている。
 7. task が session boundary を越える場合、handover evidence が `.ut-tdd/handover/` に書かれている。
 
 "Code written" や "looks right" は DoD ではない。gate を clear するのは machine evidence と
-recorded review findings だけである。
+記録済み review finding だけである。
 
-## Gate design rules（gate 設計 rule）
+## gate 設計 rule
 
-- **Falsifiable condition.** "Passes review" は falsifiable ではない。
+- **反証可能な condition.** "Passes review" は falsifiable ではない。
   "`ut-tdd doctor` exits 0 and `bun run test` passes with no skipped tests" は falsifiable である。
-- **Name the checking command.** すべての condition を `ut-tdd` / CI command、
+- **検査 command を明記する。** すべての condition を `ut-tdd` / CI command、
   または明示的な human review action へ map する。
-- **Record the result, not the intent.** evidence は `.ut-tdd/audit/` または PLAN `review_evidence`
+- **意図ではなく結果を記録する。** evidence は `.ut-tdd/audit/` または PLAN `review_evidence`
   field に記録する。recorded evidence の無い gate は cleared ではない。
-- **Split correctness from readability.** schema-valid（`ut-tdd plan lint`）と readable
+- **correctness と readability を分ける。** schema-valid（`ut-tdd plan lint`）と readable
   （manual / `ut-tdd review --uncommitted`）は別 check である。
 
 ## Layer gate の checklist
@@ -69,16 +69,16 @@ recorded review findings だけである。
 Vitest が green。Biome check + typecheck が 0 で終了する。`ut-tdd doctor` が 0 で終了する。
 `review_evidence` trace links が populated。
 
-**accept (review → done):** `ut-tdd review --uncommitted` に blocking findings が無い。
+**accept (review → done):** `ut-tdd review --uncommitted` に blocking finding が無い。
 trace-freeze conditions が HEAD で引き続き green。new ADR が `Accepted`。handover が updated または closed。
 
-## Mode-aware review tier（mode 別 review tier）
+## mode 別 review tier
 
 `ut-tdd gate <id>` は `ut-tdd status` から execution mode を読む。
 Judgement gates は hybrid mode では cross-agent review evidence を、single-runtime mode では
 `intra_runtime_subagent` evidence を必要とする。self-review だけでは不可。
 
-## Anti-patterns（enforcement を壊すパターン）
+## enforcement を壊す anti-pattern
 
 - `bun run test`（Vitest）の代わりに `bun test` を使う。native runner には sync-timeout flakiness があり、
   CI は Vitest を使う。
