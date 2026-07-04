@@ -260,7 +260,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           'const marker = "area=harness";',
         ].join("\n"),
       );
-      writeFileSync(join(root, "tests", "sample.test.ts"), 'expect(".ut-tdd").toBeTruthy();\n');
+      writeFileSync(
+        join(root, "tests", "sample.test.ts"),
+        [
+          'expect(".ut-tdd").toBeTruthy();',
+          'const winFixture = "C:\\\\Users\\\\dev\\\\UT-TDD-agent-harness\\\\src\\\\x.ts";',
+        ].join("\n"),
+      );
       writeFileSync(
         join(root, "scripts", "ut-tdd"),
         '#!/usr/bin/env bash\nexec bun run src/cli.ts "$@" # ut-tdd wrapper\n',
@@ -268,12 +274,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeFileSync(join(root, ".gitignore"), ".ut-tdd/backups/\n");
       writeFileSync(
         join(root, "docs", "templates", "adapter", "AGENTS.md"),
-        "Generated projects use ut-tdd until cutover.\n",
+        "Generated projects use ut-tdd until cutover. UT-TDD template marker.\n",
       );
+      writeFileSync(join(root, "AGENTS.md"), "<!-- UT-TDD:managed:start -->\n");
       writeFileSync(join(root, "README.md"), "Top-level docs mention ut-tdd before cutover.\n");
       writeFileSync(
         join(root, "docs", "archive", "legacy.md"),
-        "Historical docs may mention ut-tdd as reference material.\n",
+        "Historical docs may mention ut-tdd and UT-TDD-agent-harness as reference material.\n",
       );
       writeFileSync(
         join(root, "docs", "handover", "session.md"),
@@ -343,6 +350,42 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             category: "runtime_state",
           }),
           expect.objectContaining({ path: ".codex/hooks.json", category: "adapter_config" }),
+        ]),
+      );
+      expect(audit.residuals).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            token: "UT-TDD:managed",
+            path: "AGENTS.md",
+            category: "adapter_config",
+            disposition: "adapter_marker",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD-agent-harness",
+            path: "tests/sample.test.ts",
+            category: "test_code",
+            disposition: "fixture_only",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD",
+            path: "docs/templates/adapter/AGENTS.md",
+            category: "consumer_template",
+            disposition: "approval_gated",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD-agent-harness",
+            path: "docs/archive/legacy.md",
+            category: "historical_doc",
+            disposition: "reference_source",
+          }),
+        ]),
+      );
+      expect(audit.residualsByDisposition).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ disposition: "adapter_marker", hits: expect.any(Number) }),
+          expect.objectContaining({ disposition: "fixture_only", hits: expect.any(Number) }),
+          expect.objectContaining({ disposition: "approval_gated", hits: expect.any(Number) }),
+          expect.objectContaining({ disposition: "reference_source", hits: expect.any(Number) }),
         ]),
       );
       for (const category of [
@@ -435,7 +478,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
       mkdirSync(join(root, ".ut-tdd"), { recursive: true });
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        "Use ut-tdd and .ut-tdd until cutover.\n<!-- UT-TDD:managed:start -->\n",
+      );
 
       const result = runCliIn(root, ["rename", "audit", "--json"]);
       expect(result.status).toBe(0);
@@ -453,6 +499,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(payload.contentHitsByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.pathEntriesByToken[".ut-tdd"]).toBeGreaterThan(0);
       expect(payload.contentFilesByToken["ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.residuals).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            token: "UT-TDD:managed",
+            disposition: "adapter_marker",
+          }),
+        ]),
+      );
+      expect(payload.residualsByDisposition).toEqual(
+        expect.arrayContaining([expect.objectContaining({ disposition: "adapter_marker" })]),
+      );
       expect(payload.hitsByCategory).toEqual(
         expect.arrayContaining([expect.objectContaining({ category: "adapter_config" })]),
       );
@@ -462,6 +519,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("category adapter_config:");
       expect(text.stdout).toContain("pathHits=");
       expect(text.stdout).toContain("contentHits=");
+      expect(text.stdout).toContain("residual adapter_marker:");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

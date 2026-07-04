@@ -1548,6 +1548,11 @@ rename
         `  category ${category.category}: hits=${category.hits} files=${category.files}\n`,
       );
     }
+    for (const residual of audit.residualsByDisposition) {
+      process.stdout.write(
+        `  residual ${residual.disposition}: hits=${residual.hits} files=${residual.files}\n`,
+      );
+    }
     if (!audit.cutoverApproved) {
       process.stdout.write(
         `  required: ${audit.requiredRecords.join(", ")} before .ut-tdd -> .helix apply\n`,

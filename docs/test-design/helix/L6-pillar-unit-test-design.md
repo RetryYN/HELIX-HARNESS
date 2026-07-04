@@ -78,6 +78,8 @@ next_pair_freeze: L6
 | HU-PILLAR-N8-03 | HR-NFR-P8-03 | HC-P8 | `selectSandboxTokenPolicy` / `requireActionBindingApproval` | agentic AI escalation に least privilege/rollback/monitoring/risk owner を要求 |
 | HU-PILLAR-NAC-01 | HR-NFR-AC-01 | HC-AC | `validateAdapterParityMap` | adapter/template/skill/runtime rule drift を drift として返す |
 | HU-PILLAR-NAC-02 | HR-NFR-AC-02 | HC-AC | `requireHostedSurfacePreflight` / `ut-tdd guard preflight --json` | hosted/API edit は hook non-enforcement ack、git status、target path、work-guard decision、preflight command、audit evidence 欠落で reject。work-guard block を pass に変換しない |
+
+**HU-PILLAR-P6-04 2026-07-05 追補**: `auditIdentifierRenameBlastRadius` は rename apply 対象の `ut-tdd` / `.ut-tdd` / `area=harness` とは別に、uppercase 旧称 `UT-TDD` / `UT-TDD-agent-harness` / `UT-TDD:managed` を `residuals[]` と `residualsByDisposition[]` へ分類する。分類は `adapter_marker` / `fixture_only` / `approval_gated` / `reference_source` / `safe_prose_candidate` とし、残存旧称を見える化するが、PLAN-M-02 cutover/action-binding approval 前の rename token や apply candidate には混ぜない。
 | HU-PILLAR-NAC-03 | HR-NFR-AC-03 | HC-AC | `registerDeferredSurface` / `validateAdapterParityMap` | PLAN/CLI/harness DB/dry-run path を SSoT にし、provider API direct path を required にしない。Codex `spawn_agent|spawn_agents_on_csv` は required agent-guard matcher として検証し、missing/unknown `agent_type`、direct model override、task body 欠落、bulk spawn を fail-close する |
 
 ## §1.1 upstream hardening と provenance oracle 対応表

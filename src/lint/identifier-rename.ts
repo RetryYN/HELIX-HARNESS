@@ -37,6 +37,13 @@ import {
 
 export type IdentifierRenameToken = "ut-tdd" | ".ut-tdd" | "area=harness";
 export type IdentifierRenameHitLocation = "path" | "content";
+export type IdentifierRenameResidualToken = "UT-TDD" | "UT-TDD-agent-harness" | "UT-TDD:managed";
+export type IdentifierRenameResidualDisposition =
+  | "safe_prose_candidate"
+  | "fixture_only"
+  | "adapter_marker"
+  | "reference_source"
+  | "approval_gated";
 export type IdentifierRenameHitCategory =
   | "source_code"
   | "test_code"
@@ -63,8 +70,23 @@ export interface IdentifierRenameHit {
   location: IdentifierRenameHitLocation;
 }
 
+export interface IdentifierRenameResidualHit {
+  token: IdentifierRenameResidualToken;
+  path: string;
+  count: number;
+  category: IdentifierRenameHitCategory;
+  location: IdentifierRenameHitLocation;
+  disposition: IdentifierRenameResidualDisposition;
+}
+
 export interface IdentifierRenameCategorySummary {
   category: IdentifierRenameHitCategory;
+  hits: number;
+  files: number;
+}
+
+export interface IdentifierRenameResidualDispositionSummary {
+  disposition: IdentifierRenameResidualDisposition;
   hits: number;
   files: number;
 }
@@ -83,6 +105,8 @@ export interface IdentifierRenameAudit {
   contentFilesByToken: Record<IdentifierRenameToken, number>;
   hitsByCategory: IdentifierRenameCategorySummary[];
   hits: IdentifierRenameHit[];
+  residualsByDisposition: IdentifierRenameResidualDispositionSummary[];
+  residuals: IdentifierRenameResidualHit[];
   cutoverApproved: boolean;
   approvalRecordsConcrete: boolean;
   status: "ready_for_cutover" | "blocked_pending_cutover_approval";
@@ -431,6 +455,18 @@ export interface IdentifierRenameStateBackupManifestViolation {
 }
 
 const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
+const RESIDUAL_TOKENS: IdentifierRenameResidualToken[] = [
+  "UT-TDD",
+  "UT-TDD-agent-harness",
+  "UT-TDD:managed",
+];
+const RESIDUAL_DISPOSITIONS: IdentifierRenameResidualDisposition[] = [
+  "safe_prose_candidate",
+  "fixture_only",
+  "adapter_marker",
+  "reference_source",
+  "approval_gated",
+];
 const HIT_CATEGORIES: IdentifierRenameHitCategory[] = [
   "source_code",
   "test_code",
@@ -501,6 +537,40 @@ function isTextCandidate(path: string, root: string): boolean {
 
 function countToken(text: string, token: IdentifierRenameToken): number {
   return text.split(token).length - 1;
+}
+
+function countResidualToken(text: string, token: IdentifierRenameResidualToken): number {
+  return text.split(token).length - 1;
+}
+
+function classifyRenameResidualDisposition(input: {
+  token: IdentifierRenameResidualToken;
+  category: IdentifierRenameHitCategory;
+}): IdentifierRenameResidualDisposition {
+  if (input.token === "UT-TDD:managed") return "adapter_marker";
+  switch (input.category) {
+    case "test_code":
+      return "fixture_only";
+    case "adapter_config":
+      return "adapter_marker";
+    case "historical_doc":
+    case "research_doc":
+      return "reference_source";
+    case "source_code":
+    case "runtime_state":
+    case "consumer_template":
+    case "distribution_surface":
+      return "approval_gated";
+    case "plan_doc":
+    case "design_doc":
+    case "governance_doc":
+    case "handover_doc":
+    case "skill_doc":
+    case "backlog_doc":
+    case "top_level_doc":
+    case "other":
+      return "safe_prose_candidate";
+  }
 }
 
 function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
@@ -743,6 +813,7 @@ function cutoverApprovalPresent(root: string): boolean {
 
 export function auditIdentifierRenameBlastRadius(root: string): IdentifierRenameAudit {
   const hits: IdentifierRenameHit[] = [];
+  const residuals: IdentifierRenameResidualHit[] = [];
   const hitsByToken: Record<IdentifierRenameToken, number> = {
     "ut-tdd": 0,
     ".ut-tdd": 0,
@@ -793,6 +864,13 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     { hits: number; files: Set<string> }
   >();
   for (const category of HIT_CATEGORIES) categoryStats.set(category, { hits: 0, files: new Set() });
+  const residualDispositionStats = new Map<
+    IdentifierRenameResidualDisposition,
+    { hits: number; files: Set<string> }
+  >();
+  for (const disposition of RESIDUAL_DISPOSITIONS) {
+    residualDispositionStats.set(disposition, { hits: 0, files: new Set() });
+  }
 
   for (const rel of walkPathEntries(root)) {
     const category = classifyRenameHitPath(rel);
@@ -809,6 +887,24 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
           stats.hits += pathCount;
           stats.files.add(rel);
         }
+      }
+    }
+    for (const token of RESIDUAL_TOKENS) {
+      const pathCount = countResidualToken(rel, token);
+      if (pathCount === 0) continue;
+      const disposition = classifyRenameResidualDisposition({ token, category });
+      residuals.push({
+        token,
+        path: rel,
+        count: pathCount,
+        category,
+        location: "path",
+        disposition,
+      });
+      const stats = residualDispositionStats.get(disposition);
+      if (stats) {
+        stats.hits += pathCount;
+        stats.files.add(rel);
       }
     }
   }
@@ -831,6 +927,24 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
         stats.files.add(rel);
       }
     }
+    for (const token of RESIDUAL_TOKENS) {
+      const count = countResidualToken(text, token);
+      if (count === 0) continue;
+      const disposition = classifyRenameResidualDisposition({ token, category });
+      residuals.push({
+        token,
+        path: rel,
+        count,
+        category,
+        location: "content",
+        disposition,
+      });
+      const stats = residualDispositionStats.get(disposition);
+      if (stats) {
+        stats.hits += count;
+        stats.files.add(rel);
+      }
+    }
   }
   for (const token of TOKENS) {
     filesByToken[token] = fileSetsByToken[token].size;
@@ -843,6 +957,14 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     const stats = categoryStats.get(category);
     return {
       category,
+      hits: stats?.hits ?? 0,
+      files: stats?.files.size ?? 0,
+    };
+  }).filter((summary) => summary.hits > 0);
+  const residualsByDisposition = RESIDUAL_DISPOSITIONS.map((disposition) => {
+    const stats = residualDispositionStats.get(disposition);
+    return {
+      disposition,
       hits: stats?.hits ?? 0,
       files: stats?.files.size ?? 0,
     };
@@ -861,6 +983,8 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     contentFilesByToken,
     hitsByCategory,
     hits,
+    residualsByDisposition,
+    residuals,
     cutoverApproved: false,
     approvalRecordsConcrete,
     status: "blocked_pending_cutover_approval",
