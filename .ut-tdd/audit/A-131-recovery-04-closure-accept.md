@@ -1,8 +1,8 @@
 # A-131 — PLAN-RECOVERY-04 closure accept (工程表定義 Recovery)
 
-- **date**: 2026-06-11
-- **plan**: PLAN-RECOVERY-04-roadmap-definition (kind=recovery, layer=cross)
-- **accepted_by**: PO (人間サインオフ、§2.6.3)
+- **日付**: 2026-06-11
+- **PLAN**: PLAN-RECOVERY-04-roadmap-definition (recovery 種別、cross layer)
+- **受入者**: PO (人間サインオフ、§2.6.3)
 - **trigger**: PO directive「1承認で Codex が実装できる状態になるまで進めて」(2026-06-11) — §5 未了 PO 判断の #1 (RECOVERY-04 closure 承認) を grant。
 
 ## closure 根拠 (§6 exit 条件の充足)

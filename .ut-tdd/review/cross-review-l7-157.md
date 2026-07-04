@@ -1,4 +1,4 @@
-# CROSS-REVIEW TASK — PLAN-L7-157 (distribution / setup) DESK REVIEW
+# Cross-Review 依頼 — PLAN-L7-157 (distribution / setup) Desk Review
 
 ## 厳守スコープ (front-loaded、逸れ禁止)
 
