@@ -38,6 +38,8 @@ export const DESIGN_LANGUAGE_BASELINE_FINGERPRINT =
   "sha256:9ab31dc3dbe5947df9cb31e5f86471aa06daed564095122ee0cabc494be419b3";
 
 const DESIGN_LANGUAGE_ROOTS = [
+  join(".ut-tdd", "audit"),
+  join(".ut-tdd", "review"),
   join("docs", "adr"),
   join("docs", "archive"),
   join("docs", "design"),

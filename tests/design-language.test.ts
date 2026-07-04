@@ -87,6 +87,8 @@ describe("design-language lint", () => {
   it("U-DESLANG-006: includes memory, templates, and feedback docs in the real repo audit", () => {
     const paths = loadDesignLanguageDocs().map((doc) => doc.path);
 
+    expect(paths).toContain(".ut-tdd/audit/A-133-upstream-vmodel-coverage-audit.md");
+    expect(paths).toContain(".ut-tdd/review/cross-review-versionup-and-s4-failclose.md");
     expect(paths).toContain("docs/archive/ut-tdd-agent-harness-concept_v2.1.md");
     expect(paths).toContain("docs/feedback-log.md");
     expect(paths).toContain("docs/improvement-backlog.md");
