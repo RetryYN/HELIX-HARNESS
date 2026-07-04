@@ -18,15 +18,12 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-314-l14-close-audit.md
     artifact_type: markdown_doc
-  - artifact_path: src/lint/l14-close-audit.ts
-    artifact_type: source_module
-  - artifact_path: tests/l14-close-audit.test.ts
-    artifact_type: test_code
+  # draft のため generates は実在する自 doc のみ。生成予定 (l14-close-audit lint + test + audit-matrix doc) は本文 §スコープ参照。実装着地時に generates へ追加する。
 dependencies:
   parent: docs/plans/PLAN-L7-130-right-arm-gate-planning.md
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
     - docs/design/helix/L0-charter/helix-charter_v0.1.md
 ---
 
@@ -71,5 +68,4 @@ evidence-check + 境界語彙 check）は低リスク再利用**する一方、*
 
 ## レビュー / 次工程
 - 実装は Codex in-flight 着地後、checklist 再設計 gate 通過後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §5 Tier1-#4。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §5 Tier1-#4。

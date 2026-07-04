@@ -9,7 +9,7 @@ created: 2026-07-04
 updated: 2026-07-04
 owner: Claude (Opus) / Codex
 parent_design: docs/process/gates.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — g9-system-workflow.ts / g10-ux-workflow.ts + 共有 gN-evidence-manifest helper を実装し lint-wiring/doctor へ配線"
@@ -20,19 +20,12 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md
     artifact_type: markdown_doc
-  - artifact_path: src/lint/g9-system-workflow.ts
-    artifact_type: source_module
-  - artifact_path: src/lint/g10-ux-workflow.ts
-    artifact_type: source_module
-  - artifact_path: tests/g9-system-workflow.test.ts
-    artifact_type: test_code
-  - artifact_path: tests/g10-ux-workflow.test.ts
-    artifact_type: test_code
+  # draft のため generates は実在する自 doc のみ。生成予定 (g9/g10 lint + 共有 gN-evidence-manifest helper + test) は本文 §スコープ参照。実装着地時に generates へ追加する。
 dependencies:
   parent: docs/plans/PLAN-L7-130-right-arm-gate-planning.md
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
     - docs/plans/PLAN-L9-00-system-verification-master.md
     - docs/plans/PLAN-L10-00-ux-verification-master.md
 ---
@@ -79,5 +72,4 @@ HELIX 式で機械化する。G8（`g8-integration-workflow.ts`）と同じ prof
 
 ## レビュー / 次工程
 - 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §5 Tier1-#2/#3。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §5 Tier1-#2/#3。

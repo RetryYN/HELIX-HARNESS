@@ -9,7 +9,7 @@ created: 2026-07-04
 updated: 2026-07-04
 owner: Claude (Opus) / Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — skill.v1 scaffold generator (name/category/layers/driveModels/domainTags → content+path+self-lint) を pure 関数で実装、file write は CLI 所掌"
@@ -18,15 +18,12 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-317-skill-scaffold-generator.md
     artifact_type: markdown_doc
-  - artifact_path: src/skill-engine/scaffold.ts
-    artifact_type: source_module
-  - artifact_path: tests/skill-scaffold.test.ts
-    artifact_type: test_code
+  # draft のため generates は実在する自 doc のみ。生成予定 (skill-engine/scaffold + test) は本文 §スコープ参照。実装着地時に generates へ追加する。
 dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
 ---
 
 # PLAN-L7-317 (impl): skill-engine scaffold 生成器
@@ -67,5 +64,4 @@ path / self-lint を返す pure generator。file write は CLI が所掌）は L
 
 ## レビュー / 次工程
 - 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §5 Tier2-#6。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §5 Tier2-#6。

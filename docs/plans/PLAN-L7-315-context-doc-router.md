@@ -18,15 +18,12 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-315-context-doc-router.md
     artifact_type: markdown_doc
-  - artifact_path: src/context/doc-router.ts
-    artifact_type: source_module
-  - artifact_path: tests/context-doc-router.test.ts
-    artifact_type: test_code
+  # draft のため generates は実在する自 doc のみ。生成予定 (context/doc-router + test) は本文 §スコープ参照。実装着地時に generates へ追加する。
 dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
 ---
 
 # PLAN-L7-315 (impl): context/doc-router 動的コンテキスト注入
@@ -68,5 +65,4 @@ CLAUDE.md が自称する設計 pillar 4「動的コンテキスト/スキル注
 
 ## レビュー / 次工程
 - 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §5 Tier2-#5。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §5 Tier2-#5。
