@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -143,5 +144,19 @@ describe("design-language lint", () => {
 
     expect(result.ok).toBe(true);
     expect(result.violations).toEqual([]);
+  });
+
+  it("U-DESLANG-009: includes every tracked Markdown document in the real repo audit", () => {
+    const trackedMarkdown = spawnSync("git", ["ls-files", "*.md"], {
+      cwd: process.cwd(),
+      encoding: "utf8",
+    })
+      .stdout.split(/\r?\n/)
+      .filter(Boolean);
+    const auditedPaths = new Set(loadDesignLanguageDocs().map((doc) => doc.path));
+
+    const missing = trackedMarkdown.filter((path) => !auditedPaths.has(path));
+
+    expect(missing).toEqual([]);
   });
 });
