@@ -50,8 +50,6 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/setup.test.ts
     artifact_type: test_code
-  - artifact_path: README.md
-    artifact_type: markdown_doc
   - artifact_path: docs/process/forward/L00-L06-design-phase.md
     artifact_type: markdown_doc
   - artifact_path: docs/process/forward/L08-L14-verification-phase.md
@@ -316,7 +314,7 @@ review_evidence:
     reviewed_at: "2026-07-01T11:42:19+09:00"
     tests_green_at: "2026-07-01T11:42:19+09:00"
     verdict: approve
-    scope: "Version-up activation and L14 rename/cutover packets now expose snapshot binding IDs for stale approval material detection. README setup guidance now routes through ut-tdd setup project and keeps helix/.helix as PLAN-M-02 cutover targets."
+    scope: "Version-up activation and L14 rename/cutover packets now expose snapshot binding IDs for stale approval material detection. Setup route evidence uses ut-tdd setup project and keeps helix/.helix as PLAN-M-02 cutover targets; README/READE are not gate, evidence, or completion surfaces."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -374,77 +372,68 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-01T11:42:19+09:00"
-        evidence_path: README.md
+        evidence_path: tests/setup.test.ts
         output_digest: "sha256:ee838131a9d6c805abd1efe3fcf3c458818b467f913ce9e59c58f8498e6fb907"
 ---
 
-# PLAN-L7-225: approval snapshot binding
+# PLAN-L7-225: 承認スナップショット拘束
 
-## Objective
+## 目的
 
-Prevent approval-gated work from reusing stale decision material. Version-up
-activation and L14 identifier cutover already emit plan-only packets, but the
-packet did not expose a stable digest binding for the exact release trigger,
-approval scope, blast radius, source ledger, rehearsal, backup, and provenance
-evidence being reviewed.
+承認 gate 付き作業が stale な decision material を再利用しないようにする。
+Version-up activation と L14 identifier cutover はすでに plan-only packet を出力しているが、
+packet は review 対象である正確な release trigger、approval scope、blast radius、
+source ledger、rehearsal、backup、provenance evidence に対する安定した digest binding を公開していなかった。
 
-## Scope
+## 対象範囲
 
-- Add `activationSnapshot` to `version-up-activation-packet.v1`.
-- Add `cutoverSnapshot` to `identifier-rename-cutover-plan.v1`.
-- Bind action-binding approval and completion decision records to those snapshot
-  IDs via `reviewed_snapshot_binding`, `activation_snapshot_id`, and
-  `cutover_snapshot_id`.
-- Keep approval packets from treating `activationSnapshot.snapshotId` /
-  `cutoverSnapshot.snapshotId` field-name placeholders as concrete approval
-  material; current `sha256:` snapshot IDs are required before a snapshot-bound
-  approval check can become concrete.
-- Require rename cutover authorization to include the full cutover and
-  action-binding approval evidence set, including approved params, current
-  cutover snapshot binding, review evidence, expiry, audit, backup, rollback,
-  and monitoring evidence.
-- Keep L3-L6 requirement/design/test-design wording aligned so the same
-  approval meaning is visible at each V-model layer.
-- Share terminal PLAN status handling across outstanding, action-binding
-  approval readiness, and cutover readiness. Packet generation skips terminal
-  work, but record validation still checks terminal high-impact approval/cutover
-  PLANs so status changes cannot hide missing decision records; unknown status
-  values remain fail-closed.
-- Keep both surfaces plan-only: no apply command, no activation permission, no
-  cutover execution, and no approval recording.
-- Update process/design/test docs so snapshot IDs are treated as approval
-  material binding IDs, not approval substitutes.
-- Update README setup guidance so new users start with `ut-tdd setup project`
-  and do not confuse future `helix setup project` / `.helix` with the current
-  pre-cutover `.ut-tdd` baseline.
+- `version-up-activation-packet.v1` に `activationSnapshot` を追加する。
+- `identifier-rename-cutover-plan.v1` に `cutoverSnapshot` を追加する。
+- Action-binding approval record と completion decision record を、`reviewed_snapshot_binding`、
+  `activation_snapshot_id`、`cutover_snapshot_id` 経由でこれらの snapshot ID に拘束する。
+- Approval packet が `activationSnapshot.snapshotId` / `cutoverSnapshot.snapshotId` の
+  field-name placeholder を具体的な approval material として扱わないようにする。
+  Snapshot-bound approval check が具体化できるのは、現在の `sha256:` snapshot ID が記録された後に限る。
+- Rename cutover authorization には、approved params、現在の cutover snapshot binding、
+  review evidence、expiry、audit、backup、rollback、monitoring evidence を含む、
+  cutover と action-binding approval の完全な evidence set を要求する。
+- L3-L6 の requirement / design / test-design wording を揃え、同じ approval meaning が
+  V-model の各 layer で見えるようにする。
+- Outstanding、action-binding approval readiness、cutover readiness の間で terminal PLAN status handling を共有する。
+  Packet generation は terminal work を skip するが、record validation は terminal な高影響 approval/cutover PLAN も
+  引き続き検査し、status 変更で不足 decision record を隠せないようにする。未知の status value は fail-closed のままとする。
+- 両 surface は plan-only のままにする。apply command、activation permission、cutover execution、
+  approval recording は提供しない。
+- Process / design / test docs を更新し、snapshot ID を approval substitute ではなく
+  approval material binding ID として扱う。
+- 補助 docs の setup guidance は gate / evidence / 完了条件に紐づけず、実装済み CLI と
+  setup test を正本として `ut-tdd setup project` route と cutover 前 `.ut-tdd` baseline の意味を検証する。
 
-## Non-Scope
+## 対象外
 
-- Does not activate PLAN-L7-146.
-- Does not perform `.ut-tdd -> .helix` rename/cutover.
-- Does not record human approval or action-binding approval.
-- Does not change package/bin aliases.
+- PLAN-L7-146 は activate しない。
+- `.ut-tdd -> .helix` rename/cutover は実施しない。
+- Human approval や action-binding approval は記録しない。
+- Package/bin alias は変更しない。
 
-## DoD
+## 完了条件
 
-- [x] Version-up activation packet exposes `activationSnapshot.snapshotId`.
-- [x] Rename plan exposes `cutoverSnapshot.snapshotId`.
-- [x] Completion decision packet requires `activation_snapshot_id` /
-      `cutover_snapshot_id` in version-up and cutover decision records.
-- [x] Action-binding approval records require `reviewed_snapshot_binding` and
-      reject stale/mismatched activation/cutover snapshot references.
-- [x] Snapshot digest changes when cutover blast radius changes.
-- [x] Action-binding approval packet keeps snapshot field placeholders pending
-      until a concrete current `sha256:` snapshot ID is recorded.
-- [x] Rename cutover does not set `approvalMaterialReady=true` from outcomes plus
-      actor/tool/target alone; full approval evidence is required.
-- [x] `rename plan` remains plan-only: `applyAuthorized=false`,
-      `applyCommandAvailable=false`, and `mustNotApply=true` even when approval
-      material is ready.
-- [x] L3-L6 requirements/design/test-design lines carry the same snapshot and
-      full-approval semantics.
-- [x] Readiness gates share terminal status handling, keep terminal record
-      validation active, and do not treat unknown status values as terminal.
-- [x] README quickstart uses `ut-tdd setup project` and marks `helix setup project`
-      as pending PLAN-M-02 cutover approval.
-- [x] Targeted tests cover version-up, rename, and setup README drift.
+- [x] Version-up activation packet が `activationSnapshot.snapshotId` を公開する。
+- [x] Rename plan が `cutoverSnapshot.snapshotId` を公開する。
+- [x] Completion decision packet は、version-up と cutover の decision record に
+      `activation_snapshot_id` / `cutover_snapshot_id` を要求する。
+- [x] Action-binding approval record は `reviewed_snapshot_binding` を要求し、
+      stale または不一致の activation/cutover snapshot reference を reject する。
+- [x] Cutover blast radius が変わると snapshot digest も変わる。
+- [x] Action-binding approval packet は、具体的な現在の `sha256:` snapshot ID が記録されるまで
+      snapshot field placeholder を pending のまま扱う。
+- [x] Rename cutover は outcome と actor/tool/target だけで `approvalMaterialReady=true` を設定せず、
+      完全な approval evidence を要求する。
+- [x] `rename plan` は approval material が ready でも plan-only のままとし、
+      `applyAuthorized=false`、`applyCommandAvailable=false`、`mustNotApply=true` を維持する。
+- [x] L3-L6 requirements/design/test-design の行が、同じ snapshot と full-approval semantics を保持する。
+- [x] Readiness gate は terminal status handling を共有し、terminal record validation を有効に保ち、
+      unknown status value を terminal として扱わない。
+- [x] Setup guidance の正本は `tests/setup.test.ts` と setup CLI surface で検証し、
+      README / READE は gate、証跡、完了条件に紐づけない。
+- [x] Targeted test が version-up、rename、setup route drift を cover する。

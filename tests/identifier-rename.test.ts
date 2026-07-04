@@ -299,6 +299,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeFileSync(
         join(root, "docs", "governance", "objective.md"),
         [
+          "Ordinary governance prose leaked: unison-ai-product/UT-TDD_AGENT-HARNESS",
+          "Ordinary governance prose leaked: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "docs", "governance", "helix-objective-evidence-audit.md"),
+        [
           "External source ledger: unison-ai-product/UT-TDD_AGENT-HARNESS",
           "Distribution reference: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
         ].join("\n"),
@@ -436,11 +443,23 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             token: "UT-TDD_AGENT-HARNESS",
             path: "docs/governance/objective.md",
             category: "governance_doc",
-            disposition: "reference_source",
+            disposition: "safe_prose_candidate",
           }),
           expect.objectContaining({
             token: "UT-TDD_AGENT-HARNESS-Pack",
             path: "docs/governance/objective.md",
+            category: "governance_doc",
+            disposition: "safe_prose_candidate",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS",
+            path: "docs/governance/helix-objective-evidence-audit.md",
+            category: "governance_doc",
+            disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS-Pack",
+            path: "docs/governance/helix-objective-evidence-audit.md",
             category: "governance_doc",
             disposition: "reference_source",
           }),

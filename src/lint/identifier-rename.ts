@@ -578,20 +578,27 @@ function isExternalRepoReferenceToken(token: IdentifierRenameResidualToken): boo
   return token === "UT-TDD_AGENT-HARNESS" || token === "UT-TDD_AGENT-HARNESS-Pack";
 }
 
+function isExternalRepoReferencePath(path: string): boolean {
+  if (EXTERNAL_REPO_REFERENCE_PATHS.has(path)) return true;
+  if (path === "docs/governance/helix-objective-evidence-audit.md") return true;
+  if (path.startsWith("docs/design/helix/") && path.endsWith("/upstream-substance-gap.md")) {
+    return true;
+  }
+  if (path === "docs/test-design/helix/upstream-substance-gap.md") return true;
+  if (/^docs\/governance\/.*(?:upstream|adoption).*\.md$/.test(path)) return true;
+  if (/^docs\/plans\/.*(?:upstream|objective-external|adoption).*\.md$/.test(path)) {
+    return true;
+  }
+  return false;
+}
+
 function classifyRenameResidualDisposition(input: {
   token: IdentifierRenameResidualToken;
   category: IdentifierRenameHitCategory;
   path: string;
 }): IdentifierRenameResidualDisposition {
   if (input.token === "UT-TDD:managed") return "adapter_marker";
-  if (
-    isExternalRepoReferenceToken(input.token) &&
-    (EXTERNAL_REPO_REFERENCE_PATHS.has(input.path) ||
-      input.category === "governance_doc" ||
-      input.category === "design_doc" ||
-      input.category === "plan_doc" ||
-      input.category === "research_doc")
-  ) {
+  if (isExternalRepoReferenceToken(input.token) && isExternalRepoReferencePath(input.path)) {
     return "reference_source";
   }
   switch (input.category) {
@@ -715,9 +722,7 @@ function buildPathRenameEntries(
       disposition,
     });
   }
-  return [...entries.values()].sort(
-    (a, b) => a.path.localeCompare(b.path),
-  );
+  return [...entries.values()].sort((a, b) => a.path.localeCompare(b.path));
 }
 
 function walkTextFiles(root: string): string[] {
