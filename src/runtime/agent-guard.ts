@@ -13,6 +13,7 @@
 import {
   AGENT_GUARD_BYPASS_HINT,
   AGENT_TOOL_NAME,
+  AGENT_TOOL_NAMES,
   CODEX_AGENT_TYPE_ALLOWLIST,
   CODEX_BULK_SPAWN_AGENT_TOOL_NAME,
   CODEX_SPAWN_AGENT_TOOL_NAME,
@@ -132,7 +133,7 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
     return { code: 0 };
   }
 
-  if (input.tool_name !== AGENT_TOOL_NAME) return { code: 0 };
+  if (!input.tool_name || !AGENT_TOOL_NAMES.has(input.tool_name)) return { code: 0 };
 
   const ti = input.tool_input ?? {};
   const subagentType = (ti.subagent_type ?? "").trim();

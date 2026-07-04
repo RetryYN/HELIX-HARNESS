@@ -11,7 +11,11 @@ import {
   type ResolvedFamily,
   SUBAGENT_ALLOWLIST,
 } from "../src/runtime/agent-guard";
-import { AGENT_GUARD_BYPASS_HINT, AGENT_TOOL_NAME } from "../src/runtime/agent-guard-policy";
+import {
+  AGENT_GUARD_BYPASS_HINT,
+  AGENT_TOOL_NAME,
+  AGENT_TOOL_NAMES,
+} from "../src/runtime/agent-guard-policy";
 
 const FAMILIES: Record<string, ResolvedFamily> = {
   "pmo-sonnet": "sonnet",
@@ -32,6 +36,10 @@ function ctx(allowRaw = false): AgentGuardContext {
 
 function agent(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
   return { tool_name: "Agent", tool_input };
+}
+
+function task(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
+  return { tool_name: "Task", tool_input };
 }
 
 function codexSpawn(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
@@ -73,6 +81,7 @@ describe("normalizeModelFamily", () => {
 describe("evaluateAgentGuard", () => {
   it("loads guard policy from the externalized policy module", () => {
     expect(AGENT_TOOL_NAME).toBe("Agent");
+    expect([...AGENT_TOOL_NAMES]).toEqual(["Agent", "Task"]);
     expect(AGENT_GUARD_BYPASS_HINT).toContain("UT_TDD_ALLOW_RAW_AGENT");
   });
 
@@ -88,6 +97,8 @@ describe("evaluateAgentGuard", () => {
   it("blocks null / omitted tool_input (fail-close)", () => {
     expect(evaluateAgentGuard({ tool_name: "Agent", tool_input: null }, ctx()).code).toBe(2);
     expect(evaluateAgentGuard({ tool_name: "Agent" }, ctx()).code).toBe(2);
+    expect(evaluateAgentGuard({ tool_name: "Task", tool_input: null }, ctx()).code).toBe(2);
+    expect(evaluateAgentGuard({ tool_name: "Task" }, ctx()).code).toBe(2);
   });
 
   it("blocks non-allowlisted subagent even with valid model", () => {
@@ -122,6 +133,9 @@ describe("evaluateAgentGuard", () => {
     ).toBe(0);
     expect(
       evaluateAgentGuard(agent({ subagent_type: "refactor-scout", model: "haiku" }), ctx()).code,
+    ).toBe(0);
+    expect(
+      evaluateAgentGuard(task({ subagent_type: "pmo-sonnet", model: "sonnet" }), ctx()).code,
     ).toBe(0);
   });
 
