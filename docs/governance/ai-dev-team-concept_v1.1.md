@@ -1,5 +1,5 @@
 ﻿
-> Status: Reference only. UT-TDD Agent Harness の正本は `docs/governance/README.md` に記載された現行文書とする。
+> Status: Reference only. HELIX-HARNESS の正本は `docs/governance/README.md` に記載された現行文書とする。
 > Current as of: 2026-05-22.
 > **HELIX solo 読み替え (charter §3 / concept §1.3、2026-06-28、PLAN-L1-06 Step 3)**: 本書の「チーム / チームメンバー / 複数人 / 役割の 3 層」は、HELIX solo では **本人 (PO) 1 名 + AI agent roster** へ写像して読む（人間複数の team ではない）。責務分離は worker(AI)≠verifier(AI) で機械担保。本書は **個別機能ソース**（役割設計・advisor 系・3 層構造・責任の二極化等）として L3/L4 で取捨選択・harden（rename / legacy 前提除去 / capability-class 化）する参照材料であり、仕組みの正本ではない。
 

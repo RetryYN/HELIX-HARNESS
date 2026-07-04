@@ -1,4 +1,4 @@
-# ADR-001: UT-TDD harness の再設計方針と実装言語 (TypeScript)
+# ADR-001: HELIX-HARNESS の再設計方針と実装言語 (TypeScript)
 
 - **Status**: accepted
 - **Date**: 2026-05-27
@@ -7,7 +7,7 @@
 
 ## 背景 (Context)
 
-UT-TDD Agent Harness の実体実装に着手するにあたり、2 つの基盤判断が必要になった。
+HELIX-HARNESS の実体実装に着手するにあたり、2 つの基盤判断が必要になった。
 
 1. **legacy source の扱い**: 当初は legacy runtime command setをそのまま流用する案があった。しかし source snapshot から取り込みたいのは **設計概念のみ**であり (その概念は既に governance v3.1/v1.2 に吸い出し済み)、内部はチーム開発向けに **全面再実装**したい。
 2. **実装言語**: 環境は Windows がメイン、VPS は Linux。環境差異を最小化したい。候補は Python と TypeScript (Node/Bun)。

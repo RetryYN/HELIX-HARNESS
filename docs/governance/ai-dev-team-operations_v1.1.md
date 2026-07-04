@@ -1,5 +1,5 @@
 ﻿
-> Status: Reference only. UT-TDD Agent Harness の受入条件、runtime 導線、実装優先度の正本ではない。
+> Status: Reference only. HELIX-HARNESS の受入条件、runtime 導線、実装優先度の正本ではない。
 > Current as of: 2026-05-22.
 > **HELIX solo 読み替え (charter §3 / concept §1.3、2026-06-28、PLAN-L1-06 Step 3)**: 本書の「チーム / チームメンバー / 複数人 / 役割境界 / コミュニケーションルール」は、HELIX solo では **本人 (PO) 1 名 + AI agent roster** へ写像して読む（人間複数の team ではない）。日常開発フロー・品質ゲート・役割境界は AI roster の運用（worker≠verifier）として解釈し、本書は **運用フロー個別機能ソース**として L3/L4 で取捨選択・harden する参照材料であり、仕組みの正本ではない。
 
