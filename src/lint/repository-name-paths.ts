@@ -48,7 +48,7 @@ export function repositoryNamePathsMessages(result: RepositoryNamePathsResult): 
   }
   const samples = [...result.trackedResidue, ...result.filesystemResidue].slice(0, 8).join(", ");
   return [
-    `repository-name-paths - violation: legacy UT-TDD_AGENT-HARNESS repository-name path residue tracked=${result.trackedResidue.length}, filesystem=${result.filesystemResidue.length}: ${samples}`,
+    `repository-name-paths - violation: legacy repository-name path residue tracked=${result.trackedResidue.length}, filesystem=${result.filesystemResidue.length}: ${samples}`,
   ];
 }
 
