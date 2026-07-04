@@ -2461,6 +2461,15 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             target: "skill_injection:failed required=0 optional=0 missing=0",
             outcome: "error",
           }),
+          JSON.stringify({
+            ts: "2026-07-05T01:02:00.000Z",
+            session_id: "runtime-skill",
+            plan_id: "PLAN-L7-SKILL-RUNTIME",
+            event_type: "tool_use",
+            tool_name: "Bash",
+            target: "bun test tests/projection-writer.test.ts",
+            outcome: "ok",
+          }),
           "",
         ].join("\n"),
       );
@@ -2513,6 +2522,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             accepted: 0,
           }),
         ]);
+        expect(rowCounts(db).test_runs ?? 0).toBe(0);
       } finally {
         db.close();
       }
