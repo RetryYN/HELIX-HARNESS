@@ -9,75 +9,71 @@ applies_to:
     - Forward
 ---
 
-# SKILL_MAP
+# SKILL_MAP（skill 索引）
 
-Catalog index for `docs/skills/`. This is an index, not a skill body — read an
-individual pack only when its trigger is active. Do not load every pack at once;
-each costs context.
+`docs/skills/` の catalog index。この file は skill 本文ではなく索引である。
+trigger が active なときだけ個別 pack を読む。すべての pack を一括 load しない。
+各 pack は context を消費する。
 
-## How recommendation works
+## Recommendation の仕組み
 
-`ut-tdd skill suggest --plan <path>` scores every pack against the plan's `layer`
-and drive model (the recommender reads each pack's `applies_to.layers` /
-`applies_to.drive_models` frontmatter, not its body). Load only the top-scoring
-packs for the current task.
+`ut-tdd skill suggest --plan <path>` は、PLAN の `layer` と drive model に対して各 pack を score する
+（recommender は各 pack の本文ではなく、frontmatter の `applies_to.layers` /
+`applies_to.drive_models` を読む）。current task では top-scoring pack だけを読む。
 
-## Discovery protocol (session start / task arrival)
+## Discovery protocol（開始時 / task 到着時の発見手順）
 
-1. `ut-tdd status` — current layer, drive model, active PLAN.
-2. `ut-tdd skill suggest --plan <active-plan-path>` — ranked packs.
-3. Read the top-scoring pack(s) before starting work.
-4. With no PLAN yet (Discovery S0 / cold start), pick from the trigger table.
-5. Skip packs that do not match the current layer/drive — they only cost context.
+1. `ut-tdd status` — 現在の layer、drive model、active PLAN を確認する。
+2. `ut-tdd skill suggest --plan <active-plan-path>` — 推奨 pack の順位を確認する。
+3. 作業開始前に top-scoring pack(s) を読む。
+4. まだ PLAN が無い場合（Discovery S0 / cold start）は trigger table から選ぶ。
+5. current layer / drive に合わない pack は skip する。context を消費するだけである。
 
-## Trigger table
+## Trigger table（選択表）
 
-| Task / signal | Pack |
+| タスク / signal | Pack |
 |---|---|
-| Design doc / ADR authoring, freeze readability | documentation-and-adrs |
-| Architecture / data / sequence diagrams | design-doc |
-| API endpoint design / contract / IA boundary | api, api-contract, api-and-interface-design |
-| DB schema / migration / projection | db, data-migration |
-| Dependency / impact analysis | dependency-map |
-| Sizing, two-stage (W-model) design | system-design-sizing |
-| Tech evaluation → ADR | tech-selection, research |
-| TDD implementation (Red-first) | test-driven-development, incremental-implementation |
-| Test strategy / levels / fixtures | testing, spec-driven-development |
-| Code review at trace-freeze / accept | code-review, code-review-and-quality |
-| Adversarial / judgement-gate review | adversarial-review, verification |
-| Security / threat / hardening | security, threat-model, security-and-hardening |
-| Refactor (behaviour-invariant) | refactoring |
-| Debugging / error fix / recovery | debugging-and-error-recovery, error-fix |
-| Reverse R0–R4 / RGC | reverse-analysis, reverse-r0 … reverse-r4, reverse-rgc |
-| PLAN authoring / WBS / schedule steps | planning-and-task-breakdown, gate-planning |
-| Program / portfolio view, milestones | project-management |
-| Estimation / effort | estimation |
-| Discovery / PoC | poc |
-| Tech-debt ledger | debt-register |
-| Subagent / team design | agent-design, agent-teams |
-| Cost-aware delegation | agent-cost-design |
-| LLM call / RAG / agent routing in a feature | llm-agent-routing |
-| Context injection / budget | context-engineering |
-| Handover / session continuity | context-memory, requirements-handover |
-| CI gate design / deploy / rollback | ci-gate-design, ci-deploy-and-rollback |
-| Telemetry / harness.db observability | harness-observability |
-| Incident / runbook | incident-runbook |
-| Deprecation / cutover | deprecation-cutover |
-| Browser / screen (L10) verification | browser-testing-and-screen-verification |
-| Git / Conventional Commits / CI | git |
-| Doc maintenance (README / runbook prose) | documentation |
+| design doc / ADR 作成、freeze readability の改善 | documentation-and-adrs |
+| architecture / data / sequence diagram の設計 | design-doc |
+| API endpoint / contract / IA boundary の設計 | api, api-contract, api-and-interface-design |
+| DB schema / migration / projection の設計 | db, data-migration |
+| dependency / impact analysis の実施 | dependency-map |
+| sizing、two-stage (W-model) design の整理 | system-design-sizing |
+| tech evaluation から ADR への整理 | tech-selection, research |
+| TDD implementation（Red-first）の実装 | test-driven-development, incremental-implementation |
+| test strategy / levels / fixtures の設計 | testing, spec-driven-development |
+| trace-freeze / accept の code review | code-review, code-review-and-quality |
+| adversarial / judgement-gate review の実施 | adversarial-review, verification |
+| security / threat / hardening の確認 | security, threat-model, security-and-hardening |
+| refactor（behaviour-invariant）の実施 | refactoring |
+| debugging / error fix / recovery の実施 | debugging-and-error-recovery, error-fix |
+| Reverse R0-R4 / RGC の分析 | reverse-analysis, reverse-r0 … reverse-r4, reverse-rgc |
+| PLAN authoring / WBS / schedule steps の作成 | planning-and-task-breakdown, gate-planning |
+| program / portfolio view、milestones の管理 | project-management |
+| estimation / effort の見積り | estimation |
+| Discovery / PoC の実施 | poc |
+| tech-debt ledger の管理 | debt-register |
+| subagent / team design の設計 | agent-design, agent-teams |
+| cost-aware delegation の設計 | agent-cost-design |
+| feature 内の LLM call / RAG / agent routing | llm-agent-routing |
+| context injection / budget の設計 | context-engineering |
+| handover / session continuity の維持 | context-memory, requirements-handover |
+| CI gate design / deploy / rollback の設計 | ci-gate-design, ci-deploy-and-rollback |
+| telemetry / harness.db observability の確認 | harness-observability |
+| incident / runbook の整備 | incident-runbook |
+| deprecation / cutover の設計 | deprecation-cutover |
+| browser / screen (L10) verification の実施 | browser-testing-and-screen-verification |
+| Git / Conventional Commits / CI の運用 | git |
+| docs maintenance（README / runbook prose）の実施 | documentation |
 
-## Core operating rules (apply to every pack)
+## Core operating rules（全 pack 共通）
 
-- Surface assumptions before non-trivial work; stop on a PLAN↔doc↔code
-  inconsistency rather than guessing.
-- Verify, do not assume completion: `ut-tdd doctor` exits 0, `ut-tdd review
-  --uncommitted` has no blocking findings, tests are green.
-- Stay within the active PLAN scope; do not refactor adjacent code as a
-  side-effect.
-- Record handover/evidence in `.ut-tdd/handover/` or `.ut-tdd/audit/` when a task
-  crosses a session or runtime boundary.
+- 非自明な作業の前に assumptions を surface する。PLAN↔doc↔code の不整合があれば推測せず止める。
+- completion は仮定せず検証する。`ut-tdd doctor` が exit 0、`ut-tdd review --uncommitted` に
+  blocking findings が無い、tests が green であることを確認する。
+- active PLAN scope 内に留まる。副作用として隣接 code を refactor しない。
+- task が session または runtime boundary を越える場合は、`.ut-tdd/handover/` または
+  `.ut-tdd/audit/` に handover / evidence を記録する。
 
-Packs not listed here are not registered in the catalog and will not be scored.
-Update the individual pack files; the scored registry is maintained by
-`ut-tdd skill suggest`.
+ここに無い pack は catalog に登録されず、score 対象にならない。個別 pack file を更新する。
+scored registry は `ut-tdd skill suggest` が管理する。
