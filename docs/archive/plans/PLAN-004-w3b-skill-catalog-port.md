@@ -82,7 +82,7 @@ UT-TDD `ut-tdd skill suggest` (§7.2) の母集団を作る rule-based catalog e
 
 - `src/ut_tdd/skill/` package 新設 (W1/W2/W3a と並列、`src/ut_tdd/` 直下から分離)
 - W1 で port 済の `plan_frontmatter.py` (PyYAML 経路) を reuse
-- skeleton: `catalog.py` (`CatalogEntry` dataclass + `build_catalog` stub + `find_skill` stub) / `suggest.py` (`SuggestionResult` dataclass + `suggest_skills` stub)
+- skeleton: `catalog.py` (`CatalogEntry` dataclass + `build_catalog` stub + `find_skill` stub) / `suggest.py` (`SuggestionResult` dataclass + `suggest_skills` stub) を作成
 - `docs/skills/` ディレクトリ新設 (empty、本 PLAN-004 では catalog 読み込み対象として準備)
 
 ### Step 3: Sprint .3 機能設計 + adapt port
@@ -98,7 +98,7 @@ UT-TDD `ut-tdd skill suggest` (§7.2) の母集団を作る rule-based catalog e
 - vendor `skills_root/<cat>/<name>/SKILL.md` 構造 → `docs/skills/<id>.md` flat 構造に rewrite
 - vendor `command_mapper` / classification metadata / references walk は W3b-B carry
 
-### Step 4: Sprint .4 test rewrite
+### Step 4: Sprint .4 テスト rewrite
 
 - vendor `test_skill_catalog.py` の test pattern を流用、UT-TDD §7.2 JSON contract を fixture で網羅
 - 主要 case:
@@ -110,14 +110,14 @@ UT-TDD `ut-tdd skill suggest` (§7.2) の母集団を作る rule-based catalog e
   - triggers regex match による optional 提示
   - vendor_candidate=true の missing 提示
   - confidence floor / cap
-  - save_catalog + load_catalog round-trip
+  - save_catalog + load_catalog の round-trip
 
 ### Step 5: Sprint .5 機械チェック sweep
 
 - `python3 -m py_compile` で全 module syntax 確認
 - `pytest src/ut_tdd/tests/` で W1 124 + W2 35 + W3a 134 + W3b-A 追加分の全 PASS 確認
 
-### Step 6: Sprint .6 skill doc seed + dogfood
+### Step 6: Sprint .6 skill doc seed + dogfood 実行
 
 - `docs/skills/` に最小限の seed (例: `design-pack.md` / `test-pack.md` / `reverse-pack.md` / `operations-pack.md`)。§7.2 サンプル JSON で言及される 4 skill のみ最小実装
 - PLAN-001 / PLAN-002 / PLAN-003 を入力にして `suggest_skills` を dogfood、JSON 出力を carry note に記録
@@ -125,9 +125,9 @@ UT-TDD `ut-tdd skill suggest` (§7.2) の母集団を作る rule-based catalog e
 ### Step 7: Sprint .7 code-reviewer subagent レビュー
 
 - code-reviewer subagent で W3b-A 実装を 5 軸 (機能性 / 安全性 / 保守性 / テスト / §7.2 仕様準拠) でレビュー
-- P0 → in-place fix、P1 → carry note、P3 → carry PLAN
+- P0 → その場で修正、P1 → carry 記録、P3 → carry PLAN
 
-### Step 8: Sprint .8 commit + carry note
+### Step 8: Sprint .8 commit + carry 記録
 
 - 1 PLAN = 1 commit (`feat(W3b-A): port HELIX skill_catalog to UT-TDD rule-based engine`)
 - §6 carry note に Sprint .1 drift、Sprint .7 review 結果、PLAN-005 (W3b-B) への引継ぎを記録
@@ -150,11 +150,11 @@ UT-TDD `ut-tdd skill suggest` (§7.2) の母集団を作る rule-based catalog e
 - 関連 PLAN: PLAN-001 (requires)、PLAN-002 (requires)、PLAN-003 (requires)、PLAN-005-w3b-b-skill-llm-port (本 PLAN-004 後段、未起票)
 - 関連 ADR: なし
 - 参照 docs:
-  - `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md` §7.1 (capability class) / §7.2 (skill suggest)
+  - `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md` §7.1 (capability class) / §7.2 (skill suggest) を参照
   - `docs/migration/helix-to-ut-tdd-cutover-strategy.md` Mode 1
   - `docs/migration/helix-porting-map.md` W3 行
 
-## §6 carry note
+## §6 carry 記録
 
 (Sprint 進行中に追記)
 

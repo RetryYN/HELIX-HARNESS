@@ -89,7 +89,7 @@ W3a 範囲外として明示 carry:
 
 - `src/ut_tdd/task/` package 新設 (W1/W2 と並列、`src/ut_tdd/` 直下から分離)
 - W1 で port 済の plan_validator の VALID_KINDS / VALID_DRIVES / VALID_LAYERS を reuse
-- skeleton: `effort.py` (EffortEstimate dataclass + estimate stub) / `classifier.py` (ClassificationResult dataclass + classify_task stub) / `dispatcher.py` (DispatchRecommendation dataclass + dispatch_task stub)
+- skeleton: `effort.py` (EffortEstimate dataclass + estimate stub) / `classifier.py` (ClassificationResult dataclass + classify_task stub) / `dispatcher.py` (DispatchRecommendation dataclass + dispatch_task stub) を作成
 
 ### Step 3: Sprint .3 機能設計 + adapt port
 
@@ -100,7 +100,7 @@ W3a 範囲外として明示 carry:
 - vendor model 名 hard-code (gpt-5.5 high / claude-sonnet-4-6 等) を **capability class** (`frontier-reviewer` / `worker` / `fast-checker`) に rewrite
 - HELIX role 廃止 (ROLE_MAP), UT-TDD §1.8 VALID_ROLES (7 種: po/tl/qa/aim/uiux/se/docs) に合わせる
 
-### Step 4: Sprint .4 test rewrite
+### Step 4: Sprint .4 テスト rewrite
 
 - vendor test pattern を流用しつつ、UT-TDD §7.2 JSON contract を fixture で網羅
 - 主要 case:
@@ -119,7 +119,7 @@ W3a 範囲外として明示 carry:
 - `python3 -m py_compile` で全 module syntax 確認
 - `pytest src/ut_tdd/tests/` で W1 124 + W2 35 + W3a 追加分の全 PASS 確認
 
-### Step 6: Sprint .6 prompt template port + dogfood
+### Step 6: Sprint .6 prompt template 移植 + dogfood
 
 - vendor `effort-classify.md` を `docs/templates/prompts/effort-classify.md` に port、UT-TDD capability class 化に合わせて HELIX model 名を除去
 - PLAN-001 / PLAN-002 / PLAN-003 を入力にして classify + estimate を dogfood、各 PLAN の JSON 出力を carry note に記録
@@ -127,9 +127,9 @@ W3a 範囲外として明示 carry:
 ### Step 7: Sprint .7 code-reviewer subagent レビュー
 
 - code-reviewer subagent で W3a 実装を 5 軸 (機能性 / 安全性 / 保守性 / テスト / §7.2 仕様準拠) でレビュー
-- P0 → in-place fix、P1 → carry note、P3 → carry PLAN
+- P0 → その場で修正、P1 → carry 記録、P3 → carry PLAN
 
-### Step 8: Sprint .8 commit + carry note
+### Step 8: Sprint .8 commit + carry 記録
 
 - 1 PLAN = 1 commit (`feat(W3a): port HELIX task classifier/effort/dispatcher to UT-TDD`)
 - §6 carry note に Sprint .1 drift、Sprint .7 review 結果、PLAN-004 (W3b) への引継ぎを記録
@@ -158,7 +158,7 @@ W3a 範囲外として明示 carry:
   - `docs/migration/helix-to-ut-tdd-cutover-strategy.md` Mode 1
   - `docs/migration/helix-porting-map.md` W3 行
 
-## §6 carry note
+## §6 carry 記録
 
 (Sprint 進行中に追記)
 
@@ -190,9 +190,9 @@ scope 改訂: generates から `task/dispatcher.py` + test 削除、`task/orches
 
 #### Sprint .6 dogfood 結果 (PLAN-001/002/003 を classify + estimate + orchestration に投入)
 
-| PLAN | kind | drive | size | complexity | confidence | risk_factor | buffered_hours | capability_class |
+| PLAN | 種別 | drive | size | 複雑度 | confidence | risk_factor | buffered_hours | capability_class |
 |---|---|---|---|---|---|---|---|---|
-| PLAN-001 | impl | be | M | high | 1.00 | 1.2 (cross-platform) | 15.6 | worker |
+| PLAN-001 | impl | be | M | high | 1.00 | 1.2 (クロスプラットフォーム) | 15.6 | worker |
 | PLAN-002 | impl | be | M | medium | 1.00 | 1.0 | 6.5 | worker |
 | PLAN-003 | impl | be | null (軸入力なし) | medium | 0.90 | 1.0 | 7.8 | worker |
 
