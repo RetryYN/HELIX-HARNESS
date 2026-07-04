@@ -10,7 +10,7 @@
 ## 1. 両リポジトリの関係
 
 - **上流** `unison-ai-product/UT-TDD_AGENT-HARNESS`（public、MIT、TS 100%、612 commits）は
-  UT-TDD Agent Harness の team baseline。**main は 2026-06-29 で凍結**。
+  HELIX-HARNESS へ統合判断するための旧 team baseline。**main は 2026-06-29 で凍結**。
 - ただし draft **PR #2 `work/l10-l14-local-close`（tip 2026-07-03、main より +219 commit /
   633 ファイル変更）** が活発に進行しており、L10–L14 gate close・doctor モジュール分割・
   PLAN L7-202〜L7-362 等の並行作業を含む。

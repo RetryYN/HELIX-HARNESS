@@ -1,4 +1,4 @@
-# harness-check — HELIX Agent Harness CI (要件定義書 §6.2/§6.9)
+# harness-check — HELIX-HARNESS CI (要件定義書 §6.2/§6.9)
 #
 # §6.9: ローカル hook は早期検知のみ。全量テスト・回帰確認は GitHub Actions で実行する。
 # §6.2: Branch Protection の Required Status Checks は本 `harness-check` 1 本のみ (集約 gate)。
