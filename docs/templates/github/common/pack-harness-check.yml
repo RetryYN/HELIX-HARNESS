@@ -1,0 +1,35 @@
+name: pack-harness-check
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  pack-harness-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: HELIX package CLI dependency
+        run: bun run ut-tdd --version
+      - name: HELIX setup dry-run
+        run: bun run ut-tdd setup project --dry-run --json
+      - name: HELIX status
+        run: bun run ut-tdd status --json
+      - name: HELIX completion decision packet
+        run: bun run ut-tdd completion decision-packet --json
+      - name: HELIX completion review bundle
+        run: bun run ut-tdd completion review-bundle --json
+      - name: HELIX consumer doctor
+        run: bun run ut-tdd doctor --profile consumer --json
+      - name: HELIX rename plan
+        run: bun run ut-tdd rename plan --json
+      - name: HELIX handover status
+        run: bun run ut-tdd handover status --json
+      - run: bun run typecheck
+      - run: bun run test
