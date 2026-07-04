@@ -23,72 +23,60 @@ applies_to:
     - Add-feature
 ---
 
-# context engineering
+# context engineering（context 設計）
 
-What to inject into each V-model layer invocation, how to stay within context
-budget, and when to use dynamic skill loading instead of pre-loading everything
-(FR-L1-12 per-layer context/skill injection, harness pillar 4 dynamic context /
-skill injection).
+各 V-model layer invocation へ何を inject するか、context budget 内に収める方法、
+すべてを pre-load せず dynamic skill loading を使う条件を扱う
+（FR-L1-12 per-layer context/skill injection、harness pillar 4 dynamic context / skill injection の方針）。
 
-## When to load this skill
+## この skill を読む条件
 
-- Designing which docs to include in a subagent or team-run prompt.
-- A subagent prompt is overflowing context budget (~200 KB practical ceiling for
-  Sonnet-class models).
-- Adding a new V-model layer to the harness that needs a context injection rule.
-- A `ut-tdd skill suggest --plan <path>` output is being acted on.
+- subagent または team-run prompt に含める docs を設計する。
+- subagent prompt が context budget を超えそうである（Sonnet-class model の実用上限は約 200 KB）。
+- context injection rule が必要な新しい V-model layer を harness に追加する。
+- `ut-tdd skill suggest --plan <path>` output に基づいて作業する。
 
-## Per-layer injection table
+## layer 別 injection table
 
-Load only the layers actually required for the current task. Do not pre-load the
-full doc tree.
+current task に実際に必要な layer だけを load する。full doc tree を pre-load しない。
 
-| Layer group | Canonical inject | Dynamic add |
+| Layer group | 標準 injection | 動的に追加するもの |
 |---|---|---|
-| L0–L3 (concept/requirement) | `CLAUDE.md`, `docs/governance/README.md`, concept + requirements docs | Relevant ADRs, L0 glossary |
-| L4–L6 (design) | L3 requirements for the feature, PLAN doc, design doc skeleton | `documentation-and-adrs` skill, parent design doc |
-| L7 (implementation) | PLAN doc, L6 function-spec, `src/` target files | `gate-planning` skill, test file |
-| L8–L10 (integration / system test) | PLAN, test-design doc, `tests/` target | `harness-observability` skill |
-| L11–L14 (acceptance / production) | PLAN, acceptance criteria, `ut-tdd doctor` output | ADR list, handover state |
+| L0-L3（concept / requirement） | `CLAUDE.md`、`docs/governance/README.md`、concept / requirements docs | 関連 ADR、L0 glossary |
+| L4-L6（design） | feature の L3 requirements、PLAN doc、design doc skeleton | `documentation-and-adrs` skill、parent design doc |
+| L7（implementation） | PLAN doc、L6 function-spec、`src/` target files を読む | `gate-planning` skill、test file を追加 |
+| L8-L10（integration / system test） | PLAN、test-design doc、`tests/` target を読む | `harness-observability` skill を追加 |
+| L11-L14（acceptance / production） | PLAN、acceptance criteria、`ut-tdd doctor` output を読む | ADR list、handover state を追加 |
 
-Use `ut-tdd skill suggest --plan <path>` to get a computed skill recommendation
-for a specific PLAN before composing a subagent prompt.
+subagent prompt を組み立てる前に、`ut-tdd skill suggest --plan <path>` で specific PLAN 向けの
+computed skill recommendation を取得する。
 
-## Context budget rules
+## Context budget rules（budget ルール）
 
-- Primary session context ceiling (practical): ~150–200 KB. Reserve ~30 KB for
-  the response.
-- Each additional doc loaded costs the full file size. Prefer targeted `Read`
-  over bulk directory loads.
-- Skills are ~2–4 KB each; load the 1–3 most relevant, not the full catalog.
-- `CLAUDE.md` + `.claude/CLAUDE.md` together cost ~10 KB. Always included;
-  do not duplicate their content in the prompt.
-- Large governance docs (concept, requirements) cost ~15–20 KB each. Load only
-  when the task requires design-authority context.
+- Primary session context ceiling（実用値）は約 150-200 KB。response 用に約 30 KB を残す。
+- 追加で load する doc は file size 全体を消費する。bulk directory load ではなく対象を絞ったファイル読み込みを優先する。
+- skill は 1 件あたり約 2-4 KB。full catalog ではなく、最も relevant な 1-3 件だけを load する。
+- `CLAUDE.md` + `.claude/CLAUDE.md` は合計で約 10 KB。常に含まれるため、prompt 内で内容を重複させない。
+- 大きな governance docs（concept、requirements）は各 15-20 KB 程度。design-authority context が必要な場合だけ load する。
 
-## Dynamic loading procedure
+## Dynamic loading procedure（動的 load 手順）
 
-1. Run `ut-tdd skill suggest --plan <path>` to get the recommended skill set.
-2. Load the top 1–3 skills. If the task spans multiple layers, load the skill
-   for the highest-risk layer first.
-3. For subagent prompts: include only the docs the subagent needs to complete
-   its specific subtask. Do not forward the full primary session context.
-4. After loading, confirm total injected size stays within budget before
-   spawning.
+1. `ut-tdd skill suggest --plan <path>` を実行し、recommended skill set を取得する。
+2. top 1-3 skills を load する。task が複数 layer にまたがる場合は、highest-risk layer 用 skill を先に load する。
+3. subagent prompt では、その subagent が specific subtask を完了するために必要な docs だけを含める。
+   full primary session context を転送しない。
+4. load 後、spawn 前に total injected size が budget 内に収まることを確認する。
 
-## What not to inject
+## Inject しないもの
 
-- Migration snapshots (`docs/archive/`, `vendor source snapshot`) — historical
-  only; never needed for forward work.
-- The full `docs/plans/` directory — pass the single relevant PLAN file.
-- Session logs or raw `harness.db` dumps — use `ut-tdd metrics` / `ut-tdd find`
-  queries instead.
-- Credentials, API keys, PII — never in prompt context. See safety boundaries in
-  `CLAUDE.md`.
+- Migration snapshot（`docs/archive/`、`vendor source snapshot`）は historical only。
+  forward work には不要。
+- full `docs/plans/` directory は渡さない。single relevant PLAN file を渡す。
+- session log や raw `harness.db` dump は渡さない。代わりに `ut-tdd metrics` / `ut-tdd find` query を使う。
+- credential、API key、PII は prompt context に入れない。safety boundary は `CLAUDE.md` を参照する。
 
-## Skill injection vs static load
+## Skill injection vs static load（動的 injection と静的 load）
 
-Static loads (files listed in `CLAUDE.md` read order) are paid every session
-regardless of task. Dynamic loads are triggered by the task at runtime. When a
-skill applies to fewer than half of typical sessions, keep it out of the static
-read order and load dynamically via `ut-tdd skill suggest` or explicit `Read`.
+Static load（`CLAUDE.md` の read order に載る files）は task に関係なく every session で消費される。
+Dynamic load は runtime の task により trigger される。typical session の半分未満にしか適用されない skill は
+static read order から外し、`ut-tdd skill suggest` または明示的なファイル読み込みで動的に load する。
