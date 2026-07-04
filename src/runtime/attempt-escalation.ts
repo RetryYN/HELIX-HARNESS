@@ -2,7 +2,7 @@
  * attempt-escalation (PLAN-RECOVERY-05) — systematic-debugging の Iron Law を機械化。
  *
  * source concept: obra/superpowers `systematic-debugging` (reference-only)。skill を複製せず
- * UT-TDD の Recovery/troubleshoot 駆動の要件から author する ([[feedback_migration_is_requirements_driven]])。
+ * HELIX の Recovery/troubleshoot 駆動の要件から author する ([[feedback_migration_is_requirements_driven]])。
  *
  * 規律: **「同一 subject への修正試行が threshold (既定 3) 回連続で失敗したら STOP し、症状追いを
  * 止めて root cause / アーキテクチャを疑え」**。guess-and-check のスパイラル (本セッションで私が

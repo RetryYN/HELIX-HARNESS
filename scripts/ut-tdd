@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# UT-TDD thin POSIX entrypoint (ADR-001). source in checkout, dist in package.
+# HELIX thin POSIX entrypoint (ADR-001). source in checkout, dist in package.
 set -e
 ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 if [ -f "$ROOT/src/cli.ts" ]; then

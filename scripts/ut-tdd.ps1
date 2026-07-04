@@ -1,4 +1,4 @@
-# UT-TDD thin Windows PowerShell entrypoint (ADR-001). checkout は source、package は dist。
+# HELIX thin Windows PowerShell entrypoint (ADR-001). checkout は source、package は dist。
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $source = Join-Path $root "src\cli.ts"

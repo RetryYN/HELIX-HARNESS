@@ -1,5 +1,5 @@
 /**
- * UT-TDD PLAN frontmatter schema (requirements_v1.2 §1.1 / §1.9 / §1.10 A).
+ * Plan frontmatter schema for HELIX (requirements_v1.2 §1.1 / §1.9 / §1.10 A).
  * §1 enum を単一正本 (./index) から合成し、§1.1 排他制約 / §1.1.parent_design /
  * charter(L0) を superRefine で fail-close 検証する。
  * 最終同期: requirements v1.2 §1.1-§1.1.排他制約 / §1.2.2 / §3.3 / §3.4

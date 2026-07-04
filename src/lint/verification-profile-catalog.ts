@@ -23,7 +23,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   },
   doctor: {
     id: "doctor",
-    label: "UT-TDD doctor hard gate",
+    label: "HELIX doctor hard gate",
     command: "bun run src/cli.ts doctor",
     sourceType: "builtin",
     packageName: null,

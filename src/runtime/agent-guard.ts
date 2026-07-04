@@ -1,5 +1,5 @@
 /**
- * UT-TDD subagent guard.
+ * HELIX subagent guard.
  *
  * Claude Code Agent calls are controlled fail-closed:
  * 1. Missing subagent_type is blocked.

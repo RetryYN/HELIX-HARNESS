@@ -20,7 +20,7 @@ applies_to:
 
 # debugging and error recovery（debug と recovery）
 
-UT-TDD における defects/failures の detection-to-routing protocol
+本 harness における defects/failures の detection-to-routing protocol
 （FR-L1-08 defect detection、FR-L1-10 recovery routing、FR-L1-16 incident classification の方針）。
 この skill は triage と routing phase を扱う。root cause が確認され PLAN が開いた後の fix 自体には、
 error-fix skill を適用する。
@@ -102,7 +102,7 @@ exact failing command、first error line、HEAD SHA を PLAN の `review_evidenc
 ## Iron Law と 3-attempt escalation（PLAN-RECOVERY-05）
 
 source concept は obra/superpowers の `systematic-debugging` skill
-（reference only）。以下の rule は import ではなく、UT-TDD の Recovery/troubleshoot drive から作成している。
+（reference only）。以下の rule は import ではなく、本 harness の Recovery/troubleshoot drive から作成している。
 
 **Iron Law — root-cause なしに fix しない。** code を変更する前に root-cause pass を完了する。
 error を full で読み、HEAD で再現し、bad value を upstream の origin まで trace し、

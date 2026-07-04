@@ -104,7 +104,7 @@ review_evidence:
 ## 0. Objective (PO 承認 2026-06-23、obra/superpowers 評価の採用)
 
 obra/superpowers の `systematic-debugging` を**評価し、skill を複製せず**、その中核規律を
-UT-TDD の Recovery/troubleshoot 駆動の要件から author して取り込む
+HELIX の Recovery/troubleshoot 駆動の要件から author して取り込む
 ([[feedback_migration_is_requirements_driven]]、source は reference-only)。
 
 採用した中核 2 点 (既存 Recovery skill に欠けていた差分):

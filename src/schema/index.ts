@@ -1,5 +1,5 @@
 /**
- * UT-TDD schema 単一正本 (ADR-001 / requirements_v1.2 §1, §7.8).
+ * HELIX schema 単一正本 (ADR-001 / requirements_v1.2 §1, §7.8).
  * zod を single source とし、実行時検証 + 型推論を 1 本化する (enum drift を型で抑止)。
  * 最終同期: requirements v1.2 §1.2-§1.8 / §7.8.4
  */
