@@ -1,60 +1,60 @@
-# A-126 Canonical Document Export
+# A-126 canonical document export の audit
 
-Date: 2026-06-09
-Context: User clarified that the needed scope is conversion of canonical documents such as requirements, planning/concept, detailed design, PLAN, ADR, and test-design docs into spreadsheet / Excel / PPTX outputs for human review.
+日付: 2026-06-09
+Context: ユーザーは、必要な scope が requirements、planning/concept、detailed design、PLAN、ADR、test-design docs などの canonical documents を、人間 review 用の spreadsheet / Excel / PPTX outputs へ変換することだと明確化した。
 
-## Current State
+## Current state の整理
 
-A-124 and A-125 scope relation graphs, diagram exports, MCP/test profiles, and normalized evidence. They do not yet define conversion of canonical UT-TDD documents into spreadsheet/Excel/PPTX formats.
+A-124 と A-125 は relation graphs、diagram exports、MCP/test profiles、normalized evidence を scope している。一方で、canonical UT-TDD documents を spreadsheet/Excel/PPTX formats へ変換することはまだ定義していない。
 
-Current canonical documents remain Markdown and structured project docs. That is correct for source of truth, but weak for humans who need sortable requirement matrices, detailed design workbooks, or presentation decks.
+現在の canonical documents は Markdown と structured project docs のままである。これは source of truth として正しいが、sortable requirement matrices、detailed design workbooks、presentation decks を必要とする人間には弱い。
 
-## Research Evidence
+## Research evidence の記録
 
-Detailed source URLs and selection matrix are recorded in `docs/research/canonical-document-export-research-2026-06-09.md`.
+詳細な source URLs と selection matrix は `docs/research/canonical-document-export-research-2026-06-09.md` に記録済み。
 
-Primary/official sources checked:
+Primary/official sources は以下を確認した:
 
-- ExcelJS: Excel workbook read/write/manipulation for Node/browser with TypeScript definitions.
-- SheetJS CE: broad JavaScript spreadsheet format support.
-- PptxGenJS: JavaScript/TypeScript OOXML PowerPoint generation.
-- D2 exports: diagram export including PPTX.
+- ExcelJS: TypeScript definitions 付きで Node/browser の Excel workbook read/write/manipulation を扱う。
+- SheetJS CE: broad JavaScript spreadsheet format support を提供する。
+- PptxGenJS: JavaScript/TypeScript OOXML PowerPoint generation を扱う。
+- D2 exports: PPTX を含む diagram export を扱う。
 
 ## Decision
 
-Canonical document export is in scope, but generated Office/spreadsheet files are **derived artifacts**, not source-of-truth documents.
+Canonical document export は in scope だが、生成される Office/spreadsheet files は **derived artifacts** であり、source-of-truth documents ではない。
 
-The core path is:
+core path は以下:
 
-1. Parse canonical docs into a structured document projection.
-2. Preserve source path, section ID, FR/AC/AT/PLAN/ADR IDs, status, trace, and evidence links.
-3. Build spreadsheet/deck datasets from that structure.
+1. canonical docs を structured document projection へ parse する。
+2. source path、section ID、FR/AC/AT/PLAN/ADR IDs、status、trace、evidence links を保持する。
+3. その structure から spreadsheet/deck datasets を build する。
 4. Redact before rendering.
-5. Render built-in CSV / Markdown summary outputs by default.
-6. Render XLSX / PPTX only through optional adapter profiles with readiness evidence.
-7. Record generated artifacts in DB projection rows with source digest and redaction profile.
+5. 既定では built-in CSV / Markdown summary outputs を render する。
+6. XLSX / PPTX は readiness evidence を持つ optional adapter profiles 経由でのみ render する。
+7. generated artifacts を source digest と redaction profile 付きで DB projection rows に記録する。
 
-## Back-Propagation Decision
+## Back-propagation decision の記録
 
 `backprop_decision`: `requires_requirement_backprop`
 
-Reason: The request changes accepted conversion surfaces for requirements, concept/planning, detailed design, PLAN, ADR, and test-design documents. It affects requirements, DB projection, workflow triggers, L6 function contracts, L7 oracles, and future gate/handover usage.
+Reason: この request は requirements、concept/planning、detailed design、PLAN、ADR、test-design documents の accepted conversion surfaces を変える。requirements、DB projection、workflow triggers、L6 function contracts、L7 oracles、future gate/handover usage に影響する。
 
 ## Changes
 
-- Add requirements §6.8.11 for canonical document export.
-- Add physical-data §9.7 projection tables and invariants.
+- canonical document export のため requirements §6.8.11 を追加。
+- physical-data §9.7 projection tables と invariants を追加。
 - Add ADR-002 A-126 addendum.
-- Add IMP-126 backlog row.
-- Back-propagate A-126 to L1/L3 functional requirements as an existing FR bundle extension.
-- Add L6/L7/Reverse PLAN route for future implementation.
+- IMP-126 backlog row を追加。
+- A-126 を existing FR bundle extension として L1/L3 functional requirements へ back-propagate。
+- future implementation のため L6/L7/Reverse PLAN route を追加。
 
-## Residual Work
+## 残作業
 
-Future implementation should create L7 TDD Red before source changes for:
+future implementation は、以下の source changes 前に L7 TDD Red を作成する必要がある:
 
 - `ut-tdd export docs --kind requirements|concept|design|plan|adr|test-design --format csv|md|xlsx|pptx`
-- canonical document parser / export dataset builder
-- redaction policy for document conversion
-- optional ExcelJS / SheetJS / PptxGenJS / D2 PPTX renderer probes
-- DB collector/rebuild for `document_export_*` projection rows
+- canonical document parser / export dataset builder を作成する
+- document conversion の redaction policy
+- optional ExcelJS / SheetJS / PptxGenJS / D2 PPTX renderer probes を整備する
+- `document_export_*` projection rows の DB collector/rebuild
