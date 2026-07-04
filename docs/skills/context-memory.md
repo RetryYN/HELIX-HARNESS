@@ -22,89 +22,85 @@ applies_to:
     - Retrofit
 ---
 
-# context memory
+# context memory（session 継続記憶）
 
-How to maintain continuity across sessions using `.ut-tdd/handover/CURRENT.json`
-and session log digests — and how to verify that handover carry state is actually
-true (FR-L1-31 session log, FR-L1-42 handover state).
+`.ut-tdd/handover/CURRENT.json` と session log digests を使って sessions 間の continuity を維持する方法、
+および handover carry state が実際に true かを verify する方法を扱う
+（FR-L1-31 session log、FR-L1-42 handover state の方針）。
 
-## When to load this skill
+## この skill を読む条件
 
-- Starting a new session where a `CURRENT.json` handover exists.
-- Closing out a PLAN or crossing a drive-model cycle boundary.
-- A task will span more than one session or runtime switch.
-- A Scrum S3 verify or Recovery exit needs handover evidence before the next
-  session begins.
+- `CURRENT.json` handover が存在する new session を開始する。
+- PLAN を close する、または drive-model cycle boundary を越える。
+- task が複数 session または runtime switch をまたぐ。
+- Scrum S3 verify または Recovery exit が、次 session 前に handover evidence を必要とする。
 
-## CURRENT.json anatomy
+## CURRENT.json anatomy（構造）
 
-`ut-tdd handover` writes `.ut-tdd/handover/CURRENT.json`. The file contains:
+`ut-tdd handover` は `.ut-tdd/handover/CURRENT.json` を書く。この file は次を含む。
 
-| Field | What it records |
+| Field | 記録内容 |
 |---|---|
-| `carry` | Items the previous session reported as incomplete |
-| `completed` | Items the previous session reported as done |
-| `open_plans` | PLAN IDs with non-terminal status |
-| `session_digest` | Compressed event log from the closing session |
+| `carry` | previous session が incomplete と報告した items |
+| `completed` | previous session が done と報告した items |
+| `open_plans` | non-terminal status の PLAN IDs |
+| `session_digest` | closing session の compressed event log |
 
-**Treat `carry` as a claim, not truth.** Before acting on it:
+**`carry` は truth ではなく claim として扱う。** それに基づき行動する前に:
 
-1. Run `git log --oneline -20` and cross-check completed work against actual
-   commits.
-2. Run `ut-tdd doctor` to confirm structural state.
-3. Run `ut-tdd status` to see the current drive mode and open PLANs.
-4. Any carry item that conflicts with `git log` or `doctor` output is stale —
-   update or remove it before proceeding.
+1. `git log --oneline -20` を実行し、completed work を actual commits と cross-check する。
+2. `ut-tdd doctor` を実行し、structural state を確認する。
+3. `ut-tdd status` を実行し、current drive mode と open PLANs を確認する。
+4. `git log` または `doctor` output と conflict する carry item は stale。
+   進む前に update または remove する。
 
-## Session-close procedure
+## Session-close procedure（終了時手順）
 
-At any PLAN completion or session boundary:
+任意の PLAN completion または session boundary で実行する。
 
 ```
 ut-tdd handover
 ```
 
-This flushes the session log and rewrites `CURRENT.json`. If the task crosses a
-drive-cycle boundary (e.g., Add-feature trace-freeze), also run:
+これは session log を flush し、`CURRENT.json` を rewrite する。task が drive-cycle boundary
+（例: Add-feature trace-freeze）を越える場合は、次も実行する。
 
 ```
 ut-tdd status
 ut-tdd doctor
 ```
 
-Capture both outputs into `.ut-tdd/audit/<session-id>-close.txt` as the
-session-close evidence. Do not rely on the handover narrative alone.
+両方の outputs を session-close evidence として `.ut-tdd/audit/<session-id>-close.txt` に capture する。
+handover narrative だけに依存しない。
 
-## Session-start procedure
+## Session-start procedure（開始時手順）
 
-1. Read `.ut-tdd/handover/CURRENT.json` if it exists and is not stale
-   (timestamp within ~24 hours).
-2. Verify each `carry` item against `git log` and current file state — do not
-   re-report items that are already committed.
-3. Check `open_plans` against `ut-tdd doctor` output — a PLAN listed as open
-   but absent from governance is a stale handover entry.
-4. Proceed with the verified carry, not the raw handover text.
+1. `.ut-tdd/handover/CURRENT.json` が存在し stale でない場合に読む
+   （timestamp が約 24 時間以内）。
+2. 各 `carry` item を `git log` と current file state で verify する。
+   既に commit 済みの item を re-report しない。
+3. `open_plans` を `ut-tdd doctor` output と照合する。
+   open と記載されているが governance に存在しない PLAN は stale handover entry。
+4. raw handover text ではなく verified carry に基づいて進む。
 
-## Session log and digests
+## Session log and digests（session log と digest）
 
-The `SessionStart` and `Stop` hooks write to `src/runtime/session-log.ts`. Each
-session compresses into a PLAN digest in `harness.db`. Digests are queryable via
-`ut-tdd metrics` and `ut-tdd find`. Session log entries store metadata only —
-never prompt text, credentials, or PII.
+`SessionStart` と `Stop` hooks は `src/runtime/session-log.ts` に書き込む。
+各 session は `harness.db` 内の PLAN digest に compress される。digests は `ut-tdd metrics` と
+`ut-tdd find` で query できる。session log entries は metadata のみを保存し、
+prompt text、credentials、PII は保存しない。
 
-## Staleness and multi-session gaps
+## Staleness and multi-session gaps（stale 判定と session 間隔）
 
-A `CURRENT.json` older than 24 hours should be treated as potentially stale.
-Verify open items from scratch rather than propagating possibly outdated carry.
-If multiple sessions have elapsed without a handover flush, run `ut-tdd db
-rebuild` to re-project harness state from the current `docs/plans/` and
-`.ut-tdd/` on-disk state.
+24 時間を超えた `CURRENT.json` は potentially stale として扱う。possibly outdated carry を伝播させず、
+open items を scratch から verify する。handover flush なしに複数 sessions が経過した場合は、
+`ut-tdd db rebuild` を実行し、current `docs/plans/` と `.ut-tdd/` on-disk state から harness state を re-project する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Forwarding raw `CURRENT.json` carry to the PO without a `git log` cross-check
-  — stale carry creates false incident reports.
-- Skipping `ut-tdd handover` at a drive-cycle boundary — the next session starts
-  blind.
-- Storing session decisions in the handover file rather than in committed docs or
-  ADRs — handover is continuity glue, not the authoritative record.
+- `git log` cross-check なしに raw `CURRENT.json` carry を PO へ forward する。
+  stale carry は false incident reports を生む。
+- drive-cycle boundary で `ut-tdd handover` を skip する。
+  次 session が blind で始まる。
+- session decisions を committed docs や ADRs ではなく handover file に保存する。
+  handover は continuity glue であり、authoritative record ではない。
