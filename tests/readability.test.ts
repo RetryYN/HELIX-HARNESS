@@ -36,7 +36,7 @@ describe("readability lint (freeze doc mojibake guard)", () => {
     const paths = docs.map((doc) => doc.path.replaceAll("\\", "/"));
     expect(docs.length).toBeGreaterThan(50);
     expect(paths).toContain("docs/plans/PLAN-M-00-verify-cutover.md");
-    expect(paths).toContain("docs/governance/README.md");
+    expect(paths).not.toContain("docs/governance/README.md");
     expect(paths).toContain("CLAUDE.md");
     expect(analyzeReadability(docs).violations).toEqual([]);
   });

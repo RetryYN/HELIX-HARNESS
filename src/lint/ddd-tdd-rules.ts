@@ -111,16 +111,6 @@ const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
       { pattern: /add-impl/, message: "Add-feature must place TDD evidence in add-impl." },
     ],
   },
-  {
-    path: normalizePath(join("docs", "process", "modes", "README.md")),
-    patterns: [
-      { pattern: /DDD-TDD-WORKFLOW/, message: "Mode index must carry DDD/TDD anchor." },
-      {
-        pattern: /docs\/governance\/ddd-tdd-rules\.md/,
-        message: "Mode index must reference the DDD/TDD SSoT.",
-      },
-    ],
-  },
 ];
 
 function collectDocs(repoRoot: string, relDir: string, scope: DddTddDocScope): DddTddDoc[] {

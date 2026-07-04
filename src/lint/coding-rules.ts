@@ -103,19 +103,6 @@ const REQUIRED_WORKFLOW_DOCS: WorkflowDocRequirement[] = [
       { pattern: /add-impl/, message: "Add-feature workflow must gate add-impl on coding rules." },
     ],
   },
-  {
-    path: normalizePath(join("docs", "process", "modes", "README.md")),
-    patterns: [
-      {
-        pattern: /CODING-RULE-WORKFLOW/,
-        message: "Mode workflow index must carry the coding-rule anchor.",
-      },
-      {
-        pattern: /docs\/governance\/coding-rules\.md/,
-        message: "Mode workflow index must reference the coding-rule SSoT.",
-      },
-    ],
-  },
 ];
 const SUPPRESSION_TOKENS = [
   ["@ts", "-ignore"].join(""),

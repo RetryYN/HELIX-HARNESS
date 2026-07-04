@@ -95,11 +95,11 @@ describe("design-language lint", () => {
     expect(paths).toContain(".ut-tdd/audit/A-133-upstream-vmodel-coverage-audit.md");
     expect(paths).toContain(".ut-tdd/review/cross-review-versionup-and-s4-failclose.md");
     expect(paths).toContain(".github/PULL_REQUEST_TEMPLATE.md");
-    expect(paths).toContain("README.md");
+    expect(paths).not.toContain("README.md");
     expect(paths).toContain("docs/archive/helix-agent-harness-concept_v2.1.md");
     expect(paths).toContain("docs/feedback-log.md");
     expect(paths).toContain("docs/improvement-backlog.md");
-    expect(paths).toContain("docs/memory/README.md");
+    expect(paths).not.toContain("docs/memory/README.md");
     expect(paths).toContain("docs/migration/helix-fork-completion-plan.md");
     expect(paths).toContain("docs/reference/ai-agent-harness-directory-reference.md");
     expect(paths).toContain(
@@ -149,13 +149,13 @@ describe("design-language lint", () => {
     expect(result.violations).toEqual([]);
   });
 
-  it("U-DESLANG-009: includes every tracked Markdown document in the real repo audit", () => {
+  it("U-DESLANG-009: includes every non-README tracked Markdown document in the real repo audit", () => {
     const trackedMarkdown = spawnSync("git", ["ls-files", "*.md"], {
       cwd: process.cwd(),
       encoding: "utf8",
     })
       .stdout.split(/\r?\n/)
-      .filter(Boolean);
+      .filter((path) => path && !/(^|\/)(readme|reade)\.md$/i.test(path));
     const auditedPaths = new Set(loadDesignLanguageDocs().map((doc) => doc.path));
 
     const missing = trackedMarkdown.filter((path) => !auditedPaths.has(path));

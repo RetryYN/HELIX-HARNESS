@@ -44,11 +44,6 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
         exists: true,
         text: "DDD-TDD-WORKFLOW docs/governance/ddd-tdd-rules.md add-design add-impl",
       },
-      {
-        path: "docs/process/modes/README.md",
-        exists: true,
-        text: "DDD-TDD-WORKFLOW docs/governance/ddd-tdd-rules.md",
-      },
     ],
     docs: [
       {

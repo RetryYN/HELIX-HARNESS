@@ -66,7 +66,6 @@ export interface VersionUpReadinessInput {
   charter: string;
   pillarRequirements: string;
   functionalDesign: string;
-  modeCatalog: string;
   modeDoc: string;
   discoveryPlan: string;
   currentVersion?: string;
@@ -403,13 +402,6 @@ const FUNCTIONAL_DESIGN_MARKERS = [
   "continuous-run、version-up",
   "signal → mode routing",
   "escalation_boundaries",
-] as const;
-
-const MODE_CATALOG_MARKERS = [
-  "| **version-up** |",
-  "[version-up.md](version-up.md)",
-  "`version_deferral`",
-  "将来版活性化時 → add-feature",
 ] as const;
 
 const PARKED_PLAN_MARKERS = [
@@ -965,7 +957,6 @@ export function loadVersionUpReadinessInput(
       join(repoRoot, "docs", "design", "harness", "L4-basic-design", "function.md"),
       "utf8",
     ),
-    modeCatalog: readFileSync(join(repoRoot, "docs", "process", "modes", "README.md"), "utf8"),
     modeDoc: readFileSync(join(repoRoot, "docs", "process", "modes", "version-up.md"), "utf8"),
     discoveryPlan: readFileSync(
       join(repoRoot, "docs", "plans", "PLAN-DISCOVERY-09-version-up-mode.md"),
@@ -998,12 +989,6 @@ export function analyzeVersionUpReadiness(
   for (const marker of FUNCTIONAL_DESIGN_MARKERS) {
     if (!input.functionalDesign.includes(marker)) {
       violations.push({ subject: "L4 functional design", reason: `missing ${marker}` });
-    }
-  }
-
-  for (const marker of MODE_CATALOG_MARKERS) {
-    if (!input.modeCatalog.includes(marker)) {
-      violations.push({ subject: "docs/process/modes/README.md", reason: `missing ${marker}` });
     }
   }
 

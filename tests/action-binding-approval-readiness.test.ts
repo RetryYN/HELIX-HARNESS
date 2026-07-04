@@ -120,7 +120,6 @@ function currentVersionUpSnapshotId(
     charter: "",
     pillarRequirements: "",
     functionalDesign: "",
-    modeCatalog: "",
     modeDoc: VERSION_UP_MODE_DOC,
     discoveryPlan: "",
     currentVersion: "0.1.0",

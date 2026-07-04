@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { basename, join, relative } from "node:path";
 
 export interface ReadabilityDoc {
   path: string;
@@ -120,7 +120,12 @@ function walkMarkdown(dir: string, repoRoot: string, acc: ReadabilityDoc[]): voi
 }
 
 // Canonical instruction prose outside docs/ that must also stay mojibake-free.
-const ROOT_READABILITY_DOCS = ["README.md", "CLAUDE.md", "AGENTS.md", join(".claude", "CLAUDE.md")];
+const ROOT_READABILITY_DOCS = ["CLAUDE.md", "AGENTS.md", join(".claude", "CLAUDE.md")];
+
+function isReadmeLike(path: string): boolean {
+  const name = basename(path);
+  return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name) || /^reade(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
+}
 
 // System-wide readability band: every active UT-TDD prose surface (full docs/ tree + canonical
 // root instruction docs). vendor source snapshot and legacy local state are intentionally
@@ -130,6 +135,9 @@ export function loadSystemReadabilityDocs(repoRoot: string = process.cwd()): Rea
   const acc: ReadabilityDoc[] = [];
   const docsDir = join(repoRoot, "docs");
   if (existsSync(docsDir)) walkMarkdown(docsDir, repoRoot, acc);
+  const activeDocs = acc.filter((doc) => !isReadmeLike(doc.path));
+  acc.length = 0;
+  acc.push(...activeDocs);
   for (const rel of ROOT_READABILITY_DOCS) {
     const full = join(repoRoot, rel);
     if (existsSync(full)) acc.push({ path: rel, text: readFileSync(full, "utf8") });

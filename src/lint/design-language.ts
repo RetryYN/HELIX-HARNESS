@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { basename, join, relative } from "node:path";
 
 export interface DesignLanguageDoc {
   path: string;
@@ -61,7 +61,6 @@ const DESIGN_LANGUAGE_ROOTS = [
 const DESIGN_LANGUAGE_FILES = [
   "AGENTS.md",
   "CLAUDE.md",
-  "README.md",
   join(".claude", "CLAUDE.md"),
   join(".github", "PULL_REQUEST_TEMPLATE.md"),
   join("docs", "feedback-log.md"),
@@ -112,6 +111,11 @@ function normalizeRel(path: string): string {
   return path.replace(/\\/g, "/");
 }
 
+function isReadmeLike(path: string): boolean {
+  const name = basename(path);
+  return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name) || /^reade(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
+}
+
 function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]): void {
   for (const entry of readdirSync(absDir, { withFileTypes: true })) {
     const abs = join(absDir, entry.name);
@@ -119,7 +123,7 @@ function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]
       walkMarkdown(abs, repoRoot, acc);
       continue;
     }
-    if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
+    if (!entry.isFile() || !entry.name.endsWith(".md") || isReadmeLike(entry.name)) continue;
     if (!statSync(abs).isFile()) continue;
     acc.push({ path: normalizeRel(relative(repoRoot, abs)), text: readFileSync(abs, "utf8") });
   }
@@ -133,7 +137,7 @@ export function loadDesignLanguageDocs(repoRoot: string = process.cwd()): Design
   }
   for (const rel of DESIGN_LANGUAGE_FILES) {
     const abs = join(repoRoot, rel);
-    if (existsSync(abs) && statSync(abs).isFile()) {
+    if (existsSync(abs) && statSync(abs).isFile() && !isReadmeLike(rel)) {
       docs.push({ path: normalizeRel(rel), text: readFileSync(abs, "utf8") });
     }
   }

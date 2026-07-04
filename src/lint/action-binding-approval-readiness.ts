@@ -1063,7 +1063,6 @@ function expectedVersionUpActivationSnapshotId(
       charter: "",
       pillarRequirements: "",
       functionalDesign: "",
-      modeCatalog: "",
       modeDoc: input.versionUpModeDoc,
       discoveryPlan: "",
       currentVersion: input.currentVersion ?? undefined,

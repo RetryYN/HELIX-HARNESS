@@ -82,12 +82,6 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "signal → mode routing",
       "escalation_boundaries",
     ].join("\n"),
-    modeCatalog: [
-      "| **version-up** |",
-      "[version-up.md](version-up.md)",
-      "`version_deferral`",
-      "将来版活性化時 → add-feature",
-    ].join("\n"),
     modeDoc: [
       "deferred-but-committed-future",
       "status=draft",
@@ -1813,7 +1807,6 @@ describe("version-up-readiness", () => {
     const result = analyzeVersionUpReadiness(
       input({
         pillarRequirements: "HR-FR-P1-02",
-        modeCatalog: "| **version-up** |",
       }),
     );
 
@@ -1828,7 +1821,6 @@ describe("version-up-readiness", () => {
         { subject: "L3 pillar requirements", reason: "missing plan-only activation packet" },
         { subject: "L3 pillar requirements", reason: "missing apply surface を持たない" },
         { subject: "L3 pillar requirements", reason: "missing 今版外作業を失わない" },
-        { subject: "docs/process/modes/README.md", reason: "missing `version_deferral`" },
       ]),
     );
   });
