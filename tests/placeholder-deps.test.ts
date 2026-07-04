@@ -42,20 +42,37 @@ describe("U-PHDEPS: placeholder_deps 2-type recognition (IMP-107)", () => {
     expect(r.violations[0].detail).toMatch(/not a known V-model layer/);
   });
 
-  it("U-PHDEPS-004: 旧「not implemented」記述は hard-fail (既存挙動保持)", () => {
+  it("U-PHDEPS-004: waiting_layer 欠落は threshold 判定不能として hard-fail", () => {
+    const r = analyzePlaceholderDeps([
+      doc("- placeholder_deps: {waiting_spec: missing layer}"),
+    ]);
+    expect(r.ok).toBe(false);
+    expect(r.violations[0].detail).toMatch(/missing waiting_layer/);
+  });
+
+  it("U-PHDEPS-005: 旧「not implemented」記述は hard-fail (既存挙動保持)", () => {
     const r = analyzePlaceholderDeps([
       doc("Current status: dedicated `placeholder_deps` doctor rule is not implemented yet."),
     ]);
     expect(r.ok).toBe(false);
   });
 
-  it("U-PHDEPS-005: draft 等 非 active doc は skip (checked に数えない)", () => {
+  it("U-PHDEPS-006: placeholder_deps の本文言及は unresolved record として扱わない", () => {
+    const r = analyzePlaceholderDeps([
+      doc("`placeholder_deps` は threshold 到達時に別 lint が判定する。"),
+      doc("schema example: placeholder_deps: array<{waiting_layer, waiting_spec}>"),
+    ]);
+    expect(r.ok).toBe(true);
+    expect(r.violations).toHaveLength(0);
+  });
+
+  it("U-PHDEPS-007: draft 等 非 active doc は skip (checked に数えない)", () => {
     const r = analyzePlaceholderDeps([doc("- placeholder_deps: {waiting_layer:L7}", "draft")]);
     expect(r.checked).toBe(0);
     expect(r.ok).toBe(true);
   });
 
-  it("U-PHDEPS-006: green message は coverage を明示 (型① 数 + threshold 担当を示す)", () => {
+  it("U-PHDEPS-008: green message は coverage を明示 (型① 数 + threshold 担当を示す)", () => {
     const r = analyzePlaceholderDeps([
       doc("- placeholder_deps: {waiting_layer:L6, waiting_spec: x}"),
     ]);

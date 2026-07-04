@@ -68,6 +68,7 @@ export function loadPlaceholderDepsDocs(root = process.cwd()): PlaceholderDepsDo
  *    item 単位の正当な carry でありうる (band freeze ≠ item spec 確定)。**ここでは hard-fail しない**
  *    (検出数のみ surface)。型①の threshold (impl 着地後の未 discharge = 違反) は `descent-obligation`
  *    lint の impl-ahead 検査が defer ledger として正本担当する (重複させない、false-positive 回避)。
+ *  - `waiting_layer` 欠落は threshold を判定できない orphan placeholder として **hard-fail**。
  *  - 未知 `waiting_layer` (L0-L14 外) は typo の疑いで **hard-fail**。
  *  - 「dedicated placeholder_deps doctor rule is not implemented」の旧記述は **hard-fail** (既存)。
  */
@@ -81,28 +82,34 @@ export function analyzePlaceholderDeps(docs: PlaceholderDepsDoc[]): PlaceholderD
     checked += 1;
     const lines = doc.text.split(/\r?\n/);
     for (const [index, line] of lines.entries()) {
-      if (/\bplaceholder_deps\b/i.test(line)) {
+      if (/^\s*(?:[-*]\s*)?`?placeholder_deps`?\s*[:=]/i.test(line)) {
         const waitMatch = line.match(/\bwaiting_layer\s*[:=]\s*"?(L\d+)\b/i);
-        if (waitMatch) {
-          const layer = waitMatch[1].toUpperCase();
-          if (!KNOWN_LAYERS.has(layer)) {
-            violations.push({
-              path: doc.path,
-              line: index + 1,
-              detail: `placeholder_deps waiting_layer ${layer} is not a known V-model layer (L0-L14) — typo?`,
-            });
-          } else if (layer === "L7") {
-            implStateWaits += 1;
-            violations.push({
-              path: doc.path,
-              line: index + 1,
-              detail:
-                "active design/test-design still contains L7 (impl-state) waiting placeholder_deps",
-            });
-          } else if (DESIGN_WAIT_LAYERS.has(layer)) {
-            // 型① spec back-fill: 検出のみ (threshold は descent-obligation impl-ahead が担当)。
-            specBackfillWaits += 1;
-          }
+        if (!waitMatch) {
+          violations.push({
+            path: doc.path,
+            line: index + 1,
+            detail: "placeholder_deps is missing waiting_layer, so threshold cannot be evaluated",
+          });
+          continue;
+        }
+        const layer = waitMatch[1].toUpperCase();
+        if (!KNOWN_LAYERS.has(layer)) {
+          violations.push({
+            path: doc.path,
+            line: index + 1,
+            detail: `placeholder_deps waiting_layer ${layer} is not a known V-model layer (L0-L14) — typo?`,
+          });
+        } else if (layer === "L7") {
+          implStateWaits += 1;
+          violations.push({
+            path: doc.path,
+            line: index + 1,
+            detail:
+              "active design/test-design still contains L7 (impl-state) waiting placeholder_deps",
+          });
+        } else if (DESIGN_WAIT_LAYERS.has(layer)) {
+          // 型① spec back-fill: 検出のみ (threshold は descent-obligation impl-ahead が担当)。
+          specBackfillWaits += 1;
         }
       }
       if (/dedicated\s+`?placeholder_deps`?\s+doctor rule is (?:not |未)?implemented/i.test(line)) {
