@@ -82,6 +82,24 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
     expect(r.ok).toBe(true);
   });
 
+  it("detects legacy product prose residue while allowing machine prefixes and markers", () => {
+    const bad = analyzeAssetDrift(
+      input({
+        assets: [skill("cutover", "UT-TDD naming contract は HELIX へ移行済みの prose ではない。")],
+      }),
+    );
+    expect(bad.ok).toBe(false);
+    expect(bad.violations.map((v) => v.kind)).toContain("legacy-product-prose-residue");
+
+    const ok = analyzeAssetDrift(
+      input({
+        assets: [skill("cutover", "UT_TDD_ALLOW_RAW_AGENT と <!-- UT-TDD:managed:start --> は機械識別子。")],
+        allowlist: [],
+      }),
+    );
+    expect(ok.ok).toBe(true);
+  });
+
   it("detects empty docs-skills catalog source", () => {
     const r = analyzeAssetDrift(input({ skillDocCount: 0 }));
     expect(r.ok).toBe(false);

@@ -23,6 +23,7 @@ export interface AssetDriftViolation {
     | "legacy-source-path-residue"
     | "legacy-command-residue"
     | "legacy-runtime-name-residue"
+    | "legacy-product-prose-residue"
     | "empty-docs-skills"
     | "missing-allowlisted-agent";
   path?: string;
@@ -50,6 +51,7 @@ const LEGACY_RUNTIME_NAME_PATTERNS = [
   new RegExp(String.raw`\bpmo-${LEGACY_RUNTIME_NAME}-`, "i"),
   new RegExp(String.raw`\b${LEGACY_RUNTIME_ENV_PREFIX}_`),
 ];
+const LEGACY_PRODUCT_PROSE_PATTERNS = [/\bUT-TDD\b(?!:managed)/];
 
 function hasNonGitkeepFile(dir: string): boolean {
   if (!existsSync(dir)) return false;
@@ -143,6 +145,16 @@ export function analyzeAssetDrift(input: AssetDriftInput): AssetDriftResult {
         break;
       }
     }
+    for (const pattern of LEGACY_PRODUCT_PROSE_PATTERNS) {
+      if (pattern.test(asset.text)) {
+        violations.push({
+          kind: "legacy-product-prose-residue",
+          path: asset.path,
+          detail: "legacy product prose residue",
+        });
+        break;
+      }
+    }
   }
 
   if (input.enrolledRootCount === 0) {
@@ -181,7 +193,7 @@ export function analyzeAssetDrift(input: AssetDriftInput): AssetDriftResult {
 export function assetDriftMessages(result: AssetDriftResult): string[] {
   if (result.ok) {
     return [
-      `asset-drift - OK (agent/skill/prompt docs=${result.checkedAssets}, legacy_source_path_residue=0, legacy_command_residue=0, legacy_runtime_name_residue=0, allowlist_missing=0)`,
+      `asset-drift - OK (agent/skill/prompt docs=${result.checkedAssets}, legacy_source_path_residue=0, legacy_command_residue=0, legacy_runtime_name_residue=0, legacy_product_prose_residue=0, allowlist_missing=0)`,
     ];
   }
   return result.violations.map((v) => {
