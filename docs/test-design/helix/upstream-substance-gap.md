@@ -9,12 +9,18 @@ owner: QA + AIM
 plan: PLAN-L6-50-helix-orchestration-memory
 pair_artifact: docs/design/helix/
 pair_design: docs/design/helix/
+related_l3: docs/design/helix/L3-requirements/upstream-substance-gap.md
+related_l4: docs/design/helix/L4-basic-design/upstream-substance-gap.md
+related_l5: docs/design/helix/L5-detail/upstream-substance-gap.md
+related_l6: docs/design/helix/L6-function-design/upstream-substance-gap.md
 ---
 
 # HELIX upstream A-146 substance-gap test design の検証設計
 
 `unison-ai-product/UT-TDD_AGENT-HARNESS` の A-146 監査を HELIX 側へ採用するための pair test-design。
 L3/L4/L5/L6 の upstream-substance-gap docs をまとめて逆参照し、各 finding を oracle へ接続する。
+`pair_artifact: docs/design/helix/` は directory pair として保持するが、実際の層別対応は frontmatter の
+`related_l3`〜`related_l6` を正とし、広い directory pair だけで L3-L6 降下済みと扱わない。
 
 ## §1 coverage matrix 対応表
 
