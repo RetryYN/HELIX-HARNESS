@@ -253,7 +253,7 @@ dependencies:
 | `S1` | Sprint Plan(ゴール + 対象仮説選定) |
 | `S2` | PoC 実装(`verify/*.sh` 化) |
 | `S3` | Verify(全 verify スクリプト実行 = 回帰蓄積) |
-| `S4` | Decide(confirmed / rejected / pivot) |
+| `S4` | Decide (`confirmed` / `rejected` / `pivot`) |
 | `R0` | Evidence Acquisition(証拠収集) |
 | `R1` | Observed Contracts(API/DB/型抽出、skip 判定あり) |
 | `R2` | As-Is Design(設計復元) |
@@ -285,7 +285,7 @@ dependencies:
 | `config` | 設定ファイル(汎用) | — |
 | `yaml_config` | YAML 設定 | — |
 | `json_config` | JSON 設定 | — |
-| `workflow_config` | GitHub Actions workflow / harness YAML | — |
+| `workflow_config` | GitHub Actions workflow / harness YAML の設定 | — |
 | `github_config` | GitHub 関連設定(CODEOWNERS / PR template 等) | — |
 | `other` | 上記に該当しないもの | — |
 
@@ -600,7 +600,7 @@ dependencies:
 
 仮説の性質に応じて **6 type** に分類。`agent_slots` の `aim` が PoC 実装を担当、`tl` が S4 decide を担当する。
 
-### Scrum 6 type
+### Scrum 6 type の分類
 
 | Scrum type | 短縮 | 用途 | time-box |
 |---|---|---|---|
@@ -636,7 +636,7 @@ S4: Decide(tl)
 
 Scrum で確定した仮説を、設計文書として復元 → Forward 合流させる経路。
 
-### Reverse 5 type
+### Reverse 5 type の分類
 
 | Reverse type | 短縮 | 起点 | R1 |
 |---|---|---|---|
@@ -665,14 +665,14 @@ R4: Gap & Routing(tl + qa)
 
 `ut-tdd scrum decide --confirmed --reverse-merge --scrum-type <type>` で matrix lookup → 自動的に `ut-tdd reverse <reverse-type> --from-scrum --scrum-hypothesis <id>` を起動。
 
-| Scrum type \ Reverse type | code (CD) | design (DG) | upgrade (UP) | normalization (NM) | fullback (FB) |
+| Scrum type \ Reverse type の対応 | `code` (CD) | `design` (DG) | `upgrade` (UP) | `normalization` (NM) | `fullback` (FB) |
 |---|---|---|---|---|---|
-| **hypothesis-test** (HT) | **Primary** | Alternative | - | - | Alternative |
-| **tech-spike** (TS) | Alternative | **Primary** | Alternative | - | - |
-| **design-spike** (DS) | - | **Primary** | - | Alternative | Alternative |
-| **perf-spike** (PS) | - | - | **Primary** | Alternative | Alternative |
-| **security-spike** (SS) | Alternative | Alternative | - | **Primary** | - |
-| **ux-spike** (UX) | - | **Primary** | - | Alternative | Alternative |
+| **`hypothesis-test`** (HT) | **Primary 推奨** | Alternative 候補 | - | - | Alternative 候補 |
+| **`tech-spike`** (TS) | Alternative 候補 | **Primary 推奨** | Alternative 候補 | - | - |
+| **`design-spike`** (DS) | - | **Primary 推奨** | - | Alternative 候補 | Alternative 候補 |
+| **`perf-spike`** (PS) | - | - | **Primary 推奨** | Alternative 候補 | Alternative 候補 |
+| **`security-spike`** (SS) | Alternative 候補 | Alternative 候補 | - | **Primary 推奨** | - |
+| **`ux-spike`** (UX) | - | **Primary 推奨** | - | Alternative 候補 | Alternative 候補 |
 
 凡例: `Primary` = デフォルト routing 先、`Alternative` = `--reverse-type` で明示指定可、`-` = 不適切(明示指定すると `scrum_reverse_lint` が reject)。
 
@@ -1290,7 +1290,7 @@ echo "OK: PR checkboxes verified"
 
 ## 9.6 commitlint + .pre-commit-config.yaml(v2.1 完全実装サンプル)
 
-### commitlint.config.js
+### `commitlint.config.js`
 
 ```javascript
 module.exports = {
@@ -1393,9 +1393,9 @@ jobs:
 
 `main` に対して以下を必須化:
 
-- Require a pull request before merging: **ON**
+- Require a pull request before merging: **ON** にする
 - Require approvals: **1**(bootstrap 時は 0、TL/QA 採用後 1 へ昇格)
-- Require status checks to pass before merging: **ON**
+- Require status checks to pass before merging: **ON** にする
   - **必須 status check の id**(`<job-id>` 形式):
     - `feature-lint`(`feature.yml`)
     - `feature-test`(`feature.yml`)
@@ -1404,8 +1404,8 @@ jobs:
     - `commitlint`(`commitlint.yml`)
     - `harness-check`(`harness-check.yml`)
   - ※ branch type 別に異なる workflow が走るため、Branch Protection は **複数 workflow の status check を OR 条件で扱える GitHub 標準動作** に従う(該当 workflow が走らない場合の必須要件は GitHub が自動で skip 判定)
-- Require conversation resolution before merging: **ON**
-- Do not allow bypassing the above: **ON**
+- Require conversation resolution before merging: **ON** にする
+- Do not allow bypassing the above: **ON** にする
 - Restrict who can push to matching branches: **(空 = 誰も直接 push 不可)**
 
 `scripts/setup-branch-protection.sh`(`gh` CLI 経由)で bootstrap 時に自動設定:
@@ -2127,8 +2127,8 @@ bootstrap 完了後、以下を確認:
 | **Pair freeze** | 設計 artifact 凍結時にテスト設計 artifact も同時凍結するルール |
 | **双方向 trace** | 4 artifact 間で 6 方向の reference を相互に持つこと |
 | **逆ピラミッド** | ① ② が存在するが ③ ④ が無い / 不完全な状態 |
-| **Scrum 6 type** | hypothesis-test / tech-spike / design-spike / perf-spike / security-spike / ux-spike |
-| **Reverse 5 type** | code / design / upgrade / normalization / fullback |
+| **Scrum 6 type** | `hypothesis-test` / `tech-spike` / `design-spike` / `perf-spike` / `security-spike` / `ux-spike` |
+| **Reverse 5 type** | `code` / `design` / `upgrade` / `normalization` / `fullback` |
 | **30 cell matrix** | Scrum 6 type × Reverse 5 type の自動 routing 表 |
 | **R3 Intent 検証** | 発注元(po)が Reverse R3 で意図仮説を直接検証するステップ |
 | **PLAN** | 工程ルール doc。frontmatter 9 必須フィールド + 本文 §0-5 |
@@ -2161,42 +2161,42 @@ bootstrap 完了後、以下を確認:
 ### V-model + 4 artifact 双方向 trace
 
 - NASA SW Engineering Handbook Appendix(V&V 構造)
-- IEEE Wikipedia: V-model (software development)
+- IEEE Wikipedia の `V-model (software development)`
 - DO-178C 開発ライフサイクル仕様
-- Parasoft: ISO 26262 Requirements Traceability
+- Parasoft の `ISO 26262 Requirements Traceability`
 - CMMI v2.0 SP 1.4 Requirements Management
 - IEEE 829-2008 テスト成果物
 - ISO/IEC/IEEE 29119-2 テスト設計仕様
 
-### Scrum + Reverse engineering
+### Scrum と Reverse engineering
 
-- Scrum.org — What is a Spike?
+- Scrum.org の `What is a Spike?`
 - Agile Alliance — Spikes
-- Martin Fowler — Exploratory Testing
-- SAFe — Spikes (enabler spike)
-- Mike Cohn — Spikes(time-box + validated)
-- Basecamp Shape Up — Uncertainty Reduction
-- OMG MOF 2.0 — Model-Driven Architecture
+- Martin Fowler の `Exploratory Testing`
+- SAFe の `Spikes (enabler spike)`
+- Mike Cohn の `Spikes(time-box + validated)`
+- Basecamp Shape Up の `Uncertainty Reduction`
+- OMG MOF 2.0 の `Model-Driven Architecture`
 - arc42 — Reverse Engineering Integration
 
 ### GitHub Actions + ブランチパイプライン
 
-- Conventional Commits v1.0.0 specification
-- commitlint official docs — @commitlint/config-conventional
-- GitHub branch protection rules — required status checks
-- GitHub Actions — workflow syntax / job ids / status check names
-- CODEOWNERS syntax and examples
-- Atlassian — Branch per feature workflow
+- `Conventional Commits v1.0.0` specification
+- `commitlint` official docs — `@commitlint/config-conventional`
+- GitHub の branch protection rules — `required status checks`
+- GitHub Actions — `workflow syntax` / `job ids` / `status check names`
+- CODEOWNERS の syntax と examples
+- Atlassian の `Branch per feature workflow`
 
 ### 3 層抽象化 + エスカレーション(参考、interpreter は採用せず)
 
 - AWS Step Functions — State Machine Abstraction(参考のみ)
 - Temporal.io Workflow Abstraction(参考のみ)
 - Prefect Flows & Tasks(参考のみ)
-- PagerDuty Escalation Policy Design
-- AWS Incident Manager Escalation Plans
-- Martin Fowler: Approval Workflow Pattern
-- Google SRE — Escalation chapter
+- PagerDuty の `Escalation Policy Design`
+- AWS Incident Manager の `Escalation Plans`
+- Martin Fowler の `Approval Workflow Pattern`
+- Google SRE の `Escalation` chapter
 - LaunchDarkly Flag Lifecycle(30/90 日閾値)
 
 # §17 改定履歴
