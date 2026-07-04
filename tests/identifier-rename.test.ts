@@ -357,6 +357,34 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({ path: ".codex/hooks.json", category: "adapter_config" }),
         ]),
       );
+      expect(audit.pathRenameEntries).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            tokens: expect.arrayContaining(["ut-tdd"]),
+            path: "scripts/ut-tdd",
+            targetPath: "scripts/helix",
+            category: "distribution_surface",
+            approvalRequired: true,
+            disposition: "blocked_pending_cutover_approval",
+          }),
+          expect.objectContaining({
+            tokens: expect.arrayContaining([".ut-tdd", "ut-tdd"]),
+            path: ".ut-tdd",
+            targetPath: ".helix",
+            category: "runtime_state",
+            approvalRequired: true,
+            disposition: "blocked_pending_cutover_approval",
+          }),
+          expect.objectContaining({
+            tokens: expect.arrayContaining([".ut-tdd", "ut-tdd"]),
+            path: ".ut-tdd/state/setup.json",
+            targetPath: ".helix/state/setup.json",
+            category: "runtime_state",
+            approvalRequired: true,
+            disposition: "blocked_pending_cutover_approval",
+          }),
+        ]),
+      );
       expect(audit.residuals).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -504,6 +532,15 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(payload.contentHitsByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.pathEntriesByToken[".ut-tdd"]).toBeGreaterThan(0);
       expect(payload.contentFilesByToken["ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.pathRenameEntries).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: ".ut-tdd",
+            targetPath: ".helix",
+            disposition: "blocked_pending_cutover_approval",
+          }),
+        ]),
+      );
       expect(payload.residuals).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -524,6 +561,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(text.stdout).toContain("category adapter_config:");
       expect(text.stdout).toContain("pathHits=");
       expect(text.stdout).toContain("contentHits=");
+      expect(text.stdout).toContain("path-renames: entries=");
       expect(text.stdout).toContain("residual adapter_marker:");
     } finally {
       rmSync(root, { recursive: true, force: true });

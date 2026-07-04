@@ -1548,6 +1548,15 @@ rename
         `  category ${category.category}: hits=${category.hits} files=${category.files}\n`,
       );
     }
+    const blockedPathRenameEntries = audit.pathRenameEntries.filter(
+      (entry) => entry.disposition === "blocked_pending_cutover_approval",
+    );
+    const manualPathRenameEntries = audit.pathRenameEntries.filter(
+      (entry) => entry.disposition === "manual_review_required",
+    );
+    process.stdout.write(
+      `  path-renames: entries=${audit.pathRenameEntries.length} blocked=${blockedPathRenameEntries.length} manualReview=${manualPathRenameEntries.length}\n`,
+    );
     for (const residual of audit.residualsByDisposition) {
       process.stdout.write(
         `  residual ${residual.disposition}: hits=${residual.hits} files=${residual.files}\n`,

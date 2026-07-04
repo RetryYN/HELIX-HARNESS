@@ -91,6 +91,18 @@ export interface IdentifierRenameResidualDispositionSummary {
   files: number;
 }
 
+export interface IdentifierRenamePathRenameEntry {
+  tokens: IdentifierRenameToken[];
+  path: string;
+  targetPath: string;
+  category: IdentifierRenameHitCategory;
+  approvalRequired: boolean;
+  disposition:
+    | "blocked_pending_cutover_approval"
+    | "safe_after_cutover_approval"
+    | "manual_review_required";
+}
+
 export interface IdentifierRenameAudit {
   sourceRoot: string;
   targetCli: "helix";
@@ -107,6 +119,7 @@ export interface IdentifierRenameAudit {
   hits: IdentifierRenameHit[];
   residualsByDisposition: IdentifierRenameResidualDispositionSummary[];
   residuals: IdentifierRenameResidualHit[];
+  pathRenameEntries: IdentifierRenamePathRenameEntry[];
   cutoverApproved: boolean;
   approvalRecordsConcrete: boolean;
   status: "ready_for_cutover" | "blocked_pending_cutover_approval";
@@ -622,6 +635,58 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
   return "other";
 }
 
+function targetPathForRenameHit(path: string): string {
+  return path
+    .replaceAll(".ut-tdd", ".helix")
+    .replaceAll("ut-tdd", "helix")
+    .replaceAll("UT-TDD", "HELIX")
+    .replaceAll("uttdd", "helix")
+    .replaceAll("UTTDD", "HELIX")
+    .replaceAll("area=harness", "area=helix");
+}
+
+function pathRenameDispositionForCategory(
+  category: IdentifierRenameHitCategory,
+): IdentifierRenamePathRenameEntry["disposition"] {
+  switch (category) {
+    case "runtime_state":
+    case "adapter_config":
+    case "consumer_template":
+    case "distribution_surface":
+      return "blocked_pending_cutover_approval";
+    case "other":
+      return "manual_review_required";
+    default:
+      return "safe_after_cutover_approval";
+  }
+}
+
+function buildPathRenameEntries(
+  hits: readonly IdentifierRenameHit[],
+): IdentifierRenamePathRenameEntry[] {
+  const entries = new Map<string, IdentifierRenamePathRenameEntry>();
+  for (const hit of hits) {
+    if (hit.location !== "path") continue;
+    const existing = entries.get(hit.path);
+    if (existing) {
+      if (!existing.tokens.includes(hit.token)) existing.tokens.push(hit.token);
+      continue;
+    }
+    const disposition = pathRenameDispositionForCategory(hit.category);
+    entries.set(hit.path, {
+      tokens: [hit.token],
+      path: hit.path,
+      targetPath: targetPathForRenameHit(hit.path),
+      category: hit.category,
+      approvalRequired: disposition !== "safe_after_cutover_approval",
+      disposition,
+    });
+  }
+  return [...entries.values()].sort(
+    (a, b) => a.path.localeCompare(b.path),
+  );
+}
+
 function walkTextFiles(root: string): string[] {
   const files: string[] = [];
   const walk = (dir: string): void => {
@@ -969,6 +1034,7 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
       files: stats?.files.size ?? 0,
     };
   }).filter((summary) => summary.hits > 0);
+  const pathRenameEntries = buildPathRenameEntries(hits);
   return {
     sourceRoot: root,
     targetCli: "helix",
@@ -985,6 +1051,7 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     hits,
     residualsByDisposition,
     residuals,
+    pathRenameEntries,
     cutoverApproved: false,
     approvalRecordsConcrete,
     status: "blocked_pending_cutover_approval",
