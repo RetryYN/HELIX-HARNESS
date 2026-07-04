@@ -2193,6 +2193,9 @@ describe("L7 CLI surface closure", () => {
         },
       });
       expect(payload.export.artifactPaths).toContain("LICENSE");
+      expect(payload.export.cleanRepo).toBe("RetryYN/HELIX-HARNESS-OS");
+      expect(payload.readiness.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-OS#v0.1.0");
+      expect(payload.readiness.contracts.tagPin).not.toContain("ut-tdd-agent-harness-clean");
       expect(payload.export.artifactPaths).not.toContain(
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
       );

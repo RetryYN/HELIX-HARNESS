@@ -1443,7 +1443,7 @@ export function buildCleanDistributionPlan(input: {
   cleanRepo?: string;
 }): CleanDistributionPlan {
   const sourceTag = input.sourceTag ?? "unreleased";
-  const cleanRepo = input.cleanRepo ?? "UNISON-TECHNOLOGY/ut-tdd-agent-harness-clean";
+  const cleanRepo = input.cleanRepo ?? "RetryYN/HELIX-HARNESS-OS";
   const normalized = [...new Set(input.paths.map(normalizeDistributionPath))].sort();
   const artifactPaths = normalized.filter(
     (path) => isAllowedCleanPath(path) && !isDeniedCleanPath(path),
@@ -1783,7 +1783,7 @@ export function buildConsumerReadinessPlan(input: {
     },
     contracts: {
       semver: "0.x may add capabilities; breaking public contract changes require migration notes",
-      tagPin: `github:UNISON-TECHNOLOGY/ut-tdd-agent-harness-clean#${tag}`,
+      tagPin: `github:RetryYN/HELIX-HARNESS-OS#${tag}`,
       stable: [
         "CLI surface",
         "adapter managed markers",

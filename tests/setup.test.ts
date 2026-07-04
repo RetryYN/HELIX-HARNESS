@@ -751,6 +751,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     expect(ready.ok).toBe(true);
+    expect(ready.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-OS#v0.1.0");
+    expect(ready.contracts.tagPin).not.toContain("ut-tdd-agent-harness-clean");
     expect(ready.mode).toBe("codex-only");
     expect(ready.workspace.monorepo).toBe(true);
     expect(ready.cliResolution).toEqual({

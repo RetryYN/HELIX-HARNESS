@@ -572,7 +572,7 @@ interface L7CompletionResult { checked: number; violations: L7CompletionViolatio
 
 | 関数 (実 export) | signature | pre | post | doctor 配線 |
 |---|---|---|---|---|
-| `analyzeDriveDbRegistration` | `(stats: DriveDbRegistrationStats \| null) => DriveDbRegistrationResult` | `stats` は `.ut-tdd/harness.db` から呼び出し元が事前に取得したもの; `null` = DB 不在 or 読み取り失敗; 純粋関数 | `null` のとき `violations=[{reason:"missing_db"}]`, `ok=false`; stats が供給された場合は plan 登録数・drive runs・workflow/model/skill runs・hook events・必須 mode 5 種 (`Discovery/Forward/Recovery/Reverse/Verification`) の各存在を検査し、1 件でも欠落があれば `ok=false` | `checkDriveDbRegistration` → `runDoctor` |
+| `analyzeDriveDbRegistration` | `(stats: DriveDbRegistrationStats \| null) => DriveDbRegistrationResult` | `stats` は `.ut-tdd/harness.db` から呼び出し元が事前に取得したもの; `null` = DB 不在 or 読み取り失敗; 純粋関数 | `null` のとき `violations=[{reason:"missing_db"}]`, `ok=false`; stats が供給された場合は plan 登録数・drive runs・workflow/model/skill runs・hook events・必須 drive model 10 種 (`Discovery/Scrum/Reverse/Recovery/Incident/Refactor/Retrofit/Add-feature/version-up/Research`) の各存在を検査し、1 件でも欠落があれば `ok=false` | `checkDriveDbRegistration` → `runDoctor` |
 | `driveDbRegistrationMessages` | `(result: DriveDbRegistrationResult) => string[]` | `result` は `analyzeDriveDbRegistration` の返り値 | `ok=false` のとき最大 8 件の違反理由サンプル (`reason[:mode][=count]`) を含む違反メッセージを返す; `ok=true` のとき全 stats を含む合格メッセージを返す | `checkDriveDbRegistration` → `runDoctor.messages` |
 
 型定義:
@@ -600,7 +600,7 @@ interface DriveDbRegistrationResult {
 }
 ```
 
-共通 invariant: `analyzeDriveDbRegistration` は純粋関数 (DB アクセスは呼び出し元の `checkDriveDbRegistration` が担う)。必須 mode リスト (`Discovery/Forward/Recovery/Reverse/Verification`) は実装内定数 `REQUIRED_CURRENT_MODES` を単一正本とし、本契約の一覧はその写し。orphan 検査は stats フィールドの正値チェックで行い、DB クエリを直接発行しない。
+共通 invariant: `analyzeDriveDbRegistration` は純粋関数 (DB アクセスは呼び出し元の `checkDriveDbRegistration` が担う)。必須 drive model リスト (`Discovery/Scrum/Reverse/Recovery/Incident/Refactor/Retrofit/Add-feature/version-up/Research`) は実装内定数 `REQUIRED_DRIVE_MODELS` を単一正本とし、本契約の一覧はその写し。Forward は合流 spine、Verification は右腕 gate projection として DB に現れるが、この必須 drive model セットには含めない。orphan 検査は stats フィールドの正値チェックで行い、DB クエリを直接発行しない。
 
 ### D.5 `src/lint/fr-roadmap-coverage.ts`
 
