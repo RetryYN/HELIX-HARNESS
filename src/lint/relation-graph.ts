@@ -221,8 +221,9 @@ export function collectRelationGraphProjection(
  * relation graph が node 化する path クラス (src/graph/loader.ts の走査対象と一致)。
  * これ以外の path (docs/skills, README, .claude/CLAUDE.md, AGENTS.md, codex-env.txt, .ut-tdd state 等) は
  * 定義上グラフ対象外であり、変更されても impact 分析は missing-projection error でなく
- * non-graph-path (info) として扱う。ディレクトリ path (末尾 "/") と archived plan
- * (projection.trackedExcludedPaths) も同様に非グラフ扱いにする。
+ * non-graph-path (info) として扱う。走査対象 prefix 配下のディレクトリ path (末尾 "/") は
+ * git status の未追跡 directory 丸め込みが残った場合も fail-close で missing-projection にする。
+ * archived plan (projection.trackedExcludedPaths) は明示除外として非グラフ扱いにする。
  */
 export const GRAPH_TRACKED_PATH_PREFIXES = [
   "src/",
@@ -231,16 +232,29 @@ export const GRAPH_TRACKED_PATH_PREFIXES = [
   "docs/design/",
   "docs/test-design/",
   "docs/process/",
+  "docs/reference/",
   ".claude/agents/",
   ".ut-tdd/review/",
   ".ut-tdd/evidence/g8-integration/",
 ] as const;
 
+const GRAPH_TRACKED_EXACT_PATHS = new Set([
+  "docs/governance/repository-structure.md",
+  ".editorconfig",
+  ".gitattributes",
+  "biome.json",
+  "package.json",
+  "tsconfig.json",
+  "vitest.config.ts",
+]);
+
 /** path が relation graph の node 走査対象クラス配下か (missing-projection を error にすべきか) を判定する。 */
 export function isGraphTrackedPath(path: string): boolean {
   const normalized = normalizePath(path);
-  if (normalized.endsWith("/")) return false; // ディレクトリはファイル node にならない
-  return GRAPH_TRACKED_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix));
+  return (
+    GRAPH_TRACKED_EXACT_PATHS.has(normalized) ||
+    GRAPH_TRACKED_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix))
+  );
 }
 
 function sortEdges(list: RelationEdge[]): RelationEdge[] {
@@ -522,7 +536,7 @@ export function analyzeRelationImpact(input: RelationImpactInput): RelationImpac
     const path = normalizePath(raw);
     const node = nodeByPath.get(path);
     if (!node) {
-      // 定義上グラフ対象外の path (走査対象クラス外 / ディレクトリ / archived plan) は、
+      // 定義上グラフ対象外の path (走査対象クラス外 / archived plan) は、
       // missing-projection error でなく non-graph-path (info) として分類する。node を期待する
       // 走査対象 path のみ error にする — 弱い分析への無音 fallback ではなく、正しい分類
       // (U-RELGRAPH-006 の規律は node 期待 path に対して維持)。

@@ -300,7 +300,7 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
     expect(stale.findings.some((f) => f.code === "stale-edge")).toBe(true);
   });
 
-  it("U-RELGRAPH-006b: グラフ対象外 path (config / skill / directory / archived plan) は non-graph-path (info) で ok を落とさない", () => {
+  it("U-RELGRAPH-006b: グラフ対象外 path (config / skill / non-tracked directory / archived plan) は non-graph-path (info) で ok を落とさない", () => {
     const projection = collectRelationGraphProjection({
       sourceFiles: [
         { path: "src/lint/relation-graph.ts", tests: ["tests/relation-graph.test.ts"] },
@@ -314,7 +314,7 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
         ".claude/CLAUDE.md",
         "docs/skills/api.md",
         "README.md",
-        "docs/design/helix/L2-screen/",
+        ".ut-tdd/tmp/",
         "docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md",
       ],
       projection,
@@ -323,13 +323,13 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
     expect(nonGraph.findings.every((f) => f.code !== "missing-projection")).toBe(true);
     expect(nonGraph.findings.filter((f) => f.code === "non-graph-path")).toHaveLength(5);
 
-    // 走査対象クラス配下 (src/) の node 欠落は引き続き missing-projection error のまま (規律維持)。
+    // 走査対象クラス配下 (src/) の node 欠落は、ディレクトリ丸め込みでも missing-projection error のまま (規律維持)。
     const trackedMissing = analyzeRelationImpact({
-      changedPaths: ["src/runtime/unknown-module.ts"],
+      changedPaths: ["src/runtime/unknown-module.ts", "src/runtime/new-module/"],
       projection,
     });
     expect(trackedMissing.ok).toBe(false);
-    expect(trackedMissing.findings.some((f) => f.code === "missing-projection")).toBe(true);
+    expect(trackedMissing.findings.filter((f) => f.code === "missing-projection")).toHaveLength(2);
   });
 });
 

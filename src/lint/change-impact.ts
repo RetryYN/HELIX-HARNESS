@@ -306,10 +306,14 @@ export function parseGitPorcelain(output: string): string[] {
 }
 
 export function loadChangedFiles(repoRoot: string = process.cwd()): string[] {
-  const output = execFileSync("git", ["-C", repoRoot, "status", "--porcelain"], {
-    encoding: "utf8",
-    stdio: ["ignore", "pipe", "ignore"],
-  });
+  const output = execFileSync(
+    "git",
+    ["-C", repoRoot, "status", "--porcelain", "--untracked-files=all"],
+    {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    },
+  );
   return parseGitPorcelain(output);
 }
 

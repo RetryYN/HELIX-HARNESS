@@ -1,9 +1,14 @@
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeChangeImpact,
   analyzeChangeSetIntegrity,
   changeImpactMessages,
   changeSetIntegrityMessages,
+  loadChangedFiles,
   parseGitPorcelain,
 } from "../src/lint/change-impact";
 import { analyzeDependencyDrift } from "../src/lint/dependency-drift";
@@ -56,6 +61,19 @@ describe("change-impact lint", () => {
     expect(
       parseGitPorcelain(" M src/a.ts\nR  src/old.ts -> src/new.ts\n?? tests/a.test.ts\n"),
     ).toEqual(["src/a.ts", "src/new.ts", "tests/a.test.ts"]);
+  });
+
+  it("loads untracked directory contents as file paths instead of collapsed directory paths", () => {
+    const repo = mkdtempSync(join(tmpdir(), "helix-change-impact-"));
+    try {
+      execFileSync("git", ["init"], { cwd: repo, stdio: "ignore" });
+      mkdirSync(join(repo, "src", "new"), { recursive: true });
+      writeFileSync(join(repo, "src", "new", "feature.ts"), "export const value = 1;\n");
+
+      expect(loadChangedFiles(repo)).toEqual(["src/new/feature.ts"]);
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
   });
 
   it("ignores transient harness DB journal files from git porcelain paths", () => {
