@@ -266,6 +266,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         'const upstream = "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";\n',
       );
       writeFileSync(
+        join(root, "src", "cli.ts"),
+        'readRemote("distribution_pack_repo", ["https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git", "refs/heads/main"], firstSha);\n',
+      );
+      writeFileSync(
         join(root, "src", "product.ts"),
         'const productNameDebt = "UT-TDD_AGENT-HARNESS";\n',
       );
@@ -477,6 +481,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             token: "UT-TDD_AGENT-HARNESS-Pack",
             path: "src/lint/objective-evidence-audit.ts",
+            category: "source_code",
+            disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS-Pack",
+            path: "src/cli.ts",
             category: "source_code",
             disposition: "reference_source",
           }),

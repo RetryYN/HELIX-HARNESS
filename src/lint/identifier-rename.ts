@@ -517,6 +517,7 @@ const EXTERNAL_REPO_REFERENCE_PATHS = new Set([
   "docs/governance/helix-objective-evidence-audit.md",
   "docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md",
   "docs/plans/PLAN-L7-274-objective-external-ledger-refresh.md",
+  "src/cli.ts",
   "src/lint/objective-evidence-audit.ts",
   "tests/cli-surface.test.ts",
   "tests/goal-evidence-audit.test.ts",
