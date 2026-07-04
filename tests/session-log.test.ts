@@ -10,6 +10,7 @@ import {
   type PlanDigest,
   parseSessionEvents,
   recordEvent,
+  recordSkillInjectionAttempt,
   resolveActivePlan,
   type SessionEvent,
   type SessionHookInput,
@@ -333,6 +334,58 @@ describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
     const log = deps.files.get(sessionPath("s1")) ?? "";
     expect(log).toContain('"target":"Bash (vitest)"');
     expect(log).not.toContain("secret.ts"); // 引数は残さない
+  });
+
+  it("U-SLOG-009: recordSkillInjectionAttempt records injected/missing/failed outcomes without secret leakage", () => {
+    const deps = mockDeps();
+    deps.files.set(statePath, "PLAN-L7-321-completeness-pass-gaps");
+
+    recordSkillInjectionAttempt(
+      {
+        session_id: "s1",
+        outcome: "injected",
+        required_paths: ["docs/skills/testing.md"],
+        optional_paths: ["docs/skills/refactoring.md"],
+      },
+      deps,
+    );
+    recordSkillInjectionAttempt(
+      {
+        session_id: "s1",
+        outcome: "missing",
+        missing_skill_ids: ["skill:missing"],
+      },
+      deps,
+    );
+    recordSkillInjectionAttempt(
+      {
+        session_id: "s1",
+        outcome: "failed",
+        reason: "token=secret-value",
+      },
+      deps,
+    );
+
+    const events = parseSessionEvents(deps.files.get(sessionPath("s1")) ?? "");
+    expect(events.map((event) => event.event_type)).toEqual([
+      "skill_injection",
+      "skill_injection",
+      "skill_injection",
+    ]);
+    expect(events.map((event) => event.target)).toEqual([
+      "skill_injection:injected required=1 optional=1 missing=0",
+      "skill_injection:missing required=0 optional=0 missing=1",
+      "skill_injection:failed required=0 optional=0 missing=0 reason=token=***",
+    ]);
+    expect(events[2].outcome).toBe("error");
+    const digest = compressPlanDigest(events, "PLAN-L7-321-completeness-pass-gaps");
+    expect(digest.event_counts.skill_injection).toBe(3);
+    expect(digest.failures).toEqual([
+      {
+        ts: "2026-06-02T00:00:00.000Z",
+        summary: "skill_injection:failed required=0 optional=0 missing=0 reason=token=***",
+      },
+    ]);
   });
 
   it("parseSessionEvents parses jsonl and skips corrupted lines (fail-open)", () => {

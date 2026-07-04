@@ -27,6 +27,7 @@ export type SessionEventType =
   | "commit"
   | "plan_switch"
   | "session_end"
+  | "skill_injection"
   | "forced_stop" // 強制停止 (推定、PLAN-L6-04/L7-02 forced-stop-feedback)
   | "user_prompt"; // ユーザー入力 (dangling-turn 推定の活動 marker)
 
@@ -63,6 +64,18 @@ export interface SessionHookInput {
   tool_name?: string;
   tool_input?: Record<string, unknown>;
   tool_response?: unknown;
+}
+
+export type SkillInjectionAttemptOutcome = "injected" | "no_match" | "missing" | "failed";
+
+export interface SkillInjectionAttemptInput {
+  session_id?: string;
+  plan_id?: string | null;
+  outcome: SkillInjectionAttemptOutcome;
+  required_paths?: string[];
+  optional_paths?: string[];
+  missing_skill_ids?: string[];
+  reason?: string;
 }
 
 /** I/O・clock・branch を注入 (compressPlanDigest 以外も test 可能、now 注入で決定論)。 */
@@ -220,6 +233,45 @@ export function recordEvent(ev: SessionEvent, deps: SessionLogDeps): void {
     deps.appendLine(file, JSON.stringify(ev));
   } catch {
     // fail-open: ログ失敗で作業を止めない
+  }
+}
+
+function skillInjectionTarget(input: SkillInjectionAttemptInput): string {
+  return sanitize(
+    [
+      `skill_injection:${input.outcome}`,
+      `required=${input.required_paths?.length ?? 0}`,
+      `optional=${input.optional_paths?.length ?? 0}`,
+      `missing=${input.missing_skill_ids?.length ?? 0}`,
+      input.reason ? `reason=${input.reason}` : "",
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+}
+
+/**
+ * PLAN-L7-321: skill context injection は adapter 起動前の opportunistic 処理なので fail-open だが、
+ * silent fail-open では後続調査できない。注入成功 / no-match / missing / failed を session-log に残す。
+ */
+export function recordSkillInjectionAttempt(
+  input: SkillInjectionAttemptInput,
+  deps: SessionLogDeps,
+): void {
+  try {
+    recordEvent(
+      {
+        ts: deps.now(),
+        session_id: input.session_id ?? "unknown",
+        plan_id: input.plan_id ?? resolveActivePlan(deps),
+        event_type: "skill_injection",
+        target: skillInjectionTarget(input),
+        outcome: input.outcome === "failed" ? "error" : "ok",
+      },
+      deps,
+    );
+  } catch {
+    // fail-open: 監査ログ失敗で provider 起動や作業を止めない
   }
 }
 
