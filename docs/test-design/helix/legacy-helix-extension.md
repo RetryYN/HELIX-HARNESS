@@ -43,7 +43,7 @@ related_l6: docs/design/helix/L6-function-design/legacy-helix-extension.md
 | U-HLX-001 | `buildWorkPreflightDecision` | objective、workflow/layer、Forward return、acceptance/verification、work source、allowed scope が欠落または PLAN/handover と衝突する場合に作業を block する。 |
 | U-HLX-002 | `classifyTechnicalQuestion` | 直近 TL advisor evidence が無い technical user question を deny する。preference-only bypass は reason/evidence 付きの場合だけ許可する。 |
 | U-HLX-003 | `registerDetectorAxis` | axis id、phase gate、kind、severity、workflow route を必須にし、unknown axis は auto-route しない。 |
-| U-HLX-004 | `routeDetectorFinding` | stub/advisory/fail-close を区別し、stub/advisory を hard proof として扱わせない。 |
+| U-HLX-004 | `routeDetectorFinding` | stub/advisory/fail-close を区別し、stub/advisory を hard proof として扱わせない。registry の detector kind と finding kind が一致しない場合も reject し、finding 側だけ `fail_close` と名乗る hard gate 昇格を許可しない。 |
 | U-HLX-005 | `buildRecommendationDecision` | score/reason/references/role 付きで traceable な skill/code/command candidate を出し、legacy runtime path は harden または defer する。 |
 | U-HLX-006 | `analyzeRunDebugTrace` | runtime surface、correlation id、evidence path 付きで matched/missing action を返す。incomplete trace は L7.5 acceptance を close できない。 |
 | U-HLX-007 | `buildCoreInjectionContract` | repo-local source、generated adapter target、required marker、provenance、global-file risk を分離し、personal absolute path を current truth として拒否する。 |

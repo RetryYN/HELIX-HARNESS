@@ -99,6 +99,16 @@ describe("old HELIX semantic adoption decisions (U-HLX)", () => {
       route: "repair",
       reason: "advisory",
     });
+    expect(
+      routeDetectorFinding(
+        { axis_id: "coverage", kind: "fail_close", use_as_hard_gate_proof: true },
+        registry,
+      ),
+    ).toEqual({
+      kind: "reject",
+      route: null,
+      reason: "detector_kind_mismatch:advisory!=fail_close",
+    });
   });
 
   it("U-HLX-005: buildRecommendationDecision emits traceable candidates and hardens legacy paths", () => {

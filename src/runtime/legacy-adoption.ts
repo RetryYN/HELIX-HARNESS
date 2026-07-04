@@ -311,6 +311,13 @@ export function routeDetectorFinding(
   if (!descriptor || !present(descriptor.workflow_route)) {
     return { kind: "unknown_axis", route: null, reason: "unknown_axis" };
   }
+  if (descriptor.kind !== finding.kind) {
+    return {
+      kind: "reject",
+      route: null,
+      reason: `detector_kind_mismatch:${descriptor.kind ?? "unknown"}!=${finding.kind}`,
+    };
+  }
   if (finding.use_as_hard_gate_proof && finding.kind !== "fail_close") {
     return {
       kind: "reject",
