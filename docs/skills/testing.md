@@ -18,91 +18,86 @@ applies_to:
 
 # testing
 
-Test strategy, fixture design, and Vitest execution patterns across V-model
-levels in UT-TDD. This skill covers the *what and how* of the test suite
-architecture; for the *when* (Red-Green order, L6 pairing, trace-freeze),
-see the test-driven-development skill.
+UT-TDD の V-model levels をまたぐ test strategy、fixture design、Vitest execution
+patterns。この skill は test suite architecture の *what and how* を扱う。*when*
+(Red-Green order、L6 pairing、trace-freeze) は test-driven-development skill を参照する。
 
-## When to load this skill
+## この skill を load する場面
 
-- Designing or auditing test coverage for a PLAN before pair-freeze.
-- Adding a new test level (unit / integration / system) to the suite.
-- Investigating a `bun run test` failure that is not a simple assertion error.
-- A Retrofit or Reverse PLAN needs to establish baseline coverage for
-  existing code before back-filling design docs.
+- pair-freeze 前に PLAN の test coverage を設計または audit するとき。
+- suite に新しい test level (unit / integration / system) を追加するとき。
+- 単純な assertion error ではない `bun run test` failure を調査するとき。
+- Retrofit または Reverse PLAN で、design docs の back-fill 前に existing code の
+  baseline coverage を確立する必要があるとき。
 
-## Test levels in UT-TDD
+## UT-TDD の test levels
 
-| Level | V-model layer | Location | Scope |
+| Level | V-model layer | Location | Scope（対象範囲） |
 |-------|---------------|----------|-------|
-| Unit | L7 (paired with L6) | `tests/` | Single module, no I/O |
-| Integration | L8 | `tests/integration/` | Two or more modules, real `.ut-tdd/` state |
-| System / CLI | L9 | `tests/system/` | End-to-end `ut-tdd` command invocations |
-| Acceptance | L11-L12 | `docs/test-design/acceptance/` | Scenarios against requirements |
+| Unit | L7（L6 と pair） | `tests/` | 単一 module、I/O なし |
+| Integration | L8 | `tests/integration/` | 複数 modules、real `.ut-tdd/` state |
+| System / CLI | L9 | `tests/system/` | End-to-end の `ut-tdd` command invocation |
+| Acceptance | L11-L12 | `docs/test-design/acceptance/` | requirements に対する scenarios |
 
-Each level has a corresponding design doc in `docs/test-design/` paired with
-its L5/L6 or L8/L9 design document. Level design docs must exist before the
-tests are written (FR-L1-02 test-first applies at every level, not only unit).
+各 level には、L5/L6 または L8/L9 design document と対応する design doc が
+`docs/test-design/` にある。Level design docs は tests を書く前に存在していなければならない
+(FR-L1-02 test-first は unit だけでなく全 level に適用される)。
 
-## Vitest patterns
+## Vitest patterns（実行パターン）
 
-**Run the suite:**
+**suite を実行:**
 
 ```
 bun run test           # Vitest — CI canonical runner
 bun run test --watch   # local feedback loop
 ```
 
-Never use `bun test` as a CI substitute — its 5-second sync timeout produces
-false failures on async Vitest suites.
+`bun test` を CI substitute として使わない。5 秒の sync timeout により、async Vitest
+suites で false failure が発生する。
 
-**Scoped run for a PLAN:**
+**PLAN 向け scoped run:**
 
 ```
 bun run test tests/<module>.test.ts
 ```
 
-**Coverage (when adding a gate):**
+**Coverage (gate を追加するとき):**
 
-Coverage thresholds live in `vitest.config.ts`. Do not raise thresholds without
-confirming the substance of the new tests (coverage count is not the same as
-oracle quality).
+Coverage thresholds は `vitest.config.ts` にある。new tests の substance を確認せずに
+thresholds を上げない (coverage count は oracle quality と同じではない)。
 
-## Fixture discipline
+## Fixture discipline（fixture 規律）
 
-- Fixtures for harness state live under `tests/fixtures/`. Do not reuse
-  production `.ut-tdd/` state as a test fixture — test runs must be
-  reproducible without a live runtime.
-- Integration tests that read `harness.db` must set up and tear down their own
-  in-memory or temp-file DB instance.
-- External process calls (spawning `ut-tdd` CLI) must be wrapped with a helper
-  that injects a controlled `CLAUDE_PROJECT_DIR` so hook paths resolve
-  deterministically.
+- harness state 用の fixtures は `tests/fixtures/` 配下に置く。production `.ut-tdd/`
+  state を test fixture として再利用しない。test runs は live runtime なしで再現可能でなければならない。
+- `harness.db` を読む integration tests は、自前の in-memory または temp-file DB instance を
+  set up / tear down する。
+- External process calls (`ut-tdd` CLI の spawn) は、制御された `CLAUDE_PROJECT_DIR` を注入する
+  helper で wrap し、hook paths が deterministic に解決されるようにする。
 
-## Coverage vs. substance
+## Coverage と substance
 
-A green coverage percentage does not prove the test oracles are meaningful.
-After adding tests, ask: would this test catch a wrong return value? Would it
-catch a missing write to `.ut-tdd/`? If not, strengthen the assertion before
-declaring the coverage useful.
+green coverage percentage は test oracles が meaningful であることを証明しない。
+tests 追加後に確認する: この test は wrong return value を捕捉できるか。
+`.ut-tdd/` への missing write を捕捉できるか。できないなら、coverage が有用だと判断する前に
+assertion を強める。
 
-## L8 integration test checklist
+## L8 integration test checklist（確認項目）
 
-- [ ] Test touches real `.ut-tdd/` state (temp dir, seeded fixture, or actual
-  harness.db via a test helper).
-- [ ] Test asserts on output artefacts (file written, DB row inserted, exit code)
-  not only on console output.
-- [ ] Teardown removes all temp state so subsequent runs are clean.
-- [ ] Design doc in `docs/test-design/` references this test file.
+- [ ] Test は real `.ut-tdd/` state (temp dir、seeded fixture、または test helper 経由の actual
+  harness.db) に触れる。
+- [ ] Test は console output だけでなく output artefacts (file written、DB row inserted、exit code) を
+  assert する。
+- [ ] Teardown はすべての temp state を削除し、後続 run を clean にする。
+- [ ] `docs/test-design/` の design doc がこの test file を参照する。
 
-## Retrofit / Reverse coverage baseline
+## Retrofit / Reverse coverage baseline（基準線）
 
-When back-filling tests for existing code under a Retrofit or Reverse PLAN:
+Retrofit または Reverse PLAN の下で existing code の tests を back-fill するとき:
 
-1. Run `bun run test` and record the current pass/fail state.
-2. Identify the code paths to be covered using `ut-tdd graph` or manual review.
-3. Write characterisation tests (describe current behaviour as oracle) before
-   any design changes — these become the regression fence.
-4. Back-fill L6 unit-test design docs in `docs/test-design/` to pair with the
-   characterisation tests.
-5. Only then proceed with design changes or Forward-merge.
+1. `bun run test` を実行し、current pass/fail state を記録する。
+2. `ut-tdd graph` または manual review で cover 対象の code paths を特定する。
+3. design changes より前に characterisation tests (current behaviour を oracle として記述) を書く。
+   これが regression fence になる。
+4. characterisation tests と pair する L6 unit-test design docs を `docs/test-design/` に back-fill する。
+5. その後にだけ design changes または Forward-merge へ進む。
