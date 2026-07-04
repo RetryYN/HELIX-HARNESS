@@ -13,13 +13,13 @@ created: 2026-05-28
 updated: 2026-06-24
 ---
 
-## PLAN-L7-102 review back-fill（レビュー補完）: 404 path safety
+## PLAN-L7-102 review back-fill（レビュー補完）: 404 path safety（404 path 安全性）
 
 404 ページに表示する URL path は通常画面と同じ `escapeHtml` 経路を通す。未知 path はユーザー入力扱いとし、HTML として解釈しない。
 
 # L2 画面一覧 (screen-list)
 
-> **SSoT 参照**: 画面要求 (15 画面 PM/HM/GD) の正本は L1 [screen-requirements.md](../L1-requirements/screen-requirements.md)。本 doc は L1 で確定した画面群に **L2 設計確定項目 (URL 設計 / ID↔URL 1:1 / 認証認可 / ステート保持)** を付与する。用語独自定義は行わない (anti-corruption layer)。
+> **SSoT 参照**: 画面要求 (15 画面 PM/HM/GD) の正本は L1 [screen-requirements.md](../L1-requirements/screen-requirements.md)。本 doc は L1 で確定した画面群に **L2 設計確定項目 (URL 設計 / ID↔URL 1:1 / 認証認可 / ステート保持)** を付与する。用語独自定義は行わない (anti-corruption layer、外部語彙の防腐層)。
 > **V-pair (IMP-039/058)**: 本 doc の ③ ペアは `wireframe.md` (mock、右腕 L10)。`next_pair_freeze: L10`。
 > **実装状態 (PLAN-L7-108 訂正)**: 現段階は **L2 設計 freeze 済 + Low-Fi mock (wireframe) 確定** まで。`src/web` は ui-element §2 設計部品 (HierarchyPulldown / HeatmapGrid / LayerTemplate / TraceGraph 等) に**未適合の prototype** であり、**実装完了ではない** (全 15 画面 not-implemented)。V-model 段階順は `L2 設計+mock → L10 High-Fi/UX refinement → src/web 設計適合実装 (Phase B)`。この段階で実装完了を宣言しないことを `screen-impl-pair-freeze` gate が fail-close で担保する (PLAN-L7-102 の「Phase B 実装済」claim は段階順違反で誤り、訂正)。中央 server 同期 (VPS / GitHub webhook) は ADR-005 D2 で direction-only・auth-gated ゆえ別途。
 > **配置 (ADR-005 D2)**: 中央・全 project 横断の team 管理 UI。GitHub project repo を data backbone とし、Phase A local dashboard が bootstrap。

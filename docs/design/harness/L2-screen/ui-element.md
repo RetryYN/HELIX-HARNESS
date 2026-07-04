@@ -19,11 +19,11 @@ updated: 2026-06-22
 > **実装状態**: 全コンポーネントは not-implemented (NFR-08、src/web は Phase B)。
 > **スコープ制約**: light モードのみ (Q30)、日本語固定 (Q31)、Desktop 専用 (S9=a)、30 秒ポーリング (S2=b、WebSocket 不使用)、UI 直接実行禁止 = CLI コマンド文字列コピーのみ (S5=b / CC2)。
 
-## §1 共通 UI コンポーネント catalog (全画面横断)
+## §1 共通 UI コンポーネント catalog（全画面横断）
 
 L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの catalog から組み立てる。
 
-| コンポーネント | 役割 | 主要 props | state | event | 根拠 |
+| コンポーネント | 役割 | 主要 props | state（状態） | event（イベント） | 根拠 |
 |---|---|---|---|---|---|
 | **DataTable** | raw data 粒度の詳細テーブル (サマリのみ禁止) | `columns[]` / `rows[]` / `sortable` / `filterable` | sort 列・方向 / filter 条件 (URL query 同期) | `onRowClick(rowId)` → 遷移 / `onSort` / `onFilter` | CC3 詳細データテーブル必須 |
 | **StatusBadge** | 正常/警告/失敗の即視認 | `level: 'ok'\|'warn'\|'error'\|'empty'\|'loading'` / `label` | — (純表示) | — | CC3 問題箇所視覚化 (緑/黄/赤) |
@@ -93,7 +93,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 - **コントラスト**: 状態色・本文は AA コントラスト比目標 (具体値は L10)。
 - **フォーカス可視**: フォーカスリングを維持 (Desktop keyboard 利用者向け)。
 
-## §5 responsive (Desktop 専用、S9=a)
+## §5 responsive（Desktop 専用、S9=a）
 
 - **対象**: Desktop ブラウザ専用 (Windows/macOS/Linux ネイティブ、NFR-01)。モバイル/タブレット最適化は scope 外 (S9=a、PO 承認 2026-05-28)。
 - **方針**: 固定 min-width を前提とした Desktop レイアウト。`HeatmapGrid` / `WiringDiagram` / `TraceGraph` 等の高密度コンポーネントは横スクロール許容で raw data 粒度 (CC3) を優先。

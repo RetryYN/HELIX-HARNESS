@@ -31,7 +31,7 @@ S6 Doctor 検出→Trace 修正:    HM-07 → PM-04 → PM-02 → HM-07   (HM↔
 
 ## §2 遷移エッジ詳細 (trigger / 条件 / ステート保持 / 戻る)
 
-| from → to | trigger | 遷移条件 | 渡すステート | 戻る挙動 |
+| from → to（遷移元→遷移先） | trigger（契機） | 遷移条件 | 渡すステート | 戻る挙動 |
 |---|---|---|---|---|
 | PM-01 → PM-02 | 案件 × L フェーズ cell クリック | — | `:case` + `:L` (URL path) | browser back → PM-01 (filter 復元) |
 | PM-02 → PM-03 | PLAN 行クリック (gate 結果詳細へ) | — | `:case` + 選択 PLAN (query) | breadcrumb PM-02 |
@@ -52,7 +52,7 @@ S6 Doctor 検出→Trace 修正:    HM-07 → PM-04 → PM-02 → HM-07   (HM↔
 | PM-04 → PM-06 | trace ノード → 対象 doc 本文プレビュー | — | `:case` + 対象 doc path (query) | breadcrumb PM-04 |
 | PM-06 → PM-04 | doc の「trace 確認」deep-link | — | 対象 trace key | breadcrumb PM-06 |
 
-> **PM-06 supporting navigation**: PM-02/PM-04 ↔ PM-06 設計書ビューアは **PM 内 supporting deep-link** (L1 §7.2、設計書本文プレビュー目的)。L1 §2 の 6 コアシナリオには含めない (本質は別画面の補助参照)。PM-06 も read-only (S5=b、編集なし)。
+> **PM-06 supporting navigation（補助 navigation）**: PM-02/PM-04 ↔ PM-06 設計書ビューアは **PM 内 supporting deep-link** (L1 §7.2、設計書本文プレビュー目的)。L1 §2 の 6 コアシナリオには含めない (本質は別画面の補助参照)。PM-06 も read-only (S5=b、編集なし)。
 > **trigger 種別**: 全 trigger は **クリック / リンク (read-only ナビゲーション)** または **auto 表示** に限る。副作用は持たない (S5=b: 実処理は CLI コマンド文字列コピー経由、UI 直接実行なし)。
 > **S4 共有エッジ (L1 §2 シナリオ 4 の末尾)**: S4 は `PM-05→PM-02` の後、`PM-02→PM-03` (遷移条件: **前回中断 gate の状態確認**) → `PM-03→PM-01` (目的: **4 階層プルダウンで現在 phase 確認**) を S1 と同一エッジで辿る (上表の S1 行を再利用、遷移条件のみ S4 文脈で異なる)。
 
