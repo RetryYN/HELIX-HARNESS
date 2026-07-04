@@ -4,7 +4,7 @@ status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
 related_audit: .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
-related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#6810-mcp--external-testing-tool-scope-and-workflow-triggers-a-125-2026-06-09
+related_requirements: docs/governance/helix-agent-harness-requirements_v1.2.md#6810-mcp--external-testing-tool-scope-and-workflow-triggers-a-125-2026-06-09
 ---
 
 # MCP / External Verification Profile 調査メモ
@@ -15,7 +15,7 @@ related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#
 
 調査観点:
 
-- UT-TDD が verification profile として model すべき installable MCP servers、developer plugins、test foundations は何か。
+- HELIX が verification profile として model すべき installable MCP servers、developer plugins、test foundations は何か。
 - cross-artifact impact analysis、diagram/export workflows、browser verification、GitHub workflow evidence、DB/service integration tests、API mocks のどれを改善できるか。
 - profile automation の前に必要な safety boundary は何か。
 
@@ -23,7 +23,7 @@ related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#
 
 2026-06-09 に確認した。
 
-| Source | URL | 関連する確認結果 | UT-TDD 判断 |
+| Source | URL | 関連する確認結果 | HELIX 判断 |
 |---|---|---|---|
 | MCP Registry announcement | https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/ | 公式 MCP Registry は public MCP servers を discover する open catalog/API である。preview status と self-reported registry data のため、trust proof ではなく discovery metadata として扱う。 | discovery metadata としてのみ使う。trusted profile state の前に official-source と package-integrity checks を必須にする。 |
 | MCP Inspector docs | https://modelcontextprotocol.io/docs/tools/inspector | Inspector は MCP servers の testing/debugging 用公式 developer tool であり、npm/PyPI/local server inspection を support し、tools/resources/prompts tabs を公開する。 | configured MCP profiles の preferred smoke gate とする。accept 前の minimum method は `tools/list` とする。 |

@@ -16,7 +16,7 @@ source_checked: 2026-06-12
 本メモは食べログテックブログ記事「AI 駆動要件定義プロセス」(2025 年公開) の調査記録である。
 **設計成果物 (①) ではなく参照資料**であり、`docs/design/` でなく `docs/research/` に置く (research.md §6 注記に準拠)。
 
-調査の焦点: UT-TDD Agent Harness の descent-obligation 設計 (落とさない仕組み、FR-L1-03、`docs/design/harness/L6-function-design/descent-obligation.md`) に転用できる設計概念を抽出すること。
+調査の焦点: HELIX Agent Harness の descent-obligation 設計 (落とさない仕組み、FR-L1-03、`docs/design/harness/L6-function-design/descent-obligation.md`) に転用できる設計概念を抽出すること。
 
 本メモの内容を descent-obligation.md / 既存 PLAN / schema に直接反映しない。実反映は別の Forward PLAN として Codex が起票・実装する想定 (次アクション候補: §C 参照)。
 
@@ -94,15 +94,15 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 
 ---
 
-## A. 強く転用できる点 (UT-TDD 設計の柱・現作業への紐付け)
+## A. 強く転用できる点 (HELIX 設計の柱・現作業への紐付け)
 
 ### A-1. データ状態分解の粒度軸 — descent-obligation の trace key 鎖 × 境界値 surface
 
 **転用先**: descent-obligation §4 edge case (E1-E8) の生成ロジック / L3 要件 → L6 機能設計の粒度設計
 
-食べログの「データエンティティの状態バリエーションで UC を分解する」は、UT-TDD の「設計粒度 = 単体テスト設計粒度 (V-pair)」の原則 (`document-system-map.md §0 重要(2)`) と同型の発想である。
+食べログの「データエンティティの状態バリエーションで UC を分解する」は、HELIX の「設計粒度 = 単体テスト設計粒度 (V-pair)」の原則 (`document-system-map.md §0 重要(2)`) と同型の発想である。
 
-- UT-TDD では L6 機能設計 (= 仕様設計 = 関数の pre/post) の粒度が単体テスト oracle (U-DESC-\*) の粒度と 1:1 になる。
+- HELIX では L6 機能設計 (= 仕様設計 = 関数の pre/post) の粒度が単体テスト oracle (U-DESC-\*) の粒度と 1:1 になる。
 - 食べログの状態バリエーション分解 (未表示/離脱済/回答済/月跨ぎ) は「その状態それぞれに独立した oracle が書けるか」の問いと同じ。
 - descent-obligation の `generateObligations` が「上流 trace key × 層隣接 adjacency rule から在るべき下流成果物を生成する」ロジックは、この「状態数 = 期待 UC 数 = 期待 oracle 数」の機械生成と方向が一致する。
 
@@ -135,15 +135,15 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 
 ---
 
-### A-3. セルフレビュー×反復 — UT-TDD の cross-agent review への翻案
+### A-3. セルフレビュー×反復 — HELIX の cross-agent review への翻案
 
 **転用先**: `.claude/CLAUDE.md` の review gate 方針 / `pmo-tech-docs` / `code-reviewer` agent の役割設計
 
 食べログの品質保証フェーズ (Step 7: セルフレビュー4チェック × 最大3反復) の発想 — 一度生成した成果物を AI 自身が複数回チェックする — は有用である。
 
-ただし UT-TDD には明示ルールがある: **「self-review を gate 通過根拠にしない」** (`.claude/CLAUDE.md` guard rules: cross-agent / 別 model への翻案が必須)。
+ただし HELIX には明示ルールがある: **「self-review を gate 通過根拠にしない」** (`.claude/CLAUDE.md` guard rules: cross-agent / 別 model への翻案が必須)。
 
-**翻案**: 食べログのセルフレビューを UT-TDD に転用する場合、`pmo-tech-docs` (このエージェント自身) → `code-reviewer` / `frontier-reviewer` の **cross-agent review パイプライン**として再構成する。セルフレビューを「下書き品質向上のための AI 内部サイクル」と位置付け、最終 gate 通過は別 runtime / 別 model 系統のレビューを必須とする。
+**翻案**: 食べログのセルフレビューを HELIX に転用する場合、`pmo-tech-docs` (このエージェント自身) → `code-reviewer` / `frontier-reviewer` の **cross-agent review パイプライン**として再構成する。セルフレビューを「下書き品質向上のための AI 内部サイクル」と位置付け、最終 gate 通過は別 runtime / 別 model 系統のレビューを必須とする。
 
 反復回数の上限 (×3) の概念は、descent-obligation の Phase 0 → Phase 1 → Phase 2 の段階導入 (§7) と対応する。一度に全 obligation を enforce するのでなく、段階的に厳格化する崩れ防止設計と同型。
 
@@ -155,7 +155,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 
 **転用先**: harness 中央 UI (14画面・src/web Phase B) の進行台帳設計 / PLAN の読者設計
 
-食べログの Part 1 (PdM 向け評価サマリ) / Part 2-3 (エンジニア向け仕様) の分離は、UT-TDD の「工程表=人間向け機能群進行台帳 / PLAN=AI 開発オーケストレーション」の分離 ([[project_roadmap_human_ai_planes]]) と同型。
+食べログの Part 1 (PdM 向け評価サマリ) / Part 2-3 (エンジニア向け仕様) の分離は、HELIX の「工程表=人間向け機能群進行台帳 / PLAN=AI 開発オーケストレーション」の分離 ([[project_roadmap_human_ai_planes]]) と同型。
 
 **具体的適用案**:
 - Part 1 相当: 工程表 / 進行台帳 (人間が「ここ担当」を判断する粒度)。中央 UI の Layer Summary 画面に対応。
@@ -170,34 +170,34 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 
 ### B-1. Devin API 直叩き + GitHub Actions トリガーの機構はそのまま使えない
 
-食べログの自動化は `feasibility` ラベル → Devin API → セッション生成という直接配線だが、UT-TDD には明示ルールがある:
+食べログの自動化は `feasibility` ラベル → Devin API → セッション生成という直接配線だが、HELIX には明示ルールがある:
 
-> 「Codex / Claude Code は API 直叩きではなく、契約プラン + CLI / hook を UT-TDD Agent Harness が管理する対象として扱う」(CLAUDE.md)
+> 「Codex / Claude Code は API 直叩きではなく、契約プラン + CLI / hook を HELIX Agent Harness が管理する対象として扱う」(CLAUDE.md)
 > 「Raw `codex exec` / raw `claude` を通常運用の導線にしない」(.claude/CLAUDE.md)
 
-**翻案が必須**: 食べログの「ラベルトリガー → 再評価」の**発想**は、UT-TDD では `ut-tdd hook post-tool-use` / GitHub Actions の `harness-check` ワークフロー経由で行う。Devin API を直叩きするのでなく `ut-tdd codex --role <role> --task "..."` wrapper を通すのが正規導線。
+**翻案が必須**: 食べログの「ラベルトリガー → 再評価」の**発想**は、HELIX では `ut-tdd hook post-tool-use` / GitHub Actions の `harness-check` ワークフロー経由で行う。Devin API を直叩きするのでなく `ut-tdd codex --role <role> --task "..."` wrapper を通すのが正規導線。
 
 自動化の**概念** (再評価トリガー・変更時の自動 obligation 再生成) は参照価値があるが、機構はそのままコピーしない。
 
 ---
 
-### B-2. スコープ非対称: 記事は要件定義1層、UT-TDD は L0-L14 全 V-model
+### B-2. スコープ非対称: 記事は要件定義1層、HELIX は L0-L14 全 V-model
 
 食べログの記事は `User Story → ユースケース → 業務ルール → データ設計` の1ループに集中している。このスコープでは V-model / obligation ledger / state DB feedback の概念が不要であり、記事に登場しない。
 
-**注意点**: 食べログの「トレーサビリティが取れている」は `User Story ID ↔ UC ID ↔ BR ID` の相互リンク程度を指す。UT-TDD が `descent-obligation` で実現しようとしている「L1 → L3 → L4 → L5 → L6 → L7 の全層貫通トレーサビリティ + 各ホップの不在を fail-close」とは厳格さのスケールが大きく異なる。記事の設計を「UT-TDD のトレーサビリティと同等」と見なさないこと。
+**注意点**: 食べログの「トレーサビリティが取れている」は `User Story ID ↔ UC ID ↔ BR ID` の相互リンク程度を指す。HELIX が `descent-obligation` で実現しようとしている「L1 → L3 → L4 → L5 → L6 → L7 の全層貫通トレーサビリティ + 各ホップの不在を fail-close」とは厳格さのスケールが大きく異なる。記事の設計を「HELIX のトレーサビリティと同等」と見なさないこと。
 
 ---
 
 ### B-3. セルフレビューの4チェック内容が記事で未明示
 
-記事では Step 7「セルフレビュー4チェック × 最大3反復」の具体的な4チェック項目が開示されていない (要確認)。チェック内容を推測して UT-TDD の gate 設計に援用することは避ける。記事著者への問い合わせ・続報を待つか、別途 PoC で検証する。
+記事では Step 7「セルフレビュー4チェック × 最大3反復」の具体的な4チェック項目が開示されていない (要確認)。チェック内容を推測して HELIX の gate 設計に援用することは避ける。記事著者への問い合わせ・続報を待つか、別途 PoC で検証する。
 
 ---
 
 ### B-4. 食べログのセルフレビューは自己宣言寄り
 
-食べログの品質保証は「AI が自分で作って自分でチェックする」ループである。UT-TDD では self-review を gate 通過根拠にしない (§ A-3 翻案参照)。food-blog 事例の効果測定 (MTG 削減・期間短縮) は「AI+人間」の分業効果であり、cross-agent review なしに同等品質を得られるかどうかは UT-TDD の文脈で別途検証が必要。
+食べログの品質保証は「AI が自分で作って自分でチェックする」ループである。HELIX では self-review を gate 通過根拠にしない (§ A-3 翻案参照)。food-blog 事例の効果測定 (MTG 削減・期間短縮) は「AI+人間」の分業効果であり、cross-agent review なしに同等品質を得られるかどうかは HELIX の文脈で別途検証が必要。
 
 ---
 
@@ -216,7 +216,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
    - 先行チェック: descent_obligations テーブル設計が確定してから。
 
 3. **再評価トリガー (obligation の動的再生成) の設計検討**
-   - 調査課題: User Story 更新→再評価 (食べログの自動化発想) を UT-TDD では `ut-tdd hook post-tool-use` / doctor 再実行でどう実現するか。
+   - 調査課題: User Story 更新→再評価 (食べログの自動化発想) を HELIX では `ut-tdd hook post-tool-use` / doctor 再実行でどう実現するか。
    - 合流先候補: hook 設計 PLAN / doctor `checkDescentObligation` の増分更新対応。
    - 先行チェック: descent-obligation L7 実装完了後。
 
@@ -230,7 +230,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 | ★印マーキング (AI surface 可視化) | 比較候補 | descent_obligations.origin フィールド | 中 | スキーマ確定後に検討 |
 | セルフレビュー×反復 → cross-agent 翻案 | 採用 (翻案要) | cross-agent review pipeline | 低 | cross-agent 整備状況確認後 |
 | 3部構成 (読者分離) | 採用 | 工程表/PLAN/harness.db の層分離設計に援用 | 低 | Phase B (src/web) 要件定義時 |
-| Devin API 直叩き | 不採用 | — | — | UT-TDD の API 管理ルールと非整合 |
+| Devin API 直叩き | 不採用 | — | — | HELIX の API 管理ルールと非整合 |
 | ラベルトリガー自動化の発想 | 比較候補 (翻案要) | ut-tdd hook / harness-check | 低 | wrapper 整備後 |
 
 ---
@@ -239,7 +239,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 
 - 本メモの内容を根拠に descent-obligation.md / PLAN / schema を直接変更しない。
 - 食べログのセルフレビュー4チェックの具体内容は「要確認」のまま扱い、推測値で設計判断しない。
-- Devin API の機構を UT-TDD 導線に混入させない。
+- Devin API の機構を HELIX 導線に混入させない。
 - 転用案は「採用」「比較候補」「不採用」のいずれかで明示済み。
 
 ---

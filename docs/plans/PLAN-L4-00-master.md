@@ -66,10 +66,10 @@ dependencies:
     - docs/design/harness/L3-functional/functional-requirements.md
   references:
     - docs/governance/document-system-map.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-agent-harness-requirements_v1.2.md
     - docs/plans/PLAN-L4-14-ui-standard.md
     - docs/plans/PLAN-L4-51-helix-pillar-basic-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 review_evidence:
   - reviewer: pmo-sonnet
@@ -86,9 +86,9 @@ review_evidence:
 
 L4 (基本設計) を **メタモデル ①必須 + ②プロダクト選択** で起票するための Master hub (要件 §1.10.G.13 の導線適用)。G3 = PASS (A-60) を前提に、document-system-map (A-61) の業界標準 grounding を反映して L4 child PLAN を合成する。
 
-## §1 triage (UT-TDD harness のプロダクト特性)
+## §1 triage (HELIX harness のプロダクト特性)
 
-| 軸 | UT-TDD の特性 | L4 sub-doc への影響 |
+| 軸 | HELIX の特性 | L4 sub-doc への影響 |
 |---|---|---|
 | drive | TS CLI/library + agent orchestration (be/agent/fullstack/db) | architecture / function / data 必須 |
 | UI 有無 | **core は CLI/library。UI (PM/HM/GD 15 画面) は L1 で要求確定済だが L2 モック未検証** | screen は **defer (skip)** |

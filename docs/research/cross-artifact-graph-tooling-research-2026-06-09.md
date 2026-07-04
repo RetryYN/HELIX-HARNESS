@@ -4,7 +4,7 @@ status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
 related_audit: .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
-related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#689-cross-artifact-relation-graph--visualization--tool-adapters-a-124-2026-06-09
+related_requirements: docs/governance/helix-agent-harness-requirements_v1.2.md#689-cross-artifact-relation-graph--visualization--tool-adapters-a-124-2026-06-09
 ---
 
 # Cross-Artifact Graph / Diagram Tooling 調査メモ
@@ -23,7 +23,7 @@ related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#
 
 2026-06-09 に確認した。
 
-| Source | URL | 関連する確認結果 | UT-TDD 判断 |
+| Source | URL | 関連する確認結果 | HELIX 判断 |
 |---|---|---|---|
 | dependency-cruiser | https://github.com/sverweij/dependency-cruiser | 公式 project は、custom rules、build reports、Graphviz へ渡せる DOT examples を含む graph outputs によって JS/TS dependencies を検証・可視化できると説明している。 | import/dependency rules、circular dependencies、forbidden dependencies、missing package dependencies、orphan detection、DOT graph evidence の preferred optional adapter とする。 |
 | Knip docs | https://knip.dev/ | Knip は JavaScript/TypeScript project の unused dependencies、exports、files を検出し、多数の framework/tool plugin を提供する。 | dead-node と unused-edge signal の optional adapter とする。core graph source ではなく evidence/projection input として使う。 |

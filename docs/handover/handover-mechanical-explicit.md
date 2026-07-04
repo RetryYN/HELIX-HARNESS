@@ -1,39 +1,39 @@
-# Handover Mechanical / Explicit Split
+# Handover の mechanical / explicit 分離
 
-This document defines the handover split used by UT-TDD Agent Harness after A-137.
+この文書は、A-137 以後に HELIX Agent Harness が使う handover 分離を定義する。
 
-## 1. Mechanical Handover
+## 1. Mechanical Handover（機械処理用引き継ぎ）
 
-Mechanical handover is machine-readable routing state.
+Mechanical handover は、機械可読の routing state である。
 
-Canonical locations:
+正本の場所:
 
 - `.ut-tdd/handover/CURRENT.json`
 - `.ut-tdd/handover/provider/CURRENT.json`
 - `.ut-tdd/handover/provider/*.json`
 
-Required properties:
+必須 properties:
 
-- schema/version marker when the file has a schema
-- `handover_kind: "mechanical"` for provider handover packages
+- ファイルに schema がある場合の schema/version marker
+- provider handover package 用の `handover_kind: "mechanical"`
 - active plan
-- runtime direction when provider-specific
-- budget or execution note
+- provider-specific な場合の runtime direction
+- budget または execution note
 - next action list
 - relevant file list
 - timestamp
 
-Mechanical handover must not be the only place where nuanced engineering judgement is stored.
+Mechanical handover だけを、微妙な engineering judgement の唯一の保存場所にしてはならない。
 
-## 2. Explicit Handover
+## 2. Explicit Handover（人間向け引き継ぎ）
 
-Explicit handover is human-readable judgement and narrative context.
+Explicit handover は、人間が読める judgement と narrative context である。
 
-Canonical location:
+正本の場所:
 
 - `docs/handover/session-handover-*.md`
 
-Required sections for provider-dispatch or cross-runtime handover:
+provider-dispatch または cross-runtime handover で必須の sections:
 
 - Mechanical Handover pointers
 - Explicit Handover summary
@@ -42,24 +42,24 @@ Required sections for provider-dispatch or cross-runtime handover:
 - Carry
 - Do Not Break
 
-Explicit handover may cite mechanical handover files, but must be understandable without opening provider JSON.
+Explicit handover は mechanical handover files を引用してよいが、provider JSON を開かなくても理解できなければならない。
 
-## 3. Naming Rule
+## 3. Naming Rule（命名ルール）
 
-Do not use ambiguous wording such as "goal complete treatment" when the intended meaning is either:
+意図する意味が次のいずれかである場合、"goal complete treatment" のような曖昧な wording を使わない。
 
-- `goal_complete`: the goal itself is achieved and no required work remains.
-- `completion_status`: the current status label of a plan, handover, or audit.
+- `goal_complete`: goal 自体が達成され、必要な作業が残っていない状態。
+- `completion_status`: plan、handover、audit の現在の status label。
 
-Use one of those concrete terms instead of mixed wording.
+混ざった wording ではなく、これらの具体的な term のどちらかを使う。
 
 ## 4. Verification
 
-Provider handover tests must assert `handover_kind: "mechanical"`.
+Provider handover tests は `handover_kind: "mechanical"` を assert しなければならない。
 
-Handover review must verify:
+Handover review では次を verify しなければならない。
 
-- mechanical state exists and points at the active plan;
-- explicit handover exists for human judgement;
-- `Next Actions` do not claim completion while the active plan is still `in_progress`;
-- no provider JSON is the sole source of a nuanced decision.
+- mechanical state が存在し、active plan を指していること;
+- explicit handover が人間の judgement のために存在すること;
+- active plan がまだ `in_progress` である間、`Next Actions` が完了を主張していないこと;
+- provider JSON が微妙な decision の唯一の source ではないこと。

@@ -31,55 +31,55 @@ dependencies:
   requires:
     - .ut-tdd/audit/A-126-canonical-document-export.md
     - docs/research/canonical-document-export-research-2026-06-09.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-agent-harness-requirements_v1.2.md
 ---
 
-# PLAN-L6-34 (add-design): canonical document export
+# PLAN-L6-34 (add-design): canonical document export（正本ドキュメント export）
 
 ## §0 Position
 
-This PLAN is the L6 entry for converting canonical UT-TDD documents into spreadsheet / Excel / PPTX outputs. It is not a generic report-export plan. The input scope is concept/planning, requirements, detailed design, PLAN, ADR, and test-design documents.
+この PLAN は、正本 HELIX documents を spreadsheet / Excel / PPTX outputs へ変換するための L6 entry である。汎用 report-export plan ではない。input scope は concept/planning、requirements、detailed design、PLAN、ADR、test-design documents とする。
 
 ## §1 Scope
 
-Design function contracts for:
+次の function contracts を設計する:
 
-- parsing canonical document structure with source path and section anchors;
-- preserving FR/AC/AT/PLAN/ADR IDs, status, trace, and evidence links;
-- building deterministic CSV/Markdown/XLSX/PPTX datasets;
-- rendering CSV/Markdown as built-in outputs;
-- gating XLSX/PPTX/D2 renderers by readiness findings;
-- recording generated artifacts as derived `document_export_*` projection rows.
+- source path と section anchors を持つ canonical document structure の parse;
+- FR/AC/AT/PLAN/ADR IDs、status、trace、evidence links の保持;
+- deterministic な CSV/Markdown/XLSX/PPTX datasets の構築;
+- CSV/Markdown の built-in outputs としての render;
+- readiness findings による XLSX/PPTX/D2 renderers の gate;
+- generated artifacts の derived `document_export_*` projection rows としての記録。
 
 ## §2 Inputs
 
 - Requirements §6.8.11.
 - Physical-data §9.7.
 - ADR-002 A-126 addendum.
-- A-126 audit and research memo.
+- A-126 audit と research memo。
 
-## §3 Function Contracts
+## §3 関数契約
 
-The function contracts are documented in `function-spec.md` "Canonical Document Export Addendum":
+function contracts は `function-spec.md` の "Canonical Document Export Addendum" に記録する:
 
 - `parseCanonicalDocumentStructure`
 - `buildDocumentExportDataset`
 - `renderDocumentExport`
 - `recordDocumentExportArtifact`
 
-## §4 Test Design
+## §4 テスト設計
 
-The L7 pair artifact adds U-DOCEXPORT-001..012. These oracles cover supported document families, source anchor preservation, deterministic dataset generation, redaction, built-in CSV/Markdown render, optional XLSX/PPTX readiness, projection rows, generated artifact boundary, and stale source detection.
+L7 pair artifact は U-DOCEXPORT-001..012 を追加する。これらの oracles は、supported document families、source anchor preservation、deterministic dataset generation、redaction、built-in CSV/Markdown render、optional XLSX/PPTX readiness、projection rows、generated artifact boundary、stale source detection を対象にする。
 
-## §5 Workflow Guard
+## §5 ワークフローガード
 
-No source implementation for document export is authorized until PLAN-L7-35 has a TDD Red entry and requires PLAN-REVERSE-35.
+PLAN-L7-35 が TDD Red entry を持ち、PLAN-REVERSE-35 を要求するまで、document export の source implementation は承認されない。
 
 ## §8 DoD
 
-- [x] L6 function signatures are documented.
-- [x] U-DOCEXPORT unit oracles are added to L7 unit test design.
+- [x] L6 function signatures を記録済み。
+- [x] U-DOCEXPORT unit oracles を L7 unit test design に追加済み。
 - [x] L7 implementation PLAN references this PLAN.
-- [x] Reverse pairing PLAN exists for implementation back-fill.
+- [x] implementation back-fill 用の Reverse pairing PLAN が存在する。
 
-Status is `confirmed`: the L6 entry, L7 oracle coverage, confirmed L7 implementation route, and Reverse pairing are present. Office-format rendering remains gated by renderer readiness and later workflow evidence.
+Status は `confirmed`: L6 entry、L7 oracle coverage、confirmed L7 implementation route、Reverse pairing が存在する。Office-format rendering は引き続き renderer readiness と later workflow evidence によって gate される。

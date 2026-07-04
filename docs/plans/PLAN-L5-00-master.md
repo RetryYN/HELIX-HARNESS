@@ -69,8 +69,8 @@ dependencies:
     - docs/design/harness/L4-basic-design/external-if.md
   references:
     - docs/governance/document-system-map.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-agent-harness-requirements_v1.2.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
@@ -80,9 +80,9 @@ v2_import: docs/migration/v2-import-ledger.md
 
 L5 (詳細設計 = 内部設計) を **メタモデル ①必須 + ②プロダクト選択** で起票する Master hub (要件 §1.10.G.13 導線)。G4 = CONDITIONAL PASS (A-67) を前提に、L4 基本設計 4 sub-doc を詳細化する。L5 sub-doc enum (§1.10.G.1) = `internal-processing / module-decomposition / physical-data / if-detail` (4 種)。V-pair = **L8 結合テスト設計** (L5↔L8)。
 
-## §1 triage (UT-TDD harness のプロダクト特性)
+## §1 triage (HELIX harness のプロダクト特性)
 
-| 軸 | UT-TDD の特性 | L5 sub-doc への影響 |
+| 軸 | HELIX の特性 | L5 sub-doc への影響 |
 |---|---|---|
 | 内部処理 | CLI/lint/gate/workflow の処理ロジック (DbC pre/post) | internal-processing 必須 |
 | モジュール | architecture §3 の 7 building block の内部分割 | module-decomposition 必須 |
@@ -138,10 +138,10 @@ child PLAN 起票時に以下を織り込む:
 - [x] 各 child が L8 結合テスト設計と pair_artifact 接続 (L8 §5 で全 IT-* を GWT 粒度に展開済み = candidate skeleton から confirmed へ upgrade、A-104)
 - [x] G4 escalation ①② を child PLAN の §4 carry に織り込み
 - [x] 全 child 完了で G5 (詳細設計ゲート = DbC freeze 点、document-system-map §3) freeze 済 (A-104 PASS、認証/秘密管理は human/security carry)
-## Appendix B: PLAN-L5-08 Add-Design Registration (2026-06-08)
+## 付録 B: PLAN-L5-08 Add-Design 登録 (2026-06-08)
 
-PLAN-L5-08-harness-db-feedback is registered as a post-freeze add-design child for the DB reference-feedback and automation-foundation mechanism. It binds the user request to FR-L1-05/06/07/09/12/13/17/18/19/20/33/37/39/40/41/45/46/47/48/49, descends the missing schema/module/D-API/CLI/search/feedback/automation/guardrail/asset-catalog detail to L5, and pairs the additions to L8 IT-DB/IT-SEARCH/IT-FEEDBACK/IT-AUTOMATION/IT-GUARDRAIL/IT-ASSET-DB rows. It does not roll back or replace PLAN-L5-01..07.
+PLAN-L5-08-harness-db-feedback は、DB reference-feedback と automation-foundation 機構の freeze 後 add-design child として登録する。user request を FR-L1-05/06/07/09/12/13/17/18/19/20/33/37/39/40/41/45/46/47/48/49 に紐づけ、不足していた schema/module/D-API/CLI/search/feedback/automation/guardrail/asset-catalog の詳細を L5 へ降下し、追加分を L8 IT-DB/IT-SEARCH/IT-FEEDBACK/IT-AUTOMATION/IT-GUARDRAIL/IT-ASSET-DB 行と pair する。PLAN-L5-01..07 は roll back せず、置き換えもしない。
 
-## Appendix C: PLAN-L5-09 Add-Design Registration (2026-06-28)
+## 付録 C: PLAN-L5-09 Add-Design 登録 (2026-06-28)
 
-PLAN-L5-09-helix-pillar-detail-design is registered as the HELIX pillar L5 add-design child for PLAN-L4-51. It descends the L4 `HB-*` 10 blocks and HR 43 requirement rows into L5 `HC-*` detailed contracts and pairs them to L8 `LIT-*` integration observations. It preserves the existing harness L5 sub-docs and corrects the master V-pair wording to L5↔L8.
+PLAN-L5-09-helix-pillar-detail-design は、PLAN-L4-51 向けの HELIX pillar L5 add-design child として登録する。L4 の `HB-*` 10 blocks と HR 43 requirement rows を L5 `HC-*` 詳細 contract へ降下し、それらを L8 `LIT-*` integration observations と pair する。既存の harness L5 sub-docs は保持し、master V-pair の表記を L5↔L8 へ是正する。

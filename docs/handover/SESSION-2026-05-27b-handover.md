@@ -61,7 +61,7 @@
 - `src/schema/index.ts` (現 enum 正本、charter/19 artifact 反映済) / `docs/governance/repository-structure.md`
 - ADR-001 (実装シーケンス)
 
-## §3 carry / TODO
+## §3 carry / TODO（持ち越し）
 
 - **Phase 3 pointer 化は意図的に見送り**: concept §3.1.4 は既に §7.8.7.1 へのポインタを持ち、§2.1.2.1 は 3ティアレビューの核心概念のため現状維持 (PM 判断、冗長ではなく load-bearing)。
 - **migration 系 / templates の旧 PLAN 参照**: `helix-porting-map.md` / `cutover-strategy.md` / `templates/state/vmodel.json` / `templates/prompts/effort-classify.md` に PLAN-001..004 や requirements_v1.1 への**「superseded」明記済みの歴史的言及**が残る。パスリンク切れではないため対象外。気になれば後続で historical 整理。
@@ -71,7 +71,7 @@
 
 ## §4 環境
 
-- Bun 1.3.14 + Node v24.13.0。tsc/vitest/biome は devDep。
+- 実行環境: Bun 1.3.14 + Node v24.13.0。tsc/vitest/biome は dev dependency。
 - Codex Windows sandbox blocker 継続 (8009001d)。委譲時は task 埋め込み。本 session は Opus 直接 + pmo-sonnet (read-only レビュー) で完遂。
 - main 直運用 (PO 単独 maintainer)。
 

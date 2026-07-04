@@ -32,13 +32,13 @@ dependencies:
 
 ## §0 本 PLAN の役割
 
-HELIX（超個人開発システム）の L0 企画書（`kind=charter`）を起票・確定し、**G0.5（企画→要求）**を通す工程。UT-TDD ハーネスを土台に、HELIX を `area=helix` として L0 から積み直す Forward の起点。既存ハーネス（UT-TDD）の確定済み L1–L7 資産は壊さず上に積む。
+HELIX（超個人開発システム）の L0 企画書（`kind=charter`）を起票・確定し、**G0.5（企画→要求）**を通す工程。HELIX Agent Harness を土台に、HELIX を `area=helix` として L0 から積み直す Forward の起点。既存ハーネス（HELIX 移行前の harness）の確定済み L1–L7 資産は壊さず上に積む。
 
 ## §1 入力 (上流からの baton)
 
 - PO のビジョン（chat、2026-06-28）: 超個人開発システム／3 層自律境界（人=L0–L2＋L2モック・L3承認／AI=L4 以降フル自動）／10 本柱 P0–P9／横断原則（単一ルール・共有記憶）。
 - 旧 HELIX gap 分析（`RetryYN/ai-dev-kit-vscode` dogfood / v3 charter）: 簡素化で落ちていた安全自走 4 機構（駆動 workflow＋forward_return／DB 収束／pair_closure／連続走行＋fresh-session）と escalation 境界を復元。
-- 土台: UT-TDD Agent Harness（V モデル工程・gate・state DB 実装済み、L7 実装スプリント進行中）。
+- 土台: HELIX Agent Harness（V モデル工程・gate・state DB 実装済み、L7 実装スプリント進行中）。
 
 ## §2 出力 (本 PLAN で確定)
 
@@ -47,27 +47,27 @@ HELIX（超個人開発システム）の L0 企画書（`kind=charter`）を起
 
 ## §3 工程表 (Step + 進捗)
 
-### Step 1: [直列] PO ビジョン収集
+### 手順 1: [直列] PO ビジョン収集 (Step 1)
 > 直列理由: downstream_dependency — ビジョン確定が後続 Step 2〜5 の前提になるため。
 chat で「何を／誰のため／変える点」を確定（超個人開発・3 層自律境界・10 本柱 P0–P9・横断原則）。
 - 進捗: ✅ (2026-06-28)
 
-### Step 2: [直列] 旧 HELIX gap 分析
+### 手順 2: [直列] 旧 HELIX gap 分析 (Step 2)
 > 直列理由: downstream_dependency — Step 1 のビジョンを基準に旧 HELIX と差分照合するため。
 旧 HELIX（`RetryYN/ai-dev-kit-vscode` dogfood / v3 charter）を精読し、落ちていた安全自走機構を P0/P9 新設・P1/P3/P5/P8 強化として復元。
 - 進捗: ✅ (2026-06-28)
 
-### Step 3: [直列] charter v0.1 起草
+### 手順 3: [直列] charter v0.1 起草 (Step 3)
 > 直列理由: downstream_dependency — Step 1〜2 の確定内容を企画書へ統合するため。
 `helix-charter_v0.1.md` を起票（背景・目的・自律境界・P0–P9・横断原則・非目標・成功方向・L1 trace seed）。
 - 進捗: ✅ (2026-06-28)
 
-### Step 4: [直列] review (内部矛盾チェック + L1 trace 可能性確認)
+### 手順 4: [直列] レビュー (Step 4 / review: 内部矛盾チェック + L1 trace 可能性確認)
 > 直列理由: downstream_dependency — Step 3 の起草物に対し G0.5 の 2 条件を検証するため。
 `ut-tdd plan lint` / `ut-tdd doctor` ＋ PO レビューで「内部矛盾なし」「背景・目的・スコープが L1 へ trace 可能」を確認。
 - 進捗: ✅ (2026-06-28、plan lint GREEN / doctor GREEN)
 
-### Step 5: [直列] G0.5 PO サインオフ
+### 手順 5: [直列] G0.5 PO サインオフ (Step 5)
 > 直列理由: downstream_dependency — Step 4 の検証通過後に PO が確定するため。
 PO 承認 → status=confirmed。L1 要求起票（P0–P9 → BR-*/NFR-*）へ baton。
 - 進捗: ✅ (PO 承認 2026-06-28、status=confirmed)
@@ -85,7 +85,7 @@ PO 承認 → status=confirmed。L1 要求起票（P0–P9 → BR-*/NFR-*）へ 
 | §7 成功方向 | PO 代表シナリオ | 定量 KPI 強制せず方向性のみ |
 | §8 L1 trace seed | 本 charter §8 | P0–P9 → BR-*/NFR-* 接続点を列挙 |
 
-## §4 DoD (Definition of Done)
+## §4 完了条件 (DoD / Definition of Done)
 
 - [x] 企画書 `helix-charter_v0.1.md` が存在し非空。
 - [x] 背景・目的・スコープ（P0–P9）が記載され、L1 業務要求/非機能要求へ trace できる構造（charter §8 trace seed）。

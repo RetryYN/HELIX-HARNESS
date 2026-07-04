@@ -6,40 +6,40 @@ scope: "L7 Phase 3 workflow automation verification cycle"
 active_plan: PLAN-L7-43
 ---
 
-# Phase 3 workflow automation verification cycle
+# Phase 3 workflow automation verification cycle（検証サイクル）
 
-## 1. Scope
+## 1. スコープ
 
-This report is the Phase 3 verification cycle for L7 workflow automation. It verifies that the workflow automation slice is implemented and runnable before Phase 4 DB integration starts.
+本レポートは L7 workflow automation の Phase 3 verification cycle である。Phase 4 DB integration を開始する前に、workflow automation slice が実装済みかつ実行可能であることを検証する。
 
-In scope:
+対象範囲:
 
 - L7 automation roadmap spans in `PLAN-DISCOVERY-05-roadmap-registration.md`.
-- `doctor`, `plan lint`, `vmodel lint`, runtime status, handover, review evidence, trace/drift/orphan gates.
-- Relation graph, MCP profile safety, tool adapter probes, canonical document export pure core, dependency-drift, regression expansion, and L0-L7 verification group surface.
-- Design consistency between roadmap/function-spec/test-design/PLAN evidence and current source/tests.
+- `doctor`、`plan lint`、`vmodel lint`、runtime status、handover、review evidence、trace/drift/orphan gate を対象にする。
+- relation graph、MCP profile safety、tool adapter probe、canonical document export pure core、dependency-drift、regression expansion、L0-L7 verification group surface を対象にする。
+- roadmap / function-spec / test-design / PLAN evidence と current source/tests の design consistency。
 
-Out of scope:
+対象外:
 
 - `.ut-tdd/harness.db` / state DB projection implementation.
-- DB-backed feedback, audit, search, quality-signal history, and automatic state registration. These remain Phase 4.
-- External MCP/tool execution. Current Phase 3 verifies catalog/config/safety/probe planning and normalized findings only.
-- Runnable `ut-tdd export docs` CLI. Current Phase 3 verifies the canonical document export library/projection core only.
+- DB-backed feedback、audit、search、quality-signal history、automatic state registration。これらは Phase 4 に残す。
+- external MCP/tool execution。現 Phase 3 は catalog/config/safety/probe planning と normalized findings のみを検証する。
+- runnable `ut-tdd export docs` CLI。現 Phase 3 は canonical document export library/projection core のみを検証する。
 
-## 2. Requirements Derived
+## 2. 派生要件
 
 | Requirement | Evidence |
 |---|---|
-| L7 automation roadmap reaches all gates | `doctor` reports `PLAN-DISCOVERY-05-roadmap-registration [L7]: gates 7/7 到達, spans 9, 孤児 span 0` |
-| Workflow automation commands are runnable | `status --json`, `plan lint`, `vmodel lint`, `doctor`, and CLI smoke tests pass |
-| Design docs do not contradict implementation state | roadmap, function-spec, PLAN-DISCOVERY-05 stale items corrected in this cycle |
-| Regression expansion accounts for CLI subprocess smoke coverage | `U-REGEXP-003` added; `doctor` regression-expansion now OK for `src/cli.ts` changes |
-| L0-L7 verification gate inspects L7 automation evidence | `doctor` reports `L7 plans 9/9 confirmed, evidence 9/9` and `U-VTRIG-006` fails L0-L7 when required PLAN status/review/generates evidence is missing |
-| Phase 3 hard gates fail-close in `doctor.ok` | `dependency-drift`, `regression-expansion`, and verification groups are included in `runDoctor.ok` |
-| Full quantitative gate is green | `bun run test`, `bun run lint`, `bun run typecheck`, `bun run src/cli.ts doctor` pass |
-| Phase 4 boundary remains explicit | roadmap/report state DB integration as next cycle, not part of Phase 3 completion |
+| L7 automation roadmap が全 gate に到達する | `doctor` reports `PLAN-DISCOVERY-05-roadmap-registration [L7]: gates 7/7 到達, spans 9, 孤児 span 0` |
+| workflow automation command が実行可能 | `status --json`、`plan lint`、`vmodel lint`、`doctor`、CLI smoke tests が pass |
+| design docs が implementation state と矛盾しない | roadmap、function-spec、PLAN-DISCOVERY-05 の stale items を本 cycle で修正 |
+| regression expansion が CLI subprocess smoke coverage を考慮する | `U-REGEXP-003` を追加し、`src/cli.ts` 変更時の `doctor` regression-expansion が OK |
+| L0-L7 verification gate が L7 automation evidence を検査する | `doctor` reports `L7 plans 9/9 confirmed, evidence 9/9`。required PLAN status/review/generates evidence が欠けると `U-VTRIG-006` が L0-L7 を fail |
+| Phase 3 hard gates が `doctor.ok` で fail-close する | `dependency-drift`、`regression-expansion`、verification groups を `runDoctor.ok` に含める |
+| full quantitative gate が green | `bun run test`、`bun run lint`、`bun run typecheck`、`bun run src/cli.ts doctor` が pass |
+| Phase 4 boundary が明示される | state DB integration は roadmap/report 上で next cycle とし、Phase 3 completion には含めない |
 
-## 3. Commands Run
+## 3. 実行 command
 
 ```text
 bun run src/cli.ts status --json
@@ -51,7 +51,7 @@ bun run vitest run tests/dependency-drift.test.ts tests/doctor.test.ts tests/run
 bun run vitest run tests/vmodel-pair.test.ts tests/doctor.test.ts tests/dependency-drift.test.ts
 ```
 
-Full-suite evidence after the Phase 3 verification fixes:
+Phase 3 verification 修正後の full-suite evidence:
 
 ```text
 bun run test
@@ -60,65 +60,65 @@ bun run typecheck
 bun run src/cli.ts doctor
 ```
 
-Observed result: 47 test files / 413 tests passed; lint, typecheck, and doctor exited 0.
+観測結果: 47 test files / 413 tests passed。lint、typecheck、doctor は exit 0。
 
-## 4. Findings Fixed During This Cycle
+## 4. 本 cycle で修正した finding
 
 | Finding | Fix |
 |---|---|
-| `roadmap.md` still said Phase 3 had `plan lint` stub and gate automation missing | Updated Phase 3 current state to the implemented automation surface and clarified Phase 4 DB boundary |
-| `function-spec.md` still marked `L7.6 dependency-drift` as `未` | Updated to implemented with `src/lint/dependency-drift.ts`, `tests/dependency-drift.test.ts`, and `PLAN-REVERSE-42` |
-| `PLAN-DISCOVERY-05` still used old GATE-B carry wording | Updated to G-L7.E reached / implementation verification cycle gate landed |
-| CLI help still described doctor/plan/vmodel as scaffold stubs | Updated command descriptions in `src/cli.ts` |
-| regression-expansion warned on `src/cli.ts` changes despite subprocess CLI smoke tests | Added `U-REGEXP-003` and subprocess smoke coverage recognition in `dependency-drift` |
-| L0-L7 verification group only inspected L1-L6 design docs | Added required L7 automation PLAN status/review/generates evidence and `U-VTRIG-006`; `doctor` now surfaces `L7 plans 9/9 confirmed, evidence 9/9` |
-| `doctor.ok` did not hard-fail dependency/regression/verification group failures | Wired `dependency-drift`, `regression-expansion`, and verification group readiness into `runDoctor.ok` |
-| `PLAN-L7-35` implied a runnable `ut-tdd export docs` CLI surface | Clarified that Phase 3 covers the canonical document export pure core only; CLI surface is follow-up scope |
-| Cross-review found L0-L7 PLAN status-only evidence too weak | Strengthened `loadVerificationPlanEvidence` so L0-L7 requires confirmed status plus `review_evidence` and `generates` metadata |
+| `roadmap.md` が Phase 3 に `plan lint` stub と gate automation 欠落があると述べたままだった | Phase 3 current state を実装済み automation surface へ更新し、Phase 4 DB boundary を明確化 |
+| `function-spec.md` が `L7.6 dependency-drift` を `未` のままにしていた | `src/lint/dependency-drift.ts`、`tests/dependency-drift.test.ts`、`PLAN-REVERSE-42` 付きの implemented 状態へ更新 |
+| `PLAN-DISCOVERY-05` が古い GATE-B carry wording を使っていた | G-L7.E reached / implementation verification cycle gate landed へ更新 |
+| CLI help が doctor/plan/vmodel を scaffold stubs と説明していた | `src/cli.ts` の command descriptions を更新 |
+| subprocess CLI smoke tests があるのに `src/cli.ts` 変更で regression-expansion が warning になった | `U-REGEXP-003` と subprocess smoke coverage recognition を `dependency-drift` に追加 |
+| L0-L7 verification group が L1-L6 design docs だけを検査していた | 必須 L7 automation PLAN status/review/generates evidence と `U-VTRIG-006` を追加し、`doctor` が `L7 plans 9/9 confirmed, evidence 9/9` を出すようにした |
+| `doctor.ok` が dependency/regression/verification group failure を hard-fail していなかった | `dependency-drift`、`regression-expansion`、verification group readiness を `runDoctor.ok` に配線 |
+| `PLAN-L7-35` が runnable `ut-tdd export docs` CLI surface を含意していた | Phase 3 は canonical document export pure core のみを扱い、CLI surface は follow-up scope と明確化 |
+| cross-review で L0-L7 PLAN status-only evidence が弱いと判明 | `loadVerificationPlanEvidence` を強化し、L0-L7 は confirmed status に加えて `review_evidence` と `generates` metadata を要求 |
 
-## 5. Current Verification Result
+## 5. 現在の検証結果
 
-As of this report:
+本レポート時点:
 
 - `doctor`: exit 0.
-- L7 roadmap: 7/7 gates reached, 9 spans, orphan span 0.
-- L0-L7 implementation verification cycle gate: surfaced as freeze complete / verification cycle triggerable with L7 plans 9/9 confirmed and evidence 9/9.
+- L7 roadmap は 7/7 gates reached、9 spans、orphan span 0。
+- L0-L7 implementation verification cycle gate: L7 plans 9/9 confirmed、evidence 9/9 として freeze complete / verification cycle triggerable を surface。
 - `dependency-drift`: OK, no cycles.
-- `regression-expansion`: OK after CLI smoke coverage recognition (`tests=35` in doctor output for the current changed set).
+- `regression-expansion`: CLI smoke coverage recognition 後 OK（当時の changed set に対する doctor output は `tests=35`）。
 - `plan lint`: OK.
 - `vmodel lint`: OK, pair-freeze orphan 0.
 
-## 6. Cross-Review Notes
+## 6. Cross-review notes（レビュー記録）
 
-Review stance applied:
+適用した review stance:
 
-- Checked for stale design claims, not just green tests.
-- Checked workflow commands as user-facing automation paths.
-- Checked that Phase 3 completion is not overclaimed as Phase 4 DB completion.
-- Checked security boundary for external profiles/tools remains disabled-by-default and no implicit install/run is authorized.
+- green tests だけでなく stale design claim を確認した。
+- workflow command を user-facing automation path として確認した。
+- Phase 3 completion を Phase 4 DB completion として過剰主張していないことを確認した。
+- external profiles/tools の security boundary が disabled-by-default のままで、implicit install/run が承認されていないことを確認した。
 
-No blocking implementation gap was found in the Phase 3 workflow automation slice after the fixes above.
+上記修正後、Phase 3 workflow automation slice には blocking implementation gap は見つからなかった。
 
-Residual risks / next cycle:
+残リスク / 次 cycle:
 
-- Phase 4 DB integration is still open by design: `.ut-tdd/harness.db`, projection rebuild, feedback/audit/search, and automatic registration.
-- External MCP/tool execution remains opt-in and not part of current gate truth.
-- `PLAN-L7-05-biome-debt` remains a conditional backfill note in `doctor`; it does not block Phase 3.
+- Phase 4 DB integration は設計上まだ open: `.ut-tdd/harness.db`、projection rebuild、feedback/audit/search、automatic registration。
+- external MCP/tool execution は opt-in のままで、現行 gate truth には含めない。
+- `PLAN-L7-05-biome-debt` は `doctor` の conditional backfill note として残るが、Phase 3 は block しない。
 
-## 6b. Round-2 Cross-Review (pre-commit, substance pass)
+## 6b. Round-2 cross-review（事前の実質確認）
 
-A second cross-review was run before commit at PO request ("are there really no fixes? does it actually work?"). The delegated `code-reviewer` (Sonnet, cross-model) ran independent investigation but did not emit a structured verdict in two attempts; findings were confirmed by direct substance inspection of `src/export/document-export.ts` and its tests. Machine gates were green but were hiding untested paths (coverage ≠ substance).
+PO request（"are there really no fixes? does it actually work?"）を受け、commit 前に 2 回目の cross-review を実行した。委譲した `code-reviewer`（Sonnet、cross-model）は独立調査を行ったが、2 回の試行で structured verdict は出さなかった。そのため `src/export/document-export.ts` と tests を直接 substance inspection し、finding を確認した。machine gates は green だったが、untested path を隠していた（coverage ≠ substance）。
 
 | Finding | Severity | Fix |
 |---|---|---|
-| `renderDocumentExport` fell through to `renderMarkdown` for `xlsx`/`pptx` when `rendererReady=true`, emitting markdown bytes mislabeled as `format:"xlsx"` with `ok:true` (overclaim; violates PLAN-L7-35 "no Office renderer invocation / disabled until readiness"). Tests only covered `rendererReady:false`. | Important | xlsx/pptx never fall through to markdown; always `renderer-unavailable` + empty content, `rendererReady` only changes the finding message. `U-DOCEXPORT-013`. |
-| `maxRowsPerChunk: 0` caused `chunkRows` infinite loop (`i += 0`); `?? ` does not catch `0`. Untested. | Important | `Math.max(1, ...)` lower bound. `U-DOCEXPORT-014`. |
-| `csvEscape` did not neutralize CSV formula injection (`=`,`+`,`-`,`@` prefixes) for an Office-consumed export. | Minor | Prefix risky cells with `'` (OWASP). `U-DOCEXPORT-015`. |
+| `rendererReady=true` の `xlsx`/`pptx` で `renderDocumentExport` が `renderMarkdown` へ fall through し、markdown bytes を `format:"xlsx"` かつ `ok:true` として誤表示していた（overclaim、PLAN-L7-35 の「Office renderer invocation なし / readiness まで disabled」に違反）。tests は `rendererReady:false` だけを covered。 | Important | xlsx/pptx は markdown へ fall through せず、常に `renderer-unavailable` + empty content。`rendererReady` は finding message だけを変える。`U-DOCEXPORT-013`。 |
+| `maxRowsPerChunk: 0` で `chunkRows` が infinite loop した（`i += 0`）。`??` は `0` を捕捉しない。未テストだった。 | Important | `Math.max(1, ...)` lower bound を入れた。`U-DOCEXPORT-014`。 |
+| Office-consumed export 向けに、`csvEscape` が CSV formula injection（`=`、`+`、`-`、`@` prefixes）を neutralize していなかった。 | Minor | risky cell に `'` prefix を付ける（OWASP）。`U-DOCEXPORT-015`。 |
 
-Post-fix evidence: `bun run test` 47 files / **416 tests** passed; `typecheck`, `lint`, `doctor` exit 0; `dependency-drift` / `regression-expansion` OK. No remaining High/Important findings known after this pass.
+修正後 evidence: `bun run test` 47 files / **416 tests** passed。`typecheck`、`lint`、`doctor` は exit 0。`dependency-drift` / `regression-expansion` は OK。この pass 後に既知の High/Important finding は残っていない。
 
 ## 7. Decision
 
-Phase 3 workflow automation verification cycle: **pass**.
+Phase 3 workflow automation verification cycle は **pass**。
 
-The next recommended goal is Phase 4 UT harness DB integration: ingest automation evidence into the DB projection and complete feedback/audit/state guarantees.
+次の推奨 goal は Phase 4 UT harness DB integration である。automation evidence を DB projection へ ingest し、feedback/audit/state guarantee を完了させる。

@@ -9,13 +9,13 @@
 
 ## §0 最重要: このセッションの方針転換
 
-前 session までは「HELIX vendor の Python を `src/ut_tdd/` へ wave 移植 (W1-W3a 完了)」路線だった。本 session で以下に **転換**した:
+前 session までは「HELIX vendor の Python を `src/helix/` へ wave 移植 (W1-W3a 完了)」路線だった。本 session で以下に **転換**した:
 
 1. **HELIX は設計概念のみ取り込み、内部は全面再実装** (コードは port しない)。
 2. **実装言語 = TypeScript / Bun に確定** (ADR-001)。← 旧 Python port は破棄。
 3. governance 正本を **concept v3.1 / requirements v1.2** に更新 (V2 の L0-L14 + W-model / 9-mode / 配線 / 2マスト原則 / レビューゲート / 専門サブエージェント必須 checklist を反映)。
 
-→ 旧 W1-W3a の `src/ut_tdd/*.py` (23 files) と PLAN-001..004 は **破棄 / archived**。pytest 293 PASS 等の旧実績はもう参照しない。
+→ 旧 W1-W3a の `src/helix/*.py` (23 files) と PLAN-001..004 は **破棄 / archived**。pytest 293 PASS 等の旧実績はもう参照しない。
 
 ## §1 現在の状態
 
@@ -23,9 +23,9 @@
 
 | doc | 役割 |
 |---|---|
-| `docs/governance/ut-tdd-agent-harness-concept_v3.1.md` | 構想 (V2 L0-L14 + W-model / 9-mode / 配線 §2.6 / 2マスト原則 §2.1.0 / レビューゲート §2.1.2.1) |
-| `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` | 要件 (L0-L14 enum / W-model freeze / 配線要件 §7.8 / 専門サブエージェント checklist §7.8.7.1) |
-| `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md` | 再設計方針 + 実装言語 = TypeScript/Bun |
+| `docs/governance/helix-agent-harness-concept_v3.1.md` | 構想 (V2 L0-L14 + W-model / 9-mode / 配線 §2.6 / 2マスト原則 §2.1.0 / レビューゲート §2.1.2.1) |
+| `docs/governance/helix-agent-harness-requirements_v1.2.md` | 要件 (L0-L14 enum / W-model freeze / 配線要件 §7.8 / 専門サブエージェント checklist §7.8.7.1) |
+| `docs/adr/ADR-001-helix-harness-redesign-and-language.md` | 再設計方針 + 実装言語 = TypeScript/Bun |
 | `docs/governance/repository-structure.md` | リポジトリ構成ルール (配置 / V-model 4 artifact 配置 / config 最小化方針 §8) |
 | 旧 `concept_v3.0` / `requirements_v1.1` | superseded banner 付きで残置 (正本ではない) |
 
@@ -38,7 +38,7 @@
 - config: `package.json` / `tsconfig.json` (strict) / `biome.json` (lint+format 1枚) / `bun.lock`。
 - 検証: `bun run typecheck` (tsc clean) / `bun run test` (7 pass) / `bun run lint` (biome exit 0) / `ut-tdd status --json` 動作 (この環境は `claude-only` 判定)。
 
-### git / branch
+### Git / branch（Git と branch）
 
 - **main に全反映済み・push 済み** (origin/main = 最新)。本 session は org repo `unison-ai-product/UT-TDD_AGENT-HARNESS` の main へ直接運用 (PO が単独 maintainer のため PR ceremony 不要)。
 - 本 session の commit 列 (vendor更新 → governance v3.1/v1.2 → TS採用+doc整合 → TS scaffold+Python破棄 → 構成ルール+pyproject削除 → Biome+config方針 → .gitignore補強 → 本 handover)。
@@ -61,14 +61,14 @@ TS rebuild の core 実装。優先順:
 - `requirements_v1.2` §1 (enum) / §2 (W-model) / §7.8 (配線)
 - `src/schema/index.ts` (現 enum 正本) / `src/runtime/detect.ts`
 
-## §3 carry / TODO
+## §3 carry / TODO（持ち越し）
 
 - **schema**: `VALID_ARTIFACT_TYPES` 19 種補完 (TODO コメント在 in `src/schema/index.ts`)。
 - **detect**: capability probe (`--version` 実行) + Windows の拡張子なし wrapper 検出 (現 `claude-only` 誤判定)。
 - **ADR-001 follow-up**: 着手前に **tl-advisor (Codex、別 runtime) の adversarial cross-check** (本 session は PO 選択で後回し)。
 - **gate G8-G14 機械検証**: 現 §2 は G7 まで。G8-G14 は将来 PLAN (requirements §2.7 に明記)。
 - **CI**: `.github/workflows/harness-check` 未構築 (要件 §6)。TS なら vitest+tsc+biome+plan/vmodel lint を束ねる。
-- **`.claude/hooks/`**: 旧 HELIX hook 群が残存 (settings.json は `hooks:{}` 安全設定)。UT-TDD hook の package-local 化は後続。
+- **`.claude/hooks/`**: 旧 HELIX hook 群が残存 (settings.json は `hooks:{}` 安全設定)。HELIX hook の package-local 化は後続。
 - **移植系 doc**: `helix-porting-map.md` / `cutover-strategy.md` の code-port 部は ADR-001 で superseded (能力参照としてのみ)。
 
 ## §4 環境

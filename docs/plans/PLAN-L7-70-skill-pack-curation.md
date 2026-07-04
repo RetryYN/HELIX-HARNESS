@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-70-skill-pack-curation
-title: "PLAN-L7-70 (impl): skill pack の UT-TDD substance curate (FR-L1-47 / FR-L1-12)"
+title: "PLAN-L7-70 (impl): skill pack の HELIX substance curate (FR-L1-47 / FR-L1-12)"
 kind: impl
 layer: L7
 drive: agent
@@ -15,12 +15,12 @@ review_evidence:
     reviewed_at: "2026-06-17"
     tests_green_at: "2026-06-17"
     verdict: pass
-    scope: "Skill substance curation closed: 54 packs all carry UT-TDD substance (0 generic stubs), valid skill.v1 routing frontmatter, real ut-tdd commands only, 0 legacy terms, readability 0 markers. pmo-tech-docs subagents authored per requirement-mapped batches; PM verified via asset catalog, doctor, readability/asset-drift gates, byte-level U+FFFD scan, and full Vitest (685)."
+    scope: "Skill substance curation closed: 54 packs all carry HELIX substance (0 generic stubs), valid skill.v1 routing frontmatter, real ut-tdd commands only, 0 legacy terms, readability 0 markers. pmo-tech-docs subagents authored per requirement-mapped batches; PM verified via asset catalog, doctor, readability/asset-drift gates, byte-level U+FFFD scan, and full Vitest (685)."
     worker_model: sonnet
     reviewer_model: claude-opus-4-8
 agent_slots:
   - role: tl
-    slot_label: "TL - skill pack UT-TDD substance curate (catalog frontmatter + body)"
+    slot_label: "TL - skill pack HELIX substance curate (catalog frontmatter + body)"
 generates:
   - artifact_path: docs/plans/PLAN-L7-70-skill-pack-curation.md
     artifact_type: markdown_doc
@@ -45,90 +45,89 @@ dependencies:
   references:
     - docs/plans/PLAN-L4-12-skill-pack.md
     - docs/plans/PLAN-DISCOVERY-03-skill-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_l0_extra: docs/design/harness/L1-requirements/functional-requirements.md
 ---
 
-# PLAN-L7-70 (impl): skill pack の UT-TDD substance curate
+# PLAN-L7-70 (impl): skill pack の HELIX substance curate
 
-## 0. Objective
+## 0. 目的
 
-Realize FR-L1-47 (skill pack の UT-TDD curate) and FR-L1-12 (L 単位 文脈注入) by
-giving `docs/skills/*.md` packs genuine UT-TDD substance: correct routing
-frontmatter (consumed by `src/skills/recommend.ts`) and bodies that describe the
-skill **as applied inside the UT-TDD workflow** (real `ut-tdd` commands,
-`.ut-tdd/` state, V-model layers, drive models, gates). HELIX vendor sources are
-loose reference only (ADR-001, §1.5 of the fork plan); no verbatim copies, no
-HELIX/ai-dev-kit terms.
+FR-L1-47（skill pack の HELIX curate）と FR-L1-12（L 単位 文脈注入）を満たすため、
+`docs/skills/*.md` の各 pack に実質的な HELIX 手順を持たせる。対象は
+`src/skills/recommend.ts` が読む routing frontmatter と、HELIX workflow 内での使い方を
+説明する本文である。本文は実在する `ut-tdd` command、`.ut-tdd/` state、V-model layer、
+drive model、gate を前提にする。HELIX vendor source は ADR-001 と fork plan §1.5 に基づく
+参考資料に限定し、verbatim copy や HELIX/ai-dev-kit term は持ち込まない。
 
-## 1. Problem (verified 2026-06-17)
+## 1. 問題（2026-06-17 検証）
 
-A four-agent survey confirmed the fork plan §2.5 risk: the ~47 existing curated
-packs share an identical generic stub body ("This is a UT-TDD Agent Harness
-skill document … Scope … Operating Rules") with no skill-specific procedure. The
-recommender (`recommendSkillsForPlan`) still scores on frontmatter
-`applies_to.layers` / `applies_to.drive_models`, so injection is mechanically
-wired but injects **no useful procedure**. Audit verdict over 47 packs:
-0 KEEP-ASIS, 38 NEEDS-SUBSTANCE, 9 PRUNE.
+4 agent survey により、fork plan §2.5 のリスクが確認された。既存の curated pack 約 47 件は、
+同一の generic stub body（"This is a HELIX Agent Harness skill document … Scope …
+Operating Rules"）を共有し、skill 固有の procedure を持っていなかった。
+`recommendSkillsForPlan` は frontmatter の `applies_to.layers` /
+`applies_to.drive_models` で scoring できるため、機械的な injection は成立していたが、
+注入される内容に有用な procedure が無かった。47 pack の audit verdict は
+0 KEEP-ASIS、38 NEEDS-SUBSTANCE、9 PRUNE だった。
 
-## 2. Scope
+## 2. 範囲
 
-Requirements-driven (§1.5): a pack stays only if it maps to an FR-L1-* / drive /
-mode. Three operations:
+Requirements-driven（§1.5）として、pack は FR-L1-*、drive、mode のいずれかへ対応する場合だけ
+残す。作業は次の 3 操作に分ける。
 
-- **Add (new packs):** §2.1 migrate-now topics that UT-TDD lacks (deprecation,
-  CI gate design, observability, data migration, deploy/rollback, browser
-  verification, runbook, LLM routing, …) — authored from UT-TDD design.
-- **Substance pass (existing):** rewrite the 38 NEEDS-SUBSTANCE stub bodies with
-  real UT-TDD procedure; fix frontmatter routing tags where wrong.
-- **Prune (§1.5):** remove HELIX-shaped / no-requirement / duplicate packs
-  (`ai-coding`, `api`, `code-review`, `documentation`, `project-management`,
-  `quality-lv5`, `security-and-hardening`, `source-driven-development`,
-  `testing` — each re-confirmed before deletion).
+- **Add（new packs）:** HELIX に不足している §2.1 migrate-now topic を追加する。
+  対象は deprecation、CI gate design、observability、data migration、deploy/rollback、
+  browser verification、runbook、LLM routing などで、HELIX design から作成する。
+- **Substance pass（existing）:** 38 件の NEEDS-SUBSTANCE stub body を実際の HELIX
+  procedure へ書き換え、誤った frontmatter routing tag を修正する。
+- **Prune（§1.5）:** HELIX-shaped、no-requirement、duplicate に該当する pack を削除する。
+  対象は `ai-coding`、`api`、`code-review`、`documentation`、`project-management`、
+  `quality-lv5`、`security-and-hardening`、`source-driven-development`、`testing` であり、
+  削除前に各 pack を再確認する。
 
-Command vocabulary is constrained to the **real** `ut-tdd` surface (status,
-doctor, plan lint, plan use, review, handover, skill suggest, team, codex,
-claude, gate, vmodel lint, telemetry, metrics, graph, find, db, setup, asset
-catalog). Not-yet-implemented commands (`ut-tdd task classify`, `ut-tdd reverse`,
-`ut-tdd scrum`, `ut-tdd debt`) are §6 P0/§ pending work and must NOT be cited as
-if live; reference the drive/mode and existing lint instead.
+Command vocabulary は実在する `ut-tdd` surface に限定する。利用可能な語彙は `status`、`doctor`、
+`plan lint`、`plan use`、`review`、`handover`、`skill suggest`、`team`、`codex`、`claude`、
+`gate`、`vmodel lint`、`telemetry`、`metrics`、`graph`、`find`、`db`、`setup`、
+`asset catalog` である。
+未実装 command（`ut-tdd task classify`、`ut-tdd reverse`、`ut-tdd scrum`、`ut-tdd debt`）は
+§6 P0 または pending work として扱い、live command として引用しない。必要な場合は
+drive/mode と既存 lint を参照する。
 
-## 3. Batches
+## 3. バッチ
 
-Multi-batch; `generates` is extended per batch as packs land.
+作業は multi-batch とし、pack が landed するたびに `generates` を拡張する。
 
-- **Batch 1 (this PLAN):** 6 new high-value packs that reference only real
-  commands — `deprecation-cutover`, `ci-gate-design`, `harness-observability`,
-  `data-migration`, `ci-deploy-and-rollback`,
-  `browser-testing-and-screen-verification`.
-- **Batch 2+:** remaining new packs (`incident-runbook`, `llm-agent-routing`,
-  …), substance pass over the 38 stubs, and the 9 prunes.
+- **Batch 1（this PLAN）:** 実在 command だけを参照する high-value pack を 6 件追加する。
+  対象は `deprecation-cutover`、`ci-gate-design`、`harness-observability`、
+  `data-migration`、`ci-deploy-and-rollback`、
+  `browser-testing-and-screen-verification`。
+- **Batch 2+:** 残りの new pack（`incident-runbook`、`llm-agent-routing` など）、38 stub の
+  substance pass、9 件の prune を進める。
 
-## 4. Acceptance Criteria
+## 4. 受入条件
 
-- Each landed pack has valid `skill.v1` frontmatter (name, skill_type ∈ the
-  existing 7-value set, `applies_to.layers` ∈ L0–L14, `applies_to.drive_models`
-  ∈ the 9-value set).
-- Each landed pack body is UT-TDD-substantive (real commands/state/gates), not
-  the generic stub, and contains no HELIX/ai-dev-kit terms or `HELIX_*` env.
-- `ut-tdd asset catalog`, `ut-tdd doctor`, Biome, typecheck, and Vitest stay
-  green; readability/asset-drift lints pass on the new packs.
-- Review evidence recorded before the accept gate.
+- landed した各 pack は有効な `skill.v1` frontmatter を持つ。`name`、`skill_type` は既存の
+  7-value set、`applies_to.layers` は L0-L14、`applies_to.drive_models` は 9-value set に従う。
+- landed した各 pack body は HELIX-substantive であり、実在 command、state、gate を説明する。
+  generic stub ではなく、HELIX/ai-dev-kit term や `HELIX_*` env を含めない。
+- `ut-tdd asset catalog`、`ut-tdd doctor`、Biome、typecheck、Vitest は green を維持する。
+  新規 pack に対する readability/asset-drift lint も pass する。
+- Review evidence は accept gate の前に記録する。
 
-## 5. Status
+## 5. 状態
 
-Confirmed 2026-06-17. Substance pass complete across 4 batches:
+2026-06-17 に confirmed。substance pass は 4 batch で完了した。
 
-- Batch 1: 6 new packs (deprecation-cutover, ci-gate-design, harness-observability,
-  data-migration, ci-deploy-and-rollback, browser-testing) + search-index SSoT fix.
-- Batch 2: 5 substance rewrites (gate-planning, research, documentation-and-adrs,
-  design-doc, agent-cost-design).
-- Batch 3: 36 substance rewrites (review/security, test/impl, design/api/db,
-  agents/context, planning, Reverse series).
-- Batch 4: 4 substance rewrites (poc, debt-register, project-management,
-  requirements-handover) + 2 new packs (incident-runbook, llm-agent-routing) +
-  SKILL_MAP rewritten as the real catalog index + prune of 4 (ai-coding,
-  quality-lv5, source-driven-development, SKILL_MAP-draft).
+- Batch 1: new pack 6 件（`deprecation-cutover`、`ci-gate-design`、`harness-observability`、
+  `data-migration`、`ci-deploy-and-rollback`、`browser-testing`）と search-index SSoT fix。
+- Batch 2: substance rewrite 5 件（`gate-planning`、`research`、`documentation-and-adrs`、
+  `design-doc`、`agent-cost-design`）。
+- Batch 3: substance rewrite 36 件（`review/security`、`test/impl`、`design/api/db`、
+  `agents/context`、`planning`、`Reverse series`）。
+- Batch 4: substance rewrite 4 件（`poc`、`debt-register`、`project-management`、
+  `requirements-handover`）、new pack 2 件（`incident-runbook`、`llm-agent-routing`）、
+  real catalog index としての SKILL_MAP rewrite、prune 4 件（`ai-coding`、`quality-lv5`、
+  `source-driven-development`、`SKILL_MAP-draft`）。
 
-Result: 54 packs, all UT-TDD substance, 0 generic stubs. This satisfies the fork
-plan §8(1) skill-curation + substance-pass component of the vendor-removal gate.
+結果は 54 pack すべてが HELIX substance を持ち、generic stub は 0 件である。これにより、
+fork plan §8(1) の skill-curation と substance-pass component は vendor-removal gate を満たす。

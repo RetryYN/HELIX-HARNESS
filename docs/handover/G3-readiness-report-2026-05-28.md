@@ -8,7 +8,7 @@ owner: PM (Opus)
 parent_g1: docs/handover/G1-readiness-report-2026-05-28.md (G1 v8 PASS)
 ---
 
-# L3 G3 readiness report (2026-05-28、v3 → 2026-05-29 A-54 update)
+# L3 G3 readiness report（G3 準備完了報告、2026-05-28、v3 → 2026-05-29 A-54 update）
 
 > **🔴 A-54 update (2026-05-29)**: PO 指摘「L3 まで見直して見落としチェック」で 4 軸独立 audit (pmo-sonnet ×4) を実施し、**v3「PASS」は機械検証が空洞だった**ことが判明 (lint が AC-NFR-* 未捕捉・AT→AC 逆引き孤児検出なし・doc 内 AT 件数が 87/95/116 三者三様)。4 カテゴリの漏れを全件是正 (詳細 = ledger A-54)。**更新後の確定値**: L1 NFR **14→15 件** (NFR-17 統合セキュリティ追加、旧 telemetry NFR-17 → NFR-18 リネーム) / L12 AT **95→117 件** (実数再カウント) / FR-L1 42 件 (不変) / lint 強化後 vitest **46 pass** / g3-trace 全 orphan=0 (機械実効化)。**G3 再判定は本 update 反映後に PO サインオフ**。以下 v3 本文の旧件数 (NFR 14 / AT 95 等) は A-54 で上書き済。
 >
@@ -73,7 +73,7 @@ parent_g1: docs/handover/G1-readiness-report-2026-05-28.md (G1 v8 PASS)
 - **§1〜§6**: 6 IPA 大項目に Lv2/Lv3 確定 (TL 採用 = 社内内製ツール想定で過剰投資回避)
   - 可用性 Lv2 / 性能 Lv2 / 保守性 Lv3 / 移行性 Lv2 / セキュリティ Lv3 / 環境 Lv3
 - 各 NFR-* に **IPA Lv + 受入閾値 + 測定方法 + pass 条件 + AC** (4 件サンプル AC 詳細化)
-- KPI integrated: D-02 (NFR-13) / D-05 (NFR-08) / D-06 (NFR-14) / D-07 (NFR-12) / D-09 (NFR-16)
+- KPI integrated（KPI 統合）: D-02 (NFR-13) / D-05 (NFR-08) / D-06 (NFR-14) / D-07 (NFR-12) / D-09 (NFR-16)
 - **§7 carry**: NFR-02/15 = L4 ADR / NFR-09 = L4 carry / NFR-18 = Phase B (PII redaction、A-54 で旧 NFR-17→18)
 
 ### サマリ: L12 受入テスト設計 (AT-* 87 件量閉じ、L3 ↔ L12 pair)
@@ -107,7 +107,7 @@ L1 G1-trace と同構造で 4 軸検証 (本起草時点で人手確認):
 - **functional P1 18 件 + P2 5 件** の詳細化 (L4 で AC + 詳細化)
 - **L4 基本設計 (PLAN-L4-01〜05)**: 各 FR-* の実現アーキ確定
 - **L4 データ設計 (PLAN-L4-04)**: business §10.2 L4 carry 7 項目 + 各 FR の入出力データ構造 + 評価指標 entity (BR-21)
-- **L4 ADR**: NFR-02 (npm/template/Packages) / NFR-15 (Cloudflare/fly/docker) / NFR-09 (parity-check)
+- **L4 ADR（L4 判断記録）**: NFR-02 (npm/template/Packages) / NFR-15 (Cloudflare/fly/docker) / NFR-09 (parity-check)
 - **G3-trace lint 実装** (R1-R4 機械検証ルール)
 
 ### Phase B carry (Phase B 着手時に確定)

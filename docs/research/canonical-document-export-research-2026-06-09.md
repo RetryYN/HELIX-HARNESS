@@ -4,7 +4,7 @@ status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
 related_audit: .ut-tdd/audit/A-126-canonical-document-export.md
-related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#6811-canonical-document-export-a-126-2026-06-09
+related_requirements: docs/governance/helix-agent-harness-requirements_v1.2.md#6811-canonical-document-export-a-126-2026-06-09
 ---
 
 # Canonical Document Export 調査メモ
@@ -15,7 +15,7 @@ related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#
 
 調査観点:
 
-- concept、requirements、detailed design、PLAN、ADR、test-design docs などの canonical UT-TDD documents を、人間 review 用の spreadsheet / Excel / PPTX outputs へどう変換すべきか。
+- concept、requirements、detailed design、PLAN、ADR、test-design docs などの canonical HELIX documents を、人間 review 用の spreadsheet / Excel / PPTX outputs へどう変換すべきか。
 - どの output を built-in とし、どの output を optional renderer とすべきか。
 - generated files が source of truth にならないようにしつつ、source Markdown/doc artifacts への traceability をどう保つか。
 
@@ -23,7 +23,7 @@ related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#
 
 2026-06-09 に確認した。
 
-| Source | URL | 関連する確認結果 | UT-TDD 判断 |
+| Source | URL | 関連する確認結果 | HELIX 判断 |
 |---|---|---|---|
 | ExcelJS | https://github.com/exceljs/exceljs | 公式 project は spreadsheet data の read / manipulate / write を行う Excel workbook manager と説明している。TypeScript definitions も提供されている。 | package readiness が証明された場合、structured document matrices、trace tables、multi-sheet design exports の optional XLSX renderer candidate とする。 |
 | SheetJS Community Edition | https://docs.sheetjs.com/ | 公式 docs は Excel と他の spreadsheet formats にまたがる JavaScript interface と、幅広い runtime support を説明している。 | file-format compatibility の広さが重要な場合の optional spreadsheet parser/writer candidate とする。 |

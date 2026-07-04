@@ -17,7 +17,7 @@
 ### 確定した正本の変更
 1. **企画書/G0.5 軽量化**: ROI/KGI/KPI の企画書必須を撤回 (内部システムに不適)。企画書 = feed-forward 文書、激しくチェックしない。G0.5 の「穴」は **書きすぎ(→L1へ降ろす) / リサーチ不足 / 整合性破綻** の3種のみ。concept §3.1.1 / requirements charter(§1.3) / §2.1.1 を軽量化済。
 2. **phase-aware PLAN ID 規約**: `PLAN-<layer>-<NN>-<slug>` (layer=L0〜L14/X=cross/M=master、NN=layer内連番)。ID からフェーズ判別可、**ID layer == frontmatter layer**。requirements §1.10 A + §1.1 例 + design/impl テンプレに反映。旧 flat `PLAN-001..004` (archived) と別名前空間。
-3. **HELIX global opt-in 化**: `~/.claude/CLAUDE.md` の HELIX @import 2行を撤去 (毎セッション ~48KB 節約)。UT-TDD は意図的に非ロード ([[memory: project_helix_global_optin]])。
+3. **HELIX global opt-in 化**: `~/.claude/CLAUDE.md` の HELIX @import 2行を撤去 (毎セッション ~48KB 節約)。HELIX は意図的に非ロード ([[memory: project_helix_global_optin]])。
 4. **PLAN-L1-01** (`docs/plans/PLAN-L1-01-business-requirements.md`): L1 の **elicitation 計画**。= 要求定義書「体系」の定義 + 不明確項目の抽出 + PO ヒアリング順序 (業務→機能→技術→UX、product-improvement lens)。**PLAN ≠ 要求定義書** (PLAN はヒアリング順序、要求定義書は出力)。
 5. **L1 業務要求 確定** (`docs/design/harness/L1-business-requirements.md`、status: confirmed): 専門サブエージェント review 通過 + P0/P1 修正済。
    - **価値の核**: process / safety / automation の3バランス
@@ -44,7 +44,7 @@ L1 業務要求 confirmed の次:
 - `docs/design/harness/L1-business-requirements.md` (L1 confirmed、BR/NFR/UX)
 - `docs/plans/PLAN-L1-01-business-requirements.md` (elicitation 設計、§3 不明確項目)
 - requirements §2.1.1 (G0.5 軽量) / §2.2 (G1 pair freeze) / §7.8.7 (self-review 前置) / §1.10 A (phase-aware ID)
-- [[memory: feedback_elicitation_and_self_review]]
+- memory 参照: [[memory: feedback_elicitation_and_self_review]]
 
 ## §3 carry / 持ち越し論点
 
@@ -54,7 +54,7 @@ L1 業務要求 confirmed の次:
 - ADR-001 follow-up (tl-advisor 別 runtime cross-check) 依然未実施。
 
 ## §4 環境
-- Bun 1.3.14 + Node v24.13.0。tsc/vitest/biome devDep。
+- 実行環境: Bun 1.3.14 + Node v24.13.0。tsc/vitest/biome は dev dependency。
 - commit-msg hook = Conventional Commits 強制。Bash は heredoc (`git commit -F -`) で、PS here-string 不可 ([[memory: project_commit_msg_hook]])。
 - main 直運用 (PO 単独 maintainer)。Codex Windows sandbox blocker 継続 (委譲時 task 埋め込み)。
 

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L4-10-internal-asset-master
-title: "PLAN-L4-10 (Master): 内部資産 (subagent/skill/command) UT-TDD 化の L4 基本設計増分"
+title: "PLAN-L4-10 (Master): 内部資産 (subagent/skill/command) HELIX 化の L4 基本設計増分"
 kind: design
 layer: L4
 sub_doc: architecture
@@ -33,13 +33,13 @@ dependencies:
   references:
     - docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md
     - docs/migration/helix-porting-map.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
     - docs/governance/recovery-workflow.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-# PLAN-L4-10 (Master): 内部資産 UT-TDD 化の L4 基本設計増分
+# PLAN-L4-10 (Master): 内部資産 HELIX 化の L4 基本設計増分
 
 ## §0 位置づけ
 
@@ -70,8 +70,8 @@ Recovery (PLAN-RECOVERY-01) Step 4 後半 = **L4-L6 設計増分**の L4 Master 
 
 | FR-L1 | 内容 | L4 設計先 | child PLAN |
 |---|---|---|---|
-| **FR-L1-46** | subagent roster の UT-TDD 化 (capability class / model family / guard 統合 / HELIX 前提除去) | architecture §3 に `roster` 概念 + runtime building block 拡張 / function に roster 機能 | **PLAN-L4-11-roster** |
-| **FR-L1-47** | skill pack の UT-TDD curate (UT-TDD 版 SKILL_MAP / core-optional-drop / CLI trigger / helix 用語除去) | architecture §3 に `skills` building block 新設 / function に catalog-injector | **PLAN-L4-12-skill-pack** |
+| **FR-L1-46** | subagent roster の HELIX 化 (capability class / model family / guard 統合 / HELIX 前提除去) | architecture §3 に `roster` 概念 + runtime building block 拡張 / function に roster 機能 | **PLAN-L4-11-roster** |
+| **FR-L1-47** | skill pack の HELIX curate (HELIX 版 SKILL_MAP / core-optional-drop / CLI trigger / helix 用語除去) | architecture §3 に `skills` building block 新設 / function に catalog-injector | **PLAN-L4-12-skill-pack** |
 | **FR-L1-48** | 内部資産 command の ut-tdd CLI subcommand 化 | function の CLI コマンド表に追加 (dashboard/asset/builder 等、command=W11/W12/W16) | (L4 は PLAN-L4-11 に統合 → **L5 で module 結合粒度 → L6 で単体粒度**に段階分解) |
 | **FR-L1-49** | 内部資産 drift lint (HELIX 絶対パス残存 / docs-skills 空 / roster↔guard 整合) | architecture §3 lint building block + ADR-004 Consequences。IMP-033 rule engine インスタンス | **PLAN-L4-13-drift-lint** |
 
