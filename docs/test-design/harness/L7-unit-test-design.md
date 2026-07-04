@@ -483,6 +483,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-RELGRAPH-008 | optional diagram adapters | installed adapter なしで DOT/D2 を要求した場合は unavailable-adapter finding を返し、tool の install や invoke を暗黙実行しない。 |
 | U-RELGRAPH-009 | `collectVerificationEvidenceProjection` valid evidence | A-125 `verification-evidence-v1` record は evidence path 付きの `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` projection row になる。 |
 | U-RELGRAPH-010 | `collectVerificationEvidenceProjection` invalid evidence | malformed evidence、schema 欠落、または `allow_external` なしの external run は finding になる。raw external payload は除外したままにする。 |
+| U-RELGRAPH-011 | `loadRelationGraphSourceSet` node scope | 実 repo loader は `docs/adr/**/*.md`、`docs/governance/document-system-map.md`、`docs/skills/**/*.md`、`.codex/hooks.json` を design node として materialize する。これらの path 変更は `missing-projection` ではなく changed node として扱われ、旧対象外扱いだった `docs/skills/**` は node 欠落時に fail-close する。 |
 
 ### §1.16.1c U-TOOLADAPTER (A-124 graph/diagram adapter probe 検査)
 

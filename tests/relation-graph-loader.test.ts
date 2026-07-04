@@ -15,9 +15,13 @@ import {
 // の edge を生む source set を返すこと、純関数と結合して impact/export が動くことを検証する。
 function buildRepo(root: string): void {
   mkdirSync(join(root, "docs", "plans"), { recursive: true });
+  mkdirSync(join(root, "docs", "adr"), { recursive: true });
   mkdirSync(join(root, "docs", "design", "harness", "L6-function-design"), { recursive: true });
+  mkdirSync(join(root, "docs", "governance"), { recursive: true });
   mkdirSync(join(root, "docs", "process", "modes"), { recursive: true });
+  mkdirSync(join(root, "docs", "skills"), { recursive: true });
   mkdirSync(join(root, "docs", "test-design", "harness"), { recursive: true });
+  mkdirSync(join(root, ".codex"), { recursive: true });
   mkdirSync(join(root, ".claude", "agents"), { recursive: true });
   mkdirSync(join(root, ".ut-tdd", "evidence", "g8-integration"), { recursive: true });
   mkdirSync(join(root, ".ut-tdd", "review"), { recursive: true });
@@ -87,6 +91,21 @@ function buildRepo(root: string): void {
     "utf8",
   );
   writeFileSync(
+    join(root, "docs", "adr", "ADR-001-fixture.md"),
+    ["# ADR fixture", "", "判断記録の fixture。", ""].join("\n"),
+    "utf8",
+  );
+  writeFileSync(
+    join(root, "docs", "governance", "document-system-map.md"),
+    ["# document-system-map", "", "文書体系 map の fixture。", ""].join("\n"),
+    "utf8",
+  );
+  writeFileSync(
+    join(root, "docs", "skills", "SKILL_MAP.md"),
+    ["# Skill map", "", "skill 登録 map の fixture。", ""].join("\n"),
+    "utf8",
+  );
+  writeFileSync(
     join(root, ".claude", "agents", "refactor-scout.md"),
     ["---", "name: refactor-scout", "model: haiku", "---", "", "agent prompt body", ""].join("\n"),
     "utf8",
@@ -114,10 +133,15 @@ function buildRepo(root: string): void {
     ["root = true", "", "[*]", "charset = utf-8", ""].join("\n"),
     "utf8",
   );
+  writeFileSync(
+    join(root, ".codex", "hooks.json"),
+    JSON.stringify({ hooks: {} }, null, 2),
+    "utf8",
+  );
 }
 
 describe("loadRelationGraphSourceSet", () => {
-  it("builds a source set with plan→source, source→test, design→test-design edges", () => {
+  it("U-RELGRAPH-011: builds a source set with plan→source, source→test, design→test-design edges and extra governance nodes", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-tdd-graph-loader-"));
     try {
       buildRepo(root);
@@ -144,6 +168,16 @@ describe("loadRelationGraphSourceSet", () => {
       expect(processMode).toMatchObject({
         id: "docs/process/modes/refactor.md",
         path: "docs/process/modes/refactor.md",
+      });
+      const adrDoc = sourceSet.designDocs?.find((d) => d.path === "docs/adr/ADR-001-fixture.md");
+      expect(adrDoc).toMatchObject({
+        id: "docs/adr/ADR-001-fixture.md",
+        path: "docs/adr/ADR-001-fixture.md",
+      });
+      const skillDoc = sourceSet.designDocs?.find((d) => d.path === "docs/skills/SKILL_MAP.md");
+      expect(skillDoc).toMatchObject({
+        id: "docs/skills/SKILL_MAP.md",
+        path: "docs/skills/SKILL_MAP.md",
       });
       const agentDoc = sourceSet.designDocs?.find(
         (d) => d.path === ".claude/agents/refactor-scout.md",
@@ -180,6 +214,18 @@ describe("loadRelationGraphSourceSet", () => {
         id: "docs/governance/repository-structure.md",
         path: "docs/governance/repository-structure.md",
       });
+      const documentSystemMap = sourceSet.designDocs?.find(
+        (d) => d.path === "docs/governance/document-system-map.md",
+      );
+      expect(documentSystemMap).toMatchObject({
+        id: "docs/governance/document-system-map.md",
+        path: "docs/governance/document-system-map.md",
+      });
+      const codexHooks = sourceSet.designDocs?.find((d) => d.path === ".codex/hooks.json");
+      expect(codexHooks).toMatchObject({
+        id: ".codex/hooks.json",
+        path: ".codex/hooks.json",
+      });
 
       // projection + impact: changing the source surfaces its owning plan + sibling test
       const projection = collectRelationGraphProjection(sourceSet);
@@ -200,6 +246,26 @@ describe("loadRelationGraphSourceSet", () => {
         "design:docs/process/modes/refactor.md",
       );
       expect(processImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+
+      const adrImpact = analyzeRelationImpact({
+        changedPaths: ["docs/adr/ADR-001-fixture.md"],
+        projection,
+      });
+      expect(adrImpact.ok).toBe(true);
+      expect(adrImpact.changedNodes.map((n) => n.id)).toContain(
+        "design:docs/adr/ADR-001-fixture.md",
+      );
+      expect(adrImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+
+      const skillImpact = analyzeRelationImpact({
+        changedPaths: ["docs/skills/SKILL_MAP.md"],
+        projection,
+      });
+      expect(skillImpact.ok).toBe(true);
+      expect(skillImpact.changedNodes.map((n) => n.id)).toContain(
+        "design:docs/skills/SKILL_MAP.md",
+      );
+      expect(skillImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
       const agentImpact = analyzeRelationImpact({
         changedPaths: [".claude/agents/refactor-scout.md"],
@@ -251,6 +317,18 @@ describe("loadRelationGraphSourceSet", () => {
       );
       expect(governanceImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
+      const documentSystemMapImpact = analyzeRelationImpact({
+        changedPaths: ["docs/governance/document-system-map.md"],
+        projection,
+      });
+      expect(documentSystemMapImpact.ok).toBe(true);
+      expect(documentSystemMapImpact.changedNodes.map((n) => n.id)).toContain(
+        "design:docs/governance/document-system-map.md",
+      );
+      expect(documentSystemMapImpact.findings.map((f) => f.code)).not.toContain(
+        "missing-projection",
+      );
+
       const editorconfigImpact = analyzeRelationImpact({
         changedPaths: [".editorconfig"],
         projection,
@@ -258,6 +336,16 @@ describe("loadRelationGraphSourceSet", () => {
       expect(editorconfigImpact.ok).toBe(true);
       expect(editorconfigImpact.changedNodes.map((n) => n.id)).toContain("design:.editorconfig");
       expect(editorconfigImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+
+      const codexHooksImpact = analyzeRelationImpact({
+        changedPaths: [".codex/hooks.json"],
+        projection,
+      });
+      expect(codexHooksImpact.ok).toBe(true);
+      expect(codexHooksImpact.changedNodes.map((n) => n.id)).toContain(
+        "design:.codex/hooks.json",
+      );
+      expect(codexHooksImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
       // export: mermaid is always emittable and contains the changed source node
       const diagram = exportRelationDiagram({ snapshot: projection, format: "mermaid" });
@@ -355,6 +443,44 @@ describe("relation graph real-repo loader (PLAN-L7-142 stale-edge fence)", () =>
       "design:docs/governance/repository-structure.md",
     );
     expect(governanceImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+    const adrImpact = analyzeRelationImpact({
+      changedPaths: ["docs/adr/ADR-001-helix-harness-redesign-and-language.md"],
+      projection,
+    });
+    expect(adrImpact.ok).toBe(true);
+    expect(adrImpact.changedNodes.map((n) => n.id)).toContain(
+      "design:docs/adr/ADR-001-helix-harness-redesign-and-language.md",
+    );
+    expect(adrImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+    const documentSystemMapImpact = analyzeRelationImpact({
+      changedPaths: ["docs/governance/document-system-map.md"],
+      projection,
+    });
+    expect(documentSystemMapImpact.ok).toBe(true);
+    expect(documentSystemMapImpact.changedNodes.map((n) => n.id)).toContain(
+      "design:docs/governance/document-system-map.md",
+    );
+    expect(documentSystemMapImpact.findings.map((f) => f.code)).not.toContain(
+      "missing-projection",
+    );
+    const skillImpact = analyzeRelationImpact({
+      changedPaths: ["docs/skills/SKILL_MAP.md"],
+      projection,
+    });
+    expect(skillImpact.ok).toBe(true);
+    expect(skillImpact.changedNodes.map((n) => n.id)).toContain(
+      "design:docs/skills/SKILL_MAP.md",
+    );
+    expect(skillImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+    const codexHooksImpact = analyzeRelationImpact({
+      changedPaths: [".codex/hooks.json"],
+      projection,
+    });
+    expect(codexHooksImpact.ok).toBe(true);
+    expect(codexHooksImpact.changedNodes.map((n) => n.id)).toContain(
+      "design:.codex/hooks.json",
+    );
+    expect(codexHooksImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const editorconfigImpact = analyzeRelationImpact({
       changedPaths: [".editorconfig"],
       projection,

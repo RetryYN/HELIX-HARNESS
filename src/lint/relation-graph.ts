@@ -219,7 +219,7 @@ export function collectRelationGraphProjection(
 
 /**
  * relation graph が node 化する path クラス (src/graph/loader.ts の走査対象と一致)。
- * これ以外の path (docs/skills, README, .claude/CLAUDE.md, AGENTS.md, codex-env.txt, .ut-tdd state 等) は
+ * これ以外の path (README, .claude/CLAUDE.md, AGENTS.md, codex-env.txt, .ut-tdd state 等) は
  * 定義上グラフ対象外であり、変更されても impact 分析は missing-projection error でなく
  * non-graph-path (info) として扱う。走査対象 prefix 配下のディレクトリ path (末尾 "/") は
  * git status の未追跡 directory 丸め込みが残った場合も fail-close で missing-projection にする。
@@ -229,7 +229,9 @@ export const GRAPH_TRACKED_PATH_PREFIXES = [
   "src/",
   "tests/",
   "docs/plans/",
+  "docs/adr/",
   "docs/design/",
+  "docs/skills/",
   "docs/test-design/",
   "docs/process/",
   "docs/reference/",
@@ -239,6 +241,8 @@ export const GRAPH_TRACKED_PATH_PREFIXES = [
 ] as const;
 
 const GRAPH_TRACKED_EXACT_PATHS = new Set([
+  ".codex/hooks.json",
+  "docs/governance/document-system-map.md",
   "docs/governance/repository-structure.md",
   ".editorconfig",
   ".gitattributes",

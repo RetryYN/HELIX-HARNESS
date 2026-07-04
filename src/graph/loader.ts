@@ -174,8 +174,12 @@ interface PlanFrontmatter {
 const FR_REGISTRY_DOC = "docs/design/harness/L1-requirements/functional-requirements.md";
 
 const REFERENCE_DOCS = ["docs/reference/ai-agent-harness-directory-reference.md"] as const;
-const GOVERNANCE_DOCS = ["docs/governance/repository-structure.md"] as const;
+const GOVERNANCE_DOCS = [
+  "docs/governance/repository-structure.md",
+  "docs/governance/document-system-map.md",
+] as const;
 const ROOT_CONFIG_DOCS = [
+  ".codex/hooks.json",
   ".editorconfig",
   ".gitattributes",
   "biome.json",
@@ -339,6 +343,18 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
   const processDocs: string[] = [];
   walkMd(join(repoRoot, "docs", "process"), repoRoot, processDocs);
   for (const path of processDocs) {
+    addDesignDocIfAbsent(designDocs, path);
+  }
+
+  const adrDocs: string[] = [];
+  walkMd(join(repoRoot, "docs", "adr"), repoRoot, adrDocs);
+  for (const path of adrDocs) {
+    addDesignDocIfAbsent(designDocs, path);
+  }
+
+  const skillDocs: string[] = [];
+  walkMd(join(repoRoot, "docs", "skills"), repoRoot, skillDocs);
+  for (const path of skillDocs) {
     addDesignDocIfAbsent(designDocs, path);
   }
 

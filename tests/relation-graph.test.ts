@@ -300,7 +300,7 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
     expect(stale.findings.some((f) => f.code === "stale-edge")).toBe(true);
   });
 
-  it("U-RELGRAPH-006b: グラフ対象外 path (config / skill / non-tracked directory / archived plan) は non-graph-path (info) で ok を落とさない", () => {
+  it("U-RELGRAPH-006b: グラフ対象外 path (config / non-tracked directory / archived plan) は non-graph-path (info) で ok を落とさない", () => {
     const projection = collectRelationGraphProjection({
       sourceFiles: [
         { path: "src/lint/relation-graph.ts", tests: ["tests/relation-graph.test.ts"] },
@@ -312,7 +312,6 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
     const nonGraph = analyzeRelationImpact({
       changedPaths: [
         ".claude/CLAUDE.md",
-        "docs/skills/api.md",
         "README.md",
         ".ut-tdd/tmp/",
         "docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md",
@@ -321,15 +320,15 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
     });
     expect(nonGraph.ok).toBe(true);
     expect(nonGraph.findings.every((f) => f.code !== "missing-projection")).toBe(true);
-    expect(nonGraph.findings.filter((f) => f.code === "non-graph-path")).toHaveLength(5);
+    expect(nonGraph.findings.filter((f) => f.code === "non-graph-path")).toHaveLength(4);
 
-    // 走査対象クラス配下 (src/) の node 欠落は、ディレクトリ丸め込みでも missing-projection error のまま (規律維持)。
+    // 走査対象クラス配下 (src/docs-skills) の node 欠落は、ディレクトリ丸め込みでも missing-projection error のまま (規律維持)。
     const trackedMissing = analyzeRelationImpact({
-      changedPaths: ["src/runtime/unknown-module.ts", "src/runtime/new-module/"],
+      changedPaths: ["src/runtime/unknown-module.ts", "src/runtime/new-module/", "docs/skills/api.md"],
       projection,
     });
     expect(trackedMissing.ok).toBe(false);
-    expect(trackedMissing.findings.filter((f) => f.code === "missing-projection")).toHaveLength(2);
+    expect(trackedMissing.findings.filter((f) => f.code === "missing-projection")).toHaveLength(3);
   });
 });
 
