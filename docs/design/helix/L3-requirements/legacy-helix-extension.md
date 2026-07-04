@@ -55,7 +55,7 @@ TS/Bun harness、PLAN、現行 state/projection へ翻案する。
 |----|------|------------|
 | HLX-FR-01 | runtime discipline は、作業前に目的、workflow/layer、Forward return、acceptance/verification、作業正本、許可範囲を固定し、矛盾する自己判断を fail-close または escalation にする | HLX-AC-01a / HLX-AC-01b |
 | HLX-FR-02 | technical user question gate は、設計・契約・構造・配置・移行など TL 判断が必要な質問をユーザーへ出す前に TL advisor evidence を要求する。ユーザー選好だけの質問は理由付き bypass を許可する | HLX-AC-02a / HLX-AC-02b |
-| HLX-FR-03 | detector axis registry は drift、coverage erosion、plan debt、relation graph、regression、orchestration integrity などの axis を gate / workflow routing へ接続し、stub / advisory / fail-close を区別する | HLX-AC-03a / HLX-AC-03b |
+| HLX-FR-03 | detector axis registry は drift、coverage erosion、plan debt、relation graph、regression、orchestration integrity などの axis を gate / workflow routing へ接続し、stub / advisory / fail-close を区別する。registry の kind と finding の kind が一致しない場合は、finding 側だけ `fail_close` と名乗る hard gate 昇格を拒否する | HLX-AC-03a / HLX-AC-03b |
 | HLX-FR-04 | recommender catalog は skill / code / command 候補を task、layer、phase、agent role、references に紐づけ、bulk import ではなく候補提示と採用証跡に限定する | HLX-AC-04a / HLX-AC-04b |
 | HLX-FR-05 | RUN & Debug trace は、実行ログを action / command / adapter surface / expected keyword / missing action に分解し、L7.5 verification evidence と改善候補へ接続する | HLX-AC-05a / HLX-AC-05b |
 | HLX-FR-06 | core injection / runtime adapter distribution は、旧 `HELIX_CORE.md` と Claude/Codex adapter を repo-local 正本へ射影し、個人 absolute path や global file 欠落を current truth と混同しない | HLX-AC-06a / HLX-AC-06b |
@@ -75,7 +75,7 @@ TS/Bun harness、PLAN、現行 state/projection へ翻案する。
 | HLX-AC-02a | 技術判断を含む質問をユーザーへ出す | question gate を評価 | 直近 TL advisor evidence が無ければ deny |
 | HLX-AC-02b | ユーザー選好だけの質問である | bypass を要求 | bypass reason、actor、timestamp、question class を evidence に残す |
 | HLX-AC-03a | detector axis が登録される | gate routing を rebuild | axis id、phase gate、kind、severity、workflow route が得られる |
-| HLX-AC-03b | detector が stub/advisory のまま fail-close claim に使われる | gate を評価 | claim を拒否し、stub/advisory として表示する |
+| HLX-AC-03b | detector が stub/advisory のまま fail-close claim に使われる、または registry kind と異なる finding kind で hard gate proof に使われる | gate を評価 | claim を拒否し、stub/advisory または kind mismatch として表示する |
 | HLX-AC-04a | task に使える skill/code/command がある | recommender を実行 | candidate、score/reason、references、recommended role が残る |
 | HLX-AC-04b | recommender が旧 runtime path や raw wrapper を返す | adoption gate を評価 | candidate は hardening/defer され、current path として採用されない |
 | HLX-AC-05a | RUN & Debug 対象 command が実行される | trace analyzer を実行 | expected action、matched evidence、missing action が structured output になる |

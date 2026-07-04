@@ -21,7 +21,7 @@ L4 `HLX-*` boundary を module / projection / evidence contract に落とす。
 |-------|-------------|----------------|-----------------|------------|
 | HLX-FR-01 | HLX-C01 work-preflight-contract | task objective、workflow/layer、Forward return、acceptance、work source、allowed scope | `WorkPreflightDecision` | source/acceptance/scope 欠落、handover/PLAN との conflict、未承認 high-impact operation |
 | HLX-FR-02 | HLX-C02 technical-question-gate | question text、question class、TL advisor evidence、bypass reason | `TechnicalQuestionDecision` | 直近 TL evidence の無い technical design question、reason の無い bypass |
-| HLX-FR-03 | HLX-C03 detector-axis-registry | detector descriptor、phase gate、result kind、severity、workflow route | `DetectorAxisRoutingDecision` | stub/advisory result を fail-close proof として使う、unknown axis の auto-route |
+| HLX-FR-03 | HLX-C03 detector-axis-registry | detector descriptor、phase gate、result kind、severity、workflow route、finding result kind | `DetectorAxisRoutingDecision` | stub/advisory result を fail-close proof として使う、registry kind と finding kind が一致しない hard gate proof、unknown axis の auto-route |
 | HLX-FR-04 | HLX-C04 recommender-catalog-contract | task text、layer/phase、catalog entry、references、recommended role | `RecommendationDecision` | raw legacy path candidate を current path として受理する、trace/reason 欠落 candidate |
 | HLX-FR-05 | HLX-C05 run-debug-trace-contract | command/run log、expected action map、runtime surface、correlation id | `RunDebugTraceDecision` | missing action の受理、evidence path/correlation id の無い trace、secret-bearing raw log の保存 |
 | HLX-FR-06 | HLX-C06 core-injection-contract | legacy core source、repo-local adapter source、generated target、required markers、consumer mode | `CoreInjectionDecision` | personal absolute path の受理、missing global file を current truth として扱う、marker/provenance 欠落 generated asset |
@@ -38,7 +38,7 @@ L4 `HLX-*` boundary を module / projection / evidence contract に落とす。
 |----------|----------------|
 | HLX-C01 | work preflight は objective/source/scope/acceptance が欠落または不整合の場合に edit を block する。 |
 | HLX-C02 | technical user question は TL advisor evidence、または documented preference-only bypass を要求する。 |
-| HLX-C03 | detector axis registry は routeable finding を emit し、stub/advisory と hard proof を混同しない。 |
+| HLX-C03 | detector axis registry は routeable finding を emit し、stub/advisory と hard proof を混同しない。registry kind と finding kind が一致しない場合は hard proof に昇格しない。 |
 | HLX-C04 | recommender output は traceable であり、old runtime candidate は adoption 前に hardened/deferred になる。 |
 | HLX-C05 | RUN & Debug trace は command、expected action、observed evidence、missing action、correlation id を join する。 |
 | HLX-C06 | core/adapter distribution は repo-local source、generated consumer asset、global-file risk、provenance を分離する。 |
