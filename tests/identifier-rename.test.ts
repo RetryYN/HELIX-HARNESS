@@ -260,12 +260,25 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           'const marker = "area=harness";',
         ].join("\n"),
       );
+      mkdirSync(join(root, "src", "lint"), { recursive: true });
+      writeFileSync(
+        join(root, "src", "lint", "objective-evidence-audit.ts"),
+        'const upstream = "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";\n',
+      );
+      writeFileSync(
+        join(root, "src", "product.ts"),
+        'const productNameDebt = "UT-TDD_AGENT-HARNESS";\n',
+      );
       writeFileSync(
         join(root, "tests", "sample.test.ts"),
         [
           'expect(".ut-tdd").toBeTruthy();',
           'const winFixture = "C:\\\\Users\\\\dev\\\\UT-TDD-agent-harness\\\\src\\\\x.ts";',
         ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "tests", "goal-evidence-audit.test.ts"),
+        'expect("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack").toBeTruthy();\n',
       );
       writeFileSync(
         join(root, "scripts", "ut-tdd"),
@@ -430,6 +443,24 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             path: "docs/governance/objective.md",
             category: "governance_doc",
             disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS-Pack",
+            path: "src/lint/objective-evidence-audit.ts",
+            category: "source_code",
+            disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS-Pack",
+            path: "tests/goal-evidence-audit.test.ts",
+            category: "test_code",
+            disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS",
+            path: "src/product.ts",
+            category: "source_code",
+            disposition: "approval_gated",
           }),
         ]),
       );

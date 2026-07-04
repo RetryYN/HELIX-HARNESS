@@ -512,6 +512,11 @@ const RENAME_MAP: IdentifierRenameMapping[] = [
 ];
 const RENAME_EVIDENCE_PATH_PREFIX = ".ut-tdd/evidence/rename/";
 const RENAME_BACKUP_PATH_PREFIX = ".ut-tdd/backups/rename/<timestamp>/";
+const EXTERNAL_REPO_REFERENCE_PATHS = new Set([
+  "src/lint/objective-evidence-audit.ts",
+  "tests/cli-surface.test.ts",
+  "tests/goal-evidence-audit.test.ts",
+]);
 const IGNORED_DIRS = new Set([".git", "node_modules", "dist", "coverage"]);
 const PATH_IGNORED_DIRS = new Set([".git", "node_modules", "coverage"]);
 const IGNORED_PATH_PREFIXES = [".ut-tdd/evidence/", ".ut-tdd/backups/"];
@@ -563,6 +568,9 @@ function countResidualToken(text: string, token: IdentifierRenameResidualToken):
   if (token === "UT-TDD") {
     return [...text.matchAll(/UT-TDD(?!:managed|-agent-harness|_AGENT-HARNESS)/g)].length;
   }
+  if (token === "UT-TDD_AGENT-HARNESS") {
+    return [...text.matchAll(/UT-TDD_AGENT-HARNESS(?!-Pack)/g)].length;
+  }
   return text.split(token).length - 1;
 }
 
@@ -573,11 +581,13 @@ function isExternalRepoReferenceToken(token: IdentifierRenameResidualToken): boo
 function classifyRenameResidualDisposition(input: {
   token: IdentifierRenameResidualToken;
   category: IdentifierRenameHitCategory;
+  path: string;
 }): IdentifierRenameResidualDisposition {
   if (input.token === "UT-TDD:managed") return "adapter_marker";
   if (
     isExternalRepoReferenceToken(input.token) &&
-    (input.category === "governance_doc" ||
+    (EXTERNAL_REPO_REFERENCE_PATHS.has(input.path) ||
+      input.category === "governance_doc" ||
       input.category === "design_doc" ||
       input.category === "plan_doc" ||
       input.category === "research_doc")
@@ -980,7 +990,7 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     for (const token of RESIDUAL_TOKENS) {
       const pathCount = countResidualToken(rel, token);
       if (pathCount === 0) continue;
-      const disposition = classifyRenameResidualDisposition({ token, category });
+      const disposition = classifyRenameResidualDisposition({ token, category, path: rel });
       residuals.push({
         token,
         path: rel,
@@ -1018,7 +1028,7 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     for (const token of RESIDUAL_TOKENS) {
       const count = countResidualToken(text, token);
       if (count === 0) continue;
-      const disposition = classifyRenameResidualDisposition({ token, category });
+      const disposition = classifyRenameResidualDisposition({ token, category, path: rel });
       residuals.push({
         token,
         path: rel,
