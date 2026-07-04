@@ -14,74 +14,66 @@ applies_to:
     - Discovery
 ---
 
-# agent cost design
+# エージェントコスト設計
 
-When and how to delegate to lightweight subagent roles and design agent
-orchestration so expensive model capacity is used only where it is needed
-(FR-L1-37 model/effort recommendation, FR-L1-38 model evaluation, harness pillar
-5: split work across roles/runtimes only where it reduces risk or cost).
+lightweight subagent roles へいつ・どう delegate するか、そして高価な model capacity を必要な場所だけで使う
+agent orchestration をどう設計するかを扱う
+（FR-L1-37 model/effort recommendation、FR-L1-38 model evaluation、harness pillar 5 の方針:
+risk または cost を下げる場合だけ work を roles/runtimes へ分割）。
 
-## When to load this skill
+## この skill を読む条件
 
-- A research or summarisation subtask would consume large context on the primary
-  model.
-- You are about to call `ut-tdd claude --role <role>` and need to structure the
-  delegation.
-- A Discovery / Scrum cycle has a broad exploration phase that splits into
-  parallel sub-tasks.
+- research または summarisation subtask が primary model の large context を消費しそう。
+- `ut-tdd claude --role <role>` を呼ぶ前に delegation を構造化する必要がある。
+- Discovery / Scrum cycle に、parallel sub-tasks へ分割できる broad exploration phase がある。
 
-## Model tier assignment
+## モデル階層の割り当て
 
-| Task type | Assign to |
+| タスク種別 | 割り当て先 |
 |---|---|
-| Multi-source web research, doc summarisation | `pmo-haiku` |
-| Hypothesis generation from collected facts | `pmo-haiku` |
-| ADR authoring, gate review, design judgement | primary session model |
-| Security / adversarial review | primary model or `security-audit` / `code-reviewer` |
-| Routine status / handover formatting | `pmo-haiku` |
+| 複数 source の web research、docs summarisation | `pmo-haiku` |
+| 収集済み facts からの hypothesis generation | `pmo-haiku` |
+| ADR 作成、gate review、design judgement | primary session model |
+| Security / adversarial review | primary model または `security-audit` / `code-reviewer` |
+| 定型 status / handover formatting | `pmo-haiku` |
 
-Delegation is justified when the subtask is parallelisable, needs no
-repository-state judgement, and the cost saving outweighs the verification
-overhead. Always pass `model` explicitly when spawning a subagent — an omitted
-model inherits the expensive parent model and burns budget.
+subtask が parallelisable で、repository-state judgement を必要とせず、cost saving が verification overhead を上回る場合、
+delegation は正当化できる。subagent spawn 時は必ず `model` を明示する。
+model 省略は expensive parent model を inherit し、budget を消費する。
 
-## Delegation via ut-tdd
+## ut-tdd 経由の delegation
 
 ```
 ut-tdd claude --role pmo-haiku --task "..."            # execute
 ut-tdd claude --role pmo-haiku --task "..." --dry-run  # inspect the prompt first
 ```
 
-Route subagent calls through `ut-tdd claude` / `ut-tdd codex` / `ut-tdd team
-run` rather than a raw provider spawn — only the wrappers capture session
-lifecycle, handover warnings, and cost telemetry.
+subagent calls は raw provider spawn ではなく、`ut-tdd claude` / `ut-tdd codex` /
+`ut-tdd team run` 経由で route する。session lifecycle、handover warnings、cost telemetry を capture するのは wrapper だけ。
 
-## Delegation prompt structure
+## delegation prompt の構造
 
-Include: (1) objective — the decision it informs; (2) scope constraints; (3)
-required output format; (4) a source-count floor for research (see the `research`
-skill); (5) a reasoning-chain requirement (observed facts → interpretation →
-hypothesis → verification method), not a bare summary.
+含めるもの: (1) objective — どの decision に効くか、(2) scope constraints、(3) required output format、
+(4) research の source-count floor（`research` skill 参照）、(5) bare summary ではなく reasoning-chain requirement
+（観測事実 -> 解釈 -> 仮説 -> 検証方法）。
 
-## Verify delegated output
+## delegated output の検証
 
-Delegated agent output is a claim, not evidence. Before recording it as
-authoritative: spot-check at least one cited source yourself; confirm the
-reasoning chain is present; and escalate to a full review gate if the output
-would change an existing PLAN dependency or ADR decision. Re-compute any counts
-the agent reports rather than trusting its narration.
+delegated agent output は claim であり evidence ではない。authoritative として記録する前に、
+少なくとも 1 つの cited source を自分で spot-check し、reasoning chain が存在することを確認する。
+output が既存 PLAN dependency または ADR decision を変える場合は full review gate へ escalate する。
+agent が報告した counts は narration を信じず、自分で recompute する。
 
-## Cost evidence
+## cost evidence の記録
 
-Token/cost telemetry is exposed by `ut-tdd telemetry` and projected into
-`model_runs` (FR-L1-38). When adding an agent call path, record run metadata
-(runtime, model, role, drive, plan_id, timings) — metadata only, never prompt or
-response text, credentials, or PII. If a call escapes the wrapper, record a
-manual `.ut-tdd/audit/` entry so the cost obligation is not silently dropped.
+Token/cost telemetry は `ut-tdd telemetry` で expose され、`model_runs` へ project される（FR-L1-38）。
+agent call path を追加する場合は run metadata（runtime、model、role、drive、plan_id、timings）を記録する。
+metadata のみで、prompt/response text、credentials、PII は記録しない。call が wrapper を外れた場合は、
+cost obligation が silent drop されないよう manual `.ut-tdd/audit/` entry を記録する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Delegating repository-state judgement ("is this PLAN complete?") to a
-  lightweight role — it cannot reliably read `.ut-tdd/` state.
-- Sequential delegations where one well-structured parallel split is cheaper.
-- Forwarding raw delegated output to the PO without a spot-check.
+- repository-state judgement（"is this PLAN complete?"）を lightweight role に delegate する。
+  `.ut-tdd/` state を信頼できる精度で読めない。
+- well-structured parallel split の方が安い場面で sequential delegations を行う。
+- spot-check なしに raw delegated output を PO へ forward する。
