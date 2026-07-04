@@ -39,12 +39,15 @@ export const DESIGN_LANGUAGE_BASELINE_FINGERPRINT =
 
 const DESIGN_LANGUAGE_ROOTS = [
   join("docs", "adr"),
+  join("docs", "archive"),
   join("docs", "design"),
   join("docs", "governance"),
   join("docs", "handover"),
   join("docs", "memory"),
+  join("docs", "migration"),
   join("docs", "plans"),
   join("docs", "process"),
+  join("docs", "research"),
   join("docs", "templates"),
   join("docs", "test-design"),
 ] as const;
@@ -54,6 +57,7 @@ const DESIGN_LANGUAGE_FILES = [
   "CLAUDE.md",
   join(".claude", "CLAUDE.md"),
   join("docs", "feedback-log.md"),
+  join("docs", "improvement-backlog.md"),
 ] as const;
 
 const JAPANESE_PATTERN = /[\u3040-\u30ff\u3400-\u9fff]/;
