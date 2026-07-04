@@ -2414,6 +2414,105 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
+  it("projects skill_injection session-log events as runtime skill invocations", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-skill-injection-projection-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "logs", "session"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-SKILL-RUNTIME.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-SKILL-RUNTIME",
+          "kind: impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-05",
+          "---",
+          "",
+          "# Runtime skill projection fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "logs", "session", "runtime-skill.jsonl"),
+        [
+          JSON.stringify({
+            ts: "2026-07-05T01:00:00.000Z",
+            session_id: "runtime-skill",
+            plan_id: "PLAN-L7-SKILL-RUNTIME",
+            event_type: "skill_injection",
+            target: "skill_injection:injected required=1 optional=0 missing=0",
+            outcome: "ok",
+          }),
+          JSON.stringify({
+            ts: "2026-07-05T01:01:00.000Z",
+            session_id: "runtime-skill",
+            plan_id: "PLAN-L7-SKILL-RUNTIME",
+            event_type: "skill_injection",
+            target: "skill_injection:failed required=0 optional=0 missing=0",
+            outcome: "error",
+          }),
+          "",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const rows = db
+          .prepare(
+            "SELECT session_id, plan_id, skill_id, layer, drive, fired_at, source, accepted FROM skill_invocations WHERE source = ? ORDER BY fired_at",
+          )
+          .all("session-log:skill-injection") as Array<Record<string, unknown>>;
+        expect(rows).toEqual([
+          expect.objectContaining({
+            session_id: "runtime-skill",
+            plan_id: "PLAN-L7-SKILL-RUNTIME",
+            skill_id: "skill:runtime-context-injection",
+            layer: "L7",
+            drive: "agent",
+            fired_at: "2026-07-05T01:00:00.000Z",
+            accepted: 1,
+          }),
+          expect.objectContaining({
+            session_id: "runtime-skill",
+            plan_id: "PLAN-L7-SKILL-RUNTIME",
+            skill_id: "skill:runtime-context-injection",
+            fired_at: "2026-07-05T01:01:00.000Z",
+            accepted: 0,
+          }),
+        ]);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it("projects loop iteration JSONL rows and records malformed rows as findings", () => {
     const repoRoot = join(tmpdir(), `ut-tdd-loop-iterations-${randomUUID()}`);
     try {

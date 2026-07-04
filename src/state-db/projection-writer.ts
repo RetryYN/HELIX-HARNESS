@@ -802,6 +802,29 @@ function projectHookEvents(
             evidence_path: relPath,
           },
         });
+        if (event.event_type === "skill_injection") {
+          const skillId = "skill:runtime-context-injection";
+          const invocationId = stableId(
+            "skill-inv",
+            `${event.session_id}:${event.plan_id}:${event.ts ?? ""}:${skillId}`,
+          );
+          const plan = plans.get(resolveProjectedPlanId(plans, event.plan_id));
+          recordProjectionEvent(db, {
+            table: "skill_invocations",
+            id: invocationId,
+            row: {
+              skill_invocation_id: invocationId,
+              session_id: event.session_id,
+              plan_id: resolveProjectedPlanId(plans, event.plan_id),
+              skill_id: skillId,
+              layer: plan?.layer ?? "",
+              drive: plan?.drive ?? "",
+              fired_at: event.ts ?? "",
+              source: "session-log:skill-injection",
+              accepted: event.outcome === "error" ? 0 : 1,
+            },
+          });
+        }
       }
     }
   }
