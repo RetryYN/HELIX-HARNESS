@@ -1,53 +1,53 @@
-# A-123 Lower-L Reverse Back-Propagation Hardening
+# A-123 Lower-L Reverse back-propagation 強化
 
-Date: 2026-06-09
-Context: User review after A-122 / Phase2 pre-close hardening
+日付: 2026-06-09
+Context: A-122 / Phase2 pre-close hardening 後のユーザーレビュー
 
-## Trigger
+## トリガー
 
-User identified a workflow weakness: additions or tickets discovered at lower L layers could remain as local carry/backlog without being routed back through Reverse to the upper requirements/design layers. This breaks the whole-system consistency principle.
+ユーザーは workflow の弱点を指摘した。下位 L layer で発見された追加や ticket が、Reverse 経由で上位 requirements/design layer へ戻されず、local carry/backlog のまま残り得る。この状態は whole-system consistency principle を破る。
 
-## Finding
+## 所見
 
-Existing governance had partial mechanisms:
+既存 governance には部分的な mechanism があった:
 
-- `kind=add-impl` back-fill pairing in requirements §1.10 E2.
-- FR-L1 delta registration and §1 back-merge in requirements §1.10 registration.
-- Add-feature bottom-up work returning through Reverse fullback in process mode docs.
+- requirements §1.10 E2 の `kind=add-impl` back-fill pairing。
+- requirements §1.10 registration の FR-L1 delta registration と §1 back-merge。
+- process mode docs で、add-feature の bottom-up work が Reverse fullback 経由で戻ること。
 
-The missing rule was a cross-cutting completion guard for any lower-layer discovery, not only add-feature:
+不足していた rule は、add-feature だけでなく任意の lower-layer discovery に対する cross-cutting completion guard だった:
 
-- L6/L7 test or implementation discoveries.
-- L8-L14 verification findings.
-- DB projection / guardrail / workflow automation additions.
-- Improvement backlog items that change requirements or acceptance semantics.
+- L6/L7 の test または implementation discovery。
+- L8-L14 の verification finding。
+- DB projection / guardrail / workflow automation の追加。
+- requirements または acceptance semantics を変える improvement backlog item。
 
-## Decision
+## 決定
 
-Lower-layer discoveries must be classified before completion:
+Lower-layer discovery は completion 前に分類しなければならない:
 
 - `local_impl_only`
 - `requires_design_normalization`
 - `requires_requirement_backprop`
 - `requires_concept_policy`
 
-`requires_*` items cannot be treated as completed/confirmed/accepted while the Reverse back-prop is open.
+Reverse back-prop が open の間、`requires_*` item は completed/confirmed/accepted と扱えない。
 
-## Changes
+## 変更
 
-- Added requirements v1.2 §6.8.8 `Lower-L discovery Reverse back-propagation`.
-- Added `LOWER-L-REVERSE-BACKPROP` to `docs/process/forward/overview.md`.
-- Added `LOWER-L-REVERSE-BACKPROP` to `docs/process/modes/README.md`.
-- Added `IMP-117` for future doctor / plan-lint enforcement.
+- requirements v1.2 §6.8.8 `Lower-L discovery Reverse back-propagation` を追加。
+- `docs/process/forward/overview.md` に `LOWER-L-REVERSE-BACKPROP` を追加。
+- `docs/process/modes/README.md` に `LOWER-L-REVERSE-BACKPROP` を追加。
+- 将来の doctor / plan-lint enforcement として `IMP-117` を追加。
 
-## Example Binding
+## 例の紐付け
 
-A-122 UT evidence history / GreenDefinition / Harness DB projection is not a local L5/L6 carry. It is a `requires_requirement_backprop` extension of existing FR-L1-05/06/07/17/18/20/45/50 and was back-propagated into L1/L3/requirements in the previous hardening pass.
+A-122 UT evidence history / GreenDefinition / Harness DB projection は local L5/L6 carry ではない。これは既存 FR-L1-05/06/07/17/18/20/45/50 の `requires_requirement_backprop` extension であり、前回の hardening pass で L1/L3/requirements へ back-propagate 済みである。
 
-## Residual Automation Work
+## 残る automation work
 
-IMP-117 remains open for implementation:
+IMP-117 は implementation 待ちとして open のままである:
 
-- Require `backprop_decision` fields in PLAN/audit/backlog entries created from lower L discoveries.
-- Warn-first in `ut-tdd doctor` / `plan-lint`.
-- Promote to fail-close at G7 / accept when a `requires_*` item is open.
+- lower L discovery から作成される PLAN/audit/backlog entry に `backprop_decision` field を必須化する。
+- `ut-tdd doctor` / `plan-lint` では、まず warn-first とする。
+- `requires_*` item が open の場合、G7 / accept で fail-close へ昇格する。
