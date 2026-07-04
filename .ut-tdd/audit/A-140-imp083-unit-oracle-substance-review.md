@@ -1,6 +1,6 @@
-# A-140 — IMP-083 unit-oracle-substance cross_agent review (2026-06-19)
+# A-140 — IMP-083 unit-oracle-substance cross_agent レビュー (2026-06-19)
 
-- review_kind: `cross_agent` / worker: Claude (claude-opus-4-8) / reviewer: Codex QA (gpt-5.5)
+- review_kind: `cross_agent` / worker: Claude (claude-opus-4-8) / reviewer: Codex QA (gpt-5.5) による確認
 - via `ut-tdd codex --role qa --task-file .ut-tdd/codex-tasks/imp083-unit-oracle-substance-review.md --execute`
 - **初回 verdict=fail → 全指摘 remediate → 再検証 green**:
   - **Critical (regex 多セグメント取りこぼし)**: `U-[A-Z0-9]+-[0-9]+` を `U-[A-Z0-9-]+-[0-9]+` へ拡張
@@ -17,24 +17,25 @@
 **Verdict: fail**
 
 **Critical**
-- `^\|\s*U-[A-Z0-9]+-[0-9]+\s*\|` is narrower than "U-* row with trailing numeric ID". It only matches one
-  name segment before the numeric suffix, so valid multi-segment IDs are skipped. 247 numeric-suffix U rows
-  exist by a broader pattern but only 239 are checked. Missed: `U-FR-L1-21-01`, `U-FR-L1-36`,
-  `U-DBPROJ-ATOMIC-01`, `U-CHGIMPACT-NONGIT-01`. Direct false-negative against the stated residual.
+- `^\|\s*U-[A-Z0-9]+-[0-9]+\s*\|` は "末尾 numeric ID を持つ U-* row" としては狭すぎる。
+  numeric suffix 前の name segment を 1 つしか match しないため、valid multi-segment IDs が skip される。
+  より広い pattern では numeric-suffix U rows が 247 件存在するが、検査対象は 239 件のみ。
+  見落とし: `U-FR-L1-21-01`, `U-FR-L1-36`, `U-DBPROJ-ATOMIC-01`, `U-CHGIMPACT-NONGIT-01`。
+  stated residual に対する direct false-negative。
 
 **Important**
-- The new hard rule is not registered in `REQUIRED_RULE_IDS` or the DDD/TDD Rules SSoT. The analyzer policy
-  explicitly checks SSoT rule drift, so `unit-oracle-substance` is an active rule outside the declared
-  DDD/TDD rule contract. "No new canonical FR" is fine, but the rule must be represented under the existing
-  FR-L1-50 / DDD-TDD rule surface.
+- new hard rule が `REQUIRED_RULE_IDS` または DDD/TDD Rules SSoT に登録されていない。analyzer policy は
+  SSoT rule drift を明示的に検査するため、`unit-oracle-substance` は宣言済み DDD/TDD rule contract の外側にある
+  active rule になっている。"No new canonical FR" は問題ないが、この rule は既存の
+  FR-L1-50 / DDD-TDD rule surface 配下に表現される必要がある。
 
 **Minor**
-- `line.split("|")` is not Markdown-table aware; inline `|` inflates cell count. Current rows stay green
-  because the final fragment is long, but a valid expected behavior ending near an inline pipe could
-  false-positive. Risk, not a current blocker.
+- `line.split("|")` は Markdown table aware ではなく、inline `|` が cell count を膨らませる。現在の row は
+  final fragment が長いため green のままだが、inline pipe 付近で終わる valid expected behavior は
+  false-positive になり得る。現時点の blocker ではなく risk。
 
-On the requested points: final-column-as-expected is acceptable for the current L7 shape but brittle;
-L7-only scope is defensible; the `<6` + skeleton marker threshold is reasonable as a minimal hard guard;
-overlap with `integration-gwt` is low (L8 GWT vs L7 unit oracle substance are distinct).
+依頼された論点について: final-column-as-expected は現在の L7 shape では許容できるが brittle。
+L7-only scope は defensible。`<6` + skeleton marker threshold は minimal hard guard として妥当。
+`integration-gwt` との overlap は低い (L8 GWT と L7 unit oracle substance は別物)。
 
-Verification run: `bun test tests/ddd-tdd-rules.test.ts` passed; `doctor` reported `ddd-tdd-rules - OK`.
+検証実行: `bun test tests/ddd-tdd-rules.test.ts` は passed。`doctor` は `ddd-tdd-rules - OK` を報告。
