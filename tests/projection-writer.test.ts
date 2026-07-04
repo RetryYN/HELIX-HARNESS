@@ -360,7 +360,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       projectRefactorCandidateSignals(repoRoot, {} as HarnessDb, {
         nowIso: () => "2026-06-25T00:00:00.000Z",
         stableId: (prefix, value) => `${prefix}:${value}`,
-        recordProjectionEvent: (_db, event) => events.push({ table: event.table, row: event.row }),
+        recordProjectionEvent: (_db, event) => {
+          events.push({ table: event.table, row: event.row });
+          return { table: event.table, id: event.id, evidence_path: "" };
+        },
       });
 
       expect(events).toEqual(
@@ -438,7 +441,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           updated_at: "2026-06-11T00:00:00.000Z",
         },
       });
-      recordProjectionEvent(db, {
+      const rowRef = recordProjectionEvent(db, {
         table: "gate_runs",
         id: "gate-1",
         row: {
@@ -449,6 +452,11 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           checked_at: "2026-06-11T00:01:00.000Z",
           evidence_path: "docs/handover/projection.md",
         },
+      });
+      expect(rowRef).toEqual({
+        table: "gate_runs",
+        id: "gate-1",
+        evidence_path: "docs/handover/projection.md",
       });
       recordProjectionEvent(db, {
         table: "gate_runs",

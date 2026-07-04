@@ -181,6 +181,12 @@ export interface ProjectionEvent {
   row: Record<string, unknown>;
 }
 
+export interface ProjectionRowRef {
+  table: string;
+  id: string;
+  evidence_path: string;
+}
+
 export interface RebuildHarnessDbInput {
   repoRoot?: string;
   db?: HarnessDb;
@@ -388,15 +394,21 @@ function checkResolvablePlanJoin(db: HarnessDb, table: string, row: Record<strin
   });
 }
 
-export function recordProjectionEvent(db: HarnessDb, event: ProjectionEvent): void {
+export function recordProjectionEvent(db: HarnessDb, event: ProjectionEvent): ProjectionRowRef {
   const table = tableDef(event.table);
   const row = normalizeRow(table, event);
+  const primaryKey = primaryKeyOf(table);
   upsertRow(db, {
     table: table.name,
-    primaryKey: primaryKeyOf(table),
+    primaryKey,
     row,
   });
   checkResolvablePlanJoin(db, table.name, row);
+  return {
+    table: table.name,
+    id: String(row[primaryKey] ?? event.id),
+    evidence_path: asString(row.evidence_path) ?? "",
+  };
 }
 
 function markdownFiles(dir: string): string[] {

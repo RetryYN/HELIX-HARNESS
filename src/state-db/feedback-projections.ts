@@ -13,7 +13,7 @@ interface FeedbackProjectionDeps {
   recordProjectionEvent: (
     db: HarnessDb,
     event: { table: string; id: string; row: Record<string, unknown> },
-  ) => void;
+  ) => { table: string; id: string; evidence_path: string };
 }
 
 const refactorCandidateCache = new Map<string, RefactorCandidate[]>();
