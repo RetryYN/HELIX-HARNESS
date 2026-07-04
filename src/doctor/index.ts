@@ -145,6 +145,18 @@ import {
   g8IntegrationWorkflowMessages,
   loadG8IntegrationWorkflowInput,
 } from "../lint/g8-integration-workflow";
+import {
+  analyzeG9SystemWorkflow,
+  canLoadG9SystemWorkflowInput,
+  g9SystemWorkflowMessages,
+  loadG9SystemWorkflowInput,
+} from "../lint/g9-system-workflow";
+import {
+  analyzeG10UxWorkflow,
+  canLoadG10UxWorkflowInput,
+  g10UxWorkflowMessages,
+  loadG10UxWorkflowInput,
+} from "../lint/g10-ux-workflow";
 import { analyzeGateConfirm, gateConfirmMessages, loadGateConfirmDocs } from "../lint/gate-confirm";
 import { checkGreenCommandDigests } from "../lint/green-command-digest";
 import {
@@ -3066,6 +3078,48 @@ export function checkG8IntegrationWorkflow(repoRoot: string): {
   }
 }
 
+export function checkG9SystemWorkflow(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!canLoadG9SystemWorkflowInput(repoRoot)) {
+    return {
+      messages: ["g9-system-workflow - violation: L9 test design, L9 boundary, or gates.md could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = analyzeG9SystemWorkflow(loadG9SystemWorkflowInput(repoRoot));
+    return { messages: g9SystemWorkflowMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["g9-system-workflow - violation: G9 workflow check could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkG10UxWorkflow(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!canLoadG10UxWorkflowInput(repoRoot)) {
+    return {
+      messages: ["g10-ux-workflow - violation: L10 visual design or gates.md could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = analyzeG10UxWorkflow(loadG10UxWorkflowInput(repoRoot));
+    return { messages: g10UxWorkflowMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["g10-ux-workflow - violation: G10 workflow check could not run"],
+      ok: false,
+    };
+  }
+}
+
 export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
   // handover / agent-slots are warning surfaces. Verification profile is a hard gate.
@@ -3137,6 +3191,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const rightArmGatePlanning = checkRightArmGatePlanning(deps.repoRoot);
   const rightArmVerificationStrategy = checkRightArmVerificationStrategy(deps.repoRoot);
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
+  const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
+  const g10UxWorkflow = checkG10UxWorkflow(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
@@ -3227,6 +3283,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       rightArmGatePlanning.ok &&
       rightArmVerificationStrategy.ok &&
       g8IntegrationWorkflow.ok &&
+      g9SystemWorkflow.ok &&
+      g10UxWorkflow.ok &&
       lintWiring.ok &&
       toolchainPin.ok &&
       proposalDocumentCoverage.ok &&
@@ -3318,6 +3376,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...rightArmGatePlanning.messages.map((m) => `doctor: ${m}`),
       ...rightArmVerificationStrategy.messages.map((m) => `doctor: ${m}`),
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
+      ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
+      ...g10UxWorkflow.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),

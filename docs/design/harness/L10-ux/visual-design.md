@@ -42,6 +42,27 @@ test-design doc は作らない)。
 - L2 screen mock と差異がある場合は、L2/L4/L6 へ backprop route が記録されている。
 - `screen-impl-pair-freeze` が L10 到達条件を満たし、S4 / cutover / activation blocker を隠さない。
 
+## G10-WORKFLOW
+
+| marker | 内容 |
+|---|---|
+| ux_test_strategy | L2 mock と実装済み UI の差分を実データで検証する。 |
+| ux_test_plan | render / screenshot / a11y / blocker 表示の UXV item を選ぶ。 |
+| ux_test_conditions | UXV-* rows は real-data render、screenshot、a11y evidence、frontend coverage に対応する。 |
+| ux_coverage_items | UXV-RENDER / UXV-A11Y / UXV-BLOCKER を最低 family とする。 |
+| ux_test_procedures | browser profile または read-model smoke を実行し、advisor-fable evidence を紐付ける。 |
+| ux_execution_evidence | `g10-ux-evidence-v1` manifest が command、UXV item、path、advisor evidence を持つ。 |
+| ux_exit_criteria | mandatory UXV は全 pass、stale defer は 0。 |
+| ux_defect_routing | failure は L10 修正、L2/L4/L6 backprop、または PO decision へ route する。 |
+
+### G10 選定 UXV coverage
+
+| UXV-ID | family | 現在の selected evidence |
+|---|---|---|
+| UXV-RENDER-01 | UXV-RENDER | `screen-impl-pair-freeze` と `frontend-design-coverage` で、未実装 UI を G10 完了扱いしないことを固定する。 |
+| UXV-A11Y-01 | UXV-A11Y | WCAG 2.2 / browser profile requirement を `verification-profile` で保持する。 |
+| UXV-BLOCKER-01 | UXV-BLOCKER | S4 / action-binding / cutover blocker を completion packet で可視化し、UX green に隠さない。 |
+
 ## trace
 
 - 上流: [L2 wireframe](../L2-screen/wireframe.md) (mock = self-pair) + [L4 ui-standard](../L4-basic-design/ui-standard.md) (FE 設計標準) + L7 src/web 実装。

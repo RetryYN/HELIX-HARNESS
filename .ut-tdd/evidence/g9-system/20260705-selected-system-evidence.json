@@ -1,0 +1,122 @@
+{
+  "schema_version": "g9-system-evidence-v1",
+  "gate": "G9",
+  "profile": "system-selected-regression",
+  "plan_id": "PLAN-L7-313-g9-g10-workflow-gate",
+  "selected_item_ids": [
+    "ST-DATA-01",
+    "ST-ARCH-01",
+    "ST-FUNC-01",
+    "ST-EXT-01",
+    "ST-UI-01",
+    "ST-ASSET-01"
+  ],
+  "mandatory_item_ids": [
+    "ST-DATA-01",
+    "ST-ARCH-01",
+    "ST-FUNC-01",
+    "ST-EXT-01",
+    "ST-UI-01",
+    "ST-ASSET-01"
+  ],
+  "deferred_item_ids": [],
+  "commands": [
+    {
+      "command_id": "cmd-g9-selected-workflow",
+      "command": "bun test tests/g9-system-workflow.test.ts --timeout 180000",
+      "runner": "bun",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": "tests/g9-system-workflow.test.ts",
+      "output_digest": "sha256:3f26794e8131251b909837cfaf9423cd2067de123a2c2e104b0f9dbe6c362a54",
+      "item_ids": [
+        "ST-DATA-01",
+        "ST-ARCH-01",
+        "ST-FUNC-01",
+        "ST-EXT-01",
+        "ST-UI-01",
+        "ST-ASSET-01"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "item_id": "ST-DATA-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g9-system-workflow.test.ts",
+        "docs/design/harness/L9-system/system-evidence-boundary.md"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-workflow"
+      ],
+      "notes": "Selected data/system trace gate keeps impl-plan-trace and oracle-test-trace visible without claiming full delivery."
+    },
+    {
+      "item_id": "ST-ARCH-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g9-system-workflow.test.ts",
+        "src/lint/g9-system-workflow.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-workflow"
+      ],
+      "notes": "Architecture/system boundary is checked through G9 manifest and existing module/dependency gates."
+    },
+    {
+      "item_id": "ST-FUNC-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g9-system-workflow.test.ts",
+        "docs/process/forward/L08-L14-verification-phase.md"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-workflow"
+      ],
+      "notes": "Workflow/system behavior remains tied to status/completion packet rather than hidden by selected green."
+    },
+    {
+      "item_id": "ST-EXT-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g9-system-workflow.test.ts",
+        "src/lint/gn-evidence-manifest.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-workflow"
+      ],
+      "notes": "External boundary evidence stays in repo-local manifests with digest/path validation."
+    },
+    {
+      "item_id": "ST-UI-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g9-system-workflow.test.ts",
+        "docs/design/harness/L10-ux/visual-design.md"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-workflow"
+      ],
+      "notes": "UI system chain points to L10 UX boundary without claiming G10 signoff."
+    },
+    {
+      "item_id": "ST-ASSET-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g9-system-workflow.test.ts",
+        "src/lint/g9-system-workflow.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-workflow"
+      ],
+      "notes": "Asset system checks remain linked to asset-drift and skill-assignment gates."
+    }
+  ],
+  "exit_criteria": {
+    "all_mandatory_passed": true,
+    "failed_mandatory_count": 0,
+    "stale_defer_count": 0,
+    "doctor_check": "g9-system-workflow"
+  }
+}

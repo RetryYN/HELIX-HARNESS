@@ -57,8 +57,8 @@ Source ledger 意味レビュー証跡:
 | gate | 左腕 test basis | 右腕 test condition | 必須 evidence | gate 消費形態 |
 |------|----------------|---------------------|---------------|---------------|
 | G8 | L5 D-API / D-DB / D-CONTRACT | module / state / adapter / asset / DB 境界が結合して動く | `g8-integration-evidence-v1` manifest、selected IT IDs、command exit 0、coverage row、stale defer 0 | `g8-integration-workflow` hard gate |
-| G9 | L4 architecture / ADR / system contract | system behavior が feature pack / roadmap span 単位で成立する | ST-* row、system command evidence、roadmap span coverage、regression finding routing | G9 child PLAN で manifest 化するまで `right-arm-gate-planning` が route を保持 |
-| G10 | L2 screen / mock / UX requirement | 本番相当データで画面・会話 UI が成立する | screenshot / render smoke / accessibility finding / WCAG 2.2 success-criteria mapping / Playwright trace or report / real-data fixture provenance | G10 child PLAN で profile 化。現時点は `screen-impl-pair-freeze` と frontend coverage が前段証跡 |
+| G9 | L4 architecture / ADR / system contract | system behavior が feature pack / roadmap span 単位で成立する | ST-* row、system command evidence、roadmap span coverage、regression finding routing | `g9-system-evidence-v1` manifest + `g9-system-workflow` doctor gate |
+| G10 | L2 screen / mock / UX requirement | 本番相当データで画面・会話 UI が成立する | screenshot / render smoke / accessibility finding / WCAG 2.2 success-criteria mapping / Playwright trace or report / real-data fixture provenance | `g10-ux-evidence-v1` manifest + `g10-ux-workflow` doctor gate。PO signoff / 全面 render evidence は別 blocker として残す |
 | G11 | L1 business requirement + L3 FR/AC | UAT feedback が要求・要件に照合済み | UAT decision record、accepted/rejected feedback、manual accessibility or inclusive-user review route、add-design/backprop route | human/PO evidence 必須。未処理 feedback は Forward 完了不可 |
 | G12 | L3 acceptance test design | release candidate が受入条件を満たす | acceptance command evidence、release approval、rollback/destructive check | PO signoff 必須。外部/本番影響は escalation 境界 |
 | G13 | L12 deployment record | deployed/staging 環境 smoke が通る | smoke command evidence、monitoring quiet window、incident routing if failed | production write は人間承認なしに実行しない |

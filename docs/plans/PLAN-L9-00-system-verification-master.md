@@ -63,10 +63,12 @@ L9 の forward PLAN ファイルが存在しない棚卸し穴を閉じ、system
 ## 範囲
 
 - doctor / completion packet / semantic frontier を L9 の selected system evidence として扱う。
+- G9 は `g9-system-evidence-v1` manifest と `g9-system-workflow` doctor gate で selected ST family を検査する。
 - production 相当の全 system delivery は、本 PLAN では完了扱いにしない。
 
 ## DoD
 
 - [x] L9 個別 PLAN が存在する。
 - [x] L9 harness design boundary が存在する。
+- [x] G9 selected ST evidence manifest と doctor gate が存在する。
 - [x] 未完了 frontier を system green で隠さない。
