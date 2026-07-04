@@ -245,6 +245,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       mkdirSync(join(root, "src"), { recursive: true });
       mkdirSync(join(root, "tests"), { recursive: true });
       mkdirSync(join(root, "docs", "templates", "adapter"), { recursive: true });
+      mkdirSync(join(root, "docs", "archive"), { recursive: true });
+      mkdirSync(join(root, "docs", "handover"), { recursive: true });
+      mkdirSync(join(root, "docs", "skills"), { recursive: true });
+      mkdirSync(join(root, "docs", "research"), { recursive: true });
       mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
       mkdirSync(join(root, ".codex"), { recursive: true });
       mkdirSync(join(root, "scripts"), { recursive: true });
@@ -265,6 +269,27 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       writeFileSync(
         join(root, "docs", "templates", "adapter", "AGENTS.md"),
         "Generated projects use ut-tdd until cutover.\n",
+      );
+      writeFileSync(join(root, "README.md"), "Top-level docs mention ut-tdd before cutover.\n");
+      writeFileSync(
+        join(root, "docs", "archive", "legacy.md"),
+        "Historical docs may mention ut-tdd as reference material.\n",
+      );
+      writeFileSync(
+        join(root, "docs", "handover", "session.md"),
+        "Handover docs may mention .ut-tdd as evidence, not runtime authority.\n",
+      );
+      writeFileSync(
+        join(root, "docs", "skills", "testing.md"),
+        "Skill docs mention ut-tdd command usage before cutover.\n",
+      );
+      writeFileSync(
+        join(root, "docs", "research", "grounding.md"),
+        "Research docs mention ut-tdd as an evaluated source term.\n",
+      );
+      writeFileSync(
+        join(root, "docs", "improvement-backlog.md"),
+        "Backlog references .ut-tdd migration work before approval.\n",
       );
       writeFileSync(join(root, ".ut-tdd", "state", "setup.json"), '{"cli":"ut-tdd"}\n');
       writeFileSync(join(root, ".codex", "hooks.json"), '{"marker":"area=harness"}\n');
@@ -292,6 +317,15 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             path: "docs/templates/adapter/AGENTS.md",
             category: "consumer_template",
           }),
+          expect.objectContaining({ path: "docs/archive/legacy.md", category: "historical_doc" }),
+          expect.objectContaining({ path: "docs/handover/session.md", category: "handover_doc" }),
+          expect.objectContaining({ path: "docs/skills/testing.md", category: "skill_doc" }),
+          expect.objectContaining({ path: "docs/research/grounding.md", category: "research_doc" }),
+          expect.objectContaining({
+            path: "docs/improvement-backlog.md",
+            category: "backlog_doc",
+          }),
+          expect.objectContaining({ path: "README.md", category: "top_level_doc" }),
           expect.objectContaining({
             path: ".ut-tdd/state/setup.json",
             category: "runtime_state",
@@ -306,6 +340,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         "runtime_state",
         "adapter_config",
         "distribution_surface",
+        "historical_doc",
+        "handover_doc",
+        "skill_doc",
+        "research_doc",
+        "backlog_doc",
+        "top_level_doc",
       ]) {
         expect(audit.hitsByCategory).toEqual(
           expect.arrayContaining([expect.objectContaining({ category, hits: expect.any(Number) })]),

@@ -29,8 +29,8 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
 
-    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-03");
-    expect(text).toContain("外部 source ledger (checked 2026-07-03)");
+    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-04");
+    expect(text).toContain("外部 source ledger (checked 2026-07-04)");
     expect(text).toContain(
       "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git refs/heads/main",
     );
@@ -42,13 +42,13 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("workflowRouteImpact");
     expect(text).toContain("7f83ca811353ed90b3e981178a1b0c9977dd5863");
     expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
-    expect(text).toContain("a13eb78a87dbbc1f60fa0b53e3a55413853c68b2");
+    expect(text).toContain("a43771ab091486520a4970f6b19b1663a009d4d0");
     expect(text).toContain("v0.1.4");
     expect(text).toContain("package.json version: `0.1.0`");
     expect(text).toContain("local distribution tag: `v0.1.0`");
     expect(text).toContain("Pack latest tag: `v0.1.4`");
     expect(text).toContain("version-up activation required before adopting Pack latest tag");
-    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-03");
+    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-04");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
@@ -95,6 +95,22 @@ describe("HELIX objective evidence audit", () => {
       "docs/governance/helix-l0-l8-design-consistency-audit.md",
       "src/lint/semantic-frontier-consistency.ts",
       "tests/semantic-frontier-consistency.test.ts",
+      "docs/design/helix/L0-charter/helix-charter_v0.1.md",
+      "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "docs/design/helix/L2-screen/screen-mock-boundary.md",
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "docs/design/helix/L5-detail/pillar-detail-design.md",
+      "docs/design/helix/L6-function-design/pillar-function-design.md",
+      "docs/design/helix/L7-implementation/implementation-evidence-index.md",
+      "docs/design/helix/L8-integration/integration-evidence-index.md",
+      "docs/design/helix/L9-system/system-evidence-index.md",
+      "docs/design/helix/L10-ux/ux-evidence-boundary.md",
+      "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+      "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+      "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
+      "docs/design/helix/L14-operations/operations-feedback-boundary.md",
+      "docs/test-design/helix/L2-screen-ux-test-design.md",
       "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
       "docs/test-design/helix/L6-pillar-unit-test-design.md",
       "CLAUDE.md",
@@ -132,13 +148,13 @@ describe("HELIX objective evidence audit", () => {
 
   it("fails when the external distribution reference repository marker is dropped", () => {
     const text = auditText()
-      .replaceAll("外部ソース HEAD 確認日: 2026-07-03", "外部ソース HEAD 確認日: 2026-06-30")
+      .replaceAll("外部ソース HEAD 確認日: 2026-07-04", "外部ソース HEAD 確認日: 2026-06-30")
       .replaceAll(
-        "外部 source ledger (checked 2026-07-03)",
+        "外部 source ledger (checked 2026-07-04)",
         "外部 source ledger (checked 2026-01-01)",
       )
       .replaceAll("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack", "unison-ai-product/PACK-MISSING")
-      .replaceAll("a13eb78a87dbbc1f60fa0b53e3a55413853c68b2", "pack-head-missing")
+      .replaceAll("a43771ab091486520a4970f6b19b1663a009d4d0", "pack-head-missing")
       .replaceAll("distribution_pack_latest_tag", "distribution_pack_latest_tag_missing")
       .replaceAll("v0.1.4", "pack-tag-missing")
       .replaceAll("package.json version: `0.1.0`", "package.json version: `0.1.9`")
@@ -149,7 +165,7 @@ describe("HELIX objective evidence audit", () => {
         "version-up activation marker missing",
       )
       .replaceAll(
-        "検証 / 進捗 source basis 再確認日: 2026-07-03",
+        "検証 / 進捗 source basis 再確認日: 2026-07-04",
         "検証 / 進捗 source basis 再確認日: 2026-07-01",
       );
 
@@ -162,14 +178,14 @@ describe("HELIX objective evidence audit", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-03",
+        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-04",
         "G-01: missing external source marker unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-        "G-01: missing external source marker a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+        "G-01: missing external source marker a43771ab091486520a4970f6b19b1663a009d4d0",
         "G-01: missing external source marker v0.1.4",
-        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-03",
+        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-04",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
         "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
-        "G-01: 外部 source ledger distribution_pack_repo observed missing a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+        "G-01: 外部 source ledger distribution_pack_repo observed missing a43771ab091486520a4970f6b19b1663a009d4d0",
         "G-01: 外部 source ledger missing row distribution_pack_latest_tag",
         "G-01: missing distribution version binding marker package.json version: `0.1.0`",
         "G-01: missing distribution version binding marker local distribution tag: `v0.1.0`",
@@ -185,7 +201,7 @@ describe("HELIX objective evidence audit", () => {
       ...baseInput,
       externalObserved: {
         development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-        distribution_pack_repo: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+        distribution_pack_repo: "a43771ab091486520a4970f6b19b1663a009d4d0",
         distribution_pack_latest_tag: "v0.1.4",
       },
     });
@@ -217,7 +233,7 @@ describe("HELIX objective evidence audit", () => {
 
     expect(drifted.ok).toBe(false);
     expect(drifted.violations).toContain(
-      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a13eb78a87dbbc1f60fa0b53e3a55413853c68b2 actual=different-pack-head",
+      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a43771ab091486520a4970f6b19b1663a009d4d0 actual=different-pack-head",
     );
   });
 
@@ -280,6 +296,63 @@ describe("HELIX objective evidence audit", () => {
         "G-09: missing meaning-based frontier hard-gate marker C-18",
         "G-09: missing meaning-based frontier hard-gate marker live `semanticFeatureFrontierRecords[]`",
         "G-09: missing meaning-based frontier hard-gate marker prose-only feature list",
+      ]),
+    );
+  });
+
+  it("fails when HELIX L0-L14 layer coverage citations are dropped", () => {
+    const text = auditText()
+      .replaceAll(
+        "docs/design/helix/L2-screen/screen-mock-boundary.md",
+        "docs/design/helix/L2-screen/screen-mock-boundary-removed.md",
+      )
+      .replaceAll(
+        "docs/design/helix/L7-implementation/implementation-evidence-index.md",
+        "docs/design/helix/L7-implementation/implementation-evidence-index-removed.md",
+      )
+      .replaceAll(
+        "docs/design/helix/L14-operations/operations-feedback-boundary.md",
+        "docs/design/helix/L14-operations/operations-feedback-boundary-removed.md",
+      )
+      .replaceAll(
+        "docs/test-design/helix/L2-screen-ux-test-design.md",
+        "docs/test-design/helix/L2-screen-ux-test-design-removed.md",
+      );
+
+    const result = analyzeObjectiveEvidenceAudit({
+      auditText: text,
+      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
+      repoRoot: process.cwd(),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L2-screen/screen-mock-boundary.md",
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L7-implementation/implementation-evidence-index.md",
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L14-operations/operations-feedback-boundary.md",
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L2-screen-ux-test-design.md",
+      ]),
+    );
+  });
+
+  it("fails when required HELIX L0-L14 coverage artifacts are present but not git tracked", () => {
+    const baseInput = loadObjectiveEvidenceAuditInput();
+    const trackedFiles = new Set(
+      Array.from(baseInput.trackedFiles ?? []).filter(
+        (path) => path !== "docs/design/helix/L2-screen/screen-mock-boundary.md",
+      ),
+    );
+
+    const result = analyzeObjectiveEvidenceAudit({
+      ...baseInput,
+      trackedFiles,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        "G-06: HELIX L0-L14 layer coverage artifact not git tracked docs/design/helix/L2-screen/screen-mock-boundary.md",
       ]),
     );
   });
@@ -362,7 +435,7 @@ describe("HELIX objective evidence audit", () => {
   it("keeps completion claim blocked when readiness is ready but audit evidence is invalid", () => {
     const readyOutstanding = analyzeOutstandingWork([], 0);
     const invalidText = auditText().replace(
-      "外部ソース HEAD 確認日: 2026-07-03",
+      "外部ソース HEAD 確認日: 2026-07-04",
       "外部ソース HEAD 確認日: missing",
     );
 

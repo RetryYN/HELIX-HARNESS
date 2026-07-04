@@ -45,6 +45,12 @@ export type IdentifierRenameHitCategory =
   | "plan_doc"
   | "design_doc"
   | "governance_doc"
+  | "historical_doc"
+  | "handover_doc"
+  | "skill_doc"
+  | "research_doc"
+  | "backlog_doc"
+  | "top_level_doc"
   | "distribution_surface"
   | "other";
 
@@ -420,6 +426,12 @@ const HIT_CATEGORIES: IdentifierRenameHitCategory[] = [
   "plan_doc",
   "design_doc",
   "governance_doc",
+  "historical_doc",
+  "handover_doc",
+  "skill_doc",
+  "research_doc",
+  "backlog_doc",
+  "top_level_doc",
   "distribution_surface",
   "other",
 ];
@@ -487,6 +499,15 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
     return "adapter_config";
   }
   if (path.startsWith("docs/templates/")) return "consumer_template";
+  if (path.startsWith("docs/archive/") || path.startsWith("docs/migration/")) {
+    return "historical_doc";
+  }
+  if (path.startsWith("docs/handover/")) return "handover_doc";
+  if (path.startsWith("docs/skills/")) return "skill_doc";
+  if (path.startsWith("docs/research/")) return "research_doc";
+  if (path === "docs/improvement-backlog.md" || path.startsWith("docs/feedback")) {
+    return "backlog_doc";
+  }
   if (path.startsWith("docs/plans/")) return "plan_doc";
   if (path.startsWith("docs/design/") || path.startsWith("docs/test-design/")) {
     return "design_doc";
@@ -499,6 +520,7 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
   ) {
     return "governance_doc";
   }
+  if (path === "README.md" || path === "AGENTS.override.example.md") return "top_level_doc";
   if (path.startsWith("src/")) return "source_code";
   if (path.startsWith("tests/")) return "test_code";
   if (
@@ -782,6 +804,18 @@ function cutoverActionForCategory(category: IdentifierRenameHitCategory): string
       return "update design/test-design trace without collapsing approval_gated_cutover status";
     case "governance_doc":
       return "update governance/process references and rule-drift markers together";
+    case "historical_doc":
+      return "preserve historical/reference meaning or mark as archived; do not use as current cutover authority";
+    case "handover_doc":
+      return "update handover narrative only when it is current handover evidence; avoid stale prose as authority";
+    case "skill_doc":
+      return "update skill docs and skill-map references without treating legacy skill prose as runtime authority";
+    case "research_doc":
+      return "preserve research source context and update only adoption/cutover interpretation";
+    case "backlog_doc":
+      return "update backlog/feedback references while preserving historical feedback semantics";
+    case "top_level_doc":
+      return "update top-level user-facing docs together with distribution and setup wording";
     case "distribution_surface":
       return "update package/scripts/GitHub surfaces and run distribution smoke";
     case "other":
@@ -807,6 +841,18 @@ function verificationCommandForCategory(category: IdentifierRenameHitCategory): 
       return "bun test tests/design-language.test.ts tests/oracle-test-trace.test.ts";
     case "governance_doc":
       return "bun run src/cli.ts doctor";
+    case "historical_doc":
+      return "bun test tests/identifier-rename.test.ts && bun run src/cli.ts rename audit --json";
+    case "handover_doc":
+      return "bun run src/cli.ts doctor";
+    case "skill_doc":
+      return "bun test tests/skill-assignment.test.ts tests/design-language.test.ts";
+    case "research_doc":
+      return "bun test tests/design-language.test.ts && bun run src/cli.ts rename audit --json";
+    case "backlog_doc":
+      return "bun run src/cli.ts doctor";
+    case "top_level_doc":
+      return "bun test tests/design-language.test.ts && bun run src/cli.ts doctor";
     case "distribution_surface":
       return "bun run build && ./dist/ut-tdd doctor";
     case "other":
@@ -2357,13 +2403,25 @@ function parseCutoverSourceLedger(text: string): { rows: Record<string, string>[
     tableLines.push(line);
   }
   if (tableLines.length < 2) return { rows: [] };
-  const columns = tableCells(tableLines[0]);
+  const columns = tableCells(tableLines[0]).map((column) => cutoverSourceLedgerColumn(column));
   return {
     rows: tableLines.slice(2).map((line) => {
       const rowCells = tableCells(line);
       return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
     }),
   };
+}
+
+function cutoverSourceLedgerColumn(column: string): string {
+  const aliases: Record<string, string> = {
+    "公式 URL": "official URL",
+    "採用 version/date": "adopted version/date",
+    "最新公式 status": "latest official status",
+    採用判断: "adoption decision",
+    "cutover 用途": "cutover use",
+    "必須 field への影響": "required field impact",
+  };
+  return aliases[column] ?? column;
 }
 
 function tableCells(line: string): string[] {

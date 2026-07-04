@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
@@ -8,6 +9,7 @@ export interface ObjectiveEvidenceAuditInput {
   outstanding: OutstandingWork;
   repoRoot: string;
   externalObserved?: Record<string, string>;
+  trackedFiles?: ReadonlySet<string> | null;
 }
 
 export interface ObjectiveEvidenceAuditResult {
@@ -88,6 +90,29 @@ const REQUIRED_OBJECTIVE_ARTIFACT_GROUPS = [
     ],
   },
   {
+    requirementId: "G-06",
+    label: "HELIX L0-L14 layer coverage artifact",
+    artifacts: [
+      "docs/design/helix/L0-charter/helix-charter_v0.1.md",
+      "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "docs/design/helix/L2-screen/screen-mock-boundary.md",
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "docs/design/helix/L5-detail/pillar-detail-design.md",
+      "docs/design/helix/L6-function-design/pillar-function-design.md",
+      "docs/design/helix/L7-implementation/implementation-evidence-index.md",
+      "docs/design/helix/L8-integration/integration-evidence-index.md",
+      "docs/design/helix/L9-system/system-evidence-index.md",
+      "docs/design/helix/L10-ux/ux-evidence-boundary.md",
+      "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+      "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+      "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
+      "docs/design/helix/L14-operations/operations-feedback-boundary.md",
+      "docs/test-design/helix/L2-screen-ux-test-design.md",
+    ],
+    requireTracked: true,
+  },
+  {
     requirementId: "G-10",
     label: "version-up and cutover blocker artifact",
     artifacts: [
@@ -107,13 +132,13 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
     requirementId: "G-01",
     label: "external source marker",
     markers: [
-      "外部ソース HEAD 確認日: 2026-07-03",
+      "外部ソース HEAD 確認日: 2026-07-04",
       "unison-ai-product/UT-TDD_AGENT-HARNESS",
       "7f83ca811353ed90b3e981178a1b0c9977dd5863",
       "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-      "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+      "a43771ab091486520a4970f6b19b1663a009d4d0",
       "v0.1.4",
-      "検証 / 進捗 source basis 再確認日: 2026-07-03",
+      "検証 / 進捗 source basis 再確認日: 2026-07-04",
     ],
   },
   {
@@ -156,9 +181,9 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     command:
       "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+    observed: "a43771ab091486520a4970f6b19b1663a009d4d0",
     latestOfficialStatus: "main branch reachable",
-    sourceStatusDelta: "changed from previous audit; objective audit refreshed",
+    sourceStatusDelta: "changed from 2026-07-03 audit; objective audit refreshed",
     adoptionDecision:
       "reference source only; version-up activation required before adopting Pack latest",
     workflowRouteImpact: "distribution-version-binding gate retained",
@@ -186,6 +211,7 @@ export function loadObjectiveEvidenceAuditInput(
     ),
     outstanding: computeOutstandingWork(repoRoot),
     repoRoot,
+    trackedFiles: readGitTrackedFiles(repoRoot),
   };
 }
 
@@ -226,6 +252,13 @@ export function analyzeObjectiveEvidenceAudit(
         violations.push(`${group.requirementId}: missing ${group.label} citation ${artifact}`);
       } else if (!existsSync(join(input.repoRoot, artifact))) {
         violations.push(`${group.requirementId}: cited ${group.label} missing ${artifact}`);
+      } else if (
+        "requireTracked" in group &&
+        group.requireTracked &&
+        input.trackedFiles &&
+        !input.trackedFiles.has(artifact)
+      ) {
+        violations.push(`${group.requirementId}: ${group.label} not git tracked ${artifact}`);
       }
     }
   }
@@ -258,6 +291,19 @@ export function analyzeObjectiveEvidenceAudit(
       auditViolationCount: violations.length,
     }),
   };
+}
+
+function readGitTrackedFiles(repoRoot: string): ReadonlySet<string> | null {
+  try {
+    const stdout = execFileSync("git", ["-C", repoRoot, "ls-files", "-z"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    if (stdout.length > 0 && !stdout.includes("\0")) return null;
+    return new Set(stdout.split("\0").filter(Boolean));
+  } catch {
+    return null;
+  }
 }
 
 function checkExternalSourceLedger(input: ObjectiveEvidenceAuditInput, violations: string[]): void {
@@ -320,7 +366,7 @@ function parseExternalSourceLedgerRows(text: string): ExternalSourceLedgerRow[] 
   if (headingIndex === -1) return [];
   const tableLines = lines.slice(headingIndex + 1).filter((line) => line.trim().startsWith("|"));
   if (tableLines.length < 2) return [];
-  const header = splitMarkdownTableRow(tableLines[0]);
+  const header = splitMarkdownTableRow(tableLines[0]).map(normalizeExternalSourceLedgerColumn);
   const expectedHeader = [...EXTERNAL_SOURCE_LEDGER_COLUMNS];
   if (header.join("\0") !== expectedHeader.join("\0")) return [];
   return tableLines
@@ -330,6 +376,19 @@ function parseExternalSourceLedgerRows(text: string): ExternalSourceLedgerRow[] 
     .map((cells) =>
       Object.fromEntries(expectedHeader.map((column, index) => [column, cells[index] ?? ""])),
     ) as ExternalSourceLedgerRow[];
+}
+
+function normalizeExternalSourceLedgerColumn(column: string): string {
+  const baseColumn = column.replace(/（.*）$/, "");
+  const aliases: Record<string, string> = {
+    "source key": "source",
+    "確認 command": "command",
+    "latest official status": "latestOfficialStatus",
+    "source status delta": "sourceStatusDelta",
+    "adoption decision": "adoptionDecision",
+    "workflow route impact": "workflowRouteImpact",
+  };
+  return aliases[baseColumn] ?? baseColumn;
 }
 
 function splitMarkdownTableRow(line: string): string[] {

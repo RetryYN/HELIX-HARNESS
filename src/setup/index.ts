@@ -31,7 +31,7 @@ export const PACK_DISTRIBUTION_REMOTE_URL =
   "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
 export const PACK_DISTRIBUTION_REFERENCE = {
   repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-  mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+  mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
   latestTag: "v0.1.4",
 } as const;
 export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target ${PACK_DISTRIBUTION_REFERENCE.latestTag} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
@@ -866,7 +866,7 @@ export interface ConsumerReadinessPlan {
     cutoverPacketCommand: "ut-tdd rename plan --json";
     distributionReference: {
       repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";
-      mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2";
+      mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0";
       latestTag: "v0.1.4";
     };
     versionBinding: {

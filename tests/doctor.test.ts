@@ -2068,6 +2068,12 @@ describe("checkAgentSlots (doctor agent-slots surface, IMP-050)", () => {
 });
 
 describe("runDoctor", () => {
+  let liveDoctorResult: ReturnType<typeof runDoctor> | null = null;
+  const liveDoctor = (): ReturnType<typeof runDoctor> => {
+    liveDoctorResult ??= runDoctor();
+    return liveDoctorResult;
+  };
+
   it("U-OUTSTANDING-003: completion decision doctor bridge accepts the current live dedicated packets", () => {
     const result = checkCompletionDecisionPacket(process.cwd());
 
@@ -2209,12 +2215,12 @@ describe("runDoctor", () => {
   });
 
   it("includes asset-drift hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessageWith(r.messages, "doctor: asset-drift", "OK")).toBe(true);
   });
 
   it("includes skill-assignment hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: skill-assignment - OK")).toBe(true);
   });
 
@@ -2222,7 +2228,7 @@ describe("runDoctor", () => {
   // invoked by runDoctor (invocation fence — guards against re-introducing the absence-blindness
   // where a lint module is reachable/tested but its audit never runs in a runtime path).
   it("invokes the 4 newly-wired lint audits + lint-wiring meta-gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     for (const gate of [
       "doctor: doc-consistency — OK",
       "doctor: entity-coverage — OK",
@@ -2236,57 +2242,57 @@ describe("runDoctor", () => {
   });
 
   it("includes branch-kind-check in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(true);
   });
 
   it("includes right-arm verification strategy hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: right-arm-verification-strategy - OK")).toBe(true);
   });
 
   it("includes version-up readiness hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
   });
 
   it("includes action-binding approval readiness hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: action-binding-approval-readiness - OK")).toBe(
       true,
     );
   });
 
   it("includes S4 decision readiness hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: s4-decision-readiness - OK")).toBe(true);
   });
 
   it("includes cutover readiness hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: cutover-readiness - OK")).toBe(true);
   });
 
   it("includes objective evidence audit hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: objective-evidence-audit - OK")).toBe(true);
     expect(hasDoctorMessage(r.messages, "progress=90%")).toBe(true);
   });
 
   it("includes semantic frontier consistency hard gate in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: semantic-frontier-consistency - OK")).toBe(true);
   });
 
   it("includes G1/G3 trace gates in doctor output", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: g1-trace - OK")).toBe(true);
     expect(hasDoctorMessage(r.messages, "doctor: g3-trace - OK")).toBe(true);
   });
 
   it("hard-gates PLAN governance once repo frontmatter debt is closed", () => {
     const governance = checkPlanGovernance(process.cwd());
-    const r = runDoctor();
+    const r = liveDoctor();
 
     expect(governance.ok).toBe(true);
     expect(governance.messages[0]).toContain("plan-governance - OK");
@@ -2295,14 +2301,14 @@ describe("runDoctor", () => {
   });
 
   it("surfaces dependency-drift and regression expansion instead of scaffold stub", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: dependency-drift")).toBe(true);
     expect(hasDoctorMessage(r.messages, "doctor: regression-expansion")).toBe(true);
     expect(r.messages.some((m) => m.includes("scaffold stub"))).toBe(false);
   });
 
   it("surfaces roadmap-rollup as a hard gate summary line", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
     const rollupLines = r.messages.filter((m) => m.startsWith("doctor: roadmap-rollup"));
 
     expect(rollupLines).toHaveLength(1);
@@ -2313,7 +2319,7 @@ describe("runDoctor", () => {
   });
 
   it("surfaces Cycle P4 closure audit as a hard gate", () => {
-    const r = runDoctor();
+    const r = liveDoctor();
 
     expect(hasDoctorMessage(r.messages, "doctor: cycle-p4-verification - OK")).toBe(true);
   });

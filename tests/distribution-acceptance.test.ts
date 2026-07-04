@@ -42,16 +42,20 @@ function walkCandidatePaths(root: string): string[] {
 }
 
 function runBun(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.env) {
+  const bunArgs =
+    args[0] === "install"
+      ? [args[0], "--cache-dir", join(cwd, ".bun-cache"), ...args.slice(1)]
+      : args;
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
-    return spawnSync(cmdExe, ["/d", "/c", "bun", ...args], {
+    return spawnSync(cmdExe, ["/d", "/c", "bun", ...bunArgs], {
       cwd,
       encoding: "utf8",
       env,
       timeout: 120_000,
     });
   }
-  return spawnSync("bun", args, { cwd, encoding: "utf8", env, timeout: 120_000 });
+  return spawnSync("bun", bunArgs, { cwd, encoding: "utf8", env, timeout: 120_000 });
 }
 
 function runCommand(
@@ -309,7 +313,7 @@ describe("clean distribution local acceptance smoke", () => {
             completionClaimAllowed: false,
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+              mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
               latestTag: "v0.1.4",
             },
             versionBinding: {

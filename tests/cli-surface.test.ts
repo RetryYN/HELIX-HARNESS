@@ -834,7 +834,7 @@ describe("L7 CLI surface closure", () => {
   it("verifies objective external ledger with git ls-remote observations", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
     try {
-      writeFakeGitLsRemote(binDir, "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2");
+      writeFakeGitLsRemote(binDir, "a43771ab091486520a4970f6b19b1663a009d4d0");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -846,7 +846,7 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         externalObserved: {
           development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
-          distribution_pack_repo: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+          distribution_pack_repo: "a43771ab091486520a4970f6b19b1663a009d4d0",
           distribution_pack_latest_tag: "v0.1.4",
         },
         externalCheck: {
@@ -879,7 +879,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a13eb78a87dbbc1f60fa0b53e3a55413853c68b2 actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a43771ab091486520a4970f6b19b1663a009d4d0 actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -889,7 +889,7 @@ describe("L7 CLI surface closure", () => {
   it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
     const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
     try {
-      writeFakeGitLsRemote(binDir, "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2", "v0.1.5");
+      writeFakeGitLsRemote(binDir, "a43771ab091486520a4970f6b19b1663a009d4d0", "v0.1.5");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -2178,7 +2178,7 @@ describe("L7 CLI surface closure", () => {
             completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             distributionReference: {
               repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
-              mainHead: "a13eb78a87dbbc1f60fa0b53e3a55413853c68b2",
+              mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
               latestTag: "v0.1.4",
             },
             versionBinding: {
