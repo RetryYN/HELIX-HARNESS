@@ -1,10 +1,10 @@
 # A-114 DDD/TDD Strengthening Re-Audit (再レビュー)
 
-Date: 2026-06-09
-Gate: G6 (L6) increment — DDD/TDD strictness layer
-Auditor: Claude Opus (PM) + machine layer + regex proof
-Scope: A-112 後の追加 — DDD/TDD 強化 (ddd-tdd-rules.md + ddd-tdd-rules.ts + PLAN-L6-23〜28 / L7-24〜31 / REVERSE-23) と前回残件の解消確認。
-**Verdict (訂正後): base G6 = PASS 維持 / DDD/TDD 増分は正常に進行中**。内容は良質。当初 MUST-A (false G6 PASS) と判定したが**誤読のため取り下げ** (add-design 除外は文書化済み意図)。直すべき harness バグは無く、残りは PO 主導の forward 作業 (15 draft PLAN の confirm + review)。
+日付: 2026-06-09
+Gate: G6 (L6) increment — DDD/TDD strictness layer の追加確認
+監査者: Claude Opus (PM) + machine layer + regex proof
+範囲: A-112 後の追加 — DDD/TDD 強化 (ddd-tdd-rules.md + ddd-tdd-rules.ts + PLAN-L6-23〜28 / L7-24〜31 / REVERSE-23) と前回残件の解消確認。
+**判定 (訂正後): base G6 = PASS 維持 / DDD/TDD 増分は正常に進行中**。内容は良質。当初 MUST-A (false G6 PASS) と判定したが**誤読のため取り下げ** (add-design 除外は文書化済み意図)。直すべき harness バグは無く、残りは PO 主導の forward 作業 (15 draft PLAN の confirm + review)。
 
 ## 前回 (A-112) 残件の解消 — OK
 
@@ -47,7 +47,7 @@ Scope: A-112 後の追加 — DDD/TDD 強化 (ddd-tdd-rules.md + ddd-tdd-rules.t
 
 ## 機械層 (全 green)
 
-- typecheck/lint clean / vitest 309 pass (37 files) / plan-id naming 4 pass / doctor exit 0 (ddd-tdd-rules OK、coding-rules OK、l6-fr-coverage 47FR OK、readability OK)。
+- typecheck/lint clean / vitest 309 pass (37 files) / plan-id naming 4 pass / doctor exit 0 (ddd-tdd-rules OK、coding-rules OK、l6-fr-coverage 47FR OK、readability OK) を確認。
 - l6-completion の base-G6 PASS は意図通り正しい (MUST-A 取り下げ)。
 
 ## 決定 (訂正後)

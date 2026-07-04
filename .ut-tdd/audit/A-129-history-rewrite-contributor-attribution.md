@@ -1,15 +1,15 @@
 # A-129 History Rewrite — Contributor 帰属の unison-ai-product 一本化
 
-Date: 2026-06-10
+日付: 2026-06-10
 Status: executed (PO 明示許可「履歴を書き換えて force push して」)
 
-## What / Why
+## 内容と理由
 
 - repo の Contributors に **RetryYN** (個人アカウント) が表示されていた。原因 = 全 259 commit の author email `yoshiyuki0907yn@gmail.com` が GitHub 上で RetryYN に登録されているため。
 - PO 判断により **方法 B (履歴書き換え)** を採用: 全 commit の author/committer email を `253932653+unison-ai-product@users.noreply.github.com` へ書き換え (`git filter-branch --env-filter`、author name "yoshiyuki" は不変) → force push。
 - 以後の commit も同帰属になるよう repo-local `git config user.email` を同 noreply に設定済み。
 
-## Safety / Rollback
+## 安全性と rollback
 
 - **書き換え前のフルバックアップ**: `c:\tmp\ut-tdd-pre-rewrite-backup.bundle` (旧 HEAD = `cb2ecf9`)。`git clone ut-tdd-pre-rewrite-backup.bundle` で全履歴を復元可能。
 - **全 commit ID が変化**。docs / audit が引用する旧 commit 番号の新旧対応は `.ut-tdd/evidence/history-rewrite-2026-06-10-hash-map.txt` (旧→新、全 259 行) が正本。旧番号を見たらこの map で引く。

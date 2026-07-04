@@ -1,16 +1,16 @@
 # A-130 harness.db L7 実装セグメント accept (PLAN-L7-44 / G-L7DB.D)
 
-Date: 2026-06-11
+日付: 2026-06-11
 Status: accepted (PO 明示 accept「OK」 — PLAN-L7-44 工程表 accept)
 
-## What / Why
+## 内容と理由
 
 - **PLAN-L7-44 (harness.db L7 実装セグメント / 工程表)** の最終 accept。全 6 span (① foundation + 45-49) 完遂、roadmap gates 4/4 到達 (G-L7DB.A→D)、**G-L7DB.D reached** をもって harness.db セグメントを close。
 - PO accept は **status 遷移ではなく frontmatter (`accepted_by`/`accepted_at`/`accept_evidence`) + 本 audit 台帳**で記録する。master PLAN-L7-44 status は **`confirmed` を維持**する。
   - 理由: roadmap 到達判定 (`roadmap-registry.ts:92`) は span PLAN が `confirmed` であることを条件とし、**G-L7DB.D の span は master 自身** (工程表 spans[] 末尾)。master を `completed` に bump すると自分の close gate G-L7DB.D が un-reach する (4/4→3/4)。`completed ⊇ confirmed` を到達計数が扱わない lint の latent gap であり、accept を status 遷移で表すと矛盾するため frontmatter 表現を採る。
   - span PLAN 45-49 も `confirmed` のまま (個別実装は confirmed = 完遂+review 済)。
 
-## Follow-up (lint gap → IMP)
+## follow-up (lint gap の IMP 化)
 
 - roadmap 到達計数 (`computeGateProgress`) が `completed` を `confirmed` 未満として扱い、`completed` span が gate を un-reach させる。`completed` は confirmed の後続状態なので到達計数では `confirmed|completed` を満たす扱いにすべき。**IMP として backlog 起票** (lint 契約変更 + test + Reverse 要のため inline 修正せず routing)。
 

@@ -1,14 +1,14 @@
 # A-112 Coding-Rules Doc + Hardening Re-Audit (再レビュー)
 
-Date: 2026-06-09
-Gate: G6 (L6) supplement + governance coding-rule SSoT
-Auditor: Claude Opus (PM) + code-reviewer (independent cross-check)
-Scope: A-111 後の追加 — ① コーディングルールの doc 化 (coding-rules.md + process/ workflow docs + coding-rules.ts + tests) ② IMP-092 / IMP-093 hardening。
-**Verdict: PASS (合格)** — 追加分は doc⇔機械 pair として実体・配線・negative-test を満たす。L6 G6 PASS (A-111) は維持。残件は非 blocker。
+日付: 2026-06-09
+Gate: G6 (L6) supplement + governance coding-rule SSoT の追加確認
+監査者: Claude Opus (PM) + code-reviewer (independent cross-check)
+範囲: A-111 後の追加 — ① コーディングルールの doc 化 (coding-rules.md + process/ workflow docs + coding-rules.ts + tests) ② IMP-092 / IMP-093 hardening。
+**判定: PASS (合格)** — 追加分は doc⇔機械 pair として実体・配線・negative-test を満たす。L6 G6 PASS (A-111) は維持。残件は非 blocker。
 
 ## 機械層 (全 green)
 
-- typecheck exit 0 / lint 71 files clean / **vitest 294/294 pass** (+6: coding-rules 6 + IMP-092/093 negative)。
+- typecheck exit 0 / lint 71 files clean / **vitest 294/294 pass** (追加分: coding-rules 6 + IMP-092/093 negative)。
 - doctor exit 0: **coding-rules — OK (TS docs 71, violations 0)** 新規配線 / readability OK / l6-fr-coverage OK / l6-completion OK (G6 PASS) / pair-freeze 38 孤児0 / verification L4-L6 26/26 confirmed。
 
 ## ① コーディングルール doc 化 — 良質、フル V-pair
@@ -30,7 +30,7 @@ reviewer は "insufficient" を返したが、主要根拠 **「coding-rules の
 
 ## 非 blocker 残件 (housekeeping / carry)
 
-- **A-111 番号重複**: resolved. `A-111-pre-pm-overview-review.md` was renamed to `A-113-pre-pm-overview-review.md`; `A-111-l6-reaudit-after-remediation.md` remains the unique A-111 record.
+- **A-111 番号重複**: resolved。`A-111-pre-pm-overview-review.md` は `A-113-pre-pm-overview-review.md` へ rename 済み。`A-111-l6-reaudit-after-remediation.md` が唯一の A-111 record として残る。
 - coding-rules は要件+設計+L7+test でトレース済だが**専用 PLAN doc が無い** (§1.10 形式上は PLAN 化が望ましい)。PLAN-L6-23 / PLAN-L7-24 / PLAN-REVERSE-23 で add-feature triad 化する。
 - carry: l6-fr-coverage substance-marker 対象ファイル名のハードコード (新 FR-alias spec 追加時に拡張要) / IMP-087・088 (orphan back-fill + impl↔PLAN traceability lint) / draft の L7-22/23・REVERSE-21/22。
 

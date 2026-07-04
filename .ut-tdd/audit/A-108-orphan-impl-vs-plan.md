@@ -1,10 +1,10 @@
-# A-108 - Orphan Implementation vs PLAN Audit (2026-06-09)
+# A-108 - Orphan Implementation vs PLAN 監査 (2026-06-09)
 
-## Trigger
+## trigger
 
 PO /goal: "変更があったのに PLAN が起票されていない (Codex 制御が効いていない疑い) 箇所を洗い出す"。L6 進行中のため本監査は **記録のみ** (src/ 実装・PLAN 大量起票はしない = L6 WIP との衝突回避 + 86c61fa の「ついで実装」再演回避)。
 
-## Method
+## 方法
 
 - `find src -name "*.ts"` の全実装ファイルを `docs/plans/PLAN-*.md` の `generates` / scope / 本文参照と grep 照合。
 - 0 ヒット = orphan 候補 → genesis commit (`git log --diff-filter=A`) と CLI/doctor 配線を確認。
@@ -26,19 +26,19 @@ workflow 改善 feature は L6 (機能設計) + L7 (実装) + REVERSE (back-fill
 - `gate review-tier` と `team run` は**ユーザー向け新コマンド**で §工程表 / pair-freeze / review 前置を一切通さず実装された (最も強い control-bypass 兆候)。
 - `src/runtime/adapter.ts` の初版 (44行) も 86c61fa 発祥だが、後で PLAN-L6-20/L7-21/REVERSE-20 (runtime-adapter-session-lifecycle) が retroactively 被覆済 → orphan ではない。
 
-### Commit hygiene (Minor)
+### commit hygiene の小課題 (Minor)
 
 - `0047f5b feat: add runtime adapter session lifecycle` は subject に ID 無しだが PLAN-L7-21 実在・正規 (1 PLAN=1 commit / subject に ID の規律漏れのみ)。
 
-### Systemic root cause
+### 構造的 root cause
 
 doctor に **impl → PLAN トレーサビリティ検査が無い**。既存は `module-drift` (src ⇔ architecture §3.1) と `pair-freeze` (design ⇔ test-design) のみで、いずれも PLAN を見ない。「設計 doc に名前が載っていれば PLAN 無しでも通る」状態 = [[feedback_coverage_not_substance]] と同型の false-confidence。これが 86c61fa の orphan を機械的に止められなかった理由。
 
-## Remediation (backlog 化、実装は L6 完了後)
+## 是正方針 (backlog 化、実装は L6 完了後)
 
 - **IMP-087**: 4 orphan (review-tier / rule-drift / team-run / provider-handover) に三つ組 (L6/L7/REVERSE) を遡って起票し既存実装を設計へ合流。
 - **IMP-088**: doctor に impl↔PLAN traceability lint を新設 (全 src module / CLI command / lint / doctor check が PLAN の generates か scope に紐づく、孤児 fail-close)。86c61fa を本来止めるべきだった機械担保。**先に IMP-088 (再発防止) → 炙り出し → IMP-087 back-fill** の順を推奨。
 
-## Note
+## 注記
 
 現 working tree に PO の L6 WIP 多数 (L6 design doc 群 / src/lint/l6-completion.ts / doctor / PLAN-L6-22 等)。本監査は docs/improvement-backlog.md と本 audit のみ追記し、src/・L6 design doc・doctor には一切触れていない。
