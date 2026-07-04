@@ -86,7 +86,7 @@ review_evidence:
     reviewed_at: "2026-07-02T02:06:00+09:00"
     tests_green_at: "2026-07-02T02:06:00+09:00"
     verdict: approve
-    scope: "Decision packets are now bound to the live L3 meaning frontier instead of only to plan kind/prose markers. S4 packets carry `semanticFeatureFrontierRecord` for frontier_pending_decision, version-up activation packets carry parked_future_version, rename/cutover packets carry featureId=name_cutover approval_gated_cutover, and action-binding packets expose sibling `semanticFeatureFrontierRecords[]`; missing records, wrong classification/feature, or detached L3 source paths fail readiness gates."
+    scope: "Decision packet は plan kind / prose marker だけでなく live L3 meaning frontier に連結された。S4 packet は frontier_pending_decision の `semanticFeatureFrontierRecord`、version-up activation packet は parked_future_version、rename/cutover packet は featureId=name_cutover approval_gated_cutover を持ち、action-binding packet は sibling `semanticFeatureFrontierRecords[]` を公開する。record 欠落、classification / feature の不一致、L3 source path からの分離は readiness gate で fail-close する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -135,7 +135,7 @@ review_evidence:
     reviewed_at: "2026-07-01T14:44:49+09:00"
     tests_green_at: "2026-07-01T14:44:49+09:00"
     verdict: approve
-    scope: "Cutover approval snapshot binding now compares approval record snapshot ids with the current rename plan cutoverSnapshot.snapshotId. Concrete but stale cutover_snapshot_id / reviewed_snapshot_binding values keep approvalMaterialReady=false, while matching current snapshot ids are required before the non-applying packet can become ready_for_cutover_packet. applyAuthorized remains false on the plan-only packet."
+    scope: "Cutover approval snapshot binding は approval record の snapshot id と current rename plan の cutoverSnapshot.snapshotId を比較する。concrete でも stale な cutover_snapshot_id / reviewed_snapshot_binding は approvalMaterialReady=false のままとし、non-applying packet が ready_for_cutover_packet へ進む前に current snapshot id との一致を必須にする。plan-only packet の applyAuthorized は false のまま維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -192,7 +192,7 @@ review_evidence:
     reviewed_at: "2026-07-01T14:06:12+09:00"
     tests_green_at: "2026-07-01T14:06:12+09:00"
     verdict: approve
-    scope: "Meaning-level workflow alignment was rechecked after the requested requirement correction. Outstanding status handling now uses the same terminal set across readiness gates, packet generation and record validation are explicitly separate, terminal high-impact approval/cutover PLANs cannot hide missing structured records, archived remains closed/historical, and schema-invalid statuses such as merged/rejected/superseded remain fail-closed."
+    scope: "要求修正後に meaning-level workflow alignment を再確認した。Outstanding status handling は readiness gate 全体で同じ terminal set を使い、packet generation と record validation を明示的に分離する。terminal な high-impact approval / cutover PLAN でも structured record 欠落は隠せず、archived は closed / historical のまま扱い、merged / rejected / superseded など schema-invalid status は fail-close のままにする。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -257,7 +257,7 @@ review_evidence:
     reviewed_at: "2026-07-01T13:49:34+09:00"
     tests_green_at: "2026-07-01T13:49:34+09:00"
     verdict: approve
-    scope: "Meaning-level alignment was rechecked from L3 requirements through L4/L5/L6 design and test-design to implementation/tests. Snapshot-bound approvals now stay pending until reviewed_snapshot_binding contains the current sha256 snapshot id, and PLAN-M-02 rename cutover cannot set approvalMaterialReady from outcome plus actor/tool/target only. applyAuthorized remains false on the plan-only packet."
+    scope: "Meaning-level alignment を L3 requirements から L4/L5/L6 design と test-design、implementation/tests まで再確認した。Snapshot-bound approval は reviewed_snapshot_binding が current sha256 snapshot id を含むまで pending のままとし、PLAN-M-02 rename cutover は outcome と actor/tool/target だけでは approvalMaterialReady を立てられない。plan-only packet の applyAuthorized は false のまま維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -314,7 +314,7 @@ review_evidence:
     reviewed_at: "2026-07-01T11:42:19+09:00"
     tests_green_at: "2026-07-01T11:42:19+09:00"
     verdict: approve
-    scope: "Version-up activation and L14 rename/cutover packets now expose snapshot binding IDs for stale approval material detection. Setup route evidence uses ut-tdd setup project and keeps helix/.helix as PLAN-M-02 cutover targets; README/READE are not gate, evidence, or completion surfaces."
+    scope: "Version-up activation と L14 rename/cutover packet は stale approval material 検出用の snapshot binding ID を公開する。Setup route evidence は ut-tdd setup project を使い、helix/.helix は PLAN-M-02 cutover target として保持する。README/READE は gate、evidence、completion surface ではない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:

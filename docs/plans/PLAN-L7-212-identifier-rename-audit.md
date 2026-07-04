@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-212-identifier-rename-audit
-title: "PLAN-L7-212 (add-impl): HELIX identifier rename blast-radius audit and cutover packet"
+title: "PLAN-L7-212 (add-impl): HELIX identifier rename の blast-radius 監査と cutover packet"
 kind: add-impl
 layer: L7
 drive: agent
@@ -17,7 +17,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "Continuation: rename cutover packet now emits structured stateBackupManifest, freezePolicy, and provenanceRequirements so PLAN-M-02 approval can be judged from explicit backup, freeze, re-approval, and audit-evidence fields. The surface remains plan-only and does not apply .ut-tdd -> .helix."
+    scope: "継続実装: rename cutover packet は structured stateBackupManifest、freezePolicy、provenanceRequirements を出し、PLAN-M-02 approval を明示的な backup、freeze、再承認、audit-evidence field から判断できるようにした。surface は plan-only のままで、.ut-tdd -> .helix は適用しない。"
     green_commands:
       - kind: unit_test
         command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/action-binding-approval-readiness.test.ts"
@@ -50,7 +50,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "PLAN-M-02 Step 1 support: add a non-destructive identifier rename blast-radius audit and cutover packet for ut-tdd, .ut-tdd, and area=harness. The audit reports blocked_pending_cutover_approval until cutover_decision_record and action_binding_approval_record contain concrete approval values; rename plan emits dry-run/rollback/monitoring/approval-gate material but does not perform the irreversible .ut-tdd -> .helix state move."
+    scope: "PLAN-M-02 Step 1 support: ut-tdd、.ut-tdd、area=harness 向けに non-destructive な identifier rename blast-radius audit と cutover packet を追加した。cutover_decision_record と action_binding_approval_record が concrete approval value を持つまでは audit は blocked_pending_cutover_approval を返す。rename plan は dry-run / rollback / monitoring / approval-gate material を出すが、不可逆な .ut-tdd -> .helix state move は実行しない。"
     green_commands:
       - kind: unit_test
         command: "bun test tests/identifier-rename.test.ts"
