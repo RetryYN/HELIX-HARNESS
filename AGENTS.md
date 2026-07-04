@@ -1,4 +1,4 @@
-# Codex CLI — HELIX（UT-TDD Agent Harness 土台）
+# Codex CLI — HELIX（Vモデル harness 土台）
 
 このファイルは、このリポジトリにおける Codex CLI 向け project ルールである。
 
@@ -65,7 +65,7 @@ harness implementation language とは独立である。
 
 ## HELIX 再構築方針（現行・最優先 / Claude と共通）
 
-本リポジトリは **HELIX（超個人開発システム）** を構築する場であり、**UT-TDD Agent Harness の
+本リポジトリは **HELIX（超個人開発システム）** を構築する場であり、**Vモデル harness の
 「仕組み」を土台に harness 自身を HELIX へ進化させる**。北極星は L0 企画書
 `docs/design/helix/L0-charter/helix-charter_v0.1.md`（confirmed, P0–P9）。詳細は `CLAUDE.md`
 同名セクションと同一。要点のみ:
@@ -120,7 +120,7 @@ gate decision まで担えるという意味である。
 
 ## Codex / Claude Code Harness（実行面）
 
-Codex と Claude Code は、contract plans、local CLIs、hooks を通じて UT-TDD Agent Harness が管理する。
+Codex と Claude Code は、contract plans、local CLIs、hooks を通じて HELIX-HARNESS が管理する。
 この product では direct API call ではない。
 
 Runtime modes（実行モード）:

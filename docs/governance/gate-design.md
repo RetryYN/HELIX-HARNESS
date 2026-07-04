@@ -1,4 +1,4 @@
-# UT-TDD Agent Harness — ゲート設計 + 自動追加型クロスチェックエンジン
+# HELIX-HARNESS — ゲート設計 + 自動追加型クロスチェックエンジン
 
 > **位置づけ**: 本 doc は **ゲート (G_N) の正本設計** と、ゲートが回す **自動追加型クロスチェック機構**を定義する governance doc。
 > **SSoT 参照**: 工程⇔ゲート対応 = [document-system-map](./document-system-map.md) §1 / V-pair = `src/schema` `V_MODEL_PAIRS` / ゲート機能要求 = FR-05 (決定論ゲート) / FR-13 (サインオフ) / FR-18 (doctor 横断検出) / FR-03 (trace) / FR-08 (fail routing)。

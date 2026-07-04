@@ -1,4 +1,4 @@
-# HELIX — 超個人開発システム（UT-TDD Agent Harness を土台とする）
+# HELIX — 超個人開発システム（Vモデル harness を土台とする）
 
 ## Claude Code Read Order（読込順）
 
@@ -28,7 +28,7 @@ UT-TDD implementation は TypeScript/Bun である。old W1-W3a Python は curre
 ## HELIX 再構築方針（現行・最優先）
 
 本リポジトリは **HELIX（超個人開発システム）** を構築する場である。HELIX は別プロジェクトではなく、
-**UT-TDD Agent Harness の「仕組み」をそのまま土台に、その上へ HELIX の機能を積んで harness 自身を
+**Vモデル harness の「仕組み」をそのまま土台に、その上へ HELIX の機能を積んで harness 自身を
 HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
 `docs/design/helix/L0-charter/helix-charter_v0.1.md`（status=confirmed, 10 本柱 P0–P9）と起票
 `docs/plans/PLAN-L0-01-helix-charter.md`。
@@ -74,8 +74,8 @@ HELIX へ進化させる**もの。北極星ビジョンは L0 企画書
 
 ## 目的
 
-UT-TDD Agent Harness は、社内 product development で AI implementation agents を安全に使うための
-検証・開発基盤である。harness は最終 product ではなく、他の product work を載せる土台である。
+HELIX-HARNESS は、個人/社内 product development で AI implementation agents を安全に使うための
+検証・開発基盤である。harness は最終 product そのものではなく、product work を載せる土台である。
 
 Design と implementation は以下の柱で判断する。
 

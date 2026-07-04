@@ -1,8 +1,8 @@
-# Claude Code Runtime Policy - UT-TDD Agent Harness 方針
+# Claude Code Runtime Policy - HELIX-HARNESS 方針
 
 ## 現行 Runtime 境界
 
-この repository の Claude Code runtime は UT-TDD Agent Harness の一部である。
+この repository の Claude Code runtime は HELIX-HARNESS の一部である。
 legacy source 由来の hooks、subagents、memory、`legacy local state/` は historical / migration material であり、
 current runtime state や execution paths ではない。
 
@@ -23,7 +23,7 @@ Codex project rules は `../AGENTS.md` にある。
 
 ## Hook 方針
 
-`.claude/settings.json` の active hooks は package-local UT-TDD commands だけを呼ぶ。
+`.claude/settings.json` の active hooks は package-local runtime commands だけを呼ぶ。
 personal legacy runtime paths に依存する hooks は有効化しない。
 
 - `PreToolUse(Agent)`: `bun "$CLAUDE_PROJECT_DIR/.claude/hooks/agent-guard.ts"`
@@ -33,7 +33,7 @@ personal legacy runtime paths に依存する hooks は有効化しない。
 - `Stop`: `bun "$CLAUDE_PROJECT_DIR/src/cli.ts" session summary`
 - `SubagentStop`: `bun "$CLAUDE_PROJECT_DIR/src/cli.ts" hook subagent-stop`
 
-Historical behavior は migration 目的で参照してよいが、implementation は UT-TDD-owned paths に置く。
+Historical behavior は migration 目的で参照してよいが、implementation は HELIX-HARNESS owned paths に置く。
 
 ## PLAN 規則
 
