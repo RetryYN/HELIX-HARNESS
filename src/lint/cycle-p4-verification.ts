@@ -40,7 +40,7 @@ export interface CycleP4VerificationResult {
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+Cycle P4 Verification Closure Matrix\s*$/m;
+const SECTION_RE = /^##\s+(?:Cycle P4 Verification Closure Matrix|Cycle P4 検証 closure matrix)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const VALID_STATUSES = new Set<CycleP4VerificationStatus>([
   "closed",
@@ -106,6 +106,11 @@ function tableRows(text: string): string[][] {
     .filter((cells) => !cells.every((cell) => /^:?-{3,}:?$/.test(cell)));
 }
 
+function headerIndex(header: string[], ...names: string[]): number {
+  const normalized = names.map((name) => name.toLowerCase());
+  return header.findIndex((cell) => normalized.includes(cell));
+}
+
 function normalizeStatus(raw: string): CycleP4VerificationStatus | null {
   const cleaned = raw.replaceAll("`", "").trim();
   return VALID_STATUSES.has(cleaned as CycleP4VerificationStatus)
@@ -163,10 +168,10 @@ export function analyzeCycleP4Verification(
 
     const header = parsed[0].map((cell) => cell.toLowerCase());
     const indexes = {
-      requirement: header.indexOf("requirement"),
+      requirement: headerIndex(header, "requirement", "要件"),
       scope: header.indexOf("scope"),
-      required: header.indexOf("required evidence"),
-      current: header.indexOf("current evidence"),
+      required: headerIndex(header, "required evidence", "必須 evidence"),
+      current: headerIndex(header, "current evidence", "現在の evidence"),
       owner: header.indexOf("automation owner"),
       status: header.indexOf("status"),
     };

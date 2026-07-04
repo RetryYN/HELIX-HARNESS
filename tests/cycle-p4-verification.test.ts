@@ -31,6 +31,13 @@ const compliant = `# A-TEST
 ## Next
 `;
 
+const compliantJapaneseAnchors = compliant
+  .replace("## Cycle P4 Verification Closure Matrix", "## Cycle P4 検証 closure matrix")
+  .replace(
+    "| Requirement | Scope | Required evidence | Current evidence | Automation owner | Status |",
+    "| 要件 | Scope | 必須 evidence | 現在の evidence | Automation owner | Status |",
+  );
+
 describe("cycle-p4-verification lint", () => {
   it("U-CP4-001: accepts all required Cycle P4 closure rows with evidence paths", () => {
     const r = analyzeCycleP4Verification([{ file: "A.md", content: compliant }], process.cwd());
@@ -38,6 +45,16 @@ describe("cycle-p4-verification lint", () => {
     expect(r.ok).toBe(true);
     expect(r.rows).toHaveLength(11);
     expect(cycleP4VerificationMessages(r)[0]).toContain("OK");
+  });
+
+  it("U-CP4-006: accepts Japanese section and table anchors", () => {
+    const r = analyzeCycleP4Verification(
+      [{ file: "A.md", content: compliantJapaneseAnchors }],
+      process.cwd(),
+    );
+
+    expect(r.ok).toBe(true);
+    expect(r.rows).toHaveLength(11);
   });
 
   it("U-CP4-002: fails missing source isolation row", () => {
