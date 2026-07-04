@@ -259,6 +259,11 @@ import {
   runtimeReadabilityMessages,
 } from "../lint/readability";
 import {
+  analyzeRepositoryNamePaths,
+  loadRepositoryNamePathsInput,
+  repositoryNamePathsMessages,
+} from "../lint/repository-name-paths";
+import {
   analyzeReviewEvidence,
   loadReviewPlans,
   reviewEvidenceMessages,
@@ -2632,6 +2637,18 @@ export function checkToolchainPin(repoRoot: string): { messages: string[]; ok: b
   }
 }
 
+export function checkRepositoryNamePaths(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeRepositoryNamePaths(loadRepositoryNamePathsInput(repoRoot));
+    return { messages: repositoryNamePathsMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["repository-name-paths - violation: repository paths could not be scanned"],
+      ok: false,
+    };
+  }
+}
+
 /**
  * forward-convergence (fail-close, PLAN-DISCOVERY-08 Step5): spine-外 kind=impl の NEW 未集約 landed を
  * gate する。legacy debt allowlist は grandfather (ok を落とさず surface)。例外時は fail-close。
@@ -3230,6 +3247,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const l14CloseAudit = checkL14CloseAudit(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
+  const repositoryNamePaths = checkRepositoryNamePaths(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
   const handoverNextAction = checkHandoverNextActionAnchor(handoverDeps(deps));
@@ -3323,6 +3341,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       l14CloseAudit.ok &&
       lintWiring.ok &&
       toolchainPin.ok &&
+      repositoryNamePaths.ok &&
       proposalDocumentCoverage.ok &&
       frontendDesignCoverage.ok &&
       greenCommandDigest.ok &&
@@ -3417,6 +3436,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...l14CloseAudit.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
+      ...repositoryNamePaths.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
       ...handoverNextAction.messages.map((m) => `doctor: ${m}`),

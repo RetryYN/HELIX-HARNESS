@@ -76,7 +76,11 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
+  - artifact_path: src/lint/repository-name-paths.ts
+    artifact_type: source_module
   - artifact_path: tests/identifier-rename.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/repository-name-paths.test.ts
     artifact_type: test_code
 dependencies:
   parent: PLAN-M-02-helix-identifier-rename
@@ -105,7 +109,8 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 
 | module | 内容 | oracle |
 |--------|------|--------|
-| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧、source/test/runtime-state/adapter-config/consumer-template/plan/design/governance/distribution surface 別の `hitsByCategory` を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、category 別 cutover checklist、dry-run、rollback、monitoring、state backup manifest、freeze policy、provenance requirements、approval gate を返す | identifier-rename tests |
+| `src/lint/identifier-rename.ts` | repo text files を走査し `ut-tdd` / `.ut-tdd` / `area=harness` の hit 数、file 数、path 一覧、source/test/runtime-state/adapter-config/consumer-template/plan/design/governance/distribution surface 別の `hitsByCategory` を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、category 別 cutover checklist、dry-run、rollback、monitoring、state backup manifest、freeze policy、provenance requirements、approval gate を返す | identifier-rename tests（改名 audit 検証） |
+| `src/lint/repository-name-paths.ts` | tracked path と repository filesystem path を走査し、`UT-TDD_AGENT-HARNESS` / `UT-TDD_AGENT-HARNESS-Pack` 系の旧 repository name がファイル名・フォルダ名へ戻った場合に doctor hard gate で fail-close する。本文中の外部 reference source URL / fixture は対象外とし、path residue だけを検査する | repository-name-paths tests / doctor hard gate |
 | `src/cli.ts` | `ut-tdd rename audit --json` / `ut-tdd rename plan --json` / text output を追加。apply は行わず、targetCli=`helix` / targetStateDir=`.helix` と requiredRecords / cutover packet を出す | identifier-rename CLI test |
 
 ## §2 DoD
@@ -114,6 +119,7 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 - [x] draft approval placeholder を concrete approval と誤判定しない。
 - [x] dry-run / rollback / monitoring / approval gate を含む non-destructive cutover packet を JSON で出せる。
 - [x] state backup manifest / frozen HEAD quiet window single-run reapproval / provenance requirements を構造化 JSON field として出せる。
+- [x] `UT-TDD_AGENT-HARNESS` 系の旧 repository name がファイル名・フォルダ名へ戻らないことを doctor hard gate で検査する。
 - [x] `.ut-tdd -> .helix` apply は実行しない。
 - [x] `tests/identifier-rename.test.ts` / typecheck / lint / doctor 対象。
 

@@ -2288,6 +2288,11 @@ describe("runDoctor", () => {
     expect(hasDoctorMessage(r.messages, "progress=90%")).toBe(true);
   });
 
+  it("includes repository name path hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: repository-name-paths - OK")).toBe(true);
+  });
+
   it("includes semantic frontier consistency hard gate in doctor output", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: semantic-frontier-consistency - OK")).toBe(true);
