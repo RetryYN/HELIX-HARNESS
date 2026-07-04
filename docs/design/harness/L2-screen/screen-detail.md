@@ -20,25 +20,25 @@ updated: 2026-06-24
 
 # L2 画面詳細設計
 
-この文書は screen list、transition design、UI component catalog、low-fi wireframes の間にある粒度差を埋める。レビュー担当者が「何を表示するか」「データはどこから来るか」「ユーザーは何を操作できるか」「error 時に何が起きるか」「どの上位 requirement を満たすか」を確認するための、画面ごとの設計シートである。
+この文書は screen list（画面一覧）、transition design（遷移設計）、UI component catalog（UI component 台帳）、low-fi wireframes（低忠実度 wireframe）の間にある粒度差を埋める。レビュー担当者が「何を表示するか」「データはどこから来るか」「ユーザーは何を操作できるか」「error 時に何が起きるか」「どの上位 requirement を満たすか」を確認するための、画面ごとの設計シートである。
 
-screen ID と URL の正本は [screen-list.md](./screen-list.md) に置く。transition edge の正本は [screen-flow.md](./screen-flow.md) に置く。component 定義は [ui-element.md](./ui-element.md) に置く。layout sketch は [wireframe.md](./wireframe.md) に置く。
+screen ID と URL の正本は [screen-list.md](./screen-list.md) に置く。transition edge（遷移 edge）の正本は [screen-flow.md](./screen-flow.md) に置く。component 定義は [ui-element.md](./ui-element.md) に置く。layout sketch（layout のスケッチ）は [wireframe.md](./wireframe.md) に置く。
 
 ## 1. 詳細シート schema
 
-各 screen detail entry は、次の field を MUST（必須）で満たす。
+各 screen detail entry（画面詳細 entry）は、次の field を MUST（必須）で満たす。
 
-| Field | Required | Definition |
+| Field（項目） | Required（必須） | Definition（定義） |
 |---|---:|---|
 | Screen ID | yes | PM-01..PM-06、HM-01..HM-08、GD-01 のいずれか。 |
-| Purpose | yes | この画面が支える user decision または review task。 |
+| Purpose | yes | この画面が支える user decision または review task（レビュー task）。 |
 | Persona | yes | 主たる human user。AI runtime は UI を直接操作しない。 |
 | Route | yes | `screen-list.md` に定義された canonical URL。 |
 | Inputs | yes | 画面描画に使う path params、query params、local state、files、DB projections、command output。 |
-| Display Blocks | yes | 読み順に並ぶ主要な visual/data region。 |
+| Display Blocks | yes | 読み順に並ぶ主要な visual/data region（表示・データ領域）。 |
 | Controls | yes | read-only navigation、filter、expander、copy action、manual refresh。後続 requirement が明示許可しない限り、直接 mutation action は禁止する。 |
 | Validation / Empty State | yes | data が missing、stale、invalid、partially projected のときに画面へ表示する内容。 |
-| Error State | yes | fail-close behavior、fallback rendering、next_action guidance の案内。 |
+| Error State | yes | fail-close behavior、fallback rendering、next_action guidance（案内）の内容。 |
 | Security / Permission | yes | persona、scope、secrets/PII を表示するかどうか。 |
 | State Persistence | yes | URL query、path、session、local client state、または none。 |
 | Trace | yes | 画面を正当化する BR/UX/FR-L1 と L2 document。 |
@@ -46,7 +46,7 @@ screen ID と URL の正本は [screen-list.md](./screen-list.md) に置く。tr
 
 ## 2. 共通ルール
 
-| Rule | Requirement |
+| Rule（ルール） | Requirement（要件） |
 |---|---|
 | Read-only UI | 将来 signed-off requirement が mutation を追加しない限り、全画面は read-only とする。copy button が書き込める先は clipboard のみ。 |
 | CLI execution | UI は copy 可能な CLI text を表示してよいが、`ut-tdd` command は実行しない。 |

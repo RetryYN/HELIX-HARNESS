@@ -17,31 +17,31 @@ created: 2026-06-24
 updated: 2026-06-24
 ---
 
-# L2 Business Flow 設計
+# L2 業務フロー設計
 
-この文書は、HELIX harness に対する user / business の swimlane view を追加する。[screen-flow.md](./screen-flow.md) が UI navigation edge を定義するのに対し、ここでは誰が何を行い、どの system artifact に触れ、どの画面が人間の判断を支援するかに焦点を置く。
+この文書は、HELIX harness に対する user / business の swimlane view（業務レーン視点）を追加する。[screen-flow.md](./screen-flow.md) が UI navigation edge を定義するのに対し、ここでは誰が何を行い、どの system artifact に触れ、どの画面が人間の判断を支援するかに焦点を置く。
 
-## 1. Actor と Lane
+## 1. Actor と Lane（役割とレーン）
 
-| Lane | Actor | 責務 | UI Surface |
+| Lane（レーン） | Actor（主体） | 責務 | UI Surface（UI 面） |
 |---|---|---|---|
 | PO | Product owner または decision maker | gate を承認し、next action を確認し、scope と progress を確認する。 | PM-01, PM-03, PM-05, PM-06 |
 | TL / Operator | Human technical lead または harness operator | command を実行し、doctor / audit / recovery を確認し、runtime handover を調整する。 | PM-02, PM-04, HM-01..HM-08 |
-| AI Runtime | Codex / Claude Code process | CLI-mediated task を通じて design、implementation、review、verification の output を作る。 | No direct UI operation |
-| HELIX Core | CLI, validators, doctor, plan lint, vmodel lint, projection writers | workflow を強制し、machine evidence を生成し、drift 時は fail close する。 | Reflected in PM/HM screens |
+| AI Runtime | Codex / Claude Code process | CLI-mediated task を通じて design、implementation、review、verification の output を作る。 | 直接 UI 操作なし |
+| HELIX Core | CLI, validators, doctor, plan lint, vmodel lint, projection writers | workflow を強制し、machine evidence を生成し、drift 時は fail-close する。 | PM/HM 画面に反映 |
 | Repository / GitHub | Git history, PR, checks, actions, review evidence | canonical artifact と CI evidence を永続化する。 | PM-03, HM-05, GD-01 |
 | Docs / DB | Markdown design docs, test design docs, `.ut-tdd` state, `harness.db` | readable design source と queryable runtime projection を提供する。 | PM-04, PM-06, HM-04 |
 
 ## 2. フロー一覧
 
-| Flow ID | 名称 | Trigger | Primary Screens | Output / Decision |
+| Flow ID | 名称 | Trigger（契機） | Primary Screens（主画面） | Output / Decision（出力・判断） |
 |---|---|---|---|---|
-| BF-01 | Forward design-to-implementation review | plan が Forward `plan -> pair-freeze -> implement -> trace-freeze -> review -> accept` を進む。 | PM-01, PM-02, PM-03, PM-04, PM-06 | Gate pass/fail と next action。 |
-| BF-02 | Gate failure triage | gate、doctor check、lint、review のいずれかが失敗する。 | PM-03, HM-05, HM-07, GD-01 | 人間が読める blocker と remediation command text。 |
-| BF-03 | Handover and resume | Runtime が切り替わる、session が再開する、または stale handover が検出される。 | PM-05, PM-02, PM-03, HM-05 | stale ではない next action と resumed work context。 |
-| BF-04 | Recovery / incident correction | incorrect claim、interrupted run、broken state、rollback candidate のいずれかが現れる。 | HM-06, PM-03, HM-05, HM-07 | recovery decision、resume point、または escalation。 |
-| BF-05 | Coverage gap discovery | coverage / trace / implementation status が弱い artifact または欠落 artifact を示す。 | HM-02, HM-01, PM-04, PM-06 | 新しい plan / task candidate と trace target。 |
-| BF-06 | Design document review | PO / TL が gate decision 前に canonical design docs を確認する必要がある。 | PM-06, PM-04, GD-01 | Doc review outcome と trace confirmation。 |
+| BF-01 | Forward 設計から実装へのレビュー | plan が Forward `plan -> pair-freeze -> implement -> trace-freeze -> review -> accept` を進む。 | PM-01, PM-02, PM-03, PM-04, PM-06 | Gate pass/fail と next action。 |
+| BF-02 | Gate failure（gate 失敗）の切り分け | gate、doctor check、lint、review のいずれかが失敗する。 | PM-03, HM-05, HM-07, GD-01 | 人間が読める blocker と remediation command text。 |
+| BF-03 | Handover and resume（引き継ぎと再開） | Runtime が切り替わる、session が再開する、または stale handover が検出される。 | PM-05, PM-02, PM-03, HM-05 | stale ではない next action と resumed work context。 |
+| BF-04 | Recovery / incident correction（復旧・incident 是正） | incorrect claim、interrupted run、broken state、rollback candidate のいずれかが現れる。 | HM-06, PM-03, HM-05, HM-07 | recovery decision、resume point、または escalation。 |
+| BF-05 | Coverage gap discovery（coverage gap 検出） | coverage / trace / implementation status が弱い artifact または欠落 artifact を示す。 | HM-02, HM-01, PM-04, PM-06 | 新しい plan / task candidate と trace target。 |
+| BF-06 | Design document review（設計文書レビュー） | PO / TL が gate decision 前に canonical design docs を確認する必要がある。 | PM-06, PM-04, GD-01 | Doc review outcome と trace confirmation。 |
 
 ## 3. Swimlane フロー
 
