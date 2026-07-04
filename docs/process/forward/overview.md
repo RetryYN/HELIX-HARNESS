@@ -8,7 +8,7 @@
 
 ## 1. Forward とは
 
-Forward は「要件・設計・契約が確定した状態」から **L0 企画 → L14 運用検証** を V 字で進む、UT-TDD の中核経路。
+Forward は「要件・設計・契約が確定した状態」から **L0 企画 → L14 運用検証** を V 字で進む、HELIX の中核経路。
 他のすべての mode (Scrum / Reverse / Discovery / Recovery / Refactor / Retrofit / Add-feature) は最終的に Forward に合流する。
 
 ---
@@ -139,47 +139,47 @@ Forward 降下は **二層**で回す (定義正本 = concept §10.2、PLAN-RECO
 
 詳細メカニクスは carry として残す (内容は消さない)。
 
-## MCP-VERIFICATION-PROFILE-WORKFLOW
+## MCP verification profile workflow 運用
 
-Forward work can recommend external MCP servers, plugins, and test foundations only through profile rules. They are verification aids, not authoring sources.
+Forward work では、external MCP server、plugin、test foundation を profile rule 経由でのみ推奨できる。これらは verification aid であり、authoring source ではない。
 
-- Relation graph impact expansion runs first and identifies impacted artifacts, tests, DB projection tables, and diagrams.
-- `ut-tdd verify recommend --changed <path>` maps changed-file signals to verification profiles and can emit JSON or Mermaid graph evidence. Full DB-backed relation graph expansion remains later scope.
-- `ut-tdd mcp profile list/probe` must be used before adding or activating an external MCP/test foundation profile. Probe checks are evidence only; they do not install packages.
-- `ut-tdd mcp inspect <name> --method tools/list` is the MCP Inspector readiness gate. It refuses by default and requires explicit external allow-list before real MCP inspection.
-- `ut-tdd verify run --profile <name>` runs built-in profiles by default. External profiles require explicit allow-list review (`--allow-external`) plus satisfied package/auth/Docker checks.
-- `--save-evidence` stores normalized profile evidence under `.ut-tdd/evidence/verification-profiles/` so DB collector work can ingest the same shape later.
-- Browser/UI signals recommend Playwright MCP for exploratory browser inspection and Vitest Browser Mode with the Playwright provider for deterministic browser tests.
-- DB/service-contract signals recommend Testcontainers for Node.js when Docker is available.
-- API mock gaps and flaky external API signals recommend MSW.
-- GitHub issue/PR/CI/backlog signals recommend a read-only or narrow-toolset GitHub MCP profile first.
-- Any MCP profile added or changed requires MCP Inspector smoke evidence before accept.
-- Unavailable profiles are findings, not silent passes. G7/accept may fail-close only after the profile rule is enabled for that gate.
-- Raw MCP/tool output remains evidence; gates consume normalized DB rows.
+- Relation graph impact expansion を先に実行し、impacted artifact、test、DB projection table、diagram を特定する。
+- `ut-tdd verify recommend --changed <path>` は changed-file signal を verification profile へ map し、JSON または Mermaid graph evidence を出せる。完全な DB-backed relation graph expansion は後続 scope のままにする。
+- external MCP/test foundation profile を追加または有効化する前に、`ut-tdd mcp profile list/probe` を使う。probe check は evidence のみであり package install は行わない。
+- `ut-tdd mcp inspect <name> --method tools/list` は MCP Inspector readiness gate である。既定では refuse し、実 MCP inspection の前に明示的な external allow-list を要求する。
+- `ut-tdd verify run --profile <name>` は既定で built-in profile を実行する。external profile は explicit allow-list review (`--allow-external`) と package/auth/Docker check 充足を要求する。
+- `--save-evidence` は normalized profile evidence を `.ut-tdd/evidence/verification-profiles/` に保存し、後続 DB collector が同じ shape を ingest できるようにする。
+- Browser/UI signal は exploratory browser inspection 用の Playwright MCP と、deterministic browser test 用の Playwright provider 付き Vitest Browser Mode を推奨する。
+- DB/service-contract signal は Docker が利用可能な場合に Node.js 向け Testcontainers を推奨する。
+- API mock gap と flaky external API signal は MSW を推奨する。
+- GitHub issue/PR/CI/backlog signal は、まず read-only または narrow-toolset GitHub MCP profile を推奨する。
+- MCP profile の追加または変更は、accept 前に MCP Inspector smoke evidence を要求する。
+- unavailable profile は finding であり silent pass ではない。G7/accept は、その gate に profile rule が有効化された後にだけ fail-close できる。
+- raw MCP/tool output は evidence のまま残し、gate は normalized DB row を consume する。
 
-## CANONICAL-DOCUMENT-EXPORT-WORKFLOW
+## Canonical document export workflow 運用
 
-Forward work can convert canonical UT-TDD documents to spreadsheet / Excel / PPTX outputs only as derived artifacts. The source of truth remains the Markdown/source document and DB projection rows.
+Forward work では、canonical HELIX document を spreadsheet / Excel / PPTX output へ変換できるが、derived artifact としてのみ扱う。正本は Markdown/source document と DB projection row のままである。
 
-- Requirements / concept / detailed design / PLAN / ADR / test-design exports use `document_export_*` projection rows.
-- Pair-freeze or gate-review milestones may recommend `doc-csv-matrix` or `doc-markdown-summary` for human review without external packages.
-- XLSX and PPTX exports require renderer readiness evidence for ExcelJS / SheetJS / PptxGenJS / D2 before use.
-- Export datasets must preserve source path, section ID, FR/AC/AT/PLAN/ADR IDs, status, trace, and evidence links.
-- Generated spreadsheets/decks are stale when their source snapshot hash no longer matches the canonical document set.
-- Human decisions made from exported files must be recorded separately as review/gate/handover evidence; editing the export file does not update canonical docs.
+- Requirements / concept / detailed design / PLAN / ADR / test-design export は `document_export_*` projection row を使う。
+- Pair-freeze または gate-review milestone は、external package なしで human review 用の `doc-csv-matrix` または `doc-markdown-summary` を推奨してよい。
+- XLSX と PPTX export は、使用前に ExcelJS / SheetJS / PptxGenJS / D2 の renderer readiness evidence を要求する。
+- Export dataset は source path、section ID、FR/AC/AT/PLAN/ADR IDs、status、trace、evidence link を保持しなければならない。
+- Generated spreadsheet/deck は、source snapshot hash が canonical document set と一致しなくなった時点で stale である。
+- export file から下した human decision は review/gate/handover evidence として別途記録する。export file の編集は canonical docs を更新しない。
 
-## TOOL-ADAPTER-WORKFLOW
+## Tool adapter workflow 運用
 
-Forward work can use dependency-cruiser, Knip, Madge, Graphviz, Mermaid, and D2 only as optional graph/diagram adapters.
+Forward work では dependency-cruiser、Knip、Madge、Graphviz、Mermaid、D2 を optional graph/diagram adapter としてのみ使える。
 
-- Core relation graph collection remains TypeScript/Bun and DB projection based.
-- `catalogToolAdapters` defines adapter metadata and trigger signals.
-- `probeToolAdapter` checks package/executable/config/workspace readiness without installing packages.
-- Raw adapter output is bounded evidence; gates consume normalized `tool_runs`, `dependency_edges`, `diagram_artifacts`, and findings.
-- Missing adapters are findings, not unrelated check failures.
-- Auto-fix/delete behavior from adapters is out of scope unless a future human-approved PLAN adds rollback evidence.
+- Core relation graph collection は TypeScript/Bun と DB projection based のままにする。
+- `catalogToolAdapters` は adapter metadata と trigger signal を定義する。
+- `probeToolAdapter` は package/executable/config/workspace readiness を、package install なしで確認する。
+- raw adapter output は bounded evidence であり、gate は normalized `tool_runs`、`dependency_edges`、`diagram_artifacts`、findings を consume する。
+- missing adapter は finding であり、無関係な check failure ではない。
+- adapter による auto-fix/delete behavior は、rollback evidence 付きの future human-approved PLAN が追加されるまで scope 外である。
 
-## LOWER-L-REVERSE-BACKPROP
+## 下位 L Reverse backprop
 
 Forward の下位 L (L4-L14) で追加機能・改善起票・受入条件変更・DB projection・guardrail・workflow rule を発見した場合、局所 carry のまま完了扱いしない。全体一貫性の原則として、該当発見は requirements v1.2 §6.8.8 の `backprop_decision` に分類する。
 

@@ -1,5 +1,5 @@
 ---
-title: "HELIX L3 要件 back-fill — old HELIX extension adoption"
+title: "HELIX L3 要件補完 — 旧 HELIX 拡張採用"
 layer: L3
 kind: add-design
 status: confirmed
@@ -14,15 +14,15 @@ source_legacy_commit: 1cb4c3e
 source_legacy_commit_full: 1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23
 ---
 
-# HELIX L3 要件 back-fill — old HELIX extension adoption
+# HELIX L3 要件補完 — 旧 HELIX 拡張採用
 
 旧 HELIX `RetryYN/ai-dev-kit-vscode` の read-only inventory から、現行 HELIX-HARNESS に採用する機能候補を
 L3 要件へ降ろす。旧 Python/Bash runtime、`.helix` state、個人 workspace path は採用しない。機能概念だけを
 TS/Bun harness、PLAN、現行 state/projection へ翻案する。
 
-## §0 source inventory
+## §0 ソース棚卸し
 
-| legacy source | 採用する意味 | 採用しない旧前提 |
+| 旧ソース | 採用する意味 | 採用しない旧前提 |
 |---------------|--------------|------------------|
 | `helix/HELIX_RUNTIME_RULES.md` | 実行前に目的、工程、Forward 接続先、合格基準、作業正本、許可範囲を固定する runtime discipline | `.helix/handover` / `helix` CLI 直結 |
 | `helix/CLAUDE_RUNTIME_ADAPTER.md` + `.claude/hooks/pretooluse-askuserquestion.sh` | 技術判断をユーザー質問へ逃がす前に TL advisor へ通す fail-close | Claude 固有 hook shell 実装の移植 |
@@ -30,14 +30,14 @@ TS/Bun harness、PLAN、現行 state/projection へ翻案する。
 | `cli/lib/skill_recommender.py` / `code_recommender.py` / `command_catalog.py` | skill / code / command を catalog 化し、recommender で候補を出す | Codex raw wrapper、`.helix/cache` 依存 |
 | `cli/helix-debug` / `cli/helix-test-debug` | RUN & Debug で実行 trace、action coverage、missing action を診断する | legacy task log format と shell parser |
 
-## §0.1 source-family disposition
+## §0.1 source-family disposition（ソース family の扱い）
 
 旧 HELIX は file 数をそのまま機能一覧にしない。`1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23`
 で確認した主要 family を、HELIX-HARNESS の既存 pillar と今回の `HLX-FR-*` へ以下のように分類する。
 分類の目的は「採用漏れを隠す」ことではなく、bulk import を避けて、既存正本に接続済みのものと
-net-new extension を分けることである。
+新規拡張を分けることである。
 
-| legacy family | observed count | disposition | rationale |
+| 旧 family | 確認数 | 扱い | 理由 |
 |---------------|----------------|-------------|-----------|
 | `HELIX-workflows/helix-process/*.md` | 49 docs | existing-pillar-covered | V model / 9 mode / DB convergence / workflow routing は現行 HELIX L0-L6 pillar docs にすでに中核として取り込まれている。今回の追加は `HLX-FR-09` workflow inventory で分類証跡を持ち、runtime discipline / detector / learning との差分を `HLX-FR-01` / `HLX-FR-03` / `HLX-FR-12` へ接続する |
 | `cli/helix*` command files | 82 commands | harden-via-current-cli | 旧 command surface は `ut-tdd` 現行 CLI / PLAN-M-02 rename 方針に従属させる。個別 command 名を直接移植せず、catalog/recommender と RUN & Debug trace の意味だけを `HLX-FR-04` / `HLX-FR-05` に採る |
@@ -66,9 +66,9 @@ net-new extension を分けることである。
 | HLX-FR-11 | continuous-run / scheduler / job / budget は、heartbeat、job queue、auto-run、budget windows を loop/job control と verification profile budget に接続し、無制御な継続実行を禁止する | HLX-AC-11a / HLX-AC-11b |
 | HLX-FR-12 | learning / feedback / recipe loop は、feedback event、recipe、learning result を improvement backlog / skill telemetry / verification evidence へ送るが、AI 自身による設計承認や acceptance close には使わない | HLX-AC-12a / HLX-AC-12b |
 
-## §2 Acceptance Criteria
+## §2 受入基準
 
-| AC-ID | Given | When | Then |
+| AC-ID | 前提 | 操作 | 期待結果 |
 |-------|-------|------|------|
 | HLX-AC-01a | PLAN / handover / layer artifact がある | work preflight を実行 | 目的、工程、Forward return、acceptance、作業正本、allowed scope が揃う |
 | HLX-AC-01b | 作業要求が正本や allowed scope と矛盾する | apply 前に評価 | 勝手に進めず blocker / escalation / new PLAN に送る |

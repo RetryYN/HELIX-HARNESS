@@ -3,85 +3,85 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 plan: docs/plans/PLAN-L6-21-fr-unit-coverage.md
 ---
 
-> **L6 contract marker**: `analyzeL6FrCoverage(input: L6FrCoverageDocs) => L6FrCoverageResult` is the unit-test-granularity contract. DbC pre/post/invariant requires every FR registry row to resolve to an L6 spec, named contract, and matching U-FR oracle.
+> **L6 contract marker**: `analyzeL6FrCoverage(input: L6FrCoverageDocs) => L6FrCoverageResult` は unit-test-granularity contract である。DbC pre/post/invariant は、全 FR registry row が L6 spec、named contract、対応する U-FR oracle へ解決することを要求する。
 
-# L6 FR Unit Coverage Matrix
+# L6 FR Unit Coverage Matrix（単体被覆行列）
 
-This matrix is the L6 entry guard for function design. It proves that the L1 FR registry is complete before L6 closure and that every FR has a unit-test-level contract and U-* oracle.
+この matrix は function design 向けの L6 entry guard である。L6 closure 前に L1 FR registry が complete であり、全 FR が unit-test-level contract と U-* oracle を持つことを証明する。
 
-Rules:
+Rules（規則）:
 
 - Source FR list: `docs/design/harness/L1-requirements/functional-requirements.md` §1, parsed by `fr-registry-audit`.
-- Coverage is complete only when every FR-L1 row has one L6 spec path, one deterministic unit contract, and one U-* oracle.
-- The contract name may be implemented later, but it must be narrow enough to become a unit test without inventing a new requirement at L7.
-- L6 docs remain design SSoT; `harness.db` and other DB projections are not authoring sources.
+- Coverage は、全 FR-L1 row が 1 つの L6 spec path、1 つの deterministic unit contract、1 つの U-* oracle を持つ場合だけ complete とする。
+- contract name は後続実装でもよいが、L7 で新要求を作らず unit test に落とせる粒度でなければならない。
+- L6 docs は design SSoT のままであり、`harness.db` や他 DB projection は authoring source ではない。
 
-Added requirement bundle mapping:
+Added requirement bundle mapping（追加要求 bundle 対応）:
 
-| Added requirement | Covered FR rows | Unit contract focus |
+| Added requirement | Covered FR rows | Unit contract focus（単体契約の焦点） |
 |---|---|---|
-| SQLite reference-feedback projection for V-model state and non-V-model drives | FR-L1-06, FR-L1-19, FR-L1-20, FR-L1-40, FR-L1-41 | projection event write/rebuild, repeated-gap feedback, plan/session digest, drive partition and classification |
-| Logs for drive/model/session/hook runs | FR-L1-07, FR-L1-20, FR-L1-37, FR-L1-39, FR-L1-40, FR-L1-41, FR-L1-42 | session event recording, digest metrics, model effort/complexity/adapter plan, drive state |
-| Skill firing and recommendation metrics | FR-L1-12, FR-L1-46, FR-L1-47 | deterministic skill suggestion, roster capability, skill catalog and recommendation |
-| Search-cost reduction through reference graph/search index | FR-L1-33, FR-L1-34, FR-L1-48, FR-L1-49 | asset catalog, capability gap prioritization, command catalog, asset drift detection |
-| Mechanical quality feedback and dependency/finding detection | FR-L1-05, FR-L1-17, FR-L1-18, FR-L1-19, FR-L1-45, FR-L1-49 | gate evidence, review evidence, module/asset drift, feedback events, doc review tier |
-| DDD/TDD strictness automation | FR-L1-50 | domain boundary, invariant trace, Red-first evidence, oracle strength, integration GWT |
-| Artifact progress color projection | FR-L1-51 | artifact red/yellow/green derivation from linked tests, dependency impact, and recovery/fullback evidence |
+| V-model state と non-V-model drives 向け SQLite reference-feedback projection | FR-L1-06, FR-L1-19, FR-L1-20, FR-L1-40, FR-L1-41 | projection event write/rebuild、repeated-gap feedback、plan/session digest、drive partition/classification |
+| drive/model/session/hook run の logs | FR-L1-07, FR-L1-20, FR-L1-37, FR-L1-39, FR-L1-40, FR-L1-41, FR-L1-42 | session event recording、digest metrics、model effort/complexity/adapter plan、drive state |
+| Skill firing と recommendation metrics | FR-L1-12, FR-L1-46, FR-L1-47 | deterministic skill suggestion、roster capability、skill catalog/recommendation |
+| reference graph/search index による search-cost reduction | FR-L1-33, FR-L1-34, FR-L1-48, FR-L1-49 | asset catalog、capability gap prioritization、command catalog、asset drift detection |
+| Mechanical quality feedback と dependency/finding detection | FR-L1-05, FR-L1-17, FR-L1-18, FR-L1-19, FR-L1-45, FR-L1-49 | gate evidence、review evidence、module/asset drift、feedback events、doc review tier |
+| DDD/TDD strictness automation（厳格化自動化） | FR-L1-50 | domain boundary、invariant trace、Red-first evidence、oracle strength、integration GWT |
+| Artifact progress color projection | FR-L1-51 | linked tests、dependency impact、recovery/fullback evidence から artifact red/yellow/green を導出する |
 
-| FR | L6 spec | unit contract | unit oracle |
+| FR | L6 spec | unit contract（単体契約） | unit oracle |
 |---|---|---|---|
-| FR-L1-01 | docs/design/harness/L6-function-design/function-spec.md | `planDraft` validates kind/layer/sub_doc, atomically publishes PLAN, and rejects duplicate IDs. | U-FR-L1-01 |
-| FR-L1-02 | docs/design/harness/L6-function-design/function-spec.md | `sprintCheck` requires frozen L6 design and Red test evidence before Green implementation evidence. | U-FR-L1-02 |
-| FR-L1-03 | docs/design/harness/L6-function-design/vmodel-pair-freeze.md | `analyzePairFreeze` detects missing design/test-design pair references and bidirectional trace gaps. | U-FR-L1-03 |
-| FR-L1-04 | docs/design/harness/L6-function-design/function-spec.md | `frontmatterSchema` and `parseRequires` preserve kind/generates/requires deviation planning. | U-FR-L1-04 |
-| FR-L1-05 | docs/design/harness/L6-function-design/governance-enforcement.md | `evaluateGateReview` and gate lint messages fail-close when required gate evidence is absent. | U-FR-L1-05 |
-| FR-L1-06 | docs/design/harness/L6-function-design/function-spec.md | `recordProjectionEvent` and `rebuildHarnessDb` define V-model state DB projection rows without becoming source-of-truth. | U-FR-L1-06 |
-| FR-L1-07 | docs/design/harness/L6-function-design/session-log.md | `recordEvent`, `onSessionStart`, `onPostToolUse`, and `onStop` record hook/session events and plan digests fail-open. | U-FR-L1-07 |
-| FR-L1-08 | docs/design/harness/L6-function-design/function-spec.md | `routeSignalToMode` maps drift/degradation/runaway/incident signals to Recovery/Incident/Reverse/Refactor candidates. | U-FR-L1-08 |
-| FR-L1-09 | docs/design/harness/L6-function-design/function-spec.md | `evaluateAgentGuard` blocks disallowed subagent/model combinations and records bypass semantics. | U-FR-L1-09 |
-| FR-L1-10 | docs/design/harness/L6-function-design/handover-mechanism.md | `runHandover` and cutover boundary contracts preserve restart point, correction history, and rollback handoff. | U-FR-L1-10 |
-| FR-L1-11 | docs/design/harness/L6-function-design/function-spec.md | `recordCrossCuttingEvent` records interrupt/debt/drift/readiness events without blocking the active mode. | U-FR-L1-11 |
-| FR-L1-12 | docs/design/harness/L6-function-design/function-spec.md | `suggestSkillInjection` resolves layer/drive/kind skill and command injection candidates deterministically. | U-FR-L1-12 |
-| FR-L1-13 | docs/design/harness/L6-function-design/function-spec.md | `enforceForwardOrder` validates Forward gate/order transitions from PLAN through accept. | U-FR-L1-13 |
-| FR-L1-14 | docs/design/harness/L6-function-design/function-spec.md | `routeReverseR4` validates reverse type, forward_routing, and promotion_strategy before Forward merge. | U-FR-L1-14 |
-| FR-L1-15 | docs/design/harness/L6-function-design/function-spec.md | `decideDiscoveryS4` validates hypothesis evidence, PoC verification, and decide outcome. | U-FR-L1-15 |
-| FR-L1-16 | docs/design/harness/L6-function-design/forced-stop-feedback.md | `classifyFeedback` and recovery proposal contracts distinguish incident/runaway feedback from normal comments. | U-FR-L1-16 |
-| FR-L1-17 | docs/design/harness/L6-function-design/governance-enforcement.md | `checkReviewEvidence` and CI evidence contracts require local gate proof before CI/PR acceptance. | U-FR-L1-17 |
-| FR-L1-18 | docs/design/harness/L6-function-design/module-drift.md | `analyzeModuleDrift` and doctor aggregation surface dependency/contract/connection/regression gaps. | U-FR-L1-18 |
-| FR-L1-19 | docs/design/harness/L6-function-design/function-spec.md | `emitFeedbackEvents` aggregates repeated failures, successful recipes, and prevention rules as learning inputs. | U-FR-L1-19 |
-| FR-L1-20 | docs/design/harness/L6-function-design/session-log.md | `compressPlanDigest` plus DB projection contracts preserve execution logs, failures, budget, and metrics inputs. | U-FR-L1-20 |
-| FR-L1-21 | docs/design/harness/L6-function-design/vmodel-pair-freeze.md | `analyzeTestPerspectiveGate` detects missing test viewpoints and duplicate test-level coverage. | U-FR-L1-21 |
-| FR-L1-22 | docs/design/harness/L6-function-design/function-spec.md | `detectFrontendDrift` returns deterministic FE detector signals for mock, token, a11y, visual, and state drift. | U-FR-L1-22 |
-| FR-L1-23 | docs/design/harness/L6-function-design/function-spec.md | `routeScrumFullback` converts increment evidence into Forward targets with confirmed decision outcome. | U-FR-L1-23 |
-| FR-L1-24 | docs/design/harness/L6-function-design/backfill-pairing.md | `analyzeBackfill` requires add-impl to have Reverse back-fill and glossary merge where applicable. | U-FR-L1-24 |
-| FR-L1-25 | docs/design/harness/L6-function-design/function-spec.md | `assertRefactorInvariant` requires regression evidence and unchanged external behavior for refactor mode. | U-FR-L1-25 |
-| FR-L1-26 | docs/design/harness/L6-function-design/function-spec.md | `evaluateRetrofitMatrix` validates staged migration, config impact, and rollback readiness. | U-FR-L1-26 |
-| FR-L1-27 | docs/design/harness/L6-function-design/function-spec.md | `evaluateResearchDecision` validates research memo evidence and ADR decision readiness. | U-FR-L1-27 |
-| FR-L1-28 | docs/design/harness/L6-function-design/function-spec.md | `mergeTwoStageAgentDesign` validates Phase 1/Phase 2 merge state and drive=agent handoff. | U-FR-L1-28 |
-| FR-L1-29 | docs/design/harness/L6-function-design/function-spec.md | `validateScreenDesignWorkflow` validates IA, screen list, flow, wireframe, mock, and componentization outputs. | U-FR-L1-29 |
-| FR-L1-30 | docs/design/harness/L6-function-design/function-spec.md | `validateFrontendDesignWorkflow` validates visual design, token SSoT, a11y, visual regression, and UX polish gates. | U-FR-L1-30 |
-| FR-L1-31 | docs/design/harness/L6-function-design/handover-mechanism.md | `checkHandoverDiscipline` detects context/handover freshness for automated restart. | U-FR-L1-31 |
-| FR-L1-32 | docs/design/harness/L6-function-design/function-spec.md | `validateFolderRules` validates process docs and test placement against UT-TDD folder policy. | U-FR-L1-32 |
-| FR-L1-33 | docs/design/harness/L6-function-design/function-spec.md | `catalogExistingAssets` classifies command/skill/detector/template/state/hook/doc/test assets by coverage status. | U-FR-L1-33 |
-| FR-L1-34 | docs/design/harness/L6-function-design/function-spec.md | `prioritizeCapabilityGaps` ranks skill/command gaps by workflow impact and missing route/recover capability. | U-FR-L1-34 |
-| FR-L1-35 | docs/design/harness/L6-function-design/function-spec.md | `renderFoundationReadiness` reports implemented/designed/missing infrastructure categories. | U-FR-L1-35 |
-| FR-L1-36 | docs/design/harness/L6-function-design/function-spec.md | `projectSkillEvaluations` computes per-skill rating, adoption count, success count, and unused flag from skill_invocations + plan_registry; cold-start zero-row; no auto-delete. | U-FR-L1-36 |
-| FR-L1-43 | docs/design/harness/L6-function-design/function-spec.md | `projectPocEvaluations` projects one summary row with poc_success_rate = confirmed/(confirmed+rejected+pivot) from plan_registry (kind=poc, decision_outcome set); cold-start zero-row; pivot is non-success. | U-FR-L1-43 |
-| FR-L1-38 | docs/design/harness/L6-function-design/function-spec.md | `projectModelEvaluations` computes per-model success_rate by joining model_runs.plan_id -> plan_registry.status IN PLAN_SUCCESS_STATUSES; opt-in (model-opt-in.yaml enabled:true); cold-start zero-row; token/cost efficiency is discharged by PLAN-L7-57/58 through file-scanned runtime session telemetry, with unknown/unpublished pricing kept null. | U-FR-L1-38 |
-| FR-L1-37 | docs/design/harness/L6-function-design/function-spec.md | `recommendModelEffort` maps task/drive/layer signals to model family and reasoning effort. | U-FR-L1-37 |
-| FR-L1-39 | docs/design/harness/L6-function-design/function-spec.md | `scoreTaskComplexity` computes size/dependency/uncertainty scores, `classifyProposalDocumentCoverage` derives additive required design/test-design document packs from proposal text, and `analyzeProposalDocumentCoverage` verifies routing/doc-path/guardrail consistency. | U-FR-L1-39 |
-| FR-L1-40 | docs/design/harness/L6-function-design/function-spec.md | `resolveDriveStatePartition` maps drive to `.ut-tdd/drive/<drive>` state and skip_sub_doc behavior. | U-FR-L1-40 |
-| FR-L1-41 | docs/design/harness/L6-function-design/function-spec.md | `classifyDrive` classifies PLAN/code/dependency evidence into drive and orchestration mode input. | U-FR-L1-41 |
-| FR-L1-42 | docs/design/harness/L6-function-design/function-spec.md | `buildAdapterPlan` and provider handover contracts preserve context, PLAN, budget, and provider boundary separation. | U-FR-L1-42 |
-| FR-L1-44 | docs/design/harness/L6-function-design/setup-solo-team.md | `planSetup` and onboarding baseline contracts establish harness state for existing projects. | U-FR-L1-44 |
-| FR-L1-45 | docs/design/harness/L6-function-design/review-evidence.md | `analyzeReviewEvidence` requires doc-reviewer/review-tier evidence for large doc and gate artifacts. | U-FR-L1-45 |
-| FR-L1-46 | docs/design/harness/L6-function-design/agent-slots.md | `resolveRosterCapability` and guard integration contracts map subagent roster to capability/model class. | U-FR-L1-46 |
-| FR-L1-47 | docs/design/harness/L6-function-design/function-spec.md | `catalogSkills` and `recommendSkills` curate UT-TDD skill pack metadata and trigger candidates. | U-FR-L1-47 |
-| FR-L1-48 | docs/design/harness/L6-function-design/function-spec.md | `buildCommandCatalog` maps internal command assets to UT-TDD CLI subcommand contracts. | U-FR-L1-48 |
-| FR-L1-49 | docs/design/harness/L6-function-design/module-drift.md | `analyzeAssetDrift` detects legacy source path/runtime residue, empty docs-skills, nested agent-memory residue, and roster/guard drift. | U-FR-L1-49 |
-| FR-L1-50 | docs/design/harness/L6-function-design/module-drift.md | `analyzeDddTddRules` detects DDD/TDD SSoT drift, domain-boundary imports, invariant oracle gaps, missing Red-first evidence, weak test oracles, and L8 GWT gaps. | U-FR-L1-50 |
-| FR-L1-51 | docs/design/harness/L6-function-design/function-spec.md | `deriveArtifactProgressDecision` and `projectArtifactProgress` derive red/yellow/green artifact rows from linked passing test run rows, dependency impact check metadata, recovery PLANs, and feedback trigger projection without treating DB rows as authoring source. | U-FR-L1-51 |
+| FR-L1-01 | docs/design/harness/L6-function-design/function-spec.md | `planDraft` は kind/layer/sub_doc を検証し、PLAN を atomic publish し、duplicate ID を reject する。 | U-FR-L1-01 |
+| FR-L1-02 | docs/design/harness/L6-function-design/function-spec.md | `sprintCheck` は Green implementation evidence より前に frozen L6 design と Red test evidence を要求する。 | U-FR-L1-02 |
+| FR-L1-03 | docs/design/harness/L6-function-design/vmodel-pair-freeze.md | `analyzePairFreeze` は design/test-design pair reference 欠落と bidirectional trace gap を検出する。 | U-FR-L1-03 |
+| FR-L1-04 | docs/design/harness/L6-function-design/function-spec.md | `frontmatterSchema` と `parseRequires` は kind/generates/requires deviation planning を保持する。 | U-FR-L1-04 |
+| FR-L1-05 | docs/design/harness/L6-function-design/governance-enforcement.md | `evaluateGateReview` と gate lint message は required gate evidence 欠落時に fail-close する。 | U-FR-L1-05 |
+| FR-L1-06 | docs/design/harness/L6-function-design/function-spec.md | `recordProjectionEvent` と `rebuildHarnessDb` は source-of-truth にならずに V-model state DB projection row を定義する。 | U-FR-L1-06 |
+| FR-L1-07 | docs/design/harness/L6-function-design/session-log.md | `recordEvent`、`onSessionStart`、`onPostToolUse`、`onStop` は hook/session event と plan digest を fail-open で記録する。 | U-FR-L1-07 |
+| FR-L1-08 | docs/design/harness/L6-function-design/function-spec.md | `routeSignalToMode` は drift/degradation/runaway/incident signal を Recovery/Incident/Reverse/Refactor candidate へ map する。 | U-FR-L1-08 |
+| FR-L1-09 | docs/design/harness/L6-function-design/function-spec.md | `evaluateAgentGuard` は許可されない subagent/model combination を block し、bypass semantics を記録する。 | U-FR-L1-09 |
+| FR-L1-10 | docs/design/harness/L6-function-design/handover-mechanism.md | `runHandover` と cutover boundary contract は restart point、correction history、rollback handoff を保持する。 | U-FR-L1-10 |
+| FR-L1-11 | docs/design/harness/L6-function-design/function-spec.md | `recordCrossCuttingEvent` は active mode を block せず interrupt/debt/drift/readiness event を記録する。 | U-FR-L1-11 |
+| FR-L1-12 | docs/design/harness/L6-function-design/function-spec.md | `suggestSkillInjection` は layer/drive/kind skill と command injection candidate を deterministic に解決する。 | U-FR-L1-12 |
+| FR-L1-13 | docs/design/harness/L6-function-design/function-spec.md | `enforceForwardOrder` は PLAN から accept までの Forward gate/order transition を検証する。 | U-FR-L1-13 |
+| FR-L1-14 | docs/design/harness/L6-function-design/function-spec.md | `routeReverseR4` は Forward merge 前に reverse type、forward_routing、promotion_strategy を検証する。 | U-FR-L1-14 |
+| FR-L1-15 | docs/design/harness/L6-function-design/function-spec.md | `decideDiscoveryS4` は hypothesis evidence、PoC verification、decision outcome を検証する。 | U-FR-L1-15 |
+| FR-L1-16 | docs/design/harness/L6-function-design/forced-stop-feedback.md | `classifyFeedback` と recovery proposal contract は incident/runaway feedback を通常 comment から区別する。 | U-FR-L1-16 |
+| FR-L1-17 | docs/design/harness/L6-function-design/governance-enforcement.md | `checkReviewEvidence` と CI evidence contract は CI/PR acceptance 前に local gate proof を要求する。 | U-FR-L1-17 |
+| FR-L1-18 | docs/design/harness/L6-function-design/module-drift.md | `analyzeModuleDrift` と doctor aggregation は dependency/contract/connection/regression gap を surface する。 | U-FR-L1-18 |
+| FR-L1-19 | docs/design/harness/L6-function-design/function-spec.md | `emitFeedbackEvents` は repeated failure、successful recipe、prevention rule を learning input として集約する。 | U-FR-L1-19 |
+| FR-L1-20 | docs/design/harness/L6-function-design/session-log.md | `compressPlanDigest` と DB projection contract は execution logs、failures、budget、metrics input を保持する。 | U-FR-L1-20 |
+| FR-L1-21 | docs/design/harness/L6-function-design/vmodel-pair-freeze.md | `analyzeTestPerspectiveGate` は missing test viewpoints と duplicate test-level coverage を検出する。 | U-FR-L1-21 |
+| FR-L1-22 | docs/design/harness/L6-function-design/function-spec.md | `detectFrontendDrift` は mock、token、a11y、visual、state drift 向けの deterministic FE detector signal を返す。 | U-FR-L1-22 |
+| FR-L1-23 | docs/design/harness/L6-function-design/function-spec.md | `routeScrumFullback` は increment evidence を confirmed decision outcome 付き Forward target に変換する。 | U-FR-L1-23 |
+| FR-L1-24 | docs/design/harness/L6-function-design/backfill-pairing.md | `analyzeBackfill` は add-impl に必要な Reverse back-fill と glossary merge を要求する。 | U-FR-L1-24 |
+| FR-L1-25 | docs/design/harness/L6-function-design/function-spec.md | `assertRefactorInvariant` は refactor mode に regression evidence と unchanged external behavior を要求する。 | U-FR-L1-25 |
+| FR-L1-26 | docs/design/harness/L6-function-design/function-spec.md | `evaluateRetrofitMatrix` は staged migration、config impact、rollback readiness を検証する。 | U-FR-L1-26 |
+| FR-L1-27 | docs/design/harness/L6-function-design/function-spec.md | `evaluateResearchDecision` は research memo evidence と ADR decision readiness を検証する。 | U-FR-L1-27 |
+| FR-L1-28 | docs/design/harness/L6-function-design/function-spec.md | `mergeTwoStageAgentDesign` は Phase 1/Phase 2 merge state と drive=agent handoff を検証する。 | U-FR-L1-28 |
+| FR-L1-29 | docs/design/harness/L6-function-design/function-spec.md | `validateScreenDesignWorkflow` は IA、screen list、flow、wireframe、mock、componentization output を検証する。 | U-FR-L1-29 |
+| FR-L1-30 | docs/design/harness/L6-function-design/function-spec.md | `validateFrontendDesignWorkflow` は visual design、token SSoT、a11y、visual regression、UX polish gate を検証する。 | U-FR-L1-30 |
+| FR-L1-31 | docs/design/harness/L6-function-design/handover-mechanism.md | `checkHandoverDiscipline` は automated restart 向けの context/handover freshness を検出する。 | U-FR-L1-31 |
+| FR-L1-32 | docs/design/harness/L6-function-design/function-spec.md | `validateFolderRules` は process docs と test placement を HELIX folder policy に照らして検証する。 | U-FR-L1-32 |
+| FR-L1-33 | docs/design/harness/L6-function-design/function-spec.md | `catalogExistingAssets` は command/skill/detector/template/state/hook/doc/test asset を coverage status で分類する。 | U-FR-L1-33 |
+| FR-L1-34 | docs/design/harness/L6-function-design/function-spec.md | `prioritizeCapabilityGaps` は workflow impact と missing route/recover capability で skill/command gap を rank する。 | U-FR-L1-34 |
+| FR-L1-35 | docs/design/harness/L6-function-design/function-spec.md | `renderFoundationReadiness` は implemented/designed/missing infrastructure category を report する。 | U-FR-L1-35 |
+| FR-L1-36 | docs/design/harness/L6-function-design/function-spec.md | `projectSkillEvaluations` は skill_invocations + plan_registry から per-skill rating、adoption count、success count、unused flag を計算する。cold-start は zero-row で、auto-delete はしない。 | U-FR-L1-36 |
+| FR-L1-43 | docs/design/harness/L6-function-design/function-spec.md | `projectPocEvaluations` は plan_registry (kind=poc, decision_outcome set) から poc_success_rate = confirmed/(confirmed+rejected+pivot) の summary row を 1 件 project する。cold-start は zero-row、pivot は non-success。 | U-FR-L1-43 |
+| FR-L1-38 | docs/design/harness/L6-function-design/function-spec.md | `projectModelEvaluations` は model_runs.plan_id -> plan_registry.status IN PLAN_SUCCESS_STATUSES を join して per-model success_rate を計算する。opt-in は model-opt-in.yaml enabled:true、cold-start は zero-row。token/cost efficiency は PLAN-L7-57/58 の file-scanned runtime session telemetry で discharge し、unknown/unpublished pricing は null のままにする。 | U-FR-L1-38 |
+| FR-L1-37 | docs/design/harness/L6-function-design/function-spec.md | `recommendModelEffort` は task/drive/layer signal を model family と reasoning effort に map する。 | U-FR-L1-37 |
+| FR-L1-39 | docs/design/harness/L6-function-design/function-spec.md | `scoreTaskComplexity` は size/dependency/uncertainty score を計算し、`classifyProposalDocumentCoverage` は proposal text から additive required design/test-design document pack を導出し、`analyzeProposalDocumentCoverage` は routing/doc-path/guardrail consistency を検証する。 | U-FR-L1-39 |
+| FR-L1-40 | docs/design/harness/L6-function-design/function-spec.md | `resolveDriveStatePartition` は drive を `.ut-tdd/drive/<drive>` state と skip_sub_doc behavior に map する。 | U-FR-L1-40 |
+| FR-L1-41 | docs/design/harness/L6-function-design/function-spec.md | `classifyDrive` は PLAN/code/dependency evidence を drive と orchestration mode input に分類する。 | U-FR-L1-41 |
+| FR-L1-42 | docs/design/harness/L6-function-design/function-spec.md | `buildAdapterPlan` と provider handover contract は context、PLAN、budget、provider boundary separation を保持する。 | U-FR-L1-42 |
+| FR-L1-44 | docs/design/harness/L6-function-design/setup-solo-team.md | `planSetup` と onboarding baseline contract は existing project 向けの harness state を確立する。 | U-FR-L1-44 |
+| FR-L1-45 | docs/design/harness/L6-function-design/review-evidence.md | `analyzeReviewEvidence` は large doc と gate artifact に doc-reviewer/review-tier evidence を要求する。 | U-FR-L1-45 |
+| FR-L1-46 | docs/design/harness/L6-function-design/agent-slots.md | `resolveRosterCapability` と guard integration contract は subagent roster を capability/model class に map する。 | U-FR-L1-46 |
+| FR-L1-47 | docs/design/harness/L6-function-design/function-spec.md | `catalogSkills` と `recommendSkills` は HELIX skill pack metadata と trigger candidate を curate する。 | U-FR-L1-47 |
+| FR-L1-48 | docs/design/harness/L6-function-design/function-spec.md | `buildCommandCatalog` は internal command asset を HELIX CLI subcommand contract に map する。 | U-FR-L1-48 |
+| FR-L1-49 | docs/design/harness/L6-function-design/module-drift.md | `analyzeAssetDrift` は legacy source path/runtime residue、empty docs-skills、nested agent-memory residue、roster/guard drift を検出する。 | U-FR-L1-49 |
+| FR-L1-50 | docs/design/harness/L6-function-design/module-drift.md | `analyzeDddTddRules` は DDD/TDD SSoT drift、domain-boundary import、invariant oracle gap、missing Red-first evidence、weak test oracle、L8 GWT gap を検出する。 | U-FR-L1-50 |
+| FR-L1-51 | docs/design/harness/L6-function-design/function-spec.md | `deriveArtifactProgressDecision` と `projectArtifactProgress` は linked passing test run rows、dependency impact check metadata、recovery PLANs、feedback trigger projection から red/yellow/green artifact row を導出し、DB row を authoring source と扱わない。 | U-FR-L1-51 |

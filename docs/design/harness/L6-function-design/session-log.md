@@ -3,28 +3,28 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 plan: docs/plans/PLAN-L6-03-session-log.md
 ---
 
-> **L6 contract marker**: `recordEvent(input: SessionHookInput) => void` and `compressPlanDigest(input: PlanDigestInput) => PlanDigest` are the unit-test-granularity contracts. DbC pre/post/invariant maps hook/session events and PLAN digest generation to U-SLOG-001..008.
+> **L6 契約 marker**: `recordEvent(input: SessionHookInput) => void` と `compressPlanDigest(input: PlanDigestInput) => PlanDigest` は単体テスト粒度の契約である。DbC の pre/post/invariant は hook/session event と PLAN digest 生成を U-SLOG-001..008 へ対応付ける。
 
 
-## 2026-06-09 Runtime Adapter Lifecycle Addendum
+## 2026-06-09 Runtime Adapter lifecycle 追補
 
-- `onStop(input, deps)` records one `session_end` event with `input.plan_id ?? resolveActivePlan(deps)` before compressing the session jsonl into plan digests.
-- The adapter wrapper passes its explicit `--plan` value only to the session-log lifecycle input, not to provider CLI args.
-- A plan digest produced through `ut-tdd codex|claude --execute --plan <id>` must include `session_start`, `tool_use`, and `session_end` counts for `<id>`.
+- `onStop(input, deps)` は session jsonl を plan digest へ圧縮する前に、`input.plan_id ?? resolveActivePlan(deps)` を使って `session_end` event を 1 件記録する。
+- adapter wrapper は明示された `--plan` 値を session-log lifecycle input にだけ渡し、provider CLI args には渡さない。
+- `ut-tdd codex|claude --execute --plan <id>` 経由で生成された plan digest は、`<id>` に対する `session_start`、`tool_use`、`session_end` の count を含まなければならない。
 
 <!--
 ① 設計 (L6 機能設計) — session-log 機能。
-PLAN: PLAN-L6-03-session-log (add-design)。pair (③): docs/test-design/harness/L7-unit-test-design.md §1.5 U-SLOG。
+PLAN: PLAN-L6-03-session-log (add-design)。pair (③): docs/test-design/harness/L7-unit-test-design.md §1.5 U-SLOG を対応先とする。
 実装 (②): src/runtime/session-log.ts + src/cli.ts session/hook entrypoints + .claude/hooks/session-log.ts backward-compatible shim (PLAN-L7-01-session-log, add-impl)。
 正本機能: 要件定義書 §6.8 (Issue 起点スパイン) / §6.9 のローカル観測側。
 -->
 
-# UT-TDD Agent Harness — L6 機能設計: session-log (セッションログ + PLAN 単位圧縮)
+# HELIX Agent Harness — L6 機能設計: session-log (セッションログ + PLAN 単位圧縮)
 
 ## §1 概要
 
@@ -110,13 +110,13 @@ compressPlanDigest(events, planId, prev):
 
 - 生: `.ut-tdd/logs/session/<session_id>.jsonl` (gitignored)
 - 圧縮: `.ut-tdd/logs/plan/<plan_id>.digest.json` (gitignored、durable)
-- hook 実体: `src/cli.ts` session/hook entrypoints (`.claude/hooks/session-log.ts` backward-compatible shim) (bun, 環境非依存)。**variant 分岐 = stdin JSON の `hook_event_name` を正 (SessionStart / PostToolUse / Stop) とし、CLI command (`session start` / `hook post-tool-use` / `session summary`) を fallback** に持つ (m-2)。settings.json は 3 event に対応する UT-TDD CLI command を登録し、Claude Code が渡す `hook_event_name` で handler を選ぶ。
+- hook 実体: `src/cli.ts` session/hook entrypoints (`.claude/hooks/session-log.ts` backward-compatible shim) (bun, 環境非依存)。**variant 分岐 = stdin JSON の `hook_event_name` を正 (SessionStart / PostToolUse / Stop) とし、CLI command (`session start` / `hook post-tool-use` / `session summary`) を fallback** に持つ (m-2)。settings.json は 3 event に対応する HELIX CLI command を登録し、Claude Code が渡す `hook_event_name` で handler を選ぶ。
 - `.gitignore` に `.ut-tdd/logs/` を追加。
 - `.claude/settings.json`: `SessionStart` / `PostToolUse(Edit|Write|MultiEdit|Bash)` / `Stop` に登録。**`blockOnFailure` を付けない (fail-open)**。
 
 ## §6 fail-open 設計 (agent-guard fail-close との対比)
 
-| | agent-guard | session-log |
+| 観点 | agent-guard | session-log |
 |--|-------------|-------------|
 | 失敗時 | exit 2 (block)、`blockOnFailure: true` | **exit 0 (pass)**、blockOnFailure なし |
 | stdin/JSON 失敗 | block (検証不能を pass させない) | warn して 0 (ログがワークフローを止めない) |
@@ -125,5 +125,5 @@ compressPlanDigest(events, planId, prev):
 ## §7 V-pair / トレース
 
 - ③ pair: `docs/test-design/harness/L7-unit-test-design.md §1.5 U-SLOG` (G6 pair freeze 対象)
-- ② impl: `src/runtime/session-log.ts` + `src/cli.ts` session/hook entrypoints (`.claude/hooks/session-log.ts` backward-compatible shim) (PLAN-L7-01)
+- ② impl: `src/runtime/session-log.ts` + `src/cli.ts` の session/hook entrypoints (`.claude/hooks/session-log.ts` backward-compatible shim) (PLAN-L7-01)
 - 上位整合: 本機能の **要件 (L3) 表現は後段 Reverse (R0-R4) で back-fill / 修正** (PO 方針、bottom-up build → 上位整合)。

@@ -3,7 +3,7 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 plan: docs/plans/PLAN-L6-05-setup-solo-team.md
 ---
@@ -12,7 +12,7 @@ plan: docs/plans/PLAN-L6-05-setup-solo-team.md
 
 <!--
 ① 設計 (L6 機能設計) — ut-tdd setup solo/team GitHub 設定出し分け。
-PLAN: PLAN-L6-05-setup-solo-team (add-design)。pair (③): docs/test-design/harness/L7-unit-test-design.md §1.7 U-SETUP。
+計画: PLAN-L6-05-setup-solo-team (add-design)。pair (③): docs/test-design/harness/L7-unit-test-design.md §1.7 U-SETUP。
 実装 (②): src/setup/index.ts + src/cli (ut-tdd setup) (PLAN-L7-03-setup-solo-team, add-impl, 後続)。
 土台思想: ut-tdd status の mode 検出 (src/runtime/detect.ts)「検出して提案する」を solo/team 軸へ拡張。
 上位整合: 要件 §6.5 Phase 0-A/0-B / §9.1 A/B 種別 / L4 external-if GitHub 境界 (後段 Reverse で back-fill)。
@@ -195,9 +195,9 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > `ut-tdd doctor --profile consumer` と team-run dry-run は `postApplyVerificationCommands` に分ける。
 > ready route は active handover または current PLAN route に接続する。
 > `postSetupWorkflow.verificationMatrix[]` は setup-dry-run / vscode-profile-open / status-frontier / github-ci-safety / completion-decision-packet / completion-review-bundle / version-up-dry-run / consumer-doctor /
-> identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / expected / evidence / source /
-> sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision /
-> adoptionDecisionDelta / workflowRouteImpact に加えて、`availability=dry-run-immediate|post-apply-or-projected|manual-local` と
+> identifier-cutover-packet / handover-route / team-run-dry-run の phase / command / expected / evidence / source、
+> source metadata として sourceUrl / sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision、
+> adoptionDecisionDelta / workflowRouteImpact の各 field に加えて、`availability=dry-run-immediate|post-apply-or-projected|manual-local` と
 > `requiresMaterializedPaths[]` を持つ。VS Code workspace task / profile 起動と
 > Workspace Trust の実行境界、completion decision packet、completion review-bundle の `semanticBundleDigest`、PLAN-M-02 rename packet、HELIX status/handover/team definition contract を初回稼働の検証証跡へ接続し、
 > command 名の列挙だけで「別プロジェクトで動く」claim を閉じない。VS Code Tasks / Workspace Trust の
@@ -214,8 +214,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 期待 task 以外の余分な task でも `runOptions.runOn=folderOpen` などの自動実行があれば fail-close する。
 > 2026-07-03 追補: `ut-tdd setup project --dry-run --json` の `consumerReadiness.artifactReadiness` も
 > 同じ `.vscode/tasks.json` / `.vscode/settings.json` を JSON として parse し、期待 task 9 本
-> (status / doctor / completion decision-packet / completion review-bundle / version-up dry-run / rename plan / handover status / setup dry-run / team run dry-run)
-> の label・command・順序・件数、`type=shell`、`problemMatcher=[]`、task-level `options` 不在、
+> task 対象である status / doctor / completion decision-packet / completion review-bundle / version-up dry-run / rename plan / handover status / setup dry-run / team run dry-run
+> の 9 本について label・command・順序・件数、`type=shell`、`problemMatcher=[]`、task-level `options` 不在、
 > `runOptions.runOn` 未指定または `default`、`task.allowAutomaticTasks=off` を満たす場合だけ green にする。
 > 文字列上 required command が含まれていても、余分な task、自動実行 task、構造不正 settings が混じる場合は
 > consumer doctor に先送りせず `fix_consumer_readiness` へ戻す。
@@ -255,8 +255,8 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > text lockfile は `bun.lock` で旧 binary lockfile は `bun.lockb` であることを構造化して返す。
 > `checks[]` の boolean だけでなく、`installCommand`、許容 lockfile 名、必須 scripts
 > (`ut-tdd` / `typecheck` / `test`)、対応 `bun run ...` command、sourceUrl、lockfileSourceUrl、
-> scriptsSourceUrl、sourceCheckedAt、latestOfficialStatus、sourceStatusDelta、adoptionDecision、
-> workflowRouteImpact を出し、lockfile や scripts 欠落時は `fix_consumer_readiness` へ戻す根拠を JSON から追える。
+> source metadata として scriptsSourceUrl、sourceCheckedAt、latestOfficialStatus、sourceStatusDelta、adoptionDecision、
+> workflowRouteImpact の各 field を出し、lockfile や scripts 欠落時は `fix_consumer_readiness` へ戻す根拠を JSON から追える。
 > 2026-07-04 追補5: fresh consumer repo では `ut-tdd setup project` が `package.json` と `bun.lock`
 > を生成し、`scripts.ut-tdd` / `scripts.typecheck` / `scripts.test`、`devDependencies.ut-tdd`、
 > `devDependencies.typescript` を materialize する。brownfield repo で package surface を merge した場合も、

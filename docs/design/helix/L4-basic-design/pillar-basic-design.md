@@ -1,5 +1,5 @@
 ---
-title: "HELIX L4 基本設計 — pillar FR/NFR basic design"
+title: "HELIX L4 基本設計 — pillar FR/NFR 基本設計"
 layer: L4
 kind: add-design
 status: confirmed
@@ -13,32 +13,32 @@ related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md
 next_pair_freeze: L9
 ---
 
-# HELIX L4 基本設計 — pillar FR/NFR basic design
+# HELIX L4 基本設計 — pillar FR/NFR 基本設計
 
 > 本書は L3 `pillar-functional-requirements.md` の `HR-FR-*` 30 件と `HR-NFR-*` 13 件を L4
 > 基本設計へ降下する add-design 正本である。既存 harness L4 (`data/architecture/function/external-if`)
-> は上書きせず、HELIX 名前空間の pillar 横断 block を追加する。
+> は上書きせず、HELIX 名前空間の pillar 横断ブロックを追加する。
 
 ## §0 量閉じ
 
 - 入力 L3: `HR-FR` 30 件 + `HR-NFR` 13 件 = 43 件。
-- L4 block: 10 件 (`HB-P0` / `HB-P1` / `HB-P2` / `HB-P3` / `HB-P4` / `HB-P6` / `HB-P7` / `HB-P8` / `HB-P9` / `HB-AC`)。
+- L4 ブロック: 10 件 (`HB-P0` / `HB-P1` / `HB-P2` / `HB-P3` / `HB-P4` / `HB-P6` / `HB-P7` / `HB-P8` / `HB-P9` / `HB-AC`)。
 - L9 system test design: `HST-*` 43 件。
-- Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存 block 境界へ受ける。
+- Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存ブロック境界へ受ける。
 - 孤児: 0。詳細は §2 trace。
 - L1 §2.8 asset/progress visualization amendment は本 L4 10 block / 43 要件の confirmed 範囲外である。
   `PLAN-DISCOVERY-10` S4 confirmed 後に VSCode Tree View / Webview / deterministic graph / drill-down の
   L4 UI-data boundary として別途 Forward 合流させる。
-- G-SF `semantic_feature_frontier_record` の分類は L4 block boundary でも維持する。
+- G-SF `semantic_feature_frontier_record` の分類は L4 ブロック境界でも維持する。
   `frontier_pending_decision` は L4 UI-data boundary を未 confirmed として扱い、
-  `parked_future_version` は current system block の完了に数えず、`approval_gated_cutover` は
-  blast-radius / dry-run / rollback / monitoring の設計までで apply 可能 block にしない。
+  `parked_future_version` は current system ブロックの完了に数えず、`approval_gated_cutover` は
+  blast-radius / dry-run / rollback / monitoring の設計までで apply 可能なブロックにしない。
   中間層でこの分類を落とした場合、L3 で正しく分けた要求修正を L4 が汎用 block に吸収してしまうため、
   G-DESIGN.L4 の完了根拠にしない。
 
-## §1 L4 building block
+## §1 L4 構成ブロック
 
-| Block | 主責務 | Data / projection | External boundary | Invariant |
+| ブロック | 主責務 | データ / projection | 外部境界 | 不変条件 |
 |-------|--------|-------------------|-------------------|-----------|
 | HB-P0 forward-convergence | 駆動 workflow の出口を Forward 正本へ戻し、runaway を止める | `workflow_runs` / `gate_runs` / handover stop reason | なし | `forward_return` 無しの完了を許可しない |
 | HB-P1 continuous-autonomy | resume 3 条件、job queue、version-up、Scrum/PoC slice、L2 skip template を束ねる | `jobs` / `workflow_runs` / `version_target` ledger | tag/release は dry-run plan まで | budget / idempotency / rollback 無しに自動継続しない |
@@ -51,9 +51,9 @@ next_pair_freeze: L9
 | HB-P9 db-convergence | DB 未収束を未完了として扱い、relation graph / contract ledger / layer regression を提供 | harness.db projections / contract ledger / baseline snapshots | なし | projection 未収束を green にしない |
 | HB-AC adapter-consistency | Claude/Codex/agent/template/skill/runtime adapter の rule drift と hosted API preflight を扱う | rule-drift results / preflight audit / dry-run plan | hosted API/developer tools | repo hook 非強制 surface は preflight evidence 必須 |
 
-## §2 L3 -> L4 trace
+## §2 L3 -> L4 trace（L3 から L4 への trace）
 
-| L3 ID | L4 block | L4 design decision | L9 test |
+| L3 ID | L4 ブロック | L4 設計判断 | L9 テスト |
 |-------|----------|--------------------|---------|
 | HR-FR-P0-01 | HB-P0 | 全 workflow PLAN は Forward 返却先、`gap-only`、または `version_target` を L4 contract として持つ | HST-P0-01 |
 | HR-FR-P0-02 | HB-P0 | budget / iteration / lock / Recovery escalation を単一 stop contract に束ねる | HST-P0-02 |
@@ -99,12 +99,12 @@ next_pair_freeze: L9
 | HR-NFR-AC-02 | HB-AC | hosted API/developer tool surface は repo hook 非強制を明示し preflight audit を必須にする | HST-NAC-02 |
 | HR-NFR-AC-03 | HB-AC | AI runtime は provider API direct call / SDK 常駐実行を前提にせず、PLAN artifact / repo-local CLI adapter / harness DB trace / dry-run plan を正本にする | HST-NAC-03 |
 
-## §2.1 Route-B back-fill boundary
+## §2.1 Route-B back-fill 境界
 
-Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4 block の責務から外すのではなく、
-下表の block 境界で受け、詳細な関数契約は L6 route-B / Reverse back-fill に委ねる。
+Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4 ブロックの責務から外すのではなく、
+下表のブロック境界で受け、詳細な関数契約は L6 route-B / Reverse back-fill に委ねる。
 
-| Route-B L3 ID | 意味境界 | L4 block boundary | L4 で固定する設計判断 |
+| Route-B L3 ID | 意味境界 | L4 ブロック境界 | L4 で固定する設計判断 |
 |---------------|----------|-------------------|------------------------|
 | HR-BR-07 | loop-engineering 決定ロジック | HB-P2 | loop 継続・停止・Recovery 分類は agent-loop の決定境界であり、数値だけの自動継続にしない |
 | HR-BR-12 | 2 層共有メモリのセマンティクス | HB-P7 | shared knowledge は harness/project 層、supersede、bounded recall を持ち、per-agent silo を正本にしない |
@@ -117,17 +117,17 @@ Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4
 
 ## §3 横断設計
 
-- **data/projection**: 新規永続 state を安易に増やさず、既存 harness.db projection (`plan_registry`,
-  `workflow_runs`, `model_runs`, `trace_edges`, `coverage`, `findings`, `feedback_events`) に block ごとの
+- **データ / projection**: 新規永続 state を安易に増やさず、既存 harness.db projection (`plan_registry`,
+  `workflow_runs`, `model_runs`, `trace_edges`, `coverage`, `findings`, `feedback_events`) にブロックごとの
   evidence を収束させる。必要な新テーブルは L5 physical-data / D-CONTRACT で確定する。
-- **external-if**: AI runtime は CLI adapter / hook / dry-run plan を正本とし、provider API direct call や SDK
+- **外部 interface**: AI runtime は CLI adapter / hook / dry-run plan を正本とし、provider API direct call や SDK
   常駐実行を L4 の前提にしない。GitHub / external API / infra は emit-only / dry-run を既定にし、
   action-binding approval なしに適用しない。
 - **security filter**: HB-P8 は external text を raw / metadata / instruction に分離し、prompt injection,
   tool injection, exfiltration, excessive agency を audit event へ送る。
 - **DDD/TDD**: HB-P7 は bounded context と ubiquitous language を relation graph へ接続し、HB-P3 は Red evidence
   / acceptance oracle / Green evidence / refactor safety を L4 invariant とする。
-- **performance / load**: HB-P3 は test profile と parallel worker/resource budget を持ち、L7 通常 loop が不要な
+- **性能 / load**: HB-P3 は test profile と parallel worker/resource budget を持ち、L7 通常 loop が不要な
   full suite を強制しない。
 
 ## §4 L4-50 との関係
@@ -135,10 +135,10 @@ Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4
 `PLAN-L4-50-orchestration-memory-hybrid` は P2/P7 の一部を L4 として起票した historical draft だが、
 `PLAN-L6-50-helix-orchestration-memory` が `supersedes` し、P2/P7 の機能設計は L6 route-B と Reverse
 back-fill で確定済みである。本書では P2/P7 を §2.1 のとおり HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の
-L4 block 境界へ再接地し、L4-50 自体は archived historical artifact として閉じる。
+L4 ブロック境界へ再接地し、L4-50 自体は archived historical artifact として閉じる。
 
 ## §5 carry
 
-- L5: block ごとの table/schema/API/DbC 詳細、approval ledger、external source ledger、contract ledger。PLAN-L5-09 で降下済み。
-- L6: function contracts、security-filter parser、context-map checker、job/loop scheduler、setup/release dry-run planner。
+- L5: ブロックごとの table/schema/API/DbC 詳細、approval ledger、external source ledger、contract ledger。PLAN-L5-09 で降下済み。
+- L6: function contract、security-filter parser、context-map checker、job/loop scheduler、setup/release dry-run planner の詳細を扱う。
 - L7: implementation は L6 freeze 後に PLAN-driven add-impl として扱う。

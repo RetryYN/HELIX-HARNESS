@@ -3,7 +3,7 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 created: 2026-06-05
 plan: docs/plans/PLAN-L6-10-vmodel-pair-lint.md
@@ -125,11 +125,11 @@ function analyzePairFreeze(docs):
 | `verificationGroupMessages` | `(groups) => string[]` | freeze 完了 (park 表示) / Forward 進行中 の surface |
 | doctor `checkVerificationGroups` | `(repoRoot) => string[]` | hard/fail-close surface (`verificationGroups.ok` は doctor.ok 連動) |
 
-### §7.3.1 FR test-perspective alias
+### §7.3.1 FR テスト観点 alias (`FR test-perspective alias`)
 
-| Function | Signature | pre | post | invariant | oracle |
+| 関数 (`Function`) | 署名 (`Signature`) | 事前条件 (`pre`) | 事後条件 (`post`) | 不変条件 (`invariant`) | oracle |
 |---|---|---|---|---|---|
-| `analyzeTestPerspectiveGate` | analyzeTestPerspectiveGate(input: TestPerspectiveInput, deps: TestPerspectiveDeps) => TestPerspectiveResult | design/test-design pair docs and declared test viewpoints are supplied. | returns missing or duplicate test perspective coverage by layer. | pair presence alone is insufficient when a required test viewpoint is absent. | U-FR-L1-21 |
+| `analyzeTestPerspectiveGate` | analyzeTestPerspectiveGate(input: TestPerspectiveInput, deps: TestPerspectiveDeps) => TestPerspectiveResult | design/test-design pair docs と宣言済み test viewpoint が入力される。 | layer 別に不足または重複する test perspective coverage を返す。 | 必須 test viewpoint が欠ける場合、pair presence だけでは充足としない。 | U-FR-L1-21 |
 
 ### §7.4 「機械発火」の範囲
 

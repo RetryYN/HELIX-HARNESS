@@ -3,14 +3,14 @@ layer: L6
 sub_doc: edge-case
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L7
 plan: docs/plans/PLAN-L6-02-edge-case.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-> **L6 contract marker**: `deriveEdgeCaseOracle(input: EdgeCaseInput) => EdgeCaseOracle` is the unit-test-granularity contract. DbC pre/post/invariant maps each function signature to edge coverage. L7 oracle family: U-EDGE-001..005.
+> **L6 contract marker**: `deriveEdgeCaseOracle(input: EdgeCaseInput) => EdgeCaseOracle` を unit-test-granularity contract とする。DbC pre/post/invariant は各 function signature を edge coverage に対応付ける。L7 oracle family: U-EDGE-001..005。
 
 
 > **SSoT 参照**: 関数 signature = [function-spec.md](./function-spec.md) §1/§2 / edge docstring 枠 = [internal-processing.md](../L5-detailed-design/internal-processing.md) §7 (G5 凍結) / fail-close 形式 = internal-processing §6。本 doc は各関数に `@edge-normal/error/boundary/throws` の 4 観点を per-function 確定する (L6、IMP-014)。
@@ -18,7 +18,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L7-unit-test-design.md` (L6↔L7)。各 edge → U-* test oracle (孤児 0)。
 > **edge 5-8 形式** (internal-processing §7): `@edge-normal`→01 / `@edge-error`→02 / `@edge-boundary`→03 / `@throws`→exit code。**trace 先の系統分岐**: L7 単体テストは **U-***-NN (本 doc の右列)、L12 受入テストは **AT-***-NN (internal-processing §7 の AT-* は受入系)。L6↔L7 pair では U-* が正本 oracle。
 
-# UT-TDD Agent Harness — L6 機能設計: エッジケース (Edge-Case)
+# HELIX Agent Harness — L6 機能設計: エッジケース (Edge-Case)
 
 function-spec §1/§2 の各関数に **正常/異常/境界/throws の 4 観点**を確定する (PLAN-L6-02)。internal-processing §7 で G5 凍結した docstring 枠を関数別に展開し、L7 単体テスト U-* の oracle とする。**G6 凍結対象**。
 

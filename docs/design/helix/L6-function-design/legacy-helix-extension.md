@@ -1,5 +1,5 @@
 ---
-title: "HELIX L6 機能設計 — old HELIX extension adoption"
+title: "HELIX L6 機能設計 — 旧 HELIX 拡張採用"
 layer: L6
 kind: add-design
 status: confirmed
@@ -11,13 +11,13 @@ pair_artifact: docs/test-design/helix/legacy-helix-extension.md
 related_l5: docs/design/helix/L5-detail/legacy-helix-extension.md
 ---
 
-# HELIX L6 機能設計 — old HELIX extension adoption
+# HELIX L6 機能設計 — 旧 HELIX 拡張採用
 
 旧 HELIX 由来の採用候補を、TS/Bun 実装可能な function contract へ降ろす。
 
-## §1 function contracts
+## §1 function 契約
 
-| L5 contract | function | signature | DbC | oracle |
+| L5 契約 | function | signature | DbC | oracle |
 |-------------|----------|-----------|-----|--------|
 | HLX-C01 | `buildWorkPreflightDecision` | `(input: WorkPreflightInput) => WorkPreflightDecision` | objective、workflow/layer、Forward return、acceptance/verification、work source、allowed scope を必須にする。handover/PLAN と矛盾する scope は `blocker` | U-HLX-001 |
 | HLX-C02 | `classifyTechnicalQuestion` | `(input: QuestionGateInput) => TechnicalQuestionDecision` | design/contract/structure/placement/migration/security を technical question と分類し、recent TL advisor evidence が無ければ `deny`。preference-only は reason 付き `bypass_allowed` | U-HLX-002 |
@@ -33,7 +33,7 @@ related_l5: docs/design/helix/L5-detail/legacy-helix-extension.md
 | HLX-C11 | `buildContinuousRunControlDecision` | `(input: ContinuousRunInput) => ContinuousRunDecision` | trigger、queue lock、timebox、budget profile、stop condition、verification evidence を必須にし、stop condition なしの auto-run を deny | U-HLX-012 |
 | HLX-C12 | `buildLearningFeedbackDecision` | `(input: LearningFeedbackInput) => LearningFeedbackDecision` | feedback event、recipe source、learning result、target backlog、evidence link、review state を必須にし、learning-only acceptance close を reject | U-HLX-013 |
 
-## §2 type sketch
+## §2 type 概略
 
 ```ts
 type WorkPreflightKind = "allow" | "blocker" | "escalate" | "new_plan_required";
@@ -80,7 +80,7 @@ interface GuardSurfaceDisposition {
 |-------|----|-------------|--------|
 | HLX-FR-01 | HLX-C01 | `buildWorkPreflightDecision` | U-HLX-001 |
 | HLX-FR-02 | HLX-C02 | `classifyTechnicalQuestion` | U-HLX-002 |
-| HLX-FR-03 | HLX-C03 | `registerDetectorAxis` / `routeDetectorFinding` | U-HLX-003 / U-HLX-004 |
+| HLX-FR-03 | HLX-C03 | 検出器軸登録 `registerDetectorAxis` / finding 経路判定 `routeDetectorFinding` | U-HLX-003 / U-HLX-004 |
 | HLX-FR-04 | HLX-C04 | `buildRecommendationDecision` | U-HLX-005 |
 | HLX-FR-05 | HLX-C05 | `analyzeRunDebugTrace` | U-HLX-006 |
 | HLX-FR-06 | HLX-C06 | `buildCoreInjectionContract` | U-HLX-007 |
@@ -91,7 +91,7 @@ interface GuardSurfaceDisposition {
 | HLX-FR-11 | HLX-C11 | `buildContinuousRunControlDecision` | U-HLX-012 |
 | HLX-FR-12 | HLX-C12 | `buildLearningFeedbackDecision` | U-HLX-013 |
 
-## §4 source mapping
+## §4 source 対応
 
 | Legacy source | L6 adoption |
 |---------------|-------------|

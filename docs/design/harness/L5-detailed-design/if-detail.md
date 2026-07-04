@@ -3,7 +3,7 @@ layer: L5
 sub_doc: if-detail
 status: confirmed
 pair_artifact: docs/test-design/harness/L8-integration-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L8
 plan: docs/plans/PLAN-L5-04-if-detail.md
@@ -16,7 +16,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L8-integration-test-design.md` (L5↔L8 集合 pair)。
 > **⚠ 前提 (CLAUDE.md) + 人間確認事項**: AI runtime (Claude/Codex) は **契約プラン (月額) + CLI/hook** で利用し **API 直叩きをしない**。adapter は API key ではなく**起動方式** (CLI subprocess / Claude Code Agent・hook) を吸収する。残る認証 (GitHub/観測系) の確定は本 doc で**確定しない** (禁止事項)、方針のみ・確定は PO + security 監査 (§6)。
 
-# UT-TDD Agent Harness — L5 詳細設計: IF 詳細 / D-CONTRACT (If-Detail)
+# HELIX Agent Harness — L5 詳細設計: IF 詳細 / D-CONTRACT (If-Detail)
 
 external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (PLAN-L5-04)。core は正規化 intent のみ発行し、adapter が **provider 固有の起動方式** (Claude Code Agent/hook、`codex exec` CLI、`gh` CLI) を吸収する (Anti-Corruption Layer、external-if §6)。**API/SDK/key は介在しない** — AI runtime は契約プラン CLI が自己認証する。
 
@@ -62,7 +62,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 | `timeout` | 該当 skip + warn (AC-FR-18-03) | warn + 他結果集約 |
 | `unknown` | fail-close (安全側) | `Error: 外部呼出失敗 (<service>, <message>)` + exit 1 |
 
-## §5 D-CONTRACT DSL schema
+## §5 D-CONTRACT DSL schema の概要
 
 | DSL file | schema 概要 | 関連 |
 |---|---|---|
@@ -102,19 +102,19 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 - **D-CONTRACT DSL 実装** (mode-routing.yaml / gate-checks.yaml + loader) = L7
 - **provider 引継ぎ** (FR-L1-42、context+budget 連携) = `provider-handover.v1` package (`ut-tdd handover provider export/status`) と接続
 - **sprint check の VCS 参照** (TDD trace の git changed-files / review scope): `loadChangedFiles` を `verify recommend`、`review --uncommitted`、doctor `change-impact`、`regression-expansion` が共有する。git log/blame の深掘りは optional evidence enrichment とし、L7 完遂の隠れ carry にしない。
-## Appendix B: DB/Search CLI Contracts (PLAN-L5-08)
+## Appendix B: DB/Search CLI Contracts (PLAN-L5-08) の契約
 
 | CLI surface | contract | output |
 |---|---|---|
-| `ut-tdd db status` | Open `.ut-tdd/harness.db`, report schema version, projection freshness, and orphan counts. | JSON/text summary with non-secret metadata only. |
-| `ut-tdd db rebuild` | Rebuild projection DB from docs/state/log digests. | Exit 0 when rebuild is deterministic; exit 1 on unreadable source or schema mismatch. |
-| `ut-tdd find <query>` | Search PLAN/artifact/finding/skill/model/session references through `search_index` and exact ID tables. | Ranked rows: `{subject_type, subject_id, path, reason, evidence_path}`. |
-| `ut-tdd metrics skill` | Read skill recommendation/invocation projections and compute firing/acceptance rates. | Aggregates by layer/drive/plan; no transcript body. |
-| `ut-tdd feedback list` | List feedback events generated from repeated findings and quality signals. | Text output groups open rows into `gate` / `actionable` / telemetry summaries; `--json` returns raw open rows with next_action references. |
-| `ut-tdd audit quality` | Read-only scan for hardcoded values, security risks, and technical debt markers. | Text/JSON summary grouped into `gate` / `actionable` / `telemetry`; default excludes archive, migration, and test fixtures unless explicitly requested. |
-| `ut-tdd branch audit` | Read-only local branch cleanup inventory. | Classifies branches as keep, delete-candidate, or review using current/protected/gone/merged/stale evidence; never deletes branches. |
-| `ut-tdd automation readiness` | Query workflow readiness from `workflow_runs`, gate/doctor projections, and open findings. | Ready/blocked/human-required rows with blocking evidence paths. |
-| `ut-tdd guardrail status` | Query guardrail decisions for agent-guard, review evidence, escalation, and human signoff boundaries. | Decisions by plan/session with mode, policy, and evidence path; no provider transcript body. |
-| `ut-tdd asset catalog` | Query skill/roster/command docs catalog and drift status. | Asset rows with path, asset_type, trigger/capability summary, drift status, and indexed_at. |
+| `ut-tdd db status` | `.ut-tdd/harness.db` を開き、schema version、projection freshness、orphan count を報告する。 | secret を含まない metadata だけの JSON/text summary。 |
+| `ut-tdd db rebuild` | docs/state/log digest から projection DB を再構築する。 | deterministic rebuild なら exit 0。source unreadable または schema mismatch は exit 1。 |
+| `ut-tdd find <query>` | `search_index` と exact ID table を通じて PLAN/artifact/finding/skill/model/session reference を検索する。 | ranked row: `{subject_type, subject_id, path, reason, evidence_path}`。 |
+| `ut-tdd metrics skill` | skill recommendation / invocation projection を読み、firing / acceptance rate を計算する。 | layer/drive/plan 別の aggregate。transcript body は出さない。 |
+| `ut-tdd feedback list` | repeated finding と quality signal から生成された feedback event を一覧する。 | text output は open row を `gate` / `actionable` / telemetry summary に分ける。`--json` は next_action reference 付き raw open row を返す。 |
+| `ut-tdd audit quality` | hardcoded value、security risk、technical debt marker を read-only scan する。 | text/JSON summary は `gate` / `actionable` / `telemetry` に分ける。明示指定がない限り archive / migration / test fixture は除外する。 |
+| `ut-tdd branch audit` | local branch cleanup inventory を read-only で作る。 | current/protected/gone/merged/stale evidence で keep / delete-candidate / review に分類する。branch は削除しない。 |
+| `ut-tdd automation readiness` | `workflow_runs`、gate/doctor projection、open finding から workflow readiness を query する。 | blocking evidence path 付きの ready/blocked/human-required row。 |
+| `ut-tdd guardrail status` | agent-guard、review evidence、escalation、human signoff boundary の guardrail decision を query する。 | plan/session 別 decision。mode、policy、evidence path を含み、provider transcript body は出さない。 |
+| `ut-tdd asset catalog` | skill/roster/command docs catalog と drift status を query する。 | path、asset_type、trigger/capability summary、drift status、indexed_at を含む asset row。 |
 
-Security contract: these commands must never print provider transcript body, secrets, credentials, or PII. They may print redacted summaries, evidence paths, hashes, IDs, and counts.
+Security contract: これらの command は provider transcript body、secrets、credentials、PII を出力してはならない。redacted summary、evidence path、hash、ID、count は出力してよい。

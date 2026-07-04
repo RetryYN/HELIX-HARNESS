@@ -8,21 +8,21 @@ status: confirmed
 updated: 2026-06-23
 ---
 
-# Refactor Mode
+# Refactor モード
 
-Refactor mode is the behaviour-invariant brush-up workflow for existing code.
-It removes structural debt without adding functional scope, changing public
-contracts, or changing persisted state semantics.
+Refactor モードは、既存コードに対する振る舞い不変の brush-up workflow である。
+機能 scope の追加、公開 contract の変更、永続 state semantics の変更を行わずに、
+構造的負債を除去する。
 
-Sources of truth:
+正本:
 
-- concept v3.1 section 2.5 and 2.6
-- requirements v1.2 section 1.3, 1.6, 1.8, 6.8.9
+- concept v3.1 section 2.5 / 2.6
+- requirements v1.2 section 1.3 / 1.6 / 1.8 / 6.8.9
 - FR-L1-25
 - `docs/skills/refactoring.md`
 - `src/workflow/contracts.ts#assertRefactorInvariant`
 
-## 1. Entry Contract
+## 1. entry 契約
 
 | Field | Value |
 | --- | --- |
@@ -34,119 +34,105 @@ Sources of truth:
 | branch prefix | `refactor/*` |
 | signals | `debt_degradation` / `code_smell` / `structural` |
 
-Refactor is not a feature path. If the work adds a new observable function,
-changes a public CLI/API contract, changes `.ut-tdd/` state schema, changes
-`harness.db` schema, or changes expected user behaviour, stop Refactor and route
-to Add-feature, Retrofit, Troubleshoot, or Incident.
+Refactor は feature path ではない。作業が新しい観測可能な function を追加する、
+公開 CLI/API contract を変更する、`.ut-tdd/` state schema を変更する、`harness.db`
+schema を変更する、または期待される user behaviour を変更する場合は、Refactor を停止し、
+Add-feature、Retrofit、Troubleshoot、Incident のいずれかへ route する。
 
-## 2. TDD Brush-up Loop
+## 2. TDD brush-up ループ
 
-Refactor uses a TDD-like loop, but its Red is a structural smell or dependency
-risk, not a new functional requirement.
+Refactor は TDD に似た loop を使う。ただし Red は新しい functional requirement ではなく、
+structural smell または dependency risk である。
 
-| State | Meaning | Required evidence |
+| 状態 | 意味 | 必須証跡 |
 | --- | --- | --- |
-| Red | The target has unresolved structural debt, missing dependency check, failed regression, or behavior drift. | finding, graph impact row, failed test, or open feedback event |
-| Yellow | Refactor target is registered and protected by an identified regression fence, but the brush-up step is not complete. | PLAN plus changed artifact list and intended test IDs |
-| Green | Behaviour is unchanged and every changed artifact is covered by linked regression test IDs. | green command evidence, `test_ids`, relation impact closed, review after tests |
+| Red | 対象に未解消の structural debt、欠けた dependency check、失敗した regression、または behavior drift がある。 | finding、graph impact row、failed test、または open feedback event |
+| Yellow | Refactor 対象は登録済みで、特定済み regression fence に保護されているが、brush-up step は完了していない。 | PLAN、変更 artifact list、予定 test IDs |
+| Green | 振る舞いは不変で、変更されたすべての artifact が linked regression test IDs で cover されている。 | green command evidence、`test_ids`、relation impact closed、tests 後の review |
 
-The cycle is:
+手順:
 
-1. Register target: name the code smell, affected files, observable boundary,
-   and expected dependency impact.
-2. Establish regression fence: run or add characterization coverage before the
-   structural change. The green state must name the test IDs.
-3. Make one structural change: rename, extract, split, deduplicate, or remove
-   dead code in a small step.
-4. Verify: run targeted tests, typecheck/lint when relevant, and `ut-tdd doctor`.
-5. Review after green: qualitative review only happens after quantitative green
-   command evidence exists.
-6. Repeat or close: repeat from step 3 until the registered debt is closed.
+1. 対象を登録する: code smell、影響 file、observable boundary、想定 dependency impact を記録する。
+2. regression fence を確立する: structural change の前に characterization coverage を実行または追加する。green state では test IDs を明記する。
+3. 1 つの structural change を行う: rename、extract、split、deduplicate、dead code remove を小さな step で行う。
+4. 検証する: targeted tests、該当する場合は typecheck/lint、`ut-tdd doctor` を実行する。
+5. green 後に review する: qualitative review は quantitative green command evidence が存在してから行う。
+6. 反復または close する: 登録済み debt が close されるまで step 3 から繰り返す。
 
-## 3. Database-triggered Refactor
+## 3. DB 起点 Refactor
 
-Refactor can be fired from `harness.db`; it does not need to rely on a human
-remembering that cleanup is due.
+Refactor は `harness.db` から起動できる。cleanup が必要であることを人間が覚えている前提に
+依存しない。
 
-Allowed trigger sources:
+許可される trigger source:
 
-- `findings`: structural lint, dead code, naming drift, dependency direction
-  violation, or stale generated artifact.
-- `quality_signals`: repeated warning/failure on the same artifact or oracle.
-- `feedback_events`: unresolved improvement/debt signal selected during
-  handover or takeover.
-- `graph_nodes` / `dependency_edges` / `impact_results`: relation-graph impact
-  showing missing sibling tests, missing design contract review, or stale
-  upstream/downstream dependency.
-- `artifact_progress`: red/yellow artifacts whose reason is structural debt,
-  missing dependency check, or missing linked test ID.
+- `findings`: 構造 lint、dead code、命名 drift、dependency direction 違反、
+  または stale generated artifact。
+- `quality_signals`: 同じ artifact または oracle で繰り返される warning/failure。
+- `feedback_events`: handover または takeover 中に選択された未解消の improvement/debt signal。
+- `graph_nodes` / `dependency_edges` / `impact_results`: sibling tests の欠落、
+  design contract review の欠落、または stale upstream/downstream dependency を示す relation-graph impact。
+- `artifact_progress`: reason が structural debt、missing dependency check、または missing linked test ID である
+  red/yellow artifacts。
 
-The database is a projection, not an authoring source. A DB trigger creates a
-Refactor candidate or PLAN input; the PLAN document and source artifacts remain
-the canonical authored state.
+DB は projection であり、authoring source ではない。DB trigger は Refactor candidate または
+PLAN input を作成するが、PLAN document と source artifacts は canonical authored state のままである。
 
-Detector-driven candidates must be triaged before they are treated as Refactor
-Red/Yellow work:
+detector-driven candidates は、Refactor Red/Yellow work として扱う前に triage しなければならない。
 
-- Review a representative candidate sample and record obvious false-positive
-  classes before closing the detector or acting on the queue.
-- Keep lower-confidence candidates in `quality_signals` for audit visibility;
-  do not automatically promote them to `feedback_events`.
-- Promote only high-confidence, ranked candidates to open feedback, and cap the
-  promoted set so handover is actionable.
-- When a real brush-up is executed from a detector hit, review whether the hit
-  selected a useful boundary and update the detector/process if the actual
-  refactor exposes a better precision rule.
+- 代表的な candidate sample を review し、detector を close する前、または queue に対応する前に、
+  明らかな false-positive classes を記録する。
+- confidence が低い candidates は audit visibility のため `quality_signals` に残し、
+  `feedback_events` へ自動 promote しない。
+- high-confidence かつ ranked candidates だけを open feedback へ promote し、handover が actionable になるよう
+  promoted set に上限を設ける。
+- detector hit から実際の brush-up を実行した場合、その hit が有用な boundary を選んだか review し、
+  実際の refactor がより精度の高い rule を示したなら detector/process を更新する。
 
-`refactor-scout` is the advisory subagent for this triage. It may inspect code,
-classify candidates, propose PLAN inputs, and name verification fences, but it
-must not implement changes. Implementation remains with SE/TL Refactor work.
+`refactor-scout` はこの triage の advisory subagent である。code inspection、candidate classification、
+PLAN inputs の提案、verification fences の命名はできるが、変更を実装してはならない。
+実装は SE/TL Refactor work の責務に残す。
 
-`externalize-policy` is a first-class Refactor candidate when stage/phase,
-route, approval, model tier, profile, skill, subagent, or injection rules are
-embedded as code branches instead of a catalog, config file, or dedicated policy
-module. Stage-based subagent or skill injection rules are included in this
-category.
+stage/phase、route、approval、model tier、profile、skill、subagent、injection rules が
+catalog、config file、専用 policy module ではなく code branches として埋め込まれている場合、
+`externalize-policy` は first-class Refactor candidate である。stage-based subagent または
+skill injection rules もこの category に含める。
 
-## 4. Dependency and Impact Rule
+## 4. dependency と impact の rule
 
-Before Green, changed files must be checked through the relation graph when the
-projection is available.
+projection が利用可能な場合、Green の前に changed files を relation graph で確認しなければならない。
 
-Required impact closure:
+必須の impact closure:
 
-- Source change has sibling test or explicit characterization-test evidence.
-- Source change reviews the L6 behavioural contract when a
-  `behavioral-contract` edge exists.
-- Design/test-design changes update the paired artifact or record a no-change
-  reason.
-- DB table or projection changes are not Refactor unless state semantics remain
-  unchanged; otherwise route to Retrofit or Add-feature.
-- Any relation-graph finding that blocks behavior confidence keeps the target
-  Red.
+- Source change には sibling test または明示的な characterization-test evidence がある。
+- `behavioral-contract` edge が存在する場合、Source change は L6 behavioural contract を review する。
+- Design/test-design changes は paired artifact を更新するか、no-change reason を記録する。
+- DB table または projection changes は state semantics が不変でない限り Refactor ではない。
+  それ以外は Retrofit または Add-feature へ route する。
+- behavior confidence を block する relation-graph finding がある限り、対象は Red のままとする。
 
-## 5. Exit Conditions
+## 5. 終了条件
 
-A Refactor PLAN can be closed only when all of these hold:
+Refactor PLAN は、以下がすべて成立した場合にのみ close できる。
 
-- `assertRefactorInvariant` passes with unchanged before/after behaviour.
-- Regression evidence has at least one linked `test_id`.
-- Required green commands have `exit_code=0` and evidence paths.
-- Relation impact has no open action that affects the changed files.
-- Review evidence is recorded after the green commands.
-- No new functional scope, public contract, or persistence schema was added.
-- If module structure changed, L5/L6 design docs are updated or a concrete
-  no-backprop decision is recorded.
+- `assertRefactorInvariant` は before/after behaviour が不変の状態で pass する。
+- Regression evidence には少なくとも 1 つの linked `test_id` がある。
+- 必須 green commands は `exit_code=0` と evidence paths を持つ。
+- Relation impact には changed files に影響する open action がない。
+- Review evidence は green commands の後に記録されている。
+- 新しい functional scope、public contract、persistence schema は追加されていない。
+- module structure が変わった場合、L5/L6 design docs が更新されているか、具体的な
+  no-backprop decision が記録されている。
 
-## 6. Mode Switching
+## 6. mode 切替
 
 | Observed change | Route |
 | --- | --- |
-| New behavior or new public surface | Add-feature |
-| Broken existing behavior during brush-up | Troubleshoot or Recovery |
-| Dependency/runtime upgrade | Retrofit |
+| 新しい behavior または新しい public surface | Add-feature |
+| brush-up 中に既存 behavior が壊れた | Troubleshoot または Recovery |
+| 依存関係または runtime の更新 | Retrofit |
 | Production regression | Incident |
-| Contract or requirements drift discovered | Reverse |
+| Contract または requirements drift の発見 | Reverse |
 
-Refactor is complete only when it returns to Forward/G7 with behavior invariant
-and test-ID-linked green evidence.
+Refactor は、behavior invariant と test-ID-linked green evidence を伴って Forward/G7 へ戻った場合にのみ
+complete である。

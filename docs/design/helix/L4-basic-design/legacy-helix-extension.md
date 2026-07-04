@@ -1,5 +1,5 @@
 ---
-title: "HELIX L4 基本設計 — old HELIX extension adoption"
+title: "HELIX L4 基本設計 — 旧 HELIX 拡張採用"
 layer: L4
 kind: add-design
 status: confirmed
@@ -11,13 +11,13 @@ pair_artifact: docs/test-design/helix/legacy-helix-extension.md
 related_l3: docs/design/helix/L3-requirements/legacy-helix-extension.md
 ---
 
-# HELIX L4 基本設計 — old HELIX extension adoption
+# HELIX L4 基本設計 — 旧 HELIX 拡張採用
 
-旧 HELIX 由来 `HLX-FR-*` を、既存 HELIX pillar block へ重複なしで接続する L4 boundary。
+旧 HELIX 由来 `HLX-FR-*` を、既存 HELIX pillar block へ重複なしで接続する L4 境界。
 
-## §1 L4 boundary
+## §1 L4 boundary（L4 境界）
 
-| L3 ID | L4 boundary | L4 設計判断 | system oracle |
+| L3 ID | L4 境界 | L4 設計判断 | system oracle |
 |-------|-------------|-------------|---------------|
 | HLX-FR-01 | HB-P0 / HB-P1 / HB-P3 | runtime discipline は work preflight と gate invariant。Forward return、acceptance、allowed scope 欠落を作業開始前に止める | HLX-SYS-01 |
 | HLX-FR-02 | HB-P2 / HB-P3 / HB-AC | technical user question gate は adapter consistency と verification governance の横断境界。TL advisor evidence なしの技術質問を止める | HLX-SYS-02 |
@@ -32,7 +32,7 @@ related_l3: docs/design/helix/L3-requirements/legacy-helix-extension.md
 | HLX-FR-11 | HB-P1 / HB-P3 / HNFR-P5 | continuous-run / scheduler / budget は lifecycle、verification governance、performance budget の境界。stop condition なしの自動継続を止める | HLX-SYS-11 |
 | HLX-FR-12 | HB-P4 / HB-P7 / HB-P9 | learning / feedback / recipe loop は repair-learning、shared knowledge、convergence DB の境界。feedback は改善候補であり acceptance proof ではない | HLX-SYS-12 |
 
-## §2 anti-corruption boundary
+## §2 anti-corruption boundary（腐敗防止境界）
 
 - 旧 HELIX の `helix` CLI、`.helix` state、Python detector/recommender/debug 実装は採用しない。
 - 旧 HELIX の global core 配布、Claude hook shell、agent persona、Python DB/API/scheduler/learning 実装は直接採用しない。

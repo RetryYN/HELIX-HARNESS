@@ -3,13 +3,13 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 created: 2026-06-08
 plan: docs/plans/PLAN-L6-15-module-drift.md
 ---
 
-> **L6 contract marker**: `parseListedModules`, `scanActualModules`, `analyzeModuleDrift`, `loadModuleDocs`, and `moduleDriftMessages` are the unit-test-granularity contracts. DbC pre/post is in §2-§3. L7 oracle family: U-MDRIFT-001..005.
+> **L6 contract marker**: `parseListedModules`、`scanActualModules`、`analyzeModuleDrift`、`loadModuleDocs`、`moduleDriftMessages` を unit-test 粒度の契約とする。DbC の pre/post は §2-§3 に置く。L7 oracle family は U-MDRIFT-001..005。
 
 # module-drift lint — 機能設計 (① / PLAN-L6-15、IMP-075)
 
@@ -23,7 +23,7 @@ plan: docs/plans/PLAN-L6-15-module-drift.md
 
 **スコープ外**:
 - **逆向き (listed ⊋ actual = 将来 module)**: 設計が web/roster/skills 等を「将来」列挙し src 未実在は drift ではない (宣言済 carry)。検査しない。
-- **asset-drift (internal asset cutover / FR-L1-49)**: current slice is implemented as a separate doctor hard gate for enrolled internal assets (`.claude/agents`, `.claude/agent-memory`, `docs/skills`, `docs/templates/prompts`). Full roster/skills dependency semantics remain future work outside this module-drift lint.
+- **asset-drift (internal asset cutover / FR-L1-49)**: 現在の slice は、登録済み internal asset (`.claude/agents`, `.claude/agent-memory`, `docs/skills`, `docs/templates/prompts`) 向けの独立した doctor hard gate として実装する。roster/skills の依存意味論全体は、この module-drift lint の外側にある将来作業とする。
 - **import グラフ drift (循環/逆依存)**: ADR-002/IMP-032 (knip/madge) の別 PLAN。本 lint は module **集合の包含**のみ。
 
 ## §1 入力 (設計 listed / 実在 actual)
@@ -49,62 +49,62 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 - **analyzeModuleDrift**:
   - **Postcondition**: `orphans = actual \ listed` (実在だが未列挙)。`ok = orphans.length===0`。`listedCount/actualCount` は非空虚ガード用。
 
-## §3 I/O loader + messages
+## §3 I/O loader と messages
 
 - `loadModuleDocs(repoRoot)`: architecture.md を読み `parseListedModules`、`src/` を `scanActualModules` → `{ listed, actual }`。
 - `moduleDriftMessages(result)`: orphan 0 → `"OK (… 孤児 0)"` / orphan あり → 件数 + module 列 + 「設計 doc へ back-fill (impl→design)」+ `[[feedback_impl_must_backfill_to_design]]`。
 
-### §3.1 FR asset-drift alias
+### §3.1 FR asset-drift 別名
 
-| Function | Signature | pre | post | invariant | oracle |
+| 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
 |---|---|---|---|---|---|
-| `analyzeAssetDrift` | analyzeAssetDrift(input: AssetDriftInput) => AssetDriftResult | enrolled agent/agent-memory/skill/prompt docs and guard allowlist are supplied; absent roots in isolated fixtures skip without failing unrelated checks. | returns legacy source path residue, legacy runtime delegation command residue, legacy runtime name residue, empty docs-skills, and guard allowlist entries without matching agent docs as violations. | asset-drift is separate from module-drift but feeds the same finding/back-fill feedback loop; prompt bodies and secrets are not persisted. | U-FR-L1-49 / U-ASSETDRIFT-001..007 |
-| `analyzeChangeImpact` | analyzeChangeImpact(input: ChangeImpactInput) => ChangeImpactResult | current change set file paths are supplied. | returns `missingDesign` or `missingTest` when any `src/**` change lacks a design PLAN/doc update or test/test-design update in the same change set. | source changes cannot silently bypass design back-fill or test evidence; documentation-only changes do not require source tests. | U-CHGIMPACT-001..004 |
+| `analyzeAssetDrift` | `analyzeAssetDrift(input: AssetDriftInput) => AssetDriftResult` | 登録済み agent/agent-memory/skill/prompt docs と guard allowlist が供給される。isolated fixture で root が無い場合は、無関係な検査を失敗させず skip する。 | legacy source path residue、legacy runtime delegation command residue、legacy runtime name residue、空の docs-skills、対応する agent docs が無い guard allowlist entry を violation として返す。 | asset-drift は module-drift とは別検査だが、同じ finding/back-fill feedback loop に流し込む。prompt body と secrets は永続化しない。 | U-FR-L1-49 / U-ASSETDRIFT-001..007 |
+| `analyzeChangeImpact` | `analyzeChangeImpact(input: ChangeImpactInput) => ChangeImpactResult` | 現在の change set file path が供給される。 | `src/**` 差分が同一 change set 内の design PLAN/doc 更新または test/test-design 更新を伴わない場合、`missingDesign` または `missingTest` を返す。 | source 変更は design back-fill や test evidence を静かに迂回できない。docs-only 変更は source tests を要求しない。 | U-CHGIMPACT-001..004 |
 | `analyzeCodingRules` | analyzeCodingRules(docs: CodingRulesDoc[], policy?: CodingRulesPolicy, workflowDocs?: CodingWorkflowDoc[]) => CodingRulesResult | TypeScript source/test docs、coding-rule SSoT、workflow placement docs が供給される。 | explicit `any`、TS/lint suppression comment、TS file name drift、source 関数の 4 params 以上、空/rethrow-only catch、module-boundary drift、machine-surface language drift、SSoT policy drift、workflow anchor 欠落を返す。 | coding rules は requirements-level SSoT と workflow artifact である。no-any/suppression/naming は source/test、max-params / structured-error / module-boundary は `src/**` に適用する。CLI/doctor/lint/gate decision token は日本語 prose 中でも ASCII English を保つ。 | U-CODE-001..011 |
 | `analyzeDddTddRules` | analyzeDddTddRules(input: DddTddInputs) => DddTddResult | DDD/TDD rule SSoT、workflow docs、source/test docs、PLAN docs、L7/L8 test-design docs が供給される。 | policy drift、workflow anchor drift、domain-boundary imports、invariant oracle gap、Red-first evidence 欠落、weak test oracle、integration GWT 欠落を返す。 | 定量 check と定性 review は分離するが、freeze-significant point では test evidence と reviewer evidence の両方を要求する。`domain-boundary` は `module-boundary` と同じ canonical source-boundary matrix を使い、DDD/TDD strictness 側の rule id として報告する。 | U-DDDTDD-001..010 / U-FR-L1-50 |
 
-### Cross-Artifact Relation Graph Addendum (A-124/A-125 / PLAN-L6-31)
+### Cross-Artifact Relation Graph 追補 (A-124/A-125 / PLAN-L6-31)
 
-This addendum is the L6 function-design entry for the cross-artifact graph and verification-profile projection. It closes the design gap exposed by PLAN-RECOVERY-03: relation graph source code is not authorized until these contracts are covered by L7 unit oracles and an L7 implementation PLAN.
+この追補は、cross-artifact graph と verification-profile projection に対する L6 function-design entry である。PLAN-RECOVERY-03 で露出した design gap を塞ぐため、これらの契約が L7 unit oracle と L7 implementation PLAN で被覆されるまでは relation graph source code を許可しない。
 
-| Function | Signature | pre | post | invariant | oracle |
+| 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
 |---|---|---|---|---|---|
-| `collectRelationGraphProjection` | collectRelationGraphProjection(input: RelationGraphSourceSet) => RelationGraphProjection | docs, source paths, tests, PLAN metadata, audit records, and verification evidence paths are supplied as text/metadata fixtures; missing optional roots are explicit empty sets. | returns normalized nodes and edges for requirements, PLANs, design docs, test-design docs, source files, tests, DB tables, verification profiles, external tools, diagrams, and findings. | The graph is a rebuildable projection, not an authoring source; projection rows do not copy raw MCP responses, browser traces, screenshots, provider transcripts, secrets, or credentials. | U-RELGRAPH-001..003 |
-| `analyzeRelationImpact` | analyzeRelationImpact(input: RelationImpactInput) => RelationImpactResult | changed paths and a graph projection are supplied; changed paths are repo-relative and normalized. | returns directly changed nodes, impacted upstream/downstream nodes, required follow-up actions, and findings for missing design/test/DB/evidence coverage. | A lower-layer change can require reverse/backprop actions; docs-only changes do not require source tests unless the graph marks a behavioral contract. | U-RELGRAPH-004..006 |
-| `exportRelationDiagram` | exportRelationDiagram(snapshot: RelationGraphSnapshot, format: "mermaid" \| "dot" \| "d2") => DiagramArtifact | a graph snapshot and requested format are supplied; Mermaid is always available, DOT/D2 are optional adapters gated by installed tooling. | returns deterministic diagram text with stable node IDs and edge labels; unavailable optional adapters return a finding instead of invoking tools implicitly. | Diagram export is evidence for review/handover and must not mutate source docs or DB state. | U-RELGRAPH-007..008 |
-| `collectVerificationEvidenceProjection` | collectVerificationEvidenceProjection(input: VerificationEvidenceRecord[]) => VerificationProfileProjection | saved A-125 evidence records from `.ut-tdd/evidence/verification-profiles/*.json` are supplied after schema validation. | returns `verification_profiles`, `verification_recommendations`, `mcp_server_runs`, and `external_tool_findings` projection rows with evidence paths. | External execution remains opt-in; projection stores summaries and classification, not raw external payloads. | U-RELGRAPH-009..010 |
+| `collectRelationGraphProjection` | `collectRelationGraphProjection(input: RelationGraphSourceSet) => RelationGraphProjection` | docs、source paths、tests、PLAN metadata、audit records、verification evidence paths が text/metadata fixture として供給される。欠落した optional roots は明示的な空集合とする。 | requirements、PLANs、design docs、test-design docs、source files、tests、DB tables、verification profiles、external tools、diagrams、findings の正規化済み nodes と edges を返す。 | graph は authoring source ではなく再構築可能な projection である。projection rows は raw MCP responses、browser traces、screenshots、provider transcripts、secrets、credentials を copy しない。 | U-RELGRAPH-001..003 |
+| `analyzeRelationImpact` | `analyzeRelationImpact(input: RelationImpactInput) => RelationImpactResult` | changed paths と graph projection が供給される。changed paths は repo-relative かつ正規化済みである。 | 直接変更された nodes、影響を受ける upstream/downstream nodes、必要な follow-up actions、design/test/DB/evidence coverage 欠落の findings を返す。 | lower-layer 変更は reverse/backprop actions を要求し得る。docs-only 変更は、graph が behavioral contract を示す場合を除き source tests を要求しない。 | U-RELGRAPH-004..006 |
+| `exportRelationDiagram` | `exportRelationDiagram(snapshot: RelationGraphSnapshot, format: "mermaid" \| "dot" \| "d2") => DiagramArtifact` | graph snapshot と要求 format が供給される。Mermaid は常に利用可能で、DOT/D2 は installed tooling で gate される optional adapter とする。 | 安定した node IDs と edge labels を持つ deterministic diagram text を返す。利用不能な optional adapter は、暗黙に tool を起動せず finding を返す。 | Diagram export は review/handover の evidence であり、source docs や DB state を mutate してはならない。 | U-RELGRAPH-007..008 |
+| `collectVerificationEvidenceProjection` | `collectVerificationEvidenceProjection(input: VerificationEvidenceRecord[]) => VerificationProfileProjection` | `.ut-tdd/evidence/verification-profiles/*.json` から保存済み A-125 evidence records を schema validation 後に供給する。 | `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` の projection rows を evidence paths 付きで返す。 | External execution は opt-in のままとする。projection は raw external payloads ではなく summaries と classification を保存する。 | U-RELGRAPH-009..010 |
 
 **Required impact classes**:
 
-- source -> sibling test, L6 design contract, L7 oracle, PLAN, and reverse/backprop guard;
-- design/test-design -> paired artifact, PLAN DoD, and trace-freeze evidence;
-- physical-data / DB projection docs -> DB table nodes, rebuild contract, and upstream requirement/ADR nodes;
-- verification-profile evidence -> external-tool profile, MCP server/tooling decision, evidence path, and sanitized finding rows;
-- diagram export -> review/handover artifact with stale-source detection.
+- `source` 変更時の影響先: `sibling test`、L6 design contract、L7 oracle、PLAN、reverse/backprop guard。
+- `design` / `test-design` 変更時の影響先: paired artifact、PLAN DoD、trace-freeze evidence。
+- `physical-data` / DB projection docs 変更時の影響先: DB table nodes、rebuild contract、upstream requirement/ADR nodes。
+- verification-profile evidence 変更時の影響先: external-tool profile、MCP server/tooling decision、evidence path、sanitized finding rows。
+- diagram export -> stale-source detection 付きの review/handover artifact。
 
-**Workflow guard**: if `src/**` relation-graph source is created before PLAN-L6-31 has L7 oracle coverage and PLAN-L7-32 has a TDD Red entry, the change is a Recovery event, not a valid implementation shortcut.
+**Workflow guard**: PLAN-L6-31 に L7 oracle coverage があり、PLAN-L7-32 に TDD Red entry がある前に `src/**` の relation-graph source が作られた場合、その変更は妥当な implementation shortcut ではなく Recovery event として扱う。
 
-### Tool Adapter Probe Addendum (A-124 / PLAN-L6-33)
+### Tool Adapter Probe 追補 (A-124 / PLAN-L6-33)
 
-This addendum defines the L6 contract for optional graph/diagram development-tool adapters. It is separate from the core relation graph collector: adapters can improve evidence quality, but the TypeScript/Bun collector and DB projection remain the source of gate-normalized truth.
+この追補は、optional graph/diagram development-tool adapters に対する L6 contract を定義する。これは core relation graph collector とは別である。adapters は evidence quality を高められるが、gate-normalized truth の source は TypeScript/Bun collector と DB projection のままとする。
 
-| Function | Signature | pre | post | invariant | oracle |
+| 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
 |---|---|---|---|---|---|
-| `catalogToolAdapters` | catalogToolAdapters(input: ToolAdapterCatalogInput) => ToolAdapterCatalogResult | researched adapter metadata, package refs, executable names, trigger signals, and output formats are supplied. | returns deterministic adapter profiles for dependency-cruiser, Knip, Madge, Graphviz DOT, Mermaid, and D2. | adapters are optional, disabled until declared/available, and cannot become authoring sources. | U-TOOLADAPTER-001..002 |
-| `probeToolAdapter` | probeToolAdapter(input: ToolAdapterProbeInput, deps: ToolAdapterProbeDeps) => ToolAdapterProbeResult | adapter profile, package metadata, executable check, and workspace scope are supplied. | returns readiness checks for package/executable/config/scope without installing or running destructive actions. | missing adapter availability is a finding, not a silent pass or unrelated check failure. | U-TOOLADAPTER-003..005 |
-| `normalizeToolAdapterRun` | normalizeToolAdapterRun(input: ToolAdapterRunEvidence) => ToolAdapterProjection | raw adapter evidence path, command, exit code, version, scope, and parsed output summary are supplied. | returns normalized `tool_runs`, `dependency_edges`, `diagram_artifacts`, and `findings` rows. | raw DOT/JSON/SVG/Mermaid/D2 output remains evidence; gates consume normalized projection rows only. | U-TOOLADAPTER-006..008 |
-| `planDiagramRefresh` | planDiagramRefresh(input: DiagramRefreshInput) => DiagramRefreshPlan | graph snapshot digest, existing diagram artifacts, requested format, and adapter readiness are supplied. | returns refresh/mark-stale/no-op actions for Mermaid/DOT/D2 diagram artifacts. | stale diagrams cannot be treated as current review evidence. Optional renderer absence returns a finding. | U-TOOLADAPTER-009..010 |
+| `catalogToolAdapters` | `catalogToolAdapters(input: ToolAdapterCatalogInput) => ToolAdapterCatalogResult` | 調査済み adapter metadata、package refs、executable names、trigger signals、output formats が供給される。 | dependency-cruiser、Knip、Madge、Graphviz DOT、Mermaid、D2 の deterministic adapter profiles を返す。 | adapters は optional であり、宣言・利用可能になるまでは disabled とし、authoring sources にはできない。 | U-TOOLADAPTER-001..002 |
+| `probeToolAdapter` | `probeToolAdapter(input: ToolAdapterProbeInput, deps: ToolAdapterProbeDeps) => ToolAdapterProbeResult` | adapter profile、package metadata、executable check、workspace scope が供給される。 | install や destructive actions を実行せず、package/executable/config/scope の readiness checks を返す。 | adapter availability の欠落は finding であり、silent pass や無関係な check failure ではない。 | U-TOOLADAPTER-003..005 |
+| `normalizeToolAdapterRun` | `normalizeToolAdapterRun(input: ToolAdapterRunEvidence) => ToolAdapterProjection` | raw adapter evidence path、command、exit code、version、scope、parsed output summary が供給される。 | 正規化済み `tool_runs`、`dependency_edges`、`diagram_artifacts`、`findings` rows を返す。 | raw DOT/JSON/SVG/Mermaid/D2 output は evidence のまま残す。gates は正規化済み projection rows のみを消費する。 | U-TOOLADAPTER-006..008 |
+| `planDiagramRefresh` | `planDiagramRefresh(input: DiagramRefreshInput) => DiagramRefreshPlan` | graph snapshot digest、既存 diagram artifacts、要求 format、adapter readiness が供給される。 | Mermaid/DOT/D2 diagram artifacts に対する refresh/mark-stale/no-op actions を返す。 | stale diagrams を現在の review evidence として扱ってはならない。Optional renderer が無い場合は finding を返す。 | U-TOOLADAPTER-009..010 |
 
-### Coding Rules Addendum
+### Coding Rules 追補
 
 - **coding-rules**: requirements `Coding Rules SSoT` から `src/lint/coding-rules.ts` へ落とす TS core 規約。explicit `any`、TS/lint suppression comment、TS file-name drift、source max-params drift は doctor hard failure。
-- **workflow placement**: Forward L6 and Add-feature `add-design` must confirm or update `docs/governance/coding-rules.md` before implementation freeze. The workflow docs carry `CODING-RULE-WORKFLOW` anchors so this is machine-auditable.
-- **doctor contract**: `checkCodingRules(repoRoot)` loads `docs/governance/coding-rules.md`, `docs/process/forward/L00-L06-design-phase.md`, `docs/process/modes/add-feature.md`, `docs/process/modes/README.md`, `src/**/*.ts`, and `tests/**/*.ts`; it runs `analyzeCodingRules` and links `ok` to `runDoctor.ok`.
-- **error handling**: fail-open is allowed only when a catch block returns/records explicit failure state or documents fail-open intent in-place. Undocumented empty and rethrow-only catch blocks are `structured-error-handling` violations.
-- **module boundary**: `lint` must not import runtime/doctor/CLI feature modules, `runtime` must not import governance checks, and `schema` must stay below feature modules. Violations are `module-boundary`.
+- **workflow placement**: Forward L6 と Add-feature `add-design` は、implementation freeze の前に `docs/governance/coding-rules.md` の確認または更新を必須とする。workflow docs は `CODING-RULE-WORKFLOW` anchors を持つため機械監査できる。
+- **doctor contract**: `checkCodingRules(repoRoot)` は `docs/governance/coding-rules.md`、`docs/process/forward/L00-L06-design-phase.md`、`docs/process/modes/add-feature.md`、`docs/process/modes/README.md`、`src/**/*.ts`、`tests/**/*.ts` を load し、`analyzeCodingRules` を実行して `ok` を `runDoctor.ok` に連動させる。
+- **error handling**: catch block が明示的な failure state を返す・記録する、または fail-open intent をその場で文書化する場合に限り、fail-open を許可する。未文書化の空 catch と rethrow-only catch block は `structured-error-handling` violations とする。
+- **module boundary**: `lint` は runtime/doctor/CLI feature modules を import してはならない。`runtime` は governance checks を import してはならない。`schema` は feature modules の下位に留める。違反は `module-boundary` とする。
 - **canonical source-boundary matrix**: IMP-105 により禁止 import matrix は `src/lint/shared.ts` の `violatesSourceBoundary` を正本にする。`module-boundary` と `domain-boundary` は同じ matrix を使い、前者は coding-rule SSoT、後者は DDD/TDD strictness gate の観測名として別 rule id を維持する。
 - **machine-surface language**: machine-facing CLI/doctor/lint/gate/status messages may include Japanese explanation, but their decision token must be stable ASCII English (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`). Japanese-only decision words in machine message lines are `machine-surface-language` violations. **Impl (2026-06-19、A-141)**: `analyzeCodingRules` の `violatesMachineSurfaceLanguage` が machine-surface 行パターン × 非 ASCII 判定語 × ASCII token 不在で検出し、`describe`/`it`/`test` のタイトル literal は除外 (false-positive 回避)。`REQUIRED_RULE_IDS` + SSoT `coding-rules.md` に `machine-surface-language` を登録。oracle U-CODE-010。実 repo violations 0。
-- **scope split**: no-any / no-suppression / file naming apply to source and tests. max-params / structured-error-handling / module-boundary apply only to `src/**`; test helper arity is governed by readability and local test design.
+- **scope split**: no-any / no-suppression / file naming は source と tests に適用する。max-params / structured-error-handling / module-boundary は `src/**` のみに適用する。test helper arity は readability と local test design に従う。
 
 ### design-language lint 追補 (2026-07-02)
 
@@ -121,20 +121,20 @@ This addendum defines the L6 contract for optional graph/diagram development-too
   `designLanguageMessages` を実行し、baseline 超過または fingerprint drift を `runDoctor.ok=false` に連動する。
   baseline は完了宣言ではなくラチェット対象であり、今後の日本語化 PLAN で段階的に引き下げる。
 
-### DDD/TDD Strictness Addendum (FR-L1-50)
+### DDD/TDD Strictness 追補 (FR-L1-50)
 
-- **DDD/TDD rule SSoT**: `docs/governance/ddd-tdd-rules.md` defines rule IDs for `domain-boundary`, `invariant-test-trace`, `red-first-evidence`, `test-oracle-strength`, and `integration-gwt`.
+- **DDD/TDD rule SSoT**: `docs/governance/ddd-tdd-rules.md` は `domain-boundary`、`invariant-test-trace`、`red-first-evidence`、`test-oracle-strength`、`integration-gwt` の rule IDs を定義する。
 - **domain-boundary relation**: `domain-boundary` は `module-boundary` の別コピーではなく、canonical source-boundary matrix を DDD/TDD strictness 側で消費する rule である。境界表の差分根拠を prose で管理せず、matrix 変更は `violatesSourceBoundary` と U-CODE / U-DDDTDD の両 oracle を同時に更新する。
-- **workflow placement**: Forward L6, Add-feature, and mode index docs carry `DDD-TDD-WORKFLOW` anchors so rule placement is not left to reviewer memory.
-- **quantitative/qualitative split**: `analyzeDddTddRules` provides mechanical evidence before review; gate-significant DDD/TDD decisions still require reviewer evidence, so the two are bundled for freeze readiness rather than collapsed into one signal.
+- **workflow placement**: Forward L6、Add-feature、mode index docs は `DDD-TDD-WORKFLOW` anchors を持つため、rule placement を reviewer memory に委ねない。
+- **quantitative/qualitative split**: `analyzeDddTddRules` は review 前に mechanical evidence を提供する。gate-significant な DDD/TDD decisions は引き続き reviewer evidence を要求するため、両者を一つの signal に潰さず freeze readiness として束ねる。
 - **unit-oracle-substance (IMP-083 残差、2026-06-19)**: `integration-gwt` が L8 IT-* 行の Given/When/Then 非空を見るのと対に、`unitOracleSubstanceViolations` は **L7 unit test-design の `U-XXX-NNN` 行** (末尾数字必須 = `U-ID` ヘッダ除外) の expected-behavior セルが**実ケース**を持つ (空 / trivial < 6 字 / skeleton marker `-`/TODO/骨格 でない) ことを検査する。pair-freeze (link) / oracle-test-trace (citation) / test-oracle-strength (test コード assert) は U-* 行の**期待結果セル中身**を見ないため、freeze 時の骨格凍結を素通りさせていた穴 (IMP-083) を FR-L1-50 配下で塞ぐ。oracle U-DDDTDD-009。**IMP-082 (descent substance) は別途 IMP-090/092 の `l6-fr-coverage` (FR→L6 type body + pseudocode) で被覆済 = superseded**。
-- **doctor contract**: `checkDddTddRules(repoRoot)` loads the SSoT, workflow docs, PLAN docs, L7/L8 test-design docs, and TS source/test files; `runDoctor.ok` fails when DDD/TDD strictness violations exist.
+- **doctor contract**: `checkDddTddRules(repoRoot)` は SSoT、workflow docs、PLAN docs、L7/L8 test-design docs、TS source/test files を load する。DDD/TDD strictness violations がある場合は `runDoctor.ok` を fail させる。
 
-### Impl-Plan-Trace Addendum (IMP-088 / FR-L1-18 descent / PLAN-REVERSE-40)
+### Impl-Plan-Trace 追補 (IMP-088 / FR-L1-18 descent / PLAN-REVERSE-40)
 
 `module-drift` (src⇔architecture §3.1) と `pair-freeze` (design⇔test-design) はいずれも **PLAN を見ない**ため、「設計 doc に名前が載れば PLAN 無しでも通る」穴 (A-108 orphan の根因) が残る。本 addendum は FR-L1-18 (横断検出・**接続欠損**) の descent として impl→PLAN トレーサビリティを定義する。
 
-| Function | Signature | pre | post | invariant | oracle |
+| 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
 |---|---|---|---|---|---|
 | `analyzeImplPlanTrace` | analyzeImplPlanTrace(input: ImplPlanTraceInput) => ImplPlanTraceResult | `src/**.ts` 集合 + PLAN generates/本文に出現した src パス集合 + baseline allowlist が供給される。 | traced でも baseline でもない src を `orphans` に返し、NEW orphan 有無で `ok` を決める。 | baseline は known-debt の段階導入であり**縮小のみ可**。IMP-087 の 4 orphan は baseline でなく PLAN generates への back-fill で trace 解消する。 | U-IPT-001..005 |
 
@@ -158,4 +158,4 @@ This addendum defines the L6 contract for optional graph/diagram development-too
 
 - **hard 化**: 完了。`checkModuleDrift.ok` / `checkImplPlanTrace.ok` は `runDoctor.ok` に連動する。
 - **粒度の深化**: 現状 top-level module 集合のみ。Level 2 (代表 module 内部ファイル) 粒度の drift は対象外 (§3.2 は人手)。
-- **asset-drift**: `analyzeAssetDrift` (FR-L1-49) is implemented as the current hard gate slice for internal asset cutover. It recursively scans `.claude/agents/*.md`, `.claude/agent-memory/**/*.md`, `docs/skills`, and `docs/templates/prompts/*.md` assets, fails on legacy source personal path residue, legacy runtime delegation command residue, legacy runtime name/env residue, empty `docs/skills`, and guard allowlist entries without matching agent docs. It intentionally does not parse prompt bodies into persistent state; the markdown assets remain the source of truth.
+- **asset-drift**: `analyzeAssetDrift` (FR-L1-49) は internal asset cutover 向けの現在の hard gate slice として実装済みである。`.claude/agents/*.md`、`.claude/agent-memory/**/*.md`、`docs/skills`、`docs/templates/prompts/*.md` assets を再帰 scan し、legacy source personal path residue、legacy runtime delegation command residue、legacy runtime name/env residue、空の `docs/skills`、対応する agent docs が無い guard allowlist entries を failure とする。prompt bodies は意図的に persistent state へ parse しない。markdown assets が source of truth のままである。

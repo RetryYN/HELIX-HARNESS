@@ -1,5 +1,5 @@
 ---
-title: "HELIX L3 要件 back-fill — upstream A-146 substance-gap adoption"
+title: "HELIX L3 要件補完 — upstream A-146 substance-gap 採用"
 layer: L3
 kind: add-design
 status: confirmed
@@ -15,7 +15,7 @@ source_upstream_commit_full: 7f83ca811353ed90b3e981178a1b0c9977dd5863
 source_upstream_artifact: .ut-tdd/audit/A-146-substance-gap-consolidated-remediation.md
 ---
 
-# HELIX L3 要件 back-fill — upstream A-146 substance-gap adoption
+# HELIX L3 要件補完 — upstream A-146 substance-gap 採用
 
 先行 `unison-ai-product/UT-TDD_AGENT-HARNESS` の `7f83ca8`
 (`7f83ca811353ed90b3e981178a1b0c9977dd5863`) に含まれる
@@ -52,9 +52,9 @@ L3 要件 back-fill。A-146 は「presence / projection は強いが、substance
 | HU-FR-07 | A146-7 | drive-model entry は advisory 表示だけでなく、`signal -> mode` と `kind x drive` matrix を machine-readable contract とし、未知組合せを fail-close または明示 defer にする | HU-AC-07a / HU-AC-07b |
 | HU-FR-08 | A146-8 | runtime matcher compatibility は設計上の期待ではなく、対象 Claude/Codex runtime で tool matcher が実際に発火する evidence を要求する。未確認 matcher は guard covered と主張しない | HU-AC-08a / HU-AC-08b |
 
-## §2 Acceptance Criteria
+## §2 Acceptance Criteria（受入基準）
 
-| AC-ID | Given | When | Then |
+| AC-ID | 前提 | 操作 | 期待結果 |
 |-------|-------|------|------|
 | HU-AC-01a | consumer adapter template を生成する | distribution readiness を評価 | Claude/Codex guard entrypoint と未配線 Codex surface の deferred marker が同時に出る |
 | HU-AC-01b | 未配線 surface を検出する | completion claim を評価 | guard covered ではなく deferred / human review / follow-up として扱う |

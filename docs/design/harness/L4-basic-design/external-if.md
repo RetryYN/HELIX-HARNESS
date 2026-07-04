@@ -3,7 +3,7 @@ layer: L4
 sub_doc: external-if
 status: confirmed
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L9
 plan: docs/plans/PLAN-L4-04-external-if.md
@@ -16,7 +16,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L9-system-test-design.md` は L4 sub-doc 群の集合 pair (PLAN-L4-00-master 経由)。
 > **⚠ 人間確認事項**: 認証・認可・本番影響・秘密情報の扱いは本 doc で**確定しない** (禁止事項)。設計方針の記述に留め、確定は PO 承認を要する (§5)。
 
-# UT-TDD Agent Harness — L4 基本設計: 外部インターフェース設計 (External-IF)
+# HELIX Agent Harness — L4 基本設計: 外部インターフェース設計 (External-IF)
 
 harness が依存する外部 service との**境界契約**を Design by Contract で定義する (PLAN-L4-04-external-if)。外部 service 起動は architecture.md §6 の通り runtime adapter に隔離し、core は正規化 intent のみ発行する。
 

@@ -5,7 +5,7 @@ artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/
 parent_doc: docs/plans/PLAN-L6-00-master.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_l6_function_spec: docs/design/harness/L6-function-design/function-spec.md
 related_l6_edge_case: docs/design/harness/L6-function-design/edge-case.md
 next_pair_freeze: L6
@@ -97,7 +97,7 @@ U-OUTSTANDING-012 の追加 oracle: `externalObserved` を渡す場合、`develo
 | U-OUTSTANDING-014a | `analyzeCompletionDecisionPacket` semantic summary audit | completion decision packet の top-level semantic summary は `semanticMeaningSummary.frontierRecordCount === semanticFeatureFrontierRecords.length`、`confirmedCurrentMeaningRecordCount === confirmedCurrentMeaningRecords.length`、`completionClaimAllowed === packet.ok`、sourcePaths に L3 feature-list と L12 acceptance source を含むことを要求する。欠落、件数 drift、source path 欠落、blocked packet なのに `completionClaimAllowed=true` は fail-close し、completion packet だけを見た PO 判断でも機能一覧の confirmed catalog と frontier boundary が消えないようにする。 |
 | U-OUTSTANDING-015 | `analyzeCompletionDecisionPacket` | completion decision packet の machine ID (`requiredAction` / `requiredActions[]` / `requiredEvidence[]` / `nextWorkflowRoute` / `supportingPacketSummaries[].reviewRoute`) と PO 向け日本語表示 (`requiredActionJa` / `requiredActionsJa[]` / `requiredEvidenceJa[]` / `nextWorkflowRouteJa` / `reviewRouteJa`) は対応表どおり一致しなければならない。英語 machine prose を日本語表示 field に流用した packet、配列長がずれた packet、route/reviewRoute/required evidence の日本語表示が drift した packet は fail-close し、JSON packet 経由でも日本語-first ルールを迂回できない。approval-draft supporting packet は `reviewRouteJa` が「非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む」で固定され、英語 `review non-authorizing ...` の流用を許可しない。handover Markdown の packet 要約は `確認観点=` に日本語表示、`確認観点ID=` に machine route を出し、ID 欠落を fail-close する。 |
 
-## §0.3 route eval / pair-agent routing oracles
+## §0.3 route eval / pair-agent routing oracle 検査
 
 | ID | Subject | Oracle |
 |----|---------|--------|
@@ -202,7 +202,7 @@ ledger の `checked` 日付が未来日でなく、かつ 90 日を超えて sta
 | U-CORE-01 | `planDraft` pseudocode (§2.1) | pre 違反→exit1 / 原子性 (失敗時 file 不変) |
 | U-CORE-02 | `runGate` 決定論 (§2.2) | AI 非依存、V-model 順序 / 証跡生成 |
 | U-CORE-03 | `traceCheck` 12 edge (§2.3) | 孤児→fail-close exit1 |
-| U-CORE-04 | `sprintCheck` Red-first (§2.4) | Red commit precedes Green |
+| U-CORE-04 | `sprintCheck` Red-first (§2.4) | Red commit が Green より先行する |
 
 ### §1.3 U-RULE (function-spec §4 IMP-033 rule engine 由来)
 | U-ID (候補) | 検証対象 | oracle |
@@ -310,7 +310,7 @@ fail-close する。
 
 2026-07-02 追補: U-HOVER-018 は `handover status --json` が live outstanding 由来の `workflowNextAction` /
 `workflowNextActions[]` と `objectiveProgress` を返し、text mode が `objective-progress:` /
-`workflow-next:` / `workflow-next-actions:` / `workflow-next-action[n]: ... action=... route=... packet=... supporting=...`
+`workflow-next:` / `workflow-next-actions:` / `workflow-next-action[n]: ... action=... route=... packet=... supporting=...` を surface する。
 を出すことも検査する。handover 再開時に進捗%、completion packet command、次に記録すべき判断、
 plan 別 supporting packet、route が直接 surface されることを必須にする。
 | U-HOVER-019 | `checkHandoverCompletionDecisionPacket` / doctor hard gate | pointer 不在は skipped/OK。`outstanding.completionReadiness.ok=false` なのに `completionDecisionPacket` が無い旧 CURRENT.json は fail-close。blocked outstanding と同じ snapshot 由来の `sourceCommand="ut-tdd handover"` packet は OK で、各 decision は `decisionPacketCommand` / `packetCommands` を保持する。旧 schema の handover packet が `supportingPacketSummaries[]`、`semanticMeaningSummary`、`semanticFeatureFrontierRecords[]`、`confirmedCurrentMeaningRecords[]` のいずれかを持たない場合は、sourceCommand が `ut-tdd handover` のときだけ live outstanding から再構成して検査し、handover status と同じ read-only overlay 境界に揃える。standalone `ut-tdd completion decision-packet --json` packet の転記、freshness/shape lint violation、`completionReadiness` と packet ok/status 不一致、`outstanding.items.length` と packet decision count 不一致は fail-close。`runDoctor.ok` はこの gate に連動し、doctor green が古い handover pointer を隠さない。 |
@@ -335,7 +335,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 |------|------|--------|
 | U-TEAM-001 | `teamDefinitionSchema` | `strategy` 省略 → `"sequential"` (default) / `max_parallel` 省略 → `8` (default) / `max_parallel===MAX_TEAM_PARALLEL` は受理 / `max_parallel>MAX_TEAM_PARALLEL` は zod throw (resource exhaustion 防止) / `members` 空配列 → zod throw (reject) / 不正 `role` (許可リスト外) → throw / 不正 `strategy` (`"burst"` 等) → throw / `serialize_after` + `serialization` (3 条件フィールド) を含む入力 → 受理 (`parsed.serialization.downstream_dependency===true` / `parsed.members[1].serialize_after==="se"`) |
 | U-TEAM-002 | `mustSerialize` | 3 条件すべて `false` → `false` / `file_conflict=true` → `true` / `downstream_dependency=true` → `true` / `shared_state=true` → `true` / `undefined` → `false` |
-| U-TEAM-003 | `recommendTeamLaunch` | `hybrid` + trivial/simple task → `should_launch=false` / `hybrid` + risk or standard+ task → `should_launch=true` with cross-provider `definition` / non-`hybrid` → `should_launch=false`, `trigger="unavailable"` |
+| U-TEAM-003 | `recommendTeamLaunch` | `hybrid` + trivial/simple task → `should_launch=false` / `hybrid` + risk または standard+ task → cross-provider `definition` 付きで `should_launch=true` / non-`hybrid` → `should_launch=false`, `trigger="unavailable"` |
 
 ### §1.11 U-BACKFILL (backfill-pairing lint 由来、IMP-051)
 
@@ -440,7 +440,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-ASSETDRIFT-004 | `analyzeAssetDrift` (guard allowlist missing) | guard allowlist entry に対応する `.claude/agents/<id>.md` が無ければ `missing-allowlisted-agent` + `ok=false` |
 | U-ASSETDRIFT-005 | `analyzeAssetDrift` (isolated fixture) | enrolled roots が無い isolated test fixture は unrelated doctor tests を落とさず skip (`checkedAssets=0`, `ok=true`) |
 | U-ASSETDRIFT-006 | `loadAssetDriftInput` + `analyzeAssetDrift` (実 repo guard) | 実 repo の active internal assets と prompt templates は legacy source path residue 0 / legacy command residue 0 / docs-skills non-empty / missing allowlisted agent 0 |
-| U-ASSETDRIFT-007 | `loadAssetDriftInput` nested `.claude/agent-memory` scan | nested agent memory markdown is enrolled recursively; legacy runtime name/env residue in stale local memory fails `asset-drift` instead of bypassing doctor |
+| U-ASSETDRIFT-007 | `loadAssetDriftInput` nested `.claude/agent-memory` scan | nested agent memory markdown を再帰的に enroll する。stale な local memory 内の legacy runtime 名 / env 残存は doctor を迂回せず `asset-drift` で fail する |
 
 ### §1.16.1 U-CHGIMPACT (code change impact lint = コード変更時の設計・テスト更新漏れ検出)
 
@@ -456,66 +456,66 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-CHGIMPACT-006 | `analyzeChangeSetIntegrity` (source plan contract missing) | L7 実装系 PLAN があっても parent L6 design / pair artifact / test evidence のいずれかを欠く場合、`source-plan-contract-missing` blocker で `ok=false` |
 | U-CHGIMPACT-007 | `analyzeChangeSetIntegrity` (source plan contract covered) | L7 実装系 PLAN が parent design、pair artifact、test evidence を持つ場合、未承認 L7 実装 blocker は出ない |
 
-### §1.16.1a U-RELGRAPH (cross-artifact relation graph = docs/code/DB/evidence impact)
+### §1.16.1a U-RELGRAPH (cross-artifact relation graph = docs/code/DB/evidence impact の検査)
 
-> Pair = `module-drift.md` Cross-Artifact Relation Graph Addendum (A-124/A-125 / PLAN-L6-31). PLAN-L7-32 is the authorized L7 implementation entry.
+> Pair = `module-drift.md` Cross-Artifact Relation Graph Addendum (A-124/A-125 / PLAN-L6-31)。PLAN-L7-32 が承認済み L7 実装 entry である。
 >
 > **Status (PLAN-L7-32 塊C span, 2026-06-10)**: U-RELGRAPH-001..006 promoted from `it.todo` to green `it` in `tests/relation-graph.test.ts` against `src/lint/relation-graph.ts` — `collectRelationGraphProjection` (001..003) + `analyzeRelationImpact` (004..006, source/design/test-design/physical-data 変更の波及 action + behavioral-contract conditional + missing-projection/stale-edge を ok=false finding 化, change-impact へ無音 fallback しない)。PLAN-L7-32 (collect+impact) はこれで実装完了。U-RELGRAPH-007..010 (`exportRelationDiagram` / `collectVerificationEvidenceProjection`) は PLAN-L7-36。
 
-> **Status (PLAN-L7-36 follow-up span, 2026-06-11)**: U-RELGRAPH-007..010 promoted from `it.todo` to green `it` in `tests/relation-graph.test.ts` against `src/lint/relation-graph.ts` — `exportRelationDiagram` (deterministic Mermaid + DOT/D2 unavailable-adapter finding) and `collectVerificationEvidenceProjection` (A-125 evidence projection rows + invalid/external-not-allowed findings, raw payload excluded).
+> **Status (PLAN-L7-36 follow-up span, 2026-06-11)**: U-RELGRAPH-007..010 は `src/lint/relation-graph.ts` に対する `tests/relation-graph.test.ts` の green `it` へ、`it.todo` から昇格済み。対象は `exportRelationDiagram` (deterministic Mermaid + DOT/D2 unavailable-adapter finding) と `collectVerificationEvidenceProjection` (A-125 evidence projection rows + invalid/external-not-allowed findings、raw payload excluded)。
 
 | ID | Target | Oracle |
 |---|---|---|
-| U-RELGRAPH-001 | `collectRelationGraphProjection` source/doc/test nodes | requirements, PLAN, design, test-design, source, and test fixtures produce stable node IDs, typed edges, and no duplicate `(kind,id,path)` rows. |
-| U-RELGRAPH-002 | `collectRelationGraphProjection` DB nodes | physical-data DB projection fixtures produce table nodes and upstream requirement/ADR/PLAN edges; orphan table references become findings. |
-| U-RELGRAPH-003 | projection sanitization | MCP evidence, browser/tool fixtures, provider transcript-like fields, secret-like values, and screenshot/trace blobs are not copied into projection rows; only classification, counts, evidence path, and redacted summary remain. |
-| U-RELGRAPH-004 | `analyzeRelationImpact` source change | changed `src/**` node expands to sibling test, L6 design contract, L7 unit oracle, PLAN, and reverse/backprop guard actions. |
-| U-RELGRAPH-005 | `analyzeRelationImpact` docs/DB change | changed design/test-design/physical-data node expands to paired artifact, DB table nodes where applicable, PLAN DoD, and trace-freeze evidence actions without requiring source tests unless a behavioral contract edge exists. |
-| U-RELGRAPH-006 | missing projection coverage | changed node with no graph projection or stale edge returns `ok=false` and a finding; it must not silently fall back to the weaker `analyzeChangeImpact` result. |
-| U-RELGRAPH-007 | `exportRelationDiagram` Mermaid | same graph snapshot emits deterministic Mermaid with stable node order, stable edge labels, and no raw evidence payload. |
-| U-RELGRAPH-008 | optional diagram adapters | DOT/D2 requested without installed adapter returns an unavailable-adapter finding and does not install or invoke tools implicitly. |
-| U-RELGRAPH-009 | `collectVerificationEvidenceProjection` valid evidence | A-125 `verification-evidence-v1` records become `verification_profiles`, `verification_recommendations`, `mcp_server_runs`, and `external_tool_findings` projection rows with evidence paths. |
-| U-RELGRAPH-010 | `collectVerificationEvidenceProjection` invalid evidence | malformed evidence, missing schema, or external run without `allow_external` becomes a finding; raw external payload remains excluded. |
+| U-RELGRAPH-001 | `collectRelationGraphProjection` source/doc/test nodes | requirements、PLAN、design、test-design、source、test fixture は stable node ID、typed edge、重複しない `(kind,id,path)` row を生成する。 |
+| U-RELGRAPH-002 | `collectRelationGraphProjection` DB nodes | physical-data DB projection fixture は table node と upstream requirement/ADR/PLAN edge を生成する。orphan table reference は finding になる。 |
+| U-RELGRAPH-003 | projection sanitization | MCP evidence、browser/tool fixture、provider transcript 風 field、secret 風 value、screenshot/trace blob は projection row へコピーしない。classification、counts、evidence path、redacted summary だけを残す。 |
+| U-RELGRAPH-004 | `analyzeRelationImpact` source change | 変更された `src/**` node は sibling test、L6 design contract、L7 unit oracle、PLAN、reverse/backprop guard action へ展開される。 |
+| U-RELGRAPH-005 | `analyzeRelationImpact` docs/DB change | 変更された design/test-design/physical-data node は paired artifact、該当 DB table node、PLAN DoD、trace-freeze evidence action へ展開される。behavioral contract edge が無い限り source test は要求しない。 |
+| U-RELGRAPH-006 | missing projection coverage | graph projection が無い、または stale edge しかない changed node は `ok=false` と finding を返す。弱い `analyzeChangeImpact` result へ無音 fallback してはならない。 |
+| U-RELGRAPH-007 | `exportRelationDiagram` Mermaid | 同一 graph snapshot は stable node order、stable edge label、raw evidence payload なしの deterministic Mermaid を出力する。 |
+| U-RELGRAPH-008 | optional diagram adapters | installed adapter なしで DOT/D2 を要求した場合は unavailable-adapter finding を返し、tool の install や invoke を暗黙実行しない。 |
+| U-RELGRAPH-009 | `collectVerificationEvidenceProjection` valid evidence | A-125 `verification-evidence-v1` record は evidence path 付きの `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` projection row になる。 |
+| U-RELGRAPH-010 | `collectVerificationEvidenceProjection` invalid evidence | malformed evidence、schema 欠落、または `allow_external` なしの external run は finding になる。raw external payload は除外したままにする。 |
 
-### §1.16.1b U-TOOLADAPTER (A-124 graph/diagram adapter probes)
+### §1.16.1b U-TOOLADAPTER (A-124 graph/diagram adapter probe 検査)
 
-> Pair = `module-drift.md` Tool Adapter Probe Addendum (A-124 / PLAN-L6-33). These oracles cover dependency-cruiser, Knip, Madge, Graphviz DOT, Mermaid, and D2 as optional adapters. They do not authorize package installation or adapter execution without explicit workflow evidence.
-
-| ID | Target | Oracle |
-|---|---|---|
-| U-TOOLADAPTER-001 | `catalogToolAdapters` complete candidates | catalog contains dependency-cruiser, Knip, Madge, Graphviz DOT, Mermaid, and D2 with trigger signals, package/executable refs, output formats, and risk/default state. |
-| U-TOOLADAPTER-002 | optional adapter policy | every external adapter is disabled/unavailable by default until package/executable/config readiness is proven. |
-| U-TOOLADAPTER-003 | `probeToolAdapter` package readiness | missing dependency-cruiser/Knip/Madge/Mermaid/D2 package declaration becomes a readiness finding, not an implicit install. |
-| U-TOOLADAPTER-004 | `probeToolAdapter` executable readiness | missing Graphviz `dot` or D2 executable becomes an unavailable-adapter finding and does not fail unrelated local checks. |
-| U-TOOLADAPTER-005 | workspace scope | adapter probe refuses home-directory or repo-external scan scope unless a future human-approved PLAN explicitly allows it. |
-| U-TOOLADAPTER-006 | `normalizeToolAdapterRun` tool run row | adapter command, version, input scope, exit code, and evidence path normalize into a `tool_runs` row. |
-| U-TOOLADAPTER-007 | dependency evidence normalization | dependency-cruiser/Madge cycle or forbidden-edge output normalizes into `dependency_edges` and findings without using raw output as gate truth. |
-| U-TOOLADAPTER-008 | dead-node evidence normalization | Knip unused file/dependency/export output normalizes into findings requiring review; auto-fix/delete remains out of scope. |
-| U-TOOLADAPTER-009 | `planDiagramRefresh` stale diagram | graph snapshot digest mismatch marks existing diagram artifact stale or requires refresh before review/handover use. |
-| U-TOOLADAPTER-010 | renderer availability | Mermaid export is default text output; DOT/D2 renderer requests without adapter readiness return findings instead of implicit installation. |
-
-> **Status (PLAN-L7-34, 2026-06-11)**: U-TOOLADAPTER-001..010 promoted to green `it` in `tests/tool-adapter.test.ts` against `src/lint/tool-adapter.ts` — adapter catalog, package/executable readiness findings, workspace-scope refusal, normalized projection rows, dead-node review findings, stale diagram refresh, and renderer-unavailable findings are pure and do not install packages or invoke external tools.
-
-### §1.16.1c U-MCPPROFILE (A-125 profile config / safety lint)
-
-> Pair = `function-spec.md` MCP Profile Config / Safety Addendum (A-125 / PLAN-L6-32). These oracles cover generated local MCP config, Docker MCP Toolkit profile inclusion, and external-profile safety lint before any L7 source change.
+> Pair = `module-drift.md` Tool Adapter Probe Addendum (A-124 / PLAN-L6-33)。これらの oracle は dependency-cruiser、Knip、Madge、Graphviz DOT、Mermaid、D2 を optional adapter として扱う。明示的な workflow evidence なしに package install や adapter execution を承認しない。
 
 | ID | Target | Oracle |
 |---|---|---|
-| U-MCPPROFILE-001 | `catalogVerificationProfiles` complete candidates | catalog contains MCP Inspector, Playwright MCP, GitHub read-only MCP, Docker MCP Toolkit, Vitest browser Playwright provider, Testcontainers, and MSW with trigger signals and source URLs. |
-| U-MCPPROFILE-002 | disabled-by-default policy | every external or MCP profile has `defaultEnabled=false`; built-in Bun/doctor profiles remain enabled. |
-| U-MCPPROFILE-003 | Docker MCP Toolkit metadata | Docker MCP Toolkit profile is marked optional, requires Docker, has profile-isolation value, and does not become a test runner unless Docker/toolkit readiness is proven. |
-| U-MCPPROFILE-004 | `renderGeneratedMcpConfig` local config | generated config writes only suggested local config content/path and never writes `.vscode/mcp.json` or committed secrets by default. |
-| U-MCPPROFILE-005 | workspace mount restriction | filesystem/git profile config using home-directory or global mounts returns a `global-mount` finding. |
-| U-MCPPROFILE-006 | credential non-persistence | inline token-like values in generated config are redacted or rejected; env var names are allowed. |
-| U-MCPPROFILE-007 | `analyzeVerificationProfileSafety` source trust | registry/catalog presence alone cannot set `trusted=true`; official source URL and package identity must match. |
-| U-MCPPROFILE-008 | GitHub MCP read-only guard | GitHub profile with write tools or broad toolsets without `requires_human_approval` returns a safety finding. |
-| U-MCPPROFILE-009 | package integrity readiness | declared package/install hint mismatch or absent package declaration becomes a readiness finding, not an implicit install. |
-| U-MCPPROFILE-010 | Docker controls | Docker MCP Toolkit profile without Docker availability or documented profile/resource controls is not ready. |
-| U-MCPPROFILE-011 | `planExternalProfileActivation` trigger routing | UI/GitHub/DB/API/MCP-profile signals produce required probe/smoke/human-approval steps before run. |
-| U-MCPPROFILE-012 | no implicit activation | profile recommendation does not install packages, enable servers, or run external tools without explicit `allow_external` / approved workflow evidence. |
-| U-MCPPROFILE-013 | `renderGeneratedMcpConfig` launcher argv (PLAN-L7-79) | generated `mcpServers.<id>` carries a tokenized argv: `command` is the command head and `args` is the remaining tokens. The whole command string is never packed into a single `args` element, and the probe-hint `executable` is never re-included in `args` (e.g. `command:"bun"`, `args:["run","test:local"]`, not `args:["bun run test:local"]`). |
-| U-MCPPROFILE-014 | `probeVerificationProfile` launcher readiness (PLAN-L7-79 follow-up) | when a generated launcher command head differs from the profile's executable probe hint, probe readiness checks that launcher too; package/executable readiness alone cannot mark the profile ready if the generated command cannot launch. |
+| U-TOOLADAPTER-001 | `catalogToolAdapters` complete candidates | catalog は dependency-cruiser、Knip、Madge、Graphviz DOT、Mermaid、D2 を trigger signal、package/executable ref、output format、risk/default state 付きで含む。 |
+| U-TOOLADAPTER-002 | optional adapter policy | 外部 adapter は package/executable/config readiness が証明されるまで、既定で disabled/unavailable である。 |
+| U-TOOLADAPTER-003 | `probeToolAdapter` package readiness | dependency-cruiser/Knip/Madge/Mermaid/D2 の package declaration 欠落は readiness finding になり、暗黙 install にならない。 |
+| U-TOOLADAPTER-004 | `probeToolAdapter` executable readiness | Graphviz `dot` または D2 executable 欠落は unavailable-adapter finding になり、無関係な local check を fail させない。 |
+| U-TOOLADAPTER-005 | workspace scope | adapter probe は、将来の人間承認済み PLAN が明示許可しない限り、home-directory や repo-external scan scope を拒否する。 |
+| U-TOOLADAPTER-006 | `normalizeToolAdapterRun` tool run row | adapter command、version、input scope、exit code、evidence path を `tool_runs` row へ正規化する。 |
+| U-TOOLADAPTER-007 | dependency evidence normalization | dependency-cruiser/Madge の cycle または forbidden-edge output は、raw output を gate truth にせず `dependency_edges` と finding へ正規化する。 |
+| U-TOOLADAPTER-008 | dead-node evidence normalization | Knip の unused file/dependency/export output は review を要求する finding へ正規化する。auto-fix/delete は scope 外のままにする。 |
+| U-TOOLADAPTER-009 | `planDiagramRefresh` stale diagram | graph snapshot digest 不一致は既存 diagram artifact を stale とするか、review/handover 利用前の refresh を要求する。 |
+| U-TOOLADAPTER-010 | renderer availability | Mermaid export を既定の text output とする。adapter readiness なしの DOT/D2 renderer 要求は暗黙 install ではなく finding を返す。 |
+
+> **Status (PLAN-L7-34, 2026-06-11)**: U-TOOLADAPTER-001..010 は `src/lint/tool-adapter.ts` に対する `tests/tool-adapter.test.ts` の green `it` へ昇格済み。adapter catalog、package/executable readiness finding、workspace-scope refusal、normalized projection row、dead-node review finding、stale diagram refresh、renderer-unavailable finding は pure であり、package install や external tool invoke を行わない。
+
+### §1.16.1c U-MCPPROFILE (A-125 profile config / safety lint 検査)
+
+> Pair = `function-spec.md` MCP Profile Config / Safety Addendum (A-125 / PLAN-L6-32)。これらの oracle は L7 source change 前の generated local MCP config、Docker MCP Toolkit profile inclusion、external-profile safety lint を覆う。
+
+| ID | Target | Oracle |
+|---|---|---|
+| U-MCPPROFILE-001 | `catalogVerificationProfiles` complete candidates | catalog は MCP Inspector、Playwright MCP、GitHub read-only MCP、Docker MCP Toolkit、Vitest browser Playwright provider、Testcontainers、MSW を trigger signal と source URL 付きで含む。 |
+| U-MCPPROFILE-002 | disabled-by-default policy | 外部または MCP profile は全て `defaultEnabled=false` を持つ。built-in Bun/doctor profile は enabled のままにする。 |
+| U-MCPPROFILE-003 | Docker MCP Toolkit metadata | Docker MCP Toolkit profile は optional として印付けされ、Docker を要求し、profile-isolation value を持つ。Docker/toolkit readiness が証明されるまで test runner にならない。 |
+| U-MCPPROFILE-004 | `renderGeneratedMcpConfig` local config | generated config は suggested local config content/path だけを書き、既定では `.vscode/mcp.json` や committed secrets を書かない。 |
+| U-MCPPROFILE-005 | workspace mount restriction | home-directory または global mount を使う filesystem/git profile config は `global-mount` finding を返す。 |
+| U-MCPPROFILE-006 | credential non-persistence | generated config 内の inline token 風 value は redact または reject される。env var 名は許可する。 |
+| U-MCPPROFILE-007 | `analyzeVerificationProfileSafety` source trust | registry/catalog に存在するだけでは `trusted=true` にできない。official source URL と package identity が一致しなければならない。 |
+| U-MCPPROFILE-008 | GitHub MCP read-only guard | write tool を持つ、または broad toolset なのに `requires_human_approval` が無い GitHub profile は safety finding を返す。 |
+| U-MCPPROFILE-009 | package integrity readiness | declared package/install hint の不一致、または package declaration 欠落は readiness finding になり、暗黙 install にならない。 |
+| U-MCPPROFILE-010 | Docker controls | Docker availability または documented profile/resource control が無い Docker MCP Toolkit profile は ready ではない。 |
+| U-MCPPROFILE-011 | `planExternalProfileActivation` trigger routing | UI/GitHub/DB/API/MCP-profile signal は、実行前に必要な probe/smoke/human-approval step を生成する。 |
+| U-MCPPROFILE-012 | no implicit activation | profile recommendation は、明示的な `allow_external` / approved workflow evidence なしに package install、server enable、external tool run を行わない。 |
+| U-MCPPROFILE-013 | `renderGeneratedMcpConfig` launcher argv (PLAN-L7-79) | generated `mcpServers.<id>` は tokenized argv を持つ。`command` は command head、`args` は残り token である。command 全体の文字列を単一 `args` 要素に詰めず、probe-hint `executable` を `args` に再混入しない (例: `command:"bun"`, `args:["run","test:local"]` であり、`args:["bun run test:local"]` ではない)。 |
+| U-MCPPROFILE-014 | `probeVerificationProfile` launcher readiness (PLAN-L7-79 follow-up) | generated launcher command head が profile の executable probe hint と異なる場合、probe readiness は launcher も検査する。package/executable readiness だけでは、generated command が起動不能な profile を ready にできない。 |
 | U-MCPPROFILE-015 | `catalogVerificationProfiles` 右腕 metadata | external / test-foundation profile が `recommendedGates` / `recommendedDrives` を持ち、G8-G14 evidence profile の選択が catalog から意味的に切り離されない。Browser profile は G10/G11 と `fe` / `fullstack` / `agent` に接続し、Testcontainers / MSW / MCP Inspector は G8/G9、doctor / GitHub read-only は G12-G14 に接続する。 |
 | U-MCPPROFILE-016 | `analyzeRightArmVerificationProfileCoverage` drive L10 hard gate | `fe` / `fullstack` / `agent` は常に L10 を要求する。これらの drive から G10 browser profile mapping を全て外した場合、非 browser profile が G10 を名乗っても充足扱いにせず、`missing-drive-g10-profile` と `missing-right-arm-gate-profile` を返す。`be` / `db` は `ui_only` のままだが、UI ありの slice では同じ G10 browser profile list を公開する。 |
 | U-MCPPROFILE-017 | `analyzeRightArmVerificationProfileCoverage` G10 browser evidence semantic gate | 非 browser profile が `recommendedGates=["G10"]` と常時 L10 drive を宣言しても、drive 別 L10 の browser evidence には数えない。G10 gate metadata 自体は存在しても、`fe` / `fullstack` / `agent` の `g10Profiles` は browser profile のみを返し、browser profile が 0 件なら fail-close する。 |
@@ -523,44 +523,44 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 
 > **Status (PLAN-L7-33, 2026-06-11; PLAN-L7-79, 2026-06-19; PLAN-L7-226, 2026-07-02)**: U-MCPPROFILE-001..018 は `src/lint/verification-profile.ts` に対する `tests/verification-profile.test.ts` の green `it` へ昇格済み。catalog/profile metadata、Docker MCP Toolkit readiness metadata、local MCP config 生成 (tokenized launcher argv を含む U-MCPPROFILE-013)、launcher readiness probing (U-MCPPROFILE-014)、右腕 gate / drive L10 metadata、G10 browser evidence semantic gate、verification source ledger binding (U-MCPPROFILE-015/016/017/018)、safety finding、activation planning は pure であり、package install、server enable、外部 tool 実行、committed MCP config 書き込みを行わない。
 
-### §1.16.1d U-DOCEXPORT (A-126 canonical document export)
+### §1.16.1d U-DOCEXPORT (A-126 canonical document export 検査)
 
-> Pair = `function-spec.md` Canonical Document Export Addendum (A-126 / PLAN-L6-34). These oracles cover conversion of concept, requirements, detailed design, PLAN, ADR, and test-design documents into CSV/Markdown/XLSX/PPTX derived artifacts. They do not authorize package installation or source implementation without PLAN-L7-35 TDD Red evidence.
-
-| ID | Target | Oracle |
-|---|---|---|
-| U-DOCEXPORT-001 | `parseCanonicalDocumentStructure` supported families | parser accepts concept, requirements, design, plan, adr, and test-design document families with repo-relative source paths. |
-| U-DOCEXPORT-002 | source anchors preserved | headings, section IDs, FR/AC/AT IDs, PLAN IDs, ADR IDs, status fields, and evidence links remain present in the projection. |
-| U-DOCEXPORT-003 | malformed/unsupported docs | unsupported family or missing source path returns a finding and does not fabricate export rows. |
-| U-DOCEXPORT-004 | `buildDocumentExportDataset` deterministic rows | same document projection and export profile produce stable row/sheet/slide-outline ordering. |
-| U-DOCEXPORT-005 | redaction before render | secret-like, credential-like, PII-like, raw provider, and raw MCP payload fields are redacted or refused before rendering. |
-| U-DOCEXPORT-006 | large document splitting | large requirements/design docs split by document family or section instead of silent truncation. |
-| U-DOCEXPORT-007 | built-in CSV/Markdown render | CSV and Markdown summary render without external package readiness. |
-| U-DOCEXPORT-008 | optional XLSX readiness | XLSX request without ExcelJS/SheetJS readiness returns a renderer-unavailable finding, not an implicit install. |
-| U-DOCEXPORT-009 | optional PPTX readiness | PPTX request without PptxGenJS/D2 readiness returns a renderer-unavailable finding, not an implicit install. |
-| U-DOCEXPORT-010 | `recordDocumentExportArtifact` projection rows | successful render creates `document_export_runs`, `document_export_datasets`, and `document_export_artifacts` rows with source snapshot hash. |
-| U-DOCEXPORT-011 | generated artifact boundary | generated spreadsheet/deck edits do not mutate canonical docs or gate truth. |
-| U-DOCEXPORT-012 | stale source snapshot | source digest mismatch marks an existing export artifact stale before review/handover use. |
-
-> **Status (PLAN-L7-35, 2026-06-11)**: U-DOCEXPORT-001..012 promoted to green `it` in `tests/document-export.test.ts` against `src/export/document-export.ts` — supported family parsing, source anchors, deterministic datasets, redaction, built-in CSV/Markdown rendering, optional renderer findings, projection rows, derived-artifact boundary, and stale source snapshot detection are pure and do not mutate canonical docs.
-
-### §1.16.1e U-DEPD / U-REGEXP (dependency-drift + regression expansion)
-
-> Pair = `function-spec.md` dependency-drift rule (ADR-002/IMP-032) + roadmap G-L7.D. These oracles close the former doctor scaffold stub by replacing fixed text with pure import-graph lint and regression-scope expansion.
+> Pair = `function-spec.md` Canonical Doc Export 追補 (A-126 / PLAN-L6-34)。これらの oracle は concept、requirements、detailed design、PLAN、ADR、test-design doc から CSV/Markdown/XLSX/PPTX derived artifact への変換を覆う。PLAN-L7-35 TDD Red evidence なしに package installation や source implementation を承認しない。
 
 | ID | Target | Oracle |
 |---|---|---|
-| U-DEPD-001 | `analyzeDependencyDrift` allowed graph | allowed source module imports normalize to deterministic module edges and OK messages. |
-| U-DEPD-002 | disallowed dependency | reverse dependency such as runtime -> lint returns `disallowed-module-dependency` finding. |
-| U-DEPD-003 | cycle detection | cyclic module imports return deterministic `module-cycle` finding. |
-| U-REGEXP-001 | `expandRegressionScope` affected modules | changed source module expands to direct tests and reverse-dependent module tests. |
-| U-REGEXP-002 | missing coverage | changed source module without direct test coverage returns `missing-regression-test` finding instead of silent fallback. |
+| U-DOCEXPORT-001 | `parseCanonicalDocumentStructure` supported families | parser は repo-relative source path 付きで concept、requirements、design、plan、adr、test-design の document family を受け入れる。 |
+| U-DOCEXPORT-002 | source anchors preserved | heading、section ID、FR/AC/AT ID、PLAN ID、ADR ID、status field、evidence link は projection 内に残る。 |
+| U-DOCEXPORT-003 | malformed/unsupported docs | unsupported family または source path 欠落は finding を返し、export row を捏造しない。 |
+| U-DOCEXPORT-004 | `buildDocumentExportDataset` deterministic rows | 同じ document projection と export profile は stable な row/sheet/slide-outline ordering を生成する。 |
+| U-DOCEXPORT-005 | redaction before render | secret 風、credential 風、PII 風、raw provider、raw MCP payload field は render 前に redact または refuse される。 |
+| U-DOCEXPORT-006 | large document splitting | 大きい requirements/design doc は silent truncation ではなく document family または section で分割する。 |
+| U-DOCEXPORT-007 | built-in CSV/Markdown render | CSV と Markdown summary は external package readiness なしに render する。 |
+| U-DOCEXPORT-008 | optional XLSX readiness | ExcelJS/SheetJS readiness なしの XLSX request は、暗黙 install ではなく renderer-unavailable finding を返す。 |
+| U-DOCEXPORT-009 | optional PPTX readiness | PptxGenJS/D2 readiness なしの PPTX request は、暗黙 install ではなく renderer-unavailable finding を返す。 |
+| U-DOCEXPORT-010 | `recordDocumentExportArtifact` projection rows | render 成功時は source snapshot hash 付きで `document_export_runs`、`document_export_datasets`、`document_export_artifacts` row を作る。 |
+| U-DOCEXPORT-011 | generated artifact boundary | generated spreadsheet/deck edit は canonical docs や gate truth を mutate しない。 |
+| U-DOCEXPORT-012 | stale source snapshot | source digest 不一致は review/handover 利用前に既存 export artifact を stale と印付ける。 |
 
-> **Status (PLAN-REVERSE-42, 2026-06-11)**: U-DEPD-001..003 and U-REGEXP-001..002 are green in `tests/dependency-drift.test.ts` against `src/lint/dependency-drift.ts`. `doctor` now surfaces `dependency-drift` / `regression-expansion` and no longer emits the scaffold stub.
+> **Status (PLAN-L7-35, 2026-06-11)**: U-DOCEXPORT-001..012 は `src/export/document-export.ts` に対する `tests/document-export.test.ts` の green `it` へ昇格済み。supported family parsing、source anchor、deterministic dataset、redaction、built-in CSV/Markdown rendering、optional renderer finding、projection row、derived-artifact boundary、stale source snapshot detection は pure であり、canonical docs を mutate しない。
 
-### §1.16.1f U-VTRIG L0-L7 (implementation verification cycle gate)
+### §1.16.1e U-DEPD / U-REGEXP (dependency-drift + regression expansion 検査)
 
-> Pair = `vmodel-pair-freeze.md` verification group trigger + roadmap G-L7.E. The L0-L7 implementation band is a machine-surfaced verification cycle gate after L7 freeze.
+> Pair = `function-spec.md` dependency-drift rule (ADR-002/IMP-032) + roadmap G-L7.D。これらの oracle は固定文言を pure import-graph lint と regression-scope expansion に置き換え、旧 doctor scaffold stub を閉じる。
+
+| ID | Target | Oracle |
+|---|---|---|
+| U-DEPD-001 | `analyzeDependencyDrift` allowed graph | 許可された source module import は deterministic module edge と OK message へ正規化される。 |
+| U-DEPD-002 | disallowed dependency | runtime -> lint のような reverse dependency は `disallowed-module-dependency` finding を返す。 |
+| U-DEPD-003 | cycle detection | cyclic module import は deterministic `module-cycle` finding を返す。 |
+| U-REGEXP-001 | `expandRegressionScope` affected modules | 変更された source module は direct test と reverse-dependent module test へ展開される。 |
+| U-REGEXP-002 | missing coverage | direct test coverage が無い changed source module は silent fallback ではなく `missing-regression-test` finding を返す。 |
+
+> **Status (PLAN-REVERSE-42, 2026-06-11)**: U-DEPD-001..003 と U-REGEXP-001..002 は `src/lint/dependency-drift.ts` に対する `tests/dependency-drift.test.ts` で green。`doctor` は `dependency-drift` / `regression-expansion` を surface し、scaffold stub を出さない。
+
+### §1.16.1f U-VTRIG L0-L7 (implementation verification cycle gate 検査)
+
+> Pair = `vmodel-pair-freeze.md` verification group trigger + roadmap G-L7.E。L0-L7 implementation band は L7 freeze 後に機械的に surface される verification cycle gate である。
 
 | ID | Target | Oracle |
 |---|---|---|
@@ -568,25 +568,25 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 
 > **Status (PLAN-L7-43, 2026-06-11)**: U-VTRIG-005 now asserts L0-L7 / `実装検証サイクルゲート` in `tests/vmodel-pair.test.ts`; `doctor` surfaces the implementation verification cycle gate.
 
-### U-CODE Addendum (coding-rules lint = requirements-level coding rule SSoT)
+### U-CODE 追補 (coding-rules lint = requirements-level coding rule SSoT)
 
-> Pair = `module-drift.md` Coding Rules Addendum. Requirements-level TS core coding rules are mechanically enforced by `src/lint/coding-rules.ts` and `doctor`.
+> Pair = `module-drift.md` Coding Rules Addendum。Requirements-level TS core coding rules は `src/lint/coding-rules.ts` と `doctor` で機械強制される。
 
 | ID | Target | Oracle |
 |---|---|---|
-| U-CODE-001 | `analyzeCodingRules` explicit any | `any` type node in source/test docs -> `no-explicit-any` violation |
-| U-CODE-002 | `analyzeCodingRules` source max params | source function/method/constructor with more than 3 params -> `max-source-params` violation |
-| U-CODE-003 | `analyzeCodingRules` suppression comments | `@ts-ignore` / `@ts-expect-error` / `eslint-disable` / `biome-ignore` -> `no-suppression-comment` violation |
-| U-CODE-004 | `analyzeCodingRules` file naming | TS file not kebab-case and not `index.ts` -> `file-name-kebab` violation |
-| U-CODE-005 | test scope split | test helper with more than 3 params remains OK; no-any/no-suppression/naming still apply |
-| U-CODE-006 | real repo guard | `loadCodingRulePolicy` + `loadCodingRuleDocs(process.cwd())` + `analyzeCodingRules` returns violations `[]`; `doctor` surfaces `coding-rules` and links `ok` |
-| U-CODE-007 | workflow placement | `loadCodingWorkflowDocs` + `analyzeCodingRules` detects missing `CODING-RULE-WORKFLOW` / SSoT references in Forward, Add-feature, and mode index docs |
-| U-CODE-008 | structured error handling | source catch block with undocumented empty body or rethrow-only body -> `structured-error-handling` violation |
-| U-CODE-009 | module boundary | disallowed reverse dependency such as `src/lint/*` importing `../runtime/*` -> `module-boundary` violation |
-| U-CODE-010 | machine surface language | machine-facing CLI/doctor/lint/gate message line with Japanese-only decision words and no ASCII token (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) -> `machine-surface-language` violation; Japanese explanatory prose after the ASCII token remains allowed |
+| U-CODE-001 | `analyzeCodingRules` explicit any | source/test docs 内の `any` type node -> `no-explicit-any` violation |
+| U-CODE-002 | `analyzeCodingRules` source max params | 4 個以上の param を持つ source function/method/constructor -> `max-source-params` violation |
+| U-CODE-003 | `analyzeCodingRules` suppression comment 検出 | `@ts-ignore` / `@ts-expect-error` / `eslint-disable` / `biome-ignore` -> `no-suppression-comment` violation |
+| U-CODE-004 | `analyzeCodingRules` file naming | kebab-case ではなく `index.ts` でもない TS file -> `file-name-kebab` violation |
+| U-CODE-005 | test scope split | param が 4 個以上の test helper は OK のまま。ただし no-any/no-suppression/naming は適用する |
+| U-CODE-006 | real repo guard | `loadCodingRulePolicy` + `loadCodingRuleDocs(process.cwd())` + `analyzeCodingRules` は violations `[]` を返す。`doctor` は `coding-rules` を surface し `ok` を link する |
+| U-CODE-007 | workflow placement | `loadCodingWorkflowDocs` + `analyzeCodingRules` は Forward、Add-feature、mode index docs 内の `CODING-RULE-WORKFLOW` / SSoT reference 欠落を検出する |
+| U-CODE-008 | structured error handling | documented でない empty body または rethrow-only body の source catch block -> `structured-error-handling` violation |
+| U-CODE-009 | module boundary | `src/lint/*` が `../runtime/*` を import するような disallowed reverse dependency -> `module-boundary` violation |
+| U-CODE-010 | machine surface language | machine-facing CLI/doctor/lint/gate message line が日本語だけの decision word で、ASCII token (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) を持たない場合 -> `machine-surface-language` violation。ASCII token 後の日本語説明文は許可する |
 | U-CODE-011 | canonical source-boundary matrix | `src/lint/*` importing `../gate/*` など、共有 matrix 上の禁止 import は `module-boundary` violation になる |
 
-### U-DESLANG Addendum (design-language)
+### U-DESLANG 追補 (design-language)
 
 > Pair = `module-drift.md` design-language addendum. HELIX の「人間向け docs は日本語」要求を、設計 /
 > governance / ADR の英語 prose 増加防止 gate として機械化する。
@@ -599,24 +599,24 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-DESLANG-004 | real repo guard | `loadDesignLanguageDocs(process.cwd())` + `analyzeDesignLanguage` は PLAN / 設計 / テスト設計 / process / governance / handover / adapter ルールを含む現 baseline を超えず、`doctor` に `design-language` を surface して `runDoctor.ok` に連動する |
 | U-DESLANG-005 | fingerprint ratchet | 既存英語 prose debt と同件数のまま別の英語 prose へ差し替えた場合、`DESIGN_LANGUAGE_BASELINE_FINGERPRINT` との drift として violation |
 
-### U-DDDTDD Addendum (DDD/TDD strictness)
+### U-DDDTDD 追補 (DDD/TDD strictness)
 
-> Pair = `module-drift.md` DDD/TDD Strictness Addendum. Requirements-level DDD/TDD rules are mechanically enforced by `src/lint/ddd-tdd-rules.ts` and `doctor`.
+> Pair = `module-drift.md` DDD/TDD Strictness Addendum。Requirements-level DDD/TDD rules は `src/lint/ddd-tdd-rules.ts` と `doctor` で機械強制される。
 
 | ID | Target | Oracle |
 |---|---|---|
-| U-DDDTDD-001 | `analyzeDddTddRules` policy | missing or unknown DDD/TDD rule ID -> violation |
-| U-DDDTDD-002 | invariant trace | `DDD-INV-*` oracle declared in SSoT but absent from L7 test design -> violation |
-| U-DDDTDD-003 | Red-first evidence | confirmed `tdd_red_required` PLAN lacking `red_at` / `green_at`, or `red_at > green_at` -> violation |
-| U-DDDTDD-004 | test oracle strength | `it` / `test` block with no explicit `expect` / `assert`, or truthiness-only assertion -> violation |
-| U-DDDTDD-005 | integration GWT | L8 `IT-*` row missing Given / When / Then granularity -> violation |
-| U-DDDTDD-006 | workflow placement | Forward, Add-feature, or mode index doc missing `DDD-TDD-WORKFLOW` / SSoT reference -> violation |
-| U-DDDTDD-007 | domain boundary | disallowed reverse dependency such as `src/lint/*` importing runtime/doctor/CLI feature modules -> violation |
-| U-DDDTDD-008 | real repo guard | `loadDddTddInputs(process.cwd())` + `analyzeDddTddRules` returns violations `[]`; `doctor` surfaces `ddd-tdd-rules` and links `ok` |
+| U-DDDTDD-001 | `analyzeDddTddRules` policy | DDD/TDD rule ID の欠落または unknown -> violation |
+| U-DDDTDD-002 | invariant trace | SSoT で宣言された `DDD-INV-*` oracle が L7 test design に無い -> violation |
+| U-DDDTDD-003 | Red-first evidence | confirmed `tdd_red_required` PLAN が `red_at` / `green_at` を欠く、または `red_at > green_at` -> violation |
+| U-DDDTDD-004 | test oracle strength | 明示的な `expect` / `assert` が無い `it` / `test` block、または truthiness-only assertion -> violation |
+| U-DDDTDD-005 | integration GWT | L8 `IT-*` row が Given / When / Then granularity を欠く -> violation |
+| U-DDDTDD-006 | workflow placement | Forward、Add-feature、mode index doc が `DDD-TDD-WORKFLOW` / SSoT reference を欠く -> violation |
+| U-DDDTDD-007 | domain boundary | `src/lint/*` が runtime/doctor/CLI feature module を import するような disallowed reverse dependency -> violation |
+| U-DDDTDD-008 | real repo guard | `loadDddTddInputs(process.cwd())` + `analyzeDddTddRules` は violations `[]` を返す。`doctor` は `ddd-tdd-rules` を surface し `ok` を link する |
 | U-DDDTDD-009 | unit-oracle-substance (IMP-083 残差) | L7 unit test-design の `U-XXX-NNN` 行 (末尾数字 = `U-ID` ヘッダ除外) の expected-behavior セルが空 / trivial (< 6 字) / skeleton marker (`-`/TODO/骨格 等) -> violation。substantive 行は非違反 (false-positive 回避) |
 | U-DDDTDD-010 | canonical source-boundary matrix | `domain-boundary` は `module-boundary` と同じ共有 matrix を使い、`src/lint/*` importing `../gate/*` も violation になる |
 
-### §1.16.2 U-READABILITY (freeze doc readability lint、A-110 / IMP-089)
+### §1.16.2 U-READABILITY (freeze doc readability lint 検査、A-110 / IMP-089)
 
 > ペア = L6 function design docs。confirmed freeze 対象 doc の mojibake marker を検出し、A-109 の読み取り対象漏れを再発させない。
 
@@ -627,7 +627,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-READ-003 | `loadL6ReadabilityDocs` | 実 repo L6 design docs 18 件で marker 0 |
 | U-READ-004 | `loadFreezeReadabilityDocs` | 実 repo の L6 design docs + PM trace 対象 L5 PLAN 4 件で marker 0 |
 
-### §1.18 U-GCONF (gate-confirm coupling lint、PLAN-L7-18 / IMP-079)
+### §1.18 U-GCONF (gate-confirm coupling lint 検査、PLAN-L7-18 / IMP-079)
 
 > ペア = `gate-confirm.md`。gate-design §2 台帳と design/test-design doc `status: confirmed` の coupling を検査する。parse 失敗を含む不整合は fail-close。
 
@@ -653,7 +653,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-PLANSCH-005 | `analyzePlanSchedule` | review Step heading 不在 → violation |
 | U-PLANSCH-006 | `analyzePlanSchedule` | §3.1 実装計画 不在 → violation |
 
-### §1.20 U-FRCOV (FR unit coverage substance、PLAN-L7-22 / A-110)
+### §1.20 U-FRCOV (FR unit coverage substance 検査、PLAN-L7-22 / A-110)
 
 > ペア = `fr-unit-coverage.md` + `function-spec.md` FR registry addendum。FR→L6→U oracle の ID 接続だけでなく、型 body と pseudocode/explicit_l7_defer の substance を検査する。
 
@@ -666,7 +666,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-FRCOV-005 | 実 repo guard | FR registry 51 件すべて L6 spec / U-* oracle / substance marker に接続 |
 | U-FRCOV-006 | `analyzeL6FrCoverage` | `explicit_l7_defer` 行の type body に `{...}` フィールドブロックが無ければ missing substance |
 
-### §1.21 U-FR-L1-21 (test perspective gate)
+### §1.21 U-FR-L1-21 (test perspective gate 検査)
 
 > ペア = `vmodel-pair-freeze.md` §7.3.1。pair presence だけではなく、設計層ごとに必要な test perspective が欠けていないことを検査する。
 
@@ -676,7 +676,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-FR-L1-21-02 | `analyzeTestPerspectiveGate` | 同一 viewpoint の重複宣言を duplicate violation |
 | U-FR-L1-21-03 | `analyzeTestPerspectiveGate` | required viewpoints が全て存在し重複なしなら ok |
 
-### §1.17 U-XRUNTIME (provider handover / gate review-tier / team run / adapter, 2026-06-08)
+### §1.17 U-XRUNTIME (provider handover / gate review-tier / team run / adapter 検査, 2026-06-08)
 
 > ペア = L4 function §3.6 / external-if §6 / requirements §7.1・§7.8.7。前回 review 残課題 (provider handover 未実装、`ut-tdd codex|claude|team|gate` surface 欠落、single-runtime checklist 未強制、hybrid 分散未検証) を機械保証する。
 
@@ -710,7 +710,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-DESC-007 | `analyzeDescentObligations` (park) | 上流が park/placeholder→descent obligation を生成しない (pair-freeze park 規約と整合、E6) |
 | U-DESC-008 | `descentObligationMessages` + 実 repo ガード | unmet/impl-ahead を reason+traceKey+layer で文言化 / **実 repo で skill subsystem の片肺が unmet または impl-ahead として surface される** (Phase 0 = 現存 drop 一掃検出、是正後 0 へ収束) |
 
-### §1.23 Refactor candidate detector projection descent (PLAN-L7-147 / PLAN-REVERSE-141、IMP-146)
+### §1.23 Refactor candidate detector projection descent 検査 (PLAN-L7-147 / PLAN-REVERSE-141、IMP-146)
 
 > ペア = `function-spec.md` Harness DB projection addendum の `analyzeRefactorCandidates`。Refactor mode の
 > DB-trigger 候補面 (`PLAN-L7-133` workflow の下位 capability) を `quality_signals`
@@ -725,13 +725,13 @@ plan 別 supporting packet、route が直接 surface されることを必須に
   順序、`projectRefactorCandidateSignals` による `quality_signals`/`feedback_events` projection、空入力で
   candidate を捏造しないこと、を green `it` で被覆 (PLAN-L7-147 AC「4 kind すべてを純 detector test が被覆」)。
 - 関連 detector 後続 (`PLAN-L7-148`/`150`/`151`/`152`/`153`/`158`) は本 descent を基点とする (module extraction /
-  closure sweep / precision+policy extraction)。
+  closure sweep / precision+policy extraction の検査)。
 
 ## §2 量閉じ一覧 (L6 設計 → U 被覆、孤児チェック)
 
 - function-spec §1 関数 → U-FUNC-01〜04
-- function-spec §2 pseudocode → U-CORE-01〜04
-- function-spec §4 rule engine → U-RULE-01〜03
+- function-spec §2 pseudocode 由来 → U-CORE-01〜04
+- function-spec §4 rule engine 由来 → U-RULE-01〜03
 - edge-case 4 観点 → U-EDGE-01〜03
 - **session-log.md §3 関数 (resolveActivePlan/recordEvent/compressPlanDigest/onStop/onSessionStart) + CLI hook entrypoints → U-SLOG-001〜007** (add-feature 差分、PLAN-L6-03。孤児 0)
 - **forced-stop-feedback.md §2.3 関数 (detectDanglingTurn/recordForcedStop/classifyFeedback/recordFeedback/pendingRecoveryProposals/scanDanglingStops/emitClassifyRequest) → U-FSF-001〜007** (add-feature 差分、PLAN-L6-04。孤児 0)
@@ -771,73 +771,73 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 - **G7 trace freeze**: 4 artifact 双方向 12 edge 凍結時に本書 U ↔ L6 設計の trace 確定
 - **外部ツーリング family carry 更新 (A-128 F-2 / IMP-128、2026-06-11)**: §1.16.1a の **U-RELGRAPH-001..010 は PLAN-L7-32 / PLAN-L7-36 で実テスト化済み**、§1.16.1b の **U-TOOLADAPTER-001..010 は PLAN-L7-34 で実テスト化済み**、§1.16.1c の **U-MCPPROFILE-001..014 は PLAN-L7-33 / PLAN-L7-79 で実テスト化済み**、§1.16.1d の **U-DOCEXPORT-001..012 は PLAN-L7-35 で実テスト化済み**。外部ツーリング family の正規 defer は 0。
 
-### 2026-06-08 Residual Review Closure Test Addendum
+### 2026-06-08 Residual Review Closure Test 追補
 
-- U-GATE-004: `evaluateGateReview` rejects `self_review` / `self-review` / `naive_self_review` as judgment-gate evidence in hybrid, single-runtime, and standalone modes.
-- U-RDRIFT-001: `analyzeRuleDrift` passes when AGENTS / CLAUDE adapter docs share required command and mode markers.
-- U-RDRIFT-002: `analyzeRuleDrift` reports missing adapter markers with file and marker identity.
-- U-RDRIFT-003: real repo AGENTS / CLAUDE adapter docs have no required marker drift.
-- U-RDRIFT-004: `analyzeRuleDrift` reports forbidden legacy adapter markers for old runtime command routing, env prefixes, local state paths, and agent names; real repo AGENTS / CLAUDE adapter docs have zero forbidden markers.
+- U-GATE-004: `evaluateGateReview` は hybrid、single-runtime、standalone mode の judgment-gate evidence として `self_review` / `self-review` / `naive_self_review` を reject する。
+- U-RDRIFT-001: `analyzeRuleDrift` は AGENTS / CLAUDE adapter docs が required command と mode marker を共有している場合に pass する。
+- U-RDRIFT-002: `analyzeRuleDrift` は adapter marker 欠落を file と marker identity 付きで報告する。
+- U-RDRIFT-003: real repo の AGENTS / CLAUDE adapter docs は required marker drift を持たない。
+- U-RDRIFT-004: `analyzeRuleDrift` は old runtime command routing、env prefix、local state path、agent name 用の forbidden legacy adapter marker を報告する。real repo の AGENTS / CLAUDE adapter docs は forbidden marker 0 件である。
 
-### 2026-06-09 Runtime Adapter Lifecycle Test Addendum
+### 2026-06-09 Runtime Adapter Lifecycle Test 追補
 
-- U-SLOG-007 extends the shared CLI and adapter wrapper oracle: explicit `--plan <id>` lifecycle runs must produce a plan digest with `session_start`, `tool_use`, and `session_end` counts for `<id>`.
-- U-SLOG-007 also asserts `--plan <id>` remains harness metadata and is not forwarded as `--plan-id` or raw plan text to Codex / Claude provider CLI args.
+- U-SLOG-007 は shared CLI と adapter wrapper oracle を拡張する。明示的な `--plan <id>` lifecycle run は、`<id>` 用に `session_start`、`tool_use`、`session_end` count を持つ plan digest を生成しなければならない。
+- U-SLOG-007 は、`--plan <id>` が harness metadata のままであり、Codex / Claude provider CLI args へ `--plan-id` や raw plan text として転送されないことも assert する。
 
-### 2026-06-15 Skill Evaluation Oracle (FR-L1-36, PLAN-L7-53)
-
-| U-ID | 関数 | oracle (DbC) |
-|------|------|--------------|
-| U-FR-L1-36 | `projectSkillEvaluations` | **Cold-start**: 0 skill_invocations → 0 skill_evaluations rows (never throws). **AC-01**: 5 adopted plans all "confirmed" → skill_rating=1.0, adoption_count=5, success_count=5, unused_flag=0. **AC-02**: last accepted invocation > 30 days before asOf → unused_flag=1; row is preserved (no auto-delete). **Partial success**: 3 of 5 adopted plans "confirmed", 2 "draft" → skill_rating=0.6. **Rejected invocations**: accepted=0 only → 0 evaluation rows. **"completed" counts as success**: plan_registry.status="completed" increments success_count. asOf parameter makes time-window logic deterministic in tests. |
-
-### 2026-06-15 PoC Success Measurement Oracle (FR-L1-43, PLAN-L7-53)
+### 2026-06-15 Skill Evaluation Oracle 検査 (FR-L1-36, PLAN-L7-53)
 
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
-| U-FR-L1-43 | `projectPocEvaluations` | **Cold-start**: 0 decided PoC PLANs (or no poc kind at all) → 0 poc_evaluations rows (never throws). **AC-43-01**: 10 PoC PLANs (6 confirmed / 3 rejected / 1 pivot) → poc_success_rate=0.60, confirmed_count=6, rejected_count=3, pivot_count=1, total_count=10. **AC-43-02 cold-start**: 0 PoC PLANs → 0 rows. **Undecided PoC excluded**: plan_registry rows with kind="poc" and decision_outcome="" are not included in denominator. **Pivot is non-success**: pivot_count increments denominator but not numerator. **Single summary row**: id always "poc-evaluation:summary"; rebuild overwrites previous row. asOf parameter controls evaluated_at timestamp for deterministic tests. |
+| U-FR-L1-36 | `projectSkillEvaluations` | **Cold-start**: 0 skill_invocations → 0 skill_evaluations rows (never throws)。**AC-01**: adopted plan 5 件が全て "confirmed" → skill_rating=1.0, adoption_count=5, success_count=5, unused_flag=0。**AC-02**: last accepted invocation が asOf より 30 日超前 → unused_flag=1; row は保持する (auto-delete しない)。**Partial success**: adopted plan 5 件中 3 件 "confirmed"、2 件 "draft" → skill_rating=0.6。**Rejected invocations**: accepted=0 のみ → 0 evaluation rows。**"completed" counts as success**: plan_registry.status="completed" は success_count を増やす。asOf parameter により time-window logic を test 内で deterministic にする。 |
 
-### 2026-06-15 Model Evaluation Oracle (FR-L1-38, PLAN-L7-53)
+### 2026-06-15 PoC Success Measurement Oracle 検査 (FR-L1-43, PLAN-L7-53)
 
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
-| U-FR-L1-38 | `projectModelEvaluations` | **Opt-in disabled (AC-38-02)**: no .ut-tdd/config/model-opt-in.yaml or enabled!=true → 0 model_evaluations rows (never throws). **AC-38-01 enabled**: seed model_runs + plan_registry, write model-opt-in.yaml (enabled:true) under tmp repoRoot → model-A (2 runs both success) writes row with success_rate=1.0, run_count=2, success_count=2; model-B (2 runs, 1 success) writes row with success_rate=0.5, run_count=2, success_count=1. **Cold-start**: enabled but 0 model_runs → 0 model_evaluations rows (never throws). **Success inference**: joins model_runs.plan_id -> plan_registry.status IN PLAN_SUCCESS_STATUSES ("confirmed","completed"); no token/cost column — cost-efficiency is explicit_l7_defer (token telemetry pending, PLAN-L7-53 follow-up). **Opt-in file parse failure**: treat as disabled (fail-open for opt-in gate). |
+| U-FR-L1-43 | `projectPocEvaluations` | **Cold-start**: decided PoC PLAN 0 件 (または poc kind 自体なし) → 0 poc_evaluations rows (never throws)。**AC-43-01**: PoC PLAN 10 件 (6 confirmed / 3 rejected / 1 pivot) → poc_success_rate=0.60, confirmed_count=6, rejected_count=3, pivot_count=1, total_count=10。**AC-43-02 cold-start**: 0 PoC PLANs → 0 rows。**Undecided PoC excluded**: kind="poc" かつ decision_outcome="" の plan_registry row は denominator に含めない。**Pivot is non-success**: pivot_count は denominator を増やすが numerator は増やさない。**Single summary row**: id は常に "poc-evaluation:summary"; rebuild は previous row を上書きする。asOf parameter は deterministic tests 用に evaluated_at timestamp を制御する。 |
 
-### 2026-06-09 L6 FR Unit Coverage Addendum
+### 2026-06-15 Model Evaluation Oracle 検査 (FR-L1-38, PLAN-L7-53)
 
-- U-FR-L1-01..U-FR-L1-50 are defined by `docs/design/harness/L6-function-design/fr-unit-coverage.md`.
-- U-FR-L1-51 covers artifact progress red/yellow/green derivation from linked test evidence, dependency impact, and recovery/fullback evidence.
-- The executable guard is `src/lint/l6-fr-coverage.ts`: it parses the L1 FR registry and fails when any registered FR lacks an L6 spec path, deterministic unit contract, or U-* oracle.
-- This addendum is the L7 Red entry contract for L6 completion: each U-FR-L1-* row must become a focused unit test or be explicitly re-routed by a later confirmed PLAN.
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-FR-L1-38 | `projectModelEvaluations` | **Opt-in disabled (AC-38-02)**: .ut-tdd/config/model-opt-in.yaml が無い、または enabled!=true → 0 model_evaluations rows (never throws)。**AC-38-01 enabled**: seed model_runs + plan_registry、tmp repoRoot 配下に model-opt-in.yaml (enabled:true) を書く → model-A (2 runs both success) は success_rate=1.0, run_count=2, success_count=2 の row を書く。model-B (2 runs, 1 success) は success_rate=0.5, run_count=2, success_count=1 の row を書く。**Cold-start**: enabled だが 0 model_runs → 0 model_evaluations rows (never throws)。**Success inference**: model_runs.plan_id -> plan_registry.status IN PLAN_SUCCESS_STATUSES ("confirmed","completed") で join する。token/cost column は無い。cost-efficiency は explicit_l7_defer (token telemetry pending, PLAN-L7-53 follow-up)。**Opt-in file parse failure**: disabled として扱う (fail-open for opt-in gate)。 |
 
-### 2026-06-09 L6 Completion Readiness Addendum
+### 2026-06-09 L6 FR Unit Coverage 追補
 
-- U-L6COMP-001: `analyzeL6Completion` reports not-ready when any L6 design doc is draft, lacks an owning `plan:` reference, lacks the L7 `pair_artifact`, is not referenced by filename from L7, lacks minimum unit-contract substance (contract/signature + DbC/oracle + U-* family), any base L6 `kind=design` PLAN is draft, L7 is draft, or G6 is not PASS.
-- U-L6COMP-002: `analyzeL6Completion` reports ready only when all L6 docs are confirmed, all L6 docs resolve to an owning L6 PLAN and L7 reverse reference, all L6 docs expose unit-test-granularity contract substance, all base L6 `kind=design` PLANs are confirmed with review evidence, L7 is confirmed, and G6 is PASS.
-- U-L6COMP-003: `checkL6Completion` surfaces readiness in `doctor` as warn-only until the G6 freeze audit is ready to harden it.
-- U-L6COMP-004: `analyzeL6Completion` reports `freezeInputReady=true` when L6 trace/substance inputs are complete even if docs/plans/L7/G6 are still draft before the G6 audit.
-- U-L6COMP-005: post-G6 `kind=add-design` PLAN drafts do not reopen base L6 completion; add-feature completeness is handled by backfill/pair/review evidence.
+- U-FR-L1-01..U-FR-L1-50 は `docs/design/harness/L6-function-design/fr-unit-coverage.md` で定義される。
+- U-FR-L1-51 は linked test evidence、dependency impact、recovery/fullback evidence から artifact progress red/yellow/green を導出する範囲を覆う。
+- executable guard は `src/lint/l6-fr-coverage.ts`: L1 FR registry を parse し、registered FR が L6 spec path、deterministic unit contract、U-* oracle のいずれかを欠く場合に fail する。
+- この addendum は L6 completion の L7 Red entry contract である。各 U-FR-L1-* row は focused unit test になるか、後続の confirmed PLAN で明示的に re-route されなければならない。
 
-## PLAN-L7-68 Provider Dispatch Addendum
+### 2026-06-09 L6 Completion Readiness 追補
+
+- U-L6COMP-001: `analyzeL6Completion` は、任意の L6 design doc が draft、owning `plan:` reference 欠落、L7 `pair_artifact` 欠落、L7 から filename で参照されていない、最小 unit-contract substance (contract/signature + DbC/oracle + U-* family) 欠落、base L6 `kind=design` PLAN のいずれかが draft、L7 が draft、または G6 が PASS でない場合に not-ready を報告する。
+- U-L6COMP-002: `analyzeL6Completion` は、全 L6 docs が confirmed、全 L6 docs が owning L6 PLAN と L7 reverse reference へ解決可能、全 L6 docs が unit-test-granularity contract substance を公開、全 base L6 `kind=design` PLANs が review evidence 付き confirmed、L7 が confirmed、かつ G6 が PASS の場合だけ ready を報告する。
+- U-L6COMP-003: `checkL6Completion` は G6 freeze audit が harden 可能になるまで、readiness を `doctor` で warn-only として surface する。
+- U-L6COMP-004: `analyzeL6Completion` は、G6 audit 前で docs/plans/L7/G6 がまだ draft でも、L6 trace/substance input が complete なら `freezeInputReady=true` を報告する。
+- U-L6COMP-005: post-G6 `kind=add-design` PLAN draft は base L6 completion を再 open しない。add-feature completeness は backfill/pair/review evidence で扱う。
+
+## PLAN-L7-68 Provider Dispatch 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
-| U-ADAPTER-002 | `resolveCodexNativeCommand` | `UT_TDD_CODEX_BIN` is preferred over PATH lookup and Windows npm `codex.cmd` is accepted as a native provider command override. |
-| U-ADAPTER-003 | `buildProviderInvocation` | Windows `.cmd` / `.bat` provider commands are converted to a shell command string with quoted arguments, while non-script binaries keep `shell=false`. |
-| U-ADAPTER-004 | `isProviderCommandSpawnable` / `detectMode` | Provider availability is true only when the resolved provider command can spawn successfully; PATH name presence alone is not enough. |
-| U-PHOVER-002 | `buildProviderHandover` | Provider handover packages include `handover_kind: "mechanical"` so machine routing data is not confused with explicit human handover. |
+| U-ADAPTER-002 | `resolveCodexNativeCommand` | `UT_TDD_CODEX_BIN` は PATH lookup より優先され、Windows npm `codex.cmd` は native provider command override として受理される。 |
+| U-ADAPTER-003 | `buildProviderInvocation` | Windows `.cmd` / `.bat` provider command は quote 済み argument を持つ shell command string へ変換され、non-script binary は `shell=false` を維持する。 |
+| U-ADAPTER-004 | `isProviderCommandSpawnable` / `detectMode` | Provider availability は、解決された provider command が spawn 成功する場合だけ true になる。PATH 名が存在するだけでは不足。 |
+| U-PHOVER-002 | `buildProviderHandover` | Provider handover package は `handover_kind: "mechanical"` を含み、machine routing data が明示的な human handover と混同されない。 |
 
-## PLAN-L7-76 Reliability Remediation Addendum
+## PLAN-L7-76 Reliability Remediation 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
-| U-DBPROJ-ATOMIC-01 | `rebuildHarnessDb` | The truncate + re-project sequence runs inside one `BEGIN IMMEDIATE` transaction. Injecting a failure during projection (a wrapped `db` that throws on the first `INSERT INTO plan_registry`, i.e. after `truncateProjectionTables` has emptied the tables) re-throws and **rolls back**, leaving the prior committed `plan_registry` projection intact (row count unchanged, not 0). Red→Green: fails pre-fix (188 → 0). |
-| U-DBPROJ-PROV-01 | `analyzeDbProjectionIngestion(..., { enforceTelemetryProvenance: true })` | Populated telemetry tables (`skill_invocations`, `test_runs`, `guardrail_decisions`, `model_runs`) with only projection provenance are not acceptable evidence for "fired/used/works" claims. Default doctor can surface migration state as partial, but provenance-enforced mode fail-closes when runtime rows are 0 and projection rows are non-zero. |
-| U-DBPROJ-PROV-02 | `projectRuntimeTestRunFromSessionEvent` | A session-log Bash verification event (`Bash (vitest)` etc.) creates exactly one `test_runs` row with non-empty `session_id`, `runtime=hook-session-log`, `scope=runtime-hook`, and the JSONL evidence path; non-verification Bash events such as `Bash (git)` do not fabricate runtime test evidence. |
-| U-DBPROJ-PROV-03 | `checkDbProjectionIngestion` / `projectRuntimeModelTelemetryForDoctor` | Doctor's in-memory DB rebuild overlays existing Claude/Codex JSONL token usage through `projectTokenUsage`, so `model_runs` with token/cost-valued columns count as runtime provenance without requiring provider CLI execution. The deterministic `db rebuild` command remains source-projection-only. |
-| U-DBPROJ-PROV-04 | `projectRuntimeGuardrailDecisionFromSessionEvent` | A session-log `forced_stop` event creates exactly one `guardrail_decisions` row with non-empty `session_id`, `guardrail=forced-stop`, `decision=block`, `mode=runtime-hook`, and the JSONL evidence path; ordinary `tool_use` events do not fabricate guardrail decisions. |
-| U-DBPROJ-PROV-05 | `summarize` / `projectRuntimeSkillInvocationFromSessionEvent` | A Bash command containing `skill suggest` is logged as `Bash (skill)`. A session-log `Bash (skill)` event creates `skill_invocations` rows with non-empty `session_id`, `source=runtime-hook:skill-suggest`, and accepted status from the hook outcome; generic `Bash (bash)` events do not fabricate skill invocations. |
+| U-DBPROJ-ATOMIC-01 | `rebuildHarnessDb` | truncate + re-project sequence は 1 つの `BEGIN IMMEDIATE` transaction 内で動く。projection 中に failure を注入する (wrapped `db` が最初の `INSERT INTO plan_registry`、つまり `truncateProjectionTables` が table を空にした直後に throw) と re-throw して **roll back** し、直前に commit 済みの `plan_registry` projection を保持する (row count は 0 ではなく unchanged)。Red→Green: fix 前は fail (188 → 0)。 |
+| U-DBPROJ-PROV-01 | `analyzeDbProjectionIngestion(..., { enforceTelemetryProvenance: true })` | projection provenance だけで埋まった telemetry table (`skill_invocations`, `test_runs`, `guardrail_decisions`, `model_runs`) は "fired/used/works" claim の acceptable evidence ではない。既定 doctor は migration state を partial として surface できるが、provenance-enforced mode は runtime rows が 0 かつ projection rows が非 0 の場合に fail-close する。 |
+| U-DBPROJ-PROV-02 | `projectRuntimeTestRunFromSessionEvent` | session-log Bash verification event (`Bash (vitest)` 等) は、非空 `session_id`、`runtime=hook-session-log`、`scope=runtime-hook`、JSONL evidence path を持つ `test_runs` row をちょうど 1 件作る。`Bash (git)` などの non-verification Bash events は runtime test evidence を捏造しない。 |
+| U-DBPROJ-PROV-03 | `checkDbProjectionIngestion` / `projectRuntimeModelTelemetryForDoctor` | Doctor の in-memory DB rebuild は、既存 Claude/Codex JSONL token usage を `projectTokenUsage` 経由で overlay する。そのため token/cost-valued column を持つ `model_runs` は provider CLI execution を要求せず runtime provenance として数える。deterministic `db rebuild` command は source-projection-only のままにする。 |
+| U-DBPROJ-PROV-04 | `projectRuntimeGuardrailDecisionFromSessionEvent` | session-log `forced_stop` event は、非空 `session_id`、`guardrail=forced-stop`、`decision=block`、`mode=runtime-hook`、JSONL evidence path を持つ `guardrail_decisions` row をちょうど 1 件作る。ordinary `tool_use` events は guardrail decision を捏造しない。 |
+| U-DBPROJ-PROV-05 | `summarize` / `projectRuntimeSkillInvocationFromSessionEvent` | `skill suggest` を含む Bash command は `Bash (skill)` として log される。session-log `Bash (skill)` event は、非空 `session_id`、`source=runtime-hook:skill-suggest`、hook outcome 由来の accepted status を持つ `skill_invocations` row を作る。generic `Bash (bash)` events は skill invocation を捏造しない。 |
 
-### §1.23 U-RUNDEBUG (L7.5 RUN & Debug runtime verification)
+### §1.23 U-RUNDEBUG (L7.5 RUN & Debug runtime verification 検査)
 
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
@@ -847,11 +847,11 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-RUNDEBUG-004 | `buildRuntimeVerificationLogEvent` | append-only event に plan/test/claim/session/source/surface/correlation/evidence/timestamp/redaction policy を載せる。secret-like 値は保存せず reject。 |
 | U-RUNDEBUG-005 | `validateRuntimeVerificationLogCompleteness` | `works` / `used` / `fired` / `executed` は session/correlation/evidence と requirement または test oracle link が無ければ incomplete。 |
 | U-RUNDEBUG-006 | `appendRuntimeVerificationLogEvent` / `ut-tdd run-debug log` | complete event だけを `.ut-tdd/evidence/run-debug/runtime-verification.jsonl` へ append する。projection source、invalid surface、secret-like 値、runtime closure link 欠落は write 前に fail-close。 |
-| U-RUNDEBUG-007 | `projectRuntimeVerificationEvents` / `rebuildHarnessDb` | valid L7.5 JSONL rows project to `runtime_verification_events` with `verification_class=runtime_verified` and `accept_status=accepted`; malformed rows become findings and cannot close runtime acceptance. |
-| U-CHGIMPACT-NONGIT-01 | `isGitRepository` / `checkChangeImpact` / `checkChangeSetIntegrity` | In a non-git directory both checks return `ok:true` with a "skipped (not a git repository)" message (matching the non-git fail-open convention of `tracked-canonical` / `runtime-portability`), while an unreadable repo root still fail-closes with a `violation` message. CI runs in a git repo so its behavior is unchanged. |
-| U-SLOT-009 | `nodeAgentSlotsDeps.writeText` | State is written atomically: stage to a unique `*.tmp-<pid>-<seq>` file then `renameSync` over the target. A fire→release round-trip through the real fs deps persists the complete slot array and leaves **no** `*.tmp-*` temp file behind (concurrent hook / crash-mid-write never yields a torn JSON that `loadSlots` would discard). |
+| U-RUNDEBUG-007 | `projectRuntimeVerificationEvents` / `rebuildHarnessDb` | valid L7.5 JSONL row は `verification_class=runtime_verified` と `accept_status=accepted` を持つ `runtime_verification_events` へ project される。malformed row は finding になり runtime acceptance を close できない。 |
+| U-CHGIMPACT-NONGIT-01 | `isGitRepository` / `checkChangeImpact` / `checkChangeSetIntegrity` | non-git directory では、両 check は "skipped (not a git repository)" message 付きで `ok:true` を返す (`tracked-canonical` / `runtime-portability` の non-git fail-open convention と一致)。ただし unreadable repo root は `violation` message で fail-close する。CI は git repo で動くため挙動は不変。 |
+| U-SLOT-009 | `nodeAgentSlotsDeps.writeText` | State は atomic に書く。unique `*.tmp-<pid>-<seq>` file へ stage してから target へ `renameSync` する。real fs deps 経由の fire→release round-trip は完全な slot array を永続化し、`*.tmp-*` temp file を **残さない** (concurrent hook / crash-mid-write でも `loadSlots` が discard する torn JSON を作らない)。 |
 
-### §1.24 U-HLX (old HELIX semantic adoption decision contracts)
+### §1.24 U-HLX (old HELIX semantic adoption decision contract 検査)
 
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
@@ -869,7 +869,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-HLX-012 | `buildContinuousRunControlDecision` | continuous run は trigger / queue lock / timebox / budget profile / stop condition / verification evidence を必須にし、stop condition なし auto-run は `deny`。 |
 | U-HLX-013 | `buildLearningFeedbackDecision` | feedback/recipe/learning は evidence と review state 付き improvement candidate に留め、learning output 単独で acceptance close しない。 |
 
-### §1.25 U-UPSTREAM (upstream A-146 semantic adoption decision contracts)
+### §1.25 U-UPSTREAM (upstream A-146 semantic adoption decision contract 検査)
 
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
@@ -883,7 +883,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-UPSTREAM-008 | `validateDriveEntryMatrix` | `signal -> mode` と `kind x drive` の両方が matrix と一致した場合のみ auto route。未知/矛盾は fail-close/defer/human review。 |
 | U-UPSTREAM-009 | `verifyRuntimeMatcherEvidence` | target runtime surface、emitted tool event、matcher、matcher fire、guard result が揃い、tool event が matcher と一致する場合だけ covered。期待だけなら unverified。 |
 
-### §1.26 U-ROADMAP Feature-Pack Semantics (PLAN-L7-207)
+### §1.26 U-ROADMAP Feature-Pack Semantics 検査 (PLAN-L7-207)
 
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
@@ -892,54 +892,54 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-ROADMAP-027 | `analyzeL7FeaturePackCoverage` | L7 roadmap が gate/span だけで feature pack を持たない場合、required layers が全て `missingLayers` に入り `ok=false`。`drive` から推測して pass しない。 |
 | U-ROADMAP-028 | `loadRoadmaps` + `analyzeL7FeaturePackCoverage` | real repo の L7 roadmap registry は database/service/frontend/ui feature packs を全て持つ。DB/read-model/frontend coverage が UI completion を代替しないよう、UI pack は `PLAN-L7-141` の deferred span として残る。 |
 
-## PLAN-L7-81 Codex Wrapper Parity Addendum
+## PLAN-L7-81 Codex Wrapper Parity 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
-| U-ADAPTER-009 | `checkCodexWrapperParity` / `runDoctor` | Claude Code project hooks and Codex wrapper parity are checked explicitly. Claude hook evidence must come from `.claude/settings.json`; Codex evidence must come from `ut-tdd codex --execute` / `--task-file` / `--plan ... --execute` lifecycle tests and stdin adapter oracles, not from assuming `.claude` hooks apply to Codex. `doctor` surfaces `codex-wrapper-parity - OK` and fail-closes when any side is missing. |
+| U-ADAPTER-009 | `checkCodexWrapperParity` / `runDoctor` | Claude Code project hooks と Codex wrapper parity を明示的に検査する。Claude hook evidence は `.claude/settings.json` 由来でなければならない。Codex evidence は `.claude` hooks が Codex に適用されるという仮定ではなく、`ut-tdd codex --execute` / `--task-file` / `--plan ... --execute` lifecycle tests と stdin adapter oracle 由来でなければならない。`doctor` は `codex-wrapper-parity - OK` を surface し、どちらかが欠けた場合は fail-close する。 |
 
-> Scope note (PLAN-L7-139): U-ADAPTER-009 covers the **delegation** path — how the
-> harness drives Codex as a worker via `ut-tdd codex`. It deliberately does NOT
-> assume `.claude` hooks apply to Codex. The complementary **direct / interactive**
-> path (a developer running `codex` in this repo) is covered by an explicit
-> repo-local `.codex/hooks.json` adapter, checked by `codex-hook-adapter` (U-CXHOOK
-> below). The two are different surfaces; neither supersedes the other.
+> Scope note (PLAN-L7-139): U-ADAPTER-009 は **delegation** path、つまり harness が
+> `ut-tdd codex` 経由で Codex を worker として駆動する経路を覆う。ここでは `.claude` hooks が
+> Codex に適用されるとは仮定しない。補完関係にある **direct / interactive** path
+> (developer がこの repo で `codex` を実行する経路) は、明示的な repo-local `.codex/hooks.json`
+> adapter で覆い、`codex-hook-adapter` (下記 U-CXHOOK) が検査する。両者は異なる surface であり、
+> どちらも他方を置き換えない。
 
-## PLAN-L7-139 Codex Hook Adapter Parity Addendum
+## PLAN-L7-139 Codex Hook Adapter Parity 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
-| U-CXHOOK-001 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | Real-repo regression: the committed `.codex/hooks.json` shares the Claude guard entrypoints with Codex matchers and returns `ok:true` (`codex-hook-adapter - OK`). Substantiates the parity claim against the actual repo, not prose. |
-| U-CXHOOK-002 | `analyzeCodexHookAdapter` | Missing `.codex/hooks.json` (`missing_hooks_json`) and malformed JSON (`malformed_json`) both fail closed. |
-| U-CXHOOK-003 | `analyzeCodexHookAdapter` | A literal copy of the Claude matcher (`Edit\|Write\|MultiEdit`) fails closed (`missing_hook`) because it never fires under Codex tool names — guards against silent false-parity (coverage≠substance). |
-| U-CXHOOK-004 | `analyzeCodexHookAdapter` | Dropping `blockOnFailure` on `work-guard` (`missing_block_on_failure`), using `$CLAUDE_PROJECT_DIR` in a Codex command (`claude_project_dir_in_codex`), and referencing global `~/.codex/` (`global_codex_path`) each fail closed. |
-| U-CXHOOK-005 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | Every Codex guard entrypoint also exists in the Claude `REQUIRED` set (bidirectional: no silent fork between adapters; `entrypoint_drift` otherwise). |
-| U-CXHOOK-006 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Disposition is honest, not blanket-N/A (cross-runtime review correction): `subagent-stop` is genuinely N/A (codex.exe 0.128.0 has no `SubagentStop` event), but `agent-guard` is **not** N/A — Codex's `spawn_agent` sub-agent tool family exists and is wired to the shared guard entrypoint. The guard blocks missing/unknown `agent_type`, direct model override, missing task body, and bulk spawn. Codex shell surface (`exec_command|local_shell`) is also not N/A; it is wired to `git-command-guard`, which blocks destructive git operations. `CODEX_DEFERRED_SURFACE` is empty for these known surfaces; future surfaces must still be wired or explicitly deferred. |
-| U-CXHOOK-007 | `extractEditTargets` (`src/runtime/work-guard.ts`) | False-parity regression (Critical, cross-runtime REJECT): Codex `apply_patch` is freeform with no `tool_input.file_path`, so paths must be parsed from the patch body (`*** Update/Add/Delete File:` / `*** Move to:`, multi-file). `extractEditTargets` returns explicit `file_path`/`path` for Claude/`write_file`, all patch-body paths for apply_patch (incl. command-array form), and does NOT misextract from doc `content` when an explicit `file_path` is present (false-block guard). |
-| U-CXHOOK-008 | `analyzeCodexHookAdapter` | Analyzer hardening (cross-runtime review Important): a non-`command` hook does not satisfy a guard (`type==="command"` required), and a script-path that only appears as a substring of another token (e.g. `src/cli.tsx` vs `src/cli.ts`) does not satisfy a guard (token-exact matching). |
-| U-CXHOOK-009 | `codexHookAdapterMessages` / `CodexHookResult.apiToolPathEnforced` | The adapter must not claim coverage for hosted API/developer tools. `.codex/hooks.json` covers direct Codex CLI/IDE sessions; this chat runtime's injected `apply_patch` path does not execute through the Codex hook engine and is surfaced as `apiToolPathEnforced=false`. |
-| U-CXHOOK-010 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | `.codex/hooks.json` alone is not sufficient evidence. The real repo loader also reads `.codex/config.toml`, and the analyzer fails closed when that file is missing (`missing_config_toml`) or `[features].hooks=true` is absent/disabled (`hooks_feature_disabled`). `doctor` therefore proves the Codex hook adapter is both declared and enabled for direct Codex CLI/IDE sessions. |
-| U-CXHOOK-011 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | Every Codex guard entrypoint also exists in the Claude `REQUIRED` set (bidirectional: no silent fork between adapters; `entrypoint_drift` otherwise). |
-| U-CXHOOK-012 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `CODEX_REQUIRED` | `subagent-stop` is the only true N/A; Codex `spawn_agent|spawn_agents_on_csv` is a required `agent-guard` matcher, not a deferred omission. |
-| U-CXHOOK-013 | `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Shared guard logic is runtime-agnostic: the same pure functions block foreign edits, non-allowlisted Claude subagents, unsafe Codex spawn roles, direct model overrides, missing task bodies, bulk spawn, and destructive git commands (`reset` / destructive `checkout` / `restore` / `revert` / force-push). |
-| U-CXHOOK-014 | `analyzeCodexHookAdapter` | Non-`command` hooks do not satisfy guards (`type==="command"` required). |
-| U-CXHOOK-015 | `analyzeCodexHookAdapter` | Script paths must match as exact tokens; `src/cli.tsx` does not satisfy a required `src/cli.ts` guard command. |
+| U-CXHOOK-001 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | Real-repo regression: commit 済み `.codex/hooks.json` は Claude guard entrypoint を Codex matcher と共有し、`ok:true` (`codex-hook-adapter - OK`) を返す。prose ではなく実 repo に対して parity claim を立証する。 |
+| U-CXHOOK-002 | `analyzeCodexHookAdapter` | `.codex/hooks.json` 欠落 (`missing_hooks_json`) と malformed JSON (`malformed_json`) はどちらも fail closed する。 |
+| U-CXHOOK-003 | `analyzeCodexHookAdapter` | Claude matcher (`Edit\|Write\|MultiEdit`) の literal copy は Codex tool name では発火しないため fail closed (`missing_hook`) する。silent false-parity (coverage≠substance) を防ぐ。 |
+| U-CXHOOK-004 | `analyzeCodexHookAdapter` | `work-guard` の `blockOnFailure` 削除 (`missing_block_on_failure`)、Codex command 内の `$CLAUDE_PROJECT_DIR` 利用 (`claude_project_dir_in_codex`)、global `~/.codex/` 参照 (`global_codex_path`) はそれぞれ fail closed する。 |
+| U-CXHOOK-005 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | 全 Codex guard entrypoint は Claude `REQUIRED` set にも存在する (bidirectional: adapter 間の silent fork なし。違反時は `entrypoint_drift`)。 |
+| U-CXHOOK-006 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Disposition は blanket-N/A ではなく正直に分類する (cross-runtime review correction)。`subagent-stop` は本当に N/A (codex.exe 0.128.0 は `SubagentStop` event を持たない) だが、`agent-guard` は N/A **ではない**。Codex の `spawn_agent` sub-agent tool family が存在し、shared guard entrypoint へ接続される。guard は missing/unknown `agent_type`、direct model override、missing task body、bulk spawn を block する。Codex shell surface (`exec_command|local_shell`) も N/A ではなく、destructive git operation を block する `git-command-guard` へ接続される。これら known surface では `CODEX_DEFERRED_SURFACE` は空。future surface も接続するか明示的に defer しなければならない。 |
+| U-CXHOOK-007 | `extractEditTargets` (`src/runtime/work-guard.ts`) | False-parity regression (Critical, cross-runtime REJECT): Codex `apply_patch` は freeform で `tool_input.file_path` を持たないため、path は patch body (`*** Update/Add/Delete File:` / `*** Move to:`、multi-file) から parse しなければならない。`extractEditTargets` は Claude/`write_file` では明示 `file_path`/`path`、apply_patch では全 patch-body path (command-array form 含む) を返す。また明示 `file_path` がある場合に doc `content` から誤抽出しない (false-block guard)。 |
+| U-CXHOOK-008 | `analyzeCodexHookAdapter` | Analyzer hardening (cross-runtime review Important): non-`command` hook は guard を満たさない (`type==="command"` required)。また script-path が別 token の substring として現れるだけでは guard を満たさない (例: `src/cli.tsx` vs `src/cli.ts`、token-exact matching)。 |
+| U-CXHOOK-009 | `codexHookAdapterMessages` / `CodexHookResult.apiToolPathEnforced` | adapter は hosted API/developer tools の coverage を主張してはならない。`.codex/hooks.json` は direct Codex CLI/IDE session を覆う。この chat runtime に injected される `apply_patch` path は Codex hook engine を通らず、`apiToolPathEnforced=false` として surface される。 |
+| U-CXHOOK-010 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | `.codex/hooks.json` だけでは十分な evidence ではない。real repo loader は `.codex/config.toml` も読む。その file が欠落 (`missing_config_toml`)、または `[features].hooks=true` が欠落/disabled (`hooks_feature_disabled`) の場合、analyzer は fail closed する。したがって `doctor` は direct Codex CLI/IDE session 用の Codex hook adapter が宣言済みかつ enabled であることを証明する。 |
+| U-CXHOOK-011 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | 全 Codex guard entrypoint は Claude `REQUIRED` set にも存在する (bidirectional: adapter 間の silent fork なし。違反時は `entrypoint_drift`)。 |
+| U-CXHOOK-012 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `CODEX_REQUIRED` | `subagent-stop` だけが true N/A。Codex `spawn_agent|spawn_agents_on_csv` は required `agent-guard` matcher であり、deferred omission ではない。 |
+| U-CXHOOK-013 | `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Shared guard logic は runtime-agnostic である。同じ pure function が foreign edit、allowlist 外 Claude subagent、unsafe Codex spawn role、direct model override、missing task body、bulk spawn、destructive git command (`reset` / destructive `checkout` / `restore` / `revert` / force-push) を block する。 |
+| U-CXHOOK-014 | `analyzeCodexHookAdapter` | Non-`command` hook は guard を満たさない (`type==="command"` required)。 |
+| U-CXHOOK-015 | `analyzeCodexHookAdapter` | Script path は exact token として一致しなければならない。`src/cli.tsx` は required `src/cli.ts` guard command を満たさない。 |
 
-## IMP-142 destructive git guard Addendum
+## IMP-142 destructive git guard 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
 | U-GITGUARD-001 | `evaluateGitCommandGuard` | `git reset`、destructive `git checkout`、`git restore`、`git revert`、`git push --force` / `--force-with-lease` は `decision=block` / `reason=destructive-git` を返す。`git status`、`git diff`、`git log`、通常 `git push`、`git checkout -b` は pass し、履歴破壊ガードが通常の確認・commit/push フローを止めない。 |
 | U-GITGUARD-002 | `extractShellCommand` / `ut-tdd hook git-command-guard` / `.claude/hooks/git-command-guard.ts` | Claude `tool_input.command`、Codex `tool_input.cmd`、文字列 payload のどれでも command を抽出し、CLI hook と repo hook は destructive git command で exit 2、safe git command で exit 0 を返す。`.ut-tdd/state/destructive-git-override` は非空理由がある時だけ one-shot bypass となり、`.ut-tdd/logs/destructive-git-overrides.jsonl` に audit を残して次回は再 block する。 |
 
-## PLAN-L7-77 Codex Stdin Prompt Dispatch Addendum
+## PLAN-L7-77 Codex Stdin Prompt Dispatch 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
 | U-ADAPTER-007 | `buildAdapterPlan` / `buildProviderInvocation` | codex の plan はプロンプトを `args` でなく `plan.stdin` に載せ、`args` は `exec` + `-` (stdin sentinel) のみでプロンプト本文を含まない (`codex exec -` は instructions を stdin から読む)。改行 + cmd.exe メタ文字 (`< > \| ( )`) を含むプロンプトは、Windows `.cmd` の shell-wrap 後の cmd.exe コマンド文字列にも現れず、改行で切り詰められない。Red→Green: pre-fix はプロンプトが args + wrapped 文字列に埋め込まれ truncatable。 |
 | U-ADAPTER-008 | `buildAdapterPlan` / `buildProviderInvocation` / `ut-tdd claude --execute` | claude の plan は `--print --input-format text` を固定 argv とし、prompt 本文を `plan.stdin` で渡す。`-p <task>` は使わず、`<invoke name="Bash">...` 形式の native tool markup や改行を含む task text は argv / provider invocation string に現れない。fake Claude wrapper は stdin に task 本文を受け取り、session lifecycle digest は従来どおり `session_start` / `tool_use` / `session_end` を記録する。 |
 
-## PLAN-L7-84 Status nextAction Field Addendum
+## PLAN-L7-84 Status nextAction Field 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
@@ -950,7 +950,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-DETECT-005 | `nextActionForMode` value-domain | 各値は先頭 token (`:` 手前) で機械 switch でき、後続が人間可読。公開 JSON 契約ゆえ ASCII のみ (machine-surface-language と整合)。 |
 | U-DETECT-006 | `judgmentReviewPlanForMode` + `ut-tdd status --json` | `nextAction` の人間可読 guidance とは別に、status JSON が `judgmentReview` を additive に返す。hybrid は `requiredReviewKind=cross_agent`、`crossAgentReview=available`、worker/reviewer model evidence と `ut-tdd gate <gate-id> --review-kind cross_agent ...` template を持つ。単一 runtime は `intra_runtime_subagent` + checklist、standalone は human approval template を持つ。`requiredEvidence[]` は machine field として残し、同じ順序・同じ件数の `requiredEvidenceJa[]` を持つ。text status は `judgment-review-evidence:` 行で日本語 evidence と `evidence-id` を併記し、判断 gate の証跡確認だけが英語 machine prose へ戻らない。 |
 
-## PLAN-L7-85 Review Read-Only Guard Addendum
+## PLAN-L7-85 review read-only guard 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|
@@ -967,7 +967,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-RGUARD-011 | `summarizeStagedReview` | staged 集合は sorted/unique、suspect = staged ∩ review-mutated (混入疑い)、suspect 非空で ok=false (commit 前 staged-diff の機械化)。 |
 | U-RGUARD-012 | `summarizeStagedReview` | review-mutated 未提供 → suspect 空 + ok=true (純列挙)。 |
 
-## PLAN-L7-263 Version-up Dry-run Exit Policy Addendum
+## PLAN-L7-263 Version-up Dry-run Exit Policy 追補
 
 | U-ID | Target | Oracle |
 |---|---|---|

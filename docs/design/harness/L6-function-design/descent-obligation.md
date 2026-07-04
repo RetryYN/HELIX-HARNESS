@@ -3,7 +3,7 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 created: 2026-06-12
 plan: docs/plans/PLAN-L6-35-descent-obligation.md
@@ -87,7 +87,7 @@ type DescentResult = {
 
 降下 (左腕) と V-pair (右腕) を機械可読 rule に落とす。`condition` が生成トリガ:
 
-| from | to | kind | condition | note |
+| 起点 (`from`) | 到達先 (`to`) | 種別 (`kind`) | 条件 (`condition`) | 注記 (`note`) |
 |---|---|---|---|---|
 | L1 | L3 | descent | active | 要求 FR が active なら要件 (FR-*/AC-*) が在るべき |
 | L3 | L4 | descent | active | 要件が active なら基本設計が在るべき |

@@ -11,12 +11,12 @@ pair_artifact: docs/design/helix/
 pair_design: docs/design/helix/
 ---
 
-# HELIX upstream A-146 substance-gap test design
+# HELIX upstream A-146 substance-gap test design の検証設計
 
 `unison-ai-product/UT-TDD_AGENT-HARNESS` の A-146 監査を HELIX 側へ採用するための pair test-design。
 L3/L4/L5/L6 の upstream-substance-gap docs をまとめて逆参照し、各 finding を oracle へ接続する。
 
-## §1 coverage matrix
+## §1 coverage matrix 対応表
 
 | upstream | L3 | L4 | L5 | L6 oracle |
 |----------|----|----|----|-----------|
@@ -29,38 +29,38 @@ L3/L4/L5/L6 の upstream-substance-gap docs をまとめて逆参照し、各 fi
 | A146-7 | HU-FR-07 | HUT-SYS-07 | HU-C07 | U-UPSTREAM-008 |
 | A146-8 | HU-FR-08 | HUT-SYS-08 | HU-C08 | U-UPSTREAM-009 |
 
-Completeness oracle: U-UPSTREAM-001 covers the exact A146-1..A146-8 ID set.
+Completeness oracle: U-UPSTREAM-001 は A146-1..A146-8 の ID set だけを正確に covered とする。
 
-## §2 oracle definitions
+## §2 oracle 定義
 
-| Oracle | Contract | Expected behavior |
+| Oracle | Contract | 期待動作 |
 |--------|----------|-------------------|
-| U-UPSTREAM-001 | `classifyUpstreamA146Finding` | accepts exactly A146-1..A146-8 as known; unknown ids are not silently adopted |
-| U-UPSTREAM-002 | `buildGuardGovernancePack` | separates guard entrypoints, deferred surfaces, and coverage claims; unimplemented guards cannot be marked covered |
-| U-UPSTREAM-003 | `resolveConsumerCliPath` / `runHelixProjectSetup.consumerReadiness` | proves `ut-tdd` is resolvable through PATH/wrapper/resolver or returns fail-close remediation; `ut-tdd setup project` surfaces the same PATH preflight in JSON/text output so projected hooks are not silently accepted when the CLI is missing |
-| U-UPSTREAM-004 | `verifyGreenEvidenceBinding` | closes evidence integrity only when command rerun evidence and digest update share one batch; hash-only restamp fails |
-| U-UPSTREAM-005 | `classifyTelemetryProvenance` | classifies runtime/projected/derived/unknown and rejects unknown as runtime evidence |
-| U-UPSTREAM-006 | `curateDistributionDoc` | classifies consumer/internal/dogfood/deny and flags blanket governance allowlisting |
-| U-UPSTREAM-007 | `evaluateFeDesignSubstance` | distinguishes populated, explicit defer, out-of-scope, and hollow FE design bodies |
-| U-UPSTREAM-008 | `validateDriveEntryMatrix` | requires both `signal -> mode` and `kind x drive` to match before auto-routing |
-| U-UPSTREAM-009 | `verifyRuntimeMatcherEvidence` | treats matcher coverage as covered only with target-runtime tool event evidence |
+| U-UPSTREAM-001 | `classifyUpstreamA146Finding` | A146-1..A146-8 だけを known として accept し、未知 id を silent adoption しない |
+| U-UPSTREAM-002 | `buildGuardGovernancePack` | guard entrypoint、deferred surface、coverage claim を分離し、未実装 guard を covered として扱わない |
+| U-UPSTREAM-003 | `resolveConsumerCliPath` / `runHelixProjectSetup.consumerReadiness` | PATH/wrapper/resolver のいずれかで `ut-tdd` 解決可能性を証明する。解決不能なら fail-close remediation を返す。`ut-tdd setup project` は同じ PATH preflight を JSON/text output へ出し、CLI 欠落時に projected hook を silently accepted にしない |
+| U-UPSTREAM-004 | `verifyGreenEvidenceBinding` | command rerun evidence と digest update が同一 batch にある場合だけ evidence integrity を close し、hash-only restamp は fail する |
+| U-UPSTREAM-005 | `classifyTelemetryProvenance` | runtime/projected/derived/unknown を分類し、unknown を runtime evidence として reject する |
+| U-UPSTREAM-006 | `curateDistributionDoc` | consumer/internal/dogfood/deny を分類し、blanket governance allowlisting を flag する |
+| U-UPSTREAM-007 | `evaluateFeDesignSubstance` | populated、explicit defer、out-of-scope、hollow FE design body を区別する |
+| U-UPSTREAM-008 | `validateDriveEntryMatrix` | auto-routing 前に `signal -> mode` と `kind x drive` の両方の一致を要求する |
+| U-UPSTREAM-009 | `verifyRuntimeMatcherEvidence` | target-runtime tool event evidence がある場合だけ matcher coverage を covered と扱う |
 
-## §3 non-goals
+## §3 対象外
 
-- This test-design does not claim the L7 implementations exist.
-- This test-design does not close external publication, tag, signed artifact, UAT, or release evidence.
-- This test-design prevents A-146 adoption from being inferred from broad existing pillar requirements alone.
+- この test-design は L7 implementation の存在を主張しない。
+- この test-design は external publication、tag、signed artifact、UAT、release evidence を close しない。
+- この test-design は、A-146 adoption が広い既存 pillar requirement だけから推論されることを防ぐ。
 
-## §4 verification strategy oracles
+## §4 verification strategy oracle の検証
 
-These oracles pair with `docs/design/helix/L6-function-design/upstream-substance-gap.md` §4 and adopt upstream
-`PLAN-L7-188` at design level only.
+これらの oracle は `docs/design/helix/L6-function-design/upstream-substance-gap.md` §4 と pair し、upstream
+`PLAN-L7-188` は design level に限って採用する。
 
-| Oracle | Contract | Expected behavior |
+| Oracle | Contract | 期待動作 |
 |--------|----------|-------------------|
-| U-VERIFYSTRAT-001 | `classifyRuntimeVerificationEvidence` | classifies claims with real session/source/surface/timestamp/evidence path as `runtime_verified`; projection-only rows become `projection_only_unverified`; missing provenance becomes `missing_runtime_provenance` |
-| U-VERIFYSTRAT-002 | `buildRunDebugObligation` | runtime behavior claims generate an L7.5 RUN & Debug obligation; unit-only helpers can skip it only with an explicit reason and substitute oracle |
-| U-VERIFYSTRAT-003 | `rejectProjectionOnlyVerification` | projection-only and missing-provenance classes cannot close fired/used/works acceptance, though they may remain trace-support evidence |
-| U-VERIFYSTRAT-004 | `buildRuntimeVerificationLogEvent` | produces an append-only event with plan/test/claim/session/source/surface/correlation/evidence/timestamp and redaction policy, without storing secret-like values |
-| U-VERIFYSTRAT-005 | `validateRuntimeVerificationLogCompleteness` | rejects fired/used/works events with empty session id, projection source, missing evidence path, or missing correlation id; blocked hosted-preflight events require blocked-reason evidence |
-| U-VERIFYSTRAT-006 | `appendRuntimeVerificationLogEvent` / `ut-tdd run-debug log` | appends exactly one complete runtime verification JSONL event and refuses projection-only, invalid-surface, secret-like, or missing-link events before write |
+| U-VERIFYSTRAT-001 | `classifyRuntimeVerificationEvidence` | 実 session/source/surface/timestamp/evidence path を持つ claim を `runtime_verified` に分類する。projection-only telemetry row は `projection_only_unverified`、provenance 欠落は `missing_runtime_provenance` とする |
+| U-VERIFYSTRAT-002 | `buildRunDebugObligation` | runtime behavior claim は L7.5 RUN & Debug obligation を生成する。unit-only helper は明示 reason と substitute oracle がある場合だけ skip できる |
+| U-VERIFYSTRAT-003 | `rejectProjectionOnlyVerification` | projection-only telemetry と missing-provenance class は fired/used/works acceptance を close できない。ただし trace-support evidence としては残せる |
+| U-VERIFYSTRAT-004 | `buildRuntimeVerificationLogEvent` | plan/test/claim/session/source/surface/correlation/evidence/timestamp と redaction policy を持つ append-only event を生成し、secret-like value は保存しない |
+| U-VERIFYSTRAT-005 | `validateRuntimeVerificationLogCompleteness` | 空 session id、projection source、missing evidence path、missing correlation id を持つ fired/used/works event を reject する。blocked hosted-preflight event は blocked-reason evidence を要求する |
+| U-VERIFYSTRAT-006 | `appendRuntimeVerificationLogEvent` / `ut-tdd run-debug log` | complete runtime verification JSONL event を正確に 1 件 append し、projection-only、invalid-surface、secret-like、missing-link event は write 前に拒否する |

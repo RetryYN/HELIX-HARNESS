@@ -4,7 +4,7 @@ sub_doc: ui-element
 status: confirmed  # G2 freeze (PO サインオフ 2026-06-22、gate-design §2 G2=PASS)。本材料化 PLAN-L2-03。③ pair=wireframe self (L2↔L10)。
 pair_artifact: docs/design/harness/L2-screen/wireframe.md  # mock が L2 設計群の③ペア (IMP-039/058)
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L10
 plan: docs/plans/PLAN-L2-03-ui-element.md

@@ -83,7 +83,7 @@ R4 `forward_routing` で動的選択。**値は schema enum `VALID_FORWARD_ROUTI
 | API / DB / contract が不明 | `L5` 詳細設計 |
 | Forward に渡す確定経路が無い (gap のみ) | `gap-only` (debt/readiness-defer へ) |
 
-> **forward_routing が 5 値 (L1/L3/L4/L5/gap-only) に限る理由 (PM アーキ判断で確定、2026-06-02)**: source snapshot は「実装だけで閉じる→L7」「fullback→L8-L11」も routing 先に持つが、**UT-TDD は意図的に L7 / L8-L11 を除外**する。Reverse は **必ず設計層 (L1/L3/L4/L5) に再入して ①⇔③ pair-freeze (G1/G3/G4/G5) を通す** のが V-model 規律であり、L7 (実装) / L8-L11 (検証) へ直接跳ぶのは pair-freeze をバイパスする違反 (source snapshot の緩いモデル)。「実装だけで閉じる」案件は L5 (詳細設計) 経由 (→pair-freeze→L7)、fullback の文書整合は対象 ③ の設計層へ routing するか `gap-only` で新 PLAN 起票。よって **5 値は欠陥でなく V-model 設計の帰結** (§3.4 正本と一致)。enum 拡張は不要。
+> **forward_routing が 5 値 (L1/L3/L4/L5/gap-only) に限る理由 (PM アーキ判断で確定、2026-06-02)**: source snapshot は「実装だけで閉じる→L7」「fullback→L8-L11」も routing 先に持つが、**HELIX は意図的に L7 / L8-L11 を除外**する。Reverse は **必ず設計層 (L1/L3/L4/L5) に再入して ①⇔③ pair-freeze (G1/G3/G4/G5) を通す** のが V-model 規律であり、L7 (実装) / L8-L11 (検証) へ直接跳ぶのは pair-freeze をバイパスする違反 (source snapshot の緩いモデル)。「実装だけで閉じる」案件は L5 (詳細設計) 経由 (→pair-freeze→L7)、fullback の文書整合は対象 ③ の設計層へ routing するか `gap-only` で新 PLAN 起票。よって **5 値は欠陥でなく V-model 設計の帰結** (§3.4 正本と一致)。enum 拡張は不要。
 
 ### 再入先 Pair freeze gate 通過義務 (DISCOVERY-04 V9、gate-design §1.1)
 
@@ -121,7 +121,7 @@ Reverse は ① だけ Forward に渡して終わりではない。**routing 先
 | Retrofit | 前段 (Retrofit の影響評価) | Retrofit が依存更新の影響評価を要するとき `upgrade` type で前段起動される (retrofit.md §6 の reciprocal)。R4 routing で Retrofit の移行計画ステップへ戻す |
 | drift signal | 自動起動 | `drift` (schema/contract) を検出したら detection-routing 経由で自動起動 |
 
-翻案注記: UT-TDD route は reverse workflow を `ut-tdd reverse <type> R0..R4` として扱う。旧 source process command 名は現行導線にしない。`--invalidate-forward` フラグは UT-TDD gate 機構として実装予定 (現状 stub)。type 別成果物ファイル命名 (R0-evidence-map.yaml 等) は source process reference §type 別成果物を踏襲しつつ UT-TDD `.ut-tdd/reverse/` パスへ格納予定。
+翻案注記: HELIX route は reverse workflow を `ut-tdd reverse <type> R0..R4` として扱う。旧 source process command 名は現行導線にしない。`--invalidate-forward` フラグは HELIX gate 機構として実装予定 (現状 stub)。type 別成果物ファイル命名 (R0-evidence-map.yaml 等) は source process reference §type 別成果物を踏襲しつつ HELIX `.ut-tdd/reverse/` パスへ格納予定。
 
 ---
 

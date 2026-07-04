@@ -4,7 +4,7 @@ sub_doc: screen-list
 status: confirmed  # G2 freeze (PO サインオフ 2026-06-22、gate-design §2 G2=PASS)。本材料化 PLAN-L2-01 (15 画面)。③ pair=wireframe self (L2↔L10)。
 pair_artifact: docs/design/harness/L2-screen/wireframe.md  # mock が L2 設計群の③ペア (IMP-039/058)
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L10
 plan: docs/plans/PLAN-L2-01-screen-list.md
@@ -13,7 +13,7 @@ created: 2026-05-28
 updated: 2026-06-24
 ---
 
-## PLAN-L7-102 Review Back-Fill: 404 Path Safety
+## PLAN-L7-102 review back-fill（レビュー補完）: 404 path safety
 
 404 ページに表示する URL path は通常画面と同じ `escapeHtml` 経路を通す。未知 path はユーザー入力扱いとし、HTML として解釈しない。
 

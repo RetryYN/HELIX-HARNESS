@@ -1,5 +1,5 @@
 ---
-title: "HELIX L7 単体テスト設計 — pillar HC function contracts"
+title: "HELIX L7 単体テスト設計 — pillar HC 関数 contract"
 layer: L6
 executed_at_layer: L7
 artifact_type: test_design
@@ -13,7 +13,7 @@ related_l6: docs/design/helix/L6-function-design/pillar-function-design.md
 next_pair_freeze: L6
 ---
 
-# HELIX L7 単体テスト設計 — pillar HC function contracts
+# HELIX L7 単体テスト設計 — pillar HC 関数 contract
 
 本書は `pillar-function-design.md` の pair test-design である。L5 `HC-*` contract を L6 function contract
 として実装する際、各 `HU-PILLAR-*` が Red/Green の単体 oracle になる。
@@ -32,9 +32,9 @@ next_pair_freeze: L6
   `completion_claim_allowed=false` が unit oracle の期待動作であり、関数や CLI surface の一部実装だけで
   `confirmed_current` へ昇格しない。
 
-## §1 unit oracle trace
+## §1 単体 oracle trace 対応表
 
-| Oracle | L3 | HC | Target function | Expected behavior |
+| Oracle | L3 | HC | 対象関数 | 期待動作 |
 |--------|----|----|-----------------|-------------------|
 | HU-PILLAR-P0-01 | HR-FR-P0-01 | HC-P0 | `decideForwardReturn` | return/gap/version target のいずれも無い completion claim を reject |
 | HU-PILLAR-P0-02 | HR-FR-P0-02 | HC-P0 | `recordStopReasonEvidence` | cap/lock/Recovery stop reason を evidence に残し、空 reason を blocker 化 |
@@ -80,40 +80,40 @@ next_pair_freeze: L6
 | HU-PILLAR-NAC-02 | HR-NFR-AC-02 | HC-AC | `requireHostedSurfacePreflight` / `ut-tdd guard preflight --json` | hosted/API edit は hook non-enforcement ack、git status、target path、work-guard decision、preflight command、audit evidence 欠落で reject。work-guard block を pass に変換しない |
 | HU-PILLAR-NAC-03 | HR-NFR-AC-03 | HC-AC | `registerDeferredSurface` / `validateAdapterParityMap` | PLAN/CLI/harness DB/dry-run path を SSoT にし、provider API direct path を required にしない。Codex `spawn_agent|spawn_agents_on_csv` は required agent-guard matcher として検証し、missing/unknown `agent_type`、direct model override、task body 欠落、bulk spawn を fail-close する |
 
-## §1.1 upstream hardening and provenance oracles
+## §1.1 upstream hardening と provenance oracle 対応表
 
-| Oracle | Upstream | HC | Target function | Expected behavior |
+| Oracle | Upstream | HC | 対象関数 | 期待動作 |
 |--------|----------|----|-----------------|-------------------|
-| HU-PILLAR-DIST-01 | PLAN-L7-190 | HC-P6 | `projectRuntimeAdapterAssets` / `buildCleanDistributionPlan` | consumer package includes `.claude/agents`, `.claude/commands`, `.codex/hooks.json`, `.codex/config.toml`; excludes dogfood `.claude/`, `.codex/`, `.ut-tdd/`, design, plan, `src/web/`, web 専用テスト, and web runtime state; clean artifact still passes core CLI `status` / `distribution plan` / `typecheck`; rollback metadata lists managed runtime assets |
-| HU-PILLAR-CONFIG-01 | PLAN-L7-196 | HC-AC | `validateRuntimeConfigHardening` | `max_parallel===MAX_TEAM_PARALLEL` is accepted, `max_parallel>MAX_TEAM_PARALLEL` is rejected, consumer matcher matrix covers standard `Task` and environment-specific `Agent` without changing dogfood matcher |
-| HU-PILLAR-PROV-01 | PLAN-L7-193 | HC-P3 | `classifyVerificationEvidenceProfile` | `test_runs` runtime evidence must come from sanitized session-log verification Bash events with non-empty `session_id`; generic Bash and review projection do not close works/fired/used |
-| HU-PILLAR-PROV-02 | PLAN-L7-199 | HC-P3 | `classifyVerificationEvidenceProfile` | `model_runs` runtime provenance requires Claude/Codex JSONL token telemetry; deterministic rebuild projection is trace-support only |
-| HU-PILLAR-PROV-03 | PLAN-L7-200 | HC-P3 | `classifyVerificationEvidenceProfile` | `guardrail_decisions` runtime provenance requires `forced_stop` session events with `guardrail=forced-stop` and non-empty `session_id`; ordinary tool_use does not fabricate guardrail evidence |
-| HU-PILLAR-PROV-04 | PLAN-L7-201 | HC-P3 | `classifyVerificationEvidenceProfile` | `skill_invocations` runtime provenance requires durable `Bash (skill)` session events with `source=runtime-hook:skill-suggest`; prose mention or generic Bash is rejected |
+| HU-PILLAR-DIST-01 | PLAN-L7-190 | HC-P6 | `projectRuntimeAdapterAssets` / `buildCleanDistributionPlan` | consumer package は `.claude/agents`、`.claude/commands`、`.codex/hooks.json`、`.codex/config.toml` を含む。dogfood `.claude/`、`.codex/`、`.ut-tdd/`、design、plan、`src/web/`、web 専用テスト、web runtime state は除外する。clean artifact は core CLI `status` / `distribution plan` / `typecheck` を引き続き pass し、rollback metadata は managed runtime assets を列挙する |
+| HU-PILLAR-CONFIG-01 | PLAN-L7-196 | HC-AC | `validateRuntimeConfigHardening` | `max_parallel===MAX_TEAM_PARALLEL` は accept し、`max_parallel>MAX_TEAM_PARALLEL` は reject する。consumer matcher matrix は dogfood matcher を変えずに標準 `Task` と environment-specific `Agent` を扱う |
+| HU-PILLAR-PROV-01 | PLAN-L7-193 | HC-P3 | `classifyVerificationEvidenceProfile` | `test_runs` runtime evidence は空でない `session_id` を持つ sanitized session-log verification Bash event から来なければならない。generic Bash と review projection は `works` / `fired` / `used` を close しない |
+| HU-PILLAR-PROV-02 | PLAN-L7-199 | HC-P3 | `classifyVerificationEvidenceProfile` | `model_runs` runtime provenance は Claude/Codex JSONL token telemetry を要求する。deterministic rebuild projection は trace-support のみとする |
+| HU-PILLAR-PROV-03 | PLAN-L7-200 | HC-P3 | `classifyVerificationEvidenceProfile` | `guardrail_decisions` runtime provenance は `guardrail=forced-stop` と空でない `session_id` を持つ `forced_stop` session event を要求する。通常の `tool_use` から guardrail evidence を作らない |
+| HU-PILLAR-PROV-04 | PLAN-L7-201 | HC-P3 | `classifyVerificationEvidenceProfile` | `skill_invocations` runtime provenance は `source=runtime-hook:skill-suggest` を持つ durable `Bash (skill)` session event を要求する。prose mention や generic Bash は reject する |
 
-## §2 family-level negative tests
+## §2 family 単位の negative test
 
-| Family | Negative oracle |
+| Family | negative oracle |
 |--------|-----------------|
-| HC-P0 | completion claim without Forward return, gap-only, or version target returns `blocker` |
-| HC-P1 | stale lock, missing next_action, budget overrun, or parked version-up activation without concrete action-binding approval returns `idle` / `handover` / `blocker` / plan-only packet, never `dispatch` / `apply` |
-| HC-P2 | unknown surface and over-budget loop cannot produce pass evidence |
-| HC-P2/P3 | pair-agent TDD route cannot start with implementation, cannot proceed without Red/oracle evidence plus a Red test command with non-zero exit, cannot let the light agent close, cannot treat mixed consultation plus implementation evidence as pass, cannot accept smart review output without an explicit verdict, cannot continue a pending verdict without a continuation directive, cannot treat review findings alone as fix instructions, cannot accept pass without Green/review evidence, cannot drop smart review fix instructions between cycles, cannot lose requested run evidence, cannot accept saved evidence whose `phase_spans` violate the smart_test_author -> light_implementation -> smart_review order, cannot ignore task difficulty when deriving the fix-cycle budget, cannot hide max-fix-cycle exhaustion, and cannot execute the smart T0 review agent without explicit approval |
-| HC-P3 | projection-only telemetry cannot close `works` / `fired` / `used` claims |
-| HC-P4 | destructive repair without approval returns `human_required` |
-| HC-P6 | GitHub rules/apply plan and identifier rename cutover packet are emit-only unless approval evidence is action-bound; `rename plan` never applies |
-| HC-P7 | per-agent memory silo is not accepted as shared SSoT |
-| HC-P8 | untrusted external text is never copied into executable instruction fields |
-| HC-P9 | stale projection or missing layer gate keeps `ConvergenceStatus` non-green |
-| HC-AC | Codex hosted/API surface cannot be classified as hook-covered without preflight evidence |
-| G-SF | semantic frontier records with `frontier_pending_decision`, `parked_future_version`, or `approval_gated_cutover` cannot allow whole-program completion; `outstanding.semanticFeatureFrontierRecords[]` must expose the same classification vocabulary in status/handover JSON; live records for `design_bottomup_mode`, `asset_progress_visualization`, `serverless_readonly_share`, and `name_cutover` must match the L3 §0.2 meaning-based feature list and cite that L3 source in `sourcePaths[]`; terminal decision records cannot close without current source ledger freshness, source status delta, adoption decision delta, and workflow route impact |
+| HC-P0 | Forward return、gap-only、version target のいずれも無い completion claim は `blocker` を返す |
+| HC-P1 | stale lock、`next_action` 欠落、budget overrun、または concrete action-binding approval を伴わない parked version-up activation は `idle` / `handover` / `blocker` / plan-only packet を返し、`dispatch` / `apply` にはしない |
+| HC-P2 | unknown surface と over-budget loop は pass evidence を生成できない |
+| HC-P2/P3 | pair-agent TDD route は implementation から開始できない。Red/oracle evidence と non-zero exit の Red test command が無ければ進めない。light agent に close させない。consultation と implementation evidence が混在する出力を pass と扱わない。明示 verdict の無い smart review output を accept しない。continuation directive の無い pending verdict を continue しない。review finding だけを fix instruction と扱わない。Green/review evidence の無い pass を accept しない。cycle 間で smart review fix instruction を落とさない。要求された run evidence を失わない。`phase_spans` が smart_test_author -> light_implementation -> smart_review 順に違反する saved evidence を accept しない。fix-cycle budget 算出時に task difficulty を無視しない。max-fix-cycle exhaustion を隠さない。explicit approval なしに smart T0 review agent を実行しない |
+| HC-P3 | `projection-only telemetry cannot close` を oracle phrase とし、projection-only telemetry は `works` / `fired` / `used` claim を close できない |
+| HC-P4 | approval の無い destructive repair は `human_required` を返す |
+| HC-P6 | GitHub rules/apply plan と identifier rename cutover packet は approval evidence が action-bound でない限り emit-only とする。`rename plan` は apply しない |
+| HC-P7 | per-agent memory silo は shared SSoT として accept しない |
+| HC-P8 | untrusted external text を executable instruction field へ copy しない |
+| HC-P9 | stale projection または layer gate 欠落は `ConvergenceStatus` を non-green に保つ |
+| HC-AC | Codex hosted/API surface は preflight evidence なしに hook-covered と分類できない |
+| G-SF | semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。`design_bottomup_mode`、`asset_progress_visualization`、`serverless_readonly_share`、`name_cutover` の live record は L3 §0.2 の meaning-based feature list と一致し、その L3 source を `sourcePaths[]` で参照する。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
 
-## §3 verification strategy
+## §3 検証方針
 
-Unit tests prove function-level DbC. Runtime behavior claims still require L7.5 RUN & Debug evidence:
+Unit test は function-level DbC を証明する。runtime behavior claim には引き続き L7.5 RUN & Debug evidence が必要である。
 
 - `HU-PILLAR-P2-*`, `HU-PILLAR-P6-*`, `HU-PILLAR-P7-*`, `HU-PILLAR-P8-*`, `HU-PILLAR-P9-*`, and `HU-PILLAR-NAC-*`
-  must attach runtime/projection/review evidence refs according to the function output.
-- `works` / `used` / `fired` acceptance requires real `session_id`, `source`, runtime surface, timestamp,
-  correlation id, and evidence path.
-- projection-only rows remain trace-support evidence and cannot close runtime acceptance by themselves.
+  は function output に応じて runtime/projection/review evidence refs を添付する。
+- `works` / `used` / `fired` acceptance は実在する `session_id`、`source`、runtime surface、timestamp、
+  correlation id、evidence path を要求する。
+- projection-only row は trace-support evidence に留まり、それ単体では runtime acceptance を close できない。

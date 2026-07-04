@@ -126,7 +126,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 
 | Recovery PLAN | trigger | 対象 | 状態 |
 |---|---|---|---|
-| [PLAN-RECOVERY-01](../../plans/PLAN-RECOVERY-01-internal-asset-recovery.md) | (a) 指示無視 (内部資産を UT-TDD 用に作り替える指示の不履行) | 内部資産 FR 前提抜け → reopen=L1 | **closed (completed、2026-06-01)**: Step 1-5 完遂。top-down 修正 = L1 BR-22 + FR-L1-46〜49 + L3 carry + L4 設計増分 (ADR-004 / PLAN-L4-10〜13) + L9 ST-ASSET。self-review CONDITIONAL PASS (Critical=0) → G1/G3 再 readiness 機械確認 (孤児0/66 pass) → PO close signoff → Forward fullback |
+| [PLAN-RECOVERY-01](../../plans/PLAN-RECOVERY-01-internal-asset-recovery.md) | (a) 指示無視 (内部資産を HELIX 用に作り替える指示の不履行) | 内部資産 FR 前提抜け → reopen=L1 | **closed (completed、2026-06-01)**: Step 1-5 完遂。top-down 修正 = L1 BR-22 + FR-L1-46〜49 + L3 carry + L4 設計増分 (ADR-004 / PLAN-L4-10〜13) + L9 ST-ASSET。self-review CONDITIONAL PASS (Critical=0) → G1/G3 再 readiness 機械確認 (孤児0/66 pass) → PO close signoff → Forward fullback |
 | [PLAN-RECOVERY-02](../../plans/PLAN-RECOVERY-02-vmodel-canonical.md) | (c) 認識ずれ (V-model 定義の前提欠落) | 正規式モデル収束 → reopen=L0-L3 | **completed (2026-06-04)**: 正規式 (L0⇔価値検証 / 谷=3点合算 / 右腕=データ実在性) へ収束、docs→workflow→assets 整合 (非破壊) |
 | [PLAN-RECOVERY-03](../../plans/PLAN-RECOVERY-03-codex-l7-overstep.md) | (b) 逸脱/オーバーステップ + (d) agent_runaway 相当 | Codex の未承認 L7 実装着手 → reopen=L6/L7 process boundary | **confirmed (2026-06-09)**: `src/lint/relation-graph.ts` の未承認追加は撤去済み。PLAN-REVERSE-31 で requirements §6.8.8 / backlog / Recovery 台帳へ fullback。relation graph 本体は A-124 / IMP-118..120 の future L6/L7 scope に戻す |
 
@@ -143,7 +143,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | forced_stop (強制停止) | **interrupt とは別概念** (命名衝突させない)。forced_stop = ユーザー強制停止 (ESC/Ctrl+C/Stop) = AI やらかしの高 severity signal → Recovery (`agent_runaway` 級、concept §2.6.1)。上記 interrupt は「要件/設計の割込み」、forced_stop は「逸脱 signal」。検出は dangling-turn 推定 (PLAN-L6-04/L7-02、専用 hook 不在 = anthropics/claude-code #9516)。間違え系 (ユーザー誤操作) は Haiku 分類で除外し記録しない |
 | docs/governance/recovery-workflow.md | **統合済 → superseded** (IMP-060、2026-06-04)。トリガー分類 (§2) / 本線 5-step (§2 収束機構) / reopen 可変表 / 適用記録 (§5.1) を本 doc へ移管完了。**本 doc が Recovery の単一正本**。recovery-workflow.md は historical (冒頭 banner) |
 
-翻案注記: source process reference の `cutover_orchestrator` / `stop-hook` は UT-TDD の `.claude/hooks/agent-guard.ts` + `ut-tdd` CLI hook 体系に対応。`agent_mandatory` / `lock` 機構は UT-TDD guard + gate として実装予定 (現状 agent-guard のみ有効化済)。
+翻案注記: source process reference の `cutover_orchestrator` / `stop-hook` は HELIX の `.claude/hooks/agent-guard.ts` + `ut-tdd` CLI hook 体系に対応。`agent_mandatory` / `lock` 機構は HELIX guard + gate として実装予定 (現状 agent-guard のみ有効化済)。
 
 ---
 

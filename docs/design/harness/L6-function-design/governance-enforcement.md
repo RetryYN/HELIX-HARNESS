@@ -5,7 +5,7 @@ status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 parent_doc: docs/plans/PLAN-L6-09-governance-enforcement.md
 plan: docs/plans/PLAN-L6-09-governance-enforcement.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 created: 2026-06-04
 ---
 
@@ -21,7 +21,7 @@ created: 2026-06-04
 
 ## §2 関数仕様
 
-### §2.1 scrum-reverse lint (`src/lint/scrum-reverse.ts`)
+### §2.1 scrum-reverse lint（scrum reverse 整合 lint、`src/lint/scrum-reverse.ts`）
 
 - `analyzeScrumReverse(plans): { pocOrphans, badReverseRefs, ok }`。
 - **pocOrphans**: `kind=poc` ∧ `decision_outcome=confirmed` ∧ `promotion_strategy ∉ {redesign}` ∧ それを requires/references する `kind=reverse` PLAN が無い。→ §1.2「confirmed poc は reverse PLAN を起こす」違反 (IMP-064)。redesign は throwaway 再設計で Forward 再実装のため Reverse 不要 (concept §10.2、例 DISCOVERY-02)。
@@ -34,28 +34,28 @@ created: 2026-06-04
 - `checkBackfillResult(repoRoot): { messages, ok }` を追加し `runDoctor.ok = backfill.ok ∧ scrumRev.ok ∧ propagation.ok` に連動。handover/agent-slots は warn-only (鮮度/運用 surface、ok を落とさない)。
 - CI fail-close は既存 `tests/backfill-pairing.test.ts U-BACKFILL-006` (実 repo ガード) が担う。doctor.ok 連動は local `ut-tdd doctor` の parity。
 
-### §2.3 propagation lint (`src/lint/propagation.ts`)
+### §2.3 propagation lint（伝播整合 lint、`src/lint/propagation.ts`）
 
 - `analyzePropagation(conceptText, requirementsText): { conceptOnly, requirementsOnly, ok }`。
 - 両 doc の `| signal | mode |` ヘッダを持つ routing テーブル**だけ**から signal 列 token を抽出し集合一致を要求 (`extractSignals`)。他テーブル (decision_outcome/reverse_type/kind) は巻き込まない。interrupt 行は subtype 表記が非対称ゆえ除外。
 - `ok = conceptOnly=0 ∧ requirementsOnly=0`。concept §2.6 (上位 narrative) ⇔ requirements §7.8.1 (機械 routing SSoT) の signal 語彙ドリフトを検出 (IMP-065)。
 
-### §2.4 FR gate/review aliases
+### §2.4 FR gate/review aliases（FR gate / review alias の対応）
 
-These aliases bind FR-L1-05 and FR-L1-17 to this addendum so the FR coverage matrix cannot point to prose-only governance scope.
+この alias は FR-L1-05 と FR-L1-17 を本 addendum に結び付け、FR coverage matrix が prose-only governance scope を指して済ませる状態を防ぐ。
 
-| Function | Signature | pre | post | invariant | oracle |
+| 関数 | Signature | pre | post | invariant | oracle |
 |---|---|---|---|---|---|
-| `evaluateGateReview` | evaluateGateReview(input: GateReviewInput, deps: GateReviewDeps) => GateReviewResult | gate id, execution mode, review kind, worker model, and reviewer/checklist evidence are supplied. | returns pass only for valid cross-agent, intra-runtime, or human review evidence by mode. | naive self-review and same-model approval are never valid judgment-gate evidence. | U-FR-L1-05 |
-| `checkReviewEvidence` | checkReviewEvidence(input: ReviewEvidenceInput, deps: ReviewEvidenceDeps) => ReviewEvidenceResult | target PLAN frontmatter and current test/doctor evidence are supplied. | returns violations for missing review evidence, invalid review tier, or test-after-review ordering. | confirmed/completed design or implementation PLANs cannot silently skip review evidence. | U-FR-L1-17 |
-| `analyzeRuleDrift` | analyzeRuleDrift(docs: RuleAdapterDocs) => RuleDriftResult | AGENTS / CLAUDE adapter docs are supplied as text. | returns missing shared markers and forbidden legacy adapter markers for old runtime command routing, env prefixes, local state paths, and agent names. | adapter docs cannot silently reintroduce legacy runtime routing while marker parity remains green. | U-RDRIFT-001..004 |
+| `evaluateGateReview` | evaluateGateReview(input: GateReviewInput, deps: GateReviewDeps) => GateReviewResult | gate id、execution mode、review kind、worker model、reviewer/checklist evidence が渡される。 | mode ごとに有効な cross-agent / intra-runtime / human review evidence だけを pass として返す。 | naive self-review と same-model approval は judgment-gate evidence として常に無効である。 | U-FR-L1-05 |
+| `checkReviewEvidence` | checkReviewEvidence(input: ReviewEvidenceInput, deps: ReviewEvidenceDeps) => ReviewEvidenceResult | target PLAN frontmatter と現在の test/doctor evidence が渡される。 | review evidence 欠落、invalid review tier、test-after-review ordering の違反を返す。 | confirmed/completed の design または implementation PLAN は review evidence を黙って省略できない。 | U-FR-L1-17 |
+| `analyzeRuleDrift` | analyzeRuleDrift(docs: RuleAdapterDocs) => RuleDriftResult | AGENTS / CLAUDE adapter docs が text として渡される。 | old runtime command routing、env prefix、local state path、agent name について、共有 marker 欠落と禁止 legacy adapter marker を返す。 | adapter docs は marker parity が green のまま legacy runtime routing を静かに再導入できない。 | U-RDRIFT-001..004 |
 
-Type/pseudocode substance:
+Type/pseudocode の実質:
 
-| function | type body | pseudocode / implementation_state |
+| 関数 | type body | pseudocode / implementation_state |
 |---|---|---|
-| `evaluateGateReview` | `GateReviewInput { gate_id; execution_mode; review_kind; worker_model; reviewer_model?; human_signoff?; checklist_evidence[] } -> GateReviewResult { ok; violations[]; accepted_tier }` | implemented by `src/gate/review-tier.ts`; pseudocode = load gate policy, reject same-model self approval, accept cross-agent/intra-runtime/human only when required evidence exists |
-| `checkReviewEvidence` | `ReviewEvidenceInput { plan_path; frontmatter; tests_green_at?; reviewed_at?; doctor_ok? } -> ReviewEvidenceResult { ok; missing[]; stale_approval[]; ordering_violations[] }` | implemented by `src/lint/review-evidence.ts`; pseudocode = parse PLAN review_evidence, require reviewer/verdict for confirmed/completed, reject draft approve residue and test-after-review ordering |
+| `evaluateGateReview` | `GateReviewInput { gate_id; execution_mode; review_kind; worker_model; reviewer_model?; human_signoff?; checklist_evidence[] } -> GateReviewResult { ok; violations[]; accepted_tier }` | `src/gate/review-tier.ts` で実装済み。pseudocode = gate policy を読み、same-model self approval を拒否し、required evidence がある場合だけ cross-agent / intra-runtime / human を受理する |
+| `checkReviewEvidence` | `ReviewEvidenceInput { plan_path; frontmatter; tests_green_at?; reviewed_at?; doctor_ok? } -> ReviewEvidenceResult { ok; missing[]; stale_approval[]; ordering_violations[] }` | `src/lint/review-evidence.ts` で実装済み。pseudocode = PLAN review_evidence を parse し、confirmed/completed では reviewer/verdict を必須にし、draft approve residue と test-after-review ordering を拒否する |
 
 ## §3 統合点
 

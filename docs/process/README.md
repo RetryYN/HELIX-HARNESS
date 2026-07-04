@@ -2,7 +2,7 @@
 
 # docs/process — 工程 (L0-L14) + 駆動モデル定義
 
-ここは UT-TDD の **「どう開発を進めるか」の方法論定義**を置く場所 (repository-structure §2)。harness 自身の機能要件 (docs/design / src) とは別物。
+ここは HELIX の **「どう開発を進めるか」の方法論定義**を置く場所 (repository-structure §2)。harness 自身の機能要件 (docs/design / src) とは別物。
 
 > **これは何を読めば分かるか (PO 向け入口)**: 「工程 (V-model L0-L14)」と「駆動モデル (mode)」と「ゲート」の 3 つで開発の進め方が決まる。下の §1 用語 → §2 読む順序 の順に読めば全体像がつかめる。
 

@@ -16,7 +16,7 @@ related_l5: docs/design/helix/L5-detail/upstream-substance-gap.md
 先行 A-146 の 8 findings を、HELIX で実装可能な関数契約へ降ろす。ここでは signature / DbC /
 oracle を固定し、実装は後続 L7+ の対象とする。
 
-## §1 function contracts
+## §1 関数契約
 
 | 関数 | signature | DbC | oracle |
 |------|-----------|-----|--------|
@@ -30,7 +30,7 @@ oracle を固定し、実装は後続 L7+ の対象とする。
 | `validateDriveEntryMatrix` | `(input: DriveEntryInput, matrix: DriveEntryMatrix) => DriveEntryDecision` | `signal -> mode` と `kind x drive` の両方が一致した場合だけ auto route 可。未知組合せは fail-close/defer | U-UPSTREAM-008 |
 | `verifyRuntimeMatcherEvidence` | `(input: RuntimeMatcherEvidenceInput) => RuntimeMatcherCompatibility` | target runtime の tool event と matcher 発火 evidence が揃う場合だけ covered。期待だけなら unverified | U-UPSTREAM-009 |
 
-## §2 type sketch
+## §2 型スケッチ
 
 ```ts
 type UpstreamFindingId =
@@ -52,16 +52,17 @@ type MatcherCompatibility = "covered" | "unverified" | "incompatible";
 type RuntimeMatcherCompatibility = MatcherCompatibility;
 ```
 
-## §3 safety rules
+## §3 安全ルール
 
-- A-146 adoption cannot close by prose presence alone. Each `HU-C*` contract needs an oracle in
-  `docs/test-design/helix/upstream-substance-gap.md`.
-- External/publication work remains human-gated. This L6 design only lowers the upstream findings into
-  HELIX design contracts.
-- Findings already generally covered by pillar docs remain separately traceable through `HU-FR-*`, so future
-  completion audits can prove A-146 adoption directly instead of inferring it from broad pillar requirements.
+- A-146 adoption は prose が存在するだけでは close できない。各 `HU-C*` contract は
+  `docs/test-design/helix/upstream-substance-gap.md` に oracle を持つ必要がある。
+- External/publication work は引き続き human-gated とする。この L6 設計は upstream findings を
+  HELIX design contracts へ降ろすだけである。
+<!-- Findings already generally covered by pillar docs remain separately traceable -->
+- pillar docs で概ね covered な findings も `HU-FR-*` 経由で別個に trace 可能なまま残す。これにより将来の
+  completion audits は、広い pillar requirements から推論せず A-146 adoption を直接証明できる。
 
-## §4 verification strategy adoption (upstream PLAN-L7-188)
+## §4 verification strategy 採用 (upstream PLAN-L7-188)
 
 上流 `PLAN-L7-188-verification-strategy-design-time-logging` の趣旨を HELIX へ採用する。ここでは
 L7 実装を起こさず、L6 の function contract と paired oracle だけを固定する。
@@ -82,11 +83,12 @@ type RuntimeVerificationClass =
 type RunDebugObligationKind = "required" | "not_required" | "blocked";
 ```
 
-Safety rule: L7 unit green is necessary for implementation correctness, but runtime behavior acceptance requires
-L7.5 RUN & Debug evidence before trace-freeze/review/accept. This prevents projection rows from replacing real
-verification evidence.
+安全ルール: L7 unit green は実装正当性に必要だが、runtime behavior の acceptance には
+trace-freeze/review/accept の前に L7.5 RUN & Debug evidence が必要である。これにより projection rows が
+実際の verification evidence を置き換えることを防ぐ。
 
-## §5 runtime verification log design
+<!-- runtime verification log design -->
+## §5 runtime verification log 設計
 
 RUN & Debug の実証拠は後付けメモではなく、L6 設計時点でログ構造を予約する。ログは保守性のために
 「何が動いたか」「どの設計/テストに対応するか」「なぜ accept できるか」を結合できる形にする。
@@ -114,5 +116,5 @@ interface RuntimeVerificationLogEvent {
 | `validateRuntimeVerificationLogCompleteness` | `(event: RuntimeVerificationLogEvent) => RuntimeLogCompleteness` | `works` / `used` / `fired` claim は空 session_id、projection source、evidence_path 欠落、correlation_id 欠落を reject。`blocked` は hosted-preflight でも可だが blocked reason evidence を要求する。 | U-VERIFYSTRAT-005 |
 | `appendRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput, deps: RuntimeVerificationLogDeps, relPath?: string) => RuntimeVerificationLogWrite` | completeness pass 後にだけ `.ut-tdd/evidence/run-debug/runtime-verification.jsonl` へ 1 JSONL row を append する。projection source、invalid surface、secret-like 値、runtime closure link 欠落は write 前に reject。 | U-VERIFYSTRAT-006 |
 
-Operational note: these log events are append-only evidence inputs for later projection. Projection may summarize them,
-but the original runtime log event remains the acceptance source of truth.
+運用メモ: これらの log events は後続 projection のための append-only evidence inputs である。
+Projection はそれらを要約してよいが、元の runtime log event が acceptance source of truth として残る。

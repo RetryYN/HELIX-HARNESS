@@ -3,22 +3,22 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 plan: docs/plans/PLAN-L6-06-handover-mechanism.md
 ---
 
-> **L6 contract marker**: `runHandover(input: HandoverInput) => HandoverResult`, `readPointer(deps) => HandoverPointer | null`, and `checkHandoverDiscipline(input: HandoverDisciplineInput) => HandoverDisciplineResult` are the unit-test-granularity contracts. DbC pre/post/invariant maps digest, CURRENT.json, status preflight, and stale/drift checks to U-HOVER-001..020.
+> **L6 contract marker**: `runHandover(input: HandoverInput) => HandoverResult`, `readPointer(deps) => HandoverPointer | null`, `checkHandoverDiscipline(input: HandoverDisciplineInput) => HandoverDisciplineResult` は unit-test-granularity contracts。DbC pre/post/invariant は digest、CURRENT.json、status preflight、stale/drift checks を U-HOVER-001..020 へ対応付ける。
 
 <!--
 ① 設計 (L6 機能設計) — handover 記録機構 (session-log PLAN digest → handover 生成 + plan_id 活性化)。
-PLAN: PLAN-L6-06-handover-mechanism (add-design)。pair (③): docs/test-design/harness/L7-unit-test-design.md §1.8 U-HOVER。
+PLAN: PLAN-L6-06-handover-mechanism (add-design)。ペア (③): docs/test-design/harness/L7-unit-test-design.md §1.8 U-HOVER。
 実装 (②): src/handover/index.ts + src/cli (ut-tdd handover / ut-tdd plan use) + src/runtime/session-log.ts 限定 amendment (PLAN-L7-04-handover-mechanism, add-impl, 後続)。
 土台思想: src/runtime/session-log.ts (純関数分離 / sanitize / never-throw) + src/setup/index.ts (deps 注入 / dry-run 非破壊 / state SSoT) を踏襲。
 上位整合: 要件 §6.8.5 (PLAN 完了時 handover 必須) / §6.8.6 (進捗 3 層 = state DB + log + handover、digest=結節点) / §5.3 pre-push stale (後段 Reverse で back-fill + CURRENT.md/.json 表記不整合是正)。
 -->
 
-# UT-TDD Agent Harness — L6 機能設計: handover 記録機構 (digest → handover 生成 + plan_id 活性化)
+# HELIX Agent Harness — L6 機能設計: handover 記録機構 (digest → handover 生成 + plan_id 活性化)
 
 ## §1 概要
 
@@ -109,7 +109,7 @@ interface HandoverResult {
 
 ### §2.3 関数 signature / DbC
 
-| 関数 | signature | DbC |
+| 関数 | signature（署名） | DbC |
 |------|-----------|-----|
 | `resolveHandoverScope` | `(deps: { repoRoot: string; readText; listDir }) => { active_plan: string\|null; digests: PlanDigestRef[] }` | **never throws**。`.ut-tdd/state/current-plan` を読み active_plan を決定 / `.ut-tdd/logs/plan/` を listDir し `*.digest.json` を parse / 不在・壊れ JSON は skip / 何も無ければ `{active_plan:null, digests:[]}`。**`listDir` は本 deps では必須** (session-log の optional `listDir?` と異なり handover は走査が責務) |
 | `buildPointer` | `(input: { scope; latestDoc: string\|null; status: HandoverStatus; now: string }) => HandoverPointer` | **純関数**。source coding rule の max 3 params に従い object input を受ける。**digest_summary は `scope.digests` が非空なら active_plan の null/非 null に関わらず集計** (`commits.length`/`files_touched.length`/`failures.length` 合算) / `scope.digests` が空のときのみ `digest_summary=null` / `active_plan` は scope の値をそのまま透過 (null 可) / `updated_at=now`。**`digest_summary=null` は「digest 不在」を意味し、「active_plan 未設定」とは独立** (両者を混同しない、CLAUDE.md ワークフローの誤読防止) |
@@ -143,7 +143,7 @@ if (isCommit) {
 
 ### §2.4 ストレージ / 配置 / hook
 
-| 対象 | path | tracked? | 役割 |
+| 対象 | path（配置） | tracked?（追跡対象） | 役割 |
 |------|------|----------|------|
 | 機械ポインタ | `.ut-tdd/handover/CURRENT.json` | gitignored | active PLAN / status / 最新 doc / digest 要約 / outstanding / completion decision packet (機械可読 SSoT)。CLAUDE.md ワークフロー参照先 |
 | チーム記録 | `docs/handover/session-handover-<date>[suffix].md` | tracked | 人間判断 durable (既存運用を scaffold で augment) |
@@ -218,7 +218,7 @@ oracle U-HOVER-015 が 4 経路を fail-close 検査。
 
 > 本機構を実 session で運用したところ 5 つの品質 gap (enforcement gap 含む) を検出 (PO 指摘「ハンドオーバーってこういう時に入らないの?」)。柱 2 (doc×機械厳格化) / 柱 3 (自動化で state 管理) に照らし、いずれも機械担保を増分する。
 
-| gap | 現象 | 機能設計 (機械担保) |
+| gap（差分） | 現象 | 機能設計 (機械担保) |
 |---|---|---|
 | **① 手書き bypass 検知不可** | `ut-tdd handover` を経ず手書きで markdown / CURRENT.json を更新しても discipline が素通り | `HandoverPointer.generated_by` 署名 + `doc_entry_count` を runHandover が刻む。`checkHandoverBypass(deps)` が ① 署名欠落 (手書き pointer) / ② md entry 数 > 記録値 (手書き追記) を surface (presence/stale/drift の `checkHandoverDiscipline` と責務分離) |
 | **② active-plan stale** | current-plan marker に時刻が無く、古い PLAN を active と誤解決 (例 L4-06) | current-plan 2 行目に `updated_at` を刻む (1 行目=plan_id は後方互換)。`activePlanUpdatedAt` / `activePlanStale` で鮮度判定し、checkHandoverDiscipline が「marker stale → 解決値が最新作業と乖離の恐れ」を surface |

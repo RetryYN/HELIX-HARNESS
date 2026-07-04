@@ -3,16 +3,16 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 next_pair_freeze: L7
 created: 2026-06-05
 plan: docs/plans/PLAN-L6-12-review-evidence.md
 ---
 
-> **L6 contract marker**: `analyzeReviewEvidence(input: ReviewEvidenceInput) => ReviewEvidenceResult` is the unit-test-granularity contract. DbC pre/post/invariant maps review evidence presence and tier checks to U-REVIEW-001..008.
+> **L6 contract marker**: `analyzeReviewEvidence(input: ReviewEvidenceInput) => ReviewEvidenceResult` は unit-test-granularity contract。DbC pre/post/invariant は review evidence presence と tier checks を U-REVIEW-001..008 へ対応付ける。
 
 
-# review-evidence lint — 機能設計 (① / PLAN-L6-12、IMP-071)
+# review-evidence lint — 機能設計（レビュー証跡検査、① / PLAN-L6-12、IMP-071）
 
 > **V-pair**: `pair_artifact = L7-unit-test-design.md §1.15` (L6↔L7)。DbC 契約から単体テスト oracle (U-REVIEW-*) を導出。
 
@@ -22,7 +22,7 @@ plan: docs/plans/PLAN-L6-12-review-evidence.md
 
 **スコープ外**: review の中身の質判定 (人間/agent の責務)。本 lint は「review 前置が記録されたか」の presence のみを機械保証する。
 
-## §1 schema: review_evidence (frontmatter)
+## §1 schema: review_evidence (frontmatter 定義)
 
 `src/schema/frontmatter.ts` に optional array で追加。1 PLAN に複数 entry (初回 review + freeze 後の増分追補) を append する。
 
@@ -50,7 +50,7 @@ analyzeReviewEvidence(plans: ParsedReviewPlan[]) -> { missing, ok }
 - **Postcondition**: `missing` = 対象 kind × 対象 status × `hasEvidence=false` の {plan_id, kind} 群。`ok = missing.length===0`。
 - **hasReviewEvidence(content)**: `review_evidence:` ブロック直後に `- reviewer:` entry が ≥1 ある presence のみ検出 (shape 検証は zod frontmatterSchema が担う、二重実装回避)。
 
-## §3 I/O loader + messages
+## §3 I/O loader + messages（読取とメッセージ）
 
 - `loadReviewPlans(repoRoot)`: `docs/plans/` を flat 列挙し **`.md` かつ `PLAN-` prefix** のみ対象 (サブディレクトリ archive/_template はディレクトリエントリ=拡張子なしで除外 + prefix ガードで二重防御)、`parseReviewPlan` で {plan_id, kind, status, hasEvidence} に。
 - `reviewEvidenceMessages(result)`: missing 0 → `"OK"` / missing あり → 件数 + plan_id 列 + 「review_evidence に reviewer/review_kind/verdict を記録」。
@@ -69,7 +69,7 @@ analyzeReviewEvidence(plans: ParsedReviewPlan[]) -> { missing, ok }
 - **backfill-pairing** (impl⇔Reverse / glossary) = 「設計へ戻したか」。**review-evidence** = 「review 前置を通したか」。検査軸が直交、重複なし。
 - **pair-freeze** (design⇔test-design) = ペア存在。review-evidence は review 規律。別関心。
 
-## §7 carry
+## §7 carry（残課題）
 
 > back-fill (missing 0) と hard 化は 2026-06-05 完了 (§4/§5 に反映済)。残 carry:
 

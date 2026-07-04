@@ -5,7 +5,7 @@ artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L3-functional/
 parent_doc: docs/design/harness/L3-functional/README.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 related_l3_functional: docs/design/harness/L3-functional/functional-requirements.md
 related_l3_business: docs/design/harness/L3-functional/business-detail.md
 related_l3_nfr: docs/design/harness/L3-functional/nfr-grade.md
@@ -15,7 +15,7 @@ created: 2026-05-28
 updated: 2026-06-02
 ---
 
-# UT-TDD Agent Harness — L3 受入テスト設計 (④ / AT-*)
+# HELIX Agent Harness — L3 受入テスト設計 (④ / AT-*)
 
 > **layer (作成層 = V-pair key)**: L3 (要件) / **executed_at_layer (実施層)**: L12 (受入) / **artifact**: ④ 受入テスト設計 (V-model 右、② L3 全 sub-doc と対)
 > **pair (V-model L3↔L12)**: `docs/design/harness/L3-functional/{functional-requirements,business-detail,nfr-grade}.md` 3 sub-doc 全体 ↔ 本書 1 doc
@@ -33,7 +33,7 @@ updated: 2026-06-02
 
 ## §1 受入テスト (AT-*)
 
-### §1.0a Distribution acceptance addendum (PLAN-L7-157)
+### §1.0a 配布受入補遺 (PLAN-L7-157)
 
 | AT-ID | 対応条件 | 受入条件 | 機械検証 |
 |-------|---------|---------|---------|
@@ -91,7 +91,7 @@ updated: 2026-06-02
 | **AT-FR-15-01** | AC-FR-15-01 (Discovery confirmed) | S2 PoC + S3 verify → S4 confirmed 設定可 | vitest discovery test |
 | **AT-FR-15-02** | AC-FR-15-02 (S4 decision_outcome 欠落) | 欠落 → schema fail / exit 1 | vitest schema test (既存カバー) |
 | **AT-FR-15-03** | AC-FR-15-03 (pivot 仮説変更) | decision_outcome=pivot → 旧 PLAN archive / 新 PLAN 案内 | vitest discovery test |
-| **AT-FR-16-01** | AC-FR-16-01 (Incident open P0) | `ut-tdd incident open --severity P0` → troubleshoot PLAN + bypass + audit | vitest incident test |
+| **AT-FR-16-01** | AC-FR-16-01 (Incident open P0) | `ut-tdd incident open --severity P0` → troubleshoot PLAN 生成 + bypass 付与 + audit 記録 | vitest incident test |
 | **AT-FR-16-02** | AC-FR-16-02 (24h 未収束) | Incident 24h 超 → warn + postmortem next_action | vitest doctor + incident test |
 | **AT-FR-16-03** | AC-FR-16-03 (複数 P0/P1 並列) | 同時 open → P0 優先 / P1 queue / audit | vitest incident test |
 | **AT-FR-17-01** | AC-FR-17-01 (CI G7 pass) | ローカル G7 pass → GHA workflow G7 pass / PR merge 可 | GHA workflow test |
@@ -192,7 +192,7 @@ updated: 2026-06-02
 | AT-BR21 (business-detail 由来、BR-21 §1〜§6) | 9 |
 | AT-FR-BR21 (FR-BR21-36/38/43 派生、projection 実装済み) | 6 |
 | AT-NFR (nfr-grade 由来、Phase A: 18 + NFR-17 統合セキュリティ A-54) | 19 |
-| AT-NFR (L4/Phase B carry placeholder: NFR-02/09/18) | 3 |
+| AT-NFR (L4/Phase B carry placeholder: NFR-02/09/18 の保留枠) | 3 |
 | **合計** | **123** (Phase A 即実装 111 件 + carry 12 件。A-54 後の 117 から back-fill 追加 AC 6 件を反映) |
 
 ## §2 量閉じ一覧 (要求 → AT 被覆、孤児チェック)
@@ -202,16 +202,16 @@ updated: 2026-06-02
 - FR-45 + workflow core FR-23/24/25/26/27/29/30 → §1.4 件数まとめ参照 (AT-FR 計 85 件)
 - **孤児 AC-FR = 0** (L3 FR 26 件、AC-FR / AT-FR 85 件で全件被覆。§1.4 件数まとめと整合)
 
-### business-detail sub-doc
+### business-detail sub-doc 由来
 - BR-21 (§1〜§6) → AT-BR21-01〜09 (9 件、Phase A)
 - FR-BR21-36 → AT-FR-BR21-36-01/02 (2 件、projection 実装済み)
 - FR-BR21-38 → AT-FR-BR21-38-01/02 (2 件)
 - FR-BR21-43 → AT-FR-BR21-43-01/02 (2 件)
 - **孤児 BR-21 派生 = 0**
 
-### nfr-grade sub-doc
+### nfr-grade sub-doc 由来
 - NFR-01/03/04/05/06/07/08/11/12/13/14/15/16/17 + D01/D04 → AT-NFR-XX (Phase A 即実装)
-- NFR-02/09 → AT-NFR-02/09 (L4 carry placeholder)
+- NFR-02/09 → AT-NFR-02/09 (L4 carry placeholder として保持)
 - NFR-18 (telemetry PII redaction、新規候補) → AT-NFR-18 (Phase B carry placeholder、旧 NFR-17 を A-54 でリネーム)
 - **孤児 NFR = 0** (15 件 + carry 全件被覆)
 

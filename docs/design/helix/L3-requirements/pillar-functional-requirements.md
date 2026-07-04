@@ -42,7 +42,7 @@ next_pair_freeze: L12
 
 孤児 L1 pillar = 0。既存 P2/P7 back-fill に含まれる pure/runtime/bridge 要件は重複採番しない。
 
-### §0.1 L1 amendment frontier
+### §0.1 L1 要求修正の境界
 
 2026-06-30 追補の L1 §2.8 asset/progress visualization は、既存 `HBR-P9` / `HBR-P4` /
 `HBR-P7` / `HNFR-P3` / `HNFR-AC` / `HNFR-P8` を親にするが、意味内容は既存
@@ -52,11 +52,11 @@ evidence drill-down、read-only first の UI/data boundary を持つ新しい要
 この amendment は `PLAN-DISCOVERY-10-helix-asset-visualization` が S3 verify 済み、S4 PO decision
 待ちのため、現時点では以下を未降下として扱う。
 
-- L3: visualization view requirements / acceptance IDs。
-- L4: VSCode extension adapter、Tree View / Webview boundary、CSP / localResourceRoots、read-only action boundary。
-- L5: visualization read-model contract、graph IR contract、drill-down contract。
+- L3: visualization view の要件 / acceptance IDs。
+- L4: VSCode extension adapter、Tree View / Webview 境界、CSP / localResourceRoots、read-only action 境界。
+- L5: visualization read-model 契約、graph IR 契約、drill-down 契約。
 - L6: layer tree、Mermaid-compatible graph IR、runtime evidence timeline、drill-down pointer の view-model function。
-- L7: VSCode Tree View prototype、Webview graph/detail panel。
+- L7: VSCode Tree View prototype、Webview graph/detail panel の要件。
 
 したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に限定される。L1 §2.8 を含む revised
 request 全体について「L3/L4/L6/L7 fully descended」または「L14 全件達成」と主張してはならない。

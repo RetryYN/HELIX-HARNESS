@@ -6,43 +6,43 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 plan: docs/plans/PLAN-L6-18-review-evidence-stale.md
 ---
 
-> **L6 contract marker**: `analyzeReviewEvidence(input: ReviewEvidenceInput) => ReviewEvidenceResult` is the unit-test-granularity contract. DbC pre/post/invariant maps stale approval residues to U-REVIEW-007..008.
+> **L6 contract marker**: `analyzeReviewEvidence(input: ReviewEvidenceInput) => ReviewEvidenceResult` は unit-test 粒度の contract である。DbC pre/post/invariant は stale approval residues を U-REVIEW-007..008 へ対応させる。
 
-# review-evidence stale approval lint - function design (IMP-080)
+# review-evidence stale approval lint の function design (IMP-080)
 
-## §1 Scope
+## §1 対象範囲
 
-This add-design extends `review-evidence` in the reverse direction. A PLAN that is `status: draft` or otherwise downgraded must not keep `review_evidence` with an approval verdict. Such a record is stale approval evidence left behind after un-freeze.
+この add-design は `review-evidence` を reverse 方向に拡張する。`status: draft` またはそれ以外の downgrade 済み PLAN は、approval verdict を持つ `review_evidence` を保持してはならない。その record は un-freeze 後に残った stale approval evidence である。
 
-The check preserves the existing confirmed/completed missing-evidence rule and adds stale approval detection as a hard violation through the existing `reviewEvidence.ok` doctor path.
+この check は既存の confirmed/completed missing-evidence rule を維持し、既存 `reviewEvidence.ok` doctor path を通じて stale approval detection を hard violation として追加する。
 
-## §2 Functions
+## §2 関数
 
 | function | contract |
 |---|---|
-| `extractReviewEntries(content)` | Extract reviewer, review kind, timestamps, tests timestamp, and verdict from `review_evidence` entries. |
-| `analyzeReviewEvidence(plans)` | Existing missing-evidence rule plus stale approval detection for non-confirmed plans. |
-| `reviewEvidenceMessages(result)` | Emit missing evidence and stale approval messages separately. |
+| `extractReviewEntries(content)` | `review_evidence` entries から reviewer、review kind、timestamps、tests timestamp、verdict を抽出する。 |
+| `analyzeReviewEvidence(plans)` | 既存 missing-evidence rule に non-confirmed plans 向け stale approval detection を追加する。 |
+| `reviewEvidenceMessages(result)` | missing evidence message と stale approval message を分けて出力する。 |
 
-## §3 Stale Approval Rule
+## §3 Stale Approval Rule の規則
 
-Target statuses are every status outside `confirmed` / `completed`. If any review entry has `verdict: approve`, `verdict: approve_after_fixes`, or `verdict: pass`, the PLAN is reported in `staleApprovalViolations`.
+対象 statuses は `confirmed` / `completed` 以外のすべてである。review entry のいずれかが `verdict: approve`、`verdict: approve_after_fixes`、または `verdict: pass` を持つ場合、その PLAN は `staleApprovalViolations` に報告される。
 
-Accepted cases:
+許可される cases:
 
-- `confirmed` or `completed` with approval evidence.
-- `draft` with no `review_evidence`.
-- `draft` with non-approval evidence such as `request_changes`.
+- `confirmed` または `completed` で approval evidence を持つ。
+- `draft` で `review_evidence` を持たない。
+- `draft` で `request_changes` などの non-approval evidence を持つ。
 
-Rejected case:
+拒否される case:
 
-- `draft` with approval verdict.
+- `draft` で approval verdict を持つ。
 
-## §4 Test Oracle
+## §4 Test Oracle の判定基準
 
-Covered by `tests/review-evidence.test.ts` and `docs/test-design/harness/L7-unit-test-design.md`:
+`tests/review-evidence.test.ts` と `docs/test-design/harness/L7-unit-test-design.md` で coverage を持つ:
 
 | ID | oracle |
 |---|---|
-| U-REVIEW-007 | draft + `verdict=approve` -> stale approval violation |
-| U-REVIEW-008 | confirmed + approve and draft without evidence -> ok |
+| U-REVIEW-007 | draft + `verdict=approve` -> stale approval violation を出す |
+| U-REVIEW-008 | confirmed + approve と evidence なし draft -> ok |

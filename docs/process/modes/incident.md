@@ -10,7 +10,7 @@
 
 Incident は **本番稼働中の障害・SLO 重大逸脱・セキュリティインシデント**に緊急即応するモード。hotfix で暫定収束させ、収束後に恒久対策を V-model 体系 (Forward L0-L14) へ昇華する。開発中の AI 逸脱は Recovery、計画的な運用改善は L13/L14 で扱う。
 
-**翻案注記 (重要)**: UT-TDD に独立した `incident` kind は存在しない。Incident mode は `troubleshoot` (原因究明・暫定対処) と `recovery` (復旧・ロールバック) の **2 kind を内包する運用パターン**。開発中デグレは Recovery、本番は Incident で分岐 (§2.6.5)。
+**翻案注記 (重要)**: HELIX に独立した `incident` kind は存在しない。Incident mode は `troubleshoot` (原因究明・暫定対処) と `recovery` (復旧・ロールバック) の **2 kind を内包する運用パターン**。開発中デグレは Recovery、本番は Incident で分岐 (§2.6.5)。
 
 ### frontmatter 早見表 (README 台帳より)
 
@@ -91,7 +91,7 @@ hotfix を打ちっぱなしにせず、Reverse fullback (R0-R4、`confirmed_rev
 | Discovery post-deploy trigger | 本番後の問題を「検証候補化」するのみ (検出止まり)。緊急対応が要る場合は Incident へ |
 | Reverse fullback | 事後昇華の手段。hotfix の恒久対策を V-model 体系へ統合するために使用 |
 
-翻案注記: source process reference には `incident` 専用 kind がなく legacy source も `troubleshoot`+`recovery` の内包として扱う。UT-TDD では README 台帳でこの内包構造を明示し、layer=L7(+cross) と三者承認を UT-TDD 固有の追加定義として確定している。
+翻案注記: source process reference には `incident` 専用 kind がなく legacy source も `troubleshoot`+`recovery` の内包として扱う。HELIX では README 台帳でこの内包構造を明示し、layer=L7(+cross) と三者承認を HELIX 固有の追加定義として確定している。
 
 ---
 

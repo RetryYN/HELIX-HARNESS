@@ -31,8 +31,8 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
   `adoption_decision_delta`、`workflow_route_impact` を evidence に残し、公式 source の状態・採用判断・
   workflow 影響が変わる場合は対象 gate / mode / PLAN へ差し戻す。
 - `completionDecisionPacket` は `generatedFrom=outstanding.completionReadiness`、許可された
-  `sourceCommand`、freshness policy、`expiresAt`、`stale=false`、decision count、record template、
-  allowed outcome、next workflow route が一致している場合だけ L14 完了判断の入力にできる。期限切れ packet、
+  `sourceCommand`、freshness policy、`expiresAt`、`stale=false`、判断数（decision count）、record template、
+  許可 outcome、次 workflow route が一致している場合だけ L14 完了判断の入力にできる。期限切れ packet、
   chat から転記された packet、または `outstanding.completionReadiness.ok=false` の packetは完了根拠にしない。
 
 ## §1 運用テスト (HOT-*、業務柱 HBR)
