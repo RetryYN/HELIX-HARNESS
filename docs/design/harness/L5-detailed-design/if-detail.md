@@ -10,7 +10,7 @@ plan: docs/plans/PLAN-L5-04-if-detail.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-> **SSoT 参照**: 境界 (what/形状) = [external-if.md](../L4-basic-design/external-if.md) / adapter 責務 = [module-decomposition.md](./module-decomposition.md) §5 / 内部 how = [internal-processing.md](./internal-processing.md)。本 doc は外部境界の **how = 詳細契約 (D-CONTRACT)** を担う (IMP-018 の how 側)。
+> **SSoT 参照**: 境界 (what/形状) = [external-if.md](../L4-basic-design/external-if.md) / adapter 責務 = [module-decomposition.md](./module-decomposition.md) §5 / 内部 how（内部詳細） = [internal-processing.md](./internal-processing.md)。本 doc は外部境界の **how = 詳細契約 (D-CONTRACT)** を担う (IMP-018 の how 側)。
 >
 > **用語更新 (G.9) / 機能要求更新 (G.10) の所在**: per-工程 delta は生成元 [PLAN-L5-04](../../../plans/PLAN-L5-04-if-detail.md) の §6/§7 に記録。
 > **V-pair**: `pair_artifact = L8-integration-test-design.md` (L5↔L8 集合 pair)。
@@ -18,11 +18,11 @@ v2_import: docs/migration/v2-import-ledger.md
 
 # HELIX-HARNESS — L5 詳細設計: IF 詳細 / D-CONTRACT (If-Detail)
 
-external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (PLAN-L5-04)。core は正規化 intent のみ発行し、adapter が **provider 固有の起動方式** (Claude Code Agent/hook、`codex exec` CLI、`gh` CLI) を吸収する (Anti-Corruption Layer、external-if §6)。**API/SDK/key は介在しない** — AI runtime は契約プラン CLI が自己認証する。
+external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (PLAN-L5-04)。core は正規化 intent（意図） のみ発行し、adapter が **provider 固有の起動方式** (Claude Code Agent/hook、`codex exec` CLI、`gh` CLI) を吸収する (Anti-Corruption Layer、外部差分の防腐層、external-if §6)。**API/SDK/key は介在しない** — AI runtime は契約プラン CLI が自己認証する。
 
 ## §1 adapter 公開 IF (core → adapter)
 
-| adapter 関数 (将来形) | 対応境界 (external-if §2) | intent (provider 非依存) |
+| adapter 関数 (将来形) | 対応境界 (external-if §2) | intent（provider 非依存の意図） |
 |---|---|---|
 | `invokeWorker(intent)` | AI runtime (a) | 実装委譲 intent → **Codex は `codex exec` CLI 起動 / Claude は Agent tool 呼出** (API でなく CLI/hook) |
 | `invokeReviewer(intent)` | AI runtime (a) | レビュー委譲 intent → 同上 (別 runtime CLI 起動) |
@@ -31,14 +31,14 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 | `receiveAlert(payload)` | 観測・監視 (c) | Sentry/Uptime → Incident trigger |
 | `receiveDepAlert(payload)` | 依存管理 (d) | Dependabot → security トリアージ |
 
-> core は `invoke*` の intent だけを発行し、Claude/Codex/gh の差は adapter 実装が吸収 (FR-L1-42 provider 引継ぎの基盤)。
+> core は `invoke*` の intent だけを発行し、Claude/Codex/gh の差は adapter 実装が吸収する (FR-L1-42 provider 引継ぎの基盤)。
 
 ## §2 intent / 結果 / エラー型 (概要、詳細 zod は L7)
 
 | 型 | 概要 |
 |---|---|
 | `WorkerIntent` | `{role, task, context?, budget?}` (role∈roleSchema 相当) |
-| `InvokeResult` | `{ok, status, output, stderr, error_class?, error?}`。`error_class` は provider 起動失敗/非 0 exit の `provider_error` と、exit 0 だが stdout 空の `malformed_output` を区別する。必要に応じて audit_ref は呼び出し側 evidence で補う。 |
+| `InvokeResult` | `{ok, status, output, stderr, error_class?, error?}`。`error_class` は provider 起動失敗/非 0 exit の `provider_error` と、exit 0 だが stdout 空の `malformed_output` を区別する。必要に応じて audit_ref は呼び出し側 evidence（証跡）で補う。 |
 | `AdapterError` | `{kind: "absent"\|"auth"\|"rate-limit"\|"timeout"\|"unknown", retryable: boolean, message}` |
 
 > 詳細 zod スキーマ (フィールド型/必須任意) は L7 実装で `src/schema` または adapter module に定義。本 doc は型の輪郭まで。
@@ -50,7 +50,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 |---|---|
 | リトライ | `AdapterError.retryable=true` (rate-limit/timeout) のみ指数バックオフ最大 N 回。auth/absent は即 fail (非リトライ) |
 | タイムアウト | 操作別タイムアウト (例: doctor detector 30s = AC-FR-18-03)。超過は該当のみ skip + warn |
-| 冪等性 | invoke は audit_ref で重複検出。同一 intent 再実行は副作用を二重化しない (adapter が dedup) |
+| 冪等性 | invoke は audit_ref で重複検出。同一 intent 再実行は副作用を二重化しない (adapter が dedup、重複排除) |
 
 ## §4 エラー分類 → fail-close マッピング
 
@@ -69,7 +69,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 | `mode-routing.yaml` | decision table: `{signal → mode}` (drift/劣化/暴走/障害 → Reverse/Refactor/Recovery/Incident、優先度付き、FR-08) | runtime(detect) が消費 |
 | `gate-checks.yaml` | `{gate_id → [check]}` 各 check は決定論 (AI 呼ばない、FR-05)。出力は `recommendedCommandV1Schema` 準拠の next_action | doctor/gate が消費 |
 
-> DSL は zod で読込時 validate (physical-data §5)。`recommendedCommandV1Schema` (実装済) が gate の推奨コマンド契約。
+> DSL は zod で読込時 validate（検証）する (physical-data §5)。`recommendedCommandV1Schema` (実装済) が gate の推奨コマンド契約。
 
 ## §6 認証・秘密管理 (⚠ 方針記述のみ、確定せず)
 
@@ -107,7 +107,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 - **sprint check の VCS 参照** (TDD trace の git changed-files / review scope): `loadChangedFiles` を `verify recommend`、`review --uncommitted`、doctor `change-impact`、`regression-expansion` が共有する。git log/blame の深掘りは optional evidence enrichment とし、L7 完遂の隠れ carry にしない。
 ## Appendix B: DB/Search CLI Contracts (PLAN-L5-08) の契約
 
-| CLI surface | contract | output |
+| CLI surface | contract（契約） | output（出力） |
 |---|---|---|
 | `ut-tdd db status` | `.ut-tdd/harness.db` を開き、schema version、projection freshness、orphan count を報告する。 | secret を含まない metadata だけの JSON/text summary。 |
 | `ut-tdd db rebuild` | docs/state/log digest から projection DB を再構築する。 | deterministic rebuild なら exit 0。source unreadable または schema mismatch は exit 1。 |
