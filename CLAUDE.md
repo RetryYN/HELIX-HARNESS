@@ -7,10 +7,10 @@ Claude Code はこのリポジトリでは以下を canonical として扱う。
 1. `CLAUDE.md`
 2. `.claude/CLAUDE.md`
 3. `docs/governance/README.md`
-4. `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
-5. `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`
-6. `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md`
-7. `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md`
+4. `docs/governance/helix-agent-harness-concept_v3.1.md`
+5. `docs/governance/helix-agent-harness-requirements_v1.2.md`
+6. `docs/governance/helix-agent-harness-extraction-plan_v0.1.md`
+7. `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
 
 Migration snapshots と migration docs は通常 startup reads ではない。migration、gap audit、
 regression-source inspection が必要なときだけ読む。
@@ -108,10 +108,10 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 ## 正本 Docs
 
-- `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
-- `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`
-- `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md`
-- `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md`
+- `docs/governance/helix-agent-harness-concept_v3.1.md`
+- `docs/governance/helix-agent-harness-requirements_v1.2.md`
+- `docs/governance/helix-agent-harness-extraction-plan_v0.1.md`
+- `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
 - `docs/governance/repository-structure.md`
 
 ## 配布パッケージ（Distribution）
@@ -126,12 +126,12 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 ## 構成境界
 
-- `docs/`: governance、requirements、ADRs、plans、design、test design、migration、archive
+- `docs/`: governance 文書、requirements、ADR、PLAN、design、test design、migration、archive
 - `src/`: TypeScript/Bun harness core
 - `tests/`: Vitest tests
 - `scripts/`: thin OS entrypoints only
 - `.ut-tdd/`: UT-TDD runtime state と audit/handover evidence
-- `.claude/`: Claude Code runtime / hook policy
+- `.claude/`: Claude Code の runtime / hook policy
 - `legacy local state/`: historical source state。UT-TDD state ではない。
 
 V-model artifacts は分離を保つ。
@@ -214,7 +214,7 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 ## 安全境界
 
 - rules、docs、examples、audit evidence に API keys、secrets、PII、credentials を書かない。
-- authentication、authorization、payments、PII、licenses、destructive data operations、
+- 認証 (authentication)、認可 (authorization)、決済 (payments)、PII、license、destructive data operations、
   production infrastructure、external API assumptions を変更する前に escalate する。
 - 明示的に tracked する audit / provider-handover evidence 以外の local runtime artifacts は track しない。
 
@@ -228,11 +228,11 @@ working tree を相手ランタイムが常時書き換えるため、full tree 
 ## 指示ファイル
 
 - 共有 project context: `CLAUDE.md`
-- Claude Code runtime / hook policy: `.claude/CLAUDE.md`
+- Claude Code の runtime / hook policy: `.claude/CLAUDE.md`
 - Codex CLI project rules: `AGENTS.md`
 - 個人 overrides: `CLAUDE.local.md` / `AGENTS.override.md`
 
-## UT-TDD Adapter Rule Markers
+## UT-TDD Adapter Rule Markers（アダプター規則 marker）
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 

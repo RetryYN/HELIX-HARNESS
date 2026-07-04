@@ -531,7 +531,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             phase: "current-dist-smoke",
             command: "bun run build && ./dist/ut-tdd doctor",
             writePolicy: "local-artifact-write",
-            sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+            sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
             sourceStatusDelta: expect.stringContaining("pre-cutover baseline"),
           }),
           expect.objectContaining({
@@ -1800,7 +1800,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         "routeImpact=none; stale or incomplete source ledger routes cutover back",
       );
       expect(text.stdout).toContain(
-        "verification-source: current-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md checked=2026-07-02",
+        "verification-source: current-dist-smoke source=ADR-001 TypeScript/Bun single-binary distribution decision sourceUrl=docs/adr/ADR-001-helix-harness-redesign-and-language.md checked=2026-07-02",
       );
       expect(text.stdout).toContain(
         "verification-source: renamed-helix-dist-smoke source=PLAN-M-02 HELIX identifier rename runbook sourceUrl=docs/plans/PLAN-M-02-helix-identifier-rename.md checked=2026-07-02",

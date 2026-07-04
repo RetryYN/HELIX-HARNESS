@@ -5,7 +5,7 @@
 責務分離:
 
 - `CLAUDE.md`: 共有 project context。
-- `.claude/CLAUDE.md`: Claude Code runtime / hook policy。
+- `.claude/CLAUDE.md`: Claude Code runtime / hook 方針。
 - `AGENTS.md`: Codex CLI project rules。
 
 ## コミュニケーション (報連相)
@@ -33,10 +33,10 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
 
-- `docs/governance/ut-tdd-agent-harness-concept_v3.1.md` - 内部展開向け concept
-- `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` - requirements と acceptance criteria
-- `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
-- `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md` - redesign policy と TypeScript/Bun 実装言語
+- `docs/governance/helix-agent-harness-concept_v3.1.md` - 内部展開向け concept
+- `docs/governance/helix-agent-harness-requirements_v1.2.md` - requirements と acceptance criteria
+- `docs/governance/helix-agent-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
+- `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と TypeScript/Bun 実装言語
 - `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
 
 ## 配布パッケージ（Distribution）
@@ -107,7 +107,7 @@ gate decision まで担えるという意味である。
 - 編集前に relevant existing files を読む。
 - 既存の structure、naming、test placement に合わせる。
 - 変更規模が必要とする場合は final response で gate outcomes を明示する。
-- production infrastructure、authentication、authorization、payment、PII、secrets、licensing、
+- production infrastructure、authentication、authorization、payment、PII、secrets、licensing など、
   external APIs、その他 high-impact environment assumptions を変える前に escalate する。
 
 ## UT-TDD Workflow（工程）
@@ -149,7 +149,7 @@ Runtime modes（実行モード）:
 
 legacy command を現行 company/product execution path として追加しない。
 
-## Hooks（Codex orchestrator parity）
+## Hooks（Codex orchestrator parity の方針）
 
 Codex は repo-local `.codex/hooks.json`（PLAN-L7-139）を通じて Claude と同じ guardrails を強制する。
 これは **repo-relative only** であり、global `~/.codex/` に hook config を書かない。Claude と同じ
@@ -233,7 +233,7 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 
 個人 overrides は `AGENTS.override.md` に置く。これは Git 追跡対象ではない。
 
-## UT-TDD Adapter Rule Markers
+## UT-TDD Adapter Rule Markers（アダプター規則 marker）
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 

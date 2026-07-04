@@ -68,7 +68,7 @@ describe("FR registry audit (機能一覧 漏れ監査)", () => {
 
   it("current canonical docs do not carry stale FR registry counts", () => {
     const currentDocs = [
-      "docs/governance/ut-tdd-agent-harness-concept_v3.1.md",
+      "docs/governance/helix-agent-harness-concept_v3.1.md",
       "docs/design/harness/L1-requirements/functional-requirements.md",
       "docs/design/harness/L3-functional/roadmap.md",
       "docs/design/harness/L6-function-design/forced-stop-feedback.md",

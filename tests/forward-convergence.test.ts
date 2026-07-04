@@ -61,7 +61,7 @@ describe("forward-convergence: spine 接続判定", () => {
     ).toBe(false);
     expect(
       isSpineConnected(
-        plan({ parentDesign: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md" }),
+        plan({ parentDesign: "docs/adr/ADR-001-helix-harness-redesign-and-language.md" }),
         new Set(),
       ),
     ).toBe(false);

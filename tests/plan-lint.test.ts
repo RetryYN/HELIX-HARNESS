@@ -131,7 +131,7 @@ function reverseR4PlanDoc(
 const fullbackScope = `backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-agent-harness-requirements_v1.2.md
     reason: "Requirements record the fullback governance change."
   - layer: L4-basic-design
     decision: not_impacted
@@ -356,7 +356,7 @@ describe("plan schedule lint (IMP-081)", () => {
       dbProgressPlanDoc("PLAN-L7-98-progress-covered", [
         "docs/plans/PLAN-L7-98-progress-covered.md",
         "docs/plans/PLAN-REVERSE-98-progress-covered.md",
-        "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+        "docs/governance/helix-agent-harness-requirements_v1.2.md",
         "docs/design/harness/L1-requirements/functional-requirements.md",
         "docs/design/harness/L1-requirements/screen-requirements.md",
         "docs/design/harness/L3-functional/functional-requirements.md",
@@ -393,7 +393,7 @@ describe("plan schedule lint (IMP-081)", () => {
         "PLAN-REVERSE-198-with-backprop",
         [
           "docs/plans/PLAN-REVERSE-198-with-backprop.md",
-          "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+          "docs/governance/helix-agent-harness-requirements_v1.2.md",
         ],
         { extra: fullbackScope },
       ),
@@ -421,7 +421,7 @@ describe("plan schedule lint (IMP-081)", () => {
     const docs = [
       reverseFullbackPlanDoc("PLAN-REVERSE-198-missing-scope", [
         "docs/plans/PLAN-REVERSE-198-missing-scope.md",
-        "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+        "docs/governance/helix-agent-harness-requirements_v1.2.md",
       ]),
     ];
 
@@ -454,7 +454,7 @@ describe("plan schedule lint (IMP-081)", () => {
       "PLAN-REVERSE-198-claimed-artifact",
       [
         "docs/plans/PLAN-REVERSE-198-claimed-artifact.md",
-        "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+        "docs/governance/helix-agent-harness-requirements_v1.2.md",
       ],
       { extra: fullbackScope },
     );

@@ -430,7 +430,7 @@ describe("S4 decision readiness", () => {
         expect.objectContaining({
           phase: "requirements-trace",
           expected: expect.stringContaining("G1/G3 trace"),
-          sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+          sourceUrl: "docs/governance/helix-agent-harness-requirements_v1.2.md",
           sourceStatusDelta: expect.stringContaining("G1/G3 trace"),
         }),
         expect.objectContaining({
@@ -1468,7 +1468,7 @@ describe("S4 decision readiness", () => {
     expect(text).toContain("record-template s4_decision_record");
     expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(
-      "verification-source: requirements-trace source=HELIX V-model trace gate sourceUrl=docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+      "verification-source: requirements-trace source=HELIX V-model trace gate sourceUrl=docs/governance/helix-agent-harness-requirements_v1.2.md",
     );
     expect(text).toContain("writePolicy=no-write command=bun run src/cli.ts doctor");
     expect(text).toContain(

@@ -21,7 +21,7 @@ const INTERNAL_ASSET_EXTENSION_PLAN_IDS = new Set([
 const READY_DEPENDENCY_STATUSES = new Set(["confirmed", "completed"]);
 
 const DB_PROJECTION_BACKPROP_REQUIRED_GENERATES = [
-  "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+  "docs/governance/helix-agent-harness-requirements_v1.2.md",
   "docs/design/harness/L1-requirements/functional-requirements.md",
   "docs/design/harness/L1-requirements/screen-requirements.md",
   "docs/design/harness/L3-functional/functional-requirements.md",

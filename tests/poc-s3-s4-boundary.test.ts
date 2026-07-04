@@ -7,7 +7,7 @@ function text(path: string): string {
 
 describe("PoC S3/S4 semantic boundary", () => {
   it("keeps requirements aligned with the schema rule that S3 verified is non-terminal", () => {
-    const requirements = text("docs/governance/ut-tdd-agent-harness-requirements_v1.2.md");
+    const requirements = text("docs/governance/helix-agent-harness-requirements_v1.2.md");
     const schema = text("src/schema/frontmatter.ts");
 
     expect(requirements).toContain(

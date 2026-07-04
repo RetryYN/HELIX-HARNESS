@@ -989,7 +989,7 @@ function buildRenameVerificationCommandMatrix(
       expected: "current compiled ut-tdd CLI remains runnable before rename cutover approval",
       evidence: "build output and current compiled doctor smoke",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
-      sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+      sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus: "ADR-001 TypeScript/Bun distribution decision remains current at HEAD",
       sourceStatusDelta: "none; current ut-tdd binary remains the pre-cutover baseline",
@@ -1125,7 +1125,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
         "current CLI, renamed CLI rehearsal, post-cutover consumer setup smoke, and alias disposition are all reviewed before cutover",
       rollbackCheck: "failed renamed CLI smoke keeps old command/state path active",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
-      sourceUrl: "docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md",
+      sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
     },
     {
       id: "cutover-rb-06",
