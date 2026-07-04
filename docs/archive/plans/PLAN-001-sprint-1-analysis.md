@@ -1,7 +1,7 @@
-# PLAN-001 Sprint .1 — Vendor Module Analysis Report
+# PLAN-001 Sprint .1 — vendor module 解析レポート
 
 Date: 2026-05-22
-Executed by: Claude Code general-purpose subagent (read-only)
+実行者: Claude Code 汎用 subagent（読み取り専用）
 Source PLAN: `docs/plans/PLAN-001-w1-plan-schema-lint-port.md`
 
 ## Scope

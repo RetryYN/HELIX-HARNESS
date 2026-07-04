@@ -73,7 +73,7 @@
 **本 session 完了**: Sprint .1 (vendor 解析 + drift table + scope 縮小提案)
 
 **次 session で実施 (Sprint .2-.8)**:
-- Sprint .2 skeleton: `src/ut_tdd/skill/` package + 2 module skeleton (`catalog.py`/`suggest.py`)
+- Sprint .2 skeleton: `src/ut_tdd/skill/` パッケージと 2 module skeleton (`catalog.py`/`suggest.py`) を作成
 - Sprint .3 rewrite: §7.2 catalog entry contract + skill suggest 3 bucket 振り分け + capability class 整合
 - Sprint .4 test rewrite: vendor pattern 流用 + §7.2 contract 網羅
 - Sprint .5 pytest 全回帰 (W1 124 + W2 35 + W3a 134 + W3b-A 追加)
