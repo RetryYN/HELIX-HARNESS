@@ -83,5 +83,16 @@ describe("l14-close-audit lint", () => {
       "P8-external-security",
       "P9-db-convergence",
     ]);
+    expect(result.openRows).toHaveLength(7);
+    expect(
+      result.rows.reduce<Record<string, number>>((acc, row) => {
+        acc[row.status] = (acc[row.status] ?? 0) + 1;
+        return acc;
+      }, {}),
+    ).toEqual({
+      "blocked-human": 2,
+      closed: 3,
+      partial: 5,
+    });
   });
 });
