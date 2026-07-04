@@ -1,61 +1,61 @@
-# A-137 Unusable Provider-Dispatch Feature Audit
+# A-137 provider-dispatch 利用不能機能 audit
 
-Date: 2026-06-16
+日付: 2026-06-16
 
-Goal: enumerate provider-dispatch surfaces that were configured but not actually usable, then define and track countermeasures.
+目的: configured だが実際には usable ではなかった provider-dispatch surfaces を列挙し、countermeasures を定義・追跡する。
 
-## Result
+## 結果
 
-The self-contained UT-TDD command surface remains usable: `status`, `doctor`, DB maintenance, plan lint, `review --uncommitted`, task classification, skill suggestion, dry-runs, cutover dry-run, and handover.
+Self-contained な UT-TDD command surface は usable のまま: `status`、`doctor`、DB maintenance、plan lint、`review --uncommitted`、task classification、skill suggestion、dry-runs、cutover dry-run、handover。
 
-The broken surface was live provider dispatch:
+壊れていた surface は live provider dispatch だった:
 
 - `ut-tdd codex --execute`
 - `ut-tdd team run --execute`
-- hybrid live cross-review dispatch
+- hybrid の live cross-review dispatch
 
-Root causes:
+原因:
 
-1. Codex had no native command resolution and could hit a broken wrapper on PATH.
-2. `team run --execute` spawned raw member adapter commands instead of the shared provider invocation path.
-3. Runtime detection treated command-name presence as provider availability, so `hybrid` could be a false positive.
-4. The adapter still carried HELIX wrapper env names even though UT-TDD provider dispatch must be product-owned.
+1. Codex には native command resolution がなく、PATH 上の壊れた wrapper に当たり得た。
+2. `team run --execute` は shared provider invocation path ではなく raw member adapter commands を spawn していた。
+3. Runtime detection は command-name presence を provider availability と扱っていたため、`hybrid` が false positive になり得た。
+4. UT-TDD provider dispatch は product-owned でなければならないのに、adapter は HELIX wrapper env names をまだ持っていた。
 
-## Unusable-Feature Matrix
+## 利用不能機能マトリクス
 
-| # | Feature | Root cause | Countermeasure | Status |
+| # | 機能 | 原因 | 対策 | 状態 |
 |---|---|---|---|---|
-| 1 | `ut-tdd codex --execute` | Bare `codex` could resolve to a non-spawnable wrapper; Windows command scripts needed shell-safe invocation. | Add `resolveCodexNativeCommand()`, prefer `%APPDATA%\\npm\\codex.exe/codex.cmd`, honor `UT_TDD_CODEX_BIN`, and wrap `.cmd` / `.bat` invocation safely. | verified by unit, hook-entrypoint, full regression, and doctor |
-| 2 | `ut-tdd team run --execute` | Team execution bypassed shared adapter/native resolution. | Route `runCommand` through `buildProviderInvocation(provider, command, args)`. | verified by fake-provider team execution and full regression |
-| 3 | Hybrid cross-review live dispatch | Depends on #1 and #2. | Restore both provider execution paths and verify fake cross-provider team execution. | dispatch mechanism verified; live AI task invocation intentionally not run in this audit |
-| 4 | `status` / `doctor` provider availability | Detection used PATH name presence without spawnability. | Use capability probe (`--version`) and report availability only when the provider can actually spawn. | verified by doctor reporting `mode=hybrid` only after provider probes |
-| 5 | HELIX runtime env debt | Provider dispatch emitted or depended on HELIX wrapper env names. | Use `UT_TDD_CLAUDE_BIN` / `UT_TDD_CODEX_BIN`; strip `HELIX_ALLOW_RAW_*`, `HELIX_RAW_*_REASON`, `HELIX_CLAUDE_BIN`, and `HELIX_CODEX_BIN` from provider execution env. | verified by tests and HELIX-separation search |
-| 6 | Native Claude version sort | Mixed-source lexicographic sorting may not pick semver-newest native binary. | Sort by parsed semver per source. | deferred low-priority follow-up |
+| 1 | `ut-tdd codex --execute` | bare `codex` が non-spawnable wrapper に resolve され得た。Windows command scripts には shell-safe invocation が必要だった。 | `resolveCodexNativeCommand()` を追加し、`%APPDATA%\\npm\\codex.exe/codex.cmd` を優先し、`UT_TDD_CODEX_BIN` を尊重し、`.cmd` / `.bat` invocation を安全に wrap する。 | unit、hook-entrypoint、full regression、doctor で verified |
+| 2 | `ut-tdd team run --execute` | Team execution が shared adapter/native resolution を bypass していた。 | `runCommand` を `buildProviderInvocation(provider, command, args)` 経由に route する。 | fake-provider team execution と full regression で verified |
+| 3 | Hybrid cross-review live dispatch | #1 と #2 に依存。 | 両方の provider execution paths を restore し、fake cross-provider team execution を verify する。 | dispatch mechanism verified。live AI task invocation はこの audit では意図的に未実行 |
+| 4 | `status` / `doctor` provider availability | Detection が spawnability なしの PATH name presence を使っていた。 | capability probe (`--version`) を使い、provider が実際に spawn できる場合だけ availability を report する。 | provider probes 後にのみ `mode=hybrid` を report する doctor で verified |
+| 5 | HELIX runtime env debt | Provider dispatch が HELIX wrapper env names を emit または depend していた。 | `UT_TDD_CLAUDE_BIN` / `UT_TDD_CODEX_BIN` を使い、provider execution env から `HELIX_ALLOW_RAW_*`、`HELIX_RAW_*_REASON`、`HELIX_CLAUDE_BIN`、`HELIX_CODEX_BIN` を strip する。 | tests と HELIX-separation search で verified |
+| 6 | Native Claude version sort | Mixed-source lexicographic sorting では semver-newest native binary を選ばない可能性がある。 | source ごとに parsed semver で sort する。 | deferred low-priority follow-up |
 
-## No-Omission Rule
+## 漏れ防止ルール
 
-- A provider reported available by `status` is not proven usable until the resolved binary actually spawns.
-- `ut-tdd claude --execute` working does not imply `team run --execute` works.
-- Cross-review policy correctness does not prove live dispatch usability.
-- Countermeasures are closed only after targeted tests, full regression, `doctor`, and HELIX-separation search evidence are clean.
+- `status` が available と報告した provider は、resolved binary が実際に spawn するまで usable と証明されない。
+- `ut-tdd claude --execute` が動くことは、`team run --execute` が動くことを意味しない。
+- Cross-review policy correctness は live dispatch usability を証明しない。
+- Countermeasures は targeted tests、full regression、`doctor`、HELIX-separation search evidence が clean になった後にのみ closed とする。
 
-## Current Implementation Evidence
+## 現在の実装 evidence
 
-- `src/runtime/adapter.ts` owns provider command resolution and invocation.
-- `src/runtime/detect.ts` uses provider spawnability.
-- `src/cli.ts` routes both single-provider execution and team execution through `buildProviderInvocation`.
-- Tests cover capability-based detection, Codex override resolution, Windows command-script invocation, provider handover kind, hook wrapper lifecycle, and fake cross-provider team execution.
+- `src/runtime/adapter.ts` が provider command resolution と invocation を own する。
+- `src/runtime/detect.ts` は provider spawnability を使う。
+- `src/cli.ts` は single-provider execution と team execution の両方を `buildProviderInvocation` 経由に route する。
+- Tests は capability-based detection、Codex override resolution、Windows command-script invocation、provider handover kind、hook wrapper lifecycle、fake cross-provider team execution を cover する。
 
-## Verification Completed
+## 完了した verification
 
-- `bun run typecheck` passed.
-- `bun run lint` passed.
-- `bun run src\\cli.ts doctor` passed.
-- `bun run test` passed: 81 files, 677 tests.
-- HELIX-separation search passed for UT-TDD-owned runtime/test/handover surfaces.
-- `PLAN-L7-68` and the handover docs now distinguish mechanical handover from explicit handover.
+- `bun run typecheck` は pass 済み。
+- `bun run lint` は pass 済み。
+- `bun run src\\cli.ts doctor` は pass 済み。
+- `bun run test` は pass 済み: 81 files、677 tests。
+- HELIX-separation search は UT-TDD-owned runtime/test/handover surfaces で passed。
+- `PLAN-L7-68` と handover docs は mechanical handover と explicit handover を区別している。
 
-## Remaining Carry
+## 残る carry
 
-- Native Claude version semver sorting remains a deferred low-priority follow-up.
-- Live AI task execution through real cross-provider `team run --execute` was not invoked in this audit; the dispatch mechanism is covered by fake-provider execution tests and provider spawnability probes.
+- Native Claude version semver sorting は deferred low-priority follow-up のまま。
+- real cross-provider `team run --execute` による live AI task execution はこの audit では invoke していない。dispatch mechanism は fake-provider execution tests と provider spawnability probes で cover される。
