@@ -1,5 +1,5 @@
 ---
-title: "HELIX L5 詳細設計 — upstream A-146 substance-gap adoption"
+title: "HELIX L5 詳細設計 — upstream A-146 substance-gap adoption（採用）"
 layer: L5
 kind: add-design
 status: confirmed
@@ -11,14 +11,14 @@ pair_artifact: docs/test-design/helix/upstream-substance-gap.md
 related_l4: docs/design/helix/L4-basic-design/upstream-substance-gap.md
 ---
 
-# HELIX L5 詳細設計 — upstream A-146 substance-gap adoption
+# HELIX L5 詳細設計 — upstream A-146 substance-gap adoption（採用）
 
-L4 upstream boundary を integration contract に落とす。ここで固定するのは module / projection /
-evidence 境界であり、実装完了 claim ではない。
+L4 upstream boundary（上流境界）を integration contract（結合契約）に落とす。ここで固定するのは module / projection /
+evidence 境界であり、実装完了 claim（完了主張）ではない。
 
 ## §1 L5 contract matrix（契約表）
 
-| L3 ID | L5 contract | 必須 input | Contract output | fail-close 条件 |
+| L3 ID | L5 contract（L5 契約） | 必須 input | Contract output（契約出力） | fail-close 条件 |
 |-------|-------------|----------------|-----------------|------------|
 | HU-FR-01 | HU-C01 guard-governance-pack | adapter template、runtime surface catalog、deferred surface registry | `GuardGovernancePack` | guard entrypoint 欠落、未追跡 deferred surface、未実装 guard の covered claim |
 | HU-FR-02 | HU-C02 consumer-cli-resolution | install target、hook command、PATH/wrapper resolver result | `ConsumerCliResolution` | `ut-tdd` を解決できず、remediation も出さない |
@@ -31,7 +31,7 @@ evidence 境界であり、実装完了 claim ではない。
 
 ## §2 integration observation（統合観測）
 
-| Contract | L8 observation |
+| Contract（契約） | L8 observation（L8 観測） |
 |----------|----------------|
 | HU-C01 | generated adapter package が guard entrypoints と explicit deferred surfaces を含む |
 | HU-C02 | clean install smoke が hook command resolution または fail-close remediation を証明する |
@@ -40,9 +40,9 @@ evidence 境界であり、実装完了 claim ではない。
 | HU-C05 | package curation が consumer docs と internal dogfood audit/process docs を分離する |
 | HU-C06 | FE design coverage が file presence だけでなく populated/deferred/out-of-scope を報告する |
 | HU-C07 | route selection が signal/kind/drive を matrix に照らして検証する |
-| HU-C08 | runtime matcher compatibility が actual target runtime events に裏付けられる |
+| HU-C08 | runtime matcher compatibility が actual target runtime events（実 target runtime event）に裏付けられる |
 
-## §3 L6 carry
+## §3 L6 carry（L6 持ち越し）
 
 L6 design はすべての `HU-C*` contracts について function signatures と DbC を定義し、contract ごとに
-1 つの oracle と upstream-audit completeness oracle を 1 つ持たなければならない。
+1 つの oracle と upstream-audit completeness oracle（完全性オラクル）を 1 つ持たなければならない。
