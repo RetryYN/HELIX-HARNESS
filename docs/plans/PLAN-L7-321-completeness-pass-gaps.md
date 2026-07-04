@@ -4,12 +4,14 @@ title: "PLAN-L7-321 (impl): 突合 completeness pass の追加 code gap — skil
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-07-05
+backprop_decision: not_required
+backprop_decision_reason: "上流突合 completeness pass で見つかった実装欠落を L7 子 PLAN へ分割して閉じた集約 PLAN であり、新規 product requirement や上位設計の意味変更を追加しない。L5/L6/L7 の trace と oracle は各子 PLAN で更新済み。"
 owner: Claude (Opus) / Codex
-parent_design: docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+parent_design: docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — session-log の skill_injection event + recordSkillInjectionAttempt、route_mode first-class projection、relation-graph の追加 node 投影を実装"
@@ -18,16 +20,52 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-321-completeness-pass-gaps.md
     artifact_type: markdown_doc
-  - artifact_path: src/runtime/session-log.ts
-    artifact_type: source_module
-  - artifact_path: tests/session-log-skill-injection.test.ts
-    artifact_type: test_code
+  - artifact_path: docs/plans/PLAN-L7-325-skill-injection-session-log-audit.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-L7-326-route-mode-first-class-projection.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/plans/PLAN-L7-327-relation-graph-node-scope.md
+    artifact_type: markdown_doc
 dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-completeness-2026-07-04.md
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-completeness-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-05T01:51:27+09:00"
+    tests_green_at: "2026-07-05T01:51:27+09:00"
+    verdict: approve
+    scope: "PLAN-L7-321 の 3 つの completeness pass gap が PLAN-L7-325 / PLAN-L7-326 / PLAN-L7-327 として独立 confirmed 済みであることを親 PLAN に集約した。物理 rename、PLAN-M-02 cutover、追加の runtime surface 変更は行っていない。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/session-log.test.ts tests/projection-writer.test.ts tests/relation-graph-loader.test.ts tests/relation-graph.test.ts --timeout 180000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-05T01:51:27+09:00"
+        evidence_path: tests/relation-graph-loader.test.ts
+        output_digest: "sha256:0517e1419846dcb8d71e6eb2b3fe4ef9f2201ce6a6914797c776747fc55aeb51"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T01:51:27+09:00"
+        evidence_path: src/graph/loader.ts
+        output_digest: "sha256:59d40726254c5d3e1c2f82345fcb1d436148351da1951ab1d09119c046adedd8"
+      - kind: doctor
+        command: "./scripts/ut-tdd doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T01:51:27+09:00"
+        evidence_path: docs/test-design/harness/L7-unit-test-design.md
+        output_digest: "sha256:eff33be45091a0a9101d7423921f07662e3da3c4f243d6c825a73b8b514df268"
 ---
 
 # PLAN-L7-321 (impl): completeness pass 追加 code gap
@@ -65,16 +103,38 @@ dependencies:
 
 ## スケジュール
 - mode: serial（項目ごとに独立着地）。
-- Step 1: skill_injection 監査（session-log、先行可）。
-- Step 2: route_mode first-class projection（harness-db 接地）。
-- Step 3: relation-graph 不足 node 投影の補完。
-- Step 4: 各項目 review → confirmed。
+- Step 1: skill_injection 監査（session-log、先行可）→ PLAN-L7-325 で confirmed。
+- Step 2: route_mode first-class projection（harness-db 接地）→ PLAN-L7-326 で confirmed。
+- Step 3: relation-graph 不足 node 投影の補完 → PLAN-L7-327 で confirmed。
+- Step 4: 各項目 review → confirmed 済み。本 PLAN は親集約証跡として confirmed。
 
 ## 壊さない / 再発させない
 - superset 設計（runtime_verification_events 等）と整合させ二重機構を作らない。
 - 一括 import 禁止（粒度を合わせ 1 項目ずつ）。
 
+## 着地結果
+
+- `skill_injection` 監査は PLAN-L7-325 で `src/runtime/session-log.ts` と `tests/session-log.test.ts`
+  へ着地した。`U-SLOG-009` で event count、failed outcome の digest failure 投影、secret mask を固定した。
+  着地 commit は `5cb9a60`。
+- `route_modes` first-class projection は PLAN-L7-326 で schema registry、projection writer、
+  physical-data / function spec / unit test design へ着地した。`U-ROUTEMODE-001` と
+  db projection coverage で table / index / projection を固定した。着地 commit は `25272a7`。
+- relation graph node scope 補完は PLAN-L7-327 で `docs/adr/**/*.md`、
+  `docs/governance/document-system-map.md`、`docs/skills/**/*.md`、`.codex/hooks.json` を graph 対象へ
+  追加した。`U-RELGRAPH-011` と real-repo fence で missing-projection 回帰を固定した。
+  着地 commit は `1bc1c98`。
+
+## 名称 / rename 境界
+
+- 本 PLAN の current prose は HELIX 名称へ寄せ、上流突合 docs 参照も `upstream-helix-*` にそろえた。
+- `.ut-tdd` / `ut-tdd` / `area=harness` の物理 rename、ファイル名 rename、distribution cutover は
+  PLAN-M-02 の `cutover_decision_record` と `action_binding_approval_record` が承認されるまで行わない。
+  `ut-tdd rename plan --json` は 2026-07-05 時点で `blocked_pending_cutover_approval` /
+  `mustNotApply: true` を返しており、未承認の実 state move は禁止である。
+
 ## レビュー / 次工程
-- 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] completeness pass addendum。
-</content>
+- 3 項目は個別 confirmed PLAN で着地済み。親 PLAN は completeness pass gap の集約証跡として confirmed。
+- 残る名称切替は PLAN-M-02 の cutover 承認後に、ファイル名 / フォルダ名 / CLI / state / template /
+  distribution surface を atomic migration として扱う。
+- 出典: [[upstream-helix-reconciliation]] completeness pass addendum。
