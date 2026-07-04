@@ -5,6 +5,7 @@
  */
 
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import {
@@ -404,8 +405,10 @@ import {
   type GuardrailDecisionInput,
   inspectGuardrailInvariants,
 } from "../state-db/guardrail-invariants";
-import { openHarnessDb } from "../state-db/index";
-import { rebuildHarnessDb } from "../state-db/projection-writer";
+import { type HarnessDb, openHarnessDb } from "../state-db/index";
+import { rowCounts } from "../state-db/migration";
+import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
+import { loadRuntimeSessionUsage } from "../state-db/token-tracker";
 import { classifyProposalDocumentCoverage } from "../task/classify";
 import { buildTeamRunPlan } from "../team/run";
 import {
@@ -1059,6 +1062,19 @@ export function checkVerifierProviderMismatch(repoRoot: string): {
   }
 }
 
+function runtimeSessionDirsForDoctor(): { claudeDir: string; codexDir: string } {
+  return {
+    claudeDir: process.env.UT_TDD_CLAUDE_SESSIONS_DIR ?? join(homedir(), ".claude", "projects"),
+    codexDir: process.env.UT_TDD_CODEX_SESSIONS_DIR ?? join(homedir(), ".codex", "sessions"),
+  };
+}
+
+export function projectRuntimeModelTelemetryForDoctor(repoRoot: string, db: HarnessDb): void {
+  const { claudeDir, codexDir } = runtimeSessionDirsForDoctor();
+  const usages = loadRuntimeSessionUsage({ claudeDirs: [claudeDir], codexDirs: [codexDir] });
+  projectTokenUsage(db, usages);
+}
+
 export function checkDbProjectionIngestion(repoRoot: string): { messages: string[]; ok: boolean } {
   if (!existsSync(repoRoot)) {
     return {
@@ -1069,8 +1085,9 @@ export function checkDbProjectionIngestion(repoRoot: string): { messages: string
   try {
     const db = openHarnessDb(":memory:", { repoRoot });
     try {
-      const rebuilt = rebuildHarnessDb({ repoRoot, db });
-      const result = analyzeDbProjectionIngestion(rebuilt.rowCounts);
+      rebuildHarnessDb({ repoRoot, db });
+      projectRuntimeModelTelemetryForDoctor(repoRoot, db);
+      const result = analyzeDbProjectionIngestion(rowCounts(db));
       const pairAgentBlockedGate = db
         .prepare(
           "SELECT gate_id, status, evidence_path FROM gate_runs WHERE gate_id = ? AND status IN ('blocked', 'error', 'failed') ORDER BY checked_at DESC LIMIT 1",

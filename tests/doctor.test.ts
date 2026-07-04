@@ -43,6 +43,7 @@ import {
   checkPlanGovernance,
   checkPlanTraceGate,
   checkProjectHooks,
+  projectRuntimeModelTelemetryForDoctor,
   checkPropagation,
   checkReadability,
   checkRegressionExpansion,
@@ -69,6 +70,8 @@ import {
   runConsumerDoctor,
   runDoctor,
 } from "../src/doctor/index";
+import { openHarnessDb } from "../src/state-db/index";
+import { migrate } from "../src/state-db/migration";
 import { checkGreenCommandDigests } from "../src/lint/green-command-digest";
 import {
   analyzeOutstandingWork,
@@ -2779,6 +2782,74 @@ describe("runDoctor", () => {
         "open pair-agent evidence finding pair-agent-evidence-light-agent-closure-claim",
       );
     } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DBPROJ-PROV-03: overlays runtime session token usage into model_runs for doctor", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-tdd-doctor-runtime-model-runs-"));
+    const oldClaudeDir = process.env.UT_TDD_CLAUDE_SESSIONS_DIR;
+    const oldCodexDir = process.env.UT_TDD_CODEX_SESSIONS_DIR;
+    try {
+      const claudeDir = join(root, "claude-sessions");
+      const codexDir = join(root, "codex-sessions");
+      mkdirSync(claudeDir, { recursive: true });
+      mkdirSync(codexDir, { recursive: true });
+      process.env.UT_TDD_CLAUDE_SESSIONS_DIR = claudeDir;
+      process.env.UT_TDD_CODEX_SESSIONS_DIR = codexDir;
+      writeFileSync(
+        join(claudeDir, "session.jsonl"),
+        `${JSON.stringify({
+          type: "assistant",
+          sessionId: "doctor-session-1",
+          message: {
+            model: "claude-opus-4-8",
+            usage: {
+              input_tokens: 1000,
+              output_tokens: 500,
+              cache_creation_input_tokens: 0,
+              cache_read_input_tokens: 2000,
+            },
+          },
+        })}\n`,
+      );
+      const db = openHarnessDb(":memory:", { repoRoot: root });
+      try {
+        migrate(db);
+        projectRuntimeModelTelemetryForDoctor(root, db);
+        const row = db
+          .prepare(
+            "SELECT runtime, model, role, input_tokens, output_tokens, cached_input_tokens, cost_usd FROM model_runs WHERE role = ?",
+          )
+          .get("session") as
+          | {
+              runtime: string;
+              model: string;
+              role: string;
+              input_tokens: number;
+              output_tokens: number;
+              cached_input_tokens: number;
+              cost_usd: number;
+            }
+          | undefined;
+
+        expect(row).toMatchObject({
+          runtime: "claude",
+          model: "claude-opus-4-8",
+          role: "session",
+          input_tokens: 1000,
+          output_tokens: 500,
+          cached_input_tokens: 2000,
+        });
+        expect(row?.cost_usd).toBeCloseTo(0.0185, 6);
+      } finally {
+        db.close();
+      }
+    } finally {
+      if (oldClaudeDir === undefined) delete process.env.UT_TDD_CLAUDE_SESSIONS_DIR;
+      else process.env.UT_TDD_CLAUDE_SESSIONS_DIR = oldClaudeDir;
+      if (oldCodexDir === undefined) delete process.env.UT_TDD_CODEX_SESSIONS_DIR;
+      else process.env.UT_TDD_CODEX_SESSIONS_DIR = oldCodexDir;
       rmSync(root, { recursive: true, force: true });
     }
   });
