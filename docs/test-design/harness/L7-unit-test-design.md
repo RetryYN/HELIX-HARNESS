@@ -797,6 +797,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-SKILL-SCAFFOLD-001 | `scaffoldSkill` | valid 入力では deterministic な `docs/skills/<slug>.md` path、`skill.v1` frontmatter、dedupe 済み layer / drive model / domain tag metadata、空 findings を返す。filesystem へ write しない pure generator とする。 |
 | U-SKILL-SCAFFOLD-002 | `scaffoldSkill` | unknown category、unknown layer、unknown drive model は `skill-assignment` SSoT の self-lint finding として返し、`ok=false` にする。 |
 | U-SKILL-SCAFFOLD-003 | `SKILL_SCAFFOLD_ALLOWED_VALUES` | category / layer / drive model の allowed values は scaffold 側で再定義せず、`skill-assignment` constants を公開する。 |
+| U-SKILL-SCAFFOLD-004 | `ut-tdd skill create` | CLI は既定 no-write で scaffold JSON/text を返し、`--write` 指定時だけ `docs/skills/<slug>.md` を作成する。既存 file は `--force` 無しで exit 1 とし、generator の self-lint finding を隠さない。 |
 
 ### 2026-06-15 PoC Success Measurement Oracle 検査 (FR-L1-43, PLAN-L7-53)
 

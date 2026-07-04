@@ -215,6 +215,7 @@ import {
   recommendSkillsForText,
   recordSkillRecommendations,
 } from "./skills/recommend";
+import { scaffoldSkill } from "./skill-engine/scaffold";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
@@ -3236,6 +3237,72 @@ telemetry
   });
 
 const skill = program.command("skill").description("skill recommendation and invocation telemetry");
+skill
+  .command("create")
+  .description("create a skill.v1 scaffold from assignment metadata")
+  .requiredOption("--name <name>", "skill display name")
+  .requiredOption("--category <category>", "skill_type value")
+  .requiredOption("--layers <list>", "comma-separated L layer list")
+  .requiredOption("--drive-models <list>", "comma-separated drive model list")
+  .option("--domain-tags <list>", "comma-separated domain tags")
+  .option("--description <text>", "initial Japanese skill description")
+  .option("--write", "write the scaffold file under docs/skills")
+  .option("--force", "overwrite an existing skill file when --write is set")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      name: string;
+      category: string;
+      layers: string;
+      driveModels: string;
+      domainTags?: string;
+      description?: string;
+      write?: boolean;
+      force?: boolean;
+      json?: boolean;
+    }) => {
+      const split = (value: string | undefined) =>
+        (value ?? "")
+          .split(",")
+          .map((part) => part.trim())
+          .filter(Boolean);
+      const result = scaffoldSkill({
+        name: opts.name,
+        category: opts.category,
+        layers: split(opts.layers),
+        driveModels: split(opts.driveModels),
+        domainTags: split(opts.domainTags),
+        description: opts.description,
+      });
+      let written = false;
+      if (result.ok && opts.write) {
+        if (existsSync(result.path) && !opts.force) {
+          const message = `skill create refused to overwrite existing file: ${result.path}\n`;
+          if (opts.json) {
+            process.stdout.write(
+              `${JSON.stringify({ ...result, ok: false, written, error: message.trim() }, null, 2)}\n`,
+            );
+          } else process.stderr.write(message);
+          process.exitCode = 1;
+          return;
+        }
+        mkdirSync(dirname(result.path), { recursive: true });
+        writeFileSync(result.path, result.content, "utf8");
+        written = true;
+      }
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify({ ...result, written }, null, 2)}\n`);
+      } else {
+        process.stdout.write(`${result.ok ? "skill create" : "skill create rejected"}: ${result.path}\n`);
+        for (const finding of result.findings) {
+          process.stdout.write(`  ${finding.field}: ${finding.message}\n`);
+        }
+        if (written) process.stdout.write("  written=true\n");
+        else process.stdout.write("  written=false\n");
+      }
+      if (!result.ok) process.exitCode = 1;
+    },
+  );
 skill
   .command("suggest")
   .description("suggest skills for a PLAN id or a free-text task from harness.db context")

@@ -743,8 +743,9 @@ FR-L1-12 (`suggestSkillInjection`) / FR-L1-47 (`recommendSkills`) の公開 CLI 
 - self-lint は `src/lint/skill-assignment.ts` の `VALID_SKILL_TYPES` / `VALID_SKILL_LAYERS` /
   `VALID_SKILL_DRIVE_MODELS` と `analyzeSkillAssignments` を再利用し、不正 category / layer / drive model を
   `findings` として返す。
-- generator は filesystem へ書かない。file write は後続 CLI 境界 (`skill create`) の責務であり、
-  recommendation / telemetry logic は変更しない。oracle: `tests/skill-scaffold.test.ts`。
+- generator は filesystem へ書かない。file write は CLI 境界 (`skill create --write`) の責務であり、
+  既定は JSON/text scaffold preview の no-write、既存 file は `--force` 無しで拒否する。recommendation /
+  telemetry logic は変更しない。oracle: `tests/skill-scaffold.test.ts` と `tests/skill-scaffold-cli.test.ts`。
 ## 2026-06-23 dynamic skill injection materialization 追補 (PLAN-L7-135)
 
 FR-L1-12 / FR-L1-47 は recommendation row だけでは close しない。runtime contract は 2 段階である。
