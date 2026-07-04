@@ -938,13 +938,13 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-ROADMAP-027 | `analyzeL7FeaturePackCoverage` | L7 roadmap が gate/span だけで feature pack を持たない場合、required layers が全て `missingLayers` に入り `ok=false`。`drive` から推測して pass しない。 |
 | U-ROADMAP-028 | `loadRoadmaps` + `analyzeL7FeaturePackCoverage` | real repo の L7 roadmap registry は database/service/frontend/ui feature packs を全て持つ。DB/read-model/frontend coverage が UI completion を代替しないよう、UI pack は `PLAN-L7-141` の deferred span として残る。 |
 
-## PLAN-L7-81 Codex Wrapper Parity 追補
+## PLAN-L7-81 Codex wrapper parity（Codex wrapper 同等性）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
-| U-ADAPTER-009 | `checkCodexWrapperParity` / `runDoctor` | Claude Code project hooks と Codex wrapper parity を明示的に検査する。Claude hook evidence は `.claude/settings.json` 由来でなければならない。Codex evidence は `.claude` hooks が Codex に適用されるという仮定ではなく、`ut-tdd codex --execute` / `--task-file` / `--plan ... --execute` lifecycle tests と stdin adapter oracle 由来でなければならない。`doctor` は `codex-wrapper-parity - OK` を surface し、どちらかが欠けた場合は fail-close する。 |
+| U-ADAPTER-009 | `checkCodexWrapperParity` / `runDoctor` | Claude Code project hooks と Codex wrapper parity（同等性）を明示的に検査する。Claude hook evidence（証跡）は `.claude/settings.json` 由来でなければならない。Codex evidence は `.claude` hooks が Codex に適用されるという仮定ではなく、`ut-tdd codex --execute` / `--task-file` / `--plan ... --execute` lifecycle tests と stdin adapter oracle 由来でなければならない。`doctor` は `codex-wrapper-parity - OK` を surface（表示）し、どちらかが欠けた場合は fail-close する。 |
 
-> Scope note (PLAN-L7-139): U-ADAPTER-009 は **delegation** path、つまり harness が
+> Scope note（範囲注記、PLAN-L7-139）: U-ADAPTER-009 は **delegation** path、つまり harness が
 > `ut-tdd codex` 経由で Codex を worker として駆動する経路を覆う。ここでは `.claude` hooks が
 > Codex に適用されるとは仮定しない。補完関係にある **direct / interactive** path
 > (developer がこの repo で `codex` を実行する経路) は、明示的な repo-local `.codex/hooks.json`
@@ -953,27 +953,27 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 
 ## PLAN-L7-139 Codex Hook Adapter Parity 追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
-| U-CXHOOK-001 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | Real-repo regression: commit 済み `.codex/hooks.json` は Claude guard entrypoint を Codex matcher と共有し、`ok:true` (`codex-hook-adapter - OK`) を返す。prose ではなく実 repo に対して parity claim を立証する。 |
-| U-CXHOOK-002 | `analyzeCodexHookAdapter` | `.codex/hooks.json` 欠落 (`missing_hooks_json`) と malformed JSON (`malformed_json`) はどちらも fail closed する。 |
-| U-CXHOOK-003 | `analyzeCodexHookAdapter` | Claude matcher (`Edit\|Write\|MultiEdit`) の literal copy は Codex tool name では発火しないため fail closed (`missing_hook`) する。silent false-parity (coverage≠substance) を防ぐ。 |
-| U-CXHOOK-004 | `analyzeCodexHookAdapter` | `work-guard` の `blockOnFailure` 削除 (`missing_block_on_failure`)、Codex command 内の `$CLAUDE_PROJECT_DIR` 利用 (`claude_project_dir_in_codex`)、global `~/.codex/` 参照 (`global_codex_path`) はそれぞれ fail closed する。 |
+| U-CXHOOK-001 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | Real-repo regression（実 repo 回帰）: commit 済み `.codex/hooks.json` は Claude guard entrypoint を Codex matcher と共有し、`ok:true` (`codex-hook-adapter - OK`) を返す。prose ではなく実 repo に対して parity claim（同等性 claim）を立証する。 |
+| U-CXHOOK-002 | `analyzeCodexHookAdapter` | `.codex/hooks.json` 欠落 (`missing_hooks_json`) と malformed JSON (`malformed_json`) はどちらも fail-close する。 |
+| U-CXHOOK-003 | `analyzeCodexHookAdapter` | Claude matcher (`Edit\|Write\|MultiEdit`) の literal copy は Codex tool name では発火しないため fail-close (`missing_hook`) する。silent false-parity（静かな偽同等性、coverage≠substance）を防ぐ。 |
+| U-CXHOOK-004 | `analyzeCodexHookAdapter` | `work-guard` の `blockOnFailure` 削除 (`missing_block_on_failure`)、Codex command 内の `$CLAUDE_PROJECT_DIR` 利用 (`claude_project_dir_in_codex`)、global `~/.codex/` 参照 (`global_codex_path`) はそれぞれ fail-close する。 |
 | U-CXHOOK-005 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | 全 Codex guard entrypoint は Claude `REQUIRED` set にも存在する (bidirectional: adapter 間の silent fork なし。違反時は `entrypoint_drift`)。 |
-| U-CXHOOK-006 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Disposition は blanket-N/A ではなく正直に分類する (cross-runtime review correction)。`subagent-stop` は本当に N/A (codex.exe 0.128.0 は `SubagentStop` event を持たない) だが、`agent-guard` は N/A **ではない**。Codex の `spawn_agent` sub-agent tool family が存在し、shared guard entrypoint へ接続される。guard は missing/unknown `agent_type`、direct model override、missing task body、bulk spawn を block する。Codex shell surface (`exec_command|local_shell`) も N/A ではなく、destructive git operation を block する `git-command-guard` へ接続される。これら known surface では `CODEX_DEFERRED_SURFACE` は空。future surface も接続するか明示的に defer しなければならない。 |
-| U-CXHOOK-007 | `extractEditTargets` (`src/runtime/work-guard.ts`) | False-parity regression (Critical, cross-runtime REJECT): Codex `apply_patch` は freeform で `tool_input.file_path` を持たないため、path は patch body (`*** Update/Add/Delete File:` / `*** Move to:`、multi-file) から parse しなければならない。`extractEditTargets` は Claude/`write_file` では明示 `file_path`/`path`、apply_patch では全 patch-body path (command-array form 含む) を返す。また明示 `file_path` がある場合に doc `content` から誤抽出しない (false-block guard)。 |
-| U-CXHOOK-008 | `analyzeCodexHookAdapter` | Analyzer hardening (cross-runtime review Important): non-`command` hook は guard を満たさない (`type==="command"` required)。また script-path が別 token の substring として現れるだけでは guard を満たさない (例: `src/cli.tsx` vs `src/cli.ts`、token-exact matching)。 |
+| U-CXHOOK-006 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Disposition（分類）は blanket-N/A ではなく正直に分類する (cross-runtime review correction)。`subagent-stop` は本当に N/A (codex.exe 0.128.0 は `SubagentStop` event を持たない) だが、`agent-guard` は N/A **ではない**。Codex の `spawn_agent` sub-agent tool family が存在し、shared guard entrypoint へ接続される。guard は missing/unknown `agent_type`、direct model override、missing task body、bulk spawn を block する。Codex shell surface (`exec_command|local_shell`) も N/A ではなく、destructive git operation を block する `git-command-guard` へ接続される。これら known surface では `CODEX_DEFERRED_SURFACE` は空。future surface も接続するか明示的に defer しなければならない。 |
+| U-CXHOOK-007 | `extractEditTargets` (`src/runtime/work-guard.ts`) | False-parity regression（偽同等性回帰、Critical、cross-runtime REJECT）: Codex `apply_patch` は freeform で `tool_input.file_path` を持たないため、path は patch body (`*** Update/Add/Delete File:` / `*** Move to:`、multi-file) から parse しなければならない。`extractEditTargets` は Claude/`write_file` では明示 `file_path`/`path`、apply_patch では全 patch-body path (command-array form 含む) を返す。また明示 `file_path` がある場合に doc `content` から誤抽出しない (false-block guard)。 |
+| U-CXHOOK-008 | `analyzeCodexHookAdapter` | Analyzer hardening（解析器 hardening、cross-runtime review Important）: non-`command` hook は guard を満たさない (`type==="command"` required)。また script-path が別 token の substring として現れるだけでは guard を満たさない (例: `src/cli.tsx` vs `src/cli.ts`、token-exact matching)。 |
 | U-CXHOOK-009 | `codexHookAdapterMessages` / `CodexHookResult.apiToolPathEnforced` | adapter は hosted API/developer tools の coverage を主張してはならない。`.codex/hooks.json` は direct Codex CLI/IDE session を覆う。この chat runtime に injected される `apply_patch` path は Codex hook engine を通らず、`apiToolPathEnforced=false` として表示される。 |
-| U-CXHOOK-010 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | `.codex/hooks.json` だけでは十分な evidence ではない。real repo loader は `.codex/config.toml` も読む。その file が欠落 (`missing_config_toml`)、または `[features].hooks=true` が欠落/disabled (`hooks_feature_disabled`) の場合、analyzer は fail closed する。したがって `doctor` は direct Codex CLI/IDE session 用の Codex hook adapter が宣言済みかつ enabled であることを証明する。 |
+| U-CXHOOK-010 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | `.codex/hooks.json` だけでは十分な evidence ではない。real repo loader は `.codex/config.toml` も読む。その file が欠落 (`missing_config_toml`)、または `[features].hooks=true` が欠落/disabled (`hooks_feature_disabled`) の場合、analyzer は fail-close する。したがって `doctor` は direct Codex CLI/IDE session 用の Codex hook adapter が宣言済みかつ enabled であることを証明する。 |
 | U-CXHOOK-011 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | 全 Codex guard entrypoint は Claude `REQUIRED` set にも存在する (bidirectional: adapter 間の silent fork なし。違反時は `entrypoint_drift`)。 |
 | U-CXHOOK-012 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `CODEX_REQUIRED` | `subagent-stop` だけが true N/A。Codex `spawn_agent|spawn_agents_on_csv` は required `agent-guard` matcher であり、deferred omission ではない。 |
-| U-CXHOOK-013 | `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Shared guard logic は runtime-agnostic である。同じ pure function が foreign edit、allowlist 外 Claude subagent、standard Claude `Task` matcher 上の missing/null input、unsafe Codex spawn role、direct model override、missing task body、bulk spawn、destructive git command (`reset` / destructive `checkout` / `restore` / `revert` / force-push) を block する。`Agent` と `Task` は同じ allowlist/model family oracle を通る。 |
+| U-CXHOOK-013 | `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Shared guard logic（共有 guard logic）は runtime-agnostic である。同じ pure function が foreign edit、allowlist 外 Claude subagent、standard Claude `Task` matcher 上の missing/null input、unsafe Codex spawn role、direct model override、missing task body、bulk spawn、destructive git command (`reset` / destructive `checkout` / `restore` / `revert` / force-push) を block する。`Agent` と `Task` は同じ allowlist/model family oracle を通る。 |
 | U-CXHOOK-014 | `analyzeCodexHookAdapter` | Non-`command` hook は guard を満たさない (`type==="command"` required)。 |
 | U-CXHOOK-015 | `analyzeCodexHookAdapter` | Script path は exact token として一致しなければならない。`src/cli.tsx` は required `src/cli.ts` guard command を満たさない。 |
 
-## IMP-142 destructive git guard 追補
+## IMP-142 destructive git guard（破壊的 git guard）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-GITGUARD-001 | `evaluateGitCommandGuard` | `git reset`、destructive `git checkout`、`git restore`、`git revert`、`git push --force` / `--force-with-lease` は `decision=block` / `reason=destructive-git` を返す。`git status`、`git diff`、`git log`、通常 `git push`、`git checkout -b` は pass し、履歴破壊ガードが通常の確認・commit/push フローを止めない。 |
 | U-GITGUARD-002 | `extractShellCommand` / `ut-tdd hook git-command-guard` / `.claude/hooks/git-command-guard.ts` | Claude `tool_input.command`、Codex `tool_input.cmd`、文字列 payload のどれでも command を抽出し、CLI hook と repo hook は destructive git command で exit 2、safe git command で exit 0 を返す。`.ut-tdd/state/destructive-git-override` は非空理由がある時だけ one-shot bypass となり、`.ut-tdd/logs/destructive-git-overrides.jsonl` に audit を残して次回は再 block する。 |
@@ -985,9 +985,9 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-ADAPTER-007 | `buildAdapterPlan` / `buildProviderInvocation` | codex の plan はプロンプトを `args` でなく `plan.stdin` に載せ、`args` は `exec` + `-` (stdin sentinel) のみでプロンプト本文を含まない (`codex exec -` は instructions を stdin から読む)。改行 + cmd.exe メタ文字 (`< > \| ( )`) を含むプロンプトは、Windows `.cmd` の shell-wrap 後の cmd.exe コマンド文字列にも現れず、改行で切り詰められない。Red→Green: pre-fix はプロンプトが args + wrapped 文字列に埋め込まれ truncatable。 |
 | U-ADAPTER-008 | `buildAdapterPlan` / `buildProviderInvocation` / `ut-tdd claude --execute` | claude の plan は `--print --input-format text` を固定 argv とし、prompt 本文を `plan.stdin` で渡す。`-p <task>` は使わず、`<invoke name="Bash">...` 形式の native tool markup や改行を含む task text は argv / provider invocation string に現れない。fake Claude wrapper は stdin に task 本文を受け取り、session lifecycle digest は従来どおり `session_start` / `tool_use` / `session_end` を記録する。 |
 
-## PLAN-L7-84 Status nextAction Field 追補
+## PLAN-L7-84 status nextAction field（status nextAction field）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-DETECT-001 | `nextActionForMode` / `NEXT_ACTION_BY_MODE` | 4 mode (standalone / claude-only / codex-only / hybrid) 全てに対し SSoT `NEXT_ACTION_BY_MODE` の値を返し、空でない。`ut-tdd status --json` は 6 検出フィールドに `nextAction` を additive 付加する (camelCase 公開契約、A-138 ITEM-1)。 |
 | U-DETECT-002 | `nextActionForMode("standalone")` | `human-review-required:` 接頭で始まる — AI レビュアー不在ゆえ判断ゲートは人間レビュー必須 (自動 pass 不可、concept §189 / requirements §2001)。 |
@@ -996,9 +996,9 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-DETECT-005 | `nextActionForMode` value-domain | 各値は先頭 token (`:` 手前) で機械 switch でき、後続が人間可読。公開 JSON 契約ゆえ ASCII のみ (machine-surface-language と整合)。 |
 | U-DETECT-006 | `judgmentReviewPlanForMode` + `ut-tdd status --json` | `nextAction` の人間可読 guidance とは別に、status JSON が `judgmentReview` を additive に返す。hybrid は `requiredReviewKind=cross_agent`、`crossAgentReview=available`、worker/reviewer model evidence と `ut-tdd gate <gate-id> --review-kind cross_agent ...` template を持つ。単一 runtime は `intra_runtime_subagent` + checklist、standalone は human approval template を持つ。`requiredEvidence[]` は machine field として残し、同じ順序・同じ件数の `requiredEvidenceJa[]` を持つ。text status は `judgment-review-evidence:` 行で日本語 evidence と `evidence-id` を併記し、判断 gate の証跡確認だけが英語 machine prose へ戻らない。 |
 
-## PLAN-L7-85 review read-only guard 追補
+## PLAN-L7-85 review read-only guard（レビュー read-only guard）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-RGUARD-001 | `isReadOnlyDelegationRole` | 相談/検証 archetype (tl/qa/uiux) + review エイリアス (reviewer/review/security/audit) は read-only=true (§1.8 role taxonomy、判断側は実装代行しない、IMP-137)。 |
 | U-RGUARD-002 | `isReadOnlyDelegationRole` | worker (se/docs)・未知ロールは read-only=false (誤検知回避 — guard はレビュー session のみ対象)。 |
@@ -1020,15 +1020,15 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-VERSIONUP-EXIT-001 | `ut-tdd version-up dry-run --json` | 既定の dry-run は承認前 evidence 収集 surface であり、`ok=false` / `blockedReasons` を JSON に出しても exit 0 を維持する。activation verification matrix の `version-dry-run` row はこの既定 exit を使い、抽象 target (`future` 等) の blocker を no-write evidence として読む。 |
 | U-VERSIONUP-EXIT-002 | `ut-tdd version-up dry-run --fail-on-blocked --json` | CI / release gate / scripted readiness check が process status を読む場合は `--fail-on-blocked` を使う。`ok=false` の dry-run は JSON を出した後に exit 1 になり、`ok=true` の dry-run は同 flag 付きでも exit 0 になる。 |
 
-## PLAN-L7-264 consumer hook artifact 構造 gate 追補
+## PLAN-L7-264 consumer hook artifact（consumer hook artifact）構造 gate 追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-SETUP-025 | `runHelixProjectSetup` / `runConsumerDoctor` | consumer setup が配布する `.claude/settings.json` / `.codex/hooks.json` は文字列検索ではなく JSON として parse し、必要 event、matcher、hook `type=command`、command、hard guard の `blockOnFailure=true` を構造で検査する。`.codex/config.toml` は `[features]` と `hooks = true` を持つ。command 文字列だけが別 field に残る、matcher が drift する、hard guard が non-command または `blockOnFailure=false` になる、PostToolUse / Stop / SubagentStop 等の lifecycle hook が欠ける場合は setup readiness と consumer doctor の両方で fail-close する。 |
 
-## PLAN-L7-265 version-up security checklist evidence 追補
+## PLAN-L7-265 version-up security checklist evidence（security checklist 証跡）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-VERSIONUP-SEC-001 | `buildVersionUpActivationPacket` / `buildVersionUpSecurityChecklistPacket` | `securityChecklistPacket.securityChecks[]` は `requiredEvidence` だけでなく `status` / `evidence` / `reason` を持つ。concrete locator 未接続の row は `pending_evidence` として公開され、`requiredEvidence` は要求であって実証済み evidence ではない。 |
 | U-VERSIONUP-SEC-002 | `versionUpSecurityChecklistSourceViolations` | `sourceUrl` / `sourceCheckedAt` 等の source metadata 欠落に加え、`evidence` / `reason` の空・placeholder、または `status=present` なのに concrete locator がない row を fail-close する。`pending_evidence` は parked activation の正当な未完了状態として表現される。 |
@@ -1041,18 +1041,18 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-VERSIONUP-SOURCE-007 | `analyzeVersionUpReadiness` | version-up mode doc が Google Cloud Deploy の deployment verification / canary / rollback を比較根拠として使う場合、`Version-up source ledger` table に `Google Cloud Deploy verification` / `Google Cloud Deploy canary` / `Google Cloud Deploy rollback` の 3 行が必須。本文 prose だけに残って table row が無い場合は `missingSourceLedgerRows` で fail-close する。 |
 | U-VERSIONUP-SOURCE-008 | `EXPECTED_SOURCE_LEDGER_BINDINGS` | Google Cloud Deploy rollback row は `https://docs.cloud.google.com/deploy/docs/roll-back` と `rollback_plan` impact を持つ。旧 URL や field impact 欠落は source ledger drift として fail-close し、version-up activation の rollback 比較根拠を自由文に戻さない。 |
 
-## PLAN-L7-290 setup project rollback command 追補
+## PLAN-L7-290 setup project rollback command（rollback command）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-SETUP-032 | `buildConsumerReadinessPlan().rollback.commands` | HELIX project bootstrap の rollback 手順は `ut-tdd setup project --dry-run --json` と `ut-tdd setup project --solo` を返す。旧 solo/team adapter 入口の `ut-tdd setup --dry-run` / `ut-tdd setup --solo` が consumer readiness に混入した場合は fail-close し、新規プロジェクト導入の復旧導線を正規 `setup project` から逸脱させない。 |
 | U-SETUP-033 | `loadTemplates(process.cwd())` / `runHelixProjectSetup` | 実配布される `docs/templates/*` を読み込んだ `ut-tdd setup project --dry-run` は `consumerReadiness.ok=true` になる。built-in fallback が green でも、docs/templates 実体が古く `completion review-bundle` / `version-up dry-run v0.1.4 --release-remote` / `team run dry-run` / read-only escalation workflow を欠く場合は `projected-consumer-artifacts` で fail-close する。 |
 | U-SETUP-034 | `CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` | root / Codex / Claude runtime instruction の setup command surface は `ut-tdd setup project` を正規 entrypoint として示す。`Setup: ut-tdd setup` の legacy 表記が戻った場合は fail-close し、HELIX 導入済み VSCode の新規 project bootstrap と legacy solo/team adapter setup を混同させない。 |
 | U-SETUP-035 | `CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` | setup command surface 近傍の managed block / runtime prose は日本語-first にする。`ut-tdd setup project` の説明が `bootstraps a HELIX-ready project` など英語 prose に戻った場合は fail-close し、CLI 名・識別子以外の instruction prose を日本語へ寄せる。 |
 
-## PLAN-L7-294 completion review-bundle field surface 追補
+## PLAN-L7-294 completion review-bundle field surface（確認 field surface）追補
 
-| U-ID | Target | Oracle |
+| U-ID | 対象 | Oracle |
 |---|---|---|
 | U-OUTSTANDING-016 | `completionReviewBundleForOutstanding` / `analyzeCompletionReviewBundle` | `completion-review-bundle.v1.reviewPackets[]` は `requiredReviewFieldsDigest` だけでなく `requiredReviewFields[]` の実配列を持つ。S4 / version-up / rename / action-binding の判断前に見るべき field を bundle 単体から辿れることを保証し、実配列を削る・digest と不一致にする・supporting summary と drift させる場合は `invalid_review_packet` / `invalid_digest` で fail-close する。 |
 | U-OUTSTANDING-017 | `ut-tdd completion review-bundle` text | text の `review-packet:` 行は `reviewFieldCount=` と `reviewFields=` を出す。JSON を開かない通常確認でも S4 / version-up / rename / action-binding の判断前 field へ辿れることを保証し、`safety=` だけに戻った場合は cli-surface test で fail-close する。 |
