@@ -69,3 +69,34 @@ provider 起動結果分類）を追加検出した。二 fork（各 900〜1150 
 
 実装は Codex in-flight 作業の着地後、harness workflow（plan→pair-freeze→implement→trace-freeze→review→accept）
 で行う。基準点は HEAD。
+
+（追記）その後の pass で **L7-322（harness-quality-tooling backlog）/ L7-323（workflow & document parity）** を追加起票。
+partial だった scope-integrity / probe / mutation は **確定欠落**へ格上げ（PLAN-322、commit 6d7c544）。
+
+## 6. 設計ドキュメント群 突合（`docs/design/`、2026-07-04）
+
+`docs/design/harness/`（V モデル設計、共有 48・上流のみ 8・LOCAL のみ 7）を突合。`docs/design/helix/` は LOCAL 固有。
+
+- **LOCAL-only 7件**（L7-L14 evidence-boundary: implementation/integration/system/uat/acceptance/post-deploy/operations）
+  = **LOCAL 先行**（右腕 evidence 設計）。gap でない。
+- **UPSTREAM-only 8件**の帰属:
+  - `screen-functional`(L3) / `ui-detail`(L5) / `screen-spec`(L6) = **screen 設計連鎖の実 gap**（LOCAL は L2 mock 止まりで testable な screen 契約無し）→ PLAN-L7-323（design-methodology）。
+  - `context`(L6) = doc-router 設計 → PLAN-L7-315。`skill-index`(L6) = skill scaffold 設計 → PLAN-L7-317。
+  - `graph`(L6) = relation-graph（LOCAL 保持、node 投影の一部欠落 → PLAN-L7-321）の設計side。
+  - `memory`(L6) = already-have（orchestration-memory）。`secret`(L6) = already-have（SECRET_PATTERN）。
+- **共有 48件の加筆 drift**: commit subject で確認した結果、**すべて既捕捉 capability の設計side文書**
+  （function-spec +261 = route_mode/route-cert/skill projection、physical-data +166 = route_mode/skill-telemetry、
+  architecture = context module/shared memory/github-ops、setup-solo-team/function/module-decomposition = pack/distribution、
+  その他 = L10-L14 gate marker〔G9/G10/L14〕）。**新規 capability は増えない**。
+
+**結論**: 設計 doc 群の差異は (a) screen 設計連鎖 = 実 design gap（PLAN-323）、(b) 上流のみ L6 concept doc = 既起票 PLAN の設計 reference、
+(c) 共有 drift = 既捕捉 capability の設計side文書、の 3 種に尽き、**PLAN-312〜323 の外に新規 capability は発生しない**。
+実装時、各 PLAN の harness workflow 内で対応する L3/L5/L6 設計 doc（function-spec / physical-data / screen 連鎖 等）を更新する。
+
+## 7. 後続 pass での residual 解消状況
+
+§4 の UNREVIEWED residual は後続 pass（commit-subject + grep の systematic triage）で解消:
+- **PR ブランチ変更(M) src ~20 / 全 L7-202..362 skim**: 実施済。新規欠落（route-cert/write-encoding-guard/bundle-split/
+  telemetry-retention/digest-commit-anchor/plan-ref-freshness/plan-archive/vendor-surface/hot-zone/wave-runner/
+  deprecation-mode/detector-self-trigger/github-ops-guard 等）を PLAN-L7-322 に、CI hardening + 欠落 doc を PLAN-L7-323 に集約。
+- 到達度は **capability レベル（commit-subject + grep）**であり full line-by-line ではない旨は維持（grep=1hit の likely-have は残る）。
