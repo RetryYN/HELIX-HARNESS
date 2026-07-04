@@ -1,0 +1,15 @@
+routes:
+  - signal: failure
+    mode: reverse
+    priority: 10
+    next:
+      - repair
+  - signal: repair
+    mode: refactor
+    priority: 20
+    next:
+      - verify
+  - signal: verify
+    mode: forward
+    priority: 30
+    next: []

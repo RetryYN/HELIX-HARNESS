@@ -1,3 +1,5 @@
+import { parse as parseYaml } from "yaml";
+import { z } from "zod";
 import { type RecommendedCommandV1, recommendedCommandV1Schema } from "../schema/index";
 import type { ContractResult, Finding, Severity } from "./contracts";
 
@@ -131,6 +133,161 @@ const ROUTE_COMMAND_TASK_CLASSIFY = "ut-tdd task classify";
 const ROUTE_COMMAND_DOCTOR = "ut-tdd doctor";
 const ROUTE_COMMAND_PAIR_AGENT_PLAN = "ut-tdd pair-agent plan";
 const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/routing-contracts.ts";
+
+export const D_CONTRACT_MODES = [
+  "forward",
+  "reverse",
+  "recovery",
+  "retrofit",
+  "refactor",
+  "discovery",
+  "design-bottomup",
+  "scrum",
+  "version-up",
+  "incident",
+  "add-feature",
+  "research",
+] as const;
+
+export const dContractModeRoutingSchema = z.object({
+  routes: z
+    .array(
+      z.object({
+        signal: z.string().trim().min(1),
+        mode: z.enum(D_CONTRACT_MODES),
+        priority: z.number().int().nonnegative(),
+        next: z.array(z.string().trim().min(1)).default([]),
+      }),
+    )
+    .min(1),
+});
+
+export const dContractGateChecksSchema = z.object({
+  gates: z.record(
+    z.string().regex(/^G(?:[1-9]|1[0-4])$/),
+    z
+      .array(
+        z.object({
+          check: z.string().trim().min(1),
+          next_action: recommendedCommandV1Schema,
+        }),
+      )
+      .min(1),
+  ),
+});
+
+export type DContractModeRouting = z.infer<typeof dContractModeRoutingSchema>;
+export type DContractGateChecks = z.infer<typeof dContractGateChecksSchema>;
+
+export interface DContractDslResult extends ContractResult {
+  mode_routing: DContractModeRouting | null;
+  gate_checks: DContractGateChecks | null;
+}
+
+function parseDContractYaml(text: string): unknown | null {
+  try {
+    return parseYaml(text);
+  } catch {
+    return null;
+  }
+}
+
+function duplicateSignals(routes: DContractModeRouting["routes"]): string[] {
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+  for (const route of routes) {
+    if (seen.has(route.signal)) duplicates.add(route.signal);
+    seen.add(route.signal);
+  }
+  return [...duplicates].sort();
+}
+
+function detectRouteCycles(routes: DContractModeRouting["routes"]): string[][] {
+  const graph = new Map(routes.map((route) => [route.signal, route.next]));
+  const cycles: string[][] = [];
+  const visiting = new Set<string>();
+  const visited = new Set<string>();
+
+  function visit(signal: string, stack: string[]): void {
+    if (visiting.has(signal)) {
+      const cycleStart = stack.indexOf(signal);
+      cycles.push([...stack.slice(cycleStart), signal]);
+      return;
+    }
+    if (visited.has(signal)) return;
+    visiting.add(signal);
+    for (const next of graph.get(signal) ?? []) {
+      if (graph.has(next)) visit(next, [...stack, next]);
+    }
+    visiting.delete(signal);
+    visited.add(signal);
+  }
+
+  for (const signal of graph.keys()) visit(signal, [signal]);
+  return cycles;
+}
+
+export function validateDContractDsl(input: {
+  modeRoutingText: string;
+  gateChecksText: string;
+  requiredGateIds?: string[];
+  modeRoutingPath?: string;
+  gateChecksPath?: string;
+}): DContractDslResult {
+  const modeRoutingPath = input.modeRoutingPath ?? "mode-routing.yaml";
+  const gateChecksPath = input.gateChecksPath ?? "gate-checks.yaml";
+  const findings: Finding[] = [];
+
+  const modeRoutingRaw = parseDContractYaml(input.modeRoutingText);
+  const gateChecksRaw = parseDContractYaml(input.gateChecksText);
+  if (modeRoutingRaw === null) {
+    findings.push(finding("d-contract-mode-routing-yaml", "mode-routing.yaml must parse as YAML", { evidencePath: modeRoutingPath }));
+  }
+  if (gateChecksRaw === null) {
+    findings.push(finding("d-contract-gate-checks-yaml", "gate-checks.yaml must parse as YAML", { evidencePath: gateChecksPath }));
+  }
+
+  const modeRoutingParsed = dContractModeRoutingSchema.safeParse(modeRoutingRaw);
+  const gateChecksParsed = dContractGateChecksSchema.safeParse(gateChecksRaw);
+  if (!modeRoutingParsed.success) {
+    findings.push(finding("d-contract-mode-routing-schema", "mode-routing.yaml violates D-CONTRACT schema", { evidencePath: modeRoutingPath }));
+  }
+  if (!gateChecksParsed.success) {
+    findings.push(finding("d-contract-gate-checks-schema", "gate-checks.yaml violates D-CONTRACT schema or recommendedCommandV1", { evidencePath: gateChecksPath }));
+  }
+
+  const modeRouting = modeRoutingParsed.success ? modeRoutingParsed.data : null;
+  const gateChecks = gateChecksParsed.success ? gateChecksParsed.data : null;
+  if (modeRouting) {
+    for (const signal of duplicateSignals(modeRouting.routes)) {
+      findings.push(finding("d-contract-duplicate-signal", `mode-routing signal must be unique: ${signal}`, { evidencePath: modeRoutingPath }));
+    }
+    const signals = new Set(modeRouting.routes.map((route) => route.signal));
+    for (const route of modeRouting.routes) {
+      for (const next of route.next) {
+        if (!signals.has(next)) {
+          findings.push(finding("d-contract-unknown-next", `mode-routing next target is missing: ${route.signal} -> ${next}`, { evidencePath: modeRoutingPath }));
+        }
+      }
+    }
+    for (const cycle of detectRouteCycles(modeRouting.routes)) {
+      findings.push(finding("d-contract-next-cycle", `mode-routing next cycle detected: ${cycle.join(" -> ")}`, { evidencePath: modeRoutingPath }));
+    }
+  }
+  if (gateChecks) {
+    for (const gateId of input.requiredGateIds ?? []) {
+      if (!gateChecks.gates[gateId]) {
+        findings.push(finding("d-contract-missing-required-gate", `gate-checks.yaml is missing required gate: ${gateId}`, { evidencePath: gateChecksPath }));
+      }
+    }
+  }
+
+  return {
+    ...result(findings, [modeRoutingPath, gateChecksPath]),
+    mode_routing: modeRouting,
+    gate_checks: gateChecks,
+  };
+}
 
 export function validateRouteConfigText(input: {
   path: string;

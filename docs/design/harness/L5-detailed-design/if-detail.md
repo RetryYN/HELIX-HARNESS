@@ -99,7 +99,10 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 - **adapter 実装** (Claude Code Agent/hook 連携 / `codex exec` subprocess / `gh` CLI wrapper、**API key を扱わない**) = L7 (module-decomposition §5 adapter)
 - **intent/結果/エラー型の詳細 zod** = L7 (`src/schema` or adapter module)
 - **認証・秘密管理方式の確定 (縮小スコープ)** = AI runtime は契約プラン CLI 自己認証で **harness 対象外**。確定対象は **GitHub (gh ログイン) + 観測系 inbound token のみ** → L7 前に **PO 承認 + security 監査** (⚠ 人間確認必須)
-- **D-CONTRACT DSL 実装** (mode-routing.yaml / gate-checks.yaml + loader) = L7
+- **D-CONTRACT DSL 実装** (mode-routing.yaml / gate-checks.yaml + loader) = 実装済み
+  (`src/workflow/routing-contracts.ts#validateDContractDsl`、PLAN-L7-312)。mode-routing / gate-checks は
+  read-only に zod validate し、unknown mode、missing gate、next 循環、非 `ut-tdd` next_action を
+  execution 前に fail-close する。
 - **provider 引継ぎ** (FR-L1-42、context+budget 連携) = `provider-handover.v1` package (`ut-tdd handover provider export/status`) と接続
 - **sprint check の VCS 参照** (TDD trace の git changed-files / review scope): `loadChangedFiles` を `verify recommend`、`review --uncommitted`、doctor `change-impact`、`regression-expansion` が共有する。git log/blame の深掘りは optional evidence enrichment とし、L7 完遂の隠れ carry にしない。
 ## Appendix B: DB/Search CLI Contracts (PLAN-L5-08) の契約

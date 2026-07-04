@@ -1,0 +1,23 @@
+gates:
+  G1:
+    - check: l1-trace
+      next_action:
+        schema_version: v1
+        command: ut-tdd doctor
+        args:
+          gate: G1
+        safety:
+          auto_apply: false
+          requires_human_approval: false
+          requires_preflight: true
+  G8:
+    - check: integration-evidence
+      next_action:
+        schema_version: v1
+        command: ut-tdd doctor
+        args:
+          gate: G8
+        safety:
+          auto_apply: false
+          requires_human_approval: false
+          requires_preflight: true

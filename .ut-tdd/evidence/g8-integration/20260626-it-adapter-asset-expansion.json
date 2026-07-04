@@ -5,6 +5,7 @@
   "plan_id": "PLAN-L7-171-g8-adapter-asset-evidence",
   "selected_it_ids": [
     "IT-ADAPTER-01",
+    "IT-ADAPTER-03",
     "IT-ASSET-01",
     "IT-ASSET-02",
     "IT-ASSET-03",
@@ -18,8 +19,7 @@
     "IT-ASSET-06"
   ],
   "deferred_it_ids": [
-    "IT-ADAPTER-02",
-    "IT-ADAPTER-03"
+    "IT-ADAPTER-02"
   ],
   "commands": [
     {
@@ -40,6 +40,18 @@
         "IT-ASSET-06",
         "IT-ASSET-07"
       ]
+    },
+    {
+      "command_id": "cmd-d-contract-dsl-targeted",
+      "command": "bun test tests/routing-contracts.test.ts --timeout 180000",
+      "runner": "bun",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": "tests/routing-contracts.test.ts",
+      "output_digest": "sha256:9c6f94dea7c3e00b108336df915f25640df362fdb700e86abad7b7ad592dd66d",
+      "it_ids": [
+        "IT-ADAPTER-03"
+      ]
     }
   ],
   "coverage": [
@@ -54,6 +66,20 @@
         "cmd-adapter-asset-targeted"
       ],
       "notes": "Covers provider-neutral AdapterPlan construction; InvokeResult/mock provider normalization remains unproven."
+    },
+    {
+      "it_id": "IT-ADAPTER-03",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/routing-contracts.test.ts",
+        "src/workflow/routing-contracts.ts",
+        "tests/fixtures/d-contract/mode-routing.yaml",
+        "tests/fixtures/d-contract/gate-checks.yaml"
+      ],
+      "command_ids": [
+        "cmd-d-contract-dsl-targeted"
+      ],
+      "notes": "D-CONTRACT DSL validator parses mode-routing/gate-checks fixtures and fail-closes unknown mode, missing required gate, next cycle, and non ut-tdd next_action before execution."
     },
     {
       "it_id": "IT-ASSET-01",
