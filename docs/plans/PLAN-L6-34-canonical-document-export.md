@@ -31,7 +31,7 @@ dependencies:
   requires:
     - .ut-tdd/audit/A-126-canonical-document-export.md
     - docs/research/canonical-document-export-research-2026-06-09.md
-    - docs/governance/helix-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
 ---
 
 # PLAN-L6-34 (add-design): canonical document export（正本ドキュメント export）

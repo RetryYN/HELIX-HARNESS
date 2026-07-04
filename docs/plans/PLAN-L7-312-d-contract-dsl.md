@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "L5 if-detail §8 の既存 carry を L7 実装で閉じる変更であり、新規 requirement や上位設計の意味変更は追加しない。実装済み backfill は if-detail と G8 evidence manifest に限定する。"
 owner: Claude (Opus) / Codex
 parent_design: docs/design/harness/L5-detailed-design/if-detail.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — routing-contracts.ts へ validateDContractDsl + 2 zod schema を追加、mode-routing.yaml / gate-checks.yaml loader を実装"

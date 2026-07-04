@@ -15,7 +15,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "unapproved L7 source work を Recovery + Reverse fullback へ戻す規律を requirements §6.8.8 へ記録した。"
   - layer: L4-basic-design
     decision: not_impacted
@@ -37,7 +37,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-31-codex-l7-overstep.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/improvement-backlog.md
     artifact_type: markdown_doc
@@ -93,7 +93,7 @@ Intent holds: the user is not asking for a narrower status note. The user is req
 
 | target | action |
 |---|---|
-| `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` §6.8.8 | Add unapproved L7 source-work handling as Recovery + Reverse fullback. |
+| `docs/governance/helix-harness-requirements_v1.2.md` §6.8.8 | Add unapproved L7 source-work handling as Recovery + Reverse fullback. |
 | `docs/improvement-backlog.md` | Register IMP-125 for future doctor / plan-lint guard. |
 | `docs/process/modes/recovery.md` | Register PLAN-RECOVERY-03 as confirmed Recovery in the application log. |
 

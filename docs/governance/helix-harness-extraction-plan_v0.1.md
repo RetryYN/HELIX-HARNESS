@@ -93,8 +93,8 @@ TS/Bun 再実装時の機能参照は以下を優先する。
 - `.claude/settings.json`
 - `.claude/hooks/*`
 - `.helix/config.yaml`
-- `docs/governance/helix-agent-harness-concept_v3.1.md`
-- `docs/governance/helix-agent-harness-requirements_v1.2.md`
+- `docs/governance/helix-harness-concept_v3.1.md`
+- `docs/governance/helix-harness-requirements_v1.2.md`
 
 過去レビュー・監査ログ・archive は historical evidence として残す。そこに出る HELIX 名は削除対象にしない。
 

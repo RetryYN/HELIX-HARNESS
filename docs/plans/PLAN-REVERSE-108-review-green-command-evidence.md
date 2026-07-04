@@ -15,7 +15,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "Requirements now define green_commands as the hard evidence required for new confirmed review_evidence."
   - layer: L4-basic-design
     decision: updated
@@ -33,7 +33,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-L7-108-review-green-command-evidence.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc

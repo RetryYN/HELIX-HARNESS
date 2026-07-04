@@ -41,7 +41,7 @@ dependencies:
     - docs/design/harness/L1-requirements/nfr.md
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
     - docs/governance/repository-structure.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 # IMP-146 trace correction (2026-06-26, Codex cross-review AGREE): runtime-portability
 # guard は L1 nfr.md の NFR-04 (harness=TS/Bun, ADR-001) + NFR-01/§6 (cross-platform
 # native / Bun runtime) の機械強制 (enforcement)。欠落していた上流 descent link を補い

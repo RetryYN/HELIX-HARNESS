@@ -45,7 +45,7 @@ dependencies:
   references:
     - docs/plans/PLAN-L4-12-skill-pack.md
     - docs/plans/PLAN-DISCOVERY-03-skill-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l0_extra: docs/design/harness/L1-requirements/functional-requirements.md
 ---
 

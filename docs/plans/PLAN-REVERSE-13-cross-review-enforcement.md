@@ -23,11 +23,11 @@ agent_slots:
   - role: tl
     slot_label: "TL — concept §2.1.2.1 / requirements §7.8.7 への機械着地注記が設計意図と整合するかレビュー"
 generates:
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: null
   requires:

@@ -38,9 +38,9 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-01-session-log.md
     - docs/plans/PLAN-L7-04-handover-mechanism.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-80 (troubleshoot): session digest event-level high-watermark

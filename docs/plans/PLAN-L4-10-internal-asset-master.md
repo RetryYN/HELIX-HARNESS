@@ -35,7 +35,7 @@ dependencies:
     - docs/migration/helix-porting-map.md
     - docs/adr/ADR-001-helix-harness-redesign-and-language.md
     - docs/governance/recovery-workflow.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

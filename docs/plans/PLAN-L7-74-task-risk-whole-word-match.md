@@ -32,7 +32,7 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-72-task-classify-cli.md
   requires:
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
   references:
     - docs/design/harness/L6-function-design/function-spec.md

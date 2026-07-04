@@ -12,7 +12,7 @@ parent_design: docs/design/harness/L6-function-design/function-spec.md
 agent_slots:
   - role: tl
     slot_label: "TL - regression gate for DB projection backprop"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-101-db-projection-backprop-gate.md
     artifact_type: markdown_doc

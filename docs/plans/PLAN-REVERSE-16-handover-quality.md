@@ -23,11 +23,11 @@ agent_slots:
   - role: tl
     slot_label: "TL — requirements §6.8.5 への bypass 検知 (checkHandoverBypass) 機械着地注記が設計意図と整合するか / concept §10 用語の living glossary 整合をレビュー"
 generates:
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: null
   requires:
@@ -54,8 +54,8 @@ PLAN-L7-17 (add-impl, handover 品質増分) の bottom-up build を上位設計
 
 ## §実装計画
 
-- **docs/governance/ut-tdd-agent-harness-requirements_v1.2.md §6.8.5** (情報源: PLAN-L7-17 実装実体 + 既存 §6.8.5): bypass 検知の機械着地注記。
-- **docs/governance/ut-tdd-agent-harness-concept_v3.1.md §10** (情報源: L6-16 §6 用語): 用語 2 件 back-merge。
+- **docs/governance/helix-harness-requirements_v1.2.md §6.8.5** (情報源: PLAN-L7-17 実装実体 + 既存 §6.8.5): bypass 検知の機械着地注記。
+- **docs/governance/helix-harness-concept_v3.1.md §10** (情報源: L6-16 §6 用語): 用語 2 件 back-merge。
 
 ## §6 用語更新
 

@@ -6,7 +6,7 @@ default_policy: low-fi-in-harness
 high_fi_policy: case-by-case (harness 内保持 OR 外部依頼のいずれか、ケース別判断)
 pair_artifact: self  # wireframe mock 自体が L2⇔L10 の③ペア (L10 独立 doc 不要、IMP-039/058)。vmodel-lint は self を孤児扱いしない
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L10
 plan: docs/plans/PLAN-L2-04-wireframe.md

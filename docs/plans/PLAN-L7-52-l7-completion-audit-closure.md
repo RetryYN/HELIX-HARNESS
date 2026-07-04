@@ -66,7 +66,7 @@ dependencies:
   requires:
     - docs/design/harness/L6-function-design/function-spec.md
     - docs/test-design/harness/L8-integration-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-52: L7 completion audit — risk reduction closure (cycle 1)

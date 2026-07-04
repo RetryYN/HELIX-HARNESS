@@ -32,7 +32,7 @@ agent_slots:
 generates:
   - artifact_path: docs/design/harness/L1-requirements/functional-requirements.md
     artifact_type: design_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: design_doc
   - artifact_path: docs/design/harness/L5-detailed-design/physical-data.md
     artifact_type: design_doc
@@ -46,14 +46,14 @@ generates:
     artifact_type: test_design
 skip_sub_doc: []
 pair_artifact: docs/test-design/harness/L8-integration-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L8
 dependencies:
   parent: docs/plans/PLAN-L5-01-physical-data.md
   requires:
     - docs/design/harness/L1-requirements/functional-requirements.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/design/harness/L5-detailed-design/physical-data.md
     - docs/test-design/harness/L8-integration-test-design.md
   references:
@@ -115,7 +115,7 @@ self / codex-tl review で、要求→要件→L5→L8 の孤児がないこと�
 
 ## §3.1 実装計画
 
-- 情報源: `docs/design/harness/L1-requirements/functional-requirements.md`、`docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`、`docs/design/harness/L5-detailed-design/physical-data.md`、`docs/test-design/harness/L8-integration-test-design.md`。
+- 情報源: `docs/design/harness/L1-requirements/functional-requirements.md`、`docs/governance/helix-harness-requirements_v1.2.md`、`docs/design/harness/L5-detailed-design/physical-data.md`、`docs/test-design/harness/L8-integration-test-design.md`。
 - L5 では projection schema、module boundary、D-API、CLI contract、L8 pair を freeze する。
 - L6 では function signatures and migration/detail schema を定義する。
 - L7 では `bun:sqlite` first / Node fallback adapter、projection writer、search、feedback metrics、automation readiness、guardrail ledger、asset catalog、and tests を実装する。

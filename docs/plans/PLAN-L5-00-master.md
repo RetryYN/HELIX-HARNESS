@@ -69,8 +69,8 @@ dependencies:
     - docs/design/harness/L4-basic-design/external-if.md
   references:
     - docs/governance/document-system-map.md
-    - docs/governance/helix-agent-harness-requirements_v1.2.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

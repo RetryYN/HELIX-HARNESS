@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "上流突合で見つかった reference/template doc 欠落を L7 の document parity closure として閉じる。CI hardening、design-bottomup mode doc 正本化、配布 surface 実切替は未承認・依存ありのためこの PLAN の完了範囲から外し、後続 PLAN / S4 判断 / action-binding approval に委ねる。"
 owner: Claude (Opus) / Codex
 parent_design: docs/governance/upstream-helix-reconciliation-completeness-2026-07-04.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — harness-check.yml へ branch-type guard + audit-quality gate ステップ追加、欠落 reference/template/mode doc を HELIX 式で新設"

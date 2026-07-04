@@ -9,7 +9,7 @@ created: 2026-07-04
 updated: 2026-07-04
 owner: PO (人間) / Claude (Opus) / Codex
 parent_design: docs/design/harness/L5-detailed-design/if-detail.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 pair_artifact: tests/model-override-injection.test.ts
 agent_slots:
   - role: se

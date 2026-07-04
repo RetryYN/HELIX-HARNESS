@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "上流突合の小項目を L7 実装証跡として棚卸・分割する closure PLAN であり、新規 product requirement や上位設計の意味変更を追加しない。setup/update-check advisory と personal-path hard gate 化は未実装として別 slice へ分離し、この PLAN では完了主張しない。"
 owner: Claude (Opus) / Codex
 parent_design: docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — 小さく独立した採用項目 (provider 1行 / update-check advisory / matcher portability) を各々最小 diff で実装"

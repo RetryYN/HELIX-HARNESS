@@ -45,10 +45,10 @@ Add-feature 標準ライフサイクル 経路 B の **収束段**。`PLAN-L6-06
 
 ## §2 back-fill 内容 (新規 FR を起こさない)
 
-- **要件 §6.8.5** (`docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`): L1124 を「詳細設計は **PLAN-L6-06 (設計) / PLAN-L7-04 (実装) で確定済**。機械ポインタ正本 = `CURRENT.json` (CURRENT.md は廃止)、生成は `ut-tdd handover` (機械部 prefill + ③-⑥ human placeholder)」へ更新。
+- **要件 §6.8.5** (`docs/governance/helix-harness-requirements_v1.2.md`): L1124 を「詳細設計は **PLAN-L6-06 (設計) / PLAN-L7-04 (実装) で確定済**。機械ポインタ正本 = `CURRENT.json` (CURRENT.md は廃止)、生成は `ut-tdd handover` (機械部 prefill + ③-⑥ human placeholder)」へ更新。
 - **要件 CURRENT.md→.json 同期**: L947 (pre-push stale)、L1972 (§8 失敗変換)、L2024 (§8 構成ツリー)、L2148 (受入) の `.ut-tdd/handover/CURRENT.md` を `CURRENT.json` に統一 (機械ポインタ正本)。
 - **要件 §6.8.6**: 「session-log の PLAN ダイジェストは ... 結節点」に「(digest の活性化 = `.ut-tdd/state/current-plan` を `ut-tdd plan use` で設定、solo/main 直で plan_id が null になる Gap を解消、PLAN-L7-04)」を注記。
-- **L0 §10 用語** (`docs/governance/ut-tdd-agent-harness-concept_v3.1.md`): handover 機械ポインタ (CURRENT.json) / handover scaffold / plan_id 活性化 (current-plan) / handover stale を back-merge (§G.9 機構用語、導入層 L6)。
+- **L0 §10 用語** (`docs/governance/helix-harness-concept_v3.1.md`): handover 機械ポインタ (CURRENT.json) / handover scaffold / plan_id 活性化 (current-plan) / handover stale を back-merge (§G.9 機構用語、導入層 L6)。
 
 > **なぜ新 FR でないか**: handover は §6.8.5 (PLAN 完了時 handover 必須) / §6.8.6 (進捗 3 層) という **既存 §6.8 progress-management governance** の詳細設計・実装であり、新たな機能要件 (FR) ではない。要件は §6.8 側に既存で、setup=Phase 0 governance と同型の判断。
 

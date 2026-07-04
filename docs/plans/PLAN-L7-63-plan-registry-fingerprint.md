@@ -44,7 +44,7 @@ dependencies:
   requires:
     - docs/design/harness/L5-detailed-design/physical-data.md
     - docs/design/harness/L6-function-design/function-spec.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-63: plan registry source fingerprint stale gate

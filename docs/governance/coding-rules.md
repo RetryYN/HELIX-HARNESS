@@ -1,7 +1,7 @@
 # UT-TDD コーディング規則
 
 この文書は TypeScript/Bun core に対する coding-rule の SSoT である。
-requirements reference: `docs/governance/helix-agent-harness-requirements_v1.2.md` §7.6.1。
+requirements reference: `docs/governance/helix-harness-requirements_v1.2.md` §7.6.1。
 Executable gate: `src/lint/coding-rules.ts` を通じた `ut-tdd doctor`。
 
 ## Workflow Placement / ワークフロー上の位置づけ

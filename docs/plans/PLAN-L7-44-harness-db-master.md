@@ -77,7 +77,7 @@ dependencies:
     - docs/design/harness/L3-functional/roadmap.md
     - docs/governance/gate-design.md
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-44 (Master hub / 工程表): harness.db L7 実装セグメント

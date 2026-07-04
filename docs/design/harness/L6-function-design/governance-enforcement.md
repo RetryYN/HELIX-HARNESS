@@ -5,7 +5,7 @@ status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 parent_doc: docs/plans/PLAN-L6-09-governance-enforcement.md
 plan: docs/plans/PLAN-L6-09-governance-enforcement.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 created: 2026-06-04
 ---
 

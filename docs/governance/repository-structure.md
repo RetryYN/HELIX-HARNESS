@@ -42,9 +42,9 @@ HELIX-HARNESS/
 ├── docs/
 │   ├── governance/               # ★ 現行正本 (本書群)
 │   │   ├── README.md             #   正本 / 参照 / archive 境界
-│   │   ├── helix-agent-harness-concept_v3.1.md       # 構想 (① 概念)
-│   │   ├── helix-agent-harness-requirements_v1.2.md  # 要件 / 受入条件
-│   │   ├── helix-agent-harness-extraction-plan_v0.1.md
+│   │   ├── helix-harness-concept_v3.1.md       # 構想 (① 概念)
+│   │   ├── helix-harness-requirements_v1.2.md  # 要件 / 受入条件
+│   │   ├── helix-harness-extraction-plan_v0.1.md
 │   │   └── repository-structure.md                    # 本書 (構成正本)
 │   ├── adr/                      # ADR-NNN-slug.md (決定記録)
 │   ├── process/                  # ★[新設] 工程(L0-L14)定義 + 駆動モデル定義の正本 (詳細・移管方針は §2 参照)

@@ -5,7 +5,7 @@ artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L4-basic-design/
 parent_doc: docs/plans/PLAN-L4-00-master.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l4_data: docs/design/harness/L4-basic-design/data.md
 related_l4_architecture: docs/design/harness/L4-basic-design/architecture.md
 related_l4_function: docs/design/harness/L4-basic-design/function.md

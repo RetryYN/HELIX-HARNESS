@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "PLAN-L7-318 の adapter 側残置 scope を L7 実装として閉じるものであり、新規 product requirement や上位設計の意味変更を追加しない。Windows command-script 起動の安全化、InvokeResult 分類、provider effort 正規化を既存 adapter 境界へ接地した。"
 owner: Claude (Opus) / Codex
 parent_design: docs/design/harness/L5-detailed-design/if-detail.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — adapter を shell:false + windowsVerbatimArguments + ComSpec 起動へ移行、InvokeResult/normalizeInvokeResult と normalizeProviderEffort を実装"

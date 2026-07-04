@@ -15,7 +15,7 @@ agent_slots:
     slot_label: "SE — 必須 § 定義 + sub-doc-section-structure gate 実装"
   - role: tl
     slot_label: "TL — gate 実装レビュー (intra_runtime_subagent)"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-100-standard-deliverable-section-structure.md
@@ -46,7 +46,7 @@ carry されていた (「downstream 製品 PLAN 着手時に back-fill」)。PO
 
 ## 1. Scope (実装)
 
-- **必須 § 定義** (`docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` §G.6.1 新設): 4 型の必須 §
+- **必須 § 定義** (`docs/governance/helix-harness-requirements_v1.2.md` §G.6.1 新設): 4 型の必須 §
   (h2) を IPA 外部設計 grounding で確定。`document-system-map.md` §1b に必須 § 参照を追記。
 - **gate** (`src/lint/sub-doc-section-structure.ts`): `sub_doc` ∈ 4 型の design PLAN が必須 § を h2 として
   持つことを fail-close 検証。純関数 (`analyzeSubDocSectionStructure`) + loader 分離。`STANDARD_DELIVERABLE_SECTIONS`

@@ -28,7 +28,7 @@ generates:
   - artifact_path: tests/gate-confirm.test.ts
     artifact_type: test_code
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: docs/plans/PLAN-L6-17-gate-confirm.md
   requires: []

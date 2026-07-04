@@ -49,7 +49,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-34-tool-adapter-probes.md
   requires:
     - .ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
     - docs/design/harness/L6-function-design/handover-mechanism.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md

@@ -42,11 +42,11 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-44-harness-db-master.md
   requires:
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
     - docs/adr/ADR-005-distribution-model-and-central-ui.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-76 (troubleshoot): L7 reliability remediation from external status review

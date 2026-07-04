@@ -36,8 +36,8 @@ dependencies:
     - docs/plans/PLAN-REVERSE-168-g8-integration-workflow.md
   references:
     - docs/governance/gate-design.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent

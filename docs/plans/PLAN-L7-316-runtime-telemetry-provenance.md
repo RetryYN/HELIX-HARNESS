@@ -9,7 +9,7 @@ created: 2026-07-04
 updated: 2026-07-04
 owner: Claude (Opus) / Codex
 parent_design: docs/design/helix/L6-function-design/upstream-substance-gap.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — 既存 classifyTelemetryProvenance + session-log parser で 4 派生を projection-writer/doctor へ配線"

@@ -10,7 +10,7 @@ created: 2026-05-28
 updated: 2026-05-28
 owner: PM (Opus) / PO (人間)
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L4
 agent_slots:
@@ -52,7 +52,7 @@ B-1 で NFR-01〜08 を起票済。PO declared 2026-05-28 で NFR-11〜15 (GHA a
 
 ## §1 入力 (上流からの baton)
 
-- L0 企画書: `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
+- L0 企画書: `docs/governance/helix-harness-concept_v3.1.md`
 - v2 HELIX-workflows 設計概念参照: `vendor/helix-source/docs/v2/process/L01-requirements-and-operational-test-design.md`
 - v2 取り込み軌跡: `docs/migration/v2-import-ledger.md` §5 (A-20)
 - 上流 baton (business): `docs/design/harness/L1-requirements/business-requirements.md` (NFR-11〜15 = GHA audit framework + server-optional の正本)

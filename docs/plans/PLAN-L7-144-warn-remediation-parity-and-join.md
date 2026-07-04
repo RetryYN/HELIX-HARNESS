@@ -66,7 +66,7 @@ dependencies:
   requires: []
   references:
     - docs/plans/PLAN-L7-143-harness-db-warn-remediation.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-144 (troubleshoot): full projection-gate parity + unresolved-join exemption

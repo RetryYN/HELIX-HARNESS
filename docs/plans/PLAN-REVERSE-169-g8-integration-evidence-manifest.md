@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: not_impacted
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "The requirements already require gate evidence and mechanization; this slice adds G8 manifest enforcement without changing the requirement set."
   - layer: L4-basic-design
     decision: not_impacted
@@ -53,7 +53,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc

@@ -4,7 +4,7 @@ sub_doc: ui-standard
 status: confirmed  # G4 = PLAN-L4-14 confirmed + intra_runtime review APPROVE (Critical 0)。L4-L6 freeze 不変条件を満たす。次回 PO が「define first / build later」で defer に戻す場合は status を draft へ戻し本 doc 内容を carry 化してよい (可逆)。
 parent_doc: docs/design/harness/L2-screen/ui-element.md
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 plan: docs/plans/PLAN-L4-14-ui-standard.md
 token_ssot: docs/design/harness/L4-basic-design/tokens.yaml

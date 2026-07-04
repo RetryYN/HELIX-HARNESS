@@ -5,7 +5,7 @@ artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L6-function-design/
 parent_doc: docs/plans/PLAN-L6-00-master.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l6_function_spec: docs/design/harness/L6-function-design/function-spec.md
 related_l6_edge_case: docs/design/harness/L6-function-design/edge-case.md
 next_pair_freeze: L6

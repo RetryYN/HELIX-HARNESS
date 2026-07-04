@@ -5,7 +5,7 @@ kind: design
 status: confirmed
 parent_doc: docs/design/harness/L2-screen/wireframe.md
 pair_artifact: docs/design/harness/L2-screen/wireframe.md  # L2↔L10 self-pair (IMP-039/058: wireframe mock 自体が③ペアを担い L10 独立 test-design doc を作らない)。L2 全 sub-doc を束ねた検証は impl 後の本 L10 で行う
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 plan: docs/plans/PLAN-L4-14-ui-standard.md
 superseded_design_role: docs/design/harness/L4-basic-design/ui-standard.md

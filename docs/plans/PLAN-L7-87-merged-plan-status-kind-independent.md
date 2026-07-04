@@ -35,7 +35,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-86-merged-plan-status-deliverable-scope.md
   requires:
     - docs/plans/PLAN-L7-54-merged-plan-status-gate.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-87 (troubleshoot): merged-plan-status kind-independent detection

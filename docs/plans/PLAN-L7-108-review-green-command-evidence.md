@@ -12,13 +12,13 @@ parent_design: docs/design/harness/L6-function-design/test-before-review.md
 agent_slots:
   - role: tl
     slot_label: "TL - review_evidence green command evidence gate"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-108-review-green-command-evidence.md
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-REVERSE-108-review-green-command-evidence.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc

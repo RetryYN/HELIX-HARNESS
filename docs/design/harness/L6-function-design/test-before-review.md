@@ -3,14 +3,14 @@ layer: L6
 sub_doc: function-spec
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 plan: docs/plans/PLAN-L6-14-test-before-review.md
 ---
 
 > **L6 contract marker**: `analyzeReviewEvidence(input: ReviewEvidenceInput) => ReviewEvidenceResult` は unit-test 粒度の contract。DbC pre/post/invariant は `tests_green_at <= reviewed_at` の順序を U-TORDER-001..005 へ対応づける。
 
 
-> **SSoT 参照**: 品質保証二軸 (定量テスト × 定性レビュー) = concept 柱6 / review tier = [concept §2.1.2.1](../../../governance/helix-agent-harness-concept_v3.1.md) / 駆動モデル exit = [L4 function §3.1](../L4-basic-design/function.md) / 実装 = `src/lint/review-evidence.ts`。IMP-071 (presence) / IMP-076 (cross_agent distinctness) の続きで **時間順序** (テスト→レビュー) を確定 (IMP-077)。
+> **SSoT 参照**: 品質保証二軸 (定量テスト × 定性レビュー) = concept 柱6 / review tier = [concept §2.1.2.1](../../../governance/helix-harness-concept_v3.1.md) / 駆動モデル exit = [L4 function §3.1](../L4-basic-design/function.md) / 実装 = `src/lint/review-evidence.ts`。IMP-071 (presence) / IMP-076 (cross_agent distinctness) の続きで **時間順序** (テスト→レビュー) を確定 (IMP-077)。
 
 # L6 機能設計: test→review 順序強制 (定量テスト → 定性レビュー)
 

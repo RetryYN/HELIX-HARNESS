@@ -25,9 +25,9 @@ agent_slots:
 generates:
   - artifact_path: docs/adr/ADR-002-dependency-direction-and-auto-map.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: null
   requires:
@@ -55,7 +55,7 @@ PLAN-L7-16 (add-impl, module-drift lint) の bottom-up build を上位設計/gov
 ## §実装計画
 
 - **docs/adr/ADR-002-dependency-direction-and-auto-map.md** (情報源: PLAN-L7-16 実装実体 + 既存 §Follow-ups): module-drift 最小スライス実装注記。
-- **docs/governance/ut-tdd-agent-harness-concept_v3.1.md §10** (情報源: L6-15 §6 用語): module-drift back-merge。
+- **docs/governance/helix-harness-concept_v3.1.md §10** (情報源: L6-15 §6 用語): module-drift back-merge。
 
 ## §6 用語更新
 

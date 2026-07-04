@@ -13,13 +13,13 @@ agent_slots:
     slot_label: "SE - artifact progress projection implementation"
   - role: tl
     slot_label: "TL - intra-runtime review for DB projection gates"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-56-artifact-progress-state.md
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-REVERSE-56-artifact-progress-state.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L1-requirements/functional-requirements.md
     artifact_type: design_doc

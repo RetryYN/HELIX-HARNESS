@@ -31,7 +31,7 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/harness/L6-function-design/vmodel-pair-freeze.md
     artifact_type: design_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design

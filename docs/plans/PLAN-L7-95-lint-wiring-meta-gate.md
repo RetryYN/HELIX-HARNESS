@@ -36,7 +36,7 @@ generates:
 dependencies:
   parent: null
   requires: []
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-95 (troubleshoot): lint-wiring meta-gate + inert-lint audit 配線

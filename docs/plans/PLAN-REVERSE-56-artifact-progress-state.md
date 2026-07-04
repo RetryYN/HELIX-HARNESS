@@ -15,7 +15,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "Requirements define the artifact progress color contract."
   - layer: L4-basic-design
     decision: updated
@@ -31,7 +31,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-56-artifact-progress-state.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L1-requirements/functional-requirements.md
     artifact_type: design_doc

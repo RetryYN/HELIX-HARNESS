@@ -27,7 +27,7 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/vmodel-pair.test.ts
     artifact_type: test_code
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: docs/plans/PLAN-L6-11-verification-trigger.md
   requires:

@@ -32,7 +32,7 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-55-plan-artifact-existence-gate.md
   requires: []
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-91 (troubleshoot): hollow (中身空っぽ) deliverable detection

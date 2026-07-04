@@ -46,7 +46,7 @@ dependencies:
   references:
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
     - https://www.sqlite.org/fts5.html
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-45: harness.db state-db foundation

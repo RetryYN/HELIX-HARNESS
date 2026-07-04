@@ -3,7 +3,7 @@ layer: L3
 sub_doc: business
 status: confirmed
 pair_artifact: docs/test-design/harness/L3-acceptance-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 related_l1_screen: docs/design/harness/L1-requirements/screen-requirements.md
 next_pair_freeze: L12

@@ -21,7 +21,7 @@ dependencies:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-45-descent-obligation.md
     artifact_type: markdown_doc
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-REVERSE-45: reverse backfill for descent-obligation L7 implementation

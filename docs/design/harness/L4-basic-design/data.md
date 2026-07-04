@@ -3,14 +3,14 @@ layer: L4
 sub_doc: data
 status: confirmed
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L9
 plan: docs/plans/PLAN-L4-01-data.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-> **SSoT 参照**: ユビキタス言語 = [L0 §10 用語集](../../../governance/helix-agent-harness-concept_v3.1.md) / ドメイン手法 = DDD (Evans) + Design by Contract (Meyer) ([document-system-map](../../../governance/document-system-map.md) §3) / 実装 SSoT = `src/schema/index.ts` (enum)。本 doc は L1 §10.2 carry を詳細化し、用語独自定義は行わない (anti-corruption layer)。
+> **SSoT 参照**: ユビキタス言語 = [L0 §10 用語集](../../../governance/helix-harness-concept_v3.1.md) / ドメイン手法 = DDD (Evans) + Design by Contract (Meyer) ([document-system-map](../../../governance/document-system-map.md) §3) / 実装 SSoT = `src/schema/index.ts` (enum)。本 doc は L1 §10.2 carry を詳細化し、用語独自定義は行わない (anti-corruption layer)。
 
 # HELIX-HARNESS — L4 基本設計: データ設計 / ドメインモデル
 

@@ -39,12 +39,12 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/process/forward/overview.md
     - docs/governance/gate-design.md
     - docs/design/harness/L3-functional/roadmap.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

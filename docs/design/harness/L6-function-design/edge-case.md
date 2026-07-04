@@ -3,7 +3,7 @@ layer: L6
 sub_doc: edge-case
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L7
 plan: docs/plans/PLAN-L6-02-edge-case.md

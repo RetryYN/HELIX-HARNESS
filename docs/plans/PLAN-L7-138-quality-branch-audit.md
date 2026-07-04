@@ -14,7 +14,7 @@ backprop_decision_reason: "This adds read-only audit surfaces for existing quali
 agent_slots:
   - role: tl
     slot_label: "TL - quality and branch audit implementation"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-138-quality-branch-audit.md
     artifact_type: markdown_doc

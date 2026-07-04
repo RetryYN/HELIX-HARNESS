@@ -39,7 +39,7 @@ dependencies:
     - docs/plans/PLAN-L4-12-skill-pack.md
     - docs/design/harness/L4-basic-design/architecture.md
     - docs/adr/ADR-004-internal-asset-ts-control-boundary.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

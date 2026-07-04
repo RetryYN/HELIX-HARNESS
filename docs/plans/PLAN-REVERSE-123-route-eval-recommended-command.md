@@ -15,11 +15,11 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: concept
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    evidence_path: docs/governance/helix-harness-concept_v3.1.md
     reason: "The L0 signal-to-mode table now carries the pair-agent TDD add-feature routing vocabulary."
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "The route eval acceptance item and pair-agent TDD recommendation contract are now implemented and checked."
   - layer: L4-basic-design
     decision: updated
@@ -34,9 +34,9 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-123-route-eval-recommended-command.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc
@@ -62,7 +62,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:28:59+09:00"
-        evidence_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+        evidence_path: docs/governance/helix-harness-concept_v3.1.md
         output_digest: "sha256:1ccc4cb9d537607641dadf71bf4e281f39fbbde6e45970543d8ee70f2c3f3244"
       - kind: unit_test
         command: "bun test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""
@@ -70,7 +70,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-01T09:28:59+09:00"
-        evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+        evidence_path: docs/governance/helix-harness-requirements_v1.2.md
         output_digest: "sha256:6654449488882155e7da27407fc44ddc81419452ddc7cc492ed214670001d8f3"
       - kind: unit_test
         command: "bun test tests/workflow-contracts.test.ts tests/cli-surface.test.ts --test-name-pattern \"pair-agent TDD|implements routing\""

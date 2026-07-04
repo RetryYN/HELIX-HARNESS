@@ -10,7 +10,7 @@ created: 2026-05-28
 updated: 2026-06-02
 owner: PM (Opus) / PO (人間)
 pair_artifact: docs/test-design/harness/L3-acceptance-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 related_l1_functional: docs/design/harness/L1-requirements/functional-requirements.md
 related_l1_screen: docs/design/harness/L1-requirements/screen-requirements.md
@@ -59,7 +59,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 
 ## §1 入力 (上流からの baton)
 
-- L0 企画書: `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
+- L0 企画書: `docs/governance/helix-harness-concept_v3.1.md`
 - L1 機能要求 (確定済): `docs/design/harness/L1-requirements/functional-requirements.md` (現行 47 件、P0:19 / P1:23 / P2:5)
 - L1 画面要求 (確定済): `docs/design/harness/L1-requirements/screen-requirements.md` (15 画面 PM/HM/GD + §5 G1-trace マトリクス)
 - L1 業務要求: `docs/design/harness/L1-requirements/business-requirements.md` (BR-01〜08 + UX-01〜03 + BR-21 + §3.3.2 人間主導原則)

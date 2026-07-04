@@ -305,11 +305,11 @@ describe("U-BACKFILL-005b backfill result docs sync", () => {
   it("requirements and concept list all machine backfill result keys", () => {
     const root = process.cwd();
     const requirements = readFileSync(
-      join(root, "docs", "governance", "helix-agent-harness-requirements_v1.2.md"),
+      join(root, "docs", "governance", "helix-harness-requirements_v1.2.md"),
       "utf8",
     );
     const concept = readFileSync(
-      join(root, "docs", "governance", "helix-agent-harness-concept_v3.1.md"),
+      join(root, "docs", "governance", "helix-harness-concept_v3.1.md"),
       "utf8",
     );
 

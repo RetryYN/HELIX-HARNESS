@@ -13,7 +13,7 @@ agent_slots:
     slot_label: "SE - green-command digest integrity hard gate"
   - role: tl
     slot_label: "TL - evidence integrity hard-gate review"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-132-green-command-digest-integrity.md

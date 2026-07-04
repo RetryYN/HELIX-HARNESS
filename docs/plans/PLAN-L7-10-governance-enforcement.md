@@ -22,7 +22,7 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/propagation.test.ts
     artifact_type: test_code
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: docs/plans/PLAN-L6-09-governance-enforcement.md
   requires:

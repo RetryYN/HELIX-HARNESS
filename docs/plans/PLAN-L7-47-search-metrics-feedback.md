@@ -41,7 +41,7 @@ dependencies:
   references:
     - docs/design/harness/L5-detailed-design/physical-data.md
     - https://www.sqlite.org/fts5.html
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-47: harness.db search + skill metrics + feedback

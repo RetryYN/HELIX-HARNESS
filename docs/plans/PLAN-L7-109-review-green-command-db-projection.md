@@ -12,7 +12,7 @@ parent_design: docs/design/harness/L5-detailed-design/physical-data.md
 agent_slots:
   - role: tl
     slot_label: "TL - review green command test_runs projection"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-109-review-green-command-db-projection.md
     artifact_type: markdown_doc

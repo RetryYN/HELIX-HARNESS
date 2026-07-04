@@ -249,7 +249,7 @@ export function loadBackfillDocs(repoRoot: string = process.cwd()): BackfillDocs
     plans.push(parsePlan(f, readFileSync(join(plansDir, f), "utf8")));
   }
   const concept = readFileSync(
-    join(repoRoot, "docs", "governance", "helix-agent-harness-concept_v3.1.md"),
+    join(repoRoot, "docs", "governance", "helix-harness-concept_v3.1.md"),
     "utf8",
   );
   const glossaryText =

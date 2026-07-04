@@ -15,7 +15,7 @@ agent_slots:
     slot_label: "SE — sub-doc-catalog-drift gate 実装 + 要件表整合"
   - role: tl
     slot_label: "TL — gate 実装レビュー (intra_runtime_subagent)"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-99-sub-doc-catalog-drift-gate.md
@@ -48,7 +48,7 @@ PLAN-L7-97 (catalog 拡張) が `src/plan/lint.ts` を schema 単一正本由来
 
 ## 1. Scope (実装)
 
-- **要件整合** (`docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` §G.1): L3 を
+- **要件整合** (`docs/governance/helix-harness-requirements_v1.2.md` §G.1): L3 を
   `["business", "functional", "nfr"]`・L4 を `screen` 除去 (4 コア + 4 標準成果物) へ修正 + 正本同期注記。
 - **gate** (`src/lint/sub-doc-catalog-drift.ts`): 要件 §G.1 code block を parse し schema `VALID_SUB_DOCS`
   と layer×sub-doc 集合を照合、drift を fail-close。純関数 (`analyzeSubDocCatalogDrift` /

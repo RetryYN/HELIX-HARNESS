@@ -3,7 +3,7 @@
 - **Status**: accepted
 - **Date**: 2026-05-27
 - **Deciders**: PM (Opus) + PO (ユーザー)
-- **関連**: `docs/governance/helix-agent-harness-concept_v3.1.md` / `docs/governance/helix-agent-harness-requirements_v1.2.md` / `docs/migration/helix-identifier-cutover-strategy.md`
+- **関連**: `docs/governance/helix-harness-concept_v3.1.md` / `docs/governance/helix-harness-requirements_v1.2.md` / `docs/migration/helix-identifier-cutover-strategy.md`
 
 ## 背景 (Context)
 

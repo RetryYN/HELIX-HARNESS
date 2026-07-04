@@ -33,7 +33,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-54-merged-plan-status-gate.md
   requires:
     - docs/improvement-backlog.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-86 (troubleshoot): merged-plan-status deliverable-scope expansion

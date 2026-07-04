@@ -34,7 +34,7 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-91-hollow-deliverable-detection.md
   requires: []
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-92 (troubleshoot): PLAN body substance gate (AP-13)

@@ -80,8 +80,8 @@ export interface PropagationDocs {
 export function loadPropagationDocs(repoRoot: string = process.cwd()): PropagationDocs {
   const gov = join(repoRoot, "docs", "governance");
   return {
-    conceptText: readFileSync(join(gov, "helix-agent-harness-concept_v3.1.md"), "utf8"),
-    requirementsText: readFileSync(join(gov, "helix-agent-harness-requirements_v1.2.md"), "utf8"),
+    conceptText: readFileSync(join(gov, "helix-harness-concept_v3.1.md"), "utf8"),
+    requirementsText: readFileSync(join(gov, "helix-harness-requirements_v1.2.md"), "utf8"),
   };
 }
 

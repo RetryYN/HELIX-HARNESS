@@ -25,13 +25,13 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/process/modes/recovery.md
     - src/schema/roadmap.ts
     - docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md
     - docs/plans/PLAN-REVERSE-44-roadmap-definition-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 review_evidence:
   - reviewer: PO/directive
     review_kind: human

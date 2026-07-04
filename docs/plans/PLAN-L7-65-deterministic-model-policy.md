@@ -45,8 +45,8 @@ dependencies:
   parent: PLAN-L7-64
   requires:
     - docs/design/harness/L6-function-design/agent-slots.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-65: deterministic model and effort policy for team runner

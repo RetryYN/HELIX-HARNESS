@@ -25,7 +25,7 @@ dependencies:
   requires: []
   references:
     - docs/design/harness/L3-functional/functional-requirements.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

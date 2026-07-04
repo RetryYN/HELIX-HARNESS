@@ -38,7 +38,7 @@ dependencies:
     - docs/test-design/harness/L8-integration-test-design.md
   references:
     - docs/design/harness/L5-detailed-design/physical-data.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-49: harness.db automation asset catalog

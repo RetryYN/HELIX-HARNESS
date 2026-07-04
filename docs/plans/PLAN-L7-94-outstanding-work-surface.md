@@ -1634,7 +1634,7 @@ generates:
 dependencies:
   parent: null
   requires: []
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-94 (impl): outstanding-work surface (IMP-139)

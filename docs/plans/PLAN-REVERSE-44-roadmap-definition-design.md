@@ -45,11 +45,11 @@ dependencies:
     - docs/plans/PLAN-RECOVERY-04-roadmap-definition.md
   references:
     - docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/design/harness/L4-basic-design/architecture.md
     - src/schema/roadmap.ts
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-REVERSE-44 (reverse/design): 工程表メタモデルの設計書 back-fill

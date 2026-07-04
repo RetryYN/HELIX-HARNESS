@@ -15,7 +15,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { VALID_SUB_DOCS } from "../schema/index";
 
-export const REQUIREMENTS_DOC_PATH = "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md";
+export const REQUIREMENTS_DOC_PATH = "docs/governance/helix-harness-requirements_v1.2.md";
 
 export interface SubDocCatalogDriftInput {
   /** schema 正本 (src/schema/index.ts VALID_SUB_DOCS)。 */

@@ -19,14 +19,14 @@ generates:
     artifact_type: test_design
 skip_sub_doc: []
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 next_pair_freeze: L9
 dependencies:
   parent: docs/plans/PLAN-L4-03-function.md
   requires: []
   references:
     - docs/process/modes/README.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-concept_v3.1.md
 related_adr: docs/adr/ADR-004-internal-asset-ts-control-boundary.md
 v2_import: docs/migration/v2-import-ledger.md
 review_evidence:

@@ -29,7 +29,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-51-descent-obligation.md
   requires:
     - docs/design/harness/L4-basic-design/architecture.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-54: merged-plan-status hard gate

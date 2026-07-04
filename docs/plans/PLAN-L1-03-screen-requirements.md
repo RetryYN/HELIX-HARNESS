@@ -10,7 +10,7 @@ created: 2026-05-28
 updated: 2026-05-28
 owner: PM (Opus) / PO (人間)
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L3
 agent_slots:
@@ -75,7 +75,7 @@ review_evidence:
 
 ## §1 入力 (上流からの baton)
 
-- L0 企画書: `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
+- L0 企画書: `docs/governance/helix-harness-concept_v3.1.md`
 - v2 HELIX-workflows 設計概念参照: `vendor/helix-source/docs/v2/process/L01-requirements-and-operational-test-design.md`
 - 上流 baton (business): `docs/design/harness/L1-requirements/business-requirements.md` (BR-06 ダッシュボード / UX-02 チーム連携 / UX-03 DX 戦術 / **§3.3.2 人間主導 + AI 補助原則 (CC2)** / **§10.3.1 3 カテゴリ Bounded Context (X1=a)**)
 - 上流 baton (functional): `docs/design/harness/L1-requirements/functional-requirements.md` (FR-L1-20 観測層 / FR-L1-29 画面設計 WF / FR-L1-30 フロントデザイン UX WF / FR-L1-33 資産棚卸 / FR-L1-34 穴管理 / FR-L1-35 整備状況可視化 / FR-L1-44 onboarding)

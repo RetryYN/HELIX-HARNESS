@@ -42,7 +42,7 @@ Back-fills IMP-094 as a formal add-feature PLAN. Coding rules are requirements-l
 
 情報源:
 
-- `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` §7.6.1
+- `docs/governance/helix-harness-requirements_v1.2.md` §7.6.1
 - `docs/governance/coding-rules.md`
 - `docs/process/forward/L00-L06-design-phase.md`
 - `docs/process/modes/add-feature.md`

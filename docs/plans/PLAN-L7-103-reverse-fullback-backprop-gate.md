@@ -8,17 +8,17 @@ status: confirmed
 created: 2026-06-22
 updated: 2026-06-22
 owner: Codex
-parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
     slot_label: "TL - Reverse fullback governance gate"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-103-reverse-fullback-backprop-gate.md
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-REVERSE-103-reverse-fullback-backprop-gate.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/governance/reverse-fullback-backprop-audit-2026-06-22.md
     artifact_type: markdown_doc

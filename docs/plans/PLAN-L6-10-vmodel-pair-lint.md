@@ -16,7 +16,7 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 dependencies:
   parent: docs/plans/PLAN-L6-00-master.md
   requires: []

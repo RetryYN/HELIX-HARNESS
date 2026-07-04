@@ -10,7 +10,7 @@ created: 2026-06-24
 updated: 2026-07-03
 owner: PM (Opus) / PO (人間) / Codex
 parent_design: docs/design/harness/L2-screen/screen-list.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 agent_slots:
   - role: se

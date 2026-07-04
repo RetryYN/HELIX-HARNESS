@@ -3,7 +3,7 @@ layer: L4
 sub_doc: function
 status: confirmed
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L9
 plan: docs/plans/PLAN-L4-03-function.md

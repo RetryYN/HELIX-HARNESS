@@ -57,7 +57,7 @@ review_evidence:
     reviewed_at: "2026-06-12"
     verdict: pass
     scope: "L7 add-impl for PLAN-L6-35: descent-obligation lint, descent_obligations projection, doctor hard/fail-close wiring, and U-DESC-001..008 tests."
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-51: descent-obligation ledger implementation

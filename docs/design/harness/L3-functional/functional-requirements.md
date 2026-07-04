@@ -3,7 +3,7 @@ layer: L3
 sub_doc: functional
 status: confirmed
 pair_artifact: docs/test-design/harness/L3-acceptance-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 related_l1_functional: docs/design/harness/L1-requirements/functional-requirements.md
 related_l1_screen: docs/design/harness/L1-requirements/screen-requirements.md
@@ -851,7 +851,7 @@ L4 function §3 の operational 正本と同じ taxonomy を L3 要件でも採�
 - L3 business-detail (BR-21 経路): `docs/design/harness/L3-functional/business-detail.md`
 - L3 nfr-grade (NFR 閾値): `docs/design/harness/L3-functional/nfr-grade.md`
 - L12 受入テスト設計 (W pair): `docs/test-design/harness/L3-acceptance-test-design.md`
-- L0 概念層: `docs/governance/helix-agent-harness-concept_v3.1.md`
+- L0 概念層: `docs/governance/helix-harness-concept_v3.1.md`
 - PLAN: `docs/plans/PLAN-L3-01-functional-detail.md`
 
 ## §7 carry / 次工程 (L4) への引き継ぎ

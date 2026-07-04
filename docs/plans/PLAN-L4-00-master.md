@@ -66,10 +66,10 @@ dependencies:
     - docs/design/harness/L3-functional/functional-requirements.md
   references:
     - docs/governance/document-system-map.md
-    - docs/governance/helix-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/plans/PLAN-L4-14-ui-standard.md
     - docs/plans/PLAN-L4-51-helix-pillar-basic-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 v2_import: docs/migration/v2-import-ledger.md
 review_evidence:
   - reviewer: pmo-sonnet

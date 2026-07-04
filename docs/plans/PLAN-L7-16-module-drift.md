@@ -21,7 +21,7 @@ generates:
   - artifact_path: src/doctor/index.ts
     artifact_type: source_module
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 next_pair_freeze: L7
 github_issue_id: null
 dependencies:

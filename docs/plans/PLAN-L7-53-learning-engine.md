@@ -58,7 +58,7 @@ dependencies:
   references:
     - docs/design/harness/L5-detailed-design/physical-data.md
     - docs/design/harness/L3-functional/business-detail.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-53: skill learning engine

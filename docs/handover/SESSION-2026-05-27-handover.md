@@ -23,8 +23,8 @@
 
 | doc | 役割 |
 |---|---|
-| `docs/governance/helix-agent-harness-concept_v3.1.md` | 構想 (V2 L0-L14 + W-model / 9-mode / 配線 §2.6 / 2マスト原則 §2.1.0 / レビューゲート §2.1.2.1) |
-| `docs/governance/helix-agent-harness-requirements_v1.2.md` | 要件 (L0-L14 enum / W-model freeze / 配線要件 §7.8 / 専門サブエージェント checklist §7.8.7.1) |
+| `docs/governance/helix-harness-concept_v3.1.md` | 構想 (V2 L0-L14 + W-model / 9-mode / 配線 §2.6 / 2マスト原則 §2.1.0 / レビューゲート §2.1.2.1) |
+| `docs/governance/helix-harness-requirements_v1.2.md` | 要件 (L0-L14 enum / W-model freeze / 配線要件 §7.8 / 専門サブエージェント checklist §7.8.7.1) |
 | `docs/adr/ADR-001-helix-harness-redesign-and-language.md` | 再設計方針 + 実装言語 = TypeScript/Bun |
 | `docs/governance/repository-structure.md` | リポジトリ構成ルール (配置 / V-model 4 artifact 配置 / config 最小化方針 §8) |
 | 旧 `concept_v3.0` / `requirements_v1.1` | superseded banner 付きで残置 (正本ではない) |

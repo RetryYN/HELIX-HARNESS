@@ -44,7 +44,7 @@ dependencies:
     - docs/design/harness/L1-requirements/functional-requirements.md
     - docs/design/harness/L6-function-design/fr-unit-coverage.md
     - docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-50: feature-list residual closure for R1-R9

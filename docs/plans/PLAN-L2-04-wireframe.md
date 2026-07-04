@@ -11,7 +11,7 @@ updated: 2026-06-22
 owner: PM (Opus) / PO (人間)
 pair_artifact: self
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L10
 agent_slots:

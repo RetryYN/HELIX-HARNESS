@@ -21,7 +21,7 @@ dependencies:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-46-deliverable-catalog-extension.md
     artifact_type: markdown_doc
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-REVERSE-46: reverse back-fill for deliverable-catalog 拡張 (PLAN-L7-97)
@@ -39,7 +39,7 @@ related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
 L7-97 の schema 契約変更は、同 cycle で以下の設計/governance 正本へ back-fill 済 (本 Reverse はその登録):
 
 - **正本**: `src/schema/index.ts` の `VALID_SUB_DOCS` (要件 §1.10.G.1 が schema を VALID_* の単一正本と規定)。
-- **要件**: `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md §1.10.G.1` の L4 行 + grounding 注記。
+- **要件**: `docs/governance/helix-harness-requirements_v1.2.md §1.10.G.1` の L4 行 + grounding 注記。
 - **基本設計 (L4 外部設計)**: `docs/governance/document-system-map.md §1 / §1b` 標準成果物カタログ
   (IPA 共通フレーム grounding、② プロダクト選択 区分)。
 - **重複撤去 (normalization)**: `src/plan/lint.ts` の並行 `VALID_SUB_DOCS` コピーを撤去し schema 由来へ

@@ -13,7 +13,7 @@ agent_slots:
     slot_label: "SE — src/web ダッシュボード実装 (render/db/screens/router/app/server)"
   - role: tl
     slot_label: "TL — web 実装レビュー (intra_runtime_subagent)"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 parent_design: docs/design/harness/L2-screen/screen-list.md
 generates:

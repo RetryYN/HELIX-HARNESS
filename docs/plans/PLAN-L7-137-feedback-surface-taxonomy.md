@@ -16,7 +16,7 @@ agent_slots:
     slot_label: "AIM - feedback surface triage"
   - role: tl
     slot_label: "TL - feedback surface taxonomy"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-137-feedback-surface-taxonomy.md
     artifact_type: markdown_doc

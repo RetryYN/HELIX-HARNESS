@@ -16,7 +16,7 @@ generates:
   - artifact_path: docs/design/harness/L6-function-design/function-spec.md
     artifact_type: design_doc
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L7
 dependencies:
@@ -27,7 +27,7 @@ dependencies:
   references:
     - docs/governance/document-system-map.md
     - docs/governance/gate-design.md
-related_l0_extra: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+related_l0_extra: docs/governance/helix-harness-requirements_v1.2.md
 v2_import: docs/migration/v2-import-ledger.md
 review_evidence:
   - reviewer: pmo-sonnet

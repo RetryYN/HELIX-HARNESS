@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "G9/G10 の右腕 child gate を実装し、L9/L10 master と gates/process docs へ同時 backfill しただけで、上流 L0-L6 requirement は変更していないため。"
 owner: Claude (Opus) / Codex
 parent_design: docs/process/gates.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — g9-system-workflow.ts / g10-ux-workflow.ts + 共有 gN-evidence-manifest helper を実装し lint-wiring/doctor へ配線"

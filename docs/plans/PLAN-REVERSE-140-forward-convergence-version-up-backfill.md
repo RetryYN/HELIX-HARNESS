@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "§6.8.8.1 forward-convergence fail-close 不変条件を新設、§7.8.1 に version_deferral signal を追加。"
   - layer: L4-basic-design
     decision: not_impacted
@@ -31,9 +31,9 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-140-forward-convergence-version-up-backfill.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
   - artifact_path: docs/process/modes/version-up.md
     artifact_type: markdown_doc

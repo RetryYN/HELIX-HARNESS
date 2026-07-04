@@ -15,7 +15,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: not_impacted
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "ut-tdd setup project is a Phase 0 bootstrap entrypoint for already-defined setup/governance behavior; it does not add a new L1/L3 product requirement."
   - layer: L4-basic-design
     decision: not_impacted
@@ -41,13 +41,13 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-04-setup-solo-team.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/external-if.md
     artifact_type: design_doc
   - artifact_path: docs/design/harness/L5-detailed-design/internal-processing.md
     artifact_type: design_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md
     artifact_type: design_doc
@@ -129,9 +129,9 @@ dry-run に接続する。これは provider 実行や外部 API 呼び出しを
 
 ## §2 back-fill 内容 (新規 FR を起こさない)
 
-- **要件 §6.5** (`docs/governance/ut-tdd-agent-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`ut-tdd setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で人間適用。
+- **要件 §6.5** (`docs/governance/helix-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`ut-tdd setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で人間適用。
 - **L4 external-if** (`docs/design/harness/L4-basic-design/external-if.md`): VCS・CI 境界に「`ut-tdd setup` の GitHub 設定境界 = ファイル emit (CODEOWNERS / workflow / ISSUE・PR テンプレ) は harness が書く / branch protection・Required 化は gh-api 操作で **emit-only 既定** (script 生成、適用は admin 人間サインオフ) / token は保持しない (gh 認証委譲)」の DbC 境界を追記。
-- **L0 §10.3 機構用語** (`docs/governance/ut-tdd-agent-harness-concept_v3.1.md`): Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only を back-merge (§G.9、機構用語)。
+- **L0 §10.3 機構用語** (`docs/governance/helix-harness-concept_v3.1.md`): Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only を back-merge (§G.9、機構用語)。
 - **L6/L7 continuation** (`docs/design/harness/L6-function-design/setup-solo-team.md` / `docs/test-design/harness/L7-unit-test-design.md`): `ut-tdd setup project` は setup solo/team の extension として登録済み。VSCode task と `.ut-tdd` baseline は Phase 0 bootstrap の生成物であり、`identifierTransition` は `.helix` 目標と cutover blocker を示すだけで、branch protection / external API / secrets / identifier cutover を自動適用しない。`postSetupWorkflow` は consumer project の初回稼働ルートを first-run contract として出し、brownfield conflict と readiness 未充足を setup 成功と混同しない。`githubPlan` と `doctorBaseline` は L3/HAC-P6-03a の GitHub rules/checks plan / doctor baseline 要求に対応し、remote apply や completion claim を含まない。`AGENTS.md` の team-run 案内は配布済み `.ut-tdd/teams/default-hybrid.yaml` と dry-run 検証に接続し、案内だけが実体に先行する状態を U-SETUP-023 で fail-close する。
 
 > **なぜ新 FR でないか**: `ut-tdd setup` (リポジトリ初期化 + CODEOWNERS/branch protection bootstrap) は concept §512 が明示する **Phase 0 = V-model 工程外の基盤整備**であり、L1/L3 の機能要件 (FR-L1/FR) ではない。要件は §6.5/§9.1/§10 (Phase 0 governance) 側にあり、FR registry を増やさない。

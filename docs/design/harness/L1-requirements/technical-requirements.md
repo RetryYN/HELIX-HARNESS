@@ -3,13 +3,13 @@ layer: L1
 sub_doc: technical
 status: confirmed
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L4
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-> **SSoT 参照**: ユビキタス言語 = [L0 概念層 §10 用語集](../../../governance/helix-agent-harness-concept_v3.1.md#10-用語集) / 業界標準整合 = L0 §11 / Bounded Context = L0 §2.5 9-mode。本 doc は L0 を parent_doc reference とし、用語独自定義は行わない (anti-corruption layer)。
+> **SSoT 参照**: ユビキタス言語 = [L0 概念層 §10 用語集](../../../governance/helix-harness-concept_v3.1.md#10-用語集) / 業界標準整合 = L0 §11 / Bounded Context = L0 §2.5 9-mode。本 doc は L0 を parent_doc reference とし、用語独自定義は行わない (anti-corruption layer)。
 > **件数確定**: technical は技術要求 7 節 (§1〜§7) で確定 (根拠: 2026-05-28 v2 legacy source-workflows 設計概念参照、`docs/migration/v2-import-ledger.md §5.1 A-21 / §6`)。
 > **L3 接続規約**: `next_pair_freeze: L4`。L4 PLAN は本 sub-doc 全件を `dependencies.requires` に列挙する。
 
@@ -181,6 +181,6 @@ R0-R4 + RGC (Reverse Gateway Closure) を Reverse 専用ではなく **共通 cl
 - L1 機能要求: `docs/design/harness/L1-requirements/functional-requirements.md`
 - L1 非機能要求: `docs/design/harness/L1-requirements/nfr.md`
 - ADR-001 (実装言語): `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
-- L0 概念層: `docs/governance/helix-agent-harness-concept_v3.1.md`
+- L0 概念層: `docs/governance/helix-harness-concept_v3.1.md`
 - v2 import ledger (A-21): `docs/migration/v2-import-ledger.md`
 - repository-structure: `docs/governance/repository-structure.md`

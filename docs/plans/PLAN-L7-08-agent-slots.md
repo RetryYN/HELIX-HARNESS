@@ -25,7 +25,7 @@ generates:
   - artifact_path: tests/team-schema.test.ts
     artifact_type: test_code
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L7
 github_issue_id: null

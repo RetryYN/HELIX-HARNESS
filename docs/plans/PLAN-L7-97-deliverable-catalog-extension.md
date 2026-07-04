@@ -38,9 +38,9 @@ dependencies:
   requires: []
   references:
     - docs/governance/document-system-map.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/plans/PLAN-L2-00-master.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-97 (troubleshoot): SI 標準成果物カタログ拡張 + VALID_SUB_DOCS 単一正本化

@@ -42,7 +42,7 @@ dependencies:
     - .ut-tdd/audit/A-133-upstream-vmodel-coverage-audit.md
   blocks:
     - docs/plans/PLAN-L7-50-fr-roadmap-coverage-lint.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L3-04: upstream FR residual schedule reconciliation

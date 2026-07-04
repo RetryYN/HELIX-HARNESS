@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "PLAN-L7-321 の completeness pass 欠落から切り出した session-log の観測性強化であり、新規 product requirement や上位設計の意味変更を追加しない。L6/L7 の関数契約と oracle 追跡は本 PLAN 内で更新済み。"
 owner: Codex
 parent_design: docs/plans/PLAN-L7-321-completeness-pass-gaps.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: tl
     slot_label: "TL - skill context injection の silent fail-open 監査"

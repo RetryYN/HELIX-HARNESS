@@ -33,9 +33,9 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 
 このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
 
-- `docs/governance/helix-agent-harness-concept_v3.1.md` - 内部展開向け concept
-- `docs/governance/helix-agent-harness-requirements_v1.2.md` - requirements と acceptance criteria
-- `docs/governance/helix-agent-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
+- `docs/governance/helix-harness-concept_v3.1.md` - 内部展開向け concept
+- `docs/governance/helix-harness-requirements_v1.2.md` - requirements と acceptance criteria
+- `docs/governance/helix-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と TypeScript/Bun 実装言語
 - `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
 

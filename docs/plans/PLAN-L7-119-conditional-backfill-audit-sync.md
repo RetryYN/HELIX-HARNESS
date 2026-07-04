@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-23
 updated: 2026-06-23
 owner: Codex
-parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
     slot_label: "TL - conditional backfill audit sync"
@@ -17,9 +17,9 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-REVERSE-119-conditional-backfill-audit-sync.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/backfill-pairing.ts
     artifact_type: source_module

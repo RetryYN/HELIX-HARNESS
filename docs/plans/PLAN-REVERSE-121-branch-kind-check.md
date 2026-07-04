@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "Requirements now name branch-kind-check as the github_issue_id warning surface."
   - layer: L4-basic-design
     decision: not_impacted
@@ -29,7 +29,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-121-branch-kind-check.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L7-121-branch-kind-check.md

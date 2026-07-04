@@ -63,7 +63,7 @@ dependencies:
   blocks:
     - docs/plans/PLAN-L7-51-skill-injection-runtime.md
     - docs/plans/PLAN-L7-52-telemetry-feedback-loop.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L3-05: harness telemetry and self-improvement closure

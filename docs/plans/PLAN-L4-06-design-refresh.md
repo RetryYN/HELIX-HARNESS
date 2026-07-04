@@ -30,7 +30,7 @@ generates:
   - artifact_path: docs/test-design/harness/L9-system-test-design.md
     artifact_type: test_design
 pair_artifact: docs/test-design/harness/L9-system-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 dependencies:
   parent: docs/plans/PLAN-L4-00-master.md

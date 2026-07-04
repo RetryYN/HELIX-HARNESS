@@ -47,7 +47,7 @@ Add-feature で bottom-up 実装した workflow 改善 3 系統 (IMP-047 handove
   - ③HOLDS: 新 FR 起こさず (`tests/fr-registry-audit.test.ts` 9 pass = FR drift なし)、§6.8/§G.4/§10 の明確化に留まる。
 - **R4 合流 (本 PLAN で実施済)**:
   - `.claude/CLAUDE.md`: §G.4 注入規則に直列/並列明示 + 3 条件、並列実行節に機械支援 (agent-slots/doctor/team schema) を追記。
-  - `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` §G.4: 直列/並列トークン規約 (IMP-049) を機械検証条件として追記。
+  - `docs/governance/helix-harness-requirements_v1.2.md` §G.4: 直列/並列トークン規約 (IMP-049) を機械検証条件として追記。
   - handover §6.8.5 の強制側 (checkHandoverDiscipline) は実装で具現化済 (用語 back-fill のみ残)。
 
 ## §工程表

@@ -52,7 +52,7 @@ dependencies:
     - PLAN-L0-01-helix-charter
   blocks: []
   references:
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-concept_v3.1.md
     - docs/plans/PLAN-L3-00-master.md
     - docs/design/harness/L1-requirements/business-requirements.md
     - docs/design/harness/L1-requirements/nfr.md

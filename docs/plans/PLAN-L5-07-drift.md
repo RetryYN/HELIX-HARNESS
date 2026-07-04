@@ -24,7 +24,7 @@ generates:
     artifact_type: design_doc
 skip_sub_doc: []
 pair_artifact: docs/test-design/harness/L8-integration-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L8
 dependencies:

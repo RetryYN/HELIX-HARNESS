@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: not_impacted
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "refactor candidate detector は既存テーブル (quality_signals / feedback_events) への additive projection で schema 不変。新規要件を生まないため requirements は不変。"
   - layer: L4-basic-design
     decision: not_impacted
@@ -35,7 +35,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-141-refactor-candidate-detector-backfill.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc

@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "The execution-mode degradation acceptance item is now implemented and checked."
   - layer: L4-basic-design
     decision: updated
@@ -30,7 +30,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-127-orchestration-degradation-record.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc

@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-23
 updated: 2026-07-02
 owner: Codex
-parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
     slot_label: "TL - right-arm gate planning"

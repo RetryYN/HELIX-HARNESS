@@ -96,10 +96,10 @@ dependencies:
   requires: []
   references:
     - docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-concept_v3.1.md
     - docs/governance/gate-design.md
     - src/schema/frontmatter.ts
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 s4_decision_record:

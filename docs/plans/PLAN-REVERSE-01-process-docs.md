@@ -29,8 +29,8 @@ dependencies:
   references:
     - docs/plans/PLAN-DISCOVERY-04-process-workflows.md
     - docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
     - docs/governance/repository-structure.md
 v2_import: docs/migration/v2-import-ledger.md
 ---

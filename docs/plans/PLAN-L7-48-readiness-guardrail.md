@@ -41,7 +41,7 @@ dependencies:
   references:
     - docs/design/harness/L5-detailed-design/physical-data.md
     - .claude/CLAUDE.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-48: harness.db automation-readiness + guardrail-ledger

@@ -39,7 +39,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-87-merged-plan-status-kind-independent.md
   requires:
     - docs/plans/PLAN-L6-09-governance-enforcement.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-89 (troubleshoot): PLAN errata supersession gate + safety-claim discipline

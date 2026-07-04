@@ -15,7 +15,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "Requirements define the backlog backprop classification gate."
   - layer: L4-basic-design
     decision: not_impacted
@@ -29,7 +29,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-106-backprop-classification-backlog-gate.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/improvement-backlog.md
     artifact_type: markdown_doc

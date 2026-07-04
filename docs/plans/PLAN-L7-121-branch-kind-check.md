@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-23
 updated: 2026-06-23
 owner: Codex
-parent_design: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
     slot_label: "TL - branch-kind check"
@@ -17,7 +17,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-REVERSE-121-branch-kind-check.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/branch-kind.ts
     artifact_type: source_module

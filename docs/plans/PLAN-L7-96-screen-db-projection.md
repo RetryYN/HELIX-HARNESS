@@ -13,7 +13,7 @@ agent_slots:
     slot_label: "SE — screen projection 実装 (harness-db schema + projection-writer)"
   - role: tl
     slot_label: "TL — projection 実装レビュー (intra_runtime_subagent)"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-96-screen-db-projection.md

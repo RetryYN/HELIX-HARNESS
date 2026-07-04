@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "上流突合 Tier2-#6 の LOCAL 実装欠落を L7 の pure generator と CLI 境界で閉じる追加実装であり、新規 product requirement や上位設計の意味変更を追加しない。skill assignment の既存 SSoT を再利用し、L7 の実装・oracle 証跡で完結する。"
 owner: Claude (Opus) / Codex
 parent_design: docs/design/helix/L0-charter/helix-charter_v0.1.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — skill.v1 scaffold generator (name/category/layers/driveModels/domainTags → content+path+self-lint) を pure 関数で実装、file write は CLI 所掌"

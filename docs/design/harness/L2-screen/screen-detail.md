@@ -4,7 +4,7 @@ sub_doc: screen-list
 status: confirmed
 artifact_role: supplemental_screen_detail
 parent_doc: docs/design/harness/L1-requirements/screen-requirements.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 related_docs:
   - docs/design/harness/L2-screen/screen-list.md

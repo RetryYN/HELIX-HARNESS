@@ -10,7 +10,7 @@ created: 2026-05-28
 updated: 2026-05-28
 owner: PM (Opus) / PO (人間)
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 next_pair_freeze: L3
 agent_slots:
@@ -53,7 +53,7 @@ FR-L1-01〜35 全件は `docs/migration/v2-import-ledger.md §6` で確定済 (P
 
 ## §1 入力 (上流からの baton)
 
-- L0 企画書: `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
+- L0 企画書: `docs/governance/helix-harness-concept_v3.1.md`
 - v2 HELIX-workflows 設計概念参照: `vendor/helix-source/docs/v2/process/L01-requirements-and-operational-test-design.md`
 - FR-L1 確定リスト: `docs/migration/v2-import-ledger.md §6` (FR-L1-01〜35、全 35 件)
 - 上流 baton (business): `docs/design/harness/L1-requirements/business-requirements.md` (BR-01〜19 + NFR-11〜15)

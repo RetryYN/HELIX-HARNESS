@@ -58,11 +58,11 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/plans/PLAN-RECOVERY-04-roadmap-definition.md
     - docs/plans/PLAN-L3-06-helix-pillar-descent.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 review_evidence:
   - reviewer: pmo-sonnet
     review_kind: intra_runtime_subagent

@@ -3,7 +3,7 @@ layer: L6
 artifact_type: design_doc
 status: confirmed
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 next_pair_freeze: L7
 plan: docs/plans/PLAN-L6-05-setup-solo-team.md
 ---

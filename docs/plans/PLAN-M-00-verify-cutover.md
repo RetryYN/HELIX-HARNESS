@@ -43,8 +43,8 @@ dependencies:
     - docs/plans/PLAN-REVERSE-44-roadmap-definition-design.md
     - docs/plans/PLAN-L7-44-harness-db-master.md
   references:
-    - docs/governance/ut-tdd-agent-harness-concept_v3.1.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-concept_v3.1.md
+    - docs/governance/helix-harness-requirements_v1.2.md
     - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
     - .ut-tdd/audit/A-130-harness-db-segment-accept.md
     - .ut-tdd/audit/A-131-recovery-04-closure-accept.md

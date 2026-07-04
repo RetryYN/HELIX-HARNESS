@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "completeness pass で確定した harness-quality-tooling 欠落群を backlog として集約する L7 計画であり、個別 capability の上位要求意味を新規変更しない。各 item の実装は後続の独立 PLAN で trace / oracle / review evidence を持たせる。"
 owner: Claude (Opus) / Codex
 parent_design: docs/governance/upstream-helix-reconciliation-completeness-2026-07-04.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — 各欠落 capability を上流 PLAN を参考に HELIX 式で最小 diff 実装 (1 項目ずつ)"

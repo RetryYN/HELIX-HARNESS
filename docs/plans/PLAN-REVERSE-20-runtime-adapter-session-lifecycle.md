@@ -24,7 +24,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "runtime adapter lifecycle は既存 §6.8 / §6.9 の運用観測・CI dogfood 詳細として requirements へ戻した。"
   - layer: L4-basic-design
     decision: updated
@@ -43,7 +43,7 @@ agent_slots:
 generates:
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/test-design/harness/L7-unit-test-design.md
     artifact_type: test_design

@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "Requirements define strong/partial/weak TDD fit and DB firing boundaries."
   - layer: L3-functional
     decision: updated
@@ -43,7 +43,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-134-tdd-drive-fit-classification.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L3-functional/functional-requirements.md
     artifact_type: design_doc

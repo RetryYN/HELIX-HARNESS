@@ -10,7 +10,7 @@ created: 2026-05-27
 updated: 2026-05-28
 owner: PM (Opus) / PO (人間)
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 next_pair_freeze: L3
 agent_slots:
   - role: po
@@ -53,7 +53,7 @@ review_evidence:
 
 ## §1 入力 (上流からの baton)
 
-- L0 企画書: `docs/governance/ut-tdd-agent-harness-concept_v3.1.md`
+- L0 企画書: `docs/governance/helix-harness-concept_v3.1.md`
 - 翻案元 reference: V2 source snapshot requirements process doc
 - v2 取り込み軌跡: `docs/migration/v2-import-ledger.md` §5 / §6
 - 被覆監査結果 (2026-05-28): §3 レジストリに業務要求 (BR-01〜19 + NFR-11〜15 + UX-01〜03) を確定済

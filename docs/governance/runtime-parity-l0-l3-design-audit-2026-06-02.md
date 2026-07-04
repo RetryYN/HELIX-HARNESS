@@ -8,8 +8,8 @@ Claude Code / Codex 共存を前提に、L0 concept / L1 requirements / L2 scree
 
 参照した主な正本:
 
-- `docs/governance/helix-agent-harness-concept_v3.1.md`
-- `docs/governance/helix-agent-harness-requirements_v1.2.md`
+- `docs/governance/helix-harness-concept_v3.1.md`
+- `docs/governance/helix-harness-requirements_v1.2.md`
 - `docs/design/harness/L1-requirements/*.md`
 - `docs/design/harness/L2-screen/*.md`
 - `docs/design/harness/L3-functional/*.md`

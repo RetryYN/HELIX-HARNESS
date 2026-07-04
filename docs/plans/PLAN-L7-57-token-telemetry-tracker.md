@@ -29,7 +29,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-53-learning-engine.md
   requires:
     - docs/design/harness/L4-basic-design/architecture.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-57: cross-runtime token telemetry tracker

@@ -10,7 +10,7 @@ updated: 2026-07-04
 owner: Claude
 parent_design: docs/design/harness/L6-function-design/module-drift.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 backprop_decision: not_required
 backprop_decision_reason: "既存 analyzeRelationImpact (PLAN-L7-32/36/142) の誤分類是正。missing-projection の対象を『グラフ走査対象クラス配下の node 欠落』に限定し、定義上グラフ外の path (config doc / skill doc / directory / archived plan) を non-graph-path (info) に分類する。新規 L1/L3 要求なし。U-RELGRAPH-006 の no-silent-fallback 規律は node 期待 path に対して維持。"
 agent_slots:

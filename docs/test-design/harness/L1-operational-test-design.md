@@ -4,7 +4,7 @@ executed_at_layer: L14
 artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L1-requirements/
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 next_pair_freeze: L1
 created: 2026-05-29
 ---

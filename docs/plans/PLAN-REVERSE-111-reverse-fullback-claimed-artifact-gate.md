@@ -15,7 +15,7 @@ promotion_strategy: reuse-as-is
 backprop_scope:
   - layer: requirements
     decision: updated
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "Requirements define the claimed backprop artifact path gate."
   - layer: L4-basic-design
     decision: not_impacted
@@ -31,7 +31,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-L7-111-reverse-fullback-claimed-artifact-gate.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L7-111-reverse-fullback-claimed-artifact-gate.md

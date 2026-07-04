@@ -1,7 +1,7 @@
 # HELIX-HARNESS 要件定義書
 
 - **Version**: 1.2
-- **対応構想書**: `helix-agent-harness-concept_v3.1.md`
+- **対応構想書**: `helix-harness-concept_v3.1.md`
 - **位置付け**: 要件定義 (L1-L3 受入条件層)
 - **工程層体系**: v1.2 で **V2 source snapshot reference の L0-L14 + V-model を base に採用** (§1.4 / §2、構想書 v3.1 連動)
 - **想定読者**: Phase 0 Bootstrap 担当 (AI 実装エージェント + TL)
@@ -471,7 +471,7 @@ skip_sub_doc: []                             # 当該 PLAN で扱わない sub-d
   # - sub_doc: screen
   #   reason: "BE-only drive, no UI"
 pair_artifact: docs/test-design/<area>/L14-operational-test-design.md   # V-model pair 相手 (L1 sub-doc は L14、L3 sub-doc は L12 等)
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md         # L0 概念層への parent_doc reference (anti-corruption layer)
+related_l0: docs/governance/helix-harness-concept_v3.1.md         # L0 概念層への parent_doc reference (anti-corruption layer)
 related_br: docs/design/<area>/L1-requirements/business-requirements.md  # NFR / 技術要求 sub-doc のみ、業務要求への relate
 next_pair_freeze: L3                                                     # L1 業務/機能 = L3 / L1 技術/NFR = L4 / L4-L6 = 対応する右腕 L
 ```
@@ -550,7 +550,7 @@ L0 → L1 → L4 のドメイン継承チェーンを `ut-tdd plan lint` (sub_do
 
 - [ ] business sub-doc §10.1 の業務 entity 一覧 table が以下 4 列を持つ:
   - `業務 entity` / `L0 用語 (参照 path 含む)` / `業務的意味 (BR で扱う側面)` / `対応 .ut-tdd state / CLI subcommand / file`
-- [ ] 各業務 entity の `L0 用語` 列が L0 概念層 (`docs/governance/helix-agent-harness-concept_v3.1.md §10 用語集`) に存在する用語と完全一致 (独自定義 → exit 1、anti-corruption layer)
+- [ ] 各業務 entity の `L0 用語` 列が L0 概念層 (`docs/governance/helix-harness-concept_v3.1.md §10 用語集`) に存在する用語と完全一致 (独自定義 → exit 1、anti-corruption layer)
 - [ ] §10.2 L4 carry section に **集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 / `ut-tdd doctor check_business_entity_coverage` 新設** の 7 項目が列挙されている (欠落 → P1 warning)
 - [ ] §10.3 SSoT 参照 section に **ユビキタス言語 SSoT / Bounded Context SSoT / 業界標準整合 SSoT** の 3 項目が path 付き reference として明示されている
 
@@ -567,7 +567,7 @@ L0 → L1 → L4 のドメイン継承チェーンを `ut-tdd plan lint` (sub_do
 各 L 層 design / impl PLAN の §用語更新 section を `ut-tdd plan lint` で検証 (living glossary の back-merge 強制、ユビキタス言語の各工程更新):
 
 - [ ] 各 design / impl PLAN に `## §6 用語更新` section が存在 (欠落 → exit 1)。当該工程で新規導入 / 精緻化した用語が無ければ本文に `用語更新なし` を明記
-- [ ] §6 用語更新 に挙げた**新規用語**は L0 §10 用語集 (`docs/governance/helix-agent-harness-concept_v3.1.md`) に同名 entry として back-merge 済み (未 merge の独自定義 → exit 1、anti-corruption layer)
+- [ ] §6 用語更新 に挙げた**新規用語**は L0 §10 用語集 (`docs/governance/helix-harness-concept_v3.1.md`) に同名 entry として back-merge 済み (未 merge の独自定義 → exit 1、anti-corruption layer)
 - [ ] back-merge した §10 entry の **導入層** 列が当該 PLAN の `layer` と一致 (不一致 → P1 warning)
 - [ ] 既存用語の**意味変更**を行った場合、§10 該当 entry の **更新層** 列に当該 `layer` が追記済み (欠落 → P1 warning)
 - [ ] §6 用語更新 で参照する用語名が §10 と表記揺れ無く一致 (揺れ → warning)
@@ -2380,8 +2380,8 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 │   ├── governance/                               # A
 │   │   ├── ai-dev-team-concept_v1.1.md           # A (構想書 v1.1)
 │   │   ├── ai-dev-team-operations_v1.1.md       # A (運用ルール書 v1.1)
-│   │   ├── helix-agent-harness-concept_v3.1.md  # A (構想書 v3.1)
-│   │   └── helix-agent-harness-requirements_v1.2.md  # A (本書)
+│   │   ├── helix-harness-concept_v3.1.md  # A (構想書 v3.1)
+│   │   └── helix-harness-requirements_v1.2.md  # A (本書)
 │   ├── plans/                                    # A (ディレクトリのみ)
 │   │   └── PLAN-NNN-*.md                         # G
 │   ├── design/                                   # A (ディレクトリのみ)
@@ -2532,4 +2532,4 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 
 ---
 
-**本書は HELIX-HARNESS の要件定義書である。構想 (WHY/WHAT) は `helix-agent-harness-concept_v3.1.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**
+**本書は HELIX-HARNESS の要件定義書である。構想 (WHY/WHAT) は `helix-harness-concept_v3.1.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**

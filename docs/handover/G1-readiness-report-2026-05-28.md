@@ -207,8 +207,8 @@ f96ad44 G1-trace sub-gate 新設 (concept §3.3.1 + requirements §1.10.H + scre
 
 **evidence** (PO がスキャン読みで詳細確認できる順):
 
-- L0 概念層: `docs/governance/helix-agent-harness-concept_v3.1.md`
-- L1 要件定義書: `docs/governance/helix-agent-harness-requirements_v1.2.md`
+- L0 概念層: `docs/governance/helix-harness-concept_v3.1.md`
+- L1 要件定義書: `docs/governance/helix-harness-requirements_v1.2.md`
 - v2 取り込み軌跡: `docs/migration/v2-import-ledger.md` (§5 A-25〜A-36 + §6)
 - L1 5 sub-doc: `docs/design/harness/L1-requirements/*.md`
 - L1 5 PLAN: `docs/plans/PLAN-L1-0{1,2,3,4,5}-*.md` (PLAN-L1-03 は v3)

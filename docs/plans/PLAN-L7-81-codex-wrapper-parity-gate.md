@@ -38,9 +38,9 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-77-codex-stdin-prompt-dispatch.md
     - docs/plans/PLAN-L7-78-claude-stdin-prompt-dispatch.md
-    - docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    - docs/governance/helix-harness-requirements_v1.2.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-81 (troubleshoot): codex/claude wrapper parity doctor gate

@@ -4,7 +4,7 @@ status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
 related_audit: .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
-related_requirements: docs/governance/helix-agent-harness-requirements_v1.2.md#6810-mcp--external-testing-tool-scope-and-workflow-triggers-a-125-2026-06-09
+related_requirements: docs/governance/helix-harness-requirements_v1.2.md#6810-mcp--external-testing-tool-scope-and-workflow-triggers-a-125-2026-06-09
 ---
 
 # MCP / External Verification Profile 調査メモ

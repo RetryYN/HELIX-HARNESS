@@ -30,7 +30,7 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-69-encoding-corruption-expanded-guard.md
   requires: []
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-90 (troubleshoot): CI green recovery — readability test vs gitignored CURRENT.json

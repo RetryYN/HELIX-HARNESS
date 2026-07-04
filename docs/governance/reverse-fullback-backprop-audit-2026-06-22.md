@@ -77,13 +77,13 @@ body では `docs/design/`、`docs/governance/`、`docs/test-design/` artifact p
 
 | PLAN | reverse_type | route | missing claimed artifact(s)（欠落 artifact） |
 |---|---|---|---|
-| PLAN-REVERSE-12-review-evidence | design | gap-only | 欠落: `docs/governance/helix-agent-harness-concept_v3.1.md` |
+| PLAN-REVERSE-12-review-evidence | design | gap-only | 欠落: `docs/governance/helix-harness-concept_v3.1.md` |
 | PLAN-REVERSE-36-verification-cycle-gate-naming | normalization | L3 | 欠落: `docs/design/harness/L3-functional/roadmap.md` |
 | PLAN-REVERSE-40-orphan-governance | design | L5 | 欠落: `docs/design/harness/L1-requirements/functional-requirements.md` |
 | PLAN-REVERSE-41-substance-lints | design | L5 | 欠落: `docs/design/harness/L1-requirements/functional-requirements.md`, `docs/governance/repository-structure.md`, `docs/test-design/harness/L7-unit-test-design.md` |
 | PLAN-REVERSE-42-regression-dependency-drift | code | L5 | 欠落: `docs/design/harness/L3-functional/roadmap.md`, `docs/design/harness/L6-function-design/function-spec.md`, `docs/governance/gate-design.md` |
-| PLAN-REVERSE-44-roadmap-definition-design | design | L4 | 欠落: `docs/design/harness/L4-basic-design/`, `docs/design/harness/L6-function-design/`, `docs/governance/helix-agent-harness-concept_v3.1.md`, `docs/governance/helix-agent-harness-requirements_v1.2.md` |
-| PLAN-REVERSE-46-deliverable-catalog-extension | normalization | L4 | 欠落: `docs/governance/document-system-map.md`, `docs/governance/helix-agent-harness-concept_v3.1.md`, `docs/governance/helix-agent-harness-requirements_v1.2.md` |
+| PLAN-REVERSE-44-roadmap-definition-design | design | L4 | 欠落: `docs/design/harness/L4-basic-design/`, `docs/design/harness/L6-function-design/`, `docs/governance/helix-harness-concept_v3.1.md`, `docs/governance/helix-harness-requirements_v1.2.md` |
+| PLAN-REVERSE-46-deliverable-catalog-extension | normalization | L4 | 欠落: `docs/governance/document-system-map.md`, `docs/governance/helix-harness-concept_v3.1.md`, `docs/governance/helix-harness-requirements_v1.2.md` |
 
 ### Current Sweep Summary（現行 sweep 要約）
 

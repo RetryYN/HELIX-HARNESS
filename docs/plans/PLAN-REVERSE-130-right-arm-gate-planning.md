@@ -15,7 +15,7 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: not_impacted
-    evidence_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+    evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "The existing requirement already records G8-G14 as future mechanization; this slice mechanizes the planning route."
   - layer: process-gates
     decision: updated-by-plan-evidence
@@ -43,7 +43,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/process/forward/L08-L14-verification-phase.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L4-basic-design/function.md
     artifact_type: design_doc

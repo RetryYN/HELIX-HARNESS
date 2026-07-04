@@ -36,7 +36,7 @@ dependencies:
   references:
     - src/workflow/contracts.ts
     - src/team/model-policy.ts
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l0_extra: docs/design/harness/L1-requirements/functional-requirements.md
 ---
 

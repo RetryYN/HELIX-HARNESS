@@ -15,7 +15,7 @@ agent_slots:
 generates:
   - artifact_path: docs/process/modes/refactor.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md
+  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/harness/L3-functional/functional-requirements.md
     artifact_type: design_doc

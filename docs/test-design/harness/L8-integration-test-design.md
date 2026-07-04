@@ -5,7 +5,7 @@ artifact_type: test_design
 status: confirmed
 pair_artifact: docs/design/harness/L5-detailed-design/
 parent_doc: docs/plans/PLAN-L5-00-master.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l5_physical_data: docs/design/harness/L5-detailed-design/physical-data.md
 related_l5_module: docs/design/harness/L5-detailed-design/module-decomposition.md
 related_l5_internal: docs/design/harness/L5-detailed-design/internal-processing.md

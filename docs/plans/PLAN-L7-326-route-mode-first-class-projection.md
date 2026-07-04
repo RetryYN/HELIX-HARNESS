@@ -11,7 +11,7 @@ backprop_decision: not_required
 backprop_decision_reason: "PLAN-L7-321 の completeness pass 欠落から切り出した harness.db projection の read-model 追加であり、新規 product requirement や上位設計の意味変更を追加しない。L5/L6/L7 の物理 schema・関数契約・oracle 追跡は本 PLAN 内で更新済み。"
 owner: Codex
 parent_design: docs/plans/PLAN-L7-321-completeness-pass-gaps.md
-related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE - route mode first-class projection"

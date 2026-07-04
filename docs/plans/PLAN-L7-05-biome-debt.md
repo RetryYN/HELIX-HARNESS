@@ -14,7 +14,7 @@ backfill_required: false  # refactor 機能不変 (dead code 削除 + biome --wr
 agent_slots:
   - role: tl
     slot_label: "TL — 機能不変 (113 test green 維持) / dead code 削除の妥当性 (g3-trace 陳腐化 regex) / useLiteralKeys が TS strict と非競合 / CI biome 有効化のレビュー (claude-only は code-reviewer 代替)"
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-harness-concept_v3.1.md
 github_issue_id: null
 generates: []
 dependencies:
