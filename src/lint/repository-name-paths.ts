@@ -13,7 +13,7 @@ export interface RepositoryNamePathsResult {
   filesystemResidue: string[];
 }
 
-const LEGACY_REPOSITORY_NAME_PATTERN = /UT[-_]TDD[_-]AGENT[_-]HARNESS(?:[-_]Pack)?/i;
+const LEGACY_REPOSITORY_NAME_PATTERN = /UT[-_]?TDD[-_]?AGENT[-_]?HARNESS(?:[-_]?Pack)?/i;
 const SKIP_DIRECTORIES = new Set([".git", "node_modules", "dist"]);
 
 export function loadRepositoryNamePathsInput(
