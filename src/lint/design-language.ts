@@ -57,7 +57,9 @@ const DESIGN_LANGUAGE_ROOTS = [
 const DESIGN_LANGUAGE_FILES = [
   "AGENTS.md",
   "CLAUDE.md",
+  "README.md",
   join(".claude", "CLAUDE.md"),
+  join(".github", "PULL_REQUEST_TEMPLATE.md"),
   join("docs", "feedback-log.md"),
   join("docs", "improvement-backlog.md"),
 ] as const;

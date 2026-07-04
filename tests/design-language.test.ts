@@ -89,6 +89,8 @@ describe("design-language lint", () => {
 
     expect(paths).toContain(".ut-tdd/audit/A-133-upstream-vmodel-coverage-audit.md");
     expect(paths).toContain(".ut-tdd/review/cross-review-versionup-and-s4-failclose.md");
+    expect(paths).toContain(".github/PULL_REQUEST_TEMPLATE.md");
+    expect(paths).toContain("README.md");
     expect(paths).toContain("docs/archive/ut-tdd-agent-harness-concept_v2.1.md");
     expect(paths).toContain("docs/feedback-log.md");
     expect(paths).toContain("docs/improvement-backlog.md");
