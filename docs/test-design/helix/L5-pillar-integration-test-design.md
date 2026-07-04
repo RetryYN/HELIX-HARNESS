@@ -1,5 +1,5 @@
 ---
-title: "HELIX L5 結合テスト設計 — pillar detail design"
+title: "HELIX L5 結合テスト設計 — pillar detail design（柱詳細設計）"
 layer: L5
 executed_at_layer: L8
 artifact_type: test_design
@@ -13,30 +13,30 @@ related_l5: docs/design/helix/L5-detail/pillar-detail-design.md
 next_pair_freeze: L5
 ---
 
-# HELIX L5 結合テスト設計 — pillar detail design
+# HELIX L5 結合テスト設計 — pillar detail design（柱詳細設計）
 
-> L5 detail design `pillar-detail-design.md` の L8 integration test design。実装済みテストの存在ではなく、
-> L5 contract を結合境界として観測する GWT を定義する。
+> L5 detail design `pillar-detail-design.md` の L8 integration test design（結合テスト設計）。
+> 実装済みテストの存在ではなく、L5 contract（L5 契約）を結合境界として観測する GWT を定義する。
 
 ## §0 量閉じ
 
-- 対象 L5 contract: 10 件。
-- integration test 観測: `LIT-*` 43 件。
+- 対象 L5 contract（L5 契約）: 10 件。
+- integration test（結合テスト）観測: `LIT-*` 43 件。
 - 対象 L3 要件: 43 件。
-- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle で観測し、本 L5 pillar integration test では 43 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract 境界に接続されることは §1.1 で観測する。
+- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle（単体/受入オラクル）で観測し、本 L5 pillar integration test では 43 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract（契約）境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
 - L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 `LIT-*` 43 件の
-  integration pass に含めない。S4 confirmed 後は visualization read-model / graph IR / drill-down /
-  read-only UI action boundary の結合観測を追加する。
+  integration pass（結合通過判定）に含めない。S4 confirmed 後は visualization read-model / graph IR / drill-down /
+  read-only UI action boundary（読み取り専用 UI 操作境界）の結合観測を追加する。
 - G-SF `semantic_feature_frontier_record` が `frontier_pending_decision` / `parked_future_version` /
   `approval_gated_cutover` を返す意味単位は、L8 integration pass の対象外でなければならない。
-  `completion_claim_allowed=false` を integration expected result とし、first-response read model、
-  setup output、activation/cutover packet が存在しても、S4 / activation / cutover approval 前は
-  current 43 件の integration completion に混ぜない。
+  `completion_claim_allowed=false` を integration expected result（結合期待結果）とし、first-response read model、
+  setup output（セットアップ出力）、activation/cutover packet が存在しても、S4 / activation / cutover approval 前は
+  current 43 件の integration completion に混ぜない（結合完了に混入させない）。
 
 ## §1 結合テスト trace
 
-| LIT-ID | 対応 L3 | 対応 L5 contract | GWT |
+| LIT-ID | 対応 L3 | 対応 L5 contract（L5 契約） | GWT |
 |--------|---------|------------------|---------------------|
 | LIT-P0-01 | HR-FR-P0-01 | HC-P0 | 前提: workflow PLAN / 操作: return contract を確認 / 期待: Forward return、gap-only、または `version_target` が存在する |
 | LIT-P0-02 | HR-FR-P0-02 | HC-P0 | 前提: cap または lock signal / 操作: stop contract を記録 / 期待: state と handover が stop reason を保持する |
@@ -84,7 +84,7 @@ next_pair_freeze: L5
 
 ## §1.1 Route-B contract 観測
 
-| Route-B L3 ID | L5 contract boundary | integration 観測 |
+| Route-B L3 ID | L5 contract boundary（L5 契約境界） | integration 観測 |
 |---------------|----------------------|------------------|
 | HR-BR-07 | HC-P2 | `LoopDispatchDecision` が canResume/evaluateStop/classifyRecovery の安全側出力を持つ |
 | HR-BR-12 | HC-P7 | memory contract が layer / supersede / bounded recall を保持する |
@@ -97,32 +97,32 @@ next_pair_freeze: L5
 
 ## §2 G-DESIGN.L5
 
-本 test design は L5 detail design と pair であり、`PLAN-L5-09` の G-DESIGN.L5 add-design readiness を検査する。
+本 test design（テスト設計）は L5 detail design と pair であり、`PLAN-L5-09` の G-DESIGN.L5 add-design readiness（追加設計準備）を検査する。
 
 ## §3 結合観測 contract
 
 各 `LIT-*` は実装テストではなく L8 で実装される結合観測の設計である。したがって、各 case は
-L5 `HC-*` contract matrix の 4 面を観測する。
+L5 `HC-*` contract matrix（契約マトリクス）の 4 面を観測する。
 
 | 観測軸 | L8 で観測するもの | 欠落時の扱い |
 |------------------|------------------|--------------|
-| contract input | PLAN / job / tool call / evidence / external source / adapter surface など、該当 `HC-*` の Required inputs が揃うこと | test design の片肺として fail |
-| projection/evidence | `plan_registry`、`workflow_runs`、`trace_edges`、`test_runs`、`feedback_events`、`guardrail_decisions`、`contract_ledger`、memory/glossary/context-map 等の境界に証跡が残ること | green claim 不可 |
-| contract output | `ForwardReturnDecision`、`AutonomyResumeDecision`、`LoopDispatchDecision`、`VerificationEvidenceProfile`、`DistributionPlan`、`SecurityBoundaryDecision` 等の正規化出力が一意に決まること | L6 function contract へ降下不可 |
-| fail-close behavior | missing return、over-budget self-continue、self-review claim、untrusted instruction、approval/preflight 欠落、projection 未収束などが green にならないこと | L8 case は negative path を持つ |
+| contract input（契約入力） | PLAN / job / tool call / evidence / external source / adapter surface など、該当 `HC-*` の Required inputs が揃うこと | test design の片肺として fail |
+| projection/evidence（投影/証跡） | `plan_registry`、`workflow_runs`、`trace_edges`、`test_runs`、`feedback_events`、`guardrail_decisions`、`contract_ledger`、memory/glossary/context-map 等の境界に証跡が残ること | green claim 不可 |
+| contract output（契約出力） | `ForwardReturnDecision`、`AutonomyResumeDecision`、`LoopDispatchDecision`、`VerificationEvidenceProfile`、`DistributionPlan`、`SecurityBoundaryDecision` 等の正規化出力が一意に決まること | L6 function contract へ降下不可 |
+| fail-close behavior（安全側失敗挙動） | missing return、over-budget self-continue、self-review claim、untrusted instruction、approval/preflight 欠落、projection 未収束などが green にならないこと | L8 case は negative path を持つ |
 
 ## §3.1 結合検証戦略
 
 L8 integration では、module/adapter/state 境界を跨いだ実挙動を観測する。テスト戦略は GWT
-を決めるが、検証戦略はその観測が実 runtime 由来かを決める。
+を決めるが、検証戦略はその観測が実 runtime（実行環境）由来かを決める。
 
-| 検証軸 | 必須 evidence | fail condition |
+| 検証軸 | 必須 evidence（必須証跡） | fail condition（失敗条件） |
 |-------------------|-------------------|----------------|
-| runtime provenance | real `session_id`、`source`、adapter/runtime surface、timestamp、evidence path | projection-only row または空の session id だけでは fired/used/works を証明できない |
-| cross-boundary correlation | PLAN id、requirement/test id、module または adapter boundary、log/projection row 間の correlation id join | join できない log row は trace-support のみに留まる |
-| debug reproducibility | L7.5 RUN & Debug command または adapter invocation を、secret redaction 済みの recorded args から再実行または review できる | prose-only debug note は acceptance evidence ではない |
-| negative verification | hosted/API hook non-enforcement、preflight-only edit、blocked external action、missing approval が blocked outcome として観測可能なまま残る | blocked path が integration evidence から欠落している |
-| semantic frontier preservation | `semantic_feature_frontier_record` classification が PLAN/design state から L8 evidence へ join する | `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` を completed integration work として報告している |
+| runtime provenance（実行由来性） | real `session_id`、`source`、adapter/runtime surface、timestamp、evidence path | projection-only row または空の session id だけでは fired/used/works を証明できない |
+| cross-boundary correlation（境界横断相関） | PLAN id、requirement/test id、module または adapter boundary、log/projection row 間の correlation id join | join できない log row は trace-support のみに留まる |
+| debug reproducibility（デバッグ再現性） | L7.5 RUN & Debug command または adapter invocation を、secret redaction 済みの recorded args から再実行または review できる | prose-only debug note は acceptance evidence ではない |
+| negative verification（負例検証） | hosted/API hook non-enforcement、preflight-only edit、blocked external action、missing approval が blocked outcome として観測可能なまま残る | blocked path が integration evidence から欠落している |
+| semantic frontier preservation（意味境界の保持） | `semantic_feature_frontier_record` classification が PLAN/design state から L8 evidence へ join する | `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` を completed integration work として報告している |
 
 ## §4 source design coverage 対応
 
