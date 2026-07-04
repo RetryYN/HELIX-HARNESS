@@ -14,31 +14,30 @@ applies_to:
     - Recovery
 ---
 
-# reverse analysis
+# reverse analysis（Reverse 分析）
 
-Entry skill for the UT-TDD Reverse drive (FR-L1-14). Load this skill when you
-need to decide whether to start a Reverse cycle, which type to use, and how
-the R0-R4 phases connect to Forward.
+UT-TDD Reverse drive（FR-L1-14）の entry skill。Reverse cycle を開始するか、
+どの type を使うか、R0-R4 phases を Forward にどう接続するかを判断する必要がある場合に読む。
 
-## When to load this skill
+## この skill を読む条件
 
-- A drift signal fires (schema/contract divergence detected by `ut-tdd doctor`).
-- Existing code or design is not traceable to any Forward L0-L14 artifact.
-- A Scrum increment completes and must be promoted to V-model artifacts (fullback).
-- A Discovery cycle ends and its conclusions need formal Forward anchoring.
-- A Retrofit impact assessment requires tracing unknown dependencies (upgrade type).
+- drift signal が発火する（`ut-tdd doctor` が schema/contract divergence を検出）。
+- existing code または design が Forward L0-L14 artifact へ trace できない。
+- Scrum increment が完了し、V-model artifacts へ promote する必要がある（fullback）。
+- Discovery cycle が終わり、その conclusions に formal Forward anchoring が必要。
+- Retrofit impact assessment で unknown dependencies の trace が必要（upgrade type）。
 
-## The 5 Reverse types (FR-L1-14 / reverse.md §3.3)
+## 5 つの Reverse types（FR-L1-14 / reverse.md §3.3）
 
-| type | when | R1 skip? | typical forward_routing |
+| type | 使う条件 | R1 skip? | typical forward_routing |
 |---|---|---|---|
-| `code` | impl exists, no design/contracts | no | L3, L4, or L5 |
-| `design` | design doc exists, impl unknown or out-of-sync | yes | L4 or L5 |
-| `upgrade` | dependency version bump, impact unknown | no | L5 (RGC not used) |
-| `normalization` | naming/structure drift, no contract gap | yes | L3 or L4 |
-| `fullback` | Discovery/Scrum closure, promote to V-model | no | L1, L3, or L4 |
+| `code` | impl は存在するが design/contracts が無い | no | L3、L4、または L5 |
+| `design` | design doc は存在するが impl が不明または out-of-sync | yes | L4 または L5 |
+| `upgrade` | dependency version bump があり impact が不明 | no | L5（RGC は使わない） |
+| `normalization` | naming/structure drift があり contract gap は無い | yes | L3 または L4 |
+| `fullback` | Discovery/Scrum closure を V-model へ promote する | no | L1、L3、または L4 |
 
-## R0-R4 phase map
+## R0-R4 phase map（phase 対応表）
 
 ```
 R0  Evidence Acquisition   -- what exists; has_existing_tests flag
@@ -50,11 +49,10 @@ R4  Gap & Routing           -- gap-register + forward_routing + promotion_strate
      +-- Forward merge at R4: routing value is one of L1/L3/L4/L5/gap-only
 ```
 
-After R4, the routing destination's Pair freeze gate (G1/G3/G4/G5) must be
-passed before any downstream L7 work begins. `ut-tdd vmodel lint` will surface
-missing pair artifacts.
+R4 後、downstream L7 work を始める前に、routing destination の Pair freeze gate
+（G1/G3/G4/G5）を pass しなければならない。`ut-tdd vmodel lint` は missing pair artifacts を可視化する。
 
-## PLAN frontmatter for a Reverse cycle
+## Reverse cycle の PLAN frontmatter
 
 ```yaml
 kind: reverse
@@ -64,23 +62,22 @@ workflow_phase: R0                  # update as phases advance
 reverse_type: <code|design|upgrade|normalization|fullback>
 ```
 
-Validate with `ut-tdd plan lint` (schema) and `ut-tdd doctor` (governance) at
-every phase boundary.
+各 phase boundary で `ut-tdd plan lint`（schema）と `ut-tdd doctor`（governance）により validate する。
 
-## Test-design symmetry rule (reverse.md §2.1)
+## Test-design symmetry rule（reverse.md §2.1 の対称性ルール）
 
-Reverse is responsible for the V-model test-design pairing state:
+Reverse は V-model test-design pairing state に責任を持つ。
 
-- Tests exist (`has_existing_tests=true`): R2 reconstructs `as-is-test-design`.
-- Tests absent: R4 records `missing_pair_artifacts`; routing destination must
-  include a test-design PLAN before G3/G4/G5 gate can be crossed.
+- Tests が存在する（`has_existing_tests=true`）: R2 が `as-is-test-design` を reconstruct する。
+- Tests が無い: R4 が `missing_pair_artifacts` を記録する。routing destination は、
+  G3/G4/G5 gate を越える前に test-design PLAN を含めなければならない。
 
-Reverse itself does not generate test code. It observes and records the
-test-design state so Forward can freeze the pair correctly.
+Reverse 自体は test code を生成しない。Forward が pair を正しく freeze できるように、
+test-design state を observe/record する。
 
-## Checklist before starting R0
+## R0 開始前 checklist
 
-- [ ] Identify the reverse_type from the table above.
-- [ ] Confirm `ut-tdd status` shows no blocking handover or open doctor violation.
-- [ ] Create a `kind=reverse` PLAN in `docs/plans/` with correct frontmatter.
-- [ ] Run `ut-tdd plan lint` -- exits 0 before proceeding.
+- [ ] 上表から reverse_type を特定する。
+- [ ] `ut-tdd status` が blocking handover や open doctor violation なしを示すことを確認する。
+- [ ] correct frontmatter を持つ `kind=reverse` PLAN を `docs/plans/` に作成する。
+- [ ] `ut-tdd plan lint` を実行し、進む前に 0 で終了することを確認する。
