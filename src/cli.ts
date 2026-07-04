@@ -4597,7 +4597,7 @@ function loadObjectiveExternalObserved(): {
   };
   readRemote(
     "development_repo",
-    ["https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git", "refs/heads/main"],
+    ["https://github.com/RetryYN/HELIX-HARNESS.git", "refs/heads/main"],
     firstSha,
   );
   readRemote(

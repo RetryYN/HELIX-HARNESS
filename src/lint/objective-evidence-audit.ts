@@ -133,8 +133,8 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
     label: "external source marker",
     markers: [
       "外部ソース HEAD 確認日: 2026-07-04",
-      "unison-ai-product/UT-TDD_AGENT-HARNESS",
-      "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+      "RetryYN/HELIX-HARNESS",
+      "b828fcf64c204d1cfa65c729fa590ca9562adccc",
       "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
       "a43771ab091486520a4970f6b19b1663a009d4d0",
       "v0.1.4",
@@ -167,13 +167,12 @@ const EXTERNAL_SOURCE_LEDGER_COLUMNS = [
 const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
   {
     source: "development_repo",
-    command:
-      "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git refs/heads/main",
+    command: "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+    observed: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
     latestOfficialStatus: "main branch reachable",
-    sourceStatusDelta: "none",
-    adoptionDecision: "meaning-only adoption; no bulk import",
+    sourceStatusDelta: "development repo renamed from old upstream basis",
+    adoptionDecision: "current HELIX-HARNESS source of truth",
     workflowRouteImpact: "none",
   },
   {

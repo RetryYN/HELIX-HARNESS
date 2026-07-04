@@ -32,7 +32,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("外部ソース HEAD 確認日: 2026-07-04");
     expect(text).toContain("外部 source ledger (checked 2026-07-04)");
     expect(text).toContain(
-      "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS.git refs/heads/main",
+      "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     );
     expect(text).toContain(
       "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
@@ -40,7 +40,8 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("distribution_pack_latest_tag");
     expect(text).toContain("sourceStatusDelta");
     expect(text).toContain("workflowRouteImpact");
-    expect(text).toContain("7f83ca811353ed90b3e981178a1b0c9977dd5863");
+    expect(text).toContain("b828fcf64c204d1cfa65c729fa590ca9562adccc");
+    expect(text).toContain("RetryYN/HELIX-HARNESS");
     expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
     expect(text).toContain("a43771ab091486520a4970f6b19b1663a009d4d0");
     expect(text).toContain("v0.1.4");
@@ -201,7 +202,7 @@ describe("HELIX objective evidence audit", () => {
     const ok = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+        development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
         distribution_pack_repo: "a43771ab091486520a4970f6b19b1663a009d4d0",
         distribution_pack_latest_tag: "v0.1.4",
       },
@@ -211,7 +212,7 @@ describe("HELIX objective evidence audit", () => {
     const partial = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+        development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
       },
     });
 
@@ -226,7 +227,7 @@ describe("HELIX objective evidence audit", () => {
     const drifted = analyzeObjectiveEvidenceAudit({
       ...baseInput,
       externalObserved: {
-        development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+        development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
         distribution_pack_repo: "different-pack-head",
         distribution_pack_latest_tag: "v0.1.4",
       },
