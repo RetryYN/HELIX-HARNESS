@@ -1,10 +1,26 @@
 import { describe, expect, it } from "vitest";
 import {
+  sourceLedgerCheckedDate,
   sourceLedgerCheckedDateViolation,
   verificationSourceMetadataViolations,
 } from "../src/lint/source-ledger-freshness";
 
 describe("source ledger freshness", () => {
+  it("extracts checked dates from Japanese source ledger headings", () => {
+    expect(
+      sourceLedgerCheckedDate(
+        "S4 decision source ledger（確認日 2026-07-03）:",
+        "S4 decision source ledger",
+      ),
+    ).toBe("2026-07-03");
+    expect(
+      sourceLedgerCheckedDate(
+        "S4 decision source ledger（checked 2026-07-03、S4 判断 source 台帳）:",
+        "S4 decision source ledger",
+      ),
+    ).toBe("2026-07-03");
+  });
+
   it("rejects non-existent checked dates instead of relying on Date.parse normalization", () => {
     expect(
       sourceLedgerCheckedDateViolation(

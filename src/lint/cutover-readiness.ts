@@ -117,6 +117,18 @@ const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "required field impact",
 ] as const;
 
+const SOURCE_LEDGER_COLUMN_ALIASES: Record<
+  string,
+  (typeof REQUIRED_SOURCE_LEDGER_COLUMNS)[number]
+> = {
+  "公式 URL": "official URL",
+  "採用 version/date": "adopted version/date",
+  "最新公式 status": "latest official status",
+  採用判断: "adoption decision",
+  "cutover 用途": "cutover use",
+  "必須 field への影響": "required field impact",
+};
+
 const STATE_DIR_RENAME_PATTERN = "\\.ut" + "-tdd\\/.*\\.helix";
 const IRREVERSIBLE_CUTOVER = new RegExp(
   `cutover_decision_record|PLAN-M-02|state dir|atomic migration|${STATE_DIR_RENAME_PATTERN}|(?:irreversible|不可逆).*(?:migration|rename|state dir|\\.ut-tdd|\\.helix|cutover)`,
@@ -515,7 +527,9 @@ function parseCutoverSourceLedger(text: string): {
   if (tableLines.length < 2) {
     return { columns: [], rows: [] };
   }
-  const columns = tableCells(tableLines[0]);
+  const columns = tableCells(tableLines[0]).map(
+    (column) => SOURCE_LEDGER_COLUMN_ALIASES[column] ?? column,
+  );
   const rows = tableLines.slice(2).map((line) => {
     const rowCells = tableCells(line);
     return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));

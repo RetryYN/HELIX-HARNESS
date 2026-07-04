@@ -35,7 +35,7 @@ export interface RuleAutomationClosureResult {
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+Section\s+2\.3\s+Rule Automation Closure Required\s*$/m;
+const SECTION_RE = /^##\s+Section\s+2\.3\s+Rule Automation Closure (Required|必須)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const VALID_STATUSES = new Set<RuleAutomationStatus>([
   "closed",
@@ -97,7 +97,9 @@ export function analyzeRuleAutomationClosure(
 
     const header = parsed[0].map((cell) => cell.toLowerCase());
     const ruleIndex = header.indexOf("rule");
-    const ownerIndex = header.indexOf("required automation owner");
+    const ownerIndex = header.findIndex(
+      (cell) => cell === "required automation owner" || cell.includes("automation owner"),
+    );
     const statusIndex = header.indexOf("current status");
     if (ruleIndex < 0 || ownerIndex < 0 || statusIndex < 0) {
       violations.push({ file: doc.file, reason: "malformed_row" });

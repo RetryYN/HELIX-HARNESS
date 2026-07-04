@@ -558,6 +558,18 @@ const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "required field impact",
 ] as const;
 
+const SOURCE_LEDGER_COLUMN_ALIASES: Record<
+  string,
+  (typeof REQUIRED_SOURCE_LEDGER_COLUMNS)[number]
+> = {
+  "公式 URL": "official URL",
+  "採用 version/date": "adopted version/date",
+  "最新公式 status": "latest official status",
+  採用判断: "adoption decision",
+  "version-up 用途": "version-up use",
+  "必須 field への影響": "required field impact",
+};
+
 const REQUIRED_SOURCE_LEDGER_ROWS = [
   "Semantic Versioning 2.0.0",
   "GitHub Releases",
@@ -2857,7 +2869,9 @@ function parseVersionUpSourceLedger(text: string): {
   if (tableLines.length < 2) {
     return { columns: [], rows: [] };
   }
-  const columns = tableCells(tableLines[0]);
+  const columns = tableCells(tableLines[0]).map(
+    (column) => SOURCE_LEDGER_COLUMN_ALIASES[column] ?? column,
+  );
   const rows = tableLines.slice(2).map((line) => {
     const rowCells = tableCells(line);
     return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));

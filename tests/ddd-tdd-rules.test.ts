@@ -221,6 +221,17 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.map((v) => v.rule)).toContain("integration-gwt");
   });
 
+  it("accepts Japanese annotations on L8 GWT table headers", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        l8Text:
+          "| IT-ID | Given（前提） | When（操作） | Then（期待結果） | Fixture / Boundary（境界） | Assertions（検証） | Negative / Edge（異常・境界） |\n| IT-DDD-01 | a | b | c | d | e | f |",
+      }),
+    );
+    expect(result.ok).toBe(true);
+    expect(result.violations.map((v) => v.rule)).not.toContain("integration-gwt");
+  });
+
   it("formats doctor messages with path and rule samples", () => {
     const result = analyzeDddTddRules(baseInputs({ l7Text: "" }));
     expect(dddTddRulesMessages(result)[0]).toContain("invariant-test-trace");

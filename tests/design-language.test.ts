@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -83,6 +83,7 @@ describe("design-language lint", () => {
     expect(result.checked).toBeGreaterThan(500);
     expect(result.ok).toBe(true);
     expect(result.newViolations).toBe(0);
+    expect(result.violations).toHaveLength(0);
   });
 
   it("U-DESLANG-006: includes memory, templates, and feedback docs in the real repo audit", () => {
@@ -95,13 +96,15 @@ describe("design-language lint", () => {
     expect(paths).toContain(".ut-tdd/review/cross-review-versionup-and-s4-failclose.md");
     expect(paths).toContain(".github/PULL_REQUEST_TEMPLATE.md");
     expect(paths).toContain("README.md");
-    expect(paths).toContain("docs/archive/ut-tdd-agent-harness-concept_v2.1.md");
+    expect(paths).toContain("docs/archive/helix-agent-harness-concept_v2.1.md");
     expect(paths).toContain("docs/feedback-log.md");
     expect(paths).toContain("docs/improvement-backlog.md");
     expect(paths).toContain("docs/memory/README.md");
     expect(paths).toContain("docs/migration/helix-fork-completion-plan.md");
     expect(paths).toContain("docs/reference/ai-agent-harness-directory-reference.md");
-    expect(paths).toContain("docs/research/mcp-external-verification-profile-research-2026-06-09.md");
+    expect(paths).toContain(
+      "docs/research/mcp-external-verification-profile-research-2026-06-09.md",
+    );
     expect(paths).toContain("docs/skills/SKILL_MAP.md");
     expect(paths).toContain("docs/templates/prompts/effort-classify.md");
   });

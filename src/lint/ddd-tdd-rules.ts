@@ -413,7 +413,7 @@ function violationKey(violation: DddTddViolation): string {
 }
 
 function integrationGwtViolations(l8Text: string): DddTddViolation[] {
-  const headerMatch = l8Text.match(/\|\s*IT-ID\s*\|\s*Given\s*\|\s*When\s*\|\s*Then\s*\|/i);
+  const headerMatch = l8Text.match(/\|\s*IT-ID\s*\|\s*Given[^|]*\|\s*When[^|]*\|\s*Then[^|]*\|/i);
   if (!headerMatch) {
     return [
       {

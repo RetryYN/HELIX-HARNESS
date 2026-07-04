@@ -662,7 +662,7 @@ export function analyzeS4DecisionReadiness(
     ["docs/process/modes/scrum.md", input.scrumMd],
   ] as const) {
     for (const marker of MODE_DOC_MARKERS) {
-      if (!doc[1].includes(marker)) {
+      if (!modeDocMarkerPresent(doc[1], marker)) {
         violations.push({ subject: doc[0], reason: `missing ${marker}` });
       }
     }
@@ -1001,7 +1001,7 @@ function buildS4DecisionVerificationCommandMatrix(
         "G1/G3 trace, l6-fr-coverage, oracle-test-trace, and semantic frontier gates stay green before S4 outcome selection",
       evidence: "doctor output and trace/oracle gate lines",
       source: "HELIX V-model trace gate",
-      sourceUrl: "docs/governance/ut-tdd-agent-harness-requirements_v1.2.md",
+      sourceUrl: "docs/governance/helix-agent-harness-requirements_v1.2.md",
       sourceCheckedAt,
       latestOfficialStatus: "local V-model trace gate contract current at HEAD",
       sourceStatusDelta: "none; G1/G3 trace remains required before S4 route selection",
@@ -1122,6 +1122,14 @@ function missingSourceLedgerRowsForDocs(discoveryMd: string, scrumMd: string): s
   );
 }
 
+function modeDocMarkerPresent(text: string, marker: string): boolean {
+  const aliases: Record<string, string[]> = {
+    "adopted version/date": ["採用 version/date"],
+    "latest official status": ["最新公式 status", "最新 official status"],
+  };
+  return [marker, ...(aliases[marker] ?? [])].some((candidate) => text.includes(candidate));
+}
+
 function sourceLedgerViolations(
   subject: string,
   sourceLedger: { columns: string[]; rows: Record<string, string>[] },
@@ -1195,7 +1203,7 @@ function parseS4DecisionSourceLedger(text: string): {
   if (tableLines.length < 2) {
     return { columns: [], rows: [] };
   }
-  const columns = tableCells(tableLines[0]);
+  const columns = tableCells(tableLines[0]).map(normalizeS4DecisionSourceLedgerColumn);
   const rows = tableLines.slice(2).map((line) => {
     const rowCells = tableCells(line);
     return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));
@@ -1210,6 +1218,20 @@ function tableCells(line: string): string[] {
     .replace(/\|$/, "")
     .split("|")
     .map((cell) => cell.trim().replace(/^<(.+)>$/, "$1"));
+}
+
+function normalizeS4DecisionSourceLedgerColumn(column: string): string {
+  const aliases: Record<string, string> = {
+    "公式 URL": "official URL",
+    "採用 version/date": "adopted version/date",
+    "最新公式 status": "latest official status",
+    "最新 official status": "latest official status",
+    採用判断: "adoption decision",
+    "S4 decision での用途": "S4 decision use",
+    "影響する必須 field": "required field impact",
+    "必須 field への影響": "required field impact",
+  };
+  return aliases[column] ?? column;
 }
 
 function recordValues(

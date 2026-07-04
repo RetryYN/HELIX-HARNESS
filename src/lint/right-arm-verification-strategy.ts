@@ -135,6 +135,18 @@ const REQUIRED_SOURCE_LEDGER_COLUMNS = [
   "gate impact",
 ] as const;
 
+const SOURCE_LEDGER_COLUMN_ALIASES: Record<
+  string,
+  (typeof REQUIRED_SOURCE_LEDGER_COLUMNS)[number]
+> = {
+  "公式 URL": "official URL",
+  "採用 version/date": "adopted version/date",
+  "最新公式 status": "latest official status",
+  採用判断: "adoption decision",
+  検証用途: "verification use",
+  "gate 影響": "gate impact",
+};
+
 const REQUIRED_SOURCE_LEDGER_MEANING_REVIEW_FIELDS = [
   "source_ledger_freshness",
   "source_status_delta",
@@ -441,7 +453,9 @@ function parseVerificationSourceLedger(text: string): {
   if (tableLines.length < 2) {
     return { columns: [], rows: [] };
   }
-  const columns = cells(tableLines[0]);
+  const columns = cells(tableLines[0]).map(
+    (column) => SOURCE_LEDGER_COLUMN_ALIASES[column] ?? column,
+  );
   const rows = tableLines.slice(2).map((line) => {
     const rowCells = cells(line);
     return Object.fromEntries(columns.map((column, index) => [column, rowCells[index] ?? ""]));

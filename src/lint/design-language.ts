@@ -30,12 +30,11 @@ export interface DesignLanguageResult {
   ok: boolean;
 }
 
-// 2026-07-02: expanded audit freezes the remaining English-prose debt across
-// human-facing docs and adapter rule docs. Count + fingerprint prevent same-count
-// replacement drift; Japanese-localization PLANs can ratchet this baseline down.
-export const DESIGN_LANGUAGE_BASELINE_VIOLATIONS = 7084;
+// 2026-07-04: human-facing docs reached zero English-prose debt. Keep the
+// baseline at 0 so any new English-only prose fails closed.
+export const DESIGN_LANGUAGE_BASELINE_VIOLATIONS = 0;
 export const DESIGN_LANGUAGE_BASELINE_FINGERPRINT =
-  "sha256:9ab31dc3dbe5947df9cb31e5f86471aa06daed564095122ee0cabc494be419b3";
+  "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
 const DESIGN_LANGUAGE_ROOTS = [
   join(".claude", "agents"),

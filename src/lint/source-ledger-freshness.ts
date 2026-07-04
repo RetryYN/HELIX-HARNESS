@@ -23,7 +23,10 @@ export interface VerificationSourceMetadataViolationInput {
 }
 
 export function sourceLedgerHeadingPattern(ledgerLabel: string): RegExp {
-  return new RegExp(`${escapeRegExp(ledgerLabel)} \\(checked \\d{4}-\\d{2}-\\d{2}\\)`);
+  const date = "\\d{4}-\\d{2}-\\d{2}";
+  return new RegExp(
+    `${escapeRegExp(ledgerLabel)}(?: \\(checked ${date}\\)|（(?:確認日|checked) ${date}(?:、[^）]*)?）)`,
+  );
 }
 
 export function hasSourceLedgerCheckedDate(text: string, ledgerLabel: string): boolean {
@@ -31,11 +34,12 @@ export function hasSourceLedgerCheckedDate(text: string, ledgerLabel: string): b
 }
 
 export function sourceLedgerCheckedDate(text: string, ledgerLabel: string): string | null {
-  return (
-    text.match(
-      new RegExp(`${escapeRegExp(ledgerLabel)} \\(checked (\\d{4}-\\d{2}-\\d{2})\\)`),
-    )?.[1] ?? null
+  const match = text.match(
+    new RegExp(
+      `${escapeRegExp(ledgerLabel)}(?: \\(checked (\\d{4}-\\d{2}-\\d{2})\\)|（(?:確認日|checked) (\\d{4}-\\d{2}-\\d{2})(?:、[^）]*)?）)`,
+    ),
   );
+  return match?.[1] ?? match?.[2] ?? null;
 }
 
 export function sourceLedgerCheckedDateViolation(

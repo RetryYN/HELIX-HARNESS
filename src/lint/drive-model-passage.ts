@@ -32,7 +32,7 @@ export interface DriveModelPassageResult {
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+Section\s+2\.1\s+Drive-model Passage Certificate Required\s*$/m;
+const SECTION_RE = /^##\s+Section\s+2\.1\s+Drive-model Passage Certificate (Required|必須)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const EXPECTED_MODES = [
   "Discovery",
@@ -94,7 +94,9 @@ export function analyzeDriveModelPassage(docs: DriveModelPassageDoc[]): DriveMod
     }
     const header = parsed[0].map((cell) => cell.toLowerCase());
     const modeIndex = header.indexOf("drive model / entry mode");
-    const columnsIndex = header.indexOf("required certificate columns");
+    const columnsIndex = header.findIndex(
+      (cell) => cell === "required certificate columns" || cell.includes("certificate columns"),
+    );
     if (modeIndex < 0 || columnsIndex < 0) {
       violations.push({ file: doc.file, reason: "malformed_row" });
       continue;
