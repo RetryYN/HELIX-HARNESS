@@ -311,9 +311,9 @@ fail-close する。
 
 2026-07-02 追補: U-HOVER-018 は `handover status --json` が live outstanding 由来の `workflowNextAction` /
 `workflowNextActions[]` と `objectiveProgress` を返し、text mode が `objective-progress:` /
-`workflow-next:` / `workflow-next-actions:` / `workflow-next-action[n]: ... action=... route=... packet=... supporting=...` を surface する。
-を出すことも検査する。handover 再開時に進捗%、completion packet command、次に記録すべき判断、
-plan 別 supporting packet、route が直接 surface されることを必須にする。
+`workflow-next:` / `workflow-next-actions:` / `workflow-next-action[n]: ... action=... route=... packet=... supporting=...`
+を表示することも検査する。handover 再開時に進捗%、completion packet command、次に記録すべき判断、
+plan 別 supporting packet、route が直接表示されることを必須にする。
 | U-HOVER-019 | `checkHandoverCompletionDecisionPacket` / doctor hard gate | pointer 不在は skipped/OK。`outstanding.completionReadiness.ok=false` なのに `completionDecisionPacket` が無い旧 CURRENT.json は fail-close。blocked outstanding と同じ snapshot 由来の `sourceCommand="ut-tdd handover"` packet は OK で、各 decision は `decisionPacketCommand` / `packetCommands` を保持する。旧 schema の handover packet が `supportingPacketSummaries[]`、`semanticMeaningSummary`、`semanticFeatureFrontierRecords[]`、`confirmedCurrentMeaningRecords[]` のいずれかを持たない場合は、sourceCommand が `ut-tdd handover` のときだけ live outstanding から再構成して検査し、handover status と同じ read-only overlay 境界に揃える。standalone `ut-tdd completion decision-packet --json` packet の転記、freshness/shape lint violation、`completionReadiness` と packet ok/status 不一致、`outstanding.items.length` と packet decision count 不一致は fail-close。`runDoctor.ok` はこの gate に連動し、doctor green が古い handover pointer を隠さない。 |
 | U-HOVER-020 | `renderHandoverScaffold` / `checkHandoverNextActionAnchor` / doctor hard gate | `outstanding` 指定時、§3 次アクション (Next Action) は `HANDOVER_NEXT_ACTION_MARKER`、`completion-review-coverage`、`semantic-frontier-records`、`confirmed-current-meaning-records`、PLAN ID、required action、next workflow route、primary packet、supporting packet commands、各 packet の schemaVersion / matrixField / expectedMatrixCount / requiredReviewFields / requiredReviewFields count / requiredMatrixFields / reviewRoute を示す `packet要約` を出し、`TODO(human): 順序付き次手` を残さない。`completion-review-coverage` は `covered=` と `non-packet=` を出し、review packet で閉じる blocker と packet 外 blocker を Markdown 再開面でも分離する。`semantic-frontier-records` は `featureId` / `classification` / `planId` と `completion-claim-allowed=false` を出し、`confirmed-current-meaning-records` は confirmed 11 意味単位 ID と `boundary=downstream_evidence_required` を出す。markdown handover の human-facing 表示では既知の required action / route / reviewRoute が日本語化され、machine route は `確認観点ID=` に分離する。`record the PO/S4 decision...` や `確認観点=review S4 decision evidence...` のような英語 prose を再開者向け表示へ露出しない。PLAN-M-02 rename approval-draft は `確認観点=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む` と `確認観点ID=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy` を同時に出し、英語 route を `確認観点=` へ戻さない。最新 handover entry の §3 は marker だけでなく blocked route の `completion-review-coverage`、`covered=`、`non-packet=`、`semantic-frontier-records`、`confirmed-current-meaning-records`、`completion-claim-allowed=false`、`boundary=downstream_evidence_required`、`packet要約`、`確認field件数=`、`確認field=`、`matrix必須field=`、`確認観点ID=` も必須。§3 欠落、latest_doc 読取不能、§3 が TODO のまま、marker-only、review coverage 欠落、意味台帳欠落、source-delta field 欠落、machine review route ID 欠落、または machine review route を `確認観点=` に露出する旧 §3 なら fail-closeし、`runDoctor.ok` に連動する。複数 entry では最新 entry の §3 だけを見る。 |
 
@@ -568,7 +568,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 
 ### §1.16.1f U-VTRIG L0-L7 (implementation verification cycle gate 検査)
 
-> Pair = `vmodel-pair-freeze.md` verification group trigger + roadmap G-L7.E。L0-L7 implementation band は L7 freeze 後に機械的に surface される verification cycle gate である。
+> Pair = `vmodel-pair-freeze.md` verification group trigger + roadmap G-L7.E。L0-L7 implementation band は L7 freeze 後に機械的に表示される verification cycle gate である。
 
 | ID | Target | Oracle |
 |---|---|---|
@@ -729,7 +729,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-DESC-005 | `analyzeDescentObligations` (defer) | 不在 + 有効 defer (dischargeCondition 非空 ∧ owner 非空) ∧ impl 未着地→`deferred` (ok 維持) / defer に条件 or owner 欠落→**`invalid-defer` finding 発火**かつ `unmet` (免責しない、E3/E4/I-4) |
 | U-DESC-006 | `analyzeDescentObligations` (impl-ahead) | src/test 着地済 + 設計/テスト設計層の未 discharge defer→`impl-ahead` 違反 (defer で免責しない、ok=false) / 方向非依存 / **graded.unmet と implAhead は排他 = 同一 layer を二重登録しない** (E5/E7/I-3、**skill 片肺の核**) |
 | U-DESC-007 | `analyzeDescentObligations` (park) | 上流が park/placeholder→descent obligation を生成しない (pair-freeze park 規約と整合、E6) |
-| U-DESC-008 | `descentObligationMessages` + 実 repo ガード | unmet/impl-ahead を reason+traceKey+layer で文言化 / **実 repo で skill subsystem の片肺が unmet または impl-ahead として surface される** (Phase 0 = 現存 drop 一掃検出、是正後 0 へ収束) |
+| U-DESC-008 | `descentObligationMessages` + 実 repo ガード | unmet/impl-ahead を reason+traceKey+layer で文言化 / **実 repo で skill subsystem の片肺が unmet または impl-ahead として検出される** (Phase 0 = 現存 drop 一掃検出、是正後 0 へ収束) |
 
 ### §1.23 Refactor candidate detector projection descent 検査 (PLAN-L7-147 / PLAN-REVERSE-141、IMP-146)
 
@@ -853,13 +853,13 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 - U-FR-L1-01..U-FR-L1-50 は `docs/design/harness/L6-function-design/fr-unit-coverage.md` で定義される。
 - U-FR-L1-51 は linked test evidence、dependency impact、recovery/fullback evidence から artifact progress red/yellow/green を導出する範囲を覆う。
 - executable guard は `src/lint/l6-fr-coverage.ts`: L1 FR registry を parse し、registered FR が L6 spec path、deterministic unit contract、U-* oracle のいずれかを欠く場合に fail する。
-- この addendum は L6 completion の L7 Red entry contract である。各 U-FR-L1-* row は focused unit test になるか、後続の confirmed PLAN で明示的に re-route されなければならない。
+- この追補は L6 completion の L7 Red entry contract である。各 U-FR-L1-* row は focused unit test になるか、後続の confirmed PLAN で明示的に re-route されなければならない。
 
 ### 2026-06-09 L6 Completion Readiness 追補
 
 - U-L6COMP-001: `analyzeL6Completion` は、任意の L6 design doc が draft、owning `plan:` reference 欠落、L7 `pair_artifact` 欠落、L7 から filename で参照されていない、最小 unit-contract substance (contract/signature + DbC/oracle + U-* family) 欠落、base L6 `kind=design` PLAN のいずれかが draft、L7 が draft、または G6 が PASS でない場合に not-ready を報告する。
 - U-L6COMP-002: `analyzeL6Completion` は、全 L6 docs が confirmed、全 L6 docs が owning L6 PLAN と L7 reverse reference へ解決可能、全 L6 docs が unit-test-granularity contract substance を公開、全 base L6 `kind=design` PLANs が review evidence 付き confirmed、L7 が confirmed、かつ G6 が PASS の場合だけ ready を報告する。
-- U-L6COMP-003: `checkL6Completion` は G6 freeze audit が harden 可能になるまで、readiness を `doctor` で warn-only として surface する。
+- U-L6COMP-003: `checkL6Completion` は G6 freeze audit が hardening 可能になるまで、readiness を `doctor` で warn-only として表示する。
 - U-L6COMP-004: `analyzeL6Completion` は、G6 audit 前で docs/plans/L7/G6 がまだ draft でも、L6 trace/substance input が complete なら `freezeInputReady=true` を報告する。
 - U-L6COMP-005: post-G6 `kind=add-design` PLAN draft は base L6 completion を再 open しない。add-feature completeness は backfill/pair/review evidence で扱う。
 
@@ -934,7 +934,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
 | U-ROADMAP-025 | `validateRoadmapStructure` | `feature_packs[].id` の重複は `duplicate-feature-pack`、`span.feature_pack` が未定義 pack を参照した場合は `unknown-feature-pack`。gate 構造 issue と同じ hard structure issue として扱う。 |
-| U-ROADMAP-026 | `analyzeL7FeaturePackCoverage` | L7 roadmap records に `database` / `service` / `frontend` / `ui` の feature pack layer が全て存在すれば `ok=true`。message は各 required layer と pack id / span count を surface する。 |
+| U-ROADMAP-026 | `analyzeL7FeaturePackCoverage` | L7 roadmap records に `database` / `service` / `frontend` / `ui` の feature pack layer が全て存在すれば `ok=true`。message は各 required layer と pack id / span count を表示する。 |
 | U-ROADMAP-027 | `analyzeL7FeaturePackCoverage` | L7 roadmap が gate/span だけで feature pack を持たない場合、required layers が全て `missingLayers` に入り `ok=false`。`drive` から推測して pass しない。 |
 | U-ROADMAP-028 | `loadRoadmaps` + `analyzeL7FeaturePackCoverage` | real repo の L7 roadmap registry は database/service/frontend/ui feature packs を全て持つ。DB/read-model/frontend coverage が UI completion を代替しないよう、UI pack は `PLAN-L7-141` の deferred span として残る。 |
 
@@ -963,7 +963,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-CXHOOK-006 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `evaluateWorkGuard` / `evaluateAgentGuard` / `evaluateGitCommandGuard` | Disposition は blanket-N/A ではなく正直に分類する (cross-runtime review correction)。`subagent-stop` は本当に N/A (codex.exe 0.128.0 は `SubagentStop` event を持たない) だが、`agent-guard` は N/A **ではない**。Codex の `spawn_agent` sub-agent tool family が存在し、shared guard entrypoint へ接続される。guard は missing/unknown `agent_type`、direct model override、missing task body、bulk spawn を block する。Codex shell surface (`exec_command|local_shell`) も N/A ではなく、destructive git operation を block する `git-command-guard` へ接続される。これら known surface では `CODEX_DEFERRED_SURFACE` は空。future surface も接続するか明示的に defer しなければならない。 |
 | U-CXHOOK-007 | `extractEditTargets` (`src/runtime/work-guard.ts`) | False-parity regression (Critical, cross-runtime REJECT): Codex `apply_patch` は freeform で `tool_input.file_path` を持たないため、path は patch body (`*** Update/Add/Delete File:` / `*** Move to:`、multi-file) から parse しなければならない。`extractEditTargets` は Claude/`write_file` では明示 `file_path`/`path`、apply_patch では全 patch-body path (command-array form 含む) を返す。また明示 `file_path` がある場合に doc `content` から誤抽出しない (false-block guard)。 |
 | U-CXHOOK-008 | `analyzeCodexHookAdapter` | Analyzer hardening (cross-runtime review Important): non-`command` hook は guard を満たさない (`type==="command"` required)。また script-path が別 token の substring として現れるだけでは guard を満たさない (例: `src/cli.tsx` vs `src/cli.ts`、token-exact matching)。 |
-| U-CXHOOK-009 | `codexHookAdapterMessages` / `CodexHookResult.apiToolPathEnforced` | adapter は hosted API/developer tools の coverage を主張してはならない。`.codex/hooks.json` は direct Codex CLI/IDE session を覆う。この chat runtime に injected される `apply_patch` path は Codex hook engine を通らず、`apiToolPathEnforced=false` として surface される。 |
+| U-CXHOOK-009 | `codexHookAdapterMessages` / `CodexHookResult.apiToolPathEnforced` | adapter は hosted API/developer tools の coverage を主張してはならない。`.codex/hooks.json` は direct Codex CLI/IDE session を覆う。この chat runtime に injected される `apply_patch` path は Codex hook engine を通らず、`apiToolPathEnforced=false` として表示される。 |
 | U-CXHOOK-010 | `analyzeCodexHookAdapter` / `loadCodexHookAdapterInput` | `.codex/hooks.json` だけでは十分な evidence ではない。real repo loader は `.codex/config.toml` も読む。その file が欠落 (`missing_config_toml`)、または `[features].hooks=true` が欠落/disabled (`hooks_feature_disabled`) の場合、analyzer は fail closed する。したがって `doctor` は direct Codex CLI/IDE session 用の Codex hook adapter が宣言済みかつ enabled であることを証明する。 |
 | U-CXHOOK-011 | `CODEX_REQUIRED` / `REQUIRED` (project-hook) | 全 Codex guard entrypoint は Claude `REQUIRED` set にも存在する (bidirectional: adapter 間の silent fork なし。違反時は `entrypoint_drift`)。 |
 | U-CXHOOK-012 | `CODEX_NOT_APPLICABLE` / `CODEX_DEFERRED_SURFACE` / `CODEX_REQUIRED` | `subagent-stop` だけが true N/A。Codex `spawn_agent|spawn_agents_on_csv` は required `agent-guard` matcher であり、deferred omission ではない。 |

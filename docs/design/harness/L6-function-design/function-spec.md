@@ -110,7 +110,7 @@ notification queue 自体には適用しない。
 
 ### 2026-06-23 Read-only quality / branch audit 追補
 
-hardcode / security / debt 検出と大きな branch cleanup は、まず read-only audit として surface する。
+hardcode / security / debt 検出と大きな branch cleanup は、まず read-only audit として表示する。
 source file、Git branch、remote、harness state は変更しない。
 
 | 関数 | signature | 事前条件 | 事後条件 / oracle |
@@ -673,11 +673,11 @@ parent PLAN = PLAN-L7-48 / PLAN-L7-52。L7-48 監査で唯一の機能リスク 
 | `recordGuardrailDecision` (ledger.ts) | `(db, input) => GuardrailDecisionRow` | DB 書込端点 | `inspectGuardrailInvariants` を呼び `secret-evidence` 違反があれば throw (fail-close); それ以外は `normalizedDecision` で `guardrail_decisions` に upsert; `block` 時は `findings` に `guardrail-block` (warn) を記録 |
 | `projectGuardrailInvariantAdvisories` (projection-writer.ts) | `(db) => void` | `rebuildHarnessDb` 内で `projectReviewEvidenceRegistry` の後に呼ぶ (= CLI 再構築時、**非 API 前提に整合**); committed `review_evidence_registry` 行を読む | 各行を `GuardrailDecisionInput` (空 model は `undefined` 化) に写像し `inspectGuardrailInvariants` で検査; 各 violation を **非ブロックの advisory finding** (`kind=guardrail-invariant-advisory:<rule>`, severity=`warn`, source=`guardrail-invariant-advisory`) として `recordFinding`。subject は `advisorySubject(rule, reviewEvidenceId)` = `guardrail-self-review:<rule>:<sha1(12)>` で **plan-id-free** (readiness の `subject_id LIKE '%plan_id%'` に非合致 → automation readiness を flip しない); 追跡用 plan 参照は `evidence_path` に保持 (readiness は evidence_path を走査しない)。projected decision は不変 |
 
-invariant: option C は authz outcome を一切変えない (advisory のみ)。実ブロックする **hard-gate (option A)** は authorization/human-signoff の仕様確定に該当し PO 留保 (CLAUDE.md Guard Rule)。advisory は warn-first phased rollout の Phase 0 (descent-obligation §7 と同型)。U-* = IT-GUARDRAIL-ADVISORY-01。`same-model-self-review` の空文字非該当は blank evidence の false-positive を防ぐための必須不変条件。
+不変条件: option C は authz outcome を一切変えない (advisory のみ)。実ブロックする **hard-gate (option A)** は authorization/human-signoff の仕様確定に該当し PO 留保 (CLAUDE.md Guard Rule)。advisory は warn-first phased rollout の Phase 0 (descent-obligation §7 と同型)。U-* = IT-GUARDRAIL-ADVISORY-01。`same-model-self-review` の空文字非該当は blank evidence の false-positive を防ぐための必須不変条件。
 
 ## 2026-06-17 Cost-tiered dual-provider role router 追補 (PLAN-L7-75 back-fill)
 
-この addendum は §7.8.7.1 (hybrid 機能分散 MUST) / §1.8 (VALID_ROLES) / FR-L1-39 (classifyTask) を
+この追補は §7.8.7.1 (hybrid 機能分散 MUST) / §1.8 (VALID_ROLES) / FR-L1-39 (classifyTask) を
 L6 機能契約へ降ろし、PLAN-L7-75 で実装した `src/task/tier-router.ts` の Forward 設計を back-fill する
 (drive=agent / kind=impl の bottom-up 実装に対する設計同期)。役割をコスト階層 (T0/T1/T2) × 2 provider
 (claude/codex) で配置し、原則安く・上位帯は明示許可ゲートに保つ。task module 配下に置き、`task→team` の
@@ -835,5 +835,5 @@ interface L7FeaturePackCoverageResult {
 この function は PLAN `drive` から pack を推論してはならない。pack は explicit roadmap semantics である。
 `l7FeaturePackCoverageMessages(result)` が doctor surface を出力し、`checkRoadmap(repoRoot)` は結果を `runDoctor.ok` に含める。
 
-Invariant: DB または frontend read-model pack は UI pack を close できない。
+不変条件: DB または frontend read-model pack は UI pack を close できない。
 deferred UI work は、component-derived UI implementation PLAN が confirmed になるまで `ui` pack span として表示され続ける。
