@@ -37,7 +37,12 @@ import {
 
 export type IdentifierRenameToken = "ut-tdd" | ".ut-tdd" | "area=harness";
 export type IdentifierRenameHitLocation = "path" | "content";
-export type IdentifierRenameResidualToken = "UT-TDD" | "UT-TDD-agent-harness" | "UT-TDD:managed";
+export type IdentifierRenameResidualToken =
+  | "UT-TDD"
+  | "UT-TDD-agent-harness"
+  | "UT-TDD_AGENT-HARNESS"
+  | "UT-TDD_AGENT-HARNESS-Pack"
+  | "UT-TDD:managed";
 export type IdentifierRenameResidualDisposition =
   | "safe_prose_candidate"
   | "fixture_only"
@@ -471,6 +476,8 @@ const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
 const RESIDUAL_TOKENS: IdentifierRenameResidualToken[] = [
   "UT-TDD",
   "UT-TDD-agent-harness",
+  "UT-TDD_AGENT-HARNESS",
+  "UT-TDD_AGENT-HARNESS-Pack",
   "UT-TDD:managed",
 ];
 const RESIDUAL_DISPOSITIONS: IdentifierRenameResidualDisposition[] = [
@@ -553,7 +560,14 @@ function countToken(text: string, token: IdentifierRenameToken): number {
 }
 
 function countResidualToken(text: string, token: IdentifierRenameResidualToken): number {
+  if (token === "UT-TDD") {
+    return [...text.matchAll(/UT-TDD(?!:managed|-agent-harness|_AGENT-HARNESS)/g)].length;
+  }
   return text.split(token).length - 1;
+}
+
+function isExternalRepoReferenceToken(token: IdentifierRenameResidualToken): boolean {
+  return token === "UT-TDD_AGENT-HARNESS" || token === "UT-TDD_AGENT-HARNESS-Pack";
 }
 
 function classifyRenameResidualDisposition(input: {
@@ -561,6 +575,15 @@ function classifyRenameResidualDisposition(input: {
   category: IdentifierRenameHitCategory;
 }): IdentifierRenameResidualDisposition {
   if (input.token === "UT-TDD:managed") return "adapter_marker";
+  if (
+    isExternalRepoReferenceToken(input.token) &&
+    (input.category === "governance_doc" ||
+      input.category === "design_doc" ||
+      input.category === "plan_doc" ||
+      input.category === "research_doc")
+  ) {
+    return "reference_source";
+  }
   switch (input.category) {
     case "test_code":
       return "fixture_only";

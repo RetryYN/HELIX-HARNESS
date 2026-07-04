@@ -40,7 +40,7 @@
 
 ### Git / branch（Git と branch）
 
-- **main に全反映済み・push 済み** (origin/main = 最新)。本 session は org repo `unison-ai-product/UT-TDD_AGENT-HARNESS` の main へ直接運用 (PO が単独 maintainer のため PR ceremony 不要)。
+- **当時の main に全反映済み・push 済み**。本 handover は旧 org repo での作業記録であり、現行の開発正本は `RetryYN/HELIX-HARNESS` である。
 - 本 session の commit 列 (vendor更新 → governance v3.1/v1.2 → TS採用+doc整合 → TS scaffold+Python破棄 → 構成ルール+pyproject削除 → Biome+config方針 → .gitignore補強 → 本 handover)。
 
 ## §2 Next Action (次 session 開始時)

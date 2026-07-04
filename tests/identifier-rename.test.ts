@@ -282,6 +282,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         join(root, "docs", "archive", "legacy.md"),
         "Historical docs may mention ut-tdd and UT-TDD-agent-harness as reference material.\n",
       );
+      mkdirSync(join(root, "docs", "governance"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "governance", "objective.md"),
+        [
+          "External source ledger: unison-ai-product/UT-TDD_AGENT-HARNESS",
+          "Distribution reference: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+        ].join("\n"),
+      );
       writeFileSync(
         join(root, "docs", "handover", "session.md"),
         "Handover docs may mention .ut-tdd as evidence, not runtime authority.\n",
@@ -409,6 +417,18 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             token: "UT-TDD-agent-harness",
             path: "docs/archive/legacy.md",
             category: "historical_doc",
+            disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS",
+            path: "docs/governance/objective.md",
+            category: "governance_doc",
+            disposition: "reference_source",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS-Pack",
+            path: "docs/governance/objective.md",
+            category: "governance_doc",
             disposition: "reference_source",
           }),
         ]),
