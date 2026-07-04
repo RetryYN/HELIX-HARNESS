@@ -16,7 +16,7 @@ applies_to:
 
 # research（調査）
 
-UT-TDD 向けの WebSearch/WebFetch primary-source protocol (FR-L1-27 Research
+HELIX 向けの WebSearch/WebFetch primary-source protocol (FR-L1-27 Research
 workflow → ADR)。PO に確認する前に web research と subagent self-review を行う
 elicitation-AI-first rule を支える。ルールは 2 つ: primary-source URL なしに主張しない。
 WebFetch body confirmation なしに URL を引用しない。

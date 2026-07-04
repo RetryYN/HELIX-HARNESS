@@ -20,7 +20,7 @@ applies_to:
 
 # documentation（ドキュメント）
 
-UT-TDD における README files、onboarding guides、runbooks、doc-tree prose の作成と保守を扱う。
+HELIX における README files、onboarding guides、runbooks、doc-tree prose の作成と保守を扱う。
 V-model design docs や ADRs とは別の human-readable operational documentation を作る場合に適用する
 （それらは `documentation-and-adrs` が扱う）。
 
@@ -53,7 +53,7 @@ V-model design docs や ADRs とは別の human-readable operational documentati
 
 ## README structure baseline（README 構成基準）
 
-UT-TDD README は最低限次を含む:
+HELIX README は最低限次を含む:
 
 1. **Purpose** — 1 段落。この component が何を行い、どの system に仕えるか。
 2. **Prerequisites** — `bun`、`ut-tdd`、外部 dependency と minimum version。

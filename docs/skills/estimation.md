@@ -18,7 +18,7 @@ applies_to:
 
 # estimation（見積もり）
 
-schedule commitment 前に UT-TDD PLAN の complexity / effort を score する手順
+schedule commitment 前に HELIX PLAN の complexity / effort を score する手順
 （FR-L1-39 task complexity / effort）。現時点では `ut-tdd task classify` や
 `ut-tdd task estimate` CLI はまだ無く、scoring は PLAN author が PLAN 作成時に行い、
 PLAN body に記録する。

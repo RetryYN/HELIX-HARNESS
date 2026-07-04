@@ -16,7 +16,7 @@ applies_to:
 
 # incremental implementation（段階実装）
 
-UT-TDD の L7 implementation quality baseline。対象は type safety、naming discipline、
+HELIX の L7 implementation quality baseline。対象は type safety、naming discipline、
 function design、descent obligation。PLAN の pair-freeze から trace-freeze までを扱う。
 TDD cycle order（test-driven-development skill 参照）を置き換えるものではなく、
 各 Red-Green step の内側で適用する rules である。

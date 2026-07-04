@@ -16,7 +16,7 @@ applies_to:
 
 # TDD（test-driven development）の規律
 
-UT-TDD の Red-first TDD discipline
+HELIX の Red-first TDD discipline
 （FR-L1-02 test-first implementation order、FR-L1-50 strict TDD/DDD enforcement）を扱う。
 implementation 後に書かれた test は design signal を持たず、oracle value も弱い。
 この harness では cycle order は non-negotiable である。
@@ -29,7 +29,7 @@ implementation 後に書かれた test は design signal を持たず、oracle v
 - `ut-tdd doctor` または `ut-tdd review --uncommitted` が missing test、
   または implementation commit より後の test を flag する。
 
-## Red-Green-Refactor cycle（UT-TDD order）の手順
+## Red-Green-Refactor cycle（HELIX order）の手順
 
 ### 1. Red — failing test を先に書く
 

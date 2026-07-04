@@ -20,7 +20,7 @@ applies_to:
 
 # DB 設計
 
-UT-TDD における persistent storage change に伴う schema design、state-model design、
+HELIX における persistent storage change に伴う schema design、state-model design、
 migration strategy、harness.db projection obligations を扱う
 （FR-L1-06 harness DB gate_runs / state projection）。PLAN が table、column、index、
 migration を追加・変更・削除する場合に適用する。

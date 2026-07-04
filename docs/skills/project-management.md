@@ -17,7 +17,7 @@ applies_to:
 
 # project management（project 管理）
 
-UT-TDD の複数 PLAN をまたぐ program / portfolio 視点を扱う
+HELIX の複数 PLAN をまたぐ program / portfolio 視点を扱う
 （FR-L1-01 PLAN-as-orchestration）。milestone の健全性、PLAN 間の依存順序、
 stall 検出、program boundary での handover discipline を管理する。
 

@@ -33,7 +33,7 @@ readability check が必要な場合に使う。
 
 ## Structural baseline（pair-freeze 前）
 
-すべての UT-TDD design doc は次を必要とする。**Objective/TL;DR**（2-3 文。何が変わるか、
+すべての HELIX design doc は次を必要とする。**Objective/TL;DR**（2-3 文。何が変わるか、
 なぜか、どの layer か）、**Scope / Non-goals**、**Prerequisites**（upstream layer docs、
 PLAN/ADR IDs）、V-model 粒度の **main content**（unit test が書ける粒度で設計されていること）、
 **verification / acceptance criteria**、**terminology**（新語は L0 glossary へ追加）。

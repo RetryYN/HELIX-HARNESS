@@ -106,7 +106,7 @@ next_pair_freeze: L6
 | HC-P8 | untrusted external text を executable instruction field へ copy しない |
 | HC-P9 | stale projection または layer gate 欠落は `ConvergenceStatus` を non-green に保つ |
 | HC-AC | Codex hosted/API surface は preflight evidence なしに hook-covered と分類できない |
-| G-SF | semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。`design_bottomup_mode`、`asset_progress_visualization`、`serverless_readonly_share`、`name_cutover` の live record は L3 §0.2 の meaning-based feature list と一致し、その L3 source を `sourcePaths[]` で参照する。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
+| G-SF | semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。`design_bottomup_mode`、`asset_progress_visualization`、`discovery_11_l1_l2_elicitation_cycle`、`serverless_readonly_share`、`name_cutover` の live record は L3 §0.2 の meaning-based feature list と一致し、その L3 source を `sourcePaths[]` で参照する。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
 
 ## §3 検証方針
 

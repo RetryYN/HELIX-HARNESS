@@ -17,7 +17,7 @@ applies_to:
 
 # requirements handover（要件引き継ぎ）
 
-UT-TDD で sessions、agents、layer boundaries をまたいで requirements baton を渡す方法を扱う
+HELIX で sessions、agents、layer boundaries をまたいで requirements baton を渡す方法を扱う
 （FR-L1-42 provider handover、FR-L1-31 context continuity）。baton は machine-readable JSON snapshot と
 human-readable carry list の組であり、どちらも handover 時点の real PLAN と git state と一致していなければならない。
 

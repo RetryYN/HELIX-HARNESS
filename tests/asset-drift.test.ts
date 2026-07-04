@@ -71,6 +71,17 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
     expect(r.violations.map((v) => v.kind)).toContain("legacy-runtime-name-residue");
   });
 
+  it("allows HELIX product prose while still guarding legacy runtime names", () => {
+    const r = analyzeAssetDrift(
+      input({
+        assets: [agent("pdm-tech", "HELIX planning input と HELIX PLAN の用語を扱う。")],
+        allowlist: ["pdm-tech"],
+      }),
+    );
+
+    expect(r.ok).toBe(true);
+  });
+
   it("detects empty docs-skills catalog source", () => {
     const r = analyzeAssetDrift(input({ skillDocCount: 0 }));
     expect(r.ok).toBe(false);
@@ -83,7 +94,7 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
     expect(r.violations.map((v) => v.kind)).toContain("missing-allowlisted-agent");
   });
 
-  it("passes when enrolled assets are UT-TDD local and guard allowlist resolves", () => {
+  it("passes when enrolled assets are HELIX local and guard allowlist resolves", () => {
     const r = analyzeAssetDrift(input({}));
     expect(r.ok).toBe(true);
     expect(assetDriftMessages(r)[0]).toContain("OK");

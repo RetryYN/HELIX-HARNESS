@@ -23,7 +23,7 @@ applies_to:
 
 # security（セキュリティ）
 
-UT-TDD の security review procedure。対象は escalation boundaries、agent-guard design、
+HELIX の security review procedure。対象は escalation boundaries、agent-guard design、
 secret hygiene、runtime safety constraints を扱う。
 （FR-L1-09 safety design、FR-L1-17 escalation、FR-L1-45 guardrail）を支える。
 PLAN が agent-callable surface を導入する、trust boundaries を変更する、または

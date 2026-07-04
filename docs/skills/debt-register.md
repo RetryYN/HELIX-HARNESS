@@ -18,7 +18,7 @@ applies_to:
 
 # debt 台帳
 
-UT-TDD における technical debt の記録、追跡、discharge 方法を扱う
+HELIX における technical debt の記録、追跡、discharge 方法を扱う
 （FR-L1-11 technical-debt ledger）。debt entries は PLAN records と
 `.ut-tdd/` referenced documents であり、`ut-tdd debt` command ではない。
 debt visibility は `ut-tdd doctor` が provisional decisions と missing Reverse back-fills の

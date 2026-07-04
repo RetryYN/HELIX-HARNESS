@@ -20,7 +20,7 @@ applies_to:
 
 # Git 運用
 
-UT-TDD の Conventional Commits discipline、harness-check CI requirements、
+HELIX の Conventional Commits discipline、harness-check CI requirements、
 branch / PR rules、commit-msg hook を扱う（FR-L1-17 version control）。
 
 ## この skill を読む条件

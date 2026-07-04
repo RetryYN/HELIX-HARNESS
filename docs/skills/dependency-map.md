@@ -29,7 +29,7 @@ module 横断の dependency 検出、PLAN dependency graph 分析、dependency d
 - L4 design doc が新しい module dependency を導入し、pair-freeze 前に影響を map する必要がある。
 - Refactor PLAN が external interface 不変を主張している。dependency map がその証跡になる。
 
-## UT-TDD における dependency の種類
+## HELIX における dependency の種類
 
 **PLAN structural dependencies (`requires`, `parent`, `parent_design`):**
 PLAN YAML で表現され、`ut-tdd plan lint`（存在確認）と `ut-tdd doctor`

@@ -14,7 +14,7 @@ applies_to:
 
 # PoC 運用
 
-UT-TDD 内で time-boxed Proof of Concept を実行する方法を扱う
+HELIX 内で time-boxed Proof of Concept を実行する方法を扱う
 （FR-L1-15 Discovery S0-S4 の仮説から判断までの loop、FR-L1-43 PoC success criteria、
 `decision_outcome` recording）。PoC は informal spiking ではなく、machine-recorded investigation cycle である。
 Forward implementation へ進む前に、decision outcome は PLAN state と `.ut-tdd/` に着地していなければならない。
@@ -28,7 +28,7 @@ Forward implementation へ進む前に、decision outcome は PLAN state と `.u
 
 ## Discovery phase の mapping（S0-S4）
 
-| Phase | UT-TDD action |
+| Phase | HELIX action |
 |-------|--------------|
 | S0 backlog | FR を elicited。`hypothesis` field 付きで PLAN `kind: poc` を作成し、`status: draft` |
 | S1 plan | PLAN `poc_criteria` field に acceptance criteria を書き、time-box を設定し、`ut-tdd plan lint` が 0 で終了 |

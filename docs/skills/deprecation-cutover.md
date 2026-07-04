@@ -20,7 +20,7 @@ applies_to:
 
 # Deprecation cutover（廃止 cutover）
 
-UT-TDD harness で command、module、path、env name、convention を削除または置換するときに、V-model traceability と
+HELIX harness で command、module、path、env name、convention を削除または置換するときに、V-model traceability と
 `harness-check` green を保つための規律。PLAN が既存 runtime surface を削除または supersede する場合に適用する。
 
 ## この skill を読むタイミング

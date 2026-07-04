@@ -247,7 +247,7 @@ describe("U-FR-L1-39: classifyTask public surface", () => {
     ).toBe("reference");
   });
 
-  it("separates UT-TDD-specific workflow/agent coverage from external template adoption", () => {
+  it("separates HELIX-specific workflow/agent coverage from external template adoption", () => {
     const result = classifyProposalDocumentCoverage({
       text: "Design an agent team run gate classifier for Codex and Claude handover.",
     });

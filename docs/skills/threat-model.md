@@ -18,7 +18,7 @@ applies_to:
 
 # threat model（脅威モデル）
 
-UT-TDD の agent-facing surface に対する threat modeling procedure。
+HELIX の agent-facing surface に対する threat modeling procedure。
 implementation 開始前に L2（screen / IA design）と L3（functional design）で適用する。
 adversarial agent input、privilege escalation path、trust boundary violation を L7 code 到達前に
 surface することで、FR-L1-09（safety design）を支える。
@@ -31,7 +31,7 @@ surface することで、FR-L1-09（safety design）を支える。
 - `ut-tdd guardrail` が unresolved finding を報告する。
 - Recovery PLAN で、incident 原因の threat が modelled / mitigated 済みであることを示す必要がある。
 
-## UT-TDD の threat surface inventory
+## HELIX の threat surface inventory
 
 harness には 4 つの primary threat surface がある:
 

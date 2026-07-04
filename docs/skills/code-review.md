@@ -20,7 +20,7 @@ applies_to:
 
 # code review（コードレビュー）
 
-trace-freeze と accept gate における UT-TDD implementation artifacts の five-axis review procedure
+trace-freeze と accept gate における HELIX implementation artifacts の five-axis review procedure
 （FR-L1-13 Forward workflow、FR-L1-21 review evidence）。`ut-tdd review --uncommitted` が entry point
 である場合、または PLAN の accept gate が recorded review findings を要求する場合に適用する。
 

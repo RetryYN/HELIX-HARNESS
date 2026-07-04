@@ -19,7 +19,7 @@ applies_to:
 
 runbook はインシデント発生中ではなく事前に書く。これにより、対応者は単一の正本を参照できる。
 この skill は、(A) L11 ops-readiness の義務としてのリリース前 runbook 作成と、
-(B) live production incident に対する UT-TDD Incident drive 手順（FR-L1-16）を扱う。
+(B) live production incident に対する HELIX Incident drive 手順（FR-L1-16）を扱う。
 
 ## この skill を load するタイミング
 

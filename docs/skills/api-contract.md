@@ -18,7 +18,7 @@ applies_to:
 # API contract 設計
 
 API provider と consumers の間の contract definition を扱う。対象は schema ownership、
-compatibility guarantees、consumer-driven contract obligations、それらを UT-TDD gates でどう強制するか。
+compatibility guarantees、consumer-driven contract obligations、それらを HELIX gates でどう強制するか。
 endpoint design（`api.md` 参照）とは別であり、この skill は individual routes の shape ではなく
 *binding agreement* を govern する。
 

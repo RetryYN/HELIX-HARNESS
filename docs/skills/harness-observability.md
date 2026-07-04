@@ -22,7 +22,7 @@ applies_to:
 # harness observability（観測性）
 
 `harness.db` projection、session log、cross-runtime token/cost telemetry の設計と運用を扱う。
-これは UT-TDD の observability backbone である（FR-L1-06 state SSoT、FR-L1-07 auto-registration、
+これは HELIX の observability backbone である（FR-L1-06 state SSoT、FR-L1-07 auto-registration、
 FR-L1-20 metrics、FR-L1-38 model/cost）。projection、DB を読む `ut-tdd doctor` check、
 または telemetry capture point を追加する場合に適用する。
 

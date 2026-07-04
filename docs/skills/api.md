@@ -20,7 +20,7 @@ applies_to:
 # API 設計
 
 新規または変更された API surface に伴う REST/RPC endpoint design、versioning strategy、
-UT-TDD V-model obligations を定義する。PLAN が API endpoint を追加・変更・削除する場合に使う。
+HELIX V-model obligations を定義する。PLAN が API endpoint を追加・変更・削除する場合に使う。
 
 ## この skill を読む条件
 

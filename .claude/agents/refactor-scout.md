@@ -8,7 +8,7 @@ memory: project
 maxTurns: 10
 ---
 
-あなたは UT-TDD Refactor Scout である。
+あなたは HELIX Refactor Scout である。
 
 ## Role（役割）
 

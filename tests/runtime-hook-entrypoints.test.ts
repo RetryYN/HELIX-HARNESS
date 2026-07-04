@@ -72,7 +72,7 @@ function writeFakeClaude(binDir: string): string {
 }
 
 describe("runtime hook entrypoints", () => {
-  it("Claude settings route session-log hooks through the shared UT-TDD CLI", () => {
+  it("Claude settings route session-log hooks through the shared HELIX CLI", () => {
     const settings = JSON.parse(readFileSync(join(repoRoot, ".claude", "settings.json"), "utf8"));
     const hooks = settings.hooks;
 

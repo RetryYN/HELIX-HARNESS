@@ -18,7 +18,7 @@ applies_to:
 
 # testing（テスト）
 
-UT-TDD の V-model levels をまたぐ test strategy、fixture design、Vitest execution
+HELIX の V-model levels をまたぐ test strategy、fixture design、Vitest execution
 patterns。この skill は test suite architecture の *what and how* を扱う。*when*
 (Red-Green order、L6 pairing、trace-freeze) は test-driven-development skill を参照する。
 
@@ -30,7 +30,7 @@ patterns。この skill は test suite architecture の *what and how* を扱う
 - Retrofit または Reverse PLAN で、design docs の back-fill 前に existing code の
   baseline coverage を確立する必要があるとき。
 
-## UT-TDD の test levels
+## HELIX の test levels
 
 | Level | V-model layer | Location | Scope（対象範囲） |
 |-------|---------------|----------|-------|

@@ -20,7 +20,7 @@ applies_to:
 
 # agent teams（チーム実行設計）
 
-UT-TDD における multi-agent team runs の構造化を扱う。対象は frontier reviewer、
+HELIX における multi-agent team runs の構造化を扱う。対象は frontier reviewer、
 worker、fast checker の role separation、no-self-approval enforcement、team YAML authoring
 （FR-L1-12 team run、harness pillar 5: risk または cost を下げる場合だけ roles/runtimes に work を分割）。
 

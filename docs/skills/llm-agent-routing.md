@@ -17,7 +17,7 @@ applies_to:
 
 # LLM agent routing（LLM agent ルーティング）
 
-UT-TDD で構築する機能の中で、LLM call、agent delegation、RAG、context injection を扱うための
+HELIX で構築する機能の中で、LLM call、agent delegation、RAG、context injection を扱うための
 設計・実装ガイド。PLAN が AI model call、agent slot、context-injection path を追加または変更する場合に適用する
 （FR-L1-09 agent guard、FR-L1-12 injection、FR-L1-38 model evaluation）を支える。
 
@@ -28,7 +28,7 @@ UT-TDD で構築する機能の中で、LLM call、agent delegation、RAG、cont
 
 ## Harness を迂回せず route する
 
-UT-TDD は provider call を `ut-tdd claude --role <role>`、`ut-tdd codex --role <role>`、
+HELIX は provider call を `ut-tdd claude --role <role>`、`ut-tdd codex --role <role>`、
 `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml` へ外出しする。source に raw provider call を追加する前に、
 次を確認する。
 

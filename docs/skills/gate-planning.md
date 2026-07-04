@@ -20,7 +20,7 @@ applies_to:
 
 # gate planning（gate 計画）
 
-UT-TDD で Definition-of-Done (DoD) gate を作成し、強制する方法を扱う
+HELIX で Definition-of-Done (DoD) gate を作成し、強制する方法を扱う
 （FR-L1-05 deterministic static gate、FR-L1-13 Forward workflow）を扱う。
 gate は skippable checklist ではなく machine-checked boundary である。
 強制されない gate は false-green state を蓄積し、V-model descent gap を隠す。
@@ -32,7 +32,7 @@ gate は skippable checklist ではなく machine-checked boundary である。
 - Scrum S3 verify step で、S4 decide 前の明示 DoD が必要。
 - pair-freeze / trace-freeze / accept gate を越えようとしている。
 
-## UT-TDD の Definition-of-Done（DoD）
+## HELIX の Definition-of-Done（DoD）
 
 unit of work は、次のすべてを満たす場合だけ complete である:
 

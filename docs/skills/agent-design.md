@@ -17,7 +17,7 @@ applies_to:
 
 # agent design（agent 設計）
 
-UT-TDD における単一 subagent の定義方法を扱う。対象は capability class、
+HELIX における単一 subagent の定義方法を扱う。対象は capability class、
 model-family 割り当て、guard allowlist 登録（FR-L1-46 subagent roster）。
 新しい agent role の導入、model family の変更、既存 agent definition と実利用の整合監査で使う。
 

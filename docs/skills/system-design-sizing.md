@@ -16,7 +16,7 @@ applies_to:
 
 # system design sizing（system design 見積もり）
 
-UT-TDD における two-stage system design と capacity/complexity sizing
+HELIX における two-stage system design と capacity/complexity sizing
 （FR-L1-28 two-stage agent design、W-model）。PLAN が new system component を scope する、
 L4 で structural complexity を見積もる、または feature が single V-pass で足りるか
 full W-model two-stage treatment が必要かを判断する場合に使う。
@@ -32,7 +32,7 @@ full W-model two-stage treatment が必要かを判断する場合に使う。
 
 ## Two-stage design（W-model）の trigger
 
-target system が AI agent layer を含む場合、W-model（UT-TDD W）を適用する。
+target system が AI agent layer を含む場合、W-model（HELIX W）を適用する。
 V-model を 2 回走らせる。
 
 - **Phase 1 (general system V):** agents が関与しない前提で outer system を design/verify する

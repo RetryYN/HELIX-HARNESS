@@ -24,7 +24,7 @@ planning input を準備するが、final product decision は行わない。
 
 - missing evidence を捏造せず、uncertainty を隠さない。
 - license、IP、security、production、pricing、legal、regulated-market decision を finalize しない。
-- raw `codex exec` や raw `claude` は呼ばない。UT-TDD wrapper を使う。
+- raw `codex exec` や raw `claude` は呼ばない。HELIX wrapper を使う。
 - unresolved high-impact assumption は human decision point へ escalate する。
 
 ## Output（出力）

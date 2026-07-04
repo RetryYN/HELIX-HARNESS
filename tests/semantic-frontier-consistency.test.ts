@@ -263,6 +263,7 @@ function baseInput(): SemanticFrontierConsistencyInput {
     "adapter/rule/memory 一貫性",
     "design-bottomup mode: `classification=frontier_pending_decision`。backend から FE 要件を洗い出す",
     "asset/progress visualization: `classification=frontier_pending_decision`。S4 PO decision pending",
+    "L1-L2 elicitation cycle: `classification=frontier_pending_decision`。A-40 G1-trace",
     "`PLAN-L7-146` serverless readonly share: `classification=parked_future_version`。activation decision",
     "PLAN-M-02 identifier rename: `classification=approval_gated_cutover`。cutover/action-binding approval",
     "setup は bare `ut-tdd --version` の PATH 解決を required にし、`ut-tdd-package-script` は fallback 証跡に限定する",
@@ -336,6 +337,20 @@ function baseInput(): SemanticFrontierConsistencyInput {
         },
         {
           recordName: "semantic_feature_frontier_record",
+          planId: "PLAN-DISCOVERY-11-l1-l2-elicitation-cycle",
+          featureId: "discovery_11_l1_l2_elicitation_cycle",
+          classification: "frontier_pending_decision",
+          completionClaimAllowed: false,
+          blockers: ["po_decision_pending"],
+          requiredRoute: "S4 decide",
+          reason: "po_decision_pending",
+          sourcePaths: [
+            "docs/process/modes/discovery.md",
+            "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          ],
+        },
+        {
+          recordName: "semantic_feature_frontier_record",
           planId: "PLAN-L7-146-serverless-readonly-share",
           featureId: "serverless_readonly_share",
           classification: "parked_future_version",
@@ -379,7 +394,7 @@ describe("semantic frontier consistency", () => {
     expect(result.l3RequirementRowCount).toBe(43);
     expect(result.l12AcceptanceRowCount).toBe(43);
     expect(semanticFrontierConsistencyMessages(result)).toEqual([
-      "semantic-frontier-consistency - OK (frontier=4/4, confirmed=11/11)",
+      "semantic-frontier-consistency - OK (frontier=5/5, confirmed=11/11)",
     ]);
   });
 
@@ -500,7 +515,7 @@ describe("semantic frontier consistency", () => {
     expect(result.violations).toContain(
       "unlisted_feature: live semantic_feature_frontier_record is not in L3 expected frontier set",
     );
-    expect(result.violations).toContain("live semantic_feature_frontier_record count 5 expected 4");
+    expect(result.violations).toContain("live semantic_feature_frontier_record count 6 expected 5");
   });
 
   it("fails when a live record is detached from the L3 feature-list source", () => {
@@ -524,8 +539,8 @@ describe("semantic frontier consistency", () => {
     const result = analyzeSemanticFrontierConsistency(loadSemanticFrontierConsistencyInput());
 
     expect(result.ok).toBe(true);
-    expect(result.expectedCount).toBe(4);
-    expect(result.liveRecordCount).toBe(4);
+    expect(result.expectedCount).toBe(5);
+    expect(result.liveRecordCount).toBe(5);
     expect(result.expectedConfirmedCount).toBe(11);
     expect(result.liveConfirmedCount).toBe(11);
   });
