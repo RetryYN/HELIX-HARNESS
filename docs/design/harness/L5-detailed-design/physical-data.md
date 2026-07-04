@@ -131,7 +131,7 @@ data.md (論理ドメインモデル) の §8 state schema を、`.ut-tdd/` YAML
 
 物理不変条件: `trace_edges` の orphan 0、`coverage.status=fail` の gate fail-close、`findings.status=open` の severity 別 gate 判定、`model_runs.plan_id` と `plan_registry.plan_id` の参照整合を doctor / vmodel lint が検証する。`plan_registry.source_hash` は PLAN markdown 全文の sha256 で、persisted `harness.db` と現在の `docs/plans/*.md` の fingerprint 不一致は `drive-db-registration` hard gate で stale として扱う。projection は自動生成だが、検出対象の機械 SSoT として扱い、入力 state との不一致は `findings` に保存する。
 
-Telemetry provenance invariant (upstream A-146 / PLAN-L7-188): 何かが "fired"、
+Telemetry provenance invariant（upstream A-146 / PLAN-L7-188）: 何かが "fired"、
 "executed"、"was used"、"works" したと主張する telemetry table は、runtime provenance と
 deterministic projection を区別しなければならない。`skill_invocations`、`test_runs`、
 `guardrail_decisions`、`model_runs` が projection row だけを含む場合
@@ -216,7 +216,7 @@ export const VALID_SUB_DOCS = {
 | agent_slot.model allowlist | agent-guard (別経路) | **実装済** |
 | 集約間参照整合 | doctor / lint hard gates (backfill、impl-plan-trace、tracked-canonical、dependency-drift、descent-obligation) | 実装済 |
 
-> **back-fill の整合保証 (PO 確定 2026-06-01)**: 上位設計 (L4 等) が仕様未確定で対のテスト設計を書けない項目は Artifact に `placeholder_deps` (依存: どの層で何が確定したら書けるか) を持たせる。L6 機能設計で仕様確定 → テスト設計を back-fill → `placeholder_deps` 解消。最終形では **未解消の placeholder / pair edge 欠落は doctor が孤児として fail-close**し、V-model 状態が最終的に整う (孤児 0) ことを **DB(state) 側から機械保証**する。「入るべきところが入っていなければ DB 側からも検知」(PO)。Current status: dedicated `placeholder-deps` doctor gate is implemented in `src/lint/placeholder-deps.ts` and active design/test-design docs with stale L7 waiting placeholders fail-close.
+> **back-fill の整合保証 (PO 確定 2026-06-01)**: 上位設計 (L4 等) が仕様未確定で対のテスト設計を書けない項目は Artifact に `placeholder_deps` (依存: どの層で何が確定したら書けるか) を持たせる。L6 機能設計で仕様確定 → テスト設計を back-fill → `placeholder_deps` 解消。最終形では **未解消の placeholder / pair edge 欠落は doctor が孤児として fail-close**し、V-model 状態が最終的に整う (孤児 0) ことを **DB(state) 側から機械保証**する。「入るべきところが入っていなければ DB 側からも検知」(PO)。現状: 専用 `placeholder-deps` doctor gate は `src/lint/placeholder-deps.ts` に実装済みで、stale な L7 待ち `placeholder_deps` を持つ active design/test-design docs は fail-close する。
 
 ## §8 carry → L7 実装
 
@@ -230,7 +230,7 @@ export const VALID_SUB_DOCS = {
 
 PLAN-L5-08 は、SQLite を単なる storage ではなく reference-feedback mechanism として扱う user requirement に対し、不足していた L5 slice を追加する。DB は引き続き docs/state/logs の projection であり、governance docs の authoring source ではない。
 
-External reinforcement: SQLite FTS5 は external/contentless index pattern を support するため、`search_index` は primary content storage ではなく rebuildable projection として定義する。OpenTelemetry semantic conventions は logs/traces/metrics correlation のために attributes 付き named events を support する。W3C PROV は entity/activity/agent を中心に provenance を表現し、ここでは artifact/run/agent または skill へ対応づける。
+外部根拠: SQLite FTS5 は external/contentless index pattern を support するため、`search_index` は primary content storage ではなく rebuildable projection として定義する。OpenTelemetry semantic conventions は logs/traces/metrics correlation のために attributes 付き named events を support する。W3C PROV は entity/activity/agent を中心に provenance を表現し、ここでは artifact/run/agent または skill へ対応づける。
 
 ### §9.1 projection table 拡張
 
@@ -257,7 +257,7 @@ PLAN-L7-305 は、既存 `loop-store` が出す iteration 証跡の JSONL rebuil
 
 ### §9.2 skill/model 指標
 
-Skill firing rate は chat memory ではなく persisted row から算出する。
+Skill firing rate は chat memory ではなく永続化済み row から算出する。
 
 - `skill_firing_rate = count(skill_invocations where fired) / count(skill_recommendations)`
 - `skill_acceptance_rate = count(skill_invocations where accepted=true) / count(skill_invocations)`
@@ -279,7 +279,7 @@ DB は ID、reason、score、redacted summary だけを保存する。raw provid
 - `idx_skill_plan_skill(plan_id, skill_id, fired_at)`
 - `idx_search_subject(subject_type, subject_id)`
 
-Invariants:
+不変条件:
 
 - すべての `drive_runs`、`hook_events`、`skill_*`、`feedback_events`、`quality_signals` row は `plan_id` または `session_id` を持つ。
 - すべての `workflow_runs`、`guardrail_decisions`、`automation_assets` row は source path または evidence path のいずれかを持ち、non-ready automation は closing finding なしに ready として現れない。
@@ -322,7 +322,7 @@ Phase 2 close review では、DB design が workflow、guardrail、skill、quali
 - `green_definition_compliance = every test_runs.green_definition_id resolves and every required command in that definition has exit_code=0`.
 - `review_green_command_compliance = every 2026-06-23-or-later confirmed/completed review_evidence entry has at least one projected test_runs row with exit_code=0, evidence_path, and output_digest`.
 
-Current implementation note (2026-06-30): `projectReviewEvidenceRegistry` は deterministic harness.db rebuild 中に
+現在の実装注記 (2026-06-30): `projectReviewEvidenceRegistry` は deterministic harness.db rebuild 中に
 `review_evidence.green_commands[]` を projection-only evidence として `test_runs` へ project する。
 `projectHookEvents` は、sanitized command target が recognized verification command
 (`vitest`, `test`, `tsc`, `doctor`, `lint`, `eslint`) であり、row が non-empty `session_id` と
@@ -332,7 +332,7 @@ L7.5 RUN & Debug append-only rows は `runtime_verification_events` へ project 
 `test_runs` や projection-only telemetry row から runtime acceptance を推論せず、`verification_class` と
 `accept_status` を直接読む必要がある。
 
-Implementation constraints / 実装制約:
+実装制約:
 
 - Bun は default execution runtime である。collector は利用可能な場合 Bun/vitest JSON output を読み、individual case data が無い場合は command/evidence digest へ fallback する。
 - DB writes は core runtime で `bun:sqlite` を使う。External adapter は、同じ schema と rebuild semantics を維持する場合に限り compatibility layer を使ってよい。
@@ -397,7 +397,7 @@ DB は cross-cutting impact analysis を query 可能にしなければならな
 - `idx_tool_name_scope(tool_name, input_scope)`.
 - `idx_diagram_scope_format(scope, format)`.
 
-Invariants:
+不変条件:
 
 - すべての edge は existing `graph_nodes` を参照する。
 - すべての non-local source change は、`impact_results` row または impact expansion が実行できなかった理由を説明する `findings` row のいずれかを生成しなければならない。
@@ -442,7 +442,7 @@ A-125 は、externally installed MCP servers、plugins、test foundations で re
 - `idx_verification_recommendations_change(change_set_id, profile_kind, accepted)`.
 - `idx_external_tool_findings_subject(subject_id, status, severity)`.
 
-Invariants:
+不変条件:
 
 - すべての enabled MCP profile は allow-list と明示的な `risk_tier` を持つ。
 - `requires_auth=true` の profile は、repo-tracked config だけでは enable できない。
@@ -479,7 +479,7 @@ A-126 は canonical HELIX document 向けに generated spreadsheet / Excel / PPT
 - `idx_document_export_artifact_format(format, stale_status)`.
 - `idx_document_export_triggers_signal(signal, workflow, gate)`.
 
-Invariants:
+不変条件:
 
 - すべての export artifact は `document_export_run` を参照する。
 - すべての export run は source document paths、source snapshot hash、redaction profile を持つ。
@@ -511,7 +511,7 @@ IMP-140: 15 screens (PM/HM/GD) と FR/BR→screen trace は `screen-list.md` / `
 - `idx_screens_category(category, screen_id)`.
 - `idx_screen_trace_screen(screen_id, requirement_kind)`.
 
-Invariants:
+不変条件:
 
 - `screens` row count は screen-requirements §1 の declared count と一致する (15 = PM 6 + HM 8 + GD 1)。`doc-consistency` gate も同じ doc source を count する。
 - すべての `screen_trace.screen_id` は `screens.screen_id` を参照する (orphan trace edge なし)。
