@@ -2031,7 +2031,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
     }
   });
 
-  it("rebuildHarnessDb deterministically projects plans and Phase3 outputs without source mutation", () => {
+  it("U-ROUTEMODE-001: rebuildHarnessDb deterministically projects plans, route_modes, and Phase3 outputs without source mutation", () => {
     const db = openHarnessDb(":memory:");
     try {
       const result = rebuildHarnessDb({
@@ -2103,16 +2103,32 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       expect(rowCounts(db).review_evidence_registry).toBeGreaterThan(0);
       expect(rowCounts(db).descent_obligations).toBeGreaterThan(0);
       expect(rowCounts(db).drive_runs).toBeGreaterThan(0);
+      expect(rowCounts(db).route_modes).toBeGreaterThan(0);
       const projectedDriveModels = db
         .prepare("SELECT DISTINCT mode FROM drive_runs WHERE mode <> '' ORDER BY mode")
         .all()
         .map((row) => String((row as { mode: unknown }).mode));
       expect(projectedDriveModels).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
+      const projectedRouteModes = db
+        .prepare("SELECT DISTINCT mode FROM route_modes WHERE mode <> '' ORDER BY mode")
+        .all()
+        .map((row) => String((row as { mode: unknown }).mode));
+      expect(projectedRouteModes).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
       expect(
         db
           .prepare("SELECT mode FROM drive_runs WHERE plan_id = ? AND mode = ? LIMIT 1")
           .get("PLAN-L7-146-serverless-readonly-share", "version-up"),
       ).toMatchObject({ mode: "version-up" });
+      expect(
+        db
+          .prepare(
+            `SELECT r.mode, r.source
+             FROM route_modes r
+             JOIN drive_runs d ON d.drive_run_id = r.drive_run_id
+             WHERE r.plan_id = ? AND r.mode = ? LIMIT 1`,
+          )
+          .get("PLAN-L7-146-serverless-readonly-share", "version-up"),
+      ).toMatchObject({ mode: "version-up", source: expect.any(String) });
       expect(rowCounts(db).hook_events).toBeGreaterThan(0);
       expect(rowCounts(db).model_runs).toBeGreaterThan(0);
       expect(rowCounts(db).automation_assets).toBeGreaterThan(0);

@@ -19,6 +19,11 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
     columns: ["session_id", "plan_id", "occurred_at"],
   },
   {
+    name: "idx_route_modes_plan_mode",
+    table: "route_modes",
+    columns: ["plan_id", "mode", "drive_run_id"],
+  },
+  {
     name: "idx_skill_plan_skill",
     table: "skill_invocations",
     columns: ["plan_id", "skill_id", "fired_at"],

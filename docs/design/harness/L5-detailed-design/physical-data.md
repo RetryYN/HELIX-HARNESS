@@ -237,6 +237,7 @@ External reinforcement: SQLite FTS5 は external/contentless index pattern を s
 | table | primary key | 必須列 | 目的 |
 |---|---|---|---|
 | `drive_runs` | `drive_run_id` | `plan_id`, `session_id`, `drive`, `mode`, `layer`, `kind`, `started_at`, `completed_at`, `status` | non-V-model mode を含む drive/model execution lane をすべて追跡する。 |
+| `route_modes` | `route_mode_id` | `plan_id`, `drive_run_id`, `mode`, `drive`, `layer`, `kind`, `source`, `indexed_at` | `drive_runs.mode` を routing / workflow 監査用の first-class read model として投影し、mode 別検索・差分確認を drive run 本体から分離する。 |
 | `hook_events` | `event_id` | `session_id`, `plan_id`, `hook_name`, `event_type`, `occurred_at`, `digest`, `evidence_path` | SessionStart/PostToolUse/Stop、gate、PLAN event を state projection へ join する。 |
 | `skill_invocations` | `skill_invocation_id` | `session_id`, `plan_id`, `skill_id`, `layer`, `drive`, `fired_at`, `source`, `accepted` | 実際の skill firing event を永続化する。 |
 | `skill_recommendations` | `skill_recommendation_id` | `session_id`, `plan_id`, `skill_id`, `rank`, `score`, `reason`, `recommended_at` | skill firing rate と recommendation quality の分母を永続化する。 |
@@ -274,6 +275,7 @@ DB は ID、reason、score、redacted summary だけを保存する。raw provid
 - `idx_trace_from_to(from_artifact, to_artifact)`
 - `idx_findings_subject_status(subject_id, status, severity)`
 - `idx_hook_session_plan(session_id, plan_id, occurred_at)`
+- `idx_route_modes_plan_mode(plan_id, mode, drive_run_id)`
 - `idx_skill_plan_skill(plan_id, skill_id, fired_at)`
 - `idx_search_subject(subject_type, subject_id)`
 

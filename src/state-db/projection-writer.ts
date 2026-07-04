@@ -627,6 +627,34 @@ function projectDriveRuns(
   db: HarnessDb,
   plans: Map<string, ProjectedPlan>,
 ): void {
+  function recordRouteMode(input: {
+    driveRunId: string;
+    plan: ProjectedPlan;
+    mode: string;
+    source: string;
+    indexedAt: string;
+  }): void {
+    const routeModeId = stableId(
+      "route-mode",
+      `${input.plan.planId}:${input.driveRunId}:${input.mode}`,
+    );
+    recordProjectionEvent(db, {
+      table: "route_modes",
+      id: routeModeId,
+      row: {
+        route_mode_id: routeModeId,
+        plan_id: input.plan.planId,
+        drive_run_id: input.driveRunId,
+        mode: input.mode,
+        drive: input.plan.drive,
+        layer: input.plan.layer,
+        kind: input.plan.kind,
+        source: input.source,
+        indexed_at: input.indexedAt,
+      },
+    });
+  }
+
   for (const plan of plans.values()) {
     const digest = readJson<PlanDigestProjection>(
       join(repoRoot, ".ut-tdd", "logs", "plan", `${plan.planId}.digest.json`),
@@ -635,6 +663,8 @@ function projectDriveRuns(
     for (const sessionId of sessions) {
       const id = stableId("drive-run", `${plan.planId}:${sessionId || "documented"}`);
       const completed = (digest?.event_counts?.session_end ?? 0) > 0;
+      const mode = plan.workflowModes[0] ?? workflowModeForPlan(plan.planId);
+      const indexedAt = plan.updatedAt || digest?.updated_at || "";
       recordProjectionEvent(db, {
         table: "drive_runs",
         id,
@@ -643,17 +673,25 @@ function projectDriveRuns(
           plan_id: plan.planId,
           session_id: sessionId,
           drive: plan.drive,
-          mode: plan.workflowModes[0] ?? workflowModeForPlan(plan.planId),
+          mode,
           layer: plan.layer,
           kind: plan.kind,
-          started_at: plan.updatedAt || digest?.updated_at || "",
+          started_at: indexedAt,
           completed_at: completed ? (digest?.updated_at ?? "") : "",
           status: sessionId ? (completed ? "completed" : "active") : plan.status || "documented",
         },
       });
+      recordRouteMode({
+        driveRunId: id,
+        plan,
+        mode,
+        source: sessionId ? "session-digest" : "plan-frontmatter",
+        indexedAt,
+      });
     }
     for (const mode of plan.workflowModes.slice(1)) {
       const id = stableId("drive-run", `${plan.planId}:mode-ledger:${mode}`);
+      const indexedAt = plan.updatedAt || digest?.updated_at || "";
       recordProjectionEvent(db, {
         table: "drive_runs",
         id,
@@ -669,6 +707,13 @@ function projectDriveRuns(
           completed_at: "",
           status: "documented",
         },
+      });
+      recordRouteMode({
+        driveRunId: id,
+        plan,
+        mode,
+        source: "workflow-mode-ledger",
+        indexedAt,
       });
     }
   }
@@ -694,6 +739,13 @@ function projectDriveRuns(
         completed_at: "",
         status: "documented",
       },
+    });
+    recordRouteMode({
+      driveRunId: id,
+      plan: modeLedgerPlan,
+      mode,
+      source: "canonical-process-mode",
+      indexedAt: modeLedgerPlan.updatedAt,
     });
   }
 }

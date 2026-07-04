@@ -457,7 +457,13 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-CHGIMPACT-006 | `analyzeChangeSetIntegrity` (source plan contract missing) | L7 実装系 PLAN があっても parent L6 design / pair artifact / test evidence のいずれかを欠く場合、`source-plan-contract-missing` blocker で `ok=false` |
 | U-CHGIMPACT-007 | `analyzeChangeSetIntegrity` (source plan contract covered) | L7 実装系 PLAN が parent design、pair artifact、test evidence を持つ場合、未承認 L7 実装 blocker は出ない |
 
-### §1.16.1a U-RELGRAPH (cross-artifact relation graph = docs/code/DB/evidence impact の検査)
+### §1.16.1a U-ROUTEMODE (route mode first-class 投影)
+
+| ID | Target | Oracle |
+|---|---|---|
+| U-ROUTEMODE-001 | `rebuildHarnessDb` / `projectDriveRuns` | `drive_runs.mode` に投影される required drive model は `route_modes.mode` にも同時投影される。各 `route_modes` row は `plan_id`、`drive_run_id`、`mode`、`source` を持ち、`drive_run_id` は既存 `drive_runs` row と join できる。`idx_route_modes_plan_mode` は physical-data §9.3 と schema registry で一致する。 |
+
+### §1.16.1b U-RELGRAPH (cross-artifact relation graph = docs/code/DB/evidence impact の検査)
 
 > Pair = `module-drift.md` Cross-Artifact Relation Graph Addendum (A-124/A-125 / PLAN-L6-31)。PLAN-L7-32 が承認済み L7 実装 entry である。
 >
@@ -478,7 +484,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-RELGRAPH-009 | `collectVerificationEvidenceProjection` valid evidence | A-125 `verification-evidence-v1` record は evidence path 付きの `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` projection row になる。 |
 | U-RELGRAPH-010 | `collectVerificationEvidenceProjection` invalid evidence | malformed evidence、schema 欠落、または `allow_external` なしの external run は finding になる。raw external payload は除外したままにする。 |
 
-### §1.16.1b U-TOOLADAPTER (A-124 graph/diagram adapter probe 検査)
+### §1.16.1c U-TOOLADAPTER (A-124 graph/diagram adapter probe 検査)
 
 > Pair = `module-drift.md` Tool Adapter Probe Addendum (A-124 / PLAN-L6-33)。これらの oracle は dependency-cruiser、Knip、Madge、Graphviz DOT、Mermaid、D2 を optional adapter として扱う。明示的な workflow evidence なしに package install や adapter execution を承認しない。
 

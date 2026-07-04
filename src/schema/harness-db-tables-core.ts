@@ -121,6 +121,20 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
     ],
   },
   {
+    name: "route_modes",
+    columns: [
+      pk("route_mode_id"),
+      col("plan_id"),
+      col("drive_run_id"),
+      col("mode"),
+      col("drive"),
+      col("layer"),
+      col("kind"),
+      col("source"),
+      col("indexed_at"),
+    ],
+  },
+  {
     name: "hook_events",
     columns: [
       pk("event_id"),
