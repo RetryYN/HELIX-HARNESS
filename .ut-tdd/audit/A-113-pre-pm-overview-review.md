@@ -1,111 +1,111 @@
-# A-113 Pre-PM Overview Review
+# A-113 PM 前 overview review
 
-Date: 2026-06-09
-Scope: A-110 rework follow-up, L6/G6 governance state, L7 pair/test evidence, improvement backlog, and cross-document readability risk before PM review.
-Reviewer: Codex TL (pre-PM overview, not PM sign-off)
-Verdict: PM review can proceed for the L6 rework, but G6 must remain CONDITIONAL PASS until PM/cross-agent review accepts the closure.
+日付: 2026-06-09
+範囲: PM review 前に、A-110 rework follow-up、L6/G6 governance state、L7 pair/test evidence、improvement backlog、cross-document readability risk を確認する。
+reviewer: Codex TL（PM 前 overview であり、PM sign-off ではない）
+判定: L6 rework は PM review へ進められる。ただし G6 は、PM/cross-agent review が closure を受け入れるまで `CONDITIONAL PASS` のまま維持する。
 
-## Review Method
+## review 方法
 
-- Read A-110 as the controlling independent re-audit.
-- Re-ran the mechanical gates after rework: lint, typecheck, vitest, doctor.
-- Scanned L6 design docs and PM-trace L5 PLANs for mojibake markers using UTF-8 reads.
-- Checked A-110 MUST/SHOULD/Minor findings against current files.
-- Checked known governance risks: G6 gate wording, L7/REVERSE draft carry, stale agent slot warning, and older L5 readability debt.
+- controlling independent re-audit として A-110 を読んだ。
+- rework 後に lint、typecheck、vitest、doctor の mechanical gate を再実行した。
+- UTF-8 read で L6 design docs と PM-trace L5 PLAN の mojibake marker を scan した。
+- A-110 の MUST/SHOULD/Minor finding を current file と照合した。
+- 既知の governance risk として、G6 gate wording、L7/REVERSE draft carry、stale agent slot warning、過去の L5 readability debt を確認した。
 
-## Closed Before PM
+## PM 前に close 済み
 
-### A-110 MUST-1: L6 readability
+### A-110 MUST-1: L6 readability の解決
 
-Resolved.
+解決済み。
 
-- `gate-confirm.md` and `plan-schedule-lint.md` headings/content no longer contain U+2001/U+FFFD mojibake.
-- Added `src/lint/readability.ts` and `tests/readability.test.ts`.
-- Doctor now hard-checks L6 design doc readability and the PM-trace L5 PLAN readability scope and reports `readability — OK (freeze review docs 22件 mojibake marker 0)`.
-- Improvement backlog domestication: IMP-089.
+- `gate-confirm.md` と `plan-schedule-lint.md` の heading/content は、U+2001/U+FFFD mojibake を含まない。
+- `src/lint/readability.ts` と `tests/readability.test.ts` を追加した。
+- doctor は現在、L6 design doc readability と PM-trace L5 PLAN readability scope を hard-check し、`readability — OK (freeze review docs 22件 mojibake marker 0)` を報告する。
+- improvement backlog の domestication: IMP-089。
 
-### A-110 MUST-2: FR addendum substance
+### A-110 MUST-2: FR addendum substance の解決
 
-Resolved for the current L6 closure scope.
+current L6 closure scope では解決済み。
 
-- `function-spec.md` now includes typed input/result bodies plus `implemented pseudocode` or `explicit_l7_defer` for the FR addendum functions.
-- `src/lint/l6-fr-coverage.ts` now detects missing type/pseudocode/defer substance instead of accepting ID-only coverage.
-- `tests/l6-fr-coverage.test.ts` includes synthetic missing-substance and real-repo guards.
-- Improvement backlog domestication: IMP-090.
+- `function-spec.md` は、FR addendum function 向けに typed input/result body と `implemented pseudocode` または `explicit_l7_defer` を含む。
+- `src/lint/l6-fr-coverage.ts` は、ID-only coverage を受け入れず、type/pseudocode/defer substance の欠落を検出する。
+- `tests/l6-fr-coverage.test.ts` は synthetic missing-substance と real-repo guard を含む。
+- improvement backlog の domestication: IMP-090。
 
-### A-110 SHOULD-3 / SHOULD-4
+### A-110 SHOULD-3 / SHOULD-4 の解決
 
-Resolved at L6 design level.
+L6 design level で解決済み。
 
-- `governance-enforcement.md` now gives `evaluateGateReview` / `checkReviewEvidence` type body and pseudocode/defer substance.
-- `agent-slots.md` now connects `resolveRosterCapability` to a typed body and pseudocode/defer substance.
+- `governance-enforcement.md` は `evaluateGateReview` / `checkReviewEvidence` の type body と pseudocode/defer substance を示す。
+- `agent-slots.md` は `resolveRosterCapability` を typed body と pseudocode/defer substance に接続している。
 
-### A-110 Minor Fixes Applied
+### A-110 Minor fix 適用済み
 
-- `edge-case.md` now covers all 10 IMP-033 rule types, including `upstream-coverage`, `id-format`, `glossary-delta`, and `backlog-format`.
-- `L7-unit-test-design.md` now expands `U-FR-L1-21` for `analyzeTestPerspectiveGate`.
-- `module-drift.md` now records `analyzeAssetDrift` as an explicit §7 carry.
-- `gate-confirm.md` now has a DbC/fail-open invariant section.
+- `edge-case.md` は、`upstream-coverage`、`id-format`、`glossary-delta`、`backlog-format` を含む IMP-033 rule type 10 件すべてを cover する。
+- `L7-unit-test-design.md` は `analyzeTestPerspectiveGate` 向けに `U-FR-L1-21` を拡張している。
+- `module-drift.md` は `analyzeAssetDrift` を明示的な §7 carry として記録している。
+- `gate-confirm.md` は DbC/fail-open invariant section を持つ。
 
-### IMP-091: L5 PLAN readability debt
+### IMP-091: L5 PLAN readability debt の解決
 
-Resolved for the PM trace scope.
+PM trace scope では解決済み。
 
-- Restored the readable bodies of `PLAN-L5-03-internal-processing.md`, `PLAN-L5-05-roster.md`, `PLAN-L5-06-skill.md`, and `PLAN-L5-07-drift.md` from a known-good pre-corruption revision.
-- Preserved current `status: confirmed` and `review_evidence` blocks.
-- Preserved §1.10 schedule compliance by keeping `[直列]` markers, serial reasons, §3.1 implementation plans, and fixed review steps.
-- Extended `src/lint/readability.ts` / doctor from L6-only scope to L6 + PM-trace L5 PLAN scope.
-- Improvement backlog domestication: IMP-091.
+- `PLAN-L5-03-internal-processing.md`、`PLAN-L5-05-roster.md`、`PLAN-L5-06-skill.md`、`PLAN-L5-07-drift.md` の readable body を、known-good pre-corruption revision から復元した。
+- current `status: confirmed` と `review_evidence` block は維持した。
+- `[直列]` marker、serial reason、§3.1 implementation plan、fixed review step を維持し、§1.10 schedule compliance を保持した。
+- `src/lint/readability.ts` / doctor を L6-only scope から L6 + PM-trace L5 PLAN scope へ拡張した。
+- improvement backlog の domestication: IMP-091。
 
-## Gate / Governance State
+## gate / governance 状態
 
-- `gate-design.md` correctly keeps G6 as `CONDITIONAL PASS`.
-- A-109 is qualified by A-110 and must not be read as unconditional sign-off.
-- This rework closes A-110 MUST-1/MUST-2, but unconditional G6 PASS is intentionally left for PM/cross-agent review.
+- `gate-design.md` は G6 を正しく `CONDITIONAL PASS` のまま保持している。
+- A-109 は A-110 により限定されており、unconditional sign-off として読んではならない。
+- この rework は A-110 MUST-1/MUST-2 を close するが、unconditional G6 `PASS` は意図的に PM/cross-agent review へ残している。
 
-## Mechanical Evidence
+## mechanical evidence の記録
 
-Latest local evidence after this overview rework:
+この overview rework 後の最新 local evidence:
 
 - `bun run lint`: exit 0
 - `bun run typecheck`: exit 0
 - `npx vitest run`: 35 files / 288 tests passed
 - `bun src\cli.ts doctor`: exit 0
-- `git diff --check`: exit 0, only CRLF normalization warnings on markdown files
+- `git diff --check`: exit 0。markdown file の CRLF normalization warning のみ。
 
-Doctor currently reports:
+doctor の current report:
 
 - `l6-fr-coverage — OK`
 - `readability — OK (freeze review docs 22件 mojibake marker 0)`
 - `l6-completion — OK`
 - `review-evidence — OK`
 - `verification — L4-L6 freeze 完了`
-- `agent-slots — OK (active=0, peak_parallel=4)` after running the official `ut-tdd session start` self-heal path.
+- official `ut-tdd session start` self-heal path 実行後、`agent-slots — OK (active=0, peak_parallel=4)`。
 
-## Remaining PM-Aware Carry
+## PM aware の残 carry
 
-### Carry-1: L7/REVERSE plans remain draft
+### Carry-1: L7/REVERSE plan は draft のまま
 
-A-110 already called out that L7-20/22/23 and REVERSE-21/22 are draft while implementation/test artifacts exist. This is not a blocker for L6 conditional closure, but PM should decide whether to:
+A-110 は、implementation/test artifact が存在する一方で L7-20/22/23 と REVERSE-21/22 が draft であることをすでに指摘している。これは L6 conditional closure の blocker ではないが、PM は次を判断する必要がある。
 
-- keep them as L7 carry until G7 starts; or
-- promote them with review evidence after PM/cross-agent review.
+- G7 開始まで L7 carry として維持する。
+- PM/cross-agent review 後、review evidence を添えて promote する。
 
-### Closed-2: L5 PLAN readability debt
+### Closed-2: L5 PLAN readability debt の解消
 
-The A-111 L5 readability carry is closed for the PM trace scope. The four PLAN files now read cleanly under UTF-8 and are covered by the doctor readability hard guard.
+A-111 L5 readability carry は PM trace scope では close 済み。4 つの PLAN file は現在 UTF-8 で clean に読め、doctor readability hard guard の対象になっている。
 
-### Closed-3: agent-slots stale warning
+### Closed-3: agent-slots stale warning の解消
 
-The earlier stale slot was an `agent_guard` runtime state entry. It was cleared through the intended `ut-tdd session start` self-heal path; `doctor` now reports `agent-slots — OK`.
+以前の stale slot は `agent_guard` runtime state entry だった。これは意図された `ut-tdd session start` self-heal path で clear 済みであり、`doctor` は現在 `agent-slots — OK` を報告する。
 
-## PM Review Recommendation
+## PM review recommendation の内容
 
-Proceed to PM review with G6 still marked `CONDITIONAL PASS`.
+G6 を `CONDITIONAL PASS` のまま維持して PM review へ進む。
 
-Ask PM to review:
+PM へ確認する事項:
 
-1. Whether A-110 MUST-1/MUST-2 closure is accepted.
-2. Whether G6 may be promoted from conditional to unconditional PASS.
-3. Whether draft L7/REVERSE plans should be confirmed now or carried to G7.
-4. Whether broader all-confirmed-doc readability coverage should be promoted from IMP-086 into the next hard gate.
+1. A-110 MUST-1/MUST-2 closure を受け入れるか。
+2. G6 を conditional から unconditional `PASS` へ promote してよいか。
+3. draft の L7/REVERSE plan を今 confirm すべきか、G7 へ carry すべきか。
+4. より広い all-confirmed-doc readability coverage を IMP-086 から次の hard gate へ promote すべきか。
