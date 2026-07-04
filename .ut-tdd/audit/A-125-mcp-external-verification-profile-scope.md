@@ -1,86 +1,86 @@
-# A-125 MCP / External Verification Profile Scope
+# A-125 MCP / 外部検証 profile の適用範囲
 
-Date: 2026-06-09
-Context: User expanded A-124 to include Web-researched MCP servers, external installable plugins, test foundations, trigger automation, and workflow integration.
+日付: 2026-06-09
+文脈: ユーザーは A-124 を拡張し、Web 調査済みの MCP server、外部 installable plugin、test foundation、trigger automation、workflow integration を含めるよう求めた。
 
-## Current State
+## 現在の状態
 
-Implemented before A-125:
+A-125 の前に実装済み:
 
-- A-124 scoped cross-artifact relation graph, impact expansion, diagram export, and tool adapter normalization.
-- Existing CLI has `doctor`, `plan lint`, `vmodel lint`, and local Bun/vitest test execution.
-- Existing docs already mention future MCP serverization in ADR-006, but there was no concrete MCP profile catalog, trigger rule, DB projection, or verification profile model.
+- A-124 は cross-artifact relation graph、impact expansion、diagram export、tool adapter normalization の範囲を定義した。
+- 既存 CLI は `doctor`、`plan lint`、`vmodel lint`、local Bun/vitest test execution を備えている。
+- 既存 docs は ADR-006 で将来の MCP serverization に触れていたが、具体的な MCP profile catalog、trigger rule、DB projection、verification profile model は未定義だった。
 
-Not yet implemented:
+未実装:
 
-- Actual MCP Inspector server invocation.
-- DB collector/rebuild for MCP and external verification profile rows.
+- 実際の MCP Inspector server invocation。
+- MCP と external verification profile row 用の DB collector/rebuild。
 
-Implemented in follow-up:
+後続で実装済み:
 
 - `ut-tdd mcp profile list --json`
 - `ut-tdd mcp profile probe <name>`
 - `ut-tdd mcp inspect <name> --method tools/list`
 - `ut-tdd verify recommend --changed <path> [--format text|json|mermaid]`
 - `ut-tdd verify run --profile <name> [--dry-run] [--allow-external]`
-- `--save-evidence` for profile list/probe/inspect/recommend/run, writing normalized JSON under `.ut-tdd/evidence/verification-profiles/`
-- `doctor` surfaces changed-file verification profile recommendation counts.
-- Recommendation output is shaped for later `verification_recommendations` DB rows: changed files, signals, profiles, reasons, and graph edges.
-- Disabled external profiles are refused by default. Probe checks package declarations, executable availability, and auth env without installing packages.
+- profile list/probe/inspect/recommend/run 向けの `--save-evidence`。normalized JSON を `.ut-tdd/evidence/verification-profiles/` 配下へ書き出す。
+- `doctor` は changed-file verification profile recommendation count を表示する。
+- recommendation output は、後続の `verification_recommendations` DB row に合わせて changed files、signals、profiles、reasons、graph edges を保持する形にした。
+- disabled external profile は既定で拒否される。probe は package declaration、executable availability、auth env を確認するが、package install は行わない。
 
-## Web Research
+## Web 調査
 
-Detailed source URLs and selection matrix are recorded in `docs/research/mcp-external-verification-profile-research-2026-06-09.md`. This audit keeps only the routing summary.
+詳細な source URL と selection matrix は `docs/research/mcp-external-verification-profile-research-2026-06-09.md` に記録した。この audit では routing summary のみを保持する。
 
-Primary/official sources checked:
+確認した primary/official source:
 
-- MCP Registry: official centralized metadata repository for public MCP servers; preview status; namespace verification; not a security scanner.
-- modelcontextprotocol/servers: reference servers include filesystem, git, memory, fetch, and other examples; repository warns reference servers are educational and require threat-model-specific safeguards.
-- MCP Inspector: official tool for testing and debugging MCP servers; can run through `npx` and inspect npm/PyPI/local servers.
-- Microsoft Playwright MCP: official Playwright MCP server installable through `npx @playwright/mcp@latest`; useful for persistent browser-context automation and exploratory/self-healing loops.
-- GitHub MCP Server: official server with configurable toolsets and individual tools; narrow toolsets reduce context and tool choice noise.
-- Docker MCP Toolkit: profile-based gateway with signed/attested catalog images, SBOM, resource limits, filesystem restrictions, and OAuth handling.
-- Vitest Browser Mode: supports browser-native tests; CI should use Playwright or WebdriverIO providers; Bun installation is documented.
-- Testcontainers for Node.js: provides disposable databases/services/container dependencies for tests.
-- MSW: API mocking library for browser and Node.js; useful as reusable mock profile for API-bound tests.
+- MCP Registry: public MCP server 向けの official centralized metadata repository。preview status と namespace verification を持つが、security scanner ではない。
+- modelcontextprotocol/servers: reference server は filesystem、git、memory、fetch などを含む。repository は reference server が educational であり、threat model に応じた safeguard が必要だと明記している。
+- MCP Inspector: MCP server の testing/debugging 用 official tool。`npx` 経由で実行でき、npm/PyPI/local server を inspect できる。
+- Microsoft Playwright MCP: `npx @playwright/mcp@latest` で install できる official Playwright MCP server。persistent browser-context automation と exploratory/self-healing loop に有用。
+- GitHub MCP Server: configurable toolset と individual tool を持つ official server。狭い toolset は context と tool choice の noise を減らす。
+- Docker MCP Toolkit: signed/attested catalog image、SBOM、resource limit、filesystem restriction、OAuth handling を持つ profile-based gateway。
+- Vitest Browser Mode: browser-native test を支える。CI では Playwright または WebdriverIO provider を使う前提で、Bun installation も documented されている。
+- Testcontainers for Node.js: test 用の disposable database/service/container dependency を提供する。
+- MSW: browser と Node.js 向け API mocking library。API-bound test の reusable mock profile として有用。
 
-Security signal checked:
+確認した security signal:
 
-- Public reporting exists for malicious MCP package impersonation and credential exposure risk. A-125 therefore treats registry/catalog metadata as discovery input, not trust proof.
+- malicious MCP package impersonation と credential exposure risk に関する public reporting が存在する。このため A-125 は registry/catalog metadata を discovery input として扱い、trust proof とは扱わない。
 
-## Decision
+## 判断
 
-MCP servers, plugins, and external test foundations are modeled as profiles:
+MCP server、plugin、external test foundation は profile として model 化する。
 
-1. Profile catalog stores package/source/command/risk/auth/network/Docker/read-only/allowed-tools metadata.
-2. Workflow signals recommend profiles through DB projection, not agent memory.
-3. Profile probes and MCP Inspector smoke create `mcp_server_runs`.
-4. External verification commands create `tool_runs`, `test_runs`, and normalized `external_tool_findings`.
-5. Gate decisions use normalized DB rows and bounded evidence, never raw MCP/tool output.
+1. Profile catalog は package/source/command/risk/auth/network/Docker/read-only/allowed-tools metadata を保存する。
+2. Workflow signal は agent memory ではなく DB projection を通じて profile を recommend する。
+3. Profile probe と MCP Inspector smoke は `mcp_server_runs` を作成する。
+4. External verification command は `tool_runs`、`test_runs`、normalized `external_tool_findings` を作成する。
+5. Gate decision は normalized DB row と bounded evidence を使い、raw MCP/tool output は使わない。
 
-## Changes
+## 変更
 
-- Added requirements §6.8.10 for MCP / external testing tool scope and workflow triggers.
-- Added `docs/research/mcp-external-verification-profile-research-2026-06-09.md` as the Web research evidence memo.
-- Added physical-data §9.6 DB projection tables and invariants.
-- Added ADR-002 A-125 addendum.
-- Added IMP-121 / IMP-122 / IMP-123 / IMP-124.
-- Added Forward and mode workflow rules for MCP verification profiles.
-- Back-propagated A-125 to L1/L3 functional requirements as an existing FR bundle extension.
+- requirements §6.8.10 に MCP / external testing tool scope と workflow trigger を追加した。
+- Web research evidence memo として `docs/research/mcp-external-verification-profile-research-2026-06-09.md` を追加した。
+- physical-data §9.6 に DB projection table と invariant を追加した。
+- ADR-002 A-125 addendum を追加した。
+- IMP-121 / IMP-122 / IMP-123 / IMP-124 を追加した。
+- MCP verification profile 向けの Forward と mode workflow rule を追加した。
+- A-125 を existing FR bundle extension として L1/L3 functional requirements へ back-propagate した。
 
-## Back-Propagation Decision
+## Back-Propagation 判断
 
 `backprop_decision`: `requires_requirement_backprop`
 
-Reason: The request changes the harness' verification capability, workflow triggers, and security posture. It is not only a lower-layer tool-install detail.
+理由: この request は harness の verification capability、workflow trigger、security posture を変更する。lower-layer tool-install detail のみではない。
 
-## Residual Work
+## 残作業
 
-Future implementation should create L6/L7 PLANs for:
+将来の実装では、以下に対応する L6/L7 PLAN を作成する。
 
-- MCP profile schema DB collector and generated local config. Generated local config and profile safety lint now have PLAN-L6-32 / PLAN-L7-33 / PLAN-REVERSE-33 as the official route.
-- Actual MCP Inspector server invocation for configured profiles.
-- DB-backed relation graph impact to verification profile recommendation.
-- External profile runner implementations beyond built-in Bun/Vitest and doctor profiles.
-- Doctor/profile safety lint.
-- DB collector/rebuild for `mcp_server_profiles`, `mcp_profile_triggers`, `mcp_server_runs`, `verification_profiles`, `verification_recommendations`, and `external_tool_findings`.
+- MCP profile schema DB collector と generated local config。generated local config と profile safety lint は、現在 PLAN-L6-32 / PLAN-L7-33 / PLAN-REVERSE-33 を official route とする。
+- configured profile 向けの実際の MCP Inspector server invocation。
+- DB-backed relation graph impact から verification profile recommendation への接続。
+- built-in Bun/Vitest と doctor profile を超える external profile runner implementation。
+- doctor/profile の安全性 lint。
+- `mcp_server_profiles`、`mcp_profile_triggers`、`mcp_server_runs`、`verification_profiles`、`verification_recommendations`、`external_tool_findings` 向け DB collector/rebuild。
