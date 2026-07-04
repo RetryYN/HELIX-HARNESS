@@ -74,7 +74,7 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 | `exportRelationDiagram` | `exportRelationDiagram(snapshot: RelationGraphSnapshot, format: "mermaid" \| "dot" \| "d2") => DiagramArtifact` | graph snapshot と要求 format が供給される。Mermaid は常に利用可能で、DOT/D2 は installed tooling で gate される optional adapter とする。 | 安定した node IDs と edge labels を持つ deterministic diagram text を返す。利用不能な optional adapter は、暗黙に tool を起動せず finding を返す。 | Diagram export は review/handover の evidence であり、source docs や DB state を mutate してはならない。 | U-RELGRAPH-007..008 |
 | `collectVerificationEvidenceProjection` | `collectVerificationEvidenceProjection(input: VerificationEvidenceRecord[]) => VerificationProfileProjection` | `.ut-tdd/evidence/verification-profiles/*.json` から保存済み A-125 evidence records を schema validation 後に供給する。 | `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` の projection rows を evidence paths 付きで返す。 | External execution は opt-in のままとする。projection は raw external payloads ではなく summaries と classification を保存する。 | U-RELGRAPH-009..010 |
 
-**Required impact classes**:
+**必須 impact class**:
 
 - `source` 変更時の影響先: `sibling test`、L6 design contract、L7 oracle、PLAN、reverse/backprop guard。
 - `design` / `test-design` 変更時の影響先: paired artifact、PLAN DoD、trace-freeze evidence。
@@ -86,7 +86,7 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 
 ### Tool Adapter Probe 追補 (A-124 / PLAN-L6-33)
 
-この追補は、optional graph/diagram development-tool adapters に対する L6 contract を定義する。これは core relation graph collector とは別である。adapters は evidence quality を高められるが、gate-normalized truth の source は TypeScript/Bun collector と DB projection のままとする。
+この追補は、optional graph/diagram development-tool adapter に対する L6 contract を定義する。これは core relation graph collector とは別である。adapter は evidence quality を高められるが、gate-normalized truth の source は TypeScript/Bun collector と DB projection のままとする。
 
 | 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
 |---|---|---|---|---|---|
@@ -103,7 +103,7 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 - **error handling**: catch block が明示的な failure state を返す・記録する、または fail-open intent をその場で文書化する場合に限り、fail-open を許可する。未文書化の空 catch と rethrow-only catch block は `structured-error-handling` violations とする。
 - **module boundary**: `lint` は runtime/doctor/CLI feature modules を import してはならない。`runtime` は governance checks を import してはならない。`schema` は feature modules の下位に留める。違反は `module-boundary` とする。
 - **canonical source-boundary matrix**: IMP-105 により禁止 import matrix は `src/lint/shared.ts` の `violatesSourceBoundary` を正本にする。`module-boundary` と `domain-boundary` は同じ matrix を使い、前者は coding-rule SSoT、後者は DDD/TDD strictness gate の観測名として別 rule id を維持する。
-- **machine-surface language**: machine-facing CLI/doctor/lint/gate/status messages may include Japanese explanation, but their decision token must be stable ASCII English (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`). Japanese-only decision words in machine message lines are `machine-surface-language` violations. **Impl (2026-06-19、A-141)**: `analyzeCodingRules` の `violatesMachineSurfaceLanguage` が machine-surface 行パターン × 非 ASCII 判定語 × ASCII token 不在で検出し、`describe`/`it`/`test` のタイトル literal は除外 (false-positive 回避)。`REQUIRED_RULE_IDS` + SSoT `coding-rules.md` に `machine-surface-language` を登録。oracle U-CODE-010。実 repo violations 0。
+- **machine-surface language**: machine-facing CLI/doctor/lint/gate/status message は日本語説明を含んでよいが、decision token は安定した ASCII English (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) でなければならない。machine message 行に日本語だけの decision word がある場合は `machine-surface-language` violation とする。**Impl (2026-06-19、A-141)**: `analyzeCodingRules` の `violatesMachineSurfaceLanguage` が machine-surface 行パターン × 非 ASCII 判定語 × ASCII token 不在で検出し、`describe`/`it`/`test` のタイトル literal は除外 (false-positive 回避)。`REQUIRED_RULE_IDS` + SSoT `coding-rules.md` に `machine-surface-language` を登録。oracle U-CODE-010。実 repo violations 0。
 - **scope split**: no-any / no-suppression / file naming は source と tests に適用する。max-params / structured-error-handling / module-boundary は `src/**` のみに適用する。test helper arity は readability と local test design に従う。
 
 ### design-language lint 追補 (2026-07-02)
