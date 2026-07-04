@@ -38,6 +38,9 @@ export const DESIGN_LANGUAGE_BASELINE_FINGERPRINT =
   "sha256:9ab31dc3dbe5947df9cb31e5f86471aa06daed564095122ee0cabc494be419b3";
 
 const DESIGN_LANGUAGE_ROOTS = [
+  join(".claude", "agents"),
+  join(".claude", "commands"),
+  join(".github", "ISSUE_TEMPLATE"),
   join(".ut-tdd", "audit"),
   join(".ut-tdd", "review"),
   join("docs", "adr"),
