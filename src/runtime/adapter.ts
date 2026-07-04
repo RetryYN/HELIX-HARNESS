@@ -301,9 +301,22 @@ export function isProviderCommandSpawnable(
   }
 }
 
+export function normalizeProviderEffort(
+  _provider: AdapterProvider,
+  effort: string | undefined,
+): string | undefined {
+  if (!effort) return undefined;
+  const normalized = effort.trim().toLowerCase();
+  if (normalized.length === 0) return undefined;
+  if (normalized === "middle") return "medium";
+  if (normalized === "xhigh") return "high";
+  return normalized;
+}
+
 export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): AdapterPlan {
   const available = providerAvailable(intent.provider, mode);
   const isCodex = intent.provider === "codex";
+  const effort = normalizeProviderEffort(intent.provider, intent.effort);
   // Current contract: both providers receive task text via stdin. Args carry only
   // fixed flags, model/effort metadata, and provider-specific stdin sentinels.
   // Codex uses `codex exec -`; Claude uses `claude --print --input-format text`.
@@ -322,7 +335,7 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
     : [
         ...CLAUDE_STDIN_ARGS,
         ...(intent.model ? [CLAUDE_MODEL_FLAG, intent.model] : []),
-        ...(intent.effort ? [CLAUDE_EFFORT_FLAG, intent.effort] : []),
+        ...(effort ? [CLAUDE_EFFORT_FLAG, effort] : []),
       ];
   return {
     provider: intent.provider,
@@ -330,13 +343,13 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
     command: isCodex ? "codex" : "claude",
     args,
     stdin: formatAdapterPrompt(intent.task, intent.contextInjection),
-    ...(intent.provider === "claude" && intent.effort
-      ? { env: { [CLAUDE_EFFORT_ENV]: intent.effort } }
+    ...(intent.provider === "claude" && effort
+      ? { env: { [CLAUDE_EFFORT_ENV]: effort } }
       : {}),
     dry_run: !intent.execute,
     plan_id: intent.planId,
     model: intent.model,
-    effort: intent.effort,
+    effort,
     context_injection: intent.contextInjection,
     messages: available
       ? [intent.execute ? ADAPTER_AVAILABLE_MESSAGE : ADAPTER_DRY_RUN_MESSAGE]

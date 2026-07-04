@@ -799,6 +799,12 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-SKILL-SCAFFOLD-003 | `SKILL_SCAFFOLD_ALLOWED_VALUES` | category / layer / drive model の allowed values は scaffold 側で再定義せず、`skill-assignment` constants を公開する。 |
 | U-SKILL-SCAFFOLD-004 | `ut-tdd skill create` | CLI は既定 no-write で scaffold JSON/text を返し、`--write` 指定時だけ `docs/skills/<slug>.md` を作成する。既存 file は `--force` 無しで exit 1 とし、generator の self-lint finding を隠さない。 |
 
+### 2026-07-05 Adapter Runtime Hardening Oracle 検査 (PLAN-L7-320)
+
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-ADAPTER-010 | `normalizeProviderEffort` / `buildAdapterPlan` | `middle` は `medium`、`xhigh` は `high` に正規化され、Claude adapter の `--effort` argv と `CLAUDE_CODE_EFFORT_LEVEL` env、`AdapterPlan.effort` は正規化後の値だけを持つ。空 effort は undefined、大小文字と周辺空白は吸収する。 |
+
 ### 2026-06-15 PoC Success Measurement Oracle 検査 (FR-L1-43, PLAN-L7-53)
 
 | U-ID | 関数 | oracle (DbC) |

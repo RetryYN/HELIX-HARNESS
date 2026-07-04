@@ -6,6 +6,7 @@ import {
   buildAdapterPlan,
   buildProviderInvocation,
   isProviderCommandSpawnable,
+  normalizeProviderEffort,
   providerAvailable,
   resolveClaudeNativeCommand,
   resolveCodexNativeCommand,
@@ -136,6 +137,34 @@ describe("runtime adapter plan", () => {
     expect(plan.args).not.toContain("--task");
     expect(plan.args).not.toContain("PLAN-L4-99-x");
     expect(plan.plan_id).toBe("PLAN-L4-99-x");
+  });
+
+  it("U-ADAPTER-010: normalizes provider effort aliases before adapter argv and env are built", () => {
+    expect(normalizeProviderEffort("claude", "middle")).toBe("medium");
+    expect(normalizeProviderEffort("codex", "xhigh")).toBe("high");
+    expect(normalizeProviderEffort("claude", " HIGH ")).toBe("high");
+    expect(normalizeProviderEffort("claude", "")).toBeUndefined();
+
+    const plan = buildAdapterPlan(
+      {
+        provider: "claude",
+        role: "pmo-sonnet",
+        task: "review",
+        model: "claude-sonnet-5",
+        effort: "middle",
+      },
+      "hybrid",
+    );
+
+    expect(plan.args).toEqual([
+      ...CLAUDE_STDIN_ARGS,
+      "--model",
+      "claude-sonnet-5",
+      "--effort",
+      "medium",
+    ]);
+    expect(plan.effort).toBe("medium");
+    expect(plan.env).toEqual({ [CLAUDE_EFFORT_ENV]: "medium" });
   });
 
   it("U-ADAPTER-002: honors UT_TDD_CODEX_BIN before PATH lookup", () => {
