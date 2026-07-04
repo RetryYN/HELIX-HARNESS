@@ -574,7 +574,7 @@ function classifyRenameResidualDisposition(input: {
 }
 
 function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
-  if (path.startsWith(".ut-tdd/")) return "runtime_state";
+  if (path === ".ut-tdd" || path.startsWith(".ut-tdd/")) return "runtime_state";
   if (
     path === "AGENTS.md" ||
     path === "CLAUDE.md" ||

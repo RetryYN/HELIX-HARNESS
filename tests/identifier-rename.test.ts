@@ -324,6 +324,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             location: "path",
           }),
           expect.objectContaining({
+            path: ".ut-tdd",
+            category: "runtime_state",
+            location: "path",
+          }),
+          expect.objectContaining({
             path: ".ut-tdd/state/setup.json",
             category: "runtime_state",
             location: "path",
