@@ -4,12 +4,13 @@ title: "PLAN-L7-318 (impl): model-override injection hardening (security) — pr
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-04
 updated: 2026-07-04
 owner: PO (人間) / Claude (Opus) / Codex
 parent_design: docs/design/harness/L5-detailed-design/if-detail.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
+pair_artifact: tests/model-override-injection.test.ts
 agent_slots:
   - role: se
     slot_label: "SE — modelOverrideSchema を allowlist/strict pattern 化、adapter の shell:true を排除または引数を厳格 escape"
@@ -20,7 +21,7 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-318-model-override-injection-hardening.md
     artifact_type: markdown_doc
-  - artifact_path: docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+  - artifact_path: docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
     artifact_type: markdown_doc
   - artifact_path: src/schema/team.ts
     artifact_type: source_module
@@ -36,7 +37,33 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
+review_evidence:
+  - reviewer: codex-hilbert
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-04T22:11:47+09:00"
+    tests_green_at: "2026-07-04T22:11:47+09:00"
+    verdict: approve
+    scope: "PLAN-L7-318: modelOverrideSchema strict pattern + Windows command-script shell wrapping unsafe argv fail-close。High/Medium findings なし。残リスクは Windows .cmd/.bat 互換のため shell:true 自体を残す点で、PLAN-L7-320 の別 hardening 対象。"
+    worker_model: codex
+    reviewer_model: codex-hilbert
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/design-language.test.ts tests/readability.test.ts tests/model-override-injection.test.ts tests/runtime-adapter.test.ts tests/team-schema.test.ts tests/semantic-frontier-consistency.test.ts tests/goal-evidence-audit.test.ts --timeout 180000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-04T22:11:47+09:00"
+        evidence_path: tests/model-override-injection.test.ts
+        output_digest: "sha256:03255406098ffdfe467062f19a3a7dc3b5560d939d74d5c76d7994d884a9c5a6"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-04T22:11:47+09:00"
+        evidence_path: src/runtime/adapter.ts
+        output_digest: "sha256:03255406098ffdfe467062f19a3a7dc3b5560d939d74d5c76d7994d884a9c5a6"
 ---
 
 # PLAN-L7-318 (impl): model override 注入面の追加 hardening
@@ -81,5 +108,4 @@ Windows `.cmd` / `.bat` 解決時の `buildProviderInvocation()` は `shell: tru
 
 ## レビュー / 次工程
 - security 事項のため、別 agent review と targeted green command を confirmed の前提とする。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §4 / §5 Tier3。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §4 / §5 Tier3。

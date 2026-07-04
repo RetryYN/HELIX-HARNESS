@@ -6,8 +6,8 @@ Owner: Codex TL + PO
 
 Related:
 
-- `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md`
-- `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md`
+- `docs/adr/ADR-001-helix-harness-redesign-and-language.md`
+- `docs/governance/helix-agent-harness-extraction-plan_v0.1.md`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
 - `docs/plans/PLAN-L7-44-harness-db-master.md`
 - `docs/plans/PLAN-L7-46-projection-writer.md`

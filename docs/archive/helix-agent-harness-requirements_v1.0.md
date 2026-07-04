@@ -1,8 +1,8 @@
 # UT-TDD-agent-harness 要件定義書
 
 - **Version**: 1.0
-- **Status**: Superseded. 現行正本は `ut-tdd-agent-harness-requirements_v1.1.md`。
-- **対応構想書**: `ut-tdd-agent-harness-concept_v3.0.md`
+- **Status**: Superseded. 現行正本は `helix-agent-harness-requirements_v1.1.md`。
+- **対応構想書**: `helix-agent-harness-concept_v3.0.md`
 - **位置付け**: 要件定義 (L1-L2 受入条件層)
 - **想定読者**: Phase 0 Bootstrap 担当 (AI 実装エージェント + TL)
 - **対象 OS**:
@@ -923,4 +923,4 @@ Phase 0 は **CODEOWNERS bootstrap 2-stage** で進める (§6.5)。
 
 ---
 
-**本書は UT-TDD-agent-harness の要件定義書である。構想 (WHY/WHAT) は `ut-tdd-agent-harness-concept_v3.0.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**
+**本書は UT-TDD-agent-harness の要件定義書である。構想 (WHY/WHAT) は `helix-agent-harness-concept_v3.0.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**

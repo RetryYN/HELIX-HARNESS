@@ -45,8 +45,8 @@ dependencies:
   blocks: []
 related_adr: []
 related_docs:
-  - docs/governance/ut-tdd-agent-harness-requirements_v1.1.md
-  - docs/migration/helix-to-ut-tdd-cutover-strategy.md
+  - docs/governance/helix-agent-harness-requirements_v1.1.md
+  - docs/migration/helix-identifier-cutover-strategy.md
   - docs/migration/helix-porting-map.md
 ---
 
@@ -154,8 +154,8 @@ W3a 範囲外として明示 carry:
 - 関連 PLAN: PLAN-001-w1-plan-schema-lint-port (requires)、PLAN-002-w2-vmodel-trace-lint-port (requires)、PLAN-004-w3b-skill-subsystem-port (本 PLAN-003 後続、未起票)
 - 関連 ADR: なし
 - 参照 docs:
-  - `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md` §7.1 / §7.2
-  - `docs/migration/helix-to-ut-tdd-cutover-strategy.md` Mode 1
+  - `docs/governance/helix-agent-harness-requirements_v1.1.md` §7.1 / §7.2
+  - `docs/migration/helix-identifier-cutover-strategy.md` Mode 1
   - `docs/migration/helix-porting-map.md` W3 行
 
 ## §6 carry 記録

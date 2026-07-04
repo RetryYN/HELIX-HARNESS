@@ -725,19 +725,21 @@ PRで指摘されたバグも同様に再現テストを書く
 
 ### リグレッションテスト記述例
 
+```python
 def test_regression_234_email_with_leading_space():
     """
-    Regression for #234.
+    #234 のリグレッションテスト。
     
-    Background:
-        Emails with leading/trailing whitespace were rejected,
-        even though they were valid user inputs.
+    背景:
+        前後に空白があるメールアドレスが、
+        有効な入力であるにもかかわらず拒否されていた。
     
-    Expected:
-        Trim the whitespace and treat the email as valid.
+    期待:
+        空白を取り除き、有効なメールアドレスとして扱う。
     """
     response = login(" test@example.com ", "password")
     assert response.success == True
+```
 
 ### リグレッションテストの管理
 
@@ -798,6 +800,7 @@ docstring に背景・期待動作を必ず記載
 
 ### シークレットを git から削除する手順
 
+```bash
 # 1. 該当ファイルを履歴から削除
 git filter-repo --path <ファイルパス> --invert-paths
 
@@ -810,6 +813,7 @@ git push origin --force --all
 #   - 新しい認証情報を発行
 
 # 4. インシデント報告書を作成
+```
 
 | ⚠️ 重要<br>git からの削除「だけ」では不十分。漏洩したシークレットは必ず無効化する。<br>git history を書き換える前に、チーム全員に通知する。<br>公開リポジトリでの漏洩は外部からも見られている前提で対応する。 |
 | --- |
@@ -1177,8 +1181,8 @@ Slack DM(直接)
 
 | 用語 | 意味 |
 | --- | --- |
-| TL | Tech Lead。上流の技術責任者 |
-| QA | Quality Assurance。下流の品質責任者 |
+| TL | 技術判断とアーキテクチャ責任を担う技術責任者 |
+| QA | 品質ゲート、運用確認、受入品質を担う品質責任者 |
 | AI実装・保守 | AI実装の品質判断と運用監視を担う役割(変動層) |
 | AGENTS.md | AI エージェントへの指示を記述する標準ファイル |
 | CLAUDE.md | Claude Code 専用の指示ファイル |
@@ -1194,9 +1198,9 @@ Slack DM(直接)
 | P0/P1/P2/P3 | インシデントの重要度レベル |
 | ポストモーテム | インシデント後の振り返り・学習 |
 | MTTR | Mean Time To Recovery。平均復旧時間 |
-| SAST | Static Application Security Testing |
-| SCA | Software Composition Analysis |
-| IRP | Incident Response Plan |
+| SAST | ソースコードを静的解析して脆弱性を検出するセキュリティ検査 |
+| SCA | 依存ライブラリやライセンスのリスクを検査する構成分析 |
+| IRP | インシデント発生時の初動、連絡、封じ込め、復旧を定める対応計画 |
 
 # 付録B. 関連ドキュメント
 
@@ -1220,5 +1224,4 @@ Slack DM(直接)
 | 1.0 | ____-__-__ | 初版 | ____ |
 |  |  |  |  |
 |  |  |  |  |
-
 

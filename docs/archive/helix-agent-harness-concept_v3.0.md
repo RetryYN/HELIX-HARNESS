@@ -1,6 +1,6 @@
 # UT-TDD-agent-harness 構想書
 
-> **⚠️ Superseded (2026-05-27)**: 本書は **`ut-tdd-agent-harness-concept_v3.1.md` に置き換えられた旧版**。現行正本ではない。v3.1 で V2 (L0-L14 + W-model) / 9-mode / 配線 / 実装言語 = TypeScript (ADR-001) を反映。参照は v3.1 を使うこと。本書は履歴として残置。
+> **⚠️ Superseded (2026-05-27)**: 本書は **`helix-agent-harness-concept_v3.1.md` に置き換えられた旧版**。現行正本ではない。v3.1 で V2 (L0-L14 + W-model) / 9-mode / 配線 / 実装言語 = TypeScript (ADR-001) を反映。参照は v3.1 を使うこと。本書は履歴として残置。
 
 - **Version**: 3.0
 - **位置付け**: 構想書 (L1 概念層) / 要件定義書は別ファイル
@@ -17,7 +17,7 @@
 
 ## 本書の位置付け
 
-本書は **構想書 (concept document)** として、**WHY / WHAT / どう繋がるか** のみを定義する。**HOW** は別ファイル `ut-tdd-agent-harness-requirements_v1.1.md` (要件定義書) で定義し、さらに各 enum・スクリプト・workflow YAML の **詳細実装** は L3 詳細設計 PLAN で詰める。
+本書は **構想書 (concept document)** として、**WHY / WHAT / どう繋がるか** のみを定義する。**HOW** は別ファイル `helix-agent-harness-requirements_v1.1.md` (要件定義書) で定義し、さらに各 enum・スクリプト・workflow YAML の **詳細実装** は L3 詳細設計 PLAN で詰める。
 
 | ファイル | 役割 | 抽象レベル |
 |---------|------|------------|
@@ -79,8 +79,8 @@ v2.1 (2215 行) を構想書 v3.0 と要件定義に分離し、現行要件は 
 docs/governance/
 ├── ai-dev-team-concept_v1.1.md
 ├── ai-dev-team-operations_v1.1.md
-├── ut-tdd-agent-harness-concept_v3.0.md
-└── ut-tdd-agent-harness-requirements_v1.1.md
+├── helix-agent-harness-concept_v3.0.md
+└── helix-agent-harness-requirements_v1.1.md
 ```
 
 ## 1.4 失敗を仕組みに変換する原則
@@ -664,8 +664,8 @@ CODEOWNERS で Layer 3 / Layer 4 が自動アサインされる (具体的 path 
 
 - `ai-dev-team-concept_v1.1.md` (AI 駆動開発チーム構想書 v1.1)
 - `ai-dev-team-operations_v1.1.md` (AI 駆動開発チーム運用ルール書 v1.1)
-- `ut-tdd-agent-harness-concept_v3.0.md` (本書)
-- `ut-tdd-agent-harness-requirements_v1.1.md` (要件定義書)
+- `helix-agent-harness-concept_v3.0.md` (本書)
+- `helix-agent-harness-requirements_v1.1.md` (要件定義書)
 
 ## 業界 standard
 
@@ -721,4 +721,4 @@ CODEOWNERS で Layer 3 / Layer 4 が自動アサインされる (具体的 path 
 
 ---
 
-**本書は UT-TDD-agent-harness の概念定義書である。受入条件・enum 詳細・Phase 0 受入条件は `ut-tdd-agent-harness-requirements_v1.1.md` を参照。実装詳細 (validator / workflow YAML / hook script) は将来の個別 PLAN-XXX で詳細設計する。**
+**本書は UT-TDD-agent-harness の概念定義書である。受入条件・enum 詳細・Phase 0 受入条件は `helix-agent-harness-requirements_v1.1.md` を参照。実装詳細 (validator / workflow YAML / hook script) は将来の個別 PLAN-XXX で詳細設計する。**

@@ -133,7 +133,7 @@ plan_deps_helper── yaml, plan_validator                (内部依存)
 
 ## 6. 参考: 主要絶対パス
 
-- 要件: `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md`
+- 要件: `docs/governance/helix-agent-harness-requirements_v1.1.md`
 - vendor module: `vendor/helix-source/cli/lib/plan_{frontmatter,parser,schema,validator,lint,deps_helper}.py`
 - vendor tests: `vendor/helix-source/cli/lib/tests/test_plan_*.py`
 - vendor templates: `vendor/helix-source/cli/templates/plan/{impl,design}/template.md`

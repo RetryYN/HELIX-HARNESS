@@ -1,6 +1,6 @@
 # HELIX から UT-TDD への porting map
 
-> **superseded (ADR-001, 2026-05-27)**: 本 map は HELIX Python code の file 単位 port 計画だったが、実装方針が **TypeScript で全面再実装（HELIX は概念のみ取り込み）** に変更されたため、**code-port 計画としては superseded**。本書は **HELIX 能力 inventory / TS 再実装時の機能参照**として残置する。既存の `src/ut_tdd/*.py`（W1-W3a port）も TS 再実装で置換予定。正本は `../adr/ADR-001-ut-tdd-harness-redesign-and-language.md` / `concept_v3.1` / `requirements_v1.2`。
+> **superseded (ADR-001, 2026-05-27)**: 本 map は HELIX Python code の file 単位 port 計画だったが、実装方針が **TypeScript で全面再実装（HELIX は概念のみ取り込み）** に変更されたため、**code-port 計画としては superseded**。本書は **HELIX 能力 inventory / TS 再実装時の機能参照**として残置する。既存の `src/ut_tdd/*.py`（W1-W3a port）も TS 再実装で置換予定。正本は `../adr/ADR-001-helix-harness-redesign-and-language.md` / `concept_v3.1` / `requirements_v1.2`。
 
 ## 目的
 

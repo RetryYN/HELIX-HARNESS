@@ -103,6 +103,23 @@ describe("U-TEAM-001 teamDefinitionSchema", () => {
       }),
     ).not.toThrow();
   });
+
+  it("model override は shell metacharacter を含む provider 風 ID を reject する", () => {
+    for (const model of [
+      "gpt-5.4 & calc",
+      'claude-sonnet-5"',
+      "codex-local|whoami",
+      "gpt-$(touch x)",
+      "codex-",
+    ]) {
+      expect(() =>
+        teamDefinitionSchema.parse({
+          name: "t",
+          members: [{ role: "se", engine: "codex-se", task: "x", model }],
+        }),
+      ).toThrow();
+    }
+  });
 });
 
 describe("U-TEAM-002 mustSerialize", () => {

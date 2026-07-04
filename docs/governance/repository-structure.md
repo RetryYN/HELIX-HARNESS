@@ -42,9 +42,9 @@ UT-TDD-agent-harness/
 ├── docs/
 │   ├── governance/               # ★ 現行正本 (本書群)
 │   │   ├── README.md             #   正本 / 参照 / archive 境界
-│   │   ├── ut-tdd-agent-harness-concept_v3.1.md       # 構想 (① 概念)
-│   │   ├── ut-tdd-agent-harness-requirements_v1.2.md  # 要件 / 受入条件
-│   │   ├── ut-tdd-agent-harness-extraction-plan_v0.1.md
+│   │   ├── helix-agent-harness-concept_v3.1.md       # 構想 (① 概念)
+│   │   ├── helix-agent-harness-requirements_v1.2.md  # 要件 / 受入条件
+│   │   ├── helix-agent-harness-extraction-plan_v0.1.md
 │   │   └── repository-structure.md                    # 本書 (構成正本)
 │   ├── adr/                      # ADR-NNN-slug.md (決定記録)
 │   ├── process/                  # ★[新設] 工程(L0-L14)定義 + 駆動モデル定義の正本 (詳細・移管方針は §2 参照)
@@ -118,7 +118,7 @@ UT-TDD-agent-harness/
 - テスト設計: `docs/test-design/<feature>/<...>-test-design.md`
 - ファイル名は英語（日本語ファイル名は Windows 文字化け回避のため禁止）
 
-## 5. tracked / gitignored
+## 5. tracked / gitignored（追跡対象と除外対象）
 
 - **gitignored**: `node_modules/` `dist/` `*.tsbuildinfo` `coverage/` / `.ut-tdd/` runtime state (state/cache/logs/tmp/handover CURRENT.*・*.bak/audit *.jsonl・escalation_state.json、local*) / legacy local state / `__pycache__` / `docs/plans/*.lock` / `CLAUDE.local.md` `AGENTS.override.md` `.claude/settings.local.json` / secret 系 (`.env*` `*.key` `*.pem` `credentials.json`)
 - **tracked**: `src/` `tests/` `docs/` (archive 含む) `scripts/` `package.json` `tsconfig.json` `bun.lock` `vitest.config.ts` `.gitattributes` `.editorconfig` / **監査証跡** `.ut-tdd/audit/*.md` `.ut-tdd/audit/reports/*.md` `.ut-tdd/evidence/` `.ut-tdd/handover/provider/` / **参照資料** `docs/reference/` (PO 決定 2026-06-10 tracked 化 / 2026-06-25 docs/reference へ移設、A-128 F-1 / IMP-127)
@@ -158,7 +158,7 @@ harness の配置は 3 層で分離する。本書 §1 canonical ツリーは **
 
 | 層 | 実体 | 配置 | 更新享受 |
 |----|------|------|---------|
-| **① engine repo (単一真実)** | harness engine + ルール + 工程/駆動モデル定義 (本 repo) | **GitHub repo**。consume 側は git dependency で **tag-pin** (`bun add github:<org>/ut-tdd-agent-harness#<tag>`、devDependencies にコミット) | tag を bump (`bun update`)。社内既定 = tag-pin + 定期 bump |
+| **① engine repo (単一真実)** | harness engine + ルール + 工程/駆動モデル定義 (本 repo) | **GitHub repo**。consume 側は git dependency で **tag-pin** (`bun add github:<org>/HELIX-HARNESS-OS#<tag>`、devDependencies にコミット) | tag を bump (`bun update`)。社内既定 = tag-pin + 定期 bump |
 | **② project 投影 (adapter)** | consume 側 project に展開される `CLAUDE.md` / `.claude/` / `AGENTS.md` 等 | `ut-tdd setup` が engine から **投影**。内容を複製せず engine を参照する adapter | engine の tag bump に追従 |
 | **③ 中央 UI service** | 全 project 横断の管理 Web UI (15 画面) | **中央 / team server**。各 project の GitHub repo を data backbone に読む (project-local でない) | UI service コード自体も engine と同 GitHub repo (`src/web/`) で管理 |
 

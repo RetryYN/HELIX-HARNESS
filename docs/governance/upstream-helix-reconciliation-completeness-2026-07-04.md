@@ -1,14 +1,14 @@
-# 上流 UT-TDD_AGENT-HARNESS 突合 — completeness pass 追補 (2026-07-04)
+# 上流 HELIX source 突合 — completeness pass 追補 (2026-07-04)
 
-本書は [`upstream-uttdd-reconciliation-audit-2026-07-04.md`](./upstream-uttdd-reconciliation-audit-2026-07-04.md)
+本書は [`upstream-helix-reconciliation-audit-2026-07-04.md`](./upstream-helix-reconciliation-audit-2026-07-04.md)
 の追補である。PO 問い「本当に漏れなく取り込めたか？」を受け、初回パスの盲点を洗い直した
 **completeness pass** の追加所見と、**未検証として残る範囲（UNREVIEWED residual）** を明示する。
 
 ## 0. 正直な結論
 
 初回パスは **網羅的ではなかった**。completeness pass で、初回が見落としていた実 gap
-（adapter runtime、session-log skill_injection、route_mode first-class、relation-graph node、
-adapter invoke/error policy）を追加検出した。二 fork（各 900〜1150 ファイル）の完全な逐語突合は
+（adapter runtime、安全 spawn、session-log skill_injection、route_mode 投影、relation-graph node、
+provider 起動結果分類）を追加検出した。二 fork（各 900〜1150 ファイル）の完全な逐語突合は
 規模が大きく、本 pass でも **PR ブランチ変更 src の一部と PLAN-L7-202..362 全 skim は未検証**のまま残る。
 未検証面は下記に**明示追跡**する（silent truncation にしない）。
 
@@ -63,10 +63,9 @@ adapter invoke/error policy）を追加検出した。二 fork（各 900〜1150 
 
 ## 5. 起票済み PLAN 一覧（2026-07-04、status=draft）
 
-312 D-CONTRACT DSL / 313 G9-G10 gate / 314 L14 close-audit / 315 context doc-router /
-316 telemetry provenance / 317 skill scaffold / 318 model-override injection（security）/
-319 小項目 roundup / 320 adapter runtime hardening / 321 completeness-pass gaps。
+312 D-CONTRACT DSL、313 G9-G10 gate、314 L14 完了監査、315 context doc-router、
+316 telemetry provenance、317 skill scaffold、318 model override 注入面（security）、
+319 小項目、320 adapter runtime hardening、321 completeness pass gap。
 
 実装は Codex in-flight 作業の着地後、harness workflow（plan→pair-freeze→implement→trace-freeze→review→accept）
 で行う。基準点は HEAD。
-</content>

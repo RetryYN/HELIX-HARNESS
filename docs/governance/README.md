@@ -1,29 +1,29 @@
-# Governance Documents
+# Governance Documents（governance 文書）
 
 このディレクトリは UT-TDD Agent Harness の現行正本だけを置く。
 
-## Current Source Of Truth
+## Current Source Of Truth（現行正本）
 
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
-1. `ut-tdd-agent-harness-concept_v3.1.md`
-2. `ut-tdd-agent-harness-requirements_v1.2.md`
-3. `ut-tdd-agent-harness-extraction-plan_v0.1.md`
-4. `../adr/ADR-001-ut-tdd-harness-redesign-and-language.md` (再設計方針 + 実装言語 = TypeScript)
+1. `helix-agent-harness-concept_v3.1.md`
+2. `helix-agent-harness-requirements_v1.2.md`
+3. `helix-agent-harness-extraction-plan_v0.1.md`
+4. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 実装言語 = TypeScript)
 5. `repository-structure.md` (リポジトリ構成ルールの正本)
 
-> **ADR-001 連動**: 実装は **source snapshot 概念のみ取り込み + TypeScript で全面再実装**。`../migration/helix-porting-map.md` と `helix-to-ut-tdd-cutover-strategy.md` の **Python code-port 部分は superseded**。これらは source capability inventory / 再設計思想の参考として残置し、code-port 計画としては使わない (PLAN-001..004 も同様に superseded)。
+> **ADR-001 連動**: 実装は **source snapshot 概念のみ取り込み + TypeScript で全面再実装**。`../migration/helix-porting-map.md` と `helix-identifier-cutover-strategy.md` の **Python code-port 部分は superseded**。これらは source capability inventory / 再設計思想の参考として残置し、code-port 計画としては使わない (PLAN-001..004 も同様に superseded)。
 
-> **ADR-001 boundary**: implementation is UT-TDD-owned TypeScript/Bun. Migration docs and source snapshots are reference-only material for porting audits and regression ideas; they are not Current Source Of Truth and are not an execution route.
+> **ADR-001 boundary**: implementation は UT-TDD-owned TypeScript/Bun とする。Migration docs と source snapshots は porting audit と regression idea のための reference-only material であり、Current Source Of Truth でも execution route でもない。
 
-## Reference Only
+## Reference Only（参考のみ）
 
 次の文書は背景・上位チーム運用の参考であり、UT-TDD の受入条件や実装導線の正本ではない。
 
 - `ai-dev-team-concept_v1.1.md`
 - `ai-dev-team-operations_v1.1.md`
 
-## Archived Or Vendor Material
+## Archived Or Vendor Material（archive / vendor 資料）
 
 旧版、参照 snapshot、個人 legacy source 原稿は正本として使わない。
 

@@ -1,73 +1,66 @@
-# Conditional Backfill Decision Audit (2026-06-22)
+# Conditional Backfill 判断 audit (2026-06-22)
 
-This audit records active `refactor`, `retrofit`, and `troubleshoot` PLANs that
-do not have a Reverse PLAN back-fill and do not declare an explicit
-`backprop_decision: not_required`.
+この audit は、Reverse PLAN back-fill を持たず、明示的な
+`backprop_decision: not_required` も宣言していない active な `refactor`、`retrofit`、`troubleshoot`
+PLAN を記録する。
 
-From 2026-06-22 onward, new or updated conditional-kind PLANs are guarded by the
-`backfill-pairing` reason `conditionalDecisionMissing`: a PLAN must either be
-back-filled by a Reverse PLAN, or declare `backprop_decision: not_required` with
-`backprop_decision_reason` explaining why no requirements/design/test-design
-backprop is needed.
+2026-06-22 以降、新規または更新された conditional-kind PLAN は `backfill-pairing` の
+`conditionalDecisionMissing` で guard される。PLAN は Reverse PLAN によって back-fill されるか、
+requirements / design / test-design への backprop が不要な理由を
+`backprop_decision: not_required` と `backprop_decision_reason` で宣言しなければならない。
 
-Legacy entries below remain visible debt until each entry is either:
+下記の legacy entry は、それぞれ次のいずれかが済むまで visible debt として残す。
 
-- paired with a Reverse PLAN that routes the contract/design/test backprop;
-- updated with `backprop_decision: not_required` plus a concrete reason; or
-- reclassified if the original kind was incorrect.
+- contract / design / test backprop を route する Reverse PLAN と pair する。
+- `backprop_decision: not_required` と具体的な理由を追記する。
+- 元の kind が誤っていた場合は reclassify する。
 
-## Legacy Debt
+## 旧 debt
 
-| PLAN | kind | observed issue |
+| PLAN | kind | 観測された issue |
 |---|---|---|
-| PLAN-L7-05-biome-debt | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-68-provider-dispatch-portability | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-69-encoding-corruption-expanded-guard | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-73-claude-native-semver-resolution | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-74-task-risk-whole-word-match | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-76-review-remediation-reliability | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-77-codex-stdin-prompt-dispatch | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-78-claude-stdin-prompt-dispatch | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-79-mcp-launcher-argv-tokenization | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-80-session-digest-event-watermark | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-81-codex-wrapper-parity-gate | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-83-handover-drift-and-accumulation | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-85-review-readonly-guard | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-86-merged-plan-status-deliverable-scope | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-87-merged-plan-status-kind-independent | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-88-handover-summary-injection-cap | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-89-plan-errata-supersession-gate | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-90-ci-readability-gitignored-artifact | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-91-hollow-deliverable-detection | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-92-plan-body-substance-gate | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-93-plan-completion-drift-gate | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-95-lint-wiring-meta-gate | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-96-screen-db-projection | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-98-handover-outstanding-reconciliation | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-99-sub-doc-catalog-drift-gate | refactor | No Reverse link or no-backprop decision recorded. |
-| PLAN-L7-100-standard-deliverable-section-structure | troubleshoot | No Reverse link or no-backprop decision recorded. |
+| PLAN-L7-05-biome-debt | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-68-provider-dispatch-portability | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-69-encoding-corruption-expanded-guard | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-73-claude-native-semver-resolution | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-74-task-risk-whole-word-match | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-76-review-remediation-reliability | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-77-codex-stdin-prompt-dispatch | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-78-claude-stdin-prompt-dispatch | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-79-mcp-launcher-argv-tokenization | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-80-session-digest-event-watermark | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-81-codex-wrapper-parity-gate | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-83-handover-drift-and-accumulation | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-85-review-readonly-guard | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-86-merged-plan-status-deliverable-scope | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-87-merged-plan-status-kind-independent | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-88-handover-summary-injection-cap | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-89-plan-errata-supersession-gate | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-90-ci-readability-gitignored-artifact | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-91-hollow-deliverable-detection | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-92-plan-body-substance-gate | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-93-plan-completion-drift-gate | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-95-lint-wiring-meta-gate | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-96-screen-db-projection | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-98-handover-outstanding-reconciliation | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-99-sub-doc-catalog-drift-gate | refactor | Reverse link または no-backprop 判断が未記録。 |
+| PLAN-L7-100-standard-deliverable-section-structure | troubleshoot | Reverse link または no-backprop 判断が未記録。 |
 
 ## Resolution (2026-06-24)
 
-25 of the 26 legacy entries above were dispositioned by recording
-`backprop_decision: not_required` plus a concrete reason in each PLAN: every one
-is internal harness self-application tooling (lint gate / runtime dispatch /
-guard / governance mechanism) that hardens the harness's own enforcement and
-does not change the product's external requirement / design / test-design
-contract, so there is no upstream backprop target. After this, the
-`backfill-pairing` advisory `conditional kind may require Reverse` no longer
-lists them.
+上記 26 件の legacy entry のうち 25 件は、各 PLAN に
+`backprop_decision: not_required` と具体的な理由を記録して disposition 済みである。いずれも
+harness 内部の self-application tooling (lint gate / runtime dispatch /
+guard / governance mechanism) であり、harness 自身の enforcement を harden するが、product の external requirement / design / test-design
+contract は変えない。そのため upstream backprop target は無い。これ以降、
+`backfill-pairing` advisory の `conditional kind may require Reverse` はこれらを列挙しない。
 
-The remaining entry, `PLAN-L7-96-screen-db-projection`, is intentionally left
-open here: it belongs to the central-UI / screen work slated for discard and
-requirements re-issue, and is resolved under that effort (archive removes it
-from the active-plan scan).
+残る `PLAN-L7-96-screen-db-projection` は意図的にここで open のまま残す。これは discard と
+requirements re-issue が予定されている central-UI / screen work に属し、その取り組みの中で解消する
+(archive により active-plan scan から外れる)。
 
-The table rows are retained so the `legacyAuditGaps` allowlist↔audit sync check
-stays green; they record historical baseline, not open debt.
+表の row は `legacyAuditGaps` allowlist↔audit sync check を green に保つために残す。これらは open debt ではなく historical baseline を記録する。
 
-## Current Remediation
+## 現在の是正
 
-`src/lint/backfill-pairing.ts` treats the table above as the legacy baseline and
-fails any new conditional-kind PLAN without either Reverse back-fill or an
-explicit no-backprop decision.
+`src/lint/backfill-pairing.ts` は上記の表を legacy baseline として扱い、Reverse back-fill または明示的な no-backprop decision を持たない新規 conditional-kind PLAN を fail させる。

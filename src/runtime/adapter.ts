@@ -224,8 +224,17 @@ function isWindowsCommandScript(command: string): boolean {
   return /\.(cmd|bat)$/i.test(command);
 }
 
-function quoteCmdArg(arg: string): string {
-  return `"${arg.replace(/"/g, '\\"')}"`;
+const WINDOWS_CMD_UNSAFE_TOKEN_PATTERN = /[\u0000\r\n"&|<>^%!]/;
+
+function assertWindowsCmdTokenSafe(token: string, label: string): void {
+  if (WINDOWS_CMD_UNSAFE_TOKEN_PATTERN.test(token)) {
+    throw new Error(`${label} contains unsafe characters for Windows command shell wrapping`);
+  }
+}
+
+function quoteCmdArg(arg: string, label = "argument"): string {
+  assertWindowsCmdTokenSafe(arg, label);
+  return `"${arg}"`;
 }
 
 export function buildProviderInvocation(input: ProviderInvocationInput): ProviderInvocation {
@@ -234,7 +243,10 @@ export function buildProviderInvocation(input: ProviderInvocationInput): Provide
   const resolved = resolveProviderCommand(provider, command, opts);
   if (platform === "win32" && isWindowsCommandScript(resolved)) {
     return {
-      command: [quoteCmdArg(resolved), ...args.map(quoteCmdArg)].join(" "),
+      command: [
+        quoteCmdArg(resolved, "command"),
+        ...args.map((arg, index) => quoteCmdArg(arg, `argument ${index + 1}`)),
+      ].join(" "),
       args: [],
       shell: true,
     };

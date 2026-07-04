@@ -32,15 +32,19 @@ export type TaskDifficulty = z.infer<typeof taskDifficultySchema>;
 export const reasoningEffortSchema = z.enum(["low", "medium", "high"]);
 export type ReasoningEffort = z.infer<typeof reasoningEffortSchema>;
 
+const SAFE_PROVIDER_MODEL_ID_PATTERN = /^(gpt|claude|codex)-[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+const MODEL_FAMILY_ALIASES = ["haiku", "sonnet", "opus", "local"] as const;
+
 export const modelOverrideSchema = z
   .string()
   .min(1)
   .refine(
     (model) =>
-      /^(gpt-|claude-|codex-)/.test(model) || ["haiku", "sonnet", "opus", "local"].includes(model),
+      SAFE_PROVIDER_MODEL_ID_PATTERN.test(model) ||
+      MODEL_FAMILY_ALIASES.includes(model as (typeof MODEL_FAMILY_ALIASES)[number]),
     {
       message:
-        "model must be a known provider model id or family alias: gpt-*, claude-*, codex-*, haiku, sonnet, opus, or local",
+        "model must be a safe provider model id or family alias: gpt-*, claude-*, codex-* using only letters, digits, dot, underscore, hyphen; or haiku, sonnet, opus, local",
     },
   );
 export type ModelOverride = z.infer<typeof modelOverrideSchema>;

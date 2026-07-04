@@ -4,71 +4,71 @@ layer: L6
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# DDD/TDD Rules SSoT
+# DDD/TDD ルール SSoT
 
-This document is the requirements-level SSoT for DDD and TDD strictness in the UT-TDD harness. It complements `docs/governance/coding-rules.md`: coding rules constrain TypeScript implementation shape, while this document constrains domain boundaries, invariant trace, TDD evidence, test oracle strength, and integration-test granularity.
+この文書は、UT-TDD harness における DDD / TDD strictness の requirements-level SSoT である。`docs/governance/coding-rules.md` を補完し、coding rules が TypeScript 実装形状を制約する一方で、この文書は domain boundary、invariant trace、TDD evidence、test oracle strength、integration-test granularity を制約する。
 
-## Rules
+## ルール
 
 ```yaml
 ddd_tdd_rules:
   - id: domain-boundary
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: source modules must not import higher-level runtime or CLI modules across governance/domain boundaries.
+    intent: source module は governance/domain boundary をまたいで上位 runtime または CLI module を import してはならない。
   - id: invariant-test-trace
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: every declared domain invariant must name an L7 U-* oracle.
+    intent: 宣言されたすべての domain invariant は L7 U-* oracle を明示しなければならない。
   - id: red-first-evidence
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: confirmed TDD PLANs marked tdd_red_required must record red_at and green_at in chronological order.
+    intent: tdd_red_required が付いた confirmed TDD PLAN は red_at と green_at を時系列順に記録しなければならない。
   - id: test-oracle-strength
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: test cases must contain explicit expect/assert oracles and must not rely only on truthiness checks.
+    intent: test case は明示的な expect/assert oracle を含まなければならず、truthiness check だけに依存してはならない。
   - id: integration-gwt
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: L8 IT-* rows must carry Given/When/Then granularity.
+    intent: L8 IT-* 行は Given/When/Then 粒度を持たなければならない。
   - id: unit-oracle-substance
     enforcement: hard
     owner: src/lint/ddd-tdd-rules.ts
-    intent: L7 unit test-design U-*-NNN rows must describe a real expected behavior (non-skeleton), not only a link/citation (IMP-083 residual).
+    intent: L7 unit test-design の U-*-NNN 行は、link/citation だけでなく実質的な expected behavior (non-skeleton) を記述しなければならない (IMP-083 residual)。
 ```
 
-## Domain Boundary Map
+## Domain Boundary Map / ドメイン境界マップ
 
-| Source area | Allowed direction | Forbidden examples |
+| Source area | 許可される方向 | 禁止例 |
 |---|---|---|
-| `src/lint/**` | governance lint may read docs/source text and return pure findings | importing `src/runtime/**`, `src/doctor/**`, or CLI orchestration |
-| `src/runtime/**` | runtime state/logging may call lower-level helpers and schema | importing governance lint or V-model checker modules |
-| `src/schema/**` | schema is a lower-level contract package | importing feature, runtime, lint, or CLI modules |
+| `src/lint/**` | governance lint は docs/source text を読み、pure findings を返してよい | `src/runtime/**`、`src/doctor/**`、または CLI orchestration の import |
+| `src/runtime/**` | runtime state/logging は下位 helper と schema を呼び出してよい | governance lint または V-model checker module の import |
+| `src/schema/**` | schema は下位の contract package である | feature、runtime、lint、または CLI module の import |
 
-Boundary checks are intentionally conservative. When a shared type is needed across two areas, move it to a lower-level module rather than importing upward.
+Boundary check は意図的に保守的である。2 つの area 間で shared type が必要な場合は、上向きに import するのではなく下位 module へ移す。
 
-## Invariants
+## Invariants / 不変条件
 
-- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain modules remain acyclic and lower-level contracts do not depend on higher-level runtime orchestration.
-- id: DDD-INV-002 oracle: U-DDDTDD-002 - Domain invariant declarations are not accepted unless the L7 test-design artifact carries an explicit U-* oracle.
-- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence is Red-first: `red_at <= green_at` for confirmed plans that require TDD evidence.
-- id: DDD-INV-004 oracle: U-DDDTDD-004 - Unit tests expose a concrete oracle, not only execution without assertions or truthiness checks.
-- id: DDD-INV-005 oracle: U-DDDTDD-005 - Integration tests are confirmable at Given/When/Then granularity.
+- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain module は acyclic を保ち、下位 contract は上位 runtime orchestration に依存しない。
+- id: DDD-INV-002 oracle: U-DDDTDD-002 - Domain invariant declaration は、L7 test-design artifact が明示的な U-* oracle を持つ場合にのみ受理される。
+- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence は Red-first である: TDD evidence を要求する confirmed plan では `red_at <= green_at` を満たす。
+- id: DDD-INV-004 oracle: U-DDDTDD-004 - Unit test は assertion なしの実行や truthiness check だけでなく、具体的な oracle を露出する。
+- id: DDD-INV-005 oracle: U-DDDTDD-005 - Integration test は Given/When/Then 粒度で confirm 可能である。
 
-## Workflow Placement
+## Workflow Placement / ワークフロー上の位置づけ
 
-- Forward L6: define or update domain boundaries, invariants, and rule IDs before L7 implementation begins.
-- Add-feature `add-design`: every feature that changes domain boundaries, invariants, workflow evidence, or test granularity must update this SSoT or explicitly state no impact.
-- L7 Red: `add-impl` plans that require TDD must record Red-first evidence before review evidence can be treated as freeze-ready.
-- L8 integration: every IT-* row must use Given/When/Then; placeholder integration rows are carry only and cannot be counted as confirmable.
-- Quantitative vs qualitative split: mechanical checks (`vitest`, `doctor`, lint) must run before qualitative review; critical DDD/TDD points must carry both quantitative evidence and agent/human review evidence.
-- Doctor/CI: `checkDddTddRules` runs in `ut-tdd doctor` and in the shared harness check pipeline through the doctor command.
+- Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。
+- Add-feature `add-design`: domain boundary、invariant、workflow evidence、または test granularity を変更するすべての feature は、この SSoT を更新するか、影響なしを明示しなければならない。
+- L7 Red: TDD を要求する `add-impl` plan は、review evidence を freeze-ready と扱う前に Red-first evidence を記録しなければならない。
+- L8 integration: すべての IT-* 行は Given/When/Then を使わなければならない。placeholder integration 行は carry のみであり、confirmable として数えてはならない。
+- Quantitative vs qualitative split: mechanical check (`vitest`、`doctor`、lint) は qualitative review より先に実行しなければならない。critical DDD/TDD point は quantitative evidence と agent/human review evidence の両方を持たなければならない。
+- Doctor/CI: `checkDddTddRules` は `ut-tdd doctor` と、doctor command 経由の shared harness check pipeline で実行される。
 
-## Machine Check Contract
+## Machine Check Contract / 機械検査契約
 
-`src/lint/ddd-tdd-rules.ts` loads this document, workflow docs, `src/**/*.ts`, `tests/**/*.ts`, PLAN docs, and the L7/L8 test-design docs. It returns deterministic violations for rule drift, workflow anchor drift, boundary drift, invariant oracle gaps, missing Red-first evidence, weak test oracles, and missing GWT integration granularity.
+`src/lint/ddd-tdd-rules.ts` は、この文書、workflow docs、`src/**/*.ts`、`tests/**/*.ts`、PLAN docs、L7/L8 test-design docs を load する。rule drift、workflow anchor drift、boundary drift、invariant oracle gap、Red-first evidence 欠落、weak test oracle、GWT integration granularity 欠落に対して deterministic violation を返す。
 
-## Baseline Debt
+## Baseline Debt / ベースライン debt
 
-No active DDD/TDD baseline debt is registered. The analyzer supports exact `path:line rule` baseline keys for future staged hardening, but current repo guard is clean without suppressions.
+Active な DDD/TDD baseline debt は登録されていない。Analyzer は将来の staged hardening のために exact `path:line rule` baseline key を support するが、現在の repo guard は suppression なしで clean である。

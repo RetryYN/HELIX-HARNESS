@@ -626,7 +626,7 @@ SECURITY.md(脆弱性報告窓口)
 
 .gitignore(言語別)
 
-.github/pull_request_template.md
+.github/pull_request_template.md(PR テンプレート)
 
 .github/dependabot.yml
 
@@ -745,18 +745,18 @@ AI実装・保守の増員(並列度を上げる)
 | AI実装・保守 | AI実装の品質判断と運用を担う役割 |
 | TL | Tech Lead。技術責任者 |
 | QA | Quality Assurance。品質責任者 |
-| SAST | Static Application Security Testing |
-| SCA | Software Composition Analysis |
-| DAST | Dynamic Application Security Testing |
-| SBOM | Software Bill of Materials |
+| SAST | 静的アプリケーションセキュリティテスト |
+| SCA | ソフトウェア構成解析 |
+| DAST | 動的アプリケーションセキュリティテスト |
+| SBOM | ソフトウェア部品表 |
 | Bus Factor | 何人いなくなったらプロジェクトが止まるかの指標 |
 | DORA メトリクス | ソフトウェア開発組織のパフォーマンス指標 |
 | IaC | Infrastructure as Code |
-| WAF | Web Application Firewall |
-| MFA | Multi-Factor Authentication |
-| RBAC | Role-Based Access Control |
-| IRP | Incident Response Plan |
-| BCP | Business Continuity Plan |
+| WAF | Web application firewall。アプリケーション層の防御機構 |
+| MFA | 多要素認証 |
+| RBAC | 役割ベースのアクセス制御 |
+| IRP | インシデント対応計画 |
+| BCP | 事業継続計画 |
 | ZDR | Zero Data Retention。データ非保持契約 |
 
 # 付録B. 整備すべきファイル一覧
@@ -786,5 +786,4 @@ AI実装・保守の増員(並列度を上げる)
 | 1.0 | ____-__-__ | 初版 | ____ |
 |  |  |  |  |
 |  |  |  |  |
-
 

@@ -177,6 +177,31 @@ describe("runtime adapter plan", () => {
     }
   });
 
+  it("U-ADAPTER-009: rejects unsafe argv before Windows command-script shell wrapping", () => {
+    const root = mkdtempSync(join(tmpdir(), "ut-adapter-cmd-unsafe-"));
+    try {
+      const explicit = join(root, "codex.cmd");
+      writeFileSync(explicit, "");
+
+      expect(() =>
+        buildProviderInvocation({
+          provider: "codex",
+          command: "codex",
+          args: ["exec", "-m", "gpt-5.4 & calc", "-"],
+          opts: {
+            platform: "win32",
+            env: {
+              SystemRoot: "C:\\Windows",
+              UT_TDD_CODEX_BIN: explicit,
+            },
+          },
+        }),
+      ).toThrow(/unsafe characters/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-ADAPTER-005: picks the semver-newest native Claude, not the lexicographic-largest (A-137 #6)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-adapter-claude-ver-"));
     try {

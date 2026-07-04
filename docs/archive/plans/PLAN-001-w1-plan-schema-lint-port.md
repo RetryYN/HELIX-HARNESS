@@ -52,7 +52,7 @@ dependencies:
     - PLAN-002
     - PLAN-006
 related_docs:
-  - docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md
+  - docs/governance/helix-agent-harness-extraction-plan_v0.1.md
   - docs/migration/helix-porting-map.md
   - docs/migration/helix-source-inventory.md
 finalized: 2026-05-22
@@ -228,7 +228,7 @@ UT-TDD Agent Harness の最優先 wave（W1）として、HELIX snapshot の `cl
 - 関連 PLAN: なし（本 PLAN が初回）
 - 後続 blocks: PLAN-002（W2 vmodel lint）、PLAN-006（W6 doctor）
 - 参照 docs:
-  - `docs/governance/ut-tdd-agent-harness-extraction-plan_v0.1.md` §切り出し順 Step 4-5
+  - `docs/governance/helix-agent-harness-extraction-plan_v0.1.md` §切り出し順 Step 4-5
   - `docs/migration/helix-porting-map.md` Wave W1 行
   - `docs/migration/helix-source-inventory.md`
-  - `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md` VALID_* テーブル
+  - `docs/governance/helix-agent-harness-requirements_v1.1.md` VALID_* テーブル

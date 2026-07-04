@@ -1,21 +1,21 @@
-# UT-TDD Coding Rules
+# UT-TDD コーディング規則
 
-This document is the coding-rule SSoT for the TypeScript/Bun core.
-Requirements reference: `docs/governance/ut-tdd-agent-harness-requirements_v1.2.md` §7.6.1.
-Executable gate: `src/lint/coding-rules.ts` through `ut-tdd doctor`.
+この文書は TypeScript/Bun core に対する coding-rule の SSoT である。
+requirements reference: `docs/governance/helix-agent-harness-requirements_v1.2.md` §7.6.1。
+Executable gate: `src/lint/coding-rules.ts` を通じた `ut-tdd doctor`。
 
-## Workflow Placement
+## Workflow Placement / ワークフロー上の位置づけ
 
-Coding-rule documentation is a workflow step, not an after-the-fact CI note.
+coding-rule の文書化は、事後の CI メモではなく workflow の一工程である。
 
-- Forward L6: before G6/G7 handoff, confirm `docs/governance/coding-rules.md` is unchanged and still applicable, or update it with the function design delta.
-- Add-feature: the `add-design` PLAN records coding-rule impact; `add-impl` starts only after the rule impact is either `unchanged` or reflected in this SSoT and paired U-CODE tests.
-- Refactor / Retrofit / Recovery / Reverse fullback: any change to implementation language, lint tool, naming, typing, error-handling style, or generated-code boundary updates this SSoT before implementation freeze.
-- Review: `bun run typecheck`, `bun run lint`, `npx vitest run`, and `ut-tdd doctor` must be green before reviewer approval.
+- Forward L6: G6/G7 handoff の前に、`docs/governance/coding-rules.md` が未変更で今も適用可能かを確認し、必要なら function design delta を反映して更新する。
+- Add-feature: `add-design` PLAN が coding-rule への影響を記録し、`add-impl` は rule impact が `unchanged` であるか、この SSoT と対応する U-CODE tests に反映済みである場合にのみ開始する。
+- Refactor / Retrofit / Recovery / Reverse fullback: implementation language、lint tool、naming、typing、error-handling style、generated-code boundary のいずれかを変更したら、implementation freeze の前にこの SSoT を更新する。
+- Review: reviewer approval の前に `bun run typecheck`、`bun run lint`、`npx vitest run`、`ut-tdd doctor` が green でなければならない。
 
-## Machine Policy
+## 機械方針
 
-The following block is machine-read by `loadCodingRulePolicy`. Rule IDs must match the lint implementation.
+以下の block は `loadCodingRulePolicy` により machine-read される。Rule IDs は lint implementation と一致していなければならない。
 
 ```yaml
 coding_rules:
@@ -56,13 +56,12 @@ coding_rules:
       description: "Machine-facing CLI, doctor, lint, gate, JSON, env, status, and oracle surfaces must use stable ASCII English decision tokens."
 ```
 
-## Machine Surface Language
+## 機械向け表現
 
-Machine-readable and machine-parsed surfaces use stable ASCII English tokens.
-Human prose may be Japanese, but the decision word that tools, agents, logs, and
-tests rely on must not depend on Japanese text or symbols.
+Machine-readable / machine-parsed な surface では、安定した ASCII English tokens を使う。
+Human prose は Japanese でよいが、tools、agents、logs、tests が依拠する decision word は Japanese text や symbols に依存してはならない。
 
-Required ASCII decision tokens include:
+必須の ASCII decision tokens は次を含む。
 
 - `OK`
 - `violation`
@@ -72,15 +71,12 @@ Required ASCII decision tokens include:
 - `error`
 - `ready` / `not ready`
 
-This applies to CLI output, `doctor` messages, lint/gate messages, JSON keys,
-environment variable names, rule IDs, oracle IDs, status words, and test
-assertions over those surfaces. Japanese explanation may follow the token, but
-the token itself remains ASCII.
+これは CLI output、`doctor` messages、lint/gate messages、JSON keys、environment variable names、rule IDs、oracle IDs、status words、そしてそれらの surface に対する test assertions に適用される。Japanese explanation を token の後ろに続けてもよいが、token 自体は ASCII のままでなければならない。
 
-## Human Notes
+## 人間向けメモ
 
-- `bun run typecheck`, `bun run lint`, `npx vitest run`, and `ut-tdd doctor` are the minimum verification set for TypeScript core changes.
-- Test helper arity is not capped by `max-source-params`; tests still obey no-any, no suppression comments, and naming rules.
-- Fail-open is allowed only when the catch block returns/records explicit state or documents the fail-open intent in-place; silent catch blocks and rethrow-only catch blocks are not exceptions.
-- Boundary rules are intentionally minimal in v2: `lint` stays pure, `runtime` stays below governance checks, and `schema` stays below feature modules.
-- Exceptions are not inline comments. Add a policy PLAN first, then update this SSoT and the lint tests together.
+- `bun run typecheck`、`bun run lint`、`npx vitest run`、`ut-tdd doctor` は、TypeScript core 変更に対する最小の verification set である。
+- Test helper の arity は `max-source-params` の上限対象外である。tests は引き続き no-any、no suppression comments、naming rules に従う。
+- Fail-open が許されるのは、catch block が explicit state を返すか記録する場合、または fail-open intent をその場で明記する場合に限る。silent catch blocks と rethrow-only catch blocks は例外ではない。
+- Boundary rules は v2 では意図的に最小限である。`lint` は pure のまま、`runtime` は governance checks より下、`schema` は feature modules より下に置く。
+- Exceptions は inline comments ではない。まず policy PLAN を追加し、その後この SSoT と lint tests を同時に更新する。

@@ -1,9 +1,9 @@
 # UT-TDD-agent-harness 要件定義書
 
-> **⚠️ Superseded (2026-05-27)**: 本書は **`ut-tdd-agent-harness-requirements_v1.2.md` に置き換えられた旧版**。現行正本ではない。v1.2 で L0-L14 + W-model / 9-mode / 配線要件 / 実装言語 = TypeScript (ADR-001) を反映。参照は v1.2 を使うこと。本書は履歴として残置。
+> **⚠️ Superseded (2026-05-27)**: 本書は **`helix-agent-harness-requirements_v1.2.md` に置き換えられた旧版**。現行正本ではない。v1.2 で L0-L14 + W-model / 9-mode / 配線要件 / 実装言語 = TypeScript (ADR-001) を反映。参照は v1.2 を使うこと。本書は履歴として残置。
 
 - **Version**: 1.1
-- **対応構想書**: `ut-tdd-agent-harness-concept_v3.0.md`
+- **対応構想書**: `helix-agent-harness-concept_v3.0.md`
 - **位置付け**: 要件定義 (L1-L2 受入条件層)
 - **想定読者**: Phase 0 Bootstrap 担当 (AI 実装エージェント + TL)
 - **対象 OS**:
@@ -1400,8 +1400,8 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 │   ├── governance/                               # A
 │   │   ├── ai-dev-team-concept_v1.1.md           # A (構想書 v1.1)
 │   │   ├── ai-dev-team-operations_v1.1.md       # A (運用ルール書 v1.1)
-│   │   ├── ut-tdd-agent-harness-concept_v3.0.md  # A (構想書 v3.0)
-│   │   └── ut-tdd-agent-harness-requirements_v1.1.md  # A (本書)
+│   │   ├── helix-agent-harness-concept_v3.0.md  # A (構想書 v3.0)
+│   │   └── helix-agent-harness-requirements_v1.1.md  # A (本書)
 │   ├── plans/                                    # A (ディレクトリのみ)
 │   │   └── PLAN-NNN-*.md                         # G
 │   ├── design/                                   # A (ディレクトリのみ)
@@ -1554,4 +1554,4 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 
 ---
 
-**本書は UT-TDD-agent-harness の要件定義書である。構想 (WHY/WHAT) は `ut-tdd-agent-harness-concept_v3.0.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**
+**本書は UT-TDD-agent-harness の要件定義書である。構想 (WHY/WHAT) は `helix-agent-harness-concept_v3.0.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**

@@ -33,8 +33,8 @@ dependencies:
   blocks: []
 related_adr: []
 related_docs:
-  - docs/governance/ut-tdd-agent-harness-requirements_v1.1.md
-  - docs/migration/helix-to-ut-tdd-cutover-strategy.md
+  - docs/governance/helix-agent-harness-requirements_v1.1.md
+  - docs/migration/helix-identifier-cutover-strategy.md
   - docs/migration/helix-porting-map.md
 ---
 
@@ -152,8 +152,8 @@ W2 範囲外として明示 carry:
 - 関連 PLAN: PLAN-001-w1-plan-schema-lint-port (W1, requires)、PLAN-002-b (coverage ≥80% 検証、carry)、PLAN-002-c (G3.8 pytest collection 検証、carry)、PLAN-002-d (vmodel_loader + vmodel-semantics.yaml port、Sprint .1 解析で削減、必要になったら carry)
 - 関連 ADR: なし
 - 参照 docs:
-  - `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md` §2.1-2.7 / §7.3
-  - `docs/migration/helix-to-ut-tdd-cutover-strategy.md` Mode 1
+  - `docs/governance/helix-agent-harness-requirements_v1.1.md` §2.1-2.7 / §7.3
+  - `docs/migration/helix-identifier-cutover-strategy.md` Mode 1
   - `docs/migration/helix-porting-map.md` W2 行 (35行目)
 
 ## §6 carry 記録

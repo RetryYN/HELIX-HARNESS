@@ -39,8 +39,8 @@ dependencies:
   blocks: []
 related_adr: []
 related_docs:
-  - docs/governance/ut-tdd-agent-harness-requirements_v1.1.md
-  - docs/migration/helix-to-ut-tdd-cutover-strategy.md
+  - docs/governance/helix-agent-harness-requirements_v1.1.md
+  - docs/migration/helix-identifier-cutover-strategy.md
   - docs/migration/helix-porting-map.md
 ---
 
@@ -150,8 +150,8 @@ UT-TDD `ut-tdd skill suggest` (§7.2) の母集団を作る rule-based catalog e
 - 関連 PLAN: PLAN-001 (requires)、PLAN-002 (requires)、PLAN-003 (requires)、PLAN-005-w3b-b-skill-llm-port (本 PLAN-004 後段、未起票)
 - 関連 ADR: なし
 - 参照 docs:
-  - `docs/governance/ut-tdd-agent-harness-requirements_v1.1.md` §7.1 (capability class) / §7.2 (skill suggest) を参照
-  - `docs/migration/helix-to-ut-tdd-cutover-strategy.md` Mode 1
+  - `docs/governance/helix-agent-harness-requirements_v1.1.md` §7.1 (capability class) / §7.2 (skill suggest) を参照
+  - `docs/migration/helix-identifier-cutover-strategy.md` Mode 1
   - `docs/migration/helix-porting-map.md` W3 行
 
 ## §6 carry 記録
