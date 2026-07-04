@@ -30,7 +30,7 @@
 ## P1 carry (G4 non-blocker、freeze 後に解消)
 
 - commander/oclif の ADR 追記 (IMP-070)
-- mode taxonomy reconcile: L0 §2.5「9-mode」vs function §3「10-mode」(IMP-069)
+- mode taxonomy の整合: L0 §2.5「9-mode」vs function §3「10-mode」(IMP-069)
 - SubDoc enum の src/schema 未実装 (IMP-026、既存)
 
 ## Next

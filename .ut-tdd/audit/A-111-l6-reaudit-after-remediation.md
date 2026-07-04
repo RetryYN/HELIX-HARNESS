@@ -1,10 +1,10 @@
 # A-111 L6 Re-Audit After Remediation (再レビュー / 合否確定)
 
-Date: 2026-06-09
-Gate: G6 (re-review of A-110 conditions)
-Auditor: Claude Opus (PM) + pmo-sonnet (substance) + code-reviewer (independent cross-check)
-Scope: A-110 で CONDITIONAL PASS とした MUST/SHOULD の解消検証。
-**Verdict: PASS (合格)** — A-110 の条件 (MUST-1 / MUST-2) は解消、SHOULD-3/4 も対応。残件は freeze blocker でない hardening 2 件。
+日付: 2026-06-09
+Gate: G6 (A-110 conditions の re-review)
+監査者: Claude Opus (PM) + pmo-sonnet (substance) + code-reviewer (independent cross-check)
+範囲: A-110 で CONDITIONAL PASS とした MUST/SHOULD の解消検証。
+**判定: PASS (合格)** — A-110 の条件 (MUST-1 / MUST-2) は解消、SHOULD-3/4 も対応。残件は freeze blocker でない hardening 2 件。
 
 ## A-110 指摘の解消状況
 

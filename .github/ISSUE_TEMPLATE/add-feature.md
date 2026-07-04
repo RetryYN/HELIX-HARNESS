@@ -6,7 +6,7 @@ labels: add-feature
 
 ## 追加する機能 (一言)
 
-## drive (be / fe / fullstack / db / agent)
+## 駆動分類 (be / fe / fullstack / db / agent)
 
 ## 受け入れ条件 (AC 候補)
 

@@ -1,10 +1,10 @@
 # A-110 L6 Independent Re-Audit (合否判定)
 
-Date: 2026-06-09
-Gate: G6 (re-audit of A-109)
-Auditor: Claude Opus (PM) + 5× pmo-sonnet substance reviewers (read-only)
-Scope: 全 L6 機能設計 (`docs/design/harness/L6-function-design/*.md` 18 doc) + L7 pair + 機械チェック + traceability。
-**Verdict: CONDITIONAL PASS (条件付き合格)** — A-109 の unconditional PASS を **条件付き**へ訂正。
+日付: 2026-06-09
+Gate: G6 (A-109 の re-audit)
+監査者: Claude Opus (PM) + pmo-sonnet substance reviewers 5 名 (read-only)
+範囲: 全 L6 機能設計 (`docs/design/harness/L6-function-design/*.md` 18 doc) + L7 pair + 機械チェック + traceability。
+**判定: CONDITIONAL PASS (条件付き合格)** — A-109 の unconditional PASS を **条件付き**へ訂正。
 
 ## 方法
 
