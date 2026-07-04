@@ -1,4 +1,4 @@
-# UT-TDD リポジトリ構成ルール (Repository Structure)
+# HELIX リポジトリ構成ルール (Repository Structure)
 
 - **Status**: accepted
 - **Date**: 2026-05-27
@@ -10,7 +10,7 @@
 ## 1. canonical ツリー
 
 ```text
-UT-TDD-agent-harness/
+HELIX-HARNESS/
 ├── CLAUDE.md                     # Claude Code project context (正本ナビ)
 ├── AGENTS.md                     # Codex CLI project rules
 ├── .codex/                       # Codex CLI project-local config / hooks (trusted project layer)
