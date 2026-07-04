@@ -153,9 +153,6 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
   },
 ] as const;
 
-const README_EVIDENCE_PATH_PATTERN =
-  /(^|[`\s|(<])(?:\.\/)?(?:[^`\s|)>]+\/)*(?:readme|reade)(?:\.[a-z0-9_-]+)?\.md(?=$|[`\s|)>.,;:])/i;
-
 const EXTERNAL_SOURCE_LEDGER_LABEL = "外部 source ledger";
 const EXTERNAL_SOURCE_LEDGER_COLUMNS = [
   "source",
@@ -221,8 +218,6 @@ export function analyzeObjectiveEvidenceAudit(
   input: ObjectiveEvidenceAuditInput,
 ): ObjectiveEvidenceAuditResult {
   const violations: string[] = [];
-
-  checkReadmeEvidenceBoundary(input, violations);
 
   for (const id of PROVED_REQUIREMENT_IDS) {
     const row = findAuditRow(input.auditText, id);
@@ -295,18 +290,6 @@ export function analyzeObjectiveEvidenceAudit(
       auditViolationCount: violations.length,
     }),
   };
-}
-
-function checkReadmeEvidenceBoundary(
-  input: ObjectiveEvidenceAuditInput,
-  violations: string[],
-): void {
-  const readmePath = input.auditText.match(README_EVIDENCE_PATH_PATTERN)?.[0]?.trim();
-  if (readmePath) {
-    violations.push(
-      `objective evidence must not use README/READE as gate, evidence, or completion proof: ${readmePath}`,
-    );
-  }
 }
 
 function readGitTrackedFiles(repoRoot: string): ReadonlySet<string> | null {

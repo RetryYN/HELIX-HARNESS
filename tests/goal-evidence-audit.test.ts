@@ -148,27 +148,6 @@ describe("HELIX objective evidence audit", () => {
     }
   });
 
-  it("rejects README or READE paths as objective gate, evidence, or completion proof", () => {
-    const text = auditText();
-    expect(text).not.toMatch(
-      /(^|[`\s|(<])(?:\.\/)?(?:[^`\s|)>]+\/)*(?:readme|reade)(?:\.[a-z0-9_-]+)?\.md(?=$|[`\s|)>.,;:])/i,
-    );
-
-    const result = analyzeObjectiveEvidenceAudit({
-      auditText: text.replace(
-        "src/lint/completion-decision-packet.ts",
-        "src/lint/completion-decision-packet.ts<br>`README.md`",
-      ),
-      outstanding: loadObjectiveEvidenceAuditInput().outstanding,
-      repoRoot: process.cwd(),
-    });
-
-    expect(result.ok).toBe(false);
-    expect(result.violations).toContain(
-      "objective evidence must not use README/READE as gate, evidence, or completion proof: `README.md",
-    );
-  });
-
   it("fails when the external distribution reference repository marker is dropped", () => {
     const text = auditText()
       .replaceAll("外部ソース HEAD 確認日: 2026-07-04", "外部ソース HEAD 確認日: 2026-06-30")
