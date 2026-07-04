@@ -805,6 +805,15 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 |------|------|--------------|
 | U-ADAPTER-010 | `normalizeProviderEffort` / `buildAdapterPlan` | `middle` は `medium`、`xhigh` は `high` に正規化され、Claude adapter の `--effort` argv と `CLAUDE_CODE_EFFORT_LEVEL` env、`AdapterPlan.effort` は正規化後の値だけを持つ。空 effort は undefined、大小文字と周辺空白は吸収する。 |
 
+### 2026-07-05 Toolchain Pin Oracle 検査 (PLAN-L7-319)
+
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-TOOLCHAIN-PIN-001 | `analyzeToolchainPin` | `package.json.engines.bun` が concrete semver range、`bun.lock` または `bun.lockb` が存在、workflow / template の `bun install` が `bun install --frozen-lockfile` であれば `ok=true` になる。consumer template は既存 setup 契約のため `setup-bun.with` 不在を許可する。 |
+| U-TOOLCHAIN-PIN-002 | `analyzeToolchainPin` | Bun engine が `latest` / wildcard、lockfile 欠落、`bun install` が frozen でない、source `harness-check.yml` の `bun-version` 欠落は fail-close finding になる。 |
+| U-TOOLCHAIN-PIN-003 | `analyzeToolchainPin` | source `harness-check.yml` の `setup-bun` `bun-version` が `package.json.engines.bun` の floor と major/minor でずれた場合、source CI の toolchain drift として fail-close する。 |
+| U-TOOLCHAIN-PIN-004 | `checkToolchainPin` / `ut-tdd doctor` | 現行 repo は source package の Bun engine、lockfile、frozen install、source harness-check bun-version 整合を満たし、doctor hard gate と `lint-wiring` の到達性検査を通る。 |
+
 ### 2026-06-15 PoC Success Measurement Oracle 検査 (FR-L1-43, PLAN-L7-53)
 
 | U-ID | 関数 | oracle (DbC) |

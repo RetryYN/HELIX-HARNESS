@@ -8,8 +8,8 @@ status: draft
 created: 2026-07-04
 updated: 2026-07-04
 owner: Claude (Opus) / Codex
-parent_design: docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
-related_l0: docs/governance/ut-tdd-agent-harness-concept_v3.1.md
+parent_design: docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
+related_l0: docs/governance/helix-agent-harness-concept_v3.1.md
 agent_slots:
   - role: se
     slot_label: "SE — 小さく独立した採用項目 (provider 1行 / update-check advisory / matcher portability) を各々最小 diff で実装"
@@ -24,7 +24,7 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
 ---
 
 # PLAN-L7-319 (impl): 上流突合 小項目 roundup
@@ -64,5 +64,4 @@ coherent task boundary を保つため実装時は本 PLAN 配下で 1 項目ず
 
 ## レビュー / 次工程
 - 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §5 Tier2/Tier3。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §5 Tier2/Tier3。

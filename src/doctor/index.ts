@@ -317,6 +317,11 @@ import {
   telemetryClosureMessages,
 } from "../lint/telemetry-closure";
 import {
+  analyzeToolchainPin,
+  loadToolchainPinInput,
+  toolchainPinMessages,
+} from "../lint/toolchain-pin";
+import {
   analyzeTrackedCanonical,
   loadTrackedCanonicalInput,
   trackedCanonicalMessages,
@@ -2569,6 +2574,18 @@ export function checkLintWiring(repoRoot: string): { messages: string[]; ok: boo
   }
 }
 
+export function checkToolchainPin(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeToolchainPin(loadToolchainPinInput(repoRoot));
+    return { messages: toolchainPinMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["toolchain-pin - violation: package/toolchain files could not be scanned"],
+      ok: false,
+    };
+  }
+}
+
 /**
  * forward-convergence (fail-close, PLAN-DISCOVERY-08 Step5): spine-外 kind=impl の NEW 未集約 landed を
  * gate する。legacy debt allowlist は grandfather (ok を落とさず surface)。例外時は fail-close。
@@ -3121,6 +3138,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const rightArmVerificationStrategy = checkRightArmVerificationStrategy(deps.repoRoot);
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
+  const toolchainPin = checkToolchainPin(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
   const frontendDesignCoverage = checkFrontendDesignCoverage(deps.repoRoot);
   const handoverNextAction = checkHandoverNextActionAnchor(handoverDeps(deps));
@@ -3210,6 +3228,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       rightArmVerificationStrategy.ok &&
       g8IntegrationWorkflow.ok &&
       lintWiring.ok &&
+      toolchainPin.ok &&
       proposalDocumentCoverage.ok &&
       frontendDesignCoverage.ok &&
       greenCommandDigest.ok &&
@@ -3300,6 +3319,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...rightArmVerificationStrategy.messages.map((m) => `doctor: ${m}`),
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
+      ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),
       ...frontendDesignCoverage.messages.map((m) => `doctor: ${m}`),
       ...handoverNextAction.messages.map((m) => `doctor: ${m}`),

@@ -103,6 +103,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
       "proposal-document-coverage",
       "right-arm-verification-strategy",
       "s4-decision-readiness",
+      "toolchain-pin",
       "version-up-readiness",
     ]) {
       expect(r.wired).toContain(m);
