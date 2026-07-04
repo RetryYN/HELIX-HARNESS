@@ -24,7 +24,7 @@ dependencies:
   parent: null
   requires: []
   references:
-    - docs/governance/upstream-uttdd-reconciliation-audit-2026-07-04.md
+    - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
     - docs/design/helix/L6-function-design/upstream-substance-gap.md
 ---
 
@@ -70,5 +70,4 @@ runtime-hook provenance を自動生成しない）で、`doctor` は `model_run
 
 ## レビュー / 次工程
 - 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
-- 出典: [[upstream-uttdd-reconciliation]] audit §5 Tier2-#7 / §3.4。
-</content>
+- 出典: [[upstream-helix-reconciliation]] audit §5 Tier2-#7 / §3.4。
