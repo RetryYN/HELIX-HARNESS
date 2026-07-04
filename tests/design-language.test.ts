@@ -1,3 +1,6 @@
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeDesignLanguage,
@@ -79,5 +82,53 @@ describe("design-language lint", () => {
     expect(result.checked).toBeGreaterThan(500);
     expect(result.ok).toBe(true);
     expect(result.newViolations).toBe(0);
+  });
+
+  it("U-DESLANG-006: includes memory, templates, and feedback docs in the real repo audit", () => {
+    const paths = loadDesignLanguageDocs().map((doc) => doc.path);
+
+    expect(paths).toContain("docs/feedback-log.md");
+    expect(paths).toContain("docs/memory/README.md");
+    expect(paths).toContain("docs/templates/prompts/effort-classify.md");
+  });
+
+  it("U-DESLANG-007: detects English prose in expanded template roots", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-design-language-"));
+    try {
+      mkdirSync(join(root, "docs", "templates", "prompts"), { recursive: true });
+      mkdirSync(join(root, "docs", "memory"), { recursive: true });
+      writeFileSync(join(root, "docs", "feedback-log.md"), "# フィードバックログ\n", "utf8");
+      writeFileSync(join(root, "docs", "memory", "README.md"), "# 永続メモ\n", "utf8");
+      writeFileSync(
+        join(root, "docs", "templates", "prompts", "bad.md"),
+        "# English Prompt\n\nThis prompt is written only in English prose.\n",
+        "utf8",
+      );
+
+      const result = analyzeDesignLanguage(loadDesignLanguageDocs(root), { baselineViolations: 0 });
+
+      expect(result.ok).toBe(false);
+      expect(result.violations.map((v) => v.path)).toEqual([
+        "docs/templates/prompts/bad.md",
+        "docs/templates/prompts/bad.md",
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DESLANG-008: ignores structured record headers as machine fields", () => {
+    const result = analyzeDesignLanguage(
+      [
+        {
+          path: "docs/plans/x.md",
+          text: "cutover_decision_record:\n  allowed_outcome: approve_cutover\n\n本文は日本語で説明する。\n",
+        },
+      ],
+      { baselineViolations: 0 },
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.violations).toEqual([]);
   });
 });

@@ -42,12 +42,19 @@ const DESIGN_LANGUAGE_ROOTS = [
   join("docs", "design"),
   join("docs", "governance"),
   join("docs", "handover"),
+  join("docs", "memory"),
   join("docs", "plans"),
   join("docs", "process"),
+  join("docs", "templates"),
   join("docs", "test-design"),
 ] as const;
 
-const DESIGN_LANGUAGE_FILES = ["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")] as const;
+const DESIGN_LANGUAGE_FILES = [
+  "AGENTS.md",
+  "CLAUDE.md",
+  join(".claude", "CLAUDE.md"),
+  join("docs", "feedback-log.md"),
+] as const;
 
 const JAPANESE_PATTERN = /[\u3040-\u30ff\u3400-\u9fff]/;
 const ENGLISH_WORD_PATTERN = /\b[A-Za-z][A-Za-z'-]{2,}\b/g;
@@ -163,10 +170,19 @@ function isFrontmatterLine(line: string, inFrontmatter: boolean): boolean {
   return /^[A-Za-z0-9_-]+:/.test(line.trim()) || /^\s+-\s+/.test(line);
 }
 
+function isStructuredRecordHeader(line: string): boolean {
+  return /^[a-z][a-z0-9_]*_record:\s*$/.test(line.trim());
+}
+
+function isStructuredRecordField(line: string): boolean {
+  return /^\s+[A-Za-z0-9_-]+:/.test(line);
+}
+
 function shouldIgnoreLine(line: string, inFrontmatter: boolean): boolean {
   const trimmed = line.trim();
   if (trimmed.length === 0) return true;
   if (isFrontmatterLine(line, inFrontmatter)) return true;
+  if (isStructuredRecordHeader(line)) return true;
   if (/^[-|: ]+$/.test(trimmed)) return true;
   if (/^```/.test(trimmed)) return true;
   if (/^<!--/.test(trimmed)) return true;
@@ -185,10 +201,14 @@ export function analyzeDesignLanguage(
   for (const doc of docs) {
     let inCode = false;
     let inFrontmatter = false;
+    let inStructuredRecord = false;
     const lines = doc.text.split(/\r?\n/);
     for (let index = 0; index < lines.length; index += 1) {
       const line = lines[index];
       const trimmed = line.trim();
+      if (trimmed.length === 0) {
+        inStructuredRecord = false;
+      }
       if (index === 0 && trimmed === "---") {
         inFrontmatter = true;
         continue;
@@ -200,6 +220,14 @@ export function analyzeDesignLanguage(
       if (/^```/.test(trimmed)) {
         inCode = !inCode;
         continue;
+      }
+      if (isStructuredRecordHeader(line)) {
+        inStructuredRecord = true;
+        continue;
+      }
+      if (inStructuredRecord && isStructuredRecordField(line)) continue;
+      if (inStructuredRecord && !isStructuredRecordField(line)) {
+        inStructuredRecord = false;
       }
       if (inCode || shouldIgnoreLine(line, inFrontmatter)) continue;
       const words = countEnglishWords(line);
