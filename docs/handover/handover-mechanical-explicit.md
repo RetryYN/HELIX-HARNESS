@@ -1,6 +1,6 @@
 # Handover の mechanical / explicit 分離
 
-この文書は、A-137 以後に HELIX Agent Harness が使う handover 分離を定義する。
+この文書は、A-137 以後に HELIX-HARNESS が使う handover 分離を定義する。
 
 ## 1. Mechanical Handover（機械処理用引き継ぎ）
 

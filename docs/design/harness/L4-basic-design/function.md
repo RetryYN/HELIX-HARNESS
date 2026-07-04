@@ -15,7 +15,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **用語更新 (G.9) / 機能要求更新 (G.10) の所在**: per-工程 delta は生成元 [PLAN-L4-03](../../../plans/PLAN-L4-03-function.md) の §6/§7 に記録 (data.md/architecture.md と同規約)。
 > **V-pair**: `pair_artifact = L9-system-test-design.md` は L4 sub-doc 群の集合 pair (PLAN-L4-00-master 経由)。
 
-# HELIX Agent Harness — L4 基本設計: 機能設計 (Function)
+# HELIX-HARNESS — L4 基本設計: 機能設計 (Function)
 
 L3 functional の FR 26 件 + P1 carry 10 件を **機能 building block** (arc42 §5) に分解する (PLAN-L4-03-function)。各機能は architecture.md の module に配置され、data.md の集約を操作する。
 

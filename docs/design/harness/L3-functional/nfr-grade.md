@@ -16,7 +16,7 @@ updated: 2026-05-28
 > **scope**: L1 NFR-01〜17 (15 件、NFR-09/10 連動欠番) の IPA グレード Lv + 受入閾値 + 測定方法 + pass 条件確定。NFR-17 = 統合セキュリティ (A-54 audit 軸1 I-01 back-propagation、§5)。さらなる NFR 体系追加は L4 carry。NFR-18 (telemetry PII redaction、Phase B 新規候補) は §7.3 carry で宣言 (旧 NFR-17 を A-54 で NFR-18 にリネーム、統合セキュリティとの ID 衝突解消)。
 > **L12 接続**: 全 NFR-* に AT-* 紐付け (孤児 NFR = 0、機械検証)。
 
-# HELIX Agent Harness — L3 NFR グレード値 (nfr-grade) — IPA Lv + 受入閾値
+# HELIX-HARNESS — L3 NFR グレード値 (nfr-grade) — IPA Lv + 受入閾値
 
 ## §1 可用性 (IPA 継続性 / 耐障害性、Lv2)
 

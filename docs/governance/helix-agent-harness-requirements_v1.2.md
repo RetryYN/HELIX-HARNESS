@@ -1,4 +1,4 @@
-# HELIX Agent Harness 要件定義書
+# HELIX-HARNESS 要件定義書
 
 - **Version**: 1.2
 - **対応構想書**: `helix-agent-harness-concept_v3.1.md`
@@ -2532,4 +2532,4 @@ CODEOWNERS は静的 path owner のため、level に応じた動的注入は実
 
 ---
 
-**本書は HELIX Agent Harness の要件定義書である。構想 (WHY/WHAT) は `helix-agent-harness-concept_v3.1.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**
+**本書は HELIX-HARNESS の要件定義書である。構想 (WHY/WHAT) は `helix-agent-harness-concept_v3.1.md` を、各 enum・スクリプト・workflow YAML の実装詳細は将来の個別 PLAN-XXX 詳細設計を参照。**

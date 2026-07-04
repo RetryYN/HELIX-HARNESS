@@ -16,7 +16,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L9-system-test-design.md` は L4 sub-doc 群の集合 pair (PLAN-L4-00-master 経由)。
 > **⚠ 人間確認事項**: 認証・認可・本番影響・秘密情報の扱いは本 doc で**確定しない** (禁止事項)。設計方針の記述に留め、確定は PO 承認を要する (§5)。
 
-# HELIX Agent Harness — L4 基本設計: 外部インターフェース設計 (External-IF)
+# HELIX-HARNESS — L4 基本設計: 外部インターフェース設計 (External-IF)
 
 harness が依存する外部 service との**境界契約**を Design by Contract で定義する (PLAN-L4-04-external-if)。外部 service 起動は architecture.md §6 の通り runtime adapter に隔離し、core は正規化 intent のみ発行する。
 

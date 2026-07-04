@@ -19,7 +19,7 @@ updated: 2026-05-28
 > **L12 接続規約**: `next_pair_freeze: L12`。L12 受入テスト設計は本 sub-doc の全 AC を AT-* で被覆 (孤児 AC = 0)。
 > **正規式モデル (PLAN-RECOVERY-02、2026-06-04)**: L3 要件の検証本質 = **本番受入** (本番環境で FR+AC が満たせるか、L12 で実施。データ実在性エスカレーションの本番 band)。画面要求は L1 (screen sub-doc) が担い L3 では起こさない (L2=L1 フェーズ分離)。
 
-# HELIX Agent Harness — L3 機能要件 (functional)
+# HELIX-HARNESS — L3 機能要件 (functional)
 
 ## §1 目的・背景
 

@@ -16,7 +16,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L8-integration-test-design.md` (L5↔L8 集合 pair)。
 > **⚠ 前提 (CLAUDE.md) + 人間確認事項**: AI runtime (Claude/Codex) は **契約プラン (月額) + CLI/hook** で利用し **API 直叩きをしない**。adapter は API key ではなく**起動方式** (CLI subprocess / Claude Code Agent・hook) を吸収する。残る認証 (GitHub/観測系) の確定は本 doc で**確定しない** (禁止事項)、方針のみ・確定は PO + security 監査 (§6)。
 
-# HELIX Agent Harness — L5 詳細設計: IF 詳細 / D-CONTRACT (If-Detail)
+# HELIX-HARNESS — L5 詳細設計: IF 詳細 / D-CONTRACT (If-Detail)
 
 external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (PLAN-L5-04)。core は正規化 intent のみ発行し、adapter が **provider 固有の起動方式** (Claude Code Agent/hook、`codex exec` CLI、`gh` CLI) を吸収する (Anti-Corruption Layer、external-if §6)。**API/SDK/key は介在しない** — AI runtime は契約プラン CLI が自己認証する。
 

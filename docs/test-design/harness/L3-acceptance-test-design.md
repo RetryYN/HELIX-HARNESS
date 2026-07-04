@@ -15,7 +15,7 @@ created: 2026-05-28
 updated: 2026-06-02
 ---
 
-# HELIX Agent Harness — L3 受入テスト設計 (④ / AT-*)
+# HELIX-HARNESS — L3 受入テスト設計 (④ / AT-*)
 
 > **layer (作成層 = V-pair key)**: L3 (要件) / **executed_at_layer (実施層)**: L12 (受入) / **artifact**: ④ 受入テスト設計 (V-model 右、② L3 全 sub-doc と対)
 > **pair (V-model L3↔L12)**: `docs/design/harness/L3-functional/{functional-requirements,business-detail,nfr-grade}.md` 3 sub-doc 全体 ↔ 本書 1 doc

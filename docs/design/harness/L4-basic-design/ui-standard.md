@@ -13,7 +13,7 @@ created: 2026-06-24
 updated: 2026-06-24
 ---
 
-# HELIX Agent Harness — L4 基本設計: FE 設計標準 (UI設計標準 + UI部品カタログ + design tokens)
+# HELIX-HARNESS — L4 基本設計: FE 設計標準 (UI設計標準 + UI部品カタログ + design tokens)
 
 > **SSoT 参照**: 画面 15 件と情報/操作要素の正本は L1 [screen-requirements.md](../L1-requirements/screen-requirements.md)、
 > 画面 ID/URL は L2 [screen-list.md](../L2-screen/screen-list.md)、UI 部品契約 (props/state/event) は

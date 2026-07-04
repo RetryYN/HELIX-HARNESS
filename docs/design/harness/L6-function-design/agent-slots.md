@@ -16,7 +16,7 @@ pair 対応 (③): docs/test-design/harness/L7-unit-test-design.md §1.9 U-SLOT 
 ADR-001 準拠: 旧 Python コードを port せず TypeScript (Bun) で全面再実装。SQLite 非採用。
 -->
 
-# HELIX Agent Harness — L6 機能設計: agent-slots 機構 (IMP-050)
+# HELIX-HARNESS — L6 機能設計: agent-slots 機構 (IMP-050)
 
 ## §0 位置づけ・移植方針
 

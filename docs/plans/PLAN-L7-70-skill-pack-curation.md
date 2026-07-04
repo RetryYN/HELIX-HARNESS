@@ -63,7 +63,7 @@ drive model、gate を前提にする。HELIX vendor source は ADR-001 と fork
 ## 1. 問題（2026-06-17 検証）
 
 4 agent survey により、fork plan §2.5 のリスクが確認された。既存の curated pack 約 47 件は、
-同一の generic stub body（"This is a HELIX Agent Harness skill document … Scope …
+同一の generic stub body（"This is a HELIX-HARNESS skill document … Scope …
 Operating Rules"）を共有し、skill 固有の procedure を持っていなかった。
 `recommendSkillsForPlan` は frontmatter の `applies_to.layers` /
 `applies_to.drive_models` で scoring できるため、機械的な injection は成立していたが、

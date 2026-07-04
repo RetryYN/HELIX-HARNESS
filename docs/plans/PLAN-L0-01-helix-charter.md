@@ -32,13 +32,13 @@ dependencies:
 
 ## §0 本 PLAN の役割
 
-HELIX（超個人開発システム）の L0 企画書（`kind=charter`）を起票・確定し、**G0.5（企画→要求）**を通す工程。HELIX Agent Harness を土台に、HELIX を `area=helix` として L0 から積み直す Forward の起点。既存ハーネス（HELIX 移行前の harness）の確定済み L1–L7 資産は壊さず上に積む。
+HELIX（超個人開発システム）の L0 企画書（`kind=charter`）を起票・確定し、**G0.5（企画→要求）**を通す工程。HELIX-HARNESS を土台に、HELIX を `area=helix` として L0 から積み直す Forward の起点。既存ハーネス（HELIX 移行前の harness）の確定済み L1–L7 資産は壊さず上に積む。
 
 ## §1 入力 (上流からの baton)
 
 - PO のビジョン（chat、2026-06-28）: 超個人開発システム／3 層自律境界（人=L0–L2＋L2モック・L3承認／AI=L4 以降フル自動）／10 本柱 P0–P9／横断原則（単一ルール・共有記憶）。
 - 旧 HELIX gap 分析（`RetryYN/ai-dev-kit-vscode` dogfood / v3 charter）: 簡素化で落ちていた安全自走 4 機構（駆動 workflow＋forward_return／DB 収束／pair_closure／連続走行＋fresh-session）と escalation 境界を復元。
-- 土台: HELIX Agent Harness（V モデル工程・gate・state DB 実装済み、L7 実装スプリント進行中）。
+- 土台: HELIX-HARNESS（V モデル工程・gate・state DB 実装済み、L7 実装スプリント進行中）。
 
 ## §2 出力 (本 PLAN で確定)
 

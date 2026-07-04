@@ -13,7 +13,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **件数確定**: technical は技術要求 7 節 (§1〜§7) で確定 (根拠: 2026-05-28 v2 legacy source-workflows 設計概念参照、`docs/migration/v2-import-ledger.md §5.1 A-21 / §6`)。
 > **L3 接続規約**: `next_pair_freeze: L4`。L4 PLAN は本 sub-doc 全件を `dependencies.requires` に列挙する。
 
-# HELIX Agent Harness — L1 技術要求 (technical)
+# HELIX-HARNESS — L1 技術要求 (technical)
 
 ## §1 採用技術・技術制約
 

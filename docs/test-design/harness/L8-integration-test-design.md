@@ -16,7 +16,7 @@ created: 2026-05-29
 updated: 2026-06-09
 ---
 
-# HELIX Agent Harness — L8 結合テスト設計 (④ / IT-*)
+# HELIX-HARNESS — L8 結合テスト設計 (④ / IT-*)
 
 > **layer (作成層 = V-pair key)**: L5 (詳細設計) / **executed_at_layer (実施層)**: L8 (結合テスト) / **artifact**: ④ テスト設計 (V-model 右、② L5 詳細設計 全 sub-doc と対)
 > **pair (V-model L5↔L8)**: `docs/design/harness/L5-detailed-design/{physical-data,module-decomposition,internal-processing,if-detail}.md` 4 sub-doc 全体 ↔ 本書 1 doc

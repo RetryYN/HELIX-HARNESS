@@ -12,7 +12,7 @@ related_process: docs/process/forward/overview.md
 related_backlog: docs/improvement-backlog.md
 ---
 
-# HELIX Agent Harness — 検証ロードマップ (v0.1)
+# HELIX-HARNESS — 検証ロードマップ (v0.1)
 
 > **名称 = 検証ロードマップ**: V-model 層群 (例: L0-L3 / L4-L6 / L7 / L8-L14) の Forward が freeze 完了した**節目を機械的に検知して検証サイクルを発火**させる **全体調整 (崩れ防止) の band**。検証タイミングを人の記憶でなく **V-model 単位の構造**に従わせ、層群の freeze 完了 → 検証発火を機械化する (**実装済 = IMP-068**: doctor `checkVerificationGroups` が L0-L3 / L4-L6 / L0-L6 の層群 freeze を surface。pair-freeze lint の層群 freeze 集計が素地。発火 = surface まで、検証 PLAN 起票は人間トリガー)。改善は検証で出た課題を backlog へ還流する従属作業であり、本書の主語は**検証**。
 

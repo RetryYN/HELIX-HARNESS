@@ -15,7 +15,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **用語更新 (G.9) / 機能要求更新 (G.10) の所在**: per-工程 delta は生成元 [PLAN-L5-02](../../../plans/PLAN-L5-02-module-decomposition.md) の §6/§7 に記録。
 > **V-pair**: `pair_artifact = L8-integration-test-design.md` (L5↔L8 集合 pair、PLAN-L5-00-master 経由)。
 
-# HELIX Agent Harness — L5 詳細設計: モジュール分割 (Module-Decomposition)
+# HELIX-HARNESS — L5 詳細設計: モジュール分割 (Module-Decomposition)
 
 architecture.md §3 の 7 building block を実装単位のモジュール (関数群・公開 IF) に詳細化する (PLAN-L5-02)。export は `src/` の実装と 1:1、L7 完遂時点のモジュール公開面は下表の実装証跡へ着地済み。
 

@@ -13,7 +13,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **件数確定**: nfr は **NFR-15 件で確定** (NFR-01〜08 + NFR-11〜17、NFR-09/10 は U-補-3 PO 判断連動の欠番、計 15 件。根拠: 2026-05-28 v2 legacy source-workflows 設計概念参照 A-20 + PO declared GHA audit framework / server-optional + NFR-16 onboarding 互換性追加、`docs/migration/v2-import-ledger.md §5.1 A-20`。**NFR-17 統合セキュリティは A-54 audit 軸1 I-01 back-propagation 追加、2026-05-29**)。
 > **L4 接続規約** (technical/nfr は L4 pair): `next_pair_freeze: L4`。L4 PLAN は本 sub-doc 全件を `dependencies.requires` に列挙する。
 
-# HELIX Agent Harness — L1 非機能要求 (nfr)
+# HELIX-HARNESS — L1 非機能要求 (nfr)
 
 > **§3 carry 宣言 (排泄系契約)**: 排泄系契約 (doc-reviewer 必須召喚 / 4 artifact trace / NFR-08 implementation_status 列) は運用保守性の核であり、全設計 doc への波及は L3 以降の doc 規約 forward carry とする。
 

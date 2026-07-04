@@ -12,7 +12,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 > **SSoT 参照**: ユビキタス言語 = [L0 §10 用語集](../../../governance/helix-agent-harness-concept_v3.1.md) / ドメイン手法 = DDD (Evans) + Design by Contract (Meyer) ([document-system-map](../../../governance/document-system-map.md) §3) / 実装 SSoT = `src/schema/index.ts` (enum)。本 doc は L1 §10.2 carry を詳細化し、用語独自定義は行わない (anti-corruption layer)。
 
-# HELIX Agent Harness — L4 基本設計: データ設計 / ドメインモデル
+# HELIX-HARNESS — L4 基本設計: データ設計 / ドメインモデル
 
 L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-L4-01-data)。永続化は `.ut-tdd/` YAML/JSON state と `.ut-tdd/harness.db` SQLite projection DB の二層 (ADR-001)。値オブジェクトは `src/schema/index.ts` の zod enum と 1:1。
 

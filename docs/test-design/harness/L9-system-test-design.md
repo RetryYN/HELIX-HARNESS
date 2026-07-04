@@ -20,7 +20,7 @@ created: 2026-05-29
 updated: 2026-05-29
 ---
 
-# HELIX Agent Harness — L9 総合テスト設計 (④ / ST-*)
+# HELIX-HARNESS — L9 総合テスト設計 (④ / ST-*)
 
 > **layer (作成層 = V-pair key)**: L4 (基本設計) / **executed_at_layer (実施層)**: L9 (総合テスト) / **artifact**: ④ テスト設計 (V-model 右、② L4 基本設計 全 sub-doc と対)
 > **pair (V-model L4↔L9)**: `docs/design/harness/L4-basic-design/{data,architecture,function,external-if,ui-standard}.md` + `tokens.yaml` の L4 sub-doc/asset 全体 ↔ 本書 1 doc

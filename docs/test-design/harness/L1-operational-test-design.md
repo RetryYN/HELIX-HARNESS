@@ -9,7 +9,7 @@ next_pair_freeze: L1
 created: 2026-05-29
 ---
 
-# HELIX Agent Harness — L1 運用テスト設計 (③ / OT-*)
+# HELIX-HARNESS — L1 運用テスト設計 (③ / OT-*)
 
 > **layer (作成層 = V-pair key)**: L1 (要求) / **executed_at_layer (実施層)**: L14 (運用検証) / **artifact**: ③ 運用テスト設計 (V-model 右、① L1 全 sub-doc と対)
 > **pair (V-model L1↔L14)**: `../../design/harness/L1-requirements/{business,functional,screen,technical,nfr}-requirements.md` の 5 sub-doc 全体 ↔ 本書 1 doc (V2 HELIX-workflows 設計概念を参照し、L1 = 5 sub-doc 構造、運用テスト設計は L14 pair として 1 本)

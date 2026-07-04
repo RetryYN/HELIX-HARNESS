@@ -13,7 +13,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **件数確定**: functional は **FR-L1-51 件で確定 (P0: 19 / P1: 24 / P2: 8)** (A-49 ledger で FR-L1-45 doc-reviewer back-propagation 追加、2026-05-28)。内訳: FR-L1-01〜35 は v2 source snapshot reference 設計概念参照 (v2-import-ledger §5.1 A-24 / §6)、FR-L1-37/39/40/41/42/44 は PO directed 新規 6 件 (2026-05-28)、**FR-L1-45 は L3 back-propagation 由来 (A-47 Critical C-02 → A-49 で L1 反映、BR-08 派生 P0)**、**FR-L1-50 は DDD/TDD strictness automation 追加 (PO directed 2026-06-09、IMP-097..101)**、**FR-L1-51 は artifact progress color projection 追加 (PLAN-L7-56 / PLAN-REVERSE-56、2026-06-22)**、**FR-L1-36 は P2 から昇格 (skill evaluation 実装済み、PLAN-L7-53、2026-06-15)**、**FR-L1-43 は P2 から昇格 (PoC success measurement 実装済み、PLAN-L7-53、2026-06-15)**、**FR-L1-38 は P2 から昇格 (model evaluation 実装済み、PLAN-L7-53、2026-06-15)**。
 > **L3 接続規約**: `next_pair_freeze: L3`。L3 PLAN は本 sub-doc 全件を `dependencies.requires` に列挙する。
 
-# HELIX Agent Harness — L1 機能要求 (functional)
+# HELIX-HARNESS — L1 機能要求 (functional)
 
 > **L1 機能要求 ≠ L3 機能要件**: 本 sub-doc の FR-L1-* は「ユーザー視点で何の機能を望むか」= **要求**。L3 機能要件 (FR-*) は「システムが満たすべき仕様 + AC」= **要件**。本 sub-doc は L3 の入力であり別物。
 

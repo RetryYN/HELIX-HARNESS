@@ -24,7 +24,7 @@ PLAN: PLAN-L6-03-session-log (add-design)。pair (③): docs/test-design/harness
 正本機能: 要件定義書 §6.8 (Issue 起点スパイン) / §6.9 のローカル観測側。
 -->
 
-# HELIX Agent Harness — L6 機能設計: session-log (セッションログ + PLAN 単位圧縮)
+# HELIX-HARNESS — L6 機能設計: session-log (セッションログ + PLAN 単位圧縮)
 
 ## §1 概要
 

@@ -17,7 +17,7 @@ pair 参照 (③): docs/test-design/harness/L7-unit-test-design.md §1.11 U-BACK
 ADR-001 準拠: 旧 Python コードを port せず TypeScript (Bun) で全面再実装。
 -->
 
-# HELIX Agent Harness — L6 機能設計: backfill-pairing lint (IMP-051)
+# HELIX-HARNESS — L6 機能設計: backfill-pairing lint (IMP-051)
 
 ## §0 位置づけ・動機
 

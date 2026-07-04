@@ -13,7 +13,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **件数確定**: screen は画面 15 件 (PM 6 + HM 8 + GD 1)、3 カテゴリ Bounded Context (PM/HM/GD)。PO 承認 2026-05-28 全件 AI 推奨採用 (14 件)。**PM-06 設計書ビューアを 2026-06-22 PO 指示で追加** (設計書 Markdown/YAML/Mermaid を見やすくレンダリングしプレビュー、プロジェクト単位)。根拠: UX-02 / BR-06 / FR-L1-20/FR-L1-29 から導出。旧 SCR-NN 体系は廃止 (移行注記は §6 参照)。
 > **L3 接続規約**: `next_pair_freeze: L3`。L3 PLAN は本 sub-doc 全件を `dependencies.requires` に列挙する。
 
-# HELIX Agent Harness — L1 画面要求 (screen)
+# HELIX-HARNESS — L1 画面要求 (screen)
 
 > **PO 判断 carry**: 画面要求は L2 モック検証で lift する。本 sub-doc では業務要求視点の必要画面のみ列挙し、UI 具体化は L2 に委ねる (FR-L1-29 参照)。
 > **正規式モデル (PLAN-RECOVERY-02、L2=L1 フェーズ分離)**: 画面要求は本 sub-doc (L1) が正本 — 画面の本質は L1 (要求) に内包する。L2 は画面設計のフェーズ分離 (フェーズが大きいため分離) で、画面詳細は L5 詳細設計へ分配。検証本質 = 実データ検証 (本番の実データで画面が成立するか、L10 で実施)。

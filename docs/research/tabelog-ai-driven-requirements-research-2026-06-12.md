@@ -16,7 +16,7 @@ source_checked: 2026-06-12
 本メモは食べログテックブログ記事「AI 駆動要件定義プロセス」(2025 年公開) の調査記録である。
 **設計成果物 (①) ではなく参照資料**であり、`docs/design/` でなく `docs/research/` に置く (research.md §6 注記に準拠)。
 
-調査の焦点: HELIX Agent Harness の descent-obligation 設計 (落とさない仕組み、FR-L1-03、`docs/design/harness/L6-function-design/descent-obligation.md`) に転用できる設計概念を抽出すること。
+調査の焦点: HELIX-HARNESS の descent-obligation 設計 (落とさない仕組み、FR-L1-03、`docs/design/harness/L6-function-design/descent-obligation.md`) に転用できる設計概念を抽出すること。
 
 本メモの内容を descent-obligation.md / 既存 PLAN / schema に直接反映しない。実反映は別の Forward PLAN として Codex が起票・実装する想定 (次アクション候補: §C 参照)。
 
@@ -172,7 +172,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 
 食べログの自動化は `feasibility` ラベル → Devin API → セッション生成という直接配線だが、HELIX には明示ルールがある:
 
-> 「Codex / Claude Code は API 直叩きではなく、契約プラン + CLI / hook を HELIX Agent Harness が管理する対象として扱う」(CLAUDE.md)
+> 「Codex / Claude Code は API 直叩きではなく、契約プラン + CLI / hook を HELIX-HARNESS が管理する対象として扱う」(CLAUDE.md)
 > 「Raw `codex exec` / raw `claude` を通常運用の導線にしない」(.claude/CLAUDE.md)
 
 **翻案が必須**: 食べログの「ラベルトリガー → 再評価」の**発想**は、HELIX では `ut-tdd hook post-tool-use` / GitHub Actions の `harness-check` ワークフロー経由で行う。Devin API を直叩きするのでなく `ut-tdd codex --role <role> --task "..."` wrapper を通すのが正規導線。

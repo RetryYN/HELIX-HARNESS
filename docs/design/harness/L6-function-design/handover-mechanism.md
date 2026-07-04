@@ -18,7 +18,7 @@ PLAN: PLAN-L6-06-handover-mechanism (add-design)。ペア (③): docs/test-desig
 上位整合: 要件 §6.8.5 (PLAN 完了時 handover 必須) / §6.8.6 (進捗 3 層 = state DB + log + handover、digest=結節点) / §5.3 pre-push stale (後段 Reverse で back-fill + CURRENT.md/.json 表記不整合是正)。
 -->
 
-# HELIX Agent Harness — L6 機能設計: handover 記録機構 (digest → handover 生成 + plan_id 活性化)
+# HELIX-HARNESS — L6 機能設計: handover 記録機構 (digest → handover 生成 + plan_id 活性化)
 
 ## §1 概要
 

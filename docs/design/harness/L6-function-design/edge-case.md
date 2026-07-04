@@ -18,7 +18,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L7-unit-test-design.md` (L6↔L7)。各 edge → U-* test oracle (孤児 0)。
 > **edge 5-8 形式** (internal-processing §7): `@edge-normal`→01 / `@edge-error`→02 / `@edge-boundary`→03 / `@throws`→exit code。**trace 先の系統分岐**: L7 単体テストは **U-***-NN (本 doc の右列)、L12 受入テストは **AT-***-NN (internal-processing §7 の AT-* は受入系)。L6↔L7 pair では U-* が正本 oracle。
 
-# HELIX Agent Harness — L6 機能設計: エッジケース (Edge-Case)
+# HELIX-HARNESS — L6 機能設計: エッジケース (Edge-Case)
 
 function-spec §1/§2 の各関数に **正常/異常/境界/throws の 4 観点**を確定する (PLAN-L6-02)。internal-processing §7 で G5 凍結した docstring 枠を関数別に展開し、L7 単体テスト U-* の oracle とする。**G6 凍結対象**。
 

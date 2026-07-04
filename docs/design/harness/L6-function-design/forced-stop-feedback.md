@@ -17,7 +17,7 @@ PLAN: PLAN-L6-04-forced-stop-feedback (add-design)。ペア (③): docs/test-des
 土台: session-log (session-log.md)。Recovery 接続: concept §2.5 / §2.6.1 (後段 Reverse で forced_stop signal 正本化)。
 -->
 
-# HELIX Agent Harness — L6 機能設計: forced-stop フィードバック (強制停止推定 + フィードバックログ + Haiku 意味解析 + Recovery 起票提示)
+# HELIX-HARNESS — L6 機能設計: forced-stop フィードバック (強制停止推定 + フィードバックログ + Haiku 意味解析 + Recovery 起票提示)
 
 ## §1 概要
 

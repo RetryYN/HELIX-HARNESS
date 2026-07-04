@@ -16,7 +16,7 @@ updated: 2026-05-28
 > **適用範囲**: BR-21 (AI 実行成果評価) + HM-08 画面連動 + FR-L1-36/38/43 (Learning Engine 系、P2) のみ。FR 一般詳細化は functional-requirements.md (PLAN-L3-01) 担当 (重複回避)。
 > **L12 接続**: 全 AC を AT-* で被覆 (孤児 0)。
 
-# HELIX Agent Harness — L3 業務要件詳細 (business-detail) — BR-21 + HM-08 + 評価 projection
+# HELIX-HARNESS — L3 業務要件詳細 (business-detail) — BR-21 + HM-08 + 評価 projection
 
 ## §1 評価対象 (U-BR21-1 採用、PLAN 単位を既定 + 補助単位)
 

@@ -125,7 +125,7 @@ path / self-lint を返す pure generator。file write は CLI が所掌）は L
 
 ## 名称 / rename 境界
 
-- 生成 content は HELIX Agent Harness の現行 skill authoring 用 scaffold として扱う。
+- 生成 content は HELIX-HARNESS の現行 skill authoring 用 scaffold として扱う。
 - `.ut-tdd` / `ut-tdd` / `area=harness` の物理 rename、ファイル名 rename、distribution cutover は
   PLAN-M-02 の承認対象であり、本 PLAN では実施しない。
 

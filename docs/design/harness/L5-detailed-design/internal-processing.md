@@ -16,7 +16,7 @@ v2_import: docs/migration/v2-import-ledger.md
 > **V-pair**: `pair_artifact = L8-integration-test-design.md` (L5↔L8 集合 pair)。
 > **粒度境界 (IMP-018)**: 本 doc = 内部操作の how (DbC pre/post)。外部境界の契約は [if-detail.md](./if-detail.md) が担当。
 
-# HELIX Agent Harness — L5 詳細設計: 内部処理 / D-API (Internal-Processing)
+# HELIX-HARNESS — L5 詳細設計: 内部処理 / D-API (Internal-Processing)
 
 module-decomposition の公開 IF に処理ロジックと Design by Contract を付与する (PLAN-L5-03)。**G5 = DbC freeze 点** (document-system-map §3) の凍結対象を本 doc が確定する。
 
