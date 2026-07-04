@@ -1,4 +1,4 @@
-import { type AdapterPlan, buildAdapterPlan } from "../runtime/adapter";
+import { type AdapterPlan, buildAdapterPlan, type InvokeErrorClass } from "../runtime/adapter";
 import type { ExecutionMode, RuntimeDetection } from "../runtime/detect";
 import { assignCross, type CrossAssign, type Provider, type RouterRole } from "../task/tier-router";
 import { inferTaskDifficulty, MODEL_IDS, type TaskDifficulty } from "../team/model-policy";
@@ -83,6 +83,7 @@ export interface PairAgentExecutionResult {
   status: number | null;
   stdout: string;
   stderr: string;
+  errorClass?: InvokeErrorClass;
 }
 
 export type PairAgentPhaseExecutor = (input: {

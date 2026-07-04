@@ -95,6 +95,7 @@ async function defaultExecAdapter(input: ExecAdapterInput): Promise<AdapterExecu
     input: input.plan.stdin,
     env: adapterExecutionEnv(input.provider, input.plan.env),
     shell: invocation.shell ?? false,
+    windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
   });
   if (child.error) {
     throw new Error(

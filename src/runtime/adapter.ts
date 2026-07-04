@@ -42,8 +42,8 @@ export interface AdapterPlan {
   args: string[];
   /**
    * codex はプロンプトを stdin で帯域外に渡す。Windows で codex は `.cmd` に解決され
-   * buildProviderInvocation が shell:true の cmd.exe 文字列へ畳むため、引数に載せた
-   * 複数行/メタ文字プロンプトが 1 行目で切れる。stdin 経由なら cmd.exe が破壊できない。
+   * buildProviderInvocation が cmd.exe /c 起動へ畳むため、引数に載せた複数行/メタ文字
+   * プロンプトは cmd.exe が解釈し得る。stdin 経由なら argv から切り離せる。
    */
   stdin?: string;
   env?: Record<string, string>;
@@ -64,6 +64,7 @@ export interface ProviderInvocation {
   command: string;
   args: string[];
   shell?: boolean;
+  windowsVerbatimArguments?: boolean;
 }
 
 export interface ProviderInvocationInput {
@@ -75,6 +76,24 @@ export interface ProviderInvocationInput {
 
 export interface ProviderProbeOptions extends ProviderCommandResolutionOptions {
   runProbe?: (command: string, args: string[], env: NodeJS.ProcessEnv) => { status: number | null };
+}
+
+export type InvokeErrorClass = "provider_error" | "malformed_output";
+
+export interface ProviderRunResult {
+  status: number | null;
+  stdout?: string | null;
+  stderr?: string | null;
+  error?: unknown;
+}
+
+export interface InvokeResult {
+  ok: boolean;
+  status: number | null;
+  output: string;
+  stderr: string;
+  error_class?: InvokeErrorClass;
+  error?: string;
 }
 
 export function providerAvailable(provider: AdapterProvider, mode: ExecutionMode): boolean {
@@ -228,7 +247,7 @@ const WINDOWS_CMD_UNSAFE_TOKEN_PATTERN = /[\u0000\r\n"&|<>^%!]/;
 
 function assertWindowsCmdTokenSafe(token: string, label: string): void {
   if (WINDOWS_CMD_UNSAFE_TOKEN_PATTERN.test(token)) {
-    throw new Error(`${label} contains unsafe characters for Windows command shell wrapping`);
+    throw new Error(`${label} contains unsafe characters for Windows command wrapping`);
   }
 }
 
@@ -242,16 +261,62 @@ export function buildProviderInvocation(input: ProviderInvocationInput): Provide
   const platform = opts.platform ?? process.platform;
   const resolved = resolveProviderCommand(provider, command, opts);
   if (platform === "win32" && isWindowsCommandScript(resolved)) {
+    const cmdExe = join(opts.env?.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
     return {
-      command: [
+      command: cmdExe,
+      args: [
+        "/d",
+        "/s",
+        "/c",
         quoteCmdArg(resolved, "command"),
         ...args.map((arg, index) => quoteCmdArg(arg, `argument ${index + 1}`)),
-      ].join(" "),
-      args: [],
-      shell: true,
+      ],
+      shell: false,
+      windowsVerbatimArguments: true,
     };
   }
   return { command: resolved, args };
+}
+
+export function normalizeInvokeResult(_plan: AdapterPlan, run: ProviderRunResult): InvokeResult {
+  const status = run.status;
+  const stdout = run.stdout ?? "";
+  const stderr = run.stderr ?? "";
+  if (run.error) {
+    return {
+      ok: false,
+      status,
+      output: stdout,
+      stderr,
+      error_class: "provider_error",
+      error: String(run.error),
+    };
+  }
+  if (status !== 0) {
+    return {
+      ok: false,
+      status,
+      output: stdout,
+      stderr,
+      error_class: "provider_error",
+    };
+  }
+  if (stdout.trim().length === 0) {
+    return {
+      ok: false,
+      status,
+      output: stdout,
+      stderr,
+      error_class: "malformed_output",
+      error: "provider exited successfully but returned empty stdout",
+    };
+  }
+  return {
+    ok: true,
+    status,
+    output: stdout,
+    stderr,
+  };
 }
 
 export function adapterExecutionEnv(
@@ -293,6 +358,7 @@ export function isProviderCommandSpawnable(
         env: probeEnv,
         stdio: "ignore",
         shell: invocation.shell ?? false,
+        windowsVerbatimArguments: invocation.windowsVerbatimArguments ?? false,
       }));
   try {
     return runProbe(invocation.command, invocation.args, env).status === 0;

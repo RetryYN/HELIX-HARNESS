@@ -6,6 +6,7 @@ import {
   buildAdapterPlan,
   buildProviderInvocation,
   isProviderCommandSpawnable,
+  normalizeInvokeResult,
   normalizeProviderEffort,
   providerAvailable,
   resolveClaudeNativeCommand,
@@ -179,7 +180,7 @@ describe("runtime adapter plan", () => {
     }
   });
 
-  it("U-ADAPTER-003: wraps Windows command scripts through canonical cmd.exe", () => {
+  it("U-ADAPTER-003: invokes Windows command scripts through explicit cmd.exe args", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-adapter-cmd-"));
     try {
       const explicit = join(root, "codex.cmd");
@@ -197,16 +198,23 @@ describe("runtime adapter plan", () => {
         },
       });
 
-      expect(invocation.args).toEqual([]);
-      expect(invocation.shell).toBe(true);
-      expect(invocation.command).toContain(`"${explicit}"`);
-      expect(invocation.command).toContain('"hello world"');
+      expect(invocation.command).toBe("C:\\Windows/System32/cmd.exe");
+      expect(invocation.args).toEqual([
+        "/d",
+        "/s",
+        "/c",
+        `"${explicit}"`,
+        '"exec"',
+        '"hello world"',
+      ]);
+      expect(invocation.shell).toBe(false);
+      expect(invocation.windowsVerbatimArguments).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
   });
 
-  it("U-ADAPTER-009: rejects unsafe argv before Windows command-script shell wrapping", () => {
+  it("U-ADAPTER-009: rejects unsafe metacharacters before Windows command-script wrapping", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-adapter-cmd-unsafe-"));
     try {
       const explicit = join(root, "codex.cmd");
@@ -229,6 +237,41 @@ describe("runtime adapter plan", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-ADAPTER-011: normalizes provider invocation failures into provider-independent classes", () => {
+    const plan = buildAdapterPlan({ provider: "codex", role: "se", task: "implement" }, "hybrid");
+
+    expect(
+      normalizeInvokeResult(plan, { status: 0, stdout: "done\n", stderr: "" }),
+    ).toMatchObject({
+      ok: true,
+      status: 0,
+      output: "done\n",
+    });
+    expect(normalizeInvokeResult(plan, { status: 0, stdout: "", stderr: "" })).toMatchObject({
+      ok: false,
+      status: 0,
+      error_class: "malformed_output",
+    });
+    expect(normalizeInvokeResult(plan, { status: 2, stdout: "", stderr: "bad" })).toMatchObject({
+      ok: false,
+      status: 2,
+      error_class: "provider_error",
+    });
+    expect(
+      normalizeInvokeResult(plan, {
+        status: null,
+        stdout: "",
+        stderr: "",
+        error: new Error("ENOENT"),
+      }),
+    ).toMatchObject({
+      ok: false,
+      status: null,
+      error_class: "provider_error",
+      error: "Error: ENOENT",
+    });
   });
 
   it("U-ADAPTER-005: picks the semver-newest native Claude, not the lexicographic-largest (A-137 #6)", () => {
@@ -304,8 +347,8 @@ describe("runtime adapter plan", () => {
     try {
       const explicit = join(root, "codex.cmd");
       writeFileSync(explicit, "");
-      // 改行 + cmd.exe メタ文字 (< > | ( )) を含む実プロンプトは、引数経由だと
-      // shell:true の cmd.exe で 1 行目に切り詰められる。stdin 経由なら無傷。
+      // 改行 + cmd.exe メタ文字 (< > | ( )) を含む実プロンプトは、argv に載せず
+      // stdin で帯域外に渡す。
       const multiline = "line one\nline two has <name> and | and (paren)";
       const plan = buildAdapterPlan(
         { provider: "codex", role: "qa", task: multiline, model: "gpt-5.5" },
@@ -318,7 +361,7 @@ describe("runtime adapter plan", () => {
       expect(plan.args).toContain("exec");
       expect(plan.args).toContain("-"); // codex exec [PROMPT]: '-' = stdin から読む
 
-      // .cmd shell ラップに乗らないプロンプトは cmd.exe が破壊しようがない。
+      // .cmd 起動 argv に乗らないプロンプトは cmd.exe が破壊しようがない。
       const invocation = buildProviderInvocation({
         provider: "codex",
         command: "codex",

@@ -38,7 +38,7 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 | 型 | 概要 |
 |---|---|
 | `WorkerIntent` | `{role, task, context?, budget?}` (role∈roleSchema 相当) |
-| `InvokeResult` | `{ok, output?, error?, audit_ref}` (audit_ref = `.ut-tdd/audit/` への記録 ID) |
+| `InvokeResult` | `{ok, status, output, stderr, error_class?, error?}`。`error_class` は provider 起動失敗/非 0 exit の `provider_error` と、exit 0 だが stdout 空の `malformed_output` を区別する。必要に応じて audit_ref は呼び出し側 evidence で補う。 |
 | `AdapterError` | `{kind: "absent"\|"auth"\|"rate-limit"\|"timeout"\|"unknown", retryable: boolean, message}` |
 
 > 詳細 zod スキーマ (フィールド型/必須任意) は L7 実装で `src/schema` または adapter module に定義。本 doc は型の輪郭まで。

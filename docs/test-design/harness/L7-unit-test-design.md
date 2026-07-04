@@ -812,6 +812,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-ID | 関数 | oracle (DbC) |
 |------|------|--------------|
 | U-ADAPTER-010 | `normalizeProviderEffort` / `buildAdapterPlan` | `middle` は `medium`、`xhigh` は `high` に正規化され、Claude adapter の `--effort` argv と `CLAUDE_CODE_EFFORT_LEVEL` env、`AdapterPlan.effort` は正規化後の値だけを持つ。空 effort は undefined、大小文字と周辺空白は吸収する。 |
+| U-ADAPTER-011 | `buildProviderInvocation` / `normalizeInvokeResult` | Windows `.cmd` / `.bat` provider command は `cmd.exe /d /s /c` の明示 command/args として返り、`shell=false`、`windowsVerbatimArguments=true` を持つ。cmd.exe 解釈対象 token は quote 済みで、メタ文字・制御文字を含む token は拒否する。`normalizeInvokeResult` は spawn error / 非 0 status を `provider_error`、status 0 かつ stdout 空を `malformed_output`、status 0 かつ stdout 非空を `ok=true` に分類する。 |
 
 ### 2026-07-05 Toolchain Pin Oracle 検査 (PLAN-L7-319)
 
@@ -854,7 +855,7 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-ID | Target | Oracle |
 |---|---|---|
 | U-ADAPTER-002 | `resolveCodexNativeCommand` | `UT_TDD_CODEX_BIN` は PATH lookup より優先され、Windows npm `codex.cmd` は native provider command override として受理される。 |
-| U-ADAPTER-003 | `buildProviderInvocation` | Windows `.cmd` / `.bat` provider command は quote 済み argument を持つ shell command string へ変換され、non-script binary は `shell=false` を維持する。 |
+| U-ADAPTER-003 | `buildProviderInvocation` | Windows `.cmd` / `.bat` provider command は `cmd.exe /d /s /c` の明示 command/args へ変換され、`shell=false` と `windowsVerbatimArguments=true` を維持する。non-script binary は provider command と args をそのまま返す。 |
 | U-ADAPTER-004 | `isProviderCommandSpawnable` / `detectMode` | Provider availability は、解決された provider command が spawn 成功する場合だけ true になる。PATH 名が存在するだけでは不足。 |
 | U-PHOVER-002 | `buildProviderHandover` | Provider handover package は `handover_kind: "mechanical"` を含み、machine routing data が明示的な human handover と混同されない。 |
 
