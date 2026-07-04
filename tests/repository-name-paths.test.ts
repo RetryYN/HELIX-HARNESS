@@ -17,18 +17,28 @@ describe("repository path naming", () => {
 
   it("fails when legacy repository names return to tracked or filesystem paths", () => {
     const result = analyzeRepositoryNamePaths({
-      trackedPaths: ["docs/UT-TDD_AGENT-HARNESS-plan.md", "docs/uttdd-agent-harness-plan.md"],
-      filesystemPaths: ["tmp/UT_TDD_AGENT_HARNESS-Pack", "tmp/UTTDDAGENTHARNESS-Pack"],
+      trackedPaths: [
+        "docs/UT-TDD_AGENT-HARNESS-plan.md",
+        "docs/uttdd-agent-harness-plan.md",
+        "docs/UT TDD Agent Harness plan.md",
+      ],
+      filesystemPaths: [
+        "tmp/UT_TDD_AGENT_HARNESS-Pack",
+        "tmp/UTTDDAGENTHARNESS-Pack",
+        "tmp/ut.tdd.agent.harness.pack",
+      ],
     });
 
     expect(result.ok).toBe(false);
     expect(result.trackedResidue).toEqual([
       "docs/UT-TDD_AGENT-HARNESS-plan.md",
       "docs/uttdd-agent-harness-plan.md",
+      "docs/UT TDD Agent Harness plan.md",
     ]);
     expect(result.filesystemResidue).toEqual([
       "tmp/UT_TDD_AGENT_HARNESS-Pack",
       "tmp/UTTDDAGENTHARNESS-Pack",
+      "tmp/ut.tdd.agent.harness.pack",
     ]);
     expect(repositoryNamePathsMessages(result)[0]).toContain("repository-name-paths - violation");
   });
