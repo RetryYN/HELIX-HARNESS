@@ -1,29 +1,27 @@
 ---
-description: Five-axis code review — correctness, readability, architecture, security, performance
+description: five-axis code review — correctness, readability, architecture, security, performance
 argument-hint: "[optional file/scope]"
 ---
 
-Run a five-axis review of the current change (uncommitted or recent commits) for
-UT-TDD. Use the `code-review-and-quality` skill; pull security from
-`security-and-hardening` and adversarial framing from `adversarial-review`.
+UT-TDD の current change（uncommitted または recent commits）に対して five-axis review を行う。
+`code-review-and-quality` skill を使い、security 観点は `security-and-hardening`、adversarial framing は
+`adversarial-review` から取り込む。
 
-Start from the deterministic packet: `ut-tdd review --uncommitted`.
+deterministic packet である `ut-tdd review --uncommitted` から開始する。
 
-Review across all five axes:
+5 つの axis すべてで review する。
 
-1. **Correctness** — matches the design/spec? edge cases handled? tests adequate
-   and asserting real oracles (not `toBeTruthy` on complex objects)?
-2. **Readability** — clear names, straightforward logic, matches local style?
-3. **Architecture** — follows existing patterns, clean boundaries, right
-   abstraction; V-model descent obligation satisfied (impl traces to L5/L6 design)?
-4. **Security** — input validated, no secrets/PII in code or docs, escalation
-   boundaries respected (auth/payments/PII never silently changed)?
-5. **Performance** — no N+1, no unbounded ops on hot paths?
+1. **Correctness** — design/spec と一致しているか。edge case は扱われているか。test は十分で、
+   real oracle を assert しているか（complex object に `toBeTruthy` を使っていないか）。
+2. **Readability** — name は明確か。logic は straight-forward か。local style に合っているか。
+3. **Architecture** — existing pattern に従い、boundary が clean で、abstraction が適切か。
+   V-model descent obligation を満たしているか（impl が L5/L6 design へ trace するか）。
+4. **Security** — input validation、code/docs への secrets/PII 混入なし、escalation boundary の遵守
+   （auth/payments/PII を silent change していないこと）を確認する。
+5. **Performance** — N+1 や hot path 上の unbounded operation がないか確認する。
 
-Categorize findings as Critical / Important / Suggestion with specific
-`file:line` references and fix recommendations.
+finding は Critical / Important / Suggestion に分類し、具体的な `file:line` reference と fix recommendation を付ける。
 
-Gate awareness: `ut-tdd gate <id>` reads the execution mode from `ut-tdd status`;
-judgement gates require cross-agent review evidence (hybrid) or
-`intra_runtime_subagent` evidence (single runtime) — self-review alone does not
-clear the accept gate. Confirm `ut-tdd doctor` exits 0 before approving.
+Gate awareness: `ut-tdd gate <id>` は execution mode を `ut-tdd status` から読む。judgement gate には
+cross-agent review evidence（hybrid）または `intra_runtime_subagent` evidence（single runtime）が必要である。
+self-review だけでは accept gate を clear しない。承認前に `ut-tdd doctor` が exit 0 であることを確認する。

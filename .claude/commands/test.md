@@ -1,25 +1,23 @@
 ---
-description: Drive the change test-first (Red → Green → Refactor) per UT-TDD TDD discipline
+description: UT-TDD TDD discipline に従い test-first（Red → Green → Refactor）で進める
 argument-hint: "<unit or behavior under test>"
 ---
 
-Implement test-first for UT-TDD. Use the `test-driven-development` skill (and
-`testing` for level/fixture choices).
+UT-TDD では test-first で実装する。`test-driven-development` skill を使い、level/fixture の選択には
+`testing` も使う。
 
 Target: $ARGUMENTS
 
-Discipline (FR-L1-02 — test-first order, no implement-before-test):
+Discipline（FR-L1-02 — test-first order、implement-before-test 禁止）:
 
-1. **Red** — write the failing test against the L6 unit-test design (or the
-   spec's acceptance criteria). Run `bun run test` and confirm it fails for the
-   right reason. Commit the failing test as Red evidence.
-2. **Green** — write the minimum implementation to pass. Run `bun run test`.
-3. **Refactor** — clean up with tests green; run `bun run typecheck` and
-   `bun run lint`.
+1. **Red** — L6 unit-test design（または spec の acceptance criteria）に対して failing test を書く。
+   `bun run test` を実行し、正しい理由で失敗することを確認する。failing test は Red evidence として commit する。
+2. **Green** — pass するための最小 implementation を書く。`bun run test` を実行する。
+3. **Refactor** — tests green のまま clean up する。`bun run typecheck` と `bun run lint` を実行する。
 
-Oracle strength: assert real behavior (no `toBeTruthy()` on complex objects, do
-not mock the unit under test, use real harness state for integration paths).
-Use Vitest (`bun run test`), not `bun test` (its sync timeout is flaky).
+Oracle strength: real behavior を assert する。complex object に `toBeTruthy()` を使わず、unit under test を
+mock せず、integration path には real harness state を使う。Vitest（`bun run test`）を使い、
+sync timeout が flaky な `bun test` は使わない。
 
-Before trace-freeze: `bun run typecheck`, `bun run lint`, `bun run test`, and
-`ut-tdd doctor` all green; then `ut-tdd review --uncommitted` for evidence.
+trace-freeze 前に `bun run typecheck`、`bun run lint`、`bun run test`、`ut-tdd doctor` がすべて green
+であることを確認し、その後 `ut-tdd review --uncommitted` で evidence を残す。

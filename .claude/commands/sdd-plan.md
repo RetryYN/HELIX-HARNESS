@@ -1,28 +1,25 @@
 ---
-description: Break work into verifiable, machine-checkable PLAN steps (per-requirement, parallel/serial marked)
+description: 作業を machine-checkable な PLAN step に分解する（requirement 単位、parallel/serial marker 付き）
 argument-hint: "<feature or task description>"
 ---
 
-Decompose the task into a UT-TDD PLAN with verifiable steps. Use the
-`planning-and-task-breakdown` and `gate-planning` skills.
+task を verifiable step を持つ UT-TDD PLAN へ分解する。`planning-and-task-breakdown` と
+`gate-planning` skill を使う。
 
 Target: $ARGUMENTS
 
-Before authoring, inspect existing `docs/plans/` — prefer extending an existing
-PLAN over creating an overlapping one (one PLAN per requirement that needs a
-design doc; do not lump multiple requirements).
+authoring 前に既存の `docs/plans/` を確認する。overlap する新規 PLAN を作るより、既存 PLAN の拡張を優先する。
+design doc が必要な requirement ごとに 1 PLAN とし、複数 requirement をまとめない。
 
 Produce:
 
-1. **Decomposition** — steps at V-model unit-test-design granularity (each step
-   = one design-doc section or one `src/` module + its test). A step labeled
-   "implement feature X" without named files is too large; split it.
-2. **§工程表 schedule** — each step marked `[並列]` or `[直列]`; a `[直列]` step
-   must cite a serialization reason (file_conflict / downstream_dependency /
-   shared_state). At least one review step is required.
-3. **Acceptance criteria** — tied to the PLAN's FR or layer gate, each a
-   falsifiable check naming the `ut-tdd` command that verifies it.
-4. **Dependencies** — `requires` / `parent`, each pointing at an existing doc.
+1. **Decomposition** — V-model unit-test-design 粒度の step にする。各 step は 1 つの design-doc section、
+   または 1 つの `src/` module + その test に対応する。named file のない "implement feature X" は大きすぎるので分割する。
+2. **§工程表 schedule** — 各 step に `[並列]` または `[直列]` を付ける。`[直列]` step は serialization reason
+   （file_conflict / downstream_dependency / shared_state）を cite する。少なくとも 1 つの review step が必要である。
+3. **Acceptance criteria** — PLAN の FR または layer gate に接続し、それぞれを falsifiable check にする。
+   検証する `ut-tdd` command を明記する。
+4. **Dependencies** — `requires` / `parent` は既存 doc を指す。
 
-Validate with `ut-tdd plan lint` (schedule + dependency existence) and confirm
-`ut-tdd doctor` exits 0. Author per the schema in `.claude/CLAUDE.md` PLAN Rules.
+`ut-tdd plan lint`（schedule + dependency existence）で validate し、`ut-tdd doctor` が exit 0 であることを確認する。
+`.claude/CLAUDE.md` の PLAN Rules schema に従って authoring する。
