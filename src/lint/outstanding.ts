@@ -765,7 +765,8 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   if (
     p.kind === "poc" &&
     (/\bS[34]\b/i.test(p.workflowPhase ?? "") ||
-      /s4 decision|s4 decide|decision_outcome|po\/s4|s4 判断|s4 判定/i.test(text))
+      (!(p.workflowPhase ?? "").trim() &&
+        /s4 decision|s4 decide|decision_outcome|po\/s4|s4 判断|s4 判定/i.test(text)))
   ) {
     blockers.add("po_decision_pending");
   }

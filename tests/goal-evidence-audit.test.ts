@@ -60,6 +60,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("version_up_parked");
     expect(completionRow).toContain("PLAN-DISCOVERY-07-design-bottomup-mode");
     expect(completionRow).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
+    expect(completionRow).toContain("PLAN-DISCOVERY-11-l1-l2-elicitation-cycle");
     expect(completionRow).toContain("PLAN-L7-146-serverless-readonly-share");
     expect(completionRow).toContain("PLAN-M-02-helix-identifier-rename");
     expect(completionRow).toContain("record the PO/S4 decision before promotion");

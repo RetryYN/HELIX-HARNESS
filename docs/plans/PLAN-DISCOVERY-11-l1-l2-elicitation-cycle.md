@@ -1,9 +1,11 @@
 ---
-plan_id: PLAN-L2-05-l1-l2-elicitation-cycle
-title: "PLAN-L2-05 (design): L1⟷L2 elicitation cycle — 画面(mock)で要求を洗い出す反復前段 + 収束 gate → L3 ハンドオフ"
-kind: design
-layer: L2
-drive: be
+plan_id: PLAN-DISCOVERY-11-l1-l2-elicitation-cycle
+title: "PLAN-DISCOVERY-11 (kind=poc): L1⟷L2 要求洗い出しサイクル — 画面(mock)で要求を洗い出す反復前段 + 収束 gate → L3 ハンドオフ"
+kind: poc
+layer: cross
+workflow_phase: S1
+scrum_type: design-spike
+drive: fe
 status: draft
 created: 2026-07-04
 updated: 2026-07-04
@@ -11,12 +13,14 @@ owner: PO (人間) / Claude (Opus)
 parent_design: docs/design/harness/L1-requirements/screen-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
+  - role: aim
+    slot_label: "AIM — L1⟷L2 要求洗い出しサイクルの Discovery 境界と S1/S4 判断条件を整理する"
   - role: tl
-    slot_label: "TL — Forward front-end (L00-L06-design-phase §L2=L1 フェーズ分離) との整合・収束 gate を既存 G1 exit に接続する設計レビュー"
+    slot_label: "TL — Forward front-end (L00-L06-design-phase §L2=L1 フェーズ分離) との整合・収束 gate を既存 G1 exit に接続する PoC レビュー"
   - role: po
     slot_label: "PO — elicitation cycle の入口/出口・AI gap-check 境界 (charter §3) の承認、収束『切る』の最終宣言主体"
 generates:
-  - artifact_path: docs/plans/PLAN-L2-05-l1-l2-elicitation-cycle.md
+  - artifact_path: docs/plans/PLAN-DISCOVERY-11-l1-l2-elicitation-cycle.md
     artifact_type: markdown_doc
   # draft のため generates は実在する自 doc のみ。設計成果 (forward/L00-L06-design-phase 追記 §L1⟷L2 cycle +
   # 収束 gate 仕様 + AI gap-check contract) と、それを enforce する consistency lint (src/lint) は本文 §スコープ参照。
@@ -32,7 +36,7 @@ dependencies:
     - src/lint/screen-impl-pair-freeze.ts
 ---
 
-# PLAN-L2-05 (design): L1⟷L2 要求洗い出しサイクル
+# PLAN-DISCOVERY-11 (kind=poc): L1⟷L2 要求洗い出しサイクル
 
 ## 目的
 

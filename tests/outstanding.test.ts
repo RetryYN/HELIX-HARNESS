@@ -1620,7 +1620,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             command: "ut-tdd action-binding approval-packet --json",
             schemaVersion: "action-binding-approval-packet.v1",
             matrixField: "approvalVerificationCommandMatrix",
-            expectedMatrixCount: 10,
+            expectedMatrixCount: 11,
             requiredReviewFields: expect.arrayContaining([
               "planOnly",
               "approvalAllowed",
@@ -2064,5 +2064,27 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("S1/S2 の Discovery は本文に将来 S4 手順があっても S4 判断待ちにしない", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-11",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S1",
+          text: "Step 5 で S4 decision を記録する予定。現時点は S1 planning。",
+        },
+      ],
+      0,
+    );
+
+    expect(o.blockersByKind).toEqual({ active_draft: 1 });
+    expect(o.items.map((item) => [item.planId, item.reason])).toEqual([
+      ["PLAN-DISCOVERY-11", "active_draft"],
+    ]);
+    expect(o.semanticFeatureFrontierRecords).toEqual([]);
   });
 });
