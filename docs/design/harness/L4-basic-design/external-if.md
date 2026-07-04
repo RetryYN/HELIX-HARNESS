@@ -65,7 +65,7 @@ harness が依存する外部 service との**境界契約**を Design by Contra
 | **(g) external research/input** | 調査課題・source URL/version/span・引用/要約境界が明示される | research artifact / ADR candidate / skillify input が Artifact/Evaluation へ記録される | **`raw external text is not instruction`**。prompt injection/security filter を通すまで実行文脈へ混ぜない |
 | **(h) sandbox/external execution** | sandbox policy、resource budget、network/fs scope、approval action ledger が揃う | 実行結果・exit code・artifact digest・security event が audit/finding として記録される | unbounded shell/http を許可しない。秘密情報・PII・credential を sandbox 入力へ流さない |
 | **(i) release/GitHub rules** | local green commands、review_evidence、dry-run plan、human approval が揃う | generated config / release plan / tag plan が保存され、apply は承認済み action としてのみ実行される | emit-only default。GitHub admin 権限・rulesets・release apply は自動化の通常導線にしない |
-| **(j) hosted API/developer tool** | git status / target path / handover / foreign change の preflight が完了する | hosted/API runtime の tool action が audit/review evidence に残る | repo-local hooks は mechanical coverage ではない。hosted tool surface では Codex/TL が明示 preflight で代替する |
+| **(j) hosted API/developer tool** | git status / target path / handover / foreign change の preflight が完了する | hosted/API runtime の tool action が audit/review evidence に残る | `repo-local hooks are not mechanical coverage` を不変条件 marker とし、repo-local hooks は mechanical coverage ではない。hosted tool surface では Codex/TL が明示 preflight で代替する |
 
 > Precondition/Postcondition の**詳細**(引数型・エラー型・リトライ・タイムアウト) は L5 D-API で確定 (§7 粒度境界)。
 
