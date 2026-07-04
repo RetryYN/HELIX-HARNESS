@@ -29,7 +29,7 @@ describe("skill-assignment lint", () => {
   it("rejects missing and unknown assignment metadata", () => {
     const result = analyzeSkillAssignments([
       doc({
-        skill_type: "",
+        skill_type: "unknown",
         applies_to: {
           layers: ["L99"],
           drive_models: ["Unknown"],
@@ -39,7 +39,7 @@ describe("skill-assignment lint", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations.map((v) => v.kind)).toEqual([
-      "missing-skill-type",
+      "unknown-skill-type",
       "unknown-layer",
       "unknown-drive-model",
     ]);

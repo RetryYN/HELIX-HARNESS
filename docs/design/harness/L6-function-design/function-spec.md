@@ -733,6 +733,18 @@ FR-L1-12 (`suggestSkillInjection`) / FR-L1-47 (`recommendSkills`) の公開 CLI 
 - `skills→task` import は一方向 (dependency-drift cycles 0)。oracle: `tests/skill-recommend.test.ts`
   (recommendSkillsForText の flat-list + risk reason)。`workflowModeForKind`: reverse→Reverse / poc→Discovery /
   refactor→Refactor / troubleshoot→Recovery / それ以外→Forward。
+
+## 2026-07-05 skill scaffold generator 追補 (PLAN-L7-317)
+
+- `scaffoldSkill(input)` は `SkillScaffoldInput { name, category, layers, driveModels, domainTags?, description? }`
+  から `SkillScaffoldResult { ok, path, content, metadata, findings }` を返す pure generator である。
+- `path` は `docs/skills/<slug>.md`、`content` は `schema_version: skill.v1` と
+  `applies_to.layers / applies_to.drive_models` を持つ markdown skill doc とする。
+- self-lint は `src/lint/skill-assignment.ts` の `VALID_SKILL_TYPES` / `VALID_SKILL_LAYERS` /
+  `VALID_SKILL_DRIVE_MODELS` と `analyzeSkillAssignments` を再利用し、不正 category / layer / drive model を
+  `findings` として返す。
+- generator は filesystem へ書かない。file write は後続 CLI 境界 (`skill create`) の責務であり、
+  recommendation / telemetry logic は変更しない。oracle: `tests/skill-scaffold.test.ts`。
 ## 2026-06-23 dynamic skill injection materialization 追補 (PLAN-L7-135)
 
 FR-L1-12 / FR-L1-47 は recommendation row だけでは close しない。runtime contract は 2 段階である。

@@ -33,6 +33,18 @@ export const VALID_SKILL_DRIVE_MODELS = [
   "Research",
 ] as const;
 
+export const VALID_SKILL_TYPES = [
+  "design-contract",
+  "drive-reverse",
+  "orchestration",
+  "process",
+  "quality-gate-review",
+  "review",
+  "skill-map",
+  "testing",
+  "verification",
+] as const;
+
 export interface SkillAssignmentDoc {
   path: string;
   metadata: Record<string, unknown>;
@@ -42,6 +54,7 @@ export interface SkillAssignmentViolation {
   path: string;
   kind:
     | "missing-skill-type"
+    | "unknown-skill-type"
     | "missing-layers"
     | "unknown-layer"
     | "missing-drive-models"
@@ -105,6 +118,7 @@ export function loadSkillAssignmentDocs(repoRoot: string): SkillAssignmentDoc[] 
 
 export function analyzeSkillAssignments(docs: SkillAssignmentDoc[]): SkillAssignmentResult {
   const violations: SkillAssignmentViolation[] = [];
+  const validSkillTypes = new Set<string>(VALID_SKILL_TYPES);
   const validLayers = new Set<string>(VALID_SKILL_LAYERS);
   const validDriveModels = new Set<string>(VALID_SKILL_DRIVE_MODELS);
 
@@ -112,6 +126,8 @@ export function analyzeSkillAssignments(docs: SkillAssignmentDoc[]): SkillAssign
     const skillType = doc.metadata.skill_type;
     if (typeof skillType !== "string" || skillType.trim().length === 0) {
       violations.push({ path: doc.path, kind: "missing-skill-type" });
+    } else if (!validSkillTypes.has(skillType)) {
+      violations.push({ path: doc.path, kind: "unknown-skill-type", value: skillType });
     }
 
     const appliesTo =

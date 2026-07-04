@@ -790,6 +790,14 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 |------|------|--------------|
 | U-FR-L1-36 | `projectSkillEvaluations` | **Cold-start**: 0 skill_invocations → 0 skill_evaluations rows (never throws)。**AC-01**: adopted plan 5 件が全て "confirmed" → skill_rating=1.0, adoption_count=5, success_count=5, unused_flag=0。**AC-02**: last accepted invocation が asOf より 30 日超前 → unused_flag=1; row は保持する (auto-delete しない)。**Partial success**: adopted plan 5 件中 3 件 "confirmed"、2 件 "draft" → skill_rating=0.6。**Rejected invocations**: accepted=0 のみ → 0 evaluation rows。**"completed" counts as success**: plan_registry.status="completed" は success_count を増やす。asOf parameter により time-window logic を test 内で deterministic にする。 |
 
+### 2026-07-05 Skill Scaffold Generator Oracle 検査 (PLAN-L7-317)
+
+| U-ID | 関数 | oracle (DbC) |
+|------|------|--------------|
+| U-SKILL-SCAFFOLD-001 | `scaffoldSkill` | valid 入力では deterministic な `docs/skills/<slug>.md` path、`skill.v1` frontmatter、dedupe 済み layer / drive model / domain tag metadata、空 findings を返す。filesystem へ write しない pure generator とする。 |
+| U-SKILL-SCAFFOLD-002 | `scaffoldSkill` | unknown category、unknown layer、unknown drive model は `skill-assignment` SSoT の self-lint finding として返し、`ok=false` にする。 |
+| U-SKILL-SCAFFOLD-003 | `SKILL_SCAFFOLD_ALLOWED_VALUES` | category / layer / drive model の allowed values は scaffold 側で再定義せず、`skill-assignment` constants を公開する。 |
+
 ### 2026-06-15 PoC Success Measurement Oracle 検査 (FR-L1-43, PLAN-L7-53)
 
 | U-ID | 関数 | oracle (DbC) |
