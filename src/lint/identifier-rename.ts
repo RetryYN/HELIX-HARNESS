@@ -36,6 +36,7 @@ import {
 } from "./workflow-decision-packets";
 
 export type IdentifierRenameToken = "ut-tdd" | ".ut-tdd" | "area=harness";
+export type IdentifierRenameHitLocation = "path" | "content";
 export type IdentifierRenameHitCategory =
   | "source_code"
   | "test_code"
@@ -59,6 +60,7 @@ export interface IdentifierRenameHit {
   path: string;
   count: number;
   category: IdentifierRenameHitCategory;
+  location: IdentifierRenameHitLocation;
 }
 
 export interface IdentifierRenameCategorySummary {
@@ -75,6 +77,10 @@ export interface IdentifierRenameAudit {
   totalHits: number;
   hitsByToken: Record<IdentifierRenameToken, number>;
   filesByToken: Record<IdentifierRenameToken, number>;
+  pathHitsByToken: Record<IdentifierRenameToken, number>;
+  contentHitsByToken: Record<IdentifierRenameToken, number>;
+  pathEntriesByToken: Record<IdentifierRenameToken, number>;
+  contentFilesByToken: Record<IdentifierRenameToken, number>;
   hitsByCategory: IdentifierRenameCategorySummary[];
   hits: IdentifierRenameHit[];
   cutoverApproved: boolean;
@@ -105,7 +111,15 @@ export interface IdentifierRenameCutoverPlan {
   semanticFeatureFrontierRecord: SemanticFeatureFrontierRecord;
   audit: Pick<
     IdentifierRenameAudit,
-    "status" | "totalHits" | "hitsByToken" | "filesByToken" | "requiredRecords"
+    | "status"
+    | "totalHits"
+    | "hitsByToken"
+    | "filesByToken"
+    | "pathHitsByToken"
+    | "contentHitsByToken"
+    | "pathEntriesByToken"
+    | "contentFilesByToken"
+    | "requiredRecords"
   >;
   hitsByCategory: IdentifierRenameCategorySummary[];
   cutoverCategoryChecklist: Array<{
@@ -443,6 +457,7 @@ const RENAME_MAP: IdentifierRenameMapping[] = [
 const RENAME_EVIDENCE_PATH_PREFIX = ".ut-tdd/evidence/rename/";
 const RENAME_BACKUP_PATH_PREFIX = ".ut-tdd/backups/rename/<timestamp>/";
 const IGNORED_DIRS = new Set([".git", "node_modules", "dist", "coverage"]);
+const PATH_IGNORED_DIRS = new Set([".git", "node_modules", "coverage"]);
 const IGNORED_PATH_PREFIXES = [".ut-tdd/evidence/", ".ut-tdd/backups/"];
 const TEXT_EXTENSIONS = new Set([
   ".cjs",
@@ -528,6 +543,7 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
     path === "bun.lock" ||
     path === ".gitattributes" ||
     path === ".gitignore" ||
+    path.startsWith("dist/") ||
     path.startsWith("scripts/") ||
     path.startsWith(".github/")
   ) {
@@ -561,6 +577,28 @@ function walkTextFiles(root: string): string[] {
   };
   walk(root);
   return files.sort();
+}
+
+function walkPathEntries(root: string): string[] {
+  const entries: string[] = [];
+  const walk = (dir: string): void => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (PATH_IGNORED_DIRS.has(entry.name)) continue;
+      const abs = join(dir, entry.name);
+      const rel = relative(root, abs).replace(/\\/g, "/");
+      if (
+        IGNORED_PATH_PREFIXES.some(
+          (prefix) => rel === prefix.slice(0, -1) || rel.startsWith(prefix),
+        )
+      ) {
+        continue;
+      }
+      entries.push(rel);
+      if (entry.isDirectory()) walk(abs);
+    }
+  };
+  walk(root);
+  return entries.sort();
 }
 
 interface CutoverApprovalEvaluation {
@@ -710,12 +748,42 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     ".ut-tdd": 0,
     "area=harness": 0,
   };
+  const pathHitsByToken: Record<IdentifierRenameToken, number> = {
+    "ut-tdd": 0,
+    ".ut-tdd": 0,
+    "area=harness": 0,
+  };
+  const contentHitsByToken: Record<IdentifierRenameToken, number> = {
+    "ut-tdd": 0,
+    ".ut-tdd": 0,
+    "area=harness": 0,
+  };
   const filesByToken: Record<IdentifierRenameToken, number> = {
     "ut-tdd": 0,
     ".ut-tdd": 0,
     "area=harness": 0,
   };
+  const pathEntriesByToken: Record<IdentifierRenameToken, number> = {
+    "ut-tdd": 0,
+    ".ut-tdd": 0,
+    "area=harness": 0,
+  };
+  const contentFilesByToken: Record<IdentifierRenameToken, number> = {
+    "ut-tdd": 0,
+    ".ut-tdd": 0,
+    "area=harness": 0,
+  };
   const fileSetsByToken: Record<IdentifierRenameToken, Set<string>> = {
+    "ut-tdd": new Set(),
+    ".ut-tdd": new Set(),
+    "area=harness": new Set(),
+  };
+  const pathEntrySetsByToken: Record<IdentifierRenameToken, Set<string>> = {
+    "ut-tdd": new Set(),
+    ".ut-tdd": new Set(),
+    "area=harness": new Set(),
+  };
+  const contentFileSetsByToken: Record<IdentifierRenameToken, Set<string>> = {
     "ut-tdd": new Set(),
     ".ut-tdd": new Set(),
     "area=harness": new Set(),
@@ -726,15 +794,16 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
   >();
   for (const category of HIT_CATEGORIES) categoryStats.set(category, { hits: 0, files: new Set() });
 
-  for (const file of walkTextFiles(root)) {
-    const rel = relative(root, file).replace(/\\/g, "/");
+  for (const rel of walkPathEntries(root)) {
     const category = classifyRenameHitPath(rel);
     for (const token of TOKENS) {
       const pathCount = countToken(rel, token);
       if (pathCount > 0) {
-        hits.push({ token, path: rel, count: pathCount, category });
+        hits.push({ token, path: rel, count: pathCount, category, location: "path" });
         hitsByToken[token] += pathCount;
+        pathHitsByToken[token] += pathCount;
         fileSetsByToken[token].add(rel);
+        pathEntrySetsByToken[token].add(rel);
         const stats = categoryStats.get(category);
         if (stats) {
           stats.hits += pathCount;
@@ -742,13 +811,20 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
         }
       }
     }
+  }
+
+  for (const file of walkTextFiles(root)) {
+    const rel = relative(root, file).replace(/\\/g, "/");
+    const category = classifyRenameHitPath(rel);
     const text = readFileSync(file, "utf8");
     for (const token of TOKENS) {
       const count = countToken(text, token);
       if (count === 0) continue;
-      hits.push({ token, path: rel, count, category });
+      hits.push({ token, path: rel, count, category, location: "content" });
       hitsByToken[token] += count;
+      contentHitsByToken[token] += count;
       fileSetsByToken[token].add(rel);
+      contentFileSetsByToken[token].add(rel);
       const stats = categoryStats.get(category);
       if (stats) {
         stats.hits += count;
@@ -758,6 +834,8 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
   }
   for (const token of TOKENS) {
     filesByToken[token] = fileSetsByToken[token].size;
+    pathEntriesByToken[token] = pathEntrySetsByToken[token].size;
+    contentFilesByToken[token] = contentFileSetsByToken[token].size;
   }
 
   const approvalRecordsConcrete = cutoverApprovalPresent(root);
@@ -777,6 +855,10 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
     totalHits: hits.reduce((sum, hit) => sum + hit.count, 0),
     hitsByToken,
     filesByToken,
+    pathHitsByToken,
+    contentHitsByToken,
+    pathEntriesByToken,
+    contentFilesByToken,
     hitsByCategory,
     hits,
     cutoverApproved: false,
@@ -2139,6 +2221,10 @@ export function buildIdentifierRenameCutoverPlan(
       totalHits: audit.totalHits,
       hitsByToken: audit.hitsByToken,
       filesByToken: audit.filesByToken,
+      pathHitsByToken: audit.pathHitsByToken,
+      contentHitsByToken: audit.contentHitsByToken,
+      pathEntriesByToken: audit.pathEntriesByToken,
+      contentFilesByToken: audit.contentFilesByToken,
       requiredRecords: audit.requiredRecords,
     },
     hitsByCategory,
@@ -2227,12 +2313,17 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     tokens: input.audit.tokens,
     hitsByToken: input.audit.hitsByToken,
     filesByToken: input.audit.filesByToken,
+    pathHitsByToken: input.audit.pathHitsByToken,
+    contentHitsByToken: input.audit.contentHitsByToken,
+    pathEntriesByToken: input.audit.pathEntriesByToken,
+    contentFilesByToken: input.audit.contentFilesByToken,
     hitsByCategory: input.hitsByCategory,
     hits: input.audit.hits.map((hit) => ({
       token: hit.token,
       path: hit.path,
       count: hit.count,
       category: hit.category,
+      location: hit.location,
     })),
   });
   const approvalScopeDigest = sha256Json({

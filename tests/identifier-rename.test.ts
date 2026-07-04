@@ -301,6 +301,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(audit.hitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
       expect(audit.hitsByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
       expect(audit.hitsByToken["area=harness"]).toBe(2);
+      expect(audit.pathHitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(1);
+      expect(audit.pathHitsByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
+      expect(audit.contentHitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
+      expect(audit.pathEntriesByToken["ut-tdd"]).toBeGreaterThanOrEqual(1);
+      expect(audit.pathEntriesByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
+      expect(audit.contentFilesByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
       expect(audit.hits).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ path: "src/sample.ts", category: "source_code" }),
@@ -308,6 +314,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             path: "scripts/ut-tdd",
             category: "distribution_surface",
+            location: "path",
+          }),
+          expect.objectContaining({
+            path: ".ut-tdd/state/setup.json",
+            category: "runtime_state",
+            location: "path",
           }),
           expect.objectContaining({
             path: ".gitignore",
@@ -422,6 +434,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
+      mkdirSync(join(root, ".ut-tdd"), { recursive: true });
       writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
 
       const result = runCliIn(root, ["rename", "audit", "--json"]);
@@ -436,6 +449,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(payload.hitsByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.hitsByToken[".ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.pathHitsByToken[".ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.contentHitsByToken["ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.pathEntriesByToken[".ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.contentFilesByToken["ut-tdd"]).toBeGreaterThan(0);
       expect(payload.hitsByCategory).toEqual(
         expect.arrayContaining([expect.objectContaining({ category: "adapter_config" })]),
       );
@@ -443,6 +460,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const text = runCliIn(root, ["rename", "audit"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("category adapter_config:");
+      expect(text.stdout).toContain("pathHits=");
+      expect(text.stdout).toContain("contentHits=");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

@@ -1540,7 +1540,7 @@ rename
     );
     for (const token of audit.tokens) {
       process.stdout.write(
-        `  ${token}: hits=${audit.hitsByToken[token]} files=${audit.filesByToken[token]}\n`,
+        `  ${token}: hits=${audit.hitsByToken[token]} files=${audit.filesByToken[token]} pathHits=${audit.pathHitsByToken[token]} pathEntries=${audit.pathEntriesByToken[token]} contentHits=${audit.contentHitsByToken[token]} contentFiles=${audit.contentFilesByToken[token]}\n`,
       );
     }
     for (const category of audit.hitsByCategory) {
