@@ -190,6 +190,11 @@ import {
   l7CompletionMessages,
   loadL7CompletionDocs,
 } from "../lint/l7-completion";
+import {
+  analyzeL14CloseAudit,
+  l14CloseAuditMessages,
+  loadL14CloseAuditInput,
+} from "../lint/l14-close-audit";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
 import {
   analyzeMergedPlanStatus,
@@ -2574,6 +2579,18 @@ export function checkRightArmVerificationStrategy(repoRoot: string): {
   }
 }
 
+export function checkL14CloseAudit(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const r = analyzeL14CloseAudit(loadL14CloseAuditInput(repoRoot));
+    return { messages: l14CloseAuditMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["l14-close-audit - violation: L14 close audit matrix could not be read"],
+      ok: false,
+    };
+  }
+}
+
 export function checkLintWiring(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const r = analyzeLintWiring(loadLintWiringInput(repoRoot));
@@ -3193,6 +3210,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
   const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
   const g10UxWorkflow = checkG10UxWorkflow(deps.repoRoot);
+  const l14CloseAudit = checkL14CloseAudit(deps.repoRoot);
   const lintWiring = checkLintWiring(deps.repoRoot);
   const toolchainPin = checkToolchainPin(deps.repoRoot);
   const proposalDocumentCoverage = checkProposalDocumentCoverage(deps.repoRoot);
@@ -3285,6 +3303,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       g8IntegrationWorkflow.ok &&
       g9SystemWorkflow.ok &&
       g10UxWorkflow.ok &&
+      l14CloseAudit.ok &&
       lintWiring.ok &&
       toolchainPin.ok &&
       proposalDocumentCoverage.ok &&
@@ -3378,6 +3397,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g10UxWorkflow.messages.map((m) => `doctor: ${m}`),
+      ...l14CloseAudit.messages.map((m) => `doctor: ${m}`),
       ...lintWiring.messages.map((m) => `doctor: ${m}`),
       ...toolchainPin.messages.map((m) => `doctor: ${m}`),
       ...proposalDocumentCoverage.messages.map((m) => `doctor: ${m}`),

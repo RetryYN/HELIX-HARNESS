@@ -4,9 +4,11 @@ title: "PLAN-L7-314 (impl): L14 close-system-foundation audit engine 移植 + ch
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-07-05
+backprop_decision: not_required
+backprop_decision_reason: "L14 完了監査 engine を HELIX charter P0-P9 へ接地して doctor hard gate に追加しただけで、上位要求や自律境界の意味を変更していないため。"
 owner: Claude (Opus) / Codex
 parent_design: docs/process/gates.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -18,13 +20,58 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-314-l14-close-audit.md
     artifact_type: markdown_doc
-  # draft のため generates は実在する自 doc のみ。生成予定 (l14-close-audit lint + test + audit-matrix doc) は本文 §スコープ参照。実装着地時に generates へ追加する。
+  - artifact_path: src/lint/l14-close-audit.ts
+    artifact_type: source_module
+  - artifact_path: tests/l14-close-audit.test.ts
+    artifact_type: test_code
+  - artifact_path: src/doctor/index.ts
+    artifact_type: source_module
+  - artifact_path: tests/doctor.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/lint-wiring.test.ts
+    artifact_type: test_code
+  - artifact_path: .ut-tdd/audit/A-144-l14-close-audit.md
+    artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L7-130-right-arm-gate-planning.md
   requires: []
   references:
     - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
     - docs/design/helix/L0-charter/helix-charter_v0.1.md
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-05T04:15:27+09:00"
+    tests_green_at: "2026-07-05T04:15:27+09:00"
+    verdict: approve
+    scope: "L14 完了監査 engine を HELIX charter P0-P9 へ再設計し、audit matrix、required evidence path、境界 marker、non-closed row の差分/次アクションを fail-close にした。PLAN-M-02 cutover、version-up、PO/S4 decision、人間承認 blocker は blocked-human / partial として残し、whole-program completion claim は許可していない。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/l14-close-audit.test.ts tests/lint-wiring.test.ts tests/doctor.test.ts --timeout 180000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-05T04:15:27+09:00"
+        evidence_path: tests/l14-close-audit.test.ts
+        output_digest: "sha256:ec58bfaeb5316c1eeae4ec58fdbb6752a241c935d9984a407733da10d881974b"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T04:15:27+09:00"
+        evidence_path: src/doctor/index.ts
+        output_digest: "sha256:8d536be8810a1ea29ea23ee5de6754cf62f163fc73a0df14e700416ad7195976"
+      - kind: doctor
+        command: "./scripts/ut-tdd doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T04:15:27+09:00"
+        evidence_path: .ut-tdd/audit/A-144-l14-close-audit.md
+        output_digest: "sha256:6eaaa190bac7173603e2681299d45a83e877030ac02f048da8e6a7b299861abc"
 ---
 
 # PLAN-L7-314 (impl): L14 完了監査 engine

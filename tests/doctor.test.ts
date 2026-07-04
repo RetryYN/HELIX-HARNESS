@@ -29,6 +29,7 @@ import {
   checkHandover,
   checkHandoverDisciplineMessages,
   checkImplPlanTrace,
+  checkL14CloseAudit,
   checkL6Completion,
   checkL6FrCoverage,
   checkL7Completion,
@@ -2251,6 +2252,11 @@ describe("runDoctor", () => {
     expect(hasDoctorMessage(r.messages, "doctor: right-arm-verification-strategy - OK")).toBe(true);
   });
 
+  it("includes L14 close audit hard gate in doctor output", () => {
+    const r = liveDoctor();
+    expect(hasDoctorMessage(r.messages, "doctor: l14-close-audit - OK")).toBe(true);
+  });
+
   it("includes version-up readiness hard gate in doctor output", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: version-up-readiness - OK")).toBe(true);
@@ -2657,6 +2663,7 @@ describe("runDoctor", () => {
       ["tracked-canonical", checkTrackedCanonical(missingRoot)],
       ["dependency-drift", checkDependencyDrift(missingRoot)],
       ["right-arm-verification-strategy", checkRightArmVerificationStrategy(missingRoot)],
+      ["l14-close-audit", checkL14CloseAudit(missingRoot)],
       ["version-up-readiness", checkVersionUpReadiness(missingRoot)],
       ["action-binding-approval-readiness", checkActionBindingApprovalReadiness(missingRoot)],
       ["s4-decision-readiness", checkS4DecisionReadiness(missingRoot)],

@@ -101,6 +101,7 @@ describe("loadLintWiringInput (live repo regression fence)", () => {
       "g10-ux-workflow",
       "gn-evidence-manifest",
       "improvement-backlog",
+      "l14-close-audit",
       "lint-wiring",
       "objective-evidence-audit",
       "proposal-document-coverage",
