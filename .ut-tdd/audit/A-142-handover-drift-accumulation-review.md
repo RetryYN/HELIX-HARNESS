@@ -1,11 +1,11 @@
-# A-142 — PLAN-L7-83 handover drift reconcile + accumulation bound (cross_agent review)
+# A-142 — PLAN-L7-83 handover drift reconcile + accumulation bound の cross_agent review
 
-- Date: 2026-06-19
+- 日付: 2026-06-19
 - Worker: claude-opus-4-8 (PM)
-- Reviewer: codex-gpt-5.5 (TL, cross_agent via `ut-tdd codex --role tl --task-file ... --execute`)
-- Scope: `src/handover/index.ts` (boundSameDayEntries + runHandover marker reconcile), commit `9e6d4cc`.
+- Reviewer: codex-gpt-5.5 (TL、`ut-tdd codex --role tl --task-file ... --execute` 経由の cross_agent)
+- 範囲: `src/handover/index.ts` (boundSameDayEntries + runHandover marker reconcile), commit `9e6d4cc`.
 
-## Defects fixed
+## 修正した defects
 1. **pointer drift never reconciled** — CURRENT.json と `.ut-tdd/state/current-plan` marker が
    無秩序に乖離できた (`checkHandoverDiscipline` は warn のみ)。実例: marker=PLAN-L7-83 (当時 phantom)、
    CURRENT.json=PLAN-L7-82 (completed) → doctor が drift を毎 session 再報告。`runHandover` を 2 source の
@@ -13,7 +13,7 @@
 2. **同日 markdown 無制限累積** — slim (A-138 ITEM-4) では §3-§6 + entry が積み増し (6 entries / 1004 行)。
    `boundSameDayEntries` が MAX_SAME_DAY_ENTRIES=4 へ上限化 (anchor + 直近保持・中間 breadcrumb・git 履歴保全)。
 
-## Cross_agent review log
+## cross_agent review 記録
 - **Round 1** (`.ut-tdd/codex-tasks/l783-review.md`): VERDICT=fail。Important 1件 =
   `boundSameDayEntries` が既存 breadcrumb を再 prune 時に保持 anchor (entry[0]) の slice へ吸収し
   breadcrumb が線形累積する (「collapse into ONE breadcrumb」決定に反し bound を弱める)。
@@ -26,7 +26,7 @@
   CURRENT.json read / rg) で出力が途切れ最終 verdict 未捕捉 (wrapper truncation)。remediation は決定論 test で
   代替検証 (再 attest でなく test-proven)。
 
-## Verification
+## 検証
 - typecheck clean / biome (175 files) clean / 全 Vitest 763 green (U-HOVER-014/015 含む) / doctor EXIT=0
   (change-impact OK: source+design+test の change-set / readability mojibake 0)。
 - handover-discipline drift surface は完了 handover (`ut-tdd handover --complete --plan PLAN-L7-83-...`) で解消。

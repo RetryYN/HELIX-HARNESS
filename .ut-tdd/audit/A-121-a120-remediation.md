@@ -1,9 +1,9 @@
 # A-121 A-120 Multi-Lens Remediation (修正対応)
 
-Date: 2026-06-09
-Gate: A-120 (Phase 2 3-lens cross-review) findings remediation
-Implementer: Claude Opus (PM-authored TS、[[feedback_ts_native_over_helix_cli]])
-**Verdict: 完了**。actionable は実装、既存充足は verify、真の carry は IMP-102..105 へ routing。machine green。
+日付: 2026-06-09
+Gate: A-120 (Phase 2 3-lens cross-review) findings remediation の是正確認
+実装者: Claude Opus (PM-authored TS、[[feedback_ts_native_over_helix_cli]])
+**判定: 完了**。actionable は実装、既存充足は verify、真の carry は IMP-102..105 へ routing。machine green。
 
 ## 対応結果
 
@@ -22,13 +22,13 @@ Implementer: Claude Opus (PM-authored TS、[[feedback_ts_native_over_helix_cli]]
 ## 機械層 (全 green)
 
 - typecheck (`.claude/hooks` 込み) / lint 76 files / **vitest 316 (38 files)** / doctor exit 0。
-- doctor: asset-drift OK / coding-rules OK / ddd-tdd-rules OK / l6-fr-coverage 47FR / l6-completion G6 PASS / review-evidence OK。
+- doctor: asset-drift OK / coding-rules OK / ddd-tdd-rules OK / l6-fr-coverage 47FR / l6-completion G6 PASS / review-evidence OK を確認。
 - DRY 集約は挙動保存 (関連 tests 全 pass、回帰なし)。
 
 ## commit
 
 - `d65b8ca` feat(lint): Phase 2 verification + HELIX cutover hardening (asset-drift) — Codex TL 実装 / A-119 cross-review 済 (30 files)。
-- `c141a45` fix(lint): A-120 multi-lens cross-review remediation (19 files)。
+- `c141a45` fix(lint): A-120 multi-lens cross-review remediation (19 files) を適用。
 - push: origin main (2fb98f0..c141a45)。
 
 ## carry

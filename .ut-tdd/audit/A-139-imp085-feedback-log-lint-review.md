@@ -25,7 +25,7 @@ absence-blindness 対策として `| **FB` に見えるが ID 抽出できない
 doctor 配線は、repo root 不在や読み取り/解析例外を fail-close、feedback-log 不在を適用なし、存在する場合は `runDoctor.ok` に AND する hard gate、という境界で妥当です。
 
 verdict: **pass-with-nits**。根拠は、要求された fail-close discipline と doctor hard gate は満たしており、指摘は将来運用時のパス表記制約の明文化に留まるためです。
-SUCCESS: The process with PID 17880 (child process of PID 26000) has been terminated.
-SUCCESS: The process with PID 26000 (child process of PID 4248) has been terminated.
-SUCCESS: The process with PID 4248 (child process of PID 8092) has been terminated.
-SUCCESS: The process with PID 8092 (child process of PID 26408) has been terminated.
+終了確認: PID 17880 (親プロセス PID 26000) は終了済み。
+終了確認: PID 26000 (親プロセス PID 4248) は終了済み。
+終了確認: PID 4248 (親プロセス PID 8092) は終了済み。
+終了確認: PID 8092 (親プロセス PID 26408) は終了済み。

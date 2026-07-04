@@ -1,31 +1,31 @@
-# A-132 - L8-L14 verification band execution
+# A-132 - L8-L14 verification band 実行
 
-- **date**: 2026-06-11
-- **plan**: PLAN-M-00-verify-cutover
-- **scope**: local verification band execution for L8-L14 using `harness.db` roadmap/review projections
-- **accepted_by**: Codex TL, intra-runtime review fallback
+- **日付**: 2026-06-11
+- **PLAN**: PLAN-M-00-verify-cutover
+- **範囲**: `harness.db` roadmap/review projections を使った L8-L14 の local verification band execution
+- **受入者**: Codex TL、intra-runtime review fallback
 
-## Result
+## 結果
 
-`PLAN-VERIFY-CUTOVER-00` is completed for the local verification band.
+`PLAN-VERIFY-CUTOVER-00` は local verification band について completed とする。
 
-The execution is intentionally bounded:
+この execution は意図的に境界を限定している:
 
-- L8-L11 and L14 are verified as local audit/feedback rows.
-- L12 and L13 are recorded as `passed_local` with `human_required=1` because production deploy, post-deploy observation, and PO signoff are outside this local execution band.
-- No production deployment, destructive cutover, credential change, vendor edit, or infrastructure change was performed.
+- L8-L11 と L14 は local audit/feedback rows として検証した。
+- L12 と L13 は `human_required=1` 付きの `passed_local` として記録した。production deploy、post-deploy observation、PO signoff はこの local execution band の外側にあるため。
+- production deployment、destructive cutover、credential change、vendor edit、infrastructure change は行っていない。
 
-## Evidence
+## 証跡
 
-- `harness.db` rebuild emits 7 `workflow_runs` for workflow `L8-L14-verification-band`.
-- `harness.db` rebuild emits 7 matching `gate_runs` with gate ids `G-VERIFY.L8` through `G-VERIFY.L14`.
-- `harness.db` rebuild emits `coverage` rows for:
+- `harness.db` rebuild は workflow `L8-L14-verification-band` について 7 件の `workflow_runs` を出力する。
+- `harness.db` rebuild は gate ids `G-VERIFY.L8` から `G-VERIFY.L14` までの対応する `gate_runs` 7 件を出力する。
+- `harness.db` rebuild は次の `coverage` rows を出力する:
   - `covered_program_bands = 5 / 5`
   - `reached_roadmap_gates = 20 / 20`
   - `passing_review_evidence = 2 / 2`
-- `docs/plans/PLAN-M-00-verify-cutover.md` is now `status: completed`.
+- `docs/plans/PLAN-M-00-verify-cutover.md` は現在 `status: completed`。
 
-## Verification Commands
+## 検証コマンド
 
 - `npx vitest run tests/projection-writer.test.ts`
 - `npx tsc --noEmit`
@@ -33,6 +33,6 @@ The execution is intentionally bounded:
 - `bun run src/cli.ts db rebuild --json`
 - `bun run src/cli.ts doctor`
 
-## Boundary
+## 境界
 
-This audit closes the local L8-L14 verification band execution. It is not approval for production deployment, PO final UAT signoff, or destructive HELIX-to-UT cutover.
+この audit は local L8-L14 verification band execution を close する。production deployment、PO final UAT signoff、destructive HELIX-to-UT cutover の承認ではない。

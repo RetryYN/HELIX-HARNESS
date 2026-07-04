@@ -26,16 +26,16 @@
 - 分類順: spine-internal → (未 landing) draft-deferred → local-impl-only → (Reverse 参照) converged →
   さもなくば **unconverged-landed** (違反候補)。
 - SSoT 再利用: requires=backfill-pairing.parseRequires / reverse links=scrum-reverse.parseLinks /
-  roadmap span=roadmap-registry.loadRoadmaps / fmValue=shared。
+  roadmap span は roadmap-registry.loadRoadmaps / fmValue は shared。
 - 配線: `src/doctor/index.ts` `checkForwardConvergence` を greenCommandDigest と同様 report-only で
   messages にのみ追加 (doctor.ok の連鎖には入れない)。lint-wiring=wired (死蔵でない)。
 
 ## 現リポ baseline 実測 (report-only)
 
 未集約 landed impl = **2 件**:
-- `PLAN-L7-147-refactor-candidate-detector` (kind=impl/confirmed、parent_design=docs/process/modes/refactor.md、
+- `PLAN-L7-147-refactor-candidate-detector` は kind=impl/confirmed、parent_design=docs/process/modes/refactor.md。
   requires=PLAN-L7-133。docs/design でも L1-L6 PLAN でもないため spine-外)
-- `PLAN-L7-62-runtime-portability-guard` (kind=impl/completed、parent_design=docs/adr/ADR-001、
+- `PLAN-L7-62-runtime-portability-guard` は kind=impl/completed、parent_design=docs/adr/ADR-001。
   requires=ADR-001 + repository-structure.md。同様に spine-外)
 
 その他: spine-internal 33 / converged 0 / local-impl-only 0 / draft-deferred 0。
