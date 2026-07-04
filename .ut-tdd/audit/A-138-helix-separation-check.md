@@ -1,41 +1,41 @@
-# A-138 HELIX Separation Check
+# A-138 HELIX 分離チェック
 
 Date: 2026-06-16
 
-Goal: verify that PLAN-L7-68 does not pull HELIX runtime state or legacy `helix` command dispatch back into UT-TDD-owned execution surfaces.
+目的: PLAN-L7-68 が HELIX runtime state や legacy `helix` command dispatch を UT-TDD 所有の実行 surface へ戻していないことを確認する。
 
-## Scope
+## 対象範囲
 
-Checked UT-TDD-owned runtime and test surfaces:
+確認した UT-TDD 所有の runtime / test surface:
 
 - `src`
 - `tests`
 - `docs/handover`
 - `.ut-tdd/handover`
 - `.ut-tdd/audit`
-- active design/PLAN references touched by PLAN-L7-68
+- PLAN-L7-68 が触れた active design / PLAN 参照
 
-Vendor snapshots and archive docs are historical/reference material and are not product runtime.
+Vendor snapshots と archive docs は historical / reference material であり、product runtime ではない。
 
-## Findings
+## 所見
 
-| Check | Result | Notes |
+| 検査 | 結果 | 注記 |
 |---|---|---|
-| Provider binary override names | pass | Runtime uses `UT_TDD_CODEX_BIN` and `UT_TDD_CLAUDE_BIN`. |
-| Legacy provider override names in runtime/test/handover | pass | Narrow search over `src`, `tests`, `docs/handover`, and `.ut-tdd/handover` has zero literal hits for old provider override/raw-wrapper names. |
-| Legacy raw-wrapper env coupling | pass | `adapterExecutionEnv` strips legacy raw-wrapper env names before provider execution and does not emit them. |
-| `helix codex` / `helix claude` execution route in product code | pass | Remaining hits are negative fixtures for asset-drift tests or historical/design text describing forbidden residue. |
-| Provider JSON vs explicit handover | pass | Provider handover packages have `handover_kind: "mechanical"`; explicit judgement is in `docs/handover/session-handover-2026-06-16.md`. |
+| Provider binary override 名 | pass | Runtime は `UT_TDD_CODEX_BIN` と `UT_TDD_CLAUDE_BIN` を使う。 |
+| runtime/test/handover 内の legacy provider override 名 | pass | `src`、`tests`、`docs/handover`、`.ut-tdd/handover` の narrow search では old provider override / raw-wrapper 名の literal hit は 0。 |
+| Legacy raw-wrapper env coupling | pass | `adapterExecutionEnv` は provider 実行前に legacy raw-wrapper env 名を除去し、それらを emit しない。 |
+| product code 内の `helix codex` / `helix claude` 実行経路 | pass | 残る hit は asset-drift tests の negative fixture、または forbidden residue を説明する historical / design text のみ。 |
+| Provider JSON と explicit handover | pass | Provider handover package は `handover_kind: "mechanical"` を持ち、explicit judgement は `docs/handover/session-handover-2026-06-16.md` にある。 |
 
-## Evidence Commands
+## 証跡コマンド
 
 ```powershell
 rg -n "HELIX_CODEX_BIN|HELIX_CLAUDE_BIN|HELIX_ALLOW_RAW|HELIX_RAW_.*REASON" src tests docs\handover .ut-tdd\handover --glob '!vendor/**'
 rg -n "\bhelix\s+(codex|claude|team|handover|plan|gate|doctor|review|code|sprint|skill)\b" src tests .claude docs\templates docs\skills --glob '!vendor/**'
 ```
 
-The first command returned no matches. The second command returned only negative test fixtures and rule assertions that detect forbidden legacy command residue.
+1 つ目の command は match なし。2 つ目の command は forbidden legacy command residue を検出する negative test fixture と rule assertion のみを返した。
 
 ## Conclusion
 
-HELIX remains only as historical terminology, migration context, or negative-test residue in the checked scope. PLAN-L7-68 does not depend on HELIX runtime state.
+確認範囲では、HELIX は historical terminology、migration context、negative-test residue としてのみ残る。PLAN-L7-68 は HELIX runtime state に依存しない。

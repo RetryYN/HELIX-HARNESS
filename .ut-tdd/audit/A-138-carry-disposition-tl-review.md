@@ -1,7 +1,7 @@
-# A-138 — carry disposition TL cross-review (2026-06-19)
+# A-138 — carry disposition TL クロスレビュー (2026-06-19)
 
 - review_kind: `cross_agent`
-- worker/PM: Claude (claude-opus-4-8) — self-review + disposition author
+- worker/PM: Claude (claude-opus-4-8) — セルフレビュー + disposition 作成者
 - reviewer/TL: Codex (gpt-5.5) via `ut-tdd codex --role tl --task-file .ut-tdd/codex-tasks/carry-disposition-tl-review-v2.md --execute`
 - session id: 019edf16-7343-7220-a948-b38ee2fa4073 / tokens 32,392
 - 対象: §5 PO-pending 判断 4 件 (#7 status taxonomy / #9 skill suggest / false-confidence backlog / handover 累積)
@@ -12,7 +12,7 @@
 
 ## Codex (TL/gpt-5.5) verdict 全文
 
-### ITEM-1 VERDICT: adjust
+### ITEM-1 判定: 調整
 
 4 fields 一律 `future` は少し粗いです。
 
@@ -33,7 +33,7 @@
 
 この分類ルール自体は TL 裏取りで足ります。PO が必要なのは、分類が公開契約・優先度・要件本文の意味を変える場合です。
 
-### ITEM-2 VERDICT: adjust
+### ITEM-2 判定: 調整
 
 `--text` additive 実装は同意です。ただし最小スライスは **flat ranked list のまま** に限定すべきです。
 
@@ -56,7 +56,7 @@
 
 ただしこれは公開出力契約です。bucket 名、閾値、同一 skill の bucket 移動条件、flat list との互換形式は PO/API 判断が必要です。
 
-### ITEM-3 VERDICT: agree
+### ITEM-3 判定: 同意
 
 分類は自己 disposition どおりで妥当です。
 
@@ -71,15 +71,15 @@ IMP-107 も既存 FR 拡張として今実装可能寄りです。`placeholder_d
 Reverse 最小スライス案:
 
 - IMP-082:
-  - bucket: requirements / V-model descent substance gate
+  - bucket: requirements / V-model descent substance gate（要件 / Vモデル下降の実体 gate）
   - FR 族: `FR-vmodel-descent-substance` または既存 vmodel/pair-freeze FR 配下
   - 最小内容: FR-ID が design § / DbC / module assignment のいずれかへ具体分解されていることを検査対象化
 - IMP-083:
-  - bucket: requirements / test-design freeze gate
+  - bucket: requirements / test-design freeze gate（要件 / テスト設計 freeze gate）
   - FR 族: `FR-test-design-substance` または既存 pair-freeze test gate 配下
   - 最小内容: GWT/ST/U が空骨格でないこと、少なくとも対象 FR と観測可能期待結果を持つことを検査対象化
 
-### ITEM-4 VERDICT: agree
+### ITEM-4 判定: 同意
 
 `countHandoverEntries` / bypass 検知契約は壊しません。鍵は自己 disposition の通り、1 回の `runHandover` がちょうど 1 個の `# Session Handover` header を追加し続けることです。§1/§2 を slim stub にしても header 数と pointer の `doc_entry_count` 照合意味論は維持されます。
 
@@ -95,13 +95,13 @@ Reverse 最小スライス案:
 
 AI-decidable な安全性判断は「header count 契約は不変」。PO 確認が必要なのは、slim stub が handover の運用上読みやすいかというフォーマット嗜好部分です。
 
-### RESIDUAL_FOR_PO
+### PO 残判断
 
 - ITEM-1: `next_action` を `carry` として PLAN 化する優先度の最終承認。
 - ITEM-2: 3-bucket 出力の公開 API 契約、bucket 名、振り分け基準、flat list との互換形式。
 - ITEM-4: 同日 2 件目以降の handover §1/§2 slim stub を人間可読フォーマットとして採用するか。
-SUCCESS: The process with PID 11808 (child process of PID 2120) has been terminated.
-SUCCESS: The process with PID 2120 (child process of PID 21120) has been terminated.
-SUCCESS: The process with PID 21120 (child process of PID 3396) has been terminated.
-SUCCESS: The process with PID 3396 (child process of PID 11576) has been terminated.
+成功: PID 11808 の process (PID 2120 の child process) は終了済み。
+成功: PID 2120 の process (PID 21120 の child process) は終了済み。
+成功: PID 21120 の process (PID 3396 の child process) は終了済み。
+成功: PID 3396 の process (PID 11576 の child process) は終了済み。
 tokens used
