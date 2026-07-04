@@ -15,29 +15,23 @@ applies_to:
     - Recovery
 ---
 
-# requirements handover
+# requirements handover（要件引き継ぎ）
 
-How to pass the requirements baton across sessions, agents, and layer
-boundaries in UT-TDD (FR-L1-42 provider handover, FR-L1-31 context
-continuity). The baton is a machine-readable JSON snapshot plus a
-human-readable carry list — both must be consistent with real PLAN and git
-state at the moment of handover.
+UT-TDD で sessions、agents、layer boundaries をまたいで requirements baton を渡す方法を扱う
+（FR-L1-42 provider handover、FR-L1-31 context continuity）。baton は machine-readable JSON snapshot と
+human-readable carry list の組であり、どちらも handover 時点の real PLAN と git state と一致していなければならない。
 
-## When to load this skill
+## この skill を読む条件
 
-- A session is ending and at least one L1 or L3 PLAN is still `active`.
-- An agent is handing off an L1 elicitation or L3 requirement-authoring task
-  to a successor agent or session.
-- `ut-tdd handover` output needs to be verified for stale carry items before
-  it is written.
-- A Discovery S4 decision outcome must be forwarded into an L3 requirement
-  before Forward implementation begins.
-- `ut-tdd doctor` flags `.ut-tdd/handover/CURRENT.json` as stale or missing.
+- session が終了し、少なくとも 1 つの L1 または L3 PLAN がまだ `active`。
+- agent が L1 elicitation または L3 requirement-authoring task を successor agent/session へ hand off する。
+- `ut-tdd handover` output を書く前に stale carry items の有無を verify する必要がある。
+- Discovery S4 decision outcome を Forward implementation 前に L3 requirement へ forward する必要がある。
+- `ut-tdd doctor` が `.ut-tdd/handover/CURRENT.json` を stale または missing と flag する。
 
-## The handover record: CURRENT.json
+## handover record の構造（CURRENT.json）
 
-`.ut-tdd/handover/CURRENT.json` is the canonical baton. Fields relevant to
-requirements handover:
+`.ut-tdd/handover/CURRENT.json` は canonical baton である。requirements handover に関係する fields:
 
 ```json
 {
@@ -47,7 +41,7 @@ requirements handover:
   "carry": [
     {
       "id": "C-01",
-      "description": "L3 requirement FR-L1-42 not yet back-filled from Add-feature",
+      "description": "L3 requirement FR-L1-42 は Add-feature から未 back-fill",
       "plan_ref": "PLAN-L3-NN",
       "status": "open",
       "verified_against": "git log + ut-tdd status 2026-06-17"
@@ -58,82 +52,70 @@ requirements handover:
 }
 ```
 
-Every carry item must have a `verified_against` note that names the command
-and date used to confirm the item is genuinely open — not copied from a prior
-handover without re-verification.
+すべての carry item は `verified_against` note を持たなければならない。note には、
+item が本当に open であることを確認した command と date を記録する。
+re-verification なしに prior handover から copy しない。
 
-## L1 -> L3 requirement baton procedure
+## L1 から L3 への requirement baton procedure
 
-The L1-to-L3 descent is the highest-risk handover in Forward drive because an
-ambiguous FR at L1 that lands in L3 without clarification will propagate
-through L4-L7 as a silent design gap.
+L1-to-L3 descent は Forward drive で最も risk が高い handover である。
+L1 の ambiguous FR が clarification なしに L3 へ入ると、L4-L7 まで silent design gap として伝播する。
 
-Checklist before passing the baton:
+baton を渡す前の checklist:
 
-- [ ] Each FR in the L1 elicitation has a unique, stable ID (FR-L1-NN).
-- [ ] Every FR that requires implementation has a corresponding PLAN in
-  `docs/plans/` (or a `draft` stub explaining why it is deferred).
-- [ ] Ambiguous FRs carry a `clarification_pending` marker and a linked
-  open question in the PLAN `review_evidence` field — not left in prose.
-- [ ] `ut-tdd plan lint` exits 0 on all L1 and L3 PLANs being handed off.
-- [ ] `ut-tdd doctor` exits 0 — no orphaned FRs, no broken PLAN dependencies.
-- [ ] `ut-tdd handover` has been run and `.ut-tdd/handover/CURRENT.json`
-  reflects the current state.
+- [ ] L1 elicitation の各 FR が unique/stable ID（FR-L1-NN）を持つ。
+- [ ] implementation を要するすべての FR に、`docs/plans/` 内の corresponding PLAN がある
+      （または defer 理由を説明する `draft` stub がある）。
+- [ ] ambiguous FRs は `clarification_pending` marker と、PLAN `review_evidence` field 内の linked open question を持つ。
+      prose に放置しない。
+- [ ] hand off 対象のすべての L1/L3 PLAN で `ut-tdd plan lint` が 0 で終了する。
+- [ ] `ut-tdd doctor` が 0 で終了する。orphaned FRs と broken PLAN dependencies が無い。
+- [ ] `ut-tdd handover` を実行済みで、`.ut-tdd/handover/CURRENT.json` が current state を反映している。
 
-## Context continuity (FR-L1-31)
+## Context continuity の保証（FR-L1-31）
 
-A successor agent or session must be able to reconstruct context from the
-handover record alone — without relying on the prior agent's chat history.
+successor agent/session は、prior agent の chat history に頼らず、handover record だけで context を reconstruct できなければならない。
 
-To ensure this:
+これを保証するために:
 
-1. The PLAN `review_evidence` field must contain the rationale for any
-   non-obvious decision made during elicitation.
-2. New L1 terms introduced in the session must be added to the L0 glossary
-   before handover.
-3. If a Discovery PoC `decision_outcome` influences an L3 requirement, the
-   link must be explicit: the L3 PLAN `dependencies` field references the
-   PoC PLAN ID.
-4. Carry items must reference a PLAN ID — free-text carry without a PLAN
-   anchor is invisible to `ut-tdd doctor` and will not be picked up by
-   `ut-tdd status`.
+1. elicitation 中の non-obvious decision について、PLAN `review_evidence` field に rationale を含める。
+2. session 中に導入した new L1 terms は、handover 前に L0 glossary へ追加する。
+3. Discovery PoC の `decision_outcome` が L3 requirement に影響する場合、link を明示する。
+   L3 PLAN `dependencies` field が PoC PLAN ID を参照する。
+4. carry items は PLAN ID を参照する。PLAN anchor の無い free-text carry は `ut-tdd doctor` から不可視で、
+   `ut-tdd status` にも拾われない。
 
-## Handover validation commands
+## Handover validation commands（handover 検証 command）
 
 ```
-ut-tdd handover             # write/refresh .ut-tdd/handover/CURRENT.json
-ut-tdd status               # verify active_plans matches real PLAN state
-ut-tdd doctor               # confirm no orphaned FRs or broken dependencies
-ut-tdd plan lint            # schema-validate PLANs listed in handover
-ut-tdd review --uncommitted # review evidence gate before crossing session boundary
+ut-tdd handover             # .ut-tdd/handover/CURRENT.json を write/refresh する
+ut-tdd status               # active_plans が実際の PLAN state と一致するか検証する
+ut-tdd doctor               # orphaned FRs や broken dependencies が無いことを確認する
+ut-tdd plan lint            # handover に列挙された PLAN を schema 検証する
+ut-tdd review --uncommitted # session boundary を越える前に review evidence gate を確認する
 ```
 
-Run all five before declaring a session closed. A handover written without a
-green `ut-tdd doctor` is a false-clean baton.
+session close 宣言前に 5 つすべてを実行する。green `ut-tdd doctor` なしに書かれた handover は false-clean baton である。
 
-## Stale handover detection
+## Stale handover detection（stale handover 検出）
 
-`ut-tdd doctor` flags CURRENT.json as stale when:
+`ut-tdd doctor` は次の場合に CURRENT.json を stale と flag する。
 
-- Its `timestamp` is older than the most recent commit that touched a PLAN
-  listed in `active_plans`.
-- A carry item references a PLAN whose `status` is `done` (closed carry not
-  cleaned up).
-- `active_plans` contains a PLAN ID that no longer exists in `docs/plans/`.
+- `timestamp` が、`active_plans` に列挙された PLAN に触れた最新 commit より古い。
+- carry item が `status: done` の PLAN を参照している
+  （closed carry が cleanup されていない）。
+- `active_plans` が `docs/plans/` にもう存在しない PLAN ID を含む。
 
-When a stale handover is detected, re-run `ut-tdd handover` after verifying
-each carry item against `ut-tdd status` and `git log`. Do not extend a stale
-CURRENT.json; overwrite it after verification.
+stale handover を検出した場合は、各 carry item を `ut-tdd status` と `git log` で verify してから
+`ut-tdd handover` を再実行する。stale CURRENT.json を延長しない。verification 後に overwrite する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Copying carry items forward from the previous handover without re-verifying
-  against `ut-tdd status` and `git log` — causes ghost carry items that
-  persist for multiple sessions after the work is done.
-- Writing handover prose in a commit message or chat — invisible to
-  `ut-tdd doctor` and lost at session boundary.
-- Passing an L3 PLAN to a successor without resolving `clarification_pending`
-  FRs — the ambiguity surfaces as a design gap at L5/L6 and is expensive to
-  trace back.
-- Treating `.ut-tdd/handover/CURRENT.json` as a live dashboard — it is a
-  point-in-time snapshot; always run `ut-tdd status` alongside it.
+- previous handover から carry items を copy forward し、`ut-tdd status` と `git log` で re-verify しない。
+  work 完了後も複数 sessions に残る ghost carry items を生む。
+- commit message や chat に handover prose を書く。
+  `ut-tdd doctor` から不可視で、session boundary で失われる。
+- `clarification_pending` FRs を解決せずに L3 PLAN を successor に渡す。
+  ambiguity は L5/L6 の design gap として表面化し、trace back が高コストになる。
+- `.ut-tdd/handover/CURRENT.json` を live dashboard として扱う。
+  これは point-in-time snapshot であり、必ず `ut-tdd status` と併用する。

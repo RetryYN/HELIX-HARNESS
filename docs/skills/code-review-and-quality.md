@@ -19,37 +19,36 @@ applies_to:
     - Retrofit
 ---
 
-# code review and quality
+# code review and quality（コードレビューと品質）
 
-Combined review procedure that integrates W-gate test-perspective quality checks
-with standard code review, satisfying FR-L1-21 (cross-agent review evidence) and
-the quality requirements of FR-L1-03 (descent obligations) and FR-L1-18 (cross-
-detection aggregation). Use when a PLAN spans both an implementation layer (L7)
-and a test design layer (L6/L8), or when a Retrofit/Refactor PLAN must prove
-quality is not regressed.
+W-gate のテスト観点品質確認と標準 code review を統合する複合レビュー手順を扱う。
+FR-L1-21（cross-agent review 証跡）、FR-L1-03（descent obligations）、
+FR-L1-18（cross-detection aggregation）の品質要件を満たすために使う。
+PLAN が implementation layer（L7）と test design layer（L6/L8）をまたぐ場合、
+または Retrofit / Refactor PLAN で品質が退行していないことを証明する必要がある場合に読む。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN covers implementation (L7) and test design (L6/L8) in a single scope.
-- A Retrofit PLAN must pass a quality bar before accept.
-- A W-gate (W1-W10) pair is being closed and review evidence is required.
-- `ut-tdd review --uncommitted` reports a test-design obligation gap.
+- PLAN が implementation（L7）と test design（L6/L8）を単一 scope で扱う。
+- Retrofit PLAN が accept 前に quality bar を通過する必要がある。
+- W-gate（W1-W10）の pair を close するために review evidence が必要である。
+- `ut-tdd review --uncommitted` が test-design obligation gap を報告している。
 
-## Quality bar definition (W-gate perspective)
+## Quality bar 定義（W-gate 観点）
 
-Each W-gate pair (design doc <-> test or verification artifact) must satisfy:
+各 W-gate pair（design doc <-> test または verification artifact）は次を満たす必要がある。
 
-| W-gate | Design side | Test side | Accept condition |
+| W-gate | Design side | Test side | Accept 条件 |
 |--------|-------------|-----------|-----------------|
-| W3 | L6 test-design doc | Vitest unit test file | All test IDs in L6 doc have matching test assertions; no `.skip` without rationale |
-| W5 | L5 basic design | L8 integration test design | L8 doc exists at `docs/test-design/`; test IDs cross-reference L5 sections |
-| W7 | L4 basic design | L9 system test design | L9 doc exists; acceptance criteria are testable |
-| W10 | L3 functional spec | Curated test suite entry | Curation record in `.ut-tdd/` or `docs/test-design/` |
+| W3 | L6 test-design doc | Vitest unit test file | L6 doc の全 test ID に対応する test assertion があり、理由のない `.skip` が無い |
+| W5 | L5 basic design | L8 integration test design | `docs/test-design/` に L8 doc があり、test ID が L5 section を cross-reference している |
+| W7 | L4 basic design | L9 system test design | L9 doc が存在し、acceptance criteria が testable である |
+| W10 | L3 functional spec | Curated test suite entry | `.ut-tdd/` または `docs/test-design/` に curation record がある |
 
-A W-gate is not closed by coverage count alone. Read the test-design doc body
-to verify the specified scenarios are actually present.
+W-gate は coverage count だけでは close しない。test-design doc 本文を読み、
+指定された scenario が実際に存在することを確認する。
 
-## Combined review procedure
+## 複合レビュー手順
 
 **Step 1 — Machine checks:**
 
@@ -62,31 +61,31 @@ ut-tdd vmodel lint
 ut-tdd review --uncommitted
 ```
 
-All must exit 0 before proceeding.
+次へ進む前に、すべて exit 0 で終わる必要がある。
 
-**Step 2 — Test substance audit:**
+**Step 2 — test substance 監査:**
 
-For each test file in scope, verify:
-- At least one test exercises a failure path (not only happy path).
-- Boundary values from the L6 test-design doc are present as explicit fixtures.
-- Mock scope is minimal; integration paths use a real test double, not a full
-  database mock (FR-L1-03 descent obligation).
+scope 内の各 test file について次を確認する。
+- 少なくとも 1 つの test が failure path を実行している（happy path だけではない）。
+- L6 test-design doc の boundary value が明示的な fixture として存在する。
+- mock scope が最小限である。integration path では full database mock ではなく、
+  実体のある test double を使う（FR-L1-03 descent obligation）。
 
-**Step 3 — Layer obligation check:**
+**Step 3 — layer obligation 確認:**
 
-Confirm the full V-model sibling set for every changed module:
-- `docs/design/<layer>/<module>.md` exists.
-- `docs/test-design/<layer>/<module>.md` exists.
-- The PLAN `review_evidence` `trace_links` field lists both.
+変更された各 module について、V-model sibling set が揃っていることを確認する。
+- `docs/design/<layer>/<module>.md` が存在する。
+- `docs/test-design/<layer>/<module>.md` が存在する。
+- PLAN の `review_evidence` / `trace_links` field が両方を列挙している。
 
-**Step 4 — Retrograde quality check (Refactor/Retrofit only):**
+**Step 4 — Retrograde quality check（Refactor / Retrofit のみ）:**
 
-Run `ut-tdd metrics` (if available) or review the git diff for:
-- No reduction in Vitest assertion count without PLAN rationale.
-- No removal of an existing test-design doc section.
-- Biome rule suppressions not increased beyond the pre-change count.
+`ut-tdd metrics` が使える場合は実行し、使えない場合は git diff で次を確認する。
+- PLAN rationale なしに Vitest assertion count が減っていない。
+- 既存 test-design doc section が削除されていない。
+- Biome rule suppression が変更前の件数を超えて増えていない。
 
-## Evidence record
+## Evidence record（証跡記録）
 
 ```
 reviewer: <agent-slug or "intra_runtime_subagent">
@@ -101,11 +100,8 @@ findings:
 timestamp: <ISO-8601>
 ```
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Closing a W-gate by verifying only that a test file exists, not that it covers
-  the scenarios in the paired design doc.
-- Accepting a Refactor PLAN without the retrograde check — refactors frequently
-  delete tests silently.
-- Using `biome lint` alone instead of `bun run lint` — format violations
-  accumulate and fail the next CI push.
+- test file の存在だけを確認し、paired design doc の scenario を cover しているか確認せずに W-gate を close する。
+- retrograde check なしに Refactor PLAN を accept する。refactor では test が静かに削除されやすい。
+- `bun run lint` の代わりに `biome lint` だけを使う。format violation が蓄積し、次の CI push で fail する。

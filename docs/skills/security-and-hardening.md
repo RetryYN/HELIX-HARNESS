@@ -20,82 +20,78 @@ applies_to:
     - Refactor
 ---
 
-# security and hardening
+# security and hardening（セキュリティと hardening）
 
-Hardening pass procedure: dependency supply-chain hygiene, secret redaction
-verification, Biome security-lint rules, and runtime surface reduction. Distinct
-from `security.md` (which covers escalation boundaries and agent-guard design);
-this skill covers the systematic hardening sweep applied at L7 and above before
-a PLAN crosses the accept gate.
+依存 supply-chain の衛生、secret redaction 検証、Biome security-lint rule、
+runtime surface reduction をまとめて確認する hardening pass の手順。
+これは escalation boundary と agent-guard design を扱う `security.md` とは分ける。
+この skill は、PLAN が accept gate を越える前に L7 以上で適用する体系的な hardening sweep を扱う。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN adds or upgrades a runtime dependency (`package.json` changes).
-- A Retrofit or Refactor PLAN must demonstrate the hardened surface is not
-  expanded.
-- `ut-tdd guardrail` exits non-zero after a dependency change.
-- A harness release (L11/L12) requires a full hardening attestation.
+- PLAN が runtime dependency を追加または更新する（`package.json` 変更）。
+- Retrofit または Refactor PLAN で、hardened surface が広がっていないことを示す必要がある。
+- dependency 変更後に `ut-tdd guardrail` が non-zero で終了する。
+- harness release（L11/L12）で full hardening attestation が必要。
 
-## Hardening sweep checklist
+## Hardening sweep checklist（実行手順）
 
-Run in order before accept gate:
+accept gate 前に次の順で実行する:
 
 ```
-ut-tdd guardrail          # secret pattern scan across all text files
-bun run lint              # Biome check: includes security-adjacent lint rules
-bun run test              # Vitest: confirm no fixture file leaks credentials
-ut-tdd doctor             # structural governance: no orphaned hook or agent path
+ut-tdd guardrail          # 全 text file の secret pattern scan
+bun run lint              # Biome check: security-adjacent lint rule を含む
+bun run test              # Vitest: fixture file が credential を漏らしていないことを確認
+ut-tdd doctor             # structural governance: orphaned hook / agent path が無いことを確認
 ```
 
-### 1. Dependency supply-chain
+### 1. Dependency supply-chain の確認
 
-For every new or updated entry in `package.json`:
+`package.json` の新規または更新 entry ごとに確認する:
 
-- [ ] Confirm the package is from a known registry (npmjs.com). No `file:`,
-      `git+ssh:`, or `http:` protocol references without PO approval.
-- [ ] Run `bun audit` (or equivalent) and confirm zero critical or high severity
-      advisories. If an advisory exists, document the accepted risk in
-      `docs/design/L5/<plan-id>-dependency-risk.md` before accept.
-- [ ] Confirm the version pin is not a floating range (`^x.y.z` is acceptable;
-      `*` or `latest` is prohibited in production dependencies).
+- [ ] package が既知の registry（npmjs.com）から来ていることを確認する。PO 承認なしに
+      `file:`、`git+ssh:`、`http:` protocol reference を使わない。
+- [ ] `bun audit`（または同等手段）を実行し、critical / high severity advisory が 0 件であることを確認する。
+      advisory がある場合は、accept 前に `docs/design/L5/<plan-id>-dependency-risk.md` へ accepted risk を記録する。
+- [ ] version pin が floating range でないことを確認する（`^x.y.z` は可。
+      production dependency で `*` または `latest` は禁止）。
 
-### 2. Secret and credential redaction
+### 2. Secret and credential redaction の確認
 
-- [ ] `ut-tdd guardrail` exits 0 — no API key patterns, no session tokens, no
-      personal absolute paths in committed files.
-- [ ] `.env*` files are listed in `.gitignore`; confirm no `.env` is tracked.
-- [ ] Vitest fixtures do not contain real credential-like strings. Use
-      `"FAKE_KEY_FOR_TESTING"` sentinel strings; the guardrail should recognize
-      and skip them — if it does not, file an improvement entry.
+- [ ] `ut-tdd guardrail` が 0 で終了する。committed file に API key pattern、session token、
+      personal absolute path が無いこと。
+- [ ] `.env*` file が `.gitignore` に載っていること、`.env` が tracked でないことを確認する。
+- [ ] Vitest fixture に real credential-like string が無いこと。
+      `"FAKE_KEY_FOR_TESTING"` sentinel string を使う。guardrail はこれを認識して skip すべきであり、
+      skip しない場合は改善 entry を起票する。
 
-### 3. Biome security-lint surface
+### 3. Biome security-lint surface の確認
 
-- [ ] `bun run lint` exits 0 with no suppressions added beyond the pre-change
-      count.
-- [ ] Any new `// biome-ignore` line has a PLAN-linked comment on the same line.
-- [ ] `// @ts-ignore` and `// @ts-expect-error` lines are zero or PLAN-justified.
+- [ ] `bun run lint` が 0 で終了し、pre-change count を超える suppression が追加されていない。
+- [ ] 新しい `// biome-ignore` line は、同じ行に PLAN-linked comment を持つ。
+- [ ] `// @ts-ignore` と `// @ts-expect-error` line は 0 件、または PLAN で正当化されている。
 
-### 4. Runtime surface reduction
+### 4. Runtime surface reduction の確認
 
-- [ ] No new global environment variables are introduced without updating
-      `docs/design/` with the variable name, purpose, and expected value range.
-      New harness-owned variables must use the `UT_TDD_` prefix.
-- [ ] Hook entry points call only package-local `ut-tdd` commands. No personal
-      absolute paths, no legacy tool names.
-- [ ] No new network call in `src/` without an L5 design doc section describing
-      the endpoint, authentication method, and failure behaviour.
+- [ ] 新しい global environment variable を導入する場合は、variable name、purpose、
+      expected value range を `docs/design/` に更新する。新しい harness-owned variable は
+      `UT_TDD_` prefix を使う。
+- [ ] Hook entry point は package-local の `ut-tdd` command だけを呼ぶ。
+      personal absolute path と legacy tool name を使わない。
+- [ ] `src/` に新しい network call を追加する場合は、endpoint、authentication method、
+      failure behaviour を説明する L5 design doc section を先に用意する。
 
-### 5. Redaction audit for docs and audit artifacts
+### 5. Docs と audit artifact の redaction audit
 
-- [ ] All new files under `docs/`, `.ut-tdd/handover/`, and `.ut-tdd/audit/` are
-      free of PII (names, email addresses, machine identifiers beyond repo-relative
-      paths).
-- [ ] No half-width kana, U+FFFD, or mojibake markers in new documentation files.
-      Run a targeted readability scan before commit; the canonical detector is the doctor readability gate, which fails closed on half-width kana and U+FFFD replacement characters.
+- [ ] `docs/`、`.ut-tdd/handover/`、`.ut-tdd/audit/` 配下の新規 file に PII
+      （氏名、メールアドレス、repo-relative path を超える machine identifier）が無い。
+- [ ] 新規 documentation file に half-width kana、U+FFFD、mojibake marker が無い。
+      commit 前に targeted readability scan を実行する。canonical detector は doctor readability gate であり、
+      half-width kana と U+FFFD replacement character を fail closed する。
 
-## Hardening attestation record
+## Hardening attestation record（証跡）
 
-For Retrofit/Refactor PLANs and L11/L12 gates, write:
+Retrofit / Refactor PLAN と L11/L12 gate では次を記録する:
 
 ```
 .ut-tdd/audit/<PLAN-id>-hardening.json
@@ -111,14 +107,15 @@ For Retrofit/Refactor PLANs and L11/L12 gates, write:
 }
 ```
 
-Link this file from the PLAN `review_evidence` field.
+この file を PLAN の `review_evidence` field から link する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Running `ut-tdd guardrail` only at the end of a sprint — run it after every
-  commit that touches `docs/`, `.ut-tdd/`, or `src/`.
-- Treating a floating dependency range as "safe for now" without a PLAN to pin
-  it — floating ranges are a supply-chain risk even in development.
-- Conflating this skill with `security.md` — this skill is the *hardening sweep*
-  (systematic, checklist-driven); `security.md` covers design-time escalation
-  and agent-guard architecture. Both must be satisfied before accept.
+- `ut-tdd guardrail` を sprint 末だけ実行する。
+  `docs/`、`.ut-tdd/`、`src/` に触れる commit のたびに実行する。
+- floating dependency range を pin する PLAN なしに「今は safe」と扱う。
+  floating range は development でも supply-chain risk である。
+- この skill と `security.md` を混同する。
+  この skill は体系的で checklist-driven な *hardening sweep* を扱う。
+  `security.md` は design-time escalation と agent-guard architecture を扱う。
+  accept 前には両方を満たす必要がある。

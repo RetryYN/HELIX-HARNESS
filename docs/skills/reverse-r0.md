@@ -13,43 +13,44 @@ applies_to:
     - Recovery
 ---
 
-# reverse r0
+# R0 証跡取得
 
-R0: Evidence Acquisition -- the first phase of every Reverse cycle (FR-L1-14,
-reverse.md §2). R0 is mandatory for all 5 reverse types. Its output is the
-evidence map that gates entry to R1 (or R2 when R1 is skipped).
+R0: Evidence Acquisition は、すべての Reverse cycle の最初の phase である
+（FR-L1-14、reverse.md §2）。R0 は 5 種類すべての reverse type で必須。
+出力は evidence map であり、R1 へ進むための gate になる
+（R1 を skip する type では R2 への gate）。
 
-## When to load this skill
+## この skill を読む条件
 
-- The `kind=reverse` PLAN has just been created and `ut-tdd plan lint` is green.
-- R0 is the current `workflow_phase` in the PLAN frontmatter.
+- `kind=reverse` の PLAN を作成済みで、`ut-tdd plan lint` が green。
+- PLAN frontmatter の現在 `workflow_phase` が R0。
 
-## Inputs
+## 入力
 
-- Existing source files, configuration, and migration snapshots under the
-  subject scope (read-only; treat vendor snapshots as reference only).
-- `ut-tdd status` output confirming no unresolved blocking state.
-- `ut-tdd doctor` output to surface any pre-existing governance violations
-  (record them; do not fix them during R0 -- that is R4's job).
+- 対象 scope 配下の既存 source files、configuration、migration snapshots
+  （read-only。vendor snapshots は reference only として扱う）。
+- 未解決 blocking state が無いことを示す `ut-tdd status` output。
+- 既存 governance violation を可視化する `ut-tdd doctor` output
+  （記録だけ行う。R0 中に修正しない。修正は R4 の責務）。
 
-## Procedure
+## 手順
 
-1. List all artifacts in scope: source files, design docs, test files, schema
-   files, dependency manifests.
-2. For each artifact, record its location, approximate last-modified signal
-   (git log), and whether it has a Forward-anchored PLAN trace.
-3. Set `has_existing_tests` flag:
-   - `true` if any test files cover the subject scope.
-   - `false` if no test files found (or coverage is zero for the subject).
-4. Inventory all test files relevant to the subject and list their paths.
-5. Note any drift signals observed: schema mismatch, orphaned design docs,
-   broken import paths, untraced implementation files.
-6. Run `ut-tdd graph` or `ut-tdd find` to identify dependency edges if the
-   subject scope involves inter-module contracts.
+1. 対象 scope 内の artifact をすべて列挙する。source files、design docs、
+   test files、schema files、dependency manifests を含める。
+2. 各 artifact について、場所、概算の last-modified signal（git log）、
+   Forward-anchored PLAN trace の有無を記録する。
+3. `has_existing_tests` flag を設定する。
+   - 対象 scope を覆う test files がある場合は `true`。
+   - test files が無い、または対象 coverage が zero の場合は `false`。
+4. 対象に関連する test files を inventory し、path を列挙する。
+5. 観測した drift signals を記録する。schema mismatch、orphaned design docs、
+   broken import paths、untraced implementation files など。
+6. 対象 scope が inter-module contracts を含む場合は、`ut-tdd graph` または
+   `ut-tdd find` で dependency edges を特定する。
 
-## Output artifact: evidence map
+## 出力 artifact: evidence map
 
-Write to `.ut-tdd/reverse/<plan_id>/R0-evidence-map.yaml`:
+`.ut-tdd/reverse/<plan_id>/R0-evidence-map.yaml` へ書く。
 
 ```yaml
 plan_id: <PLAN-REVERSE-NN>
@@ -64,18 +65,19 @@ drift_signals: []       # describe each observed divergence
 r0_notes: ""
 ```
 
-## Gate to R1 (or R2)
+## R1 への gate（または R2）
 
-Before advancing the PLAN `workflow_phase` from `R0` to `R1` (or `R2` if the
-type skips R1), verify:
+PLAN の `workflow_phase` を `R0` から `R1` へ進める前に確認する。
+R1 を skip する type では `R2` へ進める前に確認する。
 
-- [ ] `R0-evidence-map.yaml` exists and is complete (no null fields except
-  intentional).
-- [ ] `has_existing_tests` is explicitly set (not omitted).
-- [ ] All drift signals are listed (even if unresolved -- resolution is R3/R4).
-- [ ] `ut-tdd plan lint` exits 0 with the updated PLAN `workflow_phase: R1`
-  (or `R2` for design/normalization types).
-- [ ] `ut-tdd doctor` exits 0 (no new violations introduced by R0 edits).
+- [ ] `R0-evidence-map.yaml` が存在し、意図したもの以外に null fields が無い。
+- [ ] `has_existing_tests` が省略されず明示されている。
+- [ ] すべての drift signals が列挙されている
+      （未解決でも記録する。解決は R3/R4）。
+- [ ] PLAN を `workflow_phase: R1` に更新した状態で `ut-tdd plan lint` が 0 で終了する
+      （design/normalization type では `R2`）。
+- [ ] `ut-tdd doctor` が 0 で終了する
+      （R0 edits による新規 violation が無い）。
 
-Advance PLAN `workflow_phase` only after all checks pass. Do not proceed to R1
-or R2 with an incomplete evidence map.
+すべての check が pass した後だけ PLAN `workflow_phase` を進める。
+incomplete evidence map のまま R1 または R2 に進まない。

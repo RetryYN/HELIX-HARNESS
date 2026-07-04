@@ -14,95 +14,91 @@ applies_to:
     - Retrofit
 ---
 
-# incremental implementation
+# incremental implementation（段階実装）
 
-L7 implementation quality baseline for UT-TDD: type safety, naming discipline,
-function design, and descent obligation. Covers the period from pair-freeze to
-trace-freeze on a PLAN. Does not replace the TDD cycle order (see
-test-driven-development skill) — these rules apply *within* each Red-Green step.
+UT-TDD の L7 implementation quality baseline。対象は type safety、naming discipline、
+function design、descent obligation。PLAN の pair-freeze から trace-freeze までを扱う。
+TDD cycle order（test-driven-development skill 参照）を置き換えるものではなく、
+各 Red-Green step の内側で適用する rules である。
 
-## When to load this skill
+## この skill を読む条件
 
-- Starting L7 implementation after pair-freeze (L5/L6 design docs exist,
-  `ut-tdd plan lint` and `ut-tdd doctor` are green).
-- A code review (`ut-tdd review --uncommitted`) flags a type, naming, or
-  design quality issue.
-- A Refactor or Retrofit PLAN is scoping what source changes are in-bounds.
+- pair-freeze 後に L7 implementation を開始する
+  （L5/L6 design docs が存在し、`ut-tdd plan lint` と `ut-tdd doctor` が green）。
+- code review（`ut-tdd review --uncommitted`）が type、naming、design quality issue を指摘する。
+- Refactor または Retrofit PLAN が、in-bounds な source changes を scope している。
 
-## Descent obligation
+## Descent obligation（降下義務）
 
-Every L7 source file must trace to an L5 detailed design doc and an L6
-unit-test design doc. Before writing a new module:
+すべての L7 source file は、L5 detailed design doc と L6 unit-test design doc へ
+trace できなければならない。新しい module を書く前に確認する。
 
-1. Confirm `docs/design/L5-<module>.md` exists and has passed pair-freeze.
-2. Confirm `docs/test-design/L6-<module>.md` exists and references the test
-   file to be written.
-3. If either is absent, the PLAN has an unresolved `requires` — stop and
-   resolve the design gap before writing source.
+1. `docs/design/L5-<module>.md` が存在し、pair-freeze を pass している。
+2. `docs/test-design/L6-<module>.md` が存在し、これから書く test file を参照している。
+3. どちらかが無い場合、PLAN は unresolved `requires` を持つ。
+   source を書く前に停止し、design gap を解決する。
 
-`ut-tdd doctor` checks structural link existence but not substance. Read the L5
-doc and confirm it answers the implementation questions before coding.
+`ut-tdd doctor` は structural link existence を確認するが、substance は確認しない。
+coding 前に L5 doc を読み、implementation questions に答えていることを確認する。
 
-## Type safety rules
+## Type safety rules（型安全規則）
 
-- No `any` without a PLAN-linked comment explaining why the type cannot be
-  narrowed. `// @ts-ignore` is forbidden without the same rationale.
-- Use TypeScript discriminated unions for multi-shape return values; avoid
-  `T | null | undefined` where a `Result<T, E>` pattern is cleaner.
-- Prefer `unknown` over `any` for external inputs (parsed JSON, CLI args).
-  Narrow with a type guard before use.
-- `bun run typecheck` must exit 0 after every commit — do not accumulate type
-  debt across commits.
+- type を narrow できない理由を PLAN-linked comment で説明しない `any` は使わない。
+  `// @ts-ignore` も同じ rationale なしでは禁止。
+- multi-shape return values には TypeScript discriminated unions を使う。
+  `Result<T, E>` pattern の方が明確な場合、`T | null | undefined` は避ける。
+- external inputs（parsed JSON、CLI args）には `any` より `unknown` を優先する。
+  使用前に type guard で narrow する。
+- 各 commit 後に `bun run typecheck` が 0 で終了しなければならない。
+  commits をまたいで type debt を貯めない。
 
-## Naming discipline
+## Naming discipline（命名規律）
 
-- Function names are imperative verbs describing the action: `recordGuardrail`,
-  `readPlanFile`, `emitProjectionRow`. Avoid noun forms (`guardrailRecorder`).
-- Boolean return values use `is*` / `has*` / `can*` prefixes.
-- File names match the primary export: `projection-writer.ts` exports
-  `ProjectionWriter` or `writeProjection`.
-- New terms introduced in source must be added to `docs/design/L0-glossary.md`
-  at the same commit.
+- Function names は action を表す imperative verbs にする。
+  例: `recordGuardrail`、`readPlanFile`、`emitProjectionRow`。
+  noun forms（`guardrailRecorder`）は避ける。
+- Boolean return values は `is*` / `has*` / `can*` prefixes を使う。
+- File names は primary export と一致させる。
+  `projection-writer.ts` は `ProjectionWriter` または `writeProjection` を export する。
+- source に導入した new terms は、同じ commit で `docs/design/L0-glossary.md` に追加する。
 
-## Function design constraints
+## Function design constraints（関数設計制約）
 
-- A function has one responsibility. If a function reads state, transforms it,
-  and writes output, split into three functions with distinct names.
-- Functions that write to `.ut-tdd/` or `harness.db` must not also compute
-  business logic — separate I/O from computation so unit tests can exercise
-  computation without side effects.
-- Public API surface (exported functions and types) must be the minimal set
-  needed by tests and callers. Do not export internal helpers.
-- Maximum recommended function body: 30 lines. Beyond that, extract a named
-  helper and document the extraction in the L5 spec if the helper represents
-  a new concept.
+- function の responsibility は 1 つにする。state を読み、変換し、output を書く function は、
+  distinct names を持つ 3 functions に分割する。
+- `.ut-tdd/` または `harness.db` に書き込む functions は、business logic を同時に計算しない。
+  I/O と computation を分離し、unit tests が side effects なしに computation を検証できるようにする。
+- Public API surface（exported functions and types）は、tests と callers に必要な最小集合にする。
+  internal helpers を export しない。
+- function body の推奨最大は 30 lines。それを超える場合は named helper を抽出し、
+  helper が new concept を表すなら L5 spec に extraction を記録する。
 
-## Incremental commit discipline
+## Incremental commit discipline（段階 commit 規律）
 
-- Each commit advances a Red test to Green (or refactors while staying Green).
-  Do not batch multiple feature commits to reduce noise — the Red-commit/
-  Green-commit sequence is audit evidence (FR-L1-02).
-- Stage explicit files only (`git add <file>`, never `git add -A`).
-- Commit messages follow Conventional Commits: `feat(module): description`,
-  `test(module): description`, `refactor(module): description`.
+- 各 commit は Red test を Green へ進める
+  （または Green を維持したまま refactor する）。
+  noise を減らすために複数 feature commits をまとめない。
+  Red-commit / Green-commit sequence は audit evidence である（FR-L1-02）。
+- stage は explicit files のみ（`git add <file>`、`git add -A` は使わない）。
+- commit messages は Conventional Commits に従う。
+  `feat(module): description`、`test(module): description`、`refactor(module): description`。
 
-## Trace-freeze checklist
+## Trace-freeze checklist（trace-freeze 確認）
 
-- [ ] All new source files have a paired L5 design doc and L6 test design doc.
+- [ ] すべての new source files が paired L5 design doc と L6 test design doc を持つ。
 - [ ] `bun run typecheck` exits 0.
-- [ ] `bun run lint` exits 0 (Biome check — format + lint).
-- [ ] `bun run test` exits 0 with no `.skip` or `.todo` left open without a
-  PLAN-linked rationale.
+- [ ] `bun run lint` が exit 0（Biome check: format + lint）。
+- [ ] `bun run test` が 0 で終了し、PLAN-linked rationale の無い `.skip` / `.todo` が残っていない。
 - [ ] `ut-tdd doctor` exits 0.
-- [ ] New terms added to L0 glossary.
-- [ ] PLAN `review_evidence` references the trace-freeze commit SHA.
-- [ ] `ut-tdd review --uncommitted` produces no blocking findings for L7.
+- [ ] new terms が L0 glossary に追加されている。
+- [ ] PLAN `review_evidence` が trace-freeze commit SHA を参照している。
+- [ ] `ut-tdd review --uncommitted` が L7 に対する blocking findings を出さない。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Writing source files without a paired L5/L6 doc — creates descent obligation
-  debt that `ut-tdd doctor` may not immediately surface.
-- Mixing I/O with computation in one function — makes unit tests dependent on
-  file system state, which is an integration concern.
-- Using `// biome-ignore` to silence a formatting rule without a rationale —
-  these accumulate and break CI on the next push.
+- paired L5/L6 doc なしに source files を書く。
+  `ut-tdd doctor` が即時には出せない descent obligation debt を作る。
+- 1 つの function で I/O と computation を混ぜる。
+  unit tests が file system state に依存し、integration concern になる。
+- rationale なしに `// biome-ignore` で formatting rule を黙らせる。
+  これらは蓄積し、次の push で CI を壊す。

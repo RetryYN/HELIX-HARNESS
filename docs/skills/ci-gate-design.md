@@ -16,72 +16,69 @@ applies_to:
     - Recovery
 ---
 
-# ci gate design
+# CI gate design（CI gate 設計）
 
-Design and operation of the `harness-check` CI gate and the `ut-tdd doctor`
-checks behind it. Apply when adding, modifying, or debugging any automated
-quality gate (FR-L1-05 static gate, FR-L1-18 cross-detection aggregation).
+`harness-check` CI gate と、その背後にある `ut-tdd doctor` checks の設計・運用を扱う。
+automated quality gate を追加・変更・debug する場合に適用する
+（FR-L1-05 static gate、FR-L1-18 cross-detection 集約）。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN adds a new `ut-tdd doctor` check or a `src/lint/` rule.
-- `harness-check` is red and the root cause must be found.
-- A gate condition is being designed for a layer transition (pair-freeze /
-  trace-freeze / accept).
+- PLAN が新しい `ut-tdd doctor` check または `src/lint/` rule を追加する。
+- `harness-check` が red で、root cause を見つける必要がある。
+- layer transition（pair-freeze / trace-freeze / accept）の gate condition を設計する。
 
-## harness-check composition
+## harness-check composition（構成）
 
-The canonical CI run is `harness-check`. Never skip a sub-gate to make CI pass.
+canonical CI run は `harness-check`。CI を pass させるために sub-gate を skip しない。
 
 ```
-bun run typecheck      # tsc --noEmit, zero errors
-bun run lint           # Biome check (format + lint), zero violations
-bun run test           # Vitest — NOT bun test (its 5s sync timeout is flaky)
-ut-tdd doctor          # fail-close over every harness gate
+bun run typecheck      # tsc --noEmit、error 0
+bun run lint           # Biome check (format + lint)、violation 0
+bun run test           # Vitest。bun test ではない（5s sync timeout が flaky）
+ut-tdd doctor          # every harness gate を fail-close
 ```
 
-`bun run lint` runs Biome in check mode (format + lint). `biome lint` alone does
-not check formatting — always use `bun run lint` before push.
+`bun run lint` は Biome を check mode（format + lint）で実行する。
+`biome lint` だけでは formatting を検査しない。push 前は必ず `bun run lint` を使う。
 
-## When a new gate is warranted
+## new gate が必要な条件
 
-Add a gate when a class of defect is mechanically detectable and currently slips
-past review (substance gap, orphaned PLAN, roster↔guard drift). First confirm
-`src/plan/lint.ts` and `src/doctor/` do not already cover it — overlapping gates
-create false-confidence (plan-governance already checks PLAN dependency
-existence). Implement under `src/lint/` or the doctor surface, wire it into
-`ut-tdd doctor`, and add a Vitest test exercising both the pass and the fail
-path.
+defect class が mechanically detectable で、現在 review をすり抜けている場合に gate を追加する
+（substance gap、orphaned PLAN、roster↔guard drift など）。
+まず `src/plan/lint.ts` と `src/doctor/` が既に cover していないことを確認する。
+overlapping gates は false-confidence を作る（PLAN dependency existence は plan-governance が既に検査する）。
+`src/lint/` または doctor surface に実装し、`ut-tdd doctor` へ wire し、pass path と fail path の両方を
+exercise する Vitest test を追加する。
 
-## A gate must see substance, not just coverage
+## gate は coverage だけでなく substance を見る
 
-A coverage check (ID present, link exists, count matches) does not prove the
-content is correct. When designing a gate, ask: can it detect an *absent* or
-*wrong* artifact, or only a missing ID? Prefer fail-close on absence
-(absence-blindness is the root cause of descent gaps).
+coverage check（ID present、link exists、count matches）は content の正しさを証明しない。
+gate 設計時は、その gate が *absent* または *wrong* artifact を検出できるか、
+missing ID だけを検出するのかを問う。absence では fail-close を優先する
+（absence-blindness は descent gap の root cause）。
 
-## Failure response protocol
+## Failure response protocol（失敗時の対応）
 
-1. Read the **full** output — never `| tail`. Truncation hides the root error.
-2. Identify the failed sub-gate (typecheck / lint / test / doctor).
-3. Fix the root cause in source. Do not silence with `// biome-ignore`,
-   `// @ts-ignore`, or `.skip` without a PLAN-linked rationale.
-4. Re-run the full sequence locally before pushing.
-5. If a check passed that should have failed, file an `improvement-backlog.md`
-   entry and open a PLAN — a false-green is a gate defect.
+1. **full** output を読む。`| tail` しない。truncation は root error を隠す。
+2. failed sub-gate（typecheck / lint / test / doctor）を特定する。
+3. source の root cause を直す。PLAN-linked rationale なしに `// biome-ignore`、
+   `// @ts-ignore`、`.skip` で黙らせない。
+4. push 前に full sequence を local で再実行する。
+5. fail すべき check が pass した場合は、`improvement-backlog.md` entry を起票し PLAN を開く。
+   false-green は gate defect である。
 
-## Environment notes (Windows / Linux parity)
+## 環境 note（Windows / Linux parity）
 
-- `CLAUDE_PROJECT_DIR` must point to the repo root during hook execution.
-- If `System32` is missing from the runner `PATH`, runtime hook entrypoints fail
-  with status null; verify with `ut-tdd doctor` before treating it as a code
-  regression.
+- hook execution 中、`CLAUDE_PROJECT_DIR` は repo root を指していなければならない。
+- runner `PATH` に `System32` が無い場合、runtime hook entrypoints は status null で fail する。
+  code regression と扱う前に `ut-tdd doctor` で確認する。
 
-## L8 integration test design for a new gate
+## 新規 gate 向け L8 integration test design
 
-- [ ] Gate fires and records its result row in `harness.db`.
-- [ ] Gate exits 1 on a seeded violation fixture.
-- [ ] Gate exits 0 on a clean fixture.
+- [ ] Gate が発火し、result row を `harness.db` に記録する。
+- [ ] seeded violation fixture で gate が exit 1 になる。
+- [ ] clean fixture で gate が exit 0 になる。
 
-Record the L8 design under `docs/test-design/` paired with the L5/L6 design doc;
-these are distinct from the L7 Vitest unit tests.
+L8 design は L5/L6 design doc と pair にして `docs/test-design/` 配下へ記録する。
+これは L7 Vitest unit tests とは別物である。

@@ -24,78 +24,75 @@ applies_to:
     - Recovery
 ---
 
-# verification
+# verification（検証）
 
-V-model trace verification: confirming that every design artifact descends
-correctly to an implementation and test artifact, and that machine checks reflect
-real substance (not just ID coverage). Supports FR-L1-03 (descent obligations),
-FR-L1-18 (cross-detection aggregation), and FR-L1-21 (review evidence).
+V-model trace verification は、すべての design artifact が implementation と test artifact へ正しく降下し、
+machine checks が ID coverage だけでなく real substance を反映していることを確認する。
+FR-L1-03（descent obligations）、FR-L1-18（cross-detection aggregation）を扱い、
+FR-L1-21（review evidence）を支える。
 
-## When to load this skill
+## この skill を読む条件
 
-- A Forward or Add-feature cycle completes a layer group and the descent
-  verification cycle is triggered.
-- `ut-tdd doctor` exits non-zero with a descent or orphan finding.
-- `ut-tdd vmodel lint` reports an unsatisfied obligation.
-- A Scrum S3 verify step requires V-model completeness evidence.
-- A Recovery cycle must prove the gap that caused the incident is now closed.
+- Forward または Add-feature cycle が layer group を完了し、descent verification cycle が trigger された。
+- `ut-tdd doctor` が descent または orphan finding 付きで non-zero 終了した。
+- `ut-tdd vmodel lint` が unsatisfied obligation を報告した。
+- Scrum S3 verify step が V-model completeness evidence を必要とする。
+- Recovery cycle が、incident の原因 gap が close 済みであることを証明する必要がある。
 
-## Verification is substance, not coverage
+## Verification は coverage ではなく substance
 
-Coverage checks (fr-registry link exists, pair-freeze orphan count = 0) confirm
-ID registration, not content correctness. A verification pass requires reading
-the design doc to confirm the claim it makes is substantiated in the body.
-"Coverage = 0 orphans" and "descent = design is correct" are separate claims.
+coverage checks（fr-registry link exists、pair-freeze orphan count = 0）は
+ID registration を確認するが、content correctness は確認しない。verification pass には、
+design doc を読み、その claim が body で substantiated されていることの確認が必要。
+"Coverage = 0 orphans" と "descent = design is correct" は別の claim である。
 
-## Machine verification sequence
+## Machine verification sequence（機械検証順序）
 
-Run in order; stop at the first failure and fix before continuing:
+順番に実行する。最初の failure で停止し、修正してから続行する。
 
 ```
-ut-tdd doctor              # structural governance: orphans, missing pairs, PLAN schema
+ut-tdd doctor              # structural governance: orphan、missing pair、PLAN schema
 ut-tdd vmodel lint         # V-model layer obligations: absence-fail-close
-ut-tdd plan lint           # PLAN schema, dependency existence, schedule section
-bun run typecheck          # TypeScript: zero errors
-bun run lint               # Biome check: format + lint, zero violations
-bun run test               # Vitest: no skipped tests without rationale
+ut-tdd plan lint           # PLAN schema、dependency existence、schedule section
+bun run typecheck          # TypeScript: error 0
+bun run lint               # Biome check: format + lint violation 0
+bun run test               # Vitest: rationale の無い skipped test なし
 ```
 
-Never pipe any of these through `| tail` — truncation hides the root error.
+これらを `| tail` に pipe しない。truncation は root error を隠す。
 
-## Descent verification by layer group
+## layer group 別 descent verification
 
-**L0-L3 (concept through functional design):**
-- L1 requirements doc exists and each FR has a unique ID.
-- L3 functional spec exists for each FR; body is not placeholder prose.
-- `ut-tdd vmodel lint` reports no L3 obligation gap.
+**L0-L3（concept から functional design まで）:**
+- L1 requirements doc が存在し、各 FR が unique ID を持つ。
+- 各 FR に L3 functional spec が存在し、body が placeholder prose ではない。
+- `ut-tdd vmodel lint` が L3 obligation gap を報告しない。
 
-**L4-L6 (basic design through unit-test design):**
-- L5 detailed design doc exists at `docs/design/L5/` for each PLAN in scope.
-- L6 test-design doc exists at `docs/test-design/L6/` for each module.
-- L6 test-design lists explicit scenario IDs that match Vitest `describe`/`it`
-  names. Absence of a matching test = open obligation, not a pass.
+**L4-L6（basic design から unit-test design まで）:**
+- scope 内の各 PLAN について、`docs/design/L5/` に L5 detailed design doc が存在する。
+- 各 module について、`docs/test-design/L6/` に L6 test-design doc が存在する。
+- L6 test-design が Vitest `describe`/`it` names と一致する explicit scenario IDs を列挙している。
+  matching test が無い状態は open obligation であり pass ではない。
 
 **L7 (implementation):**
-- Vitest assertions exercise the scenarios in the paired L6 doc.
-- No `.skip`, `todo`, or `@ts-ignore` without a PLAN-linked rationale in a
-  comment on the same line.
-- `harness.db` projection row for the PLAN is in `completed` or `review` state.
+- Vitest assertions が paired L6 doc の scenarios を exercise している。
+- same line の comment に PLAN-linked rationale が無い `.skip`、`todo`、`@ts-ignore` が無い。
+- PLAN の `harness.db` projection row が `completed` または `review` state。
 
-**L8-L9 (integration and system test design):**
-- L8 integration test design doc exists at `docs/test-design/L8/`.
-- L8 doc cross-references the L5 basic design section it covers.
-- Gate exits 1 on a seeded violation fixture (not only on green).
+**L8-L9（integration test design と system test design）:**
+- `docs/test-design/L8/` に L8 integration test design doc が存在する。
+- L8 doc が cover する L5 basic design section を cross-reference している。
+- gate が green だけでなく seeded violation fixture で exit 1 する。
 
-## Obligation absence rule
+## Obligation absence rule（artifact 欠落 rule）
 
-An absent artifact is a violation, not a neutral state. If a design doc exists
-but its paired test-design doc is missing, `ut-tdd vmodel lint` should report
-it as a gap. If the lint does not catch it, file an improvement entry — absence-
-blindness is the root cause of descent gaps.
+absent artifact は neutral state ではなく violation である。design doc が存在するのに paired test-design doc が無い場合、
+`ut-tdd vmodel lint` は gap として報告すべきである。lint がそれを検出しない場合は improvement entry を起票する。
+absence-blindness は descent gaps の root cause である。
 
-## Evidence record
+## Evidence record（証跡記録）
 
-At the completion of a layer-group verification cycle, write:
+layer-group verification cycle の完了時に書く。
 
 ```
 .ut-tdd/audit/<PLAN-id>-verification-<layer-group>.json
@@ -111,11 +108,11 @@ At the completion of a layer-group verification cycle, write:
 }
 ```
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Declaring a layer group complete because `ut-tdd doctor` exits 0 — doctor
-  checks structure, not design substance.
-- Using Vitest assertion count as a proxy for test quality — verify the
-  scenario IDs match the L6 design doc.
-- Skipping the L8 test-design doc because "unit tests are sufficient" —
-  V-model requires paired artifacts at every boundary.
+- `ut-tdd doctor` が 0 で終了したことだけで layer group complete と宣言する。
+  doctor は structure を確認するが、design substance は確認しない。
+- Vitest assertion count を test quality の proxy として使う。
+  scenario IDs が L6 design doc と一致することを確認する。
+- "unit tests are sufficient" として L8 test-design doc を skip する。
+  V-model はすべての boundary で paired artifacts を要求する。

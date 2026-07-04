@@ -15,67 +15,61 @@ applies_to:
     - Refactor
 ---
 
-# api and interface design
+# API と interface design
 
-L2/L3 boundary design: screen/IA boundaries, component interaction contracts,
-and the transition from user-facing information architecture to concrete L4
-module interfaces. This skill governs *where boundaries are drawn* and *what
-crosses them* — not the endpoint shape (see `api.md`) or the compatibility
-contract (see `api-contract.md`).
+L2/L3 boundary design では、screen / IA boundary、component interaction contract、
+user-facing information architecture から具体的な L4 module interface への遷移を扱う。
+この skill が管理するのは *boundary をどこに引くか* と *何がそこを越えるか* であり、
+endpoint shape（`api.md` を参照）や compatibility contract（`api-contract.md` を参照）ではない。
 
-## When to load this skill
+## この skill を読む条件
 
-- An L2 screen/IA design must identify which system boundaries a user action
-  crosses.
-- An L3 functional design introduces a new component boundary or renames an
-  existing one.
-- A Discovery Scrum S2 PoC needs a boundary sketch before code is written.
-- A Refactor PLAN must confirm that no external interface boundary changes before
-  pair-freeze.
+- L2 screen / IA design で、user action が越える system boundary を特定する必要がある。
+- L3 functional design が新しい component boundary を導入する、または既存 boundary を rename する。
+- Discovery Scrum S2 PoC で、code を書く前に boundary sketch が必要。
+- Refactor PLAN で、pair-freeze 前に external interface boundary が変わらないことを確認する必要がある。
 
-## L2 boundary obligations
+## L2 boundary obligations（L2 boundary 責務）
 
-At L2 the question is: which screens or IA nodes produce or consume data across
-a system boundary? For each boundary crossing, record:
+L2 での問いは、どの screen または IA node が system boundary を越えて data を produce / consume するかである。
+boundary crossing ごとに次を記録する:
 
-- Source screen or agent action.
-- Target component (CLI module, DB table, external service).
-- Data direction (read / write / event).
-- Ownership: who controls the schema on each side.
+- Source screen または agent action。
+- Target component（CLI module、DB table、external service）を記録する。
+- Data direction（read / write / event）を記録する。
+- Ownership: 各側の schema を誰が control するか。
 
-Produce a `flowchart` or component diagram (Mermaid inline) in the L2 design doc.
-Every boundary in the diagram must map to a named L3 functional requirement or
-placeholder with a `requires` dependency in the PLAN.
+L2 design doc には `flowchart` または component diagram（Mermaid inline）を置く。
+diagram 内のすべての boundary は、named L3 functional requirement、または PLAN に `requires`
+dependency を持つ placeholder へ map する。
 
-## L3 functional boundary rules
+## L3 functional boundary の rule
 
-- Each IA boundary becomes a named **interface point** in the L3 doc with:
-  an actor, a trigger, and the system response observable to that actor.
-- Do not describe transport or encoding at L3 — that is L4.
-- Where a boundary is shared with another PLAN's scope, create a `placeholder_dep`
-  in the PLAN rather than duplicating ownership.
+- 各 IA boundary は、L3 doc 内の named **interface point** になる。
+  actor、trigger、その actor が観測できる system response を含める。
+- L3 では transport や encoding を説明しない。それは L4 の責務である。
+- boundary が別 PLAN の scope と共有される場合は、ownership を重複させず PLAN に `placeholder_dep` を作る。
 
-## Transition to L4
+## L4 への遷移
 
-The L4 basic-design doc resolves each L3 interface point into a concrete module
-boundary: function signature, command path, or HTTP route. The L4 doc must
-reference the L3 interface-point name it implements — this is the trace edge
-that `ut-tdd vmodel lint` checks.
+L4 basic-design doc は、各 L3 interface point を具体的な module boundary
+（function signature、command path、HTTP route）へ解決する。
+L4 doc は、自分が実装する L3 interface-point name を参照しなければならない。
+これは `ut-tdd vmodel lint` が検査する trace edge である。
 
-## Pair-freeze checklist (L2/L3 boundary design)
+## Pair-freeze checklist（L2/L3 boundary 設計）
 
-- [ ] L2 doc contains a boundary diagram (Mermaid flowchart or component).
-- [ ] Every boundary in the diagram has a named L3 interface point.
-- [ ] Each interface point has a matching `requires` or `placeholder_dep` in the
-      PLAN for the L4 doc that will resolve it.
-- [ ] No boundary is owned by two PLANs simultaneously (check `ut-tdd graph`).
-- [ ] `ut-tdd plan lint` and `ut-tdd doctor` exit 0.
-- [ ] Refactor PLANs: confirm via `ut-tdd review --uncommitted` that no externally
-      visible boundary name changed without a corresponding contract version bump.
+- [ ] L2 doc に boundary diagram（Mermaid flowchart または component）がある。
+- [ ] diagram 内のすべての boundary に named L3 interface point がある。
+- [ ] 各 interface point について、それを解決する L4 doc の PLAN に一致する
+      `requires` または `placeholder_dep` がある。
+- [ ] 2 つの PLAN が同じ boundary を同時 ownership していない（`ut-tdd graph` で確認）。
+- [ ] `ut-tdd plan lint` と `ut-tdd doctor` が 0 で終了する。
+- [ ] Refactor PLAN では、対応する contract version bump なしに externally visible boundary name が
+      変わっていないことを `ut-tdd review --uncommitted` で確認する。
 
-## Discovery drive usage
+## Discovery drive usage（Discovery drive での利用）
 
-During Scrum S2 PoC under Discovery drive, a lightweight boundary sketch (informal
-component diagram in the PLAN doc itself) is sufficient. Before S3 verify the
-sketch must be promoted to a proper L2 or L3 design doc and referenced by the
-PLAN's `generates` field.
+Discovery drive の Scrum S2 PoC では、lightweight boundary sketch
+（PLAN doc 自体に置く informal component diagram）で十分。
+S3 verify 前に、その sketch を正式な L2 または L3 design doc へ昇格し、PLAN の `generates` field から参照する。

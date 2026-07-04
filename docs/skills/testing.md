@@ -16,7 +16,7 @@ applies_to:
     - Retrofit
 ---
 
-# testing
+# testing（テスト）
 
 UT-TDD の V-model levels をまたぐ test strategy、fixture design、Vitest execution
 patterns。この skill は test suite architecture の *what and how* を扱う。*when*

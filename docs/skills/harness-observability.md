@@ -19,75 +19,66 @@ applies_to:
     - Recovery
 ---
 
-# harness observability
+# harness observability（観測性）
 
-Design and operation of `harness.db` projections, session logs, and
-cross-runtime token/cost telemetry — the observability backbone of UT-TDD
-(FR-L1-06 state SSoT, FR-L1-07 auto-registration, FR-L1-20 metrics, FR-L1-38
-model/cost). Apply when adding a projection, a `ut-tdd doctor` check that reads
-the DB, or a telemetry capture point.
+`harness.db` projection、session log、cross-runtime token/cost telemetry の設計と運用を扱う。
+これは UT-TDD の observability backbone である（FR-L1-06 state SSoT、FR-L1-07 auto-registration、
+FR-L1-20 metrics、FR-L1-38 model/cost）。projection、DB を読む `ut-tdd doctor` check、
+または telemetry capture point を追加する場合に適用する。
 
-## When to load this skill
+## この skill を読む場面
 
-- A PLAN adds or changes a `harness.db` table, a `gate_runs` / `model_runs`
-  capture, or a metric.
-- A doctor check needs to read DB state and fail-close on a missing row.
-- Cost/token telemetry must be recorded for an agent call.
+- PLAN が `harness.db` table、`gate_runs` / `model_runs` capture、または metric を追加・変更する。
+- doctor check が DB state を読み、missing row で fail-close する必要がある。
+- agent call の cost/token telemetry を記録する必要がある。
 
-## What harness.db is (and is not)
+## harness.db とは何か
 
-`harness.db` is a **deterministic projection** rebuilt from `docs/plans/*.md`,
-`.ut-tdd/` state, and session logs via `src/state-db/projection-writer.ts`.
-Never write to it directly; never treat it as the source of design truth (that
-lives in `docs/design/`). It is authoritative for: PLAN trace coverage, whether
-a gate ran (`gate_runs`), model/cost per run (`model_runs`), and skill adoption
-(`skill_evaluations`). Rebuild with `ut-tdd db rebuild`; inspect with
-`ut-tdd metrics`, `ut-tdd telemetry`, and `ut-tdd find`.
+`harness.db` は、`docs/plans/*.md`、`.ut-tdd/` state、session log から
+`src/state-db/projection-writer.ts` 経由で再構築される **deterministic projection** である。
+直接書き込んではならない。また、design truth の source として扱ってはならない
+（それは `docs/design/` にある）。PLAN trace coverage、gate 実行有無（`gate_runs`）、
+run ごとの model/cost（`model_runs`）、skill adoption（`skill_evaluations`）については authoritative である。
+再構築は `ut-tdd db rebuild`、確認は `ut-tdd metrics`、`ut-tdd telemetry`、`ut-tdd find` を使う。
 
-## Adding a new projection (L5→L7)
+## 新しい projection の追加（L5→L7）
 
-1. Design the table at L5 in the feature design doc — name, columns, types, and
-   the question it answers.
-2. Write L6 test design for the projection: seed input state → run projection →
-   assert rows (`tests/projection-writer.test.ts` is the pattern).
-3. Implement in `src/state-db/projection-writer.ts`.
-4. Wire it into `ut-tdd doctor` so a missing/empty projection is a fail-close
-   condition, not a silent gap (`db-projection-coverage` / `-ingestion`).
+1. feature design doc の L5 で table を設計する。name、columns、types、そしてその table が答える問いを明記する。
+2. projection の L6 test design を書く。seed input state → run projection → assert rows
+   （`tests/projection-writer.test.ts` が pattern）。
+3. `src/state-db/projection-writer.ts` に実装する。
+4. missing/empty projection が silent gap ではなく fail-close condition になるように、
+   `ut-tdd doctor` へ接続する（`db-projection-coverage` / `-ingestion`）。
 
-## Model / cost telemetry (FR-L1-38)
+## Model / cost telemetry の記録（FR-L1-38）
 
-Token and cost telemetry is exposed by `ut-tdd telemetry` and projected into
-`model_runs`. When adding an agent call path:
+token と cost の telemetry は `ut-tdd telemetry` で exposed され、`model_runs` に projected される。
+agent call path を追加する場合は次を確認する。
 
-- [ ] Route the call through `ut-tdd claude` / `ut-tdd codex` / `ut-tdd team
-      run`, not a raw provider spawn — only the wrappers capture lifecycle and
-      cost evidence.
-- [ ] Record the run metadata (runtime, model, role, drive, plan_id, timings)
-      in `model_runs`.
-- [ ] Store metadata only — never prompt text, response text, credentials, or
-      PII.
+- [ ] call は raw provider spawn ではなく `ut-tdd claude` / `ut-tdd codex` / `ut-tdd team
+      run` 経由にする。lifecycle と cost evidence を capture するのは wrapper だけである。
+- [ ] run metadata（runtime、model、role、drive、plan_id、timings）を `model_runs` に記録する。
+- [ ] metadata だけを保存する。prompt text、response text、credentials、PII は絶対に保存しない。
 
-## Session log and handover
+## Session log と handover
 
-The `SessionStart` and `Stop` hooks bracket each session
-(`src/runtime/session-log.ts`) and compress events into a PLAN digest. At a
-session boundary run `ut-tdd handover` to flush
-`.ut-tdd/handover/CURRENT.json`. Treat the handover carry as a claim, not truth:
-verify it against `git log` and `ut-tdd doctor` before relying on it.
+`SessionStart` と `Stop` hook は各 session を bracket し（`src/runtime/session-log.ts`）、
+event を PLAN digest に圧縮する。session boundary では `ut-tdd handover` を実行し、
+`.ut-tdd/handover/CURRENT.json` を flush する。handover carry は truth ではなく claim として扱う。
+依拠する前に `git log` と `ut-tdd doctor` で検証する。
 
-## Redaction boundary
+## Redaction boundary（redaction 境界）
 
-The observability layer must never store API keys, tokens, credentials, PII, or
-verbatim prompt/response text. If a capture point could include these, add a
-redaction step before the `projection-writer.ts` insert and a unit test
-asserting the field is absent.
+observability layer は API key、token、credential、PII、verbatim prompt/response text を保存してはならない。
+capture point にそれらが含まれ得る場合は、`projection-writer.ts` insert 前に redaction step を追加し、
+その field が存在しないことを assert する unit test を追加する。
 
-## L8 integration test for an observability gate
+## observability gate の L8 integration test
 
-- [ ] Projection writes the correct row given valid input state.
-- [ ] Doctor gate passes when the row is present.
-- [ ] Doctor gate fails when the row is absent (absence-blindness prevention).
-- [ ] Rebuild from scratch produces identical rows (determinism).
+- [ ] valid input state から projection が正しい row を書く。
+- [ ] row が存在すると doctor gate が pass する。
+- [ ] row が存在しないと doctor gate が fail する（absence-blindness prevention）。
+- [ ] scratch から rebuild しても identical row が生成される（determinism）。
 
-Capture `ut-tdd status` + `ut-tdd doctor` output into `.ut-tdd/audit/` as the
-canonical acceptance evidence — DB query output alone is not acceptance proof.
+`ut-tdd status` + `ut-tdd doctor` output を canonical acceptance evidence として
+`.ut-tdd/audit/` に capture する。DB query output だけでは acceptance proof にならない。

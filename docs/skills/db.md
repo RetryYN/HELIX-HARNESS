@@ -18,69 +18,66 @@ applies_to:
     - Refactor
 ---
 
-# db
+# DB 設計
 
-Schema design, state-model design, migration strategy, and the harness.db
-projection obligations that accompany any persistent storage change in UT-TDD
-(FR-L1-06 harness DB gate_runs / state projection). Apply when a PLAN adds,
-modifies, or removes a table, column, index, or migration.
+UT-TDD における persistent storage change に伴う schema design、state-model design、
+migration strategy、harness.db projection obligations を扱う
+（FR-L1-06 harness DB gate_runs / state projection）。PLAN が table、column、index、
+migration を追加・変更・削除する場合に適用する。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring an L4 basic-design doc that introduces or changes a DB schema.
-- A PLAN must extend `harness.db` tables (`plan_registry`, `artifact_registry`,
-  `model_runs`, `trace_edges`, `coverage`, `findings`, `gate_runs`).
-- A Reverse R1 pass must extract an undocumented schema into a design doc.
-- A migration script must be designed before any column/table rename or drop.
+- DB schema を導入または変更する L4 basic-design doc を書く。
+- PLAN が `harness.db` tables（`plan_registry`、`artifact_registry`、`model_runs`、
+  `trace_edges`、`coverage`、`findings`、`gate_runs`）を拡張する必要がある。
+- Reverse R1 pass で undocumented schema を design doc へ抽出する必要がある。
+- column/table rename または drop の前に migration script を設計する必要がある。
 
-## harness.db projection awareness
+## harness.db projection awareness（projection 認識）
 
-`.ut-tdd/harness.db` is a SQLite projection DB — it is *written* by
-`src/state-db/projection-writer.ts` and *read* by `ut-tdd doctor`, `ut-tdd
-vmodel lint`, and `ut-tdd metrics`. It is not an application database; it is
-harness state. Rules:
+`.ut-tdd/harness.db` は SQLite projection DB である。`src/state-db/projection-writer.ts` が *write* し、
+`ut-tdd doctor`、`ut-tdd vmodel lint`、`ut-tdd metrics` が *read* する。
+application database ではなく harness state である。rules:
 
-- Never hand-edit `harness.db`; always regenerate via `ut-tdd db rebuild`.
-- Any new PLAN that adds harness state must add a row to the appropriate table
-  through the projection writer — bare SQL inserts are not authoritative.
-- When `ut-tdd doctor` reports a projection mismatch, run `ut-tdd db rebuild`
-  and re-run `ut-tdd doctor` before diagnosing further.
+- `harness.db` を手編集しない。必ず `ut-tdd db rebuild` で regenerate する。
+- harness state を追加する new PLAN は、projection writer 経由で appropriate table に row を追加する。
+  bare SQL inserts は authoritative ではない。
+- `ut-tdd doctor` が projection mismatch を報告した場合、追加診断の前に `ut-tdd db rebuild` を実行し、
+  `ut-tdd doctor` を再実行する。
 
-## V-model obligations for a schema change
+## schema change の V-model obligations
 
-**L3 (functional):** name each entity and its role; state invariants in plain
-language ("a `plan_registry` row must always have a non-null `layer`").
+**L3 (functional):** 各 entity と role に名前を付け、invariants を plain language で記載する
+（例: "a `plan_registry` row must always have a non-null `layer`"）。
 
-**L4 (basic design):** produce an ER diagram (Mermaid `erDiagram`) in the L4 doc.
-Each table: columns, types, PK/FK, nullable flags. Include a migration section:
-ordered list of DDL changes with reversibility notes.
+**L4 (basic design):** L4 doc に ER diagram（Mermaid `erDiagram`）を作る。
+各 table について columns、types、PK/FK、nullable flags を記載する。migration section には、
+reversibility notes 付きで DDL changes の ordered list を含める。
 
-**L5 (detailed design):** index strategy, query access patterns, constraint
-enforcement. If a migration is destructive (DROP COLUMN, data transformation),
-document the rollback path explicitly.
+**L5（detailed design）:** index strategy、query access patterns、constraint enforcement を記録する。
+migration が destructive（DROP COLUMN、data transformation）の場合は rollback path を明示する。
 
-**L6 (unit-test design):** cover at least one happy-path insert/update, one
-constraint-violation path, and one migration-step idempotency check.
+**L6 (unit-test design):** 少なくとも 1 つの happy-path insert/update、
+1 つの constraint-violation path、1 つの migration-step idempotency check を覆う。
 
-## Migration design rules
+## Migration design rules（migration 設計 rule）
 
-- Every schema change ships as a numbered migration file under
-  `src/state-db/migrations/` (format: `NNN_<description>.sql`).
-- Migrations must be additive first: add columns as nullable before making them
-  required; add tables before dropping old ones.
-- Destructive migrations require a PLAN `review_evidence` entry confirming the
-  data loss is intentional and approved.
-- `ut-tdd doctor` must exit 0 after migration files are added — governance checks
-  that migration ordering is monotonic and no gaps exist.
+- すべての schema change は `src/state-db/migrations/` 配下の numbered migration file として ship する
+  （format: `NNN_<description>.sql`）。
+- migrations は additive first。required にする前に nullable columns として追加し、
+  old tables を drop する前に new tables を追加する。
+- destructive migrations には、data loss が intentional かつ approved であることを示す
+  PLAN `review_evidence` entry が必要。
+- migration files 追加後、`ut-tdd doctor` は 0 で終了しなければならない。
+  governance checks は migration ordering が monotonic で gaps が無いことを確認する。
 
-## Pair-freeze checklist for a schema PLAN
+## schema PLAN の pair-freeze checklist
 
-- [ ] L4 doc with ER diagram exists at `docs/design/.../L4-basic/`.
-- [ ] Migration section in the L4 doc lists each DDL step in order.
-- [ ] Migration file(s) exist under `src/state-db/migrations/` and are numbered
-      without gaps.
-- [ ] L6 unit-test design covers constraint violations and migration idempotency.
+- [ ] `docs/design/.../L4-basic/` に ER diagram 付きの L4 doc が存在する。
+- [ ] L4 doc の migration section が各 DDL step を順序通りに列挙している。
+- [ ] migration file(s) が `src/state-db/migrations/` 配下に存在し、gap なく numbered されている。
+- [ ] L6 unit-test design が constraint violations と migration idempotency を覆っている。
 - [ ] `ut-tdd plan lint` exits 0.
 - [ ] `ut-tdd doctor` exits 0.
-- [ ] For harness.db changes: `ut-tdd db rebuild` succeeds and projection-writer
-      tests are green (`bun run test`).
+- [ ] harness.db changes の場合、`ut-tdd db rebuild` が成功し、projection-writer tests が green
+      （`bun run test`）。

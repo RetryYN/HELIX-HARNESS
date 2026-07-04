@@ -18,41 +18,35 @@ applies_to:
     - Reverse
 ---
 
-# deprecation cutover
+# Deprecation cutover（廃止 cutover）
 
-Discipline for removing or replacing a command, module, path, env name, or
-convention in the UT-TDD harness while keeping V-model traceability and
-`harness-check` green. Apply when a PLAN deletes or supersedes existing runtime
-surface.
+UT-TDD harness で command、module、path、env name、convention を削除または置換するときに、V-model traceability と
+`harness-check` green を保つための規律。PLAN が既存 runtime surface を削除または supersede する場合に適用する。
 
-## When to load this skill
+## この skill を読むタイミング
 
-- A PLAN removes or replaces a `ut-tdd` subcommand, `src/` module, agent, skill
-  pack, or environment variable.
-- Drive is Retrofit (incremental strangler-fig replacement), Refactor
-  (consolidation), or Reverse (back-fill after a cutover).
-- `ut-tdd doctor` reports an `asset-drift` finding for legacy runtime residue.
+- PLAN が `ut-tdd` subcommand、`src/` module、agent、skill pack、environment variable を削除または置換する。
+- Drive が Retrofit（incremental strangler-fig replacement）、Refactor（consolidation）、または Reverse
+  （cutover 後の back-fill）である。
+- `ut-tdd doctor` が legacy runtime residue の `asset-drift` finding を報告している。
 
-## Decision checklist (before raising the PLAN)
+## Decision checklist（PLAN 起票前）
 
-1. Does a working replacement already exist in `src/` and `docs/`? Never
-   deprecate without a landed replacement.
-2. How many references remain? Run `grep -r "<target>" docs/ src/ tests/`. Zero
-   references is the cutover exit condition.
-3. Is the target named with a legacy runtime prefix or a legacy vendor path?
-   The `asset-drift` gate in `ut-tdd doctor` fails on legacy runtime
-   command/name/env residue and legacy source paths in enrolled agent, skill,
-   and prompt assets (FR-L1-49). Removing it is required, not optional.
-4. What is the rollback path if the replacement is broken post-cutover?
+1. `src/` と `docs/` に動作する replacement がすでに存在するか。landed replacement なしで deprecate しない。
+2. reference はいくつ残っているか。`grep -r "<target>" docs/ src/ tests/` を実行する。zero reference が
+   cutover exit condition である。
+3. target は legacy runtime prefix または legacy vendor path で命名されていないか。`ut-tdd doctor` の
+   `asset-drift` gate は、登録済み agent、skill、prompt asset 内の legacy runtime command/name/env residue と
+   legacy source path で fail する（FR-L1-49）。削除は必須であり任意ではない。
+4. replacement が post-cutover で壊れていた場合の rollback path は何か。
 
-## UT-TDD naming contract
+## UT-TDD naming contract（命名 contract）
 
-New env names and commands use the `UT_TDD_*` prefix (correct example:
-`UT_TDD_ALLOW_RAW_AGENT`). A PLAN that touches env handling in `src/cli.ts` must
-migrate any residual legacy-prefixed names to `UT_TDD_*` in the same PLAN or
-record an explicit `improvement-backlog.md` entry if deferring.
+新しい env name と command は `UT_TDD_*` prefix を使う（正しい例: `UT_TDD_ALLOW_RAW_AGENT`）。
+`src/cli.ts` の env handling に触れる PLAN は、同じ PLAN 内で残存する legacy-prefixed name を `UT_TDD_*` へ migrate する。
+延期する場合は、明示的な `improvement-backlog.md` entry を記録する。
 
-## Strangler-fig phasing for harness internals
+## Harness internals の strangler-fig phasing
 
 ```
 Phase 0  old path live; new path exists behind a UT_TDD_* opt-in flag
@@ -61,23 +55,20 @@ Phase 2  old path removed; ut-tdd doctor asset-drift is green
 Phase 3  deprecation notices / compat shims removed
 ```
 
-Record the current phase in PLAN `status` and the design doc. Advance one phase
-per commit; each boundary carries a `harness-check`-green evidence record in
-`.ut-tdd/audit/`.
+current phase は PLAN `status` と design doc に記録する。commit ごとに 1 phase だけ進める。各 boundary では
+`.ut-tdd/audit/` に `harness-check`-green evidence record を残す。
 
-## Removal checklist (L7)
+## 削除 checklist（L7）
 
-- [ ] `grep -r "<deprecated-identifier>" docs/ src/ tests/` returns zero hits.
-- [ ] `ut-tdd doctor` passes with zero `asset-drift` findings.
-- [ ] `bun run typecheck` passes — no dangling type references.
-- [ ] Tests referencing the removed path are updated or removed with a
-      rationale comment (no silent `.skip`).
-- [ ] `ut-tdd review --uncommitted` evidence recorded before merge.
+- [ ] `grep -r "<deprecated-identifier>" docs/ src/ tests/` が zero hit を返す。
+- [ ] `ut-tdd doctor` が zero `asset-drift` finding で pass する。
+- [ ] `bun run typecheck` が pass する。dangling type reference を残さない。
+- [ ] removed path を参照する test は更新するか、rationale comment 付きで削除する（silent `.skip` は不可）。
+- [ ] merge 前に `ut-tdd review --uncommitted` evidence を記録する。
 
-## Reverse back-fill obligation
+## Reverse back-fill obligation（Reverse back-fill 責務）
 
-If a cutover removes an impl that was never back-filled to design, open a Reverse
-PLAN (R0→R4, tracked by `kind=reverse`, validated by `ut-tdd plan lint` and
-`ut-tdd vmodel lint`) to record what was removed and why. Do not mark a cutover
-PLAN `accepted` while a Reverse obligation is open — the descent-obligation
-contract requires every removed feature to leave a design artifact behind.
+cutover が design へ back-fill されていない impl を削除する場合、Reverse PLAN（R0→R4、`kind=reverse` で追跡、
+`ut-tdd plan lint` と `ut-tdd vmodel lint` で検証）を開き、何をなぜ削除したかを記録する。Reverse obligation が
+open の間は cutover PLAN を `accepted` にしない。descent-obligation contract は、削除されたすべての feature が
+design artifact を残すことを要求する。

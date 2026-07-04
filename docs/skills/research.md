@@ -14,48 +14,46 @@ applies_to:
     - Add-feature
 ---
 
-# research
+# research（調査）
 
-WebSearch/WebFetch primary-source protocol for UT-TDD (FR-L1-27 Research
-workflow → ADR; supports the elicitation-AI-first rule: web research + subagent
-self-review before asking the PO). Two rules: no assertion without a
-primary-source URL, and no URL cited without a WebFetch body confirmation.
+UT-TDD 向けの WebSearch/WebFetch primary-source protocol (FR-L1-27 Research
+workflow → ADR)。PO に確認する前に web research と subagent self-review を行う
+elicitation-AI-first rule を支える。ルールは 2 つ: primary-source URL なしに主張しない。
+WebFetch body confirmation なしに URL を引用しない。
 
-## When to load this skill
+## この skill を load する場面
 
-- A Discovery PLAN (S1 plan / S2 PoC) needs external technology comparison.
-- An ADR's Context section cites external evidence.
-- A task routes to a `pmo-tech-docs` / `pmo-tech-news` subagent.
-- A PLAN depends on an external API, library, or standard that must be confirmed
-  before pair-freeze.
+- Discovery PLAN (S1 plan / S2 PoC) で外部技術比較が必要なとき。
+- ADR の Context section で外部 evidence を引用するとき。
+- task が `pmo-tech-docs` / `pmo-tech-news` subagent に route されるとき。
+- PLAN が external API、library、standard に依存し、pair-freeze 前の確認が必要なとき。
 
-## Two-tool protocol
+## Two-tool protocol（2-tool 手順）
 
-**Step 1 — WebSearch (collect candidates).** Query with subject + constraint
-(version, deprecation, release notes), official-domain identifiers, and a year
-qualifier. Discard non-primary-domain snippets as decision evidence.
+**Step 1 — WebSearch（候補収集）.** subject + constraint
+（version、deprecation、release notes）、official-domain identifiers、year qualifier を含めて
+で query する。non-primary-domain snippet は decision evidence として採用しない。
 
-**Step 2 — WebFetch (confirm bodies).** For every URL that will be cited, fetch
-it and confirm: publication date / version scope, that the specific claim
-actually appears in the body, and any compatibility or deprecation caveats.
-Never cite a URL seen only as a search snippet — the snippet can misrepresent the
-source.
+**Step 2 — WebFetch（本文確認）.** 引用するすべての URL を fetch し、
+publication date / version scope、特定の claim が body に実際にあること、
+compatibility や deprecation caveat を確認する。search snippet で見ただけの URL は
+引用しない。snippet は source を誤って表すことがある。
 
-## Source reliability labels
+## Source reliability labels（source 信頼性 label）
 
-| Label | Definition |
+| Label | 定義 |
 |---|---|
-| primary | Vendor official docs, standard spec, official source repo |
-| first-hand | Investigation article with methodology shown |
-| secondary | Aggregation / repost / summary without original methodology |
+| primary | vendor 公式 docs、standard spec、official source repo |
+| first-hand | methodology が明示された調査記事 |
+| secondary | original methodology を伴わない aggregation / repost / summary |
 
-Decision evidence must be `primary`; `first-hand` may supplement; `secondary` is
-background only and must not be a sole citation in an ADR or PLAN.
+Decision evidence は `primary` でなければならない。`first-hand` は補助として使える。
+`secondary` は background のみで、ADR や PLAN の唯一の citation にしてはならない。
 
-## Output format (recorded in a PLAN / ADR / `.ut-tdd/audit/`)
+## Output format（PLAN / ADR / `.ut-tdd/audit/` に記録）
 
 ```
-Research summary: [2-5 sentences]
+Research summary: [2-5 文]
 Sources:
 1. [Title](URL) — primary — retrieved YYYY-MM-DD — vX.Y / date-scoped
    Key claim: ...   WebFetch confirmed: yes
@@ -63,26 +61,25 @@ Unresolved / requires-further-investigation:
 - [specific gap]
 ```
 
-## Integration with Discovery / Scrum
+## Discovery / Scrum との統合
 
-- Discovery S1: findings feed the PLAN `evidence` before `ut-tdd plan lint`.
-- Scrum S2: the chosen technology cites at least one `primary` source.
-- Scrum S3: a PoC result that contradicts prior research is recorded in
-  `.ut-tdd/audit/` before S4 decide.
+- Discovery S1: findings は `ut-tdd plan lint` 前に PLAN `evidence` へ反映する。
+- Scrum S2: 選定した technology は少なくとも 1 つの `primary` source を引用する。
+- Scrum S3: prior research と矛盾する PoC result は、S4 decide 前に
+  `.ut-tdd/audit/` へ記録する。
 
-## Cost-aware delegation
+## Cost-aware delegation（cost-aware 委譲）
 
-For multi-source sweeps, delegate to the lightweight research role via
-`ut-tdd claude --role pmo-haiku --task "..."` (inspect the prompt first with
-`--dry-run`). Require: objective, minimum 2 primary sources, the output format
-above, and WebFetch confirmation per URL. Verify at least one returned source
-yourself before recording it as authoritative — delegated output is a claim, not
-evidence.
+multi-source sweep では、lightweight research role へ
+`ut-tdd claude --role pmo-haiku --task "..."` で委譲する
+(`--dry-run` で先に prompt を確認する)。要求事項は objective、最低 2 件の primary source、
+上記の output format、URL ごとの WebFetch confirmation。authoritative として記録する前に、
+返却された source の少なくとも 1 件を自分で検証する。delegated output は claim であり、
+evidence ではない。
 
-## Prohibited
+## 禁止事項
 
-- Asserting a version constraint from a search snippet alone.
-- Citing a URL that 404s or redirects without re-fetching.
-- A `secondary` source as the sole citation for an ADR decision.
-- Research findings recorded without a retrieval date (staleness cannot be
-  judged).
+- search snippet だけを根拠に version constraint を主張する。
+- 404 または redirect する URL を re-fetch せずに引用する。
+- ADR decision の唯一の citation として `secondary` source を使う。
+- retrieval date なしで research findings を記録する (staleness を判断できない)。

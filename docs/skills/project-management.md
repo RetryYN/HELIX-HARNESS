@@ -15,121 +15,107 @@ applies_to:
     - Incident
 ---
 
-# project management
+# project management（project 管理）
 
-Cross-PLAN program/portfolio view for UT-TDD (FR-L1-01 PLAN-as-orchestration).
-This skill governs the multi-PLAN perspective: milestone health, inter-PLAN
-dependency sequencing, stall detection, and handover discipline at program
-boundaries.
+UT-TDD の複数 PLAN をまたぐ program / portfolio 視点を扱う
+（FR-L1-01 PLAN-as-orchestration）。milestone の健全性、PLAN 間の依存順序、
+stall 検出、program boundary での handover discipline を管理する。
 
-DISTINCT from `planning-and-task-breakdown`, which handles authoring the
-internal anatomy of a single PLAN (frontmatter fields, §工程表 steps,
-WBS granularity). This skill operates one level above: which PLANs exist,
-how they depend on each other, and whether the program as a whole is healthy.
+`planning-and-task-breakdown` とは責務が異なる。そちらは 1 つの PLAN 内部
+（frontmatter fields、§工程表 steps、WBS 粒度）の作成を扱う。この skill は 1 段上で、
+どの PLAN が存在し、相互にどう依存し、program 全体が健全かを扱う。
 
-## When to load this skill
+## この skill を読むタイミング
 
-- Reviewing overall program state across multiple active PLANs before a
-  milestone or session handover.
-- `ut-tdd doctor` or `ut-tdd status` shows stalled, orphaned, or
-  dependency-blocked PLANs that span more than one layer group.
-- Deciding whether to launch a new PLAN or extend an existing one (overlap
-  detection).
-- A session boundary is crossed and a program-level handover must be written.
-- A Recovery or Incident drive requires enumerating which PLANs are
-  affected and in what sequence they should be unblocked.
+- milestone または session handover 前に、複数 active PLAN をまたいだ program 状態を確認する。
+- `ut-tdd doctor` または `ut-tdd status` が、複数 layer group にまたがる stalled / orphaned /
+  dependency-blocked PLAN を示している。
+- 新しい PLAN を起票するか既存 PLAN を拡張するかを判断する（overlap detection）。
+- session boundary を越え、program-level handover を書く必要がある。
+- Recovery または Incident drive で、影響 PLAN と unblock 順序を列挙する必要がある。
 
-## Program health commands
+## Program health commands（program 健全性 command）
 
 ```
-ut-tdd status               # active/stalled/draft PLANs across all layers
-ut-tdd doctor               # governance violations across the full program
-ut-tdd graph                # dependency graph — spot cycles and orphans
-ut-tdd plan lint            # per-PLAN schema and dependency existence
-ut-tdd handover             # generate .ut-tdd/handover/CURRENT.json
-ut-tdd metrics              # aggregate progress signals (layer coverage, etc.)
+ut-tdd status               # 全 layer の active/stalled/draft PLAN を確認する
+ut-tdd doctor               # program 全体の governance violation を確認する
+ut-tdd graph                # dependency graph で cycle と orphan を見つける
+ut-tdd plan lint            # PLAN ごとの schema と dependency existence を検証する
+ut-tdd handover             # .ut-tdd/handover/CURRENT.json を生成する
+ut-tdd metrics              # layer coverage などの progress signal を集計する
 ```
 
-Run `ut-tdd status` and `ut-tdd graph` together at the start of a program
-review. A PLAN that has been `active` for more than one sprint without a
-`trace-freeze` advancement is a stall signal.
+program review の開始時は `ut-tdd status` と `ut-tdd graph` をセットで実行する。
+1 sprint を超えて `active` のまま `trace-freeze` へ進んでいない PLAN は stall signal とみなす。
 
-## Per-requirement PLAN discipline
+## Requirement 単位の PLAN discipline
 
-One PLAN per FR that requires a design artifact. This is the foundational
-rule (FR-L1-01):
+design artifact を必要とする FR には 1 FR につき 1 PLAN を対応させる。これは基礎 rule
+（FR-L1-01）である。
 
-- Lumping multiple FRs into one PLAN is a `ut-tdd plan lint` violation.
-- A PLAN without a corresponding FR in the requirement registry is an orphan
-  that `ut-tdd doctor` will surface.
-- When a new FR is elicited mid-program, a PLAN must be created before
-  implementation begins — retroactive PLANs are Reverse back-fills, not
-  Forward work.
+- 複数 FR を 1 PLAN に押し込むと `ut-tdd plan lint` violation になる。
+- requirement registry に対応 FR が無い PLAN は orphan であり、`ut-tdd doctor` が surface する。
+- program 途中で新 FR が出た場合、implementation 前に PLAN を作る。後追い PLAN は Forward work ではなく
+  Reverse back-fill である。
 
-## Dependency sequencing at program level
+## Program level の dependency sequencing
 
-`ut-tdd graph` renders the full PLAN dependency graph. Before scheduling
-parallel work across agents:
+`ut-tdd graph` は PLAN dependency graph 全体を表示する。agents へ parallel work を割り当てる前に、
+次を行う。
 
-1. Identify the critical path (longest chain of `直列` dependencies).
-2. Mark PLANs that are `並列`-safe (no shared design doc writes, no
-   overlapping `generates` targets).
-3. Record the parallel/serial grouping in the program milestone note in
-   `.ut-tdd/handover/` — do not rely on memory alone.
+1. critical path（`直列` dependencies の最長 chain）を特定する。
+2. `並列`-safe な PLAN を印付ける（共有 design doc への同時 write が無く、`generates` target が重ならない）。
+3. parallel / serial grouping を `.ut-tdd/handover/` の program milestone note に記録する。
+   記憶だけに頼らない。
 
-Cycles in `ut-tdd graph` are hard blocks: a PLAN that directly or
-transitively depends on itself cannot advance; resolve by extracting the
-shared dependency into a new upstream PLAN.
+`ut-tdd graph` の cycle は hard block である。直接または推移的に自分自身へ依存する PLAN は前進できない。
+共有 dependency を新しい upstream PLAN として切り出して解消する。
 
-## Milestone handover discipline
+## Milestone handover discipline（milestone handover 規律）
 
-At each program milestone (layer group Forward freeze, Sprint boundary,
-Recovery closure, Incident post-mortem):
+各 program milestone（layer group Forward freeze、Sprint boundary、Recovery closure、
+Incident post-mortem）で次を行う。
 
-1. Run `ut-tdd status` — confirm no active PLAN is stalled.
-2. Run `ut-tdd doctor` — exit 0 required before milestone is declared.
-3. Run `ut-tdd handover` — write `.ut-tdd/handover/CURRENT.json` with the
-   program state snapshot.
-4. Populate the handover `carry` field only with items verified against
-   actual PLAN status and `git log` — never copy forward a carry item that
-   is already `done` in the PLAN registry.
-5. Archive the prior `CURRENT.json` to `.ut-tdd/handover/archive/` before
-   overwriting.
+1. `ut-tdd status` を実行し、stalled な active PLAN が無いことを確認する。
+2. `ut-tdd doctor` を実行する。milestone 宣言前に exit 0 が必須。
+3. `ut-tdd handover` を実行し、program state snapshot を `.ut-tdd/handover/CURRENT.json` に書く。
+4. handover の `carry` field には、実際の PLAN status と `git log` で検証した item だけを書く。
+   PLAN registry で既に `done` の carry item を copy forward しない。
+5. overwrite 前に、直前の `CURRENT.json` を `.ut-tdd/handover/archive/` へ archive する。
 
-A milestone with no recorded handover is not closed.
+handover 記録の無い milestone は closed ではない。
 
-## PLAN overlap detection
+## PLAN overlap detection（PLAN 重複検出）
 
-Before creating a new PLAN, run:
+新しい PLAN を作る前に次を実行する。
 
 ```
-ut-tdd status               # check for existing PLANs at the same layer/FR
-ut-tdd plan lint            # will flag duplicate plan_id
-ut-tdd graph                # shows if the proposed dependency already exists
+ut-tdd status               # 同じ layer/FR の既存 PLAN を確認する
+ut-tdd plan lint            # duplicate plan_id を flag する
+ut-tdd graph                # 提案した dependency が既に存在するかを表示する
 ```
 
-If a candidate PLAN would duplicate more than 50% of an existing PLAN's
-`generates` artifacts, extend the existing PLAN rather than creating a new
-one.
+candidate PLAN が既存 PLAN の `generates` artifacts の 50% 超を重複する場合、新規 PLAN ではなく
+既存 PLAN を拡張する。
 
-## Drive-model program patterns
+## Drive-model program patterns（drive model 別 pattern）
 
-| Drive | Program-level concern |
+| Drive | program level の concern |
 |-------|-----------------------|
-| Forward | One PLAN per FR; strict layer-descending order |
-| Add-feature | New PLAN requires Reverse back-fill PLAN in `dependencies` |
-| Recovery | Enumerate affected PLANs first; sequence unblock in `troubleshoot` PLAN |
-| Incident | Time-boxed; `status: active` PLANs frozen until incident PLAN is `done` |
-| Discovery | PoC PLANs time-boxed to S0-S4; `decision_outcome` required at S4 |
-| Scrum | Sprint boundary = milestone handover; carry items reviewed against code |
+| Forward | 1 FR につき 1 PLAN。layer-descending order を厳守する。 |
+| Add-feature | 新 PLAN は `dependencies` に Reverse back-fill PLAN を必要とする。 |
+| Recovery | まず影響 PLAN を列挙し、`troubleshoot` PLAN で unblock 順序を固定する。 |
+| Incident | time-boxed。incident PLAN が `done` になるまで `status: active` PLAN を凍結する。 |
+| Discovery | PoC PLAN は S0-S4 に time-box し、S4 で `decision_outcome` を必須にする。 |
+| Scrum | Sprint boundary = milestone handover。carry items は code と照合して review する。 |
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Using `ut-tdd handover` output as a substitute for reading PLAN status —
-  handover is a snapshot, not a live view; verify against `ut-tdd status`.
-- Advancing a PLAN to `done` without all its child PLANs also `done` —
-  false-green at program level.
-- Creating a PLAN for convenience (grouping work) rather than for a specific
-  FR — inflates program scope and breaks per-requirement traceability.
-- Scheduling all steps as `[並列]` to maximize speed — gates (pair-freeze,
-  trace-freeze, accept) are always `[直列]`; omitting them hides drift.
+- `ut-tdd handover` 出力を PLAN status 読解の代替にする。
+  handover は snapshot であり live view ではない。`ut-tdd status` で検証する。
+- child PLAN がすべて `done` ではないのに parent PLAN を `done` へ進める。
+  program level の false-green になる。
+- 特定 FR ではなく作業 grouping の都合で PLAN を作る。
+  program scope を膨らませ、requirement 単位の traceability を壊す。
+- 速度最大化のため全 step を `[並列]` にする。
+  gate（pair-freeze、trace-freeze、accept）は常に `[直列]` であり、省略すると drift が隠れる。

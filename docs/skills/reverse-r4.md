@@ -14,57 +14,56 @@ applies_to:
     - Recovery
 ---
 
-# reverse r4
+# R4 gap 登録と Forward routing
 
-R4: Gap Register and Forward Routing -- the final Reverse phase. Closes all
-gaps, locks `forward_routing`, sets `promotion_strategy`, records
-`missing_pair_artifacts`, and merges into the Forward cycle (FR-L1-14,
-reverse.md §2, §3 exit conditions, §4).
+R4: Gap Register and Forward Routing は、Reverse の最終 phase である。
+すべての gaps を close し、`forward_routing` を lock し、`promotion_strategy` を設定し、
+`missing_pair_artifacts` を記録して Forward cycle へ merge する
+（FR-L1-14、reverse.md §2、§3 exit conditions、§4）。
 
-All 5 reverse types pass through R4 (no skip). The `upgrade` type does not use
-RGC after R4.
+5 種類すべての reverse types が R4 を通る（skip なし）。
+`upgrade` type は R4 後に RGC を使わない。
 
-## When to load this skill
+## この skill を読む条件
 
-- The `kind=reverse` PLAN has `workflow_phase: R4`.
-- R3 intent-hypotheses are complete with PO sign-off.
+- `kind=reverse` PLAN が `workflow_phase: R4` を持つ。
+- R3 intent-hypotheses が PO sign-off 付きで完了している。
 
-## Inputs
+## 入力
 
-- `R3-intent-hypotheses.yaml` (all hypotheses classified, PO-reviewed).
+- `R3-intent-hypotheses.yaml`（すべての hypotheses が classified / PO-reviewed）。
 - `R2-as-is-design.md` and (if applicable) `R2-as-is-test-design.md`.
-- `R1-observed-contracts.yaml` (code, upgrade, fullback types).
-- Existing Forward PLAN and gate state from `ut-tdd status` and `ut-tdd doctor`.
+- `R1-observed-contracts.yaml`（code、upgrade、fullback types）を読む。
+- `ut-tdd status` と `ut-tdd doctor` から得る existing Forward PLAN と gate state。
 
-## Procedure
+## 手順
 
-1. Finalize `forward_routing` for the cycle. Confirm it is one of the 5 valid
-   values: `L1`, `L3`, `L4`, `L5`, or `gap-only`.
-   Use the reverse.md §4 routing table:
-   - Requirement itself is ambiguous -> `L1` or `L3`.
-   - Design judgment missing -> `L4`.
-   - Contract/API/DB definition missing -> `L5`.
-   - No Forward path available -> `gap-only` (debt/readiness-defer).
-2. Set `promotion_strategy`:
-   - `new-plan`: a new Forward PLAN at the routing destination must be created.
-   - `amend-existing`: an existing Forward PLAN will be updated with the gap.
-   - `gap-only-defer`: recorded in debt/readiness-defer with no immediate PLAN.
-3. Record `missing_pair_artifacts` for any layer where implementation (design
-   artifact) exists but test-design (③) is absent (reverse.md §2.1):
-   - List the layer and the missing artifact type.
-   - The routing destination must include a test-design PLAN before the
-     corresponding pair-freeze gate (G3/G4/G5) can be crossed.
-4. For any `conflict` hypothesis from R3: apply `--invalidate-forward` intent
-   by marking the relevant gate as needing re-evaluation in the PLAN notes.
-   (The `--invalidate-forward` flag is a planned ut-tdd gate mechanism; record
-   the gate ID and rationale in the PLAN manually until it is implemented.)
-5. For any open gap that cannot be closed now: route to `debt` or
-   `readiness-defer` with a new PLAN reference or backlog entry. Do not leave
-   gaps unresolved in the gap-register.
+1. cycle の `forward_routing` を finalize する。5 つの valid values
+   （`L1`、`L3`、`L4`、`L5`、`gap-only`）のいずれかであることを確認する。
+   reverse.md §4 routing table を使う。
+   - Requirement 自体が曖昧 -> `L1` または `L3`。
+   - Design judgment が欠けている -> `L4`。
+   - Contract/API/DB definition が欠けている -> `L5`。
+   - 利用可能な Forward path が無い -> `gap-only`（debt/readiness-defer）。
+2. `promotion_strategy` を設定する。
+   - `new-plan`: routing destination に新しい Forward PLAN を作成する必要がある。
+   - `amend-existing`: 既存 Forward PLAN を gap で更新する。
+   - `gap-only-defer`: immediate PLAN なしで debt/readiness-defer に記録する。
+3. implementation（design artifact）はあるが test-design（③）が無い layer について、
+   `missing_pair_artifacts` を記録する（reverse.md §2.1）。
+   - layer と missing artifact type を列挙する。
+   - routing destination は、対応する pair-freeze gate（G3/G4/G5）を越える前に
+     test-design PLAN を含めなければならない。
+4. R3 の `conflict` hypothesis について、relevant gate が再評価を要することを
+   PLAN notes に記録し、`--invalidate-forward` intent を適用する。
+   （`--invalidate-forward` flag は planned ut-tdd gate mechanism。
+   実装までの間は gate ID と rationale を PLAN に手動記録する。）
+5. 今 close できない open gap は、新しい PLAN reference または backlog entry とともに
+   `debt` または `readiness-defer` へ route する。gap-register に unresolved gaps を残さない。
 
-## Output artifacts
+## 出力 artifacts
 
-Write to `.ut-tdd/reverse/<plan_id>/`:
+`.ut-tdd/reverse/<plan_id>/` へ書く。
 
 **R4-gap-register.yaml**:
 ```yaml
@@ -79,29 +78,30 @@ gaps:
   - hypothesis_id: <H-NN>
     resolution: <new-plan|amend|defer>
     target_plan_or_backlog: ""
-invalidated_gates: []     # list gate IDs that need re-evaluation
+invalidated_gates: []     # 再評価が必要な gate ID を列挙する
 r4_notes: ""
 ```
 
-## Exit conditions (reverse.md §3)
+## 終了条件（reverse.md §3）
 
-Before closing R4 and merging to Forward, ALL of the following must hold:
+R4 を close して Forward へ merge する前に、以下をすべて満たす。
 
-- [ ] `forward_routing` is set to a valid 5-value enum entry.
-- [ ] `promotion_strategy` is set.
-- [ ] All hypotheses from R3 have a `resolution` entry in the gap register.
-- [ ] `missing_pair_artifacts` is complete: every layer with impl but no
-  test-design is listed. If none, the field is an empty list (not omitted).
-- [ ] Any `conflict` hypothesis has a named gate marked for re-evaluation.
-- [ ] Open gaps with no Forward path are routed to debt/readiness-defer with a
-  referenced PLAN or backlog entry.
-- [ ] `ut-tdd plan lint` exits 0 with `workflow_phase: R4` and `status: done`
-  (or the schema-equivalent closed state).
-- [ ] `ut-tdd vmodel lint` exits 0 (no orphan artifacts from the reconstruction).
+- [ ] `forward_routing` が valid 5-value enum entry に設定されている。
+- [ ] `promotion_strategy` が設定されている。
+- [ ] R3 のすべての hypotheses が gap register 内に `resolution` entry を持つ。
+- [ ] `missing_pair_artifacts` が complete。impl はあるが test-design が無いすべての layer が列挙されている。
+      無い場合は field を省略せず empty list にする。
+- [ ] 任意の `conflict` hypothesis について、再評価対象の named gate が記録されている。
+- [ ] Forward path の無い open gaps が、referenced PLAN または backlog entry 付きで
+      debt/readiness-defer へ route されている。
+- [ ] `workflow_phase: R4` と `status: done`
+      （または schema-equivalent closed state）の状態で `ut-tdd plan lint` が 0 で終了する。
+- [ ] `ut-tdd vmodel lint` が 0 で終了する
+      （reconstruction 由来の orphan artifacts が無い）。
 - [ ] `ut-tdd doctor` exits 0.
-- [ ] A new PLAN at the routing destination exists (or the amend target is
-  confirmed) if `promotion_strategy` is not `gap-only-defer`.
+- [ ] `promotion_strategy` が `gap-only-defer` でない場合、routing destination の新 PLAN が存在する
+      （または amend target が confirmed）。
 
-The Reverse cycle is closed only when all exit conditions are green. The routing
-destination's Pair freeze gate (G1/G3/G4/G5) must then be passed before any
-downstream L7 work begins on the subject scope.
+すべての exit conditions が green の場合だけ Reverse cycle は closed になる。
+その後、対象 scope の downstream L7 work を始める前に、routing destination の Pair freeze gate
+（G1/G3/G4/G5）を pass しなければならない。

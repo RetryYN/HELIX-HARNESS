@@ -15,34 +15,32 @@ applies_to:
     - Refactor
 ---
 
-# agent design
+# agent design（agent 設計）
 
-How to define a single subagent in UT-TDD: capability class, model-family
-assignment, and guard-allowlist registration (FR-L1-46 subagent roster). Apply
-when introducing a new agent role, changing a model family, or auditing whether
-an existing agent definition matches its actual use.
+UT-TDD における単一 subagent の定義方法を扱う。対象は capability class、
+model-family 割り当て、guard allowlist 登録（FR-L1-46 subagent roster）。
+新しい agent role の導入、model family の変更、既存 agent definition と実利用の整合監査で使う。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring or editing a `.claude/agents/<name>.md` frontmatter definition.
-- A `PreToolUse(Agent)` guard rejection requires diagnosing which rule failed.
-- A Discovery or Add-feature PLAN needs a new specialist role not yet in the
-  allowlist.
-- Refactoring an existing agent definition to correct a model-family mismatch.
+- `.claude/agents/<name>.md` の frontmatter definition を作成または編集する。
+- `PreToolUse(Agent)` guard rejection について、どの rule が失敗したか診断する必要がある。
+- Discovery または Add-feature PLAN が、allowlist にまだ無い specialist role を必要とする。
+- 既存 agent definition の model-family mismatch を直すために refactor する。
 
-## Anatomy of a subagent definition
+## subagent definition の構造
 
-Every `.claude/agents/<name>.md` must carry:
+すべての `.claude/agents/<name>.md` は次を持つ。
 
-| Field | Purpose | Enforcement |
+| フィールド | 目的 | 強制方法 |
 |---|---|---|
-| `name` (frontmatter) | Must match the kebab filename | `agent-guard.ts` key lookup |
-| `model` | Explicit model string (no omission) | Guard blocks omitted model — parent is NOT inherited |
-| `description` | One-line capability summary | Used by `ut-tdd skill suggest` |
-| `tools` | Declared tool list | Guard validates against allowed surfaces |
+| `name`（frontmatter） | kebab filename と一致する必要がある | `agent-guard.ts` の key lookup |
+| `model` | 明示的な model string（省略不可） | 省略 model は guard が block。parent は継承しない |
+| `description` | 1 行の capability summary | `ut-tdd skill suggest` が利用する |
+| `tools` | 宣言された tool list | guard が allowed surfaces と照合 |
 
-The `subagent_type` in the Agent call must match one of the guard allowlist
-entries exactly (case-sensitive). Current allowlist:
+Agent call の `subagent_type` は、guard allowlist entries のいずれかと完全一致する必要がある
+（case-sensitive）。現在の allowlist:
 
 ```
 pmo-sonnet  pmo-haiku  pmo-project-explorer  pmo-project-scout
@@ -51,35 +49,33 @@ pdm-tech-innovation  pdm-marketing-innovation  pdm-innovation-manager
 code-reviewer  security-audit  qa-test
 ```
 
-Any role outside this list is blocked fail-close. To add a role, update
-`agent-guard.ts` allowlist and document the capability class here.
+この list 外の role は fail-close で block される。role を追加する場合は
+`agent-guard.ts` allowlist を更新し、capability class をここに記録する。
 
-## Capability class taxonomy
+## Capability class taxonomy（能力分類）
 
-| Class | Typical roles | Right model tier |
+| 分類 | 代表的な role | 適切な model tier |
 |---|---|---|
-| Research / summarisation | `pmo-haiku`, `pmo-tech-news` | Fast / cheap |
-| Repo-state judgement | `pmo-project-explorer`, `pmo-sonnet` | Mid-tier |
-| Design review / adversarial | `code-reviewer`, `security-audit` | Primary / equivalent |
-| QA / trace verification | `qa-test` | Mid-tier |
-| Innovation / market analysis | `pdm-*` | Mid-tier |
+| 調査 / 要約 | `pmo-haiku`, `pmo-tech-news` | 高速 / 低コスト |
+| repo state 判断 | `pmo-project-explorer`, `pmo-sonnet` | 中位 tier |
+| 設計レビュー / adversarial | `code-reviewer`, `security-audit` | primary 相当 |
+| QA / trace verification | `qa-test` | 中位 tier |
+| innovation / market analysis | `pdm-*` | 中位 tier |
 
-Assign the minimum capable tier. An omitted `model` field causes the guard to
-reject the spawn — it does not silently inherit the parent.
+必要最小限の capable tier を割り当てる。`model` field を省略すると guard が spawn を reject する。
+parent を暗黙継承しない。
 
-## Guard bypass
+## Guard bypass（例外迂回）
 
-`UT_TDD_ALLOW_RAW_AGENT=1` bypasses the guard. Use only in a diagnosed
-emergency. Bypassing must leave an audit entry in `.ut-tdd/audit/` recording:
-who set the flag, which agent call was made, and why the normal path was
-unsuitable.
+`UT_TDD_ALLOW_RAW_AGENT=1` は guard を bypass する。診断済み emergency の場合だけ使う。
+迂回した場合は `.ut-tdd/audit/` に audit entry を残し、誰が flag を設定したか、
+どの agent call を実行したか、通常 path がなぜ不適切だったかを記録する。
 
-## Self-review checklist
+## Self-review checklist（自己レビューチェックリスト）
 
-- [ ] `name` in frontmatter matches the filename (kebab-case, no spaces).
-- [ ] `model` field is explicit — no blank, no placeholder.
-- [ ] `subagent_type` in the spawn call matches an allowlist entry exactly.
-- [ ] Capability class justified: the chosen model tier is the minimum needed.
-- [ ] If the role is new: allowlist in `agent-guard.ts` updated and tested.
-- [ ] Bypass evidence written to `.ut-tdd/audit/` when `UT_TDD_ALLOW_RAW_AGENT=1`
-      was set.
+- [ ] frontmatter の `name` が filename と一致している（kebab-case、spaces なし）。
+- [ ] `model` field が明示されている。blank でも placeholder でもない。
+- [ ] spawn call の `subagent_type` が allowlist entry と完全一致する。
+- [ ] Capability class の根拠がある。選んだ model tier は必要最小限。
+- [ ] 新しい role の場合、`agent-guard.ts` の allowlist が更新され test 済み。
+- [ ] `UT_TDD_ALLOW_RAW_AGENT=1` を設定した場合、bypass evidence を `.ut-tdd/audit/` に書いた。

@@ -18,71 +18,68 @@ applies_to:
     - Discovery
 ---
 
-# documentation and adrs
+# ドキュメントと ADR
 
-Writing a V-model design doc or ADR that survives freeze and cross-agent review.
-Apply when authoring/updating any `docs/design/` doc or `docs/adr/ADR-NNN-*.md`,
-or when a freeze gate needs a readability check.
+freeze と cross-agent review に耐える V-model design doc または ADR の書き方を扱う。
+`docs/design/` doc や `docs/adr/ADR-NNN-*.md` を作成・更新する場合、または freeze gate 前に
+readability check が必要な場合に使う。
 
-## When to load this skill
+## この skill を読むタイミング
 
-- Creating or updating a design doc at any design layer (L1–L6).
-- Authoring or revising an ADR.
-- A pair-freeze or trace-freeze gate is about to be crossed.
-- A Reverse R2–R4 pass back-fills a design doc from implementation.
+- 任意の design layer（L1-L6）で design doc を作成または更新する。
+- ADR を作成または改訂する。
+- pair-freeze または trace-freeze gate を越えようとしている。
+- Reverse R2-R4 pass で implementation から design doc を back-fill する。
 
-## Structural baseline (before pair-freeze)
+## Structural baseline（pair-freeze 前）
 
-Every UT-TDD design doc needs: **Objective/TL;DR** (2–3 sentences: what changes,
-why, which layer), **Scope / Non-goals**, **Prerequisites** (upstream layer docs,
-PLAN/ADR IDs), **main content** at V-model granularity (designed at the level a
-unit test can be written against it), **verification / acceptance criteria**, and
-**terminology** (new terms added to the L0 glossary). ADRs additionally need
-Context, Decision, Consequences, and Status.
+すべての UT-TDD design doc は次を必要とする。**Objective/TL;DR**（2-3 文。何が変わるか、
+なぜか、どの layer か）、**Scope / Non-goals**、**Prerequisites**（upstream layer docs、
+PLAN/ADR IDs）、V-model 粒度の **main content**（unit test が書ける粒度で設計されていること）、
+**verification / acceptance criteria**、**terminology**（新語は L0 glossary へ追加）。
+ADR はさらに Context、Decision、Consequences、Status を必要とする。
 
-## Writing rules
+## Writing rules（執筆 rule）
 
-- One claim per sentence; name the actor (active voice). Gate conditions are
-  executable contracts — "CI must be green and `ut-tdd doctor` must exit 0
-  before pair-freeze" beats "the freeze passes when tests are green".
-- Uniform terminology: match the spelling `ut-tdd doctor` / `rule-drift` checks;
-  synonym drift causes adapter rule-drift failures.
-- No bare pronouns ("this", "it") without an explicit referent — a freeze-review
-  failure.
+- 1 文に 1 claim。actor を明示する（active voice）。Gate conditions は executable contract として書く。
+  "CI must be green and `ut-tdd doctor` must exit 0 before pair-freeze" は、
+  "tests green なら freeze が通る" より強い。
+- 用語を統一する。`ut-tdd doctor` / `rule-drift` checks の spelling に合わせる。
+  synonym drift は adapter rule-drift failure を引き起こす。
+- 明示的な referent の無い bare pronouns（"this", "it"）を使わない。freeze-review failure になる。
 
-## Freeze readability check (pre-pair-freeze)
+## Freeze 前 readability check（pre-pair-freeze）
 
-1. Scan for half-width kana (U+FF61–FF9F) and U+FFFD — these mark a
-   mojibake-corrupted save; do not freeze a corrupted doc.
-2. Objective/TL;DR present and ≤ 5 sentences.
-3. Every introduced term matches the L0 glossary spelling.
-4. Scope and Non-goals present; no bare `TODO` without a PLAN cross-reference.
-5. Run `ut-tdd plan lint` for schema-level issues and `ut-tdd review
-   --uncommitted` for review findings before peer review.
+1. half-width kana (U+FF61-FF9F) と U+FFFD を scan する。これは mojibake-corrupted save の marker なので、
+   corrupted doc を freeze しない。
+2. Objective/TL;DR が存在し、5 文以下である。
+3. 導入したすべての term が L0 glossary spelling と一致する。
+4. Scope と Non-goals が存在する。PLAN cross-reference の無い裸の `TODO` が無い。
+5. peer review 前に、schema-level issues 用に `ut-tdd plan lint`、review findings 用に
+   `ut-tdd review --uncommitted` を実行する。
 
-## ADR procedure
+## ADR procedure（ADR 手順）
 
-1. Copy the closest existing ADR as a structural template.
-2. Fill Context first — the observed facts forcing the decision (cite Discovery
-   PLAN / Scrum S2 PoC evidence in `.ut-tdd/`).
-3. State the Decision in one active-voice sentence.
-4. List Consequences: positive, negative, risks-to-monitor.
-5. Set Status `Proposed`; move to `Accepted` only after `ut-tdd review
-   --uncommitted` is clean and `ut-tdd doctor` exits 0. ADRs are referenced by
-   PLAN `dependencies`; a missing/mis-titled ADR fails governance lint.
+1. 最も近い既存 ADR を structural template として copy する。
+2. 先に Context を埋める。decision を強制する observed facts を書く
+   （Discovery PLAN / Scrum S2 PoC evidence in `.ut-tdd/` を引用する）。
+3. Decision は active-voice の 1 文で書く。
+4. Consequences を列挙する: positive、negative、risks-to-monitor。
+5. Status は `Proposed` にする。`ut-tdd review --uncommitted` が clean で、
+   `ut-tdd doctor` が exit 0 になった後だけ `Accepted` へ進める。ADR は PLAN `dependencies`
+   から参照されるため、欠落または誤 title の ADR は governance lint で fail する。
 
-## Reverse back-fill (R2–R4)
+## R2-R4 の Reverse back-fill
 
-R2 describes as-is architecture from the code as observed (not aspirational); R3
-maps modules back to L3 functional requirements; R4 writes the L1/L3 requirement
-update as if Forward had authored it (scope + acceptance + verification). A
-back-filled doc passes the same readability check before trace-freeze.
+R2 は observed code から as-is architecture を記述する（aspirational にしない）。R3 は modules を
+L3 functional requirements へ map する。R4 は Forward が作成したかのように L1/L3 requirement update
+を書く（scope + acceptance + verification）。back-filled doc も trace-freeze 前に同じ readability check を通す。
 
-## Self-edit checklist before any freeze
+## Freeze 前の自己確認 checklist
 
-- [ ] Objective/TL;DR ≤ 5 sentences; Scope and Non-goals filled.
-- [ ] No passive-voice gate conditions; no bare pronouns.
-- [ ] Terms match / extend the L0 glossary.
-- [ ] No mojibake markers (half-width kana, U+FFFD).
-- [ ] ADR Status set.
-- [ ] `ut-tdd plan lint` and `ut-tdd doctor` exit 0.
+- [ ] Objective/TL;DR が 5 文以下。Scope と Non-goals が埋まっている。
+- [ ] passive-voice gate conditions と bare pronouns が無い。
+- [ ] Terms が L0 glossary と一致する、または L0 glossary を拡張している。
+- [ ] mojibake markers（half-width kana、U+FFFD）が無い。
+- [ ] ADR Status が設定されている。
+- [ ] `ut-tdd plan lint` と `ut-tdd doctor` が exit 0。

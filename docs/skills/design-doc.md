@@ -15,35 +15,34 @@ applies_to:
     - Retrofit
 ---
 
-# design doc
+# design doc（設計ドキュメント）
 
-When and how to produce Mermaid / D2 diagrams as part of UT-TDD design docs.
-Diagrams are versioned design artifacts, not illustrations, and pass the same
-freeze readability check as prose.
+UT-TDD design doc の一部として Mermaid / D2 diagram をいつ、どのように作るかを扱う。
+diagram は illustration ではなく versioned design artifact であり、prose と同じ freeze readability check を通す。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring a `docs/design/` doc at L2–L5 that describes component structure,
-  data flow, API sequence, or state transitions.
-- Writing an ADR whose decision involves a system boundary or data model.
-- A Reverse R2 pass capturing as-is architecture.
+- component structure、data flow、API sequence、state transition を説明する L2-L5 の
+  `docs/design/` doc を作成する。
+- system boundary または data model に関わる decision を含む ADR を書く。
+- Reverse R2 pass で as-is architecture を capture する。
 
-## Mermaid vs D2
+## Mermaid と D2
 
-Default to inline Mermaid for V-model layer docs. Promote to a D2 source file
-(`docs/diagrams/`) only when layout control is needed or the diagram is
-referenced from more than one doc (single source of truth). Commit D2 source
-alongside any generated SVG — never commit only the SVG.
+V-model layer docs では inline Mermaid を default にする。
+layout control が必要な場合、または diagram が複数 doc から参照される場合（single source of truth）だけ
+D2 source file（`docs/diagrams/`）へ昇格する。
+generated SVG と一緒に D2 source を commit する。SVG だけを commit しない。
 
-## Diagram obligation by layer
+## layer 別 diagram obligation
 
-- **L2 (screen/IA):** a screen-flow or component-hierarchy `flowchart`.
-- **L3 (functional):** a state-transition diagram per stateful feature; a
-  sequence diagram per API surface.
-- **L4 (basic):** a module component diagram; an ER diagram for DB changes.
-- **L5 (detailed):** optional, when a class/data boundary is non-obvious.
+- **L2 (screen/IA):** screen-flow または component-hierarchy `flowchart`。
+- **L3 (functional):** stateful feature ごとの state-transition diagram。
+  API surface ごとの sequence diagram。
+- **L4 (basic):** module component diagram。DB 変更では ER diagram。
+- **L5 (detailed):** class / data boundary が非自明な場合のみ optional。
 
-## Mermaid templates (UT-TDD contexts)
+## Mermaid の template（UT-TDD context）
 
 PLAN lifecycle state:
 
@@ -77,15 +76,14 @@ erDiagram
   }
 ```
 
-## Freeze diagram checklist
+## Freeze diagram の checklist
 
-- [ ] Every diagram has a one-sentence caption stating what it shows.
-- [ ] Mermaid compiles without error (preview locally).
-- [ ] Node labels match the L0 glossary and the prose terminology in the doc.
-- [ ] D2 source is committed alongside the referencing doc.
-- [ ] No diagram is the sole location of a decision — prose states the decision;
-      the diagram illustrates it.
-- [ ] Reverse R2 diagrams are labeled "as-is" and dated.
+- [ ] すべての diagram に、何を示すかを述べる 1 文 caption がある。
+- [ ] Mermaid が error なしで compile する（local で preview）。
+- [ ] node label が L0 glossary と doc 本文の terminology に一致する。
+- [ ] D2 source が referencing doc と一緒に commit されている。
+- [ ] diagram だけに decision を置いていない。decision は prose で述べ、diagram はそれを illustrate する。
+- [ ] Reverse R2 diagram は "as-is" と label され、date が付いている。
 
-Run `ut-tdd review --uncommitted` after adding diagrams; a layer that mandates a
-diagram cannot reach pair-freeze with a "TODO: add diagram" placeholder.
+diagram 追加後は `ut-tdd review --uncommitted` を実行する。
+diagram が必須の layer は、"TODO: add diagram" placeholder が残ったまま pair-freeze へ到達できない。

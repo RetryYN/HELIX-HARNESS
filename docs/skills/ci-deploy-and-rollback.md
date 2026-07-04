@@ -17,91 +17,84 @@ applies_to:
     - Incident
 ---
 
-# ci deploy and rollback
+# CI deploy と rollback
 
-Deploy-gate sequence, rollback criteria, and evidence obligations for harness
-releases and for target-repo deploys the harness orchestrates. No deploy starts
-without a passing `harness-check`; rollback criteria are defined before deploy,
-not after a problem appears.
+harness release と、harness が orchestrate する target-repo deploy のための
+deploy-gate 順序、rollback 基準、証跡責務を扱う。
+passing `harness-check` なしに deploy を開始しない。rollback criteria は問題発生後ではなく deploy 前に定義する。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN reaches L12 (deploy + acceptance) in the Forward cycle.
-- An Add-feature increment is ready to ship behind a flag.
-- A Recovery rollback or an Incident hotfix path is needed.
+- PLAN が Forward cycle の L12（deploy + acceptance）へ到達する。
+- Add-feature increment を flag 配下で ship する準備ができている。
+- Recovery rollback または Incident hotfix path が必要。
 
-## Pre-deploy gate (mandatory)
+## Pre-deploy gate（必須）
 
-All must be green; a failure blocks the deploy.
+すべて green でなければならない。failure は deploy を block する。
 
 ```
-bun run lint          # Biome check (full output — do not pipe to tail)
+bun run lint          # Biome check（full output。tail へ pipe しない）
 bun run test          # Vitest
 bun run typecheck     # tsc --noEmit
 ut-tdd doctor         # harness structural health + plan governance
-ut-tdd plan lint      # PLAN schema, steps, dependency existence
+ut-tdd plan lint      # PLAN schema、steps、dependency existence
 ut-tdd review --uncommitted
 ```
 
-Never bypass with `--no-verify`. A local-green push that fails CI almost always
-means one of these was skipped.
+`--no-verify` で bypass しない。local-green push が CI で失敗する場合、
+ほぼ必ずこのどれかが skip されている。
 
-## Strategy selection
+## Strategy selection（戦略選択）
 
 | Signal | Strategy |
 |---|---|
-| Forward L12, no data migration | rolling / direct replace, smoke-test immediately |
-| Add-feature behind a flag | deploy flag-off, enable post-verify (flag-off = instant rollback) |
-| Recovery after regression | revert to last known-good; run DB down-migration if data changed |
-| Incident hotfix | minimum-change branch, two-party review, stabilise then merge to main |
+| Forward L12, no data migration | rolling / direct replace、即時 smoke-test |
+| Add-feature behind a flag | flag-off で deploy、post-verify 後に enable（flag-off = instant rollback） |
+| Recovery after regression | last known-good へ revert。data が変わった場合は DB down-migration を実行 |
+| Incident hotfix | minimum-change branch、two-party review、安定化後に main へ merge |
 
-## Post-deploy smoke test
+## Post-deploy smoke test（deploy 後 smoke test）
 
-1. Health endpoint returns 200.
-2. Primary user paths return expected status.
-3. `ut-tdd doctor` against the deployed state shows no structural drift.
-4. Watch the error rate for ~15 minutes against the pre-deploy baseline.
+1. Health endpoint が 200 を返す。
+2. Primary user path が expected status を返す。
+3. deployed state に対する `ut-tdd doctor` が structural drift なしを示す。
+4. pre-deploy baseline に対して error rate を約 15 分監視する。
 
-Record results in `.ut-tdd/audit/`.
+結果は `.ut-tdd/audit/` に記録する。
 
-## Rollback criteria (defined in the PLAN before deploy)
+## Rollback criteria（deploy 前に PLAN で定義）
 
-Typical triggers: error rate above baseline by a set margin, p95 latency
-degradation beyond a set threshold, a primary path returning non-2xx/3xx, or a
-data-integrity failure. On a Sev1 trigger, roll back without waiting for a second
-opinion — rollback is safer than extended downtime.
+典型的な trigger は、baseline を一定 margin 以上上回る error rate、set threshold を超える
+p95 latency degradation、primary path の non-2xx/3xx、data-integrity failure。
+Sev1 trigger では second opinion を待たず rollback する。extended downtime より rollback の方が安全である。
 
-## Rollback procedure
+## Rollback procedure（手順）
 
-1. Declare intent (timestamp + reason) in `.ut-tdd/audit/`.
-2. Execute: flag-off for a flag-guarded feature; redeploy the previous tagged
-   artifact for a rolling deploy; run the DB down-migration *before* reverting
-   app code if data changed, then confirm integrity.
-3. Re-run the smoke-test sequence against the rolled-back state.
-4. Record the final state with `outcome=rollback`.
+1. `.ut-tdd/audit/` に intent（timestamp + reason）を宣言する。
+2. 実行する。flag-guarded feature は flag-off。rolling deploy は previous tagged artifact を redeploy。
+   data が変わった場合は app code を戻す前に DB down-migration を実行し、その後 integrity を確認する。
+3. rolled-back state に対して smoke-test sequence を再実行する。
+4. final state を `outcome=rollback` 付きで記録する。
 
-## After rollback
+## rollback 後
 
-A rollback is not a resolution. Once stable, open a Recovery PLAN (branch
-`hotfix/*`), record the root cause, classify the fix as design-level
-(`add-design`) or implementation-only (`add-impl` at L7), and add a regression
-test that would have caught the failure before re-deploy. Run `ut-tdd handover`
-at the PLAN boundary.
+rollback は resolution ではない。stable になったら Recovery PLAN（branch `hotfix/*`）を開き、
+root cause を記録し、fix を design-level（`add-design`）または implementation-only（L7 の `add-impl`）
+に分類し、re-deploy 前に failure を捕捉できた regression test を追加する。
+PLAN boundary で `ut-tdd handover` を実行する。
 
-## DB migration safety
+## DB migration safety（DB migration 安全性）
 
-- Safe in one deploy: nullable/default column add, concurrent index add, new
-  table.
-- Staged expand-contract (multi-deploy): column rename (add → dual-write → read
-  new → drop old), NOT NULL add (backfill first), large backfill (background
-  job, not inline).
-- Never in one deploy: type change on live data without a staging run, or a
-  table rebuild that takes a lock.
+- one deploy で safe: nullable/default column add、concurrent index add、new table。
+- staged expand-contract（multi-deploy）: column rename（add → dual-write → read new → drop old）を段階実施する。
+  NOT NULL add（backfill first）、large backfill（background job、inline ではない）。
+- one deploy で禁止: staging run なしの live data type change、または lock を取る table rebuild。
 
-## Completion checklist
+## Completion checklist（完了 checklist）
 
-- [ ] Pre-deploy gates green (lint / test / typecheck / doctor / plan lint).
-- [ ] Strategy + rollback thresholds documented in the PLAN before cutover.
-- [ ] Smoke test passes; monitoring window clean.
-- [ ] Evidence in `.ut-tdd/audit/`; PLAN advanced via `ut-tdd plan use`.
-- [ ] If rolled back: Recovery PLAN opened with root cause + regression test.
+- [ ] Pre-deploy gate が green（lint / test / typecheck / doctor / plan lint）。
+- [ ] Strategy + rollback threshold を cutover 前に PLAN へ記録済み。
+- [ ] Smoke test が pass し、monitoring window が clean。
+- [ ] Evidence が `.ut-tdd/audit/` にあり、PLAN は `ut-tdd plan use` で進行済み。
+- [ ] rollback した場合: root cause + regression test 付きで Recovery PLAN を開いている。

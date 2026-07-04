@@ -16,29 +16,24 @@ applies_to:
     - Scrum
 ---
 
-# spec driven development
+# spec driven development（仕様駆動開発）
 
-Specification-driven development: the design document at each V-model layer is
-the contract that test design (at the paired layer) is written against. This
-skill enforces FR-L1-50 (strict TDD/DDD: spec exists and is readable before
-tests; tests exist and are Green before implementation merges) and the GWT
-integration test discipline at L8.
+Specification-driven development は、各 V-model layer の design document を、
+paired layer の test design が準拠する contract として扱う。この skill は
+FR-L1-50（strict TDD/DDD: tests の前に spec が存在し readable、implementation merge の前に
+tests が存在し Green）と、L8 の GWT integration test discipline を強制する。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring a new L5 detailed design or L6 unit-test design doc before
-  implementation starts.
-- A PLAN is at pair-freeze and the design doc does not yet exist or is not
-  readable.
-- Discovery or Scrum S2 PoC needs a lightweight spec that a test can be
-  written against before coding begins.
-- An L8 integration test scenario is being designed and the L5 spec needs a
-  GWT section.
+- implementation 開始前に、新しい L5 detailed design または L6 unit-test design doc を書く。
+- PLAN が pair-freeze にあり、design doc がまだ存在しない、または readable ではない。
+- Discovery または Scrum S2 PoC で、coding 前に test を書ける lightweight spec が必要。
+- L8 integration test scenario を設計しており、L5 spec に GWT section が必要。
 
-## Spec-first contract: layers and pairing
+## Spec-first contract（層とペアリング）
 
-Every implementation unit must trace to a spec at L5 (detailed design) or
-above, and to a test design at L6 (unit) or L8 (integration):
+すべての implementation unit は、L5（detailed design）以上の spec と、
+L6（unit）または L8（integration）の test design へ trace できなければならない。
 
 ```
 L3 functional spec  <-->  L9 system-test design
@@ -47,67 +42,63 @@ L5 detailed design  <-->  L8 integration-test design (GWT)
 L6 unit-test design --> L7 implementation (tests must be Red-first)
 ```
 
-A PLAN cannot cross pair-freeze until the paired design doc and test design
-doc both exist and pass the readability check (Objective, Scope, no mojibake).
-`ut-tdd plan lint` will reject a PLAN whose `requires` points to a non-existent
-design doc.
+paired design doc と test design doc が両方存在し、readability check
+（Objective、Scope、mojibake なし）を pass するまで、PLAN は pair-freeze を越えられない。
+`requires` が存在しない design doc を指している PLAN は `ut-tdd plan lint` が reject する。
 
-## Authoring a usable spec (L5)
+## usable spec の書き方（L5）
 
-A spec is usable when a test author can derive assertions from it without
-asking a clarifying question. Required sections:
+test author が clarification を求めずに assertions を導ける場合、その spec は usable である。
+必須 section は次の通り。
 
-1. **Objective** — one sentence stating the feature's purpose.
-2. **Inputs / Preconditions** — typed names of all inputs, including edge cases.
-3. **Outputs / Postconditions** — exact shapes (TypeScript types or JSON schema)
-   of all outputs and side effects (files written, DB rows, exit codes).
-4. **Error conditions** — what the function does on each invalid input.
-5. **Out of scope** — what this spec intentionally does not decide.
+1. **Objective** — feature の目的を 1 文で示す。
+2. **Inputs / Preconditions** — edge cases を含むすべての inputs の typed names。
+3. **Outputs / Postconditions** — すべての outputs と side effects
+   （files written、DB rows、exit codes）の exact shapes（TypeScript types または JSON schema）。
+4. **Error conditions** — 各 invalid input で function が何をするか。
+5. **Out of scope** — この spec が意図的に決めないこと。
 
-Avoid prose descriptions of behaviour that could be interpreted two ways. If
-a word is ambiguous, add it to the L0 glossary (`docs/design/L0-glossary.md`).
+2 通りに解釈できる behaviour description は避ける。曖昧な語がある場合は、
+L0 glossary（`docs/design/L0-glossary.md`）に追加する。
 
-## GWT integration tests at L8
+## L8 の GWT integration tests
 
-Given-When-Then format for L8 integration scenarios:
+L8 integration scenario は Given-When-Then 形式で書く。
 
-- **Given**: the state of `.ut-tdd/`, `harness.db`, and input fixtures.
-- **When**: the `ut-tdd` command or function under test is invoked with
-  specified arguments.
-- **Then**: the exact output artefacts, exit code, DB state, or file changes
-  that must be present.
+- **Given**: `.ut-tdd/`、`harness.db`、input fixtures の state。
+- **When**: test 対象の `ut-tdd` command または function を指定 arguments で呼ぶ。
+- **Then**: 存在すべき exact output artefacts、exit code、DB state、file changes。
 
-Each GWT block must be traceable to a line in the L5 spec's
-Outputs/Postconditions section. A GWT block with no L5 line reference is a
-design gap, not a test.
+各 GWT block は、L5 spec の Outputs/Postconditions section の行へ trace できなければならない。
+L5 line reference の無い GWT block は test ではなく design gap である。
 
-## Spec-freeze checklist (before pair-freeze)
+## Spec-freeze checklist（pair-freeze 前）
 
-- [ ] L5 spec exists at `docs/design/L5-<module>.md` with all five sections.
-- [ ] L6 unit-test design exists at `docs/test-design/L6-<module>.md` with at
-  least one test case per L5 output/error condition.
-- [ ] L8 integration-test design exists (if this PLAN touches inter-module
-  boundaries) with GWT blocks referencing L5 postconditions.
+- [ ] `docs/design/L5-<module>.md` に L5 spec が存在し、5 section すべてを持つ。
+- [ ] `docs/test-design/L6-<module>.md` に L6 unit-test design が存在し、
+      L5 output/error condition ごとに少なくとも 1 つの test case がある。
+- [ ] この PLAN が inter-module boundaries に触れる場合、L8 integration-test design が存在し、
+      GWT blocks が L5 postconditions を参照している。
 - [ ] `ut-tdd plan lint` exits 0 (PLAN `requires` links resolve).
-- [ ] `ut-tdd doctor` exits 0 (no orphaned design doc, no broken pair).
-- [ ] No new terms used in the spec without a glossary entry.
+- [ ] `ut-tdd doctor` が exit 0（orphaned design doc と broken pair が無い）。
+- [ ] spec で使った new terms に glossary entry が無い状態がない。
 
-## Discovery / Scrum lightweight path
+## Discovery / Scrum lightweight path（軽量経路）
 
-For Discovery (S2 PoC) or Scrum spikes, a minimal spec is still required:
+Discovery（S2 PoC）または Scrum spikes でも minimal spec は必要。
 
-- A single **Objective** sentence.
-- A **Spike question** — the binary decision the PoC must answer.
-- A **Done condition** — the observable evidence that the question is answered.
+- 1 文の **Objective**。
+- **Spike question** — PoC が答えるべき binary decision。
+- **Done condition** — question に答えたことを示す observable evidence。
 
-Write the done condition as a failing assertion in a scratch test file before
-writing any PoC code. Delete or promote the scratch test at S4 decide.
+PoC code を書く前に、done condition を scratch test file の failing assertion として書く。
+S4 decide で scratch test を削除するか、正式 artifact へ promote する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Writing a spec after the implementation to retroactively justify what was
-  built — this defeats the design signal purpose of spec-first.
-- A spec section labelled "TBD" at pair-freeze — this is an unresolved
-  dependency and must be treated as a PLAN blocker.
-- Using `ut-tdd doctor` green as evidence that the spec is complete — doctor
-  checks structural governance (link existence, schema), not spec substance.
+- implementation 後に spec を書き、作ったものを後付けで正当化する。
+  これは spec-first の design signal 目的を壊す。
+- pair-freeze 時点で spec section が "TBD" のまま。
+  これは unresolved dependency であり、PLAN blocker として扱う。
+- `ut-tdd doctor` green を spec complete の証拠として使う。
+  doctor は structural governance（link existence、schema）を確認するが、spec substance は確認しない。

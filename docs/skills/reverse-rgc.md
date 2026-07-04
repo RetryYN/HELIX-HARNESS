@@ -12,78 +12,75 @@ applies_to:
     - Recovery
 ---
 
-# reverse rgc
+# 完了 gate（RGC closure gate）
 
-RGC: Reverse Gate Criteria -- the closure gate that confirms a Reverse cycle is
-complete and its outputs satisfy the V-model obligations before the subject
-scope re-enters Forward (FR-L1-14, reverse.md §3 exit conditions, §4 Forward
-merge rules).
+RGC: Reverse Gate Criteria は、Reverse cycle の closure gate である。
+対象 scope が Forward へ戻る前に、Reverse cycle が完了し、その出力が V-model
+obligations を満たしていることを確認する
+（FR-L1-14、reverse.md §3 exit conditions、§4 Forward merge rules）を確認する。
 
-The `upgrade` reverse type does not use RGC. All other types (`code`, `design`,
-`normalization`, `fullback`) must pass RGC before the Reverse PLAN can be
-closed.
+`upgrade` reverse type は RGC を使わない。それ以外の type
+（`code`、`design`、`normalization`、`fullback`）は、Reverse PLAN を close する前に
+RGC を pass しなければならない。
 
-## When to load this skill
+## この skill を読む条件
 
-- R4 is complete and the `forward_routing` value is confirmed.
-- The Reverse PLAN is about to transition to `status: done`.
-- A handover is being written at the end of a Reverse cycle.
+- R4 が完了し、`forward_routing` value が confirmed。
+- Reverse PLAN を `status: done` へ遷移させようとしている。
+- Reverse cycle の終端で handover を書いている。
 
-## RGC checklist (all items required)
+## RGC checklist（全項目必須）
 
-### R-phase artifact completeness
+### R-phase artifact 完全性
 
-- [ ] `R0-evidence-map.yaml` exists; `has_existing_tests` is set explicitly.
-- [ ] `R1-observed-contracts.yaml` exists (code/upgrade/fullback types only;
-  skip-check: absent for design/normalization is correct).
-- [ ] `R2-as-is-design.md` exists; DAG is present and navigable.
-- [ ] `R2-as-is-test-design.md` exists IF `has_existing_tests=true`.
-- [ ] `R3-intent-hypotheses.yaml` exists; `po_reviewed: true` is set.
-- [ ] `R4-gap-register.yaml` exists; `forward_routing` and `promotion_strategy`
-  are set; all H-NN hypotheses have resolutions.
+- [ ] `R0-evidence-map.yaml` が存在し、`has_existing_tests` が明示されている。
+- [ ] `R1-observed-contracts.yaml` が存在する
+      （code/upgrade/fullback types のみ。design/normalization で無い場合は正しい）。
+- [ ] `R2-as-is-design.md` が存在し、DAG があり navigable。
+- [ ] `has_existing_tests=true` の場合、`R2-as-is-test-design.md` が存在する。
+- [ ] `R3-intent-hypotheses.yaml` が存在し、`po_reviewed: true` が設定されている。
+- [ ] `R4-gap-register.yaml` が存在し、`forward_routing` と `promotion_strategy`
+      が設定され、すべての H-NN hypotheses に resolutions がある。
 
-### V-model test-design state (reverse.md §2.1)
+### V-model test-design state の確認（reverse.md §2.1）
 
-- [ ] If `has_existing_tests=true`: `as-is-test-design` reconstruction is
-  complete and will be handed to the routing-destination pair freeze gate.
-- [ ] If `has_existing_tests=false`: `missing_pair_artifacts` in the gap
-  register names every layer with a design artifact but no test-design. These
-  layers cannot reach L7 implementation until a test-design PLAN is created and
-  the corresponding pair-freeze gate (G3/G4/G5) is passed.
+- [ ] `has_existing_tests=true` の場合、`as-is-test-design` reconstruction が完了し、
+      routing-destination pair freeze gate へ渡せる。
+- [ ] `has_existing_tests=false` の場合、gap register の `missing_pair_artifacts` が、
+      design artifact はあるが test-design が無い layer をすべて列挙している。
+      これらの layer は test-design PLAN 作成と対応する pair-freeze gate
+      （G3/G4/G5）pass まで L7 implementation へ進めない。
 
-### Forward merge readiness
+### Forward merge readiness の確認
 
-- [ ] `forward_routing` is one of: `L1`, `L3`, `L4`, `L5`, `gap-only`.
-- [ ] Routing destination PLAN exists (or `gap-only-defer` is documented in
-  debt/readiness-defer with a backlog reference).
-- [ ] Any invalidated Forward gates are named in `R4-gap-register.yaml`
-  `invalidated_gates` list.
-- [ ] No open gap is silently dropped: each unresolved item is deferred to debt
-  or a new PLAN.
+- [ ] `forward_routing` が `L1`、`L3`、`L4`、`L5`、`gap-only` のいずれか。
+- [ ] Routing destination PLAN が存在する
+      （または `gap-only-defer` が debt/readiness-defer に backlog reference 付きで記録されている）。
+- [ ] invalidated Forward gates が `R4-gap-register.yaml` の `invalidated_gates`
+      list に記録されている。
+- [ ] open gap が silent drop されていない。未解決 item は debt または新 PLAN へ defer されている。
 
-### Machine validation
+### Machine validation の確認
 
 - [ ] `ut-tdd plan lint` exits 0 on the Reverse PLAN.
-- [ ] `ut-tdd vmodel lint` exits 0 (orphan count unchanged or reduced vs. R0
-  baseline).
+- [ ] `ut-tdd vmodel lint` exits 0
+      （orphan count が R0 baseline と同じ、または減っている）。
 - [ ] `ut-tdd doctor` exits 0.
-- [ ] `ut-tdd review --uncommitted` produces no blocking findings against the
-  Reverse phase artifacts.
+- [ ] `ut-tdd review --uncommitted` が Reverse phase artifacts に対する blocking findings を出さない。
 
 ### Handover
 
-- [ ] `.ut-tdd/handover/CURRENT.json` is updated to reflect Reverse closure and
-  the routing destination PLAN as the next active task.
+- [ ] `.ut-tdd/handover/CURRENT.json` が Reverse closure と次の active task である
+      routing destination PLAN を反映している。
 
-## What RGC does NOT check
+## RGC が確認しないこと
 
-RGC does not verify that the routing destination's pair-freeze gate has been
-passed -- that is a Forward-cycle obligation. RGC only confirms that Reverse
-has provided all required inputs (R-phase artifacts, test-design state,
-gap-register) for Forward to do so.
+RGC は routing destination の pair-freeze gate が pass 済みかどうかを検証しない。
+それは Forward-cycle obligation である。RGC は、Forward がそれを実行するために必要な
+input（R-phase artifacts、test-design state、gap-register）を Reverse が提供したことだけを確認する。
 
-## After RGC passes
+## RGC pass 後
 
-Set PLAN `status: done`. The subject scope now belongs to the routing
-destination's Forward PLAN. The routing destination's Pair freeze gate
-(G1/G3/G4/G5) is the next blocking boundary before any L7 work begins.
+PLAN を `status: done` にする。対象 scope は routing destination の Forward PLAN に属する。
+L7 work を始める前の次の blocking boundary は、routing destination の Pair freeze gate
+（G1/G3/G4/G5）である。

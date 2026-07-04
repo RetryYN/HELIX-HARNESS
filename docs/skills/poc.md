@@ -12,36 +12,34 @@ applies_to:
     - Forward
 ---
 
-# poc
+# PoC 運用
 
-How to run a time-boxed Proof of Concept inside UT-TDD (FR-L1-15 Discovery
-S0-S4 hypothesis-to-decide loop, FR-L1-43 PoC success criteria and
-`decision_outcome` recording). A PoC is a machine-recorded investigation
-cycle, not informal spiking — the decision outcome must land in PLAN state
-and `.ut-tdd/` before work proceeds to Forward implementation.
+UT-TDD 内で time-boxed Proof of Concept を実行する方法を扱う
+（FR-L1-15 Discovery S0-S4 の仮説から判断までの loop、FR-L1-43 PoC success criteria、
+`decision_outcome` recording）。PoC は informal spiking ではなく、machine-recorded investigation cycle である。
+Forward implementation へ進む前に、decision outcome は PLAN state と `.ut-tdd/` に着地していなければならない。
 
-## When to load this skill
+## この skill を読む条件
 
-- A Discovery cycle has reached S2 (poc) and code or integration tests are
-  needed to answer the hypothesis.
-- A PLAN with `kind: poc` is being authored or advanced.
-- A Scrum S3 verify step requires experimental evidence before S4 decide.
-- `ut-tdd doctor` flags a `poc` PLAN with no `decision_outcome` field.
+- Discovery cycle が S2（poc）に到達し、hypothesis に答えるための code または integration test が必要。
+- `kind: poc` の PLAN を作成または進行している。
+- Scrum S3 verify step で、S4 decide 前の experimental evidence が必要。
+- `ut-tdd doctor` が `decision_outcome` field の無い `poc` PLAN を flag する。
 
-## Discovery phase mapping (S0-S4)
+## Discovery phase の mapping（S0-S4）
 
 | Phase | UT-TDD action |
 |-------|--------------|
-| S0 backlog | FR elicited; PLAN `kind: poc` authored with `hypothesis` field; `status: draft` |
-| S1 plan | Acceptance criteria written in PLAN `poc_criteria` field; time-box set; `ut-tdd plan lint` exits 0 |
-| S2 poc | Spike code or integration test authored in `tests/poc/` or a tagged branch; evidence collected |
-| S3 verify | PoC evidence reviewed against `poc_criteria`; `ut-tdd review --uncommitted` for the PLAN |
-| S4 decide | `decision_outcome` set to `adopt`, `reject`, or `defer`; PLAN advanced to `done` or `cancelled`; handover written |
+| S0 backlog | FR を elicited。`hypothesis` field 付きで PLAN `kind: poc` を作成し、`status: draft` |
+| S1 plan | PLAN `poc_criteria` field に acceptance criteria を書き、time-box を設定し、`ut-tdd plan lint` が 0 で終了 |
+| S2 poc | `tests/poc/` または tagged branch に spike code / integration test を作成し、evidence を収集 |
+| S3 verify | `poc_criteria` に対して PoC evidence を review し、PLAN に対して `ut-tdd review --uncommitted` を実行 |
+| S4 decide | `decision_outcome` を `adopt` / `reject` / `defer` に設定し、PLAN を `done` または `cancelled` へ進め、handover を書く |
 
-The PLAN `status` field tracks phase: `draft` (S0-S1) -> `active` (S2) ->
-`trace-freeze` (S3) -> `done`/`cancelled` (S4).
+PLAN `status` field は phase を追跡する:
+`draft`（S0-S1） -> `active`（S2） -> `trace-freeze`（S3） -> `done` / `cancelled`（S4）。
 
-## PLAN frontmatter for a PoC
+## PoC の PLAN frontmatter
 
 ```yaml
 kind: poc
@@ -58,51 +56,50 @@ generates:
 review_evidence: []
 ```
 
-`ut-tdd plan lint` will reject a `poc` PLAN that is in `done` status with
-an empty `decision_outcome`.
+`done` status なのに `decision_outcome` が空の `poc` PLAN は、`ut-tdd plan lint` が reject する。
 
-## §工程表 for a Discovery PoC
+## Discovery PoC の §工程表
 
 ```
 ## §工程表
-1. [直列] Author PLAN frontmatter + hypothesis (S0-S1)
-2. [直列] ut-tdd plan lint — schema and poc_criteria present
-3. [並列] Implement spike in tests/poc/ or scoped branch (S2)
-4. [並列] Collect evidence: timing, logs, error rates
-5. [直列] ut-tdd review --uncommitted — findings against poc_criteria (S3)
-6. [直列] Set decision_outcome; update PLAN status; ut-tdd doctor (S4)
-7. [直列] ut-tdd handover — record outcome for next session/agent
+1. [直列] PLAN frontmatter + hypothesis を作成する (S0-S1)
+2. [直列] ut-tdd plan lint — schema と poc_criteria が存在する
+3. [並列] tests/poc/ または scoped branch で spike を実装する (S2)
+4. [並列] evidence を収集する: timing、logs、error rates
+5. [直列] ut-tdd review --uncommitted — poc_criteria に対する findings (S3)
+6. [直列] decision_outcome を設定し、PLAN status を更新し、ut-tdd doctor を実行する (S4)
+7. [直列] ut-tdd handover — 次 session / agent のために outcome を記録する
 ```
 
-## Decision outcomes
+## Decision outcomes（判断 outcome）
 
-- **adopt**: hypothesis confirmed; create a Forward `add-impl` PLAN to
-  productionise; link the PoC PLAN in the new PLAN's `dependencies`.
-- **reject**: hypothesis falsified; PLAN `status: cancelled`; document why in
-  `review_evidence` so the same spike is not repeated.
-- **defer**: inconclusive; record blocker in `review_evidence`; set a TTL in
-  the handover; return to S1 when the blocker is resolved.
+- **adopt**: hypothesis confirmed。productionise 用に Forward `add-impl` PLAN を作成し、
+  new PLAN の `dependencies` から PoC PLAN を link する。
+- **reject**: hypothesis falsified。PLAN は `status: cancelled`。同じ spike を繰り返さないよう、
+  理由を `review_evidence` に記録する。
+- **defer**: inconclusive。blocker を `review_evidence` に記録し、handover に TTL を設定する。
+  blocker 解消後に S1 へ戻る。
 
-Spike code in `tests/poc/` is not merged to `src/` until an `adopt` decision
-produces a proper `add-impl` PLAN with a Reverse back-fill pairing.
+`adopt` decision により Reverse back-fill pairing 付きの正式な `add-impl` PLAN が作られるまで、
+`tests/poc/` の spike code を `src/` へ merge しない。
 
-## Validation commands
+## Validation commands（検証 command）
 
 ```
-ut-tdd plan lint            # poc_criteria and decision_outcome checks
-ut-tdd doctor               # flags poc PLANs in done with empty outcome
+ut-tdd plan lint            # poc_criteria と decision_outcome を検査する
+ut-tdd doctor               # done なのに outcome が空の poc PLAN を flag する
 ut-tdd review --uncommitted # S3 gate evidence
-ut-tdd handover             # S4 baton to next session
-ut-tdd status               # surface stalled Discovery PLANs
+ut-tdd handover             # 次 session への S4 baton
+ut-tdd status               # stalled Discovery PLANs を surface する
 ```
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Promoting spike code directly into `src/` without an `adopt` decision and
-  a follow-on `add-impl` PLAN — bypasses V-model descent and Reverse back-fill.
-- Leaving `decision_outcome` empty after `status: done` — false-green that
-  `ut-tdd doctor` will surface.
-- Writing PoC results only in chat or commit messages — evidence must be in
-  `review_evidence` or `.ut-tdd/audit/` to survive session boundaries.
-- Time-boxing the spike but not the decision phase — a PoC without an S4
-  decide date accumulates as indefinite `active` state.
+- `adopt` decision と follow-on `add-impl` PLAN なしに spike code を直接 `src/` へ昇格する。
+  これは V-model descent と Reverse back-fill を bypass する。
+- `status: done` 後も `decision_outcome` を空のままにする。
+  `ut-tdd doctor` が surface する false-green になる。
+- PoC results を chat や commit message だけに書く。
+  session boundary を越えて残すには、evidence を `review_evidence` または `.ut-tdd/audit/` に置く必要がある。
+- spike だけを time-box し、decision phase を time-box しない。
+  S4 decide date の無い PoC は indefinite `active` state として蓄積する。

@@ -16,79 +16,71 @@ applies_to:
     - Retrofit
 ---
 
-# estimation
+# estimation（見積もり）
 
-Complexity and effort scoring for UT-TDD PLANs before schedule commitment
-(FR-L1-39 task complexity / effort). There is no `ut-tdd task classify` or
-`ut-tdd task estimate` CLI yet; scoring is done by the author at PLAN
-authoring time and recorded in the PLAN body.
+schedule commitment 前に UT-TDD PLAN の complexity / effort を score する手順
+（FR-L1-39 task complexity / effort）。現時点では `ut-tdd task classify` や
+`ut-tdd task estimate` CLI はまだ無く、scoring は PLAN author が PLAN 作成時に行い、
+PLAN body に記録する。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring a PLAN that will be delegated to an agent and must fit a
-  session boundary.
-- A Discovery S1 plan step needs relative sizing before S2 PoC begins.
-- A sprint has stalled and the root cause is under-estimated scope.
-- Multiple PLANs are competing for the same session slot and must be
-  prioritised.
+- agent へ delegated され、session boundary に収める必要がある PLAN を作成する。
+- Discovery S1 plan step で、S2 PoC 開始前に relative sizing が必要。
+- sprint が stalled しており、root cause が under-estimated scope である。
+- 複数 PLAN が同じ session slot を競合し、prioritise が必要。
 
-## Scoring dimensions
+## Scoring dimensions（採点軸）
 
-Score each PLAN on three axes before writing the §工程表:
+§工程表を書く前に、各 PLAN を 3 軸で score する:
 
-| Axis | 1 (small) | 2 (medium) | 3 (large) |
+| 軸 | 1 (small) | 2 (medium) | 3 (large) |
 |---|---|---|---|
-| **Size** | single doc or single src file | 2-5 files, one layer | cross-layer, >5 files |
-| **Dependency depth** | no unresolved dependencies | 1-2 resolved deps | chain of 3+ or unresolved dep |
-| **Uncertainty** | well-understood pattern | some unknowns, research needed | novel, requires PoC first |
+| **Size** | single doc または single src file | 2-5 files、one layer | cross-layer、5 files 超 |
+| **Dependency depth** | unresolved dependency なし | 1-2 resolved deps | 3+ chain または unresolved dep |
+| **Uncertainty** | well-understood pattern | unknown があり research needed | novel、先に PoC が必要 |
 
-Record the three scores and their sum in the PLAN body (e.g., `[2+1+2=5]`).
-Total 3-4: fits one session. Total 5-6: split or timebox. Total 7-9: must
-decompose into child PLANs before scheduling.
+3 つの score と合計を PLAN body に記録する（例: `[2+1+2=5]`）。
+Total 3-4 は one session に収まる。Total 5-6 は split または timebox。
+Total 7-9 は scheduling 前に child PLANs へ decompose する必要がある。
 
-## Drive-model adjustments
+## Drive-model adjustments（drive model 別補正）
 
-- **Forward / Add-feature:** Reverse back-fill adds +1 to Size if the
-  generated design doc is new; note it explicitly.
-- **Reverse / Retrofit:** Uncertainty is rarely 1 — existing code without
-  design coverage is typically 2 or 3.
-- **Refactor:** Dependency depth rises when the refactored module is
-  imported by many callers; count unique import sites.
-- **Discovery (Scrum):** Score the S2 PoC step alone; S3 verify and
-  S4 decide are not sized until S2 completes.
-- **Recovery / Incident:** Time-box to a single session regardless of
-  score; record scope-reduction decisions in `.ut-tdd/audit/`.
+- **Forward / Add-feature:** generated design doc が新規の場合、Reverse back-fill により Size に +1 する。
+  明示的に note する。
+- **Reverse / Retrofit:** Uncertainty が 1 になることは稀。design coverage の無い existing code は通常 2 または 3。
+- **Refactor:** refactored module が多数の caller から import される場合、Dependency depth は上がる。
+  unique import site を数える。
+- **Discovery (Scrum):** S2 PoC step だけを score する。S3 verify と S4 decide は S2 完了まで size しない。
+- **Recovery / Incident:** score に関係なく single session に time-box する。
+  scope-reduction decision は `.ut-tdd/audit/` に記録する。
 
-## Session-boundary rules
+## Session boundary の rule
 
-An agent session that crosses a natural gate (pair-freeze, trace-freeze,
-accept) without a handover record is an untracked session split. Before
-scheduling a PLAN that scores 5+, annotate the §工程表 with which step
-ends the first session and write the expected handover artifact path
-(`.ut-tdd/handover/CURRENT.json`).
+natural gate（pair-freeze、trace-freeze、accept）を越える agent session に handover record が無い場合、
+それは untracked session split である。score 5+ の PLAN を scheduling する前に、
+§工程表へ first session を終える step を注記し、expected handover artifact path
+（`.ut-tdd/handover/CURRENT.json`）を書く。
 
-## Delegation sizing
+## Delegation sizing（委譲 sizing）
 
-When delegating to a sub-agent:
+sub-agent へ delegate する場合:
 
-- Pass the PLAN path, not a free-form task description.
-- Confirm `ut-tdd plan lint` exits 0 on the PLAN before delegation.
-- A PLAN sized 7+ must be split into child PLANs first; delegating a
-  7+ PLAN invites runaway scope expansion.
+- free-form task description ではなく PLAN path を渡す。
+- delegation 前に対象 PLAN で `ut-tdd plan lint` が 0 で終了することを確認する。
+- size 7+ の PLAN は先に child PLANs へ split する。7+ PLAN の delegation は runaway scope expansion を招く。
 
-## Validation after sizing
+## Validation after sizing（sizing 後の検証）
 
 ```
-ut-tdd plan lint            # rejects schema violations, catches missing deps
-ut-tdd status               # shows which PLANs are active vs stalled
-ut-tdd doctor               # governance gate — unresolved deps surface here
+ut-tdd plan lint            # schema violation を reject し、missing deps を捕捉する
+ut-tdd status               # active / stalled PLAN を表示する
+ut-tdd doctor               # governance gate。unresolved deps はここで surface する
 ```
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Assigning Uncertainty=1 to a Reverse or Retrofit PLAN without reading
-  the existing source first.
-- Skipping sizing entirely for "small fixes" — unscored PLANs accumulate
-  into stalled sessions.
-- Using the sum score alone to skip decomposition when one axis scores 3;
-  a single axis at 3 warrants decomposition review regardless of total.
+- existing source を先に読まず、Reverse または Retrofit PLAN に Uncertainty=1 を付ける。
+- "small fixes" だからと sizing を完全に skip する。unscored PLAN は stalled session へ蓄積する。
+- 1 つの axis が 3 なのに、sum score だけを見て decomposition を skip する。
+  total に関係なく、単一 axis 3 は decomposition review の根拠になる。

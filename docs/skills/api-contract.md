@@ -15,65 +15,61 @@ applies_to:
     - Retrofit
 ---
 
-# api contract
+# API contract 設計
 
-Contract definition between an API provider and its consumers: schema ownership,
-compatibility guarantees, consumer-driven contract obligations, and how they are
-enforced in UT-TDD gates. Distinct from endpoint design (see `api.md`) — this
-skill governs the *binding agreement*, not the shape of individual routes.
+API provider と consumers の間の contract definition を扱う。対象は schema ownership、
+compatibility guarantees、consumer-driven contract obligations、それらを UT-TDD gates でどう強制するか。
+endpoint design（`api.md` 参照）とは別であり、この skill は individual routes の shape ではなく
+*binding agreement* を govern する。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN changes a shared API surface consumed by more than one module or agent.
-- A Reverse R1 pass must formalise an implicit contract into a machine-checkable
-  schema.
-- A Retrofit PLAN must assess backward-compatibility risk before modifying an
-  existing contract.
-- An L5 detailed-design doc defines serialisation, auth, or error-code guarantees
-  that downstream callers depend on.
+- PLAN が複数 module または agent に consume される shared API surface を変更する。
+- Reverse R1 pass で implicit contract を machine-checkable schema へ formalise する必要がある。
+- Retrofit PLAN が existing contract 変更前に backward-compatibility risk を評価する必要がある。
+- L5 detailed-design doc が downstream callers の依存する serialisation、auth、
+  error-code guarantees を定義する。
 
-## Contract definition obligations by layer
+## layer 別 contract definition obligations
 
-**L3 (functional):** identify provider and consumer roles; state the invariant
-that must hold across versions ("consumer must never receive a null `id` field").
+**L3 (functional):** provider と consumer roles を特定し、versions をまたいで維持すべき invariant を記載する
+（例: "consumer must never receive a null `id` field"）。
 
-**L4 (basic):** produce a contract document at
-`docs/design/<product>/L4-basic/<resource>-contract.md` containing:
-- Provider: module path and version.
-- Consumer list: every known caller and their assumed schema version.
-- Schema: field names, types, required/optional, enum values.
-- Error contract: status codes and when each fires.
-- Compatibility class: `stable`, `beta`, or `internal` — with different
-  change-without-notice policies per class.
+**L4 (basic):** `docs/design/<product>/L4-basic/<resource>-contract.md` に contract document を作り、
+次を含める。
+- Provider: module path と version。
+- Consumer list: 既知の caller と、それぞれが想定する schema version。
+- Schema: field names、types、required/optional、enum values を記録する。
+- Error contract: status codes と各 code が発火する条件。
+- Compatibility class: `stable`、`beta`、`internal`。
+  class ごとに change-without-notice policies が異なる。
 
-**L5 (detailed):** add serialisation format (JSON, MessagePack, etc.),
-auth-token shape, and idempotency guarantees.
+**L5 (detailed):** serialisation format（JSON、MessagePack など）、
+auth-token shape、idempotency guarantees を追加する。
 
-## Reverse R1: extracting a contract from existing code
+## Reverse R1: existing code から contract を抽出する
 
-1. Read the provider source and enumerate every exported field and status code.
-2. Grep consumer call sites for assumed field access (`ut-tdd find` or `grep`).
-3. Write the L4 contract doc from step 1; annotate each field with the consumer
-   count from step 2 to mark deletion risk.
-4. Run `ut-tdd review --uncommitted` — any field with consumers but no contract
-   entry is a blocking finding.
+1. provider source を読み、すべての exported field と status code を列挙する。
+2. consumer call sites を grep し、assumed field access を探す（`ut-tdd find` または `grep`）。
+3. step 1 から L4 contract doc を書く。各 field に step 2 の consumer count を annotate し、
+   deletion risk を示す。
+4. `ut-tdd review --uncommitted` を実行する。consumers があるのに contract entry が無い field は
+   blocking finding。
 
-## Compatibility gate rules
+## Compatibility gate rules（互換性 gate rule）
 
-- **Stable contracts** require a deprecation period (record sunset date in the L4
-  doc) before removing or renaming fields.
-- **Breaking changes** to a stable contract must bump the version in the PLAN
-  `generates` list and update every consumer reference before pair-freeze.
-- `ut-tdd doctor` must exit 0 after contract changes — governance checks that
-  artifact_registry entries for the old and new contract versions are consistent.
+- **Stable contracts** では、fields の removal/rename 前に deprecation period が必要
+  （L4 doc に sunset date を記録）。
+- stable contract への **Breaking changes** は、PLAN `generates` list 内の version を bump し、
+  pair-freeze 前にすべての consumer reference を更新しなければならない。
+- contract changes 後、`ut-tdd doctor` は 0 で終了しなければならない。
+  governance checks は old/new contract versions の artifact_registry entries が consistent であることを確認する。
 
-## Pair-freeze checklist for a contract PLAN
+## contract PLAN の pair-freeze checklist
 
-- [ ] L4 contract doc exists with provider, consumer list, schema, error codes,
-      and compatibility class.
-- [ ] All known consumers are listed; breaking changes are confirmed non-breaking
-      or consumers are updated in the same PLAN.
-- [ ] `ut-tdd plan lint` exits 0 (`generates` references the contract doc).
+- [ ] L4 contract doc が provider、consumer list、schema、error codes、compatibility class を持つ。
+- [ ] all known consumers が列挙されている。breaking changes は non-breaking と確認済み、
+      または同じ PLAN 内で consumers が更新済み。
+- [ ] `ut-tdd plan lint` が exit 0（`generates` が contract doc を参照する）。
 - [ ] `ut-tdd doctor` exits 0.
-- [ ] L6 unit-test design covers at least one invalid-input and one
-      schema-mismatch error path.
+- [ ] L6 unit-test design が少なくとも 1 つの invalid-input と 1 つの schema-mismatch error path を覆っている。

@@ -18,22 +18,21 @@ applies_to:
     - Retrofit
 ---
 
-# git
+# Git 運用
 
-Conventional Commits discipline, harness-check CI requirements, branch and PR
-rules, and the commit-msg hook for UT-TDD (FR-L1-17 version control).
+UT-TDD の Conventional Commits discipline、harness-check CI requirements、
+branch / PR rules、commit-msg hook を扱う（FR-L1-17 version control）。
 
-## When to load this skill
+## この skill を読む条件
 
-- Preparing a commit after implementing or reviewing a PLAN.
-- A `commit-msg` hook rejection needs diagnosis.
-- A push will touch `.github/workflows/` and needs a workflow-scoped token.
-- A CI `harness-check` failure must be resolved before gate clearance.
+- PLAN の実装または review 後に commit を準備する。
+- `commit-msg` hook rejection の診断が必要。
+- push が `.github/workflows/` に触れ、workflow-scoped token が必要。
+- gate clearance 前に CI `harness-check` failure を解消する必要がある。
 
-## Conventional Commits format
+## Conventional Commits の format
 
-Every commit message must follow Conventional Commits or the `commit-msg` hook
-will reject it:
+すべての commit message は Conventional Commits に従う。従わない場合、`commit-msg` hook が reject する:
 
 ```
 <type>(<scope>): <short description>
@@ -43,13 +42,12 @@ will reject it:
 [optional footer]
 ```
 
-Allowed types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`,
-`ci`, `perf`. Scope is the PLAN ID or module name (e.g., `PLAN-L7-44`,
-`projection-writer`). The short description is imperative mood, no trailing
-period.
+Allowed types は `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`,
+`ci`, `perf`。Scope は PLAN ID または module name（例: `PLAN-L7-44`,
+`projection-writer`）。short description は imperative mood、末尾 period なし。
 
-**Bash heredoc is required** for multi-line commit messages — PowerShell
-here-strings are not accepted by the hook:
+multi-line commit message では **Bash heredoc が必須**。
+PowerShell here-string は hook に受理されない:
 
 ```bash
 git commit -F - <<'EOF'
@@ -59,57 +57,55 @@ Implements FR-L1-38 cost telemetry capture.
 EOF
 ```
 
-## Staging discipline
+## Staging discipline（staging 規律）
 
-Stage explicit files only. Never use `git add -A` or `git add .` — these can
-include `.ut-tdd/` runtime state, `.env` files, or generated artefacts that must
-not enter the repository.
+stage は explicit files のみ。`git add -A` や `git add .` は使わない。
+これらは repository に入れてはいけない `.ut-tdd/` runtime state、`.env` file、
+generated artifact を含める可能性がある。
 
-Verify before staging:
+staging 前に確認する:
 
 ```
 git status
 git diff --stat
 ```
 
-Confirm the diff contains only the files for the current PLAN.
+diff が current PLAN 用の file だけを含むことを確認する。
 
-## harness-check CI gates
+## harness-check の CI gate
 
-CI runs `harness-check` on every push. All four must be green before a push:
+CI は every push で `harness-check` を実行する。push 前に次の 4 つをすべて green にする:
 
-| Check | Command | Common failure |
+| 確認項目 | Command | よくある failure |
 |---|---|---|
-| Type check | `bun run typecheck` | Missing type declarations |
-| Vitest | `bun run test` | Do NOT use bare `bun test` — sync-timeout flakiness |
-| Biome | `bun run lint` | Format violations from `biome lint` without `biome check` |
-| Doctor | `ut-tdd doctor` | Governance violations, missing PLAN dependencies |
+| Type check | `bun run typecheck` | type declaration 欠落 |
+| Vitest | `bun run test` | bare `bun test` は使わない。sync-timeout flakiness がある |
+| Biome | `bun run lint` | `biome check` なしの `biome lint` による format violation 見落とし |
+| Doctor | `ut-tdd doctor` | governance violation、PLAN dependency 欠落 |
 
-Run all four locally before pushing. `biome lint` alone does not check
-formatting — run `bun run lint` (which invokes `biome check`) to catch both.
+push 前に 4 つすべてを local で実行する。`biome lint` だけでは formatting を検査しない。
+両方を捕捉するため、`biome check` を呼ぶ `bun run lint` を実行する。
 
-## Branch strategy
+## Branch strategy（branch 戦略）
 
-- `main` is the integration branch. Direct commits to `main` are permitted for
-  solo maintainer flow.
-- Feature branches are used when work spans multiple sessions or requires a PR
-  review gate (hybrid mode judgement).
-- Branch names follow `<type>/<slug>` (e.g., `feat/plan-l7-44-projection`).
+- `main` は integration branch。solo maintainer flow では `main` への direct commit を許容する。
+- work が複数 session にまたがる、または PR review gate（hybrid mode judgement）が必要な場合は
+  feature branch を使う。
+- Branch name は `<type>/<slug>` に従う（例: `feat/plan-l7-44-projection`）。
 
-## Pushing with workflow changes
+## workflow 変更を含む push
 
-Commits touching `.github/workflows/` require a workflow-scoped PAT. The normal
-GCM OAuth token is rejected by GitHub for workflow-file pushes. Use a temporary
-credential override and remove it immediately after the push — do not persist
-workflow-scoped tokens in config files or environment variables.
+`.github/workflows/` に触れる commit には workflow-scoped PAT が必要。
+通常の GCM OAuth token は GitHub により workflow-file push で reject される。
+temporary credential override を使い、push 後すぐ削除する。
+workflow-scoped token を config file や environment variable に永続化しない。
 
-## Pre-push checklist
+## Pre-push checklist（push 前 checklist）
 
-- [ ] `bun run typecheck` exits 0.
-- [ ] `bun run lint` (Biome check + format) exits 0.
-- [ ] `bun run test` (Vitest) exits 0 with no skipped tests in PLAN scope.
-- [ ] `ut-tdd doctor` exits 0.
-- [ ] `git diff --stat HEAD` shows only PLAN-scoped files.
-- [ ] Commit message accepted by `commit-msg` hook (Conventional Commits).
-- [ ] If `.github/workflows/` touched: workflow-scoped PAT is in use and will be
-      removed after push.
+- [ ] `bun run typecheck` が 0 で終了する。
+- [ ] `bun run lint`（Biome check + format）が 0 で終了する。
+- [ ] `bun run test`（Vitest）が 0 で終了し、PLAN scope 内に skipped test が無い。
+- [ ] `ut-tdd doctor` が 0 で終了する。
+- [ ] `git diff --stat HEAD` が PLAN-scoped files だけを示す。
+- [ ] commit message が `commit-msg` hook（Conventional Commits）に受理される。
+- [ ] `.github/workflows/` に触れた場合: workflow-scoped PAT を使用中で、push 後に削除する。

@@ -14,92 +14,85 @@ applies_to:
     - Add-feature
 ---
 
-# refactoring
+# refactoring（リファクタリング）
 
-Behaviour-invariant code improvement under the Refactor drive model (FR-L1-25).
-A Refactor PLAN changes structure without changing externally observable
-behaviour. Any change that alters a public API, a `.ut-tdd/` state artefact,
-or a `harness.db` schema is not refactoring — it is an Add-feature or Retrofit
-and must be routed accordingly.
+Refactor drive model（FR-L1-25）における behaviour-invariant な code improvement。
+Refactor PLAN は externally observable behaviour を変えずに structure を変更する。
+public API、`.ut-tdd/` state artefact、`harness.db` schema を変える変更は refactoring ではない。
+Add-feature または Retrofit として route する。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN has `drive: Refactor` or `kind: refactor`.
-- A `ut-tdd review --uncommitted` finding flags dead code, an oversized
-  function, or a naming violation that should be cleaned up.
-- An Add-feature PLAN includes an internal cleanup step that must not change
-  observable behaviour.
+- PLAN が `drive: Refactor` または `kind: refactor` を持つ。
+- `ut-tdd review --uncommitted` finding が dead code、oversized function、
+  cleanup すべき naming violation を指摘している。
+- Add-feature PLAN に、observable behaviour を変えてはいけない internal cleanup step が含まれる。
 
-## Scope check before starting
+## 開始前の scope check
 
-Before writing a single line, answer these questions:
+1 行でも書く前に、次の質問へ答える。
 
-1. What is the **observable boundary** of the code being changed? (Exported
-   functions, CLI exit codes, files written to `.ut-tdd/`, DB rows.)
-2. Does the current test suite cover all observable boundary behaviours? Run
-   `bun run test` and confirm coverage. If not, write characterisation tests
-   first (see testing skill) — a refactor without a regression fence is a
-   behaviour change with no safety net.
-3. Is the PLAN's `kind` value `refactor`? If `kind=add-impl` is present, the
-   PLAN carries a Reverse pairing obligation that must be honoured.
+1. 変更対象 code の **observable boundary** は何か。
+   exported functions、CLI exit codes、`.ut-tdd/` に書く files、DB rows など。
+2. 現在の test suite はすべての observable boundary behaviours を覆っているか。
+   `bun run test` を実行して coverage を確認する。覆っていない場合は先に characterisation tests を書く
+   （testing skill 参照）。regression fence の無い refactor は safety net の無い behaviour change である。
+3. PLAN の `kind` value は `refactor` か。`kind=add-impl` がある場合、その PLAN は
+   Reverse pairing obligation を持つため尊重する。
 
-## Refactor cycle
+## Refactor cycle（refactor 手順）
 
-### Step 1 — establish a regression fence
+### Step 1 — regression fence を作る
 
-Run `bun run test` and record the baseline pass count. If any test is `.skip`
-or `.todo` in the scope of the refactor, either un-skip it or file a PLAN to
-address it. Proceed only when the fence is complete and Green.
+`bun run test` を実行し、baseline pass count を記録する。refactor scope 内に `.skip` または `.todo` の
+test がある場合は、un-skip するか、それを扱う PLAN を起票する。fence が complete かつ Green の場合だけ進む。
 
-### Step 2 — make one structural change
+### Step 2 — structural change を 1 つだけ行う
 
-Each commit should make exactly one structural change: rename a function,
-extract a helper, collapse two equivalent branches, remove dead code. Run
-the full gate sequence after each change:
+各 commit は structural change を 1 つだけ含む。function rename、helper extraction、
+equivalent branches の collapse、dead code removal など。各 change 後に full gate sequence を実行する。
 
 ```
 bun run typecheck && bun run lint && bun run test && ut-tdd doctor
 ```
 
-If any gate turns Red, revert the last change before proceeding. Do not
-accumulate multiple structural changes across a Red gate.
+いずれかの gate が Red になった場合は、進む前に最後の change を戻す。
+Red gate をまたいで複数 structural changes を蓄積しない。
 
-### Step 3 — confirm behaviour invariance
+### Step 3 — behaviour invariance を確認する
 
-- `bun run test` passes with the same number of Green tests as the baseline
-  (no tests added or removed during refactor — only during subsequent
-  Add-feature or TDD work).
+- `bun run test` が baseline と同じ Green tests 数で pass する
+  （refactor 中は tests を追加・削除しない。追加・削除は後続 Add-feature または TDD work で行う）。
 - `ut-tdd doctor` exits 0.
-- If the refactor touches a public export signature, run
-  `ut-tdd review --uncommitted` to confirm no downstream breakage.
+- refactor が public export signature に触れる場合、`ut-tdd review --uncommitted` を実行し、
+  downstream breakage が無いことを確認する。
 
-### Step 4 — update design docs
+### Step 4 — design docs を更新する
 
-If the refactor changes module structure (file rename, extraction of a new
-module), update the paired L5 design doc and L6 test design doc to reflect the
-new structure. A source file without a paired design doc after a refactor is
-a descent obligation gap.
+refactor が module structure（file rename、新 module extraction）を変える場合は、
+paired L5 design doc と L6 test design doc を新 structure に合わせて更新する。
+refactor 後に paired design doc の無い source file が残る場合、それは descent obligation gap である。
 
-## kind=refactor PLAN checklist
+## kind=refactor PLAN の checklist
 
-- [ ] Regression fence is Green before first structural commit.
-- [ ] Each commit contains exactly one structural change.
+- [ ] 最初の structural commit 前に regression fence が Green。
+- [ ] 各 commit が structural change を 1 つだけ含む。
 - [ ] `bun run typecheck && bun run lint && bun run test && ut-tdd doctor` green
-  after every commit.
-- [ ] No new exported API surface added (would require Add-feature routing).
-- [ ] No `.ut-tdd/` state schema or `harness.db` schema changed.
-- [ ] L5/L6 design docs updated to match new structure.
-- [ ] PLAN `review_evidence` records the trace-freeze SHA.
-- [ ] `ut-tdd review --uncommitted` no blocking findings.
+      after every commit.
+- [ ] new exported API surface を追加していない
+      （追加する場合は Add-feature routing が必要）。
+- [ ] `.ut-tdd/` state schema または `harness.db` schema を変更していない。
+- [ ] L5/L6 design docs が new structure に合わせて更新されている。
+- [ ] PLAN `review_evidence` が trace-freeze SHA を記録している。
+- [ ] `ut-tdd review --uncommitted` に blocking findings が無い。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Combining a refactor with a feature addition in the same commit — these are
-  separate concerns with separate review obligations; mix them and the
-  regression fence is invalidated.
-- Adding tests during the refactor to improve coverage — this is a TDD step,
-  not a refactor step; route it to a separate Add-feature or Reverse PLAN.
-- Treating a passing `ut-tdd doctor` as proof of behaviour invariance — doctor
-  checks structural governance, not observable output correctness.
-- Renaming a public CLI flag or a `.ut-tdd/` field without updating callers and
-  design docs — this is a breaking API change, not a refactor.
+- 同じ commit で refactor と feature addition を混ぜる。
+  これは separate concerns であり review obligations も別。混ぜると regression fence が invalidated になる。
+- coverage 改善のために refactor 中に tests を追加する。
+  これは refactor step ではなく TDD step。別の Add-feature または Reverse PLAN へ route する。
+- passing `ut-tdd doctor` を behaviour invariance の証明として扱う。
+  doctor は structural governance を確認するが、observable output correctness は確認しない。
+- callers と design docs を更新せずに public CLI flag または `.ut-tdd/` field を rename する。
+  これは breaking API change であり、refactor ではない。

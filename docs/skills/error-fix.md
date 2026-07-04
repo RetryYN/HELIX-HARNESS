@@ -16,95 +16,86 @@ applies_to:
     - Reverse
 ---
 
-# error fix
+# error fix（エラー修正）
 
-Applying a targeted fix to a confirmed defect under Recovery or Incident drive.
-A fix is not complete until a regression test that would have caught the
-original error is Green and committed. Fixes made without regression tests
-repeat — the harness treats a fix-without-test as an incomplete unit of work.
+Recovery または Incident drive の下で、confirmed defect に targeted fix を適用する。
+original error を捕捉できたはずの regression test が Green になり commit されるまで、fix は complete ではない。
+regression tests なしの fix は繰り返される。harness は fix-without-test を incomplete unit of work として扱う。
 
-## When to load this skill
+## この skill を読む条件
 
-- A `ut-tdd doctor` check, CI failure, or runtime error has been confirmed as
-  a defect (not a flaky environment issue).
-- A Recovery or Incident PLAN is open and the root cause has been identified.
-- A Forward or Add-feature PLAN discovers a defect in adjacent code during
-  implementation — the fix must be scoped and committed separately.
+- `ut-tdd doctor` check、CI failure、runtime error が defect と確認済み
+  （flaky environment issue ではない）。
+- Recovery または Incident PLAN が open で、root cause が特定済み。
+- Forward または Add-feature PLAN が implementation 中に adjacent code の defect を発見した。
+  fix は別 scope・別 commit にする必要がある。
 
-## Fix protocol
+## Fix protocol（修正手順）
 
-### 1. Reproduce before touching source
+### 1. source に触れる前に reproduce する
 
-Write a failing test that reproduces the error before changing any source. This
-is the Red step for a fix — it confirms the defect is real and gives the
-regression fence.
+source を変更する前に、error を reproduce する failing test を書く。
+これは fix の Red step であり、defect が real であることを確認し、regression fence を与える。
 
 ```
 bun run test tests/<affected>.test.ts
 ```
 
-The test must fail on the current HEAD with the exact error being fixed. Commit
-the failing test with a message like `test(module): add regression for <error>`.
+test は current HEAD で、修正対象と同じ exact error により fail しなければならない。
+failing test は `test(module): add regression for <error>` のような message で commit する。
 
-### 2. Scope the fix
+### 2. fix の scope を決める
 
-Read the L5 design doc (if one exists for the module) and identify whether the
-error is:
+module に L5 design doc が存在する場合は読み、error がどれかを特定する。
 
-- A **logic error** inside the function boundary — fix in source only.
-- A **contract violation** — the function is doing what the spec says but the
-  spec is wrong; update the L5 doc first, then fix source.
-- A **missing guard** — an input case the spec did not cover; add the case to
-  L5 and L6 before fixing source.
+- function boundary 内の **logic error** — source のみで fix する。
+- **contract violation** — function は spec 通りだが spec が誤っている。先に L5 doc を更新し、その後 source を fix する。
+- **missing guard** — spec が cover していない input case。source fix 前に L5 と L6 へ case を追加する。
 
-Do not fix source that contradicts its spec without updating the spec — this
-creates a descent gap that `ut-tdd doctor` may not detect.
+spec と矛盾する source を、spec 更新なしに fix しない。これは `ut-tdd doctor` が検出できない可能性のある
+descent gap を作る。
 
-### 3. Apply the minimal fix
+### 3. minimal fix を適用する
 
-Change only the lines required to make the regression test Green. Do not clean
-up adjacent code or refactor in the same commit — scope creep makes the fix
-harder to review and harder to revert if it introduces a secondary defect.
+regression test を Green にするために必要な行だけを変更する。同じ commit で adjacent code cleanup や refactor を行わない。
+scope creep は review を難しくし、secondary defect を入れた場合の revert も難しくする。
 
-Run the full gate sequence:
+full gate sequence を実行する。
 
 ```
 bun run typecheck && bun run lint && bun run test && ut-tdd doctor
 ```
 
-All gates must be Green before committing the fix.
+fix commit 前にすべての gates が Green でなければならない。
 
-### 4. Record evidence
+### 4. evidence を記録する
 
-- Commit the fix with a `fix(module): description` message referencing the
-  PLAN or audit entry.
-- Update the PLAN `review_evidence` field with the regression-test SHA and the
-  fix SHA.
-- If the fix touches a public API or `.ut-tdd/` state structure, run
-  `ut-tdd review --uncommitted` before closing the PLAN.
+- PLAN または audit entry を参照する `fix(module): description` message で fix を commit する。
+- PLAN `review_evidence` field を regression-test SHA と fix SHA で更新する。
+- fix が public API または `.ut-tdd/` state structure に触れる場合、PLAN close 前に
+  `ut-tdd review --uncommitted` を実行する。
 
-## Recovery / Incident exit conditions
+## Recovery / Incident exit conditions（終了条件）
 
-A fix PLAN under Recovery or Incident is closed only when:
+Recovery または Incident 配下の fix PLAN は、次を満たす場合だけ close する。
 
-- [ ] Regression test is Green and committed before the fix commit.
+- [ ] regression test が Green で、fix commit 前に commit 済み。
 - [ ] `bun run typecheck && bun run lint && bun run test && ut-tdd doctor`
-  all green on the fix HEAD.
-- [ ] Root cause documented in the PLAN or `.ut-tdd/audit/` entry (what
-  allowed the defect to exist, not just what the defect was).
-- [ ] Prevention measure identified: either a new `ut-tdd doctor` gate, a
-  lint rule, or a design doc update that would have caught this earlier.
-- [ ] `ut-tdd review --uncommitted` no blocking findings.
-- [ ] Handover updated or closed (`ut-tdd handover`).
+      が fix HEAD ですべて green。
+- [ ] root cause を PLAN または `.ut-tdd/audit/` entry に記録済み
+      （defect の内容だけでなく、それを許した条件を書く）。
+- [ ] prevention measure を特定済み。new `ut-tdd doctor` gate、lint rule、
+      または earlier に捕捉できた design doc update のいずれか。
+- [ ] `ut-tdd review --uncommitted` に blocking findings が無い。
+- [ ] Handover が updated または closed（`ut-tdd handover`）。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Fixing source without a reproduction test — the fix cannot be verified to
-  actually address the defect, and the same defect can silently re-enter.
-- Including a refactor in the fix commit — this makes regression bisection
-  harder and conflates two different kinds of change.
-- Closing a Recovery PLAN without documenting the prevention measure — the
-  harness requires re-occurrence prevention as an exit contract (forced-stop
-  Recovery policy).
-- Using `// @ts-ignore` to silence a type error that surfaced the defect —
-  the type error is evidence; silencing it hides future regressions.
+- reproduction test なしに source を fix する。
+  fix が defect を実際に address したか検証できず、同じ defect が silent re-enter しうる。
+- fix commit に refactor を含める。
+  regression bisection を難しくし、異なる種類の change を混ぜてしまう。
+- prevention measure を記録せずに Recovery PLAN を close する。
+  harness は re-occurrence prevention を exit contract として要求する（forced-stop Recovery policy）。
+- defect を表面化させた type error を `// @ts-ignore` で黙らせる。
+  type error は evidence であり、黙らせると future regressions が隠れる。

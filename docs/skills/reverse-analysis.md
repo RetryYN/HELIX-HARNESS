@@ -46,7 +46,7 @@ R2  As-Is Design            -- current design + DAG; test-design if tests exist
 R3  Intent Hypotheses       -- gap/routing candidates; PO verification required
 R4  Gap & Routing           -- gap-register + forward_routing + promotion_strategy
      |
-     +-- Forward merge at R4: routing value is one of L1/L3/L4/L5/gap-only
+     +-- R4 で Forward merge: routing value は L1/L3/L4/L5/gap-only のいずれか
 ```
 
 R4 後、downstream L7 work を始める前に、routing destination の Pair freeze gate
@@ -56,9 +56,9 @@ R4 後、downstream L7 work を始める前に、routing destination の Pair fr
 
 ```yaml
 kind: reverse
-drive: <be|fe|fullstack|db|agent>   # specialist for the subject work
+drive: <be|fe|fullstack|db|agent>   # 対象作業の specialist
 layer: cross
-workflow_phase: R0                  # update as phases advance
+workflow_phase: R0                  # phase の進行に合わせて更新する
 reverse_type: <code|design|upgrade|normalization|fullback>
 ```
 

@@ -15,67 +15,57 @@ applies_to:
     - Discovery
 ---
 
-# llm agent routing
+# LLM agent routing（LLM agent ルーティング）
 
-Design and implementation guidance for LLM calls, agent delegation, RAG, and
-context injection inside UT-TDD-built features. Apply when a PLAN adds or
-modifies an AI model call, an agent slot, or a context-injection path (FR-L1-09
-agent guard, FR-L1-12 injection, FR-L1-38 model evaluation).
+UT-TDD で構築する機能の中で、LLM call、agent delegation、RAG、context injection を扱うための
+設計・実装ガイド。PLAN が AI model call、agent slot、context-injection path を追加または変更する場合に適用する
+（FR-L1-09 agent guard、FR-L1-12 injection、FR-L1-38 model evaluation）を支える。
 
-## When to load this skill
+## この skill を読むタイミング
 
-- A PLAN at L4–L7 adds an LLM call, an agent delegation, or a skill/context
-  injection path.
-- The feature routes work across multiple agents or model tiers.
+- L4–L7 の PLAN が LLM call、agent delegation、skill/context injection path を追加する。
+- 機能が複数 agent または model tier にまたがって作業を route する。
 
-## Routing through the harness, not around it
+## Harness を迂回せず route する
 
-UT-TDD externalises provider calls into `ut-tdd claude --role <role>`,
-`ut-tdd codex --role <role>`, and `ut-tdd team run --definition
-.ut-tdd/teams/<team>.yaml`. Before adding a raw provider call to source:
+UT-TDD は provider call を `ut-tdd claude --role <role>`、`ut-tdd codex --role <role>`、
+`ut-tdd team run --definition .ut-tdd/teams/<team>.yaml` へ外出しする。source に raw provider call を追加する前に、
+次を確認する。
 
-1. If the call is an agent delegation declared in the PLAN `agent_slots`, route
-   it through the wrappers so session lifecycle, handover warnings, and cost
-   telemetry are captured.
-2. The `PreToolUse(Agent)` guard (`.claude/hooks/agent-guard.ts`) blocks an
-   agent call whose `subagent_type` is not allowlisted, or whose model does not
-   match the agent frontmatter family — never hard-code a mismatched model.
-3. Apply low-cost-first: use the lightest viable model for mechanical subtasks;
-   reserve the frontier model for judgement gates and design decisions (see the
-   `agent-cost-design` skill). Model choice and outcome are recorded in
-   `model_runs` (`ut-tdd telemetry`).
+1. 呼び出しが PLAN `agent_slots` で宣言された agent delegation なら、wrapper 経由で route し、session lifecycle、
+   handover warning、cost telemetry を捕捉する。
+2. `PreToolUse(Agent)` guard（`.claude/hooks/agent-guard.ts`）は、`subagent_type` が allowlist 外の agent call、
+   または model が agent frontmatter family と一致しない call を block する。不一致 model を hard-code しない。
+3. low-cost-first を適用する。機械的な subtask には成立する範囲で最軽量 model を使い、frontier model は judgement gate と
+   design decision に残す（`agent-cost-design` skill 参照）。Model choice と outcome は `model_runs`
+   （`ut-tdd telemetry`）へ記録される。
 
-## Context injection checklist (L4–L5 design gate)
+## Context injection の checklist（L4–L5 design gate）
 
-Before pair-freeze, the design doc answers:
+pair-freeze 前に、design doc で次へ回答する。
 
-- [ ] What context is injected per call (skill pack paths, `.ut-tdd/` state,
-      specific design docs)?
-- [ ] Token budget per call and the overflow strategy (truncate / chunk).
-- [ ] If retrieval is used: the retrieval unit and the relevance threshold below
-      which chunks are dropped (do not silently pass empty context).
-- [ ] No PII, credentials, or payload bodies in the injected context — all three
-      are prohibited by the harness safety boundary; redact before injection.
+- [ ] call ごとにどの context を injection するか（skill pack paths、`.ut-tdd/` state、特定の design docs）。
+- [ ] call ごとの token budget と overflow strategy（truncate / chunk）。
+- [ ] retrieval を使う場合: retrieval unit と、chunk を drop する relevance threshold（empty context を黙って渡さない）。
+- [ ] injected context に PII、credentials、payload body を含めない。この 3 つは harness safety boundary で禁止されるため、
+      injection 前に redact する。
 
-## RAG / output-contract pattern (locked at L5)
+## RAG / output-contract pattern（L5 で lock）
 
-Lock the chunking boundary, the similarity threshold, the no-match fallback
-(never silently pass empty context), and a typed output schema (not free-form
-prose) so L6 unit tests can assert against the contract.
+L6 unit test が contract に対して assert できるように、chunking boundary、similarity threshold、no-match fallback
+（empty context を黙って渡さない）、typed output schema（free-form prose ではない）を lock する。
 
-## L7 implementation gates
+## L7 implementation gates（L7 実装 gate）
 
-- `bun run typecheck` clean — no `any` on model-call paths.
-- Unit tests cover: normal response, API error / timeout, and context-overflow
-  truncation.
-- After implementation, `ut-tdd review --uncommitted`; capture the `model_runs`
-  telemetry as review evidence.
+- `bun run typecheck` が clean。model-call path に `any` を残さない。
+- Unit test は normal response、API error / timeout、context-overflow truncation を cover する。
+- 実装後に `ut-tdd review --uncommitted` を実行し、`model_runs` telemetry を review evidence として捕捉する。
 
-## Failure modes to design against
+## 設計時に対策する failure mode
 
 | Failure | Guard |
 |---|---|
-| Silent empty context to the model | Throw before the call; unit-test the path |
-| Cost spike from mis-routing | Log model + tokens to `model_runs`; cap in the slot |
-| Agent slot model mismatch | `agent-guard.ts` blocks at PreToolUse |
-| Credential in injected context | Redact before injection; assert absent in a test |
+| model へ empty context が黙って渡る | call 前に throw し、その path を unit-test する |
+| mis-routing による cost spike | model + token を `model_runs` に log し、slot で cap する |
+| Agent slot model mismatch | `agent-guard.ts` が PreToolUse で block する |
+| injected context に credential が混入 | injection 前に redact し、test で absence を assert する |

@@ -13,59 +13,53 @@ applies_to:
     - Recovery
 ---
 
-# reverse r3
+# R3 intent 仮説
 
-R3: Intent Hypotheses -- form the design-intent hypotheses and gap register
-candidates that will feed R4 routing. PO verification is mandatory before
-exiting R3 (FR-L1-14, reverse.md §2 and §5).
+R3: Intent Hypotheses は、R4 routing に渡す design-intent hypotheses と
+gap register candidates を作る phase である。R3 を exit する前に PO verification が必須
+（FR-L1-14、reverse.md §2 と §5）。
 
-All 5 reverse types pass through R3 (no skip).
+5 種類すべての reverse types が R3 を通る（skip なし）。
 
-## When to load this skill
+## この skill を読む条件
 
-- The `kind=reverse` PLAN has `workflow_phase: R3`.
+- `kind=reverse` PLAN が `workflow_phase: R3` を持つ。
 
-## Inputs
+## 入力
 
 - `R2-as-is-design.md` (and `R2-as-is-test-design.md` if tests exist).
-- `R1-observed-contracts.yaml` (code, upgrade, fullback types).
+- `R1-observed-contracts.yaml`（code、upgrade、fullback types）を読む。
 - `R0-evidence-map.yaml` drift signals.
-- Existing Forward artifacts at any layer (requirements, ADRs, design docs) for
-  the subject scope -- compare against the as-is to identify divergence.
+- 対象 scope の任意 layer にある existing Forward artifacts
+  （requirements、ADRs、design docs）。as-is と比較し divergence を特定する。
 
-## Procedure
+## 手順
 
-1. For each structural gap identified in R2, hypothesize the original intent:
-   - What requirement or design decision was this module/contract meant to
-     satisfy?
-   - Is there an existing Forward FR or ADR that covers it, partially covers it,
-     or conflicts with it?
-2. Classify each hypothesis:
-   - `confirmed`: an existing Forward artifact clearly covers it -- Reverse
-     simply needs to wire the trace.
-   - `gap`: no Forward artifact covers it -- needs a new or updated Forward
-     document at the routing destination.
-   - `conflict`: the observed behavior contradicts an existing Forward artifact
-     -- that artifact must be invalidated or amended.
-3. For each `conflict`, identify the Forward gate that would be invalidated
-   (G1/G3/G4/G5) and note it for R4 `--invalidate-forward` action.
-4. Draft the `forward_routing` candidate for each gap (L1, L3, L4, L5, or
-   gap-only). Use reverse.md §4 routing table as the decision guide.
-5. Compile the draft `intent-hypotheses` document for PO review.
+1. R2 で特定した各 structural gap について original intent を仮説化する。
+   - この module/contract は、どの requirement または design decision を満たすためのものか。
+   - 既存 Forward FR または ADR が、それを cover するか、partially cover するか、conflict するか。
+2. 各 hypothesis を分類する。
+   - `confirmed`: 既存 Forward artifact が明確に cover している。Reverse は trace を wire すればよい。
+   - `gap`: cover する Forward artifact が無い。routing destination で新規または更新 Forward document が必要。
+   - `conflict`: observed behavior が既存 Forward artifact と矛盾する。その artifact は invalidate または amend が必要。
+3. 各 `conflict` について、invalidated になる Forward gate（G1/G3/G4/G5）を特定し、
+   R4 `--invalidate-forward` action 用に記録する。
+4. 各 gap の `forward_routing` candidate（L1、L3、L4、L5、gap-only）を draft する。
+   reverse.md §4 routing table を decision guide として使う。
+5. PO review 用の draft `intent-hypotheses` document を作成する。
 
-## PO verification (mandatory)
+## PO verification（必須）
 
-R3 cannot exit without PO sign-off. The PO reviews:
-- Are the intent hypotheses plausible given the business context?
-- Do gap classifications (`confirmed`/`gap`/`conflict`) match PO's understanding?
-- Is the draft `forward_routing` selection appropriate?
+R3 は PO sign-off なしに exit できない。PO は次を review する。
+- intent hypotheses は business context から見て妥当か。
+- gap classifications（`confirmed` / `gap` / `conflict`）は PO の理解と一致するか。
+- draft `forward_routing` selection は適切か。
 
-Record PO review evidence in the PLAN `review_evidence` field and in
-`.ut-tdd/audit/` before advancing.
+次へ進む前に、PLAN `review_evidence` field と `.ut-tdd/audit/` に PO review evidence を記録する。
 
-## Output artifact: intent-hypotheses
+## 出力 artifact: intent-hypotheses
 
-Write to `.ut-tdd/reverse/<plan_id>/R3-intent-hypotheses.yaml`:
+`.ut-tdd/reverse/<plan_id>/R3-intent-hypotheses.yaml` へ書く。
 
 ```yaml
 plan_id: <PLAN-REVERSE-NN>
@@ -82,18 +76,18 @@ po_review_evidence: ""    # path to evidence or inline note
 r3_notes: ""
 ```
 
-## Gate to R4
+## R4 への gate
 
-Before advancing `workflow_phase` to `R4`, verify:
+`workflow_phase` を `R4` へ進める前に確認する。
 
-- [ ] All structural gaps from R2 have a hypothesis entry.
-- [ ] `po_reviewed: true` and `po_review_evidence` is populated.
-- [ ] Conflict entries name the specific Forward gate to invalidate.
-- [ ] Each hypothesis has a `draft_routing` value from the valid enum
-  (L1/L3/L4/L5/gap-only).
-- [ ] PLAN `review_evidence` field is updated with PO sign-off reference.
-- [ ] `ut-tdd plan lint` exits 0 with `workflow_phase: R4`.
+- [ ] R2 のすべての structural gaps に hypothesis entry がある。
+- [ ] `po_reviewed: true` で、`po_review_evidence` が入力されている。
+- [ ] conflict entries が invalidate 対象の specific Forward gate を示している。
+- [ ] 各 hypothesis が valid enum（L1/L3/L4/L5/gap-only）の
+      `draft_routing` value を持つ。
+- [ ] PLAN `review_evidence` field が PO sign-off reference で更新されている。
+- [ ] `workflow_phase: R4` の状態で `ut-tdd plan lint` が 0 で終了する。
 - [ ] `ut-tdd doctor` exits 0.
 
-Advancing R3 without PO verification is a blocking violation. The `po_reviewed`
-field is machine-checked by `ut-tdd plan lint` when the schema enforces it.
+PO verification なしで R3 を進めることは blocking violation である。
+schema が enforcement する場合、`po_reviewed` field は `ut-tdd plan lint` により機械検査される。

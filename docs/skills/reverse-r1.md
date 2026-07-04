@@ -12,43 +12,43 @@ applies_to:
     - Retrofit
 ---
 
-# reverse r1
+# R1 観測 contract
 
-R1: Observed Contracts -- extract and document observable API, DB, type, and
-compatibility contracts from the subject scope (FR-L1-14, reverse.md §2).
+R1: Observed Contracts は、対象 scope から observable な API、DB、type、
+compatibility contracts を抽出し、文書化する phase である
+（FR-L1-14、reverse.md §2）。
 
-R1 applies to reverse types `code`, `upgrade`, and `fullback`.
-It is SKIPPED for `design` and `normalization` types -- those go directly from
-R0 to R2.
+R1 は reverse types `code`、`upgrade`、`fullback` に適用する。
+`design` と `normalization` type では SKIP し、R0 から R2 へ直接進む。
 
-## When to load this skill
+## この skill を読む条件
 
-- The `kind=reverse` PLAN has `workflow_phase: R1`.
-- The `reverse_type` is `code`, `upgrade`, or `fullback`.
+- `kind=reverse` PLAN が `workflow_phase: R1` を持つ。
+- `reverse_type` が `code`、`upgrade`、`fullback` のいずれか。
 
-## Inputs
+## 入力
 
-- `R0-evidence-map.yaml` from the completed R0 phase.
-- Source files, type definitions, OpenAPI/schema files, DB migration files, and
-  any integration test fixtures that reveal contract surface.
+- 完了済み R0 phase の `R0-evidence-map.yaml`。
+- contract surface を示す source files、type definitions、OpenAPI/schema files、
+DB migration files、integration test fixtures を読む。
 
-## Procedure
+## 手順
 
-1. For each external-facing interface in scope (HTTP endpoints, exported
-   functions, DB tables, event schemas), extract the observable contract:
-   - Input types and validation rules.
-   - Output types and error codes.
-   - Side effects (DB writes, event publishes, file mutations).
-2. Identify compatibility constraints: which callers depend on the current
-   contract shape, and what would break on a change.
-3. Note any contracts that are implicit (inferred from callers only, no
-   explicit schema) -- these are high-priority gaps for R3.
-4. Cross-reference with `R0-evidence-map.yaml` drift signals: confirm whether
-   observed contracts match or conflict with any existing design docs.
+1. scope 内の external-facing interface（HTTP endpoints、exported functions、
+   DB tables、event schemas）ごとに、observable contract を抽出する。
+   - Input types と validation rules。
+   - Output types と error codes。
+- Side effects（DB writes、event publishes、file mutations）を記録する。
+2. compatibility constraints を特定する。現在の contract shape に依存する callers と、
+   変更時に壊れる箇所を明らかにする。
+3. implicit contracts（callers からだけ推定でき、explicit schema が無いもの）を記録する。
+   これは R3 の高優先 gap 候補になる。
+4. `R0-evidence-map.yaml` の drift signals と照合し、observed contracts が既存 design docs と
+   一致するか conflict するか確認する。
 
-## Output artifact: observed-contracts
+## 出力 artifact: observed-contracts
 
-Write to `.ut-tdd/reverse/<plan_id>/R1-observed-contracts.yaml`:
+`.ut-tdd/reverse/<plan_id>/R1-observed-contracts.yaml` へ書く。
 
 ```yaml
 plan_id: <PLAN-REVERSE-NN>
@@ -66,16 +66,16 @@ implicit_contract_count: 0
 r1_notes: ""
 ```
 
-## Gate to R2
+## R2 への gate
 
-Before advancing `workflow_phase` to `R2`, verify:
+`workflow_phase` を `R2` へ進める前に確認する。
 
-- [ ] Every external surface identified in R0 has a contract entry.
-- [ ] `implicit_contract_count` is accurate; implicit contracts are flagged
-  (they will become gap candidates in R3).
-- [ ] No contract extraction required reading files outside the declared scope
-  without noting the expansion in `r1_notes`.
-- [ ] `ut-tdd plan lint` exits 0 with `workflow_phase: R2`.
+- [ ] R0 で特定したすべての external surface に contract entry がある。
+- [ ] `implicit_contract_count` が正確で、implicit contracts が flagged されている
+      （R3 の gap candidates になる）。
+- [ ] contract extraction のために declared scope 外の files を読んだ場合、
+      その scope expansion を `r1_notes` に記録している。
+- [ ] `workflow_phase: R2` の状態で `ut-tdd plan lint` が 0 で終了する。
 - [ ] `ut-tdd doctor` exits 0.
 
-Do not proceed to R2 if contract extraction is incomplete for in-scope surfaces.
+in-scope surfaces の contract extraction が incomplete な場合、R2 に進まない。

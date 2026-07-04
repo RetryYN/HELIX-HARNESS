@@ -17,49 +17,45 @@ applies_to:
     - Discovery
 ---
 
-# planning and task breakdown
+# planning and task breakdown（計画と task 分解）
 
-How to decompose a feature or requirement into a PLAN hierarchy and
-schedule steps that can be delegated to agents or executed deterministically
-(FR-L1-01 PLAN management, FR-L1-13 Forward workflow).
+feature または requirement を PLAN hierarchy と schedule steps に分解する方法を扱う。
+steps は agents に delegate するか、deterministically に実行できる粒度へ分ける
+（FR-L1-01 PLAN management、FR-L1-13 Forward workflow）。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring a new PLAN file in `docs/plans/`.
-- Splitting a large requirement into child PLANs or schedule steps.
-- A `ut-tdd doctor` failure reports an orphaned PLAN or a missing
-  `generates` link.
-- A §工程表 schedule section needs parallel/serial annotation.
+- `docs/plans/` に new PLAN file を書く。
+- large requirement を child PLANs または schedule steps に分割する。
+- `ut-tdd doctor` failure が orphaned PLAN または missing `generates` link を報告する。
+- §工程表 schedule section に parallel/serial annotation が必要。
 
-## Decomposition target: unit-test-design granularity
+## Decomposition target: unit-test-design granularity（分解目標）
 
-The correct stopping point for breakdown is one design document paired
-with one test-design document — a V-model pair at L6/L7. A step that
-cannot be verified at unit-test-design granularity is too large; split it.
+breakdown の正しい停止点は、1 つの design document と 1 つの test-design document の pair、
+つまり L6/L7 の V-model pair である。unit-test-design granularity で verify できない step は大きすぎるため split する。
 
-Child PLANs are created when a step produces its own design doc (its own
-`generates` artifact). Steps that do not produce a standalone doc remain
-schedule steps within the parent PLAN.
+step が own design doc（own `generates` artifact）を生成する場合、child PLAN を作る。
+standalone doc を生成しない steps は parent PLAN 内の schedule steps に留める。
 
-## PLAN frontmatter checklist
+## PLAN frontmatter の確認
 
-Before running `ut-tdd plan lint`, confirm every field:
+`ut-tdd plan lint` を実行する前に、すべての field を確認する。
 
-- [ ] `plan_id` is unique and matches the filename (`PLAN-<kind>-<NN>`).
-- [ ] `kind` is one of: `design`, `impl`, `add-design`, `add-impl`, `poc`,
-  `reverse`, `recovery`, `refactor`, `retrofit`, `research`, `troubleshoot`.
-- [ ] `layer` is the V-model layer the PLAN primarily targets.
-- [ ] `drive` declares the drive model (Forward, Add-feature, Reverse, etc.).
-- [ ] `status` is one of: `draft`, `active`, `pair-freeze`, `trace-freeze`,
-  `done`, `cancelled`.
-- [ ] `generates` lists every design/test-design doc this PLAN produces.
-- [ ] `dependencies` lists every upstream PLAN or doc this PLAN requires;
-  each referenced ID must resolve or `ut-tdd plan lint` will flag it.
-- [ ] `review_evidence` is populated before advancing to `trace-freeze`.
+- [ ] `plan_id` が unique で、filename（`PLAN-<kind>-<NN>`）と一致する。
+- [ ] `kind` が `design`、`impl`、`add-design`、`add-impl`、`poc`、
+      `reverse`、`recovery`、`refactor`、`retrofit`、`research`、`troubleshoot` のいずれか。
+- [ ] `layer` が PLAN の主 target である V-model layer を示す。
+- [ ] `drive` が drive model（Forward、Add-feature、Reverse など）を宣言する。
+- [ ] `status` が `draft`、`active`、`pair-freeze`、`trace-freeze`、`done`、`cancelled` のいずれか。
+- [ ] `generates` が、この PLAN が生成するすべての design/test-design doc を列挙している。
+- [ ] `dependencies` が、この PLAN が必要とするすべての upstream PLAN または doc を列挙している。
+      referenced ID は resolve できなければならず、できない場合 `ut-tdd plan lint` が flag する。
+- [ ] `trace-freeze` へ進む前に `review_evidence` が入力されている。
 
-## Authoring §工程表 (schedule steps)
+## §工程表（schedule steps）の書き方
 
-Schedule steps are numbered and annotated with execution mode:
+schedule steps は numbered にし、execution mode を注釈する。
 
 ```
 ## §工程表
@@ -71,33 +67,31 @@ Schedule steps are numbered and annotated with execution mode:
 6. [直列] accept: ut-tdd review --uncommitted (no blocking findings)
 ```
 
-`[並列]` steps may run concurrently across agents. `[直列]` steps must
-complete in order; each is a gate. A schedule with no serial gate steps
-around pair-freeze and trace-freeze is a decomposition error.
+`[並列]` steps は agents 間で concurrently に実行できる。`[直列]` steps は順番に complete する必要があり、
+各 step が gate である。pair-freeze と trace-freeze の周辺に serial gate steps が無い schedule は
+decomposition error。
 
-## WBS rules
+## WBS の rule
 
-- One PLAN per FR (requirement) that needs a design doc. Lumping multiple
-  FRs into one PLAN is a lint violation.
-- Add-feature kind requires a Reverse back-fill pairing declared in the
-  `dependencies` field.
-- A `poc` PLAN follows Discovery phases (S0-S4); its §工程表 maps to
-  S2(poc) and S3(verify) steps explicitly.
+- design doc を必要とする FR（requirement）ごとに 1 PLAN。
+  multiple FRs を 1 PLAN にまとめることは lint violation。
+- Add-feature kind では、`dependencies` field に Reverse back-fill pairing を宣言する必要がある。
+- `poc` PLAN は Discovery phases（S0-S4）に従う。§工程表は S2(poc) と S3(verify) steps へ明示的に map する。
 
-## Validation commands
+## Validation commands（検証 command）
 
 ```
-ut-tdd plan lint            # schema + schedule + dependency existence
-ut-tdd doctor               # all harness governance gates
-ut-tdd graph                # visualise PLAN dependency graph
-ut-tdd status               # surface active/stalled PLANs
+ut-tdd plan lint            # schema、schedule、dependency existence
+ut-tdd doctor               # harness governance gate 全体
+ut-tdd graph                # PLAN dependency graph を可視化する
+ut-tdd status               # active/stalled PLAN を表示する
 ```
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Steps labelled "implement everything" with no layer annotation — too
-  coarse; one step per V-model layer transition.
-- `generates` left empty on a `design` or `add-design` kind — the doc
-  produced by this PLAN is then invisible to `ut-tdd doctor`.
-- Marking `status: done` without a populated `review_evidence` field —
-  false-green that later doctor runs will surface.
+- layer annotation なしに "implement everything" と label された steps。
+  coarse すぎる。V-model layer transition ごとに 1 step。
+- `design` または `add-design` kind で `generates` が空。
+  その PLAN が生成した doc は `ut-tdd doctor` から見えなくなる。
+- `review_evidence` field 未入力のまま `status: done` にする。
+  後続 doctor runs が可視化する false-green。

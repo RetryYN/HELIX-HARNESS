@@ -21,86 +21,78 @@ applies_to:
     - Incident
 ---
 
-# security
+# security（セキュリティ）
 
-Security review procedure for UT-TDD: escalation boundaries, agent-guard design,
-secret hygiene, and runtime safety constraints (FR-L1-09 safety design, FR-L1-17
-escalation, FR-L1-45 guardrail). Applies at every layer where a PLAN introduces
-an agent-callable surface, modifies trust boundaries, or touches credential-
-adjacent state.
+UT-TDD の security review procedure。対象は escalation boundaries、agent-guard design、
+secret hygiene、runtime safety constraints を扱う。
+（FR-L1-09 safety design、FR-L1-17 escalation、FR-L1-45 guardrail）を支える。
+PLAN が agent-callable surface を導入する、trust boundaries を変更する、または
+credential-adjacent state に触れるすべての layer で適用する。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN modifies `.claude/settings.json` (agent allowlist or hook configuration).
-- A new `ut-tdd` command or MCP endpoint is added.
-- `ut-tdd guardrail` exits non-zero.
-- A Recovery or Incident PLAN requires proof that the exploit path is closed.
-- An Add-feature PLAN touches authentication, authorization, session state, or
-  external API assumptions.
+- PLAN が `.claude/settings.json`（agent allowlist または hook configuration）を変更する。
+- 新しい `ut-tdd` command または MCP endpoint を追加する。
+- `ut-tdd guardrail` が non-zero で終了する。
+- Recovery または Incident PLAN が exploit path close の証明を必要とする。
+- Add-feature PLAN が authentication、authorization、session state、external API assumptions に触れる。
 
-## Escalation boundaries (do not cross without explicit PO sign-off)
+## Escalation boundaries（明示 PO sign-off なしに越えない）
 
-These operations require escalation before any implementation proceeds:
+次の操作は、implementation を進める前に escalation が必要。
 
-- Modifying authentication or authorization logic.
-- Changing the agent-guard allowlist in `.claude/settings.json`.
-- Adding or removing `UT_TDD_ALLOW_RAW_AGENT=1` bypass paths.
-- Writing to production infrastructure state or external API configuration.
-- Changing how `.ut-tdd/` audit evidence is written or retained.
-- Processing or storing PII in any harness artifact.
+- authentication または authorization logic の変更。
+- `.claude/settings.json` の agent-guard allowlist 変更。
+- `UT_TDD_ALLOW_RAW_AGENT=1` bypass paths の追加または削除。
+- production infrastructure state または external API configuration への書き込み。
+- `.ut-tdd/` audit evidence の書き方または保持方法の変更。
+- 任意の harness artifact で PII を processing/storing すること。
 
-Escalation means stopping the current PLAN, documenting the boundary crossed in
-`.ut-tdd/audit/`, and waiting for explicit PO confirmation before continuing.
+Escalation とは、current PLAN を停止し、越えようとした boundary を `.ut-tdd/audit/` に記録し、
+明示 PO confirmation を待ってから再開すること。
 
-## Agent guard security requirements
+## Agent guard security requirements（agent guard security 要件）
 
-The `agent-guard.ts` hook enforces:
+`agent-guard.ts` hook は次を強制する。
 
-1. `subagent_type` must be in the allowlist (currently 14 named agents). Any
-   unknown type exits 1 — fail-close is the only safe default.
-2. Agent calls without a `model` field are rejected.
-3. The model family must match the agent frontmatter declaration.
-4. Bypass requires `UT_TDD_ALLOW_RAW_AGENT=1` AND must write evidence to
-   `.ut-tdd/audit/`.
-5. Invalid stdin JSON fails closed — silently ignoring parse errors is
-   prohibited.
+1. `subagent_type` は allowlist 内でなければならない（現在 14 named agents）。
+   unknown type は exit 1。fail-close が唯一安全な default。
+2. `model` field の無い agent calls は reject される。
+3. model family は agent frontmatter declaration と一致しなければならない。
+4. bypass には `UT_TDD_ALLOW_RAW_AGENT=1` が必要で、さらに `.ut-tdd/audit/` へ evidence を書く必要がある。
+5. invalid stdin JSON は fail closed。parse errors を silent ignore することは禁止。
 
-When reviewing a PLAN that modifies agent-guard behaviour, verify each of these
-five rules is still enforced after the change.
+agent-guard behaviour を変更する PLAN を review する場合、変更後もこの 5 rules が強制されていることを確認する。
 
-## Secret and credential hygiene
+## Secret and credential hygiene（secret/credential 衛生）
 
-Before any commit that touches `docs/`, `.ut-tdd/`, handover files, or audit
-evidence:
+`docs/`、`.ut-tdd/`、handover files、audit evidence に触れる commit の前に実行する。
 
 ```
 ut-tdd guardrail
 ```
 
-Check for:
-- No strings matching API key patterns in any text file under the repo.
-- No `UT_TDD_ALLOW_RAW_AGENT=1` left in committed scripts (should be env-only).
-- No credential or session token in `.ut-tdd/handover/CURRENT.json`.
-- No personal absolute path that encodes a username or machine name in a
-  committed config file.
+確認すること:
+- repo 配下の text file に API key patterns に一致する strings が無い。
+- committed scripts に `UT_TDD_ALLOW_RAW_AGENT=1` が残っていない（env-only であるべき）。
+- `.ut-tdd/handover/CURRENT.json` に credential または session token が無い。
+- committed config file に username や machine name を含む personal absolute path が無い。
 
-If `ut-tdd guardrail` does not cover a pattern you found, file an improvement
-entry and add a Vitest test fixture for the new pattern.
+発見した pattern を `ut-tdd guardrail` が cover していない場合、improvement entry を起票し、
+new pattern 用の Vitest test fixture を追加する。
 
-## Runtime safety constraints
+## Runtime safety constraints（runtime 安全制約）
 
-- **Native Windows first-class.** Hook execution on Windows must not assume WSL2
-  is available. Paths use `CLAUDE_PROJECT_DIR`, not personal absolute paths.
-- **PATH integrity.** If `System32` is not on the runner PATH, hook entry points
-  fail with status null — verify with `ut-tdd doctor` before treating it as a
-  code regression.
-- **Hook fail-close.** A hook that exits 0 on an error condition is a security
-  defect. Every hook failure mode must be enumerated in the L5 design doc for
-  that hook.
+- **Native Windows first-class.** Windows での hook execution は WSL2 availability を前提にしない。
+  paths は personal absolute paths ではなく `CLAUDE_PROJECT_DIR` を使う。
+- **PATH integrity.** runner PATH に `System32` が無い場合、hook entry points は status null で失敗する。
+  code regression と扱う前に `ut-tdd doctor` で確認する。
+- **Hook fail-close.** error condition で exit 0 する hook は security defect。
+  その hook のすべての failure mode は L5 design doc に列挙しなければならない。
 
-## Security review evidence
+## Security review evidence（security review 証跡）
 
-Record in the PLAN `review_evidence` field:
+PLAN `review_evidence` field に記録する。
 
 ```
 reviewer: <agent-slug or "intra_runtime_subagent">
@@ -114,11 +106,11 @@ outcome: PASS | FAIL | CONDITIONAL
 timestamp: <ISO-8601>
 ```
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Modifying `.claude/settings.json` as a "quick config change" without running
-  `ut-tdd guardrail` and recording review evidence.
-- Treating `UT_TDD_ALLOW_RAW_AGENT=1` as a normal operational flag — it is an
-  emergency bypass that must leave an audit trail every time it is used.
-- Silencing a `ut-tdd guardrail` finding with a comment instead of fixing the
-  root cause — the fix must land before accept.
+- `ut-tdd guardrail` 実行と review evidence 記録なしに、`.claude/settings.json` を
+  "quick config change" として変更する。
+- `UT_TDD_ALLOW_RAW_AGENT=1` を normal operational flag として扱う。
+  これは emergency bypass であり、使うたびに audit trail が必要。
+- root cause を直さず、comment で `ut-tdd guardrail` finding を黙らせる。
+  accept 前に fix を land させなければならない。

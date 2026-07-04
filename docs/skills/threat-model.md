@@ -16,70 +16,66 @@ applies_to:
     - Recovery
 ---
 
-# threat model
+# threat model（脅威モデル）
 
-Threat modeling procedure for UT-TDD agent-facing surfaces, applied at L2
-(screen/IA design) and L3 (functional design) before implementation begins.
-Supports FR-L1-09 (safety design) by surfacing adversarial agent inputs,
-privilege escalation paths, and trust boundary violations before they reach L7
-code.
+UT-TDD の agent-facing surface に対する threat modeling procedure。
+implementation 開始前に L2（screen / IA design）と L3（functional design）で適用する。
+adversarial agent input、privilege escalation path、trust boundary violation を L7 code 到達前に
+surface することで、FR-L1-09（safety design）を支える。
 
-## When to load this skill
+## この skill を読む条件
 
-- A PLAN introduces or modifies an agent-callable surface (tool, hook, subagent
-  slot, MCP endpoint).
-- An L2 or L3 design doc adds a new trust boundary (runtime -> OS, agent ->
-  harness DB, external API -> harness).
-- `ut-tdd guardrail` reports an unresolved finding.
-- A Recovery PLAN must demonstrate the threat that caused the incident is
-  modelled and mitigated.
+- PLAN が agent-callable surface（tool、hook、subagent slot、MCP endpoint）を導入または変更する。
+- L2 または L3 design doc が新しい trust boundary（runtime -> OS、agent -> harness DB、
+  external API -> harness）を追加する。
+- `ut-tdd guardrail` が unresolved finding を報告する。
+- Recovery PLAN で、incident 原因の threat が modelled / mitigated 済みであることを示す必要がある。
 
-## Threat surface inventory for UT-TDD
+## UT-TDD の threat surface inventory
 
-The harness has four primary threat surfaces:
+harness には 4 つの primary threat surface がある:
 
-1. **Agent tool invocations.** Any `ut-tdd` command callable from within a
-   subagent. Threat: prompt injection causing a destructive command (e.g. a
-   crafted task string that resolves to `db rebuild --force`).
-2. **Hook entry points.** `PreToolUse`, `PostToolUse`, `SessionStart`, `Stop`,
-   `SubagentStop` hooks read stdin JSON. Threat: malformed or adversarial JSON
-   causing fail-open behaviour instead of fail-close.
-3. **Agent allowlist.** The subagent type allowlist in `.claude/settings.json`.
-   Threat: an unlisted agent type bypassing the guard without `UT_TDD_ALLOW_RAW_AGENT=1`.
-4. **State files.** `.ut-tdd/` YAML/JSON files read by doctor and projection
-   writers. Threat: crafted state that makes a broken system report green.
+1. **Agent tool invocations.** subagent 内から呼べる任意の `ut-tdd` command。
+   Threat: prompt injection による destructive command 実行
+   （例: `db rebuild --force` に解決される crafted task string）。
+2. **Hook entry points.** `PreToolUse`、`PostToolUse`、`SessionStart`、`Stop`、
+   `SubagentStop` hook は stdin JSON を読む。
+   Threat: malformed / adversarial JSON により fail-close ではなく fail-open behaviour になる。
+3. **Agent allowlist.** `.claude/settings.json` の subagent type allowlist。
+   Threat: unlisted agent type が `UT_TDD_ALLOW_RAW_AGENT=1` なしに guard を bypass する。
+4. **State files.** doctor と projection writer が読む `.ut-tdd/` YAML/JSON file。
+   Threat: broken system を green と報告させる crafted state。
 
-## STRIDE-lite per surface
+## STRIDE-lite per surface（surface 別確認）
 
-For each surface in a PLAN, document at L3:
+PLAN 内の各 surface について、L3 で次を記録する:
 
-| Threat category | Question to answer |
+| Threat category | 回答すべき question |
 |-----------------|-------------------|
-| Spoofing | Can an agent claim a role or identity it does not have? |
-| Tampering | Can an agent write to `.ut-tdd/` state in a way that evades doctor? |
-| Repudiation | Is every significant agent action recorded in `.ut-tdd/audit/`? |
-| Information disclosure | Does a hook or tool leak credentials, PII, or session tokens? |
-| Denial of service | Can a malformed input loop or starve the harness? |
-| Elevation of privilege | Can a subagent call a command that requires guard bypass without evidence? |
+| Spoofing | agent が持っていない role / identity を claim できるか。 |
+| Tampering | agent が doctor を evades する形で `.ut-tdd/` state へ write できるか。 |
+| Repudiation | 重要な agent action はすべて `.ut-tdd/audit/` に記録されるか。 |
+| Information disclosure | hook または tool が credential、PII、session token を leak するか。 |
+| Denial of service | malformed input が harness を loop / starvation させられるか。 |
+| Elevation of privilege | subagent が evidence なしに guard bypass 必須 command を呼べるか。 |
 
-Unanswered questions are open threats. Document them in the L3 design doc and
-link to a mitigation PLAN before pair-freeze.
+未回答の question は open threat である。L3 design doc に記録し、pair-freeze 前に mitigation PLAN へ link する。
 
-## Mitigation requirements
+## Mitigation requirements（緩和要件）
 
-- **Agent guard fail-close.** The `agent-guard.ts` hook must exit non-zero for
-  any unknown `subagent_type` or missing model field. Fail-open is not acceptable.
-- **No credentials in state.** `.ut-tdd/`, `docs/`, audit evidence, and handover
-  files must not contain API keys, passwords, or session tokens. Run
-  `ut-tdd guardrail` before accepting any PLAN that touches these paths.
-- **Audit trail.** Every guard bypass (via `UT_TDD_ALLOW_RAW_AGENT=1`) must
-  write an evidence record to `.ut-tdd/audit/`. No bypass without a trace.
-- **Input validation.** Hook stdin JSON must be validated against a schema; an
-  invalid payload must fail closed, not be silently ignored.
+- **Agent guard fail-close.** `agent-guard.ts` hook は unknown `subagent_type` または
+  missing model field に対して non-zero で終了しなければならない。fail-open は許容しない。
+- **No credentials in state.** `.ut-tdd/`、`docs/`、audit evidence、handover file に
+  API key、password、session token を含めない。これらの path に触る PLAN を accept する前に
+  `ut-tdd guardrail` を実行する。
+- **Audit trail.** すべての guard bypass（`UT_TDD_ALLOW_RAW_AGENT=1` 経由）は
+  `.ut-tdd/audit/` に evidence record を書く。trace の無い bypass は禁止。
+- **Input validation.** Hook stdin JSON は schema で validate する。invalid payload は silent ignore ではなく
+  fail closed する。
 
-## Threat model record
+## Threat model record（記録形式）
 
-Write a threat model summary at `docs/design/L3/<plan-id>-threat-model.md`:
+`docs/design/L3/<plan-id>-threat-model.md` に threat model summary を書く:
 
 ```
 ## Trust boundary: <name>
@@ -91,16 +87,13 @@ Write a threat model summary at `docs/design/L3/<plan-id>-threat-model.md`:
 - Date: <ISO-8601>
 ```
 
-Link this doc from the PLAN `review_evidence` field before pair-freeze.
+pair-freeze 前に、この doc を PLAN の `review_evidence` field から link する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Skipping threat modelling for "internal-only" surfaces — the agent guard
-  catches external bypass attempts; internal surfaces are equally exploitable
-  via prompt injection.
-- Writing threat model output directly into handover files — use
-  `docs/design/L3/` so the artifact is versioned and `ut-tdd doctor` can find
-  it.
-- Treating `ut-tdd guardrail` green as a complete threat model — guardrail
-  checks secrets and known patterns; novel attack surfaces must be enumerated
-  manually.
+- "internal-only" surface の threat modelling を skip する。
+  agent guard は external bypass attempt を捕捉するが、internal surface も prompt injection で同様に exploit され得る。
+- threat model output を handover file へ直接書く。
+  artifact を versioned にし、`ut-tdd doctor` が見つけられるよう `docs/design/L3/` を使う。
+- `ut-tdd guardrail` green を complete threat model と扱う。
+  guardrail は secret と known pattern を検査する。novel attack surface は手動で列挙しなければならない。

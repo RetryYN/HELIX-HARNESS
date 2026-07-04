@@ -18,78 +18,71 @@ applies_to:
     - Discovery
 ---
 
-# gate planning
+# gate planning（gate 計画）
 
-How to author and enforce Definition-of-Done (DoD) gates in UT-TDD (FR-L1-05
-deterministic static gate, FR-L1-13 Forward workflow). A gate is a
-machine-checked boundary, not a skippable checklist — unenforced gates
-accumulate false-green state and hide V-model descent gaps.
+UT-TDD で Definition-of-Done (DoD) gate を作成し、強制する方法を扱う
+（FR-L1-05 deterministic static gate、FR-L1-13 Forward workflow）を扱う。
+gate は skippable checklist ではなく machine-checked boundary である。
+強制されない gate は false-green state を蓄積し、V-model descent gap を隠す。
 
-## When to load this skill
+## この skill を読む条件
 
-- Designing the acceptance conditions for a PLAN or a layer transition.
-- A `ut-tdd doctor` failure exposes a condition that is not machine-checked.
-- A Scrum S3 verify step needs explicit DoD before S4 decide.
-- A pair-freeze / trace-freeze / accept gate is being crossed.
+- PLAN または layer transition の acceptance condition を設計する。
+- `ut-tdd doctor` failure が、machine-checked されていない condition を露出する。
+- Scrum S3 verify step で、S4 decide 前の明示 DoD が必要。
+- pair-freeze / trace-freeze / accept gate を越えようとしている。
 
-## UT-TDD Definition-of-Done
+## UT-TDD の Definition-of-Done（DoD）
 
-A unit of work is complete only when ALL hold:
+unit of work は、次のすべてを満たす場合だけ complete である:
 
-1. `bun run typecheck`, `bun run lint` (Biome check), and `bun run test`
-   (Vitest) are green.
-2. `ut-tdd doctor` exits 0 (no governance violation).
-3. `ut-tdd plan lint` exits 0 (PLAN schema valid, dependencies exist,
-   `§工程表` schedule section checked).
-4. `ut-tdd review --uncommitted` produces no blocking findings for the layer.
-5. The layer's design doc passes the freeze readability check (Objective,
-   Scope, no mojibake).
-6. New terms are added to the L0 glossary.
-7. Handover evidence is written to `.ut-tdd/handover/` when the task crosses a
-   session boundary.
+1. `bun run typecheck`、`bun run lint`（Biome check）、`bun run test`（Vitest）が green。
+2. `ut-tdd doctor` が 0 で終了する（governance violation なし）。
+3. `ut-tdd plan lint` が 0 で終了する（PLAN schema valid、dependencies exist、
+   `§工程表` schedule section checked）。
+4. `ut-tdd review --uncommitted` が layer に対する blocking findings を出さない。
+5. layer の design doc が freeze readability check を pass する（Objective、Scope、mojibake なし）。
+6. new terms が L0 glossary に追加されている。
+7. task が session boundary を越える場合、handover evidence が `.ut-tdd/handover/` に書かれている。
 
-"Code written" and "looks right" are not DoD. Only machine evidence and recorded
-review findings clear a gate.
+"Code written" や "looks right" は DoD ではない。gate を clear するのは machine evidence と
+recorded review findings だけである。
 
-## Gate design rules
+## Gate design rules（gate 設計 rule）
 
-- **Falsifiable condition.** "Passes review" is not falsifiable; "`ut-tdd
-  doctor` exits 0 and `bun run test` passes with no skipped tests" is.
-- **Name the checking command.** Every condition maps to a `ut-tdd`/CI command
-  or an explicit human review action.
-- **Record the result, not the intent.** Evidence goes into `.ut-tdd/audit/` or
-  the PLAN `review_evidence` field; a gate with no recorded evidence is not
-  cleared.
-- **Split correctness from readability.** Schema-valid (`ut-tdd plan lint`) and
-  readable (manual / `ut-tdd review --uncommitted`) are separate checks.
+- **Falsifiable condition.** "Passes review" は falsifiable ではない。
+  "`ut-tdd doctor` exits 0 and `bun run test` passes with no skipped tests" は falsifiable である。
+- **Name the checking command.** すべての condition を `ut-tdd` / CI command、
+  または明示的な human review action へ map する。
+- **Record the result, not the intent.** evidence は `.ut-tdd/audit/` または PLAN `review_evidence`
+  field に記録する。recorded evidence の無い gate は cleared ではない。
+- **Split correctness from readability.** schema-valid（`ut-tdd plan lint`）と readable
+  （manual / `ut-tdd review --uncommitted`）は別 check である。
 
-## Layer gate checklists
+## Layer gate の checklist
 
-**pair-freeze (design → implement):** PLAN `status` ready; design doc exists at
-the right `docs/design/` path and passes readability; `ut-tdd plan lint` and
-`ut-tdd doctor` exit 0; no unresolved `requires` dependency.
+**pair-freeze (design → implement):** PLAN `status` が ready。design doc が正しい
+`docs/design/` path に存在し、readability を pass する。`ut-tdd plan lint` と
+`ut-tdd doctor` が 0 で終了する。unresolved `requires` dependency が無い。
 
-**trace-freeze (implement → review):** PLAN-scoped source committed; Vitest green
-with no skipped tests in scope; Biome check + typecheck exit 0; `ut-tdd doctor`
-exit 0; `review_evidence` trace links populated.
+**trace-freeze (implement → review):** PLAN-scoped source が committed。scope 内 skipped test なしで
+Vitest が green。Biome check + typecheck が 0 で終了する。`ut-tdd doctor` が 0 で終了する。
+`review_evidence` trace links が populated。
 
-**accept (review → done):** `ut-tdd review --uncommitted` no blocking findings;
-trace-freeze conditions still green on HEAD; new ADR set to `Accepted`; handover
-updated or closed.
+**accept (review → done):** `ut-tdd review --uncommitted` に blocking findings が無い。
+trace-freeze conditions が HEAD で引き続き green。new ADR が `Accepted`。handover が updated または closed。
 
-## Mode-aware review tier
+## Mode-aware review tier（mode 別 review tier）
 
-`ut-tdd gate <id>` reads the execution mode from `ut-tdd status`. Judgement gates
-require cross-agent review evidence in hybrid mode, or `intra_runtime_subagent`
-evidence in single-runtime mode — never self-review alone.
+`ut-tdd gate <id>` は `ut-tdd status` から execution mode を読む。
+Judgement gates は hybrid mode では cross-agent review evidence を、single-runtime mode では
+`intra_runtime_subagent` evidence を必要とする。self-review だけでは不可。
 
-## Anti-patterns that defeat enforcement
+## Anti-patterns（enforcement を壊すパターン）
 
-- `bun test` instead of `bun run test` (Vitest) — native runner has sync-timeout
-  flakiness; CI uses Vitest.
-- `biome lint` without `biome check` — format violations accumulate and break the
-  next push.
-- Treating `ut-tdd doctor` green as "design is correct" — doctor checks
-  structural governance, not design substance. Read the docs.
-- Silencing with `// biome-ignore`, `// @ts-ignore`, or `.skip` without a
-  PLAN-linked rationale.
+- `bun run test`（Vitest）の代わりに `bun test` を使う。native runner には sync-timeout flakiness があり、
+  CI は Vitest を使う。
+- `biome check` なしに `biome lint` だけを使う。format violation が蓄積し、次の push を壊す。
+- `ut-tdd doctor` green を "design is correct" と扱う。doctor が検査するのは structural governance であり、
+  design substance ではない。docs を読む。
+- PLAN-linked rationale なしに `// biome-ignore`、`// @ts-ignore`、`.skip` で黙らせる。
