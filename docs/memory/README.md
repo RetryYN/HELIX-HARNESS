@@ -1,4 +1,4 @@
-# Project Memory
+# Project Memory（永続メモ）
 
 UT-TDD / Codex / Claude Code が参照する、永続化してよい判断・制約・運用メモを置く。
 

@@ -1,12 +1,12 @@
 ---
-name: Add-feature
-about: 機能追加 (Add-feature bottom-up: L6 機能設計 → L7 実装 → Reverse back-fill)
+name: 機能追加
+about: 機能追加 (add-feature bottom-up: L6 機能設計 → L7 実装 → Reverse back-fill)
 labels: add-feature
 ---
 
 ## 追加する機能 (一言)
 
-## drive (be / fe / fullstack / db / agent)
+## drive 種別 (be / fe / fullstack / db / agent)
 
 ## 受け入れ条件 (AC 候補)
 

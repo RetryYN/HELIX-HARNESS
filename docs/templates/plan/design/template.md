@@ -46,7 +46,7 @@ related_docs:
 
 ## §3 設計計画
 
-### Step 1: Entry
+### Step 1: Entry（入口確認）
 
 - 関連 requirement / 既存設計 / 制約条件の整理。
 

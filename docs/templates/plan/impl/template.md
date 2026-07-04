@@ -47,7 +47,7 @@ related_docs:
 
 ## §3 実装計画 (Sprint 標準 8 ステップ)
 
-### Step 1: Entry
+### Step 1: Entry（入口確認）
 
 - 直前 PLAN / 依存条件の完了確認、ロール整合の再確認、scope 明示。
 

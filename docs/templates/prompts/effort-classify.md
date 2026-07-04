@@ -1,9 +1,9 @@
-# UT-TDD Task Classification And Estimation Prompt
+# タスク分類・見積もりプロンプト
 
-Use this prompt only when the rule-based classifier needs an LLM fallback. The
-normal execution path is the TypeScript classifier under `src/task/`.
+このプロンプトは、rule-based classifier が LLM fallback を必要とする場合だけ使う。
+通常の実行経路は `src/task/` 配下の TypeScript classifier である。
 
-## Input
+## 入力
 
 ```json
 {
@@ -19,10 +19,9 @@ normal execution path is the TypeScript classifier under `src/task/`.
 }
 ```
 
-## Classification Rules
+## 分類ルール
 
-Return one `kind`, one `drive`, one `size`, one `complexity`, and one
-`capability_class`.
+`kind`、`drive`、`size`、`complexity`、`capability_class` をそれぞれ 1 つ返す。
 
 - `kind`: `impl`, `design`, `poc`, `reverse`, `add-design`, `add-impl`,
   `refactor`, `retrofit`, `recovery`, `troubleshoot`, or `research`.
@@ -31,13 +30,12 @@ Return one `kind`, one `drive`, one `size`, one `complexity`, and one
 - `complexity`: `low`, `medium`, `high`, or `xhigh`.
 - `capability_class`: `frontier-reviewer`, `worker`, or `fast-checker`.
 
-Escalate to `frontier-reviewer` when the task has production impact, security
-impact, external API assumptions, high uncertainty, large size, or cross-module
-design risk.
+task が production impact、security impact、external API assumption、高い不確実性、大きい size、
+または cross-module design risk を持つ場合は `frontier-reviewer` へ escalate する。
 
-## Estimation Rules
+## 見積もりルール
 
-Use a simple PERT estimate:
+simple PERT estimate を使う。
 
 ```text
 most_likely = low:2h, medium:6h, high:12h, xhigh:24h
@@ -47,12 +45,12 @@ expected = (optimistic + 4 * most_likely + pessimistic) / 6
 buffered = expected * risk_factor
 ```
 
-Use `risk_factor` from `1.0` to `2.0` based on uncertainty, migration work,
-cross-platform work, security, external dependencies, and unclear requirements.
+不確実性、migration work、cross-platform work、security、external dependency、
+不明瞭な requirements に応じて `risk_factor` は `1.0` から `2.0` の範囲で使う。
 
-## Output
+## 出力
 
-Return JSON only:
+JSON だけを返す。
 
 ```json
 {
@@ -84,5 +82,5 @@ Return JSON only:
 }
 ```
 
-Do not call raw provider CLIs or SDKs from this prompt. UT-TDD wrappers own
-runtime dispatch, audit evidence, and handover state.
+この prompt から raw provider CLI や SDK を呼ばない。現行 wrapper（`ut-tdd`）が runtime dispatch、
+audit evidence、handover state を管理する。
