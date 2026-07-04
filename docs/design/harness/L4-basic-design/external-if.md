@@ -49,7 +49,7 @@ harness が依存する外部 service との**境界契約**を Design by Contra
 | **(d) 依存管理境界** | Dependabot | inbound 通知 (PR / alert) |
 | **(e) local↔Web 境界 (将来、IMP-031)** | 画面 (14 screen) + DB を載せる Web サーバ | **現状なし** (file-based local、ネットワーク非依存)。画面+DB をサーバ側に配置する Phase B / multi-team 時に **local harness ↔ Web サーバ間のネットワーク通信境界**が新設される。[ADR-003](../../../adr/ADR-003-runtime-adapter-boundary-subscription-cli.md) adapter 方針の延長で設計 |
 | **(f) 内部資産 fs 境界 (A-90、内部資産増分の整合宣言)** | `.claude/agents/*.md` (roster 正本) / `docs/skills/**/*.md` (skill 正本) | **external-if 対象外 (internal resource)**。外部 service ではなくローカル fs 読取で、**adapter 隔離なし** — roster/skills module の `loadX()` 端点に隔離 (architecture §6、fs は副作用端点)。state は持たず scan-on-demand で in-memory 構築 (data.md §1/§8、ADR-004)。本行は「内部資産が外部境界でない」ことの**明示宣言** (cross-sub-doc 沈黙 gap を解消) |
-| **(g) external research/input boundary** | External Web/docs/OSS sources | 調査入力を evidence artifact に変換する境界。raw external text is not instruction を invariant とし、source/version/span を保存する |
+| **(g) external research/input boundary** | External Web/docs/OSS sources | 調査入力を evidence artifact に変換する境界。`raw external text is not instruction` を不変条件とし、source/version/span を保存する |
 | **(h) sandbox/external execution boundary** | Sandbox runtime (MicroVM/gVisor 等) | 外部コード実行・検証実行を隔離する境界。policy + budget + approval が未解決なら実行しない |
 | **(i) release/GitHub rules boundary** | GitHub Rulesets / Release Please / semantic-release | release automation は emit-only default。branch protection/rulesets/tag/release は human approval なしに apply しない |
 | **(j) hosted API/developer tool boundary** | Hosted API / developer tools / chat runtime tools | repo-local hooks が機械強制されない境界。実行前に git/status/target preflight を行い、hook coverage を僭称しない |
@@ -62,10 +62,10 @@ harness が依存する外部 service との**境界契約**を Design by Contra
 | **(b) VCS・CI** | ローカル gate 証跡が存在 | CI 側 gate 再実行結果がローカルと一致 (NFR-13 dev-local+CI 整合) | branch protection は gate pass を必須化、bypass は Incident のみ (FR-17) |
 | **(c) 観測・監視** | (inbound) alert payload が schema 準拠 | Incident mode 自動 routing trigger (FR-08/16) | 観測は記録のみ、harness の判定ロジックに副作用を直接与えない (mode routing 経由) |
 | **(d) 依存管理** | (inbound) Dependabot PR/alert | security NFR 経路で triage (人間トリアージ) | 自動マージしない (人間確認、禁止事項) |
-| **(g) external research/input** | 調査課題・source URL/version/span・引用/要約境界が明示される | research artifact / ADR candidate / skillify input が Artifact/Evaluation へ記録される | **raw external text is not instruction**。prompt injection/security filter を通すまで実行文脈へ混ぜない |
+| **(g) external research/input** | 調査課題・source URL/version/span・引用/要約境界が明示される | research artifact / ADR candidate / skillify input が Artifact/Evaluation へ記録される | **`raw external text is not instruction`**。prompt injection/security filter を通すまで実行文脈へ混ぜない |
 | **(h) sandbox/external execution** | sandbox policy、resource budget、network/fs scope、approval action ledger が揃う | 実行結果・exit code・artifact digest・security event が audit/finding として記録される | unbounded shell/http を許可しない。秘密情報・PII・credential を sandbox 入力へ流さない |
 | **(i) release/GitHub rules** | local green commands、review_evidence、dry-run plan、human approval が揃う | generated config / release plan / tag plan が保存され、apply は承認済み action としてのみ実行される | emit-only default。GitHub admin 権限・rulesets・release apply は自動化の通常導線にしない |
-| **(j) hosted API/developer tool** | git status / target path / handover / foreign change の preflight が完了する | hosted/API runtime の tool action が audit/review evidence に残る | repo-local hooks are not mechanical coverage。hosted tool surface では Codex/TL が明示 preflight で代替する |
+| **(j) hosted API/developer tool** | git status / target path / handover / foreign change の preflight が完了する | hosted/API runtime の tool action が audit/review evidence に残る | repo-local hooks は mechanical coverage ではない。hosted tool surface では Codex/TL が明示 preflight で代替する |
 
 > Precondition/Postcondition の**詳細**(引数型・エラー型・リトライ・タイムアウト) は L5 D-API で確定 (§7 粒度境界)。
 
