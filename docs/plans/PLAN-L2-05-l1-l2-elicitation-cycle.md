@@ -32,9 +32,9 @@ dependencies:
     - src/lint/screen-impl-pair-freeze.ts
 ---
 
-# PLAN-L2-05 (design): L1⟷L2 elicitation cycle
+# PLAN-L2-05 (design): L1⟷L2 要求洗い出しサイクル
 
-## Objective
+## 目的
 
 PO 理想「**画面を作って要求を洗い出す**、で〈切ったら〉**要件定義（L3）へ進む**」を Forward 前段の
 first-class な工程として設計する。これは新 mode ではなく **Forward front-end（L0→L1→L2→[収束]→L3）の
