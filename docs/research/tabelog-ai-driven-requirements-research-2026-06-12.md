@@ -9,9 +9,9 @@ source_url: https://tech-blog.tabelog.com/entry/ai-driven-requirements-definitio
 source_checked: 2026-06-12
 ---
 
-# 食べログ AI 駆動要件定義プロセス — Research Memo
+# 食べログ AI 駆動要件定義プロセス — 調査メモ
 
-## Scope
+## 調査範囲
 
 本メモは食べログテックブログ記事「AI 駆動要件定義プロセス」(2025 年公開) の調査記録である。
 **設計成果物 (①) ではなく参照資料**であり、`docs/design/` でなく `docs/research/` に置く (research.md §6 注記に準拠)。
@@ -22,7 +22,7 @@ source_checked: 2026-06-12
 
 ---
 
-## Source Check
+## 出典確認
 
 確認日: 2026-06-12
 
@@ -36,7 +36,7 @@ source_checked: 2026-06-12
 
 ---
 
-## 記事サマリ (1st pass)
+## 記事サマリ (一次確認)
 
 ### 全体像: 直列→並列への転換
 

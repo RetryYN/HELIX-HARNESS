@@ -25,7 +25,7 @@ maxTurns: 20
 | A03 | Injection | SQL/NoSQL/OS/LDAP インジェクションスキャン |
 | A04 | Insecure Design | 脅威モデリング（STRIDE）レビュー |
 | A05 | Security Misconfiguration | デフォルト設定・不要ヘッダ・ディレクトリリスティング |
-| A06 | Vulnerable Components | npm audit/pip audit/Snyk |
+| A06 | 脆弱なコンポーネント | npm audit/pip audit/Snyk |
 | A07 | Authentication Failures | ブルートフォース対策、セッション管理 |
 | A08 | Software Integrity Failures | CI/CD パイプライン検証、依存性チェック |
 | A09 | Logging Failures | セキュリティイベントログ、PII マスク |
@@ -49,10 +49,10 @@ maxTurns: 20
 - git 履歴に秘密情報が混入していないか（gitleaks/trufflehog）
 
 ## CSP/CORS 設定
-- Content-Security-Policy: default-src 'self'
+- Content-Security-Policy: default-src 'self' を基準にする
 - CORS: 許可オリジン明示（* 禁止）
 - X-Frame-Options: DENY
-- X-Content-Type-Options: nosniff
+- X-Content-Type-Options: nosniff を設定する
 
 ## 依存脆弱性スキャン
 ```bash

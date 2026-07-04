@@ -1,45 +1,41 @@
 ---
-description: Pre-ship fan-out — parallel code-reviewer / security-audit / qa-test, then synthesize a go/no-go with a rollback plan
-argument-hint: "[optional scope note]"
+description: 出荷前 fan-out — code-reviewer / security-audit / qa-test を並列実行し、rollback plan 付きで go/no-go を統合判断する
+argument-hint: "[任意の scope note]"
 ---
 
-`/ship` is a fan-out orchestrator for UT-TDD. It runs three allowlisted
-specialist subagents in parallel against the current change, then merges their
-reports into a single go/no-go decision with a mandatory rollback plan. Use it
-before a trace-freeze→accept transition or an L12 deploy.
+`/ship` は UT-TDD の fan-out orchestrator である。現在の change に対して allowlist 済みの
+specialist subagent 3 体を並列実行し、それぞれの report を rollback plan 必須の単一 go/no-go
+decision に統合する。trace-freeze→accept transition または L12 deploy の前に使う。
 
-First establish the change set and gate state:
-- `ut-tdd review --uncommitted` — the deterministic review packet for the worktree.
-- `ut-tdd status` — execution mode (judgement gates need cross-agent or
-  intra_runtime_subagent review evidence).
-- `ut-tdd doctor` — structural governance must be green before a GO.
+最初に change set と gate state を確定する。
+- `ut-tdd review --uncommitted` — worktree 用の deterministic review packet。
+- `ut-tdd status` — execution mode を確認する。judgement gate には cross-agent または
+  intra_runtime_subagent review evidence が必要である。
+- `ut-tdd doctor` — GO 前に structural governance が green でなければならない。
 
-## Phase A — parallel fan-out
+## Phase A — 並列 fan-out
 
-Issue all three Agent calls in a single turn so they run in parallel (sequential
-calls defeat the purpose). Each `subagent_type` must be allowlisted by the
-`PreToolUse(Agent)` guard, and each call must pass an explicit `model` matching
-the agent frontmatter family:
+3 つの Agent call は、並列実行されるように 1 turn でまとめて発行する。逐次 call にすると目的を失う。
+各 `subagent_type` は `PreToolUse(Agent)` guard の allowlist に含まれ、各 call は agent frontmatter
+family と一致する明示 `model` を渡さなければならない。
 
-1. **code-reviewer** — five-axis review (correctness, readability, architecture,
-   security, performance) on the staged/uncommitted change. Reference the
-   `code-review-and-quality` skill.
-2. **security-audit** — vulnerability + threat pass (input validation, secrets,
-   auth/authz, dependency risk). Reference the `security-and-hardening` and
-   `threat-model` skills.
-3. **qa-test** — test-coverage analysis: happy path, edge cases, error paths,
-   concurrency. Reference the `test-driven-development` skill.
+1. **code-reviewer** — staged/uncommitted change に対して five-axis review
+   (correctness, readability, architecture, security, performance) を行う。
+   `code-review-and-quality` skill を参照する。
+2. **security-audit** — 脆弱性と threat の確認（input validation、secrets、auth/authz、dependency risk）
+   を行う。`security-and-hardening` と `threat-model` skill を参照する。
+3. **qa-test** — happy path、edge case、error path、concurrency の test-coverage analysis を行う。
+   `test-driven-development` skill を参照する。
 
-Subagents cannot spawn subagents and return only their report to this session.
+Subagent は subagent を spawn せず、この session へ report だけを返す。
 
-## Phase B — merge in main context
+## Phase B — main context で統合
 
-The main agent (not a subagent) synthesizes: aggregate Critical/Important
-findings from code-reviewer and any failing typecheck/lint/test; promote any
-Critical/High security-audit finding to a blocker; cross-check coverage gaps
-from qa-test; verify infrastructure, migrations, and docs directly.
+main agent（subagent ではない）が統合する。code-reviewer の Critical/Important finding と
+typecheck/lint/test failure を集約し、security-audit の Critical/High finding は blocker に昇格する。
+qa-test 由来の coverage gap を突合し、infrastructure、migration、docs は main agent が直接確認する。
 
-## Phase C — decision
+## Phase C — 判断
 
 ```markdown
 ## Ship Decision: GO | NO-GO
@@ -50,17 +46,14 @@ from qa-test; verify infrastructure, migrations, and docs directly.
 ### Specialist reports (full)
 ```
 
-Reference the `ci-deploy-and-rollback` skill for the rollback section.
+rollback section では `ci-deploy-and-rollback` skill を参照する。
 
-## Rules
+## ルール
 
-1. The three Phase A personas run in parallel, never sequentially.
-2. Personas do not call each other; the main agent merges in Phase B.
-3. The rollback plan is mandatory before any GO.
-4. Any Critical finding defaults the verdict to NO-GO unless the user explicitly
-   accepts the risk.
-5. Skip the fan-out only if the change touches ≤2 files, the diff is <50 lines,
-   and it does not touch auth, payments, data access, or config/env. Otherwise
-   default to fan-out.
-6. Record the decision and specialist evidence in `.ut-tdd/audit/` before the
-   accept gate.
+1. 3 つの Phase A persona は並列実行し、逐次実行しない。
+2. Persona 同士は呼び合わない。main agent が Phase B で統合する。
+3. GO の前に rollback plan は必須である。
+4. Critical finding がある場合、user が明示的に risk を受容しない限り verdict は NO-GO とする。
+5. fan-out を skip できるのは、change が 2 files 以下、diff が 50 lines 未満、かつ auth / payments /
+   data access / config/env に触れない場合だけである。それ以外は fan-out を既定とする。
+6. accept gate 前に decision と specialist evidence を `.ut-tdd/audit/` へ記録する。

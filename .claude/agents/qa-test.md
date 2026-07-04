@@ -53,8 +53,8 @@ maxTurns: 25
 - 目標: p95 < 200ms, p99 < 500ms
 
 ## セキュリティテスト
-- OWASP ZAP / Burp Suite（DAST）
-- npm audit / pip audit（SCA）
+- OWASP ZAP / Burp Suite による DAST
+- npm audit / pip audit による SCA
 - 秘密情報スキャン（trufflehog/gitleaks）
 
 ## Mutation テスト
