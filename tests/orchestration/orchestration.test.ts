@@ -189,6 +189,8 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
       verdict: "fail",
       stopReason: "count",
       blockedReason: null,
+      costUsd: runningState.costUsd,
+      recordedAt: "2026-06-28T00:30:00.000Z",
     });
 
     const normalDeps = makeTickDeps({
@@ -212,6 +214,8 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
       verdict: "fail",
       stopReason: null,
       blockedReason: null,
+      costUsd: runningState.costUsd,
+      recordedAt: "2026-06-28T00:30:00.000Z",
     });
 
     const unavailableDeps = makeTickDeps({
@@ -233,6 +237,8 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
       verdict: "error",
       stopReason: null,
       blockedReason: "cross_runtime_unavailable",
+      costUsd: runningState.costUsd,
+      recordedAt: "2026-06-28T00:30:00.000Z",
     });
   });
 
@@ -317,6 +323,8 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
       verdict: "fail",
       stopReason: "effort_budget",
       blockedReason: "loop_effort_budget_overrun",
+      costUsd: overBefore.costUsd,
+      recordedAt: "2026-06-28T00:30:00.000Z",
     });
 
     const overAfter = {
@@ -356,6 +364,8 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
       verdict: "error",
       stopReason: "effort_budget",
       blockedReason: "loop_effort_budget_overrun_blocks_worker_pass",
+      costUsd: overAfter.costUsd,
+      recordedAt: "2026-06-28T00:30:00.000Z",
     });
   });
 

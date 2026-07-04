@@ -1901,6 +1901,10 @@ interface LoopIterationJsonlRecord {
   verdict?: unknown;
   stopReason?: unknown;
   blockedReason?: unknown;
+  costUsd?: unknown;
+  cost_usd?: unknown;
+  recordedAt?: unknown;
+  recorded_at?: unknown;
 }
 
 function loopIterationFiles(repoRoot: string): string[] {
@@ -1942,6 +1946,8 @@ function projectLoopIterations(repoRoot: string, db: HarnessDb): void {
         return;
       }
       const id = stableId("loop-iteration", `${planId}:${iteration}`);
+      const costUsd = asFiniteNumber(record.costUsd ?? record.cost_usd);
+      const recordedAt = asString(record.recordedAt ?? record.recorded_at) ?? "";
       recordProjectionEvent(db, {
         table: "loop_iterations",
         id,
@@ -1954,9 +1960,9 @@ function projectLoopIterations(repoRoot: string, db: HarnessDb): void {
           verdict: asString(record.verdict) ?? "",
           stop_reason: asString(record.stopReason) ?? null,
           blocked_reason: asString(record.blockedReason) ?? null,
-          cost_usd: null,
+          cost_usd: costUsd,
           evidence_path: relPath,
-          recorded_at: "",
+          recorded_at: recordedAt,
         },
       });
     });

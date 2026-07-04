@@ -23,6 +23,8 @@ export interface LoopIterationRecord {
   verdict: Verdict;
   stopReason: LoopRuntimeStopReason | null;
   blockedReason: string | null;
+  costUsd?: number;
+  recordedAt?: string;
 }
 
 const TICK_STOP_PROBE: StopProbe = {
@@ -60,6 +62,8 @@ export async function tick(s: LoopState, rules: StopRule[], deps: TickDeps): Pro
       verdict: s.lastVerdict === "pass" ? "error" : s.lastVerdict,
       stopReason: "effort_budget",
       blockedReason: beforeBudget.blockedReason,
+      costUsd: s.costUsd,
+      recordedAt: deps.now(),
     });
     return {
       ...s,
@@ -79,6 +83,8 @@ export async function tick(s: LoopState, rules: StopRule[], deps: TickDeps): Pro
       verdict: s.lastVerdict,
       stopReason: decision.reason,
       blockedReason: null,
+      costUsd: s.costUsd,
+      recordedAt: deps.now(),
     });
     return { ...s, status: "stopped" };
   }
@@ -93,6 +99,8 @@ export async function tick(s: LoopState, rules: StopRule[], deps: TickDeps): Pro
       verdict: "error",
       stopReason: null,
       blockedReason: "cross_runtime_unavailable",
+      costUsd: s.costUsd,
+      recordedAt: deps.now(),
     });
     return {
       ...s,
@@ -128,6 +136,8 @@ export async function tick(s: LoopState, rules: StopRule[], deps: TickDeps): Pro
     verdict: finalVerdict,
     stopReason: afterBudget.allowContinue ? null : "effort_budget",
     blockedReason: afterBudget.blockedReason ?? sel.blockedReason,
+    costUsd: candidateState.costUsd,
+    recordedAt: candidateState.updatedAt,
   });
 
   return {

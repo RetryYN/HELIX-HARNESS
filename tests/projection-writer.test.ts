@@ -2508,6 +2508,8 @@ describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
             verdict: "pass",
             stopReason: null,
             blockedReason: null,
+            costUsd: 0.25,
+            recordedAt: "2026-07-05T01:02:03.000Z",
           }),
           JSON.stringify({
             planId: "PLAN-L7-999",
@@ -2551,7 +2553,7 @@ describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
 
         const rows = db
           .prepare(
-            "SELECT plan_id, iteration, worker_provider, verifier_provider, verdict, blocked_reason, evidence_path FROM loop_iterations ORDER BY iteration",
+            "SELECT plan_id, iteration, worker_provider, verifier_provider, verdict, blocked_reason, cost_usd, evidence_path, recorded_at FROM loop_iterations ORDER BY iteration",
           )
           .all() as Array<Record<string, unknown>>;
         expect(rows[0]).toMatchObject({
@@ -2561,13 +2563,17 @@ describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
           verifier_provider: "claude",
           verdict: "pass",
           blocked_reason: null,
+          cost_usd: 0.25,
           evidence_path: ".ut-tdd/state/loop/PLAN-L7-999.iterations.jsonl",
+          recorded_at: "2026-07-05T01:02:03.000Z",
         });
         expect(rows[1]).toMatchObject({
           iteration: 2,
           worker_provider: "codex",
           verifier_provider: "codex",
           blocked_reason: "intra_runtime_fallback",
+          cost_usd: null,
+          recorded_at: "",
         });
 
         const finding = db

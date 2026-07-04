@@ -154,6 +154,8 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
         verdict: "fail",
         stopReason: null,
         blockedReason: null,
+        costUsd: 0,
+        recordedAt: "2026-06-28T00:30:00.000Z",
       },
     ]);
   });
