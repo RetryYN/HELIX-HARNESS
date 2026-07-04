@@ -7,62 +7,62 @@ related_audit: .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
 related_requirements: docs/governance/ut-tdd-agent-harness-requirements_v1.2.md#689-cross-artifact-relation-graph--visualization--tool-adapters-a-124-2026-06-09
 ---
 
-# Cross-Artifact Graph / Diagram Tooling Research Memo
+# Cross-Artifact Graph / Diagram Tooling 調査メモ
 
-## Scope
+## 対象範囲
 
-This memo records the Web research basis for A-124. It is a research artifact, not an implementation source of truth. The authoritative scope remains requirements §6.8.9, ADR-002 A-124, physical-data §9.5, and the L6/L7 relation-graph PLANs.
+このメモは A-124 の Web 調査根拠を記録する調査成果物であり、実装の source of truth ではない。正本の範囲は requirements §6.8.9、ADR-002 A-124、physical-data §9.5、および L6/L7 relation-graph PLAN に残す。
 
-Research question:
+調査観点:
 
-- Which installable developer tools can help build or validate dependency graphs, dead-code/dead-node signals, and diagram exports?
-- Which tools should be modeled as optional adapters rather than core sources of truth?
-- What outputs should be normalized into `harness.db` projection rows?
+- 依存 graph、dead-code / dead-node signal、diagram export の構築または検証に使える installable developer tool は何か。
+- どの tool を core source of truth ではなく optional adapter として扱うべきか。
+- どの出力を `harness.db` projection rows へ正規化すべきか。
 
-## Source Check
+## Source 確認
 
-Checked on 2026-06-09.
+2026-06-09 に確認した。
 
-| Source | URL | Relevant finding | UT-TDD decision |
+| Source | URL | 関連する確認結果 | UT-TDD 判断 |
 |---|---|---|---|
-| dependency-cruiser | https://github.com/sverweij/dependency-cruiser | Official project describes validation and visualization of JS/TS dependencies with custom rules, build reports, and graph outputs including DOT examples piped to Graphviz. | Preferred optional adapter for import/dependency rules, circular dependencies, forbidden dependencies, missing package dependencies, orphan detection, and DOT graph evidence. |
-| Knip docs | https://knip.dev/ | Knip finds unused dependencies, exports, and files in JavaScript/TypeScript projects and ships many framework/tool plugins. | Optional adapter for dead-node and unused-edge signals. Use as evidence/projection input, not as the core graph source. |
-| Madge | https://github.com/pahen/madge | Madge generates visual module dependency graphs, finds circular dependencies, and can use Graphviz for visual graph output. | Optional lightweight adapter for circular dependency and graph visualization. Secondary to dependency-cruiser where rule policy is required. |
-| Graphviz output formats | https://graphviz.org/docs/outputs/ | Graphviz supports output formats including DOT language, JSON, PDF, PNG, and SVG; `-T` selects the target format. | Optional renderer for large graph snapshots and CI artifacts. Gate on normalized `diagram_artifacts`, not renderer output alone. |
-| GitHub Mermaid diagrams | https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams | GitHub renders Mermaid diagrams in Issues, Discussions, pull requests, wikis, and Markdown files using fenced `mermaid` blocks. | Preferred documentation diagram format for review/handover because it is readable in GitHub Markdown. |
-| Mermaid project | https://github.com/mermaid-js/mermaid | Mermaid is a Markdown-inspired diagramming/charting tool for generating diagrams from text definitions. | Use Mermaid as the default graph export for small/medium relation and workflow views. |
-| D2 documentation | https://d2lang.com/ and https://www.d2lang.com/tour/exports/ | D2 is a declarative text-to-diagram language; CLI exports include SVG, PNG, PDF, PPTX, GIF, ASCII, and stdout. | Optional renderer for cleaner architecture/review diagrams. Requires adapter readiness before use. |
+| dependency-cruiser | https://github.com/sverweij/dependency-cruiser | 公式 project は、custom rules、build reports、Graphviz へ渡せる DOT examples を含む graph outputs によって JS/TS dependencies を検証・可視化できると説明している。 | import/dependency rules、circular dependencies、forbidden dependencies、missing package dependencies、orphan detection、DOT graph evidence の preferred optional adapter とする。 |
+| Knip docs | https://knip.dev/ | Knip は JavaScript/TypeScript project の unused dependencies、exports、files を検出し、多数の framework/tool plugin を提供する。 | dead-node と unused-edge signal の optional adapter とする。core graph source ではなく evidence/projection input として使う。 |
+| Madge | https://github.com/pahen/madge | Madge は visual module dependency graph を生成し、circular dependencies を検出でき、Graphviz による visual graph output も利用できる。 | circular dependency と graph visualization の lightweight optional adapter とする。rule policy が必要な箇所では dependency-cruiser を優先する。 |
+| Graphviz output formats | https://graphviz.org/docs/outputs/ | Graphviz は DOT language、JSON、PDF、PNG、SVG などの output format を持ち、`-T` で target format を選ぶ。 | 大きな graph snapshot と CI artifact 用の optional renderer とする。gate は renderer output 単独ではなく、正規化済み `diagram_artifacts` を見る。 |
+| GitHub Mermaid diagrams | https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams | GitHub は Issues、Discussions、pull requests、wikis、Markdown files で fenced `mermaid` blocks を diagram として render する。 | GitHub Markdown で読めるため、review/handover 向け documentation diagram format として優先する。 |
+| Mermaid project | https://github.com/mermaid-js/mermaid | Mermaid は text definitions から diagram を生成する Markdown-inspired diagramming/charting tool である。 | small/medium relation view と workflow view の default graph export として使う。 |
+| D2 documentation | https://d2lang.com/ and https://www.d2lang.com/tour/exports/ | D2 は declarative text-to-diagram language で、CLI exports は SVG、PNG、PDF、PPTX、GIF、ASCII、stdout を含む。 | architecture/review diagram を整える optional renderer とする。利用には adapter readiness が必要。 |
 
-## Selection Matrix
+## 選定マトリクス
 
-| Adapter | Trigger / use | Value | Default state | Hard requirements |
+| Adapter | Trigger / 用途 | 価値 | default state | 必須条件 |
 |---|---|---|---|---|
-| `dependency-cruiser` | source import graph, dependency rules, forbidden import policy | Rule-bearing dependency validation plus DOT/graph evidence. | Optional, disabled until package declared. | Normalize rule violations to `findings`; store command/version/scope in `tool_runs`. |
-| `knip` | unused dependency/export/file audit | Dead-node and unused-edge signals for relation graph cleanup. | Optional, disabled until package declared. | Treat false positives as findings needing review; no auto-delete by default. |
-| `madge` | circular dependency quick check, graph image helper | Lightweight circular dependency and visual graph evidence. | Optional, disabled until package declared. | Do not make Madge the policy source where dependency-cruiser rules exist. |
-| `graphviz-dot` | DOT to SVG/PDF/PNG rendering | Large graph rendering and CI artifact output. | Optional renderer. | Renderer availability is environment state; missing renderer returns finding. |
-| `mermaid` | Markdown-native relation/workflow diagrams | Review/handover diagrams that render in GitHub Markdown. | Preferred default export for docs. | Deterministic node IDs/order; raw evidence payload excluded from diagram text. |
-| `d2` | architecture/review diagram export | Higher-quality diagram rendering for design review. | Optional renderer. | Adapter readiness required; no implicit installation. |
+| `dependency-cruiser` | source import graph、dependency rules、forbidden import policy | rule を持つ dependency validation と DOT/graph evidence を得られる。 | package 宣言まで optional・disabled。 | rule violations を `findings` へ正規化し、command/version/scope を `tool_runs` に保存する。 |
+| `knip` | unused dependency/export/file audit | relation graph cleanup に使う dead-node と unused-edge signal を得られる。 | package 宣言まで optional・disabled。 | false positive は review が必要な finding として扱い、default では auto-delete しない。 |
+| `madge` | circular dependency quick check、graph image helper | lightweight circular dependency と visual graph evidence を得られる。 | package 宣言まで optional・disabled。 | dependency-cruiser rules がある箇所で Madge を policy source にしない。 |
+| `graphviz-dot` | DOT から SVG/PDF/PNG への rendering | large graph rendering と CI artifact output に使える。 | optional renderer。 | renderer availability は environment state として扱い、missing renderer は finding を返す。 |
+| `mermaid` | Markdown-native relation/workflow diagrams | GitHub Markdown で render される review/handover diagram を生成できる。 | docs の preferred default export。 | node ID/order を deterministic にし、raw evidence payload を diagram text に含めない。 |
+| `d2` | architecture/review diagram export | design review 向けのより整った diagram rendering を得られる。 | optional renderer。 | adapter readiness を必須にし、implicit installation は行わない。 |
 
-## Workflow Integration
+## Workflow 統合
 
-1. Core relation graph collector stays TypeScript/Bun and rebuildable from docs/source/tests/PLAN/state/logs.
-2. Optional adapters run only when allow-listed by workflow/profile rules.
-3. Raw adapter output is saved as bounded evidence.
-4. Normalized rows are written later to `tool_runs`, `graph_nodes`, `dependency_edges`, `impact_results`, `graph_snapshots`, `diagram_artifacts`, and `findings`.
-5. Gates consume normalized rows only.
+1. core relation graph collector は TypeScript/Bun のままにし、docs/source/tests/PLAN/state/logs から再構築できるようにする。
+2. optional adapter は workflow/profile rules で allow-list された場合だけ実行する。
+3. raw adapter output は bounded evidence として保存する。
+4. 正規化済み rows は後続で `tool_runs`、`graph_nodes`、`dependency_edges`、`impact_results`、`graph_snapshots`、`diagram_artifacts`、`findings` へ書き込む。
+5. gate は正規化済み rows だけを消費する。
 
-## Safety / Quality Rules
+## 安全・品質ルール
 
-- External tools are adapters, not authoring sources.
-- Missing adapter availability is a finding and does not invalidate unrelated local checks.
-- Mermaid is preferred for Markdown evidence because it renders in GitHub contexts.
-- DOT/Graphviz and D2 are optional renderer profiles and must not install implicitly.
-- Auto-fix/delete behavior from external tools is out of scope unless a future PLAN adds explicit human approval and rollback evidence.
+- external tools は adapter であり、authoring source ではない。
+- adapter availability が missing でも finding として扱い、無関係な local checks は invalid にしない。
+- Mermaid は GitHub contexts で render されるため、Markdown evidence では優先する。
+- DOT/Graphviz と D2 は optional renderer profile であり、implicit install してはならない。
+- external tools の auto-fix/delete behavior は、将来の PLAN が explicit human approval と rollback evidence を追加するまで対象外にする。
 
-## Residual Work
+## 残作業
 
-- Implement PLAN-L7-32 relation graph pure functions after TDD Red.
-- Add optional adapter profile probes for dependency-cruiser, Knip, Madge, Graphviz, Mermaid, and D2.
-- Add DB collector/rebuild for A-124 graph and diagram projection rows.
-- Adapter probe route is PLAN-L6-33 / PLAN-L7-34 / PLAN-REVERSE-34.
+- TDD Red 後に PLAN-L7-32 relation graph pure functions を実装する。
+- dependency-cruiser、Knip、Madge、Graphviz、Mermaid、D2 の optional adapter profile probe を追加する。
+- A-124 graph と diagram projection rows の DB collector/rebuild を追加する。
+- adapter probe route は PLAN-L6-33 / PLAN-L7-34 / PLAN-REVERSE-34 とする。
