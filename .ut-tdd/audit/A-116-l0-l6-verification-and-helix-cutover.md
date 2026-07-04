@@ -1,58 +1,58 @@
-# A-116 L0-L6 Verification Readiness + HELIX Cutover Hardening
+# A-116 L0-L6 verification readiness と HELIX cutover hardening
 
-Date: 2026-06-09
-Gate: GATE-A technical readiness (L0-L6 left-arm design bands)
-Auditor: Codex TL
-Scope: Confirm L0-L6 freeze/readiness after L4-L6 gate reconfirmation and remove active HELIX runtime/path assumptions from internal assets.
-Verdict: PASS for L0-L6 verification readiness and HELIX cutover hardening. This record does not prove that every L4-L6/L7-L9 artifact was re-read in a fresh substance audit with no findings.
+日付: 2026-06-09
+Gate: GATE-A technical readiness (L0-L6 left-arm design bands) の確認
+監査者: Codex TL
+範囲: L4-L6 gate reconfirmation 後の L0-L6 freeze/readiness を確認し、internal assets から active HELIX runtime/path assumptions を除去する。
+判定: L0-L6 verification readiness と HELIX cutover hardening は PASS。この record は、すべての L4-L6/L7-L9 artifact が no findings の fresh substance audit で再読されたことまでは証明しない。
 
-## Requirements Checked
+## 確認した requirements
 
-- Phase 1 / L0-L3 remains frozen after the four verification/improvement cycles recorded in roadmap section 5 and gate-design section 2 (A-100).
-- Phase 2 / L4-L6 has completed Forward design descent and gate re-confirmation: G4, G5, and G6 are PASS in gate-design section 2.
-- GATE-A readiness check is not a coverage-count-only claim: L4-to-L9, L5-to-L8, and L6-to-L7 must have pair evidence and no orphan design/test-design pair.
-- L6 completion must be proven by L6 docs, owning PLAN trace, L7 pair, FR unit coverage, review evidence, and G6 gate evidence.
-- HELIX cutover must remove active internal asset dependence on personal HELIX paths and legacy `helix` command delegation.
+- Phase 1 / L0-L3 は、roadmap section 5 と gate-design section 2 に記録された 4 回の verification/improvement cycles 後も frozen のままである (A-100)。
+- Phase 2 / L4-L6 は Forward design descent と gate re-confirmation を完了している: G4、G5、G6 は gate-design section 2 で PASS。
+- GATE-A readiness check は coverage-count-only claim ではない: L4-to-L9、L5-to-L8、L6-to-L7 には pair evidence が必要であり、orphan design/test-design pair があってはならない。
+- L6 completion は L6 docs、owning PLAN trace、L7 pair、FR unit coverage、review evidence、G6 gate evidence で証明されなければならない。
+- HELIX cutover は、personal HELIX paths と legacy `helix` command delegation への active internal asset dependence を除去しなければならない。
 
-## Evidence
+## 証跡
 
 - `ut-tdd doctor`: exit 0.
-  - pair-freeze: OK, 38 design/test-design pairs, orphan 0.
-  - l6-fr-coverage: OK, 47 FR rows connected to L6 unit contract / U-* oracle.
-  - l6-completion: OK, 18 L6 docs, L7 confirmed, G6 PASS.
-  - review-evidence: OK, cross_agent worker/reviewer separation and tests_green_at <= reviewed_at.
-  - verification: L0-L3, L4-L6, and L0-L6 all report freeze complete and verification cycle fireable.
+  - pair-freeze: OK、38 design/test-design pairs、orphan 0 を確認。
+  - l6-fr-coverage: OK、47 FR rows が L6 unit contract / U-* oracle に接続済み。
+  - l6-completion: OK、18 L6 docs、L7 confirmed、G6 PASS を確認。
+  - review-evidence: OK、cross_agent worker/reviewer separation と tests_green_at <= reviewed_at。
+  - verification: L0-L3、L4-L6、L0-L6 はすべて freeze complete and verification cycle fireable と report。
 - `bun run typecheck`: pass (`tsc --noEmit`).
-- `bun run lint`: pass (Biome checked 75 files).
-- `bun run test`: pass (38 test files, 316 tests).
-- `asset-drift`: OK for real repo active internal assets and prompt templates:
-  - `.claude/agents/*.md`, `docs/skills`, and `docs/templates/prompts/*.md` enrolled.
-  - HELIX personal path residue 0.
-  - legacy `helix codex` / `helix claude` / `helix plan` / `helix gate` / `helix handover` delegation residue 0.
-  - `docs/skills` non-empty.
-  - guard allowlist missing agent docs 0.
+- `bun run lint`: pass (Biome checked 75 files 済み)。
+- `bun run test`: pass (38 test files、316 tests 済み)。
+- `asset-drift`: real repo active internal assets と prompt templates で OK:
+  - `.claude/agents/*.md`、`docs/skills`、`docs/templates/prompts/*.md` enrolled。
+  - HELIX personal path residue 0。
+  - legacy `helix codex` / `helix claude` / `helix plan` / `helix gate` / `helix handover` delegation residue 0。
+  - `docs/skills` non-empty。
+  - guard allowlist の missing agent docs 0。
 
-## Evidence Boundary
+## Evidence の境界
 
-- The doctor `verification` line means "freeze complete and verification cycle fireable"; it is not itself the manual verification cycle.
-- Prior L6 substance review did find issues: A-110 recorded MUST/SHOULD findings, and A-111 records the remediation/recheck that made them non-blocking for G6.
-- This audit therefore supports GATE-A technical readiness and cutover hardening, not the stronger claim "all Phase 2 artifacts were freshly re-read and no issues were found."
+- doctor の `verification` line は "freeze complete and verification cycle fireable" を意味する。それ自体は manual verification cycle ではない。
+- Prior L6 substance review では issues が見つかっていた: A-110 は MUST/SHOULD findings を記録し、A-111 はそれらを G6 に対して non-blocking にした remediation/recheck を記録している。
+- したがって、この audit が支持するのは GATE-A technical readiness と cutover hardening であり、より強い claim である "all Phase 2 artifacts were freshly re-read and no issues were found" ではない。
 
-## Changes Made For Cutover
+## Cutover のために行った changes
 
-- Added `src/lint/asset-drift.ts` as the current FR-L1-49 hard gate slice.
-- Wired `checkAssetDrift` into `runDoctor.ok`.
-- Added U-ASSETDRIFT-001..006 unit-test oracles to L7 unit test design.
-- Updated `.claude/agents/*.md` active internal assets and `docs/templates/prompts/*.md` to stop reading `~/ai-dev-kit-vscode` and stop delegating through legacy `helix codex`.
-- Re-scoped pmo-helix explorer/scout to `vendor/helix-source/` snapshot exploration instead of a personal workspace.
+- `src/lint/asset-drift.ts` を現在の FR-L1-49 hard gate slice として追加した。
+- `checkAssetDrift` を `runDoctor.ok` に接続した。
+- U-ASSETDRIFT-001..006 unit-test oracles を L7 unit test design に追加した。
+- `.claude/agents/*.md` active internal assets と `docs/templates/prompts/*.md` を更新し、`~/ai-dev-kit-vscode` を読まないようにし、legacy `helix codex` 経由の delegation を停止した。
+- pmo-helix explorer/scout を personal workspace ではなく `vendor/helix-source/` snapshot exploration へ再 scope した。
 
-## Non-Blocker Carry
+## Non-blocker carry の残件
 
-- IMP-087 / IMP-088 remain: orphan implementation back-fill and impl-to-PLAN traceability lint.
-- Placeholder-deps in L9 test design remain later back-fill items unless a dedicated hard lint is planned.
-- relation-graph / dependency-drift / regression expansion remain later PLANs.
-- `.ut-tdd/audit/A-100..A-118` tracking remains a PO git-tracking decision.
+- IMP-087 / IMP-088 は残る: orphan implementation back-fill と impl-to-PLAN traceability lint。
+- L9 test design の placeholder-deps は、dedicated hard lint が planned されない限り、later back-fill items のまま。
+- relation-graph / dependency-drift / regression expansion は later PLANs のまま。
+- `.ut-tdd/audit/A-100..A-118` tracking は PO git-tracking decision のまま。
 
-## Decision
+## 判断
 
-PASS for L0-L6 verification readiness and active HELIX cutover hardening. The stronger Phase 2 full-review claim is handled separately by A-118, which enumerates the L4/L5/L6 design docs, L7/L8/L9 test-design docs, PLANs, findings, remediation status, and carry routing. PO acceptance remains a separate human decision.
+L0-L6 verification readiness と active HELIX cutover hardening は PASS。より強い Phase 2 full-review claim は A-118 で別に扱う。A-118 は L4/L5/L6 design docs、L7/L8/L9 test-design docs、PLANs、findings、remediation status、carry routing を列挙している。PO acceptance は別の human decision のままである。
