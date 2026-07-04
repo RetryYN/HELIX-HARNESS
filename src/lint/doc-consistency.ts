@@ -21,7 +21,7 @@ const ROOT = resolve(HERE, "..", "..");
 const SCREEN_ID_REGEX = /\b(?:PM|HM|GD)-\d{2}\b/g;
 const NFR_ROW_REGEX = /\|\s*\*\*NFR-(\d{2})\*\*\s*\|/g;
 const PACK_DISTRIBUTION_REMOTE_URL =
-  "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+  "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
 const SETUP_VERSION_UP_TARGET = "v0.1.4";
 const SETUP_VERSION_UP_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target ${SETUP_VERSION_UP_TARGET} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
 const STALE_SETUP_VERSION_UP_TARGET_REGEX =

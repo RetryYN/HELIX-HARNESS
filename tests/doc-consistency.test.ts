@@ -64,7 +64,7 @@ describe("doc consistency (doc 間整合の自動化)", () => {
 
   it("HELIX setup の version-up dry-run target が古い Pack tag に戻ったら検出する", () => {
     const expectedCommand =
-      "--target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json";
+      "--target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json";
     const staleDocs = {
       ...docs,
       l6SetupSoloTeam: docs.l6SetupSoloTeam.split(expectedCommand).join("--target v0.1.3 --json"),

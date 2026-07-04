@@ -92,7 +92,7 @@ function writeFakeCommand(root: string, name: string, output: string): string {
 function writeFakeRemoteTagGit(root: string, tag: string): string {
   const binDir = join(root, ".fake-git-bin");
   mkdirSync(binDir, { recursive: true });
-  const remoteUrl = "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+  const remoteUrl = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
   const ref = `refs/tags/${tag}`;
   if (process.platform === "win32") {
     const path = join(binDir, "git.cmd");
@@ -312,7 +312,7 @@ describe("clean distribution local acceptance smoke", () => {
             progressPercent: 90,
             completionClaimAllowed: false,
             distributionReference: {
-              repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+              repo: "RetryYN/HELIX-HARNESS-OS",
               mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
               latestTag: "v0.1.4",
             },
@@ -389,7 +389,7 @@ describe("clean distribution local acceptance smoke", () => {
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
           "ut-tdd completion review-bundle --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -564,7 +564,7 @@ describe("clean distribution local acceptance smoke", () => {
         expect(CONSUMER_CI_RUN_COMMANDS).toEqual(
           expect.arrayContaining([
             "bun install --frozen-lockfile",
-            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
             "bun run typecheck",
             "bun run test",
           ]),
@@ -798,7 +798,7 @@ describe("clean distribution local acceptance smoke", () => {
           test: "bun run ut-tdd completion review-bundle --json",
         });
         expect(generatedPackage.devDependencies?.["ut-tdd"]).toBe(
-          "github:unison-ai-product/UT-TDD_AGENT-HARNESS-Pack#v0.1.0",
+          "github:RetryYN/HELIX-HARNESS",
         );
         expect(generatedPackage.devDependencies?.typescript).toBe("^5.6.3");
         expect(readFileSync(join(freshConsumerRoot, "bun.lock"), "utf8")).toContain(

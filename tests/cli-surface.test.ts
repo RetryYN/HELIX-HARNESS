@@ -140,7 +140,7 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
         `  echo ${packHead} refs/heads/main`,
         "  exit /b 0",
         ")",
-        "echo 7f83ca811353ed90b3e981178a1b0c9977dd5863 refs/heads/main",
+        "echo b828fcf64c204d1cfa65c729fa590ca9562adccc refs/heads/main",
         "exit /b 0",
         "",
       ].join("\r\n"),
@@ -161,7 +161,7 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
       `    echo '${packHead} refs/heads/main'`,
       "    ;;",
       "  *)",
-      "    echo '7f83ca811353ed90b3e981178a1b0c9977dd5863 refs/heads/main'",
+      "    echo 'b828fcf64c204d1cfa65c729fa590ca9562adccc refs/heads/main'",
       "    ;;",
       "esac",
       "",
@@ -845,7 +845,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload).toMatchObject({
         ok: true,
         externalObserved: {
-          development_repo: "7f83ca811353ed90b3e981178a1b0c9977dd5863",
+          development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
           distribution_pack_repo: "a43771ab091486520a4970f6b19b1663a009d4d0",
           distribution_pack_latest_tag: "v0.1.4",
         },
@@ -1493,7 +1493,7 @@ describe("L7 CLI surface closure", () => {
           "ut-tdd setup project --dry-run --json",
           "ut-tdd completion decision-packet --json",
           "ut-tdd completion review-bundle --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           "ut-tdd doctor --profile consumer",
           "ut-tdd rename plan --json",
           "ut-tdd handover status --json",
@@ -1621,7 +1621,7 @@ describe("L7 CLI surface closure", () => {
       "ut-tdd setup project --dry-run --json",
       "ut-tdd completion decision-packet --json",
       "ut-tdd completion review-bundle --json",
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       "ut-tdd doctor --profile consumer",
       "ut-tdd rename plan --json",
       "ut-tdd handover status --json",
@@ -1679,7 +1679,7 @@ describe("L7 CLI surface closure", () => {
         expect.objectContaining({
           phase: "version-up-dry-run",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           writePolicy: "no-write",
           source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
           sourceUrl: "https://semver.org/",
@@ -1727,7 +1727,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
     expect(text.stdout).toContain("verification-command: ut-tdd completion review-bundle --json");
     expect(text.stdout).toContain(
-      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     );
     expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
     expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
@@ -2177,7 +2177,7 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
             distributionReference: {
-              repo: "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+              repo: "RetryYN/HELIX-HARNESS-OS",
               mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
               latestTag: "v0.1.4",
             },

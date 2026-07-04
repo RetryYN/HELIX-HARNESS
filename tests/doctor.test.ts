@@ -176,7 +176,7 @@ function consumerClaudeAgentTemplate(name: string): string {
     "---",
     "",
     "現在の repository に対して、consumer-safe な HELIX subagent として振る舞う。",
-    "- `ut-tdd status`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`、`ut-tdd doctor --profile consumer` を HELIX local state evidence として使う。completion review-bundle は exact digest と semantic digest を確認する。",
+    "- `ut-tdd status`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`、`ut-tdd doctor --profile consumer` を HELIX local state evidence として使う。completion review-bundle は exact digest と semantic digest を確認する。",
     "- summary より先に findings を出す。",
     "- secret、credential、PII、machine-local absolute path を書かない。",
     "",
@@ -191,7 +191,7 @@ function consumerClaudeCommandTemplate(name: string): string {
     "",
     `Command: ${name}`,
     "",
-    "現行 `ut-tdd` CLI 経由で repository-local HELIX command を使う。最初に `ut-tdd status --json`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を実行し、completion review-bundle の exact digest と semantic digest を確認する。必要な verification を走らせ、workflow または gate behavior に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
+    "現行 `ut-tdd` CLI 経由で repository-local HELIX command を使う。最初に `ut-tdd status --json`、`ut-tdd completion decision-packet --json`、`ut-tdd completion review-bundle --json`、`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、completion review-bundle の exact digest と semantic digest を確認する。必要な verification を走らせ、workflow または gate behavior に影響する場合は `ut-tdd doctor --profile consumer` で閉じる。",
     "",
   ].join("\n");
 }
@@ -277,7 +277,7 @@ function consumerProjectSetupStateTemplate(): string {
     {
       phase: "version-up-dry-run",
       command:
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       writePolicy: "no-write",
       requiresMaterializedPaths: [],
       expected: "version-up dry-run remains plan-only and mustNotApply",
@@ -353,7 +353,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "`ut-tdd completion decision-packet --json`",
       "`ut-tdd completion review-bundle --json`",
       "completion review-bundle は exact digest と semantic digest を確認する。",
-      "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
+      "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
       "`ut-tdd doctor --profile consumer`",
       "`ut-tdd rename plan --json`",
       "<!-- UT-TDD:managed:end -->",
@@ -366,7 +366,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "`ut-tdd completion decision-packet --json`",
       "`ut-tdd completion review-bundle --json`",
       "completion review-bundle は exact digest と semantic digest を確認する。",
-      "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
+      "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
       "`ut-tdd doctor --profile consumer`",
       "`ut-tdd rename plan --json`",
       "<!-- UT-TDD:managed:end -->",
@@ -379,7 +379,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "`ut-tdd completion decision-packet --json`",
       "`ut-tdd completion review-bundle --json`",
       "completion review-bundle は exact digest と semantic digest を確認する。",
-      "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`",
+      "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
       "`ut-tdd doctor --profile consumer`",
       "`ut-tdd rename plan --json`",
       "<!-- UT-TDD:managed:end -->",
@@ -457,7 +457,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
           label: "HELIX: version-up dry-run",
           type: "shell",
           command:
-            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           problemMatcher: [],
         },
         {
@@ -517,7 +517,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "      - name: HELIX completion review bundle",
       "        run: bun run ut-tdd completion review-bundle --json",
       "      - name: HELIX version-up dry-run",
-      "        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      "        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       "      - name: HELIX consumer doctor",
       "        run: bun run ut-tdd doctor --profile consumer --json",
       "      - name: HELIX rename plan",

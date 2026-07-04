@@ -120,9 +120,9 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
   （consumer 側が `ut-tdd` を取得するパッケージ配布先。本 development リポジトリとは分離）。
 - この development リポジトリ（`~/HELIX-HARNESS`）が正本 source。tag 済みリリースを上記
   配布リポジトリへ publish し、consumer は配布リポジトリ経由で導入する。
-- `src/setup/templates.ts` 等に残る `unison-ai-product/UT-TDD_AGENT-HARNESS-Pack` は旧
-  プレースホルダであり、正式配布先は上記 `RetryYN/HELIX-HARNESS-OS`。CLI/識別子の rename と
-  同様、配布 surface の実切替は PLAN-M-02 の cutover 承認まで行わない。
+- 正式配布先は `RetryYN/HELIX-HARNESS-OS`。CLI/識別子の rename と同様、配布 surface の実切替は
+  PLAN-M-02 の cutover 承認、action-binding approval、dry-run、backup、rollback、monitoring evidence が
+  揃うまで行わない。
 
 ## 構成境界
 

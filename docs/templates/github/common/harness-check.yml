@@ -26,7 +26,7 @@ jobs:
       - name: HELIX completion review bundle
         run: bun run ut-tdd completion review-bundle --json
       - name: HELIX version-up dry-run
-        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json
+        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json
       - name: HELIX consumer doctor
         run: bun run ut-tdd doctor --profile consumer --json
       - name: HELIX rename plan

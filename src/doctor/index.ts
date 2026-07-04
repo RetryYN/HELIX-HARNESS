@@ -1996,7 +1996,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("ut-tdd completion review-bundle --json") &&
     text.includes("semantic digest") &&
     text.includes(
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     ) &&
     text.includes("ut-tdd doctor --profile consumer");
   const docsOk =
@@ -2078,7 +2078,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     {
       phase: "version-up-dry-run",
       command:
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     },
     { phase: "consumer-doctor", command: "ut-tdd doctor --profile consumer" },
     { phase: "identifier-cutover-packet", command: "ut-tdd rename plan --json" },
@@ -2216,7 +2216,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("ut-tdd completion decision-packet --json") &&
       text.includes("ut-tdd completion review-bundle --json") &&
       text.includes(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       ) &&
       text.includes("ut-tdd doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
@@ -2235,7 +2235,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       text.includes("ut-tdd completion decision-packet --json") &&
       text.includes("ut-tdd completion review-bundle --json") &&
       text.includes(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       ) &&
       text.includes("ut-tdd doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)

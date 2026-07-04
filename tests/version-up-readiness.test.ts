@@ -27,7 +27,7 @@ const REQUIRED_SOURCE_METADATA_FIELDS = [
 ] as const;
 
 function writeFakeRemoteTagGit(binDir: string, tag: string): void {
-  const remoteUrl = "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git";
+  const remoteUrl = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
   const ref = `refs/tags/${tag}`;
   if (process.platform === "win32") {
     writeFileSync(
@@ -1376,7 +1376,7 @@ describe("version-up-readiness", () => {
     const remoteTag = buildVersionUpgradeDryRunPlan({
       currentVersion: "v0.1.0",
       targetVersion: "v0.1.3",
-      releaseRemoteUrl: "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+      releaseRemoteUrl: "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
       releaseTagExists: true,
     });
     expect(remoteTag).toMatchObject({
@@ -1385,7 +1385,7 @@ describe("version-up-readiness", () => {
       releaseTagRef: "refs/tags/v0.1.3",
       releaseTagSource: "remote",
       releaseTagCheckCommand:
-        "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/tags/v0.1.3",
+        "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/tags/v0.1.3",
       releaseTagExists: true,
       releaseTriggerResolved: true,
     });
@@ -1394,7 +1394,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "release_tag_exists",
           command:
-            "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/tags/v0.1.3",
+            "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/tags/v0.1.3",
         }),
       ]),
     );
@@ -1403,7 +1403,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           step: "compare_current_target",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
         }),
       ]),
     );
@@ -1412,7 +1412,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "repeat_dry_run_has_no_state_change",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
         }),
       ]),
     );
@@ -2862,7 +2862,7 @@ describe("version-up-readiness", () => {
           "--target",
           "v0.1.3",
           "--release-remote",
-          "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+          "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
           "--json",
           "--fail-on-blocked",
         ],
@@ -2905,7 +2905,7 @@ describe("version-up-readiness", () => {
           "--target",
           "v0.1.3",
           "--release-remote",
-          "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+          "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
           "--json",
         ],
         {
@@ -2925,7 +2925,7 @@ describe("version-up-readiness", () => {
         releaseTagRef: "refs/tags/v0.1.3",
         releaseTagSource: "remote",
         releaseTagCheckCommand:
-          "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/tags/v0.1.3",
+          "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/tags/v0.1.3",
         releaseTagExists: true,
         releaseTriggerResolved: true,
         applyCommandAvailable: false,
@@ -2935,7 +2935,7 @@ describe("version-up-readiness", () => {
           expect.objectContaining({
             step: "compare_current_target",
             command:
-              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           }),
         ]),
       );
@@ -2944,7 +2944,7 @@ describe("version-up-readiness", () => {
           expect.objectContaining({
             check: "repeat_dry_run_has_no_state_change",
             command:
-              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json",
+              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           }),
         ]),
       );

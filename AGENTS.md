@@ -45,8 +45,8 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
   （consumer 側が `ut-tdd` を取得するパッケージ配布先。本 development リポジトリとは分離）。
 - この development リポジトリが正本 source。tag 済みリリースを上記配布リポジトリへ publish し、
   consumer は配布リポジトリ経由で導入する。
-- `src/setup/templates.ts` 等に残る `unison-ai-product/UT-TDD_AGENT-HARNESS-Pack` は旧プレースホルダで、
-  正式配布先は上記 `RetryYN/HELIX-HARNESS-OS`。配布 surface の実切替は PLAN-M-02 cutover 承認まで行わない。
+- 正式配布先は `RetryYN/HELIX-HARNESS-OS`。配布 surface の実切替は PLAN-M-02 cutover 承認まで
+  action-binding approval、dry-run、backup、rollback、monitoring evidence を揃えて行う。
 
 Migration snapshots と inventories は Core Reads ではない。`docs/migration/` は migration、gap audit、
 regression-source inspection が必要なときだけ読む。UT-TDD runtime state や execution paths として扱わない。
