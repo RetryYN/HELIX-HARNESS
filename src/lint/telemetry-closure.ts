@@ -40,7 +40,7 @@ export interface TelemetryClosureResult {
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+Telemetry Closure Matrix\s*$/m;
+const SECTION_RE = /^##\s+Telemetry Closure Matrix(?:\s+.*)?$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const EXPECTED_REQUIREMENTS = [
   "Skill firing parameters",
@@ -108,7 +108,15 @@ export function analyzeTelemetryClosure(docs: TelemetryClosureDoc[]): TelemetryC
       continue;
     }
 
-    const header = parsed[0].map((cell) => cell.toLowerCase());
+    const header = parsed[0].map((cell) => {
+      const normalized = cell.toLowerCase();
+      if (normalized.startsWith("requirement")) return "requirement";
+      if (normalized.startsWith("required evidence")) return "required evidence";
+      if (normalized.startsWith("current evidence")) return "current evidence";
+      if (normalized.startsWith("automation owner")) return "automation owner";
+      if (normalized.startsWith("status")) return "status";
+      return normalized;
+    });
     const indexes = {
       requirement: header.indexOf("requirement"),
       required: header.indexOf("required evidence"),

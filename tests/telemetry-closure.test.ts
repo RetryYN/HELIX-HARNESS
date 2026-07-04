@@ -7,9 +7,9 @@ import {
 
 const compliant = `# A-TEST
 
-## Telemetry Closure Matrix
+## Telemetry Closure Matrix の確認
 
-| Requirement | Required evidence | Current evidence | Automation owner | Status |
+| Requirement 要件 | Required evidence 必要証跡 | Current evidence 現在証跡 | Automation owner | Status |
 |---|---|---|---|---|
 | Skill firing parameters | recommendation and invocation rows | tables exist but no rows | DB projection + CLI + doctor | \`gap\` |
 | Trouble logs | trouble rows and findings | hook rows exist | session-log + hook_events + feedback engine | \`partial\` |
