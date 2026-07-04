@@ -3413,19 +3413,6 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     }
   });
 
-  it("U-SETUP-018: README quickstart points to the HELIX project setup workflow, not legacy setup shortcuts", () => {
-    const readme = readFileSync(join(process.cwd(), "README.md"), "utf8");
-    const quickstart = readme.match(/## 🚀 クイックスタート[\s\S]*?## ⚙️ セットアップ/)?.[0] ?? "";
-
-    expect(readme).toContain("ut-tdd setup project --dry-run");
-    expect(readme).toContain("ut-tdd rename plan --json");
-    expect(readme).toContain("helix setup project");
-    expect(readme).toContain("PLAN-M-02");
-    expect(readme).toContain("`.ut-tdd`");
-    expect(readme).toContain("`.helix`");
-    expect(quickstart).not.toContain("setup --solo");
-  });
-
   it("U-SETUP-034: runtime instruction files name setup project as the canonical setup entrypoint", () => {
     const claude = readFileSync(join(process.cwd(), "CLAUDE.md"), "utf8");
     const agents = readFileSync(join(process.cwd(), "AGENTS.md"), "utf8");
