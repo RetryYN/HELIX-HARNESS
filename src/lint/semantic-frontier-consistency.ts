@@ -50,16 +50,6 @@ const EXPECTED_FRONTIERS = [
     ],
   },
   {
-    featureId: "discovery_11_l1_l2_elicitation_cycle",
-    planMarker: "PLAN-DISCOVERY-11",
-    classification: "frontier_pending_decision",
-    l3Markers: [
-      "L1-L2 elicitation cycle",
-      "classification=frontier_pending_decision",
-      "A-40 G1-trace",
-    ],
-  },
-  {
     featureId: "serverless_readonly_share",
     planMarker: "PLAN-L7-146",
     classification: "parked_future_version",

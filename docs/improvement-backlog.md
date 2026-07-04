@@ -1,4 +1,4 @@
-# UT-TDD Improvement Backlog (作業ログ → 機能化 pipeline)
+# HELIX Improvement Backlog (作業ログ → 機能化 pipeline)
 
 > 作業中に発見した「不備・改善」を蓄積し、triage して **lint / FR / policy / doc** へ機能化する living backlog。
 > FR-L1-19 (Learning Engine) 本実装までの**手動の橋渡し**であり、ledger (`docs/migration/v2-import-ledger.md` の A-*) と相互参照する。
