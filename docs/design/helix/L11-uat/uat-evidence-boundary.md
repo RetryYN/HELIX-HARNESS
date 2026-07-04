@@ -12,6 +12,10 @@ owner: Codex
 
 L11 は、要件・実装・テスト・運用判断をまとめて確認する層である。現在は review evidence と completion packet の仕組みはあるが、open decisions が残るため全体 UAT close ではない。
 
+## pair 境界
+
+L11 は L3/L4/L5/L6 のような単一の test-design と直接 pair-freeze する設計層ではなく、L8-L10 の検証証跡、L12 acceptance、L14 completion packet を横断して UAT 可否を確認する evidence boundary である。したがって `pair_artifact` を持たないことを UAT 完了や pair 欠落の証跡に読み替えない。
+
 ## 現在の証跡
 
 | 項目 | 証跡 |

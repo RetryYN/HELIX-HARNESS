@@ -12,6 +12,10 @@ owner: Codex
 
 L13 は実環境 smoke、監視、rollback 判断の層である。現時点の HELIX は local engine / consumer setup / distribution smoke の証跡を持つが、実 remote / production 相当の全デプロイ後検証は未完了である。
 
+## pair 境界
+
+L13 は単一 test-design と直接 pair-freeze する設計層ではなく、L8-L12 の verified evidence と L14 cutover / approval packet を束ねる post-deploy evidence boundary である。`pair_artifact` 不在は意図的な境界であり、実 deploy、release/tag publication、GitHub ruleset 適用の完了証跡ではない。
+
 ## 現在の証跡
 
 | 項目 | 証跡 |
