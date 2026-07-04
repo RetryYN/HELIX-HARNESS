@@ -273,6 +273,14 @@ describe("team run validation", () => {
 
     expect(result.ok).toBe(true);
     expect(result.strategy).toBe("sequential");
+    expect(result.serialization_trace).toEqual({
+      requested_strategy: "parallel",
+      effective_strategy: "sequential",
+      forced_sequential: true,
+      serialization_required: false,
+      serialization_reasons: null,
+      serialize_after_edges: [{ member: "tl:pmo-sonnet", after: "se" }],
+    });
     expect(result.members.map((member) => member.role)).toEqual(["se", "tl"]);
     expect(result.messages).not.toContain("team serialization requires sequential execution");
   });
@@ -329,6 +337,18 @@ describe("team run validation", () => {
 
     expect(result.ok).toBe(true);
     expect(result.strategy).toBe("sequential");
+    expect(result.serialization_trace).toEqual({
+      requested_strategy: "parallel",
+      effective_strategy: "sequential",
+      forced_sequential: true,
+      serialization_required: true,
+      serialization_reasons: {
+        file_conflict: false,
+        downstream_dependency: true,
+        shared_state: false,
+      },
+      serialize_after_edges: [],
+    });
   });
 
   it("executes provider adapters through team_runner slots when explicitly requested", async () => {

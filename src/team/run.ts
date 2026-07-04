@@ -74,12 +74,22 @@ export interface TeamMemberLaunch {
   executable: boolean;
 }
 
+export interface TeamSerializationTrace {
+  requested_strategy: TeamDefinition["strategy"];
+  effective_strategy: TeamDefinition["strategy"];
+  forced_sequential: boolean;
+  serialization_required: boolean;
+  serialization_reasons: TeamDefinition["serialization"] | null;
+  serialize_after_edges: { member: string; after: string }[];
+}
+
 export interface TeamRunPlan extends TeamValidationResult {
   team: string;
   strategy: TeamDefinition["strategy"];
   max_parallel: number;
   dry_run: boolean;
   executable: boolean;
+  serialization_trace: TeamSerializationTrace;
   members: TeamMemberLaunch[];
 }
 
@@ -288,8 +298,14 @@ export function buildTeamRunPlan(
   } = {},
 ): TeamRunPlan {
   const validation = validateTeamRun(team, mode, input.placements);
-  const forceSequential =
-    mustSerialize(team.serialization) || team.members.some((m) => m.serialize_after);
+  const serializationRequired = mustSerialize(team.serialization);
+  const serializeAfterEdges = team.members
+    .filter((member) => member.serialize_after)
+    .map((member) => ({
+      member: `${member.role}:${member.engine}`,
+      after: member.serialize_after as string,
+    }));
+  const forceSequential = serializationRequired || serializeAfterEdges.length > 0;
   const strategy = forceSequential ? "sequential" : team.strategy;
   const messages = [...validation.messages];
 
@@ -367,6 +383,14 @@ export function buildTeamRunPlan(
     max_parallel: team.max_parallel,
     dry_run: !input.execute,
     executable: ok && members.every((m) => m.executable),
+    serialization_trace: {
+      requested_strategy: team.strategy,
+      effective_strategy: strategy,
+      forced_sequential: forceSequential && team.strategy !== strategy,
+      serialization_required: serializationRequired,
+      serialization_reasons: team.serialization ?? null,
+      serialize_after_edges: serializeAfterEdges,
+    },
     members,
   };
 }
