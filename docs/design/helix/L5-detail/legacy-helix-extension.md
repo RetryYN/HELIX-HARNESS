@@ -1,5 +1,5 @@
 ---
-title: "HELIX L5 詳細設計 — old HELIX extension adoption"
+title: "HELIX L5 詳細設計 — 旧 HELIX extension adoption（採用）"
 layer: L5
 kind: add-design
 status: confirmed
@@ -11,13 +11,13 @@ pair_artifact: docs/test-design/helix/legacy-helix-extension.md
 related_l4: docs/design/helix/L4-basic-design/legacy-helix-extension.md
 ---
 
-# HELIX L5 詳細設計 — old HELIX extension adoption
+# HELIX L5 詳細設計 — 旧 HELIX extension adoption（採用）
 
-L4 `HLX-*` boundary を module / projection / evidence contract に落とす。
+L4 `HLX-*` boundary（境界）を module / projection / evidence contract（証跡契約）に落とす。
 
-## §1 L5 contract matrix 対応表
+## §1 L5 contract matrix（契約表）対応表
 
-| L3 ID | L5 contract | 必須 input | contract output | fail-close |
+| L3 ID | L5 contract（L5 契約） | 必須 input | contract output（契約出力） | fail-close |
 |-------|-------------|----------------|-----------------|------------|
 | HLX-FR-01 | HLX-C01 work-preflight-contract | task objective、workflow/layer、Forward return、acceptance、work source、allowed scope | `WorkPreflightDecision` | source/acceptance/scope 欠落、handover/PLAN との conflict、未承認 high-impact operation |
 | HLX-FR-02 | HLX-C02 technical-question-gate | question text、question class、TL advisor evidence、bypass reason | `TechnicalQuestionDecision` | 直近 TL evidence の無い technical design question、reason の無い bypass |
@@ -32,14 +32,14 @@ L4 `HLX-*` boundary を module / projection / evidence contract に落とす。
 | HLX-FR-11 | HLX-C11 continuous-run-control | trigger、queue lock、timebox、budget profile、stop condition、verification evidence | `ContinuousRunDecision` | uncontrolled auto-run、stop condition 欠落、budget overrun の無視 |
 | HLX-FR-12 | HLX-C12 learning-feedback-contract | feedback event、recipe source、learning result、target backlog、evidence link、review state | `LearningFeedbackDecision` | learning result だけで acceptance を close する、unreviewed recipe が current truth を mutate する、evidence link 欠落 |
 
-## §2 integration observation 観測
+## §2 integration observation（結合観測）
 
-| Contract | L8 observation |
+| Contract（契約） | L8 observation（L8 観測） |
 |----------|----------------|
 | HLX-C01 | work preflight は objective/source/scope/acceptance が欠落または不整合の場合に edit を block する。 |
 | HLX-C02 | technical user question は TL advisor evidence、または documented preference-only bypass を要求する。 |
 | HLX-C03 | detector axis registry は routeable finding を emit し、stub/advisory と hard proof を混同しない。registry kind と finding kind が一致しない場合は hard proof に昇格しない。 |
-| HLX-C04 | recommender output は traceable であり、old runtime candidate は adoption 前に hardened/deferred になる。 |
+| HLX-C04 | recommender output は traceable であり、旧 runtime candidate は adoption 前に hardened/deferred になる。 |
 | HLX-C05 | RUN & Debug trace は command、expected action、observed evidence、missing action、correlation id を join する。 |
 | HLX-C06 | core/adapter distribution は repo-local source、generated consumer asset、global-file risk、provenance を分離する。 |
 | HLX-C07 | すべての legacy hook capability は explicit wired/deferred/rejected guard-surface disposition を持つ。 |
@@ -49,7 +49,7 @@ L4 `HLX-*` boundary を module / projection / evidence contract に落とす。
 | HLX-C11 | scheduler/continuous-run control は queue lock、budget、timebox、stop condition、evidence を要求する。 |
 | HLX-C12 | learning/feedback/recipe event は improvement candidate を作るが、それだけでは acceptance を close できない。 |
 
-## §3 L6 carry
+## §3 L6 carry（L6 持ち越し）
 
 L6 design はすべての `HLX-C*` contract について function signature と DbC を定義しなければならない。各 contract は paired
-`U-HLX-*` oracle を必要とし、§1 の anti-corruption boundary を維持しなければならない。
+`U-HLX-*` oracle を必要とし、§1 の anti-corruption boundary（腐敗防止境界）を維持しなければならない。
