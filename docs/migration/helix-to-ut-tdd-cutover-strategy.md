@@ -1,4 +1,4 @@
-# HELIX to UT-TDD Cutover Strategy
+# HELIX to UT-TDD cutover strategy 記録
 
 Date: 2026-06-11
 Status: backfilled-current
@@ -12,74 +12,74 @@ Related:
 - `docs/plans/PLAN-L7-44-harness-db-master.md`
 - `docs/plans/PLAN-L7-46-projection-writer.md`
 
-## 1. Current Decision
+## 1. Current decision の記録
 
-The cutover target is UT-TDD-owned execution and state.
+cutover target は UT-TDD-owned execution と state である。
 
-- HELIX is a reference source only. It supplies concepts, labels, and historical inventory.
-- Executable harness behavior is owned by UT-TDD under TypeScript/Bun `src/`.
-- The `ut-tdd` CLI and `.ut-tdd/` state are the current harness path.
-- `.helix/` and `vendor/helix-source/` are not runtime state for this product.
-- HELIX Python files are not copied as product code. Required behavior is reimplemented in TypeScript.
+- HELIX は reference source のみである。concepts、labels、historical inventory を供給する。
+- executable harness behavior は TypeScript/Bun `src/` 配下の UT-TDD 側が所有する。
+- `ut-tdd` CLI と `.ut-tdd/` state は current harness path である。
+- `.helix/` と `vendor/helix-source/` はこの product の runtime state ではない。
+- HELIX Python files は product code として copy しない。必要な behavior は TypeScript で再実装する。
 
-This means the active cutover work is not a wave-by-wave code port. It is a backfill of documentation, commands, state projection, and audit feedback so the repository describes and verifies the current UT-TDD path consistently.
+これは、active cutover work が wave-by-wave code port ではないことを意味する。repository が current UT-TDD path を一貫して記述・検証できるよう、documentation、commands、state projection、audit feedback を backfill する作業である。
 
-## 2. Superseded Assumptions
+## 2. Superseded assumptions の一覧
 
-| Old assumption | Current rule |
+| Old assumption 旧前提 | Current rule 現行ルール |
 | --- | --- |
-| Copy HELIX Python modules into a UT-TDD package | Reimplement required behavior in TypeScript/Bun `src/` |
-| Use HELIX CLI commands as the operating path | Use `ut-tdd` commands as the operating path |
-| Treat `.helix/` as active state | Treat `.ut-tdd/` as the active generated state area |
-| Keep a HELIX fallback as normal operation | Keep HELIX materials as historical/reference inputs only |
-| Define cutover as source-module swap | Define cutover as docs/config/state/projection alignment |
+| HELIX Python modules を UT-TDD package へ copy する | required behavior は TypeScript/Bun `src/` で再実装する |
+| HELIX CLI commands を operating path として使う | `ut-tdd` commands を operating path として使う |
+| `.helix/` を active state として扱う | `.ut-tdd/` を active generated state area として扱う |
+| HELIX fallback を normal operation として保持する | HELIX materials は historical/reference inputs としてのみ保持する |
+| cutover を source-module swap として定義する | cutover を docs/config/state/projection alignment として定義する |
 
-Legacy command names may appear only when quoting historical source or inventory. They are not instructions for new work in this repository.
+legacy command names は historical source または inventory を quote する場合だけ現れてよい。この repository の new work に対する instructions ではない。
 
-## 3. Current Cutover State
+## 3. Current cutover state の記録
 
-The repository is already in UT-TDD-owned mode for new work:
+この repository は new work について、すでに UT-TDD-owned mode にある:
 
-- Project rules are split across `CLAUDE.md`, `.claude/CLAUDE.md`, and `AGENTS.md`.
-- Governance documents name TypeScript/Bun as the implementation path.
-- Roadmap and review checks run through the UT-TDD CLI/doctor path.
-- `harness.db` is the local projection target for audit and feedback signals.
-- Vendor snapshots remain read-only evidence for migration context.
+- project rules は `CLAUDE.md`、`.claude/CLAUDE.md`、`AGENTS.md` に分割されている。
+- governance documents は TypeScript/Bun を implementation path として指定している。
+- roadmap と review checks は UT-TDD CLI/doctor path 経由で動く。
+- `harness.db` は audit と feedback signals の local projection target である。
+- vendor snapshots は migration context の read-only evidence として残す。
 
-The remaining cutover loop is projection completeness: automation outputs must be pulled into `harness.db` so feedback and audit checks can query the same local database instead of relying only on Markdown scans.
+残る cutover loop は projection completeness である。feedback と audit checks が Markdown scans だけに依存せず同じ local database を query できるよう、automation outputs を `harness.db` へ取り込む必要がある。
 
-## 4. Harness DB Projection Backfill
+## 4. Harness DB projection backfill の内容
 
-`harness.db` now receives the cutover-facing projections needed for the verification band:
+`harness.db` は、verification band に必要な cutover-facing projections を受け取る:
 
-- `roadmap_rollups`: program-level band, gate, span, and frontier summary.
-- `roadmap_band_coverage`: one row per program band with covered/parked/uncovered status.
-- `roadmap_gate_progress`: one row per roadmap gate with span confirmation status.
-- `review_evidence_registry`: review evidence metadata per PLAN.
+- `roadmap_rollups`: program-level の band、gate、span、frontier summary。
+- `roadmap_band_coverage`: program band ごとの covered/parked/uncovered status を持つ row。
+- `roadmap_gate_progress`: roadmap gate ごとの span confirmation status を持つ row。
+- `review_evidence_registry`: PLAN ごとの review evidence metadata。
 
-These are deterministic projections. The source remains repository documents and generated evidence; `.ut-tdd/harness.db` can be rebuilt.
+これらは deterministic projections である。source は repository documents と generated evidence のままであり、`.ut-tdd/harness.db` は rebuild できる。
 
-## 5. Verification Definition
+## 5. Verification definition の定義
 
-Cutover backfill is complete when all of the following hold:
+cutover backfill は、以下がすべて成立したときに complete とする:
 
-- `ut-tdd doctor` reports no active roadmap or handover drift.
-- `db rebuild` creates the roadmap and review evidence projection tables.
-- Projection tests prove idempotent rebuild behavior and concrete rows for the verification/cutover bands.
-- This document no longer instructs a HELIX runtime path, Python port, or `.helix/` state dependency for current work.
+- `ut-tdd doctor` が active roadmap drift または handover drift を報告しない。
+- `db rebuild` が roadmap と review evidence projection tables を作成する。
+- projection tests が idempotent rebuild behavior と verification/cutover bands の concrete rows を証明する。
+- この document が current work に対して HELIX runtime path、Python port、`.helix/` state dependency を指示しない。
 
-## 6. Rollback and Recovery
+## 6. Rollback and recovery の方針
 
-This cutover does not perform destructive data migration.
+この cutover は destructive data migration を実行しない。
 
-- Documentation changes can be reverted by commit.
-- `.ut-tdd/harness.db` can be rebuilt from repository sources.
-- New projection tables are append-only schema additions and are populated by `db rebuild`.
-- If projection quality regresses, keep source documents as truth and fix the projection writer before using DB rows for gate decisions.
+- documentation changes は commit で revert できる。
+- `.ut-tdd/harness.db` は repository sources から rebuild できる。
+- new projection tables は append-only schema additions であり、`db rebuild` により populate される。
+- projection quality が regress した場合は、source documents を truth として保持し、DB rows を gate decisions に使う前に projection writer を修正する。
 
-## 7. Completion Evidence
+## 7. Completion evidence の記録
 
-Completion evidence is recorded in:
+completion evidence は以下に記録する:
 
 - `tests/projection-writer.test.ts`
 - `src/schema/harness-db.ts`
