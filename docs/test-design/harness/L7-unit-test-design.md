@@ -662,6 +662,16 @@ plan 別 supporting packet、route が直接 surface されることを必須に
 | U-PLANSCH-005 | `analyzePlanSchedule` | review Step heading 不在 → violation |
 | U-PLANSCH-006 | `analyzePlanSchedule` | §3.1 実装計画 不在 → violation |
 
+### §1.19.1 U-PLANGOV 追補 (plan governance scope integrity、PLAN-L7-322)
+
+> `scope_digest` は opt-in の scope integrity gate として扱う。PLAN の `## §4 DoD` checkbox 行を正規化し、無宣言の DoD 削除や scope shrink を fail-close する。README/READE は gate 対象外。
+
+| Test ID | 対象 | 期待 |
+|---|---|---|
+| U-PLANGOV-015 | `analyzePlanGovernance` scope integrity | `scope_digest` を持つ PLAN の DoD checkbox 行が削除・変更された場合、`scope_integrity_mismatch` violation |
+| U-PLANGOV-016 | `analyzePlanGovernance` waiver | `- [~] (waived: reason/approver/YYYY-MM-DD) ...` 形式の waiver は scope digest 入力として受理し、scope shrink 免責を明示できる |
+| U-PLANGOV-017 | `analyzePlanGovernance` malformed waiver | `- [~]` 行が `waived: reason/approver/YYYY-MM-DD` を欠く場合、`scope_integrity_invalid_waiver` violation |
+
 ### §1.20 U-FRCOV (FR unit coverage substance 検査、PLAN-L7-22 / A-110)
 
 > ペア = `fr-unit-coverage.md` + `function-spec.md` FR registry addendum。FR→L6→U oracle の ID 接続だけでなく、型 body と pseudocode/explicit_l7_defer の substance を検査する。

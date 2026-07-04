@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -49,6 +50,10 @@ function section(content: string, start: RegExp, end: RegExp): string {
   const rest = content.slice(m.index + m[0].length);
   const e = rest.search(end);
   return e < 0 ? rest : rest.slice(0, e);
+}
+
+function extractDodSection(content: string): string {
+  return section(content, /^##\s*§?4\b[^\n]*(?:DoD|Definition of Done|完了条件)[^\n]*\n/m, /^##\s/m);
 }
 
 export function extractScheduleSection(content: string): string {
@@ -168,6 +173,54 @@ function pathExists(repoRoot: string | undefined, ref: string): boolean {
 
 function boolField(value: unknown): boolean {
   return value === true;
+}
+
+function sha256(value: string): string {
+  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+}
+
+function normalizedDodScopeLines(content: string): {
+  lines: string[];
+  invalidWaivers: { line: number; text: string }[];
+} {
+  const dod = extractDodSection(content);
+  const lines: string[] = [];
+  const invalidWaivers: { line: number; text: string }[] = [];
+  for (const [index, line] of dod.split(/\r?\n/).entries()) {
+    const match = line.match(/^\s*-\s+\[([ xX~])\]\s+(.+)$/);
+    if (!match) continue;
+    const marker = match[1] === "X" ? "x" : match[1];
+    const body = (match[2] ?? "").trim().replace(/\s+/g, " ");
+    if (marker === "~" && !/^\(waived:\s*[^/()]+\/[^/()]+\/\d{4}-\d{2}-\d{2}\)\s+.+/.test(body)) {
+      invalidWaivers.push({ line: index + 1, text: body });
+    }
+    lines.push(`- [${marker}] ${body}`);
+  }
+  return { lines, invalidWaivers };
+}
+
+function scopeIntegrityViolations(
+  file: string,
+  content: string,
+  raw: Record<string, unknown>,
+): PlanGovernanceViolation[] {
+  const expected = stringField(raw.scope_digest);
+  if (!expected) return [];
+  const { lines, invalidWaivers } = normalizedDodScopeLines(content);
+  const violations: PlanGovernanceViolation[] = invalidWaivers.map((waiver) => ({
+    file,
+    reason: "scope_integrity_invalid_waiver",
+    detail: `line ${waiver.line}: ${waiver.text}`,
+  }));
+  const actual = sha256(lines.join("\n"));
+  if (actual !== expected) {
+    violations.push({
+      file,
+      reason: "scope_integrity_mismatch",
+      detail: `expected ${expected}, actual ${actual}`,
+    });
+  }
+  return violations;
 }
 
 function generatedArtifacts(raw: Record<string, unknown>): { path: string; type: string }[] {
@@ -469,6 +522,8 @@ export function analyzePlanGovernance(
     const subDoc = stringField(raw.sub_doc);
     const isMasterHub = boolField(raw.master_hub);
     const isInternalAssetExtension = INTERNAL_ASSET_EXTENSION_PLAN_IDS.has(planId);
+
+    violations.push(...scopeIntegrityViolations(entry.file, entry.content, raw));
 
     const missingRoles = requiredAgentRoleViolations(raw);
     if (missingRoles.length > 0) {
