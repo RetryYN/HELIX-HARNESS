@@ -10,8 +10,8 @@
 |---|---|---|
 | `vendor/helix-source/cli/lib/effort_classifier.py` | 8.6 KB | LLMClassifierBase 継承 + rule-based scoring + Codex 委譲 |
 | `vendor/helix-source/cli/lib/task_type_inference.py` | 3.0 KB | rule-based regex で 4 種 (実装/レビュー/設計/調査) 推定 |
-| `vendor/helix-source/cli/lib/task_dispatcher.py` | 6.4 KB | **automation allowlist execution** (helix:command/shell:script/http:webhook) |
-| `vendor/helix-source/cli/lib/tests/test_effort_classifier.py` | 6.4 KB | scoring + LLM mock pattern |
+| `vendor/helix-source/cli/lib/task_dispatcher.py` | 6.4 KB | **automation allowlist 実行** (helix:command/shell:script/http:webhook) |
+| `vendor/helix-source/cli/lib/tests/test_effort_classifier.py` | 6.4 KB | scoring と LLM mock の型 |
 | `vendor/helix-source/cli/lib/tests/test_task_type_inference.py` | 1.8 KB | 4 種推定の pattern |
 | `vendor/helix-source/cli/lib/tests/test_task_dispatcher.py` | 0.6 KB | allowlist exec の smoke |
 | `vendor/helix-source/cli/templates/prompts/effort-classify.md` | 0.8 KB | LLM 委譲 prompt |
@@ -72,7 +72,7 @@
 **本 session 完了**: Sprint .1 (vendor 解析 + drift table + scope 縮小提案)
 
 **次 session で実施 (Sprint .2-.8)**:
-- Sprint .2 skeleton: `src/ut_tdd/task/` package + 3 module skeleton (`effort.py`/`classifier.py`/`orchestration.py`)
+- Sprint .2 skeleton: `src/ut_tdd/task/` パッケージと 3 module skeleton (`effort.py`/`classifier.py`/`orchestration.py`) を作成
 - Sprint .3 rewrite: §7.2 JSON contract + size 3 軸 max + PERT 三点見積 + capability class escalation
 - Sprint .4 test rewrite: vendor pattern 流用 + §7.2 contract 網羅
 - Sprint .5 pytest 全回帰 (W1 124 + W2 35 + W3a 追加)

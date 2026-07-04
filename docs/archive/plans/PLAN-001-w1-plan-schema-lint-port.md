@@ -126,7 +126,7 @@ UT-TDD Agent Harness の最優先 wave（W1）として、HELIX snapshot の `cl
 ### Sprint .1: Entry / 着手前調査
 
 - vendor の plan_*.py を Read（全 6 ファイル）
-- vendor tests Read（test_plan_frontmatter / parser / schema / validator / deps_helper）
+- vendor tests を Read（test_plan_frontmatter / parser / schema / validator / deps_helper）
 - enum drift 発見: `requirements_v1.1.md` VALID_* と vendor 現在値の差分を表化
 - skeleton 確認: `src/ut_tdd/__init__.py`, `pyproject.toml`, `src/ut_tdd/tests/__init__.py` の有無
 
@@ -147,7 +147,7 @@ UT-TDD Agent Harness の最優先 wave（W1）として、HELIX snapshot の `cl
   - HELIX_PROJECT_ROOT 環境変数は UT_TDD_PROJECT_ROOT として残し HELIX 名は移植元コメントに留める
   - Windows path（大文字 / 小文字 mismatch）は realpath 比較ではなく `Path.resolve()` 統一
 
-### Sprint .4: tests port
+### Sprint .4: テスト移植
 
 - vendor test 5 本を `src/ut_tdd/tests/` へ
 - import path 修正、`.helix` リテラルを `.ut-tdd` へ
@@ -172,7 +172,7 @@ UT-TDD Agent Harness の最優先 wave（W1）として、HELIX snapshot の `cl
 - 残 debt を §6 へ記録
 - pmo-sonnet レビューは porting 期間内ではコスト判断で skip 可（理由を §6 に明記）
 
-### Sprint .8: Exit / commit
+### Sprint .8: 終了 / commit
 
 - §5 DoD checklist 全 ✓
 - 1 commit にまとめる（W1 = 1 トピック原則）
@@ -190,7 +190,7 @@ UT-TDD Agent Harness の最優先 wave（W1）として、HELIX snapshot の `cl
 - [ ] HELIX 流ゲート: G3（API/Schema Freeze 相当）として schema 凍結を確認、G4 として実装＆test 完了
 - [ ] 1 commit、メッセージは `feat(plan-lint): port W1 plan schema and lint engine to src/ut_tdd`
 
-## §6 carry note / debt
+## §6 carry 記録 / debt
 
 - W7 hook 連携は別 PLAN（本 PLAN では `.claude/settings.json` を触らない）
 - `ut-tdd` CLI shim は W6 PLAN で扱う
