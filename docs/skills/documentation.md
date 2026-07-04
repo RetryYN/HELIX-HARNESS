@@ -23,6 +23,7 @@ applies_to:
 HELIX における README files、onboarding guides、runbooks、doc-tree prose の作成と保守を扱う。
 V-model design docs や ADRs とは別の human-readable operational documentation を作る場合に適用する
 （それらは `documentation-and-adrs` が扱う）。
+README / READE は導線と補助説明の surface であり、gate、証跡、完了条件の判定 surface へ紐づけない。
 
 ## この skill を読む条件
 
@@ -39,6 +40,9 @@ V-model design docs や ADRs とは別の human-readable operational documentati
 | CLI usage references の作成 | ADR authoring（`documentation-and-adrs` 参照） |
 | Runbook と operational procedure の整備 | PLAN files（`docs/plans/`） |
 | doc-tree maintenance（dead links、stale paths）の実施 | L0 glossary back-merge（`gate-planning` 参照） |
+
+README / READE の修正は、利用者の導線を直すために行う。accept / freeze / evidence / completion は PLAN、
+設計、テスト設計、governance、実装、検証ログの該当 surface で判断し、README / READE だけを根拠にしない。
 
 ## Writing standards（執筆基準）
 
