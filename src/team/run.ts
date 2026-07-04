@@ -132,15 +132,18 @@ export function providerFromEngine(engine: string): TeamProvider {
   return "local";
 }
 
-function buildMemberPrompt(
-  team: TeamDefinition,
-  member: TeamMember,
-  selection: TeamModelSelection,
-): string {
+function buildMemberPrompt(input: {
+  team: TeamDefinition;
+  member: TeamMember;
+  selection: TeamModelSelection;
+  provider: TeamProvider;
+}): string {
+  const { team, member, selection, provider } = input;
   return [
     `${TEAM_MEMBER_PROMPT_HEADER}: ${member.role}`,
     `team: ${team.name}`,
     `engine: ${member.engine}`,
+    `provider: ${provider}`,
     `difficulty: ${selection.difficulty}`,
     `model_family: ${selection.model_family}`,
     `selected_model: ${selection.model}`,
@@ -304,7 +307,7 @@ export function buildTeamRunPlan(
       model: placement?.model || member.model,
       effort: member.effort,
     });
-    const prompt = buildMemberPrompt(team, member, modelSelection);
+    const prompt = buildMemberPrompt({ team, member, selection: modelSelection, provider });
     const adapter =
       !blocked && (provider === "claude" || provider === "codex")
         ? buildAdapterPlan(
