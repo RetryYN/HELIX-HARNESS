@@ -113,7 +113,7 @@ W2 範囲外として明示 carry:
 - `pytest src/ut_tdd/tests/` で W1 124 PASS + W2 追加分の全 PASS 確認
 - `pytest -m windows_only` / `-m posix_only` marker 動作確認
 
-### Step 6: Sprint .6 template port + dogfood
+### Step 6: Sprint .6 template 移植 + dogfood
 
 - `vendor/helix-source/cli/templates/state/vmodel.json` を `docs/templates/state/vmodel.json` に port
   - L3.8 (TDD Red freeze 対象 artifact) 追加
@@ -124,9 +124,9 @@ W2 範囲外として明示 carry:
 ### Step 7: Sprint .7 code-reviewer subagent レビュー
 
 - code-reviewer subagent で W2 実装を 5 軸 (機能性 / 安全性 / 保守性 / テスト / V-model) でレビュー
-- P0 → in-place fix、P1 → carry note、P3 → carry PLAN
+- P0 → その場で修正、P1 → carry 記録、P3 → carry PLAN
 
-### Step 8: Sprint .8 commit + carry note
+### Step 8: Sprint .8 commit + carry 記録
 
 - 1 PLAN = 1 commit (`feat(W2): port HELIX vmodel trace lint to UT-TDD src/ut_tdd`)
 - §6 carry note に Sprint .1 drift、Sprint .7 review 結果、PLAN-002-b/c carry を記録
@@ -156,7 +156,7 @@ W2 範囲外として明示 carry:
   - `docs/migration/helix-to-ut-tdd-cutover-strategy.md` Mode 1
   - `docs/migration/helix-porting-map.md` W2 行 (35行目)
 
-## §6 carry note
+## §6 carry 記録
 
 (Sprint 進行中に追記)
 
@@ -175,7 +175,7 @@ scope 縮小: generates 8 artifact → 4 artifact (vmodel_loader 系 4 削除)
 
 ### Sprint .7 code-reviewer 所見 (2026-05-22)
 
-**Verdict**: APPROVE_WITH_MINOR
+**判定**: APPROVE_WITH_MINOR
 
 Important (4 件、in-place fix 適用済):
 - **I1**: E1-E6 regex code block false positive → `_strip_code_blocks` helper 追加、markdown のみ code fence + HTML コメント除去

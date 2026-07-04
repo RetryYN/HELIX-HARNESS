@@ -8,9 +8,9 @@
 
 | vendor path | size | 役割 |
 |---|---|---|
-| `vendor/helix-source/cli/lib/vmodel_loader.py` | 17,723 B | `config/vmodel-semantics.yaml` schema validator (spine/drives/lifecycle) |
+| `vendor/helix-source/cli/lib/vmodel_loader.py` | 17,723 B | `config/vmodel-semantics.yaml` schema validator (spine/drives/lifecycle) の検証 |
 | `vendor/helix-source/cli/lib/vmodel_lint.py` | 9,890 B | PLAN markdown 内の 4 種 path pattern count ベース lint |
-| `vendor/helix-source/cli/lib/tests/test_vmodel_lint.py` | 10,948 B | 12 test (LintResult / grandfather / draft skip / strict exit) |
+| `vendor/helix-source/cli/lib/tests/test_vmodel_lint.py` | 10,948 B | 12 test (LintResult / grandfather / draft skip / strict exit) の fixture |
 | `vendor/helix-source/cli/lib/tests/test_vmodel_loader.py` | 2,028 B | (未読、Sprint .4 で確認) |
 | `vendor/helix-source/cli/lib/tests/test_vmodel_loader_lifecycle.py` | 2,155 B | (未読、Sprint .4 で確認) |
 | `vendor/helix-source/cli/lib/tests/test_vmodel_multi_drive.py` | 2,719 B | (未読、Sprint .4 で確認) |
@@ -46,12 +46,12 @@
 
 **当初**:
 - vmodel_loader.py port (17 KB)
-- vmodel_lint.py port (10 KB、adapt)
+- vmodel_lint.py の移植 (10 KB、adapt)
 - 4 test file port
 
 **Sprint .1 後の改訂提案**:
 - ~~vmodel_loader.py port~~ → **削除** (D4: semantic config 不在、§2 直接 lint で十分)
-- vmodel_lint.py → **rewrite** (D1: count → edge graph)
+- vmodel_lint.py → **rewrite** (D1: count 方式から edge graph 方式へ)
 - ~~test_vmodel_loader*.py 3 file port~~ → **削除** (D4 連動)
 - test_vmodel_lint.py の structure 流用、内容 rewrite
 - 新規追加: 必須 8 edge 個別検証 fixture (D1)、kind dispatcher fixture (D5)、L6 QA / 逆ピラミッド fixture (D6/D7)、Pair freeze fixture (D8)
@@ -79,9 +79,9 @@
 - Sprint .2 (skeleton): `src/ut_tdd/vmodel_lint.py` の dataclass + EDGE_ID enum + EXIT 定数 + 関数 stub 作成
 - Sprint .3 (実装): 8 edge 個別検証 + kind dispatcher + L6 QA / 逆ピラミッド + exit code 0/2/1
 - Sprint .4 (test): vendor test pattern (12 test) を流用しつつ rewrite、UT-TDD §2.7 受入条件網羅
-- Sprint .5 (sweep): pytest + py_compile
+- Sprint .5 (sweep): pytest + py_compile を実行
 - Sprint .6 (template): vendor vmodel.json / deliverables.json を読んで §2 と対照、L3.8 + L6 QA 追加
-- Sprint .7 (review): code-reviewer subagent
+- Sprint .7 (review): code-reviewer subagent による確認
 - Sprint .8 (commit): 1 PLAN = 1 commit
 
 ## §6 PLAN-002 §3/§6 改訂への反映
