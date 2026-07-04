@@ -63,8 +63,8 @@ export interface FrRoadmapCoverageResult {
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+Residual Feature Buckets\s*$/m;
-const CLOSURE_SECTION_RE = /^##\s+Residual Feature Closure Evidence\s*$/m;
+const SECTION_RE = /^##\s+(?:Residual Feature Buckets|residual feature の bucket)\s*$/m;
+const CLOSURE_SECTION_RE = /^##\s+(?:Residual Feature Closure Evidence|residual feature closure 証跡)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const EXPECTED_BUCKETS = ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9"] as const;
 const VALID_STATUSES = new Set<FrRoadmapCoverageStatus>([
@@ -103,6 +103,10 @@ function tableRows(text: string): string[][] {
         .map((cell) => cell.trim()),
     )
     .filter((cells) => !cells.every((cell) => /^:?-{3,}:?$/.test(cell)));
+}
+
+function headerIndex(header: string[], labels: string[]): number {
+  return labels.map((label) => header.indexOf(label)).find((index) => index >= 0) ?? -1;
 }
 
 function normalizeStatus(raw: string): FrRoadmapCoverageStatus | null {
@@ -152,12 +156,12 @@ function parseClosureRows(
   }
   const header = parsed[0].map((cell) => cell.toLowerCase());
   const indexes = {
-    bucket: header.indexOf("bucket"),
-    plan: header.indexOf("plan / wbs"),
-    source: header.indexOf("l7 source"),
-    test: header.indexOf("test file / oracle citation"),
-    gate: header.indexOf("coverage gate"),
-    status: header.indexOf("status"),
+    bucket: headerIndex(header, ["bucket"]),
+    plan: headerIndex(header, ["plan / wbs"]),
+    source: headerIndex(header, ["l7 source"]),
+    test: headerIndex(header, ["test file / oracle citation", "test file / oracle 引用"]),
+    gate: headerIndex(header, ["coverage gate"]),
+    status: headerIndex(header, ["status"]),
   };
   if (Object.values(indexes).some((index) => index < 0)) {
     violations.push({ file: doc.file, reason: "malformed_closure_row" });
@@ -220,12 +224,12 @@ export function analyzeFrRoadmapCoverageWithRoot(
 
     const header = parsed[0].map((cell) => cell.toLowerCase());
     const indexes = {
-      bucket: header.indexOf("bucket"),
-      upstream: header.indexOf("upstream source"),
-      route: header.indexOf("current route"),
-      state: header.indexOf("v-model state"),
-      next: header.indexOf("required next artifact"),
-      status: header.indexOf("status"),
+      bucket: headerIndex(header, ["bucket"]),
+      upstream: headerIndex(header, ["upstream source"]),
+      route: headerIndex(header, ["current route"]),
+      state: headerIndex(header, ["v-model state", "v-model 状態"]),
+      next: headerIndex(header, ["required next artifact", "次に必要な artifact"]),
+      status: headerIndex(header, ["status"]),
     };
     if (Object.values(indexes).some((index) => index < 0)) {
       violations.push({ file: doc.file, reason: "malformed_row" });

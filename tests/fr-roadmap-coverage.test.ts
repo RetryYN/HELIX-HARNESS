@@ -89,6 +89,20 @@ describe("fr-roadmap-coverage lint", () => {
     expect(frRoadmapCoverageMessages(r)[0]).toContain("closure=9");
   });
 
+  it("U-FRC-003b: accepts Japanese-localized A-133 section and column labels", () => {
+    const localized = closed
+      .replace("## Residual Feature Buckets", "## residual feature の bucket")
+      .replace("## Residual Feature Closure Evidence", "## residual feature closure 証跡")
+      .replace("V-model state", "V-model 状態")
+      .replace("Required next artifact", "次に必要な artifact")
+      .replace("test file / oracle citation", "test file / oracle 引用");
+    const r = analyzeFrRoadmapCoverageWithRoot([{ file: "A.md", content: localized }], process.cwd());
+
+    expect(r.ok).toBe(true);
+    expect(r.rows).toHaveLength(9);
+    expect(r.closureRows).toHaveLength(9);
+  });
+
   it("U-FRC-004: fails closed rows without closure evidence", () => {
     const r = analyzeFrRoadmapCoverageWithRoot(
       [{ file: "A.md", content: closed.replace("src/feedback/engine.ts", "src/missing.ts") }],
