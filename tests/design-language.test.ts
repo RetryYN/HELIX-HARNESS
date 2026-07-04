@@ -98,6 +98,7 @@ describe("design-language lint", () => {
     expect(paths).toContain("docs/migration/helix-fork-completion-plan.md");
     expect(paths).toContain("docs/reference/ai-agent-harness-directory-reference.md");
     expect(paths).toContain("docs/research/mcp-external-verification-profile-research-2026-06-09.md");
+    expect(paths).toContain("docs/skills/SKILL_MAP.md");
     expect(paths).toContain("docs/templates/prompts/effort-classify.md");
   });
 
