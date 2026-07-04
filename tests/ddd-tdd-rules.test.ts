@@ -17,6 +17,7 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
 - id: test-oracle-strength
 - id: integration-gwt
 - id: unit-oracle-substance
+- id: mutation-oracle
 - id: DDD-INV-001; oracle: U-DDDTDD-002
 `,
       ruleIds: [
@@ -26,6 +27,7 @@ function baseInputs(overrides: Partial<DddTddInputs> = {}): DddTddInputs {
         "test-oracle-strength",
         "integration-gwt",
         "unit-oracle-substance",
+        "mutation-oracle",
       ],
     },
     workflowDocs: [
@@ -150,6 +152,60 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.filter((v) => v.rule === "red-first-evidence")).toHaveLength(2);
   });
 
+  it("detects confirmed TDD plans without concrete mutation oracle evidence", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L7-97-missing-mutation.md",
+            text: [
+              "---",
+              "status: confirmed",
+              "tdd_red_required: true",
+              "red_at: 2026-06-09T09:00:00Z",
+              "green_at: 2026-06-09T10:00:00Z",
+              "---",
+            ].join("\n"),
+          },
+          {
+            path: "docs/plans/PLAN-L7-96-placeholder-mutation.md",
+            text: [
+              "---",
+              "status: confirmed",
+              "mutation_oracle_required: true",
+              'mutation_oracle_evidence: "TBD"',
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.ok).toBe(false);
+    expect(result.violations.filter((v) => v.rule === "mutation-oracle")).toHaveLength(2);
+  });
+
+  it("accepts concrete mutation oracle evidence tied to a test locator and kill signal", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L7-95-mutation-evidence.md",
+            text: [
+              "---",
+              "status: confirmed",
+              "tdd_red_required: true",
+              "red_at: 2026-06-09T09:00:00Z",
+              "green_at: 2026-06-09T10:00:00Z",
+              "mutation_oracle_evidence: tests/ddd-tdd-rules.test.ts::seeded mutant killed by U-DDDTDD-011",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.violations.map((v) => v.rule)).not.toContain("mutation-oracle");
+  });
+
   it("detects missing and weak test oracles", () => {
     const result = analyzeDddTddRules(
       baseInputs({
@@ -182,6 +238,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
 - id: test-oracle-strength
 - id: integration-gwt
 - id: unit-oracle-substance
+- id: mutation-oracle
 - tests/weak-oracle.test.ts:2 test-oracle-strength
 `,
           ruleIds: [
@@ -191,6 +248,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
             "test-oracle-strength",
             "integration-gwt",
             "unit-oracle-substance",
+            "mutation-oracle",
           ],
         },
         docs: [

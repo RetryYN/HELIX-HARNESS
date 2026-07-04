@@ -74,6 +74,7 @@ const REQUIRED_RULE_IDS = [
   "test-oracle-strength",
   "integration-gwt",
   "unit-oracle-substance",
+  "mutation-oracle",
 ];
 
 const REQUIRED_WORKFLOW_DOCS: WorkflowRequirement[] = [
@@ -297,6 +298,10 @@ function frontmatterValue(text: string, key: string): string | null {
   return match?.[1]?.trim().replace(/^["']|["']$/g, "") ?? null;
 }
 
+function booleanField(text: string, key: string): boolean {
+  return new RegExp(`^${key}:\\s*true\\s*$`, "m").test(text);
+}
+
 function evidenceDates(text: string): EvidenceDates {
   return {
     redAt: frontmatterValue(text, "red_at"),
@@ -308,7 +313,7 @@ function redFirstViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
   const violations: DddTddViolation[] = [];
   for (const plan of plans) {
     const status = frontmatterValue(plan.text, "status");
-    const required = /^tdd_red_required:\s*true\s*$/m.test(plan.text);
+    const required = booleanField(plan.text, "tdd_red_required");
     if (status !== "confirmed" || !required) continue;
     const dates = evidenceDates(plan.text);
     if (!dates.redAt || !dates.greenAt) {
@@ -328,6 +333,46 @@ function redFirstViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
         message: "red_at must be earlier than or equal to green_at.",
       });
     }
+  }
+  return violations;
+}
+
+const MUTATION_ORACLE_EVIDENCE_PATTERN =
+  /^(?:mutation_oracle(?:_evidence)?|mutation_test(?:_evidence)?):\s*(.+)$/m;
+const MUTATION_ORACLE_PLACEHOLDER = /^("|')?(?:todo|tbd|placeholder|none|n\/a|-|—|未定|なし)("|')?$/i;
+const MUTATION_ORACLE_LOCATOR_PATTERN =
+  /\b(?:tests\/[^\s"'`]+\.test\.ts|docs\/test-design\/[^\s"'`]+|\.ut-tdd\/audit\/[^\s"'`]+|bun\s+test|vitest)\b/;
+const MUTATION_ORACLE_KILL_SIGNAL_PATTERN = /\b(?:kill(?:ed|s)?|fail(?:ed|s)?|red|mutation)\b/i;
+
+function mutationOracleEvidence(text: string): { line: number; value: string } | null {
+  const match = text.match(MUTATION_ORACLE_EVIDENCE_PATTERN);
+  const value = match?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
+  if (!match || MUTATION_ORACLE_PLACEHOLDER.test(value)) return null;
+  if (!MUTATION_ORACLE_LOCATOR_PATTERN.test(value)) return null;
+  if (!MUTATION_ORACLE_KILL_SIGNAL_PATTERN.test(value)) return null;
+  return {
+    line: text.slice(0, match.index).split(/\r?\n/).length,
+    value,
+  };
+}
+
+function mutationOracleViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
+  const violations: DddTddViolation[] = [];
+  for (const plan of plans) {
+    const status = frontmatterValue(plan.text, "status");
+    const required =
+      status === "confirmed" &&
+      (booleanField(plan.text, "tdd_red_required") ||
+        booleanField(plan.text, "mutation_oracle_required"));
+    if (!required) continue;
+    if (mutationOracleEvidence(plan.text)) continue;
+    violations.push({
+      path: plan.path,
+      line: 1,
+      rule: "mutation-oracle",
+      message:
+        "Confirmed TDD plan requires concrete mutation_oracle_evidence showing the test would fail or kill the seeded defect.",
+    });
   }
   return violations;
 }
@@ -488,6 +533,7 @@ export function analyzeDddTddRules(inputs: DddTddInputs): DddTddResult {
   violations.push(...domainBoundaryViolations(inputs.docs));
   violations.push(...invariantTraceViolations(inputs.policy, inputs.l7Text));
   violations.push(...redFirstViolations(inputs.plans));
+  violations.push(...mutationOracleViolations(inputs.plans));
   violations.push(...testOracleViolations(inputs.docs));
   violations.push(...integrationGwtViolations(inputs.l8Text));
   violations.push(...unitOracleSubstanceViolations(inputs.l7Text));
