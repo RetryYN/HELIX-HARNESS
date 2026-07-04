@@ -5,7 +5,7 @@
 
 ## 1. 対象
 
-この guide は、HELIX Harness を既存 repository または新規 repository に導入する人が、初期 setup の
+この guide は、HELIX-HARNESS を既存 repository または新規 repository に導入する人が、初期 setup の
 生成物と安全境界を確認するための reference である。開発 repository の dogfood state を consumer の
 正本 state と混同しない。
 

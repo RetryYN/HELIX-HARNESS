@@ -1,7 +1,7 @@
 {
   "name": "ut-tdd",
   "version": "0.1.0",
-  "description": "HELIX Agent Harness — AI 実装エージェントをチーム開発で安全に使う検証・開発基盤 (TypeScript core, ADR-001)",
+  "description": "HELIX-HARNESS — AI 実装エージェントを安全に使う検証・開発基盤 (TypeScript core, ADR-001)",
   "license": "MIT",
   "type": "module",
   "private": true,

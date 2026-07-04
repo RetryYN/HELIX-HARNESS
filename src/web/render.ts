@@ -63,7 +63,7 @@ export function renderAppShell(tokens: UiTokens): string {
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>HELIX Harness UI</title>
+  <title>HELIX-HARNESS UI</title>
   <style>
     :root {
       --fg: ${tokens.color.fg.default};

@@ -134,7 +134,7 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
 
   const description =
     input.description?.trim() ||
-    "この skill は HELIX Agent Harness の作業手順を補助するための初期 scaffold である。";
+    "この skill は HELIX-HARNESS の作業手順を補助するための初期 scaffold である。";
 
   return {
     ok: findings.length === 0,

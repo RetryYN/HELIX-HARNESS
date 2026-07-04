@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import { execFileSync, spawn, spawnSync } from "node:child_process";
 /**
- * HELIX Agent Harness CLI (TypeScript core, ADR-001).
+ * HELIX-HARNESS CLI (TypeScript core, ADR-001).
  * 薄い OS 別 entrypoint (scripts/ut-tdd, ut-tdd.ps1) が本 core を呼ぶ。
  * status / doctor / plan lint / vmodel lint / gate / runtime adapter を集約する。
  */
@@ -891,7 +891,7 @@ function writeRecordTemplates(
 const program = new Command();
 program
   .name("ut-tdd")
-  .description("HELIX Agent Harness (TypeScript core, ADR-001)")
+  .description("HELIX-HARNESS (TypeScript core, ADR-001)")
   .version(LOCAL_DISTRIBUTION_PACKAGE_VERSION);
 
 program
