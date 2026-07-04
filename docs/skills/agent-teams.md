@@ -18,86 +18,80 @@ applies_to:
     - Recovery
 ---
 
-# agent teams
+# agent teams（チーム実行設計）
 
-How to structure multi-agent team runs in UT-TDD: role separation between
-frontier reviewer, worker, and fast checker; no-self-approval enforcement; and
-team YAML authoring (FR-L1-12 team run, harness pillar 5 split work across
-roles/runtimes only where it reduces risk or cost).
+UT-TDD における multi-agent team runs の構造化を扱う。対象は frontier reviewer、
+worker、fast checker の role separation、no-self-approval enforcement、team YAML authoring
+（FR-L1-12 team run、harness pillar 5: risk または cost を下げる場合だけ roles/runtimes に work を分割）。
 
-## When to load this skill
+## この skill を読む条件
 
-- Authoring or editing a `.ut-tdd/teams/<team>.yaml` team definition.
-- A judgement gate requires cross-runtime or cross-model-family review evidence.
-- A Discovery or Add-feature PLAN needs parallel worker + reviewer separation.
-- A Recovery incident needs a dedicated fast-checker role to verify fixes.
+- `.ut-tdd/teams/<team>.yaml` team definition を作成または編集する。
+- judgement gate が cross-runtime または cross-model-family review evidence を必要とする。
+- Discovery または Add-feature PLAN が parallel worker + reviewer separation を必要とする。
+- Recovery incident で fix 検証用の dedicated fast-checker role が必要。
 
-## Team YAML structure
+## Team YAML structure（定義構造）
 
-Teams run via:
+teams は次で実行する。
 
 ```
 ut-tdd team run --definition .ut-tdd/teams/<team>.yaml
 ```
 
-A team definition declares:
+team definition は次を宣言する。
 
-| Field | Purpose |
+| Field | 用途 |
 |---|---|
-| `name` | Team identifier |
-| `roles` | Ordered list of role entries (name, agent, model, task) |
+| `name` | team identifier |
+| `roles` | role entries（name、agent、model、task）の ordered list |
 | `mode` | `parallel` or `serial` |
-| `judgement_gate` | Which role produces the binding verdict |
+| `judgement_gate` | binding verdict を出す role |
 
-Each `agent` value must be an allowlisted `subagent_type`; each `model` must
-match that agent's frontmatter family. The team runner does not relax the guard.
+各 `agent` value は allowlisted `subagent_type` でなければならない。各 `model` は
+その agent の frontmatter family と一致しなければならない。team runner は guard を緩めない。
 
-## Role separation rules
+## Role separation rules（役割分離ルール）
 
-**No self-approval.** The agent that produces an artefact must not also be the
-agent that clears the judgement gate. Enforce this by assigning different model
-families to worker and reviewer slots:
+**No self-approval.** artefact を生成する agent は、judgement gate を clear する agent を兼ねてはならない。
+worker と reviewer slots に different model families を割り当てて強制する。
 
-| Slot | Example assignment | Rule |
+| Slot | 割り当て例 | ルール |
 |---|---|---|
-| Worker / implementer | `pmo-haiku` | Produces artefact |
-| Reviewer / frontier | `code-reviewer` (primary model) | Clears gate — different family |
-| Fast checker | `pmo-project-scout` | Structural checks only, not final verdict |
+| Worker / implementer | `pmo-haiku` | artefact を生成する |
+| Reviewer / frontier | `code-reviewer`（primary model） | gate を clear する。different family を使う |
+| Fast checker | `pmo-project-scout` | structural checks のみ担当し、final verdict は出さない |
 
-In single-runtime mode (no second model family available), the reviewer slot
-must record `intra_runtime_subagent` evidence in `.ut-tdd/audit/` rather than
-passing the gate silently.
+single-runtime mode（second model family が無い場合）では、reviewer slot は gate を silent pass せず、
+`.ut-tdd/audit/` に `intra_runtime_subagent` evidence を記録しなければならない。
 
-## Judgement gate behaviour
+## Judgement gate behaviour（判定 gate の挙動）
 
-`ut-tdd gate <id>` reads execution mode from `ut-tdd status`. In hybrid mode a
-cross-family reviewer verdict is required. In single-runtime mode an
-`intra_runtime_subagent` record is the minimum — document the limitation and
-escalate if the risk is high.
+`ut-tdd gate <id>` は `ut-tdd status` から execution mode を読む。hybrid mode では
+cross-family reviewer verdict が必要。single-runtime mode では `intra_runtime_subagent` record が最低条件。
+limitation を文書化し、risk が高い場合は escalate する。
 
-## Parallel vs serial mode
+## Parallel vs serial mode（並列 / 直列の選択）
 
-Use `parallel` when worker slots produce independent artefacts with no ordering
-dependency. Use `serial` when a later step requires the verified output of an
-earlier one (e.g., research → judgement → ADR authoring). Mixing modes in a
-single team definition is not supported; split into two team runs instead.
+worker slots が ordering dependency の無い independent artefacts を生成する場合は `parallel` を使う。
+later step が earlier step の verified output を必要とする場合は `serial` を使う
+（例: research -> judgement -> ADR authoring）。single team definition 内で mode を混在させることは
+supported ではないため、2 つの team runs に分割する。
 
-## Team design checklist
+## Team design checklist（設計チェックリスト）
 
-- [ ] Each `agent` value is in the guard allowlist.
-- [ ] Each `model` is explicit and matches the agent's frontmatter family.
-- [ ] Worker and judgement-gate slots use different model families (or
-      `intra_runtime_subagent` evidence is planned).
-- [ ] `mode` is explicitly `parallel` or `serial`.
-- [ ] `ut-tdd team run --definition <path>` tested with `--dry-run` equivalent
-      before first live execution.
-- [ ] Post-run: verify artefacts by reading files + `git status`, not by
-      trusting agent narration.
+- [ ] 各 `agent` value が guard allowlist 内にある。
+- [ ] 各 `model` が明示され、agent の frontmatter family と一致する。
+- [ ] worker と judgement-gate slots が different model families を使う
+      （または `intra_runtime_subagent` evidence が planned）。
+- [ ] `mode` が `parallel` または `serial` として明示されている。
+- [ ] 初回 live execution 前に、`ut-tdd team run --definition <path>` を `--dry-run` equivalent で test 済み。
+- [ ] post-run: agent narration を信頼せず、files read + `git status` で artefacts を verify する。
 
-## Anti-patterns
+## Anti-patterns（避けるパターン）
 
-- Assigning the same agent role to both worker and judgement-gate — the guard
-  does not enforce this; the team author must.
-- Using `parallel` mode when step 2 depends on step 1 output — produces
-  non-deterministic results.
-- Omitting `model` in a role entry — the guard rejects the spawn at runtime.
+- same agent role を worker と judgement-gate の両方へ割り当てる。
+  guard はこれを強制しないため、team author が守る必要がある。
+- step 2 が step 1 output に依存するのに `parallel` mode を使う。
+  non-deterministic results を生む。
+- role entry で `model` を省略する。guard は runtime で spawn を reject する。
