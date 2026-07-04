@@ -317,7 +317,7 @@ permission が混在する workflow を read-only CI evidence として扱わな
 0-A artifact を見て green になる意味ずれを防ぐ。
 
 2026-07-03 continuation (PLAN-L7-247): HELIX project setup の初回 workflow に
-`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json` を追加する。L1 §2.7 の
+`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を追加する。L1 §2.7 の
 「setup 済み project は tag bump / release pin 更新で version-up できる」を、consumer repo でも実行できる
 no-write / plan-only dry-run 証跡へ接続するためである。`version-up activation-packet --json` は dogfood
 PLAN corpus を読むため consumer first-run 必須 command にはせず、completion / status / harness 側 decision

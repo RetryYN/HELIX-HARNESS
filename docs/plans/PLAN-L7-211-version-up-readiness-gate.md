@@ -368,9 +368,8 @@ path, and preserve approval/escalation boundaries before future activation.
   `semverChange=minor`, and migration/rollback/idempotency/release gate/source
   basis rows. Downgrade or invalid target input returns `ok=false` before any
   apply surface exists.
-- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote
-  https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git --json`
-  resolves the Pack tag through `git ls-remote --tags` and reports
+- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`
+  resolves the HELIX-HARNESS-OS tag through `git ls-remote --tags` and reports
   `releaseTagSource=remote`; without a concrete SemVer target, activation packet
   verification uses the activation-packet review command instead of emitting
   `--target future`.
