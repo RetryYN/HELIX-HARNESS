@@ -18,23 +18,21 @@ applies_to:
     - Refactor
 ---
 
-# code review
+# code review（コードレビュー）
 
-Five-axis review procedure for UT-TDD implementation artifacts at trace-freeze
-and accept gates (FR-L1-13 Forward workflow, FR-L1-21 review evidence). Applies
-whenever `ut-tdd review --uncommitted` is the entry point or a PLAN's accept
-gate requires recorded review findings.
+trace-freeze と accept gate における UT-TDD implementation artifacts の five-axis review procedure
+（FR-L1-13 Forward workflow、FR-L1-21 review evidence）。`ut-tdd review --uncommitted` が entry point
+である場合、または PLAN の accept gate が recorded review findings を要求する場合に適用する。
 
-## When to load this skill
+## この skill を読む条件
 
-- Entering the trace-freeze gate of any Forward or Add-feature PLAN.
-- A Recovery or Refactor PLAN requires evidence that the change does not
-  introduce new defects.
-- A code-reviewer subagent is dispatched via `ut-tdd claude --role code-reviewer`.
+- Forward または Add-feature PLAN の trace-freeze gate に入る。
+- Recovery または Refactor PLAN で、変更が new defects を導入していない evidence が必要。
+- `ut-tdd claude --role code-reviewer` 経由で code-reviewer subagent を dispatch する。
 
-## Pre-review checklist
+## Pre-review checklist（事前チェック）
 
-Run these before opening any file:
+file を開く前に次を実行する:
 
 ```
 bun run typecheck
@@ -44,47 +42,45 @@ ut-tdd doctor
 ut-tdd review --uncommitted
 ```
 
-All must exit 0. If any fail, surface the failure to the author before
-proceeding — reviewing broken code conflates build errors with review findings.
+すべて 0 で終了しなければならない。いずれかが fail した場合は、先に author へ failure を surface する。
+broken code を review すると、build errors と review findings が混ざる。
 
-## Five review axes
+## Five review axes（5 つの review 軸）
 
-### Axis 1 — Correctness vs. design intent
+### Axis 1 — Correctness vs. design intent（設計意図との整合）
 
-Read the L5/L6 design doc for the scope under review. Verify each public
-function or module against its documented contract. A deviation from the design
-doc is a defect, not a judgement call.
+review scope の L5/L6 design doc を読む。各 public function / module を documented contract に対して検証する。
+design doc からの deviation は judgement call ではなく defect である。
 
-### Axis 2 — Test coverage substance
+### Axis 2 — Test coverage substance（test coverage の実質）
 
-Confirm Vitest tests are asserting the specified behaviour, not just exercising
-code paths. Check: are boundary conditions from the L6 test-design doc present?
-Is the pass/fail fixture pair present for every gate-relevant path? Count skipped
-tests; each needs a PLAN-linked rationale.
+Vitest tests が code paths を通すだけでなく、specified behaviour を assert していることを確認する。
+L6 test-design doc の boundary conditions は存在するか。
+gate-relevant path ごとに pass/fail fixture pair があるか。skipped tests を数え、各 skipped test に
+PLAN-linked rationale があることを確認する。
 
-### Axis 3 — Trace completeness
+### Axis 3 — Trace completeness（trace 完全性）
 
-Verify that every FR cited in the PLAN `review_evidence` traces to a design doc
-section or a test file. An FR ID with no downstream artifact is an open
-obligation, not completed work.
+PLAN `review_evidence` に cited されたすべての FR が design doc section または test file に trace することを確認する。
+downstream artifact の無い FR ID は completed work ではなく open obligation である。
 
-### Axis 4 — V-model layer obligations
+### Axis 4 — V-model layer obligations（V-model layer の責務）
 
-Confirm the expected sibling artifacts are present:
-- L7 implementation -> L6 test-design doc must exist at `docs/test-design/`.
-- L8 integration test design -> matching L5 basic design doc must exist.
-- New term used in code -> L0 glossary entry must exist.
+expected sibling artifacts が存在することを確認する:
+- L7 implementation -> L6 test-design doc が `docs/test-design/` に存在する。
+- L8 integration test design -> matching L5 basic design doc が存在する。
+- code で使う new term -> L0 glossary entry が存在する。
 
-### Axis 5 — Operational hygiene
+### Axis 5 — Operational hygiene（運用衛生）
 
-- No unexplained `// biome-ignore`, `// @ts-ignore`, or suppression comments.
-- No hardcoded paths, secrets, or credentials.
-- No dead code left as technical debt without a PLAN-linked `TODO`.
-- Conventional Commits message on the commit in scope.
+- unexplained `// biome-ignore`、`// @ts-ignore`、suppression comments が無い。
+- hardcoded paths、secrets、credentials が無い。
+- PLAN-linked `TODO` なしに technical debt として残された dead code が無い。
+- scope 内 commit に Conventional Commits message がある。
 
-## Recording review findings
+## Recording review findings（review findings の記録）
 
-Populate the PLAN `review_evidence` field with:
+PLAN `review_evidence` field に次を記録する:
 
 ```
 reviewer: <agent-slug or "intra_runtime_subagent">
@@ -99,16 +95,15 @@ axis_findings:
 timestamp: <ISO-8601>
 ```
 
-A CONDITIONAL outcome must include a follow-up PLAN reference or the gate is
-treated as FAIL.
+CONDITIONAL outcome は follow-up PLAN reference を含めなければならない。無い場合、gate は FAIL と扱う。
 
-## Dispatch pattern
+## Dispatch pattern（dispatch 手順）
 
-In hybrid mode, dispatch to a separate subagent family:
+hybrid mode では separate subagent family へ dispatch する:
 
 ```
 ut-tdd claude --role code-reviewer --task "review PLAN-<id> at trace-freeze" --execute
 ```
 
-In single-runtime mode, record `intra_runtime_subagent` as the reviewer
-identity and perform the five-axis procedure above in full.
+single-runtime mode では reviewer identity として `intra_runtime_subagent` を記録し、
+上記 five-axis procedure を full に実施する。
