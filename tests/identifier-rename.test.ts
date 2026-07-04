@@ -310,6 +310,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           "Distribution reference: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
         ].join("\n"),
       );
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-adoption-roundup.md"),
+        "Ordinary adoption PLAN leaked: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack\n",
+      );
       writeFileSync(
         join(root, "docs", "handover", "session.md"),
         "Handover docs may mention .ut-tdd as evidence, not runtime authority.\n",
@@ -449,6 +454,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             token: "UT-TDD_AGENT-HARNESS-Pack",
             path: "docs/governance/objective.md",
             category: "governance_doc",
+            disposition: "safe_prose_candidate",
+          }),
+          expect.objectContaining({
+            token: "UT-TDD_AGENT-HARNESS-Pack",
+            path: "docs/plans/PLAN-L7-adoption-roundup.md",
+            category: "plan_doc",
             disposition: "safe_prose_candidate",
           }),
           expect.objectContaining({

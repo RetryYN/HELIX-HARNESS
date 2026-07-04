@@ -513,6 +513,10 @@ const RENAME_MAP: IdentifierRenameMapping[] = [
 const RENAME_EVIDENCE_PATH_PREFIX = ".ut-tdd/evidence/rename/";
 const RENAME_BACKUP_PATH_PREFIX = ".ut-tdd/backups/rename/<timestamp>/";
 const EXTERNAL_REPO_REFERENCE_PATHS = new Set([
+  "docs/governance/helix-adoption-design-completion-audit-2026-06-30.md",
+  "docs/governance/helix-objective-evidence-audit.md",
+  "docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md",
+  "docs/plans/PLAN-L7-274-objective-external-ledger-refresh.md",
   "src/lint/objective-evidence-audit.ts",
   "tests/cli-surface.test.ts",
   "tests/goal-evidence-audit.test.ts",
@@ -580,15 +584,10 @@ function isExternalRepoReferenceToken(token: IdentifierRenameResidualToken): boo
 
 function isExternalRepoReferencePath(path: string): boolean {
   if (EXTERNAL_REPO_REFERENCE_PATHS.has(path)) return true;
-  if (path === "docs/governance/helix-objective-evidence-audit.md") return true;
   if (path.startsWith("docs/design/helix/") && path.endsWith("/upstream-substance-gap.md")) {
     return true;
   }
   if (path === "docs/test-design/helix/upstream-substance-gap.md") return true;
-  if (/^docs\/governance\/.*(?:upstream|adoption).*\.md$/.test(path)) return true;
-  if (/^docs\/plans\/.*(?:upstream|objective-external|adoption).*\.md$/.test(path)) {
-    return true;
-  }
   return false;
 }
 

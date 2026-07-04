@@ -29,10 +29,10 @@ import {
   checkHandover,
   checkHandoverDisciplineMessages,
   checkImplPlanTrace,
-  checkL14CloseAudit,
   checkL6Completion,
   checkL6FrCoverage,
   checkL7Completion,
+  checkL14CloseAudit,
   checkMergedPlanStatus,
   checkModuleDrift,
   checkObjectiveEvidenceAudit,
@@ -43,7 +43,6 @@ import {
   checkPlanGovernance,
   checkPlanTraceGate,
   checkProjectHooks,
-  projectRuntimeModelTelemetryForDoctor,
   checkPropagation,
   checkReadability,
   checkRegressionExpansion,
@@ -67,11 +66,10 @@ import {
   checkVersionUpReadiness,
   completionDedicatedPacketBridgeViolations,
   type DoctorDeps,
+  projectRuntimeModelTelemetryForDoctor,
   runConsumerDoctor,
   runDoctor,
 } from "../src/doctor/index";
-import { openHarnessDb } from "../src/state-db/index";
-import { migrate } from "../src/state-db/migration";
 import { checkGreenCommandDigests } from "../src/lint/green-command-digest";
 import {
   analyzeOutstandingWork,
@@ -82,6 +80,8 @@ import {
   loadS4DecisionReadinessInput,
 } from "../src/lint/s4-decision-readiness";
 import type { AgentSlotsDeps, Slot } from "../src/runtime/agent-slots";
+import { openHarnessDb } from "../src/state-db/index";
+import { migrate } from "../src/state-db/migration";
 
 const NOW = "2026-06-04T00:00:00.000Z";
 const pointerPath = join("/repo", ".ut-tdd", "handover", "CURRENT.json");
@@ -1607,6 +1607,25 @@ describe("runConsumerDoctor", () => {
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
     ).toContain("premature_future_state=.helix/state/setup.json,.helix/teams/default-hybrid.yaml");
+  });
+
+  it("fails closed when root helix runtime-like state exists before PLAN-M-02 approval", () => {
+    const files = consumerDoctorFiles("/repo", {
+      "helix/evidence/rename/blast-radius-baseline.json": "{}\n",
+      "helix/handover/CURRENT.json": "{}\n",
+      "helix/harness.db": "",
+      "helix/state/current-plan": "PLAN-M-02\n",
+      "helix/teams/default-hybrid.yaml": "name: default-hybrid\nmembers: []\n",
+    });
+
+    const result = runConsumerDoctor(deps({ files }));
+
+    expect(result.ok).toBe(false);
+    expect(
+      result.messages.find((message) => message.includes("consumer-identifier-transition")),
+    ).toContain(
+      "premature_future_state=helix/evidence/rename/blast-radius-baseline.json,helix/handover/CURRENT.json,helix/harness.db,helix/state/current-plan,helix/teams/default-hybrid.yaml",
+    );
   });
 
   it("fails closed when package/bin or scripts expose helix before PLAN-M-02 approval", () => {

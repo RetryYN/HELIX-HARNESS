@@ -1074,7 +1074,7 @@ function runtimeSessionDirsForDoctor(): { claudeDir: string; codexDir: string } 
   };
 }
 
-export function projectRuntimeModelTelemetryForDoctor(repoRoot: string, db: HarnessDb): void {
+export function projectRuntimeModelTelemetryForDoctor(_repoRoot: string, db: HarnessDb): void {
   const { claudeDir, codexDir } = runtimeSessionDirsForDoctor();
   const usages = loadRuntimeSessionUsage({ claudeDirs: [claudeDir], codexDirs: [codexDir] });
   projectTokenUsage(db, usages);
@@ -1931,6 +1931,27 @@ function consumerPathsUnder(deps: DoctorDeps, relativeDir: string, maxDepth = 8)
     .sort();
 }
 
+function prematureHelixRuntimePaths(deps: DoctorDeps): string[] {
+  const runtimeLikeRoots = new Set([
+    "adapters",
+    "audit",
+    "cache",
+    "evidence",
+    "handover",
+    "logs",
+    "memory",
+    "review",
+    "state",
+    "teams",
+  ]);
+  const runtimeLikeRootFiles = new Set(["harness.db"]);
+  return consumerPathsUnder(deps, "helix").filter((path) => {
+    const [, firstSegment] = path.split("/");
+    if (!firstSegment) return false;
+    return runtimeLikeRoots.has(firstSegment) || runtimeLikeRootFiles.has(firstSegment);
+  });
+}
+
 function consumerJson(deps: DoctorDeps, relativePath: string): unknown | null {
   const raw = consumerFile(deps, relativePath);
   if (raw === null) return null;
@@ -2042,7 +2063,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : "doctor: consumer-adapter-docs - violation: adapter docs missing managed/Japanese/consumer-profile/cutover markers",
   );
   const futureStateDir = [".", "helix"].join("");
-  const prematureHelixState = consumerPathsUnder(deps, futureStateDir);
+  const prematureHelixState = [
+    ...consumerPathsUnder(deps, futureStateDir),
+    ...prematureHelixRuntimePaths(deps),
+  ].sort();
   const packageJson = recordValue(consumerJson(deps, "package.json"));
   const packageName = typeof packageJson?.name === "string" ? packageJson.name : "";
   const packageBinRaw = packageJson?.bin;
@@ -3135,7 +3159,9 @@ export function checkG9SystemWorkflow(repoRoot: string): {
 } {
   if (!canLoadG9SystemWorkflowInput(repoRoot)) {
     return {
-      messages: ["g9-system-workflow - violation: L9 test design, L9 boundary, or gates.md could not be read"],
+      messages: [
+        "g9-system-workflow - violation: L9 test design, L9 boundary, or gates.md could not be read",
+      ],
       ok: false,
     };
   }
