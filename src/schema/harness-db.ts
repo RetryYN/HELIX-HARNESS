@@ -11,7 +11,7 @@ export { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
  * bump の 1 箇所で済む (CLAUDE.md: ハードコード単一正本化 / 将来拡張容易性)。
  *
  * 設計正本: docs/design/harness/L5-detailed-design/physical-data.md §2.7 (基本 7) + §9.1 (拡張 10)。
- * 本 span は core 17 table を載せる。§9.4-§9.7 (UT evidence / relation-graph / MCP / doc-export) の
+ * 本 span は core 17 table を載せる。§9.4-§9.7 (unit-test evidence / relation-graph / MCP / doc-export) の
  * projection table は、それぞれの射影を配線する span (46+) が registry に追記する。
  *
  * 注: physical-data.md は列を列挙するが SQLite 型を明示しない。id/path/status/timestamp 系を TEXT、

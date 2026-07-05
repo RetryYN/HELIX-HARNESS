@@ -875,7 +875,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         [
           "---",
           "plan_id: PLAN-L7-239-structured-ut-evidence",
-          "title: structured UT evidence fixture",
+          "title: structured unit-test evidence fixture",
           "kind: impl",
           "layer: L7",
           "drive: agent",
@@ -1056,7 +1056,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         [
           "---",
           "plan_id: PLAN-L7-240-reporter-ut-evidence",
-          "title: reporter UT evidence fixture",
+          "title: reporter unit-test evidence fixture",
           "kind: impl",
           "layer: L7",
           "drive: agent",

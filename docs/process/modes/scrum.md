@@ -155,7 +155,7 @@ S4 decision source ledger（checked 2026-07-03、S4 判断 source 台帳）:
 | ISTQB Glossary | <https://glossary.istqb.org/> | live official glossary | live official glossary | adopt-live-terms-with-ledger-date | test basis / test condition / test result の語彙で verified evidence を分離する | `verified_evidence`, `decision_basis` |
 | NIST SSDF SP 800-218 | <https://csrc.nist.gov/pubs/sp/800/218/final> / <https://csrc.nist.gov/pubs/sp/800/218/r1/ipd> | final publication 1.1 (2022-02-04) | Rev. 1 initial public draft v1.2 (2025-12-17) | adopt-final-1.1; track-draft-do-not-adopt-until-final | secure development / release evidence と residual risk を S4 判断材料に残す | `unresolved_risk`, `external_source_basis` |
 
-Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その S4 decision source ledger は stale とし、S3 verified increment を S4 受入判定材料へ進めない。
+Ledger freshness policy（鮮度方針）: `checked` が未来日、または現在日から 90 日超過の場合、その S4 decision source ledger は stale とし、S3 verified increment を S4 受入判定材料へ進めない。
 
 Source ledger meaning review: `checked` 更新時は、各公式 source について `source_ledger_freshness`、
 `source_status_delta`、

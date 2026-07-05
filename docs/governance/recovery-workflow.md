@@ -14,7 +14,7 @@
 | (c) | 認識ずれ・前提誤読 | 前提を取り違えて進めた | (本当に誤読のときのみ) |
 | (d) | AI 暴走 | runaway / context 枯渇 / regression | — |
 
-> harness の存在意義 = AI が指示どおり動かない/逸脱するのを検出・是正すること。Recovery は失敗を正直に分類する (a/b を c に丸めない)。
+> HELIX-HARNESS の存在意義 = AI が指示どおり動かない/逸脱するのを検出・是正すること。Recovery は失敗を正直に分類する (a/b を c に丸めない)。
 
 ## §2 Recovery 本線ワークフロー (5 step)
 

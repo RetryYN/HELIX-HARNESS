@@ -467,7 +467,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 
 > Pair = `module-drift.md` Cross-Artifact Relation Graph Addendum (A-124/A-125 / PLAN-L6-31)。PLAN-L7-32 が承認済み L7 実装 entry である。
 >
-> **Status (PLAN-L7-32 塊C span, 2026-06-10)**: U-RELGRAPH-001..006 promoted from `it.todo` to green `it` in `tests/relation-graph.test.ts` against `src/lint/relation-graph.ts` — `collectRelationGraphProjection` (001..003) + `analyzeRelationImpact` (004..006, source/design/test-design/physical-data 変更の波及 action + behavioral-contract conditional + missing-projection/stale-edge を ok=false finding 化, change-impact へ無音 fallback しない)。PLAN-L7-32 (collect+impact) はこれで実装完了。U-RELGRAPH-007..010 (`exportRelationDiagram` / `collectVerificationEvidenceProjection`) は PLAN-L7-36。
+> **Status (PLAN-L7-32 塊C span, 2026-06-10)**: U-RELGRAPH-001..006 は `tests/relation-graph.test.ts` の green `it` へ、`it.todo` から昇格済み。対象 source は `src/lint/relation-graph.ts`。`collectRelationGraphProjection` (001..003) と `analyzeRelationImpact` (004..006, source/design/test-design/physical-data 変更の波及 action + behavioral-contract conditional + missing-projection/stale-edge を ok=false finding 化、change-impact へ無音 fallback しない) を検証する。PLAN-L7-32 (collect+impact) はこれで実装完了。U-RELGRAPH-007..010 (`exportRelationDiagram` / `collectVerificationEvidenceProjection`) は PLAN-L7-36。
 
 > **Status (PLAN-L7-36 follow-up span, 2026-06-11)**: U-RELGRAPH-007..010 は `src/lint/relation-graph.ts` に対する `tests/relation-graph.test.ts` の green `it` へ、`it.todo` から昇格済み。対象は `exportRelationDiagram` (deterministic Mermaid + DOT/D2 unavailable-adapter finding) と `collectVerificationEvidenceProjection` (A-125 evidence projection rows + invalid/external-not-allowed findings、raw payload excluded)。
 

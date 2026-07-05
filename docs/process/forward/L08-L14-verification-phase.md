@@ -34,7 +34,7 @@
 | VS Code Webview Security | <https://code.visualstudio.com/api/extension-guides/webview#security> | live VS Code API docs | live official VS Code docs | adopt-live-docs-for-webview-risk | Webview / dashboard / screenshot evidence で local resource・script・message 境界を検証対象にする | G10 / G11 |
 | Google SRE Release Engineering | <https://sre.google/sre-book/release-engineering/> | SRE book release engineering chapter | live official Google SRE book | adopt-operational-guidance | rollback、release process、post-release monitoring を運用 control として扱う | G12 / G13 / G14 |
 
-Ledger freshness policy: `checked` は公式 source を再確認した日付を表す。未来日、または現在日から 90 日を超過した ledger は stale とし、G8-G14 / S4 / completion / cutover の判断材料にしない。
+Ledger freshness policy（鮮度方針）: `checked` は公式 source を再確認した日付を表す。未来日、または現在日から 90 日を超過した ledger は stale とし、G8-G14 / S4 / completion / cutover の判断材料にしない。
 
 Source ledger meaning review: `checked` を更新する時は日付だけを直してはならない。date-only refresh は
 gate evidence ではない。review evidence は

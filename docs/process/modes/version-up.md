@@ -258,7 +258,7 @@ Version-up source ledger (checked 2026-07-03): 確認済み source 台帳
 | Google Cloud Deploy canary | <https://docs.cloud.google.com/deploy/docs/deployment-strategies/canary> | 現行 Google Cloud Deploy docs | 現行の公式 Google Cloud docs | adopt-live-docs-for-progressive-rollout-comparison | canary の段階 rollout / stable phase / failed rollout handling を比較根拠にし、HELIX activation では段階露出と停止条件を dry-run/runbook 設計へ写像する | `activationVerificationCommandMatrix`, `dry_run_plan` |
 | Google Cloud Deploy rollback | <https://docs.cloud.google.com/deploy/docs/roll-back> | 現行 Google Cloud Deploy docs | 現行の公式 Google Cloud docs | adopt-live-docs-for-rollback-comparison | earlier release への rollback と new rollout 生成を比較根拠にし、HELIX activation では rollback_plan と監査証跡を承認前に要求する | `activationVerificationCommandMatrix`, `rollback_plan` |
 
-Ledger freshness policy: `checked` が未来日、または現在日から 90 日超過の場合、その Version-up source ledger は stale とし、parked review / activation decision / completion packet の判断材料にしない。
+Ledger freshness policy（鮮度方針）: `checked` が未来日、または現在日から 90 日超過の場合、その Version-up source ledger は stale とし、parked review / activation decision / completion packet の判断材料にしない。
 
 Source ledger meaning review: `checked` 更新時は、各公式 source について `source_status_delta`、
 `adoption_decision_delta`、`workflow_route_impact` を review evidence に残す。SemVer / GitHub / Cloudflare /

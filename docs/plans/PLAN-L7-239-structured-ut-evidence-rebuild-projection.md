@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-239-structured-ut-evidence-rebuild-projection
-title: "PLAN-L7-239 (impl): structured UT evidence rebuild 投影"
+title: "PLAN-L7-239 (impl): structured unit-test evidence rebuild 投影"
 kind: impl
 layer: L7
 drive: agent
@@ -8,15 +8,15 @@ status: confirmed
 created: 2026-07-03
 updated: 2026-07-03
 backprop_decision: not_required
-backprop_decision_reason: "IMP-147 の既存 L5/L6 contract 内で、structured green-command evidence を rebuild 経路から UT history signal へ接続する slice。新規 product requirement や DB schema は追加しない。"
+backprop_decision_reason: "IMP-147 の既存 L5/L6 contract 内で、structured green-command evidence を rebuild 経路から unit-test history signal へ接続する slice。新規 product requirement や DB schema は追加しない。"
 owner: TL (Codex)
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: aim
-    slot_label: "Explorer - rebuild UT history projection"
+    slot_label: "Explorer - rebuild unit-test history projection"
   - role: tl
-    slot_label: "TL - structured UT evidence rebuild projection"
+    slot_label: "TL - structured unit-test evidence rebuild projection"
 generates:
   - artifact_path: docs/plans/PLAN-L7-239-structured-ut-evidence-rebuild-projection.md
     artifact_type: markdown_doc
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-07-03T10:09:30+09:00"
     tests_green_at: "2026-07-03T10:09:30+09:00"
     verdict: approve
-    scope: "structured green-command evidence の `cases[]` を rebuild 経路で `test_results` に投影し、DB から UT history input を復元して `test_flake_events` / `quality_signals` / `feedback_events` へ接続した。生 reporter parser と duration trend 永続化は残差として維持する。"
+    scope: "structured green-command evidence の `cases[]` を rebuild 経路で `test_results` に投影し、DB から unit-test history input を復元して `test_flake_events` / `quality_signals` / `feedback_events` へ接続した。生 reporter parser と duration trend 永続化は残差として維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -99,12 +99,12 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-239: structured UT evidence rebuild 投影
+# PLAN-L7-239: structured unit-test evidence rebuild 投影
 
 ## 0. 目的
 
 PLAN-L7-238 で `projectUtHistorySignals` は DB へ書けるようになったが、deterministic
-`rebuildHarnessDb` の通常経路から structured UT case evidence を読み、`test_results`、
+`rebuildHarnessDb` の通常経路から structured unit-test case evidence を読み、`test_results`、
 `test_flake_events`、`quality_signals`、`feedback_events` へ到達する接続が残っていた。
 
 この slice では `review_evidence.green_commands[].evidence_path` が JSON を指し、その JSON が
@@ -118,9 +118,9 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 
 - structured green-command evidence JSON の `cases[]` を rebuild 経路で読み、既存 `test_runs` に紐づけて
   `test_cases` / `test_results` / `test_artifact_edges` へ投影する。
-- rebuild 後半で DB の `test_runs` / `test_results` / `test_cases` から UT history input を復元し、
+- rebuild 後半で DB の `test_runs` / `test_results` / `test_cases` から unit-test history input を復元し、
   `projectUtHistorySignals` を呼ぶ。
-- `projectFeedbackEvents` より前に UT history `quality_signals` を作り、feedback surface へ届くことを
+- `projectFeedbackEvents` より前に unit-test history `quality_signals` を作り、feedback surface へ届くことを
   テストで固定する。
 
 対象外:
@@ -135,7 +135,7 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 ## 2. 受入条件
 
 - `rebuildHarnessDb` が structured green-command evidence の `cases[]` から `test_results` を作る。
-- rebuild 後に DB から復元した UT history が `test_flake_events` と `quality_signals(source=ut-history)` を作る。
+- rebuild 後に DB から復元した unit-test history が `test_flake_events` と `quality_signals(source=ut-history)` を作る。
 - duration regression / flake の `quality_signals` が `feedback_events` に接続される。
 - 既存の `projectReviewEvidenceRegistry` による `test_runs` 投影を二重生成しない。
 - schema 追加なしで既存 migration / doctor が green。
@@ -153,6 +153,6 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 ## 4. 完了条件
 
 - [x] structured green-command evidence が rebuild で `test_results` まで投影される。
-- [x] rebuild 後の UT history signal が `test_flake_events` / `quality_signals` / `feedback_events` に届く。
+- [x] rebuild 後の unit-test history signal が `test_flake_events` / `quality_signals` / `feedback_events` に届く。
 - [x] L5/L6 設計と backlog が、今回閉じた範囲と残差を正しく表す。
 - [x] governance lint / typecheck / doctor が green。

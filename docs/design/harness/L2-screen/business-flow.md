@@ -34,7 +34,7 @@ updated: 2026-06-24
 
 ## 2. フロー一覧
 
-| Flow ID | 名称 | Trigger（契機） | Primary Screens（主画面） | Output / Decision（出力・判断） |
+| Flow ID | 名称 | 契機 | 主画面 | 出力・判断 |
 |---|---|---|---|---|
 | BF-01 | Forward 設計から実装へのレビュー | plan が Forward `plan -> pair-freeze -> implement -> trace-freeze -> review -> accept` を進む。 | PM-01, PM-02, PM-03, PM-04, PM-06 | Gate pass/fail と next action。 |
 | BF-02 | Gate failure（gate 失敗）の切り分け | gate、doctor check、lint、review のいずれかが失敗する。 | PM-03, HM-05, HM-07, GD-01 | 人間が読める blocker と remediation command text。 |

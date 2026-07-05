@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-237-ut-history-signal-hardening
-title: "PLAN-L7-237 (impl): UT history signal 強化"
+title: "PLAN-L7-237 (impl): unit-test history signal 強化"
 kind: impl
 layer: L7
 drive: agent
@@ -14,7 +14,7 @@ parent_design: docs/design/harness/L6-function-design/function-spec.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: aim
-    slot_label: "AIM - UT history signal evidence"
+    slot_label: "AIM - unit-test history signal evidence"
   - role: tl
     slot_label: "TL - verification strategy signal hardening"
 generates:
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-07-03T09:45:13+09:00"
     tests_green_at: "2026-07-03T09:45:13+09:00"
     verdict: approve
-    scope: "IMP-147 の残差を閉じず、既存 L6 contract 内で UT history signal の flake / duration regression 判定だけを強化した。別 oracle の pass/fail は混同せず、直近 duration は過去中央値と比較する。runner ingestion / test_flake_events DB projection / duration trend 永続化は残差として維持する。"
+    scope: "IMP-147 の残差を閉じず、既存 L6 contract 内で unit-test history signal の flake / duration regression 判定だけを強化した。別 oracle の pass/fail は混同せず、直近 duration は過去中央値と比較する。runner ingestion / test_flake_events DB projection / duration trend 永続化は残差として維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -75,11 +75,11 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-237: UT history signal 強化
+# PLAN-L7-237: unit-test history signal 強化
 
 ## 0. 目的
 
-IMP-147 は UT evidence history projection の残差を、general runner ingestion / flake history /
+IMP-147 は単体テスト evidence history projection の残差を、general runner ingestion / flake history /
 duration regression projection として分離した。この slice では DB ingestion 全体には踏み込まず、
 既存 `computeUtHistorySignals` の履歴 signal を強化する。
 

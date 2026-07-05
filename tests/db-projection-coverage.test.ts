@@ -21,7 +21,7 @@ describe("db-projection-coverage detector", () => {
   it("fails when a physical-data required table is absent from the schema registry", () => {
     const requirements = extractDbProjectionRequirements(
       [
-        "### §9.4 UT evidence history projection (A-122 / IMP-109)",
+        "### §9.4 単体テスト evidence 履歴 projection (A-122 / IMP-109)",
         "",
         "| table | primary key | required columns | purpose |",
         "|---|---|---|---|",

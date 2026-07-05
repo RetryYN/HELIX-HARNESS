@@ -35,9 +35,9 @@ full W-model two-stage treatment が必要かを判断する場合に使う。
 target system が AI agent layer を含む場合、W-model（HELIX W）を適用する。
 V-model を 2 回走らせる。
 
-- **Phase 1 (general system V):** agents が関与しない前提で outer system を design/verify する
+- **Phase 1（一般 system V）:** agents が関与しない前提で outer system を design/verify する
   （L0-L9 standard V）。Output は L9 system-test design。
-- **Phase 2 (agent system V):** Phase 1 output を foundation として、agent orchestration、
+- **Phase 2（agent system V）:** Phase 1 output を foundation として、agent orchestration、
   guardrails、merge surface（L10 agent-merge）を design する。
 
 harness-internal development（outward-facing agent layer が無い場合）は single V が正しい。

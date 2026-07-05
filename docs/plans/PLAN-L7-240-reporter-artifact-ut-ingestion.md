@@ -107,7 +107,7 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 
 ## 0. 目的
 
-PLAN-L7-239 で structured `cases[]` JSON は deterministic rebuild から UT history に接続された。
+PLAN-L7-239 で structured `cases[]` JSON は deterministic rebuild から unit-test history に接続された。
 ただし実運用の green command evidence は Vitest / Playwright / JUnit reporter artifact を直接保存する
 ことが多く、structured wrapper だけでは検証戦略の実効性が弱い。
 

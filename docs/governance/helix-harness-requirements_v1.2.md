@@ -1264,7 +1264,7 @@ PLAN frontmatter に **`github_issue_id`** (optional、Phase 0-B で recommended
 | artifact progress を赤黄緑で検索できる | `artifact_progress` projection は `artifact_path`, `artifact_type`, `state`, `color`, `linked_test_ids`, `linked_test_paths`, `dependency_checked`, `open_dependency_impacts`, `recovery_plan_ids`, `reason` を持ち、`helix progress artifacts` 相当の CLI が赤/黄/緑と根拠を返せる。green は linked test + dependency clear を必須とし、上位設計反映漏れや依存未確認は red として残る。 |
 | guardrail の安全性を証跡化できる | agent-guard、review_evidence、same-model approval 禁止、tests-before-review、escalation 境界、human signoff の判定結果を `guardrail_decisions` 相当の projection として持ち、silent pass を finding 化できる。 |
 | skill/roster/command docs を自動化基盤として catalog 化できる | skill/roster/command docs の path、trigger、role/capability、drift status、recommendation reason、search token を catalog projection として持ち、空 catalog・legacy source 前提残存・guard 不整合を検出できる。 |
-| UT evidence history を query できる (A-122 / IMP-109) | `test_cases / test_runs / test_results / test_artifact_edges / test_flake_events` 相当の projection を持ち、どの UT がどの PLAN / FR / U-* oracle / artifact を証明したか、いつ green だったか、flake や duration regression があるかを参照できる。 |
+| 単体テスト evidence history を query できる (A-122 / IMP-109) | `test_cases / test_runs / test_results / test_artifact_edges / test_flake_events` 相当の projection を持ち、どの unit-test がどの PLAN / FR / U-* oracle / artifact を証明したか、いつ green だったか、flake や duration regression があるかを参照できる。 |
 | 定量 green profile を再現できる (A-122 / IMP-108) | `review_evidence.tests_green_at <= reviewed_at` に加え、`GreenDefinition` として required command profile、runner (`bun` / powershell / bash / ci)、scope、exit code、evidence path、output digest を記録し、定性レビューが正しい定量 green の後に実施されたことを検証できる。 |
 | DB projection 実装 profile を固定する (A-122 / IMP-110) | Core runtime は Bun/TypeScript を前提に `bun:sqlite` を第一候補とし、schema_version、deterministic rebuild、migration fixture、doctor integration、redacted failure digest を持つ。DB は projection であり docs/state/logs を authoring source として残す。 |
 | CI / hook / OS evidence matrix を保持できる (A-122 / IMP-114) | PowerShell / Bash / Bun / Claude hook / CI の smoke と green command evidence を同じ projection profile で比較でき、Windows/POSIX 片側欠落を finding 化できる。 |
@@ -1291,7 +1291,7 @@ L5/L6 降下先: `docs/plans/PLAN-L5-08-harness-db-feedback.md`、`docs/design/h
 
 **未承認 L7 着手の扱い (PLAN-RECOVERY-03)**: `src/**` 追加・変更など L7 実装相当の作業を、parent L6 design / L7 PLAN / TDD Red entry / pair artifact なしに開始した場合は `agent_runaway` 相当の Recovery 事象として扱う。封じ込めでは未承認 source 差分を残さず、Recovery で reopen point を確定した後、Reverse `fullback` で本節・backlog・必要な workflow rule へ戻す。active goal や継続作業を理由に、この back-prop を省略してはならない。
 
-**例**: A-122 の UT evidence history / GreenDefinition / Harness DB projection は単なる L5/L6 carry ではなく、既存 FR-L1-05/06/07/17/18/20/45/50 の `requires_requirement_backprop` 拡張として L1/L3/requirements へ back-propagation 済みと扱う。
+**例**: A-122 の単体テスト evidence history / GreenDefinition / HELIX-HARNESS DB projection は単なる L5/L6 carry ではなく、既存 FR-L1-05/06/07/17/18/20/45/50 の `requires_requirement_backprop` 拡張として L1/L3/requirements へ back-propagation 済みと扱う。
 
 #### §6.8.8.1 Forward-convergence fail-close (別フロー集約の機械強制、PLAN-DISCOVERY-08)
 

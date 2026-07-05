@@ -286,13 +286,13 @@ DB は ID、reason、score、redacted summary だけを保存する。raw provid
 - すべての non-green lint/doctor/vmodel/gate result は `findings` と任意の `quality_signals` として表現できる。
 - `search_index` は docs/state/logs から rebuild 可能であり、削除・再構築しても authoritative state は変わらない。
 
-### §9.4 test evidence 履歴 projection (A-122 / IMP-109)
+### §9.4 単体テスト evidence 履歴 projection (A-122 / IMP-109)
 
 Phase 2 close review では、DB design が workflow、guardrail、skill、quality signal を既に project できる一方で、単体テスト固有の feedback question にはまだ答えられないことが分かった。Phase 4 DB implementation 開始前に、次の projection table を追加する。これらは derived data のままであり、authoring source は test files、PLAN artifacts、vitest/Bun output、CI logs、`.helix/` evidence である。
 
 | table | primary key | 必須列 | 目的 |
 |---|---|---|---|
-| `test_cases` | `test_case_id` | `test_file`, `test_name`, `oracle_id`, `plan_id`, `fr_id`, `artifact_id`, `kind`, `first_seen_at`, `last_seen_at` | 各 UT oracle を PLAN/FR/artifact から query 可能にする。 |
+| `test_cases` | `test_case_id` | `test_file`, `test_name`, `oracle_id`, `plan_id`, `fr_id`, `artifact_id`, `kind`, `first_seen_at`, `last_seen_at` | 各 unit-test oracle を PLAN/FR/artifact から query 可能にする。 |
 | `test_runs` | `test_run_id` | `session_id`, `plan_id`, `command`, `runner`, `runtime`, `os`, `shell`, `started_at`, `completed_at`, `exit_code`, `evidence_path`, `output_digest`, `green_definition_id` | 実行済み quantitative test command を 1 件記録する。特に Bun/vitest/doctor/lint run を対象にする。`review_evidence.green_commands[]` は PLAN-local green command projection の frontmatter source である。 |
 | `test_results` | `test_result_id` | `test_run_id`, `test_case_id`, `status`, `duration_ms`, `failure_digest`, `started_at`, `completed_at` | case/run 別に pass/fail/skip/todo を追跡する。 |
 | `test_artifact_edges` | `edge_id` | `test_case_id`, `artifact_id`, `edge_kind`, `plan_id`, `source_path` | `trace_edges` を過負荷にせず、test evidence を V-model trace へ join し直す。 |
@@ -314,7 +314,7 @@ Phase 2 close review では、DB design が workflow、guardrail、skill、quali
   とする。これにより専用 table / migration を増やさず、rebuild 可能な時系列 trend を query できる。
 - `review_evidence.green_commands[].evidence_path` が structured JSON を指し、`cases[]` を含む場合、
   deterministic rebuild は既存 `test_runs` に紐づけて `test_cases` / `test_results` /
-  `test_artifact_edges` を投影し、DB から UT history input を復元して `test_flake_events` /
+  `test_artifact_edges` を投影し、DB から unit-test history input を復元して `test_flake_events` /
   `quality_signals` / `feedback_events` へ接続する。2026-07-03 の PLAN-L7-240 以降は、同じ
   `evidence_path` で Vitest/Jest-compatible JSON reporter、Playwright JSON reporter、JUnit XML の
   最小 reporter artifact も正規化し、既存 table に投影する。parser は DB schema を増やさず、
