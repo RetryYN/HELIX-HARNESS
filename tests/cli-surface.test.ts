@@ -258,6 +258,15 @@ describe("L7 CLI surface closure", () => {
     expect(JSON.parse(hotfix.stdout)).toMatchObject({ ok: true });
   });
 
+  it("exposes GitHub merge readiness as a read-only HELIX operation packet", () => {
+    const help = runCli(["github", "merge-readiness", "--help"]);
+
+    expect(help.status, help.stderr || help.stdout).toBe(0);
+    expect(help.stdout).toContain("merge-readiness");
+    expect(help.stdout).toContain("--base");
+    expect(help.stdout).toContain("--json");
+  });
+
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
     const s4 = runRepoScriptHelix(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);

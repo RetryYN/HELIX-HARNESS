@@ -22,6 +22,10 @@ import { Command } from "commander";
 import { parse as parseYaml } from "yaml";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
+import {
+  loadGithubMergeReadiness,
+  renderGithubMergeReadiness,
+} from "./audit/github-merge-readiness";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
@@ -4870,6 +4874,20 @@ branch
       process.stderr.write(`branch audit failed: ${String(error)}\n`);
       process.exitCode = 1;
     }
+  });
+
+const github = program.command("github").description("read-only GitHub operation readiness");
+
+github
+  .command("merge-readiness")
+  .description("emit a local main-merge readiness packet without requiring GitHub write permission")
+  .option("--base <branch>", "base branch for the pull request", "main")
+  .option("--json", "JSON output")
+  .action((opts: { base?: string; json?: boolean }) => {
+    const result = loadGithubMergeReadiness(process.cwd(), { baseBranch: opts.base ?? "main" });
+    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    else process.stdout.write(renderGithubMergeReadiness(result));
+    process.exitCode = result.localReady ? 0 : 1;
   });
 
 const feedback = program

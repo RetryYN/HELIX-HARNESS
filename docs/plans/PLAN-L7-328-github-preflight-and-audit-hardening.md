@@ -33,6 +33,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/github-guards.ts
     artifact_type: source_module
+  - artifact_path: src/audit/github-merge-readiness.ts
+    artifact_type: source_module
   - artifact_path: src/lint/objective-evidence-audit.ts
     artifact_type: source_module
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
@@ -50,6 +52,8 @@ generates:
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
   - artifact_path: tests/harness-check-workflow.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/github-merge-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/branch-kind.test.ts
     artifact_type: test_code
@@ -163,6 +167,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
   required artifact として fail-close する。
 - consumer readiness / state DB / workflow test helper の内部 identifier に残る旧名由来の camelCase residue も
   HELIX 系 identifier へ揃え、検索 residue を 0 件に保つ。
+- `helix github merge-readiness --json` を read-only operation packet として追加し、ローカル merge readiness と
+  GitHub 認証・権限待ちを分離する。
 
 ## 非スコープ
 
@@ -176,6 +182,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - camelCase / compact 表記の旧名由来 internal identifier residue も 0 件。
 - `identifier-rename` test が同一 hit count の content drift で snapshot digest drift を検出する。
 - `goal-evidence-audit` と `cli-surface` test が G-06 artifact requirement と GitHub preflight isolation を検証する。
+- `github-merge-readiness` test が、認証済み agent の PR 作成可否、未認証時の外部権限待ち分離、
+  local evidence defect の fail-close を検証する。
 - `typecheck` と `doctor` が green。ただし外部 repo が認証必須の場合、`objective-external` は認証不足を明示して blocked とする。
 - source `harness-check` は単一 required check のまま、branch type matrix、commitlint、poc direct-main guard、hotfix postmortem guard を job 内 subjob として実行する。
 
