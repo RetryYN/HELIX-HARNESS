@@ -1058,3 +1058,17 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-OUTSTANDING-016 | `completionReviewBundleForOutstanding` / `analyzeCompletionReviewBundle` | `completion-review-bundle.v1.reviewPackets[]` は `requiredReviewFieldsDigest` だけでなく `requiredReviewFields[]` の実配列を持つ。S4 / version-up / rename / action-binding の判断前に見るべき field を bundle 単体から辿れることを保証し、実配列を削る・digest と不一致にする・supporting summary と drift させる場合は `invalid_review_packet` / `invalid_digest` で fail-close する。 |
 | U-OUTSTANDING-017 | `helix completion review-bundle` text | text の `review-packet:` 行は `reviewFieldCount=` と `reviewFields=` を出す。JSON を開かない通常確認でも S4 / version-up / rename / action-binding の判断前 field へ辿れることを保証し、`safety=` だけに戻った場合は cli-surface test で fail-close する。 |
 | U-OUTSTANDING-018 | `completionReviewBundleMessages` / `checkCompletionReviewBundle` / `renderHandoverScaffold` / `checkHandoverNextActionAnchor` | doctor の `completion-review-bundle - OK` message は packet 別 `reviewFieldCounts=` を出す。handover Markdown §3 の `packet要約` は `確認field件数=` と `確認field=` を同時に出し、`確認field件数=` 欠落は fail-close する。doctor / handover だけを見る再開者でも、判断前 field の存在量と実 field list の両方へ辿れることを保証する。 |
+
+## PLAN-L7-330 L1↔L2 consistency lint（双方向被覆機械判定）追補
+
+親 = PLAN-DISCOVERY-11 (S4 confirmed) の収束機械判定。実装は `src/lint/l1-l2-consistency.ts`、
+テストは `tests/l1-l2-consistency.test.ts`。
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-L1L2-001 | `analyzeL1L2Consistency` | L1 画面 ID と L2 screen-list が双方向一致し、ui-element 行・pair_artifact (`self` 可) が揃えば `ok=true`、violations 空、checked = 画面数になる。 |
+| U-L1L2-002 | `analyzeL1L2Consistency` | L1 にのみ存在する画面は `missing-l2-screen:<id>`、screen-list にのみ存在する画面は `missing-l1-requirement:<id>` で双方向とも fail-close する。 |
+| U-L1L2-003 | `analyzeL1L2Consistency` | ui-element 行欠落は `missing-ui-element:<id>`、screen-list に無い画面への wireframe / flow 参照は `dangling-wireframe-screen:<id>` / `dangling-flow-screen:<id>` で fail-close する。wireframe セクションを持たない画面は violation にしない（G2 PASS 済み主要画面 Low-Fi 縮約への false-positive 防止）。 |
+| U-L1L2-004 | `analyzeL1L2Consistency` | `pair_artifact` 未宣言は `missing-mock-pair` で fail-close、**`self` は IMP-039 self-pair として充足扱い**。screen 設計不在は scope 0 で `ok=true`。 |
+| U-L1L2-005 | `loadL1L2ConsistencyInput` / live repo | 現行 repo は 15 画面が双方向被覆 green（L1 bold 行 / screen-list plain 行 / ui-element bold 行 / wireframe 見出し / flow 参照 / frontmatter pair_artifact の抽出が実 doc で機能する live oracle）。 |
+| U-L1L2-006 | `l1L2ConsistencyMessages` / `checkL1L2Consistency` | doctor 表示行は ASCII decision token（`OK` / `violation`）を用い、violation 行に修復導線（新ラウンド起票 = A-40 change-log）を含む。doctor 配線は `runDoctor.ok` へ fail-close で寄与し `lint-wiring` 死蔵 0 を維持する。 |

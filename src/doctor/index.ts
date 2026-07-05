@@ -176,6 +176,11 @@ import {
   loadBacklog as loadImprovementBacklog,
 } from "../lint/improvement-backlog";
 import {
+  analyzeL1L2Consistency,
+  l1L2ConsistencyMessages,
+  loadL1L2ConsistencyInput,
+} from "../lint/l1-l2-consistency";
+import {
   analyzeL6Completion,
   canLoadL6CompletionInputs,
   l6CompletionMessages,
@@ -307,11 +312,6 @@ import {
   s4DecisionReadinessMessages,
   s4DecisionVerificationCommandViolations,
 } from "../lint/s4-decision-readiness";
-import {
-  analyzeL1L2Consistency,
-  l1L2ConsistencyMessages,
-  loadL1L2ConsistencyInput,
-} from "../lint/l1-l2-consistency";
 import {
   analyzeScreenImplPairFreeze,
   loadScreenImplPairFreezeInput,
