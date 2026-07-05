@@ -7,7 +7,7 @@
 
 ## 背景 (Context)
 
-UT-TDD harness は Claude Code / Codex (AI runtime) / GitHub / 観測系 (Sentry/Uptime Robot) など外部 runtime・ツールを利用する。
+HELIX-HARNESS は Claude Code / Codex (AI runtime) / GitHub / 観測系 (Sentry/Uptime Robot) など外部 runtime・ツールを利用する。
 
 正本 CLAUDE.md は **「Codex / Claude Code は API 直叩りではなく、契約プラン (月額) + CLI / hook を harness が管理する対象として扱う」** と定め、禁止事項として「外部 provider SDK や認証情報を前提にした fallback を通常導線として追加しない」を課す。
 

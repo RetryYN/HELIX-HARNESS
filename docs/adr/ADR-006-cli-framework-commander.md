@@ -15,11 +15,11 @@ architecture.md §2 注記が「commander 実装確定済だが ADR で記録を
 
 ## 決定（Decision）
 
-UT-TDD harness の CLI フレームワークを **commander** に確定する。`src/cli.ts` は commander の `Command` でサブコマンドツリー (status / doctor / plan / vmodel / 将来 reverse・incident・skill・cutover 等) を構成する。
+HELIX-HARNESS の CLI フレームワークを **commander** に確定する。`src/cli.ts` は commander の `Command` でサブコマンドツリー (status / doctor / plan / vmodel / 将来 reverse・incident・skill・cutover 等) を構成する。
 
 ## 検討した代替案（Alternatives considered）
 
-- **oclif** (却下): プラグインアーキテクチャ・スキャフォルディングが強力だが、(a) ファイル規約ベースの重量級構成が「薄い entrypoint + compiled core」(ADR-001 §3) の方針と過剰、(b) `bun build --compile` 単一バイナリ配布との相性検証コストが高い、(c) 本 harness の CLI 表面は中規模で oclif のプラグイン機構は不要。
+- **oclif** (却下): プラグインアーキテクチャ・スキャフォルディングが強力だが、(a) ファイル規約ベースの重量級構成が「薄い entrypoint + compiled core」(ADR-001 §3) の方針と過剰、(b) `bun build --compile` 単一バイナリ配布との相性検証コストが高い、(c) HELIX-HARNESS の CLI 表面は中規模で oclif のプラグイン機構は不要。
 - **commander** (採択): 軽量・宣言的サブコマンド・TS 型サポート良好・Bun 互換・単一バイナリ化が容易。CLI 表面の規模に対し過不足ない。
 
 ## 影響（Consequences）

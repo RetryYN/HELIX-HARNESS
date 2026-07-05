@@ -7,7 +7,7 @@
 
 ## 背景（Context）
 
-UT-TDD harness は source snapshot 由来の **runtime 内部資産** = subagent (`.claude/agents/*.md` 19 個) / skill (`vendor source snapshot skills` 107 個) / command を持つ。これらを「UT-TDD 用に作り替える」必要がある (BR-22、Recovery PLAN-RECOVERY-01 で前提抜けを是正)。
+HELIX-HARNESS は source snapshot 由来の **runtime 内部資産** = subagent (`.claude/agents/*.md` 19 個) / skill (`vendor source snapshot skills` 107 個) / command を持つ。これらを「HELIX 用に作り替える」必要がある (BR-22、Recovery PLAN-RECOVERY-01 で前提抜けを是正)。
 
 PO 指示 (2026-06-01):「内部資産は作り替える、TS に」。だが「TS に作り替える」には射程の曖昧さがあり、**2 層**に分かれる:
 

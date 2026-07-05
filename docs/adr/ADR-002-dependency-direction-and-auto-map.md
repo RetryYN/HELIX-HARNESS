@@ -7,11 +7,11 @@
 
 ## Context
 
-UT-TDD harness の core が module 化する (cli/schema/lint/plan/vmodel/runtime/doctor + 将来 workflow/adapter ...) なかで、module 間の依存が複雑化する。逆依存や循環依存が混入すると保守が破綻し、テスト容易性も失われる。
+HELIX-HARNESS の core が module 化する (cli/schema/lint/plan/vmodel/runtime/doctor + 将来 workflow/adapter ...) なかで、module 間の依存が複雑化する。逆依存や循環依存が混入すると保守が破綻し、テスト容易性も失われる。
 
 L4 architecture §3 / L5 module-decomposition §4 で「**全依存は schema へ一方向・循環禁止・fs は副作用端点に隔離**」を設計したが、**設計宣言と実装 (実 import グラフ) が時間とともに乖離しないか**を継続検証する仕組みが必要。
 
-PO 意図 (2026-05-29): UT harness の state/DB を構築する際に **依存関係の自動マップ生成機能**を入れる想定。**構想 (設計が宣言する依存方向) と実装 (実 import) でどれだけ差が出るかをチェックし、修正したい**。
+PO 意図 (2026-05-29): HELIX-HARNESS の state/DB を構築する際に **依存関係の自動マップ生成機能**を入れる想定。**構想 (設計が宣言する依存方向) と実装 (実 import) でどれだけ差が出るかをチェックし、修正したい**。
 
 ## Decision
 
