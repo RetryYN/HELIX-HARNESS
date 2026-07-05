@@ -4,9 +4,11 @@ title: "PLAN-L7-316 (impl): runtime telemetry provenance 配線 — test_runs / 
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-07-05
+backprop_decision: not_required
+backprop_decision_reason: "上流 A-146 telemetry provenance gap を L7 の runtime projection 配線として閉じる。既存の session-log / harness.db projection / doctor model_runs overlay 境界に runtime-hook provenance rows を追加するだけで、L1-L6 の要求・設計意味は変更しない。"
 owner: Claude (Opus) / Codex
 parent_design: docs/design/helix/L6-function-design/upstream-substance-gap.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
@@ -20,12 +22,58 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-316-runtime-telemetry-provenance.md
     artifact_type: markdown_doc
+  - artifact_path: src/state-db/projection-writer.ts
+    artifact_type: source_module
+  - artifact_path: tests/projection-writer.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
   references:
     - docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md
     - docs/design/helix/L6-function-design/upstream-substance-gap.md
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-05T03:45:00+09:00"
+    tests_green_at: "2026-07-05T03:45:00+09:00"
+    verdict: approve
+    scope: "PLAN-L7-316 は session-log 由来の runtime telemetry provenance を projection-only rows から分離して配線した。Bash verification event は runtime-hook の test_runs、forced_stop event は runtime-hook の guardrail_decisions、ut-tdd skill suggest Bash event は runtime-hook:skill-suggest の skill_invocations として投影される。doctor model_runs overlay は既存の loadRuntimeSessionUsage / projectTokenUsage 配線を維持し、README は gate・証跡・完了条件に紐づけていない。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/projection-writer.test.ts tests/doctor.test.ts tests/token-tracker.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-05T03:45:00+09:00"
+        evidence_path: tests/projection-writer.test.ts
+        output_digest: "sha256:222e903caa49ec08e21d8d38dda0d140a50f0089cb4fb71a6bff8d65e604e980"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T03:45:00+09:00"
+        evidence_path: src/state-db/projection-writer.ts
+        output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
+      - kind: lint
+        command: "bun run src/cli.ts plan lint --gate governance"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T03:45:00+09:00"
+        evidence_path: docs/plans/PLAN-L7-316-runtime-telemetry-provenance.md
+        output_digest: "sha256:11325bc719c7513ef369c127f79f1d45a214eac2fb89c3221d6c0c2674a858b5"
+      - kind: doctor
+        command: "./scripts/ut-tdd doctor"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T03:45:00+09:00"
+        evidence_path: docs/plans/PLAN-L7-316-runtime-telemetry-provenance.md
+        output_digest: "sha256:dcbb805cbdf2cd1755c17ad17fceeae7cf08915fb1332db30049cf7cfd94fd31"
 ---
 
 # PLAN-L7-316 (impl): runtime telemetry provenance 配線
@@ -69,5 +117,6 @@ runtime-hook provenance を自動生成しない）で、`doctor` は `model_run
 - 既存 `runtime_verification_events` 設計と整合させる。
 
 ## レビュー / 次工程
-- 実装は Codex in-flight 着地後に harness workflow で行う。基準点は HEAD。
+- 実装は Codex で着地済み。基準点は `f38a2ba` 以降の HEAD。
 - 出典: [[upstream-helix-reconciliation]] audit §5 Tier2-#7 / §3.4。
+- README は gate / evidence / completion surface ではなく、利用者導線の補助 doc として扱う。

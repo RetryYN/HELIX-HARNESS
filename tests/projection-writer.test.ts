@@ -2467,7 +2467,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             plan_id: "PLAN-L7-SKILL-RUNTIME",
             event_type: "tool_use",
             tool_name: "Bash",
-            target: "bun test tests/projection-writer.test.ts",
+            target: "git status --short",
             outcome: "ok",
           }),
           "",
@@ -2523,6 +2523,146 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           }),
         ]);
         expect(rowCounts(db).test_runs ?? 0).toBe(0);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
+  it("projects runtime session verification, forced-stop, and skill suggest events with provenance", () => {
+    const repoRoot = join(tmpdir(), `ut-tdd-runtime-provenance-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".ut-tdd", "logs", "session"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-RUNTIME-PROV.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-RUNTIME-PROV",
+          "kind: impl",
+          "layer: L7",
+          "drive: agent",
+          "status: confirmed",
+          "updated: 2026-07-05",
+          "---",
+          "",
+          "# Runtime provenance fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, ".ut-tdd", "logs", "session", "runtime-provenance.jsonl"),
+        [
+          JSON.stringify({
+            ts: "2026-07-05T02:00:00.000Z",
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            event_type: "tool_use",
+            tool_name: "Bash",
+            target: "bun test tests/projection-writer.test.ts",
+            outcome: "ok",
+          }),
+          JSON.stringify({
+            ts: "2026-07-05T02:01:00.000Z",
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            event_type: "tool_use",
+            tool_name: "Bash",
+            target: "git status --short",
+            outcome: "ok",
+          }),
+          JSON.stringify({
+            ts: "2026-07-05T02:02:00.000Z",
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            event_type: "forced_stop",
+            outcome: "blocked",
+          }),
+          JSON.stringify({
+            ts: "2026-07-05T02:03:00.000Z",
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            event_type: "tool_use",
+            tool_name: "Bash",
+            target: "ut-tdd skill suggest --plan docs/plans/PLAN-L7-RUNTIME-PROV.md",
+            outcome: "ok",
+          }),
+          "",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const testRuns = db
+          .prepare(
+            "SELECT session_id, plan_id, command, runtime, scope, evidence_path, status FROM test_runs WHERE runtime = ?",
+          )
+          .all("hook-session-log") as Array<Record<string, unknown>>;
+        expect(testRuns).toEqual([
+          expect.objectContaining({
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            command: "bun test tests/projection-writer.test.ts",
+            scope: "runtime-hook",
+            evidence_path: ".ut-tdd/logs/session/runtime-provenance.jsonl",
+            status: "passed",
+          }),
+        ]);
+
+        const guardrails = db
+          .prepare(
+            "SELECT session_id, plan_id, guardrail, decision, mode, evidence_path FROM guardrail_decisions WHERE mode = ?",
+          )
+          .all("runtime-hook") as Array<Record<string, unknown>>;
+        expect(guardrails).toEqual([
+          expect.objectContaining({
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            guardrail: "forced-stop",
+            decision: "block",
+            evidence_path: ".ut-tdd/logs/session/runtime-provenance.jsonl",
+          }),
+        ]);
+
+        const skillInvocations = db
+          .prepare(
+            "SELECT session_id, plan_id, skill_id, layer, drive, source, accepted FROM skill_invocations WHERE source = ?",
+          )
+          .all("runtime-hook:skill-suggest") as Array<Record<string, unknown>>;
+        expect(skillInvocations).toEqual([
+          expect.objectContaining({
+            session_id: "runtime-provenance",
+            plan_id: "PLAN-L7-RUNTIME-PROV",
+            skill_id: "skill:suggest",
+            layer: "L7",
+            drive: "agent",
+            accepted: 1,
+          }),
+        ]);
       } finally {
         db.close();
       }

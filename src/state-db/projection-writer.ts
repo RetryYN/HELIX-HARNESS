@@ -238,7 +238,11 @@ interface SessionLogProjection {
   plan_id?: string | null;
   event_type?: string;
   tool?: string;
+  tool_name?: string;
+  target?: string;
+  command?: string;
   outcome?: string;
+  exit_code?: number;
 }
 
 interface ProviderHandoverProjection {
@@ -767,6 +771,31 @@ function resolveProjectedPlanId(plans: Map<string, ProjectedPlan>, planId: strin
   return [...plans.keys()].find((id) => id.startsWith(`${planId}-`)) ?? planId;
 }
 
+function sessionLogToolName(event: SessionLogProjection): string {
+  return asString(event.tool_name) ?? asString(event.tool) ?? "";
+}
+
+function sessionLogCommand(event: SessionLogProjection): string {
+  return asString(event.command) ?? asString(event.target) ?? "";
+}
+
+function isBashSessionEvent(event: SessionLogProjection): boolean {
+  return /bash/i.test(sessionLogToolName(event));
+}
+
+function isVerificationSessionCommand(command: string): boolean {
+  return /\b(bun|npm|pnpm|yarn)\s+(run\s+)?test\b/i.test(command) || /\bvitest\b/i.test(command);
+}
+
+function isSkillSuggestSessionCommand(command: string): boolean {
+  return /\b(?:ut-tdd|bun\s+run\s+src\/cli\.ts)\s+skill\s+suggest\b/i.test(command);
+}
+
+function sessionEventExitCode(event: SessionLogProjection): number {
+  if (typeof event.exit_code === "number" && Number.isFinite(event.exit_code)) return event.exit_code;
+  return event.outcome === "ok" ? 0 : -1;
+}
+
 function projectHookEvents(
   repoRoot: string,
   db: HarnessDb,
@@ -814,6 +843,80 @@ function projectHookEvents(
             evidence_path: relPath,
           },
         });
+        if (event.event_type === "forced_stop") {
+          const guardrailId = stableId(
+            "session-guardrail",
+            `${event.session_id}:${event.plan_id}:${event.ts ?? ""}:forced-stop`,
+          );
+          recordProjectionEvent(db, {
+            table: "guardrail_decisions",
+            id: guardrailId,
+            row: {
+              guardrail_decision_id: guardrailId,
+              plan_id: resolveProjectedPlanId(plans, event.plan_id),
+              session_id: event.session_id,
+              guardrail: "forced-stop",
+              decision: "block",
+              mode: "runtime-hook",
+              human_signoff_required: 0,
+              evidence_path: relPath,
+              decided_at: event.ts ?? "",
+            },
+          });
+        }
+        const command = sessionLogCommand(event);
+        if (event.event_type === "tool_use" && isBashSessionEvent(event) && isVerificationSessionCommand(command)) {
+          const exitCode = sessionEventExitCode(event);
+          const testRunId = stableId(
+            "session-test-run",
+            `${event.session_id}:${event.plan_id}:${event.ts ?? ""}:${command}`,
+          );
+          recordProjectionEvent(db, {
+            table: "test_runs",
+            id: testRunId,
+            row: {
+              test_run_id: testRunId,
+              session_id: event.session_id,
+              plan_id: resolveProjectedPlanId(plans, event.plan_id),
+              command,
+              runner: "bash",
+              runtime: "hook-session-log",
+              os: "",
+              shell: "bash",
+              scope: "runtime-hook",
+              started_at: "",
+              completed_at: event.ts ?? "",
+              exit_code: exitCode,
+              evidence_path: relPath,
+              output_digest: event.outcome ?? "",
+              green_definition_id: "",
+              status: exitCode === 0 ? "passed" : "failed",
+            },
+          });
+        }
+        if (event.event_type === "tool_use" && isBashSessionEvent(event) && isSkillSuggestSessionCommand(command)) {
+          const skillId = "skill:suggest";
+          const invocationId = stableId(
+            "skill-inv",
+            `${event.session_id}:${event.plan_id}:${event.ts ?? ""}:${skillId}:${command}`,
+          );
+          const plan = plans.get(resolveProjectedPlanId(plans, event.plan_id));
+          recordProjectionEvent(db, {
+            table: "skill_invocations",
+            id: invocationId,
+            row: {
+              skill_invocation_id: invocationId,
+              session_id: event.session_id,
+              plan_id: resolveProjectedPlanId(plans, event.plan_id),
+              skill_id: skillId,
+              layer: plan?.layer ?? "",
+              drive: plan?.drive ?? "",
+              fired_at: event.ts ?? "",
+              source: "runtime-hook:skill-suggest",
+              accepted: event.outcome === "ok" ? 1 : 0,
+            },
+          });
+        }
         if (event.event_type === "skill_injection") {
           const skillId = "skill:runtime-context-injection";
           const invocationId = stableId(
