@@ -107,8 +107,14 @@ v2_import: docs/migration/v2-import-ledger.md
 | **情報要素** | **L0-L14 設計書ツリー** (layer × sub-doc、各ノードに status バッジ placeholder/confirmed/frozen + pair-freeze 状態)。選択 doc を **見やすくレンダリングしてプレビュー**: Markdown 本文 (見出し/表/リスト/コード) + YAML frontmatter 構造化表示 + **Mermaid 図 / ASCII 図** の描画。doc 内見出しの目次。trace は PM-04 へ deep-link。プロジェクト単位 (`:case` スコープ、共有用) |
 | **操作要素** | ツリーノードクリック → 本文プレビュー / layer・status・drive フィルタ / 目次ジャンプ / 内部リンク (doc 間) ナビゲーション / PM-04 Trace ビュー参照遷移 / AI 指示テキストコピー (doc パス + 該当箇所、CC2)。**read-only** (編集なし、S5=b) |
 | **更新頻度** | 30 秒ポーリング (S2=b)、設計書更新時に反映 |
-| **状態種別** | confirmed (緑) / placeholder (黄) / frozen (青) / 未作成 (灰) / 読み込み中 |
+| **状態種別** | confirmed (緑) / placeholder (黄) / frozen (青) / 未作成 (灰) / 読み込み中。**L2 標準 StatusBadge 5 値への写像を L2 側で定義する**こと (frozen は独自色でなく badge variant として扱う。写像未定義のまま実装に降ろさない) |
+| **異常系** | Markdown / Mermaid / YAML の**描画失敗時は fallback 表示**（raw text + エラーバッジ、画面全体を落とさない）。**doc 不存在・読込失敗**は該当ノードに error 状態を表示。**設計書 0 件（空ツリー）**は空状態メッセージ + `helix setup project` 誘導。ポーリング失敗は前回表示を保持し stale 表示 |
+| **NFR (初期値)** | 選択 → プレビュー表示 **p95 ≤ 2 秒**（50KB 級 Markdown）。Mermaid 1 図 ≤ 1 秒、超過時は fallback（初期値。運用チューニング値として外部化基準の対象、`coding-rules.md` §外部化基準） |
+| **共有スコープ** | 「共有用」= **同一環境の閲覧スコープ内**（PM 認可 = PO + 運用者、read-only）。外部公開・serverless 共有は **PLAN-L7-146 activation まで非対象**（明示 out-of-scope） |
+| **外部依存** | Markdown / Mermaid renderer は**ライブラリ依存を明示**して選定する。script 実行を伴う描画（Mermaid）は **sandbox 前提**（外部 fetch なし・eval 相当を閉じる）。S5=b（副作用なし read-only）と整合すること |
 | **実装状態** | not-implemented |
+
+> **elicitation Round 1 反映 (2026-07-05、PO 承認)**: 上記「状態種別写像 / 異常系 / NFR 初期値 / 共有スコープ / 外部依存」の 5 行は、PLAN-DISCOVERY-11 S2 PoC（観点表 Round 1 gap-check）で surface した欠落候補 5 件を PO 承認（「やっておくれ」2026-07-05）に基づき反映したもの。A-40 back-propagation の change-log として本注記を残す（G1-trace 再検証対象）。
 
 ---
 
