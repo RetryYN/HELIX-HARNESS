@@ -103,7 +103,9 @@ export function routeDocContext(input: {
   }
 
   const maxSections = Math.max(1, input.maxSections ?? 6);
-  const selected = index.sections.filter((section) => sectionMatches(section, terms)).slice(0, maxSections);
+  const selected = index.sections
+    .filter((section) => sectionMatches(section, terms))
+    .slice(0, maxSections);
   if (selected.length === 0) {
     return {
       task_kind: task.kind,

@@ -241,43 +241,83 @@ export function validateDContractDsl(input: {
   const modeRoutingRaw = parseDContractYaml(input.modeRoutingText);
   const gateChecksRaw = parseDContractYaml(input.gateChecksText);
   if (modeRoutingRaw === null) {
-    findings.push(finding("d-contract-mode-routing-yaml", "mode-routing.yaml must parse as YAML", { evidencePath: modeRoutingPath }));
+    findings.push(
+      finding("d-contract-mode-routing-yaml", "mode-routing.yaml must parse as YAML", {
+        evidencePath: modeRoutingPath,
+      }),
+    );
   }
   if (gateChecksRaw === null) {
-    findings.push(finding("d-contract-gate-checks-yaml", "gate-checks.yaml must parse as YAML", { evidencePath: gateChecksPath }));
+    findings.push(
+      finding("d-contract-gate-checks-yaml", "gate-checks.yaml must parse as YAML", {
+        evidencePath: gateChecksPath,
+      }),
+    );
   }
 
   const modeRoutingParsed = dContractModeRoutingSchema.safeParse(modeRoutingRaw);
   const gateChecksParsed = dContractGateChecksSchema.safeParse(gateChecksRaw);
   if (!modeRoutingParsed.success) {
-    findings.push(finding("d-contract-mode-routing-schema", "mode-routing.yaml violates D-CONTRACT schema", { evidencePath: modeRoutingPath }));
+    findings.push(
+      finding("d-contract-mode-routing-schema", "mode-routing.yaml violates D-CONTRACT schema", {
+        evidencePath: modeRoutingPath,
+      }),
+    );
   }
   if (!gateChecksParsed.success) {
-    findings.push(finding("d-contract-gate-checks-schema", "gate-checks.yaml violates D-CONTRACT schema or recommendedCommandV1", { evidencePath: gateChecksPath }));
+    findings.push(
+      finding(
+        "d-contract-gate-checks-schema",
+        "gate-checks.yaml violates D-CONTRACT schema or recommendedCommandV1",
+        { evidencePath: gateChecksPath },
+      ),
+    );
   }
 
   const modeRouting = modeRoutingParsed.success ? modeRoutingParsed.data : null;
   const gateChecks = gateChecksParsed.success ? gateChecksParsed.data : null;
   if (modeRouting) {
     for (const signal of duplicateSignals(modeRouting.routes)) {
-      findings.push(finding("d-contract-duplicate-signal", `mode-routing signal must be unique: ${signal}`, { evidencePath: modeRoutingPath }));
+      findings.push(
+        finding("d-contract-duplicate-signal", `mode-routing signal must be unique: ${signal}`, {
+          evidencePath: modeRoutingPath,
+        }),
+      );
     }
     const signals = new Set(modeRouting.routes.map((route) => route.signal));
     for (const route of modeRouting.routes) {
       for (const next of route.next) {
         if (!signals.has(next)) {
-          findings.push(finding("d-contract-unknown-next", `mode-routing next target is missing: ${route.signal} -> ${next}`, { evidencePath: modeRoutingPath }));
+          findings.push(
+            finding(
+              "d-contract-unknown-next",
+              `mode-routing next target is missing: ${route.signal} -> ${next}`,
+              { evidencePath: modeRoutingPath },
+            ),
+          );
         }
       }
     }
     for (const cycle of detectRouteCycles(modeRouting.routes)) {
-      findings.push(finding("d-contract-next-cycle", `mode-routing next cycle detected: ${cycle.join(" -> ")}`, { evidencePath: modeRoutingPath }));
+      findings.push(
+        finding(
+          "d-contract-next-cycle",
+          `mode-routing next cycle detected: ${cycle.join(" -> ")}`,
+          { evidencePath: modeRoutingPath },
+        ),
+      );
     }
   }
   if (gateChecks) {
     for (const gateId of input.requiredGateIds ?? []) {
       if (!gateChecks.gates[gateId]) {
-        findings.push(finding("d-contract-missing-required-gate", `gate-checks.yaml is missing required gate: ${gateId}`, { evidencePath: gateChecksPath }));
+        findings.push(
+          finding(
+            "d-contract-missing-required-gate",
+            `gate-checks.yaml is missing required gate: ${gateId}`,
+            { evidencePath: gateChecksPath },
+          ),
+        );
       }
     }
   }

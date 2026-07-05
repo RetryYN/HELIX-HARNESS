@@ -167,9 +167,7 @@ export function validateDriveStatePartitions(input: {
   const byArtifact = new Map<string, Set<string>>();
   for (const partition of input.partitions) {
     if (
-      !partition.partition_path
-        .replaceAll("\\", "/")
-        .startsWith(`.helix/drive/${partition.drive}/`)
+      !partition.partition_path.replaceAll("\\", "/").startsWith(`.helix/drive/${partition.drive}/`)
     ) {
       return {
         ...result([

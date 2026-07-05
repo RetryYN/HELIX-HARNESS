@@ -64,9 +64,7 @@ function generatedSkillMarkdown(input: {
   const domainTags =
     input.domainTags.length === 0
       ? ""
-      : ["domain_tags:", ...input.domainTags.map((tag) => `  - ${yamlScalar(tag)}`), ""].join(
-          "\n",
-        );
+      : ["domain_tags:", ...input.domainTags.map((tag) => `  - ${yamlScalar(tag)}`), ""].join("\n");
   return [
     "---",
     "schema_version: skill.v1",
@@ -100,7 +98,10 @@ function generatedSkillMarkdown(input: {
     .join("\n");
 }
 
-function assignmentFindings(path: string, metadata: Record<string, unknown>): SkillScaffoldFinding[] {
+function assignmentFindings(
+  path: string,
+  metadata: Record<string, unknown>,
+): SkillScaffoldFinding[] {
   return analyzeSkillAssignments([{ path, metadata }]).violations.map((violation) => ({
     field: violation.kind,
     message: `skill assignment violation: ${violation.kind}`,
@@ -129,7 +130,8 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
 
   const findings: SkillScaffoldFinding[] = [];
   if (name.length === 0) findings.push({ field: "name", message: "name is required" });
-  if (slug.length === 0) findings.push({ field: "name", message: "name must contain ascii letters or digits" });
+  if (slug.length === 0)
+    findings.push({ field: "name", message: "name must contain ascii letters or digits" });
   findings.push(...assignmentFindings(path, metadata));
 
   const description =

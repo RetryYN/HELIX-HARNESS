@@ -45,7 +45,13 @@ const WORKFLOW_MARKERS = [
   "ux_defect_routing",
 ] as const;
 
-const GATE_MARKERS = ["G10", "real-data render", "screenshot", "a11y evidence", "frontend coverage"] as const;
+const GATE_MARKERS = [
+  "G10",
+  "real-data render",
+  "screenshot",
+  "a11y evidence",
+  "frontend coverage",
+] as const;
 const REQUIRED_UXV_FAMILY_PREFIXES = ["UXV-RENDER-", "UXV-A11Y-", "UXV-BLOCKER-"] as const;
 
 function missingMarkers(text: string, markers: readonly string[]): string[] {
@@ -55,7 +61,10 @@ function missingMarkers(text: string, markers: readonly string[]): string[] {
 export function loadG10UxWorkflowInput(repoRoot = process.cwd()): G10UxWorkflowInput {
   return {
     repoRoot,
-    l10VisualDesign: readFileSync(resolve(repoRoot, "docs/design/harness/L10-ux/visual-design.md"), "utf8"),
+    l10VisualDesign: readFileSync(
+      resolve(repoRoot, "docs/design/harness/L10-ux/visual-design.md"),
+      "utf8",
+    ),
     gatesMd: readFileSync(resolve(repoRoot, "docs/process/gates.md"), "utf8"),
     evidenceManifests: loadGateEvidenceManifests(repoRoot, CONFIG),
   };
@@ -71,9 +80,15 @@ export function canLoadG10UxWorkflowInput(repoRoot: string): boolean {
 export function analyzeG10UxWorkflow(input: G10UxWorkflowInput): G10UxWorkflowResult {
   const missingWorkflowMarkers = missingMarkers(input.l10VisualDesign, WORKFLOW_MARKERS);
   const missingGateMarkers = missingMarkers(input.gatesMd, GATE_MARKERS);
-  const uxvCaseCount = new Set([...input.l10VisualDesign.matchAll(/\bUXV-[A-Z0-9-]+/g)].map((m) => m[0])).size;
-  const selectedItemIds = new Set(input.evidenceManifests.flatMap((manifest) => manifest.selected_item_ids));
-  const mandatoryItemIds = new Set(input.evidenceManifests.flatMap((manifest) => manifest.mandatory_item_ids));
+  const uxvCaseCount = new Set(
+    [...input.l10VisualDesign.matchAll(/\bUXV-[A-Z0-9-]+/g)].map((m) => m[0]),
+  ).size;
+  const selectedItemIds = new Set(
+    input.evidenceManifests.flatMap((manifest) => manifest.selected_item_ids),
+  );
+  const mandatoryItemIds = new Set(
+    input.evidenceManifests.flatMap((manifest) => manifest.mandatory_item_ids),
+  );
   const violations: string[] = [];
 
   if (missingWorkflowMarkers.length > 0) {
@@ -83,7 +98,9 @@ export function analyzeG10UxWorkflow(input: G10UxWorkflowInput): G10UxWorkflowRe
     violations.push(`G10 gate definition markers missing: ${missingGateMarkers.join(", ")}`);
   }
   if (uxvCaseCount < 3) {
-    violations.push(`L10 visual design has too few UXV cases for a gate-significant workflow: ${uxvCaseCount}`);
+    violations.push(
+      `L10 visual design has too few UXV cases for a gate-significant workflow: ${uxvCaseCount}`,
+    );
   }
   if (input.evidenceManifests.length === 0) {
     violations.push(`G10 UX evidence manifest is missing under ${CONFIG.evidenceDir}`);

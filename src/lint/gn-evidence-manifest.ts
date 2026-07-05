@@ -109,7 +109,9 @@ function manifestFromJson(manifestPath: string, raw: unknown): GateEvidenceManif
           ? exitCriteria.failed_mandatory_count
           : undefined,
       stale_defer_count:
-        typeof exitCriteria.stale_defer_count === "number" ? exitCriteria.stale_defer_count : undefined,
+        typeof exitCriteria.stale_defer_count === "number"
+          ? exitCriteria.stale_defer_count
+          : undefined,
       doctor_check:
         typeof exitCriteria.doctor_check === "string" ? exitCriteria.doctor_check : undefined,
     },
@@ -176,20 +178,30 @@ export function validateGateEvidenceManifest(
       violations.push(`${manifest.manifest_path}: command entry has missing required fields`);
     }
     if (command.exit_code !== 0) {
-      violations.push(`${manifest.manifest_path}: command ${command.command_id} exit_code is non-zero`);
+      violations.push(
+        `${manifest.manifest_path}: command ${command.command_id} exit_code is non-zero`,
+      );
     }
     if (!/^sha256:[0-9a-f]{64}$/i.test(command.output_digest)) {
-      violations.push(`${manifest.manifest_path}: command ${command.command_id} has invalid digest`);
+      violations.push(
+        `${manifest.manifest_path}: command ${command.command_id} has invalid digest`,
+      );
     }
     if (!pathExistsInsideRepo(repoRoot, command.evidence_path)) {
-      violations.push(`${manifest.manifest_path}: command ${command.command_id} evidence_path missing`);
+      violations.push(
+        `${manifest.manifest_path}: command ${command.command_id} evidence_path missing`,
+      );
     }
     if (!hasAllowedEvidencePrefix(command.evidence_path)) {
-      violations.push(`${manifest.manifest_path}: command ${command.command_id} evidence_path prefix not allowed`);
+      violations.push(
+        `${manifest.manifest_path}: command ${command.command_id} evidence_path prefix not allowed`,
+      );
     }
     for (const itemId of command.item_ids) {
       if (!itemId.startsWith(config.itemPrefix)) {
-        violations.push(`${manifest.manifest_path}: command ${command.command_id} has invalid item id ${itemId}`);
+        violations.push(
+          `${manifest.manifest_path}: command ${command.command_id} has invalid item id ${itemId}`,
+        );
       }
     }
   }
@@ -202,26 +214,38 @@ export function validateGateEvidenceManifest(
       continue;
     }
     if (coverage.status !== "passed") {
-      violations.push(`${manifest.manifest_path}: mandatory coverage ${mandatoryItemId} is not passed`);
+      violations.push(
+        `${manifest.manifest_path}: mandatory coverage ${mandatoryItemId} is not passed`,
+      );
     }
     if (coverage.evidence_paths.length === 0 || coverage.command_ids.length === 0) {
-      violations.push(`${manifest.manifest_path}: mandatory coverage ${mandatoryItemId} lacks evidence paths or command ids`);
+      violations.push(
+        `${manifest.manifest_path}: mandatory coverage ${mandatoryItemId} lacks evidence paths or command ids`,
+      );
     }
     for (const commandId of coverage.command_ids) {
       if (!commandIds.has(commandId)) {
-        violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} references unknown command ${commandId}`);
+        violations.push(
+          `${manifest.manifest_path}: coverage ${mandatoryItemId} references unknown command ${commandId}`,
+        );
       }
     }
     for (const evidencePath of coverage.evidence_paths) {
       if (!pathExistsInsideRepo(repoRoot, evidencePath)) {
-        violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path missing: ${evidencePath}`);
+        violations.push(
+          `${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path missing: ${evidencePath}`,
+        );
       }
       if (!hasAllowedEvidencePrefix(evidencePath)) {
-        violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path prefix not allowed: ${evidencePath}`);
+        violations.push(
+          `${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path prefix not allowed: ${evidencePath}`,
+        );
       }
     }
     if (config.requireAdvisorEvidence && !coverage.advisor_evidence) {
-      violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} requires advisor_evidence`);
+      violations.push(
+        `${manifest.manifest_path}: coverage ${mandatoryItemId} requires advisor_evidence`,
+      );
     }
   }
 
@@ -235,7 +259,9 @@ export function validateGateEvidenceManifest(
     violations.push(`${manifest.manifest_path}: exit_criteria.stale_defer_count must be 0`);
   }
   if (manifest.exit_criteria.doctor_check !== config.doctorCheck) {
-    violations.push(`${manifest.manifest_path}: exit_criteria.doctor_check must be ${config.doctorCheck}`);
+    violations.push(
+      `${manifest.manifest_path}: exit_criteria.doctor_check must be ${config.doctorCheck}`,
+    );
   }
   return violations;
 }

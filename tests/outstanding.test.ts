@@ -1436,8 +1436,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "version-up activation -> add-feature/rejection path, with approval boundary preserved",
         decisionPacketCommand: "helix version-up activation-packet --json",
         packetCommands: ["helix version-up activation-packet --json"],
-        scopedDecisionPacketCommand:
-          "helix version-up activation-packet --json --plan PLAN-L7-146",
+        scopedDecisionPacketCommand: "helix version-up activation-packet --json --plan PLAN-L7-146",
         scopedPacketCommands: ["helix version-up activation-packet --json --plan PLAN-L7-146"],
         supportingPacketSummaries: [
           {
@@ -1746,8 +1745,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "helix version-up activation-packet --json",
           "helix action-binding approval-packet --json",
         ],
-        scopedDecisionPacketCommand:
-          "helix version-up activation-packet --json --plan PLAN-L7-146",
+        scopedDecisionPacketCommand: "helix version-up activation-packet --json --plan PLAN-L7-146",
         scopedPacketCommands: [
           "helix version-up activation-packet --json --plan PLAN-L7-146",
           "helix action-binding approval-packet --json --plan PLAN-L7-146",

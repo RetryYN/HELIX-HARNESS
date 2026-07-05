@@ -45,7 +45,12 @@ const WORKFLOW_MARKERS = [
   "system_defect_routing",
 ] as const;
 
-const GATE_MARKERS = ["G9", "ST-* evidence", "roadmap span coverage", "regression routing"] as const;
+const GATE_MARKERS = [
+  "G9",
+  "ST-* evidence",
+  "roadmap span coverage",
+  "regression routing",
+] as const;
 const REQUIRED_ST_FAMILY_PREFIXES = [
   "ST-DATA-",
   "ST-ARCH-",
@@ -62,8 +67,14 @@ function missingMarkers(text: string, markers: readonly string[]): string[] {
 export function loadG9SystemWorkflowInput(repoRoot = process.cwd()): G9SystemWorkflowInput {
   return {
     repoRoot,
-    l9TestDesign: readFileSync(resolve(repoRoot, "docs/test-design/harness/L9-system-test-design.md"), "utf8"),
-    l9Boundary: readFileSync(resolve(repoRoot, "docs/design/harness/L9-system/system-evidence-boundary.md"), "utf8"),
+    l9TestDesign: readFileSync(
+      resolve(repoRoot, "docs/test-design/harness/L9-system-test-design.md"),
+      "utf8",
+    ),
+    l9Boundary: readFileSync(
+      resolve(repoRoot, "docs/design/harness/L9-system/system-evidence-boundary.md"),
+      "utf8",
+    ),
     gatesMd: readFileSync(resolve(repoRoot, "docs/process/gates.md"), "utf8"),
     evidenceManifests: loadGateEvidenceManifests(repoRoot, CONFIG),
   };
@@ -81,9 +92,14 @@ export function analyzeG9SystemWorkflow(input: G9SystemWorkflowInput): G9SystemW
   const markerText = `${input.l9TestDesign}\n${input.l9Boundary}`;
   const missingWorkflowMarkers = missingMarkers(markerText, WORKFLOW_MARKERS);
   const missingGateMarkers = missingMarkers(input.gatesMd, GATE_MARKERS);
-  const stCaseCount = new Set([...input.l9TestDesign.matchAll(/\bST-[A-Z0-9-]+/g)].map((m) => m[0])).size;
-  const selectedItemIds = new Set(input.evidenceManifests.flatMap((manifest) => manifest.selected_item_ids));
-  const mandatoryItemIds = new Set(input.evidenceManifests.flatMap((manifest) => manifest.mandatory_item_ids));
+  const stCaseCount = new Set([...input.l9TestDesign.matchAll(/\bST-[A-Z0-9-]+/g)].map((m) => m[0]))
+    .size;
+  const selectedItemIds = new Set(
+    input.evidenceManifests.flatMap((manifest) => manifest.selected_item_ids),
+  );
+  const mandatoryItemIds = new Set(
+    input.evidenceManifests.flatMap((manifest) => manifest.mandatory_item_ids),
+  );
   const violations: string[] = [];
 
   if (missingWorkflowMarkers.length > 0) {
@@ -93,7 +109,9 @@ export function analyzeG9SystemWorkflow(input: G9SystemWorkflowInput): G9SystemW
     violations.push(`G9 gate definition markers missing: ${missingGateMarkers.join(", ")}`);
   }
   if (stCaseCount < 10) {
-    violations.push(`L9 test design has too few ST cases for a gate-significant workflow: ${stCaseCount}`);
+    violations.push(
+      `L9 test design has too few ST cases for a gate-significant workflow: ${stCaseCount}`,
+    );
   }
   if (input.evidenceManifests.length === 0) {
     violations.push(`G9 system evidence manifest is missing under ${CONFIG.evidenceDir}`);

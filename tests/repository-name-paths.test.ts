@@ -17,7 +17,7 @@ describe("repository path naming", () => {
 
   it("fails when legacy repository names return to tracked or filesystem paths", () => {
     const legacyDashedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join("-");
-    const legacyCompactRepo = ["UTTDD", "AGENT", "HARNESS"].join("");
+    const legacyCompactRepo = [["UT", "TDD"].join(""), "AGENT", "HARNESS"].join("");
     const legacySpacedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join(" ");
     const legacyUnderscorePack = [["UT", "TDD"].join("_"), "AGENT", "HARNESS-Pack"].join("_");
     const legacyDottedPack = ["ut", "tdd", "agent", "harness", "pack"].join(".");

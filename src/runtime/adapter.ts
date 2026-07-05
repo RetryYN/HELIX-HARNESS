@@ -243,7 +243,7 @@ function isWindowsCommandScript(command: string): boolean {
   return /\.(cmd|bat)$/i.test(command);
 }
 
-const WINDOWS_CMD_UNSAFE_TOKEN_PATTERN = /[\u0000\r\n"&|<>^%!]/;
+const WINDOWS_CMD_UNSAFE_TOKEN_PATTERN = new RegExp('[\\u0000\\r\\n"&|<>^%!]');
 
 function assertWindowsCmdTokenSafe(token: string, label: string): void {
   if (WINDOWS_CMD_UNSAFE_TOKEN_PATTERN.test(token)) {
@@ -409,9 +409,7 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
     command: isCodex ? "codex" : "claude",
     args,
     stdin: formatAdapterPrompt(intent.task, intent.contextInjection),
-    ...(intent.provider === "claude" && effort
-      ? { env: { [CLAUDE_EFFORT_ENV]: effort } }
-      : {}),
+    ...(intent.provider === "claude" && effort ? { env: { [CLAUDE_EFFORT_ENV]: effort } } : {}),
     dry_run: !intent.execute,
     plan_id: intent.planId,
     model: intent.model,

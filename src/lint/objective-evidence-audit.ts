@@ -195,8 +195,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
   },
   {
     source: "distribution_pack_latest_tag",
-    command:
-      "git ls-remote --tags https://github.com/unison-ai-product/HELIX-HARNESS-OS.git",
+    command: "git ls-remote --tags https://github.com/unison-ai-product/HELIX-HARNESS-OS.git",
     ref: "refs/tags/v0.1.4",
     observed: "v0.1.4",
     latestOfficialStatus: "latest tag reachable",

@@ -88,7 +88,10 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
     const bad = analyzeAssetDrift(
       input({
         assets: [
-          skill("cutover", `${legacyProductProse} naming contract は HELIX へ移行済みの prose ではない。`),
+          skill(
+            "cutover",
+            `${legacyProductProse} naming contract は HELIX へ移行済みの prose ではない。`,
+          ),
         ],
       }),
     );
@@ -97,7 +100,9 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
 
     const ok = analyzeAssetDrift(
       input({
-        assets: [skill("cutover", "HELIX_ALLOW_RAW_AGENT と <!-- HELIX:managed:start --> は機械識別子。")],
+        assets: [
+          skill("cutover", "HELIX_ALLOW_RAW_AGENT と <!-- HELIX:managed:start --> は機械識別子。"),
+        ],
         allowlist: [],
       }),
     );

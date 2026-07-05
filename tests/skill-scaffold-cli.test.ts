@@ -1,6 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync, rmSync } from "node:fs";
-import { mkdtempSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -73,7 +72,7 @@ describe("skill create CLI", () => {
       const first = runCliIn(root, args);
       expect(first.status, first.stderr || first.stdout).toBe(0);
       const path = join(root, "docs", "skills", "quality-review.md");
-      expect(readFileSync(path, "utf8")).toContain("skill_type: \"quality-gate-review\"");
+      expect(readFileSync(path, "utf8")).toContain('skill_type: "quality-gate-review"');
 
       const second = runCliIn(root, args);
       expect(second.status).toBe(1);

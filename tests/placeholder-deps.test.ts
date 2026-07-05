@@ -43,9 +43,7 @@ describe("U-PHDEPS: placeholder_deps 2-type recognition (IMP-107)", () => {
   });
 
   it("U-PHDEPS-004: waiting_layer 欠落は threshold 判定不能として hard-fail", () => {
-    const r = analyzePlaceholderDeps([
-      doc("- placeholder_deps: {waiting_spec: missing layer}"),
-    ]);
+    const r = analyzePlaceholderDeps([doc("- placeholder_deps: {waiting_spec: missing layer}")]);
     expect(r.ok).toBe(false);
     expect(r.violations[0].detail).toMatch(/missing waiting_layer/);
   });

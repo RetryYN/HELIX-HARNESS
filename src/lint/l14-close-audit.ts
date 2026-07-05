@@ -41,12 +41,7 @@ const EXPECTED_ITEMS = [
   "P9-db-convergence",
 ] as const;
 
-const VALID_STATUSES = new Set<L14CloseAuditStatus>([
-  "closed",
-  "partial",
-  "gap",
-  "blocked-human",
-]);
+const VALID_STATUSES = new Set<L14CloseAuditStatus>(["closed", "partial", "gap", "blocked-human"]);
 
 const REQUIRED_EVIDENCE_BY_ITEM: Record<(typeof EXPECTED_ITEMS)[number], readonly string[]> = {
   "P0-forward-convergence": [
@@ -82,13 +77,13 @@ const REQUIRED_EVIDENCE_BY_ITEM: Record<(typeof EXPECTED_ITEMS)[number], readonl
     "src/lint/action-binding-approval-readiness.ts",
     "src/lint/cutover-readiness.ts",
   ],
-  "P9-db-convergence": [
-    "src/state-db/projection-writer.ts",
-    "tests/projection-writer.test.ts",
-  ],
+  "P9-db-convergence": ["src/state-db/projection-writer.ts", "tests/projection-writer.test.ts"],
 };
 
-const REQUIRED_BOUNDARY_MARKERS_BY_ITEM: Record<(typeof EXPECTED_ITEMS)[number], readonly string[]> = {
+const REQUIRED_BOUNDARY_MARKERS_BY_ITEM: Record<
+  (typeof EXPECTED_ITEMS)[number],
+  readonly string[]
+> = {
   "P0-forward-convergence": ["Forward", "semantic frontier"],
   "P1-autonomous-engine": ["completionClaimAllowed=false", "version-up"],
   "P2-orchestration-loop": ["heartbeat", "loop"],
@@ -129,9 +124,7 @@ function normalizedHeader(cell: string): string {
 
 function normalizeStatus(raw: string): L14CloseAuditStatus | null {
   const value = raw.replaceAll("`", "").trim();
-  return VALID_STATUSES.has(value as L14CloseAuditStatus)
-    ? (value as L14CloseAuditStatus)
-    : null;
+  return VALID_STATUSES.has(value as L14CloseAuditStatus) ? (value as L14CloseAuditStatus) : null;
 }
 
 function pathExistsInsideRepo(repoRoot: string | undefined, path: string): boolean {
@@ -218,7 +211,10 @@ export function analyzeL14CloseAudit(input: L14CloseAuditInput): L14CloseAuditRe
     if (row.status !== "closed" && /^(なし|none)$/i.test(row.gap.replaceAll("`", "").trim())) {
       violations.push(`${expected}: non-closed row must name a gap`);
     }
-    if (row.status !== "closed" && /^(なし|none)$/i.test(row.nextAction.replaceAll("`", "").trim())) {
+    if (
+      row.status !== "closed" &&
+      /^(なし|none)$/i.test(row.nextAction.replaceAll("`", "").trim())
+    ) {
       violations.push(`${expected}: non-closed row must name next action`);
     }
   }

@@ -376,8 +376,7 @@ describe("completion decision packet lint", () => {
     expect(packet.decisions[0]).toMatchObject({
       runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
       runnablePacketCommands: ["bun run helix s4 decision-packet --json"],
-      runnableScopedDecisionPacketCommand:
-        "bun run helix s4 decision-packet --json --plan PLAN-S3",
+      runnableScopedDecisionPacketCommand: "bun run helix s4 decision-packet --json --plan PLAN-S3",
       runnableScopedPacketCommands: ["bun run helix s4 decision-packet --json --plan PLAN-S3"],
     });
     expect(packet.humanReviewBundle).toMatchObject({

@@ -210,7 +210,7 @@ G-SF `semantic_feature_frontier_record` の L6 解釈:
   `name=helix` / `@scope/helix` の string `bin`、package scripts、`.vscode/tasks.json` /
   `.github/workflows/harness-check.yml` / `.claude/settings.json` / `.codex/hooks.json` /
   配布 `.claude/agents/*.md` / `.claude/commands/*.md` の lowercase `helix` 実行 alias 未露出を検査する。
-  `buildConsumerReadinessPlan` は `hasUtTddCli` 未指定を green とみなさず、setup / distribution plan の両方で
+  `buildConsumerReadinessPlan` は `hasHelixCli` 未指定を green とみなさず、setup / distribution plan の両方で
   bare `helix --version` 相当の PATH 解決性を実測した入力だけを ready にする。
   consumer VS Code task は `type=shell`、`problemMatcher=[]`、`runOptions.runOn` 未指定または `default`、
   task-level `options` なし、`.vscode/settings.json` の `task.allowAutomaticTasks=off` まで doctor で検査し、

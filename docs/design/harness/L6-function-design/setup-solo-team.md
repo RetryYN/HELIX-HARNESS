@@ -143,7 +143,7 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > 逆に bare `helix --version` だけが解決しても、生成済み VS Code task / CI は `bun run helix ...` を使うため、
 > `helix-package-script=false` のまま `fix_consumer_readiness` へ戻す。
 > 解決不能なら `bun link` remediation を出して silent pass させない。
-> `hasUtTddCli` 未指定は green 扱いせず、`setup project` と `distribution plan` は bare `helix --version`
+> `hasHelixCli` 未指定は green 扱いせず、`setup project` と `distribution plan` は bare `helix --version`
 > 相当の実測値を readiness に渡す。
 > wet run は `.helix/state/project-setup.json` に `objectiveBoundary.completionClaimAllowed=false` を保存し、
 > 後続の standalone `helix completion decision-packet --json` はこの state を読んで

@@ -792,7 +792,8 @@ function isSkillSuggestSessionCommand(command: string): boolean {
 }
 
 function sessionEventExitCode(event: SessionLogProjection): number {
-  if (typeof event.exit_code === "number" && Number.isFinite(event.exit_code)) return event.exit_code;
+  if (typeof event.exit_code === "number" && Number.isFinite(event.exit_code))
+    return event.exit_code;
   return event.outcome === "ok" ? 0 : -1;
 }
 
@@ -865,7 +866,11 @@ function projectHookEvents(
           });
         }
         const command = sessionLogCommand(event);
-        if (event.event_type === "tool_use" && isBashSessionEvent(event) && isVerificationSessionCommand(command)) {
+        if (
+          event.event_type === "tool_use" &&
+          isBashSessionEvent(event) &&
+          isVerificationSessionCommand(command)
+        ) {
           const exitCode = sessionEventExitCode(event);
           const testRunId = stableId(
             "session-test-run",
@@ -894,7 +899,11 @@ function projectHookEvents(
             },
           });
         }
-        if (event.event_type === "tool_use" && isBashSessionEvent(event) && isSkillSuggestSessionCommand(command)) {
+        if (
+          event.event_type === "tool_use" &&
+          isBashSessionEvent(event) &&
+          isSkillSuggestSessionCommand(command)
+        ) {
           const skillId = "skill:suggest";
           const invocationId = stableId(
             "skill-inv",

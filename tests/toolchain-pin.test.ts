@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   analyzeToolchainPin,
   loadToolchainPinInput,
-  toolchainPinMessages,
   type ToolchainPinInput,
+  toolchainPinMessages,
 } from "../src/lint/toolchain-pin";
 
 const validInput: ToolchainPinInput = {

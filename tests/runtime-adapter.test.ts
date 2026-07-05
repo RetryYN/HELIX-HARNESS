@@ -242,9 +242,7 @@ describe("runtime adapter plan", () => {
   it("U-ADAPTER-011: normalizes provider invocation failures into provider-independent classes", () => {
     const plan = buildAdapterPlan({ provider: "codex", role: "se", task: "implement" }, "hybrid");
 
-    expect(
-      normalizeInvokeResult(plan, { status: 0, stdout: "done\n", stderr: "" }),
-    ).toMatchObject({
+    expect(normalizeInvokeResult(plan, { status: 0, stdout: "done\n", stderr: "" })).toMatchObject({
       ok: true,
       status: 0,
       output: "done\n",

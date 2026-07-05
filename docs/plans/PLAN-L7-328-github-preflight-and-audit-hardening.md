@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-07-05
 updated: 2026-07-05
 backprop_decision: not_required
-backprop_decision_reason: "GitHub 外部監査、identifier rename cutover snapshot、objective G-06 analyzer の L7 fail-close 強化であり、L1-L6 の要求意味は変更しない。"
+backprop_decision_reason: "GitHub 外部監査、identifier rename cutover snapshot、objective G-06 analyzer、内部識別子 rename residue の L7 fail-close 強化であり、L1-L6 の要求意味は変更しない。"
 owner: TL (Codex)
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: tests/cli-surface.test.ts
@@ -25,17 +25,35 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: src/setup/index.ts
+    artifact_type: source_module
+  - artifact_path: src/state-db/index.ts
+    artifact_type: source_module
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
   - artifact_path: src/lint/objective-evidence-audit.ts
     artifact_type: source_module
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/harness/L7-unit-test-design.md
+    artifact_type: test_design
   - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/distribution-acceptance.test.ts
     artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
   - artifact_path: tests/identifier-rename.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/repository-name-paths.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/setup.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/state-db.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/design/harness/L6-function-design/function-spec.md
@@ -93,6 +111,31 @@ review_evidence:
         completed_at: "2026-07-05T20:04:34+09:00"
         evidence_path: docs/plans/PLAN-L7-328-github-preflight-and-audit-hardening.md
         output_digest: "sha256:77ba05b15102b56b45990459f0f68aad8dc5344f643e7008e40057e41eb98fe8"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-05T20:15:08+09:00"
+    tests_green_at: "2026-07-05T20:15:08+09:00"
+    verdict: approve
+    scope: "consumer readiness / state DB / workflow helper に残っていた旧名由来 camelCase identifier を HELIX 系へ揃え、compact token literal も分割生成へ変更した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/state-db.test.ts tests/cli-surface.test.ts tests/distribution-acceptance.test.ts tests/repository-name-paths.test.ts tests/identifier-rename.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-05T20:15:08+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:3d1ab5bc34812c474e93086f68d1591e56e39bc6f9ca62d71205baa13ffb9ace"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T20:15:08+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
 ---
 
 # PLAN-L7-328: GitHub preflight と監査 hardening
@@ -110,6 +153,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - identifier rename cutover snapshot は、旧名 hit の token/path/count だけでなく対象ファイル content hash に束縛する。
 - objective evidence audit の G-06 は、doc row にある HELIX L1-L6 test-design / harness L7 unit test-design も
   required artifact として fail-close する。
+- consumer readiness / state DB / workflow test helper の内部 identifier に残る旧名由来の camelCase residue も
+  HELIX 系 identifier へ揃え、検索 residue を 0 件に保つ。
 
 ## 非スコープ
 
@@ -119,7 +164,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 
 ## 受入条件
 
-- 名称漏れ検索で旧 repo 名、旧 CLI 名、旧 state dir、`READE` の tracked / filesystem residue が 0 件。
+- 名称漏れ検索で旧 repo 名、旧 CLI 名、旧 state dir、旧 typo marker の tracked / filesystem residue が 0 件。
+- camelCase / compact 表記の旧名由来 internal identifier residue も 0 件。
 - `identifier-rename` test が同一 hit count の content drift で snapshot digest drift を検出する。
 - `goal-evidence-audit` と `cli-surface` test が G-06 artifact requirement と GitHub preflight isolation を検証する。
 - `typecheck` と `doctor` が green。ただし外部 repo が認証必須の場合、`objective-external` は認証不足を明示して blocked とする。

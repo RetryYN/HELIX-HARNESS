@@ -97,11 +97,11 @@ function wrapStatement(stmt: NativeStatement): HarnessStatement {
  * DB path が `.helix/` 配下であることを保証する (`:memory:` は例外)。
  * repo 外・`.helix` 外への書き込みを fail-close で拒否する (PLAN-L7-45 §2 invariant)。
  */
-export function assertWithinUtTdd(dbPath: string, repoRoot: string): void {
+export function assertWithinHelixStateDir(dbPath: string, repoRoot: string): void {
   if (dbPath === ":memory:") return;
-  const utTddRoot = resolve(repoRoot, ".helix");
+  const helixStateRoot = resolve(repoRoot, ".helix");
   const resolved = isAbsolute(dbPath) ? resolve(dbPath) : resolve(repoRoot, dbPath);
-  const rel = relative(utTddRoot, resolved);
+  const rel = relative(helixStateRoot, resolved);
   if (rel.startsWith("..") || isAbsolute(rel)) {
     throw new Error(`harness.db path は .helix/ 配下に限定されます: ${dbPath}`);
   }
@@ -118,7 +118,7 @@ export function defaultHarnessDbPath(repoRoot: string = process.cwd()): string {
  */
 export function openHarnessDb(path: string, options: { repoRoot?: string } = {}): HarnessDb {
   const repoRoot = options.repoRoot ?? process.cwd();
-  assertWithinUtTdd(path, repoRoot);
+  assertWithinHelixStateDir(path, repoRoot);
   if (path !== ":memory:") mkdirSync(dirname(resolve(repoRoot, path)), { recursive: true });
   const driver = currentDriver();
   const native = openNative(path, driver);

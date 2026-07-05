@@ -14,7 +14,7 @@ import { col, pk } from "../src/schema/harness-db-table-builders";
 import { HARNESS_DB_CORE_TABLES } from "../src/schema/harness-db-tables-core";
 import { HARNESS_DB_EVALUATION_TABLES } from "../src/schema/harness-db-tables-evaluation";
 import { HARNESS_DB_GRAPH_EXPORT_TABLES } from "../src/schema/harness-db-tables-graph";
-import { assertWithinUtTdd, openHarnessDb, upsertRow } from "../src/state-db/index";
+import { assertWithinHelixStateDir, openHarnessDb, upsertRow } from "../src/state-db/index";
 import { ensureHarnessSchema, harnessDbStatus } from "../src/state-db/maintenance";
 import { migrate, missingTables, rowCounts, tableNames } from "../src/state-db/migration";
 
@@ -217,13 +217,13 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     db.close();
   });
 
-  it("assertWithinUtTdd は .helix 配下と :memory: を許可し外を拒否する", () => {
+  it("assertWithinHelixStateDir は .helix 配下と :memory: を許可し外を拒否する", () => {
     const repo = process.cwd();
-    expect(() => assertWithinUtTdd(":memory:", repo)).not.toThrow();
-    expect(() => assertWithinUtTdd(".helix/harness.db", repo)).not.toThrow();
-    expect(() => assertWithinUtTdd(".helix/sub/x.db", repo)).not.toThrow();
-    expect(() => assertWithinUtTdd("harness.db", repo)).toThrow();
-    expect(() => assertWithinUtTdd("../escape.db", repo)).toThrow();
+    expect(() => assertWithinHelixStateDir(":memory:", repo)).not.toThrow();
+    expect(() => assertWithinHelixStateDir(".helix/harness.db", repo)).not.toThrow();
+    expect(() => assertWithinHelixStateDir(".helix/sub/x.db", repo)).not.toThrow();
+    expect(() => assertWithinHelixStateDir("harness.db", repo)).toThrow();
+    expect(() => assertWithinHelixStateDir("../escape.db", repo)).toThrow();
   });
 
   it("userVersion は setUserVersion と round-trip し負値を拒否する", () => {

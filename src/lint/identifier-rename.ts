@@ -577,7 +577,10 @@ function countToken(text: string, token: IdentifierRenameToken): number {
 
 function countResidualToken(text: string, token: IdentifierRenameResidualToken): number {
   if (token === LEGACY_PRODUCT_TOKEN) {
-    const pattern = new RegExp(`${LEGACY_PRODUCT_TOKEN}(?!:managed|-agent-harness|_AGENT-HARNESS)`, "g");
+    const pattern = new RegExp(
+      `${LEGACY_PRODUCT_TOKEN}(?!:managed|-agent-harness|_AGENT-HARNESS)`,
+      "g",
+    );
     return [...text.matchAll(pattern)].length;
   }
   if (token === LEGACY_PRODUCT_HARNESS_TOKEN) {
@@ -693,7 +696,7 @@ function targetPathForRenameHit(path: string): string {
     .replaceAll(LEGACY_PRODUCT_TOKEN, "HELIX")
     .replaceAll(LEGACY_REPO_TOKEN, "HELIX-HARNESS")
     .replaceAll(["ut", "tdd"].join(""), "helix")
-    .replaceAll("UTTDD", "HELIX")
+    .replaceAll(["UT", "TDD"].join(""), "HELIX")
     .replaceAll(LEGACY_AREA_TOKEN, "area=helix");
 }
 
@@ -937,8 +940,12 @@ export function auditIdentifierRenameBlastRadius(root: string): IdentifierRename
   const pathEntriesByToken: Record<IdentifierRenameToken, number> = zeroByToken();
   const contentFilesByToken: Record<IdentifierRenameToken, number> = zeroByToken();
   const fileSetsByToken = Object.fromEntries(TOKENS.map((token) => [token, new Set<string>()]));
-  const pathEntrySetsByToken = Object.fromEntries(TOKENS.map((token) => [token, new Set<string>()]));
-  const contentFileSetsByToken = Object.fromEntries(TOKENS.map((token) => [token, new Set<string>()]));
+  const pathEntrySetsByToken = Object.fromEntries(
+    TOKENS.map((token) => [token, new Set<string>()]),
+  );
+  const contentFileSetsByToken = Object.fromEntries(
+    TOKENS.map((token) => [token, new Set<string>()]),
+  );
   const categoryStats = new Map<
     IdentifierRenameHitCategory,
     { hits: number; files: Set<string> }

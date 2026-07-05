@@ -322,7 +322,11 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
 
     // 走査対象クラス配下 (src/docs-skills) の node 欠落は、ディレクトリ丸め込みでも missing-projection error のまま (規律維持)。
     const trackedMissing = analyzeRelationImpact({
-      changedPaths: ["src/runtime/unknown-module.ts", "src/runtime/new-module/", "docs/skills/api.md"],
+      changedPaths: [
+        "src/runtime/unknown-module.ts",
+        "src/runtime/new-module/",
+        "docs/skills/api.md",
+      ],
       projection,
     });
     expect(trackedMissing.ok).toBe(false);

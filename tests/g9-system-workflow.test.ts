@@ -37,8 +37,22 @@ const validManifest = {
   gate: "G9",
   profile: "system-selected-regression",
   plan_id: "PLAN-L7-313-g9-g10-workflow-gate",
-  selected_item_ids: ["ST-DATA-01", "ST-ARCH-01", "ST-FUNC-01", "ST-EXT-01", "ST-UI-01", "ST-ASSET-01"],
-  mandatory_item_ids: ["ST-DATA-01", "ST-ARCH-01", "ST-FUNC-01", "ST-EXT-01", "ST-UI-01", "ST-ASSET-01"],
+  selected_item_ids: [
+    "ST-DATA-01",
+    "ST-ARCH-01",
+    "ST-FUNC-01",
+    "ST-EXT-01",
+    "ST-UI-01",
+    "ST-ASSET-01",
+  ],
+  mandatory_item_ids: [
+    "ST-DATA-01",
+    "ST-ARCH-01",
+    "ST-FUNC-01",
+    "ST-EXT-01",
+    "ST-UI-01",
+    "ST-ASSET-01",
+  ],
   deferred_item_ids: [],
   commands: [
     {
@@ -52,12 +66,14 @@ const validManifest = {
       item_ids: ["ST-DATA-01", "ST-ARCH-01", "ST-FUNC-01", "ST-EXT-01", "ST-UI-01", "ST-ASSET-01"],
     },
   ],
-  coverage: ["ST-DATA-01", "ST-ARCH-01", "ST-FUNC-01", "ST-EXT-01", "ST-UI-01", "ST-ASSET-01"].map((item_id) => ({
-    item_id,
-    status: "passed",
-    evidence_paths: ["tests/g9-system-workflow.test.ts"],
-    command_ids: ["cmd-g9-selected"],
-  })),
+  coverage: ["ST-DATA-01", "ST-ARCH-01", "ST-FUNC-01", "ST-EXT-01", "ST-UI-01", "ST-ASSET-01"].map(
+    (item_id) => ({
+      item_id,
+      status: "passed",
+      evidence_paths: ["tests/g9-system-workflow.test.ts"],
+      command_ids: ["cmd-g9-selected"],
+    }),
+  ),
   exit_criteria: {
     all_mandatory_passed: true,
     failed_mandatory_count: 0,
@@ -93,7 +109,11 @@ describe("g9-system-workflow lint", () => {
           coverage: validManifest.coverage.map((entry) =>
             entry.item_id === "ST-UI-01" ? { ...entry, status: "failed" } : entry,
           ),
-          exit_criteria: { ...validManifest.exit_criteria, all_mandatory_passed: false, failed_mandatory_count: 1 },
+          exit_criteria: {
+            ...validManifest.exit_criteria,
+            all_mandatory_passed: false,
+            failed_mandatory_count: 1,
+          },
         },
       ],
     });

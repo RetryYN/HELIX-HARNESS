@@ -2088,7 +2088,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ...(packageBin && Object.hasOwn(packageBin, legacyCliName)
       ? [`package.json:bin.${legacyCliName}`]
       : []),
-    ...(typeof packageBinRaw === "string" && new RegExp(String.raw`(?:^|/)${legacyCliName}$`).test(packageName)
+    ...(typeof packageBinRaw === "string" &&
+    new RegExp(`(?:^|/)${legacyCliName}$`).test(packageName)
       ? ["package.json:bin"]
       : []),
     ...Object.entries(packageScripts ?? {})

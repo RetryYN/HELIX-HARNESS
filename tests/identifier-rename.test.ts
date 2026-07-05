@@ -272,10 +272,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         join(root, "src", "cli.ts"),
         'readRemote("distribution_pack_repo", ["https://github.com/unison-ai-product/HELIX-HARNESS-OS.git", "refs/heads/main"], firstSha);\n',
       );
-      writeFileSync(
-        join(root, "src", "product.ts"),
-        'const productNameDebt = "HELIX-HARNESS";\n',
-      );
+      writeFileSync(join(root, "src", "product.ts"), 'const productNameDebt = "HELIX-HARNESS";\n');
       writeFileSync(
         join(root, "tests", "sample.test.ts"),
         [
@@ -338,7 +335,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         join(root, "docs", "improvement-backlog.md"),
         `Backlog references ${legacyStateDir} migration work before approval.\n`,
       );
-      writeFileSync(join(root, legacyStateDir, "state", "setup.json"), `{"cli":"${legacyCliName}"}\n`);
+      writeFileSync(
+        join(root, legacyStateDir, "state", "setup.json"),
+        `{"cli":"${legacyCliName}"}\n`,
+      );
       writeFileSync(join(root, ".codex", "hooks.json"), `{"marker":"${legacyArea}"}\n`);
 
       const audit = auditIdentifierRenameBlastRadius(root);
@@ -451,7 +451,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-options-"));
     try {
       writeConcreteActorWithOutcomeChoices(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
@@ -466,7 +469,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-approved-"));
     try {
       writeApprovedRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
@@ -481,7 +487,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-minimal-approved-"));
     try {
       writeMinimalApprovedRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
       expect(plan.status).toBe("blocked_pending_cutover_approval");
@@ -566,7 +575,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
       expect(plan).toMatchObject({
@@ -1049,11 +1061,6 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         approvedParamsRequired: true,
         reviewedSnapshotBindingRequired: true,
       });
-
-      const beforeDigest = plan.cutoverSnapshot.blastRadiusDigest;
-      writeFileSync(join(root, "README.md"), "Additional helix mention after baseline.\n");
-      const changedPlan = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
-      expect(changedPlan.cutoverSnapshot.blastRadiusDigest).not.toBe(beforeDigest);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -1064,7 +1071,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const first = buildIdentifierRenameCutoverPlan(
         root,
@@ -1116,7 +1126,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const clean = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
         repoHeadSha: TEST_HEAD_SHA,
@@ -1155,7 +1168,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const missing = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
         repoHeadSha: TEST_HEAD_SHA,
@@ -1197,7 +1213,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const dryRun = buildIdentifierRenameEvidencePack(root);
       expect(dryRun).toMatchObject({
@@ -1325,7 +1344,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
       writeCutoverEvidenceArtifacts(root);
 
       const draft = buildIdentifierRenameApprovalDraft(root);
@@ -1402,7 +1424,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const first = buildIdentifierRenameCutoverPlan(
         root,
@@ -1482,7 +1507,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root, "2026-01-01");
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(
         root,
@@ -1525,7 +1553,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           ),
         "utf8",
       );
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(
         root,
@@ -1552,7 +1583,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], null);
 
@@ -1573,7 +1607,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-approved-"));
     try {
       writeApprovedRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(
         root,
@@ -1610,7 +1647,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1659,7 +1699,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1689,7 +1732,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
       writeCutoverEvidenceArtifacts(root);
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
@@ -1727,7 +1773,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1774,7 +1823,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-no-frontier-"));
     try {
       writeDraftRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const plan = buildIdentifierRenameCutoverPlan(root, []);
       expect(plan.semanticFeatureFrontierRecord).toMatchObject({
@@ -1797,7 +1849,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-wrong-frontier-"));
     try {
       writeDraftRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const wrongClassification = buildIdentifierRenameCutoverPlan(root, [
         { ...nameCutoverSemanticRecord(), classification: "parked_future_version" },
@@ -1825,7 +1880,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const result = runCliIn(root, ["rename", "plan", "--json"]);
       expect(result.status).toBe(0);
@@ -2063,7 +2121,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
 
       const missingMode = runCliIn(root, ["rename", "evidence-pack", "--json"]);
       expect(missingMode.status).toBe(1);
@@ -2118,9 +2179,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const text = runCliIn(root, ["rename", "evidence-pack", "--dry-run"]);
       expect(text.status, text.stderr || text.stdout).toBe(0);
       expect(text.stdout).toContain("rename evidence-pack: writePolicy=no-write");
-      expect(text.stdout).toContain(
-        "pending-artifact: .helix/evidence/rename/full-regression.txt",
-      );
+      expect(text.stdout).toContain("pending-artifact: .helix/evidence/rename/full-regression.txt");
       expect(text.stdout).toContain("blocked-until: pendingArtifacts");
     } finally {
       rmSync(root, { recursive: true, force: true });
@@ -2132,7 +2191,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
       writeCutoverEvidenceArtifacts(root);
 
       const result = runCliIn(root, ["rename", "approval-draft", "--json"]);

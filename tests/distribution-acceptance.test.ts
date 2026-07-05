@@ -132,7 +132,7 @@ function pathWith(...parts: string[]): string {
   return parts.filter(Boolean).join(process.platform === "win32" ? ";" : ":");
 }
 
-function runWorkflowUtTdd(
+function runWorkflowHelix(
   cwd: string,
   workflowCommand: string,
   env: NodeJS.ProcessEnv = process.env,
@@ -158,13 +158,13 @@ function runWorkflowCommand(
   }
   if (workflowCommand === CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND) {
     const fakeGitBin = writeFakeRemoteTagGit(cwd, "v0.1.4");
-    return runWorkflowUtTdd(cwd, workflowCommand, {
+    return runWorkflowHelix(cwd, workflowCommand, {
       ...env,
       PATH: pathWith(fakeGitBin, env.PATH ?? ""),
     });
   }
   if (workflowCommand.startsWith("bun run helix ")) {
-    return runWorkflowUtTdd(cwd, workflowCommand, env);
+    return runWorkflowHelix(cwd, workflowCommand, env);
   }
   throw new Error(`unsupported generated workflow command: ${workflowCommand}`);
 }
@@ -204,8 +204,8 @@ describe("clean distribution local acceptance smoke", () => {
       const build = runBun(cleanRoot, ["run", "build"], env);
       expect(build.status, build.stderr || build.stdout).toBe(0);
       const packageJson = JSON.parse(readFileSync(join(cleanRoot, "package.json"), "utf8")) as {
-        bin?: { "helix"?: string };
-        scripts?: { "helix"?: string };
+        bin?: { helix?: string };
+        scripts?: { helix?: string };
       };
       expect(packageJson.bin?.["helix"]).toBe("./dist/helix");
       expect(packageJson.scripts?.["helix"]).toBe("bun run src/cli.ts");
@@ -356,7 +356,7 @@ describe("clean distribution local acceptance smoke", () => {
                 "@consumer/noop": "file:./packages/noop",
               },
               scripts: {
-                "helix": "helix",
+                helix: "helix",
                 typecheck: 'bun -e "process.exit(0)"',
                 test: 'bun -e "process.exit(0)"',
               },
@@ -756,7 +756,7 @@ describe("clean distribution local acceptance smoke", () => {
         }
         for (const command of CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS) {
           if (!command.startsWith("bun run helix ")) continue;
-          const run = runWorkflowUtTdd(consumerRoot, command, linkedEnv);
+          const run = runWorkflowHelix(consumerRoot, command, linkedEnv);
           expect(run.status, run.stderr || run.stdout).toBe(0);
           expect(JSON.parse(run.stdout)).toBeTruthy();
         }
@@ -794,13 +794,11 @@ describe("clean distribution local acceptance smoke", () => {
           scripts?: Record<string, string>;
         };
         expect(generatedPackage.scripts).toMatchObject({
-          "helix": "helix",
+          helix: "helix",
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         });
-        expect(generatedPackage.devDependencies?.["helix"]).toBe(
-          "github:RetryYN/HELIX-HARNESS",
-        );
+        expect(generatedPackage.devDependencies?.["helix"]).toBe("github:RetryYN/HELIX-HARNESS");
         expect(generatedPackage.devDependencies?.typescript).toBe("^5.6.3");
         expect(readFileSync(join(freshConsumerRoot, "bun.lock"), "utf8")).toContain(
           "lockfileVersion",

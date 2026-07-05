@@ -42,8 +42,7 @@ const ev = (
 ): SessionEvent => ({ ts, session_id: "s1", plan_id: "PLAN-A", event_type, ...over });
 
 const sessionPath = (sid: string) => join("/repo", ".helix", "logs", "session", `${sid}.jsonl`);
-const feedbackPath = (plan: string) =>
-  join("/repo", ".helix", "logs", "feedback", `${plan}.jsonl`);
+const feedbackPath = (plan: string) => join("/repo", ".helix", "logs", "feedback", `${plan}.jsonl`);
 
 describe("forced-stop (PLAN-L7-02 add-impl / U-FSF)", () => {
   it("U-FSF-001: detectDanglingTurn 純粋性 / dangling 判定 / from 規則", () => {

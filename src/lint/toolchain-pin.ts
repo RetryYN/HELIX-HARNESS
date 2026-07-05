@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { normalizePath } from "./shared";
@@ -32,10 +32,7 @@ type PackageJson = {
   engines?: { bun?: string };
 };
 
-const WORKFLOW_DIRS = [
-  ".github/workflows",
-  "docs/templates/github/common",
-] as const;
+const WORKFLOW_DIRS = [".github/workflows", "docs/templates/github/common"] as const;
 
 function readIfExists(root: string, path: string): ToolchainPinFile | undefined {
   const full = join(root, path);
@@ -154,7 +151,10 @@ function majorMinor(version: string): string {
   return match ? `${match[1]}.${match[2]}` : version;
 }
 
-function workflowViolations(doc: ToolchainPinFile, engine: string | undefined): ToolchainPinViolation[] {
+function workflowViolations(
+  doc: ToolchainPinFile,
+  engine: string | undefined,
+): ToolchainPinViolation[] {
   const parsed = yamlDoc(doc);
   if (!parsed) {
     return [
@@ -169,7 +169,10 @@ function workflowViolations(doc: ToolchainPinFile, engine: string | undefined): 
   const violations: ToolchainPinViolation[] = [];
   const runCommands = steps.flatMap((step) => (typeof step.run === "string" ? [step.run] : []));
   for (const command of runCommands) {
-    if (/\bbun\s+install\b/.test(command) && !/\bbun\s+install\s+--frozen-lockfile\b/.test(command)) {
+    if (
+      /\bbun\s+install\b/.test(command) &&
+      !/\bbun\s+install\s+--frozen-lockfile\b/.test(command)
+    ) {
       violations.push({
         path: doc.path,
         rule: "bun-install-not-frozen",

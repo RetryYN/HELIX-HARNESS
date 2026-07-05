@@ -313,8 +313,7 @@ function consumerProjectSetupStateTemplate(): string {
     },
     {
       phase: "team-run-dry-run",
-      command:
-        "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+      command: "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       writePolicy: "no-write",
       requiresMaterializedPaths: [".helix/teams/default-hybrid.yaml"],
       expected: "team run returns a dry-run plan with separated worker/reviewer roles",
@@ -407,12 +406,12 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     "package.json": JSON.stringify({
       name: "consumer",
       scripts: {
-        "helix": "helix",
+        helix: "helix",
         typecheck: "tsc --noEmit",
         test: "vitest",
       },
       devDependencies: {
-        "helix": "workspace:*",
+        helix: "workspace:*",
       },
     }),
     "bun.lock": "",
@@ -691,7 +690,7 @@ describe("runConsumerDoctor", () => {
           "package.json": JSON.stringify({
             name: "consumer",
             scripts: {
-              "helix": "helix",
+              helix: "helix",
             },
           }),
         }),
@@ -1123,10 +1122,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "noPullRequestTarget=false")).toBe(true);
     expect(hasDoctorMessage(result.messages, "tokenWrite=true")).toBe(true);
     expect(
-      hasDoctorMessage(
-        result.messages,
-        "missingRuns=bun run helix setup project --dry-run --json",
-      ),
+      hasDoctorMessage(result.messages, "missingRuns=bun run helix setup project --dry-run --json"),
     ).toBe(true);
   });
 
@@ -1696,7 +1692,9 @@ describe("runConsumerDoctor", () => {
     expect(result.ok).toBe(false);
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
-    ).toContain("legacy_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.codex/hooks.json");
+    ).toContain(
+      "legacy_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.codex/hooks.json",
+    );
   });
 
   it("fails closed when cutover, decision, or hook surfaces expose legacy CLI commands after cutover", () => {
@@ -1706,7 +1704,10 @@ describe("runConsumerDoctor", () => {
     const claudePath = join("/repo", ".claude", "settings.json");
     files.set(
       tasksPath,
-      (files.get(tasksPath) ?? "").replace("helix rename plan --json", `${legacyCliName} rename plan --json`),
+      (files.get(tasksPath) ?? "").replace(
+        "helix rename plan --json",
+        `${legacyCliName} rename plan --json`,
+      ),
     );
     files.set(
       workflowPath,
@@ -1728,7 +1729,9 @@ describe("runConsumerDoctor", () => {
     expect(result.ok).toBe(false);
     expect(
       result.messages.find((message) => message.includes("consumer-identifier-transition")),
-    ).toContain("legacy_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.claude/settings.json");
+    ).toContain(
+      "legacy_alias=.vscode/tasks.json,.github/workflows/harness-check.yml,.claude/settings.json",
+    );
   });
 
   it("fails closed when distributed Claude templates instruct legacy CLI commands after cutover", () => {
@@ -1811,9 +1814,7 @@ describe("runConsumerDoctor", () => {
                 },
               ],
               Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
-              SubagentStop: [
-                { hooks: [{ type: "command", command: "helix hook subagent-stop" }] },
-              ],
+              SubagentStop: [{ hooks: [{ type: "command", command: "helix hook subagent-stop" }] }],
             },
           }),
           ".codex/hooks.json": JSON.stringify({

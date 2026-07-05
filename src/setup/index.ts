@@ -27,8 +27,7 @@ import {
 } from "./templates";
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
-export const PACK_DISTRIBUTION_REMOTE_URL =
-  "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+export const PACK_DISTRIBUTION_REMOTE_URL = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
 export const PACK_DISTRIBUTION_REFERENCE = {
   repo: "RetryYN/HELIX-HARNESS-OS",
   mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
@@ -594,11 +593,7 @@ export function analyzeConsumerEscalationWorkflowContract(
 }
 
 export function branchProtectionScriptIsApplyCapable(scriptText: string): boolean {
-  const mutatingPatterns = [
-    /\brulesets?\b/i,
-    /\bGITHUB_TOKEN\b/i,
-    /\bsecrets?\s*(?:\.|\[)/i,
-  ];
+  const mutatingPatterns = [/\brulesets?\b/i, /\bGITHUB_TOKEN\b/i, /\bsecrets?\s*(?:\.|\[)/i];
   return (
     scriptText.includes("gh auth status") &&
     scriptText.includes("branches/main/protection") &&
@@ -1042,7 +1037,7 @@ export function packageJsonDeclaresScript(packageJson: string | null, scriptName
   }
 }
 
-export function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
+export function packageJsonDeclaresHelixScript(packageJson: string | null): boolean {
   return packageJsonDeclaresScript(packageJson, "helix");
 }
 
@@ -1498,8 +1493,8 @@ export function buildConsumerReadinessPlan(input: {
   bunVersion: string | null;
   hasGit: boolean;
   hasGh: boolean;
-  hasUtTddCli?: boolean;
-  hasUtTddPackageScript?: boolean;
+  hasHelixCli?: boolean;
+  hasHelixPackageScript?: boolean;
   hasTypecheckPackageScript?: boolean;
   hasTestPackageScript?: boolean;
   hasBunLockfile?: boolean;
@@ -1537,8 +1532,8 @@ export function buildConsumerReadinessPlan(input: {
           ? "codex-only"
           : "standalone";
   const runtimeOk = input.hasClaude || input.hasCodex;
-  const cliResolvedByPath = input.hasUtTddCli === true;
-  const cliResolvedByPackageScript = input.hasUtTddPackageScript === true;
+  const cliResolvedByPath = input.hasHelixCli === true;
+  const cliResolvedByPackageScript = input.hasHelixPackageScript === true;
   const typecheckPackageScriptAvailable = input.hasTypecheckPackageScript === true;
   const testPackageScriptAvailable = input.hasTestPackageScript === true;
   const bunLockfileAvailable = input.hasBunLockfile === true;
@@ -2180,8 +2175,8 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
     bunVersion: deps.bunVersion?.() ?? null,
     hasGit: commandAvailable("git"),
     hasGh: commandAvailable("gh"),
-    hasUtTddCli: commandAvailable("helix"),
-    hasUtTddPackageScript: packageJsonDeclaresScript(
+    hasHelixCli: commandAvailable("helix"),
+    hasHelixPackageScript: packageJsonDeclaresScript(
       deps.readText(join(packageRoot, "package.json")),
       "helix",
     ),

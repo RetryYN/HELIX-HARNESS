@@ -173,9 +173,7 @@ describe("static gates", () => {
       join(process.cwd(), "docs", "design", "harness", "L4-basic-design", "function.md"),
       "utf8",
     );
-    const gateRow = functionDoc
-      .split(/\r?\n/)
-      .find((line) => line.includes("`helix gate <G-ID>`"));
+    const gateRow = functionDoc.split(/\r?\n/).find((line) => line.includes("`helix gate <G-ID>`"));
     expect(gateRow).toContain("deterministic static gate");
     expect(gateRow).not.toContain("gate checks 全量は後続");
     expect(gateRow).not.toContain("部分実装");

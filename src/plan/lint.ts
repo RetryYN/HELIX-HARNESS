@@ -53,7 +53,11 @@ function section(content: string, start: RegExp, end: RegExp): string {
 }
 
 function extractDodSection(content: string): string {
-  return section(content, /^##\s*§?4\b[^\n]*(?:DoD|Definition of Done|完了条件)[^\n]*\n/m, /^##\s/m);
+  return section(
+    content,
+    /^##\s*§?4\b[^\n]*(?:DoD|Definition of Done|完了条件)[^\n]*\n/m,
+    /^##\s/m,
+  );
 }
 
 export function extractScheduleSection(content: string): string {

@@ -30,9 +30,7 @@ describe("U-FR-L1-39: classifyTask public surface", () => {
       path: "docs/x.md",
       reason: "reason",
     });
-    expect(RESEARCH_ADOPTION_BY_PATTERN["agent-orchestration"]?.disposition).toBe(
-      "helix-specific",
-    );
+    expect(RESEARCH_ADOPTION_BY_PATTERN["agent-orchestration"]?.disposition).toBe("helix-specific");
     expect(RESEARCH_REJECTION_KEYWORDS.map((entry) => entry.decision.pattern)).toContain(
       "llm-minimal-design-claim",
     );

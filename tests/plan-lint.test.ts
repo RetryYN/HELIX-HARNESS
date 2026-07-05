@@ -75,11 +75,7 @@ function scopeDigest(lines: string[]): string {
   return `sha256:${createHash("sha256").update(lines.join("\n")).digest("hex")}`;
 }
 
-function scopeIntegrityPlanDoc(
-  id: string,
-  dodLines: string[],
-  digestLines: string[] = dodLines,
-) {
+function scopeIntegrityPlanDoc(id: string, dodLines: string[], digestLines: string[] = dodLines) {
   return {
     file: `docs/plans/${id}.md`,
     content: `---\nplan_id: ${id}\ntitle: "${id}"\nkind: design\nlayer: L4\ndrive: agent\nstatus: confirmed\nsub_doc: function\nscope_digest: ${scopeDigest(digestLines)}\nagent_slots:\n  - role: tl\n    slot_label: "TL - fixture"\ngenerates: []\ndependencies:\n  parent: null\n  requires: []\n  blocks: []\n---\n\n## body\n\n## §4 DoD\n\n${dodLines.join("\n")}\n`,
@@ -353,10 +349,7 @@ describe("plan schedule lint (IMP-081)", () => {
   });
 
   it("U-PLANGOV-015: scope_digest detects undeclared DoD scope shrink", () => {
-    const original = [
-      "- [x] source module を実装する",
-      "- [x] tests/plan-lint.test.ts を追加する",
-    ];
+    const original = ["- [x] source module を実装する", "- [x] tests/plan-lint.test.ts を追加する"];
     const shrunk = scopeIntegrityPlanDoc("PLAN-L4-98-scope-shrink", [original[0]], original);
 
     const reasons = analyzePlanGovernance([shrunk]).violations.map((v) => v.reason);
@@ -372,9 +365,7 @@ describe("plan schedule lint (IMP-081)", () => {
     const result = analyzePlanGovernance([scopeIntegrityPlanDoc("PLAN-L4-99-scope-waiver", dod)]);
 
     expect(result.violations.map((v) => v.reason)).not.toContain("scope_integrity_mismatch");
-    expect(result.violations.map((v) => v.reason)).not.toContain(
-      "scope_integrity_invalid_waiver",
-    );
+    expect(result.violations.map((v) => v.reason)).not.toContain("scope_integrity_invalid_waiver");
   });
 
   it("U-PLANGOV-017: scope_digest rejects malformed waiver notation", () => {

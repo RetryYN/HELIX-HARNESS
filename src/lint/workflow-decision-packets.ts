@@ -58,8 +58,7 @@ export const S4_DECISION_PACKET_COMMAND = "helix s4 decision-packet --json";
 export const VERSION_UP_ACTIVATION_PACKET_COMMAND = "helix version-up activation-packet --json";
 export const RENAME_PLAN_PACKET_COMMAND = "helix rename plan --json";
 export const RENAME_APPROVAL_DRAFT_PACKET_COMMAND = "helix rename approval-draft --json";
-export const ACTION_BINDING_APPROVAL_PACKET_COMMAND =
-  "helix action-binding approval-packet --json";
+export const ACTION_BINDING_APPROVAL_PACKET_COMMAND = "helix action-binding approval-packet --json";
 export const COMPLETION_DECISION_PACKET_COMMAND = "helix completion decision-packet --json";
 export const COMPLETION_REVIEW_BUNDLE_COMMAND = "helix completion review-bundle --json";
 

@@ -133,11 +133,7 @@ function buildRepo(root: string): void {
     ["root = true", "", "[*]", "charset = utf-8", ""].join("\n"),
     "utf8",
   );
-  writeFileSync(
-    join(root, ".codex", "hooks.json"),
-    JSON.stringify({ hooks: {} }, null, 2),
-    "utf8",
-  );
+  writeFileSync(join(root, ".codex", "hooks.json"), JSON.stringify({ hooks: {} }, null, 2), "utf8");
 }
 
 describe("loadRelationGraphSourceSet", () => {
@@ -342,9 +338,7 @@ describe("loadRelationGraphSourceSet", () => {
         projection,
       });
       expect(codexHooksImpact.ok).toBe(true);
-      expect(codexHooksImpact.changedNodes.map((n) => n.id)).toContain(
-        "design:.codex/hooks.json",
-      );
+      expect(codexHooksImpact.changedNodes.map((n) => n.id)).toContain("design:.codex/hooks.json");
       expect(codexHooksImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
       // export: mermaid is always emittable and contains the changed source node
@@ -460,26 +454,20 @@ describe("relation graph real-repo loader (PLAN-L7-142 stale-edge fence)", () =>
     expect(documentSystemMapImpact.changedNodes.map((n) => n.id)).toContain(
       "design:docs/governance/document-system-map.md",
     );
-    expect(documentSystemMapImpact.findings.map((f) => f.code)).not.toContain(
-      "missing-projection",
-    );
+    expect(documentSystemMapImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const skillImpact = analyzeRelationImpact({
       changedPaths: ["docs/skills/SKILL_MAP.md"],
       projection,
     });
     expect(skillImpact.ok).toBe(true);
-    expect(skillImpact.changedNodes.map((n) => n.id)).toContain(
-      "design:docs/skills/SKILL_MAP.md",
-    );
+    expect(skillImpact.changedNodes.map((n) => n.id)).toContain("design:docs/skills/SKILL_MAP.md");
     expect(skillImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const codexHooksImpact = analyzeRelationImpact({
       changedPaths: [".codex/hooks.json"],
       projection,
     });
     expect(codexHooksImpact.ok).toBe(true);
-    expect(codexHooksImpact.changedNodes.map((n) => n.id)).toContain(
-      "design:.codex/hooks.json",
-    );
+    expect(codexHooksImpact.changedNodes.map((n) => n.id)).toContain("design:.codex/hooks.json");
     expect(codexHooksImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const editorconfigImpact = analyzeRelationImpact({
       changedPaths: [".editorconfig"],

@@ -231,10 +231,7 @@ describe("runtime hook entrypoints", () => {
       expect(run.status).toBe(0);
 
       const digest = JSON.parse(
-        readFileSync(
-          join(cwd, ".helix", "logs", "plan", "PLAN-L4-77-adapter.digest.json"),
-          "utf8",
-        ),
+        readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-77-adapter.digest.json"), "utf8"),
       );
       expect(digest.plan_id).toBe("PLAN-L4-77-adapter");
       expect(digest.event_counts.session_start).toBe(1);
@@ -280,10 +277,7 @@ describe("runtime hook entrypoints", () => {
       expect(run.status).toBe(0);
 
       const digest = JSON.parse(
-        readFileSync(
-          join(cwd, ".helix", "logs", "plan", "PLAN-L4-78-adapter.digest.json"),
-          "utf8",
-        ),
+        readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-78-adapter.digest.json"), "utf8"),
       );
       expect(digest.plan_id).toBe("PLAN-L4-78-adapter");
       expect(digest.event_counts.session_start).toBe(1);

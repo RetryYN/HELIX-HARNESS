@@ -441,9 +441,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "name: default-hybrid",
       );
       expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain("engine: codex-se");
-      expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain(
-        "engine: pmo-sonnet",
-      );
+      expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain("engine: pmo-sonnet");
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
@@ -727,9 +725,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.codex/hooks.json");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/agents/code-reviewer.md");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/commands/build.md");
-    expect(plan.artifactPaths).toContain(
-      "docs/templates/project/.helix/teams/default-hybrid.yaml",
-    );
+    expect(plan.artifactPaths).toContain("docs/templates/project/.helix/teams/default-hybrid.yaml");
     expect(plan.artifactPaths).not.toContain("src/web/page.tsx");
     expect(plan.artifactPaths).not.toContain(".claude/settings.json");
     expect(plan.artifactPaths).not.toContain(".codex/hooks.json");
@@ -747,8 +743,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: false,
-      hasUtTddCli: true,
-      hasUtTddPackageScript: true,
+      hasHelixCli: true,
+      hasHelixPackageScript: true,
       hasBunLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
@@ -903,8 +899,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: true,
-      hasUtTddCli: true,
-      hasUtTddPackageScript: false,
+      hasHelixCli: true,
+      hasHelixPackageScript: false,
       hasBunLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
@@ -932,8 +928,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: false,
-      hasUtTddCli: false,
-      hasUtTddPackageScript: true,
+      hasHelixCli: false,
+      hasHelixPackageScript: true,
       hasBunLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
@@ -956,13 +952,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       message:
         "consumer packageRoot の `bun run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない",
     });
-    expect(packageScriptReady.checks.find((c) => c.name === "helix-package-script")).toMatchObject(
-      {
-        ok: true,
-        message:
-          "consumer CI / VSCode task fallback 用の `bun run helix` script が packageRoot で解決できる",
-      },
-    );
+    expect(packageScriptReady.checks.find((c) => c.name === "helix-package-script")).toMatchObject({
+      ok: true,
+      message:
+        "consumer CI / VSCode task fallback 用の `bun run helix` script が packageRoot で解決できる",
+    });
     expect(packageScriptReady.cliResolution).toMatchObject({
       checkedFrom: "/repo/packages/app",
       resolved: false,
@@ -977,7 +971,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.2.9",
       hasGit: false,
       hasGh: false,
-      hasUtTddCli: false,
+      hasHelixCli: false,
       hasClaude: false,
       hasCodex: false,
       repoRoot: "/repo",
@@ -1013,8 +1007,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: true,
-      hasUtTddCli: true,
-      hasUtTddPackageScript: true,
+      hasHelixCli: true,
+      hasHelixPackageScript: true,
       hasBunLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
@@ -1046,8 +1040,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: true,
-      hasUtTddCli: true,
-      hasUtTddPackageScript: true,
+      hasHelixCli: true,
+      hasHelixPackageScript: true,
       hasBunLockfile: true,
       hasTypecheckPackageScript: true,
       hasTestPackageScript: true,
@@ -1123,7 +1117,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           requiresAuthenticatedGh: true,
           requiredConnectorPermissions: ["metadata:read", "contents:read", "pull_requests:write"],
           failureMode: "resource_not_accessible_by_integration",
-          preflightCommands: ["gh auth status", "gh repo view --json nameWithOwner,defaultBranchRef"],
+          preflightCommands: [
+            "gh auth status",
+            "gh repo view --json nameWithOwner,defaultBranchRef",
+          ],
           draftPrCommandTemplate:
             "gh pr create --draft --base <base> --head <branch> --title <title>",
         },
@@ -1150,12 +1147,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           "helix handover status --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ],
-        stateBaselinePaths: [
-          ".helix/memory",
-          ".helix/handover",
-          ".helix/evidence",
-          ".helix/teams",
-        ],
+        stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"],
         completionClaimAllowed: false,
         nextRouteSource: "postSetupWorkflow.nextRoute",
         evidencePath: ".helix/evidence",
@@ -1518,9 +1510,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ]),
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
-    expect(wet.files.get(join("/repo", "package.json"))).toContain(
-      "github:RetryYN/HELIX-HARNESS",
-    );
+    expect(wet.files.get(join("/repo", "package.json"))).toContain("github:RetryYN/HELIX-HARNESS");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("HELIX: rename plan");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "bun run helix rename plan --json",
@@ -1711,13 +1701,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
       private: true,
       scripts: {
-        "helix": "helix",
+        helix: "helix",
         typecheck: "bun run helix status --json",
         test: "bun run helix completion review-bundle --json",
       },
       devDependencies: {
         typescript: "^5.6.3",
-        "helix": "github:RetryYN/HELIX-HARNESS",
+        helix: "github:RetryYN/HELIX-HARNESS",
       },
     });
   });
@@ -1732,7 +1722,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.files.set(
       join("/repo", "package.json"),
-      `${JSON.stringify({ scripts: { "helix": "helix" } }, null, 2)}\n`,
+      `${JSON.stringify({ scripts: { helix: "helix" } }, null, 2)}\n`,
     );
     deps.files.set(join("/repo", "bun.lock"), "stale lockfile\n");
     deps.runCommand = (cwd, command, args) => {
@@ -1765,13 +1755,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
     expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
       scripts: {
-        "helix": "helix",
+        helix: "helix",
         typecheck: "bun run helix status --json",
         test: "bun run helix completion review-bundle --json",
       },
       devDependencies: {
         typescript: "^5.6.3",
-        "helix": "github:RetryYN/HELIX-HARNESS",
+        helix: "github:RetryYN/HELIX-HARNESS",
       },
     });
     expect(deps.files.get(join("/repo", "bun.lock"))).toContain("lockfileVersion");
@@ -1868,7 +1858,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "helix": "bun run src/cli.ts",
+          helix: "bun run src/cli.ts",
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         },
@@ -1940,7 +1930,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "helix": "bun run src/cli.ts",
+          helix: "bun run src/cli.ts",
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         },
@@ -2100,7 +2090,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "helix": "bun run src/cli.ts",
+          helix: "bun run src/cli.ts",
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         },
@@ -2291,7 +2281,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "helix": "bun run src/cli.ts",
+          helix: "bun run src/cli.ts",
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         },
@@ -2366,7 +2356,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "packages", "app", "package.json"),
       JSON.stringify({
         scripts: {
-          "helix": "bun run ../../src/cli.ts",
+          helix: "bun run ../../src/cli.ts",
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         },
@@ -3219,12 +3209,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       schemaVersion: "helix-project-doctor-baseline.v1",
       planOnly: true,
       baselineCommands: result.postSetupWorkflow.verificationCommands,
-      stateBaselinePaths: [
-        ".helix/memory",
-        ".helix/handover",
-        ".helix/evidence",
-        ".helix/teams",
-      ],
+      stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"],
       completionClaimAllowed: false,
       nextRouteSource: "postSetupWorkflow.nextRoute",
       evidencePath: ".helix/evidence",

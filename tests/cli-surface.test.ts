@@ -28,7 +28,7 @@ function runCliIn(cwd: string, args: string[], env: NodeJS.ProcessEnv = process.
   });
 }
 
-function runRepoScriptUtTdd(args: string[]) {
+function runRepoScriptHelix(args: string[]) {
   if (process.platform === "win32") {
     return spawnSync(
       "powershell",
@@ -193,7 +193,7 @@ describe("L7 CLI surface closure", () => {
   });
 
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
-    const s4 = runRepoScriptUtTdd(["s4", "decision-packet", "--json"]);
+    const s4 = runRepoScriptHelix(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);
     const s4Packets = JSON.parse(s4.stdout);
     expect(s4Packets).toEqual(
@@ -207,7 +207,7 @@ describe("L7 CLI surface closure", () => {
       ]),
     );
 
-    const completion = runRepoScriptUtTdd(["completion", "decision-packet", "--json"]);
+    const completion = runRepoScriptHelix(["completion", "decision-packet", "--json"]);
     expect(completion.status, completion.stderr || completion.stdout).toBe(0);
     const completionPacket = JSON.parse(completion.stdout);
     expect(completionPacket.sourceCommand).toBe("helix completion decision-packet --json");
@@ -671,8 +671,7 @@ describe("L7 CLI surface closure", () => {
             expect.objectContaining({
               command: "helix action-binding approval-packet --json",
               runnableCommand: "bun run helix action-binding approval-packet --json",
-              scopedCommand:
-                "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
+              scopedCommand: "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
               runnableScopedCommand:
                 "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
               schemaVersion: "action-binding-approval-packet.v1",
@@ -1508,12 +1507,7 @@ describe("L7 CLI surface closure", () => {
           "helix handover status --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ],
-        stateBaselinePaths: [
-          ".helix/memory",
-          ".helix/handover",
-          ".helix/evidence",
-          ".helix/teams",
-        ],
+        stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"],
         completionClaimAllowed: false,
       },
       branchProtection: { applied: false, reason: "dry-run" },
@@ -1611,14 +1605,12 @@ describe("L7 CLI surface closure", () => {
       ]),
     );
     expect(
-      payload.consumerReadiness.checks.find(
-        (check: { name: string }) => check.name === "helix-cli",
-      )?.message,
+      payload.consumerReadiness.checks.find((check: { name: string }) => check.name === "helix-cli")
+        ?.message,
     ).toMatch(/projected hooks|bun link helix|bun run helix/);
     expect(payload.commandAvailability.currentCommandAvailable).toBe(
-      payload.consumerReadiness.checks.find(
-        (check: { name: string }) => check.name === "helix-cli",
-      )?.ok ?? false,
+      payload.consumerReadiness.checks.find((check: { name: string }) => check.name === "helix-cli")
+        ?.ok ?? false,
     );
     expect(payload.postSetupWorkflow.unmetGates).toEqual(
       expect.arrayContaining(["import_report_review"]),

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scaffoldSkill, SKILL_SCAFFOLD_ALLOWED_VALUES } from "../src/skill-engine/scaffold";
+import { SKILL_SCAFFOLD_ALLOWED_VALUES, scaffoldSkill } from "../src/skill-engine/scaffold";
 
 describe("skill scaffold generator", () => {
   it("returns deterministic path, skill.v1 content, and metadata without writing files", () => {

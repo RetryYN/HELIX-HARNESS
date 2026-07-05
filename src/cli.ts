@@ -203,12 +203,13 @@ import {
   buildConsumerReadinessPlan,
   LOCAL_DISTRIBUTION_PACKAGE_VERSION,
   nodeSetupDeps,
+  packageJsonDeclaresHelixScript,
   packageJsonDeclaresScript,
-  packageJsonDeclaresUtTddScript,
   runHelixProjectSetup,
   runSetup,
   type SetupArgs,
 } from "./setup/index";
+import { scaffoldSkill } from "./skill-engine/scaffold";
 import {
   bucketRecommendations,
   buildSkillInjectionSet,
@@ -216,7 +217,6 @@ import {
   recommendSkillsForText,
   recordSkillRecommendations,
 } from "./skills/recommend";
-import { scaffoldSkill } from "./skill-engine/scaffold";
 import { defaultHarnessDbPath, openHarnessDb } from "./state-db/index";
 import { harnessDbStatus } from "./state-db/maintenance";
 import { migrate } from "./state-db/migration";
@@ -2897,9 +2897,7 @@ handover
           ),
         ),
       ];
-      process.stdout.write(
-        "completion-decision-packet: helix completion decision-packet --json\n",
-      );
+      process.stdout.write("completion-decision-packet: helix completion decision-packet --json\n");
       process.stdout.write("completion-review-bundle: helix completion review-bundle --json\n");
       process.stdout.write(
         "runnable-completion-review-bundle: bun run helix completion review-bundle --json\n",
@@ -3308,7 +3306,9 @@ skill
       if (opts.json) {
         process.stdout.write(`${JSON.stringify({ ...result, written }, null, 2)}\n`);
       } else {
-        process.stdout.write(`${result.ok ? "skill create" : "skill create rejected"}: ${result.path}\n`);
+        process.stdout.write(
+          `${result.ok ? "skill create" : "skill create rejected"}: ${result.path}\n`,
+        );
         for (const finding of result.findings) {
           process.stdout.write(`  ${finding.field}: ${finding.message}\n`);
         }
@@ -4820,10 +4820,7 @@ const setupCommand = program
   .option("--solo", "Phase 0-A (solo) を強制 (自動提案の上書き)")
   .option("--team", "Phase 0-B (team) を強制 (自動提案の上書き)")
   .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
-  .option(
-    "--apply-branch-protection",
-    "gh 認証/admin 権限を確認して branch protection を適用する",
-  )
+  .option("--apply-branch-protection", "gh 認証/admin 権限を確認して branch protection を適用する")
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
   .option("--po-team <slug>", "CODEOWNERS の PO team slug");
@@ -4898,10 +4895,7 @@ setupCommand
   .option("--solo", "Phase 0-A (solo) を強制")
   .option("--team", "Phase 0-B (team) を強制")
   .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
-  .option(
-    "--apply-branch-protection",
-    "gh 認証/admin 権限を確認して branch protection を適用する",
-  )
+  .option("--apply-branch-protection", "gh 認証/admin 権限を確認して branch protection を適用する")
   .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
@@ -4995,11 +4989,7 @@ distribution
   .command("plan")
   .description("emit the clean export, preflight, rollback, and contract plan")
   .option("--tag <tag>", "source/release tag", gitHead() ?? "unreleased")
-  .option(
-    "--clean-repo <name>",
-    "clean distribution repository",
-    "RetryYN/HELIX-HARNESS-OS",
-  )
+  .option("--clean-repo <name>", "clean distribution repository", "RetryYN/HELIX-HARNESS-OS")
   .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--json", "JSON output")
   .action((opts: { tag?: string; cleanRepo?: string; packageRoot?: string; json?: boolean }) => {
@@ -5013,7 +5003,7 @@ distribution
     }
     const hasGit = spawnSync("git", ["--version"], { stdio: "ignore" }).status === 0;
     const hasGh = spawnSync("gh", ["--version"], { stdio: "ignore" }).status === 0;
-    const hasUtTddCli = spawnSync("helix", ["--version"], { stdio: "ignore" }).status === 0;
+    const hasHelixCli = spawnSync("helix", ["--version"], { stdio: "ignore" }).status === 0;
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
       sourceTag: opts.tag,
@@ -5043,8 +5033,8 @@ distribution
       bunVersion,
       hasGit,
       hasGh,
-      hasUtTddCli,
-      hasUtTddPackageScript: packageJsonDeclaresUtTddScript(packageJsonText),
+      hasHelixCli,
+      hasHelixPackageScript: packageJsonDeclaresHelixScript(packageJsonText),
       hasTypecheckPackageScript: packageJsonDeclaresScript(packageJsonText, "typecheck"),
       hasTestPackageScript: packageJsonDeclaresScript(packageJsonText, "test"),
       hasBunLockfile:

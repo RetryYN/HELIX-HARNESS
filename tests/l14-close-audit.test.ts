@@ -55,9 +55,7 @@ describe("l14-close-audit lint", () => {
     const result = analyzeL14CloseAudit({
       repoRoot: process.cwd(),
       auditPath: "A-TEST.md",
-      auditMd: compliant
-        .replace("runtime polish", "なし")
-        .replace("child PLAN 継続", "なし"),
+      auditMd: compliant.replace("runtime polish", "なし").replace("child PLAN 継続", "なし"),
     });
 
     expect(result.ok).toBe(false);
