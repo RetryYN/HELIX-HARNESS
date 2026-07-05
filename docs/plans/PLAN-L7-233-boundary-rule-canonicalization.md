@@ -68,7 +68,7 @@ boundary を見ているのに判定が部分的にずれる問題である。`m
 
 - rule id の統合や廃止。
 - import graph 全体の relation graph 化。これは IMP-118 以降の scope。
-- `.ut-tdd` から HELIX への irreversible cutover。これは PLAN-M-02 の L14 承認後に扱う。
+- `.helix` から HELIX への irreversible cutover。これは PLAN-M-02 の L14 承認後に扱う。
 
 ## 2. 受入条件
 

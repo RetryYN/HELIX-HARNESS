@@ -22,7 +22,7 @@ const uxvRows = "UXV-RENDER-01\nUXV-A11Y-01\nUXV-BLOCKER-01";
 const mandatory = ["UXV-RENDER-01", "UXV-A11Y-01", "UXV-BLOCKER-01"];
 
 const validManifest = {
-  manifest_path: ".ut-tdd/evidence/g10-ux/test.json",
+  manifest_path: ".helix/evidence/g10-ux/test.json",
   schema_version: "g10-ux-evidence-v1",
   gate: "G10",
   profile: "ux-boundary-read-model",

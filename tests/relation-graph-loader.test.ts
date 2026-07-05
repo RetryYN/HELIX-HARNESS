@@ -23,8 +23,8 @@ function buildRepo(root: string): void {
   mkdirSync(join(root, "docs", "test-design", "harness"), { recursive: true });
   mkdirSync(join(root, ".codex"), { recursive: true });
   mkdirSync(join(root, ".claude", "agents"), { recursive: true });
-  mkdirSync(join(root, ".ut-tdd", "evidence", "g8-integration"), { recursive: true });
-  mkdirSync(join(root, ".ut-tdd", "review"), { recursive: true });
+  mkdirSync(join(root, ".helix", "evidence", "g8-integration"), { recursive: true });
+  mkdirSync(join(root, ".helix", "review"), { recursive: true });
   mkdirSync(join(root, "src", "widget"), { recursive: true });
   mkdirSync(join(root, "tests"), { recursive: true });
 
@@ -111,12 +111,12 @@ function buildRepo(root: string): void {
     "utf8",
   );
   writeFileSync(
-    join(root, ".ut-tdd", "review", "cross-review-l7-157.md"),
+    join(root, ".helix", "review", "cross-review-l7-157.md"),
     ["# Cross review", "", "Read-only review task body.", ""].join("\n"),
     "utf8",
   );
   writeFileSync(
-    join(root, ".ut-tdd", "evidence", "g8-integration", "test-manifest.json"),
+    join(root, ".helix", "evidence", "g8-integration", "test-manifest.json"),
     JSON.stringify(
       {
         schema_version: "g8-integration-evidence-v1",
@@ -142,7 +142,7 @@ function buildRepo(root: string): void {
 
 describe("loadRelationGraphSourceSet", () => {
   it("U-RELGRAPH-011: builds a source set with plan→source, source→test, design→test-design edges and extra governance nodes", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-graph-loader-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-"));
     try {
       buildRepo(root);
       const sourceSet = loadRelationGraphSourceSet(root);
@@ -187,18 +187,18 @@ describe("loadRelationGraphSourceSet", () => {
         path: ".claude/agents/refactor-scout.md",
       });
       const reviewDoc = sourceSet.designDocs?.find(
-        (d) => d.path === ".ut-tdd/review/cross-review-l7-157.md",
+        (d) => d.path === ".helix/review/cross-review-l7-157.md",
       );
       expect(reviewDoc).toMatchObject({
-        id: ".ut-tdd/review/cross-review-l7-157.md",
-        path: ".ut-tdd/review/cross-review-l7-157.md",
+        id: ".helix/review/cross-review-l7-157.md",
+        path: ".helix/review/cross-review-l7-157.md",
       });
       const g8EvidenceDoc = sourceSet.designDocs?.find(
-        (d) => d.path === ".ut-tdd/evidence/g8-integration/test-manifest.json",
+        (d) => d.path === ".helix/evidence/g8-integration/test-manifest.json",
       );
       expect(g8EvidenceDoc).toMatchObject({
-        id: ".ut-tdd/evidence/g8-integration/test-manifest.json",
-        path: ".ut-tdd/evidence/g8-integration/test-manifest.json",
+        id: ".helix/evidence/g8-integration/test-manifest.json",
+        path: ".helix/evidence/g8-integration/test-manifest.json",
       });
       const referenceDoc = sourceSet.designDocs?.find(
         (d) => d.path === "docs/reference/ai-agent-harness-directory-reference.md",
@@ -278,22 +278,22 @@ describe("loadRelationGraphSourceSet", () => {
       expect(agentImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
       const reviewImpact = analyzeRelationImpact({
-        changedPaths: [".ut-tdd/review/cross-review-l7-157.md"],
+        changedPaths: [".helix/review/cross-review-l7-157.md"],
         projection,
       });
       expect(reviewImpact.ok).toBe(true);
       expect(reviewImpact.changedNodes.map((n) => n.id)).toContain(
-        "design:.ut-tdd/review/cross-review-l7-157.md",
+        "design:.helix/review/cross-review-l7-157.md",
       );
       expect(reviewImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
       const g8EvidenceImpact = analyzeRelationImpact({
-        changedPaths: [".ut-tdd/evidence/g8-integration/test-manifest.json"],
+        changedPaths: [".helix/evidence/g8-integration/test-manifest.json"],
         projection,
       });
       expect(g8EvidenceImpact.ok).toBe(true);
       expect(g8EvidenceImpact.changedNodes.map((n) => n.id)).toContain(
-        "design:.ut-tdd/evidence/g8-integration/test-manifest.json",
+        "design:.helix/evidence/g8-integration/test-manifest.json",
       );
       expect(g8EvidenceImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
 
@@ -357,7 +357,7 @@ describe("loadRelationGraphSourceSet", () => {
   });
 
   it("is fail-open on an empty repo root (no throw, empty source set)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-graph-loader-empty-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-empty-"));
     try {
       const sourceSet = loadRelationGraphSourceSet(root);
       expect(sourceSet.sourceFiles ?? []).toEqual([]);
@@ -368,7 +368,7 @@ describe("loadRelationGraphSourceSet", () => {
   });
 
   it("materializes a requirement node for every FR a plan derives from (no dangling derives-from)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-graph-loader-req-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-req-"));
     try {
       buildRepo(root); // PLAN-TEST-01 derives-from FR-L1-99 (no FR registry doc in this tmp repo)
       const sourceSet = loadRelationGraphSourceSet(root);
@@ -408,21 +408,21 @@ describe("relation graph real-repo loader (PLAN-L7-142 stale-edge fence)", () =>
     );
     expect(agentImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const reviewImpact = analyzeRelationImpact({
-      changedPaths: [".ut-tdd/review/cross-review-l7-157.md"],
+      changedPaths: [".helix/review/cross-review-l7-157.md"],
       projection,
     });
     expect(reviewImpact.ok).toBe(true);
     expect(reviewImpact.changedNodes.map((n) => n.id)).toContain(
-      "design:.ut-tdd/review/cross-review-l7-157.md",
+      "design:.helix/review/cross-review-l7-157.md",
     );
     expect(reviewImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const g8EvidenceImpact = analyzeRelationImpact({
-      changedPaths: [".ut-tdd/evidence/g8-integration/20260626-it-module-state-minimum.json"],
+      changedPaths: [".helix/evidence/g8-integration/20260626-it-module-state-minimum.json"],
       projection,
     });
     expect(g8EvidenceImpact.ok).toBe(true);
     expect(g8EvidenceImpact.changedNodes.map((n) => n.id)).toContain(
-      "design:.ut-tdd/evidence/g8-integration/20260626-it-module-state-minimum.json",
+      "design:.helix/evidence/g8-integration/20260626-it-module-state-minimum.json",
     );
     expect(g8EvidenceImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const referenceImpact = analyzeRelationImpact({

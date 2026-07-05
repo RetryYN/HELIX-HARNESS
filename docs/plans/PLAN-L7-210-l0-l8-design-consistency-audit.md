@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-210-l0-l8-design-consistency-audit
-title: "PLAN-L7-210 (add-impl): L0-L8 semantic design consistency audit"
+title: "PLAN-L7-210 (add-impl): L0-L8 設計整合性監査"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -165,44 +165,45 @@ review_evidence:
         output_digest: "sha256:09fa27b97e29d5432333096601ae5629b6b9311be08f8c1c3d3f1c2eb2b36769"
 ---
 
-# PLAN-L7-210: L0-L8 semantic design consistency audit
+# PLAN-L7-210: L0-L8 設計整合性監査
 
-## Objective
+## 目的
 
-Create a meaning-based audit from L0 through L8 that verifies the current design
-chain and prevents two opposite false claims: treating unverified product/runtime
-work as complete, and treating post-L8 or version-up work as if it reopened the
-current L0-L8 boundary.
+L0 から L8 までの意味ベース監査を作成し、現在の設計連鎖を検証する。
+同時に、未検証の product/runtime 作業を完了扱いにする誤判定と、
+post-L8 または version-up 作業が現在の L0-L8 境界を再開したかのように扱う
+逆方向の誤判定を防ぐ。
 
-## Scope
+## 範囲
 
-- Read L0-L6 HELIX design artifacts and paired test-design artifacts.
-- Record current doctor, task-classification, team-suggestion, and design-drift
-  routing evidence.
-- Add a governance audit that distinguishes `proved`, `frontier`, and `warning`.
-- Add a regression test that requires the audit to cite real artifacts and keep
-  post-L8 / version-up frontiers visible.
-- Maintain a 2026-07-01 re-read addendum so later completion claims can see
-  exactly which meaning units were checked and which remained blocked.
+- L0-L6 の HELIX design artifacts と対応する test-design artifacts を読む。
+- 現在の doctor、task-classification、team-suggestion、design-drift routing の
+  証跡を記録する。
+- `proved`、`frontier`、`warning` を区別する governance audit を追加する。
+- audit が実在する artifacts を引用し、post-L8 / version-up frontiers を
+  可視のまま保つ regression test を追加する。
+- 2026-07-01 re-read addendum を維持し、後続の完了主張がどの意味単位を
+  確認し、どれが未解決のまま残ったかを追跡できるようにする。
 
-## Non-Goals
+## 非目標
 
-- This PLAN does not implement post-L8 UX/WCAG declaration, `PLAN-L7-146`
-  serverless delivery, or product/runtime frontiers.
-- This PLAN does not rename the L0 charter file from `v0.1` to `v0.2`.
-- This PLAN does not change production infrastructure, auth, PII, secrets,
-  license policy, external APIs, or database schema.
+- この PLAN は post-L8 の UX/WCAG declaration、`PLAN-L7-146` の serverless
+  delivery、または product/runtime frontiers を実装しない。
+- この PLAN は L0 charter file の `v0.1` から `v0.2` への改名を行わない。
+- この PLAN は production infrastructure、auth、PII、secrets、license policy、
+  external APIs、database schema を変更しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- The audit states that L0-L6 semantic design descent is complete and paired.
-- The audit states that only the 2026-06-28 frozen L0-L8 boundary is
-  narrow-complete, and that the revised request with the 2026-06-30
-  visualization amendment is not L0-L8 complete.
-- The audit records drive-model output: `fullstack`, `low-drive-confidence`,
-  `proposal-coverage-team`, `design_drift` -> Reverse, and
-  `version_deferral` -> version-up.
-- Targeted audit tests, plan lint, doctor, and full tests pass before commit.
+- audit は L0-L6 の semantic design descent が完了しており、対応付け済みで
+  あることを示す。
+- audit は、2026-06-28 に frozen された L0-L8 境界だけが narrow-complete で
+  あり、2026-06-30 の visualization amendment を含む revised request は
+  L0-L8 complete ではないことを示す。
+- audit は drive-model output として `fullstack`、`low-drive-confidence`、
+  `proposal-coverage-team`、`design_drift` -> Reverse、`version_deferral` ->
+  version-up を記録する。
+- commit 前に、対象 audit tests、plan lint、doctor、full tests がすべて通過する。
 
 ## §3 工程表 (Step + 進捗)
 

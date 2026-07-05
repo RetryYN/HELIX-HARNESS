@@ -87,10 +87,10 @@ describe("git-command-guard", () => {
   });
 
   it("U-GITGUARD-002: hook marker override is one-shot and audited", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-gitguard-marker-"));
+    const cwd = mkdtempSync(join(tmpdir(), "helix-gitguard-marker-"));
     try {
-      const markerPath = join(cwd, ".ut-tdd", "state", "destructive-git-override");
-      mkdirSync(join(cwd, ".ut-tdd", "state"), { recursive: true });
+      const markerPath = join(cwd, ".helix", "state", "destructive-git-override");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
       writeFileSync(markerPath, "manual recovery after log/reflog review");
       const input = { session_id: "s-git", tool_input: { command: "git reset --hard HEAD" } };
 
@@ -98,7 +98,7 @@ describe("git-command-guard", () => {
       expect(first.status).toBe(0);
       expect(existsSync(markerPath)).toBe(false);
       const audit = readFileSync(
-        join(cwd, ".ut-tdd", "logs", "destructive-git-overrides.jsonl"),
+        join(cwd, ".helix", "logs", "destructive-git-overrides.jsonl"),
         "utf8",
       );
       expect(audit).toContain("manual recovery after log/reflog review");

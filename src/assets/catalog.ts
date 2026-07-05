@@ -101,8 +101,8 @@ function recordFinding(db: HarnessDb, finding: AssetCatalogFinding): void {
   });
 }
 
-const LEGACY_RUNTIME_NAME = ["he", "lix"].join("");
-const LEGACY_RUNTIME_ENV_PREFIX = LEGACY_RUNTIME_NAME.toUpperCase();
+const LEGACY_RUNTIME_NAME = ["ut", "tdd"].join("-");
+const LEGACY_RUNTIME_ENV_PREFIX = ["UT", "TDD"].join("_");
 const LEGACY_DRIFT_PATTERNS = [
   new RegExp(String.raw`\b${LEGACY_RUNTIME_NAME}\s+(codex|claude|plan|gate|handover)\b`, "i"),
   new RegExp(String.raw`\bpmo-${LEGACY_RUNTIME_NAME}-`, "i"),

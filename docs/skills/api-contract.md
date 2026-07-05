@@ -50,10 +50,10 @@ auth-token shape、idempotency guarantees を追加する。
 ## Reverse R1: existing code から contract を抽出する
 
 1. provider source を読み、すべての exported field と status code を列挙する。
-2. consumer call sites を grep し、assumed field access を探す（`ut-tdd find` または `grep`）。
+2. consumer call sites を grep し、assumed field access を探す（`helix find` または `grep`）。
 3. step 1 から L4 contract doc を書く。各 field に step 2 の consumer count を annotate し、
    deletion risk を示す。
-4. `ut-tdd review --uncommitted` を実行する。consumers があるのに contract entry が無い field は
+4. `helix review --uncommitted` を実行する。consumers があるのに contract entry が無い field は
    blocking finding。
 
 ## Compatibility gate rules（互換性 gate rule）
@@ -62,7 +62,7 @@ auth-token shape、idempotency guarantees を追加する。
   （L4 doc に sunset date を記録）。
 - stable contract への **Breaking changes** は、PLAN `generates` list 内の version を bump し、
   pair-freeze 前にすべての consumer reference を更新しなければならない。
-- contract changes 後、`ut-tdd doctor` は 0 で終了しなければならない。
+- contract changes 後、`helix doctor` は 0 で終了しなければならない。
   governance checks は old/new contract versions の artifact_registry entries が consistent であることを確認する。
 
 ## contract PLAN の pair-freeze checklist
@@ -70,6 +70,6 @@ auth-token shape、idempotency guarantees を追加する。
 - [ ] L4 contract doc が provider、consumer list、schema、error codes、compatibility class を持つ。
 - [ ] all known consumers が列挙されている。breaking changes は non-breaking と確認済み、
       または同じ PLAN 内で consumers が更新済み。
-- [ ] `ut-tdd plan lint` が exit 0（`generates` が contract doc を参照する）。
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `helix plan lint` が exit 0（`generates` が contract doc を参照する）。
+- [ ] `helix doctor` exits 0.
 - [ ] L6 unit-test design が少なくとも 1 つの invalid-input と 1 つの schema-mismatch error path を覆っている。

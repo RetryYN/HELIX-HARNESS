@@ -70,54 +70,55 @@ review_evidence:
         output_digest: "sha256:48f085cf1bd5ad251e641b68ad6bc9a5a1d3c2d04a27cfb5c0b4340b70296964"
 ---
 
-# PLAN-L7-215: hosted API preflight enforcement
+# PLAN-L7-215: hosted API preflight 強制
 
-## Objective
+## 目的
 
-Close the HC-AC / HR-FR-P2-03 / HR-NFR-AC-02 gap where hosted API and
-developer-tool surfaces were described as preflight-only but did not have a
-first-class pure contract. The implementation must prevent hosted/API edits from
-being classified as repo-hook-covered and must require concrete preflight
-evidence before accepting the surface.
+hosted API と developer-tool surface が preflight-only と説明されていた一方で、
+first-class な pure contract を持っていなかった HC-AC / HR-FR-P2-03 /
+HR-NFR-AC-02 gap を閉じる。実装は hosted/API edit が repo hook covered と
+分類されることを防ぎ、その surface を受け入れる前に具体的な preflight evidence
+を必須にする。
 
-## Scope
+## 範囲
 
-- Add `src/runtime/hosted-preflight.ts` with:
-  - `validateAdapterParityMap` for direct hook vs hosted preflight-only
-    classification.
-  - `requireHostedSurfacePreflight` for hook non-enforcement acknowledgement,
-    git status, target path, work-guard, command, and audit evidence.
-- Wire `ut-tdd guard preflight --json` to emit adapter parity and hosted
-  preflight decisions with `apiToolPathEnforced=false`.
-- Add tests for direct hook coverage, hosted preflight-only classification,
-  unknown surface drift/defer, missing evidence reject, dry-run no-target, and
-  work-guard block propagation.
-- Update L1/L3/L6 and paired test-design text so hosted/API preflight is no
-  longer listed as an open P2 core gap.
+- `src/runtime/hosted-preflight.ts` を追加し、次を持たせる。
+  - direct hook と hosted preflight-only を分類する
+    `validateAdapterParityMap`。
+  - hook が強制されないことの確認、`git status`、対象 path、
+    work-guard、実行 command、audit evidence を要求する
+    `requireHostedSurfacePreflight`。
+- `helix guard preflight --json` を接続し、adapter parity と hosted
+  preflight decision を `apiToolPathEnforced=false` とともに出力する。
+- direct hook が covered と判定されること、hosted preflight-only の分類、
+  unknown surface の drift/defer、evidence 欠落の reject、dry-run no-target、
+  work-guard block propagation のテストを追加する。
+- L1/L3/L6 と対応する test-design 文書を更新し、hosted/API preflight を
+  open P2 core gap として列挙しない状態にする。
 
-## Non-Scope
+## 非範囲
 
-- This PLAN does not make hosted/API developer tools mechanically hook-covered.
-- This PLAN does not generalize rule-drift and shared-memory enforcement to every
-  future agent surface.
-- This PLAN does not activate `.ut-tdd -> .helix` cutover.
+- この PLAN は hosted/API developer tool を機械的な hook-covered 状態にはしない。
+- この PLAN は rule-drift と shared-memory enforcement を将来のすべての
+  agent surface へ一般化しない。
+- この PLAN は `.helix -> .helix` cutover を有効化しない。
 
-## Design Notes
+## 設計メモ
 
-Hosted/API tools do not execute repo-local `.codex/hooks.json`. The correct
-state is therefore not "covered by hook"; it is "preflight required". The CLI
-keeps `apiToolPathEnforced=false` in JSON so downstream review cannot confuse a
-manual/preflight discipline with mechanical hook interception.
+Hosted/API tool は repo-local の `.codex/hooks.json` を実行しない。したがって
+正しい状態は "covered by hook" ではなく "preflight required" である。CLI は
+JSON で `apiToolPathEnforced=false` を維持し、downstream review が
+manual/preflight discipline を機械的な hook interception と誤認しないようにする。
 
 ## DoD
 
-- [x] Hosted/API surfaces classify as `preflight_required`, never
-      `covered_by_hook`.
-- [x] Direct Claude/Codex known hook surfaces classify as `covered_by_hook`.
-- [x] Hosted/API edit rejects missing hook non-enforcement acknowledgement, git
-      status, target path, work-guard, command, or audit evidence.
-- [x] Hosted/API dry-run can be no-target, while edit cannot.
-- [x] `ut-tdd guard preflight --json` exposes `hostedPreflight` and
-      `apiToolPathEnforced=false`.
-- [x] L1/L3/L6 design and paired test-design are updated without claiming whole
-      program completion.
+- [x] Hosted/API surface は `preflight_required` に分類され、
+      `covered_by_hook` には分類されない。
+- [x] Direct Claude/Codex の既知 hook surface は `covered_by_hook` に分類される。
+- [x] Hosted/API edit は hook non-enforcement acknowledgement、git status、
+      target path、work-guard、command、audit evidence の欠落を reject する。
+- [x] Hosted/API dry-run は no-target を許容できるが、edit は許容しない。
+- [x] `helix guard preflight --json` は `hostedPreflight` と
+      `apiToolPathEnforced=false` を公開する。
+- [x] L1/L3/L6 design と対応する test-design は whole program completion を
+      主張せずに更新されている。

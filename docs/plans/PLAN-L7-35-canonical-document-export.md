@@ -35,59 +35,59 @@ dependencies:
     - docs/plans/PLAN-REVERSE-35-canonical-document-export.md
 ---
 
-# PLAN-L7-35 (add-impl): canonical document export
+# PLAN-L7-35 (add-impl): canonical document export 実装
 
-## §0 Position
+## §0 位置づけ
 
-This is the L7 implementation entry for PLAN-L6-34. Phase 3 implements the canonical document export core as pure TypeScript projection functions; a runnable `ut-tdd export docs` CLI surface is a follow-up route and is not claimed by this PLAN.
+これは PLAN-L6-34 の L7 実装 entry である。Phase 3 では canonical document export core を pure TypeScript projection functions として実装する。実行可能な `helix export docs` CLI surface は後続 route とし、この PLAN では claim しない。
 
-## §1 Entry Conditions
+## §1 開始条件
 
-Implementation must not start until:
+実装は次の条件が満たされるまで開始しない。
 
-- PLAN-L6-34 has confirmed function contracts and U-DOCEXPORT oracles.
-- `tests/document-export.test.ts` receives a TDD Red case for U-DOCEXPORT behavior before source changes.
-- Existing doctor, typecheck, lint, and targeted tests are green before review evidence.
-- Optional Office renderers remain disabled until readiness evidence exists.
+- PLAN-L6-34 で function contracts と U-DOCEXPORT oracles が confirmed になっている。
+- source 変更前に、`tests/document-export.test.ts` へ U-DOCEXPORT behavior の TDD Red case が追加されている。
+- review evidence 前に、既存の doctor、typecheck、lint、targeted tests が green である。
+- readiness evidence が存在するまで、optional Office renderers は disabled のままにする。
 
-## §2 Implementation Scope
+## §2 実装範囲
 
-Allowed implementation after entry conditions are met:
+開始条件を満たした後に許可する実装は次のとおり。
 
-- Pure parser for canonical document structures.
-- Dataset builders for document matrix and deck outline outputs.
-- Built-in CSV and Markdown summary rendering.
-- Renderer readiness probes for XLSX/PPTX/D2 profiles.
-- CLI surface is out of Phase 3 scope; add it as a follow-up after the pure export core is stable.
+- canonical document structures の pure parser。
+- document matrix と deck outline outputs の dataset builders。
+- built-in CSV と Markdown summary rendering。
+- XLSX/PPTX/D2 profiles の renderer readiness probes。
+- CLI surface は Phase 3 scope 外とし、pure export core が安定した後の follow-up として追加する。
 
-Out of scope:
+対象外:
 
-- Actual package installation.
-- Treating generated XLSX/PPTX as source of truth.
-- Importing edits from Office files into canonical docs without a separate approved import workflow.
+- 実際の package installation。
+- 生成された XLSX/PPTX を source of truth として扱うこと。
+- separate approved import workflow なしに Office files から canonical docs へ edits を import すること。
 
-## §3 Work Schedule
+## §3 作業順序
 
-### Step 1: [serial] TDD Red oracle
+### 手順 1: [serial] TDD Red 検証
 
-U-DOCEXPORT behavior must fail for missing implementation before source changes.
+source 変更前に、未実装により U-DOCEXPORT behavior が fail する状態を確認する。
 
-### Step 2: [serial] Pure parser and dataset builder
+### 手順 2: [serial] pure parser と dataset builder
 
-CLI and renderer code depend on deterministic document projection output.
+CLI と renderer code は deterministic document projection output に依存する。
 
-### Step 3: [parallel] Built-in render and optional renderer probes
+### 手順 3: [parallel] built-in render と optional renderer probes
 
-CSV/Markdown render and external renderer readiness checks can proceed after pure functions are green.
+pure functions が green になった後、CSV/Markdown render と external renderer readiness checks を進められる。
 
-### Step 4: [serial] review
+### 手順 4: [serial] review
 
-typecheck / lint / targeted tests / doctor must be green before review evidence.
+review evidence 前に、typecheck / lint / targeted tests / doctor が green である必要がある。
 
 ## §8 DoD
 
-- [x] Red test exists before source implementation.
+- [x] source implementation 前に Red test が存在する。
 - [x] U-DOCEXPORT-001..012 pass.
 - [x] `bun run vitest run tests/document-export.test.ts` passes before review.
-- [x] `bun run typecheck` and `bun run lint` pass before review.
-- [x] Reverse fullback closes governance/backlog additions.
+- [x] `bun run typecheck` と `bun run lint` が review 前に pass する。
+- [x] Reverse fullback により governance/backlog additions を close する。

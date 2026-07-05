@@ -49,9 +49,9 @@ PLAN lifecycle state:
 ```mermaid
 stateDiagram-v2
   [*] --> plan
-  plan --> pair_freeze: ut-tdd review --uncommitted
+  plan --> pair_freeze: helix review --uncommitted
   pair_freeze --> implement
-  implement --> trace_freeze: ut-tdd review --uncommitted
+  implement --> trace_freeze: helix review --uncommitted
   trace_freeze --> review
   review --> accept
   accept --> [*]
@@ -85,5 +85,5 @@ erDiagram
 - [ ] diagram だけに decision を置いていない。decision は prose で述べ、diagram はそれを illustrate（補助説明）する。
 - [ ] Reverse R2 diagram は "as-is" と label され、date が付いている。
 
-diagram 追加後は `ut-tdd review --uncommitted` を実行する。
+diagram 追加後は `helix review --uncommitted` を実行する。
 diagram が必須の layer は、"TODO: add diagram" placeholder（仮置き）が残ったまま pair-freeze へ到達できない。

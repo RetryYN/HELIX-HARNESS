@@ -73,7 +73,7 @@ function norm(path: string): string {
 }
 
 function isTransientHarnessDbFile(path: string): boolean {
-  return /^\.ut-tdd\/harness\.db-(journal|shm|wal)$/.test(norm(path));
+  return /^\.helix\/harness\.db-(journal|shm|wal)$/.test(norm(path));
 }
 
 function isSource(path: string): boolean {

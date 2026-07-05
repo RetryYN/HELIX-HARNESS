@@ -146,7 +146,9 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("asset/progress visualization request は記録済み");
     expect(normalized).toContain("revised request fully descended と扱わない");
     expect(text).toContain("frozen 43-item pillar overlay");
-    expect(text).toContain("visualization amendment を含む revised request は L0-L8 complete ではない");
+    expect(text).toContain(
+      "visualization amendment を含む revised request は L0-L8 complete ではない",
+    );
     expect(text).toContain("downstream L3/L4/L5/L6/L7 route");
   });
 

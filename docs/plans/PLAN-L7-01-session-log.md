@@ -14,7 +14,7 @@ review_evidence:
     reviewed_at: "2026-06-12"
     tests_green_at: "2026-06-12"
     verdict: approve_after_fixes
-    scope: "L7 completion audit A-135: U-SLOG artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .ut-tdd/audit/A-135-l7-completion-review-checklist.yaml."
+    scope: "L7 completion audit A-135: U-SLOG artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .helix/audit/A-135-l7-completion-review-checklist.yaml."
 parent_design: docs/design/harness/L6-function-design/session-log.md
 agent_slots:
   - role: tl
@@ -48,19 +48,19 @@ dependencies:
 
 ## §工程表
 
-### Step 1: src/runtime/session-log.ts (② 本体)
+### 手順 1 (Step 1): src/runtime/session-log.ts (② 本体)
 型 (SessionEvent/PlanDigest/SessionLogDeps) + `sanitize` / `summarize` / `resolveActivePlan` / `recordEvent` / `compressPlanDigest` / `onSessionStart` / `onPostToolUse` / `onStop` / `dispatch`。I/O・clock・branch を deps 注入。`compressPlanDigest` は純関数・session-guard で idempotent。
 
-### Step 2: tests/session-log.test.ts (④、TDD Red→Green)
+### 手順 2 (Step 2): tests/session-log.test.ts (④、TDD Red→Green)
 U-SLOG-001〜005 を vitest 化 (③ 設計 L7-unit-test-design.md §1.5)。deps mock で I/O/now 注入。fail-open (不正入力で throw せず 0) を検証。
 
-### Step 3: .claude/hooks/session-log.ts (hook shim)
+### 手順 3 (Step 3): .claude/hooks/session-log.ts (hook shim)
 bun entry。stdin JSON 読取 → `hook_event_name` で dispatch → 常に exit 0 (fail-open)。argv fallback。
 
 ### Step 4: 配線
-`.claude/settings.json` に SessionStart / PostToolUse(Edit|Write|MultiEdit|Bash) / Stop を登録 (**blockOnFailure なし = fail-open**)。`.gitignore` に `.ut-tdd/logs/` 追加。`.claude/CLAUDE.md` の active hook 記述を更新 (guard + session-log)。
+`.claude/settings.json` に SessionStart / PostToolUse(Edit|Write|MultiEdit|Bash) / Stop を登録 (**blockOnFailure なし = fail-open**)。`.gitignore` に `.helix/logs/` 追加。`.claude/CLAUDE.md` の active hook 記述を更新 (guard + session-log)。
 
-### Step 5: review (self-review 前置 MUST)
+### 手順 5 (Step 5): レビュー (review / self-review 前置 MUST)
 `code-reviewer` (TL 代替) で実装/型/fail-open/idempotency をレビュー。cross-agent 不在を記録。
 
 ### Step 6: 命名テスト + 全回帰
@@ -74,7 +74,7 @@ bun entry。stdin JSON 読取 → `hook_event_name` で dispatch → 常に exit
 | hook shim (stdin→dispatch、fail-open) | 既存 `.claude/hooks/agent-guard.ts` パターン (ただし exit 0 化) |
 | deps 注入 (I/O/now/branch) | agent-guard の純粋関数分離 + session-log.md §3 SessionLogDeps |
 | settings.json 登録形 | session-log.md §5 (hook_event_name 分岐) |
-| gitignore 規約 | 既存 `.ut-tdd/audit/*.jsonl` / `state/*` の gitignored 規約 |
+| gitignore 規約 | 既存 `.helix/audit/*.jsonl` / `state/*` の gitignored 規約 |
 
 ## §6 用語更新 (§G.9)
 
@@ -85,7 +85,7 @@ L6 (PLAN-L6-03) で導入した セッションログ / PLAN ダイジェスト 
 - src/runtime/session-log.ts + .claude/hooks/session-log.ts + tests/session-log.test.ts 揃い、U-SLOG-001〜005 全 pass
 - 既存 72 テスト緑維持、fail-open (ログ失敗で作業を止めない) を test で実証
 - settings.json で 3 hook activate (blockOnFailure なし)、.gitignore に logs/
-- code-reviewer self-review APPROVE (Critical 0)
+- code-reviewer self-review APPROVE（自己レビュー承認、Critical 0）
 - 後段 `PLAN-REVERSE-NN-session-log` (fullback, forward_routing=L3) で L3 要件 back-fill へ接続
 
 ## §8 carry (self-review = GO-with-fixes 反映 + 残)

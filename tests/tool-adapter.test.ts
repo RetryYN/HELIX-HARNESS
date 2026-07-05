@@ -79,7 +79,7 @@ describe("tool adapter probes (U-TOOLADAPTER-001..010)", () => {
   it("U-TOOLADAPTER-006: tool run evidence normalizes into tool_runs rows", () => {
     const projection = normalizeToolAdapterRun({
       adapterId: "dependency-cruiser",
-      evidencePath: ".ut-tdd/evidence/tool-adapter/depcruise.json",
+      evidencePath: ".helix/evidence/tool-adapter/depcruise.json",
       command: "depcruise src --output-type json",
       version: "16.0.0",
       inputScope: "src",
@@ -90,7 +90,7 @@ describe("tool adapter probes (U-TOOLADAPTER-001..010)", () => {
     expect(projection.tool_runs).toEqual([
       expect.objectContaining({
         adapter_id: "dependency-cruiser",
-        evidence_path: ".ut-tdd/evidence/tool-adapter/depcruise.json",
+        evidence_path: ".helix/evidence/tool-adapter/depcruise.json",
         normalized_status: "passed",
       }),
     ]);
@@ -99,7 +99,7 @@ describe("tool adapter probes (U-TOOLADAPTER-001..010)", () => {
   it("U-TOOLADAPTER-007: dependency evidence normalizes edges and findings without raw gate truth", () => {
     const projection = normalizeToolAdapterRun({
       adapterId: "madge",
-      evidencePath: ".ut-tdd/evidence/tool-adapter/madge.json",
+      evidencePath: ".helix/evidence/tool-adapter/madge.json",
       command: "madge src --json",
       inputScope: "src",
       exitCode: 1,
@@ -121,7 +121,7 @@ describe("tool adapter probes (U-TOOLADAPTER-001..010)", () => {
   it("U-TOOLADAPTER-008: Knip dead-node evidence becomes review findings, not auto-fix", () => {
     const projection = normalizeToolAdapterRun({
       adapterId: "knip",
-      evidencePath: ".ut-tdd/evidence/tool-adapter/knip.json",
+      evidencePath: ".helix/evidence/tool-adapter/knip.json",
       command: "knip --reporter json",
       inputScope: ".",
       exitCode: 1,

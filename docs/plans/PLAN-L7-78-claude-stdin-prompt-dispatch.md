@@ -16,7 +16,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "Claude provider dispatch no longer sends task text through `-p <task>`. `buildAdapterPlan` emits fixed Claude argv (`--print --input-format text` plus model/effort flags) and carries the prompt in `AdapterPlan.stdin`, matching the existing Codex stdin transport. Regression coverage proves native ClaudeCode tool markup such as `<invoke name=\"Bash\">...` and multi-line prompt text do not appear in argv or the provider invocation string; fake `ut-tdd claude --execute` receives the prompt on stdin while preserving session lifecycle evidence. Follow-up recurrence analysis found an interactive Claude VSCode transcript emitting XML-like pseudo tool calls as assistant text, so repository Claude policy now explicitly forbids `court` / `<invoke>` pseudo tool text and hook status messages are ASCII to avoid adding corrupted context."
+    scope: "Claude provider dispatch no longer sends task text through `-p <task>`. `buildAdapterPlan` emits fixed Claude argv (`--print --input-format text` plus model/effort flags) and carries the prompt in `AdapterPlan.stdin`, matching the existing Codex stdin transport. Regression coverage proves native ClaudeCode tool markup such as `<invoke name=\"Bash\">...` and multi-line prompt text do not appear in argv or the provider invocation string; fake `helix claude --execute` receives the prompt on stdin while preserving session lifecycle evidence. Follow-up recurrence analysis found an interactive Claude VSCode transcript emitting XML-like pseudo tool calls as assistant text, so repository Claude policy now explicitly forbids `court` / `<invoke>` pseudo tool text and hook status messages are ASCII to avoid adding corrupted context."
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5
 agent_slots:
@@ -46,68 +46,67 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-77-codex-stdin-prompt-dispatch.md
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-78 (troubleshoot): claude stdin prompt dispatch
+# PLAN-L7-78 (troubleshoot): Claude プロンプトの stdin 配送
 
-## 0. Objective
+## 0. 目的
 
-Claude provider dispatch still carried task text on argv as `claude --print -p
-<task>`. That left a second transport path where multi-line text, shell
-metacharacters, or ClaudeCode native tool markup such as `<invoke name="Bash">`
-could be treated as command-line structure or leak as visible text instead of
-staying inert prompt content.
+Claude provider dispatch は、まだタスク本文を `claude --print -p <task>` の
+argv として渡していた。このため、複数行テキスト、shell metacharacter、
+`<invoke name="Bash">` のような ClaudeCode native tool markup が、不活性な
+prompt content として扱われず、command-line 構造として解釈されたり可視テキスト
+として漏れたりする 2 本目の transport path が残っていた。
 
-PLAN-L7-77 fixed the same class of issue for Codex because Windows `.cmd`
-wrapping could truncate prompts. This PLAN completes the provider boundary by
-using stdin for Claude prompts as well.
+PLAN-L7-77 は、Windows `.cmd` wrapping が prompt を切り詰め得るため、Codex
+側の同種問題を修正した。本 PLAN は Claude prompt でも stdin を使い、provider
+boundary を完了させる。
 
-## 1. Scope
+## 1. 範囲
 
-In scope:
+対象範囲:
 
-- `buildAdapterPlan` emits Claude argv as fixed flags only:
-  `--print --input-format text` plus optional `--model` / `--effort`.
-- Claude prompt text is carried in `AdapterPlan.stdin`, never in `args`.
-- `ut-tdd claude --execute` feeds stdin through the existing adapter wrapper and
-  continues to record SessionStart / PostToolUse / Stop evidence.
-- Regression tests cover multi-line native tool markup and the fake Claude
-  execution path.
-- Repository Claude runtime policy explicitly forbids writing XML-like pseudo
-  tool calls (`court`, `<invoke>`, `<parameter>`) as assistant text; corrupted
-  transcript residue must not be continued.
-- `.claude/settings.json` status messages are ASCII so hook summaries do not add
-  mojibake to future Claude context.
+- `buildAdapterPlan` は Claude argv を固定 flag のみにする:
+  `--print --input-format text` に加え、必要に応じて `--model` / `--effort` を付ける。
+- Claude prompt text は `AdapterPlan.stdin` で運び、`args` には入れない。
+- `helix claude --execute` は既存 adapter wrapper 経由で stdin を渡し、
+  `SessionStart` / `PostToolUse` / `Stop` evidence の記録を継続する。
+- Regression test は、複数行の native tool markup と fake Claude execution path
+  を対象にする。
+- Repository Claude runtime policy は、XML-like な pseudo tool call
+  (`court`, `<invoke>`, `<parameter>`) を assistant text として書くことを明示的に
+  禁止する。破損した transcript residue は継続しない。
+- `.claude/settings.json` の status message は ASCII とし、hook summary が将来の
+  Claude context に mojibake を追加しないようにする。
 
-Out of scope:
+対象外:
 
-- Changing Claude Code's native interactive UI protocol.
-- Re-enabling legacy raw Claude or HELIX wrapper paths.
+- Claude Code の native interactive UI protocol 変更。
+- legacy raw Claude または HELIX wrapper path の再有効化。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
-- `buildAdapterPlan` for Claude contains `--print --input-format text`, does not
-  contain `-p`, and stores task text in `plan.stdin`.
-- A prompt containing `<invoke name="Bash">...` and newlines does not appear in
-  Claude argv or the provider invocation string.
-- `ut-tdd claude --execute` fake-provider smoke receives task text on stdin and
-  still writes the expected session lifecycle digest.
-- Targeted adapter tests, typecheck, lint, and doctor pass.
-- Claude runtime policy contains an explicit native-tool-only rule so interactive
-  Claude Code sessions do not treat pseudo tool markup as a valid output style.
+- Claude 用の `buildAdapterPlan` は `--print --input-format text` を含み、`-p`
+  を含まず、タスク本文を `plan.stdin` に保存する。
+- `<invoke name="Bash">...` と改行を含む prompt は、Claude argv や provider
+  invocation string に出現しない。
+- `helix claude --execute` の fake-provider smoke は task text を stdin で受け取り、
+  期待される session lifecycle digest を引き続き書き出す。
+- Targeted adapter test、typecheck、lint、doctor が pass する。
+- Claude runtime policy は明示的な native-tool-only rule を含み、interactive
+  Claude Code session が pseudo tool markup を valid output style として扱わない。
 
-## 3. Test Design Pairing
+## 3. テスト設計との対応
 
-Unit test design entry: `docs/test-design/harness/L7-unit-test-design.md`
-(U-ADAPTER-008). Red->Green: pre-fix Claude prompt text is embedded in `-p
-<task>`; post-fix it is delivered via stdin and absent from argv.
+Unit test design の entry: `docs/test-design/harness/L7-unit-test-design.md`
+(U-ADAPTER-008)。Red->Green: 修正前は Claude prompt text が `-p <task>` に埋め込まれる。
+修正後は stdin 経由で配送され、argv には存在しない。
 
-## 4. Status
+## 4. 状態
 
-Confirmed. Implemented and verified 2026-06-19. Recurrence follow-up added the
-interactive Claude Code native-tool policy guard after transcript evidence showed
-the failure was assistant text generated by Claude VSCode, not argv leakage from
-the UT-TDD adapter.
+Confirmed。2026-06-19 に実装・検証済み。再発 follow-up では、transcript evidence
+により failure が HELIX adapter 由来の argv leakage ではなく Claude VSCode が生成した
+assistant text だと分かったため、interactive Claude Code native-tool policy guard を追加した。

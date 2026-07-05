@@ -69,7 +69,7 @@ review_evidence:
 
 ## 目的
 
-`harness-check.yml` と distribution acceptance は `bun install --frozen-lockfile`、`bun.lock` / `bun.lockb`、`package.json.scripts.ut-tdd` / `typecheck` / `test` を blocking preflight として扱っていた。
+`harness-check.yml` と distribution acceptance は `bun install --frozen-lockfile`、`bun.lock` / `bun.lockb`、`package.json.scripts.helix` / `typecheck` / `test` を blocking preflight として扱っていた。
 
 一方で `ConsumerReadinessPlan` / `distribution plan --json` の JSON surface は boolean check と command list だけを返しており、Bun 公式 source に基づく `--frozen-lockfile` の意味、lockfile 境界、package script 前提を構造化していなかった。
 
@@ -82,7 +82,7 @@ review_evidence:
 ## DoD
 
 - [x] `ConsumerReadinessPlan.ci.packagePreflight` は install command、許容 lockfile、必須 scripts、対応 script command、Bun 公式 source metadata を返す。
-- [x] `ut-tdd setup project --json` と `ut-tdd distribution plan --json` の readiness JSON で同じ metadata を確認できる。
+- [x] `helix setup project --json` と `helix distribution plan --json` の readiness JSON で同じ metadata を確認できる。
 - [x] setup unit、distribution acceptance、CLI surface のテストで source metadata を固定する。
 - [x] L6 設計、HELIX L6 機能設計、L7 テスト設計を日本語で更新する。
 - [x] 外部 API apply、secret、branch protection、identifier cutover は変更しない。

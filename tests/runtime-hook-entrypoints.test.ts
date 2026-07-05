@@ -88,7 +88,7 @@ describe("runtime hook entrypoints", () => {
   });
 
   it("shared CLI session/hook commands record a PLAN digest in a temp repo", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-hook-"));
+    const cwd = mkdtempSync(join(tmpdir(), "helix-hook-"));
     try {
       const start = runCli(cwd, ["plan", "use", "PLAN-L4-13"]);
       expect(start.status).toBe(0);
@@ -118,7 +118,7 @@ describe("runtime hook entrypoints", () => {
       expect(stop.stdout).toContain("session-log: summary s-cli");
 
       const digest = JSON.parse(
-        readFileSync(join(cwd, ".ut-tdd", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
+        readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
       );
       expect(digest.plan_id).toBe("PLAN-L4-13");
       expect(digest.sessions).toEqual(["s-cli"]);
@@ -130,14 +130,14 @@ describe("runtime hook entrypoints", () => {
     }
   });
 
-  it("ut-tdd codex --execute records the same session lifecycle through the adapter wrapper", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-codex-wrapper-"));
+  it("helix codex --execute records the same session lifecycle through the adapter wrapper", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-codex-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
       const fakeCodex = writeFakeCodex(binDir);
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       };
 
       expect(runCli(cwd, ["plan", "use", "PLAN-L4-13"]).status).toBe(0);
@@ -150,7 +150,7 @@ describe("runtime hook entrypoints", () => {
       expect(run.status).toBe(0);
 
       const digest = JSON.parse(
-        readFileSync(join(cwd, ".ut-tdd", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
+        readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
       );
       expect(digest.sessions).toHaveLength(1);
       expect(digest.sessions[0]).toMatch(/^codex-/);
@@ -159,21 +159,21 @@ describe("runtime hook entrypoints", () => {
       expect(readFileSync(join(cwd, "codex-called.txt"), "utf8")).toContain("exec");
       const envText = readFileSync(join(cwd, "codex-env.txt"), "utf8");
       expect(envText).not.toContain("raw=1");
-      expect(envText).not.toContain("reason=ut-tdd-runtime-adapter-wrapper");
+      expect(envText).not.toContain("reason=helix-runtime-adapter-wrapper");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }
   });
 
-  it("ut-tdd codex --task-file feeds file content through the same adapter wrapper", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-codex-task-file-"));
+  it("helix codex --task-file feeds file content through the same adapter wrapper", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-codex-task-file-"));
     const binDir = join(cwd, "bin");
     try {
       const fakeCodex = writeFakeCodex(binDir);
       writeFileSync(join(cwd, "task.md"), "implement from task file");
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       };
 
       expect(runCli(cwd, ["plan", "use", "PLAN-L4-13"]).status).toBe(0);
@@ -186,7 +186,7 @@ describe("runtime hook entrypoints", () => {
       expect(run.status).toBe(0);
 
       const digest = JSON.parse(
-        readFileSync(join(cwd, ".ut-tdd", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
+        readFileSync(join(cwd, ".helix", "logs", "plan", "PLAN-L4-13.digest.json"), "utf8"),
       );
       expect(digest.event_counts.session_start).toBe(1);
       expect(digest.event_counts.tool_use).toBe(1);
@@ -197,20 +197,20 @@ describe("runtime hook entrypoints", () => {
       expect(stdinText).toContain("implement from task file");
       const envText = readFileSync(join(cwd, "codex-env.txt"), "utf8");
       expect(envText).not.toContain("raw=1");
-      expect(envText).not.toContain("reason=ut-tdd-runtime-adapter-wrapper");
+      expect(envText).not.toContain("reason=helix-runtime-adapter-wrapper");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }
   });
 
-  it("ut-tdd codex --plan records wrapper lifecycle without forwarding plan flags to Codex", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-codex-plan-"));
+  it("helix codex --plan records wrapper lifecycle without forwarding plan flags to Codex", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-codex-plan-"));
     const binDir = join(cwd, "bin");
     try {
       const fakeCodex = writeFakeCodex(binDir);
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       };
 
       const run = runCli(
@@ -232,7 +232,7 @@ describe("runtime hook entrypoints", () => {
 
       const digest = JSON.parse(
         readFileSync(
-          join(cwd, ".ut-tdd", "logs", "plan", "PLAN-L4-77-adapter.digest.json"),
+          join(cwd, ".helix", "logs", "plan", "PLAN-L4-77-adapter.digest.json"),
           "utf8",
         ),
       );
@@ -246,20 +246,20 @@ describe("runtime hook entrypoints", () => {
       expect(called).not.toContain("PLAN-L4-77-adapter");
       const stdinText = readFileSync(join(cwd, "codex-stdin.txt"), "utf8");
       expect(stdinText).toContain("implement explicit plan");
-      expect(stdinText).not.toContain("UT-TDD context injection");
+      expect(stdinText).not.toContain("HELIX context injection");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }
   });
 
-  it("ut-tdd claude --execute records lifecycle without legacy raw-wrapper env", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-claude-wrapper-"));
+  it("helix claude --execute records lifecycle without legacy raw-wrapper env", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-claude-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
       const fakeClaude = writeFakeClaude(binDir);
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
-        UT_TDD_CLAUDE_BIN: fakeClaude,
+        HELIX_CLAUDE_BIN: fakeClaude,
       };
 
       const run = runCli(
@@ -281,7 +281,7 @@ describe("runtime hook entrypoints", () => {
 
       const digest = JSON.parse(
         readFileSync(
-          join(cwd, ".ut-tdd", "logs", "plan", "PLAN-L4-78-adapter.digest.json"),
+          join(cwd, ".helix", "logs", "plan", "PLAN-L4-78-adapter.digest.json"),
           "utf8",
         ),
       );
@@ -303,21 +303,21 @@ describe("runtime hook entrypoints", () => {
       expect(called).not.toContain("PLAN-L4-78-adapter");
       const envText = readFileSync(join(cwd, "claude-env.txt"), "utf8");
       expect(envText).not.toContain("raw=1");
-      expect(envText).not.toContain("reason=ut-tdd-runtime-adapter-wrapper");
+      expect(envText).not.toContain("reason=helix-runtime-adapter-wrapper");
     } finally {
       rmSync(cwd, { recursive: true, force: true });
     }
   });
 
-  it("ut-tdd team run --execute records lifecycle for each provider member", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-team-wrapper-"));
+  it("helix team run --execute records lifecycle for each provider member", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-team-wrapper-"));
     const binDir = join(cwd, "bin");
     try {
       const fakeCodex = writeFakeCodex(binDir);
       const fakeClaude = writeFakeClaude(binDir);
-      mkdirSync(join(cwd, ".ut-tdd", "teams"), { recursive: true });
+      mkdirSync(join(cwd, ".helix", "teams"), { recursive: true });
       writeFileSync(
-        join(cwd, ".ut-tdd", "teams", "speed.yaml"),
+        join(cwd, ".helix", "teams", "speed.yaml"),
         [
           "name: speed",
           "strategy: sequential",
@@ -333,8 +333,8 @@ describe("runtime hook entrypoints", () => {
       );
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
-        UT_TDD_CLAUDE_BIN: fakeClaude,
+        HELIX_CODEX_BIN: fakeCodex,
+        HELIX_CLAUDE_BIN: fakeClaude,
       };
 
       const run = runCli(
@@ -343,7 +343,7 @@ describe("runtime hook entrypoints", () => {
           "team",
           "run",
           "--definition",
-          ".ut-tdd/teams/speed.yaml",
+          ".helix/teams/speed.yaml",
           "--mode",
           "hybrid",
           "--execute",
@@ -358,7 +358,7 @@ describe("runtime hook entrypoints", () => {
 
       const digest = JSON.parse(
         readFileSync(
-          join(cwd, ".ut-tdd", "logs", "plan", "PLAN-L4-79-team-wrapper.digest.json"),
+          join(cwd, ".helix", "logs", "plan", "PLAN-L4-79-team-wrapper.digest.json"),
           "utf8",
         ),
       );

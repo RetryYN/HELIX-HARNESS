@@ -3,7 +3,7 @@
  *
  * Oracle: projectModelEvaluations computes per-model success_rate by joining
  * model_runs.plan_id -> plan_registry.status IN PLAN_SUCCESS_STATUSES.
- * Opt-in: runs only when .ut-tdd/config/model-opt-in.yaml exists with enabled:true.
+ * Opt-in: runs only when .helix/config/model-opt-in.yaml exists with enabled:true.
  * Default (no file) = disabled => 0 rows.
  *
  * AC-38-01 (enabled): model-A (2 runs both success) => rate 1.0;
@@ -20,13 +20,13 @@ import { migrate, rowCounts } from "../src/state-db/migration";
 import { projectModelEvaluations } from "../src/state-db/projection-writer";
 
 function makeTmpRoot(): string {
-  const root = mkdtempSync(join(tmpdir(), "ut-tdd-model-eval-"));
-  mkdirSync(join(root, ".ut-tdd", "config"), { recursive: true });
+  const root = mkdtempSync(join(tmpdir(), "helix-model-eval-"));
+  mkdirSync(join(root, ".helix", "config"), { recursive: true });
   return root;
 }
 
 function writeOptIn(root: string, enabled: boolean): void {
-  writeFileSync(join(root, ".ut-tdd", "config", "model-opt-in.yaml"), `enabled: ${enabled}\n`);
+  writeFileSync(join(root, ".helix", "config", "model-opt-in.yaml"), `enabled: ${enabled}\n`);
 }
 
 function seedModelRun(

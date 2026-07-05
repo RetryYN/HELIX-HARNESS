@@ -4,7 +4,7 @@
 
 Claude Code / Codex 共存を前提に、L0 concept / L1 requirements / L2 screen placeholder / L3 functional + L12 test design / governance requirements / active PLAN を上から精読し、件数、trace、review 証跡、TS/Bun 再実装方針の不備を確認した。
 
-本 audit の「Codex 側カバー」は **Codex 用への書き換え**ではない。Claude Code と Codex が同じ `ut-tdd` core / governance rules を参照し、`standalone` / `claude-only` / `codex-only` / `hybrid` の各 mode で同一判定・同一 exit code を保つための runtime parity audit である。
+本 audit の「Codex 側カバー」は **Codex 用への書き換え**ではない。Claude Code と Codex が同じ `helix` core / governance rules を参照し、`standalone` / `claude-only` / `codex-only` / `hybrid` の各 mode で同一判定・同一 exit code を保つための runtime parity audit である。
 
 参照した主な正本:
 
@@ -28,7 +28,7 @@ Claude Code / Codex 共存を前提に、L0 concept / L1 requirements / L2 scree
 | C-L0L3-04 | High | BR-22 が screen trace に接続されておらず、R1 で孤児化する状態だった | BR-22 を HM-02 / HM-05 / GD-01 に接続し、HM-02 reverse trace に FR-L1-46〜49 を追加 |
 | C-L0L3-05 | High | L3 acceptance G3-trace R1/R2 が旧い P0 18 件 / 18 FR 式のままで、FR-45 / workflow core / BR-22 carry を説明できていなかった | L3 acceptance の R1/R2 を L3 FR 26 件 + BR-22 carry + AT 117 件に合わせて更新 |
 | C-L0L3-06 | High | requirements / extraction plan / inventory に Python port / 移植前提が active requirement として残っていた | TS/Bun 再実装、markdown/docs curate、無修正参照のみの 3 区分へ更新 |
-| C-L0L3-07 | High | command 資産分類が W12/W16 のみで builder=W11 を落としていた | FR-L1-48 / inventory / L4 function に W11/W12/W16 と `ut-tdd builder` を反映 |
+| C-L0L3-07 | High | command 資産分類が W12/W16 のみで builder=W11 を落としていた | FR-L1-48 / inventory / L4 function に W11/W12/W16 と `helix builder` を反映 |
 | C-L0L3-08 | High | single-runtime gate review の証跡が `self-review` 表現のままで、naive self-review と区別しづらかった | `intra_runtime_subagent review (code-reviewer checklist)` と `review_kind: intra_runtime_subagent` を明記。Claude Code / Codex 共存時の cross-agent review は維持 |
 | C-L0L3-09 | Medium | Recovery 証跡が stale な `vitest 66 pass` のままだった | 2026-06-02 再検証 `vitest 85 pass` に更新 |
 
@@ -45,8 +45,8 @@ Claude Code / Codex 共存を前提に、L0 concept / L1 requirements / L2 scree
 
 | 分類 | 対象 | 判断 |
 |---|---|---|
-| TS/Bun reimplementation required | `cli/lib/**`, `cli/helix-*`, hook guard / lint / runtime 判定 | `src/**` と `ut-tdd` subcommand に作り直す |
-| Curate / modify without TS literalization | subagent prompt, skill body, command docs, plan/handover/team templates | markdown / docs / templates として UT-TDD 正本へ取り込み、registry / catalog / injector / CLI behavior は TS |
+| TS/Bun reimplementation required | `cli/lib/**`, `cli/helix-*`, hook guard / lint / runtime 判定 | `src/**` と `helix` subcommand に作り直す |
+| Curate / modify without TS literalization | subagent prompt, skill body, command docs, plan/handover/team templates | markdown / docs / templates として HELIX 正本へ取り込み、registry / catalog / injector / CLI behavior は TS |
 | No-modification reference only | `vendor/helix-source/**`, `docs/v2/**`, old PLAN / audit evidence | runtime 転用不可。evidence / reference のみ |
 
 Runtime として修正せず転用できるものは 0 件。

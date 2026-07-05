@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-135-dynamic-skill-injection-materialization
-title: "PLAN-L7-135: Dynamic skill injection materialization"
+title: "PLAN-L7-135: 動的 skill injection の materialization"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 agent_slots:
   - role: tl
-    slot_label: "TL - dynamic skill injection materialization"
+    slot_label: "TL - 動的 skill injection の materialization"
 generates:
   - artifact_path: docs/plans/PLAN-L7-135-dynamic-skill-injection-materialization.md
     artifact_type: markdown_doc
@@ -56,7 +56,7 @@ review_evidence:
     reviewed_at: "2026-06-23T18:42:32+09:00"
     tests_green_at: "2026-06-23T18:42:32+09:00"
     verdict: approve
-    scope: "Skill recommendation manifest is materialized into Claude/Codex adapter stdin and team-run adapters."
+    scope: "skill recommendation manifest を Claude/Codex adapter stdin と team-run adapters へ materialize する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -94,29 +94,27 @@ review_evidence:
         output_digest: "sha256:d8e9694551877c339a13b30e725366febb8ed15edf21308b56a8caf11a21c0bc"
 ---
 
-# PLAN-L7-135: Dynamic skill injection materialization
+# PLAN-L7-135: 動的 skill injection の materialization
 
-## Objective
+## 目的
 
-Close the dynamic skill injection gap: recommendation rows and `skill suggest`
-output must become actual provider context for Claude and Codex, not a report
-that agents have to remember manually.
+動的 skill injection の gap を閉じる。recommendation rows と `skill suggest`
+output は、agent が手動で覚えておく report ではなく、Claude と Codex の実際の provider context
+になる必要がある。
 
-## Scope
+## スコープ
 
-- Add a path-only `SkillInjectionSet` manifest built from skill recommendations.
-- Add `ut-tdd skill suggest --inject --json` for provider-neutral consumers.
-- Pass `contextInjection` into `buildAdapterPlan` and append scoped skill paths
-  to provider stdin.
-- Wire `ut-tdd codex|claude --plan` and `ut-tdd team run --plan` to resolve the
-  same injection from the rebuilt harness DB projection.
-- Wire `task route --plan ... --execute` through `routeToAdapterPlan` so
-  difficulty/cost-tier routing and dynamic skill injection meet in the same
-  adapter plan.
+- skill recommendations から、path のみを持つ `SkillInjectionSet` manifest を追加する。
+- provider-neutral consumers 向けに `helix skill suggest --inject --json` を追加する。
+- `contextInjection` を `buildAdapterPlan` へ渡し、scoped skill paths を provider stdin へ追記する。
+- `helix codex|claude --plan` と `helix team run --plan` を配線し、rebuilt harness DB projection
+  から同じ injection を解決する。
+- `task route --plan ... --execute` を `routeToAdapterPlan` 経由で配線し、difficulty/cost-tier
+  routing と動的 skill injection が同じ adapter plan に合流するようにする。
 
-## Acceptance Criteria
+## 受入条件
 
-- Manifest contains skill paths/reasons only and does not copy skill bodies.
-- Claude and Codex adapters receive the same injection format.
-- Prompt text and skill paths stay in stdin; argv remains fixed command flags.
-- Team-run applies the same injection to every runtime member adapter.
+- Manifest は skill paths/reasons のみを含み、skill bodies を copy しない。
+- Claude と Codex adapters は同じ injection format を受け取る。
+- Prompt text と skill paths は stdin に留め、argv は固定 command flags のままにする。
+- Team-run はすべての runtime member adapter に同じ injection を適用する。

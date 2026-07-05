@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-108-review-green-command-evidence
-title: "PLAN-REVERSE-108: Green command evidence fullback"
+title: "PLAN-REVERSE-108: green command evidence の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,15 +16,15 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements now define green_commands as the hard evidence required for new confirmed review_evidence."
+    reason: "Requirements は、新規 confirmed review_evidence に必須の hard evidence として green_commands を定義した。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "L4 workflow/review contract now states that green review evidence must include green_commands for new confirmed/completed entries."
+    reason: "L4 workflow/review contract は、新規 confirmed/completed entry の green review evidence に green_commands が必須であることを明記した。"
   - layer: L5-detailed-design
     decision: updated
     evidence_path: docs/design/harness/L5-detailed-design/physical-data.md
-    reason: "L5 physical data now maps review_evidence.green_commands into test_runs / quality_signals green compliance."
+    reason: "L5 physical data は、review_evidence.green_commands を test_runs / quality_signals の green compliance へ写像する。"
 agent_slots:
   - role: tl
     slot_label: "TL - green command evidence reverse fullback"
@@ -47,41 +47,41 @@ dependencies:
     - docs/plans/PLAN-L7-108-review-green-command-evidence.md
 ---
 
-# PLAN-REVERSE-108: Green command evidence fullback
+# PLAN-REVERSE-108: green command evidence の fullback
 
-## R0 Evidence
+## R0 証跡
 
-The review evidence gate previously checked only `tests_green_at <= reviewed_at`.
-That left green content as prose: a PLAN could say tests were green without a
-machine-readable command, runner, scope, exit code, evidence path, or digest.
+review evidence gate は従来、`tests_green_at <= reviewed_at` だけを確認していた。
+そのため green content は prose のまま残り、PLAN は機械可読な command、runner、
+scope、exit code、evidence path、digest を持たずに tests が green だったと記述できた。
 
-## R1 Observed Gap
+## R1 観測されたギャップ
 
-This is the same class of gap as the progress-color DB idea: a green state must
-be tied to test evidence, otherwise the database can only preserve labels. The
-Reverse path also needs explicit requirements/design back-propagation so
-implementation does not outrun the design documents.
+これは progress-color DB idea と同じ種類のギャップである。green state は
+test evidence に結び付いていなければならず、そうでない場合、database は
+label しか保持できない。Reverse path でも、implementation が design documents を
+追い越さないよう、requirements/design への明示的な back-propagation が必要である。
 
-## R2 Alignment
+## R2 整合
 
-The fix belongs in `review-evidence` lint and frontmatter schema. It is a
-governance/DB readiness invariant, not a product runtime feature. Requirements
-define the hard rule; L6 test-before-review defines the contract and the
-GreenDefinition carry.
+修正箇所は `review-evidence` lint と frontmatter schema である。これは
+product runtime feature ではなく、governance/DB readiness invariant である。
+Requirements が hard rule を定義し、L6 test-before-review が contract と
+GreenDefinition carry を定義する。
 
-## R3 / R4 Outcome
+## R3 / R4 結果
 
-New or updated confirmed/completed review evidence from 2026-06-23 onward must
-include `green_commands[]`. Each command must record kind, command, runner,
-scope, exit code 0, evidence path, and SHA-256 digest. Missing or invalid command
-evidence is a doctor-visible hard violation.
+2026-06-23 以降の新規または更新された confirmed/completed review evidence は、
+`green_commands[]` を含めなければならない。各 command は kind、command、runner、
+scope、exit code 0、evidence path、SHA-256 digest を記録しなければならない。
+command evidence の欠落または不正は、doctor-visible hard violation である。
 
 ## DoD
 
-- [x] Requirements updated with the IMP-108 hard gate.
-- [x] L4 basic design updated with the workflow/review contract.
-- [x] L5 detailed design updated with DB projection semantics.
-- [x] L6 function design updated with current `green_commands[]` invariant.
-- [x] L7 implementation and frontmatter schema updated.
-- [x] Unit tests cover legacy compatibility, missing evidence, valid evidence,
-  and nonzero exit rejection.
+- [x] Requirements を IMP-108 hard gate で更新した。
+- [x] L4 basic design を workflow/review contract で更新した。
+- [x] L5 detailed design を DB projection semantics で更新した。
+- [x] L6 function design を現在の `green_commands[]` invariant で更新した。
+- [x] L7 implementation と frontmatter schema を更新した。
+- [x] Unit tests は legacy compatibility、missing evidence、valid evidence、
+  nonzero exit rejection をカバーする。

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-125-route-legacy-command-gate
-title: "PLAN-REVERSE-125: route legacy command gate fullback"
+title: "PLAN-REVERSE-125: route legacy command gate の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,17 +16,17 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The legacy runtime command acceptance item is now implemented and checked."
+    reason: "legacy runtime command の acceptance item は実装済みで、検査対象になった。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Route eval now documents route-map command validation and fail-close behavior."
+    reason: "Route eval は route-map command validation と fail-close behavior を記載するようになった。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The change uses the existing RecommendedCommandV1 schema and CLI/workflow boundaries."
+    reason: "この変更は既存の RecommendedCommandV1 schema と CLI/workflow boundaries を使う。"
 agent_slots:
   - role: tl
-    slot_label: "TL - route legacy command fullback"
+    slot_label: "TL - route legacy command fullback レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-125-route-legacy-command-gate.md
     artifact_type: markdown_doc
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T16:40:00+09:00"
     tests_green_at: "2026-06-23T16:40:00+09:00"
     verdict: approve
-    scope: "R4 fullback from route legacy command gate to requirements and L4 design."
+    scope: "route legacy command gate から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,21 +66,18 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-125: route legacy command gate fullback
+# PLAN-REVERSE-125: route legacy command gate の fullback
 
-## Objective
+## 目的
 
-Back-fill the route legacy command gate to requirements and L4 function design.
+route legacy command gate を requirements と L4 function design へ back-fill する。
 
-## Scope
+## 範囲
 
-- Requirements §7.8.2 / §7.8.6 now record the executable `ut-tdd` command
-  restriction.
-- L4 function design states that route-map command outputs are validated and
-  fail closed.
+- Requirements §7.8.2 / §7.8.6 は、実行可能な `helix` command restriction を記録する。
+- L4 function design は、route-map command outputs を検証し、fail closed することを明記する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both mention the legacy command fail-close rule.
-- The Reverse record keeps the change within existing route evaluation
-  contracts.
+- Requirements と L4 design の両方が legacy command fail-close rule に触れている。
+- Reverse record は、この変更を既存の route evaluation contracts の内側に保つ。

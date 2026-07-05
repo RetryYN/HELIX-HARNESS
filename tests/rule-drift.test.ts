@@ -7,12 +7,12 @@ import {
 } from "../src/lint/rule-drift";
 
 const markers = [
-  "ut-tdd status",
-  "ut-tdd doctor",
-  "ut-tdd handover",
-  "ut-tdd codex --role <role> --task",
-  "ut-tdd claude --role <role> --task",
-  "ut-tdd team run --definition .ut-tdd/teams/<team>.yaml",
+  "helix status",
+  "helix doctor",
+  "helix handover",
+  "helix codex --role <role> --task",
+  "helix claude --role <role> --task",
+  "helix team run --definition .helix/teams/<team>.yaml",
   "standalone",
   "claude-only",
   "codex-only",
@@ -24,8 +24,8 @@ const completeDocs = (): RuleAdapterDocs => ({
   claudeProject: `${markers}\n.claude/CLAUDE.md\nAGENTS.md`,
   claudeRuntime: `${markers}\n../CLAUDE.md\n../AGENTS.md`,
 });
-const legacyRuntimeName = ["he", "lix"].join("");
-const legacyRuntimeEnvPrefix = legacyRuntimeName.toUpperCase();
+const legacyRuntimeName = ["ut", "tdd"].join("-");
+const legacyRuntimeEnvPrefix = ["UT", "TDD"].join("_");
 
 describe("rule-drift lint", () => {
   it("passes when Codex and Claude adapter docs share required command/mode markers", () => {
@@ -37,11 +37,11 @@ describe("rule-drift lint", () => {
 
   it("reports missing adapter markers", () => {
     const docs = completeDocs();
-    docs.agents = docs.agents.replace("ut-tdd doctor", "");
+    docs.agents = docs.agents.replace("helix doctor", "");
     const result = analyzeRuleDrift(docs);
     expect(result.ok).toBe(false);
     expect(result.forbiddenMarkers).toEqual([]);
-    expect(result.missingMarkers).toEqual([{ file: "AGENTS.md", marker: "ut-tdd doctor" }]);
+    expect(result.missingMarkers).toEqual([{ file: "AGENTS.md", marker: "helix doctor" }]);
     expect(ruleDriftMessages(result)[0]).toContain("rule-drift");
   });
 

@@ -1,4 +1,4 @@
-export const TEAM_MEMBER_PROMPT_HEADER = "UT-TDD team member";
+export const TEAM_MEMBER_PROMPT_HEADER = "HELIX team member";
 export const TEAM_MEMBER_TASK_HEADER = "Task:";
 export const TEAM_MEMBER_RULES_HEADER = "Rules:";
 

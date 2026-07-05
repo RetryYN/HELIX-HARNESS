@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-153-proposal-research-data-extraction
-title: "PLAN-L7-153: proposal research data extraction"
+title: "PLAN-L7-153: proposal research data の抽出"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant catalog extraction inside task classification data. No public CLI/API contract, persisted schema, requirement semantics, or workflow semantics changed."
+backprop_decision_reason: "task classification data 内で catalog を振る舞い不変に抽出する。公開 CLI/API contract、永続化 schema、requirement semantics、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - proposal research catalog extraction"
+    slot_label: "SE - proposal research catalog 抽出"
   - role: tl
-    slot_label: "TL - classification invariant review"
+    slot_label: "TL - classification 不変性レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-153-proposal-research-data-extraction.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T17:23:53+09:00"
     tests_green_at: "2026-06-25T17:23:53+09:00"
     verdict: approve
-    scope: "Behavior-invariant extraction of proposal research adoption/rejection catalog."
+    scope: "proposal research の採用/却下 catalog を振る舞い不変に抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -65,25 +65,23 @@ review_evidence:
         output_digest: "sha256:7d90403d7b0dcbc190e67c46405e6c468a8a481fbcfba1fdffafeff8d756807f"
 ---
 
-# PLAN-L7-153: proposal research data extraction
+# PLAN-L7-153: proposal research data の抽出
 
-## Objective
+## 目的
 
-Reduce the `proposal-coverage-data.ts` split-module candidate by separating
-proposal document-pack data from research adoption/rejection policy data.
+proposal document-pack data と research 採用/却下 policy data を分離し、
+`proposal-coverage-data.ts` の split-module candidate を減らす。
 
-## Scope
+## スコープ
 
-- Move research adoption, rejection, and LLM shrinkage catalogs to
-  `src/task/proposal-research-data.ts`.
-- Keep `src/task/proposal-coverage-data.ts` re-exporting the moved symbols so
-  existing imports remain stable.
-- Update task classification tests to import and verify the new catalog module
-  directly.
+- research 採用、却下、LLM shrinkage catalogs を
+  `src/task/proposal-research-data.ts` へ移動する。
+- 既存 import を安定させるため、`src/task/proposal-coverage-data.ts` は移動した symbols を
+  re-export し続ける。
+- task classification tests を更新し、新しい catalog module を直接 import して検証する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Task classification and proposal document coverage behavior remains
-  unchanged.
-- `bun run vitest run tests\task-classify.test.ts` passes.
-- `bun run typecheck`, `bun run lint`, DB rebuild, and doctor pass.
+- task classification と proposal document coverage の behavior が変わらない。
+- `bun run vitest run tests\task-classify.test.ts` が成功する。
+- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が成功する。

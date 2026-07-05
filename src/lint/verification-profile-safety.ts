@@ -62,7 +62,7 @@ function tokenizeCommand(command: string): string[] {
 
 export function renderGeneratedMcpConfig(input: GeneratedMcpConfigInput): GeneratedMcpConfigResult {
   const findings: VerificationProfileFinding[] = [];
-  const targetPath = input.targetPath ?? ".ut-tdd/local/mcp.generated.json";
+  const targetPath = input.targetPath ?? ".helix/local/mcp.generated.json";
   const writesCommittedConfig =
     normalizePath(targetPath) === ".vscode/mcp.json" ||
     normalizePath(targetPath).startsWith(".vscode/");

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-112-reverse-r4-claimed-artifact-gate
-title: "PLAN-L7-112: Reverse R4 claimed artifact gate"
+title: "PLAN-L7-112: Reverse R4 claimed artifact gate の検証ゲート"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - Reverse R4 claimed artifact gate"
+    slot_label: "TL - Reverse R4 claimed artifact gate 検証"
 generates:
   - artifact_path: docs/plans/PLAN-L7-112-reverse-r4-claimed-artifact-gate.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T23:55:00+09:00"
     tests_green_at: "2026-06-23T23:54:00+09:00"
     verdict: approve
-    scope: "Reverse R4 claimed artifact path lint for non-fullback reverse types."
+    scope: "non-fullback reverse type 向けの Reverse R4 claimed artifact path lint。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -60,25 +60,23 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-L7-112: Reverse R4 claimed artifact gate
+# PLAN-L7-112: Reverse R4 claimed artifact gate の検証ゲート
 
-## Objective
+## 目的
 
-Close the non-fullback Reverse R4 trace hole found during the 2026-06-23 sweep.
-When a confirmed/completed R4 Reverse PLAN with `confirmed_reverse_type` other
-than `fullback` cites an upstream artifact path in its body, that path must also
-be listed in `generates`.
+2026-06-23 sweep で見つかった non-fullback Reverse R4 の trace 抜けを閉じる。
+`confirmed_reverse_type` が `fullback` 以外で、`confirmed` / `completed` の
+R4 Reverse PLAN が本文で upstream artifact path を引用する場合、その path は
+`generates` にも列挙されていなければならない。
 
-## Scope
+## 範囲
 
-- Add `reverse_r4_claimed_artifact_missing` to `plan-governance`.
-- Apply the rule only to new or updated non-fullback R4 Reverse PLANs from
-  2026-06-23 onward.
-- Keep older PLANs as audit debt instead of retroactively failing the repository.
+- `plan-governance` に `reverse_r4_claimed_artifact_missing` を追加する。
+- この rule は 2026-06-23 以降の新規または更新された non-fullback R4 Reverse PLAN のみに適用する。
+- それ以前の PLAN は repository を遡及的に fail させず、audit debt として残す。
 
-## Acceptance Criteria
+## 受入条件
 
-- A new non-fullback R4 Reverse PLAN that cites an ungenerated upstream artifact
-  path fails.
-- A matching generated artifact passes.
-- Legacy non-fullback R4 Reverse debt remains visible in the audit document.
+- 未生成の upstream artifact path を引用する新規 non-fullback R4 Reverse PLAN は fail する。
+- 対応する generated artifact がある場合は pass する。
+- legacy の non-fullback R4 Reverse debt は audit document で可視のまま残る。

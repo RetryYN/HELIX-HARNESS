@@ -1,4 +1,4 @@
-# UT-TDD Recovery 駆動ワークフロー (トラブルシューティング本線)
+# HELIX Recovery 駆動ワークフロー (トラブルシューティング本線)
 
 > ⚠️ **SUPERSEDED (2026-06-04、IMP-060)**: 本 doc の内容 (トリガー分類 §1 / 本線 5-step §2 / reopen 可変 §2.1 / 適用記録 §5) は **`docs/process/modes/recovery.md` へ統合完了**。Recovery の単一正本は **docs/process/modes/recovery.md**。本 doc は historical reference として残置 (新規参照は recovery.md を見ること、規範変更は recovery.md 側で行う)。docs/process が「工程/駆動モデル定義の正本」(repository-structure §2)。
 
@@ -58,7 +58,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | **PO** | Step 2 認識確認 (list 確定) + Step 3 スコープ承認 (どの層を reopen するか) | Step 2 / Step 3 |
 | **TL** | リオープンポイント確認 (どこから再開するか技術的に妥当か) | Step 3 |
 
-> 各 recovery kind PLAN は requirements §5.1 の **7 必須セクション** (§1 事故記録/§2 timeline/§3 認識訂正/§4 中間結論/§5 context 再構築/§6 再開ポイント/§7 再発防止) を持つ。`ut-tdd plan lint` が機械検証。
+> 各 recovery kind PLAN は requirements §5.1 の **7 必須セクション** (§1 事故記録/§2 timeline/§3 認識訂正/§4 中間結論/§5 context 再構築/§6 再開ポイント/§7 再発防止) を持つ。`helix plan lint` が機械検証。
 
 ## §4 再発防止 (Step 5 の必須出力)
 
@@ -70,6 +70,6 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 
 | Recovery PLAN | trigger | 対象 | 状態 |
 |---|---|---|---|
-| [PLAN-RECOVERY-01](../plans/PLAN-RECOVERY-01-internal-asset-recovery.md) | (a) 指示無視 (内部資産を UT-TDD 用に作り替える指示の不履行) | 内部資産 FR 前提抜け → reopen=L1 | **closed (completed、2026-06-01)**: Step 1-5 完遂。top-down 修正 = L1 BR-22 + FR-L1-46〜49 + L3 carry + L4 設計増分 (ADR-004 / PLAN-L4-10〜13) + L9 ST-ASSET。self-review CONDITIONAL PASS (Critical=0) → G1/G3 再 readiness 機械確認 (孤児0/66 pass) → **PO close signoff** → Forward fullback。L5/L6 内部資産は placeholder_deps back-fill 継続 |
+| [PLAN-RECOVERY-01](../plans/PLAN-RECOVERY-01-internal-asset-recovery.md) | (a) 指示無視 (内部資産を HELIX 用に作り替える指示の不履行) | 内部資産 FR 前提抜け → reopen=L1 | **closed (completed、2026-06-01)**: Step 1-5 完遂。top-down 修正 = L1 BR-22 + FR-L1-46〜49 + L3 carry + L4 設計増分 (ADR-004 / PLAN-L4-10〜13) + L9 ST-ASSET。self-review CONDITIONAL PASS (Critical=0) → G1/G3 再 readiness 機械確認 (孤児0/66 pass) → **PO close signoff** → Forward fullback。L5/L6 内部資産は placeholder_deps back-fill 継続 |
 
 > **注**: PLAN-RECOVERY-01 は当初 trigger を「認識ずれ」と記述したが、本ワークフロー §1 に従い **(a) 指示無視**へ再分類する (PO 訂正反映)。さらに今回は単一事象でなく「全部拾う」= 複数事象の収集が先行するため、本ワークフロー Step 1 の collect-all を先に実施する。

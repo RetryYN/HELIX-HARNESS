@@ -30,7 +30,7 @@ generates:
     artifact_type: yaml_config
   - artifact_path: docs/design/harness/L5-detailed-design/if-detail.md
     artifact_type: design_doc
-  - artifact_path: .ut-tdd/evidence/g8-integration/20260626-it-adapter-asset-expansion.json
+  - artifact_path: .helix/evidence/g8-integration/20260626-it-adapter-asset-expansion.json
     artifact_type: json_config
 dependencies:
   parent: null
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-07-05T03:05:00+09:00"
     tests_green_at: "2026-07-05T03:05:00+09:00"
     verdict: approve
-    scope: "D-CONTRACT DSL validator を pure module として追加し、mode-routing / gate-checks fixture、unknown mode、missing required gate、next cycle、非 ut-tdd next_action の fail-close を検証した。既存 route evaluator の実行判断ロジック、CLI wiring、AI 呼び出し、PLAN-M-02 rename cutover は変更していない。"
+    scope: "D-CONTRACT DSL validator を pure module として追加し、mode-routing / gate-checks fixture、unknown mode、missing required gate、next cycle、非 helix next_action の fail-close を検証した。既存 route evaluator の実行判断ロジック、CLI wiring、AI 呼び出し、PLAN-M-02 rename cutover は変更していない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -81,7 +81,7 @@ review_evidence:
         evidence_path: src/workflow/routing-contracts.ts
         output_digest: "sha256:fb80bb5f96694126a42ea3c8ad2febce1f3d682571edf5fbf332a1bd24b3d333"
       - kind: lint
-        command: "./scripts/ut-tdd plan lint docs/plans/PLAN-L7-312-d-contract-dsl.md"
+        command: "./scripts/helix plan lint docs/plans/PLAN-L7-312-d-contract-dsl.md"
         runner: bun
         scope: targeted
         exit_code: 0
@@ -89,7 +89,7 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-312-d-contract-dsl.md
         output_digest: "sha256:bdfa400429a1aa27075ee6f61c682a1922df6c8a78bd10aedf34918141ec19ab"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -104,7 +104,7 @@ review_evidence:
 
 `docs/design/harness/L5-detailed-design/if-detail.md` §5/§8 が「D-CONTRACT DSL 実装
 (mode-routing.yaml / gate-checks.yaml + loader) = L7」と carry 明記し、IMP-073 も参照する
-LOCAL 自身の未了項目を閉じる。上流 `unison-ai-product/UT-TDD_AGENT-HARNESS` の
+LOCAL 自身の未了項目を閉じる。上流 `unison-ai-product/HELIX-HARNESS` の
 `validateDContractDsl`（`src/workflow/routing-contracts.ts`）と同型の zod validate を、
 LOCAL の既存 `routing-contracts.ts` に追加し、workflow 実行が fixture へ依存する前に
 決定論で fail-close させる。上流 diff の bulk import ではなく HELIX 式に harden して差す。
@@ -116,7 +116,7 @@ LOCAL の既存 `routing-contracts.ts` に追加し、workflow 実行が fixture
 - `dContractModeRoutingSchema`（`{signal, mode, priority, next[]}` の routes）と
   `dContractGateChecksSchema`（`gates: Record<gate_id, GateCheck[]>`、各 check の next_action は
   既存 `recommendedCommandV1Schema` 準拠）を zod で定義。
-- mode-routing の `next` 循環検出、`requiredGateIds` の存在検証、非 `ut-tdd` next_action の reject。
+- mode-routing の `next` 循環検出、`requiredGateIds` の存在検証、非 `helix` next_action の reject。
 - mode enum は LOCAL 現行 `docs/process/modes/`（add-feature/discovery/incident/recovery/refactor/
   research/retrofit/reverse/scrum/version-up + forward）へ接地。gate ID は G1-G14 へ接地。
 - `mode-routing.yaml` / `gate-checks.yaml` fixture を LOCAL の mode/gate 定義から生成。
@@ -127,7 +127,7 @@ LOCAL の既存 `routing-contracts.ts` に追加し、workflow 実行が fixture
 - AI 呼び出しは追加しない（DSL validate は決定論）。
 
 ## 受入条件
-- `validateDContractDsl` が unknown mode / missing required gate / `next` 循環 / 非 ut-tdd next_action を fail-close する。
+- `validateDContractDsl` が unknown mode / missing required gate / `next` 循環 / 非 helix next_action を fail-close する。
 - 既存 `routeSignalToMode` / `validateRouteConfigText` / `detectRouteEscalationBoundaries` を回帰させない。
 - `recommendedCommandV1Schema` の契約（推奨コマンド型）を不変に保つ。
 - 対象 test（`tests/routing-contracts.test.ts`）と `doctor` / `lint` / `typecheck` / `plan lint` が green。

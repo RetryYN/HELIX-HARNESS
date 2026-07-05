@@ -591,12 +591,12 @@ describe("S4 decision readiness", () => {
     expect(packet.relatedDecisionPackets).toEqual([
       expect.objectContaining({
         role: "primary",
-        command: "ut-tdd s4 decision-packet --json",
-        scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-900",
+        command: "helix s4 decision-packet --json",
+        scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-900",
       }),
     ]);
     expect(packet.generatedAt).toEqual(expect.any(String));
-    expect(packet.sourceCommand).toBe("ut-tdd s4 decision-packet --json");
+    expect(packet.sourceCommand).toBe("helix s4 decision-packet --json");
     expect(packet.freshness).toEqual({
       validForMinutes: 1440,
       expiresAt: expect.any(String),
@@ -719,13 +719,13 @@ describe("S4 decision readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           role: "primary",
-          command: "ut-tdd s4 decision-packet --json",
-          scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-902",
+          command: "helix s4 decision-packet --json",
+          scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-902",
         }),
         expect.objectContaining({
           role: "supporting",
-          command: "ut-tdd action-binding approval-packet --json",
-          scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-902",
+          command: "helix action-binding approval-packet --json",
+          scopedCommand: "helix action-binding approval-packet --json --plan PLAN-DISCOVERY-902",
         }),
       ]),
     );
@@ -1361,7 +1361,7 @@ describe("S4 decision readiness", () => {
       schemaVersion: "s4-decision-packet.v1",
       planId: "PLAN-DISCOVERY-10-helix-asset-visualization",
       generatedAt: expect.any(String),
-      sourceCommand: "ut-tdd s4 decision-packet --json",
+      sourceCommand: "helix s4 decision-packet --json",
       freshness: {
         validForMinutes: 1440,
         expiresAt: expect.any(String),

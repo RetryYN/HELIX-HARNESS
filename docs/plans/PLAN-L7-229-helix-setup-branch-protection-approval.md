@@ -49,7 +49,7 @@ review_evidence:
     reviewed_at: "2026-07-02T05:24:58+09:00"
     tests_green_at: "2026-07-02T05:24:50+09:00"
     verdict: pass
-    scope: "`ut-tdd setup --apply-branch-protection` / `ut-tdd setup project --apply-branch-protection` / 生成 `setup-branch-protection.sh` が action-binding approval なしに GitHub branch protection / required status checks の remote mutation へ到達し得る穴を封鎖。L1 HNFR-P8 / HNFR-AC、L6 setup 設計、L7 U-SETUP oracle、実装、生成 template を同じ意味に揃えた。"
+    scope: "`helix setup --apply-branch-protection` / `helix setup project --apply-branch-protection` / 生成 `setup-branch-protection.sh` が action-binding approval なしに GitHub branch protection / required status checks の remote mutation へ到達し得る穴を封鎖。L1 HNFR-P8 / HNFR-AC、L6 setup 設計、L7 U-SETUP oracle、実装、生成 template を同じ意味に揃えた。"
     worker_model: gpt-5.5
     reviewer_model: gpt-5.5
     green_commands:
@@ -91,7 +91,7 @@ review_evidence:
 
 ## 0. 目的
 
-`ut-tdd setup` / `ut-tdd setup project` は GitHub workflow / branch protection / required status checks を
+`helix setup` / `helix setup project` は GitHub workflow / branch protection / required status checks を
 計画・生成物として提示するが、外部 GitHub 設定の実適用権限は action-binding approval なしに持たない。
 
 既存 `runHelixProjectSetup` は既に plan-only に塞いだが、legacy `runSetup` の `applyBranchProtection` と
@@ -115,7 +115,7 @@ review_evidence:
 action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
 - approval_policy_or_named_approver: PO の human approval / action-binding approval は、HELIX project setup が GitHub branch protection や required status checks を適用する前に必須。
-- approval_scope: この PLAN は `ut-tdd setup --apply-branch-protection` / `ut-tdd setup project --apply-branch-protection` / 生成 `setup-branch-protection.sh` の remote GitHub branch protection apply を拒否する範囲に限定する。
+- approval_scope: この PLAN は `helix setup --apply-branch-protection` / `helix setup project --apply-branch-protection` / 生成 `setup-branch-protection.sh` の remote GitHub branch protection apply を拒否する範囲に限定する。
 - approved_actor: この PLAN では actor を承認しない。将来承認では GitHub apply 前に human operator または automation identity を記名する。
 - approved_tool: この PLAN では tool を承認しない。将来承認では GitHub apply 前に CLI / script / workflow を記名する。
 - approved_target: この PLAN では target を承認しない。将来承認では GitHub apply 前に repository、branch、branch protection rule、required check target を記名する。

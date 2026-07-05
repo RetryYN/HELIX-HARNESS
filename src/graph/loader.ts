@@ -365,14 +365,14 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
   }
 
   const reviewDocs: string[] = [];
-  walkMd(join(repoRoot, ".ut-tdd", "review"), repoRoot, reviewDocs);
+  walkMd(join(repoRoot, ".helix", "review"), repoRoot, reviewDocs);
   for (const path of reviewDocs) {
     addDesignDocIfAbsent(designDocs, path);
   }
 
   const integrationEvidenceDocs: string[] = [];
   walkJson(
-    join(repoRoot, ".ut-tdd", "evidence", "g8-integration"),
+    join(repoRoot, ".helix", "evidence", "g8-integration"),
     repoRoot,
     integrationEvidenceDocs,
   );

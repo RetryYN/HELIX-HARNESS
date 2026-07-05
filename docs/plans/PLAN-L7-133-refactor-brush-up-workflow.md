@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-133-refactor-brush-up-workflow
-title: "PLAN-L7-133: refactor brush-up workflow hardening"
+title: "PLAN-L7-133: refactor brush-up workflow の堅牢化"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 agent_slots:
   - role: tl
-    slot_label: "TL - refactor brush-up workflow hardening"
+    slot_label: "TL - refactor brush-up workflow の堅牢化"
 generates:
   - artifact_path: docs/process/modes/refactor.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T18:11:57+09:00"
     tests_green_at: "2026-06-23T18:11:57+09:00"
     verdict: approve
-    scope: "Refactor mode now requires test-ID-linked green evidence and records DB-trigger/dependency-impact boundaries."
+    scope: "Refactor mode は test ID に紐づく green evidence を要求し、DB trigger / dependency impact の境界を記録する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -60,27 +60,26 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-133: refactor brush-up workflow hardening
+# PLAN-L7-133: refactor brush-up workflow の堅牢化
 
-## Objective
+## 目的
 
-Make the existing Refactor drive model explicit enough to support
-TDD-style brush-up refactoring and future DB-triggered refactor candidates.
+既存の Refactor drive model を明示し、TDD-style brush-up refactoring と将来の
+DB-triggered refactor candidate を扱える水準にする。
 
-## Scope
+## スコープ
 
-- Replace the unreadable Refactor mode document with a clean canonical workflow.
-- Define Red / Yellow / Green semantics for Refactor.
-- Record that `harness.db` can trigger Refactor candidates from findings,
-  quality signals, feedback events, relation-graph impact, and artifact progress
-  projection rows.
-- Tighten `assertRefactorInvariant` so Green requires linked regression test IDs.
-- Add regression coverage for the missing-test-ID failure.
+- 読みにくい Refactor mode 文書を、明確な canonical workflow に置き換える。
+- Refactor における Red / Yellow / Green の意味を定義する。
+- `harness.db` が findings、quality signals、feedback events、relation-graph impact、
+  artifact progress projection rows から Refactor candidates を trigger できることを記録する。
+- Green には linked regression test IDs が必要になるよう `assertRefactorInvariant` を強化する。
+- missing-test-ID failure の regression coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Refactor mode states are documented as behaviour-invariant brush-up states.
-- DB-triggered Refactor is documented without making DB the authoring source.
-- Relation-graph dependency impact is part of the Refactor Green condition.
-- `assertRefactorInvariant` fails when no regression test ID is linked.
-- Targeted workflow contract tests pass.
+- Refactor mode states が behaviour-invariant brush-up states として文書化されている。
+- DB を authoring source にせず、DB-triggered Refactor が文書化されている。
+- relation-graph dependency impact が Refactor Green condition に含まれている。
+- regression test ID が紐づかない場合、`assertRefactorInvariant` が失敗する。
+- targeted workflow contract tests が pass する。

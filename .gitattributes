@@ -1,4 +1,4 @@
-# UT-TDD line-ending normalization (止: CRLF/LF churn)
+# HELIX line-ending normalization (止: CRLF/LF churn)
 * text=auto eol=lf
 
 # Windows PowerShell entrypoints keep CRLF

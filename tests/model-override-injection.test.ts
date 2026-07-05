@@ -55,7 +55,7 @@ describe("PLAN-L7-318 model override injection hardening", () => {
           args: ["exec", "-m", "gpt-5.4 & calc", "-"],
           opts: {
             platform: "win32",
-            env: { SystemRoot: "C:\\Windows", UT_TDD_CODEX_BIN: explicit },
+            env: { SystemRoot: "C:\\Windows", HELIX_CODEX_BIN: explicit },
           },
         }),
       ).toThrow(/unsafe characters/);

@@ -46,14 +46,14 @@ review_evidence:
 
 本 PLAN は `技術要求 (technical)` sub-doc を V2 source snapshot reference の設計概念 §1-§8 構造を参照して起票する工程を管理する。中間準備 + 工程表 + 実装計画を内蔵し、進捗を追跡可能にする。
 
-技術要求 (TR-*) は業務要求 (BR-*) の制約・実現手段を技術視点で規定する。§4 state schema 二層構造 / §5 工程別 skill 注入 / §6 9 mode 共通基盤 / §7 drift 解消は UT-TDD 固有の高度技術要求であり、L4 carry で詳細設計する。
+技術要求 (TR-*) は業務要求 (BR-*) の制約・実現手段を技術視点で規定する。§4 state schema 二層構造 / §5 工程別 skill 注入 / §6 9 mode 共通基盤 / §7 drift 解消は HELIX 固有の高度技術要求であり、L4 carry で詳細設計する。
 
 ## §1 入力 (上流からの baton)
 
 - L0 企画書: `docs/governance/helix-harness-concept_v3.1.md`
 - 翻案元 reference: V2 source snapshot requirements process doc
 - v2 取り込み軌跡: `docs/migration/v2-import-ledger.md` §5 (A-21)
-- ADR-001: `docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md` (TypeScript + Bun 正本宣言)
+- ADR-001: `docs/adr/ADR-001-helix-harness-redesign-and-language.md` (TypeScript + Bun 正本宣言)
 - 上流 baton (business): `docs/design/harness/L1-requirements/business-requirements.md` (NFR-01〜15 / BR-20 / BR-16 7-Gate 等)
 - B-1 起票済: `docs/design/harness/L1-requirements/technical-requirements.md` (§1〜§8 現状)
 
@@ -73,16 +73,16 @@ review_evidence:
 | U-技術-1 | ADR-001 (source snapshot は設計概念のみ参照 / TS 全面再実装) を L1 技術要求として独立明示するか (= U-技-5) | technical §1 に ADR-001 参照明示 + NFR-04 (言語非依存) と組み合わせて担保。NFR-10 独立明示は不要 | ✅ (PO 承認済 2026-05-28) |
 | U-技術-1b | Bun runtime の version pinning 方針 (LTS相当 / latest follow) | technical §1 に「LTS 相当の安定版を使用、major version 変更は L4 ADR で管理」として確定 | ✅ (PO 承認済 2026-05-28) |
 
-### 3.2 state schema 二層構造 (§4 L4 carry)
+### 3.2 state schema 二層構造 (§4 L4 引き継ぎ / carry)
 
 | ID | ヒアリング項目 | 着地先 | status |
 |----|--------------|--------|--------|
-| U-技術-2 | `.ut-tdd/` state schema 二層 = core tables + audit/event tables + derived views + 補助 state の詳細仕様 | technical §4 (要求レベル) + **L4 carry** (詳細) | ➡️ L4 carry |
+| U-技術-2 | `.helix/` state schema 二層 = core tables + audit/event tables + derived views + 補助 state の詳細仕様 | technical §4 (要求レベル) + **L4 carry** (詳細) | ➡️ L4 carry |
 | U-技術-2a | idempotency_key 契約 = `mode + plan_id + closure_event_id` の L1 要求への含有レベル | technical §4 (概要) + L4 carry (詳細) | ➡️ L4 carry |
 | U-技術-2b | Phase A (ファイルベース) → Phase B (PGlite) の移行計画 (BR-20 対応) | technical §4 + L4 ADR-002 | ➡️ L4 ADR |
 | U-技術-2c | conflict resolution policy (単一ユーザー Phase A は不要、マルチ Phase B で要設計) | technical §4 Phase B note + L4 ADR | ➡️ L4 ADR |
 
-### 3.3 工程別 skill 注入機構 (§5 L4 carry)
+### 3.3 工程別 skill 注入機構 (§5 L4 引き継ぎ / carry)
 
 | ID | ヒアリング項目 | 着地先 | status |
 |----|--------------|--------|--------|
@@ -95,10 +95,10 @@ review_evidence:
 |----|--------------|--------|--------|
 | U-技術-4 | R0-R4 + RGC を Reverse 専用でなく共通 closure language として再利用する要求を L1 で明示するか | technical §6 (概要) として明示確定 | ✅ (PO 承認済 2026-05-28) |
 | U-技術-4a | Forward 接続 event の state 登録 + 補助 state への中間 state 保存 + discrepancy_log からの機械起動の L1 粒度 | technical §6 + L4 carry | ➡️ L4 carry |
-| U-技術-4b | drive 別 state: be/fe/fullstack/data 各 drive に対応した `.ut-tdd/<drive>/` state ファイル分離を technical §4 に明示 | technical §4 Phase A 仕様 | ✅ (PO 承認済 2026-05-28。FR-L1-37 連動) |
+| U-技術-4b | drive 別 state: be/fe/fullstack/data 各 drive に対応した `.helix/<drive>/` state ファイル分離を technical §4 に明示 | technical §4 Phase A 仕様 | ✅ (PO 承認済 2026-05-28。FR-L1-37 連動) |
 | U-技術-4c | AI provider 引継ぎ: handover CURRENT.json は provider (Anthropic/OpenAI/Gemini) を跨いで引き継げる設計要求を technical §1 に明示 | technical §1 技術制約 | ✅ (PO 承認済 2026-05-28。FR-L1-39 連動) |
 | U-技術-4d | reasoning model selection: タスク性質別 model 選択ガイダンス (設計判断=Opus / 実装=Sonnet / review=Haiku) を technical §5 skill 注入に含める | technical §5 (概要) | ✅ (PO 承認済 2026-05-28。FR-L1-40 連動) |
-| U-技術-4e | 運用者ロール技術担保: agent guard subagent 許可リスト + bypass 条件 (UT_TDD_ALLOW_RAW_AGENT=1) を technical §1 に技術要求として明示 | technical §1 / BR-21 | ✅ (PO 承認済 2026-05-28。FR-L1-44 連動) |
+| U-技術-4e | 運用者ロール技術担保: agent guard subagent 許可リスト + bypass 条件 (HELIX_ALLOW_RAW_AGENT=1) を technical §1 に技術要求として明示 | technical §1 / BR-21 | ✅ (PO 承認済 2026-05-28。FR-L1-44 連動) |
 
 #### 3.4a 9 mode 統一合流補強 (PO 承認済 2026-05-28)
 
@@ -121,37 +121,37 @@ review_evidence:
 
 ## §4 工程表 (Step + 進捗)
 
-### Step 1: 既存資料整理
+### 既存資料整理 (Step 1)
 - 担当: tl + pmo-sonnet
-- 内容: technical-requirements.md (B-1 起票済) の §1〜§8 現状を読み直し、L4 carry 未明示 / UT-TDD 翻案漏れを洗い出す
+- 内容: technical-requirements.md (B-1 起票済) の §1〜§8 現状を読み直し、L4 carry 未明示 / HELIX 翻案漏れを洗い出す
 - 進捗: ✅ (commit d9992f1、2026-05-28)
 
-### Step 2: ADR-001 正本宣言の §1 追記
+### ADR-001 正本宣言の §1 追記 (Step 2)
 - 担当: tl
 - 内容: technical §1 に ADR-001 参照を明示。Bun version pinning 方針を TL 調査 + PO 確認で確定
 - 進捗: ☐
 
-### Step 3: §4〜§7 の L4 carry note 精緻化
+### §4〜§7 の L4 引き継ぎ note 精緻化 (Step 3 / carry note)
 - 担当: tl
 - 内容: state schema 二層 / skill 注入 6 フィールド / 9 mode 共通基盤 / drift 解消の各 L4 carry note を「要求レベルの概要」と「L4 carry 内容」に分離して明示
 - 進捗: ☐
 
-### Step 4: §2 外部連携 に Phase B 技術スタック候補追記
+### §2 外部連携への Phase B 技術スタック候補追記 (Step 4)
 - 担当: tl
 - 内容: PGlite / ElectricSQL / ADR-002 forward を technical §2 に参考記載
 - 進捗: ☐
 
-### Step 5: 運用テスト設計の pair 凍結
+### 運用テスト設計の pair 凍結 (Step 5)
 - 担当: qa
 - 内容: L14 OT に technical sub-doc 由来要求が被覆されているか確認、不足あれば OT 追加
 - 進捗: ☐
 
-### Step 6: review (self / pmo-sonnet)
+### レビュー (Step 6: review / self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須 (`.claude/CLAUDE.md` Guard Rules)。§4〜§7 carry note の再現性・ADR-001 整合を確認
 - 進捗: ✅ (acdc5ccd6f31ae951 通過、2026-05-28)
 
-### Step 7: G1 PO サインオフ準備
+### G1 PO サインオフ準備 (Step 7)
 - 担当: po
 - 内容: 5 sub-doc 全件揃った段階で G1 ゲート PO 確認
 - 進捗: 🔄 (本 commit で readiness 整備中、PO 最終確認待ち)
@@ -163,13 +163,13 @@ review_evidence:
 | §1 採用技術・技術制約 | ADR-001 + CLAUDE.md + B-1 現状 | TypeScript (Bun) / cross-platform / AI runtime 4 mode / 言語非依存 / source reference snapshot + ADR-001 明示追加 |
 | §2 外部連携 + IF 要望 | concept §8 + BR-20/NFR-15 (Phase A) + Phase B 候補 | Claude Code API / Codex API / GitHub API / Phase B DB 候補 (参考) |
 | §3 既存システム制約 | CLAUDE.md + legacy local state 移行状況 + source reference snapshot | source reference snapshot の read-only 制約 / legacy local state は migration evidence のみ / Windows PowerShell 環境 |
-| §4 state schema 二層構造 | concept §2.6.4 + v2-import-ledger §3 (R-1) + BR-20 | Phase A: ファイルベース `.ut-tdd/` (概要)。Phase B: PGlite 二層 (carry)。idempotency_key 概要記載 |
+| §4 state schema 二層構造 | concept §2.6.4 + v2-import-ledger §3 (R-1) + BR-20 | Phase A: ファイルベース `.helix/` (概要)。Phase B: PGlite 二層 (carry)。idempotency_key 概要記載 |
 | §5 工程別 skill 注入機構 | concept §2.6.4 + v2-import-ledger §2 (F-1) | 6 フィールド schema の概要 (要求レベル) + L4 carry 宣言 |
 | §6 9 mode 共通基盤 | concept §2.5 + v2-import-ledger §3 (R-2) | R0-R4 + RGC を Forward/Reverse 共通 closure language として概要記載 + L4 carry |
-| §7 drift 解消方針 | concept §8.5 + FR-L1-18 (横断検出 ut-tdd doctor) | 週次以上 detector / inventory schema / 運用目標「drift 0 件/week」を要求として明示 |
+| §7 drift 解消方針 | concept §8.5 + FR-L1-18 (横断検出 helix doctor) | 週次以上 detector / inventory schema / 運用目標「drift 0 件/week」を要求として明示 |
 | §8 関連 doc | ADR-001 + ADR-002 (将来) + business/nfr sub-doc + L4 PLAN 群 | path list + L4 PLAN が本 sub-doc 全件を dependencies.requires に列挙する接続規約 |
 
-## §6 DoD (Definition of Done)
+## §6 完了定義 (DoD / Definition of Done)
 
 - [ ] technical-requirements.md が必須 § 全件含む (§1〜§8)
 - [x] §1 に ADR-001 参照が明示されている (U-技術-1 PO 承認済 2026-05-28)
@@ -186,7 +186,7 @@ review_evidence:
 - [x] 専門サブエージェント review (Step 6) 通過記録 (2026-05-28 pmo-sonnet 再被覆監査 acdc5ccd6f31ae951 通過、CONDITIONAL PASS)
 - [x] G1 readiness: status = ready-for-G1-signoff (PO サインオフ準備完了。§3 全件 ✅/➡️ 確定済)
 
-## §7 carry / 次工程 (L4) への引き継ぎ
+## §7 引き継ぎ / 次工程 (L4 carry)
 
 - **§2 ダッシュボード Phase B**: PGlite + ElectricSQL 候補は L3 FR / L4 ADR-002 forward。Phase B 開始時に ADR-002 (2 層分離: core 軽量 / dashboard server-optional) を起票して整合解を確定
 - **§4 state schema 詳細**: idempotency_key 完全仕様 / rollback 手順 / conflict resolution policy / Phase A→B migration 計画 → L4 データ設計 sub-doc で確定

@@ -49,7 +49,7 @@ review_evidence:
     reviewed_at: "2026-07-03T13:41:04+09:00"
     tests_green_at: "2026-07-03T13:41:04+09:00"
     verdict: approve
-    scope: "L14 identifier rename cutover packet について、path-only .ut-tdd runtime state hit を blast radius / snapshot に束ね、GitHub Actions concurrency source ledger row を current canonical official URL に固定した。不可逆 rename apply、state move、approval は実行していない。"
+    scope: "L14 identifier rename cutover packet について、path-only .helix runtime state hit を blast radius / snapshot に束ね、GitHub Actions concurrency source ledger row を current canonical official URL に固定した。不可逆 rename apply、state move、approval は実行していない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -75,10 +75,10 @@ review_evidence:
 
 ## 目的
 
-PLAN-M-02 の identifier rename cutover は不可逆な `.ut-tdd` から HELIX への名称変更を扱うため、
+PLAN-M-02 の identifier rename cutover は不可逆な `.helix` から HELIX への名称変更を扱うため、
 承認前 packet は runtime state の追加や source ledger の更新で必ず snapshot を変えなければならない。
 
-既存の blast radius audit は本文中の token を数えていたが、`.ut-tdd/state/...` のように path だけが
+既存の blast radius audit は本文中の token を数えていたが、`.helix/state/...` のように path だけが
 旧識別子を含む runtime state を追加した場合、本文に token がないと `blastRadiusDigest` と
 `cutoverSnapshot.snapshotId` が変わらない余地があった。これは承認済み snapshot の再利用を許すため、
 L14 cutover の安全境界として不十分である。
@@ -88,8 +88,8 @@ L14 cutover の安全境界として不十分である。
 
 ## 変更
 
-- `auditIdentifierRenameBlastRadius` が file path 中の `ut-tdd` / `.ut-tdd` / `area=harness` も hit として数える。
-- path-only `.ut-tdd/**` runtime state 追加で `cutoverCategoryChecklist`、`blastRadiusDigest`、
+- `auditIdentifierRenameBlastRadius` が file path 中の `helix` / `.helix` / `area=helix` も hit として数える。
+- path-only `.helix/**` runtime state 追加で `cutoverCategoryChecklist`、`blastRadiusDigest`、
   `cutoverSnapshot.snapshotId` が変わる regression test を追加する。
 - Cutover source ledger の GitHub Actions concurrency row を current canonical official URL へ更新する。
 - `cutover-readiness` の expected source ledger binding と fixture test を同じ canonical URL に揃える。
@@ -97,13 +97,13 @@ L14 cutover の安全境界として不十分である。
 
 ## 境界
 
-- `rename apply`、state move、`.ut-tdd` 実 state の HELIX rename は実行しない。
+- `rename apply`、state move、`.helix` 実 state の HELIX rename は実行しない。
 - action-binding approval / cutover decision record は作成しない。
 - 本番環境、外部 API、secret、PII、ライセンス判断には触れない。
 - 残 frontier の PO/S4 判断、version-up activation 判断、不可逆 rename/cutover signoff は人間判断のまま残す。
 
 ## 完了条件
 
-- path-only `.ut-tdd/**` hit が blast radius と snapshot に反映される。
+- path-only `.helix/**` hit が blast radius と snapshot に反映される。
 - GitHub Actions concurrency row が current canonical official URL で検査される。
 - targeted tests、typecheck、plan lint、doctor が green。

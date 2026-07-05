@@ -115,7 +115,7 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:53:01+09:00"
-        evidence_path: .ut-tdd/harness.db
+        evidence_path: .helix/harness.db
         output_digest: "sha256:1d83b7bbb83238047a73534989ac249752f117cea802e2f3fd15e27acf8a52f5"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
@@ -148,7 +148,7 @@ PO が対象 PLAN や packet command を推測する workflow 穴を塞ぐ。
   runnable scoped packet / supporting scoped packet / 必須 record / review route を持つ。
 - `analyzeCompletionDecisionPacket` は bundle 欠落、top-level metadata drift、各 decision との command /
   record / route drift を `invalid_human_review_bundle` として fail-close する。
-- `ut-tdd completion decision-packet` text output は `human-review-bundle:` と `human-review-item:` を出す。
+- `helix completion decision-packet` text output は `human-review-bundle:` と `human-review-item:` を出す。
 - L6/L7 docs と unit/CLI test に bundle 契約を追加する。
 
 ## 採用判断
@@ -160,7 +160,7 @@ PO が対象 PLAN や packet command を推測する workflow 穴を塞ぐ。
 
 ## 完了条件
 
-- `ut-tdd completion decision-packet --json` が `humanReviewBundle.schemaVersion=completion-decision-human-review-bundle.v1` を返す。
+- `helix completion decision-packet --json` が `humanReviewBundle.schemaVersion=completion-decision-human-review-bundle.v1` を返す。
 - bundle が decision item と異なる scoped command / required record / review route を持つと lint violation になる。
 - text mode が `human-review-bundle:` / `human-review-item:` を返す。
 - targeted unit / CLI surface / typecheck / design-language / plan lint / db rebuild / doctor が green。

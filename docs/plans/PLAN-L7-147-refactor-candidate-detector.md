@@ -63,39 +63,32 @@ review_evidence:
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
 ---
 
-# PLAN-L7-147: refactor candidate detector projection
+# PLAN-L7-147: refactor candidate detector projection の射影
 
-## Objective
+## 目的
 
-Materialize the Refactor mode's database-triggered candidate surface so
-structural brush-up work can be found from `harness.db`, not only from manual
-memory or prose handover.
+Refactor mode の DB 起点 candidate surface を実体化し、構造的な brush-up 作業を手作業の記憶や
+prose handover だけでなく `harness.db` から発見できるようにする。
 
-## Scope
+## スコープ
 
-- Add a deterministic source scanner for behaviour-invariant refactor candidate
-  kinds.
-- Project candidates into existing `quality_signals` rows with
+- behaviour-invariant な refactor candidate kind を検出する決定的 source scanner を追加する。
+- candidate を既存の `quality_signals` 行へ射影し、
   `metric=refactor_candidate:<kind>`.
-- Reuse the existing `feedback_events` projection so candidates appear in the
-  takeover / feedback surface.
-- Keep schema unchanged; this is an additive projection over existing tables.
+- 既存の `feedback_events` projection を再利用し、candidate が takeover / feedback surface に現れるようにする。
+- schema は変更せず、既存 table への additive projection として扱う。
 
-## Candidate Kinds
+## 候補種別
 
-- `split-module`: module is large enough or export-heavy enough to warrant
-  splitting.
-- `extract-helper`: a function body is large enough to warrant helper
-  extraction.
-- `deduplicate-function`: two or more functions have the same normalized body.
-- `externalize-literal`: the same nontrivial literal repeats enough times to
-  warrant a named constant or config boundary.
+- `split-module`: module が十分に大きい、または export が多く、分割候補として扱う。
+- `extract-helper`: function body が十分に大きく、helper extraction の候補として扱う。
+- `deduplicate-function`: 2 つ以上の function が同じ normalized body を持つ。
+- `externalize-literal`: 同じ nontrivial literal が十分に繰り返され、named constant または config boundary の候補として扱う。
 
-## Acceptance Criteria
+## 受入条件
 
-- Pure detector test covers all four candidate kinds.
-- Rebuild projection writes candidate rows to `quality_signals`.
-- Existing feedback projection exposes the candidate as a `feedback_events`
-  row.
+- pure detector test が 4 種類すべての candidate kind を covered にする。
+- rebuild projection が candidate row を `quality_signals` へ書き込む。
+- 既存 feedback projection が candidate を `feedback_events` row として公開する。
 - `bun run vitest run tests\projection-writer.test.ts` passes.
 - `bun run typecheck` passes.

@@ -230,66 +230,54 @@ review_evidence:
         output_digest: "sha256:5c5df976593649215c875d844ac067a99e6a5f3bbe107843f565be01f97caacd"
 ---
 
-# PLAN-L7-130: right-arm gate planning
+# PLAN-L7-130: 右腕ゲート計画
 
-## Objective
+## 目的
 
-Stop the G8-G14 right-arm gate mechanization carry from staying unplanned or
-untraceable.
+G8-G14 の右腕ゲート機械化 carry が、未計画または trace 不能な状態に残ることを防ぐ。
 
-## Scope
+## スコープ
 
-- Add a doctor hard gate that checks the IMP-052 carry has concrete PLAN
-  evidence.
+- IMP-052 carry に具体的な PLAN 証跡があることを確認する `doctor` hard gate を追加する。
 - Treat `docs/plans/PLAN-L7-130-right-arm-gate-planning.md` and
-  `docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md` as the first
-  machine-readable route for the carry.
-- Keep full G9-G14 executable gate implementation as child-plan work; this PLAN
-  owns the route and the evidence-profile regression fence so G8-G14 cannot fall
-  back to concept-only prose.
-- Ground the right-arm verification strategy in an official source ledger with
-  URL, adopted version/date, latest official status, adoption decision,
-  verification use, and gate impact, so external standards are consumed
-  semantically instead of as name-only markers or stale version claims.
-- Require source-ledger `gate impact` values to map to recognized
-  G8-G14/S3/S4/action-binding routes, and require the ledger as a whole to cover
-  every G8-G14 gate. This prevents a live official-source table from drifting
-  away from the right-arm verification band it is supposed to justify.
-- source ledger の `workflow_route_impact` 意味レビューでは、G8-G14 / S4 /
+  `docs/plans/PLAN-REVERSE-130-right-arm-gate-planning.md` を、この carry の最初の
+  machine-readable route として扱う。
+- G9-G14 の executable gate 全体実装は child PLAN の作業に残す。本 PLAN は route と
+  evidence-profile の regression fence を担当し、G8-G14 が concept-only prose へ戻らないようにする。
+- 右腕検証戦略を、URL、採用 version/date、最新の公式 status、採用判断、検証用途、gate impact を含む
+  公式 `source-ledger` に基づける。外部標準は、名称だけの marker や古い version claim ではなく、
+  意味を持つ根拠として取り込む。
+- `source-ledger` の `gate impact` 値は、認識済みの G8-G14 / S3 / S4 /
+  action-binding route へ対応させる。ledger 全体でも全 G8-G14 gate を覆うことを要求し、
+  稼働中の公式 source table が、根拠づけるべき右腕検証 band から drift しないようにする。
+- `source-ledger` の `workflow_route_impact` 意味レビューでは、G8-G14 / S4 /
   version-up / action-binding / cutover / completion を明示必須にする。source
   refresh が version-up activation や他の completion frontier route を暗黙に
   迂回しないための fail-close 条件として扱う。
-- Require the source-ledger `checked` date to be non-future and no more than 90
-  days old. A stale official-source ledger is not valid G8-G14 evidence even
-  when rows, URLs, and adoption decisions are present.
-- Parse source-ledger headings by `checked YYYY-MM-DD` shape instead of a
-  single hard-coded date, so refreshing the official-source audit date does not
-  make the ledger rows disappear.
-- Add targeted tests for unplanned, stale concept-only, missing profile-row, and
-  routed cases.
+- `source-ledger` の `checked` date は未来日でなく、90 日以内であることを要求する。行、URL、
+  採用判断が存在していても、古い公式 `source-ledger` は G8-G14 証跡として無効とする。
+- `source-ledger` の見出しは単一の hard-coded date ではなく、`checked YYYY-MM-DD` 形式で parse する。
+  公式 source audit date を更新しても ledger rows が消えないようにする。
+- 未計画、古い concept-only、profile-row 欠落、route 済みの各 case に targeted tests を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Doctor fails when G8-G14 carry has no concrete PLAN reference.
-- Doctor passes when the carry is backed by concrete PLAN artifacts.
-- Doctor fails when `gates.md` reintroduces stale concept-only wording or when
-  `L08-L14-verification-phase.md` loses any G8-G14 evidence-profile row,
-  official external source ledger entry, external test-basis marker, or L14->L0
-  feedback evidence.
-- Doctor fails when the right-arm strategy loses official URLs, adopted version/date,
-  latest official status, adoption decision, verification use, gate impact, or
-  the OWASP LLM06 human-approval boundary for agentic workflow completion
-  claims.
-- Doctor fails when source-ledger `gate impact` values are not recognized
-  G8-G14/S3/S4/action-binding routes, or when the source ledger no longer covers
-  the full G8-G14 verification band.
-- source-ledger 意味レビューが `workflow_route_impact` から version-up または
-  他の completion frontier route を落とした場合、doctor は fail する。
-- Doctor fails when the right-arm verification source ledger has a future
-  `checked` date or is older than 90 days.
-- Doctor continues to pass when the right-arm verification source ledger is
-  refreshed to a newer valid `checked` date and its rows remain intact.
-- `lint-wiring` reaches both right-arm lint modules through the runtime
-  entrypoint.
-- The reverse record explains why this is a planning fail-close slice, not the
-  full G8-G14 gate implementation.
+- G8-G14 carry に具体的な PLAN reference が無い場合、`doctor` は fail する。
+- carry が具体的な PLAN artifact で裏付けられている場合、`doctor` は pass する。
+- `gates.md` が古い concept-only wording を再導入した場合、または
+  `L08-L14-verification-phase.md` から G8-G14 evidence-profile row、公式 external
+  source ledger entry、external test-basis marker、L14->L0 feedback evidence のいずれかが失われた場合、
+  `doctor` は fail する。
+- 右腕戦略から公式 URL、採用 version/date、最新の公式 status、採用判断、検証用途、gate impact、
+  または agentic workflow completion claim に対する OWASP LLM06 human-approval boundary が失われた場合、
+  `doctor` は fail する。
+- `source-ledger` の `gate impact` 値が認識済みの G8-G14 / S3 / S4 /
+  action-binding route でない場合、または source ledger が G8-G14 verification band 全体を覆わなくなった場合、
+  `doctor` は fail する。
+- `source-ledger` 意味レビューが `workflow_route_impact` から version-up または
+  他の completion frontier route を落とした場合、`doctor` は fail する。
+- 右腕検証 `source-ledger` の `checked` date が未来日、または 90 日より古い場合、`doctor` は fail する。
+- 右腕検証 `source-ledger` が新しい有効な `checked` date へ更新され、各 row が維持されている場合、
+  `doctor` は引き続き pass する。
+- `lint-wiring` は runtime entrypoint を通じて、両方の right-arm lint module に到達する。
+- reverse record は、これが G8-G14 gate 全体実装ではなく planning fail-close slice である理由を説明する。

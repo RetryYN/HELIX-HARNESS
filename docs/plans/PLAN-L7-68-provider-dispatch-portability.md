@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-68-provider-dispatch-portability
-title: "PLAN-L7-68 (troubleshoot): provider dispatch portability and handover split"
+title: "PLAN-L7-68 (troubleshoot): provider dispatch の可搬性と handover 分離"
 kind: troubleshoot
 layer: L7
 drive: agent
@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-16
 updated: 2026-06-16
 backprop_decision: not_required
-backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
+backprop_decision_reason: "内部 harness 自己適用 tooling (lint gate / runtime dispatch / guard / governance mechanism)。harness 自身の強制力を harden するもので、product の外部 requirement / design / test-design contract は変更しないため、上流 backprop target はない。"
 owner: Codex TL
 review_evidence:
   - reviewer: codex-self-review
@@ -16,7 +16,7 @@ review_evidence:
     reviewed_at: "2026-06-16"
     tests_green_at: "2026-06-16"
     verdict: pass
-    scope: "Provider dispatch portability, capability-based runtime detection, handover mechanical/explicit split, and HELIX runtime-env separation. Critical 0 / High 0 in self-review; full regression evidence is recorded in session output."
+    scope: "Provider dispatch portability、capability-based runtime detection、handover の mechanical/explicit 分離、および HELIX runtime-env 分離。self-review で Critical 0 / High 0。完全な regression evidence は session output に記録済み。"
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
 agent_slots:
@@ -43,65 +43,65 @@ generates:
     artifact_type: test_code
   - artifact_path: docs/handover/handover-mechanical-explicit.md
     artifact_type: markdown_doc
-  - artifact_path: .ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md
+  - artifact_path: .helix/audit/A-137-unusable-provider-dispatch-audit.md
     artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L7-34-tool-adapter-probes.md
   requires:
-    - .ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md
+    - .helix/audit/A-137-unusable-provider-dispatch-audit.md
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
     - docs/design/harness/L6-function-design/handover-mechanism.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-68: provider dispatch portability and handover split
+# PLAN-L7-68: provider dispatch の可搬性と handover 分離
 
-## 0. Objective
+## 0. 目的
 
-Close A-137 by making provider dispatch actually spawnable, by making runtime availability capability-based, and by separating machine-readable provider handover from explicit human handover.
+A-137 を close する。provider dispatch を実際に spawn 可能にし、runtime availability を capability-based にし、machine-readable provider handover と明示的な human handover を分離する。
 
-## 1. Scope
+## 1. スコープ
 
-Allowed changes:
+許可する変更:
 
-- native Claude/Codex binary resolution in the shared runtime adapter;
+- shared runtime adapter における native Claude/Codex binary 解決;
 - Windows `.cmd` / `.bat` invocation handling;
-- `team run --execute` routing through the same provider invocation path as single-provider execution;
-- provider availability detection through spawnability probes;
-- `UT_TDD_CLAUDE_BIN` / `UT_TDD_CODEX_BIN` override names;
-- removal of legacy wrapper env coupling from provider execution;
+- `team run --execute` を single-provider execution と同じ provider invocation path へ routing すること;
+- spawnability probes による provider availability detection;
+- `HELIX_CLAUDE_BIN` / `HELIX_CODEX_BIN` override names;
+- provider execution から legacy wrapper env coupling を除去すること;
 - provider handover `handover_kind: "mechanical"`;
-- explicit handover markdown that carries judgement and next actions.
+- judgement と next actions を保持する explicit handover markdown。
 
-Out of scope:
+対象外:
 
-- changing external provider CLI behavior;
-- depending on `helix` commands as UT-TDD product runtime;
-- storing secrets or raw provider transcripts in handover files.
+- external provider CLI behavior の変更;
+- HELIX product runtime として `helix` commands に依存すること;
+- handover files に secrets または raw provider transcripts を保存すること。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
-- `ut-tdd status` reports provider availability only when provider commands are spawnable.
-- `ut-tdd codex --execute` can resolve Codex through native auto-discovery or `UT_TDD_CODEX_BIN`.
-- `ut-tdd claude --execute` can resolve Claude through native auto-discovery or `UT_TDD_CLAUDE_BIN`.
-- `team run --execute` uses the shared provider invocation path.
-- Windows command scripts are invoked without Node shell/args deprecation warnings.
-- Provider handover packages include `handover_kind: "mechanical"`.
-- Explicit handover markdown includes the human-readable state and does not rely on provider JSON for nuanced judgement.
-- UT-TDD-owned runtime/test surfaces no longer require legacy HELIX provider override or raw-wrapper env names.
+- `helix status` は、provider commands が spawnable な場合にのみ provider availability を報告する。
+- `helix codex --execute` は native auto-discovery または `HELIX_CODEX_BIN` で Codex を解決できる。
+- `helix claude --execute` は native auto-discovery または `HELIX_CLAUDE_BIN` で Claude を解決できる。
+- `team run --execute` は shared provider invocation path を使う。
+- Windows command scripts は Node shell/args deprecation warnings なしで invoke される。
+- Provider handover packages は `handover_kind: "mechanical"` を含む。
+- Explicit handover markdown は human-readable state を含み、nuanced judgement を provider JSON に依存しない。
+- HELIX-owned runtime/test surfaces は legacy HELIX provider override または raw-wrapper env names を不要にする。
 
-## 3. Verification
+## 3. 検証
 
-Required before closing:
+close 前に必須:
 
 - `bunx vitest run tests/runtime-adapter.test.ts tests/runtime.test.ts`
 - `bunx vitest run tests/runtime-hook-entrypoints.test.ts tests/cli-surface.test.ts tests/provider-handover.test.ts`
 - `bun run typecheck`
 - `bun run lint`
 - `bun run src\\cli.ts doctor`
-- `rg "HELIX_CODEX_BIN|HELIX_CLAUDE_BIN|HELIX_ALLOW_RAW" src tests docs/handover .ut-tdd/handover --glob "!vendor/**"`
+- `rg "HELIX_CODEX_BIN|HELIX_CLAUDE_BIN|HELIX_ALLOW_RAW" src tests docs/handover .helix/handover --glob "!vendor/**"`
 
-## 4. Current Status
+## 4. 現在の状態
 
-Implementation is confirmed for the PLAN-L7-68 slice after targeted tests, typecheck, lint, and doctor cleanup. PLAN-L7-69 remains a separate draft ticket for expanded encoding-corruption automation.
+PLAN-L7-68 slice の implementation は targeted tests、typecheck、lint、doctor cleanup 後に confirmed。PLAN-L7-69 は expanded encoding-corruption automation 用の別 draft ticket のままとする。

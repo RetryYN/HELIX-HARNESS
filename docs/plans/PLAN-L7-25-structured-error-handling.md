@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-25-structured-error-handling
-title: "PLAN-L7-25 (add-impl): structured error-handling coding rule"
+title: "PLAN-L7-25 (add-impl): 構造化 error-handling coding rule"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -10,9 +10,9 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - structured error rule implementation"
+    slot_label: "TL - 構造化 error rule 実装"
   - role: qa
-    slot_label: "QA - structured error oracle"
+    slot_label: "QA - 構造化 error oracle"
 generates:
   - artifact_path: src/lint/coding-rules.ts
     artifact_type: source_module
@@ -30,14 +30,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 独立 re-audit と PO closure instruction。confirmation 前に typecheck/lint/vitest/doctor green。add-feature triad は content changes なしで close 済み。"
 ---
 
-# PLAN-L7-25 (add-impl): structured error-handling coding rule
+# PLAN-L7-25 (add-impl): 構造化 error-handling coding rule
 
-## §0 Position
+## §0 位置付け
 
-Implements IMP-095 in `analyzeCodingRules`.
+`analyzeCodingRules` に IMP-095 を実装する。
 
 ## §3.1 実装計画（情報源）
 
@@ -48,28 +48,28 @@ Implements IMP-095 in `analyzeCodingRules`.
 
 実装:
 
-- `src/lint/coding-rules.ts`: catch clause AST inspection
-- `tests/coding-rules.test.ts`: empty/rethrow catch negative fixture
+- `src/lint/coding-rules.ts`: catch clause AST 検査
+- `tests/coding-rules.test.ts`: empty catch / rethrow catch の negative fixture
 
 ## §3 工程表
 
-### Step 1: [直列] catch analyzer
+### Step 1: [直列] catch 解析器
 
-直列理由: downstream_dependency。AST detection must exist before oracle assertion.
+直列理由: downstream_dependency。oracle assertion の前に AST detection が存在している必要がある。
 
 ### Step 2: [並列] unit oracle
 
-Add synthetic empty catch and rethrow-only catch cases.
+synthetic empty catch と rethrow-only catch の case を追加する。
 
 ### Step 3: [直列] review
 
-直列理由: downstream_dependency。lint / typecheck / vitest / doctor must be green before review.
+直列理由: downstream_dependency。review 前に lint / typecheck / vitest / doctor が green である必要がある。
 
 ## §6 用語更新
 
-- **rethrow-only catch**: catch block whose only statement is `throw`.
+- **rethrow-only catch**: 唯一の statement が `throw` である catch block。
 
 ## §8 DoD
 
-- [x] U-CODE-008 passes.
-- [x] Real repo guard has zero `structured-error-handling` violations.
+- [x] U-CODE-008 が pass する。
+- [x] 実 repo guard の `structured-error-handling` violations が 0 件である。

@@ -33,63 +33,61 @@ dependencies:
   parent: docs/plans/PLAN-L7-72-task-classify-cli.md
   requires:
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
   references:
     - docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-74: whole-word escalation-risk matching in task classify
+# PLAN-L7-74: task classify の escalation-risk を whole-word で一致判定する
 
-## 0. Objective
+## 0. 目的
 
-Stop `ut-tdd task classify` from raising spurious `escalation-risk` warnings on
-task text that merely contains a risk term as a substring, so the safety signal
-stays trustworthy (over-flagging causes alert fatigue and erodes the escalation
-boundary).
+リスク語が単なる部分文字列として含まれるだけの task text に対して、
+`helix task classify` が誤った `escalation-risk` warning を出さないようにする。
+これにより safety signal の信頼性を保つ。過剰検知は alert fatigue を生み、
+escalation boundary を弱めるためである。
 
-## 1. Problem
+## 1. 問題
 
-`riskFlags` matched each `RISK_TERMS` entry with `lower.includes(term)`. Because
-some canonical risk terms are substrings of innocent words, this produced false
-positives:
+`riskFlags` は各 `RISK_TERMS` entry を `lower.includes(term)` で一致判定していた。
+一部の canonical risk term は無害な単語の部分文字列でもあるため、次の false positive が発生していた。
 
 - `production` matched inside `reproduction`;
 - `schema` matched inside `schematic`;
 - `secret` matched inside `secretary`.
 
-This is the same false-positive class the bare-`auth`/`author` exclusion already
-guards against, but it cannot be fixed by lengthening the terms — `production` /
-`schema` / `secret` are the words we want to match.
+これは bare-`auth`/`author` exclusion が既に防いでいる false-positive class と同種である。
+ただし term を長くするだけでは修正できない。`production` / `schema` / `secret` は、
+一致させたい単語そのものだからである。
 
-## 2. Scope
+## 2. 範囲
 
-Allowed changes:
+許可する変更:
 
-- replace substring matching in `src/task/classify.ts` `riskFlags` with
-  precompiled whole-word regexes (`\b<term>s?\b`, case-insensitive);
-- keep an optional trailing plural so safety-relevant plurals (credentials,
-  payments, schemas, migrations) stay flagged — a safety signal must not regress
-  into false negatives;
-- Vitest coverage for the false-positive guard and the plural coverage.
+- `src/task/classify.ts` の `riskFlags` にある substring matching を、
+  precompiled whole-word regexes (`\b<term>s?\b`, 大文字小文字を区別しない) へ置き換える。
+- safety-relevant plurals (credentials, payments, schemas, migrations) が引き続き flag されるよう、
+  optional trailing plural を維持する。safety signal を false negative へ退行させてはならない。
+- false-positive guard と plural coverage の Vitest coverage を追加する。
 
-Out of scope:
+対象外:
 
-- the `inferKind` / drive / size heuristics;
-- the public `classifyTask` signature or CLI I/O;
-- adding or removing risk terms.
+- `inferKind` / drive / size heuristics。
+- public `classifyTask` signature または CLI I/O。
+- risk term の追加または削除。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- `reproduction` / `schematic` / `secretary` text raises no `risk_flags` and no
-  `escalation-risk` finding.
-- `authentication` / `payment` / `schema` (and their plurals `credentials` /
-  `payments` / `schemas`) still flag.
-- Classification stays deterministic.
-- typecheck / Biome / Vitest / `ut-tdd doctor` stay green; the src file traces to
-  this PLAN's `generates`.
+- `reproduction` / `schematic` / `secretary` を含む text が `risk_flags` を発生させず、
+  `escalation-risk` finding も発生させない。
+- `authentication` / `payment` / `schema` と、それらの plurals である `credentials` /
+  `payments` / `schemas` は引き続き flag される。
+- classification は deterministic のままである。
+- typecheck / Biome / Vitest / `helix doctor` は green のままである。
+  src file はこの PLAN の `generates` へ trace される。
 
-## 4. Verification
+## 4. 検証
 
 - `bunx vitest run tests/task-classify.test.ts`
 - `bun run typecheck`
@@ -97,7 +95,7 @@ Out of scope:
 - `bun run test`
 - `bun run src\\cli.ts doctor`
 
-## 5. Status
+## 5. 状態
 
-Draft. Implemented and verified 2026-06-17. Warn-only safety surface, no contract
-change, so no Reverse back-fill is required.
+Draft。2026-06-17 に実装および検証済み。warn-only safety surface であり contract change はないため、
+Reverse back-fill は不要である。

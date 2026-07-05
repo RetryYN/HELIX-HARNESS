@@ -3,7 +3,7 @@ description: 実装前に spec-first design を作成する（spec → test desi
 argument-hint: "<feature description>"
 ---
 
-UT-TDD では、code より先に spec/design を書く。`spec-driven-development` と
+HELIX では、code より先に spec/design を書く。`spec-driven-development` と
 `documentation-and-adrs` skill を使う。
 
 Target: $ARGUMENTS
@@ -16,5 +16,5 @@ spec は V-model で pair される。L5/L6 design section は L6/L8 test design
 test case や code は design doc に埋め込まない。これらは reference で接続する別 artifact である。
 
 Freeze readiness: pair-freeze 前に readability check（Objective あり、半角 kana / U+FFFD なし）、
-`ut-tdd plan lint`、`ut-tdd doctor`（exit 0）を実行する。implementation は spec と paired test
+`helix plan lint`、`helix doctor`（exit 0）を実行する。implementation は spec と paired test
 design が frozen になった後だけ進める。

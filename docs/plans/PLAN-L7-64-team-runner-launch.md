@@ -41,28 +41,27 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-64: shared Claude/Codex team runner launch flow
+# PLAN-L7-64: Claude/Codex 共有 team runner launch flow
 
-## Objective
+## 目的
 
-Move `ut-tdd team run` beyond validate-only so Claude and Codex members use one shared execution
-flow for speed-oriented delegation.
+`helix team run` を validate-only から進め、Claude と Codex の member が速度重視の委譲で同じ実行 flow を使えるようにする。
 
-## Scope
+## 範囲
 
-- Build a normalized launch plan from `.ut-tdd/teams/*.yaml` members.
-- Keep dry-run as the default and require `--execute` for provider CLI launch.
-- Use the existing provider adapters for Claude and Codex so runtime differences stay behind the adapter boundary.
-- Record `team_runner` slots around explicit executions.
-- Honor `strategy=parallel` / `max_parallel`; force sequential when serialization reasons are present.
+- `.helix/teams/*.yaml` の members から正規化済み launch plan を作る。
+- dry-run を既定のままにし、provider CLI launch には `--execute` を必須にする。
+- Claude / Codex の既存 provider adapter を使い、runtime 差分を adapter 境界の内側に閉じ込める。
+- 明示実行の前後で `team_runner` slots を記録する。
+- `strategy=parallel` / `max_parallel` を尊重し、直列化理由がある場合だけ sequential に固定する。
 
-## Verification
+## 検証
 
 - [x] `bunx vitest run tests\team-run.test.ts tests\cli-surface.test.ts`
 
-## DoD
+## 完了条件
 
-- [x] Dry-run JSON shows both Claude and Codex launch plans from the same team definition.
-- [x] Explicit execution path runs provider adapters through `team_runner` slots.
-- [x] Parallel strategy is executed in `max_parallel` batches without serializing all members.
-- [x] CLI surface remains non-destructive unless `--execute` is supplied.
+- [x] dry-run JSON が同じ team definition から Claude と Codex の launch plan を両方示す。
+- [x] 明示実行 path が `team_runner` slots を通じて provider adapters を実行する。
+- [x] parallel strategy が全 member を直列化せず、`max_parallel` 単位の batch で実行される。
+- [x] CLI surface は `--execute` が指定されない限り非破壊のまま維持される。

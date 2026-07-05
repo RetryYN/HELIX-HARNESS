@@ -150,9 +150,9 @@ export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommand
       reason: "destructive-git",
       destructiveOperation: op,
       message:
-        `[ut-tdd-git-command-guard] BLOCK: ${op} は hybrid runtime の相手 commit / branch を破壊し得るため、理由付き承認なしに実行できません。` +
+        `[helix-git-command-guard] BLOCK: ${op} は hybrid runtime の相手 commit / branch を破壊し得るため、理由付き承認なしに実行できません。` +
         " 先に git status / git log / git reflog で出所を確認し、相手 runtime の commit を残したまま上に積んでください。" +
-        " 意図的に実行する場合のみ UT_TDD_ALLOW_DESTRUCTIVE_GIT=1 または .ut-tdd/state/destructive-git-override に理由を記録してください。",
+        " 意図的に実行する場合のみ HELIX_ALLOW_DESTRUCTIVE_GIT=1 または .helix/state/destructive-git-override に理由を記録してください。",
     };
   }
   return { decision: "pass", reason: "safe-git", message: "" };
@@ -169,7 +169,7 @@ export function resolveDestructiveGitOverride(opts: {
   markerReason?: string | null;
 }): DestructiveGitOverride {
   if (opts.env === "1") {
-    return { bypass: true, source: "env", reason: "UT_TDD_ALLOW_DESTRUCTIVE_GIT=1" };
+    return { bypass: true, source: "env", reason: "HELIX_ALLOW_DESTRUCTIVE_GIT=1" };
   }
   const reason = (opts.markerReason ?? "").trim();
   if (reason) return { bypass: true, source: "marker", reason };

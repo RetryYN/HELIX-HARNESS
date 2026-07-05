@@ -32,9 +32,9 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-54: merged-plan-status hard gate
+# PLAN-L7-54: merged-plan-status hard gate（状態不整合の強制 gate）
 
-## Objective
+## 目的 (Objective)
 
 設計の柱3 (自動化で V-model state DB を管理しフィードバック機構にする) の実体化。**generated src
 artifact が repo に merge 済みなのに owning PLAN が draft / 未 confirm のまま放置される**不整合を
@@ -46,14 +46,14 @@ doctor が fail-close 検出する。
 draft の PLAN は素通りする (absence-blindness、[[feedback_coverage_not_substance]] / descent
 absence-blindness と同型)。state DB が「フィードバック機構」なら、この不整合は機械が surface すべき。
 
-## WBS
+## WBS（作業分解）
 
 | WBS ID | Work | Source target | Test target | Gate | 並直 |
 |---|---|---|---|---|---|
 | WBS-L7-54-01 | `analyzeMergedPlanStatus` 純関数 + `loadMergedPlanStatusInput` loader + `mergedPlanStatusMessages`。規則 = 産出 kind × 未 confirm × src 実在 → violation | `src/lint/merged-plan-status.ts` | `tests/merged-plan-status.test.ts` | `vitest tests/merged-plan-status.test.ts` | [直列] |
-| WBS-L7-54-02 | `checkMergedPlanStatus` を doctor へ配線 (runDoctor.ok 連動、hard gate) + 配線メタテスト + fail-close 列挙登録 | `src/doctor/index.ts` | `tests/doctor.test.ts` | `ut-tdd doctor` + `vitest tests/doctor.test.ts` | [直列] |
+| WBS-L7-54-02 | `checkMergedPlanStatus` を doctor へ配線 (runDoctor.ok 連動、hard gate) + 配線メタテスト + fail-close 列挙登録 | `src/doctor/index.ts` | `tests/doctor.test.ts` | `helix doctor` + `vitest tests/doctor.test.ts` | [直列] |
 
-## Acceptance Criteria
+## 受入条件 (Acceptance Criteria)
 
 - [x] draft の artifact-producing PLAN で generates src が実在 (merged) → violation・doctor ok=false。
 - [x] confirmed/completed/accepted PLAN は merged artifact ありでも violation にしない。

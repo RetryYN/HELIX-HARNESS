@@ -74,47 +74,43 @@ review_evidence:
         output_digest: "sha256:578b3248089279d35cb7fb7196d851203a2ea24c5bcbc382f2d0ca8c26912bf6"
 ---
 
-# PLAN-L7-206: deterministic visualization read-model response
+# PLAN-L7-206: 決定的な visualization read-model response
 
-## Objective
+## 目的
 
-Close the semantic gap in `PLAN-DISCOVERY-10`: a visualization ticket alone does
-not satisfy HBR-P9/HBR-P4. VSCode Webview/View needs a deterministic response
-that says what the UI may render and how runtime evidence must be classified.
+`PLAN-DISCOVERY-10` の semantic gap を閉じる。visualization ticket だけでは
+HBR-P9/HBR-P4 を満たせない。VSCode Webview/View には、UI が何を render してよく、
+runtime evidence をどう分類すべきかを示す決定的な response が必要である。
 
-## Scope
+## スコープ
 
-- Add `buildVisualizationSnapshot(db)` as a read-only query over existing
-  harness.db projection tables.
-- Add `ut-tdd progress snapshot --json` as the UI-facing response surface.
-- Preserve drill-down pointers to artifact progress, relation graph export,
-  search, and runtime verification rows.
-- Keep `projection_only_unverified` and missing-provenance runtime evidence out
-  of accepted runtime counts.
-- Register the new command in `ut-tdd builder catalog` so the command catalog
-  remains aligned with the implemented surface.
+- 既存の harness.db projection tables に対する read-only query として
+  `buildVisualizationSnapshot(db)` を追加する。
+- UI-facing response surface として `helix progress snapshot --json` を追加する。
+- artifact progress、relation graph export、search、runtime verification rows への
+  drill-down pointers を維持する。
+- `projection_only_unverified` と provenance 欠落の runtime evidence を accepted runtime counts
+  から除外する。
+- 実装済み surface と command catalog の整合を保つため、新しい command を
+  `helix builder catalog` に登録する。
 
-## Non-Goals
+## 非目標
 
-- This PLAN does not implement the VSCode extension or Webview renderer.
-- This PLAN does not add a new projection table or make DB rows the authoring
-  source.
-- This PLAN does not expose action buttons, external API calls, branch/ruleset
-  mutation, or provider transcript storage.
-- This PLAN is a first response slice for L1 §2.8, not the full visualization
-  closure. Review evidence detail, `trace_edges`, feedback/findings, agent
-  slots, handover, and memory recall remain visible through existing projection
-  surfaces or follow-up Webview/View PLAN work.
+- この PLAN では VSCode extension や Webview renderer を実装しない。
+- この PLAN では新しい projection table を追加せず、DB rows を authoring source にしない。
+- この PLAN では action buttons、external API calls、branch/ruleset mutation、
+  provider transcript storage を公開しない。
+- この PLAN は L1 §2.8 に対する first response slice であり、visualization 全体の完了ではない。
+  レビュー証跡の詳細、`trace_edges`、feedback/findings、agent slots、handover、memory recall は、
+  既存の projection surfaces または後続の Webview/View PLAN 作業から引き続き参照可能にする。
 
-## Acceptance Criteria
+## 受入条件
 
-- The snapshot is deterministic for identical DB input and cold-start safe.
-- Artifact red/yellow/green, plan status, gate status, graph node/edge/snapshot,
-  test run, runtime verification, skill/model, and guardrail counts are present.
-- Projection-only runtime evidence is surfaced as blocked/warning state, not
-  accepted runtime verification.
-- A projection-only row with an inconsistent `accept_status=accepted` is still
-  excluded from accepted runtime verification unless its class is
-  `runtime_verified`.
-- CLI JSON smoke, targeted unit tests, typecheck, lint, doctor, and full tests
-  pass before commit.
+- 同一の DB input に対して snapshot が決定的であり、cold-start safe である。
+- artifact の red/yellow/green 表示、plan status、gate status、graph node/edge/snapshot、
+  test run、runtime verification、skill/model、guardrail counts の件数が含まれる。
+- projection-only runtime evidence は accepted runtime verification ではなく、
+  blocked/warning state として表示される。
+- 不整合な `accept_status=accepted` を持つ projection-only row であっても、class が
+  `runtime_verified` でない限り accepted runtime verification から除外される。
+- commit 前に CLI JSON smoke、targeted unit tests、typecheck、lint、doctor、full tests が通る。

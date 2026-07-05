@@ -24,7 +24,7 @@ dependencies:
     - docs/plans/PLAN-L7-18-gate-confirm.md
 ---
 
-# PLAN-REVERSE-17 (reverse): gate-confirm coupling lint back-fill (IMP-079)
+# PLAN-REVERSE-17 (reverse): gate-confirm 結合 lint の戻し込み (back-fill / IMP-079)
 
 ## §0 位置づけ
 
@@ -32,15 +32,15 @@ PLAN-L7-18 の add-impl を上流に戻し、gate-confirm lint が L7-unit test 
 
 ## §3 工程表 (Step + 進捗)
 
-### Step 1: [直列] L7-unit test design back-fill
+### Step 1: [直列] L7-unit test design への戻し込み (back-fill)
 直列理由: file_conflict
 U-GCONF oracle を L7 unit test design へ反映する。
 
-### Step 2: [直列] governance carry 整合
+### Step 2: [直列] governance carry の整合
 直列理由: downstream_dependency
 hard/fail-close 化は完了。IMP-079 の残課題は gate 台帳と confirmed doc の継続整合監査に限定する。
 
-### Step 3: [直列] review
+### Step 3: [直列] レビュー (review)
 直列理由: downstream_dependency
 self/pmo-sonnet review で add-impl -> reverse pairing と back-fill 範囲を確認する。
 

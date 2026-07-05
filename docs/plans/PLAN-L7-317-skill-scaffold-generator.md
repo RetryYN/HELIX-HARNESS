@@ -68,7 +68,7 @@ review_evidence:
         evidence_path: src/skill-engine/scaffold.ts
         output_digest: "sha256:df57819223d2b7596334f7fca65885dbd75aadf2e1a98026b04cb1c89a16b538"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -126,7 +126,7 @@ path / self-lint を返す pure generator。file write は CLI が所掌）は L
 ## 名称 / rename 境界
 
 - 生成 content は HELIX-HARNESS の現行 skill authoring 用 scaffold として扱う。
-- `.ut-tdd` / `ut-tdd` / `area=harness` の物理 rename、ファイル名 rename、distribution cutover は
+- `.helix` / `helix` / `area=helix` の物理 rename、ファイル名 rename、distribution cutover は
   PLAN-M-02 の承認対象であり、本 PLAN では実施しない。
 
 ## レビュー / 次工程

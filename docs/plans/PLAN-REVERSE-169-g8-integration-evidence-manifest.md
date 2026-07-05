@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-169-g8-integration-evidence-manifest
-title: "PLAN-REVERSE-169: G8 evidence manifest fullback"
+title: "PLAN-REVERSE-169: G8 evidence manifest の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,40 +16,40 @@ backprop_scope:
   - layer: requirements
     decision: not_impacted
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The requirements already require gate evidence and mechanization; this slice adds G8 manifest enforcement without changing the requirement set."
+    reason: "requirements はすでに gate evidence と mechanization を要求しているため、requirement set を変更せずに G8 manifest enforcement を追加する。"
   - layer: L4-basic-design
     decision: not_impacted
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "The functional boundary remains unchanged; the slice hardens L8 evidence selection and state verification."
+    reason: "functional boundary は変更せず、この slice で L8 evidence selection と state verification を harden する。"
   - layer: L5-detailed-design
     decision: not_impacted
     evidence_path: docs/design/harness/L5-detailed-design/internal-processing.md
-    reason: "Existing L5 contracts remain valid; the new checks make IT-MODULE and IT-STATE evidence executable."
+    reason: "既存の L5 contracts は有効なままであり、新しい checks により IT-MODULE と IT-STATE evidence を executable にする。"
   - layer: test-design
     decision: updated
     evidence_path: docs/test-design/harness/L8-integration-test-design.md
-    reason: "L8 now names the machine-readable G8 manifest location."
+    reason: "L8 が machine-readable な G8 manifest location を明示する。"
   - layer: implementation
     decision: updated
     evidence_path: src/lint/g8-integration-workflow.ts
-    reason: "G8 workflow lint now loads and validates integration evidence manifests."
+    reason: "G8 workflow lint が integration evidence manifests を load して validate する。"
   - layer: runtime-state
     decision: updated
     evidence_path: src/runtime/agent-slots.ts
-    reason: "IT-STATE-01 deficiency was closed by schema-validating agent slot state."
+    reason: "IT-STATE-01 deficiency は、agent slot state の schema validation により close された。"
   - layer: workflow-state
     decision: updated
     evidence_path: src/workflow/contracts-extras.ts
-    reason: "IT-STATE-02 deficiency was closed by drive partition contamination detection."
+    reason: "IT-STATE-02 deficiency は、drive partition contamination detection により close された。"
   - layer: evidence
     decision: updated
-    evidence_path: .ut-tdd/evidence/g8-integration/20260626-it-module-state-minimum.json
-    reason: "The selected IT-MODULE + IT-STATE coverage is now machine-readable."
+    evidence_path: .helix/evidence/g8-integration/20260626-it-module-state-minimum.json
+    reason: "選択された IT-MODULE + IT-STATE coverage は machine-readable になった。"
 agent_slots:
   - role: tl
-    slot_label: "TL - G8 evidence fullback"
+    slot_label: "TL - G8 evidence fullback 確認"
   - role: qa
-    slot_label: "QA - IT-MODULE/IT-STATE gap review"
+    slot_label: "QA - IT-MODULE/IT-STATE gap review 確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md
     artifact_type: markdown_doc
@@ -61,7 +61,7 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L8-integration-test-design.md
     artifact_type: test_design
-  - artifact_path: .ut-tdd/evidence/g8-integration/20260626-it-module-state-minimum.json
+  - artifact_path: .helix/evidence/g8-integration/20260626-it-module-state-minimum.json
     artifact_type: json_config
   - artifact_path: src/lint/g8-integration-workflow.ts
     artifact_type: source_module
@@ -85,7 +85,7 @@ review_evidence:
     reviewed_at: "2026-06-26T21:20:00+09:00"
     tests_green_at: "2026-06-26T21:20:00+09:00"
     verdict: approve
-    scope: "R4 fullback for G8 evidence manifest enforcement. Deficiencies in IT-STATE direct evidence were handled as implementation/test hardening."
+    scope: "G8 evidence manifest enforcement の R4 fullback。IT-STATE direct evidence の deficiencies は implementation/test hardening として扱った。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -99,23 +99,22 @@ review_evidence:
         output_digest: "sha256:2eab00f92a5bda76ff43a4b215d4620c117939e3221f808603492b5c7ed77d91"
 ---
 
-# PLAN-REVERSE-169: G8 evidence manifest fullback
+# PLAN-REVERSE-169: G8 evidence manifest の fullback
 
-## Objective
+## 目的
 
-Record the back-propagation decision for turning G8 from a workflow marker check
-into an evidence-bearing integration gate.
+G8 を workflow marker check から evidence-bearing な integration gate へ変更するための
+back-propagation decision を記録する。
 
-## Scope
+## 範囲
 
-- Preserve the confirmed L8 integration test design.
-- Add machine-readable manifest enforcement for selected IT-* coverage.
-- Backfill the discovered IT-STATE gaps with executable state and partition
-  tests.
+- confirmed 済みの L8 integration test design を保持する。
+- 選択された IT-* coverage に machine-readable な manifest enforcement を追加する。
+- 発見された IT-STATE gaps を executable な state tests と partition tests で backfill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Missing manifest is a G8 violation.
-- Failed mandatory IT coverage is a G8 violation.
-- IT-MODULE-01/02 and IT-STATE-01/02 have direct executable evidence.
-- `doctor` reports `g8-integration-workflow - OK`.
+- manifest が存在しない場合は G8 violation とする。
+- mandatory IT coverage が failed の場合は G8 violation とする。
+- IT-MODULE-01/02 と IT-STATE-01/02 は direct executable evidence を持つ。
+- `doctor` が `g8-integration-workflow - OK` を report する。

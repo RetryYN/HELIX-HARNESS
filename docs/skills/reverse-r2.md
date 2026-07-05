@@ -50,7 +50,7 @@ tests が存在する場合は test-design reconstruction も含む（reverse.md
 
 ## 出力 artifacts
 
-`.ut-tdd/reverse/<plan_id>/` へ書く。
+`.helix/reverse/<plan_id>/` へ書く。
 
 **R2-as-is-design.md** -- human-readable な design reconstruction:
 - responsibilities 付きの module list。
@@ -74,10 +74,10 @@ tests が存在する場合は test-design reconstruction も含む（reverse.md
       `R2-as-is-design.md` に記録されている（R4 の `missing_pair_artifacts` に渡す）。
 - [ ] structural gaps が列挙されている
       （ここでは解決しない。解決は R3/R4）。
-- [ ] `workflow_phase: R3` の状態で `ut-tdd plan lint` が 0 で終了する。
-- [ ] `ut-tdd vmodel lint` が 0 で終了する
+- [ ] `workflow_phase: R3` の状態で `helix plan lint` が 0 で終了する。
+- [ ] `helix vmodel lint` が 0 で終了する
       （reconstruction work 由来の new orphan artifacts が無い）。
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `helix doctor` exits 0.
 
 DAG と impact assessment は、R3 hypothesis work に十分な完全性を持つ必要がある。
 known dependencies を落とした incomplete DAG は blocking gap である。

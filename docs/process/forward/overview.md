@@ -122,7 +122,7 @@ L6 機能設計
 
 Forward 降下は **二層**で回す (定義正本 = concept §10.2、PLAN-RECOVERY-04)。
 
-- **工程表 (roadmap) = 人間向け全プログラム進行台帳**: 機能群 (feature-group) を**結合テスト粒度**で並べた進行順序。**全プログラム (forward 全バンド L0-L3 / L4-L6 / L7 / L8-L14 + cutover) を被覆**し、**人間が見て「ここ担当する」と自己割当**する。中央 UI (フロント) へ harness.db projection 経由で返す。master-hub PLAN の `roadmap:` block (gate+span) として機械登録し、`ut-tdd doctor` の `program-coverage` が未登録バンド = 残り frontier を surface する。
+- **工程表 (roadmap) = 人間向け全プログラム進行台帳**: 機能群 (feature-group) を**結合テスト粒度**で並べた進行順序。**全プログラム (forward 全バンド L0-L3 / L4-L6 / L7 / L8-L14 + cutover) を被覆**し、**人間が見て「ここ担当する」と自己割当**する。中央 UI (フロント) へ harness.db projection 経由で返す。master-hub PLAN の `roadmap:` block (gate+span) として機械登録し、`helix doctor` の `program-coverage` が未登録バンド = 残り frontier を surface する。
 - **PLAN (区間 / span) = AI 開発のオーケストレーション**: 工程表の 1 区間 = 1 機能群のスプリント。依存洗い出し → 難易度分類 → agent 割当 → 並列/直列 (§工程表 Step の `[並列]/[直列]` + 直列化3条件)。leaf = 機能設計 ⇔ 単体テスト仕様書 (単体 V-pair) → 実装 + テストコード。
 
 > 人間が「何を・誰が」(工程表)、AI が「どう作るか」(PLAN) を担う。「実装どこまで?」は工程表 (doctor program-coverage) から機械的に answer する。
@@ -144,11 +144,11 @@ Forward 降下は **二層**で回す (定義正本 = concept §10.2、PLAN-RECO
 Forward work では、external MCP server、plugin、test foundation を profile rule 経由でのみ推奨できる。これらは verification aid であり、authoring source ではない。
 
 - Relation graph impact expansion を先に実行し、impacted artifact、test、DB projection table、diagram を特定する。
-- `ut-tdd verify recommend --changed <path>` は changed-file signal を verification profile へ map し、JSON または Mermaid graph evidence を出せる。完全な DB-backed relation graph expansion は後続 scope のままにする。
-- external MCP/test foundation profile を追加または有効化する前に、`ut-tdd mcp profile list/probe` を使う。probe check は evidence のみであり package install は行わない。
-- `ut-tdd mcp inspect <name> --method tools/list` は MCP Inspector readiness gate である。既定では refuse し、実 MCP inspection の前に明示的な external allow-list を要求する。
-- `ut-tdd verify run --profile <name>` は既定で built-in profile を実行する。external profile は explicit allow-list review (`--allow-external`) と package/auth/Docker check 充足を要求する。
-- `--save-evidence` は normalized profile evidence を `.ut-tdd/evidence/verification-profiles/` に保存し、後続 DB collector が同じ shape を ingest できるようにする。
+- `helix verify recommend --changed <path>` は changed-file signal を verification profile へ map し、JSON または Mermaid graph evidence を出せる。完全な DB-backed relation graph expansion は後続 scope のままにする。
+- external MCP/test foundation profile を追加または有効化する前に、`helix mcp profile list/probe` を使う。probe check は evidence のみであり package install は行わない。
+- `helix mcp inspect <name> --method tools/list` は MCP Inspector readiness gate である。既定では refuse し、実 MCP inspection の前に明示的な external allow-list を要求する。
+- `helix verify run --profile <name>` は既定で built-in profile を実行する。external profile は explicit allow-list review (`--allow-external`) と package/auth/Docker check 充足を要求する。
+- `--save-evidence` は normalized profile evidence を `.helix/evidence/verification-profiles/` に保存し、後続 DB collector が同じ shape を ingest できるようにする。
 - Browser/UI signal は exploratory browser inspection 用の Playwright MCP と、deterministic browser test 用の Playwright provider 付き Vitest Browser Mode を推奨する。
 - DB/service-contract signal は Docker が利用可能な場合に Node.js 向け Testcontainers を推奨する。
 - API mock gap と flaky external API signal は MSW を推奨する。

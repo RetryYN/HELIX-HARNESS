@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-168-verification-profile-type-split
-title: "PLAN-L7-168: verification profile type split"
+title: "PLAN-L7-168: verification profile 型分割"
 kind: refactor
 layer: L7
 drive: agent
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant split of verification profile type definitions. Verification recommendation, probe, safety, and evidence semantics remain unchanged."
+backprop_decision_reason: "verification profile 型定義の振る舞い不変な分割。Verification recommendation、probe、safety、evidence の semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - verification profile type split"
+    slot_label: "SE - verification profile 型分割"
   - role: tl
-    slot_label: "TL - verification profile invariant review"
+    slot_label: "TL - verification profile 不変条件レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-168-verification-profile-type-split.md
     artifact_type: markdown_doc
@@ -39,7 +39,7 @@ review_evidence:
     reviewed_at: "2026-06-25T21:08:15+09:00"
     tests_green_at: "2026-06-25T21:08:15+09:00"
     verdict: approve
-    scope: "Extract verification-profile type definitions to a sidecar module while preserving the public re-export surface."
+    scope: "public re-export surface を維持しながら、verification-profile の型定義を sidecar module へ抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -85,27 +85,22 @@ review_evidence:
         output_digest: "sha256:294d53ff3dbe303be1bd92315676de35ac5126040240b876fa4096e415fdc1d5"
 ---
 
-# PLAN-L7-168: verification profile type split
+# PLAN-L7-168: verification profile 型分割
 
-## Objective
+## 目的
 
-Reduce remaining `split-module` pressure on
-`src/lint/verification-profile.ts` by extracting the shared verification
-profile type model into a sidecar module.
+共有 verification profile 型モデルを sidecar module へ抽出し、
+`src/lint/verification-profile.ts` に残っている `split-module` 圧力を下げる。
 
-## Scope
+## 範囲
 
-- Move verification profile, recommendation, gate, probe, evidence, MCP, and
-  safety type definitions to `src/lint/verification-profile-types.ts`.
-- Preserve the existing public API by re-exporting the moved symbols from
-  `src/lint/verification-profile.ts`.
-- Point catalog and safety helpers at the type sidecar to reduce internal
-  coupling.
+- verification profile、recommendation、gate、probe、evidence、MCP、safety の型定義を
+  `src/lint/verification-profile-types.ts` へ移動する。
+- 移動した symbols を `src/lint/verification-profile.ts` から re-export し、既存の public API を維持する。
+- catalog と safety helper の参照先を type sidecar に向け、内部 coupling を減らす。
 
-## Acceptance Criteria
+## 受入条件
 
-- `tests/verification-profile.test.ts`, typecheck, lint, DB rebuild, and doctor
-  pass.
-- Public imports from `src/lint/verification-profile.ts` continue to work.
-- The refactor detector no longer reports `src/lint/verification-profile.ts` as
-  a `split-module` candidate.
+- `tests/verification-profile.test.ts`、typecheck、lint、DB rebuild、doctor が pass する。
+- `src/lint/verification-profile.ts` からの public imports が引き続き動作する。
+- refactor detector が `src/lint/verification-profile.ts` を `split-module` candidate として報告しなくなる。

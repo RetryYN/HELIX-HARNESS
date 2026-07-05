@@ -124,7 +124,7 @@ v2_import: docs/migration/v2-import-ledger.md
 - **観点**: V-model 定義 (番号 / 既存 V-pair / 検証本質 / 谷 3 点合算 / L0 ペア) が doc 間 (concept §2.3 / requirements §1.4 / overview §4) で drift しないこと。
 - **anchor 化**: V-model 定義の正本 anchor = concept §2.3。roadmap §1 (観点 B = ドキュメント⇔テスト設計の同粒度) がこれを参照する。
 - **用語更新 (§G.9 相当)**: 「価値検証」「3 点合算」「データ実在性エスカレーション」「本番受入」「実データ検証」「L2=L1 フェーズ分離」を living glossary へ追加。
-- **CI チェック追加案 (IMP)**: 定義 drift (concept §2.3 表 ↔ requirements §1.4 ↔ overview §4 の V-pair / 検証本質の不一致) を `ut-tdd plan lint` / vmodel lint の検証候補に追加。improvement-backlog へ IMP 起票。
+- **CI チェック追加案 (IMP)**: 定義 drift (concept §2.3 表 ↔ requirements §1.4 ↔ overview §4 の V-pair / 検証本質の不一致) を `helix plan lint` / vmodel lint の検証候補に追加。improvement-backlog へ IMP 起票。
 - **「アップデート」非モデルの規律化**: 定義の ad-hoc 編集 (update) を禁じ、定義修正は必ず駆動モデルを通す規律を CLAUDE.md / process に明記する候補。
 - **完了 bookkeeping drift の機械化 (2026-06-22 実装済)**: 本 PLAN は Phase 1-3 完了 + gated downstream 全 confirmed + freeze-ready なのに status=draft に取り残され、毎 session「未了」として再報告された (= 「ただの記載ミス / 運用ミス」)。merged-plan-status は出荷物 (src/tests/scripts/.claude) しか見ず自分の md だけが deliverable の recovery PLAN を構造的に見逃した。再発防止として `plan-completion-drift` gate ([[PLAN-L7-93]]) を新設 = DoD/完了条件を全消化 (`- [x]`) したのに status が非終端なら doctor fail-close。本 PLAN は §8 DoD を追加し本 gate の被覆下に置いた。
 

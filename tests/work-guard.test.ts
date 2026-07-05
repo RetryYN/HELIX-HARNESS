@@ -91,9 +91,9 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
   });
 
   it("normalizes Windows absolute paths and backslashes to repo-relative", () => {
-    const repoRoot = "C:\\Users\\dev\\UT-TDD-agent-harness";
+    const repoRoot = "C:\\Users\\dev\\HELIX-HARNESS";
     expect(
-      normalizeRepoRelative("C:\\Users\\dev\\UT-TDD-agent-harness\\src\\plan\\lint.ts", repoRoot),
+      normalizeRepoRelative("C:\\Users\\dev\\HELIX-HARNESS\\src\\plan\\lint.ts", repoRoot),
     ).toBe("src/plan/lint.ts");
     expect(normalizeRepoRelative("./src/feedback/surface.ts", repoRoot)).toBe(
       "src/feedback/surface.ts",
@@ -103,7 +103,7 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
     // repoRoot を部分一致で探さないと prefix で外れ、自分の touch を見落として全 uncommitted を誤 block する。
     expect(
       normalizeRepoRelative(
-        "Write C:\\Users\\dev\\UT-TDD-agent-harness\\src\\runtime\\attempt-escalation.ts",
+        "Write C:\\Users\\dev\\HELIX-HARNESS\\src\\runtime\\attempt-escalation.ts",
         repoRoot,
       ),
     ).toBe("src/runtime/attempt-escalation.ts");
@@ -201,7 +201,7 @@ describe("extractEditTargets (PLAN-L7-139) — Codex apply_patch / Claude file_p
 });
 
 describe("foreign-edit override resolution (PLAN-L7-114 correction)", () => {
-  it("bypasses via env UT_TDD_ALLOW_FOREIGN_EDIT=1", () => {
+  it("bypasses via env HELIX_ALLOW_FOREIGN_EDIT=1", () => {
     const r = resolveForeignEditOverride({ env: "1" });
     expect(r.bypass).toBe(true);
     expect(r.source).toBe("env");
@@ -230,13 +230,13 @@ describe("foreign-edit override resolution (PLAN-L7-114 correction)", () => {
 
 describe("work-guard hook marker is one-shot (stale marker は恒久バイパスしない)", () => {
   it("consumes the override marker after one foreign edit; the next identical edit re-blocks", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-workguard-marker-"));
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workguard-marker-"));
     try {
       // git repo + untracked foreign file = このセッションが触っていない uncommitted ファイル。
       execFileSync("git", ["init"], { cwd, stdio: "ignore" });
       writeFileSync(join(cwd, "foreign.ts"), "export const x = 1;\n");
-      const markerPath = join(cwd, ".ut-tdd", "state", "foreign-edit-override");
-      mkdirSync(join(cwd, ".ut-tdd", "state"), { recursive: true });
+      const markerPath = join(cwd, ".helix", "state", "foreign-edit-override");
+      mkdirSync(join(cwd, ".helix", "state"), { recursive: true });
       writeFileSync(markerPath, "completing Codex orphan-impl per review");
 
       const input = { session_id: "s-test", tool_input: { file_path: "foreign.ts" } };
@@ -247,7 +247,7 @@ describe("work-guard hook marker is one-shot (stale marker は恒久バイパス
       expect(existsSync(markerPath)).toBe(false); // one-shot 消費
       // audit 証跡は残す (silent bypass を許さない)。
       const audit = readFileSync(
-        join(cwd, ".ut-tdd", "logs", "foreign-edit-overrides.jsonl"),
+        join(cwd, ".helix", "logs", "foreign-edit-overrides.jsonl"),
         "utf8",
       );
       expect(audit).toContain("completing Codex orphan-impl per review");

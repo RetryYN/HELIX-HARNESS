@@ -71,7 +71,7 @@ v2_import: docs/migration/v2-import-ledger.md
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-02 / BR-05 / UX-03 / FR-L1-05 / FR-L1-11 / FR-L1-16 / FR-L1-17 |
 | **情報要素** | gate ID / 判定結果 (pass/fail/bypass) / 証跡一覧 (artifact リンク) / fail 理由テキスト / next_action (1 アクション明示) / サインオフ者 (PO/TL) / bypass 承認記録リンク。**発生中トラブル横断**: 種別 / 検出時刻 / 影響範囲 / next_action (gate fail + drift + handover stale + 暴走シグナルを一覧化) |
-| **操作要素** | next_action テキストコピー / 証跡ファイル参照リンク / AI 指示テキスト生成 (copy-paste 用) / HM-05 Audit ログ参照遷移 / PM-01 ダッシュボード戻り / **interrupt 発動・resume CLI テキストコピー** (A-52 audit C-01、cross-cutting-mechanisms.md 4 機構の operate 経路、`ut-tdd interrupt` / `ut-tdd interrupt resume` CLI コマンド文字列をワンクリックコピー、実際の発動は CLI 側で受付。UI 直接発動禁止 S5=b と整合) |
+| **操作要素** | next_action テキストコピー / 証跡ファイル参照リンク / AI 指示テキスト生成 (copy-paste 用) / HM-05 Audit ログ参照遷移 / PM-01 ダッシュボード戻り / **interrupt 発動・resume CLI テキストコピー** (A-52 audit C-01、cross-cutting-mechanisms.md 4 機構の operate 経路、`helix interrupt` / `helix interrupt resume` CLI コマンド文字列をワンクリックコピー、実際の発動は CLI 側で受付。UI 直接発動禁止 S5=b と整合) |
 | **更新頻度** | gate 実行直後に即時表示 (B8: gate fail 即時) / 30 秒ポーリング (S2=b) |
 | **状態種別** | pass (緑) / fail (赤、next_action 強調) / bypass (黄、audit 記録必須) / pending (未判定) |
 | **色分け必須** | 正常/警告/失敗を即視認 (緑/黄/赤、CC3 詳細データテーブル必須・問題箇所視覚化) |
@@ -121,10 +121,10 @@ v2_import: docs/migration/v2-import-ledger.md
 | **HM-01** | 機能一覧ビュー | FR-L1 47 件 × implementation_status 可視化 (3 階層プルダウン) | FR-L1-20 / FR-L1-29 |
 | **HM-02** | カバレッジヒートマップビュー | 機能可視化・弱点診断 (観点 8 × 軸 5 = 40 通り heat map) | FR-L1-12 / BR-06 |
 | **HM-03** | 配線図ビュー | 静的アーキ + 動的エラー赤表示 (CC1=a 採用) | FR-L1-07 / FR-L1-18 |
-| **HM-04** | データベース閲覧ビュー | `.ut-tdd/` state 全 table + 整合性チェック結果 + artifact progress 赤黄緑 projection (CC1=a 採用) | FR-L1-07 / FR-L1-18 / FR-L1-51 |
+| **HM-04** | データベース閲覧ビュー | `.helix/` state 全 table + 整合性チェック結果 + artifact progress 赤黄緑 projection (CC1=a 採用) | FR-L1-07 / FR-L1-18 / FR-L1-51 |
 | **HM-05** | Audit / 実行ログビュー | AI 実行ログ + agent guard 判定 + budget + skill 注入タブ統合 (S8=b) | FR-L1-09 / FR-L1-20 / FR-L1-12 |
 | **HM-06** | Recovery ビュー | 暴走対応 + 再開ポイント + CLI ロールバックコマンドコピー (S5=b) | FR-L1-10 |
-| **HM-07** | Doctor 結果ビュー | `ut-tdd doctor` 全量検出の構造化表示 | FR-L1-18 / `ut-tdd doctor` |
+| **HM-07** | Doctor 結果ビュー | `helix doctor` 全量検出の構造化表示 | FR-L1-18 / `helix doctor` |
 | **HM-08** | AI 効果データ + Learning Engine ビュー | BR-21 連動、skill/model 評価 + recipe 蓄積 + L3 forward carry | BR-21 / FR-L1-12 |
 
 #### §1.HM.01 HM-01 機能一覧ビュー 詳細
@@ -166,7 +166,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | 観点 | 内容 |
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-05 / BR-07 / BR-20 / FR-L1-06 / FR-L1-07 / FR-L1-51 |
-| **情報要素** | `.ut-tdd/` state 全 table の行データ (raw data に近い粒度) + **整合性チェック結果**: orphan record / drift / 不正値の検出。各 table の整合性チェック結果サマリ。`artifact_progress` は赤=依存未確認/未回収、黄=実装中/未テスト、緑=linked test + dependency clear を表示 |
+| **情報要素** | `.helix/` state 全 table の行データ (raw data に近い粒度) + **整合性チェック結果**: orphan record / drift / 不正値の検出。各 table の整合性チェック結果サマリ。`artifact_progress` は赤=依存未確認/未回収、黄=実装中/未テスト、緑=linked test + dependency clear を表示 |
 | **操作要素** | table 切替 / 行フィルタ / 整合性チェック再実行トリガー / 問題行 AI 指示テキストコピー |
 | **更新頻度** | 30 秒ポーリング (S2=b) |
 | **状態種別** | 整合 (緑) / orphan あり (黄) / 不正値あり (赤) / 空 table |
@@ -200,7 +200,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | 観点 | 内容 |
 |------|------|
 | **対応 BR/UX/FR-L1** | BR-03 / BR-05 / BR-07 / FR-L1-02 / FR-L1-11 / FR-L1-18 |
-| **情報要素** | `ut-tdd doctor` 全量検出結果: V-model 順序違反 / entity カバレッジ / hook 状態 / phase 整合 / carry 未解決。重要度別分類 (error/warn/info) 全行。検出件数サマリ (D-03 対応) |
+| **情報要素** | `helix doctor` 全量検出結果: V-model 順序違反 / entity カバレッジ / hook 状態 / phase 整合 / carry 未解決。重要度別分類 (error/warn/info) 全行。検出件数サマリ (D-03 対応) |
 | **操作要素** | 詳細展開 / PM-04 Trace ビュー参照遷移 / PM-02 工程ビュー参照遷移 / doctor 再実行トリガー / 問題行 AI 指示テキストコピー |
 | **更新頻度** | doctor 実行時に即時反映 / 30 秒ポーリング (S2=b) |
 | **状態種別** | クリーン (緑、0 件) / 警告あり (黄) / エラーあり (赤、D-03 = 0 件違反) / 実行前 (未取得) |
@@ -241,7 +241,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | **Architecture** | 旧 HM-02 配線図 doc 版を統合。静的アーキ図 + コンポーネント説明 + 依存関係 |
 | **Onboarding** | HELIX 使い方。初めての PLAN 起票 / 途中導入 FR-L1-44 連動 / 環境セットアップ手順 |
 | **Tutorial** | Walk-through 形式のステップバイステップガイド |
-| **CLI Reference** | `ut-tdd` コマンド一覧・オプション・使用例 |
+| **CLI Reference** | `helix` コマンド一覧・オプション・使用例 |
 | **FAQ** | よくある質問と回答 |
 | **Changelog** | harness バージョン履歴・破壊的変更注記 |
 
@@ -328,7 +328,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | **30 秒ポーリング更新** (S2=b、WebSocket 不使用。全画面共通の更新間隔) | S2=b / B8: ≤ 5 分 |
 | **PLAN ビューはパース構造化表示** (S3=b、原文テキスト表示でなく frontmatter / セクション構造を解析して表示) | S3=b / FR-L1-01 |
 | **Recovery ロールバックは CLI コマンドコピー** (S5=b、UI から直接ロールバック実行しない。CLI コマンドをクリップボードコピーする UI のみ提供) | S5=b / 安全性担保 |
-| **Handover セッション開始時 auto 表示** (S6=a、セッション起動時に CURRENT.json が存在すれば PM-05 を先頭表示) | S6=a / `ut-tdd session start` |
+| **Handover セッション開始時 auto 表示** (S6=a、セッション起動時に CURRENT.json が存在すれば PM-05 を先頭表示) | S6=a / `helix session start` |
 | **dark mode 不要、light モードのみ** (MVP スコープ外、Phase B 以降に持ち越し) | Q30 採用 / scope 削減 |
 | **i18n 不要、日本語固定** (MVP 期間中は日本語 UI のみ、多言語対応は scope 外) | Q31 採用 / scope 削減 |
 | **アクセシビリティ WCAG 2.1 AA 意識** (強制ではないが設計時に意識する。critical 操作の keyboard 操作対応を最低限とする) | Q32 採用 / NFR 連動 |
@@ -348,7 +348,7 @@ GD: ガイド・トラブルシューティング (参照)
 
 L2 画面設計 sub-doc 4 種への carry (旧 SCR-NN → PM/HM/GD-NN 再採番を反映):
 
-> **L2 必須実施判定 (2026-05-28 PO 指摘で修正)**: drive=be であっても ut-tdd は **「UI を持つ be」** (15 画面 dashboard) のため、**画面要求 3 sub-doc (screen-list / screen-flow / ui-element) は必須実施**、wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。PLAN-L2-03 は `skip_sub_doc: ["L2-wireframe"]` + 理由明記で省略可。詳細は concept §3.7「L2 sub-doc skip ルール」参照。
+> **L2 必須実施判定 (2026-05-28 PO 指摘で修正)**: drive=be であっても helix は **「UI を持つ be」** (15 画面 dashboard) のため、**画面要求 3 sub-doc (screen-list / screen-flow / ui-element) は必須実施**、wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。PLAN-L2-03 は `skip_sub_doc: ["L2-wireframe"]` + 理由明記で省略可。詳細は concept §3.7「L2 sub-doc skip ルール」参照。
 
 | L2 sub-doc | 役割 | 本 L1 からの引き継ぎ | 必須/省略可 |
 |-----------|------|---------------------|-------------|
@@ -369,11 +369,11 @@ L3 機能要件 PLAN (PLAN-L3-NN) 起票時、本 screen sub-doc との接続は
 
 | 規約 | 内容 | 検証 |
 |------|------|------|
-| **R4-screen-requires** | L3 PLAN frontmatter `dependencies.requires` に本 sub-doc (`docs/design/harness/L1-requirements/screen-requirements.md`) + business + functional の 3 軸を全件列挙する (§5 R4 注記と整合) | `ut-tdd plan lint --gate G1-trace` で機械検証 (requirements §1.10.H R4) |
+| **R4-screen-requires** | L3 PLAN frontmatter `dependencies.requires` に本 sub-doc (`docs/design/harness/L1-requirements/screen-requirements.md`) + business + functional の 3 軸を全件列挙する (§5 R4 注記と整合) | `helix plan lint --gate G1-trace` で機械検証 (requirements §1.10.H R4) |
 | **画面 ID 引用** | L3 PLAN 本文で対象画面 (PM/HM/GD-NN) を ID 引用する場合、本 §1 で宣言した 15 画面のみ許可 (旧 SCR-NN 体系は §7.3 移行表で廃止確認) | doc-reviewer (BR-08) でレビュー |
-| **L2 carry 接続** | L3 PLAN は L2 画面設計 4 sub-doc (`docs/design/harness/L2-screen/*.md`) を `dependencies.requires` に列挙する。L2 が placeholder の場合は L2 PLAN-L2-01/02/04 起票を先行させる (PLAN-L1-03 §7 carry と整合) | L3 起票時に手動確認、L2 確定後に `ut-tdd plan lint` |
+| **L2 carry 接続** | L3 PLAN は L2 画面設計 4 sub-doc (`docs/design/harness/L2-screen/*.md`) を `dependencies.requires` に列挙する。L2 が placeholder の場合は L2 PLAN-L2-01/02/04 起票を先行させる (PLAN-L1-03 §7 carry と整合) | L3 起票時に手動確認、L2 確定後に `helix plan lint` |
 | **横断原則 4 件継承** | §3.1 横断原則 (人間主導 + AI 補助 / 詳細データテーブル必須 / AI copy-paste UI / 問題箇所視覚化) は L3 全機能要件で「人間判断点」明示として forward carry (business §3.3.2 CC2 連動) | L3 PLAN review で確認 (CC2 carry) |
-| **G1-trace 継承** | L3 PLAN 起票時、本 sub-doc §5 trace マトリクス R1-R4 検証結果を継承し、L3 FR 追加・拡張時に再検証 (requirements §1.10.H lint ルール) | `ut-tdd plan lint --gate G1-trace` 再実行 |
+| **G1-trace 継承** | L3 PLAN 起票時、本 sub-doc §5 trace マトリクス R1-R4 検証結果を継承し、L3 FR 追加・拡張時に再検証 (requirements §1.10.H lint ルール) | `helix plan lint --gate G1-trace` 再実行 |
 
 > **L3 起票時の最低 PLAN セット**: PLAN-L3-01 (FR 詳細化 / L2 deep-link) + PLAN-L3-02 (BR-21 詳細化 / HM-08 連動) + PLAN-L3-03 (NFR グレード値確定) が screen sub-doc を `requires` に列挙する想定 (G1 readiness §3 L3 forward carry 連動)。
 
@@ -431,7 +431,7 @@ R3: FR-L1 P0 19 件全て最低 1 画面に紐付く (孤児 P0 FR-L1 禁止、b
 | **FR-L1-15** (Discovery ワークフロー) | PM-02 (Discovery 工程) | HM-05 | Discovery S0-S4 + PoC ログ |
 | **FR-L1-16** (Incident ワークフロー) | PM-03 (障害シグナル) | HM-06 (hotfix) | Incident 検出 + 対応 |
 | **FR-L1-17** (CI/PR 連携) | PM-03 (gate 証跡) | HM-07 | CI gate 通過状態 |
-| **FR-L1-18** (横断検出 ut-tdd doctor 一括集約) | **HM-07 (直接 Doctor)** | PM-04 | Doctor 全量検出 = 直接実現 |
+| **FR-L1-18** (横断検出 helix doctor 一括集約) | **HM-07 (直接 Doctor)** | PM-04 | Doctor 全量検出 = 直接実現 |
 | **FR-L1-45** (doc-reviewer 必須召喚、A-49 back-propagation) | **PM-03 (Gate サインオフ前 review trigger)** | HM-05 (audit ログ) | BR-08 派生 P0、未召喚で gate fail-close |
 
 ### §5.4 FR-L1 P1/P2 ⇔ 画面 trace 表 (warn 対象 — 孤児許容)

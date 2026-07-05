@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L6-05-setup-solo-team
-title: "PLAN-L6-05 (add-design): ut-tdd setup solo/team 機能設計 — 参加規模の自動検出 + 提案/確認/記録 + GitHub 設定の solo/team 出し分け (emit-only 既定 + opt-in ガード付き適用)"
+title: "PLAN-L6-05 (add-design): helix setup solo/team 機能設計 — 参加規模の自動検出 + 提案/確認/記録 + GitHub 設定の solo/team 出し分け (emit-only 既定 + opt-in ガード付き適用)"
 kind: add-design
 layer: L6
 drive: fullstack
@@ -34,14 +34,14 @@ review_evidence:
     scope: "code-reviewer APPROVE (Critical 0)。file↔API 境界 / token 非記録 確認 (handover 2026-06-02d §5)"
 ---
 
-# PLAN-L6-05 (add-design): ut-tdd setup solo/team 機能設計
+# PLAN-L6-05 (add-design): helix setup solo/team 機能設計
 
 ## §0 位置づけ
 
-要件 §6.5 (CODEOWNERS bootstrap 2-stage = Phase 0-A solo / 0-B team) / §6.8 (PLAN git ライフサイクル) / §6.9 (CI) に「製品仕様」として存在する **`ut-tdd setup`** を、**利用者の参加規模に応じて GitHub 設定を solo/team で出し分ける** 機能として確定する設計差分。`ut-tdd setup` はコード未実装 (要件 §7.1 にコマンド存在のみ)。本 PLAN は `kind=add-design` (L6 機能設計粒度) で型 + 関数 signature + DbC + **「harness が書くファイル」と「GitHub 設定 (API/gh) 操作」の境界**を確定し、`PLAN-L7-03-setup-solo-team` (add-impl) が実装する。**bottom-up build → 後段 Reverse で L4 external-if (GitHub 境界契約) / L3 要件 (新 FR) / §6.5 整合へ back-fill** する ([[feedback_addfeature_bottomup_reverse_backfill]])。
+要件 §6.5 (CODEOWNERS bootstrap 2-stage = Phase 0-A solo / 0-B team) / §6.8 (PLAN git ライフサイクル) / §6.9 (CI) に「製品仕様」として存在する **`helix setup`** を、**利用者の参加規模に応じて GitHub 設定を solo/team で出し分ける** 機能として確定する設計差分。`helix setup` はコード未実装 (要件 §7.1 にコマンド存在のみ)。本 PLAN は `kind=add-design` (L6 機能設計粒度) で型 + 関数 signature + DbC + **「harness が書くファイル」と「GitHub 設定 (API/gh) 操作」の境界**を確定し、`PLAN-L7-03-setup-solo-team` (add-impl) が実装する。**bottom-up build → 後段 Reverse で L4 external-if (GitHub 境界契約) / L3 要件 (新 FR) / §6.5 整合へ back-fill** する ([[feedback_addfeature_bottomup_reverse_backfill]])。
 
 - 親設計: `PLAN-L4-04-external-if` (GitHub/CI 境界 = 本機能が具体化する外部境界、drive=fullstack 一致)。GitHub 境界の DbC 契約は後段 Reverse で L4-04 へ back-fill。
-- 駆動モデル: **Add-feature**。`ut-tdd status` の mode 検出 (standalone/claude-only/...) と同思想で「検出して提案する」を solo/team 軸に拡張する。
+- 駆動モデル: **Add-feature**。`helix status` の mode 検出 (standalone/claude-only/...) と同思想で「検出して提案する」を solo/team 軸に拡張する。
 - PO 確定事項 (本 session 2026-06-02):
   1. **solo/team は参加アカウント数等で自動「提案」する**が、確定は人間確認 + 状態記録 (数だけで自動確定しない)。
   2. **branch protection / Required 化は GitHub 設定操作**でファイルでは完結しない。既定は **emit-only** (スクリプト + 手順を生成、適用は人間)。**opt-in `--apply-branch-protection` でガード付き自動適用** (gh 認証/admin 確認 → 変更内容提示 → 実行)。
@@ -50,8 +50,8 @@ review_evidence:
 
 ## §1 要求 (この機能が満たすこと)
 
-1. **参加規模の自動検出**: `ut-tdd setup` (フラグ無し) で repo の owner 種別 (org/個人)・collaborator 数・既存 CODEOWNERS/branch-protection の有無を gh 経由で取得し、solo(0-A)/team(0-B) の**目星**を立てる。gh 不在/未認証/権限不足なら不明信号として **solo に安全フォールバック**。
-2. **提案 → 確認 → 記録**: 検出結果から phase を理由つきで提案 → 対話確認 (yes/no) → 確定 phase を `.ut-tdd/state/setup.json` に**明示記録** (以後はそれを正本にし、毎回再推測しない)。`--solo`/`--team` は提案の上書き。非対話 + フラグ無しは安全フォールバック (solo)。
+1. **参加規模の自動検出**: `helix setup` (フラグ無し) で repo の owner 種別 (org/個人)・collaborator 数・既存 CODEOWNERS/branch-protection の有無を gh 経由で取得し、solo(0-A)/team(0-B) の**目星**を立てる。gh 不在/未認証/権限不足なら不明信号として **solo に安全フォールバック**。
+2. **提案 → 確認 → 記録**: 検出結果から phase を理由つきで提案 → 対話確認 (yes/no) → 確定 phase を `.helix/state/setup.json` に**明示記録** (以後はそれを正本にし、毎回再推測しない)。`--solo`/`--team` は提案の上書き。非対話 + フラグ無しは安全フォールバック (solo)。
 3. **GitHub 設定の solo/team 出し分け**: phase に応じて生成物を変える。
    - 共通 (0-A/0-B、§9.1 A 種別): `harness-check.yml` / ISSUE・PR テンプレ / commitlint 設定 / escalation-stale workflow
    - team のみ (0-B、§9.1 B 種別): `CODEOWNERS` (team 名は `--tl-team`/`--qa-team`/`--po-team` 注入) / `scripts/setup-branch-protection.sh`
@@ -66,7 +66,7 @@ review_evidence:
 |----|------|--------------|
 | 検出 (`detectProjectScale`) | gh で owner 種別 / collaborator 数 / 既存 CODEOWNERS・protection を読む。**判定も適用もしない** | never throw。gh 不在/未認証/権限不足 → 不明信号 |
 | 推奨 (`recommendPhase`) | 信号 → solo/team の提案 + 理由 + confidence。純関数 | 不明信号 → solo (安全側) low confidence |
-| 確定 (`runSetup` orchestration) | フラグ > 対話確認(推奨提示) > 安全フォールバック で phase 確定 → `.ut-tdd/state/setup.json` 記録 | 非対話 + フラグ無し → solo |
+| 確定 (`runSetup` orchestration) | フラグ > 対話確認(推奨提示) > 安全フォールバック で phase 確定 → `.helix/state/setup.json` 記録 | 非対話 + フラグ無し → solo |
 | 生成 (`planSetup`/`renderArtifacts`/`emitSetup`) | phase 別の生成物計画 → テンプレ render → ファイル書込 (dry-run は書かない) | token を書かない。既存ファイルは上書き前に確認 |
 | 適用 (`applyBranchProtection`) | **既定: スクリプト生成のみ (skip)**。`--apply-branch-protection` かつ**対話セッション**時のみ gh 認証/admin 確認 → 変更内容提示 → 人間 confirm → `gh api` 実行 | **非対話 (CI 等)** / admin・auth 不足 / 未確認 → 実行しない (emit-only に戻す) |
 
@@ -84,7 +84,7 @@ PhaseRecommendation = { phase: SetupPhase, reason: string, confidence: "high" | 
 GeneratedFile = { path: string, category: "A" | "B", purpose: string }   # category=§9.1 A/B
 GithubAction  = { kind: "branch-protection"; script_path: string; applied: boolean }  # 既定 applied=false
 SetupPlan = { phase: SetupPhase, files: GeneratedFile[], actions: GithubAction[], dryRun: boolean }
-SetupState = {                                       # .ut-tdd/state/setup.json (確定値 SSoT)
+SetupState = {                                       # .helix/state/setup.json (確定値 SSoT)
   phase: SetupPhase, decidedAt: string,
   decidedBy: "flag" | "confirm" | "fallback",
   signals: ProjectScale,                            # 判断根拠 (token は含めない)
@@ -99,7 +99,7 @@ SetupState = {                                       # .ut-tdd/state/setup.json 
 | `recommendPhase` | `(scale: ProjectScale) => PhaseRecommendation` | **純関数**。org OR collaborators>1 OR hasCodeowners OR `hasBranchProtection===true` → 0-B(high、既存 protection は team 既存運用の強信号)。User かつ collaborators<=1 → 0-A(high)。unknown 信号 (含 `hasBranchProtection===null`・`collaborators===null` 単独) → 0-A(low、安全フォールバック) |
 | `planSetup` | `(phase: SetupPhase, opts: { teams?: {tl,qa,po}; dryRun: boolean }) => SetupPlan` | **純関数**。0-A=共通(A)のみ。0-B=共通(A)+CODEOWNERS(B)+branch-protection script。actions.applied は常に false (適用は別関数) |
 | `emitSetup` | `(plan: SetupPlan, templates: TemplateSet, deps: { fs: FsWriter; confirm }) => string[]` | テンプレ render (内部 helper `renderArtifacts` が純 render) して書込。**`plan.dryRun` は書かず path 一覧を返すのみ**。既存上書きは confirm 経由。**生成内容に token を含めない**。書いた path を返す (renderArtifacts は独立契約でなく emitSetup 内 helper = U-SETUP-004 に内包) |
-| `recordSetupState` | `(state: SetupState, deps: { fs: FsWriter }) => void` | `.ut-tdd/state/setup.json` を**上書き** (単一ファイル = 確定値 SSoT、再実行・phase 変更時は最新 state で上書き・append しない)。**`signals` は 4 フィールド (ownerType/collaborators/hasCodeowners/hasBranchProtection) のみへ strip して書く** (それ以外を破棄 = 認証情報混入経路を遮断) |
+| `recordSetupState` | `(state: SetupState, deps: { fs: FsWriter }) => void` | `.helix/state/setup.json` を**上書き** (単一ファイル = 確定値 SSoT、再実行・phase 変更時は最新 state で上書き・append しない)。**`signals` は 4 フィールド (ownerType/collaborators/hasCodeowners/hasBranchProtection) のみへ strip して書く** (それ以外を破棄 = 認証情報混入経路を遮断) |
 | `applyBranchProtection` | `(plan: SetupPlan, deps: { gh; confirm; isInteractive }, opts: { apply: boolean }) => { applied: boolean; reason: string }` | `opts.apply!==true` → `{applied:false, reason:"emit-only"}` (既定)。**`deps.isInteractive!==true` → `opts.apply=true` でも `{applied:false, reason:"non-interactive"}`** (非対話での無人適用を precondition で封鎖)。対話下でのみ gh 認証 + admin 確認 + 変更内容提示 + 人間 confirm が揃って初めて `gh api` 実行。いずれか欠落 → 実行せず emit-only に戻す |
 | `runSetup` | `(args: SetupArgs, deps) => SetupResult` | orchestration。phase = フラグ > confirm(recommend(detect)) > fallback(solo)。確定→record→render→emit→(apply は opt-in)。非対話+フラグ無し→solo。**invariant: `--apply-branch-protection` は対話セッションのみ有効** (非対話では emit-only 固定、I-2 ガバナンス保証) |
 
@@ -107,7 +107,7 @@ SetupState = {                                       # .ut-tdd/state/setup.json 
 
 ### §2.4 ストレージ / 配置 / hook
 
-- 確定 phase: `.ut-tdd/state/setup.json` (gitignored runtime state、確定値の SSoT)。
+- 確定 phase: `.helix/state/setup.json` (gitignored runtime state、確定値の SSoT)。
 - 生成物の配置 (対象 repo): `.github/`(workflow/CODEOWNERS/ISSUE_TEMPLATE/PR template) / repo root or package.json (commitlint、配置は L7 で config 最小化方針 §8 と突合) / `scripts/setup-branch-protection.sh`。
 - 本 repo のテンプレ置き場: `docs/templates/github/` (新設、§1 構成「docs/templates/」と整合)。**テンプレ実ファイル群は本 L6 設計 PLAN では generates せず、`PLAN-L7-03-setup-solo-team` (add-impl) が `artifact_type=template` として generates・V-model tracking する** (本 PLAN は型/契約まで)。
 - hook: **無し** (setup は CLI subcommand。hook は足さない)。
@@ -137,7 +137,7 @@ SetupState = {                                       # .ut-tdd/state/setup.json 
 ## §工程表
 
 ### Step 1: 機能設計 doc 起草
-`docs/design/harness/L6-function-design/setup-solo-team.md` に §2 の責務分離 + 型 + 関数 signature + DbC + file/API 境界 + ストレージ/配置 + fail-safe/秘匿方針を記述。`ut-tdd status` mode 検出 (`src/runtime/detect.ts`) からの設計継承 (検出→提案思想・`onPath` 再利用) を明記。
+`docs/design/harness/L6-function-design/setup-solo-team.md` に §2 の責務分離 + 型 + 関数 signature + DbC + file/API 境界 + ストレージ/配置 + fail-safe/秘匿方針を記述。`helix status` mode 検出 (`src/runtime/detect.ts`) からの設計継承 (検出→提案思想・`onPath` 再利用) を明記。
 
 ### Step 2: ③ 単体テスト設計
 `docs/test-design/harness/L7-unit-test-design.md` に §1.7 U-SETUP-001..006 を追記 (① 設計とペア)。
@@ -158,7 +158,7 @@ claude-only のため `code-reviewer` (Senior Staff、TL 代替) で signature/D
 | 自動検出ヒューリスティクス | gh api (`repos/{o}/{r}` owner.type / `collaborators` length / `codeowners/errors`)。PO 確定「提案どまり・確定は人間+記録」 |
 | 関数 signature / DbC / deps 注入 | `src/runtime/session-log.ts` (nodeDeps/純関数分離/never-throw) + `src/runtime/detect.ts` (onPath/mode 検出) パターン踏襲 |
 | 秘匿 (token 非記録) / branch protection 適用の人間確認 | CLAUDE.md 禁止事項 (認可/本番影響/credential) + PO 確定 (emit-only 既定 / opt-in ガード付き適用) |
-| 確定値の state 記録 | `.ut-tdd/state/` (session-log の current-plan 読取パターン)。毎回再推測しない安定化 |
+| 確定値の state 記録 | `.helix/state/` (session-log の current-plan 読取パターン)。毎回再推測しない安定化 |
 
 ## §6 用語更新 (§G.9 living glossary)
 

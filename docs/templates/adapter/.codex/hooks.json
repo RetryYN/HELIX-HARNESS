@@ -1,5 +1,5 @@
 {
-  "$comment": "Codex adapter hooks for HELIX. Hosted/API tool surfaces still require explicit `ut-tdd guard preflight` before edits because repo-local Codex hooks do not execute there. The CLI name is intentionally unchanged until PLAN-M-02.",
+  "$comment": "Codex adapter hooks for HELIX. Hosted/API tool surfaces still require explicit `helix guard preflight` before edits because repo-local Codex hooks do not execute there. The CLI name is intentionally unchanged until PLAN-M-02.",
   "hooks": {
     "PreToolUse": [
       {
@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ut-tdd hook agent-guard",
+            "command": "helix hook agent-guard",
             "timeout": 5,
             "blockOnFailure": true,
             "statusMessage": "agent-guard: Codex sub-agent role/model guard"
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ut-tdd hook work-guard",
+            "command": "helix hook work-guard",
             "timeout": 5,
             "blockOnFailure": true,
             "statusMessage": "work-guard: foreign edit protection"
@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ut-tdd hook git-command-guard",
+            "command": "helix hook git-command-guard",
             "timeout": 5,
             "blockOnFailure": true,
             "statusMessage": "git-command-guard: destructive git operation protection"
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ut-tdd session start",
+            "command": "helix session start",
             "timeout": 5,
             "statusMessage": "session-log: session start (fail-open)"
           }
@@ -57,7 +57,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ut-tdd hook post-tool-use",
+            "command": "helix hook post-tool-use",
             "timeout": 5,
             "statusMessage": "session-log: post tool use (fail-open)"
           }
@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ut-tdd session summary",
+            "command": "helix session summary",
             "timeout": 5,
             "statusMessage": "session-log: PLAN digest summary (fail-open)"
           }

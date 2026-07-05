@@ -77,25 +77,23 @@ review_evidence:
         output_digest: "sha256:0a1c082db408d7627b0ddce759b6f62c4919dac544bab952124d206d3bc11adf"
 ---
 
-# PLAN-REVERSE-205: L7.5 RUN & Debug DB projection back-fill
+# PLAN-REVERSE-205: L7.5 RUN & Debug DB projection back-fill の Reverse 記録
 
-## R0-R4 Summary
+## R0-R4 要約
 
-- R0: RUN & Debug JSONL existed as append-only evidence but was not queryable in `harness.db`.
-- R1: The DB read model now projects valid rows to `runtime_verification_events`.
-- R2: L3/L4 remain stable: the change implements existing verification and visualization read-model requirements.
-- R3: L5 physical data and L6 function contracts are updated for the new projection table/function.
-- R4: `PLAN-L7-205-run-debug-db-projection` and this Reverse PLAN are linked by `dependencies.requires`.
+- R0: RUN & Debug JSONL は append-only evidence として存在していたが、`harness.db` では query できなかった。
+- R1: DB read model は valid row を `runtime_verification_events` へ projection する。
+- R2: L3/L4 は安定維持とする。この変更は既存の verification / visualization read-model 要件を実装する。
+- R3: L5 physical data と L6 function contract を、新しい projection table / function に合わせて更新する。
+- R4: `PLAN-L7-205-run-debug-db-projection` とこの Reverse PLAN は `dependencies.requires` で接続する。
 
-## Back-Filled Meaning
+## back-fill の意味
 
-The added table does not make projection rows proof. It preserves the runtime
-classification and acceptance status that came from the append-only RUN & Debug
-event, so deterministic dashboards can show runtime evidence without reading raw
-JSONL or relying on LLM-generated summaries.
+追加 table は projection row を証明そのものにはしない。append-only の RUN & Debug
+event 由来の runtime classification と acceptance status を保持し、deterministic dashboard が raw JSONL を読まず、
+LLM-generated summary に依存せずに runtime evidence を表示できるようにする。
 
-## Merge Boundary
+## merge 境界
 
-This Reverse updates the local projection schema and deterministic rebuild path.
-It does not launch external providers, change public CLI behavior, or implement
-the VSCode visualization surface.
+この Reverse は local projection schema と deterministic rebuild path を更新する。
+external provider の起動、public CLI behavior の変更、VSCode visualization surface の実装は行わない。

@@ -63,11 +63,11 @@ review_evidence:
         output_digest: "sha256:2b75560f97b74b5b8b4af3952a18a6b2bfbd7540d5d8b9ffee014cb5d90ee870"
 ---
 
-# PLAN-L7-263: version-up dry-run fail-on-blocked gate
+# PLAN-L7-263: version-up dry-run の fail-on-blocked gate
 
 ## 目的
 
-`ut-tdd version-up dry-run --json` は承認前の no-write evidence surface として、`ok=false` でも JSON を返す。
+`helix version-up dry-run --json` は承認前の no-write evidence surface として、`ok=false` でも JSON を返す。
 一方、CI や release gate が process exit だけを見る場合、`ok=false` を成功扱いに読み飛ばす危険がある。
 
 この PLAN は、既定の evidence 収集挙動を壊さず、scripted gate が明示的に `ok=false` を non-zero exit にできる
@@ -75,7 +75,7 @@ review_evidence:
 
 ## 変更
 
-- `ut-tdd version-up dry-run` に `--fail-on-blocked` を追加する。
+- `helix version-up dry-run` に `--fail-on-blocked` を追加する。
 - JSON / text のどちらでも、出力後に `plan.ok=false` を exit 1 に昇格する。
 - 既定の `--json` は従来どおり exit 0 を保ち、activation verification matrix の no-write evidence を壊さない。
 - CLI test で、blocked plan は flag 付きで exit 1、ready plan は flag 付きでも exit 0 になることを固定する。
@@ -85,7 +85,7 @@ review_evidence:
 
 - version-up activation / external infra / GitHub release / package tag 更新は実行しない。
 - activation verification matrix の既定 command 文字列は変更しない。
-- `PLAN-M-02` の rename/cutover、`.ut-tdd` から HELIX への実 state move は扱わない。
+- `PLAN-M-02` の rename/cutover、`.helix` から HELIX への実 state move は扱わない。
 
 ## 完了条件
 

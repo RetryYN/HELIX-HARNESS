@@ -50,7 +50,7 @@ dependencies:
 
 ## §工程表
 
-### Step 1: auto-fix (safe + unsafe-but-equivalent)
+### 手順 1 (Step 1): auto-fix（safe + unsafe-but-equivalent）
 `./node_modules/.bin/biome check --write --unsafe <対象ファイル>` で useTemplate / useLiteralKeys / useOptionalChain / format / organizeImports を一括修正 (g3-trace の noUnusedVariables は除外し手動削除)。**pinned biome 本体を使う** (npx 最新は版差で不可)。
 
 ### Step 2: g3-trace.ts dead 定数を手動削除

@@ -14,7 +14,7 @@ review_evidence:
     reviewed_at: "2026-06-12"
     tests_green_at: "2026-06-12"
     verdict: approve_after_fixes
-    scope: "L7 completion audit A-135: U-REVIEW stale approval artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .ut-tdd/audit/A-135-l7-completion-review-checklist.yaml."
+    scope: "L7 completion audit A-135: U-REVIEW stale approval artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .helix/audit/A-135-l7-completion-review-checklist.yaml."
 agent_slots:
   - role: tl
     slot_label: "TL - review-evidence analyzer 拡張"

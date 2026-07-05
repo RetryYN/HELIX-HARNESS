@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-126-route-config-dependency-gate
-title: "PLAN-REVERSE-126: route config dependency gate fullback"
+title: "PLAN-REVERSE-126: route config dependency gate の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,14 +16,14 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The route config dependency acceptance item is now implemented and checked."
+    reason: "route config dependency の acceptance item は実装済みで、検査対象になっている。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Route eval now documents config dependency validation and fail-close behavior."
+    reason: "Route eval は config dependency validation と fail-close behavior を文書化している。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The change stays within the existing route evaluation contract and local config boundary."
+    reason: "この変更は既存の route evaluation contract と local config boundary の範囲内に留まる。"
 agent_slots:
   - role: tl
     slot_label: "TL - route config dependency fullback"
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T17:05:00+09:00"
     tests_green_at: "2026-06-23T17:05:00+09:00"
     verdict: approve
-    scope: "R4 fullback from route config dependency gate to requirements and L4 design."
+    scope: "route config dependency gate から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,21 +66,18 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-126: route config dependency gate fullback
+# PLAN-REVERSE-126: route config dependency gate の fullback
 
-## Objective
+## 目的
 
-Back-fill route config dependency validation to requirements and L4 function
-design.
+route config dependency validation を requirements と L4 function design へ back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements §7.8.6 records the route-map config dependency gate.
-- L4 function design states that route-map config containing legacy DB or
-  personal absolute paths fails closed.
+- Requirements §7.8.6 に route-map config dependency gate を記録する。
+- L4 function design では、legacy DB または personal absolute paths を含む route-map config が fail-close することを示す。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both mention config dependency fail-close.
-- The Reverse record keeps the implementation inside local route evaluation
-  contracts.
+- Requirements と L4 design の両方で config dependency fail-close に触れる。
+- Reverse record は実装を local route evaluation contracts の範囲内に維持する。

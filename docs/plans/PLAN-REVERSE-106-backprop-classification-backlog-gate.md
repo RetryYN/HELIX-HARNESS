@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-106-backprop-classification-backlog-gate
-title: "PLAN-REVERSE-106: Backprop classification backlog gate fullback"
+title: "PLAN-REVERSE-106: backprop classification backlog gate の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define the backlog backprop classification gate."
+    reason: "Requirements は backlog backprop classification gate を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The governance gate does not change external runtime function design."
+    reason: "governance gate は外部 runtime function design を変更しない。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The governance gate does not change detailed runtime data or module design."
+    reason: "governance gate は詳細な runtime data や module design を変更しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - backlog backprop classification fullback"
+    slot_label: "TL - backlog backprop classification fullback レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-106-backprop-classification-backlog-gate.md
     artifact_type: markdown_doc
@@ -39,35 +39,35 @@ dependencies:
     - docs/plans/PLAN-L7-106-backprop-classification-backlog-gate.md
 ---
 
-# PLAN-REVERSE-106: Backprop classification backlog gate fullback
+# PLAN-REVERSE-106: backprop classification backlog gate の fullback
 
-## R0 Evidence
+## R0 証跡
 
-Requirements §6.8.8 defined the six fields required to classify lower-layer
-Reverse back-propagation decisions, but `improvement-backlog` lint only checked
-row shape and enum values.
+Requirements §6.8.8 は、lower-layer Reverse back-propagation decision を分類する
+6 つの field を定義していたが、`improvement-backlog` lint は row shape と enum
+values だけを確認していた。
 
-## R1 Observed Gap
+## R1 観測された gap
 
-A backlog row could mention lower-layer back-propagation while omitting the
-machine-readable decision. That preserves exactly the failure mode the database
-red/yellow/green work is meant to expose: an item is visible, but its recovery or
-upstream routing state is not queryable.
+backlog row は lower-layer back-propagation に触れつつ、machine-readable decision
+を省略できた。その状態では、database red/yellow/green work が可視化すべき failure
+mode がそのまま残る。item は見えているが、recovery や upstream routing state を
+query できない。
 
-## R2 Alignment
+## R2 整合
 
-The backlog lint now treats explicit lower-layer/backprop rows as requiring:
+backlog lint は現在、明示的な lower-layer/backprop row に次を必須として扱う。
 `backprop_decision`, `reverse_type`, `target_layer`, `upstream_docs`,
 `evidence_path`, and `closure_status`.
 
-## R3 / R4 Outcome
+## R3 / R4 結果
 
-Requirements no longer describe this check as future work. IMP-117 is backfilled
-with the classification values, and doctor hard-fails any future matching row
-that omits them.
+Requirements はこの check を future work として扱わない。IMP-117 には classification
+values を backfill 済みであり、今後一致する row がそれらを省略した場合、doctor は
+hard-fail する。
 
 ## DoD
 
-- [x] Requirements state the current doctor hard gate.
-- [x] IMP-117 contains the required machine-readable classification fields.
-- [x] Regression tests cover missing and complete lower-layer backprop rows.
+- [x] Requirements は現在の doctor hard gate を記載している。
+- [x] IMP-117 は必須の machine-readable classification fields を含む。
+- [x] Regression tests は lower-layer backprop row の欠落ケースと完全ケースを cover する。

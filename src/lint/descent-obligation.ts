@@ -22,7 +22,7 @@ import { normalizePath } from "./shared";
 
 const DOC_FR_TRACE_RE = /\bFR-L1-(\d+)(?:(?:[〜～]|\.\.)(?:FR-L1-)?(\d+)|((?:\/\d+)+))?/g;
 const U_FR_TRACE_RE = /\bU-FR-L1-(\d+)(?:(?:[〜～]|\.\.)(?:U-FR-L1-)?(\d+))?/g;
-const EXPLICIT_IMPLEMENTATION_TRACE_RE = /@ut-tdd-trace\s+(FR-L1-\d+)/g;
+const EXPLICIT_IMPLEMENTATION_TRACE_RE = /@helix-trace\s+(FR-L1-\d+)/g;
 const ACTIVE_STATUSES = new Set<ArtifactStatus>(["active"]);
 const IMPL_ROLES = new Set<ArtifactRole>(["source", "test"]);
 const OPEN_DEFER_LAYERS = new Set<Layer>(["L4", "L5", "L6", "L7"]);
@@ -195,7 +195,7 @@ function artifactRowsForFile(repoRoot: string, path: string): TraceKeyedArtifact
   if (!layer) return [];
   const role: ArtifactRole = isTest ? "test" : isSource ? "source" : inferDocRole(rel, layer);
   const status = metadataStatus(metadata, content);
-  // source/test は @ut-tdd-trace の explicit 引用のみ (provenance=false)。doc は blanket レンジ
+  // source/test は @helix-trace の explicit 引用のみ (provenance=false)。doc は blanket レンジ
   // 展開のみ由来の key を traceKeyFromRange=true として記録する (PLAN-L7-52 C-2)。
   const provenance = isTest || isSource ? null : documentTraceKeyProvenance(content);
   const keys = provenance
@@ -246,7 +246,7 @@ function deferRowsForFile(repoRoot: string, path: string): DeferEntry[] {
 }
 
 export function loadDescentAdjacency(root = process.cwd()): DescentAdjacency {
-  const path = join(root, ".ut-tdd", "descent-adjacency.json");
+  const path = join(root, ".helix", "descent-adjacency.json");
   if (!existsSync(path)) return DEFAULT_DESCENT_ADJACENCY;
   try {
     const parsed = JSON.parse(readFileSync(path, "utf8")) as DescentAdjacency;

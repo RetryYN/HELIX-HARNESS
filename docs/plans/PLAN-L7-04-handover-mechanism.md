@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-04-handover-mechanism
-title: "PLAN-L7-04 (add-impl): handover 記録機構の実装 — src/handover + ut-tdd handover / plan use CLI + session-log 限定 amendment (current-plan 活性化) + U-HOVER ④"
+title: "PLAN-L7-04 (add-impl): handover 記録機構の実装 — src/handover + helix handover / plan use CLI + session-log 限定 amendment (current-plan 活性化) + U-HOVER ④"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-07-01T08:42:36+09:00"
     tests_green_at: "2026-07-01T08:42:36+09:00"
     verdict: approve
-    scope: "`ut-tdd handover status --json` now overlays live outstanding/completionDecisionPacket data on top of the stored CURRENT.json pointer so older handover snapshots do not drop G-SF semantic frontier records during resume preflight. The command remains read-only and does not rewrite CURRENT.json."
+    scope: "`helix handover status --json` now overlays live outstanding/completionDecisionPacket data on top of the stored CURRENT.json pointer so older handover snapshots do not drop G-SF semantic frontier records during resume preflight. The command remains read-only and does not rewrite CURRENT.json."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -63,7 +63,7 @@ review_evidence:
     reviewed_at: "2026-06-30T17:32:00+09:00"
     tests_green_at: "2026-06-30T17:32:00+09:00"
     verdict: approve
-    scope: "Normal handover now has a read-only `ut-tdd handover status --json` preflight surface with exists/stale/stale_reasons, backed by L6 design and L7 oracle rows, so session-start instructions can inspect `.ut-tdd/handover/CURRENT.json` without accidentally invoking provider handover or generating state."
+    scope: "Normal handover now has a read-only `helix handover status --json` preflight surface with exists/stale/stale_reasons, backed by L6 design and L7 oracle rows, so session-start instructions can inspect `.helix/handover/CURRENT.json` without accidentally invoking provider handover or generating state."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -95,7 +95,7 @@ review_evidence:
 
 ## §0 位置づけ
 
-`PLAN-L6-06-handover-mechanism` (add-design ①③) が確定した設計を実装する add-impl。先行 add-impl (`PLAN-L7-01-session-log` / `PLAN-L7-03-setup-solo-team`) と同型 — U-HOVER を先行 ④ テストコード化 (Red) → `src/handover/index.ts` (②) を Green → CLI (`ut-tdd handover` / `ut-tdd handover status --json` / `ut-tdd plan use`) 配線 → session-log 限定 amendment (Gap B 活性化)。
+`PLAN-L6-06-handover-mechanism` (add-design ①③) が確定した設計を実装する add-impl。先行 add-impl (`PLAN-L7-01-session-log` / `PLAN-L7-03-setup-solo-team`) と同型 — U-HOVER を先行 ④ テストコード化 (Red) → `src/handover/index.ts` (②) を Green → CLI (`helix handover` / `helix handover status --json` / `helix plan use`) 配線 → session-log 限定 amendment (Gap B 活性化)。
 
 - 親: `PLAN-L6-06-handover-mechanism` (drive=fullstack 一致)。
 - 駆動モデル: **Add-feature** (bottom-up build。後段 `PLAN-REVERSE-05` で上位整合 back-fill)。
@@ -124,7 +124,7 @@ review_evidence:
 `src/handover/index.ts` + session-log amendment を実装し U-HOVER を Green に。`npx vitest run tests/handover.test.ts`。
 
 ### Step 3: CLI 配線
-`src/cli.ts` に `ut-tdd handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `ut-tdd handover status --json`、`ut-tdd plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`ut-tdd plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.ut-tdd/handover/CURRENT.json` を読み、不在時は exit 0 + `exists:false`、壊れ JSON は exit 1 + `exists:true, stale:true`、既存 pointer は `stale/stale_reasons` 付きで返す。CURRENT.json は書き換えないが、read-only preflight response の `outstanding` / `completionDecisionPacket` は live PLAN state から再計算して overlay するため、古い pointer snapshot に無い G-SF semantic frontier records を再開確認時に落とさない。
+`src/cli.ts` に `helix handover [--dry-run] [--complete] [--plan <id>]`、read-only preflight `helix handover status --json`、`helix plan use <id>` を追加 (setup/feedback コマンドのパターン踏襲)。`helix plan use --clear` で current-plan clear。`handover status --json` は provider handover ではなく通常 handover の `.helix/handover/CURRENT.json` を読み、不在時は exit 0 + `exists:false`、壊れ JSON は exit 1 + `exists:true, stale:true`、既存 pointer は `stale/stale_reasons` 付きで返す。CURRENT.json は書き換えないが、read-only preflight response の `outstanding` / `completionDecisionPacket` は live PLAN state から再計算して overlay するため、古い pointer snapshot に無い G-SF semantic frontier records を再開確認時に落とさない。
 
 ### Step 4: review (review 前置 MUST)
 claude-only のため `code-reviewer` (TL/QA 代替) で DbC 充足 / 循環 import 回避の妥当性 / dry-run 非破壊 / sanitize defense-in-depth / 既存 session-log 非回帰をレビュー。cross-agent 不在を evidence 記録。

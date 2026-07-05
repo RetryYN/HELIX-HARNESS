@@ -415,7 +415,7 @@ export function classifyLegacyHookSurface(input: LegacyHookSurfaceInput): GuardS
     runtimeSurface !== "claude-hook" &&
     runtimeSurface !== "codex-hook" &&
     runtimeSurface !== "codex-hosted-api" &&
-    runtimeSurface !== "ut-tdd-cli" &&
+    runtimeSurface !== "helix-cli" &&
     runtimeSurface !== "external-api"
   ) {
     return {

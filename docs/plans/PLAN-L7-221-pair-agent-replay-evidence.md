@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-221-pair-agent-replay-evidence
-title: "PLAN-L7-221 (add-impl): pair-agent replay evidence hardening"
+title: "PLAN-L7-221 (add-impl): pair-agent replay evidence の強化"
 kind: add-impl
 layer: L7
 drive: agent
@@ -210,42 +210,37 @@ review_evidence:
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
 ---
 
-# PLAN-L7-221: pair-agent replay evidence hardening
+# PLAN-L7-221: pair-agent replay evidence の強化
 
-## Objective
+## 目的
 
-Close the remaining semantic evidence gap in the pair-agent TDD route. A saved
-pair-agent run must prove not only that phases executed, but also whether the
-run contained consultation, smart-review failure, and light fix cycles. DB
-rebuild must also reject saved replay evidence whose `phase_spans` do not prove
-the smart-test-author -> light-implementation -> smart-review order.
+pair-agent の TDD ルートに残っている意味論上の証跡ギャップを埋める。保存された
+pair-agent 実行は、フェーズが実行された事実だけでなく、consultation、
+smart-review 失敗、light 修正サイクルを含んでいたかまで示さなければならない。
+また、DB rebuild は、`phase_spans` が smart-test-author ->
+light-implementation -> smart-review の順序を証明できない保存済み replay 証跡を拒否する。
 
-## Scope
+## 範囲
 
-- Add `trace.loop_summary` to pair-agent run evidence.
-- Add a stable bounded transcript digest and per-phase output excerpt digest.
-- Project loop summary counts into `quality_signals` during DB rebuild.
-- Validate saved run `phase_spans` order during DB rebuild and block the
-  `pair-agent-run-evidence` gate when replay evidence starts with
-  implementation or otherwise violates the TDD pair order.
-- Extend unit tests so replay evidence covers consultation -> failed review ->
-  light fix -> pass review.
-- Backfill L3 requirements/acceptance wording plus L6 function and unit test
-  design.
+- pair-agent の実行証跡に `trace.loop_summary` を追加する。
+- 安定した上限制約付きの transcript digest と、フェーズごとの output excerpt digest を追加する。
+- DB rebuild 時に loop summary の件数を `quality_signals` へ投影する。
+- DB rebuild 時に保存済み実行の `phase_spans` 順序を検証し、replay 証跡が implementation から始まる、または TDD pair の順序に違反する場合は `pair-agent-run-evidence` gate をブロックする。
+- replay 証跡が consultation -> failed review -> light fix -> pass review を含むように unit test を拡張する。
+- L3 requirements / acceptance の文言と、L6 function design および unit test design を補完する。
 
-## Non-Scope
+## 範囲外
 
-- Does not execute external provider CLIs.
-- Does not change frontier approval requirements.
-- Does not treat pair-agent local pass as a CI/merge gate substitute.
-- Does not apply `.ut-tdd -> .helix` cutover.
+- 外部 provider の CLI は実行しない。
+- frontier approval requirements は変更しない。
+- pair-agent のローカル pass を CI / merge gate の代替にはしない。
+- `.helix -> .helix` cutover は適用しない。
 
-## DoD
+## 完了条件
 
-- [x] Saved pair-agent evidence contains `loop_summary`.
-- [x] Saved phase spans contain `output_excerpt_digest`.
-- [x] DB rebuild projects pair-agent loop counts into `quality_signals`.
-- [x] DB rebuild blocks saved pair-agent evidence whose phase order violates
-      smart-test-author -> light-implementation -> smart-review.
-- [x] L3/L6 design and paired test design describe the replay contract.
-- [x] Targeted Red/Green tests cover evidence save and projection.
+- [x] 保存済み pair-agent 証跡に `loop_summary` が含まれている。
+- [x] 保存済み phase spans に `output_excerpt_digest` が含まれている。
+- [x] DB rebuild が pair-agent の loop 件数を `quality_signals` へ投影する。
+- [x] DB rebuild が、phase 順序が smart-test-author -> light-implementation -> smart-review に違反する保存済み pair-agent 証跡をブロックする。
+- [x] L3 / L6 の design と paired test design が replay contract を記述している。
+- [x] 対象を絞った Red / Green テストで証跡保存と投影をカバーしている。

@@ -344,7 +344,7 @@ describe("parseCodexSessionUsage (cumulative -> per-turn delta)", () => {
 
 describe("loadRuntimeSessionUsage (file scan, no CLI invocation)", () => {
   it("scans both runtime dirs; missing dirs are cold-start safe (empty)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-token-scan-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-token-scan-"));
     try {
       const claudeDir = join(root, "claude");
       const codexDir = join(root, "codex");
@@ -386,9 +386,9 @@ describe("loadRuntimeSessionUsage (file scan, no CLI invocation)", () => {
 
 describe("projectTokenUsage + projectModelEvaluations (token efficiency)", () => {
   function makeRoot(enabled: boolean): string {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-token-eval-"));
-    mkdirSync(join(root, ".ut-tdd", "config"), { recursive: true });
-    writeFileSync(join(root, ".ut-tdd", "config", "model-opt-in.yaml"), `enabled: ${enabled}\n`);
+    const root = mkdtempSync(join(tmpdir(), "helix-token-eval-"));
+    mkdirSync(join(root, ".helix", "config"), { recursive: true });
+    writeFileSync(join(root, ".helix", "config", "model-opt-in.yaml"), `enabled: ${enabled}\n`);
     return root;
   }
 

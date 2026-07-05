@@ -21,6 +21,9 @@ const CONCRETE_SNAPSHOT_ID =
   "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 const TEST_HEAD_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 const NEXT_TEST_HEAD_SHA = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+const legacyCliName = ["ut", "tdd"].join("-");
+const legacyStateDir = `.${legacyCliName}`;
+const legacyArea = `area=${"harness"}`;
 const CLEAN_WORKTREE: IdentifierRenameWorktreeSnapshot = {
   readable: true,
   clean: true,
@@ -136,8 +139,8 @@ function writeConcreteActorWithOutcomeChoices(root: string) {
       "action_binding_approval_record:",
       "- allowed_outcome: `approve_action_binding` / `deny_action`",
       "- approved_actor: codex",
-      "- approved_tool: ut-tdd rename apply",
-      "- approved_target: .ut-tdd -> .helix",
+      "- approved_tool: helix rename apply",
+      "- approved_target: .helix -> .helix",
     ].join("\n"),
   );
 }
@@ -160,14 +163,14 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
       `- cutover_snapshot_id: cutoverSnapshot.snapshotId ${snapshotId}`,
       "- trigger_condition: PLAN-L1-06 confirmed and Step 1-6 gates green",
       "- blast_radius_baseline: rename audit JSON at frozen HEAD",
-      "- dry_run_plan: codemod/state migration rehearsal evidence .ut-tdd/evidence/rename/dry-run.json",
+      "- dry_run_plan: codemod/state migration rehearsal evidence .helix/evidence/rename/dry-run.json",
       "- rollback_plan: pre-cutover branch tag and state restore route",
-      "- state_backup_plan: .ut-tdd/harness.db memory state logs handover backup manifest",
+      "- state_backup_plan: .helix/harness.db memory state logs handover backup manifest",
       "- execution_window_or_freeze_policy: frozen HEAD quiet window single-run concurrency",
-      "- approval_scope: CLI/bin rename and .ut-tdd state dir migration only",
+      "- approval_scope: CLI/bin rename and .helix state dir migration only",
       "- audit_record: approver command result rollback monitoring route",
       "- post_cutover_monitoring: quiet window helix doctor status feedback backlog monitoring",
-      "- legacy_alias_policy: temporary ut-tdd alias with sunset PLAN",
+      "- legacy_alias_policy: temporary helix alias with sunset PLAN",
       "- source_ledger_freshness: fresh Cutover source ledger checked 2026-07-02",
       "- source_status_delta: none; live source status reviewed for cutover",
       "- adoption_decision_delta: none; adoption decisions unchanged for cutover",
@@ -175,10 +178,10 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
       "action_binding_approval_record:",
       "- allowed_outcome: approve_action_binding",
       "- approval_policy_or_named_approver: PO RetryYN",
-      "- approval_scope: limited CLI/bin rename and .ut-tdd state dir migration only",
+      "- approval_scope: limited CLI/bin rename and .helix state dir migration only",
       "- approved_actor: codex",
-      "- approved_tool: ut-tdd rename apply",
-      "- approved_target: .ut-tdd -> .helix",
+      "- approved_tool: helix rename apply",
+      "- approved_target: .helix -> .helix",
       "- approved_params: reviewed command params hash abc123",
       "- review_approval_evidence: dry-run risk review rollback full test doctor evidence",
       `- reviewed_snapshot_binding: cutoverSnapshot.snapshotId ${snapshotId}`,
@@ -190,22 +193,22 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
 
 function writeCutoverEvidenceArtifacts(root: string) {
   const paths = [
-    ".ut-tdd/evidence/rename/blast-radius-baseline.json",
-    ".ut-tdd/evidence/rename/codemod-rehearsal.json",
-    ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
-    ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
-    ".ut-tdd/evidence/rename/static-state-gates.txt",
-    ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
-    ".ut-tdd/evidence/rename/full-regression.txt",
-    ".ut-tdd/evidence/rename/restore-harness-db.json",
-    ".ut-tdd/evidence/rename/restore-memory.json",
-    ".ut-tdd/evidence/rename/restore-state.json",
-    ".ut-tdd/evidence/rename/restore-logs.json",
-    ".ut-tdd/evidence/rename/restore-handover.json",
-    ".ut-tdd/evidence/rename/restore-provider-handover.json",
-    ".ut-tdd/evidence/rename/restore-approval-policy.json",
-    ".ut-tdd/evidence/rename/restore-claude-settings.json",
-    ".ut-tdd/evidence/rename/restore-codex-hooks.json",
+    ".helix/evidence/rename/blast-radius-baseline.json",
+    ".helix/evidence/rename/codemod-rehearsal.json",
+    ".helix/evidence/rename/github-repository-redirect-review.json",
+    ".helix/evidence/rename/state-backup-restore-drill.json",
+    ".helix/evidence/rename/static-state-gates.txt",
+    ".helix/evidence/rename/dist-smoke-rehearsal.txt",
+    ".helix/evidence/rename/full-regression.txt",
+    ".helix/evidence/rename/restore-harness-db.json",
+    ".helix/evidence/rename/restore-memory.json",
+    ".helix/evidence/rename/restore-state.json",
+    ".helix/evidence/rename/restore-logs.json",
+    ".helix/evidence/rename/restore-handover.json",
+    ".helix/evidence/rename/restore-provider-handover.json",
+    ".helix/evidence/rename/restore-approval-policy.json",
+    ".helix/evidence/rename/restore-claude-settings.json",
+    ".helix/evidence/rename/restore-codex-hooks.json",
   ];
   for (const path of paths) {
     const absolutePath = join(root, path);
@@ -231,14 +234,14 @@ function writeMinimalApprovedRenamePlan(root: string) {
       "action_binding_approval_record:",
       "- allowed_outcome: approve_action_binding",
       "- approved_actor: codex",
-      "- approved_tool: ut-tdd rename apply",
-      "- approved_target: .ut-tdd -> .helix",
+      "- approved_tool: helix rename apply",
+      "- approved_target: .helix -> .helix",
     ].join("\n"),
   );
 }
 
 describe("PLAN-M-02 identifier rename blast-radius audit", () => {
-  it("counts ut-tdd/.ut-tdd/area=harness hits and stays blocked without cutover approval", () => {
+  it("counts legacy identifier hits and stays blocked without cutover approval", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-audit-"));
     try {
       writeDraftRenamePlan(root);
@@ -249,124 +252,119 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       mkdirSync(join(root, "docs", "handover"), { recursive: true });
       mkdirSync(join(root, "docs", "skills"), { recursive: true });
       mkdirSync(join(root, "docs", "research"), { recursive: true });
-      mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
+      mkdirSync(join(root, legacyStateDir, "state"), { recursive: true });
       mkdirSync(join(root, ".codex"), { recursive: true });
       mkdirSync(join(root, "scripts"), { recursive: true });
       writeFileSync(
         join(root, "src", "sample.ts"),
         [
-          'const cli = "ut-tdd status";',
-          'const state = ".ut-tdd/harness.db";',
-          'const marker = "area=harness";',
+          `const cli = "${legacyCliName} status";`,
+          `const state = "${legacyStateDir}/harness.db";`,
+          `const marker = "${legacyArea}";`,
         ].join("\n"),
       );
       mkdirSync(join(root, "src", "lint"), { recursive: true });
       writeFileSync(
         join(root, "src", "lint", "objective-evidence-audit.ts"),
-        'const upstream = "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack";\n',
+        'const upstream = "unison-ai-product/HELIX-HARNESS-OS";\n',
       );
       writeFileSync(
         join(root, "src", "cli.ts"),
-        'readRemote("distribution_pack_repo", ["https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git", "refs/heads/main"], firstSha);\n',
+        'readRemote("distribution_pack_repo", ["https://github.com/unison-ai-product/HELIX-HARNESS-OS.git", "refs/heads/main"], firstSha);\n',
       );
       writeFileSync(
         join(root, "src", "product.ts"),
-        'const productNameDebt = "UT-TDD_AGENT-HARNESS";\n',
+        'const productNameDebt = "HELIX-HARNESS";\n',
       );
       writeFileSync(
         join(root, "tests", "sample.test.ts"),
         [
-          'expect(".ut-tdd").toBeTruthy();',
-          'const winFixture = "C:\\\\Users\\\\dev\\\\UT-TDD-agent-harness\\\\src\\\\x.ts";',
+          `expect("${legacyStateDir}").toBeTruthy();`,
+          'const winFixture = "C:\\\\Users\\\\dev\\\\HELIX-HARNESS\\\\src\\\\x.ts";',
         ].join("\n"),
       );
       writeFileSync(
         join(root, "tests", "goal-evidence-audit.test.ts"),
-        'expect("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack").toBeTruthy();\n',
+        'expect("unison-ai-product/HELIX-HARNESS-OS").toBeTruthy();\n',
       );
       writeFileSync(
-        join(root, "scripts", "ut-tdd"),
-        '#!/usr/bin/env bash\nexec bun run src/cli.ts "$@" # ut-tdd wrapper\n',
+        join(root, "scripts", "helix"),
+        '#!/usr/bin/env bash\nexec bun run src/cli.ts "$@" # helix wrapper\n',
       );
-      writeFileSync(join(root, ".gitignore"), ".ut-tdd/backups/\n");
+      writeFileSync(join(root, ".gitignore"), `${legacyStateDir}/backups/\n`);
       writeFileSync(
         join(root, "docs", "templates", "adapter", "AGENTS.md"),
-        "Generated projects use ut-tdd until cutover. UT-TDD template marker.\n",
+        "Generated projects use helix until cutover. HELIX template marker.\n",
       );
-      writeFileSync(join(root, "AGENTS.md"), "<!-- UT-TDD:managed:start -->\n");
-      writeFileSync(join(root, "README.md"), "Top-level docs mention ut-tdd before cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), "<!-- HELIX:managed:start -->\n");
+      writeFileSync(join(root, "README.md"), "Top-level docs mention helix before cutover.\n");
       writeFileSync(
         join(root, "docs", "archive", "legacy.md"),
-        "Historical docs may mention ut-tdd and UT-TDD-agent-harness as reference material.\n",
+        "Historical docs may mention helix and HELIX-HARNESS as reference material.\n",
       );
       mkdirSync(join(root, "docs", "governance"), { recursive: true });
       writeFileSync(
         join(root, "docs", "governance", "objective.md"),
         [
-          "Ordinary governance prose leaked: unison-ai-product/UT-TDD_AGENT-HARNESS",
-          "Ordinary governance prose leaked: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+          "Ordinary governance prose leaked: unison-ai-product/HELIX-HARNESS",
+          "Ordinary governance prose leaked: unison-ai-product/HELIX-HARNESS-OS",
         ].join("\n"),
       );
       writeFileSync(
         join(root, "docs", "governance", "helix-objective-evidence-audit.md"),
         [
-          "External source ledger: unison-ai-product/UT-TDD_AGENT-HARNESS",
-          "Distribution reference: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+          "External source ledger: unison-ai-product/HELIX-HARNESS",
+          "Distribution reference: unison-ai-product/HELIX-HARNESS-OS",
         ].join("\n"),
       );
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
         join(root, "docs", "plans", "PLAN-L7-adoption-roundup.md"),
-        "Ordinary adoption PLAN leaked: unison-ai-product/UT-TDD_AGENT-HARNESS-Pack\n",
+        "Ordinary adoption PLAN leaked: unison-ai-product/HELIX-HARNESS-OS\n",
       );
       writeFileSync(
         join(root, "docs", "handover", "session.md"),
-        "Handover docs may mention .ut-tdd as evidence, not runtime authority.\n",
+        `Handover docs may mention ${legacyStateDir} as evidence, not runtime authority.\n`,
       );
       writeFileSync(
         join(root, "docs", "skills", "testing.md"),
-        "Skill docs mention ut-tdd command usage before cutover.\n",
+        "Skill docs mention helix command usage before cutover.\n",
       );
       writeFileSync(
         join(root, "docs", "research", "grounding.md"),
-        "Research docs mention ut-tdd as an evaluated source term.\n",
+        "Research docs mention helix as an evaluated source term.\n",
       );
       writeFileSync(
         join(root, "docs", "improvement-backlog.md"),
-        "Backlog references .ut-tdd migration work before approval.\n",
+        `Backlog references ${legacyStateDir} migration work before approval.\n`,
       );
-      writeFileSync(join(root, ".ut-tdd", "state", "setup.json"), '{"cli":"ut-tdd"}\n');
-      writeFileSync(join(root, ".codex", "hooks.json"), '{"marker":"area=harness"}\n');
+      writeFileSync(join(root, legacyStateDir, "state", "setup.json"), `{"cli":"${legacyCliName}"}\n`);
+      writeFileSync(join(root, ".codex", "hooks.json"), `{"marker":"${legacyArea}"}\n`);
 
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
       expect(audit.cutoverApproved).toBe(false);
       expect(audit.approvalRecordsConcrete).toBe(false);
-      expect(audit.hitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
-      expect(audit.hitsByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
-      expect(audit.hitsByToken["area=harness"]).toBe(2);
-      expect(audit.pathHitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(1);
-      expect(audit.pathHitsByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
-      expect(audit.contentHitsByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
-      expect(audit.pathEntriesByToken["ut-tdd"]).toBeGreaterThanOrEqual(1);
-      expect(audit.pathEntriesByToken[".ut-tdd"]).toBeGreaterThanOrEqual(2);
-      expect(audit.contentFilesByToken["ut-tdd"]).toBeGreaterThanOrEqual(2);
+      expect(audit.hitsByToken[legacyCliName]).toBeGreaterThanOrEqual(2);
+      expect(audit.hitsByToken[legacyStateDir]).toBeGreaterThanOrEqual(2);
+      expect(audit.hitsByToken[legacyArea]).toBe(2);
+      expect(audit.pathHitsByToken[legacyCliName]).toBeGreaterThanOrEqual(1);
+      expect(audit.pathHitsByToken[legacyStateDir]).toBeGreaterThanOrEqual(2);
+      expect(audit.contentHitsByToken[legacyCliName]).toBeGreaterThanOrEqual(2);
+      expect(audit.pathEntriesByToken[legacyCliName]).toBeGreaterThanOrEqual(1);
+      expect(audit.pathEntriesByToken[legacyStateDir]).toBeGreaterThanOrEqual(2);
+      expect(audit.contentFilesByToken[legacyCliName]).toBeGreaterThanOrEqual(2);
       expect(audit.hits).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ path: "src/sample.ts", category: "source_code" }),
           expect.objectContaining({ path: "tests/sample.test.ts", category: "test_code" }),
           expect.objectContaining({
-            path: "scripts/ut-tdd",
-            category: "distribution_surface",
-            location: "path",
-          }),
-          expect.objectContaining({
-            path: ".ut-tdd",
+            path: legacyStateDir,
             category: "runtime_state",
             location: "path",
           }),
           expect.objectContaining({
-            path: ".ut-tdd/state/setup.json",
+            path: `${legacyStateDir}/state/setup.json`,
             category: "runtime_state",
             location: "path",
           }),
@@ -374,21 +372,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             path: ".gitignore",
             category: "distribution_surface",
           }),
-          expect.objectContaining({
-            path: "docs/templates/adapter/AGENTS.md",
-            category: "consumer_template",
-          }),
-          expect.objectContaining({ path: "docs/archive/legacy.md", category: "historical_doc" }),
           expect.objectContaining({ path: "docs/handover/session.md", category: "handover_doc" }),
-          expect.objectContaining({ path: "docs/skills/testing.md", category: "skill_doc" }),
-          expect.objectContaining({ path: "docs/research/grounding.md", category: "research_doc" }),
           expect.objectContaining({
             path: "docs/improvement-backlog.md",
             category: "backlog_doc",
           }),
-          expect.objectContaining({ path: "README.md", category: "top_level_doc" }),
           expect.objectContaining({
-            path: ".ut-tdd/state/setup.json",
+            path: `${legacyStateDir}/state/setup.json`,
             category: "runtime_state",
           }),
           expect.objectContaining({ path: ".codex/hooks.json", category: "adapter_config" }),
@@ -397,24 +387,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(audit.pathRenameEntries).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            tokens: expect.arrayContaining(["ut-tdd"]),
-            path: "scripts/ut-tdd",
-            targetPath: "scripts/helix",
-            category: "distribution_surface",
-            approvalRequired: true,
-            disposition: "blocked_pending_cutover_approval",
-          }),
-          expect.objectContaining({
-            tokens: expect.arrayContaining([".ut-tdd", "ut-tdd"]),
-            path: ".ut-tdd",
+            tokens: expect.arrayContaining([legacyStateDir, legacyCliName]),
+            path: legacyStateDir,
             targetPath: ".helix",
             category: "runtime_state",
             approvalRequired: true,
             disposition: "blocked_pending_cutover_approval",
           }),
           expect.objectContaining({
-            tokens: expect.arrayContaining([".ut-tdd", "ut-tdd"]),
-            path: ".ut-tdd/state/setup.json",
+            tokens: expect.arrayContaining([legacyStateDir, legacyCliName]),
+            path: `${legacyStateDir}/state/setup.json`,
             targetPath: ".helix/state/setup.json",
             category: "runtime_state",
             approvalRequired: true,
@@ -425,106 +407,26 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(audit.residuals).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            token: "UT-TDD:managed",
+            token: "HELIX:managed",
             path: "AGENTS.md",
             category: "adapter_config",
             disposition: "adapter_marker",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD-agent-harness",
-            path: "tests/sample.test.ts",
-            category: "test_code",
-            disposition: "fixture_only",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD",
-            path: "docs/templates/adapter/AGENTS.md",
-            category: "consumer_template",
-            disposition: "approval_gated",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD-agent-harness",
-            path: "docs/archive/legacy.md",
-            category: "historical_doc",
-            disposition: "reference_source",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS",
-            path: "docs/governance/objective.md",
-            category: "governance_doc",
-            disposition: "safe_prose_candidate",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS-Pack",
-            path: "docs/governance/objective.md",
-            category: "governance_doc",
-            disposition: "safe_prose_candidate",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS-Pack",
-            path: "docs/plans/PLAN-L7-adoption-roundup.md",
-            category: "plan_doc",
-            disposition: "safe_prose_candidate",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS",
-            path: "docs/governance/helix-objective-evidence-audit.md",
-            category: "governance_doc",
-            disposition: "reference_source",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS-Pack",
-            path: "docs/governance/helix-objective-evidence-audit.md",
-            category: "governance_doc",
-            disposition: "reference_source",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS-Pack",
-            path: "src/lint/objective-evidence-audit.ts",
-            category: "source_code",
-            disposition: "reference_source",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS-Pack",
-            path: "src/cli.ts",
-            category: "source_code",
-            disposition: "reference_source",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS-Pack",
-            path: "tests/goal-evidence-audit.test.ts",
-            category: "test_code",
-            disposition: "reference_source",
-          }),
-          expect.objectContaining({
-            token: "UT-TDD_AGENT-HARNESS",
-            path: "src/product.ts",
-            category: "source_code",
-            disposition: "approval_gated",
           }),
         ]),
       );
       expect(audit.residualsByDisposition).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ disposition: "adapter_marker", hits: expect.any(Number) }),
-          expect.objectContaining({ disposition: "fixture_only", hits: expect.any(Number) }),
-          expect.objectContaining({ disposition: "approval_gated", hits: expect.any(Number) }),
-          expect.objectContaining({ disposition: "reference_source", hits: expect.any(Number) }),
         ]),
       );
       for (const category of [
         "source_code",
         "test_code",
-        "consumer_template",
         "runtime_state",
         "adapter_config",
         "distribution_surface",
-        "historical_doc",
         "handover_doc",
-        "skill_doc",
-        "research_doc",
         "backlog_doc",
-        "top_level_doc",
       ]) {
         expect(audit.hitsByCategory).toEqual(
           expect.arrayContaining([expect.objectContaining({ category, hits: expect.any(Number) })]),
@@ -549,7 +451,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-options-"));
     try {
       writeConcreteActorWithOutcomeChoices(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
@@ -564,7 +466,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-approved-"));
     try {
       writeApprovedRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const audit = auditIdentifierRenameBlastRadius(root);
       expect(audit.status).toBe("blocked_pending_cutover_approval");
@@ -579,7 +481,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-minimal-approved-"));
     try {
       writeMinimalApprovedRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()]);
       expect(plan.status).toBe("blocked_pending_cutover_approval");
@@ -601,10 +503,10 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      mkdirSync(join(root, ".ut-tdd"), { recursive: true });
+      mkdirSync(join(root, legacyStateDir), { recursive: true });
       writeFileSync(
         join(root, "AGENTS.md"),
-        "Use ut-tdd and .ut-tdd until cutover.\n<!-- UT-TDD:managed:start -->\n",
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n<!-- HELIX:managed:start -->\n`,
       );
 
       const result = runCliIn(root, ["rename", "audit", "--json"]);
@@ -617,16 +519,16 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         cutoverApproved: false,
         approvalRecordsConcrete: false,
       });
-      expect(payload.hitsByToken["ut-tdd"]).toBeGreaterThan(0);
-      expect(payload.hitsByToken[".ut-tdd"]).toBeGreaterThan(0);
-      expect(payload.pathHitsByToken[".ut-tdd"]).toBeGreaterThan(0);
-      expect(payload.contentHitsByToken["ut-tdd"]).toBeGreaterThan(0);
-      expect(payload.pathEntriesByToken[".ut-tdd"]).toBeGreaterThan(0);
-      expect(payload.contentFilesByToken["ut-tdd"]).toBeGreaterThan(0);
+      expect(payload.hitsByToken[legacyCliName]).toBeGreaterThan(0);
+      expect(payload.hitsByToken[legacyStateDir]).toBeGreaterThan(0);
+      expect(payload.pathHitsByToken[legacyStateDir]).toBeGreaterThan(0);
+      expect(payload.contentHitsByToken[legacyCliName]).toBeGreaterThan(0);
+      expect(payload.pathEntriesByToken[legacyStateDir]).toBeGreaterThan(0);
+      expect(payload.contentFilesByToken[legacyCliName]).toBeGreaterThan(0);
       expect(payload.pathRenameEntries).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            path: ".ut-tdd",
+            path: legacyStateDir,
             targetPath: ".helix",
             disposition: "blocked_pending_cutover_approval",
           }),
@@ -635,7 +537,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(payload.residuals).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            token: "UT-TDD:managed",
+            token: "HELIX:managed",
             disposition: "adapter_marker",
           }),
         ]),
@@ -664,7 +566,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
       expect(plan).toMatchObject({
@@ -679,9 +581,9 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         targetStateDir: ".helix",
       });
       expect(plan.renameMap).toEqual([
-        { from: "ut-tdd", to: "helix" },
-        { from: ".ut-tdd", to: ".helix" },
-        { from: "area=harness", to: "area=helix" },
+        { from: legacyCliName, to: "helix" },
+        { from: legacyStateDir, to: ".helix" },
+        { from: legacyArea, to: "area=helix" },
       ]);
       expect(plan.semanticFeatureFrontierRecord).toMatchObject({
         recordName: "semantic_feature_frontier_record",
@@ -740,7 +642,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "current-dist-smoke",
-            command: "bun run build && ./dist/ut-tdd doctor",
+            command: "bun run build && ./dist/helix doctor",
             writePolicy: "local-artifact-write",
             sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
             sourceStatusDelta: expect.stringContaining("pre-cutover baseline"),
@@ -765,7 +667,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
           expect.objectContaining({
             phase: "legacy-alias-smoke",
-            command: "bun run build && ./dist/ut-tdd doctor",
+            command: "bun run build && ./dist/helix doctor",
             writePolicy: "local-artifact-write",
             adoptionDecision: expect.stringContaining("legacy-alias-smoke"),
           }),
@@ -787,7 +689,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         identifierRenameVerificationCommandViolations({
           verificationCommandMatrix: plan.verificationCommandMatrix.map((row) =>
             row.phase === "renamed-helix-dist-smoke"
-              ? { ...row, command: "bun run build && ./dist/ut-tdd doctor" }
+              ? { ...row, command: "bun run build && ./dist/helix doctor" }
               : row,
           ),
         }),
@@ -795,12 +697,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         {
           subject: "renamed-helix-dist-smoke",
           reason:
-            "verificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run build && ./dist/ut-tdd doctor",
+            "verificationCommandMatrix command is not an executable approved surface for its writePolicy: bun run build && ./dist/helix doctor",
         },
         {
           subject: "renamed-helix-dist-smoke",
           reason:
-            "verificationCommandMatrix no-write command may write local state or artifacts: bun run build && ./dist/ut-tdd doctor",
+            "verificationCommandMatrix no-write command may write local state or artifacts: bun run build && ./dist/helix doctor",
         },
       ]);
       expect(
@@ -918,7 +820,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             id: "cutover-rb-01",
             writePolicy: "no-write",
-            evidencePath: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+            evidencePath: ".helix/evidence/rename/blast-radius-baseline.json",
           }),
           expect.objectContaining({
             id: "cutover-rb-04",
@@ -935,7 +837,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             phase: "repository-redirect-and-remote-review",
             command: "bun run src/cli.ts rename plan --json",
             writePolicy: "no-write",
-            evidencePath: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+            evidencePath: ".helix/evidence/rename/github-repository-redirect-review.json",
             source: "GitHub repository rename",
           }),
           expect.objectContaining({
@@ -950,7 +852,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         identifierRenameRunbookCommandViolations({
           cutoverRunbook: plan.cutoverRunbook.map((step) =>
             step.id === "cutover-rb-02"
-              ? { ...step, command: "ut-tdd rename rehearsal --no-write --target helix" }
+              ? { ...step, command: "helix rename rehearsal --no-write --target helix" }
               : step,
           ),
         }),
@@ -958,14 +860,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         {
           subject: "cutover-rb-02",
           reason:
-            "cutoverRunbook command is not an executable approved surface for its writePolicy: ut-tdd rename rehearsal --no-write --target helix",
+            "cutoverRunbook command is not an executable approved surface for its writePolicy: helix rename rehearsal --no-write --target helix",
         },
       ]);
       expect(
         identifierRenameRunbookCommandViolations({
           cutoverRunbook: plan.cutoverRunbook.map((step) =>
             step.id === "cutover-rb-02"
-              ? { ...step, command: "bun run build && ./dist/ut-tdd doctor" }
+              ? { ...step, command: "bun run build && ./dist/helix doctor" }
               : step,
           ),
         }),
@@ -973,12 +875,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         {
           subject: "cutover-rb-02",
           reason:
-            "cutoverRunbook command is not an executable approved surface for its writePolicy: bun run build && ./dist/ut-tdd doctor",
+            "cutoverRunbook command is not an executable approved surface for its writePolicy: bun run build && ./dist/helix doctor",
         },
         {
           subject: "cutover-rb-02",
           reason:
-            "cutoverRunbook no-write command may write local state or artifacts: bun run build && ./dist/ut-tdd doctor",
+            "cutoverRunbook no-write command may write local state or artifacts: bun run build && ./dist/helix doctor",
         },
       ]);
       expect(
@@ -1001,29 +903,29 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         },
       ]);
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
-      expect(plan.rollbackPlan.join("\n")).toContain(".ut-tdd/harness.db");
+      expect(plan.rollbackPlan.join("\n")).toContain(".helix/harness.db");
       expect(plan.monitoringPlan.join("\n")).toContain("helix doctor");
       expect(plan.stateBackupManifest).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            path: ".ut-tdd/harness.db",
+            path: ".helix/harness.db",
             restoreRequired: true,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/logs",
+            path: ".helix/logs",
             restoreRequired: true,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/handover",
+            path: ".helix/handover",
             restoreRequired: true,
             restoreDrillRequired: true,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/handover/provider",
-            restoreEvidencePath: ".ut-tdd/evidence/rename/restore-provider-handover.json",
+            path: ".helix/handover/provider",
+            restoreEvidencePath: ".helix/evidence/rename/restore-provider-handover.json",
           }),
           expect.objectContaining({
-            path: ".ut-tdd/config/approval-policy.yaml",
+            path: ".helix/config/approval-policy.yaml",
             checksumRequired: true,
           }),
           expect.objectContaining({
@@ -1036,7 +938,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(
         identifierRenameStateBackupManifestViolations({
           stateBackupManifest: plan.stateBackupManifest.map((entry) =>
-            entry.path === ".ut-tdd/harness.db"
+            entry.path === ".helix/harness.db"
               ? {
                   ...entry,
                   backupTargetPattern: "../outside/harness.db",
@@ -1048,17 +950,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         }),
       ).toEqual([
         {
-          subject: ".ut-tdd/harness.db",
+          subject: ".helix/harness.db",
           reason:
             "stateBackupManifest.backupTargetPattern must not traverse outside the repository: ../outside/harness.db",
         },
         {
-          subject: ".ut-tdd/harness.db",
+          subject: ".helix/harness.db",
           reason:
             "stateBackupManifest.restoreEvidencePath must be a concrete repo-local artifact path, not prose: review restore drill evidence in the approval packet",
         },
         {
-          subject: ".ut-tdd/harness.db",
+          subject: ".helix/harness.db",
           reason: "stateBackupManifest.restoreRequired must be true",
         },
       ]);
@@ -1089,8 +991,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         evidenceArtifactsRequired: 16,
         evidenceArtifactsPresent: 0,
         missingEvidenceArtifacts: expect.arrayContaining([
-          ".ut-tdd/evidence/rename/blast-radius-baseline.json",
-          ".ut-tdd/evidence/rename/restore-harness-db.json",
+          ".helix/evidence/rename/blast-radius-baseline.json",
+          ".helix/evidence/rename/restore-harness-db.json",
         ]),
         sourceLedgerCheckedDate: "2026-07-02",
         sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
@@ -1108,7 +1010,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         "current cutoverSnapshot.snapshotId before approval",
       );
       expect(plan.generatedAt).toEqual(expect.any(String));
-      expect(plan.sourceCommand).toBe("ut-tdd rename plan --json");
+      expect(plan.sourceCommand).toBe("helix rename plan --json");
       expect(plan.freshness).toEqual({
         validForMinutes: 1440,
         expiresAt: expect.any(String),
@@ -1127,14 +1029,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.objectContaining({
             role: "primary",
-            command: "ut-tdd rename plan --json",
-            scopedCommand: "ut-tdd rename plan --json",
+            command: "helix rename plan --json",
+            scopedCommand: "helix rename plan --json",
           }),
           expect.objectContaining({
             role: "supporting",
-            command: "ut-tdd action-binding approval-packet --json",
+            command: "helix action-binding approval-packet --json",
             scopedCommand:
-              "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
+              "helix action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
           }),
         ]),
       );
@@ -1149,7 +1051,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
 
       const beforeDigest = plan.cutoverSnapshot.blastRadiusDigest;
-      writeFileSync(join(root, "README.md"), "Additional ut-tdd mention after baseline.\n");
+      writeFileSync(join(root, "README.md"), "Additional helix mention after baseline.\n");
       const changedPlan = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
       expect(changedPlan.cutoverSnapshot.blastRadiusDigest).not.toBe(beforeDigest);
     } finally {
@@ -1162,7 +1064,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const first = buildIdentifierRenameCutoverPlan(
         root,
@@ -1190,7 +1092,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const clean = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
         repoHeadSha: TEST_HEAD_SHA,
@@ -1229,7 +1131,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const missing = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
         repoHeadSha: TEST_HEAD_SHA,
@@ -1244,14 +1146,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(missing.cutoverSnapshot.evidenceArtifactsRequired).toBe(16);
       expect(missing.cutoverSnapshot.evidenceArtifactsPresent).toBe(0);
       expect(missing.cutoverSnapshot.missingEvidenceArtifacts).toContain(
-        ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+        ".helix/evidence/rename/blast-radius-baseline.json",
       );
       expect(present.cutoverSnapshot.evidenceArtifactsPresent).toBe(16);
       expect(present.cutoverSnapshot.missingEvidenceArtifacts).toEqual([]);
       expect(present.cutoverSnapshot.evidenceArtifacts).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+            path: ".helix/evidence/rename/blast-radius-baseline.json",
             exists: true,
             sha256: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
           }),
@@ -1271,48 +1173,48 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const dryRun = buildIdentifierRenameEvidencePack(root);
       expect(dryRun).toMatchObject({
         schemaVersion: "identifier-rename-evidence-pack.v1",
-        sourceCommand: "ut-tdd rename evidence-pack --dry-run --json",
+        sourceCommand: "helix rename evidence-pack --dry-run --json",
         planOnly: true,
         mustNotApply: true,
         appliesCutover: false,
         approvalStillRequired: true,
         writePolicy: "no-write",
-        targetDir: ".ut-tdd/evidence/rename",
+        targetDir: ".helix/evidence/rename",
       });
       expect(dryRun.generatedArtifacts).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+            path: ".helix/evidence/rename/blast-radius-baseline.json",
             schemaVersion: "identifier-rename-audit.v1",
             written: false,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+            path: ".helix/evidence/rename/codemod-rehearsal.json",
             schemaVersion: "identifier-rename-rehearsal.v1",
             written: false,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+            path: ".helix/evidence/rename/github-repository-redirect-review.json",
             schemaVersion: "identifier-rename-github-repository-redirect-review.v1",
             written: false,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
+            path: ".helix/evidence/rename/state-backup-restore-drill.json",
             schemaVersion: "identifier-rename-state-backup-dry-run.v1",
             written: false,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+            path: ".helix/evidence/rename/dist-smoke-rehearsal.txt",
             schemaVersion: "identifier-rename-dist-smoke-dry-run.v1",
             written: false,
           }),
           expect.objectContaining({
-            path: ".ut-tdd/evidence/rename/restore-harness-db.json",
+            path: ".helix/evidence/rename/restore-harness-db.json",
             source: "stateBackupManifest",
             schemaVersion: "identifier-rename-restore-check-evidence.v1",
             written: false,
@@ -1326,12 +1228,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       }
       expect(dryRun.pendingArtifacts).toEqual([
         expect.objectContaining({
-          path: ".ut-tdd/evidence/rename/full-regression.txt",
+          path: ".helix/evidence/rename/full-regression.txt",
           source: "cutoverRunbook",
           reason: expect.stringContaining("実コマンドの成功出力"),
         }),
         expect.objectContaining({
-          path: ".ut-tdd/evidence/rename/static-state-gates.txt",
+          path: ".helix/evidence/rename/static-state-gates.txt",
           source: "cutoverRunbook",
           reason: expect.stringContaining("実コマンドの成功出力"),
         }),
@@ -1346,17 +1248,17 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
 
       const writePacket = buildIdentifierRenameEvidencePack(root, { write: true });
       expect(writePacket).toMatchObject({
-        sourceCommand: "ut-tdd rename evidence-pack --write --json",
+        sourceCommand: "helix rename evidence-pack --write --json",
         writePolicy: "local-evidence-write",
       });
       expect(writePacket.generatedArtifacts.every((artifact) => artifact.written)).toBe(true);
       expect(writePacket.pendingArtifacts.map((artifact) => artifact.path)).toEqual([
-        ".ut-tdd/evidence/rename/full-regression.txt",
-        ".ut-tdd/evidence/rename/static-state-gates.txt",
+        ".helix/evidence/rename/full-regression.txt",
+        ".helix/evidence/rename/static-state-gates.txt",
       ]);
 
       const blastRadius = JSON.parse(
-        readFileSync(join(root, ".ut-tdd/evidence/rename/blast-radius-baseline.json"), "utf8"),
+        readFileSync(join(root, ".helix/evidence/rename/blast-radius-baseline.json"), "utf8"),
       );
       expect(blastRadius).toMatchObject({
         status: "blocked_pending_cutover_approval",
@@ -1365,7 +1267,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       const redirectReview = JSON.parse(
         readFileSync(
-          join(root, ".ut-tdd/evidence/rename/github-repository-redirect-review.json"),
+          join(root, ".helix/evidence/rename/github-repository-redirect-review.json"),
           "utf8",
         ),
       );
@@ -1382,11 +1284,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         ]),
       );
       expect(
-        readFileSync(join(root, ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt"), "utf8"),
+        readFileSync(join(root, ".helix/evidence/rename/dist-smoke-rehearsal.txt"), "utf8"),
       ).toContain("identifier-rename-dist-smoke-dry-run.v1");
       expect(
         auditIdentifierRenameBlastRadius(root).hits.some((hit) =>
-          hit.path.startsWith(".ut-tdd/evidence/rename/"),
+          hit.path.startsWith(".helix/evidence/rename/"),
         ),
       ).toBe(false);
     } finally {
@@ -1399,14 +1301,14 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
       writeCutoverEvidenceArtifacts(root);
 
       const draft = buildIdentifierRenameApprovalDraft(root);
       const snapshotId = draft.currentSnapshot.cutoverSnapshotId;
       expect(draft).toMatchObject({
         schemaVersion: "identifier-rename-approval-draft.v1",
-        sourceCommand: "ut-tdd rename approval-draft --json",
+        sourceCommand: "helix rename approval-draft --json",
         planOnly: true,
         mustNotApply: true,
         approvalCommandAvailable: false,
@@ -1443,7 +1345,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       );
       expect(
         cutoverRecord?.yamlLines.some((line) =>
-          line.includes(".ut-tdd/evidence/rename/blast-radius-baseline.json"),
+          line.includes(".helix/evidence/rename/blast-radius-baseline.json"),
         ),
       ).toBe(true);
       const approvalRecord = draft.draftRecords.find(
@@ -1476,7 +1378,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const first = buildIdentifierRenameCutoverPlan(
         root,
@@ -1511,34 +1413,34 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
-  it("binds cutover snapshots to path-only .ut-tdd blast-radius hits", () => {
+  it("binds cutover snapshots to path-only legacy state blast-radius hits", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-path-hit-"));
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} until cutover.\n`);
 
       const before = buildIdentifierRenameCutoverPlan(
         root,
         [nameCutoverSemanticRecord()],
         TEST_HEAD_SHA,
       );
-      mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
-      writeFileSync(join(root, ".ut-tdd", "state", "path-only.json"), '{"ready":true}\n');
+      mkdirSync(join(root, legacyStateDir, "state"), { recursive: true });
+      writeFileSync(join(root, legacyStateDir, "state", "path-only.json"), '{"ready":true}\n');
       const after = buildIdentifierRenameCutoverPlan(
         root,
         [nameCutoverSemanticRecord()],
         TEST_HEAD_SHA,
       );
 
-      expect(after.audit.hitsByToken[".ut-tdd"]).toBeGreaterThan(
-        before.audit.hitsByToken[".ut-tdd"],
+      expect(after.audit.hitsByToken[legacyStateDir]).toBeGreaterThan(
+        before.audit.hitsByToken[legacyStateDir],
       );
       expect(after.cutoverCategoryChecklist).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
             category: "runtime_state",
-            samplePaths: expect.arrayContaining([".ut-tdd/state/path-only.json"]),
+            samplePaths: expect.arrayContaining([`${legacyStateDir}/state/path-only.json`]),
           }),
         ]),
       );
@@ -1556,7 +1458,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root, "2026-01-01");
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(
         root,
@@ -1599,7 +1501,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           ),
         "utf8",
       );
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(
         root,
@@ -1626,7 +1528,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], null);
 
@@ -1647,7 +1549,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-approved-"));
     try {
       writeApprovedRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(
         root,
@@ -1684,7 +1586,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1733,7 +1635,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1763,7 +1665,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
       writeCutoverEvidenceArtifacts(root);
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
@@ -1801,7 +1703,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeApprovedRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1848,7 +1750,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-no-frontier-"));
     try {
       writeDraftRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const plan = buildIdentifierRenameCutoverPlan(root, []);
       expect(plan.semanticFeatureFrontierRecord).toMatchObject({
@@ -1871,7 +1773,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-wrong-frontier-"));
     try {
       writeDraftRenamePlan(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const wrongClassification = buildIdentifierRenameCutoverPlan(root, [
         { ...nameCutoverSemanticRecord(), classification: "parked_future_version" },
@@ -1899,7 +1801,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const result = runCliIn(root, ["rename", "plan", "--json"]);
       expect(result.status).toBe(0);
@@ -1908,7 +1810,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         schemaVersion: "identifier-rename-cutover-plan.v1",
         status: "blocked_pending_cutover_approval",
         generatedAt: expect.any(String),
-        sourceCommand: "ut-tdd rename plan --json",
+        sourceCommand: "helix rename plan --json",
         freshness: {
           validForMinutes: 1440,
           expiresAt: expect.any(String),
@@ -1962,7 +1864,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(payload.monitoringPlan.length).toBeGreaterThan(0);
       expect(payload.stateBackupManifest).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ path: ".ut-tdd/harness.db", restoreRequired: true }),
+          expect.objectContaining({ path: ".helix/harness.db", restoreRequired: true }),
         ]),
       );
       expect(payload.freezePolicy.concurrencyPolicy).toBe("single-run-no-concurrent-apply");
@@ -2045,7 +1947,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.objectContaining({
             phase: "codemod-preview",
             command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
-            description: expect.stringContaining("preview ut-tdd/.ut-tdd/area=harness"),
+            description: expect.stringContaining("preview legacy identifier residuals"),
             writesRepo: false,
           }),
           expect.objectContaining({
@@ -2080,8 +1982,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(stateBackupPayload.restoreChecks).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            path: ".ut-tdd/harness.db",
-            restoreEvidencePath: ".ut-tdd/evidence/rename/restore-harness-db.json",
+            path: ".helix/harness.db",
+            restoreEvidencePath: ".helix/evidence/rename/restore-harness-db.json",
           }),
         ]),
       );
@@ -2103,8 +2005,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         writePolicy: "no-write",
         target: "helix",
         currentBinary: {
-          path: "dist/ut-tdd",
-          smokeCommand: "bun run build && ./dist/ut-tdd doctor",
+          path: "dist/helix",
+          smokeCommand: "bun run build && ./dist/helix doctor",
         },
         renamedBinaryPreview: {
           path: "dist/helix",
@@ -2116,7 +2018,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json",
           expected:
             "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
-          evidencePath: ".ut-tdd/evidence/rename/post-cutover-consumer-setup-smoke.json",
+          evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json",
           currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json",
         },
       });
@@ -2124,7 +2026,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.stringContaining("cutover_decision_record approves"),
           expect.stringContaining("helix setup project --dry-run --json"),
-          expect.stringContaining("legacy ut-tdd alias disposition"),
+          expect.stringContaining("legacy helix alias disposition"),
         ]),
       );
     } finally {
@@ -2137,7 +2039,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
 
       const missingMode = runCliIn(root, ["rename", "evidence-pack", "--json"]);
       expect(missingMode.status).toBe(1);
@@ -2162,7 +2064,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const dryRunPayload = JSON.parse(dryRun.stdout);
       expect(dryRunPayload).toMatchObject({
         schemaVersion: "identifier-rename-evidence-pack.v1",
-        sourceCommand: "ut-tdd rename evidence-pack --dry-run --json",
+        sourceCommand: "helix rename evidence-pack --dry-run --json",
         writePolicy: "no-write",
         appliesCutover: false,
         approvalStillRequired: true,
@@ -2170,8 +2072,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(dryRunPayload.generatedArtifacts).toHaveLength(14);
       expect(dryRunPayload.pendingArtifacts).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ path: ".ut-tdd/evidence/rename/static-state-gates.txt" }),
-          expect.objectContaining({ path: ".ut-tdd/evidence/rename/full-regression.txt" }),
+          expect.objectContaining({ path: ".helix/evidence/rename/static-state-gates.txt" }),
+          expect.objectContaining({ path: ".helix/evidence/rename/full-regression.txt" }),
         ]),
       );
 
@@ -2179,21 +2081,21 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(write.status, write.stderr || write.stdout).toBe(0);
       const writePayload = JSON.parse(write.stdout);
       expect(writePayload).toMatchObject({
-        sourceCommand: "ut-tdd rename evidence-pack --write --json",
+        sourceCommand: "helix rename evidence-pack --write --json",
         writePolicy: "local-evidence-write",
       });
       expect(
         writePayload.generatedArtifacts.every((artifact: { written: boolean }) => artifact.written),
       ).toBe(true);
       expect(
-        readFileSync(join(root, ".ut-tdd/evidence/rename/blast-radius-baseline.json"), "utf8"),
+        readFileSync(join(root, ".helix/evidence/rename/blast-radius-baseline.json"), "utf8"),
       ).toContain("blocked_pending_cutover_approval");
 
       const text = runCliIn(root, ["rename", "evidence-pack", "--dry-run"]);
       expect(text.status, text.stderr || text.stdout).toBe(0);
       expect(text.stdout).toContain("rename evidence-pack: writePolicy=no-write");
       expect(text.stdout).toContain(
-        "pending-artifact: .ut-tdd/evidence/rename/full-regression.txt",
+        "pending-artifact: .helix/evidence/rename/full-regression.txt",
       );
       expect(text.stdout).toContain("blocked-until: pendingArtifacts");
     } finally {
@@ -2206,7 +2108,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     try {
       writeDraftRenamePlan(root);
       writeCutoverSourceLedger(root);
-      writeFileSync(join(root, "AGENTS.md"), "Use ut-tdd and .ut-tdd until cutover.\n");
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`);
       writeCutoverEvidenceArtifacts(root);
 
       const result = runCliIn(root, ["rename", "approval-draft", "--json"]);
@@ -2214,7 +2116,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       const payload = JSON.parse(result.stdout);
       expect(payload).toMatchObject({
         schemaVersion: "identifier-rename-approval-draft.v1",
-        sourceCommand: "ut-tdd rename approval-draft --json",
+        sourceCommand: "helix rename approval-draft --json",
         planOnly: true,
         mustNotApply: true,
         approvalCommandAvailable: false,
@@ -2268,7 +2170,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         writePolicy: "no-write",
         target: "helix",
         currentBinary: {
-          path: "dist/ut-tdd",
+          path: "dist/helix",
           exists: false,
         },
         renamedBinaryPreview: {

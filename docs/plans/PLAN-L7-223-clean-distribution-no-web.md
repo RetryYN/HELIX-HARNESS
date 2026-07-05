@@ -96,37 +96,33 @@ review_evidence:
         output_digest: "sha256:418c5f478cfccae091d9f1df63125e1979593fb1733d315daa0365b09b94ebf1"
 ---
 
-# PLAN-L7-223: clean distribution no-web contract hardening
+# PLAN-L7-223: clean distribution no-web 契約の強化
 
-## Objective
+## 目的
 
-Close the meaning gap in PLAN-L7-157 R2/AC2. "No screen" must mean the clean
-distribution does not carry central UI runtime, web-only tests, or frontend
-residue, not merely that the current dashboard route is unused.
+PLAN-L7-157 R2/AC2 の意味のずれを閉じる。"No screen" は、現在の dashboard route が未使用であることだけでなく、
+clean distribution が central UI runtime、web-only tests、frontend residue を含まないことを意味する。
 
-## Scope
+## 範囲
 
-- Remove the `src/web/` clean distribution allowlist exception.
-- Exclude `tests/web.test.ts` from the clean artifact.
-- Keep the source-repo web implementation and `tests/web.test.ts` working.
-- Make `cli web render` load the web module as an optional runtime module so
-  core clean CLI surfaces do not statically depend on `src/web/`.
-- Backfill PLAN-L7-157, L6 design, L7 unit test design, L3 acceptance test
-  design, and HELIX pillar test design with the stronger no-web contract.
+- `src/web/` の clean distribution allowlist 例外を削除する。
+- clean artifact から `tests/web.test.ts` を除外する。
+- source-repo の web implementation と `tests/web.test.ts` は動作を維持する。
+- `cli web render` は web module を optional runtime module として読み込み、core clean CLI surfaces が
+  `src/web/` に static depend しないようにする。
+- PLAN-L7-157、L6 design、L7 unit test design、L3 acceptance test design、HELIX pillar test design へ、
+  強化した no-web contract を backfill する。
 
-## Non-Scope
+## 対象外
 
-- Does not remove `src/web/` from the source repository.
-- Does not ship or activate central UI/serverless distribution.
-- Does not create an external clean GitHub repo, tag, release, or signed
-  tarball.
-- Does not apply `.ut-tdd -> .helix` identifier migration.
+- source repository から `src/web/` は削除しない。
+- central UI/serverless distribution は ship せず activate しない。
+- 外部 clean GitHub repo、tag、release、signed tarball は作成しない。
+- `.helix -> .helix` identifier migration は適用しない。
 
-## DoD
+## 完了条件
 
 - [x] `buildCleanDistributionPlan` excludes `src/web/` and `tests/web.test.ts`.
-- [x] Local clean artifact acceptance proves install/status/distribution/typecheck
-  without `src/web/`.
-- [x] Source-repo `tests/web.test.ts` remains green.
-- [x] PLAN-L7-157 R2/AC2 and paired L6/L7/L3 test designs share the same
-  no-web meaning.
+- [x] local clean artifact acceptance により、`src/web/` なしで install/status/distribution/typecheck できることを示す。
+- [x] source-repo の `tests/web.test.ts` は green を維持する。
+- [x] PLAN-L7-157 R2/AC2 と対応する L6/L7/L3 test designs が、同じ no-web meaning を共有する。

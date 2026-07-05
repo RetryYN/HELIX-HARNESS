@@ -129,9 +129,9 @@ const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
   pattern: new RegExp(`\\b${term}s?\\b`, "i"),
 }));
 
-const ROUTE_COMMAND_TASK_CLASSIFY = "ut-tdd task classify";
-const ROUTE_COMMAND_DOCTOR = "ut-tdd doctor";
-const ROUTE_COMMAND_PAIR_AGENT_PLAN = "ut-tdd pair-agent plan";
+const ROUTE_COMMAND_TASK_CLASSIFY = "helix task classify";
+const ROUTE_COMMAND_DOCTOR = "helix doctor";
+const ROUTE_COMMAND_PAIR_AGENT_PLAN = "helix pair-agent plan";
 const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/routing-contracts.ts";
 
 export const D_CONTRACT_MODES = [
@@ -625,7 +625,7 @@ export function evaluateRouteCommand(input: {
         [
           finding(
             "legacy-runtime-command",
-            "recommended command must start with ut-tdd; legacy runtime command names are forbidden",
+            "recommended command must start with helix; legacy runtime command names are forbidden",
           ),
         ],
         [ROUTE_CONTRACT_EVIDENCE_PATH],

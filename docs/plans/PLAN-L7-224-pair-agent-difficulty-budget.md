@@ -104,59 +104,58 @@ review_evidence:
         output_digest: "sha256:f37048765d4aaa8fb7ddf4776345f27fb1503919db09bf9e02d8314e96f5ea3c"
 ---
 
-# PLAN-L7-224: pair-agent difficulty budget
+# PLAN-L7-224: pair-agent difficulty budget の難易度予算
 
-## Objective
+## 目的
 
-Close the pair-agent workflow gap where the planner accepted `difficulty` in its
-input type but did not use it to size the TDD fix loop. The requested final
-system needs task-difficulty-aware orchestration, not a constant retry budget.
-The implementation review also found that the green-command digest hard gate
-could force unsafe restamping of historical evidence; this PLAN includes the
-audit-safe gate correction because it is required before commit/push evidence
-can be trusted.
+pair-agent workflow で planner が input type の `difficulty` を受け取る一方、
+TDD fix loop の大きさ決定に使っていなかった gap を閉じる。最終的に必要な
+system は固定 retry budget ではなく、task difficulty を考慮した orchestration
+である。implementation review では、green-command digest hard gate が historical
+evidence の unsafe restamping を強制し得ることも見つかった。この PLAN では、
+commit/push evidence を信頼する前提として必要な audit-safe gate correction も含める。
 
-## Scope
+## スコープ
 
-- Record pair-agent task difficulty and whether it was explicit or inferred.
-- Derive `maxFixCycles` from difficulty when it is not explicitly provided:
+- pair-agent task difficulty と、それが explicit か inferred かを記録する。
+- `maxFixCycles` が明示されていない場合は difficulty から導出する:
   `trivial/simple=1`, `standard=2`, `complex=3`, `critical=4`.
-- Keep explicit `--max-fix-cycles` as an override and mark its source.
-- Expose `--difficulty` on `ut-tdd pair-agent plan/run`.
-- Return `max-fix-cycles-exhausted` when the smart review never reaches
-  `VERDICT: pass` inside the allowed loop.
-- Reject malformed `--max-fix-cycles` values instead of truncating them with
+- 明示された `--max-fix-cycles` は override として維持し、その source を示す。
+- `helix pair-agent plan/run` で `--difficulty` を公開する。
+- allowed loop 内で smart review が `VERDICT: pass` に到達しない場合は
+  `max-fix-cycles-exhausted` を返す。
+- malformed な `--max-fix-cycles` 値は、次で切り詰めずに reject する:
   `parseInt`.
-- Keep `green_commands[].output_digest` as immutable review-time evidence:
-  fake / malformed digest and missing evidence files fail-close, while valid
-  historical digest drift after later file edits does not force unsafe
-  historical PLAN restamping.
-- Backfill L3/L6 design and paired test design.
+- `green_commands[].output_digest` は immutable review-time evidence として維持する。
+  fake / malformed digest と missing evidence files は fail-close にしつつ、後続の
+  file edits による valid historical digest drift は unsafe historical PLAN restamping
+  を強制しない。
+- L3/L6 design と paired test design を backfill する。
 
-## External Basis
+## 外部根拠
 
-- Martin Fowler, "Test Driven Development" (checked 2026-07-01):
+- Martin Fowler, "Test Driven Development"（2026-07-01 確認）:
   https://martinfowler.com/bliki/TestDrivenDevelopment.html
-- NIST SP 800-218 SSDF v1.1 (checked 2026-07-01):
+- NIST SP 800-218 SSDF v1.1（2026-07-01 確認）:
   https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf
-- OWASP Code Review Guide (checked 2026-07-01):
+- OWASP Code Review Guide（2026-07-01 確認）:
   https://owasp.org/www-project-code-review-guide/
 
-## Non-Scope
+## 対象外
 
-- Does not execute external provider CLIs.
-- Does not change T0 frontier approval requirements.
-- Does not activate `.ut-tdd -> .helix` cutover.
-- Does not treat pair-agent local pass as a CI/merge gate substitute.
+- external provider CLIs は実行しない。
+- T0 frontier approval requirements は変更しない。
+- `.helix -> .helix` cutover は activate しない。
+- pair-agent local pass は CI/merge gate の substitute として扱わない。
 
 ## DoD
 
-- [x] Difficulty is present in pair-agent plan output.
-- [x] Missing `maxFixCycles` uses difficulty policy.
-- [x] Explicit `maxFixCycles` remains an override.
-- [x] CLI validates `--difficulty`.
-- [x] CLI validates `--max-fix-cycles` as a positive integer.
-- [x] Max cycle exhaustion emits an error finding.
-- [x] Green-command digest gate blocks fake/malformed evidence without forcing
-      historical digest restamps.
-- [x] L3/L6 design and paired test design describe the policy.
+- [x] Difficulty が pair-agent plan output に含まれる。
+- [x] `maxFixCycles` 未指定時は difficulty policy を使う。
+- [x] 明示された `maxFixCycles` は override のまま維持される。
+- [x] CLI が `--difficulty` を validate する。
+- [x] CLI が `--max-fix-cycles` を positive integer として validate する。
+- [x] Max cycle exhaustion が error finding を emit する。
+- [x] Green-command digest gate が fake/malformed evidence を block し、
+      historical digest restamps は強制しない。
+- [x] L3/L6 design と paired test design が policy を説明する。

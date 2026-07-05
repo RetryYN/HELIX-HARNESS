@@ -35,14 +35,14 @@ describe("HELIX objective evidence audit", () => {
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     );
     expect(text).toContain(
-      "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
+      "git ls-remote https://github.com/unison-ai-product/HELIX-HARNESS-OS.git refs/heads/main",
     );
     expect(text).toContain("distribution_pack_latest_tag");
     expect(text).toContain("sourceStatusDelta");
     expect(text).toContain("workflowRouteImpact");
     expect(text).toContain("b828fcf64c204d1cfa65c729fa590ca9562adccc");
     expect(text).toContain("RetryYN/HELIX-HARNESS");
-    expect(text).toContain("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack");
+    expect(text).toContain("unison-ai-product/HELIX-HARNESS-OS");
     expect(text).toContain("a43771ab091486520a4970f6b19b1663a009d4d0");
     expect(text).toContain("v0.1.4");
     expect(text).toContain("package.json version: `0.1.0`");
@@ -155,7 +155,7 @@ describe("HELIX objective evidence audit", () => {
         "外部 source ledger (checked 2026-07-04)",
         "外部 source ledger (checked 2026-01-01)",
       )
-      .replaceAll("unison-ai-product/UT-TDD_AGENT-HARNESS-Pack", "unison-ai-product/PACK-MISSING")
+      .replaceAll("unison-ai-product/HELIX-HARNESS-OS", "unison-ai-product/PACK-MISSING")
       .replaceAll("a43771ab091486520a4970f6b19b1663a009d4d0", "pack-head-missing")
       .replaceAll("distribution_pack_latest_tag", "distribution_pack_latest_tag_missing")
       .replaceAll("v0.1.4", "pack-tag-missing")
@@ -181,12 +181,12 @@ describe("HELIX objective evidence audit", () => {
     expect(result.violations).toEqual(
       expect.arrayContaining([
         "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-04",
-        "G-01: missing external source marker unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+        "G-01: missing external source marker unison-ai-product/HELIX-HARNESS-OS",
         "G-01: missing external source marker a43771ab091486520a4970f6b19b1663a009d4d0",
         "G-01: missing external source marker v0.1.4",
         "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-04",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
-        "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
+        "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote https://github.com/unison-ai-product/HELIX-HARNESS-OS.git refs/heads/main",
         "G-01: 外部 source ledger distribution_pack_repo observed missing a43771ab091486520a4970f6b19b1663a009d4d0",
         "G-01: 外部 source ledger missing row distribution_pack_latest_tag",
         "G-01: missing distribution version binding marker package.json version: `0.1.0`",

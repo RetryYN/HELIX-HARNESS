@@ -117,23 +117,18 @@ review_evidence:
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
 ---
 
-# PLAN-REVERSE-208: Codex hook feature enablement back-fill
+# PLAN-REVERSE-208: Codex hook feature enablement back-fill（Codex hook 有効化 back-fill）
 
-## R0-R4 Summary
+## R0-R4 概要
 
-- R0: Adapter parity work checked `.codex/hooks.json` structure and shared
-  entrypoints.
-- R1: As-built evidence still allowed a false green state: the hook file could
-  be present while Codex hooks were disabled.
-- R2: The correct as-is model is a two-file direct Codex adapter:
-  `.codex/config.toml` enables hooks, and `.codex/hooks.json` declares the hook
-  wiring.
-- R3: Intent is to make "preimplemented Codex adapter config" mean both declared
-  and enabled.
-- R4: Route to L6 setup/adapter design and L7 lint/test implementation.
+- R0: Adapter parity 作業では `.codex/hooks.json` の構造と共有 entrypoint を確認した。
+- R1: As-built 証跡には、hook file が存在しても Codex hooks が無効のまま green になる偽陽性が残っていた。
+- R2: 正しい現状 model は 2 file の direct Codex adapter である。`.codex/config.toml` が hooks を有効化し、
+  `.codex/hooks.json` が hook wiring を宣言する。
+- R3: 意図は、"preimplemented Codex adapter config" を宣言済みかつ有効化済みの両方を満たす意味にすること。
+- R4: L6 setup/adapter design と L7 lint/test implementation へ routing する。
 
-## Gap Closed
+## 解消したギャップ
 
-The adapter check now proves the direct Codex hook path is enabled, not merely
-documented. This is a semantic correction to the feature list: "Codex hook
-adapter" consists of both config and hook wiring.
+adapter check は、direct Codex hook path が単に文書化されているだけでなく、有効化されていることを証明するようになった。
+これは feature list の意味補正であり、"Codex hook adapter" は config と hook wiring の両方で構成される。

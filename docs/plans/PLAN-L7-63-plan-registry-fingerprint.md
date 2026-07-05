@@ -47,24 +47,23 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-63: plan registry source fingerprint stale gate
+# PLAN-L7-63: PLAN 登録 source fingerprint の stale gate
 
 ## Objective
 
-Make persisted `harness.db` PLAN registration freshness content-aware, not only count-aware.
+永続化された `harness.db` の PLAN 登録鮮度を、件数だけでなく内容にも基づいて判定できるようにする。
 
-`drive-db-registration` already detects missing DB rows and plan count drift. It must also fail when
-the persisted `plan_registry` has the same number of PLANs as `docs/plans/*.md` but was built from
-older markdown content.
+`drive-db-registration` は、DB 行の欠落と PLAN 件数 drift をすでに検出している。永続化された
+`plan_registry` の PLAN 件数が `docs/plans/*.md` と同じでも、古い markdown 内容から構築されている場合は
+fail しなければならない。
 
 ## Scope
 
-- Add `plan_registry.source_hash` as the sha256 of each PLAN markdown file.
-- Project `source_hash` during `rebuildHarnessDb`.
-- Compare an aggregate DB fingerprint with an aggregate current-doc fingerprint in
-  `drive-db-registration`.
-- Add a distinct `stale_plan_registry_fingerprint` violation for same-count stale content.
-- Cover the detector with a direct metatest and projection/schema tests.
+- 各 PLAN markdown file の sha256 として `plan_registry.source_hash` を追加する。
+- `rebuildHarnessDb` の実行中に `source_hash` を projection する。
+- `drive-db-registration` で、DB 側の aggregate fingerprint と現在の doc 側の aggregate fingerprint を比較する。
+- 件数が同じまま内容だけが stale な場合の violation として、専用の `stale_plan_registry_fingerprint` を追加する。
+- detector を direct metatest と projection/schema tests でカバーする。
 
 ## Verification
 
@@ -72,7 +71,7 @@ older markdown content.
 
 ## DoD
 
-- [x] PLAN count drift still reports `stale_plan_registry`.
-- [x] PLAN content drift with unchanged count reports `stale_plan_registry_fingerprint`.
-- [x] Rebuilt DB rows carry `source_hash` values.
-- [x] Existing DB migration repairs the added `source_hash` column.
+- [x] PLAN count drift は引き続き `stale_plan_registry` を報告する。
+- [x] 件数が変わらない PLAN content drift は `stale_plan_registry_fingerprint` を報告する。
+- [x] rebuild された DB rows は `source_hash` values を保持する。
+- [x] 既存 DB migration は追加された `source_hash` column を修復する。

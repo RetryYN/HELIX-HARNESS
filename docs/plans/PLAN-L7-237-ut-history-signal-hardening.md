@@ -92,7 +92,7 @@ surface する。
 
 - Playwright Test retries: `https://playwright.dev/docs/test-retries`
 - Vitest reporters: `https://vitest.dev/guide/reporters`
-- Google SRE monitoring workbook: `https://sre.google/workbook/monitoring/`
+- Google SRE の monitoring workbook: `https://sre.google/workbook/monitoring/`
 
 ## 1. スコープ
 

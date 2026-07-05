@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "identifier-rename-restore-check-evidence.v1",
+  "sourceCommand": "helix rename evidence-pack --write --json",
+  "planOnly": true,
+  "mustNotApply": true,
+  "restoreDrillRequested": true,
+  "check": {
+    "path": ".helix/config/approval-policy.yaml",
+    "backupTargetPattern": ".helix/backups/rename/<timestamp>/config/approval-policy.yaml",
+    "restoreEvidencePath": ".helix/evidence/rename/restore-approval-policy.json",
+    "checksumRequired": true,
+    "restoreRequired": true,
+    "sourceExists": false
+  },
+  "status": "source_missing_requires_disposition"
+}

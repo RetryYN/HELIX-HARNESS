@@ -121,7 +121,7 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-246: source ledger refresh 2026-07-03
+# PLAN-L7-246: source ledger の更新（refresh 2026-07-03）
 
 ## 0. 目的
 

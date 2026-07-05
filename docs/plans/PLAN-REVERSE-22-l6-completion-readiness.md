@@ -32,11 +32,11 @@ review_evidence:
     scope: "L6 completion readiness reverse back-fill reviewed after lint/typecheck/vitest/doctor green; add-impl pairing closed."
 ---
 
-# PLAN-REVERSE-22 (reverse): back-fill L6 completion readiness lint
+# PLAN-REVERSE-22 (reverse): L6 completion readiness lint の back-fill
 
-## §0 Position
+## §0 位置づけ（Position）
 
-Records the Reverse side for the L6 completion readiness add-feature so the add-impl is not orphaned. No upstream requirement change is introduced; the feature operationalizes the existing G6/L6 completion condition.
+L6 completion readiness add-feature の Reverse 側を記録し、add-impl が orphan にならないようにする。上位要件の変更は導入せず、既存 G6/L6 completion condition を運用可能にする。
 
 ## §3.1 実装計画（情報源）
 
@@ -48,7 +48,7 @@ Records the Reverse side for the L6 completion readiness add-feature so the add-
 
 実装:
 
-- Reverse trace is this PLAN plus the `requires` edge from PLAN-L7-23.
+- Reverse trace は本 PLAN と PLAN-L7-23 からの `requires` edge で構成する。
 
 ## §3 工程表
 

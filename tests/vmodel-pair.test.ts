@@ -209,13 +209,13 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "起草済",
     );
     expect(l1).toContain("§2.8 Asset / progress visualization 要求");
-    expect(l3).toContain("§0.1 L1 amendment frontier");
+    expect(l3).toContain("§0.1 L1 要求修正の境界");
     expect(l3).toContain("§0.2 意味ベース機能一覧と要求修正境界");
     expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
     expect(l3).toContain("L1 §2.8 を含む revised");
     expect(l3).toContain("要求修正後の revised request 全体");
     expect(l3).toContain("pair-agent TDD route");
-    expect(l3).toContain("`.ut-tdd -> .helix` rename");
+    expect(l3).toContain("`.helix -> .helix` rename");
     expect(l3).toContain("S3 verified / S4 PO decision pending");
     expect(l3).toContain("G-SF `semantic_feature_frontier_record`");
     expect(l3).toContain(
@@ -379,7 +379,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       expect(l4TestDesign).toContain(required);
     }
     for (const required of [
-      "## §1.1 Route-B contract observation",
+      "## §1.1 Route-B contract 観測",
       "HR-NFR-03R | HC-P1 | scheduler/job contract",
       "HR-NFR-03 | HC-P3 / HC-P7 | verification profile",
       "HR-BR-14R | HC-P1 / HC-P2 | loop CLI",
@@ -393,7 +393,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "契約 11 本",
       "11 契約",
       "nodeTickDeps",
-      "ut-tdd loop run",
+      "helix loop run",
       "U-ORCH-BRIDGE-01",
       "U-ORCH-BRIDGE-02",
       "Route-B back-fill L3 要件 8 件",
@@ -404,7 +404,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
     for (const required of [
       "`nodeTickDeps` | U-ORCH-BRIDGE-01",
-      "`ut-tdd loop run` | U-ORCH-BRIDGE-02",
+      "`helix loop run` | U-ORCH-BRIDGE-02",
       "### U-ORCH-BRIDGE-01",
       "### U-ORCH-BRIDGE-02",
       "HR-BR-13R",
@@ -562,7 +562,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "Claude/Codex hook",
       "subagent",
       "command templates",
-      "bare `ut-tdd`",
+      "bare `helix`",
       "not spawnable on PATH",
       "root の開発用 `.claude` / `.codex` 状態",
     ]) {
@@ -620,7 +620,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     for (const required of [
       "検証戦略 overlay",
       "system verification strategy",
-      "integration verification strategy",
+      "結合検証戦略",
       "runtime verification log design",
       "L7.5 RUN & Debug",
       "projection-only telemetry",
@@ -657,7 +657,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "write_file",
       "exec_command",
       "local_shell",
-      ".ut-tdd",
+      ".helix",
       ".helix",
       "doctor baseline",
       "import report",
@@ -719,7 +719,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-06-helix-pillar-descent.md", "utf8");
 
     for (const required of [
-      "§G-REQ.L3 readiness audit",
+      "§G-REQ.L3 準備状況監査",
       "L1 HBR/HNFR 全件が L3 へ降下済み",
       "L3 FR/NFR/HAC が L12 HAT に孤児なく接続",
       "テスト速度・負荷が要件化済み",
@@ -794,7 +794,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-06-helix-pillar-descent.md", "utf8");
 
     for (const required of [
-      "#### L3 精読 audit",
+      "#### L3 精読監査",
       "docs/design/harness/L3-functional/functional-requirements.md",
       "docs/design/harness/L3-functional/business-detail.md",
       "docs/design/harness/L3-functional/nfr-grade.md",
@@ -816,7 +816,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-06-helix-pillar-descent.md", "utf8");
 
     for (const required of [
-      "### Objective completion audit",
+      "### 目的達成監査",
       "L3 設計をすべて精読し、L1 要求との差異を埋める",
       "Forward workflow に従い要求を 100% 満たせる状態にする",
       "テスト速度アップ・負荷を要件化する",
@@ -851,14 +851,14 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const plan = readFileSync("docs/plans/PLAN-L3-06-helix-pillar-descent.md", "utf8");
 
     for (const required of [
-      "### PO approval packet",
+      "### PO 承認パケット",
       "Codex/TL は自己承認しない",
-      "scope",
-      "completeness",
-      "safety",
-      "operating model",
-      "evidence freshness",
-      "false-green prevention",
+      "範囲",
+      "完全性",
+      "安全性",
+      "運用モデル",
+      "証跡鮮度",
+      "false-green 防止",
       "承認により昇格したファイル",
       "docs/plans/PLAN-L3-06-helix-pillar-descent.md",
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
@@ -885,8 +885,12 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const claude = readFileSync("CLAUDE.md", "utf8");
     const combined = `${readme}\n${roadmap}`;
 
-    expect(agents).toContain("Do not load `docs/design/harness/L3-functional/roadmap.md`");
-    expect(claude).toContain("Do not load `docs/design/harness/L3-functional/roadmap.md`");
+    expect(agents).toContain(
+      "`docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない",
+    );
+    expect(claude).toContain(
+      "`docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない",
+    );
     expect(combined).toContain("Core Reads には含めず");
     expect(combined).toContain("V-model freeze 境界");
     expect(combined).toContain("検証サイクルを実行するときだけ動的に参照");
@@ -1266,13 +1270,13 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l8TestIds).toHaveLength(43);
     expect(l5TestIds).toEqual(l8TestIds);
     for (const required of [
-      "## §3 integration observation contract",
+      "## §3 結合観測 contract",
       "contract input",
       "projection/evidence",
       "contract output",
       "fail-close behavior",
       "negative path",
-      "## §4 source-design coverage",
+      "## §4 source design coverage 対応",
       "workflow は Forward と DB trace へ戻る",
       "budget / lock / stop reason",
       "catalog / registry / contract ledger",
@@ -1313,8 +1317,8 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(plan).not.toContain(
       "sha256:0000000000000000000000000000000000000000000000000000000000000000",
     );
-    expect(plan).toContain(".ut-tdd/evidence/helix-l5/20260629-l5-09-vmodel-pair.json");
-    expect(plan).toContain(".ut-tdd/evidence/helix-l5/20260629-l5-09-plan-lint.json");
+    expect(plan).toContain(".helix/evidence/helix-l5/20260629-l5-09-vmodel-pair.json");
+    expect(plan).toContain(".helix/evidence/helix-l5/20260629-l5-09-plan-lint.json");
     expect(uniqueMatches(docs, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
     expect(docs).not.toContain("HC-P5");
   });
@@ -1396,7 +1400,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "§0.1 実装可能機能一覧の意味境界",
       "pair-agent TDD / loop trace",
       "GitHub/setup/release/identifier rename",
-      "`.ut-tdd -> .helix`",
+      "`.helix -> .helix`",
       "view-model function",
       "VSCode Tree View / Webview",
     ]) {

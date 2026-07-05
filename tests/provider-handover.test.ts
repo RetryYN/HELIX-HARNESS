@@ -55,7 +55,7 @@ describe("provider handover", () => {
     ).toThrow(/different/);
   });
 
-  it("writes package and CURRENT.json under .ut-tdd/handover/provider", () => {
+  it("writes package and CURRENT.json under .helix/handover/provider", () => {
     const d = deps();
     const result = runProviderHandover(
       {
@@ -66,7 +66,7 @@ describe("provider handover", () => {
       },
       d,
     );
-    expect(result.written).toContain(join(".ut-tdd", "handover", "provider", "CURRENT.json"));
+    expect(result.written).toContain(join(".helix", "handover", "provider", "CURRENT.json"));
     const current = readProviderHandoverCurrent(d);
     expect(current?.handover_id).toBe(result.package.handover_id);
   });

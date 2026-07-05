@@ -8,7 +8,7 @@ describe("verifier-provider-mismatch detector", () => {
   it("blocks hybrid self-evaluation rows without blockedReason", () => {
     const result = analyzeVerifierProviderMismatch([
       {
-        path: ".ut-tdd/state/loop/PLAN-X.iterations.jsonl",
+        path: ".helix/state/loop/PLAN-X.iterations.jsonl",
         content: JSON.stringify({
           planId: "PLAN-X",
           iteration: 2,
@@ -34,7 +34,7 @@ describe("verifier-provider-mismatch detector", () => {
   it("allows cross-provider rows and explicit fallback rows", () => {
     const result = analyzeVerifierProviderMismatch([
       {
-        path: ".ut-tdd/state/loop/PLAN-X.iterations.jsonl",
+        path: ".helix/state/loop/PLAN-X.iterations.jsonl",
         content: [
           JSON.stringify({
             planId: "PLAN-X",

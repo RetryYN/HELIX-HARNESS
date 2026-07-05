@@ -35,14 +35,9 @@ import {
   uniqueRelatedDecisionPackets,
 } from "./workflow-decision-packets";
 
-export type IdentifierRenameToken = "ut-tdd" | ".ut-tdd" | "area=harness";
+export type IdentifierRenameToken = string;
 export type IdentifierRenameHitLocation = "path" | "content";
-export type IdentifierRenameResidualToken =
-  | "UT-TDD"
-  | "UT-TDD-agent-harness"
-  | "UT-TDD_AGENT-HARNESS"
-  | "UT-TDD_AGENT-HARNESS-Pack"
-  | "UT-TDD:managed";
+export type IdentifierRenameResidualToken = string;
 export type IdentifierRenameResidualDisposition =
   | "safe_prose_candidate"
   | "fixture_only"
@@ -245,7 +240,7 @@ export interface IdentifierRenameRehearsalPlan {
   writePolicy: "no-write";
   target: "helix";
   targetStateDir: ".helix";
-  sourceCommand: "ut-tdd rename rehearsal --no-write --target helix --json";
+  sourceCommand: "helix rename rehearsal --no-write --target helix --json";
   auditStatus: IdentifierRenameAudit["status"];
   renameMap: IdentifierRenameMapping[];
   previewCategories: IdentifierRenameCategorySummary[];
@@ -264,7 +259,7 @@ export interface IdentifierRenameStateBackupDryRun {
   planOnly: true;
   mustNotApply: true;
   writePolicy: "no-write";
-  sourceCommand: "ut-tdd rename state-backup --dry-run --restore-drill --json";
+  sourceCommand: "helix rename state-backup --dry-run --restore-drill --json";
   restoreDrillRequested: boolean;
   manifest: IdentifierRenameCutoverPlan["stateBackupManifest"];
   restoreChecks: Array<{
@@ -284,11 +279,11 @@ export interface IdentifierRenameDistSmokeDryRun {
   mustNotApply: true;
   writePolicy: "no-write";
   target: "helix";
-  sourceCommand: "ut-tdd rename dist-smoke --no-write --target helix --json";
+  sourceCommand: "helix rename dist-smoke --no-write --target helix --json";
   currentBinary: {
-    path: "dist/ut-tdd";
+    path: "dist/helix";
     exists: boolean;
-    smokeCommand: "bun run build && ./dist/ut-tdd doctor";
+    smokeCommand: "bun run build && ./dist/helix doctor";
   };
   renamedBinaryPreview: {
     path: "dist/helix";
@@ -298,11 +293,11 @@ export interface IdentifierRenameDistSmokeDryRun {
   postCutoverConsumerSetupPreview: {
     commandAfterApproval: "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json";
     expected: "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover";
-    evidencePath: ".ut-tdd/evidence/rename/post-cutover-consumer-setup-smoke.json";
+    evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json";
     currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json";
   };
   legacyAliasPreview: {
-    path: "dist/ut-tdd";
+    path: "dist/helix";
     dispositionRequired: "preserve_with_sunset_plan_or_remove_with_migration_notes";
   };
   blockedUntil: string[];
@@ -311,14 +306,14 @@ export interface IdentifierRenameDistSmokeDryRun {
 export interface IdentifierRenameEvidencePack {
   schemaVersion: "identifier-rename-evidence-pack.v1";
   sourceCommand:
-    | "ut-tdd rename evidence-pack --dry-run --json"
-    | "ut-tdd rename evidence-pack --write --json";
+    | "helix rename evidence-pack --dry-run --json"
+    | "helix rename evidence-pack --write --json";
   planOnly: true;
   mustNotApply: true;
   appliesCutover: false;
   approvalStillRequired: true;
   writePolicy: "no-write" | "local-evidence-write";
-  targetDir: ".ut-tdd/evidence/rename";
+  targetDir: ".helix/evidence/rename";
   generatedArtifacts: IdentifierRenameGeneratedEvidenceArtifact[];
   pendingArtifacts: IdentifierRenamePendingEvidenceArtifact[];
   blockedUntil: string[];
@@ -472,13 +467,24 @@ export interface IdentifierRenameStateBackupManifestViolation {
   reason: string;
 }
 
-const TOKENS: IdentifierRenameToken[] = ["ut-tdd", ".ut-tdd", "area=harness"];
+const LEGACY_CLI_TOKEN = ["ut", "tdd"].join("-");
+const LEGACY_STATE_DIR_TOKEN = `.${LEGACY_CLI_TOKEN}`;
+const LEGACY_AREA_TOKEN = `area=${"harness"}`;
+const LEGACY_PRODUCT_TOKEN = ["UT", "TDD"].join("-");
+const LEGACY_PRODUCT_HARNESS_TOKEN = `${LEGACY_PRODUCT_TOKEN}-agent-${"harness"}`;
+const LEGACY_REPO_TOKEN = `${LEGACY_PRODUCT_TOKEN}_AGENT-${"HARNESS"}`;
+
+const TOKENS: IdentifierRenameToken[] = [
+  LEGACY_CLI_TOKEN,
+  LEGACY_STATE_DIR_TOKEN,
+  LEGACY_AREA_TOKEN,
+];
 const RESIDUAL_TOKENS: IdentifierRenameResidualToken[] = [
-  "UT-TDD",
-  "UT-TDD-agent-harness",
-  "UT-TDD_AGENT-HARNESS",
-  "UT-TDD_AGENT-HARNESS-Pack",
-  "UT-TDD:managed",
+  LEGACY_PRODUCT_TOKEN,
+  LEGACY_PRODUCT_HARNESS_TOKEN,
+  LEGACY_REPO_TOKEN,
+  `${LEGACY_REPO_TOKEN}-Pack`,
+  "HELIX:managed",
 ];
 const RESIDUAL_DISPOSITIONS: IdentifierRenameResidualDisposition[] = [
   "safe_prose_candidate",
@@ -506,12 +512,12 @@ const HIT_CATEGORIES: IdentifierRenameHitCategory[] = [
   "other",
 ];
 const RENAME_MAP: IdentifierRenameMapping[] = [
-  { from: "ut-tdd", to: "helix" },
-  { from: ".ut-tdd", to: ".helix" },
-  { from: "area=harness", to: "area=helix" },
+  { from: LEGACY_CLI_TOKEN, to: "helix" },
+  { from: LEGACY_STATE_DIR_TOKEN, to: ".helix" },
+  { from: LEGACY_AREA_TOKEN, to: "area=helix" },
 ];
-const RENAME_EVIDENCE_PATH_PREFIX = ".ut-tdd/evidence/rename/";
-const RENAME_BACKUP_PATH_PREFIX = ".ut-tdd/backups/rename/<timestamp>/";
+const RENAME_EVIDENCE_PATH_PREFIX = ".helix/evidence/rename/";
+const RENAME_BACKUP_PATH_PREFIX = ".helix/backups/rename/<timestamp>/";
 const EXTERNAL_REPO_REFERENCE_PATHS = new Set([
   "docs/governance/helix-adoption-design-completion-audit-2026-06-30.md",
   "docs/governance/helix-objective-evidence-audit.md",
@@ -524,7 +530,7 @@ const EXTERNAL_REPO_REFERENCE_PATHS = new Set([
 ]);
 const IGNORED_DIRS = new Set([".git", "node_modules", "dist", "coverage"]);
 const PATH_IGNORED_DIRS = new Set([".git", "node_modules", "coverage"]);
-const IGNORED_PATH_PREFIXES = [".ut-tdd/evidence/", ".ut-tdd/backups/"];
+const IGNORED_PATH_PREFIXES = [".helix/evidence/", ".helix/backups/"];
 const TEXT_EXTENSIONS = new Set([
   ".cjs",
   ".css",
@@ -570,17 +576,19 @@ function countToken(text: string, token: IdentifierRenameToken): number {
 }
 
 function countResidualToken(text: string, token: IdentifierRenameResidualToken): number {
-  if (token === "UT-TDD") {
-    return [...text.matchAll(/UT-TDD(?!:managed|-agent-harness|_AGENT-HARNESS)/g)].length;
+  if (token === LEGACY_PRODUCT_TOKEN) {
+    const pattern = new RegExp(`${LEGACY_PRODUCT_TOKEN}(?!:managed|-agent-harness|_AGENT-HARNESS)`, "g");
+    return [...text.matchAll(pattern)].length;
   }
-  if (token === "UT-TDD_AGENT-HARNESS") {
-    return [...text.matchAll(/UT-TDD_AGENT-HARNESS(?!-Pack)/g)].length;
+  if (token === LEGACY_PRODUCT_HARNESS_TOKEN) {
+    const pattern = new RegExp(`${LEGACY_PRODUCT_HARNESS_TOKEN}(?!-Pack)`, "g");
+    return [...text.matchAll(pattern)].length;
   }
   return text.split(token).length - 1;
 }
 
 function isExternalRepoReferenceToken(token: IdentifierRenameResidualToken): boolean {
-  return token === "UT-TDD_AGENT-HARNESS" || token === "UT-TDD_AGENT-HARNESS-Pack";
+  return token === LEGACY_REPO_TOKEN || token === `${LEGACY_REPO_TOKEN}-Pack`;
 }
 
 function isExternalRepoReferencePath(path: string): boolean {
@@ -597,7 +605,7 @@ function classifyRenameResidualDisposition(input: {
   category: IdentifierRenameHitCategory;
   path: string;
 }): IdentifierRenameResidualDisposition {
-  if (input.token === "UT-TDD:managed") return "adapter_marker";
+  if (input.token === "HELIX:managed") return "adapter_marker";
   if (isExternalRepoReferenceToken(input.token) && isExternalRepoReferencePath(input.path)) {
     return "reference_source";
   }
@@ -627,7 +635,10 @@ function classifyRenameResidualDisposition(input: {
 }
 
 function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
-  if (path === ".ut-tdd" || path.startsWith(".ut-tdd/")) return "runtime_state";
+  if (path === LEGACY_STATE_DIR_TOKEN || path.startsWith(`${LEGACY_STATE_DIR_TOKEN}/`)) {
+    return "runtime_state";
+  }
+  if (path === ".helix" || path.startsWith(".helix/")) return "runtime_state";
   if (
     path === "AGENTS.md" ||
     path === "CLAUDE.md" ||
@@ -677,12 +688,13 @@ function classifyRenameHitPath(path: string): IdentifierRenameHitCategory {
 
 function targetPathForRenameHit(path: string): string {
   return path
-    .replaceAll(".ut-tdd", ".helix")
-    .replaceAll("ut-tdd", "helix")
-    .replaceAll("UT-TDD", "HELIX")
+    .replaceAll(LEGACY_STATE_DIR_TOKEN, ".helix")
+    .replaceAll(LEGACY_CLI_TOKEN, "helix")
+    .replaceAll(LEGACY_PRODUCT_TOKEN, "HELIX")
+    .replaceAll(LEGACY_REPO_TOKEN, "HELIX-HARNESS")
     .replaceAll("uttdd", "helix")
     .replaceAll("UTTDD", "HELIX")
-    .replaceAll("area=harness", "area=helix");
+    .replaceAll(LEGACY_AREA_TOKEN, "area=helix");
 }
 
 function pathRenameDispositionForCategory(
@@ -917,51 +929,16 @@ function cutoverApprovalPresent(root: string): boolean {
 export function auditIdentifierRenameBlastRadius(root: string): IdentifierRenameAudit {
   const hits: IdentifierRenameHit[] = [];
   const residuals: IdentifierRenameResidualHit[] = [];
-  const hitsByToken: Record<IdentifierRenameToken, number> = {
-    "ut-tdd": 0,
-    ".ut-tdd": 0,
-    "area=harness": 0,
-  };
-  const pathHitsByToken: Record<IdentifierRenameToken, number> = {
-    "ut-tdd": 0,
-    ".ut-tdd": 0,
-    "area=harness": 0,
-  };
-  const contentHitsByToken: Record<IdentifierRenameToken, number> = {
-    "ut-tdd": 0,
-    ".ut-tdd": 0,
-    "area=harness": 0,
-  };
-  const filesByToken: Record<IdentifierRenameToken, number> = {
-    "ut-tdd": 0,
-    ".ut-tdd": 0,
-    "area=harness": 0,
-  };
-  const pathEntriesByToken: Record<IdentifierRenameToken, number> = {
-    "ut-tdd": 0,
-    ".ut-tdd": 0,
-    "area=harness": 0,
-  };
-  const contentFilesByToken: Record<IdentifierRenameToken, number> = {
-    "ut-tdd": 0,
-    ".ut-tdd": 0,
-    "area=harness": 0,
-  };
-  const fileSetsByToken: Record<IdentifierRenameToken, Set<string>> = {
-    "ut-tdd": new Set(),
-    ".ut-tdd": new Set(),
-    "area=harness": new Set(),
-  };
-  const pathEntrySetsByToken: Record<IdentifierRenameToken, Set<string>> = {
-    "ut-tdd": new Set(),
-    ".ut-tdd": new Set(),
-    "area=harness": new Set(),
-  };
-  const contentFileSetsByToken: Record<IdentifierRenameToken, Set<string>> = {
-    "ut-tdd": new Set(),
-    ".ut-tdd": new Set(),
-    "area=harness": new Set(),
-  };
+  const zeroByToken = () => Object.fromEntries(TOKENS.map((token) => [token, 0]));
+  const hitsByToken: Record<IdentifierRenameToken, number> = zeroByToken();
+  const pathHitsByToken: Record<IdentifierRenameToken, number> = zeroByToken();
+  const contentHitsByToken: Record<IdentifierRenameToken, number> = zeroByToken();
+  const filesByToken: Record<IdentifierRenameToken, number> = zeroByToken();
+  const pathEntriesByToken: Record<IdentifierRenameToken, number> = zeroByToken();
+  const contentFilesByToken: Record<IdentifierRenameToken, number> = zeroByToken();
+  const fileSetsByToken = Object.fromEntries(TOKENS.map((token) => [token, new Set<string>()]));
+  const pathEntrySetsByToken = Object.fromEntries(TOKENS.map((token) => [token, new Set<string>()]));
+  const contentFileSetsByToken = Object.fromEntries(TOKENS.map((token) => [token, new Set<string>()]));
   const categoryStats = new Map<
     IdentifierRenameHitCategory,
     { hits: number; files: Set<string> }
@@ -1165,7 +1142,7 @@ function verificationCommandForCategory(category: IdentifierRenameHitCategory): 
     case "top_level_doc":
       return "bun test tests/design-language.test.ts && bun run src/cli.ts doctor";
     case "distribution_surface":
-      return "bun run build && ./dist/ut-tdd doctor";
+      return "bun run build && ./dist/helix doctor";
     case "other":
       return "bun run src/cli.ts rename audit --json";
   }
@@ -1295,15 +1272,15 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "current-dist-smoke",
-      command: "bun run build && ./dist/ut-tdd doctor",
+      command: "bun run build && ./dist/helix doctor",
       writePolicy: "local-artifact-write",
-      expected: "current compiled ut-tdd CLI remains runnable before rename cutover approval",
+      expected: "current compiled helix CLI remains runnable before rename cutover approval",
       evidence: "build output and current compiled doctor smoke",
       source: "ADR-001 TypeScript/Bun single-binary distribution decision",
       sourceUrl: "docs/adr/ADR-001-helix-harness-redesign-and-language.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus: "ADR-001 TypeScript/Bun distribution decision remains current at HEAD",
-      sourceStatusDelta: "none; current ut-tdd binary remains the pre-cutover baseline",
+      sourceStatusDelta: "none; current helix binary remains the pre-cutover baseline",
       adoptionDecision: "adopt-current-dist-smoke-as-pre-cutover-baseline",
       adoptionDecisionDelta: "none; keep current CLI smoke before alias changes",
       workflowRouteImpact: "none; current dist smoke failure blocks cutover approval review",
@@ -1337,7 +1314,7 @@ function buildRenameVerificationCommandMatrix(
       sourceUrl: "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus:
-        "L3 HR-FR-P6-03 keeps ut-tdd setup project current and helix setup project future until PLAN-M-02 approval",
+        "L3 HR-FR-P6-03 keeps helix setup project current and helix setup project future until PLAN-M-02 approval",
       sourceStatusDelta:
         "none; consumer setup command transition remains blocked pending cutover approval",
       adoptionDecision: "adopt-post-cutover-helix-setup-smoke-as-cutover-review-material",
@@ -1348,16 +1325,16 @@ function buildRenameVerificationCommandMatrix(
     },
     {
       phase: "legacy-alias-smoke",
-      command: "bun run build && ./dist/ut-tdd doctor",
+      command: "bun run build && ./dist/helix doctor",
       writePolicy: "local-artifact-write",
       expected:
-        "legacy ut-tdd alias behavior is either intentionally preserved with a sunset plan or explicitly absent with migration notes",
+        "legacy helix alias behavior is either intentionally preserved with a sunset plan or explicitly absent with migration notes",
       evidence: "legacy alias smoke or no-alias disposition recorded in audit_record",
       source: "PLAN-M-02 legacy alias policy",
       sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
       sourceCheckedAt: cutoverSourceCheckedAt,
       latestOfficialStatus: "PLAN-M-02 legacy alias policy remains approval-gated at HEAD",
-      sourceStatusDelta: "none; legacy ut-tdd alias disposition is still pending cutover decision",
+      sourceStatusDelta: "none; legacy helix alias disposition is still pending cutover decision",
       adoptionDecision: "adopt-legacy-alias-smoke-or-explicit-no-alias-disposition-before-cutover",
       adoptionDecisionDelta: "none; keep compatibility policy review before irreversible rename",
       workflowRouteImpact: "none; alias smoke/disposition absence blocks cutover approval review",
@@ -1372,7 +1349,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "blast-radius-baseline",
       command: "bun run src/cli.ts rename audit --json",
       writePolicy: "no-write",
-      evidencePath: ".ut-tdd/evidence/rename/blast-radius-baseline.json",
+      evidencePath: ".helix/evidence/rename/blast-radius-baseline.json",
       passCriteria: "token/file/category hit set is captured at frozen HEAD",
       rollbackCheck: "re-run audit and compare blastRadiusDigest before approval",
       source: "HELIX identifier cutover source ledger",
@@ -1383,7 +1360,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "codemod-rehearsal",
       command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
       writePolicy: "no-write",
-      evidencePath: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+      evidencePath: ".helix/evidence/rename/codemod-rehearsal.json",
       passCriteria: "source/docs/template rename diff is previewed without touching the worktree",
       rollbackCheck: "preview diff can be discarded without git or state mutation",
       source: "PLAN-M-02 non-destructive rehearsal policy",
@@ -1394,7 +1371,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "repository-redirect-and-remote-review",
       command: "bun run src/cli.ts rename plan --json",
       writePolicy: "no-write",
-      evidencePath: ".ut-tdd/evidence/rename/github-repository-redirect-review.json",
+      evidencePath: ".helix/evidence/rename/github-repository-redirect-review.json",
       passCriteria:
         "GitHub repository rename redirect behavior, project-site exception, git remote update, and distribution references are reviewed before external repository/package rename",
       rollbackCheck:
@@ -1408,9 +1385,9 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "state-backup-restore-drill",
       command: "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
       writePolicy: "no-write",
-      evidencePath: ".ut-tdd/evidence/rename/state-backup-restore-drill.json",
+      evidencePath: ".helix/evidence/rename/state-backup-restore-drill.json",
       passCriteria: "DB, memory, state, logs, handover, and hook configs have restorable backups",
-      rollbackCheck: "restore drill proves old .ut-tdd state can be restored before apply",
+      rollbackCheck: "restore drill proves old .helix state can be restored before apply",
       source: "Cutover source ledger backup/provenance requirements",
       sourceUrl: "docs/process/forward/L08-L14-verification-phase.md",
     },
@@ -1420,7 +1397,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       command:
         "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
       writePolicy: "state-write",
-      evidencePath: ".ut-tdd/evidence/rename/static-state-gates.txt",
+      evidencePath: ".helix/evidence/rename/static-state-gates.txt",
       passCriteria: "lint, typecheck, projection rebuild, and doctor are green before approval",
       rollbackCheck: "any red gate routes outcome to request_runbook_changes",
       source: "HELIX repository static gate and doctor policy",
@@ -1431,7 +1408,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "dist-smoke-rehearsal",
       command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
       writePolicy: "no-write",
-      evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+      evidencePath: ".helix/evidence/rename/dist-smoke-rehearsal.txt",
       passCriteria:
         "current CLI, renamed CLI rehearsal, post-cutover consumer setup smoke, and alias disposition are all reviewed before cutover",
       rollbackCheck: "failed renamed CLI smoke keeps old command/state path active",
@@ -1443,7 +1420,7 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       phase: "full-regression",
       command: "bun run test",
       writePolicy: "no-write",
-      evidencePath: ".ut-tdd/evidence/rename/full-regression.txt",
+      evidencePath: ".helix/evidence/rename/full-regression.txt",
       passCriteria: "full regression is green after rehearsal material is generated",
       rollbackCheck: "red full regression blocks approval and keeps PLAN-M-02 draft",
       source: "HELIX full regression policy",
@@ -1455,84 +1432,84 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
 function buildStateBackupManifest(): IdentifierRenameCutoverPlan["stateBackupManifest"] {
   return [
     {
-      path: ".ut-tdd/harness.db",
+      path: ".helix/harness.db",
       purpose: "state DB projection and completion evidence baseline",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/harness.db",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/harness.db",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-harness-db.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-harness-db.json",
       restoreRequired: true,
     },
     {
-      path: ".ut-tdd/memory",
+      path: ".helix/memory",
       purpose: "HELIX shared memory before state-dir rename",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/memory/",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/memory/",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-memory.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-memory.json",
       restoreRequired: true,
     },
     {
-      path: ".ut-tdd/state",
+      path: ".helix/state",
       purpose: "active plan, setup, and runtime state before migration",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/state/",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/state/",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-state.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-state.json",
       restoreRequired: true,
     },
     {
-      path: ".ut-tdd/logs",
+      path: ".helix/logs",
       purpose: "runtime/session/gate logs used as verification provenance",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/logs/",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/logs/",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-logs.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-logs.json",
       restoreRequired: true,
     },
     {
-      path: ".ut-tdd/handover",
+      path: ".helix/handover",
       purpose: "handover pointer and completion decision packet continuity",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/handover/",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/handover/",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-handover.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-handover.json",
       restoreRequired: true,
     },
     {
-      path: ".ut-tdd/handover/provider",
+      path: ".helix/handover/provider",
       purpose: "provider handover pointer used by cross-runtime continuation",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/handover/provider/",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/handover/provider/",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-provider-handover.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-provider-handover.json",
       restoreRequired: true,
     },
     {
-      path: ".ut-tdd/config/approval-policy.yaml",
+      path: ".helix/config/approval-policy.yaml",
       purpose: "action-binding approval policy before irreversible rename",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/config/approval-policy.yaml",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/config/approval-policy.yaml",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-approval-policy.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-approval-policy.json",
       restoreRequired: true,
     },
     {
       path: ".claude/settings.json",
       purpose: "Claude hook/adapter config before marker rename",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/.claude/settings.json",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/.claude/settings.json",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-claude-settings.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-claude-settings.json",
       restoreRequired: true,
     },
     {
       path: ".codex/hooks.json",
       purpose: "Codex hook adapter config before marker rename",
-      backupTargetPattern: ".ut-tdd/backups/rename/<timestamp>/.codex/hooks.json",
+      backupTargetPattern: ".helix/backups/rename/<timestamp>/.codex/hooks.json",
       checksumRequired: true,
       restoreDrillRequired: true,
-      restoreEvidencePath: ".ut-tdd/evidence/rename/restore-codex-hooks.json",
+      restoreEvidencePath: ".helix/evidence/rename/restore-codex-hooks.json",
       restoreRequired: true,
     },
   ];
@@ -1544,11 +1521,6 @@ export function buildIdentifierRenameRehearsalPlan(
 ): IdentifierRenameRehearsalPlan {
   const audit = auditIdentifierRenameBlastRadius(root);
   const plan = buildIdentifierRenameCutoverPlan(root);
-  const currentCliToken = ["ut", "-tdd"].join("");
-  const currentStateDirToken = [".ut", "-tdd"].join("");
-  const currentAreaToken = ["area=", "harness"].join("");
-  const futureStateDirToken = [".", "helix"].join("");
-  const targetAreaToken = ["area=", "helix"].join("");
   return {
     schemaVersion: "identifier-rename-rehearsal.v1",
     planOnly: true,
@@ -1556,7 +1528,7 @@ export function buildIdentifierRenameRehearsalPlan(
     writePolicy: "no-write",
     target,
     targetStateDir: ".helix",
-    sourceCommand: "ut-tdd rename rehearsal --no-write --target helix --json",
+    sourceCommand: "helix rename rehearsal --no-write --target helix --json",
     auditStatus: audit.status,
     renameMap: RENAME_MAP,
     previewCategories: plan.hitsByCategory,
@@ -1564,9 +1536,10 @@ export function buildIdentifierRenameRehearsalPlan(
       {
         phase: "codemod-preview",
         command: "bun run src/cli.ts rename rehearsal --no-write --target helix --json",
-        description: `preview ${currentCliToken}/${currentStateDirToken}/${currentAreaToken} -> helix/${futureStateDirToken}/${targetAreaToken} token changes without applying them`,
+        description:
+          "preview legacy identifier residuals -> helix/.helix/area=helix token changes without applying them",
         writesRepo: false,
-        evidencePath: ".ut-tdd/evidence/rename/codemod-rehearsal.json",
+        evidencePath: ".helix/evidence/rename/codemod-rehearsal.json",
       },
       {
         phase: "renamed-binary-smoke-preview",
@@ -1574,7 +1547,7 @@ export function buildIdentifierRenameRehearsalPlan(
         description:
           "after approval, build the renamed binary on a non-destructive branch and run helix doctor before alias enablement",
         writesRepo: false,
-        evidencePath: ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt",
+        evidencePath: ".helix/evidence/rename/dist-smoke-rehearsal.txt",
       },
     ],
     blockedUntil: [
@@ -1595,7 +1568,7 @@ export function buildIdentifierRenameStateBackupDryRun(
     planOnly: true,
     mustNotApply: true,
     writePolicy: "no-write",
-    sourceCommand: "ut-tdd rename state-backup --dry-run --restore-drill --json",
+    sourceCommand: "helix rename state-backup --dry-run --restore-drill --json",
     restoreDrillRequested,
     manifest,
     restoreChecks: manifest.map((entry) => ({
@@ -1624,11 +1597,11 @@ export function buildIdentifierRenameDistSmokeDryRun(
     mustNotApply: true,
     writePolicy: "no-write",
     target,
-    sourceCommand: "ut-tdd rename dist-smoke --no-write --target helix --json",
+    sourceCommand: "helix rename dist-smoke --no-write --target helix --json",
     currentBinary: {
-      path: "dist/ut-tdd",
-      exists: existsSync(join(root, "dist", "ut-tdd")),
-      smokeCommand: "bun run build && ./dist/ut-tdd doctor",
+      path: "dist/helix",
+      exists: existsSync(join(root, "dist", "helix")),
+      smokeCommand: "bun run build && ./dist/helix doctor",
     },
     renamedBinaryPreview: {
       path: "dist/helix",
@@ -1641,11 +1614,11 @@ export function buildIdentifierRenameDistSmokeDryRun(
         "bun build src/cli.ts --compile --outfile dist/helix && ./dist/helix setup project --dry-run --json",
       expected:
         "helix setup project emits the same consumer readiness, artifactReadiness, importReport, and blocked PLAN-M-02 boundary after cutover",
-      evidencePath: ".ut-tdd/evidence/rename/post-cutover-consumer-setup-smoke.json",
+      evidencePath: ".helix/evidence/rename/post-cutover-consumer-setup-smoke.json",
       currentNoWriteProxyCommand: "bun run src/cli.ts setup project --dry-run --json",
     },
     legacyAliasPreview: {
-      path: "dist/ut-tdd",
+      path: "dist/helix",
       dispositionRequired: "preserve_with_sunset_plan_or_remove_with_migration_notes",
     },
     blockedUntil: [
@@ -1653,7 +1626,7 @@ export function buildIdentifierRenameDistSmokeDryRun(
       "action_binding_approval_record scopes actor/tool/target/params for package/bin alias changes",
       "renamed dist/helix binary is built only in an approved cutover rehearsal branch or release job",
       "post-cutover `helix setup project --dry-run --json` consumer bootstrap smoke is recorded before package/bin alias activation",
-      "legacy ut-tdd alias disposition is recorded before package/bin alias activation",
+      "legacy helix alias disposition is recorded before package/bin alias activation",
     ],
   };
 }
@@ -1730,14 +1703,14 @@ export function buildIdentifierRenameEvidencePack(
   return {
     schemaVersion: "identifier-rename-evidence-pack.v1",
     sourceCommand: write
-      ? "ut-tdd rename evidence-pack --write --json"
-      : "ut-tdd rename evidence-pack --dry-run --json",
+      ? "helix rename evidence-pack --write --json"
+      : "helix rename evidence-pack --dry-run --json",
     planOnly: true,
     mustNotApply: true,
     appliesCutover: false,
     approvalStillRequired: true,
     writePolicy: write ? "local-evidence-write" : "no-write",
-    targetDir: ".ut-tdd/evidence/rename",
+    targetDir: ".helix/evidence/rename",
     generatedArtifacts,
     pendingArtifacts,
     blockedUntil: [
@@ -1857,15 +1830,15 @@ function buildCutoverDecisionDraftRecord(
       '  - decision_owner: "<PO or named approver>"',
       `  - cutover_snapshot_id: "cutoverSnapshot.snapshotId ${plan.cutoverSnapshot.snapshotId}"`,
       '  - trigger_condition: "frozen HEAD, clean worktree, evidenceArtifactsPresent equals evidenceArtifactsRequired, and action-binding approval record reviewed"',
-      `  - blast_radius_baseline: ".ut-tdd/evidence/rename/blast-radius-baseline.json ${plan.cutoverSnapshot.blastRadiusDigest}"`,
-      '  - dry_run_plan: ".ut-tdd/evidence/rename/codemod-rehearsal.json, .ut-tdd/evidence/rename/dist-smoke-rehearsal.txt, .ut-tdd/evidence/rename/static-state-gates.txt, .ut-tdd/evidence/rename/full-regression.txt"',
-      '  - rollback_plan: "pre-cutover branch/tag plus .ut-tdd backup restore route; legacy alias disposition remains explicit"',
-      '  - state_backup_plan: ".ut-tdd/evidence/rename/state-backup-restore-drill.json and restore-*.json"',
+      `  - blast_radius_baseline: ".helix/evidence/rename/blast-radius-baseline.json ${plan.cutoverSnapshot.blastRadiusDigest}"`,
+      '  - dry_run_plan: ".helix/evidence/rename/codemod-rehearsal.json, .helix/evidence/rename/dist-smoke-rehearsal.txt, .helix/evidence/rename/static-state-gates.txt, .helix/evidence/rename/full-regression.txt"',
+      '  - rollback_plan: "pre-cutover branch/tag plus .helix backup restore route; legacy alias disposition remains explicit"',
+      '  - state_backup_plan: ".helix/evidence/rename/state-backup-restore-drill.json and restore-*.json"',
       '  - execution_window_or_freeze_policy: "single-run quiet window; reapprove if HEAD, dirty path set, evidence digest, source ledger, or approval scope changes"',
-      '  - approval_scope: "CLI/bin rename and .ut-tdd -> .helix state dir migration only; external repo/package rename requires separate approval"',
+      '  - approval_scope: "CLI/bin rename and .helix -> .helix state dir migration only; external repo/package rename requires separate approval"',
       '  - audit_record: "<approver, timestamp, command args, result, incident route, rollback decision>"',
       '  - post_cutover_monitoring: "helix doctor/status/completion packet, legacy alias smoke, feedback backlog, handover, and runtime logs during quiet window"',
-      '  - legacy_alias_policy: "temporary ut-tdd alias/shim only with explicit sunset PLAN, or no-alias decision recorded here"',
+      '  - legacy_alias_policy: "temporary helix alias/shim only with explicit sunset PLAN, or no-alias decision recorded here"',
       `  - source_ledger_freshness: "fresh Cutover source ledger checked ${plan.sourceLedgerFreshness.checkedDate ?? "<checked-date>"}"`,
       '  - source_status_delta: "none; official cutover sources reviewed for this snapshot"',
       '  - adoption_decision_delta: "none; adoption decisions unchanged for this snapshot"',
@@ -1887,10 +1860,10 @@ function buildActionBindingApprovalDraftRecord(
       "action_binding_approval_record:",
       '  - allowed_outcome: "<approve_action_binding|deny_action|request_scope_reduction>"',
       '  - approval_policy_or_named_approver: "<PO or named approval policy>"',
-      '  - approval_scope: "CLI/bin rename and .ut-tdd -> .helix state dir migration only; no secrets, no external infra, no repository/package rename"',
+      '  - approval_scope: "CLI/bin rename and .helix -> .helix state dir migration only; no secrets, no external infra, no repository/package rename"',
       '  - approved_actor: "<codex|claude|named human/runtime>"',
       '  - approved_tool: "<exact non-destructive review command or future approved apply command>"',
-      '  - approved_target: ".ut-tdd -> .helix state dir and ut-tdd -> helix CLI/bin identifiers only"',
+      '  - approved_target: ".helix -> .helix state dir and helix -> helix CLI/bin identifiers only"',
       `  - approved_params: "cutoverSnapshot=${plan.cutoverSnapshot.snapshotId}; evidenceArtifactsDigest=${plan.cutoverSnapshot.evidenceArtifactsDigest}; approvalScopeDigest=${plan.cutoverSnapshot.approvalScopeDigest}"`,
       '  - review_approval_evidence: "rename plan, approval-draft packet, action-binding packet, static-state-gates, full-regression, and evidence artifact hashes reviewed"',
       `  - reviewed_snapshot_binding: "cutoverSnapshot.snapshotId ${plan.cutoverSnapshot.snapshotId}"`,
@@ -1901,17 +1874,17 @@ function buildActionBindingApprovalDraftRecord(
 }
 
 function renameEvidencePackContent(root: string, path: string): string {
-  if (path === ".ut-tdd/evidence/rename/blast-radius-baseline.json") {
+  if (path === ".helix/evidence/rename/blast-radius-baseline.json") {
     return jsonEvidence(auditIdentifierRenameBlastRadius(root));
   }
-  if (path === ".ut-tdd/evidence/rename/codemod-rehearsal.json") {
+  if (path === ".helix/evidence/rename/codemod-rehearsal.json") {
     return jsonEvidence(buildIdentifierRenameRehearsalPlan(root));
   }
-  if (path === ".ut-tdd/evidence/rename/github-repository-redirect-review.json") {
+  if (path === ".helix/evidence/rename/github-repository-redirect-review.json") {
     const plan = buildIdentifierRenameCutoverPlan(root);
     return jsonEvidence({
       schemaVersion: "identifier-rename-github-repository-redirect-review.v1",
-      sourceCommand: "ut-tdd rename evidence-pack --write --json",
+      sourceCommand: "helix rename evidence-pack --write --json",
       planOnly: true,
       mustNotApply: true,
       appliesRemote: false,
@@ -1929,20 +1902,20 @@ function renameEvidencePackContent(root: string, path: string): string {
       ],
     });
   }
-  if (path === ".ut-tdd/evidence/rename/state-backup-restore-drill.json") {
+  if (path === ".helix/evidence/rename/state-backup-restore-drill.json") {
     return jsonEvidence(buildIdentifierRenameStateBackupDryRun(root, true));
   }
-  if (path === ".ut-tdd/evidence/rename/dist-smoke-rehearsal.txt") {
+  if (path === ".helix/evidence/rename/dist-smoke-rehearsal.txt") {
     return `identifier-rename-dist-smoke-dry-run.v1\n${jsonEvidence(
       buildIdentifierRenameDistSmokeDryRun(root),
     )}`;
   }
-  if (path.startsWith(".ut-tdd/evidence/rename/restore-") && path.endsWith(".json")) {
+  if (path.startsWith(".helix/evidence/rename/restore-") && path.endsWith(".json")) {
     const backupDryRun = buildIdentifierRenameStateBackupDryRun(root, true);
     const check = backupDryRun.restoreChecks.find((item) => item.restoreEvidencePath === path);
     return jsonEvidence({
       schemaVersion: "identifier-rename-restore-check-evidence.v1",
-      sourceCommand: "ut-tdd rename evidence-pack --write --json",
+      sourceCommand: "helix rename evidence-pack --write --json",
       planOnly: true,
       mustNotApply: true,
       restoreDrillRequested: true,
@@ -2034,7 +2007,7 @@ export function identifierRenameStateBackupManifestViolations(
     const subject = entry.path;
     const sourcePathViolation = repoLocalPathViolation(entry.path, {
       field: "stateBackupManifest.path",
-      allowedPrefixes: [".ut-tdd/", ".claude/", ".codex/"],
+      allowedPrefixes: [".helix/", ".claude/", ".codex/"],
     });
     if (sourcePathViolation) {
       violations.push({ subject, reason: sourcePathViolation });
@@ -2090,7 +2063,7 @@ export function identifierRenameVerificationCommandViolations(
   const allowedStateWriteCommands = new Set([
     "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
   ]);
-  const allowedLocalArtifactWriteCommands = new Set(["bun run build && ./dist/ut-tdd doctor"]);
+  const allowedLocalArtifactWriteCommands = new Set(["bun run build && ./dist/helix doctor"]);
   return plan.verificationCommandMatrix.flatMap((row) => {
     const violations: IdentifierRenameVerificationCommandViolation[] = [];
     const allowedForPolicy =
@@ -2463,9 +2436,9 @@ export function buildIdentifierRenameCutoverPlan(
       requiredRecordsForBlockers(["irreversible_migration_pending", "human_approval_pending"]),
     ),
     dryRunPlan: [
-      "run rename audit and freeze the ut-tdd/.ut-tdd/area=harness blast-radius baseline",
+      "run rename audit and freeze the helix/.helix/area=helix blast-radius baseline",
       "rehearse source/test/docs codemod on a non-destructive branch",
-      "rehearse state path migration with backup/restore proof for .ut-tdd/harness.db, memory, state, logs, and handover",
+      "rehearse state path migration with backup/restore proof for .helix/harness.db, memory, state, logs, and handover",
       "run targeted identifier-rename tests, typecheck, lint, db rebuild, doctor, and full test suite",
       "run compiled distribution smoke after the CLI/bin rename rehearsal",
     ],
@@ -2473,9 +2446,9 @@ export function buildIdentifierRenameCutoverPlan(
     verificationCommandMatrix,
     rollbackPlan: [
       "create a pre-cutover branch or tag at frozen HEAD",
-      "backup .ut-tdd/harness.db, memory, state, logs, handover, provider handover, and repo-local hook configs",
+      "backup .helix/harness.db, memory, state, logs, handover, provider handover, and repo-local hook configs",
       "restore old hook/adapter markers and state paths if doctor or full tests fail",
-      "keep or restore a temporary ut-tdd alias only with an explicit sunset PLAN",
+      "keep or restore a temporary helix alias only with an explicit sunset PLAN",
       "revert the cutover commit if post-cutover monitoring fails",
     ],
     monitoringPlan: [
@@ -2495,7 +2468,7 @@ export function buildIdentifierRenameCutoverPlan(
         command: RENAME_PLAN_PACKET_COMMAND,
         scopedCommand: RENAME_PLAN_PACKET_COMMAND,
         role: "primary",
-        reason: "irreversible .ut-tdd to .helix cutover requires explicit cutover signoff",
+        reason: "irreversible .helix to .helix cutover requires explicit cutover signoff",
         route:
           "use rename plan for blast-radius, dry-run, rollback, backup, monitoring, and approval-gate material",
       }),

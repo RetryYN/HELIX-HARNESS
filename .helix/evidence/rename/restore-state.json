@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "identifier-rename-restore-check-evidence.v1",
+  "sourceCommand": "helix rename evidence-pack --write --json",
+  "planOnly": true,
+  "mustNotApply": true,
+  "restoreDrillRequested": true,
+  "check": {
+    "path": ".helix/state",
+    "backupTargetPattern": ".helix/backups/rename/<timestamp>/state/",
+    "restoreEvidencePath": ".helix/evidence/rename/restore-state.json",
+    "checksumRequired": true,
+    "restoreRequired": true,
+    "sourceExists": true
+  },
+  "status": "source_present_for_restore_drill"
+}

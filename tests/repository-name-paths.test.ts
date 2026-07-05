@@ -6,7 +6,7 @@ import {
 } from "../src/lint/repository-name-paths";
 
 describe("repository path naming", () => {
-  it("keeps legacy UT-TDD_AGENT-HARNESS repository names out of file and folder paths", () => {
+  it("keeps legacy HELIX-HARNESS repository names out of file and folder paths", () => {
     const result = analyzeRepositoryNamePaths(loadRepositoryNamePathsInput());
 
     expect(result.ok).toBe(true);
@@ -16,29 +16,34 @@ describe("repository path naming", () => {
   });
 
   it("fails when legacy repository names return to tracked or filesystem paths", () => {
+    const legacyDashedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join("-");
+    const legacyCompactRepo = ["UTTDD", "AGENT", "HARNESS"].join("");
+    const legacySpacedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join(" ");
+    const legacyUnderscorePack = [["UT", "TDD"].join("_"), "AGENT", "HARNESS-Pack"].join("_");
+    const legacyDottedPack = ["ut", "tdd", "agent", "harness", "pack"].join(".");
     const result = analyzeRepositoryNamePaths({
       trackedPaths: [
-        "docs/UT-TDD_AGENT-HARNESS-plan.md",
+        `docs/${legacyDashedRepo}-plan.md`,
         "docs/uttdd-agent-harness-plan.md",
-        "docs/UT TDD Agent Harness plan.md",
+        `docs/${legacySpacedRepo} plan.md`,
       ],
       filesystemPaths: [
-        "tmp/UT_TDD_AGENT_HARNESS-Pack",
-        "tmp/UTTDDAGENTHARNESS-Pack",
-        "tmp/ut.tdd.agent.harness.pack",
+        `tmp/${legacyUnderscorePack}`,
+        `tmp/${legacyCompactRepo}-Pack`,
+        `tmp/${legacyDottedPack}`,
       ],
     });
 
     expect(result.ok).toBe(false);
     expect(result.trackedResidue).toEqual([
-      "docs/UT-TDD_AGENT-HARNESS-plan.md",
+      `docs/${legacyDashedRepo}-plan.md`,
       "docs/uttdd-agent-harness-plan.md",
-      "docs/UT TDD Agent Harness plan.md",
+      `docs/${legacySpacedRepo} plan.md`,
     ]);
     expect(result.filesystemResidue).toEqual([
-      "tmp/UT_TDD_AGENT_HARNESS-Pack",
-      "tmp/UTTDDAGENTHARNESS-Pack",
-      "tmp/ut.tdd.agent.harness.pack",
+      `tmp/${legacyUnderscorePack}`,
+      `tmp/${legacyCompactRepo}-Pack`,
+      `tmp/${legacyDottedPack}`,
     ]);
     expect(repositoryNamePathsMessages(result)[0]).toContain("repository-name-paths - violation");
   });

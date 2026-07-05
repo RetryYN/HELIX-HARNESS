@@ -45,29 +45,28 @@ review_evidence:
     reviewer_model: codex-intra-runtime
 ---
 
-# PLAN-L7-103: Reverse fullback backprop gate
+# PLAN-L7-103: Reverse fullback backprop gate（Reverse fullback 逆伝播 gate）
 
-## Objective
+## 目的
 
-Prevent future Reverse PLANs from claiming `confirmed_reverse_type=fullback` without naming the
-design, governance, or test-design artifact that received the backprop.
+今後の Reverse PLAN が、backprop を受け取った design / governance / test-design artifact を明記せずに
+`confirmed_reverse_type=fullback` を主張できないようにする。
 
-## Scope
+## スコープ
 
-- Add `reverse_fullback_backprop_missing` to `plan-governance`.
-- Enforce the rule for confirmed/completed R4 fullback PLANs updated on or after 2026-06-22.
-- Preserve legacy operation by recording older gaps in an audit table instead of retroactively
-  breaking doctor.
-- Correct PLAN-REVERSE-101 so the current slice also follows the new rule.
+- `plan-governance` に `reverse_fullback_backprop_missing` を追加する。
+- 2026-06-22 以降に更新された confirmed/completed の R4 fullback PLAN にこの rule を適用する。
+- 既存運用を壊さないため、古い gap は doctor を遡及的に壊さず audit table に記録する。
+- 現在の slice も新しい rule に従うように PLAN-REVERSE-101 を修正する。
 
-## Acceptance Criteria
+## 受入条件
 
-- A new R4 fullback PLAN that only generates itself fails with
-  `reverse_fullback_backprop_missing`.
-- A new R4 fullback PLAN that generates a design/governance/test-design artifact passes.
-- Legacy fullback debt before 2026-06-22 remains visible in
-  `reverse-fullback-backprop-audit-2026-06-22.md` and does not break current doctor.
-- `bun test tests/plan-lint.test.ts` passes.
-- `bun run typecheck` passes.
-- `bun run lint` passes.
-- `bun run src\cli.ts doctor` passes.
+- 自身だけを `generates` に持つ新規 R4 fullback PLAN は
+  `reverse_fullback_backprop_missing` で失敗する。
+- design/governance/test-design artifact を `generates` に持つ新規 R4 fullback PLAN は通過する。
+- 2026-06-22 より前の legacy fullback debt は
+  `reverse-fullback-backprop-audit-2026-06-22.md` に可視化されたまま、現行 doctor を壊さない。
+- `bun test tests/plan-lint.test.ts` が通過する。
+- `bun run typecheck` が通過する。
+- `bun run lint` が通過する。
+- `bun run src\cli.ts doctor` が通過する。

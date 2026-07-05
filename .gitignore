@@ -9,30 +9,30 @@ AGENTS.override.md
 *.key
 credentials.json
 
-# UT-TDD runtime state
-.ut-tdd/audit/*.jsonl
-.ut-tdd/audit/escalation_state.json
-.ut-tdd/cache/*
-!.ut-tdd/cache/.gitkeep
-.ut-tdd/state/*
-!.ut-tdd/state/.gitkeep
-.ut-tdd/handover/CURRENT.*
-.ut-tdd/handover/*.bak
-# Auto-generated CURRENT handover prose (regenerated each `ut-tdd handover`, mirrors the
+# HELIX runtime state
+.helix/audit/*.jsonl
+.helix/audit/escalation_state.json
+.helix/cache/*
+!.helix/cache/.gitkeep
+.helix/state/*
+!.helix/state/.gitkeep
+.helix/handover/CURRENT.*
+.helix/handover/*.bak
+# Auto-generated CURRENT handover prose (regenerated each `helix handover`, mirrors the
 # gitignored CURRENT.json, and currently embeds absolute local paths in its digest). It is
 # runtime scratch — the canonical handover is harness.db feedback_events. Already-tracked
 # historical handover docs stay tracked (gitignore never untracks). PLAN-L7-144 follow-up.
 docs/handover/session-handover-*.md
-.ut-tdd/logs/
-.ut-tdd/adapters/local*.yaml
-.ut-tdd/teams/local*.yaml
-.ut-tdd/tmp/
+.helix/logs/
+.helix/adapters/local*.yaml
+.helix/teams/local*.yaml
+.helix/tmp/
 # harness.db projection (runtime state, rebuildable from docs/state/logs; never tracked)
-.ut-tdd/harness.db
-.ut-tdd/harness.db-wal
-.ut-tdd/harness.db-shm
+.helix/harness.db
+.helix/harness.db-wal
+.helix/harness.db-shm
 # Codex 委譲タスク入力 (transient、PM が貼る目標プロンプト)
-.ut-tdd/codex-tasks/
+.helix/codex-tasks/
 .tools/
 # 外部 DL の設計テンプレ研究素材 (transient scratch、アーキ境界外・成果物でない)
 downloads/

@@ -46,13 +46,13 @@ const RECORD = [
   "- approval_policy_or_named_approver: PO approval policy",
   "- approval_scope: limited scope for actor/tool/target/params for a high-impact action only",
   "- approved_actor: PO-named operator",
-  "- approved_tool: ut-tdd CLI action wrapper",
+  "- approved_tool: helix CLI action wrapper",
   "- approved_target: Cloudflare deployment target",
   "- approved_params: reviewed command parameters hash",
-  "- review_approval_evidence: .ut-tdd/evidence/action-binding/review.json result=pass",
+  "- review_approval_evidence: .helix/evidence/action-binding/review.json result=pass",
   "- reviewed_snapshot_binding: no snapshot-bearing packet applies to this approval",
   "- expires_at_or_trigger: before activation or scope change",
-  "- audit_record: .ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+  "- audit_record: .helix/audit/A-123-action-binding.json approver action command result incident route",
 ].join("\n");
 
 const VERSION_UP_MODE_DOC = "Version-up source ledger (checked 2026-06-30)";
@@ -265,7 +265,7 @@ describe("action-binding approval readiness", () => {
       approvalAllowed: false,
       allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
       generatedAt: expect.any(String),
-      sourceCommand: "ut-tdd action-binding approval-packet --json",
+      sourceCommand: "helix action-binding approval-packet --json",
       freshness: {
         validForMinutes: 1440,
         expiresAt: expect.any(String),
@@ -472,8 +472,8 @@ describe("action-binding approval readiness", () => {
     expect(packet.relatedDecisionPackets).toEqual([
       expect.objectContaining({
         role: "primary",
-        command: "ut-tdd action-binding approval-packet --json",
-        scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-X",
+        command: "helix action-binding approval-packet --json",
+        scopedCommand: "helix action-binding approval-packet --json --plan PLAN-X",
       }),
     ]);
   });
@@ -524,8 +524,8 @@ describe("action-binding approval readiness", () => {
     expect(packets.find((p) => p.planId === "PLAN-DISCOVERY-10")?.relatedDecisionPackets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          command: "ut-tdd s4 decision-packet --json",
-          scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+          command: "helix s4 decision-packet --json",
+          scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10",
         }),
       ]),
     );
@@ -542,8 +542,8 @@ describe("action-binding approval readiness", () => {
     expect(packets.find((p) => p.planId === "PLAN-L7-146")?.relatedDecisionPackets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          command: "ut-tdd version-up activation-packet --json",
-          scopedCommand: "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+          command: "helix version-up activation-packet --json",
+          scopedCommand: "helix version-up activation-packet --json --plan PLAN-L7-146",
         }),
       ]),
     );
@@ -560,8 +560,8 @@ describe("action-binding approval readiness", () => {
     ).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          command: "ut-tdd rename plan --json",
-          scopedCommand: "ut-tdd rename plan --json",
+          command: "helix rename plan --json",
+          scopedCommand: "helix rename plan --json",
         }),
       ]),
     );
@@ -619,8 +619,8 @@ describe("action-binding approval readiness", () => {
     const changedReviewPlan = {
       ...basePlan,
       text: basePlan.text.replace(
-        "- review_approval_evidence: .ut-tdd/evidence/action-binding/review.json result=pass",
-        "- review_approval_evidence: .ut-tdd/evidence/action-binding/review-v2.json result=pass",
+        "- review_approval_evidence: .helix/evidence/action-binding/review.json result=pass",
+        "- review_approval_evidence: .helix/evidence/action-binding/review-v2.json result=pass",
       ),
     };
     const [basePacket] = buildActionBindingApprovalPackets({
@@ -859,10 +859,10 @@ describe("action-binding approval readiness", () => {
 
   it("rejects review and audit evidence that are only free-text claims without locators", () => {
     const weakEvidenceRecord = RECORD.replace(
-      ".ut-tdd/evidence/action-binding/review.json result=pass",
+      ".helix/evidence/action-binding/review.json result=pass",
       "dry-run and risk review evidence looked good",
     ).replace(
-      ".ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+      ".helix/audit/A-123-action-binding.json approver action command result incident route",
       "approver action command result incident route",
     );
     const result = analyzeActionBindingApprovalReadiness({
@@ -920,17 +920,17 @@ describe("action-binding approval readiness", () => {
 
   it("rejects untrusted external URLs as action-binding review or audit evidence", () => {
     const weakEvidenceRecord = RECORD.replace(
-      ".ut-tdd/evidence/action-binding/review.json result=pass",
+      ".helix/evidence/action-binding/review.json result=pass",
       "review_url=https://example.invalid/manual-approval result=pass",
     ).replace(
-      ".ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+      ".helix/audit/A-123-action-binding.json approver action command result incident route",
       "audit_url=https://example.invalid/audit/123 approver action command result incident route",
     );
     const trustedEvidenceRecord = RECORD.replace(
-      ".ut-tdd/evidence/action-binding/review.json result=pass",
+      ".helix/evidence/action-binding/review.json result=pass",
       "review_url=https://github.com/example/repo/actions/runs/123456789 result=pass",
     ).replace(
-      ".ut-tdd/audit/A-123-action-binding.json approver action command result incident route",
+      ".helix/audit/A-123-action-binding.json approver action command result incident route",
       "audit_url=https://github.com/example/repo/commit/0123456789abcdef approver action command result incident route",
     );
 

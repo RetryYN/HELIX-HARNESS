@@ -41,7 +41,7 @@ review_evidence:
 
 ## §0 位置づけ
 
-`ut-tdd handover` の §1-§2 auto-prefill が session-log digest の当日全 PLAN を含み、bare plan_id (`PLAN-L7-04`) と slug 付き (`PLAN-L7-04-handover-mechanism`) が **同一 PLAN を `unknown` ゴーストとして二重計上** していた (session-2 handover で実証)。improvement-backlog **IMP-048** への feature 対応。
+`helix handover` の §1-§2 auto-prefill が session-log digest の当日全 PLAN を含み、bare plan_id (`PLAN-L7-04`) と slug 付き (`PLAN-L7-04-handover-mechanism`) が **同一 PLAN を `unknown` ゴーストとして二重計上** していた (session-2 handover で実証)。improvement-backlog **IMP-048** への feature 対応。
 
 - 駆動モデル: **Add-feature** (L6-06 設計の bottom-up 拡張)。
 - 親: `PLAN-L6-06-handover-mechanism` (drive=fullstack 一致)。
@@ -54,7 +54,7 @@ review_evidence:
 - `resolveHandoverScope(deps, opts?)`: 収集後は **常に dedup**。`opts.scopeToActive && active_plan` のとき active family の digest のみへ絞る。active family が digest に無ければ全件 fallback (空 handover 回避)。既定 (opts 無し) は dedup のみ = 後方互換。
 - `HandoverArgs.scopeToActive` を `runHandover` から `resolveHandoverScope` へ伝播。
 
-`src/cli.ts`: `ut-tdd handover --scope-active` フラグ追加。
+`src/cli.ts`: `helix handover --scope-active` フラグ追加。
 
 ## §工程表
 
@@ -67,7 +67,7 @@ U-HOVER-008 (family 判定 + union dedup) / U-HOVER-009 (scope 絞り + fallback
 ### Step 3: CLI 配線
 `--scope-active` フラグを `runHandover` の `scopeToActive` へ。
 
-### Step 4: review Step (self / code-reviewer)
+### 手順 4 (Step 4): レビュー工程 (review Step / self / code-reviewer)
 後方互換 (既定 dedup のみ・U-HOVER-001 不変)・誤マッチ防止・空 handover fallback を review (claude-only = code-reviewer 代替、evidence 記録)。
 
 ### Step 5: 回帰 + 用語更新 + スモーク

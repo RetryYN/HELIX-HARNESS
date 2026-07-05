@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-134-tdd-drive-fit-classification
-title: "PLAN-REVERSE-134: TDD drive fit classification fullback"
+title: "PLAN-REVERSE-134: TDD drive fit classification の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,30 +16,30 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define strong/partial/weak TDD fit and DB firing boundaries."
+    reason: "Requirements は strong/partial/weak の TDD fit と DB firing 境界を定義する。"
   - layer: L3-functional
     decision: updated
     evidence_path: docs/design/harness/L3-functional/functional-requirements.md
-    reason: "Functional ACs define classifyDriveTddFits and DB-triggered Red."
+    reason: "Functional AC は classifyDriveTddFits と DB-triggered Red を定義する。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Basic design records the cross-drive TDD fit table and trigger sources."
+    reason: "Basic design は cross-drive TDD fit table と trigger sources を記録する。"
   - layer: L5-detailed-design
     decision: not_impacted
     evidence_path: docs/design/harness/L5-detailed-design/module-decomposition.md
-    reason: "No module boundary changes; existing workflow contract module is extended."
+    reason: "Module boundary の変更はない。既存の workflow contract module を拡張する。"
   - layer: L6-function-design
     decision: updated
     evidence_path: docs/design/harness/L6-function-design/function-spec.md
-    reason: "L6 adds the classifyDriveTddFits contract."
+    reason: "L6 は classifyDriveTddFits contract を追加する。"
   - layer: implementation
     decision: updated
     evidence_path: src/workflow/contracts.ts
-    reason: "The contract returns TDD fit, Red triggers, Yellow state, and Green requirements."
+    reason: "Contract は TDD fit、Red triggers、Yellow state、Green requirements を返す。"
 agent_slots:
   - role: tl
-    slot_label: "TL - TDD drive fit classification fullback"
+    slot_label: "TL - TDD drive fit classification の fullback"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-134-tdd-drive-fit-classification.md
     artifact_type: markdown_doc
@@ -67,7 +67,7 @@ review_evidence:
     reviewed_at: "2026-06-23T18:11:57+09:00"
     tests_green_at: "2026-06-23T18:11:57+09:00"
     verdict: approve
-    scope: "Reverse fullback for TDD drive fit classification."
+    scope: "TDD drive fit classification の Reverse fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -89,25 +89,26 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-134: TDD drive fit classification fullback
+# PLAN-REVERSE-134: TDD drive fit classification の fullback
 
-## Objective
+## 目的
 
-Back-propagate cross-drive TDD fit classification into requirements and design.
+cross-drive TDD fit classification を requirements と design へ逆伝播する。
 
-## R4 Routing
+## R4 ルーティング
 
-Forward routing is L3 because the functional workflow behavior changes: drive
-models and design specialties now expose machine-readable TDD fit and DB firing
-sources.
+Forward routing は L3 とする。理由は functional workflow behavior が変わり、
+drive models と design specialties が machine-readable な TDD fit と DB firing
+sources を公開するためである。
 
-L5 is not impacted: `docs/design/harness/L5-detailed-design/module-decomposition.md`
-already maps workflow contracts to `src/workflow/contracts.ts`; this slice adds
-a pure contract in that module without changing module boundaries.
+L5 は影響なし。
+`docs/design/harness/L5-detailed-design/module-decomposition.md` はすでに workflow
+contracts を `src/workflow/contracts.ts` へ対応付けている。この slice は module
+boundaries を変えずに、その module へ pure contract を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements include strong/partial/weak classification and DB firing limits.
-- L3 has acceptance criteria for classification and DB-triggered Red.
-- L4 has the cross-drive table and projection boundary.
-- L6 documents `classifyDriveTddFits`.
+- Requirements に strong/partial/weak classification と DB firing limits が含まれる。
+- L3 に classification と DB-triggered Red の acceptance criteria がある。
+- L4 に cross-drive table と projection boundary がある。
+- L6 が `classifyDriveTddFits` を文書化している。

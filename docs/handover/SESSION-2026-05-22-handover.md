@@ -122,7 +122,7 @@ dff1d78 chore: tighten local runtime ignores
 
 ### W3a 由来 (PLAN-003 §6 carry note 確定済)
 
-- **PLAN-003-b**: `ut-tdd task classify --diff origin/main...HEAD` の git diff parse path
+- **PLAN-003-b**: `helix task classify --diff origin/main...HEAD` の git diff parse path
 - **PLAN-003-c**: vendor `task_dispatcher.py` (automation allowlist execution) の HELIX port 評価
 - **PLAN-003-d**: size=null 出力時 (3 軸入力なし) を CLI binding (W6) で `--files` / `--lines` / `--diff` 自動取得
 - **PLAN-003-e**: `classifier._recommended_gates` `G3.8` 出典 (gate-policy.md HELIX 化) docstring 追記
@@ -142,8 +142,8 @@ dff1d78 chore: tighten local runtime ignores
 ## §5 次 wave 候補 (W3b-A 完遂後)
 
 - **W3b-B PLAN-005**: skill_classifier + skill_recommender LLM 委譲 port。PLAN-CODEX-FIX 先行解消が望ましい
-- **W4**: team orchestration (`ut-tdd team run` の `hybrid` mode 実装)
-- **W5**: handover/session recovery (`ut-tdd handover` CLI、本 SESSION-doc を機械生成可能に)
+- **W4**: team orchestration (`helix team run` の `hybrid` mode 実装)
+- **W5**: handover/session recovery (`helix handover` CLI、本 SESSION-doc を機械生成可能に)
 - **W6**: setup/doctor/runtime detection (CLI binding 統合)
 - **W7**: Claude Code hooks/agents (本 repo の `.claude/hooks/` 13 unused HELIX hook 整理)
 
@@ -154,7 +154,7 @@ dff1d78 chore: tighten local runtime ignores
 - 現在 **Mode 1**: HELIX drive + HELIX asset 部分 cutover
   - W1 (plan-lint) / W2 (vmodel-lint) / W3a (task classification) cutover 済
   - W3b-A (skill catalog) 進行中
-- 次 Mode 2 (HELIX drive smoke) には W6 で `ut-tdd doctor` / `ut-tdd setup` / `ut-tdd status` 完成が前提
+- 次 Mode 2 (HELIX drive smoke) には W6 で `helix doctor` / `helix setup` / `helix status` 完成が前提
 - Mode 3 (HELIX-only) には W7 で `.claude/hooks/` 全 cutover が前提
 
 ## §7 次 session 開始時のチェックリスト

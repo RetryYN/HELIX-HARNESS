@@ -217,56 +217,52 @@ review_evidence:
         output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
 ---
 
-# PLAN-L7-209: active objective evidence audit
+# PLAN-L7-209: active objective evidence audit の監査
 
-## Objective
+## 目的
 
-Make the active user objective auditable requirement-by-requirement. The audit
-must point to semantic evidence for upstream adoption, old HELIX adoption,
-L7.5 RUN & Debug, visualization, feature-pack roadmap, verification strategy,
-adapter config, performance NFR, and naming migration.
+active user objective を requirement 単位で監査可能にする。この audit は、upstream adoption
+と old HELIX adoption の採用証跡、L7.5 RUN & Debug と visualization の到達証跡、
+feature-pack roadmap と verification strategy の方針証跡、adapter config、
+performance NFR、naming migration の semantic evidence を指せる必要がある。
 
-## Scope
+## スコープ
 
-- Add a governance audit table keyed by objective requirement.
-- Include current source commit evidence for both referenced GitHub repositories.
-- Add a regression test and doctor hard gate that verify every requirement row
-  is present, proved rows stay proved, the whole-program completion row stays
-  aligned to `completionReadiness`, false full-completion claims are rejected,
-  cited current-state artifacts exist in the repo, and the blocked completion
-  row enumerates all current outstanding PLANs and required actions.
-- Expose a read-only `ut-tdd audit objective-external --json` surface for the
-  explicit networked check that compares the external source ledger against
-  live `git ls-remote` observations. Normal doctor remains non-networked.
-- Treat Pack latest tag as the semver-maximum remote tag, not merely as
-  existence of the previously adopted tag.
+- objective requirement を key にした governance audit table を追加する。
+- 参照対象の両 GitHub repositories について current source commit evidence を含める。
+- regression test と doctor hard gate を追加し、すべての requirement row が存在すること、
+  proved row が proved のまま維持されること、whole-program completion row が
+  `completionReadiness` と整合すること、誤った full-completion claim が reject されること、
+  引用された current-state artifact が repo 内に存在すること、blocked completion row が
+  現在の outstanding PLAN と required action をすべて列挙することを検証する。
+- external source ledger と live `git ls-remote` observation を比較する明示的な
+  networked check 用に、read-only の `helix audit objective-external --json`
+  surface を公開する。通常の doctor は non-networked のままにする。
+- Pack latest tag は、以前採用した tag の存在だけではなく、remote tag の semver 最大値として扱う。
 
-## Non-Goals
+## 非目標
 
-- This PLAN does not add end-user product behavior or apply external changes;
-  the added CLI surface is a read-only governance audit.
-- This PLAN does not redefine deferred UI implementation as complete.
-- This PLAN does not perform the later atomic `ut-tdd` to `helix` identifier
-  migration.
+- この PLAN では end-user product behavior の追加や external change の適用は行わない。
+  追加する CLI surface は read-only の governance audit である。
+- この PLAN では deferred UI implementation を complete として再定義しない。
+- この PLAN では後続の atomic な `helix` から `helix` への identifier migration は実施しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- The audit has proved rows for implemented/hardened objective requirements and
-  a blocked row for L14 / whole-program completion until `completionReadiness`
-  is true.
-- The blocked completion row cites every outstanding PLAN ID and every
-  `completionReadiness.requiredAction`, not only aggregate blocker labels.
-- `objective-evidence-audit` is wired into `ut-tdd doctor` hard-gate
-  aggregation, so semantic completion drift cannot stay test-only.
-- The audit cites both external source commits observed for this continuation.
-- The audit distinguishes semantic proof from test count or roadmap count.
-- `ut-tdd status --json` exposes `objectiveProgress.percent`, and current
-  progress is 90% with `completionClaimAllowed=false` while G-10 remains
-  blocked.
-- `ut-tdd audit objective-external --json` obtains `development_repo`,
-  `distribution_pack_repo`, and `distribution_pack_latest_tag` through
-  `git ls-remote`, passes them as `externalObserved`, and exits non-zero when
-  any observed HEAD or semver-latest Pack tag drifts from the ledger.
+- audit は、実装済みまたは hardening 済みの objective requirement について proved row を持ち、
+  `completionReadiness` が true になるまで L14 / whole-program completion の blocked row を持つ。
+- blocked completion row は aggregate blocker label だけでなく、すべての outstanding PLAN ID と
+  すべての `completionReadiness.requiredAction` を引用する。
+- `objective-evidence-audit` は `helix doctor` の hard-gate aggregation に接続され、
+  semantic completion drift が test-only に留まれない。
+- audit は、この continuation で観測した両 external source commit を引用する。
+- audit は semantic proof を test count や roadmap count から区別する。
+- `helix status --json` は `objectiveProgress.percent` を公開し、G-10 が blocked の間は
+  current progress が 90%、`completionClaimAllowed=false` である。
+- `helix audit objective-external --json` は `git ls-remote` を通じて `development_repo`、
+  `distribution_pack_repo`、`distribution_pack_latest_tag` を取得し、それらを
+  `externalObserved` として渡し、observed HEAD または semver-latest Pack tag が ledger から
+  drift した場合は non-zero で終了する。
 - `externalObserved` を audit に渡す場合は 3 件すべての observed source key
   を必須にする。部分観測は未観測 source を unchanged と扱わず fail-close する。
-- Targeted audit tests, doctor, and full tests pass before commit.
+- commit 前に targeted audit tests、doctor、full tests が pass する。

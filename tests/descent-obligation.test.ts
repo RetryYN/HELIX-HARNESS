@@ -293,7 +293,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
   });
 
   it("U-DESC-009: ignores unit-oracle ids and fixture-only test traces in repo loading", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-descent-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-descent-"));
     try {
       mkdirSync(join(root, "src"), { recursive: true });
       mkdirSync(join(root, "tests"), { recursive: true });
@@ -302,12 +302,12 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
       });
       writeFileSync(
         join(root, "src", "feature.ts"),
-        "// @ut-tdd-trace FR-L1-01\nexport const trace = 'FR-L1-99';\n",
+        "// @helix-trace FR-L1-01\nexport const trace = 'FR-L1-99';\n",
         "utf8",
       );
       writeFileSync(
         join(root, "tests", "feature.test.ts"),
-        "const fixture = ['FR-L1-99', 'U-FOO-001'];\n// @ut-tdd-trace FR-L1-02\n",
+        "const fixture = ['FR-L1-99', 'U-FOO-001'];\n// @helix-trace FR-L1-02\n",
         "utf8",
       );
       writeFileSync(
@@ -355,7 +355,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
   });
 
   it("U-DESC-010: only creates defer rows for trace keys on the defer line", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-descent-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-descent-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -384,7 +384,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
   });
 
   it("U-DESC-011: does not treat acceptance-case ids as descent-chain trace keys", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-descent-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-descent-"));
     try {
       mkdirSync(join(root, "docs", "design", "harness", "L5-detailed-design"), {
         recursive: true,
@@ -404,7 +404,7 @@ describe("descent-obligation ledger (PLAN-L6-35 / FR-L1-03)", () => {
   });
 
   it("U-DESC-012: treats L1 functional requirements as the owner for FR-L1 artifacts", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-descent-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-descent-"));
     try {
       mkdirSync(join(root, "docs", "design", "harness", "L1-requirements"), {
         recursive: true,

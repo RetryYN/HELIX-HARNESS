@@ -49,7 +49,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 |---|---|---|---|
 | **PM-01** | `HierarchyPulldown` (4 階層: 俯瞰/工程/割当/詳細) + `HeatmapGrid` (案件×L0-L14、cell クリックで PM-02) | tier (URL query 同期) / cells[]・`onCellClick(:case,:L)` / gate fail cell 赤ハイライト | §1.PM.01 |
 | **PM-02** | `LayerTemplate` (L0-L14 共通工程テンプレ) + `ProgressBar` + `StaleBadge` + `CarryList` + `ScrumStateRow` (drive=scrum S0-S4) | sub-doc 一覧 / stale PLAN / carry 件数展開 / S-phase 1 行表示 (L3 carry) | §1.PM.02 |
-| **PM-03** | `GateResultPanel` (pass/fail/bypass 色分け) + `TroubleTable` (種別/検出時刻/影響範囲/next_action 横断) + `InterruptCopyButton` (`ut-tdd interrupt`/`resume` 文字列コピー) | gate ID/証跡リンク/サインオフ者 / `CopyButton`(next_action・AI 指示) / interrupt は CLI 受付 (S5=b) | §1.PM.03 |
+| **PM-03** | `GateResultPanel` (pass/fail/bypass 色分け) + `TroubleTable` (種別/検出時刻/影響範囲/next_action 横断) + `InterruptCopyButton` (`helix interrupt`/`resume` 文字列コピー) | gate ID/証跡リンク/サインオフ者 / `CopyButton`(next_action・AI 指示) / interrupt は CLI 受付 (S5=b) | §1.PM.03 |
 | **PM-04** | `TraceGraph` (上流→下流ノード+エッジ、デグレ赤ハイライト) + `VPairStatusTable` (L1↔L14…L6↔L7 freeze 状態) | ノードクリック→対象 doc / trace 切れ・未 freeze 行を DataTable | §1.PM.04 |
 | **PM-05** | `HandoverPanel` (CURRENT.json 構造化表示) + `StaleWarningBanner` (30 日超) + `CarryDetailList` | next_action 強調 / 起動時 auto 表示 (S6=a) / archive 期限表示 | §1.PM.05 |
 | **PM-06** | `DesignDocTree` (L0-L14 layer×sub-doc、status/pair-freeze バッジ) + `DocPreview` (`MarkdownRenderer` 本文 + `YamlFrontmatterView` + `MermaidRenderer` + ASCII 図) + `DocToc` (目次) | ツリーノードクリック→プレビュー / layer・status・drive フィルタ / 目次ジャンプ / 内部リンクナビ / PM-04 trace deep-link / `CopyButton`(doc パス) / read-only (S5=b、編集なし) | §1.PM.06 |
@@ -61,7 +61,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 | **HM-01** | `HierarchyPulldown` (3 階層: 整備率/カテゴリ/FR 個別) + `FrStatusTable` (FR-L1 47 件 × implementation_status バッジ + **対応画面列** screen §5 trace) | installed/partial/not-implemented バッジ + 担当 PLAN + 対応画面 / FR 行 → 担当 PLAN 参照 / **FR 行 → PM-06 設計書ビューア deep-link (対応画面要求プレビュー、機能一覧から画面要求を辿る、PO 2026-06-22)** / 未実装エクスポート | §1.HM.01 |
 | **HM-02** | `CoverageHeatmap` (観点 8 × 軸 5 = 40 cell、色密度) + `AxisSelector` (観点/軸切替) | cell クリック→不足項目一覧 + 起票候補テキスト生成 (`CopyButton`) | §1.HM.02 |
 | **HM-03** | `WiringDiagram` (SVG 静的アーキ + 動的エラー赤) + `ConnectionDetailTable` (起点/終点/状態/最終チェック) + `ModeTransitionArrows` (detection-routing 4 象限→mode、L3 carry) | hook/provider/9 drive 区画状態 / active 遷移強調 / 接続線クリック→詳細 | §1.HM.03 |
-| **HM-04** | `TableExplorer` (.ut-tdd state 全 table 切替) + `IntegrityCheckSummary` (orphan/drift/不正値) | table 切替 / 行フィルタ / 整合性再実行トリガー / 問題行 `CopyButton` | §1.HM.04 |
+| **HM-04** | `TableExplorer` (.helix state 全 table 切替) + `IntegrityCheckSummary` (orphan/drift/不正値) | table 切替 / 行フィルタ / 整合性再実行トリガー / 問題行 `CopyButton` | §1.HM.04 |
 | **HM-05** | `InvocationLogTable` (date/model/role/task/result/token/cost) + `SkillInjectionTab` (S8=b) + `HookFireLogTab` (5 hook 発火成否、L3 carry) + `GuardDecisionList` (allow/block/bypass) | フィルタ(日付/agent/result) / タブ切替 / bypass 詳細展開 | §1.HM.05 |
 | **HM-06** | `RecoveryLogTable` + `ResumePointList` (最終正常 gate 候補) + `RollbackCopyButton` (CLI ロールバック文字列、S5=b) | 暴走ログ/認識訂正履歴 / CLI コピーのみ (UI 直接実行なし) | §1.HM.06 |
 | **HM-07** | `DoctorResultTree` (V-model 順序/entity/hook/phase/carry) + `SeverityBadge` (error/warn/info) + `DetectionCountSummary` | 重要度別全行 / 詳細展開 / doctor 再実行トリガー / 問題行 `CopyButton` (D-03 = 0 件違反 赤) | §1.HM.07 |

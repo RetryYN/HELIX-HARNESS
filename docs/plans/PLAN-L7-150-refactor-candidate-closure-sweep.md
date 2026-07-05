@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-150-refactor-candidate-closure-sweep
-title: "PLAN-L7-150: refactor candidate closure sweep"
+title: "PLAN-L7-150: refactor candidate closure sweep の完了整理"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant module extraction and detector precision tuning. No public CLI/API contract, persisted schema, requirement, or workflow semantics changed."
+backprop_decision_reason: "振る舞い不変の module extraction と detector precision tuning のため。public CLI/API contract、persisted schema、requirement、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - detector candidate closure"
+    slot_label: "SE - detector candidate closure の完了整理"
   - role: tl
-    slot_label: "TL - precision and gate verification"
+    slot_label: "TL - precision と gate verification"
 generates:
   - artifact_path: docs/plans/PLAN-L7-150-refactor-candidate-closure-sweep.md
     artifact_type: markdown_doc
@@ -60,7 +60,7 @@ review_evidence:
     reviewed_at: "2026-06-25T15:56:00+09:00"
     tests_green_at: "2026-06-25T15:56:00+09:00"
     verdict: approve
-    scope: "Detector high-confidence closure through behavior-invariant module extraction and confidence calibration for large-but-shallow modules."
+    scope: "振る舞い不変の module extraction と large-but-shallow modules 向け confidence calibration により、detector high-confidence 候補を完了させる。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -82,27 +82,24 @@ review_evidence:
         output_digest: "sha256:0e270c1572d46850fe94dd43359a38c04b75ecc7b23a62cf8bf983f74c8f601a"
 ---
 
-# PLAN-L7-150: refactor candidate closure sweep
+# PLAN-L7-150: refactor candidate closure sweep の完了整理
 
-## Objective
+## 目的
 
-Close every high-confidence refactor candidate emitted by the detector after
-PLAN-L7-148, either by behavior-invariant extraction or by calibrated detector
-precision where the prior signal was too broad.
+PLAN-L7-148 後に detector が出す high-confidence refactor candidate を、振る舞い不変の extraction、
+または prior signal が広すぎた箇所の detector precision calibration によって完了させる。
 
-## Scope
+## 範囲
 
-- Extract static catalogs and evidence/routing/projection concerns into focused
-  modules.
-- Keep existing public import paths stable through re-exports.
-- Calibrate `split-module` confidence so large modules made of short cohesive
-  functions are triaged as medium, while extreme modules or modules containing
-  large functions still become high-confidence feedback.
-- Preserve DB schema, CLI behavior, and projection semantics.
+- static catalogs と evidence/routing/projection concerns を focused modules へ抽出する。
+- 既存 public import paths は re-exports によって安定させる。
+- `split-module` confidence を調整し、短く cohesive な functions で構成される large modules は medium として triage する。
+  一方で extreme modules や large functions を含む modules は引き続き high-confidence feedback にする。
+- DB schema、CLI behavior、projection semantics を維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Static detector output has zero high-confidence refactor candidates.
-- `harness.db` rebuild emits no open high-confidence refactor feedback.
-- Targeted tests for moved modules pass.
-- `bun run typecheck`, `bun run lint`, and `bun run src\cli.ts doctor` pass.
+- static detector output の high-confidence refactor candidates が 0 件になる。
+- `harness.db` rebuild が open high-confidence refactor feedback を出さない。
+- 移動した modules の targeted tests が pass する。
+- `bun run typecheck`、`bun run lint`、`bun run src\cli.ts doctor` が pass する。

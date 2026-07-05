@@ -109,63 +109,51 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-123: route eval RecommendedCommandV1 surface
+# PLAN-L7-123: route eval の RecommendedCommandV1 surface
 
-## Objective
+## 目的
 
-Make the signal routing requirement executable through `ut-tdd route eval
---signal <s> --format json`.
+signal routing requirement を `helix route eval --signal <s> --format json`
+で実行可能にする。
 
-## Scope
+## 範囲
 
-- Add a deterministic route evaluation contract over known routing signals.
-- Return a human-facing `suggest_command` separately from the machine-facing
-  `recommended_command`.
-- Validate the machine-facing command with `RecommendedCommandV1`.
-- Back-fill requirements and L4 function design so this implementation is not
-  detached from the design baseline.
+- 既知の routing signal に対して deterministic な route evaluation contract を追加する。
+- human-facing な `suggest_command` を、machine-facing な `recommended_command` とは分けて返す。
+- machine-facing な command を `RecommendedCommandV1` で検証する。
+- この実装が design baseline から切り離されないように、requirements と L4 function design を back-fill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Known signals return `mode`, `suggest_command`, and a schema-valid
-  `recommended_command`.
-- `recommended_command.command` starts with `ut-tdd`; legacy runtime command
-  names are rejected by the existing schema.
-- Unknown signals return explicit not-available routing (`exit_code=2`) without
-  a runnable command.
-- `version_deferral` returns `mode=version-up`, matching
-  `PLAN-REVERSE-140` / `docs/process/modes/version-up.md` after the
-  version-up mode was adopted.
-- `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / pair
-  programming signals return `mode=add-feature` with
-  `recommended_command.command="ut-tdd pair-agent plan"` and the pair-route
-  args required by the pair-agent TDD workflow.
+- 既知の signal は `mode`、`suggest_command`、schema-valid な `recommended_command` を返す。
+- `recommended_command.command` は `helix` で始まり、legacy runtime command name は既存 schema で拒否される。
+- 未知の signal は runnable command を返さず、明示的な not-available routing (`exit_code=2`) を返す。
+- `version_deferral` は `mode=version-up` を返し、version-up mode 採用後の
+  `PLAN-REVERSE-140` / `docs/process/modes/version-up.md` と一致する。
+- `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / pair programming signal は
+  `mode=add-feature` と `recommended_command.command="helix pair-agent plan"` を返し、
+  pair-agent TDD workflow が要求する pair-route args を含む。
 
-## 2026-06-30 version-up route backfill
+## 2026-06-30 version-up route の backfill
 
-The original route evaluator predated `PLAN-DISCOVERY-09` / `PLAN-REVERSE-140`.
-After version-up was adopted as a mode, docs/process and requirements named
-`version_deferral -> version-up`, but `ut-tdd route eval --signal
-version_deferral` still returned `no-route`. This was an executable drive-model
-gap, not a docs-only typo.
+当初の route evaluator は `PLAN-DISCOVERY-09` / `PLAN-REVERSE-140` より前に作られていた。
+version-up が mode として採用された後、docs/process と requirements では
+`version_deferral -> version-up` と記載されたが、`helix route eval --signal version_deferral` は
+引き続き `no-route` を返していた。これは docs-only typo ではなく、executable な drive-model gap だった。
 
-This follow-up adds `version_deferral` / `version-up` / `version_up` tokens to
-`src/workflow/routing-contracts.ts` and fixes
-`tests/workflow-contracts.test.ts` so the route evaluator and mode docs remain
-aligned.
+この follow-up では `version_deferral` / `version-up` / `version_up` token を
+`src/workflow/routing-contracts.ts` に追加し、route evaluator と mode docs の整合を保つため
+`tests/workflow-contracts.test.ts` を修正する。
 
-## 2026-07-01 pair-agent TDD route backfill
+## 2026-07-01 pair-agent TDD route の backfill
 
-The pair-agent TDD workflow existed as a planning surface, but route evaluation
-did not recommend it from semantically equivalent user signals such as
-`pair_agent_tdd` or `pair-agent TDD route`. That made the intended workflow
-unreachable from the normal routing surface and could incorrectly fall back to
-generic task classification.
+pair-agent TDD workflow は planning surface として存在していたが、route evaluation は
+`pair_agent_tdd` や `pair-agent TDD route` のような意味的に同等の user signal からそれを推薦していなかった。
+そのため、意図した workflow に通常の routing surface から到達できず、generic task classification へ
+誤って fall back する可能性があった。
 
-This follow-up keeps the mode taxonomy stable (`add-feature`) and narrows the
-change to the recommendation contract: pair-agent TDD signals now return
-`ut-tdd pair-agent plan` with
-`pair_route=smart_test_author_to_light_implementation_to_smart_review` and
-`requires_plan_id=true`. Concept §2.6, requirements §7.8, L4 routing design,
-L7 unit oracles, workflow contract tests, and CLI surface tests are back-filled
-together.
+この follow-up では mode taxonomy を `add-feature` のまま安定させ、変更範囲を recommendation contract に限定する。
+pair-agent TDD signal は `helix pair-agent plan` を返し、
+`pair_route=smart_test_author_to_light_implementation_to_smart_review` と `requires_plan_id=true` を含む。
+`Concept §2.6`、`requirements §7.8`、`L4 routing design`、`L7 unit oracle`、
+`workflow contract test`、`CLI surface test` も合わせて back-fill する。

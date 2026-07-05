@@ -93,7 +93,7 @@ function generatedSkillMarkdown(input: {
     "",
     "1. 対象 PLAN と関連する design / test-design を読む。",
     "2. 変更範囲、検証コマンド、review evidence を明確にする。",
-    "3. 実装後に targeted test と `ut-tdd doctor` を実行する。",
+    "3. 実装後に targeted test と `helix doctor` を実行する。",
     "",
   ]
     .filter((line) => line.length > 0 || line === "")

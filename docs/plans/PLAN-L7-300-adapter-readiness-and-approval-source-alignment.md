@@ -70,7 +70,7 @@ review_evidence:
         output_digest: "sha256:1ae66eb13dbf8b23448a48cf1760071e5244ce2eb8c65068ac3e619d2e6fc9a1"
 ---
 
-# PLAN-L7-300: adapter readiness and approval source alignment
+# PLAN-L7-300: adapter readiness と approval source alignment
 
 ## 目的
 
@@ -81,13 +81,13 @@ approval source ledger 契約へ合わせる。
 
 - `CLAUDE.md` / `AGENTS.md` に英語 prose が残り、docs 日本語原則と root instruction surface が揃っていなかった。
 - fresh consumer repo の `project-setup.json` が `readinessOk=false` / `nextRoute=fix_consumer_readiness` でも、
-  `ut-tdd doctor --profile consumer` が green になり得た。
+  `helix doctor --profile consumer` が green になり得た。
 - `approvalVerificationCommandMatrix[]` が OWASP WSTG row を出さず、L6/L7 正本 docs の security testing source 要求を
   approval packet 単体で確認できなかった。
 
 ## 受入条件
 
-- root adapter docs の変更箇所は日本語-first prose で、`rule-drift` marker と `ut-tdd` 機械識別子を保持する。
+- root adapter docs の変更箇所は日本語-first prose で、`rule-drift` marker と `helix` 機械識別子を保持する。
 - consumer doctor は setup readiness が未充足の場合に `consumer-project-setup-state` violation を返す。
 - action-binding approval packet は `web-security-testing-boundary` row を持ち、OWASP WSTG の source metadata を出す。
 - CLI / handover summary の matrix 件数は WSTG row を含む 11 件を示す。

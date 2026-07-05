@@ -24,7 +24,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "Follow-up: Codex design/implementation review of the tokenize fix found a probe false-confidence gap — probeVerificationProfile only checked the probe-hint executable (e.g. bun) while renderGeneratedMcpConfig launches the command head (e.g. ut-tdd for wrapper profiles), so probe readiness did not cover the generated launcher's launchability. Codex added profileCommandHead + a `launcher` readiness check (commandOk(head, [--help]) when head differs from executable) and oracle U-MCPPROFILE-014. gpt-5.4-mini qualitative subagent review was also run for design/implementation alignment and HELIX separation. Result: the launcher-readiness fix is covered by L6/L7 design/test updates and full regression is green; residual broader design issue is that single-runtime checklist enforcement is split between gate and doctor, to be handled by a separate review-evidence/gate unification PLAN."
+    scope: "Follow-up: Codex design/implementation review of the tokenize fix found a probe false-confidence gap — probeVerificationProfile only checked the probe-hint executable (e.g. bun) while renderGeneratedMcpConfig launches the command head (e.g. helix for wrapper profiles), so probe readiness did not cover the generated launcher's launchability. Codex added profileCommandHead + a `launcher` readiness check (commandOk(head, [--help]) when head differs from executable) and oracle U-MCPPROFILE-014. gpt-5.4-mini qualitative subagent review was also run for design/implementation alignment and HELIX separation. Result: the launcher-readiness fix is covered by L6/L7 design/test updates and full regression is green; residual broader design issue is that single-runtime checklist enforcement is split between gate and doctor, to be handled by a separate review-evidence/gate unification PLAN."
     worker_model: codex-gpt-5
     reviewer_model: gpt-5.4-mini
   - reviewer: claude-opus-4-8
@@ -32,7 +32,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "Cross-provider review of the codex→claude provider handover for the launcher-readiness follow-up. Claude (reviewer) read the diff and verified: the new `launcher` probe check validates exactly the command head renderGeneratedMcpConfig emits (`profileCommandHead`), so probe readiness now covers the generated config's launchability (closes the false-confidence gap where probe only checked the `executable` hint while wrapper profiles launch a different head such as ut-tdd); the `head !== executable` guard avoids redundant checks for runner-backed profiles; existing probe tests (testcontainers docker-unavailable, mcp-inspector refusal) stay green; U-MCPPROFILE-014 cites the explicit oracle id. typecheck + biome + full Vitest + doctor (readability/review-evidence/trace) green. Deeper item — profile.command is a display/template string with placeholders for non-runner MCP-server profiles, so the generated config remains an approximate suggestion — is deferred to a separate design PLAN."
+    scope: "Cross-provider review of the codex→claude provider handover for the launcher-readiness follow-up. Claude (reviewer) read the diff and verified: the new `launcher` probe check validates exactly the command head renderGeneratedMcpConfig emits (`profileCommandHead`), so probe readiness now covers the generated config's launchability (closes the false-confidence gap where probe only checked the `executable` hint while wrapper profiles launch a different head such as helix); the `head !== executable` guard avoids redundant checks for runner-backed profiles; existing probe tests (testcontainers docker-unavailable, mcp-inspector refusal) stay green; U-MCPPROFILE-014 cites the explicit oracle id. typecheck + biome + full Vitest + doctor (readability/review-evidence/trace) green. Deeper item — profile.command is a display/template string with placeholders for non-runner MCP-server profiles, so the generated config remains an approximate suggestion — is deferred to a separate design PLAN."
     worker_model: codex-gpt-5
     reviewer_model: claude-opus-4-8
 agent_slots:
@@ -54,73 +54,43 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-33-mcp-profile-config-safety.md
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-79 (troubleshoot): MCP launcher argv tokenization
+# PLAN-L7-79 (troubleshoot): MCP launcher argv tokenization の是正
 
-## 0. Objective
+## 0. 目的
 
-`renderGeneratedMcpConfig` produced an `mcpServers.<id>` entry whose `args` was
-`[profile.command]` — the entire command string packed into a single argv
-element — while `command` was `profile.executable ?? profile.command.split(" ")[0]`.
-For a profile like `bun-unit` (`command: "bun run test:local"`, `executable: "bun"`)
-this emitted `command:"bun", args:["bun run test:local"]`, double-including the
-executable and handing an external MCP launcher a malformed argv. For wrapper
-profiles whose `command` head differs from `executable` (e.g. `mcp-inspector-smoke`
-with `command:"ut-tdd …"`, `executable:"bun"`) it emitted a `command` that does
-not match the args, which would not run at all.
+`renderGeneratedMcpConfig` は `mcpServers.<id>` entry で `args` を `[profile.command]` とし、command string 全体を単一 argv element に詰めていた。一方で `command` は `profile.executable ?? profile.command.split(" ")[0]` だった。`bun-unit` のような profile（`command: "bun run test:local"`、`executable: "bun"`）では、`command:"bun", args:["bun run test:local"]` を出力し、executable を二重に含め、external MCP launcher に malformed argv を渡していた。さらに `command` head と `executable` が異なる wrapper profile（例: `mcp-inspector-smoke`、`command:"helix ..."`、`executable:"bun"`）では、`args` と一致しない `command` を出力し、実行不能になり得た。
 
 ## 1. Scope
 
-In scope:
+対象範囲:
 
-- Add `tokenizeCommand(command)` that splits a profile command into a
-  whitespace-delimited argv array (empty tokens dropped).
-- `renderGeneratedMcpConfig` sets `command` = the command head token and `args`
-  = the remaining tokens. `executable` is only a defensive fallback for the
-  command word (never for args) because it is a PATH-probe hint that can differ
-  from the command head.
-- Regression test (U-MCPPROFILE-013) asserts the tokenized argv and that the
-  whole command string never appears as a single arg.
+- profile command を whitespace-delimited argv array へ分割する `tokenizeCommand(command)` を追加する。empty token は捨てる。
+- `renderGeneratedMcpConfig` は `command` を command head token、`args` を残り token にする。`executable` は command word の defensive fallback だけに使い、`args` には使わない。理由は `executable` が PATH-probe hint であり、command head と異なる場合があるためである。
+- Regression test（U-MCPPROFILE-013）で tokenized argv と、command string 全体が単一 arg として出ないことを固定する。
 
-Out of scope:
+対象外:
 
-- Changing the external MCP client config schema (`{command, args, env}` is the
-  standard MCP launcher shape and is unchanged — only `args` is now populated
-  correctly).
-- Shell-quoted command strings (profile commands are plain whitespace-separated
-  words; no profile uses quoting today).
+- external MCP client config schema の変更。`{command, args, env}` は standard MCP launcher shape のままで、今回は `args` の populate 方法だけを正す。
+- shell-quoted command string。profile command は plain whitespace-separated words であり、現時点で quote を使う profile はない。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
-- For `bun-unit`, generated server is `command:"bun"`, `args:["run","test:local"]`.
-- For a wrapper profile whose command head differs from `executable`, `command`
-  is the command head, not the probe-hint executable.
-- No generated server has the whole command string as a single `args` element.
-- Existing U-MCPPROFILE-004..006 stay green; typecheck, lint, full Vitest, and
-  `ut-tdd doctor` stay green.
+- `bun-unit` では generated server が `command:"bun"`、`args:["run","test:local"]` になる。
+- command head が `executable` と異なる wrapper profile では、`command` は probe-hint executable ではなく command head になる。
+- generated server が command string 全体を単一 `args` element として持たない。
+- 既存 U-MCPPROFILE-004..006 は green を維持し、typecheck、lint、full Vitest、`helix doctor` も green を維持する。
 
-## 3. Test Design Pairing
+## 3. Test design pairing（対応）
 
-Unit test design entry: `docs/test-design/harness/L7-unit-test-design.md`
-(U-MCPPROFILE-013). Red->Green: pre-fix `args` is `[profile.command]` (whole
-string); post-fix it is the tokenized tail and the executable is not re-included.
+Unit test design entry は `docs/test-design/harness/L7-unit-test-design.md`（U-MCPPROFILE-013）である。Red->Green は、fix 前の `args` が `[profile.command]`（whole string）であり、fix 後は tokenized tail になり executable が再混入しないことを示す。
 
 ## 4. Status
 
-Confirmed. Implemented and cross-reviewed 2026-06-19. Disposition (D#5) was
-TL-approved before implementation; the concrete diff was Codex cross-reviewed
-(verdict pass) with the caller-invariant risks documented.
+Confirmed。2026-06-19 に実装し、cross-review 済み。Disposition（D#5）は実装前に TL-approved であり、具体 diff は caller-invariant risk を記録した上で Codex cross-review（verdict pass）を受けた。
 
-Follow-up (2026-06-19, codex→claude provider handover): Codex review of the
-tokenize fix surfaced a probe false-confidence gap (probe checked only the
-executable hint, not the generated launcher command head). Codex added a
-`launcher` readiness check (oracle U-MCPPROFILE-014). Two gpt-5.4-mini
-qualitative subagent reviews were also run: one for design/implementation
-alignment and one for HELIX separation. The probe now validates the same command
-head the generated config launches. Residual broader item — single-runtime
-checklist enforcement is split between `gate` and `doctor` surfaces — is
-deferred to a separate review-evidence/gate unification PLAN, not closed here.
+Follow-up（2026-06-19、codex→claude provider handover）: tokenize fix の Codex review で probe false-confidence gap が見つかった。probe は executable hint だけを検査し、generated launcher command head を検査していなかった。Codex は `launcher` readiness check（oracle U-MCPPROFILE-014）を追加した。さらに gpt-5.4-mini qualitative subagent review を 2 回実行し、1 回は design/implementation alignment、もう 1 回は HELIX separation を確認した。現在の probe は generated config が launch するものと同じ command head を検証する。残る broader item、つまり single-runtime checklist enforcement が `gate` と `doctor` surface に分かれている点は、別の review-evidence/gate unification PLAN へ defer し、ここでは close しない。

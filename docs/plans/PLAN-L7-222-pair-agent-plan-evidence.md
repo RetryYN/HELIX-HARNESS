@@ -84,34 +84,32 @@ review_evidence:
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
 ---
 
-# PLAN-L7-222: pair-agent plan evidence persistence
+# PLAN-L7-222: pair-agent plan evidence 永続化
 
 ## Objective
 
-Close the pair-agent workflow hole where `pair-agent plan` could display the
-route and adapter dry-run only on stdout. The planning phase must be replayable
-before any provider execution begins.
+`pair-agent plan` が route と adapter dry-run を stdout にだけ表示できていた workflow の穴を閉じる。
+provider 実行が始まる前に、planning phase を再生可能にする。
 
 ## Scope
 
 - Add `pair-agent plan --save-evidence`.
-- Persist `pair-agent-plan-evidence.v1` with adapter plan digest, phase prompt
-  digests, required evidence, and frontier guardrail decision.
-- Project plan evidence into `model_runs`, `gate_runs`, and
-  `guardrail_decisions`.
-- Keep run evidence and loop-summary projection unchanged.
-- Backfill L3/L6 design and paired test design.
+- adapter plan digest、phase prompt digest、required evidence、frontier guardrail decision を含む
+  `pair-agent-plan-evidence.v1` を永続化する。
+- plan evidence を `model_runs`、`gate_runs`、`guardrail_decisions` へ投影する。
+- run evidence と loop-summary projection は変更しない。
+- L3/L6 design と paired test design へ backfill する。
 
-## Non-Scope
+## 対象外
 
-- Does not execute external provider CLIs.
-- Does not authorize T0 frontier execution.
-- Does not activate `.ut-tdd -> .helix` cutover.
-- Does not treat local pair-agent evidence as a CI/merge gate substitute.
+- 外部 provider CLI は実行しない。
+- T0 frontier 実行を承認しない。
+- `.helix -> .helix` cutover は有効化しない。
+- local pair-agent evidence を CI / merge gate の代替として扱わない。
 
 ## DoD
 
 - [x] `pair-agent plan --save-evidence --json` returns an evidence path.
-- [x] Plan evidence records adapter and prompt digests.
-- [x] DB rebuild projects plan evidence into model/gate/guardrail rows.
-- [x] L3/L6 design and paired test design describe plan and run evidence.
+- [x] plan evidence が adapter digest と prompt digest を記録する。
+- [x] DB rebuild が plan evidence を model / gate / guardrail rows へ投影する。
+- [x] L3/L6 design と paired test design が plan evidence と run evidence を説明する。

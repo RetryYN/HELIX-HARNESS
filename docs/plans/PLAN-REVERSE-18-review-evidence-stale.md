@@ -24,7 +24,7 @@ dependencies:
     - docs/plans/PLAN-L7-19-review-evidence-stale.md
 ---
 
-# PLAN-REVERSE-18 (reverse): review-evidence stale approval back-fill (IMP-080)
+# PLAN-REVERSE-18 (reverse): review-evidence stale approval の戻し込み (back-fill / IMP-080)
 
 ## §0 位置づけ
 
@@ -32,15 +32,15 @@ PLAN-L7-19 の add-impl を上流へ戻し、review-evidence lint が un-freeze 
 
 ## §3 工程表 (Step + 進捗)
 
-### Step 1: [直列] L7-unit test design back-fill
+### Step 1: [直列] L7-unit test design への戻し込み (back-fill)
 直列理由: file_conflict
 U-REVIEW stale approval oracle を L7 unit test design へ反映する。
 
-### Step 2: [直列] governance carry 整合
+### Step 2: [直列] governance carry の整合
 直列理由: downstream_dependency
 IMP-080 を IMP-071 拡張として扱い、別 lint へ分裂させない。
 
-### Step 3: [直列] review
+### Step 3: [直列] レビュー (review)
 直列理由: downstream_dependency
 self/pmo-sonnet review で add-impl -> reverse pairing と back-fill 範囲を確認する。
 

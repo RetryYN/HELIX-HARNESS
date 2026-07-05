@@ -72,7 +72,7 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 | `collectRelationGraphProjection` | `collectRelationGraphProjection(input: RelationGraphSourceSet) => RelationGraphProjection` | docs、source paths、tests、PLAN metadata、audit records、verification evidence paths が text/metadata fixture として供給される。欠落した optional roots は明示的な空集合とする。 | requirements、PLANs、design docs、test-design docs、source files、tests、DB tables、verification profiles、external tools、diagrams、findings の正規化済み nodes と edges を返す。 | graph は authoring source ではなく再構築可能な projection である。projection rows は raw MCP responses、browser traces、screenshots、provider transcripts、secrets、credentials を copy しない。 | U-RELGRAPH-001..003 |
 | `analyzeRelationImpact` | `analyzeRelationImpact(input: RelationImpactInput) => RelationImpactResult` | changed paths と graph projection が供給される。changed paths は repo-relative かつ正規化済みである。 | 直接変更された nodes、影響を受ける upstream/downstream nodes、必要な follow-up actions、design/test/DB/evidence coverage 欠落の findings を返す。 | lower-layer 変更は reverse/backprop actions を要求し得る。docs-only 変更は、graph が behavioral contract を示す場合を除き source tests を要求しない。 | U-RELGRAPH-004..006 |
 | `exportRelationDiagram` | `exportRelationDiagram(snapshot: RelationGraphSnapshot, format: "mermaid" \| "dot" \| "d2") => DiagramArtifact` | graph snapshot と要求 format が供給される。Mermaid は常に利用可能で、DOT/D2 は installed tooling で gate される optional adapter とする。 | 安定した node IDs と edge labels を持つ deterministic diagram text を返す。利用不能な optional adapter は、暗黙に tool を起動せず finding を返す。 | Diagram export は review/handover の evidence であり、source docs や DB state を mutate してはならない。 | U-RELGRAPH-007..008 |
-| `collectVerificationEvidenceProjection` | `collectVerificationEvidenceProjection(input: VerificationEvidenceRecord[]) => VerificationProfileProjection` | `.ut-tdd/evidence/verification-profiles/*.json` から保存済み A-125 evidence records を schema validation 後に供給する。 | `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` の projection rows を evidence paths 付きで返す。 | External execution は opt-in のままとする。projection は raw external payloads ではなく summaries と classification を保存する。 | U-RELGRAPH-009..010 |
+| `collectVerificationEvidenceProjection` | `collectVerificationEvidenceProjection(input: VerificationEvidenceRecord[]) => VerificationProfileProjection` | `.helix/evidence/verification-profiles/*.json` から保存済み A-125 evidence records を schema validation 後に供給する。 | `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` の projection rows を evidence paths 付きで返す。 | External execution は opt-in のままとする。projection は raw external payloads ではなく summaries と classification を保存する。 | U-RELGRAPH-009..010 |
 
 **必須 impact class**:
 
@@ -143,7 +143,7 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 
 ## §4 doctor 配線 (hard/fail-close)
 
-`checkModuleDrift(repoRoot)` を `runDoctor` に **hard/fail-close** で配線。I/O 失敗は violation として `ok=false` を返し、module-drift があれば `ut-tdd doctor` は失敗する。
+`checkModuleDrift(repoRoot)` を `runDoctor` に **hard/fail-close** で配線。I/O 失敗は violation として `ok=false` を返し、module-drift があれば `helix doctor` は失敗する。
 
 ## §5 段階導入 / hard 化判断
 

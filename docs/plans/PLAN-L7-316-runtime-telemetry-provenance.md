@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-07-05T03:45:00+09:00"
     tests_green_at: "2026-07-05T03:45:00+09:00"
     verdict: approve
-    scope: "PLAN-L7-316 は session-log 由来の runtime telemetry provenance を projection-only rows から分離して配線した。Bash verification event は runtime-hook の test_runs、forced_stop event は runtime-hook の guardrail_decisions、ut-tdd skill suggest Bash event は runtime-hook:skill-suggest の skill_invocations として投影される。doctor model_runs overlay は既存の loadRuntimeSessionUsage / projectTokenUsage 配線を維持し、README は gate・証跡・完了条件に紐づけていない。"
+    scope: "PLAN-L7-316 は session-log 由来の runtime telemetry provenance を projection-only rows から分離して配線した。Bash verification event は runtime-hook の test_runs、forced_stop event は runtime-hook の guardrail_decisions、helix skill suggest Bash event は runtime-hook:skill-suggest の skill_invocations として投影される。doctor model_runs overlay は既存の loadRuntimeSessionUsage / projectTokenUsage 配線を維持し、README は gate・証跡・完了条件に紐づけていない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -67,7 +67,7 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-316-runtime-telemetry-provenance.md
         output_digest: "sha256:11325bc719c7513ef369c127f79f1d45a214eac2fb89c3221d6c0c2674a858b5"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -92,7 +92,7 @@ runtime-hook provenance を自動生成しない）で、`doctor` は `model_run
 ### IN
 - `test_runs`: session-log の verification Bash event から runtime-hook 由来 row（session_id / runtime 明示）を派生。
 - `guardrail_decisions`: session-log の `forced_stop` event から runtime-hook 由来 row を派生。
-- `skill_invocations`: `ut-tdd skill suggest` Bash event を分類し runtime-hook 由来 row を派生。
+- `skill_invocations`: `helix skill suggest` Bash event を分類し runtime-hook 由来 row を派生。
 - `doctor`: `loadRuntimeSessionUsage` / `projectTokenUsage` を doctor 実行内に配線し `model_runs` overlay を自動更新。
 - 既存 `classifyTelemetryProvenance` / `RuntimeVerificationLogEvent` plumbing を再利用。
 

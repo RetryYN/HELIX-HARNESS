@@ -85,26 +85,26 @@ review_evidence:
         output_digest: "sha256:27d21f17db9adbeac47bd7d1894214c45c679ef657d7a5ddc9e06ab55a39ab1c"
 ---
 
-# PLAN-REVERSE-214: loop effort-budget backfill
+# PLAN-REVERSE-214: loop effort-budget backfill（loop effort-budget 逆伝播 backfill）
 
-## Objective
+## 目的
 
-Backfill `PLAN-L7-214` so the new loop effort-budget enforcement is not an
-isolated implementation. The semantic source remains HELIX P2: agent loops must
-carry explicit effort limits and must not self-continue or pass when over budget.
+`PLAN-L7-214` を backfill し、新しい loop effort-budget enforcement が孤立した実装に
+ならないようにする。意味上の source は HELIX P2 のままであり、agent loop は明示的な
+effort limit を持ち、budget 超過時に self-continue したり pass したりしてはならない。
 
-## Backfill Result
+## Backfill 結果
 
-- HBR-P2 / HOT-P2 now record loop effort-budget as implemented evidence.
-  Hosted/API preflight is handled by PLAN-L7-215.
-- L3 acceptance keeps HR-FR-P2-02 unchanged but points to concrete test evidence.
-- L6 HC-P2 specifies plan-size/model-role limits, usage dimensions, and `tick`
-  pre/post enforcement.
+- HBR-P2 / HOT-P2 は loop effort-budget を実装済み evidence として記録した。
+  Hosted/API preflight は PLAN-L7-215 で扱う。
+- L3 acceptance は HR-FR-P2-02 を変更せず、具体的な test evidence を参照する。
+- L6 HC-P2 は plan-size/model-role limits、usage dimensions、`tick` pre/post
+  enforcement を明記する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-214` and this Reverse PLAN require each other for add-impl backfill
-  closure.
-- The new budget enforcement is test-cited by `HU-PILLAR-P2-02`.
-- The backfill does not claim whole P2 completion. Hosted/API preflight is
-  closed separately by PLAN-L7-215.
+- `PLAN-L7-214` とこの Reverse PLAN は、add-impl backfill closure のために相互に
+  require されている。
+- 新しい budget enforcement は `HU-PILLAR-P2-02` で test-cited されている。
+- この backfill は P2 全体の完了を主張しない。Hosted/API preflight は PLAN-L7-215 で
+  別途 close される。

@@ -76,27 +76,24 @@ review_evidence:
         output_digest: "sha256:24c2bfc018a575b92ef493f7bf13a9c28c77945fc695797741d416232eb748e4"
 ---
 
-# PLAN-REVERSE-216: version-up activation readiness backfill
+# PLAN-REVERSE-216: version-up activation readiness backfill の backfill
 
-## Objective
+## 目的
 
-Backfill the version-up activation readiness evidence change so it is not an
-isolated packet-field addition. The semantic source remains HBR-P1 / HR-FR-P1-02:
-future-version work is preserved, but activation must not proceed without dry-run,
-rollback, approval, audit, and source freshness evidence.
+version-up activation readiness evidence の変更を backfill し、孤立した packet field 追加にしない。
+意味上の source は引き続き HBR-P1 / HR-FR-P1-02 とする。future-version work は保持するが、
+dry-run、rollback、approval、audit、source freshness evidence が揃わない限り activation は進めない。
 
-## Backfill Result
+## Backfill 結果
 
-- `docs/process/modes/version-up.md` defines `activationReadinessChecks[]`.
-- L6 HC-P1 records the readiness classification contract.
-- HAT-P1-02 / HU-PILLAR-P1-02 require pending external rehearsal/provenance
-  evidence to remain an activation blocker.
-- `PLAN-L7-146` remains parked and blocked; no external activation is executed.
+- `docs/process/modes/version-up.md` は `activationReadinessChecks[]` を定義する。
+- L6 HC-P1 は readiness classification contract を記録する。
+- HAT-P1-02 / HU-PILLAR-P1-02 は、pending external rehearsal/provenance evidence を
+  activation blocker として残すことを要求する。
+- `PLAN-L7-146` は parked / blocked のままとし、external activation は実行しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-216` and this Reverse PLAN require each other for add-impl backfill
-  closure.
-- Tests cite `tests/version-up-readiness.test.ts`.
-- The backfill does not claim L14 completion, version-up activation, or cutover
-  approval.
+- `PLAN-L7-216` と本 Reverse PLAN は、add-impl backfill closure のため相互に要求関係を持つ。
+- Tests は `tests/version-up-readiness.test.ts` を cite する。
+- この backfill は L14 completion、version-up activation、cutover approval を claim しない。

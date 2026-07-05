@@ -830,7 +830,7 @@ function scopedSiblingDecisionPacketCommand(planId: string, command: string): st
     case RENAME_PLAN_PACKET_COMMAND:
       return "bun run src/cli.ts rename plan --json";
     default:
-      return command.replace(/^ut-tdd /, "bun run src/cli.ts ");
+      return command.replace(/^helix /, "bun run src/cli.ts ");
   }
 }
 
@@ -1388,7 +1388,7 @@ function actionBindingApprovalCheckForField(
         value,
         reason: "snapshot binding does not match current activationSnapshot.snapshotId",
         requiredAction:
-          "re-run ut-tdd version-up activation-packet --json and record the current activationSnapshot.snapshotId",
+          "re-run helix version-up activation-packet --json and record the current activationSnapshot.snapshotId",
       };
     }
     if (
@@ -1401,7 +1401,7 @@ function actionBindingApprovalCheckForField(
         value,
         reason: "snapshot binding does not match current cutoverSnapshot.snapshotId",
         requiredAction:
-          "re-run ut-tdd rename plan --json and record the current cutoverSnapshot.snapshotId",
+          "re-run helix rename plan --json and record the current cutoverSnapshot.snapshotId",
       };
     }
     return concreteCheck(field, value, "snapshot binding matches this PLAN route");
@@ -1527,7 +1527,7 @@ function hasConcreteApprovalEvidenceLocator(value: string): boolean {
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
     /https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:actions\/runs\/\d+|pull\/\d+|commit\/[a-f0-9]{7,40})(?:[/?#]\S*)?/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
-    /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
+    /\b(\.helix|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));
 }
@@ -1559,7 +1559,7 @@ function hasLimitedApprovalScope(value: string): boolean {
     "対象外",
   ]);
   const hasConcreteBoundary = mentions(value, [
-    ".ut-tdd",
+    ".helix",
     "access control",
     "actor",
     "adapter",

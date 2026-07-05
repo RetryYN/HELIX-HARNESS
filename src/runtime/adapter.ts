@@ -173,7 +173,7 @@ export function resolveClaudeNativeCommand(
 ): string | null {
   const env = opts.env ?? process.env;
   const platform = opts.platform ?? process.platform;
-  const explicit = env.UT_TDD_CLAUDE_BIN;
+  const explicit = env.HELIX_CLAUDE_BIN;
   if (explicit && existsSync(explicit)) return explicit;
 
   if (platform === "win32") {
@@ -213,7 +213,7 @@ export function resolveCodexNativeCommand(
 ): string | null {
   const env = opts.env ?? process.env;
   const platform = opts.platform ?? process.platform;
-  const explicit = env.UT_TDD_CODEX_BIN;
+  const explicit = env.HELIX_CODEX_BIN;
   if (explicit && existsSync(explicit)) return explicit;
 
   if (platform === "win32") {

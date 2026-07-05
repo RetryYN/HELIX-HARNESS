@@ -27,7 +27,7 @@ export const HARNESS_DB_EVALUATION_TABLES: TableDef[] = [
     ],
   },
   // --- §9.10 model evaluation projection (FR-L1-38, PLAN-L7-53) ---
-  // Opt-in: runs only when .ut-tdd/config/model-opt-in.yaml exists with enabled:true.
+  // Opt-in: runs only when .helix/config/model-opt-in.yaml exists with enabled:true.
   // Computes per-model success_rate by joining model_runs.plan_id -> plan_registry.status
   // IN PLAN_SUCCESS_STATUSES. No token/cost columns — cost-efficiency is a declared
   // follow-up (see function-spec.md FR-L1-38 invariant and PLAN-L7-53).
@@ -145,7 +145,7 @@ export const HARNESS_DB_EVALUATION_TABLES: TableDef[] = [
     ],
   },
   // --- §9.12 loop observability projection (PLAN-L7-304、PLAN-L7-176/177 §4 carry) ---
-  // source = .ut-tdd/state/loop/<planId>.iterations.jsonl (LoopIterationRecord)。
+  // source = .helix/state/loop/<planId>.iterations.jsonl (LoopIterationRecord)。
   // hybrid 自己評価 (worker===verifier かつ blocked_reason なし) を doctor
   // verifier-provider-mismatch が機械検査できるようにする。cost_usd は per-iteration
   // 記録が未実装のため NULL 許容 (effort budget の enforcement は loop state 側で既済)。

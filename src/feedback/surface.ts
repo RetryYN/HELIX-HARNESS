@@ -219,7 +219,7 @@ export function renderTakeoverFeedback(result: TakeoverFeedbackResult): string {
   lines.push(...renderGroupedItems(actionableItems));
   const hiddenActionable = result.byBucket.gate + result.byBucket.actionable - result.items.length;
   if (hiddenActionable > 0) {
-    lines.push(`  - (+${hiddenActionable} more actionable - ut-tdd feedback list --emit)`);
+    lines.push(`  - (+${hiddenActionable} more actionable - helix feedback list --emit)`);
   }
   if (result.byBucket.telemetry > 0) {
     const topTelemetry = Object.entries(result.telemetryBySignal)

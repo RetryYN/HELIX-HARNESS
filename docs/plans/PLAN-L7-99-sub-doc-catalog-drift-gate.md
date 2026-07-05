@@ -37,7 +37,7 @@ review_evidence:
 
 # PLAN-L7-99 (troubleshoot): 要件 §G.1 ↔ schema VALID_SUB_DOCS 正本同期 gate (IMP-141 完遂)
 
-## 0. Objective (PO 指示「IMP-141 完遂」2026-06-22)
+## 0. 目的 (Objective、PO 指示「IMP-141 完遂」2026-06-22)
 
 PLAN-L7-97 (catalog 拡張) が `src/plan/lint.ts` を schema 単一正本由来へ一本化した結果、要件 §1.10.G.1 の
 `VALID_SUB_DOCS` 表と schema (`src/schema/index.ts`) の drift が機能リスクとして顕在化した (IMP-141):
@@ -46,7 +46,7 @@ PLAN-L7-97 (catalog 拡張) が `src/plan/lint.ts` を schema 単一正本由来
 要件 L4 に `screen` 残留だが schema L4 に無い (画面は L2 画面専用層が持つ)。要件 line 436「正本は
 `src/schema/index.ts`」の建付けに従い**要件表を schema へ寄せ**、再発防止に doc↔schema 自動照合 gate を新設する。
 
-## 1. Scope (実装)
+## 1. 実装範囲 (Scope)
 
 - **要件整合** (`docs/governance/helix-harness-requirements_v1.2.md` §G.1): L3 を
   `["business", "functional", "nfr"]`・L4 を `screen` 除去 (4 コア + 4 標準成果物) へ修正 + 正本同期注記。
@@ -58,20 +58,20 @@ PLAN-L7-97 (catalog 拡張) が `src/plan/lint.ts` を schema 単一正本由来
 - **test** (`tests/sub-doc-catalog-drift.test.ts`): parse (単一/複数行 array)・drift 検出双方向・
   実 repo drift 0 (U-SDCD-001..008)。
 
-## 2. Acceptance Criteria
+## 2. 受入条件 (Acceptance Criteria)
 
 - [x] 要件 §G.1 L3 slug = schema (`business`/`functional`/`nfr`)、L4 から `screen` 除去。
 - [x] `sub-doc-catalog-drift` gate が doctor に配線され実 repo で drift 0 (lint-wiring wired=53)。
 - [x] L3 slug 相違 / L4 screen 残留を双方向に fail-close 検出する回帰テスト green (real-repo test = claim の substance, PLAN-L7-89)。
-- [x] typecheck (tsc) / biome EXIT=0 / vitest green / doctor EXIT=0。
-- [x] intra_runtime_subagent review approve。
+- [x] 検証: typecheck (tsc) / biome EXIT=0 / vitest green / doctor EXIT=0。
+- [x] レビュー承認: intra_runtime_subagent review approve。
 
-## 3. Out of scope
+## 3. 範囲外 (Out of scope)
 
 - 標準成果物 (report/batch/notification/code-value) の sub-doc 必須 § 構造定義 = 別 PLAN (§G.6 拡張)。
 - schema VALID_SUB_DOCS 自体の値変更なし (contract 不変 = Reverse 合流不要)。
 
-## 4. Trace
+## 4. 追跡 (Trace)
 
 - 起点: `docs/improvement-backlog.md` IMP-141 (A-144)。
 - impl: `src/lint/sub-doc-catalog-drift.ts` / `src/doctor/index.ts` (`checkSubDocCatalogDrift`)。

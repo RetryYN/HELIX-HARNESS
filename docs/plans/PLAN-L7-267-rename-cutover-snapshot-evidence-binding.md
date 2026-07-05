@@ -85,14 +85,14 @@ ready 扱いにしない。
 ## 変更
 
 - `cutoverSnapshot` に worktree status、dirty path count、evidence artifact hash、missing artifact list を追加する。
-- `evidenceDigest` と `snapshotId` に clean/dirty 状態と `.ut-tdd/evidence/rename/` 配下の artifact hash を含める。
+- `evidenceDigest` と `snapshotId` に clean/dirty 状態と `.helix/evidence/rename/` 配下の artifact hash を含める。
 - `approvalMaterialReady=true` は current snapshot 一致に加えて、clean worktree と全 evidence artifact presence を要求する。
 - completion/status/handover の supporting summary に worktree / evidence artifact field を追加する。
 - text mode に `cutover-snapshot-worktree:` と `cutover-snapshot-evidence:` を追加する。
 
 ## 境界
 
-- `.ut-tdd` から `.helix` への state move、rename apply、action-binding approval は実行しない。
+- `.helix` から `.helix` への state move、rename apply、action-binding approval は実行しない。
 - 既存の PLAN-M-02 human approval / irreversible cutover blocker は解除しない。
 - 証跡 artifact の実生成 command は承認前 packet の要求として扱い、この PLAN では本番 cutover evidence を作らない。
 

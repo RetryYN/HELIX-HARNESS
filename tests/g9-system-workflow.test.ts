@@ -32,7 +32,7 @@ const stRows = [
 ].join("\n");
 
 const validManifest = {
-  manifest_path: ".ut-tdd/evidence/g9-system/test.json",
+  manifest_path: ".helix/evidence/g9-system/test.json",
   schema_version: "g9-system-evidence-v1",
   gate: "G9",
   profile: "system-selected-regression",

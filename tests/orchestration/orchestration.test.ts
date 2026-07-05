@@ -406,7 +406,7 @@ describe("P2 orchestration (PLAN-L6-50 add-impl で実装)", () => {
   });
 
   it("U-ORCH-006: claimNextJob は BEGIN IMMEDIATE で競合 claim を二重取得しない", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-job-queue-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-job-queue-"));
     const dbPath = join(root, "jobs.sqlite");
     const queue = openJobQueue(dbPath);
 

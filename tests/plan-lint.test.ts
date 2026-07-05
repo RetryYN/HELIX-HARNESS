@@ -281,7 +281,7 @@ describe("plan schedule lint (IMP-081)", () => {
   });
 
   it("U-PLANGOV-003: parent/requires/parent_design cross-record checks fail closed", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-governance-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-governance-"));
     try {
       const docs = [
         planDoc("PLAN-L6-91-parent", {
@@ -314,7 +314,7 @@ describe("plan schedule lint (IMP-081)", () => {
   });
 
   it("U-PLANGOV-004: artifact requires use filesystem existence instead of PLAN status", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-governance-artifact-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-governance-artifact-"));
     try {
       const artifact = join(root, "docs", "design", "harness", "L4-basic-design", "function.md");
       mkdirSync(join(root, "docs", "design", "harness", "L4-basic-design"), { recursive: true });
@@ -336,7 +336,7 @@ describe("plan schedule lint (IMP-081)", () => {
   });
 
   it("U-PLANGOV-005: --gate governance runs strict PLAN governance lint", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-governance-cli-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-governance-cli-"));
     try {
       const plansDir = join(root, "docs", "plans");
       mkdirSync(plansDir, { recursive: true });
@@ -866,7 +866,7 @@ describe("plan schedule lint (IMP-081)", () => {
       "docs/design/harness/L3-functional/roadmap.md",
     ];
     const text = activeDocs.map((p) => readFileSync(join(process.cwd(), p), "utf8")).join("\n");
-    expect(text).not.toContain("ut-tdd trace --g1");
+    expect(text).not.toContain("helix trace --g1");
     expect(text).not.toMatch(/G3-trace.*L7 carry/);
     expect(text).not.toMatch(/plan lint.*stub/);
   });

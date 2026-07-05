@@ -121,7 +121,7 @@ Reverse は ① だけ Forward に渡して終わりではない。**routing 先
 | Retrofit | 前段 (Retrofit の影響評価) | Retrofit が依存更新の影響評価を要するとき `upgrade` type で前段起動される (retrofit.md §6 の reciprocal)。R4 routing で Retrofit の移行計画ステップへ戻す |
 | drift signal | 自動起動 | `drift` (schema/contract) を検出したら detection-routing 経由で自動起動 |
 
-翻案注記: HELIX route は reverse workflow を `ut-tdd reverse <type> R0..R4` として扱う。旧 source process command 名は現行導線にしない。`--invalidate-forward` フラグは HELIX gate 機構として実装予定 (現状 stub)。type 別成果物ファイル命名 (R0-evidence-map.yaml 等) は source process reference §type 別成果物を踏襲しつつ HELIX `.ut-tdd/reverse/` パスへ格納予定。
+翻案注記: HELIX route は reverse workflow を `helix reverse <type> R0..R4` として扱う。旧 source process command 名は現行導線にしない。`--invalidate-forward` フラグは HELIX gate 機構として実装予定 (現状 stub)。type 別成果物ファイル命名 (R0-evidence-map.yaml 等) は source process reference §type 別成果物を踏襲しつつ HELIX `.helix/reverse/` パスへ格納予定。
 
 ---
 

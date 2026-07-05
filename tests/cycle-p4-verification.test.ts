@@ -8,7 +8,7 @@ import {
   loadCycleP4VerificationDocs,
 } from "../src/lint/cycle-p4-verification";
 
-const legacyRuntimeName = ["HE", "LIX"].join("");
+const legacyRuntimeName = ["UT", "TDD"].join("-");
 
 const compliant = `# A-TEST
 
@@ -18,10 +18,10 @@ const compliant = `# A-TEST
 |---|---|---|---|---|---|
 | Cycle P4 L7 DB integration | L7-DB | db rows | \`tests/cycle-p4-verification.test.ts\` | DB projection + doctor | \`closed\` |
 | L8-L14 local verification band | local band | workflow rows | \`tests/cycle-p4-verification.test.ts\` | DB projection + verification tests | \`closed\` |
-| UT-TDD Run P4 L9-L11 boundary | run layer | naming separation | \`tests/cycle-p4-verification.test.ts\` | roadmap + doctor | \`closed\` |
+| HELIX Run P4 L9-L11 boundary | run layer | naming separation | \`tests/cycle-p4-verification.test.ts\` | roadmap + doctor | \`closed\` |
 | Production and PO signoff boundary | external | human required | \`tests/cycle-p4-verification.test.ts\` | DB projection + verification tests | \`human_required\` |
 | Handover current action | handover | current pointer | \`tests/cycle-p4-verification.test.ts\` | handover + doctor | \`closed\` |
-| Source isolation current vocabulary | current docs | UT-TDD wording | \`tests/cycle-p4-verification.test.ts\` | roadmap + doctor + verification lint | \`closed\` |
+| Source isolation current vocabulary | current docs | HELIX wording | \`tests/cycle-p4-verification.test.ts\` | roadmap + doctor + verification lint | \`closed\` |
 | Telemetry and self-improvement closure | telemetry | feedback loop | \`tests/cycle-p4-verification.test.ts\` | telemetry closure + doctor | \`closed\` |
 | Feature residual closure | feature residual | closure evidence | \`tests/cycle-p4-verification.test.ts\` | fr-roadmap coverage + doctor | \`closed\` |
 | Placeholder-deps carry boundary | carry | explicit boundary | \`tests/cycle-p4-verification.test.ts\` | test-design + doctor | \`closed\` |
@@ -59,7 +59,7 @@ describe("cycle-p4-verification lint", () => {
 
   it("U-CP4-002: fails missing source isolation row", () => {
     const content = compliant.replace(
-      "| Source isolation current vocabulary | current docs | UT-TDD wording | `tests/cycle-p4-verification.test.ts` | roadmap + doctor + verification lint | `closed` |\n",
+      "| Source isolation current vocabulary | current docs | HELIX wording | `tests/cycle-p4-verification.test.ts` | roadmap + doctor + verification lint | `closed` |\n",
       "",
     );
     const r = analyzeCycleP4Verification([{ file: "A.md", content }], process.cwd());
@@ -93,7 +93,7 @@ describe("cycle-p4-verification lint", () => {
     expect(r.rows.map((row) => row.requirement)).toEqual([
       "Cycle P4 L7 DB integration",
       "L8-L14 local verification band",
-      "UT-TDD Run P4 L9-L11 boundary",
+      "HELIX Run P4 L9-L11 boundary",
       "Production and PO signoff boundary",
       "Handover current action",
       "Source isolation current vocabulary",
@@ -106,7 +106,7 @@ describe("cycle-p4-verification lint", () => {
   });
 
   it("U-CP4-005: fails current operational files that reintroduce legacy source cutover terms", () => {
-    const repo = mkdtempSync(join(tmpdir(), "ut-tdd-cp4-"));
+    const repo = mkdtempSync(join(tmpdir(), "helix-cp4-"));
     mkdirSync(join(repo, "docs", "design", "harness", "L3-functional"), { recursive: true });
     mkdirSync(join(repo, "tests"), { recursive: true });
     writeFileSync(join(repo, "tests", "cycle-p4-verification.test.ts"), "");

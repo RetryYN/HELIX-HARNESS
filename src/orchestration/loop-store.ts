@@ -13,9 +13,9 @@ export function fileLoopStore(deps: {
   readText(p: string): string | null;
   writeText(p: string, c: string): void;
 }): LoopStore {
-  const pathFor = (planId: string) => join(deps.root, ".ut-tdd", "state", "loop", `${planId}.json`);
+  const pathFor = (planId: string) => join(deps.root, ".helix", "state", "loop", `${planId}.json`);
   const iterationsPathFor = (planId: string) =>
-    join(deps.root, ".ut-tdd", "state", "loop", `${planId}.iterations.jsonl`);
+    join(deps.root, ".helix", "state", "loop", `${planId}.iterations.jsonl`);
 
   return {
     read: (planId: string) => {

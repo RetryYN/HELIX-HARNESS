@@ -36,5 +36,5 @@ pair_artifact: docs/test-design/helix/L6-pillar-unit-test-design.md
 
 - L7 の選択済み slice は `doctor` / targeted tests で green。
 - `PLAN-L7-146-serverless-readonly-share` は `version_target: future` のため active L7 完了に数えない。
-- `.ut-tdd` -> `.helix` は L14 cutover 承認前なので L7 実装済み扱いにしない。
+- `.helix` -> `.helix` は L14 cutover 承認前なので L7 実装済み扱いにしない。
 - S4 未了の visualization は、read-model 初回応答があっても L7 全面実装と扱わない。

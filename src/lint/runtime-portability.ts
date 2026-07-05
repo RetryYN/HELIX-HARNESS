@@ -21,7 +21,7 @@ export interface RuntimePortabilityResult {
   ok: boolean;
 }
 
-const ALLOWED_SCRIPT_WRAPPERS = new Set(["scripts/ut-tdd", "scripts/ut-tdd.ps1"]);
+const ALLOWED_SCRIPT_WRAPPERS = new Set(["scripts/helix", "scripts/helix.ps1"]);
 const CORE_FILE_PATTERN = /\.(?:ts|gitkeep)$/;
 const HOOK_FILE_PATTERN = /\.ts$/;
 const DISALLOWED_RUNTIME_FILE_PATTERN = /\.(?:py|sh|bash|js|mjs|cjs)$/;
@@ -29,8 +29,8 @@ const LOCAL_ABSOLUTE_PATH_PATTERN =
   /(?:[A-Za-z]:\\Users\\|\/home\/|\/Users\/|~\/ai-dev-kit-vscode)/;
 const SHELL_RUNTIME_PATTERN =
   /\b(?:spawn|spawnSync|exec|execSync|execFile|execFileSync)\s*\(\s*["'`](?:bash|sh|python|python3|powershell|pwsh|cmd(?:\.exe)?)(?:["'`]|\s)/;
-const LEGACY_RUNTIME_NAME = ["he", "lix"].join("");
-const LEGACY_ENV_PREFIX = ["HE", "LIX_"].join("");
+const LEGACY_RUNTIME_NAME = ["ut", "tdd"].join("-");
+const LEGACY_ENV_PREFIX = ["UT", "TDD"].join("_");
 const LEGACY_RUNTIME_MARKER_PATTERN = new RegExp(
   [
     `${LEGACY_ENV_PREFIX}[A-Z0-9_]*`,
@@ -198,7 +198,7 @@ function analyzeRuntimeDoc(doc: RuntimePortabilityDoc): RuntimePortabilityViolat
       path,
       line: 1,
       rule: "script-wrapper-unapproved",
-      message: "Only the thin ut-tdd POSIX/PowerShell wrappers are allowed under scripts/.",
+      message: "Only the thin helix POSIX/PowerShell wrappers are allowed under scripts/.",
     });
   }
   if (ALLOWED_SCRIPT_WRAPPERS.has(path)) {
@@ -206,13 +206,13 @@ function analyzeRuntimeDoc(doc: RuntimePortabilityDoc): RuntimePortabilityViolat
     if (
       lines.length > 12 ||
       !/src[\\/]cli\.ts/.test(doc.text) ||
-      !/dist[\\/]+ut-tdd/.test(doc.text)
+      !/dist[\\/]+helix/.test(doc.text)
     ) {
       violations.push({
         path,
         line: 1,
         rule: "script-wrapper-not-thin",
-        message: "Script wrappers must only dispatch to dist/ut-tdd or src/cli.ts.",
+        message: "Script wrappers must only dispatch to dist/helix or src/cli.ts.",
       });
     }
     if (/\bpython(?:3)?\b/.test(doc.text)) {

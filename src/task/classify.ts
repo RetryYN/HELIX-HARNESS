@@ -31,7 +31,7 @@ import {
  * Composes the existing deterministic contracts (`classifyDrive` = FR-L1-41,
  * `scoreTaskComplexity` = FR-L1-39, `inferTaskDifficulty`) and adds kind
  * inference plus escalation-risk flagging (CLAUDE.md safety boundary). The
- * `ut-tdd task classify` CLI is the public I/O that feeds plan lint / gate /
+ * `helix task classify` CLI is the public I/O that feeds plan lint / gate /
  * skill suggest.
  */
 
@@ -67,7 +67,7 @@ export type ResearchAdoptionDisposition =
   | "incorporate"
   | "reference"
   | "exclude"
-  | "ut-tdd-specific";
+  | "helix-specific";
 
 export interface ResearchAdoptionDecision {
   pattern: string;

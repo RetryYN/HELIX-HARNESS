@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-125-route-legacy-command-gate
-title: "PLAN-L7-125: route legacy command gate"
+title: "PLAN-L7-125: route legacy command gate の検査"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - route legacy command gate"
+    slot_label: "TL - route legacy command gate 検査"
 generates:
   - artifact_path: docs/plans/PLAN-L7-125-route-legacy-command-gate.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T16:40:00+09:00"
     tests_green_at: "2026-06-23T16:40:00+09:00"
     verdict: approve
-    scope: "Route-map command output fails closed when a legacy runtime command name is configured."
+    scope: "route-map の command 出力は、legacy runtime command name が設定された場合に fail closed する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -68,24 +68,23 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-125: route legacy command gate
+# PLAN-L7-125: route legacy command gate の検査
 
-## Objective
+## 目的
 
-Prevent `ut-tdd route eval` from emitting a runnable command when route-map
-configuration contains a legacy runtime command name.
+route-map 設定に legacy runtime command name が含まれる場合、`helix route eval` が実行可能な
+command を出力しないようにする。
 
-## Scope
+## 対象範囲
 
-- Validate route-map command outputs with `RecommendedCommandV1`.
-- Return exit 1 and a `legacy-runtime-command` finding when the command does not
-  start with `ut-tdd`.
-- Add `--route-map <path>` as an explicit override surface for deterministic
-  route-map validation.
-- Back-fill requirements and L4 function design.
+- route-map の command 出力を `RecommendedCommandV1` で検証する。
+- command が `helix` で始まらない場合、exit 1 と `legacy-runtime-command` finding を返す。
+- deterministic な route-map validation のため、明示的な override surface として
+  `--route-map <path>` を追加する。
+- requirements と L4 function design を back-fill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- A route-map entry such as `command: helix reverse` returns exit 1.
-- The result does not include `recommended_command`.
-- Existing built-in routes still return schema-valid `ut-tdd` commands.
+- `command: helix reverse` のような route-map entry は exit 1 を返す。
+- 結果に `recommended_command` を含めない。
+- 既存の built-in routes は引き続き schema-valid な `helix` commands を返す。

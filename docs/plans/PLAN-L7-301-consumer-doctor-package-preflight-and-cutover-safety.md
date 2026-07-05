@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety
-title: "PLAN-L7-301: consumer doctor package preflight and cutover safety review fields"
+title: "PLAN-L7-301: consumer doctor の package preflight と cutover safety review fields"
 kind: impl
 layer: L7
 drive: agent
@@ -15,11 +15,11 @@ pair_artifact: tests/doctor.test.ts
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: qa
-    slot_label: "explorer - consumer doctor stale-state audit"
+    slot_label: "explorer - consumer doctor stale-state 監査"
   - role: qa
-    slot_label: "explorer - PLAN-M-02 human review safety field audit"
+    slot_label: "explorer - PLAN-M-02 human review safety field 監査"
   - role: tl
-    slot_label: "TL - fail-close implementation"
+    slot_label: "TL - fail-close 実装"
 generates:
   - artifact_path: docs/plans/PLAN-L7-301-consumer-doctor-package-preflight-and-cutover-safety.md
     artifact_type: markdown_doc
@@ -66,7 +66,7 @@ review_evidence:
         output_digest: "sha256:61ed86ac2db4b1b47712ab77b0f05bfa2ba4b4d19967529cc5d5cd18789a063f"
 ---
 
-# PLAN-L7-301: consumer doctor package preflight and cutover safety review fields
+# PLAN-L7-301: consumer doctor の package preflight と cutover safety review fields
 
 ## 目的
 
@@ -74,13 +74,13 @@ HELIX consumer setup と PLAN-M-02 cutover review の「green に見えるが意
 
 ## 問題
 
-- `ut-tdd doctor --profile consumer` は `.ut-tdd/state/project-setup.json` の `readinessOk=true` と検証 matrix を確認する一方、現在の consumer package root にある `package.json.scripts.ut-tdd` / `typecheck` / `test` と `bun.lock|bun.lockb` を再検査していなかった。setup 後に package surface が壊れても stale state により green になり得る。
+- `helix doctor --profile consumer` は `.helix/state/project-setup.json` の `readinessOk=true` と検証 matrix を確認する一方、現在の consumer package root にある `package.json.scripts.helix` / `typecheck` / `test` と `bun.lock|bun.lockb` を再検査していなかった。setup 後に package surface が壊れても stale state により green になり得る。
 - PLAN-M-02 の dedicated packet summary は `mustNotApply` / `applyAuthorized` を持つが、`humanReviewBundle.items[].safetyReviewFields` がその2項目を落としていた。PO/chat 向け review surface で「承認前は適用不可」「apply は未承認」を追いにくい。
 
 ## 受入条件
 
-- consumer doctor は保存済み setup state が ready でも、現在の package root に `package.json`、`scripts.ut-tdd`、`scripts.typecheck`、`scripts.test`、`bun.lock|bun.lockb` が無ければ `consumer-package-preflight` violation を返す。
-- consumer doctor の generated artifact happy path は package preflight を含めて OK になる。
+- consumer doctor は保存済み setup state が ready でも、現在の package root に `package.json`、`scripts.helix`、`scripts.typecheck`、`scripts.test`、`bun.lock|bun.lockb` が無ければ `consumer-package-preflight` violation を返す。
+- consumer doctor の生成 artifact 正常系 (generated artifact happy path) は package preflight を含めて OK になる。
 - completion decision packet の human review bundle は PLAN-M-02 rename plan / approval draft の `mustNotApply` と `applyAuthorized` を safety review field として出す。
 - completion review packet 側と human review bundle 側で safety flag の分類が非対称にならない。
 

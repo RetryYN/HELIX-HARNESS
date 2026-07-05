@@ -36,7 +36,7 @@ plan: docs/plans/PLAN-L6-17-gate-confirm.md
 
 ## §3 Doctor 挙動
 
-現在の integration は hard/fail-close である。`checkGateConfirm` は doctor messages に含まれ、`checkGateConfirm.ok` は `runDoctor.ok` に接続される。gate/doc coupling drift は `ut-tdd doctor` を block する。
+現在の integration は hard/fail-close である。`checkGateConfirm` は doctor messages に含まれ、`checkGateConfirm.ok` は `runDoctor.ok` に接続される。gate/doc coupling drift は `helix doctor` を block する。
 
 ## §4 テストオラクル
 

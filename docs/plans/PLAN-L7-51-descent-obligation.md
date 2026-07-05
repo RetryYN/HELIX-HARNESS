@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-51-descent-obligation
-title: "PLAN-L7-51: descent-obligation ledger implementation"
+title: "PLAN-L7-51: descent-obligation ledger 実装"
 kind: add-impl
 layer: L7
 drive: agent
@@ -9,7 +9,7 @@ created: 2026-06-12
 updated: 2026-06-12
 agent_slots:
   - role: tl
-    slot_label: "TL - implement descent-obligation lint, DB projection, doctor surface, and U-DESC tests"
+    slot_label: "TL - descent-obligation lint、DB projection、doctor surface、U-DESC tests を実装する"
 generates:
   - artifact_path: src/lint/descent-obligation.ts
     artifact_type: source_module
@@ -56,34 +56,34 @@ review_evidence:
     tests_green_at: "2026-06-12"
     reviewed_at: "2026-06-12"
     verdict: pass
-    scope: "L7 add-impl for PLAN-L6-35: descent-obligation lint, descent_obligations projection, doctor hard/fail-close wiring, and U-DESC-001..008 tests."
+    scope: "PLAN-L6-35 の L7 add-impl: descent-obligation lint、descent_obligations projection、doctor hard/fail-close wiring、U-DESC-001..008 tests。"
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-51: descent-obligation ledger implementation
+# PLAN-L7-51: descent-obligation ledger 実装
 
-## Objective
+## 目的
 
-Implement the L6 descent-obligation contract from PLAN-L6-35 so absence-blind downstream gaps are generated from upstream trace keys and layer adjacency, then surfaced through tests, doctor, and harness.db. Also harden doctor completion precision so confirmed/completed L7 PLANs cannot retain unchecked DoD items silently.
+PLAN-L6-35 の L6 descent-obligation contract を実装し、absence-blind な downstream gap を upstream trace key と layer adjacency から生成して、tests、doctor、harness.db に surface する。あわせて doctor completion precision を強化し、confirmed/completed の L7 PLAN が未チェックの DoD item を静かに残せないようにする。
 
 ## WBS
 
-| WBS ID | Work | Source target | Test target | Gate |
+| WBS ID | 作業 | source target | test target | gate |
 |---|---|---|---|---|
-| WBS-L7-51-01 | Pure analyzer and repo loaders | `src/lint/descent-obligation.ts` | `tests/descent-obligation.test.ts` | `vitest tests/descent-obligation.test.ts` |
+| WBS-L7-51-01 | pure analyzer と repo loader | `src/lint/descent-obligation.ts` | `tests/descent-obligation.test.ts` | `vitest tests/descent-obligation.test.ts` |
 | WBS-L7-51-02 | harness.db projection | `src/schema/harness-db.ts`, `src/state-db/projection-writer.ts` | `tests/projection-writer.test.ts` | `vitest tests/projection-writer.test.ts` |
-| WBS-L7-51-03 | doctor hard/fail-close surface | `src/doctor/index.ts` | `tests/doctor.test.ts` | `ut-tdd doctor` |
-| WBS-L7-51-04 | confirmed L7 DoD completion guard | `src/lint/plan-dod.ts`, `src/doctor/index.ts` | `tests/doctor.test.ts` | `ut-tdd doctor` |
-| WBS-L7-51-05 | active L7 placeholder dependency guard | `src/lint/placeholder-deps.ts`, `src/doctor/index.ts` | `tests/doctor.test.ts` | `ut-tdd doctor` |
-| WBS-L7-51-06 | drive/model DB registration hard gate | `src/lint/drive-db-registration.ts`, `src/state-db/drive-registration.ts`, `src/doctor/index.ts` | `tests/drive-db-registration.test.ts`, `tests/doctor.test.ts` | `ut-tdd doctor` |
+| WBS-L7-51-03 | doctor の hard/fail-close surface | `src/doctor/index.ts` | `tests/doctor.test.ts` | `helix doctor` |
+| WBS-L7-51-04 | confirmed L7 DoD completion guard の実装 | `src/lint/plan-dod.ts`, `src/doctor/index.ts` | `tests/doctor.test.ts` | `helix doctor` |
+| WBS-L7-51-05 | active L7 placeholder dependency guard の実装 | `src/lint/placeholder-deps.ts`, `src/doctor/index.ts` | `tests/doctor.test.ts` | `helix doctor` |
+| WBS-L7-51-06 | drive/model DB registration hard gate の実装 | `src/lint/drive-db-registration.ts`, `src/state-db/drive-registration.ts`, `src/doctor/index.ts` | `tests/drive-db-registration.test.ts`, `tests/doctor.test.ts` | `helix doctor` |
 
-## Acceptance Criteria
+## 受入条件
 
-- U-DESC-001..008 are executable tests, not `it.todo`.
-- `generateObligations` is upstream-driven and does not rely on downstream self-declared links.
-- `analyzeDescentObligations` handles untraceable, duplicate, satisfied, unmet, valid/invalid defer, impl-ahead, and park/placeholder cases.
-- `descent_obligations` rows are projected during `rebuildHarnessDb`.
-- `ut-tdd doctor` surfaces descent-obligation messages as hard/fail-close and wires the result into `runDoctor.ok`.
-- `ut-tdd doctor` fails closed when a confirmed/completed `PLAN-L7-*` retains unchecked DoD items.
-- `ut-tdd doctor` fails closed when active design/test-design docs retain L7-waiting `placeholder_deps` or claim the dedicated placeholder-deps rule is not implemented.
-- `ut-tdd doctor` fails closed when harness.db lacks automatic drive/model/workflow/skill registration evidence, when current workflow/model/skill projection rows do not resolve to `drive_runs` / `plan_registry`, or when required current drive modes are absent.
+- U-DESC-001..008 は `it.todo` ではなく実行可能な tests である。
+- `generateObligations` は upstream-driven であり、downstream の自己申告 link に依存しない。
+- `analyzeDescentObligations` は untraceable、duplicate、satisfied、unmet、valid/invalid defer、impl-ahead、park/placeholder の各 case を扱う。
+- `descent_obligations` rows は `rebuildHarnessDb` 中に projection される。
+- `helix doctor` は descent-obligation messages を hard/fail-close として surface し、結果を `runDoctor.ok` に接続する。
+- confirmed/completed の `PLAN-L7-*` に未チェックの DoD items が残る場合、`helix doctor` は fail closed する。
+- active な design/test-design docs に L7-waiting の `placeholder_deps` が残る場合、または専用 placeholder-deps rule が未実装だと主張する場合、`helix doctor` は fail closed する。
+- harness.db に automatic drive/model/workflow/skill registration evidence がない場合、current workflow/model/skill projection rows が `drive_runs` / `plan_registry` へ解決できない場合、または required current drive modes が欠ける場合、`helix doctor` は fail closed する。

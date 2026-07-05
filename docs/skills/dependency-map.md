@@ -18,21 +18,21 @@ applies_to:
 # dependency map（依存関係 map）
 
 module 横断の dependency 検出、PLAN dependency graph 分析、dependency drift を表面化する
-`ut-tdd graph` / `ut-tdd doctor` surface（FR-L1-18 doctor cross-detection 集約）
+`helix graph` / `helix doctor` surface（FR-L1-18 doctor cross-detection 集約）
 を扱う。PLAN が module boundary、PLAN `requires` / `parent` field に触れる場合、または
-`ut-tdd doctor` が dependency-governance violation を報告した場合に適用する。
+`helix doctor` が dependency-governance violation を報告した場合に適用する。
 
 ## この skill を読む場面
 
 - PLAN の `requires` または `parent` field が別 PLAN を参照しており、その関係を検証する必要がある。
-- `ut-tdd doctor` が dependency-drift または orphan finding を出した。
+- `helix doctor` が dependency-drift または orphan finding を出した。
 - L4 design doc が新しい module dependency を導入し、pair-freeze 前に影響を map する必要がある。
 - Refactor PLAN が external interface 不変を主張している。dependency map がその証跡になる。
 
 ## HELIX における dependency の種類
 
 **PLAN structural dependencies (`requires`, `parent`, `parent_design`):**
-PLAN YAML で表現され、`ut-tdd plan lint`（存在確認）と `ut-tdd doctor`
+PLAN YAML で表現され、`helix plan lint`（存在確認）と `helix doctor`
 （plan-governance）で機械検査される。存在しない PLAN ID を参照する `requires` は
 blocking lint error である。
 
@@ -42,13 +42,13 @@ pair-freeze 時点で存在しない PLAN `generates` doc は governance violati
 
 **Source-level module dependencies（source level の module 依存）:**
 `src/` sub-module をまたぐ TypeScript `import` path。`bun run typecheck` で検出され、
-`ut-tdd graph`（module dependency view）で確認できる。
+`helix graph`（module dependency view）で確認できる。
 
 ## mapping 手順
 
-1. `ut-tdd graph` を実行し、影響を受ける module の current dependency view を取得する。
+1. `helix graph` を実行し、影響を受ける module の current dependency view を取得する。
    cycle や cross-layer import があれば記録する。
-2. `ut-tdd doctor` を実行し、full output を読む（`| tail` で省略しない）。
+2. `helix doctor` を実行し、full output を読む（`| tail` で省略しない）。
    dependency-governance finding は、壊れている具体的な PLAN または artifact を示す。
 3. finding ごとに chain を追う。どの upstream PLAN がその artifact または module を所有しているか。
    dependency は `requires` に宣言されているか。
@@ -64,18 +64,18 @@ L4 design doc が新しい module dependency を導入する場合は、`## Depe
 - Coupling strength（interface-only / implementation detail）を記録する。
 - Change-risk note（この dependency が `stable` か `internal` か）。
 
-この section は `ut-tdd review --uncommitted` 時に読まれ、hidden coupling が導入されていないことを確認する。
+この section は `helix review --uncommitted` 時に読まれ、hidden coupling が導入されていないことを確認する。
 
 ## Refactor gate の dependency-neutrality check
 
 Refactor PLAN は、external dependency graph edge が変わっていないことを証明しなければならない。
 pair-freeze 前に次を確認する。
 
-- [ ] HEAD と base commit の両方で `ut-tdd graph` を実行し、external-facing module の edge が
+- [ ] HEAD と base commit の両方で `helix graph` を実行し、external-facing module の edge が
       identical であることを確認する。
 - [ ] `bun run typecheck` が exit 0 になる。新しい import error がない。
-- [ ] `ut-tdd doctor` が exit 0 になる。新しい orphan や dependency-drift finding がない。
-- [ ] `ut-tdd review --uncommitted` が新しい cross-module coupling finding を出さない。
+- [ ] `helix doctor` が exit 0 になる。新しい orphan や dependency-drift finding がない。
+- [ ] `helix review --uncommitted` が新しい cross-module coupling finding を出さない。
 
 ## Anti-pattern（避けるパターン）
 

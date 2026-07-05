@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-207-l7-feature-pack-roadmap-definition
-title: "PLAN-REVERSE-207: L7 feature-pack roadmap semantic back-fill"
+title: "PLAN-REVERSE-207: L7 feature-pack roadmap の意味補填"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,26 +16,26 @@ backprop_scope:
   - layer: requirements
     decision: not_impacted
     evidence_path: docs/design/helix/L1-requirements/pillar-requirements.md
-    reason: "HBR-P1/HBR-P9 already require work breakdown and DB convergence. This back-fill makes the L7 roadmap express those responsibilities."
+    reason: "HBR-P1/HBR-P9 はすでに work breakdown と DB convergence を要求している。この back-fill は L7 roadmap にそれらの責務を明示させる。"
   - layer: L4-basic-design
     decision: not_impacted
     evidence_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
-    reason: "Existing pillar blocks already separate continuous autonomy, DB convergence, and visualization. No block boundary changes."
+    reason: "既存 pillar block は continuous autonomy、DB convergence、visualization をすでに分離している。block boundary の変更はない。"
   - layer: L5-detailed-design
     decision: not_impacted
     evidence_path: docs/design/harness/L5-detailed-design/module-decomposition.md
-    reason: "No module dependency boundary changes. Feature packs classify roadmap responsibility over existing modules."
+    reason: "module dependency boundary の変更はない。Feature packs は既存 module 上の roadmap responsibility を分類する。"
   - layer: L6-function-design
     decision: updated
     evidence_path: docs/design/harness/L6-function-design/function-spec.md
-    reason: "Roadmap feature-pack schema and L7 feature-pack coverage function contract are added."
+    reason: "Roadmap feature-pack schema と L7 feature-pack coverage function contract を追加する。"
   - layer: L7-unit-test-design
     decision: updated
     evidence_path: docs/test-design/harness/L7-unit-test-design.md
-    reason: "U-ROADMAP-025..028 define duplicate/unknown pack and real-repo pack coverage oracles."
+    reason: "U-ROADMAP-025..028 は duplicate/unknown pack と real-repo pack coverage oracle を定義する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - feature-pack roadmap back-fill review"
+    slot_label: "TL - feature-pack roadmap back-fill レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-207-l7-feature-pack-roadmap-definition.md
     artifact_type: markdown_doc
@@ -63,7 +63,7 @@ review_evidence:
     reviewed_at: "2026-06-30T03:21:36+09:00"
     tests_green_at: "2026-06-30T03:21:36+09:00"
     verdict: approve
-    scope: "Back-fill confirms the change is a roadmap metamodel hardening, not a new user requirement or production schema/API change."
+    scope: "Back-fill は、この変更が新規 user requirement や production schema/API 変更ではなく、roadmap metamodel hardening であることを確認する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -93,23 +93,19 @@ review_evidence:
         output_digest: "sha256:e4dee03f96fa6468aff5ddf2b55a30d1669256e4f7e1e50c289218ef840fb710"
 ---
 
-# PLAN-REVERSE-207: L7 feature-pack roadmap semantic back-fill
+# PLAN-REVERSE-207: L7 feature-pack roadmap の意味補填
 
-## R0-R4 Summary
+## R0-R4 要約
 
-- R0: The roadmap mechanism registered `layer`, `gates`, and `spans`, but not
-  semantic responsibility packs.
-- R1: As-built behavior could report L7 coverage while DB, service, frontend,
-  and UI responsibilities were only implied by PLAN prose or `drive`.
-- R2: The correct as-is model is a program roadmap plus a missing L7 pack
-  taxonomy.
-- R3: Intent is to make L7 work self-assignable by semantic pack, without
-  marking deferred UI complete.
-- R4: Route to L5/L6 contract and L7 implementation. Requirements and L4 block
-  boundaries are unchanged.
+- R0: roadmap mechanism は `layer`、`gates`、`spans` を登録していたが、
+  semantic responsibility pack は登録していなかった。
+- R1: as-built behavior は L7 coverage を報告できた一方で、DB、service、frontend、
+  UI の責務は PLAN prose または `drive` から暗黙に読み取るだけだった。
+- R2: 正しい as-is model は program roadmap に、欠落している L7 pack taxonomy を加えたもの。
+- R3: 意図は、deferred UI を complete 扱いにせず、L7 work を semantic pack ごとに自己割り当て可能にすること。
+- R4: L5/L6 contract と L7 implementation へ route する。Requirements と L4 block boundary は変更しない。
 
-## Gap Closed
+## 解消した Gap
 
-`drive` is not a roadmap taxonomy. The forward artifact now carries explicit
-`feature_packs[]` and `span.feature_pack`, and doctor checks the required L7
-pack layers.
+`drive` は roadmap taxonomy ではない。forward artifact は明示的な `feature_packs[]` と
+`span.feature_pack` を持ち、doctor は必須 L7 pack layer を検査する。

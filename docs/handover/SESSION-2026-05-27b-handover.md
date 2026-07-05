@@ -49,11 +49,11 @@
 前 handover §2 から **schema artifact_types 補完は完了**。残りの優先順:
 
 1. **frontmatter schema を zod 化**: requirements §1.1 (plan_id/kind/layer/drive/status/agent_slots/generates/dependencies/parent_design) を `src/schema` に。`charter` の parent_design 不要・L0 専用条件も含める。
-2. **`ut-tdd plan lint` 実装**: §1 enum + §1.10 受入条件 (kind×drive matrix §1.6 / 必須 role §1.8 / parent_design / charter の root 例外)。stub → 実装。
-3. **`ut-tdd vmodel lint` 実装**: §2.4 必須 8 directed edge + §2.2 W-model freeze (G1-G6 pair → G7 trace)。
-4. **`ut-tdd gate G0.5` 実装**: 新設 §2.1.1 の fail-close (企画書→L1 trace + frontier-reviewer/専門サブエージェント review、mode 参照)。判断ゲート系 (G0.5/G2/G4-G7) の mode 別挙動 §7.8.7。
+2. **`helix plan lint` 実装**: §1 enum + §1.10 受入条件 (kind×drive matrix §1.6 / 必須 role §1.8 / parent_design / charter の root 例外)。stub → 実装。
+3. **`helix vmodel lint` 実装**: §2.4 必須 8 directed edge + §2.2 W-model freeze (G1-G6 pair → G7 trace)。
+4. **`helix gate G0.5` 実装**: 新設 §2.1.1 の fail-close (企画書→L1 trace + frontier-reviewer/専門サブエージェント review、mode 参照)。判断ゲート系 (G0.5/G2/G4-G7) の mode 別挙動 §7.8.7。
 5. **`status`/`doctor` 強化**: detect の capability probe + Windows wrapper 検出 (現 `where` が拡張子なし codex wrapper を拾わず `claude-only` 誤判定。既知バグ継続)。
-6. **`ut-tdd route`**: §7.8 配線 (signal→mode / RecommendedCommandV1 / orchestration_mode 注入)。
+6. **`helix route`**: §7.8 配線 (signal→mode / RecommendedCommandV1 / orchestration_mode 注入)。
 
 ### 着手前に再読
 

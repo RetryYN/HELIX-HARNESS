@@ -64,10 +64,10 @@ export interface VisualizationSnapshot {
     };
   };
   drilldowns: {
-    artifact_progress_command: "ut-tdd progress artifacts --json";
-    relation_graph_command: "ut-tdd graph export --format mermaid";
+    artifact_progress_command: "helix progress artifacts --json";
+    relation_graph_command: "helix graph export --format mermaid";
     runtime_verification_table: "runtime_verification_events";
-    search_command: "ut-tdd find <query> --json";
+    search_command: "helix find <query> --json";
   };
   warnings: string[];
 }
@@ -247,7 +247,7 @@ export function buildVisualizationSnapshot(db: HarnessDb): VisualizationSnapshot
     params: ["human-required"],
   });
   const warnings: string[] = [];
-  if (artifactTotal === 0) warnings.push("artifact_progress is empty; run `ut-tdd db rebuild`");
+  if (artifactTotal === 0) warnings.push("artifact_progress is empty; run `helix db rebuild`");
   if (runtimeProjectionOnly > 0 || runtimeMissing > 0) {
     warnings.push(
       "runtime verification includes non-accepted projection-only or missing-provenance rows",
@@ -323,10 +323,10 @@ export function buildVisualizationSnapshot(db: HarnessDb): VisualizationSnapshot
       },
     },
     drilldowns: {
-      artifact_progress_command: "ut-tdd progress artifacts --json",
-      relation_graph_command: "ut-tdd graph export --format mermaid",
+      artifact_progress_command: "helix progress artifacts --json",
+      relation_graph_command: "helix graph export --format mermaid",
       runtime_verification_table: "runtime_verification_events",
-      search_command: "ut-tdd find <query> --json",
+      search_command: "helix find <query> --json",
     },
     warnings,
   };

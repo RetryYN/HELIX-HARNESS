@@ -66,18 +66,18 @@ describe("upstream A-146 semantic adoption decisions (U-UPSTREAM)", () => {
   });
 
   it("U-UPSTREAM-003: resolveConsumerCliPath proves CLI resolution or returns fail-close remediation", () => {
-    expect(resolveConsumerCliPath({ command: "ut-tdd", path_resolved: true })).toEqual({
+    expect(resolveConsumerCliPath({ command: "helix", path_resolved: true })).toEqual({
       resolved: true,
       method: "path",
       remediation: null,
     });
     expect(
-      resolveConsumerCliPath({ command: "ut-tdd", wrapper_path: "scripts/ut-tdd" }),
+      resolveConsumerCliPath({ command: "helix", wrapper_path: "scripts/helix" }),
     ).toMatchObject({
       resolved: true,
       method: "wrapper",
     });
-    expect(resolveConsumerCliPath({ command: "ut-tdd" })).toMatchObject({
+    expect(resolveConsumerCliPath({ command: "helix" })).toMatchObject({
       resolved: false,
       method: "fail_close",
     });
@@ -89,7 +89,7 @@ describe("upstream A-146 semantic adoption decisions (U-UPSTREAM)", () => {
         command: "bun run test",
         exit_status: 0,
         output_digest: "sha256:abc",
-        evidence_path: ".ut-tdd/evidence/test.json",
+        evidence_path: ".helix/evidence/test.json",
         run_batch_id: "batch-1",
         digest_batch_id: "batch-1",
       }),
@@ -99,7 +99,7 @@ describe("upstream A-146 semantic adoption decisions (U-UPSTREAM)", () => {
         command: "bun run test",
         exit_status: 0,
         output_digest: "sha256:abc",
-        evidence_path: ".ut-tdd/evidence/test.json",
+        evidence_path: ".helix/evidence/test.json",
         run_batch_id: "batch-1",
         digest_batch_id: "batch-2",
       }),
@@ -114,7 +114,7 @@ describe("upstream A-146 semantic adoption decisions (U-UPSTREAM)", () => {
     expect(classifyTelemetryProvenance({ runtime_event_id: "session-1" })).toBe("runtime");
     expect(classifyTelemetryProvenance({ source: "runtime" })).toBe("unknown");
     expect(
-      classifyTelemetryProvenance({ runtime_evidence_path: ".ut-tdd/evidence/run.jsonl" }),
+      classifyTelemetryProvenance({ runtime_evidence_path: ".helix/evidence/run.jsonl" }),
     ).toBe("runtime");
     expect(classifyTelemetryProvenance({ projection_rule: "plan-registry" })).toBe("projected");
     expect(classifyTelemetryProvenance({ derived_from: "runtime+projection" })).toBe("derived");

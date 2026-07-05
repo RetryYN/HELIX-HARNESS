@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-103-reverse-fullback-backprop-gate
-title: "PLAN-REVERSE-103: Reverse fullback backprop gate fullback"
+title: "PLAN-REVERSE-103: Reverse fullback backprop gate の fullback 記録"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define the Reverse fullback backprop gate."
+    reason: "Requirements が Reverse fullback backprop gate を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The governance gate does not change external runtime function design."
+    reason: "governance gate は external runtime function design を変更しない。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The governance gate does not change detailed runtime data or module design."
+    reason: "governance gate は detailed runtime data や module design を変更しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - Reverse fullback backprop rule review"
+    slot_label: "TL - Reverse fullback backprop rule のレビュー"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-103-reverse-fullback-backprop-gate.md
     artifact_type: markdown_doc
@@ -39,34 +39,34 @@ dependencies:
     - docs/plans/PLAN-L7-103-reverse-fullback-backprop-gate.md
 ---
 
-# PLAN-REVERSE-103: Reverse fullback backprop gate fullback
+# PLAN-REVERSE-103: Reverse fullback backprop gate の fullback 記録
 
-## R0 Evidence
+## R0 証跡
 
-The repository contained confirmed R4 fullback PLANs with no generated design/governance/test-design
-artifact. Several older PLANs state that L1/L3/L4/L5 backfill occurred, but the machine-readable
-frontmatter cannot prove the target artifact.
+この repository には、design/governance/test-design artifact を生成していない confirmed R4 fullback
+PLAN が存在していた。複数の古い PLAN は L1/L3/L4/L5 backfill が行われたと記述しているが、
+machine-readable frontmatter だけでは対象 artifact を証明できない。
 
-## R1 Observed Gap
+## R1 観測された gap
 
-`plan-governance` checked R4 field presence but did not enforce the core fullback invariant:
-fullback must point back to the artifact that was actually updated.
+`plan-governance` は R4 field の存在を検査していたが、fullback が実際に更新された artifact へ
+戻って指すべきという core invariant は強制していなかった。
 
-## R2 Alignment
+## R2 整合方針
 
-The rule is enforced prospectively from 2026-06-22. Older gaps are recorded as legacy debt because
-retroactively failing all historical Reverse PLANs would block unrelated current work before each
-old PLAN is classified.
+この rule は 2026-06-22 以降の前向き適用とする。古い gap は legacy debt として記録する。
+全 historical Reverse PLAN を遡及的に fail させると、各 old PLAN を分類する前に無関係な current work を
+block してしまうためである。
 
-## R3 / R4 Outcome
+## R3 / R4 結果
 
-Requirements now state that confirmed/completed R4 fullback PLANs must generate at least one
-`docs/design/`, `docs/governance/`, or `docs/test-design/` artifact. `plan-governance` enforces this
-for new/updated fullback PLANs with `reverse_fullback_backprop_missing`.
+Requirements は、confirmed/completed R4 fullback PLAN が少なくとも 1 つの `docs/design/`、
+`docs/governance/`、または `docs/test-design/` artifact を生成しなければならない、と明記した。
+`plan-governance` は new/updated fullback PLAN に対し、`reverse_fullback_backprop_missing` でこれを強制する。
 
-## DoD
+## DoD（完了条件）
 
-- [x] Requirements define the fullback backprop target invariant.
-- [x] Legacy fullback gaps are listed in an audit artifact.
-- [x] A regression test fails a new fullback without backprop.
-- [x] A regression test accepts a new fullback with a governance/design/test-design target.
+- [x] Requirements が fullback backprop target invariant を定義している。
+- [x] Legacy fullback gap が audit artifact に列挙されている。
+- [x] regression test が backprop のない new fullback を fail させる。
+- [x] regression test が governance/design/test-design target を持つ new fullback を accept する。

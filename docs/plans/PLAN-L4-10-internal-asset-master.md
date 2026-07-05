@@ -53,7 +53,7 @@ Recovery (PLAN-RECOVERY-01) Step 4 後半 = **L4-L6 設計増分**の L4 Master 
 - **成果物 = 設計書 (① 左) + 対のテスト設計書 (③ 右) のペア** (V-model、必ず対)。L4 → 基本設計書 (architecture/function) + L9 総合テスト設計 / L5 → 詳細設計書 + L8 結合テスト設計 / L6 → 機能設計書 (=仕様設計) + L7 単体テスト設計。実装コード (②) / テストコード (④) は L7 実装スプリントの別物。
 - **仕様未確定で対のテスト設計が書けない項目は、その旨と依存を明示記載する (PO 指示)**: テスト設計は仕様が決まって初めて書けるため、L4 段階で下位仕様 (L5/L6 確定分) に依存して書けないテスト観点は、**黙って飛ばさず「どの層で何が確定したら書けるか」を placeholder + 依存条件として残す**。既存 L8/L9 の "placeholder skeleton — 設計確定に伴い物質化" を一段強め、**未確定項目と待ち先を列挙**する。
 - **機能設計からテスト設計を作りに戻ってよい = back-fill 許可 (PO 確定 2026-06-01)**: 上記の未確定項目は、**L6 機能設計 (=仕様設計) で仕様が確定した時点で、その L6 を起点に対応するテスト設計 (L7 単体、必要に応じ遡って L8/L9) を作りに戻ってよい**。V-model を厳密な一方向の滝にせず、**仕様が固まった層からペア (設計 ⇔ テスト設計) を後追いで完成させる back-fill を正規運用とする**。L4 で placeholder + 依存を残す (上記) ⇔ L6 で仕様確定 → テスト設計を back-fill、の 2 つは対。back-fill した時は元の placeholder の依存条件を解消済みに更新し、ledger に記録する。
-- **整合は最終的に V-model 状態として整う = DB(state) 側で機械保証する (PO 確定 2026-06-01)**: back-fill は「いつか作る」の放置許可ではなく、**最終的に全ペアが揃った状態 (孤児 0) へ必ず収束する**ことが目的。整合の保証を**人手の注意力に依存しない**。`.ut-tdd/` state (V-model 正本 DB) が「入るべき設計⇔テスト設計ペア」を `pair_artifact` + `trace.edges` (physical-data §2.2) として保持し、**未充足 (placeholder 未解消 / pair edge 欠落 / 逆ピラミッド) を `ut-tdd doctor` / vmodel lint / G6-G7 が fail-close で検知** (physical-data §7 不変条件の物理検証点)。入るべきところが入っていなければ DB 側から error が上がり続け、back-fill で解消するまで状態が整わない。FR-L1-49 内部資産 drift lint も同じ機構 (IMP-033 rule engine、未充足検知の rule 型) に接続する。
+- **整合は最終的に V-model 状態として整う = DB(state) 側で機械保証する (PO 確定 2026-06-01)**: back-fill は「いつか作る」の放置許可ではなく、**最終的に全ペアが揃った状態 (孤児 0) へ必ず収束する**ことが目的。整合の保証を**人手の注意力に依存しない**。`.helix/` state (V-model 正本 DB) が「入るべき設計⇔テスト設計ペア」を `pair_artifact` + `trace.edges` (physical-data §2.2) として保持し、**未充足 (placeholder 未解消 / pair edge 欠落 / 逆ピラミッド) を `helix doctor` / vmodel lint / G6-G7 が fail-close で検知** (physical-data §7 不変条件の物理検証点)。入るべきところが入っていなければ DB 側から error が上がり続け、back-fill で解消するまで状態が整わない。FR-L1-49 内部資産 drift lint も同じ機構 (IMP-033 rule engine、未充足検知の rule 型) に接続する。
 
 ## §1 TL 確定境界 (本設計の前提、2026-06-01 real Codex TL)
 
@@ -72,7 +72,7 @@ Recovery (PLAN-RECOVERY-01) Step 4 後半 = **L4-L6 設計増分**の L4 Master 
 |---|---|---|---|
 | **FR-L1-46** | subagent roster の HELIX 化 (capability class / model family / guard 統合 / HELIX 前提除去) | architecture §3 に `roster` 概念 + runtime building block 拡張 / function に roster 機能 | **PLAN-L4-11-roster** |
 | **FR-L1-47** | skill pack の HELIX curate (HELIX 版 SKILL_MAP / core-optional-drop / CLI trigger / helix 用語除去) | architecture §3 に `skills` building block 新設 / function に catalog-injector | **PLAN-L4-12-skill-pack** |
-| **FR-L1-48** | 内部資産 command の ut-tdd CLI subcommand 化 | function の CLI コマンド表に追加 (dashboard/asset/builder 等、command=W11/W12/W16) | (L4 は PLAN-L4-11 に統合 → **L5 で module 結合粒度 → L6 で単体粒度**に段階分解) |
+| **FR-L1-48** | 内部資産 command の helix CLI subcommand 化 | function の CLI コマンド表に追加 (dashboard/asset/builder 等、command=W11/W12/W16) | (L4 は PLAN-L4-11 に統合 → **L5 で module 結合粒度 → L6 で単体粒度**に段階分解) |
 | **FR-L1-49** | 内部資産 drift lint (HELIX 絶対パス残存 / docs-skills 空 / roster↔guard 整合) | architecture §3 lint building block + ADR-004 Consequences。IMP-033 rule engine インスタンス | **PLAN-L4-13-drift-lint** |
 
 > **粒度基準 (PO 確定 2026-06-01) — V-model ペア原則: 設計の粒度 = テスト設計の粒度。L4→L5→L6 で段階的に細かくする (L5 を飛ばさない)**:
@@ -80,7 +80,7 @@ Recovery (PLAN-RECOVERY-01) Step 4 後半 = **L4-L6 設計増分**の L4 Master 
 > - **L5 詳細設計 ↔ L8 結合テスト設計** = module 結合粒度 (中間分解)
 > - **L6 機能設計 ↔ L7 単体テスト設計** = 関数 = 単体粒度 (最終分解)
 >
-> command (FR-L1-48) を **L4 で PLAN-L4-11 (roster) に束ねるのは可** = L4 は L9 総合テスト粒度で「内部資産 command 群が CLI として動く」を 1 system 観点で検証できるため。そこから **L5 詳細設計で module 結合粒度に中間分解** (command module の公開 IF / module 間結合 = L8 結合テスト粒度) → **L6 機能設計で各 subcommand (`ut-tdd dashboard` / `ut-tdd asset` / `ut-tdd builder` 等) を単体テスト設計 (L7) 粒度に最終分解**する。**L4→L6 と飛ばさず L5 を必ず挟む** (PO 訂正 2026-06-01)。PM の往復回避都合でなく、各層のペア粒度で段階判定する。
+> command (FR-L1-48) を **L4 で PLAN-L4-11 (roster) に束ねるのは可** = L4 は L9 総合テスト粒度で「内部資産 command 群が CLI として動く」を 1 system 観点で検証できるため。そこから **L5 詳細設計で module 結合粒度に中間分解** (command module の公開 IF / module 間結合 = L8 結合テスト粒度) → **L6 機能設計で各 subcommand (`helix dashboard` / `helix asset` / `helix builder` 等) を単体テスト設計 (L7) 粒度に最終分解**する。**L4→L6 と飛ばさず L5 を必ず挟む** (PO 訂正 2026-06-01)。PM の往復回避都合でなく、各層のペア粒度で段階判定する。
 
 ## §3 ADR-004 起票 (本 Master の大局判断 artifact)
 

@@ -15,7 +15,7 @@ plan: docs/plans/PLAN-L6-03-session-log.md
 
 - `onStop(input, deps)` は session jsonl を plan digest へ圧縮する前に、`input.plan_id ?? resolveActivePlan(deps)` を使って `session_end` event を 1 件記録する。
 - adapter wrapper は明示された `--plan` 値を session-log lifecycle input にだけ渡し、provider CLI args には渡さない。
-- `ut-tdd codex|claude --execute --plan <id>` 経由で生成された plan digest は、`<id>` に対する `session_start`、`tool_use`、`session_end` の count を含まなければならない。
+- `helix codex|claude --execute --plan <id>` 経由で生成された plan digest は、`<id>` に対する `session_start`、`tool_use`、`session_end` の count を含まなければならない。
 
 <!--
 ① 設計 (L6 機能設計) — session-log 機能。
@@ -68,12 +68,12 @@ interface PlanDigest {
 
 | 関数 | signature | pre | post |
 |------|-----------|-----|------|
-| `resolveActivePlan` | `(deps: SessionLogDeps) => string \| null` | — | state ファイル `.ut-tdd/state/current-plan` 優先 → **state 無き時の fallback** として branch 名 capture (regex `/^(?:add\|design\|feature\|reverse\|hotfix\|poc\|refactor)\/(.+)$/`、§6.1 branch↔kind 整合) をそのまま採用 (厳密突合は state 側が持つ) → 解決不能は `null`。**throw しない** |
+| `resolveActivePlan` | `(deps: SessionLogDeps) => string \| null` | — | state ファイル `.helix/state/current-plan` 優先 → **state 無き時の fallback** として branch 名 capture (regex `/^(?:add\|design\|feature\|reverse\|hotfix\|poc\|refactor)\/(.+)$/`、§6.1 branch↔kind 整合) をそのまま採用 (厳密突合は state 側が持つ) → 解決不能は `null`。**throw しない** |
 | `onSessionStart` | `(input, deps) => number` | — | session_start event を append。常に `0`、I/O 失敗でも throw しない (fail-open)。**③ U-SLOG-005 で被覆** |
-| `recordEvent` | `(input: SessionHookInput, deps: SessionLogDeps) => void` | — | `.ut-tdd/logs/session/<session_id>.jsonl` へ 1 行 append。**never throws (fail-open)** — I/O / 解析失敗は握りつぶし warn |
+| `recordEvent` | `(input: SessionHookInput, deps: SessionLogDeps) => void` | — | `.helix/logs/session/<session_id>.jsonl` へ 1 行 append。**never throws (fail-open)** — I/O / 解析失敗は握りつぶし warn |
 | `compressPlanDigest` | `(events: SessionEvent[], planId: string, prev?: PlanDigest) => PlanDigest` | — | **純関数 (I/O なし)**。planId の events を集計。`prev` とマージ (PLAN は複数 session 跨ぎ)。再適用は **event 単位 high-watermark** で idempotent (`session_watermarks[sid]` 件数を超える増分のみ計上 = 同一 session の複数回 summarize でも過少計上しない、PLAN-L7-80 / U-SLOG-008)。pre-L7-80 digest は `updated_at` から watermark を seed (migration、既計上分の再計上なし) |
 | `onPostToolUse` | `(input, deps) => number` | — | tool_use (commit 検出時 commit) event を append。常に `0` |
-| `onStop` | `(input, deps) => number` | — | session の events を plan_id 別に `compressPlanDigest` し `.ut-tdd/logs/plan/<plan_id>.digest.json` を更新。**plan_id=null のみの session は digest を書かない (skip、m-3)**。常に `0` |
+| `onStop` | `(input, deps) => number` | — | session の events を plan_id 別に `compressPlanDigest` し `.helix/logs/plan/<plan_id>.digest.json` を更新。**plan_id=null のみの session は digest を書かない (skip、m-3)**。常に `0` |
 
 `SessionLogDeps` = `{ repoRoot, readFile, appendFile, writeFile, now }` (I/O とクロックを注入 → `compressPlanDigest` 以外も test 可能、`now` 注入で決定論)。
 
@@ -108,10 +108,10 @@ compressPlanDigest(events, planId, prev):
 
 ## §5 ストレージ / hook 配線
 
-- 生: `.ut-tdd/logs/session/<session_id>.jsonl` (gitignored)
-- 圧縮: `.ut-tdd/logs/plan/<plan_id>.digest.json` (gitignored、durable)
+- 生: `.helix/logs/session/<session_id>.jsonl` (gitignored)
+- 圧縮: `.helix/logs/plan/<plan_id>.digest.json` (gitignored、durable)
 - hook 実体: `src/cli.ts` session/hook entrypoints (`.claude/hooks/session-log.ts` backward-compatible shim) (bun, 環境非依存)。**variant 分岐 = stdin JSON の `hook_event_name` を正 (SessionStart / PostToolUse / Stop) とし、CLI command (`session start` / `hook post-tool-use` / `session summary`) を fallback** に持つ (m-2)。settings.json は 3 event に対応する HELIX CLI command を登録し、Claude Code が渡す `hook_event_name` で handler を選ぶ。
-- `.gitignore` に `.ut-tdd/logs/` を追加。
+- `.gitignore` に `.helix/logs/` を追加。
 - `.claude/settings.json`: `SessionStart` / `PostToolUse(Edit|Write|MultiEdit|Bash)` / `Stop` に登録。**`blockOnFailure` を付けない (fail-open)**。
 
 ## §6 fail-open 設計 (agent-guard fail-close との対比)

@@ -47,7 +47,7 @@ dependencies:
     - docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md
 ---
 
-# PLAN-L7-142 (troubleshoot): relation-graph loader requirement-node coverage gap
+# PLAN-L7-142 (troubleshoot): relation-graph loader requirement-node 被覆欠落 (coverage gap)
 
 ## 0. 検出 (harness.db feedback_events、PO 指摘「この検出は正しいの？」2026-06-24)
 
@@ -64,7 +64,7 @@ harness.db の検出サーフェスが **stale-edge (severity=error) 59件 (実 
 - しかし `src/graph/loader.ts` は **top-level `requirements` を一度も populate せず** return
   (各 plan の `requirements` = edge は張るが、node を作る側を欠落)。= PLAN-L7-32 §9 discharge の
   不完全 (loader 被覆欠落)。
-- 影響: `ut-tdd graph impact` が detectStaleEdges 無条件実行 + `ok=!findings.some(error)` のため
+- 影響: `helix graph impact` が detectStaleEdges 無条件実行 + `ok=!findings.some(error)` のため
   **任意入力で常に exit 1 = CLI surface 非機能** (PLAN-L7-32 §113)。doctor 未配線ゆえ EXIT=0 で
   隠れていた (coverage≠substance: 既存 unit test は合成 ghost fixture で実 loader を通さず素通り)。
 
@@ -85,13 +85,13 @@ harness.db の検出サーフェスが **stale-edge (severity=error) 59件 (実 
 3. **pairs filter**: pairArtifact が `docs/test-design/` を指す時のみ test-design への pairs edge を
    張る (self / docs/design 配下の mock は張らない)。→ pairs 6本解消。
 
-## 2. Acceptance Criteria
+## 2. 受入条件 (Acceptance Criteria)
 
 - 実 loader (`loadRelationGraphSourceSet(process.cwd())`) を通した projection の stale-edge == 0。
 - `graph_nodes` の requirement node が非0 (FR-L1 レジストリ materialize)。
-- `ut-tdd graph impact --changed <tracked src>` が EXIT=0 + 正常な impact を返す。
-- 既存 relation-graph テスト (合成 fixture) は不変で green。
-- typecheck / vitest / biome / doctor / plan lint green。
+- `helix graph impact --changed <tracked src>` が EXIT=0 + 正常な impact を返す。
+- 既存 relation-graph テスト (合成 fixture) は不変で green（成功）。
+- typecheck / vitest / biome / doctor / plan lint は green（成功）。
 
 ## 3. 再発防止 (coverage≠substance)
 
@@ -102,7 +102,7 @@ harness.db の検出サーフェスが **stale-edge (severity=error) 59件 (実 
 
 ## 4. 残差 / スコープ外 (別件)
 
-- **stale-edge を doctor hard gate に未配線**: severity=error だが doctor が消費せず EXIT=0 で
+- **stale-edge が doctor hard gate に未配線**: severity=error だが doctor が消費せず EXIT=0 で
   隠れる構造不整合。本 PLAN で stale-edge=0 を回帰テスト固定したため実害は消えるが、「error 級を
   gate に繋ぐか severity 再評価するか」は別 PLAN / PO 判断 (本修正のブロッカーでない)。
 - warn 系検出 (redacted-sensitive-field の over-redaction regex / missing-test-plan-id の

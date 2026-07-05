@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-109-review-green-command-db-projection
-title: "PLAN-L7-109: Review green command DB projection"
+title: "PLAN-L7-109: review green command の DB projection"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/design/harness/L5-detailed-design/physical-data.md
 agent_slots:
   - role: tl
-    slot_label: "TL - review green command test_runs projection"
+    slot_label: "TL - review green command の test_runs projection"
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-109-review-green-command-db-projection.md
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-23"
     tests_green_at: "2026-06-23"
     verdict: approve
-    scope: "Project review_evidence.green_commands into harness.db test_runs so green review evidence is queryable by PLAN/evidence path/digest."
+    scope: "review_evidence.green_commands を harness.db の test_runs へ projection し、green review evidence を PLAN、evidence path、digest で照会可能にする。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -49,26 +49,23 @@ review_evidence:
         output_digest: "sha256:d288dc9ff7118c9cb76e83d2c5357e0312a66a2430a3774933f35f671a227009"
 ---
 
-# PLAN-L7-109: Review green command DB projection
+# PLAN-L7-109: review green command の DB projection
 
-## Objective
+## 目的
 
-Make the `green_commands[]` evidence introduced by PLAN-L7-108 queryable through
-harness.db instead of leaving it only in PLAN frontmatter.
+PLAN-L7-108 で導入した `green_commands[]` evidence を PLAN frontmatter だけに残さず、
+harness.db から照会できるようにする。
 
-## Scope
+## スコープ
 
-- Project `review_evidence.green_commands[]` into `test_runs` during deterministic
-  `rebuildHarnessDb`.
-- Preserve command, runner, scope, exit code, evidence path, output digest, and
-  completed timestamp.
-- Add a focused regression test proving PLAN-L7-108 green command evidence appears
-  in `test_runs`.
-- Record the implementation note in L5 physical data.
+- deterministic な `rebuildHarnessDb` 中に `review_evidence.green_commands[]` を `test_runs` へ projection する。
+- command、runner、scope、exit code、evidence path、output digest、completed timestamp を保持する。
+- PLAN-L7-108 の green command evidence が `test_runs` に現れることを示す focused regression test を追加する。
+- L5 physical data に implementation note を記録する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Rebuild creates `test_runs` rows for `PLAN-L7-108-review-green-command-evidence`.
-- Projected rows have exit code 0, evidence paths, and SHA-256 output digests.
-- `bun test tests\review-green-command-projection.test.ts` passes.
-- `bun run typecheck`, `bun run lint`, and `bun run src\cli.ts doctor` pass.
+- rebuild は `PLAN-L7-108-review-green-command-evidence` の `test_runs` row を作成する。
+- projection された row は exit code 0、evidence path、SHA-256 output digest を持つ。
+- `bun test tests\review-green-command-projection.test.ts` が pass する。
+- `bun run typecheck`、`bun run lint`、`bun run src\cli.ts doctor` が pass する。

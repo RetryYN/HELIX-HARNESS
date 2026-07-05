@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-58-telemetry-cost-enrichment
-title: "PLAN-L7-58: token telemetry の $ cost enrichment + ut-tdd telemetry scan CLI 配線 (FR-L1-38 follow-up)"
+title: "PLAN-L7-58: token telemetry の $ cost enrichment + helix telemetry scan CLI 配線 (FR-L1-38 follow-up)"
 kind: impl
 layer: L7
 drive: db
@@ -16,7 +16,7 @@ review_evidence:
     tests_green_at: "2026-06-15"
     reviewed_at: "2026-06-15"
     verdict: pass
-    scope: "Codex $ cost enrichment (OPENAI_PRICING 公式単価表 + computeCodexCostUsd + pricingKeyFor を variant 境界 -codex/-mini/-pro を跨がない安全 matcher へ一般化 + parseCodexSessionUsage cost 計算化 + summarizeRunUsage) と ut-tdd telemetry scan CLI 配線 (session-dir を option>env>OS default で解決、loadRuntimeSessionUsage→projectTokenUsage→projectModelEvaluations、CLI 非起動 file-scan)。code-reviewer verdict=APPROVE (Critical 0)。捏造防止不変条件 (未掲載モデル null)・OpenAI 課金式 (uncached×input + cached×cachedRate + output×output、reasoning 二重計上なし)・既存 oracle (gpt-5.4-codex→null) 非破壊・cold-start 安全を全数手計算で検証。Important 1 (cached>input 境界テスト) と Minor 2 (陳腐化コメント) を反映済み。"
+    scope: "Codex $ cost enrichment (OPENAI_PRICING 公式単価表 + computeCodexCostUsd + pricingKeyFor を variant 境界 -codex/-mini/-pro を跨がない安全 matcher へ一般化 + parseCodexSessionUsage cost 計算化 + summarizeRunUsage) と helix telemetry scan CLI 配線 (session-dir を option>env>OS default で解決、loadRuntimeSessionUsage→projectTokenUsage→projectModelEvaluations、CLI 非起動 file-scan)。code-reviewer verdict=APPROVE (Critical 0)。捏造防止不変条件 (未掲載モデル null)・OpenAI 課金式 (uncached×input + cached×cachedRate + output×output、reasoning 二重計上なし)・既存 oracle (gpt-5.4-codex→null) 非破壊・cold-start 安全を全数手計算で検証。Important 1 (cached>input 境界テスト) と Minor 2 (陳腐化コメント) を反映済み。"
 agent_slots:
   - role: tl
     slot_label: "TL - FR-38 follow-up ($ enrichment + telemetry scan CLI)"
@@ -49,7 +49,7 @@ PLAN-L7-57 が明示 carry として残した FR-L1-38 follow-up の 2 項目を
    null に固定していた。OpenAI 公式 API pricing (https://developers.openai.com/api/docs/pricing、standard
    tier、2026-06-15 取得) を `OPENAI_PRICING` 単一正本として取り込み、`computeCodexCostUsd` で Codex の
    per-turn cost をローカル計算する。core (token 効率) は L7-57 で既に両 runtime 成立済み。本 PLAN は $ enrichment。
-2. **`ut-tdd telemetry scan` CLI 配線**: L7-57 で着地した `loadRuntimeSessionUsage`→`projectTokenUsage` を
+2. **`helix telemetry scan` CLI 配線**: L7-57 で着地した `loadRuntimeSessionUsage`→`projectTokenUsage` を
    定期実行する CLI 入口。env 固有の session-dir 解決 (option > 環境変数 > OS default) を含む。
 
 ## 背景 / 制約
@@ -68,7 +68,7 @@ PLAN-L7-57 が明示 carry として残した FR-L1-38 follow-up の 2 項目を
 | Step | 内容 | impl | test | 検証 | 並/直 |
 |---|---|---|---|---|---|
 | L7-58-01 | `OPENAI_PRICING` 公式単価表 + `computeCodexCostUsd` + `pricingKeyFor` 安全一般化 + `parseCodexSessionUsage` cost 計算化 + `summarizeRunUsage` | `src/state-db/token-tracker.ts` | `tests/token-tracker.test.ts` | `vitest tests/token-tracker.test.ts` | [直列] |
-| L7-58-02 | `ut-tdd telemetry scan` コマンド (session-dir 解決 + migrate + projectTokenUsage + projectModelEvaluations) + session telemetry 行を model_orphans から除外 (`role <> 'session'`) | `src/cli.ts`, `src/state-db/drive-registration.ts` | `tests/token-tracker.test.ts`, `tests/drive-db-registration.test.ts` | `vitest run` + `bun src/cli.ts telemetry scan --json` + `doctor` | [直列] |
+| L7-58-02 | `helix telemetry scan` コマンド (session-dir 解決 + migrate + projectTokenUsage + projectModelEvaluations) + session telemetry 行を model_orphans から除外 (`role <> 'session'`) | `src/cli.ts`, `src/state-db/drive-registration.ts` | `tests/token-tracker.test.ts`, `tests/drive-db-registration.test.ts` | `vitest run` + `bun src/cli.ts telemetry scan --json` + `doctor` | [直列] |
 | L7-58-03 | 設計同期 (function-spec FR-38 defer → DISCHARGED) + L7-57 carry discharge 注記 | `docs/design/harness/L6-function-design/function-spec.md` | — | `bun src/cli.ts doctor` (change-impact) | [直列] |
 
 ## Acceptance
@@ -77,7 +77,7 @@ PLAN-L7-57 が明示 carry として残した FR-L1-38 follow-up の 2 項目を
 - [x] 未掲載モデル (gpt-5.4-codex / gpt-4o) は null を返す (捏造しない、既存 oracle 非破壊)。
 - [x] `pricingKeyFor` が variant 境界を跨がない (gpt-5.4-codex は gpt-5.4 単価へ誤マッチしない)。日付/version suffix は許容。
 - [x] cached > input の delta 異常で負課金しない (uncached=max(0,…)、安全方向 undercharge)。
-- [x] `ut-tdd telemetry scan` が session-dir を option>env>OS default で解決、token を model_runs へ ingest、model_evaluations を再集計 (opt-in 無効なら no-op)。
+- [x] `helix telemetry scan` が session-dir を option>env>OS default で解決、token を model_runs へ ingest、model_evaluations を再集計 (opt-in 無効なら no-op)。
 - [x] typecheck 0 / biome 0 / 全 vitest green / doctor exit 0 / change-impact OK。
 - [x] review 前置: code-reviewer (intra_runtime_subagent, cross-model reviewer=sonnet/worker=opus) verdict=APPROVE。
 

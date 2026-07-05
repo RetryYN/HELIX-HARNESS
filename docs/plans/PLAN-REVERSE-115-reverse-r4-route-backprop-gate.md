@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-115-reverse-r4-route-backprop-gate
-title: "PLAN-REVERSE-115: Reverse R4 route backprop gate"
+title: "PLAN-REVERSE-115: Reverse R4 route backprop gate の反映 gate"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define the route-level R4 backprop evidence gate."
+    reason: "Requirements に route-level R4 backprop evidence gate を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The gate changes planning governance, not external basic design behavior."
+    reason: "この gate は planning governance の変更であり、外部の basic design behavior には影響しない。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The gate changes planning governance, not detailed runtime design behavior."
+    reason: "この gate は planning governance の変更であり、detailed runtime design behavior には影響しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - Reverse R4 route backprop gate"
+    slot_label: "TL - Reverse R4 route backprop gate の反映"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-115-reverse-r4-route-backprop-gate.md
     artifact_type: markdown_doc
@@ -41,7 +41,7 @@ review_evidence:
     reviewed_at: "2026-06-23T12:22:00+09:00"
     tests_green_at: "2026-06-23T12:21:00+09:00"
     verdict: approve
-    scope: "Requirements fullback for route-level R4 backprop evidence gate."
+    scope: "route-level R4 backprop evidence gate の Requirements fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -63,26 +63,25 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-REVERSE-115: Reverse R4 route backprop gate
+# PLAN-REVERSE-115: Reverse R4 route backprop gate の反映 gate
 
-## Objective
+## 目的
 
-Back-fill the route-level Reverse R4 evidence rule into requirements. The
-previous gate caught literal upstream artifact claims, but a non-fullback R4
-Reverse PLAN could still route to L1-L6 without generating an upstream artifact
-or declaring that no upstream reflection was needed.
+route-level Reverse R4 evidence rule を requirements に反映する。従来の
+gate は文字どおりの upstream artifact claim を捕捉していたが、non-fullback
+R4 Reverse PLAN は upstream artifact を生成せず、upstream reflection が不要で
+あることも宣言しないまま L1-L6 へ route できていた。
 
-## Scope
+## 対象範囲
 
-- Requirements add the `reverse_r4_route_backprop_missing` condition.
-- The rule applies only to new or updated non-fullback R4 Reverse PLANs from
-  2026-06-23 onward.
-- Legacy Reverse debt remains in the existing audit instead of being
-  retroactively hard-failed.
+- Requirements に `reverse_r4_route_backprop_missing` condition を追加する。
+- この rule は 2026-06-23 以降に新規作成または更新された non-fullback R4
+  Reverse PLAN のみに適用する。
+- Legacy Reverse debt は retroactive hard-fail にせず、既存 audit に残す。
 
-## Acceptance Criteria
+## 受入条件
 
-- A routed non-fullback R4 Reverse PLAN without upstream generated artifact or
-  explicit no-backprop decision fails.
-- A generated upstream artifact passes.
-- `backprop_decision: not_required` with a concrete reason passes.
+- upstream generated artifact または明示的な no-backprop decision を持たない
+  routed non-fullback R4 Reverse PLAN は fail する。
+- generated upstream artifact がある場合は pass する。
+- 具体的な reason を持つ `backprop_decision: not_required` は pass する。

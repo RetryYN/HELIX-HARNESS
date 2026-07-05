@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-165-review-artifact-graph-node
-title: "PLAN-L7-165: review artifact graph node coverage"
+title: "PLAN-L7-165: review artifact graph node coverage の網羅"
 kind: troubleshoot
 layer: L7
 drive: db
@@ -10,14 +10,14 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md
 backprop_decision: not_required
-backprop_decision_reason: "DB feedback exposed a relation graph projection coverage gap for existing review evidence artifacts. The fix extends loader coverage only; no public CLI/API, persisted schema, or workflow semantics changed."
+backprop_decision_reason: "DB feedback により、既存の review evidence artifact に対する relation graph projection の網羅漏れが判明した。修正は loader の網羅範囲だけを拡張し、公開 CLI/API、永続化 schema、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - review artifact relation graph coverage"
+    slot_label: "SE - review artifact relation graph coverage の網羅"
   - role: tl
-    slot_label: "TL - DB feedback gate verification"
+    slot_label: "TL - DB feedback gate 検証"
   - role: aim
-    slot_label: "AIM - troubleshoot classification and closure"
+    slot_label: "AIM - troubleshoot 分類と完了判断"
 generates:
   - artifact_path: docs/plans/PLAN-L7-165-review-artifact-graph-node.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T20:35:00+09:00"
     tests_green_at: "2026-06-25T20:35:00+09:00"
     verdict: approve
-    scope: "Materialize .ut-tdd/review/*.md artifacts as relation graph nodes so changed review evidence remains analyzable."
+    scope: ".helix/review/*.md artifacts を relation graph nodes として materialize し、変更された review evidence を解析可能な状態に保つ。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -57,26 +57,25 @@ review_evidence:
         output_digest: "sha256:0b826984a99a3760f8e94fe3fade2d525978387788548757dff4969b61951d5b"
 ---
 
-# PLAN-L7-165: review artifact graph node coverage
+# PLAN-L7-165: review artifact graph node coverage の網羅
 
-## Objective
+## 目的
 
-Resolve the DB feedback gate:
+次の DB feedback gate を解消する:
 
-`missing-projection: changed-path-.ut-tdd-review-cross-review-l7-157.md-has-no-relation-graph-node-impact-cannot-be-analyzed-no-silent-change-impact-fallback`
+`missing-projection: changed-path-.helix-review-cross-review-l7-157.md-has-no-relation-graph-node-impact-cannot-be-analyzed-no-silent-change-impact-fallback`
 
-## Scope
+## スコープ
 
-- Add `.ut-tdd/review/*.md` files to the relation graph loader as design-like
-  review evidence nodes.
-- Preserve the existing relation graph schema and impact expansion semantics.
-- Add fixture and real-repo regression checks for
-  `.ut-tdd/review/cross-review-l7-157.md`.
+- `.helix/review/*.md` files を design-like な review evidence nodes として relation graph loader に追加する。
+- 既存の relation graph schema と impact expansion semantics を維持する。
+- 次に対する fixture と real-repo regression checks を追加する:
+  `.helix/review/cross-review-l7-157.md`.
 
-## Acceptance Criteria
+## 受入条件
 
-- `loadRelationGraphSourceSet` returns a node source for the review artifact.
-- `analyzeRelationImpact` succeeds for a review artifact change.
-- `bun run vitest run tests\relation-graph-loader.test.ts` passes.
-- `bun run src\cli.ts db rebuild` clears the open DB feedback gate.
-- `bun run src\cli.ts doctor` passes.
+- `loadRelationGraphSourceSet` が review artifact の node source を返す。
+- `analyzeRelationImpact` が review artifact change に対して成功する。
+- `bun run vitest run tests\relation-graph-loader.test.ts` が成功する。
+- `bun run src\cli.ts db rebuild` が未解消の DB feedback gate を解消する。
+- `bun run src\cli.ts doctor` が成功する。

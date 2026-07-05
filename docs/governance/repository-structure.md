@@ -5,7 +5,7 @@
 - **正本**: 本書がリポジトリ配置の **canonical 正本**。`requirements_v1.2 §9.1`（Phase 0 存在チェック）と `CLAUDE.md` のディレクトリ節は本書を参照する。
 - **前提**: ADR-001（harness 実装 = TypeScript/Bun、source snapshot は概念のみ）/ ADR-005（配布 = GitHub-pull、Web UI = 中央・全 project 横断、plugin = 補助チャネル）/ V-model 4 artifact（concept v3.1 §2.3）。
 - **要件同期 (済)**: `docs/process/` (A) / `src/web/` は **requirements_v1.2 §9.1 Phase 0-A 存在チェックツリーに反映済**。canonical ツリーの全ディレクトリは実体 (`.gitkeep`) 作成済 (構成は要件定義で確定するため一括実体化)。各 `[予定]` ディレクトリは **ディレクトリ実体化済 / 中身 (機能・doc) は後続 PLAN で起こす** の意。`src/web/` も実体化済 (Phase 0-A 対象化は後続 PLAN)。
-- **本 repo の位置づけ (ADR-005)**: 本 repo は **harness engine repo（= 配布の単一真実）**。各 project は本 repo を **git dependency（tag-pin）で pull** し、`ut-tdd setup` が adapter を投影する。下記 canonical ツリーは **engine repo の構成**。consume 側 project への投影レイアウトは §9 を参照。
+- **本 repo の位置づけ (ADR-005)**: 本 repo は **harness engine repo（= 配布の単一真実）**。各 project は本 repo を **git dependency（tag-pin）で pull** し、`helix setup` が adapter を投影する。下記 canonical ツリーは **engine repo の構成**。consume 側 project への投影レイアウトは §9 を参照。
 
 ## 1. canonical ツリー
 
@@ -35,8 +35,8 @@ HELIX-HARNESS/
 │   └── web/                      #   [予定] 中央 Web UI service (15 画面 / 全 project 横断 / GitHub backbone、ADR-005 D2。backend 詳細は L2 設計)
 ├── tests/                        # ★ ④ テストコード (vitest、*.test.ts、src を mirror)
 ├── scripts/                      # ★ 薄い OS entrypoint のみ (core logic を置かない)
-│   ├── ut-tdd                    #   POSIX / Git Bash
-│   ├── ut-tdd.ps1                #   Windows PowerShell
+│   ├── helix                    #   POSIX / Git Bash
+│   ├── helix.ps1                #   Windows PowerShell
 │   └── install-hooks.{sh,ps1}    #   [予定] hook installer
 │
 ├── docs/
@@ -66,7 +66,7 @@ HELIX-HARNESS/
 │   ├── agents/                   #   subagent 定義 (code-reviewer 等)
 │   └── hooks/                    #   hook script
 │
-├── .ut-tdd/                      # ★ UT-TDD runtime state + 監査証跡 (state 系 gitignored / 証跡系 tracked、§5)
+├── .helix/                      # ★ HELIX runtime state + 監査証跡 (state 系 gitignored / 証跡系 tracked、§5)
 │   ├── state/                    #   runtime.json 等 (generated、.gitkeep のみ tracked)
 │   ├── audit/                    #   A-NNN-*.md / reports/*.md 監査記録 = tracked 証跡 (PO 決定 2026-06-10、A-128)。*.jsonl / escalation_state.json は gitignored
 │   ├── evidence/                 #   verification-profiles 等の正規化 evidence JSON (tracked、secret/PII 禁止)
@@ -96,8 +96,8 @@ HELIX-HARNESS/
 | 決定記録 | `docs/adr/` | `ADR-NNN-slug.md` |
 | 実装計画 | `docs/plans/` | `PLAN-NNN-slug.md`。superseded は `status: archived` |
 | 移行資料 | `docs/migration/` | source capability reference。code-port 計画は ADR-001 で superseded |
-| runtime state | `.ut-tdd/` (state/cache/logs/handover CURRENT/tmp/local*) | generated。**docs 目的で追跡しない** (CLAUDE.md 禁止事項) |
-| 監査証跡 | `.ut-tdd/audit/*.md` / `.ut-tdd/audit/reports/*.md` / `.ut-tdd/evidence/` / `.ut-tdd/handover/provider/` | **tracked** (PO 決定 2026-06-10、A-128 F-1)。audit = A-NNN 監査記録、evidence = 正規化 JSON (secret/PII/raw transcript 禁止)。runtime state と区別する |
+| runtime state | `.helix/` (state/cache/logs/handover CURRENT/tmp/local*) | generated。**docs 目的で追跡しない** (CLAUDE.md 禁止事項) |
+| 監査証跡 | `.helix/audit/*.md` / `.helix/audit/reports/*.md` / `.helix/evidence/` / `.helix/handover/provider/` | **tracked** (PO 決定 2026-06-10、A-128 F-1)。audit = A-NNN 監査記録、evidence = 正規化 JSON (secret/PII/raw transcript 禁止)。runtime state と区別する |
 | 横断参照資料 | `docs/reference/` | tracked。参照用であり配置正本は本書 (例: `ai-agent-harness-directory-reference.md`) |
 
 ## 3. V-model 4 artifact の配置 (中核ルール、concept v3.1 §2.3)
@@ -120,20 +120,20 @@ HELIX-HARNESS/
 
 ## 5. tracked / gitignored（追跡対象と除外対象）
 
-- **gitignored**: `node_modules/` `dist/` `*.tsbuildinfo` `coverage/` / `.ut-tdd/` runtime state (state/cache/logs/tmp/handover CURRENT.*・*.bak/audit *.jsonl・escalation_state.json、local*) / legacy local state / `__pycache__` / `docs/plans/*.lock` / `CLAUDE.local.md` `AGENTS.override.md` `.claude/settings.local.json` / secret 系 (`.env*` `*.key` `*.pem` `credentials.json`)
-- **tracked**: `src/` `tests/` `docs/` (archive 含む) `scripts/` `package.json` `tsconfig.json` `bun.lock` `vitest.config.ts` `.gitattributes` `.editorconfig` / **監査証跡** `.ut-tdd/audit/*.md` `.ut-tdd/audit/reports/*.md` `.ut-tdd/evidence/` `.ut-tdd/handover/provider/` / **参照資料** `docs/reference/` (PO 決定 2026-06-10 tracked 化 / 2026-06-25 docs/reference へ移設、A-128 F-1 / IMP-127)
+- **gitignored**: `node_modules/` `dist/` `*.tsbuildinfo` `coverage/` / `.helix/` runtime state (state/cache/logs/tmp/handover CURRENT.*・*.bak/audit *.jsonl・escalation_state.json、local*) / legacy local state / `__pycache__` / `docs/plans/*.lock` / `CLAUDE.local.md` `AGENTS.override.md` `.claude/settings.local.json` / secret 系 (`.env*` `*.key` `*.pem` `credentials.json`)
+- **tracked**: `src/` `tests/` `docs/` (archive 含む) `scripts/` `package.json` `tsconfig.json` `bun.lock` `vitest.config.ts` `.gitattributes` `.editorconfig` / **監査証跡** `.helix/audit/*.md` `.helix/audit/reports/*.md` `.helix/evidence/` `.helix/handover/provider/` / **参照資料** `docs/reference/` (PO 決定 2026-06-10 tracked 化 / 2026-06-25 docs/reference へ移設、A-128 F-1 / IMP-127)
 
 ## 6. 境界
 
 - **正本**: `docs/governance/*` + `docs/adr/*` + `docs/process/*` (工程/駆動モデル定義) + `src/` (TS core)。
-- **generated / 非正本**: `.ut-tdd/state` `dist/` `node_modules/` legacy local state。
+- **generated / 非正本**: `.helix/state` `dist/` `node_modules/` legacy local state。
 - **historical**: `docs/archive/`（旧版）/ `docs/migration/`（移行資料、code-port 部は superseded）。
 
 ## 7. 禁止事項
 
 - `src/` core に bash / Python を持ち込まない（ADR-001。OS 差は `scripts/` の薄い wrapper に閉じる）。
 - enum / 契約を `src/schema/` 以外で再定義しない。
-- `.ut-tdd/` **runtime state** (state/cache/logs/tmp/handover CURRENT/local*) を docs 目的で Git 追跡しない。**監査証跡** (`audit/*.md` / `audit/reports/*.md` / `evidence/` / `handover/provider/`) は例外として tracked (§5、A-128 F-1)。
+- `.helix/` **runtime state** (state/cache/logs/tmp/handover CURRENT/local*) を docs 目的で Git 追跡しない。**監査証跡** (`audit/*.md` / `audit/reports/*.md` / `evidence/` / `handover/provider/`) は例外として tracked (§5、A-128 F-1)。
 - source process reference を工程定義の正本として参照しない (正本 = `docs/process/`)。
 - 日本語ファイル名を使わない。
 - **`[予定]` ディレクトリの中身を後続 PLAN 不在のまま実装しない**: ディレクトリ実体 (`.gitkeep`) は構成確定として一括作成済だが、中身 (機能コード・doc・workflow。特に `src/web/`) は対応 PLAN が確定してから起こす。`.gitkeep` があることを実装許可と誤読しない。
@@ -159,9 +159,9 @@ harness の配置は 3 層で分離する。本書 §1 canonical ツリーは **
 | 層 | 実体 | 配置 | 更新享受 |
 |----|------|------|---------|
 | **① engine repo (単一真実)** | harness engine + ルール + 工程/駆動モデル定義 (本 repo) | **GitHub repo**。consume 側は git dependency で **tag-pin** (`bun add github:<org>/HELIX-HARNESS-OS#<tag>`、devDependencies にコミット) | tag を bump (`bun update`)。社内既定 = tag-pin + 定期 bump |
-| **② project 投影 (adapter)** | consume 側 project に展開される `CLAUDE.md` / `.claude/` / `AGENTS.md` 等 | `ut-tdd setup` が engine から **投影**。内容を複製せず engine を参照する adapter | engine の tag bump に追従 |
+| **② project 投影 (adapter)** | consume 側 project に展開される `CLAUDE.md` / `.claude/` / `AGENTS.md` 等 | `helix setup` が engine から **投影**。内容を複製せず engine を参照する adapter | engine の tag bump に追従 |
 | **③ 中央 UI service** | 全 project 横断の管理 Web UI (15 画面) | **中央 / team server**。各 project の GitHub repo を data backbone に読む (project-local でない) | UI service コード自体も engine と同 GitHub repo (`src/web/`) で管理 |
 
 - **public npm publish しない** (社内コード、GitHub-pull で足りる)。
 - **engine は tool 非依存 package**: CLI / CI (Layer B-remote `.github/workflows`) / Codex / 将来ツールが同一 engine を GitHub から取得 (ルール同一性、concept §2.1.0)。Claude plugin は **任意の補助配信チャネル**で主軸でない (ADR-005 D3)。
-- consume 側 project の投影レイアウト (CLAUDE.md/.claude/AGENTS.md + `.ut-tdd/` state) の詳細は `ut-tdd setup` 仕様 (L4 external-if / L5 if-detail) で確定。
+- consume 側 project の投影レイアウト (CLAUDE.md/.claude/AGENTS.md + `.helix/` state) の詳細は `helix setup` 仕様 (L4 external-if / L5 if-detail) で確定。

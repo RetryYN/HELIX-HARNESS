@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-152-artifact-progress-decision-extraction
-title: "PLAN-L7-152: artifact progress decision extraction"
+title: "PLAN-L7-152: artifact progress decision extraction（進捗判定抽出）"
 kind: refactor
 layer: L7
 drive: db
@@ -13,9 +13,9 @@ backprop_decision: not_required
 backprop_decision_reason: "Behavior-invariant extraction inside the existing harness.db projection boundary. No persisted schema, CLI behavior, requirement semantics, or workflow state semantics changed."
 agent_slots:
   - role: se
-    slot_label: "SE - artifact progress decision extraction"
+    slot_label: "SE - artifact progress decision extraction（進捗判定抽出）"
   - role: tl
-    slot_label: "TL - behavior invariant review"
+    slot_label: "TL - behavior invariant review（挙動不変レビュー）"
 generates:
   - artifact_path: docs/plans/PLAN-L7-152-artifact-progress-decision-extraction.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T17:15:00+09:00"
     tests_green_at: "2026-06-25T17:15:00+09:00"
     verdict: approve
-    scope: "Behavior-invariant extraction of artifact progress decision policy from projection-writer."
+    scope: "projection-writer から artifact progress decision policy を挙動不変で抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -65,24 +65,22 @@ review_evidence:
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
 ---
 
-# PLAN-L7-152: artifact progress decision extraction
+# PLAN-L7-152: artifact progress decision extraction（進捗判定抽出）
 
-## Objective
+## 目的
 
-Reduce the `projection-writer.ts` split-module candidate by moving the pure
-artifact progress decision policy into a focused module.
+pure な artifact progress decision policy を専用 module へ移し、
+`projection-writer.ts` の `split-module` candidate を減らす。
 
-## Scope
+## スコープ
 
-- Extract `deriveArtifactProgressDecision` and its exported types to
-  `src/state-db/artifact-progress-decision.ts`.
-- Keep `src/state-db/projection-writer.ts` public exports stable through
-  re-export.
-- Update existing projection writer tests to import the pure decision helper
-  directly from the new module.
+- `deriveArtifactProgressDecision` と exported types を
+  `src/state-db/artifact-progress-decision.ts` へ抽出する。
+- re-export により `src/state-db/projection-writer.ts` の public exports を安定させる。
+- 既存の projection writer tests は、新 module から pure decision helper を直接 import するよう更新する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Artifact progress decision behavior remains unchanged.
-- Existing `projection-writer` rebuild tests still pass.
-- `bun run typecheck`, `bun run lint`, DB rebuild, and doctor pass.
+- Artifact progress decision behavior は変えない。
+- 既存の `projection-writer` rebuild tests は引き続き pass する。
+- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が pass する。

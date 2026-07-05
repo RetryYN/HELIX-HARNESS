@@ -82,36 +82,33 @@ review_evidence:
         output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
 ---
 
-# PLAN-L7-204: upstream A-146 semantic adoption decision contracts
+# PLAN-L7-204: upstream A-146 semantic adoption decision contracts の判断契約
 
-## Objective
+## 目的
 
-Implement the L7 slice for upstream A-146 semantic adoption contracts lowered in
-`upstream-substance-gap.md`. This does not copy upstream prose or runtime state;
-it makes the eight A-146 findings executable as HELIX adoption decisions.
+`upstream-substance-gap.md` で L6 から下ろした upstream A-146 semantic adoption contracts について、
+L7 slice を実装する。upstream の prose や runtime state はコピーせず、8 件の A-146 findings を
+HELIX の adoption decision として実行可能にする。
 
-## Scope
+## 対象範囲
 
-- Implement pure decision helpers for `U-UPSTREAM-001..009` in
-  `src/runtime/upstream-adoption.ts`.
-- Add focused unit tests in `tests/upstream-adoption.test.ts`.
-- Register implementation oracles in the L7 unit-test design.
-- Reuse existing `run-debug` runtime surface vocabulary for matcher evidence.
+- `src/runtime/upstream-adoption.ts` に `U-UPSTREAM-001..009` 向けの pure decision helpers を実装する。
+- `tests/upstream-adoption.test.ts` に焦点を絞った unit tests を追加する。
+- L7 unit-test design に implementation oracles を登録する。
+- matcher evidence には既存の `run-debug` runtime surface vocabulary を再利用する。
 
-## Non-Goals
+## 対象外
 
-- This PLAN does not publish distribution artifacts, sign releases, or run
-  external provider CLIs.
-- This PLAN does not change database schema or public CLI surfaces.
-- This PLAN does not replace the L7.5 runtime verification log; it complements
-  it by making upstream coverage/provenance decisions testable.
+- この PLAN では distribution artifacts の publish、release signing、external provider CLIs の実行は扱わない。
+- この PLAN では database schema や public CLI surfaces を変更しない。
+- この PLAN は L7.5 runtime verification log を置き換えない。upstream coverage/provenance decisions を
+  テスト可能にすることで補完する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `src/runtime/upstream-adoption.ts` implements all functions named by the
-  upstream A-146 L6 design.
-- `tests/upstream-adoption.test.ts` covers `U-UPSTREAM-001..009`.
-- Unknown A-146 finding ids are not silently adopted.
-- Guard, evidence, telemetry, distribution, FE substance, drive entry, and
-  matcher coverage claims all fail closed when evidence is missing or hollow.
-- Typecheck, lint, targeted V-model tests, doctor, and full test suite pass.
+- `src/runtime/upstream-adoption.ts` は upstream A-146 L6 design が名指しした全 functions を実装する。
+- `tests/upstream-adoption.test.ts` は `U-UPSTREAM-001..009` を網羅する。
+- 未知の A-146 finding ids は黙って adopted にしない。
+- Guard、evidence、telemetry、distribution、FE substance、drive entry、matcher coverage claims は、
+  evidence が欠落または hollow な場合にすべて fail closed する。
+- Typecheck、lint、targeted V-model tests、doctor、full test suite が pass する。

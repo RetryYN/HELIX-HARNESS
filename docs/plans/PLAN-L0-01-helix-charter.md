@@ -64,7 +64,7 @@ chat で「何を／誰のため／変える点」を確定（超個人開発・
 
 ### 手順 4: [直列] レビュー (Step 4 / review: 内部矛盾チェック + L1 trace 可能性確認)
 > 直列理由: downstream_dependency — Step 3 の起草物に対し G0.5 の 2 条件を検証するため。
-`ut-tdd plan lint` / `ut-tdd doctor` ＋ PO レビューで「内部矛盾なし」「背景・目的・スコープが L1 へ trace 可能」を確認。
+`helix plan lint` / `helix doctor` ＋ PO レビューで「内部矛盾なし」「背景・目的・スコープが L1 へ trace 可能」を確認。
 - 進捗: ✅ (2026-06-28、plan lint GREEN / doctor GREEN)
 
 ### 手順 5: [直列] G0.5 PO サインオフ (Step 5)
@@ -90,7 +90,7 @@ PO 承認 → status=confirmed。L1 要求起票（P0–P9 → BR-*/NFR-*）へ 
 - [x] 企画書 `helix-charter_v0.1.md` が存在し非空。
 - [x] 背景・目的・スコープ（P0–P9）が記載され、L1 業務要求/非機能要求へ trace できる構造（charter §8 trace seed）。
 - [x] 内部矛盾・ロジック破綻がない（G0.5 fail 条件②に該当しない、PO 確認 2026-06-28）。
-- [x] `ut-tdd plan lint` GREEN ／ doctor GREEN（ソース exit 0、バイナリ exit 0。l6-fr-coverage バイナリ負債も同 PR で修正）。
+- [x] `helix plan lint` GREEN ／ doctor GREEN（ソース exit 0、バイナリ exit 0。l6-fr-coverage バイナリ負債も同 PR で修正）。
 - [x] G0.5 PO サインオフ → status=confirmed（2026-06-28）。
 
 ## §5 carry / 次工程 (L1) への引き継ぎ

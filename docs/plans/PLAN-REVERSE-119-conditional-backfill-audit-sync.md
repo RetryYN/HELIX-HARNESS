@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-119-conditional-backfill-audit-sync
-title: "PLAN-REVERSE-119: conditional backfill audit sync"
+title: "PLAN-REVERSE-119: 条件付き backfill 監査同期"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define legacy conditional debt audit synchronization."
+    reason: "requirements は legacy conditional debt の監査同期を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The gate changes PLAN governance only, not external basic design behavior."
+    reason: "この gate は PLAN governance だけを変更し、外部 basic design の挙動は変更しない。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The gate changes PLAN governance only, not detailed runtime design behavior."
+    reason: "この gate は PLAN governance だけを変更し、詳細 runtime design の挙動は変更しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - conditional backfill audit fullback"
+    slot_label: "TL - 条件付き backfill 監査 fullback"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-119-conditional-backfill-audit-sync.md
     artifact_type: markdown_doc
@@ -43,7 +43,7 @@ review_evidence:
     reviewed_at: "2026-06-23T13:30:00+09:00"
     tests_green_at: "2026-06-23T13:30:00+09:00"
     verdict: approve
-    scope: "Requirements/concept fullback for legacy conditional audit synchronization."
+    scope: "legacy conditional audit synchronization の requirements/concept fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -65,21 +65,20 @@ review_evidence:
         output_digest: "sha256:cb69e5f9425f57492a0760eb7574201d4d361689feb2229db46d773509485b07"
 ---
 
-# PLAN-REVERSE-119: conditional backfill audit sync
+# PLAN-REVERSE-119: 条件付き backfill 監査同期
 
-## Objective
+## 目的
 
-Back-fill the legacy conditional audit synchronization rule into requirements
-and concept terminology.
+legacy conditional audit synchronization rule を requirements と concept terminology へ backfill する。
 
-## Scope
+## スコープ
 
-- Requirements record `legacyAuditGaps` as a hard backfill-pairing violation.
-- Concept glossary lists the current backfill-pairing outputs.
-- Legacy debt remains visible, but the allowlist must match the audit table.
+- requirements は `legacyAuditGaps` を hard backfill-pairing violation として記録する。
+- concept glossary は現在の backfill-pairing outputs を列挙する。
+- legacy debt は可視のまま維持するが、allowlist は audit table と一致しなければならない。
 
-## Acceptance Criteria
+## 受入条件
 
-- Audit-only or allowlist-only legacy debt entries fail.
-- Current repository audit synchronization passes.
-- Fullback evidence points to requirements and concept updates.
+- audit-only または allowlist-only の legacy debt entry は失敗する。
+- 現在の repository audit synchronization は成功する。
+- fullback evidence は requirements と concept updates を指す。

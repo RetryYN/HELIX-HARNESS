@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-160-runtime-adapter-policy-extraction
-title: "PLAN-L7-160: runtime adapter policy extraction"
+title: "PLAN-L7-160: runtime adapter policy extraction（policy 抽出）"
 kind: refactor
 layer: L7
 drive: agent
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant extraction of runtime adapter provider policy constants. No public CLI/API contract, persisted schema, or workflow semantics changed."
+backprop_decision_reason: "runtime adapter provider policy constants の挙動不変な抽出。公開 CLI/API contract、永続化 schema、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - runtime adapter policy extraction"
+    slot_label: "SE - runtime adapter policy extraction（policy 抽出）"
   - role: tl
-    slot_label: "TL - adapter invariant review"
+    slot_label: "TL - adapter invariant review（不変条件レビュー）"
 generates:
   - artifact_path: docs/plans/PLAN-L7-160-runtime-adapter-policy-extraction.md
     artifact_type: markdown_doc
@@ -39,7 +39,7 @@ review_evidence:
     reviewed_at: "2026-06-25T19:32:10+09:00"
     tests_green_at: "2026-06-25T19:32:10+09:00"
     verdict: approve
-    scope: "Extract runtime adapter provider argv/env/context policy into a sidecar module without changing adapter behavior."
+    scope: "adapter behavior を変えずに runtime adapter provider の argv/env/context policy を sidecar module へ抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -101,25 +101,23 @@ review_evidence:
         output_digest: "sha256:6d4c1257b646c3a744c0fc374bbb071ab2617deb86c63a49bcb44d69dd23681e"
 ---
 
-# PLAN-L7-160: runtime adapter policy extraction
+# PLAN-L7-160: runtime adapter policy extraction（policy 抽出）
 
-## Objective
+## 目的
 
-Reduce the remaining `externalize-policy` candidates by moving runtime adapter
-provider policy literals into a dedicated sidecar module.
+runtime adapter provider policy literals を専用 sidecar module へ移し、残っている
+`externalize-policy` candidates を減らす。
 
-## Scope
+## スコープ
 
-- Extract Codex/Claude stdin argv policy, Claude effort env, and context
-  injection labels to `src/runtime/adapter-policy.ts`.
-- Update the Codex wrapper parity doctor gate to read the sidecar policy as the
-  argv sentinel source.
-- Keep `src/runtime/adapter.ts` responsible for runtime command construction.
-- Add direct test coverage for the policy constants through the existing runtime
-  adapter contract tests.
+- Codex/Claude stdin argv policy、Claude effort env、context injection labels を
+  `src/runtime/adapter-policy.ts` へ抽出する。
+- Codex wrapper parity doctor gate が argv sentinel source として sidecar policy を読むよう更新する。
+- `src/runtime/adapter.ts` は runtime command construction の責務を維持する。
+- 既存の runtime adapter contract tests を通じて、policy constants への直接 test coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Runtime adapter behavior remains unchanged.
-- `tests/runtime-adapter.test.ts` passes and directly imports the sidecar policy.
-- Typecheck, lint, DB rebuild, and doctor pass.
+- Runtime adapter behavior は変更しない。
+- `tests/runtime-adapter.test.ts` が pass し、sidecar policy を直接 import する。
+- Typecheck、lint、DB rebuild、doctor が pass する。

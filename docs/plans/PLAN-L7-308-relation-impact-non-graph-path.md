@@ -71,7 +71,7 @@ review_evidence:
 
 ## 0. 目的
 
-`ut-tdd graph impact` が「変更 path に relation-graph node が無い」場合、その path が
+`helix graph impact` が「変更 path に relation-graph node が無い」場合、その path が
 **グラフ走査対象クラス配下か否かを問わず** `missing-projection` error にしていた。このため
 config doc (`.claude/CLAUDE.md`)、skill doc (`docs/skills/*`)、非走査対象 directory、archived plan
 (`docs/plans/*` の status=archived) を変更しただけで impact gate が fail していた
@@ -85,7 +85,7 @@ node 欠落のみを `missing-projection` (error) とし、定義上グラフ外
 
 - `GRAPH_TRACKED_PATH_PREFIXES` / `isGraphTrackedPath` を relation-graph.ts に追加
   (loader の走査対象 = src/ tests/ docs/plans/ docs/design/ docs/test-design/ docs/process/
-  .claude/agents/ .ut-tdd/review/ .ut-tdd/evidence/g8-integration/ と一致)。
+  .claude/agents/ .helix/review/ .helix/evidence/g8-integration/ と一致)。
 - loader が archived plan の path を `trackedExcludedPaths` として source set → projection に運ぶ。
 - `analyzeRelationImpact`: node 欠落 path が非走査対象 / archived plan なら
   `non-graph-path` (info、ok を落とさない)、走査対象配下の node 欠落は従来どおり
@@ -107,4 +107,4 @@ node 欠落のみを `missing-projection` (error) とし、定義上グラフ外
 - `git status --porcelain --untracked-files=all` を使い、未追跡 directory 配下の file を change-impact /
   relation graph impact の入力から落とさない (tests/change-impact.test.ts)。
 - `bun run vitest run tests/relation-graph.test.ts tests/relation-graph-loader.test.ts` green、
-  `bun run typecheck` green、`ut-tdd graph impact` が現行 working tree で exit 0。
+  `bun run typecheck` green、`helix graph impact` が現行 working tree で exit 0。

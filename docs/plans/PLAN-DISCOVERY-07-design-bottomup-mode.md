@@ -62,7 +62,7 @@ review_evidence:
 
 # PLAN-DISCOVERY-07 (kind=poc): design-bottomup 駆動モデル
 
-## 0. Objective (PO 指示 2026-06-25)
+## 0. 目的 (PO 指示 2026-06-25)
 
 PO 発話: 「Design bottom up みたいな駆動モデルを作りたい」「バックエンドからフロントの要件を
 洗い出す仕組み。そして画面モックを作って具体化させてフォワードで落としていく」。
@@ -75,9 +75,9 @@ L4 ui-standard のみ。`src/web` は破棄済で空 (`76479d3`)。
 この「backend が確立済の system に画面を後付けする」入口条件を持つ駆動モデルが存在しないため、
 新 mode **design-bottomup** を Discovery dogfood で検証する。S4 の PO decision までは正本化済みとして扱わない。
 
-## 1. Gap (なぜ既存 mode で足りないか) — 重複分析
+## 1. 差分 (なぜ既存 mode で足りないか) — 重複分析
 
-| flow 段階 (PO 定義) | 既存機構 | 状態 |
+| flow 段階 (PO 定義) | 既存機構 | 判定 |
 |---|---|---|
 | ② 画面 mock で具体化 | screen-design (Forward L2 工程専門、wireframe=③mock) + Discovery (`design_uncertain`) | 既にある |
 | ③ Forward で落とす | Discovery 合流点 (設計確証→L3-L6) + Forward 本線 | 既にある |
@@ -119,23 +119,23 @@ DISCOVERY-01/06 と同じ reuse-with-hardening)。
   `ROUTE_SIGNAL_MAP` (入口 signal routing) へ配線。
 - `tests/design-elicitation.test.ts` — 10 テスト (engine + 合成 + taxonomy。code-reviewer cross-review の I-1/I-2/I-3/M-3 反映済)。
 
-## 4. Acceptance Criteria (falsifiable / ut-tdd or test コマンド引用、prose 禁止)
+## 4. 受入条件 (反証可能 / helix または test コマンド引用、prose 禁止)
 
-- **AC-1 engine green**: `bunx vitest run tests/design-elicitation.test.ts` exit 0 (10 tests passed)。
-- **AC-2 mode taxonomy 登録**: `classifyDriveTddFits({modes:["design-bottomup"]})` が strong fit 1 件を返し
+- **AC-1 engine green 確認**: `bunx vitest run tests/design-elicitation.test.ts` exit 0 (10 tests passed)。
+- **AC-2 mode taxonomy 登録確認**: `classifyDriveTddFits({modes:["design-bottomup"]})` が strong fit 1 件を返し
   `red_triggers` に `screen_requirement_gap` を含む (tests/design-elicitation.test.ts の "mode taxonomy" ケース)。
 - **AC-3 Discovery 合成 (mode 再発明しない)**: composeDesignBottomupDiscovery の entry_signal が
   `routeSignalToMode` で `discovery` 候補に乗る (同 test の compose ケース)。
-- **AC-4 無回帰**: `ut-tdd doctor` exit 0 かつ `bun run test` (vitest 全量) green。
-- **AC-5 plan/lint**: `ut-tdd plan lint` exit 0 + `bun run lint` (biome) + `bun run typecheck` 通過。
+- **AC-4 無回帰**: `helix doctor` exit 0 かつ `bun run test` (vitest 全量) green。
+- **AC-5 plan/lint**: `helix plan lint` exit 0 + `bun run lint` (biome) + `bun run typecheck` 通過。
 
 ### AC 充足状況 (S3 verified scope = ① engine + Discovery 合成、2026-06-25)
 
 - **AC-1 ✓**: `tests/design-elicitation.test.ts` 10 tests green。
 - **AC-2 ✓ / AC-3 ✓**: 同 test の "mode taxonomy" / "compose" ケースで充足 (`routeSignalToMode` 再利用)。
-- **AC-4 ✓**: `ut-tdd doctor` EXIT 0 (残り green-command-digest は advisory note。contracts.ts 編集による
+- **AC-4 ✓**: `helix doctor` EXIT 0 (残り green-command-digest は advisory note。contracts.ts 編集による
   共有ファイル digest 波及で、coordinated restamp は別メンテ = cd34975 型)。`bun run test` (vitest 全量) green。
-- **AC-5 ✓**: `ut-tdd plan lint` EXIT 0 / `bun run lint` (biome) / `bun run typecheck` 通過。
+- **AC-5 ✓**: `helix plan lint` EXIT 0 / `bun run lint` (biome) / `bun run typecheck` 通過。
 - review: code-reviewer (sonnet) review = reviewed-with-changes (Critical 0)、Important/Minor 反映済
   (frontmatter `review_evidence` 参照)。
 
@@ -148,15 +148,15 @@ s4_decision_record:
 - allowed_outcome: `confirmed` / `rejected` / `pivot`
 - decision_owner: PO (人間)。TL は engine 非重複・Forward 合流設計の助言のみ。
 - decision_basis: AC-1〜AC-5 の S3 verified evidence、code-reviewer review、Discovery 合成が既存 route を再利用していること、中央 UI dogfood 前の規範変更 risk。
-- verified_evidence: `tests/design-elicitation.test.ts` 10 tests、mode taxonomy / compose checks、`ut-tdd doctor`、`bun run test`、`ut-tdd plan lint`、`bun run lint`、`bun run typecheck` の S3 evidence。
+- verified_evidence: `tests/design-elicitation.test.ts` 10 tests、mode taxonomy / compose checks、`helix doctor`、`bun run test`、`helix plan lint`、`bun run lint`、`bun run typecheck` の S3 evidence。
 - stakeholder_review_or_proxy: code-reviewer review と TL proxy review 済み。PO は S4 で design-bottomup mode 正本化採否のみを判断する。
 - acceptance_gap: S3 scope の AC-1〜AC-5 は充足。中央 UI dogfood、concept / requirements / process modes の正本 back-merge は S4 confirmed 後の gap。
 - unresolved_risk: concept §2.5 9→10 mode 変更、requirements / process modes の規範変更、中央 UI dogfood 前に正本を書き換える risk。
 - external_source_basis: docs/process/modes/discovery.md の S4 decision source ledger、既存 routeSignalToMode / Discovery 合成、code-reviewer review evidence。
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in docs/process/modes/discovery.md and docs/process/modes/scrum.md before S4 decision use.
-- source_status_delta: changed; ISO/IEC/IEEE 29148:2018 is still the adopted requirements trace basis, but the official page now shows 2026-02-16 stage 90.92 to be revised.
-- adoption_decision_delta: changed; keep 2018 ISO/IEC/IEEE 29148 adopted for this S4 decision material and track the under-development revision until publication.
-- workflow_route_impact: none until S4; after PO decision route to Forward/Reverse back-merge, archive rejection, or S0 pivot.
+- source_ledger_freshness: `fresh`。S4 decision に使う前に、2026-07-03 時点で docs/process/modes/discovery.md と docs/process/modes/scrum.md の source ledger を確認済み。
+- source_status_delta: `changed`。ISO/IEC/IEEE 29148:2018 は requirements trace basis として採用継続。ただし公式 page は 2026-02-16 時点で stage 90.92 と revised 予定を示している。
+- adoption_decision_delta: `changed`。この S4 decision material では 2018 年版 ISO/IEC/IEEE 29148 の採用を維持し、開発中 revision は publication まで追跡する。
+- workflow_route_impact: `none until S4`。PO decision 後は Forward/Reverse back-merge、archive rejection、または S0 pivot へ route する。
 - route_impact: confirmed なら L1/L3-L6 back-merge + Reverse fullback + 中央 UI dogfood、rejected なら design-bottomup mode を採用せず engine を archive、pivot なら Discovery 合成方針を再設計する。
 - forward_route: `confirmed` の場合は L1/L3-L6 へ design-bottomup 要求・設計を back-merge し、中央 UI dogfood を別 PLAN で descent する。
 - reverse_fullback_required: yes。confirmed 後は concept / requirements / docs/process/modes へ Reverse fullback で正本化する。
@@ -164,7 +164,7 @@ s4_decision_record:
 
 ## 5. §工程表 schedule (並列/直列 明示、review step 必須)
 
-| Step | 内容 | 並列/直列 | 直列理由 |
+| Step | 作業内容 | 並列/直列 | 直列理由 |
 |------|------|-----------|----------|
 | 1 | ① engine 設計 + Red test 先行 + impl (`design-elicitation.ts` + test) | [直列] | downstream_dependency (engine signal 名が後続の配線・合成に必須) |
 | 2 | design-bottomup を mode taxonomy へ配線 (contracts.ts: DriveTddFit + ROUTE_SIGNAL_MAP) | [直列] | file_conflict (contracts.ts 共有) + downstream_dependency (Step1 の signal 名に依存) |

@@ -32,7 +32,7 @@ dependencies:
   parent: docs/plans/PLAN-L7-72-task-classify-cli.md
   requires:
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
   references:
     - src/task/classify.ts
     - src/team/model-policy.ts
@@ -41,98 +41,97 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l0_extra: docs/design/harness/L1-requirements/functional-requirements.md
 ---
 
-# PLAN-L7-75 (impl): cost-tiered dual-provider role router
+# PLAN-L7-75 (impl): コスト階層型 dual-provider role router
 
-## 0. Objective
+## 0. 目的
 
-Implement the PO-confirmed routing model that keeps provider model spend cheap by
-default while reserving frontier models for explicitly-authorized judgement. It
-ties together the roster (§1.8 VALID_ROLES), the hybrid runtime separation MUST
-(§7.8.7.1), and the existing task classifier (FR-L1-39) into one router.
+PO 確認済みの routing model を実装し、provider model のコストを通常は低く保ちつつ、
+frontier models は明示承認された judgement に限定する。roster（§1.8
+VALID_ROLES）、hybrid runtime separation MUST（§7.8.7.1）、既存 task
+classifier（FR-L1-39）を 1 つの router に結合する。
 
-## 1. Problem
+## 1. 問題
 
-The CLI/team-dispatch surface had no tier discipline: model selection could reach
-opus/gpt-5.5 by difficulty inference (the gap audited against A-137 / the HELIX
-`BLOCKED_SELF_DELEGATION` reference). There was no symmetric Codex roster, no
-worker→frontier fail-close, and no explicit-permission gate for frontier models.
+CLI/team-dispatch surface には tier discipline が無く、difficulty inference によって
+model selection が opus/gpt-5.5 に到達できた（A-137 / HELIX
+`BLOCKED_SELF_DELEGATION` reference に対して audit された gap）。対称な Codex
+roster、worker→frontier fail-close、frontier models の explicit-permission gate が
+存在しなかった。
 
-## 2. Scope
+## 2. スコープ
 
-New `src/task/tier-router.ts` composing existing contracts (placed under
-`src/task/` so the `task→team` import edge stays one-directional / acyclic):
+既存 contracts を合成する新規 `src/task/tier-router.ts` を追加する（`task→team`
+import edge を one-directional / acyclic に保つため `src/task/` 配下に配置）。
 
-- 3 archetype (`consult` / `worker` / `verify`) mapped per role
-  (tl/uiux=consult, qa=verify, se/docs=worker).
-- 3 tier × 2 provider table (T0 opus/gpt-5.5, T1 sonnet/gpt-5.4,
-  T2 haiku/gpt-5.3-codex-spark) — Codex symmetric to Claude.
-- `tierFor` (archetype decides band; worker band T2↔T1 by difficulty + risk),
-  `resolveModel` (worker→T0 throws, fail-close invariant), `route` (difficulty
-  router with the T0 explicit-permission gate), `assignCross` (primary→other
-  cross-branch), `roster` (10-binding symmetric view).
-- `ut-tdd task route` / `ut-tdd task roster` CLI surfaces. `route` wires
-  `assignCross` into the decision (`cross` field): it auto-derives the
-  cross-provider switch (creation=primary / judgement=other in hybrid,
-  intra_runtime_subagent otherwise) from `currentRuntime`, surfaced as
-  `switch=<exec>>(<judge>)` in the CLI.
-- Role placement (cross connection): `route` places worker roles on the
-  execution provider (primary) and consult/verify roles on the judgement
-  provider (other in hybrid), so the role's model resolves on the provider it
-  actually runs on. In hybrid `assignCross` enforces an explicit
-  implementation≠review provider separation (fail-close, PO directive).
-- Decision→execution bridge: `routeToAdapterPlan(decision, task, mode)` converts
-  a ready decision into the placed provider's adapter invocation (command/args),
-  returning null for a blocked (T0-gated) decision. Exposed via
-  `ut-tdd task route --execute` (dry-run command).
-- Team integration (`ut-tdd team run --route`): `routeTeamMembers` runs each team
-  member through the router; the CLI maps the decisions to a per-member
-  `MemberPlacement` (provider / tier model / frontier-gate `blockedReason`) and
-  injects them into `buildTeamRunPlan`. The placement overrides the YAML engine
-  default, so the team's actual member spawn is driven by the cross placement
-  (worker=primary / consult-verify=other) and the cost-tiered model. T0 reviewer
-  members fail-close (`--allow-frontier` required); `validateTeamRun` validates
-  the placed providers, keeping the hybrid worker≠reviewer separation. The router
-  lives under `src/task/` and is wired in at the CLI composition root (not via a
-  `team→task` import) so the `task→team` edge stays one-directional / acyclic.
-- Vitest coverage for every invariant.
+- 3 archetype（`consult` / `worker` / `verify`）を role ごとに対応付ける。
+  対応は `tl/uiux=consult`、`qa=verify`、`se/docs=worker` とする。
+- 3 tier × 2 provider の対応表を持つ（T0 opus/gpt-5.5、T1 sonnet/gpt-5.4、
+  T2 haiku/gpt-5.3-codex-spark）。Codex は Claude と対称に扱う。
+- `tierFor`（archetype が band を決定し、worker band は difficulty + risk で
+  T2↔T1）、`resolveModel`（worker→T0 は throw する fail-close invariant）、
+  `route`（T0 explicit-permission gate を持つ difficulty router）、`assignCross`
+  （primary→other cross-branch）、`roster`（10-binding の対称 view）。
+- `helix task route` / `helix task roster` CLI surface を追加する。`route` は
+  `assignCross` を decision（`cross` field）へ接続し、`currentRuntime` から
+  cross-provider switch（hybrid では creation=primary / judgement=other、それ以外は
+  intra_runtime_subagent）を自動導出する。CLI では `switch=<exec>>(<judge>)`
+  として表示する。
+- Role placement（cross connection）: `route` は worker roles を execution provider
+  （primary）へ、consult/verify roles を judgement provider（hybrid では other）へ配置し、
+  role の model が実際に稼働する provider 上で解決されるようにする。hybrid では
+  `assignCross` が implementation≠review provider separation を明示的に強制する
+  （fail-close、PO directive）。
+- Decision→execution bridge: `routeToAdapterPlan(decision, task, mode)` は ready
+  decision を配置先 provider の adapter invocation（command/args）へ変換し、blocked
+  （T0-gated）decision では null を返す。`helix task route --execute`
+  （dry-run command）で公開する。
+- Team integration（`helix team run --route`）: `routeTeamMembers` は各 team member
+  を router に通し、CLI は decisions を member ごとの `MemberPlacement`（provider /
+  tier model / frontier-gate `blockedReason`）へ写して `buildTeamRunPlan` に注入する。
+  この placement は YAML engine default を上書きするため、team の実際の member spawn は
+  cross placement（worker=primary / consult-verify=other）と cost-tiered model によって
+  駆動される。T0 reviewer members は fail-close する（`--allow-frontier` が必須）。
+  `validateTeamRun` は placed providers を検証し、hybrid worker≠reviewer separation を
+  維持する。router は `src/task/` 配下に置き、`team→task` import ではなく CLI
+  composition root で接続するため、`task→team` edge は one-directional / acyclic に保たれる。
+- 全 invariant を Vitest で covered にする。
 
-Follow-up closed (2026-06-17): `model-policy.ts` frontier model id reconciled
-(codex `gpt-5.4` → `gpt-5.5`) so the legacy `selectTeamModel` "frontier" family
-agrees with `TIER_TABLE.T0` (the single source of frontier ids); L6 function-spec
-back-fill added (function-spec.md "2026-06-17 Cost-Tiered Dual-Provider Role
-Router Addendum", U-TIER-001..015 contracts). No remaining out-of-scope items.
+Follow-up は 2026-06-17 に完了済み。`model-policy.ts` の frontier model id を
+reconcile（codex `gpt-5.4` → `gpt-5.5`）し、legacy `selectTeamModel` の
+"frontier" family が `TIER_TABLE.T0`（frontier ids の single source）と一致するようにした。
+L6 function-spec back-fill も追加済み（function-spec.md "2026-06-17 Cost-Tiered
+Dual-Provider Role Router Addendum"、U-TIER-001..015 contracts）。残る
+out-of-scope item は無い。
 
-Touched (extension of existing modules, not new artifacts): `src/team/run.ts`
-(`MemberPlacement` seam + placement-aware `validateTeamRun`), `src/cli.ts`
-(`team run --route/--primary/--allow-frontier`), `src/team/model-policy.ts`
-(frontier id reconcile), `tests/team-run.test.ts` (routed cross-placement +
-frontier fail-close), `tests/team-model-policy.test.ts` (frontier id),
-`docs/design/harness/L6-function-design/function-spec.md` (L6 back-fill).
+Touched（新規 artifact ではなく既存 module の extension）: `src/team/run.ts`
+（`MemberPlacement` と placement-aware `validateTeamRun`）、`src/cli.ts`
+（`team run --route/--primary/--allow-frontier`）、`src/team/model-policy.ts`
+（frontier id reconcile）、`tests/team-run.test.ts`（routing 済み cross-placement と
+frontier の fail-close）、`tests/team-model-policy.test.ts`（frontier id）、
+`docs/design/harness/L6-function-design/function-spec.md`（L6 back-fill）。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- `tierFor`: consult/verify always T0; worker T2 for trivial/simple+no-risk, else
-  T1; worker never T0.
-- `resolveModel(worker, "T0", …)` throws (fail-close invariant).
-- `route` blocks T0 (`model=null`, `blocked-needs-approval`) unless the role is a
-  designated frontier role and `auth.explicit` is set.
-- Codex/GPT is symmetric to Claude (every role has both bindings, same archetype).
-- `currentRuntime` selects the provider; `assignCross` flips judgement to the
-  other provider in hybrid, intra_runtime_subagent otherwise.
-- typecheck / Biome / Vitest / `ut-tdd doctor` stay green; src traces to this
-  PLAN's `generates`.
+- `tierFor`: consult/verify は常に T0。worker は trivial/simple+no-risk なら T2、
+  それ以外は T1。worker は T0 にならない。
+- `resolveModel(worker, "T0", …)` は throw する（fail-close invariant）。
+- `route` は、role が designated frontier role かつ `auth.explicit` 設定済みでない限り、
+  T0 を block する（`model=null`、`blocked-needs-approval`）。
+- Codex/GPT は Claude と対称である（全 role が両方の binding を持ち、同じ archetype）。
+- `currentRuntime` が provider を選択する。`assignCross` は hybrid では judgement を
+  other provider へ反転し、それ以外では intra_runtime_subagent にする。
+- typecheck / Biome / Vitest / `helix doctor` は green を維持し、src はこの PLAN の
+  `generates` に trace する。
 
-## 4. Status
+## 4. 状態
 
-Draft. Implemented and verified 2026-06-17 (Vitest U-TIER-001..015 + routed
-team-run cases + CLI smoke). `assignCross` is wired into `route()`, roles are
-placed on their cross provider (worker=execution / consult-verify=judgement),
-hybrid enforces an explicit impl≠review separation, and `routeToAdapterPlan`
-bridges a ready single-role decision to the provider adapter invocation
-(`ut-tdd task route --execute`). The team layer is now connected too:
-`ut-tdd team run --route` derives each member's provider + tier model from the
-router (worker=primary / consult-verify=other), fail-closes T0 reviewers without
-`--allow-frontier`, and drives the existing slot-based member spawn. The two
-follow-ups are now closed: the model-policy frontier id is reconciled to the tier
-table and the L6 function-spec is back-filled (function-spec.md addendum). No
-remaining out-of-scope items.
+Draft。2026-06-17 に実装・検証済み（Vitest U-TIER-001..015 + routed team-run cases +
+CLI smoke）。`assignCross` は `route()` へ接続済みで、roles は cross provider
+（worker=execution / consult-verify=judgement）へ配置される。hybrid は明示的な
+impl≠review separation を強制し、`routeToAdapterPlan` は ready single-role decision を
+provider adapter invocation（`helix task route --execute`）へ橋渡しする。team layer も接続済み。
+`helix team run --route` は router から各 member の provider + tier model を導出し
+（worker=primary / consult-verify=other）、`--allow-frontier` が無い T0 reviewers を
+fail-close し、既存の slot-based member spawn を駆動する。2 件の follow-up は完了済みで、
+model-policy frontier id は tier table と reconcile 済み、L6 function-spec は back-fill
+済み（function-spec.md addendum）。残る out-of-scope item は無い。

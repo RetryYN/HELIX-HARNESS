@@ -336,7 +336,7 @@ export function loadRuntimeSessionUsage(dirs: SessionScanDirs): RunUsage[] {
   return out;
 }
 
-/** scan サマリ (CLI `ut-tdd telemetry scan` の表示用)。$ は cost を出せた run の合計のみ。 */
+/** scan サマリ (CLI `helix telemetry scan` の表示用)。$ は cost を出せた run の合計のみ。 */
 export interface UsageSummary {
   totalRuns: number;
   claudeRuns: number;

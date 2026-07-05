@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-170-plan-lint-type-policy-split
-title: "PLAN-L7-170: plan lint type and policy split"
+title: "PLAN-L7-170: plan lint の型と policy 分離"
 kind: refactor
 layer: L7
 drive: agent
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant split of plan lint types and policy constants. Schedule, governance, G1, and G3 lint behavior remains unchanged."
+backprop_decision_reason: "plan lint の型と policy constants を挙動不変で分離する。Schedule、governance、G1、G3 lint の挙動は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - plan lint type/policy split"
+    slot_label: "SE - plan lint 型/policy 分離"
   - role: tl
-    slot_label: "TL - plan lint invariant review"
+    slot_label: "TL - plan lint 不変性レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-170-plan-lint-type-policy-split.md
     artifact_type: markdown_doc
@@ -37,7 +37,7 @@ review_evidence:
     reviewed_at: "2026-06-25T21:25:20+09:00"
     tests_green_at: "2026-06-25T21:25:20+09:00"
     verdict: approve
-    scope: "Extract plan lint public types and policy constants to sidecar modules while preserving lint behavior and exports."
+    scope: "lint behavior と exports を維持したまま、plan lint の public types と policy constants を sidecar modules へ抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -91,22 +91,21 @@ review_evidence:
         output_digest: "sha256:ff2a6177eb10aeee0a7183ba27c2cbb6b3f9dc5c2dbf475c3d63bf57db3f64d6"
 ---
 
-# PLAN-L7-170: plan lint type and policy split
+# PLAN-L7-170: plan lint の型と policy 分離
 
-## Objective
+## 目的
 
-Reduce remaining `split-module` pressure on `src/plan/lint.ts` while keeping
-plan lint behavior unchanged.
+plan lint behavior を変更せずに、`src/plan/lint.ts` に残る `split-module`
+pressure を減らす。
 
-## Scope
+## 範囲
 
-- Move public plan lint result/doc/violation types to `src/plan/lint-types.ts`.
-- Move schedule/governance policy constants to `src/plan/lint-policy.ts`.
-- Preserve imports from `src/plan/lint.ts` through type re-exports.
+- public な plan lint result/doc/violation types を `src/plan/lint-types.ts` へ移す。
+- schedule/governance policy constants を `src/plan/lint-policy.ts` へ移す。
+- type re-exports により、`src/plan/lint.ts` からの imports を維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `tests/plan-lint.test.ts`, typecheck, lint, DB rebuild, and doctor pass.
-- `src/plan/lint.ts` falls below the `split-module` threshold.
-- The refactor detector no longer reports `src/plan/lint.ts` as a
-  `split-module` candidate.
+- `tests/plan-lint.test.ts`、typecheck、lint、DB rebuild、doctor が pass する。
+- `src/plan/lint.ts` が `split-module` threshold を下回る。
+- refactor detector が `src/plan/lint.ts` を `split-module` candidate として報告しなくなる。

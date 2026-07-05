@@ -66,48 +66,48 @@ review_evidence:
         output_digest: "sha256:ad589a73486d347838c5b913d7746df7b8037a50c2e97baa29790b2c22b8c81b"
 ---
 
-# PLAN-L7-114: Claude/Codex foreign work guard
+# PLAN-L7-114: Claude/Codex foreign work guard の計画
 
-## Objective
+## 目的
 
-Prevent one runtime from editing another runtime's uncommitted in-flight work in
-hybrid mode. The guard blocks Claude `Edit` / `Write` / `MultiEdit` calls when
-the target path is currently uncommitted and the current Claude session has not
-recorded that path as touched.
+`hybrid` mode で、ある runtime が別 runtime の未 commit 作業中ファイルを編集しないようにする。
+対象 path が現在 uncommitted で、現在の Claude session がその path を touched として記録していない場合、
+guard は Claude `Edit` / `Write` / `MultiEdit` call を block する。
 
-## Scope
+## 範囲
 
-- Add a pure work-guard evaluator under `src/runtime`.
-- Add a Claude `PreToolUse(Edit|Write|MultiEdit)` hook entry.
-- Register the hook in `.claude/settings.json`.
-- Extend `project-hook` lint so the hook remains wired.
-- Cover pass/block/bypass/path-normalization behavior in unit tests.
+- `src/runtime` 配下に pure work-guard evaluator を追加する。
+- Claude `PreToolUse(Edit|Write|MultiEdit)` hook entry を追加する。
+- `.claude/settings.json` に hook を登録する。
+- hook の接続が維持されるように `project-hook` lint を拡張する。
+- pass / block / bypass / path-normalization behavior を unit tests でカバーする。
 
-## Acceptance Criteria
+## 受入条件
 
-- Editing a foreign uncommitted file is blocked unless
-  `UT_TDD_ALLOW_FOREIGN_EDIT=1` is set.
-- Clean files and files already touched by the current session pass.
-- Project hook lint requires the work guard.
-- Typecheck and targeted tests pass.
+- `HELIX_ALLOW_FOREIGN_EDIT=1` が設定されていない限り、foreign uncommitted file の編集は block される。
+- clean files と、現在の session がすでに touched として記録した files は pass する。
+- project hook lint は work guard を必須にする。
+- typecheck と targeted tests が pass する。
 
-## Correction note (2026-06-23, PLAN-RECOVERY-05 dogfood)
+## 修正メモ (2026-06-23, PLAN-RECOVERY-05 dogfood)
 
-The AC "files already touched by the current session pass" was not actually met by
-the first implementation. `normalizeRepoRelative` resolved repo-relative paths with
-`startsWith(repoRoot)`, but the session log records `target` with a tool-name prefix
-(e.g. `"Write c:\\...\\repo\\src\\x.ts"`). The prefix defeated `startsWith`, so the
-session-touched set never matched git-porcelain paths and the guard false-blocked the
-agent's own uncommitted files. Fixed by matching `repoRoot` as a substring (`indexOf`),
-tolerating the prefix; bare absolute paths keep identical behavior. Regression test added
-in `tests/work-guard.test.ts` (session-log prefixed target -> repo-relative). Found by
-dogfooding the Iron Law (PLAN-RECOVERY-05): the guard blocked an own-session edit, and
-root-causing instead of overriding blindly surfaced the normalization bug.
+AC の "files already touched by the current session pass" は、初回実装では実際には満たせていなかった。
+`normalizeRepoRelative` は repo-relative paths を `startsWith(repoRoot)` で解決していたが、
+session log は `target` を tool-name prefix 付きで記録する
+(例: `"Write c:\\...\\repo\\src\\x.ts"`)。この prefix により `startsWith` が成立せず、
+session-touched set が git-porcelain paths と一致しなかったため、guard が agent 自身の
+uncommitted files を false-block していた。修正では `repoRoot` を substring (`indexOf`) として
+照合し、prefix を許容した。bare absolute paths の behavior は同一のまま維持する。
+`tests/work-guard.test.ts` に regression test を追加した
+(session-log prefixed target -> repo-relative)。Iron Law (PLAN-RECOVERY-05) の dogfood により、
+guard が own-session edit を block した事象が見つかり、blind override ではなく root-causing したことで
+normalization bug が surfaced した。
 
-Resolved (2026-06-23): an agent-accessible override path was added alongside the env var.
-Writing a non-empty reason to `.ut-tdd/state/foreign-edit-override` (gitignored runtime
-state, writable mid-session via the Write tool) bypasses the guard; an empty/whitespace
-marker does not (no silent bypass without a reason). Every marker bypass is appended to
-`.ut-tdd/logs/foreign-edit-overrides.jsonl` (ts/target/reason/session) so it leaves an
-audit trail. Pure resolver `resolveForeignEditOverride` + hook marker read/audit, covered
-by `tests/work-guard.test.ts`.
+解決済み (2026-06-23): env var と並行して、agent が access 可能な override path を追加した。
+`.helix/state/foreign-edit-override` に空ではない reason を書くと
+(gitignored runtime state であり、mid-session に Write tool から書ける) guard を bypass する。
+空または whitespace だけの marker は bypass しないため、reason なしの silent bypass はできない。
+すべての marker bypass は `.helix/logs/foreign-edit-overrides.jsonl` に
+(ts/target/reason/session) として append され、audit trail を残す。
+pure resolver `resolveForeignEditOverride` と hook marker read/audit は
+`tests/work-guard.test.ts` でカバーしている。

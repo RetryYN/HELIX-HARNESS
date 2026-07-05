@@ -4,7 +4,7 @@ import { join, relative } from "node:path";
 /**
  * verifier-provider-mismatch (PLAN-L7-304、PLAN-L7-176 §4 carry の doctor gate)。
  *
- * P2 loop の iteration 証跡 (`.ut-tdd/state/loop/*.iterations.jsonl`) を検査し、
+ * P2 loop の iteration 証跡 (`.helix/state/loop/*.iterations.jsonl`) を検査し、
  * worker と verifier が同一 provider なのに fallback 理由 (`blockedReason`) が
  * 記録されていない行を hybrid 自己評価 (self-evaluation) violation として検出する。
  * `selectVerifier` は hybrid で必ず反対 provider を返し、single-runtime fallback は
@@ -90,7 +90,7 @@ export function analyzeVerifierProviderMismatch(
 }
 
 export function loadLoopIterationFiles(repoRoot: string): Array<{ path: string; content: string }> {
-  const dir = join(repoRoot, ".ut-tdd", "state", "loop");
+  const dir = join(repoRoot, ".helix", "state", "loop");
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((name) => name.endsWith(".iterations.jsonl"))

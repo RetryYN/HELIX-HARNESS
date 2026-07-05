@@ -9,7 +9,7 @@ interface FileMemoryDepsOptions {
 }
 
 export function fileMemoryDeps(opts: FileMemoryDepsOptions): MemoryDeps {
-  const memoryDir = join(opts.root, ".ut-tdd", "memory");
+  const memoryDir = join(opts.root, ".helix", "memory");
   const now = opts.now ?? (() => new Date().toISOString());
   const pathFor = (layer: MemoryLayer) => join(memoryDir, `${layer}.jsonl`);
 

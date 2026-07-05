@@ -44,29 +44,29 @@ dependencies:
     - docs/test-design/harness/L8-integration-test-design.md
     - docs/plans/PLAN-L5-08-harness-db-feedback.md
   references:
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
     - https://www.sqlite.org/fts5.html
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-45: harness.db state-db foundation
+# PLAN-L7-45: harness.db state-db foundation（state-db 基盤）
 
 ## §0 PLAN
 
-工程表 PLAN-L7-44 の span ① (entry → G-L7DB.A)。`.ut-tdd/harness.db` の接続・migration・
-全 projection table schema を実装し、`ut-tdd db status` / `ut-tdd db rebuild` を runnable にする。
+工程表 PLAN-L7-44 の span ① (entry → G-L7DB.A)。`.helix/harness.db` の接続・migration・
+全 projection table schema を実装し、`helix db status` / `helix db rebuild` を runnable にする。
 凍結済 L5 設計 (physical-data §2.7 基本 7 + §9.1 拡張 10 table) の forward 実装。
 
-## §1 Objective
+## §1 目的 (Objective)
 
-- `bun:sqlite` first / Node fallback adapter (`src/state-db/index.ts`)。
+- `bun:sqlite` first / Node fallback adapter (`src/state-db/index.ts`) を接続層として実装する。
 - deterministic migration (`src/state-db/migration.ts`) — schema version + 全 table DDL。
 - table schema の単一正本 (`src/schema/harness-db.ts`、zod + DDL 整合)。
 - CLI: `db status` (schema version + freshness + orphan count) / `db rebuild` (deterministic 再構築)。
 
 ## §2 不変条件 (DbC、L5-08 / if-detail 由来)
 
-- DB path は `.ut-tdd/` 配下に限定 (repo 外書込み禁止)。
+- DB path は `.helix/` 配下に限定 (repo 外書込み禁止)。
 - `rebuild` は deterministic (同入力→同 projection)。
 - **secret / raw transcript / PII を schema に持たない・格納しない**。
 - `db status` は secret メタデータを出力しない。
@@ -100,12 +100,12 @@ secret 非保存・deterministic rebuild を review し evidence に残す。
 ## §4 DoD
 
 - [x] IT-DB-01 基盤 green (table 作成 + idempotent upsert)。
-- [x] `ut-tdd db status` / `ut-tdd db rebuild` runnable、deterministic。
+- [x] `helix db status` / `helix db rebuild` runnable、deterministic。
 - [x] schema⇔physical-data 整合、secret/PII 非格納。
 - [x] 全回帰 + typecheck + lint + doctor green、review 前置 evidence。
 
 ## §6 用語更新
 
-| term | type | definition / delta | L0 back-merge |
+| 用語 (term) | 種別 (type) | 定義 / 差分 (definition / delta) | L0 逆反映 (back-merge) |
 |---|---|---|---|
-| state-db adapter | new | `.ut-tdd/harness.db` への bun:sqlite-first / Node-fallback 接続層。migration と schema 単一正本を持つ。 | not required; L7 scoped |
+| state-db adapter | new | `.helix/harness.db` への bun:sqlite-first / Node-fallback 接続層。migration と schema 単一正本を持つ。 | not required; L7 scoped |

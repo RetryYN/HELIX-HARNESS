@@ -13,7 +13,7 @@ const compliant = `# A-TEST
 | P1-autonomous-engine | 自律完了 claim を制限するか | \`src/lint/completion-decision-packet.ts\`、\`tests/completion-decision-packet.test.ts\` | version-up parked | completionClaimAllowed=false / version-up | decision packet を継続 | \`blocked-human\` |
 | P2-orchestration-loop | loop が追跡されるか | \`docs/plans/PLAN-L7-304-loop-iterations-db-schema.md\`、\`docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md\` | runtime polish | heartbeat / loop | child PLAN 継続 | \`partial\` |
 | P3-verification-foundation | 検証が対で凍結されるか | \`docs/process/gates.md\`、\`tests/vmodel-pair.test.ts\` | なし | G8-G14 / pair | なし | \`closed\` |
-| P4-self-maintenance | feedback が保守へ戻るか | \`.ut-tdd/audit/A-134-harness-telemetry-self-improvement-audit.md\`、\`src/lint/telemetry-closure.ts\` | なし | feedback / improvement | なし | \`closed\` |
+| P4-self-maintenance | feedback が保守へ戻るか | \`.helix/audit/A-134-harness-telemetry-self-improvement-audit.md\`、\`src/lint/telemetry-closure.ts\` | なし | feedback / improvement | なし | \`closed\` |
 | P5-context-efficiency | context 注入が bounded か | \`docs/plans/PLAN-L7-315-context-doc-router.md\`、\`tests/context-doc-router.test.ts\` | CLI hook 未接続 | context / fail-open | router 配線を継続 | \`partial\` |
 | P6-github-automation | GitHub 操作は gate 経由か | \`.github/workflows/harness-check.yml\`、\`docs/plans/PLAN-L7-230-destructive-git-command-guard.md\` | main merge は未実行 | push / PR | green 後に明示 stage/commit/push | \`partial\` |
 | P7-agent-memory | memory が DB と結び付くか | \`docs/plans/PLAN-L7-175-helix-orchestration-memory-impl.md\`、\`docs/plans/PLAN-L7-176-helix-orchestration-memory-runtime.md\` | runtime 適用中 | memory / DB | memory PLAN 継続 | \`partial\` |

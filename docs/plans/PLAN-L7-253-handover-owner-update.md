@@ -49,7 +49,7 @@ review_evidence:
     reviewed_at: "2026-07-03T13:00:00+09:00"
     tests_green_at: "2026-07-03T13:00:00+09:00"
     verdict: approve
-    scope: "AGENTS の実 handover 再開手順で要求される owner 移譲を `ut-tdd handover update --owner` として実装した。owner 更新は `owner_updated_at` だけを刻み、handover 本文の freshness 根拠である `updated_at` は更新しないため、stale pointer を owner 移譲だけで fresh に見せない。"
+    scope: "AGENTS の実 handover 再開手順で要求される owner 移譲を `helix handover update --owner` として実装した。owner 更新は `owner_updated_at` だけを刻み、handover 本文の freshness 根拠である `updated_at` は更新しないため、stale pointer を owner 移譲だけで fresh に見せない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -91,7 +91,7 @@ review_evidence:
 
 ## 目的
 
-実フローで `.ut-tdd/handover/CURRENT.json` を確認した後、AGENTS の handover 手順どおり
+実フローで `.helix/handover/CURRENT.json` を確認した後、AGENTS の handover 手順どおり
 `handover update --owner codex` を実行したところ、現行 CLI は `--owner` を受け付けなかった。
 これは「handover を読んで所有権を移譲してから再開する」というワークフローの入口不整合である。
 
@@ -102,7 +102,7 @@ read-modify-write surface を追加する。
 
 - `HandoverPointer` に `owner` / `owner_updated_at` を追加する。
 - `updatePointerOwner(owner, deps)` を追加し、CURRENT.json 不在・壊れ JSON・空 owner・危険文字を fail-close する。
-- `ut-tdd handover update --owner <owner>` を追加する。
+- `helix handover update --owner <owner>` を追加する。
 - `handover status` text に owner を表示する。
 - owner 更新は `updated_at` を変更しない。`updated_at` は handover 内容の freshness 判定用であり、owner 移譲で stale を隠さない。
 - L6 設計と L7 test design に owner 移譲契約を追加する。
@@ -116,7 +116,7 @@ read-modify-write surface を追加する。
 
 ## 完了条件
 
-- `ut-tdd handover update --owner codex --json` が existing CURRENT.json に owner を記録する。
+- `helix handover update --owner codex --json` が existing CURRENT.json に owner を記録する。
 - owner 更新後も `updated_at` は不変で、stale 判定は既存 handover の鮮度に従う。
 - owner 欠落、空 owner、危険文字、CURRENT.json 不在/壊れ JSON は fail-close する。
 - targeted handover / CLI surface tests と typecheck が green。

@@ -25,7 +25,7 @@ export interface RuntimeDetectionDeps {
 }
 
 /**
- * `ut-tdd status --json` の judgment-gate guidance (`nextAction`)。runtime mode が判断ゲートの
+ * `helix status --json` の judgment-gate guidance (`nextAction`)。runtime mode が判断ゲートの
  * 進め方を決める (concept §2.5 / requirements §6 / §7.8.7.1): standalone は AI レビュアー不在ゆえ
  * 判断ゲートは人間レビュー必須 (自動 pass 不可)、単一 runtime は intra_runtime_subagent 証跡、
  * hybrid は別 runtime/model 族でクロスレビュー。値は安定した公開機械契約文字列で、先頭 token

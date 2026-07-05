@@ -29,56 +29,56 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 dependencies:
   parent: docs/plans/PLAN-L6-00-master.md
   requires:
-    - .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
+    - .helix/audit/A-125-mcp-external-verification-profile-scope.md
     - docs/research/mcp-external-verification-profile-research-2026-06-09.md
     - docs/plans/PLAN-REVERSE-31-codex-l7-overstep.md
 ---
 
-# PLAN-L6-32 (add-design): MCP profile config and external verification safety
+# PLAN-L6-32 (add-design): MCP profile config と外部検証 safety
 
-## §0 Position
+## §0 位置づけ
 
-This PLAN is the L6 entry for the remaining A-125 work around generated local MCP configuration, Docker MCP Toolkit profile inclusion, and profile safety lint. It is intentionally separate from PLAN-L6-31 relation graph work: graph impact decides what should run; this PLAN defines whether an external profile is safe and ready to run.
+この PLAN は、生成される local MCP configuration、Docker MCP Toolkit profile の組み込み、profile safety lint に関する A-125 残作業の L6 entry である。PLAN-L6-31 の relation graph 作業とは意図的に分離する。graph impact は何を実行すべきかを判断し、この PLAN は外部 profile が安全で実行準備済みかを定義する。
 
-## §1 Scope
+## §1 範囲
 
-Design function contracts for:
+次の function contract を設計する。
 
-- complete verification-profile catalog rows, including Docker MCP Toolkit as an optional environment profile;
-- generated local MCP config rendering without committed secrets or user-specific global mounts;
-- external profile safety analysis for official source, package identity, read-only/narrow toolsets, workspace mounts, Docker controls, and credential non-persistence;
-- activation planning from workflow signals to probe/smoke/human-approval/refusal steps.
+- Docker MCP Toolkit を任意の environment profile として含む、完全な verification-profile catalog row。
+- committed secrets や user 固有の global mount を含めない、生成 local MCP config の rendering。
+- official source、package identity、read-only / narrow toolset、workspace mount、Docker control、credential non-persistence を対象にした external profile safety analysis。
+- workflow signal から probe / smoke / human-approval / refusal step へつなぐ activation planning。
 
-## §2 Inputs
+## §2 入力
 
 - Requirements §6.8.10.
 - Physical-data §9.6.
 - ADR-002 A-125 addendum.
-- A-125 audit and research memo.
+- A-125 audit と research memo。
 - Existing `src/lint/verification-profile.ts` first slice.
 
-## §3 Function Contracts
+## §3 機能契約
 
-The function contracts are documented in `function-spec.md` "MCP Profile Config / Safety Addendum":
+function contract は `function-spec.md` の "MCP Profile Config / Safety Addendum" に記録する。
 
 - `catalogVerificationProfiles`
 - `renderGeneratedMcpConfig`
 - `analyzeVerificationProfileSafety`
 - `planExternalProfileActivation`
 
-## §4 Test Design
+## §4 テスト設計
 
-The L7 pair artifact adds U-MCPPROFILE-001..012. These oracles cover complete profile catalog, disabled-by-default policy, Docker MCP Toolkit optional profile metadata, generated config safety, source trust, package readiness, GitHub read-only guard, Docker controls, trigger routing, and no implicit activation.
+L7 pair artifact は U-MCPPROFILE-001..012 を追加する。これらの oracle は、完全な profile catalog、disabled-by-default policy、Docker MCP Toolkit の任意 profile metadata、生成 config safety、source trust、package readiness、GitHub read-only guard、Docker control、trigger routing、implicit activation の禁止を覆う。
 
-## §5 Workflow Guard
+## §5 ワークフローガード
 
-No source implementation for Docker MCP Toolkit profile rows, generated MCP config, or profile safety lint is authorized until PLAN-L7-33 has a TDD Red entry and requires PLAN-REVERSE-33.
+PLAN-L7-33 に TDD Red entry があり、PLAN-REVERSE-33 を要求するまでは、Docker MCP Toolkit profile row、生成 MCP config、profile safety lint の source implementation は許可しない。
 
 ## §8 DoD
 
-- [x] L6 function signatures are documented.
-- [x] U-MCPPROFILE unit oracles are added to L7 unit test design.
-- [x] L7 implementation PLAN references this PLAN.
-- [x] Reverse pairing PLAN exists for implementation back-fill.
+- [x] L6 function signature を記録した。
+- [x] U-MCPPROFILE unit oracle を L7 unit test design に追加した。
+- [x] L7 implementation PLAN がこの PLAN を参照する。
+- [x] implementation back-fill 用の Reverse pairing PLAN が存在する。
 
-Status is `confirmed`: the L6 entry, L7 oracle coverage, confirmed L7 implementation route, and Reverse pairing are present. External profile execution remains gated by explicit workflow evidence.
+status は `confirmed`。L6 entry、L7 oracle coverage、confirmed の L7 implementation route、Reverse pairing は存在する。External profile execution は、明示的な workflow evidence による gate 下に残す。

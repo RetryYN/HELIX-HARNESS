@@ -34,7 +34,7 @@ backprop_scope:
   - layer: L6-test-design
     decision: updated
     evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-    reason: "HU-PILLAR-P6-04 now covers rename audit output and blocked apply semantics before any irreversible .ut-tdd -> .helix move."
+    reason: "HU-PILLAR-P6-04 now covers rename audit output and blocked apply semantics before any irreversible .helix -> .helix move."
   - layer: L14-cutover-plan
     decision: updated
     evidence_path: docs/plans/PLAN-M-02-helix-identifier-rename.md
@@ -79,41 +79,32 @@ review_evidence:
         output_digest: "sha256:4b05fe6be6b15f71728b2f363f092f27c79bd207dadc65b8ad4b478618403464"
 ---
 
-# PLAN-REVERSE-212: HELIX identifier rename audit backfill
+# PLAN-REVERSE-212: HELIX identifier rename audit の backfill
 
-## Objective
+## 目的
 
-Backfill `PLAN-L7-212` so the new identifier rename audit is not an isolated
-L7 tool. The semantic source remains `PLAN-M-02`: HELIX identifier cutover is
-irreversible and must stay blocked until the required cutover decision and
-action-binding approval records are concrete.
+`PLAN-L7-212` を backfill し、新しい identifier rename audit が孤立した L7 tool にならないようにする。
+意味上の正本は引き続き `PLAN-M-02` である。HELIX identifier cutover は不可逆であり、必要な
+cutover decision と action-binding approval record が具体化するまで blocked のままにする。
 
-## Backfill Result
+## Backfill 結果
 
-- `HC-P6` now includes `auditIdentifierRenameBlastRadius(input)` as the safe
-  precursor to any rename apply.
-- `HU-PILLAR-P6-04` now tests both audit output and fail-closed approval
-  semantics.
-- `PLAN-M-02` records Step 1 partial progress only. It does not authorize
-  `.ut-tdd -> .helix` state migration, CLI/bin rename, hook/adapter marker
-  rewrite, or action binding.
-- The cutover packet now carries structured backup, freeze, re-approval, and
-  provenance fields so approval can be judged semantically before any apply.
-- 2026-07-01 continuation: audit output now carries `hitsByCategory`, and the
-  cutover packet carries `cutoverCategoryChecklist`, so approval review can see
-  whether legacy identifiers remain in source, tests, runtime state, adapter
-  config, consumer templates, design/governance docs, or distribution surfaces
-  before any irreversible apply.
+- `HC-P6` は rename apply の安全な前段として `auditIdentifierRenameBlastRadius(input)` を含む。
+- `HU-PILLAR-P6-04` は audit output と fail-closed approval semantics の両方を検証する。
+- `PLAN-M-02` は Step 1 の部分進捗だけを記録する。`.helix -> .helix` state migration、CLI/bin rename、
+  hook/adapter marker rewrite、action binding は承認しない。
+- cutover packet は structured backup、freeze、re-approval、provenance field を持つため、apply 前に
+  approval を意味面で判断できる。
+- 2026-07-01 continuation: audit output は `hitsByCategory` を持ち、cutover packet は
+  `cutoverCategoryChecklist` を持つ。これにより approval review は、不可逆 apply 前に legacy identifier が
+  source、test、runtime state、adapter config、consumer template、design/governance docs、distribution surface に
+  残っているかを確認できる。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-212` and this Reverse PLAN require each other for required
-  add-impl backfill pairing.
-- `ut-tdd rename audit` can report current `ut-tdd`, `.ut-tdd`, and
-  `area=harness` blast radius by token and category.
-- The audit remains `blocked_pending_cutover_approval` while PLAN-M-02 contains
-  draft approval placeholders.
-- `ut-tdd rename plan --json` exposes backup manifest, freeze policy, and
-  provenance requirements, plus category-specific cutover actions, without
-  exposing an apply command.
-- `doctor` passes after DB rebuild.
+- `PLAN-L7-212` とこの Reverse PLAN は required add-impl backfill pairing として相互に require する。
+- `helix rename audit` は現在の `helix`、`.helix`、`area=helix` blast radius を token と category 別に報告できる。
+- `PLAN-M-02` に draft approval placeholder が残る間、audit は `blocked_pending_cutover_approval` のままにする。
+- `helix rename plan --json` は backup manifest、freeze policy、provenance requirement、category-specific
+  cutover action を公開するが、apply command は公開しない。
+- DB rebuild 後に `doctor` が pass する。

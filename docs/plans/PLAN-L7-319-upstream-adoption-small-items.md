@@ -72,7 +72,7 @@ review_evidence:
         evidence_path: tests/design-language.test.ts
         output_digest: "sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322"
       - kind: lint
-        command: "./scripts/ut-tdd plan lint docs/plans/PLAN-L7-319-upstream-adoption-small-items.md"
+        command: "./scripts/helix plan lint docs/plans/PLAN-L7-319-upstream-adoption-small-items.md"
         runner: bun
         scope: targeted
         exit_code: 0
@@ -88,7 +88,7 @@ review_evidence:
         evidence_path: src/team/run.ts
         output_digest: "sha256:7e6e40725ff66c596356c4d5f8aa37181555b026f91ced528226b98736a40929"
       - kind: doctor
-        command: "./scripts/ut-tdd db rebuild --json >/tmp/helix-db-rebuild-plan-l7-319-final.json && ./scripts/ut-tdd doctor"
+        command: "./scripts/helix db rebuild --json >/tmp/helix-db-rebuild-plan-l7-319-final.json && ./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0

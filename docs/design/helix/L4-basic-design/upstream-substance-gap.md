@@ -20,7 +20,7 @@ L3 `HU-FR-*` 8 件を、既存 HELIX pillar block に二重計上せず接続す
 | L3 ID | L4 境界 | L4 設計判断 | system oracle |
 |-------|-------------|-------------|---------------|
 | HU-FR-01 | HB-P6 / HB-AC | consumer adapter guard governance は distribution と adapter consistency の横断境界。未配線 surface は deferred として露出する | HUT-SYS-01 |
-| HU-FR-02 | HB-P6 | setup / distribution は consumer PATH で `ut-tdd` が解決できるかを install preflight で扱う | HUT-SYS-02 |
+| HU-FR-02 | HB-P6 | setup / distribution は consumer PATH で `helix` が解決できるかを install preflight で扱う | HUT-SYS-02 |
 | HU-FR-03 | HB-P3 / HB-P9 | green evidence integrity は verification governance と DB convergence の境界。digest restamp は closure 根拠にしない | HUT-SYS-03 |
 | HU-FR-04 | HB-P9 | telemetry provenance は convergence DB 境界。runtime/projected/derived を区別する | HUT-SYS-04 |
 | HU-FR-05 | HB-P6 / HB-P8 | distribution curation は consumer package と internal/dogfood governance material の trust boundary | HUT-SYS-05 |

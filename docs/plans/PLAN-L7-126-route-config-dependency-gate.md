@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-126-route-config-dependency-gate
-title: "PLAN-L7-126: route config dependency gate"
+title: "PLAN-L7-126: route config 依存 gate"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - route config dependency gate"
+    slot_label: "TL - route config 依存 gate"
 generates:
   - artifact_path: docs/plans/PLAN-L7-126-route-config-dependency-gate.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T17:05:00+09:00"
     tests_green_at: "2026-06-23T17:05:00+09:00"
     verdict: approve
-    scope: "Route-map configuration fails closed when it contains legacy DB or personal absolute path dependencies."
+    scope: "route-map configuration は legacy DB または個人絶対パスへの依存を含む場合に fail-close する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -68,27 +68,21 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-126: route config dependency gate
+# PLAN-L7-126: route config 依存 gate
 
-## Objective
+## 目的
 
-Prevent route-map configuration from depending on legacy DB names or personal
-absolute paths.
+route-map configuration が legacy DB 名または個人絶対パスに依存しないようにする。
 
-## Scope
+## 対象範囲
 
-- Add route config text validation for `legacy DB` / `legacy_db` and personal
-  user-home absolute paths.
-- Fail route evaluation before command recommendation when config violations
-  exist.
-- Keep route state within `.ut-tdd/` YAML/JSON and `.ut-tdd/harness.db`
-  projection boundaries.
-- Back-fill requirements and L4 function design.
+- route config text に対し、`legacy DB` / `legacy_db` と個人 user-home 絶対パスの validation を追加する。
+- config violation が存在する場合、command recommendation より前に route evaluation を失敗させる。
+- route state は `.helix/` YAML/JSON と `.helix/harness.db` projection の境界内に保つ。
+- requirements と L4 function design を back-fill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Route config text containing `legacy DB` returns exit 1.
-- Route config text containing `C:\Users\<name>` / `/Users/<name>` / `~/`
-  returns exit 1.
-- The result does not include `recommended_command` when config dependency
-  violations exist.
+- `legacy DB` を含む route config text は exit 1 を返す。
+- `C:\Users\<name>` / `/Users/<name>` / `~/` を含む route config text は exit 1 を返す。
+- config dependency violation が存在する場合、結果に `recommended_command` を含めない。

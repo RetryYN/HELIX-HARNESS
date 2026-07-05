@@ -54,27 +54,24 @@ review_evidence:
         output_digest: "sha256:290e679c492d7c229373061b313ab332394da783b08c9eff85bbb81275f96afc"
 ---
 
-# PLAN-L7-131: plan complete handover
+# PLAN-L7-131: plan complete handover の完了引き継ぎ
 
-## Objective
+## 目的
 
-Remove the manual gap where a PLAN can be finished but the completed handover
-state is only generated if the operator remembers a separate `handover
---complete` command.
+PLAN が完了していても、operator が別途 `handover --complete` command を
+覚えて実行した場合だけ completed handover state が生成される、という手動 gap を解消する。
 
-## Scope
+## スコープ
 
-- Add `ut-tdd plan complete [id]` as the PLAN lifecycle entrypoint.
-- Reuse `runHandover({ complete: true })` for all writes and current-plan clear
-  behavior.
-- Keep `plan lint` read-only and keep `plan use` limited to active marker
-  updates.
-- Add CLI surface coverage that proves `plan complete` writes `CURRENT.json`
-  with `status=completed` and clears `.ut-tdd/state/current-plan`.
+- PLAN lifecycle の entrypoint として `helix plan complete [id]` を追加する。
+- すべての write と current-plan clear behavior は `runHandover({ complete: true })` を再利用する。
+- `plan lint` は read-only のまま維持し、`plan use` は active marker update に限定する。
+- `plan complete` が `status=completed` の `CURRENT.json` を書き込み、
+  `.helix/state/current-plan` を消すことを示す CLI surface coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `plan complete` exits 0 for the active current-plan.
-- `CURRENT.json` records `status=completed` and the completed plan id.
-- The current-plan marker is cleared by the same `runHandover` path.
-- Existing handover tests still pass.
+- `plan complete` は active current-plan に対して exit code 0 で終了する。
+- `CURRENT.json` は `status=completed` と completed plan id を記録する。
+- current-plan marker は同じ `runHandover` path で消される。
+- 既存の handover tests は引き続き pass する。

@@ -3,7 +3,7 @@ artifact_type: research_memo
 status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
-related_audit: .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
+related_audit: .helix/audit/A-124-cross-artifact-graph-tooling.md
 related_requirements: docs/governance/helix-harness-requirements_v1.2.md#689-cross-artifact-relation-graph--visualization--tool-adapters-a-124-2026-06-09
 ---
 

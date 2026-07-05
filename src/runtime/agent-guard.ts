@@ -83,14 +83,14 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
       ? {
           code: 0,
           bypassed: true,
-          message: `[ut-tdd-guard] WARN: UT_TDD_ALLOW_RAW_AGENT=1 bypassed.\n${message}`,
+          message: `[helix-guard] WARN: HELIX_ALLOW_RAW_AGENT=1 bypassed.\n${message}`,
         }
       : { code: 2, message };
 
   if (input.tool_name === CODEX_BULK_SPAWN_AGENT_TOOL_NAME) {
     return blockOrBypass(
-      `[ut-tdd-guard] BLOCK: Codex bulk sub-agent spawn surface is not directly allowed.\n` +
-        "Use `ut-tdd team run` or a PLAN-owned pair-agent route so each member has explicit ownership and review boundaries.\n" +
+      `[helix-guard] BLOCK: Codex bulk sub-agent spawn surface is not directly allowed.\n` +
+        "Use `helix team run` or a PLAN-owned pair-agent route so each member has explicit ownership and review boundaries.\n" +
         `${AGENT_GUARD_BYPASS_HINT}`,
     );
   }
@@ -102,31 +102,31 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
 
     if (!agentType) {
       return blockOrBypass(
-        `[ut-tdd-guard] BLOCK: Codex spawn_agent call is missing agent_type.\n` +
+        `[helix-guard] BLOCK: Codex spawn_agent call is missing agent_type.\n` +
           `Allowed agent_type: ${CODEX_AGENT_TYPE_ALLOWLIST_TEXT}\n${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
     if (!CODEX_AGENT_TYPE_ALLOWLIST.has(agentType)) {
       return blockOrBypass(
-        `[ut-tdd-guard] BLOCK: Codex agent_type=${agentType} is not allowlisted.\n` +
+        `[helix-guard] BLOCK: Codex agent_type=${agentType} is not allowlisted.\n` +
           `Allowed agent_type: ${CODEX_AGENT_TYPE_ALLOWLIST_TEXT}\n` +
-          "Route specialized roles through `ut-tdd team run` or the pair-agent planner.\n" +
+          "Route specialized roles through `helix team run` or the pair-agent planner.\n" +
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
     if (!hasCodexTaskBody(ti)) {
       return blockOrBypass(
-        `[ut-tdd-guard] BLOCK: Codex spawn_agent call is missing a concrete task body.\n` +
+        `[helix-guard] BLOCK: Codex spawn_agent call is missing a concrete task body.\n` +
           "Provide message/items that define scope, ownership, and expected output.\n" +
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
     if (model) {
       return blockOrBypass(
-        `[ut-tdd-guard] BLOCK: Codex spawn_agent model override detected.\n` +
+        `[helix-guard] BLOCK: Codex spawn_agent model override detected.\n` +
           `  agent_type: ${agentType}\n` +
           `  requested model: ${model}\n` +
-          "Direct spawn_agent calls must inherit the parent model; explicit model routing belongs in `ut-tdd team run` or `ut-tdd pair-agent`.\n" +
+          "Direct spawn_agent calls must inherit the parent model; explicit model routing belongs in `helix team run` or `helix pair-agent`.\n" +
           `${AGENT_GUARD_BYPASS_HINT}`,
       );
     }
@@ -141,15 +141,15 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
 
   if (!subagentType) {
     return blockOrBypass(
-      `[ut-tdd-guard] BLOCK: Agent call is missing subagent_type.\nAllowed: ${ALLOWLIST_TEXT}\n${AGENT_GUARD_BYPASS_HINT}`,
+      `[helix-guard] BLOCK: Agent call is missing subagent_type.\nAllowed: ${ALLOWLIST_TEXT}\n${AGENT_GUARD_BYPASS_HINT}`,
     );
   }
 
   if (!SUBAGENT_ALLOWLIST.has(subagentType)) {
     return blockOrBypass(
-      `[ut-tdd-guard] BLOCK: subagent_type=${subagentType} is not allowlisted.\n` +
+      `[helix-guard] BLOCK: subagent_type=${subagentType} is not allowlisted.\n` +
         `Allowed: ${ALLOWLIST_TEXT}\n` +
-        `Use an approved subagent or route provider work through ut-tdd codex --role ...\n${AGENT_GUARD_BYPASS_HINT}`,
+        `Use an approved subagent or route provider work through helix codex --role ...\n${AGENT_GUARD_BYPASS_HINT}`,
     );
   }
 
@@ -157,19 +157,19 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
   if (family === "missing") {
     return {
       code: 2,
-      message: `[ut-tdd-guard] BLOCK: .claude/agents/${subagentType}.md is missing.`,
+      message: `[helix-guard] BLOCK: .claude/agents/${subagentType}.md is missing.`,
     };
   }
   if (family === "unknown") {
     return {
       code: 2,
-      message: `[ut-tdd-guard] BLOCK: ${subagentType} frontmatter does not declare haiku / sonnet / opus model family.`,
+      message: `[helix-guard] BLOCK: ${subagentType} frontmatter does not declare haiku / sonnet / opus model family.`,
     };
   }
 
   if (!model) {
     return blockOrBypass(
-      `[ut-tdd-guard] BLOCK: subagent_type=${subagentType} call is missing model.\n` +
+      `[helix-guard] BLOCK: subagent_type=${subagentType} call is missing model.\n` +
         `Use model: "${family}".\n${AGENT_GUARD_BYPASS_HINT}`,
     );
   }
@@ -177,12 +177,12 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
   const requested = normalizeModelFamily(model);
   if (requested === null) {
     return blockOrBypass(
-      `[ut-tdd-guard] BLOCK: model=${model} cannot be normalized to haiku / sonnet / opus.`,
+      `[helix-guard] BLOCK: model=${model} cannot be normalized to haiku / sonnet / opus.`,
     );
   }
   if (requested !== family) {
     return blockOrBypass(
-      `[ut-tdd-guard] BLOCK: model override detected.\n` +
+      `[helix-guard] BLOCK: model override detected.\n` +
         `  subagent_type: ${subagentType}\n` +
         `  allowed family: ${family}\n` +
         `  requested model: ${model} (family: ${requested})\n${AGENT_GUARD_BYPASS_HINT}`,

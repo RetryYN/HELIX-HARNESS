@@ -326,7 +326,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       expect(result.status).toBe(0);
       const payload = JSON.parse(result.stdout);
       expect(payload.evidence_path).toMatch(
-        /^\.ut-tdd\/evidence\/pair-agent\/\d{14}-PLAN-L7-PAIR-plan\.json$/,
+        /^\.helix\/evidence\/pair-agent\/\d{14}-PLAN-L7-PAIR-plan\.json$/,
       );
       const evidencePath = join(root, payload.evidence_path);
       expect(existsSync(evidencePath)).toBe(true);
@@ -1210,7 +1210,7 @@ describe("P2/P3 pair-agent TDD programming route", () => {
       expect(result.status).toBe(0);
       const payload = JSON.parse(result.stdout);
       expect(payload.evidence_path).toMatch(
-        /^\.ut-tdd\/evidence\/pair-agent\/\d{14}-PLAN-L7-PAIR\.json$/,
+        /^\.helix\/evidence\/pair-agent\/\d{14}-PLAN-L7-PAIR\.json$/,
       );
       const evidencePath = join(root, payload.evidence_path);
       expect(existsSync(evidencePath)).toBe(true);

@@ -36,24 +36,24 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-60: change-set integrity warning/block detector
+# PLAN-L7-60: change-set integrity warning/block detector の実装記録
 
-## Objective
+## 目的
 
-Make the harness flag incomplete implementation sets before review:
+review 前に incomplete implementation set を harness が検出できるようにする。
 
-- If a change set only touches one artifact category (`source`, `design`, or `test`), emit a warning alert.
-- If `source` changes are missing design/plan or test/test-design counterparts, emit a warning alert.
-- If a source change affects dependent modules and no mapped regression test is touched, block doctor progression.
-- Keep warnings non-blocking and blockers fail-closed.
+- change set が 1 つの artifact category (`source` / `design` / `test`) だけに触れる場合は warning alert を出す。
+- `source` 変更に design/plan または test/test-design の対応変更が無い場合は warning alert を出す。
+- source change が dependent module に影響し、mapped regression test が触られていない場合は doctor progression を block する。
+- warning は non-blocking、blocker は fail-closed とする。
 
-## Scope
+## 範囲
 
 - Add `analyzeChangeSetIntegrity` and `changeSetIntegrityMessages`.
-- Reuse the dependency graph from `dependency-drift` to detect dependent modules.
+- dependent module 検出には `dependency-drift` の dependency graph を再利用する。
 - Wire `change-set-integrity` into `runDoctor.ok`.
-- Add fail-closed doctor meta coverage.
-- Add unit tests for singleton warning, dependent regression block, and mapped regression pass.
+- fail-closed doctor meta coverage を追加する。
+- singleton warning、dependent regression block、mapped regression pass の unit test を追加する。
 
 ## Verification
 
@@ -65,8 +65,8 @@ Make the harness flag incomplete implementation sets before review:
 
 ## DoD
 
-- [x] One-category change sets produce warning alerts.
-- [x] Source-only/incomplete source sets produce warning alerts.
-- [x] Dependent module changes without touched mapped regression tests block progression.
-- [x] The detector itself fails closed when repo/dependency inputs cannot be read.
-- [x] The detector is included in doctor hard-gate aggregation.
+- [x] 1 category だけの change set は warning alert を出す。
+- [x] source-only / incomplete source set は warning alert を出す。
+- [x] mapped regression test が触られていない dependent module change は progression を block する。
+- [x] repo / dependency input が読めない場合、detector 自体が fail closed する。
+- [x] detector は doctor hard-gate aggregation に含まれる。

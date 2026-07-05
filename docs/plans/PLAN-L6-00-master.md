@@ -193,7 +193,7 @@ SQLite reference-feedback、search-cost reduction、drive/model logs、skill fir
 | feedback mechanism としての SQLite projection | requirements §6.8.6 / §6.8.7 | `physical-data.md` §2.7 / §9、`internal-processing.md` Appendix B | `fr-unit-coverage.md` FR-L1-06 / 19 / 20 / 40 / 41 |
 | Drive/model/log の projection | requirements §6.8.7 rows `drive_runs`、`model_runs`、`hook_events` | `physical-data.md` §9 | `fr-unit-coverage.md` FR-L1-07 / 20 / 37 / 39 / 40 / 41 / 42 |
 | Skill firing と recommendation metrics | requirements §6.8.7 skill rows、§7.7 | `physical-data.md` §9、`internal-processing.md` Appendix B | `fr-unit-coverage.md` FR-L1-12 / 46 / 47 |
-| Search cost の削減 | requirements §6.8.7 `search_index` / `ut-tdd find` intent | `physical-data.md` §9、`internal-processing.md` `findReference` | `fr-unit-coverage.md` FR-L1-33 / 34 / 48 / 49 |
+| Search cost の削減 | requirements §6.8.7 `search_index` / `helix find` intent | `physical-data.md` §9、`internal-processing.md` `findReference` | `fr-unit-coverage.md` FR-L1-33 / 34 / 48 / 49 |
 | Mechanical quality checks と dependency feedback | requirements §6.8.7 findings / quality_signals / feedback_events | `physical-data.md` §2.7 / §9 | `fr-unit-coverage.md` FR-L1-05 / 17 / 18 / 19 / 45 / 49 |
 
 ### G6 audit input rule（入力条件）

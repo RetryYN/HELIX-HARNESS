@@ -130,7 +130,7 @@ describe("static gates", () => {
   });
 
   it("U-GATE-006: reports invalid checklist YAML as a gate failure instead of crashing", () => {
-    const dir = mkdtempSync(join(tmpdir(), "ut-tdd-checklist-"));
+    const dir = mkdtempSync(join(tmpdir(), "helix-checklist-"));
     const checklist = join(dir, "bad-review-checklist.yaml");
     writeFileSync(checklist, "items: [");
 
@@ -151,7 +151,7 @@ describe("static gates", () => {
   });
 
   it("rejects coverage below the G7 threshold", () => {
-    const dir = mkdtempSync(join(tmpdir(), "ut-tdd-coverage-"));
+    const dir = mkdtempSync(join(tmpdir(), "helix-coverage-"));
     const summary = join(dir, "coverage-summary.json");
     writeFileSync(summary, JSON.stringify({ total: { lines: { pct: 79.99 } } }));
     const result = readCoverageSummary(summary, 80);
@@ -160,7 +160,7 @@ describe("static gates", () => {
   });
 
   it("accepts coverage at the G7 threshold", () => {
-    const dir = mkdtempSync(join(tmpdir(), "ut-tdd-coverage-"));
+    const dir = mkdtempSync(join(tmpdir(), "helix-coverage-"));
     const summary = join(dir, "coverage-summary.json");
     writeFileSync(summary, JSON.stringify({ total: { lines: { pct: 80 } } }));
     const result = readCoverageSummary(summary, 80);
@@ -175,7 +175,7 @@ describe("static gates", () => {
     );
     const gateRow = functionDoc
       .split(/\r?\n/)
-      .find((line) => line.includes("`ut-tdd gate <G-ID>`"));
+      .find((line) => line.includes("`helix gate <G-ID>`"));
     expect(gateRow).toContain("deterministic static gate");
     expect(gateRow).not.toContain("gate checks 全量は後続");
     expect(gateRow).not.toContain("部分実装");

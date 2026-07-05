@@ -120,7 +120,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
 
   it("U-GREENCMD-002: fails closed when the repository root is unreadable", () => {
     const result = checkGreenCommandDigests(
-      join(tmpdir(), `ut-tdd-green-command-digest-missing-root-${Date.now()}-nope`),
+      join(tmpdir(), `helix-green-command-digest-missing-root-${Date.now()}-nope`),
     );
 
     expect(result.ok).toBe(false);

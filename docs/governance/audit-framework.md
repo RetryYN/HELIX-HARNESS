@@ -1,4 +1,4 @@
-# UT-TDD GitHub / GHA 監査フレームワーク (PO declared)
+# HELIX GitHub / GHA 監査フレームワーク (PO declared)
 
 > **status**: PO declared 2026-05-28。L1 業務要求の入力として `../plans/PLAN-L1-01-business-requirements.md §3.7` で扱う。下流で BR-13〜19 + NFR-11 等として L1 正本に分解する。
 > **役割**: PR/merge 時点の CI 検問 (7-Gate pipeline) の運用要件。V-model のフェーズ進捗ゲート (G0.5〜G14) とは別軸 (PR ごとに発火) で、両者は補完関係。
@@ -6,8 +6,8 @@
 > **既知の整合課題 (L1 確定前に PO 確認)**:
 > - 既存 `docs/` 構造 (governance/design/test-design/plans/adr/migration) vs framework の `docs/` (product.md/requirements.md/architecture.md/coding-rules.md/risk-policy.yaml/features/) — migration timing
 > - feature ID `F-NNN` と既存 BR-NN の関係
-> - `.ut-tdd/audit/reports/` (framework report) vs `.ut-tdd/` runtime state のパス名前空間
-> - 「legacy source」naming を UT-TDD context に normalize するか
+> - `.helix/audit/reports/` (framework report) vs `.helix/` runtime state のパス名前空間
+> - 「legacy source」naming を HELIX context に normalize するか
 
 ---
 
@@ -204,7 +204,7 @@ Domain Gateでは、ドキュメントの中身を業務概念・責務・境界
 
 ### 5.5 出力
 
-`.ut-tdd/audit/reports/domain-audit.md` を出力。例:
+`.helix/audit/reports/domain-audit.md` を出力。例:
 
 ```md
 # Domain Audit Report
@@ -264,7 +264,7 @@ Test Gate 確認項目:
 * 一時的な実装・仮実装の残存なし
 * TODO/FIXME に理由明記
 
-出力: `.ut-tdd/audit/reports/implementation-audit.md`
+出力: `.helix/audit/reports/implementation-audit.md`
 
 ## 8. コーディングルール駆動
 
@@ -323,7 +323,7 @@ Coding Rule Gate で `docs/coding-rules.md` 遵守を確認:
 
 機械的検査は Lint/Typecheck/静的解析、AI 判断は legacy source 監査レポートで。
 
-出力: `.ut-tdd/audit/reports/coding-rule-audit.md`
+出力: `.helix/audit/reports/coding-rule-audit.md`
 
 ## 11. docs / code / tests 三点一致
 
@@ -344,7 +344,7 @@ Coding Rule Gate で `docs/coding-rules.md` 遵守を確認:
 PRに以下のレポートを含める:
 
 ```txt
-.ut-tdd/audit/reports/
+.helix/audit/reports/
 ├─ document-audit.md
 ├─ domain-audit.md
 ├─ test-result.json
@@ -400,7 +400,7 @@ GHA が行うこと:
 - `docs/features/*.md` の frontmatter 読み込み
 - `related_paths` と変更ファイルの照合
 - `risk` / `auto_merge` 取得
-- `.ut-tdd/audit/reports/` の監査結果確認
+- `.helix/audit/reports/` の監査結果確認
 - safe/caution/danger/unknown 判定
 - safe のみ Auto-merge 候補
 
@@ -504,11 +504,11 @@ revert 検討条件 (main 混入後):
 
 | 実行場所 | 役割 | trigger |
 | --- | --- | --- |
-| **dev-local** (editor / CLI) | advisory + 早期検出 | エディタ内 hook (PostToolUse on Edit/Write/MultiEdit) / `git pre-commit` / `git pre-push` / `ut-tdd audit` 明示呼び出し |
+| **dev-local** (editor / CLI) | advisory + 早期検出 | エディタ内 hook (PostToolUse on Edit/Write/MultiEdit) / `git pre-commit` / `git pre-push` / `helix audit` 明示呼び出し |
 | **CI (GHA)** | guardrail (executory) | PR open / sync / required status checks → safe なら GitHub native auto-merge |
 
 運用原則:
-- **single source of truth**: check 論理は `src/` (TypeScript core) に 1 本実装、CLI (`ut-tdd audit`) で呼び出す。dev-local も CI も同じバイナリ/モジュールを実行 (= NFR-09 rule parity の本体)。
+- **single source of truth**: check 論理は `src/` (TypeScript core) に 1 本実装、CLI (`helix audit`) で呼び出す。dev-local も CI も同じバイナリ/モジュールを実行 (= NFR-09 rule parity の本体)。
 - **dev-local = advisory**: 警告は出すが基本ブロックしない (commit-msg 等の例外を除く)。executory は CI 側で。
 - **fail-fast loop**: CI で fail なら GHA は PR を blocked にし、**同一 report** (artifact + PR comment) を提示 → エディタ (Claude Code / 開発者) が同じ report を読んで修正 → 再 push の高速ループ。
 - **同一 report 形式**: dev-local 出力と CI artifact が 1:1 (フィールド名 / status / severity)。エディタ AI agent は report を構造化解釈して self-修正できる。

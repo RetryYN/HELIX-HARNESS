@@ -28,7 +28,7 @@ export interface G9SystemWorkflowResult {
 const CONFIG = {
   gate: "G9",
   schemaVersion: "g9-system-evidence-v1",
-  evidenceDir: ".ut-tdd/evidence/g9-system",
+  evidenceDir: ".helix/evidence/g9-system",
   itemPrefix: "ST-",
   doctorCheck: "g9-system-workflow",
 } as const;

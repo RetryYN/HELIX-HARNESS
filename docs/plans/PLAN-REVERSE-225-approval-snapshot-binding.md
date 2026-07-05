@@ -39,7 +39,7 @@ approval-gated だったが、承認資料を現在の packet に結び付ける
 公開されていなかった。packet には reapproval triggers が列挙されていたが、operator は scope、
 evidence、blast radius を手作業で照合する必要があった。
 
-補助ガイドとしての `README` には、実装済みの HELIX project workflow が `ut-tdd setup project` と
+補助ガイドとしての `README` には、実装済みの HELIX project workflow が `helix setup project` と
 `identifierTransition`、`consumerReadiness`、`postSetupWorkflow` で構成されているにもかかわらず、
 新規 consumer を legacy setup shortcuts へ誘導する古い記述が残っていた。ただし `README` は
 gate、証跡、完了条件の surface には含めない。
@@ -49,7 +49,7 @@ gate、証跡、完了条件の surface には含めない。
 - Version-up activation は stale な HEAD/scope/source/evidence のまま進めてはならない。
 - L14 rename/cutover は stale な blast radius や stale な backup / provenance evidence のまま
   進めてはならない。
-- PLAN-M-02 approval の前の setup は current な `ut-tdd` / `.ut-tdd` を使う必要があり、
+- PLAN-M-02 approval の前の setup は current な `helix` / `.helix` を使う必要があり、
   `helix setup project` と `.helix` は future targets のまま残す。
 
 ## R2 現状設計

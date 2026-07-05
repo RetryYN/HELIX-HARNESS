@@ -72,7 +72,7 @@ review_evidence:
 ## 目的
 
 consumer setup / consumer doctor は、配布済み `.claude/settings.json` と `.codex/hooks.json` に
-`ut-tdd hook work-guard` 等の文字列が含まれることを見ていた。これでは、hook が non-command field に移動した、
+`helix hook work-guard` 等の文字列が含まれることを見ていた。これでは、hook が non-command field に移動した、
 matcher が drift した、または hard guard の `blockOnFailure` が外れた状態を green にする危険がある。
 
 この PLAN は、配布 hook artifact を JSON/schema 契約として検査し、文字列だけの偽陽性を止める。

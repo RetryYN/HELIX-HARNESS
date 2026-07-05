@@ -36,7 +36,7 @@ review_evidence:
     scope: "L13 filename-level PLAN gap was identified; this master records local smoke and monitoring boundary as documentation only."
     green_commands:
       - kind: lint
-        command: "./scripts/ut-tdd plan lint"
+        command: "./scripts/helix plan lint"
         runner: bun
         scope: targeted
         exit_code: 0

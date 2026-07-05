@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-202-run-debug-runtime-verification
-title: "PLAN-REVERSE-202: L7.5 RUN & Debug runtime verification back-fill"
+title: "PLAN-REVERSE-202: L7.5 RUN & Debug runtime verification の back-fill"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -64,7 +64,7 @@ review_evidence:
     reviewed_at: "2026-06-30T02:15:00+09:00"
     tests_green_at: "2026-06-30T02:15:00+09:00"
     verdict: approve
-    scope: "Reverse back-fill confirms L7.5 runtime verification descends into L6 function contracts and L7 U-RUNDEBUG oracles without changing L3 requirements, L4 structure, or L5 schema."
+    scope: "Reverse back-fill により、L3 requirements、L4 structure、L5 schema を変更せず、L7.5 runtime verification が L6 function contracts と L7 U-RUNDEBUG oracles へ下降していることを確認した。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -78,9 +78,9 @@ review_evidence:
         output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
 ---
 
-# PLAN-REVERSE-202: L7.5 RUN & Debug runtime verification back-fill
+# PLAN-REVERSE-202: L7.5 RUN & Debug runtime verification の back-fill
 
-## R0-R4 Summary
+## R0-R4 要約
 
 - R0: `src/runtime/run-debug.ts` 追加により、runtime claim と projection-only evidence の境界を実装で明示する必要が発生。
 - R1: 実装事実を L6 function contract へ戻し、5 つの純関数契約として固定。
@@ -88,20 +88,19 @@ review_evidence:
 - R3: L7 unit-test design へ `U-RUNDEBUG-001..005` を追加し、各 runtime verification contract に oracle を対応付け。
 - R4: `PLAN-L7-202-run-debug-runtime-verification` と双方向 `requires` で結び、add-impl without Reverse backfill を閉じる。
 
-## Back-Filled Meaning
+## back-fill した意味
 
 この Reverse は「テストが増えた」ことを後追い登録するだけではない。L7.5 RUN & Debug の意味は、
 静的 projection や DB row を「実際に動いた証拠」と誤認しないための gate である。
 
-The back-filled invariant is:
+back-fill した不変条件は次のとおり。
 
-- runtime behavior claims need runtime provenance
-- projection-only rows can support trace but cannot close runtime acceptance
-- unit-only helpers can skip RUN & Debug only with explicit reason and substitute oracle
-- runtime verification logs must include correlation/evidence links and reject secret-like values
+- runtime behavior の claim には runtime provenance が必要である。
+- projection-only row は trace を支援できるが、runtime acceptance は閉じられない。
+- unit-only helper が RUN & Debug を skip できるのは、明示理由と substitute oracle がある場合だけである。
+- runtime verification log は correlation/evidence link を含み、secret-like value を reject しなければならない。
 
-## Merge Boundary
+## merge 境界
 
-L6 function design and L7 unit-test design are updated. Requirements, L4 architecture, and L5
-physical data remain unchanged because no user-facing requirement, module boundary, or schema
-change is introduced.
+L6 function design と L7 unit-test design は更新済みである。user-facing requirement、module boundary、
+schema change は導入しないため、Requirements、L4 architecture、L5 physical data は変更しない。

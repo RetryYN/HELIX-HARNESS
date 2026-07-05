@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-136-harness-db-journal-status-filter
-title: "PLAN-L7-136 (troubleshoot): filter transient harness DB journal status paths"
+title: "PLAN-L7-136 (troubleshoot): transient harness DB journal status paths の filter"
 kind: troubleshoot
 layer: L7
 drive: be
@@ -10,7 +10,7 @@ updated: 2026-06-23
 owner: Codex
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 backprop_decision: not_required
-backprop_decision_reason: "This is an implementation-only filter for transient local SQLite sidecar files; requirements and design contracts are unchanged."
+backprop_decision_reason: "transient local SQLite sidecar files だけを対象にした実装上の filter であり、requirements と design contracts は変更しない。"
 agent_slots:
   - role: aim
     slot_label: "AIM - transient DB journal feedback triage"
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-23T20:22:27+09:00"
     tests_green_at: "2026-06-23T20:22:27+09:00"
     verdict: pass
-    scope: "Filtered transient .ut-tdd/harness.db journal/WAL/SHM paths from git porcelain input before change-impact and relation-impact projection. Verified with targeted Vitest, typecheck, DB rebuild, status, and doctor."
+    scope: "change-impact と relation-impact projection の前段で、git porcelain input から transient .helix/harness.db journal/WAL/SHM paths を filter した。targeted Vitest、typecheck、DB rebuild、status、doctor で検証した。"
     worker_model: gpt-5-codex
     reviewer_model: gpt-5-codex
     green_commands:
@@ -57,35 +57,33 @@ review_evidence:
         output_digest: "sha256:c9364b56f5a1e2189536c5a5ad4ff9e760e8d435487bbfe650760cdd016a7f2f"
 ---
 
-# PLAN-L7-136 (troubleshoot): filter transient harness DB journal status paths
+# PLAN-L7-136 (troubleshoot): transient harness DB journal status paths の filter
 
-## 0. Objective
+## 0. 目的
 
-Close the spurious `missing-projection` feedback where `.ut-tdd/harness.db-journal`
-can appear in `git status --porcelain` while `ut-tdd db rebuild` is projecting the
-current working tree. The SQLite journal family is runtime state, not a project
-artifact, and should not be surfaced as relation-impact evidence.
+`helix db rebuild` が current working tree を projection している間に、
+`.helix/harness.db-journal` が `git status --porcelain` に現れ得ることで発生する
+誤検知の `missing-projection` feedback を閉じる。SQLite journal family は runtime state であり、
+project artifact ではないため、relation-impact evidence として表示しない。
 
-## 1. Scope
+## 1. スコープ
 
-- Update `parseGitPorcelain` / `loadChangedFiles` input handling so transient
-  `.ut-tdd/harness.db-journal`, `.ut-tdd/harness.db-wal`, and
-  `.ut-tdd/harness.db-shm` paths are removed before downstream gates receive the
-  changed-file set.
-- Keep `.ut-tdd/harness.db` itself out of scope; only SQLite sidecar files that
-  can appear during an active write are filtered.
-- Preserve all non-transient paths, including handover markdown changes owned by
-  another runtime.
+- `parseGitPorcelain` / `loadChangedFiles` の input handling を更新し、downstream gates が
+  changed-file set を受け取る前に transient `.helix/harness.db-journal`、
+  `.helix/harness.db-wal`、`.helix/harness.db-shm` paths を除外する。
+- `.helix/harness.db` 自体は対象外のままとし、active write 中に現れ得る SQLite sidecar files
+  だけを filter する。
+- 他 runtime が所有する handover markdown changes を含め、non-transient paths はすべて保持する。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
-- [x] `parseGitPorcelain` still parses modified, renamed, and untracked paths.
-- [x] Transient harness DB journal/WAL/SHM paths are ignored.
-- [x] Targeted `change-impact` tests pass.
-- [x] `ut-tdd db rebuild`, `ut-tdd status --json`, and `ut-tdd doctor` complete
-      without reintroducing the transient journal feedback.
+- [x] `parseGitPorcelain` が modified、renamed、untracked paths を引き続き parse できる。
+- [x] Transient harness DB journal/WAL/SHM paths が無視される。
+- [x] Targeted `change-impact` tests が pass する。
+- [x] `helix db rebuild`、`helix status --json`、`helix doctor` が transient journal feedback を
+      再導入せずに完了する。
 
-## 3. Verification
+## 3. 検証
 
 - `bun run vitest run tests\change-impact.test.ts`
 - `bun run tsc --noEmit`

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-128-route-escalation-boundary-gate
-title: "PLAN-REVERSE-128: route escalation boundary gate fullback"
+title: "PLAN-REVERSE-128: route escalation boundary gate の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,14 +16,14 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The escalation boundary acceptance item is now implemented and checked."
+    reason: "escalation boundary の acceptance item は実装済みで検査済みである。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Route eval now documents mode-invariant escalation boundary approval."
+    reason: "Route eval は mode に依存しない escalation boundary approval を記録済みである。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The change stays within the existing route evaluation and approval contract."
+    reason: "この変更は既存の route evaluation と approval contract の範囲内に留まる。"
 agent_slots:
   - role: tl
     slot_label: "TL - route escalation boundary fullback"
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T15:20:00+09:00"
     tests_green_at: "2026-06-23T15:20:00+09:00"
     verdict: approve
-    scope: "R4 fullback from route escalation boundary gate to requirements and L4 design."
+    scope: "route escalation boundary gate から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,22 +66,18 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-128: route escalation boundary gate fullback
+# PLAN-REVERSE-128: route escalation boundary gate の fullback
 
-## Objective
+## 目的
 
-Back-fill the implemented route escalation boundary gate to requirements and
-L4 function design.
+実装済みの route escalation boundary gate を requirements と L4 function design へ back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements 7.8.2 / 7.8.3 / 7.8.6 / 7.8.7 record the escalation boundary
-  route result, approval rule, acceptance state, and hard-block behavior.
-- L4 function design states that route eval escalates human approval
-  independently of execution mode.
+- Requirements 7.8.2 / 7.8.3 / 7.8.6 / 7.8.7 は escalation boundary の route result、approval rule、acceptance state、hard-block behavior を記録する。
+- L4 function design は、route eval が execution mode に依存せず human approval を escalation することを記述する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both mention escalation boundary fail-close.
-- The Reverse record keeps the implementation inside the route approval
-  contract.
+- Requirements と L4 design の両方が escalation boundary fail-close に言及する。
+- Reverse record は、実装を route approval contract の内側に保持する。

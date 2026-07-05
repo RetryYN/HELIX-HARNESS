@@ -25,7 +25,7 @@
 埋め込んでよいが、説明文・判断・受入条件・レビュー記録は日本語で書く。既存の英語記述は、触った範囲から
 段階的に日本語へ是正し、英語のまま新規追記して完了扱いにしない。
 
-`ut-tdd doctor` の `design-language` gate は、PLAN / 設計 / テスト設計 / process / governance / handover /
+`helix doctor` の `design-language` gate は、PLAN / 設計 / テスト設計 / process / governance / handover /
 adapter ルールなどの人間向け docs にある英語 prose debt が baseline から増えないことを検査する。baseline は
 既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
 
@@ -42,22 +42,22 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 ## 配布パッケージ（Distribution）
 
 - **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-OS.git`
-  （consumer 側が `ut-tdd` を取得するパッケージ配布先。本 development リポジトリとは分離）。
+  （consumer 側が `helix` を取得するパッケージ配布先。本 development リポジトリとは分離）。
 - この development リポジトリが正本 source。tag 済みリリースを上記配布リポジトリへ publish し、
   consumer は配布リポジトリ経由で導入する。
 - 正式配布先は `RetryYN/HELIX-HARNESS-OS`。配布 surface の実切替は PLAN-M-02 cutover 承認まで
   action-binding approval、dry-run、backup、rollback、monitoring evidence を揃えて行う。
 
 Migration snapshots と inventories は Core Reads ではない。`docs/migration/` は migration、gap audit、
-regression-source inspection が必要なときだけ読む。UT-TDD runtime state や execution paths として扱わない。
+regression-source inspection が必要なときだけ読む。HELIX runtime state や execution paths として扱わない。
 
 `docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない。verification roadmap は
 V-model freeze 境界で verification cycle を走らせるときだけ動的に読む。通常作業は L0 から L14 への
 Forward descent path に従う。
 
-ADR-001 は拘束力を持つ。previous framework は design source のみであり、UT-TDD core implementation は
+ADR-001 は拘束力を持つ。previous framework は design source のみであり、HELIX core implementation は
 TypeScript/Bun とする。old W1-W3a Python は product runtime として port しない。薄い `.ps1` / `.sh`
-entrypoint は compiled または Bun-based TypeScript core を呼んでよい。UT-TDD が govern する repository の言語は、
+entrypoint は compiled または Bun-based TypeScript core を呼んでよい。HELIX が govern する repository の言語は、
 harness implementation language とは独立である。
 
 `docs/archive/` は canonical ではなく historical material のみ。fork 完了に伴い HELIX vendor snapshot は削除済み
@@ -70,7 +70,7 @@ harness implementation language とは独立である。
 `docs/design/helix/L0-charter/helix-charter_v0.1.md`（confirmed, P0–P9）。詳細は `CLAUDE.md`
 同名セクションと同一。要点のみ:
 
-- **precedence**: 仕組み（V モデル・gate・state DB・harness ルール）= UT-TDD ハーネスが上。個別機能
+- **precedence**: 仕組み（V モデル・gate・state DB・harness ルール）= HELIX ハーネスが上。個別機能
   （command/skill の中身）= 旧 HELIX が機能ソースとして上。ただし **個別機能は仕組みを超えない**
   （harness の仕組みに従属して差し込む）。ADR-001 継続で旧ロジックは **TS/Bun 再実装**。
 - **進め方**: L0 から Forward に 1 層ずつ。各層で粒度を合わせて旧 HELIX 機能を取捨選択し、機能一覧を
@@ -81,10 +81,10 @@ harness implementation language とは独立である。
   絶対ルールに旧 HELIX を必ず含める）。ただし read-only 参照・設計概念のみ採取・**TS/Bun 再実装**・
   **bulk import 禁止**で、harden（rename・legacy 前提除去・capability-class 化）して仕組みに従属させて差す。
 - **自律境界**: 人＝L0/L1/L2（モックが最後）＋ L3 承認のみ。AI＝L3 起草＋L4 以降〜GitHub を完全自動。
-- **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `ut-tdd`・`.ut-tdd/`・`area=harness`・
+- **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `helix`・`.helix/`・`area=helix`・
   rule-drift marker）は据え置き**、後日 専用 migration PLAN で atomic 改名。よって下部 Adapter Rule
-  Markers と `ut-tdd ...` 表記は現時点では変更しない。
-- `.ut-tdd` から HELIX への名称変更は必達の最終ゴールだが、runtime state / CLI / hook / adapter /
+  Markers と `helix ...` 表記は現時点では変更しない。
+- `.helix` から HELIX への名称変更は必達の最終ゴールだが、runtime state / CLI / hook / adapter /
   consumer template / distribution surface をまたぐ不可逆 cutover である。PLAN-M-02 の
   `cutover_decision_record` と action-binding approval、dry-run、backup、rollback、monitoring evidence が揃うまで
   実 state move や alias 有効化を行わない。承認後は漏れのない atomic migration として実施する。
@@ -92,10 +92,10 @@ harness implementation language とは独立である。
 ## Session Start（開始確認）
 
 1. 上記 Core Reads が存在することを確認する。
-2. `.ut-tdd/handover/CURRENT.json` が存在する場合は確認し、stale でない next action に従う。
-3. `legacy local state/` が存在する場合は historical source state として扱い、UT-TDD state とは扱わない。
+2. `.helix/handover/CURRENT.json` が存在する場合は確認し、stale でない next action に従う。
+3. `legacy local state/` が存在する場合は historical source state として扱い、HELIX state とは扱わない。
 4. active handover が無ければ通常開始し、次を宣言する。
-   `OK: UT-TDD session initialized`.
+   `OK: HELIX session initialized`.
 
 ## TL Driven Mode（TL 主導）
 
@@ -110,13 +110,13 @@ gate decision まで担えるという意味である。
 - production infrastructure、authentication、authorization、payment、PII、secrets、licensing など、
   external APIs、その他 high-impact environment assumptions を変える前に escalate する。
 
-## UT-TDD Workflow（工程）
+## HELIX Workflow（工程）
 
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
 - Additive change: 既存 design を保ち、`add-design` / `add-impl` で delta を追加する。
-- Handover: `.ut-tdd/handover/` を session / cross-runtime handover source として使う。
+- Handover: `.helix/handover/` を session / cross-runtime handover source として使う。
 
 ## Codex / Claude Code Harness（実行面）
 
@@ -132,16 +132,16 @@ Runtime modes（実行モード）:
 
 正規コマンド:
 
-- セットアップ: `ut-tdd setup project`
-- Codex 実行: `ut-tdd codex --role <role> --task "..."`
-- Claude prompt 生成: `ut-tdd claude --role <role> --task "..." --dry-run`
-- チーム委譲: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
-- タスク分類: `ut-tdd task classify --text "..."` / `ut-tdd task estimate --plan <path>`
-- スキル推薦: `ut-tdd skill suggest --plan <path>`
-- レビュー packet: `ut-tdd review --uncommitted`
-- 引き継ぎ: `ut-tdd handover`
-- 状態確認: `ut-tdd status`
-- 診断: `ut-tdd doctor`
+- セットアップ: `helix setup project`
+- Codex 実行: `helix codex --role <role> --task "..."`
+- Claude prompt 生成: `helix claude --role <role> --task "..." --dry-run`
+- チーム委譲: `helix team run --definition .helix/teams/<team>.yaml`
+- タスク分類: `helix task classify --text "..."` / `helix task estimate --plan <path>`
+- スキル推薦: `helix skill suggest --plan <path>`
+- レビュー packet: `helix review --uncommitted`
+- 引き継ぎ: `helix handover`
+- 状態確認: `helix status`
+- 診断: `helix doctor`
 
 複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
 設計判断、judgement gate、R4 merge 判断は、可能な限り別 runtime / model family へ回す。
@@ -188,7 +188,7 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 - matching triggers に該当する relevant `SKILL.md` だけを読む。
 - 全 skills を bulk-load しない。
 - `references/` は skill directory からの相対パスとして解決する。
-- Legacy-derived skill material は migration source material。UT-TDD skill docs は `docs/skills/` 配下に置く。
+- Legacy-derived skill material は migration source material。HELIX skill docs は `docs/skills/` 配下に置く。
 
 ## Editing Rules（編集規則）
 
@@ -208,10 +208,10 @@ git/status preflight を行う。API tool calls について mechanical hook cov
   revert せず PO 確認。
 - `git reset` / destructive `git checkout` / `git restore` / `git revert` / force-push は
   `git-command-guard` の block 対象。どうしても必要な場合だけ、`git log` / `git reflog` 確認後に
-  `UT_TDD_ALLOW_DESTRUCTIVE_GIT=1` または `.ut-tdd/state/destructive-git-override` へ理由を残して
+  `HELIX_ALLOW_DESTRUCTIVE_GIT=1` または `.helix/state/destructive-git-override` へ理由を残して
   one-shot override する。
 - 自分の成果は相手の commit の上に積み、相手のファイルに触れない。
-- **commit 直前に `git status` + `git diff --staged` (or `ut-tdd review --staged` /
+- **commit 直前に `git status` + `git diff --staged` (or `helix review --staged` /
   `--uncommitted`)** で、authored した意図ファイルのみが staged であることを検証する。
 - push 済み履歴は破壊しない。
 - **引き継ぎ・検証の基準点は commit/push 済 HEAD ただ一つ**。hybrid では working tree を
@@ -233,33 +233,33 @@ git/status preflight を行う。API tool calls について mechanical hook cov
 
 個人 overrides は `AGENTS.override.md` に置く。これは Git 追跡対象ではない。
 
-## UT-TDD Adapter Rule Markers（アダプター規則 marker）
+## HELIX Adapter Rule Markers（アダプター規則 marker）
 
 この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
 
 - 共有 context: `CLAUDE.md`
 - Claude runtime policy（Claude runtime 方針）: `.claude/CLAUDE.md`
 - Modes（実行モード）: `standalone` / `claude-only` / `codex-only` / `hybrid`
-- セットアップ: `ut-tdd setup project`
-- 状態確認: `ut-tdd status`
-- 診断: `ut-tdd doctor`
-- 引き継ぎ: `ut-tdd handover`
-- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
-- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
-- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `helix setup project`
+- 状態確認: `helix status`
+- 診断: `helix doctor`
+- 引き継ぎ: `helix handover`
+- Codex 委譲: `helix codex --role <role> --task "..."`
+- Claude 委譲: `helix claude --role <role> --task "..."`
+- チーム実行: `helix team run --definition .helix/teams/<team>.yaml`
 
-<!-- UT-TDD:managed:start -->
-# UT-TDD Agent Harness アダプター
+<!-- HELIX:managed:start -->
+# HELIX-HARNESS アダプター
 
-この project は local orchestration surface として UT-TDD Agent Harness command を使う。
+この project は local orchestration surface として HELIX-HARNESS command を使う。
 
-- セットアップ: `ut-tdd setup project`
-- 状態確認: `ut-tdd status`
-- 診断: `ut-tdd doctor`
-- 引き継ぎ: `ut-tdd handover`
-- Codex 委譲: `ut-tdd codex --role <role> --task "..."`
-- Claude 委譲: `ut-tdd claude --role <role> --task "..."`
-- チーム実行: `ut-tdd team run --definition .ut-tdd/teams/<team>.yaml`
+- セットアップ: `helix setup project`
+- 状態確認: `helix status`
+- 診断: `helix doctor`
+- 引き継ぎ: `helix handover`
+- Codex 委譲: `helix codex --role <role> --task "..."`
+- Claude 委譲: `helix claude --role <role> --task "..."`
+- チーム実行: `helix team run --definition .helix/teams/<team>.yaml`
 
 この managed block の外側にある project-owned instruction は consumer 側所有として扱う。
-<!-- UT-TDD:managed:end -->
+<!-- HELIX:managed:end -->

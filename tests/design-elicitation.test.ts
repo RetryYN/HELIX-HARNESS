@@ -35,7 +35,7 @@ const SCREENS: ScreenRef[] = [
 const CAPABILITIES: BackendCapability[] = [
   { kind: "projection", id: "screens", surface: "harness.db screen projection" },
   { kind: "data_entity", id: "plan", surface: "Plan 集約ルート" },
-  { kind: "cli_command", id: "ut-tdd status", surface: "status 出力" },
+  { kind: "cli_command", id: "helix status", surface: "status 出力" },
 ];
 
 const SCREEN_TRACE: ScreenTraceRef[] = [

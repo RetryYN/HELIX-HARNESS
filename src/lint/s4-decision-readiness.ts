@@ -545,12 +545,12 @@ function hasConcreteS4EvidenceLocator(value: string): boolean {
     /\bPLAN-(?:L\d*|REVERSE|DISCOVERY)-[A-Za-z0-9-]+\b/i,
     /\b[A-Z]{1,8}-\d{2,}\b/,
     /\b(bun|npm|pnpm|yarn|git)\s+(run|test|diff|status|show|ls|check|exec)\b/i,
-    /\but-tdd\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
+    /\bhelix\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
     /https?:\/\/\S+/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
-    /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
+    /\b(\.helix|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));
 }
@@ -562,11 +562,11 @@ function hasConcreteS4VerifiedEvidence(value: string): boolean {
     /sha256:[a-f0-9]{64}/i,
     /\b(bun|npm|pnpm|yarn)\s+(run|test|check|exec)\b/i,
     /\bgit\s+(diff|status|show|ls|check|log)\b/i,
-    /\but-tdd\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
+    /\bhelix\s+[a-z0-9:_-]+(?:\s+[a-z0-9:_./-]+)*/i,
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
-    /\b(?:\.ut-tdd|\.helix)\/(?:evidence|audit|handover)\/\S+/i,
+    /\b(?:\.helix|\.helix)\/(?:evidence|audit|handover)\/\S+/i,
     /\btests\/\S+\.(?:test|spec)\.(?:ts|tsx|js|jsx)\b/i,
     /\S+\.(?:log|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));

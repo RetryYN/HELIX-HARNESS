@@ -83,7 +83,7 @@ review_evidence:
 
 ## 目的
 
-`src/setup/templates.ts` の built-in fallback は最新の HELIX project bootstrap 契約を持っていたが、`loadTemplates()` は `docs/templates/*` の現物を優先する。そのため、実配布テンプレが古いままだと built-in fallback の test が green でも、実際の `ut-tdd setup project` は `consumerReadiness.ok=false` になり得る。
+`src/setup/templates.ts` の built-in fallback は最新の HELIX project bootstrap 契約を持っていたが、`loadTemplates()` は `docs/templates/*` の現物を優先する。そのため、実配布テンプレが古いままだと built-in fallback の test が green でも、実際の `helix setup project` は `consumerReadiness.ok=false` になり得る。
 
 この PLAN では `docs/templates/*` の adapter / workflow 実体を、completion review-bundle、version-up dry-run、team run dry-run、read-only escalation audit を含む setup readiness 契約へ同期し、`loadTemplates(process.cwd())` 経由の dry-run test で固定する。
 

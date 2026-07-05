@@ -153,7 +153,7 @@ AC-FR-30-03 を **WCAG 2.2 AA へ更新**する (新 SC 2.4.11 Focus Appearance 
   展開可。S-phase 行は drive=scrum 時のみ。
 - **`GateResultPanel`** (PM-03): gate ごとに pass=`ok`/fail=`error`/bypass=`warn` の色 + アイコン + サインオフ者 +
   証跡リンク。`TroubleTable` は種別/検出時刻/影響範囲/next_action を `DataTable` で横断表示、行に
-  next_action `CopyButton`。`InterruptCopyButton` は `ut-tdd interrupt`/`resume` 文字列コピー (S5=b、UI 実行なし)。
+  next_action `CopyButton`。`InterruptCopyButton` は `helix interrupt`/`resume` 文字列コピー (S5=b、UI 実行なし)。
 - **`TraceGraph`** (PM-04): 上流→下流ノード + エッジ。デグレ/trace 切れエッジは `error` 赤強調。ノードクリック→
   対象 doc。`VPairStatusTable` は 6 pair (L1↔L14…L6↔L7) の freeze 状態を `DataTable` + `StatusBadge`。
 - **`HandoverPanel`** (PM-05): CURRENT.json を構造化表示。`StaleWarningBanner` は 30 日超で `warn`。next_action 強調
@@ -167,9 +167,9 @@ AC-FR-30-03 を **WCAG 2.2 AA へ更新**する (新 SC 2.4.11 Focus Appearance 
   cell クリック → 不足項目一覧 + 起票候補テキスト `CopyButton`。横スクロール許容。
 - **`WiringDiagram`** + `ConnectionDetailTable` + `ModeTransitionArrows` (HM-03): SVG 静的アーキ + 動的エラー
   エッジ `error` 赤。接続線クリック → 詳細テーブル。active 遷移は `accent` 強調 (色 + ウェイト)。
-- **`TableExplorer`** + `IntegrityCheckSummary` (HM-04): .ut-tdd state 全 table 切替 + raw 行。orphan=`warn`/
+- **`TableExplorer`** + `IntegrityCheckSummary` (HM-04): .helix state 全 table 切替 + raw 行。orphan=`warn`/
   不正値=`error`。問題行 `CopyButton` (AI 指示文字列)。**整合性再実行は S5=b により UI 直接実行せず
-  `ut-tdd doctor` / `ut-tdd review` 文字列の `CopyButton`** (L2 §2「整合性再実行トリガー」の確定
+  `helix doctor` / `helix review` 文字列の `CopyButton`** (L2 §2「整合性再実行トリガー」の確定
   = CLI コピー変換、副作用 API を持たない)。
 - **`InvocationLogTable`** + tab 群 (HM-05): date/model/role/task/result/token/cost を `DataTable`。
   `SkillInjectionTab`/`HookFireLogTab`/`GuardDecisionList` をタブ切替。result/bypass を `StatusBadge`。
@@ -178,7 +178,7 @@ AC-FR-30-03 を **WCAG 2.2 AA へ更新**する (新 SC 2.4.11 Focus Appearance 
 - **`DoctorResultTree`** + `SeverityBadge` + `DetectionCountSummary` (HM-07): V-model 順/entity/hook/phase/carry を
   ツリー化。`SeverityBadge` = `StatusBadge` の **alias** (severity `error→error` / `warn→warn` / `info→中立`
   (`fg.muted` + info アイコン)、追加 props 不要、§3.1 の 3 重符号化を共有)。D-03 = 0 件違反は `error`。問題行
-  `CopyButton`。**doctor 再実行は S5=b により UI 直接実行せず `ut-tdd doctor` 文字列の `CopyButton`**
+  `CopyButton`。**doctor 再実行は S5=b により UI 直接実行せず `helix doctor` 文字列の `CopyButton`**
   (L2 §2「doctor 再実行トリガー」の確定 = CLI コピー変換)。
 - **`KpiDashboard`** + `RecipeList` (HM-08): skill/model 評価・task 成功率・コスト効率。指標の `ok/warn/error`
   表示は `StatusBadge` (詳細テーブル仕様の一部は L3 carry、確定時に追記)。`DataTable` + フィルタ。

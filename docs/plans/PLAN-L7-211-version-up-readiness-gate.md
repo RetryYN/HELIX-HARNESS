@@ -288,88 +288,76 @@ review_evidence:
         output_digest: "sha256:4b05fe6be6b15f71728b2f363f092f27c79bd207dadc65b8ad4b478618403464"
 ---
 
-# PLAN-L7-211: version-up parked readiness gate
+# PLAN-L7-211: version-up parked readiness gate（保留版 readiness gate）
 
-## Objective
+## 目的
 
-Prevent `version_target` from becoming a vague draft escape hatch. A parked
-version-up PLAN must state that it is version-up parked, name its activation
-path, and preserve approval/escalation boundaries before future activation.
+`version_target` が曖昧な draft 退避先になることを防ぐ。parked version-up PLAN は、
+version-up parked であること、activation path、将来 activation 前の approval / escalation boundary を
+明示しなければならない。
 
-## Scope
+## スコープ
 
-- Add `version-up-readiness` lint and doctor hard gate.
-- Check L0 charter, L3 requirements, L4 functional design, the mode catalog,
-  the version-up mode document, S4 discovery decision, and current
-  `version_target` PLANs as one semantic trace.
-- Check the version-up source ledger as a structured table with official URL,
-  adopted version/date, latest official status, adoption decision,
-  version-up use, and required field impact. Release automation candidates
-  (semantic-release / Release Please) stay compare-only until a release ADR.
-- Check the version-up source ledger `checked` date. A future date or a date
-  older than 90 days is stale and cannot support parked review, activation, or
-  completion packet decisions.
-- Parse the `checked` heading by date shape instead of the initial 2026-06-30
-  string, so a valid official-source refresh does not break the version-up
-  ledger table.
-- Expose the same source ledger freshness in `version-up-activation-packet.v1`
-  so PO/TL activation review sees `checkedDate`, stale status, row count, and
-  missing required sources directly in the packet, not only in the doctor gate.
-- Require external activation candidates to mention action-binding approval,
-  `escalation_boundaries`, and unapproved `exit 1` behavior.
-- Require external activation candidates to carry structured
-  `external_rehearsal_plan`, `cost_guardrails`, and
-  `activation_provenance_requirements` so $0/free-tier, HMAC, access-control,
-  secret/PII, no-prod-write, rollback, approval, and audit evidence are not
-  left as prose.
-- Add `ut-tdd version-up dry-run --current <version> --target <version>` as a
-  non-destructive tag/release pin planning surface. It emits
-  `version-up-dry-run-plan.v1` with SemVer normalization, migration plan,
-  rollback plan, idempotency checks, release gate checks, and official source
-  basis; downgrade/invalid targets fail closed and no apply command is exposed.
-  A remote distribution tag must be checked with explicit
-  `--release-remote <url>` / `git ls-remote --tags`; local tag absence must not
-  be used as evidence that an external Pack tag is missing.
-  Activation packets must not emit `--target future` dry-run commands; unresolved
-  future targets remain activation-packet review material until a concrete SemVer
-  tag or release trigger is recorded.
-- Do not activate `PLAN-L7-146` or touch external infrastructure, auth, secrets,
-  access control, or Cloudflare configuration.
+- `version-up-readiness` lint と doctor hard gate を追加する。
+- L0 charter、L3 requirements、L4 functional design などの設計 source を確認し、mode catalog、
+  version-up mode document、S4 discovery decision、現行 `version_target` PLAN を 1 本の semantic trace として検査する。
+- version-up source ledger を、official URL、adopted version/date、latest official status、
+  adoption decision、version-up use、required field impact を持つ structured table として検査する。
+  release automation candidate（semantic-release / Release Please）は、release ADR まで compare-only に留める。
+- version-up source ledger の `checked` date を検査する。未来日または 90 日超過の date は stale とし、
+  parked review、activation、completion packet decision の根拠にできない。
+- `checked` heading は初期文字列 `2026-06-30` ではなく date shape で parse し、
+  正当な official-source refresh で version-up ledger table が壊れないようにする。
+- 同じ source ledger freshness を `version-up-activation-packet.v1` に出し、
+  PO/TL activation review が doctor gate だけでなく packet 内で `checkedDate`、stale status、
+  row count、missing required sources を直接確認できるようにする。
+- external activation candidate には action-binding approval、`escalation_boundaries`、
+  unapproved `exit 1` behavior の明記を要求する。
+- external activation candidate には structured `external_rehearsal_plan`、`cost_guardrails`、
+  `activation_provenance_requirements` を要求し、$0/free-tier、HMAC、access-control、secret/PII、
+  no-prod-write、rollback、approval、audit evidence を prose だけに残さない。
+- `helix version-up dry-run --current <version> --target <version>` を non-destructive な
+  tag/release pin planning surface として追加する。出力は `version-up-dry-run-plan.v1` とし、
+  SemVer normalization と migration/rollback 計画、idempotency check、release gate check、
+  official source basis を含める。downgrade / invalid target は fail closed し、apply command は出さない。
+  remote distribution tag は明示的な `--release-remote <url>` / `git ls-remote --tags` で検査し、
+  local tag 欠落を external HELIX-HARNESS-OS tag 欠落の証拠に使わない。
+  activation packet は `--target future` dry-run command を出してはならない。未解決 future target は、
+  concrete SemVer tag または release trigger が記録されるまで activation-packet review material に留める。
+- `PLAN-L7-146` を activate せず、external infrastructure、auth、secrets、access control、
+  Cloudflare configuration には触れない。
 
-## Design Trace
+## 設計 Trace
 
-| Source | Meaning preserved by this gate |
+| Source | この gate が保持する意味 |
 |---|---|
-| L0 charter P1 | version-up keeps now-out-of-release work from being lost |
-| L3 `HR-FR-P1-02` / `HAC-P1-02a` | now-out-of-version requirements need `version_target` and rationale |
-| L4 `HB-P1 continuous-autonomy` / routing | version-up belongs to continuous autonomy and escalation-aware routing |
-| `docs/process/modes/README.md` | `version_deferral` is listed as `version-up`; activation returns through add-feature |
-| `docs/process/modes/version-up.md` | parked / activation / approval semantics are the operational SSoT |
-| `PLAN-L7-146` | current live parked case remains draft and exposes external rehearsal, cost, and provenance material without activation |
+| L0 charter P1 | version-up により、現 release 外の作業を失わない |
+| L3 `HR-FR-P1-02` / `HAC-P1-02a` | 現 version 外の requirement には `version_target` と rationale が必要 |
+| L4 `HB-P1 continuous-autonomy` / routing | version-up は continuous autonomy と escalation-aware routing に属する |
+| `docs/process/modes/README.md` | `version_deferral` は `version-up` として列挙され、activation は add-feature 経由で戻る |
+| `docs/process/modes/version-up.md` | parked / activation / approval semantics の operational SSoT |
+| `PLAN-L7-146` | 現行 live parked case は draft のまま、activation せず external rehearsal、cost、provenance material を露出する |
 
-## Acceptance Criteria
+## 受入条件
 
-- `doctor` includes `version-up-readiness - OK`.
-- `PLAN-L7-146-serverless-readonly-share` remains `status=draft` +
-  `version_target: future`, but is checked for activation boundary readiness.
-- Dropping L0/L3/L4/mode catalog semantics makes the lint fail.
-- Dropping a version-up source ledger row, adoption decision, latest official
-  status, release automation comparison source, or freshness within 90 days
-  makes the lint fail.
-- Refreshing the version-up source ledger to a newer valid `checked` date keeps
-  row parsing and readiness green.
-- Targeted tests, typecheck, lint, DB rebuild, doctor, and full tests pass.
-- `ut-tdd version-up activation-packet --json` includes external rehearsal,
-  cost guardrails, provenance requirements, and `sourceLedgerFreshness` while
-  keeping `applyCommandAvailable=false`. A stale source ledger is surfaced as a
-  packet blocked reason before activation.
-- `ut-tdd version-up dry-run --current v0.1.0 --target v0.2.0 --json` returns
-  `planOnly=true`, `mustNotApply=true`, `applyCommandAvailable=false`,
-  `semverChange=minor`, and migration/rollback/idempotency/release gate/source
-  basis rows. Downgrade or invalid target input returns `ok=false` before any
-  apply surface exists.
-- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`
-  resolves the HELIX-HARNESS-OS tag through `git ls-remote --tags` and reports
-  `releaseTagSource=remote`; without a concrete SemVer target, activation packet
-  verification uses the activation-packet review command instead of emitting
-  `--target future`.
+- `doctor` が `version-up-readiness - OK` を含む。
+- `PLAN-L7-146-serverless-readonly-share` は `status=draft` + `version_target: future` のまま、
+  activation boundary readiness の検査対象になる。
+- L0/L3/L4/mode catalog semantics を落とすと lint が fail する。
+- version-up source ledger row、adoption decision、latest official status などの source 証跡、
+  release automation comparison source、または 90 日以内 freshness を落とすと lint が fail する。
+- version-up source ledger をより新しい valid `checked` date に refresh しても、
+  row parsing と readiness は green のまま保たれる。
+- targeted tests、typecheck、lint、DB rebuild、doctor、full tests が pass する。
+- `helix version-up activation-packet --json` は external rehearsal、cost guardrails、
+  provenance requirements、`sourceLedgerFreshness` を含み、`applyCommandAvailable=false` を保つ。
+  stale source ledger は activation 前に packet blocked reason として露出する。
+- `helix version-up dry-run --current v0.1.0 --target v0.2.0 --json` は
+  `planOnly=true`、`mustNotApply=true`、`applyCommandAvailable=false`、
+  `semverChange=minor`、migration/rollback/idempotency/release gate/source basis row を返す。
+  downgrade または invalid target input は、apply surface が存在する前に `ok=false` を返す。
+- remote HELIX-HARNESS-OS tag 検査 command は次の通りである。
+  `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` は
+  HELIX-HARNESS-OS tag を `git ls-remote --tags` で解決し、`releaseTagSource=remote` を報告する。
+  concrete SemVer target が無い場合、activation packet verification は `--target future` を出さず、
+  activation-packet review command を使う。

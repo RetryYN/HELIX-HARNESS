@@ -56,26 +56,25 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-L7-117: kind layer governance gate
+# PLAN-L7-117: kind layer governance gate（kind/layer governance gate の層制約）
 
-## Objective
+## 目的
 
-Prevent PLAN authoring work from being filed into the wrong layer. Reverse and
-additive implementation work must not hide design updates inside an execution
-layer.
+PLAN 作成作業が誤った layer に分類されることを防ぐ。Reverse と
+additive implementation の作業では、design 更新を実行 layer の中に隠してはならない。
 
-## Scope
+## スコープ
 
-- Add `kind_layer_mismatch` to `plan-governance`.
-- Enforce only for new or updated PLANs from 2026-06-23 onward.
-- Cover `design`, `add-design`, `impl`, `add-impl`, `refactor`, `retrofit`,
-  `troubleshoot`, and `research`.
-- Keep `master_hub=true` as the explicit exception for layer aggregation plans.
+- `plan-governance` に `kind_layer_mismatch` を追加する。
+- 2026-06-23 以降の新規または更新された PLAN のみを適用対象にする。
+- `design`, `add-design`, `impl`, `add-impl`, `refactor`, `retrofit`,
+  `troubleshoot`, `research` を対象にする。
+- layer 集約 plan に対する明示的な例外として `master_hub=true` を維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- New/updated design work outside L1-L6 fails.
-- New/updated add-design work outside L3-L6 fails.
-- New/updated implementation and recovery execution kinds outside L7 fail.
-- New/updated research work outside L1-L4 fails.
-- Master hub plans remain valid.
+- L1-L6 外の新規または更新された `design` 作業は失敗する。
+- L3-L6 外の新規または更新された `add-design` 作業は失敗する。
+- L7 外の新規または更新された implementation および recovery の実行 kind は失敗する。
+- L1-L4 外の新規または更新された `research` 作業は失敗する。
+- `master_hub=true` の plan は引き続き有効である。

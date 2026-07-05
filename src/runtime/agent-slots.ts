@@ -1,7 +1,7 @@
 /**
  * agent-slots — Layer-2 実行オーケストレーションの状態機構 (IMP-050)。
  *
- * ADR-001 準拠で TS-native に実装し、`.ut-tdd/state/agent-slots.json` (Slot[])
+ * ADR-001 準拠で TS-native に実装し、`.helix/state/agent-slots.json` (Slot[])
  * を単一 state とする
  * (Windows ネイティブ互換 + bun 単独実行、bash/python3 不要)。
  *
@@ -56,7 +56,7 @@ export const DEFAULT_MAX_PARALLEL = 8;
 /** stale slot cleanup の既定閾値 (分)。 */
 export const DEFAULT_STALE_MINUTES = 5;
 
-const STATE_REL = join(".ut-tdd", "state", "agent-slots.json");
+const STATE_REL = join(".helix", "state", "agent-slots.json");
 const slotSchema = z.object({
   slot_id: z.string().min(1),
   agent_kind: z.string().min(1),

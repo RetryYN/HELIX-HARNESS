@@ -53,7 +53,7 @@ dependencies:
     - docs/plans/PLAN-L7-21-runtime-adapter-session-lifecycle.md
 ---
 
-# PLAN-REVERSE-20 (reverse): runtime adapter session lifecycle back-fill
+# PLAN-REVERSE-20 (reverse): runtime adapter session lifecycle の back-fill
 
 ## §0 位置づけ
 
@@ -63,39 +63,39 @@ dependencies:
 
 | phase | work | result |
 |---|---|---|
-| R0 evidence | `src/cli.ts`, `src/runtime/adapter.ts`, `src/runtime/session-log.ts`, `.claude/settings.json`, `tests/runtime-hook-entrypoints.test.ts`, `tests/runtime-adapter.test.ts` | shared CLI hook and adapter wrapper are implemented |
-| R1 observed contract | Initial observed contract: Codex provider args = `exec <task>`; Claude provider args = `--print -p <task>`; `--plan` is harness metadata only. Current contract after PLAN-L7-77 / PLAN-L7-78: Codex=`exec -`, Claude=`--print --input-format text`, prompt body in `AdapterPlan.stdin`. | provider boundary is explicit |
-| R2 as-is | L4 function doc did not fully describe `--task-file`, print-mode Claude, or plan metadata separation | design drift identified |
-| R3 intent | This is an adapter surface correction, not a new top-level requirement. Existing FR-L1-42 / §6.8 / §6.9 absorb the change. | no new FR |
-| R4 routing | Back-fill to L4 function doc and L7 unit test design; requirements note remains within existing progress / CI governance | reuse-as-is |
+| R0 evidence | `src/cli.ts`, `src/runtime/adapter.ts`, `src/runtime/session-log.ts`, `.claude/settings.json`, `tests/runtime-hook-entrypoints.test.ts`, `tests/runtime-adapter.test.ts` | shared CLI hook と adapter wrapper は実装済み。 |
+| R1 observed contract | 初期 observed contract: Codex provider args = `exec <task>`、Claude provider args = `--print -p <task>`、`--plan` は harness metadata のみ。PLAN-L7-77 / PLAN-L7-78 後の現行 contract: Codex=`exec -`、Claude=`--print --input-format text`、prompt body は `AdapterPlan.stdin` に置く。 | provider boundary は明示済み。 |
+| R2 as-is | L4 function doc は `--task-file`、print-mode Claude、plan metadata separation を十分に記述していなかった。 | design drift を特定済み。 |
+| R3 intent | これは adapter surface correction であり、新しい top-level requirement ではない。既存 FR-L1-42 / §6.8 / §6.9 が変更を吸収する。 | 新規 FR は不要。 |
+| R4 routing | L4 function doc と L7 unit test design へ back-fill する。requirements note は既存の progress / CI governance の範囲に留める。 | reuse-as-is。 |
 
 ## §2 工程表
 
 ### Step 1: [並列] R0 evidence collection
 
-Implementation and tests are listed as evidence.
+implementation と tests を evidence として列挙する。
 
 ### Step 2: [直列] L4 function design back-fill
 
-直列理由: downstream_dependency。R0 observed contract must be known before documenting provider surface.
+直列理由: downstream_dependency。provider surface を文書化する前に R0 observed contract を確定する必要がある。
 
 ### Step 3: [直列] test design back-fill
 
-直列理由: downstream_dependency。U-SLOG / U-ADAPTER oracle must reflect the documented provider surface.
+直列理由: downstream_dependency。U-SLOG / U-ADAPTER oracle は、文書化済みの provider surface を反映する必要がある。
 
 ### Step 4: [直列] review
 
-直列理由: downstream_dependency。Back-fill is reviewed after tests and doctor are green.
+直列理由: downstream_dependency。tests と doctor が green になってから back-fill を review する。
 
 ## §6 用語更新
 
-- adapter lifecycle wrapper: provider invocation wrapped by session-log lifecycle events.
-- plan metadata separation: harness plan id is not forwarded to provider CLIs.
+- adapter lifecycle wrapper: provider invocation を session-log lifecycle events で包む仕組み。
+- plan metadata separation: harness plan id を provider CLIs へ転送しない分離。
 
 ## §8 DoD
 
-- [x] L4 function design documents provider args, `--task-file`, and plan metadata separation.
-- [x] L7 unit test design contains U-SLOG-007 and U-ADAPTER-001 oracle.
-- [x] L0 §10 glossary contains shared hook entrypoint / adapter lifecycle wrapper / plan metadata separation.
-- [x] Reverse requires `PLAN-L7-21`, so add-impl is not orphaned.
-- [x] typecheck / full vitest / doctor / review are green.
+- [x] L4 function design は provider args、`--task-file`、plan metadata separation を記述している。
+- [x] L7 unit test design は U-SLOG-007 と U-ADAPTER-001 oracle を含む。
+- [x] L0 §10 glossary は shared hook entrypoint / adapter lifecycle wrapper / plan metadata separation を含む。
+- [x] Reverse は `PLAN-L7-21` を required とし、add-impl を orphaned にしない。
+- [x] typecheck / full vitest / doctor / review は green。

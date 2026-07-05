@@ -135,7 +135,7 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "外部ソース HEAD 確認日: 2026-07-04",
       "RetryYN/HELIX-HARNESS",
       "b828fcf64c204d1cfa65c729fa590ca9562adccc",
-      "unison-ai-product/UT-TDD_AGENT-HARNESS-Pack",
+      "unison-ai-product/HELIX-HARNESS-OS",
       "a43771ab091486520a4970f6b19b1663a009d4d0",
       "v0.1.4",
       "検証 / 進捗 source basis 再確認日: 2026-07-04",
@@ -178,7 +178,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
   {
     source: "distribution_pack_repo",
     command:
-      "git ls-remote https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git refs/heads/main",
+      "git ls-remote https://github.com/unison-ai-product/HELIX-HARNESS-OS.git refs/heads/main",
     ref: "refs/heads/main",
     observed: "a43771ab091486520a4970f6b19b1663a009d4d0",
     latestOfficialStatus: "main branch reachable",
@@ -190,7 +190,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
   {
     source: "distribution_pack_latest_tag",
     command:
-      "git ls-remote --tags https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git",
+      "git ls-remote --tags https://github.com/unison-ai-product/HELIX-HARNESS-OS.git",
     ref: "refs/tags/v0.1.4",
     observed: "v0.1.4",
     latestOfficialStatus: "latest tag reachable",

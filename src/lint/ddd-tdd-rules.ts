@@ -341,7 +341,7 @@ const MUTATION_ORACLE_EVIDENCE_PATTERN =
   /^(?:mutation_oracle(?:_evidence)?|mutation_test(?:_evidence)?):\s*(.+)$/m;
 const MUTATION_ORACLE_PLACEHOLDER = /^("|')?(?:todo|tbd|placeholder|none|n\/a|-|—|未定|なし)("|')?$/i;
 const MUTATION_ORACLE_LOCATOR_PATTERN =
-  /\b(?:tests\/[^\s"'`]+\.test\.ts|docs\/test-design\/[^\s"'`]+|\.ut-tdd\/audit\/[^\s"'`]+|bun\s+test|vitest)\b/;
+  /\b(?:tests\/[^\s"'`]+\.test\.ts|docs\/test-design\/[^\s"'`]+|\.helix\/audit\/[^\s"'`]+|bun\s+test|vitest)\b/;
 const MUTATION_ORACLE_KILL_SIGNAL_PATTERN = /\b(?:kill(?:ed|s)?|fail(?:ed|s)?|red|mutation)\b/i;
 
 function mutationOracleEvidence(text: string): { line: number; value: string } | null {

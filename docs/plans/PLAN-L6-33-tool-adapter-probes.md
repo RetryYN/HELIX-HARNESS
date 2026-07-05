@@ -29,46 +29,46 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 dependencies:
   parent: docs/plans/PLAN-L6-31-cross-artifact-relation-graph.md
   requires:
-    - .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
+    - .helix/audit/A-124-cross-artifact-graph-tooling.md
     - docs/research/cross-artifact-graph-tooling-research-2026-06-09.md
 ---
 
-# PLAN-L6-33 (add-design): graph and diagram tool adapter probes
+# PLAN-L6-33 (add-design): graph / diagram tool adapter probes（tool adapter probe 設計）
 
-## §0 Position
+## §0 位置づけ
 
-This PLAN is the L6 entry for optional dependency/diagram tool adapter probes. It does not replace the core TypeScript/Bun relation graph collector.
+この PLAN は optional dependency / diagram tool adapter probe の L6 entry である。core の TypeScript/Bun relation graph collector を置き換えない。
 
-> **スコープ改訂 (2026-06-10 PO 決定、IMP-131)**: tool adapter (dependency-cruiser / Knip / Madge / Graphviz DOT / Mermaid / D2) は **gate truth でない insight 系** (A-124「raw 出力を gate truth にしない」) のため、**harness core の profile カタログとしてモデル化しない**。代わりに **`ut-tdd setup graph-tools [--with ...]` の一括セットアップ + layer-context アナウンス**へ降格する。これにより adapter ごとの probe/normalize/findings/優先順位を core に持たず、保守表面積を削減する。Madge⊂dependency-cruiser の重複や 3 図化レンダラ (Mermaid/DOT/D2) の選択は `--with` のユーザー選択に吸収され、カタログ優先順位を維持する必要が消える。**MCP / verification profile (playwright / testcontainers / github-mcp / msw / mcp-inspector / vitest-browser) は別扱い = マストツール系**として profile + 機械着地を維持する (V-model gate を支える検証であり gate truth になるため、setup+announce へ降格しない)。本 PLAN の §1-§4 は下記のとおり setup/announce 設計へ読み替える。
+> **スコープ改訂 (2026-06-10 PO 決定、IMP-131)**: tool adapter (dependency-cruiser / Knip / Madge / Graphviz DOT / Mermaid / D2) は **gate truth でない insight 系** (A-124「raw 出力を gate truth にしない」) のため、**harness core の profile カタログとしてモデル化しない**。代わりに **`helix setup graph-tools [--with ...]` の一括セットアップ + layer-context アナウンス**へ降格する。これにより adapter ごとの probe/normalize/findings/優先順位を core に持たず、保守表面積を削減する。Madge⊂dependency-cruiser の重複や 3 図化レンダラ (Mermaid/DOT/D2) の選択は `--with` のユーザー選択に吸収され、カタログ優先順位を維持する必要が消える。**MCP / verification profile (playwright / testcontainers / github-mcp / msw / mcp-inspector / vitest-browser) は別扱い = マストツール系**として profile + 機械着地を維持する (V-model gate を支える検証であり gate truth になるため、setup+announce へ降格しない)。本 PLAN の §1-§4 は下記のとおり setup/announce 設計へ読み替える。
 
-## §1 Scope
+## §1 スコープ
 
-**改訂後 (IMP-131)**: `ut-tdd setup graph-tools` セットアップコマンド (冪等、`--with` で dependency-cruiser/knip/madge/graphviz/mermaid/d2 から選択導入、生成 config は git 秘匿の外 = §6.8.10 安全則踏襲) と、layer-context が関連 V-model 工程で導入手順をアナウンスする設計。adapter 出力の DB 正規化は「project が setup で opt-in した時のみ薄く配線」とし、未導入を前提に gate を組まない。
+**改訂後 (IMP-131)**: `helix setup graph-tools` セットアップコマンド (冪等、`--with` で dependency-cruiser/knip/madge/graphviz/mermaid/d2 から選択導入、生成 config は git 秘匿の外 = §6.8.10 安全則踏襲) と、layer-context が関連 V-model 工程で導入手順をアナウンスする設計。adapter 出力の DB 正規化は「project が setup で opt-in した時のみ薄く配線」とし、未導入を前提に gate を組まない。
 
 > 旧スコープ (改訂前、参考): dependency-cruiser / Knip / Madge / Graphviz DOT / Mermaid / D2 を adapter catalog/probe/normalization/stale diagram refresh として profile 設計。→ IMP-131 で setup+announce へ置換。
 
-## §2 Contracts
+## §2 Contracts（契約）
 
-The function contracts are documented in `module-drift.md` "Tool Adapter Probe Addendum":
+function contract は `module-drift.md` の "Tool Adapter Probe Addendum" に記録する:
 
 - `catalogToolAdapters`
 - `probeToolAdapter`
 - `normalizeToolAdapterRun`
 - `planDiagramRefresh`
 
-## §3 Test Design
+## §3 Test Design（テスト設計）
 
-The L7 pair artifact adds U-TOOLADAPTER-001..010.
+L7 pair artifact は U-TOOLADAPTER-001..010 を追加する。
 
-## §5 Guard
+## §5 Guard（ガード）
 
-No package installation, source implementation, or external command execution is authorized by this PLAN alone. L7 requires PLAN-L7-34 TDD Red and PLAN-REVERSE-34.
+この PLAN 単体では、package installation、source implementation、external command execution は承認されない。L7 では PLAN-L7-34 TDD Red と PLAN-REVERSE-34 を必須にする。
 
 ## §8 DoD
 
-- [x] L6 function contracts are documented as setup/announce design after IMP-131 scope revision.
-- [x] U-TOOLADAPTER unit oracles are added to L7 unit test design.
-- [x] L7 implementation PLAN references this PLAN and is confirmed.
-- [x] Reverse pairing PLAN exists for implementation back-fill.
+- [x] L6 function contract は、IMP-131 scope revision 後の setup/announce design として記録されている。
+- [x] U-TOOLADAPTER unit oracle は L7 unit test design に追加されている。
+- [x] L7 implementation PLAN はこの PLAN を参照し、confirmed である。
+- [x] implementation back-fill 用の Reverse pairing PLAN が存在する。
 
-Status is `confirmed`: optional adapter execution remains out of scope and must be explicitly enabled by later workflow evidence.
+status は `confirmed` である。optional adapter execution は引き続き out of scope であり、後続 workflow evidence による明示 enablement が必要である。

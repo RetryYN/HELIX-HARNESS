@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "identifier-rename-state-backup-dry-run.v1",
+  "planOnly": true,
+  "mustNotApply": true,
+  "writePolicy": "no-write",
+  "sourceCommand": "helix rename state-backup --dry-run --restore-drill --json",
+  "restoreDrillRequested": true,
+  "manifest": [
+    {
+      "path": ".helix/harness.db",
+      "purpose": "state DB projection and completion evidence baseline",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/harness.db",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-harness-db.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".helix/memory",
+      "purpose": "HELIX shared memory before state-dir rename",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/memory/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-memory.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".helix/state",
+      "purpose": "active plan, setup, and runtime state before migration",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/state/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-state.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".helix/logs",
+      "purpose": "runtime/session/gate logs used as verification provenance",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/logs/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-logs.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".helix/handover",
+      "purpose": "handover pointer and completion decision packet continuity",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/handover/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-handover.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".helix/handover/provider",
+      "purpose": "provider handover pointer used by cross-runtime continuation",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/handover/provider/",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-provider-handover.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".helix/config/approval-policy.yaml",
+      "purpose": "action-binding approval policy before irreversible rename",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/config/approval-policy.yaml",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-approval-policy.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".claude/settings.json",
+      "purpose": "Claude hook/adapter config before marker rename",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/.claude/settings.json",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-claude-settings.json",
+      "restoreRequired": true
+    },
+    {
+      "path": ".codex/hooks.json",
+      "purpose": "Codex hook adapter config before marker rename",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/.codex/hooks.json",
+      "checksumRequired": true,
+      "restoreDrillRequired": true,
+      "restoreEvidencePath": ".helix/evidence/rename/restore-codex-hooks.json",
+      "restoreRequired": true
+    }
+  ],
+  "restoreChecks": [
+    {
+      "path": ".helix/harness.db",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/harness.db",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-harness-db.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".helix/memory",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/memory/",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-memory.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".helix/state",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/state/",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-state.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".helix/logs",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/logs/",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-logs.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".helix/handover",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/handover/",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-handover.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".helix/handover/provider",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/handover/provider/",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-provider-handover.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".helix/config/approval-policy.yaml",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/config/approval-policy.yaml",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-approval-policy.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": false
+    },
+    {
+      "path": ".claude/settings.json",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/.claude/settings.json",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-claude-settings.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    },
+    {
+      "path": ".codex/hooks.json",
+      "backupTargetPattern": ".helix/backups/rename/<timestamp>/.codex/hooks.json",
+      "restoreEvidencePath": ".helix/evidence/rename/restore-codex-hooks.json",
+      "checksumRequired": true,
+      "restoreRequired": true,
+      "sourceExists": true
+    }
+  ],
+  "blockedUntil": [
+    "each restoreCheck has sourceExists=true or an explicit no-state-needed disposition",
+    "restore drill evidence is recorded for every restoreRequired item",
+    "cutover approval cites the resulting state-backup evidence path"
+  ]
+}

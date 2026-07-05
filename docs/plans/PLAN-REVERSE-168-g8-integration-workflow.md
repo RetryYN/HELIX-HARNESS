@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-168-g8-integration-workflow
-title: "PLAN-REVERSE-168: G8 integration workflow fullback"
+title: "PLAN-REVERSE-168: G8 integration workflow の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,32 +16,32 @@ backprop_scope:
   - layer: requirements
     decision: not_impacted
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The requirement already records G8-G14 as future mechanization; this slice defines the first G8 workflow gate without changing product requirements."
+    reason: "requirements は G8-G14 を将来の機械化として既に記録している。この slice は product requirements を変更せず、最初の G8 workflow gate を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "The L4 function model is unchanged; this slice adds the L8 execution workflow for existing integration-test design rows."
+    reason: "L4 function model は変更しない。この slice は既存の integration-test design row に対する L8 execution workflow を追加する。"
   - layer: L5-detailed-design
     decision: not_impacted
     evidence_path: docs/design/harness/L5-detailed-design/internal-processing.md
-    reason: "The L5 contracts remain unchanged; G8-WORKFLOW selects and evidences existing IT-* coverage."
+    reason: "L5 contracts は変更しない。G8-WORKFLOW は既存の IT-* coverage を選択し、証跡化する。"
   - layer: test-design
     decision: updated
     evidence_path: docs/test-design/harness/L8-integration-test-design.md
-    reason: "L8 had confirmed IT-* rows, but the G8 workflow layer needed explicit strategy/plan/condition/coverage/procedure/evidence/exit granularity."
+    reason: "L8 には confirmed の IT-* row があったが、G8 workflow layer には strategy/plan/condition/coverage/procedure/evidence/exit の明示的な粒度が必要だった。"
   - layer: process-gates
     decision: updated
     evidence_path: docs/process/gates.md
-    reason: "G8 now requires an integration evidence manifest and selected IT-* coverage rather than row presence alone."
+    reason: "G8 は row の存在だけではなく、integration evidence manifest と選択済み IT-* coverage を要求する。"
   - layer: implementation
     decision: updated
     evidence_path: src/lint/g8-integration-workflow.ts
-    reason: "Doctor now fails if the L8/G8 workflow markers are missing."
+    reason: "Doctor は L8/G8 workflow marker が欠落している場合に fail する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - G8 workflow fullback"
+    slot_label: "TL - G8 workflow fullback 対応"
   - role: qa
-    slot_label: "QA - L8/G8 workflow review"
+    slot_label: "QA - L8/G8 workflow review 対応"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-168-g8-integration-workflow.md
     artifact_type: markdown_doc
@@ -69,7 +69,7 @@ review_evidence:
     reviewed_at: "2026-06-26T20:30:00+09:00"
     tests_green_at: "2026-06-26T20:30:00+09:00"
     verdict: approve
-    scope: "R4 fullback for G8 workflow granularity. L8 rows remain valid; the missing workflow/evidence gate layer is added and doctor-wired."
+    scope: "G8 workflow granularity に対する R4 fullback。L8 row は有効なままとし、欠落していた workflow/evidence gate layer を追加して doctor に接続する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -83,25 +83,23 @@ review_evidence:
         output_digest: "sha256:2eab00f92a5bda76ff43a4b215d4620c117939e3221f808603492b5c7ed77d91"
 ---
 
-# PLAN-REVERSE-168: G8 integration workflow fullback
+# PLAN-REVERSE-168: G8 integration workflow の fullback
 
-## Objective
+## 目的
 
-Record the back-propagation decision for the first L8 ascent: G8 cannot be a
-concept-only gate or a checklist of IT-* rows. It needs an executable workflow
-contract and doctor enforcement.
+最初の L8 ascent に対する back-propagation decision を記録する。G8 は概念だけの gate や
+IT-* row の確認リストだけでは成立しない。実行可能な workflow contract と doctor enforcement が必要である。
 
-## Scope
+## スコープ
 
-- Preserve the confirmed L8 IT-* case design.
-- Add the missing workflow layer that selects and executes IT-* rows.
-- Wire a hard doctor check for the required workflow and gate markers.
-- Keep full L8 close for later slices; this is the workflow foundation.
+- confirmed 済みの L8 IT-* case design を維持する。
+- IT-* row を選択して実行するために欠落していた workflow layer を追加する。
+- 必須 workflow marker と gate marker に対する hard doctor check を接続する。
+- full L8 close は後続 slice に残し、この slice は workflow の土台とする。
 
-## Acceptance Criteria
+## 受入条件
 
-- L8 test design declares `G8-WORKFLOW`.
-- G8 process text requires an integration evidence manifest and selected IT-*
-  coverage.
-- `g8-integration-workflow` tests prove missing markers fail.
-- Doctor reports `g8-integration-workflow - OK`.
+- L8 test design が `G8-WORKFLOW` を宣言している。
+- G8 process text が integration evidence manifest と選択済み IT-* coverage を要求している。
+- `g8-integration-workflow` tests が marker 欠落時に fail することを示している。
+- Doctor が `g8-integration-workflow - OK` を報告する。

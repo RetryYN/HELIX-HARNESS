@@ -82,5 +82,5 @@ JSON だけを返す。
 }
 ```
 
-この prompt から raw provider CLI や SDK を呼ばない。現行 wrapper（`ut-tdd`）が runtime dispatch、
+この prompt から raw provider CLI や SDK を呼ばない。現行 wrapper（`helix`）が runtime dispatch、
 audit evidence、handover state を管理する。

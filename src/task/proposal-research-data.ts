@@ -6,7 +6,7 @@ const SOURCE_IPA = "IPA";
 const SOURCE_KU_WIEGERS = "KU Wiegers";
 const SOURCE_SMARTSHEET = "Smartsheet";
 const SOURCE_STANFORD = "Stanford";
-const SOURCE_UT_TDD_GOVERNANCE = "UT-TDD governance";
+const SOURCE_HELIX_GOVERNANCE = "HELIX governance";
 
 export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecision> = {
   "screen-ui": {
@@ -23,7 +23,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
     ],
     not_incorporated: ["template visual styling", "spreadsheet layout as source of truth"],
     reason:
-      "screen artifacts are common across researched templates and map directly to UT-TDD L1/L2/L3/L8 coverage",
+      "screen artifacts are common across researched templates and map directly to HELIX L1/L2/L3/L8 coverage",
   },
   "business-flow": {
     pattern: "business-flow",
@@ -47,7 +47,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
       "unverified accessibility claims",
     ],
     reason:
-      "external templates help vocabulary, but UT-TDD requires first-class token, a11y, and VRT evidence",
+      "external templates help vocabulary, but HELIX requires first-class token, a11y, and VRT evidence",
   },
   "ux-research-usability": {
     pattern: "ux-research-usability",
@@ -184,7 +184,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
   "common-component": {
     pattern: "common-component",
     disposition: "incorporate",
-    sources: [SOURCE_NABLARCH_FINTAN, SOURCE_NABLARCH_STANDARDS, "UT-TDD architecture"],
+    sources: [SOURCE_NABLARCH_FINTAN, SOURCE_NABLARCH_STANDARDS, "HELIX architecture"],
     use_cases: ["shared library", "middleware", "common component", "framework utility"],
     incorporated_as: [
       "component API contract",
@@ -199,7 +199,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
   "security-privacy": {
     pattern: "security-privacy",
     disposition: "reference",
-    sources: [SOURCE_IPA, "NIST", "OWASP", SOURCE_UT_TDD_GOVERNANCE],
+    sources: [SOURCE_IPA, "NIST", "OWASP", SOURCE_HELIX_GOVERNANCE],
     use_cases: ["authentication", "authorization", "role matrix", "PII", "secrets", "privacy"],
     incorporated_as: [
       "role/permission matrix",
@@ -212,12 +212,12 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
       "policy prose without owner",
     ],
     reason:
-      "security/privacy sources are reference inputs; UT-TDD requires explicit G4 evidence and approval",
+      "security/privacy sources are reference inputs; HELIX requires explicit G4 evidence and approval",
   },
   "error-observability-audit": {
     pattern: "error-observability-audit",
     disposition: "reference",
-    sources: [SOURCE_IPA, SOURCE_NABLARCH_FINTAN, SOURCE_UT_TDD_GOVERNANCE],
+    sources: [SOURCE_IPA, SOURCE_NABLARCH_FINTAN, SOURCE_HELIX_GOVERNANCE],
     use_cases: ["error handling", "audit log", "monitoring", "alerting", "redaction"],
     incorporated_as: [
       "error taxonomy",
@@ -233,7 +233,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
   "ops-release-migration": {
     pattern: "ops-release-migration",
     disposition: "reference",
-    sources: [SOURCE_IPA, SOURCE_NABLARCH_FINTAN, SOURCE_UT_TDD_GOVERNANCE],
+    sources: [SOURCE_IPA, SOURCE_NABLARCH_FINTAN, SOURCE_HELIX_GOVERNANCE],
     use_cases: ["release", "deployment", "cutover", "rollback", "data migration", "runbook"],
     incorporated_as: [
       "release plan",
@@ -261,7 +261,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
     incorporated_as: ["NFR vocabulary", "quality grade prompts", "system test evidence checklist"],
     not_incorporated: ["generic non-functional wish lists", "unmeasurable quality statements"],
     reason:
-      "external NFR templates are useful only when converted into measurable UT-TDD grade and evidence rows",
+      "external NFR templates are useful only when converted into measurable HELIX grade and evidence rows",
   },
   "test-design": {
     pattern: "test-design",
@@ -289,7 +289,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
       "test summary without linked oracle",
     ],
     reason:
-      "test documentation templates are adopted only as traceable test-design structure tied to UT-TDD oracle coverage",
+      "test documentation templates are adopted only as traceable test-design structure tied to HELIX oracle coverage",
   },
   "backend-function": {
     pattern: "backend-function",
@@ -307,8 +307,8 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
   },
   "workflow-gate": {
     pattern: "workflow-gate",
-    disposition: "ut-tdd-specific",
-    sources: [SOURCE_UT_TDD_GOVERNANCE, "UT-TDD workflow contracts"],
+    disposition: "helix-specific",
+    sources: [SOURCE_HELIX_GOVERNANCE, "HELIX workflow contracts"],
     use_cases: ["gate", "doctor", "lint", "PLAN routing", "workflow classifier"],
     incorporated_as: ["process/gate contract", "projection impact", "regression evidence"],
     not_incorporated: ["generic PM checklist", "template-only approval stamp"],
@@ -317,8 +317,8 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
   },
   "agent-orchestration": {
     pattern: "agent-orchestration",
-    disposition: "ut-tdd-specific",
-    sources: [SOURCE_UT_TDD_GOVERNANCE, "UT-TDD runtime contracts"],
+    disposition: "helix-specific",
+    sources: [SOURCE_HELIX_GOVERNANCE, "HELIX runtime contracts"],
     use_cases: [
       "Codex/Claude delegation",
       "team run",
@@ -329,12 +329,12 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
     incorporated_as: ["runtime contract", "cross-review evidence", "handover evidence"],
     not_incorporated: ["generic AI prompt template", "agent marketing workflow"],
     reason:
-      "agent orchestration is a UT-TDD runtime concern and external templates are reference-only at most",
+      "agent orchestration is a HELIX runtime concern and external templates are reference-only at most",
   },
   discovery: {
     pattern: "discovery",
     disposition: "reference",
-    sources: [SOURCE_KU_WIEGERS, SOURCE_SMARTSHEET, SOURCE_STANFORD, SOURCE_UT_TDD_GOVERNANCE],
+    sources: [SOURCE_KU_WIEGERS, SOURCE_SMARTSHEET, SOURCE_STANFORD, SOURCE_HELIX_GOVERNANCE],
     use_cases: ["unknown feasibility", "hypothesis", "research", "PoC", "option comparison"],
     incorporated_as: ["hypothesis", "success condition", "S4 decision evidence"],
     not_incorporated: [
@@ -342,7 +342,7 @@ export const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecisi
       "PoC output promoted without Reverse/Forward route",
     ],
     reason:
-      "research templates help decision framing, but UT-TDD requires explicit S4 and route evidence",
+      "research templates help decision framing, but HELIX requires explicit S4 and route evidence",
   },
   baseline: {
     pattern: "baseline",
@@ -363,7 +363,7 @@ export const RESEARCH_REJECTION_RULES: ResearchAdoptionDecision[] = [
     use_cases: ["landing page copy", "SEO page", "brand-only page", "campaign page"],
     incorporated_as: [],
     not_incorporated: ["marketing copy structure", "SEO checklist", "brand-only visual layout"],
-    reason: "marketing template structure does not define UT-TDD product design or test evidence",
+    reason: "marketing template structure does not define HELIX product design or test evidence",
   },
   {
     pattern: "vendor-specific-format",

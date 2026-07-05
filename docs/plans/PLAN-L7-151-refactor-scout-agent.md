@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-151-refactor-scout-agent
-title: "PLAN-L7-151: refactor scout agent and policy externalization detector"
+title: "PLAN-L7-151: refactor scout agent と policy externalization detector"
 kind: refactor
 layer: L7
 drive: db
@@ -10,7 +10,7 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "This adds an advisory refactor scout surface and detector heuristic within the existing Refactor/DB feedback workflow. It does not change public CLI/API behavior, persisted schema, or requirements semantics."
+backprop_decision_reason: "既存の Refactor/DB feedback workflow 内に advisory refactor scout surface と detector heuristic を追加する。public CLI/API behavior、persisted schema、requirements semantics は変更しない。"
 agent_slots:
   - role: se
     slot_label: "SE - refactor scout detector"
@@ -51,7 +51,7 @@ review_evidence:
     reviewed_at: "2026-06-25T17:02:30+09:00"
     tests_green_at: "2026-06-25T17:02:30+09:00"
     verdict: approve
-    scope: "Refactor Scout advisory agent, externalize-policy detector heuristic, and tier-router policy extraction."
+    scope: "Refactor Scout advisory agent、externalize-policy detector heuristic、tier-router policy extraction。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -113,39 +113,32 @@ review_evidence:
         output_digest: "sha256:915ec6686156b8ed12e57a18b666105a488bc3ae85c31e1d89db2c1336ac94b4"
 ---
 
-# PLAN-L7-151: refactor scout agent and policy externalization detector
+# PLAN-L7-151: refactor scout agent と policy externalization detector
 
-## Objective
+## 目的
 
-Add a Refactor Scout advisory agent and teach the detector to surface policy
-externalization candidates such as stage-based subagent/skill injection rules
-embedded in code.
+Refactor Scout advisory agent を追加し、code に埋め込まれた stage-based subagent/skill injection rule などの
+policy externalization candidate を detector が表出できるようにする。
 
-## Scope
+## スコープ
 
-- Add an allowlisted `refactor-scout` Claude subagent prompt.
-- Keep the Scout advisory only: detect, classify, propose PLAN inputs, and
-  suggest verification fences. It must not autonomously rewrite production code.
-- Add `externalize-policy` candidate detection to the existing DB refactor
-  candidate pipeline.
-- Document that stage/subagent/skill/model/route/approval rules are
-  externalization candidates when they live as code branches instead of a
-  catalog/config/rule module.
-- Materialize allowlisted agent prompts in the relation graph so prompt changes
-  do not bypass impact analysis.
-- Externalize the tier router's role/tier/model/review policy tables into a
-  dedicated policy module while keeping the existing router public exports
-  stable.
+- allowlist 済みの `refactor-scout` Claude subagent prompt を追加する。
+- Scout は advisory のみに保つ。detect、classify、PLAN input の提案、verification fence の提案に限定し、
+  production code を自律的に rewrite してはならない。
+- 既存の DB refactor candidate pipeline に `externalize-policy` candidate detection を追加する。
+- stage/subagent/skill/model/route/approval rule が catalog/config/rule module ではなく code branch として存在する場合、
+  externalization candidate であることを文書化する。
+- allowlist 済み agent prompt を relation graph に materialize し、prompt change が impact analysis を迂回しないようにする。
+- tier router の role/tier/model/review policy table を専用 policy module へ externalize しつつ、
+  既存 router の public export は stable に保つ。
 
-## Acceptance Criteria
+## 受入条件
 
-- `refactor-scout` is accepted by `agent-guard` only with a matching model
-  family.
-- `externalize-policy` candidates are emitted for stage/subagent injection
-  policy fixtures.
-- `.claude/agents/refactor-scout.md` has a relation graph node and impact
-  analysis does not emit `missing-projection` for it.
-- A true-positive policy candidate is resolved by moving tier router policy
-  data/functions out of orchestration code and covering the new module directly.
-- Existing refactor candidate projection behavior remains intact.
-- Targeted tests, typecheck, lint, DB rebuild, and doctor pass.
+- `refactor-scout` は、matching model family の場合に限り `agent-guard` に accepted される。
+- stage/subagent injection policy fixture に対して `externalize-policy` candidate が emitted される。
+- `.claude/agents/refactor-scout.md` は relation graph node を持ち、impact analysis はそれに対して
+  `missing-projection` を emitted しない。
+- true-positive policy candidate は、tier router policy data/function を orchestration code から移し、
+  new module を直接 cover することで resolved される。
+- 既存の refactor candidate projection behavior は intact のまま残る。
+- Targeted tests、typecheck、lint、DB rebuild、doctor が pass する。

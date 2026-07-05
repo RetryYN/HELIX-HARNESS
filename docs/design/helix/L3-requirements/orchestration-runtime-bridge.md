@@ -1,5 +1,5 @@
 ---
-title: "HELIX L3 要件 back-fill — P2 runtime bridge (tick→実 adapter 配線 + ut-tdd loop entrypoint)"
+title: "HELIX L3 要件 back-fill — P2 runtime bridge (tick→実 adapter 配線 + helix loop entrypoint)"
 layer: L3
 kind: reverse-backfill
 status: confirmed
@@ -30,10 +30,10 @@ pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
   非 0 終了は `error`。worker 失敗は detail 付き throw（silent 継続しない）。
 - 受入 = U-ORCH-BRIDGE-01。
 
-## HR-BR-14R — loop 実行 entrypoint（ut-tdd loop run）
+## HR-BR-14R — loop 実行 entrypoint（helix loop run）
 
-- `ut-tdd loop run --plan <id>` は loop-store から `LoopState` を読み、`canResume` の間 `tick` を駆動し、
-  各 iteration を永続（`.ut-tdd/state/loop/<planId>.json` + `<planId>.iterations.jsonl`）。
+- `helix loop run --plan <id>` は loop-store から `LoopState` を読み、`canResume` の間 `tick` を駆動し、
+  各 iteration を永続（`.helix/state/loop/<planId>.json` + `<planId>.iterations.jsonl`）。
 - `--once` は 1 tick のみ、`--dry-run` は dispatch せず worker/verifier provider の配線（availability）を表示。
 - state 不在/不正・worker provider 不正は非 0 終了 + stderr（fail-close）。
 - 受入 = U-ORCH-BRIDGE-02（実 CLI を fake provider 付きで spawn し、dry-run 非 dispatch / 実 tick 駆動 /

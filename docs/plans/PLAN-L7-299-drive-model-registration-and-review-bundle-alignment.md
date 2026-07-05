@@ -84,12 +84,12 @@ review_evidence:
         output_digest: "sha256:383a3e4546d8ef984bf3adc418622c9d5aab2cea37f0196029fbcf574db038b3"
 ---
 
-# PLAN-L7-299: drive model registration and setup review-bundle alignment
+# PLAN-L7-299: drive model registration と setup review-bundle alignment
 
 ## 目的
 
 L4 正本の「Forward spine + 10 駆動モデル」を `harness.db` の `drive_runs` projection と
-`drive-db-registration` gate が意味どおり保証する。併せて、`ut-tdd setup project` の初回検証 command
+`drive-db-registration` gate が意味どおり保証する。併せて、`helix setup project` の初回検証 command
 一覧から `completion review-bundle` が落ちていた設計・テスト設計 drift を閉じる。
 
 ## 問題

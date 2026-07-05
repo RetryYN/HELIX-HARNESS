@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-127-orchestration-degradation-record
-title: "PLAN-L7-127: orchestration degradation record"
+title: "PLAN-L7-127: orchestration degradation record の記録"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - orchestration degradation record"
+    slot_label: "TL - orchestration degradation record 確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-127-orchestration-degradation-record.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T17:35:00+09:00"
     tests_green_at: "2026-06-23T17:35:00+09:00"
     verdict: approve
-    scope: "V-model injection records execution-mode degradation for hybrid-only orchestration modes."
+    scope: "V-model injection が hybrid-only orchestration modes の execution-mode degradation を記録する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -68,24 +68,24 @@ review_evidence:
         output_digest: "sha256:09dfbf69280399fc50b720af5b68e4ee8b22e3d28d484997df818edcfceb9a10"
 ---
 
-# PLAN-L7-127: orchestration degradation record
+# PLAN-L7-127: orchestration degradation record の記録
 
-## Objective
+## 目的
 
-Record explicit degradation when an injected `orchestration_mode` requires a
-runtime that is unavailable in the current execution mode.
+injected `orchestration_mode` が現在の execution mode では利用できない runtime を要求する場合、
+明示的な degradation を記録する。
 
-## Scope
+## スコープ
 
-- Add execution-mode-aware degradation to V-model injection.
-- Expose `degraded_from`, `degraded_to`, and `degradation_reason`.
-- Add `--mode <mode>` to `ut-tdd vmodel show ... --injection` for deterministic
-  testing and local inspection.
-- Back-fill requirements and L4 function design.
+- V-model injection に execution-mode-aware degradation を追加する。
+- `degraded_from`、`degraded_to`、`degradation_reason` を公開する。
+- deterministic testing と local inspection のため、
+  `helix vmodel show ... --injection` に `--mode <mode>` を追加する。
+- requirements と L4 function design へ back-fill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `agent/L7` in `claude-only` records degradation from
-  `claude_judge_codex_impl` to `claude_design_impl`.
-- `agent/L7` in `hybrid` records no degradation.
-- The CLI JSON output includes degradation fields when degradation applies.
+- `claude-only` の `agent/L7` は `claude_judge_codex_impl` から
+  `claude_design_impl` への degradation を記録する。
+- `hybrid` の `agent/L7` は degradation を記録しない。
+- degradation が適用される場合、CLI JSON output は degradation fields を含む。

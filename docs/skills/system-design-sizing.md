@@ -48,10 +48,10 @@ harness self-development に W-model を適用しない。
 L4 basic design では、次を含む sizing section を記録する。
 
 - **Module count:** この PLAN が導入する new `src/` modules の数。
-- **State surface:** この PLAN が harness.db tables、`.ut-tdd/` YAML keys、
+- **State surface:** この PLAN が harness.db tables、`.helix/` YAML keys、
   CLI state を追加するか。該当する場合は `db.md` skill を読む。
 - **External dependencies:** この PLAN が process boundary
-  （network、subprocess、`.ut-tdd/` を越える file I/O）を越えるか。各項目を列挙する。
+  （network、subprocess、`.helix/` を越える file I/O）を越えるか。各項目を列挙する。
 - **Test complexity estimate:** L6 unit-test design が覆うべき distinct behaviour paths の数。
 - **PLAN split decision:** sizing result が複数 PLAN boundary（異なる `layer` または `drive`）を示す場合、
   trace-freeze ではなく今 split する。
@@ -82,6 +82,6 @@ S3 verify 前に、この memo を proper design doc へ promote する。
       external dependencies、PLAN-split decision を含む。
 - [ ] W-model applicability が記録されている
       （single V または two-stage、rationale 付き）。
-- [ ] `ut-tdd plan lint` exits 0.
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `helix plan lint` exits 0.
+- [ ] `helix doctor` exits 0.
 - [ ] sizing から生じた PLAN split が、pair-freeze 前に `requires` fields へ反映されている。

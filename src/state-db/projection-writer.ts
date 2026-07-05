@@ -266,7 +266,7 @@ const RAW_PAYLOAD_KEYS = new Set([
   "screenshotBlob",
 ]);
 const VERIFY_CUTOVER_PLAN_ID = "PLAN-M-00-verify-cutover";
-const VERIFY_CUTOVER_AUDIT_PATH = ".ut-tdd/audit/A-132-l8-l14-verification-band-execution.md";
+const VERIFY_CUTOVER_AUDIT_PATH = ".helix/audit/A-132-l8-l14-verification-band-execution.md";
 const VERIFICATION_BAND_LAYERS = ["L8", "L9", "L10", "L11", "L12", "L13", "L14"] as const;
 
 function tableDef(name: string): TableDef {
@@ -673,7 +673,7 @@ function projectDriveRuns(
 
   for (const plan of plans.values()) {
     const digest = readJson<PlanDigestProjection>(
-      join(repoRoot, ".ut-tdd", "logs", "plan", `${plan.planId}.digest.json`),
+      join(repoRoot, ".helix", "logs", "plan", `${plan.planId}.digest.json`),
     );
     const sessions = ["", ...(digest?.sessions ?? [])];
     for (const sessionId of sessions) {
@@ -788,7 +788,7 @@ function isVerificationSessionCommand(command: string): boolean {
 }
 
 function isSkillSuggestSessionCommand(command: string): boolean {
-  return /\b(?:ut-tdd|bun\s+run\s+src\/cli\.ts)\s+skill\s+suggest\b/i.test(command);
+  return /\b(?:helix|bun\s+run\s+src\/cli\.ts)\s+skill\s+suggest\b/i.test(command);
 }
 
 function sessionEventExitCode(event: SessionLogProjection): number {
@@ -801,7 +801,7 @@ function projectHookEvents(
   db: HarnessDb,
   plans: Map<string, ProjectedPlan>,
 ): void {
-  const sessionDir = join(repoRoot, ".ut-tdd", "logs", "session");
+  const sessionDir = join(repoRoot, ".helix", "logs", "session");
   if (existsSync(sessionDir)) {
     for (const file of readdirSync(sessionDir)
       .filter((name) => name.endsWith(".jsonl"))
@@ -944,7 +944,7 @@ function projectHookEvents(
     }
   }
 
-  const providerDir = join(repoRoot, ".ut-tdd", "handover", "provider");
+  const providerDir = join(repoRoot, ".helix", "handover", "provider");
   if (!existsSync(providerDir)) return;
   for (const file of readdirSync(providerDir)
     .filter((name) => name.endsWith(".json"))
@@ -1679,7 +1679,7 @@ function projectRuntimeVerificationEvents(repoRoot: string, db: HarnessDb): void
 }
 
 function pairAgentEvidenceFiles(repoRoot: string): string[] {
-  const dir = join(repoRoot, ".ut-tdd", "evidence", "pair-agent");
+  const dir = join(repoRoot, ".helix", "evidence", "pair-agent");
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((name) => name.endsWith(".json"))
@@ -2046,7 +2046,7 @@ interface LoopIterationJsonlRecord {
 }
 
 function loopIterationFiles(repoRoot: string): string[] {
-  const dir = join(repoRoot, ".ut-tdd", "state", "loop");
+  const dir = join(repoRoot, ".helix", "state", "loop");
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((name) => name.endsWith(".iterations.jsonl"))
@@ -2653,7 +2653,7 @@ function projectRelationDiagramArtifacts(
         diagram_id: id,
         graph_snapshot_id: graphSnapshotId,
         format,
-        path: `stdout:ut-tdd graph export --format ${format}`,
+        path: `stdout:helix graph export --format ${format}`,
         renderer: format === "mermaid" ? "builtin-mermaid-text" : `builtin-${format}-text`,
         scope: "repo",
         created_at: createdAt,
@@ -3355,7 +3355,7 @@ function projectAutomationAssets(repoRoot: string, db: HarnessDb): void {
           .at(-1)
           ?.replace(/\.(md|ya?ml)$/i, "") ||
         rel;
-      const legacyRuntimeName = ["he", "lix"].join("");
+      const legacyRuntimeName = ["ut", "tdd"].join("-");
       const legacyCommandPattern = new RegExp(String.raw`\b${legacyRuntimeName}\s+codex\b`, "i");
       const status = legacyCommandPattern.test(content) ? "drift" : "current";
       const assetId = `${source.type}:${name}`;
@@ -3718,7 +3718,7 @@ export function projectPocEvaluations(db: HarnessDb, opts?: { asOf?: string }): 
 /**
  * FR-L1-38: model evaluation projection (opt-in).
  *
- * Opt-in gate: reads .ut-tdd/config/model-opt-in.yaml under repoRoot.
+ * Opt-in gate: reads .helix/config/model-opt-in.yaml under repoRoot.
  * If the file exists AND parses to { enabled: true }, evaluation runs.
  * Otherwise (file absent or enabled != true), writes 0 rows and returns.
  * Default (no file) = disabled. This is deterministic and does not throw.
@@ -3746,7 +3746,7 @@ export function projectPocEvaluations(db: HarnessDb, opts?: { asOf?: string }): 
  */
 export function projectModelEvaluations(db: HarnessDb, repoRoot: string): void {
   // Opt-in gate: disabled by default.
-  const optInPath = join(repoRoot, ".ut-tdd", "config", "model-opt-in.yaml");
+  const optInPath = join(repoRoot, ".helix", "config", "model-opt-in.yaml");
   if (!existsSync(optInPath)) return;
   let enabled = false;
   try {

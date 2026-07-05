@@ -4,7 +4,7 @@ title: "PLAN-L7-62: runtime portability guard for TS/Bun/Node surfaces"
 kind: impl
 layer: L7
 drive: fullstack
-parent_design: docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+parent_design: docs/adr/ADR-001-helix-harness-redesign-and-language.md
 status: completed
 created: 2026-06-16
 updated: 2026-06-16
@@ -39,35 +39,32 @@ dependencies:
   parent: PLAN-L7-60
   requires:
     - docs/design/harness/L1-requirements/nfr.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
     - docs/governance/repository-structure.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
-# IMP-146 trace correction (2026-06-26, Codex cross-review AGREE): runtime-portability
+# IMP-146 trace correction（2026-06-26, Codex cross-review AGREE）: runtime-portability の trace 是正
 # guard は L1 nfr.md の NFR-04 (harness=TS/Bun, ADR-001) + NFR-01/§6 (cross-platform
 # native / Bun runtime) の機械強制 (enforcement)。欠落していた上流 descent link を補い
 # forward-convergence spine-internal とする (Forward 集約)。新規仕様 back-fill は無し。
 ---
 
-# PLAN-L7-62: runtime portability guard for TS/Bun/Node surfaces
+# PLAN-L7-62: runtime portability guard for TS/Bun/Node surfaces（移植性 guard）
 
-## Objective
+## 目的
 
-Make Windows portability and ADR-001 runtime boundaries mechanically enforced instead of relying
-on review memory.
+Windows portability と ADR-001 runtime boundaries を review memory に頼らず、機械的に enforce する。
 
-The harness core is TypeScript with Node standard-library APIs and a Bun runtime/compiled binary
-path. Thin POSIX/PowerShell wrappers are allowed, but Python/Bash runtime logic must not move back
-into current core surfaces.
+harness core は TypeScript、Node standard-library APIs、Bun runtime / compiled binary path で構成する。
+thin POSIX/PowerShell wrappers は許可するが、Python/Bash runtime logic を current core surfaces に戻してはならない。
 
 ## Scope
 
-- Add `runtime-portability` lint for package/tsconfig runtime contract, TS-only core surfaces,
-  TypeScript Claude hooks, approved thin wrappers, local absolute paths, and shell/Python dispatch.
-- Scan both tracked and untracked non-ignored files so active setup/worktree drift is caught before commit.
-- Wire `runtime-portability` into `doctor` as a hard gate.
-- Replace CLI `git` helper calls that used shell-string `execSync` with `execFileSync("git", args)`.
-- Add detector meta tests and current-repo guard coverage.
-- Add a named `test:node-fallback` smoke script for the Node SQLite fallback path.
+- package/tsconfig runtime contract、TS-only core surfaces、TypeScript Claude hooks、approved thin wrappers、local absolute paths、shell/Python dispatch 向けに `runtime-portability` lint を追加する。
+- tracked files と untracked non-ignored files の両方を scan し、commit 前に active setup/worktree drift を捕捉する。
+- `runtime-portability` を `doctor` hard gate として wire する。
+- shell-string `execSync` を使っていた CLI `git` helper calls を `execFileSync("git", args)` に置き換える。
+- detector meta tests と current-repo guard coverage を追加する。
+- Node SQLite fallback path 向けに named `test:node-fallback` smoke script を追加する。
 
 ## Verification
 
@@ -76,9 +73,9 @@ into current core surfaces.
 
 ## DoD
 
-- [x] Non-TS runtime files under `src/` or `.claude/hooks/` are detected.
-- [x] Untracked non-ignored runtime files are detected during active worktree setup.
-- [x] Unapproved `scripts/` runtime wrappers are detected.
-- [x] Package/tsconfig drift that weakens TS/Bun/Node guarantees is detected.
-- [x] Node SQLite fallback behavior is covered by a named smoke script.
-- [x] `runtime-portability` is included in doctor hard-gate aggregation.
+- [x] `src/` または `.claude/hooks/` 配下の Non-TS runtime files を検出する。
+- [x] active worktree setup 中の untracked non-ignored runtime files を検出する。
+- [x] unapproved `scripts/` runtime wrappers を検出する。
+- [x] TS/Bun/Node guarantees を弱める package/tsconfig drift を検出する。
+- [x] Node SQLite fallback behavior を named smoke script で cover する。
+- [x] `runtime-portability` が doctor hard-gate aggregation に含まれている。

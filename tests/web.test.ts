@@ -115,7 +115,7 @@ describe("component-derived web UI registry (PLAN-L7-141)", () => {
   });
 
   it("exposes a CLI render surface for the static read-only UI", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-web-render-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-web-render-"));
     const out = join(root, "dashboard.html");
     try {
       const run = runCli(["web", "render", "--out", out, "--json"]);

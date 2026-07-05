@@ -43,21 +43,21 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-67: deterministic team launch policy
+# PLAN-L7-67: deterministic team launch policy（決定的なチーム起動ポリシー）
 
-## Objective
+## 目的
 
-Make subagent launch timing explicit and machine-checkable before provider CLIs are started.
+provider CLI を起動する前に、subagent の起動タイミングを明示的かつ機械検査可能にする。
 
-## Scope
+## スコープ
 
-- Add `recommendTeamLaunch` so free-form tasks deterministically return launch/no-launch, trigger, reason, difficulty, and an optional `TeamDefinition`.
-- Add `ut-tdd team suggest --task ... --json` as the non-destructive CLI surface.
-- Keep non-`hybrid` modes fail-closed with `trigger="unavailable"` instead of silently replacing cross-provider review.
-- Route recommended definitions through the existing `teamDefinitionSchema` / `team run` flow.
-- Document launch triggers in README, L6 design, and L7 test design.
+- `recommendTeamLaunch` を追加し、free-form task から launch/no-launch、trigger、reason、difficulty、任意の `TeamDefinition` を決定的に返す。
+- 非破壊の CLI surface として `helix team suggest --task ... --json` を追加する。
+- non-`hybrid` mode は cross-provider review を暗黙に置き換えず、`trigger="unavailable"` で fail-closed に保つ。
+- 推奨された定義は既存の `teamDefinitionSchema` / `team run` flow を通す。
+- launch trigger を README、L6 design、L7 test design に記録する。
 
-## Verification
+## 検証
 
 - [x] `bun run typecheck`
 - [x] `bunx vitest run tests\team-launch-policy.test.ts tests\team-run.test.ts tests\cli-surface.test.ts`
@@ -67,10 +67,10 @@ Make subagent launch timing explicit and machine-checkable before provider CLIs 
 - [x] `bun src\cli.ts doctor`
 - [x] `bun run test`
 
-## DoD
+## 完了条件 (DoD)
 
-- [x] Trivial/simple tasks do not launch a team unless risk terms are present.
-- [x] Standard+ or risk-bearing tasks recommend a cross-provider team in `hybrid` mode.
-- [x] Non-`hybrid` modes return unavailable without implicit fallback.
-- [x] Critical recommendations add implementation, review, and QA roles with deterministic high-effort model selection.
-- [x] CLI output is JSON-machine-readable and does not start providers.
+- [x] trivial/simple task は、risk term が存在しない限り team を起動しない。
+- [x] standard+ または risk を含む task は、`hybrid` mode で cross-provider team を推奨する。
+- [x] non-`hybrid` mode は、暗黙 fallback なしで unavailable を返す。
+- [x] critical recommendation は、implementation、review、QA role を追加し、決定的な high-effort model selection を行う。
+- [x] CLI output は JSON として機械可読であり、provider を起動しない。

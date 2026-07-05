@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-217-pair-agent-consultation-precedence
-title: "PLAN-REVERSE-217: pair-agent consultation precedence backfill"
+title: "PLAN-REVERSE-217: pair-agent consultation precedence の逆流補完"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,28 +16,28 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
-    reason: "HR-FR-P2-04 / HAC-P2-04b now state that consultation questions take precedence over simultaneous implementation evidence and that light-agent completion/approval/verdict markers fail-close."
+    reason: "HR-FR-P2-04 / HAC-P2-04b は、consultation 質問が同時に出た implementation evidence より優先され、light-agent の completion/approval/verdict marker は fail-close することを記録済み。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "HB-P2 already defines the pair-agent route at workflow block level; this slice tightens L6 execution semantics."
+    reason: "HB-P2 は pair-agent route を workflow block level で定義済み。この slice は L6 execution semantics を締めるだけである。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "HC-P2 detailed contract already owns pair-agent run semantics; no new L5 block is required."
+    reason: "HC-P2 detailed contract は pair-agent run semantics をすでに所有しており、新しい L5 block は不要である。"
   - layer: L6-function-design
     decision: updated
     evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-    reason: "HC-P2 now records consultation precedence and light-agent closing-authority marker rejection in the runPairAgentTddPlan contract."
+    reason: "HC-P2 は `runPairAgentTddPlan` contract に consultation precedence と light-agent closing-authority marker rejection を記録済み。"
   - layer: L3-test-design
     decision: updated
     evidence_path: docs/test-design/helix/L3-pillar-acceptance-test-design.md
-    reason: "HAT-P2-04 now cites pair-agent consultation precedence and light-agent closure-claim rejection as acceptance evidence."
+    reason: "HAT-P2-04 は pair-agent consultation precedence と light-agent closure-claim rejection を acceptance evidence として cite する。"
   - layer: L6-test-design
     decision: updated
     evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-    reason: "HU-PILLAR-P2-04 now expects mixed consultation output to remain pending until smart response and light closure markers to fail-close."
+    reason: "HU-PILLAR-P2-04 は、mixed consultation output が smart response まで pending のまま残り、light closure marker が fail-close することを期待する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - pair-agent consultation precedence backfill"
+    slot_label: "TL - pair-agent consultation precedence 逆流補完"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-217-pair-agent-consultation-precedence.md
     artifact_type: markdown_doc
@@ -59,7 +59,7 @@ review_evidence:
     reviewed_at: "2026-07-01T09:16:27+09:00"
     tests_green_at: "2026-07-01T09:16:27+09:00"
     verdict: pass
-    scope: "Backfilled the light-agent closing-authority rejection into HR-FR-P2-04/HAC-P2-04b, L6 HC-P2, and paired L3/L6 test design. This keeps the smart review agent as the only local verdict authority in the TDD pair route."
+    scope: "light-agent closing-authority rejection を HR-FR-P2-04/HAC-P2-04b、L6 HC-P2、paired L3/L6 test design へ逆流補完した。これにより TDD pair route の local verdict authority は smart review agent のみとして維持される。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -92,7 +92,7 @@ review_evidence:
     reviewed_at: "2026-07-01T07:41:20+09:00"
     tests_green_at: "2026-07-01T07:41:20+09:00"
     verdict: pass
-    scope: "Backfilled PLAN-L7-217 into HR-FR-P2-04/HAC-P2-04b, L6 HC-P2, and paired L3/L6 test design. The backfill preserves frontier approval and CI/merge gate boundaries."
+    scope: "PLAN-L7-217 を HR-FR-P2-04/HAC-P2-04b、L6 HC-P2、paired L3/L6 test design へ逆流補完した。この backfill は frontier approval と CI/merge gate boundary を維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -114,29 +114,26 @@ review_evidence:
         output_digest: "sha256:aa9a77ad5b62f764027ea7a7acd77678278e45acebceea915d113371e3da1edf"
 ---
 
-# PLAN-REVERSE-217: pair-agent consultation precedence backfill
+# PLAN-REVERSE-217: pair-agent consultation precedence の逆流補完
 
-## Objective
+## 目的
 
-Backfill pair-agent consultation precedence so the implementation change is a
-workflow rule, not an isolated parser tweak. The semantic source is HR-FR-P2-04:
-the light agent may ask for consultation, but consultation is not a pass.
+pair-agent consultation precedence を逆流補完し、implementation change を単独の
+parser tweak ではなく workflow rule として扱う。semantic source は HR-FR-P2-04
+であり、light agent は consultation を求めてもよいが、consultation は pass ではない。
 
-## Backfill Result
+## 逆流補完結果
 
-- HR-FR-P2-04 / HAC-P2-04b record that consultation mixed with implementation
-  evidence still routes to smart instruction.
-- HR-FR-P2-04 / HAC-P2-04b record that light-agent completion/approval/verdict
-  markers fail-close because the light implementation agent has no closing
-  authority.
-- L6 HC-P2 records the `runPairAgentTddPlan` fail-close contract.
-- L3/L6 paired test design cite `tests/pair-agent.test.ts`.
-- Frontier approval, evidence persistence, and CI/merge boundaries remain
-  unchanged.
+- HR-FR-P2-04 / HAC-P2-04b は、consultation が implementation evidence と混在しても
+  smart instruction へ route することを記録する。
+- HR-FR-P2-04 / HAC-P2-04b は、light implementation agent に closing authority がないため、
+  light-agent completion/approval/verdict marker が fail-close することを記録する。
+- L6 HC-P2 は `runPairAgentTddPlan` fail-close contract を記録する。
+- L3/L6 paired test design は `tests/pair-agent.test.ts` を cite する。
+- Frontier approval、evidence persistence、CI/merge boundary は変更しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-217` and this Reverse PLAN require each other for add-impl backfill.
-- The new behavior is test-cited by `HU-PILLAR-P2-04`.
-- The backfill does not claim whole-program completion or `.ut-tdd -> .helix`
-  cutover.
+- `PLAN-L7-217` とこの Reverse PLAN は add-impl backfill のため相互に require する。
+- 新しい behavior は `HU-PILLAR-P2-04` で test-cited される。
+- この backfill は whole-program completion や `.helix -> .helix` cutover を claim しない。

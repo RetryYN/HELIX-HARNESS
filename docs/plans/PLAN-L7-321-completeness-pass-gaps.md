@@ -59,7 +59,7 @@ review_evidence:
         evidence_path: src/graph/loader.ts
         output_digest: "sha256:59d40726254c5d3e1c2f82345fcb1d436148351da1951ab1d09119c046adedd8"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -128,9 +128,9 @@ review_evidence:
 ## 名称 / rename 境界
 
 - 本 PLAN の current prose は HELIX 名称へ寄せ、上流突合 docs 参照も `upstream-helix-*` にそろえた。
-- `.ut-tdd` / `ut-tdd` / `area=harness` の物理 rename、ファイル名 rename、distribution cutover は
+- `.helix` / `helix` / `area=helix` の物理 rename、ファイル名 rename、distribution cutover は
   PLAN-M-02 の `cutover_decision_record` と `action_binding_approval_record` が承認されるまで行わない。
-  `ut-tdd rename plan --json` は 2026-07-05 時点で `blocked_pending_cutover_approval` /
+  `helix rename plan --json` は 2026-07-05 時点で `blocked_pending_cutover_approval` /
   `mustNotApply: true` を返しており、未承認の実 state move は禁止である。
 
 ## レビュー / 次工程

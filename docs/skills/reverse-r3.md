@@ -55,11 +55,11 @@ R3 は PO sign-off なしに exit できない。PO は次を review する。
 - gap classifications（`confirmed` / `gap` / `conflict`）は PO の理解と一致するか。
 - draft `forward_routing` selection は適切か。
 
-次へ進む前に、PLAN `review_evidence` field と `.ut-tdd/audit/` に PO review evidence を記録する。
+次へ進む前に、PLAN `review_evidence` field と `.helix/audit/` に PO review evidence を記録する。
 
 ## 出力 artifact: intent-hypotheses
 
-`.ut-tdd/reverse/<plan_id>/R3-intent-hypotheses.yaml` へ書く。
+`.helix/reverse/<plan_id>/R3-intent-hypotheses.yaml` へ書く。
 
 ```yaml
 plan_id: <PLAN-REVERSE-NN>
@@ -86,8 +86,8 @@ r3_notes: ""
 - [ ] 各 hypothesis が valid enum（L1/L3/L4/L5/gap-only）の
       `draft_routing` value を持つ。
 - [ ] PLAN `review_evidence` field が PO sign-off reference で更新されている。
-- [ ] `workflow_phase: R4` の状態で `ut-tdd plan lint` が 0 で終了する。
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `workflow_phase: R4` の状態で `helix plan lint` が 0 で終了する。
+- [ ] `helix doctor` exits 0.
 
 PO verification なしで R3 を進めることは blocking violation である。
-schema が enforcement する場合、`po_reviewed` field は `ut-tdd plan lint` により機械検査される。
+schema が enforcement する場合、`po_reviewed` field は `helix plan lint` により機械検査される。

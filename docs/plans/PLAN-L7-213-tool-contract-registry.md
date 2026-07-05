@@ -82,48 +82,45 @@ review_evidence:
         output_digest: "sha256:7ed7860b34c01fc2b864f5396880a87d7d71d63367424b190efe87bd5041af86"
 ---
 
-# PLAN-L7-213: typed agent-tool contract registry
+# PLAN-L7-213: 型付き agent-tool contract registry
 
-## Objective
+## 目的
 
-Close the HC-P2 / HR-FR-P2-01 gap where agent-to-tool calls could be discussed in
-design as typed contracts while the implementation only guarded selected runtime
-surfaces. The implementation must make registered tool surfaces machine-readable,
-deny unknown surfaces unless explicitly deferred, and verify both request and
-response evidence.
+agent-to-tool call を設計上は型付き contract として扱う一方で、実装では一部の runtime
+surface だけを guard していた HC-P2 / HR-FR-P2-01 の gap を閉じる。実装では登録済み tool
+surface を machine-readable にし、明示的な defer 理由がない unknown surface を deny し、
+request と response の両方の evidence を検証できるようにする。
 
-## Scope
+## スコープ
 
-- Add `src/orchestration/tool-contract.ts` as the pure typed registry and
-  validator for tool request/response contracts.
-- Cover Claude `Agent`, Codex `spawn_agent`, denied Codex bulk spawn, Codex edit
-  surfaces, and shell command surfaces with contract ids.
-- Add a doctor hard gate for registry integrity.
-- Add unit tests for registered allow, missing required field, unregistered
-  deny/defer, response field validation, forbidden model override, registered
-  deny surface, and doctor-ready registry audit.
-- Update L1/L3/L4/L6 and paired test-design text so the residual P2 gap no
-  longer claims typed contract registry is wholly absent.
+- `src/orchestration/tool-contract.ts` を tool request/response contract 用の pure typed registry
+  と validator として追加する。
+- Claude `Agent`、Codex `spawn_agent`、deny される Codex bulk spawn、Codex edit surface、
+  shell command surface を contract id 付きで covered surface にする。
+- registry integrity を確認する doctor hard gate を追加する。
+- 登録済み許可、必須フィールド不足、未登録 surface の deny/defer、response field validation、
+  forbidden model override、登録済み deny surface、doctor-ready registry audit の unit test を追加する。
+- L1/L3/L4/L6 と対応する test-design の記述を更新し、residual P2 gap が typed contract registry
+  全体の欠落であるとは主張しない状態にする。
 
-## Non-Scope
+## 対象外
 
-- This PLAN does not implement loop effort-budget enforcement.
-- This PLAN does not make hosted/API developer tools mechanically hook-covered.
-- This PLAN does not activate `.ut-tdd -> .helix` cutover.
+- この PLAN では loop effort-budget enforcement を実装しない。
+- この PLAN では hosted/API developer tools を機械的な hook coverage 対象にしない。
+- この PLAN では `.helix -> .helix` cutover を有効化しない。
 
-## Design Notes
+## 設計メモ
 
-`validateToolContractSurface` is intentionally pure. It can be used before a tool
-call with `stage="request"`, after a call with `stage="response"`, or for both
-with `stage="roundtrip"`. A registered denied surface still has a contract id so
-audits can distinguish "known and forbidden" from "unknown and untracked".
+`validateToolContractSurface` は意図的に pure にしている。tool call 前の `stage="request"`、
+call 後の `stage="response"`、または両方を扱う `stage="roundtrip"` で利用できる。
+registered denied surface にも contract id を持たせ、audit が「known and forbidden」と
+「unknown and untracked」を区別できるようにする。
 
 ## DoD
 
-- [x] Request contract validation exists.
-- [x] Response contract validation exists.
-- [x] Unknown surface fails closed unless an explicit deferred reason is present.
-- [x] Registered denied surface fails closed.
+- [x] Request contract validation が存在する。
+- [x] Response contract validation が存在する。
+- [x] 明示的な deferred reason がない unknown surface は fail-close する。
+- [x] Registered denied surface は fail-close する。
 - [x] Doctor exposes `tool-contract-registry`.
-- [x] L1/L3/L6 design and paired test-design are updated without claiming whole
-      P2 completion.
+- [x] L1/L3/L6 design と対応する test-design は、P2 全体の completion を主張しない形で更新済み。

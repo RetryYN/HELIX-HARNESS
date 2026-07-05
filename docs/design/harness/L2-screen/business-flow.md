@@ -30,7 +30,7 @@ updated: 2026-06-24
 | AI Runtime | Codex / Claude Code process | CLI-mediated task を通じて design、implementation、review、verification の output を作る。 | 直接 UI 操作なし |
 | HELIX Core | CLI, validators, doctor, plan lint, vmodel lint, projection writers | workflow を強制し、machine evidence を生成し、drift 時は fail-close する。 | PM/HM 画面に反映 |
 | Repository / GitHub | Git history, PR, checks, actions, review evidence | canonical artifact と CI evidence を永続化する。 | PM-03, HM-05, GD-01 |
-| Docs / DB | Markdown design docs, test design docs, `.ut-tdd` state, `harness.db` | readable design source と queryable runtime projection を提供する。 | PM-04, PM-06, HM-04 |
+| Docs / DB | Markdown design docs, test design docs, `.helix` state, `harness.db` | readable design source と queryable runtime projection を提供する。 | PM-04, PM-06, HM-04 |
 
 ## 2. フロー一覧
 

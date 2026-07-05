@@ -15,7 +15,7 @@ review_evidence:
     reviewed_at: "2026-06-17"
     tests_green_at: "2026-06-17"
     verdict: pass
-    scope: "Skill substance curation closed: 54 packs all carry HELIX substance (0 generic stubs), valid skill.v1 routing frontmatter, real ut-tdd commands only, 0 legacy terms, readability 0 markers. pmo-tech-docs subagents authored per requirement-mapped batches; PM verified via asset catalog, doctor, readability/asset-drift gates, byte-level U+FFFD scan, and full Vitest (685)."
+    scope: "Skill substance curation closed: 54 packs all carry HELIX substance (0 generic stubs), valid skill.v1 routing frontmatter, real helix commands only, 0 legacy terms, readability 0 markers. pmo-tech-docs subagents authored per requirement-mapped batches; PM verified via asset catalog, doctor, readability/asset-drift gates, byte-level U+FFFD scan, and full Vitest (685)."
     worker_model: sonnet
     reviewer_model: claude-opus-4-8
 agent_slots:
@@ -56,7 +56,7 @@ related_l0_extra: docs/design/harness/L1-requirements/functional-requirements.md
 FR-L1-47（skill pack の HELIX curate）と FR-L1-12（L 単位 文脈注入）を満たすため、
 `docs/skills/*.md` の各 pack に実質的な HELIX 手順を持たせる。対象は
 `src/skills/recommend.ts` が読む routing frontmatter と、HELIX workflow 内での使い方を
-説明する本文である。本文は実在する `ut-tdd` command、`.ut-tdd/` state、V-model layer、
+説明する本文である。本文は実在する `helix` command、`.helix/` state、V-model layer、
 drive model、gate を前提にする。HELIX vendor source は ADR-001 と fork plan §1.5 に基づく
 参考資料に限定し、verbatim copy や HELIX/ai-dev-kit term は持ち込まない。
 
@@ -85,11 +85,11 @@ Requirements-driven（§1.5）として、pack は FR-L1-*、drive、mode のい
   `quality-lv5`、`security-and-hardening`、`source-driven-development`、`testing` であり、
   削除前に各 pack を再確認する。
 
-Command vocabulary は実在する `ut-tdd` surface に限定する。利用可能な語彙は `status`、`doctor`、
+Command vocabulary は実在する `helix` surface に限定する。利用可能な語彙は `status`、`doctor`、
 `plan lint`、`plan use`、`review`、`handover`、`skill suggest`、`team`、`codex`、`claude`、
 `gate`、`vmodel lint`、`telemetry`、`metrics`、`graph`、`find`、`db`、`setup`、
 `asset catalog` である。
-未実装 command（`ut-tdd task classify`、`ut-tdd reverse`、`ut-tdd scrum`、`ut-tdd debt`）は
+未実装 command（`helix task classify`、`helix reverse`、`helix scrum`、`helix debt`）は
 §6 P0 または pending work として扱い、live command として引用しない。必要な場合は
 drive/mode と既存 lint を参照する。
 
@@ -110,7 +110,7 @@ drive/mode と既存 lint を参照する。
   7-value set、`applies_to.layers` は L0-L14、`applies_to.drive_models` は 9-value set に従う。
 - landed した各 pack body は HELIX-substantive であり、実在 command、state、gate を説明する。
   generic stub ではなく、HELIX/ai-dev-kit term や `HELIX_*` env を含めない。
-- `ut-tdd asset catalog`、`ut-tdd doctor`、Biome、typecheck、Vitest は green を維持する。
+- `helix asset catalog`、`helix doctor`、Biome、typecheck、Vitest は green を維持する。
   新規 pack に対する readability/asset-drift lint も pass する。
 - Review evidence は accept gate の前に記録する。
 

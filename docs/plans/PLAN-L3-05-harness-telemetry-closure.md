@@ -22,9 +22,9 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L3-05-harness-telemetry-closure.md
     artifact_type: markdown_doc
-  - artifact_path: .ut-tdd/audit/A-134-harness-telemetry-self-improvement-audit.md
+  - artifact_path: .helix/audit/A-134-harness-telemetry-self-improvement-audit.md
     artifact_type: markdown_doc
-  - artifact_path: .ut-tdd/audit/A-136-cycle-p4-verification-audit.md
+  - artifact_path: .helix/audit/A-136-cycle-p4-verification-audit.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/telemetry-closure.ts
     artifact_type: source_module
@@ -59,73 +59,73 @@ dependencies:
     - docs/design/harness/L6-function-design/function-spec.md
     - docs/test-design/harness/L8-integration-test-design.md
     - docs/test-design/harness/L9-system-test-design.md
-    - .ut-tdd/audit/A-134-harness-telemetry-self-improvement-audit.md
+    - .helix/audit/A-134-harness-telemetry-self-improvement-audit.md
   blocks:
     - docs/plans/PLAN-L7-51-skill-injection-runtime.md
     - docs/plans/PLAN-L7-52-telemetry-feedback-loop.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L3-05: harness telemetry and self-improvement closure
+# PLAN-L3-05: harness telemetry と self-improvement closure
 
-## Section 0 Objective
+## Section 0 目的
 
-Prevent false closure of harness measurement, self-improvement, and team-standard project hook features.
+harness measurement、self-improvement、team-standard project hook feature の false closure を防ぐ。
 
-This PLAN treats UT-TDD as a TDD team standardization development harness. It creates the closure audit, WBS, and doctor-visible lint that keep dynamic skill injection, drive-model skill injection, firing-rate metrics, retry/bottleneck analytics, trouble logs, GitHub issue routing, project-local hooks, and improvement-loop automation non-closed until implementation evidence exists.
+この PLAN は HELIX を TDD team standardization development harness として扱う。dynamic skill injection、drive-model skill injection、firing-rate metrics、retry/bottleneck analytics、trouble logs、GitHub issue routing、project-local hooks、improvement-loop automation について、implementation evidence が出るまで non-closed に保つ closure audit、WBS、doctor-visible lint を作る。
 
-## Section 0.1 Absolute No-Omission Principle
+## Section 0.1 絶対 no-omission 原則
 
-- A schema table with 0 rows is not operational evidence.
-- A design function name is not a CLI/runtime feature.
-- A hook/session log without classification is not a trouble-log system.
-- A metrics command without upstream event capture is not an end-to-end telemetry loop.
-- A GitHub connector capability is not an approved product feature until dry-run, approval, and back-reference rules are frozen.
-- A self-improvement loop is closed only when measurement rows produce findings, feedback events, improvement backlog or issue-queue entries, and doctor-visible closure evidence.
+- row が 0 件の schema table は operational evidence ではない。
+- design function name は CLI/runtime feature ではない。
+- classification のない hook/session log は trouble-log system ではない。
+- upstream event capture のない metrics command は end-to-end telemetry loop ではない。
+- GitHub connector capability は、dry-run、approval、back-reference rule が freeze されるまで approved product feature ではない。
+- self-improvement loop は、measurement row が finding、feedback event、improvement backlog または issue-queue entry、doctor-visible closure evidence を生成して初めて closed とみなす。
 
-## Section 1 Gap Summary
+## Section 1 Gap 概要
 
-| Area | Current evidence | Gap |
+| 領域 | 現在の evidence | Gap |
 |---|---|---|
-| L-unit dynamic skill injection | L3 FR and L6 function design define `skill suggest` / `suggestSkillInjection`; L8/L9 test design names integration/system tests | No `ut-tdd skill suggest` command, no runtime recommendation writer, and `skill_recommendations=0` |
-| Drive-model skill injection | Drive model tables and passage certificate exist | No skill recommender conditioned by drive model / entry mode |
-| Skill firing parameters | `skill_recommendations` and `skill_invocations` tables exist | No projection writer populates them; no firing parameter capture |
-| Trouble logs | session logs and `hook_events=3212` exist | No trouble taxonomy or bridge to feedback/improvement rows |
-| GitHub issue creation outside Forward | GitHub connector exists in environment; `issue_queue` dry-run entries, human approval guardrail decisions, and back-reference columns are available | Actual GitHub mutation is out of this implementation scope; populated external issue-id back-reference is recorded only after separate human-approved creation |
-| Drive firing-rate measurement | `drive_runs=210` exists | Firing-rate metrics are projected into `quality_signals`; per-runtime attribution can be expanded |
-| Retry and bottleneck detection | `workflow_runs=7`, `workflow_retry_groups`, `retry_events`, and bottleneck quality signals exist | Per-session attribution can be expanded, but DB projection path exists |
-| Self-improvement loop | `quality_signals`, `feedback_events`, `issue_queue`, and `improvement_log` are projected by rebuild | Actual GitHub mutation and external issue-id return remain approval-gated |
-| Project hook configuration | `.claude/settings.json` exists as repository-local Claude Code hook configuration | No doctor-visible check proves the TDD team standard hooks stay project-local and package-local |
+| L-unit dynamic skill injection | L3 FR と L6 function design は `skill suggest` / `suggestSkillInjection` を定義し、L8/L9 test design は integration/system test を挙げる | `helix skill suggest` command、runtime recommendation writer がなく、`skill_recommendations=0` |
+| Drive-model skill injection | Drive model table と passage certificate は存在する | drive model / entry mode で条件付けされた skill recommender がない |
+| Skill firing parameters | `skill_recommendations` と `skill_invocations` table は存在する | それらを populate する projection writer がなく、firing parameter capture もない |
+| Trouble logs | session log と `hook_events=3212` は存在する | trouble taxonomy や feedback/improvement row への bridge がない |
+| GitHub issue creation outside Forward | GitHub connector は環境に存在し、`issue_queue` dry-run entry、human approval guardrail decision、back-reference column は利用可能 | actual GitHub mutation はこの implementation scope 外であり、external issue-id back-reference の populate は別途 human-approved creation 後だけ記録する |
+| Drive firing-rate measurement | `drive_runs=210` は存在する | firing-rate metrics は `quality_signals` へ projection 済み。per-runtime attribution は拡張余地がある |
+| Retry and bottleneck detection | `workflow_runs=7`、`workflow_retry_groups`、`retry_events`、bottleneck quality signal は存在する | per-session attribution は拡張余地があるが、DB projection path は存在する |
+| Self-improvement loop | `quality_signals`、`feedback_events`、`issue_queue`、`improvement_log` は rebuild で projection される | actual GitHub mutation と external issue-id return は approval-gated のまま |
+| Project hook configuration | `.claude/settings.json` は repository-local Claude Code hook configuration として存在する | TDD team standard hook が project-local / package-local に留まることを証明する doctor-visible check がない |
 
-## Section 2 WBS
+## Section 2 WBS 作業表
 
-| WBS ID | Task | Owner | Dependencies | Duration | Env | L4 Sprint | feature flag | rollback |
+| WBS ID | 作業 | Owner | Dependencies | 期間 | Env | L4 Sprint | feature flag | rollback |
 |---|---|---|---|---|---|---|---|---|
-| WBS-L3-05-01 | Create A-134 telemetry closure audit with DB count evidence and no-omission rules | TL | none | 0.25d | docs | .1 | N/A | Remove A-134 and keep open finding in backlog |
-| WBS-L3-05-02 | Add telemetry closure lint that validates every required measurement row has evidence, owner, and status | TL | WBS-L3-05-01 | 0.25d | src/tests | .1 | N/A | Disable doctor wiring; keep lint test-only |
-| WBS-L3-05-03 | Wire telemetry closure into doctor as hard/fail-close surface | TL | WBS-L3-05-02 | 0.25d | src | .1 | N/A | Remove doctor call and keep A-134 manual |
-| WBS-L3-05-04 | Implement dynamic L-unit and drive-model skill recommender CLI | TL/worker | WBS-L3-05-01..03 | 1.0d | src/tests/docs | .2 | ff_skill_recommendation_runtime=false | Keep `skill suggest` hidden and tables non-closed |
-| WBS-L3-05-05 | Add skill invocation projection and metrics by plan, layer, drive, source, and acceptance | TL/worker | WBS-L3-05-04 | 1.0d | src/tests/db | .2 | ff_skill_invocation_projection=false | Drop new projection rows via migration rollback |
-| WBS-L3-05-06 | Add drive firing-rate, retry, and bottleneck analytics into `quality_signals` | TL/worker | WBS-L3-05-05 | 1.0d | src/tests/db | .3 | ff_telemetry_quality_signals=false | Disable metrics command and keep raw rows |
-| WBS-L3-05-07 | Add trouble taxonomy and feedback-event bridge from hook/session/failure rows | TL/worker | WBS-L3-05-06 | 1.0d | src/tests/db | .3 | ff_trouble_feedback_bridge=false | Keep classifier report-only |
-| WBS-L3-05-08 | Add improvement backlog writer and GitHub issue dry-run queue with human approval gate | TL/PO | WBS-L3-05-07 | 1.0d | src/tests/docs | .4 | ff_issue_queue=false | Keep local backlog only; do not mutate GitHub in this implementation |
-| WBS-L3-05-09 | Add project-hook lint proving repo-local TDD team standard hooks | TL/worker | WBS-L3-05-04 | 0.5d | src/tests/docs | .3 | ff_project_hook_lint=false | Keep `.claude/settings.json` manual but doctor-visible |
-| WBS-L3-05-10 | Verify doctor, db rebuild, metrics, and tests prove nonzero quality/feedback/skill rows before closure | QA/TL | WBS-L3-05-04..09 | 0.5d | local | .5 | N/A | Reopen A-134 rows as `partial` or `gap` |
+| WBS-L3-05-01 | DB count evidence と no-omission rule を持つ A-134 telemetry closure audit を作る | TL | none | 0.25d | docs | .1 | N/A | A-134 を削除し、open finding を backlog に残す |
+| WBS-L3-05-02 | required measurement row ごとに evidence、owner、status を検証する telemetry closure lint を追加する | TL | WBS-L3-05-01 | 0.25d | src/tests | .1 | N/A | doctor wiring を無効化し、lint は test-only にする |
+| WBS-L3-05-03 | telemetry closure を doctor の hard/fail-close surface として配線する | TL | WBS-L3-05-02 | 0.25d | src | .1 | N/A | doctor call を外し、A-134 を manual に戻す |
+| WBS-L3-05-04 | dynamic L-unit と drive-model skill recommender CLI を実装する | TL/worker | WBS-L3-05-01..03 | 1.0d | src/tests/docs | .2 | ff_skill_recommendation_runtime=false | `skill suggest` を hidden のままにし、table は non-closed に保つ |
+| WBS-L3-05-05 | plan、layer、drive、source、acceptance 別の skill invocation projection と metrics を追加する | TL/worker | WBS-L3-05-04 | 1.0d | src/tests/db | .2 | ff_skill_invocation_projection=false | migration rollback で new projection row を drop する |
+| WBS-L3-05-06 | drive firing-rate、retry、bottleneck analytics を `quality_signals` へ追加する | TL/worker | WBS-L3-05-05 | 1.0d | src/tests/db | .3 | ff_telemetry_quality_signals=false | metrics command を無効化し、raw row を保持する |
+| WBS-L3-05-07 | hook/session/failure row から trouble taxonomy と feedback-event bridge を追加する | TL/worker | WBS-L3-05-06 | 1.0d | src/tests/db | .3 | ff_trouble_feedback_bridge=false | classifier を report-only に保つ |
+| WBS-L3-05-08 | human approval gate 付きの improvement backlog writer と GitHub issue dry-run queue を追加する | TL/PO | WBS-L3-05-07 | 1.0d | src/tests/docs | .4 | ff_issue_queue=false | local backlog のみに保ち、この implementation では GitHub を mutate しない |
+| WBS-L3-05-09 | repo-local TDD team standard hook を証明する project-hook lint を追加する | TL/worker | WBS-L3-05-04 | 0.5d | src/tests/docs | .3 | ff_project_hook_lint=false | `.claude/settings.json` は manual だが doctor-visible に保つ |
+| WBS-L3-05-10 | closure 前に doctor、db rebuild、metrics、tests が nonzero quality/feedback/skill row を証明することを確認する | QA/TL | WBS-L3-05-04..09 | 0.5d | local | .5 | N/A | A-134 row を `partial` または `gap` として reopen する |
 
-## Section 3 Acceptance Criteria
+## Section 3 受入条件
 
-- A-134 exists and has a telemetry closure row for each required measurement/self-improvement area.
-- Doctor surfaces the A-134 non-closed rows.
-- Dynamic skill injection cannot be called closed while `skill_recommendations` and `skill_invocations` remain empty.
-- Drive-model skill injection cannot be called closed without drive-conditioned recommendation evidence.
-- Firing-rate, retry, bottleneck, and trouble-log analytics cannot be called closed without derived `quality_signals`, `findings`, or `feedback_events`.
-- GitHub issue creation outside Forward cannot be called closed without dry-run queue, human approval semantics, and back-reference evidence.
-- Self-improvement cannot be called closed until measurement rows produce feedback events and a tracked backlog or approved issue queue entry.
-- Project hooks cannot be called closed unless `.claude/settings.json` uses package-local commands and is checked by doctor.
-- Cycle P4 / L7-DB cannot be called closed unless DB projection, local L8-L14 verification rows, source-isolation vocabulary, handover, telemetry, feature residuals, and placeholder carry boundaries are all machine checked.
+- A-134 が存在し、required measurement / self-improvement area ごとに telemetry closure row を持つ。
+- Doctor が A-134 の non-closed row を surface する。
+- `skill_recommendations` と `skill_invocations` が空のままなら、dynamic skill injection を closed と呼べない。
+- drive-conditioned recommendation evidence がなければ、drive-model skill injection を closed と呼べない。
+- derived `quality_signals`、`findings`、`feedback_events` がなければ、firing-rate、retry、bottleneck、trouble-log analytics を closed と呼べない。
+- dry-run queue、human approval semantics、back-reference evidence がなければ、Forward 外の GitHub issue creation を closed と呼べない。
+- measurement row が feedback event と tracked backlog または approved issue queue entry を生成するまで、self-improvement を closed と呼べない。
+- `.claude/settings.json` が package-local command を使い doctor で check されない限り、project hook を closed と呼べない。
+- DB projection、local L8-L14 verification row、source-isolation vocabulary、handover、telemetry、feature residual、placeholder carry boundary がすべて machine checked でなければ、Cycle P4 / L7-DB を closed と呼べない。
 
-## Section 4 Current Gate Result
+## Section 4 現在の gate result
 
-G3 status: pass for this implementation scope.
+G3 status はこの implementation scope で pass。
 
-Reason: closure audit, doctor lint, runtime skill recommendation projection, skill invocation telemetry, operational quality signals, feedback event emission, trouble taxonomy, retry diagnostics, improvement log, GitHub dry-run issue queue, issue back-reference columns, human approval guardrail telemetry, and project-local hook drift detection are implemented. Actual GitHub mutation is outside this implementation scope; queue and externally supplied back-reference behavior are covered by tests.
+理由: closure audit、doctor lint、runtime skill recommendation projection、skill invocation telemetry、operational quality signal、feedback event emission、trouble taxonomy、retry diagnostics、improvement log、GitHub dry-run issue queue、issue back-reference column、human approval guardrail telemetry、project-local hook drift detection は実装済みである。actual GitHub mutation はこの implementation scope 外であり、queue と externally supplied back-reference behavior は tests で cover されている。

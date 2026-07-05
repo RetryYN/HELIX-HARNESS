@@ -113,7 +113,7 @@ coding-rule 文書化は CI だけでなく Add-feature の一部である。
 - SSoT: `docs/governance/coding-rules.md`.
 - Step 3 `add-design`: coding-rule 影響を `unchanged` として記録するか、差分で SSoT を更新する。
 - Step 4 `add-impl`: coding-rule 影響が解決済みで、新しい rule behavior がある場合は U-CODE tests で被覆された後にだけ開始する。
-- Machine gate: `ut-tdd doctor` は `checkCodingRules` を実行する。workflow placement または SSoT reference が欠ける場合は hard failure。
+- Machine gate: `helix doctor` は `checkCodingRules` を実行する。workflow placement または SSoT reference が欠ける場合は hard failure。
 ## DDD-TDD-WORKFLOW（DDD/TDD ワークフロー）
 
 - SSoT: `docs/governance/ddd-tdd-rules.md`

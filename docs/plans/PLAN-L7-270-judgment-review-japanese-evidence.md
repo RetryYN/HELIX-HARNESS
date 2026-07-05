@@ -66,7 +66,7 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd status --json` の workflow blocker は `requiredEvidenceJa[]` を持つようになったが、
+`helix status --json` の workflow blocker は `requiredEvidenceJa[]` を持つようになったが、
 mode-level の `judgmentReview.requiredEvidence[]` は英語 machine prose だけだった。
 
 この PLAN は、judgment gate の review 証跡確認も日本語-first surface に揃え、PO/chat 向けの
@@ -76,7 +76,7 @@ status 出力が evidence 部分だけ英語へ戻る穴を閉じる。
 
 - `JudgmentReviewPlan` に `requiredEvidenceJa[]` を追加する。
 - hybrid / single-runtime / standalone の required evidence を日本語表示へ写像する。
-- `ut-tdd status` text に `judgment-review-evidence:` 行を追加し、日本語 evidence と `evidence-id` を併記する。
+- `helix status` text に `judgment-review-evidence:` 行を追加し、日本語 evidence と `evidence-id` を併記する。
 - `U-DETECT-006` の test design を `requiredEvidenceJa[]` まで拡張する。
 
 ## 境界
@@ -89,5 +89,5 @@ status 出力が evidence 部分だけ英語へ戻る穴を閉じる。
 
 - `judgmentReviewPlanForMode` が全 mode で `requiredEvidenceJa[]` を返す。
 - `requiredEvidenceJa[]` は `requiredEvidence[]` と同じ順序・同じ件数になる。
-- `ut-tdd status` text から日本語 evidence と machine `evidence-id` に辿れる。
+- `helix status` text から日本語 evidence と machine `evidence-id` に辿れる。
 - targeted tests、typecheck、design-language、plan governance、doctor が green。

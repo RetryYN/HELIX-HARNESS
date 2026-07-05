@@ -52,35 +52,28 @@ backprop_scope:
     reason: "L8 integration expectations now require semantic frontier preservation across projection/evidence joins."
 ---
 
-# PLAN-REVERSE-219: semantic frontier midlayer closure
+# PLAN-REVERSE-219: semantic frontier midlayer closure の反映
 
 ## Reason
 
-The PO challenged whether the work was being checked by meaning rather than by
-file count or quick green tests. Re-reading the chain showed that L3, L6, L12,
-and L7 unit design already carried `semantic_feature_frontier_record`, but the
-middle design layers L4/L5 and their L9/L8 pair tests only said that the
-visualization amendment was out of scope. They did not preserve the full
-classification vocabulary.
+PO は、作業が file count や短時間の green test ではなく、意味で検査されているかを問い直した。
+chain を再読すると、L3、L6、L12、L7 unit design はすでに `semantic_feature_frontier_record` を保持していた。
+しかし middle design layer の L4/L5 と、その pair test である L9/L8 は、visualization amendment が
+out of scope であることだけを述べていた。そこでは分類語彙全体が保持されていなかった。
 
-That was a real design weakness: a requirement amendment could be kept visible
-at L3, then be absorbed into generic L4/L5 blocks, making a first response or
-selected green test look like full descent.
+これは実際の design weakness だった。requirement amendment が L3 では可視のままでも、汎用的な L4/L5 block に
+吸収されると、first response や選択された green test が full descent のように見えてしまう。
 
-## R4 Forward Routing
+## R4 Forward Routing の扱い
 
-Forward route is the existing HELIX pillar design chain. This plan hardens the
-middle layers without approving new runtime work:
+Forward route は既存の HELIX pillar design chain である。この PLAN は新しい runtime work を承認せずに、
+middle layer を hardening する。
 
-- `frontier_pending_decision` remains outside current L4/L5/L8/L9 pass until S4
-  routing.
-- `parked_future_version` remains outside current completion until activation
-  decision.
-- `approval_gated_cutover` remains audit/plan-only until cutover and
-  action-binding approval.
+- `frontier_pending_decision` は S4 routing まで、現在の L4/L5/L8/L9 pass の外側に残す。
+- `parked_future_version` は activation decision まで、現在の completion の外側に残す。
+- `approval_gated_cutover` は cutover と action-binding approval まで、audit / plan-only のまま残す。
 
 ## Review
 
-This is a design-only correction. It does not apply `.ut-tdd -> .helix`, does
-not activate serverless/version-up work, and does not promote
-`PLAN-DISCOVERY-10` out of S3.
+これは design-only correction である。`.helix -> .helix` は適用せず、serverless / version-up work も有効化しない。
+また、`PLAN-DISCOVERY-10` を S3 から昇格させない。

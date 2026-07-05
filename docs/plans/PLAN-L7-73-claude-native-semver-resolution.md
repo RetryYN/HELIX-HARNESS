@@ -32,70 +32,67 @@ generates:
 dependencies:
   parent: docs/plans/PLAN-L7-68-provider-dispatch-portability.md
   requires:
-    - .ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md
+    - .helix/audit/A-137-unusable-provider-dispatch-audit.md
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
   references:
     - src/runtime/detect.ts
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-73: semver-newest native Claude resolution
+# PLAN-L7-73: semver-newest native Claude 解決
 
-## 0. Objective
+## 0. 目的
 
-Discharge the A-137 #6 deferred carry ("Native Claude version sort — mixed-source
-lexicographic sorting may not pick semver-newest native binary") so that
-`ut-tdd claude --execute` and the spawnability probe resolve to the genuinely
-newest installed native Claude binary.
+A-137 #6 の deferred carry（「Native Claude version sort — mixed-source
+lexicographic sorting may not pick semver-newest native binary」）を解消し、
+`helix claude --execute` と spawnability probe が、インストール済みの
+native Claude binary のうち実際に最も新しいものを解決できるようにする。
 
-## 1. Problem
+## 1. 問題
 
-`resolveClaudeNativeCommand` collected native binary candidates from two sources
-(`%APPDATA%\Claude\claude-code\<version>\claude.exe` and the VS Code extension
-`anthropic.claude-code-<version>`), concatenated them, and picked the newest via
-`newestExisting`, which sorted the **full path strings lexicographically** and
-took the last element. Two defects followed:
+`resolveClaudeNativeCommand` は native binary 候補を 2 つの source
+（`%APPDATA%\Claude\claude-code\<version>\claude.exe` と VS Code extension
+`anthropic.claude-code-<version>`）から集めて連結し、`newestExisting` で
+最新候補を選んでいた。`newestExisting` は **full path strings を辞書順で並べ**
+最後の要素を採用するため、次の 2 つの欠陥があった。
 
-1. Lexicographic version order is wrong: `1.9.0` sorts after `1.10.0` (because
-   `"9" > "1"` at the third character), so an older binary could be chosen as
-   "newest".
-2. With mixed sources the comparison is dominated by the differing path prefix,
-   not the version, so the selected binary depends on root path ordering rather
-   than the actual version.
+1. 辞書順の version 比較は誤る。`1.9.0` は `1.10.0` より後に並ぶ
+   （3 文字目で `"9" > "1"` となる）ため、古い binary が「最新」として
+   選ばれる可能性がある。
+2. source が混在すると、比較は version ではなく異なる path prefix に支配される。
+   そのため、選ばれる binary は実際の version ではなく root path の並びに依存する。
 
-## 2. Scope
+## 2. スコープ
 
-Allowed changes:
+許可する変更:
 
-- native Claude binary selection in `src/runtime/adapter.ts`: extract the version
-  per source (appData directory name; VS Code extension dir name after the
-  `anthropic.claude-code-` prefix) and compare numerically by semver core,
-  ignoring pre-release / build / platform suffixes;
-- a stable tie-break that keeps the first listed (preferred) source on equal
-  versions;
-- Vitest coverage for the lexicographic trap and the mixed-source case.
+- `src/runtime/adapter.ts` の native Claude binary selection で、source ごとに
+  version を抽出する（appData directory name、および VS Code extension dir name の
+  `anthropic.claude-code-` prefix 後）。比較は semver core の数値比較とし、
+  pre-release / build / platform suffixes は無視する。
+- version が同じ場合は、先に列挙された preferred source を維持する安定した tie-break。
+- 辞書順 trap と mixed-source case の Vitest coverage。
 
-Out of scope:
+対象外:
 
-- Codex resolution (`[codex.exe, codex.cmd]` carries no version; its `.exe`
-  preference via `newestExisting` is unchanged);
-- any change to the public `resolveClaudeNativeCommand` signature or the
-  spawnability probe contract;
-- external provider CLI behavior.
+- Codex resolution（`[codex.exe, codex.cmd]` は version を持たないため、
+  `newestExisting` による `.exe` preference は変更しない）。
+- public `resolveClaudeNativeCommand` signature または spawnability probe contract の変更。
+- external provider CLI behavior。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- Given native candidates `1.9.0` and `1.10.0`, resolution returns the `1.10.0`
-  binary.
-- Given an appData `1.0.0` and a VS Code `anthropic.claude-code-1.2.0-win32-x64`,
-  resolution returns the `1.2.0` binary (semver compared across sources, platform
-  suffix ignored).
-- `UT_TDD_CLAUDE_BIN` override and PATH fallback behavior are unchanged.
-- typecheck / Biome / Vitest / `ut-tdd doctor` stay green; the src file traces to
-  this PLAN's `generates`.
+- native candidates として `1.9.0` と `1.10.0` がある場合、resolution は
+  `1.10.0` binary を返す。
+- appData `1.0.0` と VS Code `anthropic.claude-code-1.2.0-win32-x64` がある場合、
+  resolution は `1.2.0` binary を返す（source 間で semver を比較し、platform
+  suffix は無視する）。
+- `HELIX_CLAUDE_BIN` override と PATH fallback behavior は変更しない。
+- typecheck / Biome / Vitest / `helix doctor` は green のままとし、src file は
+  この PLAN の `generates` に trace する。
 
-## 4. Verification
+## 4. 検証
 
 - `bunx vitest run tests/runtime-adapter.test.ts`
 - `bun run typecheck`
@@ -103,7 +100,7 @@ Out of scope:
 - `bun run test`
 - `bun run src\\cli.ts doctor`
 
-## 5. Status
+## 5. 状態
 
-Draft. Implemented and verified 2026-06-17. No contract change, so no Reverse
-back-fill is required (A-137 #6 was the last open carry of PLAN-L7-68).
+Draft。2026-06-17 に実装・検証済み。contract change は無いため Reverse
+back-fill は不要（A-137 #6 は PLAN-L7-68 の最後の open carry だった）。

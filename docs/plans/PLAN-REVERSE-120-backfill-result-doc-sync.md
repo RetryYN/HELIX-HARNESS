@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-120-backfill-result-doc-sync
-title: "PLAN-REVERSE-120: backfill result doc sync"
+title: "PLAN-REVERSE-120: backfill result のドキュメント同期"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements list all backfill-pairing result keys."
+    reason: "Requirements がすべての backfill-pairing result key を列挙する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The gate changes PLAN governance documentation sync only."
+    reason: "gate の変更対象は PLAN governance documentation sync のみ。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The gate changes PLAN governance documentation sync only."
+    reason: "gate の変更対象は PLAN governance documentation sync のみ。"
 agent_slots:
   - role: tl
-    slot_label: "TL - backfill result doc sync fullback"
+    slot_label: "TL - backfill result ドキュメント同期 fullback"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-120-backfill-result-doc-sync.md
     artifact_type: markdown_doc
@@ -41,7 +41,7 @@ review_evidence:
     reviewed_at: "2026-06-23T13:45:00+09:00"
     tests_green_at: "2026-06-23T13:45:00+09:00"
     verdict: approve
-    scope: "Requirements fullback for backfill result documentation synchronization."
+    scope: "backfill result documentation synchronization の Requirements fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -63,18 +63,18 @@ review_evidence:
         output_digest: "sha256:cb69e5f9425f57492a0760eb7574201d4d361689feb2229db46d773509485b07"
 ---
 
-# PLAN-REVERSE-120: backfill result doc sync
+# PLAN-REVERSE-120: backfill result のドキュメント同期
 
-## Objective
+## 目的
 
-Back-fill the current backfill-pairing result key list into requirements.
+現在の backfill-pairing result key list を requirements へ back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements mention all exported backfill result keys.
-- Concept already carries the same key set and is verified by regression test.
+- Requirements は export 済み backfill result key をすべて記載する。
+- Concept はすでに同じ key set を保持しており、regression test で検証済み。
 
-## Acceptance Criteria
+## 受入条件
 
-- Documentation drift for backfill result keys fails.
-- Fullback evidence points to the requirements update.
+- backfill result keys の documentation drift は fail する。
+- Fullback evidence は requirements update を指す。

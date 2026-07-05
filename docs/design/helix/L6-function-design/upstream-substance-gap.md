@@ -22,7 +22,7 @@ oracle を固定し、実装は後続 L7+ の対象とする。
 |------|-----------|-----|--------|
 | `classifyUpstreamA146Finding` | `(findingId: string) => UpstreamAdoptionFinding` | `A146-1`..`A146-8` のみ受ける。未知 id は `{known:false}` で返し、既知扱いにしない | U-UPSTREAM-001 |
 | `buildGuardGovernancePack` | `(input: GuardGovernanceInput) => GuardGovernancePack` | Claude/Codex guard entrypoint、deferred surface、coverage claim を分離する。unimplemented guard を covered にしない | U-UPSTREAM-002 |
-| `resolveConsumerCliPath` | `(input: ConsumerCliResolutionInput) => ConsumerCliResolution` | PATH / wrapper / absolute resolver のいずれかで `ut-tdd` 解決を証明する。解決不能なら remediation 付き fail-close | U-UPSTREAM-003 |
+| `resolveConsumerCliPath` | `(input: ConsumerCliResolutionInput) => ConsumerCliResolution` | PATH / wrapper / absolute resolver のいずれかで `helix` 解決を証明する。解決不能なら remediation 付き fail-close | U-UPSTREAM-003 |
 | `verifyGreenEvidenceBinding` | `(input: GreenEvidenceBindingInput) => GreenEvidenceBindingResult` | command rerun evidence と digest update が同じ batch にある場合だけ `closed=true`。hash-only restamp は false | U-UPSTREAM-004 |
 | `classifyTelemetryProvenance` | `(row: TelemetryRowLike) => TelemetryProvenanceClass` | runtime / projected / derived / unknown を分類する。unknown は runtime evidence として使えない | U-UPSTREAM-005 |
 | `curateDistributionDoc` | `(input: DistributionDocInput) => DistributionCurationDecision` | consumer / internal / dogfood / deny を分類する。blanket `docs/governance/` allow は warning 以上 | U-UPSTREAM-006 |
@@ -102,7 +102,7 @@ interface RuntimeVerificationLogEvent {
   claim: "fired" | "used" | "works" | "blocked" | "recovered" | "observed";
   session_id: string;
   source: "runtime-hook" | "adapter-command" | "run-debug" | "hosted-preflight";
-  runtime_surface: "claude-hook" | "codex-hook" | "codex-hosted-api" | "ut-tdd-cli" | "external-api";
+  runtime_surface: "claude-hook" | "codex-hook" | "codex-hosted-api" | "helix-cli" | "external-api";
   correlation_id: string;
   evidence_path: string;
   occurred_at: string;
@@ -114,7 +114,7 @@ interface RuntimeVerificationLogEvent {
 |------|-----------|-----|--------|
 | `buildRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput) => RuntimeVerificationLogEvent` | plan_id / claim / session_id / source / runtime_surface / correlation_id / evidence_path / occurred_at を必須にする。secret-like 値は event に入れず `redaction_policy` で表現する。 | U-VERIFYSTRAT-004 |
 | `validateRuntimeVerificationLogCompleteness` | `(event: RuntimeVerificationLogEvent) => RuntimeLogCompleteness` | `works` / `used` / `fired` claim は空 session_id、projection source、evidence_path 欠落、correlation_id 欠落を reject。`blocked` は hosted-preflight でも可だが blocked reason evidence を要求する。 | U-VERIFYSTRAT-005 |
-| `appendRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput, deps: RuntimeVerificationLogDeps, relPath?: string) => RuntimeVerificationLogWrite` | completeness pass 後にだけ `.ut-tdd/evidence/run-debug/runtime-verification.jsonl` へ 1 JSONL row を append する。projection source、invalid surface、secret-like 値、runtime closure link 欠落は write 前に reject。 | U-VERIFYSTRAT-006 |
+| `appendRuntimeVerificationLogEvent` | `(input: RuntimeVerificationLogInput, deps: RuntimeVerificationLogDeps, relPath?: string) => RuntimeVerificationLogWrite` | completeness pass 後にだけ `.helix/evidence/run-debug/runtime-verification.jsonl` へ 1 JSONL row を append する。projection source、invalid surface、secret-like 値、runtime closure link 欠落は write 前に reject。 | U-VERIFYSTRAT-006 |
 
 運用メモ: これらの log events は後続 projection のための append-only evidence inputs である。
 Projection はそれらを要約してよいが、元の runtime log event が acceptance source of truth として残る。

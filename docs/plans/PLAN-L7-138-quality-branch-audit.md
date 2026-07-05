@@ -93,36 +93,33 @@ review_evidence:
         output_digest: "sha256:83860fcceb15d570c46c5e156b1345fddc5170685f10ff1c99b35fa66aee33a1"
 ---
 
-# PLAN-L7-138 (add-impl): read-only quality and branch audits
+# PLAN-L7-138 (add-impl): read-only quality / branch audit の追加
 
 ## 0. Objective
 
-Add practical read-only surfaces for:
+次の対象に対する実用的な read-only surface を追加する。
 
-- hardcoded values, security risks, and technical debt markers;
-- large local branch cleanup inventory.
+- hardcoded values、security risks、technical debt markers の検出対象。
+- 大量の local branch cleanup inventory。
 
-The branch surface must not delete anything. It only classifies candidates for
-human review.
+branch surface は何も削除してはならない。human review の候補を分類するだけに留める。
 
 ## 1. Scope
 
-- Add `ut-tdd audit quality`.
-- Add `ut-tdd branch audit`.
-- Classify findings using the existing `gate` / `actionable` / `telemetry`
-  display discipline.
-- Keep destructive branch deletion out of scope.
+- Add `helix audit quality`.
+- Add `helix branch audit`.
+- 既存の `gate` / `actionable` / `telemetry` display discipline に従って findings を分類する。
+- 破壊的な branch deletion は scope 外に保つ。
 
-## 2. Acceptance Criteria
+## 2. Acceptance Criteria（受入条件）
 
-- [x] Secret-like literals and dangerous shell execution are gate findings.
-- [x] Hardcoded path, local endpoint, model/provider literals, and legacy runtime
-      references are actionable findings.
-- [x] TODO/FIXME/HACK/XXX are telemetry findings.
-- [x] Branches are classified as keep, delete-candidate, or review from
-      current/protected/gone/merged/stale evidence.
-- [x] CLI supports text and JSON output.
-- [x] No command deletes branches or rewrites history.
+- [x] Secret-like literals と危険な shell execution を gate findings として扱う。
+- [x] Hardcoded path、local endpoint、model/provider literals、legacy runtime references を
+      actionable findings として扱う。
+- [x] TODO/FIXME/HACK/XXX を telemetry findings として扱う。
+- [x] branches を current/protected/gone/merged/stale evidence から keep、delete-candidate、review に分類する。
+- [x] CLI が text output と JSON output をサポートする。
+- [x] どの command も branches deletion や history rewrite を行わない。
 
 ## 3. Verification
 

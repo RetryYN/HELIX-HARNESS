@@ -46,7 +46,7 @@ next_pair_freeze: L9
 | HB-P3 verification-governance | pair closure、external-truth grounding、green evidence、実装精度、TDD evidence を守る | `trace_edges` / `test_runs` / `review_evidence` | 外部 source URL は research artifact 経由 | coverage-only / self-verification 単独 pass を禁止 |
 | HB-P4 repair-learning | detector event を repair candidate へ変換し、成功 recipe と metric を改善へ送る | `findings` / `quality_signals` / `feedback_events` / metric trends | なし | 高リスク repair は action-binding approval |
 | HB-P6 github-distribution | GitHub rulesets、PR review、CI auto-fix、setup、tag bump、release automation | setup baseline / release ledger / import report | GitHub / GitHub Actions | raw push / destructive setup / ruleset apply は approval 必須 |
-| HB-P7 shared-knowledge | 共有 memory、Glossary SSoT、DDD context map を維持する | `.ut-tdd/memory` / glossary / context-map / relation graph | Claude/Codex は同じ provider handover を読む | per-agent silo / 用語 drift を許可しない |
+| HB-P7 shared-knowledge | 共有 memory、Glossary SSoT、DDD context map を維持する | `.helix/memory` / glossary / context-map / relation graph | Claude/Codex は同じ provider handover を読む | per-agent silo / 用語 drift を許可しない |
 | HB-P8 external-security | external research、skillify、sandbox、security filter、prompt/tool injection 対策 | research artifact / security event / token policy / audit | Web/docs/OSS/GitHub/API/sandbox | raw external text を instruction として扱わない |
 | HB-P9 db-convergence | DB 未収束を未完了として扱い、relation graph / contract ledger / layer regression を提供 | harness.db projections / contract ledger / baseline snapshots | なし | projection 未収束を green にしない |
 | HB-AC adapter-consistency | Claude/Codex/agent/template/skill/runtime adapter の rule drift と hosted API preflight を扱う | rule-drift results / preflight audit / dry-run plan | hosted API/developer tools | repo hook 非強制 surface は preflight evidence 必須 |
@@ -72,10 +72,10 @@ next_pair_freeze: L9
 | HR-FR-P4-03 | HB-P4 | implementation accuracy / review finding / rework / test duration / flake / regression を metric event として収集する | HST-P4-03 |
 | HR-FR-P6-01 | HB-P6 | GitHub Rulesets / required checks / Merge Queue を gated push block に置く | HST-P6-01 |
 | HR-FR-P6-02 | HB-P6 | PR review と CI auto-fix-repush は worker!=verifier、confidence cap、iteration cap を持つ | HST-P6-02 |
-| HR-FR-P6-03 | HB-P6 | fresh/brownfield setup は hooks / adapters / state / memory / handover / GitHub plan / consumer doctor baseline を非破壊に emit し、consumer repo では dogfood design/plans を要求しない `ut-tdd doctor --profile consumer` を初回 health check にする | HST-P6-03 |
+| HR-FR-P6-03 | HB-P6 | fresh/brownfield setup は hooks / adapters / state / memory / handover / GitHub plan / consumer doctor baseline を非破壊に emit し、consumer repo では dogfood design/plans を要求しない `helix doctor --profile consumer` を初回 health check にする | HST-P6-03 |
 | HR-FR-P6-04 | HB-P6 | tag bump は current/target detection、migration、compatibility warning、rollback point、idempotency evidence を持つ。PLAN-M-02 rename cutover は actor/tool/target だけでなく approved params、current `cutoverSnapshot` sha256 binding、review/audit/expiry、backup/rollback/monitoring evidence が揃うまで apply 不可にする | HST-P6-04 |
 | HR-FR-P6-05 | HB-P6 | semantic-release vs Release Please は ADR で選び、CI auto-fix repush は confidence >=0.75 に制限する | HST-P6-05 |
-| HR-FR-P7-01 | HB-P7 | Claude/Codex SessionStart は同じ `.ut-tdd/memory` と provider handover から bounded recall する | HST-P7-01 |
+| HR-FR-P7-01 | HB-P7 | Claude/Codex SessionStart は同じ `.helix/memory` と provider handover から bounded recall する | HST-P7-01 |
 | HR-FR-P7-02 | HB-P7 | Glossary SSoT を memory / DDD context / docs 用語に接続する | HST-P7-02 |
 | HR-FR-P7-03 | HB-P7 | DDD context map は bounded context / ubiquitous language / published language / anti-corruption boundary を持つ | HST-P7-03 |
 | HR-FR-P8-01 | HB-P8 | external research は source attribution と span-level verification を持つ artifact へ保存する | HST-P8-01 |
@@ -110,7 +110,7 @@ Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4
 | HR-BR-12 | 2 層共有メモリのセマンティクス | HB-P7 | shared knowledge は harness/project 層、supersede、bounded recall を持ち、per-agent silo を正本にしない |
 | HR-NFR-03 | hybrid 自己評価禁止 + memory secret reject | HB-P3 / HB-P7 | verification governance は worker 自己 pass を拒否し、knowledge boundary は secret body を保存しない |
 | HR-BR-07R | tick runtime | HB-P2 | runtime tick は `canResume` / `evaluateStop` / verifier selection を再利用し、自己評価代替を許さない |
-| HR-BR-12R | memory persistence + CLI | HB-P7 | `.ut-tdd/memory/<layer>.jsonl` を共有 SSoT とし、append-only / secret reject を維持する |
+| HR-BR-12R | memory persistence + CLI | HB-P7 | `.helix/memory/<layer>.jsonl` を共有 SSoT とし、append-only / secret reject を維持する |
 | HR-NFR-03R | job-queue 競合排他 | HB-P1 | continuous autonomy の job claim は二重取得を防ぎ、busy は backoff 可能にする |
 | HR-BR-13R | tick の実 runtime bridge | HB-P2 / HB-AC | bridge は verifier 選定を再実装せず、adapter parity / preflight 境界に従う |
 | HR-BR-14R | loop run entrypoint | HB-P1 / HB-P2 | loop CLI は scheduler/loop state から tick を駆動し、dry-run と iteration 永続を分離する |

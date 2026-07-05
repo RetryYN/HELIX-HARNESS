@@ -242,8 +242,8 @@ export type OrchestrationMode = z.infer<typeof orchestrationModeSchema>;
 /** §7.8.3 mode→command 機械契約 RecommendedCommandV1 */
 export const recommendedCommandV1Schema = z.object({
   schema_version: z.literal("v1"),
-  command: z.string().refine((c) => c.startsWith("ut-tdd"), {
-    message: "command must start with ut-tdd; legacy runtime commands are not allowed",
+  command: z.string().refine((c) => c.startsWith("helix"), {
+    message: "command must start with helix; legacy runtime commands are not allowed",
   }),
   args: z.record(z.string(), z.unknown()).default({}),
   safety: z.object({

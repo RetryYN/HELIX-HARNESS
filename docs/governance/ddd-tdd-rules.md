@@ -68,7 +68,7 @@ Boundary check は意図的に保守的である。2 つの area 間で shared t
 - L7 Red: TDD を要求する `add-impl` plan は、review evidence を freeze-ready と扱う前に Red-first evidence と mutation oracle evidence を記録しなければならない。
 - L8 integration: すべての IT-* 行は Given/When/Then を使わなければならない。placeholder integration 行は carry のみであり、confirmable として数えてはならない。
 - Quantitative vs qualitative split: mechanical check (`vitest`、`doctor`、lint) は qualitative review より先に実行しなければならない。critical DDD/TDD point は quantitative evidence と agent/human review evidence の両方を持たなければならない。
-- Doctor/CI: `checkDddTddRules` は `ut-tdd doctor` と、doctor command 経由の shared harness check pipeline で実行される。
+- Doctor/CI: `checkDddTddRules` は `helix doctor` と、doctor command 経由の shared harness check pipeline で実行される。
 
 ## Machine Check Contract / 機械検査契約
 

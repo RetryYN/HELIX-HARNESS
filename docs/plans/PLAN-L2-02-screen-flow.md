@@ -48,12 +48,12 @@ review_evidence:
 
 # PLAN-L2-02 (design): L2 画面遷移 screen-flow 本起票
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 PLAN-L2-00 master の Step 3。L1 §2 で確定済みの 6 遷移シナリオを L2 `screen-flow` sub-doc の content
 として本材料化する。doc の `status` confirmed 昇格は G2 freeze (PO サインオフ) 時 = master Step 4。
 
-## 1. Scope (L2 確定項目 + drift 訂正)
+## 1. 対象範囲 (Scope: L2 確定項目 + drift 訂正)
 
 - **drift 訂正**: 旧 placeholder の遷移表は L1 §2 と乖離 (シナリオ 2 = `PM-03→PM-02→PM-04→HM-07` だったが
   L1 §2.2 正本は `PM-03→HM-05→GD-01→PM-03`、5/6 も同様)。L1 §2 を正本に再構築。
@@ -63,15 +63,15 @@ PLAN-L2-00 master の Step 3。L1 §2 で確定済みの 6 遷移シナリオを
 - **カテゴリ間 deep-link**: PM↔HM↔GD 横断を一般化 (案件文脈 query 携行 + 戻り復帰)。
 - 全 trigger は read-only ナビゲーション (S5=b、副作用は CLI コマンドコピー経由)。
 
-## 2. Acceptance Criteria — met
+## 2. 受入条件 — 達成済み (Acceptance Criteria — met)
 
 - [x] 6 遷移シナリオ (S1-S6) を L1 §2 正本と一致で再構築 (placeholder drift 訂正)。
 - [x] 全遷移エッジに trigger/条件/ステート/戻るを確定。
 - [x] auto 表示 + カテゴリ間 deep-link + read-only (S5=b) を確定。
 - [x] 画面 ID は screen-list.md と一致 (PM-01..05/HM-01..08/GD-01)。
-- [x] intra_runtime_subagent (pmo-sonnet) review approve + doctor green。
+- [x] intra_runtime_subagent (pmo-sonnet) レビュー承認 (review approve) + doctor 成功 (doctor green)。
 
-## 3. Out of scope
+## 3. 対象外 (Out of scope)
 
 - ui-element / wireframe = PLAN-L2-03/04。
 - src/web 実装 = Phase B。

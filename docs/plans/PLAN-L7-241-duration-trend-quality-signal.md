@@ -139,7 +139,7 @@ rebuild 可能な trend sink として使う。
 - DB schema / migration / index 追加。
 - p50/p95/stddev/slope/window summary 専用 table。
 - dashboard 専用 read model。
-- L14 completion / version-up activation / `.ut-tdd` irreversible cutover の承認。
+- L14 completion / version-up activation / `.helix` irreversible cutover の承認。
 
 ## 2. 受入条件
 

@@ -88,7 +88,7 @@ completion / status / handover / 専用 packet は、残 blocker を record temp
 
 - PO/S4 decision、version-up activation、action-binding approval、PLAN-M-02 cutover approval は作成しない。
 - 既存の英語 `insertionHint` / `yamlLines` は machine compatibility のため残す。
-- `.ut-tdd` から `.helix` への rename apply は行わない。
+- `.helix` から `.helix` への rename apply は行わない。
 
 ## 完了条件
 

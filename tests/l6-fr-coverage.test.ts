@@ -86,7 +86,7 @@ describe("L6 FR coverage (FR registry -> unit-level function spec)", () => {
   });
 
   it("requires explicit L7 defer rows to include a structured field block", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-l6-fr-${Date.now()}`);
+    const repoRoot = join(tmpdir(), `helix-l6-fr-${Date.now()}`);
     const specDir = join(repoRoot, "docs", "design", "harness", "L6-function-design");
     mkdirSync(specDir, { recursive: true });
     writeFileSync(
@@ -138,7 +138,7 @@ describe("L6 FR coverage (FR registry -> unit-level function spec)", () => {
     // FR registry, not just for the coverage matrix. Before the fix the FR registry
     // was loaded via loadFrDocs()'s import.meta-derived ROOT, which in a `bun build
     // --compile` binary resolves to /$bunfs → ENOENT ("L6 FR coverage matrix を読めない").
-    const repoRoot = join(tmpdir(), `ut-tdd-l6-frroot-${Date.now()}`);
+    const repoRoot = join(tmpdir(), `helix-l6-frroot-${Date.now()}`);
     const l1Dir = join(repoRoot, "docs", "design", "harness", "L1-requirements");
     const l3Dir = join(repoRoot, "docs", "design", "harness", "L3-functional");
     const l6Dir = join(repoRoot, "docs", "design", "harness", "L6-function-design");

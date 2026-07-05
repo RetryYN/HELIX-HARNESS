@@ -58,35 +58,31 @@ review_evidence:
         output_digest: "sha256:2eab00f92a5bda76ff43a4b215d4620c117939e3221f808603492b5c7ed77d91"
 ---
 
-# PLAN-L7-168: G8 integration workflow granularity
+# PLAN-L7-168: G8 integration workflow granularity の粒度化
 
-## Objective
+## 目的
 
-Make the first L8 ascent measurable. L8 already has confirmed IT-* case rows,
-but G8 still needed workflow granularity: strategy, plan, selected conditions,
-coverage items, procedures, execution evidence, exit criteria, and defect
-routing.
+最初の L8 ascent を測定可能にする。L8 には confirmed 済みの IT-* case rows があるが、
+G8 にはまだ workflow granularity が必要だった: strategy、plan、selected conditions、
+coverage items、procedures、execution evidence、exit criteria、defect routing の各項目。
 
-## Scope
+## スコープ
 
-- Add `G8-WORKFLOW` to the L8 integration test design.
-- Add a G8 process note that requires an integration evidence manifest and
-  selected IT-* coverage before a slice can pass G8.
-- Add `g8-integration-workflow` lint and wire it into `doctor`.
-- Add tests for missing and present workflow markers.
+- L8 integration test design に `G8-WORKFLOW` を追加する。
+- slice が G8 を通過する前に integration evidence manifest と selected IT-* coverage を必須にする G8 process note を追加する。
+- `g8-integration-workflow` lint を追加し、`doctor` に配線する。
+- workflow markers の欠落時と存在時の tests を追加する。
 
-## External Reference Handling
+## 外部参照の扱い
 
-Downloads / HELIX workflow samples and current public testing references were
-used only as comparison material. They are not canonical UT-TDD runtime state.
-The adopted contract is the UT-TDD-specific workflow chain:
-`test_strategy -> test_plan -> test_conditions -> coverage_items ->
-test_procedures -> execution_evidence -> exit_criteria -> defect_routing`.
+Downloads / HELIX workflow samples と current public testing references は比較材料としてのみ使用した。
+これらは canonical HELIX runtime state ではない。採用する contract は HELIX 固有の workflow chain:
+`test_strategy -> test_plan -> test_conditions -> coverage_items -> test_procedures -> execution_evidence -> exit_criteria -> defect_routing`。
 
 ## DoD
 
-- [x] L8 test design contains executable G8 workflow granularity.
-- [x] G8 process doc no longer allows closing from IT-* rows alone.
-- [x] Doctor fails if the L8/G8 workflow markers are absent.
-- [x] Targeted G8 workflow tests pass.
-- [x] This slice remains a first ascent step and does not claim full L8 close.
+- [x] L8 test design が実行可能な G8 workflow granularity を含む。
+- [x] G8 process doc は IT-* rows だけでの close を許可しない。
+- [x] L8/G8 workflow markers が無い場合、Doctor は fail する。
+- [x] Targeted G8 workflow tests が pass する。
+- [x] この slice は first ascent step に留まり、full L8 close を主張しない。

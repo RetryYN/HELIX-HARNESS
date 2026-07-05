@@ -6,7 +6,7 @@ import { catalogAutomationAssets } from "../src/assets/catalog";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate, rowCounts } from "../src/state-db/migration";
 
-const legacyRuntimeName = ["he", "lix"].join("");
+const legacyRuntimeName = ["ut", "tdd"].join("-");
 
 describe("IT-ASSET-DB-01: automation asset catalog", () => {
   it("catalogs metadata, updates search_index, and never stores prompt bodies", () => {

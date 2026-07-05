@@ -44,13 +44,13 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ## §0 位置づけ
 
-PLAN-L4-10 (Master) §2 triage の child。**FR-L1-47 (skill pack の UT-TDD curate)** を L4 基本設計 (architecture.md) に増分する。ADR-004 境界 (層1 skill 本文 markdown 正本 / 層2 catalog-injector TS) を前提。成果物 = architecture 増分 (skills building block) ⇔ L9 総合テスト設計ペア。
+PLAN-L4-10 (Master) §2 triage の child。**FR-L1-47 (skill pack の HELIX curate)** を L4 基本設計 (architecture.md) に増分する。ADR-004 境界 (層1 skill 本文 markdown 正本 / 層2 catalog-injector TS) を前提。成果物 = architecture 増分 (skills building block) ⇔ L9 総合テスト設計ペア。
 
 ## §1 doc 化スコープ (L4 = L9 総合テスト粒度)
 
 1. **architecture §3 に skills building block 新設**: Level 1 building block 表に `skills` 追加 (catalog / recommender / injector)。依存方向 = schema へ一方向 (安定核維持、循環禁止)
 2. **層1/層2 分離**: skill 本文 = `docs/skills/**/*.md` (markdown 正本、curate 先) / catalog-injector = TS (層2)
-3. **curate 方針**: vendor 107 skill → UT-TDD 版 SKILL_MAP (core-optional-drop 区分) + ut-tdd CLI trigger + helix 用語除去 (inventory §2)
+3. **curate 方針**: vendor 107 skill → HELIX 版 SKILL_MAP (core-optional-drop 区分) + helix CLI trigger + helix 用語除去 (inventory §2)
 4. **依存方向の保証**: skills が schema 安定核に一方向依存、fs は loadX 端点に隔離 (architecture §3 原則踏襲)
 
 ## §2 設計計画 (Step)

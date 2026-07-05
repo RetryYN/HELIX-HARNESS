@@ -87,25 +87,26 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-133: refactor brush-up workflow fullback
+# PLAN-REVERSE-133: refactor brush-up workflow fullback（Refactor 強化 workflow fullback）
 
-## Objective
+## 目的
 
-Back-propagate the Refactor brush-up workflow hardening into requirements and
-design so the drive model is not only changed at implementation level.
+Refactor brush-up workflow の強化を requirements と design へ逆伝播し、
+drive model の変更が implementation level だけに閉じない状態にする。
 
 ## R4 Routing
 
-Forward routing is L3 because the functional acceptance criteria for FR-L1-25
-changed. L4 and L6 are updated as downstream design refinements.
+Forward routing は L3 とする。FR-L1-25 の機能 acceptance criteria が変更されたためである。
+L4 と L6 は下流 design refinement として更新する。
 
-L5 is explicitly not impacted: `docs/design/harness/L5-detailed-design/module-decomposition.md`
-already assigns relation-graph reuse as the dependency substrate, and this
-slice does not introduce a new module boundary or storage structure.
+L5 は明示的に not impacted とする。
+`docs/design/harness/L5-detailed-design/module-decomposition.md` では、依存関係の substrate として
+relation-graph reuse がすでに割り当てられている。この slice は新しい module boundary や
+storage structure を導入しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements state the Refactor Green condition.
-- L3 FR-25 has DB trigger and dependency impact ACs.
-- L4 states the Red / Yellow / Green meaning and projection boundary.
-- L6 `assertRefactorInvariant` matches the implementation contract.
+- Requirements に Refactor Green condition が記載されている。
+- L3 FR-25 に DB trigger と dependency impact の AC がある。
+- L4 に Red / Yellow / Green の意味と projection boundary が記載されている。
+- L6 `assertRefactorInvariant` が implementation contract と一致している。

@@ -37,15 +37,15 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-93 (troubleshoot): PLAN completion-drift gate
+# PLAN-L7-93 (troubleshoot): PLAN completion-drift gate による完了ずれ検出
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 「DoD/完了条件チェックリストを全消化したのに status が非終端 (draft/in_progress) のまま」放置される
 **完了 bookkeeping drift** を機械検出する。merged-plan-status ([[PLAN-L7-87]]) が見られない
 「自分の md だけが deliverable」な recovery/poc PLAN の status 前進忘れを fail-close で塞ぐ。
 
-## 1. Problem
+## 1. 問題 (Problem)
 
 PLAN-RECOVERY-02 (V-model 正規式 recovery) は Phase 1-3 完了 + gated downstream (L1-*/L3-* PLAN) が
 全 confirmed + 機械 trace green = **freeze-ready** だったのに、recovery PLAN 自身の status だけが
@@ -63,7 +63,7 @@ draft に取り残され、毎 session「PO 判断待ちの未了」として再
 = 「作業は完了したが status を前進させ忘れる」運用ミス ([[feedback_verify_carry_status_against_code]])
 が absence-blind で埋もれ、人手 PLAN 読みでしか発見できなかった。
 
-## 2. Fix
+## 2. 修正 (Fix)
 
 `src/lint/plan-completion-drift.ts` (新規) + doctor 配線:
 
@@ -78,7 +78,7 @@ draft に取り残され、毎 session「PO 判断待ちの未了」として再
 加えて **PLAN-RECOVERY-02 を是正**: PO サインオフ (freeze 通過は既済の運用ミス) を review_evidence に
 記録 + DoD 節を追加 (Phase 1-3 + freeze 全 [x]) + status draft→completed。これで本 gate の被覆下に入る。
 
-## 3. Acceptance Criteria — met
+## 3. 受入条件 (Acceptance Criteria) — 充足 (met)
 
 - [x] DoD 全消化 + 非終端 → fail-close。DoD 全消化 + 終端 (completed/confirmed/accepted) → ok。
 - [x] 部分チェック (`- [ ]` 残) の WIP は素通り (DISCOVERY-03 = S1 のみ消化を false positive にしない)。
@@ -87,7 +87,7 @@ draft に取り残され、毎 session「PO 判断待ちの未了」として再
 - [x] 実リポ非終端 PLAN は RECOVERY-02 (completed 化) / DISCOVERY-03 (部分チェック) のみ = blast radius 0。
 - [x] test 16 ケース。typecheck / Biome / Vitest / doctor green。
 
-## 4. Out of scope
+## 4. 範囲外 (Out of scope)
 
 - DoD 節を持たない PLAN への DoD 必須化 (presence gate) — 既存多数 PLAN を flag し blast radius 非 0
   ゆえ別案件。本 gate は「checklist が完了シグナルを出している」場合のみ。

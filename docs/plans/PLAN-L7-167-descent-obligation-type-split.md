@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-167-descent-obligation-type-split
-title: "PLAN-L7-167: descent obligation type split"
+title: "PLAN-L7-167: descent obligation 型分割"
 kind: refactor
 layer: L7
 drive: agent
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant split of descent-obligation type definitions and default adjacency catalog. No doctor, DB projection, or workflow semantics changed."
+backprop_decision_reason: "descent-obligation の型定義と default adjacency catalog を、挙動不変で分割する。doctor、DB projection、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - descent obligation type split"
+    slot_label: "SE - descent obligation 型分割"
   - role: tl
-    slot_label: "TL - descent invariant review"
+    slot_label: "TL - descent invariant レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-167-descent-obligation-type-split.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T20:57:43+09:00"
     tests_green_at: "2026-06-25T20:57:43+09:00"
     verdict: approve
-    scope: "Extract descent-obligation type definitions and default adjacency catalog to a sidecar module while preserving analyzer behavior."
+    scope: "analyzer behavior を保ったまま、descent-obligation の型定義と default adjacency catalog を sidecar module へ抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -81,26 +81,24 @@ review_evidence:
         output_digest: "sha256:ab277901716f72cd3da7ab0f4c75777b72a8482d51abfd76495e354a9e4452a5"
 ---
 
-# PLAN-L7-167: descent obligation type split
+# PLAN-L7-167: descent obligation 型分割
 
-## Objective
+## 目的
 
-Reduce the remaining `split-module` pressure on
-`src/lint/descent-obligation.ts` by extracting the type model and default
-adjacency catalog.
+型モデルと default adjacency catalog を抽出し、
+`src/lint/descent-obligation.ts` に残る `split-module` pressure を削減する。
 
-## Scope
+## スコープ
 
-- Move descent layer/type/result interfaces and `DEFAULT_DESCENT_ADJACENCY` to
-  `src/lint/descent-obligation-types.ts`.
-- Keep `src/lint/descent-obligation.ts` responsible for parsing, loading,
-  analysis, filtering, and messages.
-- Update descent tests to import type/catalog symbols from the sidecar module.
+- descent layer/type/result interfaces と `DEFAULT_DESCENT_ADJACENCY` を
+  `src/lint/descent-obligation-types.ts` へ移す。
+- `src/lint/descent-obligation.ts` は parsing、loading、analysis、filtering、
+  messages を引き続き担当する。
+- descent tests を更新し、type/catalog symbols を sidecar module から import する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Descent-obligation analyzer behavior remains unchanged.
-- `tests/descent-obligation.test.ts`, typecheck, lint, DB rebuild, and doctor
-  pass.
-- The refactor detector no longer reports `src/lint/descent-obligation.ts` as a
-  `split-module` candidate.
+- Descent-obligation analyzer behavior は変更されない。
+- `tests/descent-obligation.test.ts`、typecheck、lint、DB rebuild、doctor が pass する。
+- refactor detector は `src/lint/descent-obligation.ts` を `split-module`
+  candidate として報告しなくなる。

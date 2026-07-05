@@ -82,34 +82,32 @@ review_evidence:
         output_digest: "sha256:d05022d03ef67dea4d3d832a85005a29a3398d6ebad8236c2b2ec41b4fedc45c"
 ---
 
-# PLAN-L7-56: DB-backed artifact progress color projection
+# PLAN-L7-56: DB-backed artifact progress color projection の実装
 
-## Objective
+## 目的
 
-Add a rebuildable `artifact_progress` projection so implementation status is queryable from
-harness.db instead of being held only in chat memory.
+実装状態を chat memory だけに保持せず、harness.db から query できるように、再構築可能な
+`artifact_progress` projection を追加する。
 
-The color contract is:
+color contract は次の通り。
 
-- red: dependency check is missing or there is an open dependency impact.
-- yellow: implemented but no linked passing test run yet, or recovery work is in progress.
-- green: linked passing `test_runs` evidence exists and dependency impacts are clear.
+- red: dependency check が欠落している、または open dependency impact がある。
+- yellow: 実装済みだが linked passing test run がまだ無い、または recovery work が進行中。
+- green: linked passing `test_runs` evidence が存在し、dependency impact が clear である。
 
-## Scope
+## 範囲
 
-- Add an `artifact_progress` table and indexes to the harness.db schema registry.
-- Project rows from relation graph source/design/test-design/plan/requirement nodes,
-  `covered-by` / `pairs` edges, passing `test_runs`, active recovery PLANs, and open
-  `impact_results`.
-- Project `artifact_progress_events` and mirror red/yellow progress rows into
-  `feedback_events` so workflow recovery can start from DB state.
-- Add `ut-tdd progress artifacts` for read-only inspection of the projected colors.
-- Cover the color derivation and DB projection path with Vitest.
-- Document the requirement/design chain in requirements §6.8.6/§6.8.7, L1 FR-L1-51, L3 carry,
-  L4 function building block, L5 physical data, and L6 function/unit coverage so this implementation does not remain a
-  lower-layer-only change.
+- harness.db schema registry に `artifact_progress` table と index を追加する。
+- relation graph の source/design/test-design/plan/requirement node、`covered-by` / `pairs` edge、passing
+  `test_runs`、active recovery PLAN、open `impact_results` から row を projection する。
+- `artifact_progress_events` を projection し、red/yellow progress row を `feedback_events` へ mirror することで、
+  workflow recovery が DB state から開始できるようにする。
+- projected color を read-only で確認する `helix progress artifacts` を追加する。
+- color derivation と DB projection path を Vitest で覆う。
+- requirements §6.8.6/§6.8.7、L1 FR-L1-51、L3 carry、L4 機能 building block、L5 物理 data、
+  L6 function/unit coverage に requirement/design chain を記録し、この実装を lower-layer-only change のままにしない。
 
-## Acceptance Criteria
+## 受入条件
 
 - `bun test tests/projection-writer.test.ts tests/db-projection-ingestion.test.ts` passes.
 - `bun run typecheck` passes.
@@ -117,19 +115,17 @@ The color contract is:
 - `bun run src/cli.ts db rebuild --json` populates `artifact_progress`.
 - `bun run src/cli.ts progress artifacts --json` returns rows with `red` / `yellow` / `green`,
   `passed_test_run_ids`, `dependency_check_run_id`, and `recovery_plan_ids` compatible fields.
-- FR-L1-51 is present in L1 functional requirements, screen trace, L3 carry, and L4 function
-  building blocks.
-- FR-L1-51 is present in L6 `function-spec.md` and `fr-unit-coverage.md`.
-- `physical-data.md` defines the color invariants: red for missing dependency/back-propagation,
-  yellow for implemented/recovery/unverified, green for linked passing test run + dependency clear.
+- FR-L1-51 が L1 functional requirements、screen trace、L3 carry、L4 function building block に存在する。
+- FR-L1-51 が L6 `function-spec.md` と `fr-unit-coverage.md` に存在する。
+- `physical-data.md` は color invariant を定義する。red は missing dependency/back-propagation、yellow は
+  implemented/recovery/unverified、green は linked passing test run + dependency clear を示す。
 - `bun run src/cli.ts doctor` passes.
 
-## Notes
+## 備考
 
-This PLAN intentionally keeps `artifact_progress` as derived data. It is safe to delete and rebuild
-from relation graph, test catalog, and impact result projections.
+この PLAN では、`artifact_progress` を意図的に derived data として扱う。relation graph、test catalog、
+impact result projection から安全に削除・再構築できる。
 
-2026-06-23 hardening: DB workflow coupling now uses `test_runs` pass evidence and relation-impact
-check metadata. Static test links alone are yellow, not green. Red/yellow rows become
-`feedback_events` with `source_table=artifact_progress`, and `artifact_progress_events` provides a
-rebuildable event view for trigger consumers.
+2026-06-23 hardening: DB workflow coupling は `test_runs` pass evidence と relation-impact check metadata を使う。
+static test link だけでは green ではなく yellow とする。red/yellow row は `source_table=artifact_progress` を持つ
+`feedback_events` になり、`artifact_progress_events` は trigger consumer 向けの rebuildable event view を提供する。

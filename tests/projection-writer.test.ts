@@ -279,7 +279,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects refactor candidates into quality signals and feedback events", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-refactor-candidate-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-refactor-candidate-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "src"), { recursive: true });
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
@@ -346,7 +346,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects refactor candidate signals through the externalized feedback projection module", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-refactor-signal-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-refactor-signal-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "src"), { recursive: true });
       writeFileSync(
@@ -497,7 +497,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       // Regression: a relation-graph finding_id slug that contains "sk-" inside a
       // "task-" run (built here so no literal token appears in source) matches the
       // canonical SECRET_PATTERN but is a structured identifier, not a secret. It
-      // must NOT be rejected — this exact slug crashed `ut-tdd db rebuild`.
+      // must NOT be rejected — this exact slug crashed `helix db rebuild`.
       const slugId = `finding:missing-projection:changed-path-src-${"task"}-has-no-relation-graph-node`;
       expect(() =>
         recordProjectionEvent(db, {
@@ -550,7 +550,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           plan_id: "PLAN-L7-46-missing",
           started_at: "2026-06-11T00:02:00.000Z",
           completed_at: "2026-06-11T00:03:00.000Z",
-          evidence_path: ".ut-tdd/evidence/run.json",
+          evidence_path: ".helix/evidence/run.json",
         },
       });
 
@@ -590,7 +590,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             plan_id: planId,
             started_at: "2026-06-11T00:02:00.000Z",
             completed_at: "2026-06-11T00:03:00.000Z",
-            evidence_path: ".ut-tdd/evidence/run.json",
+            evidence_path: ".helix/evidence/run.json",
           },
         });
       }
@@ -704,7 +704,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects relation graph edges into the physical dependency_edges vocabulary", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-physical-edge-vocabulary-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-physical-edge-vocabulary-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -789,7 +789,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects impact_results with the changed root node separated from the required action target", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-impact-results-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-impact-results-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
       mkdirSync(join(repoRoot, "src", "widget"), { recursive: true });
@@ -866,10 +866,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects structured green-command case evidence into UT history signals on rebuild", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-structured-ut-evidence-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-structured-ut-evidence-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "green-command"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "green-command"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-239-structured-ut-evidence.md"),
         [
@@ -897,7 +897,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "        scope: targeted",
           "        exit_code: 1",
           '        completed_at: "2026-07-03T00:01:00.000Z"',
-          "        evidence_path: .ut-tdd/evidence/green-command/run-1.json",
+          "        evidence_path: .helix/evidence/green-command/run-1.json",
           '        output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
           "      - kind: unit_test",
           '        command: "bun test tests/structured.test.ts"',
@@ -905,7 +905,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "        scope: targeted",
           "        exit_code: 0",
           '        completed_at: "2026-07-03T00:03:00.000Z"',
-          "        evidence_path: .ut-tdd/evidence/green-command/run-2.json",
+          "        evidence_path: .helix/evidence/green-command/run-2.json",
           '        output_digest: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"',
           "---",
           "",
@@ -913,7 +913,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "green-command", "run-1.json"),
+        join(repoRoot, ".helix", "evidence", "green-command", "run-1.json"),
         JSON.stringify(
           {
             schema_version: "green-command-evidence-v1",
@@ -945,7 +945,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "green-command", "run-2.json"),
+        join(repoRoot, ".helix", "evidence", "green-command", "run-2.json"),
         JSON.stringify(
           {
             schema_version: "green-command-evidence-v1",
@@ -1047,10 +1047,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects Vitest, Playwright, and JUnit reporter evidence into UT history signals on rebuild", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-reporter-ut-evidence-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-reporter-ut-evidence-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "green-command"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "green-command"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-240-reporter-ut-evidence.md"),
         [
@@ -1078,7 +1078,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "        scope: targeted",
           "        exit_code: 0",
           '        completed_at: "2026-07-03T00:01:00.000Z"',
-          "        evidence_path: .ut-tdd/evidence/green-command/vitest.json",
+          "        evidence_path: .helix/evidence/green-command/vitest.json",
           '        output_digest: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
           "      - kind: integration_test",
           '        command: "bunx playwright test tests/e2e/reporter.spec.ts --reporter=json"',
@@ -1086,7 +1086,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "        scope: targeted",
           "        exit_code: 0",
           '        completed_at: "2026-07-03T00:02:00.000Z"',
-          "        evidence_path: .ut-tdd/evidence/green-command/playwright.json",
+          "        evidence_path: .helix/evidence/green-command/playwright.json",
           '        output_digest: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"',
           "      - kind: unit_test",
           '        command: "bun test tests/reporter.test.ts --reporter=junit"',
@@ -1094,7 +1094,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           "        scope: targeted",
           "        exit_code: 0",
           '        completed_at: "2026-07-03T00:03:00.000Z"',
-          "        evidence_path: .ut-tdd/evidence/green-command/junit.xml",
+          "        evidence_path: .helix/evidence/green-command/junit.xml",
           '        output_digest: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"',
           "---",
           "",
@@ -1102,7 +1102,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "green-command", "vitest.json"),
+        join(repoRoot, ".helix", "evidence", "green-command", "vitest.json"),
         JSON.stringify({
           testResults: [
             {
@@ -1124,7 +1124,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         }),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "green-command", "playwright.json"),
+        join(repoRoot, ".helix", "evidence", "green-command", "playwright.json"),
         JSON.stringify({
           suites: [
             {
@@ -1149,7 +1149,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         }),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "green-command", "junit.xml"),
+        join(repoRoot, ".helix", "evidence", "green-command", "junit.xml"),
         [
           '<testsuite name="reporter">',
           '  <testcase classname="tests/reporter.test.ts" name="U-JUNIT-A passes" time="0.020" />',
@@ -1189,10 +1189,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("U-RUNDEBUG-007: projects L7.5 runtime verification logs into harness.db runtime evidence rows", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-runtime-verification-projection-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-runtime-verification-projection-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "run-debug"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "run-debug"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-202-run-debug-runtime-verification.md"),
         [
@@ -1211,7 +1211,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "run-debug", "runtime-verification.jsonl"),
+        join(repoRoot, ".helix", "evidence", "run-debug", "runtime-verification.jsonl"),
         [
           JSON.stringify({
             event_id: "runtime-event-1",
@@ -1221,9 +1221,9 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             claim: "works",
             session_id: "session-1",
             source: "run-debug",
-            runtime_surface: "ut-tdd-cli",
+            runtime_surface: "helix-cli",
             correlation_id: "corr-1",
-            evidence_path: ".ut-tdd/evidence/run-debug/session-1.jsonl",
+            evidence_path: ".helix/evidence/run-debug/session-1.jsonl",
             occurred_at: "2026-06-30T00:00:00.000Z",
             redaction_policy: "no-secret-material",
           }),
@@ -1266,7 +1266,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           plan_id: "PLAN-L7-202-run-debug-runtime-verification",
           claim: "works",
           source: "run-debug",
-          runtime_surface: "ut-tdd-cli",
+          runtime_surface: "helix-cli",
           verification_class: "runtime_verified",
           accept_status: "accepted",
         });
@@ -1287,10 +1287,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects pair-agent run evidence into model, gate, and guardrail rows", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-pair-agent-projection-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-pair-agent-projection-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "pair-agent"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
         [
@@ -1309,7 +1309,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "pair-agent", "20260701034500-PLAN-L7-177.json"),
+        join(repoRoot, ".helix", "evidence", "pair-agent", "20260701034500-PLAN-L7-177.json"),
         `${JSON.stringify(
           {
             schema_version: "pair-agent-run-evidence.v1",
@@ -1435,7 +1435,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           .prepare(
             "SELECT runtime, model, role, drive, plan_id, evidence_path FROM model_runs WHERE evidence_path LIKE ? ORDER BY run_id",
           )
-          .all(".ut-tdd/evidence/pair-agent/%");
+          .all(".helix/evidence/pair-agent/%");
         expect(modelRuns).toEqual([
           expect.objectContaining({
             runtime: "claude",
@@ -1474,7 +1474,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         expect(gate).toMatchObject({
           gate_id: "pair-agent-run-evidence",
           status: "planned",
-          evidence_path: ".ut-tdd/evidence/pair-agent/20260701034500-PLAN-L7-177.json",
+          evidence_path: ".helix/evidence/pair-agent/20260701034500-PLAN-L7-177.json",
         });
         const guardrail = db
           .prepare(
@@ -1523,10 +1523,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("blocks pair-agent run evidence whose phase spans violate the smart-light-review order", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-pair-agent-order-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-pair-agent-order-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "pair-agent"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
         [
@@ -1545,7 +1545,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "pair-agent", "20260701034600-PLAN-L7-177.json"),
+        join(repoRoot, ".helix", "evidence", "pair-agent", "20260701034600-PLAN-L7-177.json"),
         `${JSON.stringify(
           {
             schema_version: "pair-agent-run-evidence.v1",
@@ -1622,7 +1622,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         expect(gate).toMatchObject({
           gate_id: "pair-agent-run-evidence",
           status: "blocked",
-          evidence_path: ".ut-tdd/evidence/pair-agent/20260701034600-PLAN-L7-177.json",
+          evidence_path: ".helix/evidence/pair-agent/20260701034600-PLAN-L7-177.json",
         });
         const finding = db
           .prepare("SELECT kind, source, status FROM findings WHERE kind = ?")
@@ -1641,10 +1641,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("blocks pair-agent run evidence that records light-agent closing authority findings", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-pair-agent-closure-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-pair-agent-closure-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "pair-agent"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-177-helix-orchestration-runtime-bridge.md"),
         [
@@ -1663,7 +1663,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "pair-agent", "20260701034700-PLAN-L7-177.json"),
+        join(repoRoot, ".helix", "evidence", "pair-agent", "20260701034700-PLAN-L7-177.json"),
         `${JSON.stringify(
           {
             schema_version: "pair-agent-run-evidence.v1",
@@ -1763,7 +1763,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         expect(gate).toMatchObject({
           gate_id: "pair-agent-run-evidence",
           status: "blocked",
-          evidence_path: ".ut-tdd/evidence/pair-agent/20260701034700-PLAN-L7-177.json",
+          evidence_path: ".helix/evidence/pair-agent/20260701034700-PLAN-L7-177.json",
         });
         const finding = db
           .prepare("SELECT kind, severity, source, status FROM findings WHERE kind = ?")
@@ -1783,10 +1783,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects pair-agent plan evidence into model and gate rows", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-pair-agent-plan-projection-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-pair-agent-plan-projection-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "evidence", "pair-agent"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "pair-agent"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-222-pair-agent-plan-evidence.md"),
         [
@@ -1805,7 +1805,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "evidence", "pair-agent", "20260701101500-PLAN-L7-222-plan.json"),
+        join(repoRoot, ".helix", "evidence", "pair-agent", "20260701101500-PLAN-L7-222-plan.json"),
         `${JSON.stringify(
           {
             schema_version: "pair-agent-plan-evidence.v1",
@@ -1885,13 +1885,13 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         expect(gate).toMatchObject({
           gate_id: "pair-agent-plan-evidence",
           status: "planned",
-          evidence_path: ".ut-tdd/evidence/pair-agent/20260701101500-PLAN-L7-222-plan.json",
+          evidence_path: ".helix/evidence/pair-agent/20260701101500-PLAN-L7-222-plan.json",
         });
         const modelRuns = db
           .prepare(
             "SELECT runtime, role, drive, plan_id FROM model_runs WHERE evidence_path = ? ORDER BY run_id",
           )
-          .all(".ut-tdd/evidence/pair-agent/20260701101500-PLAN-L7-222-plan.json");
+          .all(".helix/evidence/pair-agent/20260701101500-PLAN-L7-222-plan.json");
         expect(modelRuns).toEqual([
           expect.objectContaining({
             runtime: "claude",
@@ -2062,7 +2062,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             {
               document_export_run_id: "export-1",
               source_snapshot_hash: "sha256:test",
-              evidence_path: ".ut-tdd/evidence/export.json",
+              evidence_path: ".helix/evidence/export.json",
             },
           ],
           document_export_datasets: [
@@ -2355,7 +2355,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("normalizes inline comments from decision_outcome before PoC projection", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-poc-decision-comment-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-poc-decision-comment-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -2423,10 +2423,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects skill_injection session-log events as runtime skill invocations", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-skill-injection-projection-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-skill-injection-projection-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "logs", "session"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "logs", "session"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-SKILL-RUNTIME.md"),
         [
@@ -2443,7 +2443,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "logs", "session", "runtime-skill.jsonl"),
+        join(repoRoot, ".helix", "logs", "session", "runtime-skill.jsonl"),
         [
           JSON.stringify({
             ts: "2026-07-05T01:00:00.000Z",
@@ -2532,10 +2532,10 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects runtime session verification, forced-stop, and skill suggest events with provenance", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-runtime-provenance-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-runtime-provenance-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "logs", "session"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "logs", "session"), { recursive: true });
       writeFileSync(
         join(repoRoot, "docs", "plans", "PLAN-L7-RUNTIME-PROV.md"),
         [
@@ -2552,7 +2552,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
         ].join("\n"),
       );
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "logs", "session", "runtime-provenance.jsonl"),
+        join(repoRoot, ".helix", "logs", "session", "runtime-provenance.jsonl"),
         [
           JSON.stringify({
             ts: "2026-07-05T02:00:00.000Z",
@@ -2585,7 +2585,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             plan_id: "PLAN-L7-RUNTIME-PROV",
             event_type: "tool_use",
             tool_name: "Bash",
-            target: "ut-tdd skill suggest --plan docs/plans/PLAN-L7-RUNTIME-PROV.md",
+            target: "helix skill suggest --plan docs/plans/PLAN-L7-RUNTIME-PROV.md",
             outcome: "ok",
           }),
           "",
@@ -2628,7 +2628,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             plan_id: "PLAN-L7-RUNTIME-PROV",
             command: "bun test tests/projection-writer.test.ts",
             scope: "runtime-hook",
-            evidence_path: ".ut-tdd/logs/session/runtime-provenance.jsonl",
+            evidence_path: ".helix/logs/session/runtime-provenance.jsonl",
             status: "passed",
           }),
         ]);
@@ -2644,7 +2644,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
             plan_id: "PLAN-L7-RUNTIME-PROV",
             guardrail: "forced-stop",
             decision: "block",
-            evidence_path: ".ut-tdd/logs/session/runtime-provenance.jsonl",
+            evidence_path: ".helix/logs/session/runtime-provenance.jsonl",
           }),
         ]);
 
@@ -2672,9 +2672,9 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
   });
 
   it("projects loop iteration JSONL rows and records malformed rows as findings", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-loop-iterations-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-loop-iterations-${randomUUID()}`);
     try {
-      const loopDir = join(repoRoot, ".ut-tdd", "state", "loop");
+      const loopDir = join(repoRoot, ".helix", "state", "loop");
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
       mkdirSync(loopDir, { recursive: true });
       writeFileSync(
@@ -2729,7 +2729,7 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
           worker_provider: "codex",
           verifier_provider: "claude",
           verdict: "pass",
-          evidence_path: ".ut-tdd/state/loop/PLAN-L7-304.iterations.jsonl",
+          evidence_path: ".helix/state/loop/PLAN-L7-304.iterations.jsonl",
         });
 
         const finding = db
@@ -2750,12 +2750,12 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
 
 describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
   it("U-ORCH-007: projects loop iteration jsonl rows and downgrades broken lines to findings", () => {
-    const repoRoot = join(tmpdir(), `ut-tdd-loop-projection-${randomUUID()}`);
+    const repoRoot = join(tmpdir(), `helix-loop-projection-${randomUUID()}`);
     try {
       mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
-      mkdirSync(join(repoRoot, ".ut-tdd", "state", "loop"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "state", "loop"), { recursive: true });
       writeFileSync(
-        join(repoRoot, ".ut-tdd", "state", "loop", "PLAN-L7-999.iterations.jsonl"),
+        join(repoRoot, ".helix", "state", "loop", "PLAN-L7-999.iterations.jsonl"),
         [
           JSON.stringify({
             planId: "PLAN-L7-999",
@@ -2821,7 +2821,7 @@ describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
           verdict: "pass",
           blocked_reason: null,
           cost_usd: 0.25,
-          evidence_path: ".ut-tdd/state/loop/PLAN-L7-999.iterations.jsonl",
+          evidence_path: ".helix/state/loop/PLAN-L7-999.iterations.jsonl",
           recorded_at: "2026-07-05T01:02:03.000Z",
         });
         expect(rows[1]).toMatchObject({
@@ -2839,7 +2839,7 @@ describe("U-ORCH-007: loop_iterations projection (PLAN-L7-305)", () => {
         expect(finding).toMatchObject({
           kind: "loop-iteration-invalid",
           severity: "warn",
-          subject_id: ".ut-tdd/state/loop/PLAN-L7-999.iterations.jsonl:3",
+          subject_id: ".helix/state/loop/PLAN-L7-999.iterations.jsonl:3",
         });
       } finally {
         db.close();

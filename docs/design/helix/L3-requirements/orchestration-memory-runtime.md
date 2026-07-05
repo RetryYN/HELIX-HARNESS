@@ -25,20 +25,20 @@ pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
   各反復を `recordIteration`（worker/verifier provider・verdict・stop_reason・blocked_reason）で記録。
 - **hybrid 自己評価 fail-close**: 選定 verifier provider が利用不能なら **worker と同 runtime で代替検証せず
   `stopped` + `blockedReason="cross_runtime_unavailable"`**（worker の runtime から pass を出さない）。
-- loop state は `.ut-tdd/state/loop/<planId>.json` に永続（`loop-store`）。
+- loop state は `.helix/state/loop/<planId>.json` に永続（`loop-store`）。
 - 受入 = U-ORCH-004。
 
 ## HR-BR-12R — memory 永続 + CLI（2 層 jsonl）
 
-- `MemoryDeps` の実体は `.ut-tdd/memory/<layer>.jsonl`（git 共有 SSoT、Claude も Codex も読み書き可）。
+- `MemoryDeps` の実体は `.helix/memory/<layer>.jsonl`（git 共有 SSoT、Claude も Codex も読み書き可）。
 - append-only・履歴非破壊（supersede で上書きせず追記）、破損行はスキップ（fail-soft 読取）。
-- `ut-tdd memory write/list/show` CLI で人手/エージェントから操作可能。
+- `helix memory write/list/show` CLI で人手/エージェントから操作可能。
 - secret は `isSecretLike`（単一正本）で write 時 reject（body を echo しない）。
 - 受入 = memory-store / CLI（writeMemory/listMemory/surfaceMemory の実 deps）。
 
 ## HR-NFR-03R — 多ランタイム競合排他（job-queue）
 
-- `job-queue` は **専用 sqlite ストア**（`.ut-tdd/state/jobs.db`、harness.db とは分離）で、
+- `job-queue` は **専用 sqlite ストア**（`.helix/state/jobs.db`、harness.db とは分離）で、
   `BEGIN IMMEDIATE` トランザクションにより Claude/Codex の競合 claim を直列化し**二重取得しない**。
 - `SQLITE_BUSY` は null 返却で呼び出し側が backoff（二重実行回避）。rollback 失敗は cause 付きで変換送出。
 - 受入 = U-ORCH-006。

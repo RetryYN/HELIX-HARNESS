@@ -411,7 +411,7 @@ export const DOCUMENT_PACKS_OPERATIONS: DocumentPack[] = [
       "plan lint",
       "plan routing",
       "plan gate",
-      "ut-tdd plan",
+      "helix plan",
       "doctor",
       "lint",
       "route",

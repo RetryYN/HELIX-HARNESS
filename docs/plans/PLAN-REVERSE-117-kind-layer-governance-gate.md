@@ -63,25 +63,23 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-REVERSE-117: kind layer governance gate
+# PLAN-REVERSE-117: kind layer governance gate（kind/layer 互換性 governance gate）
 
-## Objective
+## 目的
 
-Back-fill the kind/layer compatibility rule into requirements. The previous
-gate verified PLAN token and enum validity but did not prove that authoring kind
-matched the layer where the work was filed.
+kind/layer 互換性ルールを requirements に反映する。従来の gate は PLAN token と enum の妥当性を検証していたが、
+起票された kind がその作業を配置した layer と一致することまでは証明していなかった。
 
-## Scope
+## スコープ
 
-- Requirements record the `kind_layer_mismatch` governance violation.
-- Design and add-design work are constrained to their authoring layers.
-- Implementation, refactor, retrofit, and troubleshoot work are constrained to
-  L7.
-- Research remains constrained to L1-L4.
-- Legacy PLANs before the enforcement date remain non-blocking unless updated.
+- Requirements に `kind_layer_mismatch` governance violation を記録する。
+- design と add-design の work は、それぞれの起票 layer に制約する。
+- implementation、refactor、retrofit、troubleshoot の work は L7 に制約する。
+- research は L1-L4 に制約したままにする。
+- enforcement date より前の legacy PLAN は、更新されない限り non-blocking とする。
 
-## Acceptance Criteria
+## 受入条件
 
-- A new PLAN filed with an incompatible kind/layer pair fails.
-- The same PLAN with a compatible kind/layer pair passes.
-- Fullback evidence points to the requirements update.
+- 互換性のない kind/layer pair で新規起票された PLAN は fail する。
+- 同じ PLAN が互換性のある kind/layer pair であれば pass する。
+- fullback evidence が requirements update を指している。

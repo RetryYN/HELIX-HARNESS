@@ -32,20 +32,20 @@ v2_import: docs/migration/v2-import-ledger.md
 s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-04 directive: "3件の問題を解消して")
-- decision_basis: L1-L5 dogfood and RECOVERY/Reverse cycles showed the workflow metamodel can run without schema-breaking gaps.
+- decision_basis: L1-L5 dogfood と RECOVERY/Reverse cycle により、workflow metamodel が schema を壊す gap なしで回ることを確認した。
 - verified_evidence: PLAN-DISCOVERY-01 §7.1 S3 verify plus PLAN-REVERSE-08 R0-R4 normalization evidence; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
-- stakeholder_review_or_proxy: PO directive plus intra-runtime review recorded in PLAN-REVERSE-08.
-- acceptance_gap: none for metamodel adoption; remaining language/detail gaps were routed through PLAN-REVERSE-08 and later Forward PLANs.
-- unresolved_risk: future mode-specific gaps must still enter Discovery/Reverse instead of bypassing Forward.
-- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
-- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
-- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
-- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
-- route_impact: confirmed promotes the metamodel findings into Forward governance through Reverse normalization.
-- forward_route: PLAN-REVERSE-08-discovery-metamodel -> concept §2.5 / requirements signal routing.
-- reverse_fullback_required: yes; discharged by PLAN-REVERSE-08-discovery-metamodel.
-- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the metamodel and harden language/gates through Reverse/Forward.
+- stakeholder_review_or_proxy: PO directive と PLAN-REVERSE-08 に記録した intra-runtime review。
+- acceptance_gap: metamodel 採用に対する gap はなし。残る language/detail gap は PLAN-REVERSE-08 と後続 Forward PLAN に経路付けした。
+- unresolved_risk: residual risk として、将来の mode-specific gap は Forward を迂回せず、Discovery/Reverse に入れる必要がある。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh。current audit で 2026-07-03 に discovery/scrum mode docs の S4 decision source ledger を確認した。
+- source_status_delta: changed。ISO/IEC/IEEE 29148 は現在 2026-02-16 stage 90.92 to be revised を示すが、historical confirmed S4 decision は再オープンしない。
+- adoption_decision_delta: none。ISO/IEC/IEEE 29148 revision は publication まで追跡するが、historical S4 adoption decision は current route policy と整合している。
+- workflow_route_impact: none。historical decision はすでに S4 と Reverse/Forward evidence 経由で経路付け済み。
+- route_impact: confirmed は metamodel 所見を Reverse normalization 経由で Forward governance に promote する。
+- forward_route: PLAN-REVERSE-08-discovery-metamodel -> concept §2.5 / requirements の signal routing。
+- reverse_fullback_required: yes。PLAN-REVERSE-08-discovery-metamodel で discharge 済み。
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening。metamodel を維持し、Reverse/Forward を通じて language/gates を harden する。
 
 # PLAN-DISCOVERY-01 (kind=poc): workflow メタモデル検証 (駆動プラン / S1)
 

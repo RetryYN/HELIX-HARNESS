@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-155-proposal-research-source-constants
-title: "PLAN-L7-155: proposal research source constants"
+title: "PLAN-L7-155: proposal research source constants の定数化"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant literal externalization inside the proposal research catalog. No public CLI/API contract, persisted schema, requirement semantics, or workflow semantics changed."
+backprop_decision_reason: "proposal research catalog 内の挙動不変な literal 外部化。公開 CLI/API contract、永続 schema、requirement semantics、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - proposal research literal externalization"
+    slot_label: "SE - proposal research literal 外部化"
   - role: tl
-    slot_label: "TL - classification invariant review"
+    slot_label: "TL - classification invariant レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-155-proposal-research-source-constants.md
     artifact_type: markdown_doc
@@ -33,7 +33,7 @@ review_evidence:
     reviewed_at: "2026-06-25T17:34:46+09:00"
     tests_green_at: "2026-06-25T17:34:46+09:00"
     verdict: approve
-    scope: "Behavior-invariant source-name constant extraction in proposal research catalog."
+    scope: "proposal research catalog における挙動不変な source-name constant 抽出。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -63,22 +63,21 @@ review_evidence:
         output_digest: "sha256:c028b8e6d44f65a79159a3741073753bdb1f33774976f2fcee39179e89b1ffbe"
 ---
 
-# PLAN-L7-155: proposal research source constants
+# PLAN-L7-155: proposal research source constants の定数化
 
-## Objective
+## 目的
 
-Close the remaining `externalize-literal` candidate in
-`src/task/proposal-research-data.ts` by replacing repeated source-name strings
-with named constants.
+`src/task/proposal-research-data.ts` に残る `externalize-literal` candidate を、
+重複する source-name 文字列から named constants への置換で解消する。
 
-## Scope
+## スコープ
 
-- Add named constants for repeated research source names.
-- Preserve all research adoption/rejection output values.
-- Keep task classification behavior unchanged.
+- 重複する research source name に named constants を追加する。
+- research adoption/rejection の全 output values を保持する。
+- task classification の挙動を変更しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- `proposal-research-data.ts` no longer emits an `externalize-literal` candidate.
-- `bun run vitest run tests\task-classify.test.ts` passes.
-- `bun run typecheck`, `bun run lint`, DB rebuild, and doctor pass.
+- `proposal-research-data.ts` が `externalize-literal` candidate を出さなくなる。
+- `bun run vitest run tests\task-classify.test.ts` が pass する。
+- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が pass する。

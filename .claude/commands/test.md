@@ -1,9 +1,9 @@
 ---
-description: UT-TDD TDD discipline に従い test-first（Red → Green → Refactor）で進める
+description: HELIX TDD discipline に従い test-first（Red → Green → Refactor）で進める
 argument-hint: "<unit or behavior under test>"
 ---
 
-UT-TDD では test-first で実装する。`test-driven-development` skill を使い、level/fixture の選択には
+HELIX では test-first で実装する。`test-driven-development` skill を使い、level/fixture の選択には
 `testing` も使う。
 
 Target: $ARGUMENTS
@@ -19,5 +19,5 @@ Oracle strength: real behavior を assert する。complex object に `toBeTruth
 mock せず、integration path には real harness state を使う。Vitest（`bun run test`）を使い、
 sync timeout が flaky な `bun test` は使わない。
 
-trace-freeze 前に `bun run typecheck`、`bun run lint`、`bun run test`、`ut-tdd doctor` がすべて green
-であることを確認し、その後 `ut-tdd review --uncommitted` で evidence を残す。
+trace-freeze 前に `bun run typecheck`、`bun run lint`、`bun run test`、`helix doctor` がすべて green
+であることを確認し、その後 `helix review --uncommitted` で evidence を残す。

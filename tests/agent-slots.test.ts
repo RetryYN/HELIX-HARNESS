@@ -20,7 +20,7 @@ import {
 } from "../src/runtime/agent-slots";
 import { resolveRosterCapability } from "../src/runtime/agent-slots-roster";
 
-const statePath = join("/repo", ".ut-tdd", "state", "agent-slots.json");
+const statePath = join("/repo", ".helix", "state", "agent-slots.json");
 
 /** in-memory + 単調 clock の mock deps (決定論)。now は呼ぶたび 1 分進む。 */
 function mockDeps(over: Partial<AgentSlotsDeps> = {}): AgentSlotsDeps & {
@@ -332,7 +332,7 @@ describe("U-SLOT-009 nodeAgentSlotsDeps atomic write", () => {
       releaseSlot({ slotId: a.slot_id, status: "completed", exitCode: 0 }, deps);
       releaseSlot({ slotId: b.slot_id, status: "failed", exitCode: 1 }, deps);
 
-      const stateDir = join(dir, ".ut-tdd", "state");
+      const stateDir = join(dir, ".helix", "state");
       const onDisk = JSON.parse(readFileSync(join(stateDir, "agent-slots.json"), "utf8")) as Slot[];
       expect(onDisk).toHaveLength(2);
       expect(onDisk.map((s) => s.status)).toEqual(["completed", "failed"]);

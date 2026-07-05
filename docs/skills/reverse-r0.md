@@ -22,15 +22,15 @@ R0: Evidence Acquisition は、すべての Reverse cycle の最初の phase で
 
 ## この skill を読む条件
 
-- `kind=reverse` の PLAN を作成済みで、`ut-tdd plan lint` が green。
+- `kind=reverse` の PLAN を作成済みで、`helix plan lint` が green。
 - PLAN frontmatter の現在 `workflow_phase` が R0。
 
 ## 入力
 
 - 対象 scope 配下の既存 source files、configuration、migration snapshots
   （read-only。vendor snapshots は reference only として扱う）。
-- 未解決 blocking state が無いことを示す `ut-tdd status` output。
-- 既存 governance violation を可視化する `ut-tdd doctor` output
+- 未解決 blocking state が無いことを示す `helix status` output。
+- 既存 governance violation を可視化する `helix doctor` output
   （記録だけ行う。R0 中に修正しない。修正は R4 の責務）。
 
 ## 手順
@@ -45,12 +45,12 @@ R0: Evidence Acquisition は、すべての Reverse cycle の最初の phase で
 4. 対象に関連する test files を inventory し、path を列挙する。
 5. 観測した drift signals を記録する。schema mismatch、orphaned design docs、
    broken import paths、untraced implementation files など。
-6. 対象 scope が inter-module contracts を含む場合は、`ut-tdd graph` または
-   `ut-tdd find` で dependency edges を特定する。
+6. 対象 scope が inter-module contracts を含む場合は、`helix graph` または
+   `helix find` で dependency edges を特定する。
 
 ## 出力 artifact: evidence map
 
-`.ut-tdd/reverse/<plan_id>/R0-evidence-map.yaml` へ書く。
+`.helix/reverse/<plan_id>/R0-evidence-map.yaml` へ書く。
 
 ```yaml
 plan_id: <PLAN-REVERSE-NN>
@@ -74,9 +74,9 @@ R1 を skip する type では `R2` へ進める前に確認する。
 - [ ] `has_existing_tests` が省略されず明示されている。
 - [ ] すべての drift signals が列挙されている
       （未解決でも記録する。解決は R3/R4）。
-- [ ] PLAN を `workflow_phase: R1` に更新した状態で `ut-tdd plan lint` が 0 で終了する
+- [ ] PLAN を `workflow_phase: R1` に更新した状態で `helix plan lint` が 0 で終了する
       （design/normalization type では `R2`）。
-- [ ] `ut-tdd doctor` が 0 で終了する
+- [ ] `helix doctor` が 0 で終了する
       （R0 edits による新規 violation が無い）。
 
 すべての check が pass した後だけ PLAN `workflow_phase` を進める。

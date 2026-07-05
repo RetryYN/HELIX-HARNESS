@@ -66,7 +66,7 @@ review_evidence:
     verdict: approve
     worker_model: claude-opus-4-8
     reviewer_model: gpt-5.5
-    scope: "IMP-146 legacy debt 解消の disposition (L7-147 = Forward 集約 via Reverse back-fill) を別 runtime (Codex gpt-5.5, role=tl) が desk review。verdict=AGREE with minor corrections (証跡 .ut-tdd/review/cross-review-imp146-legacy-convergence.md): detector は L6/L7 descent 欠落の真陽性で local_impl_only でなく Forward 集約が正しい、back-fill 先は function-spec.md + L7-unit-test-design.md が適切、と支持。本 PLAN が L6 function-spec へ analyzeRefactorCandidates contract を descent + L7-147 を requires 参照 = forward-convergence converged。"
+    scope: "IMP-146 legacy debt 解消の disposition (L7-147 = Forward 集約 via Reverse back-fill) を別 runtime (Codex gpt-5.5, role=tl) が desk review。verdict=AGREE with minor corrections (証跡 .helix/review/cross-review-imp146-legacy-convergence.md): detector は L6/L7 descent 欠落の真陽性で local_impl_only でなく Forward 集約が正しい、back-fill 先は function-spec.md + L7-unit-test-design.md が適切、と支持。本 PLAN が L6 function-spec へ analyzeRefactorCandidates contract を descent + L7-147 を requires 参照 = forward-convergence converged。"
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/projection-writer.test.ts (refactor candidate detector 4 kind projection)"
@@ -94,23 +94,23 @@ review_evidence:
         output_digest: "sha256:01b7e1df83a2057d4e873c6f287f923d29b51f9f953e888436de259f0ae61b6f"
 ---
 
-# PLAN-REVERSE-141: refactor candidate detector の L6/L7 descent back-fill (IMP-146)
+# PLAN-REVERSE-141: refactor candidate detector の L6/L7 設計降下の戻し込み (descent back-fill / IMP-146)
 
 ## 0. なぜ (IMP-146: legacy debt の Forward 集約)
 
 `PLAN-L7-147-refactor-candidate-detector` (kind=impl/confirmed) は forward-convergence fail-close 化
 (PLAN-DISCOVERY-08) 以前から存在した未集約 landed impl で、`FORWARD_CONVERGENCE_LEGACY_DEBT` allowlist で
 grandfather されていた (繰延、免除でない)。detector 固有 behavior — `analyzeRefactorCandidates` +
-4 candidate kind (split-module / extract-helper / deduplicate-function / externalize-literal) +
+4 つの candidate kind (split-module / extract-helper / deduplicate-function / externalize-literal) +
 `quality_signals` (metric=refactor_candidate:<kind>) / `feedback_events` projection contract — は
 L6 function-spec / L7 test-design へ一度も descent していなかった (Refactor mode workflow 自体は
 `PLAN-L7-133` 経由で Forward 内だが、detector は別 capability)。
 
-IMP-146 disposition (Codex cross-review AGREE、証跡 `.ut-tdd/review/cross-review-imp146-legacy-convergence.md`):
+IMP-146 disposition (Codex cross-review AGREE、証跡 `.helix/review/cross-review-imp146-legacy-convergence.md`):
 detector は実 product behavior ゆえ `local_impl_only` は不採用、**Forward 集約 (Reverse back-fill で
 L6/L7 descent 付与 + 当該 impl PLAN を参照 = converged)** が正しい。本 PLAN がその合流装置 (IMP-064)。
 
-## 1. back-fill した descent (最小・additive、Codex 反映)
+## 1. 戻し込んだ設計降下 (back-fill した descent / 最小・additive、Codex 反映)
 
 - **L6 `docs/design/harness/L6-function-design/function-spec.md`** (updated): Harness DB projection addendum に
   `analyzeRefactorCandidates` の L6 function-level contract 行を追加 (4 candidate kind + projection 先 +

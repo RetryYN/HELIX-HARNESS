@@ -35,8 +35,8 @@ patterns を扱う。この skill は test suite architecture の *what and how*
 | Level | V-model layer | Location | Scope（対象範囲） |
 |-------|---------------|----------|-------|
 | Unit | L7（L6 と pair） | `tests/` | 単一 module、I/O なし |
-| Integration | L8 | `tests/integration/` | 複数 modules、real `.ut-tdd/` state |
-| System / CLI | L9 | `tests/system/` | End-to-end の `ut-tdd` command invocation |
+| Integration | L8 | `tests/integration/` | 複数 modules、real `.helix/` state |
+| System / CLI | L9 | `tests/system/` | End-to-end の `helix` command invocation |
 | Acceptance | L11-L12 | `docs/test-design/acceptance/` | requirements に対する scenarios |
 
 各 level には、L5/L6 または L8/L9 design document と対応する design doc が
@@ -68,23 +68,23 @@ thresholds を上げない (coverage count は oracle quality と同じではな
 
 ## Fixture discipline（fixture 規律）
 
-- harness state 用の fixtures は `tests/fixtures/` 配下に置く。production `.ut-tdd/`
+- harness state 用の fixtures は `tests/fixtures/` 配下に置く。production `.helix/`
   state を test fixture として再利用しない。test runs は live runtime なしで再現可能でなければならない。
 - `harness.db` を読む integration tests は、自前の in-memory または temp-file DB instance を
   set up / tear down する。
-- 外部 process calls（`ut-tdd` CLI の spawn）は、制御された `CLAUDE_PROJECT_DIR` を注入する
+- 外部 process calls（`helix` CLI の spawn）は、制御された `CLAUDE_PROJECT_DIR` を注入する
   helper で wrap し、hook paths が deterministic に解決されるようにする。
 
 ## Coverage と substance
 
 green の coverage percentage は、test oracles が意味のある検証であることを証明しない。
 tests 追加後に確認する: この test は誤った return value を捕捉できるか。
-`.ut-tdd/` への missing write を捕捉できるか。できないなら、coverage が有用だと判断する前に
+`.helix/` への missing write を捕捉できるか。できないなら、coverage が有用だと判断する前に
 assertion を強める。
 
 ## L8 integration test checklist（確認項目）
 
-- [ ] Test は real `.ut-tdd/` state (temp dir、seeded fixture、または test helper 経由の actual
+- [ ] Test は real `.helix/` state (temp dir、seeded fixture、または test helper 経由の actual
   harness.db) に触れる。
 - [ ] Test は console output だけでなく output artefacts (file written、DB row inserted、exit code) を
   assert する。
@@ -96,7 +96,7 @@ assertion を強める。
 Retrofit または Reverse PLAN の下で existing code の tests を back-fill するとき:
 
 1. `bun run test` を実行し、current pass/fail state を記録する。
-2. `ut-tdd graph` または manual review で cover 対象の code paths を特定する。
+2. `helix graph` または manual review で cover 対象の code paths を特定する。
 3. design changes より前に characterisation tests（現在の behaviour を oracle として記述）を書く。
    これが regression fence になる。
 4. characterisation tests と pair する L6 unit-test design docs を `docs/test-design/` に back-fill する。

@@ -1308,7 +1308,7 @@ export function buildVersionUpgradeDryRunPlan(
       ? `git ls-remote --tags ${shellQuote(input.releaseRemoteUrl)} ${shellQuote(input.targetVersion)}`
       : `git rev-parse --verify ${shellQuote(input.targetVersion)}`;
   const dryRunCommand = [
-    `ut-tdd version-up dry-run --current ${shellQuote(input.currentVersion)}`,
+    `helix version-up dry-run --current ${shellQuote(input.currentVersion)}`,
     `--target ${shellQuote(input.targetVersion)}`,
     input.releaseRemoteUrl ? `--release-remote ${shellQuote(input.releaseRemoteUrl)}` : null,
     "--json",
@@ -1355,7 +1355,7 @@ export function buildVersionUpgradeDryRunPlan(
       },
       {
         step: "project_setup_dry_run",
-        command: "ut-tdd setup project --dry-run --json",
+        command: "helix setup project --dry-run --json",
         requiredEvidence: "setup_import_report_and_identifier_transition",
       },
       {
@@ -1365,7 +1365,7 @@ export function buildVersionUpgradeDryRunPlan(
       },
       {
         step: "doctor_rebuild",
-        command: "ut-tdd db rebuild && ut-tdd doctor",
+        command: "helix db rebuild && helix doctor",
         requiredEvidence: "doctor_green_before_tag_or_release_update",
       },
     ],
@@ -1377,12 +1377,12 @@ export function buildVersionUpgradeDryRunPlan(
       },
       {
         step: "restore_harness_state",
-        command: "restore .ut-tdd state backup captured before upgrade apply",
+        command: "restore .helix state backup captured before upgrade apply",
         requiredEvidence: "state_backup_manifest",
       },
       {
         step: "rebuild_projection_after_rollback",
-        command: "ut-tdd db rebuild && ut-tdd doctor",
+        command: "helix db rebuild && helix doctor",
         requiredEvidence: "post_rollback_doctor_green",
       },
     ],
@@ -1394,7 +1394,7 @@ export function buildVersionUpgradeDryRunPlan(
       },
       {
         check: "setup_project_dry_run_is_non_destructive",
-        command: "ut-tdd setup project --dry-run --json",
+        command: "helix setup project --dry-run --json",
         expected: "writtenPaths empty in importReport and no remote apply",
       },
     ],
@@ -1408,12 +1408,12 @@ export function buildVersionUpgradeDryRunPlan(
       },
       {
         check: "required_checks_green",
-        command: "ut-tdd status --json",
+        command: "helix status --json",
         requiredEvidence: "completion decision packet has no unreviewed regression gate",
       },
       {
         check: "merge_queue_or_ruleset_gate_preserved",
-        command: "ut-tdd doctor",
+        command: "helix doctor",
         requiredEvidence: "ruleset/merge readiness gates remain green",
       },
     ],
@@ -1668,7 +1668,7 @@ export function buildVersionUpActivationPacket(
       planOnly: true,
       mustNotApply: true,
       writePolicy: "no-write",
-      sourceCommand: `ut-tdd version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
+      sourceCommand: `helix version-up security-checklist --plan ${plan.plan_id} --no-write --json`,
       activationSnapshot,
       securityChecks,
       blockedUntil: [
@@ -1729,7 +1729,7 @@ export function buildVersionUpActivationRehearsalPacket(
     planOnly: true,
     mustNotApply: true,
     writePolicy: "no-write",
-    sourceCommand: `ut-tdd version-up rehearsal --plan ${packet.planId} --no-write --json`,
+    sourceCommand: `helix version-up rehearsal --plan ${packet.planId} --no-write --json`,
     activationSnapshot: packet.activationSnapshot,
     externalRehearsalPlan: packet.externalRehearsalPlan,
     costGuardrails: packet.costGuardrails,
@@ -2096,7 +2096,7 @@ function buildVersionUpActivationDryRunEvidence(
     command: buildVersionUpDryRunReviewCommand(currentVersion, targetVersion),
     planCommand:
       dryRunPlan.migrationPlan.find((step) => step.step === "compare_current_target")?.command ??
-      `ut-tdd version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`,
+      `helix version-up dry-run --current ${shellQuote(currentVersion)} --target ${shellQuote(targetVersion)} --json`,
     digest: sha256Json(dryRunPlan),
     ok: dryRunPlan.ok,
     semverChange: dryRunPlan.semverChange,
@@ -2462,7 +2462,7 @@ function hasConcreteActivationEvidence(evidence: string): boolean {
     /\b(run|workflow|job|artifact|audit|evidence|report|log)\s*(id|path|url)\s*[:=]\s*\S+/i,
     /\b(?:audit|run|workflow|job|artifact|report|log)-?(?:id|url|path)\s*[:=]\s*\S+/i,
     /\b(artifacts?|reports?|logs?|evidence|audit)\//i,
-    /\b(\.ut-tdd|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
+    /\b(\.helix|\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/\S+/i,
     /\S+\.(json|log|txt|md|sarif|junit|xml|csv|db)\b/i,
   ].some((pattern) => pattern.test(normalized));
 }

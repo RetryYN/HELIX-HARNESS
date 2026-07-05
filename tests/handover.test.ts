@@ -89,9 +89,9 @@ function mockSessionDeps(files: Map<string, string>): SessionLogDeps & { removed
   };
 }
 
-const digestDir = join("/repo", ".ut-tdd", "logs", "plan");
-const currentPlanPath = join("/repo", ".ut-tdd", "state", "current-plan");
-const pointerPath = join("/repo", ".ut-tdd", "handover", "CURRENT.json");
+const digestDir = join("/repo", ".helix", "logs", "plan");
+const currentPlanPath = join("/repo", ".helix", "state", "current-plan");
+const pointerPath = join("/repo", ".helix", "handover", "CURRENT.json");
 
 describe("PLAN-L7-173 handover sidecars", () => {
   it("re-exported constants and sidecar document type stay aligned", () => {
@@ -119,18 +119,18 @@ function digest(over: Partial<PlanDigestRef> = {}): PlanDigestRef {
 }
 
 describe("PLAN-L7-145 handover #1: relativizeTouchedFile (absolute-path leak fix)", () => {
-  const WINROOT = "C:\\Users\\micro\\OneDrive\\Desktop\\UT-TDD-agent-harness";
+  const WINROOT = "C:\\Users\\micro\\OneDrive\\Desktop\\HELIX-HARNESS";
 
   it("relativizes a Windows abs path whose casing MISMATCHES repoRoot (lowercase entry vs uppercase cwd)", () => {
     // process.cwd() returns uppercase 'C:\\...'; on-disk digests store lowercase 'c:\\...'.
     // A case-sensitive compare would leave the leak intact — this is the regression that matters.
-    const entry = "Write c:\\Users\\micro\\OneDrive\\Desktop\\UT-TDD-agent-harness\\src\\a.ts";
+    const entry = "Write c:\\Users\\micro\\OneDrive\\Desktop\\HELIX-HARNESS\\src\\a.ts";
     expect(relativizeTouchedFile(entry, WINROOT)).toBe("Write src/a.ts");
   });
 
   it("relativizes when casing mismatches the other direction (uppercase entry vs lowercase root)", () => {
-    const entry = "Edit C:\\Users\\micro\\OneDrive\\Desktop\\UT-TDD-agent-harness\\src\\b.ts";
-    const lowerRoot = "c:\\Users\\micro\\OneDrive\\Desktop\\UT-TDD-agent-harness";
+    const entry = "Edit C:\\Users\\micro\\OneDrive\\Desktop\\HELIX-HARNESS\\src\\b.ts";
+    const lowerRoot = "c:\\Users\\micro\\OneDrive\\Desktop\\HELIX-HARNESS";
     expect(relativizeTouchedFile(entry, lowerRoot)).toBe("Edit src/b.ts");
   });
 
@@ -173,8 +173,8 @@ describe("PLAN-L7-145 handover #1: relativizeTouchedFile (absolute-path leak fix
         digest({
           plan_id: "PLAN-X",
           files_touched: [
-            "Write c:\\Users\\micro\\OneDrive\\Desktop\\UT-TDD-agent-harness\\src\\a.ts",
-            "Write C:\\Users\\micro\\OneDrive\\Desktop\\UT-TDD-agent-harness\\src\\a.ts",
+            "Write c:\\Users\\micro\\OneDrive\\Desktop\\HELIX-HARNESS\\src\\a.ts",
+            "Write C:\\Users\\micro\\OneDrive\\Desktop\\HELIX-HARNESS\\src\\a.ts",
             "Write c:\\Users\\micro\\.codex\\config.toml",
           ],
         }),
@@ -432,7 +432,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
           layer: "L14",
           kind: "design",
           status: "draft",
-          text: "Irreversible .ut-tdd to .helix rename cutover requires human approval and action-binding approval before apply.",
+          text: "Irreversible .helix to .helix rename cutover requires human approval and action-binding approval before apply.",
         },
       ],
       0,
@@ -460,22 +460,20 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
     expect(section).toContain(
       "asset_progress_visualization:frontier_pending_decision:PLAN-DISCOVERY-10",
     );
-    expect(section).toContain(
-      "serverless_readonly_share:parked_future_version:PLAN-L7-146",
-    );
+    expect(section).toContain("serverless_readonly_share:parked_future_version:PLAN-L7-146");
     expect(section).toContain("completion-claim-allowed=false");
     expect(section).toContain("confirmed-current-meaning-records: count=11");
     expect(section).toContain("pair_agent_tdd_route");
     expect(section).toContain("boundary=downstream_evidence_required");
     expect(section).toContain("PLAN-DISCOVERY-10");
     expect(section).toContain("PO/S4 判断を記録してから昇格・却下・Forward merge へ進める");
-    expect(section).toContain("ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10");
+    expect(section).toContain("helix s4 decision-packet --json --plan PLAN-DISCOVERY-10");
     expect(section).toContain(
-      "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
+      "helix action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
     );
-    expect(section).toContain("base=`ut-tdd s4 decision-packet --json`");
+    expect(section).toContain("base=`helix s4 decision-packet --json`");
     expect(section).toContain(
-      "packet要約: `ut-tdd s4 decision-packet --json` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8",
+      "packet要約: `helix s4 decision-packet --json` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8",
     );
     expect(section).toContain("確認field件数=");
     expect(section).toContain("確認field=planOnly,mustNotDecide");
@@ -494,7 +492,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
       "matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
     );
     expect(section).toContain(
-      "packet要約: `ut-tdd action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=11",
+      "packet要約: `helix action-binding approval-packet --json` schema=action-binding-approval-packet.v1 検証matrix=approvalVerificationCommandMatrix 件数=11",
     );
     expect(section).toContain(
       "S4 decision evidence / outcome route / verification command を確認する",
@@ -517,10 +515,8 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
 
     const section = latestEntrySection(md, "§3") ?? "";
     expect(section).toContain("PLAN-M-02");
-    expect(section).toContain(
-      "name_cutover:approval_gated_cutover:PLAN-M-02",
-    );
-    expect(section).toContain("ut-tdd rename approval-draft --json");
+    expect(section).toContain("name_cutover:approval_gated_cutover:PLAN-M-02");
+    expect(section).toContain("helix rename approval-draft --json");
     expect(section).toContain(
       "確認観点=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む",
     );
@@ -531,12 +527,12 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 に marker と packet 要約があれば ok", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n> semantic-frontier-records: count=1 ids=design_bottomup_mode:frontier_pending_decision:PLAN-X completion-claim-allowed=false\n> confirmed-current-meaning-records: count=11 ids=pair_agent_tdd_route boundary=downstream_evidence_required\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=3 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n> semantic-frontier-records: count=1 ids=design_bottomup_mode:frontier_pending_decision:PLAN-X completion-claim-allowed=false\n> confirmed-current-meaning-records: count=11 ids=pair_agent_tdd_route boundary=downstream_evidence_required\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`helix s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=3 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
     expect(checkHandoverNextActionAnchor(withDoc(md)).ok).toBe(true);
   });
 
   it("§3 の packet 要約に completion-review-coverage が無ければ fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=3 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`helix s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=3 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
@@ -544,7 +540,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 の packet 要約に semantic frontier / confirmed meaning が無ければ fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=3 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`helix s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=3 確認field=decisionEvidenceChecklist,outcomeRouteMatrix,semanticFeatureFrontierRecord matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する 確認観点ID=review S4 decision evidence\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
@@ -552,7 +548,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 の packet 要約に source-delta field が無ければ fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認観点=review S4 decision evidence\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`helix s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認観点=review S4 decision evidence\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
@@ -560,7 +556,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 の packet 要約に machine 確認観点ID が無ければ fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=1 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`helix s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=1 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=S4 decision evidence を確認する\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
@@ -568,7 +564,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 の packet 要約が machine review route を確認観点に露出したら fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n> semantic-frontier-records: count=1 ids=design_bottomup_mode:frontier_pending_decision:PLAN-X completion-claim-allowed=false\n> confirmed-current-meaning-records: count=11 ids=pair_agent_tdd_route boundary=downstream_evidence_required\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`ut-tdd s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=1 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=review S4 decision evidence, outcome routes, and verification commands 確認観点ID=review S4 decision evidence, outcome routes, and verification commands\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n> completion-review-coverage: covered=po_decision_pending non-packet=semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only\n> semantic-frontier-records: count=1 ids=design_bottomup_mode:frontier_pending_decision:PLAN-X completion-claim-allowed=false\n> confirmed-current-meaning-records: count=11 ids=pair_agent_tdd_route boundary=downstream_evidence_required\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - packet要約: \`helix s4 decision-packet --json\` schema=s4-decision-packet.v1 検証matrix=decisionVerificationCommandMatrix 件数=8 確認field件数=1 確認field=decisionEvidenceChecklist matrix必須field=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact 確認観点=review S4 decision evidence, outcome routes, and verification commands 確認観点ID=review S4 decision evidence, outcome routes, and verification commands\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
@@ -576,7 +572,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
   });
 
   it("§3 に marker があっても packet 要約が無ければ fail-close", () => {
-    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - primary packet: \`ut-tdd s4 decision-packet --json\`\n\n## §4 x\n`;
+    const md = `# Session Handover — 2026-06-04\n\n## §3 Next Action\n\n> ${HANDOVER_NEXT_ACTION_MARKER}: 1 item(s)\n\n- 1. \`PLAN-X\` (po_decision_pending): record\n  - primary packet: \`helix s4 decision-packet --json\`\n\n## §4 x\n`;
     const r = checkHandoverNextActionAnchor(withDoc(md));
 
     expect(r.ok).toBe(false);
@@ -660,7 +656,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
         generatedAt: NOW,
         now: NOW,
-        sourceCommand: "ut-tdd handover",
+        sourceCommand: "helix handover",
       }),
     });
     const r = checkHandoverCompletionDecisionPacket(deps);
@@ -669,8 +665,8 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
     expect(r.messages[0]).toContain("decisions=1");
     const pointer = JSON.parse(deps.files.get(pointerPath) ?? "{}");
     expect(pointer.completionDecisionPacket.decisions[0]).toMatchObject({
-      decisionPacketCommand: "ut-tdd s4 decision-packet --json",
-      packetCommands: ["ut-tdd s4 decision-packet --json"],
+      decisionPacketCommand: "helix s4 decision-packet --json",
+      packetCommands: ["helix s4 decision-packet --json"],
     });
   });
 
@@ -681,7 +677,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
     const packet = completionDecisionPacketForOutstanding(outstanding, {
       generatedAt: NOW,
       now: NOW,
-      sourceCommand: "ut-tdd handover",
+      sourceCommand: "helix handover",
     });
     const {
       authorityBoundary: _authorityBoundary,
@@ -723,7 +719,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
         generatedAt: NOW,
         now: NOW,
-        sourceCommand: "ut-tdd handover",
+        sourceCommand: "helix handover",
       }),
     });
     const r = checkHandoverCompletionDecisionPacket(deps);
@@ -743,13 +739,13 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
       completionDecisionPacket: completionDecisionPacketForOutstanding(outstanding, {
         generatedAt: NOW,
         now: NOW,
-        sourceCommand: "ut-tdd completion decision-packet --json",
+        sourceCommand: "helix completion decision-packet --json",
       }),
     });
     const r = checkHandoverCompletionDecisionPacket(deps);
 
     expect(r.ok).toBe(false);
-    expect(r.messages.join("\n")).toContain("expected=ut-tdd handover");
+    expect(r.messages.join("\n")).toContain("expected=helix handover");
   });
 
   it("packet の decision count が outstanding 明細とずれたら fail-close", () => {
@@ -759,7 +755,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
     const packet = completionDecisionPacketForOutstanding(outstanding, {
       generatedAt: NOW,
       now: NOW,
-      sourceCommand: "ut-tdd handover",
+      sourceCommand: "helix handover",
     });
     writePointer(deps, {
       outstanding,
@@ -777,7 +773,7 @@ describe("U-HOVER-019 handover completion decision packet gate", () => {
     const packet = completionDecisionPacketForOutstanding(outstanding, {
       generatedAt: NOW,
       now: NOW,
-      sourceCommand: "ut-tdd handover",
+      sourceCommand: "helix handover",
     });
     writePointer(deps, { outstanding, completionDecisionPacket: packet });
     const r = checkHandoverCompletionDecisionPacket(deps);
@@ -821,7 +817,7 @@ describe("U-HOVER-016 capWithBreadcrumb + renderHandoverScaffold summary cap (PL
     const md = renderHandoverScaffold(doc);
     // §1 breadcrumb に残数 8 が出る (full registry はダンプしない)。
     expect(md).toContain("+ 8 more PLAN");
-    expect(md).toContain("ut-tdd status");
+    expect(md).toContain("helix status");
     // 末尾 (上限外) の PLAN id は本文に出ない = 肥大しない。
     const lastId = `PLAN-CAP-${String(MAX_SUMMARY_PLANS + 7).padStart(2, "0")}-x`;
     expect(md).not.toContain(lastId);
@@ -1025,7 +1021,7 @@ describe("U-HOVER-010 readPointer / checkHandoverDiscipline (IMP-047)", () => {
     const deps = mockDeps({ now: () => "2026-06-04T01:00:00.000Z" });
     deps.files.set(pointerPath, JSON.stringify(pointer()));
     const result = updatePointerOwner("codex", deps);
-    expect(result.written).toEqual([".ut-tdd/handover/CURRENT.json"]);
+    expect(result.written).toEqual([".helix/handover/CURRENT.json"]);
     expect(result.pointer).toMatchObject({
       owner: "codex",
       owner_updated_at: "2026-06-04T01:00:00.000Z",
@@ -1114,7 +1110,7 @@ describe("U-HOVER-007 runHandover", () => {
     const md = deps.files.get(join("/repo", docRel)) ?? "";
     expect(md).toContain("# 既存 entry"); // 既存を残す
     expect(md).toContain("§3 次アクション"); // 追記される
-    expect(r.written).toContain(join(".ut-tdd", "handover", "CURRENT.json"));
+    expect(r.written).toContain(join(".helix", "handover", "CURRENT.json"));
   });
 
   it("CURRENT.json に handover 生成時点の completionDecisionPacket を記録する", () => {
@@ -1125,7 +1121,7 @@ describe("U-HOVER-007 runHandover", () => {
       status: "ready",
       generatedFrom: "outstanding.completionReadiness",
       generatedAt: NOW,
-      sourceCommand: "ut-tdd handover",
+      sourceCommand: "helix handover",
       freshness: {
         validForMinutes: 1440,
         expiresAt: "2026-06-05T00:00:00.000Z",
@@ -1137,7 +1133,7 @@ describe("U-HOVER-007 runHandover", () => {
       decisions: [],
     });
     const pointer = JSON.parse(deps.files.get(pointerPath) ?? "{}");
-    expect(pointer.completionDecisionPacket.sourceCommand).toBe("ut-tdd handover");
+    expect(pointer.completionDecisionPacket.sourceCommand).toBe("helix handover");
   });
 
   it("complete=true → CURRENT.json status=completed かつ active_plan=planId", () => {
@@ -1376,7 +1372,7 @@ describe("U-HOVER-011 checkHandoverBypass (IMP-078 gap①)", () => {
 });
 
 describe("U-HOVER-012 session scope + latestSessionId (IMP-078 gap④)", () => {
-  const sessionDir = join("/repo", ".ut-tdd", "logs", "session");
+  const sessionDir = join("/repo", ".helix", "logs", "session");
 
   it("scopeToSession: 指定 session が触れた digest のみへ絞る", () => {
     const deps = mockDeps();

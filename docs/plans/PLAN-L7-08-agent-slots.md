@@ -52,11 +52,11 @@ review_evidence:
 
 ## §1 実装する契約
 
-- `src/runtime/agent-slots.ts`: Slot 型 + loadSlots/fireSlot/releaseSlot/listActiveSlots/listStaleSlots/peakParallel/exceedsParallelLimit/recordGuardFire/nodeAgentSlotsDeps (設計 §2 DbC 準拠、全 fail-open)。state = `.ut-tdd/state/agent-slots.json` (gitignored)。
+- `src/runtime/agent-slots.ts`: Slot 型 + loadSlots/fireSlot/releaseSlot/listActiveSlots/listStaleSlots/peakParallel/exceedsParallelLimit/recordGuardFire/nodeAgentSlotsDeps (設計 §2 DbC 準拠、全 fail-open)。state = `.helix/state/agent-slots.json` (gitignored)。
 - `src/schema/team.ts`: teamDefinitionSchema (zod) + mustSerialize + 3 条件。
 - `src/doctor/index.ts`: checkAgentSlots (stale/peak surface、warning-only、read-only deps) を runDoctor に配線。
 - `.claude/hooks/agent-guard.ts`: pass (code 0) 時のみ recordGuardFire で fire 記録 + 並列超過 stderr warn (block 判定 fail-close に不干渉、slot I/O は try/catch 隔離)。
-- `.ut-tdd/teams/example-review-team.yaml`: team 定義の参照例 (tracked)。
+- `.helix/teams/example-review-team.yaml`: team 定義の参照例 (tracked)。
 
 ## §工程表
 

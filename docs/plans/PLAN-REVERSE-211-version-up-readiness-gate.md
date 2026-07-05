@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-211-version-up-readiness-gate
-title: "PLAN-REVERSE-211: version-up readiness gate backfill"
+title: "PLAN-REVERSE-211: version-up readiness gate backfill の逆伝播"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,17 +16,17 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
-    reason: "HAC-P1-02a now names version-up-readiness as the gate for version_target rationale, activation conditions, and feature-list trace."
+    reason: "HAC-P1-02a は、version_target rationale、activation conditions、feature-list trace の gate として version-up-readiness を明記する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "HB-P1 and routing semantics already include version-up and escalation boundaries."
+    reason: "HB-P1 と routing semantics は、version-up と escalation boundaries を既に含んでいる。"
   - layer: process-mode
     decision: updated
     evidence_path: docs/process/modes/version-up.md
-    reason: "Added explicit semantic trace from L0/L3/L4/mode catalog to parked PLAN and doctor gate, and hardened the official source ledger with adoption decisions."
+    reason: "L0/L3/L4/mode catalog から parked PLAN と doctor gate への semantic trace を明示し、adoption decisions で official source ledger を強化した。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The change is a requirements/process-mode gate and does not alter detailed internal contracts."
+    reason: "この変更は requirements/process-mode gate であり、詳細な internal contracts は変更しない。"
 agent_slots:
   - role: tl
     slot_label: "TL - version-up readiness backfill"
@@ -49,7 +49,7 @@ review_evidence:
     reviewed_at: "2026-06-30T14:32:07+09:00"
     tests_green_at: "2026-06-30T14:32:07+09:00"
     verdict: approve
-    scope: "Backfilled the version-up readiness gate into process-mode semantics without changing L0/L3/L4 requirements or activating the parked serverless PLAN. The source ledger now carries adoption decisions and compare-only release automation candidates."
+    scope: "L0/L3/L4 requirements を変更せず、parked serverless PLAN も有効化せずに、version-up readiness gate を process-mode semantics へ backfill した。source ledger は adoption decisions と compare-only release automation candidates を持つ。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -71,34 +71,32 @@ review_evidence:
         output_digest: "sha256:4b05fe6be6b15f71728b2f363f092f27c79bd207dadc65b8ad4b478618403464"
 ---
 
-# PLAN-REVERSE-211: version-up readiness gate backfill
+# PLAN-REVERSE-211: version-up readiness gate backfill の逆伝播
 
-## Objective
+## 目的
 
-Backfill `PLAN-L7-211` into the process-mode definition so the new hard gate is
-not an isolated L7 lint. The semantic source remains L0/P1 and L3
-`HR-FR-P1-02`; this PLAN records that the enforcement was routed back through
-the version-up mode SSoT.
+`PLAN-L7-211` を process-mode 定義へ backfill し、新しい hard gate が
+孤立した L7 lint にならないようにする。semantic source は L0/P1 と L3
+`HR-FR-P1-02` のままであり、この PLAN は enforcement を version-up mode
+SSoT 経由で逆伝播したことを記録する。
 
-## Backfill Result
+## Backfill 結果
 
-- L0/L3/L4 were reviewed and left unchanged because they already contain the
-  required version-up semantics.
-- `docs/process/modes/version-up.md` now lists the requirement trace and the
-  five current feature responsibilities: marker, outstanding separation,
-  Forward convergence, activation, and safety boundary.
-- The version-up source ledger now records official URL, adopted version/date,
-  latest official status, adoption decision, version-up use, and required field
-  impact, including compare-only release automation candidates.
-- `PLAN-L7-146` stays parked. This backfill does not authorize Cloudflare,
-  HMAC/webhook, access-control, secret, or external infrastructure work.
+- L0/L3/L4 はレビュー済みで、必要な version-up semantics を既に含むため変更しない。
+- `docs/process/modes/version-up.md` は、requirement trace と現在の 5 つの
+  feature responsibilities を列挙する: marker、outstanding separation、
+  Forward convergence、activation、safety boundary の 5 項目。
+- version-up source ledger は official URL、adopted version/date、
+  latest official status を記録し、adoption decision、version-up use、
+  required field impact も記録し、compare-only release automation candidates も含める。
+- `PLAN-L7-146` は parked のままにする。この backfill は Cloudflare、
+  HMAC/webhook、access-control、secret、external infrastructure work を許可しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-211` and this Reverse PLAN require each other for required
-  add-impl backfill pairing.
-- `version-up-readiness` fails if L0/L3/L4/mode catalog semantics disappear.
-- `version-up-readiness` fails if the source ledger loses a required row,
-  adoption decision, latest official status, or release automation comparison
-  source.
-- `doctor` passes after DB rebuild.
+- `PLAN-L7-211` とこの Reverse PLAN は、required add-impl backfill pairing のために相互 require する。
+- L0/L3/L4/mode catalog semantics が消えた場合、`version-up-readiness` は fail する。
+- source ledger から required row、adoption decision、latest official status、
+  release automation comparison source のいずれかが失われた場合、
+  `version-up-readiness` は fail する。
+- DB rebuild 後に `doctor` が pass する。

@@ -63,23 +63,22 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-REVERSE-116: required agent role gate
+# PLAN-REVERSE-116: required agent role gate（必須 agent role gate）
 
-## Objective
+## 目的
 
-Back-fill the mandatory role rule into requirements. The schema verified that
-`agent_slots[].role` used a valid enum, but it did not prove that the role
-required by the drive model was present.
+mandatory role rule を requirements へ back-fill する。schema は `agent_slots[].role` が有効な enum を使うことを検証していたが、
+drive model が要求する role の存在までは証明していなかった。
 
-## Scope
+## 範囲
 
-- Requirements record the `missing_required_agent_role` governance violation.
-- New or updated `poc`, `recovery`, and `troubleshoot` PLANs require `aim`.
-- New or updated Reverse R3 PLANs require `po`.
-- Legacy role debt remains non-blocking unless the PLAN is updated.
+- requirements に `missing_required_agent_role` governance violation を記録する。
+- 新規または更新された `poc` / `recovery` / `troubleshoot` PLAN は `aim` を必須にする。
+- 新規または更新された Reverse R3 PLAN は `po` を必須にする。
+- legacy role debt は、該当 PLAN が更新されない限り non-blocking のままにする。
 
-## Acceptance Criteria
+## 受入条件
 
-- A new drive-model PLAN missing its required role fails.
-- The same PLAN with the required role passes.
-- Legacy PLANs before the enforcement date are not retroactively failed.
+- required role が欠けた新規 drive-model PLAN は失敗する。
+- 同じ PLAN に required role があれば通過する。
+- enforcement date より前の legacy PLAN は retroactive に失敗させない。

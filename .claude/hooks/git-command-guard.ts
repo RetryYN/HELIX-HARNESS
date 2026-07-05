@@ -17,8 +17,8 @@ import {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = process.env.CLAUDE_PROJECT_DIR ?? join(here, "..", "..");
-const OVERRIDE_MARKER = join(repoRoot, ".ut-tdd", "state", "destructive-git-override");
-const OVERRIDE_AUDIT = join(repoRoot, ".ut-tdd", "logs", "destructive-git-overrides.jsonl");
+const OVERRIDE_MARKER = join(repoRoot, ".helix", "state", "destructive-git-override");
+const OVERRIDE_AUDIT = join(repoRoot, ".helix", "logs", "destructive-git-overrides.jsonl");
 
 async function readStdin(): Promise<string> {
   const chunks: Buffer[] = [];
@@ -61,7 +61,7 @@ try {
 try {
   const command = extractShellCommand(input.tool_input);
   const override = resolveDestructiveGitOverride({
-    env: process.env.UT_TDD_ALLOW_DESTRUCTIVE_GIT,
+    env: process.env.HELIX_ALLOW_DESTRUCTIVE_GIT,
     markerReason: readOverrideMarker(),
   });
   const result = evaluateGitCommandGuard({ command, bypass: override.bypass });

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-216-version-up-activation-readiness
-title: "PLAN-L7-216 (add-impl): version-up activation readiness evidence"
+title: "PLAN-L7-216 (add-impl): version-up activation readiness の証跡整理"
 kind: add-impl
 layer: L7
 drive: agent
@@ -97,51 +97,44 @@ review_evidence:
         output_digest: "sha256:e5281e9eab7e257930c135cc1aafbca2884cd83f0ef3988035852271ddf27f5a"
 ---
 
-# PLAN-L7-216: version-up activation readiness evidence
+# PLAN-L7-216: version-up activation readiness の証跡
 
-## Objective
+## 目的
 
-Close the workflow hole where `version-up-activation-packet.v1` listed external
-rehearsal and provenance requirements but did not classify each requirement as
-evidence-present or still pending. A parked external activation must remain
-plan-only and must show exactly which rehearsal evidence is still blocking
-approval.
+`version-up-activation-packet.v1` には外部のリハーサルと provenance の要件が並んでいるが、各要件を
+`evidence-present` か未完了かに分類していなかった。この抜けを塞ぐ。外部 activation は引き続き
+`plan-only` のまま維持し、どのリハーサル証跡が approval を妨げているかを明示すること。
 
-## Scope
+## 範囲
 
-- Add `activationReadinessChecks[]` to version-up activation packets.
-- Classify external rehearsal/provenance evidence as `present` or
-  `pending_evidence`.
-- Treat prose-only instructions, planned checks, and "recorded" claims without a
-  concrete evidence locator (path, audit id, digest, run log, result/exit code,
-  report artifact) as `pending_evidence`.
-- Add `activation rehearsal evidence pending: <check>` blocked reasons for
-  pending checks.
-- Update version-up process, L6 function design, and paired L3/L6 test design.
-- Preserve the existing serverless/version-up activation blocker.
+- version-up activation packets に `activationReadinessChecks[]` を追加する。
+- 外部のリハーサル/provenance 証跡を `present` または `pending_evidence` に分類する。
+- 文面だけの指示、予定された確認、または具体的な証跡 locator を持たない "recorded" 主張
+  (path、audit id、digest、run log、result/exit code、report artifact) は `pending_evidence` と扱う。
+- 保留中の確認に対して `activation rehearsal evidence pending: <check>` の blocked reason を追加する。
+- version-up process、L6 function design、L3/L6 の対になった test design を更新する。
+- 既存の serverless/version-up activation blocker は維持する。
 
-## Non-Scope
+## 非対象
 
-- Does not activate `PLAN-L7-146-serverless-readonly-share`.
-- Does not grant apply permission, deployment permission, secret access, or
-  action-binding approval.
-- Does not execute `.ut-tdd -> .helix` cutover.
+- `PLAN-L7-146-serverless-readonly-share` は activation しない。
+- apply permission、deployment permission、secret access、action-binding approval は付与しない。
+- `.helix -> .helix` cutover は実行しない。
 
-## External Basis
+## 外部根拠
 
-The process doc cites Google Cloud Deploy deployment verification, canary, and
-rollback docs as official operational analogs: deployment activation should be
-verified, limited/progressive, and reversible before approval.
+process doc では、Google Cloud Deploy の deployment verification、canary、rollback の公式ドキュメントを
+運用上の参照例として挙げている。deployment activation は approval 前に、検証され、限定的に段階化され、
+かつ復旧可能であるべきだという整理である。
 
-## DoD
+## 受入条件
 
-- [x] External activation packets include `activationReadinessChecks[]`.
-- [x] Pending external rehearsal/provenance evidence becomes a blocked reason.
-- [x] Prose-only rehearsal/provenance claims without concrete evidence locators
-      remain `pending_evidence`.
-- [x] CLI activation packet for `PLAN-L7-146` exposes pending readiness checks.
-- [x] Existing plan-only safety flags remain fixed:
+- [x] External activation packets に `activationReadinessChecks[]` が含まれる。
+- [x] 保留中の外部リハーサル/provenance 証跡が blocked reason になる。
+- [x] 具体的な証跡 locator を伴わない prose-only のリハーサル/provenance 主張は
+      `pending_evidence` のまま残る。
+- [x] `PLAN-L7-146` の CLI activation packet で保留中の readiness checks を確認できる。
+- [x] 既存の plan-only safety flags は固定されたまま:
       `planOnly=true`, `mustNotApply=true`, `applyCommandAvailable=false`,
-      `activationAllowed=false`.
-- [x] Design/test-design/process docs describe the gate without claiming whole
-      program completion.
+      `activationAllowed=false`。
+- [x] design/test-design/process docs は、全体完了を主張せずに gate を説明している。

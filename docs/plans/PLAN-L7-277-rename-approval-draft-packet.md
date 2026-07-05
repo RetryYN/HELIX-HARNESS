@@ -47,7 +47,7 @@ review_evidence:
     reviewed_at: "2026-07-03T18:35:00+09:00"
     tests_green_at: "2026-07-03T18:35:00+09:00"
     verdict: approve
-    scope: "`ut-tdd rename approval-draft --json` を非承認・非適用 packet として追加し、PLAN-M-02 の completion decision supporting packet に接続する。primary は `ut-tdd rename plan --json` のまま維持し、action-binding approval を authority boundary として残す。"
+    scope: "`helix rename approval-draft --json` を非承認・非適用 packet として追加し、PLAN-M-02 の completion decision supporting packet に接続する。primary は `helix rename plan --json` のまま維持し、action-binding approval を authority boundary として残す。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -73,13 +73,13 @@ review_evidence:
 
 ## 目的
 
-PLAN-M-02 の `.ut-tdd` から `.helix` への rename cutover は、不可逆 migration として人間承認・action-binding approval・clean snapshot・evidence review を要求する。既存の `rename plan` は cutover snapshot と runbook を提示できるが、PO が記録すべき `cutover_decision_record` と `action_binding_approval_record` の草案を snapshot に拘束して提示する surface が不足していた。
+PLAN-M-02 の `.helix` から `.helix` への rename cutover は、不可逆 migration として人間承認・action-binding approval・clean snapshot・evidence review を要求する。既存の `rename plan` は cutover snapshot と runbook を提示できるが、PO が記録すべき `cutover_decision_record` と `action_binding_approval_record` の草案を snapshot に拘束して提示する surface が不足していた。
 
 この PLAN では、承認を代行しない approval draft packet を追加し、completion decision packet からも確認対象として辿れるようにする。
 
 ## 要件
 
-- `ut-tdd rename approval-draft --json` は `identifier-rename-approval-draft.v1` を返す。
+- `helix rename approval-draft --json` は `identifier-rename-approval-draft.v1` を返す。
 - packet は `planOnly=true`、`mustNotApply=true`、`approvalCommandAvailable=false`、`approvalAllowed=false`、`applyAuthorized=false` を固定する。
 - `currentSnapshot` は `rename plan` の `cutoverSnapshot.snapshotId`、HEAD、dirty path、evidence count、digest、source ledger digest を引き継ぐ。
 - `draftRecords` は `cutover_decision_record` と `action_binding_approval_record` の草案を返すが、各 record は `pasteReady=false` と `unsafeToTreatAsApproval=true` を持つ。

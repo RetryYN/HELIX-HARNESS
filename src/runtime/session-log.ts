@@ -186,14 +186,14 @@ export function activePlanStale(deps: SessionLogDeps, now: string, maxHours = 24
 }
 
 function currentPlanPath(repoRoot: string): string {
-  return join(repoRoot, ".ut-tdd", "state", "current-plan");
+  return join(repoRoot, ".helix", "state", "current-plan");
 }
 
 // PLAN-L6-06 §2.3: ID 単体形 (slug 任意)。commit message 抽出 / handover scope 解決で再利用。
 const PLAN_ID_RE = /PLAN-(?:L(?:[0-9]|1[0-4])|DISCOVERY|REVERSE|RECOVERY|M)-\d{2}(?:-[a-z0-9-]+)?/;
 
 /**
- * U-HOVER-006: active PLAN を `.ut-tdd/state/current-plan` へ書く (Gap B 活性化)。
+ * U-HOVER-006: active PLAN を `.helix/state/current-plan` へ書く (Gap B 活性化)。
  * planId!==null → 書く / null + removeFile 有 → 削除 / null + removeFile 無 → 空文字書込
  * (resolveActivePlan は空文字を trim で falsy 判定し branch fallback→null へ落とす = 実質 clear)。
  * resolveActivePlan の解決ロジックは不変。
@@ -225,7 +225,7 @@ export function recordEvent(ev: SessionEvent, deps: SessionLogDeps): void {
   try {
     const file = join(
       deps.repoRoot,
-      ".ut-tdd",
+      ".helix",
       "logs",
       "session",
       `${safeName(ev.session_id)}.jsonl`,
@@ -275,9 +275,9 @@ export function recordSkillInjectionAttempt(
   }
 }
 
-/** session_id の jsonl ログ path (`.ut-tdd/logs/session/<safeName>.jsonl`)。 */
+/** session_id の jsonl ログ path (`.helix/logs/session/<safeName>.jsonl`)。 */
 export function sessionLogFile(repoRoot: string, sessionId: string): string {
-  return join(repoRoot, ".ut-tdd", "logs", "session", `${safeName(sessionId)}.jsonl`);
+  return join(repoRoot, ".helix", "logs", "session", `${safeName(sessionId)}.jsonl`);
 }
 
 /** jsonl raw を SessionEvent[] へ。壊れた行は skip (fail-open)。 */
@@ -434,7 +434,7 @@ export function onStop(input: SessionHookInput, deps: SessionLogDeps): number {
       },
       deps,
     );
-    const file = join(deps.repoRoot, ".ut-tdd", "logs", "session", `${safeName(sid)}.jsonl`);
+    const file = join(deps.repoRoot, ".helix", "logs", "session", `${safeName(sid)}.jsonl`);
     const raw = deps.readText(file);
     if (!raw) return 0;
     const events = parseSessionEvents(raw);
@@ -444,7 +444,7 @@ export function onStop(input: SessionHookInput, deps: SessionLogDeps): number {
     for (const planId of plans) {
       const digestFile = join(
         deps.repoRoot,
-        ".ut-tdd",
+        ".helix",
         "logs",
         "plan",
         `${safeName(planId)}.digest.json`,

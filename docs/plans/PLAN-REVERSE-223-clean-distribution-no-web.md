@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-223-clean-distribution-no-web
-title: "PLAN-REVERSE-223: clean distribution no-web backfill"
+title: "PLAN-REVERSE-223: no-web clean distribution の補完"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -15,40 +15,40 @@ promotion_strategy: reuse-with-hardening
 backprop_scope:
   - layer: requirements
     decision: not_impacted
-    reason: "PLAN-L7-157 already required screenless clean distribution. This slice hardens the interpretation and evidence at L6/L7 without changing product requirements."
+    reason: "PLAN-L7-157 はすでに screenless clean distribution を要求している。この slice は product requirements を変えずに、L6/L7 の解釈と evidence を強化する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The setup/distribution block already owns clean distribution at the architecture level; this slice hardens the L6/L7 artifact contract."
+    reason: "setup/distribution block は architecture level ですでに clean distribution を担っている。この slice は L6/L7 artifact contract を強化する。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "No schema, API, or detailed interface shape changes are required; the existing distribution planning surface is reused."
+    reason: "schema、API、詳細な interface shape の変更は不要であり、既存の distribution planning surface を再利用する。"
   - layer: L6-function-design
     decision: updated
     evidence_path: docs/design/harness/L6-function-design/setup-solo-team.md
-    reason: "The clean export contract now excludes central UI runtime, web-only tests, and frontend residue."
+    reason: "clean export contract は central UI runtime、web-only tests、frontend residue を除外する。"
   - layer: HELIX-L6-function-design
     decision: updated
     evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-    reason: "HC-P6 now records no-web clean distribution semantics and optional web module loading."
+    reason: "HC-P6 は no-web clean distribution semantics と optional web module loading を記録する。"
   - layer: L3-acceptance-test-design
     decision: updated
     evidence_path: docs/test-design/harness/L3-acceptance-test-design.md
-    reason: "AT-DIST-001 observes absence of `src/web/` and web-only tests before install/status/distribution/typecheck."
+    reason: "AT-DIST-001 は install/status/distribution/typecheck の前に `src/web/` と web-only tests が存在しないことを観測する。"
   - layer: L7-unit-test-design
     decision: updated
     evidence_path: docs/test-design/harness/L7-unit-test-design.md
-    reason: "U-SETUP-011 and U-SETUP-013 now encode no-web distribution as artifact exclusion plus core CLI viability."
+    reason: "U-SETUP-011 と U-SETUP-013 は no-web distribution を artifact exclusion と core CLI viability として表現する。"
   - layer: HELIX-L6-test-design
     decision: updated
     evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-    reason: "HU-PILLAR-DIST-01 now binds HC-P6 distribution to the stronger no-web clean artifact contract."
+    reason: "HU-PILLAR-DIST-01 は HC-P6 distribution を、より強い no-web clean artifact contract に結び付ける。"
   - layer: prior-plan
     decision: updated
     evidence_path: docs/plans/PLAN-L7-157-distribution-clean-pull.md
-    reason: "R2/AC2 and cross-review M2 now explicitly close the weaker no-screen wording."
+    reason: "R2/AC2 と cross-review M2 は、弱い no-screen wording を明示的に閉じる。"
 agent_slots:
   - role: tl
-    slot_label: "TL - no-web backfill"
+    slot_label: "TL - no-web 補完"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-223-clean-distribution-no-web.md
     artifact_type: markdown_doc
@@ -76,7 +76,7 @@ review_evidence:
     reviewed_at: "2026-07-01T10:23:04+09:00"
     tests_green_at: "2026-07-01T10:23:04+09:00"
     verdict: pass
-    scope: "Backfilled the no-web distribution interpretation from PLAN-L7-157 R2/AC2 into L6 function design, HELIX HC-P6, L3 acceptance design, L7 unit design, and HELIX HU-PILLAR-DIST-01."
+    scope: "PLAN-L7-157 R2/AC2 の no-web distribution 解釈を、L6 function design、HELIX HC-P6、L3 acceptance design、L7 unit design、HELIX HU-PILLAR-DIST-01 へ補完した。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -106,27 +106,23 @@ review_evidence:
         output_digest: "sha256:56d86a78bcfb8855585540e7ac0ca5be96354743b97df36737248188b60981d2"
 ---
 
-# PLAN-REVERSE-223: clean distribution no-web backfill
+# PLAN-REVERSE-223: no-web clean distribution の補完
 
-## Objective
+## 目的
 
-Backfill the distribution design so "screenless" is evaluated by artifact
-semantics. A clean package must not carry UI runtime files, web-only tests, or
-frontend residue, while the dogfood source repo may still keep the web slice for
-future UI work.
+distribution design を補完し、"screenless" を artifact semantics で評価する。
+clean package は UI runtime files、web-only tests、frontend residue を含んではならない。
+一方で dogfood source repo は、将来の UI 作業のために web slice を保持してよい。
 
-## Backfill Result
+## 補完結果
 
-- PLAN-L7-157 R2/AC2 now defines no-web distribution explicitly.
-- L6 setup design and HELIX HC-P6 describe the clean export contract with
-  `src/web/`, `tests/web.test.ts`, and frontend residue excluded.
-- L3/L7 harness test design and HELIX HU-PILLAR-DIST-01 observe the same
-  contract.
-- Implementation remains additive and keeps source-repo web tests green.
+- PLAN-L7-157 R2/AC2 は no-web distribution を明示的に定義する。
+- L6 setup design と HELIX HC-P6 は、`src/web/`、`tests/web.test.ts`、frontend residue を除外する clean export contract を記述する。
+- L3/L7 harness test design と HELIX HU-PILLAR-DIST-01 は同じ contract を観測する。
+- 実装は additive のままで、source-repo web tests の green を維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-223` and this Reverse PLAN require each other.
-- No product requirement expansion: this only hardens the already-required
-  screenless clean distribution.
-- Source web implementation remains available outside the clean distribution.
+- `PLAN-L7-223` とこの Reverse PLAN は相互に require する。
+- product requirement expansion はない。これは既存要求済みの screenless clean distribution を強化するだけである。
+- Source web implementation は clean distribution の外側で引き続き利用可能である。

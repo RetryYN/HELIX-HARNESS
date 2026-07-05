@@ -82,7 +82,7 @@ export function collectDriveDbRegistrationStats(db: HarnessDb): DriveDbRegistrat
     ),
     modelRuns: count(db, "SELECT COUNT(*) AS value FROM model_runs"),
     // session-scoped token telemetry rows (role='session', plan_id='', written by projectTokenUsage
-    // from `ut-tdd telemetry scan`) are inherently NOT PLAN-linked, so they must be excluded from the
+    // from `helix telemetry scan`) are inherently NOT PLAN-linked, so they must be excluded from the
     // orphan check — otherwise running a scan would trip drive-db-registration (PLAN-L7-58). genuine
     // orphans = non-session runs that SHOULD trace to a PLAN but do not. NULL role is not a
     // telemetry session marker and must still be counted as an orphan.

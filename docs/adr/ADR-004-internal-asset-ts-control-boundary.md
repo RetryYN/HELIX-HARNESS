@@ -54,4 +54,4 @@ PO 指示 (2026-06-01):「内部資産は作り替える、TS に」。だが「
 - **FR-L1-49 / IMP-033**: drift lint の検査項目 (legacy absolute path / legacy runtime command 直叩き / docs/skills 空 / roster↔guard model family 整合) を rule engine の rule 型として L6-L7 で実装。
 - **PLAN-L4-11/12/13**: roster / skill-pack / drift-lint の L4 設計 child で本境界を具体化。
 - **porting-map W6/W7 (subagent harden) / W10 (skill curate)**: 後続実装 PLAN に接続。
-- **subagent 19 件の legacy source 前提除去**: 絶対パス・legacy runtime command 直叩きを UT-TDD 化 (drift lint の fail-close 対象を 0 にする)。
+- **subagent 19 件の legacy source 前提除去**: 絶対パス・legacy runtime command 直叩きを HELIX 化 (drift lint の fail-close 対象を 0 にする)。

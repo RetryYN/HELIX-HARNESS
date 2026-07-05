@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-34-tool-adapter-probes
-title: "PLAN-L7-34 (add-impl): graph and diagram tool adapter probes"
+title: "PLAN-L7-34 (add-impl): graph / diagram tool adapter probe 実装"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -14,12 +14,12 @@ review_evidence:
     reviewed_at: "2026-06-11"
     tests_green_at: "2026-06-11"
     verdict: pass
-    scope: "U-TOOLADAPTER-001..010 promoted to green tests. Tool adapter catalog/probe/normalization/diagram refresh are implemented as pure functions. Critical 0 / Important 0. Missing packages/executables remain findings; no package install, external command execution, destructive auto-fix, or raw adapter output gate truth is introduced."
+    scope: "U-TOOLADAPTER-001..010 を green tests へ昇格した。Tool adapter catalog/probe/normalization/diagram refresh は pure functions として実装済み。Critical 0 / Important 0。Missing packages/executables は findings のまま扱い、package install、external command execution、destructive auto-fix、raw adapter output gate truth は導入しない。"
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
 agent_slots:
   - role: tl
-    slot_label: "TL - tool adapter probe implementation"
+    slot_label: "TL - tool adapter probe 実装"
   - role: qa
     slot_label: "QA - U-TOOLADAPTER oracle"
 generates:
@@ -35,31 +35,31 @@ dependencies:
     - docs/plans/PLAN-REVERSE-34-tool-adapter-probes.md
 ---
 
-# PLAN-L7-34 (add-impl): graph and diagram tool adapter probes
+# PLAN-L7-34 (add-impl): graph / diagram tool adapter probe 実装
 
-## §0 Position
+## §0 位置づけ
 
-This is the future L7 implementation entry for optional graph/diagram tool adapter probes.
+これは optional graph/diagram tool adapter probes の将来 L7 実装エントリである。
 
-> **スコープ改訂 (2026-06-10 PO 決定、IMP-131)**: 実装対象を「adapter probe profile」から **`ut-tdd setup graph-tools [--with ...]` セットアップコマンド + layer-context アナウンス**へ変更 (理由・境界は PLAN-L6-33 §0 / IMP-131 / A-124 境界注記)。adapter は insight 系 (gate truth でない) のため profile 化せず、setup で opt-in した project にのみ薄い正規化を配線する。MCP/verification profile (マストツール系) はこの降格対象外。`first slice = dependency-cruiser + Knip + Mermaid`、`Madge / Graphviz DOT / D2 は --with で conditional`。
+> **スコープ改訂 (2026-06-10 PO 決定、IMP-131)**: 実装対象を「adapter probe profile」から **`helix setup graph-tools [--with ...]` セットアップコマンド + layer-context アナウンス**へ変更 (理由・境界は PLAN-L6-33 §0 / IMP-131 / A-124 境界注記)。adapter は insight 系 (gate truth でない) のため profile 化せず、setup で opt-in した project にのみ薄い正規化を配線する。MCP/verification profile (マストツール系) はこの降格対象外。`first slice = dependency-cruiser + Knip + Mermaid`、`Madge / Graphviz DOT / D2 は --with で conditional`。
 
-## §1 Entry Conditions
+## §1 エントリ条件
 
-- PLAN-L6-33 has confirmed function contracts and U-TOOLADAPTER oracles.
-- `tests/tool-adapter.test.ts` receives a TDD Red case before source changes.
-- Optional adapters remain disabled until package/executable readiness is proven.
+- PLAN-L6-33 で function contracts と U-TOOLADAPTER oracles が confirmed である。
+- source changes の前に `tests/tool-adapter.test.ts` へ TDD Red case を追加する。
+- package/executable readiness が証明されるまで optional adapters は disabled のままにする。
 
-## §2 Scope
+## §2 スコープ
 
-Allowed after entry conditions:
+エントリ条件を満たした後に許可する範囲:
 
-- pure adapter catalog and probe functions;
-- normalization of bounded evidence into `tool_runs`, `dependency_edges`, `diagram_artifacts`, and findings;
-- no implicit package install or destructive auto-fix.
+- pure adapter catalog と probe functions。
+- bounded evidence を `tool_runs`、`dependency_edges`、`diagram_artifacts`、findings へ normalization する。
+- implicit package install や destructive auto-fix は行わない。
 
 ## §8 DoD
 
-- [x] Red test exists before source implementation.
-- [x] U-TOOLADAPTER-001..010 pass.
-- [x] typecheck, lint, and targeted tests pass before review.
-- [x] Reverse fullback closes any lower-layer discoveries.
+- [x] source implementation の前に Red test が存在する。
+- [x] U-TOOLADAPTER-001..010 が pass する。
+- [x] review の前に typecheck、lint、targeted tests が pass する。
+- [x] lower-layer discoveries は Reverse fullback で close する。

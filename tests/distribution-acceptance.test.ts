@@ -137,9 +137,9 @@ function runWorkflowUtTdd(
   workflowCommand: string,
   env: NodeJS.ProcessEnv = process.env,
 ) {
-  const prefix = "bun run ut-tdd ";
+  const prefix = "bun run helix ";
   expect(workflowCommand.startsWith(prefix)).toBe(true);
-  return runBun(cwd, ["run", "ut-tdd", ...workflowCommand.slice(prefix.length).split(" ")], env);
+  return runBun(cwd, ["run", "helix", ...workflowCommand.slice(prefix.length).split(" ")], env);
 }
 
 function runWorkflowCommand(
@@ -163,7 +163,7 @@ function runWorkflowCommand(
       PATH: pathWith(fakeGitBin, env.PATH ?? ""),
     });
   }
-  if (workflowCommand.startsWith("bun run ut-tdd ")) {
+  if (workflowCommand.startsWith("bun run helix ")) {
     return runWorkflowUtTdd(cwd, workflowCommand, env);
   }
   throw new Error(`unsupported generated workflow command: ${workflowCommand}`);
@@ -179,7 +179,7 @@ describe("clean distribution local acceptance smoke", () => {
     expect(plan.missingRequired).toEqual([]);
     expect(plan.denylistViolations).toEqual([]);
 
-    const cleanRoot = mkdtempSync(join(tmpdir(), "ut-tdd-clean-acceptance-"));
+    const cleanRoot = mkdtempSync(join(tmpdir(), "helix-clean-acceptance-"));
     try {
       for (const rel of plan.artifactPaths) {
         const from = join(repoRoot, rel);
@@ -195,7 +195,7 @@ describe("clean distribution local acceptance smoke", () => {
         ...process.env,
         BUN_INSTALL: bunInstall,
         PATH: pathWith(join(bunInstall, "bin"), fakeBin, process.env.PATH ?? ""),
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       };
 
       const install = runBun(cleanRoot, ["install", "--frozen-lockfile"], env);
@@ -204,14 +204,14 @@ describe("clean distribution local acceptance smoke", () => {
       const build = runBun(cleanRoot, ["run", "build"], env);
       expect(build.status, build.stderr || build.stdout).toBe(0);
       const packageJson = JSON.parse(readFileSync(join(cleanRoot, "package.json"), "utf8")) as {
-        bin?: { "ut-tdd"?: string };
-        scripts?: { "ut-tdd"?: string };
+        bin?: { "helix"?: string };
+        scripts?: { "helix"?: string };
       };
-      expect(packageJson.bin?.["ut-tdd"]).toBe("./dist/ut-tdd");
-      expect(packageJson.scripts?.["ut-tdd"]).toBe("bun run src/cli.ts");
-      expect(existsSync(join(cleanRoot, packageJson.bin?.["ut-tdd"] ?? ""))).toBe(true);
+      expect(packageJson.bin?.["helix"]).toBe("./dist/helix");
+      expect(packageJson.scripts?.["helix"]).toBe("bun run src/cli.ts");
+      expect(existsSync(join(cleanRoot, packageJson.bin?.["helix"] ?? ""))).toBe(true);
 
-      const packageScriptVersion = runBun(cleanRoot, ["run", "ut-tdd", "--version"], env);
+      const packageScriptVersion = runBun(cleanRoot, ["run", "helix", "--version"], env);
       expect(
         packageScriptVersion.status,
         packageScriptVersion.stderr || packageScriptVersion.stdout,
@@ -223,16 +223,16 @@ describe("clean distribution local acceptance smoke", () => {
 
       const linkedS4Packet = runCommand(
         cleanRoot,
-        "ut-tdd",
+        "helix",
         ["s4", "decision-packet", "--help"],
         env,
       );
       expect(linkedS4Packet.status, linkedS4Packet.stderr || linkedS4Packet.stdout).toBe(0);
-      expect(linkedS4Packet.stdout).toContain("Usage: ut-tdd s4 decision-packet");
+      expect(linkedS4Packet.stdout).toContain("Usage: helix s4 decision-packet");
 
       const linkedCompletionPacket = runCommand(
         cleanRoot,
-        "ut-tdd",
+        "helix",
         ["completion", "decision-packet", "--help"],
         env,
       );
@@ -240,11 +240,11 @@ describe("clean distribution local acceptance smoke", () => {
         linkedCompletionPacket.status,
         linkedCompletionPacket.stderr || linkedCompletionPacket.stdout,
       ).toBe(0);
-      expect(linkedCompletionPacket.stdout).toContain("Usage: ut-tdd completion decision-packet");
+      expect(linkedCompletionPacket.stdout).toContain("Usage: helix completion decision-packet");
 
       const linkedVersionUpPacket = runCommand(
         cleanRoot,
-        "ut-tdd",
+        "helix",
         ["version-up", "activation-packet", "--help"],
         env,
       );
@@ -252,18 +252,18 @@ describe("clean distribution local acceptance smoke", () => {
         linkedVersionUpPacket.status,
         linkedVersionUpPacket.stderr || linkedVersionUpPacket.stdout,
       ).toBe(0);
-      expect(linkedVersionUpPacket.stdout).toContain("Usage: ut-tdd version-up activation-packet");
+      expect(linkedVersionUpPacket.stdout).toContain("Usage: helix version-up activation-packet");
 
-      const linkedRenamePacket = runCommand(cleanRoot, "ut-tdd", ["rename", "plan", "--help"], env);
+      const linkedRenamePacket = runCommand(cleanRoot, "helix", ["rename", "plan", "--help"], env);
       expect(
         linkedRenamePacket.status,
         linkedRenamePacket.stderr || linkedRenamePacket.stdout,
       ).toBe(0);
-      expect(linkedRenamePacket.stdout).toContain("Usage: ut-tdd rename plan");
+      expect(linkedRenamePacket.stdout).toContain("Usage: helix rename plan");
 
       const linkedRenameDistSmoke = runCommand(
         cleanRoot,
-        "ut-tdd",
+        "helix",
         ["rename", "dist-smoke", "--help"],
         env,
       );
@@ -271,11 +271,11 @@ describe("clean distribution local acceptance smoke", () => {
         linkedRenameDistSmoke.status,
         linkedRenameDistSmoke.stderr || linkedRenameDistSmoke.stdout,
       ).toBe(0);
-      expect(linkedRenameDistSmoke.stdout).toContain("Usage: ut-tdd rename dist-smoke");
+      expect(linkedRenameDistSmoke.stdout).toContain("Usage: helix rename dist-smoke");
 
       const linkedActionBindingPacket = runCommand(
         cleanRoot,
-        "ut-tdd",
+        "helix",
         ["action-binding", "approval-packet", "--help"],
         env,
       );
@@ -284,7 +284,7 @@ describe("clean distribution local acceptance smoke", () => {
         linkedActionBindingPacket.stderr || linkedActionBindingPacket.stdout,
       ).toBe(0);
       expect(linkedActionBindingPacket.stdout).toContain(
-        "Usage: ut-tdd action-binding approval-packet",
+        "Usage: helix action-binding approval-packet",
       );
 
       const status = runBun(cleanRoot, ["src/cli.ts", "status", "--json"], env);
@@ -356,7 +356,7 @@ describe("clean distribution local acceptance smoke", () => {
                 "@consumer/noop": "file:./packages/noop",
               },
               scripts: {
-                "ut-tdd": "ut-tdd",
+                "helix": "helix",
                 typecheck: 'bun -e "process.exit(0)"',
                 test: 'bun -e "process.exit(0)"',
               },
@@ -369,41 +369,41 @@ describe("clean distribution local acceptance smoke", () => {
         const consumerInstall = runBun(consumerRoot, ["install"], env);
         expect(consumerInstall.status, consumerInstall.stderr || consumerInstall.stdout).toBe(0);
 
-        const linkConsumer = runBun(consumerRoot, ["link", "ut-tdd", "--no-save"], env);
+        const linkConsumer = runBun(consumerRoot, ["link", "helix", "--no-save"], env);
         expect(linkConsumer.status, linkConsumer.stderr || linkConsumer.stdout).toBe(0);
         const linkedEnv = {
           ...env,
           PATH: pathWith(join(consumerRoot, "node_modules", ".bin"), env.PATH ?? ""),
         };
 
-        const linkedVersion = runCommand(consumerRoot, "ut-tdd", ["--version"], linkedEnv);
+        const linkedVersion = runCommand(consumerRoot, "helix", ["--version"], linkedEnv);
         expect(linkedVersion.status, linkedVersion.stderr || linkedVersion.stdout).toBe(0);
         expect(linkedVersion.stdout.trim()).toBe("0.1.0");
 
-        const setup = runCommand(consumerRoot, "ut-tdd", ["setup", "project", "--json"], linkedEnv);
+        const setup = runCommand(consumerRoot, "helix", ["setup", "project", "--json"], linkedEnv);
         expect(setup.status, setup.stderr || setup.stdout).toBe(0);
         const setupJson = JSON.parse(setup.stdout);
         const expectedPostSetupVerificationCommands = [
-          "ut-tdd setup project --dry-run",
-          "ut-tdd status --json",
-          "ut-tdd setup project --dry-run --json",
-          "ut-tdd completion decision-packet --json",
-          "ut-tdd completion review-bundle --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-          "ut-tdd doctor --profile consumer",
-          "ut-tdd rename plan --json",
-          "ut-tdd handover status --json",
-          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          "helix setup project --dry-run",
+          "helix status --json",
+          "helix setup project --dry-run --json",
+          "helix completion decision-packet --json",
+          "helix completion review-bundle --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix doctor --profile consumer",
+          "helix rename plan --json",
+          "helix handover status --json",
+          "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ];
         const expectedDryRunVerificationCommands = expectedPostSetupVerificationCommands.filter(
           (command) =>
-            command !== "ut-tdd doctor --profile consumer" &&
+            command !== "helix doctor --profile consumer" &&
             command !==
-              "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+              "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         );
         const expectedPostApplyVerificationCommands = [
-          "ut-tdd doctor --profile consumer",
-          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          "helix doctor --profile consumer",
+          "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ];
         expect(setupJson).toMatchObject({
           schemaVersion: "helix-project-setup.v1",
@@ -427,9 +427,9 @@ describe("clean distribution local acceptance smoke", () => {
                 ok: true,
                 source: "package-script-probe",
                 requiredCommands: expect.arrayContaining([
-                  "bun run ut-tdd setup project --dry-run --json",
-                  "bun run ut-tdd completion review-bundle --json",
-                  "bun run ut-tdd doctor --profile consumer --json",
+                  "bun run helix setup project --dry-run --json",
+                  "bun run helix completion review-bundle --json",
+                  "bun run helix doctor --profile consumer --json",
                 ]),
                 workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
               },
@@ -472,17 +472,17 @@ describe("clean distribution local acceptance smoke", () => {
         expect(setupJson.consumerReadiness.ci.packagePreflight).toMatchObject({
           installCommand: "bun install --frozen-lockfile",
           lockfiles: ["bun.lock", "bun.lockb"],
-          requiredScripts: ["ut-tdd", "typecheck", "test"],
-          scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+          requiredScripts: ["helix", "typecheck", "test"],
+          scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
           sourceUrl: "https://bun.com/docs/pm/cli/install",
           lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
           scriptsSourceUrl: "https://bun.com/docs/quickstart",
           sourceCheckedAt: "2026-07-03",
           latestOfficialStatus: expect.stringContaining("bun.lock"),
-          adoptionDecision: expect.stringContaining("package.json scripts.ut-tdd/typecheck/test"),
+          adoptionDecision: expect.stringContaining("package.json scripts.helix/typecheck/test"),
         });
         expect(setupJson.consumerReadiness.objectiveBoundary.cutoverPacketCommand).toBe(
-          "ut-tdd rename plan --json",
+          "helix rename plan --json",
         );
         expect(["codex-only", "hybrid"]).toContain(setupJson.consumerReadiness.mode);
         expect(setupJson.written).toEqual(
@@ -494,10 +494,10 @@ describe("clean distribution local acceptance smoke", () => {
         ).toContain("consumer-safe な HELIX subagent");
         expect(
           readFileSync(join(consumerRoot, ".claude", "agents", "helix-tl.md"), "utf8"),
-        ).toContain("ut-tdd doctor --profile consumer");
+        ).toContain("helix doctor --profile consumer");
         expect(
           readFileSync(join(consumerRoot, ".claude", "commands", "helix-test.md"), "utf8"),
-        ).toContain("ut-tdd status --json");
+        ).toContain("helix status --json");
         expect(
           readFileSync(join(consumerRoot, ".github", "ISSUE_TEMPLATE", "recovery.md"), "utf8"),
         ).toContain("## 復旧手順");
@@ -521,21 +521,21 @@ describe("clean distribution local acceptance smoke", () => {
           expect.arrayContaining([
             expect.objectContaining({
               label: "HELIX: doctor",
-              command: "bun run ut-tdd doctor --profile consumer",
+              command: "bun run helix doctor --profile consumer",
             }),
             expect.objectContaining({
               label: "HELIX: rename plan",
-              command: "bun run ut-tdd rename plan --json",
+              command: "bun run helix rename plan --json",
             }),
             expect.objectContaining({
               label: "HELIX: team run dry-run",
               command:
-                "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+                "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
             }),
           ]),
         );
         const generatedTeamDefinition = readFileSync(
-          join(consumerRoot, ".ut-tdd", "teams", "default-hybrid.yaml"),
+          join(consumerRoot, ".helix", "teams", "default-hybrid.yaml"),
           "utf8",
         );
         expect(generatedTeamDefinition).toContain("name: default-hybrid");
@@ -550,21 +550,21 @@ describe("clean distribution local acceptance smoke", () => {
         expect(workflow).toContain("contents: read");
         expect(workflow).toContain("uses: actions/checkout@v4");
         expect(workflow).toContain("persist-credentials: false");
-        expect(workflow).toContain("bun run ut-tdd --version");
-        expect(workflow).toContain("bun run ut-tdd setup project --dry-run --json");
-        expect(workflow).toContain("bun run ut-tdd status --json");
-        expect(workflow).toContain("bun run ut-tdd completion decision-packet --json");
-        expect(workflow).toContain("bun run ut-tdd completion review-bundle --json");
-        expect(workflow).toContain("bun run ut-tdd doctor --profile consumer --json");
-        expect(workflow).toContain("bun run ut-tdd rename plan --json");
-        expect(workflow).toContain("bun run ut-tdd handover status --json");
+        expect(workflow).toContain("bun run helix --version");
+        expect(workflow).toContain("bun run helix setup project --dry-run --json");
+        expect(workflow).toContain("bun run helix status --json");
+        expect(workflow).toContain("bun run helix completion decision-packet --json");
+        expect(workflow).toContain("bun run helix completion review-bundle --json");
+        expect(workflow).toContain("bun run helix doctor --profile consumer --json");
+        expect(workflow).toContain("bun run helix rename plan --json");
+        expect(workflow).toContain("bun run helix handover status --json");
         expect(workflow).toContain(
-          "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         );
         expect(CONSUMER_CI_RUN_COMMANDS).toEqual(
           expect.arrayContaining([
             "bun install --frozen-lockfile",
-            "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
             "bun run typecheck",
             "bun run test",
           ]),
@@ -598,7 +598,7 @@ describe("clean distribution local acceptance smoke", () => {
 
         const statusFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           ["status", "--json"],
           linkedEnv,
         );
@@ -607,7 +607,7 @@ describe("clean distribution local acceptance smoke", () => {
 
         const completionPacketFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           ["completion", "decision-packet", "--json"],
           linkedEnv,
         );
@@ -626,14 +626,14 @@ describe("clean distribution local acceptance smoke", () => {
             expect.objectContaining({
               planId: "CONSUMER-SETUP-BOUNDARY",
               blockerReason: "consumer_setup_boundary",
-              decisionPacketCommand: "ut-tdd completion decision-packet --json",
+              decisionPacketCommand: "helix completion decision-packet --json",
             }),
           ],
         });
 
         const doctorFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           ["doctor", "--profile", "consumer", "--json"],
           linkedEnv,
         );
@@ -642,7 +642,7 @@ describe("clean distribution local acceptance smoke", () => {
 
         const renamePlanFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           ["rename", "plan", "--json"],
           linkedEnv,
         );
@@ -655,7 +655,7 @@ describe("clean distribution local acceptance smoke", () => {
 
         const handoverFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           ["handover", "status", "--json"],
           linkedEnv,
         );
@@ -664,12 +664,12 @@ describe("clean distribution local acceptance smoke", () => {
 
         const teamRunFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           [
             "team",
             "run",
             "--definition",
-            ".ut-tdd/teams/default-hybrid.yaml",
+            ".helix/teams/default-hybrid.yaml",
             "--mode",
             "hybrid",
             "--json",
@@ -685,7 +685,7 @@ describe("clean distribution local acceptance smoke", () => {
 
         const setupDryRunFromGeneratedPath = runCommand(
           consumerRoot,
-          "ut-tdd",
+          "helix",
           ["setup", "project", "--dry-run", "--json"],
           linkedEnv,
         );
@@ -716,7 +716,7 @@ describe("clean distribution local acceptance smoke", () => {
           expect(run.status, run.stderr || run.stdout).toBe(0);
           if (command.endsWith("--version")) {
             expect(run.stdout.trim()).toBe("0.1.0");
-          } else if (command === "bun run ut-tdd completion decision-packet --json") {
+          } else if (command === "bun run helix completion decision-packet --json") {
             expect(JSON.parse(run.stdout)).toMatchObject({
               ok: false,
               status: "blocked",
@@ -725,7 +725,7 @@ describe("clean distribution local acceptance smoke", () => {
               },
               blockers: expect.arrayContaining(["consumer_setup_boundary"]),
             });
-          } else if (command === "bun run ut-tdd completion review-bundle --json") {
+          } else if (command === "bun run helix completion review-bundle --json") {
             expect(JSON.parse(run.stdout)).toMatchObject({
               schemaVersion: "completion-review-bundle.v1",
               planOnly: true,
@@ -740,7 +740,7 @@ describe("clean distribution local acceptance smoke", () => {
             );
             const relinkCurrentCleanArtifact = runBun(
               consumerRoot,
-              ["link", "ut-tdd", "--no-save"],
+              ["link", "helix", "--no-save"],
               env,
             );
             expect(
@@ -754,7 +754,7 @@ describe("clean distribution local acceptance smoke", () => {
           }
         }
         for (const command of CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS) {
-          if (!command.startsWith("bun run ut-tdd ")) continue;
+          if (!command.startsWith("bun run helix ")) continue;
           const run = runWorkflowUtTdd(consumerRoot, command, linkedEnv);
           expect(run.status, run.stderr || run.stdout).toBe(0);
           expect(JSON.parse(run.stdout)).toBeTruthy();
@@ -771,7 +771,7 @@ describe("clean distribution local acceptance smoke", () => {
         };
         const freshSetup = runCommand(
           freshConsumerRoot,
-          "ut-tdd",
+          "helix",
           ["setup", "project", "--json"],
           freshLinkedEnv,
         );
@@ -793,23 +793,23 @@ describe("clean distribution local acceptance smoke", () => {
           scripts?: Record<string, string>;
         };
         expect(generatedPackage.scripts).toMatchObject({
-          "ut-tdd": "ut-tdd",
-          typecheck: "bun run ut-tdd status --json",
-          test: "bun run ut-tdd completion review-bundle --json",
+          "helix": "helix",
+          typecheck: "bun run helix status --json",
+          test: "bun run helix completion review-bundle --json",
         });
-        expect(generatedPackage.devDependencies?.["ut-tdd"]).toBe(
+        expect(generatedPackage.devDependencies?.["helix"]).toBe(
           "github:RetryYN/HELIX-HARNESS",
         );
         expect(generatedPackage.devDependencies?.typescript).toBe("^5.6.3");
         expect(readFileSync(join(freshConsumerRoot, "bun.lock"), "utf8")).toContain(
           "lockfileVersion",
         );
-        const linkFreshConsumer = runBun(freshConsumerRoot, ["link", "ut-tdd", "--no-save"], env);
+        const linkFreshConsumer = runBun(freshConsumerRoot, ["link", "helix", "--no-save"], env);
         expect(linkFreshConsumer.status, linkFreshConsumer.stderr || linkFreshConsumer.stdout).toBe(
           0,
         );
         for (const args of [
-          ["run", "ut-tdd", "--version"],
+          ["run", "helix", "--version"],
           ["run", "typecheck"],
           ["run", "test"],
         ]) {
@@ -818,7 +818,7 @@ describe("clean distribution local acceptance smoke", () => {
         }
         const freshDoctor = runCommand(
           freshConsumerRoot,
-          "ut-tdd",
+          "helix",
           ["doctor", "--profile", "consumer", "--json"],
           freshLinkedEnv,
         );
@@ -891,7 +891,7 @@ describe("clean distribution local acceptance smoke", () => {
 
         const brownfieldAgents = readFileSync(join(brownfieldRoot, "AGENTS.md"), "utf8");
         expect(brownfieldAgents).toContain("この行は consumer 側の既存ルール。");
-        expect(brownfieldAgents.match(/UT-TDD:managed:start/g) ?? []).toHaveLength(1);
+        expect(brownfieldAgents.match(/HELIX:managed:start/g) ?? []).toHaveLength(1);
         expect(brownfieldAgents).toContain("HELIX アダプター");
         expect(readFileSync(join(brownfieldRoot, ".vscode", "tasks.json"), "utf8")).toContain(
           "keep-existing",

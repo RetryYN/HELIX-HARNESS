@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-135-dynamic-skill-injection-materialization
-title: "PLAN-REVERSE-135: Dynamic skill injection materialization fullback"
+title: "PLAN-REVERSE-135: dynamic skill injection materialization の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,26 +16,26 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements now state that --inject and adapter stdin materialization are part of dynamic skill injection closure."
+    reason: "Requirements は `--inject` と adapter stdin materialization が dynamic skill injection closure の一部であることを明記する。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "L4 records provider-neutral skill manifest and Claude/Codex adapter materialization."
+    reason: "L4 は provider-neutral skill manifest と Claude/Codex adapter materialization を記録する。"
   - layer: L5-detailed-design
     decision: not_impacted
     evidence_path: docs/design/harness/L5-detailed-design/module-decomposition.md
-    reason: "No module boundary changes; existing skills/runtime/team modules are connected."
+    reason: "module boundary の変更はない。既存の skills/runtime/team modules を接続する。"
   - layer: L6-function-design
     decision: updated
     evidence_path: docs/design/harness/L6-function-design/function-spec.md
-    reason: "L6 adds buildSkillInjectionSet and buildAdapterPlan(contextInjection) contracts."
+    reason: "L6 は `buildSkillInjectionSet` と `buildAdapterPlan(contextInjection)` contracts を追加する。"
   - layer: implementation
     decision: updated
     evidence_path: src/runtime/adapter.ts
-    reason: "Adapter stdin and task-route adapter plans now materialize scoped skill paths for both providers."
+    reason: "adapter stdin と task-route adapter plans は、両 provider 向けに scoped skill paths を materialize する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - dynamic skill injection fullback"
+    slot_label: "TL - dynamic skill injection fullback の確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-135-dynamic-skill-injection-materialization.md
     artifact_type: markdown_doc
@@ -69,7 +69,7 @@ review_evidence:
     reviewed_at: "2026-06-23T18:42:32+09:00"
     tests_green_at: "2026-06-23T18:42:32+09:00"
     verdict: approve
-    scope: "Reverse fullback for skill injection materialization."
+    scope: "skill injection materialization の reverse fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -99,22 +99,22 @@ review_evidence:
         output_digest: "sha256:eb35c437e2188f32e5725b86e884e0b831ac721dc4f335279817934ca20a1c08"
 ---
 
-# PLAN-REVERSE-135: Dynamic skill injection materialization fullback
+# PLAN-REVERSE-135: dynamic skill injection materialization の fullback
 
-## Objective
+## 目的
 
-Back-propagate the implementation correction from recommendation-only skill
-surfaces to actual Claude/Codex provider context materialization.
+recommendation-only の skill surfaces から、実際の Claude/Codex provider context
+materialization へ implementation correction を back-propagate する。
 
-## R4 Routing
+## R4 ルーティング
 
-Forward routing is L4 because the external behavior changes: provider execution
-surfaces now receive a scoped skill context manifest through stdin when a PLAN is
-attached. L5 module boundaries do not change.
+external behavior が変わるため、forward routing は L4 とする。PLAN が attached の場合、
+provider execution surfaces は stdin 経由で scoped skill context manifest を受け取る。
+L5 module boundaries は変更しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 define `--inject` plus adapter stdin materialization.
-- L6 documents `buildSkillInjectionSet` and `buildAdapterPlan(contextInjection)`.
-- Implementation and tests prove the same manifest works for Claude, Codex,
-  team-run, and cost-tier task routing.
+- Requirements と L4 が `--inject` と adapter stdin materialization を定義している。
+- L6 が `buildSkillInjectionSet` と `buildAdapterPlan(contextInjection)` を文書化している。
+- implementation と tests が、同一 manifest が Claude、Codex、team-run、cost-tier task routing で
+  機能することを証明している。

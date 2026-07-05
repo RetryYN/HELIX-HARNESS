@@ -44,7 +44,7 @@ type RunDebugTraceKind = "complete" | "incomplete" | "blocked";
 type AdoptionDisposition = "existing_pillar_covered" | "adopt" | "harden_required" | "defer" | "reject" | "new_plan_required";
 type GuardSurfaceState = "wired" | "deferred" | "rejected";
 type PolicyDecisionKind = "allow" | "deny" | "escalate";
-type RuntimeSurface = "claude-hook" | "codex-hook" | "codex-hosted-api" | "ut-tdd-cli" | "external-api";
+type RuntimeSurface = "claude-hook" | "codex-hook" | "codex-hosted-api" | "helix-cli" | "external-api";
 
 interface RunDebugTraceDecision {
   kind: RunDebugTraceKind;

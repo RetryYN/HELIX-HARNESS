@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-107-reverse-fullback-scope-gate
-title: "PLAN-L7-107: Reverse fullback backprop scope gate"
+title: "PLAN-L7-107: Reverse fullback backprop scope gate の適用範囲 gate"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - Reverse fullback scope gate"
+    slot_label: "TL - Reverse fullback scope gate の確認"
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-107-reverse-fullback-scope-gate.md
@@ -51,33 +51,33 @@ review_evidence:
     reviewed_at: "2026-06-22"
     tests_green_at: "2026-06-22"
     verdict: approve
-    scope: "Reverse fullback scope lint, live PLAN backfill, and regression tests"
+    scope: "Reverse fullback scope lint、live PLAN backfill、regression tests を確認"
     worker_model: codex
     reviewer_model: codex-intra-runtime
 ---
 
-# PLAN-L7-107: Reverse fullback backprop scope gate
+# PLAN-L7-107: Reverse fullback backprop scope gate の適用範囲 gate
 
-## Objective
+## 目的
 
-Prevent a Reverse/fullback PLAN from claiming design back-propagation while leaving
-requirements, L4 basic design, or L5 detailed design impact unclassified.
+Reverse/fullback PLAN が design back-propagation を主張しながら、requirements、L4 basic design、
+L5 detailed design への影響分類を未記録のまま残すことを防ぐ。
 
-## Scope
+## 対象範囲
 
-- Add `reverse_fullback_scope_missing` to `plan-governance`.
-- Require `backprop_scope` entries for `requirements`, `L4-basic-design`, and
-  `L5-detailed-design`.
-- Require `updated` entries to cite a generated evidence path.
-- Backfill the current 2026-06-22 fullback PLANs with explicit scope decisions.
+- `plan-governance` に `reverse_fullback_scope_missing` を追加する。
+- `requirements`、`L4-basic-design`、`L5-detailed-design` それぞれに対する `backprop_scope`
+  entry を必須にする。
+- `updated` entry が generated evidence path を引用することを必須にする。
+- 2026-06-22 時点の fullback PLAN に、明示的な scope decision を backfill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- A new R4 fullback without `backprop_scope` fails.
-- A new R4 fullback whose `updated` scope does not cite generated evidence fails.
-- A fullback with requirements evidence and explicit L4/L5 no-impact decisions passes.
-- Live `docs/plans/PLAN-REVERSE-*.md` passes `plan-governance`.
-- `bun test tests/plan-lint.test.ts` passes.
-- `bun run typecheck` passes.
-- `bun run lint` passes.
-- `bun run src\cli.ts doctor` passes.
+- `backprop_scope` を持たない新規 R4 fullback は fail する。
+- `updated` scope が generated evidence を引用しない新規 R4 fullback は fail する。
+- requirements evidence と明示的な L4/L5 no-impact decision を持つ fullback は pass する。
+- live `docs/plans/PLAN-REVERSE-*.md` は `plan-governance` を pass する。
+- `bun test tests/plan-lint.test.ts` は pass する。
+- `bun run typecheck` は pass する。
+- `bun run lint` は pass する。
+- `bun run src\cli.ts doctor` は pass する。

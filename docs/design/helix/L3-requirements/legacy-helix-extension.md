@@ -40,7 +40,7 @@ TS/Bun harness、PLAN、現行 state/projection へ翻案する。
 | 旧 family | 確認数 | 扱い | 理由 |
 |---------------|----------------|-------------|-----------|
 | `HELIX-workflows/helix-process/*.md` | 49 docs | existing-pillar-covered | V model / 9 mode / DB convergence / workflow routing は現行 HELIX L0-L6 pillar docs にすでに中核として取り込まれている。今回の追加は `HLX-FR-09` workflow inventory で分類証跡を持ち、runtime discipline / detector / learning との差分を `HLX-FR-01` / `HLX-FR-03` / `HLX-FR-12` へ接続する |
-| `cli/helix*` command files | 82 commands | harden-via-current-cli | 旧 command surface は `ut-tdd` 現行 CLI / PLAN-M-02 rename 方針に従属させる。個別 command 名を直接移植せず、catalog/recommender と RUN & Debug trace の意味だけを `HLX-FR-04` / `HLX-FR-05` に採る |
+| `cli/helix*` command files | 82 commands | harden-via-current-cli | 旧 command surface は `helix` 現行 CLI / PLAN-M-02 rename 方針に従属させる。個別 command 名を直接移植せず、catalog/recommender と RUN & Debug trace の意味だけを `HLX-FR-04` / `HLX-FR-05` に採る |
 | `cli/lib/*.py` | 139 modules | concept-only-ts-reimplementation | Python runtime は採用しない。DB、handover、gate、workflow、setup、telemetry の多くは現行 TS/Bun harness に既存実装があるため、今回の採用は 12 semantic groups を L3-L6 contract 化し、既存 pillar covered / harden required / defer / reject を明示する |
 | `cli/lib/detectors/*.py` | 17 files | adopt-as-HLX-FR-03 | detector axis registry と routeable finding の意味を採用する。axis の Python 実装や `.helix` state 依存は移植しない |
 | `cli/lib/builders/*.py` | 14 files | existing-pillar-covered | builder / workflow builder / verify script の概念は現行 task routing、team run、adapter plan、verification profile に接地済み。旧 builder 実装は採用せず、recommendation candidate 化は `HLX-FR-04` に含める |

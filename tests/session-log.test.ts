@@ -37,8 +37,8 @@ function mockDeps(
   };
 }
 
-const statePath = join("/repo", ".ut-tdd", "state", "current-plan");
-const sessionPath = (sid: string) => join("/repo", ".ut-tdd", "logs", "session", `${sid}.jsonl`);
+const statePath = join("/repo", ".helix", "state", "current-plan");
+const sessionPath = (sid: string) => join("/repo", ".helix", "logs", "session", `${sid}.jsonl`);
 
 describe("session-log (PLAN-L7-01 add-impl / U-SLOG)", () => {
   it("U-SLOG-001: resolveActivePlan = state 優先 / branch fallback / 解決不能 null", () => {

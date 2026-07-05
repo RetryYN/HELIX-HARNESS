@@ -41,9 +41,9 @@ const ev = (
   over: Partial<SessionEvent> = {},
 ): SessionEvent => ({ ts, session_id: "s1", plan_id: "PLAN-A", event_type, ...over });
 
-const sessionPath = (sid: string) => join("/repo", ".ut-tdd", "logs", "session", `${sid}.jsonl`);
+const sessionPath = (sid: string) => join("/repo", ".helix", "logs", "session", `${sid}.jsonl`);
 const feedbackPath = (plan: string) =>
-  join("/repo", ".ut-tdd", "logs", "feedback", `${plan}.jsonl`);
+  join("/repo", ".helix", "logs", "feedback", `${plan}.jsonl`);
 
 describe("forced-stop (PLAN-L7-02 add-impl / U-FSF)", () => {
   it("U-FSF-001: detectDanglingTurn 純粋性 / dangling 判定 / from 規則", () => {

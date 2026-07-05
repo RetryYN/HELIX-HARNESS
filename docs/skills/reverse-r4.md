@@ -34,7 +34,7 @@ R4: Gap Register and Forward Routing は、Reverse の最終 phase である。
 - `R3-intent-hypotheses.yaml`（すべての hypotheses が classified / PO-reviewed）。
 - `R2-as-is-design.md` and (if applicable) `R2-as-is-test-design.md`.
 - `R1-observed-contracts.yaml`（code、upgrade、fullback types）を読む。
-- `ut-tdd status` と `ut-tdd doctor` から得る existing Forward PLAN と gate state。
+- `helix status` と `helix doctor` から得る existing Forward PLAN と gate state。
 
 ## 手順
 
@@ -56,14 +56,14 @@ R4: Gap Register and Forward Routing は、Reverse の最終 phase である。
      test-design PLAN を含めなければならない。
 4. R3 の `conflict` hypothesis について、relevant gate が再評価を要することを
    PLAN notes に記録し、`--invalidate-forward` intent を適用する。
-   （`--invalidate-forward` flag は planned ut-tdd gate mechanism。
+   （`--invalidate-forward` flag は planned helix gate mechanism。
    実装までの間は gate ID と rationale を PLAN に手動記録する。）
 5. 今 close できない open gap は、新しい PLAN reference または backlog entry とともに
    `debt` または `readiness-defer` へ route する。gap-register に unresolved gaps を残さない。
 
 ## 出力 artifacts
 
-`.ut-tdd/reverse/<plan_id>/` へ書く。
+`.helix/reverse/<plan_id>/` へ書く。
 
 **R4-gap-register.yaml**:
 ```yaml
@@ -95,10 +95,10 @@ R4 を close して Forward へ merge する前に、以下をすべて満たす
 - [ ] Forward path の無い open gaps が、referenced PLAN または backlog entry 付きで
       debt/readiness-defer へ route されている。
 - [ ] `workflow_phase: R4` と `status: done`
-      （または schema-equivalent closed state）の状態で `ut-tdd plan lint` が 0 で終了する。
-- [ ] `ut-tdd vmodel lint` が 0 で終了する
+      （または schema-equivalent closed state）の状態で `helix plan lint` が 0 で終了する。
+- [ ] `helix vmodel lint` が 0 で終了する
       （reconstruction 由来の orphan artifacts が無い）。
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `helix doctor` exits 0.
 - [ ] `promotion_strategy` が `gap-only-defer` でない場合、routing destination の新 PLAN が存在する
       （または amend target が confirmed）。
 

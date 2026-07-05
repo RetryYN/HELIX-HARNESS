@@ -109,7 +109,7 @@ describe("collectRelationGraphProjection (U-RELGRAPH-001..003)", () => {
       verificationEvidence: [
         {
           id: "VP-001",
-          evidencePath: ".ut-tdd/evidence/verification-profiles/vp-001.json",
+          evidencePath: ".helix/evidence/verification-profiles/vp-001.json",
           classification: "external-tool",
           summary: "playwright smoke passed",
           rawMcpResponse: `{"tool":"mcp","payload":"${SECRET}"}`,
@@ -129,7 +129,7 @@ describe("collectRelationGraphProjection (U-RELGRAPH-001..003)", () => {
     );
     expect(row).toBeDefined();
     expect(row?.classification).toBe("external-tool");
-    expect(row?.evidencePath).toBe(".ut-tdd/evidence/verification-profiles/vp-001.json");
+    expect(row?.evidencePath).toBe(".helix/evidence/verification-profiles/vp-001.json");
     expect(row?.redactedSummary).toBe("playwright smoke passed");
     expect(row?.redactedFieldCount).toBe(5);
 
@@ -142,7 +142,7 @@ describe("collectRelationGraphProjection (U-RELGRAPH-001..003)", () => {
 
     const finding = projection.findings.find((f) => f.code === "redacted-evidence");
     expect(finding?.severity).toBe("info");
-    expect(finding?.evidencePath).toBe(".ut-tdd/evidence/verification-profiles/vp-001.json");
+    expect(finding?.evidencePath).toBe(".helix/evidence/verification-profiles/vp-001.json");
   });
 });
 
@@ -311,7 +311,7 @@ describe("analyzeRelationImpact (U-RELGRAPH-004..006)", () => {
       changedPaths: [
         ".claude/CLAUDE.md",
         "README.md",
-        ".ut-tdd/tmp/",
+        ".helix/tmp/",
         "docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md",
       ],
       projection,
@@ -345,7 +345,7 @@ describe("exportRelationDiagram (U-RELGRAPH-007..008)", () => {
       verificationEvidence: [
         {
           id: "VP-raw",
-          evidencePath: ".ut-tdd/evidence/verification-profiles/raw.json",
+          evidencePath: ".helix/evidence/verification-profiles/raw.json",
           classification: "mcp-smoke",
           summary: "sanitized summary",
           rawMcpResponse: SECRET,
@@ -440,7 +440,7 @@ describe("collectVerificationEvidenceProjection (U-RELGRAPH-009..010)", () => {
     const projection = collectVerificationEvidenceProjection([
       {
         schema_version: "verification-evidence-v1",
-        evidence_path: ".ut-tdd/evidence/verification-profiles/playwright.json",
+        evidence_path: ".helix/evidence/verification-profiles/playwright.json",
         profile: {
           id: "playwright-mcp",
           name: "Playwright MCP",
@@ -490,7 +490,7 @@ describe("collectVerificationEvidenceProjection (U-RELGRAPH-009..010)", () => {
         verification_profile_id: "playwright-mcp",
         name: "Playwright MCP",
         profile_type: "mcp",
-        evidence_path: ".ut-tdd/evidence/verification-profiles/playwright.json",
+        evidence_path: ".helix/evidence/verification-profiles/playwright.json",
       }),
     ]);
     expect(projection.verification_recommendations).toEqual([
@@ -498,7 +498,7 @@ describe("collectVerificationEvidenceProjection (U-RELGRAPH-009..010)", () => {
         verification_recommendation_id: "rec-1",
         change_set_id: "change-1",
         plan_id: "PLAN-L7-36",
-        evidence_path: ".ut-tdd/evidence/verification-profiles/playwright.json",
+        evidence_path: ".helix/evidence/verification-profiles/playwright.json",
       }),
     ]);
     expect(projection.mcp_server_runs).toEqual([
@@ -506,14 +506,14 @@ describe("collectVerificationEvidenceProjection (U-RELGRAPH-009..010)", () => {
         mcp_run_id: "run-1",
         mcp_profile_id: "playwright-mcp",
         method: "tools/list",
-        evidence_path: ".ut-tdd/evidence/verification-profiles/playwright.json",
+        evidence_path: ".helix/evidence/verification-profiles/playwright.json",
       }),
     ]);
     expect(projection.external_tool_findings).toEqual([
       expect.objectContaining({
         external_finding_id: "finding-1",
         source_run_id: "run-1",
-        evidence_path: ".ut-tdd/evidence/verification-profiles/playwright.json",
+        evidence_path: ".helix/evidence/verification-profiles/playwright.json",
       }),
     ]);
   });
@@ -522,12 +522,12 @@ describe("collectVerificationEvidenceProjection (U-RELGRAPH-009..010)", () => {
     const SECRET = "provider-transcript-secret";
     const projection = collectVerificationEvidenceProjection([
       {
-        evidence_path: ".ut-tdd/evidence/verification-profiles/missing-schema.json",
+        evidence_path: ".helix/evidence/verification-profiles/missing-schema.json",
         raw_payload: SECRET,
       },
       {
         schema_version: "verification-evidence-v1",
-        evidence_path: ".ut-tdd/evidence/verification-profiles/external-denied.json",
+        evidence_path: ".helix/evidence/verification-profiles/external-denied.json",
         allow_external: false,
         mcp_run: {
           id: "run-denied",

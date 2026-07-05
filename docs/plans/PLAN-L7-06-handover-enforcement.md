@@ -53,7 +53,7 @@ review_evidence:
 - `checkHandoverDiscipline(deps, maxHours=24)`: 純判定 + I/O。`resolveHandoverScope` で活動 (active_plan + digest) を確認し、活動が無ければ規律対象外で `[]`。活動ありで CURRENT.json が ①不在 → 未生成 warn / ②stale (`handoverStale`) → stale warn / ③別 plan family を指す (`sameFamilyPlan` 否定) → drift warn を返す。fail-open。
 
 `.claude/hooks/session-log.ts`:
-- Stop event の dispatch 後に `checkHandoverDiscipline(nodeHandoverDeps(repoRoot))` を呼び、各 warning を `[ut-tdd handover] ...` として **stderr に出すのみ** (exit 0 維持 = fail-open を壊さない)。内側 try/catch で surface 失敗も飲む。
+- Stop event の dispatch 後に `checkHandoverDiscipline(nodeHandoverDeps(repoRoot))` を呼び、各 warning を `[helix handover] ...` として **stderr に出すのみ** (exit 0 維持 = fail-open を壊さない)。内側 try/catch で surface 失敗も飲む。
 
 **機構の射程**: IMP-047 が挙げた 4 surface のうち **doctor checkHandover (既存、PLAN-L7-04 carry 済) + Stop-hook warn (本 PLAN)** の 2 機構で規律を機械化する。`plan lint` 配線は `src/plan/lint.ts` が stub のため別 carry、pre-push hook も未配線 (§4 carry)。
 
@@ -68,7 +68,7 @@ U-HOVER-010 を `tests/handover.test.ts` に追加 (活動なし/未生成/fresh
 ### Step 3: Stop-hook 配線
 `.claude/hooks/session-log.ts` の Stop 経路に stderr warn を追加 (fail-open 内側)。
 
-### Step 4: review Step (self / code-reviewer)
+### 手順 4 (Step 4): レビュー工程 (review Step / self / code-reviewer)
 fail-open 不変・never-throw・Stop-hook が作業を止めないことを review (claude-only = `intra_runtime_subagent` code-reviewer 代替、evidence 記録)。
 
 ### Step 5: 回帰 + 用語更新

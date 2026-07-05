@@ -47,7 +47,7 @@ review_evidence:
 
 ## §0 本 PLAN の役割
 
-本 PLAN は `業務要求 (business)` sub-doc を V2 source snapshot reference の L1 sub-doc 構造を UT-TDD 正本へ再定義する形で起票する工程を管理する。中間準備 + 工程表 + 実装計画を内蔵し、進捗を追跡可能にする。
+本 PLAN は `業務要求 (business)` sub-doc を V2 source snapshot reference の L1 sub-doc 構造を HELIX 正本へ再定義する形で起票する工程を管理する。中間準備 + 工程表 + 実装計画を内蔵し、進捗を追跡可能にする。
 
 旧 PLAN-L1-01 (v1.1 形式、5 sub-doc 全件を単一 PLAN で扱っていた) からの分割移行 (requirements §1.10.G.5 (a))。business 以外の内容は PLAN-L1-02〜05 へ移管済。
 
@@ -105,11 +105,11 @@ review_evidence:
 |----|-----|--------|--------|
 | D-01 | gate pass rate ≥ 95% | business §4 成功条件 | ✅ |
 | D-02 | drift 0 件/week | business §4 + NFR (drift) | ✅ |
-| D-03 | onboarding ≤ 30 min | business §4 + NFR-16 | ✅ |
-| D-04 | agent guard block rate (false positive ≤ 1%) | business §4 | ✅ |
-| D-05 | CI auto-merge success rate ≥ 90% | business §4 + BR-16 | ✅ |
+| D-03 | onboarding 所要時間 ≤ 30 min | business §4 + NFR-16 | ✅ |
+| D-04 | agent guard の block rate (false positive ≤ 1%) | business §4 | ✅ |
+| D-05 | CI auto-merge 成功率 ≥ 90% | business §4 + BR-16 | ✅ |
 | D-06 | handover CURRENT.json stale 0 件 | business §4 + FR-L1-17 | ✅ |
-| D-07 | Phase A local persistence p99 latency ≤ 200ms | NFR-15 / L4 carry | ✅ |
+| D-07 | Phase A local persistence の p99 latency ≤ 200ms | NFR-15 / L4 carry | ✅ |
 | D-08 | L1 sub-doc 5 件全件 G1 ready | 本 PLAN §6 G1 readiness | ✅ |
 | D-09 | L14 OT 被覆率 100% (孤児 0) | business §2 量閉じ | ✅ |
 
@@ -151,7 +151,7 @@ review_evidence:
 
 - (A) `docs/` 構造 migration の timing (即時 / 段階 / 並走)
 - (B) feature ID `F-NNN` と既存 BR-NN の関係
-- (C) `.ut-tdd/audit/reports/` vs `.ut-tdd/` runtime state のパス名前空間
+- (C) `.helix/audit/reports/` vs `.helix/` runtime state のパス名前空間
 
 ## §4 工程表 (Step + 進捗)
 
@@ -180,7 +180,7 @@ review_evidence:
 - 内容: L14 OT に business sub-doc 由来要求 (BR-*/NFR-*/UX-*) が被覆されているか確認、不足あれば OT 追加
 - 進捗: ☐
 
-### Step 6: review (self / pmo-sonnet)
+### Step 6: review 実施 (self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須 (`.claude/CLAUDE.md` Guard Rules)。❓ 残ゼロ・FR 混入無し・§10.1 4 列 table 完備を確認
 - 進捗: ✅ (acdc5ccd6f31ae951 通過、2026-05-28)
@@ -203,9 +203,9 @@ review_evidence:
 | §7 L14 運用テスト pair 対応表 | L1-operational-test-design.md §3 | BR-* ⇔ OT-* 1:1 表を機械生成 |
 | §8 関連 doc | 各 PLAN + governance + migration | path list |
 | §9 carry / 上流 baton carry 一覧 | §3.4 Phase B carry / §3.5 ❓ 残差 | carry 先 (L3 PLAN / L4 ADR) を明示 |
-| §10 業務 entity 一覧 (DDD) | L0 §10 用語集 + concept §10 | **§10.1**: L0 用語と 1:1 で 4 列 table 生成 (業務 entity / L0 用語 / 業務的意味 / 対応 .ut-tdd state / CLI / file)。**§10.2**: L4 carry 7 項目 (集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 / ut-tdd doctor check_business_entity_coverage)。**§10.3**: SSoT 参照 3 項目 (ユビキタス言語 / Bounded Context / 業界標準整合) |
+| §10 業務 entity 一覧 (DDD) | L0 §10 用語集 + concept §10 | **§10.1**: L0 用語と 1:1 で 4 列 table 生成 (業務 entity / L0 用語 / 業務的意味 / 対応 .helix state / CLI / file)。**§10.2**: L4 carry 7 項目 (集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 / helix doctor check_business_entity_coverage)。**§10.3**: SSoT 参照 3 項目 (ユビキタス言語 / Bounded Context / 業界標準整合) |
 
-## §6 DoD (Definition of Done)
+## §6 DoD (完了定義)
 
 - [x] §3 レジストリの全項目が ✅ / ➡️ のいずれかに収束 (❓ 残ゼロ) — U-補-1〜5 全件 PO 承認済 2026-05-28
 - [ ] business-requirements.md が必須 § 全件含む (§1〜§10 + §1.1/1.2/1.3/3.1/3.2/3.3/10.1/10.2/10.3)
@@ -229,7 +229,7 @@ review_evidence:
 **L3 forward carry (継続)**:
 - **BR-21 詳細化 (L3)**: AI 利用ポリシー権限分離の AC (受入条件) 詳細化 → PLAN-L3-01 dependencies.requires に列挙
 - **B3 PoC 期間上限 (L3 で再確認)**: PoC mode の最大期間上限値は L3 FR で AC として確定
-- **§10.2 L4 carry**: 集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 / `ut-tdd doctor check_business_entity_coverage` 新設 → L4 データ設計 sub-doc で確定
+- **§10.2 L4 carry**: 集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 / `helix doctor check_business_entity_coverage` 新設 → L4 データ設計 sub-doc で確定
 - **Phase B**: NFR-16 + ADR-002 (2 層分離) → L3 NFR / L4 ADR forward。Phase B 開始時に ADR-002 を起票して整合解を確定
 - **B9 entity 化判断 (L4 carry)**: §10 DDD entity の集約境界・不変条件の詳細設計 → L4 データ設計で確定
 - **G1-trace 機械検証 R1 (PO 承認 2026-05-28、DD1=a、2026-06-02 BR-22 fullback 更新)**: 全 BR-01〜08 + UX-01〜03 + BR-21 + BR-22 (13 件) は screen §5.1/5.2 trace マトリクスで最低 1 画面に紐付き済 (孤児 BR/UX 0)。L3 起票時は本 sub-doc 全 BR/UX を継承し画面 trace を維持する

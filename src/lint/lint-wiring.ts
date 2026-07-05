@@ -12,7 +12,7 @@
  * 加えて DEFERRED に登録されているのに実は到達可能な module (= stale 申告) も violation
  * (errata が片肺化しないよう plan-supersession と同型の双方向健全性)。
  *
- * 到達性: `ut-tdd` CLI (`src/cli.ts`) が唯一の実行ルート。CLI が import する doctor / plan-lint /
+ * 到達性: `helix` CLI (`src/cli.ts`) が唯一の実行ルート。CLI が import する doctor / plan-lint /
  * handover / status / db / 各 lint へ推移的に展開した集合が「live なコード」。テスト
  * (`tests/*.test.ts`) は実行経路ではないので到達性の根拠にしない。
  *
@@ -33,7 +33,7 @@ export const RUNTIME_ENTRYPOINTS = ["src/cli.ts"] as const;
  */
 export const DEFERRED_LINTS: Record<string, string> = {
   "tool-adapter":
-    "adapter-probe 純関数ライブラリ (catalog/probe/normalize/planDiagramRefresh)。`ut-tdd adapter` 統合は IMP-033 rule-engine / PLAN-L7-50 R8 で deferred (closed-as-library)。",
+    "adapter-probe 純関数ライブラリ (catalog/probe/normalize/planDiagramRefresh)。`helix adapter` 統合は IMP-033 rule-engine / PLAN-L7-50 R8 で deferred (closed-as-library)。",
 };
 
 export interface LintWiringInput {

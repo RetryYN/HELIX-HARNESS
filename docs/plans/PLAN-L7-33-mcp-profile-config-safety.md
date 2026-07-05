@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-33-mcp-profile-config-safety
-title: "PLAN-L7-33 (add-impl): MCP profile config and external verification safety"
+title: "PLAN-L7-33 (add-impl): MCP profile config と外部検証 safety"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -14,12 +14,12 @@ review_evidence:
     reviewed_at: "2026-06-11"
     tests_green_at: "2026-06-11"
     verdict: pass
-    scope: "U-MCPPROFILE-001..012 promoted to green tests. Docker MCP Toolkit profile metadata, generated local MCP config rendering, profile safety findings, and activation planning are implemented as pure functions. Critical 0 / Important 0. No package installation, MCP server execution, profile enablement, committed .vscode/mcp.json write, or inline credential persistence is introduced."
+    scope: "U-MCPPROFILE-001..012 を green tests に昇格した。Docker MCP Toolkit profile metadata、generated local MCP config rendering、profile safety findings、activation planning は pure functions として実装済み。Critical 0 / Important 0。package installation、MCP server execution、profile enablement、committed .vscode/mcp.json write、inline credential persistence は導入していない。"
     worker_model: codex-gpt-5
     reviewer_model: codex-gpt-5-intra-runtime-review
 agent_slots:
   - role: tl
-    slot_label: "TL - MCP profile safety implementation"
+    slot_label: "TL - MCP profile safety 実装"
   - role: qa
     slot_label: "QA - U-MCPPROFILE oracle"
 generates:
@@ -35,57 +35,57 @@ dependencies:
     - docs/plans/PLAN-REVERSE-33-mcp-profile-config-safety.md
 ---
 
-# PLAN-L7-33 (add-impl): MCP profile config and external verification safety
+# PLAN-L7-33 (add-impl): MCP profile config と外部検証 safety
 
-## §0 Position
+## §0 位置づけ
 
-This is the future L7 implementation entry for PLAN-L6-32. It is the authorized route for adding Docker MCP Toolkit to the profile catalog and implementing generated MCP config / external-profile safety lint.
+これは PLAN-L6-32 の将来 L7 実装 entry である。Docker MCP Toolkit を profile catalog に追加し、generated MCP config / external-profile safety lint を実装するための承認済み route とする。
 
-## §1 Entry Conditions
+## §1 開始条件
 
-Implementation must not start until:
+実装は、以下が満たされるまで開始してはならない。
 
-- PLAN-L6-32 has confirmed function contracts and U-MCPPROFILE oracles.
-- `tests/verification-profile.test.ts` receives a TDD Red case for U-MCPPROFILE behavior before source changes.
-- Existing verification-profile, doctor, typecheck, and lint checks are green before review evidence.
-- No generated config writes committed secrets or user-specific absolute home paths.
+- PLAN-L6-32 で function contracts と U-MCPPROFILE oracles が confirmed になっている。
+- source 変更前に、`tests/verification-profile.test.ts` が U-MCPPROFILE behavior の TDD Red case を受け取っている。
+- review evidence 前に、既存の verification-profile、doctor、typecheck、lint checks が green である。
+- 生成 config が、commit される secrets や user-specific absolute home paths を書き出さない。
 
-## §2 Implementation Scope
+## §2 実装範囲
 
-Allowed implementation after entry conditions are met:
+開始条件を満たした後に許可される実装:
 
-- Add Docker MCP Toolkit as an optional disabled profile with Docker/toolkit readiness checks.
-- Add pure functions for generated config rendering and safety analysis.
-- Extend CLI only after pure functions are green, likely under `ut-tdd mcp profile config` or a dry-run-only equivalent.
+- Docker/toolkit readiness checks を備えた optional disabled profile として Docker MCP Toolkit を追加する。
+- generated config rendering と safety analysis の pure functions を追加する。
+- pure functions が green になった後に限り、`helix mcp profile config` または dry-run-only equivalent の配下で CLI を拡張する。
 
-Out of scope:
+対象外:
 
-- Actual package installation.
-- Actual MCP server execution or profile enablement.
-- Writing `.vscode/mcp.json` or other Git-tracked local config.
+- 実際の package installation。
+- 実際の MCP server execution または profile enablement。
+- `.vscode/mcp.json` またはその他の Git-tracked local config の書き込み。
 
-## §3 Work Schedule
+## §3 作業スケジュール
 
 ### Step 1: [直列] TDD Red oracle
 
-直列理由: downstream_dependency. U-MCPPROFILE behavior must fail for missing implementation before source changes.
+直列理由: downstream_dependency. source 変更前に、missing implementation に対して U-MCPPROFILE behavior が fail しなければならない。
 
 ### Step 2: [直列] Pure catalog/config/safety functions
 
-直列理由: downstream_dependency. CLI or DB projection must depend on deterministic pure output.
+直列理由: downstream_dependency. CLI または DB projection は deterministic pure output に依存しなければならない。
 
 ### Step 3: [並列] CLI dry-run surface and docs back-fill
 
-CLI dry-run and documentation back-fill can proceed after pure functions are green.
+pure functions が green になった後、CLI dry-run と documentation back-fill を進めてよい。
 
 ### Step 4: [直列] review
 
-直列理由: downstream_dependency. typecheck / lint / targeted tests / doctor must be green before review evidence.
+直列理由: downstream_dependency. review evidence 前に、typecheck / lint / targeted tests / doctor が green でなければならない。
 
 ## §8 DoD
 
-- [x] Red test exists before source implementation.
+- [x] source implementation 前に Red test が存在する。
 - [x] U-MCPPROFILE-001..012 pass.
 - [x] `bun run vitest run tests/verification-profile.test.ts` passes before review.
-- [x] `bun run typecheck` and `bun run lint` pass before review.
-- [x] Reverse fullback closes governance/backlog additions.
+- [x] review 前に `bun run typecheck` と `bun run lint` が pass する。
+- [x] Reverse fullback が governance/backlog additions を close する。

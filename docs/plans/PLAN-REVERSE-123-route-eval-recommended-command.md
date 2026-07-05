@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-123-route-eval-recommended-command
-title: "PLAN-REVERSE-123: route eval RecommendedCommandV1 fullback"
+title: "PLAN-REVERSE-123: route eval RecommendedCommandV1 の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,21 +16,21 @@ backprop_scope:
   - layer: concept
     decision: updated
     evidence_path: docs/governance/helix-harness-concept_v3.1.md
-    reason: "The L0 signal-to-mode table now carries the pair-agent TDD add-feature routing vocabulary."
+    reason: "L0 signal-to-mode table は pair-agent TDD add-feature routing の語彙を保持する。"
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The route eval acceptance item and pair-agent TDD recommendation contract are now implemented and checked."
+    reason: "route eval の受入項目と pair-agent TDD recommendation contract は実装済みで検査済み。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "The public route eval surface, add-feature mode classification, and pair-agent planning recommendation are part of the L4 command and routing design."
+    reason: "public route eval surface、add-feature mode classification、pair-agent planning recommendation は L4 command and routing design の一部。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The implementation reuses the existing schema module and workflow contracts boundary."
+    reason: "実装は既存の schema module と workflow contracts boundary を再利用する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - route eval fullback"
+    slot_label: "TL - route eval fullback 担当"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-123-route-eval-recommended-command.md
     artifact_type: markdown_doc
@@ -52,7 +52,7 @@ review_evidence:
     reviewed_at: "2026-07-01T09:28:59+09:00"
     tests_green_at: "2026-07-01T09:28:59+09:00"
     verdict: approve
-    scope: "R4 fullback for pair-agent TDD route recommendation into concept, requirements, L4 design, and L7 route oracles."
+    scope: "pair-agent TDD route recommendation を concept、requirements、L4 design、L7 route oracles へ戻す R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -93,7 +93,7 @@ review_evidence:
     reviewed_at: "2026-06-23T15:30:00+09:00"
     tests_green_at: "2026-06-23T15:30:00+09:00"
     verdict: approve
-    scope: "R4 fullback from route eval implementation to requirements and L4 design."
+    scope: "route eval 実装から requirements と L4 design へ戻す R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -115,24 +115,20 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-123: route eval RecommendedCommandV1 fullback
+# PLAN-REVERSE-123: route eval RecommendedCommandV1 の fullback
 
-## Objective
+## 目的
 
-Back-fill the implemented route evaluation CLI surface to requirements and L4
-function design.
+実装済みの route evaluation CLI surface を requirements と L4 function design へ back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements §7.8.2 acceptance records the implemented CLI and contract.
-- L4 function design lists the public command and names it as the routing
-  surface.
-- Human approval resolution remains a separate §7.8.3 acceptance item.
+- Requirements §7.8.2 acceptance は、実装済み CLI と contract を記録する。
+- L4 function design は public command を列挙し、それを routing surface として明示する。
+- Human approval resolution は別個の §7.8.3 acceptance item として残す。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both point to `ut-tdd route eval --format json`.
-- Pair-agent TDD route signals are documented as add-feature mode with a
-  pair-agent planning recommendation, not as a new mode or completion claim.
-- The Reverse record keeps approval-policy execution out of this slice and
-  leaves it as the next route-safety scope.
+- Requirements と L4 design はどちらも `helix route eval --format json` を指す。
+- Pair-agent TDD route signals は、新しい mode や completion claim ではなく、pair-agent planning recommendation を伴う add-feature mode として記録する。
+- Reverse record は approval-policy execution をこの slice の外に置き、次の route-safety scope として残す。

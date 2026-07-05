@@ -51,27 +51,27 @@ review_evidence:
     scope: "L6 FR coverage reverse back-fill reviewed after lint/typecheck/vitest/doctor green; add-impl pairing closed."
 ---
 
-# PLAN-REVERSE-21 (reverse): L6 FR coverage back-fill
+# PLAN-REVERSE-21 (reverse): L6 FR coverage の戻し込み (back-fill)
 
 ## §0 位置づけ
 
-L7 lint 実装で確定した coverage rule を L6 function-spec と L7 unit-test design へ戻す Reverse fullback。L1 FR registry の現行 FR-L1 47 件の coverage を L6 closure gate にする。
+L7 lint 実装で確定した coverage rule を L6 function-spec と L7 unit-test design へ戻す Reverse fullback。L1 FR registry の現行 FR-L1 47 件の coverage を L6 closure gate として扱う。
 
 ## §2 工程表
 
-### Step 1: [並列] R0 evidence collection
+### Step 1: [並列] R0 証跡収集 (evidence collection)
 
-`fr-unit-coverage.md`、`l6-fr-coverage.ts`、`l6-fr-coverage.test.ts` を evidence とする。
+`fr-unit-coverage.md`、`l6-fr-coverage.ts`、`l6-fr-coverage.test.ts` を証跡 (evidence) とする。
 
-### Step 2: [直列] L6 design back-fill
+### Step 2: [直列] L6 design への戻し込み (back-fill)
 
-直列理由: downstream_dependency。R0 evidence を L6 function-spec closure rule に戻す。
+直列理由: downstream_dependency。R0 証跡 (evidence) を L6 function-spec closure rule に戻す。
 
-### Step 3: [直列] L7 test-design back-fill
+### Step 3: [直列] L7 test-design への戻し込み (back-fill)
 
 直列理由: downstream_dependency。L6 closure rule を L7 Red entry contract に接続する。
 
-### Step 4: [直列] review
+### Step 4: [直列] レビュー (review)
 
 直列理由: downstream_dependency。doctor green 後に review を行う。
 
@@ -83,5 +83,5 @@ L7 lint 実装で確定した coverage rule を L6 function-spec と L7 unit-tes
 
 - [x] L6 function-spec が FR coverage を L6 closure rule として明示する。
 - [x] L7 unit test design が U-FR-L1-* を Red entry contract として明示する。
-- [x] Reverse requires PLAN-L7-22 so add-impl is not orphaned.
-- [x] lint / typecheck / vitest / doctor / review are green.
+- [x] Reverse が PLAN-L7-22 を requires に持ち、add-impl を orphaned にしない。
+- [x] lint / typecheck / vitest / doctor / review が green である。

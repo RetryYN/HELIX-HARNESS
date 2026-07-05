@@ -10,7 +10,7 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - integration GWT implementation"
+    slot_label: "TL - integration GWT 実装"
   - role: qa
     slot_label: "QA - integration GWT oracle"
 generates:
@@ -30,14 +30,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 の独立再 audit と PO closure 指示。confirmation 前に typecheck/lint/vitest/doctor が green。add-feature triad は content changes なしで close。"
 ---
 
-# PLAN-L7-31 (add-impl): integration-gwt lint
+# PLAN-L7-31 (add-impl): integration-gwt lint 実装
 
-## §0 Position
+## §0 位置づけ
 
-Implements IMP-101.
+IMP-101 を実装する。
 
 ## §3.1 実装計画 (情報源)
 
@@ -50,28 +50,28 @@ Implements IMP-101.
 
 実装:
 
-- Parse L8 IT tables and require Given / When / Then.
-- Add missing-GWT fixture and real repo guard.
+- L8 IT table を parse し、Given / When / Then を必須にする。
+- missing-GWT fixture と real repo guard を追加する。
 
 ## §3 工程表
 
-### Step 1: [直列] L8 table analyzer
+### Step 1: [直列] L8 table 解析
 
-直列理由: downstream_dependency. L8 parsing defines the GWT violation oracle.
+直列理由: downstream_dependency。L8 parsing が GWT violation oracle を定義する。
 
 ### Step 2: [並列] unit oracle
 
-Add missing-GWT fixture and real repo guard.
+missing-GWT fixture と real repo guard を追加する。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. lint / typecheck / vitest / doctor must be green before review.
+直列理由: downstream_dependency。review 前に lint / typecheck / vitest / doctor を green にする。
 
 ## §6 用語更新
 
-- **integration-gwt**: implemented L8 GWT detector.
-- **DDD/TDD back-fill**: Reverse record for this add-impl slice.
+- **integration-gwt**: 実装済みの L8 GWT detector。
+- **DDD/TDD back-fill**: この add-impl slice に対する Reverse record。
 
 ## §8 DoD
 
-- [x] U-DDDTDD-005 passes.
+- [x] U-DDDTDD-005 が pass する。

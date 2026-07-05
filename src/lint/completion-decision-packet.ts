@@ -127,9 +127,9 @@ export interface RecordTemplateContractViolation {
 const SCHEMA_VERSION = "completion-decision-packet.v1";
 const POLICY = "decision-packet-freshness.v1";
 const ALLOWED_SOURCE_COMMANDS = new Set([
-  "ut-tdd handover",
-  "ut-tdd status --json",
-  "ut-tdd completion decision-packet --json",
+  "helix handover",
+  "helix status --json",
+  "helix completion decision-packet --json",
 ]);
 const HUMAN_DECISION_BLOCKERS = new Set([
   "human_approval_pending",
@@ -1212,15 +1212,15 @@ function requiredDecisionKind(blockerReason: string): string {
 function requiredDecisionPacketCommand(blockerReason: string): string {
   switch (blockerReason) {
     case "po_decision_pending":
-      return "ut-tdd s4 decision-packet --json";
+      return "helix s4 decision-packet --json";
     case "version_up_parked":
-      return "ut-tdd version-up activation-packet --json";
+      return "helix version-up activation-packet --json";
     case "irreversible_migration_pending":
-      return "ut-tdd rename plan --json";
+      return "helix rename plan --json";
     case "human_approval_pending":
-      return "ut-tdd action-binding approval-packet --json";
+      return "helix action-binding approval-packet --json";
     default:
-      return "ut-tdd completion decision-packet --json";
+      return "helix completion decision-packet --json";
   }
 }
 
@@ -1235,20 +1235,20 @@ function requiredPacketCommands(blockerReason: string, blockers: string[] = []):
     blockerReason === "irreversible_migration_pending" ||
     blockers.includes("irreversible_migration_pending")
   ) {
-    const renamePlanIndex = commands.indexOf("ut-tdd rename plan --json");
+    const renamePlanIndex = commands.indexOf("helix rename plan --json");
     const insertIndex = renamePlanIndex >= 0 ? renamePlanIndex + 1 : commands.length;
-    commands.splice(insertIndex, 0, "ut-tdd rename approval-draft --json");
+    commands.splice(insertIndex, 0, "helix rename approval-draft --json");
   }
   return [...new Set(commands)];
 }
 
 function scopedDecisionPacketCommandForPlan(planId: string, command: string): string {
   switch (command) {
-    case "ut-tdd s4 decision-packet --json":
-    case "ut-tdd version-up activation-packet --json":
-    case "ut-tdd action-binding approval-packet --json":
+    case "helix s4 decision-packet --json":
+    case "helix version-up activation-packet --json":
+    case "helix action-binding approval-packet --json":
       return `${command} --plan ${planId}`;
-    case "ut-tdd rename approval-draft --json":
+    case "helix rename approval-draft --json":
       return command;
     default:
       return command;
@@ -1263,7 +1263,7 @@ function requiredSupportingPacketSummary(command: string): {
   requiredMatrixFields: string[];
 } {
   switch (command) {
-    case "ut-tdd s4 decision-packet --json":
+    case "helix s4 decision-packet --json":
       return {
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
@@ -1323,7 +1323,7 @@ function requiredSupportingPacketSummary(command: string): {
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
-    case "ut-tdd version-up activation-packet --json":
+    case "helix version-up activation-packet --json":
       return {
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
@@ -1426,7 +1426,7 @@ function requiredSupportingPacketSummary(command: string): {
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
-    case "ut-tdd rename plan --json":
+    case "helix rename plan --json":
       return {
         schemaVersion: "identifier-rename-cutover-plan.v1",
         matrixField: "verificationCommandMatrix",
@@ -1516,7 +1516,7 @@ function requiredSupportingPacketSummary(command: string): {
         ],
         requiredMatrixFields: [...REQUIRED_DECISION_PACKET_MATRIX_FIELDS],
       };
-    case "ut-tdd rename approval-draft --json":
+    case "helix rename approval-draft --json":
       return {
         schemaVersion: "identifier-rename-approval-draft.v1",
         matrixField: "none",
@@ -1565,7 +1565,7 @@ function requiredSupportingPacketSummary(command: string): {
         ],
         requiredMatrixFields: [],
       };
-    case "ut-tdd action-binding approval-packet --json":
+    case "helix action-binding approval-packet --json":
       return {
         schemaVersion: "action-binding-approval-packet.v1",
         matrixField: "approvalVerificationCommandMatrix",
@@ -1864,7 +1864,7 @@ export function loadCompletionDecisionPacketInput(
   return completionDecisionPacketForOutstanding(computeOutstandingWork(repoRoot), {
     generatedAt: now,
     now,
-    sourceCommand: "ut-tdd completion decision-packet --json",
+    sourceCommand: "helix completion decision-packet --json",
   });
 }
 
@@ -1902,14 +1902,14 @@ export function analyzeCompletionReviewBundle(
   } else if (Number.isNaN(generatedMs)) {
     violations.push({ reason: "invalid_generated_at", detail: `generatedAt=${generatedAt}` });
   }
-  if (bundle.sourceCommand !== "ut-tdd completion review-bundle --json") {
+  if (bundle.sourceCommand !== "helix completion review-bundle --json") {
     violations.push({
       reason: "invalid_source_command",
       detail: `sourceCommand=${String(bundle.sourceCommand)}`,
     });
   }
   if (
-    bundle.runnableSourceCommand !== runnablePacketCommand("ut-tdd completion review-bundle --json")
+    bundle.runnableSourceCommand !== runnablePacketCommand("helix completion review-bundle --json")
   ) {
     violations.push({
       reason: "invalid_source_command",
@@ -2025,7 +2025,7 @@ export function analyzeCompletionReviewBundle(
     }
   }
 
-  if (bundle.completionDecisionPacketCommand !== "ut-tdd completion decision-packet --json") {
+  if (bundle.completionDecisionPacketCommand !== "helix completion decision-packet --json") {
     violations.push({
       reason: "invalid_completion_decision_packet_bridge",
       detail: `completionDecisionPacketCommand=${String(bundle.completionDecisionPacketCommand)}`,
@@ -2033,7 +2033,7 @@ export function analyzeCompletionReviewBundle(
   }
   if (
     bundle.runnableCompletionDecisionPacketCommand !==
-    runnablePacketCommand("ut-tdd completion decision-packet --json")
+    runnablePacketCommand("helix completion decision-packet --json")
   ) {
     violations.push({
       reason: "invalid_completion_decision_packet_bridge",

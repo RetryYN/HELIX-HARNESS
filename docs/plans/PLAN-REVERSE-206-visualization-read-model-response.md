@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-206-visualization-read-model-response
-title: "PLAN-REVERSE-206: visualization read-model semantic back-fill"
+title: "PLAN-REVERSE-206: visualization read-model の意味 back-fill"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -35,7 +35,7 @@ backprop_scope:
     reason: "U-VISUAL-001/002 を追加し、determinism と projection-only evidence 誤表示禁止を oracle 化。"
 agent_slots:
   - role: tl
-    slot_label: "TL - visualization semantic back-fill review"
+    slot_label: "TL - visualization 意味 back-fill review"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-206-visualization-read-model-response.md
     artifact_type: markdown_doc
@@ -63,7 +63,7 @@ review_evidence:
     reviewed_at: "2026-06-30T03:20:00+09:00"
     tests_green_at: "2026-06-30T03:20:00+09:00"
     verdict: approve
-    scope: "Reverse back-fill confirms the visualization implementation is a read-only response contract under existing L1 §2.8, with no schema, action surface, or authoring-source shift."
+    scope: "Reverse back-fill により、visualization 実装が既存 L1 §2.8 配下の read-only response contract であり、schema、action surface、authoring-source の移動を伴わないことを確認した。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -77,32 +77,28 @@ review_evidence:
         output_digest: "sha256:0ac405fdb8ca550ec1b235325c300564ae50b38a8cdc6929e4d225aab862feb2"
 ---
 
-# PLAN-REVERSE-206: visualization read-model semantic back-fill
+# PLAN-REVERSE-206: visualization read-model の意味 back-fill
 
-## R0-R4 Summary
+## R0-R4 要約
 
-- R0: `PLAN-DISCOVERY-10` existed, but the API/read-model response was not
-  fixed at L6/L7. A UI ticket alone could still drift into LLM-generated
-  summaries.
-- R1: The as-built response is a deterministic query over existing harness.db
-  projection rows.
-- R2: L1 §2.8 remains the requirement source. L4/L5 remain stable because no new
-  module or schema is introduced; R4 routing uses the nearest supported
-  Forward enum (`L5`) while the actual updated contract is L6.
-- R3: L6 receives a function contract and L7 receives unit/CLI oracles.
-- R4: `PLAN-L7-206` is the Forward merge point for this back-fill.
+- R0: `PLAN-DISCOVERY-10` は存在していたが、API/read-model response は
+  L6/L7 で固定されていなかった。UI ticket だけでは、LLM 生成 summary へ逸脱する余地が残っていた。
+- R1: as-built response は、既存 harness.db projection row に対する deterministic query である。
+- R2: L1 §2.8 を requirement source として維持する。新規 module や schema を導入しないため
+  L4/L5 は安定したままとし、R4 routing は最も近い supported Forward enum (`L5`) を使うが、
+  実際に更新される contract は L6 である。
+- R3: L6 に function contract を追加し、L7 に unit/CLI oracle を追加する。
+- R4: `PLAN-L7-206` をこの back-fill の Forward merge point とする。
 
-## Back-Filled Meaning
+## Back-Fill した意味
 
-The visualization surface is a read-only response contract first, not a Webview
-implementation first. UI renderers may choose Tree View, Mermaid, or a Webview,
-but they must consume deterministic DB/docs-derived rows and drill down to
-source evidence. Runtime evidence counts must keep accepted runtime verification
-separate from projection-only telemetry.
+visualization surface は、Webview 実装ではなく read-only response contract を先に固定する境界である。
+UI renderer は Tree View、Mermaid、Webview のいずれを選んでもよいが、deterministic な
+DB/docs-derived row を消費し、source evidence へ drill down できなければならない。
+Runtime evidence count は、accepted runtime verification と projection-only telemetry を分離して扱う。
 
-## Merge Boundary
+## Merge 境界
 
-This Reverse does not add a VSCode extension, mutate docs from DB rows, or
-create action buttons. Execution, external API calls, settings mutation, branch
-or ruleset changes remain outside the read model and require action-binding
-approval in a later PLAN.
+この Reverse では VSCode extension の追加、DB row からの docs 変更、action button の作成は行わない。
+Execution、external API call、settings mutation、branch または ruleset の変更は read model の外側に残し、
+後続 PLAN で action-binding approval を要求する。

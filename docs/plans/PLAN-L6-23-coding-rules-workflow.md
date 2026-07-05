@@ -32,11 +32,11 @@ review_evidence:
     scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
 ---
 
-# PLAN-L6-23 (add-design): coding-rules SSoT workflow
+# PLAN-L6-23（add-design）coding-rules SSoT workflow の設計
 
-## §0 Position
+## §0 位置づけ
 
-Back-fills IMP-094 as a formal add-feature PLAN. Coding rules are requirements-level SSoT plus workflow artifact, not an informal CI-only convention.
+IMP-094 を正式な add-feature PLAN として backfill する。Coding rules は informal な CI 専用慣習ではなく、requirements-level SSoT と workflow artifact を兼ねる。
 
 ## §3.1 実装計画（情報源）
 
@@ -50,19 +50,19 @@ Back-fills IMP-094 as a formal add-feature PLAN. Coding rules are requirements-l
 
 実装:
 
-- `docs/governance/coding-rules.md`: rule IDs and workflow placement
-- `src/lint/coding-rules.ts`: policy/workflow analyzer
+- `docs/governance/coding-rules.md`: rule ID と workflow 配置
+- `src/lint/coding-rules.ts`: policy / workflow analyzer
 - `tests/coding-rules.test.ts`: U-CODE-001..007
 
 ## §3 工程表
 
-### Step 1: [並列] SSoT placement design
+### Step 1: [並列] SSoT 配置 design
 
-`docs/governance/coding-rules.md` defines coding rules and workflow timing.
+`docs/governance/coding-rules.md` は coding rules と workflow timing を定義する。
 
 ### Step 2: [並列] workflow anchor design
 
-Forward / Add-feature / mode index docs carry `CODING-RULE-WORKFLOW`.
+Forward / Add-feature / mode index docs は `CODING-RULE-WORKFLOW` を保持する。
 
 ### Step 3: [直列] review
 
@@ -75,5 +75,5 @@ Forward / Add-feature / mode index docs carry `CODING-RULE-WORKFLOW`.
 
 ## §8 DoD
 
-- [x] requirements / L6 design / L7 oracle / lint / tests are connected.
-- [x] `ut-tdd doctor` reports `coding-rules — OK`.
+- [x] requirements / L6 design / L7 oracle / lint / tests が接続済み。
+- [x] `helix doctor` reports `coding-rules — OK`.

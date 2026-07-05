@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-22
 updated: 2026-06-22
 backprop_decision: not_required
-backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
+backprop_decision_reason: "harness 内部の自己適用 tooling (lint gate / runtime dispatch / guard / governance mechanism)。harness 自身の強制力を harden する変更であり、product の外部 requirement / design / test-design contract は変更しないため、upstream backprop 対象はない。"
 owner: PM (Opus) / PO (人間)
 agent_slots:
   - role: se
@@ -37,38 +37,38 @@ review_evidence:
 
 # PLAN-L7-100 (troubleshoot): L4 標準成果物 必須 § 構造定義 + sub-doc-section-structure gate
 
-## 0. Objective (PO 指示「標準成果物 § 構造定義の完遂」2026-06-22)
+## 0. 目的 (PO 指示「標準成果物 § 構造定義の完遂」2026-06-22)
 
-PLAN-L7-97 で 4 標準成果物 (`report`/`batch`/`notification`/`code-value`) の **vocabulary** (`VALID_SUB_DOCS`
+PLAN-L7-97 で 4 標準成果物 (`report`/`batch`/`notification`/`code-value`) の **語彙** (`VALID_SUB_DOCS`
 への型追加) は済んだが、各成果物の **必須 § 構造** (帳票なら帳票一覧/レイアウト/出力項目定義…) は未定義で
-carry されていた (「downstream 製品 PLAN 着手時に back-fill」)。PO がこの carry の完遂を指示。IPA 共通フレーム
-2013 外部設計の標準成果物内容で必須 § を確定し、機械強制 (substance) まで行う。
+carry されていた (「downstream 製品 PLAN 着手時に back-fill」)。PO がこの carry の完遂を指示したため、
+IPA 共通フレーム 2013 外部設計の標準成果物内容で必須 § を確定し、機械強制 (substance) まで行う。
 
-## 1. Scope (実装)
+## 1. 対象範囲 (実装)
 
 - **必須 § 定義** (`docs/governance/helix-harness-requirements_v1.2.md` §G.6.1 新設): 4 型の必須 §
   (h2) を IPA 外部設計 grounding で確定。`document-system-map.md` §1b に必須 § 参照を追記。
 - **gate** (`src/lint/sub-doc-section-structure.ts`): `sub_doc` ∈ 4 型の design PLAN が必須 § を h2 として
-  持つことを fail-close 検証。純関数 (`analyzeSubDocSectionStructure`) + loader 分離。`STANDARD_DELIVERABLE_SECTIONS`
-  が必須 § の正本 (要件表が mirror)。
+  持つことを fail-close 検証する。純関数 (`analyzeSubDocSectionStructure`) と loader を分離する。
+  `STANDARD_DELIVERABLE_SECTIONS` が必須 § の正本で、要件表は mirror とする。
 - **配線** (`src/doctor/index.ts`): `checkSubDocSectionStructure` を doctor へ配線 (lint-wiring wired++)。
-- **test** (`tests/sub-doc-section-structure.test.ts`): fixture で 4 型の充足/欠落検出 + h2 抽出 +
+- **test** (`tests/sub-doc-section-structure.test.ts`): fixture で 4 型の充足/欠落検出と h2 抽出を確認し、
   実 repo subject 0 (U-SDSS-001..008)。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
 - [x] 要件 §G.6.1 に 4 型の必須 § 表 (IPA grounding)、document-system-map §1b に参照。
 - [x] `sub-doc-section-structure` gate が doctor に配線され実 repo green (subject 0 = downstream 起票時に発火)。
 - [x] 必須 § 欠落を fail-close 検出する fixture テスト green (real-repo + fixture = claim の substance, PLAN-L7-89)。
-- [x] typecheck (tsc) / biome EXIT=0 / vitest green / doctor EXIT=0。
-- [x] intra_runtime_subagent review approve。
+- [x] typecheck (tsc) / biome EXIT=0 / vitest green / doctor EXIT=0 を確認。
+- [x] intra_runtime_subagent review approve を確認。
 
-## 3. Out of scope
+## 3. 対象外
 
 - L1 sub-doc §G.6 (business/functional/screen/technical/nfr) の必須 § 機械強制 = 既存宣言のまま (本 PLAN は L4 標準成果物のみ、既存 L1 PLAN を壊さない)。
 - 実際の帳票/バッチ/通知/コード値の起票 = downstream 製品 PLAN (harness 非産出、② プロダクト選択)。
 
-## 4. Trace
+## 4. 追跡
 
 - 起点: `docs/handover/session-handover-2026-06-22.md` §4 carry (標準成果物 § 構造定義) + PO 2026-06-22。
 - impl: `src/lint/sub-doc-section-structure.ts` / `src/doctor/index.ts` (`checkSubDocSectionStructure`)。

@@ -38,7 +38,7 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 
 ## 0. 目的
 
-IMP-104 は「`ut-tdd team run` が validate-only で、実委譲と drive 招集が未実装」という観測を
+IMP-104 は「`helix team run` が validate-only で、実委譲と drive 招集が未実装」という観測を
 backlog に残していた。しかし現 HEAD では `PLAN-L7-64` が `executeTeamRunPlan` と provider adapter 実行、
 `PLAN-L7-75` が tier-router から team run placement への橋渡し、`PLAN-L7-140` が proposal coverage lanes
 から `team suggest --design-docs` への橋渡しを実装済みである。
@@ -51,7 +51,7 @@ backlog に残していた。しかし現 HEAD では `PLAN-L7-64` が `executeT
 対象:
 
 - `docs/improvement-backlog.md` の IMP-104 を `implemented` に更新する。
-- `docs/design/harness/L6-function-design/agent-slots.md` の `ut-tdd team run` carry 表現を実装済みに更新する。
+- `docs/design/harness/L6-function-design/agent-slots.md` の `helix team run` carry 表現を実装済みに更新する。
 - 実装済み evidence として `PLAN-L7-64`、`PLAN-L7-75`、`PLAN-L7-140`、関連テストを明示する。
 
 対象外:
@@ -63,7 +63,7 @@ backlog に残していた。しかし現 HEAD では `PLAN-L7-64` が `executeT
 ## 2. 受入条件
 
 - IMP-104 が observed のまま残らず、実装済み evidence へ接続されている。
-- L6 agent-slots 設計が `ut-tdd team run` を未実装 carry と誤読させない。
+- L6 agent-slots 設計が `helix team run` を未実装 carry と誤読させない。
 - `team run --execute`、tier-router placement、proposal coverage team suggestion の既存テストが green である。
 - doctor が backlog / plan governance / design-language を green に保つ。
 

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-172-harness-db-catalog-section-split
-title: "PLAN-L7-172: harness DB catalog section split"
+title: "PLAN-L7-172: harness DB catalog section split の分割"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant split of harness DB table/index catalog sections. Schema table and index definitions are preserved in the same exported order."
+backprop_decision_reason: "harness DB table/index catalog sections の挙動不変な分割。Schema table と index definitions は同じ export order で維持する。"
 agent_slots:
   - role: se
-    slot_label: "SE - harness DB catalog split"
+    slot_label: "SE - harness DB catalog split 実装"
   - role: tl
-    slot_label: "TL - DB schema invariant review"
+    slot_label: "TL - DB schema invariant review 確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-172-harness-db-catalog-section-split.md
     artifact_type: markdown_doc
@@ -45,7 +45,7 @@ review_evidence:
     reviewed_at: "2026-06-25T21:54:10+09:00"
     tests_green_at: "2026-06-25T21:54:10+09:00"
     verdict: approve
-    scope: "Split harness DB catalog tables and indexes into section modules while preserving schema migration behavior."
+    scope: "harness DB catalog の tables と indexes を section modules へ分割し、schema migration behavior は維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -123,25 +123,24 @@ review_evidence:
         output_digest: "sha256:81f4c66394128721249f900d053d0c6e377289f91069bde588f812224b69ff2c"
 ---
 
-# PLAN-L7-172: harness DB catalog section split
+# PLAN-L7-172: harness DB catalog section split の分割
 
-## Objective
+## 目的
 
-Reduce remaining `split-module` pressure on `src/schema/harness-db-catalog.ts`
-without changing schema definitions or migration behavior.
+schema definitions や migration behavior を変更せずに、
+`src/schema/harness-db-catalog.ts` に残る `split-module` pressure を下げる。
 
-## Scope
+## スコープ
 
-- Move table-builder helpers to `src/schema/harness-db-table-builders.ts`.
-- Split table definitions into core, graph/export, and evaluation/screen table
-  catalog modules.
-- Move index definitions to `src/schema/harness-db-indexes.ts`.
-- Keep `src/schema/harness-db-catalog.ts` as the compatibility export surface.
+- table-builder helpers を `src/schema/harness-db-table-builders.ts` へ移す。
+- table definitions を core、graph/export、evaluation/screen table catalog modules に分割する。
+- index definitions を `src/schema/harness-db-indexes.ts` へ移す。
+- `src/schema/harness-db-catalog.ts` は compatibility export surface として維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `tests/state-db.test.ts`, `tests/db-projection-ingestion.test.ts`,
-  typecheck, lint, DB rebuild, and doctor pass.
-- `src/schema/harness-db-catalog.ts` falls below the `split-module` threshold.
-- The refactor detector no longer reports `src/schema/harness-db-catalog.ts`
-  as a `split-module` candidate.
+- `tests/state-db.test.ts`、`tests/db-projection-ingestion.test.ts`、
+  typecheck、lint、DB rebuild、doctor が pass する。
+- `src/schema/harness-db-catalog.ts` が `split-module` threshold を下回る。
+- refactor detector が `src/schema/harness-db-catalog.ts` を
+  `split-module` candidate として報告しなくなる。

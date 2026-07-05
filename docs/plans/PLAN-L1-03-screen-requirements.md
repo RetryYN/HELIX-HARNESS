@@ -69,7 +69,7 @@ review_evidence:
 
 **注意**: L1 画面要求は「業務要求視点の必要画面列挙 + データ表示要望」。UI 具体化 (レイアウト / ワイヤーフレーム / UI 要素) は L2 画面設計 4 sub-doc に委ねる。
 
-**drive=be 注記 (2026-05-28 PO 指摘で修正)**: harness core は be 駆動だが、ut-tdd は **dashboard (14 画面 PM/HM/GD) を持つ「UI を持つ be」** であるため、**L2 画面設計 3 sub-doc (画面一覧 / 遷移 / UI 要素) は必須実施**。wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。詳細は concept §3.7 「L2 sub-doc skip ルール」参照。
+**drive=be 注記 (2026-05-28 PO 指摘で修正)**: harness core は be 駆動だが、helix は **dashboard (14 画面 PM/HM/GD) を持つ「UI を持つ be」** であるため、**L2 画面設計 3 sub-doc (画面一覧 / 遷移 / UI 要素) は必須実施**。wireframe (High-Fi モック) のみ省略可 (Low-Fi で代替、High-Fi は L10 UX refinement)。詳細は concept §3.7 「L2 sub-doc skip ルール」参照。
 
 > **PO 指摘 (2026-05-28)**: 「L2 スキップすんな。モックは作らなくてもせめて画面要求は作れよ」 — 旧版で「drive=be で L2 全 skip 可」と判定していたが撤回。画面要求 3 sub-doc は drive 非依存で必須。
 
@@ -148,37 +148,37 @@ S2=b 30 秒ポーリング / S3=b PLAN ビュー パース構造化 / S5=b Recov
 
 ## §4 工程表 (Step + 進捗)
 
-### Step 1: 既存資料整理
+### 既存資料整理 (Step 1)
 - 担当: tl + pmo-sonnet
 - 内容: screen-requirements.md (B-1 起票済 7 画面) の現状確認
 - 進捗: ✅ (commit d9992f1、2026-05-28)
 
-### Step 2: 必要画面リスト確定 (v3 で 14 画面化)
+### 必要画面リスト確定 (Step 2 / v3 で 14 画面化)
 - 担当: po + tl
 - 内容: PO 追加ヒアリング V1-CC3 全件承認受領 → PM/HM/GD 14 画面確定
 - 進捗: ✅ (2026-05-28、subagent 4 並列起案 + PO 承認)
 
-### Step 3: 画面遷移要望の整理
+### 画面遷移要望の整理 (Step 3)
 - 担当: tl
 - 内容: 6 シナリオ + 3 カテゴリ間 deep-link を screen §2 に反映
 - 進捗: ✅ (Step A subagent ac2517e7、2026-05-28)
 
-### Step 4: screen §1-§6 起草・改訂 (v3 全面再編)
+### screen §1-§6 起草・改訂 (Step 4 / v3 全面再編)
 - 担当: tl
 - 内容: 14 画面詳細化 + 横断原則 4 件 + Bounded Context 宣言 + ペルソナ 3 種
 - 進捗: ✅ (Step A subagent、202→337 行、2026-05-28)
 
-### Step 5: 運用テスト設計の pair 凍結
+### 運用テスト設計の pair 凍結 (Step 5)
 - 担当: qa
 - 内容: L14 OT で 14 画面被覆 (OT-15/25/32〜44 で網羅、孤児 0)
 - 進捗: ✅ (Step C subagent a008e781、OT-44 件確定、2026-05-28)
 
-### Step 6: review (self / pmo-sonnet)
+### レビュー (Step 6: review / self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須
 - 進捗: ✅ (acdc5ccd 通過 + 追加 4 subagent ad3c4989/aba43aef/a39bf4b8/ae9d79db、2026-05-28)
 
-### Step 7: G1 PO サインオフ準備
+### G1 PO サインオフ準備 (Step 7)
 - 担当: po
 - 内容: 14 画面確定 + 4 横断原則確定 + 3 カテゴリ Bounded Context 確定
 - 進捗: ✅ (v3 全件 PO 承認 2026-05-28、G1 readiness v3 起票へ)
@@ -194,7 +194,7 @@ S2=b 30 秒ポーリング / S3=b PLAN ビュー パース構造化 / S5=b Recov
 | §5 ペルソナ (3 ペルソナ × 3 カテゴリ整合) | PO / harness 運用者 / 新規参画者 | ✅ |
 | §6 Bounded Context 宣言 (新規) | DDD 整合、SCR-NN → PM/HM/GD-NN 移行注記 | ✅ |
 
-## §6 DoD (Definition of Done)
+## §6 完了定義 (DoD / Definition of Done)
 
 - [x] screen-requirements.md が必須 § 全件含む (§1〜§6)
 - [x] §1 画面一覧が 14 画面全件 (PM 5 + HM 8 + GD 1) を含む
@@ -209,7 +209,7 @@ S2=b 30 秒ポーリング / S3=b PLAN ビュー パース構造化 / S5=b Recov
 - [x] **G1 readiness: status = ready-for-G1-signoff** (v5 確定、14 画面 + 4 横断原則 + Bounded Context + G1-trace 全件 PO 承認済 2026-05-28)
 - [x] **v4 (2026-06-22)**: PM-06 設計書ビューア追加で **15 画面**、§5.5 逆 trace に PM-06 紐付け (孤児 0)、L14 OT-47 pair back-propagation、doctor doc-consistency screens=15 green
 
-## §7 carry / 次工程 (L2 / L3) への引き継ぎ
+## §7 引き継ぎ / 次工程 (L2 / L3 carry)
 
 **確定済 (carry から除外、本 v3 で解消)**:
 - 14 画面構成 (PM 5 / HM 8 / GD 1): 全件 PO 承認済
@@ -221,7 +221,7 @@ S2=b 30 秒ポーリング / S3=b PLAN ビュー パース構造化 / S5=b Recov
 - GD-01 統合 1 画面 (左サイドナビ 7 カテゴリ): BB1/BB2=a 採用済
 - **L2 必須実施判定 (2026-05-28 PO 指摘)**: 旧「drive=be で L2 全 skip 可」撤回、**画面要求 3 sub-doc は必須**
 
-**L2 forward carry (継続、必須実施、PO 指摘 2026-05-28)**:
+**L2 への引き継ぎ (forward carry、継続、必須実施、PO 指摘 2026-05-28)**:
 - **PLAN-L2-01 画面一覧 (screen-list.md) 必須実施**: 14 画面 (PM/HM/GD) の画面 ID / 役割 / 業務根拠 確定
 - **PLAN-L2-02 画面遷移 (screen-flow.md) 必須実施**: 6 シナリオ + 3 カテゴリ間 deep-link の詳細遷移図
 - **PLAN-L2-04 UI 要素 (ui-element.md) 必須実施**: 14 画面の主要 UI コンポーネント / 入力 / 表示 / 操作要素
@@ -234,10 +234,10 @@ S2=b 30 秒ポーリング / S3=b PLAN ビュー パース構造化 / S5=b Recov
 - **画面遷移詳細**: 3 カテゴリ間 deep-link の URL 設計 (PM-NN / HM-NN / GD-NN/<category> 規約)
 - **PLAN-L2-01〜04 接続規約**: 本 sub-doc 全 14 画面を `dependencies.requires` に列挙
 
-**L3 forward carry**:
+**L3 への引き継ぎ (forward carry)**:
 - HM-08 AI 効果データビュー (BR-21 連動、FR-L1-36/38/43 の L3 詳細化と連動)
 - GD-01 Learning Engine 半自動更新 (BB3=b、Phase B carry)
 - 「人間主導 + AI 補助」原則を L3 全機能要件で「人間判断点」明示 (CC2 carry)
 
-**L4 carry**:
+**L4 への引き継ぎ (carry)**:
 - 14 画面の実装方式 (フレームワーク選定、Tauri / Electron / 純 Web 等) は L4 ADR で確定

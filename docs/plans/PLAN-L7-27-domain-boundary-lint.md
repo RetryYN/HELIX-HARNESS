@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-27-domain-boundary-lint
-title: "PLAN-L7-27 (add-impl): domain-boundary lint"
+title: "PLAN-L7-27 (add-impl): domain-boundary lint の実装"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -10,9 +10,9 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - domain-boundary implementation"
+    slot_label: "TL - domain-boundary 実装"
   - role: qa
-    slot_label: "QA - domain-boundary oracle"
+    slot_label: "QA - domain-boundary oracle 確認"
 generates:
   - artifact_path: src/lint/ddd-tdd-rules.ts
     artifact_type: source_module
@@ -32,14 +32,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 independent re-audit と PO closure instruction。confirmation 前に typecheck/lint/vitest/doctor が green。add-feature triad は内容変更なしで closure 済み。"
 ---
 
-# PLAN-L7-27 (add-impl): domain-boundary lint
+# PLAN-L7-27 (add-impl): domain-boundary lint の実装計画
 
-## §0 Position
+## §0 位置づけ
 
-Implements IMP-097 as an add-feature slice.
+IMP-097 を add-feature slice として実装する。
 
 ## §3.1 実装計画 (情報源)
 
@@ -51,30 +51,30 @@ Implements IMP-097 as an add-feature slice.
 
 実装:
 
-- Add domain-boundary source import analysis to `src/lint/ddd-tdd-rules.ts`.
-- Add synthetic negative test and real repo guard.
-- Wire `checkDddTddRules` into doctor.
+- `src/lint/ddd-tdd-rules.ts` に domain-boundary source import analysis を追加する。
+- synthetic negative test と real repo guard を追加する。
+- `checkDddTddRules` を doctor へ接続する。
 
 ## §3 工程表
 
 ### Step 1: [直列] analyzer implementation
 
-直列理由: downstream_dependency. The analyzer input shape must be fixed before tests and doctor messages.
+直列理由: downstream_dependency。tests と doctor messages より前に analyzer input shape を固定する必要がある。
 
 ### Step 2: [並列] unit oracle
 
-Add the reverse-import fixture and real repo guard.
+reverse-import fixture と real repo guard を追加する。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. lint / typecheck / vitest / doctor must be green before qualitative review.
+直列理由: downstream_dependency。qualitative review より前に lint / typecheck / vitest / doctor を green にする必要がある。
 
 ## §6 用語更新
 
-- **domain-boundary**: implemented import-boundary detector.
-- **DDD/TDD back-fill**: Reverse record for this add-impl slice.
+- **domain-boundary**: 実装済み import-boundary detector。
+- **DDD/TDD back-fill**: この add-impl slice の Reverse record。
 
 ## §8 DoD
 
-- [x] U-DDDTDD-007 passes.
-- [x] doctor surfaces DDD/TDD strictness findings.
+- [x] U-DDDTDD-007 が pass する。
+- [x] doctor が DDD/TDD strictness findings を surface する。

@@ -1,16 +1,16 @@
 export type WorkflowDecisionPacketCommand =
-  | "ut-tdd s4 decision-packet --json"
-  | "ut-tdd version-up activation-packet --json"
-  | "ut-tdd rename plan --json"
-  | "ut-tdd rename approval-draft --json"
-  | "ut-tdd action-binding approval-packet --json"
-  | "ut-tdd completion decision-packet --json";
+  | "helix s4 decision-packet --json"
+  | "helix version-up activation-packet --json"
+  | "helix rename plan --json"
+  | "helix rename approval-draft --json"
+  | "helix action-binding approval-packet --json"
+  | "helix completion decision-packet --json";
 
 export type DecisionPacketSourceCommand =
   | WorkflowDecisionPacketCommand
-  | "ut-tdd completion review-bundle --json"
-  | "ut-tdd handover"
-  | "ut-tdd status --json";
+  | "helix completion review-bundle --json"
+  | "helix handover"
+  | "helix status --json";
 
 export interface RelatedDecisionPacket {
   command: WorkflowDecisionPacketCommand;
@@ -54,14 +54,14 @@ export interface DecisionPacketProvenanceOptions {
   sourceCommand: DecisionPacketSourceCommand;
 }
 
-export const S4_DECISION_PACKET_COMMAND = "ut-tdd s4 decision-packet --json";
-export const VERSION_UP_ACTIVATION_PACKET_COMMAND = "ut-tdd version-up activation-packet --json";
-export const RENAME_PLAN_PACKET_COMMAND = "ut-tdd rename plan --json";
-export const RENAME_APPROVAL_DRAFT_PACKET_COMMAND = "ut-tdd rename approval-draft --json";
+export const S4_DECISION_PACKET_COMMAND = "helix s4 decision-packet --json";
+export const VERSION_UP_ACTIVATION_PACKET_COMMAND = "helix version-up activation-packet --json";
+export const RENAME_PLAN_PACKET_COMMAND = "helix rename plan --json";
+export const RENAME_APPROVAL_DRAFT_PACKET_COMMAND = "helix rename approval-draft --json";
 export const ACTION_BINDING_APPROVAL_PACKET_COMMAND =
-  "ut-tdd action-binding approval-packet --json";
-export const COMPLETION_DECISION_PACKET_COMMAND = "ut-tdd completion decision-packet --json";
-export const COMPLETION_REVIEW_BUNDLE_COMMAND = "ut-tdd completion review-bundle --json";
+  "helix action-binding approval-packet --json";
+export const COMPLETION_DECISION_PACKET_COMMAND = "helix completion decision-packet --json";
+export const COMPLETION_REVIEW_BUNDLE_COMMAND = "helix completion review-bundle --json";
 
 export function buildDecisionPacketProvenance(
   opts: DecisionPacketProvenanceOptions,

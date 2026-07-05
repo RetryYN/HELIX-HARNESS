@@ -79,13 +79,13 @@ review_evidence:
 
 ## 目的
 
-`CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` は `ut-tdd setup project` を正規 entrypoint として示すようになったが、managed block 周辺に英語 prose が残り、直近修正でも `bootstraps a HELIX-ready project` という英語説明を追加していた。これは「ドキュメントは英語ではなく日本語で統一する」という要求に逆行する。
+`CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` は `helix setup project` を正規 entrypoint として示すようになったが、managed block 周辺に英語 prose が残り、直近修正でも `bootstraps a HELIX-ready project` という英語説明を追加していた。これは「ドキュメントは英語ではなく日本語で統一する」という要求に逆行する。
 
 この PLAN では setup command surface 近傍の runtime instruction prose と配布 adapter template を日本語-first に寄せ、`tests/setup.test.ts` の `U-SETUP-034` / `U-SETUP-035` / `U-SETUP-020` で英語説明の復帰を検出する。
 
 ## DoD
 
-- [x] `CLAUDE.md` の managed block は `ut-tdd setup project` を日本語 prose で説明する。
+- [x] `CLAUDE.md` の managed block は `helix setup project` を日本語 prose で説明する。
 - [x] `AGENTS.md` と `.claude/CLAUDE.md` の managed/runtime prose も日本語-first に寄せる。
 - [x] `docs/templates/adapter/` と `src/setup/templates.ts` の配布 adapter label も日本語-first に寄せる。
 - [x] `bootstraps a HELIX-ready project` のような英語説明が戻ると test が fail する。

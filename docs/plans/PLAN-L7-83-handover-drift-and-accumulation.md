@@ -19,7 +19,7 @@ review_evidence:
     tests_green_at: "2026-06-19"
     reviewed_at: "2026-06-19"
     verdict: pass
-    scope: "handover 機構の 2 defect 修正: (1) runHandover marker reconcile (complete→clear / --plan→sync / plain in_progress 無変更 / dryRun 非破壊) で CURRENT.json⇔current-plan marker の drift を構造的に解消、(2) boundSameDayEntries で同日 entry を MAX_SAME_DAY_ENTRIES=4 へ上限化 (anchor+直近保持・中間 breadcrumb・git 履歴保全)。cross_agent TL(codex-gpt-5.5) 初回 verdict=fail で Important 1件 = boundSameDayEntries が既存 breadcrumb を再 prune 時に anchor slice へ吸収し線形累積する点を指摘。remediate = strip-then-reprune (既存 breadcrumb + 直前 separator を regex 除去後に再 prune) + 決定論 oracle U-HOVER-014 idempotency ケース (2 prune cycle で breadcrumb 1 個・header=MAX-1) で再発防止。clear-on-complete coherence / 保持算術 / breadcrumb header 非該当 / dryRun 非破壊 / 空 marker は No-Finding と評価。再 dispatch 確認は wrapper 出力が grounding trace で途切れたため決定論 test で代替検証。typecheck/biome(175)/全 Vitest 763/doctor EXIT=0 green。evidence=.ut-tdd/audit/A-142、review task=.ut-tdd/codex-tasks/l783-review.md (+r2)。"
+    scope: "handover 機構の 2 defect 修正: (1) runHandover marker reconcile (complete→clear / --plan→sync / plain in_progress 無変更 / dryRun 非破壊) で CURRENT.json⇔current-plan marker の drift を構造的に解消、(2) boundSameDayEntries で同日 entry を MAX_SAME_DAY_ENTRIES=4 へ上限化 (anchor+直近保持・中間 breadcrumb・git 履歴保全)。cross_agent TL(codex-gpt-5.5) 初回 verdict=fail で Important 1件 = boundSameDayEntries が既存 breadcrumb を再 prune 時に anchor slice へ吸収し線形累積する点を指摘。remediate = strip-then-reprune (既存 breadcrumb + 直前 separator を regex 除去後に再 prune) + 決定論 oracle U-HOVER-014 idempotency ケース (2 prune cycle で breadcrumb 1 個・header=MAX-1) で再発防止。clear-on-complete coherence / 保持算術 / breadcrumb header 非該当 / dryRun 非破壊 / 空 marker は No-Finding と評価。再 dispatch 確認は wrapper 出力が grounding trace で途切れたため決定論 test で代替検証。typecheck/biome(175)/全 Vitest 763/doctor EXIT=0 green。evidence=.helix/audit/A-142、review task=.helix/codex-tasks/l783-review.md (+r2)。"
 agent_slots:
   - role: tl
     slot_label: "TL - handover drift reconcile + accumulation bound 設計 + 配線 + cross_agent review"
@@ -40,15 +40,15 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 
 # PLAN-L7-83: handover pointer-drift reconcile + 同日累積の上限化 (troubleshoot)
 
-## Objective
+## 目的 (Objective)
 
 handover 機構 (PLAN-L7-04 / L6-06) を実運用したところ 2 件の defect を検出 (PO 直接指摘):
 
-1. **pointer drift が解消されない**: `CURRENT.json` (機械ポインタ) と `.ut-tdd/state/current-plan`
+1. **pointer drift が解消されない**: `CURRENT.json` (機械ポインタ) と `.helix/state/current-plan`
    marker が乖離しても `checkHandoverDiscipline` は **warn するだけ**で reconcile しない。実例
    (2026-06-19): marker = `PLAN-L7-83` (PLAN file 不在の phantom)、`CURRENT.json` =
    `PLAN-L7-82-...` (completed) → doctor が drift を毎 session 再報告。前 session が
-   `ut-tdd plan use PLAN-L7-83` で marker を立てたが PLAN を作らず、別 PLAN を完了しても
+   `helix plan use PLAN-L7-83` で marker を立てたが PLAN を作らず、別 PLAN を完了しても
    marker を移さなかったのが根因。**2 つの「今どこ」source が無秩序に乖離できる**のが defect。
 
 2. **同日 markdown が無制限に累積**: `runHandover` は同日 doc へ `---` 区切りで追記する。
@@ -72,16 +72,16 @@ handover 機構 (PLAN-L7-04 / L6-06) を実運用したところ 2 件の defect
   に一致しないので `countHandoverEntries`/`doc_entry_count` の bypass 検知契約は不変。剪定は
   silent でなく breadcrumb で件数明示 + git 履歴に全保全 (no silent cap)。
 
-## WBS
+## WBS（作業分解）
 
 | WBS ID | Work | Source target | Test target | Gate | 並直 |
 |---|---|---|---|---|---|
 | WBS-L7-83-01 | `runHandover` の marker reconcile (complete→clear / --plan→sync、dryRun 非破壊)。`written` に marker path を計上 (透明性)。 | `src/handover/index.ts` | `tests/handover.test.ts` | `vitest tests/handover.test.ts` | [直列] |
 | WBS-L7-83-02 | `boundSameDayEntries` 純関数 + `MAX_SAME_DAY_ENTRIES` const + runHandover で append 前に呼ぶ。anchor + 直近保持 / 中間 breadcrumb / header 数契約不変。 | `src/handover/index.ts` | `tests/handover.test.ts` | `vitest tests/handover.test.ts` | [直列] |
-| WBS-L7-83-03 | 設計 back-fill (handover-mechanism.md §2.6/§2.7 + trace) + test-design U-HOVER-014/015 row。live 状態 reconcile (phantom marker clear + 既存肥大 doc compact)。 | (docs) | A-142 | `ut-tdd doctor` | [直列] |
-| WBS-L7-83-04 | cross_agent review (tl=codex) → nit 反映 → confirmed。 | (review) | A-142 | `ut-tdd doctor` | [直列] (03 後) |
+| WBS-L7-83-03 | 設計 back-fill (handover-mechanism.md §2.6/§2.7 + trace) + test-design U-HOVER-014/015 row。live 状態 reconcile (phantom marker clear + 既存肥大 doc compact)。 | (docs) | A-142 | `helix doctor` | [直列] |
+| WBS-L7-83-04 | cross_agent review (tl=codex) → nit 反映 → confirmed。 | (review) | A-142 | `helix doctor` | [直列] (03 後) |
 
-## Acceptance Criteria
+## 受入条件 (Acceptance Criteria)
 
 - [x] `runHandover(complete=true)` 後 marker が clear され、再度 `checkHandoverDiscipline` が drift を出さない。
 - [x] `runHandover(--plan X, in_progress)` 後 marker = X (override drift 解消)。plain in_progress は marker 無変更。

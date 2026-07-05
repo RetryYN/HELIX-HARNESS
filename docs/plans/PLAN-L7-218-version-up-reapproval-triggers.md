@@ -90,38 +90,36 @@ review_evidence:
         output_digest: "sha256:a2be76547fa5120719aafcbd12f5acb6c7e250fa0f3ae88a1a3693fb87ecc5a2"
 ---
 
-# PLAN-L7-218: version-up activation reapproval triggers
+# PLAN-L7-218: version-up activation 再承認トリガー
 
-## Objective
+## 目的
 
-Close the version-up activation workflow hole where a packet, dry-run, or
-approval evidence could be reviewed once and then reused after HEAD, scope,
-source ledger, or rehearsal evidence drifted. Future activation must re-check
-the exact evidence snapshot before any action-binding execution.
+`version-up` の activation workflow で、packet、dry-run、approval evidence が一度 review された後、
+`HEAD`、scope、source ledger、rehearsal evidence の drift 後にも再利用できてしまう穴を閉じる。
+今後の activation は、action-binding execution の前に、同一の evidence snapshot を必ず再確認する。
 
-## Scope
+## スコープ
 
-- Add `reapprovalTriggers[]` to `version-up-activation-packet.v1`.
-- Cover HEAD/release trigger drift, approval scope/params drift, source/external
-  limit drift, and rehearsal/rollback evidence drift.
-- Backfill version-up mode docs and HR-FR-P1-02 / HC-P1 / HAT/HU test design.
+- `version-up-activation-packet.v1` に `reapprovalTriggers[]` を追加する。
+- `HEAD` と `release trigger` の `drift`、`approval scope` と `params` の `drift`、`source` と
+  `external limit` の `drift`、`rehearsal` と `rollback evidence` の `drift` を対象にする。
+- `version-up` mode docs と HR-FR-P1-02 / HC-P1 / HAT/HU test design を更新する。
 
-## Non-Scope
+## 非スコープ
 
-- Does not activate `PLAN-L7-146`.
-- Does not remove `version_target`.
-- Does not add any apply command or external Cloudflare/GitHub/secret action.
+- `PLAN-L7-146` は activate しない。
+- `version_target` は削除しない。
+- apply command や外部 Cloudflare / GitHub / secret action は追加しない。
 
-## External Basis
+## 外部根拠
 
-The rule follows the existing source ledgers: release work must be tied to a
-specific version/release trigger, concurrency and approval scope must not drift,
-rollback/provenance evidence must be reproducible, and source ledger changes
-must route back through the workflow instead of date-only refresh.
+この rule は既存の source ledgers に従う。release work は特定の version / release trigger に結び付く必要があり、
+concurrency と approval scope は drift してはならない。rollback / provenance evidence は再現可能である必要があり、
+source ledger の変更は date-only refresh ではなく workflow へ戻して扱う。
 
-## DoD
+## 完了条件
 
-- [x] Activation packet JSON includes `reapprovalTriggers[]`.
-- [x] CLI activation packet smoke covers the trigger list.
-- [x] Version-up process docs and paired L3/L6 design/test-design are updated.
-- [x] Packet remains plan-only with no activation/apply permission.
+- [x] Activation packet JSON に `reapprovalTriggers[]` を含める。
+- [x] CLI activation packet smoke で trigger list を確認する。
+- [x] Version-up process docs と対応する L3/L6 design / test-design を更新する。
+- [x] Packet は plan-only のままとし、activation / apply permission は持たせない。

@@ -39,7 +39,7 @@ describe("proposal document coverage lint", () => {
   });
 
   it("fails closed when the routing document is missing", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-doccov-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-doccov-"));
     try {
       const result = analyzeProposalDocumentCoverage({
         repoRoot: root,
@@ -65,7 +65,7 @@ describe("proposal document coverage lint", () => {
   });
 
   it("detects routing docs that omit classified pattern markers", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-doccov-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-doccov-"));
     try {
       mkdirSync(join(root, "docs", "design", "harness", "L3-functional"), { recursive: true });
       mkdirSync(join(root, "docs", "test-design", "harness"), { recursive: true });

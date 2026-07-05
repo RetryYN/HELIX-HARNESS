@@ -42,8 +42,9 @@ const LEGACY_SOURCE_PATH_PATTERNS = [
   /C:\\Users\\micro\\ai-dev-kit-vscode/i,
 ];
 
-const LEGACY_RUNTIME_NAME = ["he", "lix"].join("");
-const LEGACY_RUNTIME_ENV_PREFIX = LEGACY_RUNTIME_NAME.toUpperCase();
+const LEGACY_RUNTIME_NAME = ["ut", "tdd"].join("-");
+const LEGACY_RUNTIME_ENV_PREFIX = ["UT", "TDD"].join("_");
+const LEGACY_PRODUCT_PROSE = ["UT", "TDD"].join("-");
 const LEGACY_COMMAND_PATTERNS = [
   new RegExp(String.raw`\b${LEGACY_RUNTIME_NAME}\s+(codex|claude|plan|gate|handover)\b`),
 ];
@@ -51,7 +52,9 @@ const LEGACY_RUNTIME_NAME_PATTERNS = [
   new RegExp(String.raw`\bpmo-${LEGACY_RUNTIME_NAME}-`, "i"),
   new RegExp(String.raw`\b${LEGACY_RUNTIME_ENV_PREFIX}_`),
 ];
-const LEGACY_PRODUCT_PROSE_PATTERNS = [/\bUT-TDD\b(?!:managed)/];
+const LEGACY_PRODUCT_PROSE_PATTERNS = [
+  new RegExp(String.raw`\b${LEGACY_PRODUCT_PROSE}\b(?!:managed)`),
+];
 
 function hasNonGitkeepFile(dir: string): boolean {
   if (!existsSync(dir)) return false;

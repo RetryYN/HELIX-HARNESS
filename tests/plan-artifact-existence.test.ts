@@ -116,7 +116,7 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
   }
 
   it("detects a completed PLAN whose generated artifact is missing (phantom)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-artifact-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "src"), { recursive: true });
@@ -145,17 +145,17 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
   });
 
   it("detects a completed PLAN whose generated artifact exists but is empty (hollow), and exempts .gitkeep", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-artifact-hollow-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-hollow-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "src"), { recursive: true });
-      mkdirSync(join(root, ".ut-tdd", "cache"), { recursive: true });
+      mkdirSync(join(root, ".helix", "cache"), { recursive: true });
       // exists but whitespace-only → hollow
       writeFileSync(join(root, "src", "hollow.ts"), "   \n\t\n", "utf8");
       // intentional empty placeholder → exempt
-      writeFileSync(join(root, ".ut-tdd", "cache", ".gitkeep"), "", "utf8");
+      writeFileSync(join(root, ".helix", "cache", ".gitkeep"), "", "utf8");
       writePlan(root, "PLAN-TEST-91-hollow.md", "completed", "src/hollow.ts");
-      writePlan(root, "PLAN-TEST-91b-keep.md", "completed", ".ut-tdd/cache/.gitkeep");
+      writePlan(root, "PLAN-TEST-91b-keep.md", "completed", ".helix/cache/.gitkeep");
 
       const result = checkPlanArtifactExistence(root);
       expect(result.ok).toBe(false);
@@ -173,7 +173,7 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
   });
 
   it("does not flag a completed PLAN that declares no generates (boundary: empty/absent)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-artifact-nogen-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-nogen-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -202,7 +202,7 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
   });
 
   it("detects phantom even when the PLAN frontmatter uses CRLF line endings (Windows-first, I-1)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-artifact-crlf-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-artifact-crlf-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       const crlf = [
@@ -228,7 +228,7 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
   });
 
   it("fails closed when repo root cannot be read", () => {
-    const result = checkPlanArtifactExistence(join(tmpdir(), "ut-tdd-plan-artifact-nope-zzz"));
+    const result = checkPlanArtifactExistence(join(tmpdir(), "helix-plan-artifact-nope-zzz"));
     expect(result.ok).toBe(false);
   });
 });

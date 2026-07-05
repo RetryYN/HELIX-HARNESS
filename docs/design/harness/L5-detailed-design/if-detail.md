@@ -101,23 +101,23 @@ external-if.md (what/形状) の **how = adapter 詳細契約**を確定する (
 - **認証・秘密管理方式の確定 (縮小スコープ)** = AI runtime は契約プラン CLI 自己認証で **harness 対象外**。確定対象は **GitHub (gh ログイン) + 観測系 inbound token のみ** → L7 前に **PO 承認 + security 監査** (⚠ 人間確認必須)
 - **D-CONTRACT DSL 実装** (mode-routing.yaml / gate-checks.yaml + loader) = 実装済み
   (`src/workflow/routing-contracts.ts#validateDContractDsl`、PLAN-L7-312)。mode-routing / gate-checks は
-  read-only に zod validate し、unknown mode、missing gate、next 循環、非 `ut-tdd` next_action を
+  read-only に zod validate し、unknown mode、missing gate、next 循環、非 `helix` next_action を
   execution 前に fail-close する。
-- **provider 引継ぎ** (FR-L1-42、context+budget 連携) = `provider-handover.v1` package (`ut-tdd handover provider export/status`) と接続
+- **provider 引継ぎ** (FR-L1-42、context+budget 連携) = `provider-handover.v1` package (`helix handover provider export/status`) と接続
 - **sprint check の VCS 参照** (TDD trace の git changed-files / review scope): `loadChangedFiles` を `verify recommend`、`review --uncommitted`、doctor `change-impact`、`regression-expansion` が共有する。git log/blame の深掘りは optional evidence enrichment とし、L7 完遂の隠れ carry にしない。
 ## Appendix B: DB/Search CLI Contracts (PLAN-L5-08) の契約
 
 | CLI surface | contract（契約） | output（出力） |
 |---|---|---|
-| `ut-tdd db status` | `.ut-tdd/harness.db` を開き、schema version、projection freshness、orphan count を報告する。 | secret を含まない metadata だけの JSON/text summary。 |
-| `ut-tdd db rebuild` | docs/state/log digest から projection DB を再構築する。 | deterministic rebuild なら exit 0。source unreadable または schema mismatch は exit 1。 |
-| `ut-tdd find <query>` | `search_index` と exact ID table を通じて PLAN/artifact/finding/skill/model/session reference を検索する。 | ranked row: `{subject_type, subject_id, path, reason, evidence_path}`。 |
-| `ut-tdd metrics skill` | skill recommendation / invocation projection を読み、firing / acceptance rate を計算する。 | layer/drive/plan 別の aggregate。transcript body は出さない。 |
-| `ut-tdd feedback list` | repeated finding と quality signal から生成された feedback event を一覧する。 | text output は open row を `gate` / `actionable` / telemetry summary に分ける。`--json` は next_action reference 付き raw open row を返す。 |
-| `ut-tdd audit quality` | hardcoded value、security risk、technical debt marker を read-only scan する。 | text/JSON summary は `gate` / `actionable` / `telemetry` に分ける。明示指定がない限り archive / migration / test fixture は除外する。 |
-| `ut-tdd branch audit` | local branch cleanup inventory を read-only で作る。 | current/protected/gone/merged/stale evidence で keep / delete-candidate / review に分類する。branch は削除しない。 |
-| `ut-tdd automation readiness` | `workflow_runs`、gate/doctor projection、open finding から workflow readiness を query する。 | blocking evidence path 付きの ready/blocked/human-required row。 |
-| `ut-tdd guardrail status` | agent-guard、review evidence、escalation、human signoff boundary の guardrail decision を query する。 | plan/session 別 decision。mode、policy、evidence path を含み、provider transcript body は出さない。 |
-| `ut-tdd asset catalog` | skill/roster/command docs catalog と drift status を query する。 | path、asset_type、trigger/capability summary、drift status、indexed_at を含む asset row。 |
+| `helix db status` | `.helix/harness.db` を開き、schema version、projection freshness、orphan count を報告する。 | secret を含まない metadata だけの JSON/text summary。 |
+| `helix db rebuild` | docs/state/log digest から projection DB を再構築する。 | deterministic rebuild なら exit 0。source unreadable または schema mismatch は exit 1。 |
+| `helix find <query>` | `search_index` と exact ID table を通じて PLAN/artifact/finding/skill/model/session reference を検索する。 | ranked row: `{subject_type, subject_id, path, reason, evidence_path}`。 |
+| `helix metrics skill` | skill recommendation / invocation projection を読み、firing / acceptance rate を計算する。 | layer/drive/plan 別の aggregate。transcript body は出さない。 |
+| `helix feedback list` | repeated finding と quality signal から生成された feedback event を一覧する。 | text output は open row を `gate` / `actionable` / telemetry summary に分ける。`--json` は next_action reference 付き raw open row を返す。 |
+| `helix audit quality` | hardcoded value、security risk、technical debt marker を read-only scan する。 | text/JSON summary は `gate` / `actionable` / `telemetry` に分ける。明示指定がない限り archive / migration / test fixture は除外する。 |
+| `helix branch audit` | local branch cleanup inventory を read-only で作る。 | current/protected/gone/merged/stale evidence で keep / delete-candidate / review に分類する。branch は削除しない。 |
+| `helix automation readiness` | `workflow_runs`、gate/doctor projection、open finding から workflow readiness を query する。 | blocking evidence path 付きの ready/blocked/human-required row。 |
+| `helix guardrail status` | agent-guard、review evidence、escalation、human signoff boundary の guardrail decision を query する。 | plan/session 別 decision。mode、policy、evidence path を含み、provider transcript body は出さない。 |
+| `helix asset catalog` | skill/roster/command docs catalog と drift status を query する。 | path、asset_type、trigger/capability summary、drift status、indexed_at を含む asset row。 |
 
 Security contract: これらの command は provider transcript body、secrets、credentials、PII を出力してはならない。redacted summary、evidence path、hash、ID、count は出力してよい。

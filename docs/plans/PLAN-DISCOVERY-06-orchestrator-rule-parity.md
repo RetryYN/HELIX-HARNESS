@@ -30,22 +30,22 @@ dependencies:
 s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO/PM S4 close (2026-06-24)
-- decision_basis: Codex hook feasibility was confirmed and false parity caveats were corrected before adoption.
+- decision_basis: Codex hook feasibility を確認し、false parity caveats を adoption 前に是正した。
 - verified_evidence: PLAN-DISCOVERY-06 §5/§5.1, PLAN-L7-139-codex-hook-adapter, and PLAN-REVERSE-139-codex-hook-adapter; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
-- stakeholder_review_or_proxy: cross-runtime Codex/gpt-5.5 review recorded in §5.1.
-- acceptance_gap: Codex hosted/API tool surfaces remain outside direct repo hook enforcement and are documented as a scope boundary.
-- unresolved_risk: Hosted/API tool surfaces remain outside direct repo hook enforcement and require explicit preflight; Codex spawn_agent guard parity is no longer deferred after PLAN-L7-139 continuation.
-- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
-- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
-- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
-- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
-- route_impact: confirmed routes hook parity findings to L7 implementation and Reverse architecture backfill.
-- forward_route: PLAN-L7-139-codex-hook-adapter and PLAN-REVERSE-139-codex-hook-adapter.
-- reverse_fullback_required: yes; discharged by PLAN-REVERSE-139-codex-hook-adapter.
-- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; reuse compatible hooks while hardening freeform apply_patch and scope caveats.
+- stakeholder_review_or_proxy: cross-runtime Codex/gpt-5.5 review を §5.1 に記録した。
+- acceptance_gap: Codex hosted/API tool surfaces は direct repo hook enforcement の外側に残り、scope boundary として文書化済みである。
+- unresolved_risk: Hosted/API tool surfaces は direct repo hook enforcement の外側に残るため explicit preflight が必要である。Codex spawn_agent guard parity は PLAN-L7-139 continuation 後は deferred ではない。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh。current audit 中に discovery/scrum mode docs で S4 decision source ledger を 2026-07-03 に確認した。
+- source_status_delta: changed。ISO/IEC/IEEE 29148 は現在 2026-02-16 stage 90.92 to be revised を示すが、historical confirmed S4 decision は reopen しない。
+- adoption_decision_delta: none。ISO/IEC/IEEE 29148 revision を publication まで追跡しつつ、historical S4 adoption decision は current route policy と整合している。
+- workflow_route_impact: none。historical decision は既に S4 と Reverse/Forward evidence を通っている。
+- route_impact: confirmed route は hook parity findings を L7 implementation と Reverse architecture backfill へ送る。
+- forward_route: PLAN-L7-139-codex-hook-adapter と PLAN-REVERSE-139-codex-hook-adapter。
+- reverse_fullback_required: yes。PLAN-REVERSE-139-codex-hook-adapter で discharged 済み。
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening。compatible hooks を reuse し、freeform apply_patch と scope caveats を hardening する。
 
-# PLAN-DISCOVERY-06 (kind=poc): orchestrator-rule parity
+# PLAN-DISCOVERY-06 (kind=poc): orchestrator-rule parity（ルール parity）
 
 ## 0. Objective (PO 指示 2026-06-23「しばっておきたい」「オーケストレーターに同じルールを持たせるべき」)
 
@@ -63,7 +63,7 @@ hybrid 規律) は **「どの orchestrator が回しても効く」= orchestrat
 | 強制機構 | `.claude/settings.json` hooks + `.claude/hooks/*.ts` (blocking PreToolUse) | `~/.codex/rules/*.rules` (`prefix_rule` = コマンド承認 allow/deny) / `config.toml` (`[projects.*] trust` / sandbox / approval) / `codex plugin` (marketplace) / repo `AGENTS.md` (prose) |
 | work-guard (foreign 未コミット編集 block) | あり | **なし** |
 | agent-guard (subagent allowlist/model) | あり | **なし** |
-| session-log lifecycle | auto (hooks) | `ut-tdd codex` wrapper 経由のみ |
+| session-log lifecycle | auto (hooks) | `helix codex` wrapper 経由のみ |
 | スコープ | repo-local | 主に global `~/.codex/` |
 
 `rule-drift` (現行) は AGENTS/CLAUDE adapter の **marker 文字列**しか見ず、挙動 parity を検証しない。
@@ -81,12 +81,12 @@ hybrid 規律) は **「どの orchestrator が回しても効く」= orchestrat
 ## 3. 設計仮説 (spike が支持すれば本実装 PLAN へ)
 
 1. **orchestrator-rule SSoT**: harness 側に guard 定義を 1 箇所で持つ。
-2. **materializer**: SSoT から各 orchestrator のネイティブ設定を生成 (`ut-tdd setup` が emit)。
+2. **materializer**: SSoT から各 orchestrator のネイティブ設定を生成 (`helix setup` が emit)。
    Claude=`.claude/settings.json`+hooks (既存)、Codex=plugin/rules/config。
 3. **rule-drift 拡張**: marker 文字列だけでなく **両 orchestrator が同一 guard を実際に強制しているか**を
    doctor で fail-close 検証する。
 
-## 4. AC / exit (S4 decision)
+## 4. 受入条件 / exit（S4 decision）
 
 - (A) Codex plugin hook API の可否が事実として確定 (Codex cross-review evidence)。
 - (B) global vs repo スコープの PO 方針が確定。
@@ -96,7 +96,7 @@ hybrid 規律) は **「どの orchestrator が回しても効く」= orchestrat
 ### AC 充足状況 (S4 close、2026-06-24)
 
 - **(A) 確定済み**。`codex.exe` (0.128.0) binary 裏取り + `PLAN-L7-139-codex-hook-adapter`
-  (confirmed) の cross-runtime review (`ut-tdd codex --role qa`、reviewer=Codex/gpt-5.5) で
+  (confirmed) の cross-runtime review (`helix codex --role qa`、reviewer=Codex/gpt-5.5) で
   blocking hook 機構の実在を確認。実装着地済み (`hooks.json` + `src/lint/codex-hook-adapter.ts` +
   `src/runtime/work-guard.ts` の `extractEditTargets`、`tests/codex-hook-adapter.test.ts` green)。
 - **(B) 確定済み = repo-local 採用 (PO 方針追認)**。`L7-139` は repo-local `.codex/hooks.json`
@@ -149,17 +149,17 @@ hybrid 規律) は **「どの orchestrator が回しても効く」= orchestrat
 - 残検証 (build 時): work-guard が読む payload フィールド名の差は `L7-139` で確定済み
   (apply_patch は `file_path` 不在 → `extractEditTargets` で patch 本文パース、上記 errata #1)。
 
-**S4 recommendation = ADOPT (reuse-with-hardening)**。orchestrator-rule SSoT + materializer
+**S4 推奨判断 = ADOPT（reuse-with-hardening）**。orchestrator-rule SSoT + materializer
 (`.claude/settings.json` ⊕ repo `.codex/hooks.json` を 1 ソースから emit) + rule-drift の挙動 parity 拡張へ進む。
 本実装は L6 設計 → L7 impl の別 PLAN を切る。
 
-## 5.1 S4 decision log (close、2026-06-24)
+## 5.1 S4 decision log（判断記録、2026-06-24）
 
 - **decision_outcome = confirmed (ADOPT = reuse-with-hardening)**。hook 機構を再利用しつつ
   偽パリティ 4 点を hardening (§5 errata)。実装は `PLAN-L7-139-codex-hook-adapter`
   (confirmed、PR #1) で forward 着地済み。
 - **cross-runtime review (判断ゲート、[[feedback_cross_review_before_po_escalation]])**: reviewer =
-  Codex/gpt-5.5 (`ut-tdd codex --role qa`、別 runtime)、verdict = **approve-with-changes**。
+  Codex/gpt-5.5 (`helix codex --role qa`、別 runtime)、verdict = **approve-with-changes**。
   - (a) §5 errata 補正 = 要修正 → 4 caveat + scope boundary を反映済 (§5)。
   - (b) supersedes 機構 = draft ゆえ厳格対象外、参照リンクで足りる (TRUE)。
   - (c) status close = `completed` + `workflow_phase: S4` + `decision_outcome: confirmed` が正。
@@ -167,7 +167,7 @@ hybrid 規律) は **「どの orchestrator が回しても効く」= orchestrat
   confirmed poc (promotion≠redesign) は scrum-reverse ゲートで Reverse 合流 PLAN を fail-close 要求。
   `PLAN-REVERSE-139-codex-hook-adapter` (R4 / design / confirmed) を起票し、採用知見を
   L4 architecture §6 横断方針へ back-fill して充足した ([[feedback_impl_must_backfill_to_design]])。
-- desk-review task = `.ut-tdd/review/PLAN-DISCOVERY-06-codex-review-task.md` (scratch、非追跡)。
+- desk-review task = `.helix/review/PLAN-DISCOVERY-06-codex-review-task.md` (scratch、非追跡)。
 
 ## 6. 壊さない / 再発させない
 

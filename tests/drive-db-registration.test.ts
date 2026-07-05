@@ -114,7 +114,7 @@ describe("drive DB registration lint", () => {
     const db = openHarnessDb(":memory:");
     try {
       migrate(db);
-      // session telemetry row from `ut-tdd telemetry scan` — inherently plan-less, must not count.
+      // session telemetry row from `helix telemetry scan` — inherently plan-less, must not count.
       upsertRow(db, {
         table: "model_runs",
         primaryKey: "run_id",

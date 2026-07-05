@@ -29,7 +29,7 @@ export function listMemory(layer: MemoryLayer, deps: MemoryDeps): MemoryEntry[] 
 /**
  * SessionStart で毎回 context へ注入されるため、surface は無制限に膨張させない。
  * 直近 maxEntries 件のみ（時系列順）、各 body は maxBodyChars で切り詰める。
- * 隠れた古い entry は件数フッタで `ut-tdd memory list harness` へ誘導する。
+ * 隠れた古い entry は件数フッタで `helix memory list harness` へ誘導する。
  */
 export interface SurfaceBudget {
   maxEntries?: number;
@@ -51,7 +51,7 @@ export function surfaceMemory(deps: MemoryDeps, budget: SurfaceBudget = {}): str
 
   const hidden = all.length - shown.length;
   if (hidden > 0) {
-    lines.push(`- (+${hidden} older — ut-tdd memory list harness)`);
+    lines.push(`- (+${hidden} older — helix memory list harness)`);
   }
   return lines;
 }

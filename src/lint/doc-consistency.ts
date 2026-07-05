@@ -23,9 +23,9 @@ const NFR_ROW_REGEX = /\|\s*\*\*NFR-(\d{2})\*\*\s*\|/g;
 const PACK_DISTRIBUTION_REMOTE_URL =
   "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
 const SETUP_VERSION_UP_TARGET = "v0.1.4";
-const SETUP_VERSION_UP_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target ${SETUP_VERSION_UP_TARGET} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+const SETUP_VERSION_UP_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${SETUP_VERSION_UP_TARGET} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
 const STALE_SETUP_VERSION_UP_TARGET_REGEX =
-  /ut-tdd version-up dry-run --current v0\.1\.0 --target (v\d+\.\d+\.\d+)(?:\s|`)/g;
+  /helix version-up dry-run --current v0\.1\.0 --target (v\d+\.\d+\.\d+)(?:\s|`)/g;
 
 export interface DocConsistencySource {
   l1Functional: string;
@@ -152,7 +152,7 @@ export function checkHelixSetupReviewBundleConsistency(docs: {
     {
       id: "l3-hac-p6-03a-review-bundle-command",
       text: docs.l3HelixPillar,
-      pattern: /ut-tdd completion review-bundle --json/,
+      pattern: /helix completion review-bundle --json/,
     },
     {
       id: "l3-hac-p6-03a-semantic-digest",
@@ -163,7 +163,7 @@ export function checkHelixSetupReviewBundleConsistency(docs: {
       id: "l6-setup-verification-commands-review-bundle",
       text: docs.l6SetupSoloTeam,
       pattern:
-        /postSetupWorkflow\.verificationCommands[\s\S]*ut-tdd completion review-bundle --json/,
+        /postSetupWorkflow\.verificationCommands[\s\S]*helix completion review-bundle --json/,
     },
     {
       id: "l6-setup-verification-matrix-review-bundle",
@@ -196,7 +196,7 @@ export function checkHelixSetupReviewBundleConsistency(docs: {
       id: "l6-setup-no-stale-review-bundle-gap",
       text: docs.l6SetupSoloTeam,
       pattern:
-        /completion decision-packet --json` (?:と|\/) `ut-tdd version-up|completion packet preflight(?:、| と )version-up/,
+        /completion decision-packet --json` (?:と|\/) `helix version-up|completion packet preflight(?:、| と )version-up/,
     },
   ];
   const missing = required.filter((row) => !row.pattern.test(row.text)).map((row) => row.id);
@@ -232,7 +232,7 @@ export function checkHelixSetupVersionUpTargetConsistency(docs: {
       id: "setup-index-version-up-target-derived-from-pack-latest",
       text: docs.setupIndex,
       pattern:
-        /CONSUMER_VERSION_UP_DRY_RUN_COMMAND\s*=\s*`ut-tdd version-up dry-run --current v0\.1\.0 --target \$\{PACK_DISTRIBUTION_REFERENCE\.latestTag\} --release-remote \$\{PACK_DISTRIBUTION_REMOTE_URL\} --json`/,
+        /CONSUMER_VERSION_UP_DRY_RUN_COMMAND\s*=\s*`helix version-up dry-run --current v0\.1\.0 --target \$\{PACK_DISTRIBUTION_REFERENCE\.latestTag\} --release-remote \$\{PACK_DISTRIBUTION_REMOTE_URL\} --json`/,
     },
     {
       id: "setup-index-pack-latest-tag",

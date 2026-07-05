@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-122-vmodel-injection-show
-title: "PLAN-REVERSE-122: vmodel injection show fullback"
+title: "PLAN-REVERSE-122: vmodel injection show の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,17 +16,17 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The vmodel injection acceptance item is now implemented and checked."
+    reason: "vmodel injection acceptance item は実装済みで検査済み。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "The previous orchestration_mode cell-matrix stub note now points to the implemented CLI surface."
+    reason: "以前の orchestration_mode cell-matrix stub note は実装済み CLI surface を指す。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The implementation uses the existing schema enums and CLI module boundary."
+    reason: "実装は既存の schema enums と CLI module boundary を使う。"
 agent_slots:
   - role: tl
-    slot_label: "TL - vmodel injection fullback"
+    slot_label: "TL - vmodel injection fullback 確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-122-vmodel-injection-show.md
     artifact_type: markdown_doc
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T14:20:00+09:00"
     tests_green_at: "2026-06-23T14:20:00+09:00"
     verdict: approve
-    scope: "R4 fullback from vmodel injection implementation to requirements and L4 design."
+    scope: "vmodel injection 実装から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,21 +66,19 @@ review_evidence:
         output_digest: "sha256:09dfbf69280399fc50b720af5b68e4ee8b22e3d28d484997df818edcfceb9a10"
 ---
 
-# PLAN-REVERSE-122: vmodel injection show fullback
+# PLAN-REVERSE-122: vmodel injection show の fullback
 
-## Objective
+## 目的
 
-Back-fill the implemented V-model injection CLI surface to requirements and L4
-function design.
+実装済みの V-model injection CLI surface を requirements と L4 function design へ back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements §7.8.4 acceptance now records the implemented surface.
-- L4 function design no longer treats the cell matrix as a pure stub.
-- Execution-mode degradation recording remains a separate §7.8.7 acceptance
-  item.
+- Requirements §7.8.4 acceptance は実装済み surface を記録する。
+- L4 function design は cell matrix を pure stub として扱わない。
+- Execution-mode degradation recording は別の §7.8.7 acceptance item として維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both point to `ut-tdd vmodel show ... --injection`.
-- The Reverse record states the remaining degraded-mode scope explicitly.
+- Requirements と L4 design の両方が `helix vmodel show ... --injection` を指す。
+- Reverse record は残りの degraded-mode scope を明示する。

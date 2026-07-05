@@ -166,7 +166,7 @@ review_evidence:
 completion decision-packet は `generatedFrom` や freshness は持っていたが、top-level schema version が無く、
 packet 形式の破壊的 drift を機械的に検出しにくかった。
 
-また `ut-tdd setup project --dry-run --json` が first-run verification に出す version-up dry-run command は、
+また `helix setup project --dry-run --json` が first-run verification に出す version-up dry-run command は、
 Pack distribution remote を渡さないため、consumer 初回検証で Pack tag 存在を remote source に結び付ける証跡が弱かった。
 
 ## 変更
@@ -181,7 +181,7 @@ Pack distribution remote を渡さないため、consumer 初回検証で Pack t
 
 - Pack latest tag `v0.1.3` の採用、version-up activation、remote write、cutover apply は実行しない。
 - consumer setup ready は引き続き `completionClaimAllowed=false` であり、L14 完了 claim にはしない。
-- `.ut-tdd` から `.helix` への rename/cutover は PLAN-M-02 承認前の blocked packet のまま扱う。
+- `.helix` から `.helix` への rename/cutover は PLAN-M-02 承認前の blocked packet のまま扱う。
 
 ## 完了条件
 

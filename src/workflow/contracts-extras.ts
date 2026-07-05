@@ -154,7 +154,7 @@ export function resolveDriveStatePartition(input: {
 }): { partition_path: string; skip_sub_doc: string[] } {
   const id = input.plan_id ?? input.session_id ?? "unscoped";
   return {
-    partition_path: `.ut-tdd/drive/${input.drive}/${input.mode}/${id}`,
+    partition_path: `.helix/drive/${input.drive}/${input.mode}/${id}`,
     skip_sub_doc: input.kind === "poc" ? ["L8", "L9"] : [],
   };
 }
@@ -169,7 +169,7 @@ export function validateDriveStatePartitions(input: {
     if (
       !partition.partition_path
         .replaceAll("\\", "/")
-        .startsWith(`.ut-tdd/drive/${partition.drive}/`)
+        .startsWith(`.helix/drive/${partition.drive}/`)
     ) {
       return {
         ...result([

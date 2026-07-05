@@ -64,27 +64,26 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-134: TDD drive fit classification
+# PLAN-L7-134: TDD drive fit 分類
 
-## Objective
+## 目的
 
-Extend the Refactor brush-up work into a cross-drive TDD-style classification:
-which drive models fit Red/Yellow/Green loops, which are partial/weak, and what
-DB projection rows can fire the Red state.
+Refactor brush-up の作業を cross-drive の TDD-style 分類へ拡張する。
+どの drive model が Red/Yellow/Green loop に適合するか、どれが partial/weak か、
+どの DB projection row が Red state を発火できるかを整理する。
 
-## Scope
+## スコープ
 
-- Add `classifyDriveTddFits` as the machine-readable contract.
-- Record strong/partial/weak TDD fit for drive models and design specialties.
-- Add DB firing sources: findings, quality signals, feedback events, relation
-  graph nodes/edges, impact results, and artifact progress.
-- Back-propagate the rule to requirements, L3, L4, L6, and process mode docs.
+- machine-readable contract として `classifyDriveTddFits` を追加する。
+- drive model と design specialty について、strong/partial/weak の TDD fit を記録する。
+- DB firing source として findings、quality signals、feedback events、relation graph nodes/edges、
+  impact results、artifact progress を追加する。
+- requirements、L3、L4、L6、process mode docs へ rule を back-propagate する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Strong targets include design, add-feature, refactor, reverse, retrofit,
-  recovery, incident, screen-design, and frontend-design.
-- Discovery/Scrum are partial, Research is weak.
-- DB firing sources create PLAN input/workflow signals only and do not rewrite
-  authored docs/source directly.
-- Targeted workflow contract test passes.
+- strong target に design、add-feature、refactor、reverse、retrofit、recovery、incident、
+  screen-design、frontend-design を含める。
+- Discovery/Scrum は partial、Research は weak とする。
+- DB firing source は PLAN input/workflow signal だけを作り、authored docs/source を直接 rewrite しない。
+- targeted workflow contract test が pass する。

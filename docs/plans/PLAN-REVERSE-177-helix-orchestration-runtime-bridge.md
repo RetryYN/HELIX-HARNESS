@@ -34,7 +34,7 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/design/helix/L3-requirements/orchestration-runtime-bridge.md
-    reason: "Add-feature route B fullback: runtime bridge (nodeTickDeps 実 adapter 配線 + ut-tdd loop entrypoint) の L3 要件を back-fill。受入 U-ORCH-BRIDGE-01/02 に 1:1。"
+    reason: "Add-feature route B fullback: runtime bridge (nodeTickDeps 実 adapter 配線 + helix loop entrypoint) の L3 要件を back-fill。受入 U-ORCH-BRIDGE-01/02 に 1:1。"
   - layer: L4-basic-design
     decision: not_impacted
     reason: "L6 機能設計 (PLAN-L6-50) の tick 契約を変えない。bridge は既存 adapter 実行面を tick に接続する配線。"
@@ -60,7 +60,7 @@ dependencies:
 # PLAN-REVERSE-177: P2 runtime bridge の L3 要件 back-fill
 
 Add-feature route B の Reverse 対。PLAN-L7-177（runtime bridge: tick を実 Codex/Claude adapter へ配線 +
-`ut-tdd loop` entrypoint）の実体から L3 要件を後追いで back-fill する（forward_routing=L3）。純粋契約コア
+`helix loop` entrypoint）の実体から L3 要件を後追いで back-fill する（forward_routing=L3）。純粋契約コア
 （PLAN-L7-175/176）の上に「実起動可能」を足した差分を L3 要件として明文化する。
 
 ## §工程表（R0→R4）

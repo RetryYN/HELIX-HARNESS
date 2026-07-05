@@ -45,6 +45,6 @@ L3 3 sub-doc + L12 受入テスト 1 doc の pair freeze を **G3** で確定す
 
 - **G3-content**: 各 sub-doc の必須 § 完備
 - **G3-pair**: L3 sub-doc ⇔ L12 受入テスト pair 整合
-- **G3-trace**: FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト / NFR → 閾値 → 受入テスト の 4 方向 trace 整合 (機械検証、`ut-tdd plan lint --gate G3-trace`)
+- **G3-trace**: FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト / NFR → 閾値 → 受入テスト の 4 方向 trace 整合 (機械検証、`helix plan lint --gate G3-trace`)
 
-詳細は L3 sub-doc 本起票 + PLAN-L3-01〜03 Step 6 で確定する。`ut-tdd plan lint --gate G3-trace` は L7 実装済みで、G3-trace は `ut-tdd doctor` の hard gate としても集約される。G3 freeze 前は機械検証結果と L12 acceptance test design の宣言 trace を合わせてレビューする。
+詳細は L3 sub-doc 本起票 + PLAN-L3-01〜03 Step 6 で確定する。`helix plan lint --gate G3-trace` は L7 実装済みで、G3-trace は `helix doctor` の hard gate としても集約される。G3 freeze 前は機械検証結果と L12 acceptance test design の宣言 trace を合わせてレビューする。

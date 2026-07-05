@@ -536,7 +536,7 @@ describe("completionDecisionPacketForOutstanding", () => {
       generatedAt: "2026-06-30T00:00:00.000Z",
       now: "2026-06-30T00:30:00.000Z",
       validForMinutes: 60,
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
     });
 
     expect(packet).toMatchObject({
@@ -544,7 +544,7 @@ describe("completionDecisionPacketForOutstanding", () => {
       status: "blocked",
       generatedFrom: "outstanding.completionReadiness",
       generatedAt: "2026-06-30T00:00:00.000Z",
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
       freshness: {
         validForMinutes: 60,
         expiresAt: "2026-06-30T01:00:00.000Z",
@@ -596,24 +596,24 @@ describe("completionDecisionPacketForOutstanding", () => {
     ).toEqual([
       [
         "PLAN-DISCOVERY-10",
-        "ut-tdd s4 decision-packet --json",
-        ["ut-tdd s4 decision-packet --json", "ut-tdd action-binding approval-packet --json"],
+        "helix s4 decision-packet --json",
+        ["helix s4 decision-packet --json", "helix action-binding approval-packet --json"],
       ],
       [
         "PLAN-L7-146",
-        "ut-tdd version-up activation-packet --json",
+        "helix version-up activation-packet --json",
         [
-          "ut-tdd version-up activation-packet --json",
-          "ut-tdd action-binding approval-packet --json",
+          "helix version-up activation-packet --json",
+          "helix action-binding approval-packet --json",
         ],
       ],
       [
         "PLAN-M-02",
-        "ut-tdd rename plan --json",
+        "helix rename plan --json",
         [
-          "ut-tdd rename plan --json",
-          "ut-tdd rename approval-draft --json",
-          "ut-tdd action-binding approval-packet --json",
+          "helix rename plan --json",
+          "helix rename approval-draft --json",
+          "helix action-binding approval-packet --json",
         ],
       ],
     ]);
@@ -1000,7 +1000,7 @@ describe("completionDecisionPacketForOutstanding", () => {
     expect(bundle).toMatchObject({
       schemaVersion: "completion-review-bundle.v1",
       generatedAt: "2026-06-30T00:00:00.000Z",
-      sourceCommand: "ut-tdd completion review-bundle --json",
+      sourceCommand: "helix completion review-bundle --json",
       freshness: {
         validForMinutes: 60,
         expiresAt: "2026-06-30T01:00:00.000Z",
@@ -1016,9 +1016,9 @@ describe("completionDecisionPacketForOutstanding", () => {
       status: "blocked",
       decisionCount: 3,
       reviewPacketCount: 7,
-      runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
-      completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
-      runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
+      runnableSourceCommand: "bun run helix completion review-bundle --json",
+      completionDecisionPacketCommand: "helix completion decision-packet --json",
+      runnableCompletionDecisionPacketCommand: "bun run helix completion decision-packet --json",
     });
     expect(bundle.completionDecisionPacketDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
     expect(bundle.humanReviewBundleDigest).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -1051,50 +1051,50 @@ describe("completionDecisionPacketForOutstanding", () => {
     ).toEqual([
       [
         "PLAN-DISCOVERY-10",
-        "ut-tdd s4 decision-packet --json",
-        "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+        "helix s4 decision-packet --json",
+        "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10",
         "see-packet-matrix",
         "decisionVerificationCommandMatrix",
       ],
       [
         "PLAN-DISCOVERY-10",
-        "ut-tdd action-binding approval-packet --json",
-        "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
+        "helix action-binding approval-packet --json",
+        "helix action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
         "see-packet-matrix",
         "approvalVerificationCommandMatrix",
       ],
       [
         "PLAN-L7-146",
-        "ut-tdd version-up activation-packet --json",
-        "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+        "helix version-up activation-packet --json",
+        "helix version-up activation-packet --json --plan PLAN-L7-146",
         "see-packet-matrix",
         "activationVerificationCommandMatrix",
       ],
       [
         "PLAN-L7-146",
-        "ut-tdd action-binding approval-packet --json",
-        "ut-tdd action-binding approval-packet --json --plan PLAN-L7-146",
+        "helix action-binding approval-packet --json",
+        "helix action-binding approval-packet --json --plan PLAN-L7-146",
         "see-packet-matrix",
         "approvalVerificationCommandMatrix",
       ],
       [
         "PLAN-M-02",
-        "ut-tdd rename plan --json",
-        "ut-tdd rename plan --json",
+        "helix rename plan --json",
+        "helix rename plan --json",
         "see-packet-matrix",
         "verificationCommandMatrix",
       ],
       [
         "PLAN-M-02",
-        "ut-tdd rename approval-draft --json",
-        "ut-tdd rename approval-draft --json",
+        "helix rename approval-draft --json",
+        "helix rename approval-draft --json",
         "no-write",
         "none",
       ],
       [
         "PLAN-M-02",
-        "ut-tdd action-binding approval-packet --json",
-        "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
+        "helix action-binding approval-packet --json",
+        "helix action-binding approval-packet --json --plan PLAN-M-02",
         "see-packet-matrix",
         "approvalVerificationCommandMatrix",
       ],
@@ -1169,7 +1169,7 @@ describe("completionDecisionPacketForOutstanding", () => {
       status: "ready",
       generatedFrom: "outstanding.completionReadiness",
       generatedAt: expect.any(String),
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
       freshness: {
         validForMinutes: 1440,
         expiresAt: expect.any(String),
@@ -1198,7 +1198,7 @@ describe("completionDecisionPacketForOutstanding", () => {
       humanReviewBundle: {
         schemaVersion: "completion-decision-human-review-bundle.v1",
         status: "ready",
-        sourceCommand: "ut-tdd completion decision-packet --json",
+        sourceCommand: "helix completion decision-packet --json",
         generatedAt: expect.any(String),
         decisionCount: 0,
         nextAuthority: "none",
@@ -1367,13 +1367,13 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
         requiredAction: "record the PO/S4 decision before promotion, rejection, or Forward merge",
         nextWorkflowRoute:
           "S4 decide -> Reverse/Forward merge only after decision_outcome is recorded",
-        decisionPacketCommand: "ut-tdd s4 decision-packet --json",
-        packetCommands: ["ut-tdd s4 decision-packet --json"],
-        scopedDecisionPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07",
-        scopedPacketCommands: ["ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07"],
+        decisionPacketCommand: "helix s4 decision-packet --json",
+        packetCommands: ["helix s4 decision-packet --json"],
+        scopedDecisionPacketCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07",
+        scopedPacketCommands: ["helix s4 decision-packet --json --plan PLAN-DISCOVERY-07"],
         supportingPacketSummaries: [
           {
-            command: "ut-tdd s4 decision-packet --json",
+            command: "helix s4 decision-packet --json",
             schemaVersion: "s4-decision-packet.v1",
             matrixField: "decisionVerificationCommandMatrix",
             expectedMatrixCount: 8,
@@ -1434,14 +1434,14 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion",
         nextWorkflowRoute:
           "version-up activation -> add-feature/rejection path, with approval boundary preserved",
-        decisionPacketCommand: "ut-tdd version-up activation-packet --json",
-        packetCommands: ["ut-tdd version-up activation-packet --json"],
+        decisionPacketCommand: "helix version-up activation-packet --json",
+        packetCommands: ["helix version-up activation-packet --json"],
         scopedDecisionPacketCommand:
-          "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
-        scopedPacketCommands: ["ut-tdd version-up activation-packet --json --plan PLAN-L7-146"],
+          "helix version-up activation-packet --json --plan PLAN-L7-146",
+        scopedPacketCommands: ["helix version-up activation-packet --json --plan PLAN-L7-146"],
         supportingPacketSummaries: [
           {
-            command: "ut-tdd version-up activation-packet --json",
+            command: "helix version-up activation-packet --json",
             schemaVersion: "version-up-activation-packet.v1",
             matrixField: "activationVerificationCommandMatrix",
             expectedMatrixCount: 9,
@@ -1515,21 +1515,21 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
           "obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
         nextWorkflowRoute:
           "L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
-        decisionPacketCommand: "ut-tdd rename plan --json",
+        decisionPacketCommand: "helix rename plan --json",
         packetCommands: [
-          "ut-tdd rename plan --json",
-          "ut-tdd rename approval-draft --json",
-          "ut-tdd action-binding approval-packet --json",
+          "helix rename plan --json",
+          "helix rename approval-draft --json",
+          "helix action-binding approval-packet --json",
         ],
-        scopedDecisionPacketCommand: "ut-tdd rename plan --json",
+        scopedDecisionPacketCommand: "helix rename plan --json",
         scopedPacketCommands: [
-          "ut-tdd rename plan --json",
-          "ut-tdd rename approval-draft --json",
-          "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
+          "helix rename plan --json",
+          "helix rename approval-draft --json",
+          "helix action-binding approval-packet --json --plan PLAN-M-02",
         ],
         supportingPacketSummaries: [
           {
-            command: "ut-tdd rename plan --json",
+            command: "helix rename plan --json",
             schemaVersion: "identifier-rename-cutover-plan.v1",
             matrixField: "verificationCommandMatrix",
             expectedMatrixCount: 10,
@@ -1593,7 +1593,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             ]),
           },
           {
-            command: "ut-tdd rename approval-draft --json",
+            command: "helix rename approval-draft --json",
             schemaVersion: "identifier-rename-approval-draft.v1",
             matrixField: "none",
             expectedMatrixCount: 0,
@@ -1617,7 +1617,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             requiredMatrixFields: [],
           },
           {
-            command: "ut-tdd action-binding approval-packet --json",
+            command: "helix action-binding approval-packet --json",
             schemaVersion: "action-binding-approval-packet.v1",
             matrixField: "approvalVerificationCommandMatrix",
             expectedMatrixCount: 11,
@@ -1686,23 +1686,23 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
     expect(workflowNextActionsForOutstanding(outstanding)).toMatchObject([
       {
         planId: "PLAN-DISCOVERY-10",
-        decisionPacketCommand: "ut-tdd s4 decision-packet --json",
+        decisionPacketCommand: "helix s4 decision-packet --json",
         packetCommands: [
-          "ut-tdd s4 decision-packet --json",
-          "ut-tdd action-binding approval-packet --json",
+          "helix s4 decision-packet --json",
+          "helix action-binding approval-packet --json",
         ],
-        scopedDecisionPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+        scopedDecisionPacketCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10",
         scopedPacketCommands: [
-          "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10",
-          "ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
+          "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10",
+          "helix action-binding approval-packet --json --plan PLAN-DISCOVERY-10",
         ],
         supportingPacketSummaries: [
           expect.objectContaining({
-            command: "ut-tdd s4 decision-packet --json",
+            command: "helix s4 decision-packet --json",
             matrixField: "decisionVerificationCommandMatrix",
           }),
           expect.objectContaining({
-            command: "ut-tdd action-binding approval-packet --json",
+            command: "helix action-binding approval-packet --json",
             matrixField: "approvalVerificationCommandMatrix",
             requiredReviewFields: expect.arrayContaining([
               "planOnly",
@@ -1741,20 +1741,20 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
       },
       {
         planId: "PLAN-L7-146",
-        decisionPacketCommand: "ut-tdd version-up activation-packet --json",
+        decisionPacketCommand: "helix version-up activation-packet --json",
         packetCommands: [
-          "ut-tdd version-up activation-packet --json",
-          "ut-tdd action-binding approval-packet --json",
+          "helix version-up activation-packet --json",
+          "helix action-binding approval-packet --json",
         ],
         scopedDecisionPacketCommand:
-          "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
+          "helix version-up activation-packet --json --plan PLAN-L7-146",
         scopedPacketCommands: [
-          "ut-tdd version-up activation-packet --json --plan PLAN-L7-146",
-          "ut-tdd action-binding approval-packet --json --plan PLAN-L7-146",
+          "helix version-up activation-packet --json --plan PLAN-L7-146",
+          "helix action-binding approval-packet --json --plan PLAN-L7-146",
         ],
         supportingPacketSummaries: [
           expect.objectContaining({
-            command: "ut-tdd version-up activation-packet --json",
+            command: "helix version-up activation-packet --json",
             matrixField: "activationVerificationCommandMatrix",
             requiredReviewFields: expect.arrayContaining([
               "activationDecision.activation_snapshot_id",
@@ -1773,7 +1773,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             ]),
           }),
           expect.objectContaining({
-            command: "ut-tdd action-binding approval-packet --json",
+            command: "helix action-binding approval-packet --json",
             matrixField: "approvalVerificationCommandMatrix",
             requiredReviewFields: expect.arrayContaining([
               "planOnly",
@@ -1809,21 +1809,21 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
       },
       {
         planId: "PLAN-M-02",
-        decisionPacketCommand: "ut-tdd rename plan --json",
+        decisionPacketCommand: "helix rename plan --json",
         packetCommands: [
-          "ut-tdd rename plan --json",
-          "ut-tdd rename approval-draft --json",
-          "ut-tdd action-binding approval-packet --json",
+          "helix rename plan --json",
+          "helix rename approval-draft --json",
+          "helix action-binding approval-packet --json",
         ],
-        scopedDecisionPacketCommand: "ut-tdd rename plan --json",
+        scopedDecisionPacketCommand: "helix rename plan --json",
         scopedPacketCommands: [
-          "ut-tdd rename plan --json",
-          "ut-tdd rename approval-draft --json",
-          "ut-tdd action-binding approval-packet --json --plan PLAN-M-02",
+          "helix rename plan --json",
+          "helix rename approval-draft --json",
+          "helix action-binding approval-packet --json --plan PLAN-M-02",
         ],
         supportingPacketSummaries: [
           expect.objectContaining({
-            command: "ut-tdd rename plan --json",
+            command: "helix rename plan --json",
             matrixField: "verificationCommandMatrix",
             requiredReviewFields: expect.arrayContaining([
               "cutoverSnapshot.blastRadiusDigest",
@@ -1843,7 +1843,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             ]),
           }),
           expect.objectContaining({
-            command: "ut-tdd rename approval-draft --json",
+            command: "helix rename approval-draft --json",
             matrixField: "none",
             expectedMatrixCount: 0,
             requiredReviewFields: expect.arrayContaining([
@@ -1854,7 +1854,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             ]),
           }),
           expect.objectContaining({
-            command: "ut-tdd action-binding approval-packet --json",
+            command: "helix action-binding approval-packet --json",
             matrixField: "approvalVerificationCommandMatrix",
             requiredReviewFields: expect.arrayContaining([
               "planOnly",
@@ -1916,7 +1916,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
   }
 
   it("docs/plans の frontmatter から layer/status を読み非終端を集計する", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writePlan(root, "PLAN-A.md", "L7", "draft");
@@ -1937,7 +1937,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
   });
 
   it("frontmatter/body から workflow blocker を分類する", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-classify-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-classify-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writePlan(root, "PLAN-FUTURE.md", "L7", "draft", {
@@ -1977,15 +1977,15 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
   });
 
   it("consumer setup state は setup ready を whole-program completion に読み替えない", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-consumer-setup-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-consumer-setup-"));
     try {
-      mkdirSync(join(root, ".ut-tdd", "state"), { recursive: true });
+      mkdirSync(join(root, ".helix", "state"), { recursive: true });
       writeFileSync(
-        join(root, ".ut-tdd", "state", "project-setup.json"),
+        join(root, ".helix", "state", "project-setup.json"),
         `${JSON.stringify(
           {
             schemaVersion: "helix-project-setup-state.v1",
-            setupCommand: "ut-tdd setup project",
+            setupCommand: "helix setup project",
             phase: "0-A",
             decidedAt: "2026-07-02T00:00:00.000Z",
             decidedBy: "fallback",
@@ -1997,7 +1997,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
             postSetupWorkflow: {
               nextRoute: "ready",
               readinessOk: true,
-              verificationCommands: ["ut-tdd completion decision-packet --json"],
+              verificationCommands: ["helix completion decision-packet --json"],
             },
           },
           null,
@@ -2039,12 +2039,12 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
             planId: "CONSUMER-SETUP-BOUNDARY",
             blockerReason: "consumer_setup_boundary",
             decisionKind: "workflow_continuation",
-            decisionPacketCommand: "ut-tdd completion decision-packet --json",
+            decisionPacketCommand: "helix completion decision-packet --json",
             allowedOutcomes: ["start_project_plan", "keep_setup_only", "record_first_run_evidence"],
             requiredRecords: [
               expect.objectContaining({
                 recordName: "consumer_setup_boundary_record",
-                sourcePaths: expect.arrayContaining([".ut-tdd/state/project-setup.json"]),
+                sourcePaths: expect.arrayContaining([".helix/state/project-setup.json"]),
               }),
             ],
           },
@@ -2056,7 +2056,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
   });
 
   it("docs/plans 不在は空集計 (fail-open)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-outstanding-empty-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-empty-"));
     try {
       const o = computeOutstandingWork(root);
       expect(o.nonTerminalPlansTotal).toBe(0);

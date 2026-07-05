@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-169-relation-graph-type-split
-title: "PLAN-L7-169: relation graph type split"
+title: "PLAN-L7-169: relation graph type 分割"
 kind: refactor
 layer: L7
 drive: agent
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant split of relation graph type definitions. Projection, impact analysis, diagram export, and evidence projection behavior remain unchanged."
+backprop_decision_reason: "relation graph type 定義の挙動不変な分割。projection、impact analysis、diagram export、evidence projection の挙動は変えない。"
 agent_slots:
   - role: se
-    slot_label: "SE - relation graph type split"
+    slot_label: "SE - relation graph type 分割"
   - role: tl
-    slot_label: "TL - relation graph invariant review"
+    slot_label: "TL - relation graph 不変条件レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-169-relation-graph-type-split.md
     artifact_type: markdown_doc
@@ -39,7 +39,7 @@ review_evidence:
     reviewed_at: "2026-06-25T21:17:30+09:00"
     tests_green_at: "2026-06-25T21:17:30+09:00"
     verdict: approve
-    scope: "Extract relation graph public type model to a sidecar module while preserving relation-graph re-exports."
+    scope: "relation graph の public type model を sidecar module へ抽出し、relation-graph の re-export は維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -93,25 +93,22 @@ review_evidence:
         output_digest: "sha256:50db752915d778c7e590d6748fde1eaa73b2ddb22a80aa2e80c4ab6db356dca1"
 ---
 
-# PLAN-L7-169: relation graph type split
+# PLAN-L7-169: relation graph type 分割
 
-## Objective
+## 目的
 
-Reduce the remaining `split-module` pressure on
-`src/lint/relation-graph.ts` by extracting its public type model.
+`src/lint/relation-graph.ts` に残る `split-module` 圧力を、public type model の抽出によって下げる。
 
-## Scope
+## 範囲
 
-- Move relation graph projection, impact analysis, diagram, and evidence input
-  type definitions to `src/lint/relation-graph-types.ts`.
-- Preserve existing imports by re-exporting moved types from
-  `src/lint/relation-graph.ts`.
-- Point `src/lint/relation-graph-evidence.ts` at the type sidecar.
+- relation graph projection、impact analysis、diagram、evidence input の type 定義を
+  `src/lint/relation-graph-types.ts` へ移す。
+- 移動した type を `src/lint/relation-graph.ts` から re-export し、既存 import を維持する。
+- `src/lint/relation-graph-evidence.ts` の参照先を type sidecar へ向ける。
 
-## Acceptance Criteria
+## 受入基準
 
 - `tests/relation-graph.test.ts`, `tests/relation-graph-loader.test.ts`,
-  typecheck, lint, DB rebuild, and doctor pass.
-- The public relation graph type import surface remains compatible.
-- The refactor detector no longer reports `src/lint/relation-graph.ts` as a
-  `split-module` candidate.
+  typecheck、lint、DB rebuild、doctor が pass する。
+- public な relation graph type import surface の互換性が維持される。
+- refactor detector が `src/lint/relation-graph.ts` を `split-module` candidate として報告しなくなる。

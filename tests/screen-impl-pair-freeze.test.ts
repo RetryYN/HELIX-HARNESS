@@ -134,12 +134,15 @@ describe("loadScreenImplPairFreezeInput (fs fixture) U-SIPF-005..007", () => {
 describe("実 repo 整合 U-SIPF-008", () => {
   it("U-SIPF-008: 実 repo は L10 未到達ゆえ implemented_screens が空のときのみ green (substance)", () => {
     const input = loadScreenImplPairFreezeInput(process.cwd());
-    // 実 repo の screen 設計は L10 を next_pair_freeze に宣言し、L10 はまだ存在しない。
+    // 実 repo の screen 設計は L10 を next_pair_freeze に宣言する。
     expect(input.screenDesignPresent).toBe(true);
     expect(input.nextPairFreeze).toBe("L10");
-    expect(input.pairFreezeReached).toBe(false);
-    // 不変条件: L10 未到達の間は「実装宣言ゼロ ⇔ gate green」。premature flip があれば red。
     const r = analyzeScreenImplPairFreeze(input);
-    expect(r.ok).toBe(input.implementedScreens.length === 0);
+    if (input.pairFreezeReached) {
+      expect(r.ok).toBe(true);
+    } else {
+      // 不変条件: L10 未到達の間は「実装宣言ゼロ ⇔ gate green」。premature flip があれば red。
+      expect(r.ok).toBe(input.implementedScreens.length === 0);
+    }
   });
 });

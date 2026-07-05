@@ -16,7 +16,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "merged-plan-status gate (PLAN-L7-54) の検出穴を根治。gate は『generated artifact が merged なのに owning PLAN が draft 放置』を捕まえる設計だが、generatesSrcPaths が `src/*.ts` のみ filter していたため、L7-71 (draft のまま 7 個の .claude/commands/*.md を merge 済) を素通りさせた = PO が手で PLAN を読むまで埋もれた検出不備。修正: DELIVERABLE_ROOTS=[src/,tests/,scripts/,.claude/] で『出荷物』を判定し、docs/ (V-model 設計成果物) と .ut-tdd/ (生成ランタイム状態) を除外 (CLAUDE.md architecture boundary 準拠)。kind filter (impl/add-impl/refactor) は既存ゆえ design/poc/reverse の false-positive は出ない。blast radius 確認: 現存 draft 5 本 (DISCOVERY-03/05=poc, L3-04/05=add-design, RECOVERY-02=recovery) は全て非 artifact-kind ゆえ 0 件 = repo は green 維持。regression test 2 本 (draft impl + merged .claude → flag / PLAN 自身の docs/ artifact は非計上) + design PLAN は docs/ 出荷でも非 flag を追加。typecheck/Biome/Vitest/doctor green。"
+    scope: "merged-plan-status gate (PLAN-L7-54) の検出穴を根治。gate は『generated artifact が merged なのに owning PLAN が draft 放置』を捕まえる設計だが、generatesSrcPaths が `src/*.ts` のみ filter していたため、L7-71 (draft のまま 7 個の .claude/commands/*.md を merge 済) を素通りさせた = PO が手で PLAN を読むまで埋もれた検出不備。修正: DELIVERABLE_ROOTS=[src/,tests/,scripts/,.claude/] で『出荷物』を判定し、docs/ (V-model 設計成果物) と .helix/ (生成ランタイム状態) を除外 (CLAUDE.md architecture boundary 準拠)。kind filter (impl/add-impl/refactor) は既存ゆえ design/poc/reverse の false-positive は出ない。blast radius 確認: 現存 draft 5 本 (DISCOVERY-03/05=poc, L3-04/05=add-design, RECOVERY-02=recovery) は全て非 artifact-kind ゆえ 0 件 = repo は green 維持。regression test 2 本 (draft impl + merged .claude → flag / PLAN 自身の docs/ artifact は非計上) + design PLAN は docs/ 出荷でも非 flag を追加。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
 agent_slots:
@@ -36,7 +36,7 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-86 (troubleshoot): merged-plan-status deliverable-scope expansion
+# PLAN-L7-86 (troubleshoot): merged-plan-status の deliverable-scope 拡張 (deliverable-scope expansion)
 
 > **訂正 / 一部 supersede (PLAN-L7-87、2026-06-22)**: 本 PLAN の review_evidence と §3 AC が
 > 「kind filter (impl/add-impl/refactor) は既存ゆえ design/poc/reverse の false-positive は
@@ -47,13 +47,13 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 > PLAN-L7-87 が kind filter を撤去 (deliverable-driven 化) してこの盲点を根治し、3 件の drift を
 > confirmed 化した。本 PLAN の path-scope 拡張 (src/*.ts → 出荷物ルート) 自体は有効・不変。
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 `merged-plan-status` gate (PLAN-L7-54) が捕まえるべき「merged したのに draft 放置」
 drift を、`src/*.ts` 以外の出荷物 (特に `.claude/` runtime asset) でも検出できるよう
 にする。L7-71 の status drift がこの gate を素通りした根因を根治する。
 
-## 1. Problem (実証されたギャップ)
+## 1. 問題 (Problem、実証されたギャップ)
 
 PLAN-L7-71 (kind=impl) は Phase-1 slash command 7 本 (`.claude/commands/*.md`) を
 `7305fe7` で merge 済だったが、PLAN は `draft` のまま放置されていた。
@@ -67,30 +67,30 @@ PLAN-L7-71 (kind=impl) は Phase-1 slash command 7 本 (`.claude/commands/*.md`)
   ないか」と問い、人手で PLAN を読むまで埋もれた**。これは「機械が gap を surface
   する (設計の柱3)」の不履行であり、当 gate 自身の absence-blindness。
 
-## 2. Fix
+## 2. 修正 (Fix)
 
 `src/lint/merged-plan-status.ts`:
 
 - `generatesSrcPaths` → `generatesMergedDeliverablePaths` に改名。
 - merged-artifact 候補を `DELIVERABLE_ROOTS = [src/, tests/, scripts/, .claude/]`
   配下の `generates` artifact に拡張 (CLAUDE.md architecture boundary の出荷物)。
-- `docs/` (PLAN 本体・設計・テスト設計 = confirm 前に実在するのが正常) と `.ut-tdd/`
+- `docs/` (PLAN 本体・設計・テスト設計 = confirm 前に実在するのが正常) と `.helix/`
   (生成ランタイム状態) は除外。
 - 既存 `ARTIFACT_KINDS = {impl, add-impl, refactor}` の kind filter は据え置き
   ゆえ design/poc/reverse の docs 出荷は false-positive しない。
 - violation message / 型コメント / docstring を deliverable 表現へ整合 (誤誘導コメント
   残債を残さない)。
 
-## 3. Acceptance Criteria — met
+## 3. 受入条件 (Acceptance Criteria) — 充足 (met)
 
 - [x] draft の impl PLAN が merged `.claude/` deliverable を持つと violation になる。
 - [x] その PLAN 自身の `docs/` artifact は merged-deliverable に計上しない。
 - [x] deliverable が未 merge の draft impl PLAN は violation にならない (真に作業中)。
 - [x] design/poc/reverse kind は docs 出荷でも violation にならない (kind + docs 除外)。
 - [x] 現存 draft 5 本は全て非 artifact-kind ゆえ blast radius 0、repo は green 維持。
-- [x] typecheck / Biome / Vitest / doctor green。
+- [x] 検証: typecheck / Biome / Vitest / doctor green。
 
-## 4. Out of scope (→ IMP-139)
+## 4. 範囲外 (Out of scope、→ IMP-139)
 
 status / handover / harness.db が「層内の非終端 PLAN 数 / open explicit-defer 数 /
 PLAN 完了 ≠ 層完了」を **正の集計シグナル**として surface する機構は本 PLAN の範囲外。

@@ -40,7 +40,7 @@ const CODE_EXTENSIONS = new Set([
   ".cmd",
 ]);
 
-const EXCLUDED_DIRS = new Set([".git", ".ut-tdd", "coverage", "dist", "node_modules", "vendor"]);
+const EXCLUDED_DIRS = new Set([".git", ".helix", "coverage", "dist", "node_modules", "vendor"]);
 
 const EXCLUDED_PREFIXES = ["docs/archive/", "docs/migration/", "legacy local state/", "vendor/"];
 const MODEL_PROVIDER_PATTERN = new RegExp(

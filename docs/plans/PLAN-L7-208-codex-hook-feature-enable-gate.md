@@ -103,40 +103,31 @@ review_evidence:
         output_digest: "sha256:489ffab05e118deb404f475310a65dd58650da75465bc3124ad007fa45f567f4"
 ---
 
-# PLAN-L7-208: Codex hook feature enablement gate
+# PLAN-L7-208: Codex hook feature enablement gate（有効化 gate）
 
-## Objective
+## 目的
 
-Close the remaining semantic gap in the Claude/Codex adapter adoption work:
-having `.codex/hooks.json` in the repo is not enough evidence that direct Codex
-CLI/IDE hooks will fire. Codex also requires repo-local `.codex/config.toml`
-with `[features].hooks=true`.
+Claude/Codex adapter adoption work に残っていた semantic gap を close する。
+repo に `.codex/hooks.json` があるだけでは、direct Codex CLI/IDE hooks が発火する証跡として不十分である。
+Codex では repo-local `.codex/config.toml` に `[features].hooks=true` が必要である。
 
 ## Scope
 
-- Extend `codex-hook-adapter` input to read `.codex/config.toml` as well as
-  `.codex/hooks.json`.
-- Fail closed when `.codex/config.toml` is missing or the hooks feature is not
-  enabled.
-- Surface the enablement proof in doctor messages.
-- Add U-CXHOOK and U-SETUP oracles so setup templates and direct-repo doctor
-  evidence both cover the config file.
-- Back-fill L6/L7 design text so the function list distinguishes "hook file
-  exists" from "hook adapter is enabled".
+- `codex-hook-adapter` input を拡張し、`.codex/hooks.json` だけでなく `.codex/config.toml` も読む。
+- `.codex/config.toml` が missing、または hooks feature が enabled でない場合は fail closed する。
+- doctor messages に enablement proof を表示する。
+- U-CXHOOK と U-SETUP oracle を追加し、setup templates と direct-repo doctor evidence の両方が config file を cover する。
+- L6/L7 design text を back-fill し、function list が "hook file exists" と "hook adapter is enabled" を区別するようにする。
 
-## Non-Goals
+## Non-Goals（対象外）
 
-- No new Codex hook surface is introduced.
-- No global `~/.codex/` config is written or required.
-- Hosted API/developer tool calls remain outside repo-local Codex hook
-  enforcement and continue to require explicit preflight.
+- 新しい Codex hook surface は導入しない。
+- global `~/.codex/` config は書かず、必須にもしない。
+- Hosted API/developer tool calls は repo-local Codex hook enforcement の外側に残し、引き続き explicit preflight を要求する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `doctor` reports `.codex/config.toml` hook feature enablement as part of
-  `codex-hook-adapter`.
-- Missing `.codex/config.toml`, disabled `hooks = false`, or `hooks = true`
-  outside `[features]` fails closed.
-- Setup templates expose `.codex/config.toml` and `.codex/hooks.json` together
-  for brownfield consumers.
-- Targeted tests, typecheck, lint, doctor, and full tests pass before commit.
+- `doctor` は `.codex/config.toml` hook feature enablement を `codex-hook-adapter` の一部として報告する。
+- `.codex/config.toml` missing、disabled `hooks = false`、または `[features]` 外の `hooks = true` は fail closed になる。
+- Setup templates は brownfield consumers 向けに `.codex/config.toml` と `.codex/hooks.json` を together に expose する。
+- commit 前に targeted tests、typecheck、lint、doctor、full tests が pass する。

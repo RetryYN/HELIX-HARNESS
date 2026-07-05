@@ -41,7 +41,7 @@ review_evidence:
     reviewed_at: "2026-07-03T23:45:00+09:00"
     tests_green_at: "2026-07-03T23:45:00+09:00"
     verdict: approve
-    scope: "CLAUDE / AGENTS / .claude runtime instruction の setup command surface を `ut-tdd setup project` に揃え、legacy `ut-tdd setup` 表記へ戻らないようにする。"
+    scope: "CLAUDE / AGENTS / .claude runtime instruction の setup command surface を `helix setup project` に揃え、legacy `helix setup` 表記へ戻らないようにする。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -73,13 +73,13 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd setup project` が HELIX 導入済み VSCode で新規 project を始める正規 entrypoint になっている一方、root `CLAUDE.md` の Canonical Commands は `Setup: ut-tdd setup` のままだった。これは legacy solo/team adapter setup と HELIX project bootstrap を混同させる。
+`helix setup project` が HELIX 導入済み VSCode で新規 project を始める正規 entrypoint になっている一方、root `CLAUDE.md` の Canonical Commands は `Setup: helix setup` のままだった。これは legacy solo/team adapter setup と HELIX project bootstrap を混同させる。
 
-この PLAN では `CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` の command surface を `ut-tdd setup project` に揃え、unit test で legacy setup 表記の復帰を fail-close する。
+この PLAN では `CLAUDE.md` / `AGENTS.md` / `.claude/CLAUDE.md` の command surface を `helix setup project` に揃え、unit test で legacy setup 表記の復帰を fail-close する。
 
 ## DoD
 
-- [x] `CLAUDE.md` の Canonical Commands は `Setup: ut-tdd setup project` を示す。
-- [x] `AGENTS.md` と `.claude/CLAUDE.md` の runtime command surface も `ut-tdd setup project` を示す。
-- [x] `Setup: ut-tdd setup` の legacy 表記が戻ると test が fail する。
+- [x] `CLAUDE.md` の Canonical Commands は `Setup: helix setup project` を示す。
+- [x] `AGENTS.md` と `.claude/CLAUDE.md` の runtime command surface も `helix setup project` を示す。
+- [x] `Setup: helix setup` の legacy 表記が戻ると test が fail する。
 - [x] CLI 実装、branch protection apply、secret / PII / external API apply、PLAN-M-02 cutover は変更しない。

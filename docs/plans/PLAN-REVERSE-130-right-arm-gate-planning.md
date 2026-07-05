@@ -118,27 +118,23 @@ review_evidence:
         output_digest: "sha256:4b05fe6be6b15f71728b2f363f092f27c79bd207dadc65b8ad4b478618403464"
 ---
 
-# PLAN-REVERSE-130: right-arm gate planning fullback
+# PLAN-REVERSE-130: right-arm gate planning fullback の反映
 
 ## Objective
 
-Record the back-propagation decision for turning the G8-G14 unplanned carry into
-a doctor-enforced planning route.
+G8-G14 の unplanned carry を doctor-enforced planning route に変換する back-propagation decision を記録する。
 
 ## Scope
 
-- This reverse slice does not claim full G8-G14 gate implementation.
-- It closes the specific process hole where the carry could remain "future PLAN"
-  without any actual PLAN artifact.
-- It also closes the weaker-source hole where external verification standards
-  could be referenced by name without an official URL, adopted version/date,
-  latest official status, adoption decision, verification use, and gate impact.
-- Future child PLANs should define the concrete G8-G14 fail-close conditions.
+- この reverse slice は G8-G14 gate の full implementation を主張しない。
+- 実際の PLAN artifact が無いまま carry が "future PLAN" として残れる process hole を閉じる。
+- external verification standards が official URL、adopted version/date、latest official status、
+  adoption decision、verification use、gate impact なしに名前だけで参照される weaker-source hole も閉じる。
+- 具体的な G8-G14 fail-close conditions は future child PLANs で定義する。
 
-## Acceptance Criteria
+## Acceptance Criteria（受入条件）
 
-- The L7 PLAN and reverse PLAN both exist as machine-readable artifacts.
-- Doctor runs the right-arm planning lint.
-- The lint fails in tests when no PLAN route exists.
-- The right-arm verification strategy fails if its official source ledger loses
-  semantic source-to-gate mapping.
+- L7 PLAN と reverse PLAN がどちらも machine-readable artifacts として存在する。
+- Doctor が right-arm planning lint を実行する。
+- PLAN route が存在しない場合、lint が tests で失敗する。
+- right-arm verification strategy は、official source ledger が semantic source-to-gate mapping を失った場合に失敗する。

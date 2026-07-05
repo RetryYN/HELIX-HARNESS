@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-56-artifact-progress-state
-title: "PLAN-REVERSE-56: artifact progress state fullback"
+title: "PLAN-REVERSE-56: artifact progress state fullback の記録"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,18 +16,18 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define the artifact progress color contract."
+    reason: "requirements が artifact progress の色判定 contract を定義する。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Basic design records the artifact progress projection building block."
+    reason: "basic design が artifact progress projection の building block を記録する。"
   - layer: L5-detailed-design
     decision: updated
     evidence_path: docs/design/harness/L5-detailed-design/physical-data.md
-    reason: "Detailed design records the physical artifact progress state semantics."
+    reason: "detailed design が物理的な artifact progress state の意味を記録する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - artifact progress fullback review"
+    slot_label: "TL - artifact progress fullback review の確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-56-artifact-progress-state.md
     artifact_type: markdown_doc
@@ -53,52 +53,51 @@ dependencies:
     - docs/plans/PLAN-L7-56-artifact-progress-state.md
 ---
 
-# PLAN-REVERSE-56: artifact progress state fullback
+# PLAN-REVERSE-56: artifact progress state fullback の記録
 
-## R0 Evidence
+## R0 証跡
 
-PLAN-L7-56 added `artifact_progress` as a rebuildable harness.db projection. The implementation
-derives red/yellow/green rows from relation graph source nodes, linked `covered-by` test edges, and
-open impact results.
+PLAN-L7-56 は `artifact_progress` を再構築可能な harness.db projection として追加した。実装は
+relation graph の source node、紐づく `covered-by` test edge、未解決の impact result から
+red/yellow/green の行を導出する。
 
-## R1 Observed Gap
+## R1 観測した差分
 
-The implementation surfaced a higher-level design gap, not only a physical-data gap:
+実装により、`physical-data` だけではなく上位設計にも次の差分があることが分かった。
 
-- L1 functional requirements did not have an artifact-level progress color requirement.
-- L1 screen requirements did not say where red/yellow/green artifact state is visible.
-- L3 carry and L4 function building blocks did not include the progress projection.
-- L6 function/unit coverage did not include deterministic contracts for the progress color decision.
-- governance requirements §6.8.6/§6.8.7 did not define the color contract.
-- `physical-data.md` declared the table but needed explicit color invariants.
+- L1 functional requirements に artifact 単位の進捗色 requirement がなかった。
+- L1 screen requirements で red/yellow/green の artifact state をどこに表示するかが未定義だった。
+- L3 carry と L4 function building block に progress projection が含まれていなかった。
+- L6 function/unit coverage に progress color decision の決定的 contract がなかった。
+- governance requirements §6.8.6/§6.8.7 が color contract を定義していなかった。
+- `physical-data.md` は table を宣言していたが、明示的な color invariant が必要だった。
 
-## R2 Alignment
+## R2 整合
 
-The projection remains derived data. Authoring truth stays in source files, tests, PLAN frontmatter,
-relation graph projection, impact results, and recovery/fullback PLANs. No new product workflow
-phase is introduced, but a new P1 requirement is registered as FR-L1-51 because the color contract
-is user-visible progress management semantics rather than a hidden DB implementation detail.
+この projection は引き続き derived data として扱う。authoring truth は source file、test、
+PLAN frontmatter、relation graph projection、impact result、recovery/fullback PLAN に残す。新しい
+product workflow phase は導入しない。ただし color contract は隠れた DB 実装詳細ではなく、
+ユーザーに見える progress management の意味を持つため、新しい P1 requirement として FR-L1-51 を登録する。
 
-## R3 / R4 Outcome
+## R3 / R4 結果
 
-Fullback is complete: requirements §6.8.6/§6.8.7, L1 FR-L1-51, screen trace, L3 carry, L4 function
-building block, and L5 physical-data color invariants now describe the same contract as the
-schema/projection/CLI/test implementation.
+fullback は完了した。requirements §6.8.6/§6.8.7、L1 FR-L1-51、screen trace、L3 carry、
+L4 function building block、L5 physical-data の color invariant は、schema/projection/CLI/test
+実装と同じ contract を記述している。
 
-L6 follow-up is also complete: `function-spec.md` defines `deriveArtifactProgressDecision` /
-`projectArtifactProgress`, and `fr-unit-coverage.md` maps FR-L1-51 to U-FR-L1-51.
+L6 follow-up も完了した。`function-spec.md` は `deriveArtifactProgressDecision` /
+`projectArtifactProgress` を定義し、`fr-unit-coverage.md` は FR-L1-51 を U-FR-L1-51 へ対応づける。
 
-2026-06-23 hardening closes the workflow-coupling gap inside the same fullback scope:
-`artifact_progress` now requires linked passing `test_runs` evidence for green, records
-relation-impact check metadata, covers source/design/test-design/plan/requirement nodes, records
-recovery PLAN links, and mirrors red/yellow rows into `feedback_events` as DB-triggerable workflow
-inputs.
+2026-06-23 の hardening により、同じ fullback scope 内で workflow-coupling の差分を閉じた。
+`artifact_progress` は green 判定に紐づく passing `test_runs` 証跡を要求し、relation-impact check の
+metadata を記録し、source/design/test-design/plan/requirement node を対象に含める。また recovery PLAN
+link を記録し、red/yellow の行を DB から trigger 可能な workflow input として `feedback_events` へ反映する。
 
 ## DoD
 
-- [x] Forward L7 implementation is identified.
-- [x] Lower-layer and upper-layer design impact is classified.
-- [x] Requirements-level update is applied.
-- [x] Basic design and detailed design updates are applied.
-- [x] L6 function contract and FR unit coverage are applied.
-- [x] No additional backlog item is required for this DB read model; the gap is closed by fullback.
+- [x] Forward L7 implementation を特定した。
+- [x] 下位 layer と上位 layer の design impact を分類した。
+- [x] requirements level の更新を適用した。
+- [x] basic design と detailed design の更新を適用した。
+- [x] L6 function contract と FR unit coverage を適用した。
+- [x] この DB read model に追加 backlog item は不要であり、差分は fullback で閉じた。

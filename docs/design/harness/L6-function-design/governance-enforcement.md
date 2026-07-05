@@ -32,7 +32,7 @@ created: 2026-06-04
 
 - 既存 `analyzeBackfill.ok` (required orphan=0 ∧ glossary gap=0) は実装済だが doctor は `ok:true` 固定だった。
 - `checkBackfillResult(repoRoot): { messages, ok }` を追加し `runDoctor.ok = backfill.ok ∧ scrumRev.ok ∧ propagation.ok` に連動。handover/agent-slots は warn-only (鮮度/運用 surface、ok を落とさない)。
-- CI fail-close は既存 `tests/backfill-pairing.test.ts U-BACKFILL-006` (実 repo ガード) が担う。doctor.ok 連動は local `ut-tdd doctor` の parity。
+- CI fail-close は既存 `tests/backfill-pairing.test.ts U-BACKFILL-006` (実 repo ガード) が担う。doctor.ok 連動は local `helix doctor` の parity。
 
 ### §2.3 propagation lint（伝播整合 lint、`src/lint/propagation.ts`）
 

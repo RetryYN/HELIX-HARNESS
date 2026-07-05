@@ -105,20 +105,20 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO goal directive (2026-06-22: A の 3 本の drift 解消)
-- decision_basis: roadmap registry was already merged, load-bearing in doctor, and promoted into governance concept text.
-- verified_evidence: review_evidence scope, src/schema/roadmap.ts, src/lint/roadmap-registry.ts, tests/roadmap.test.ts, doctor roadmap-rollup/program-coverage gates.
-- stakeholder_review_or_proxy: PM/Opus verification with PO directive recorded in review_evidence.
-- acceptance_gap: no adoption gap for roadmap registry; later roadmap-band refinements remain normal Forward work.
-- unresolved_risk: new roadmap bands still require registered gates/spans and cannot be inferred from prose.
-- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
-- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
-- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
-- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
-- route_impact: confirmed keeps roadmap as a first-class machine registration entity.
-- forward_route: RECOVERY-04 / PLAN-REVERSE-44 roadmap definition path plus active roadmap doctor gates.
-- reverse_fullback_required: yes; discharged by roadmap definition/backfill records.
-- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the mechanism and harden registration/gate checks.
+- decision_basis: roadmap registry はすでに merge 済で、doctor の load-bearing 検査として稼働し、governance concept text へ promote 済み。
+- verified_evidence: 証跡は review_evidence scope、src/schema/roadmap.ts、src/lint/roadmap-registry.ts、tests/roadmap.test.ts、doctor roadmap-rollup/program-coverage gates。
+- stakeholder_review_or_proxy: PM/Opus verification と PO directive は review_evidence に記録済み。
+- acceptance_gap: roadmap registry の採用 gap は無く、後続の roadmap-band refinement は通常 Forward 作業として扱う。
+- unresolved_risk: residual risk として、新しい roadmap band は登録済み gates/spans を引き続き必要とし、prose から推定してはならない。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh。S4 decision source ledger は 2026-07-03 の current audit で discovery/scrum mode docs を確認済み。
+- source_status_delta: changed。ISO/IEC/IEEE 29148 は現在 2026-02-16 stage 90.92 to be revised を示すが、これは historical confirmed S4 decision を再オープンしない。
+- adoption_decision_delta: none。historical S4 adoption decision は current route policy と整合したままで、ISO/IEC/IEEE 29148 revision は publication まで追跡する。
+- workflow_route_impact: none。historical decision はすでに S4 と Reverse/Forward evidence を通過済み。
+- route_impact: confirmed により roadmap は first-class machine registration entity として維持される。
+- forward_route: RECOVERY-04 / PLAN-REVERSE-44 roadmap definition path と active roadmap doctor gates。
+- reverse_fullback_required: yes。roadmap definition/backfill records により discharge 済み。
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening。機構を維持し、registration/gate checks を harden する。
 
 # PLAN-DISCOVERY-05 (kind=poc): 工程表を第一級・機械登録エンティティ化する metamodel 検証
 

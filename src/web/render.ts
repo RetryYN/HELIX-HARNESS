@@ -45,7 +45,7 @@ export function renderScreen(screen: ScreenSpec, tokens: UiTokens): RenderedScre
   ${componentList("画面固有コンポーネント", screen.specificComponents)}
   ${componentList("共通コンポーネント", screen.commonComponents)}
   <footer class="screen-footer">
-    <button type="button" class="copy-command" data-command="ut-tdd status" aria-label="CLI command copy only">CLIコピー</button>
+    <button type="button" class="copy-command" data-command="helix status" aria-label="CLI command copy only">CLIコピー</button>
     <span class="readonly-note">read-only / UI直接実行なし</span>
   </footer>
 </article>`;

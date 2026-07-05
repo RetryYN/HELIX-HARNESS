@@ -71,7 +71,7 @@ review_evidence:
 
 `harness-check.yml` は `CONSUMER_CI_RUN_COMMANDS` として `bun install --frozen-lockfile`、version-up dry-run、`bun run typecheck`、`bun run test` まで要求していた。
 
-一方で distribution acceptance は手書きの `bun run ut-tdd ...` サブセットだけを実行しており、生成 CI と受入検証が同じ command set だと証明できていなかった。
+一方で distribution acceptance は手書きの `bun run helix ...` サブセットだけを実行しており、生成 CI と受入検証が同じ command set だと証明できていなかった。
 
 この PLAN では、生成 workflow の `run:`、`consumerReadiness.ci.requires`、`CONSUMER_CI_RUN_COMMANDS` を exact に揃え、consumer fixture 上で全 command を実行する。`code --profile HELIX .` は manual-local のまま自動実行しない。
 

@@ -45,14 +45,14 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 
 # PLAN-L7-97 (troubleshoot): SI 標準成果物カタログ拡張 + VALID_SUB_DOCS 単一正本化
 
-## 0. Objective
+## 0. 目的
 
 L4 基本設計 (外部設計) の標準成果物 sub_doc 型を 4 つ (`report` 帳票 / `batch` バッチ /
 `notification` メール・通知 / `code-value` コード値一覧) `VALID_SUB_DOCS` へ追加し、SI 標準成果物
 カタログを業界標準どおりに完成させる。あわせて `src/plan/lint.ts` のローカル重複コピーを撤去し
 schema を単一正本とする。
 
-## 1. Problem (PO `/goal`「カタログ拡張の完遂 / PO 判断って本当に存在するのか調べろ」)
+## 1. 問題 (PO `/goal`「カタログ拡張の完遂 / PO 判断って本当に存在するのか調べろ」)
 
 ### (A) 誤った carry 先送り (PO 判断は実在しなかった)
 
@@ -75,7 +75,7 @@ schema を単一正本とする。
 `VALID_SUB_DOCS` が `src/schema/index.ts` (line 406 が「VALID_* は schema を単一正本」と規定) と
 `src/plan/lint.ts` の 2 箇所に重複定義され、現状は全層同値だが catalog 拡張時に片肺 drift する構造。
 
-## 2. Fix
+## 2. 修正内容
 
 ### (A) L4 標準成果物カタログ拡張 (`src/schema/index.ts`)
 
@@ -90,23 +90,23 @@ schema を単一正本とする。
 `Object.fromEntries(... new Set(...))` で派生 (Set 化のみ)。今後カタログを何種追加しても lint.ts は
 無改修 = drift 根治 (要件 line 406 の「schema=単一正本」を実装で担保)。
 
-### (C) doc grounding back-fill
+### (C) 文書根拠の back-fill
 
 - 要件 `§1.10.G.1` の L4 行に 4 型追記 + grounding 注記 (正本 = schema)。
 - `document-system-map.md §1` L4 行に標準成果物明示 + 新規 `§1b 外部設計 標準成果物カタログ` 表
   (sub_doc slug ↔ 区分 ↔ 業界標準の対応、IPA 共通フレーム grounding)。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
 - [x] `report`/`batch`/`notification`/`code-value` が L4 design PLAN で valid sub_doc、L2 では invalid。
 - [x] `src/plan/lint.ts` が schema 由来の単一派生になり重複定義が消えた (撤去前と全 6 層同値)。
 - [x] substance test: 4 型 L4 valid / L2 invalid (frontmatter schema 経路) + analyzePlanGovernance が
   4 型受理 / L2 で `invalid_sub_doc` (plan lint 経路、U-PLANGOV-006)。
 - [x] doc grounding: 要件 §1.10.G.1 + document-system-map §1/§1b 反映。
-- [x] typecheck / Biome / Vitest / doctor / db rebuild green。
+- [x] typecheck / Biome / Vitest / doctor / db rebuild は成功。
 - [x] code-reviewer (intra_runtime_subagent) VERDICT=pass、露呈した既存 drift は IMP-141 へ登録。
 
-## 4. Out of scope
+## 4. 対象外
 
 - **要件 §1.10.G.1 ↔ schema の既存 drift 是正** (L3 slug `business-requirement` vs `business`、
   L4 `screen` 残留) = 本変更が露呈させた既存問題。正本どちらに寄せるかは PO 判断 → **IMP-141** で追跡
@@ -125,8 +125,7 @@ schema を単一正本とする。
   skip するだけで、カタログには存在させる。
 - **「別議題 / PO 判断待ち」を carry に書くなら PO 発言の出所を git/doc で裏取りせよ**。本件は裏付け
   無き AI 由来の先送りだった ([[feedback_verify_carry_status_against_code]])。
-- **PLAN 追加/status 変更後は `ut-tdd db rebuild`** (plan-registry-fingerprint stale 回避、
-  [[project_codex_branch_ci_verification]])。
+- **PLAN 追加/status 変更後は `helix db rebuild`** (plan-registry-fingerprint の stale 化回避、[[project_codex_branch_ci_verification]])。
 
 ## 6. 駆動モデル back-fill ペアリング (PO 監査 2026-06-22 是正)
 

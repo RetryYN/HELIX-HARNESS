@@ -42,7 +42,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   "mcp-inspector-smoke": {
     id: "mcp-inspector-smoke",
     label: "MCP Inspector tools/list smoke",
-    command: "ut-tdd mcp inspect <name> --method tools/list",
+    command: "helix mcp inspect <name> --method tools/list",
     sourceType: "mcp",
     packageName: "@modelcontextprotocol/inspector",
     executable: "bun",
@@ -65,7 +65,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   "playwright-mcp": {
     id: "playwright-mcp",
     label: "Playwright MCP agentic browser check",
-    command: "ut-tdd verify run --profile playwright-mcp",
+    command: "helix verify run --profile playwright-mcp",
     sourceType: "mcp",
     packageName: "@playwright/mcp",
     executable: "bun",
@@ -88,7 +88,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   "docker-mcp-toolkit": {
     id: "docker-mcp-toolkit",
     label: "Docker MCP Toolkit isolated server profile",
-    command: "ut-tdd mcp inspect docker-mcp-toolkit --method tools/list",
+    command: "helix mcp inspect docker-mcp-toolkit --method tools/list",
     sourceType: "mcp",
     packageName: "docker-mcp-toolkit",
     executable: "docker",
@@ -135,7 +135,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   "github-mcp-readonly": {
     id: "github-mcp-readonly",
     label: "GitHub MCP read-only issue/PR/CI context",
-    command: "ut-tdd verify run --profile github-mcp-readonly",
+    command: "helix verify run --profile github-mcp-readonly",
     sourceType: "mcp",
     packageName: "github-mcp-server",
     executable: null,
@@ -162,7 +162,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   testcontainers: {
     id: "testcontainers",
     label: "Testcontainers integration dependency check",
-    command: "ut-tdd verify run --profile testcontainers",
+    command: "helix verify run --profile testcontainers",
     sourceType: "test-foundation",
     packageName: "testcontainers",
     executable: "docker",
@@ -183,7 +183,7 @@ export const PROFILES: Record<VerificationProfileId, VerificationProfile> = {
   msw: {
     id: "msw",
     label: "MSW API mock contract check",
-    command: "ut-tdd verify run --profile msw",
+    command: "helix verify run --profile msw",
     sourceType: "test-foundation",
     packageName: "msw",
     executable: null,

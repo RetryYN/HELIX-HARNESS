@@ -139,6 +139,6 @@ generates pair: `docs/test-design/harness/L7-unit-test-design.md` **§1.11 U-BAC
 
 ## §4 carry / 次工程
 
-- **doctor fail-close 昇格**: 完了。`checkBackfillResult.ok` は `runDoctor.ok` に連動する。`ut-tdd plan lint` 側へ同等 gate を追加する場合も、この result contract を流用する。
+- **doctor fail-close 昇格**: 完了。`checkBackfillResult.ok` は `runDoctor.ok` に連動する。`helix plan lint` 側へ同等 gate を追加する場合も、この result contract を流用する。
 - **docs/plans/ archive/ 除外の明示化**: `loadBackfillDocs` は現状 `docs/plans/` の flat ファイルのみを読む。`archive/` サブディレクトリ対応が必要な場合は `readdirSync` を再帰化する (現状は status=archived のフィルタで代替)。
 - **PLAN-REVERSE back-fill 自己適用**: 本 IMP-051 (add-impl) 自体が KIND_BACKFILL=required の対象。対応 PLAN-REVERSE-* で L3 要件 back-fill が必要 (IMP-051 完了後の後続 PLAN)。

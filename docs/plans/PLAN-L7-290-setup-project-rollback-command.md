@@ -37,7 +37,7 @@ review_evidence:
     reviewed_at: "2026-07-03T23:05:00+09:00"
     tests_green_at: "2026-07-03T23:05:00+09:00"
     verdict: approve
-    scope: "consumer readiness の rollback commands が旧 `ut-tdd setup` 入口ではなく、HELIX project bootstrap の正規入口 `ut-tdd setup project` を返すことを固定する。"
+    scope: "consumer readiness の rollback commands が旧 `helix setup` 入口ではなく、HELIX project bootstrap の正規入口 `helix setup project` を返すことを固定する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -69,12 +69,12 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd setup project` が HELIX project bootstrap の正規入口であるにもかかわらず、`ConsumerReadinessPlan.rollback.commands` が旧 solo/team adapter 入口の `ut-tdd setup --dry-run` / `ut-tdd setup --solo` を返していた。これは新規プロジェクト導入後の復旧導線だけが正規 workflow から外れる意味ズレであり、初回稼働証跡と rollback 手順の対応を弱くする。
+`helix setup project` が HELIX project bootstrap の正規入口であるにもかかわらず、`ConsumerReadinessPlan.rollback.commands` が旧 solo/team adapter 入口の `helix setup --dry-run` / `helix setup --solo` を返していた。これは新規プロジェクト導入後の復旧導線だけが正規 workflow から外れる意味ズレであり、初回稼働証跡と rollback 手順の対応を弱くする。
 
-この PLAN では rollback command surface を `ut-tdd setup project --dry-run --json` と `ut-tdd setup project --solo` に揃え、旧入口が consumer readiness に戻った場合に unit test で fail-close する。
+この PLAN では rollback command surface を `helix setup project --dry-run --json` と `helix setup project --solo` に揃え、旧入口が consumer readiness に戻った場合に unit test で fail-close する。
 
 ## DoD
 
 - [x] `ConsumerReadinessPlan.rollback.commands` が `setup project` 入口を返す。
-- [x] 旧 `ut-tdd setup --dry-run` / `ut-tdd setup --solo` が rollback commands に混入しないことを test で固定する。
-- [x] PLAN-M-02 の `.ut-tdd -> .helix` cutover、branch protection apply、secret / PII / external API apply は実行しない。
+- [x] 旧 `helix setup --dry-run` / `helix setup --solo` が rollback commands に混入しないことを test で固定する。
+- [x] PLAN-M-02 の `.helix -> .helix` cutover、branch protection apply、secret / PII / external API apply は実行しない。

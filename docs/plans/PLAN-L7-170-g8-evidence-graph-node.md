@@ -10,14 +10,14 @@ updated: 2026-06-26
 owner: Codex
 parent_design: docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md
 backprop_decision: not_required
-backprop_decision_reason: "DB feedback exposed a relation graph projection coverage gap for G8 integration evidence manifests. The fix extends loader coverage only; no public CLI/API, persisted schema, or L8 workflow semantics changed."
+backprop_decision_reason: "DB feedback により G8 integration evidence manifests の relation graph projection coverage gap が露出した。修正は loader coverage の拡張のみで、public CLI/API、persisted schema、L8 workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - G8 evidence relation graph coverage"
+    slot_label: "SE - G8 evidence relation graph coverage 確認"
   - role: tl
-    slot_label: "TL - DB feedback gate verification"
+    slot_label: "TL - DB feedback gate 検証"
   - role: aim
-    slot_label: "AIM - L8 evidence impact regression"
+    slot_label: "AIM - L8 evidence impact regression 確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-170-g8-evidence-graph-node.md
     artifact_type: markdown_doc
@@ -36,7 +36,7 @@ review_evidence:
     reviewed_at: "2026-06-26T21:05:00+09:00"
     tests_green_at: "2026-06-26T21:05:00+09:00"
     verdict: approve
-    scope: "Materialize .ut-tdd/evidence/g8-integration/*.json artifacts as relation graph nodes so G8 evidence changes remain analyzable by change-impact."
+    scope: ".helix/evidence/g8-integration/*.json artifacts を relation graph nodes として materialize し、G8 evidence changes を change-impact で解析可能なままにする。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -58,26 +58,24 @@ review_evidence:
         output_digest: "sha256:0b826984a99a3760f8e94fe3fade2d525978387788548757dff4969b61951d5b"
 ---
 
-# PLAN-L7-170: G8 evidence graph node coverage
+# PLAN-L7-170: G8 evidence graph node coverage の整備
 
-## Objective
+## 目的
 
-Resolve the DB feedback gate:
+次の DB feedback gate を解消する:
 
-`missing-projection: changed-path-.ut-tdd-evidence-g8-integration-has-no-relation-graph-node-impact-cannot-be-analyzed-no-silent-change-impact-fallback`
+`missing-projection: changed-path-.helix-evidence-g8-integration-has-no-relation-graph-node-impact-cannot-be-analyzed-no-silent-change-impact-fallback`
 
-## Scope
+## スコープ
 
-- Add `.ut-tdd/evidence/g8-integration/*.json` files to the relation graph
-  loader as design-like evidence nodes.
-- Preserve relation graph schema, edge kinds, and impact expansion semantics.
-- Add fixture and real-repo regression checks for the current G8 integration
-  evidence manifest.
+- `.helix/evidence/g8-integration/*.json` files を design-like evidence nodes として relation graph loader に追加する。
+- relation graph schema、edge kinds、impact expansion semantics は維持する。
+- 現在の G8 integration evidence manifest に対する fixture と real-repo regression checks を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `loadRelationGraphSourceSet` returns a node source for G8 evidence manifests.
-- `analyzeRelationImpact` succeeds for a G8 evidence manifest change.
-- `bun run vitest run tests\relation-graph-loader.test.ts` passes.
-- `bun run src\cli.ts db rebuild` clears the open DB feedback gate.
-- `bun run src\cli.ts doctor` passes.
+- `loadRelationGraphSourceSet` は G8 evidence manifests の node source を返す。
+- G8 evidence manifest change に対して `analyzeRelationImpact` が成功する。
+- `bun run vitest run tests\relation-graph-loader.test.ts` が pass する。
+- `bun run src\cli.ts db rebuild` が open DB feedback gate を解消する。
+- `bun run src\cli.ts doctor` が pass する。

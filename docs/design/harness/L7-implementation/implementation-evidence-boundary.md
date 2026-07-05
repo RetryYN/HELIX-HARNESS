@@ -20,16 +20,16 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 | CLI / runtime guard | `src/cli.ts`, `src/runtime/**` | `tests/cli-surface.test.ts`, `tests/runtime*.test.ts`, `tests/*guard*.test.ts` |
 | workflow / lint | `src/lint/**`, `src/plan/**`, `src/vmodel/**` | `tests/*lint*.test.ts`, `tests/vmodel-pair.test.ts`, `tests/doctor.test.ts` |
 | state DB / projection | `src/state-db/**`, `src/feedback/**` | `tests/state-db.test.ts`, `tests/projection-writer.test.ts`, `tests/db-projection-*.test.ts` |
-| setup / distribution | `src/setup/**`, `scripts/ut-tdd*` | `tests/setup.test.ts`, `tests/distribution-acceptance.test.ts` |
+| setup / distribution | `src/setup/**`, `scripts/helix*` | `tests/setup.test.ts`, `tests/distribution-acceptance.test.ts` |
 
 ## 合否条件
 
 - `bun run typecheck`、`bun run lint`、`bun run test:local` が green。
-- `./scripts/ut-tdd doctor` が hard gate green。
+- `./scripts/helix doctor` が hard gate green。
 - `impl-plan-trace` と `oracle-test-trace` が新規 orphan 0。
 
 ## 未完了 blocker
 
 - S4 未了の discovery work は L7 完了根拠にしない。
 - `PLAN-L7-146-serverless-readonly-share` は future activation まで active frontier 完了に数えない。
-- `.ut-tdd` 系の不可逆 rename は PLAN-M-02 の cutover approval 前に L7 実装済み扱いにしない。
+- `.helix` 系の不可逆 rename は PLAN-M-02 の cutover approval 前に L7 実装済み扱いにしない。

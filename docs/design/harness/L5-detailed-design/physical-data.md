@@ -10,19 +10,19 @@ plan: docs/plans/PLAN-L5-01-physical-data.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
-> **SSoT 参照**: 論理モデル = [data.md](../L4-basic-design/data.md) (L4) / 実装 enum SSoT = `src/schema/index.ts` / 永続化方針 = `.ut-tdd/` YAML/JSON state + `.ut-tdd/harness.db` SQLite projection DB ([ADR-001](../../../adr/ADR-001-helix-harness-redesign-and-language.md))。本 doc は data.md §8 の論理 state schema を **物理 schema (フィールド型/必須任意/default/file レイアウト + projection table)** に詳細化する (D-DB)。
+> **SSoT 参照**: 論理モデル = [data.md](../L4-basic-design/data.md) (L4) / 実装 enum SSoT = `src/schema/index.ts` / 永続化方針 = `.helix/` YAML/JSON state + `.helix/harness.db` SQLite projection DB ([ADR-001](../../../adr/ADR-001-helix-harness-redesign-and-language.md))。本 doc は data.md §8 の論理 state schema を **物理 schema (フィールド型/必須任意/default/file レイアウト + projection table)** に詳細化する (D-DB)。
 >
 > **用語更新 (G.9) / 機能要求更新 (G.10) の所在**: per-工程 delta は生成元 [PLAN-L5-01](../../../plans/PLAN-L5-01-physical-data.md) の §6/§7 に記録 (L4 sub-doc と同規約)。
 > **V-pair**: `pair_artifact = L8-integration-test-design.md` は L5 sub-doc 群の集合 pair (PLAN-L5-00-master 経由、L5↔L8)。
 
 # HELIX-HARNESS — L5 詳細設計: 物理データ設計 (Physical-Data)
 
-data.md (論理ドメインモデル) の §8 state schema を、`.ut-tdd/` YAML/JSON state と `.ut-tdd/harness.db` SQLite projection DB の **物理 schema** に詳細化する (PLAN-L5-01-physical-data)。各 file は `src/schema` の zod で読込時 validate し、projection DB は V-model 製本・別駆動 model run・trace/coverage/finding 照合に使う。
+data.md (論理ドメインモデル) の §8 state schema を、`.helix/` YAML/JSON state と `.helix/harness.db` SQLite projection DB の **物理 schema** に詳細化する (PLAN-L5-01-physical-data)。各 file は `src/schema` の zod で読込時 validate し、projection DB は V-model 製本・別駆動 model run・trace/coverage/finding 照合に使う。
 
 ## §1 state file レイアウト
 
 ```
-.ut-tdd/
+.helix/
 ├── plan_registry/<plan_id>.json          # Plan 集約 (本文は docs/plans/*.md)
 ├── artifact/
 │   ├── <artifact_id>.json                # Artifact 集約
@@ -39,7 +39,7 @@ data.md (論理ドメインモデル) の §8 state schema を、`.ut-tdd/` YAML
     └── plan_registry/<plan_id>.json      # 区画隔離された Plan state
 ```
 
-> `<ts>` = ISO8601 timestamp。`.ut-tdd/` の大半は gitignored (runtime state)。本文 doc (`docs/plans/*.md`) は git 追跡、registry JSON は state。
+> `<ts>` = ISO8601 timestamp。`.helix/` の大半は gitignored (runtime state)。本文 doc (`docs/plans/*.md`) は git 追跡、registry JSON は state。
 
 ## §2 集約別 物理 schema (JSON フィールド)
 
@@ -121,13 +121,13 @@ data.md (論理ドメインモデル) の §8 state schema を、`.ut-tdd/` YAML
 
 | table | primary key | 主な列 | 入力 |
 |---|---|---|---|
-| `plan_registry` | `plan_id` | `kind`, `layer`, `sub_doc`, `drive`, `status`, `parent`, `updated_at`, `decision_outcome`, `source_hash` | `docs/plans/*.md`, `.ut-tdd/plan_registry/*.json` |
+| `plan_registry` | `plan_id` | `kind`, `layer`, `sub_doc`, `drive`, `status`, `parent`, `updated_at`, `decision_outcome`, `source_hash` | `docs/plans/*.md`, `.helix/plan_registry/*.json` |
 | `artifact_registry` | `artifact_id` | `artifact_type`, `path`, `pair_artifact`, `status`, `updated_at` | docs/test-design、source catalog、trace state を保存する |
 | `model_runs` | `run_id` | `runtime`, `model`, `role`, `drive`, `plan_id`, `started_at`, `completed_at`, `evidence_path` | Codex / Claude / worker / reviewer の execution evidence |
 | `trace_edges` | `edge_id` | `from_artifact`, `to_artifact`, `edge_kind`, `plan_id`, `status` | artifact trace state |
 | `coverage` | `coverage_id` | `scope`, `subject_id`, `metric`, `value`, `threshold`, `status` | test coverage / trace coverage / plan coverage を保存する |
 | `findings` | `finding_id` | `kind`, `severity`, `subject_id`, `source`, `status`, `evidence_path` | doctor / vmodel lint / review findings を保存する |
-| `gate_runs` | `gate_run_id` | `gate_id`, `plan_id`, `status`, `checked_at`, `evidence_path` | `.ut-tdd/gate_runs/*.json`, CI evidence |
+| `gate_runs` | `gate_run_id` | `gate_id`, `plan_id`, `status`, `checked_at`, `evidence_path` | `.helix/gate_runs/*.json`, CI evidence |
 
 物理不変条件: `trace_edges` の orphan 0、`coverage.status=fail` の gate fail-close、`findings.status=open` の severity 別 gate 判定、`model_runs.plan_id` と `plan_registry.plan_id` の参照整合を doctor / vmodel lint が検証する。`plan_registry.source_hash` は PLAN markdown 全文の sha256 で、persisted `harness.db` と現在の `docs/plans/*.md` の fingerprint 不一致は `drive-db-registration` hard gate で stale として扱う。projection は自動生成だが、検出対象の機械 SSoT として扱い、入力 state との不一致は `findings` に保存する。
 
@@ -182,7 +182,7 @@ export const VALID_SUB_DOCS = {
 | ImpId | `^IMP-\d{3}$` | backlog 観測時 | backlog table |
 | GateId | `^G\d+(\.\d+)?$` (G0.5-G14) | 固定 | phase.yaml key |
 
-- **参照整合 (物理)**: 集約間は ID 文字列参照のみ (data.md §2)。孤児検出 = 参照先 file/key の存在確認 (`ut-tdd doctor`)。
+- **参照整合 (物理)**: 集約間は ID 文字列参照のみ (data.md §2)。孤児検出 = 参照先 file/key の存在確認 (`helix doctor`)。
 - **採番衝突防止**: 同一 layer+sub_doc の status∉archived 2 重起票は plan lint で exit 1 (requirements §G.1)。
 - **⚠ 実装 regex との乖離 (IMP-004)**: 上記「設計仕様」regex (層別 `PLAN-L\d+-\d{2}-slug`) に対し、`src/schema/frontmatter.ts` の現 `planIdSchema` = `^(PLAN-\d{3}(-[a-z0-9-]+)?|PLAN-MM-\d{3})$` は **3 桁形式のみ**で層別 ID を通さない。現行 PLAN (PLAN-L4-01-data 等) は plan lint 有効化で全件 reject される。**SSoT decision (層別を正本とし frontmatter.ts regex を拡張) を plan-id-schema lint 実装前に確定** (IMP-004、§8 carry)。
 
@@ -200,8 +200,8 @@ export const VALID_SUB_DOCS = {
 
 ## §6 drive 別区画 (FR-L1-40)
 
-- 物理: `.ut-tdd/drive/<drive>/plan_registry/<plan_id>.json` (`<drive>` ∈ `VALID_DRIVES` 5 種)
-- 隔離不変条件: 同一 plan_id が複数 drive 区画に存在 → fail-close (data.md §6、`ut-tdd doctor` 検出)
+- 物理: `.helix/drive/<drive>/plan_registry/<plan_id>.json` (`<drive>` ∈ `VALID_DRIVES` 5 種)
+- 隔離不変条件: 同一 plan_id が複数 drive 区画に存在 → fail-close (data.md §6、`helix doctor` 検出)
 - `skip_sub_doc` 機械強制: drive×sub_doc 整合 (requirements §G.1: fe/fullstack/agent で L2/L10 skip → exit 1)
 
 ## §7 不変条件の物理検証点
@@ -221,7 +221,7 @@ export const VALID_SUB_DOCS = {
 ## §8 carry → L7 実装
 
 - **SubDoc zod 化** (IMP-026): `src/schema/index.ts` に `VALID_SUB_DOCS` + `subDocSchema` 追加、`frontmatter.ts` superRefine 拡張 (layer×sub_doc) + テスト実装済み
-- **state 読込/書込 module**: `.ut-tdd/` file ↔ zod parse/serialize の実装 (architecture.md runtime/state)
+- **state 読込/書込 module**: `.helix/` file ↔ zod parse/serialize の実装 (architecture.md runtime/state)
 - **doctor check_business_entity_coverage**: state file ↔ src/schema 齟齬検出の実装 (data.md §8 / L1 §10.2 carry)
 - **`placeholder_deps` + ペア未充足検知** (A-84、PO back-fill 整合保証): Artifact schema に `placeholder_deps: array<{waiting_layer, waiting_spec}>` を追加し、doctor / vmodel lint で「設計 artifact に対の test_design artifact 不在 or `placeholder_deps` 未解消 → fail-close」を実装する。back-fill 完了で解消、V-model 最終整合 (孤児0) を DB 側で機械保証。FR-L1-49 drift lint と同じ IMP-033 rule engine に rule 型として登録。**Current status**: active design/test-design docs の L7 待ち `placeholder_deps` と旧「未実装」記述は `src/lint/placeholder-deps.ts` + doctor hard gate で fail-close 済み。**`waiting_layer` の2類型 (A-85 self-review I-3)**: ① **spec back-fill 型** (`waiting_layer` = 設計層、例 L6) = 対のテスト設計を*書く*のに上位仕様 (関数 signature 等) 確定待ち (例 ST-ASSET-04)。② **実装状態解消型** (`waiting_layer` = L7) = テスト設計は書けているが検証対象の状態が実装/コンテンツ整備で初めて materialize する (例 ST-ASSET-05 skill curate 完了 / ST-ASSET-07 guard→roster 切替)。**2類型認識の機械化 (IMP-107、2026-06-19)**: `src/lint/placeholder-deps.ts` が両類型を構造認識する — 型② (L7) の active doc 残存は **hard-fail** (repo は L7 到達済ゆえ解消されるべき)、型① (L1-L6) は item 単位の正当な carry でありうるため **検出数のみ surface** (band freeze ≠ item spec 確定、false-positive 回避)、未知 `waiting_layer` (L0-L14 外) は typo として hard-fail。**型①の threshold** (= IT-ASSET-07「waiting_layer 到達後の未解消 = failure」) は `descent-obligation` lint の impl-ahead 検査 (defer ledger: impl 未着地=deferred carry / 着地済+未 discharge=unmet 違反) が**正本担当**し重複させない。green message は「L7 waits=0 / spec-backfill waits=N [threshold=descent-obligation]」と coverage を明示し、「green = placeholder_deps 完全 fail-close」の誤読を塞ぐ。oracle U-PHDEPS-001..006。
 - **物理 schema の object 型詳細** (agent_slots/generates/dependencies の入れ子型) は L7 実装時に zod object で確定
@@ -247,7 +247,7 @@ PLAN-L5-08 は、SQLite を単なる storage ではなく reference-feedback mec
 | `workflow_runs` | `workflow_run_id` | `plan_id`, `drive_run_id`, `workflow`, `phase`, `ready_status`, `blocked_reason`, `human_required`, `checked_at` | workflow automation readiness を queryable かつ data-backed にする。 |
 | `guardrail_decisions` | `guardrail_decision_id` | `plan_id`, `session_id`, `guardrail`, `decision`, `mode`, `human_signoff_required`, `evidence_path`, `decided_at` | agent-guard、review evidence、escalation、same-model approval check の safety decision を永続化する。 |
 | `automation_assets` | `asset_id` | `asset_type`, `path`, `trigger`, `role`, `capability`, `drift_status`, `indexed_at` | skill/roster/command docs を automation input と search subject として catalog 化する。 |
-| `loop_iterations` | `loop_iteration_id` | `plan_id`, `iteration`, `worker_provider`, `verifier_provider`, `verdict`, `stop_reason`, `blocked_reason`, `cost_usd`, `evidence_path`, `recorded_at` | P2 loop の iteration 証跡 (`.ut-tdd/state/loop/*.iterations.jsonl`) を projection し、hybrid 自己評価 (worker===verifier) を `verifier-provider-mismatch` doctor gate で機械検査可能にする (PLAN-L7-176/177 §4 carry、PLAN-L7-304)。 |
+| `loop_iterations` | `loop_iteration_id` | `plan_id`, `iteration`, `worker_provider`, `verifier_provider`, `verdict`, `stop_reason`, `blocked_reason`, `cost_usd`, `evidence_path`, `recorded_at` | P2 loop の iteration 証跡 (`.helix/state/loop/*.iterations.jsonl`) を projection し、hybrid 自己評価 (worker===verifier) を `verifier-provider-mismatch` doctor gate で機械検査可能にする (PLAN-L7-176/177 §4 carry、PLAN-L7-304)。 |
 
 PLAN-L7-304 は、上記 `loop_iterations` の schema registry と `idx_loop_iterations_plan` を扱う L7 impl slice である。
 PLAN-L7-305 は、既存 `loop-store` が出す iteration 証跡の JSONL rebuild 投影と
@@ -288,7 +288,7 @@ DB は ID、reason、score、redacted summary だけを保存する。raw provid
 
 ### §9.4 test evidence 履歴 projection (A-122 / IMP-109)
 
-Phase 2 close review では、DB design が workflow、guardrail、skill、quality signal を既に project できる一方で、単体テスト固有の feedback question にはまだ答えられないことが分かった。Phase 4 DB implementation 開始前に、次の projection table を追加する。これらは derived data のままであり、authoring source は test files、PLAN artifacts、vitest/Bun output、CI logs、`.ut-tdd/` evidence である。
+Phase 2 close review では、DB design が workflow、guardrail、skill、quality signal を既に project できる一方で、単体テスト固有の feedback question にはまだ答えられないことが分かった。Phase 4 DB implementation 開始前に、次の projection table を追加する。これらは derived data のままであり、authoring source は test files、PLAN artifacts、vitest/Bun output、CI logs、`.helix/` evidence である。
 
 | table | primary key | 必須列 | 目的 |
 |---|---|---|---|
@@ -516,4 +516,4 @@ IMP-140: 15 screens (PM/HM/GD) と FR/BR→screen trace は `screen-list.md` / `
 - `screens` row count は screen-requirements §1 の declared count と一致する (15 = PM 6 + HM 8 + GD 1)。`doc-consistency` gate も同じ doc source を count する。
 - すべての `screen_trace.screen_id` は `screens.screen_id` を参照する (orphan trace edge なし)。
 - src/web (Phase B) までは `screens.implemented=0` とする。変更には NFR-08 implementation-truthfulness evidence が必要である。
-- Source of truth は docs のままである。この projection は `ut-tdd db rebuild` で deterministic に rebuild される derived read model であり、別 authoring surface は持たない。
+- Source of truth は docs のままである。この projection は `helix db rebuild` で deterministic に rebuild される derived read model であり、別 authoring surface は持たない。

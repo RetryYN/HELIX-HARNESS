@@ -57,7 +57,7 @@ roadmap:
       owns:
         - src/state-db
         - src/schema
-        - ".ut-tdd/harness.db"
+        - ".helix/harness.db"
       exit_criteria: "harness.db projection, schema registry, and read-only DB rebuild paths are represented by L7 roadmap spans."
     - id: fp-service
       name: service and orchestration pack
@@ -72,7 +72,7 @@ roadmap:
       layer: frontend
       owns:
         - src/state-db/visualization-read-model.ts
-        - "ut-tdd progress snapshot --json"
+        - "helix progress snapshot --json"
         - VSCode Webview/View response contract
       exit_criteria: "UI-facing responses are deterministic read models and do not count as UI implementation by themselves."
     - id: fp-ui
@@ -87,7 +87,7 @@ roadmap:
       name: runtime verification pack
       layer: verification
       owns:
-        - ".ut-tdd/evidence/run-debug"
+        - ".helix/evidence/run-debug"
         - runtime_verification_events
       exit_criteria: "RUN & Debug evidence is classified separately from projection-only evidence."
   gates:
@@ -157,38 +157,34 @@ review_evidence:
         output_digest: "sha256:e4dee03f96fa6468aff5ddf2b55a30d1669256e4f7e1e50c289218ef840fb710"
 ---
 
-# PLAN-L7-207: L7 feature-pack roadmap definition
+# PLAN-L7-207: L7 feature-pack roadmap 定義
 
-## Objective
+## 目的
 
-Fix the roadmap gap where L7 progress could be counted by gate/span volume while
-the meaning of the work was not represented. L7 must show database, service,
-frontend response, and UI implementation as separate responsibility packs.
+L7 の進捗が gate/span の量だけで数えられ、作業の意味が表現されない roadmap gap を是正する。
+L7 は database、service、frontend response、UI implementation を別々の責務 pack として示す必要がある。
 
-## Scope
+## スコープ
 
-- Extend the roadmap schema with `feature_packs[]` and `span.feature_pack`.
-- Add doctor coverage for required L7 feature-pack layers:
+- roadmap schema に `feature_packs[]` と `span.feature_pack` を追加する。
+- 必須の L7 feature-pack layer に対する doctor coverage を追加する:
   `database`, `service`, `frontend`, and `ui`.
-- Register the current L7 work as semantic packs:
-  DB projection (`PLAN-L7-44`), service/runtime bridge (`PLAN-L7-177`),
-  frontend response (`PLAN-L7-206`), and deferred UI (`PLAN-L7-141`).
-- Add U-ROADMAP oracles and L6/L7 design trace.
+- 現在の L7 作業を semantic pack として登録する。対象は次の通り。
+  DB projection は `PLAN-L7-44` が担当する。
+  service/runtime bridge は `PLAN-L7-177` が担当する。
+  frontend response は `PLAN-L7-206` が担当する。
+  deferred UI は `PLAN-L7-141` が担当する。
+- U-ROADMAP oracle と L6/L7 design trace を追加する。
 
-## Non-Goals
+## 非目標
 
-- This PLAN does not mark UI complete. `PLAN-L7-141` remains draft/deferred.
-- This PLAN does not introduce a DB migration, external API, auth change, or new
-  production runtime.
-- This PLAN does not infer feature packs from `drive`; packs are explicit
-  roadmap semantics.
+- この PLAN は UI complete を示さない。`PLAN-L7-141` は draft/deferred のまま残す。
+- この PLAN は DB migration、external API、auth change、新しい production runtime を導入しない。
+- この PLAN は `drive` から feature pack を推論しない。pack は明示的な roadmap semantics とする。
 
-## Acceptance Criteria
+## 受入条件
 
-- `doctor` emits `l7-feature-pack-roadmap` and fails if any required pack layer
-  is absent.
-- Unknown `span.feature_pack` and duplicate `feature_pack.id` are structural
-  roadmap issues.
-- The real repo has database/service/frontend/ui feature-pack coverage.
-- Typecheck, lint, targeted roadmap tests, doctor, and full tests pass before
-  commit.
+- `doctor` は `l7-feature-pack-roadmap` を出力し、必須 pack layer が欠けていれば失敗する。
+- 未知の `span.feature_pack` と重複した `feature_pack.id` は structural roadmap issue として扱う。
+- 実 repo に database/service/frontend/ui の feature-pack coverage がある。
+- commit 前に typecheck、lint、targeted roadmap tests、doctor、full tests が pass している。

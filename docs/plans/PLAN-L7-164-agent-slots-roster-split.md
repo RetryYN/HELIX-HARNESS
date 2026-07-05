@@ -73,24 +73,22 @@ review_evidence:
         output_digest: "sha256:d1f4edb6684c79b5dcce88d2f6ba14c315b9575e448b9b599fbd04abf8c54172"
 ---
 
-# PLAN-L7-164: agent slots roster resolver split
+# PLAN-L7-164: agent slots roster resolver 分離
 
-## Objective
+## 目的
 
-Reduce the remaining `split-module` pressure in `src/runtime/agent-slots.ts` by
-separating roster capability resolution from slot lifecycle state management.
+`src/runtime/agent-slots.ts` に残る `split-module` 圧を下げるため、roster capability resolution を
+slot lifecycle state management から分離する。
 
-## Scope
+## スコープ
 
-- Move `resolveRosterCapability` and its roster result/input types to
-  `src/runtime/agent-slots-roster.ts`.
-- Preserve the existing `src/runtime/agent-slots.ts` public surface by
-  re-exporting the resolver and types.
-- Keep the existing `tests/agent-slots.test.ts` oracle and point the roster
-  unit directly at the sidecar module.
+- `resolveRosterCapability` と roster result/input types を
+  `src/runtime/agent-slots-roster.ts` へ移動する。
+- 既存の `src/runtime/agent-slots.ts` public surface は、resolver と types を再 export して維持する。
+- 既存の `tests/agent-slots.test.ts` oracle を維持し、roster unit は sidecar module を直接参照する。
 
-## Acceptance Criteria
+## 受入基準
 
-- Agent slot lifecycle behavior remains unchanged.
-- Roster capability resolution keeps exact-match role/capability semantics.
-- `tests/agent-slots.test.ts`, typecheck, lint, DB rebuild, and doctor pass.
+- agent slot lifecycle behavior は変更しない。
+- roster capability resolution は exact-match role/capability semantics を維持する。
+- `tests/agent-slots.test.ts`、typecheck、lint、DB rebuild、doctor が pass する。

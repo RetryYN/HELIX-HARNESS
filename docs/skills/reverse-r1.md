@@ -48,7 +48,7 @@ DB migration files、integration test fixtures を読む。
 
 ## 出力 artifact: observed-contracts
 
-`.ut-tdd/reverse/<plan_id>/R1-observed-contracts.yaml` へ書く。
+`.helix/reverse/<plan_id>/R1-observed-contracts.yaml` へ書く。
 
 ```yaml
 plan_id: <PLAN-REVERSE-NN>
@@ -75,7 +75,7 @@ r1_notes: ""
       （R3 の gap candidates になる）。
 - [ ] contract extraction のために declared scope 外の files を読んだ場合、
       その scope expansion を `r1_notes` に記録している。
-- [ ] `workflow_phase: R2` の状態で `ut-tdd plan lint` が 0 で終了する。
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `workflow_phase: R2` の状態で `helix plan lint` が 0 で終了する。
+- [ ] `helix doctor` exits 0.
 
 in-scope surfaces の contract extraction が incomplete な場合、R2 に進まない。

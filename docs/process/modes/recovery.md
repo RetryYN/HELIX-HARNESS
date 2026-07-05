@@ -143,7 +143,7 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 | forced_stop (強制停止) | **interrupt とは別概念** (命名衝突させない)。forced_stop = ユーザー強制停止 (ESC/Ctrl+C/Stop) = AI やらかしの高 severity signal → Recovery (`agent_runaway` 級、concept §2.6.1)。上記 interrupt は「要件/設計の割込み」、forced_stop は「逸脱 signal」。検出は dangling-turn 推定 (PLAN-L6-04/L7-02、専用 hook 不在 = anthropics/claude-code #9516)。間違え系 (ユーザー誤操作) は Haiku 分類で除外し記録しない |
 | docs/governance/recovery-workflow.md | **統合済 → superseded** (IMP-060、2026-06-04)。トリガー分類 (§2) / 本線 5-step (§2 収束機構) / reopen 可変表 / 適用記録 (§5.1) を本 doc へ移管完了。**本 doc が Recovery の単一正本**。recovery-workflow.md は historical (冒頭 banner) |
 
-翻案注記: source process reference の `cutover_orchestrator` / `stop-hook` は HELIX の `.claude/hooks/agent-guard.ts` + `ut-tdd` CLI hook 体系に対応。`agent_mandatory` / `lock` 機構は HELIX guard + gate として実装予定 (現状 agent-guard のみ有効化済)。
+翻案注記: source process reference の `cutover_orchestrator` / `stop-hook` は HELIX の `.claude/hooks/agent-guard.ts` + `helix` CLI hook 体系に対応。`agent_mandatory` / `lock` 機構は HELIX guard + gate として実装予定 (現状 agent-guard のみ有効化済)。
 
 ---
 

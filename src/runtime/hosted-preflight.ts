@@ -6,7 +6,7 @@ export type AdapterSurface =
   | "codex-hosted-api"
   | "hosted-api"
   | "developer-tool"
-  | "ut-tdd-cli"
+  | "helix-cli"
   | "external-api";
 
 export type HostedPreflightOperation = "edit" | "dry_run";

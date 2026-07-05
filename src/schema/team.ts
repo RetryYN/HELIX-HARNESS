@@ -1,5 +1,5 @@
 /**
- * team 定義 schema (`.ut-tdd/teams/*.yaml`) — Layer-2 オーケストレーション設定 (IMP-050/049)。
+ * team 定義 schema (`.helix/teams/*.yaml`) — Layer-2 オーケストレーション設定 (IMP-050/049)。
  * ADR-001 準拠で TS-native に実装し、zod を single source として
  * 実行時検証 + 型推論を 1 本化する (frontmatter schema と同方針)。
  *

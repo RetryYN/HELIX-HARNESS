@@ -1,5 +1,5 @@
 /**
- * setup — ut-tdd setup solo/team。参加規模を検出 → solo(0-A)/team(0-B) を提案 →
+ * setup — helix setup solo/team。参加規模を検出 → solo(0-A)/team(0-B) を提案 →
  * 人間確認 → 確定 phase を記録 → phase 別の GitHub 設定を出し分け生成。
  *
  * 設計 (①): docs/design/harness/L6-function-design/setup-solo-team.md (PLAN-L6-05 add-design)。
@@ -34,45 +34,45 @@ export const PACK_DISTRIBUTION_REFERENCE = {
   mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
   latestTag: "v0.1.4",
 } as const;
-export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `ut-tdd version-up dry-run --current v0.1.0 --target ${PACK_DISTRIBUTION_REFERENCE.latestTag} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${PACK_DISTRIBUTION_REFERENCE.latestTag} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
 export const CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND = `bun run ${CONSUMER_VERSION_UP_DRY_RUN_COMMAND}`;
 
 export const CONSUMER_CI_RUN_COMMANDS = [
   "bun install --frozen-lockfile",
-  "bun run ut-tdd --version",
-  "bun run ut-tdd setup project --dry-run --json",
-  "bun run ut-tdd status --json",
-  "bun run ut-tdd completion decision-packet --json",
-  "bun run ut-tdd completion review-bundle --json",
+  "bun run helix --version",
+  "bun run helix setup project --dry-run --json",
+  "bun run helix status --json",
+  "bun run helix completion decision-packet --json",
+  "bun run helix completion review-bundle --json",
   CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND,
-  "bun run ut-tdd doctor --profile consumer --json",
-  "bun run ut-tdd rename plan --json",
-  "bun run ut-tdd handover status --json",
-  `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+  "bun run helix doctor --profile consumer --json",
+  "bun run helix rename plan --json",
+  "bun run helix handover status --json",
+  `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   "bun run typecheck",
   "bun run test",
 ] as const;
 
 export const CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS = [
   "bun install --frozen-lockfile",
-  "bun run ut-tdd handover status --json",
-  "bun run ut-tdd completion decision-packet --json",
-  "bun run ut-tdd completion review-bundle --json",
-  "bun run ut-tdd doctor --profile consumer --json",
+  "bun run helix handover status --json",
+  "bun run helix completion decision-packet --json",
+  "bun run helix completion review-bundle --json",
+  "bun run helix doctor --profile consumer --json",
 ] as const;
 
 export const CONSUMER_VSCODE_TASK_COMMANDS = [
-  ["HELIX: status", "bun run ut-tdd status"],
-  ["HELIX: doctor", "bun run ut-tdd doctor --profile consumer"],
-  ["HELIX: completion decision-packet", "bun run ut-tdd completion decision-packet --json"],
-  ["HELIX: completion review-bundle", "bun run ut-tdd completion review-bundle --json"],
+  ["HELIX: status", "bun run helix status"],
+  ["HELIX: doctor", "bun run helix doctor --profile consumer"],
+  ["HELIX: completion decision-packet", "bun run helix completion decision-packet --json"],
+  ["HELIX: completion review-bundle", "bun run helix completion review-bundle --json"],
   ["HELIX: version-up dry-run", CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND],
-  ["HELIX: rename plan", "bun run ut-tdd rename plan --json"],
-  ["HELIX: handover status", "bun run ut-tdd handover status --json"],
-  ["HELIX: setup dry-run", "bun run ut-tdd setup project --dry-run"],
+  ["HELIX: rename plan", "bun run helix rename plan --json"],
+  ["HELIX: handover status", "bun run helix handover status --json"],
+  ["HELIX: setup dry-run", "bun run helix setup project --dry-run"],
   [
     "HELIX: team run dry-run",
-    `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+    `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
 ] as const;
 
@@ -171,57 +171,57 @@ const CONSUMER_CLAUDE_REQUIRED_HOOKS: RequiredHookCommand[] = [
   {
     event: "PreToolUse",
     matcher: "Agent|Task",
-    command: "ut-tdd hook agent-guard",
+    command: "helix hook agent-guard",
     blockOnFailure: true,
   },
   {
     event: "PreToolUse",
     matcher: "Edit|Write|MultiEdit",
-    command: "ut-tdd hook work-guard",
+    command: "helix hook work-guard",
     blockOnFailure: true,
   },
   {
     event: "PreToolUse",
     matcher: "Bash",
-    command: "ut-tdd hook git-command-guard",
+    command: "helix hook git-command-guard",
     blockOnFailure: true,
   },
-  { event: "SessionStart", command: "ut-tdd session start" },
+  { event: "SessionStart", command: "helix session start" },
   {
     event: "PostToolUse",
     matcher: "Edit|Write|MultiEdit|Bash",
-    command: "ut-tdd hook post-tool-use",
+    command: "helix hook post-tool-use",
   },
-  { event: "Stop", command: "ut-tdd session summary" },
-  { event: "SubagentStop", command: "ut-tdd hook subagent-stop" },
+  { event: "Stop", command: "helix session summary" },
+  { event: "SubagentStop", command: "helix hook subagent-stop" },
 ];
 
 const CONSUMER_CODEX_REQUIRED_HOOKS: RequiredHookCommand[] = [
   {
     event: "PreToolUse",
     matcher: "spawn_agent|spawn_agents_on_csv",
-    command: "ut-tdd hook agent-guard",
+    command: "helix hook agent-guard",
     blockOnFailure: true,
   },
   {
     event: "PreToolUse",
     matcher: "apply_patch|write_file",
-    command: "ut-tdd hook work-guard",
+    command: "helix hook work-guard",
     blockOnFailure: true,
   },
   {
     event: "PreToolUse",
     matcher: "exec_command|local_shell",
-    command: "ut-tdd hook git-command-guard",
+    command: "helix hook git-command-guard",
     blockOnFailure: true,
   },
-  { event: "SessionStart", command: "ut-tdd session start" },
+  { event: "SessionStart", command: "helix session start" },
   {
     event: "PostToolUse",
     matcher: "apply_patch|write_file|exec_command|local_shell",
-    command: "ut-tdd hook post-tool-use",
+    command: "helix hook post-tool-use",
   },
-  { event: "Stop", command: "ut-tdd session summary" },
+  { event: "Stop", command: "helix session summary" },
 ];
 
 function hookConfigMatchesContract(text: string, requiredHooks: RequiredHookCommand[]): boolean {
@@ -654,7 +654,7 @@ export interface SetupState {
 
 export interface HelixProjectSetupState {
   schemaVersion: "helix-project-setup-state.v1";
-  setupCommand: "ut-tdd setup project";
+  setupCommand: "helix setup project";
   phase: SetupPhase;
   decidedAt: string;
   decidedBy: "flag" | "confirm" | "fallback";
@@ -715,7 +715,7 @@ export interface HelixProjectSkipSubDocRecord {
 
 export interface HelixProjectSetupResult extends SetupResult {
   schemaVersion: "helix-project-setup.v1";
-  setupCommand: "ut-tdd setup project";
+  setupCommand: "helix setup project";
   futureCommand: "helix setup project";
   githubPlan: HelixProjectGithubPlan;
   doctorBaseline: HelixProjectDoctorBaseline;
@@ -744,24 +744,24 @@ export interface HelixProjectSetupResult extends SetupResult {
     teamsPath: string;
   };
   identifierTransition: {
-    currentCli: "ut-tdd";
-    currentStateDir: ".ut-tdd";
-    currentArea: "area=harness";
+    currentCli: "helix";
+    currentStateDir: ".helix";
+    currentArea: "area=helix";
     targetCli: "helix";
     targetStateDir: ".helix";
     targetArea: "area=helix";
     status: "blocked_pending_cutover_approval";
     mustNotApply: true;
-    cutoverPlanCommand: "ut-tdd rename plan --json";
+    cutoverPlanCommand: "helix rename plan --json";
     reason: string;
   };
   commandAvailability: {
-    currentCommand: "ut-tdd setup project";
+    currentCommand: "helix setup project";
     currentCommandAvailable: boolean;
     futureCommand: "helix setup project";
     futureCommandAvailable: false;
     enablementStatus: "blocked_pending_cutover_approval";
-    enablementPacketCommand: "ut-tdd rename plan --json";
+    enablementPacketCommand: "helix rename plan --json";
     reason: string;
   };
   nextCommands: string[];
@@ -787,21 +787,21 @@ export interface HelixProjectDoctorBaseline {
   schemaVersion: "helix-project-doctor-baseline.v1";
   planOnly: true;
   baselineCommands: [
-    "ut-tdd setup project --dry-run",
-    "ut-tdd status --json",
-    "ut-tdd setup project --dry-run --json",
-    "ut-tdd completion decision-packet --json",
-    "ut-tdd completion review-bundle --json",
-    "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-    "ut-tdd doctor --profile consumer",
-    "ut-tdd rename plan --json",
-    "ut-tdd handover status --json",
-    "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+    "helix setup project --dry-run",
+    "helix status --json",
+    "helix setup project --dry-run --json",
+    "helix completion decision-packet --json",
+    "helix completion review-bundle --json",
+    "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "helix doctor --profile consumer",
+    "helix rename plan --json",
+    "helix handover status --json",
+    "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
   ];
-  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence", ".ut-tdd/teams"];
+  stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"];
   completionClaimAllowed: false;
   nextRouteSource: "postSetupWorkflow.nextRoute";
-  evidencePath: ".ut-tdd/evidence";
+  evidencePath: ".helix/evidence";
 }
 
 export interface HelixProjectPostSetupWorkflow {
@@ -859,11 +859,11 @@ export interface ConsumerReadinessPlan {
     scope: "consumer_setup_readiness_not_whole_program_completion";
     progressPercent: 90;
     completionClaimAllowed: false;
-    objectiveAuditCommand: "ut-tdd status --json";
-    completionPacketCommand: "ut-tdd completion decision-packet --json";
-    completionReviewBundleCommand: "ut-tdd completion review-bundle --json";
-    versionUpPacketCommand: "ut-tdd version-up activation-packet --json";
-    cutoverPacketCommand: "ut-tdd rename plan --json";
+    objectiveAuditCommand: "helix status --json";
+    completionPacketCommand: "helix completion decision-packet --json";
+    completionReviewBundleCommand: "helix completion review-bundle --json";
+    versionUpPacketCommand: "helix version-up activation-packet --json";
+    cutoverPacketCommand: "helix rename plan --json";
     distributionReference: {
       repo: "RetryYN/HELIX-HARNESS-OS";
       mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0";
@@ -876,7 +876,7 @@ export interface ConsumerReadinessPlan {
       requestedTagMatchesPackageVersion: boolean;
       packLatestTag: "v0.1.4";
       packLatestRequiresVersionUpActivation: true;
-      versionUpPacketCommand: "ut-tdd version-up activation-packet --json";
+      versionUpPacketCommand: "helix version-up activation-packet --json";
       adoptionDecision: string;
     };
     reason: string;
@@ -888,7 +888,7 @@ export interface ConsumerReadinessPlan {
     monorepo: boolean;
   };
   cliResolution: {
-    command: "ut-tdd";
+    command: "helix";
     checkedFrom: string;
     resolved: boolean;
     strategy: "path" | "package-script" | "missing";
@@ -906,15 +906,15 @@ export interface ConsumerReadinessPlan {
       secrets: "not-required";
     };
     packageResolution: {
-      command: "bun run ut-tdd --version";
+      command: "bun run helix --version";
       requiredBefore: string[];
       remediation: string;
     };
     packagePreflight: {
       installCommand: "bun install --frozen-lockfile";
       lockfiles: ["bun.lock", "bun.lockb"];
-      requiredScripts: ["ut-tdd", "typecheck", "test"];
-      scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"];
+      requiredScripts: ["helix", "typecheck", "test"];
+      scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"];
       source: "Bun install / lockfile / package scripts official documentation";
       sourceUrl: "https://bun.com/docs/pm/cli/install";
       lockfileSourceUrl: "https://bun.com/docs/pm/lockfile";
@@ -994,13 +994,13 @@ export interface SetupDeps {
 }
 
 const CODEOWNERS_TARGET = join(".github", "CODEOWNERS");
-const STATE_PATH = join(".ut-tdd", "state", "setup.json");
-const PROJECT_SETUP_STATE_PATH = join(".ut-tdd", "state", "project-setup.json");
+const STATE_PATH = join(".helix", "state", "setup.json");
+const PROJECT_SETUP_STATE_PATH = join(".helix", "state", "project-setup.json");
 const PROJECT_PACKAGE_JSON = "package.json";
 const PROJECT_BUN_LOCK = "bun.lock";
 const BP_SCRIPT = join("scripts", "setup-branch-protection.sh");
-const MANAGED_START = "<!-- UT-TDD:managed:start -->";
-const MANAGED_END = "<!-- UT-TDD:managed:end -->";
+const MANAGED_START = "<!-- HELIX:managed:start -->";
+const MANAGED_END = "<!-- HELIX:managed:end -->";
 const MERGEABLE_ADAPTER_DOCS = new Set(["AGENTS.md", "CLAUDE.md", join(".claude", "CLAUDE.md")]);
 const MERGEABLE_PACKAGE_JSON = new Set([PROJECT_PACKAGE_JSON]);
 const COMMITLINT_DOTFILE = "commitlint.config.js";
@@ -1035,7 +1035,7 @@ export function packageJsonDeclaresScript(packageJson: string | null, scriptName
 }
 
 export function packageJsonDeclaresUtTddScript(packageJson: string | null): boolean {
-  return packageJsonDeclaresScript(packageJson, "ut-tdd");
+  return packageJsonDeclaresScript(packageJson, "helix");
 }
 
 function mergeConsumerPackageJson(existing: string | null, scaffold: string): string | null {
@@ -1062,16 +1062,16 @@ function mergeConsumerPackageJson(existing: string | null, scaffold: string): st
         ? (base.devDependencies as Record<string, unknown>)
         : {};
     if (
-      typeof devDependencies["ut-tdd"] !== "string" &&
+      typeof devDependencies["helix"] !== "string" &&
       !(
         base.dependencies &&
         typeof base.dependencies === "object" &&
         !Array.isArray(base.dependencies) &&
-        typeof (base.dependencies as Record<string, unknown>)["ut-tdd"] === "string"
+        typeof (base.dependencies as Record<string, unknown>)["helix"] === "string"
       )
     ) {
-      devDependencies["ut-tdd"] =
-        wanted.devDependencies?.["ut-tdd"] ?? LOCAL_DISTRIBUTION_PACKAGE_SPEC;
+      devDependencies["helix"] =
+        wanted.devDependencies?.["helix"] ?? LOCAL_DISTRIBUTION_PACKAGE_SPEC;
     }
     if (typeof devDependencies.typescript !== "string") {
       devDependencies.typescript =
@@ -1090,13 +1090,13 @@ const CLEAN_REQUIRED_PATHS = [
   "package.json",
   "src/cli.ts",
   "src/setup/index.ts",
-  "docs/templates/project/.ut-tdd/teams/default-hybrid.yaml",
+  "docs/templates/project/.helix/teams/default-hybrid.yaml",
   ...COMMON_FILES.filter((entry) => entry.template.startsWith("adapter/")).map(
     (entry) => `docs/templates/${entry.template}`,
   ),
 ];
 const CLEAN_DENY_PREFIXES = [
-  ".ut-tdd/",
+  ".helix/",
   "docs/plans/",
   "docs/design/harness/",
   "docs/test-design/",
@@ -1168,21 +1168,21 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
   schemaVersion: "helix-project-doctor-baseline.v1",
   planOnly: true,
   baselineCommands: [
-    "ut-tdd setup project --dry-run",
-    "ut-tdd status --json",
-    "ut-tdd setup project --dry-run --json",
-    "ut-tdd completion decision-packet --json",
-    "ut-tdd completion review-bundle --json",
-    "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-    "ut-tdd doctor --profile consumer",
-    "ut-tdd rename plan --json",
-    "ut-tdd handover status --json",
-    `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+    "helix setup project --dry-run",
+    "helix status --json",
+    "helix setup project --dry-run --json",
+    "helix completion decision-packet --json",
+    "helix completion review-bundle --json",
+    "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "helix doctor --profile consumer",
+    "helix rename plan --json",
+    "helix handover status --json",
+    `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
-  stateBaselinePaths: [".ut-tdd/memory", ".ut-tdd/handover", ".ut-tdd/evidence", ".ut-tdd/teams"],
+  stateBaselinePaths: [".helix/memory", ".helix/handover", ".helix/evidence", ".helix/teams"],
   completionClaimAllowed: false,
   nextRouteSource: "postSetupWorkflow.nextRoute",
-  evidencePath: ".ut-tdd/evidence",
+  evidencePath: ".helix/evidence",
 };
 
 const CONSUMER_SETUP_SKIP_SUB_DOCS: HelixProjectSkipSubDocRecord[] = [
@@ -1207,7 +1207,7 @@ const CONSUMER_SETUP_SKIP_SUB_DOCS: HelixProjectSkipSubDocRecord[] = [
     path: "docs/test-design",
     reason: "dogfood_sub_doc_not_required_for_consumer_setup",
     nextRoute: "consumer_doctor_profile",
-    evidence: "postSetupWorkflow.verificationCommands includes ut-tdd doctor --profile consumer",
+    evidence: "postSetupWorkflow.verificationCommands includes helix doctor --profile consumer",
     followUpGate: "consumer_doctor",
   },
 ];
@@ -1368,17 +1368,17 @@ function templateNameFor(targetPath: string): string {
   if (targetPath === join(".claude", "settings.json")) return "adapter/.claude/settings.json";
   if (targetPath === join(".vscode", "tasks.json")) return "project/.vscode/tasks.json";
   if (targetPath === join(".vscode", "settings.json")) return "project/.vscode/settings.json";
-  if (targetPath === join(".ut-tdd", "memory", ".gitkeep")) {
-    return "project/.ut-tdd/memory/.gitkeep";
+  if (targetPath === join(".helix", "memory", ".gitkeep")) {
+    return "project/.helix/memory/.gitkeep";
   }
-  if (targetPath === join(".ut-tdd", "handover", ".gitkeep")) {
-    return "project/.ut-tdd/handover/.gitkeep";
+  if (targetPath === join(".helix", "handover", ".gitkeep")) {
+    return "project/.helix/handover/.gitkeep";
   }
-  if (targetPath === join(".ut-tdd", "evidence", ".gitkeep")) {
-    return "project/.ut-tdd/evidence/.gitkeep";
+  if (targetPath === join(".helix", "evidence", ".gitkeep")) {
+    return "project/.helix/evidence/.gitkeep";
   }
-  if (targetPath === join(".ut-tdd", "teams", "default-hybrid.yaml")) {
-    return "project/.ut-tdd/teams/default-hybrid.yaml";
+  if (targetPath === join(".helix", "teams", "default-hybrid.yaml")) {
+    return "project/.helix/teams/default-hybrid.yaml";
   }
   if (targetPath.startsWith(`${join(".claude", "agents")}${sep}`)) {
     return `adapter/.claude/agents/${basename(targetPath)}`;
@@ -1534,13 +1534,13 @@ export function buildConsumerReadinessPlan(input: {
     source: input.distributionPackageSurface?.source ?? "not-supplied",
     tag: input.distributionPackageSurface?.tag ?? tag,
     requiredCommands: [
-      "bun run ut-tdd setup project --dry-run --json",
-      "bun run ut-tdd status --json",
-      "bun run ut-tdd completion decision-packet --json",
-      "bun run ut-tdd completion review-bundle --json",
-      "bun run ut-tdd doctor --profile consumer --json",
-      "bun run ut-tdd rename plan --json",
-      `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      "bun run helix setup project --dry-run --json",
+      "bun run helix status --json",
+      "bun run helix completion decision-packet --json",
+      "bun run helix completion review-bundle --json",
+      "bun run helix doctor --profile consumer --json",
+      "bun run helix rename plan --json",
+      `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     ],
     ok: input.distributionPackageSurface?.ok ?? false,
     evidence:
@@ -1581,20 +1581,20 @@ export function buildConsumerReadinessPlan(input: {
         : "GitHub setup 用に gh を install する。local setup は継続可能",
     },
     {
-      name: "ut-tdd-cli",
+      name: "helix-cli",
       ok: hookCliOk,
       message: cliResolvedByPath
-        ? "projected hook 用の `ut-tdd` が PATH 上で解決できる"
+        ? "projected hook 用の `helix` が PATH 上で解決できる"
         : cliResolvedByPackageScript
-          ? "consumer packageRoot の `bun run ut-tdd` script は CI fallback として利用可能だが、projected hook / agent 用の bare `ut-tdd` は PATH 上で解決できない"
-          : "setup 前に harness package で `bun link`、consumer repo で `bun link ut-tdd` または package.json scripts.ut-tdd を設定する",
+          ? "consumer packageRoot の `bun run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない"
+          : "setup 前に harness package で `bun link`、consumer repo で `bun link helix` または package.json scripts.helix を設定する",
     },
     {
-      name: "ut-tdd-package-script",
+      name: "helix-package-script",
       ok: cliResolvedByPackageScript,
       message: cliResolvedByPackageScript
-        ? "consumer CI / VSCode task fallback 用の `bun run ut-tdd` script が packageRoot で解決できる"
-        : "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.ut-tdd を用意する",
+        ? "consumer CI / VSCode task fallback 用の `bun run helix` script が packageRoot で解決できる"
+        : "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.helix を用意する",
     },
     {
       name: "bun-lockfile",
@@ -1628,7 +1628,7 @@ export function buildConsumerReadinessPlan(input: {
       name: "projected-consumer-artifacts",
       ok: artifactReadiness.ok,
       message: artifactReadiness.ok
-        ? "projected adapter / VSCode task / .ut-tdd baseline / default-hybrid team が初回 HELIX 稼働契約を満たす"
+        ? "projected adapter / VSCode task / .helix baseline / default-hybrid team が初回 HELIX 稼働契約を満たす"
         : "projected consumer artifacts が不足または意味ずれしている。artifactReadiness.checks を修正してから setup を再実行する",
     },
     {
@@ -1659,11 +1659,11 @@ export function buildConsumerReadinessPlan(input: {
       scope: "consumer_setup_readiness_not_whole_program_completion",
       progressPercent: 90,
       completionClaimAllowed: false,
-      objectiveAuditCommand: "ut-tdd status --json",
-      completionPacketCommand: "ut-tdd completion decision-packet --json",
-      completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
-      versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
-      cutoverPacketCommand: "ut-tdd rename plan --json",
+      objectiveAuditCommand: "helix status --json",
+      completionPacketCommand: "helix completion decision-packet --json",
+      completionReviewBundleCommand: "helix completion review-bundle --json",
+      versionUpPacketCommand: "helix version-up activation-packet --json",
+      cutoverPacketCommand: "helix rename plan --json",
       distributionReference: PACK_DISTRIBUTION_REFERENCE,
       versionBinding: {
         localPackageVersion: packageVersion,
@@ -1672,7 +1672,7 @@ export function buildConsumerReadinessPlan(input: {
         requestedTagMatchesPackageVersion,
         packLatestTag: PACK_DISTRIBUTION_REFERENCE.latestTag,
         packLatestRequiresVersionUpActivation: true,
-        versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
+        versionUpPacketCommand: "helix version-up activation-packet --json",
         adoptionDecision:
           "Pack latest tag is a reference source only; adopting it over the local package tag requires a recorded version-up activation decision",
       },
@@ -1687,7 +1687,7 @@ export function buildConsumerReadinessPlan(input: {
         normalizeDistributionPath(packageRoot) !== normalizeDistributionPath(input.repoRoot),
     },
     cliResolution: {
-      command: "ut-tdd",
+      command: "helix",
       checkedFrom: packageRoot,
       resolved: hookCliOk,
       strategy: cliResolvedByPath
@@ -1698,14 +1698,14 @@ export function buildConsumerReadinessPlan(input: {
       bareCommandResolved: cliResolvedByPath,
       packageScriptAvailable: cliResolvedByPackageScript,
       evidence: cliResolvedByPath
-        ? "`ut-tdd --version` resolved for consumer readiness"
+        ? "`helix --version` resolved for consumer readiness"
         : cliResolvedByPackageScript
-          ? "`bun run ut-tdd --version` is available from consumer packageRoot scripts, but bare `ut-tdd --version` did not resolve for hooks"
-          : "`ut-tdd --version` and consumer packageRoot scripts.ut-tdd did not resolve for consumer readiness",
+          ? "`bun run helix --version` is available from consumer packageRoot scripts, but bare `helix --version` did not resolve for hooks"
+          : "`helix --version` and consumer packageRoot scripts.helix did not resolve for consumer readiness",
       fallbackCommands: [
-        "bun run ut-tdd --version",
-        "bun link ut-tdd",
-        "bun run ut-tdd setup project --dry-run --json",
+        "bun run helix --version",
+        "bun link helix",
+        "bun run helix setup project --dry-run --json",
       ],
     },
     ci: {
@@ -1717,15 +1717,15 @@ export function buildConsumerReadinessPlan(input: {
         secrets: "not-required",
       },
       packageResolution: {
-        command: "bun run ut-tdd --version",
+        command: "bun run helix --version",
         requiredBefore: [
-          "bun run ut-tdd setup project --dry-run --json",
-          "bun run ut-tdd completion decision-packet --json",
-          "bun run ut-tdd completion review-bundle --json",
-          "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-          "bun run ut-tdd doctor --profile consumer --json",
-          "bun run ut-tdd rename plan --json",
-          `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+          "bun run helix setup project --dry-run --json",
+          "bun run helix completion decision-packet --json",
+          "bun run helix completion review-bundle --json",
+          "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "bun run helix doctor --profile consumer --json",
+          "bun run helix rename plan --json",
+          `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         ],
         remediation:
           "consumer package.json に HELIX harness package/bin を解決できる dependency または approved link/install route を追加する",
@@ -1733,8 +1733,8 @@ export function buildConsumerReadinessPlan(input: {
       packagePreflight: {
         installCommand: "bun install --frozen-lockfile",
         lockfiles: ["bun.lock", "bun.lockb"],
-        requiredScripts: ["ut-tdd", "typecheck", "test"],
-        scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+        requiredScripts: ["helix", "typecheck", "test"],
+        scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
         source: "Bun install / lockfile / package scripts official documentation",
         sourceUrl: "https://bun.com/docs/pm/cli/install",
         lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
@@ -1745,7 +1745,7 @@ export function buildConsumerReadinessPlan(input: {
         sourceStatusDelta:
           "changed; consumer readiness now records Bun frozen-lockfile, lockfile, and package-script semantics as structured CI preflight metadata",
         adoptionDecision:
-          "consumer CI は `bun.lock` または `bun.lockb` と package.json scripts.ut-tdd/typecheck/test が揃う場合だけ再現可能な package/bin smoke として扱う",
+          "consumer CI は `bun.lock` または `bun.lockb` と package.json scripts.helix/typecheck/test が揃う場合だけ再現可能な package/bin smoke として扱う",
         workflowRouteImpact:
           "missing lockfile or required package script routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
       },
@@ -1754,16 +1754,16 @@ export function buildConsumerReadinessPlan(input: {
         "actions/checkout@v4 with persist-credentials=false",
         "oven-sh/setup-bun@v2",
         "bun install --frozen-lockfile",
-        "bun run ut-tdd --version",
-        "bun run ut-tdd setup project --dry-run --json",
-        "bun run ut-tdd status --json",
-        "bun run ut-tdd completion decision-packet --json",
-        "bun run ut-tdd completion review-bundle --json",
-        "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "bun run ut-tdd doctor --profile consumer --json",
-        "bun run ut-tdd rename plan --json",
-        "bun run ut-tdd handover status --json",
-        `bun run ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+        "bun run helix --version",
+        "bun run helix setup project --dry-run --json",
+        "bun run helix status --json",
+        "bun run helix completion decision-packet --json",
+        "bun run helix completion review-bundle --json",
+        "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "bun run helix doctor --profile consumer --json",
+        "bun run helix rename plan --json",
+        "bun run helix handover status --json",
+        `bun run helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         "bun run typecheck",
         "bun run test",
       ],
@@ -1772,13 +1772,13 @@ export function buildConsumerReadinessPlan(input: {
     rollback: {
       managedPaths: [
         ...COMMON_FILES.map((entry) => normalizeDistributionPath(entry.file.path)),
-        ".ut-tdd/state/setup.json",
+        ".helix/state/setup.json",
       ],
       backupRequired: true,
       commands: [
         `git switch ${tag}`,
-        "ut-tdd setup project --dry-run --json",
-        "ut-tdd setup project --solo",
+        "helix setup project --dry-run --json",
+        "helix setup project --solo",
       ],
     },
     contracts: {
@@ -1787,7 +1787,7 @@ export function buildConsumerReadinessPlan(input: {
       stable: [
         "CLI surface",
         "adapter managed markers",
-        ".ut-tdd state schema",
+        ".helix state schema",
         "Claude/Codex adapter hook templates",
         "Claude subagent and slash-command templates",
         "hook event schema",
@@ -1822,9 +1822,9 @@ function buildConsumerArtifactReadinessPlan(
   const branchProtectionScriptPath = BP_SCRIPT;
   const teamPath = CONSUMER_TEAM_DEFINITION_PATH;
   const baselinePaths = [
-    join(".ut-tdd", "memory", ".gitkeep"),
-    join(".ut-tdd", "handover", ".gitkeep"),
-    join(".ut-tdd", "evidence", ".gitkeep"),
+    join(".helix", "memory", ".gitkeep"),
+    join(".helix", "handover", ".gitkeep"),
+    join(".helix", "evidence", ".gitkeep"),
     teamPath,
   ];
   const ag = content("AGENTS.md");
@@ -1860,25 +1860,25 @@ function buildConsumerArtifactReadinessPlan(
     text.includes(MANAGED_START) &&
     text.includes(MANAGED_END) &&
     text.includes("HELIX") &&
-    text.includes("ut-tdd completion decision-packet --json") &&
-    text.includes("ut-tdd completion review-bundle --json") &&
+    text.includes("helix completion decision-packet --json") &&
+    text.includes("helix completion review-bundle --json") &&
     text.includes(
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     ) &&
-    text.includes("ut-tdd doctor --profile consumer") &&
-    text.includes("ut-tdd rename plan --json") &&
+    text.includes("helix doctor --profile consumer") &&
+    text.includes("helix rename plan --json") &&
     /[ぁ-んァ-ヶ一-龠]/.test(text);
   const claudeAgentSurfacesOk = claudeAgentPaths.every((path) => {
     const text = content(path);
     return (
       hasPath(path) &&
       text.includes("consumer-safe な HELIX subagent") &&
-      text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd completion review-bundle --json") &&
+      text.includes("helix completion decision-packet --json") &&
+      text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       ) &&
-      text.includes("ut-tdd doctor --profile consumer") &&
+      text.includes("helix doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
@@ -1888,13 +1888,13 @@ function buildConsumerArtifactReadinessPlan(
     return (
       hasPath(path) &&
       text.includes("HELIX") &&
-      text.includes("ut-tdd status --json") &&
-      text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd completion review-bundle --json") &&
+      text.includes("helix status --json") &&
+      text.includes("helix completion decision-packet --json") &&
+      text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       ) &&
-      text.includes("ut-tdd doctor --profile consumer") &&
+      text.includes("helix doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
   });
@@ -1908,9 +1908,9 @@ function buildConsumerArtifactReadinessPlan(
         hasPath("AGENTS.md") &&
         ag.includes(MANAGED_START) &&
         ag.includes(MANAGED_END) &&
-        ag.includes("ut-tdd doctor --profile consumer") &&
+        ag.includes("helix doctor --profile consumer") &&
         ag.includes(
-          `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+          `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
         ),
       message:
         "AGENTS managed block must point to consumer doctor and the distributed default-hybrid team dry-run",
@@ -2012,11 +2012,11 @@ function buildConsumerArtifactReadinessPlan(
         ]
       : []),
     {
-      name: "ut-tdd-baseline-paths-projected",
-      path: ".ut-tdd",
+      name: "helix-baseline-paths-projected",
+      path: ".helix",
       ok: baselinePaths.every(hasPath),
       message:
-        "setup must project .ut-tdd memory, handover, evidence, and default-hybrid team baselines",
+        "setup must project .helix memory, handover, evidence, and default-hybrid team baselines",
       evidence: baselinePaths.join(", "),
     },
     {
@@ -2032,7 +2032,7 @@ function buildConsumerArtifactReadinessPlan(
         team.includes("serialize_after: se"),
       message:
         "default-hybrid team must keep Codex worker and TL reviewer roles separate for dry-run verification",
-      evidence: ".ut-tdd/teams/default-hybrid.yaml role/engine/serialization contract",
+      evidence: ".helix/teams/default-hybrid.yaml role/engine/serialization contract",
     },
   ];
   return { ok: checks.every((check) => check.ok), checks };
@@ -2154,10 +2154,10 @@ function buildHelixSetupConsumerReadiness(deps: SetupDeps, plan: SetupPlan): Con
     bunVersion: deps.bunVersion?.() ?? null,
     hasGit: commandAvailable("git"),
     hasGh: commandAvailable("gh"),
-    hasUtTddCli: commandAvailable("ut-tdd"),
+    hasUtTddCli: commandAvailable("helix"),
     hasUtTddPackageScript: packageJsonDeclaresScript(
       deps.readText(join(packageRoot, "package.json")),
-      "ut-tdd",
+      "helix",
     ),
     hasTypecheckPackageScript: packageJsonDeclaresScript(
       deps.readText(join(packageRoot, "package.json")),
@@ -2193,7 +2193,7 @@ function probeDistributionPackageSurface(
       latestObservedStatus: "not observed",
     };
   }
-  if (process.env.UT_TDD_SETUP_SURFACE_PROBE === "1") {
+  if (process.env.HELIX_SETUP_SURFACE_PROBE === "1") {
     return {
       checked: false,
       ok: false,
@@ -2203,30 +2203,29 @@ function probeDistributionPackageSurface(
       latestObservedStatus: "nested probe suppressed",
     };
   }
-  const previousProbe = process.env.UT_TDD_SETUP_SURFACE_PROBE;
-  process.env.UT_TDD_SETUP_SURFACE_PROBE = "1";
+  const previousProbe = process.env.HELIX_SETUP_SURFACE_PROBE;
+  process.env.HELIX_SETUP_SURFACE_PROBE = "1";
   let result: { status: number; stderr: string; stdout: string };
   try {
-    result = deps.runCommand(packageRoot, "bun", ["run", "ut-tdd", "setup", "project", "--help"]);
+    result = deps.runCommand(packageRoot, "bun", ["run", "helix", "setup", "project", "--help"]);
   } finally {
-    if (previousProbe === undefined) delete process.env.UT_TDD_SETUP_SURFACE_PROBE;
-    else process.env.UT_TDD_SETUP_SURFACE_PROBE = previousProbe;
+    if (previousProbe === undefined) delete process.env.HELIX_SETUP_SURFACE_PROBE;
+    else process.env.HELIX_SETUP_SURFACE_PROBE = previousProbe;
   }
   const output = `${result.stdout}\n${result.stderr}`.trim();
-  const surfaceOk = result.status === 0 && output.includes("--json") && output.includes("--dry-run");
+  const surfaceOk =
+    result.status === 0 && output.includes("--json") && output.includes("--dry-run");
   return {
     checked: true,
     ok: surfaceOk,
     source: "package-script-probe",
     tag: `v${LOCAL_DISTRIBUTION_PACKAGE_VERSION}`,
-    evidence:
-      surfaceOk
-        ? "`bun run ut-tdd setup project --help` exposed --dry-run and --json from consumer packageRoot"
-        : `\`bun run ut-tdd setup project --help\` did not expose required setup surface (status ${result.status}): ${output.slice(0, 240)}`,
-    latestObservedStatus:
-      surfaceOk
-        ? "package-local generated CI setup command exposes dry-run JSON surface"
-        : "package-local generated CI setup command surface failed",
+    evidence: surfaceOk
+      ? "`bun run helix setup project --help` exposed --dry-run and --json from consumer packageRoot"
+      : `\`bun run helix setup project --help\` did not expose required setup surface (status ${result.status}): ${output.slice(0, 240)}`,
+    latestObservedStatus: surfaceOk
+      ? "package-local generated CI setup command exposes dry-run JSON surface"
+      : "package-local generated CI setup command surface failed",
   };
 }
 
@@ -2259,7 +2258,8 @@ function bootstrapProjectPackageLockfile(input: {
   const result = input.deps.runCommand(packageRoot, "bun", ["install", "--lockfile-only"]);
   if (result.status !== 0) return [];
   if (input.deps.readText(bunLockPath) !== null) return [repoRelativePath(input.deps, bunLockPath)];
-  if (input.deps.readText(bunLockbPath) !== null) return [repoRelativePath(input.deps, bunLockbPath)];
+  if (input.deps.readText(bunLockbPath) !== null)
+    return [repoRelativePath(input.deps, bunLockbPath)];
   return [];
 }
 
@@ -2282,25 +2282,25 @@ function buildHelixProjectPostSetupWorkflow(input: {
     nextRoute === "review_import_report"
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
-          "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd completion review-bundle --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          "import report 解消後に `helix setup project --dry-run` を再実行する",
+          `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix handover status --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
-            "readiness check が green になった後に `ut-tdd setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`ut-tdd status --json\`、\`ut-tdd setup project --dry-run --json\`、\`ut-tdd completion decision-packet --json\`、\`ut-tdd completion review-bundle --json\`、\`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`ut-tdd doctor --profile consumer\`、\`ut-tdd rename plan --json\`、\`ut-tdd handover status --json\`、\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            "readiness check が green になった後に `helix setup project --dry-run` を再実行する",
+            `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix handover status --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
-            "`ut-tdd status --json` を実行する",
-            "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
-            "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
-            "`ut-tdd completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
-            "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
-            "`ut-tdd doctor --profile consumer` を実行する",
-            "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
-            "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
-            `\`ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を dry-run し、worker/reviewer の provider 分離を確認する`,
+            "`helix status --json` を実行する",
+            "`helix setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
+            "`helix completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
+            "`helix completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
+            "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
+            "`helix doctor --profile consumer` を実行する",
+            "`helix rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
+            "`helix handover status --json` を実行し、active handover または current PLAN route から開始する",
+            `\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を dry-run し、worker/reviewer の provider 分離を確認する`,
           ];
   const blockedUntil = [
     ...(input.importReport.requiresReview ? ["importReport.requiresReview=false"] : []),
@@ -2337,7 +2337,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
   return [
     {
       phase: "setup-dry-run",
-      command: "ut-tdd setup project --dry-run",
+      command: "helix setup project --dry-run",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2383,7 +2383,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "status-frontier",
-      command: "ut-tdd status --json",
+      command: "helix status --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2405,7 +2405,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "github-ci-safety",
-      command: "ut-tdd setup project --dry-run --json",
+      command: "helix setup project --dry-run --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2427,7 +2427,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "completion-decision-packet",
-      command: "ut-tdd completion decision-packet --json",
+      command: "helix completion decision-packet --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2449,7 +2449,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "completion-review-bundle",
-      command: "ut-tdd completion review-bundle --json",
+      command: "helix completion review-bundle --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2472,7 +2472,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "version-up-dry-run",
       command:
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2494,7 +2494,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "consumer-doctor",
-      command: "ut-tdd doctor --profile consumer",
+      command: "helix doctor --profile consumer",
       writePolicy: "no-write",
       availability: "post-apply-or-projected",
       requiresMaterializedPaths: [
@@ -2503,13 +2503,13 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
         ".claude/CLAUDE.md",
         ".vscode/tasks.json",
         ".vscode/settings.json",
-        ".ut-tdd/memory",
-        ".ut-tdd/handover",
-        ".ut-tdd/evidence",
-        ".ut-tdd/teams",
+        ".helix/memory",
+        ".helix/handover",
+        ".helix/evidence",
+        ".helix/teams",
       ],
       expected:
-        "passes the consumer profile against projected adapters, VSCode tasks, and .ut-tdd baselines without requiring dogfood docs",
+        "passes the consumer profile against projected adapters, VSCode tasks, and .helix baselines without requiring dogfood docs",
       evidence: "consumer doctor output with profile=consumer",
       source: "VS Code Workspace Trust and consumer adapter safety contract",
       sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
@@ -2525,7 +2525,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "identifier-cutover-packet",
-      command: "ut-tdd rename plan --json",
+      command: "helix rename plan --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2537,7 +2537,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       sourceCheckedAt: "2026-07-02",
       latestOfficialStatus: "local PLAN-M-02 cutover packet contract current at HEAD",
       sourceStatusDelta:
-        "none; setup remains on ut-tdd/.ut-tdd until cutover approval records bind the current snapshot",
+        "none; setup remains on helix/.helix until cutover approval records bind the current snapshot",
       adoptionDecision:
         "setup 初回検証は rename plan の blocked packet を保存し、HELIX alias/state がまだ有効でないことを証跡化する",
       adoptionDecisionDelta:
@@ -2547,7 +2547,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "handover-route",
-      command: "ut-tdd handover status --json",
+      command: "helix handover status --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],
@@ -2569,7 +2569,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     },
     {
       phase: "team-run-dry-run",
-      command: `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      command: `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
       writePolicy: "no-write",
       availability: "post-apply-or-projected",
       requiresMaterializedPaths: [CONSUMER_TEAM_DEFINITION_PATH],
@@ -2691,7 +2691,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     recordHelixProjectSetupState(
       {
         schemaVersion: "helix-project-setup-state.v1",
-        setupCommand: "ut-tdd setup project",
+        setupCommand: "helix setup project",
         phase,
         decidedAt,
         decidedBy,
@@ -2708,10 +2708,10 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
   }
   const branchProtection = helixProjectBranchProtectionDecision(args);
   const currentCommandAvailable =
-    consumerReadiness.checks.find((check) => check.name === "ut-tdd-cli")?.ok ?? false;
+    consumerReadiness.checks.find((check) => check.name === "helix-cli")?.ok ?? false;
   return {
     schemaVersion: "helix-project-setup.v1",
-    setupCommand: "ut-tdd setup project",
+    setupCommand: "helix setup project",
     futureCommand: "helix setup project",
     githubPlan: PROJECT_GITHUB_PLAN,
     doctorBaseline: PROJECT_DOCTOR_BASELINE,
@@ -2737,31 +2737,31 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
     },
     baseline: {
       statePath: STATE_PATH,
-      memoryPath: join(".ut-tdd", "memory"),
-      handoverPath: join(".ut-tdd", "handover"),
-      evidencePath: join(".ut-tdd", "evidence"),
-      teamsPath: join(".ut-tdd", "teams"),
+      memoryPath: join(".helix", "memory"),
+      handoverPath: join(".helix", "handover"),
+      evidencePath: join(".helix", "evidence"),
+      teamsPath: join(".helix", "teams"),
     },
     identifierTransition: {
-      currentCli: "ut-tdd",
-      currentStateDir: ".ut-tdd",
-      currentArea: "area=harness",
+      currentCli: "helix",
+      currentStateDir: ".helix",
+      currentArea: "area=helix",
       targetCli: "helix",
       targetStateDir: ".helix",
       targetArea: "area=helix",
       status: "blocked_pending_cutover_approval",
       mustNotApply: true,
-      cutoverPlanCommand: "ut-tdd rename plan --json",
+      cutoverPlanCommand: "helix rename plan --json",
       reason:
-        "setup が生成 state を .ut-tdd から .helix へ切り替えるには PLAN-M-02 cutover/action-binding approval が必要。",
+        "setup が生成 state を .helix から .helix へ切り替えるには PLAN-M-02 cutover/action-binding approval が必要。",
     },
     commandAvailability: {
-      currentCommand: "ut-tdd setup project",
+      currentCommand: "helix setup project",
       currentCommandAvailable,
       futureCommand: "helix setup project",
       futureCommandAvailable: false,
       enablementStatus: "blocked_pending_cutover_approval",
-      enablementPacketCommand: "ut-tdd rename plan --json",
+      enablementPacketCommand: "helix rename plan --json",
       reason:
         "`helix` command 名は post-cutover target。package/bin alias activation には PLAN-M-02 cutover/action-binding approval が必要。",
     },

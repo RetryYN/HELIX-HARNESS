@@ -163,7 +163,7 @@ export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPl
       requiredAction:
         "route judgment gates to the opposite provider/model family and record worker_model plus reviewer_model",
       gateCommandTemplate:
-        "ut-tdd gate <gate-id> --review-kind cross_agent --worker-model <worker-provider:model> --reviewer-model <reviewer-provider:model> --json",
+        "helix gate <gate-id> --review-kind cross_agent --worker-model <worker-provider:model> --reviewer-model <reviewer-provider:model> --json",
       requiredEvidence,
       requiredEvidenceJa: requiredEvidence.map(judgmentReviewEvidenceTextJa),
     };
@@ -183,7 +183,7 @@ export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPl
       requiredAction:
         "record intra_runtime_subagent review evidence with a complete judgment checklist; do not claim cross_agent review",
       gateCommandTemplate:
-        "ut-tdd gate <gate-id> --review-kind intra_runtime_subagent --checklist <review-checklist.yaml> --json",
+        "helix gate <gate-id> --review-kind intra_runtime_subagent --checklist <review-checklist.yaml> --json",
       requiredEvidence,
       requiredEvidenceJa: requiredEvidence.map(judgmentReviewEvidenceTextJa),
     };
@@ -200,7 +200,7 @@ export function judgmentReviewPlanForMode(mode: ExecutionMode): JudgmentReviewPl
     crossAgentReview: "unavailable",
     requiredAction:
       "obtain human review evidence because no AI reviewer runtime is spawnable; do not auto-pass judgment gates",
-    gateCommandTemplate: "ut-tdd gate <gate-id> --review-kind human --human-approved --json",
+    gateCommandTemplate: "helix gate <gate-id> --review-kind human --human-approved --json",
     requiredEvidence,
     requiredEvidenceJa: requiredEvidence.map(judgmentReviewEvidenceTextJa),
   };

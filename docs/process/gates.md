@@ -48,7 +48,7 @@ External basis (official source ledger checked 2026-07-03): NIST SSDF SP 800-218
 | **G13** | L13 完了 | デプロイ後検証: smoke evidence + monitoring quiet window + incident routing if failed | block → L13 修正 |
 | **G14** | L14 完了 | 運用検証: operational metric snapshot + improvement backlog delta + L14→L0 feedback record | block → L14 修正 |
 
-G14 / whole-program completion claim は `ut-tdd status --json` の
+G14 / whole-program completion claim は `helix status --json` の
 `outstanding.completionReadiness.ok=true` も必要条件に含める。これは doctor health gate とは別の
 completion-readiness 判定であり、doctor green を全件完了の代替証跡にしない。
 
@@ -66,7 +66,7 @@ G7 は L7 実装完了の唯一の exit gate。以下 3 条件をすべて満た
 |------|------|
 | ① 4 artifact 揃い | ① 設計 (docs/design/) / ② 実装コード (src/) / ③ テスト設計 (docs/test-design/) / ④ テストコード (tests/) が対象スコープ分揃っていること |
 | ② 必須 8 directed edge | §2.4 で定義された ① ↔ ②、① ↔ ③、② ↔ ④、③ ↔ ④ の 8 方向すべてに孤児が無いこと |
-| ③ coverage ≥ 80% | `ut-tdd gate G7` が coverage 80% 以上を確認 |
+| ③ coverage ≥ 80% | `helix gate G7` が coverage 80% 以上を確認 |
 
 詳細メカニクス: `docs/process/forward/` 各 L 定義 (将来 L07-implementation.md §4) に委譲。G7 は trace freeze の集約 entry point として機能する。
 
@@ -74,7 +74,7 @@ G7 は L7 実装完了の唯一の exit gate。以下 3 条件をすべて満た
 
 ## 3. 人間サインオフ必須ゲート (§7.8.3)
 
-以下のゲート/条件は **承認記録なしで当該コマンドを実行すると exit 1** (§7.8.3)。承認記録は `.ut-tdd/audit/` に append。
+以下のゲート/条件は **承認記録なしで当該コマンドを実行すると exit 1** (§7.8.3)。承認記録は `.helix/audit/` に append。
 
 | 引き金 mode/条件 | 承認者 (人間サインオフ) | 備考 |
 |-----------------|----------------------|------|
@@ -88,7 +88,7 @@ G7 は L7 実装完了の唯一の exit gate。以下 3 条件をすべて満た
 
 ## 4. 横断検出ゲート (§7.8.5)
 
-`ut-tdd doctor` / `ut-tdd plan lint` に束ねられる横断検出器。いずれも fail-close で該当 mode への接続を強制する。
+`helix doctor` / `helix plan lint` に束ねられる横断検出器。いずれも fail-close で該当 mode への接続を強制する。
 
 | 検出器 | fail 条件 | 接続先 mode |
 |--------|----------|------------|
@@ -102,4 +102,4 @@ G7 は L7 実装完了の唯一の exit gate。以下 3 条件をすべて満た
 | `debt_degradation` / `code_smell` | コード劣化検出 | **Refactor** |
 | `dependency_outdated` / `upgrade` | 依存陳腐化 | **Retrofit** (upgrade preflight 必須) |
 
-検出は `.ut-tdd/` state を参照し、`legacy DB` には依存しない (§7.8.5)。`--static-only` フラグで AI 不要の機械判定のみ実行可能。
+検出は `.helix/` state を参照し、`legacy DB` には依存しない (§7.8.5)。`--static-only` フラグで AI 不要の機械判定のみ実行可能。

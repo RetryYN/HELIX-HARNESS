@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-203-legacy-adoption-decisions
-title: "PLAN-L7-203 (add-impl): old HELIX semantic adoption decision contracts"
+title: "PLAN-L7-203 (add-impl): old HELIX の意味的採用判断契約"
 kind: add-impl
 layer: L7
 drive: agent
@@ -78,45 +78,44 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-06-30T03:00:00+09:00"
-        evidence_path: .ut-tdd/evidence/green-command/20260630-legacy-adoption-doctor.json
+        evidence_path: .helix/evidence/green-command/20260630-legacy-adoption-doctor.json
         output_digest: "sha256:5d88ccad441f6522019b75d4f72b9387ab9c347d9ad125cf4bf33b5b1800ccf5"
 ---
 
-# PLAN-L7-203: old HELIX semantic adoption decision contracts
+# PLAN-L7-203: old HELIX の意味的採用判断契約
 
-## Objective
+## 目的
 
-Implement the L7 slice for the old HELIX semantic adoption contracts that were
-lowered to L6 in `legacy-helix-extension.md`. The goal is not to port old
-Python/Bash runtime code. The goal is to make the anti-corruption decisions
-executable and testable so HELIX can reject legacy runtime assumptions while
-retaining the useful capability meanings.
+`legacy-helix-extension.md` で L6 に降ろした old HELIX の意味的採用契約について、
+L7 の実装を行う。目的は旧 Python/Bash の runtime code を移植することではない。
+反腐敗の判断を実行可能かつテスト可能にし、HELIX が legacy の runtime 前提を拒否しつつ、
+有用な capability の意味は保持できるようにすることにある。
 
-## Scope
+## 範囲
 
-- Implement pure decision helpers for `U-HLX-001..013` in `src/runtime/legacy-adoption.ts`.
-- Add focused unit tests in `tests/legacy-adoption.test.ts`.
-- Register the implementation oracles in the L7 unit-test design.
-- Keep the implementation inside the existing `runtime` building block to avoid
-  new module-drift and to preserve the provider-neutral decision boundary.
+- `src/runtime/legacy-adoption.ts` に `U-HLX-001..013` 向けの純粋な判断 helper を実装する。
+- `tests/legacy-adoption.test.ts` に絞った unit test を追加する。
+- L7 の unit-test design に implementation oracle を登録する。
+- 実装は既存の `runtime` building block の中に収め、新しい module-drift を避けつつ、
+  provider-neutral な判断境界を保つ。
 
-## Non-Goals
+## 非対象
 
-- This PLAN does not port old HELIX Python modules, shell commands, `.helix`
-  state, or personal workspace paths.
-- This PLAN does not expose a new public CLI command. The helpers are pure L7
-  contracts for later CLI/doctor/adapter wiring.
-- This PLAN does not claim full old-HELIX product parity. Runtime parity remains
-  a separate implementation scope.
+- この PLAN では old HELIX の Python modules、shell commands、`.helix` state、
+  個人 workspace path は移植しない。
+- この PLAN では新しい public CLI command は公開しない。helper は後続の
+  CLI / doctor / adapter wiring に向けた純粋な L7 契約である。
+- この PLAN では old-HELIX の product parity を完全一致とはみなさない。
+  runtime parity は別スコープとして扱う。
 
-## Acceptance Criteria
+## 受入条件
 
-- `src/runtime/legacy-adoption.ts` implements all functions named by the old
-  HELIX L6 extension design.
+- `src/runtime/legacy-adoption.ts` が old HELIX L6 extension design で定義された
+  全 function を実装していること。
 - `tests/legacy-adoption.test.ts` covers `U-HLX-001..013`.
-- Legacy personal/global paths are rejected as current truth.
-- Stub/advisory detector results cannot close hard gates.
-- Unknown workflows and raw legacy DB/state imports fail closed.
-- Continuous run requires a stop condition and verification evidence.
-- Learning feedback cannot close acceptance by itself.
-- Typecheck, lint, targeted V-model tests, doctor, and full test suite pass.
+- legacy の personal/global path は current truth として拒否されること。
+- stub / advisory の detector result では hard gate を閉じられないこと。
+- unknown workflow と raw な legacy DB/state import は fail closed になること。
+- continuous run には stop condition と verification evidence が必要であること。
+- learning feedback だけでは acceptance を閉じられないこと。
+- typecheck、lint、targeted V-model tests、doctor、full test suite が pass すること。

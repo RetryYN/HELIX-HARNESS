@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-26-module-boundary-rule
-title: "PLAN-L7-26 (add-impl): module-boundary coding rule"
+title: "PLAN-L7-26 (add-impl): module-boundary coding rule 実装"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -10,7 +10,7 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - module-boundary rule implementation"
+    slot_label: "TL - module-boundary rule 実装"
   - role: qa
     slot_label: "QA - module-boundary oracle"
 generates:
@@ -30,14 +30,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 independent re-audit と PO closure instruction。confirmation 前に typecheck/lint/vitest/doctor は green。add-feature triad は内容変更なしで close。"
 ---
 
-# PLAN-L7-26 (add-impl): module-boundary coding rule
+# PLAN-L7-26 (add-impl): module-boundary coding rule 実装
 
-## §0 Position
+## §0 位置づけ
 
-Implements IMP-096 in `analyzeCodingRules`.
+`analyzeCodingRules` に IMP-096 を実装する。
 
 ## §3.1 実装計画（情報源）
 
@@ -48,28 +48,28 @@ Implements IMP-096 in `analyzeCodingRules`.
 
 実装:
 
-- `src/lint/coding-rules.ts`: import declaration boundary inspection
-- `tests/coding-rules.test.ts`: disallowed import negative fixture
+- `src/lint/coding-rules.ts`: import declaration の boundary 検査
+- `tests/coding-rules.test.ts`: 禁止 import の negative fixture
 
 ## §3 工程表
 
-### Step 1: [直列] import analyzer
+### Step 1: [直列] import 解析器
 
-直列理由: downstream_dependency。Import resolution must exist before oracle assertion.
+直列理由: downstream_dependency。oracle assertion より前に import resolution が存在している必要がある。
 
 ### Step 2: [並列] unit oracle
 
-Add synthetic `src/lint/*` importing `../runtime/*` case.
+`../runtime/*` を import する合成 `src/lint/*` case を追加する。
 
 ### Step 3: [直列] review
 
-直列理由: downstream_dependency。lint / typecheck / vitest / doctor must be green before review.
+直列理由: downstream_dependency。review 前に lint / typecheck / vitest / doctor が green である必要がある。
 
 ## §6 用語更新
 
-- **reverse import**: lower-level governance module importing higher-level runtime/CLI feature module.
+- **reverse import**: 下位の governance module が上位の runtime/CLI feature module を import すること。
 
 ## §8 DoD
 
-- [x] U-CODE-009 passes.
-- [x] Real repo guard has zero `module-boundary` violations.
+- [x] U-CODE-009 が pass する。
+- [x] 実 repo guard の `module-boundary` violation が 0 件である。

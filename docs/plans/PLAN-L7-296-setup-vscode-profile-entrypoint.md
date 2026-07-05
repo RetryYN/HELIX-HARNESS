@@ -75,7 +75,7 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd setup project` は VS Code task / Workspace Trust / consumer doctor / version-up dry-run を初回 workflow に含めているが、HELIX 導入済み VSCode で新規 folder をどの profile で開くかは構造化されていなかった。
+`helix setup project` は VS Code task / Workspace Trust / consumer doctor / version-up dry-run を初回 workflow に含めているが、HELIX 導入済み VSCode で新規 folder をどの profile で開くかは構造化されていなかった。
 
 この PLAN では VS Code 公式 CLI の profile 起動 (`code --profile HELIX .`) を `manual-local` の初回検証行として追加し、setup 完了・automatic task 許可・PLAN-M-02 cutover 完了のいずれにも読み替えないよう固定する。
 

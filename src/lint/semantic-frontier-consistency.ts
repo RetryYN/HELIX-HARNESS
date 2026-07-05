@@ -79,8 +79,8 @@ const REQUIRED_DOC_MARKERS = [
 ] as const;
 
 const SETUP_CLI_BOUNDARY_MARKERS = [
-  "bare `ut-tdd",
-  "`ut-tdd-package-script`",
+  "bare `helix",
+  "`helix-package-script`",
   "package script のみ",
   "`bareCommandResolved=false`",
   "`fix_consumer_readiness`",
@@ -384,7 +384,7 @@ export function analyzeSemanticFrontierConsistency(
     }
     if (FORBIDDEN_SETUP_CLI_READY_MARKERS.every((marker) => text.includes(marker))) {
       violations.push(
-        `${docName}: package script only must not make consumer setup ready without bare ut-tdd PATH`,
+        `${docName}: package script only must not make consumer setup ready without bare helix PATH`,
       );
     }
   }

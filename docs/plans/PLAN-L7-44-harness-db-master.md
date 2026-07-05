@@ -9,7 +9,7 @@ created: 2026-06-11
 updated: 2026-06-11
 accepted_by: PO
 accepted_at: "2026-06-11"
-accept_evidence: .ut-tdd/audit/A-130-harness-db-segment-accept.md
+accept_evidence: .helix/audit/A-130-harness-db-segment-accept.md
 review_evidence:
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
@@ -34,7 +34,7 @@ roadmap:
   gates:
     - id: G-L7DB.A
       name: state-db foundation
-      exit_criteria: "src/state-db/ adapter (bun:sqlite first / Node fallback) + migration + 全 projection table schema 実装、ut-tdd db status/rebuild runnable、IT-DB-01 基盤 green"
+      exit_criteria: "src/state-db/ adapter (bun:sqlite first / Node fallback) + migration + 全 projection table schema 実装、helix db status/rebuild runnable、IT-DB-01 基盤 green"
     - id: G-L7DB.B
       name: projection-writer
       exit_criteria: "recordProjectionEvent / rebuildHarnessDb が PLAN/artifact/gate/finding/trace/coverage/model/drive/hook + 既存 relation-graph/doc-export/MCP 出力を idempotent projection、IT-DB-01/02 green、source doc 非改変 invariant"
@@ -76,7 +76,7 @@ dependencies:
     - docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md
     - docs/design/harness/L3-functional/roadmap.md
     - docs/governance/gate-design.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
@@ -84,7 +84,7 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 
 ## §0 PLAN
 
-PO 指示 (2026-06-11): 残り L7 実装 (`.ut-tdd/harness.db` のコア projection 層) を Codex 量産へ
+PO 指示 (2026-06-11): 残り L7 実装 (`.helix/harness.db` のコア projection 層) を Codex 量産へ
 回す前に、**工程表 driver を通して** gate+span に分解する。free-hand で PLAN を採番せず、
 本 master-hub の `roadmap:` block で層内ゲートと区間 (span=PLAN) を**先に宣言**し、各 span を
 child PLAN が埋める (4 段階層 = 工程表 → 層内ゲート → 区間=PLAN → §工程表 Step、PLAN-DISCOVERY-05)。
@@ -108,7 +108,7 @@ child PLAN が埋める (4 段階層 = 工程表 → 層内ゲート → 区間=
 - `PLAN-L5-08` §3.1「L7 では bun:sqlite first / Node fallback adapter、projection writer、
   search、feedback metrics、automation readiness、guardrail ledger、asset catalog、tests を実装する」。
 - harness.db は設計の柱3 (フィードバック機構) の実体化 (ADR-007 が ADR-001 deferral を supersede)。
-- HELIX→UT-TDD cutover: 本セグメント完了が `ut-tdd` CLI 独り立ち (Mode 2→3) の主要トリガ。
+- HELIX→HELIX cutover: 本セグメント完了が `helix` CLI 独り立ち (Mode 2→3) の主要トリガ。
 
 ## §3 工程表 (Step + 進捗)
 
@@ -131,12 +131,12 @@ code-reviewer) で、roadmap 構造 (gate 順序 / span 実在予定 / IT pairin
 
 ## §3.1 実装計画
 
-- 情報源: `physical-data.md` (§2.7 基本 7 + §9.1 拡張 10 projection table)、`module-decomposition.md`
-  (state-db / projection-writer / search-index / feedback-engine / automation-readiness /
+- 情報源: `physical-data.md` (§2.7 基本 7 + §9.1 拡張 10 projection table)、`module-decomposition.md` の
+  構成要素 (state-db / projection-writer / search-index / feedback-engine / automation-readiness /
   guardrail-ledger / asset-catalog の責務・依存方向)、`internal-processing.md` (recordProjectionEvent /
-  rebuildHarnessDb / computeSkillMetrics / findReference / emitFeedbackEvents /
+  rebuildHarnessDb / computeSkillMetrics / findReference / emitFeedbackEvents / の処理契約、
   evaluateAutomationReadiness / recordGuardrailDecision / catalogAutomationAssets の DbC)、
-  `if-detail.md` (`ut-tdd db/find/metrics/feedback/automation/guardrail/asset` CLI 契約)、
+  `if-detail.md` (`helix db/find/metrics/feedback/automation/guardrail/asset` CLI 契約)、
   `L8-integration-test-design.md` (IT-DB-01..03 / IT-SEARCH-01 / IT-FEEDBACK-01 / IT-AUTOMATION-01 /
   IT-GUARDRAIL-01 / IT-ASSET-DB-01)。
 - 本 master は工程表 (gate+span) の宣言と triage のみ。実装本体は各 child span PLAN が持つ。
@@ -154,7 +154,7 @@ code-reviewer) で、roadmap 構造 (gate 順序 / span 実在予定 / IT pairin
 - [x] 命名テスト (`tests/plan-id-naming.test.ts`) + 全回帰 green。
 - [x] review 前置 evidence を frontmatter `review_evidence` に記録。
 
-## §5 Related PLAN / docs
+## §5 関連 PLAN / docs (Related PLAN / docs)
 
 - 設計正本: PLAN-L5-08-harness-db-feedback (L5 add-design、confirmed)
 - 工程表メカニズム: PLAN-DISCOVERY-05-roadmap-registration
@@ -163,7 +163,7 @@ code-reviewer) で、roadmap 構造 (gate 順序 / span 実在予定 / IT pairin
 
 ## §6 用語更新
 
-| term | type | definition / delta | L0 back-merge |
+| 用語 (term) | 種別 (type) | 定義 / 差分 (definition / delta) | L0 逆反映 (back-merge) |
 |---|---|---|---|
 | L7 実装セグメント | new | 1 大層 (L7) を複数の独立工程表 (roadmap block) に分割した単位。第1=tooling/lints (DISCOVERY-05 G-L7.A〜E)、第2=harness.db (本書 G-L7DB.A〜D)。 | not required; L7 scoped |
 | harness.db コア projection 層 | clarified | state-db / projection-writer / search / feedback / readiness / guardrail / asset-catalog。relation-graph/doc-export/MCP の projection 配線を含むが、それらのロジックは Phase 3 実装済。 | not required |

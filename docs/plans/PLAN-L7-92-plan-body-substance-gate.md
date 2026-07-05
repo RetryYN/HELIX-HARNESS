@@ -37,20 +37,20 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-92 (troubleshoot): PLAN body substance gate (AP-13)
+# PLAN-L7-92 (troubleshoot): PLAN 本文 substance gate (AP-13)
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 「本文 0 行・成果物 declare のみの PLAN は無効」(concept §3.6 AP-13) を機械強制する。
 deliverable の hollow 検出 ([[PLAN-L7-91]]) の **PLAN 本文版** = declare-only な hollow PLAN を塞ぐ。
 
-## 1. Problem
+## 1. 問題 (Problem)
 
 AP-13 は「frontmatter (declare) だけで本文が無い PLAN は無効」と謳うが、これを強制する機械
 チェックが無かった。PLAN は進め方/設計/根拠を持つ実体であるべきで、frontmatter + タイトルのみの
 declare-only PLAN は coverage (登録) のみ substance (中身) 不在の hollow ([[feedback_coverage_not_substance]])。
 
-## 2. Fix
+## 2. 修正 (Fix)
 
 `src/lint/plan-body-substance.ts` (新規) + doctor 配線:
 
@@ -60,7 +60,7 @@ declare-only PLAN は coverage (登録) のみ substance (中身) 不在の holl
 - `loadPlanBodySubstanceInput`: docs/plans を読み archived を除外して各 PLAN の実体行を算出。
 - `checkPlanBodySubstance`: doctor hard gate (ok 連動、I/O 失敗は fail-close)。
 
-## 3. Acceptance Criteria — met
+## 3. 受入条件 (Acceptance Criteria) — 充足 (met)
 
 - [x] frontmatter + タイトルのみ / 本文空 / コメントのみ の PLAN を fail-close。
 - [x] 先頭 h1 のみ skip (2 個目以降の見出し・§ 節・prose は実体に数える)。
@@ -68,7 +68,7 @@ declare-only PLAN は coverage (登録) のみ substance (中身) 不在の holl
 - [x] blast radius 0 (実リポ最小 6 実体行、scan 確認、repo green 維持)。
 - [x] test 10 ケース。typecheck / Biome / Vitest / doctor green。
 
-## 4. Out of scope
+## 4. 範囲外 (Out of scope)
 
 - 本文の「量」や「質」の評価 (terse-but-real を罰しない、bright-line は 0 行のみ)。
 - DB row の field-null substance / prose 真偽 (機械化不能、[[PLAN-L7-89]] と同じ境界)。

@@ -38,7 +38,7 @@ review_evidence:
 
 ## §0 位置づけ
 
-UT-TDD は `agent_slots` frontmatter (role+slot_label) のみ移植し、HELIX の **Layer-2 実行オーケストレーション機構が全欠落** していた (improvement-backlog IMP-050)。HELIX `cli/lib/agent_slots.py` (SQLite) / `team_runner.py` (ThreadPoolExecutor) を **ADR-001 準拠で TS-native 再実装** する機能設計。SQLite は持ち込まず `.ut-tdd/state/agent-slots.json` (Slot[]) を単一 state とする (Windows ネイティブ + bun 単独、bash/python3 不要)。IMP-049 (直列/並列判定の強制・記録) の機械支援本体でもある。
+HELIX は `agent_slots` frontmatter (role+slot_label) のみ移植し、HELIX の **Layer-2 実行オーケストレーション機構が全欠落** していた (improvement-backlog IMP-050)。HELIX `cli/lib/agent_slots.py` (SQLite) / `team_runner.py` (ThreadPoolExecutor) を **ADR-001 準拠で TS-native 再実装** する機能設計。SQLite は持ち込まず `.helix/state/agent-slots.json` (Slot[]) を単一 state とする (Windows ネイティブ + bun 単独、bash/python3 不要)。IMP-049 (直列/並列判定の強制・記録) の機械支援本体でもある。
 
 - 駆動モデル: **Add-feature** (大規模単独 PLAN、IMP-050 backlog の指示通り)。
 - 親: `PLAN-L6-05-setup-solo-team` (team / solo orchestration の系譜、drive=fullstack 一致)。

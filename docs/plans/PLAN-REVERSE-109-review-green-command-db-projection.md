@@ -39,34 +39,33 @@ dependencies:
     - docs/plans/PLAN-L7-109-review-green-command-db-projection.md
 ---
 
-# PLAN-REVERSE-109: Review green command DB projection fullback
+# PLAN-REVERSE-109: review green command DB projection fullback の反映
 
 ## R0 Evidence
 
-PLAN-L7-108 made green command evidence mandatory for new review evidence and
-added `test_runs.output_digest`, but harness.db rebuild still left `test_runs`
-empty for those frontmatter records.
+PLAN-L7-108 は新規 review evidence に green command evidence を必須化し、
+`test_runs.output_digest` を追加した。しかし harness.db rebuild は、該当 frontmatter record から
+`test_runs` をまだ生成していなかった。
 
-## R1 Observed Gap
+## R1 観測した Gap
 
-The DB could enforce the presence of green command evidence via doctor, but could
-not answer which PLAN/test command/evidence path produced the green state. That
-kept the user's red/yellow/green DB progress idea partially doc-only.
+DB は doctor 経由で green command evidence の存在を強制できる一方、どの PLAN / test command /
+evidence path が green state を作ったかを回答できなかった。そのため、ユーザーが求める
+red / yellow / green の DB progress idea が一部 doc-only のまま残っていた。
 
 ## R2 Alignment
 
-The projection belongs in `projectReviewEvidenceRegistry`: review evidence is the
-authoring source, while `test_runs` is the query surface. This is a narrower
-implementation of IMP-109; general UT runner ingestion remains future scope.
+projection は `projectReviewEvidenceRegistry` に置く。review evidence が authoring source であり、
+`test_runs` は query surface である。これは IMP-109 の狭い実装で、汎用 UT runner ingestion は
+future scope に残す。
 
 ## R3 / R4 Outcome
 
-`review_evidence.green_commands[]` is now projected into `test_runs` on rebuild.
-The row carries command, runner, scope, exit code, completed timestamp, evidence
-path, output digest, and PLAN id.
+rebuild 時に `review_evidence.green_commands[]` を `test_runs` へ投影する。行には command、
+runner、scope、exit code、completed timestamp、evidence path、output digest、PLAN id を保持する。
 
 ## DoD
 
-- [x] L5 physical data records the implemented projection.
-- [x] L7 projection writer emits `test_runs` rows from green command evidence.
-- [x] Focused regression test verifies PLAN-L7-108 appears in `test_runs`.
+- [x] L5 physical data が実装済み projection を記録する。
+- [x] L7 projection writer が green command evidence から `test_runs` rows を出力する。
+- [x] focused regression test が PLAN-L7-108 の `test_runs` 出現を検証する。

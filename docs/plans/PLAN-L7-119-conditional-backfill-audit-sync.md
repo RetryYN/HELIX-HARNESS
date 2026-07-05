@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-119-conditional-backfill-audit-sync
-title: "PLAN-L7-119: conditional backfill audit sync"
+title: "PLAN-L7-119: conditional backfill audit 同期"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - conditional backfill audit sync"
+    slot_label: "TL - conditional backfill audit 同期"
 generates:
   - artifact_path: docs/plans/PLAN-L7-119-conditional-backfill-audit-sync.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T13:30:00+09:00"
     tests_green_at: "2026-06-23T13:30:00+09:00"
     verdict: approve
-    scope: "Backfill legacy conditional audit synchronization gate and regression tests."
+    scope: "legacy conditional audit 同期 gate と regression tests を backfill する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -60,22 +60,21 @@ review_evidence:
         output_digest: "sha256:cb69e5f9425f57492a0760eb7574201d4d361689feb2229db46d773509485b07"
 ---
 
-# PLAN-L7-119: conditional backfill audit sync
+# PLAN-L7-119: conditional backfill audit 同期
 
-## Objective
+## 目的
 
-Prevent the legacy conditional backfill allowlist from drifting away from its
-human-readable audit table.
+legacy conditional backfill allowlist が、人間が読める audit table から drift しないようにする。
 
-## Scope
+## スコープ
 
-- Parse `conditional-backfill-decision-audit-2026-06-22.md`.
-- Compare the Legacy Debt table against `LEGACY_CONDITIONAL_BACKFILL_DEBT_PLAN_IDS`.
-- Add `legacyAuditGaps` to `backfill-pairing` and wire it into doctor.
-- Update requirements and concept glossary.
+- `conditional-backfill-decision-audit-2026-06-22.md` を parse する。
+- Legacy Debt table を `LEGACY_CONDITIONAL_BACKFILL_DEBT_PLAN_IDS` と比較する。
+- `backfill-pairing` に `legacyAuditGaps` を追加し、doctor へ配線する。
+- requirements と concept glossary を更新する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Allowlist entries missing from the audit table fail.
-- Audit rows missing from the allowlist fail.
-- Current repository audit and allowlist are synchronized.
+- audit table に存在しない allowlist entries は fail する。
+- allowlist に存在しない audit rows は fail する。
+- 現在の repository audit と allowlist が同期している。

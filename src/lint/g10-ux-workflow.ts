@@ -27,7 +27,7 @@ export interface G10UxWorkflowResult {
 const CONFIG = {
   gate: "G10",
   schemaVersion: "g10-ux-evidence-v1",
-  evidenceDir: ".ut-tdd/evidence/g10-ux",
+  evidenceDir: ".helix/evidence/g10-ux",
   itemPrefix: "UXV-",
   doctorCheck: "g10-ux-workflow",
   requireAdvisorEvidence: true,

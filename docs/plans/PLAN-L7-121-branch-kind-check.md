@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - branch-kind check"
+    slot_label: "TL - branch-kind check 確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-121-branch-kind-check.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T13:45:00+09:00"
     tests_green_at: "2026-06-23T13:45:00+09:00"
     verdict: approve
-    scope: "Branch prefix to PLAN kind gate, github_issue_id warning, and doctor wiring."
+    scope: "branch prefix と PLAN kind の gate、github_issue_id warning、doctor wiring を確認する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -68,23 +68,23 @@ review_evidence:
         output_digest: "sha256:27410a6c1ff6cad593bfa919427fb24189dd05dc1b7a63c12a15198ed6e84f08"
 ---
 
-# PLAN-L7-121: branch-kind check doctor gate
+# PLAN-L7-121: branch-kind check doctor gate の整備
 
-## Objective
+## 目的
 
-Make the requirements branch-kind rule executable so branch prefix, touched PLAN
-kind, and issue linkage no longer depend on manual review only.
+requirements の branch-kind rule を実行可能にし、branch prefix、変更対象 PLAN kind、
+issue linkage が manual review だけに依存しないようにする。
 
-## Scope
+## スコープ
 
-- Add `src/lint/branch-kind.ts` as the pure branch-kind analyzer.
-- Wire the analyzer into `doctor` so `lint-wiring` can prove it is reachable.
-- Fail hard for governed branch prefixes with no touched PLAN or wrong PLAN kind.
-- Keep `github_issue_id` missing on `feature/*` / `hotfix/*` as a warning, matching Phase 0-B requirements.
+- pure branch-kind analyzer として `src/lint/branch-kind.ts` を追加する。
+- `lint-wiring` が到達可能性を証明できるように、この analyzer を `doctor` へ配線する。
+- governed branch prefix で touched PLAN がない場合、または PLAN kind が不一致の場合は hard fail にする。
+- Phase 0-B requirements に合わせ、`feature/*` / `hotfix/*` で `github_issue_id` が欠落する場合は warning に留める。
 
-## Acceptance Criteria
+## 受入条件
 
-- `feature/*` without a touched PLAN fails.
-- `feature/*` with a non-`impl` PLAN fails.
-- `docs/*` / `chore/*` remain exempt except for `docs/skills/*.md`.
-- `doctor` surfaces `branch-kind-check` and `lint-wiring` still passes.
+- touched PLAN がない `feature/*` は fail する。
+- non-`impl` PLAN を伴う `feature/*` は fail する。
+- `docs/skills/*.md` を除き、`docs/*` / `chore/*` は exempt のままとする。
+- `doctor` は `branch-kind-check` を表示し、`lint-wiring` は引き続き pass する。

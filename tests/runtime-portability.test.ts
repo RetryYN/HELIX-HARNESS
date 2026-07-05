@@ -17,7 +17,7 @@ const validDocs: RuntimePortabilityDoc[] = [
       type: "module",
       engines: { bun: ">=1.3" },
       scripts: {
-        build: "bun build src/cli.ts --compile --outfile dist/ut-tdd",
+        build: "bun build src/cli.ts --compile --outfile dist/helix",
         "test:node-fallback": "vitest run tests/state-db.test.ts tests/runtime-portability.test.ts",
         typecheck: "tsc --noEmit",
       },
@@ -34,12 +34,12 @@ const validDocs: RuntimePortabilityDoc[] = [
   { path: "src/runtime/adapter.ts", text: "export const adapter = true;" },
   { path: ".claude/hooks/session-log.ts", text: "export const hook = true;" },
   {
-    path: "scripts/ut-tdd",
-    text: '#!/usr/bin/env sh\nset -e\nROOT="$(pwd)"\nexec "$ROOT/dist/ut-tdd" "$@"\nexec bun run "$ROOT/src/cli.ts" "$@"\n',
+    path: "scripts/helix",
+    text: '#!/usr/bin/env sh\nset -e\nROOT="$(pwd)"\nexec "$ROOT/dist/helix" "$@"\nexec bun run "$ROOT/src/cli.ts" "$@"\n',
   },
   {
-    path: "scripts/ut-tdd.ps1",
-    text: '$root = "."\n& "$root\\dist\\ut-tdd.exe" @args\n& bun run (Join-Path $root "src\\cli.ts") @args\n',
+    path: "scripts/helix.ps1",
+    text: '$root = "."\n& "$root\\dist\\helix.exe" @args\n& bun run (Join-Path $root "src\\cli.ts") @args\n',
   },
 ];
 
@@ -105,7 +105,7 @@ describe("runtime-portability lint", () => {
 
   it("U-RPORT-004A: POSIX entrypoint remains a thin sh wrapper for Linux", () => {
     const docs = loadRuntimePortabilityDocs(process.cwd());
-    const wrapper = docs.find((doc) => doc.path === "scripts/ut-tdd")?.text;
+    const wrapper = docs.find((doc) => doc.path === "scripts/helix")?.text;
 
     expect(wrapper).toBeDefined();
     expect(wrapper?.split(/\r?\n/).slice(0, 3)).toEqual([
@@ -113,12 +113,12 @@ describe("runtime-portability lint", () => {
       expect.stringContaining("POSIX entrypoint"),
       "set -e",
     ]);
-    expect(wrapper).toContain('exec "$ROOT/dist/ut-tdd" "$@"');
+    expect(wrapper).toContain('exec "$ROOT/dist/helix" "$@"');
     expect(wrapper).toContain('exec bun run "$ROOT/src/cli.ts" "$@"');
   });
 
   it("U-RPORT-005: scans untracked runtime files during active Windows setup work", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-rport-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-rport-"));
     try {
       execFileSync("git", ["init"], { cwd: root, stdio: "ignore" });
       mkdirSync(join(root, "src", "state-db"), { recursive: true });
@@ -139,8 +139,8 @@ describe("runtime-portability lint", () => {
   });
 
   it("U-RPORT-006: rejects legacy runtime markers in product runtime surfaces", () => {
-    const legacyName = ["he", "lix"].join("");
-    const legacyEnv = ["HE", "LIX_CODEX_BIN"].join("");
+    const legacyName = ["ut", "tdd"].join("-");
+    const legacyEnv = `${["UT", "TDD"].join("_")}_CODEX_BIN`;
     const result = analyzeRuntimePortability([
       ...validDocs,
       {
@@ -170,7 +170,7 @@ describe("runtime-portability lint", () => {
 
   it("U-RPORT-007: scans src/scripts via filesystem when git is unavailable (zip/tarball)", () => {
     // .git を作らない = git ls-files が失敗し filesystem fallback に落ちる経路 (配布物の検査面欠落回帰)。
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-rport-nogit-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-rport-nogit-"));
     try {
       mkdirSync(join(root, "src", "state-db"), { recursive: true });
       writeFileSync(join(root, "package.json"), validDocs[0].text);

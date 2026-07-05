@@ -10,9 +10,9 @@ created: 2026-06-11
 updated: 2026-06-11
 agent_slots:
   - role: tl
-    slot_label: 'TL - search metrics and feedback DB projection review'
+    slot_label: 'TL - search metrics / feedback DB projection review'
   - role: qa
-    slot_label: 'QA - IT-DB search and feedback evidence review'
+    slot_label: 'QA - IT-DB search / feedback evidence review'
 review_evidence:
   - reviewer: code-reviewer
     review_kind: intra_runtime_subagent
@@ -21,7 +21,7 @@ review_evidence:
     tests_green_at: "2026-06-11"
     reviewed_at: "2026-06-11"
     verdict: pass-with-fixes
-    scope: "search/metrics/feedback span: ranked find, skill metrics, feedback events, read-only search, and no feedback auto-approval of PLANs."
+    scope: "search / metrics / feedback 範囲: ranked find、skill metrics、feedback events、read-only search、feedback による PLAN 自動承認なし。"
 generates:
   - artifact_path: src/search/index.ts
     artifact_type: source_module
@@ -44,28 +44,28 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-47: harness.db search + skill metrics + feedback
+# PLAN-L7-47: harness.db search + skill metrics + feedback の実装
 
-## Objective
+## 目的
 
-- Implement `findReference(query)` on `search_index` and expose `ut-tdd find`.
-- Implement `computeSkillMetrics()` to store firing/acceptance rates in `quality_signals` and expose `ut-tdd metrics skill`.
-- Implement `emitFeedbackEvents()` to convert open findings / quality failures into `feedback_events` and expose `ut-tdd feedback list`.
+- `search_index` 上に `findReference(query)` を実装し、`helix find` を公開する。
+- `computeSkillMetrics()` を実装し、firing / acceptance rates を `quality_signals` に保存して `helix metrics skill` を公開する。
+- `emitFeedbackEvents()` を実装し、open findings / quality failures を `feedback_events` へ変換して `helix feedback list` を公開する。
 
-## Invariants
+## 不変条件
 
-- Search is read-only for authoring sources; DB projection is rebuildable.
-- Missing skill logs are recorded as findings, not fabricated success.
-- Feedback events never auto-approve PLANs.
-- Secret-like content and transcript bodies are not indexed.
+- authoring sources に対して search は read-only とし、DB projection は再構築可能にする。
+- 欠落した skill logs は fabricated success ではなく findings として記録する。
+- Feedback events は PLAN を自動承認しない。
+- Secret-like content と transcript bodies は index 対象にしない。
 
-## Completion Evidence
+## 完了証跡
 
-- `src/search/index.ts`, `src/feedback/engine.ts`, and `tests/search-feedback.test.ts` exist.
+- `src/search/index.ts`、`src/feedback/engine.ts`、`tests/search-feedback.test.ts` が存在する。
 - `bun test tests/search-feedback.test.ts tests/readiness-guardrail.test.ts tests/asset-catalog.test.ts` -> 7 pass.
 - `bunx tsc --noEmit` -> pass.
 - `bun run src/cli.ts db rebuild --json` -> pass.
-- CLI smoke passed:
+- CLI smoke が pass:
   - `bun run src/cli.ts find PLAN-L7-47-search-metrics-feedback --json`
   - `bun run src/cli.ts metrics skill --json`
   - `bun run src/cli.ts feedback list --emit --json`
@@ -73,6 +73,6 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 
 ## DoD
 
-- [x] IT-SEARCH-01 / DB-03 / FEEDBACK-01 green.
-- [x] `find` / `metrics skill` / `feedback list` runnable, invariants maintained.
-- [x] Regression slice + doctor green, review evidence present.
+- [x] IT-SEARCH-01 / DB-03 / FEEDBACK-01 が green。
+- [x] `find` / `metrics skill` / `feedback list` が runnable で、不変条件を維持している。
+- [x] Regression slice と doctor が green で、review evidence が存在する。

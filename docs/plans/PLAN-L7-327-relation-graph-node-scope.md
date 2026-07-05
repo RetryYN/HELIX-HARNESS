@@ -63,7 +63,7 @@ review_evidence:
         evidence_path: src/graph/loader.ts
         output_digest: "sha256:59d40726254c5d3e1c2f82345fcb1d436148351da1951ab1d09119c046adedd8"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -91,7 +91,7 @@ relation graph の node scope に入っておらず、変更時に graph impact 
 ## 対象外
 
 - `.codex/hooks.json` の内容や hook parity は変更しない。
-- `.ut-tdd` / `ut-tdd` の物理 rename、distribution cutover、remote apply は PLAN-M-02 承認まで行わない。
+- `.helix` / `helix` の物理 rename、distribution cutover、remote apply は PLAN-M-02 承認まで行わない。
 
 ## 受入結果
 

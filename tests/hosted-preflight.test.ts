@@ -96,7 +96,7 @@ describe("HC-AC hosted/API preflight", () => {
         gitStatusChecked: true,
         targetPaths: [],
         workGuardDecision: noTarget,
-        preflightCommand: "ut-tdd guard preflight",
+        preflightCommand: "helix guard preflight",
         auditRecord: "cli-stdout",
       }),
     ).toMatchObject({
@@ -113,7 +113,7 @@ describe("HC-AC hosted/API preflight", () => {
         gitStatusChecked: true,
         targetPaths: [],
         workGuardDecision: noTarget,
-        preflightCommand: "ut-tdd guard preflight",
+        preflightCommand: "helix guard preflight",
         auditRecord: "cli-stdout",
       }),
     ).toMatchObject({
@@ -138,7 +138,7 @@ describe("HC-AC hosted/API preflight", () => {
         gitStatusChecked: true,
         targetPaths: ["src/foreign.ts"],
         workGuardDecision: blocked,
-        preflightCommand: "ut-tdd guard preflight",
+        preflightCommand: "helix guard preflight",
         auditRecord: "cli-stdout",
       }),
     ).toMatchObject({

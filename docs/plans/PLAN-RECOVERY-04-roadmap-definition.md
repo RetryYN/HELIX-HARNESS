@@ -9,7 +9,7 @@ created: 2026-06-11
 updated: 2026-06-11
 accepted_by: PO
 accepted_at: "2026-06-11"
-accept_evidence: .ut-tdd/audit/A-131-recovery-04-closure-accept.md
+accept_evidence: .helix/audit/A-131-recovery-04-closure-accept.md
 owner: PM (Opus) / PO (人間)
 agent_slots:
   - role: aim
@@ -118,7 +118,7 @@ Recovery close には以下が必要。
 - [x] Reverse pairing: PLAN-REVERSE-44 起票。設計書 (L4) は architecture §3.1 へ roadmap メタモデル back-fill 済、L6 詳細は REVERSE-44 tracked scope。
 - [x] 再発防止: **全プログラム被覆チェック実装済** (`src/lint/roadmap-registry.ts` `analyzeProgramCoverage` + `PROGRAM_BANDS` 単一正本 + doctor `program-coverage` surface + `tests/roadmap.test.ts` U-ROADMAP-015〜018)。未登録 forward work (upstream/design/verification/cutover) を機械 surface = 「実装どこまで?」answerable (柱3)。
 - [x] reopen point 独立確認 (review 前置): pmo-sonnet (intra_runtime_subagent、cross-agent 不在の代替) が closure-readiness を adversarial 審査 → **blocker なし / 条件付き** (§5 carry 2 件を反映)。cross-agent 不在は evidence に明示。
-- [x] **PO scope/closure 承認** (2026-06-11 PO directive「1承認で…進めて」、`.ut-tdd/audit/A-131-recovery-04-closure-accept.md`)。
+- [x] **PO scope/closure 承認** (2026-06-11 PO directive「1承認で…進めて」、`.helix/audit/A-131-recovery-04-closure-accept.md`)。
 - [x] fullback (全バンドの工程表登録 完遂): **descended 登録** = design (L4-00/L5-00/L6-00 master の `roadmap:` ブロック) + upstream (PLAN-L3-00-master 新規)。program-coverage 1/5 → 3/5。**future 明示 defer** = verification (L8-L14 forward 未降下) / cutover (harness.db close 後の射程) を §5 で正規 defer。全 5 バンドが「登録 or 明示 defer」で account 済。
 
 本 PLAN は **completed** (PO closure 承認 + fullback 完遂、A-131)。残 carry = park 機構配線 + program rollup (REVERSE-44 Step3、Codex 実装。verification/cutover の uncovered warn → parked 表示はこの impl 後)。

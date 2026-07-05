@@ -43,7 +43,7 @@ review_evidence:
 
 ## §0 位置づけ
 
-L6 機能設計の ① 必須 sub-doc = **edge-case**。internal-processing §7 で G5 凍結した `@edge-*` docstring 枠を、function-spec (§1/§2) の関数別に**正常/異常/境界/throws の 4 観点で展開**する (PLAN-L6-00 §2、IMP-014)。各 edge は L7 単体テスト設計の U-* と双方向 trace (孤児 0)。V-pair = L7 単体テスト設計。
+L6 機能設計の ① 必須サブ文書 (sub-doc) = **edge-case**。internal-processing §7 で G5 凍結した `@edge-*` docstring 枠を、function-spec (§1/§2) の関数別に**正常/異常/境界/throws の 4 観点で展開**する (PLAN-L6-00 §2、IMP-014)。各 edge は L7 単体テスト設計の U-* と双方向トレース (trace、孤児 0)。V-pair = L7 単体テスト設計。
 
 ## §1 設計範囲
 
@@ -54,19 +54,19 @@ L6 機能設計の ① 必須 sub-doc = **edge-case**。internal-processing §7 
 ## §2 設計計画 (Step)
 
 1. Step 1: 実装済関数 (analyzeX/detectMode/evaluateAgentGuard/lintX/runDoctor) の 4 観点 edge
-2. Step 2: core 操作 (plan draft/gate/trace/sprint) の 4 観点 edge
-3. Step 3: edge↔AT/U-* trace 方針 (vmodel lint の edge 5-8 照合、carry)
-4. Step 4: self-review (pmo-sonnet) → G6 readiness
+2. Step 2: コア操作 (core、plan draft/gate/trace/sprint) の 4 観点 edge
+3. Step 3: edge↔AT/U-* のトレース方針 (trace、vmodel lint の edge 5-8 照合、carry)
+4. Step 4: 自己レビュー (self-review、pmo-sonnet) → G6 準備完了確認 (G6 readiness)
 
-## §3 carry (PLAN-L6-00 §4)
+## §3 引き継ぎ (carry、PLAN-L6-00 §4)
 
-- IMP-014: `@edge-*` docstring を per-function 確定 (本 doc が正本)、L7 で実関数 docstring へ転記
+- IMP-014: `@edge-*` docstring を関数別 (per-function) に確定 (本 doc が正本)、L7 で実関数 docstring へ転記
 - internal-processing §7: edge 5-8 形式 (`@edge-normal`→AT-01 / `@edge-error`→AT-02 / `@edge-boundary`→AT-03 / `@throws`)
 
-## §4 DoD
+## §4 完了条件 (DoD)
 
 - [ ] function-spec §1 の実装済関数すべてに 4 観点 edge を確定
 - [ ] core 操作の異常/境界系を fail-close 形式 (internal-processing §6) に整合
-- [ ] 各 edge → L7 U-* の trace 方針を記載
+- [ ] 各 edge → L7 U-* のトレース方針 (trace) を記載
 - [ ] artifact = `docs/design/harness/L6-function-design/edge-case.md` を pair=L7 で生成
-- [ ] self-review 通過
+- [ ] 自己レビュー (self-review) 通過

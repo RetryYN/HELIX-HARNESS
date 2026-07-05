@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-120-backfill-result-doc-sync
-title: "PLAN-L7-120: backfill result doc sync"
+title: "PLAN-L7-120: backfill result doc 同期"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - backfill result doc sync"
+    slot_label: "TL - backfill result doc 同期"
 generates:
   - artifact_path: docs/plans/PLAN-L7-120-backfill-result-doc-sync.md
     artifact_type: markdown_doc
@@ -34,7 +34,7 @@ review_evidence:
     reviewed_at: "2026-06-23T13:45:00+09:00"
     tests_green_at: "2026-06-23T13:45:00+09:00"
     verdict: approve
-    scope: "Backfill result key documentation sync gate and regression tests."
+    scope: "backfill result key の documentation sync gate と regression tests。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -56,21 +56,19 @@ review_evidence:
         output_digest: "sha256:cb69e5f9425f57492a0760eb7574201d4d361689feb2229db46d773509485b07"
 ---
 
-# PLAN-L7-120: backfill result doc sync
+# PLAN-L7-120: backfill result doc 同期
 
-## Objective
+## 目的
 
-Keep the machine backfill result keys synchronized with requirements and concept
-documentation.
+機械判定用の backfill result key を requirements と concept documentation に同期させ続ける。
 
-## Scope
+## 範囲
 
-- Export `BACKFILL_RESULT_KEYS` from `backfill-pairing`.
-- Require requirements and concept docs to mention every machine result key.
-- Update the requirements backfill mechanism note.
+- `backfill-pairing` から `BACKFILL_RESULT_KEYS` を export する。
+- requirements と concept docs がすべての機械判定用 result key に言及することを必須にする。
+- requirements の backfill mechanism note を更新する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Adding or renaming a backfill result key without docs fails the regression
-  test.
-- Current requirements and concept docs mention all backfill result keys.
+- docs なしで backfill result key を追加または rename すると regression test が失敗する。
+- 現在の requirements と concept docs がすべての backfill result key に言及している。

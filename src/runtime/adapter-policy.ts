@@ -8,7 +8,7 @@ export const CLAUDE_MODEL_FLAG = "--model";
 export const CLAUDE_EFFORT_FLAG = "--effort";
 export const CLAUDE_EFFORT_ENV = "CLAUDE_CODE_EFFORT_LEVEL";
 
-export const ADAPTER_CONTEXT_HEADER = "UT-TDD context injection:";
+export const ADAPTER_CONTEXT_HEADER = "HELIX context injection:";
 export const REQUIRED_SKILL_LABEL = "required skill";
 export const OPTIONAL_SKILL_LABEL = "optional skill";
 

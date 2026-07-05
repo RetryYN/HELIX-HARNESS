@@ -110,13 +110,13 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-243: relation graph DB/diagram projection hardening
+# PLAN-L7-243: relation graph DB / diagram projection の hardening
 
 ## 0. 目的
 
 `IMP-118` / `IMP-119` は 2026-06-09 時点で relation graph / impact / diagram export が未実装として
 残っていた。現 HEAD には `collectRelationGraphProjection`、`analyzeRelationImpact`、
-`exportRelationDiagram`、`ut-tdd graph impact/export`、`graph_nodes` / `dependency_edges` /
+`exportRelationDiagram`、`helix graph impact/export`、`graph_nodes` / `dependency_edges` /
 `impact_rules` / `impact_results` / `graph_snapshots` の射影が存在する。
 
 ただし精読で、以下の実装穴が残っていた:

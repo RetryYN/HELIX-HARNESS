@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-80-session-digest-event-watermark
-title: "PLAN-L7-80 (troubleshoot): plan digest counts incremental events via a per-session high-watermark so a re-summarized session is not under-counted"
+title: "PLAN-L7-80 (troubleshoot): plan digest は per-session high-watermark で incremental events を数え、再要約された session の under-count を防ぐ"
 kind: troubleshoot
 layer: L7
 drive: agent
@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-19
 updated: 2026-06-19
 backprop_decision: not_required
-backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
+backprop_decision_reason: "内部 harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism) の変更である。harness 自身の enforcement を堅牢化するだけで、product の外部 requirement / design / test-design contract は変更しないため、upstream backprop target はない。"
 owner: Claude TL
 review_evidence:
   - reviewer: codex-gpt-5
@@ -16,7 +16,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "compressPlanDigest replaced whole-session folding (which dropped every event of a session already in base.sessions) with a per-session count high-watermark (session_watermarks[sid]). A session summarized more than once (multiple Stop hooks growing the append-only per-session log) now counts only events beyond its watermark instead of dropping them all. A migration path seeds watermarks from updated_at for pre-L7-80 digests (events with ts <= updated_at for already-folded sessions are treated as already counted). Codex cross-review (claude-opus-4-8 worker, codex-gpt-5 reviewer) verdict pass: single-call and same-batch re-application stay idempotent, migration does not double-count, genuinely-new events are counted. Documented risks: the fix relies on the caller passing the complete per-session log in append-only file order (onSessionEnd reads the whole session jsonl, so this holds) and on chronological append order matching file order. Oracle U-SLOG-008 covers multi-stop increment, idempotent re-apply, and migration."
+    scope: "compressPlanDigest は whole-session folding (base.sessions に既にある session の全 event を捨てる挙動) を per-session count high-watermark (session_watermarks[sid]) に置き換えた。複数回要約された session (複数の Stop hooks により append-only の per-session log が伸びる場合) は、全 event を捨てず、watermark を超えた event だけを数える。migration path は pre-L7-80 digest 向けに updated_at から watermarks を seed する (already-folded sessions の ts <= updated_at の event は already counted と扱う)。Codex cross-review (claude-opus-4-8 worker, codex-gpt-5 reviewer) verdict pass: single-call と same-batch re-application は idempotent のまま、migration は double-count せず、genuinely-new events は count される。Documented risks: この修正は caller が complete per-session log を append-only file order で渡すこと (onSessionEnd が whole session jsonl を読むため成立) と、chronological append order が file order と一致することに依存する。Oracle U-SLOG-008 は multi-stop increment、idempotent re-apply、migration を coverage する。"
     worker_model: claude-opus-4-8
     reviewer_model: codex-gpt-5
 agent_slots:
@@ -43,56 +43,56 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-80 (troubleshoot): session digest event-level high-watermark
+# PLAN-L7-80 (troubleshoot): session digest event-level high-watermark の修正
 
-## 0. Objective
+## 0. 目的
 
-`compressPlanDigest` folded a whole session: once a `session_id` was in
-`base.sessions` (from a prior digest), the loop `if (folded.has(ev.session_id))
-continue` skipped every event of that session. Because the Stop hook
-(`onSessionEnd`) re-reads the full per-session log and re-runs the digest, a
-session that hits Stop more than once dropped all the events appended between the
-first and later Stops — an under-count of the PLAN digest (event_counts,
-files_touched, commits, failures).
+`compressPlanDigest` は session 全体を fold していた。いったん `session_id` が
+prior digest 由来で `base.sessions` に入ると、loop
+`if (folded.has(ev.session_id)) continue` により、その session の全 event が
+skip される。Stop hook (`onSessionEnd`) は per-session log 全体を再読込して
+digest を再実行するため、Stop が複数回発生した session では、初回 Stop と後続 Stop
+の間に append された全 event が捨てられ、PLAN digest (event_counts,
+files_touched, commits, failures) が under-count されていた。
 
-## 1. Scope
+## 1. スコープ
 
-In scope:
+対象:
 
-- Add `session_watermarks?: Record<string, number>` to `PlanDigest`: per-session
-  count of matching events already folded into the digest.
-- `compressPlanDigest` counts an event only when its in-session index is at or
-  beyond the session watermark, then advances the watermark. Events are read in
-  append-only file order (= chronological = count order), so the index is stable.
-- Migration: a pre-L7-80 digest has no `session_watermarks`. Seed them from
-  `updated_at` (events with `ts <= updated_at` for already-folded sessions are the
-  contiguous leading already-counted events) so they are not re-counted.
+- `PlanDigest` に `session_watermarks?: Record<string, number>` を追加する。これは
+  digest に既に fold 済みの matching event 数を session ごとに持つ。
+- `compressPlanDigest` は、event の in-session index が session watermark 以上の
+  場合だけその event を数え、その後 watermark を進める。Events は append-only file
+  order (= chronological = count order) で読まれるため、index は安定する。
+- Migration: pre-L7-80 digest には `session_watermarks` がない。already-folded
+  sessions について `updated_at` から seed し、`ts <= updated_at` の events を
+  contiguous leading already-counted events として扱うことで、re-count を防ぐ。
 
-Out of scope:
+対象外:
 
-- Changing the digest consumer (handover scaffold) or DB projection schema.
-- Cross-session ordering (each session's events live only in its own log).
+- digest consumer (handover scaffold) や DB projection schema の変更。
+- Cross-session ordering。各 session の events は、その session 自身の log にだけ存在する。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
-- A session summarized twice (log grew between Stops) counts the incremental
-  events (not 0); `session_watermarks` advances to the new count.
-- Single-call and same-batch re-application stay idempotent (no double count).
-- A pre-L7-80 digest (no `session_watermarks`) migrates without re-counting the
-  events already reflected in it, while counting genuinely-new events.
-- Existing U-SLOG-003 stays green; typecheck, lint, full Vitest, and
-  `ut-tdd doctor` stay green.
+- 2 回 summarize された session (Stops の間に log が増えた場合) で、incremental
+  events が 0 ではなく count され、`session_watermarks` が新しい count へ進む。
+- Single-call と same-batch re-application は idempotent のまま維持される
+  (double count しない)。
+- pre-L7-80 digest (`session_watermarks` なし) は、既に反映済みの events を
+  re-count せず、genuinely-new events を count して migrate する。
+- 既存の U-SLOG-003 は green のまま維持され、typecheck、lint、full Vitest、
+  `helix doctor` も green のまま維持される。
 
-## 3. Test Design Pairing
+## 3. Test Design Pairing との対応
 
-Unit test design entry: `docs/test-design/harness/L7-unit-test-design.md`
-(U-SLOG-008). Red->Green: pre-fix the second summarize of a session drops the
-incremental events (under-count); post-fix the high-watermark counts the
-increment and the migration path avoids double-counting.
+Unit test design entry は `docs/test-design/harness/L7-unit-test-design.md`
+(U-SLOG-008)。Red->Green: pre-fix では session の 2 回目 summarize が incremental
+events を落として under-count する。post-fix では high-watermark が increment を
+count し、migration path が double-counting を回避する。
 
-## 4. Status
+## 4. 状態
 
-Confirmed. Implemented and cross-reviewed 2026-06-19. Disposition (D#3) was
-TL-approved before implementation; the concrete diff was Codex cross-reviewed
-(verdict pass) with the caller-invariant (complete per-session log, append-only
-file order) documented.
+Confirmed。2026-06-19 に実装済み、cross-review 済み。Disposition (D#3) は実装前に
+TL-approved 済みであり、具体 diff は Codex cross-reviewed (verdict pass) 済み。
+caller-invariant (complete per-session log、append-only file order) も文書化済み。

@@ -78,7 +78,7 @@ function classifyStaleL7Line(line: string): string | null {
     return "module inventory row still has an unimplemented status";
   }
   if (
-    /^\|\s+`ut-tdd (review --uncommitted|skill suggest|cutover --to|asset` \/ `ut-tdd builder)/.test(
+    /^\|\s+`helix (review --uncommitted|skill suggest|cutover --to|asset` \/ `helix builder)/.test(
       line,
     ) &&
     /\|\s*(?:pending|not implemented)(?:\s|\|)/i.test(line)

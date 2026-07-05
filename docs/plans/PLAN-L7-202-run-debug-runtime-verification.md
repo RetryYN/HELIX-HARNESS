@@ -97,20 +97,20 @@ review_evidence:
         output_digest: "sha256:192bd5a2bed49493d64134d64343d9f1a243fee8aa8a3933ab5b67aeeeda3ebc"
 ---
 
-# PLAN-L7-202: L7.5 RUN & Debug runtime verification gate
+# PLAN-L7-202: L7.5 実行・デバッグ runtime 検証ゲート
 
-## Objective
+## 目的
 
-Add the missing L7.5 boundary between static implementation tests and runtime acceptance.
-The harness currently has DB projection and unit-test coverage for many runtime-adjacent
-features, but a projection row is not proof that a hook fired, a provider executed, or a
-debug recovery actually happened. This PLAN makes that distinction explicit.
+静的な実装テストと runtime acceptance の間に欠けていた L7.5 境界を追加する。
+現状の harness は runtime-adjacent な多くの機能について DB projection と unit-test coverage を持つが、
+projection row は hook が `fired` したこと、provider が実行されたこと、または debug recovery が実際に
+起きたことの証明ではない。この PLAN はその区別を明示する。
 
-## Design Contract
+## 設計契約
 
-Runtime-behavior claims are claims that something `fired`, was `used`, `works`, was
-`blocked`, was `recovered`, was `observed`, or was `executed` in a real runtime surface.
-Those claims can close only when all of the following are present:
+runtime-behavior claim は、実 runtime surface 上で何かが `fired` した、`used` された、`works` した、
+`blocked` された、`recovered` された、`observed` された、または `executed` されたという主張である。
+これらの主張は、次の全項目が存在する場合にのみ close できる:
 
 - non-empty `session_id`
 - runtime `source` such as `runtime-hook`, `adapter-command`, `run-debug`, or `hosted-preflight`
@@ -118,39 +118,37 @@ Those claims can close only when all of the following are present:
 - timestamp
 - concrete evidence path
 
-Projection-only data remains useful for indexing, dashboards, and trace support, but it
-is classified as `projection_only_unverified` and cannot close runtime acceptance. Missing
-runtime provenance is a blocked verification state, not an implicit pass.
+projection-only data は indexing、dashboard、trace support には有用なままだが、
+`projection_only_unverified` と分類され、runtime acceptance を close できない。
+runtime provenance の欠落は blocked verification state であり、暗黙の pass ではない。
 
 ## Scope
 
-- Add L6 function contracts for runtime evidence classification, RUN & Debug obligation
-  calculation, projection-only rejection, runtime verification log event creation, and
-  log completeness validation.
-- Add a CLI evidence producer (`ut-tdd run-debug log`) that appends complete runtime
-  verification events to `.ut-tdd/evidence/run-debug/runtime-verification.jsonl`.
+- runtime evidence の分類、RUN & Debug の責務計算、projection-only の拒否、
+  runtime verification log event の作成、log completeness validation の L6 function contract を追加する。
+- 完全な runtime verification event を `.helix/evidence/run-debug/runtime-verification.jsonl` へ
+  append する CLI evidence producer (`helix run-debug log`) を追加する。
 - Add L7 unit oracles `U-RUNDEBUG-001..006`.
-- Implement the contracts in `src/runtime/run-debug.ts`.
-- Add focused unit tests for projection-only rejection, pure helper exemption, secret-like
-  value rejection, completeness validation, and append-only evidence writes.
+- contract を `src/runtime/run-debug.ts` に実装する。
+- projection-only の拒否、pure helper の適用除外、secret-like value の拒否、
+  completeness validation、append-only evidence write に焦点を当てた unit test を追加する。
 
-## Non-Goals
+## 非目標
 
-- This PLAN does not launch external Claude/Codex provider CLIs; `run-debug log` records
-  evidence produced by an already-observed runtime/debug action.
-- This PLAN does not rename `ut-tdd` or `.ut-tdd`; mechanical identifier migration remains
-  owned by `PLAN-M-02-helix-identifier-rename`.
-- This PLAN does not change database schema. The log event type is an implementation
-  contract for append-only evidence producers and future DB projection.
+- この PLAN は外部 Claude/Codex provider CLI を起動しない。`run-debug log` は、すでに観測済みの
+  runtime/debug action が生成した evidence を記録する。
+- この PLAN は `helix` や `.helix` を rename しない。mechanical identifier migration は引き続き
+  `PLAN-M-02-helix-identifier-rename` の責務である。
+- この PLAN は database schema を変更しない。log event type は append-only evidence producer と
+  将来の DB projection のための implementation contract である。
 
-## Acceptance Criteria
+## 受入条件
 
-- `src/runtime/run-debug.ts` is traced to this PLAN and has no impl-plan orphan.
-- Projection-only evidence cannot close runtime behavior acceptance.
-- Runtime claims require runtime provenance and evidence.
-- Unit-only helpers can skip L7.5 RUN & Debug only when a reason and substitute oracle are
-  recorded.
-- Runtime verification log events reject secret-like values before storage.
-- `ut-tdd run-debug log` appends complete runtime verification events and refuses
-  projection-only or incomplete runtime acceptance claims before writing.
-- Lint, typecheck, doctor, and the full test suite pass after this PLAN is added.
+- `src/runtime/run-debug.ts` がこの PLAN へ trace され、impl-plan orphan がない。
+- projection-only evidence は runtime behavior acceptance を close できない。
+- runtime claim には runtime provenance と evidence が必要である。
+- unit-only helper が L7.5 RUN & Debug を skip できるのは、reason と substitute oracle が記録されている場合だけである。
+- runtime verification log event は storage 前に secret-like value を reject する。
+- `helix run-debug log` は完全な runtime verification event を append し、projection-only または不完全な
+  runtime acceptance claim を write 前に拒否する。
+- この PLAN の追加後に lint、typecheck、doctor、full test suite が pass する。

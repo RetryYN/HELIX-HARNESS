@@ -29,7 +29,7 @@ pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 dependencies:
   parent: docs/plans/PLAN-L6-00-master.md
   requires:
-    - .ut-tdd/audit/A-126-canonical-document-export.md
+    - .helix/audit/A-126-canonical-document-export.md
     - docs/research/canonical-document-export-research-2026-06-09.md
     - docs/governance/helix-harness-requirements_v1.2.md
 ---

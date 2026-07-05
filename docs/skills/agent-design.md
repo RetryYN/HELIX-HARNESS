@@ -36,7 +36,7 @@ model-family 割り当て、guard allowlist 登録（FR-L1-46 subagent roster）
 |---|---|---|
 | `name`（frontmatter） | kebab filename と一致する必要がある | `agent-guard.ts` の key lookup |
 | `model` | 明示的な model string（省略不可） | 省略 model は guard が block。parent は継承しない |
-| `description` | 1 行の capability summary | `ut-tdd skill suggest` が利用する |
+| `description` | 1 行の capability summary | `helix skill suggest` が利用する |
 | `tools` | 宣言された tool list | guard が allowed surfaces と照合 |
 
 Agent call の `subagent_type` は、guard allowlist entries のいずれかと完全一致する必要がある
@@ -67,8 +67,8 @@ parent を暗黙継承しない。
 
 ## Guard bypass（例外迂回）
 
-`UT_TDD_ALLOW_RAW_AGENT=1` は guard を bypass する。診断済み emergency の場合だけ使う。
-迂回した場合は `.ut-tdd/audit/` に audit entry を残し、誰が flag を設定したか、
+`HELIX_ALLOW_RAW_AGENT=1` は guard を bypass する。診断済み emergency の場合だけ使う。
+迂回した場合は `.helix/audit/` に audit entry を残し、誰が flag を設定したか、
 どの agent call を実行したか、通常 path がなぜ不適切だったかを記録する。
 
 ## Self-review checklist（自己レビューチェックリスト）
@@ -78,4 +78,4 @@ parent を暗黙継承しない。
 - [ ] spawn call の `subagent_type` が allowlist entry と完全一致する。
 - [ ] Capability class の根拠がある。選んだ model tier は必要最小限。
 - [ ] 新しい role の場合、`agent-guard.ts` の allowlist が更新され test 済み。
-- [ ] `UT_TDD_ALLOW_RAW_AGENT=1` を設定した場合、bypass evidence を `.ut-tdd/audit/` に書いた。
+- [ ] `HELIX_ALLOW_RAW_AGENT=1` を設定した場合、bypass evidence を `.helix/audit/` に書いた。

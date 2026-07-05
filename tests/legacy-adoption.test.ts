@@ -137,18 +137,18 @@ describe("old HELIX semantic adoption decisions (U-HLX)", () => {
       analyzeRunDebugTrace({
         expected_actions: ["adapter-start", "adapter-stop"],
         observed_evidence: ["adapter-start", "adapter-stop"],
-        runtime_surface: "ut-tdd-cli",
+        runtime_surface: "helix-cli",
         correlation_id: "corr-1",
-        evidence_path: ".ut-tdd/evidence/run-debug/session.jsonl",
+        evidence_path: ".helix/evidence/run-debug/session.jsonl",
       }),
-    ).toMatchObject({ kind: "complete", runtime_surface: "ut-tdd-cli", missing_actions: [] });
+    ).toMatchObject({ kind: "complete", runtime_surface: "helix-cli", missing_actions: [] });
     expect(
       analyzeRunDebugTrace({
         expected_actions: ["adapter-start", "adapter-stop"],
         observed_evidence: ["adapter-start"],
-        runtime_surface: "ut-tdd-cli",
+        runtime_surface: "helix-cli",
         correlation_id: "corr-1",
-        evidence_path: ".ut-tdd/evidence/run-debug/session.jsonl",
+        evidence_path: ".helix/evidence/run-debug/session.jsonl",
       }),
     ).toMatchObject({ kind: "incomplete", missing_actions: ["adapter-stop"] });
   });
@@ -159,7 +159,7 @@ describe("old HELIX semantic adoption decisions (U-HLX)", () => {
         repo_local_source: "docs/templates/adapter/AGENTS.md",
         generated_target: ".codex/AGENTS.md",
         consumer_mode: "codex",
-        required_marker: "UT-TDD:managed",
+        required_marker: "HELIX:managed",
         provenance: "HELIX-HARNESS",
       }),
     ).toMatchObject({ disposition: "adopt" });
@@ -168,7 +168,7 @@ describe("old HELIX semantic adoption decisions (U-HLX)", () => {
         repo_local_source: "~/ai-dev-kit-vscode/helix/HELIX_CORE.md",
         generated_target: ".codex/AGENTS.md",
         consumer_mode: "codex",
-        required_marker: "UT-TDD:managed",
+        required_marker: "HELIX:managed",
         provenance: "legacy",
       }),
     ).toMatchObject({ disposition: "reject" });

@@ -18,7 +18,7 @@ review_evidence:
     reviewed_at: "2026-06-22"
     tests_green_at: "2026-06-22"
     verdict: pass
-    scope: "PO『1. は対応しろ』(2026-06-22) を受け S2/S3/S4 をクローズ。詰まり② (決定論 phase-driven recommender が sensible な per-phase skill set を出すか) を、throwaway spike でなく **既に shipped 済の production 実装** (src/skills/recommend.ts: recommendSkillsForPlan、layer+drive_model スコアリング、3-bucket、ut-tdd skill suggest CLI、harness.db automation_assets 投影) に対し live 検証。L1/L4/L5/L7 の 4 PLAN で skill suggest を実行: 決定論で per-phase ranked set を出すことを確認 (詰まり② = viable・confirmed)。同時に **score 飽和の限界**を実測 (全 phase で top-5 が score=1 → 同点アルファベット順に退化、L7 lint gate に browser-testing/api が rank4-5 = per-phase 弁別が弱い)。= category/gate タグ粒度で de-saturate する L5/L6 refinement が必要 (§6 既知 carry)。設計は L5-06-skill (confirmed) + L4-12-skill-pack (confirmed) + L7-70-skill-pack-curation (catalog source 空=詰まり① を解消) で既に Forward 確定・実装済ゆえ promotion_strategy=redesign-realized。所見は §5 / DISCOVERY-01 §7.1 に記録。"
+    scope: "PO『1. は対応しろ』(2026-06-22) を受け S2/S3/S4 をクローズ。詰まり② (決定論 phase-driven recommender が sensible な per-phase skill set を出すか) を、throwaway spike でなく **既に shipped 済の production 実装** (src/skills/recommend.ts: recommendSkillsForPlan、layer+drive_model スコアリング、3-bucket、helix skill suggest CLI、harness.db automation_assets 投影) に対し live 検証。L1/L4/L5/L7 の 4 PLAN で skill suggest を実行: 決定論で per-phase ranked set を出すことを確認 (詰まり② = viable・confirmed)。同時に **score 飽和の限界**を実測 (全 phase で top-5 が score=1 → 同点アルファベット順に退化、L7 lint gate に browser-testing/api が rank4-5 = per-phase 弁別が弱い)。= category/gate タグ粒度で de-saturate する L5/L6 refinement が必要 (§6 既知 carry)。設計は L5-06-skill (confirmed) + L4-12-skill-pack (confirmed) + L7-70-skill-pack-curation (catalog source 空=詰まり① を解消) で既に Forward 確定・実装済ゆえ promotion_strategy=redesign-realized。所見は §5 / DISCOVERY-01 §7.1 に記録。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
 agent_slots:
@@ -46,20 +46,20 @@ v2_import: docs/migration/v2-import-ledger.md
 s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO/PM S4 close (2026-06-22)
-- decision_basis: shipped skill recommender implementation proved the phase-driven recommender viable while exposing score-saturation limits.
+- decision_basis: shipped 済 skill recommender implementation により phase-driven recommender が viable であることを確認し、同時に score-saturation limit も露出した。
 - verified_evidence: PLAN-DISCOVERY-03 §5 S2/S3 live observations; PLAN-L5-06-skill, PLAN-L4-12-skill-pack, and PLAN-L7-70-skill-pack-curation; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
-- stakeholder_review_or_proxy: PM S4 record and production implementation verification used as proxy evidence.
-- acceptance_gap: generic scoring saturation remained and was routed to L5/L6 tag/category hardening.
-- unresolved_risk: future skill quality must be evaluated by adoption/success metrics, not only recommendation presence.
-- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
-- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
-- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
-- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
-- route_impact: confirmed preserves the concept but does not bless the original spike plan as-is.
-- forward_route: PLAN-L5-06-skill / PLAN-L4-12-skill-pack / PLAN-L7-70-skill-pack-curation.
-- reverse_fullback_required: no; redesign/Forward implementation already carried the accepted learning.
-- promotion_strategy_or_rejection_pivot_rationale: redesign; use production Forward implementation and harden scoring instead of preserving the original spike.
+- stakeholder_review_or_proxy: PM S4 record と production implementation verification を proxy evidence として使う。
+- acceptance_gap: generic scoring saturation は残り、L5/L6 tag/category hardening へ経路付け済み。
+- unresolved_risk: residual risk として、将来の skill quality は recommendation presence だけでなく adoption/success metrics で評価する必要がある。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh。current audit で 2026-07-03 に discovery/scrum mode docs の S4 decision source ledger を確認済み。
+- source_status_delta: changed。ISO/IEC/IEEE 29148 は現在 2026-02-16 stage 90.92 to be revised を示すが、historical confirmed S4 decision は再オープンしない。
+- adoption_decision_delta: none。ISO/IEC/IEEE 29148 revision は publication まで追跡するが、historical S4 adoption decision は current route policy と整合している。
+- workflow_route_impact: none。historical decision はすでに S4 と Reverse/Forward evidence 経由で経路付け済み。
+- route_impact: confirmed は concept を維持するが、original spike plan を as-is で承認するものではない。
+- forward_route: Forward route は PLAN-L5-06-skill / PLAN-L4-12-skill-pack / PLAN-L7-70-skill-pack-curation。
+- reverse_fullback_required: no。redesign/Forward implementation が accepted learning をすでに取り込んでいる。
+- promotion_strategy_or_rejection_pivot_rationale: redesign。original spike を維持せず、production Forward implementation を使い scoring を harden する。
 
 # PLAN-DISCOVERY-03 (kind=poc): skill module 設計の Discovery 検証
 
@@ -83,8 +83,8 @@ architecture §3.1 skills building block = `loadCatalog()` / `recommendSkill()` 
 
 ### §1.1 S1 で surface した設計の詰まり (Discovery で解くべき核心)
 
-- **詰まり① catalog source 空 (curate 依存)**: UT-TDD の catalog source `docs/skills/**/*.md` は当時 **空 (`.gitkeep` のみ)**。curate (FR-L1-47: source skill reference の skill を UT-TDD 用に選別・旧 label 除去/relabel) が**前提依存** (porting-map W10、L7 = 実装状態解消型 `placeholder_deps:{waiting_layer:L7}`)。**spike は UT-TDD-owned `docs/skills/**/*.md` または test fixture を sample catalog として使い、catalog/recommender 機構を実証**する (curate そのものは検証対象外)。source snapshot は provenance / comparison のみ。
-- **詰まり② recommender 基盤 = 工程タグ駆動 (PO 確定方向 2026-06-01)**: PO 指摘「スキルをカテゴリタグで分けて**工程単位で推挙させる仕組み**にすべき」。**source freeform search は不採用** (LLM 依存 + 「TS にそろえる」非整合)。代わりに **skill を category タグ + 工程(layer/gate) タグで分類し、ワークフローの各工程で当該タグを持つ skill を決定論で推挙/発火する** (= FR-12 `injectByLayer` + 既存「工程別 subagent 起動マップ mandatory-by-phase」と同型、TS-native、LLM 不要)。source skill metadata tags は curate で ut-tdd 工程へ relabel + category 付与すれば成立する見込み。**spike は「工程 → タグ lookup が per-phase で sensible な skill set を出すか」を検証**。出なければ pivot (タグ設計の見直し)。
+- **詰まり① catalog source 空 (curate 依存)**: HELIX の catalog source `docs/skills/**/*.md` は当時 **空 (`.gitkeep` のみ)**。curate (FR-L1-47: source skill reference の skill を HELIX 用に選別・旧 label 除去/relabel) が**前提依存** (porting-map W10、L7 = 実装状態解消型 `placeholder_deps:{waiting_layer:L7}`)。**spike は HELIX-owned `docs/skills/**/*.md` または test fixture を sample catalog として使い、catalog/recommender 機構を実証**する (curate そのものは検証対象外)。source snapshot は provenance / comparison のみ。
+- **詰まり② recommender 基盤 = 工程タグ駆動 (PO 確定方向 2026-06-01)**: PO 指摘「スキルをカテゴリタグで分けて**工程単位で推挙させる仕組み**にすべき」。**source freeform search は不採用** (LLM 依存 + 「TS にそろえる」非整合)。代わりに **skill を category タグ + 工程(layer/gate) タグで分類し、ワークフローの各工程で当該タグを持つ skill を決定論で推挙/発火する** (= FR-12 `injectByLayer` + 既存「工程別 subagent 起動マップ mandatory-by-phase」と同型、TS-native、LLM 不要)。source skill metadata tags は curate で helix 工程へ relabel + category 付与すれば成立する見込み。**spike は「工程 → タグ lookup が per-phase で sensible な skill set を出すか」を検証**。出なければ pivot (タグ設計の見直し)。
 
 ## §2 仮実装計画 (S2、PoC spike)
 
@@ -92,7 +92,7 @@ architecture §3.1 skills building block = `loadCatalog()` / `recommendSkill()` 
 - **実装**: PM-authored TS (Codex は 8009001d で broken、env-forced fallback = roster PLAN-DISCOVERY-02 A-96 で確立済の path)
 - **spike 範囲** (`src/skill/` に最小):
   1. `scanSkills()`: `docs/skills/**/*.md` または `tests/fixtures/skill-catalog/**` を scan → catalog (`{id, description, layers, gate, role, tier}`)。frontmatter parse は roster spike 流用
-  2. `recommendByPhase(layer, opts?)`: skill の 工程(layer/gate) タグ + category で、指定**工程**に該当する skill を**決定論で抽出** → per-phase skill set。LLM 不使用。source layer tag を ut-tdd 工程へ map する relabel も spike 内で簡易実装
+  2. `recommendByPhase(layer, opts?)`: skill の 工程(layer/gate) タグ + category で、指定**工程**に該当する skill を**決定論で抽出** → per-phase skill set。LLM 不使用。source layer tag を helix 工程へ map する relabel も spike 内で簡易実装
   3. (injector は stub、recommendByPhase の出力を注入する骨子のみ。本筋は工程→タグ lookup)
 - **検証用**: 各**工程** (例 L1 要求 / L4 基本設計 / L5 詳細設計 / G2 / G4) に対し、推挙される per-phase skill set が直感に合うか観察 (PLAN keyword 入力でなく**工程**入力)
 
@@ -102,7 +102,7 @@ architecture §3.1 skills building block = `loadCatalog()` / `recommendSkill()` 
 |---|---|---|
 | catalog scan が skill を拾うか | vendor skills 全件 catalog 化 (frontmatter parse 成立) | catalog 設計の成立 |
 | **工程タグ駆動 recommender が sensible な per-phase skill set を出すか** | 各**工程**に対し category+工程タグで該当 skill が出る (例: L5 詳細設計 → design/spec-driven/adr 系、G2 → adversarial-review/security 系、L4 → tdd/test 系) | **recommender 基盤の成否** (詰まり②)。出なければタグ設計 pivot |
-| 工程タグ relabel が機能するか | source layer tag → ut-tdd 工程 の map + category 付与で per-phase 抽出が成立 | curate のタグ relabel 方針の成立 |
+| 工程タグ relabel が機能するか | source layer tag → helix 工程 の map + category 付与で per-phase 抽出が成立 | curate のタグ relabel 方針の成立 |
 
 ## §4 設計確定 (S4、decision_outcome = PO)
 
@@ -124,7 +124,7 @@ architecture §3.1 skills building block = `loadCatalog()` / `recommendSkill()` 
   (skill type、`applies_layers` / `applies_drive_models` / `skill_type` を docs/skills frontmatter から投影)
   を `scoreSkill` でスコア (layer 一致 +0.35 / drive_model 一致 +0.35 / category キーワード review|test|lint 等 +0.25 …)
   → top-N ranked。`bucketRecommendations` で required/recommended/optional の 3-bucket。決定論 (Date/random 不使用)。
-- CLI: `ut-tdd skill suggest --plan <id>` / `--text <task>`。
+- CLI: `helix skill suggest --plan <id>` / `--text <task>`。
 
 ### S3 — live 観察 (4 phase で skill suggest 実行)
 

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-104-conditional-backfill-decision-gate
-title: "PLAN-REVERSE-104: Conditional backfill decision gate fullback"
+title: "PLAN-REVERSE-104: conditional backfill decision gate の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define the conditional backfill decision gate."
+    reason: "Requirements が conditional backfill decision gate を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The governance gate does not change external runtime function design."
+    reason: "governance gate は外部 runtime function design を変更しない。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The governance gate does not change detailed runtime data or module design."
+    reason: "governance gate は詳細 runtime data や module design を変更しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - conditional backfill rule review"
+    slot_label: "TL - conditional backfill rule review の確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-104-conditional-backfill-decision-gate.md
     artifact_type: markdown_doc
@@ -39,36 +39,32 @@ dependencies:
     - docs/plans/PLAN-L7-104-conditional-backfill-decision-gate.md
 ---
 
-# PLAN-REVERSE-104: Conditional backfill decision gate fullback
+# PLAN-REVERSE-104: conditional backfill decision gate の fullback
 
-## R0 Evidence
+## R0 証跡
 
-`backfill-pairing` already knew that `refactor`, `retrofit`, and `troubleshoot`
-may require Reverse when they alter contracts or behavior, but it only emitted a
-note and kept `ok=true`.
+`backfill-pairing` は、`refactor`、`retrofit`、`troubleshoot` が contract または behavior を変更する場合に
+Reverse が必要になり得ることを既に認識していた。ただし note を出すだけで、`ok=true` のままにしていた。
 
-## R1 Observed Gap
+## R1 観測された gap
 
-The repository had 26 active conditional-kind PLANs without a Reverse link or
-machine-readable no-backprop decision. That left the same class of design
-backprop miss possible outside explicit `add-impl` and R4 fullback paths.
+repository には、Reverse link または machine-readable な no-backprop decision を持たない active な
+conditional-kind PLAN が 26 件あった。そのため、明示的な `add-impl` と R4 fullback path の外側で、
+同種の design backprop 漏れが起こり得る状態だった。
 
-## R2 Alignment
+## R2 整合
 
-Existing entries are treated as legacy debt and are recorded in a governance
-audit table. New and updated conditional-kind PLANs must either be back-filled
-by Reverse or declare a concrete no-backprop decision.
+既存 entry は legacy debt として扱い、governance audit table に記録する。新規または更新された
+conditional-kind PLAN は、Reverse で back-fill するか、具体的な no-backprop decision を宣言しなければならない。
 
-## R3 / R4 Outcome
+## R3 / R4 結果
 
-Requirements now define the conditional backfill decision gate. `backfill-pairing`
-enforces it with `conditionalDecisionMissing`, while preserving the legacy debt
-baseline for remediation.
+Requirements は conditional backfill decision gate を定義済みである。`backfill-pairing` は remediation 用の
+legacy debt baseline を保持しながら、`conditionalDecisionMissing` でこの gate を強制する。
 
 ## DoD
 
-- [x] Requirements define the conditional-kind no-backprop decision contract.
-- [x] Legacy conditional gaps are listed in an audit artifact.
-- [x] Regression tests fail a new conditional PLAN without Reverse or no-backprop
-      decision.
-- [x] Regression tests accept an explicit no-backprop decision.
+- [x] Requirements が conditional-kind no-backprop decision contract を定義する。
+- [x] legacy conditional gap が audit artifact に列挙されている。
+- [x] regression test は、Reverse または no-backprop decision を持たない新規 conditional PLAN を失敗させる。
+- [x] regression test は、明示的な no-backprop decision を受け入れる。

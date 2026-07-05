@@ -49,7 +49,7 @@ dependencies:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-232: green command kind contract
+# PLAN-L7-232: green command の kind contract
 
 ## 0. 目的
 

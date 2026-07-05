@@ -26,7 +26,7 @@ export interface L14CloseAuditResult {
   openRows: L14CloseAuditRow[];
 }
 
-const AUDIT_PATH = ".ut-tdd/audit/A-144-l14-close-audit.md";
+const AUDIT_PATH = ".helix/audit/A-144-l14-close-audit.md";
 
 const EXPECTED_ITEMS = [
   "P0-forward-convergence",
@@ -63,7 +63,7 @@ const REQUIRED_EVIDENCE_BY_ITEM: Record<(typeof EXPECTED_ITEMS)[number], readonl
   ],
   "P3-verification-foundation": ["docs/process/gates.md", "tests/vmodel-pair.test.ts"],
   "P4-self-maintenance": [
-    ".ut-tdd/audit/A-134-harness-telemetry-self-improvement-audit.md",
+    ".helix/audit/A-134-harness-telemetry-self-improvement-audit.md",
     "src/lint/telemetry-closure.ts",
   ],
   "P5-context-efficiency": [

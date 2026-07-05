@@ -110,7 +110,7 @@ describe("dependency-drift and regression expansion (PLAN-REVERSE-42)", () => {
 
   it("U-REGEXP-003: CLI subprocess smoke tests count as cli regression coverage", () => {
     const drift = analyzeDependencyDrift({
-      sourceDocs: [{ path: "src/cli.ts", text: "export const programName = 'ut-tdd';" }],
+      sourceDocs: [{ path: "src/cli.ts", text: "export const programName = 'helix';" }],
       testDocs: [
         {
           path: "tests/runtime-hook-entrypoints.test.ts",

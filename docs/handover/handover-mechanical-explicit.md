@@ -8,9 +8,9 @@ Mechanical handover は、機械可読の routing state である。
 
 正本の場所:
 
-- `.ut-tdd/handover/CURRENT.json`
-- `.ut-tdd/handover/provider/CURRENT.json`
-- `.ut-tdd/handover/provider/*.json`
+- `.helix/handover/CURRENT.json`
+- `.helix/handover/provider/CURRENT.json`
+- `.helix/handover/provider/*.json`
 
 必須 properties:
 

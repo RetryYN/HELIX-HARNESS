@@ -239,10 +239,10 @@ describe("canonical document export (U-DOCEXPORT-001..012)", () => {
     const rows = recordDocumentExportArtifact({
       runId: "run-1",
       datasetId: "dataset-1",
-      artifactPath: ".ut-tdd/exports/docs.csv",
+      artifactPath: ".helix/exports/docs.csv",
       format: "csv",
       sourceSnapshotHash: "sha256:abc",
-      evidencePath: ".ut-tdd/evidence/document-export/run-1.json",
+      evidencePath: ".helix/evidence/document-export/run-1.json",
     });
 
     expect(rows.document_export_runs).toEqual([
@@ -255,7 +255,7 @@ describe("canonical document export (U-DOCEXPORT-001..012)", () => {
       expect.objectContaining({ document_export_dataset_id: "dataset-1" }),
     ]);
     expect(rows.document_export_artifacts).toEqual([
-      expect.objectContaining({ artifact_path: ".ut-tdd/exports/docs.csv" }),
+      expect.objectContaining({ artifact_path: ".helix/exports/docs.csv" }),
     ]);
   });
 
@@ -263,10 +263,10 @@ describe("canonical document export (U-DOCEXPORT-001..012)", () => {
     const rows = recordDocumentExportArtifact({
       runId: "run-1",
       datasetId: "dataset-1",
-      artifactPath: ".ut-tdd/exports/docs.md",
+      artifactPath: ".helix/exports/docs.md",
       format: "markdown",
       sourceSnapshotHash: "sha256:abc",
-      evidencePath: ".ut-tdd/evidence/document-export/run-1.json",
+      evidencePath: ".helix/evidence/document-export/run-1.json",
     });
 
     expect(rows.document_export_artifacts[0].derived).toBe(true);
@@ -277,11 +277,11 @@ describe("canonical document export (U-DOCEXPORT-001..012)", () => {
     const rows = recordDocumentExportArtifact({
       runId: "run-2",
       datasetId: "dataset-2",
-      artifactPath: ".ut-tdd/exports/docs.md",
+      artifactPath: ".helix/exports/docs.md",
       format: "markdown",
       sourceSnapshotHash: "sha256:new",
       previousSourceSnapshotHash: "sha256:old",
-      evidencePath: ".ut-tdd/evidence/document-export/run-2.json",
+      evidencePath: ".helix/evidence/document-export/run-2.json",
     });
 
     expect(rows.document_export_artifacts[0].stale).toBe(true);

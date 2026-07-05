@@ -14,7 +14,7 @@ review_evidence:
     reviewed_at: "2026-06-12"
     tests_green_at: "2026-06-12"
     verdict: approve_after_fixes
-    scope: "L7 completion audit A-135: U-VTRIG artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .ut-tdd/audit/A-135-l7-completion-review-checklist.yaml."
+    scope: "L7 completion audit A-135: U-VTRIG artifacts exist, target tests and full npm test green, G4/G7 codex-only checklist review passed with .helix/audit/A-135-l7-completion-review-checklist.yaml."
 agent_slots:
   - role: tl
     slot_label: "TL — loadPairDocs の status 拡張が既存 pair-freeze を壊さないか / freeze 判定の純関数の正しさ / placeholder=park 許容 / doctor hard/fail-close 配線のレビュー (claude-only は code-reviewer 代替)"

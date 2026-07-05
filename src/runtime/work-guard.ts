@@ -18,7 +18,7 @@ export interface WorkGuardInput {
   uncommittedFiles: string[];
   /** このセッションが既に touch した (= 自分の作業) パス群 (正規化済)。 */
   sessionTouchedFiles: string[];
-  /** override env (UT_TDD_ALLOW_FOREIGN_EDIT=1) が立っているか。 */
+  /** override env (HELIX_ALLOW_FOREIGN_EDIT=1) が立っているか。 */
   bypass: boolean;
 }
 
@@ -83,10 +83,10 @@ export function evaluateWorkGuard(input: WorkGuardInput): WorkGuardResult {
       decision: "block",
       reason: "foreign-uncommitted",
       message:
-        `[ut-tdd-work-guard] BLOCK: ${input.targetPath} はこのセッションが触っていない uncommitted ファイルです` +
+        `[helix-work-guard] BLOCK: ${input.targetPath} はこのセッションが触っていない uncommitted ファイルです` +
         ` (他ランタイムの in-flight 成果の可能性)。盲目的に編集すると相手の未コミット成果をクロバーします。` +
         ` git log / git status で出所を確認し、相手の commit の上に積む / 自分の意図ファイルのみ編集すること。` +
-        ` 意図的に編集する場合のみ UT_TDD_ALLOW_FOREIGN_EDIT=1 (理由を記録) で override。`,
+        ` 意図的に編集する場合のみ HELIX_ALLOW_FOREIGN_EDIT=1 (理由を記録) で override。`,
     };
   }
   return { decision: "pass", reason: "clean-or-own", message: "" };
@@ -209,8 +209,8 @@ export interface ForeignEditOverride {
  * foreign-edit override を解決する純関数 (agent-accessible 経路、PLAN-L7-114 correction)。
  *
  * override は 2 経路:
- *  - `env`: `UT_TDD_ALLOW_FOREIGN_EDIT=1` (人間が out-of-band で設定)。
- *  - `marker`: `.ut-tdd/state/foreign-edit-override` に **非空の理由** を書く。env はセッション中に
+ *  - `env`: `HELIX_ALLOW_FOREIGN_EDIT=1` (人間が out-of-band で設定)。
+ *  - `marker`: `.helix/state/foreign-edit-override` に **非空の理由** を書く。env はセッション中に
  *    agent が設定できないため、agent が意図的に foreign 編集する時はこの marker を使う。理由が空の
  *    marker は override 不成立 (silent bypass を許さない = 必ず理由を残す)。
  *
@@ -221,7 +221,7 @@ export function resolveForeignEditOverride(opts: {
   markerReason?: string | null;
 }): ForeignEditOverride {
   if (opts.env === "1") {
-    return { bypass: true, source: "env", reason: "UT_TDD_ALLOW_FOREIGN_EDIT=1" };
+    return { bypass: true, source: "env", reason: "HELIX_ALLOW_FOREIGN_EDIT=1" };
   }
   const reason = (opts.markerReason ?? "").trim();
   if (reason) {

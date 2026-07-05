@@ -1,5 +1,5 @@
 /**
- * harness.db CLI maintenance — `ut-tdd db status` / `db rebuild` のロジック (PLAN-L7-45, span ①)。
+ * harness.db CLI maintenance — `helix db status` / `db rebuild` のロジック (PLAN-L7-45, span ①)。
  *
  * foundation 段階では status = schema/行数の read-only 報告、rebuild = schema 適用 (冪等)。
  * docs/state/logs からの projection 充填は span ② (projection-writer) が `rebuildHarnessDb` で配線する。
@@ -38,7 +38,7 @@ function countOrphanTraceEdges(db: HarnessDb): number {
   return Number(row?.n ?? 0);
 }
 
-/** `ut-tdd db status`: DB を新規作成せず schema/行数を報告する。 */
+/** `helix db status`: DB を新規作成せず schema/行数を報告する。 */
 export function harnessDbStatus(repoRoot: string = process.cwd()): HarnessDbStatus {
   const path = defaultHarnessDbPath(repoRoot);
   if (!existsSync(path)) {
@@ -78,7 +78,7 @@ export interface HarnessDbRebuild {
 }
 
 /**
- * `ut-tdd db rebuild` (foundation): DB を開き schema を現行 version まで適用する (冪等)。
+ * `helix db rebuild` (foundation): DB を開き schema を現行 version まで適用する (冪等)。
  * projection 充填は含まない (span ② で `rebuildHarnessDb` が docs/state/logs を射影する)。
  */
 export function ensureHarnessSchema(repoRoot: string = process.cwd()): HarnessDbRebuild {

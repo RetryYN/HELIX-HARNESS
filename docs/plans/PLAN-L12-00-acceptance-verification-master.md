@@ -37,7 +37,7 @@ review_evidence:
     scope: "L12 filename-level PLAN gap was identified; this master records acceptance boundary without claiming blocked completion."
     green_commands:
       - kind: lint
-        command: "./scripts/ut-tdd plan lint"
+        command: "./scripts/helix plan lint"
         runner: bun
         scope: targeted
         exit_code: 0

@@ -69,7 +69,7 @@ review_evidence:
     reviewed_at: "2026-07-03T19:27:00+09:00"
     tests_green_at: "2026-07-03T19:27:00+09:00"
     verdict: approve
-    scope: "Continuation: HELIX project setup の初回稼働契約へ `completion review-bundle` と `semanticBundleDigest` を明示し、L3/L6 設計・doc-consistency gate・setup readiness を同期した。consumer readiness は bare `ut-tdd --version` と packageRoot `package.json.scripts.ut-tdd` の両方が揃う場合だけ ready に進み、片方だけなら `fix_consumer_readiness` に戻る。"
+    scope: "Continuation: HELIX project setup の初回稼働契約へ `completion review-bundle` と `semanticBundleDigest` を明示し、L3/L6 設計・doc-consistency gate・setup readiness を同期した。consumer readiness は bare `helix --version` と packageRoot `package.json.scripts.helix` の両方が揃う場合だけ ready に進み、片方だけなら `fix_consumer_readiness` に戻る。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -86,7 +86,7 @@ review_evidence:
     reviewed_at: "2026-07-03T19:30:00+09:00"
     tests_green_at: "2026-07-03T19:30:00+09:00"
     verdict: approve
-    scope: "`ut-tdd completion review-bundle --json` を非判断・非適用のレビュー束として追加し、completion decision packet、S4、version-up、rename、action-binding の supporting packet を scoped command と digest 付きで束ねる。"
+    scope: "`helix completion review-bundle --json` を非判断・非適用のレビュー束として追加し、completion decision packet、S4、version-up、rename、action-binding の supporting packet を scoped command と digest 付きで束ねる。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -237,7 +237,7 @@ review_evidence:
 
 `completion decision-packet` は完了可否の判断項目と human review item を出せる。一方で、S4 判断、version-up activation、rename cutover、action-binding approval の各 supporting packet を「人間判断前に再生成して照合する束」として一括提示する surface が不足していた。
 
-この PLAN では、`ut-tdd completion review-bundle --json` を追加し、完了主張前に確認すべき非破壊 packet、scoped command、安全 field、matrix field、digest を 1 つの束で提示する。判断、承認、適用、state move は行わない。
+この PLAN では、`helix completion review-bundle --json` を追加し、完了主張前に確認すべき非破壊 packet、scoped command、安全 field、matrix field、digest を 1 つの束で提示する。判断、承認、適用、state move は行わない。
 
 ## 要件
 
@@ -248,10 +248,10 @@ review_evidence:
 - rename plan review packet は `planOnly` / `mustNotApply` / `applyAuthorized` を safety field として保持し、不可逆 cutover 前レビューの安全境界が空にならない。
 - S4、version-up、rename plan、rename approval-draft、action-binding approval の matrix / safety field が欠けないことをテストで固定する。
 - `status --json` / `handover status --json` は `completionReviewBundle` を additive に返す。
-- text surface は `completion-review-bundle: ut-tdd completion review-bundle --json` を表示する。
+- text surface は `completion-review-bundle: helix completion review-bundle --json` を表示する。
 - `completion-review-bundle` は doctor hard gate で `completion decision-packet` と突き合わせ、safety flag、scoped packet、review packet count、digest drift を fail-close する。
-- `ut-tdd setup project` の初回導入 contract、VS Code task、consumer CI、escalation workflow、consumer doctor first-run matrix は `completion decision-packet` の直後に `completion review-bundle` を必須証跡として含める。
-- `.ut-tdd/state/project-setup.json` の `objectiveBoundary` は `completionReviewBundleCommand=ut-tdd completion review-bundle --json` を永続化し、consumer doctor は欠落を fail-close する。
+- `helix setup project` の初回導入 contract、VS Code task、consumer CI、escalation workflow、consumer doctor first-run matrix は `completion decision-packet` の直後に `completion review-bundle` を必須証跡として含める。
+- `.helix/state/project-setup.json` の `objectiveBoundary` は `completionReviewBundleCommand=helix completion review-bundle --json` を永続化し、consumer doctor は欠落を fail-close する。
 - `bundleDigest` は exact artifact integrity digest として生成時刻・freshness を含む。別に `semanticBundleDigest` を出し、`generatedAt` / `expiresAt` / `stale` と時刻入り nested digest を正規化した意味比較用 digest とする。
 - doctor OK message、setup verification matrix、consumer adapter prose は `semanticBundleDigest` も表示・期待し、導入先で exact digest だけを保存して意味比較 digest を落とさない。
 - version-up activation supporting packet summary は現行 `activationVerificationCommandMatrix` の 9 phase と一致させ、validator は matrix count、missing phase、extra phase、duplicate phase を fail-close する。

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-203-legacy-adoption-decisions
-title: "PLAN-REVERSE-203: old HELIX semantic adoption decision back-fill"
+title: "PLAN-REVERSE-203: 旧 HELIX semantic adoption decision の back-fill"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -35,7 +35,7 @@ backprop_scope:
     reason: "U-HLX-001..013 を L7 unit oracle として登録。"
 agent_slots:
   - role: tl
-    slot_label: "TL - legacy adoption reverse back-fill review"
+    slot_label: "TL - legacy adoption reverse back-fill レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-203-legacy-adoption-decisions.md
     artifact_type: markdown_doc
@@ -65,7 +65,7 @@ review_evidence:
     reviewed_at: "2026-06-30T03:00:00+09:00"
     tests_green_at: "2026-06-30T03:00:00+09:00"
     verdict: approve
-    scope: "Reverse back-fill confirms old HELIX semantic adoption L7 pure decisions map to existing L3-L6 contracts without changing user requirements, L4 module boundaries, or L5 data/API contracts."
+    scope: "Reverse back-fill は、旧 HELIX semantic adoption の L7 pure decision が既存 L3-L6 contract へ対応し、user requirement、L4 module boundary、L5 data/API contract を変えないことを確認した。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -79,29 +79,27 @@ review_evidence:
         output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
 ---
 
-# PLAN-REVERSE-203: old HELIX semantic adoption decision back-fill
+# PLAN-REVERSE-203: 旧 HELIX semantic adoption decision の back-fill
 
-## R0-R4 Summary
+## R0-R4 要約
 
-- R0: `src/runtime/legacy-adoption.ts` implements the old HELIX semantic adoption
-  decisions that were lowered to L6.
-- R1: The implementation is pure and does not port old Python/Bash runtime code.
-- R2: L3/L4/L5 were checked; no new user requirement, module boundary, DB schema,
-  or API contract is introduced by this slice.
-- R3: L6 type sketch and L7 unit-test design were updated to match the current
-  `RuntimeSurface` vocabulary and `U-HLX-001..013` implementation oracles.
-- R4: `PLAN-L7-203-legacy-adoption-decisions` and this Reverse PLAN are linked
-  through `dependencies.requires`.
+- R0: `src/runtime/legacy-adoption.ts` は、L6 へ落とし込まれた旧 HELIX semantic adoption
+  decision を実装する。
+- R1: 実装は pure であり、旧 Python/Bash runtime code は port しない。
+- R2: L3/L4/L5 を確認済み。この slice は新規 user requirement、module boundary、DB schema、
+  API contract を追加しない。
+- R3: L6 type sketch と L7 unit-test design は、現在の `RuntimeSurface` 語彙および
+  `U-HLX-001..013` implementation oracle に合わせて更新済み。
+- R4: `PLAN-L7-203-legacy-adoption-decisions` とこの Reverse PLAN は
+  `dependencies.requires` で接続されている。
 
-## Back-Filled Meaning
+## Back-Fill した意味
 
-The implementation makes legacy adoption decisions executable. HELIX can now
-test whether a legacy capability should be adopted, hardened, deferred, rejected,
-or routed to a new PLAN without treating old runtime files, global paths, or raw
-state as current truth.
+この実装により legacy adoption decision は実行可能になる。HELIX は、旧 runtime file、global path、
+raw state を現在の truth として扱わずに、legacy capability を採用するか、harden するか、defer するか、
+reject するか、新規 PLAN へ route するかを test できる。
 
-## Merge Boundary
+## Merge 境界
 
-This Reverse only back-fills L6 sketch and L7 unit oracle registration. It does
-not claim full old-HELIX runtime parity, public CLI wiring, or DB projection for
-every decision helper.
+この Reverse は L6 sketch と L7 unit oracle registration だけを back-fill する。すべての decision helper
+について、旧 HELIX runtime parity、public CLI wiring、DB projection が完了したとは主張しない。

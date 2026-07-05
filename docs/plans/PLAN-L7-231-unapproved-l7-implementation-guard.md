@@ -43,7 +43,7 @@ dependencies:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-231: unapproved L7 implementation guard
+# PLAN-L7-231: 未承認 L7 implementation guard（unapproved L7 implementation guard）
 
 ## 0. 目的
 
@@ -71,7 +71,7 @@ Recovery 事象を再発防止へ落とす。既存の `change-impact` は sourc
 
 - plan-lint の frontmatter schema 変更。
 - historical PLAN の一括修正。
-- `.ut-tdd` から HELIX への irreversible cutover。これは PLAN-M-02 の L14 承認後に扱う。
+- `.helix` から HELIX への irreversible cutover。これは PLAN-M-02 の L14 承認後に扱う。
 
 ## 2. 受入条件
 

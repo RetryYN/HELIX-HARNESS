@@ -2,7 +2,7 @@
 import { execFileSync, spawn, spawnSync } from "node:child_process";
 /**
  * HELIX-HARNESS CLI (TypeScript core, ADR-001).
- * 薄い OS 別 entrypoint (scripts/ut-tdd, ut-tdd.ps1) が本 core を呼ぶ。
+ * 薄い OS 別 entrypoint (scripts/helix, helix.ps1) が本 core を呼ぶ。
  * status / doctor / plan lint / vmodel lint / gate / runtime adapter を集約する。
  */
 import { createHash } from "node:crypto";
@@ -237,7 +237,7 @@ import {
   routeToAdapterPlan,
 } from "./task/tier-router";
 import { recommendTeamLaunch } from "./team/launch-policy";
-import { TASK_DIFFICULTIES, type TaskDifficulty } from "./team/model-policy";
+import { MODEL_IDS, TASK_DIFFICULTIES, type TaskDifficulty } from "./team/model-policy";
 import {
   buildTeamRunPlan,
   executeTeamRunPlan,
@@ -259,7 +259,7 @@ import { evaluateAutomationReadiness } from "./workflow/readiness";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";
 const SAVE_EVIDENCE_OPTION_DESCRIPTION = "persist normalized evidence for DB collector";
-const SESSION_OPTION_DESCRIPTION = "session_id (defaults to stdin session_id or ut-tdd-cli)";
+const SESSION_OPTION_DESCRIPTION = "session_id (defaults to stdin session_id or helix-cli)";
 const MODE_OVERRIDE_OPTION_DESCRIPTION = "override execution mode for tests";
 const TASK_FILE_OPTION_DESCRIPTION = "read task text from file";
 
@@ -353,13 +353,8 @@ function resolveSkillContextInjection(
 ): AdapterContextInjection | undefined {
   if (!planId) return undefined;
   const repoRoot = process.cwd();
-  const db = openHarnessDb(":memory:", { repoRoot });
+  const { db } = openSkillSuggestDb(repoRoot, false);
   try {
-    try {
-      rebuildHarnessDb({ repoRoot, db });
-    } catch {
-      return undefined;
-    }
     const recommendations = recommendSkillsForPlan(db, planId);
     const injection = buildSkillInjectionSet(db, recommendations);
     if (injection.required_paths.length === 0 && injection.optional_paths.length === 0) {
@@ -372,6 +367,24 @@ function resolveSkillContextInjection(
   } finally {
     db.close();
   }
+}
+
+function openSkillSuggestDb(
+  repoRoot: string,
+  record: boolean,
+): { db: ReturnType<typeof openHarnessDb> } {
+  if (record) {
+    const db = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+    rebuildHarnessDb({ repoRoot, db });
+    return { db };
+  }
+  const dbPath = defaultHarnessDbPath(repoRoot);
+  if (existsSync(dbPath)) {
+    return { db: openHarnessDb(dbPath, { repoRoot }) };
+  }
+  const db = openHarnessDb(":memory:", { repoRoot });
+  rebuildHarnessDb({ repoRoot, db });
+  return { db };
 }
 
 function planIdFromPath(path: string | undefined): string | undefined {
@@ -398,7 +411,7 @@ function readHookInput(defaultEvent: string, sessionId?: string): SessionHookInp
   return {
     ...parsed,
     hook_event_name: parsed.hook_event_name ?? defaultEvent,
-    session_id: sessionId ?? parsed.session_id ?? "ut-tdd-cli",
+    session_id: sessionId ?? parsed.session_id ?? "helix-cli",
   };
 }
 
@@ -426,7 +439,7 @@ function resolveAgentFamilyFromRepo(repoRoot: string, subagentType: string): Res
 function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undefined): string[] {
   if (!sessionId) return [];
   const safe = sessionId.replace(/[\\/]+/g, "_");
-  const file = join(repoRoot, ".ut-tdd", "logs", "session", `${safe}.jsonl`);
+  const file = join(repoRoot, ".helix", "logs", "session", `${safe}.jsonl`);
   if (!existsSync(file)) return [];
   const touched: string[] = [];
   for (const line of readFileSync(file, "utf8").split("\n")) {
@@ -461,7 +474,7 @@ function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[
 function writeHandoverWarnings(): void {
   const hdeps = nodeHandoverDeps(process.cwd());
   for (const w of [...checkHandoverDiscipline(hdeps), ...checkHandoverBypass(hdeps)]) {
-    process.stderr.write(`[ut-tdd handover] ${w}\n`);
+    process.stderr.write(`[helix handover] ${w}\n`);
   }
 }
 
@@ -488,7 +501,7 @@ function runSessionStartSideEffects(
  */
 function surfaceAttemptEscalationToStdout(repoRoot: string, currentSessionId?: string): void {
   try {
-    const dir = join(repoRoot, ".ut-tdd", "logs", "session");
+    const dir = join(repoRoot, ".helix", "logs", "session");
     if (!existsSync(dir)) return;
     const files = readdirSync(dir)
       .filter((name) => name.endsWith(".jsonl"))
@@ -621,7 +634,7 @@ function savePairAgentPlanEvidence(input: {
   const safePlanId = safeEvidenceFileName(input.plan.planId);
   const spanId = `pair-agent-plan:${safePlanId}:${stamp}`;
   const agents = new Map(input.plan.agents.map((agent) => [agent.key, agent]));
-  const rel = join(".ut-tdd", "evidence", "pair-agent", `${stamp}-${safePlanId}-plan.json`);
+  const rel = join(".helix", "evidence", "pair-agent", `${stamp}-${safePlanId}-plan.json`);
   const abs = join(process.cwd(), rel);
   mkdirSync(dirname(abs), { recursive: true });
   writeFileSync(
@@ -694,7 +707,7 @@ function savePairAgentRunEvidence(input: {
     new Date(input.completedAt).getTime() - new Date(input.startedAt).getTime(),
   );
   const phases = new Map(input.plan.phases.map((phase) => [phase.name, phase]));
-  const rel = join(".ut-tdd", "evidence", "pair-agent", `${stamp}-${safePlanId}.json`);
+  const rel = join(".helix", "evidence", "pair-agent", `${stamp}-${safePlanId}.json`);
   const abs = join(process.cwd(), rel);
   mkdirSync(dirname(abs), { recursive: true });
   writeFileSync(
@@ -890,7 +903,7 @@ function writeRecordTemplates(
 
 const program = new Command();
 program
-  .name("ut-tdd")
+  .name("helix")
   .description("HELIX-HARNESS (TypeScript core, ADR-001)")
   .version(LOCAL_DISTRIBUTION_PACKAGE_VERSION);
 
@@ -910,7 +923,7 @@ program
     const completionNextAction = workflowNextAction;
     const workflowNextActions = workflowNextActionsForOutstanding(outstanding);
     const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
-      sourceCommand: "ut-tdd status --json",
+      sourceCommand: "helix status --json",
     });
     const completionReviewBundle = completionReviewBundleForOutstanding(outstanding);
     const objectiveProgress = loadObjectiveProgress(process.cwd(), outstanding);
@@ -968,7 +981,7 @@ program
       if (!completionDecisionPacket.ok) {
         const primaryPacket =
           workflowNextActions[0]?.decisionPacketCommand ??
-          "ut-tdd completion decision-packet --json";
+          "helix completion decision-packet --json";
         const packetCommands = [
           ...new Set(workflowNextActions.flatMap((item) => item.packetCommands)),
         ];
@@ -983,11 +996,11 @@ program
           );
         }
         process.stdout.write(
-          "completion-decision-packet: ut-tdd completion decision-packet --json\n",
+          "completion-decision-packet: helix completion decision-packet --json\n",
         );
-        process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
+        process.stdout.write("completion-review-bundle: helix completion review-bundle --json\n");
         process.stdout.write(
-          "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json\n",
+          "runnable-completion-review-bundle: bun run helix completion review-bundle --json\n",
         );
         process.stdout.write(
           `completion-review-coverage: covered=${completionReviewBundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${completionReviewBundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
@@ -1003,7 +1016,7 @@ completion
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const packet = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()), {
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
     });
     if (opts.json) {
       process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
@@ -1530,7 +1543,7 @@ pairAgent
 const rename = program.command("rename").description("HELIX identifier rename audit surfaces");
 rename
   .command("audit")
-  .description("measure ut-tdd/.ut-tdd/area=harness blast radius before PLAN-M-02 cutover")
+  .description("measure helix/.helix/area=helix blast radius before PLAN-M-02 cutover")
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const audit = auditIdentifierRenameBlastRadius(process.cwd());
@@ -1567,7 +1580,7 @@ rename
     }
     if (!audit.cutoverApproved) {
       process.stdout.write(
-        `  required: ${audit.requiredRecords.join(", ")} before .ut-tdd -> .helix apply\n`,
+        `  required: ${audit.requiredRecords.join(", ")} before .helix -> .helix apply\n`,
       );
     }
   });
@@ -1722,7 +1735,7 @@ rename
   .command("evidence-pack")
   .description("generate or preview local evidence artifacts for PLAN-M-02 rename cutover review")
   .option("--dry-run", "preview generated evidence without writing files")
-  .option("--write", "write safe local evidence artifacts under .ut-tdd/evidence/rename")
+  .option("--write", "write safe local evidence artifacts under .helix/evidence/rename")
   .option("--json", "JSON output")
   .action((opts: { dryRun?: boolean; write?: boolean; json?: boolean }) => {
     if (Boolean(opts.dryRun) === Boolean(opts.write)) {
@@ -2266,8 +2279,8 @@ runDebug
   )
   .option(
     "--surface <surface>",
-    "claude-hook|codex-hook|codex-hosted-api|ut-tdd-cli|external-api",
-    "ut-tdd-cli",
+    "claude-hook|codex-hook|codex-hosted-api|helix-cli|external-api",
+    "helix-cli",
   )
   .option(
     "--redaction <policy>",
@@ -2421,13 +2434,13 @@ session
     runSessionStartSideEffects(repoRoot, input, deps);
     dispatch(input, deps, HOOK_EVENT_SESSION_START);
     // HELIX P7: surface harness-layer agent memory at SessionStart so the shared,
-    // git-tracked SSoT (.ut-tdd/memory/harness.jsonl) is recalled instead of a
+    // git-tracked SSoT (.helix/memory/harness.jsonl) is recalled instead of a
     // per-agent silo. surfaceMemory reads fail-soft (empty when absent).
     const memoryLines = surfaceMemory(fileMemoryDeps({ root: repoRoot }));
     if (memoryLines.length > 0) {
       process.stdout.write(`harness-memory (${memoryLines.length}):\n${memoryLines.join("\n")}\n`);
     }
-    process.stdout.write(`session-log: start ${input.session_id ?? "ut-tdd-cli"}\n`);
+    process.stdout.write(`session-log: start ${input.session_id ?? "helix-cli"}\n`);
   });
 
 session
@@ -2438,7 +2451,7 @@ session
     const input = readHookInput("Stop", opts.session);
     dispatch(input, nodeDeps(process.cwd(), gitBranch, gitHead), "Stop");
     writeHandoverWarnings();
-    process.stdout.write(`session-log: summary ${input.session_id ?? "ut-tdd-cli"}\n`);
+    process.stdout.write(`session-log: summary ${input.session_id ?? "helix-cli"}\n`);
   });
 
 const hook = program.command("hook").description("package-local hook entrypoints");
@@ -2450,14 +2463,14 @@ hook
     const input = readStrictHookInput();
     if (input === null) {
       process.stderr.write(
-        "[ut-tdd-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
+        "[helix-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
       );
       process.exitCode = 2;
       return;
     }
     const decision = evaluateAgentGuard(input, {
       resolveAgentFamily: (subagentType) => resolveAgentFamilyFromRepo(repoRoot, subagentType),
-      allowRaw: process.env.UT_TDD_ALLOW_RAW_AGENT === "1",
+      allowRaw: process.env.HELIX_ALLOW_RAW_AGENT === "1",
     });
     if (decision.message) process.stderr.write(`${decision.message}\n`);
 
@@ -2470,7 +2483,7 @@ hook
         );
         if (exceeded) {
           process.stderr.write(
-            `[ut-tdd-guard] WARN: concurrent sub-agents=${activeCount}, limit=${DEFAULT_MAX_PARALLEL}. Check serialization requirements.\n`,
+            `[helix-guard] WARN: concurrent sub-agents=${activeCount}, limit=${DEFAULT_MAX_PARALLEL}. Check serialization requirements.\n`,
           );
         }
       } catch {
@@ -2495,15 +2508,15 @@ hook
     const input = readStrictHookInput();
     if (input === null) {
       process.stderr.write(
-        "[ut-tdd-git-command-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
+        "[helix-git-command-guard] BLOCK: hook stdin が空、または JSON 解析に失敗しました (fail-close)。\n",
       );
       process.exitCode = 2;
       return;
     }
     const override = resolveDestructiveGitOverride({
-      env: process.env.UT_TDD_ALLOW_DESTRUCTIVE_GIT,
+      env: process.env.HELIX_ALLOW_DESTRUCTIVE_GIT,
       markerReason: readOneShotMarker(
-        join(process.cwd(), ".ut-tdd", "state", "destructive-git-override"),
+        join(process.cwd(), ".helix", "state", "destructive-git-override"),
       ),
     });
     const result = evaluateGitCommandGuard({
@@ -2511,7 +2524,7 @@ hook
       bypass: override.bypass,
     });
     if (override.source === "marker") {
-      const auditPath = join(process.cwd(), ".ut-tdd", "logs", "destructive-git-overrides.jsonl");
+      const auditPath = join(process.cwd(), ".helix", "logs", "destructive-git-overrides.jsonl");
       try {
         mkdirSync(dirname(auditPath), { recursive: true });
         appendFileSync(
@@ -2520,7 +2533,7 @@ hook
             ts: new Date().toISOString(),
             command: extractShellCommand(input.tool_input),
             reason: override.reason,
-            sessionId: (input as { session_id?: string }).session_id ?? "ut-tdd-cli",
+            sessionId: (input as { session_id?: string }).session_id ?? "helix-cli",
           })}\n`,
         );
       } catch {
@@ -2572,7 +2585,7 @@ hook
         nodeDeps(process.cwd(), gitBranch, gitHead),
         "PostToolUse",
       );
-      process.stdout.write(`session-log: post-tool-use ${input.session_id ?? "ut-tdd-cli"}\n`);
+      process.stdout.write(`session-log: post-tool-use ${input.session_id ?? "helix-cli"}\n`);
     },
   );
 
@@ -2624,7 +2637,7 @@ guard
         targetPaths.push(...guardTargetsFromPatchText(readStdin(), repoRoot));
       }
       const override = resolveForeignEditOverride({
-        env: opts.allowForeignEdit ? "1" : process.env.UT_TDD_ALLOW_FOREIGN_EDIT,
+        env: opts.allowForeignEdit ? "1" : process.env.HELIX_ALLOW_FOREIGN_EDIT,
       });
       const result = evaluateWorkGuardTargets({
         targetPaths,
@@ -2643,7 +2656,7 @@ guard
         gitStatusChecked: true,
         targetPaths,
         workGuardDecision: result,
-        preflightCommand: "ut-tdd guard preflight",
+        preflightCommand: "helix guard preflight",
         auditRecord: opts.session ?? "cli-stdout",
       });
       if (opts.json) {
@@ -2691,7 +2704,7 @@ plan
 plan
   .command("use [id]")
   .description(
-    "active PLAN を .ut-tdd/state/current-plan に記録 (session-log digest を活性化)。--clear で解除",
+    "active PLAN を .helix/state/current-plan に記録 (session-log digest を活性化)。--clear で解除",
   )
   .option("--clear", "current-plan を clear")
   .action((id: string | undefined, opts: { clear?: boolean }) => {
@@ -2784,7 +2797,7 @@ handover
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const repoRoot = process.cwd();
-    const pointerPath = join(repoRoot, ".ut-tdd", "handover", "CURRENT.json");
+    const pointerPath = join(repoRoot, ".helix", "handover", "CURRENT.json");
     const currentExists = existsSync(pointerPath);
     const pointer = readPointer(nodeHandoverDeps(repoRoot));
     if (!pointer) {
@@ -2814,7 +2827,7 @@ handover
     const stale = handoverStale(pointer.updated_at, new Date().toISOString());
     const liveOutstanding = computeOutstandingWork(repoRoot);
     const liveCompletionDecisionPacket = completionDecisionPacketForOutstanding(liveOutstanding, {
-      sourceCommand: "ut-tdd handover",
+      sourceCommand: "helix handover",
     });
     const liveCompletionReviewBundle = completionReviewBundleForOutstanding(liveOutstanding);
     const workflowNextAction = workflowNextActionForOutstanding(liveOutstanding);
@@ -2885,11 +2898,11 @@ handover
         ),
       ];
       process.stdout.write(
-        "completion-decision-packet: ut-tdd completion decision-packet --json\n",
+        "completion-decision-packet: helix completion decision-packet --json\n",
       );
-      process.stdout.write("completion-review-bundle: ut-tdd completion review-bundle --json\n");
+      process.stdout.write("completion-review-bundle: helix completion review-bundle --json\n");
       process.stdout.write(
-        "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json\n",
+        "runnable-completion-review-bundle: bun run helix completion review-bundle --json\n",
       );
       process.stdout.write(
         `completion-review-coverage: covered=${liveCompletionReviewBundle.reviewCoveredBlockers.join(",") || "none"} non-packet=${liveCompletionReviewBundle.nonPacketBlockers.join(",") || "none"} policy=review-packets-cover-decision-blockers-only\n`,
@@ -2951,7 +2964,7 @@ handover
 const providerHandover = handover.command("provider").description("Claude/Codex provider handover");
 providerHandover
   .command("export")
-  .description("write provider handover package under .ut-tdd/handover/provider")
+  .description("write provider handover package under .helix/handover/provider")
   .requiredOption("--from <runtime>", "claude or codex")
   .requiredOption("--to <runtime>", "claude or codex")
   .requiredOption("--summary <text>", "handover context summary")
@@ -3048,7 +3061,7 @@ db.command("status")
     }
     if (!s.initialized) {
       process.stdout.write(
-        `db status: not initialized (${s.path})\n  → 'ut-tdd db rebuild' で schema を作成\n`,
+        `db status: not initialized (${s.path})\n  → 'helix db rebuild' で schema を作成\n`,
       );
       return;
     }
@@ -3106,7 +3119,7 @@ progress
         return;
       }
       if (rows.length === 0) {
-        process.stdout.write("artifact progress: no rows (run `ut-tdd db rebuild` first)\n");
+        process.stdout.write("artifact progress: no rows (run `helix db rebuild` first)\n");
         return;
       }
       for (const row of rows as Array<Record<string, unknown>>) {
@@ -3195,11 +3208,11 @@ telemetry
   )
   .option(
     "--claude-dir <dir>",
-    "Claude transcript dir (default: $UT_TDD_CLAUDE_SESSIONS_DIR or ~/.claude/projects)",
+    "Claude transcript dir (default: $HELIX_CLAUDE_SESSIONS_DIR or ~/.claude/projects)",
   )
   .option(
     "--codex-dir <dir>",
-    "Codex session dir (default: $UT_TDD_CODEX_SESSIONS_DIR or ~/.codex/sessions)",
+    "Codex session dir (default: $HELIX_CODEX_SESSIONS_DIR or ~/.codex/sessions)",
   )
   .option("--json", "JSON output")
   .action((opts: { claudeDir?: string; codexDir?: string; json?: boolean }) => {
@@ -3208,11 +3221,11 @@ telemetry
     // 既存ログを読むだけ (8009001d 無関係、OS 非依存)。不在ディレクトリは cold-start 安全 (空)。
     const claudeDir =
       opts.claudeDir ??
-      process.env.UT_TDD_CLAUDE_SESSIONS_DIR ??
+      process.env.HELIX_CLAUDE_SESSIONS_DIR ??
       join(homedir(), ".claude", "projects");
     const codexDir =
       opts.codexDir ??
-      process.env.UT_TDD_CODEX_SESSIONS_DIR ??
+      process.env.HELIX_CODEX_SESSIONS_DIR ??
       join(homedir(), ".codex", "sessions");
     const usages = loadRuntimeSessionUsage({ claudeDirs: [claudeDir], codexDirs: [codexDir] });
     const summary = summarizeRunUsage(usages);
@@ -3338,11 +3351,8 @@ skill
         return;
       }
       const repoRoot = process.cwd();
-      const db = openHarnessDb(opts.record ? defaultHarnessDbPath(repoRoot) : ":memory:", {
-        repoRoot,
-      });
+      const { db } = openSkillSuggestDb(repoRoot, Boolean(opts.record));
       try {
-        rebuildHarnessDb({ repoRoot, db });
         const rows = opts.plan
           ? recommendSkillsForPlan(db, opts.plan)
           : recommendSkillsForText(db, opts.text ?? "");
@@ -3738,22 +3748,22 @@ builder
   .option("--json", "JSON output")
   .action((opts: { json?: boolean }) => {
     const commandDocs = [
-      { path: "src/cli.ts", command: "ut-tdd skill suggest", description: "skill recommendation" },
-      { path: "src/cli.ts", command: "ut-tdd review --uncommitted", description: "review packet" },
-      { path: "src/cli.ts", command: "ut-tdd cutover --to", description: "cutover dry-run" },
+      { path: "src/cli.ts", command: "helix skill suggest", description: "skill recommendation" },
+      { path: "src/cli.ts", command: "helix review --uncommitted", description: "review packet" },
+      { path: "src/cli.ts", command: "helix cutover --to", description: "cutover dry-run" },
       {
         path: "src/cli.ts",
-        command: "ut-tdd progress artifacts",
+        command: "helix progress artifacts",
         description: "artifact progress read model",
       },
       {
         path: "src/cli.ts",
-        command: "ut-tdd progress snapshot",
+        command: "helix progress snapshot",
         description: "visualization snapshot read model",
       },
-      { path: "src/cli.ts", command: "ut-tdd graph export", description: "relation graph export" },
-      { path: "src/cli.ts", command: "ut-tdd asset catalog", description: "asset catalog" },
-      { path: "src/cli.ts", command: "ut-tdd builder catalog", description: "builder catalog" },
+      { path: "src/cli.ts", command: "helix graph export", description: "relation graph export" },
+      { path: "src/cli.ts", command: "helix asset catalog", description: "asset catalog" },
+      { path: "src/cli.ts", command: "helix builder catalog", description: "builder catalog" },
     ];
     const surface = commandDocs.map((doc) => doc.command);
     const result = buildCommandCatalog({ command_docs: commandDocs, cli_surface: surface });
@@ -3808,7 +3818,7 @@ vmodel
   );
 
 function loadRouteApprovalPolicy(repoRoot: string): RouteApprovalPolicy | undefined {
-  const policyPath = join(repoRoot, ".ut-tdd", "config", "approval-policy.yaml");
+  const policyPath = join(repoRoot, ".helix", "config", "approval-policy.yaml");
   if (!existsSync(policyPath)) return undefined;
   const parsed = parseYaml(readFileSync(policyPath, "utf8")) as Partial<RouteApprovalPolicy>;
   if (!Array.isArray(parsed.rules)) return undefined;
@@ -3843,7 +3853,7 @@ function loadRouteApprovalPolicy(repoRoot: string): RouteApprovalPolicy | undefi
 }
 
 function appendRouteApprovalAudit(repoRoot: string, evaluated: RouteEvalResult): string {
-  const auditDir = join(repoRoot, ".ut-tdd", "audit");
+  const auditDir = join(repoRoot, ".helix", "audit");
   mkdirSync(auditDir, { recursive: true });
   const auditPath = join(auditDir, "route-approval.jsonl");
   appendFileSync(
@@ -3866,7 +3876,7 @@ function loadRouteMap(
   repoRoot: string,
   explicitPath?: string,
 ): { routes?: RouteSignalEntry[]; violations: RouteConfigViolation[] } {
-  const routeMapPath = explicitPath ?? join(repoRoot, ".ut-tdd", "config", "route-map.yaml");
+  const routeMapPath = explicitPath ?? join(repoRoot, ".helix", "config", "route-map.yaml");
   if (!existsSync(routeMapPath)) return { violations: [] };
   const text = readFileSync(routeMapPath, "utf8");
   const violations = validateRouteConfigText({ path: routeMapPath, text });
@@ -4257,7 +4267,10 @@ task
   .option("--plan <path>", "read task text from a PLAN file")
   .option("--files <list>", "comma-separated affected file paths")
   .option("--primary <provider>", "override primary provider (claude|codex)")
-  .option("--allow-frontier", "explicitly authorize T0 (opus/gpt-5.5)")
+  .option(
+    "--allow-frontier",
+    `explicitly authorize T0 (${MODEL_IDS.claude.opus}/${MODEL_IDS.codex.frontier})`,
+  )
   .option("--execute", "bridge the decision to the provider adapter plan (dry-run command)")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--json", "JSON output")
@@ -4405,7 +4418,10 @@ team
     "tier-router でクロス配置 (ワーカー=主 / 相談・検証=相手) と原則安く tier モデルを導出",
   )
   .option("--primary <provider>", "クロス分岐の主 provider (claude/codex)。--route 時に使用")
-  .option("--allow-frontier", "T0 (opus/gpt-5.5) の相談・検証 member を明示許可 (--route 時)")
+  .option(
+    "--allow-frontier",
+    `T0 (${MODEL_IDS.claude.opus}/${MODEL_IDS.codex.frontier}) の相談・検証 member を明示許可 (--route 時)`,
+  )
   .option("--json", "JSON output")
   .action(
     async (opts: {
@@ -4602,12 +4618,12 @@ function loadObjectiveExternalObserved(): {
   );
   readRemote(
     "distribution_pack_repo",
-    ["https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git", "refs/heads/main"],
+    ["https://github.com/unison-ai-product/HELIX-HARNESS-OS.git", "refs/heads/main"],
     firstSha,
   );
   readRemote(
     "distribution_pack_latest_tag",
-    ["--tags", "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS-Pack.git"],
+    ["--tags", "https://github.com/unison-ai-product/HELIX-HARNESS-OS.git"],
     latestSemverTag,
   );
   return {
@@ -4858,10 +4874,10 @@ setupCommand.action((opts: SetupCliOptions) => {
     }\n`,
   );
   process.stdout.write(
-    "setup-scope: legacy solo/team adapter setup; HELIX project bootstrap は `ut-tdd setup project` を使用してください\n",
+    "setup-scope: legacy solo/team adapter setup; HELIX project bootstrap は `helix setup project` を使用してください\n",
   );
   process.stdout.write(
-    "completion-boundary: VSCode tasks / .ut-tdd project baseline / rename packet を生成しないため L14 completion evidence ではありません\n",
+    "completion-boundary: VSCode tasks / .helix project baseline / rename packet を生成しないため L14 completion evidence ではありません\n",
   );
   if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
     process.stdout.write(
@@ -4914,9 +4930,9 @@ setupCommand
         `skip-sub-doc: ${record.path} marker=${record.marker} route=${record.nextRoute} reason=${record.reason} gate=${record.followUpGate}\n`,
       );
     }
-    const cliCheck = r.consumerReadiness.checks.find((check) => check.name === "ut-tdd-cli");
+    const cliCheck = r.consumerReadiness.checks.find((check) => check.name === "helix-cli");
     process.stdout.write(
-      `consumer-readiness: ok=${r.consumerReadiness.ok} mode=${r.consumerReadiness.mode} ut-tdd-cli=${cliCheck?.ok ?? false}\n`,
+      `consumer-readiness: ok=${r.consumerReadiness.ok} mode=${r.consumerReadiness.mode} helix-cli=${cliCheck?.ok ?? false}\n`,
     );
     process.stdout.write(
       `post-setup-workflow: ${r.postSetupWorkflow.nextRoute} readiness=${r.postSetupWorkflow.readinessOk} gates=${r.postSetupWorkflow.unmetGates.length}\n`,
@@ -4988,7 +5004,7 @@ distribution
     }
     const hasGit = spawnSync("git", ["--version"], { stdio: "ignore" }).status === 0;
     const hasGh = spawnSync("gh", ["--version"], { stdio: "ignore" }).status === 0;
-    const hasUtTddCli = spawnSync("ut-tdd", ["--version"], { stdio: "ignore" }).status === 0;
+    const hasUtTddCli = spawnSync("helix", ["--version"], { stdio: "ignore" }).status === 0;
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),
       sourceTag: opts.tag,
@@ -4998,20 +5014,16 @@ distribution
     const packageJsonText = existsSync(join(packageRoot, "package.json"))
       ? readFileSync(join(packageRoot, "package.json"), "utf8")
       : null;
-    const previousProbe = process.env.UT_TDD_SETUP_SURFACE_PROBE;
-    process.env.UT_TDD_SETUP_SURFACE_PROBE = "1";
-    const packageSurfaceProbe = spawnSync(
-      "bun",
-      ["run", "ut-tdd", "setup", "project", "--help"],
-      {
-        cwd: packageRoot,
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "pipe"],
-        timeout: 30_000,
-      },
-    );
-    if (previousProbe === undefined) delete process.env.UT_TDD_SETUP_SURFACE_PROBE;
-    else process.env.UT_TDD_SETUP_SURFACE_PROBE = previousProbe;
+    const previousProbe = process.env.HELIX_SETUP_SURFACE_PROBE;
+    process.env.HELIX_SETUP_SURFACE_PROBE = "1";
+    const packageSurfaceProbe = spawnSync("bun", ["run", "helix", "setup", "project", "--help"], {
+      cwd: packageRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 30_000,
+    });
+    if (previousProbe === undefined) delete process.env.HELIX_SETUP_SURFACE_PROBE;
+    else process.env.HELIX_SETUP_SURFACE_PROBE = previousProbe;
     const packageSurfaceOutput =
       `${packageSurfaceProbe.stdout ?? ""}\n${packageSurfaceProbe.stderr ?? ""}`.trim();
     const packageSurfaceOk =
@@ -5038,14 +5050,12 @@ distribution
         ok: packageSurfaceOk,
         source: "package-script-probe",
         tag: opts.tag,
-        evidence:
-          packageSurfaceOk
-            ? "`bun run ut-tdd setup project --help` exposed --dry-run and --json from distribution packageRoot"
-            : `\`bun run ut-tdd setup project --help\` did not expose required setup surface (status ${packageSurfaceProbe.status ?? 1}): ${packageSurfaceOutput.slice(0, 240)}`,
-        latestObservedStatus:
-          packageSurfaceOk
-            ? "distribution packageRoot generated CI setup command exposes dry-run JSON surface"
-            : "distribution packageRoot generated CI setup command surface failed",
+        evidence: packageSurfaceOk
+          ? "`bun run helix setup project --help` exposed --dry-run and --json from distribution packageRoot"
+          : `\`bun run helix setup project --help\` did not expose required setup surface (status ${packageSurfaceProbe.status ?? 1}): ${packageSurfaceOutput.slice(0, 240)}`,
+        latestObservedStatus: packageSurfaceOk
+          ? "distribution packageRoot generated CI setup command exposes dry-run JSON surface"
+          : "distribution packageRoot generated CI setup command surface failed",
       },
     });
     const output = {

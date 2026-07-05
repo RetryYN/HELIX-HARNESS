@@ -35,15 +35,15 @@ migration を追加・変更・削除する場合に適用する。
 
 ## harness.db projection awareness（projection 認識）
 
-`.ut-tdd/harness.db` は SQLite projection DB である。`src/state-db/projection-writer.ts` が *write* し、
-`ut-tdd doctor`、`ut-tdd vmodel lint`、`ut-tdd metrics` が *read* する。
+`.helix/harness.db` は SQLite projection DB である。`src/state-db/projection-writer.ts` が *write* し、
+`helix doctor`、`helix vmodel lint`、`helix metrics` が *read* する。
 application database ではなく harness state である。rules:
 
-- `harness.db` を手編集しない。必ず `ut-tdd db rebuild` で regenerate する。
+- `harness.db` を手編集しない。必ず `helix db rebuild` で regenerate する。
 - harness state を追加する new PLAN は、projection writer 経由で appropriate table に row を追加する。
   bare SQL inserts は authoritative ではない。
-- `ut-tdd doctor` が projection mismatch を報告した場合、追加診断の前に `ut-tdd db rebuild` を実行し、
-  `ut-tdd doctor` を再実行する。
+- `helix doctor` が projection mismatch を報告した場合、追加診断の前に `helix db rebuild` を実行し、
+  `helix doctor` を再実行する。
 
 ## schema change の V-model obligations
 
@@ -68,7 +68,7 @@ migration が destructive（DROP COLUMN、data transformation）の場合は rol
   old tables を drop する前に new tables を追加する。
 - destructive migrations には、data loss が intentional かつ approved であることを示す
   PLAN `review_evidence` entry が必要。
-- migration files 追加後、`ut-tdd doctor` は 0 で終了しなければならない。
+- migration files 追加後、`helix doctor` は 0 で終了しなければならない。
   governance checks は migration ordering が monotonic で gaps が無いことを確認する。
 
 ## schema PLAN の pair-freeze checklist
@@ -77,7 +77,7 @@ migration が destructive（DROP COLUMN、data transformation）の場合は rol
 - [ ] L4 doc の migration section が各 DDL step を順序通りに列挙している。
 - [ ] migration file(s) が `src/state-db/migrations/` 配下に存在し、gap なく numbered されている。
 - [ ] L6 unit-test design が constraint violations と migration idempotency を覆っている。
-- [ ] `ut-tdd plan lint` exits 0.
-- [ ] `ut-tdd doctor` exits 0.
-- [ ] harness.db changes の場合、`ut-tdd db rebuild` が成功し、projection-writer tests が green
+- [ ] `helix plan lint` exits 0.
+- [ ] `helix doctor` exits 0.
+- [ ] harness.db changes の場合、`helix db rebuild` が成功し、projection-writer tests が green
       （`bun run test`）。

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-307-loop-continuous-run-heartbeat
-title: "PLAN-L7-307 (add-impl): HBR-P1 continuous-run heartbeat / fresh-session 再入"
+title: "PLAN-L7-307 (add-impl): HBR-P1 continuous-run heartbeat と fresh-session 再入"
 kind: add-impl
 layer: L7
 drive: agent
@@ -29,9 +29,9 @@ dependencies:
     - docs/plans/PLAN-L7-305-loop-observability-projection.md
 ---
 
-# PLAN-L7-307: HBR-P1 continuous-run heartbeat / fresh-session 再入
+# PLAN-L7-307: HBR-P1 continuous-run heartbeat と fresh-session 再入
 
-## -1. archived boundary
+## -1. archived boundary (archive 境界)
 
 2026-07-04 時点では登録候補のみで、実装 schedule / oracle / owner が未確定である。
 active draft として残すと current completion audit に未証跡 blocker を混入させるため、本 PLAN は
@@ -40,17 +40,17 @@ PO/TL が scope と version target を確定したうえで新しい add-feature
 
 ## 0. 目的 (登録のみ、実装は本 PLAN の schedule 確定後)
 
-PLAN-L7-214 §4 carry の消化。現状 `ut-tdd loop run` は 1 起動 = `maxIterations` 到達で終了し、
+PLAN-L7-214 §4 carry の消化。現状 `helix loop run` は 1 起動 = `maxIterations` 到達で終了し、
 「budget time-cap 到達 → session を安全に終了 → fresh session で loop state から再入」する
 continuous-run engine (HBR-P1) が無いため、長時間の自律 Claude↔Codex ループが走れない。
 
 ## 1. スコープ候補 (起票時点の想定、freeze 前に TL 設計で確定する)
 
-- time-cap 到達時の graceful stop: loop state を `paused` で永続し、再入条件
+- time-cap 到達時の安全停止 (graceful stop): loop state を `paused` で永続し、再入条件
   (`windowOpensAt` 等) を記録する。
-- fresh-session 再入: `ut-tdd loop resume` (または `loop run` の再入検出) が paused state
+- fresh-session 再入: `helix loop resume` (または `loop run` の再入検出) が paused state
   から `canResume` 判定で継続する。
-- heartbeat 証跡: 再入イベントを `.ut-tdd/state/loop/` に残し、PLAN-L7-305 の
+- heartbeat 証跡: 再入イベントを `.helix/state/loop/` に残し、PLAN-L7-305 の
   `loop_iterations` 投影・doctor 観測と接続する。
 - P8 境界の維持: 常駐スケジューラ / 外部 heartbeat バイナリは不採用 (PLAN-L7-176 §2.5)。
   再入トリガは既存 session lifecycle (SessionStart hook / 明示 CLI) に限定する。

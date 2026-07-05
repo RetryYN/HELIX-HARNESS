@@ -37,7 +37,7 @@ review_evidence:
     scope: "L14 filename-level PLAN gap was identified; this master records operations feedback boundary while leaving high-impact identifier work to its existing dedicated PLAN."
     green_commands:
       - kind: lint
-        command: "./scripts/ut-tdd plan lint"
+        command: "./scripts/helix plan lint"
         runner: bun
         scope: targeted
         exit_code: 0

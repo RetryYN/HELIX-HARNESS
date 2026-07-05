@@ -40,12 +40,12 @@ const DRIVE_SKILLS: Record<Drive, string[]> = {
 };
 
 const LAYER_COMMANDS: Partial<Record<Layer, string[]>> = {
-  L1: ["ut-tdd plan lint --gate G1-trace", "ut-tdd skill suggest --plan <path>"],
-  L3: ["ut-tdd plan lint --gate G3-trace", "ut-tdd skill suggest --plan <path>"],
-  L4: ["ut-tdd plan lint --gate governance", "ut-tdd vmodel lint"],
-  L5: ["ut-tdd plan lint --gate governance", "ut-tdd vmodel lint"],
-  L6: ["ut-tdd doctor", "ut-tdd verify recommend"],
-  L7: ["ut-tdd doctor", "ut-tdd verify recommend", "ut-tdd review --uncommitted"],
+  L1: ["helix plan lint --gate G1-trace", "helix skill suggest --plan <path>"],
+  L3: ["helix plan lint --gate G3-trace", "helix skill suggest --plan <path>"],
+  L4: ["helix plan lint --gate governance", "helix vmodel lint"],
+  L5: ["helix plan lint --gate governance", "helix vmodel lint"],
+  L6: ["helix doctor", "helix verify recommend"],
+  L7: ["helix doctor", "helix verify recommend", "helix review --uncommitted"],
 };
 
 function orchestrationFor(drive: Drive, layer: Layer): OrchestrationMode {
@@ -108,7 +108,7 @@ export function resolveVmodelInjection(
     owner_role: DRIVE_OWNER[parsedDrive],
     mandatory_agents: mandatoryAgentsFor(parsedDrive, parsedLayer),
     recommended_skills: DRIVE_SKILLS[parsedDrive],
-    recommended_commands: LAYER_COMMANDS[parsedLayer] ?? ["ut-tdd status", "ut-tdd doctor"],
+    recommended_commands: LAYER_COMMANDS[parsedLayer] ?? ["helix status", "helix doctor"],
     orchestration_mode: mode,
     ...(options.executionMode ? { execution_mode: options.executionMode } : {}),
   };

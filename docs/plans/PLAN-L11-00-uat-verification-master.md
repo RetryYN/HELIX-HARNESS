@@ -36,7 +36,7 @@ review_evidence:
     scope: "L11 filename-level PLAN gap was identified; this master records UAT boundary without claiming UAT close."
     green_commands:
       - kind: lint
-        command: "./scripts/ut-tdd plan lint"
+        command: "./scripts/helix plan lint"
         runner: bun
         scope: targeted
         exit_code: 0

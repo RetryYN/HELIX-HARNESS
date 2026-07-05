@@ -25,52 +25,52 @@ dependencies:
     - docs/plans/PLAN-L7-33-mcp-profile-config-safety.md
 ---
 
-# PLAN-REVERSE-33 (reverse): MCP profile config and safety fullback
+# PLAN-REVERSE-33 (reverse): MCP profile config and safety fullback の Reverse 計画
 
-## §0 Position
+## §0 位置づけ
 
-Reverse pairing for the future PLAN-L7-33 implementation. This PLAN remains draft until source implementation exists.
+将来の PLAN-L7-33 実装に対応する Reverse pairing。source implementation が存在するまでは、この PLAN は draft のままとする。
 
-## §1 R0 Evidence
+## §1 R0 証跡
 
-Expected evidence after L7:
+L7 後に期待する証跡:
 
-- Docker MCP Toolkit profile metadata and readiness checks;
-- generated MCP config dry-run output;
-- safety findings for source trust, package integrity, read-only toolsets, workspace mounts, Docker controls, and credential non-persistence;
-- CLI smoke and evidence records if a dry-run command is added.
+- Docker MCP Toolkit profile metadata と readiness checks。
+- generated MCP config の dry-run output。
+- source trust、package integrity、read-only toolsets、workspace mounts、Docker controls、credential non-persistence に関する safety findings。
+- dry-run command を追加する場合の CLI smoke と evidence records。
 
-## §2 R1 Observed Gap
+## §2 R1 観測された Gap
 
-Expected gaps to classify:
+分類対象として想定する gap:
 
-- whether requirements §6.8.10 needs a stricter generated-config command surface;
-- whether physical-data §9.6 needs new projection columns for profile trust and safety findings;
-- whether ADR-002 A-125 needs to distinguish Docker MCP Toolkit profile isolation from generic MCP profiles.
+- requirements §6.8.10 が、より厳密な generated-config command surface を必要とするか。
+- physical-data §9.6 が、profile trust と safety findings 用の新しい projection columns を必要とするか。
+- ADR-002 A-125 が、Docker MCP Toolkit profile isolation と generic MCP profiles を区別する必要があるか。
 
-## §3 R2 Alignment
+## §3 R2 整合
 
-Forward implementation must align with:
+Forward implementation は次と整合させる:
 
 - requirements §6.8.10;
 - physical-data §9.6;
 - ADR-002 A-125;
 - A-125 research memo;
-- IMP-121..124 and IMP-125 recovery guard.
+- IMP-121..124 と IMP-125 recovery guard。
 
 ## §4 R3 / R4
 
-2026-06-11 L7 implementation evidence exists for MCP profile config and safety:
+2026-06-11 時点で、MCP profile config and safety の L7 implementation evidence は存在する:
 
-- PLAN-L7-33: U-MCPPROFILE-001..012 green for complete profile catalog, Docker MCP Toolkit optional metadata, generated local config rendering, safety findings, and external activation planning.
-- Backprop decision: no lower-layer requirements / physical-data / ADR meaning change was discovered; generated local config remains a suggestion under `.ut-tdd/local/`, and external execution/profile enablement remains out of scope.
-- Safety boundary: no package installation, MCP server execution, `.vscode/mcp.json` write, committed secret, or user home/global mount is introduced.
+- PLAN-L7-33: complete profile catalog、Docker MCP Toolkit optional metadata、generated local config rendering、safety findings、external activation planning について、U-MCPPROFILE-001..012 は green。
+- Backprop decision: lower-layer requirements / physical-data / ADR の意味変更は発見されていない。generated local config は `.helix/local/` 配下の suggestion に留まり、external execution/profile enablement は scope 外のままとする。
+- Safety boundary: package installation、MCP server execution、`.vscode/mcp.json` write、committed secret、user home/global mount は導入しない。
 
-R4 fullback outcome: Forward L7 MCP profile safety implementation has merged back to this Reverse plan with no additional governance/backlog additions required.
+R4 fullback outcome: Forward L7 MCP profile safety implementation はこの Reverse plan へ merge back 済みであり、追加の governance/backlog 追記は不要。
 
 ## §8 DoD
 
-- [x] L7 implementation evidence exists.
-- [x] New lower-layer discoveries are classified with `backprop_decision`.
-- [x] Requirements / physical-data / ADR / backlog are unchanged because implementation did not change their meaning.
-- [x] No generated local config or external profile execution bypasses explicit approval gates.
+- [x] L7 implementation evidence が存在する。
+- [x] 新しい lower-layer discoveries は `backprop_decision` で分類されている。
+- [x] implementation が意味を変えていないため、Requirements / physical-data / ADR / backlog は変更なし。
+- [x] generated local config または external profile execution が explicit approval gates を bypass しない。

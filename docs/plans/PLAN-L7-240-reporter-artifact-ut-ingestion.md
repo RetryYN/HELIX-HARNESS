@@ -103,7 +103,7 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-240: reporter artifact UT ingestion
+# PLAN-L7-240: reporter artifact の UT ingestion
 
 ## 0. 目的
 
@@ -140,9 +140,9 @@ official reporter artifact を `TestCaseEvidence[]` に正規化し、既存 `te
 - duration trend 専用 table / dashboard 永続化。PLAN-L7-241 は既存 `quality_signals` に
   `duration_trend_ms` を保存する schema-less persistence として扱う。
 - reporter の実行、外部依存追加、ネットワーク利用。
-- HTML / trace / coverage / attachment / blob parser。
+- HTML / trace / coverage / attachment / blob parser は対象外。
 - JUnit XML 全方言への完全対応。
-- L14 completion / version-up activation / `.ut-tdd` irreversible cutover 承認。
+- L14 completion / version-up activation / `.helix` irreversible cutover 承認。
 
 ## 3. 受入条件
 

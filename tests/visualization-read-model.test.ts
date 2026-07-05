@@ -123,7 +123,7 @@ describe("visualization read model", () => {
           session_id: "session-1",
           source: "runtime-hook",
           runtime_surface: "cli",
-          evidence_path: ".ut-tdd/evidence/run-debug/runtime-verification.jsonl",
+          evidence_path: ".helix/evidence/run-debug/runtime-verification.jsonl",
           occurred_at: "2026-06-30T03:08:00.000Z",
           verification_class: "runtime_verified",
           accept_status: "accepted",
@@ -136,7 +136,7 @@ describe("visualization read model", () => {
           event_id: "runtime:projection-only",
           plan_id: "PLAN-L7-206-visualization-read-model-response",
           claim: "projection row exists",
-          evidence_path: ".ut-tdd/evidence/run-debug/runtime-verification.jsonl",
+          evidence_path: ".helix/evidence/run-debug/runtime-verification.jsonl",
           occurred_at: "2026-06-30T03:09:00.000Z",
           verification_class: "projection_only_unverified",
           accept_status: "blocked",
@@ -149,7 +149,7 @@ describe("visualization read model", () => {
           event_id: "runtime:inconsistent-projection-accepted",
           plan_id: "PLAN-L7-206-visualization-read-model-response",
           claim: "bad projection row should not count as accepted",
-          evidence_path: ".ut-tdd/evidence/run-debug/runtime-verification.jsonl",
+          evidence_path: ".helix/evidence/run-debug/runtime-verification.jsonl",
           occurred_at: "2026-06-30T03:09:30.000Z",
           verification_class: "projection_only_unverified",
           accept_status: "accepted",
@@ -231,7 +231,7 @@ describe("visualization read model", () => {
       expect(snapshot.progress.artifacts.total).toBe(0);
       expect(snapshot.progress.plans.by_status).toEqual({});
       expect(snapshot.evidence.runtime_verification.total).toBe(0);
-      expect(snapshot.warnings).toEqual(["artifact_progress is empty; run `ut-tdd db rebuild`"]);
+      expect(snapshot.warnings).toEqual(["artifact_progress is empty; run `helix db rebuild`"]);
     } finally {
       db.close();
     }

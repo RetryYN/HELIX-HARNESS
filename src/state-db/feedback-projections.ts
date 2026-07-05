@@ -262,7 +262,7 @@ export function projectIssueQueue(db: HarnessDb, deps: FeedbackProjectionDeps): 
         source_event_id: sourceEventId,
         plan_id: String(row.plan_id ?? ""),
         target: "github",
-        title: `[ut-tdd telemetry] ${signalType}`,
+        title: `[helix telemetry] ${signalType}`,
         body: `Dry-run issue candidate from feedback event ${sourceEventId}: ${row.next_action ?? ""}`,
         status: "queued_dry_run",
         human_approval_required: 1,

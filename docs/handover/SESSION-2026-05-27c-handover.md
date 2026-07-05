@@ -48,7 +48,7 @@ L1 業務要求 confirmed の次:
 
 ## §3 carry / 持ち越し論点
 
-- ⚠️ **整合課題 (要 L2 解決)**: BR-06 ダッシュボードは **サーバー + V-model 管理 DB + リアルタイム + 複数プロダクト横断** を理想とし、concept の「軽量・interpreter 不要・外部依存避け」(§8.1) と**強く緊張**。さらに V-model 状態を DB で持つのは現行ファイルベース state (`.ut-tdd/`) からの転換含意。L2/L4 で再整合 (concept 更新 or 設計吸収)。L1 では要求として確定済、解消は設計層。
+- ⚠️ **整合課題 (要 L2 解決)**: BR-06 ダッシュボードは **サーバー + V-model 管理 DB + リアルタイム + 複数プロダクト横断** を理想とし、concept の「軽量・interpreter 不要・外部依存避け」(§8.1) と**強く緊張**。さらに V-model 状態を DB で持つのは現行ファイルベース state (`.helix/`) からの転換含意。L2/L4 で再整合 (concept 更新 or 設計吸収)。L1 では要求として確定済、解消は設計層。
 - **held L7 schema** (§1 working tree): commit せず、L7 で設計から作り直す。
 - requirements_v1.2 は「L1-L3」を名乗るが中身は L3/システム要件寄り。L1 業務要求層は本 session の `docs/design/harness/L1-business-requirements.md` が埋めた。L3 着手時に requirements_v1.2 との役割整理 (methodology spec vs project 要求) を意識。
 - ADR-001 follow-up (tl-advisor 別 runtime cross-check) 依然未実施。

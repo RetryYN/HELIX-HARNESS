@@ -38,15 +38,15 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-87 (troubleshoot): merged-plan-status kind-independent detection
+# PLAN-L7-87 (troubleshoot): merged-plan-status の kind 非依存検出 (kind-independent detection)
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 `merged-plan-status` gate が捕まえるべき「出荷物を merge したのに PLAN が draft 放置」
 drift を、**kind を問わず** (poc / add-design / reverse なども含めて) 検出できるように
 する。L7-86 が path フィルタを直しても残っていた **kind フィルタの盲点**を根治する。
 
-## 1. Problem (実証されたギャップ)
+## 1. 問題 (Problem、実証されたギャップ)
 
 L7-86 は `generatesSrcPaths` を出荷物ルート全体 (`src/ tests/ scripts/ .claude/`) へ
 拡張したが、violation 条件に残った `ARTIFACT_KINDS = {impl, add-impl, refactor}` の
@@ -68,7 +68,7 @@ kind フィルタはそのままだった。L7-86 の review evidence は
 **draft-with-merged-src** が doctor EXIT=0 のまま埋もれ、PO が手で PLAN を読むまで
 発見できなかった。当 gate 自身の 2 次的 absence-blindness。
 
-## 2. Fix
+## 2. 修正 (Fix)
 
 ### 2.1 Drift の先行解消 (本 PLAN の前提)
 
@@ -100,22 +100,22 @@ status drift を解消した (各 PLAN の review_evidence に記録):
 - docstring / 型コメント / review-evidence gate との関心分離コメントを deliverable-driven
   表現へ整合 (誤誘導コメント残債を残さない)。`MergedPlanRow.kind` は情報用に温存。
 
-## 3. Acceptance Criteria — met
+## 3. 受入条件 (Acceptance Criteria) — 充足 (met)
 
 - [x] draft の PLAN が merged 出荷物 (src/tests/scripts/.claude) を持つと、**kind を問わず**
       violation になる (poc / add-design / design / impl / add-impl / refactor)。
 - [x] 例外は S3 verified PoC draft (`kind=poc` + `workflow_phase=S3` + `review_evidence` あり) のみ。
       これは S4 decision pending として outstanding に残し、merged-plan-status は terminal 化を強制しない。
 - [x] deliverable が未 merge の draft PLAN は kind を問わず violation にならない (真に作業中)。
-- [x] PLAN 自身の `docs/` artifact / `.ut-tdd/` 生成状態は merged-deliverable に計上しない。
+- [x] PLAN 自身の `docs/` artifact / `.helix/` 生成状態は merged-deliverable に計上しない。
 - [x] 先行解消した 3 件 (DISCOVERY-05 / L3-04 / L3-05) は confirmed ゆえ violation にならない。
 - [x] 残る draft 2 本 (DISCOVERY-03 = src 未 merge poc / RECOVERY-02 = 自身の md のみ) は
       merged 出荷物を持たないので violation にならない (正しく非対象)。
 - [x] 旧 unit test「does not flag non-artifact kinds」を反転し、kind 非依存 flag /
       未 merge 非 flag / add-design×merged-src integration の回帰を追加。
-- [x] typecheck / Biome / Vitest / doctor green。
+- [x] 検証: typecheck / Biome / Vitest / doctor green。
 
-## 4. Out of scope (→ IMP-139)
+## 4. 範囲外 (Out of scope、→ IMP-139)
 
 「層内の非終端 PLAN 数 / open explicit-defer 数 / PLAN 完了 ≠ 層完了」を **正の集計
 シグナル**として status / handover / harness.db に surface する機構は本 PLAN の範囲外

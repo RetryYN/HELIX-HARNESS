@@ -28,7 +28,7 @@ dependencies:
   references:
     - docs/governance/document-system-map.md
     - src/schema/index.ts
-related_adr: docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+related_adr: docs/adr/ADR-001-helix-harness-redesign-and-language.md
 v2_import: docs/migration/v2-import-ledger.md
 review_evidence:
   - reviewer: pmo-sonnet
@@ -47,11 +47,11 @@ L4 Master (`PLAN-L4-00-master`) §2 の ① 必須 sub-doc「data」を詳細化
 
 ## §1 目的
 
-L1 §10.1 で列挙した業務 entity 12 件 (plan/gate/artifact/pair/mode/drive/agent_slot/handover/sprint/phase/carry/trace) を **L4 基本設計レベルのドメインモデル**へ詳細化し、`.ut-tdd/` YAML/JSON state schema + `.ut-tdd/harness.db` SQLite projection feedback DB (ADR-001) と既存 `src/schema/index.ts` の設計裏付けを確定する。
+L1 §10.1 で列挙した業務 entity 12 件 (plan/gate/artifact/pair/mode/drive/agent_slot/handover/sprint/phase/carry/trace) を **L4 基本設計レベルのドメインモデル**へ詳細化し、`.helix/` YAML/JSON state schema + `.helix/harness.db` SQLite projection feedback DB (ADR-001) と既存 `src/schema/index.ts` の設計裏付けを確定する。
 
 ## §2 背景
 
-- 上流: L1 §10.2 carry (集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 + `ut-tdd doctor check_business_entity_coverage`)
+- 上流: L1 §10.2 carry (集約境界 / 値オブジェクト / entity ID 規約 / ライフサイクル / 不変条件 / 集約間整合性 + `helix doctor check_business_entity_coverage`)
 - 業界標準: DDD (Evans、集約/値オブジェクト/不変条件) + DbC (Meyer、invariant = ドメイン不変条件) ← document-system-map §3
 - 既存実装: `src/schema/index.ts` (enum SSoT) が data 設計の一部を先行実装済 → 本 doc がその設計根拠を明文化 (reverse 的裏付け)
 
@@ -78,7 +78,7 @@ PLAN-L<N>-<NN>-slug / FR-L1-NN / AC-FR-NN-NN / IMP-NNN 等の ID 採番規約を
 ### Step 7: 集約間整合性ルール
 集約をまたぐ整合 (例: artifact.trace ↔ plan.generates、pair_artifact 双方向)。eventual/immediate の別を明示。
 
-### Step 8: state schema (`.ut-tdd/`) + src/schema 突合
+### Step 8: state schema (`.helix/`) + src/schema 突合
 YAML/JSON state のディレクトリ/ファイル schema と SQLite projection table を定義し、`src/schema/index.ts` の既存 enum と齟齬がないか突合 (doctor check_business_entity_coverage / vmodel lint の検証対象を確定)。
 
 ## §4 受入条件 / DoD
@@ -106,7 +106,7 @@ L4 でドメインモデル用語 (集約 / 値オブジェクト / 不変条件
 |---|---|---|---|
 | L4 集約 (Plan/Artifact/Workflow/Handover/Evaluation) | 新規 | 12 entity を DDD 集約に grouping (data.md §2) | concept §10.1 に back-merge 済 (導入層 = L4) |
 
-> 集約/値オブジェクト/不変条件 等の DDD 一般語は標準用語のため独自定義せず参照。UT-TDD 固有の 5 集約名のみ §10.1 へ back-merge。
+> 集約/値オブジェクト/不変条件 等の DDD 一般語は標準用語のため独自定義せず参照。HELIX 固有の 5 集約名のみ §10.1 へ back-merge。
 
 ## §7 機能要求更新 (FR registry delta)
 

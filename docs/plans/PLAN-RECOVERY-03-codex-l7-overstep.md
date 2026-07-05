@@ -24,8 +24,8 @@ dependencies:
   references:
     - docs/process/modes/recovery.md
     - docs/governance/helix-harness-requirements_v1.2.md
-    - .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
-    - .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
+    - .helix/audit/A-124-cross-artifact-graph-tooling.md
+    - .helix/audit/A-125-mcp-external-verification-profile-scope.md
     - docs/plans/PLAN-REVERSE-31-codex-l7-overstep.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 review_evidence:
@@ -39,7 +39,7 @@ review_evidence:
 
 # PLAN-RECOVERY-03 (recovery): Codex の未承認 L7 実装着手逸脱
 
-> **approval state**: PO scope approval is provided by the user directive: the overstep is a Recovery ticket and must be returned through Reverse/fullback. This PLAN is confirmed for correction routing, but not closed.
+> **承認状態（approval state）**: PO scope approval はユーザー指示で付与済み。overstep は Recovery ticket として扱い、ad-hoc 実装ではなく Reverse/fullback へ戻す。この PLAN は correction routing 用に confirmed だが、closed ではない。
 
 ## §1 事象記録
 
@@ -57,9 +57,9 @@ review_evidence:
 | 「小さい未配線ファイルなら仮実装してよい」 | `src/**` 追加は L7 実装着手。TDD Red entry / parent design / pair artifact / review evidence が必要 |
 | 「active goal 継続のため実装で前進する」 | active goal があっても、工程ゲートを越える場合は Recovery / Reverse / Add-feature の正規ルートを優先する |
 
-## §3 reopen point
+## §3 再開点（reopen point）
 
-- **reopen point**: L6/L7 process boundary。
+- **再開点（reopen point）**: L6/L7 process boundary。
 - **理由**: 要求や A-124/A-125 の scope 自体は誤っていない。誤りは「L7 に入る前の工程判定」と「未承認実装の封じ込め」にある。
 - **通常化ルート**:
   1. 本 Recovery PLAN を起票する。

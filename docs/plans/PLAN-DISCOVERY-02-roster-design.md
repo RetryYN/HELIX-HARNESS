@@ -38,21 +38,21 @@ v2_import: docs/migration/v2-import-ledger.md
 
 s4_decision_record:
 - allowed_outcome: `confirmed`
-- decision_owner: PO (S4 result recorded 2026-06-01)
-- decision_basis: roster module core was validated by S2/S3 spike and the throwaway spike path was intentionally redesigned into Forward design.
+- decision_owner: PO (S4 result 記録日 2026-06-01)
+- decision_basis: roster module core は S2/S3 spike で検証済みであり、使い捨て spike path は意図的に Forward design へ redesign した。
 - verified_evidence: PLAN-DISCOVERY-02 §5 S2/S3 verification; PLAN-L5-05-roster and PLAN-L4-11-roster carry the confirmed design; 現在の再検証 command `bun run src/cli.ts doctor` and `bun test tests/s4-decision-readiness.test.ts --timeout 180000`.
-- stakeholder_review_or_proxy: PM/PO S4 record in §4 and Codex review fallback noted in §5.
-- acceptance_gap: spike quality was not accepted as product implementation; redesign path closed the gap.
-- unresolved_risk: parse zod hardening and agent directory path resolution were carried to L6/L7 instead of hidden in the PoC.
-- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
-- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
-- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
-- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
-- route_impact: confirmed with redesign discards spike code and keeps the design outcome for Forward implementation.
-- forward_route: PLAN-L5-05-roster / PLAN-L4-11-roster Forward design path.
-- reverse_fullback_required: no; redesign outcome intentionally reimplemented through Forward design rather than reusing spike artifacts.
-- promotion_strategy_or_rejection_pivot_rationale: redesign; spike was evidence only, product work continues through confirmed Forward design.
+- stakeholder_review_or_proxy: PM/PO S4 record は §4 にあり、Codex review fallback は §5 に記録済み。
+- acceptance_gap: spike quality は product implementation として受け入れず、redesign path で gap を閉じた。
+- unresolved_risk: parse zod hardening と agent directory path resolution は PoC 内に隠さず、L6/L7 へ carry した。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh; S4 decision source ledger は current audit 中の discovery/scrum mode docs で 2026-07-03 に確認済み。
+- source_status_delta: changed; ISO/IEC/IEEE 29148 は 2026-02-16 stage 90.92 to be revised になったが、historical confirmed S4 decision は再オープンしない。
+- adoption_decision_delta: none; historical S4 adoption decision は current route policy と整合し、ISO/IEC/IEEE 29148 revision は publication まで追跡する。
+- workflow_route_impact: none; historical decision は S4 と Reverse/Forward evidence を通過済み。
+- route_impact: confirmed with redesign は spike code を破棄し、design outcome を Forward implementation に残す。
+- forward_route: PLAN-L5-05-roster / PLAN-L4-11-roster が Forward design path。
+- reverse_fullback_required: no; redesign outcome は spike artifacts を再利用せず、Forward design で意図的に再実装した。
+- promotion_strategy_or_rejection_pivot_rationale: redesign; spike は evidence のみで、product work は confirmed Forward design で継続する。
 
 # PLAN-DISCOVERY-02 (kind=poc): roster module 設計の Discovery 検証
 
@@ -70,7 +70,7 @@ s4_decision_record:
 |---|---|---|
 | **scan→registry** | `.claude/agents/*.md` を in-memory scan して roster registry を構築 (永続なし、fs 正本、ADR-004 / data.md A-90) | 高 (agent-guard §2.3 が同型 scan を実証済) |
 | **capability class resolver** | 各 agent の capability class (PMO/PdM/review 等) と model family を frontmatter から解決、FR-L1-37 model 推挙へ入力 | **低 (未実証)** — frontmatter の何を class とみなすか、resolve ルールが紙上のみ |
-| **内部資産 command CLI** | `ut-tdd roster list/check` / `ut-tdd asset` の D-API。`roster check` = .md↔guard allowlist 乖離 0 or fail-close | **低 (未実証)** — guard allowlist との突合方式・出力契約が紙上のみ |
+| **内部資産 command CLI** | `helix roster list/check` / `helix asset` の D-API。`roster check` = .md↔guard allowlist 乖離 0 or fail-close | **低 (未実証)** — guard allowlist との突合方式・出力契約が紙上のみ |
 | **`runtime → roster` 一方向結合** | guard が roster を参照 (循環なし)。roster 未実装期間は guard ハードコード維持 = 移行段階 (`placeholder_deps:{waiting_layer:L7}`) | 中 — 方向は明確だが移行段階の繋ぎが未実証 |
 
 > S1 では上記を**確定でなく仮説**として置く。確証度「低」が Discovery で実証すべき核心。
@@ -127,7 +127,7 @@ spike を走らせ、§1 の設計仮説が成立するか観察:
 - **capabilityClass と modelFamily は直交** (pmo class 内に haiku/sonnet 混在) = capability class ≠ model tier。L5 module-decomposition に明記する
 - roster registry の安定化 = **id 昇順ソート** (再実行ログ比較の安定性、Codex review #3 反映)
 - frontmatter parse 欠落は空文字 fallback (spike は簡易 parser、本実装は zod 化が L6/L7 carry)
-- **残 (L6 spec carry)**: 内部資産 command の D-API 出力契約 (`roster list/check` の exit code・出力形式・`ut-tdd asset`) は spike 未実証 (core 機構のみ実証) → L6 機能設計 (waiting_layer:L6)
+- **残 (L6 spec carry)**: 内部資産 command の D-API 出力契約 (`roster list/check` の exit code・出力形式・`helix asset`) は spike 未実証 (core 機構のみ実証) → L6 機能設計 (waiting_layer:L6)
 
 > **結論**: roster module の核 (scan/resolve/consistency) は実証で**成立**。S1 で「低」確証だった capability resolver / roster↔guard 整合が実コードで詰まらず動いた。S4 (PO) で confirmed なら PLAN-L5-05-roster へ Forward 確定 (capability⊥model / ID=filename stem / nameMismatch WARN を設計反映)。決定権は PO。
 

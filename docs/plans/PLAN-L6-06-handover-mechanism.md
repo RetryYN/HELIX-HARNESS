@@ -43,15 +43,15 @@ review_evidence:
 - 親設計: `PLAN-L6-03-session-log` (digest = §6.8.6 で「log→handover の橋渡し + state DB 登録トリガ = 3 層の結節点」と規定。handover はその digest を consume する。drive=fullstack 一致)。forced-stop (L6-04) も session-log を親に取った先例と同型。
 - 駆動モデル: **Add-feature** (bottom-up build → 後段 Reverse で §6.8.5/§6.8.6 詳細 + CURRENT.md/.json 表記不整合 + L4 external-if へ back-fill、[[feedback_addfeature_bottomup_reverse_backfill]])。
 - **本機能が解く 2 つの密結合ギャップ** (2026-06-04 診断):
-  1. **Gap A — handover 機構が未実装**: schema / コマンド / 自動生成 / `CURRENT.json` のいずれも無く、`docs/handover/*.md` が手書きで drift する (前 handover で HEAD 表記が実 commit とずれた実例)。CLAUDE.md ワークフローが参照する `.ut-tdd/handover/CURRENT.json` は規定も実体も無い。
-  2. **Gap B — session-log digest が solo/main 直で死んでいる**: `resolveActivePlan` は `.ut-tdd/state/current-plan` → branch fallback → null の順 (U-SLOG-001 既設計) だが、**①の state を書く機構が無く**、**②は harness 自己開発が main 直 (branch を切らない) ため一致しない** → `plan_id` 恒常 null → `.ut-tdd/logs/plan/*.digest.json` が一度も生成されず (実ログ 5 件すべて `plan_id:null` で実証)、§6.8.6 の結節点が機能しない。
+  1. **Gap A — handover 機構が未実装**: schema / コマンド / 自動生成 / `CURRENT.json` のいずれも無く、`docs/handover/*.md` が手書きで drift する (前 handover で HEAD 表記が実 commit とずれた実例)。CLAUDE.md ワークフローが参照する `.helix/handover/CURRENT.json` は規定も実体も無い。
+  2. **Gap B — session-log digest が solo/main 直で死んでいる**: `resolveActivePlan` は `.helix/state/current-plan` → branch fallback → null の順 (U-SLOG-001 既設計) だが、**①の state を書く機構が無く**、**②は harness 自己開発が main 直 (branch を切らない) ため一致しない** → `plan_id` 恒常 null → `.helix/logs/plan/*.digest.json` が一度も生成されず (実ログ 5 件すべて `plan_id:null` で実証)、§6.8.6 の結節点が機能しない。
 - **結合理由**: §6.8.5 が「handover の入力 = PLAN digest」と規定する以上、handover を作るには digest が populate されている必要がある。Gap B 修正 (current-plan を書く手段) は Gap A の **前提条件**であり、同一因果鎖 (§6.8.6 結節点の活性化) として 1 機能に束ねる。Gap B は既存 session-log 設計 (L6-03) への **限定的 amendment** であり、新 sub-doc を起こさない (混在禁止に抵触しない)。
 
 ## §1 要求 (この機構が満たすこと)
 
-1. **PLAN digest → handover の機械的橋渡し**: `.ut-tdd/logs/plan/<plan_id>.digest.json` (touched files / commits / failures) を入力に、§6.8.5 必須 6 内容 (①PLAN サマリ ②成果物 ③Next Action ④carry ⑤未了 PO 判断 ⑥壊さない注意) のうち **機械部 (①一部・②) を prefill**、判断部 (③④⑤⑥) は人間記入の placeholder にする (§6.8.5「機械的入力 + 人間判断を足して handover」)。
-2. **二層配置の確定**: **機械ポインタ = `.ut-tdd/handover/CURRENT.json`** (local / gitignored、「今アクティブな PLAN・status・最新 handover doc への pointer・digest 要約」を機械可読で保持。CLAUDE.md ワークフローの参照先) / **チーム継続記録 = `docs/handover/session-handover-<date>[suffix].md`** (tracked、人間判断 durable)。§6.8.5 配置規定に一致。
-3. **plan_id 解決の活性化 (Gap B fix)**: `.ut-tdd/state/current-plan` を書く手段 (`setActivePlan` + `ut-tdd plan use <id>`) を提供し、solo/main 直でも digest が populate されるようにする。**`resolveActivePlan` の解決ロジック自体は変えない** (U-SLOG-001 のまま) — 入力 state を書く経路を足すだけ。
+1. **PLAN digest → handover の機械的橋渡し**: `.helix/logs/plan/<plan_id>.digest.json` (touched files / commits / failures) を入力に、§6.8.5 必須 6 内容 (①PLAN サマリ ②成果物 ③Next Action ④carry ⑤未了 PO 判断 ⑥壊さない注意) のうち **機械部 (①一部・②) を prefill**、判断部 (③④⑤⑥) は人間記入の placeholder にする (§6.8.5「機械的入力 + 人間判断を足して handover」)。
+2. **二層配置の確定**: **機械ポインタ = `.helix/handover/CURRENT.json`** (local / gitignored、「今アクティブな PLAN・status・最新 handover doc への pointer・digest 要約」を機械可読で保持。CLAUDE.md ワークフローの参照先) / **チーム継続記録 = `docs/handover/session-handover-<date>[suffix].md`** (tracked、人間判断 durable)。§6.8.5 配置規定に一致。
+3. **plan_id 解決の活性化 (Gap B fix)**: `.helix/state/current-plan` を書く手段 (`setActivePlan` + `helix plan use <id>`) を提供し、solo/main 直でも digest が populate されるようにする。**`resolveActivePlan` の解決ロジック自体は変えない** (U-SLOG-001 のまま) — 入力 state を書く経路を足すだけ。
 4. **stale 検知の基盤**: `handoverStale(updated_at, now, 24h)` 純関数を提供 (§5.3 pre-push の「CURRENT.* が 24h 以内」warn・§1.10 line 947 検証の機械基盤)。lint engine 実装前は human-binding。
 5. **fail-safe / 秘匿 / 非破壊**: handover 生成は never-throw を要さない (CLI なので失敗は warn 可) が、**digest 由来テキストは session-log の sanitize 済を前提**にし credential を載せない。`--dry-run` は何も書かない。既存 markdown は **追記** (上書きしない)。CURRENT.json は単一機械ポインタとして上書き。
 
@@ -64,7 +64,7 @@ review_evidence:
 | 解決 (`resolveHandoverScope`) | current-plan state + 直近 digest 群から対象 PLAN・digest を集める。**判断しない** | never throw。無ければ `{active_plan:null, digests:[]}` |
 | 機械ポインタ (`buildPointer`/`writePointer`) | digest 要約から `CURRENT.json` を組み立て上書き (機械可読、単一 SSoT) | 純関数 + 単一書込。active_plan=null でも valid pointer |
 | scaffold (`scaffoldFromDigests`/`renderHandoverScaffold`) | digest + PLAN frontmatter → §6.8.5 の 6 セクション markdown。①②を prefill、③-⑥ は human placeholder | 純関数。sanitize 済前提、credential 非載 |
-| 活性化 (`setActivePlan`) | `.ut-tdd/state/current-plan` を書く (digest を populate させる Gap B fix) | 単一書込。`resolveActivePlan` の読取先と同一 path |
+| 活性化 (`setActivePlan`) | `.helix/state/current-plan` を書く (digest を populate させる Gap B fix) | 単一書込。`resolveActivePlan` の読取先と同一 path |
 | 推定 (`inferPlanFromCommit`) | commit message から `PLAN-<token>-<NN>` 抽出 (best-effort、`-m` 形式のみ。`-F -` heredoc は対象外) | 純関数。無ければ null。current-plan 自動更新の補助 |
 | orchestration (`runHandover`) | scope 解決 → markdown 追記/新規 (dry-run は書かない) → CURRENT.json 更新 → `--complete` で status=completed | dry-run 非破壊。既存 md は追記 |
 
@@ -72,11 +72,11 @@ review_evidence:
 
 ```text
 HandoverStatus = "in_progress" | "completed"
-PlanDigestRef = {                          # .ut-tdd/logs/plan/<id>.digest.json の読取 subset (PlanDigest)
+PlanDigestRef = {                          # .helix/logs/plan/<id>.digest.json の読取 subset (PlanDigest)
   plan_id: string, sessions: string[], commits: string[],
   files_touched: string[], failures: { ts: string; summary: string }[], updated_at: string,
 }
-HandoverPointer = {                        # .ut-tdd/handover/CURRENT.json (機械ポインタ、gitignored)
+HandoverPointer = {                        # .helix/handover/CURRENT.json (機械ポインタ、gitignored)
   active_plan: string | null,
   status: HandoverStatus,
   latest_doc: string | null,               # docs/handover/session-handover-<date>.md への path
@@ -95,26 +95,26 @@ HandoverDoc = {                            # markdown 1 entry の論理内容
 
 | 関数 | signature | DbC |
 |------|-----------|-----|
-| `resolveHandoverScope` | `(deps: { repoRoot; readText; listDir }) => { active_plan: string\|null; digests: PlanDigestRef[] }` | **never throws**。current-plan state を読み active_plan を決定 / `.ut-tdd/logs/plan/*.digest.json` を listDir で集める / 不在・壊れ JSON は skip / 無ければ `{active_plan:null, digests:[]}` |
+| `resolveHandoverScope` | `(deps: { repoRoot; readText; listDir }) => { active_plan: string\|null; digests: PlanDigestRef[] }` | **never throws**。current-plan state を読み active_plan を決定 / `.helix/logs/plan/*.digest.json` を listDir で集める / 不在・壊れ JSON は skip / 無ければ `{active_plan:null, digests:[]}` |
 | `buildPointer` | `(scope, latestDoc: string\|null, status: HandoverStatus, now: string) => HandoverPointer` | **純関数**。digest_summary = 対象 digest の commits/files/failures 件数集計 / active_plan=null でも valid (digest_summary=null) / updated_at=now |
 | `scaffoldFromDigests` | `(digests: PlanDigestRef[], planMeta: {plan_id;kind;title}[], date: string) => HandoverDoc` | **純関数**。digest.commits/files_touched → deliverables / planMeta.kind/title → plans.summary / **③-⑥ は空配列 (human 記入)** |
 | `renderHandoverScaffold` | `(doc: HandoverDoc) => string` | **純関数**。§6.8.5 の 6 セクション markdown を render / 機械部 prefill / **③-⑥ は `<!-- TODO(human): ... -->` placeholder** / digest テキストは sanitize 済前提で credential を再載しない |
 | `handoverStale` | `(updated_at: string\|null, now: string, maxHours?=24) => boolean` | **純関数**。updated_at 無し → true / now-updated_at > maxHours → true / それ以内 → false (§5.3 pre-push warn 基盤) |
-| `writePointer` | `(pointer: HandoverPointer, deps: { repoRoot; writeText }) => void` | `.ut-tdd/handover/CURRENT.json` を **上書き** (単一機械ポインタ、append しない) |
-| `setActivePlan` | `(planId: string\|null, deps: { repoRoot; writeText; removeFile? }) => void` | `.ut-tdd/state/current-plan` を書く (Gap B 活性化、`resolveActivePlan` 読取先と同一) / null は clear (file 削除 or 空) |
+| `writePointer` | `(pointer: HandoverPointer, deps: { repoRoot; writeText }) => void` | `.helix/handover/CURRENT.json` を **上書き** (単一機械ポインタ、append しない) |
+| `setActivePlan` | `(planId: string\|null, deps: { repoRoot; writeText; removeFile? }) => void` | `.helix/state/current-plan` を書く (Gap B 活性化、`resolveActivePlan` 読取先と同一) / null は clear (file 削除 or 空) |
 | `inferPlanFromCommit` | `(commitMessage: string) => string\|null` | **純関数**。`/PLAN-(L\d+\|L1[0-4]\|DISCOVERY\|REVERSE\|RECOVERY\|M)-\d{2}(-[a-z0-9-]+)?/` 最初の一致を返す / 無ければ null |
 | `runHandover` | `(args: HandoverArgs, deps) => HandoverResult` | orchestration。scope 解決 → scaffold render → markdown **追記/新規** (`--dry-run` は書かず内容を返す) → CURRENT.json 更新。`--complete` で status=completed + 当該 PLAN を記録。**dry-run は非破壊 / 既存 md は上書きしない** |
 
-**session-log への限定 amendment (Gap B 配線)**: `onPostToolUse` の commit 経路で `inferPlanFromCommit(message)` が非 null を返したとき `setActivePlan` で current-plan を更新する (best-effort、fail-open 維持)。`-F -` heredoc commit は message を取得できないため、**確実な経路は `ut-tdd plan use <id>` (= `setActivePlan` の CLI 露出)**。`resolveActivePlan` 本体は不変。
+**session-log への限定 amendment (Gap B 配線)**: `onPostToolUse` の commit 経路で `inferPlanFromCommit(message)` が非 null を返したとき `setActivePlan` で current-plan を更新する (best-effort、fail-open 維持)。`-F -` heredoc commit は message を取得できないため、**確実な経路は `helix plan use <id>` (= `setActivePlan` の CLI 露出)**。`resolveActivePlan` 本体は不変。
 
 I/O は `src/runtime/session-log.ts` の `SessionLogDeps` (repoRoot/readText/writeText/listDir) と同型の注入 (test = mock、決定論的 now 注入)。
 
 ### §2.4 ストレージ / 配置 / hook
 
-- 機械ポインタ: `.ut-tdd/handover/CURRENT.json` (gitignored runtime state)。現状 `.gitkeep` のみの `.ut-tdd/handover/` を実体化。
+- 機械ポインタ: `.helix/handover/CURRENT.json` (gitignored runtime state)。現状 `.gitkeep` のみの `.helix/handover/` を実体化。
 - チーム記録: `docs/handover/session-handover-<date>[suffix].md` (tracked、既存運用を継承し scaffold で augment)。
-- 活性化 state: `.ut-tdd/state/current-plan` (gitignored、`resolveActivePlan` が既に読む path)。
-- digest 入力: `.ut-tdd/logs/plan/<plan_id>.digest.json` (session-log onStop 生成、Gap B 活性化後に初めて populate)。
+- 活性化 state: `.helix/state/current-plan` (gitignored、`resolveActivePlan` が既に読む path)。
+- digest 入力: `.helix/logs/plan/<plan_id>.digest.json` (session-log onStop 生成、Gap B 活性化後に初めて populate)。
 - hook: **無し** (handover は CLI subcommand。session-log の既存 hook に commit 推定の 1 行を足すのみで、新規 hook は追加しない)。
 
 ### §2.5 二層責務の核心判断 (機械 vs 人間)
@@ -170,9 +170,9 @@ claude-only のため `code-reviewer` (Senior Staff、TL 代替) で signature/D
 
 | 用語 | 定義 | 導入層 |
 |------|------|--------|
-| handover 機械ポインタ (CURRENT.json) | `.ut-tdd/handover/CURRENT.json`。active PLAN・status・最新 handover doc への pointer・digest 要約を機械可読で保持する単一 SSoT (gitignored)。CLAUDE.md ワークフローの参照先 | L6 |
+| handover 機械ポインタ (CURRENT.json) | `.helix/handover/CURRENT.json`。active PLAN・status・最新 handover doc への pointer・digest 要約を機械可読で保持する単一 SSoT (gitignored)。CLAUDE.md ワークフローの参照先 | L6 |
 | handover scaffold | session-log PLAN digest と PLAN frontmatter から §6.8.5 の 6 セクション markdown を機械生成し、機械部 (①②) を prefill・判断部 (③-⑥) を人間 placeholder にする生成物 | L6 |
-| plan_id 活性化 (current-plan) | `.ut-tdd/state/current-plan` を書き session-log の digest を populate させる経路。solo/main 直で plan_id が恒常 null になる Gap を埋める (`resolveActivePlan` の入力 state を供給) | L6 |
+| plan_id 活性化 (current-plan) | `.helix/state/current-plan` を書き session-log の digest を populate させる経路。solo/main 直で plan_id が恒常 null になる Gap を埋める (`resolveActivePlan` の入力 state を供給) | L6 |
 | handover stale | CURRENT.json の updated_at が閾値 (既定 24h) を超えた状態。pre-push warn / lint の機械基盤 | L6 |
 
 → L0 §10 用語集へ back-merge (§G.9)。**CURRENT.json を機械ポインタ正本とする決定は本 PLAN の設計 doc §2.4 で確定済** (handoverStale の入力先を未確定でフリーズさせない、code-reviewer Critical 反映)。後段 Reverse は §6.8.5/§6.8.6 詳細設計確定 + **要件 L947/L1972/L2024 の `CURRENT.md`→`CURRENT.json` 文字列同期** + L4 external-if 整合へ back-fill。

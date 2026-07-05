@@ -111,7 +111,7 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:04:33+09:00"
-        evidence_path: .ut-tdd/harness.db
+        evidence_path: .helix/harness.db
         output_digest: "sha256:6a1e9336ca187ed6bd63be89f53ae1935f0cffde710afdff6215f5c87cf9ff62"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
@@ -123,12 +123,12 @@ review_evidence:
         output_digest: "sha256:441ac30ff28ad0e794e49d50d106bc02d07eec693a59d4266a99b19ef190fbb6"
 ---
 
-# PLAN-L7-249: setup version-up adapter surface
+# PLAN-L7-249: setup version-up adapter surface の整備
 
 ## 目的
 
-PLAN-L7-247 で `ut-tdd setup project` の初回 workflow に
-`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json` を追加し、
+PLAN-L7-247 で `helix setup project` の初回 workflow に
+`helix version-up dry-run --current v0.1.0 --target v0.1.3 --json` を追加し、
 PLAN-L7-248 で L3/L6/L7 の trace を backfill した。
 
 しかし配布される adapter doc、Claude subagent、Claude slash-command の実体と、
@@ -154,13 +154,13 @@ version-up dry-run を必須 baseline として fail-close していなかった
   consumer doctor fail-close 判定へ必須化する。
 - 不採用: `version-up activation-packet` を consumer first-run 必須 baseline にする。
   通常 consumer repo には dogfood PLAN corpus が無いため、初回稼働証跡は no-write dry-run に限定する。
-- 不採用: `.ut-tdd` から `.helix` への実 cutover または `helix` executable alias の有効化。
+- 不採用: `.helix` から `.helix` への実 cutover または `helix` executable alias の有効化。
   PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も `mustNotApply` 境界を維持する。
 
 ## 完了条件
 
 - 配布 adapter doc / Claude subagent / Claude slash-command の built-in fallback と実テンプレートが
-  `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json` を含む。
+  `helix version-up dry-run --current v0.1.0 --target v0.1.3 --json` を含む。
 - consumer doctor の artifact readiness が version-up dry-run 欠落を fail-close する。
 - `bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
 - `bun test tests/design-language.test.ts --timeout 180000` が green。

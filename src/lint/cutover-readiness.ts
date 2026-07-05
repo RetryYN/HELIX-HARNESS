@@ -131,7 +131,7 @@ const SOURCE_LEDGER_COLUMN_ALIASES: Record<
 
 const STATE_DIR_RENAME_PATTERN = "\\.ut" + "-tdd\\/.*\\.helix";
 const IRREVERSIBLE_CUTOVER = new RegExp(
-  `cutover_decision_record|PLAN-M-02|state dir|atomic migration|${STATE_DIR_RENAME_PATTERN}|(?:irreversible|不可逆).*(?:migration|rename|state dir|\\.ut-tdd|\\.helix|cutover)`,
+  `cutover_decision_record|PLAN-M-02|state dir|atomic migration|${STATE_DIR_RENAME_PATTERN}|(?:irreversible|不可逆).*(?:migration|rename|state dir|\\.helix|\\.helix|cutover)`,
   "i",
 );
 

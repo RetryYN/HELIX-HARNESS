@@ -10,9 +10,9 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - test oracle strength implementation"
+    slot_label: "TL - test oracle strength 実装"
   - role: qa
-    slot_label: "QA - test oracle strength"
+    slot_label: "QA - test oracle strength 検証"
 generates:
   - artifact_path: src/lint/ddd-tdd-rules.ts
     artifact_type: source_module
@@ -30,14 +30,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 の独立再監査と PO の closure 指示。確認前に typecheck/lint/vitest/doctor が green。add-feature triad は内容変更なしで closure 済み。"
 ---
 
-# PLAN-L7-30 (add-impl): test-oracle-strength
+# PLAN-L7-30 (add-impl): test-oracle-strength 実装計画
 
-## §0 Position
+## §0 位置づけ
 
-Implements IMP-100.
+IMP-100 を実装する。
 
 ## §3.1 実装計画 (情報源)
 
@@ -49,29 +49,29 @@ Implements IMP-100.
 
 実装:
 
-- Scan test blocks for `expect` / `assert`.
-- Detect truthiness-only assertions.
-- Add synthetic fixtures and real repo guard.
+- test block を走査し、`expect` / `assert` を確認する。
+- truthiness-only assertion を検出する。
+- synthetic fixture と real repo guard を追加する。
 
 ## §3 工程表
 
-### Step 1: [直列] test block analyzer
+### Step 1: [直列] test block analyzer 実装
 
-直列理由: downstream_dependency. Assertion scanning defines the violation oracle.
+直列理由: downstream_dependency。Assertion scanning が violation oracle を定義する。
 
-### Step 2: [並列] unit oracle
+### Step 2: [並列] unit oracle 追加
 
-Add no-assertion and truthiness-only fixtures.
+no-assertion fixture と truthiness-only fixture を追加する。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. lint / typecheck / vitest / doctor must be green before review.
+直列理由: downstream_dependency。review 前に lint / typecheck / vitest / doctor を green にする。
 
 ## §6 用語更新
 
-- **test-oracle-strength**: implemented assertion-strength detector.
-- **DDD/TDD back-fill**: Reverse record for this add-impl slice.
+- **test-oracle-strength**: assertion-strength detector の実装済み状態。
+- **DDD/TDD back-fill**: この add-impl slice に対応する Reverse record。
 
 ## §8 DoD
 
-- [x] U-DDDTDD-004 passes.
+- [x] U-DDDTDD-004 が pass する。

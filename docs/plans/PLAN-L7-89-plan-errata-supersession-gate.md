@@ -42,16 +42,16 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-89 (troubleshoot): PLAN errata supersession gate + safety-claim discipline
+# PLAN-L7-89 (troubleshoot): PLAN errata supersession gate と safety-claim 規律
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 PLAN に書かれる**誤った主張 (誤記)** への対策を入れる。誘因は本セッションで発見した
 PLAN-L7-86 の誤記 — review_evidence/AC が「kind filter は false-positive を出さない /
 blast radius 0」と断定したが、実際は false-**negative** の盲点を「問題なし」と誤って
 framing したもの。機械はその真偽を一切見ていなかった。
 
-## 1. Problem の弁別
+## 1. 問題 (Problem) の弁別
 
 - **一般に機械化できないもの**: 任意の prose の真偽。「この設計は妥当」「安全」等の自由記述を
   検証する gate は作れず、作ると主張すること自体が本リポが最も警戒する false-confidence の罠。
@@ -59,7 +59,7 @@ framing したもの。機械はその真偽を一切見ていなかった。
   prose 断定でなく**テスト**で担保できる。② 誤記が後継 PLAN で訂正されたなら、その errata リンクが
   **双方向**であることは機械検証できる (片肺 = 原 PLAN が誤った主張のまま放置、を検知)。
 
-## 2. Fix (2 段)
+## 2. 修正 (Fix、2 段)
 
 ### 2.1 規律の明文化 (layer 1+2)
 
@@ -84,7 +84,7 @@ framing したもの。機械はその真偽を一切見ていなかった。
 - `PLAN-L7-87` に `supersedes: [PLAN-L7-86-merged-plan-status-deliverable-scope]` を宣言。
 - `PLAN-L7-86` に PLAN-L7-87 を名指す訂正注記 (誤記の supersede) を追記済 → 双方向成立。
 
-## 3. Acceptance Criteria — met
+## 3. 受入条件 (Acceptance Criteria) — 充足 (met)
 
 - [x] `supersedes` schema field を追加 (optional、後方互換)。
 - [x] plan-supersession lint が「実在しない supersede 先」「back-reference 欠落の片肺 errata」を fail-close。
@@ -94,7 +94,7 @@ framing したもの。機械はその真偽を一切見ていなかった。
 - [x] PLAN claim discipline を .claude/CLAUDE.md に明文化。
 - [x] test 11 ケース。typecheck / Biome / Vitest / doctor green。
 
-## 4. Out of scope
+## 4. 範囲外 (Out of scope)
 
 - **prose の真偽そのものの機械検証**: 一般に不能ゆえ実装しない (false-confidence の罠を避ける)。
   本 gate は「宣言された errata の整合」のみを強制する。safety-claim をテストで裏付ける規律 (layer 1)

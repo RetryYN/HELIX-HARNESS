@@ -39,7 +39,7 @@ export interface ProviderHandoverDeps {
   writeText: (path: string, content: string) => void;
 }
 
-const PROVIDER_DIR = join(".ut-tdd", "handover", "provider");
+const PROVIDER_DIR = join(".helix", "handover", "provider");
 const PROVIDER_CURRENT = join(PROVIDER_DIR, "CURRENT.json");
 
 export function providerHandoverPath(repoRoot: string, handoverId: string): string {

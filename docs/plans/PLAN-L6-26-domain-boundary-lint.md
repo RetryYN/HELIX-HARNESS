@@ -10,7 +10,7 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - domain-boundary design"
+    slot_label: "TL - domain-boundary 設計"
 generates:
   - artifact_path: docs/governance/ddd-tdd-rules.md
     artifact_type: markdown_doc
@@ -29,14 +29,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 の独立再監査と PO の closure 指示。confirmation 前に typecheck/lint/vitest/doctor が green。add-feature triad は内容変更なしで close。"
 ---
 
-# PLAN-L6-26 (add-design): domain-boundary lint
+# PLAN-L6-26 (add-design): domain-boundary lint 設計
 
-## §0 Position
+## §0 位置づけ
 
-Back-fills IMP-097. DDD domain boundary is a mechanical rule, not only a review concern.
+IMP-097 を backfill する。DDD domain boundary は review 上の懸念だけでなく、機械的に検査する rule として扱う。
 
 ## §3.1 実装計画 (情報源)
 
@@ -48,30 +48,30 @@ Back-fills IMP-097. DDD domain boundary is a mechanical rule, not only a review 
 
 実装:
 
-- Define `domain-boundary` in the DDD/TDD SSoT.
-- Route the rule through `analyzeDddTddRules`.
-- Surface violations through doctor.
+- DDD/TDD SSoT で `domain-boundary` を定義する。
+- rule を `analyzeDddTddRules` 経由で評価する。
+- 違反を doctor に表示する。
 
 ## §3 工程表
 
-### Step 1: [並列] boundary policy design
+### Step 1: [並列] boundary policy 設計
 
-Define allowed dependency direction for lint/runtime/schema modules.
+lint/runtime/schema modules の許可される依存方向を定義する。
 
-### Step 2: [並列] test oracle placement
+### Step 2: [並列] test oracle 配置
 
-Add U-DDDTDD-007 as the unit-level oracle.
+U-DDDTDD-007 を unit-level oracle として追加する。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. Policy and oracle must exist before qualitative review can confirm the boundary.
+直列理由: downstream_dependency。qualitative review が boundary を確認する前に、policy と oracle が存在している必要がある。
 
 ## §6 用語更新
 
-- **domain-boundary**: DDD dependency boundary rule.
-- **DDD/TDD strictness**: policy family carrying the rule.
+- **domain-boundary**: DDD の依存境界 rule。
+- **DDD/TDD strictness**: この rule を担う policy family。
 
 ## §8 DoD
 
-- [x] SSoT, L6 contract, L7 oracle, and doctor route are connected.
-- [x] domain-boundary violations are detectable by unit test and doctor.
+- [x] SSoT、L6 contract、L7 oracle、doctor route が接続されている。
+- [x] domain-boundary 違反を unit test と doctor で検出できる。

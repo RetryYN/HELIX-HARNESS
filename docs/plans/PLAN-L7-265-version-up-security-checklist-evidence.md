@@ -98,7 +98,7 @@ review_evidence:
 
 - GitHub Actions、Cloudflare、webhook、release tag、production infra への外部変更は行わない。
 - `pending_evidence` 自体は parked activation packet として正当な状態であり、doctor は field 欠落や虚偽の `present` を fail-close する。
-- `PLAN-M-02` の rename/cutover、`.ut-tdd` から HELIX への実 state move は扱わない。
+- `PLAN-M-02` の rename/cutover、`.helix` から HELIX への実 state move は扱わない。
 
 ## 完了条件
 

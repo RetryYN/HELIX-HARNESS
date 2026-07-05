@@ -56,7 +56,7 @@ review_evidence:
 clean distribution acceptance は `harness-check.yml` の生成と command 実行だけを確認していた。
 そのため、clean artifact 経由で consumer repo へ配布した後の escalation workflow drift を acceptance が直接証明していない。
 
-この PLAN は、clean artifact → linked consumer repo → `ut-tdd setup project --json` の実経路で
+この PLAN は、clean artifact → linked consumer repo → `helix setup project --json` の実経路で
 `.github/workflows/escalation-stale.yml` が生成され、placeholder なし・read-only・fixed no-write command set として
 linked bin 経由で実行可能であることを acceptance に追加する。
 
@@ -64,7 +64,7 @@ linked bin 経由で実行可能であることを acceptance に追加する。
 
 - `tests/distribution-acceptance.test.ts` が生成済み `.github/workflows/escalation-stale.yml` を読む。
 - `permissions: contents: read`、checkout credential 非保持、placeholder/TODO/TBD 不在を確認する。
-- `CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS` の `ut-tdd` command を consumer repo の linked bin 経由で実行する。
+- `CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS` の `helix` command を consumer repo の linked bin 経由で実行する。
 - L7 unit test design の U-SETUP-013 / AT-DIST-001 に escalation workflow acceptance を追記する。
 
 ## 境界

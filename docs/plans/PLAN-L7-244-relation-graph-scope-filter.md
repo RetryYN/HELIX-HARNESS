@@ -102,7 +102,7 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-244: relation graph export scope filter
+# PLAN-L7-244: relation graph export の scope filter
 
 ## 0. 目的
 

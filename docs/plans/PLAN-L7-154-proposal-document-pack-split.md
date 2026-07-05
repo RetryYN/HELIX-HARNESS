@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-154-proposal-document-pack-split
-title: "PLAN-L7-154: proposal document pack split"
+title: "PLAN-L7-154: proposal document pack 分割"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant catalog split inside task classification data. No public CLI/API contract, persisted schema, requirement semantics, or workflow semantics changed."
+backprop_decision_reason: "task classification data 内の catalog 分割であり、behavior は不変。public CLI/API contract、persisted schema、requirement semantics、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - proposal document pack split"
+    slot_label: "SE - proposal document pack 分割"
   - role: tl
-    slot_label: "TL - classification invariant review"
+    slot_label: "TL - classification invariant レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-154-proposal-document-pack-split.md
     artifact_type: markdown_doc
@@ -39,7 +39,7 @@ review_evidence:
     reviewed_at: "2026-06-25T17:29:00+09:00"
     tests_green_at: "2026-06-25T17:29:00+09:00"
     verdict: approve
-    scope: "Behavior-invariant split of proposal document pack catalog into core and operations modules."
+    scope: "proposal document pack catalog を core module と operations module へ分割し、behavior は不変に保つ。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -69,28 +69,25 @@ review_evidence:
         output_digest: "sha256:7d90403d7b0dcbc190e67c46405e6c468a8a481fbcfba1fdffafeff8d756807f"
 ---
 
-# PLAN-L7-154: proposal document pack split
+# PLAN-L7-154: proposal document pack 分割
 
-## Objective
+## 目的
 
-Close the remaining `proposal-coverage-data.ts` split-module pressure by
-separating document pack type/helper definitions from the two document pack
-catalog groups.
+残っている `proposal-coverage-data.ts` の split-module 圧力を解消するため、
+document pack の type/helper 定義を 2 つの document pack catalog group から分離する。
 
-## Scope
+## 対象範囲
 
-- Move `DocumentPack`, level rank maps, and `doc()` to
-  `src/task/proposal-document-pack-types.ts`.
-- Split document pack catalog entries into
-  `src/task/proposal-document-packs-core.ts` and
-  `src/task/proposal-document-packs-operations.ts`.
-- Keep `src/task/proposal-coverage-data.ts` as the stable aggregate export for
-  existing callers.
-- Update task classification tests to import the split catalog modules
-  directly.
+- `DocumentPack`、level rank maps、`doc()` を
+  `src/task/proposal-document-pack-types.ts` へ移す。
+- document pack catalog entries を
+  `src/task/proposal-document-packs-core.ts` と
+  `src/task/proposal-document-packs-operations.ts` へ分割する。
+- `src/task/proposal-coverage-data.ts` は existing callers 向けの stable aggregate export として維持する。
+- task classification tests は、分割後の catalog modules を直接 import するよう更新する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Proposal document coverage behavior remains unchanged.
-- `bun run vitest run tests\task-classify.test.ts` passes.
-- `bun run typecheck`, `bun run lint`, DB rebuild, and doctor pass.
+- Proposal document coverage behavior は変更しない。
+- `bun run vitest run tests\task-classify.test.ts` が pass する。
+- `bun run typecheck`、`bun run lint`、DB rebuild、doctor が pass する。

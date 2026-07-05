@@ -91,28 +91,27 @@ review_evidence:
         output_digest: "sha256:879610fc9bf5ec87218f823b8741dd4a861dcddf0cc78d74ebe0051d99ebd569"
 ---
 
-# PLAN-L7-171: workflow contracts type cleanup
+# PLAN-L7-171: workflow contract 型整理
 
-## Objective
+## 目的
 
-Reduce remaining `split-module` pressure on `src/workflow/contracts.ts` without
-changing workflow contract behavior.
+workflow contract の挙動を変えずに、`src/workflow/contracts.ts` に残る
+`split-module` pressure を下げる。
 
-## Scope
+## 対象範囲
 
-- Move public workflow contract result/evidence types to
-  `src/workflow/contracts-types.ts`.
-- Preserve imports from `src/workflow/contracts.ts` through type re-exports.
-- Move supplemental asset/model/skill/catalog contract helpers to
-  `src/workflow/contracts-extras.ts` and re-export them from
-  `src/workflow/contracts.ts`.
-- Remove obsolete commented policy data that is already represented by
-  `src/workflow/contracts-policy.ts`.
+- 公開 workflow contract の result/evidence types を
+  `src/workflow/contracts-types.ts` へ移す。
+- type re-exports により、`src/workflow/contracts.ts` からの import を維持する。
+- 補助的な asset/model/skill/catalog contract helpers を
+  `src/workflow/contracts-extras.ts` へ移し、`src/workflow/contracts.ts` から
+  re-export する。
+- `src/workflow/contracts-policy.ts` で既に表現されている古いコメント化済み policy
+  data を削除する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `tests/workflow-contracts.test.ts`, typecheck, lint, DB rebuild, and doctor
-  pass.
-- `src/workflow/contracts.ts` falls below the `split-module` threshold.
-- The refactor detector no longer reports `src/workflow/contracts.ts` as a
-  `split-module` candidate.
+- `tests/workflow-contracts.test.ts`、typecheck、lint、DB rebuild、doctor が通る。
+- `src/workflow/contracts.ts` が `split-module` threshold を下回る。
+- refactor detector が `src/workflow/contracts.ts` を `split-module` candidate として
+  報告しなくなる。

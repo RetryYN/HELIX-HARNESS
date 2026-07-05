@@ -37,9 +37,9 @@ passing `harness-check` なしに deploy を開始しない。rollback criteria 
 bun run lint          # Biome check（full output。tail へ pipe しない）
 bun run test          # Vitest
 bun run typecheck     # tsc --noEmit
-ut-tdd doctor         # harness structural health + plan governance
-ut-tdd plan lint      # PLAN schema、steps、dependency existence
-ut-tdd review --uncommitted
+helix doctor         # harness structural health + plan governance
+helix plan lint      # PLAN schema、steps、dependency existence
+helix review --uncommitted
 ```
 
 `--no-verify` で bypass しない。local-green push が CI で失敗する場合、
@@ -58,10 +58,10 @@ ut-tdd review --uncommitted
 
 1. Health endpoint が 200 を返す。
 2. Primary user path が expected status を返す。
-3. deployed state に対する `ut-tdd doctor` が structural drift なしを示す。
+3. deployed state に対する `helix doctor` が structural drift なしを示す。
 4. pre-deploy baseline に対して error rate を約 15 分監視する。
 
-結果は `.ut-tdd/audit/` に記録する。
+結果は `.helix/audit/` に記録する。
 
 ## Rollback criteria（deploy 前に PLAN で定義）
 
@@ -71,7 +71,7 @@ Sev1 trigger では second opinion を待たず rollback する。extended downt
 
 ## Rollback procedure（手順）
 
-1. `.ut-tdd/audit/` に intent（timestamp + reason）を宣言する。
+1. `.helix/audit/` に intent（timestamp + reason）を宣言する。
 2. 実行する。flag-guarded feature は flag-off。rolling deploy は previous tagged artifact を redeploy。
    data が変わった場合は app code を戻す前に DB down-migration を実行し、その後 integrity を確認する。
 3. rolled-back state に対して smoke-test sequence を再実行する。
@@ -82,7 +82,7 @@ Sev1 trigger では second opinion を待たず rollback する。extended downt
 rollback は resolution ではない。stable になったら Recovery PLAN（branch `hotfix/*`）を開き、
 root cause を記録し、fix を design-level（`add-design`）または implementation-only（L7 の `add-impl`）
 に分類し、re-deploy 前に failure を捕捉できた regression test を追加する。
-PLAN boundary で `ut-tdd handover` を実行する。
+PLAN boundary で `helix handover` を実行する。
 
 ## DB migration safety（DB migration 安全性）
 
@@ -96,5 +96,5 @@ PLAN boundary で `ut-tdd handover` を実行する。
 - [ ] Pre-deploy gate が green（lint / test / typecheck / doctor / plan lint）。
 - [ ] Strategy + rollback threshold を cutover 前に PLAN へ記録済み。
 - [ ] Smoke test が pass し、monitoring window が clean。
-- [ ] Evidence が `.ut-tdd/audit/` にあり、PLAN は `ut-tdd plan use` で進行済み。
+- [ ] Evidence が `.helix/audit/` にあり、PLAN は `helix plan use` で進行済み。
 - [ ] rollback した場合: root cause + regression test 付きで Recovery PLAN を開いている。

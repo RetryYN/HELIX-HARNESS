@@ -26,7 +26,7 @@ plan: docs/plans/PLAN-L6-19-plan-schedule-lint.md
 
 ## §3 Doctor 挙動
 
-`ut-tdd plan lint` は violation 時に `ok=false` を返す。Doctor は `plan-schedule` を hard/fail-close gate として含め、`planSchedule.ok` を `runDoctor.ok` へ接続するため、PLAN schedule drift は `ut-tdd plan lint` と `ut-tdd doctor` の両方を block する。
+`helix plan lint` は violation 時に `ok=false` を返す。Doctor は `plan-schedule` を hard/fail-close gate として含め、`planSchedule.ok` を `runDoctor.ok` へ接続するため、PLAN schedule drift は `helix plan lint` と `helix doctor` の両方を block する。
 
 ## §4 Test oracle 設計
 

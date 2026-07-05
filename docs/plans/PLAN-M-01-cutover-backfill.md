@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-M-01-cutover-backfill
-title: "PLAN-M-01: legacy-source isolation backfill roadmap"
+title: "PLAN-M-01: legacy-source isolation backfill の計画"
 kind: design
 layer: L14
 drive: fullstack
@@ -36,12 +36,12 @@ roadmap:
 dependencies:
   parent: PLAN-M-00-verify-cutover
   requires:
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
     - docs/migration/helix-source-inventory.md
     - docs/plans/PLAN-L7-44-harness-db-master.md
   references:
-    - .ut-tdd/audit/A-130-harness-db-segment-accept.md
-    - docs/migration/helix-to-ut-tdd-cutover-strategy.md
+    - .helix/audit/A-130-harness-db-segment-accept.md
+    - docs/migration/helix-identifier-cutover-strategy.md
 review_evidence:
   - reviewer: codex-intra-runtime-review
     review_kind: intra_runtime_subagent
@@ -53,67 +53,67 @@ review_evidence:
     reviewer_model: codex-gpt-5-intra-runtime-review
 ---
 
-# PLAN-M-01: legacy-source isolation backfill roadmap
+# PLAN-M-01: legacy-source isolation backfill の計画
 
-## 0. Position
+## 0. 位置づけ
 
-This plan is the cutover band host for the program roadmap registry. It converts the A-130 carry into a concrete route:
+この plan は program roadmap registry における cutover band の受け皿である。A-130 の carry を具体的な経路へ落とし込む。
 
-- ADR-001 says source concepts may be referenced, but executable behavior is rebuilt in TypeScript/Bun under UT-TDD-owned paths.
-- The previous cutover strategy can no longer be treated as executable truth without backfill.
-- harness.db L7 close makes cutover visible, but it does not authorize production or destructive migration.
+- ADR-001 では source concepts の参照は許されるが、実行可能な behavior は HELIX-owned paths の下で TypeScript/Bun により再構築する。
+- 以前の cutover strategy は、backfill なしには executable truth として扱えない。
+- harness.db の L7 close により cutover は可視化されるが、production や destructive migration を許可するものではない。
 
-## 1. Scope
+## 1. 範囲
 
-In scope:
+対象:
 
-- Register cutover as a covered program band.
-- Rewrite the stale strategy document into UT-TDD-owned truth aligned to ADR-001.
-- Project roadmap rollup and review evidence metadata into `harness.db`.
+- cutover を covered program band として登録する。
+- stale な strategy document を、ADR-001 に整合した HELIX-owned truth に書き換える。
+- roadmap rollup と review evidence metadata を `harness.db` へ投影する。
 
-Out of scope:
+対象外:
 
-- Running production cutover.
-- Modifying vendor snapshot files.
-- Changing credentials, infrastructure, repository protection, or external service configuration.
+- production cutover の実行。
+- vendor snapshot files の変更。
+- credentials、infrastructure、repository protection、external service configuration の変更。
 
 ## 3. 工程表
 
-### Step 1: [直列] stale strategy evidence capture
+### Step 1: [直列] stale strategy evidence の確認
 
-Serial reason: downstream_dependency.
+直列理由: downstream_dependency。
 
-Use ADR-001, A-130, and the migration inventory to define the stale condition: legacy runtime paths, Python code-port assumptions, or old source command routes must not remain as executable UT-TDD guidance.
+ADR-001、A-130、migration inventory を使って stale condition を定義する。legacy runtime paths、Python code-port assumptions、old source command routes は、実行可能な HELIX guidance として残してはならない。
 
-### Step 2: [直列] cutover roadmap registration
+### Step 2: [直列] cutover roadmap の登録
 
-Serial reason: downstream_dependency.
+直列理由: downstream_dependency。
 
-Register `roadmap.layer: cutover` so `PROGRAM_BANDS.cutover` is covered by a concrete roadmap instead of parked carry text.
+`roadmap.layer: cutover` を登録し、`PROGRAM_BANDS.cutover` を parked carry text ではなく concrete roadmap で覆う。
 
 ### Step 3: [直列] verification
 
-Serial reason: downstream_dependency.
+直列理由: downstream_dependency。
 
-Run roadmap and doctor checks to prove the cutover band is covered and no frontier remains from parked cutover work.
+roadmap と doctor の checks を実行し、cutover band が covered であり parked cutover work 由来の frontier が残っていないことを示す。
 
 ### Step 4: [直列] review
 
-Serial reason: shared_state.
+直列理由: shared_state。
 
-Record review evidence. The review scope is intentionally limited to backfill registration and must not be read as approval to perform production cutover.
+review evidence を記録する。review scope は意図的に backfill registration に限定されており、production cutover の実施承認として読んではならない。
 
 ## 3.1 実装計画
 
-- The backfill route is a documentation and roadmap registration change.
-- `docs/migration/helix-to-ut-tdd-cutover-strategy.md` is now backfilled to current UT-TDD-owned execution/state rules.
-- `harness.db` projection now includes roadmap rollups, band coverage, gate progress, and review evidence registry rows.
-- Rollback is non-destructive: revert the document/projection commit and rebuild `.ut-tdd/harness.db` from sources.
+- backfill route は documentation と roadmap registration の変更である。
+- `docs/migration/helix-identifier-cutover-strategy.md` は、現在の HELIX-owned execution/state rules に backfill 済みである。
+- `harness.db` projection には、roadmap rollups、band coverage、gate progress、review evidence registry rows が含まれる。
+- rollback は non-destructive である。document/projection commit を revert し、`.helix/harness.db` を sources から rebuild する。
 
 ## 4. DoD
 
-- [x] `roadmap.layer: cutover` exists in a confirmed PLAN.
-- [x] Cutover no longer depends only on `.ut-tdd/audit/A-130...` carry text.
-- [x] Production-impacting cutover execution remains out of scope and requires human approval.
-- [x] Cutover strategy doc is backfilled to ADR-001 current truth.
-- [x] `harness.db` rebuild projects roadmap and review evidence feedback rows.
+- [x] `roadmap.layer: cutover` が confirmed PLAN に存在する。
+- [x] Cutover はもはや `.helix/audit/A-130...` の carry text のみに依存していない。
+- [x] production に影響する cutover execution は対象外のままであり、人間の承認が必要である。
+- [x] cutover strategy doc は ADR-001 の current truth へ backfill 済みである。
+- [x] `harness.db` rebuild は roadmap と review evidence feedback rows を投影する。

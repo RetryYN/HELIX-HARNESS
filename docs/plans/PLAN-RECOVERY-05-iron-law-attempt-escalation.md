@@ -99,9 +99,9 @@ review_evidence:
         output_digest: "sha256:f727200a8a3c7fef3ce8f2ca97db6c9fb813085deaf9fbf955b9cd8fc5761ecb"
 ---
 
-# PLAN-RECOVERY-05 (recovery): Iron Law + 3-attempt escalation
+# PLAN-RECOVERY-05 (recovery): Iron Law と 3-attempt escalation
 
-## 0. Objective (PO 承認 2026-06-23、obra/superpowers 評価の採用)
+## 0. 目的（Objective、PO 承認 2026-06-23、obra/superpowers 評価の採用）
 
 obra/superpowers の `systematic-debugging` を**評価し、skill を複製せず**、その中核規律を
 HELIX の Recovery/troubleshoot 駆動の要件から author して取り込む
@@ -113,7 +113,7 @@ HELIX の Recovery/troubleshoot 駆動の要件から author して取り込む
 2. **3-attempt architectural escalation** — 同一 subject が 3 回連続失敗したら STOP し、
    症状追いのスパイラルを止めて root cause / アーキを疑う。
 
-## 1. Gap (なぜ必要か)
+## 1. 差分（Gap、なぜ必要か）
 
 本セッション (2026-06-23) の引き継ぎ失敗が実例: 共有 working tree を繰り返し計測し、変動する
 テスト件数を都度の修正で追い、他ランタイムに帰責した (guess-and-check スパイラル)。既存
@@ -140,7 +140,7 @@ HELIX の Recovery/troubleshoot 駆動の要件から author して取り込む
   本 read 側 call の commit は **Codex の cli.ts commit の上に stack** する (§4.1)。
 - 設計 descent: `debugging-and-error-recovery.md` の新節「Iron Law and 3-attempt escalation」。
 
-## 3. AC (acceptance / substance)
+## 3. 受入条件（AC / acceptance / substance）
 
 - `tests/attempt-escalation.test.ts` (7 ケース): 3 連続失敗で escalate / 閾値未満で非escalate /
   ok でリセット / subject 別独立 / custom threshold / 並び順 / session events 抽出。
@@ -166,4 +166,4 @@ HELIX の Recovery/troubleshoot 駆動の要件から author して取り込む
 
 - **3 回失敗したら次の修正でなく root cause / アーキを疑う** (Iron Law)。本セッションのスパイラルを
   機械シグナルで止めるのが本 PLAN。
-- source は obra/superpowers の reference。skill を複製せず UT-TDD 要件から author する。
+- source は obra/superpowers の reference。skill を複製せず HELIX 要件から author する。

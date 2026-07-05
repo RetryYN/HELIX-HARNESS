@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-115-reverse-r4-route-backprop-gate
-title: "PLAN-L7-115: Reverse R4 route backprop gate"
+title: "PLAN-L7-115: Reverse R4 route backprop gate の整備"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - Reverse R4 route backprop gate"
+    slot_label: "TL - Reverse R4 route backprop gate の確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-115-reverse-r4-route-backprop-gate.md
     artifact_type: markdown_doc
@@ -34,7 +34,7 @@ review_evidence:
     reviewed_at: "2026-06-23T12:22:00+09:00"
     tests_green_at: "2026-06-23T12:21:00+09:00"
     verdict: approve
-    scope: "Route-level R4 backprop evidence lint and regression tests."
+    scope: "route-level R4 backprop evidence lint と regression tests の確認。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -56,24 +56,23 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-L7-115: Reverse R4 route backprop gate
+# PLAN-L7-115: Reverse R4 route backprop gate の整備
 
-## Objective
+## 目的
 
-Close the route-only Reverse R4 trace hole. A non-fullback R4 Reverse PLAN that
-routes to L1-L6 must either generate an upstream design/governance/test-design
-artifact or explicitly state that no upstream backprop is required.
+route-only Reverse R4 の trace hole を閉じる。L1-L6 へ routing する
+non-fullback R4 Reverse PLAN は、上流の design/governance/test-design artifact
+を生成するか、上流 backprop が不要であることを明示しなければならない。
 
-## Scope
+## スコープ
 
-- Add `reverse_r4_route_backprop_missing` to `plan-governance`.
-- Keep fullback R4 PLANs under the existing stronger fullback scope rules.
-- Do not retroactively fail legacy Reverse debt recorded before the enforcement
-  date.
+- `plan-governance` に `reverse_r4_route_backprop_missing` を追加する。
+- fullback R4 PLAN は、既存のより強い fullback scope rule の管理下に残す。
+- enforcement date より前に記録された legacy Reverse debt を遡及的に失敗扱いしない。
 
-## Acceptance Criteria
+## 受入条件
 
-- A new non-fullback R4 Reverse PLAN with `forward_routing=L1..L6` and no
-  upstream artifact/no-backprop decision fails.
-- A matching generated upstream artifact passes.
-- An explicit `backprop_decision: not_required` reason passes.
+- `forward_routing=L1..L6` を持ち、upstream artifact も no-backprop decision もない
+  新規 non-fullback R4 Reverse PLAN は失敗する。
+- 対応する generated upstream artifact がある場合は通過する。
+- 明示的な `backprop_decision: not_required` reason がある場合は通過する。

@@ -42,8 +42,8 @@ v2_import: docs/migration/v2-import-ledger.md
 | **NFR-02** | **更新性第一 (updatability)** — harness 本体・skill 等の更新 / 保守が容易であること (実現手段 = plugin / skill MCP 化 等は L4 ADR 送り) | 工程別 skill 注入機構 (FR-L1-12) + PLAN 内蔵物原則 (§3.6) で skill 更新を局所化 |
 | **NFR-05** | **GitHub を CI / 証跡 / 権限の正本**とする (具体実現手段は L3/L5 で確定) | GHA ワークフロー / branch protection / PR 許可を HELIX 証跡の正本とする。FR-L1-17 CI/PR 連携 |
 | **NFR-08** | **実装宣言の真実性** — 設計 doc が主張する CLI / file / schema field に実装状態列 (installed / partial / not-implemented) を必須化し、机上の「実装済」宣言を禁止する | v2 BR-09 翻案。L3 以降の全設計 doc に `implementation_status` 列を必須化 (forward carry: `docs/migration/v2-import-ledger.md §2 F-6`) |
-| **NFR-13** | **dev-local + CI 二重実行 (editor return loop)** — 同一 lint/gate を dev-local (editor PreToolUse / pre-commit) と CI (GHA harness-check) の両方で実行し、editor で fail なら commit 前に局所修正 loop に戻す。**機械検出目標** (A-52 audit I-01/I-02): cross-detection 全 axis (依存漏れ / 契約漏れ / 接続欠損 / デグレ) **0 件維持** + test-perspective-gate W字観点 (抜け / 重複) **0 件維持** を gate 通過条件に含む (cross-detection.md / test-perspective-gate.md 由来) | concept §audit-framework §17.3 / FR-L1-17 (CI/PR) + `.claude/hooks/agent-guard.ts` (PreToolUse) の 2 段運用。**gate 通過率 ≥90% (KPI D-02、B5=b)** を運用目標、`.ut-tdd/gate_runs` で計測 / cross-detection.md / test-perspective-gate.md |
-| **NFR-14** | **human-as-residue 原則** — 機械チェック (machine) と AI レビュー (NFR-12) で潰せない判断のみを人間 (PO) に escalate。silent pass を避ける反面、人間の判断負荷も極小化。**Recovery 収束 audit trail** (A-52 audit I-04): Recovery モード発動時、stop-hook が認識訂正履歴を自動 dump し audit trail (`.ut-tdd/recovery_log/`) に収める (recovery-workflow.md §基本フロー、収束時間 SLO は L3 NFR-grade で確定) | concept §audit-framework §17.4 / 全 gate で machine → AI → human の優先順、判断要点 + 根拠 + 推奨アクション を構造化提示。**gate fail-close 例外権 = PO のみ + audit 記録 (S-03/B6=b)**、bypass 件数 0 を KPI D-06 で計測 / recovery-workflow.md (認識訂正履歴) |
+| **NFR-13** | **dev-local + CI 二重実行 (editor return loop)** — 同一 lint/gate を dev-local (editor PreToolUse / pre-commit) と CI (GHA harness-check) の両方で実行し、editor で fail なら commit 前に局所修正 loop に戻す。**機械検出目標** (A-52 audit I-01/I-02): cross-detection 全 axis (依存漏れ / 契約漏れ / 接続欠損 / デグレ) **0 件維持** + test-perspective-gate W字観点 (抜け / 重複) **0 件維持** を gate 通過条件に含む (cross-detection.md / test-perspective-gate.md 由来) | concept §audit-framework §17.3 / FR-L1-17 (CI/PR) + `.claude/hooks/agent-guard.ts` (PreToolUse) の 2 段運用。**gate 通過率 ≥90% (KPI D-02、B5=b)** を運用目標、`.helix/gate_runs` で計測 / cross-detection.md / test-perspective-gate.md |
+| **NFR-14** | **human-as-residue 原則** — 機械チェック (machine) と AI レビュー (NFR-12) で潰せない判断のみを人間 (PO) に escalate。silent pass を避ける反面、人間の判断負荷も極小化。**Recovery 収束 audit trail** (A-52 audit I-04): Recovery モード発動時、stop-hook が認識訂正履歴を自動 dump し audit trail (`.helix/recovery_log/`) に収める (recovery-workflow.md §基本フロー、収束時間 SLO は L3 NFR-grade で確定) | concept §audit-framework §17.4 / 全 gate で machine → AI → human の優先順、判断要点 + 根拠 + 推奨アクション を構造化提示。**gate fail-close 例外権 = PO のみ + audit 記録 (S-03/B6=b)**、bypass 件数 0 を KPI D-06 で計測 / recovery-workflow.md (認識訂正履歴) |
 
 **排泄系契約としての位置付け**:
 - **doc-reviewer 必須召喚** (BR-08): 大規模 doc 改定・gate evidence 提出・pair freeze の前に必須。pmo-sonnet とは責務分離した doc 品質専用 reviewer。
@@ -55,7 +55,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | NFR-ID | 非機能要求 | 詳細 |
 |--------|-----------|------|
 | **NFR-04** | 統制対象 repo は **言語非依存 (全種類)**。harness 自体は TypeScript (ADR-001) | harness の言語制約 (TS/Bun) は内部実装のみ。統制対象プロジェクトの言語は Python / Go / Java / Ruby 等 何でも可 |
-| **NFR-03** | **AI mode 非依存** — standalone / claude-only / codex-only / hybrid で動作。**Claude Code + Codex hybrid を主軸** | mode は `.ut-tdd/mode.yaml` で管理。hybrid 不在時は claude-only として動作、Codex 委譲 / team run は要求しない |
+| **NFR-03** | **AI mode 非依存** — standalone / claude-only / codex-only / hybrid で動作。**Claude Code + Codex hybrid を主軸** | mode は `.helix/mode.yaml` で管理。hybrid 不在時は claude-only として動作、Codex 委譲 / team run は要求しない |
 
 ## §5 セキュリティ
 
@@ -68,7 +68,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | **NFR-17 配下: EU AI Act Article 14 human oversight** | 人間の監督可能性を機械保証 (gate サインオフ / agent guard / fail-close) | BR-02 / NFR-06 / NFR-14 human-as-residue (NFR-17(c)) |
 | **API key / secret / PII / credential** | rules / docs / examples に書かない (禁止事項) | CLAUDE.md 禁止事項 |
 | **認証・認可・決済・PII・本番影響** | 人間確認なしに仕様確定しない (escalate 必須) | CLAUDE.md 禁止事項 |
-| **agent guard bypass 条件** | `UT_TDD_ALLOW_RAW_AGENT=1`: PO 明示承認 + audit ログ記録必須 (B6=b、F6=a)。緊急障害対応以外での行使は禁止 | `.claude/CLAUDE.md` Subagent Guard / NFR-14 連動 |
+| **agent guard bypass 条件** | `HELIX_ALLOW_RAW_AGENT=1`: PO 明示承認 + audit ログ記録必須 (B6=b、F6=a)。緊急障害対応以外での行使は禁止 | `.claude/CLAUDE.md` Subagent Guard / NFR-14 連動 |
 
 詳細セキュリティ設計は L4 基本設計 (方式設計 sub-doc) で確定。
 

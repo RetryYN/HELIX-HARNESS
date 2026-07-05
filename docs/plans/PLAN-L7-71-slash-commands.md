@@ -15,12 +15,12 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "Phase-1 slash command transplant (.claude/commands/{ship,sdd-review,sdd-plan,spec,test,build,code-simplify}.md、commit 7305fe7) の status drift (draft のまま放置) を解消し confirmed 化。AC を機械再検証: ①7 ファイル全て実在・description frontmatter 有 ②legacy-term scan (helix/HELIX_/ai-dev-kit) = 0 hit ③全ファイルが実在 ut-tdd command (review/gate/status/plan lint/doctor) を参照 ④allowlisted subagent のみ参照。typecheck/Biome/Vitest 785/doctor EXIT=0。P2 (innovation-{tech,marketing,synthesize}) は §4 で明示 defer (本 confirmed の scope 外)。"
+    scope: "Phase-1 slash command transplant (.claude/commands/{ship,sdd-review,sdd-plan,spec,test,build,code-simplify}.md、commit 7305fe7) の status drift (draft のまま放置) を解消し confirmed 化。AC を機械再検証: ①7 ファイル全て実在・description frontmatter 有 ②legacy-term scan (helix/HELIX_/ai-dev-kit) = 0 hit ③全ファイルが実在 helix command (review/gate/status/plan lint/doctor) を参照 ④allowlisted subagent のみ参照。typecheck/Biome/Vitest 785/doctor EXIT=0。P2 (innovation-{tech,marketing,synthesize}) は §4 で明示 defer (本 confirmed の scope 外)。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
 agent_slots:
   - role: tl
-    slot_label: "TL - slash command transplant (UT-TDD adaptation)"
+    slot_label: "TL - slash command transplant (HELIX adaptation)"
 generates:
   - artifact_path: docs/plans/PLAN-L7-71-slash-commands.md
     artifact_type: markdown_doc
@@ -48,56 +48,56 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-71 (impl): .claude/commands slash-command transplant
+# PLAN-L7-71 (impl): .claude/commands slash command 移植
 
-## 0. Objective
+## 0. 目的
 
-Realize the fork plan §4 (slash commands, highest-leverage net-new stream) by
-creating `.claude/commands/` — absent in UT-TDD — with Claude Code slash commands
-that operationalize the UT-TDD review/spec/TDD/impl gates. These are the
-"recommended command" element of FR-L1-12 layer-context injection.
+fork plan §4 の `slash commands`、すなわち効果が最も高い新規 stream を実現するため、
+HELIX には存在しない `.claude/commands/` を作成し、HELIX の review/spec/TDD/impl
+gate を実運用へ接続する Claude Code slash command を配置する。これは FR-L1-12
+layer-context injection における `recommended command` 要素である。
 
-## 1. Adaptation rule (§1.5)
+## 1. 適応ルール (§1.5)
 
-Commands are re-authored for UT-TDD, HELIX as loose reference only:
+各 command は HELIX 向けに再著述し、HELIX は緩い参照元にとどめる。
 
-- Reference the **real** `ut-tdd` command surface (review --uncommitted, gate,
-  status, plan lint, doctor) — never `helix` commands.
-- Reference UT-TDD allowlisted subagents only (code-reviewer, security-audit,
-  qa-test, pmo-*, pdm-*); the `PreToolUse(Agent)` guard enforces this.
-- Reference the curated UT-TDD skill packs in `docs/skills/`, not legacy skill ids.
-- No legacy terms (`helix`, `HELIX_`, ai-dev-kit paths).
+- **実在する** `helix` command surface (`review --uncommitted`, `gate`,
+  `status`, `plan lint`, `doctor`) だけを参照し、`helix` command は参照しない。
+- HELIX allowlist 済み subagent (`code-reviewer`, `security-audit`,
+  `qa-test`, `pmo-*`, `pdm-*`) だけを参照する。この制約は `PreToolUse(Agent)` guard が強制する。
+- `docs/skills/` の curated HELIX skill pack を参照し、legacy skill id は参照しない。
+- legacy term (`helix`, `HELIX_`, ai-dev-kit path) を含めない。
 
-## 2. Scope (Phase-1)
+## 2. スコープ (Phase-1)
 
-- **P0:** ship (fan-out orchestrator → code-reviewer/security-audit/qa-test →
-  go/no-go), sdd-review (5-axis review), sdd-plan (verifiable task breakdown).
-- **P1:** spec (spec-first), test (TDD), build (incremental impl), code-simplify
-  (refactor).
-- **P2 (defer):** innovation-{tech,marketing,synthesize} (invoke pdm-* agents)
-  — deferred to a later batch.
+- **P0:** `ship` は fan-out orchestrator から `code-reviewer` / `security-audit` /
+  `qa-test` を呼び出して go/no-go を判定する。`sdd-review` は 5-axis review、
+  `sdd-plan` は検証可能な task breakdown を扱う。
+- **P1:** `spec` は spec-first、`test` は TDD、`build` は incremental impl、
+  `code-simplify` は refactor を扱う。
+- **P2 (defer):** `innovation-{tech,marketing,synthesize}` は `pdm-*` agent を呼び出す
+  command 群であり、後続 batch へ defer する。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- `.claude/commands/*.md` exist with a `description` frontmatter and a UT-TDD
-  prompt body.
-- No legacy terms; only real ut-tdd commands and allowlisted agents referenced.
-- `ut-tdd doctor`, Biome, typecheck, Vitest stay green.
+- `.claude/commands/*.md` が存在し、`description` frontmatter と HELIX prompt body を持つ。
+- legacy term を含まず、実在する `helix` command と allowlist 済み agent だけを参照する。
+- `helix doctor`、Biome、typecheck、Vitest が green を維持する。
 
 ## 4. Status
 
-Confirmed 2026-06-19. Phase-1 commands (P0+P1: ship, sdd-review, sdd-plan,
-spec, test, build, code-simplify) were authored and committed 2026-06-17
-(`7305fe7`); the PLAN status had drifted at `draft` despite the work being
-complete and the commands being live. Re-verified against §3 acceptance criteria
-(all 7 files exist with a `description` frontmatter, zero legacy terms, only real
-`ut-tdd` commands and allowlisted agents referenced) and flipped to confirmed.
+2026-06-19 に confirmed。Phase-1 commands (P0+P1: `ship`, `sdd-review`,
+`sdd-plan`, `spec`, `test`, `build`, `code-simplify`) は 2026-06-17 に作成・commit 済み
+(`7305fe7`) だったが、作業完了かつ command が live であるにもかかわらず PLAN status が
+`draft` に drift していた。§3 の受入条件に対して再検証し、7 ファイルすべてが
+`description` frontmatter を持つこと、legacy term が 0 件であること、実在する `helix`
+command と allowlist 済み agent だけを参照していることを確認したうえで confirmed へ変更した。
 
-**Explicit deferral (formal carry):** the P2 innovation commands
-(`innovation-tech`, `innovation-marketing`, `innovation-synthesize`, invoking the
-`pdm-*` agents) are intentionally out of this PLAN's scope.
+**明示的な defer (formal carry):** P2 innovation command
+(`innovation-tech`, `innovation-marketing`, `innovation-synthesize`; `pdm-*`
+agent を呼び出す) は、この PLAN の scope から意図的に外す。
 
 - owner: PM (Opus) / PO (人間)
-- condition: author the P2 innovation commands in a later batch when the
-  innovation-agent workflow surface (pdm-* invocation contract) is exercised.
-  Until then this is a recorded deferral, not an under-design gap.
+- condition: `pdm-*` invocation contract を含む innovation-agent workflow surface を実際に扱う段階で、
+  P2 innovation command を後続 batch として作成する。それまでは記録済み defer であり、
+  under-design gap ではない。

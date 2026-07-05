@@ -96,7 +96,7 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-245: relation graph physical edge projection
+# PLAN-L7-245: relation graph の physical edge projection
 
 ## 0. 目的
 

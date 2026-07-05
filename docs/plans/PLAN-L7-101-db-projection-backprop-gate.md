@@ -39,49 +39,48 @@ review_evidence:
     reviewer_model: codex-intra-runtime
 ---
 
-# PLAN-L7-101: DB projection backprop gate
+## 目的
 
-## Objective
+L7 の DB 実装が、requirements、basic design、detailed design、Reverse fullback evidence が
+揃う前に user-visible な state contract を導入してしまった artifact progress color の
+見落としを再発させない。
 
-Prevent a repeat of the artifact progress color miss where L7 DB implementation introduced a
-user-visible state contract before requirements, basic design, detailed design, and Reverse
-fullback evidence were present.
+## 根本原因
 
-## Root Cause
+`PLAN-L7-56` では、artifact progress colors を implementation-local な DB projection として
+扱っていた。既存の `descent-obligation` と `fr-unit-coverage` の gate は、FR が upstream に
+登録された後なら十分強いが、upstream 登録がない段階で user-visible な `red` / `yellow` /
+`green` contract を作る L7 DB projection を fail させなかった。
 
-`PLAN-L7-56` originally treated the artifact progress colors as an implementation-local DB
-projection. Existing `descent-obligation` and `fr-unit-coverage` gates are strong after an FR is
-registered upstream, but they did not fail an L7 DB projection that created the user-visible
-`red` / `yellow` / `green` contract before that upstream registration existed.
+`plan-governance` は frontmatter validity、dependencies、parent drive、artifact existence も
+確認していたが、「progress color DB projection には Reverse/fullback と V-model backprop
+artifacts が必要」という category-specific rule を持っていなかった。
 
-`plan-governance` also checked frontmatter validity, dependencies, parent drive, and artifact
-existence, but it had no category-specific rule for "progress color DB projection must carry
-Reverse/fullback and V-model backprop artifacts".
+## 対策
 
-## Countermeasure
+`src/schema/harness-db.ts` または `src/state-db/projection-writer.ts` に触れ、`artifact_progress` /
+`red/yellow/green` のような progress color semantics を導入する L7 DB implementation
+plans に対して、`db_projection_backprop_missing` の plan-governance violation を追加する。
 
-Add a `db_projection_backprop_missing` plan-governance violation for L7 DB implementation plans
-that touch `src/schema/harness-db.ts` or `src/state-db/projection-writer.ts` and introduce progress
-color semantics such as `artifact_progress` / `red/yellow/green`.
+そのような plans には次を含めること:
 
-Such plans must include:
+- generated または required な `PLAN-REVERSE-*` による Reverse fullback evidence
+- requirements document update
+- L1 の functional と screen requirements
+- L3 functional carry
+- L4 function building block
+- L5 physical-data semantics
+- L6 function specification と FR/unit coverage
 
-- Reverse fullback evidence through a generated or required `PLAN-REVERSE-*`.
-- Requirements document update.
-- L1 functional and screen requirements.
-- L3 functional carry.
-- L4 function building block.
-- L5 physical-data semantics.
-- L6 function specification and FR/unit coverage.
+## 受入条件
 
-## Acceptance Criteria
-
-- A fixture PLAN that adds `artifact_progress` / `red/yellow/green` projection code without
-  upstream artifacts fails with `db_projection_backprop_missing`.
-- A fixture PLAN with Reverse fullback and L1-L6 generated artifacts passes the new gate.
-- Existing plan governance checks remain compatible with foundation DB plans that do not introduce
-  progress color semantics.
+- `artifact_progress` / `red/yellow/green` の projection code を追加する fixture PLAN が、
+  upstream artifacts なしでは `db_projection_backprop_missing` で fail する。
+- Reverse fullback と L1-L6 の generated artifacts を持つ fixture PLAN は、新しい gate を
+  pass する。
+- progress color semantics を導入しない foundation DB plans については、既存の plan governance
+  checks と互換である。
 - `bun test tests/plan-lint.test.ts` passes.
 - `bun run typecheck` passes.
 - `bun run lint` passes.
-- `bun run src/cli.ts doctor` is run and its result is recorded.
+- `bun run src/cli.ts doctor` を実行し、その結果を記録する。

@@ -11,7 +11,7 @@ describe("vmodel layer-context injection", () => {
     expect(injection.owner_role).toBe("se");
     expect(injection.mandatory_agents).toContain("dba-reviewer");
     expect(injection.recommended_skills).toContain("data-migration");
-    expect(injection.recommended_commands).toContain("ut-tdd doctor");
+    expect(injection.recommended_commands).toContain("helix doctor");
     expect(VALID_ORCHESTRATION_MODES).toContain(injection.orchestration_mode);
   });
 

@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-06-19
 updated: 2026-06-19
 backprop_decision: not_required
-backprop_decision_reason: "Internal harness self-application tooling (lint gate / runtime dispatch / guard / governance mechanism); hardens the harness's own enforcement and does not change the product's external requirement / design / test-design contract, so there is no upstream backprop target."
+backprop_decision_reason: "harness 内部の自己適用 tooling (lint gate / runtime dispatch / guard / governance mechanism)。harness 自身の enforcement を強化するが、product の外部 requirement / design / test-design contract は変更しないため、上流 backprop 対象はない。"
 owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: claude-code-reviewer (intra_runtime_subagent)
@@ -16,12 +16,12 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "IMP-137 (full-access 委譲 Codex が DESK REVIEW 中に off-task で共有ファイルを編集し commit に混入 → doctor 後追い赤化) の再発防止を機械化。① read-only 期待ロール (相談/検証 archetype = tl/qa/uiux + review エイリアス) の委譲 session が working tree を変更したら検知 (assessReviewSession violation)、② commit 前に staged 集合を doctor と共に確認し混入を弾く (ut-tdd review --staged)。src/runtime/review-guard.ts は純関数のみ (git/fs 端点なし、before/after porcelain 配列を受け取る) で module-boundary (runtime↛lint) を保ち、I/O は cli の loadChangedFiles/loadStagedFiles が担う。ut-tdd <provider> --role <read-only> --execute は spawn 前後を assess し warning surface (exit 不変=fail-open、レビュー成果は殺さず混入を staged 前に弾く規律へ繋ぐ)。worker/未知ロールは対象外で誤検知回避。U-RGUARD-001..012 が role 分類・mutation 検知・assessment・message・staged summary を被覆。typecheck/Biome/Vitest/doctor green。"
+    scope: "IMP-137 (full-access 委譲 Codex が DESK REVIEW 中に off-task で共有ファイルを編集し commit に混入 → doctor 後追い赤化) の再発防止を機械化。① read-only 期待ロール (相談/検証 archetype = tl/qa/uiux + review エイリアス) の委譲 session が working tree を変更したら検知 (assessReviewSession violation)、② commit 前に staged 集合を doctor と共に確認し混入を弾く (helix review --staged)。src/runtime/review-guard.ts は純関数のみ (git/fs 端点なし、before/after porcelain 配列を受け取る) で module-boundary (runtime↛lint) を保ち、I/O は cli の loadChangedFiles/loadStagedFiles が担う。helix <provider> --role <read-only> --execute は spawn 前後を assess し warning surface (exit 不変=fail-open、レビュー成果は殺さず混入を staged 前に弾く規律へ繋ぐ)。worker/未知ロールは対象外で誤検知回避。U-RGUARD-001..012 が role 分類・mutation 検知・assessment・message・staged summary を被覆。typecheck/Biome/Vitest/doctor green。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
 agent_slots:
   - role: tl
-    slot_label: "TL - review read-only guard + staged-diff mechanization"
+    slot_label: "TL - review read-only guard + staged-diff 機械化"
 generates:
   - artifact_path: docs/plans/PLAN-L7-85-review-readonly-guard.md
     artifact_type: markdown_doc
@@ -39,14 +39,14 @@ dependencies:
   parent: docs/plans/PLAN-L7-44-harness-db-master.md
   requires:
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-85 (troubleshoot): review read-only guard + staged-diff mechanization
+# PLAN-L7-85 (troubleshoot): review read-only guard + staged-diff 機械化
 
-## 0. Objective
+## 0. 目的
 
 IMP-137: full-access の委譲 Codex が DESK REVIEW (「実装代行しない」明示) 中に
 off-task で共有ファイルを直接編集し、その混入が `git add` 経由で commit に紛れ込み、
@@ -58,49 +58,49 @@ overstep)。再発防止を 2 機構で機械化する:
 2. **commit 前 staged-diff 確認の機械化** — staged 集合を doctor と共に確認し、
    意図しない混入 (off-task review 編集の staged) を弾く。
 
-## 1. Scope
+## 1. スコープ
 
-In scope:
+対象範囲:
 
 - **`src/runtime/review-guard.ts`** (新規) — 純関数群:
   `isReadOnlyDelegationRole` (相談/検証 archetype + review エイリアス) /
   `detectWorkingTreeMutation` (after∖before) / `assessReviewSession` (violation 判定) /
-  `reviewGuardMessages` (warning builder) / `summarizeStagedReview` (staged ∩ mutated)。
+  `reviewGuardMessages` (warning 生成) / `summarizeStagedReview` (staged ∩ mutated)。
   git/fs 端点を持たず before/after path 配列を受け取る (module-boundary: runtime↛lint)。
 - **`src/lint/change-impact.ts`** — `loadStagedFiles` (`git diff --cached --name-only`) +
   `parseStagedNames` を loadChangedFiles と対称に追加 (I/O 端点)。
 - **`src/cli.ts`**:
-  - `ut-tdd <provider> --role <read-only> --execute` が spawn 前後の `loadChangedFiles`
+  - `helix <provider> --role <read-only> --execute` が spawn 前後の `loadChangedFiles`
     を assess し、violation を warning で surface (fail-open: exit 不変)。
-  - `ut-tdd review --staged` が staged 集合 + doctor を確認し、混入/赤化を fail-close。
+  - `helix review --staged` が staged 集合 + doctor を確認し、混入/赤化を fail-close。
 
-Out of scope:
+対象外:
 
 - review session を OS レベルで read-only sandbox 化すること (full-access 委譲を物理的に
   制限する手段は本 PLAN の対象外。本 PLAN は検知 + 隔離規律の機械化)。
 - review-mutated パスのセッション跨ぎ永続化と staged との自動 cross-reference
-  (`summarizeStagedReview` は cross-reference 関数を提供するが、永続 state 配線は future)。
+  (`summarizeStagedReview` は cross-reference 関数を提供するが、永続 state 配線は将来対応)。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
 - 相談/検証ロール (tl/qa/uiux + review エイリアス) は read-only=true、worker/未知は false。
 - read-only 委譲が working tree を変更 → `violation=true` + 変更パス surface。worker /
   clean は無音。
-- `ut-tdd <provider> --role qa --execute` 等の read-only delegation が tree を変更した
+- `helix <provider> --role qa --execute` 等の read-only delegation が tree を変更した
   場合に warning を stderr へ出す (exit は child のまま=fail-open、委譲成果を殺さない)。
-- `ut-tdd review --staged` が staged 集合を列挙し doctor を回す。doctor 失敗 / suspect
+- `helix review --staged` が staged 集合を列挙し doctor を回す。doctor 失敗 / suspect
   検出で exit=1 (fail-close)。
 - review-guard は純関数で git/fs 端点を持たない (module-boundary 順守、dependency-drift
   cycles 0 を壊さない)。
-- typecheck / Biome / 全 Vitest / `ut-tdd doctor` green。
+- typecheck / Biome / 全 Vitest / `helix doctor` green。
 
-## 3. Test Design Pairing
+## 3. テスト設計ペアリング
 
-Unit test design: `docs/test-design/harness/L7-unit-test-design.md`
-(U-RGUARD-001..012、PLAN-L7-85 Review Read-Only Guard Addendum)。
+単体テスト設計: `docs/test-design/harness/L7-unit-test-design.md`
+(U-RGUARD-001..012、PLAN-L7-85 Review Read-Only Guard 追補)。
 `tests/review-guard.test.ts` が role 分類・mutation 検知・assessment・message・staged
 summary を被覆。
 
-## 4. Status
+## 4. 状態
 
-Confirmed. Implemented and verified 2026-06-19.
+Confirmed。2026-06-19 に実装・検証済み。

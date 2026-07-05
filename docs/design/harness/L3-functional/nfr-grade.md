@@ -22,15 +22,15 @@ updated: 2026-05-28
 
 | NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |
 |--------|------|--------|---------|---------|----------|
-| **NFR-01** | cross-platform (Windows/macOS/Linux ネイティブ) | Lv2 (業務時間内継続) | 3 OS で主要 CLI コマンド 95% 以上動作 | `ut-tdd doctor --platform-check` / CI matrix (Windows + macOS + Linux) | 3 OS で同一 commit が `ut-tdd plan lint / gate / doctor` 全件 pass |
-| **NFR-03** | AI mode 非依存 (4 mode 全動作、A-47 補完) | Lv2 | standalone / claude-only / codex-only / hybrid 全 mode で P0 FR-01〜18 動作 | `ut-tdd doctor --mode-check` / 4 mode × 統制対象 repo テスト | 4 mode で全 P0 FR が pass / mode 別差異 0 件 |
+| **NFR-01** | cross-platform (Windows/macOS/Linux ネイティブ) | Lv2 (業務時間内継続) | 3 OS で主要 CLI コマンド 95% 以上動作 | `helix doctor --platform-check` / CI matrix (Windows + macOS + Linux) | 3 OS で同一 commit が `helix plan lint / gate / doctor` 全件 pass |
+| **NFR-03** | AI mode 非依存 (4 mode 全動作、A-47 補完) | Lv2 | standalone / claude-only / codex-only / hybrid 全 mode で P0 FR-01〜18 動作 | `helix doctor --mode-check` / 4 mode × 統制対象 repo テスト | 4 mode で全 P0 FR が pass / mode 別差異 0 件 |
 | **NFR-06** | fail-close (guard / gate / lint) | Lv3 (§5 セキュリティ正本) | 全 fail-close 経路で例外漏れ 0 件 | agent-guard test / gate test / vitest 全件 | 全 fail-close test pass / 例外漏れ audit 0 件 |
-| **NFR-16** | onboarding 互換性 (skip_sub_doc) | Lv2 | KPI D-09 ≥ 95% (handover 引継ぎ成功率、A-43 / A-44 ledger 整合) | `.ut-tdd/handover/` 引継ぎ成功 / 失敗ログ集計 | sprint 末 D-09 ≥ 95% |
+| **NFR-16** | onboarding 互換性 (skip_sub_doc) | Lv2 | KPI D-09 ≥ 95% (handover 引継ぎ成功率、A-43 / A-44 ledger 整合) | `.helix/handover/` 引継ぎ成功 / 失敗ログ集計 | sprint 末 D-09 ≥ 95% |
 
 #### AC-NFR-01 (正常系)
 - **前提**: PR で TypeScript ファイル変更
 - **操作**: GHA matrix (windows-latest / macos-latest / ubuntu-latest) で CI 実行
-- **期待結果**: 3 OS 全件で `bun test` + `ut-tdd plan lint` pass / 3 OS で同等結果
+- **期待結果**: 3 OS 全件で `bun test` + `helix plan lint` pass / 3 OS で同等結果
 
 #### AC-NFR-06 (異常系)
 - **前提**: agent-guard で許可リスト外 subagent_type 指定 (例: `be-api`)
@@ -38,7 +38,7 @@ updated: 2026-05-28
 - **期待結果**: fail-close exit 2 / Agent 起動されず / audit に block 記録
 
 #### AC-NFR-16 (境界系)
-- **前提**: 既存 repo に `ut-tdd onboarding` 実行、skip_sub_doc 段階整備モード
+- **前提**: 既存 repo に `helix onboarding` 実行、skip_sub_doc 段階整備モード
 - **操作**: G1 ゲート実行
 - **期待結果**: 未整備 sub-doc skip / 整備済 sub-doc のみ gate 評価 / G1 段階通過
 
@@ -54,8 +54,8 @@ updated: 2026-05-28
 | NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |
 |--------|------|--------|---------|---------|----------|
 | **NFR-02** | 更新性 (npm / repo template / 社内共有) | Lv2 (CLI ツール想定) | L4 ADR で配布形態確定 | L4 ADR 進捗 | L4 carry (本 PLAN は閾値 placeholder) |
-| **NFR-12** | machine×AI 二層 (静的 + AI レビュー) | Lv2 | KPI D-07 (AI 委譲時間率) ≥ 70% (目標値) | `.ut-tdd/audit/invocation_log/` 集計 | 直近 1 sprint D-07 ≥ 50% (Phase A) / ≥ 70% (Phase B、§6.2 BR-21 着手条件と整合) |
-| **NFR-15** | server-optional (Phase A local / Phase B server) | Lv2 | Phase A は local-only で全機能動作 / Phase B 拡張は L4 carry | Phase A: `ut-tdd doctor --server-disabled` / Phase B: ADR | Phase A: server なしで全 P0 FR 動作 / Phase B: L4 ADR |
+| **NFR-12** | machine×AI 二層 (静的 + AI レビュー) | Lv2 | KPI D-07 (AI 委譲時間率) ≥ 70% (目標値) | `.helix/audit/invocation_log/` 集計 | 直近 1 sprint D-07 ≥ 50% (Phase A) / ≥ 70% (Phase B、§6.2 BR-21 着手条件と整合) |
+| **NFR-15** | server-optional (Phase A local / Phase B server) | Lv2 | Phase A は local-only で全機能動作 / Phase B 拡張は L4 carry | Phase A: `helix doctor --server-disabled` / Phase B: ADR | Phase A: server なしで全 P0 FR 動作 / Phase B: L4 ADR |
 
 #### AC-NFR-02（carry placeholder: L4 持ち越し）
 - **前提**: L4 ADR 未確定 (本 PLAN range 外)
@@ -70,7 +70,7 @@ updated: 2026-05-28
 #### AC-NFR-15 (正常系: Phase A local-only)
 - **前提**: server プロセス起動なし
 - **操作**: 全 P0 FR (FR-01〜18) 実行
-- **期待結果**: 全件動作 / `.ut-tdd/` ファイルベース state で完結
+- **期待結果**: 全件動作 / `.helix/` ファイルベース state で完結
 
 > **TL 採用根拠 (Lv2)**: CLI ツール想定で大規模負荷想定なし。Lv3 (秒単位レスポンス保証) は CLI 性質に不要。
 
@@ -79,11 +79,11 @@ updated: 2026-05-28
 | NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |
 |--------|------|--------|---------|---------|----------|
 | **NFR-07** | MVP なし (5 条件全件総合) | Lv3 | 5 成功条件 (BR-01〜05 由来) 全件被覆 | OT-01〜05 (L14 operational-test-design.md) + AT 量閉じ | 全条件 OT/AT pass |
-| **NFR-08** | implementation_status 真実性 | Lv3 | KPI D-05 (4 artifact trace 整合率) ≥ 95% (A-43 ledger 整合) | `ut-tdd trace check` / `.ut-tdd/artifact/trace/` | sprint 末 D-05 ≥ 95% |
-| **NFR-13** | gate 通過率 / dev-local+CI 整合 | Lv3 | KPI D-02 ≥ 90% (A-43 ledger 整合) | `.ut-tdd/gate_runs/` 集計 | sprint 末 D-02 ≥ 90% |
-| **NFR-14** | human-as-residue (gate fail-close 例外権) | Lv3 | KPI D-06 (bypass 件数) ≤ 2 件/sprint (努力目標 = 0、A-43 ledger 整合) | `.ut-tdd/audit/agent-guard-bypass/` | bypass 全件 audit 記録 / D-06 ≤ 2 |
-| **NFR-D01** | KPI D-01 (PLAN 起票数) 機械計測化 (A-47 補完) | Lv3 | ≥ 1 件/sprint | `.ut-tdd/plan_registry/` 集計 / `ut-tdd plan list --since sprint-start` | sprint 末 PLAN 件数 ≥ 1 / KPI 集計に integrated |
-| **NFR-D04** | KPI D-04 (回帰検出率) 機械計測化 (A-47 補完) | Lv3 | ≥ 80% (検出件数 / 発生総件数) | CI gate + `ut-tdd trace check --regression` | sprint 末 D-04 ≥ 80% / 検出漏れ audit 記録 |
+| **NFR-08** | implementation_status 真実性 | Lv3 | KPI D-05 (4 artifact trace 整合率) ≥ 95% (A-43 ledger 整合) | `helix trace check` / `.helix/artifact/trace/` | sprint 末 D-05 ≥ 95% |
+| **NFR-13** | gate 通過率 / dev-local+CI 整合 | Lv3 | KPI D-02 ≥ 90% (A-43 ledger 整合) | `.helix/gate_runs/` 集計 | sprint 末 D-02 ≥ 90% |
+| **NFR-14** | human-as-residue (gate fail-close 例外権) | Lv3 | KPI D-06 (bypass 件数) ≤ 2 件/sprint (努力目標 = 0、A-43 ledger 整合) | `.helix/audit/agent-guard-bypass/` | bypass 全件 audit 記録 / D-06 ≤ 2 |
+| **NFR-D01** | KPI D-01 (PLAN 起票数) 機械計測化 (A-47 補完) | Lv3 | ≥ 1 件/sprint | `.helix/plan_registry/` 集計 / `helix plan list --since sprint-start` | sprint 末 PLAN 件数 ≥ 1 / KPI 集計に integrated |
+| **NFR-D04** | KPI D-04 (回帰検出率) 機械計測化 (A-47 補完) | Lv3 | ≥ 80% (検出件数 / 発生総件数) | CI gate + `helix trace check --regression` | sprint 末 D-04 ≥ 80% / 検出漏れ audit 記録 |
 
 #### AC-NFR-07 (正常系: 5 成功条件総合、A-54 audit C-04 補完)
 - **前提**: ① L0-L14 通し実行 / ② 複数人 team gate 回転 / ③ AI 委譲で回帰なし / ④ ダッシュボード進捗可視 / ⑤ PoC 契約化合流 の 5 条件
@@ -103,7 +103,7 @@ updated: 2026-05-28
 #### AC-NFR-14-01 (正常系: bypass audit)
 - **前提**: PO が S-03 例外権で gate bypass 1 回行使、理由「緊急 hotfix」
 - **操作**: bypass 実行
-- **期待結果**: `.ut-tdd/audit/agent-guard-bypass/<timestamp>.json` 生成 / PO ID + 理由必須 / D-06 集計 + 1
+- **期待結果**: `.helix/audit/agent-guard-bypass/<timestamp>.json` 生成 / PO ID + 理由必須 / D-06 集計 + 1
 
 #### AC-NFR-14-02 (境界系: bypass 閾値超過)
 - **前提**: 1 sprint で bypass 3 件 (閾値 2 件超過)
@@ -131,9 +131,9 @@ updated: 2026-05-28
 | NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |
 |--------|------|--------|---------|---------|----------|
 | **NFR-06** | fail-close (ガード側、§1 と兼用) | Lv3 | (§1 と同じ) | (§1 と同じ) | (§1 と同じ) |
-| **NFR-11** | 役割分離 (GHA 権限 / agent_slots) | Lv3 | S-01〜S-05 + harness 運用者ロール 6 件全件分離 | `ut-tdd doctor --role-check` / GHA workflow permissions | 全ロール権限境界明示 / 越権 audit 0 件 |
+| **NFR-11** | 役割分離 (GHA 権限 / agent_slots) | Lv3 | S-01〜S-05 + harness 運用者ロール 6 件全件分離 | `helix doctor --role-check` / GHA workflow permissions | 全ロール権限境界明示 / 越権 audit 0 件 |
 | **NFR-17** | 統合セキュリティ (5 段階 DevSecOps / OWASP Agentic Top 10 / EU AI Act Art.14、A-54 back-propagation) | Lv3 | (a) Build 段で secret-scan (Phase A) + SAST/SCA (Phase B) / (b) OWASP Agentic Top 10 各リスクに対策 mapping / (c) human oversight = gate サインオフ + agent guard fail-close 経路存在 | (a) CI secret-scan (Phase A) + trivy/codeql (Phase B) / (b) `docs/design/security/owasp-agentic-map.md` (L4 carry) / (c) agent-guard test + gate fail-close test | Phase A: secret-scan pass + agent guard fail-close 全件 pass + human oversight gate 経路存在 / Phase B: SAST/SCA integrated |
-| **(NFR-09)** | rule parity (Claude/Codex 同一判定) | Lv3 (A-43 ledger 整合) | 機械検証必須化 (U-NFR3-13 採用) | `ut-tdd parity-check` (L4 carry) | Claude / Codex 同一入力 → 同一判定 |
+| **(NFR-09)** | rule parity (Claude/Codex 同一判定) | Lv3 (A-43 ledger 整合) | 機械検証必須化 (U-NFR3-13 採用) | `helix parity-check` (L4 carry) | Claude / Codex 同一入力 → 同一判定 |
 
 #### AC-NFR-11-01 (正常系)
 - **前提**: GHA workflow で `permissions: contents: read` (最小権限)
@@ -142,7 +142,7 @@ updated: 2026-05-28
 
 #### AC-NFR-11-02 (異常系)
 - **前提**: agent_slots に未定義 role (例: `dev_lead`) 指定
-- **操作**: `ut-tdd plan lint`
+- **操作**: `helix plan lint`
 - **期待結果**: fail-close `Error: role 'dev_lead' は VALID_ROLES 外 (§1.8)` / 終了コード 1
 
 #### AC-NFR-09（L4 carry placeholder: L4 持ち越し）
@@ -162,17 +162,17 @@ updated: 2026-05-28
 | NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |
 |--------|------|--------|---------|---------|----------|
 | **NFR-01** | cross-platform (§1 と兼用) | Lv2 (§1 可用性正本) | (§1 と同じ + GitHub 正本連動) | (§1 と同じ) | (§1 と同じ) |
-| **NFR-04** | 言語非依存 (統制対象 repo の言語) | Lv3 | TS/Python/Go/Rust 等 任意言語 repo で動作 | 多言語 repo テスト (CI matrix 拡張) | 4 言語以上で `ut-tdd plan lint / gate` pass |
+| **NFR-04** | 言語非依存 (統制対象 repo の言語) | Lv3 | TS/Python/Go/Rust 等 任意言語 repo で動作 | 多言語 repo テスト (CI matrix 拡張) | 4 言語以上で `helix plan lint / gate` pass |
 | **NFR-05** | GitHub 正本 (CI / 証跡 / 権限) | Lv3 | gate 証跡 + audit 全件 GitHub 永続 | `.github/workflows/` artifact upload / GHA permissions | 全 gate run が GitHub Actions log で確認可能 |
 
 #### AC-NFR-04-01 (正常系)
 - **前提**: TS / Python / Go / Rust 各 1 repo に harness 適用
-- **操作**: 各 repo で `ut-tdd plan draft + gate` 実行
+- **操作**: 各 repo で `helix plan draft + gate` 実行
 - **期待結果**: 4 言語全件で動作 / 言語固有処理なし
 
 #### AC-NFR-05-01 (正常系)
 - **前提**: gate run 完了
-- **操作**: GHA workflow `upload-artifact` で `.ut-tdd/gate_runs/` 保存
+- **操作**: GHA workflow `upload-artifact` で `.helix/gate_runs/` 保存
 - **期待結果**: GitHub Actions log + artifact で 90 日永続 / 任意の関係者が参照可能
 
 > **TL 採用根拠 (Lv3)**: Windows/macOS/Linux ネイティブ + 4 言語以上対応 + GitHub 正本で Lv3。Lv4-5 (任意 OS / オフライン完全動作) は scope 外。
@@ -219,7 +219,7 @@ NFR-01〜17 + 新規 KPI を以下 3 tier に分類:
 - **tier B** (CI 後人間確認): NFR-07/14 等、レポート生成のみ
 - **tier C** (PO 合意のみ): NFR-02/15 (L4 ADR 専決) 等
 
-→ `docs/design/nfr-classification.md` L4 起票候補、`ut-tdd doctor --nfr` 実装入力
+→ `docs/design/nfr-classification.md` L4 起票候補、`helix doctor --nfr` 実装入力
 
 ### §7.5 L12 受入テスト pair
 

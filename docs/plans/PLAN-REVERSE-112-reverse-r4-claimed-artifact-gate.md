@@ -43,36 +43,35 @@ dependencies:
     - docs/plans/PLAN-L7-112-reverse-r4-claimed-artifact-gate.md
 ---
 
-# PLAN-REVERSE-112: Reverse R4 claimed artifact gate fullback
+# PLAN-REVERSE-112: Reverse R4 の claimed artifact gate fullback 対応
 
-## R0 Evidence
+## R0 証跡
 
-The fullback-only sweep missed a second class of design-return trace drift:
-non-fullback R4 Reverse PLANs can cite upstream artifact paths in prose while
-omitting those paths from `generates`.
+fullback 専用の sweep では、design-return trace drift の別分類を取りこぼしていた。
+non-fullback R4 Reverse PLAN は、本文で upstream artifact path を参照しながら、
+その path を `generates` に含めない状態を作れる。
 
-## R1 Observed Gap
+## R1 観測した不整合
 
-The existing `reverse_fullback_claimed_artifact_missing` rule only covered
-`confirmed_reverse_type=fullback`. That left `design`, `code`, and
-`normalization` Reverse PLANs outside the same literal path consistency check.
+既存の `reverse_fullback_claimed_artifact_missing` rule は
+`confirmed_reverse_type=fullback` だけを対象にしていた。そのため `design`、`code`、
+`normalization` の Reverse PLAN は、同じ literal path consistency check の外側に残っていた。
 
-## R2 Alignment
+## R2 整合
 
-The invariant is common to R4 Reverse routing: if a PLAN body says an upstream
-artifact path was part of the design/governance/test-design return path, the
-frontmatter must expose that artifact for database projection and review.
+この invariant は R4 Reverse routing に共通する。PLAN 本文が upstream artifact path を
+design/governance/test-design の return path の一部として示す場合、frontmatter は
+database projection と review のためにその artifact を公開しなければならない。
 
-## R3 / R4 Outcome
+## R3 / R4 結果
 
-New or updated non-fullback R4 Reverse PLANs fail with
-`reverse_r4_claimed_artifact_missing` when their body cites an upstream artifact
-path absent from `generates`. Legacy cases remain listed in
-docs/governance/reverse-fullback-backprop-audit-2026-06-22.md.
+新規または更新された non-fullback R4 Reverse PLAN は、本文で参照した upstream artifact path が
+`generates` に無い場合、`reverse_r4_claimed_artifact_missing` で失敗する。legacy case は
+`docs/governance/reverse-fullback-backprop-audit-2026-06-22.md` に引き続き列挙する。
 
 ## DoD
 
-- [x] Requirements record the non-fullback R4 claimed-artifact invariant.
-- [x] Audit records the legacy non-fullback R4 claimed-artifact debt.
-- [x] `plan-governance` emits the new violation for a negative fixture.
-- [x] Live PLAN governance lint passes.
+- [x] Requirements に non-fullback R4 claimed-artifact invariant を記録した。
+- [x] Audit に legacy non-fullback R4 claimed-artifact debt を記録した。
+- [x] negative fixture に対して `plan-governance` が新しい violation を出す。
+- [x] live PLAN governance lint が通る。

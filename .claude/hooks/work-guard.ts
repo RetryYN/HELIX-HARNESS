@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * Claude Code PreToolUse(Edit|Write|MultiEdit) hook entry — UT-TDD 作業衝突ガードレール (PLAN-L7-114)。
+ * Claude Code PreToolUse(Edit|Write|MultiEdit) hook entry — HELIX 作業衝突ガードレール (PLAN-L7-114)。
  *
  * hybrid 多ランタイムで、このセッションが触っていない uncommitted ファイル (= 他ランタイムの
  * in-flight 成果と推定) への盲目的 Edit/Write を block し、相手の未コミット成果のクロバーを防ぐ。
@@ -12,7 +12,7 @@
  *
  * stdin: { tool_name, tool_input: { file_path }, session_id }。
  * exit:  0 = pass / 2 = block。
- * override: UT_TDD_ALLOW_FOREIGN_EDIT=1 (env、人間が out-of-band で設定) か、`.ut-tdd/state/
+ * override: HELIX_ALLOW_FOREIGN_EDIT=1 (env、人間が out-of-band で設定) か、`.helix/state/
  *   foreign-edit-override` に非空の理由を書く marker。marker は **one-shot**: foreign 編集を伴う
  *   1 tool-call で消費 (削除) する。古い marker が残って「今回だけの例外」が「以後ずっと例外」に
  *   ならないようにする (env override は人間管理ゆえ消費しない)。
@@ -58,7 +58,7 @@ function gitUncommittedFiles(): string[] {
 
 function sessionTouchedFiles(sessionId: string): string[] {
   const safe = sessionId.replace(/[\\/]+/g, "_");
-  const file = join(repoRoot, ".ut-tdd", "logs", "session", `${safe}.jsonl`);
+  const file = join(repoRoot, ".helix", "logs", "session", `${safe}.jsonl`);
   if (!existsSync(file)) return [];
   const touched: string[] = [];
   for (const line of readFileSync(file, "utf8").split("\n")) {
@@ -73,10 +73,10 @@ function sessionTouchedFiles(sessionId: string): string[] {
   return touched;
 }
 
-const OVERRIDE_MARKER = join(repoRoot, ".ut-tdd", "state", "foreign-edit-override");
-const OVERRIDE_AUDIT = join(repoRoot, ".ut-tdd", "logs", "foreign-edit-overrides.jsonl");
+const OVERRIDE_MARKER = join(repoRoot, ".helix", "state", "foreign-edit-override");
+const OVERRIDE_AUDIT = join(repoRoot, ".helix", "logs", "foreign-edit-overrides.jsonl");
 
-/** agent-accessible override marker (`.ut-tdd/state/foreign-edit-override`) の本文 (=理由) を読む。 */
+/** agent-accessible override marker (`.helix/state/foreign-edit-override`) の本文 (=理由) を読む。 */
 function readOverrideMarker(): string | null {
   try {
     return existsSync(OVERRIDE_MARKER) ? readFileSync(OVERRIDE_MARKER, "utf8") : null;
@@ -124,7 +124,7 @@ try {
     .map((t) => normalizeRepoRelative(t, repoRoot))
     .filter((t) => t.length > 0);
   const override = resolveForeignEditOverride({
-    env: process.env.UT_TDD_ALLOW_FOREIGN_EDIT,
+    env: process.env.HELIX_ALLOW_FOREIGN_EDIT,
     markerReason: readOverrideMarker(),
   });
   const uncommitted = gitUncommittedFiles();

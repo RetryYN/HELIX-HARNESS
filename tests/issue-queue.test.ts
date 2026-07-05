@@ -11,7 +11,7 @@ function seedQueue(db: ReturnType<typeof openHarnessDb>): void {
       source_event_id: "feedback-1",
       plan_id: "",
       target: "github",
-      title: "[ut-tdd telemetry] trouble_event_rate",
+      title: "[helix telemetry] trouble_event_rate",
       body: "Review trouble_event_rate.",
       status: "queued_dry_run",
       human_approval_required: 1,

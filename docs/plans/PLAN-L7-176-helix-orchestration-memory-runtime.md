@@ -70,7 +70,7 @@ dependencies:
     - src/memory/index.ts
 ---
 
-# PLAN-L7-176 (add-impl): P2/P7 runtime
+# PLAN-L7-176 (add-impl): P2/P7 runtime 実行・永続化
 
 ## §0 役割 / スコープ
 
@@ -81,25 +81,25 @@ harness.db 分析投影（loop_iterations/jobs/memory 2 表）＋観測 doctor g
 
 ## §1 実装単位
 
-| module | 内容 | oracle |
+| モジュール (module) | 内容 | 検証基準 (oracle) |
 |--------|------|--------|
-| `src/orchestration/loop-store.ts` | LoopState の `.ut-tdd/state/loop/<planId>.json` I/O（read/write、注入 fs） | (tick の deps) |
+| `src/orchestration/loop-store.ts` | LoopState の `.helix/state/loop/<planId>.json` I/O（read/write、注入 fs） | (tick の deps) |
 | `src/orchestration/loop-runner.ts`（改修） | `tick`（hybrid 自己評価 fail-close、stop 経路、iteration++、loop record） | U-ORCH-004 |
-| `src/orchestration/job-queue.ts` | `claimNextJob`（**専用** `bun:sqlite` `.ut-tdd/state/jobs.db`、`BEGIN IMMEDIATE` 競合排他） | U-ORCH-006 |
-| `src/memory/memory-store.ts` | 実 `MemoryDeps`（`.ut-tdd/memory/<layer>.jsonl` git 共有 SSoT、`isSecretLike` 再利用、stableId/now） | (U-MEM 実体) |
-| `src/cli.ts`（改修） | `ut-tdd memory write/list/show` subcommand（memory-store 経由） | (CLI surface) |
+| `src/orchestration/job-queue.ts` | `claimNextJob`（**専用** `bun:sqlite` `.helix/state/jobs.db`、`BEGIN IMMEDIATE` 競合排他） | U-ORCH-006 |
+| `src/memory/memory-store.ts` | 実 `MemoryDeps`（`.helix/memory/<layer>.jsonl` git 共有 SSoT、`isSecretLike` 再利用、stableId/now） | (U-MEM 実体) |
+| `src/cli.ts`（改修） | `helix memory write/list/show` subcommand（memory-store 経由） | (CLI surface) |
 | `src/lint/asset-drift.ts`（改修） | `.claude/agent-memory/` silo scan 除去（per-agent silo 廃止） | (silo 廃止) |
 
 ## §2 進め方（Codex 分散・Red→Green）
 
 1. U-ORCH-004 / U-ORCH-006 の `it.todo` を実テスト（Red）へ展開し Codex 実装で Green。
-2. memory-store / cli は file-based で結合し、`ut-tdd memory` が動くことを確認。
+2. memory-store / cli は file-based で結合し、`helix memory` が動くことを確認。
 3. Claude が cross-runtime review（契約適合・fail-close・secret reject を精読）。
 
 ## §3 DoD（達成）
 
 - [x] `tick`（U-ORCH-004）/ `claimNextJob`（U-ORCH-006）green、**9 oracle 全 Green（todo 解消）**。
-- [x] `ut-tdd memory write/list/show` がファイル永続（jsonl）で動作、secret reject、harness-only surface。
+- [x] `helix memory write/list/show` がファイル永続（jsonl）で動作、secret reject、harness-only surface。
 - [x] typecheck/vitest/lint/doctor green、cross-runtime review 証跡（green_commands + 実 digest）。
 - [x] Reverse(PLAN-REVERSE-176) の L3 要件 back-fill（HR-BR-07R/12R/NFR-03R）と両 confirm。
 
@@ -107,21 +107,21 @@ harness.db 分析投影（loop_iterations/jobs/memory 2 表）＋観測 doctor g
 
 ### §3.1 追補（SessionStart surfacing 配線、2026-06-28）
 
-L6 設計 §2.6 の「SessionStart で harness 層 surface」を配線完了: `ut-tdd session start`（`.claude/settings.json`
+L6 設計 §2.6 の「SessionStart で harness 層 surface」を配線完了: `helix session start`（`.claude/settings.json`
 SessionStart hook 本体）が `surfaceMemory(fileMemoryDeps({root}))` を呼び、harness メモリを `harness-memory (N):`
-として hook 出力に surface する。これで共有 SSoT（`.ut-tdd/memory/harness.jsonl`、git 追跡・Claude/Codex 共有）が
+として hook 出力に surface する。これで共有 SSoT（`.helix/memory/harness.jsonl`、git 追跡・Claude/Codex 共有）が
 **自動想起**され、**Claude Code 内蔵メモリ（per-agent silo）に依存しない**（charter P7 dogfood）。被覆 = U-CLI-MEM-SURFACE。
 
 ### §3.2 追補（surface context-budget 上限化、2026-06-28）
 
 `surfaceMemory` は SessionStart で毎回 context へ注入されるため、無制限化すると entry 増加に比例して
 context を圧迫する。L6 設計 §2.3 契約を改訂し、surface を有界化した: 直近 `maxEntries`(既定 12) 件のみ・
-各 body を `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — ut-tdd memory list harness)` フッタへ
+各 body を `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — helix memory list harness)` フッタへ
 集約する（全文・全件の毎回注入を禁止）。`SurfaceBudget` で上限を注入可能（テスト容易性）。
 被覆 = tests/memory/memory-store.test.ts「clips long bodies and caps surfaced entries」。これは
 HNFR-AC（同一記憶共有）の運用 NFR（context 予算）面の補強であり、契約の意味は不変（harness 層のみ・秘匿非 surface）。
 
-## §4 carry（P9 観測強化、別 add-impl）
+## §4 後続持ち越し（carry、P9 観測強化、別 add-impl）
 
 - harness.db への loop_iterations[blocked_reason] / jobs / memory 2 表 projection（分析・query）。
 - doctor `verifier-provider-mismatch`（loop_iterations 走査）/ `agent-memory-silo`。

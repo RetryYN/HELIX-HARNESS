@@ -96,7 +96,10 @@ describe("fr-roadmap-coverage lint", () => {
       .replace("V-model state", "V-model 状態")
       .replace("Required next artifact", "次に必要な artifact")
       .replace("test file / oracle citation", "test file / oracle 引用");
-    const r = analyzeFrRoadmapCoverageWithRoot([{ file: "A.md", content: localized }], process.cwd());
+    const r = analyzeFrRoadmapCoverageWithRoot(
+      [{ file: "A.md", content: localized }],
+      process.cwd(),
+    );
 
     expect(r.ok).toBe(true);
     expect(r.rows).toHaveLength(9);

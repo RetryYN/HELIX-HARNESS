@@ -217,11 +217,11 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     db.close();
   });
 
-  it("assertWithinUtTdd は .ut-tdd 配下と :memory: を許可し外を拒否する", () => {
+  it("assertWithinUtTdd は .helix 配下と :memory: を許可し外を拒否する", () => {
     const repo = process.cwd();
     expect(() => assertWithinUtTdd(":memory:", repo)).not.toThrow();
-    expect(() => assertWithinUtTdd(".ut-tdd/harness.db", repo)).not.toThrow();
-    expect(() => assertWithinUtTdd(".ut-tdd/sub/x.db", repo)).not.toThrow();
+    expect(() => assertWithinUtTdd(".helix/harness.db", repo)).not.toThrow();
+    expect(() => assertWithinUtTdd(".helix/sub/x.db", repo)).not.toThrow();
     expect(() => assertWithinUtTdd("harness.db", repo)).toThrow();
     expect(() => assertWithinUtTdd("../escape.db", repo)).toThrow();
   });

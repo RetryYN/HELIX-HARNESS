@@ -106,8 +106,8 @@ review_evidence:
 
 ## 目的
 
-実 consumer smoke で、fresh setup 済み repo に `ut-tdd setup project` を再実行すると、
-生成済みの `.vscode/tasks.json` や `.ut-tdd/teams/default-hybrid.yaml` まで brownfield conflict として
+実 consumer smoke で、fresh setup 済み repo に `helix setup project` を再実行すると、
+生成済みの `.vscode/tasks.json` や `.helix/teams/default-hybrid.yaml` まで brownfield conflict として
 `review_import_report` へ送られることを検出した。
 
 これは「既存 consumer-owned file を守る」要求自体は正しいが、前回 HELIX が生成した同一内容の managed artifact
@@ -130,7 +130,7 @@ review_evidence:
 - 採用: mergeable adapter docs は既存の managed block merge 境界を維持する。
 - 不採用: 差分のある `.vscode/tasks.json` を自動 merge する。VS Code task は JSON 構造の consumer-owned config であり、
   意味 merge には別設計が必要なため、今回は review route のままにする。
-- 不採用: `.ut-tdd` から `.helix` への実 cutover。PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も apply しない。
+- 不採用: `.helix` から `.helix` への実 cutover。PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も apply しない。
 
 ## 完了条件
 

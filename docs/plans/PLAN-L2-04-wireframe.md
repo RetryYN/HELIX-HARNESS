@@ -43,13 +43,13 @@ review_evidence:
 
 # PLAN-L2-04 (design): L2 ワイヤーフレーム wireframe 本起票
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 PLAN-L2-00 master の Step 3 (最終 sub-doc)。screen-list/flow/ui-element で確定した 15 画面を
 **Low-Fi ASCII レイアウト** で情報配置として示す。本 mock 自体が L2↔L10 の ③ pair (`pair_artifact: self`、
 IMP-039/058) ゆえ `docs/test-design/` に独立 doc は作らない。confirmed 昇格は G2 freeze = master Step 4。
 
-## 1. Scope (L2 確定項目)
+## 1. 対象範囲 (Scope: L2 確定項目)
 
 - **共通レイアウト骨格** (§1): トップナビ + Breadcrumb + FilterBar + DataTable + StatusBadge + NextActionCard。
 - **主要画面 Low-Fi** (§2): PM-01 (4 階層 + heatmap) / PM-03 (gate+trouble) / **PM-06 設計書ビューア (ツリー+プレビュー)** /
@@ -57,14 +57,14 @@ IMP-039/058) ゆえ `docs/test-design/` に独立 doc は作らない。confirme
 - **High-Fi 方針** (§3): Low-Fi デフォルト harness 内保持、High-Fi はケース別 (harness 内 OR 外部依頼、
   外部は許容オプション・強制でない、PO 確定 2026-05-28)。外部依頼時 back-propagation フロー (G1-trace 再検証)。
 
-## 2. Acceptance Criteria
+## 2. 受入条件 (Acceptance Criteria)
 
 - [x] 共通レイアウト骨格 + 主要 7 画面の Low-Fi ASCII (PM-06 含む) を確定。
 - [x] High-Fi 柔軟方針 + 外部依頼 back-propagation フローを維持 (PO 確定)。
 - [x] ③ pair=self (L10 独立 doc 不要) を明記、vmodel-lint で孤児扱いされない。
-- [x] intra_runtime_subagent (pmo-sonnet) review approve(-with-fixes→fix 済) + doctor green。
+- [x] intra_runtime_subagent (pmo-sonnet) レビュー承認 (review approve-with-fixes→fix 済) + doctor 成功 (doctor green)。
 
-## 3. Out of scope
+## 3. 対象外 (Out of scope)
 
 - High-Fi モック実体 (Figma/SVG) = ケース別 / L10。
 - src/web 実装 = Phase B。

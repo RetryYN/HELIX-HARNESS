@@ -28,8 +28,8 @@ HELIX で構築する機能の中で、LLM call、agent delegation、RAG、conte
 
 ## Harness を迂回せず route する
 
-HELIX は provider call を `ut-tdd claude --role <role>`、`ut-tdd codex --role <role>`、
-`ut-tdd team run --definition .ut-tdd/teams/<team>.yaml` へ外出しする。source に raw provider call を追加する前に、
+HELIX は provider call を `helix claude --role <role>`、`helix codex --role <role>`、
+`helix team run --definition .helix/teams/<team>.yaml` へ外出しする。source に raw provider call を追加する前に、
 次を確認する。
 
 1. 呼び出しが PLAN `agent_slots` で宣言された agent delegation なら、wrapper 経由で route し、session lifecycle、
@@ -38,13 +38,13 @@ HELIX は provider call を `ut-tdd claude --role <role>`、`ut-tdd codex --role
    または model が agent frontmatter family と一致しない call を block する。不一致 model を hard-code しない。
 3. low-cost-first を適用する。機械的な subtask には成立する範囲で最軽量 model を使い、frontier model は judgement gate と
    design decision に残す（`agent-cost-design` skill 参照）。Model choice と outcome は `model_runs`
-   （`ut-tdd telemetry`）へ記録される。
+   （`helix telemetry`）へ記録される。
 
 ## Context injection の checklist（L4–L5 design gate）
 
 pair-freeze 前に、design doc で次へ回答する。
 
-- [ ] call ごとにどの context を injection するか（skill pack paths、`.ut-tdd/` state、特定の design docs）。
+- [ ] call ごとにどの context を injection するか（skill pack paths、`.helix/` state、特定の design docs）。
 - [ ] call ごとの token budget と overflow strategy（truncate / chunk）。
 - [ ] retrieval を使う場合: retrieval unit と、chunk を drop する relevance threshold（empty context を黙って渡さない）。
 - [ ] injected context に PII、credentials、payload body を含めない。この 3 つは harness safety boundary で禁止されるため、
@@ -59,7 +59,7 @@ L6 unit test が contract に対して assert できるように、chunking boun
 
 - `bun run typecheck` が clean。model-call path に `any` を残さない。
 - Unit test は normal response、API error / timeout、context-overflow truncation を cover する。
-- 実装後に `ut-tdd review --uncommitted` を実行し、`model_runs` telemetry を review evidence として捕捉する。
+- 実装後に `helix review --uncommitted` を実行し、`model_runs` telemetry を review evidence として捕捉する。
 
 ## 設計時に対策する failure mode
 

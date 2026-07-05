@@ -21,7 +21,7 @@ describe("IT-SEARCH-01 / IT-DB-03 / IT-FEEDBACK-01", () => {
       upsertSearchReference(db, {
         subject_type: "finding",
         subject_id: "finding:search",
-        path: ".ut-tdd/evidence/finding.json",
+        path: ".helix/evidence/finding.json",
         title: "search finding",
         tokens: "feedback search stale",
         summary: "open finding",
@@ -70,7 +70,7 @@ describe("IT-SEARCH-01 / IT-DB-03 / IT-FEEDBACK-01", () => {
         upsertSearchReference(db, {
           subject_type: "finding",
           subject_id: "finding:leak",
-          path: ".ut-tdd/audit/finding.json",
+          path: ".helix/audit/finding.json",
           title: "leak",
           tokens: `${leakToken} leaked`,
           summary: "open finding",
@@ -149,7 +149,7 @@ describe("IT-SEARCH-01 / IT-DB-03 / IT-FEEDBACK-01", () => {
           subject_id: "PLAN-L7-47-search-metrics-feedback",
           source: "doctor",
           status: "open",
-          evidence_path: ".ut-tdd/evidence/orphan.json",
+          evidence_path: ".helix/evidence/orphan.json",
         },
       });
       upsertRow(db, {

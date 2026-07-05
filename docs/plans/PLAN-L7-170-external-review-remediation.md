@@ -134,7 +134,7 @@ review_evidence:
 
 # PLAN-L7-170: 外部レビュー remediation (4 findings + digest 再stamp)
 
-## Objective
+## 目的
 
 外部レビュー (GPT5.5Pro) が HELIX-HARNESS に挙げた 4 件の欠陥を、実コードで全件再現確認した上で
 修正し、各々に real-repo 回帰テストを付ける。あわせて、mega-file (`src/cli.ts` 等) を green-command
@@ -145,16 +145,16 @@ stale 化したため、green 再実行済みの coordinated 再stamp (案A) で
 (`coding ≠ substance`) だった。本 PLAN はその回復であり、新規 requirement/design を導入しない
 (`backprop not_required`)。
 
-## 修正 (4 findings)
+## 修正 (4 件の findings)
 
 ### F1 — `setup --dry-run` が副作用を持つ (Critical)
-- 問題: `runSetup` が dryRun でも `recordSetupState` で `.ut-tdd/state/setup.json` を書き、
+- 問題: `runSetup` が dryRun でも `recordSetupState` で `.helix/state/setup.json` を書き、
   `applyBranchProtection` も dryRun を見ず、`--dry-run --apply-branch-protection`+対話+admin+confirm で
   remote の branch protection 適用まで進み得た。CLI help は「生成物一覧のみ表示 (書き込まない)」。
 - 修正 ([src/setup/index.ts](../../src/setup/index.ts)): dryRun=true で `recordSetupState` を封鎖し、
   `branchProtection` を `{ applied:false, reason:"dry-run" }` に固定。`emitSetup` は元から `plan.dryRun`
   を尊重して非書込。`runSetup` の不変条件コメントに「dryRun=true は副作用ゼロ」を明記。
-- AC: dry-run は state を書かず、mutating gh 経路 (`auth status` / `-X PUT`) に決して入らない。
+- 受入条件: dry-run は state を書かず、mutating gh 経路 (`auth status` / `-X PUT`) に決して入らない。
 - 回帰テスト: `U-SETUP-008` (state非書込 / 生成物非書込 / mutating gh非呼出 / `reason="dry-run"`)。
   既存 `U-SETUP-007` ③④ は dry-run で state を書く前提に依存していたため、本来意図 (fallback決定 /
   非対話 branch protection precondition) を保つよう `dryRun:false` に修正。
@@ -167,7 +167,7 @@ stale 化したため、green 再実行済みの coordinated 再stamp (案A) で
   ではない。`--execute --json` は provider を起動し、末尾で実行結果 JSON (`executed:true`,
   `exit_code`, `dry_run:false`) を返す。json 時は provider の stdout を fd2(stderr) へ逃がし、parent
   stdout を実行結果 JSON 専用に保つ。
-- AC: `--execute --json` は実際に provider を起動し、stdout は機械パース可能な実行結果 JSON のみ。
+- 受入条件: `--execute --json` は実際に provider を起動し、stdout は機械パース可能な実行結果 JSON のみ。
 - 回帰テスト: cli-surface に「fake provider 起動 + stdout に provider noise を含まない + `dry_run:false`
   + env dump で実起動を確認」を追加。
 
@@ -178,18 +178,18 @@ stale 化したため、green 再実行済みの coordinated 再stamp (案A) で
 - 修正 ([src/lint/runtime-portability.ts](../../src/lint/runtime-portability.ts)): git 失敗時に既知 prefix
   (`src` / `.claude/hooks` / `scripts`) のみ降下する filesystem walk へ fallback (node_modules / dist /
   .git は走査しない)。
-- AC: `.git` 不在でも `src/` 配下が検査面に含まれる。
+- 受入条件: `.git` 不在でも `src/` 配下が検査面に含まれる。
 - 回帰テスト: `U-RPORT-007` (`.git` を作らず `src/legacy.py` を検出)。
 
 ### F4 — work-guard override marker が永続 (Medium)
-- 問題: `.ut-tdd/state/foreign-edit-override` marker は読むだけで消費されず、古い marker が残ると
+- 問題: `.helix/state/foreign-edit-override` marker は読むだけで消費されず、古い marker が残ると
   「今回だけの例外」が「以後ずっと例外」になり、foreign-edit guard を広く無効化していた。
 - 修正 ([.claude/hooks/work-guard.ts](../../.claude/hooks/work-guard.ts)): marker を **one-shot** 消費
   (foreign 編集を許可した 1 tool-call で削除)。env override は人間管理ゆえ非消費。
   `consumeOverrideMarker` は `if (override.source === "marker" && targets.length > 0)` 分岐内に置き、
   env 優先 (source=env) 時は消えない (Codex の「env でも消す」懸念は diff 文脈の誤読で、実コードは
   仕様どおり)。`.claude/CLAUDE.md` の Guard Rules 記述も one-shot に同期。
-- AC: marker 使用後は削除され、次の同一 foreign 編集は再び block (exit 2)。audit 証跡は残る。
+- 受入条件: marker 使用後は削除され、次の同一 foreign 編集は再び block (exit 2)。audit 証跡は残る。
 - 回帰テスト: 実 hook spawn で「1回目=許可+marker消費+audit残存 / 2回目=block(exit2)」。
 
 ### 非対応 — Biome warning 4 件 (Minor, drift 偽陽性)
@@ -204,24 +204,24 @@ evidence として content-hash 参照していた 7 confirmed PLAN の `output_
 green 再実行済みで coordinated に再stamp した (機械改ざんでなく content-address の更新)。
 
 - 再stamp 対象 (11 entries / 7 PLAN):
-  - PLAN-L7-114-work-guard → tests/work-guard.test.ts
-  - PLAN-L7-131-plan-complete-handover → tests/cli-surface.test.ts
-  - PLAN-L7-138-quality-branch-audit → src/cli.ts, tests/cli-surface.test.ts
-  - PLAN-L7-139-codex-hook-adapter → tests/work-guard.test.ts
-  - PLAN-L7-158-refactor-detector-precision-and-policy-extraction → src/cli.ts, tests/cli-surface.test.ts
-  - PLAN-L7-166-setup-template-catalog-split → tests/setup.test.ts, src/setup/index.ts (×2)
-  - PLAN-REVERSE-131-plan-complete-handover → src/cli.ts
+  - 対象: PLAN-L7-114-work-guard → tests/work-guard.test.ts
+  - 対象: PLAN-L7-131-plan-complete-handover → tests/cli-surface.test.ts
+  - 対象: PLAN-L7-138-quality-branch-audit → src/cli.ts, tests/cli-surface.test.ts
+  - 対象: PLAN-L7-139-codex-hook-adapter → tests/work-guard.test.ts
+  - 対象: PLAN-L7-158-refactor-detector-precision-and-policy-extraction → src/cli.ts, tests/cli-surface.test.ts
+  - 対象: PLAN-L7-166-setup-template-catalog-split → tests/setup.test.ts, src/setup/index.ts (×2)
+  - 対象: PLAN-REVERSE-131-plan-complete-handover → src/cli.ts
 - green 再実行: `bun run typecheck` (pass) / `bun run lint` (clean) / 全 vitest (logic 1093 pass) /
   対象 test (setup / cli-surface / runtime-portability / work-guard / runtime-hook-entrypoints) 全 green。
 - baseline: HEAD `0f46f3a` + 本 PLAN の意図変更のみ。
-- claim 不変: 各 PLAN の verdict / scope / 主張は変えず、`output_digest` の hash と最小限のみ更新
+- 主張は不変: 各 PLAN の verdict / scope / 主張は変えず、`output_digest` の hash と最小限のみ更新
   (`completed_at` 等の original 監査時刻は保持)。`supersedes` 不要 (意味論不変、hash drift のみ)。
 - 検証: `auditGreenCommandDigests` が再stamp 後 0 mismatch、git diff は 11 行の digest hex のみ
   (行末 churn なし)。
 
-## Cross-runtime review
+## Cross-runtime review（相互ランタイムレビュー）
 
-`ut-tdd codex --role qa --task-file <desk-review> --execute` (provider=codex / model=gpt-5.5、
+レビュー実行: `helix codex --role qa --task-file <desk-review> --execute` (provider=codex / model=gpt-5.5、
 hybrid cross_agent) で DESK REVIEW を実施。6 観点 (A〜F) で approve、コード由来の修正要求ゼロ。
 worker=Claude Opus 4.8、reviewer=Codex gpt-5.5 (model family 相異 → cross_agent 成立)。Codex が
 任意改善として挙げた「signal 終了を JSON に含める」は下記フォローアップで対応済。
@@ -239,7 +239,7 @@ worker=Claude Opus 4.8、reviewer=Codex gpt-5.5 (model family 相異 → cross_a
 - この 2 点で `src/cli.ts` / `tests/cli-surface.test.ts` を再編集したため、両者を参照する 5 PLAN
   (L7-131 / L7-138 / L7-158 / L7-170 / REVERSE-131) の 8 entries を同手順で再stamp (audit 0 mismatch)。
 
-## Definition of Done
+## Definition of Done（完了条件）
 
 - [x] F1 setup --dry-run 無副作用化 + U-SETUP-008 + 既存テスト意図保持
 - [x] F2 --execute --json 実行+実行結果JSON 契約 + cli-surface 回帰テスト

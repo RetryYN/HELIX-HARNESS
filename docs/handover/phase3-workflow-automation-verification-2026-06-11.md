@@ -21,10 +21,10 @@ active_plan: PLAN-L7-43
 
 対象外:
 
-- `.ut-tdd/harness.db` / state DB projection implementation.
+- `.helix/harness.db` / state DB projection implementation.
 - DB-backed feedback、audit、search、quality-signal history、automatic state registration。これらは Phase 4 に残す。
 - external MCP/tool execution。現 Phase 3 は catalog/config/safety/probe planning と normalized findings のみを検証する。
-- runnable `ut-tdd export docs` CLI。現 Phase 3 は canonical document export library/projection core のみを検証する。
+- runnable `helix export docs` CLI。現 Phase 3 は canonical document export library/projection core のみを検証する。
 
 ## 2. 派生要件
 
@@ -73,7 +73,7 @@ bun run src/cli.ts doctor
 | subprocess CLI smoke tests があるのに `src/cli.ts` 変更で regression-expansion が warning になった | `U-REGEXP-003` と subprocess smoke coverage recognition を `dependency-drift` に追加 |
 | L0-L7 verification group が L1-L6 design docs だけを検査していた | 必須 L7 automation PLAN status/review/generates evidence と `U-VTRIG-006` を追加し、`doctor` が `L7 plans 9/9 confirmed, evidence 9/9` を出すようにした |
 | `doctor.ok` が dependency/regression/verification group failure を hard-fail していなかった | `dependency-drift`、`regression-expansion`、verification group readiness を `runDoctor.ok` に配線 |
-| `PLAN-L7-35` が runnable `ut-tdd export docs` CLI surface を含意していた | Phase 3 は canonical document export pure core のみを扱い、CLI surface は follow-up scope と明確化 |
+| `PLAN-L7-35` が runnable `helix export docs` CLI surface を含意していた | Phase 3 は canonical document export pure core のみを扱い、CLI surface は follow-up scope と明確化 |
 | cross-review で L0-L7 PLAN status-only evidence が弱いと判明 | `loadVerificationPlanEvidence` を強化し、L0-L7 は confirmed status に加えて `review_evidence` と `generates` metadata を要求 |
 
 ## 5. 現在の検証結果
@@ -101,7 +101,7 @@ bun run src/cli.ts doctor
 
 残リスク / 次 cycle:
 
-- Phase 4 DB integration は設計上まだ open: `.ut-tdd/harness.db`、projection rebuild、feedback/audit/search、automatic registration。
+- Phase 4 DB integration は設計上まだ open: `.helix/harness.db`、projection rebuild、feedback/audit/search、automatic registration。
 - external MCP/tool execution は opt-in のままで、現行 gate truth には含めない。
 - `PLAN-L7-05-biome-debt` は `doctor` の conditional backfill note として残るが、Phase 3 は block しない。
 

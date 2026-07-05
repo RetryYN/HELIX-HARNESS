@@ -114,7 +114,7 @@ review_evidence:
 - [x] `completionReviewBundleForOutstanding()` が `reviewPackets[].requiredReviewFields[]` を返す。
 - [x] `analyzeCompletionReviewBundle()` の期待 packet も実配列を含み、削除・drift を fail-close する。
 - [x] `tests/completion-decision-packet.test.ts` が S4 review bundle で具体 field を確認する。
-- [x] `ut-tdd completion review-bundle` text が `reviewFieldCount=` と `reviewFields=` を出す。
+- [x] `helix completion review-bundle` text が `reviewFieldCount=` と `reviewFields=` を出す。
 - [x] doctor の completion-review-bundle OK message が packet 別 `reviewFieldCounts=` を出す。
 - [x] handover Markdown §3 が `確認field件数=` を出し、欠落時は fail-close する。
 - [x] `requiredReviewFieldsDigest` は実配列の digest として維持する。

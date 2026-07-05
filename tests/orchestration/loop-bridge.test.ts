@@ -161,17 +161,17 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
   });
 
   it("U-ORCH-BRIDGE-02: loop run drives ticks until canResume false and dry-run does not dispatch", () => {
-    const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-loop-bridge-"));
+    const cwd = mkdtempSync(join(tmpdir(), "helix-loop-bridge-"));
     const binDir = join(cwd, "bin");
     try {
       const codexBin = writeFakeProvider({ binDir, provider: "codex" });
       const claudeBin = writeFakeProvider({ binDir, provider: "claude", verdict: "fail" });
       const env = {
         PATH: `${binDir}${delimiter}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: codexBin,
-        UT_TDD_CLAUDE_BIN: claudeBin,
+        HELIX_CODEX_BIN: codexBin,
+        HELIX_CLAUDE_BIN: claudeBin,
       };
-      const loopDir = join(cwd, ".ut-tdd", "state", "loop");
+      const loopDir = join(cwd, ".helix", "state", "loop");
       mkdirSync(loopDir, { recursive: true });
       writeFileSync(
         join(loopDir, "PLAN-L7-177.json"),

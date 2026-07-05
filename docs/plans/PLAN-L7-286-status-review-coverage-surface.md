@@ -63,13 +63,13 @@ review_evidence:
 
 ## 目的
 
-`completion review-bundle` 単体の text には `review-coverage:` があるが、普段確認される `ut-tdd status` と `ut-tdd handover status` の text は review-bundle command だけを表示していた。JSON を見ない運用では、review packet で閉じる blocker と packet 外 blocker の分離を見落とす余地が残る。
+`completion review-bundle` 単体の text には `review-coverage:` があるが、普段確認される `helix status` と `helix handover status` の text は review-bundle command だけを表示していた。JSON を見ない運用では、review packet で閉じる blocker と packet 外 blocker の分離を見落とす余地が残る。
 
 この PLAN では status / handover status text に `completion-review-coverage:` を追加し、通常確認 surface でも `reviewCoveredBlockers` / `nonPacketBlockers` を落とさない。
 
 ## DoD
 
-- [x] `ut-tdd status` text が `completion-review-coverage:` を出す。
-- [x] `ut-tdd handover status` text が `completion-review-coverage:` を出す。
+- [x] `helix status` text が `completion-review-coverage:` を出す。
+- [x] `helix handover status` text が `completion-review-coverage:` を出す。
 - [x] JSON の `completionReviewBundle.reviewCoveredBlockers` / `nonPacketBlockers` と text surface が同じ分離を示す。
 - [x] L6 function spec と L7 unit-test design が status / handover text の coverage 表示を明記する。

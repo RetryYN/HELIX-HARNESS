@@ -56,24 +56,23 @@ review_evidence:
         output_digest: "sha256:cb69e5f9425f57492a0760eb7574201d4d361689feb2229db46d773509485b07"
 ---
 
-# PLAN-L7-118: required backfill bidirectional gate
+# PLAN-L7-118: required backfill bidirectional gate（必須 backfill 双方向 gate）
 
-## Objective
+## 目的
 
-Make required add-impl backfill pairing bidirectional. Reverse already had to
-require the L7 implementation PLAN, but the implementation PLAN also needs to
-require the Reverse PLAN so the execution contract visibly carries the design
-fullback step.
+必須 `add-impl` の backfill pairing を双方向にする。Reverse 側はすでに L7 実装 PLAN を
+require する必要があったが、実装 PLAN 側も Reverse PLAN を require し、execution contract が
+design fullback step を明示的に保持する状態へ揃える。
 
-## Scope
+## スコープ
 
-- Add `reverseLinkMissing` to `backfill-pairing`.
-- Enforce only for new or updated required add-impl PLANs from 2026-06-23 onward.
-- Keep legacy one-way backfill debt non-blocking unless the PLAN is updated.
-- Record the rule in requirements.
+- `backfill-pairing` に `reverseLinkMissing` を追加する。
+- 2026-06-23 以降に新規作成または更新された必須 `add-impl` PLAN だけを enforcement 対象にする。
+- legacy の片方向 backfill debt は、当該 PLAN が更新されない限り non-blocking のまま扱う。
+- この rule を requirements に記録する。
 
-## Acceptance Criteria
+## 受入条件
 
-- New/updated add-impl with Reverse→L7 only fails.
-- New/updated add-impl with both L7→Reverse and Reverse→L7 passes.
-- Current repository backfill audit remains green.
+- Reverse→L7 だけを持つ新規または更新済み `add-impl` は fail する。
+- L7→Reverse と Reverse→L7 の両方を持つ新規または更新済み `add-impl` は pass する。
+- 現在の repository backfill audit は green のまま維持される。

@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-129-incident-route-token-coverage
-title: "PLAN-REVERSE-129: route token coverage fullback"
+title: "PLAN-REVERSE-129: route token coverage の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,14 +16,14 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The route eval acceptance list now records missing route token coverage."
+    reason: "route eval acceptance list に不足していた route token coverage を記録した。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Basic design now states declared route tokens and longest-token priority."
+    reason: "Basic design に declared route tokens と longest-token priority を明記した。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The change stays within the existing route evaluation contract."
+    reason: "この変更は既存の route evaluation contract の範囲内に留まる。"
 agent_slots:
   - role: tl
     slot_label: "TL - route token fullback"
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T15:45:00+09:00"
     tests_green_at: "2026-06-23T15:45:00+09:00"
     verdict: approve
-    scope: "R4 fullback from route token coverage to requirements and L4 design."
+    scope: "route token coverage から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,22 +66,21 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-129: route token coverage fullback
+# PLAN-REVERSE-129: route token coverage の fullback
 
-## Objective
+## 目的
 
-Back-fill the implemented route token coverage to requirements and L4 function
-design.
+実装済みの route token coverage を requirements と L4 function design へ
+back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements 7.8.1 / 7.8.6 record route token coverage and longest-token
-  priority.
-- L4 function design states incident token coverage, drift routing, additive
-  interrupt routing, and fail-close approval behavior.
+- Requirements 7.8.1 / 7.8.6 に route token coverage と longest-token
+  priority を記録する。
+- L4 function design に incident token coverage、drift routing、additive
+  interrupt routing、fail-close approval behavior を明記する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both mention route token coverage.
-- The Reverse record keeps the implementation inside the route evaluation
-  contract.
+- Requirements と L4 design の両方が route token coverage に言及している。
+- Reverse record は実装を route evaluation contract の内側に保持している。

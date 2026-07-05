@@ -59,7 +59,7 @@ review_evidence:
         evidence_path: src/runtime/session-log.ts
         output_digest: "sha256:d5511d2103b8e2cf465c9c4a95a1952f6821e1d9b569d6f88c7fd792ad8de73e"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -88,7 +88,7 @@ review_evidence:
 ## 対象外
 
 - `src/cli.ts` への runtime wiring は、同ファイルに他ランタイムの未コミット変更があるため本 PLAN では行わない。
-- `.ut-tdd` / `ut-tdd` の物理 rename、distribution cutover、remote apply は PLAN-M-02 承認まで行わない。
+- `.helix` / `helix` の物理 rename、distribution cutover、remote apply は PLAN-M-02 承認まで行わない。
 
 ## 受入結果
 

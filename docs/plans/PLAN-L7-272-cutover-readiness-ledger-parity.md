@@ -69,7 +69,7 @@ review_evidence:
         output_digest: "sha256:28b6803140e428990607f745810ec982f2b171f739b30f8d13706de0392a17b7"
 ---
 
-# PLAN-L7-272: cutover readiness ledger parity
+# PLAN-L7-272: cutover readiness ledger の parity
 
 ## 目的
 
@@ -88,7 +88,7 @@ testing strategy を必須 row として扱い、expected URL と required field
 
 ## 境界
 
-- `.ut-tdd -> .helix` の実 cutover / state move / alias enablement は実行しない。
+- `.helix -> .helix` の実 cutover / state move / alias enablement は実行しない。
 - `cutover-readiness` は承認前 evidence gate であり、PO/action-binding approval の代替判断をしない。
 
 ## 完了条件

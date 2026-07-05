@@ -32,11 +32,11 @@ review_evidence:
     scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
 ---
 
-# PLAN-L6-24 (add-design): structured error-handling coding rule
+# PLAN-L6-24（add-design）structured error-handling coding rule の設計
 
-## §0 Position
+## §0 位置づけ
 
-Defines IMP-095: fail-open is allowed, but silent or rethrow-only catch blocks are not acceptable governance-quality error handling.
+IMP-095 を定義する。fail-open は許容するが、silent catch block や rethrow-only catch block は governance-quality の error handling として認めない。
 
 ## §3.1 実装計画（情報源）
 
@@ -55,7 +55,7 @@ Defines IMP-095: fail-open is allowed, but silent or rethrow-only catch blocks a
 
 ### Step 1: [並列] rule design
 
-Define the minimum enforceable rule: empty catch and rethrow-only catch are violations.
+最小限 enforce 可能な rule として、empty catch と rethrow-only catch を violation と定義する。
 
 ### Step 2: [直列] oracle design
 
@@ -71,5 +71,5 @@ Define the minimum enforceable rule: empty catch and rethrow-only catch are viol
 
 ## §8 DoD
 
-- [x] Empty catch and rethrow-only catch are machine-detected.
-- [x] Real repo guard has zero violations.
+- [x] Empty catch と rethrow-only catch が機械検出される。
+- [x] 実 repo guard の violation が 0 件である。

@@ -19,11 +19,11 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-174-green-command-digest-correction.md
     artifact_type: markdown_doc
-  - artifact_path: .ut-tdd/evidence/green-command/20260630-plan-lint-l3-06.json
+  - artifact_path: .helix/evidence/green-command/20260630-plan-lint-l3-06.json
     artifact_type: other
-  - artifact_path: .ut-tdd/evidence/green-command/20260630-plan-lint-l4-51.json
+  - artifact_path: .helix/evidence/green-command/20260630-plan-lint-l4-51.json
     artifact_type: other
-  - artifact_path: .ut-tdd/evidence/green-command/20260630-legacy-adoption-doctor.json
+  - artifact_path: .helix/evidence/green-command/20260630-legacy-adoption-doctor.json
     artifact_type: other
 dependencies:
   parent: docs/plans/PLAN-L7-132-green-command-digest-integrity.md
@@ -65,28 +65,22 @@ review_evidence:
         output_digest: "sha256:9e68209eead46fab25457e4ffee97d362a81d2c457120ebc3a88d301c97317d3"
 ---
 
-# PLAN-L7-174: green command digest correction
+# PLAN-L7-174: green command digest correction の記録
 
-## Objective
+## 目的
 
-Remove the remaining `green-command-digest` hard-gate blockers by correcting stale
-PLAN `green_commands[].output_digest` values to match the current SHA256 of
-their declared `evidence_path`.
+残存する `green-command-digest` hard-gate blocker を解消する。
+stale な PLAN `green_commands[].output_digest` を、宣言済み `evidence_path` の current SHA256 に合わせる。
 
-## Scope
+## 範囲
 
-- Do not change command text, exit codes, evidence paths, or review verdicts.
-- Mechanically update only `output_digest` values where the evidence file exists
-  and the current hash differs.
-- Replace self-referential PLAN-doc `evidence_path` entries with stable command
-  evidence artifacts under `.ut-tdd/evidence/green-command/`; a digest embedded
-  in the same PLAN document cannot converge to that document's raw SHA256.
-- Keep the correction behavior aligned with `src/lint/green-command-digest.ts`
-  and its doctor hard-gate aggregation.
+- command text、exit code、evidence path、review verdict は変更しない。
+- evidence file が存在し、current hash が異なる `output_digest` だけを機械的に更新する。
+- self-referential な PLAN-doc `evidence_path` entry は、`.helix/evidence/green-command/` 配下の stable command evidence artifact へ置き換える。同じ PLAN document に埋め込まれた digest は、その document raw SHA256 へ収束できない。
+- correction behavior は `src/lint/green-command-digest.ts` と doctor hard-gate aggregation に合わせる。
 
-## Acceptance Criteria
+## 受入条件
 
-- `tests/green-command-digest.test.ts`, typecheck, lint, DB rebuild, and doctor
-  pass.
+- `tests/green-command-digest.test.ts`、typecheck、lint、DB rebuild、doctor が通過する。
 - `checkGreenCommandDigests(process.cwd()).mismatches.length === 0`.
 - `doctor` reports `green-command-digest — OK`.

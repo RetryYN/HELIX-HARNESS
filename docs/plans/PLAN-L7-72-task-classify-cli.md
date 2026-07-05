@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-72-task-classify-cli
-title: "PLAN-L7-72 (impl): ut-tdd task classify public CLI (FR-L1-39)"
+title: "PLAN-L7-72 (impl): helix task classify public CLI (FR-L1-39)"
 kind: impl
 layer: L7
 drive: agent
@@ -15,12 +15,12 @@ review_evidence:
     reviewed_at: "2026-06-17"
     tests_green_at: "2026-06-17"
     verdict: pass
-    scope: "ut-tdd task classify CLI lands over existing FR-L1-39/41 contracts (scoreTaskComplexity/classifyDrive) + inferTaskDifficulty, adding kind inference and escalation-risk flags. PM verified via tsc, Biome, 6 Vitest cases (kind/drive/risk/size/determinism, incl. the 'author' non-risk guard), CLI smoke, and doctor."
+    scope: "helix task classify CLI は既存 FR-L1-39/41 contracts (scoreTaskComplexity/classifyDrive) と inferTaskDifficulty の上に実装し、kind inference と escalation-risk flags を追加する。PM は tsc、Biome、6 Vitest cases (kind/drive/risk/size/determinism、'author' non-risk guard 含む)、CLI smoke、doctor で検証した。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
 agent_slots:
   - role: tl
-    slot_label: "TL - task classify CLI surface over existing contracts"
+    slot_label: "TL - 既存 contracts 上の task classify CLI surface"
 generates:
   - artifact_path: docs/plans/PLAN-L7-72-task-classify-cli.md
     artifact_type: markdown_doc
@@ -40,48 +40,49 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_l0_extra: docs/design/harness/L1-requirements/functional-requirements.md
 ---
 
-# PLAN-L7-72 (impl): ut-tdd task classify public CLI
+# PLAN-L7-72 (impl): helix task classify public CLI 公開
 
-## 0. Objective
+## 0. 目的
 
-Close the fork plan §6 P0 (task classify) by exposing the public CLI surface
-FR-L1-39 extended requires: `ut-tdd task classify` emitting structured
-`kind / drive / size / complexity / difficulty / risk` for a task. The
-underlying contracts already exist — `scoreTaskComplexity` (FR-L1-39),
-`classifyDrive` (FR-L1-41), and `inferTaskDifficulty` — so this is a composing
-module + CLI surface, not a new algorithm.
+fork plan §6 P0 (task classify) を public CLI surface として公開し、close する。
+FR-L1-39 extended は、task に対して構造化された
+`kind / drive / size / complexity / difficulty / risk` を出力する
+`helix task classify` を要求している。基盤 contract である
+`scoreTaskComplexity` (FR-L1-39)、`classifyDrive` (FR-L1-41)、
+`inferTaskDifficulty` は既に存在するため、これは新しい algorithm ではなく
+composing module + CLI surface である。
 
-## 1. Problem
+## 1. 問題
 
 `src/workflow/contracts.ts` implements `scoreTaskComplexity` / `classifyDrive`
-and `src/team/model-policy.ts` implements `inferTaskDifficulty`, but there is no
-public `ut-tdd task` command. The FR-L1-39 extended requirement names
-`ut-tdd task classify --text/--plan/--diff` as the public I/O that feeds plan
-lint / gate / skill suggest. The fork plan §6 lists it as P0 pending.
+and `src/team/model-policy.ts` implements `inferTaskDifficulty` だが、public
+`helix task` command が存在しない。FR-L1-39 extended requirement は、
+plan lint / gate / skill suggest へ入力する public I/O として
+`helix task classify --text/--plan/--diff` を指定している。fork plan §6 では
+これを P0 pending として列挙している。
 
 ## 2. Scope
 
-- New `src/task/classify.ts` with `classifyTask(input)` composing the existing
-  contracts + escalation-risk flagging (CLAUDE.md safety boundary) + kind
-  inference.
-- New `ut-tdd task classify` CLI command (`--text` / `--text-file` / `--plan` /
+- 既存 contracts、escalation-risk flagging (CLAUDE.md safety boundary)、kind
+  inference を合成する `classifyTask(input)` を持つ新規 `src/task/classify.ts`。
+- 新規 `helix task classify` CLI command (`--text` / `--text-file` / `--plan` /
   `--files` / `--json`).
-- Vitest coverage for drive/kind/size/risk determinism.
+- drive/kind/size/risk determinism の Vitest coverage。
 
-Out of scope (re-scoped defer per fork plan §8(2)): `ut-tdd task estimate`
-enrichment, and the `ut-tdd scrum` / `ut-tdd reverse` runtime mode commands
-(large mode state machines; lint already exists). Tracked in the fork plan.
+Scope 外 (fork plan §8(2) による re-scoped defer): `helix task estimate`
+enrichment、および `helix scrum` / `helix reverse` runtime mode commands
+(large mode state machines。lint は既に存在する)。fork plan で追跡する。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- `ut-tdd task classify --text "..."` prints kind/drive/size/complexity/
-  difficulty/risk and exits 0; `--json` emits the structured object.
-- Escalation-sensitive tasks (auth/payments/PII/migration/schema/production)
-  surface a `risk_flags` list and an `escalation-risk` warn finding.
-- Classification is deterministic for a given input.
-- typecheck / Biome / Vitest / `ut-tdd doctor` stay green; src file traces to
-  this PLAN's `generates`.
+- `helix task classify --text "..."` は kind/drive/size/complexity/
+  difficulty/risk を表示して exit 0 になり、`--json` は structured object を出力する。
+- Escalation-sensitive tasks (auth/payments/PII/migration/schema/production) は
+  `risk_flags` list と `escalation-risk` warn finding を surface する。
+- Classification は同じ入力に対して deterministic である。
+- typecheck / Biome / Vitest / `helix doctor` は green のままで、src file は
+  この PLAN の `generates` へ trace される。
 
 ## 4. Status
 
-Draft. Implemented 2026-06-17.
+Draft。2026-06-17 に実装済み。

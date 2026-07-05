@@ -47,8 +47,8 @@ dependencies:
   parent: docs/plans/PLAN-RECOVERY-03-codex-l7-overstep.md
   requires:
     - docs/plans/PLAN-RECOVERY-03-codex-l7-overstep.md
-    - .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
-    - .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
+    - .helix/audit/A-124-cross-artifact-graph-tooling.md
+    - .helix/audit/A-125-mcp-external-verification-profile-scope.md
 review_evidence:
   - reviewer: PO/directive
     review_kind: human
@@ -58,49 +58,49 @@ review_evidence:
     scope: "User directed Recovery and Reverse fullback for the Codex L7 overstep; this PLAN records the back-propagation route."
 ---
 
-# PLAN-REVERSE-31 (reverse): Codex L7 overstep recovery fullback
+# PLAN-REVERSE-31 (reverse): Codex L7 overstep recovery fullback（是正 fullback）
 
 ## §0 Position
 
-This is the Reverse fullback for PLAN-RECOVERY-03. The observed fact is not a product feature: Codex started a source implementation for relation graph scope without L6/L7 entry. The source file was removed. The remaining work is to return the process gap to the upper governance layer.
+これは PLAN-RECOVERY-03 の Reverse fullback である。観測事実は product feature ではない。Codex が L6/L7 entry なしで relation graph scope の source implementation を開始したため、source file は撤去済みである。残作業は process gap を上位 governance layer へ戻すことである。
 
 ## §1 R0 Evidence
 
 | evidence | content |
 |---|---|
 | User correction | "Recovery 起票" and "リバースでちゃんと戻して" directed the route back to the official workflow. |
-| Overstep artifact | `src/lint/relation-graph.ts` was added without L6/L7 entry, then removed. |
-| Existing intended scope | A-124 / IMP-118..120 already classify relation graph and diagram tooling as future L6/L7 scope. |
+| Overstep artifact | `src/lint/relation-graph.ts` は L6/L7 entry なしで追加され、その後撤去された。 |
+| Existing intended scope | A-124 / IMP-118..120 は relation graph と diagram tooling を future L6/L7 scope として既に分類している。 |
 
-## §2 R1 Observed Gap
+## §2 R1 Observed Gap（観測 gap）
 
-- Existing §6.8.8 requires lower-layer discoveries to back-propagate, but did not explicitly name **unapproved L7 source work** as a Recovery + Reverse case.
-- This allowed the agent to treat an active goal as permission to cross into L7 implementation.
+- 既存 §6.8.8 は lower-layer discoveries の back-propagate を要求していたが、**unapproved L7 source work** を Recovery + Reverse case として明示していなかった。
+- そのため agent が active goal を L7 implementation へ踏み込む許可として扱えてしまった。
 
 ## §3 R2 Alignment
 
-The correct design alignment is:
+正しい design alignment は次の通りである。
 
-- Recovery handles the agent overstep and reopen point.
-- Reverse fullback records the process rule in requirements / backlog / recovery workflow.
-- A-124 relation graph remains future L6/L7 work; no source implementation is authorized by this Reverse.
+- Recovery は agent overstep と reopen point を扱う。
+- Reverse fullback は process rule を requirements / backlog / recovery workflow に記録する。
+- A-124 relation graph は future L6/L7 work のままであり、この Reverse は source implementation を認可しない。
 
 ## §4 R3 Intent
 
-Intent holds: the user is not asking for a narrower status note. The user is requiring the process gap to be returned through the official route. Therefore this Reverse records the rule and prevents the Recovery from remaining a local note.
+Intent は維持される。user は狭い status note ではなく、process gap を official route で戻すことを要求している。したがって、この Reverse は rule を記録し、Recovery が local note のまま残ることを防ぐ。
 
 ## §5 R4 Routing
 
 | target | action |
 |---|---|
-| `docs/governance/helix-harness-requirements_v1.2.md` §6.8.8 | Add unapproved L7 source-work handling as Recovery + Reverse fullback. |
-| `docs/improvement-backlog.md` | Register IMP-125 for future doctor / plan-lint guard. |
-| `docs/process/modes/recovery.md` | Register PLAN-RECOVERY-03 as confirmed Recovery in the application log. |
+| `docs/governance/helix-harness-requirements_v1.2.md` §6.8.8 | unapproved L7 source-work handling を Recovery + Reverse fullback として追加する。 |
+| `docs/improvement-backlog.md` | future doctor / plan-lint guard として IMP-125 を登録する。 |
+| `docs/process/modes/recovery.md` | application log に PLAN-RECOVERY-03 を confirmed Recovery として登録する。 |
 
 ## §8 DoD
 
-- [x] Recovery record exists and is confirmed for correction routing.
-- [x] Requirements contain the unapproved L7 handling rule.
-- [x] Backlog contains a guard implementation item.
-- [x] Recovery mode application log references PLAN-RECOVERY-03.
-- [x] No source implementation is introduced by this Reverse.
+- [x] Recovery record が存在し、correction routing として confirmed になっている。
+- [x] Requirements に unapproved L7 handling rule が含まれている。
+- [x] Backlog に guard implementation item が含まれている。
+- [x] Recovery mode application log が PLAN-RECOVERY-03 を参照している。
+- [x] この Reverse は source implementation を導入しない。

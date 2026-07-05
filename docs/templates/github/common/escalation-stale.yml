@@ -14,10 +14,10 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - name: Handover route
-        run: bun run ut-tdd handover status --json
+        run: bun run helix handover status --json
       - name: HELIX completion decision packet
-        run: bun run ut-tdd completion decision-packet --json
+        run: bun run helix completion decision-packet --json
       - name: HELIX completion review bundle
-        run: bun run ut-tdd completion review-bundle --json
+        run: bun run helix completion review-bundle --json
       - name: HELIX consumer doctor
-        run: bun run ut-tdd doctor --profile consumer --json
+        run: bun run helix doctor --profile consumer --json

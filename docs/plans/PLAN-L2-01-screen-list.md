@@ -48,13 +48,13 @@ review_evidence:
 
 # PLAN-L2-01 (design): L2 画面一覧 screen-list 本起票
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 PLAN-L2-00 master の Step 2。L1 で確定済みの 15 画面 (PM/HM/GD、PM-06 設計書ビューア含む) を、L2 画面設計の `screen-list` sub-doc
 の **content として本材料化**する (L2 確定項目を付与)。doc の `status` confirmed 昇格は G2 freeze
 (PO サインオフ) 時 = PLAN-L2-00 Step 4。gate-confirm (IMP-079) 遵守ゆえ G2=DEFER 中は placeholder 維持。
 
-## 1. Scope (L2 確定項目)
+## 1. 対象範囲 (Scope: L2 確定項目)
 
 placeholder の「L2 で確定すべき項目」を埋める:
 
@@ -64,16 +64,16 @@ placeholder の「L2 で確定すべき項目」を埋める:
   CLI コマンド文字列コピーのみ (UI 直接実行禁止 S5=b、CC2 人間主導 + AI 補助)。
 - **ステート保持**: filter/sort/階層/tab=URL query (共有・back 対応)、scroll=session、case=URL path。
 
-## 2. Acceptance Criteria — met
+## 2. 受入条件 — 達成済み (Acceptance Criteria — met)
 
 - [x] 15 画面 ID (PM-01..06 / HM-01..08 / GD-01) を L1 と一致で列挙、各 L1 参照 §を明記。
 - [x] URL 設計規約 + ID↔URL 1:1 逆引きを確定。
 - [x] 認証認可 (ペルソナ×カテゴリ) + UI 直接実行禁止 (S5=b) を確定。
 - [x] ステート保持要件を確定。
 - [x] pair=wireframe.md (③、L2↔L10) を維持、anti-corruption (L1/L0 へ用語委譲)。
-- [x] intra_runtime_subagent (pmo-sonnet) review approve + doctor green。
+- [x] intra_runtime_subagent (pmo-sonnet) レビュー承認 (review approve) + doctor 成功 (doctor green)。
 
-## 3. Out of scope
+## 3. 対象外 (Out of scope)
 
 - screen-flow / ui-element / wireframe = PLAN-L2-02/03/04 (本 master の後続 child)。
 - src/web 実装 = Phase B (L10 確定後)。

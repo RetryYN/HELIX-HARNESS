@@ -64,7 +64,8 @@ export interface FrRoadmapCoverageResult {
 }
 
 const SECTION_RE = /^##\s+(?:Residual Feature Buckets|residual feature の bucket)\s*$/m;
-const CLOSURE_SECTION_RE = /^##\s+(?:Residual Feature Closure Evidence|residual feature closure 証跡)\s*$/m;
+const CLOSURE_SECTION_RE =
+  /^##\s+(?:Residual Feature Closure Evidence|residual feature closure 証跡)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const EXPECTED_BUCKETS = ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9"] as const;
 const VALID_STATUSES = new Set<FrRoadmapCoverageStatus>([
@@ -332,11 +333,11 @@ export function analyzeFrRoadmapCoverageWithRoot(
 export function loadFrRoadmapCoverageDocs(
   repoRoot: string = process.cwd(),
 ): FrRoadmapCoverageDoc[] {
-  const target = join(repoRoot, ".ut-tdd", "audit", "A-133-upstream-vmodel-coverage-audit.md");
+  const target = join(repoRoot, ".helix", "audit", "A-133-upstream-vmodel-coverage-audit.md");
   if (!existsSync(target)) return [];
   return [
     {
-      file: join(".ut-tdd", "audit", "A-133-upstream-vmodel-coverage-audit.md"),
+      file: join(".helix", "audit", "A-133-upstream-vmodel-coverage-audit.md"),
       content: readFileSync(target, "utf8"),
     },
   ];

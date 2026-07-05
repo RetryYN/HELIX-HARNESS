@@ -8,7 +8,7 @@ import {
 } from "../src/lint/tracked-canonical";
 
 describe("analyzeTrackedCanonical (U-TCAN-001..003)", () => {
-  const canonicalText = "src/ tests/ docs/ scripts/ .ut-tdd/ .claude/ vendor/";
+  const canonicalText = "src/ tests/ docs/ scripts/ .helix/ .claude/ vendor/";
 
   it("U-TCAN-001: canonical 未記載かつ baseline 外の tracked top-level = drift (NEW fail-close)", () => {
     const r = analyzeTrackedCanonical({

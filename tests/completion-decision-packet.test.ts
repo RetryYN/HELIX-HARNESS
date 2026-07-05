@@ -37,7 +37,7 @@ function basePacket(): CompletionDecisionPacket {
       generatedAt: "2026-06-30T00:00:00.000Z",
       now: "2026-06-30T00:30:00.000Z",
       validForMinutes: 60,
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
     },
   );
 }
@@ -68,7 +68,7 @@ function baseBundle(): {
     generatedAt: "2026-06-30T00:00:00.000Z",
     now: "2026-06-30T00:30:00.000Z",
     validForMinutes: 60,
-    sourceCommand: "ut-tdd completion decision-packet --json",
+    sourceCommand: "helix completion decision-packet --json",
   });
   return { bundle, decisionPacket };
 }
@@ -92,7 +92,7 @@ function versionUpPacket(): CompletionDecisionPacket {
       generatedAt: "2026-06-30T00:00:00.000Z",
       now: "2026-06-30T00:30:00.000Z",
       validForMinutes: 60,
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
     },
   );
 }
@@ -115,7 +115,7 @@ function actionBindingPacket(): CompletionDecisionPacket {
       generatedAt: "2026-06-30T00:00:00.000Z",
       now: "2026-06-30T00:30:00.000Z",
       validForMinutes: 60,
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
     },
   );
 }
@@ -129,7 +129,7 @@ function renamePacket(): CompletionDecisionPacket {
           layer: "L14",
           kind: "design",
           status: "draft",
-          text: "irreversible migration pending for .ut-tdd to .helix identifier rename cutover.",
+          text: "irreversible migration pending for .helix to .helix identifier rename cutover.",
         },
       ],
       0,
@@ -138,7 +138,7 @@ function renamePacket(): CompletionDecisionPacket {
       generatedAt: "2026-06-30T00:00:00.000Z",
       now: "2026-06-30T00:30:00.000Z",
       validForMinutes: 60,
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
     },
   );
 }
@@ -169,16 +169,13 @@ describe("completion decision packet lint", () => {
       status: "blocked",
       decisionCount: 1,
       reviewPacketCount: 1,
-      sourceCommand: "ut-tdd completion review-bundle --json",
+      sourceCommand: "helix completion review-bundle --json",
       validForMinutes: 60,
       stale: false,
     });
-    expect(bundle.runnableSourceCommand).toBe("bun run ut-tdd completion review-bundle --json");
+    expect(bundle.runnableSourceCommand).toBe("bun run helix completion review-bundle --json");
     expect(bundle.reviewCoveredBlockers).toEqual(["po_decision_pending"]);
-    expect(bundle.nonPacketBlockers).toEqual([
-      "non_terminal_plans",
-      "semantic_frontier_blocked",
-    ]);
+    expect(bundle.nonPacketBlockers).toEqual(["non_terminal_plans", "semantic_frontier_blocked"]);
     expect(bundle.reviewPackets[0].requiredReviewFields).toEqual(
       decisionPacket.decisions[0].supportingPacketSummaries[0].requiredReviewFields,
     );
@@ -230,7 +227,7 @@ describe("completion decision packet lint", () => {
     const { bundle, decisionPacket } = baseBundle();
     const drifted = JSON.parse(JSON.stringify(bundle)) as CompletionReviewBundle;
     drifted.planOnly = false as unknown as true;
-    drifted.runnableSourceCommand = "ut-tdd completion review-bundle --json";
+    drifted.runnableSourceCommand = "helix completion review-bundle --json";
     drifted.nonPacketBlockers = [];
     drifted.reviewPackets[0].requiredSafetyFields =
       drifted.reviewPackets[0].requiredSafetyFields.filter((field) => field !== "mustNotDecide");
@@ -304,10 +301,10 @@ describe("completion decision packet lint", () => {
     expect(packet.confirmedCurrentMeaningRecords).toHaveLength(11);
     expect(packet.decisions[0].supportingPacketSummaries).toEqual([
       expect.objectContaining({
-        command: "ut-tdd s4 decision-packet --json",
-        runnableCommand: "bun run ut-tdd s4 decision-packet --json",
-        scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-S3",
-        runnableScopedCommand: "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
+        command: "helix s4 decision-packet --json",
+        runnableCommand: "bun run helix s4 decision-packet --json",
+        scopedCommand: "helix s4 decision-packet --json --plan PLAN-S3",
+        runnableScopedCommand: "bun run helix s4 decision-packet --json --plan PLAN-S3",
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
@@ -377,16 +374,16 @@ describe("completion decision packet lint", () => {
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
     expect(result.ok).toBe(true);
     expect(packet.decisions[0]).toMatchObject({
-      runnableDecisionPacketCommand: "bun run ut-tdd s4 decision-packet --json",
-      runnablePacketCommands: ["bun run ut-tdd s4 decision-packet --json"],
+      runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
+      runnablePacketCommands: ["bun run helix s4 decision-packet --json"],
       runnableScopedDecisionPacketCommand:
-        "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
-      runnableScopedPacketCommands: ["bun run ut-tdd s4 decision-packet --json --plan PLAN-S3"],
+        "bun run helix s4 decision-packet --json --plan PLAN-S3",
+      runnableScopedPacketCommands: ["bun run helix s4 decision-packet --json --plan PLAN-S3"],
     });
     expect(packet.humanReviewBundle).toMatchObject({
       schemaVersion: "completion-decision-human-review-bundle.v1",
       status: "blocked",
-      sourceCommand: "ut-tdd completion decision-packet --json",
+      sourceCommand: "helix completion decision-packet --json",
       decisionCount: 1,
       nextAuthority: "human",
       completionClaimAllowed: false,
@@ -411,19 +408,19 @@ describe("completion decision packet lint", () => {
             "s4-decision-packet.v1.decisionCommandAvailable",
             "s4-decision-packet.v1.decisionAllowed",
           ],
-          scopedPrimaryPacketCommand: "ut-tdd s4 decision-packet --json --plan PLAN-S3",
+          scopedPrimaryPacketCommand: "helix s4 decision-packet --json --plan PLAN-S3",
           runnableScopedPrimaryPacketCommand:
-            "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
-          scopedSupportingPacketCommands: ["ut-tdd s4 decision-packet --json --plan PLAN-S3"],
+            "bun run helix s4 decision-packet --json --plan PLAN-S3",
+          scopedSupportingPacketCommands: ["helix s4 decision-packet --json --plan PLAN-S3"],
           runnableScopedSupportingPacketCommands: [
-            "bun run ut-tdd s4 decision-packet --json --plan PLAN-S3",
+            "bun run helix s4 decision-packet --json --plan PLAN-S3",
           ],
         },
       ],
     });
     const versionPacket = versionUpPacket();
     const versionSummary = versionPacket.decisions[0].supportingPacketSummaries.find(
-      (summary) => summary.command === "ut-tdd version-up activation-packet --json",
+      (summary) => summary.command === "helix version-up activation-packet --json",
     );
     expect(versionSummary?.requiredReviewFields).toEqual(
       expect.arrayContaining([
@@ -479,7 +476,7 @@ describe("completion decision packet lint", () => {
     );
     const approvalPacket = actionBindingPacket();
     const approvalSummary = approvalPacket.decisions[0].supportingPacketSummaries.find(
-      (summary) => summary.command === "ut-tdd action-binding approval-packet --json",
+      (summary) => summary.command === "helix action-binding approval-packet --json",
     );
     expect(approvalSummary?.requiredReviewFields).toEqual(
       expect.arrayContaining([
@@ -529,7 +526,7 @@ describe("completion decision packet lint", () => {
     );
     const renameDecisionPacket = renamePacket();
     const renameSummary = renameDecisionPacket.decisions[0].supportingPacketSummaries.find(
-      (summary) => summary.command === "ut-tdd rename plan --json",
+      (summary) => summary.command === "helix rename plan --json",
     );
     expect(renameSummary?.requiredReviewFields).toEqual(
       expect.arrayContaining([
@@ -569,12 +566,12 @@ describe("completion decision packet lint", () => {
       ]),
     );
     const approvalDraftSummary = renameDecisionPacket.decisions[0].supportingPacketSummaries.find(
-      (summary) => summary.command === "ut-tdd rename approval-draft --json",
+      (summary) => summary.command === "helix rename approval-draft --json",
     );
     expect(approvalDraftSummary).toMatchObject({
-      runnableCommand: "bun run ut-tdd rename approval-draft --json",
-      scopedCommand: "ut-tdd rename approval-draft --json",
-      runnableScopedCommand: "bun run ut-tdd rename approval-draft --json",
+      runnableCommand: "bun run helix rename approval-draft --json",
+      scopedCommand: "helix rename approval-draft --json",
+      runnableScopedCommand: "bun run helix rename approval-draft --json",
       schemaVersion: "identifier-rename-approval-draft.v1",
       matrixField: "none",
       expectedMatrixCount: 0,
@@ -694,7 +691,7 @@ describe("completion decision packet lint", () => {
         items: [
           {
             ...basePacket().humanReviewBundle.items[0],
-            scopedPrimaryPacketCommand: "ut-tdd completion decision-packet --json",
+            scopedPrimaryPacketCommand: "helix completion decision-packet --json",
             ownerReviewFields: [],
             freshnessReviewFields: [],
             safetyReviewFields: [],
@@ -710,7 +707,7 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_human_review_bundle",
           detail:
-            "items[0].scopedPrimaryPacketCommand=ut-tdd completion decision-packet --json expected=ut-tdd s4 decision-packet --json --plan PLAN-S3",
+            "items[0].scopedPrimaryPacketCommand=helix completion decision-packet --json expected=helix s4 decision-packet --json --plan PLAN-S3",
         },
         {
           reason: "invalid_human_review_bundle",
@@ -793,27 +790,27 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json drift expected=s4-decision-packet.v1/decisionVerificationCommandMatrix/8 actual=s4-decision-packet.v1/approvalVerificationCommandMatrix/9",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json drift expected=s4-decision-packet.v1/decisionVerificationCommandMatrix/8 actual=s4-decision-packet.v1/approvalVerificationCommandMatrix/9",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=outcomeRouteMatrix",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=outcomeRouteMatrix",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=provenanceRequirements",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=provenanceRequirements",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionVerificationCommandMatrix.command",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=decisionVerificationCommandMatrix.command",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing matrix field=latestOfficialStatus",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing matrix field=latestOfficialStatus",
         },
       ]),
     );
@@ -825,7 +822,7 @@ describe("completion decision packet lint", () => {
       decisions: versionUpPacket().decisions.map((decision) => ({
         ...decision,
         supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) =>
-          summary.command === "ut-tdd version-up activation-packet --json"
+          summary.command === "helix version-up activation-packet --json"
             ? {
                 ...summary,
                 requiredReviewFields: [
@@ -846,57 +843,57 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=externalRehearsalPlan",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=externalRehearsalPlan",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=activationDecision.activation_snapshot_id",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=activationDecision.activation_snapshot_id",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=activationReadinessChecks.evidence",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=activationReadinessChecks.evidence",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=activationSnapshot.versionDryRunDigest",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=activationSnapshot.versionDryRunDigest",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=costGuardrails",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=costGuardrails",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=versionDryRunEvidence.releaseTriggerResolved",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=versionDryRunEvidence.releaseTriggerResolved",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.status",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.status",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.evidence",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.evidence",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.reason",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.reason",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.workflowRouteImpact",
+            "decision[0] supportingPacketSummary command=helix version-up activation-packet --json missing review field=securityChecklistPacket.securityChecks.workflowRouteImpact",
         },
       ]),
     );
@@ -932,37 +929,37 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=planOnly",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=planOnly",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionRecord.allowed_outcome",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=decisionRecord.allowed_outcome",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionRecord.source_ledger_freshness",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=decisionRecord.source_ledger_freshness",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionEvidenceChecklist.verified_evidence",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=decisionEvidenceChecklist.verified_evidence",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=decisionEvidenceChecklist.unresolved_risk",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=decisionEvidenceChecklist.unresolved_risk",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=outcomeRouteMatrix.routePolicy",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=outcomeRouteMatrix.routePolicy",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json missing review field=provenanceRequirements.evidence",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json missing review field=provenanceRequirements.evidence",
         },
       ]),
     );
@@ -996,42 +993,42 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=planOnly",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=planOnly",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalRecord.approved_actor",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=approvalRecord.approved_actor",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalRecord.reviewed_snapshot_binding",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=approvalRecord.reviewed_snapshot_binding",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalSnapshot.approvalScopeDigest",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=approvalSnapshot.approvalScopeDigest",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalBindingChecks.approved_params",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=approvalBindingChecks.approved_params",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalBindingChecks.status",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=approvalBindingChecks.status",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=approvalVerificationCommandMatrix.command",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=approvalVerificationCommandMatrix.command",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd action-binding approval-packet --json missing review field=relatedDecisionPackets.scopedCommand",
+            "decision[0] supportingPacketSummary command=helix action-binding approval-packet --json missing review field=relatedDecisionPackets.scopedCommand",
         },
       ]),
     );
@@ -1043,7 +1040,7 @@ describe("completion decision packet lint", () => {
       decisions: renamePacket().decisions.map((decision) => ({
         ...decision,
         supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) =>
-          summary.command === "ut-tdd rename plan --json"
+          summary.command === "helix rename plan --json"
             ? {
                 ...summary,
                 requiredReviewFields: [
@@ -1079,27 +1076,27 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=cutoverSnapshot.blastRadiusDigest",
+            "decision[0] supportingPacketSummary command=helix rename plan --json missing review field=cutoverSnapshot.blastRadiusDigest",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=snapshotReview.currentSnapshotId",
+            "decision[0] supportingPacketSummary command=helix rename plan --json missing review field=snapshotReview.currentSnapshotId",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=cutoverRunbook.writePolicy",
+            "decision[0] supportingPacketSummary command=helix rename plan --json missing review field=cutoverRunbook.writePolicy",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=stateBackupManifest.restoreEvidencePath",
+            "decision[0] supportingPacketSummary command=helix rename plan --json missing review field=stateBackupManifest.restoreEvidencePath",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename plan --json missing review field=approvalGate.reviewedSnapshotBindingRequired",
+            "decision[0] supportingPacketSummary command=helix rename plan --json missing review field=approvalGate.reviewedSnapshotBindingRequired",
         },
       ]),
     );
@@ -1111,7 +1108,7 @@ describe("completion decision packet lint", () => {
       decisions: renamePacket().decisions.map((decision) => ({
         ...decision,
         supportingPacketSummaries: decision.supportingPacketSummaries.map((summary) =>
-          summary.command === "ut-tdd rename approval-draft --json"
+          summary.command === "helix rename approval-draft --json"
             ? {
                 ...summary,
                 requiredReviewFields: [
@@ -1133,17 +1130,17 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename approval-draft --json missing review field=mustNotApply",
+            "decision[0] supportingPacketSummary command=helix rename approval-draft --json missing review field=mustNotApply",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename approval-draft --json missing review field=applyAuthorized",
+            "decision[0] supportingPacketSummary command=helix rename approval-draft --json missing review field=applyAuthorized",
         },
         {
           reason: "invalid_supporting_packet_summary",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd rename approval-draft --json missing review field=draftRecords.unsafeToTreatAsApproval",
+            "decision[0] supportingPacketSummary command=helix rename approval-draft --json missing review field=draftRecords.unsafeToTreatAsApproval",
         },
       ]),
     );
@@ -1195,7 +1192,7 @@ describe("completion decision packet lint", () => {
         expect.objectContaining({
           reason: "invalid_japanese_display_field",
           detail:
-            "decision[0] supportingPacketSummary command=ut-tdd s4 decision-packet --json reviewRouteJa mismatch expected=S4 decision evidence / outcome route / verification command を確認する actual=review S4 decision evidence, outcome routes, and verification commands",
+            "decision[0] supportingPacketSummary command=helix s4 decision-packet --json reviewRouteJa mismatch expected=S4 decision evidence / outcome route / verification command を確認する actual=review S4 decision evidence, outcome routes, and verification commands",
         }),
         expect.objectContaining({
           reason: "invalid_japanese_display_field",
@@ -1224,16 +1221,16 @@ describe("completion decision packet lint", () => {
   it("accepts packets generated by handover CURRENT.json", () => {
     const packet = {
       ...basePacket(),
-      sourceCommand: "ut-tdd handover",
+      sourceCommand: "helix handover",
       humanReviewBundle: {
         ...basePacket().humanReviewBundle,
-        sourceCommand: "ut-tdd handover",
+        sourceCommand: "helix handover",
       },
     };
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
 
     expect(result.ok).toBe(true);
-    expect(result.sourceCommand).toBe("ut-tdd handover");
+    expect(result.sourceCommand).toBe("helix handover");
   });
 
   it("rejects freshness metadata that does not match generatedAt/window", () => {
@@ -1699,8 +1696,8 @@ describe("completion decision packet lint", () => {
       ...basePacket(),
       decisions: basePacket().decisions.map((decision) => ({
         ...decision,
-        decisionPacketCommand: "ut-tdd completion decision-packet --json" as const,
-        packetCommands: ["ut-tdd completion decision-packet --json" as const],
+        decisionPacketCommand: "helix completion decision-packet --json" as const,
+        packetCommands: ["helix completion decision-packet --json" as const],
       })),
     };
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T00:30:00.000Z");
@@ -1711,12 +1708,12 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_decision_packet_command",
           detail:
-            "decision[0] blockerReason=po_decision_pending decisionPacketCommand=ut-tdd completion decision-packet --json expected=ut-tdd s4 decision-packet --json",
+            "decision[0] blockerReason=po_decision_pending decisionPacketCommand=helix completion decision-packet --json expected=helix s4 decision-packet --json",
         },
         {
           reason: "invalid_decision_packet_command",
           detail:
-            "decision[0] packetCommands mismatch expected=ut-tdd s4 decision-packet --json actual=ut-tdd completion decision-packet --json",
+            "decision[0] packetCommands mismatch expected=helix s4 decision-packet --json actual=helix completion decision-packet --json",
         },
       ]),
     );
@@ -1739,12 +1736,12 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_scoped_decision_packet_command",
           detail:
-            "decision[0] scopedDecisionPacketCommand mismatch expected=ut-tdd s4 decision-packet --json --plan PLAN-S3 actual=ut-tdd s4 decision-packet --json",
+            "decision[0] scopedDecisionPacketCommand mismatch expected=helix s4 decision-packet --json --plan PLAN-S3 actual=helix s4 decision-packet --json",
         },
         {
           reason: "invalid_scoped_decision_packet_command",
           detail:
-            "decision[0] scopedPacketCommands mismatch expected=ut-tdd s4 decision-packet --json --plan PLAN-S3 actual=ut-tdd s4 decision-packet --json",
+            "decision[0] scopedPacketCommands mismatch expected=helix s4 decision-packet --json --plan PLAN-S3 actual=helix s4 decision-packet --json",
         },
       ]),
     );
@@ -1787,7 +1784,7 @@ describe("completion decision packet lint", () => {
     });
 
     expect(result.ok).toBe(true);
-    expect(result.sourceCommand).toBe("ut-tdd completion decision-packet --json");
+    expect(result.sourceCommand).toBe("helix completion decision-packet --json");
     expect(result.validForMinutes).toBe(1440);
   });
 

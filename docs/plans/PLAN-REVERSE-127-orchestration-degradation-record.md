@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-127-orchestration-degradation-record
-title: "PLAN-REVERSE-127: orchestration degradation record fullback"
+title: "PLAN-REVERSE-127: orchestration degradation 記録の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,17 +16,17 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The execution-mode degradation acceptance item is now implemented and checked."
+    reason: "execution-mode degradation の acceptance item は実装済みで検査対象になった。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "L4 now points to the implemented degraded_from/degraded_to recording surface."
+    reason: "L4 は実装済みの degraded_from/degraded_to 記録 surface を指すようになった。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The implementation stays within the existing V-model injection CLI boundary."
+    reason: "実装は既存の V-model injection CLI 境界内に留まる。"
 agent_slots:
   - role: tl
-    slot_label: "TL - orchestration degradation fullback"
+    slot_label: "TL - orchestration degradation fullback 確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-127-orchestration-degradation-record.md
     artifact_type: markdown_doc
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T17:35:00+09:00"
     tests_green_at: "2026-06-23T17:35:00+09:00"
     verdict: approve
-    scope: "R4 fullback from orchestration degradation implementation to requirements and L4 design."
+    scope: "orchestration degradation 実装から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,22 +66,19 @@ review_evidence:
         output_digest: "sha256:09dfbf69280399fc50b720af5b68e4ee8b22e3d28d484997df818edcfceb9a10"
 ---
 
-# PLAN-REVERSE-127: orchestration degradation record fullback
+# PLAN-REVERSE-127: orchestration degradation 記録の fullback
 
-## Objective
+## 目的
 
-Back-fill execution-mode degradation recording to requirements and L4 function
-design.
+execution-mode degradation 記録を requirements と L4 function design へ
+back-fill する。
 
-## Scope
+## 範囲
 
-- Requirements §7.8.7 records the implemented degradation surface.
-- L4 function design no longer carries `degraded_from` / `degraded_to` as a
-  remaining stub.
+- Requirements §7.8.7 は実装済みの degradation surface を記録する。
+- L4 function design は `degraded_from` / `degraded_to` を remaining stub として保持しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both point to the implemented V-model injection
-  degradation record.
-- The Reverse record keeps degradation separate from human escalation boundary
-  enforcement.
+- Requirements と L4 design はどちらも、実装済みの V-model injection degradation record を指す。
+- Reverse record は degradation を human escalation boundary enforcement と分離したまま保持する。

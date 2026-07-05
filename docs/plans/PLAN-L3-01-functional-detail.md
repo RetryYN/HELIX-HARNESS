@@ -71,7 +71,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 
 - 正本 doc: `docs/design/harness/L3-functional/functional-requirements.md` (frontmatter generates)
 - 量閉じ: L1 FR-L1-* 現行 47 件が、L3 確定 26 件または L4 / Phase B / PLAN-L3-02 / L6-L8 add-feature carry のいずれかへ分類されていること (孤児 L1 FR = 0)
-- 機械検証: `ut-tdd plan lint --gate G3` (G3 = L3 pair freeze ゲート) で R-trace 整合 PASS
+- 機械検証: `helix plan lint --gate G3` (G3 = L3 pair freeze ゲート) で R-trace 整合 PASS
 
 ## §3 ヒアリング項目 / 調査メモ (functional 固有)
 
@@ -119,37 +119,37 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 
 ## §4 工程表 (Step + 進捗)
 
-### Step 1: L1 baton 整理
+### 手順 1: L1 baton 整理 (Step 1)
 - 担当: pmo-sonnet (Sonnet)
 - 内容: L1 functional / screen / business 3 sub-doc の現状を Read し、L3 で詳細化する 26 件 + carry 対象 FR + AC 候補を一覧化。L2-screen placeholder 状態の確認
 - 進捗: 🔄 (本 commit で起票、本起票時に実施)
 
-### Step 2: AC 構造設計 (U-L3-4〜6 確定)
+### 手順 2: AC 構造設計 (Step 2 / U-L3-4〜6 確定)
 - 担当: tl + pmo-tech-docs
 - 内容: AC 形式 (Given-When-Then) / 下限 / ID 形式を確定し、テンプレート化
 - 進捗: 🔄 (PO 判断待ち、本起票時)
 
-### Step 3: P0 18 件 FR-* + AC-* 詳細化
+### 手順 3: P0 18 件 FR-* + AC-* 詳細化 (Step 3)
 - 担当: tl + se (Codex SE)
 - 内容: P0 18 件 (FR-L1-01〜18 から HELIX 由来) を L3 FR-* + AC-* に詳細化。各 FR-* に対応画面・対応 mode・対応 drive・人間判断点を付与
 - 進捗: ✅ (functional-requirements.md §2 FR-01〜18 + AC 54 件起草完了、A-45 commit)
 
-### Step 4: 残 P1 件 L3 vs L4 carry 判定
+### 手順 4: 残 P1 件 L3 vs L4 carry 判定 (Step 4)
 - 担当: tl
 - 内容: 残 P1 件 (FR-L1 拡張機能等) を L3 詳細化 vs L4 carry vs Phase B carry に分類。U-L3-2 確定後
 - 進捗: ✅ (functional-requirements.md §3 carry 宣言で全件分類完了。P1/P2 = L4 carry default / FR-L1-19 = Phase B / FR-L1-36/38/43 = PLAN-L3-02 委譲)
 
-### Step 5: 画面紐付き (L2 deep-link) 整合確認
+### 手順 5: 画面紐付き (L2 deep-link) 整合確認 (Step 5)
 - 担当: pmo-sonnet
 - 内容: screen §5 G1-trace マトリクスと L3 FR-* の整合確認、L2-screen placeholder との接続点リスト化
 - 進捗: ✅ (functional-requirements.md §4 で継承確認 + AC レベル拡張 6 件サンプル提示、残 12 FR の AC 拡張は L12 AT-* 起票時に確定)
 
-### Step 6: 機械検証 (G3 lint) 整備
+### 手順 6: 機械検証 (Step 6 / G3 lint) 整備
 - 担当: tl + aim
-- 内容: `ut-tdd plan lint --gate G3` の R-trace ルール (FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト) を設計、機械検証可能化
+- 内容: `helix plan lint --gate G3` の R-trace ルール (FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト) を設計、機械検証可能化
 - 進捗: 🔄 (functional-requirements.md §7 で L7 carry 宣言済、本 PLAN では設計のみ。L7 実装は Phase B)
 
-### Step 7: review (self / pmo-sonnet)
+### 手順 7: レビュー (Step 7 / review: self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須 (`.claude/CLAUDE.md` Guard Rules)。FR-L3 全件 AC 完備・対応画面 trace 整合・孤児 L1 FR 0 を確認
 - 進捗: ⬜ (G3 readiness 整備時に実施、本 sub-doc + business-detail + nfr-grade + L12 受入テスト 4 doc 全件確定後)
@@ -166,7 +166,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 | §6 関連 doc | L1 5 sub-doc + L2-screen + L12 | reference 接続 |
 | §7 carry / 次工程 (L4) | L4 基本設計 carry | L4 基本設計 PLAN への引き継ぎ |
 
-## §6 DoD (Definition of Done)
+## §6 完了条件 (DoD / Definition of Done)
 
 - [ ] functional-requirements.md (L3) が必須 § 全件含む (§1〜§7)
 - [ ] §2 FR-* + AC-* が L1 FR-L1 P0 19 件 (FR-L1-01〜18 + FR-L1-45) を被覆し、FR-L1-46〜49 は §3 carry で後続 pair に接続 (孤児 L1 FR = 0)
@@ -176,7 +176,7 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 - [ ] frontmatter 必須フィールド完備 (sub_doc / pair_artifact / related_l0 / related_br / related_l1_functional / related_l1_screen / next_pair_freeze=L12)
 - [ ] G3-trace 機械検証通過 (FR-L1 → FR-L3 / FR-L3 → AC / AC → 受入テスト の R-trace 整合)
 - [ ] L12 受入テスト設計で本 sub-doc 由来 AC が被覆 (孤児 AC = 0)
-- [ ] 専門サブエージェント review (Step 7) 通過記録
+- [ ] 専門サブエージェントレビュー (Step 7 / review) 通過記録
 - [ ] **PO サインオフ準備完了** (G3 readiness ready-for-G3-signoff)
 
 ## §7 carry / 次工程 (L4) への引き継ぎ
@@ -186,4 +186,4 @@ L1 FR-L1-* は「業務的に何が必要か」を宣言レベルで列挙した
 - **PLAN-L3-02 連携**: BR-21 詳細化 + HM-08 連動 + FR-L1-36/38/43 evaluation projection は PLAN-L3-02 に委譲、本 PLAN ではスコープ外
 - **PLAN-L3-03 連携**: NFR グレード値確定は PLAN-L3-03 に委譲、本 PLAN では FR 中心
 - **L7 実装スプリント (PLAN-L7-NN)**: 本 PLAN 確定 AC は L7 TDD Red の入力。AC を Red テスト → Green 実装の機械契約に変換
-- **G3 lint 実装**: `ut-tdd plan lint --gate G3` の R-trace ルールは L7 実装で確定 (本 PLAN は設計のみ)
+- **G3 lint 実装**: `helix plan lint --gate G3` の R-trace ルールは L7 実装で確定 (本 PLAN は設計のみ)

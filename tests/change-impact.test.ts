@@ -79,7 +79,7 @@ describe("change-impact lint", () => {
   it("ignores transient harness DB journal files from git porcelain paths", () => {
     expect(
       parseGitPorcelain(
-        "?? .ut-tdd/harness.db-journal\n?? .ut-tdd/harness.db-wal\n?? .ut-tdd/harness.db-shm\n M docs/handover/session-handover-2026-06-22.md\n",
+        "?? .helix/harness.db-journal\n?? .helix/harness.db-wal\n?? .helix/harness.db-shm\n M docs/handover/session-handover-2026-06-22.md\n",
       ),
     ).toEqual(["docs/handover/session-handover-2026-06-22.md"]);
   });

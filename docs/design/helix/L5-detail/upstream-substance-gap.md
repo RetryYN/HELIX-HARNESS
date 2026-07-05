@@ -21,7 +21,7 @@ evidence 境界であり、実装完了 claim（完了主張）ではない。
 | L3 ID | L5 contract（L5 契約） | 必須 input | Contract output（契約出力） | fail-close 条件 |
 |-------|-------------|----------------|-----------------|------------|
 | HU-FR-01 | HU-C01 guard-governance-pack | adapter template、runtime surface catalog、deferred surface registry | `GuardGovernancePack` | guard entrypoint 欠落、未追跡 deferred surface、未実装 guard の covered claim |
-| HU-FR-02 | HU-C02 consumer-cli-resolution | install target、hook command、PATH/wrapper resolver result | `ConsumerCliResolution` | `ut-tdd` を解決できず、remediation も出さない |
+| HU-FR-02 | HU-C02 consumer-cli-resolution | install target、hook command、PATH/wrapper resolver result | `ConsumerCliResolution` | `helix` を解決できず、remediation も出さない |
 | HU-FR-03 | HU-C03 green-evidence-binding | command、exit status、green command digest、evidence path、run timestamp | `GreenEvidenceBinding` | digest-only update（hash-only restamp）、stale evidence path、command 未再実行 |
 | HU-FR-04 | HU-C04 telemetry-provenance | runtime provenance を示す telemetry row、source event、projection rule、runtime identity | `TelemetryProvenanceClass` | provenance unknown、facade row を runtime evidence として使用 |
 | HU-FR-05 | HU-C05 distribution-curation | package manifest、doc path、audience、dogfood/internal marker | `DistributionCurationDecision` | deny/curation rule 無しの blanket `docs/governance/` allow、または blanket governance allowlist |

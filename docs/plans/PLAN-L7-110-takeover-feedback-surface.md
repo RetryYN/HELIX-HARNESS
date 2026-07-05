@@ -64,42 +64,38 @@ review_evidence:
         output_digest: "sha256:f6f615294ef69259ab96911db3154cd4bb9b7edf1e727d6eaba20a42e635648a"
 ---
 
-# PLAN-L7-110: takeover feedback surface from harness.db
+# PLAN-L7-110: takeover feedback surface from harness.db（引き継ぎ feedback 表示）
 
-## Objective
+## 目的
 
-Make session takeover receive open feedback from `harness.db` instead of relying
-only on prose handover text or transient working-tree measurements.
+session takeover が prose handover text や transient working-tree measurements だけに依存せず、
+`harness.db` から open feedback を受け取れるようにする。
 
 ## Gap
 
-`findings`, `quality_signals`, and `feedback_events` already exist as the DB
-feedback path, but SessionStart did not read open feedback and surface it to the
-agent. As a result, feedback could be projected into the database without being
-delivered during takeover.
+`findings`、`quality_signals`、`feedback_events` は DB feedback path として既に存在する。
+しかし SessionStart は open feedback を読んで agent へ surface していなかった。
+その結果、feedback が database に projection されても takeover 時に配送されない状態があり得た。
 
 ## Scope
 
 - Add `src/feedback/surface.ts` with `selectTakeoverFeedback` and
   `renderTakeoverFeedback`.
-- Keep the takeover reader read-only so SessionStart does not contend with
-  parallel `db rebuild` writes.
-- Wire `runSessionStartSideEffects` to print the rendered feedback block in an
-  independent fail-open path.
-- Record the design descent in `handover-mechanism.md §2.8`.
-- Record the hybrid takeover baseline rule in `AGENTS.md` and `CLAUDE.md`.
+- takeover reader は read-only に保ち、SessionStart が parallel `db rebuild` writes と競合しないようにする。
+- `runSessionStartSideEffects` を wire し、rendered feedback block を independent fail-open path で出力する。
+- design descent を `handover-mechanism.md §2.8` に記録する。
+- hybrid takeover baseline rule を `AGENTS.md` と `CLAUDE.md` に記録する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Open findings are surfaced as takeover feedback.
-- Warn/fail `quality_signals` are surfaced without writing `feedback_events`.
-- Results are severity ordered, capped, and include a remainder breadcrumb.
-- Empty feedback renders no takeover noise.
+- Open findings が takeover feedback として surface される。
+- Warn/fail `quality_signals` は `feedback_events` を書かずに surface される。
+- Results は severity ordered、capped で、remainder breadcrumb を含む。
+- Empty feedback の場合は takeover noise を render しない。
 - `bun test tests\feedback-surface.test.ts` passes.
 - `bun run typecheck` passes.
 
 ## Carry
 
-- Capturing additional takeover failure classes into `findings` remains a
-  separate coordinated slice.
-- Surfacing the same feedback in `ut-tdd status` is optional future work.
+- additional takeover failure classes を `findings` に capture する作業は separate coordinated slice として残す。
+- 同じ feedback を `helix status` に surface する作業は optional future work とする。

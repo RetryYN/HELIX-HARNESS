@@ -78,8 +78,8 @@ const GATE_MARKERS = [
 
 const REQUIRED_IT_FAMILY_PREFIXES = ["IT-MODULE-", "IT-STATE-"] as const;
 const EVIDENCE_MANIFEST_SCHEMA = "g8-integration-evidence-v1";
-const EVIDENCE_DIR = ".ut-tdd/evidence/g8-integration";
-const ALLOWED_EVIDENCE_PREFIXES = [".ut-tdd/evidence/", "docs/", "src/", "tests/"] as const;
+const EVIDENCE_DIR = ".helix/evidence/g8-integration";
+const ALLOWED_EVIDENCE_PREFIXES = [".helix/evidence/", "docs/", "src/", "tests/"] as const;
 
 type JsonRecord = Record<string, unknown>;
 

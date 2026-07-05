@@ -146,7 +146,7 @@ function pathExistsInsideRepo(repoRoot: string | undefined, path: string): boole
 
 function hasAllowedEvidencePrefix(path: string): boolean {
   const normalized = normalizedPath(path);
-  return [".ut-tdd/evidence/", "docs/", "src/", "tests/"].some((prefix) =>
+  return [".helix/evidence/", "docs/", "src/", "tests/"].some((prefix) =>
     normalized.startsWith(prefix),
   );
 }

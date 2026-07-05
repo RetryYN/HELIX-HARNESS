@@ -35,11 +35,11 @@ review_evidence:
     scope: "L6 completion readiness lint implementation already shipped; lint/typecheck/vitest/doctor green before confirmation."
 ---
 
-# PLAN-L7-23 (add-impl): L6 completion readiness lint
+# PLAN-L7-23 (add-impl): L6 completion readiness lint の機械検証
 
-## §0 Position
+## §0 位置づけ (Position)
 
-Implements PLAN-L6-22 as a hard/fail-close doctor surface. L6 readiness now gates `runDoctor.ok`.
+PLAN-L6-22 を hard/fail-close の doctor surface として実装する。L6 readiness は `runDoctor.ok` の gate になった。
 
 ## §3.1 実装計画（情報源）
 
@@ -51,9 +51,9 @@ Implements PLAN-L6-22 as a hard/fail-close doctor surface. L6 readiness now gate
 
 実装:
 
-- `src/lint/l6-completion.ts`: pure analyzer + loader + message formatter
+- `src/lint/l6-completion.ts`: pure analyzer / loader / message formatter（純粋解析・読込・message 整形）
 - `src/doctor/index.ts`: `checkL6Completion`
-- `tests/l6-completion.test.ts`: not-ready and ready synthetic oracle
+- `tests/l6-completion.test.ts`: not-ready / ready の synthetic oracle（合成検証）
 
 ## §3 工程表
 
@@ -61,7 +61,7 @@ Implements PLAN-L6-22 as a hard/fail-close doctor surface. L6 readiness now gate
 
 直列理由: downstream_dependency。判定データ構造が先にないと doctor 配線と tests を確定できない。
 
-### Step 2: [並列] unit tests 実装
+### Step 2: [並列] unit test 実装
 
 Synthetic fixture で not-ready / ready の両方を検証する。
 
@@ -69,7 +69,7 @@ Synthetic fixture で not-ready / ready の両方を検証する。
 
 直列理由: shared_state。doctor の aggregate message surface を変更するため、既存 doctor tests と整合確認が必要。
 
-### Step 4: [直列] review
+### Step 4: [直列] review 実施
 
 直列理由: downstream_dependency。lint / typecheck / vitest / doctor が green になってから self / reviewer 監査に回す。
 

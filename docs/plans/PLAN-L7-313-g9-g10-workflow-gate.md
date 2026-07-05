@@ -36,9 +36,9 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/lint-wiring.test.ts
     artifact_type: test_code
-  - artifact_path: .ut-tdd/evidence/g9-system/20260705-selected-system-evidence.json
+  - artifact_path: .helix/evidence/g9-system/20260705-selected-system-evidence.json
     artifact_type: json_config
-  - artifact_path: .ut-tdd/evidence/g10-ux/20260705-selected-ux-evidence.json
+  - artifact_path: .helix/evidence/g10-ux/20260705-selected-ux-evidence.json
     artifact_type: json_config
   - artifact_path: docs/design/harness/L9-system/system-evidence-boundary.md
     artifact_type: design_doc
@@ -94,15 +94,15 @@ review_evidence:
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:c56b8e2304b8173d8a61075c5488a2531eb45327b15d1fed82ee8f62736c068c"
       - kind: lint
-        command: "./scripts/ut-tdd plan lint docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md"
+        command: "./scripts/helix plan lint docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md"
         runner: bun
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T04:20:00+09:00"
-        evidence_path: .ut-tdd/evidence/g9-system/20260705-selected-system-evidence.json
+        evidence_path: .helix/evidence/g9-system/20260705-selected-system-evidence.json
         output_digest: "sha256:0c04c80832cf8f124f3cd7f562de3df829e2d27055ce9a164e4952f92d9e8b18"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -124,8 +124,8 @@ HELIX 式で機械化する。G8（`g8-integration-workflow.ts`）と同じ prof
 
 ### IN
 - `src/lint/g9-system-workflow.ts`: L9 test-design の必須 marker + ST-* rows（LOCAL family へ接地）+
-  `.ut-tdd/evidence/g9-system/*.json` manifest（digest / in-repo evidence path / mandatory 被覆 / stale defer 0 / exit_criteria）を検証。
-- `src/lint/g10-ux-workflow.ts`: L10 visual-design の marker + UXV-* rows + `.ut-tdd/evidence/g10-ux/*.json` を同型検証。
+  `.helix/evidence/g9-system/*.json` manifest（digest / in-repo evidence path / mandatory 被覆 / stale defer 0 / exit_criteria）を検証。
+- `src/lint/g10-ux-workflow.ts`: L10 visual-design の marker + UXV-* rows + `.helix/evidence/g10-ux/*.json` を同型検証。
 - G9/G10 は ~90% ロジック共通のため **共有 helper `gN-evidence-manifest.ts`** を切り出して重複排除。
 - `verification-profile.ts` / `verification-profile-catalog.ts` 経由で profile-driven 選択、`lint-wiring.ts` / `doctor/index.ts` へ配線。
 - G10 の UXV 判断 item は `advisor-fable` evidence record と紐付け（traceability）。
@@ -169,8 +169,8 @@ HELIX 式で機械化する。G8（`g8-integration-workflow.ts`）と同じ prof
 | `bun test tests/g9-system-workflow.test.ts tests/g10-ux-workflow.test.ts tests/lint-wiring.test.ts --timeout 180000` | test | 0 | `tests/lint-wiring.test.ts` | `sha256:0b63719f0973df03a5333a8c348dd1cf63d61ab7ce465eb61345b0f45cb878a2` |
 | `bun test tests/design-language.test.ts --timeout 180000` | test | 0 | `tests/design-language.test.ts` | `sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322` |
 | `bun run typecheck` | typecheck | 0 | `src/doctor/index.ts` | `sha256:c56b8e2304b8173d8a61075c5488a2531eb45327b15d1fed82ee8f62736c068c` |
-| `./scripts/ut-tdd plan lint docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md` | lint | 0 | `.ut-tdd/evidence/g9-system/20260705-selected-system-evidence.json` | `sha256:0c04c80832cf8f124f3cd7f562de3df829e2d27055ce9a164e4952f92d9e8b18` |
-| `./scripts/ut-tdd doctor` | doctor | 0 | `docs/process/gates.md` | `sha256:8b822330d3142798c57f05e7192cf5d90e1c5685c1af8638e3ceccd3d5c91281` |
+| `./scripts/helix plan lint docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md` | lint | 0 | `.helix/evidence/g9-system/20260705-selected-system-evidence.json` | `sha256:0c04c80832cf8f124f3cd7f562de3df829e2d27055ce9a164e4952f92d9e8b18` |
+| `./scripts/helix doctor` | doctor | 0 | `docs/process/gates.md` | `sha256:8b822330d3142798c57f05e7192cf5d90e1c5685c1af8638e3ceccd3d5c91281` |
 
 ## 着地結果
 

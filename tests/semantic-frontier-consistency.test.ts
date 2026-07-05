@@ -265,14 +265,14 @@ function baseInput(): SemanticFrontierConsistencyInput {
     "asset/progress visualization: `classification=frontier_pending_decision`。S4 PO decision pending",
     "`PLAN-L7-146` serverless readonly share: `classification=parked_future_version`。activation decision",
     "PLAN-M-02 identifier rename: `classification=approval_gated_cutover`。cutover/action-binding approval",
-    "setup は bare `ut-tdd --version` の PATH 解決を required にし、`ut-tdd-package-script` は fallback 証跡に限定する",
+    "setup は bare `helix --version` の PATH 解決を required にし、`helix-package-script` は fallback 証跡に限定する",
     "package script のみなら `bareCommandResolved=false` のまま `fix_consumer_readiness` に戻す",
     tableRows(L3_IDS),
   ].join("\n");
   const sharedDoc =
     "semantic_feature_frontier_record frontier_pending_decision parked_future_version approval_gated_cutover";
   const setupCliBoundary =
-    "bare `ut-tdd --version` `ut-tdd-package-script` package script のみ `bareCommandResolved=false` `fix_consumer_readiness`";
+    "bare `helix --version` `helix-package-script` package script のみ `bareCommandResolved=false` `fix_consumer_readiness`";
   return {
     l1Text: L1_MARKERS.join("\n"),
     l3Text: `${l3Text}\n${sharedDoc}`,
@@ -412,7 +412,7 @@ describe("semantic frontier consistency", () => {
     expect(result.violations).toEqual(
       expect.arrayContaining([
         "L3: setup CLI boundary marker missing package script のみ",
-        "L12: package script only must not make consumer setup ready without bare ut-tdd PATH",
+        "L12: package script only must not make consumer setup ready without bare helix PATH",
       ]),
     );
   });

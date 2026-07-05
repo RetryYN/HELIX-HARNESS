@@ -21,7 +21,7 @@ HELIX Reverse drive（FR-L1-14）の entry skill。Reverse cycle を開始する
 
 ## この skill を読む条件
 
-- drift signal が発火する（`ut-tdd doctor` が schema/contract divergence を検出）。
+- drift signal が発火する（`helix doctor` が schema/contract divergence を検出）。
 - existing code または design が Forward L0-L14 artifact へ trace できない。
 - Scrum increment が完了し、V-model artifacts へ promote する必要がある（fullback）。
 - Discovery cycle が終わり、その conclusions に formal Forward anchoring が必要。
@@ -50,7 +50,7 @@ R4  Gap & Routing           -- gap-register + forward_routing + promotion_strate
 ```
 
 R4 後、downstream L7 work を始める前に、routing destination の Pair freeze gate
-（G1/G3/G4/G5）を pass しなければならない。`ut-tdd vmodel lint` は missing pair artifacts を可視化する。
+（G1/G3/G4/G5）を pass しなければならない。`helix vmodel lint` は missing pair artifacts を可視化する。
 
 ## Reverse cycle の PLAN frontmatter
 
@@ -62,7 +62,7 @@ workflow_phase: R0                  # phase の進行に合わせて更新する
 reverse_type: <code|design|upgrade|normalization|fullback>
 ```
 
-各 phase boundary で `ut-tdd plan lint`（schema）と `ut-tdd doctor`（governance）により validate する。
+各 phase boundary で `helix plan lint`（schema）と `helix doctor`（governance）により validate する。
 
 ## Test-design symmetry rule（reverse.md §2.1 の対称性ルール）
 
@@ -78,6 +78,6 @@ test-design state を observe/record する。
 ## R0 開始前 checklist
 
 - [ ] 上表から reverse_type を特定する。
-- [ ] `ut-tdd status` が blocking handover や open doctor violation なしを示すことを確認する。
+- [ ] `helix status` が blocking handover や open doctor violation なしを示すことを確認する。
 - [ ] correct frontmatter を持つ `kind=reverse` PLAN を `docs/plans/` に作成する。
-- [ ] `ut-tdd plan lint` を実行し、進む前に 0 で終了することを確認する。
+- [ ] `helix plan lint` を実行し、進む前に 0 で終了することを確認する。

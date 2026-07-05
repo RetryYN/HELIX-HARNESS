@@ -79,27 +79,25 @@ review_evidence:
         output_digest: "sha256:8b0a5469d89a2f6632771b0c46a574b99cf7f0f0efe9b24bcdabe3d306b835cf"
 ---
 
-# PLAN-REVERSE-204: upstream A-146 semantic adoption decision back-fill
+# PLAN-REVERSE-204: upstream A-146 semantic adoption decision back-fill の逆方向補完
 
-## R0-R4 Summary
+## R0-R4 要約
 
-- R0: `src/runtime/upstream-adoption.ts` implements the upstream A-146 semantic adoption decisions lowered to L6.
-- R1: The implementation is pure and does not copy upstream runtime state, publish artifacts, call provider CLIs, or mutate the database.
-- R2: L3/L4/L5 were checked; no new user requirement, module boundary, DB schema, or API contract is introduced by this slice.
-- R3: L6 type aliases and L7 unit-test design were updated to match the current implementation and existing RUN & Debug oracle names.
-- R4: `PLAN-L7-204-upstream-adoption-decisions` and this Reverse PLAN are linked through `dependencies.requires`.
+- R0: `src/runtime/upstream-adoption.ts` は、L6 へ落とした upstream A-146 semantic adoption decisions を実装する。
+- R1: 実装は pure であり、upstream runtime state のコピー、publish artifacts、provider CLIs 呼び出し、database 変更を行わない。
+- R2: L3/L4/L5 を確認済み。この slice は new user requirement、module boundary、DB schema、API contract を追加しない。
+- R3: L6 type aliases と L7 unit-test design を、現在の実装および既存 RUN & Debug oracle names に合わせて更新した。
+- R4: `PLAN-L7-204-upstream-adoption-decisions` とこの Reverse PLAN は `dependencies.requires` で接続している。
 
-## Back-Filled Meaning
+## 補完した意味
 
-The implementation makes upstream A-146 adoption decisions executable. HELIX can
-now test whether a guard claim, consumer CLI path, green-evidence closure,
-telemetry row, distribution document, FE design artifact, drive entry, or
-runtime matcher claim is substantively acceptable instead of accepting prose
-presence or projected evidence.
+この実装により、upstream A-146 adoption decisions は実行可能な判定になる。HELIX は
+対象の guard claim、consumer CLI path、green-evidence closure、telemetry row、distribution document、
+FE design artifact、drive entry、runtime matcher claim について、prose presence や
+projected evidence を受け入れるだけでなく、substantively acceptable かを検査できる。
 
-## Merge Boundary
+## マージ境界
 
-This Reverse only back-fills L6 naming/alias alignment and L7 unit oracle
-registration. It does not claim public distribution publication, external
-runtime execution, provider CLI verification, or DB projection for every
-decision helper.
+この Reverse は、L6 naming/alias alignment と L7 unit oracle registration の補完だけを扱う。
+対象外は public distribution publication、external runtime execution、provider CLI verification、
+各 decision helper の DB projection までは主張しない。

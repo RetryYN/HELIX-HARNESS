@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-163-workflow-contracts-policy-extraction
-title: "PLAN-L7-163: workflow contracts policy extraction"
+title: "PLAN-L7-163: workflow contracts policy extraction の方針抽出"
 kind: refactor
 layer: L7
 drive: fullstack
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant extraction of workflow TDD drive-fit policy constants. No public CLI/API contract, persisted schema, or workflow semantics changed."
+backprop_decision_reason: "workflow TDD drive-fit 方針定数の挙動不変な抽出。公開 CLI/API contract、永続化 schema、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - workflow contracts policy extraction"
+    slot_label: "SE - workflow contracts policy extraction の抽出"
   - role: tl
-    slot_label: "TL - workflow invariant review"
+    slot_label: "TL - workflow invariant review の確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-163-workflow-contracts-policy-extraction.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T20:15:00+09:00"
     tests_green_at: "2026-06-25T20:15:00+09:00"
     verdict: approve
-    scope: "Extract workflow TDD drive-fit policy catalog into a sidecar module and keep classifyDriveTddFits as composition logic."
+    scope: "workflow TDD drive-fit policy catalog を sidecar module へ抽出し、classifyDriveTddFits は composition logic として維持する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -81,24 +81,23 @@ review_evidence:
         output_digest: "sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2"
 ---
 
-# PLAN-L7-163: workflow contracts policy extraction
+# PLAN-L7-163: workflow contracts policy extraction の方針抽出
 
-## Objective
+## 目的
 
-Remove the remaining `externalize-policy` candidate by extracting the workflow
-TDD drive-fit catalog from `src/workflow/contracts.ts`.
+残っている `externalize-policy` candidate を、workflow TDD drive-fit catalog を
+`src/workflow/contracts.ts` から抽出することで解消する。
 
-## Scope
+## スコープ
 
-- Move `DriveTddFit`, `TddCompatibility`, and `DRIVE_TDD_FITS` to
-  `src/workflow/contracts-policy.ts`.
-- Keep `classifyDriveTddFits` in `src/workflow/contracts.ts` as composition
-  logic over the policy catalog.
-- Add direct test coverage for the sidecar policy catalog.
+- `DriveTddFit`、`TddCompatibility`、`DRIVE_TDD_FITS` を
+  `src/workflow/contracts-policy.ts` へ移す。
+- `classifyDriveTddFits` は `src/workflow/contracts.ts` に残し、policy catalog
+  に対する composition logic として維持する。
+- sidecar policy catalog に対する直接の test coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Workflow contract behavior remains unchanged.
-- `tests/workflow-contracts.test.ts` passes and directly imports the sidecar
-  policy.
-- Typecheck, lint, DB rebuild, and doctor pass.
+- Workflow contract behavior は変更しない。
+- `tests/workflow-contracts.test.ts` が pass し、sidecar policy を直接 import する。
+- Typecheck、lint、DB rebuild、doctor が pass する。

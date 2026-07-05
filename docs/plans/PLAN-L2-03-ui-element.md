@@ -42,14 +42,14 @@ review_evidence:
 
 # PLAN-L2-03 (design): L2 UI 要素 ui-element 本起票
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 PLAN-L2-00 master の Step 3 (続き)。L1 §1 各画面の情報要素/操作要素 + §3.1 横断原則 (CC2/CC3) を、
 **再利用可能な UI コンポーネント** に分解し props/state/event 契約を L2 設計として確定する。
 doc の `status` confirmed 昇格は G2 freeze (PO サインオフ) 時 = master Step 4。gate-confirm (IMP-079)
 遵守ゆえ G2=DEFER 中は placeholder 維持。
 
-## 1. Scope (L2 確定項目)
+## 1. 対象範囲 (Scope: L2 確定項目)
 
 - **共通コンポーネント catalog** (§1): DataTable / StatusBadge / CopyButton / NextActionCard / FilterBar /
   Breadcrumb / PollingIndicator / MarkdownRenderer / MermaidRenderer / YamlFrontmatterView。各 props/state/event +
@@ -60,15 +60,15 @@ doc の `status` confirmed 昇格は G2 freeze (PO サインオフ) 時 = master
 - **a11y** (§4): WCAG 2.1 AA 意識 (Q32)、色のみ非依存 + keyboard。
 - **responsive** (§5): Desktop 専用 (S9=a)。
 
-## 2. Acceptance Criteria
+## 2. 受入条件 (Acceptance Criteria)
 
 - [x] 共通コンポーネント catalog に props/state/event + read-only 契約 (S5=b) を確定。
 - [x] 15 画面の固有部品を L1 §1 から分解 (PM-06 設計書ビューア部品含む)。
 - [x] デザイントークン (light のみ) / a11y (AA 意識) / responsive (Desktop) を確定。
 - [x] L1 用語独自定義なし (anti-corruption、画面 ID/URL は screen-list.md 参照)。
-- [x] intra_runtime_subagent (pmo-sonnet) review approve(-with-fixes→fix 済) + doctor green。
+- [x] intra_runtime_subagent (pmo-sonnet) レビュー承認 (review approve-with-fixes→fix 済) + doctor 成功 (doctor green)。
 
-## 3. Out of scope
+## 3. 対象外 (Out of scope)
 
 - wireframe (レイアウト) = PLAN-L2-04。
 - デザイントークン High-Fi 実値 / a11y AA 実測 = L10。

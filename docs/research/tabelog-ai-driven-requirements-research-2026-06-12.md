@@ -175,7 +175,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 > 「Codex / Claude Code は API 直叩きではなく、契約プラン + CLI / hook を HELIX-HARNESS が管理する対象として扱う」(CLAUDE.md)
 > 「Raw `codex exec` / raw `claude` を通常運用の導線にしない」(.claude/CLAUDE.md)
 
-**翻案が必須**: 食べログの「ラベルトリガー → 再評価」の**発想**は、HELIX では `ut-tdd hook post-tool-use` / GitHub Actions の `harness-check` ワークフロー経由で行う。Devin API を直叩きするのでなく `ut-tdd codex --role <role> --task "..."` wrapper を通すのが正規導線。
+**翻案が必須**: 食べログの「ラベルトリガー → 再評価」の**発想**は、HELIX では `helix hook post-tool-use` / GitHub Actions の `harness-check` ワークフロー経由で行う。Devin API を直叩きするのでなく `helix codex --role <role> --task "..."` wrapper を通すのが正規導線。
 
 自動化の**概念** (再評価トリガー・変更時の自動 obligation 再生成) は参照価値があるが、機構はそのままコピーしない。
 
@@ -216,7 +216,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
    - 先行チェック: descent_obligations テーブル設計が確定してから。
 
 3. **再評価トリガー (obligation の動的再生成) の設計検討**
-   - 調査課題: User Story 更新→再評価 (食べログの自動化発想) を HELIX では `ut-tdd hook post-tool-use` / doctor 再実行でどう実現するか。
+   - 調査課題: User Story 更新→再評価 (食べログの自動化発想) を HELIX では `helix hook post-tool-use` / doctor 再実行でどう実現するか。
    - 合流先候補: hook 設計 PLAN / doctor `checkDescentObligation` の増分更新対応。
    - 先行チェック: descent-obligation L7 実装完了後。
 
@@ -231,7 +231,7 @@ PR に `feasibility` ラベル付与 → Devin セッション自動生成。Use
 | セルフレビュー×反復 → cross-agent 翻案 | 採用 (翻案要) | cross-agent review pipeline | 低 | cross-agent 整備状況確認後 |
 | 3部構成 (読者分離) | 採用 | 工程表/PLAN/harness.db の層分離設計に援用 | 低 | Phase B (src/web) 要件定義時 |
 | Devin API 直叩き | 不採用 | — | — | HELIX の API 管理ルールと非整合 |
-| ラベルトリガー自動化の発想 | 比較候補 (翻案要) | ut-tdd hook / harness-check | 低 | wrapper 整備後 |
+| ラベルトリガー自動化の発想 | 比較候補 (翻案要) | helix hook / harness-check | 低 | wrapper 整備後 |
 
 ---
 

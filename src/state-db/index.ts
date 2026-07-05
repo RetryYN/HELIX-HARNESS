@@ -6,7 +6,7 @@
  * (Node 22.5+ の DatabaseSync) はどちらも `exec` / `prepare().run|get|all` を持つため、薄い
  * wrapper で `HarnessDb` インターフェースに正規化する。両ドライバとも同期 API。
  *
- * 不変条件 (PLAN-L7-45 §2): DB path は `.ut-tdd/` 配下に限定 (`:memory:` は test 用に許可)。
+ * 不変条件 (PLAN-L7-45 §2): DB path は `.helix/` 配下に限定 (`:memory:` は test 用に許可)。
  */
 import { mkdirSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -94,26 +94,26 @@ function wrapStatement(stmt: NativeStatement): HarnessStatement {
 }
 
 /**
- * DB path が `.ut-tdd/` 配下であることを保証する (`:memory:` は例外)。
- * repo 外・`.ut-tdd` 外への書き込みを fail-close で拒否する (PLAN-L7-45 §2 invariant)。
+ * DB path が `.helix/` 配下であることを保証する (`:memory:` は例外)。
+ * repo 外・`.helix` 外への書き込みを fail-close で拒否する (PLAN-L7-45 §2 invariant)。
  */
 export function assertWithinUtTdd(dbPath: string, repoRoot: string): void {
   if (dbPath === ":memory:") return;
-  const utTddRoot = resolve(repoRoot, ".ut-tdd");
+  const utTddRoot = resolve(repoRoot, ".helix");
   const resolved = isAbsolute(dbPath) ? resolve(dbPath) : resolve(repoRoot, dbPath);
   const rel = relative(utTddRoot, resolved);
   if (rel.startsWith("..") || isAbsolute(rel)) {
-    throw new Error(`harness.db path は .ut-tdd/ 配下に限定されます: ${dbPath}`);
+    throw new Error(`harness.db path は .helix/ 配下に限定されます: ${dbPath}`);
   }
 }
 
 /** repo 既定の harness.db path。 */
 export function defaultHarnessDbPath(repoRoot: string = process.cwd()): string {
-  return join(repoRoot, ".ut-tdd", "harness.db");
+  return join(repoRoot, ".helix", "harness.db");
 }
 
 /**
- * harness.db を開く。`:memory:` または `.ut-tdd/` 配下のみ許可。
+ * harness.db を開く。`:memory:` または `.helix/` 配下のみ許可。
  * repoRoot は path guard 用 (`:memory:` 時は無視)。
  */
 export function openHarnessDb(path: string, options: { repoRoot?: string } = {}): HarnessDb {

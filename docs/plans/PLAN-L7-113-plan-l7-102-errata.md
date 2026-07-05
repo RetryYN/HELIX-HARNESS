@@ -48,25 +48,23 @@ review_evidence:
         output_digest: "sha256:80fe9c6f5a26f2036489a33f14ba56c5b89e276cde8afcb0c9bc7f9ee777c4a3"
 ---
 
-# PLAN-L7-113: PLAN-L7-102 screen implementation errata
+# PLAN-L7-113: PLAN-L7-102 画面実装 errata
 
-## Objective
+## 目的
 
-Record that `PLAN-L7-102-web-dashboard-phase-b` over-claimed screen
-implementation completion. The earlier PLAN treated `src/web` read-only
-dashboard coverage and `screens.implemented` projection as Phase B implementation
-completion. Current design truth says the screen track is still at L2 design +
-Low-Fi mock, with L10 High-Fi/UX and design-conformant screen implementation
-still ahead.
+`PLAN-L7-102-web-dashboard-phase-b` が画面実装完了を過大に主張していたことを記録する。
+先行 PLAN は `src/web` の read-only dashboard coverage と `screens.implemented` projection を
+Phase B 実装完了として扱っていた。現行の design truth では、画面 track はまだ L2 design +
+Low-Fi mock の段階であり、L10 High-Fi/UX と design-conformant screen implementation は未着手である。
 
-## Scope
+## 対象範囲
 
-- Keep the L2 screen SSoT unchanged: `implemented_screens: ""`.
-- Align the PM-06 projection test with `implemented=0`.
-- Leave full bidirectional supersession for a follow-up if PLAN-L7-102's
-  mojibake body cannot be patched cleanly without risking unrelated churn.
+- L2 screen SSoT は変更しない: `implemented_screens: ""`。
+- PM-06 projection test を `implemented=0` に合わせる。
+- PLAN-L7-102 の mojibake body を unrelated churn のリスクなしに clean に修正できない場合、
+  full bidirectional supersession は follow-up に残す。
 
-## Acceptance Criteria
+## 受入条件
 
-- The targeted IMP-140 projection test passes with PM-06 `implemented=0`.
-- `plan-governance` accepts this errata PLAN.
+- targeted IMP-140 projection test が PM-06 `implemented=0` で通る。
+- `plan-governance` がこの errata PLAN を受け入れる。

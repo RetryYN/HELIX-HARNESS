@@ -91,12 +91,12 @@ review_evidence:
 
 ## 目的
 
-HELIX 導入済み VSCode で新規 project を始める `ut-tdd setup project` は、setup 成功と L14 完了を分ける証跡を既に出している。
+HELIX 導入済み VSCode で新規 project を始める `helix setup project` は、setup 成功と L14 完了を分ける証跡を既に出している。
 しかし L1 §2.7 の「setup 済み project は tag bump / release pin 更新で version-up できる」に対し、初回 workflow は
 `version-up activation-packet` を objectiveBoundary に名前だけ持ち、実際に走らせる no-write verification には入れていなかった。
 
 この PLAN では、consumer repo でも dogfood docs なしで実行できる
-`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json` を初回 workflow に追加する。
+`helix version-up dry-run --current v0.1.0 --target v0.1.3 --json` を初回 workflow に追加する。
 この dry-run は Semantic Versioning 2.0.0 に基づく差分分類、release tag check、rollback、idempotency を返すが、
 `planOnly=true` / `mustNotApply=true` / `applyCommandAvailable=false` を維持する。
 
@@ -112,7 +112,7 @@ HELIX 導入済み VSCode で新規 project を始める `ut-tdd setup project` 
 
 - 採用: `version-up dry-run` を初回 workflow に入れる。consumer repo に `docs/plans` が無くても動く no-write surface だから。
 - 不採用: `version-up activation-packet --json` を consumer 初回必須 command にする。これは harness dogfood docs / parked PLAN を読む surface であり、通常 consumer repo の first-run health check には不適切。
-- 不採用: `.ut-tdd` から `.helix` への実 cutover。PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も `mustNotApply` 境界を維持する。
+- 不採用: `.helix` から `.helix` への実 cutover。PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も `mustNotApply` 境界を維持する。
 
 ## 完了条件
 

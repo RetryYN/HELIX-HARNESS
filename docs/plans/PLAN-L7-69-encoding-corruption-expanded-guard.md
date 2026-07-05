@@ -16,7 +16,7 @@ review_evidence:
     reviewed_at: "2026-06-19"
     tests_green_at: "2026-06-19"
     verdict: pass
-    scope: "PLAN-L7-69 §2-3 残スコープ (.ut-tdd/audit/**/*.md + .ut-tdd/handover/**/*.json provider cross-agent payload) の mojibake guard 実装をレビュー。verdict=pass-with-nits・Critical 0・changes-required なし。4 設計論点を確認: ①raw JSON text を MOJIBAKE_MARKERS で走査 (parse でなく) は JSON.stringify 産物に対し健全 (mojibake 文字は stringify が出さない・clean ASCII/UTF-8 に false-positive なし) ②空/不在 .ut-tdd の fail-open (checked>0 不要) は generated state ゆえ妥当・prose band の checked>0 非対称は意図的で安全 ③walkFiles リファクタは walkMarkdown 既存呼出に behavior-preserving ④doctor hard-gate 配線は invocation/ok-chain/messages の 3 点完備。nit disposition: walkFiles の statSync skip は元 walkMarkdown 継承・read 経路は readFileSync→catch で fail-close 維持 (明確化コメント追記済); 残 nit (catch message の言語/live fixture/audit json 除外) は既存パターン整合 or PLAN scoping 意図ゆえ受容。typecheck/Biome/Vitest 785/doctor EXIT=0。"
+    scope: "PLAN-L7-69 §2-3 残スコープ (.helix/audit/**/*.md + .helix/handover/**/*.json provider cross-agent payload) の mojibake guard 実装をレビュー。verdict=pass-with-nits・Critical 0・changes-required なし。4 設計論点を確認: ①raw JSON text を MOJIBAKE_MARKERS で走査 (parse でなく) は JSON.stringify 産物に対し健全 (mojibake 文字は stringify が出さない・clean ASCII/UTF-8 に false-positive なし) ②空/不在 .helix の fail-open (checked>0 不要) は generated state ゆえ妥当・prose band の checked>0 非対称は意図的で安全 ③walkFiles リファクタは walkMarkdown 既存呼出に behavior-preserving ④doctor hard-gate 配線は invocation/ok-chain/messages の 3 点完備。nit disposition: walkFiles の statSync skip は元 walkMarkdown 継承・read 経路は readFileSync→catch で fail-close 維持 (明確化コメント追記済); 残 nit (catch message の言語/live fixture/audit json 除外) は既存パターン整合 or PLAN scoping 意図ゆえ受容。typecheck/Biome/Vitest 785/doctor EXIT=0。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-sonnet-4-6
 agent_slots:
@@ -39,92 +39,72 @@ dependencies:
   parent: docs/plans/PLAN-L7-68-provider-dispatch-portability.md
   requires:
     - docs/improvement-backlog.md
-    - .ut-tdd/audit/A-137-unusable-provider-dispatch-audit.md
+    - .helix/audit/A-137-unusable-provider-dispatch-audit.md
 ---
 
-# PLAN-L7-69: expanded encoding-corruption guard
+# PLAN-L7-69: encoding-corruption guard の拡張
 
-## 0. Objective
+## 0. 目的
 
-Expand mojibake / encoding-corruption detection beyond the current freeze-readability slice so handover, audit, provider JSON, and governance-facing documents cannot silently become unreadable.
+mojibake / encoding-corruption 検出を既存の freeze-readability slice から広げ、handover、audit、provider JSON、governance-facing document が読めない状態へ静かに壊れないようにする。
 
-## 1. Problem
+## 1. 問題
 
-The latest session exposed unreadable handover and skill/core text. Existing readability checks are scoped to selected freeze documents and do not prove that generated handover or audit artifacts are readable.
+直近 session で、handover と skill/core text の unreadable 化が露出した。既存の readability check は selected freeze document に scope されており、generated handover や audit artifact が readable であることを証明できていなかった。
 
-## 2. Scope
+## 2. 範囲
 
-Future implementation must cover:
+今後の実装は次を対象にする。
 
 - `docs/handover/**/*.md`
-- `.ut-tdd/audit/**/*.md`
-- `.ut-tdd/handover/**/*.json`
+- `.helix/audit/**/*.md`
+- `.helix/handover/**/*.json`
 - `docs/plans/**/*.md`
-- governance docs that are used as session-start Core Reads
+- session-start Core Reads として使う governance docs
 
-Detection signals:
+検出 signal:
 
 - U+FFFD replacement characters;
-- known UTF-8/CP932 mojibake markers;
-- suspicious mixed marker density in mostly Japanese documents;
-- JSON string fields containing known mojibake markers.
+- 既知の UTF-8/CP932 mojibake marker;
+- 主に日本語の document に混在する suspicious marker density;
+- 既知の mojibake marker を含む JSON string field。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- A negative test fixture with unreadable handover text fails.
-- A negative test fixture with provider JSON containing mojibake fails.
-- Clean ASCII handover and audit files pass.
-- `doctor` surfaces the expanded guard with actionable file paths.
-- The guard is scoped enough to avoid treating historical vendor snapshots as product-owned failures.
+- unreadable handover text を含む negative test fixture が fail する。
+- mojibake を含む provider JSON の negative test fixture が fail する。
+- clean ASCII の handover と audit file は pass する。
+- `doctor` が expanded guard と actionable file path を表示する。
+- historical vendor snapshot を product-owned failure として扱わないよう、guard scope が十分に限定されている。
 
-## 4. Status
+## 4. 状態
 
-Implemented 2026-06-19. The broader §2-3 scope is now closed by a dedicated
-runtime-artifact readability guard. See §6 Implementation.
+2026-06-19 に実装済み。§2-3 の broader scope は dedicated runtime-artifact readability guard により close 済み。詳細は §6 実装を参照する。
 
-## 5. Partial Implementation Note (2026-06-16, superseded by §6)
+## 5. 部分実装 note（2026-06-16、§6 で supersede）
 
-2026-06-16 cleanup implemented a narrower first slice for active internal assets:
+2026-06-16 の cleanup では、active internal asset 向けにより狭い first slice を実装した。
 
-- `src/lint/asset-drift.ts` now rejects legacy runtime command/name residue in enrolled agent, skill, and prompt assets.
-- `src/assets/catalog.ts` uses the same drift signal for catalog findings.
-- `.claude/agents/*.md`, `docs/skills/*.md`, and `docs/templates/prompts/effort-classify.md` were normalized so active runtime assets are readable and current.
-- `tests/asset-drift.test.ts`, `tests/asset-catalog.test.ts`, and `tests/doctor.test.ts` cover the detector and doctor surfaces touched by this cleanup.
+- `src/lint/asset-drift.ts` は enrolled agent、skill、prompt asset に残る legacy runtime command/name residue を reject する。
+- `src/assets/catalog.ts` は catalog finding に同じ drift signal を使う。
+- `.claude/agents/*.md`、`docs/skills/*.md`、`docs/templates/prompts/effort-classify.md` を normalize し、active runtime asset を readable かつ current にした。
+- `tests/asset-drift.test.ts`、`tests/asset-catalog.test.ts`、`tests/doctor.test.ts` は、この cleanup で触れた detector と doctor surface を cover する。
 
-The 2026-06-17 readability expansion (`loadSystemReadabilityDocs`) then extended
-the prose band to the whole `docs/` tree (handover, plans, governance .md). That
-closed §2's `docs/handover/**` and `docs/plans/**` markdown coverage, but left
-two surfaces open until §6: `.ut-tdd/audit/**/*.md` (outside `docs/`) and
-`.ut-tdd/handover/**/*.json` provider cross-agent payloads (JSON never scanned).
+その後、2026-06-17 の readability expansion（`loadSystemReadabilityDocs`）で prose band を `docs/` tree 全体（handover、plans、governance `.md`）へ拡張した。これにより §2 の `docs/handover/**` と `docs/plans/**` の markdown coverage は close したが、§6 までは 2 つの surface が open のままだった。対象は `docs/` 外の `.helix/audit/**/*.md` と、JSON が未 scan だった `.helix/handover/**/*.json` provider cross-agent payload である。
 
-## 6. Implementation (2026-06-19)
+## 6. 実装（2026-06-19）
 
-A dedicated runtime-artifact readability guard closes the remaining §2-3 scope
-without disturbing the prose band:
+dedicated runtime-artifact readability guard により、prose band を乱さずに残りの §2-3 scope を close した。
 
-- `loadRuntimeArtifactReadabilityDocs` (`src/lint/readability.ts`) collects
-  `.ut-tdd/audit/**/*.md` and `.ut-tdd/handover/**/*.json` (provider cross-agent
-  payloads included) via a shared `walkFiles(dir, ctx)` helper. The same
-  `MOJIBAKE_MARKERS` (U+FFFD / em-space-before-ASCII / halfwidth-katakana /
-  curated CP932 tokens) run against raw JSON text, so a corrupted-unparseable
-  JSON is still flagged. `.ut-tdd/` is product-owned runtime state — vendor
-  source snapshots and `legacy local state/` live elsewhere and stay excluded
-  (§3 scoping AC).
-- `runtimeReadabilityMessages` formats a distinct `runtime-readability` doctor
-  line with actionable `path:line:marker` samples.
-- `checkRuntimeReadability` (`src/doctor/index.ts`) is wired as a hard gate:
-  fail-open on absence (a fresh repo has no runtime artifacts to corrupt),
-  fail-close on any marker, fail-close on unreadable repo root.
-- Negative fixtures in `tests/readability.test.ts` prove unreadable handover/audit
-  markdown fails, provider JSON with a mojibake marker fails, a U+FFFD in
-  provider JSON fails, and clean ASCII JSON + fullwidth-only Japanese audit text
-  pass. `tests/doctor.test.ts` asserts the gate is wired into the hard-gate
-  aggregation and fails closed on a missing repo root.
+- `loadRuntimeArtifactReadabilityDocs`（`src/lint/readability.ts`）は `.helix/audit/**/*.md` と `.helix/handover/**/*.json`（provider cross-agent payload を含む）を shared `walkFiles(dir, ctx)` helper で収集する。同じ `MOJIBAKE_MARKERS`（U+FFFD / em-space-before-ASCII / halfwidth-katakana / curated CP932 token）を raw JSON text に対して走査するため、parse 不能な corrupted JSON も flag できる。`.helix/` は product-owned runtime state である。vendor source snapshot と `legacy local state/` は別の場所にあり、除外を維持する（§3 scoping AC）。
+- `runtimeReadabilityMessages` は distinct な `runtime-readability` doctor line を出し、actionable な `path:line:marker` sample を含める。
+- `checkRuntimeReadability`（`src/doctor/index.ts`）は hard gate として配線する。fresh repo には corrupt する runtime artifact が無いため absence は fail-open、marker 検出時は fail-close、repo root が読めない場合も fail-close とする。
+- `tests/readability.test.ts` の negative fixture は、unreadable handover/audit markdown、mojibake marker を含む provider JSON、provider JSON 内の U+FFFD が fail することを証明する。clean ASCII JSON と fullwidth-only Japanese audit text は pass する。`tests/doctor.test.ts` は gate が hard-gate aggregation に配線され、missing repo root で fail-close することを assert する。
 
-### Acceptance Criteria — met
+### 受入条件 — 達成
 
-- [x] Negative fixture with unreadable handover text fails.
-- [x] Negative fixture with provider JSON containing mojibake fails.
-- [x] Clean ASCII handover and audit files pass.
-- [x] `doctor` surfaces the expanded guard (`runtime-readability`) with file paths.
-- [x] Scoped to `.ut-tdd/` product state; vendor snapshots excluded.
+- [x] unreadable handover text を含む negative fixture が fail する。
+- [x] mojibake を含む provider JSON の negative fixture が fail する。
+- [x] clean ASCII の handover と audit file は pass する。
+- [x] `doctor` が expanded guard（`runtime-readability`）と file path を表示する。
+- [x] `.helix/` product state に scope し、vendor snapshot は除外する。

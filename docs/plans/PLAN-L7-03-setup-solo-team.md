@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-03-setup-solo-team
-title: "PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装 — src/setup/ + ut-tdd setup CLI + tests/setup.test.ts (U-SETUP) + docs/templates/github/"
+title: "PLAN-L7-03 (add-impl): helix setup solo/team 実装 — src/setup/ + helix setup CLI + tests/setup.test.ts (U-SETUP) + docs/templates/github/"
 kind: add-impl
 layer: L7
 drive: fullstack
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-07-02T00:46:38+09:00"
     tests_green_at: "2026-07-02T00:46:38+09:00"
     verdict: approve
-    scope: "Continuation: HELIX project setup now promotes active handover preflight from a loose nextCommands hint into the first-run workflow contract. `postSetupWorkflow.verificationCommands` includes `ut-tdd handover status --json`, ready/fix/review nextActions name the handover command, generated VSCode tasks expose `HELIX: handover status`, CLI text prints the handover task, and L6/L7/HELIX function contracts were synchronized. This remains a non-destructive setup workflow hardening; PLAN-M-02 identifier cutover, branch protection apply, secrets, and external API application remain outside this change."
+    scope: "Continuation: HELIX project setup now promotes active handover preflight from a loose nextCommands hint into the first-run workflow contract. `postSetupWorkflow.verificationCommands` includes `helix handover status --json`, ready/fix/review nextActions name the handover command, generated VSCode tasks expose `HELIX: handover status`, CLI text prints the handover task, and L6/L7/HELIX function contracts were synchronized. This remains a non-destructive setup workflow hardening; PLAN-M-02 identifier cutover, branch protection apply, secrets, and external API application remain outside this change."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -93,7 +93,7 @@ review_evidence:
     reviewed_at: "2026-07-01T05:45:48+09:00"
     tests_green_at: "2026-07-01T05:45:48+09:00"
     verdict: approve
-    scope: "Continuation: HELIX project setup now surfaces consumerReadiness for projected hook CLI PATH resolution. `runHelixProjectSetup` records Bun/Git/GitHub CLI, Claude/Codex runtime mode, `ut-tdd-cli` PATH status, and secret-free consumer CI smoke; missing `ut-tdd` returns `bun link` remediation instead of silent pass. L6/L7 design and A146 HU-FR-02 oracle references were synchronized. PLAN-M-02 identifier cutover, branch protection apply, secrets, and external API application remain outside this change."
+    scope: "Continuation: HELIX project setup now surfaces consumerReadiness for projected hook CLI PATH resolution. `runHelixProjectSetup` records Bun/Git/GitHub CLI, Claude/Codex runtime mode, `helix-cli` PATH status, and secret-free consumer CI smoke; missing `helix` returns `bun link` remediation instead of silent pass. L6/L7 design and A146 HU-FR-02 oracle references were synchronized. PLAN-M-02 identifier cutover, branch protection apply, secrets, and external API application remain outside this change."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -191,7 +191,7 @@ review_evidence:
     reviewed_at: "2026-07-01T04:45:00+09:00"
     tests_green_at: "2026-07-01T04:45:00+09:00"
     verdict: approve
-    scope: "Continuation: HELIX project setup now distinguishes target command naming from current command availability. `futureCommand=helix setup project` remains a post-cutover target, while `commandAvailability.futureCommandAvailable=false` and `enablementPacketCommand=ut-tdd rename plan --json` prevent setup output from implying the helix package/bin alias is active before PLAN-M-02 cutover/action-binding approval."
+    scope: "Continuation: HELIX project setup now distinguishes target command naming from current command availability. `futureCommand=helix setup project` remains a post-cutover target, while `commandAvailability.futureCommandAvailable=false` and `enablementPacketCommand=helix rename plan --json` prevent setup output from implying the helix package/bin alias is active before PLAN-M-02 cutover/action-binding approval."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -232,7 +232,7 @@ review_evidence:
     reviewed_at: "2026-07-01T03:40:56+09:00"
     tests_green_at: "2026-07-01T03:40:56+09:00"
     verdict: approve
-    scope: "Continuation: HELIX project setup JSON/text now exposes identifierTransition so new VSCode projects see the current ut-tdd/.ut-tdd baseline, future helix/.helix target, PLAN-M-02 cutover blocker, and mustNotApply=true boundary instead of confusing setup bootstrap with irreversible rename completion."
+    scope: "Continuation: HELIX project setup JSON/text now exposes identifierTransition so new VSCode projects see the current helix/.helix baseline, future helix/.helix target, PLAN-M-02 cutover blocker, and mustNotApply=true boundary instead of confusing setup bootstrap with irreversible rename completion."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -265,7 +265,7 @@ review_evidence:
     reviewed_at: "2026-07-01T02:47:22+0900"
     tests_green_at: "2026-07-01T02:47:22+0900"
     verdict: approve
-    scope: "Continuation: ut-tdd setup project bootstraps HELIX-ready VSCode projects with adapter/hook projection, VSCode tasks, .ut-tdd memory/handover/evidence baselines, dry-run zero side effects, and branch-protection emit-only boundary."
+    scope: "Continuation: helix setup project bootstraps HELIX-ready VSCode projects with adapter/hook projection, VSCode tasks, .helix memory/handover/evidence baselines, dry-run zero side effects, and branch-protection emit-only boundary."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -295,17 +295,17 @@ review_evidence:
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
 ---
 
-# PLAN-L7-03 (add-impl): ut-tdd setup solo/team 実装
+# PLAN-L7-03 (add-impl): helix setup solo/team 実装
 
 ## §0 位置づけ
 
 `PLAN-L6-05-setup-solo-team` (add-design) の ① 機能設計 (`setup-solo-team.md`) + ③ 単体テスト設計 (U-SETUP-001〜007) を ② 実装 + ④ テストコードに落とす add-impl。**Add-feature 標準ライフサイクル 経路 B** の impl 段階。完了後、後段 `PLAN-REVERSE-04` (未起票、本 PLAN 完了後に起票予定) で L4 external-if (GitHub 境界契約) / L3 要件 (新 FR 要否) / §6.5 整合 / L0 §10 用語へ back-fill する。
 
-2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `ut-tdd setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.ut-tdd/memory` / `.ut-tdd/handover` / `.ut-tdd/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。brownfield では `importReport` に managed/preview/existing/written/skipped/mergeable path と `requiresReview` / `nextRoute=review_import_report` を返し、既存 non-mergeable config を黙って成功扱いにしない。さらに `consumerReadiness` で projected hook が呼ぶ `ut-tdd` CLI の PATH 解決性、Bun/Git/GitHub CLI、Claude/Codex runtime mode、secret 不要の consumer CI smoke を返し、PATH 未解決時は `bun link` / `bun link ut-tdd` remediation を出して silent pass させない。`postSetupWorkflow` は `importReport` と `consumerReadiness` を合成し、fresh/ready は `ready`、brownfield conflict は `review_import_report`、readiness 未充足は `fix_consumer_readiness` へ導く first-run route、未充足 gate、次 action、検証 command を返す。不可逆な `.ut-tdd` identifier cutover や external API apply は本 continuation の範囲外。
+2026-07-01 continuation: HELIX 導入済み VSCode で新規 project を始める入口として `helix setup project` を同じ setup 境界に追加する。既存の solo/team 判定、adapter/hook 投影、branch-protection emit-only 境界を継承し、追加で `.vscode/tasks.json` / `.vscode/settings.json` と `.helix/memory` / `.helix/handover` / `.helix/evidence` baseline を生成する。`runHelixProjectSetup` は `futureCommand=helix setup project` と `.helix` 目標 state dir を `identifierTransition` として返すが、PLAN-M-02 cutover/action-binding approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` に固定する。brownfield では `importReport` に managed/preview/existing/written/skipped/mergeable path と `requiresReview` / `nextRoute=review_import_report` を返し、既存 non-mergeable config を黙って成功扱いにしない。さらに `consumerReadiness` で projected hook が呼ぶ `helix` CLI の PATH 解決性、Bun/Git/GitHub CLI、Claude/Codex runtime mode、secret 不要の consumer CI smoke を返し、PATH 未解決時は `bun link` / `bun link helix` remediation を出して silent pass させない。`postSetupWorkflow` は `importReport` と `consumerReadiness` を合成し、fresh/ready は `ready`、brownfield conflict は `review_import_report`、readiness 未充足は `fix_consumer_readiness` へ導く first-run route、未充足 gate、次 action、検証 command を返す。不可逆な `.helix` identifier cutover や external API apply は本 continuation の範囲外。
 
 2026-07-03 continuation: `consumerReadiness.ci` の read-only / secret 不要 / package-local smoke 宣言を
 実テンプレ `harness-check.yml` の artifact readiness と接続する。`permissions: contents: read`、`push` /
-`pull_request`、`pull_request_target` 不使用、secret 参照なし、`bun run ut-tdd ...` command 群を満たさない
+`pull_request`、`pull_request_target` 不使用、secret 参照なし、`bun run helix ...` command 群を満たさない
 配布 workflow は `fix_consumer_readiness` へ戻し、GitHub secure-use 境界を JSON 宣言だけで green にしない。
 同 continuation は `contents: read` が残っていても `write-all` または `pull-requests: write` 等の任意 write
 permission が混在する workflow を read-only CI evidence として扱わない。
@@ -317,11 +317,11 @@ permission が混在する workflow を read-only CI evidence として扱わな
 0-A artifact を見て green になる意味ずれを防ぐ。
 
 2026-07-03 continuation (PLAN-L7-247): HELIX project setup の初回 workflow に
-`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を追加する。L1 §2.7 の
+`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を追加する。L1 §2.7 の
 「setup 済み project は tag bump / release pin 更新で version-up できる」を、consumer repo でも実行できる
 no-write / plan-only dry-run 証跡へ接続するためである。`version-up activation-packet --json` は dogfood
 PLAN corpus を読むため consumer first-run 必須 command にはせず、completion / status / harness 側 decision
-packet で扱う。setup は引き続き `.ut-tdd` / `ut-tdd` を現行識別子とし、`.helix` / `helix setup project`
+packet で扱う。setup は引き続き `.helix` / `helix` を現行識別子とし、`.helix` / `helix setup project`
 の有効化は PLAN-M-02 cutover/action-binding approval 後に限る。
 
 - 親設計: `docs/design/harness/L6-function-design/setup-solo-team.md` (parent_design 必須、L7-02 と同じ add-impl 規約フィールド)。契約関数 7 本 + DbC + file↔GitHub-API 境界が正本。
@@ -343,11 +343,11 @@ packet で扱う。setup は引き続き `.ut-tdd` / `ut-tdd` を現行識別子
 ### Step 4: tests/setup.test.ts（④、TDD の Red→Green）
 U-SETUP-001〜007 を vitest 化 (③ 設計 L7-unit-test-design.md §1.7)。deps mock で gh / fs / confirm / isInteractive / now を注入。never-throws / 安全フォールバック (unknown→solo) / **非対話 apply 封鎖** / signals strip / token 非埋込 / dry-run 非書込 / orchestration 優先順 を検証。
 
-### Step 5: ut-tdd setup CLI 配線 (src/cli.ts)
-commander で `ut-tdd setup` を追加: `--solo` / `--team` (phase 上書き) / `--dry-run` / `--apply-branch-protection` / `--tl-team` / `--qa-team` / `--po-team`。非対話判定 (TTY/CI) を `isInteractive` deps に注入。既存 status/plan サブコマンドと同形。
+### Step 5: helix setup CLI 配線 (src/cli.ts)
+commander で `helix setup` を追加: `--solo` / `--team` (phase 上書き) / `--dry-run` / `--apply-branch-protection` / `--tl-team` / `--qa-team` / `--po-team`。非対話判定 (TTY/CI) を `isInteractive` deps に注入。既存 status/plan サブコマンドと同形。
 
-### Step 5b: ut-tdd setup project CLI 配線 (src/cli.ts)
-`ut-tdd setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、`importReport`、`consumerReadiness`、`postSetupWorkflow`、次に実行する確認コマンドを返す。`importReport` は fresh/brownfield、managed/preview/existing/written/skipped/mergeable path、`requiresReview`、`reviewRequiredReasons`、`nextRoute` を含める。`consumerReadiness` は consumer repo で projected hook が呼ぶ `ut-tdd` CLI の PATH 解決性を検査し、未解決なら setup output に `bun link` remediation を出す。`postSetupWorkflow` は `nextRoute=ready|review_import_report|fix_consumer_readiness`、`unmetGates`、`nextActions`、`verificationCommands`、`blockedUntil`、`manualDocSearchRequired=false` を含め、fresh/brownfield/ready の初回稼働ルートを構造化する。text 出力でも `import-report: ready|review_required`、`consumer-readiness:`、`post-setup-workflow:` を出し、brownfield の衝突レビューや CLI PATH 未解決を見落とさない。`identifierTransition` は現行 `ut-tdd` / `.ut-tdd` / `area=harness`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=ut-tdd rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
+### Step 5b: helix setup project CLI 配線 (src/cli.ts)
+`helix setup project` を追加し、HELIX-ready VSCode project bootstrap を提供する。親 `setup` の `--solo` / `--team` / `--dry-run` / team slug / branch-protection option を継承し、JSON 出力では `schemaVersion=helix-project-setup.v1`、VSCode task、project-local baseline path、`identifierTransition`、`importReport`、`consumerReadiness`、`postSetupWorkflow`、次に実行する確認コマンドを返す。`importReport` は fresh/brownfield、managed/preview/existing/written/skipped/mergeable path、`requiresReview`、`reviewRequiredReasons`、`nextRoute` を含める。`consumerReadiness` は consumer repo で projected hook が呼ぶ `helix` CLI の PATH 解決性を検査し、未解決なら setup output に `bun link` remediation を出す。`postSetupWorkflow` は `nextRoute=ready|review_import_report|fix_consumer_readiness`、`unmetGates`、`nextActions`、`verificationCommands`、`blockedUntil`、`manualDocSearchRequired=false` を含め、fresh/brownfield/ready の初回稼働ルートを構造化する。text 出力でも `import-report: ready|review_required`、`consumer-readiness:`、`post-setup-workflow:` を出し、brownfield の衝突レビューや CLI PATH 未解決を見落とさない。`identifierTransition` は現行 `helix` / `.helix` / `area=helix`、目標 `helix` / `.helix` / `area=helix`、`cutoverPlanCommand=helix rename plan --json`、`mustNotApply=true` を含み、cutover 承認前の setup が rename 完了済みと誤認されないようにする。dry-run は file/state/remote 副作用ゼロを維持し、branch protection は action-binding approval なしに適用しない。
 
 ### Step 6: review (review 前置 MUST)
 `code-reviewer` (Senior Staff、TL 代替) で実装/型/file↔GitHub-API 境界/非対話 apply 封鎖/token 非記録/安全フォールバック/idempotency をレビュー。cross-agent 不在を evidence に記録 ([[feedback_ts_native_over_helix_cli]])。
@@ -369,7 +369,7 @@ commander で `ut-tdd setup` を追加: `--solo` / `--team` (phase 上書き) / 
 
 ## §6 用語更新 (§G.9)
 
-L6 (PLAN-L6-05) で導入した **Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only** を実装語として確定 (新規語なし、L6 定義を踏襲)。L7 で確定する具体 path 名 (`.ut-tdd/state/setup.json` / `src/setup/index.ts`) は**実装語であり L0 用語集範疇外**。設計用語の L0 §10 back-merge は後段 Reverse (PLAN-REVERSE-04) の deliverable。
+L6 (PLAN-L6-05) で導入した **Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only** を実装語として確定 (新規語なし、L6 定義を踏襲)。L7 で確定する具体 path 名 (`.helix/state/setup.json` / `src/setup/index.ts`) は**実装語であり L0 用語集範疇外**。設計用語の L0 §10 back-merge は後段 Reverse (PLAN-REVERSE-04) の deliverable。
 
 ## §7 成否
 

@@ -43,28 +43,28 @@ import {
   validateRouteConfigText,
 } from "../src/workflow/routing-contracts";
 
-// @ut-tdd-trace FR-L1-06
-// @ut-tdd-trace FR-L1-08
-// @ut-tdd-trace FR-L1-11
-// @ut-tdd-trace FR-L1-12
-// @ut-tdd-trace FR-L1-13
-// @ut-tdd-trace FR-L1-14
-// @ut-tdd-trace FR-L1-15
-// @ut-tdd-trace FR-L1-22
-// @ut-tdd-trace FR-L1-23
-// @ut-tdd-trace FR-L1-25
-// @ut-tdd-trace FR-L1-26
-// @ut-tdd-trace FR-L1-27
-// @ut-tdd-trace FR-L1-28
-// @ut-tdd-trace FR-L1-29
-// @ut-tdd-trace FR-L1-30
-// @ut-tdd-trace FR-L1-32
-// @ut-tdd-trace FR-L1-37
-// @ut-tdd-trace FR-L1-39
-// @ut-tdd-trace FR-L1-40
-// @ut-tdd-trace FR-L1-41
-// @ut-tdd-trace FR-L1-47
-// @ut-tdd-trace FR-L1-48
+// @helix-trace FR-L1-06
+// @helix-trace FR-L1-08
+// @helix-trace FR-L1-11
+// @helix-trace FR-L1-12
+// @helix-trace FR-L1-13
+// @helix-trace FR-L1-14
+// @helix-trace FR-L1-15
+// @helix-trace FR-L1-22
+// @helix-trace FR-L1-23
+// @helix-trace FR-L1-25
+// @helix-trace FR-L1-26
+// @helix-trace FR-L1-27
+// @helix-trace FR-L1-28
+// @helix-trace FR-L1-29
+// @helix-trace FR-L1-30
+// @helix-trace FR-L1-32
+// @helix-trace FR-L1-37
+// @helix-trace FR-L1-39
+// @helix-trace FR-L1-40
+// @helix-trace FR-L1-41
+// @helix-trace FR-L1-47
+// @helix-trace FR-L1-48
 
 describe("L7 workflow contract implementations", () => {
   it("records UT run evidence into harness.db projection tables and reports weak links", () => {
@@ -80,7 +80,7 @@ describe("L7 workflow contract implementations", () => {
           started_at: "2026-06-12T00:00:00.000Z",
           completed_at: "2026-06-12T00:01:00.000Z",
           exit_code: 0,
-          evidence_path: ".ut-tdd/evidence/test.json",
+          evidence_path: ".helix/evidence/test.json",
           output_digest: "sha256:0123456789abcdef",
           cases: [
             {
@@ -281,7 +281,7 @@ describe("L7 workflow contract implementations", () => {
               started_at: "2026-07-03T00:00:00.000Z",
               completed_at: "2026-07-03T00:01:00.000Z",
               exit_code: 1,
-              evidence_path: ".ut-tdd/evidence/run-1.json",
+              evidence_path: ".helix/evidence/run-1.json",
               cases: [
                 { oracle_id: "U-FLAKE", name: "flaky", status: "failed", duration_ms: 10 },
                 { oracle_id: "U-SLOW", name: "slow", status: "passed", duration_ms: 100 },
@@ -295,7 +295,7 @@ describe("L7 workflow contract implementations", () => {
               started_at: "2026-07-03T00:02:00.000Z",
               completed_at: "2026-07-03T00:03:00.000Z",
               exit_code: 0,
-              evidence_path: ".ut-tdd/evidence/run-2.json",
+              evidence_path: ".helix/evidence/run-2.json",
               cases: [
                 { oracle_id: "U-FLAKE", name: "flaky", status: "passed", duration_ms: 12 },
                 { oracle_id: "U-SLOW", name: "slow", status: "passed", duration_ms: 180 },
@@ -425,7 +425,7 @@ describe("L7 workflow contract implementations", () => {
     const routeEval = evaluateRouteCommand({ signal: "reverse gap" });
     expect(routeEval.mode).toBe("reverse");
     expect(routeEval.exit_code).toBe(0);
-    expect(routeEval.recommended_command?.command).toBe("ut-tdd task classify");
+    expect(routeEval.recommended_command?.command).toBe("helix task classify");
     expect(recommendedCommandV1Schema.safeParse(routeEval.recommended_command).success).toBe(true);
     expect(routeEval.suggest_command).toContain("reverse gap");
     const unknownRoute = evaluateRouteCommand({ signal: "unmapped-special-case" });
@@ -434,14 +434,14 @@ describe("L7 workflow contract implementations", () => {
     const blockedRoute = evaluateRouteCommand({ signal: "forced_stop" });
     expect(blockedRoute.exit_code).toBe(1);
     expect(blockedRoute.approval.status).toBe("policy_missing");
-    expect(blockedRoute.suggest_command).toBe("ut-tdd doctor");
+    expect(blockedRoute.suggest_command).toBe("helix doctor");
     expect(blockedRoute.recommended_command?.safety.requires_human_approval).toBe(true);
     for (const signal of ["production_incident", "hotfix_required", "regression_prod"]) {
       const incidentRoute = evaluateRouteCommand({ signal });
       expect(incidentRoute.mode).toBe("incident");
       expect(incidentRoute.exit_code).toBe(1);
       expect(incidentRoute.approval.required).toBe(true);
-      expect(incidentRoute.recommended_command?.command).toBe("ut-tdd doctor");
+      expect(incidentRoute.recommended_command?.command).toBe("helix doctor");
     }
     const approvedRoute = evaluateRouteCommand({
       signal: "forced_stop",
@@ -463,7 +463,7 @@ describe("L7 workflow contract implementations", () => {
     const versionUpRoute = evaluateRouteCommand({ signal: "version_deferral" });
     expect(versionUpRoute.mode).toBe("version-up");
     expect(versionUpRoute.exit_code).toBe(0);
-    expect(versionUpRoute.recommended_command?.command).toBe("ut-tdd task classify");
+    expect(versionUpRoute.recommended_command?.command).toBe("helix task classify");
     expect(versionUpRoute.recommended_command?.args).toMatchObject({
       signal: "version_deferral",
       mode: "version-up",
@@ -473,7 +473,7 @@ describe("L7 workflow contract implementations", () => {
     });
     expect(pairAgentRoute.mode).toBe("add-feature");
     expect(pairAgentRoute.exit_code).toBe(0);
-    expect(pairAgentRoute.recommended_command?.command).toBe("ut-tdd pair-agent plan");
+    expect(pairAgentRoute.recommended_command?.command).toBe("helix pair-agent plan");
     expect(pairAgentRoute.recommended_command?.args).toMatchObject({
       signal: "pair_agent_tdd implement with lightweight worker and smart reviewer",
       mode: "add-feature",
@@ -490,7 +490,7 @@ describe("L7 workflow contract implementations", () => {
     );
     const pairAgentTextRoute = evaluateRouteCommand({ signal: "pair-agent TDD route" });
     expect(pairAgentTextRoute.mode).toBe("add-feature");
-    expect(pairAgentTextRoute.recommended_command?.command).toBe("ut-tdd pair-agent plan");
+    expect(pairAgentTextRoute.recommended_command?.command).toBe("helix pair-agent plan");
     expect(pairAgentTextRoute.recommended_command?.args).toMatchObject({
       signal: "pair-agent TDD route",
       pair_route: "smart_test_author_to_light_implementation_to_smart_review",
@@ -507,13 +507,14 @@ describe("L7 workflow contract implementations", () => {
     );
     expect(versionUpExternalRoute.approval.status).toBe("policy_missing");
     expect(versionUpExternalRoute.recommended_command?.safety.requires_human_approval).toBe(true);
+    const legacyRuntimeName = ["ut", "tdd"].join("-");
     const legacyCommandRoute = evaluateRouteCommand({
       signal: "legacy override",
       route_map: [
         {
           tokens: ["legacy"],
           mode: "reverse",
-          command: "helix reverse",
+          command: `${legacyRuntimeName} reverse`,
           preflight: true,
           requiresApproval: false,
         },
@@ -523,7 +524,7 @@ describe("L7 workflow contract implementations", () => {
     expect(legacyCommandRoute.recommended_command).toBeNull();
     expect(legacyCommandRoute.findings[0]?.code).toBe("legacy-runtime-command");
     const routeConfigViolations = validateRouteConfigText({
-      path: ".ut-tdd/config/route-map.yaml",
+      path: ".helix/config/route-map.yaml",
       text: "source: legacy DB\nowner: C:\\Users\\micro\\legacy\n",
     });
     expect(routeConfigViolations.map((v) => v.code)).toEqual([
@@ -699,7 +700,7 @@ describe("L7 workflow contract implementations", () => {
         layer: "L7",
         plan_id: "PLAN-X",
       }).partition_path,
-    ).toContain(".ut-tdd/drive/db/Forward/PLAN-X");
+    ).toContain(".helix/drive/db/Forward/PLAN-X");
     const dbPartition = resolveDriveStatePartition({
       drive: "db",
       mode: "Forward",

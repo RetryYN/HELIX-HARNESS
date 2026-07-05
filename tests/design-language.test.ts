@@ -15,7 +15,7 @@ describe("design-language lint", () => {
       [
         {
           path: "docs/design/x.md",
-          text: "# HELIX 設計\n\n`ut-tdd doctor` は gate evidence を確認する。\n",
+          text: "# HELIX 設計\n\n`helix doctor` は gate evidence を確認する。\n",
         },
       ],
       { baselineViolations: 0 },
@@ -92,8 +92,8 @@ describe("design-language lint", () => {
     expect(paths).toContain(".claude/agents/advisor-fable.md");
     expect(paths).toContain(".claude/commands/ship.md");
     expect(paths).toContain(".github/ISSUE_TEMPLATE/add-feature.md");
-    expect(paths).toContain(".ut-tdd/audit/A-133-upstream-vmodel-coverage-audit.md");
-    expect(paths).toContain(".ut-tdd/review/cross-review-versionup-and-s4-failclose.md");
+    expect(paths).toContain(".helix/audit/A-133-upstream-vmodel-coverage-audit.md");
+    expect(paths).toContain(".helix/review/cross-review-versionup-and-s4-failclose.md");
     expect(paths).toContain(".github/PULL_REQUEST_TEMPLATE.md");
     expect(paths).not.toContain("README.md");
     expect(paths).toContain("docs/archive/helix-agent-harness-concept_v2.1.md");

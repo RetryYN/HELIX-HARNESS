@@ -109,7 +109,7 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-03T12:18:47+09:00"
-        evidence_path: .ut-tdd/harness.db
+        evidence_path: .helix/harness.db
         output_digest: "sha256:228bd37f5ca0eb57f364969a1099dcfd8cb00a6b9971195f5f6698a60d444bbf"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
@@ -125,10 +125,10 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd setup project` の first-run workflow は version-up dry-run を含む 9 行 matrix に更新済みだった。
-しかし実 consumer repo で wet setup 後に `ut-tdd doctor --profile consumer` を走らせると、
+`helix setup project` の first-run workflow は version-up dry-run を含む 9 行 matrix に更新済みだった。
+しかし実 consumer repo で wet setup 後に `helix doctor --profile consumer` を走らせると、
 consumer doctor 側の期待 matrix が古い 8 行のままで、`version-up-dry-run` 行を持つ正しい
-`.ut-tdd/state/project-setup.json` を violation にしていた。
+`.helix/state/project-setup.json` を violation にしていた。
 
 この PLAN では、setup state、adapter docs、Claude subagent、Claude slash-command に対する consumer doctor の
 fail-close 判定を version-up dry-run 付き契約へ揃える。
@@ -137,10 +137,10 @@ fail-close 判定を version-up dry-run 付き契約へ揃える。
 
 - `runConsumerDoctor` の `expectedFirstRunRows` に `version-up-dry-run` 行を追加した。
 - consumer adapter doc / Claude subagent / Claude slash-command 判定で
-  `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --json` を必須にした。
+  `helix version-up dry-run --current v0.1.0 --target v0.1.3 --json` を必須にした。
 - `tests/doctor.test.ts` の consumer setup fixture を 9 行 matrix、8 VS Code task、version-up CI smoke へ更新した。
 - L6 design と L7 test-design に、consumer doctor が `version-up-dry-run` 欠落を fail-close することを追記した。
-- 誤って source repo に生成した ignored `.ut-tdd/state/project-setup.json` / `.ut-tdd/state/setup.json` を削除し、source repo の completion packet を本来の 4 frontier に戻した。
+- 誤って source repo に生成した ignored `.helix/state/project-setup.json` / `.helix/state/setup.json` を削除し、source repo の completion packet を本来の 4 frontier に戻した。
 
 ## 採用判断
 
@@ -148,12 +148,12 @@ fail-close 判定を version-up dry-run 付き契約へ揃える。
 - 採用: 実 consumer repo dry/wet smoke を完了条件に入れ、unit test だけで閉じない。
 - 不採用: source repo に consumer setup state を残して `CONSUMER-SETUP-BOUNDARY` を active objective に混ぜる。
   source repo と consumer repo の runtime state は別物であり、source repo の L14 blocker は既存 4 frontier のまま扱う。
-- 不採用: `.ut-tdd` から `.helix` への実 cutover。PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も apply しない。
+- 不採用: `.helix` から `.helix` への実 cutover。PLAN-M-02 の cutover/action-binding approval が未承認のため、今回も apply しない。
 
 ## 完了条件
 
 - `runConsumerDoctor` が first-run matrix 9 行のうち `version-up-dry-run` 欠落を fail-close する。
-- wet setup 後の temp consumer repo で `ut-tdd doctor --profile consumer` が `consumer-project-setup-state - OK` を返す。
+- wet setup 後の temp consumer repo で `helix doctor --profile consumer` が `consumer-project-setup-state - OK` を返す。
 - `bun test tests/doctor.test.ts --timeout 180000` が green。
 - `bun test tests/setup.test.ts tests/cli-surface.test.ts --timeout 180000` が green。
 - `bun test tests/design-language.test.ts --timeout 180000`、`bun run tsc --noEmit`、`plan lint --gate governance`、`db rebuild`、`doctor` が green。

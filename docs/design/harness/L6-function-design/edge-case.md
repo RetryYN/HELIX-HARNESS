@@ -37,7 +37,7 @@ function-spec §1/§2 の各関数に **正常/異常/境界/throws の 4 観点
 |---|---|---|
 | `@edge-normal` | allowlist 内 + model 明示 + family 一致 → `code=0` | U-FUNC-02 |
 | `@edge-error` | allowlist 外 / model 無指定 / family 不一致 → `code=2` (exit 2 は hook shim) | U-EDGE-02 |
-| `@edge-boundary` | `allowRaw=true` (UT_TDD_ALLOW_RAW_AGENT=1) bypass → `bypassed=true` + message warn (理由記録) | U-EDGE-03 |
+| `@edge-boundary` | `allowRaw=true` (HELIX_ALLOW_RAW_AGENT=1) bypass → `bypassed=true` + message warn (理由記録) | U-EDGE-03 |
 | `@throws` | stdin/JSON 解析失敗 → `code=2` (fail-close、安全性検証不能を pass させない。exit は shim) | code=2 |
 
 ### §1.3 `detectMode`
@@ -67,7 +67,7 @@ function-spec §1/§2 の各関数に **正常/異常/境界/throws の 4 観点
 | `trace check` | 孤児 edge ≥1 → exit 1 | generates 空宣言 | PLAN registry 不在 → Error / exit 1 |
 | `sprint check` | Red commit が Green の後 → TDD 違反 exit 1 | test ファイル path 解決不能 | L6 未凍結で sprint check → pre 違反 |
 
-> bypass (PO 専属 S-03): `UT_TDD_*_BYPASS=1` → warn + audit (PO ID + 理由必須) + exit 0 (internal-processing §6)。
+> bypass (PO 専属 S-03): `HELIX_*_BYPASS=1` → warn + audit (PO ID + 理由必須) + exit 0 (internal-processing §6)。
 
 ## §3 IMP-033 rule engine の edge (function-spec §4)
 
@@ -90,7 +90,7 @@ function-spec §1/§2 の各関数に **正常/異常/境界/throws の 4 観点
 
 - 各 `@edge-normal/error/boundary` は L7 単体テスト U-* (§1 表の右列) と双方向 trace
 - `@throws` は exit code 規約 (1=検証 fail / 2=guard block) と整合
-- L7 実装時に各 export 関数の docstring へ `@edge-*` を転記し、`ut-tdd vmodel lint` が edge 5-8 ↔ U-*/AT-* を照合 (孤児 0、carry)
+- L7 実装時に各 export 関数の docstring へ `@edge-*` を転記し、`helix vmodel lint` が edge 5-8 ↔ U-*/AT-* を照合 (孤児 0、carry)
 
 ## §5 carry → L7 実装
 

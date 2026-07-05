@@ -167,7 +167,7 @@ function traceIds(content: string): string[] {
 }
 
 function evidenceLinks(content: string): string[] {
-  const matches = content.match(/(?:docs|\.ut-tdd)\/[A-Za-z0-9._/-]+/g) ?? [];
+  const matches = content.match(/(?:docs|\.helix)\/[A-Za-z0-9._/-]+/g) ?? [];
   return [...new Set(matches)].sort();
 }
 

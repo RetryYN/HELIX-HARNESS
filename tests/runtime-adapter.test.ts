@@ -168,13 +168,13 @@ describe("runtime adapter plan", () => {
     expect(plan.env).toEqual({ [CLAUDE_EFFORT_ENV]: "medium" });
   });
 
-  it("U-ADAPTER-002: honors UT_TDD_CODEX_BIN before PATH lookup", () => {
+  it("U-ADAPTER-002: honors HELIX_CODEX_BIN before PATH lookup", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-adapter-codex-bin-"));
     try {
       const explicit = join(root, process.platform === "win32" ? "codex.cmd" : "codex");
       writeFileSync(explicit, "");
 
-      expect(resolveCodexNativeCommand({ env: { UT_TDD_CODEX_BIN: explicit } })).toBe(explicit);
+      expect(resolveCodexNativeCommand({ env: { HELIX_CODEX_BIN: explicit } })).toBe(explicit);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -193,7 +193,7 @@ describe("runtime adapter plan", () => {
           platform: "win32",
           env: {
             SystemRoot: "C:\\Windows",
-            UT_TDD_CODEX_BIN: explicit,
+            HELIX_CODEX_BIN: explicit,
           },
         },
       });
@@ -229,7 +229,7 @@ describe("runtime adapter plan", () => {
             platform: "win32",
             env: {
               SystemRoot: "C:\\Windows",
-              UT_TDD_CODEX_BIN: explicit,
+              HELIX_CODEX_BIN: explicit,
             },
           },
         }),
@@ -327,7 +327,7 @@ describe("runtime adapter plan", () => {
       writeFileSync(explicit, "");
       const seen: string[] = [];
       const ok = isProviderCommandSpawnable("codex", {
-        env: { UT_TDD_CODEX_BIN: explicit },
+        env: { HELIX_CODEX_BIN: explicit },
         platform: process.platform,
         runProbe: (command, args) => {
           seen.push(`${command} ${args.join(" ")}`);
@@ -366,7 +366,7 @@ describe("runtime adapter plan", () => {
         provider: "codex",
         command: "codex",
         args: plan.args,
-        opts: { platform: "win32", env: { SystemRoot: "C:\\Windows", UT_TDD_CODEX_BIN: explicit } },
+        opts: { platform: "win32", env: { SystemRoot: "C:\\Windows", HELIX_CODEX_BIN: explicit } },
       });
       expect(invocation.command).not.toContain("line two");
       expect(invocation.command).not.toContain("\n");

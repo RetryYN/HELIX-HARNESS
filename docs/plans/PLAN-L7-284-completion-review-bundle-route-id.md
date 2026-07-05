@@ -63,7 +63,7 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd completion review-bundle` は完了主張前に人間が見る非破壊レビュー束である。JSON では `reviewRouteJa` と `reviewRoute` が分離されているが、text の `review-packet:` 行が日本語 `route=` だけを出すと、レビュー証跡に機械的に安定した route ID が残らない。
+`helix completion review-bundle` は完了主張前に人間が見る非破壊レビュー束である。JSON では `reviewRouteJa` と `reviewRoute` が分離されているが、text の `review-packet:` 行が日本語 `route=` だけを出すと、レビュー証跡に機械的に安定した route ID が残らない。
 
 この PLAN では text surface に `route-id=` を追加し、S4 / rename / version-up / action-binding の各 supporting packet を人間表示と machine ID の両方で辿れるようにする。
 

@@ -22,7 +22,7 @@ const MOJIBAKE_MARKERS: { marker: string; pattern: RegExp }[] = [
   { marker: "replacement-character", pattern: /\uFFFD/ },
   { marker: "em-space-before-ascii", pattern: /\u2001(?=[A-Za-z])/ },
   // Halfwidth katakana / halfwidth punctuation (U+FF61–U+FF9F) is the CP932 single-byte
-  // (0xA1–0xDF) artifact range. UT-TDD prose uses fullwidth Japanese only, so any halfwidth
+  // (0xA1–0xDF) artifact range. HELIX prose uses fullwidth Japanese only, so any halfwidth
   // form is a high-recall CP932-mojibake signal. This catches the 工程表→蟾･遞玖｡ｨ /
   // 直列→逶ｴ蛻余 class that the curated kanji list below missed (PLAN-M-00/01, 2026-06-17).
   { marker: "halfwidth-katakana", pattern: /[｡-ﾟ]/ },
@@ -127,7 +127,7 @@ function isReadmeLike(path: string): boolean {
   return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
 }
 
-// System-wide readability band: every active UT-TDD prose surface (full docs/ tree + canonical
+// System-wide readability band: every active HELIX prose surface (full docs/ tree + canonical
 // root instruction docs). vendor source snapshot and legacy local state are intentionally
 // excluded — they are read-only migration material that may legitimately quote source-era
 // encodings, so scanning them would create false positives, not protect active prose.
@@ -161,14 +161,14 @@ export function readabilityMessages(result: ReadabilityResult): string[] {
 // Generated runtime artifacts that must stay readable even though they live
 // outside docs/. handover/audit text and cross-agent provider JSON are the
 // highest-risk mojibake surface (Codex-generated payloads), yet the prose band
-// only covers docs/. PLAN-L7-69 §2-3 extends the guard here: .ut-tdd/audit/**
-// markdown + .ut-tdd/handover/** JSON (provider cross-agent payloads included).
-// .ut-tdd/ is active product-owned runtime state, NOT a vendor source snapshot,
+// only covers docs/. PLAN-L7-69 §2-3 extends the guard here: .helix/audit/**
+// markdown + .helix/handover/** JSON (provider cross-agent payloads included).
+// .helix/ is active product-owned runtime state, NOT a vendor source snapshot,
 // so scanning it is safe — historical vendor snapshots and legacy local state
 // live elsewhere and stay excluded (PLAN-L7-69 §3 scoping AC).
 const RUNTIME_READABILITY_DIRS: { rel: string; extensions: readonly string[] }[] = [
-  { rel: join(".ut-tdd", "audit"), extensions: [".md"] },
-  { rel: join(".ut-tdd", "handover"), extensions: [".json"] },
+  { rel: join(".helix", "audit"), extensions: [".md"] },
+  { rel: join(".helix", "handover"), extensions: [".json"] },
 ];
 
 export function loadRuntimeArtifactReadabilityDocs(
@@ -185,7 +185,7 @@ export function loadRuntimeArtifactReadabilityDocs(
 export function runtimeReadabilityMessages(result: ReadabilityResult): string[] {
   if (result.ok) {
     return [
-      `runtime-readability — OK (.ut-tdd audit/handover artifacts ${result.checked}件 mojibake marker 0)`,
+      `runtime-readability — OK (.helix audit/handover artifacts ${result.checked}件 mojibake marker 0)`,
     ];
   }
   const sample = result.violations

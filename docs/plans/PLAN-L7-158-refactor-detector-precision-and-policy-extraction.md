@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-158-refactor-detector-precision-and-policy-extraction
-title: "PLAN-L7-158: refactor detector precision and policy extraction"
+title: "PLAN-L7-158: refactor detector の精度向上と policy 抽出"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant refactor candidate precision and policy extraction. No public CLI/API contract, persisted schema, or workflow semantics changed."
+backprop_decision_reason: "挙動不変の refactor candidate 精度向上と policy 抽出。公開 CLI/API contract、永続化 schema、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - detector precision and policy extraction"
+    slot_label: "SE - detector 精度向上と policy 抽出"
   - role: tl
-    slot_label: "TL - TDD invariant review"
+    slot_label: "TL - TDD 不変条件レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-158-refactor-detector-precision-and-policy-extraction.md
     artifact_type: markdown_doc
@@ -47,7 +47,7 @@ review_evidence:
     reviewed_at: "2026-06-25T18:43:57+09:00"
     tests_green_at: "2026-06-25T18:43:35+09:00"
     verdict: approve
-    scope: "Externalize repeated route/CLI literals, extract agent guard and refactor detector policy data, and narrow medium policy candidates to precise policy surfaces."
+    scope: "重複する route/CLI literal を外部化し、agent guard と refactor detector の policy data を抽出し、medium policy candidate を精密な policy surface に絞る。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -117,25 +117,23 @@ review_evidence:
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
 ---
 
-# PLAN-L7-158: refactor detector precision and policy extraction
+# PLAN-L7-158: refactor detector の精度向上と policy 抽出
 
-## Objective
+## 目的
 
-Reduce currently surfaced refactor candidates while preserving behavior and
-improving detector precision.
+挙動を維持しつつ detector の精度を高め、現在表示されている refactor candidate を削減する。
 
-## Scope
+## スコープ
 
-- Externalize repeated route command and CLI option strings.
-- Move agent guard allowlist/bypass policy into a dedicated policy module.
-- Move refactor detector thresholds and policy terms into a dedicated policy
-  module.
-- Avoid policy-externalization noise when a sidecar `*-policy.ts` module already
-  exists or when a broad orchestrator is better represented by `split-module`.
+- 重複する route command と CLI option string を外部化する。
+- agent guard の allowlist/bypass policy を専用 policy module へ移す。
+- refactor detector の threshold と policy term を専用 policy module へ移す。
+- sidecar の `*-policy.ts` module がすでに存在する場合、または広い orchestrator を
+  `split-module` として表現する方が適切な場合は、policy 外部化の noise を避ける。
 
-## Acceptance Criteria
+## 受入条件
 
-- `externalize-literal` candidates are eliminated.
-- Refactor candidate tests cover the precision changes.
-- Agent guard behavior remains unchanged.
-- Targeted tests, typecheck, lint, DB rebuild, and doctor pass.
+- `externalize-literal` candidate が解消されている。
+- refactor candidate test が精度変更をカバーしている。
+- agent guard の挙動は変更されていない。
+- targeted test、typecheck、lint、DB rebuild、doctor が pass している。

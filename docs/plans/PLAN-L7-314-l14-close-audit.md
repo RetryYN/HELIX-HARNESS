@@ -30,7 +30,7 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/lint-wiring.test.ts
     artifact_type: test_code
-  - artifact_path: .ut-tdd/audit/A-144-l14-close-audit.md
+  - artifact_path: .helix/audit/A-144-l14-close-audit.md
     artifact_type: markdown_doc
 dependencies:
   parent: docs/plans/PLAN-L7-130-right-arm-gate-planning.md
@@ -65,12 +65,12 @@ review_evidence:
         evidence_path: src/doctor/index.ts
         output_digest: "sha256:8d536be8810a1ea29ea23ee5de6754cf62f163fc73a0df14e700416ad7195976"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
         completed_at: "2026-07-05T04:15:27+09:00"
-        evidence_path: .ut-tdd/audit/A-144-l14-close-audit.md
+        evidence_path: .helix/audit/A-144-l14-close-audit.md
         output_digest: "sha256:6eaaa190bac7173603e2681299d45a83e877030ac02f048da8e6a7b299861abc"
 ---
 
@@ -92,7 +92,7 @@ evidence-check + 境界語彙 check）は低リスク再利用**する一方、*
   `REQUIRED_BOUNDARY_MARKERS_BY_ITEM` の語彙強制、partial-without-gap / open-without-next-action の fail-close。
 - checklist（EXPECTED_ITEMS / REQUIRED_EVIDENCE / BOUNDARY_MARKERS）を HELIX 10 本柱 charter + 現行 PLAN
   inventory へ再導出（TL 判断 gate）。
-- `lint-wiring.ts` / `doctor/index.ts` へ配線、対応 audit doc を `.ut-tdd/audit/` に用意。
+- `lint-wiring.ts` / `doctor/index.ts` へ配線、対応 audit doc を `.helix/audit/` に用意。
 
 ### OUT
 - 上流の 17 項目・evidence path を verbatim 流用しない。
@@ -106,7 +106,7 @@ evidence-check + 境界語彙 check）は低リスク再利用**する一方、*
 - mode: serial。
 - Step 1: pmo-sonnet 判断 gate で HELIX 版 checklist（EXPECTED_ITEMS 等）を charter + PLAN inventory から再導出。
 - Step 2: parser + evidence-path check + 境界語彙 check の engine を実装（Red→Green）。
-- Step 3: HELIX 版 audit-matrix doc を `.ut-tdd/audit/` に作成し、実 path を cite。
+- Step 3: HELIX 版 audit-matrix doc を `.helix/audit/` に作成し、実 path を cite。
 - Step 4: 配線 + test → review → confirmed。
 
 ## 壊さない / 再発させない

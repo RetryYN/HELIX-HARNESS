@@ -49,8 +49,8 @@ function mockDeps(
 }
 
 const codeownersPath = join("/repo", ".github", "CODEOWNERS");
-const statePath = join("/repo", ".ut-tdd", "state", "setup.json");
-const projectSetupStatePath = join("/repo", ".ut-tdd", "state", "project-setup.json");
+const statePath = join("/repo", ".helix", "state", "setup.json");
+const projectSetupStatePath = join("/repo", ".helix", "state", "project-setup.json");
 
 /** org + 4 collaborators + protection あり + admin を返す gh mock。 */
 const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
@@ -71,45 +71,45 @@ const ghTeam = (args: string[]): { ok: boolean; stdout: string } => {
 const baseTemplates: TemplateSet = {
   ...BUILTIN_GITHUB_TEMPLATES,
   "adapter/AGENTS.md": [
-    "<!-- UT-TDD:managed:start -->",
+    "<!-- HELIX:managed:start -->",
     "# HELIX アダプター",
     "",
-    "- Status: `ut-tdd status`",
-    "- Completion packet: `ut-tdd completion decision-packet --json`",
-    "- Completion review bundle: `ut-tdd completion review-bundle --json` (exact digest と semantic digest を確認)",
-    "- Version-up dry-run: `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
-    "- Doctor: `ut-tdd doctor --profile consumer`",
-    "- Rename packet: `ut-tdd rename plan --json`",
-    "- Handover: `ut-tdd handover`",
-    "- Team run dry-run: `ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json`",
-    "<!-- UT-TDD:managed:end -->",
+    "- Status: `helix status`",
+    "- Completion packet: `helix completion decision-packet --json`",
+    "- Completion review bundle: `helix completion review-bundle --json` (exact digest と semantic digest を確認)",
+    "- Version-up dry-run: `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+    "- Doctor: `helix doctor --profile consumer`",
+    "- Rename packet: `helix rename plan --json`",
+    "- Handover: `helix handover`",
+    "- Team run dry-run: `helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json`",
+    "<!-- HELIX:managed:end -->",
     "",
   ].join("\n"),
   "adapter/CLAUDE.md": [
-    "<!-- UT-TDD:managed:start -->",
+    "<!-- HELIX:managed:start -->",
     "# HELIX 共有コンテキスト",
     "",
-    "- `ut-tdd status`",
-    "- `ut-tdd completion decision-packet --json`",
-    "- `ut-tdd completion review-bundle --json` は exact digest と semantic digest を確認する",
-    "- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
-    "- `ut-tdd doctor --profile consumer`",
-    "- `ut-tdd rename plan --json`",
-    "<!-- UT-TDD:managed:end -->",
+    "- `helix status`",
+    "- `helix completion decision-packet --json`",
+    "- `helix completion review-bundle --json` は exact digest と semantic digest を確認する",
+    "- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+    "- `helix doctor --profile consumer`",
+    "- `helix rename plan --json`",
+    "<!-- HELIX:managed:end -->",
     "",
   ].join("\n"),
   "adapter/.claude/CLAUDE.md": [
-    "<!-- UT-TDD:managed:start -->",
+    "<!-- HELIX:managed:start -->",
     "# HELIX Claude runtime アダプター",
     "",
-    "- `ut-tdd status`",
-    "- `ut-tdd completion decision-packet --json`",
-    "- `ut-tdd completion review-bundle --json` は exact digest と semantic digest を確認する",
-    "- `ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
-    "- `ut-tdd doctor --profile consumer`",
-    "- `ut-tdd rename plan --json`",
-    "- `ut-tdd handover`",
-    "<!-- UT-TDD:managed:end -->",
+    "- `helix status`",
+    "- `helix completion decision-packet --json`",
+    "- `helix completion review-bundle --json` は exact digest と semantic digest を確認する",
+    "- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+    "- `helix doctor --profile consumer`",
+    "- `helix rename plan --json`",
+    "- `helix handover`",
+    "<!-- HELIX:managed:end -->",
     "",
   ].join("\n"),
   "adapter/.claude/settings.json": BUILTIN_GITHUB_TEMPLATES["adapter/.claude/settings.json"],
@@ -118,24 +118,24 @@ const baseTemplates: TemplateSet = {
     "{",
     '  "version": "2.0.0",',
     '  "tasks": [',
-    '    { "label": "HELIX: status", "type": "shell", "command": "bun run ut-tdd status", "problemMatcher": [] },',
-    '    { "label": "HELIX: doctor", "type": "shell", "command": "bun run ut-tdd doctor --profile consumer", "problemMatcher": [] },',
-    '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "bun run ut-tdd completion decision-packet --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: completion review-bundle", "type": "shell", "command": "bun run ut-tdd completion review-bundle --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: rename plan", "type": "shell", "command": "bun run ut-tdd rename plan --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: handover status", "type": "shell", "command": "bun run ut-tdd handover status --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "bun run ut-tdd setup project --dry-run", "problemMatcher": [] },',
-    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
+    '    { "label": "HELIX: status", "type": "shell", "command": "bun run helix status", "problemMatcher": [] },',
+    '    { "label": "HELIX: doctor", "type": "shell", "command": "bun run helix doctor --profile consumer", "problemMatcher": [] },',
+    '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "bun run helix completion decision-packet --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: completion review-bundle", "type": "shell", "command": "bun run helix completion review-bundle --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: rename plan", "type": "shell", "command": "bun run helix rename plan --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: handover status", "type": "shell", "command": "bun run helix handover status --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "bun run helix setup project --dry-run", "problemMatcher": [] },',
+    '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
     "  ]",
     "}",
     "",
   ].join("\n"),
   "project/.vscode/settings.json": '{"task.allowAutomaticTasks":"off"}\n',
-  "project/.ut-tdd/memory/.gitkeep": "",
-  "project/.ut-tdd/handover/.gitkeep": "",
-  "project/.ut-tdd/evidence/.gitkeep": "",
-  "project/.ut-tdd/teams/default-hybrid.yaml": [
+  "project/.helix/memory/.gitkeep": "",
+  "project/.helix/handover/.gitkeep": "",
+  "project/.helix/evidence/.gitkeep": "",
+  "project/.helix/teams/default-hybrid.yaml": [
     "name: default-hybrid",
     "strategy: sequential",
     "max_parallel: 2",
@@ -174,25 +174,25 @@ const baseTemplates: TemplateSet = {
     "      - uses: oven-sh/setup-bun@v2",
     "      - run: bun install --frozen-lockfile",
     "      - name: HELIX CLI dependency",
-    "        run: bun run ut-tdd --version",
+    "        run: bun run helix --version",
     "      - name: HELIX setup dry-run",
-    "        run: bun run ut-tdd setup project --dry-run --json",
+    "        run: bun run helix setup project --dry-run --json",
     "      - name: HELIX status",
-    "        run: bun run ut-tdd status --json",
+    "        run: bun run helix status --json",
     "      - name: HELIX completion decision packet",
-    "        run: bun run ut-tdd completion decision-packet --json",
+    "        run: bun run helix completion decision-packet --json",
     "      - name: HELIX completion review bundle",
-    "        run: bun run ut-tdd completion review-bundle --json",
+    "        run: bun run helix completion review-bundle --json",
     "      - name: HELIX version-up dry-run",
-    "        run: bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "        run: bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     "      - name: HELIX consumer doctor",
-    "        run: bun run ut-tdd doctor --profile consumer --json",
+    "        run: bun run helix doctor --profile consumer --json",
     "      - name: HELIX rename plan",
-    "        run: bun run ut-tdd rename plan --json",
+    "        run: bun run helix rename plan --json",
     "      - name: Handover route",
-    "        run: bun run ut-tdd handover status --json",
+    "        run: bun run helix handover status --json",
     "      - name: HELIX team run dry-run",
-    "        run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+    "        run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     "      - run: bun run typecheck",
     "      - run: bun run test",
     "",
@@ -216,13 +216,13 @@ const baseTemplates: TemplateSet = {
     "      - uses: oven-sh/setup-bun@v2",
     "      - run: bun install --frozen-lockfile",
     "      - name: Handover route",
-    "        run: bun run ut-tdd handover status --json",
+    "        run: bun run helix handover status --json",
     "      - name: HELIX completion decision packet",
-    "        run: bun run ut-tdd completion decision-packet --json",
+    "        run: bun run helix completion decision-packet --json",
     "      - name: HELIX completion review bundle",
-    "        run: bun run ut-tdd completion review-bundle --json",
+    "        run: bun run helix completion review-bundle --json",
     "      - name: HELIX consumer doctor",
-    "        run: bun run ut-tdd doctor --profile consumer --json",
+    "        run: bun run helix doctor --profile consumer --json",
     "",
   ].join("\n"),
   "common/recovery.md": "# Recovery\n",
@@ -232,8 +232,8 @@ const baseTemplates: TemplateSet = {
   "team/setup-branch-protection.sh": [
     "#!/usr/bin/env bash",
     "set -euo pipefail",
-    'REPO="${1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
-    'echo "main の branch protection は action-binding approval が必要です: ${REPO}"',
+    'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
+    'echo "main の branch protection は action-binding approval が必要です: $' + '{REPO}"',
     'echo "harness-check required / review count / admin enforcement は approval packet で確認してください"',
     'echo "この script は remote GitHub API を呼びません"',
     "exit 2",
@@ -357,89 +357,89 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   });
 
   it("U-SETUP-004b: loadTemplates has built-in fallback for existing repos without harness docs", () => {
-    const repo = mkdtempSync(join(tmpdir(), "ut-tdd-setup-existing-"));
+    const repo = mkdtempSync(join(tmpdir(), "helix-setup-existing-"));
     try {
       const templates = loadTemplates(repo);
       expect(templates["adapter/AGENTS.md"]).toContain("HELIX アダプター");
       expect(templates["adapter/AGENTS.md"]).toContain("PLAN-M-02");
-      expect(templates["adapter/AGENTS.md"]).toContain("ut-tdd completion decision-packet --json");
-      expect(templates["adapter/AGENTS.md"]).toContain("ut-tdd completion review-bundle --json");
+      expect(templates["adapter/AGENTS.md"]).toContain("helix completion decision-packet --json");
+      expect(templates["adapter/AGENTS.md"]).toContain("helix completion review-bundle --json");
       expect(templates["adapter/AGENTS.md"]).toContain(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       );
-      expect(templates["adapter/CLAUDE.md"]).toContain("ut-tdd completion decision-packet --json");
-      expect(templates["adapter/CLAUDE.md"]).toContain("ut-tdd completion review-bundle --json");
+      expect(templates["adapter/CLAUDE.md"]).toContain("helix completion decision-packet --json");
+      expect(templates["adapter/CLAUDE.md"]).toContain("helix completion review-bundle --json");
       expect(templates["adapter/CLAUDE.md"]).toContain(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
-        "ut-tdd completion decision-packet --json",
+        "helix completion decision-packet --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
-        "ut-tdd completion review-bundle --json",
+        "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       );
       expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
-      expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook agent-guard");
-      expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook work-guard");
-      expect(templates["adapter/.codex/hooks.json"]).toContain("ut-tdd hook git-command-guard");
+      expect(templates["adapter/.codex/hooks.json"]).toContain("helix hook agent-guard");
+      expect(templates["adapter/.codex/hooks.json"]).toContain("helix hook work-guard");
+      expect(templates["adapter/.codex/hooks.json"]).toContain("helix hook git-command-guard");
       expect(templates["adapter/.claude/agents/code-reviewer.md"]).toContain(
         "consumer-safe な HELIX subagent",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain("HELIX workflow");
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
-        "ut-tdd doctor --profile consumer",
+        "helix doctor --profile consumer",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
-        "ut-tdd completion decision-packet --json",
+        "helix completion decision-packet --json",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
-        "ut-tdd completion review-bundle --json",
+        "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       );
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
         "HELIX status / completion packet / doctor 出力",
       );
-      expect(templates["adapter/.claude/commands/helix-test.md"]).toContain("ut-tdd status --json");
+      expect(templates["adapter/.claude/commands/helix-test.md"]).toContain("helix status --json");
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
-        "ut-tdd completion decision-packet --json",
+        "helix completion decision-packet --json",
       );
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
-        "ut-tdd completion review-bundle --json",
+        "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
-        "ut-tdd completion review-bundle --json",
+        "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       );
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       );
-      expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain(
+      expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain(
         "name: default-hybrid",
       );
-      expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain("engine: codex-se");
-      expect(templates["project/.ut-tdd/teams/default-hybrid.yaml"]).toContain(
+      expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain("engine: codex-se");
+      expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain(
         "engine: pmo-sonnet",
       );
       expect(templates["common/harness-check.yml"]).toContain("harness-check");
       expect(templates["common/harness-check.yml"]).toContain("permissions:");
       expect(templates["common/harness-check.yml"]).toContain("contents: read");
       expect(templates["common/harness-check.yml"]).toContain(
-        "bun run ut-tdd completion review-bundle --json",
+        "bun run helix completion review-bundle --json",
       );
       expect(templates["common/escalation-stale.yml"]).toContain("escalation-audit");
       expect(templates["common/escalation-stale.yml"]).toContain(
-        "bun run ut-tdd handover status --json",
+        "bun run helix handover status --json",
       );
       expect(templates["common/escalation-stale.yml"]).toContain(
-        "bun run ut-tdd completion review-bundle --json",
+        "bun run helix completion review-bundle --json",
       );
       expect(templates["common/escalation-stale.yml"]).not.toMatch(/placeholder|TODO|TBD/i);
       expect(templates["common/recovery.md"]).toContain("## 復旧手順");
@@ -460,7 +460,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   });
 
   it("U-SETUP-004c: built-in adapter templates ship enforced portable guard hooks", () => {
-    const repo = mkdtempSync(join(tmpdir(), "ut-tdd-setup-templates-"));
+    const repo = mkdtempSync(join(tmpdir(), "helix-setup-templates-"));
     const templates = loadTemplates(repo);
     try {
       const claude = JSON.parse(templates["adapter/.claude/settings.json"]) as {
@@ -483,34 +483,34 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           expect.objectContaining({
             matcher: "Agent|Task",
             hooks: [
-              expect.objectContaining({ command: "ut-tdd hook agent-guard", blockOnFailure: true }),
+              expect.objectContaining({ command: "helix hook agent-guard", blockOnFailure: true }),
             ],
           }),
           expect.objectContaining({
             matcher: "Edit|Write|MultiEdit",
             hooks: [
-              expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+              expect.objectContaining({ command: "helix hook work-guard", blockOnFailure: true }),
             ],
           }),
           expect.objectContaining({
             matcher: "Bash",
             hooks: [
               expect.objectContaining({
-                command: "ut-tdd hook git-command-guard",
+                command: "helix hook git-command-guard",
                 blockOnFailure: true,
               }),
             ],
           }),
         ]),
       );
-      expect(claude.hooks.SubagentStop[0].hooks[0].command).toBe("ut-tdd hook subagent-stop");
+      expect(claude.hooks.SubagentStop[0].hooks[0].command).toBe("helix hook subagent-stop");
       expect(codex.hooks.PreToolUse).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
             matcher: "spawn_agent|spawn_agents_on_csv",
             hooks: [
               expect.objectContaining({
-                command: "ut-tdd hook agent-guard",
+                command: "helix hook agent-guard",
                 blockOnFailure: true,
               }),
             ],
@@ -518,14 +518,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           expect.objectContaining({
             matcher: "apply_patch|write_file",
             hooks: [
-              expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+              expect.objectContaining({ command: "helix hook work-guard", blockOnFailure: true }),
             ],
           }),
           expect.objectContaining({
             matcher: "exec_command|local_shell",
             hooks: [
               expect.objectContaining({
-                command: "ut-tdd hook git-command-guard",
+                command: "helix hook git-command-guard",
                 blockOnFailure: true,
               }),
             ],
@@ -545,7 +545,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             matcher: "spawn_agent|spawn_agents_on_csv",
             hooks: [
               expect.objectContaining({
-                command: "ut-tdd hook agent-guard",
+                command: "helix hook agent-guard",
                 blockOnFailure: true,
               }),
             ],
@@ -553,14 +553,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           expect.objectContaining({
             matcher: "apply_patch|write_file",
             hooks: [
-              expect.objectContaining({ command: "ut-tdd hook work-guard", blockOnFailure: true }),
+              expect.objectContaining({ command: "helix hook work-guard", blockOnFailure: true }),
             ],
           }),
           expect.objectContaining({
             matcher: "exec_command|local_shell",
             hooks: [
               expect.objectContaining({
-                command: "ut-tdd hook git-command-guard",
+                command: "helix hook git-command-guard",
                 blockOnFailure: true,
               }),
             ],
@@ -644,7 +644,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         join(".claude", "commands", "helix-status.md"),
       ]),
     );
-    for (const p of preview) expect(p).not.toContain("UT-TDD-agent-harness");
+    for (const p of preview) expect(p).not.toContain("HELIX-HARNESS");
   });
 
   it("U-SETUP-010: emitSetup preserves consumer-owned adapter files and merges only managed blocks", () => {
@@ -659,13 +659,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     const agents = deps.files.get(join("/repo", "AGENTS.md")) as string;
     expect(agents).toContain("# Consumer Rules\n\nKeep this line.\n");
-    expect(agents).toContain("<!-- UT-TDD:managed:start -->");
+    expect(agents).toContain("<!-- HELIX:managed:start -->");
     expect(agents).toContain("HELIX アダプター");
-    expect(agents).toContain("`ut-tdd doctor --profile consumer`");
+    expect(agents).toContain("`helix doctor --profile consumer`");
     expect(agents).toContain(
-      "`ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json`",
+      "`helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json`",
     );
-    expect(agents).not.toContain(".ut-tdd/teams/<team>.yaml");
+    expect(agents).not.toContain(".helix/teams/<team>.yaml");
     expect(deps.files.get(join("/repo", ".claude", "settings.json"))).toBe('{"consumer":true}\n');
 
     const beforeSecondRun = deps.files.get(join("/repo", "AGENTS.md"));
@@ -683,7 +683,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "package.json",
         "src/cli.ts",
         "src/setup/index.ts",
-        "docs/templates/project/.ut-tdd/teams/default-hybrid.yaml",
+        "docs/templates/project/.helix/teams/default-hybrid.yaml",
         "src/web/catalog.ts",
         "src/web/index.ts",
         "src/web/render.ts",
@@ -698,7 +698,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         ".codex/hooks.json",
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
         "docs/design/harness/L6-function-design/setup-solo-team.md",
-        ".ut-tdd/handover/CURRENT.json",
+        ".helix/handover/CURRENT.json",
       ],
     });
 
@@ -712,13 +712,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/agents/code-reviewer.md");
     expect(plan.artifactPaths).toContain("docs/templates/adapter/.claude/commands/build.md");
     expect(plan.artifactPaths).toContain(
-      "docs/templates/project/.ut-tdd/teams/default-hybrid.yaml",
+      "docs/templates/project/.helix/teams/default-hybrid.yaml",
     );
     expect(plan.artifactPaths).not.toContain("src/web/page.tsx");
     expect(plan.artifactPaths).not.toContain(".claude/settings.json");
     expect(plan.artifactPaths).not.toContain(".codex/hooks.json");
     expect(plan.artifactPaths).not.toContain("docs/plans/PLAN-L7-157-distribution-clean-pull.md");
-    expect(plan.artifactPaths).not.toContain(".ut-tdd/handover/CURRENT.json");
+    expect(plan.artifactPaths).not.toContain(".helix/handover/CURRENT.json");
     expect(plan.releaseIntegrity.artifacts).toEqual([
       "v0.1.0.tar.gz",
       "v0.1.0.tar.gz.sha256",
@@ -752,26 +752,26 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(ready.ok).toBe(true);
     expect(ready.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-OS#v0.1.0");
-    expect(ready.contracts.tagPin).not.toContain("ut-tdd-agent-harness-clean");
+    expect(ready.contracts.tagPin).not.toContain("helix-agent-harness-clean");
     expect(ready.mode).toBe("codex-only");
     expect(ready.workspace.monorepo).toBe(true);
     expect(ready.cliResolution).toEqual({
-      command: "ut-tdd",
+      command: "helix",
       checkedFrom: "/repo/packages/app",
       resolved: true,
       strategy: "path",
       bareCommandResolved: true,
       packageScriptAvailable: true,
-      evidence: "`ut-tdd --version` resolved for consumer readiness",
+      evidence: "`helix --version` resolved for consumer readiness",
       fallbackCommands: [
-        "bun run ut-tdd --version",
-        "bun link ut-tdd",
-        "bun run ut-tdd setup project --dry-run --json",
+        "bun run helix --version",
+        "bun link helix",
+        "bun run helix setup project --dry-run --json",
       ],
     });
     expect(ready.checks.find((c) => c.name === "gh")).toMatchObject({ ok: false });
-    expect(ready.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({ ok: true });
-    expect(ready.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject({
+    expect(ready.checks.find((c) => c.name === "helix-cli")).toMatchObject({ ok: true });
+    expect(ready.checks.find((c) => c.name === "helix-package-script")).toMatchObject({
       ok: true,
     });
     expect(ready.checks.find((c) => c.name === "bun-lockfile")).toMatchObject({ ok: true });
@@ -792,7 +792,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       requestedTagMatchesPackageVersion: true,
       packLatestTag: "v0.1.4",
       packLatestRequiresVersionUpActivation: true,
-      versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
+      versionUpPacketCommand: "helix version-up activation-packet --json",
       adoptionDecision: expect.stringContaining("version-up activation decision"),
     });
     expect(ready.ci.security).toEqual({
@@ -802,22 +802,22 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       secrets: "not-required",
     });
     expect(ready.ci.packageResolution).toMatchObject({
-      command: "bun run ut-tdd --version",
+      command: "bun run helix --version",
       requiredBefore: expect.arrayContaining([
-        "bun run ut-tdd setup project --dry-run --json",
-        "bun run ut-tdd completion decision-packet --json",
-        "bun run ut-tdd completion review-bundle --json",
-        "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "bun run ut-tdd doctor --profile consumer --json",
-        "bun run ut-tdd rename plan --json",
+        "bun run helix setup project --dry-run --json",
+        "bun run helix completion decision-packet --json",
+        "bun run helix completion review-bundle --json",
+        "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "bun run helix doctor --profile consumer --json",
+        "bun run helix rename plan --json",
       ]),
       remediation: expect.stringContaining("consumer package.json"),
     });
     expect(ready.ci.packagePreflight).toMatchObject({
       installCommand: "bun install --frozen-lockfile",
       lockfiles: ["bun.lock", "bun.lockb"],
-      requiredScripts: ["ut-tdd", "typecheck", "test"],
-      scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+      requiredScripts: ["helix", "typecheck", "test"],
+      scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
       source: "Bun install / lockfile / package scripts official documentation",
       sourceUrl: "https://bun.com/docs/pm/cli/install",
       lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
@@ -825,7 +825,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       sourceCheckedAt: "2026-07-03",
       latestOfficialStatus: expect.stringContaining("frozen-lockfile"),
       sourceStatusDelta: expect.stringContaining("structured CI preflight metadata"),
-      adoptionDecision: expect.stringContaining("scripts.ut-tdd/typecheck/test"),
+      adoptionDecision: expect.stringContaining("scripts.helix/typecheck/test"),
       workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
     });
     expect(ready.checks.find((c) => c.name === "distribution-package-surface")).toMatchObject({
@@ -838,9 +838,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       tag: "v0.1.0",
       ok: true,
       requiredCommands: expect.arrayContaining([
-        "bun run ut-tdd setup project --dry-run --json",
-        "bun run ut-tdd completion review-bundle --json",
-        "bun run ut-tdd doctor --profile consumer --json",
+        "bun run helix setup project --dry-run --json",
+        "bun run helix completion review-bundle --json",
+        "bun run helix doctor --profile consumer --json",
       ]),
       sourceCheckedAt: "2026-07-04",
       workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
@@ -848,16 +848,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.ci.requires).toContain("bun run test");
     expect(ready.ci.requires).toEqual(
       expect.arrayContaining([
-        "bun run ut-tdd --version",
-        "bun run ut-tdd setup project --dry-run --json",
-        "bun run ut-tdd status --json",
-        "bun run ut-tdd completion decision-packet --json",
-        "bun run ut-tdd completion review-bundle --json",
-        "bun run ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "bun run ut-tdd doctor --profile consumer --json",
-        "bun run ut-tdd rename plan --json",
-        "bun run ut-tdd handover status --json",
-        "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "bun run helix --version",
+        "bun run helix setup project --dry-run --json",
+        "bun run helix status --json",
+        "bun run helix completion decision-packet --json",
+        "bun run helix completion review-bundle --json",
+        "bun run helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "bun run helix doctor --profile consumer --json",
+        "bun run helix rename plan --json",
+        "bun run helix handover status --json",
+        "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
     expect(ready.rollback.backupRequired).toBe(true);
@@ -867,11 +867,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(ready.rollback.managedPaths).toContain(join(".claude", "commands", "build.md"));
     expect(ready.rollback.commands).toEqual([
       "git switch v0.1.0",
-      "ut-tdd setup project --dry-run --json",
-      "ut-tdd setup project --solo",
+      "helix setup project --dry-run --json",
+      "helix setup project --solo",
     ]);
-    expect(ready.rollback.commands).not.toContain("ut-tdd setup --dry-run");
-    expect(ready.rollback.commands).not.toContain("ut-tdd setup --solo");
+    expect(ready.rollback.commands).not.toContain("helix setup --dry-run");
+    expect(ready.rollback.commands).not.toContain("helix setup --solo");
     expect(ready.contracts.tagPin).toContain("#v0.1.0");
     expect(ready.contracts.stable).toContain("adapter managed markers");
     expect(ready.contracts.stable).toContain("Claude/Codex adapter hook templates");
@@ -906,10 +906,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
     });
     expect(pathOnly.ok).toBe(false);
-    expect(pathOnly.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject({
+    expect(pathOnly.checks.find((c) => c.name === "helix-package-script")).toMatchObject({
       ok: false,
       message:
-        "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.ut-tdd を用意する",
+        "consumer CI / VSCode task fallback 用に packageRoot の package.json scripts.helix を用意する",
     });
 
     const packageScriptReady = buildConsumerReadinessPlan({
@@ -935,16 +935,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
     });
     expect(packageScriptReady.ok).toBe(false);
-    expect(packageScriptReady.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
+    expect(packageScriptReady.checks.find((c) => c.name === "helix-cli")).toMatchObject({
       ok: false,
       message:
-        "consumer packageRoot の `bun run ut-tdd` script は CI fallback として利用可能だが、projected hook / agent 用の bare `ut-tdd` は PATH 上で解決できない",
+        "consumer packageRoot の `bun run helix` script は CI fallback として利用可能だが、projected hook / agent 用の bare `helix` は PATH 上で解決できない",
     });
-    expect(packageScriptReady.checks.find((c) => c.name === "ut-tdd-package-script")).toMatchObject(
+    expect(packageScriptReady.checks.find((c) => c.name === "helix-package-script")).toMatchObject(
       {
         ok: true,
         message:
-          "consumer CI / VSCode task fallback 用の `bun run ut-tdd` script が packageRoot で解決できる",
+          "consumer CI / VSCode task fallback 用の `bun run helix` script が packageRoot で解決できる",
       },
     );
     expect(packageScriptReady.cliResolution).toMatchObject({
@@ -954,7 +954,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       bareCommandResolved: false,
       packageScriptAvailable: true,
       evidence:
-        "`bun run ut-tdd --version` is available from consumer packageRoot scripts, but bare `ut-tdd --version` did not resolve for hooks",
+        "`bun run helix --version` is available from consumer packageRoot scripts, but bare `helix --version` did not resolve for hooks",
     });
 
     const blocked = buildConsumerReadinessPlan({
@@ -971,8 +971,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "bun>=1.3",
       "git",
       "gh",
-      "ut-tdd-cli",
-      "ut-tdd-package-script",
+      "helix-cli",
+      "helix-package-script",
       "bun-lockfile",
       "typecheck-package-script",
       "test-package-script",
@@ -989,7 +989,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoRoot: "/repo",
     });
     expect(omittedCli.ok).toBe(false);
-    expect(omittedCli.checks.find((c) => c.name === "ut-tdd-cli")).toMatchObject({
+    expect(omittedCli.checks.find((c) => c.name === "helix-cli")).toMatchObject({
       ok: false,
     });
 
@@ -1045,7 +1045,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         source: "released-pack-tag",
         tag: "v0.1.0",
         evidence:
-          "Pack v0.1.0 installed but `bun run ut-tdd setup project --dry-run --json` returned unknown option '--json'",
+          "Pack v0.1.0 installed but `bun run helix setup project --dry-run --json` returned unknown option '--json'",
         latestObservedStatus: "unknown option '--json'",
       },
     });
@@ -1073,11 +1073,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({ path: "package.json", category: "A" }),
         expect.objectContaining({ path: join(".vscode", "tasks.json"), category: "A" }),
         expect.objectContaining({ path: join(".vscode", "settings.json"), category: "A" }),
-        expect.objectContaining({ path: join(".ut-tdd", "memory", ".gitkeep"), category: "A" }),
-        expect.objectContaining({ path: join(".ut-tdd", "handover", ".gitkeep"), category: "A" }),
-        expect.objectContaining({ path: join(".ut-tdd", "evidence", ".gitkeep"), category: "A" }),
+        expect.objectContaining({ path: join(".helix", "memory", ".gitkeep"), category: "A" }),
+        expect.objectContaining({ path: join(".helix", "handover", ".gitkeep"), category: "A" }),
+        expect.objectContaining({ path: join(".helix", "evidence", ".gitkeep"), category: "A" }),
         expect.objectContaining({
-          path: join(".ut-tdd", "teams", "default-hybrid.yaml"),
+          path: join(".helix", "teams", "default-hybrid.yaml"),
           category: "A",
         }),
       ]),
@@ -1090,7 +1090,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(preview).toMatchObject({
       schemaVersion: "helix-project-setup.v1",
-      setupCommand: "ut-tdd setup project",
+      setupCommand: "helix setup project",
       futureCommand: "helix setup project",
       phase: "0-A",
       githubPlan: {
@@ -1110,26 +1110,26 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         schemaVersion: "helix-project-doctor-baseline.v1",
         planOnly: true,
         baselineCommands: [
-          "ut-tdd setup project --dry-run",
-          "ut-tdd status --json",
-          "ut-tdd setup project --dry-run --json",
-          "ut-tdd completion decision-packet --json",
-          "ut-tdd completion review-bundle --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-          "ut-tdd doctor --profile consumer",
-          "ut-tdd rename plan --json",
-          "ut-tdd handover status --json",
-          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          "helix setup project --dry-run",
+          "helix status --json",
+          "helix setup project --dry-run --json",
+          "helix completion decision-packet --json",
+          "helix completion review-bundle --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix doctor --profile consumer",
+          "helix rename plan --json",
+          "helix handover status --json",
+          "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ],
         stateBaselinePaths: [
-          ".ut-tdd/memory",
-          ".ut-tdd/handover",
-          ".ut-tdd/evidence",
-          ".ut-tdd/teams",
+          ".helix/memory",
+          ".helix/handover",
+          ".helix/evidence",
+          ".helix/teams",
         ],
         completionClaimAllowed: false,
         nextRouteSource: "postSetupWorkflow.nextRoute",
-        evidencePath: ".ut-tdd/evidence",
+        evidencePath: ".helix/evidence",
       },
       branchProtection: { applied: false, reason: "dry-run" },
       vscode: {
@@ -1147,23 +1147,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         teamRunTask: "HELIX: team run dry-run",
       },
       identifierTransition: {
-        currentCli: "ut-tdd",
-        currentStateDir: ".ut-tdd",
-        currentArea: "area=harness",
+        currentCli: "helix",
+        currentStateDir: ".helix",
+        currentArea: "area=helix",
         targetCli: "helix",
         targetStateDir: ".helix",
         targetArea: "area=helix",
         status: "blocked_pending_cutover_approval",
         mustNotApply: true,
-        cutoverPlanCommand: "ut-tdd rename plan --json",
+        cutoverPlanCommand: "helix rename plan --json",
       },
       commandAvailability: {
-        currentCommand: "ut-tdd setup project",
+        currentCommand: "helix setup project",
         currentCommandAvailable: false,
         futureCommand: "helix setup project",
         futureCommandAvailable: false,
         enablementStatus: "blocked_pending_cutover_approval",
-        enablementPacketCommand: "ut-tdd rename plan --json",
+        enablementPacketCommand: "helix rename plan --json",
       },
       postSetupWorkflow: {
         schemaVersion: "helix-project-post-setup-workflow.v1",
@@ -1194,16 +1194,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.consumerReadiness.checks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          name: "ut-tdd-cli",
+          name: "helix-cli",
           ok: false,
-          message: expect.stringContaining("bun link ut-tdd"),
+          message: expect.stringContaining("bun link helix"),
         }),
       ]),
     );
     expect(preview.written).toContain(join(".vscode", "tasks.json"));
     expect(preview.written).toContain("package.json");
-    expect(preview.written).toContain(join(".ut-tdd", "memory", ".gitkeep"));
-    expect(preview.written).toContain(join(".ut-tdd", "teams", "default-hybrid.yaml"));
+    expect(preview.written).toContain(join(".helix", "memory", ".gitkeep"));
+    expect(preview.written).toContain(join(".helix", "teams", "default-hybrid.yaml"));
     expect(preview.written).toContain(preview.githubPlan.branchProtection.scriptPath);
     expect(preview.importReport).toMatchObject({
       schemaVersion: "helix-project-import-report.v1",
@@ -1217,8 +1217,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview.importReport.previewPaths).toEqual(
       expect.arrayContaining([
         join(".vscode", "tasks.json"),
-        join(".ut-tdd", "memory", ".gitkeep"),
-        join(".ut-tdd", "teams", "default-hybrid.yaml"),
+        join(".helix", "memory", ".gitkeep"),
+        join(".helix", "teams", "default-hybrid.yaml"),
         preview.githubPlan.branchProtection.scriptPath,
       ]),
     );
@@ -1254,59 +1254,59 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ).toEqual([]);
     expect(preview.nextCommands).toEqual(
       expect.arrayContaining([
-        "ut-tdd status --json",
-        "ut-tdd completion decision-packet --json",
-        "ut-tdd completion review-bundle --json",
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-        "ut-tdd doctor --profile consumer",
-        "ut-tdd rename plan --json",
-        "ut-tdd handover status --json",
-        "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "helix status --json",
+        "helix completion decision-packet --json",
+        "helix completion review-bundle --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix doctor --profile consumer",
+        "helix rename plan --json",
+        "helix handover status --json",
+        "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
     expect(preview.postSetupWorkflow.unmetGates).toEqual(
-      expect.arrayContaining(["consumer_readiness:ut-tdd-cli", "consumer_readiness:runtime-cli"]),
+      expect.arrayContaining(["consumer_readiness:helix-cli", "consumer_readiness:runtime-cli"]),
     );
     expect(preview.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
-        expect.stringContaining("bun link ut-tdd"),
-        expect.stringContaining("ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml"),
+        expect.stringContaining("bun link helix"),
+        expect.stringContaining("helix team run --definition .helix/teams/default-hybrid.yaml"),
       ]),
     );
     expect(preview.postSetupWorkflow.verificationCommands).toEqual([
-      "ut-tdd setup project --dry-run",
-      "ut-tdd status --json",
-      "ut-tdd setup project --dry-run --json",
-      "ut-tdd completion decision-packet --json",
-      "ut-tdd completion review-bundle --json",
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-      "ut-tdd doctor --profile consumer",
-      "ut-tdd rename plan --json",
-      "ut-tdd handover status --json",
-      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      "helix setup project --dry-run",
+      "helix status --json",
+      "helix setup project --dry-run --json",
+      "helix completion decision-packet --json",
+      "helix completion review-bundle --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix doctor --profile consumer",
+      "helix rename plan --json",
+      "helix handover status --json",
+      "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
     expect(preview.postSetupWorkflow.dryRunVerificationCommands).toEqual([
-      "ut-tdd setup project --dry-run",
-      "ut-tdd status --json",
-      "ut-tdd setup project --dry-run --json",
-      "ut-tdd completion decision-packet --json",
-      "ut-tdd completion review-bundle --json",
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-      "ut-tdd rename plan --json",
-      "ut-tdd handover status --json",
+      "helix setup project --dry-run",
+      "helix status --json",
+      "helix setup project --dry-run --json",
+      "helix completion decision-packet --json",
+      "helix completion review-bundle --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix rename plan --json",
+      "helix handover status --json",
     ]);
     expect(preview.postSetupWorkflow.manualVerificationCommands).toEqual([
       "code --profile HELIX .",
     ]);
     expect(preview.postSetupWorkflow.postApplyVerificationCommands).toEqual([
-      "ut-tdd doctor --profile consumer",
-      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      "helix doctor --profile consumer",
+      "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
     expect(preview.postSetupWorkflow.verificationMatrix).toHaveLength(11);
     for (const expectedRow of [
       expect.objectContaining({
         phase: "setup-dry-run",
-        command: "ut-tdd setup project --dry-run",
+        command: "helix setup project --dry-run",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1334,7 +1334,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "status-frontier",
-        command: "ut-tdd status --json",
+        command: "helix status --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1343,7 +1343,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "github-ci-safety",
-        command: "ut-tdd setup project --dry-run --json",
+        command: "helix setup project --dry-run --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1358,7 +1358,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "completion-decision-packet",
-        command: "ut-tdd completion decision-packet --json",
+        command: "helix completion decision-packet --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1371,7 +1371,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "completion-review-bundle",
-        command: "ut-tdd completion review-bundle --json",
+        command: "helix completion review-bundle --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1391,7 +1391,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "version-up-dry-run",
         command:
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1404,13 +1404,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "consumer-doctor",
-        command: "ut-tdd doctor --profile consumer",
+        command: "helix doctor --profile consumer",
         writePolicy: "no-write",
         availability: "post-apply-or-projected",
         requiresMaterializedPaths: expect.arrayContaining([
           "AGENTS.md",
           ".vscode/tasks.json",
-          ".ut-tdd/teams",
+          ".helix/teams",
         ]),
         source: "VS Code Workspace Trust and consumer adapter safety contract",
         sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
@@ -1423,7 +1423,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "identifier-cutover-packet",
-        command: "ut-tdd rename plan --json",
+        command: "helix rename plan --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1435,7 +1435,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       }),
       expect.objectContaining({
         phase: "handover-route",
-        command: "ut-tdd handover status --json",
+        command: "helix handover status --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -1444,10 +1444,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "team-run-dry-run",
         command:
-          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         writePolicy: "no-write",
         availability: "post-apply-or-projected",
-        requiresMaterializedPaths: [".ut-tdd/teams/default-hybrid.yaml"],
+        requiresMaterializedPaths: [".helix/teams/default-hybrid.yaml"],
         source: "HELIX team definition schema and provider handover contract",
       }),
     ]) {
@@ -1481,7 +1481,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(applied.written).toEqual(
       expect.arrayContaining([
         join(".vscode", "tasks.json"),
-        join(".ut-tdd", "handover", ".gitkeep"),
+        join(".helix", "handover", ".gitkeep"),
       ]),
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("2.0.0");
@@ -1490,19 +1490,19 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("HELIX: rename plan");
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "bun run ut-tdd rename plan --json",
+      "bun run helix rename plan --json",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "HELIX: handover status",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "bun run ut-tdd handover status --json",
+      "bun run helix handover status --json",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
       "HELIX: team run dry-run",
     );
     expect(wet.files.get(join("/repo", ".vscode", "tasks.json"))).toContain(
-      "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     );
     const generatedTasks = JSON.parse(
       wet.files.get(join("/repo", ".vscode", "tasks.json")) ?? "{}",
@@ -1521,43 +1521,43 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         expect.objectContaining({
           label: "HELIX: status",
           type: "shell",
-          command: "bun run ut-tdd status",
+          command: "bun run helix status",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: doctor",
           type: "shell",
-          command: "bun run ut-tdd doctor --profile consumer",
+          command: "bun run helix doctor --profile consumer",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: completion decision-packet",
           type: "shell",
-          command: "bun run ut-tdd completion decision-packet --json",
+          command: "bun run helix completion decision-packet --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: completion review-bundle",
           type: "shell",
-          command: "bun run ut-tdd completion review-bundle --json",
+          command: "bun run helix completion review-bundle --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: rename plan",
           type: "shell",
-          command: "bun run ut-tdd rename plan --json",
+          command: "bun run helix rename plan --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: handover status",
           type: "shell",
-          command: "bun run ut-tdd handover status --json",
+          command: "bun run helix handover status --json",
           problemMatcher: [],
         }),
         expect.objectContaining({
           label: "HELIX: setup dry-run",
           type: "shell",
-          command: "bun run ut-tdd setup project --dry-run",
+          command: "bun run helix setup project --dry-run",
           problemMatcher: [],
         }),
       ]),
@@ -1573,33 +1573,33 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(wet.files.get(statePath)).toContain('"phase": "0-A"');
     expect(JSON.parse(wet.files.get(projectSetupStatePath) ?? "{}")).toMatchObject({
       schemaVersion: "helix-project-setup-state.v1",
-      setupCommand: "ut-tdd setup project",
+      setupCommand: "helix setup project",
       phase: "0-A",
       objectiveBoundary: {
         scope: "consumer_setup_readiness_not_whole_program_completion",
         progressPercent: 90,
         completionClaimAllowed: false,
-        completionPacketCommand: "ut-tdd completion decision-packet --json",
-        completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
+        completionPacketCommand: "helix completion decision-packet --json",
+        completionReviewBundleCommand: "helix completion review-bundle --json",
       },
       postSetupWorkflow: {
         verificationCommands: expect.arrayContaining([
-          "ut-tdd completion decision-packet --json",
-          "ut-tdd completion review-bundle --json",
+          "helix completion decision-packet --json",
+          "helix completion review-bundle --json",
         ]),
         verificationMatrix: expect.arrayContaining([
           expect.objectContaining({
             phase: "github-ci-safety",
-            command: "ut-tdd setup project --dry-run --json",
+            command: "helix setup project --dry-run --json",
             writePolicy: "no-write",
             evidence: "setup project JSON attached to the first-run readiness record",
           }),
           expect.objectContaining({
             phase: "team-run-dry-run",
             command:
-              "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+              "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
             writePolicy: "no-write",
-            requiresMaterializedPaths: [".ut-tdd/teams/default-hybrid.yaml"],
+            requiresMaterializedPaths: [".helix/teams/default-hybrid.yaml"],
           }),
         ]),
       },
@@ -1614,7 +1614,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       isInteractive: false,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
     deps.runCommand = (cwd, command, args) => {
@@ -1626,7 +1626,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             "{",
             '  "lockfileVersion": 1,',
             '  "configVersion": 1,',
-            '  "workspaces": { "": { "devDependencies": { "typescript": "^5.6.3", "ut-tdd": "github:RetryYN/HELIX-HARNESS" } } },',
+            '  "workspaces": { "": { "devDependencies": { "typescript": "^5.6.3", "helix": "github:RetryYN/HELIX-HARNESS" } } },',
             '  "packages": {}',
             "}",
             "",
@@ -1647,7 +1647,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       {
         cwd: "/repo",
         command: "bun",
-        args: ["run", "ut-tdd", "setup", "project", "--help"],
+        args: ["run", "helix", "setup", "project", "--help"],
       },
     ]);
     expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
@@ -1678,13 +1678,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
       private: true,
       scripts: {
-        "ut-tdd": "ut-tdd",
-        typecheck: "bun run ut-tdd status --json",
-        test: "bun run ut-tdd completion review-bundle --json",
+        "helix": "helix",
+        typecheck: "bun run helix status --json",
+        test: "bun run helix completion review-bundle --json",
       },
       devDependencies: {
         typescript: "^5.6.3",
-        "ut-tdd": "github:RetryYN/HELIX-HARNESS",
+        "helix": "github:RetryYN/HELIX-HARNESS",
       },
     });
   });
@@ -1694,12 +1694,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       isInteractive: false,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
     deps.files.set(
       join("/repo", "package.json"),
-      `${JSON.stringify({ scripts: { "ut-tdd": "ut-tdd" } }, null, 2)}\n`,
+      `${JSON.stringify({ scripts: { "helix": "helix" } }, null, 2)}\n`,
     );
     deps.files.set(join("/repo", "bun.lock"), "stale lockfile\n");
     deps.runCommand = (cwd, command, args) => {
@@ -1721,7 +1721,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       {
         cwd: "/repo",
         command: "bun",
-        args: ["run", "ut-tdd", "setup", "project", "--help"],
+        args: ["run", "helix", "setup", "project", "--help"],
       },
     ]);
     expect(result.importReport).toMatchObject({
@@ -1732,13 +1732,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.written).toEqual(expect.arrayContaining(["package.json", "bun.lock"]));
     expect(JSON.parse(deps.files.get(join("/repo", "package.json")) ?? "{}")).toMatchObject({
       scripts: {
-        "ut-tdd": "ut-tdd",
-        typecheck: "bun run ut-tdd status --json",
-        test: "bun run ut-tdd completion review-bundle --json",
+        "helix": "helix",
+        typecheck: "bun run helix status --json",
+        test: "bun run helix completion review-bundle --json",
       },
       devDependencies: {
         typescript: "^5.6.3",
-        "ut-tdd": "github:RetryYN/HELIX-HARNESS",
+        "helix": "github:RetryYN/HELIX-HARNESS",
       },
     });
     expect(deps.files.get(join("/repo", "bun.lock"))).toContain("lockfileVersion");
@@ -1806,12 +1806,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.postSetupWorkflow.nextActions).toEqual(
       expect.arrayContaining([
         expect.stringContaining("importReport.skippedExistingPaths"),
-        "import report 解消後に `ut-tdd setup project --dry-run` を再実行する",
+        "import report 解消後に `helix setup project --dry-run` を再実行する",
       ]),
     );
     expect(result.written).not.toContain(join(".vscode", "tasks.json"));
     expect(deps.files.get(join("/repo", ".vscode", "tasks.json"))).toContain("keep-existing");
-    expect(deps.files.get(join("/repo", "AGENTS.md"))).toContain("UT-TDD:managed:start");
+    expect(deps.files.get(join("/repo", "AGENTS.md"))).toContain("HELIX:managed:start");
   });
 
   it("U-SETUP-016: generated HELIX project setup reruns are idempotent and do not require import review", () => {
@@ -1823,7 +1823,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         confirmMessages.push(message);
         return false;
       },
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
       runCommand: () => ({
         status: 0,
@@ -1835,9 +1835,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "ut-tdd": "bun run src/cli.ts",
-          typecheck: "bun run ut-tdd status --json",
-          test: "bun run ut-tdd completion review-bundle --json",
+          "helix": "bun run src/cli.ts",
+          typecheck: "bun run helix status --json",
+          test: "bun run helix completion review-bundle --json",
         },
       }),
     );
@@ -1868,7 +1868,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.arrayContaining([
         "AGENTS.md",
         join(".vscode", "tasks.json"),
-        join(".ut-tdd", "teams", "default-hybrid.yaml"),
+        join(".helix", "teams", "default-hybrid.yaml"),
       ]),
     );
     expect(second.importReport.skipSubDocs).not.toEqual(
@@ -1889,13 +1889,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(confirmMessages).toEqual([]);
 
     const agents = deps.files.get(join("/repo", "AGENTS.md")) as string;
-    expect(agents.match(/UT-TDD:managed:start/g)).toHaveLength(1);
+    expect(agents.match(/HELIX:managed:start/g)).toHaveLength(1);
   });
 
   it("U-SETUP-017: HELIX project setup readiness records consumer CLI PATH resolution", () => {
     const deps = mockDeps({
       templates: baseTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
       runCommand: () => ({
         status: 0,
@@ -1907,9 +1907,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "ut-tdd": "bun run src/cli.ts",
-          typecheck: "bun run ut-tdd status --json",
-          test: "bun run ut-tdd completion review-bundle --json",
+          "helix": "bun run src/cli.ts",
+          typecheck: "bun run helix status --json",
+          test: "bun run helix completion review-bundle --json",
         },
       }),
     );
@@ -1963,14 +1963,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             path: join("scripts", "setup-branch-protection.sh"),
           }),
           expect.objectContaining({
-            name: "ut-tdd-baseline-paths-projected",
+            name: "helix-baseline-paths-projected",
             ok: true,
-            path: ".ut-tdd",
+            path: ".helix",
           }),
           expect.objectContaining({
             name: "default-hybrid-team-separates-worker-reviewer",
             ok: true,
-            path: join(".ut-tdd", "teams", "default-hybrid.yaml"),
+            path: join(".helix", "teams", "default-hybrid.yaml"),
           }),
         ]),
       },
@@ -1978,11 +1978,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         scope: "consumer_setup_readiness_not_whole_program_completion",
         progressPercent: 90,
         completionClaimAllowed: false,
-        objectiveAuditCommand: "ut-tdd status --json",
-        completionPacketCommand: "ut-tdd completion decision-packet --json",
-        completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
-        versionUpPacketCommand: "ut-tdd version-up activation-packet --json",
-        cutoverPacketCommand: "ut-tdd rename plan --json",
+        objectiveAuditCommand: "helix status --json",
+        completionPacketCommand: "helix completion decision-packet --json",
+        completionReviewBundleCommand: "helix completion review-bundle --json",
+        versionUpPacketCommand: "helix version-up activation-packet --json",
+        cutoverPacketCommand: "helix rename plan --json",
         distributionReference: {
           repo: "RetryYN/HELIX-HARNESS-OS",
           mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
@@ -2003,9 +2003,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.consumerReadiness.checks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          name: "ut-tdd-cli",
+          name: "helix-cli",
           ok: true,
-          message: "projected hook 用の `ut-tdd` が PATH 上で解決できる",
+          message: "projected hook 用の `helix` が PATH 上で解決できる",
         }),
       ]),
     );
@@ -2026,15 +2026,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       readinessOk: true,
       unmetGates: [],
       nextActions: [
-        "`ut-tdd status --json` を実行する",
-        "`ut-tdd setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
-        "`ut-tdd completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
-        "`ut-tdd completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
-        "`ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
-        "`ut-tdd doctor --profile consumer` を実行する",
-        "`ut-tdd rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
-        "`ut-tdd handover status --json` を実行し、active handover または current PLAN route から開始する",
-        "`ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を dry-run し、worker/reviewer の provider 分離を確認する",
+        "`helix status --json` を実行する",
+        "`helix setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
+        "`helix completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
+        "`helix completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
+        "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
+        "`helix doctor --profile consumer` を実行する",
+        "`helix rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
+        "`helix handover status --json` を実行し、active handover または current PLAN route から開始する",
+        "`helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` を dry-run し、worker/reviewer の provider 分離を確認する",
       ],
     });
     expect(result.postSetupWorkflow.verificationMatrix.map((row) => row.phase)).toEqual([
@@ -2055,7 +2055,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-033: docs/templates materialized setup project readiness stays green", () => {
     const deps = mockDeps({
       templates: loadTemplates(process.cwd()),
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
       runCommand: () => ({
         status: 0,
@@ -2067,9 +2067,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "ut-tdd": "bun run src/cli.ts",
-          typecheck: "bun run ut-tdd status --json",
-          test: "bun run ut-tdd completion review-bundle --json",
+          "helix": "bun run src/cli.ts",
+          typecheck: "bun run helix status --json",
+          test: "bun run helix completion review-bundle --json",
         },
       }),
     );
@@ -2118,45 +2118,45 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             {
               label: "HELIX: status",
               type: "shell",
-              command: "bun run ut-tdd status",
+              command: "bun run helix status",
               problemMatcher: [],
             },
             {
               label: "HELIX: doctor",
               type: "shell",
-              command: "bun run ut-tdd doctor --profile consumer",
+              command: "bun run helix doctor --profile consumer",
               problemMatcher: [],
               runOptions: { runOn: "folderOpen" },
             },
             {
               label: "HELIX: completion decision-packet",
               type: "shell",
-              command: "bun run ut-tdd completion decision-packet --json",
+              command: "bun run helix completion decision-packet --json",
               problemMatcher: [],
             },
             {
               label: "HELIX: rename plan",
               type: "shell",
-              command: "bun run ut-tdd rename plan --json",
+              command: "bun run helix rename plan --json",
               problemMatcher: [],
             },
             {
               label: "HELIX: handover status",
               type: "shell",
-              command: "bun run ut-tdd handover status --json",
+              command: "bun run helix handover status --json",
               problemMatcher: [],
             },
             {
               label: "HELIX: setup dry-run",
               type: "shell",
-              command: "bun run ut-tdd setup project --dry-run",
+              command: "bun run helix setup project --dry-run",
               problemMatcher: [],
             },
             {
               label: "HELIX: team run dry-run",
               type: "shell",
               command:
-                "bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+                "bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
               problemMatcher: [],
             },
             {
@@ -2173,7 +2173,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: unsafeTasksTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2221,7 +2221,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: unsafeSettingsTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2246,7 +2246,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-017: 0-B HELIX project setup readiness is bound to rendered team CODEOWNERS", () => {
     const deps = mockDeps({
       templates: baseTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
       runCommand: () => ({
         status: 0,
@@ -2258,9 +2258,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "package.json"),
       JSON.stringify({
         scripts: {
-          "ut-tdd": "bun run src/cli.ts",
-          typecheck: "bun run ut-tdd status --json",
-          test: "bun run ut-tdd completion review-bundle --json",
+          "helix": "bun run src/cli.ts",
+          typecheck: "bun run helix status --json",
+          test: "bun run helix completion review-bundle --json",
         },
       }),
     );
@@ -2298,7 +2298,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2322,7 +2322,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
   });
 
-  it("accepts consumer packageRoot scripts.ut-tdd as CLI resolution evidence", () => {
+  it("accepts consumer packageRoot scripts.helix as CLI resolution evidence", () => {
     const deps = mockDeps({
       templates: baseTemplates,
       packageRoot: "/repo/packages/app",
@@ -2333,9 +2333,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       join("/repo", "packages", "app", "package.json"),
       JSON.stringify({
         scripts: {
-          "ut-tdd": "bun run ../../src/cli.ts",
-          typecheck: "bun run ut-tdd status --json",
-          test: "bun run ut-tdd completion review-bundle --json",
+          "helix": "bun run ../../src/cli.ts",
+          typecheck: "bun run helix status --json",
+          test: "bun run helix completion review-bundle --json",
         },
       }),
     );
@@ -2364,39 +2364,39 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(result.consumerReadiness.checks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          name: "ut-tdd-cli",
+          name: "helix-cli",
           ok: false,
-          message: expect.stringContaining("bare `ut-tdd`"),
+          message: expect.stringContaining("bare `helix`"),
         }),
         expect.objectContaining({
-          name: "ut-tdd-package-script",
+          name: "helix-package-script",
           ok: true,
         }),
       ]),
     );
     expect(result.postSetupWorkflow.nextRoute).toBe("fix_consumer_readiness");
-    expect(result.postSetupWorkflow.unmetGates).toContain("consumer_readiness:ut-tdd-cli");
+    expect(result.postSetupWorkflow.unmetGates).toContain("consumer_readiness:helix-cli");
   });
 
   it("blocks consumer readiness when projected setup artifacts do not carry the first-run HELIX route", () => {
     const brokenTemplates = {
       ...baseTemplates,
       "adapter/AGENTS.md": [
-        "<!-- UT-TDD:managed:start -->",
+        "<!-- HELIX:managed:start -->",
         "# HELIX アダプター",
-        "- Doctor: `ut-tdd doctor`",
-        "<!-- UT-TDD:managed:end -->",
+        "- Doctor: `helix doctor`",
+        "<!-- HELIX:managed:end -->",
         "",
       ].join("\n"),
       "adapter/CLAUDE.md": [
-        "<!-- UT-TDD:managed:start -->",
+        "<!-- HELIX:managed:start -->",
         "# HELIX 共有コンテキスト",
-        "- `ut-tdd status`",
-        "<!-- UT-TDD:managed:end -->",
+        "- `helix status`",
+        "<!-- HELIX:managed:end -->",
         "",
       ].join("\n"),
       "adapter/.claude/commands/helix-test.md": "Run tests only.\n",
-      "project/.ut-tdd/teams/default-hybrid.yaml": [
+      "project/.helix/teams/default-hybrid.yaml": [
         "name: default-hybrid",
         "members:",
         "  - role: se",
@@ -2419,7 +2419,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2492,20 +2492,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "      - uses: oven-sh/setup-bun@v2",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "",
       ].join("\n"),
     };
     const deps = mockDeps({
       templates: writePermissionTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2546,7 +2546,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: brokenTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2583,7 +2583,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: mutatingTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2615,7 +2615,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [
                 {
                   type: "command",
-                  command: "ut-tdd hook agent-guard",
+                  command: "helix hook agent-guard",
                   blockOnFailure: true,
                 },
               ],
@@ -2625,7 +2625,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [
                 {
                   type: "note",
-                  command: "ut-tdd hook work-guard",
+                  command: "helix hook work-guard",
                   blockOnFailure: true,
                 },
               ],
@@ -2635,15 +2635,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [
                 {
                   type: "command",
-                  command: "ut-tdd hook git-command-guard",
+                  command: "helix hook git-command-guard",
                   blockOnFailure: true,
                 },
               ],
             },
           ],
-          SessionStart: [{ hooks: [{ type: "command", command: "ut-tdd session start" }] }],
-          Stop: [{ hooks: [{ type: "command", command: "ut-tdd session summary" }] }],
-          SubagentStop: [{ hooks: [{ type: "command", command: "ut-tdd hook subagent-stop" }] }],
+          SessionStart: [{ hooks: [{ type: "command", command: "helix session start" }] }],
+          Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
+          SubagentStop: [{ hooks: [{ type: "command", command: "helix hook subagent-stop" }] }],
         },
       }),
       "adapter/.codex/hooks.json": JSON.stringify({
@@ -2654,7 +2654,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [
                 {
                   type: "command",
-                  command: "ut-tdd hook agent-guard",
+                  command: "helix hook agent-guard",
                   blockOnFailure: true,
                 },
               ],
@@ -2664,7 +2664,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [
                 {
                   type: "command",
-                  command: "ut-tdd hook work-guard",
+                  command: "helix hook work-guard",
                   blockOnFailure: false,
                 },
               ],
@@ -2674,26 +2674,26 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
               hooks: [
                 {
                   type: "command",
-                  command: "ut-tdd hook git-command-guard",
+                  command: "helix hook git-command-guard",
                   blockOnFailure: true,
                 },
               ],
             },
           ],
-          SessionStart: [{ hooks: [{ type: "command", command: "ut-tdd session start" }] }],
+          SessionStart: [{ hooks: [{ type: "command", command: "helix session start" }] }],
           PostToolUse: [
             {
               matcher: "apply_patch|write_file|exec_command|local_shell",
-              hooks: [{ type: "command", command: "ut-tdd hook post-tool-use" }],
+              hooks: [{ type: "command", command: "helix hook post-tool-use" }],
             },
           ],
-          Stop: [{ hooks: [{ type: "command", command: "ut-tdd session summary" }] }],
+          Stop: [{ hooks: [{ type: "command", command: "helix session summary" }] }],
         },
       }),
     };
     const deps = mockDeps({
       templates: brokenHookTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2739,14 +2739,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "      - uses: oven-sh/setup-bun@v2",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "      - run: echo unexpected extra command",
@@ -2755,7 +2755,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: extraRunTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2796,14 +2796,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "        with:",
         "          persist-credentials: false",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "",
@@ -2811,7 +2811,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: driftedWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2851,14 +2851,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: actions/checkout@v4",
         "      - uses: oven-sh/setup-bun@v2",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "",
@@ -2866,7 +2866,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: credentialPersistingWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2911,16 +2911,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "        with:",
         "          token: $" + "{{ github.token }}",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
         "        env:",
         "          HELIX_CI_MODE: read-only",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "",
@@ -2928,7 +2928,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: inputExpandedWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -2977,16 +2977,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "          persist-credentials: false",
         "      - uses: oven-sh/setup-bun@v2",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
         "        if: $" + "{{ false }}",
         "        continue-on-error: true",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "",
@@ -2994,7 +2994,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: softPassingWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -3043,18 +3043,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "          persist-credentials: false",
         "      - uses: oven-sh/setup-bun@v2",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
         "        continue-on-error: false",
         "        shell: bash",
         "        timeout-minutes: 1",
         "        working-directory: .",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "",
@@ -3062,7 +3062,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: controlledWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -3106,16 +3106,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "      - uses: oven-sh/setup-bun@v2",
         "      - uses: third-party/unpinned-action@v1",
         "      - run: bun install --frozen-lockfile",
-        "      - run: bun run ut-tdd --version",
-        "      - run: bun run ut-tdd setup project --dry-run --json",
-        "      - run: bun run ut-tdd status --json",
-        "      - run: bun run ut-tdd completion decision-packet --json",
-        "      - run: bun run ut-tdd doctor --profile consumer --json",
-        "      - run: bun run ut-tdd rename plan --json",
+        "      - run: bun run helix --version",
+        "      - run: bun run helix setup project --dry-run --json",
+        "      - run: bun run helix status --json",
+        "      - run: bun run helix completion decision-packet --json",
+        "      - run: bun run helix doctor --profile consumer --json",
+        "      - run: bun run helix rename plan --json",
         "        env:",
         "          TOKEN: $" + "{{ secrets [ 'API_TOKEN' ] }}",
-        "      - run: bun run ut-tdd handover status --json",
-        "      - run: bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "      - run: bun run helix handover status --json",
+        "      - run: bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         "      - run: bun run typecheck",
         "      - run: bun run test",
         "",
@@ -3123,7 +3123,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     };
     const deps = mockDeps({
       templates: expandedWorkflowTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -3147,7 +3147,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
   it("U-SETUP-019: HELIX project setup exposes GitHub plan and doctor baseline as plan-only structures", () => {
     const deps = mockDeps({
       templates: baseTemplates,
-      commandAvailable: (name) => ["bun", "git", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
     const result = runHelixProjectSetup(
@@ -3178,14 +3178,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       planOnly: true,
       baselineCommands: result.postSetupWorkflow.verificationCommands,
       stateBaselinePaths: [
-        ".ut-tdd/memory",
-        ".ut-tdd/handover",
-        ".ut-tdd/evidence",
-        ".ut-tdd/teams",
+        ".helix/memory",
+        ".helix/handover",
+        ".helix/evidence",
+        ".helix/teams",
       ],
       completionClaimAllowed: false,
       nextRouteSource: "postSetupWorkflow.nextRoute",
-      evidencePath: ".ut-tdd/evidence",
+      evidencePath: ".helix/evidence",
     });
     expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
@@ -3205,7 +3205,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       isInteractive: true,
       gh: ghAdmin,
       confirm: () => true,
-      commandAvailable: (name) => ["bun", "git", "gh", "ut-tdd", "codex"].includes(name),
+      commandAvailable: (name) => ["bun", "git", "gh", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });
 
@@ -3242,7 +3242,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       repoTemplates["adapter/.claude/commands/build.md"],
       repoTemplates["adapter/.claude/commands/helix-status.md"],
       repoTemplates["adapter/.claude/commands/helix-test.md"],
-      repoTemplates["project/.ut-tdd/teams/default-hybrid.yaml"],
+      repoTemplates["project/.helix/teams/default-hybrid.yaml"],
       BUILTIN_GITHUB_TEMPLATES["adapter/AGENTS.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/CLAUDE.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/CLAUDE.md"],
@@ -3251,7 +3251,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/build.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-status.md"],
       BUILTIN_GITHUB_TEMPLATES["adapter/.claude/commands/helix-test.md"],
-      BUILTIN_GITHUB_TEMPLATES["project/.ut-tdd/teams/default-hybrid.yaml"],
+      BUILTIN_GITHUB_TEMPLATES["project/.helix/teams/default-hybrid.yaml"],
       BUILTIN_GITHUB_TEMPLATES["common/recovery.md"],
       BUILTIN_GITHUB_TEMPLATES["common/add-feature.md"],
       BUILTIN_GITHUB_TEMPLATES["common/PULL_REQUEST_TEMPLATE.md"],
@@ -3260,7 +3260,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     for (const text of samples) {
       expect(text).toMatch(/[ぁ-んァ-ヶ一-龠]/);
       expect(text).not.toMatch(
-        /This project uses|Use repository-local|Act as a|Required baseline|Run `ut-tdd|Do not put secrets|Project-owned instructions|Target: \$ARGUMENTS|Status: `ut-tdd|Doctor: `ut-tdd|Codex delegation:|Claude delegation:|Team run dry-run:|Session evidence:|Health check:|Review separation:|consumer-owned/,
+        /This project uses|Use repository-local|Act as a|Required baseline|Run `helix|Do not put secrets|Project-owned instructions|Target: \$ARGUMENTS|Status: `helix|Doctor: `helix|Codex delegation:|Claude delegation:|Team run dry-run:|Session evidence:|Health check:|Review separation:|consumer-owned/,
       );
     }
   });
@@ -3419,20 +3419,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const claudeRuntime = readFileSync(join(process.cwd(), ".claude", "CLAUDE.md"), "utf8");
 
     for (const text of [claude, agents, claudeRuntime]) {
-      expect(text).toContain("`ut-tdd setup project`");
-      expect(text).not.toContain("Setup: `ut-tdd setup`");
+      expect(text).toContain("`helix setup project`");
+      expect(text).not.toContain("Setup: `helix setup`");
     }
     expect(claude).toContain(
-      "`ut-tdd setup project` は HELIX 対応 project を初期化する現行 setup 入口である。",
+      "`helix setup project` は HELIX 対応 project を初期化する現行 setup 入口である。",
     );
     expect(claude).not.toContain("bootstraps a HELIX-ready project");
-    expect(agents).toContain("セットアップ: `ut-tdd setup project`");
+    expect(agents).toContain("セットアップ: `helix setup project`");
     expect(agents).toContain(
       "legacy command を現行 company/product execution path として追加しない。",
     );
     expect(claudeRuntime).toContain("現行コマンド経路:");
     expect(claudeRuntime).toContain(
-      "Claude Code session の harness lifecycle work は `ut-tdd` 経由で扱う。",
+      "Claude Code session の harness lifecycle work は `helix` 経由で扱う。",
     );
   });
 
@@ -3444,7 +3444,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     for (const text of [claude, agents, claudeRuntime]) {
       expect(text).toMatch(/[ぁ-んァ-ヶ一-龠]/);
       expect(text).not.toMatch(
-        /Canonical Commands|Canonical commands|Current command path|Project setup:|Setup: `ut-tdd|Status: `ut-tdd|Doctor: `ut-tdd|Codex delegation:|Claude delegation:|Team run:|Session evidence:|Health check:|Review separation:|bootstraps a HELIX-ready project|This section is machine-checked|This project uses UT-TDD|Project-owned instructions outside this managed block|Use UT-TDD wrappers/,
+        /Canonical Commands|Canonical commands|Current command path|Project setup:|Setup: `helix|Status: `helix|Doctor: `helix|Codex delegation:|Claude delegation:|Team run:|Session evidence:|Health check:|Review separation:|bootstraps a HELIX-ready project|This section is machine-checked|This project uses HELIX|Project-owned instructions outside this managed block|Use HELIX wrappers/,
       );
     }
   });
@@ -3462,7 +3462,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(setup017).toContain("期待 task 9 本");
     expect(setup017).toContain("completion review-bundle");
     expect(setup017).not.toContain("期待 task 8 本");
-    expect(setup019).toContain("ut-tdd completion review-bundle --json");
+    expect(setup019).toContain("helix completion review-bundle --json");
     expect(setup019).toContain("postSetupWorkflow.verificationCommands");
   });
 });

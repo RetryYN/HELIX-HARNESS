@@ -103,7 +103,7 @@ describe("loadPlanCompletionDriftInput + checkPlanCompletionDrift", () => {
   }
 
   it("RECOVERY-02 型 (recovery / draft / DoD 全消化) を flag し、completed 版は通す", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-completion-drift-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-completion-drift-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       // freeze-ready なのに draft 放置 (= 検出対象の運用ミス)
@@ -147,7 +147,7 @@ describe("loadPlanCompletionDriftInput + checkPlanCompletionDrift", () => {
   });
 
   it("archived は対象外 (完了後の整理)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-completion-drift-arch-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-completion-drift-arch-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writePlan(root, "PLAN-TEST-93-arch.md", "archived", "recovery", "## §7 DoD\n\n- [x] done");
@@ -158,7 +158,7 @@ describe("loadPlanCompletionDriftInput + checkPlanCompletionDrift", () => {
   });
 
   it("fails closed when repo root cannot be read", () => {
-    expect(checkPlanCompletionDrift(join(tmpdir(), "ut-tdd-completion-drift-nope-zzz")).ok).toBe(
+    expect(checkPlanCompletionDrift(join(tmpdir(), "helix-completion-drift-nope-zzz")).ok).toBe(
       false,
     );
   });

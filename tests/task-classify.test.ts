@@ -31,7 +31,7 @@ describe("U-FR-L1-39: classifyTask public surface", () => {
       reason: "reason",
     });
     expect(RESEARCH_ADOPTION_BY_PATTERN["agent-orchestration"]?.disposition).toBe(
-      "ut-tdd-specific",
+      "helix-specific",
     );
     expect(RESEARCH_REJECTION_KEYWORDS.map((entry) => entry.decision.pattern)).toContain(
       "llm-minimal-design-claim",
@@ -255,7 +255,7 @@ describe("U-FR-L1-39: classifyTask public surface", () => {
       expect.arrayContaining(["workflow-gate", "agent-orchestration"]),
     );
     expect(result.research_adoption.find((r) => r.pattern === "workflow-gate")?.disposition).toBe(
-      "ut-tdd-specific",
+      "helix-specific",
     );
     expect(
       result.research_adoption.find((r) => r.pattern === "agent-orchestration")?.not_incorporated,

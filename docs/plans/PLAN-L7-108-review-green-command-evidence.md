@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-108-review-green-command-evidence
-title: "PLAN-L7-108: Review green command evidence gate"
+title: "PLAN-L7-108: review_evidence green command evidence gate 証跡ゲート"
 kind: add-impl
 layer: L7
 drive: db
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/design/harness/L6-function-design/test-before-review.md
 agent_slots:
   - role: tl
-    slot_label: "TL - review_evidence green command evidence gate"
+    slot_label: "TL - review_evidence green command evidence gate 確認"
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 generates:
   - artifact_path: docs/plans/PLAN-L7-108-review-green-command-evidence.md
@@ -51,7 +51,7 @@ review_evidence:
     reviewed_at: "2026-06-23"
     tests_green_at: "2026-06-23"
     verdict: approve
-    scope: "IMP-108 green command evidence gate: review_evidence requires structured command evidence for 2026-06-23+ confirmed/completed entries; schema, lint, design, requirements, and tests updated together."
+    scope: "IMP-108 green command evidence gate: 2026-06-23 以降に confirmed/completed となる review_evidence は構造化 command evidence を必須とし、schema、lint、design、requirements、tests を同時に更新する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -89,32 +89,32 @@ review_evidence:
         output_digest: "sha256:e4709a1807e1532f2b31d9baa54773707355859ae06acd73e7214b434e830d44"
 ---
 
-# PLAN-L7-108: Review green command evidence gate
+# PLAN-L7-108: review_evidence green command evidence gate 証跡ゲート
 
-## Objective
+## 目的
 
-Close the gap where `review_evidence.tests_green_at` proved only timestamp order,
-not which quantitative command set was green. New review evidence updated on or
-after 2026-06-23 must carry structured green command evidence.
+`review_evidence.tests_green_at` が時刻順序だけを証明し、どの定量的な command set が
+green だったかを示さない gap を閉じる。2026-06-23 以降に更新される新しい
+review evidence は、構造化された green command evidence を持たなければならない。
 
-## Scope
+## スコープ
 
-- Extend `review_evidence` parsing with `green_commands[]`.
-- Fail confirmed/completed PLANs updated on or after 2026-06-23 when review
-  entries omit green command evidence or contain nonzero/invalid command records.
-- Add frontmatter schema support for the same structure.
-- Add `test_runs.output_digest` and preserve it through the workflow projection contract.
-- Back-propagate the rule to requirements and L6 function design.
+- `review_evidence` parsing を `green_commands[]` で拡張する。
+- 2026-06-23 以降に更新された confirmed/completed PLAN で、review entry が green command evidence を欠く場合、
+  または nonzero/invalid command record を含む場合は fail させる。
+- 同じ構造を frontmatter schema で扱えるようにする。
+- `test_runs.output_digest` を追加し、workflow projection contract 経由で保持する。
+- この rule を requirements と L6 function design へ back-propagate する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Legacy 2026-06-22 timestamp-only review evidence remains valid.
-- New 2026-06-23 confirmed review evidence without `green_commands[]` fails.
-- Structured green command evidence with exit 0 passes.
-- Nonzero command exit code fails.
-- `frontmatterSchema` accepts the valid shape and rejects nonzero exits.
-- `recordTestRunEvidence` persists `output_digest` into `test_runs`.
-- `bun test tests\review-evidence.test.ts` passes.
-- `bun test tests\frontmatter.test.ts` passes.
-- `bun test tests\workflow-contracts.test.ts` passes.
-- `bun run typecheck`, `bun run lint`, and `bun run src\cli.ts doctor` pass.
+- legacy 2026-06-22 timestamp-only review evidence は valid のまま扱う。
+- `green_commands[]` を持たない新しい 2026-06-23 confirmed review evidence は fail する。
+- exit 0 の structured green command evidence は pass する。
+- nonzero command exit code は fail する。
+- `frontmatterSchema` は valid shape を受け入れ、nonzero exits を reject する。
+- `recordTestRunEvidence` は `output_digest` を `test_runs` へ persist する。
+- `bun test tests\review-evidence.test.ts` が pass する。
+- `bun test tests\frontmatter.test.ts` が pass する。
+- `bun test tests\workflow-contracts.test.ts` が pass する。
+- `bun run typecheck`、`bun run lint`、`bun run src\cli.ts doctor` が pass する。

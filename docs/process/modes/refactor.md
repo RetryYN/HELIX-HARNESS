@@ -35,7 +35,7 @@ Refactor モードは、既存コードに対する振る舞い不変の brush-u
 | signals | `debt_degradation` / `code_smell` / `structural` |
 
 Refactor は feature path ではない。作業が新しい観測可能な function を追加する、
-公開 CLI/API contract を変更する、`.ut-tdd/` state schema を変更する、`harness.db`
+公開 CLI/API contract を変更する、`.helix/` state schema を変更する、`harness.db`
 schema を変更する、または期待される user behaviour を変更する場合は、Refactor を停止し、
 Add-feature、Retrofit、Troubleshoot、Incident のいずれかへ route する。
 
@@ -55,7 +55,7 @@ structural smell または dependency risk である。
 1. 対象を登録する: code smell、影響 file、observable boundary、想定 dependency impact を記録する。
 2. regression fence を確立する: structural change の前に characterization coverage を実行または追加する。green state では test IDs を明記する。
 3. 1 つの structural change を行う: rename、extract、split、deduplicate、dead code remove を小さな step で行う。
-4. 検証する: targeted tests、該当する場合は typecheck/lint、`ut-tdd doctor` を実行する。
+4. 検証する: targeted tests、該当する場合は typecheck/lint、`helix doctor` を実行する。
 5. green 後に review する: qualitative review は quantitative green command evidence が存在してから行う。
 6. 反復または close する: 登録済み debt が close されるまで step 3 から繰り返す。
 

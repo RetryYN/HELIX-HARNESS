@@ -66,33 +66,28 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-129: route token coverage
+# PLAN-L7-129: route token coverage の補完
 
-## Objective
+## 目的
 
-Make the implemented route map cover missing signal tokens declared in
-requirements 7.8.1 and keep helper routing on the same rule path.
+実装済み route map が requirements 7.8.1 で宣言された未対応の signal token を扱えるようにし、
+helper routing も同じ rule path に揃える。
 
-## Scope
+## スコープ
 
-- Add `production_incident`, `hotfix_required`, and `regression_prod` to the
-  incident route token set.
-- Add `drift` to the reverse route token set.
-- Route lightweight interrupt tokens `new_requirement` and `po_change` to
-  add-feature.
-- Make `routeSignalToMode` derive from the same route map and longest-token
-  priority as `evaluateRouteCommand`.
-- Keep incident routes human-approval-gated through the existing approval
-  resolver.
-- Add regression coverage so declared tokens resolve to their expected modes.
-- Back-fill requirements acceptance evidence and L4 function design.
+- `production_incident`、`hotfix_required`、`regression_prod` を incident route token set に追加する。
+- `drift` を reverse route token set に追加する。
+- 軽量 interrupt token の `new_requirement` と `po_change` を add-feature へ route する。
+- `routeSignalToMode` を `evaluateRouteCommand` と同じ route map および longest-token priority から導出する。
+- incident route は既存の approval resolver を通じて human approval gate を維持する。
+- 宣言済み token が期待される mode に解決されるよう regression coverage を追加する。
+- requirements acceptance evidence と L4 function design を back-fill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `production_incident`, `hotfix_required`, and `regression_prod` route to
-  `incident`.
-- `drift` routes to `reverse`.
-- `new_requirement` routes to `add-feature`.
-- `routeSignalToMode` and `evaluateRouteCommand` agree on covered tokens.
-- Incident routes return `requires_human_approval=true`.
-- Incident routes without approval policy exit 1.
+- `production_incident`、`hotfix_required`、`regression_prod` は `incident` へ route される。
+- `drift` は `reverse` へ route される。
+- `new_requirement` は `add-feature` へ route される。
+- `routeSignalToMode` と `evaluateRouteCommand` は covered token について一致する。
+- incident route は `requires_human_approval=true` を返す。
+- approval policy がない incident route は exit 1 になる。

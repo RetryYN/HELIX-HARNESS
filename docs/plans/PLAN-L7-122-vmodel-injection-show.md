@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-122-vmodel-injection-show
-title: "PLAN-L7-122: vmodel injection show command"
+title: "PLAN-L7-122: vmodel injection show コマンド"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - vmodel injection show"
+    slot_label: "TL - vmodel injection show 確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-122-vmodel-injection-show.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T14:20:00+09:00"
     tests_green_at: "2026-06-23T14:20:00+09:00"
     verdict: approve
-    scope: "V-model drive x layer injection public CLI surface and docs backfill."
+    scope: "V-model drive x layer injection の public CLI surface と docs backfill。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -68,23 +68,23 @@ review_evidence:
         output_digest: "sha256:09dfbf69280399fc50b720af5b68e4ee8b22e3d28d484997df818edcfceb9a10"
 ---
 
-# PLAN-L7-122: vmodel injection show command
+# PLAN-L7-122: vmodel injection show コマンド
 
-## Objective
+## 目的
 
-Make the drive x layer injection requirement executable through `ut-tdd vmodel
-show <drive> <layer> --injection`.
+drive x layer injection requirement を `helix vmodel show <drive> <layer> --injection`
+で実行可能にする。
 
-## Scope
+## スコープ
 
-- Add a V-model injection resolver for the five required keys.
-- Add the public CLI surface under `vmodel show`.
-- Update requirements and L4 function design to remove the stale "stub" status
-  for this surface.
+- 5 つの required keys に対応する V-model injection resolver を追加する。
+- `vmodel show` 配下に public CLI surface を追加する。
+- requirements と L4 function design を更新し、この surface に残っている stale な
+  `stub` status を取り除く。
 
-## Acceptance Criteria
+## 受入条件
 
-- The CLI returns `owner_role`, `mandatory_agents`, `recommended_skills`,
-  `recommended_commands`, and `orchestration_mode`.
-- `orchestration_mode` is one of `VALID_ORCHESTRATION_MODES`.
-- Invalid `drive` or `layer` values are rejected.
+- CLI は `owner_role`、`mandatory_agents`、`recommended_skills`、
+  `recommended_commands`、`orchestration_mode` を返す。
+- `orchestration_mode` は `VALID_ORCHESTRATION_MODES` のいずれかである。
+- 不正な `drive` または `layer` の値は拒否される。

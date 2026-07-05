@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-210-l0-l8-design-consistency-audit
-title: "PLAN-REVERSE-210: L0-L8 semantic audit fullback"
+title: "PLAN-REVERSE-210: L0-L8 semantic audit fullback（意味監査 fullback）"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -14,7 +14,7 @@ forward_routing: L5
 promotion_strategy: reuse-with-hardening
 agent_slots:
   - role: tl
-    slot_label: "TL - design drift reverse judgement"
+    slot_label: "TL - design drift reverse 判断"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-210-l0-l8-design-consistency-audit.md
     artifact_type: markdown_doc
@@ -46,75 +46,73 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
-    reason: "The 2026-06-30 L1 §2.8 visualization amendment is now explicitly recorded as an S4-pending L3 amendment frontier rather than hidden behind the frozen 43-item descent."
+    reason: "2026-06-30 の L1 §2.8 visualization amendment は、freeze 済み 43-item descent の背後に隠さず、S4-pending の L3 amendment frontier として明示的に記録した。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
-    reason: "L4 now states that visualization Tree View/Webview boundary work is outside the confirmed 10 block / 43 requirement set until S4 routing."
+    reason: "L4 は、visualization Tree View/Webview の boundary work が S4 routing までは confirmed 10 block / 43 requirement set の外側であることを明記した。"
   - layer: L5-detailed-design
     decision: updated
     evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
-    reason: "L5 now separates PLAN-L7-206 first response from future visualization graph/read-model/drill-down contracts."
+    reason: "L5 は、PLAN-L7-206 の first response と将来の visualization graph/read-model/drill-down contracts を分離した。"
   - layer: L0-L6-design
     decision: updated
     evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
-    reason: "L3-L6 design/test-design now distinguishes the 2026-06-28 frozen descent from the revised visualization amendment."
+    reason: "L3-L6 design/test-design は、2026-06-28 frozen descent と revised visualization amendment を区別した。"
   - layer: L7
     decision: updated
     evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
-    reason: "The audit records that the L7 feature-pack roadmap is closed for the L0-L8 boundary and that PLAN-L7-146 remains version-up parked rather than an active frontier."
+    reason: "audit は、L7 feature-pack roadmap が L0-L8 boundary では closed であり、PLAN-L7-146 は active frontier ではなく version-up parked のままであることを記録した。"
   - layer: L8
     decision: updated
     evidence_path: docs/governance/helix-l0-l8-design-consistency-audit.md
-    reason: "The audit records that current G8 closure is selected workflow coverage for the pre-amendment boundary only; the revised visualization request remains not L0-L8 complete."
+    reason: "audit は、現在の G8 closure が pre-amendment boundary だけを対象にした selected workflow coverage であり、revised visualization request は L0-L8 complete ではないままであることを記録した。"
 ---
 
-# PLAN-REVERSE-210: L0-L8 semantic audit fullback
+# PLAN-REVERSE-210: L0-L8 semantic audit fullback（意味監査 fullback）
 
-## Reason
+## 理由
 
-The user challenged a completion claim as insufficiently semantic. The correct
-route is design-drift Reverse: inspect the L0-L8 meaning chain, preserve valid
-design descent, and back-propagate the missing completion boundary into an audit
-that can be tested. The signal is `design_drift`; the PLAN enum route is
-`confirmed_reverse_type=fullback`.
+ユーザーは、完了主張が意味論的に不十分であると指摘した。正しい route は design-drift Reverse
+である。L0-L8 の意味連鎖を点検し、有効な design descent を保持し、不足していた完了境界を
+テスト可能な audit へ back-propagate する。signal は `design_drift`、PLAN enum route は
+`confirmed_reverse_type=fullback`。
 
-## R4 Forward Routing
+## R4 Forward Routing（R4 Forward 合流）
 
-Forward route is `PLAN-L7-210-l0-l8-design-consistency-audit`. The first audit
-understated the impact of the 2026-06-30 L1 §2.8 visualization amendment, so
-L3-L6 design/test-design now receives an explicit amendment frontier. The
-forward correction is to keep the pre-amendment L0-L8 boundary narrow-complete
-while stating that the revised request is not L0-L8 complete until S4 routes
-visualization L3/L4/L5/L6/L7 work. `PLAN-L7-141` is activated, `PLAN-L7-146` is
-version-up parked, and L10/runtime frontiers are not counted as completed work.
+Forward route は `PLAN-L7-210-l0-l8-design-consistency-audit`。最初の audit は
+2026-06-30 L1 §2.8 visualization amendment の影響を過小評価していたため、L3-L6
+design/test-design に明示的な amendment frontier を受け渡す。forward correction は、
+pre-amendment L0-L8 boundary を narrow-complete として保ちながら、revised request は
+visualization L3/L4/L5/L6/L7 work が S4 で route されるまで L0-L8 complete ではないと
+明記すること。`PLAN-L7-141` は activated、`PLAN-L7-146` は version-up parked、L10/runtime
+frontiers は completed work に数えない。
 
-2026-07-01 re-read keeps the same R4 route and adds a narrow correction: the
-audit now records an explicit feature-list check for pair-agent TDD, setup /
-rename command availability, the visualization amendment, and current
-outstanding blockers. This is a clarification of the existing design boundary,
-not an approval to apply `.ut-tdd -> .helix` or to promote S4-pending work.
+2026-07-01 の re-read では同じ R4 route を維持し、狭い correction を追加する。audit は
+pair-agent TDD、setup / rename command availability、visualization amendment、現在の
+outstanding blockers に対する明示的な feature-list check を記録する。これは既存の design
+boundary の明確化であり、`.helix -> .helix` の適用や S4-pending work の昇格を承認するものではない。
 
 ## §3 工程表 (Step + 進捗)
 
-### Step 1: [直列] drift signal確認
+### Step 1: [直列] drift signal 確認
 直列理由: downstream_dependency
 
-`route eval --signal design_drift` は Reverse mode を推奨し、auto applyなし、preflight requiredを返した。
+`route eval --signal design_drift` は Reverse mode を推奨し、auto apply なし、preflight required を返した。
 
 ### Step 2: [直列] R4合流先決定
 直列理由: downstream_dependency
 
-L0-L6の freeze 済み意味連鎖は保持し、2026-06-30 visualization amendment を未降下 frontier として
+L0-L6 の freeze 済み意味連鎖は保持し、2026-06-30 visualization amendment を未降下 frontier として
 L3/L4/L5/L6/test-design に back-propagate してから `PLAN-L7-210` に戻す。
 
-### Step 3: [直列] review
+### Step 3: [直列] review 確認
 直列理由: downstream_dependency
 
-self reviewで、pre-amendment L0-L8 の narrow-complete、revised request の未完了、post-L8 /
+self review で、pre-amendment L0-L8 の narrow-complete、revised request の未完了、post-L8 /
 version-up 未了を混同していないことを確認する。
 
 ## §3.1 実装計画
 
 - 情報源: `bun run src/cli.ts route eval --signal design_drift --format json`。
-- 変更対象: Reverse記録、governance audit、L3-L6 design/test-design の amendment frontier 注記。
+- 変更対象: Reverse 記録、governance audit、L3-L6 design/test-design の amendment frontier 注記。

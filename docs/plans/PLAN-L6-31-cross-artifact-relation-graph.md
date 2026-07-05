@@ -32,26 +32,26 @@ dependencies:
   parent: docs/plans/PLAN-L6-00-master.md
   requires:
     - docs/plans/PLAN-L6-00-master.md
-    - .ut-tdd/audit/A-124-cross-artifact-graph-tooling.md
-    - .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
+    - .helix/audit/A-124-cross-artifact-graph-tooling.md
+    - .helix/audit/A-125-mcp-external-verification-profile-scope.md
     - docs/plans/PLAN-REVERSE-31-codex-l7-overstep.md
 ---
 
-# PLAN-L6-31 (add-design): cross-artifact relation graph and verification profile projection
+# PLAN-L6-31 (add-design): cross-artifact relation graph と verification profile projection
 
-## §0 Position
+## §0 位置付け
 
-This PLAN is the proper L6 entry for A-124 / A-125 implementation. It prevents relation graph source work from starting without a function-level design, unit oracle, and DB projection contract.
+この PLAN は A-124 / A-125 implementation に対応する正規の L6 entry である。function-level design、unit oracle、DB projection contract なしに relation graph source work が始まらないようにする。
 
 ## §1 Scope
 
-Design the function contracts for:
+次の function contract を設計する。
 
-- Cross-artifact graph projection from docs / source / tests / PLAN / audit / evidence into normalized rows.
-- Impact expansion from changed files to affected FR / PLAN / design / test / DB table / diagram nodes.
-- Diagram export contract for Mermaid first, with DOT / D2 as optional adapters.
-- Verification profile recommendation using relation graph signals plus the existing A-125 profile catalog.
-- Evidence collector contract for `.ut-tdd/evidence/verification-profiles/*.json` into DB projection rows.
+- docs / source / tests / PLAN / audit / evidence から normalized row へ cross-artifact graph projection する。
+- changed files から affected FR / PLAN / design / test / DB table / diagram node へ impact expansion する。
+- Mermaid first の diagram export contract を定義し、DOT / D2 は optional adapter とする。
+- relation graph signal と既存 A-125 profile catalog を使って verification profile recommendation を行う。
+- `.helix/evidence/verification-profiles/*.json` を DB projection row へ取り込む evidence collector contract を定義する。
 
 ## §2 Inputs
 
@@ -61,39 +61,39 @@ Design the function contracts for:
 - IMP-118..125.
 - Existing `src/lint/verification-profile.ts` first slice.
 
-## §3 Function Contract Draft
+## §3 Function contract draft 草案
 
 | function | contract |
 |---|---|
-| `analyzeRelationImpact` | changed files -> graph nodes, dependency edges, impacted nodes, required actions, missing graph evidence findings |
-| `collectRelationGraphProjection` | repository docs/source/tests/PLAN/audit/evidence -> rebuildable projection rows |
-| `exportRelationDiagram` | graph snapshot -> Mermaid text; optional DOT/D2 adapters are disabled unless installed |
-| `collectVerificationEvidenceProjection` | saved verification evidence -> `verification_profiles`, `verification_recommendations`, `mcp_server_runs`, `external_tool_findings` rows |
+| `analyzeRelationImpact` | changed files を graph nodes、dependency edges、impacted nodes、required actions、missing graph evidence findings へ変換する |
+| `collectRelationGraphProjection` | repository docs/source/tests/PLAN/audit/evidence を rebuildable projection rows へ変換する |
+| `exportRelationDiagram` | graph snapshot -> Mermaid text。optional DOT/D2 adapter は install 済みでなければ disabled とする |
+| `collectVerificationEvidenceProjection` | saved verification evidence を `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` rows へ変換する |
 
-## §4 Test Design
+## §4 Test design 方針
 
-Unit oracles must cover:
+Unit oracle は次を cover する。
 
-- Source file change recommends sibling test, L6 design, and graph impact row.
-- DB projection doc change surfaces affected DB tables and upstream docs.
-- MCP / verification evidence files normalize into projection rows without storing raw secrets or provider transcripts.
-- Diagram export emits stable Mermaid for audit/handover.
-- Missing graph projection produces a finding rather than silently passing.
+- Source file change が sibling test、L6 design、graph impact row を recommend する。
+- DB projection doc change が affected DB table と upstream docs を surface する。
+- MCP / verification evidence file は raw secret や provider transcript を保存せず、projection row へ normalize される。
+- Diagram export は audit/handover 用の stable Mermaid を emit する。
+- graph projection 欠落は silent pass ではなく finding を生成する。
 
-## §5 Workflow Guard
+## §5 Workflow guard 方針
 
-No `src/lint/relation-graph.ts`, DB collector, or graph CLI implementation is authorized until this PLAN has:
+この PLAN が次を持つまで、`src/lint/relation-graph.ts`、DB collector、graph CLI implementation は authorize しない。
 
-- pair artifact coverage in L7 unit test design;
-- TDD Red entry in the L7 implementation PLAN;
-- Reverse pairing for any lower-layer discovery.
+- L7 unit test design の pair artifact coverage。
+- L7 implementation PLAN の TDD Red entry。
+- lower-layer discovery に対する Reverse pairing。
 
 ## §8 DoD
 
-- [x] L6 function signatures are documented.
-- [x] U-* unit oracles are added to L7 unit test design.
-- [x] L8 integration GWT rows are added for DB projection rebuild.
+- [x] L6 function signature を document 済み。
+- [x] U-* unit oracle を L7 unit test design へ追加済み。
+- [x] DB projection rebuild 用の L8 integration GWT row を追加済み。
 - [x] L7 implementation PLAN references this PLAN.
-- [x] Reverse fullback PLAN exists for any governance changes.
+- [x] governance change 向けの Reverse fullback PLAN が存在する。
 
-Status is `confirmed`: design/test-design coverage is present, PLAN-L7-32/36 implementation spans are confirmed, and review evidence is recorded. Further relation graph expansion remains under its own L7/Reverse PLANs.
+Status は `confirmed`。design/test-design coverage が存在し、PLAN-L7-32/36 implementation span は confirmed で、review evidence も記録済みである。追加の relation graph expansion は専用の L7/Reverse PLAN 配下に残す。

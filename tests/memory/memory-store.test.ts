@@ -37,7 +37,7 @@ describe("fileMemoryDeps", () => {
       ),
     ).toThrow(/secret policy/);
 
-    expect(existsSync(join(rootOrThrow(), ".ut-tdd", "memory", "harness.jsonl"))).toBe(false);
+    expect(existsSync(join(rootOrThrow(), ".helix", "memory", "harness.jsonl"))).toBe(false);
   });
 
   it("surfaces only harness memory and excludes project entries", () => {
@@ -67,7 +67,7 @@ describe("fileMemoryDeps", () => {
     expect(lines).toEqual([
       "- [b] b body",
       "- [c] c body",
-      "- (+1 older — ut-tdd memory list harness)",
+      "- (+1 older — helix memory list harness)",
     ]);
 
     const clipped = surfaceMemory(deps, { maxBodyChars: 10 });
@@ -89,12 +89,12 @@ describe("fileMemoryDeps", () => {
     expect(listMemory("harness", freshDeps)).toEqual([earlier, later]);
     expect(listMemory("project", freshDeps)).toEqual([project]);
     expect(
-      readFileSync(join(rootOrThrow(), ".ut-tdd", "memory", "harness.jsonl"), "utf8"),
+      readFileSync(join(rootOrThrow(), ".helix", "memory", "harness.jsonl"), "utf8"),
     ).toContain(later.id);
   });
 
   function createDeps(times: string[]) {
-    root = mkdtempSync(join(tmpdir(), "ut-tdd-memory-store-"));
+    root = mkdtempSync(join(tmpdir(), "helix-memory-store-"));
     return fileMemoryDeps({
       root,
       now: () => {

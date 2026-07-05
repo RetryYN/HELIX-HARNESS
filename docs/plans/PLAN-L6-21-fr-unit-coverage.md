@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L6-21-fr-unit-coverage
-title: "PLAN-L6-21 (add-design): FR registry to L6 unit coverage"
+title: "PLAN-L6-21 (add-design): FR registry の L6 unit coverage 接続"
 kind: add-design
 layer: L6
 drive: fullstack
@@ -35,7 +35,7 @@ review_evidence:
     scope: "G6 L6 completion final recheck; lint/typecheck/vitest/doctor green; L6 FR coverage and guardrail coverage reviewed"
 ---
 
-# PLAN-L6-21 (add-design): FR registry to L6 unit coverage
+# PLAN-L6-21 (add-design): FR registry の L6 unit coverage 接続
 
 ## §0 位置づけ
 
@@ -58,19 +58,19 @@ L6 完遂の入口条件として、L1 FR registry 全件を L6 unit-test-level 
 
 ## §3 工程表
 
-### Step 1: [直列] FR registry 取得
+### 手順 1 (Step 1): [直列] FR registry 取得
 
 直列理由: downstream_dependency。FR-L1 の正本件数が確定しないと L6 coverage 行を作れない。
 
-### Step 2: [直列] L6 coverage matrix 作成
+### 手順 2 (Step 2): [直列] L6 coverage matrix 作成
 
-直列理由: downstream_dependency。Step 1 の FR 一覧に対して L6 spec / unit contract / U-* oracle を割り当てる。
+直列理由: downstream_dependency。手順 1 (Step 1) の FR 一覧に対して L6 spec / unit contract / U-* oracle を割り当てる。
 
-### Step 3: [並列] L7 test-design 追補
+### 手順 3 (Step 3): [並列] L7 test-design 追補
 
 U-FR-L1-* を L7 Red entry contract として参照する。
 
-### Step 4: [直列] review
+### 手順 4 (Step 4): [直列] レビュー（review）
 
 直列理由: downstream_dependency。coverage lint と doctor が green になってから self / cross-agent review を行う。
 
@@ -78,7 +78,7 @@ U-FR-L1-* を L7 Red entry contract として参照する。
 
 - **L6 FR unit coverage**: L1 FR registry の各 FR を L6 spec path、unit-level contract、U-* oracle へ接続する coverage matrix。
 
-## §8 DoD
+## §8 完了条件（DoD）
 
 - [x] FR-L1 47 件が L6 coverage matrix に全件存在する。
 - [x] 各 FR が L6 spec path、unit contract、U-* oracle を持つ。

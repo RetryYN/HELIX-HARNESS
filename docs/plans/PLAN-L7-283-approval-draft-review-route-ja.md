@@ -71,7 +71,7 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd rename approval-draft --json` は承認を代行しない確認 packet であり、PO 向け表示は日本語-first でなければならない。
+`helix rename approval-draft --json` は承認を代行しない確認 packet であり、PO 向け表示は日本語-first でなければならない。
 既存の `reviewRouteJa` mapping は approval-draft route だけ machine `reviewRoute` の英語文へ fall back していた。
 
 この PLAN では approval-draft の `reviewRouteJa` を日本語に固定し、status / completion packet / outstanding summary の各 surface で英語流用へ戻らないようにする。

@@ -40,8 +40,8 @@ dependencies:
     - docs/design/harness/L4-basic-design/function.md
     - docs/design/harness/L4-basic-design/external-if.md
   references:
-    - .ut-tdd/audit/A-101-g4-l4-freeze.md
-    - .ut-tdd/audit/A-102-g4-workflow-orchestration.md
+    - .helix/audit/A-101-g4-l4-freeze.md
+    - .helix/audit/A-102-g4-workflow-orchestration.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
@@ -63,7 +63,7 @@ PO 指示「L4 の見直し・改善」を受け、L4 core 4 doc (data/architect
 | D-1 | data §3 | drift(Critical) | Drive 値域 = 9 (mode 値 scrum/reverse/poc/troubleshoot 混入) vs `VALID_DRIVES`=5 | §3 を 5 種へ整合 + 根拠注記 |
 | D-2 | data §6 | drift(Important) | review_evidence 不変条件 (IMP-071 hard) が §6 に未着地 | §6 に Plan 不変条件行追加 |
 | A-1 | arch §3.1/§6 | drift(Critical) | lint = 5 と記載 vs 実 src/lint = 9 module | 実体 9 + 「doctor/index.ts が正本」へ |
-| A-2 | arch §3.1/§4 | drift(Critical) | handover/setup が「将来 session module」vs `src/handover` `src/setup` 実装済 | building block 追加 + §4 更新 |
+| A-2 | arch §3.1/§4 | drift(Critical) | handover/setup が「将来 session module」vs `src/handover` `src/setup` 実装済 | 構成単位 (building block) 追加 + §4 更新 |
 | A-3 | arch §3.1/§3.2 | drift(Important) | runtime = detect+agent-guard のみ vs 実 5 ファイル | agent-slots/forced-stop/session-log 追記 |
 | A-4 | arch §7 | drift(Important) | ADR-005 (配布+中央UI) が §7 表に欠落、src/web 未言及 | ADR-005 行追加 + web 言及 |
 | A-5 | arch §6 | drift(Minor) | commit-msg hook (Conventional Commits) 不在 | §6 に追記 |
@@ -75,23 +75,23 @@ PO 指示「L4 の見直し・改善」を受け、L4 core 4 doc (data/architect
 | F-3 | function §3.1/§3.2 | 可視化(Important) | Discovery/Scrum→Reverse 昇華の機械発火が doc から不可視 (実は scrum-reverse lint で enforce 済) | checkScrumReverse 参照を追記 |
 | F-4 | function §3.7 | under-design(Important) | Scrum L8-L14 不可 (IMP-044) の機械着地先未明示 | forward_routing enum + carry 明示 |
 
-> **carry (本 PLAN scope 外、IMP 化)**: ① external-if (c)(d) 観測/依存境界の ST-EXT 被覆 placeholder (C1) ② data ScrumType/evaluation_batch ライフサイクル (Minor) ③ asset-drift lint の carry PLAN id 確定。§6 で IMP 起票。
+> **持ち越し (carry、本 PLAN scope 外、IMP 化)**: ① external-if (c)(d) 観測/依存境界の ST-EXT 被覆 placeholder (C1) ② data ScrumType/evaluation_batch ライフサイクル (Minor) ③ asset-drift lint の carry PLAN id 確定。§6 で IMP 起票。
 
 ## §工程表
 
-### Step 1: [直列] Tier1 drift 整合 (data/architecture/external-if)
+### 手順 1 (Step 1): [直列] Tier1 drift 整合 (data/architecture/external-if)
 - 直列理由 = **file_conflict** (3 design doc を書く)。D-1/D-2/A-1〜A-5/E-1/E-2 を実体へ整合。実装の実在は src/ 照合で確認済 (本 PLAN §1)。
 
-### Step 2: [直列] Tier2 under-design→明示 defer (data/function)
+### 手順 2 (Step 2): [直列] Tier2 under-design→明示 defer (data/function)
 - 直列理由 = **file_conflict** (data/function を Step1 と同じファイルで継続編集)。DC-1/F-1〜F-4 を defer 宣言 or 機械着地先参照へ。
 
-### Step 3: [直列] L9 再ペア (孤児0 維持)
+### 手順 3 (Step 3): [直列] L9 再ペア (孤児0 維持)
 - 直列理由 = **downstream_dependency** (Step1/2 の設計変更を L9 ST へ反映)。ST-DATA (review_evidence) / ST-EXT-02 (codex-only) / §2 量閉じ更新。
 
-### Step 4: [直列] IMP backlog 追記 + 検証
-- 直列理由 = **downstream_dependency**。carry を IMP 化。typecheck 0 / vitest 全回帰 / doctor exit 0 / pair-freeze 孤児0。
+### 手順 4 (Step 4): [直列] IMP backlog 追記 + 検証
+- 直列理由 = **downstream_dependency**。持ち越し (carry) を IMP 化。`typecheck` 0 / `vitest` 全回帰 / `doctor` exit 0 / pair-freeze 孤児0。
 
-### Step 5: [直列] review Step (intra_runtime_subagent)
+### 手順 5 (Step 5): [直列] レビュー工程 (review Step、intra_runtime_subagent)
 - 直列理由 = **downstream_dependency**。code-reviewer で drift 整合の正確性 (実装一致) + under-design→defer の妥当性 + V-pair 孤児0 をレビュー。通過後 review_evidence 記録 + confirmed flip + G4 再 bless (A-103)。
 
 ## §実装計画
@@ -106,11 +106,11 @@ PO 指示「L4 の見直し・改善」を受け、L4 core 4 doc (data/architect
 
 > 新規語の発明なし (drift 整合 = 既存実装語の doc 反映 / under-design→defer = 既存 defer 様式の適用)。既存語 (review_evidence/scrum-reverse/codex-only) は L0 §10 に既登録 (IMP-071/既存)。back-merge 対象なし。
 
-## §8 DoD
+## §8 受入条件 / DoD
 
 - [x] Tier1 drift 7 件 (D-1/D-2/A-1〜A-5/E-1/E-2) を実体へ整合、src/ 照合で一致確認
 - [x] Tier2 under-design 5 件 (DC-1/F-1〜F-4) を明示 defer or 機械着地先参照へ変換
 - [x] L9 ST 整合 + 量閉じ孤児0 (pair-freeze lint 31 pair green)
-- [x] carry を IMP backlog へ起票 (IMP-072〜075)
-- [x] typecheck 0 / vitest 195 green / doctor exit 0
+- [x] 持ち越し (carry) を IMP backlog へ起票 (IMP-072〜075)
+- [x] `typecheck` 0 / `vitest` 195 green / `doctor` exit 0
 - [x] review 前置 (pmo-sonnet PASS、Critical 0。code-reviewer 2回 truncate=IMP-009 のため pmo-sonnet 確定 + PM src 直照合) → review_evidence 記録 + confirmed flip + G4 再 bless (A-103)

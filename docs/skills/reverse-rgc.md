@@ -62,15 +62,15 @@ RGC を pass しなければならない。
 
 ### Machine validation の確認
 
-- [ ] `ut-tdd plan lint` exits 0 on the Reverse PLAN.
-- [ ] `ut-tdd vmodel lint` exits 0
+- [ ] `helix plan lint` exits 0 on the Reverse PLAN.
+- [ ] `helix vmodel lint` exits 0
       （orphan count が R0 baseline と同じ、または減っている）。
-- [ ] `ut-tdd doctor` exits 0.
-- [ ] `ut-tdd review --uncommitted` が Reverse phase artifacts に対する blocking findings を出さない。
+- [ ] `helix doctor` exits 0.
+- [ ] `helix review --uncommitted` が Reverse phase artifacts に対する blocking findings を出さない。
 
 ### Handover
 
-- [ ] `.ut-tdd/handover/CURRENT.json` が Reverse closure と次の active task である
+- [ ] `.helix/handover/CURRENT.json` が Reverse closure と次の active task である
       routing destination PLAN を反映している。
 
 ## RGC が確認しないこと

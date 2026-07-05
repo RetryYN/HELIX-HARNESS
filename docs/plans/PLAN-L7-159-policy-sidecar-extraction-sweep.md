@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-159-policy-sidecar-extraction-sweep
-title: "PLAN-L7-159: policy sidecar extraction sweep"
+title: "PLAN-L7-159: policy sidecar 抽出の総点検"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant sidecar policy extraction for existing lint/runtime gates. No public CLI/API contract, persisted schema, or workflow semantics changed."
+backprop_decision_reason: "既存の lint/runtime gate に対する挙動不変の sidecar policy 抽出。公開 CLI/API contract、永続化 schema、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - policy sidecar extraction"
+    slot_label: "SE - policy sidecar 抽出"
   - role: tl
-    slot_label: "TL - gate invariant review"
+    slot_label: "TL - gate 不変条件 review"
 generates:
   - artifact_path: docs/plans/PLAN-L7-159-policy-sidecar-extraction-sweep.md
     artifact_type: markdown_doc
@@ -47,7 +47,7 @@ review_evidence:
     reviewed_at: "2026-06-25T19:05:09+09:00"
     tests_green_at: "2026-06-25T19:04:52+09:00"
     verdict: approve
-    scope: "Extract sidecar policy modules for review tier, Codex hook adapter, and proposal document coverage lint."
+    scope: "review tier、Codex hook adapter、proposal document coverage lint の sidecar policy modules を抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -93,24 +93,24 @@ review_evidence:
         output_digest: "sha256:ce9e78e072731ca2f3da364e0cfb1584e887ef205f7b14c319c6a79502cba4ee"
 ---
 
-# PLAN-L7-159: policy sidecar extraction sweep
+# PLAN-L7-159: policy sidecar 抽出の総点検
 
-## Objective
+## 目的
 
-Reduce `externalize-policy` refactor candidates by extracting policy data from
-small lint/runtime gate modules into sidecar policy modules.
+小さな lint/runtime gate modules から policy data を sidecar policy modules へ抽出し、
+`externalize-policy` refactor candidates を減らす。
 
-## Scope
+## スコープ
 
-- Move review-tier judgment gate/checklist policy to `review-tier-policy.ts`.
-- Move Codex required hook policy to `codex-hook-adapter-policy.ts`.
-- Move proposal document coverage routing/evidence/gate policy to
-  `proposal-document-coverage-policy.ts`.
-- Preserve public re-exports where existing tests or callers depend on them.
+- review-tier の judgment gate/checklist policy を `review-tier-policy.ts` へ移す。
+- Codex required hook policy を `codex-hook-adapter-policy.ts` へ移す。
+- proposal document coverage の routing/evidence/gate policy を
+  `proposal-document-coverage-policy.ts` へ移す。
+- 既存 tests または callers が依存する public re-exports を維持する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Existing gate behavior remains unchanged.
-- Targeted tests cover each sidecar policy module.
-- `externalize-policy` candidate count decreases.
-- Targeted tests, typecheck, lint, DB rebuild, and doctor pass.
+- 既存 gate behavior は変更しない。
+- targeted tests が各 sidecar policy module を cover する。
+- `externalize-policy` candidate count が減少する。
+- targeted tests、typecheck、lint、DB rebuild、doctor が pass する。

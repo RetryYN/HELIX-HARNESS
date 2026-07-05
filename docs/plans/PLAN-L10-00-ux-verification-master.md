@@ -37,7 +37,7 @@ review_evidence:
     scope: "L10 placeholder status was identified; this master records UX verification boundary without claiming G10 PO signoff."
     green_commands:
       - kind: lint
-        command: "./scripts/ut-tdd plan lint"
+        command: "./scripts/helix plan lint"
         runner: bun
         scope: targeted
         exit_code: 0

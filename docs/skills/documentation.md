@@ -29,7 +29,7 @@ README は導線と補助説明の surface であり、gate、証跡、完了条
 
 - `README.md`、onboarding guide、CLI usage reference を作成または更新する。
 - 繰り返し使う運用手順（例: PAT rotation、`harness.db` rebuild、doctor triage）の runbook を作成する。
-- 新しい `ut-tdd` command に対し、既存 doc に usage section が必要。
+- 新しい `helix` command に対し、既存 doc に usage section が必要。
 - PLAN が新しい command、flag、state path を導入した後の doc maintenance。
 
 ## 対象範囲（scope）
@@ -46,8 +46,8 @@ README の修正は、利用者の導線を直すために行う。accept / free
 
 ## 執筆基準（writing standards）
 
-- **能動態と明示 actor.** 「開発者は `ut-tdd doctor` を実行する」と書き、
-  「`ut-tdd doctor` が実行されるべき」とは書かない。
+- **能動態と明示 actor.** 「開発者は `helix doctor` を実行する」と書き、
+  「`helix doctor` が実行されるべき」とは書かない。
 - **実行可能な例.** すべての code block は、current codebase に対して実際に動く command または output にする。
   pseudocode はそのように label する。
 - **version drift を残さない。** command flag が変わった場合は、同じ commit で doc を更新する。
@@ -60,22 +60,22 @@ README の修正は、利用者の導線を直すために行う。accept / free
 HELIX README は最低限次を含む:
 
 1. **目的** — 1 段落。このコンポーネントが何を行い、どの system に仕えるか。
-2. **前提条件** — `bun`、`ut-tdd`、外部依存と最小 version。
+2. **前提条件** — `bun`、`helix`、外部依存と最小 version。
 3. **quick start** — 動作状態を得るための最小コマンド列。
-4. **主要 command** — この context でよく使う `ut-tdd` commands の table。
-5. **troubleshooting** — 最も多い failure 2-3 件と remediation（まず `ut-tdd doctor` triage）。
+4. **主要 command** — この context でよく使う `helix` commands の table。
+5. **troubleshooting** — 最も多い failure 2-3 件と remediation（まず `helix doctor` triage）。
 
 ## Runbook 構成基準（structure baseline）
 
 1. **trigger** — この runbook を起動する exact condition。
 2. **影響** — condition が続く間に何が壊れる、または性能や品質が低下するか。
 3. **手順** — numbered list。各 step は command または decision と expected output を持つ。
-4. **検証** — procedure 成功の確認方法（`ut-tdd doctor`、`ut-tdd status`、targeted test）。
+4. **検証** — procedure 成功の確認方法（`helix doctor`、`helix status`、targeted test）。
 5. **escalation** — どこで止まり、human decision を呼ぶか。
 
 ## PLAN 出荷後の doc 保守
 
-PLAN が `ut-tdd` command、flag、state path を追加または変更した場合:
+PLAN が `helix` command、flag、state path を追加または変更した場合:
 
 1. `grep` で existing docs から old command / path の reference を探す。
 2. implementation と同じ commit で各 reference を更新する。

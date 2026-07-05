@@ -18,7 +18,7 @@ HELIX-HARNESS は Claude Code / Codex (AI runtime) / GitHub / 観測系 (Sentry/
 1. **外部 runtime を runtime adapter で隔離** (Anti-Corruption Layer)。core は **正規化 intent** (「worker に委譲」「reviewer を呼べ」) のみ発行し、provider 固有を core に持ち込まない。
 2. **adapter は API key ではなく「起動方式」を吸収する**:
    - Claude = Claude Code の Agent tool / hook (harness は Claude Code 内に常駐する host runtime)
-   - Codex = `codex exec` CLI subprocess 起動 (`ut-tdd codex` 導線)
+   - Codex = `codex exec` CLI subprocess 起動 (`helix codex` 導線)
    - GitHub = `gh` CLI
 3. **harness は AI provider の API key を保持・授受しない**。AI runtime の認証は **各 CLI の契約プラン (月額) ログインが自己管理** する harness 外の関心事 (Claude Code 常駐 / `codex login` / `gh auth`)。
 4. core は **provider SDK/API に直接依存しない** (architecture §3 依存方向、ADR-001 と整合)。

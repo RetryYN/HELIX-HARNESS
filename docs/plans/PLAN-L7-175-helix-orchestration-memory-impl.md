@@ -82,7 +82,7 @@ dependencies:
 
 # PLAN-L7-175 (add-impl): P2/P7 純粋契約コア実装
 
-## §0 役割 / mode
+## §0 役割 / 実行モード (mode)
 
 凍結済み L6 機能設計（PLAN-L6-50）の **純粋契約関数**を TS/Bun 実装する add-impl。**Codex を実装 worker、
 Claude を cross-runtime reviewer**（生成≠判断、hybrid 分散で main budget 節約）。対の Reverse=PLAN-REVERSE-175
@@ -94,7 +94,7 @@ Claude を cross-runtime reviewer**（生成≠判断、hybrid 分散で main bu
 
 ## §1 実装単位（本 PLAN 範囲 = 実装済み・verified）
 
-| module | 契約関数 | oracle |
+| モジュール (module) | 契約関数 | 検証基準 (oracle) |
 |--------|----------|--------|
 | `src/orchestration/loop-state.ts` | LoopState/StopRule 等の型 + fail-close 定義 | (型基盤) |
 | `src/orchestration/loop-stop-rules.ts` | `evaluateStop`（欠落/未知 fail-close） | U-ORCH-002 |
@@ -102,12 +102,12 @@ Claude を cross-runtime reviewer**（生成≠判断、hybrid 分散で main bu
 | `src/orchestration/loop-recovery.ts` | `classifyRecovery`（C1-C4） | U-ORCH-005 |
 | `src/orchestration/loop-runner.ts` | `canResume`（4 述語 AND）。`tick` は carry | U-ORCH-001 |
 | `src/memory/memory-types.ts` | MemoryEntry/MemoryLayer/MemoryDeps（注入抽象） | (型基盤) |
-| `src/memory/index.ts` | `writeMemory`/`listMemory`/`surfaceMemory`（secret reject / supersede / harness-only surface） | U-MEM-001/002/003 |
+| `src/memory/index.ts` | `writeMemory`/`listMemory`/`surfaceMemory`（秘匿値 reject / supersede / harness-only surface） | U-MEM-001/002/003 |
 
 ## §2 進め方（TDD Red-first / Codex 分散・実施済）
 
 1. test-design の oracle を `it.todo` から実テスト（Red）へ展開（import 未実装で失敗を確認）。
-2. chunk を **writable Codex（`ut-tdd codex --execute`）へ委譲** → design 準拠で実装し Red→Green。
+2. chunk を **writable Codex（`helix codex --execute`）へ委譲** → design 準拠で実装し Red→Green。
 3. Claude が **cross-runtime review**（契約適合をコード精読、green だけで信用しない）。
 
 ## §3 DoD（達成）
@@ -119,7 +119,7 @@ Claude を cross-runtime reviewer**（生成≠判断、hybrid 分散で main bu
 
 ## §4 carry（follow-up add-impl PLAN-L7-176 予定）
 
-- `job-queue`（BEGIN IMMEDIATE、U-ORCH-006）/ `loop-runner.tick`（hybrid fail-close、U-ORCH-004）。
+- `job-queue`（`BEGIN IMMEDIATE` による競合排他、U-ORCH-006）/ `loop-runner.tick`（hybrid fail-close、U-ORCH-004）。
 - DB 4 表 + SCHEMA_VERSION bump + `projection-writer` 改修 + `nodeMemoryDeps`（実 2 層投影）。
 - `cli` memory subcommand / doctor `verifier-provider-mismatch`・`agent-memory-silo` / `agent-guard`・`asset-drift` 改修。
 - 要件 back-fill（BR-07/BR-12/NFR-03）は PLAN-REVERSE-175。常駐スケジューラは improvement-backlog。

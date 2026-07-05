@@ -20,8 +20,8 @@ applies_to:
 
 HELIX における technical debt の記録、追跡、discharge 方法を扱う
 （FR-L1-11 technical-debt ledger）。debt entries は PLAN records と
-`.ut-tdd/` referenced documents であり、`ut-tdd debt` command ではない。
-debt visibility は `ut-tdd doctor` が provisional decisions と missing Reverse back-fills の
+`.helix/` referenced documents であり、`helix debt` command ではない。
+debt visibility は `helix doctor` が provisional decisions と missing Reverse back-fills の
 governance gate checks を通じて surface する。
 
 ## この skill を読む条件
@@ -29,7 +29,7 @@ governance gate checks を通じて surface する。
 - implementation 中に V-model layer を弱める shortcut または deferral を受け入れた
   （missing design doc、`@ts-ignore`、skipped test、PLAN link の無い `// TODO`）。
 - provisional architectural decision が TTL（time-to-live）を超過した。
-- `ut-tdd doctor` が、unresolved debt entry を `dependencies` で参照する
+- `helix doctor` が、unresolved debt entry を `dependencies` で参照する
   `kind: retrofit` または `kind: refactor` の PLAN を surface する。
 - Recovery cycle が troubleshoot PLAN 作成前に accumulated debt を enumerate する必要がある。
 
@@ -60,7 +60,7 @@ debt_items:
     discharge_plan: PLAN-L7-NN
 ```
 
-`ut-tdd doctor` は、`discharge_plan` ID を参照する PLAN が existing file へ resolve できること、
+`helix doctor` は、`discharge_plan` ID を参照する PLAN が existing file へ resolve できること、
 および `ttl` が `done` status なしに過ぎていないことを確認する。
 
 ## Provisional decision TTL discipline（TTL 規律）
@@ -70,7 +70,7 @@ design または implementation decision を provisional とする場合:
 1. `ttl` は concrete date にする（"soon" や "next sprint" ではない）。
 2. decision が final になる条件を記録する
    （例: "FR-L1-38 telemetry data で latency 50 ms 未満を確認できたら confirmed"）。
-3. date が過ぎると、`ut-tdd doctor` は PLAN を `overdue-provisional` として flag する。
+3. date が過ぎると、`helix doctor` は PLAN を `overdue-provisional` として flag する。
 4. overdue provisionals は discharge する
    （Refactor/Retrofit PLAN を `done` へ進める）か、`review_evidence` に rationale を記録して TTL を延長する。
 
@@ -79,11 +79,11 @@ TTL を silent extend しない。必ず reason を記録する。
 ## Debt 可視化と解消 workflow
 
 ```
-ut-tdd doctor               # 期限切れ provisional と未 link debt を可視化する
-ut-tdd status               # active/draft の debt 関連 PLAN を表示する
-ut-tdd plan lint            # debt PLAN frontmatter と TTL field を検証する
-ut-tdd review --uncommitted # accept 前に discharge の実体を確認する
-ut-tdd vmodel lint          # 解消した debt が V-model links を復元したことを確認する
+helix doctor               # 期限切れ provisional と未 link debt を可視化する
+helix status               # active/draft の debt 関連 PLAN を表示する
+helix plan lint            # debt PLAN frontmatter と TTL field を検証する
+helix review --uncommitted # accept 前に discharge の実体を確認する
+helix vmodel lint          # 解消した debt が V-model links を復元したことを確認する
 ```
 
 standalone debt PLAN の discharge steps:
@@ -94,14 +94,14 @@ standalone debt PLAN の discharge steps:
 2. [直列] 欠落 artifact（design doc / test design）を作成または修復する
 3. [並列] `debt_reason` の範囲に限定して `src/` の fix を実装する
 4. [並列] `bun run typecheck && bun run lint && bun run test` を green にする
-5. [直列] `ut-tdd doctor` で新規 governance failure が無いことを確認する
-6. [直列] `ut-tdd review --uncommitted` で debt PLAN `review_evidence` を埋める
-7. [直列] `status: done` にし、session boundary なら `ut-tdd handover` を実行する
+5. [直列] `helix doctor` で新規 governance failure が無いことを確認する
+6. [直列] `helix review --uncommitted` で debt PLAN `review_evidence` を埋める
+7. [直列] `status: done` にし、session boundary なら `helix handover` を実行する
 ```
 
 ## implicit のままにしてはいけない debt
 
-次の implicit debt は governance violations であり、`ut-tdd doctor` または `ut-tdd plan lint` が捕捉する。
+次の implicit debt は governance violations であり、`helix doctor` または `helix plan lint` が捕捉する。
 
 - `dependencies` に Reverse back-fill PLAN を持たない `add-impl` PLAN。
 - same file 内に PLAN-linked rationale が無い `@ts-ignore` または `// biome-ignore` comment
@@ -112,7 +112,7 @@ standalone debt PLAN の discharge steps:
 ## Anti-patterns（避けるパターン）
 
 - `// TODO: fix later` comment を registered debt item として扱う。
-  TTL も owner も無く、`ut-tdd doctor` から不可視。
+  TTL も owner も無く、`helix doctor` から不可視。
 - debt PLAN を作成したが creditor PLAN の `dependencies` に link しない。
   discharge が governance から不可視になる。
 - doctor warnings を抑えるために `ttl` を何年も先の日付にする。

@@ -4,7 +4,7 @@ import { parseGreenCommandEvidence } from "../src/state-db/test-report-parser";
 describe("green command reporter parser", () => {
   it("normalizes Vitest/Jest-compatible JSON reporter output", () => {
     const parsed = parseGreenCommandEvidence(
-      ".ut-tdd/evidence/green-command/vitest.json",
+      ".helix/evidence/green-command/vitest.json",
       JSON.stringify({
         testResults: [
           {
@@ -51,7 +51,7 @@ describe("green command reporter parser", () => {
 
   it("normalizes Playwright JSON reporter retries without dropping failed attempts", () => {
     const parsed = parseGreenCommandEvidence(
-      ".ut-tdd/evidence/green-command/playwright.json",
+      ".helix/evidence/green-command/playwright.json",
       JSON.stringify({
         suites: [
           {
@@ -88,7 +88,7 @@ describe("green command reporter parser", () => {
 
   it("normalizes JUnit XML testcase status and rejects entity declarations", () => {
     const parsed = parseGreenCommandEvidence(
-      ".ut-tdd/evidence/green-command/junit.xml",
+      ".helix/evidence/green-command/junit.xml",
       [
         '<testsuite name="suite">',
         '  <testcase classname="tests/unit/parser.test.ts" name="U-JUNIT-A passes" time="0.123" />',

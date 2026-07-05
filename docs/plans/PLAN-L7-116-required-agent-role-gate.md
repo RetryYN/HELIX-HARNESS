@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-116-required-agent-role-gate
-title: "PLAN-L7-116: required agent role gate"
+title: "PLAN-L7-116: 必須 agent role gate"
 kind: add-impl
 layer: L7
 drive: db
@@ -56,22 +56,22 @@ review_evidence:
         output_digest: "sha256:40c960d0d4d0b49ef3aff27e12291b7a5851077e6fdcf7aca1868bdf0d964510"
 ---
 
-# PLAN-L7-116: required agent role gate
+# PLAN-L7-116: 必須 agent role gate
 
-## Objective
+## 目的
 
-Make required agent roles machine-checkable for drive-model PLANs. Valid role
-enums were already checked, but a PoC or recovery PLAN could omit the AIM slot,
-and Reverse R3 could omit the PO intent-verification slot.
+drive-model PLAN の必須 agent role を機械検査可能にする。role enum の妥当性は
+既に検査されていたが、PoC または recovery PLAN が AIM slot を省略でき、
+Reverse R3 が PO intent-verification slot を省略できていた。
 
-## Scope
+## スコープ
 
-- Add `missing_required_agent_role` to `plan-governance`.
-- Enforce only for new or updated PLANs from 2026-06-23 onward.
-- Cover `poc`, `recovery`, `troubleshoot`, and Reverse R3.
+- `missing_required_agent_role` を `plan-governance` に追加する。
+- 2026-06-23 以降に新規作成または更新された PLAN のみに適用する。
+- `poc`、`recovery`、`troubleshoot`、Reverse R3 を対象にする。
 
-## Acceptance Criteria
+## 受入条件
 
-- New/updated `poc`, `recovery`, or `troubleshoot` without `aim` fails.
-- New/updated Reverse R3 without `po` fails.
-- Required roles and legacy dates pass.
+- 新規作成または更新された `poc`、`recovery`、`troubleshoot` が `aim` を持たない場合は失敗する。
+- 新規作成または更新された Reverse R3 が `po` を持たない場合は失敗する。
+- 必須 role が揃っている場合と legacy date の場合は成功する。

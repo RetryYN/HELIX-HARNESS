@@ -97,7 +97,7 @@ describe("loadSupersedePlans + checkPlanSupersession", () => {
   }
 
   it("双方向 errata は green / 片肺は violation", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-supersede-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-supersede-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       // 双方向 OK: 後継が supersedes 宣言、原が訂正 back-ref。
@@ -116,6 +116,6 @@ describe("loadSupersedePlans + checkPlanSupersession", () => {
   });
 
   it("repo root が読めないと fail-close", () => {
-    expect(checkPlanSupersession(join(tmpdir(), "ut-tdd-supersede-nope-zzz")).ok).toBe(false);
+    expect(checkPlanSupersession(join(tmpdir(), "helix-supersede-nope-zzz")).ok).toBe(false);
   });
 });

@@ -91,7 +91,7 @@ review_evidence:
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 ---
 
-# PLAN-L7-242: DB rebuild/migration profile backlog closure
+# PLAN-L7-242: DB rebuild / migration profile backlog の closure
 
 ## 0. 目的
 
@@ -103,7 +103,7 @@ observed に残っていた。しかし現 HEAD では PLAN-L7-45 以降で、ad
 
 ## 1. 精読結果
 
-- `src/state-db/index.ts`: `.ut-tdd/` 配下限定の DB adapter、`bun:sqlite` first / Node fallback、secret-like guard。
+- `src/state-db/index.ts`: `.helix/` 配下限定の DB adapter、`bun:sqlite` first / Node fallback、secret-like guard。
 - `src/state-db/migration.ts`: registry-driven DDL、`PRAGMA user_version`、missing column repair、冪等 migration。
 - `src/cli.ts`: `db status` / `db rebuild` surface。
 - `src/doctor/index.ts`: in-memory `rebuildHarnessDb` を実行し、`db-projection-ingestion` を doctor gate に接続。
@@ -122,7 +122,7 @@ observed に残っていた。しかし現 HEAD では PLAN-L7-45 以降で、ad
 
 - DB schema / migration / CLI 挙動の変更。
 - 新しい collector table の追加。
-- L14 completion / version-up activation / `.ut-tdd` irreversible cutover の承認。
+- L14 completion / version-up activation / `.helix` irreversible cutover の承認。
 
 ## 3. 受入条件
 

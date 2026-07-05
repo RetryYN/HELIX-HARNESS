@@ -14,7 +14,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 # HELIX-HARNESS — L4 基本設計: データ設計 / ドメインモデル
 
-L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-L4-01-data)。永続化は `.ut-tdd/` YAML/JSON state と `.ut-tdd/harness.db` SQLite projection DB の二層 (ADR-001)。値オブジェクトは `src/schema/index.ts` の zod enum と 1:1。
+L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-L4-01-data)。永続化は `.helix/` YAML/JSON state と `.helix/harness.db` SQLite projection DB の二層 (ADR-001)。値オブジェクトは `src/schema/index.ts` の zod enum と 1:1。
 
 ## §1 entity 棚卸し (集約ルート / 値オブジェクト / 参照)
 
@@ -40,7 +40,7 @@ L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-
 
 → **5 集約** (Plan / Artifact / Workflow / Handover / Evaluation) + 値オブジェクト群 + 読みモデル (derived_view)。
 
-> **内部資産 (roster / skill catalog) の非 entity 判断 (A-90、ADR-004 整合、PO 確定 2026-06-01)**: subagent roster と skill catalog は **data 集約に含めない**。理由: ADR-004 で markdown (`.claude/agents/*.md` / `docs/skills/**/*.md`) を**唯一正本**とし、TS (層2、roster/skills module) は起動時に scan して **in-memory 構築 (scan-on-demand、永続 state なし)** するため、`.ut-tdd/` に独自の永続 entity を持たない。よって **5 集約モデルは不変** (roster/skill は state を持つ entity ではなく、fs 正本に対する読みモデル)。architecture §3.1 roster/skills building block / function §1.1 / L9 ST-ASSET と本判断で整合 (cross-sub-doc 沈黙 gap を解消)。詳細 = §8 state schema / ADR-004 Consequences。
+> **内部資産 (roster / skill catalog) の非 entity 判断 (A-90、ADR-004 整合、PO 確定 2026-06-01)**: subagent roster と skill catalog は **data 集約に含めない**。理由: ADR-004 で markdown (`.claude/agents/*.md` / `docs/skills/**/*.md`) を**唯一正本**とし、TS (層2、roster/skills module) は起動時に scan して **in-memory 構築 (scan-on-demand、永続 state なし)** するため、`.helix/` に独自の永続 entity を持たない。よって **5 集約モデルは不変** (roster/skill は state を持つ entity ではなく、fs 正本に対する読みモデル)。architecture §3.1 roster/skills building block / function §1.1 / L9 ST-ASSET と本判断で整合 (cross-sub-doc 沈黙 gap を解消)。詳細 = §8 state schema / ADR-004 Consequences。
 
 ## §2 集約境界 (Aggregate)
 
@@ -125,9 +125,9 @@ L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-
 | evaluation → plan/kpi | eventual (Phase B) | 評価バッチは plan 完了後に非同期集計 (FR-L1-19/20、telemetry) |
 | derived_view ← 各集約 | eventual | 読みモデル (HM 画面) は集約 state から projection (CQRS) |
 
-## §8 state schema (`.ut-tdd/`) + `src/schema` 突合
+## §8 state schema (`.helix/`) + `src/schema` 突合
 
-| 集約 / 概念 | `.ut-tdd/` 永続化 | 形式 |
+| 集約 / 概念 | `.helix/` 永続化 | 形式 |
 |---|---|---|
 | Plan | `plan_registry/<plan_id>.json` + 本文 `docs/plans/*.md` | JSON + markdown |
 | Artifact / trace | `artifact/` + `artifact/trace/` | JSON edge list 形式 |
@@ -138,11 +138,11 @@ L1 §10.1 の業務 entity を L4 ドメインモデルへ詳細化する (PLAN-
 | 監査 | `audit/failure_log.jsonl` (local) / チーム共有 audit (別経路) | JSON-lines |
 | 内部資産 roster / skill catalog | **永続化なし** (`.claude/agents/*.md` / `docs/skills/**/*.md` が唯一正本、TS が scan-on-demand で in-memory 構築) | markdown (fs 正本、ADR-004 層1) |
 
-**src/schema 突合**: 上記値オブジェクト (§3) は `src/schema/index.ts` の zod enum を SSoT とし、state の JSON/YAML は読込時に zod でバリデート。齟齬検出は `ut-tdd doctor check_business_entity_coverage` (L1 §10.2 carry) で機械化。**§3 値オブジェクト 12 種は src/schema enum と 1:1 一致 (齟齬 0)。SubDoc は requirements §1.10.G.1 spec から `VALID_SUB_DOCS` / `subDocSchema` / layer×sub_doc superRefine へ着地済み (IMP-026)**。
+**src/schema 突合**: 上記値オブジェクト (§3) は `src/schema/index.ts` の zod enum を SSoT とし、state の JSON/YAML は読込時に zod でバリデート。齟齬検出は `helix doctor check_business_entity_coverage` (L1 §10.2 carry) で機械化。**§3 値オブジェクト 12 種は src/schema enum と 1:1 一致 (齟齬 0)。SubDoc は requirements §1.10.G.1 spec から `VALID_SUB_DOCS` / `subDocSchema` / layer×sub_doc superRefine へ着地済み (IMP-026)**。
 
-### §8.1 SQLite projection DB (`.ut-tdd/harness.db`) の位置づけ
+### §8.1 SQLite projection DB (`.helix/harness.db`) の位置づけ
 
-`.ut-tdd/harness.db` は YAML/JSON state と docs を読み込んで正規化する projection DB であり、legacy DB schema は再利用しない。役割は V-model の製本化、別駆動 model の実行結果保存、trace/coverage/finding の横断照合、doctor/vmodel lint の fail-close 入力である。
+`.helix/harness.db` は YAML/JSON state と docs を読み込んで正規化する projection DB であり、legacy DB schema は再利用しない。役割は V-model の製本化、別駆動 model の実行結果保存、trace/coverage/finding の横断照合、doctor/vmodel lint の fail-close 入力である。
 
 | table | 役割 |
 |---|---|

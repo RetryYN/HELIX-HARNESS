@@ -32,7 +32,7 @@ PLAN が implementation layer（実装層 L7）と test design layer（テスト
 - PLAN が implementation（L7）と test design（L6/L8）を単一 scope（範囲）で扱う。
 - Retrofit PLAN が accept 前に quality bar（品質基準）を通過する必要がある。
 - W-gate（W1-W10）の pair を close するために review evidence（レビュー証跡）が必要である。
-- `ut-tdd review --uncommitted` が test-design obligation gap を報告している。
+- `helix review --uncommitted` が test-design obligation gap を報告している。
 
 ## 品質基準の定義（W-gate 観点）
 
@@ -43,7 +43,7 @@ PLAN が implementation layer（実装層 L7）と test design layer（テスト
 | W3 | L6 test-design doc | Vitest unit test file | L6 doc の全 test ID に対応する test assertion があり、理由のない `.skip` が無い |
 | W5 | L5 basic design | L8 integration test design | `docs/test-design/` に L8 doc があり、test ID が L5 section を cross-reference している |
 | W7 | L4 basic design | L9 system test design | L9 doc が存在し、acceptance criteria が testable である |
-| W10 | L3 functional spec | Curated test suite entry | `.ut-tdd/` または `docs/test-design/` に curation record がある |
+| W10 | L3 functional spec | Curated test suite entry | `.helix/` または `docs/test-design/` に curation record がある |
 
 W-gate は coverage count（被覆数）だけでは close しない。test-design doc 本文を読み、
 指定された scenario（シナリオ）が実際に存在することを確認する。
@@ -56,9 +56,9 @@ W-gate は coverage count（被覆数）だけでは close しない。test-desi
 bun run typecheck
 bun run lint
 bun run test
-ut-tdd doctor
-ut-tdd vmodel lint
-ut-tdd review --uncommitted
+helix doctor
+helix vmodel lint
+helix review --uncommitted
 ```
 
 次へ進む前に、すべて exit 0 で終わる必要がある。
@@ -80,7 +80,7 @@ scope 内の各 test file について次を確認する。
 
 **Step 4 — 品質退行確認（Retrograde quality check / Refactor・Retrofit のみ）:**
 
-`ut-tdd metrics` が使える場合は実行し、使えない場合は git diff で次を確認する。
+`helix metrics` が使える場合は実行し、使えない場合は git diff で次を確認する。
 - PLAN rationale なしに Vitest assertion count が減っていない。
 - 既存 test-design doc section が削除されていない。
 - Biome rule suppression が変更前の件数を超えて増えていない。

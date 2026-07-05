@@ -27,7 +27,7 @@ describe("verb-classify (PLAN-RECOVERY-05 item 2) — Bash → 検証 verb 正�
     expect(verbs.size).toBe(3);
     expect(classifyVerificationVerb("tsc --noEmit")).toBe("tsc");
     expect(classifyVerificationVerb("bun run typecheck")).toBe("tsc");
-    expect(classifyVerificationVerb("ut-tdd doctor")).toBe("doctor");
+    expect(classifyVerificationVerb("helix doctor")).toBe("doctor");
   });
 
   it("classifies lint via biome and via the run-lint script alias", () => {

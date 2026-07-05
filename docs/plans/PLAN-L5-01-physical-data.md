@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L5-01-physical-data
-title: "PLAN-L5-01 (design/physical-data): L5 詳細設計 — 物理データ設計 (.ut-tdd/ state の物理 schema = JSON フィールド型/必須任意/default、D-DB)"
+title: "PLAN-L5-01 (design/physical-data): L5 詳細設計 — 物理データ設計 (.helix/ state の物理 schema = JSON フィールド型/必須任意/default、D-DB)"
 kind: design
 layer: L5
 sub_doc: physical-data
@@ -33,8 +33,8 @@ dependencies:
     - docs/design/harness/L4-basic-design/data.md
   references:
     - src/schema/index.ts
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
-related_adr: docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
+related_adr: docs/adr/ADR-001-helix-harness-redesign-and-language.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 
@@ -42,11 +42,11 @@ v2_import: docs/migration/v2-import-ledger.md
 
 ## §0 PLAN
 
-L5 Master (`PLAN-L5-00-master`) §2 の ① 必須 sub-doc「physical-data」を詳細化する design PLAN。出力 = `docs/design/harness/L5-detailed-design/physical-data.md`。data.md §8 の `.ut-tdd/` state schema (論理) を **物理 schema** (JSON フィールド型・必須/任意・default・file レイアウト) に詳細化し、`src/schema` zod での読込検証を確定する (D-DB)。
+L5 Master (`PLAN-L5-00-master`) §2 の ① 必須 sub-doc「physical-data」を詳細化する design PLAN。出力 = `docs/design/harness/L5-detailed-design/physical-data.md`。data.md §8 の `.helix/` state schema (論理) を **物理 schema** (JSON フィールド型・必須/任意・default・file レイアウト) に詳細化し、`src/schema` zod での読込検証を確定する (D-DB)。
 
 ## §1 目的
 
-data.md の 5 集約 + state schema (§8) を **永続化レベルの物理 schema** へ詳細化する: ① 各 state file の JSON/YAML フィールド定義 (型・必須/任意・default・制約)、② file/ディレクトリ レイアウト (drive 別区画含む)、③ `.ut-tdd/harness.db` SQLite projection table、④ `src/schema` zod スキーマとの 1:1 対応 (読込時 validate)、⑤ ID 採番・index・参照整合の物理実装方針。
+data.md の 5 集約 + state schema (§8) を **永続化レベルの物理 schema** へ詳細化する: ① 各 state file の JSON/YAML フィールド定義 (型・必須/任意・default・制約)、② file/ディレクトリ レイアウト (drive 別区画含む)、③ `.helix/harness.db` SQLite projection table、④ `src/schema` zod スキーマとの 1:1 対応 (読込時 validate)、⑤ ID 採番・index・参照整合の物理実装方針。
 
 ## §2 背景
 
@@ -59,7 +59,7 @@ data.md の 5 集約 + state schema (§8) を **永続化レベルの物理 sche
 
 ### Step 1: [直列] state file レイアウト
 > 直列理由: downstream_dependency — file レイアウトが後続 schema / zod 対応の入力になるため。
-`.ut-tdd/` 配下の物理ディレクトリ/ファイル構成 (plan_registry / artifact / trace / phase.yaml / mode.yaml / handover / audit / drive 別区画) を確定。
+`.helix/` 配下の物理ディレクトリ/ファイル構成 (plan_registry / artifact / trace / phase.yaml / mode.yaml / handover / audit / drive 別区画) を確定。
 
 ### Step 2: [直列] 集約別 物理 schema (JSON フィールド)
 > 直列理由: downstream_dependency — Step 1 の配置に基づいて file ごとの schema を定義するため。
@@ -79,7 +79,7 @@ ID 規約 (data.md §4) の物理採番 (連番/timestamp) + 集約間参照 (ID
 
 ### Step 6: [直列] drive 別区画 (FR-L1-40)
 > 直列理由: downstream_dependency — Step 1〜5 の state 方針を drive partition へ拡張するため。
-`.ut-tdd/drive/<drive>/` の物理区画 schema + skip_sub_doc 機械強制の物理表現。
+`.helix/drive/<drive>/` の物理区画 schema + skip_sub_doc 機械強制の物理表現。
 
 ### Step 7: [直列] 不変条件の物理検証点
 > 直列理由: downstream_dependency — Step 2〜6 の schema と区画に対して不変条件を置くため。
@@ -87,7 +87,7 @@ data.md §6 不変条件を物理 schema レベルで検証する点 (zod superR
 
 ### Step 8: [直列] carry → L7 実装
 > 直列理由: downstream_dependency — Step 1〜7 の物理 schema を実装 carry に変換するため。
-物理 schema → `src/schema` 実装 (zod 定義追加) / `ut-tdd doctor check_business_entity_coverage` への carry。
+物理 schema → `src/schema` 実装 (zod 定義追加) / `helix doctor check_business_entity_coverage` への carry。
 
 ### Step 9: [直列] review
 > 直列理由: downstream_dependency — Step 1〜8 と L8 IT-STATE 粒度の整合を確認してから review するため。

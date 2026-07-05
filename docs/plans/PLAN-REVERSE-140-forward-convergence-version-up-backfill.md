@@ -54,7 +54,7 @@ review_evidence:
     verdict: approve
     worker_model: claude-opus-4-8
     reviewer_model: gpt-5.5
-    scope: "DISCOVERY-08 (forward-convergence) / DISCOVERY-09 (version-up) の confirmed poc → Forward/governance 正本 back-merge fullback (IMP-064)。設計は別 runtime (Codex gpt-5.5, role=tl) が APPROVE-WITH-CHANGES (証跡 .ut-tdd/review/cross-review-versionup-and-s4-failclose.md、Critical 反映済)。back-merge 後 doctor exit 0 (readability/rule-drift/doc-consistency/scrum-reverse/forward-convergence/forward-convergence-audit 全 green)。"
+    scope: "DISCOVERY-08 (forward-convergence) / DISCOVERY-09 (version-up) の confirmed poc → Forward/governance 正本 back-merge fullback (IMP-064)。設計は別 runtime (Codex gpt-5.5, role=tl) が APPROVE-WITH-CHANGES (証跡 .helix/review/cross-review-versionup-and-s4-failclose.md、Critical 反映済)。back-merge 後 doctor exit 0 (readability/rule-drift/doc-consistency/scrum-reverse/forward-convergence/forward-convergence-audit 全 green)。"
     green_commands:
       - kind: doctor
         command: "bun src/cli.ts doctor (S4 back-merge 後: readability/rule-drift/doc-consistency/scrum-reverse/forward-convergence green)"
@@ -74,7 +74,7 @@ review_evidence:
         output_digest: "sha256:f069920038d511eb8f00e6aaa1fa6fa223062f237b21e88085e7ba8f13e8e9d5"
 ---
 
-# PLAN-REVERSE-140: forward-convergence + version-up 正本 back-merge (DISCOVERY-08/09 S4 fullback)
+# PLAN-REVERSE-140: 正本への戻し込み (forward-convergence + version-up back-merge / DISCOVERY-08/09 S4 fullback)
 
 ## 0. なぜ (IMP-064: confirmed poc → Reverse 合流)
 
@@ -82,11 +82,11 @@ review_evidence:
 (decision_outcome=confirmed) するに伴い、その成果を Forward/governance 正本へ戻す fullback。確証なき設計を inline
 promote しただけで Reverse を起こさない §1.2 違反を避けるための正規合流 (IMP-064、scrum-reverse lint)。
 
-## 1. back-merge した正本 (Codex APPROVE-WITH-CHANGES 反映、最小追補)
+## 1. 正本へ戻し込んだ内容 (back-merge / Codex APPROVE-WITH-CHANGES 反映、最小追補)
 
 - **requirements §6.8.8.1 (新)**: forward-convergence fail-close 不変条件 (spine-外 kind=impl landed 未集約 =
   NEW 違反、legacy allowlist + audit doc 双方向一致、version-up parked は正当 deferred)。
-- **requirements §7.8.1 / concept §2.6.1**: `version_deferral` signal → version-up routing。
+- **requirements §7.8.1 / concept §2.6.1**: `version_deferral` signal から version-up routing へ接続する規則。
 - **concept §2.5**: version-up を 9-mode 後の追加 mode として追補 (新 kind なし、`version_target` marker、第4の状態)。
 - **docs/process/modes/README.md §2/§4 + version-up.md**: version-up mode 台帳 + routing + 定義 doc。
 

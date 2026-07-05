@@ -40,7 +40,8 @@ export interface CycleP4VerificationResult {
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+(?:Cycle P4 Verification Closure Matrix|Cycle P4 検証 closure matrix)\s*$/m;
+const SECTION_RE =
+  /^##\s+(?:Cycle P4 Verification Closure Matrix|Cycle P4 検証 closure matrix)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
 const VALID_STATUSES = new Set<CycleP4VerificationStatus>([
   "closed",
@@ -50,7 +51,7 @@ const VALID_STATUSES = new Set<CycleP4VerificationStatus>([
 const EXPECTED_REQUIREMENTS = [
   "Cycle P4 L7 DB integration",
   "L8-L14 local verification band",
-  "UT-TDD Run P4 L9-L11 boundary",
+  "HELIX Run P4 L9-L11 boundary",
   "Production and PO signoff boundary",
   "Handover current action",
   "Source isolation current vocabulary",
@@ -67,10 +68,10 @@ const CURRENT_OPERATIONAL_FILES = [
   "docs/design/harness/L3-functional/roadmap.md",
   "docs/plans/PLAN-M-00-verify-cutover.md",
   "docs/plans/PLAN-M-01-cutover-backfill.md",
-  ".ut-tdd/audit/A-136-cycle-p4-verification-audit.md",
+  ".helix/audit/A-136-cycle-p4-verification-audit.md",
   "src/lint/roadmap-registry.ts",
 ] as const;
-const LEGACY_RUNTIME_NAME = ["he", "lix"].join("");
+const LEGACY_RUNTIME_NAME = ["UT", "TDD"].join("-");
 const FORBIDDEN_LEGACY_SOURCE_RE = new RegExp(
   [
     String.raw`Phase 4 \(L7 DB\)`,
@@ -124,11 +125,11 @@ function evidencePaths(text: string): string[] {
     const value = match[1]?.trim();
     if (!value) continue;
     if (
-      value.startsWith(".ut-tdd/") ||
+      value.startsWith(".helix/") ||
       value.startsWith("docs/") ||
       value.startsWith("src/") ||
       value.startsWith("tests/") ||
-      value === ".ut-tdd/harness.db"
+      value === ".helix/harness.db"
     ) {
       paths.push(value);
     }
@@ -137,9 +138,9 @@ function evidencePaths(text: string): string[] {
 }
 
 function pathExists(repoRoot: string, path: string): boolean {
-  if (path === ".ut-tdd/harness.db") {
+  if (path === ".helix/harness.db") {
     return (
-      existsSync(join(repoRoot, ".ut-tdd")) &&
+      existsSync(join(repoRoot, ".helix")) &&
       existsSync(join(repoRoot, "src", "state-db", "projection-writer.ts"))
     );
   }
@@ -241,11 +242,11 @@ export function analyzeCycleP4Verification(
 export function loadCycleP4VerificationDocs(
   repoRoot: string = process.cwd(),
 ): CycleP4VerificationDoc[] {
-  const target = join(repoRoot, ".ut-tdd", "audit", "A-136-cycle-p4-verification-audit.md");
+  const target = join(repoRoot, ".helix", "audit", "A-136-cycle-p4-verification-audit.md");
   if (!existsSync(target)) return [];
   return [
     {
-      file: join(".ut-tdd", "audit", "A-136-cycle-p4-verification-audit.md"),
+      file: join(".helix", "audit", "A-136-cycle-p4-verification-audit.md"),
       content: readFileSync(target, "utf8"),
     },
   ];
@@ -261,7 +262,7 @@ export function cycleP4VerificationMessages(result: CycleP4VerificationResult): 
       .map((v) => `${v.file}${v.requirement ? `:${v.requirement}` : ""}:${v.reason}`)
       .join(", ");
     return [
-      `cycle-p4-verification - violation ${result.violations.length} (${sample}); Cycle P4 closure needs explicit evidence paths and accepted UT-TDD boundary statuses`,
+      `cycle-p4-verification - violation ${result.violations.length} (${sample}); Cycle P4 closure needs explicit evidence paths and accepted HELIX boundary statuses`,
     ];
   }
   const byStatus = result.rows.reduce<Record<string, number>>((acc, row) => {

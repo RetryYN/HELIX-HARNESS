@@ -45,16 +45,16 @@ dependencies:
     - docs/plans/PLAN-L6-20-runtime-adapter-session-lifecycle.md
 ---
 
-# PLAN-L7-21 (add-impl): runtime adapter session lifecycle and shared hook entrypoints
+# PLAN-L7-21 (add-impl): runtime adapter session lifecycle と共有 hook entrypoint
 
 ## §0 位置づけ
 
-`PLAN-L6-20` の add-impl。shared CLI hook entrypoints と runtime adapter lifecycle wrapper を TypeScript core に実装し、Claude settings と tests を更新する。
+`PLAN-L6-20` の add-impl。共有 CLI hook entrypoints と runtime adapter lifecycle wrapper を TypeScript core に実装し、Claude settings と tests を更新する。
 
 ## §1 実装差分
 
 - `src/cli.ts` に `session start` / `session summary` / `hook post-tool-use` を追加する。
-- `ut-tdd codex|claude --execute` を SessionStart / PostToolUse / Stop で包む。
+- `helix codex|claude --execute` を SessionStart / PostToolUse / Stop で包む。
 - `--task-file` を追加し、task 本文を file から読む。
 - Windows で Claude Code native binary を解決し、bash shim / PATH guard の不安定さを回避する。
 - `.claude/settings.json` を shared CLI entrypoint へ切り替え、`.claude/hooks/session-log.ts` を shim 化する。
@@ -67,27 +67,27 @@ dependencies:
 - `PLAN-L6-20`
 - `docs/design/harness/L6-function-design/session-log.md`
 - `docs/test-design/harness/L7-unit-test-design.md` U-SLOG-007 / U-ADAPTER-001
-- real CLI smoke: `ut-tdd codex --execute` / `ut-tdd claude --execute`
+- real CLI smoke: `helix codex --execute` / `helix claude --execute`
 
 ## §3 工程表
 
-### Step 1: [直列] CLI lifecycle entrypoints
+### Step 1: [直列] CLI lifecycle entrypoint 実装
 
 直列理由: downstream_dependency。adapter wrapper と Claude settings は shared lifecycle entrypoints に依存する。
 
-### Step 2: [直列] adapter wrapper execution
+### Step 2: [直列] adapter wrapper 実行
 
 直列理由: downstream_dependency。Step 1 の dispatch 経路を使って provider 実行を記録する。
 
-### Step 3: [並列] Claude settings / shim migration
+### Step 3: [並列] Claude settings / shim 移行
 
 settings を shared CLI に切り替え、旧 hook file は shim として維持する。
 
-### Step 4: [並列] unit tests
+### Step 4: [並列] unit test 追加
 
 U-SLOG-007 と U-ADAPTER-001 の fake provider tests を追加する。
 
-### Step 5: [直列] review
+### Step 5: [直列] review 実施
 
 直列理由: downstream_dependency。検証 green 後に self review / cross-agent review を実施する。
 

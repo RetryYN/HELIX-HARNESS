@@ -26,32 +26,32 @@ dependencies:
     - docs/plans/PLAN-L7-36-relation-graph-export.md
 ---
 
-# PLAN-REVERSE-32 (reverse): cross-artifact relation graph fullback
+# PLAN-REVERSE-32（reverse）: 成果物間 relation graph fullback
 
-## §0 Position
+## §0 位置づけ
 
-Reverse pairing for the future A-124 / A-125 relation graph implementation. This PLAN is draft until L6/L7 implementation actually lands.
+将来の A-124 / A-125 relation graph 実装に対応する Reverse pairing。L6/L7 実装が実際に着地するまでは、この PLAN は draft として扱う。
 
-## §1 R0 Evidence
+## §1 R0 証跡
 
-Expected evidence after L7:
+L7 後に期待する証跡:
 
-- relation graph pure functions and tests;
-- CLI smoke output for impact / export / evidence projection;
-- DB projection row contracts for graph and verification profiles;
-- any newly discovered requirements or workflow rules.
+- relation graph の pure function と test。
+- impact / export / evidence projection の CLI smoke 出力。
+- graph と verification profile の DB projection row contract。
+- 新たに発見された requirements または workflow rule。
 
-## §2 R1 Observed Gap
+## §2 R1 観測 gap
 
-Expected gaps to extract:
+抽出を想定する gap:
 
-- whether changed-file impact needs a new FR / AC;
-- whether diagram export adds a new acceptance artifact;
-- whether DB collector/rebuild requires additional migration or doctor rules.
+- changed-file impact に新しい FR / AC が必要か。
+- diagram export が新しい acceptance artifact を追加するか。
+- DB collector/rebuild に追加の migration または doctor rule が必要か。
 
-## §3 R2 Alignment
+## §3 R2 整合
 
-Forward implementation must align with:
+Forward 実装は次と整合する必要がある:
 
 - requirements §6.8.8 / §6.8.9 / §6.8.10;
 - physical-data §9.5 / §9.6;
@@ -60,18 +60,18 @@ Forward implementation must align with:
 
 ## §4 R3 / R4
 
-2026-06-11 L7 implementation evidence exists for the split relation graph span:
+2026-06-11 時点で、分割された relation graph 範囲の L7 実装証跡が存在する:
 
-- PLAN-L7-32: U-RELGRAPH-001..006 green for relation graph collection and impact expansion.
-- PLAN-L7-36: U-RELGRAPH-007..010 green for deterministic Mermaid export, unavailable DOT/D2 adapter findings, and A-125 verification evidence projection.
-- Backprop decision: no lower-layer requirements / physical-data / ADR meaning change was discovered; DB write path and external adapter execution remain out of scope for this L7 span.
-- Recovery-03 recurrence check: implementation stayed under authorized PLAN files and source/test owners; `vendor/helix-source/` was not edited.
+- PLAN-L7-32: relation graph collection と impact expansion について、U-RELGRAPH-001..006 は green。
+- PLAN-L7-36: deterministic Mermaid export、利用不能な DOT/D2 adapter finding、A-125 verification evidence projection について、U-RELGRAPH-007..010 は green。
+- Backprop decision: lower-layer requirements / physical-data / ADR の意味変更は発見されていない。DB write path と external adapter execution は、この L7 範囲では引き続き scope 外。
+- Recovery-03 recurrence check: 実装は承認済み PLAN files と source/test owners の範囲内に収まり、`vendor/helix-source/` は編集していない。
 
-R4 fullback outcome: Forward L7 relation graph implementation has merged back to this Reverse plan with no additional governance/backlog additions required.
+R4 fullback outcome: Forward L7 relation graph 実装はこの Reverse plan へ back merge 済みであり、追加の governance/backlog 追加は不要。
 
 ## §8 DoD
 
-- [x] L7 implementation evidence exists.
-- [x] New lower-layer discoveries are classified with `backprop_decision`.
-- [x] Requirements / physical-data / ADR / backlog are unchanged because implementation did not change their meaning.
-- [x] Recovery-03 does not recur in this implementation path.
+- [x] L7 実装証跡が存在する。
+- [x] 新しい lower-layer discovery は `backprop_decision` で分類済み。
+- [x] 実装が意味を変更していないため、Requirements / physical-data / ADR / backlog は未変更。
+- [x] この実装 path では Recovery-03 が再発していない。

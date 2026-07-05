@@ -352,7 +352,7 @@ describe("verification profile recommendation", () => {
     );
 
     expect(written.path).toBe(
-      ".ut-tdd/evidence/verification-profiles/20260609123456-verify-run-bun-unit.json",
+      ".helix/evidence/verification-profiles/20260609123456-verify-run-bun-unit.json",
     );
     expect(writes).toHaveLength(1);
     // 文字列リテラル重複でなく src 側定数を oracle にする (単一正本化、A-128 F-6)。
@@ -373,14 +373,14 @@ describe("verification profile recommendation", () => {
   it("U-MCPPROFILE-014: marks profiles not ready when the generated launcher command is unavailable", () => {
     const result = probeVerificationProfile(
       "mcp-inspector-smoke",
-      deps({ commandOk: (command) => command !== "ut-tdd" }),
+      deps({ commandOk: (command) => command !== "helix" }),
     );
 
     expect(result?.ready).toBe(false);
     expect(result?.checks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ name: "executable", ok: true, message: "bun --version" }),
-        expect.objectContaining({ name: "launcher", ok: false, message: "ut-tdd --help" }),
+        expect.objectContaining({ name: "launcher", ok: false, message: "helix --help" }),
       ]),
     );
   });
@@ -454,7 +454,7 @@ describe("MCP profile config and safety (U-MCPPROFILE-001..014)", () => {
     });
 
     expect(result.ok).toBe(true);
-    expect(result.targetPath).toBe(".ut-tdd/local/mcp.generated.json");
+    expect(result.targetPath).toBe(".helix/local/mcp.generated.json");
     expect(result.targetPath).not.toBe(".vscode/mcp.json");
     expect(result.content).toContain("playwright-mcp");
     expect(result.writesCommittedConfig).toBe(false);
@@ -506,9 +506,9 @@ describe("MCP profile config and safety (U-MCPPROFILE-001..014)", () => {
     expect(config.mcpServers["bun-unit"].command).toBe("bun");
     expect(config.mcpServers["bun-unit"].args).toEqual(["run", "test:local"]);
 
-    // Wrapper command whose first token ("ut-tdd") differs from the probe-hint
+    // Wrapper command whose first token ("helix") differs from the probe-hint
     // executable ("bun"): the launch command is the command head, not the hint.
-    expect(config.mcpServers["mcp-inspector-smoke"].command).toBe("ut-tdd");
+    expect(config.mcpServers["mcp-inspector-smoke"].command).toBe("helix");
     expect(config.mcpServers["mcp-inspector-smoke"].args[0]).toBe("mcp");
 
     // Regression for the pre-fix bug: args must never be the whole command line.

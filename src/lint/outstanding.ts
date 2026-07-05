@@ -2,7 +2,7 @@
  * outstanding-work surface — 「未了の正の集計シグナル」を status / handover が additive に出すための
  * 純関数 + loader (IMP-139)。
  *
- * 動機 (PO 指摘 2026-06-19 self-audit): `ut-tdd status` (mode + next のみ) も handover digest
+ * 動機 (PO 指摘 2026-06-19 self-audit): `helix status` (mode + next のみ) も handover digest
  * (commits/files/failures のみ) も CURRENT.json も「層内の非終端 (draft 等) PLAN 数 / open な
  * explicit-defer 数」を出さない。結果「doctor green = 完了」と誤読され得る (PLAN 完了 ≠ 層完了)。
  * merged-plan-status ([[plan-merged-plan-status]]) / plan-completion-drift ([[plan-completion-drift]]) は
@@ -205,12 +205,12 @@ export type CompletionDecisionKind =
   | "workflow_continuation";
 
 export type WorkflowDecisionPacketCommand =
-  | "ut-tdd s4 decision-packet --json"
-  | "ut-tdd version-up activation-packet --json"
-  | "ut-tdd rename plan --json"
-  | "ut-tdd rename approval-draft --json"
-  | "ut-tdd action-binding approval-packet --json"
-  | "ut-tdd completion decision-packet --json";
+  | "helix s4 decision-packet --json"
+  | "helix version-up activation-packet --json"
+  | "helix rename plan --json"
+  | "helix rename approval-draft --json"
+  | "helix action-binding approval-packet --json"
+  | "helix completion decision-packet --json";
 
 export interface CompletionDecisionItem {
   planId: string;
@@ -783,9 +783,9 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
 function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): boolean {
   const planId = (p.planId ?? "").trim();
   if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
-    return /irreversible|不可逆|state dir|cutover|\.ut-tdd\/.*\.helix|atomic migration/i.test(text);
+    return /irreversible|不可逆|state dir|cutover|\.helix\/.*\.helix|atomic migration/i.test(text);
   }
-  if (/cutover_decision_record|state dir|\.ut-tdd\/.*\.helix|atomic migration/i.test(text)) {
+  if (/cutover_decision_record|state dir|\.helix\/.*\.helix|atomic migration/i.test(text)) {
     return true;
   }
   return /irreversible|不可逆/i.test(text) && /cutover|migration|state dir|rename/i.test(text);
@@ -1031,7 +1031,7 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
 }
 
 function consumerSetupBoundaryPlanRow(repoRoot: string): OutstandingPlanRow | null {
-  const statePath = join(repoRoot, ".ut-tdd", "state", "project-setup.json");
+  const statePath = join(repoRoot, ".helix", "state", "project-setup.json");
   if (!existsSync(statePath)) return null;
   let parsed: unknown;
   try {
@@ -1650,7 +1650,7 @@ function sha256Json(value: unknown): string {
 }
 
 export function runnablePacketCommand(command: string): string {
-  return command.startsWith("ut-tdd ") ? `bun run ${command}` : command;
+  return command.startsWith("helix ") ? `bun run ${command}` : command;
 }
 
 function scopedPacketCommandsForPlan(
@@ -1665,13 +1665,13 @@ function scopedPacketCommandForPlan(
   command: WorkflowDecisionPacketCommand,
 ): string {
   switch (command) {
-    case "ut-tdd s4 decision-packet --json":
-    case "ut-tdd version-up activation-packet --json":
-    case "ut-tdd action-binding approval-packet --json":
+    case "helix s4 decision-packet --json":
+    case "helix version-up activation-packet --json":
+    case "helix action-binding approval-packet --json":
       return `${command} --plan ${planId}`;
-    case "ut-tdd rename plan --json":
-    case "ut-tdd rename approval-draft --json":
-    case "ut-tdd completion decision-packet --json":
+    case "helix rename plan --json":
+    case "helix rename approval-draft --json":
+    case "helix completion decision-packet --json":
       return command;
   }
 }
@@ -1689,7 +1689,7 @@ function supportingPacketSummaryForCommand(
       : {}),
   };
   switch (command) {
-    case "ut-tdd s4 decision-packet --json":
+    case "helix s4 decision-packet --json":
       return {
         ...base,
         schemaVersion: "s4-decision-packet.v1",
@@ -1754,7 +1754,7 @@ function supportingPacketSummaryForCommand(
           "review S4 decision evidence, outcome routes, and verification commands",
         ),
       };
-    case "ut-tdd version-up activation-packet --json":
+    case "helix version-up activation-packet --json":
       return {
         ...base,
         schemaVersion: "version-up-activation-packet.v1",
@@ -1865,7 +1865,7 @@ function supportingPacketSummaryForCommand(
           "review activation readiness, current snapshot id, external rehearsal, cost guardrails, security checklist packet, reapproval triggers, and verification commands",
         ),
       };
-    case "ut-tdd rename plan --json":
+    case "helix rename plan --json":
       return {
         ...base,
         schemaVersion: "identifier-rename-cutover-plan.v1",
@@ -1964,7 +1964,7 @@ function supportingPacketSummaryForCommand(
           "review cutover snapshot, snapshot drift review, blast-radius checklist, and verification commands",
         ),
       };
-    case "ut-tdd rename approval-draft --json":
+    case "helix rename approval-draft --json":
       return {
         ...base,
         schemaVersion: "identifier-rename-approval-draft.v1",
@@ -2019,7 +2019,7 @@ function supportingPacketSummaryForCommand(
           "review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
         ),
       };
-    case "ut-tdd action-binding approval-packet --json":
+    case "helix action-binding approval-packet --json":
       return {
         ...base,
         schemaVersion: "action-binding-approval-packet.v1",
@@ -2092,7 +2092,7 @@ function supportingPacketSummaryForCommand(
           "review actor/tool/target/params binding, semantic frontier, related packets, and verification commands",
         ),
       };
-    case "ut-tdd completion decision-packet --json":
+    case "helix completion decision-packet --json":
       return {
         ...base,
         schemaVersion: "completion-decision-packet.v1",
@@ -2188,16 +2188,16 @@ function decisionKindForOutstandingReason(reason: string): CompletionDecisionKin
 function decisionPacketCommandForOutstandingReason(reason: string): WorkflowDecisionPacketCommand {
   switch (reason) {
     case "po_decision_pending":
-      return "ut-tdd s4 decision-packet --json";
+      return "helix s4 decision-packet --json";
     case "version_up_parked":
     case "version_up_frontmatter_missing":
-      return "ut-tdd version-up activation-packet --json";
+      return "helix version-up activation-packet --json";
     case "irreversible_migration_pending":
-      return "ut-tdd rename plan --json";
+      return "helix rename plan --json";
     case "human_approval_pending":
-      return "ut-tdd action-binding approval-packet --json";
+      return "helix action-binding approval-packet --json";
     default:
-      return "ut-tdd completion decision-packet --json";
+      return "helix completion decision-packet --json";
   }
 }
 
@@ -2213,9 +2213,9 @@ function packetCommandsForOutstandingBlockers(
     primaryReason === "irreversible_migration_pending" ||
     blockers.includes("irreversible_migration_pending")
   ) {
-    const renamePlanIndex = commands.indexOf("ut-tdd rename plan --json");
+    const renamePlanIndex = commands.indexOf("helix rename plan --json");
     const insertIndex = renamePlanIndex >= 0 ? renamePlanIndex + 1 : commands.length;
-    commands.splice(insertIndex, 0, "ut-tdd rename approval-draft --json");
+    commands.splice(insertIndex, 0, "helix rename approval-draft --json");
   }
   return uniqueInOrder(commands);
 }
@@ -2656,7 +2656,7 @@ function requiredRecordsForOutstandingReason(
             "acceptance_evidence_plan",
           ],
           sourcePaths: [
-            ".ut-tdd/state/project-setup.json",
+            ".helix/state/project-setup.json",
             "docs/design/harness/L6-function-design/setup-solo-team.md",
             "docs/design/harness/L6-function-design/function-spec.md",
           ],

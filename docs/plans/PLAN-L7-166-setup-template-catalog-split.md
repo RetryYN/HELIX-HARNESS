@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-166-setup-template-catalog-split
-title: "PLAN-L7-166: setup template catalog split"
+title: "PLAN-L7-166: setup template catalog 分割"
 kind: refactor
 layer: L7
 drive: agent
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant split of setup built-in GitHub templates and generated file catalog. No setup workflow, CLI/API, GitHub operation, or persisted schema changed."
+backprop_decision_reason: "setup built-in GitHub templates と generated file catalog の behavior-invariant な分割。setup workflow、CLI/API、GitHub operation、persisted schema は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - setup template catalog split"
+    slot_label: "SE - setup template catalog 分割"
   - role: tl
-    slot_label: "TL - setup invariant review"
+    slot_label: "TL - setup invariant review 確認"
 generates:
   - artifact_path: docs/plans/PLAN-L7-166-setup-template-catalog-split.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T20:49:29+09:00"
     tests_green_at: "2026-06-25T20:49:29+09:00"
     verdict: approve
-    scope: "Extract setup built-in templates and common file catalog to a sidecar module while preserving setup behavior."
+    scope: "setup behavior を維持したまま、setup built-in templates と common file catalog を sidecar module へ抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -81,25 +81,21 @@ review_evidence:
         output_digest: "sha256:6eeaa921a28cf0d9a2d528c0580307c23bfc1dd6ef1c914cf1953837e86749fd"
 ---
 
-# PLAN-L7-166: setup template catalog split
+# PLAN-L7-166: setup template catalog 分割
 
-## Objective
+## 目的
 
-Reduce the remaining `split-module` pressure on `src/setup/index.ts` by moving
-the built-in GitHub setup templates and common generated-file catalog out of the
-runtime orchestration module.
+runtime orchestration module から built-in GitHub setup templates と common generated-file catalog を移し、
+`src/setup/index.ts` に残っている `split-module` 圧力を減らす。
 
-## Scope
+## スコープ
 
-- Move `TemplateSet`, `BUILTIN_GITHUB_TEMPLATES`, and `COMMON_FILES` to
-  `src/setup/templates.ts`.
-- Keep `src/setup/index.ts` responsible for detection, planning, emission,
-  state recording, branch-protection application, and node deps.
-- Update setup tests to import the template type from the sidecar module.
+- `TemplateSet`、`BUILTIN_GITHUB_TEMPLATES`、`COMMON_FILES` を `src/setup/templates.ts` へ移す。
+- `src/setup/index.ts` は detection、planning、emission、state recording、branch-protection application、node deps を担当し続ける。
+- setup tests は template type を sidecar module から import するよう更新する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Setup behavior remains unchanged.
-- `tests/setup.test.ts`, typecheck, lint, DB rebuild, and doctor pass.
-- The refactor detector no longer reports `src/setup/index.ts` as a
-  `split-module` candidate.
+- Setup behavior は変更しない。
+- `tests/setup.test.ts`、typecheck、lint、DB rebuild、doctor が pass する。
+- refactor detector は `src/setup/index.ts` を `split-module` candidate として報告しなくなる。

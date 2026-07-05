@@ -86,7 +86,7 @@ PO 決定 (2026-06-26) では **中央UI (画面) は後回し** としていた
 slice を再開した。
 
 - 本 PLAN は `status=confirmed`。`src/web` に L2/L4 由来の component registry、L4 token reader、read-only
-  static renderer、`ut-tdd web render` CLI surface、`tests/web.test.ts` を追加済み。
+  static renderer、`helix web render` CLI surface、`tests/web.test.ts` を追加済み。
 - ただし `implemented_screens` はまだ立てない。`screen-impl-pair-freeze` の L10 境界と、impl 後 UX 磨き /
   WCAG 実比検証は別frontierとして残す。
 - 配布の active track = [[PLAN-L7-157-distribution-clean-pull]] (R2: 中央UI/画面 = L7-141/146 は配布物に
@@ -123,25 +123,25 @@ prototype コード (`src/web/*.ts`) と `tests/web.test.ts`、`cli web` command
 4. **read-only + CLI コピー action** (screen-list §3 S5=b)、**画面ID↔URL 1:1** (screen-list §2) は L7-102 で
    妥当だった制約として踏襲。
 
-## 2. Scope (着手時)
+## 2. 対象範囲 (着手時)
 
 - `src/web/` を ui-element §2 部品ベースで再構築 (component catalog → 15 screen composition → static app shell)。
 - `cli web render` command 再配線、`tests/web.test.ts` を部品単位で再設計。
 - L4 FE 設計標準 (ui-standard、PLAN-L4-14) 到達済み。`tokens.yaml` を唯一のtoken sourceとして読む。
-- Serverless共有・runtime配信・L10 UX磨きは本first sliceの外。後続frontierとして残す。
+- Serverless共有・runtime配信・L10 UX磨きは本 first slice の外。後続 frontier として残す。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
 - 15 画面が ui-element §2 部品から構成され、table-dumper 描画が無い。`tests/web.test.ts` が固定。
 - `screen-impl-pair-freeze` gate green かつ L4 FE 設計標準 (ui-standard) 到達後にのみ `implemented_screens` を宣言。
   本sliceでは L10 未到達のため宣言しない。
 - mission (工程管理表) は PM-01 `HeatmapGrid` を含む component composition で表現する。
-- `ut-tdd web render --out <path> --json` が静的 read-only HTML を生成する。
-- doctor / lint / vitest / plan lint green。review evidence を confirmed 前に記録。
+- `helix web render --out <path> --json` が静的 read-only HTML を生成する。
+- doctor / lint / vitest / plan lint が green。review evidence を confirmed 前に記録。
 
-## 4. Schedule
+## 4. スケジュール
 
-- mode: serial。
+- mode: serial（直列）。
 - Step 1 ✓ (2026-06-24): **FE 設計標準を authored + cross-reviewed**。当初 `docs/design/harness/L10-ux/`
   に置いたが PLAN-L4-14 で **L4 `ui-standard.md` + `tokens.yaml`** へ re-home (層配置是正、§6)。confirmed 昇格は
   G4 PO サインオフ (L4 基本設計凍結)。
@@ -152,7 +152,7 @@ prototype コード (`src/web/*.ts`) と `tests/web.test.ts`、`cli web` command
   composition を実装。
 - Step 3 ✓ (2026-06-30): `src/web/render.ts` で read-only static app shell を実装し、`src/cli.ts` に
   `web render` を再配線。副作用はファイル書き出しのみで、UI実行/API呼び出しは持たない。
-- Step 4 ✓ (2026-06-30): `tests/web.test.ts` + `tests/cli-surface.test.ts` + typecheck/lint green。
+- Step 4 ✓ (2026-06-30): `tests/web.test.ts` + `tests/cli-surface.test.ts` + typecheck/lint が green。
 
 ## 5. 壊さない / 再発させない
 
@@ -172,9 +172,9 @@ L2 ui-element §2 部品から component-derived で FE 設計標準を authored
 - `docs/design/harness/L4-basic-design/tokens.yaml` — デザイントークン SSOT (FR-30、WCAG 2.2 AA 目標、token 名一意)。
 - `docs/design/harness/L10-ux/visual-design.md` — impl 後 UX 磨き/WCAG 検証の placeholder へ reframe。
 
-**review_evidence (intra_runtime_subagent)**:
+**review_evidence (intra_runtime_subagent) レビュー証跡**:
 - reviewer: code-reviewer (claude-sonnet-4-6) / worker: claude-opus-4-8 (PM)。hybrid だが Codex live dispatch は別途任意 (本 land は sonnet cross-review を採用)。
-- reviewed_at: 2026-06-24 / verdict: **APPROVE (Critical 0)**。
+- reviewed_at: 2026-06-24 / verdict: **APPROVE (Critical 0)**。重大指摘なし。
 - scope: component-derived (汎用テーブル 1 枚で代替不能、§5) / L2 grounding (新規部品・画面の発明なし) / token 健全性 (一意・5 状態・WCAG AA 目標) / a11y (WCAG 2.2 AA) / 誠実性 (status=draft、implemented 詐称なし)。
 - Important 3 件 解決済: I-1 (`SeverityBadge`=`StatusBadge` alias 明記 + §5 HM-07 に StatusBadge 追記) / I-2 (HM-04・HM-07 の「再実行トリガー」を S5=b の `CopyButton`(CLI 文字列) と明記、L2 §2 脱落の High-Fi 補完) / I-3 (WCAG 2.2 と AC-FR-30-03 の 2.1 不一致 → oracle 更新を visual-design §7 governance carry に列挙)。Minor 4 件 (M-1〜M-4) 反映済。
 - 緑証跡: 本 commit 時点で doctor EXIT 0 / plan lint EXIT 0 (検証ログ参照)。

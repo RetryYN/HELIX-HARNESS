@@ -34,8 +34,8 @@ dependencies:
     - docs/design/harness/L5-detailed-design/physical-data.md
   references:
     - src/cli.ts
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
-related_adr: docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
+related_adr: docs/adr/ADR-001-helix-harness-redesign-and-language.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

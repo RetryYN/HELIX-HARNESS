@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L6-22-l6-completion-readiness
-title: "PLAN-L6-22 (add-design): L6 completion readiness lint"
+title: "PLAN-L6-22 (add-design): L6 completion readiness lint 設計"
 kind: add-design
 layer: L6
 drive: fullstack
@@ -10,7 +10,7 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - L6 completion readiness design"
+    slot_label: "TL - L6 completion readiness 設計"
 generates:
   - artifact_path: docs/design/harness/L6-function-design/function-spec.md
     artifact_type: design_doc
@@ -31,14 +31,16 @@ review_evidence:
     tests_green_at: "2026-06-09T13:00:00+09:00"
     reviewed_at: "2026-06-09T13:10:23+09:00"
     verdict: approve
-    scope: "G6 L6 completion final recheck; lint/typecheck/vitest/doctor green; L6 FR coverage and guardrail coverage reviewed"
+    scope: "G6 L6 completion final recheck。lint/typecheck/vitest/doctor は green。L6 FR coverage と guardrail coverage を review 済み。"
 ---
 
-# PLAN-L6-22 (add-design): L6 completion readiness lint
+# PLAN-L6-22 (add-design): L6 completion readiness lint 設計
 
-## §0 Position
+## §0 位置づけ
 
-L6 completion was previously visible only indirectly through verification group messages. This add-design defines a dedicated readiness lint that aggregates L6 design doc status, L6 doc owning-plan and L7-pair trace, owning PLAN status/review evidence, L7 pair status, and G6 gate status.
+L6 completion は以前、verification group messages を通じて間接的にしか見えなかった。
+この add-design は、L6 design doc status、L6 doc owning-plan と L7-pair trace、
+owning PLAN status/review evidence、L7 pair status、G6 gate status を集約する専用 readiness lint を定義する。
 
 ## §3.1 実装計画（情報源）
 
@@ -57,11 +59,11 @@ L6 completion was previously visible only indirectly through verification group 
 
 Trace DoD addendum:
 
-- [x] L6 readiness inputs include L6 docs / L6 doc owning-plan trace / L6 doc L7-pair trace / L6 unit-contract substance / L6 design PLAN / L7 / G6.
-- [x] Incomplete states surface as draft docs, missing owning plan, unresolved owning plan, missing L7 pair, missing L7 reverse reference, weak unit-contract substance, draft PLANs, L7 draft, or G6 not-pass.
-- [x] A synthetic oracle proves `ready=true` only when every condition is satisfied.
-- [x] A synthetic oracle proves `freezeInputReady=true` can be true before final G6 completion when trace/substance inputs are complete but status/gate flips are still pending.
-- [x] doctor surfaces readiness as hard/fail-close.
+- [x] L6 readiness inputs は L6 docs / L6 doc owning-plan trace / L6 doc L7-pair trace / L6 unit-contract substance / L6 design PLAN / L7 / G6 を含む。
+- [x] incomplete states は draft docs、missing owning plan、unresolved owning plan、missing L7 pair、missing L7 reverse reference、weak unit-contract substance、draft PLANs、L7 draft、G6 not-pass として表示される。
+- [x] synthetic oracle は、すべての condition が満たされた場合だけ `ready=true` になることを証明する。
+- [x] synthetic oracle は、trace/substance inputs が complete で status/gate flips が pending の場合、final G6 completion 前でも `freezeInputReady=true` になり得ることを証明する。
+- [x] doctor は readiness を hard/fail-close として surface する。
 
 ## §3 工程表
 

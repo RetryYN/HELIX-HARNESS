@@ -96,7 +96,7 @@ review_evidence:
 
 ## 目的
 
-`ut-tdd audit objective-external --json` が、配布レポ `unison-ai-product/UT-TDD_AGENT-HARNESS-Pack`
+`helix audit objective-external --json` が、配布レポ `unison-ai-product/HELIX-HARNESS-OS`
 の `main` HEAD drift を検出した。これは外部 source ledger の実測値更新であり、Pack latest tag `v0.1.3`
 の採用や local distribution version の引き上げではない。
 
@@ -116,6 +116,6 @@ ledger、lint 期待値、setup の consumer boundary、関連テストへ同期
 
 ## 完了条件
 
-- `ut-tdd audit objective-external --json` が current external observed 値で green。
+- `helix audit objective-external --json` が current external observed 値で green。
 - goal evidence / cli surface / setup / distribution acceptance の関連テストが green。
 - typecheck、design-language、plan governance、doctor が green。

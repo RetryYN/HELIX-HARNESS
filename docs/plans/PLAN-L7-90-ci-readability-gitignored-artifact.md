@@ -16,7 +16,7 @@ review_evidence:
     reviewed_at: "2026-06-22"
     tests_green_at: "2026-06-22"
     verdict: pass
-    scope: "PO 指摘『GitHub harness-check が失敗している』(2026-06-22) の根治。gh run log で失敗は vitest step の tests/readability.test.ts 1 件 = 'expected [...51] to include .ut-tdd/handover/CURRENT.json'。原因: PLAN-L7-69 の runtime-artifact readability テスト (commit a571b5d, 2026-06-19) が live tree の `.ut-tdd/handover/CURRENT.json` 実在を hard assert していたが、CURRENT.* は .gitignore (line 19) ゆえ fresh CI checkout に不在 → 2026-06-19 12:35 を最後に CI が赤継続 (ローカルは CURRENT.json が在るので green = local-green/CI-red 罠、[[project_codex_branch_ci_verification]])。修正: 当該 assert を撤去し、tracked な evidence (.ut-tdd/audit/*.md 42件 / .ut-tdd/handover/provider/*.json 9件) の存在 + loader scope (全 path が audit/handover 配下) + mojibake-free のみを検査。CURRENT.json の handling は既存 fixture test (clean/replacement-character) が被覆。doctor の checkRuntimeReadability は fail-open-on-absence ゆえ CI で赤化せず (テストのみが over-assert していた)。typecheck/Biome/Vitest/doctor green + gh CI 緑を確認。"
+    scope: "PO 指摘『GitHub harness-check が失敗している』(2026-06-22) の根治。gh run log で失敗は vitest step の tests/readability.test.ts 1 件 = 'expected [...51] to include .helix/handover/CURRENT.json'。原因: PLAN-L7-69 の runtime-artifact readability テスト (commit a571b5d, 2026-06-19) が live tree の `.helix/handover/CURRENT.json` 実在を hard assert していたが、CURRENT.* は .gitignore (line 19) ゆえ fresh CI checkout に不在 → 2026-06-19 12:35 を最後に CI が赤継続 (ローカルは CURRENT.json が在るので green = local-green/CI-red 罠、[[project_codex_branch_ci_verification]])。修正: 当該 assert を撤去し、tracked な evidence (.helix/audit/*.md 42件 / .helix/handover/provider/*.json 9件) の存在 + loader scope (全 path が audit/handover 配下) + mojibake-free のみを検査。CURRENT.json の handling は既存 fixture test (clean/replacement-character) が被覆。doctor の checkRuntimeReadability は fail-open-on-absence ゆえ CI で赤化せず (テストのみが over-assert していた)。typecheck/Biome/Vitest/doctor green + gh CI 緑を確認。"
     worker_model: claude-opus-4-8
     reviewer_model: claude-opus-4-8
 agent_slots:
@@ -33,41 +33,41 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-90 (troubleshoot): CI green recovery — readability test vs gitignored CURRENT.json
+# PLAN-L7-90 (troubleshoot): CI green 復旧 — readability test と gitignored CURRENT.json
 
-## 0. Objective
+## 0. 目的 (Objective)
 
 `harness-check` CI を green へ復旧する。失敗は **私 (Opus) のセッション以前から** 継続して
 いた既存欠陥で、私の commit はその赤を継承していた。
 
-## 1. Problem (gh run log で確定)
+## 1. 問題 (Problem、gh run log で確定)
 
 - `gh run view --log-failed`: vitest step で `tests/readability.test.ts` 1 件のみ失敗
-  (`Failed Tests 1`)。message = `expected [ …(51) ] to include '.ut-tdd/handover/CURRENT.json'`。
+  (`Failed Tests 1`)。message = `expected [ …(51) ] to include '.helix/handover/CURRENT.json'`。
 - 原因: PLAN-L7-69 の runtime-artifact readability テスト (`a571b5d`, 2026-06-19) が
-  `loadRuntimeArtifactReadabilityDocs()` の結果に `.ut-tdd/handover/CURRENT.json` が含まれることを
+  `loadRuntimeArtifactReadabilityDocs()` の結果に `.helix/handover/CURRENT.json` が含まれることを
   hard assert していた。
-- だが `.ut-tdd/handover/CURRENT.*` は `.gitignore` (line 19) ゆえ **tracked でない** =
-  fresh CI checkout に不在。ローカルは `ut-tdd handover` 実行で CURRENT.json が常在するため
+- だが `.helix/handover/CURRENT.*` は `.gitignore` (line 19) ゆえ **tracked でない** =
+  fresh CI checkout に不在。ローカルは `helix handover` 実行で CURRENT.json が常在するため
   test は green に見え、CI (clean checkout) だけ赤 = **local-green/CI-red 罠**
   ([[project_codex_branch_ci_verification]])。最後の CI 成功 = 2026-06-19 12:35 (a571b5d 直前)。
 
-## 2. Fix
+## 2. 修正 (Fix)
 
 `tests/readability.test.ts` の当該テスト:
 
-- `expect(paths).toContain(".ut-tdd/handover/CURRENT.json")` を撤去 (gitignored 生成物の
+- `expect(paths).toContain(".helix/handover/CURRENT.json")` を撤去 (gitignored 生成物の
   実在に依存しない)。
-- 代わりに **tracked な runtime evidence のみ**を検査: `.ut-tdd/audit/*.md` (42 件) +
-  `.ut-tdd/handover/provider/*.json` (9 件) の存在 + loader scope (全 path が `.ut-tdd/audit/`
-  または `.ut-tdd/handover/` 配下) + `analyzeReadability(docs).violations == []`。
+- 代わりに **tracked な runtime evidence のみ**を検査: `.helix/audit/*.md` (42 件) +
+  `.helix/handover/provider/*.json` (9 件) の存在 + loader scope (全 path が `.helix/audit/`
+  または `.helix/handover/` 配下) + `analyzeReadability(docs).violations == []`。
 - CURRENT.json の readability handling は既存 fixture test (clean ASCII / U+FFFD) が被覆済。
 - doctor 側 `checkRuntimeReadability` は **fail-open-on-absence** 設計 (PLAN-L7-69) ゆえ CURRENT.json
   不在でも赤化しない = テストだけが over-assert していた。
 
-## 3. Acceptance Criteria — met
+## 3. 受入条件 (Acceptance Criteria) — 充足 (met)
 
-- [x] readability テストが gitignored の `.ut-tdd/handover/CURRENT.json` 実在に依存しない。
+- [x] readability テストが gitignored の `.helix/handover/CURRENT.json` 実在に依存しない。
 - [x] tracked evidence (audit md / provider json) + loader scope + mojibake-free は引き続き検査。
 - [x] doctor の fail-open 設計は不変 (テスト側のみ修正)。
 - [x] typecheck / Biome / Vitest / doctor local green + `gh` で CI green を確認。

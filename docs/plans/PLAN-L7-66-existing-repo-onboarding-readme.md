@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-66-existing-repo-onboarding-readme
-title: "PLAN-L7-66: existing-repo onboarding fallback templates and root README"
+title: "PLAN-L7-66: 既存 repo onboarding fallback template と root README"
 kind: impl
 layer: L7
 drive: agent
@@ -16,10 +16,10 @@ review_evidence:
     tests_green_at: "2026-06-16"
     reviewed_at: "2026-06-16"
     verdict: pass
-    scope: "setup fallback templates for target repos without harness docs and root README onboarding guidance"
+    scope: "harness docs を持たない対象 repo 向け setup fallback template と root README onboarding guidance"
 agent_slots:
   - role: tl
-    slot_label: "TL - existing-repo onboarding and README"
+    slot_label: "TL - 既存 repo onboarding と README"
 generates:
   - artifact_path: src/setup/index.ts
     artifact_type: source_module
@@ -39,24 +39,24 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-66: existing-repo onboarding fallback templates and root README
+# PLAN-L7-66: 既存 repo onboarding fallback template と root README
 
-## Objective
+## 目的
 
-Make the harness understandable and bootstrap-capable when introduced into an existing project that does not yet contain this repository's documentation/template tree.
+この repository の documentation/template tree をまだ持たない既存 project へ導入する場合でも、harness を理解可能かつ bootstrap 可能にする。
 
-## Scope
+## スコープ
 
-- Add built-in GitHub setup templates used when `docs/templates/github/` is absent in the target repository.
-- Keep target repository templates as overrides when present.
-- Add a root `README.md` that explains purpose, Windows/TS stance, source-checkout setup, team run, model/effort policy, and verification commands.
+- 対象 repository に `docs/templates/github/` が存在しない場合に使う built-in GitHub setup template を追加する。
+- 対象 repository 側の template が存在する場合は override として維持する。
+- 目的、Windows/TS stance、source-checkout setup、team run、model/effort policy、verification command を説明する root `README.md` を追加する。
 
-## Verification
+## 検証
 
 - [x] `bunx vitest run tests\setup.test.ts`
 
 ## DoD
 
-- [x] `loadTemplates` returns usable templates in an empty target repository.
-- [x] Team CODEOWNERS placeholders render from built-in templates.
-- [x] README documents existing-repo setup from a source checkout and team-run execution boundaries without implying a published `bunx ut-tdd` package.
+- [x] 空の対象 repository で `loadTemplates` が利用可能な template を返す。
+- [x] Team CODEOWNERS placeholder が built-in template から render される。
+- [x] README が source checkout からの existing-repo setup と team-run execution boundary を、公開済み `bunx helix` package があるかのように示唆せず記述する。

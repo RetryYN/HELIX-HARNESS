@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-161-task-classify-policy-extraction
-title: "PLAN-L7-161: task classify policy extraction"
+title: "PLAN-L7-161: task classify policy の抽出"
 kind: refactor
 layer: L7
 drive: fullstack
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant extraction of task classification policy constants. No public CLI/API contract, persisted schema, or workflow semantics changed."
+backprop_decision_reason: "task classification policy constants の振る舞い不変な抽出。public CLI/API contract、persisted schema、workflow semantics は変更しない。"
 agent_slots:
   - role: se
-    slot_label: "SE - task classify policy extraction"
+    slot_label: "SE - task classify policy 抽出"
   - role: tl
-    slot_label: "TL - classifier invariant review"
+    slot_label: "TL - classifier 不変性レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L7-161-task-classify-policy-extraction.md
     artifact_type: markdown_doc
@@ -35,7 +35,7 @@ review_evidence:
     reviewed_at: "2026-06-25T19:39:00+09:00"
     tests_green_at: "2026-06-25T19:39:00+09:00"
     verdict: approve
-    scope: "Extract task classification kind, risk, uncertainty, baseline coverage, and guardrail policy into a sidecar module."
+    scope: "task classification の kind、risk、uncertainty、baseline coverage、guardrail policy を sidecar module へ抽出する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -81,24 +81,23 @@ review_evidence:
         output_digest: "sha256:5f3b411831eaf5df7f40ac95cce1623fd7f47b85ebc2ff6012b53b5610dd519d"
 ---
 
-# PLAN-L7-161: task classify policy extraction
+# PLAN-L7-161: task classify policy の抽出
 
-## Objective
+## 目的
 
-Reduce the remaining `externalize-policy` candidates by extracting task
-classification policy constants from `src/task/classify.ts`.
+`src/task/classify.ts` から task classification policy constants を抽出し、
+残っている `externalize-policy` candidate を減らす。
 
-## Scope
+## スコープ
 
-- Move kind inference patterns, risk terms, uncertainty terms, baseline proposal
-  coverage, routing test doc policy, and proposal guardrails to
+- kind 推論 patterns、risk terms、uncertainty terms、baseline proposal
+  coverage、routing test doc policy、proposal guardrails を
   `src/task/classify-policy.ts`.
-- Keep `src/task/classify.ts` responsible for deterministic composition and
-  result construction.
-- Add direct test coverage for the sidecar policy constants.
+- `src/task/classify.ts` は deterministic composition と result construction の責務を維持する。
+- sidecar policy constants に対する直接の test coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Task classification and proposal document coverage behavior remains unchanged.
-- `tests/task-classify.test.ts` passes and directly imports the sidecar policy.
-- Typecheck, lint, DB rebuild, and doctor pass.
+- Task classification と proposal document coverage の振る舞いは変えない。
+- `tests/task-classify.test.ts` が pass し、sidecar policy を直接 import する。
+- Typecheck、lint、DB rebuild、doctor が pass する。

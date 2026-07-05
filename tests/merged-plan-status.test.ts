@@ -148,7 +148,7 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
   }
 
   it("detects a draft PLAN whose generated src exists on disk (merged)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-merged-plan-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "src"), { recursive: true });
@@ -172,7 +172,7 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
   });
 
   it("fails closed when repo root cannot be read", () => {
-    const result = checkMergedPlanStatus(join(tmpdir(), "ut-tdd-merged-plan-nope-zzz"));
+    const result = checkMergedPlanStatus(join(tmpdir(), "helix-merged-plan-nope-zzz"));
     expect(result.ok).toBe(false);
   });
 
@@ -207,7 +207,7 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
   }
 
   it("flags a draft impl PLAN that ships a merged .claude/ deliverable (non-src), not just src/*.ts", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-merged-plan-claude-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-claude-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, ".claude", "commands"), { recursive: true });
@@ -233,7 +233,7 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
   });
 
   it("does not flag a draft design PLAN that ships only a docs/ artifact (docs/ excluded, kind-independent)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-merged-plan-design-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-design-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "docs", "design"), { recursive: true });
@@ -265,7 +265,7 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
   // PLAN-L7-87 (2026-06-22): the real drift — a draft add-design/poc PLAN that merged a src/
   // deliverable. The pre-fix gate skipped these by kind; it must now flag them by deliverable.
   it("flags a draft add-design PLAN whose merged deliverable is a src/ module (kind-independent)", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-merged-plan-adsrc-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-adsrc-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "src", "lint"), { recursive: true });

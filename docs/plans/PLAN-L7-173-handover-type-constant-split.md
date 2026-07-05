@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-173-handover-type-constant-split
-title: "PLAN-L7-173: handover type and constant split"
+title: "PLAN-L7-173: handover type and constant split（型・定数分割）"
 kind: refactor
 layer: L7
 drive: db
@@ -10,12 +10,12 @@ updated: 2026-06-25
 owner: Codex
 parent_design: docs/process/modes/refactor.md
 backprop_decision: not_required
-backprop_decision_reason: "Behavior-invariant extraction of handover type and constant declarations. Runtime logic and public handover exports are preserved."
+backprop_decision_reason: "handover の type と constant declarations を挙動不変で抽出する。Runtime logic と public handover exports は維持する。"
 agent_slots:
   - role: se
-    slot_label: "SE - handover sidecar split"
+    slot_label: "SE - handover sidecar split（分割）"
   - role: tl
-    slot_label: "TL - handover invariant review"
+    slot_label: "TL - handover invariant review（不変条件レビュー）"
 generates:
   - artifact_path: docs/plans/PLAN-L7-173-handover-type-constant-split.md
     artifact_type: markdown_doc
@@ -37,7 +37,7 @@ review_evidence:
     reviewed_at: "2026-06-25T22:21:41+09:00"
     tests_green_at: "2026-06-25T22:17:00+09:00"
     verdict: approve
-    scope: "Split handover type and constant declarations into sidecar modules while keeping src/handover/index.ts as the compatibility export surface."
+    scope: "src/handover/index.ts を compatibility export surface として維持しつつ、handover の type と constant declarations を sidecar modules へ分割する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -77,25 +77,23 @@ review_evidence:
       - "bun run vitest run tests\\doctor.test.ts timed out before test output in this environment; retained as residual verification risk and covered by subsequent doctor CLI gate."
 ---
 
-# PLAN-L7-173: handover type and constant split
+# PLAN-L7-173: handover type and constant split（型・定数分割）
 
-## Objective
+## 目的
 
-Reduce remaining `split-module` pressure on `src/handover/index.ts` without
-changing handover behavior or public imports.
+handover behavior と public imports を変えずに、`src/handover/index.ts` に残る
+`split-module` pressure を削減する。
 
-## Scope
+## スコープ
 
-- Move handover public type declarations to `src/handover/handover-types.ts`.
-- Move handover constants to `src/handover/handover-constants.ts`.
-- Re-export the moved declarations from `src/handover/index.ts` for compatibility.
-- Add direct sidecar coverage in `tests/handover.test.ts`.
+- handover の public type declarations を `src/handover/handover-types.ts` へ移す。
+- handover constants を `src/handover/handover-constants.ts` へ移す。
+- compatibility のため、移動した declarations を `src/handover/index.ts` から re-export する。
+- `tests/handover.test.ts` に direct sidecar coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `tests/handover.test.ts`, `tests/handover-completion-wording.test.ts`,
-  typecheck, lint, DB rebuild, and doctor pass.
-- The refactor detector no longer reports `src/handover/index.ts` as an
-  untested sidecar split.
-- Any remaining `split-module` candidates are limited to larger modules that
-  still need separate planned slices.
+- `tests/handover.test.ts`、`tests/handover-completion-wording.test.ts`、
+  typecheck、lint、DB rebuild、doctor が pass する。
+- refactor detector は `src/handover/index.ts` を untested sidecar split として報告しない。
+- 残る `split-module` candidates は、別 PLAN slice がまだ必要な大きい modules に限定される。

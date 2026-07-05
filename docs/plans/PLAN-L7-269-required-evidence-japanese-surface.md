@@ -84,7 +84,7 @@ completion / status / handover / decision packet は、未了 blocker の requir
 - `OutstandingItem` / `WorkflowNextActionItem` / `CompletionDecisionItem` に `requiredEvidenceJa[]` を追加する。
 - blocker 別 `requiredEvidence[]` を `workflowEvidenceTextJa` で日本語表示へ写像する。
 - `analyzeCompletionDecisionPacket` が `requiredEvidenceJa[]` の欠落、件数不一致、英語流用、対応表 drift を fail-close する。
-- `ut-tdd status` text と `ut-tdd completion decision-packet` text に日本語 evidence と `evidence-id` を併記する。
+- `helix status` text と `helix completion decision-packet` text に日本語 evidence と `evidence-id` を併記する。
 - handover Next Action に日本語の必要証跡を含め、再開時に証跡確認が英語配列だけへ戻らないようにする。
 - L7 unit test design の U-OUTSTANDING-015 を required evidence まで拡張する。
 

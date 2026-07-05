@@ -14,7 +14,7 @@
  * confirm + review せよ」を fail-close 強制する。
  *
  * merged deliverable = repo の出荷物ルート (src/ tests/ scripts/ .claude/) 配下の generates artifact。
- * docs/ (PLAN 本体・設計・テスト設計) と .ut-tdd/ (生成ランタイム状態) は confirm 前に実在するのが
+ * docs/ (PLAN 本体・設計・テスト設計) と .helix/ (生成ランタイム状態) は confirm 前に実在するのが
  * 正常なので除外する。**src/*.ts 限定だと `.claude/commands/*.md` など非 src deliverable を産出して
  * draft 放置された PLAN を見逃す** (PLAN-L7-71 が draft のまま 7 個の slash command を merge 済で
  * 素通りし、人手 PLAN 読みでしか発見できなかった実例、2026-06-19)。
@@ -49,7 +49,7 @@ import { fmValue, normalizePath } from "./shared";
 const CONFIRMED_STATUSES: ReadonlySet<string> = new Set(["confirmed", "completed", "accepted"]);
 /**
  * 「merge したら confirm」を強制する出荷物ルート (CLAUDE.md architecture boundary 準拠)。
- * docs/ = V-model 設計成果物、.ut-tdd/ = 生成ランタイム状態で、どちらも confirm 前に実在するのが
+ * docs/ = V-model 設計成果物、.helix/ = 生成ランタイム状態で、どちらも confirm 前に実在するのが
  * 正常なので deliverable から除外する。
  */
 const DELIVERABLE_ROOTS: readonly string[] = ["src/", "tests/", "scripts/", ".claude/"];

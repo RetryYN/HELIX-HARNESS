@@ -16,9 +16,9 @@ const baseLogInput = {
   claim: "works" as const,
   session_id: "session-1",
   source: "run-debug" as const,
-  runtime_surface: "ut-tdd-cli" as const,
+  runtime_surface: "helix-cli" as const,
   correlation_id: "corr-1",
-  evidence_path: ".ut-tdd/evidence/run-debug/session-1.jsonl",
+  evidence_path: ".helix/evidence/run-debug/session-1.jsonl",
   occurred_at: "2026-06-30T00:00:00.000Z",
   redaction_policy: "no-secret-material" as const,
 };
@@ -85,7 +85,7 @@ describe("L7.5 RUN & Debug runtime verification contracts", () => {
     expect(() =>
       buildRuntimeVerificationLogEvent({
         ...baseLogInput,
-        evidence_path: ".ut-tdd/evidence/token=secret123.jsonl",
+        evidence_path: ".helix/evidence/token=secret123.jsonl",
       }),
     ).toThrow(/secret-like/);
   });

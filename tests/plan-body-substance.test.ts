@@ -86,7 +86,7 @@ describe("loadPlanBodySubstanceInput + checkPlanBodySubstance", () => {
   }
 
   it("declare-only な hollow PLAN を flag し、本文を持つ PLAN は通す", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-plan-body-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-plan-body-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writePlan(root, "PLAN-TEST-92-real.md", "# PLAN-TEST-92-real\n\n## §0\n進め方を書く。");
@@ -105,6 +105,6 @@ describe("loadPlanBodySubstanceInput + checkPlanBodySubstance", () => {
   });
 
   it("fails closed when repo root cannot be read", () => {
-    expect(checkPlanBodySubstance(join(tmpdir(), "ut-tdd-plan-body-nope-zzz")).ok).toBe(false);
+    expect(checkPlanBodySubstance(join(tmpdir(), "helix-plan-body-nope-zzz")).ok).toBe(false);
   });
 });

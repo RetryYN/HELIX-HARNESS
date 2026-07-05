@@ -24,7 +24,7 @@ const FAMILIES: Record<string, ResolvedFamily> = {
   "pdm-tech-innovation": "opus",
   "code-reviewer": "sonnet",
 };
-const legacyRuntimeCommand = `${["he", "lix"].join("")} codex`;
+const legacyRuntimeCommand = `${["ut", "tdd"].join("-")} codex`;
 const cliPath = join(process.cwd(), "src", "cli.ts");
 
 function ctx(allowRaw = false): AgentGuardContext {
@@ -47,13 +47,13 @@ function codexSpawn(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput 
 }
 
 function runCliAgentGuard(input: AgentGuardInput | string) {
-  const cwd = mkdtempSync(join(tmpdir(), "ut-tdd-agent-guard-cli-"));
+  const cwd = mkdtempSync(join(tmpdir(), "helix-agent-guard-cli-"));
   try {
     return spawnSync("bun", [cliPath, "hook", "agent-guard"], {
       cwd,
       encoding: "utf8",
       input: typeof input === "string" ? input : JSON.stringify(input),
-      env: { ...process.env, UT_TDD_ALLOW_RAW_AGENT: undefined },
+      env: { ...process.env, HELIX_ALLOW_RAW_AGENT: undefined },
     });
   } finally {
     rmSync(cwd, { recursive: true, force: true });
@@ -82,7 +82,7 @@ describe("evaluateAgentGuard", () => {
   it("loads guard policy from the externalized policy module", () => {
     expect(AGENT_TOOL_NAME).toBe("Agent");
     expect([...AGENT_TOOL_NAMES]).toEqual(["Agent", "Task"]);
-    expect(AGENT_GUARD_BYPASS_HINT).toContain("UT_TDD_ALLOW_RAW_AGENT");
+    expect(AGENT_GUARD_BYPASS_HINT).toContain("HELIX_ALLOW_RAW_AGENT");
   });
 
   it("passes non-Agent tools untouched", () => {
@@ -105,7 +105,7 @@ describe("evaluateAgentGuard", () => {
     const d = evaluateAgentGuard(agent({ subagent_type: "be-logic", model: "sonnet" }), ctx());
     expect(d.code).toBe(2);
     expect(d.message).toContain("not allowlisted");
-    expect(d.message).toContain("ut-tdd codex --role");
+    expect(d.message).toContain("helix codex --role");
     expect(d.message).not.toContain(legacyRuntimeCommand);
   });
 
@@ -206,7 +206,7 @@ describe("evaluateAgentGuard", () => {
     expect(d.message).toContain("bulk");
   });
 
-  it("exposes ut-tdd hook agent-guard as a blocking CLI hook", () => {
+  it("exposes helix hook agent-guard as a blocking CLI hook", () => {
     const pass = runCliAgentGuard(
       codexSpawn({ agent_type: "explorer", message: "Inspect tests/agent-guard.test.ts" }),
     );

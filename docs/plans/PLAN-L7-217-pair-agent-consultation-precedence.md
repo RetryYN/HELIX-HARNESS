@@ -121,43 +121,42 @@ review_evidence:
         output_digest: "sha256:20a836d48fc1fc4b2add974d51180aef1de96b05028543cf593a4b778543b4ad"
 ---
 
-# PLAN-L7-217: pair-agent consultation precedence
+# PLAN-L7-217: pair-agent の consultation precedence
 
 ## Objective
 
-Close the pair-agent workflow hole where a lightweight implementation output
-could include both implementation evidence and a consultation question. In that
-case, the consultation must win: the route is not Green until the smart review
-agent gives a directive or fix response and the next light fix cycle applies it.
+light_implementation の出力に implementation evidence と consultation question が
+同時に含まれる場合の pair-agent workflow の抜けを塞ぐ。こうした場合は
+consultation を優先し、smart review agent が directive か fix response を返し、
+その内容が次の light fix cycle に反映されるまで Green にはしない。
 
 ## Scope
 
-- Treat any `CONSULTATION_QUESTION` from `light_implementation` as pending
-  consultation, regardless of simultaneous changed-files/test/notes evidence.
-- Treat any lightweight implementation completion/approval/verdict marker as a
-  closing-authority violation, even when implementation evidence is otherwise
-  present.
-- Add a regression test proving mixed consultation output routes through smart
-  instruction before the next light fix cycle.
-- Backfill HR-FR-P2-04 / HAC-P2-04b and L3/L6 pair test design.
+- `light_implementation` からの `CONSULTATION_QUESTION` は、
+  changed-files/test/notes evidence が同時にあっても pending consultation として扱う。
+- lightweight implementation の completion/approval/verdict marker は、
+  implementation evidence が他にあっても closing-authority violation として扱う。
+- 混在した consultation output が、次の light fix cycle の前に smart instruction を通ることを
+ 示す regression test を追加する。
+- HR-FR-P2-04 / HAC-P2-04b と L3/L6 の pair test design を backfill する。
 
-## Non-Scope
+## 非対象
 
-- Does not execute external provider CLIs.
-- Does not change frontier approval requirements.
-- Does not make pair-agent local verdict a CI/merge gate substitute.
+- external provider CLI は実行しない。
+- frontier approval requirements は変更しない。
+- pair-agent の local verdict を CI/merge gate の代替にはしない。
 
-## External Basis
+## 外部根拠
 
-The rule follows the existing TDD basis cited by L6: Red/oracle clarification is
-part of the TDD loop, not a Green implementation. Fowler's TDD Red/Green cycle
-and NIST SSDF review/remediation evidence both support requiring explicit review
-instruction before treating ambiguous implementation work as accepted.
+このルールは L6 で参照している既存の TDD basis に従う。Red/oracle clarification は
+TDD loop の一部であり、Green implementation ではない。Fowler の TDD Red/Green cycle と
+NIST SSDF の review/remediation evidence は、曖昧な implementation work を accepted と
+みなす前に explicit review instruction が必要であることを支持する。
 
 ## DoD
 
-- [x] Mixed implementation evidence plus consultation is marked pending.
-- [x] Lightweight implementation output cannot close, approve, or verdict the work.
-- [x] Smart directive/fix response is required before the next light fix cycle.
-- [x] Pair-agent tests cover the regression.
-- [x] L3/L6 design and paired test-design are updated.
+- [x] implementation evidence と consultation が混在する場合は pending として扱う。
+- [x] lightweight implementation output では work を close / approve / verdict できない。
+- [x] 次の light fix cycle の前に smart directive / fix response が必要である。
+- [x] pair-agent tests で regression をカバーする。
+- [x] L3/L6 design と paired test-design を更新する。

@@ -2,7 +2,7 @@
 /**
  * Backward-compatible Claude Code session-log shim.
  *
- * The canonical implementation is the package-local UT-TDD CLI:
+ * The canonical implementation is the package-local HELIX CLI:
  *   - SessionStart -> src/cli.ts session start
  *   - PostToolUse  -> src/cli.ts hook post-tool-use
  *   - Stop         -> src/cli.ts session summary

@@ -1,6 +1,6 @@
 /**
  * handover — session-log PLAN digest → handover 生成。
- *   ① 機械ポインタ `.ut-tdd/handover/CURRENT.json` (今どこ、機械可読 SSoT)
+ *   ① 機械ポインタ `.helix/handover/CURRENT.json` (今どこ、機械可読 SSoT)
  *   ② チーム記録 `docs/handover/session-handover-<date>.md` (次どう、人間判断 scaffold)
  *
  * 設計 (①): docs/design/harness/L6-function-design/handover-mechanism.md (PLAN-L6-06 add-design)。
@@ -16,11 +16,11 @@ import { dirname, join } from "node:path";
 import { analyzeCompletionDecisionPacket } from "../lint/completion-decision-packet";
 import {
   completionDecisionPacketForOutstanding,
-  completionReviewBundleForOutstanding,
   completionReadinessForOutstanding,
+  completionReviewBundleForOutstanding,
   computeOutstandingWork,
-  outstandingSummaryLine,
   type OutstandingWork,
+  outstandingSummaryLine,
   workflowNextActionsForOutstanding,
 } from "../lint/outstanding";
 import {
@@ -91,7 +91,7 @@ export function countHandoverEntries(md: string | null): number {
 /** markdown 1 entry の論理内容 (③-⑥ は human placeholder)。 */
 export function latestSessionId(deps: HandoverDeps): string | null {
   try {
-    const dir = join(deps.repoRoot, ".ut-tdd", "logs", "session");
+    const dir = join(deps.repoRoot, ".helix", "logs", "session");
     let best: { sid: string; ts: string } | null = null;
     for (const name of deps.listDir(dir)) {
       if (!name.endsWith(".jsonl")) continue;
@@ -464,7 +464,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
           `- \`${sanitize(p.plan_id)}\` (${sanitize(p.kind)}): ${sanitize(p.summary)}`,
         ],
         breadcrumb: (n) =>
-          `- (+ ${n} more PLAN — 全 registry は \`ut-tdd status\` / harness.db を参照)`,
+          `- (+ ${n} more PLAN — 全 registry は \`helix status\` / harness.db を参照)`,
       }),
     );
   }
@@ -482,7 +482,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
           ...d.files.map((f) => `  - file: ${sanitize(f)}`),
         ],
         breadcrumb: (n) =>
-          `- (+ ${n} more PLAN の成果物 — 全 registry は \`ut-tdd status\` / harness.db を参照)`,
+          `- (+ ${n} more PLAN の成果物 — 全 registry は \`helix status\` / harness.db を参照)`,
       }),
     );
   }
@@ -529,7 +529,7 @@ export function renderHandoverScaffold(doc: HandoverDoc, opts: HandoverRenderOpt
     // terminal な PLAN / implemented な IMP を「待ち」と書く false-state を可視化・上書きする。
     lines.push(
       `> ${HANDOVER_OUTSTANDING_MARKER}: ${sanitize(outstandingSummaryLine(opts.outstanding).replace(/^outstanding:\s*/, ""))}`,
-      "> ↑ `ut-tdd status` / CURRENT.json と同一の機械事実。これに反する「待ち/未了」記述は false-state。",
+      "> ↑ `helix status` / CURRENT.json と同一の機械事実。これに反する「待ち/未了」記述は false-state。",
       "> 実在する未了 = 非終端 PLAN + open defer のみ。terminal な PLAN / implemented な IMP を pending に書かない。",
       "",
       TODO("上記機械集計に対する PO 判断の補足 (実在する未了のみ)"),
@@ -588,7 +588,7 @@ export function updatePointerOwner(
   const pointer = readPointer(deps);
   if (!pointer) {
     throw new Error(
-      "CURRENT.json is missing or invalid; run `ut-tdd handover status --json` first",
+      "CURRENT.json is missing or invalid; run `helix handover status --json` first",
     );
   }
   const updated: HandoverPointer = {
@@ -650,7 +650,7 @@ export function checkHandoverCompletionWording(deps: HandoverDeps): string[] {
   if (!pointer?.latest_doc) return [];
 
   const audit = deps.readText(
-    join(deps.repoRoot, ".ut-tdd", "audit", "A-133-upstream-vmodel-coverage-audit.md"),
+    join(deps.repoRoot, ".helix", "audit", "A-133-upstream-vmodel-coverage-audit.md"),
   );
   const nonClosed = residualStatusesFromAudit(audit).filter((status) =>
     NON_CLOSED_RESIDUAL_STATUSES.has(status),
@@ -682,26 +682,26 @@ export function checkHandoverDiscipline(deps: HandoverDeps, maxHours = 24): stri
   // IMP-078 gap②: current-plan marker が古い → 解決した active_plan が最新作業を指していない恐れ。
   if (activePlanStale(toSessionDeps(deps), deps.now(), maxHours)) {
     warnings.push(
-      `active-plan marker stale: current-plan が ${maxHours}h 以上未更新 (解決値 ${scope.active_plan} が最新作業と乖離の恐れ) → \`ut-tdd plan use <id>\` で更新`,
+      `active-plan marker stale: current-plan が ${maxHours}h 以上未更新 (解決値 ${scope.active_plan} が最新作業と乖離の恐れ) → \`helix plan use <id>\` で更新`,
     );
   }
   const pointer = readPointer(deps);
   if (!pointer) {
     warnings.push(
-      `handover 未生成: active plan ${scope.active_plan} の活動があるが CURRENT.json が無い → \`ut-tdd handover\` を実行`,
+      `handover 未生成: active plan ${scope.active_plan} の活動があるが CURRENT.json が無い → \`helix handover\` を実行`,
     );
     return warnings;
   }
   if (handoverStale(pointer.updated_at, deps.now(), maxHours)) {
     warnings.push(
-      `handover stale: CURRENT.json が ${maxHours}h 以上未更新 (active=${scope.active_plan}) → \`ut-tdd handover\` で更新`,
+      `handover stale: CURRENT.json が ${maxHours}h 以上未更新 (active=${scope.active_plan}) → \`helix handover\` で更新`,
     );
   }
   // I-2: pointer.active_plan=null は complete=true + planId 省略時の正常形 (完了済で active 無し)。
   // drift は「別 PLAN を指している」ケースのみ問題なので非 null 時だけ判定する (null は無音で正常)。
   if (pointer.active_plan !== null && !sameFamilyPlan(pointer.active_plan, scope.active_plan)) {
     warnings.push(
-      `handover ポインタ drift: CURRENT.json は ${pointer.active_plan} を指すが現 active は ${scope.active_plan} → \`ut-tdd handover\` で同期`,
+      `handover ポインタ drift: CURRENT.json は ${pointer.active_plan} を指すが現 active は ${scope.active_plan} → \`helix handover\` で同期`,
     );
   }
   return warnings;
@@ -755,7 +755,7 @@ export function checkHandoverOutstandingAnchor(deps: HandoverDeps): {
   if (!section.includes(HANDOVER_OUTSTANDING_MARKER)) {
     return {
       messages: [
-        `handover-outstanding — violation: 最新 handover §5 に機械集計行 (${HANDOVER_OUTSTANDING_MARKER}) が無い → \`ut-tdd handover\` で再生成し machine 事実で §5 を seed (前任 prose 転記の false-state 防止)`,
+        `handover-outstanding — violation: 最新 handover §5 に機械集計行 (${HANDOVER_OUTSTANDING_MARKER}) が無い → \`helix handover\` で再生成し machine 事実で §5 を seed (前任 prose 転記の false-state 防止)`,
       ],
       ok: false,
     };
@@ -798,7 +798,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   if (!section.includes(HANDOVER_NEXT_ACTION_MARKER)) {
     return {
       messages: [
-        `handover-next-action — violation: 最新 handover §3 に機械次手 (${HANDOVER_NEXT_ACTION_MARKER}) が無い → \`ut-tdd handover\` で再生成し workflowNextActions 由来の次手を seed`,
+        `handover-next-action — violation: 最新 handover §3 に機械次手 (${HANDOVER_NEXT_ACTION_MARKER}) が無い → \`helix handover\` で再生成し workflowNextActions 由来の次手を seed`,
       ],
       ok: false,
     };
@@ -806,7 +806,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   if (!section.includes("completion-ready") && !section.includes("packet要約:")) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 に packet 要約が無い → `ut-tdd handover` で再生成し packet matrix/review 導線を seed",
+        "handover-next-action — violation: 最新 handover §3 に packet 要約が無い → `helix handover` で再生成し packet matrix/review 導線を seed",
       ],
       ok: false,
     };
@@ -819,7 +819,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   ) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認field件数/確認field/matrix必須field が無い → `ut-tdd handover` で再生成し source-delta review 導線を seed",
+        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認field件数/確認field/matrix必須field が無い → `helix handover` で再生成し source-delta review 導線を seed",
       ],
       ok: false,
     };
@@ -827,7 +827,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   if (!section.includes("completion-ready") && !section.includes("確認観点ID=")) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認観点ID が無い → `ut-tdd handover` で再生成し日本語確認観点と machine review route を分離",
+        "handover-next-action — violation: 最新 handover §3 の packet 要約に確認観点ID が無い → `helix handover` で再生成し日本語確認観点と machine review route を分離",
       ],
       ok: false,
     };
@@ -841,7 +841,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   ) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 に completion-review-coverage 行が無い → `ut-tdd handover` で再生成し review packet で閉じる blocker と packet 外 blocker を分離",
+        "handover-next-action — violation: 最新 handover §3 に completion-review-coverage 行が無い → `helix handover` で再生成し review packet で閉じる blocker と packet 外 blocker を分離",
       ],
       ok: false,
     };
@@ -857,7 +857,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   ) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 に semantic frontier / confirmed meaning 行が無い → `ut-tdd handover` で再生成し意味ベース機能一覧と frontier 境界を seed",
+        "handover-next-action — violation: 最新 handover §3 に semantic frontier / confirmed meaning 行が無い → `helix handover` で再生成し意味ベース機能一覧と frontier 境界を seed",
       ],
       ok: false,
     };
@@ -865,7 +865,7 @@ export function checkHandoverNextActionAnchor(deps: HandoverDeps): {
   if (!section.includes("completion-ready") && /確認観点=review\b/.test(section)) {
     return {
       messages: [
-        "handover-next-action — violation: 最新 handover §3 の packet 要約が machine review route を確認観点へ露出している → `ut-tdd handover` で再生成し確認観点=日本語 / 確認観点ID=machine に分離",
+        "handover-next-action — violation: 最新 handover §3 の packet 要約が machine review route を確認観点へ露出している → `helix handover` で再生成し確認観点=日本語 / 確認観点ID=machine に分離",
       ],
       ok: false,
     };
@@ -897,7 +897,7 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
   if (!pointer.completionDecisionPacket) {
     return {
       messages: [
-        "handover-decision-packet — violation: blocked outstanding だが CURRENT.json に completionDecisionPacket が無い → `ut-tdd handover` で再生成",
+        "handover-decision-packet — violation: blocked outstanding だが CURRENT.json に completionDecisionPacket が無い → `helix handover` で再生成",
       ],
       ok: false,
     };
@@ -912,7 +912,7 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
   }
   const pointerPacket = pointer.completionDecisionPacket;
   const needsLivePacketRebuild =
-    pointerPacket.sourceCommand === "ut-tdd handover" &&
+    pointerPacket.sourceCommand === "helix handover" &&
     (pointerPacket.authorityBoundary === undefined ||
       pointerPacket.humanDecisionRequired === undefined ||
       pointerPacket.humanDecisionBlockers === undefined ||
@@ -933,7 +933,7 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
           generatedAt: pointerPacket.generatedAt,
           now: deps.now(),
           validForMinutes: pointerPacket.freshness.validForMinutes,
-          sourceCommand: "ut-tdd handover",
+          sourceCommand: "helix handover",
         },
       )
     : pointerPacket;
@@ -944,9 +944,9 @@ export function checkHandoverCompletionDecisionPacket(deps: HandoverDeps): {
   const messages = lint.violations.map(
     (v) => `handover-decision-packet — violation: ${v.reason} (${v.detail})`,
   );
-  if (packet.sourceCommand !== "ut-tdd handover") {
+  if (packet.sourceCommand !== "helix handover") {
     messages.push(
-      `handover-decision-packet — violation: sourceCommand=${packet.sourceCommand} expected=ut-tdd handover`,
+      `handover-decision-packet — violation: sourceCommand=${packet.sourceCommand} expected=helix handover`,
     );
   }
   if (packet.status !== readiness.status || packet.ok !== readiness.ok) {
@@ -1016,7 +1016,7 @@ function readPlanMeta(planId: string, deps: HandoverDeps): PlanMeta {
 }
 
 /**
- * IMP-078 gap①: handover が `ut-tdd handover` 機構を経ず手書き bypass されたかを検知 (fail-open, 純判定)。
+ * IMP-078 gap①: handover が `helix handover` 機構を経ず手書き bypass されたかを検知 (fail-open, 純判定)。
  * checkHandoverDiscipline (presence/stale/drift) と責務分離し、bypass のみを surface する。
  * ① CURRENT.json が generated_by 署名を持たない = 手書き pointer / ② latest_doc の entry 数が
  * pointer.doc_entry_count を超える = 機構を経ない手書き追記。pointer 不在は対象外 (discipline が担う)。
@@ -1029,7 +1029,7 @@ export function checkHandoverBypass(deps: HandoverDeps): string[] {
   if (!pointer) return warnings; // 不在は checkHandoverDiscipline の「未生成」が担当
   if (pointer.generated_by !== GENERATED_BY) {
     warnings.push(
-      "handover bypass: CURRENT.json が ut-tdd handover 由来でない (手書き) → `ut-tdd handover` で生成し直す",
+      "handover bypass: CURRENT.json が helix handover 由来でない (手書き) → `helix handover` で生成し直す",
     );
     return warnings; // 手書き pointer の doc_entry_count は信頼できないので entry 照合は skip
   }
@@ -1037,7 +1037,7 @@ export function checkHandoverBypass(deps: HandoverDeps): string[] {
     const md = deps.readText(join(deps.repoRoot, pointer.latest_doc));
     if (md && countHandoverEntries(md) > (pointer.doc_entry_count ?? 0)) {
       warnings.push(
-        `handover bypass: ${pointer.latest_doc} が手書き追記されている (entry 数 mismatch) → \`ut-tdd handover\` で再生成`,
+        `handover bypass: ${pointer.latest_doc} が手書き追記されている (entry 数 mismatch) → \`helix handover\` で再生成`,
       );
     }
   }
@@ -1060,7 +1060,7 @@ export function boundSameDayEntries(md: string, maxEntries: number): string {
   // entry 数 (= header 数) が上限内なら圧縮不要 = 入力不変 (breadcrumb 除去もしない)。
   if (countHandoverEntries(md) <= maxEntries - 1) return md;
   // 既存 breadcrumb (+ その直前 separator) を除去してから再 prune (idempotent、累積防止)。
-  const stripped = md.replace(/\n+---\n+<!-- ut-tdd handover:[^\n]*-->/g, "");
+  const stripped = md.replace(/\n+---\n+<!-- helix handover:[^\n]*-->/g, "");
   const positions: number[] = [];
   const re = /^#\s+(?:Session Handover\b|セッション引き継ぎ)/gm;
   let m: RegExpExecArray | null = re.exec(stripped);
@@ -1087,7 +1087,7 @@ export function boundSameDayEntries(md: string, maxEntries: number): string {
       parts.push(entries[i]);
     } else if (!breadcrumbInserted) {
       parts.push(
-        `<!-- ut-tdd handover: ${prunedCount} 件の同日中間エントリを累積抑制のため剪定 (git 履歴に保全) -->`,
+        `<!-- helix handover: ${prunedCount} 件の同日中間エントリを累積抑制のため剪定 (git 履歴に保全) -->`,
       );
       breadcrumbInserted = true;
     }
@@ -1132,7 +1132,7 @@ export function runHandover(args: HandoverArgs, deps: HandoverDeps): HandoverRes
   const completionDecisionPacket = completionDecisionPacketForOutstanding(outstanding, {
     generatedAt: now,
     now,
-    sourceCommand: "ut-tdd handover",
+    sourceCommand: "helix handover",
   });
   const content = renderHandoverScaffold(doc, { slimSummary: bounded != null, outstanding });
   const next = bounded ? `${bounded.replace(/\s*$/, "")}\n\n---\n\n${content}\n` : `${content}\n`;
@@ -1198,7 +1198,7 @@ export function nodeHandoverDeps(repoRoot: string): HandoverDeps {
   };
 }
 
-/** CLI `ut-tdd plan use` 用: current-plan を session-log の nodeDeps 経由で書く/clear。 */
+/** CLI `helix plan use` 用: current-plan を session-log の nodeDeps 経由で書く/clear。 */
 export function setActivePlanCli(
   repoRoot: string,
   planId: string | null,

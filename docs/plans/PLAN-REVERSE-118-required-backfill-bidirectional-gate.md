@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-118-required-backfill-bidirectional-gate
-title: "PLAN-REVERSE-118: required backfill bidirectional gate"
+title: "PLAN-REVERSE-118: required backfill の双方向 gate"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,16 +16,16 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "Requirements define bidirectional required add-impl backfill pairing."
+    reason: "requirements は required add-impl backfill pairing の双方向性を定義する。"
   - layer: L4-basic-design
     decision: not_impacted
-    reason: "The gate changes PLAN governance only, not external basic design behavior."
+    reason: "この gate は PLAN governance のみを変更し、外部 basic design の振る舞いは変更しない。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The gate changes PLAN governance only, not detailed runtime design behavior."
+    reason: "この gate は PLAN governance のみを変更し、詳細な runtime design の振る舞いは変更しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - bidirectional backfill fullback"
+    slot_label: "TL - 双方向 backfill fullback"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-118-required-backfill-bidirectional-gate.md
     artifact_type: markdown_doc
@@ -41,7 +41,7 @@ review_evidence:
     reviewed_at: "2026-06-23T13:05:00+09:00"
     tests_green_at: "2026-06-23T13:05:00+09:00"
     verdict: approve
-    scope: "Requirements fullback for bidirectional required add-impl backfill pairing."
+    scope: "双方向 required add-impl backfill pairing の requirements fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -63,23 +63,23 @@ review_evidence:
         output_digest: "sha256:cb69e5f9425f57492a0760eb7574201d4d361689feb2229db46d773509485b07"
 ---
 
-# PLAN-REVERSE-118: required backfill bidirectional gate
+# PLAN-REVERSE-118: required backfill の双方向 gate
 
-## Objective
+## 目的
 
-Back-fill the required add-impl bidirectional pairing rule into requirements.
-The previous rule proved that a Reverse PLAN pointed back to implementation, but
-not that the implementation PLAN exposed its Reverse dependency.
+required add-impl の双方向 pairing rule を requirements へ backfill する。
+以前の rule は Reverse PLAN が implementation を参照していることを証明したが、
+implementation PLAN が自身の Reverse dependency を公開していることまでは証明していなかった。
 
-## Scope
+## スコープ
 
-- Requirements record the `reverseLinkMissing` backfill-pairing violation.
-- New or updated required add-impl PLANs must require the Reverse PLAN that
-  backfills them.
-- Legacy one-way pairing remains non-blocking until updated.
+- Requirements は `reverseLinkMissing` backfill-pairing violation を記録する。
+- 新規または更新された required add-impl PLAN は、自身を backfill する Reverse PLAN を
+  require しなければならない。
+- legacy の一方向 pairing は、更新されるまで non-blocking のままとする。
 
-## Acceptance Criteria
+## 受入条件
 
-- A one-way required add-impl/Reverse pair fails for new PLANs.
-- A bidirectional required add-impl/Reverse pair passes.
-- Fullback evidence points to the requirements update.
+- 新規 PLAN では、一方向の required add-impl/Reverse pair が失敗する。
+- 双方向の required add-impl/Reverse pair は通過する。
+- Fullback evidence は requirements 更新を指す。

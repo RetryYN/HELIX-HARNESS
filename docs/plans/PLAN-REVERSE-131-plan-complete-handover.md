@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-131-plan-complete-handover
-title: "PLAN-REVERSE-131: plan complete handover fullback"
+title: "PLAN-REVERSE-131: plan complete handover の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,22 +16,22 @@ backprop_scope:
   - layer: requirements
     decision: not_impacted
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The requirement already requires handover on PLAN completion; this slice adds the CLI lifecycle entrypoint."
+    reason: "requirement はすでに PLAN completion 時の handover を要求しており、この slice は CLI lifecycle entrypoint を追加する。"
   - layer: L4-basic-design
     decision: not_impacted
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "The handover function stays the same; CLI now exposes the completed lifecycle path."
+    reason: "handover function は同じままで、CLI が completed lifecycle path を公開する。"
   - layer: L5-detailed-design
     decision: not_impacted
     evidence_path: docs/design/harness/L5-detailed-design/internal-processing.md
-    reason: "No storage schema or handover internals changed."
+    reason: "storage schema と handover internals は変更しない。"
   - layer: implementation
     decision: updated
     evidence_path: src/cli.ts
-    reason: "The plan command group now exposes plan complete."
+    reason: "plan command group が plan complete を公開する。"
 agent_slots:
   - role: tl
-    slot_label: "TL - plan complete handover fullback"
+    slot_label: "TL - plan complete handover fullback 確認"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-131-plan-complete-handover.md
     artifact_type: markdown_doc
@@ -53,7 +53,7 @@ review_evidence:
     reviewed_at: "2026-06-23T16:10:00+09:00"
     tests_green_at: "2026-06-23T16:10:00+09:00"
     verdict: approve
-    scope: "R4 fullback for plan complete handover CLI lifecycle entrypoint."
+    scope: "plan complete handover CLI lifecycle entrypoint の R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -75,22 +75,21 @@ review_evidence:
         output_digest: "sha256:7961c43a561d23e29399061699265a57ea8bc6e747cbeb69a32c646445611660"
 ---
 
-# PLAN-REVERSE-131: plan complete handover fullback
+# PLAN-REVERSE-131: plan complete handover の fullback
 
-## Objective
+## 目的
 
-Record that PLAN completion now has a CLI lifecycle entrypoint that reuses the
-existing completed handover behavior.
+PLAN completion が、既存の completed handover behavior を再利用する
+CLI lifecycle entrypoint を持つことを記録する。
 
-## Scope
+## スコープ
 
-- No handover storage schema changed.
-- `runHandover` remains the single writer for completed handover state.
-- The CLI addition prevents completion bookkeeping from depending on an
-  operator remembering a separate command.
+- handover storage schema は変更しない。
+- `runHandover` は completed handover state の single writer のまま維持する。
+- CLI 追加により、completion bookkeeping が operator の別 command 記憶に依存しないようにする。
 
-## Acceptance Criteria
+## 受入条件
 
-- `plan complete` is covered by CLI surface tests.
-- Handover tests continue to cover `runHandover({ complete: true })`.
-- Doctor remains green.
+- `plan complete` が CLI surface tests で被覆される。
+- Handover tests が `runHandover({ complete: true })` を引き続き被覆する。
+- Doctor が green のまま維持される。

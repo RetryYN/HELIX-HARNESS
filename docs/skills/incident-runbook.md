@@ -25,7 +25,7 @@ runbook はインシデント発生中ではなく事前に書く。これによ
 
 - PLAN が L11 gate（system test / ops readiness）に近づいており、対象 service の runbook がまだ存在しない。
 - production signal から Incident drive の PLAN が開かれた。
-- `ut-tdd doctor` が production-incident / regression / hotfix signal を示した。
+- `helix doctor` が production-incident / regression / hotfix signal を示した。
 
 ## Part A: リリース前 runbook（Forward / Add-feature）
 
@@ -49,13 +49,13 @@ target が production であること、かつ production change の前に human
 （on-call + TL + PM）が記録されていることである。
 
 ```
-ut-tdd status        # PLAN entry を登録し、Incident drive を確認する
+helix status        # PLAN entry を登録し、Incident drive を確認する
 ```
 
 First response（最初の約15分）では、symptom と scope を確認し、severity を分類する
 （Sev1 primary-path-down または data-loss-risk、Sev2 major degradation、Sev3 minor）。
 runbook を開き、該当する alert procedure に従う。安全であれば runbook の immediate mitigation を適用する。
-すべての action を timestamp 付きで `.ut-tdd/audit/<plan-id>-incident-timeline.md` に記録する。
+すべての action を timestamp 付きで `.helix/audit/<plan-id>-incident-timeline.md` に記録する。
 
 symptom を cover する runbook procedure が無い場合、production で即興対応しない。
 TL へ escalate し、新しい procedure を post-incident action として runbook に追加する。
@@ -66,13 +66,13 @@ TL へ escalate し、新しい procedure を post-incident action として run
 2. root cause に code/design fix が必要な場合は Recovery PLAN（branch `hotfix/*`）を開く。
    design-level は `add-design`、implementation-only は L7 の `add-impl` として分類し、
    その問題を検出できたはずの regression test を追加する。
-3. session boundary で `ut-tdd handover` を実行し、resolution を記録する。
+3. session boundary で `helix handover` を実行し、resolution を記録する。
 
 ## 完了 checklist
 
 - [ ] `docs/ops/<service-slug>-runbook.md` に runbook があり、3件以上の alert procedure、
       rollback procedure、role-based escalation chain を含む。
 - [ ] Threshold は observability design doc を参照している（SSoT を重複させない）。
-- [ ] Incident timeline が `.ut-tdd/audit/` に記録されている。
+- [ ] Incident timeline が `.helix/audit/` に記録されている。
 - [ ] production change の前に three-party approval が記録されている。
-- [ ] root cause に対して Recovery / add-design PLAN が開かれ、`ut-tdd handover` が実行されている。
+- [ ] root cause に対して Recovery / add-design PLAN が開かれ、`helix handover` が実行されている。

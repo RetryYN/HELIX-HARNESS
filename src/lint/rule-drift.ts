@@ -14,12 +14,12 @@ export interface RuleDriftResult {
 }
 
 const SHARED_MARKERS = [
-  "ut-tdd status",
-  "ut-tdd doctor",
-  "ut-tdd handover",
-  "ut-tdd codex --role <role> --task",
-  "ut-tdd claude --role <role> --task",
-  "ut-tdd team run --definition .ut-tdd/teams/<team>.yaml",
+  "helix status",
+  "helix doctor",
+  "helix handover",
+  "helix codex --role <role> --task",
+  "helix claude --role <role> --task",
+  "helix team run --definition .helix/teams/<team>.yaml",
   "standalone",
   "claude-only",
   "codex-only",
@@ -32,8 +32,8 @@ const ADAPTER_MARKERS = {
   ".claude/CLAUDE.md": ["../CLAUDE.md", "../AGENTS.md"],
 } as const;
 
-const LEGACY_RUNTIME_NAME = ["he", "lix"].join("");
-const LEGACY_RUNTIME_ENV_PREFIX = LEGACY_RUNTIME_NAME.toUpperCase();
+const LEGACY_RUNTIME_NAME = ["ut", "tdd"].join("-");
+const LEGACY_RUNTIME_ENV_PREFIX = ["UT", "TDD"].join("_");
 const FORBIDDEN_ADAPTER_MARKERS = [
   {
     marker: "legacy runtime command routing",

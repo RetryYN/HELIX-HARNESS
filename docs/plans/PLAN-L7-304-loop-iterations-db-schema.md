@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-304-loop-iterations-db-schema
-title: "PLAN-L7-304 (impl): loop_iterations harness.db schema"
+title: "PLAN-L7-304 (impl): loop_iterations の harness.db schema"
 kind: impl
 layer: L7
 drive: agent
@@ -15,7 +15,7 @@ backprop_decision: not_required
 backprop_decision_reason: "PLAN-L7-176/177 §4 carry と L5 physical-data §9.1 / L6 orchestration-memory で既に要求済みの loop_iterations 投影 schema を L7 実装へ降ろす slice。新規 L1/L3 要求は追加しない。"
 agent_slots:
   - role: tl
-    slot_label: "TL - loop observability projection boundary"
+    slot_label: "TL - loop observability projection 境界"
   - role: se
     slot_label: "SE - harness.db schema registry"
 generates:
@@ -75,14 +75,14 @@ review_evidence:
         output_digest: "sha256:c142366412b50717f706387d702f84da84505f3e62c86730743fdfcbcd4f620b"
 ---
 
-# PLAN-L7-304: loop_iterations harness.db schema
+# PLAN-L7-304: loop_iterations の harness.db schema
 
 ## 0. 目的
 
 PLAN-L7-176/177 の §4 carry と L6 orchestration-memory 設計で残していた
 `loop_iterations` の harness.db schema を registry に追加する。
 
-この slice は schema と index に限定する。`.ut-tdd/state/loop/*.iterations.jsonl`
+この実装 slice は schema と index に限定する。`.helix/state/loop/*.iterations.jsonl`
 からの rebuild 投影、doctor `verifier-provider-mismatch` の実装、runtime provider dispatch の変更は
 PLAN-L7-305 以降で扱う。
 
@@ -96,7 +96,7 @@ PLAN-L7-305 以降で扱う。
 ## 2. 対象外
 
 - provider transcript、secret、credential、PII の保存。
-- `.ut-tdd` から HELIX への不可逆 rename / cutover。
+- `.helix` から HELIX への不可逆 rename / cutover。
 - runtime provider dispatch、`selectVerifier`、adapter 実行の変更。
 - loop JSONL から harness.db へ実データを投影する `projection-writer` 実装。
 - `verifier-provider-mismatch` doctor gate。

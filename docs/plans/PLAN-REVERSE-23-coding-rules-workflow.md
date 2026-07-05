@@ -32,11 +32,11 @@ review_evidence:
     scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
 ---
 
-# PLAN-REVERSE-23 (reverse): back-fill coding-rules SSoT workflow
+# PLAN-REVERSE-23（reverse）back-fill coding-rules SSoT workflow の記録
 
-## §0 Position
+## §0 位置づけ
 
-Records the Reverse side for IMP-094 so the coding-rules implementation is not orphaned from workflow/governance design.
+IMP-094 の Reverse 側を記録し、coding-rules implementation が workflow / governance design から orphan にならないようにする。
 
 ## §3.1 実装計画（情報源）
 
@@ -47,17 +47,17 @@ Records the Reverse side for IMP-094 so the coding-rules implementation is not o
 
 実装:
 
-- Reverse trace is this PLAN plus the `requires` edge from PLAN-L7-24.
+- Reverse trace はこの PLAN と PLAN-L7-24 からの `requires` edge で構成する。
 
 ## §3 工程表
 
-### Step 1: [並列] observed gap record
+### Step 1: [並列] observed gap の記録
 
-Record that coding-rules lacked a dedicated add-feature PLAN.
+coding-rules に専用 add-feature PLAN が不足していたことを記録する。
 
-### Step 2: [直列] Forward PLAN connection
+### Step 2: [直列] Forward PLAN 接続
 
-直列理由: downstream_dependency。Reverse can only close after L6/L7 PLAN ids are fixed.
+直列理由: downstream_dependency。L6/L7 PLAN ID が確定した後にだけ Reverse を close できる。
 
 ### Step 3: [直列] review
 
@@ -70,4 +70,4 @@ Record that coding-rules lacked a dedicated add-feature PLAN.
 ## §8 DoD
 
 - [x] PLAN-L7-24 requires this Reverse PLAN.
-- [x] backfill doctor does not report this add-impl as orphan.
+- [x] backfill doctor がこの add-impl を orphan として報告しない。

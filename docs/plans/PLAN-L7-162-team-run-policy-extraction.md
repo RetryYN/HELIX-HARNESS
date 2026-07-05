@@ -81,24 +81,23 @@ review_evidence:
         output_digest: "sha256:0555481a666c100e151eeacd39fb081ac704791bd1ca5c2ff38bbca3d2f3dcda"
 ---
 
-# PLAN-L7-162: team run policy extraction
+# PLAN-L7-162: team run policy extraction（方針抽出）
 
-## Objective
+## 目的
 
-Reduce the remaining `externalize-policy` candidates by extracting team run
-prompt and validation policy strings from `src/team/run.ts`.
+残っている `externalize-policy` 候補を削減するため、team run の prompt と
+validation policy 文字列を `src/team/run.ts` から抽出する。
 
-## Scope
+## 対象範囲
 
-- Move member prompt headings/rules, validation messages, frontier-block
-  messages, and dependency failure messages to `src/team/run-policy.ts`.
-- Keep `src/team/run.ts` responsible for team construction, dependency ordering,
-  adapter planning, and execution.
-- Add direct test coverage for the sidecar policy through existing team run
-  tests.
+- member prompt の見出しとルール、validation messages、frontier-block messages、
+  dependency failure messages を `src/team/run-policy.ts` へ移す。
+- `src/team/run.ts` は team construction、dependency ordering、adapter planning、
+  execution の責務を維持する。
+- 既存の team run tests を通じて、sidecar policy への直接 test coverage を追加する。
 
-## Acceptance Criteria
+## 受入条件
 
-- Team run behavior remains unchanged.
-- `tests/team-run.test.ts` passes and directly imports the sidecar policy.
-- Typecheck, lint, DB rebuild, and doctor pass.
+- Team run behavior は変更しない。
+- `tests/team-run.test.ts` が pass し、sidecar policy を直接 import する。
+- Typecheck、lint、DB rebuild、doctor が pass する。

@@ -37,7 +37,7 @@ describe("D-CONTRACT DSL routing contracts (PLAN-L7-312)", () => {
     expect(dContractGateChecksSchema.safeParse(result.gate_checks).success).toBe(true);
     expect(routeSignalToMode({ signal: "doctor failure" }).candidates).toContain("reverse");
     expect(evaluateRouteCommand({ signal: "feature_addition" }).recommended_command?.command).toBe(
-      "ut-tdd task classify",
+      "helix task classify",
     );
     expect(validateRouteConfigText({ path: "route.yaml", text: "route: ok" })).toEqual([]);
   });
@@ -90,10 +90,14 @@ describe("D-CONTRACT DSL routing contracts (PLAN-L7-312)", () => {
     expect(result.findings.map((finding) => finding.code)).toContain("d-contract-next-cycle");
   });
 
-  it("fails closed for non ut-tdd next_action commands", () => {
+  it("fails closed for non helix next_action commands", () => {
+    const legacyRuntimeName = ["ut", "tdd"].join("-");
     const result = validateDContractDsl({
       modeRoutingText,
-      gateChecksText: gateChecksText.replace("command: ut-tdd doctor", "command: helix doctor"),
+      gateChecksText: gateChecksText.replace(
+        "command: helix doctor",
+        `command: ${legacyRuntimeName} doctor`,
+      ),
       requiredGateIds: ["G1"],
     });
 

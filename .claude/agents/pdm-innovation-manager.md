@@ -18,7 +18,7 @@ planning input を準備するが、final product decision は行わない。
 - technology option と market hypothesis を ranked strategic option へ reconcile する。
 - conflict、missing evidence、検証が必要な assumption を明示する。
 - L1-ready candidate requirements、validation step、rollback criteria、decision evidence を作る。
-- high-impact recommendation を finalize する前に、`ut-tdd codex --role tl-advisor --task "..."` 経由で adversarial technical check を 1 回依頼する。
+- high-impact recommendation を finalize する前に、`helix codex --role tl-advisor --task "..."` 経由で adversarial technical check を 1 回依頼する。
 
 ## Boundaries（境界）
 

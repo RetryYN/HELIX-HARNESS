@@ -43,7 +43,7 @@ Completeness oracle（完全性オラクル）: U-UPSTREAM-001 は A146-1..A146-
 |--------|----------|-------------------|
 | U-UPSTREAM-001 | `classifyUpstreamA146Finding` | A146-1..A146-8 だけを known として accept し、未知 id を silent adoption（暗黙採用）しない |
 | U-UPSTREAM-002 | `buildGuardGovernancePack` | guard entrypoint、deferred surface、coverage claim を分離し、未実装 guard を covered として扱わない |
-| U-UPSTREAM-003 | `resolveConsumerCliPath` / `runHelixProjectSetup.consumerReadiness` | PATH/wrapper/resolver のいずれかで `ut-tdd` 解決可能性を証明する。解決不能なら fail-close remediation（安全側の修復案）を返す。`ut-tdd setup project` は同じ PATH preflight を JSON/text output へ出し、CLI 欠落時に projected hook を silently accepted にしない |
+| U-UPSTREAM-003 | `resolveConsumerCliPath` / `runHelixProjectSetup.consumerReadiness` | PATH/wrapper/resolver のいずれかで `helix` 解決可能性を証明する。解決不能なら fail-close remediation（安全側の修復案）を返す。`helix setup project` は同じ PATH preflight を JSON/text output へ出し、CLI 欠落時に projected hook を silently accepted にしない |
 | U-UPSTREAM-004 | `verifyGreenEvidenceBinding` | command rerun evidence と digest update が同一 batch にある場合だけ evidence integrity（証跡整合性）を close し、hash-only restamp は fail する |
 | U-UPSTREAM-005 | `classifyTelemetryProvenance` | runtime/projected/derived/unknown を分類し、unknown を runtime evidence として reject する |
 | U-UPSTREAM-006 | `curateDistributionDoc` | consumer/internal/dogfood/deny を分類し、blanket governance allowlisting（一括許可）を flag する |
@@ -69,4 +69,4 @@ Completeness oracle（完全性オラクル）: U-UPSTREAM-001 は A146-1..A146-
 | U-VERIFYSTRAT-003 | `rejectProjectionOnlyVerification` | projection-only telemetry と missing-provenance class は fired/used/works acceptance を close できない。ただし trace-support evidence としては残せる |
 | U-VERIFYSTRAT-004 | `buildRuntimeVerificationLogEvent` | plan/test/claim/session/source/surface/correlation/evidence/timestamp と redaction policy を持つ append-only event を生成し、secret-like value は保存しない |
 | U-VERIFYSTRAT-005 | `validateRuntimeVerificationLogCompleteness` | 空 session id、projection source、missing evidence path、missing correlation id を持つ fired/used/works event を reject する。blocked hosted-preflight event は blocked-reason evidence を要求する |
-| U-VERIFYSTRAT-006 | `appendRuntimeVerificationLogEvent` / `ut-tdd run-debug log` | complete runtime verification JSONL event を正確に 1 件 append し、projection-only、invalid-surface、secret-like、missing-link event は write 前に拒否する |
+| U-VERIFYSTRAT-006 | `appendRuntimeVerificationLogEvent` / `helix run-debug log` | complete runtime verification JSONL event を正確に 1 件 append し、projection-only、invalid-surface、secret-like、missing-link event は write 前に拒否する |

@@ -3,7 +3,7 @@ artifact_type: research_memo
 status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
-related_audit: .ut-tdd/audit/A-126-canonical-document-export.md
+related_audit: .helix/audit/A-126-canonical-document-export.md
 related_requirements: docs/governance/helix-harness-requirements_v1.2.md#6811-canonical-document-export-a-126-2026-06-09
 ---
 

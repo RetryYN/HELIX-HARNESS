@@ -60,15 +60,15 @@ pagination model を定義する。L6 unit-test design（error-path coverage、b
 - [ ] `docs/design/.../L4-basic/` に L4 doc があり、method、path、shapes、
       errors、versioning section を持つ。
 - [ ] `docs/test-design/` に L8 integration-test design doc があり、L4 doc を path で参照している。
-- [ ] `ut-tdd plan lint` が exit 0（PLAN `generates` が L4/L8 docs の両方を列挙する）。
-- [ ] `ut-tdd doctor` exits 0.
+- [ ] `helix plan lint` が exit 0（PLAN `generates` が L4/L8 docs の両方を列挙する）。
+- [ ] `helix doctor` exits 0.
 - [ ] endpoint name が既存 routes と conflict しない
-      （wiring が modules をまたぐ場合は dependency view として `ut-tdd graph` を使う）。
+      （wiring が modules をまたぐ場合は dependency view として `helix graph` を使う）。
 - [ ] 新しい resource または domain term がある場合、L0 glossary が更新されている。
 
 ## Reverse pass（既存 API の抽出）
 
 Reverse drive が既存 `src/` code から始まる場合、tests を書く前に code 精査から
-L4 contract doc を作る。`ut-tdd review --uncommitted` を使い、抽出した doc がすべての
+L4 contract doc を作る。`helix review --uncommitted` を使い、抽出した doc がすべての
 handler path を覆っていることを確認する。R1 output（contract doc）は、その surface に対する
 以後の Forward または Add-feature work の SSoT になる。

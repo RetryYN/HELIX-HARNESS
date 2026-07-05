@@ -75,55 +75,53 @@ review_evidence:
         output_digest: "sha256:915ec6686156b8ed12e57a18b666105a488bc3ae85c31e1d89db2c1336ac94b4"
 ---
 
-# PLAN-L7-148: refactor candidate detector module extraction
+# PLAN-L7-148: refactor candidate detector のモジュール抽出
 
-## Objective
+## 目的
 
-Execute a behavior-invariant Refactor from the detector's own top
-`split-module` candidate and feed the result back into the Refactor driving
-model.
+detector 自身が出した最上位の `split-module` candidate から、振る舞いを変えない
+Refactor を実行し、その結果を Refactor driving model へ戻す。
 
-## Scope
+## スコープ
 
-- Extract refactor candidate detection from `projection-writer.ts` into a
-  dedicated `src/state-db/refactor-candidates.ts` module.
-- Keep `projection-writer.ts` responsible only for projecting candidate rows
-  into `quality_signals` and `feedback_events`.
-- Preserve detector output semantics, schema, CLI behavior, and public
-  contracts.
-- Update Refactor mode guidance with the precision/triage rule learned by
-  running the detector against the repository.
+- refactor candidate detection を `projection-writer.ts` から専用の
+  `src/state-db/refactor-candidates.ts` module へ抽出する。
+- `projection-writer.ts` の責務は candidate rows を `quality_signals` と
+  `feedback_events` へ投影することだけに保つ。
+- detector output semantics、schema、CLI behavior、public contracts を維持する。
+- repository に対して detector を実行して得た precision/triage rule を
+  Refactor mode guidance へ反映する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `analyzeRefactorCandidates` remains covered by the existing projection writer
-  tests.
-- Rebuilding `harness.db` still emits refactor candidate quality signals and
-  promoted feedback events.
-- `bun run vitest run tests\projection-writer.test.ts` passes.
-- `bun run typecheck` passes.
-- `bun run lint` passes.
-- `bun run src\cli.ts doctor` passes or reports only pre-existing non-blocking
-  warnings.
+- `analyzeRefactorCandidates` は既存の projection writer tests で引き続き
+  cover される。
+- `harness.db` の rebuild 後も refactor candidate quality signals と promoted
+  feedback events が emit される。
+- `bun run vitest run tests\projection-writer.test.ts` が pass する。
+- `bun run typecheck` が pass する。
+- `bun run lint` が pass する。
+- `bun run src\cli.ts doctor` が pass する、または既存の non-blocking warnings
+  だけを report する。
 
-## Refactor Invariant
+## Refactor 不変条件
 
-- No persisted schema changes.
-- No new user-visible CLI behavior.
-- No functional scope beyond module extraction and process guidance.
-- Detector candidate ranking and promotion rules remain unchanged.
+- persisted schema changes はない。
+- 新しい user-visible CLI behavior はない。
+- module extraction と process guidance を超える functional scope はない。
+- Detector candidate ranking と promotion rules は変更しない。
 
-## Review Evidence
+## レビュー証跡
 
-- reviewer: codex-intra-runtime
-- review_kind: intra_runtime_subagent
-- reviewed_at: 2026-06-25T14:52:00+09:00
-- tests_green_at: 2026-06-25T14:52:00+09:00
-- verdict: approve
-- scope: Behavior-invariant extraction of detector logic plus Refactor mode
-  precision guidance.
+- `reviewer`: `codex-intra-runtime`
+- `review_kind`: `intra_runtime_subagent`
+- `reviewed_at`: `2026-06-25T14:52:00+09:00`
+- `tests_green_at`: `2026-06-25T14:52:00+09:00`
+- `verdict`: `approve`
+- `scope`: detector logic の振る舞い不変な抽出と、Refactor mode の
+  precision guidance。
 
-Green commands:
+green commands:
 
 - `bun run vitest run tests\projection-writer.test.ts` exit 0
   (`tests/projection-writer.test.ts`,

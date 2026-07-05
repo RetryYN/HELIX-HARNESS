@@ -87,20 +87,18 @@ review_evidence:
         output_digest: "sha256:86e589da40d3d5d7451e25f067e4714fbe508fcf23f1f93befed42bb51bf2f48"
 ---
 
-# PLAN-REVERSE-209: active objective evidence audit back-fill
+# PLAN-REVERSE-209: objective evidence audit back-fill（active objective 証跡監査 back-fill）
 
-## R0-R4 Summary
+## R0-R4 要約
 
-- R0: The active objective had evidence spread across many L3-L7 artifacts.
-- R1: As-built work was difficult to audit semantically from chat summaries.
-- R2: The correct as-is model is a requirement evidence index plus existing
-  design, test, source, and doctor gates.
-- R3: Intent is to make completion evidence inspectable without reducing the
-  objective to green command counts.
-- R4: Route to an L7 audit artifact, test oracle, and doctor hard gate.
+- R0: active objective の evidence は複数の L3-L7 artifacts に分散していた。
+- R1: as-built work は chat summaries だけでは意味的に audit しにくかった。
+- R2: 正しい as-is model は、requirement evidence index と既存の design / test / source /
+  doctor gates の組み合わせである。
+- R3: intent は、objective を green command counts に還元せず、completion evidence を点検可能にすること。
+- R4: L7 audit artifact、test oracle、doctor hard gate へ route する。
 
-## Gap Closed
+## 解消したギャップ
 
-The objective evidence table provides a stable index from each user requirement
-to current-state proof or an explicit blocker when proof is not yet available,
-and `ut-tdd doctor` now rejects semantic completion drift.
+objective evidence table は、各 user requirement から current-state proof、または proof が未取得の場合の
+明示的 blocker への安定した index を提供する。さらに `helix doctor` は semantic completion drift を拒否する。

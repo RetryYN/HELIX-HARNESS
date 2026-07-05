@@ -52,7 +52,7 @@ review_evidence:
     reviewed_at: "2026-07-01T06:20:45+09:00"
     tests_green_at: "2026-07-01T06:20:45+09:00"
     verdict: pass
-    scope: "Continuation: Codex spawn_agent guard parity is now wired instead of deferred. .codex/hooks.json requires the shared agent-guard entrypoint for spawn_agent|spawn_agents_on_csv, evaluateAgentGuard validates Codex payloads separately from Claude Agent payloads, ut-tdd hook agent-guard exposes the blocking CLI hook used by consumer templates, and design/test-design/PLAN text now reflects that subagent-stop is the only true N/A while spawn_agent is guarded."
+    scope: "Continuation: Codex spawn_agent guard parity is now wired instead of deferred. .codex/hooks.json requires the shared agent-guard entrypoint for spawn_agent|spawn_agents_on_csv, evaluateAgentGuard validates Codex payloads separately from Claude Agent payloads, helix hook agent-guard exposes the blocking CLI hook used by consumer templates, and design/test-design/PLAN text now reflects that subagent-stop is the only true N/A while spawn_agent is guarded."
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -123,145 +123,144 @@ review_evidence:
         output_digest: "sha256:298920e10466ce19b7994d8e061b79c99d8bbc62cbc537d0ffe83a2367c3912a"
 ---
 
-# PLAN-L7-139: Codex hook adapter (orchestrator-rule parity)
+# PLAN-L7-139: Codex hook adapter 対応（orchestrator-rule parity）
 
-## Status
+## 状態
 
-`confirmed`. The deliverables are merged in the working tree, and
-`merged-plan-status` hard-requires a confirmed + review_evidence-backed PLAN for
-any merged deliverable — leaving finished, verified work under a `draft` PLAN
-would itself be a state-drift violation. The foreign-edit guard parity is
-implemented, unit-green (32 tests), and the cross-runtime (Codex) review's REJECT
-findings are all addressed. The end-to-end live confirmation — running `codex` in
-this repo and observing a real `work-guard` block on a foreign `apply_patch` edit
-— is a documented **hardening follow-up**, not a confirmation blocker:
-`extractEditTargets` is payload-key-agnostic (leaf-scan), so the only residual is
-whether Codex includes the patch in the PreToolUse `tool_input` at all, which the
-binary's freeform single-argument evidence makes low-risk. See **Follow-ups**.
+`confirmed`。成果物は working tree に merge 済みであり、`merged-plan-status` は
+merge 済み成果物に対して confirmed かつ `review_evidence` 付きの PLAN を必須にする。
+完了・検証済み作業を `draft` PLAN のまま残すこと自体が state-drift 違反になるためである。
+foreign-edit guard parity は実装済み、unit-green（32 tests）で、cross-runtime（Codex）
+review の REJECT findings はすべて対応済みである。end-to-end live confirmation、つまり
+この repo で `codex` を起動し foreign `apply_patch` edit に対する実際の `work-guard`
+block を観測する確認は、文書化済みの **hardening follow-up** であり confirmation blocker
+ではない。`extractEditTargets` は payload-key-agnostic（leaf-scan）なので、残リスクは
+Codex が PreToolUse `tool_input` に patch を含めるかどうかだけで、binary の freeform
+single-argument evidence から低リスクと判断する。詳細は **Follow-ups** を参照する。
 
-## Problem
+## 問題
 
-Claude Code enforces orchestration guardrails via `.claude/settings.json` hooks
-(`work-guard` foreign-edit block, session lifecycle). The Codex CLI runtime had
-project rules in `AGENTS.md` but **no mechanical hook enforcement** for direct /
-interactive use, so a developer running `codex` in this repo could edit foreign
-uncommitted files without the block Claude applies. This is the Codex side of the
-same guard `PLAN-L7-114-work-guard` built for Claude.
+Claude Code は `.claude/settings.json` hooks（`work-guard` foreign-edit block、
+session lifecycle）で orchestration guardrails を機械強制する。一方、Codex CLI runtime
+には `AGENTS.md` の project rules はあったが、direct / interactive use に対する
+**mechanical hook enforcement** が無かった。そのため、この repo で developer が `codex`
+を実行すると、Claude 側なら block される foreign uncommitted files を編集できていた。
+これは Claude 向けに `PLAN-L7-114-work-guard` が構築した同一 guard の Codex 側である。
 
-The feasibility spike `PLAN-DISCOVERY-06-orchestrator-rule-parity` confirmed
-(ADOPT) that Codex CLI 0.128.0 ships a Claude-compatible hook system (`hooks.json`,
-`PreToolUse`/`PostToolUse`/`SessionStart`/`Stop`, `permissionDecision: deny`,
-payload field names shared with Claude). This PLAN lands the implementation.
+feasibility spike `PLAN-DISCOVERY-06-orchestrator-rule-parity` は、Codex CLI 0.128.0 が
+Claude-compatible hook system（`hooks.json`、`PreToolUse`/`PostToolUse`/`SessionStart`/
+`Stop`、`permissionDecision: deny`、Claude と共有される payload field names）を搭載
+していることを ADOPT として確認した。本 PLAN はその実装を着地させる。
 
-## What it does
+## 変更内容
 
-- **`.codex/hooks.json`**: Codex hook adapter mirroring the Claude guards,
-  reusing the SAME TypeScript entrypoints (`.claude/hooks/work-guard.ts`,
-  `.claude/hooks/agent-guard.ts`, `bun src/cli.ts session ...`) with NO logic fork.
-  Repo-relative; never writes global `~/.codex/`.
-- **`.codex/config.toml`**: enables project-local hooks explicitly with
-  `[features].hooks = true`; Codex loads project `.codex/` layers only for
-  trusted projects.
-- **Explicit scope boundary**: `.codex/hooks.json` is a Codex CLI / Codex IDE
-  project-local hook source. It does **not** intercept hosted API/developer
-  tool calls supplied by the surrounding chat runtime (for example this
-  session's `apply_patch`). A live smoke on 2026-06-24 confirmed that this
-  session's API-provided `apply_patch` can edit an untracked file without the
-  repo hook firing, while the same payload sent directly to
-  `.claude/hooks/work-guard.ts` exits 2 and blocks. Therefore `doctor`
-  must not imply that `.codex/hooks.json` mechanically guards all Codex-branded
-  execution surfaces.
-- **Matcher mapping** (Codex tool names differ from Claude; a literal copy would
-  never fire = false parity. Confirmed from the `codex.exe` 0.128.0 binary):
-  - `Edit|Write|MultiEdit` -> `apply_patch|write_file` (work-guard).
-  - `Bash` -> `exec_command|local_shell` (PostToolUse session logging).
-  - `Agent` -> `spawn_agent|spawn_agents_on_csv` (agent-guard).
-- **`work-guard` apply_patch path extraction** (the cross-runtime REJECT fix):
-  Codex's `apply_patch` is **freeform** and carries no `tool_input.file_path` —
-  the edited paths live in the patch body (`*** Update File:` / `*** Add File:` /
-  `*** Delete File:` / `*** Move to:`, multi-file). The original
-  `file_path ?? path` extraction silently no-op'd for apply_patch = false parity.
-  `src/runtime/work-guard.ts` now exposes a runtime-agnostic pure fn
-  `extractEditTargets` that returns the explicit `file_path`/`path` for Claude /
-  `write_file`, or parses ALL patch-body paths for apply_patch. The entrypoint
-  evaluates every target and blocks if any is foreign-uncommitted. Claude's
-  behavior is unchanged (it always sends `file_path`).
-- **N/A vs guarded sub-agent surface (the cross-runtime REJECT correction)**:
-  - `subagent-stop` (`SubagentStop`) is **genuinely N/A**: codex.exe 0.128.0
-    exposes only `PreToolUse`/`PostToolUse`/`SessionStart`/`Stop`/
-    `UserPromptSubmit` hook events (no `SubagentStop`, confirmed by binary).
-  - `agent-guard` is **NOT N/A**. Codex has a real sub-agent surface
-    (`spawn_agent` / `wait_agent` / `list_agents` / `close_agent` /
-    `spawn_agents_on_csv` — 19 `spawn_agent` occurrences, "This spawn_agent tool
-    provides you access to sub-agents"). `spawn_agent|spawn_agents_on_csv` now
-    routes through `agent-guard`: `agent_type` must be explicit and allowlisted,
-    direct `model` overrides are blocked, a concrete task body is required, and
-    bulk spawn is denied unless routed through `ut-tdd team run` / pair-agent
-    workflow. `CODEX_DEFERRED_SURFACE` is empty for this known sub-agent surface.
-- **`src/lint/codex-hook-adapter.ts` + doctor `codex-hook-adapter`**: fail-close
-  parity check that `.codex/hooks.json` declares the same guard entrypoints as
-  `.claude/settings.json` with Codex matchers, `blockOnFailure` on the guard, no
-  `$CLAUDE_PROJECT_DIR` (Codex would not expand it), and no global `~/.codex/`
-  reference. Hardened per review: only `type==="command"` hooks satisfy a guard,
-  and the script-path token must match exactly (no loose substring). The
-  entrypoint set is shared with `src/lint/project-hook.ts` `REQUIRED` (SSoT); a
-  one-sided entrypoint is `entrypoint_drift`.
-- **`tests/codex-hook-adapter.test.ts`** (U-CXHOOK-001..014) +
-  **`tests/work-guard.test.ts`** (`extractEditTargets` cases): real-repo
-  regression + every fail-close branch + shared-guard runtime-agnostic parity +
-  apply_patch multi-file path extraction (the false-parity regression).
+- **`.codex/hooks.json`**: Claude guards を mirrored する Codex hook adapter。
+  同一 TypeScript entrypoints（`.claude/hooks/work-guard.ts`、
+  `.claude/hooks/agent-guard.ts`、`bun src/cli.ts session ...`）を再利用し、logic fork
+  は作らない。repo-relative であり、global `~/.codex/` には書かない。
+- **`.codex/config.toml`**: `[features].hooks = true` により project-local hooks を
+  明示的に有効化する。Codex は trusted projects でのみ project `.codex/` layers を読む。
+- **明示的な scope boundary**: `.codex/hooks.json` は Codex CLI / Codex IDE の
+  project-local hook source である。周辺 chat runtime が注入する hosted API/developer
+  tool calls（例: この session の `apply_patch`）は intercept しない。2026-06-24 の
+  live smoke では、この session の API-provided `apply_patch` が repo hook を発火させずに
+  untracked file を編集できる一方、同一 payload を `.claude/hooks/work-guard.ts` へ直接
+  渡すと exit 2 で block することを確認した。したがって `doctor` は `.codex/hooks.json`
+  が Codex-branded execution surfaces すべてを機械的に guard すると示唆してはならない。
+- **Matcher mapping**: Codex tool names は Claude と異なるため、literal copy では
+  never fire、つまり false parity になる。`codex.exe` 0.128.0 binary から確認した対応は
+  次のとおりである。
+  - `Edit|Write|MultiEdit` -> `apply_patch|write_file`（work-guard）。
+  - `Bash` -> `exec_command|local_shell`（PostToolUse session logging）。
+  - `Agent` -> `spawn_agent|spawn_agents_on_csv`（agent-guard）。
+- **`work-guard` apply_patch path extraction（path 抽出）**（cross-runtime REJECT fix）:
+  Codex の `apply_patch` は **freeform** であり、`tool_input.file_path` を持たない。
+  edited paths は patch body（`*** Update File:` / `*** Add File:` /
+  `*** Delete File:` / `*** Move to:`、multi-file）内にある。元の `file_path ?? path`
+  extraction は apply_patch では silently no-op になり false parity を生んでいた。
+  `src/runtime/work-guard.ts` は runtime-agnostic pure fn `extractEditTargets` を公開し、
+  Claude / `write_file` 向けには明示的な `file_path`/`path` を返し、apply_patch 向けには
+  patch-body paths をすべて parse する。entrypoint は全 target を評価し、いずれかが
+  foreign-uncommitted なら block する。Claude の挙動は変更しない（常に `file_path` を送る）。
+- **N/A vs guarded sub-agent surface の扱い**（cross-runtime REJECT correction）:
+  - `subagent-stop`（`SubagentStop`）は **genuinely N/A** である。codex.exe 0.128.0 が
+    expose する hook events は `PreToolUse`/`PostToolUse`/`SessionStart`/`Stop`/
+    `UserPromptSubmit` のみで、`SubagentStop` は無いことを binary で確認した。
+  - `agent-guard` は **NOT N/A** である。Codex には実際の sub-agent surface
+    （`spawn_agent` / `wait_agent` / `list_agents` / `close_agent` /
+    `spawn_agents_on_csv`、19 件の `spawn_agent` occurrence、"This spawn_agent tool
+    provides you access to sub-agents"）がある。`spawn_agent|spawn_agents_on_csv` は
+    `agent-guard` へ route され、`agent_type` は explicit かつ allowlisted、direct
+    `model` overrides は blocked、concrete task body は required、bulk spawn は
+    `helix team run` / pair-agent workflow 経由でなければ denied とする。
+    `CODEX_DEFERRED_SURFACE` はこの known sub-agent surface について empty である。
+- **`src/lint/codex-hook-adapter.ts` + doctor `codex-hook-adapter`**: `.codex/hooks.json`
+  が `.claude/settings.json` と同じ guard entrypoints を Codex matchers で宣言していること、
+  guard 上の `blockOnFailure`、`$CLAUDE_PROJECT_DIR` 不使用（Codex は展開しない）、global
+  `~/.codex/` reference 不在を fail-close に検査する parity check。review により harden
+  され、guard を満たすには `type==="command"` hooks のみ有効、script-path token は完全一致
+  （loose substring 不可）とする。entrypoint set は `src/lint/project-hook.ts` の `REQUIRED`
+  と共有される SSoT であり、片側だけの entrypoint は `entrypoint_drift` とする。
+- **`tests/codex-hook-adapter.test.ts`**（U-CXHOOK-001..014）+
+  **`tests/work-guard.test.ts`**（`extractEditTargets` cases）: real-repo regression を含み、
+  すべての fail-close branch、shared-guard runtime-agnostic parity、apply_patch multi-file
+  path extraction（false-parity regression）を覆う。
 
-## Cross-runtime review (hybrid judgement gate)
+## Cross-runtime review（hybrid judgement gate の判定）
 
-`ut-tdd codex --role qa --task-file .ut-tdd/review/PLAN-L7-139-codex-review-task.md
---plan PLAN-L7-139-codex-hook-adapter --execute` (reviewer = gpt-5.5, a different
-model family) returned **Verdict: reject**. All three substantive findings were
-verified TRUE against the real `codex.exe` 0.128.0 binary and addressed:
+次のコマンドを実行した。
 
-| Finding | Severity | Verified | Resolution |
+```bash
+helix codex --role qa --task-file .helix/review/PLAN-L7-139-codex-review-task.md
+--plan PLAN-L7-139-codex-hook-adapter --execute
+```
+
+この review（reviewer = gpt-5.5、別 model family）は
+**Verdict: reject** を返した。3 件の substantive findings はすべて実 `codex.exe` 0.128.0
+binary に照らして TRUE と確認し、対応済みである。
+
+| 指摘 | 重要度 | 検証 | 対応 |
 | --- | --- | --- | --- |
-| `apply_patch` carries no `file_path` -> work-guard no-ops = false parity | Critical | TRUE (freeform, "accepts exactly one argument", path in patch body) | `extractEditTargets` parses patch-body paths (multi-file) |
-| `agent-guard` "N/A" wrong: `spawn_agent` sub-agent family exists | Important | TRUE (19x `spawn_agent`, tool family) | corrected first to explicit surface, then wired to agent-guard with `spawn_agent|spawn_agents_on_csv` matcher and Codex payload validation |
-| analyzer should require `type==="command"` + stricter tokens | Important | n/a (design) | added `type==="command"` + token-exact path matching |
-| status=confirmed premature | Minor | n/a | status=draft until live hook-payload run |
+| `apply_patch` が `file_path` を持たず work-guard が no-op になる false parity | Critical | TRUE（freeform、"accepts exactly one argument"、path は patch body 内） | `extractEditTargets` が patch-body paths（multi-file）を parse する |
+| `agent-guard` "N/A" は誤りで、`spawn_agent` sub-agent family が存在する | Important | TRUE（19x `spawn_agent`、tool family） | まず explicit surface として修正し、その後 `spawn_agent|spawn_agents_on_csv` matcher と Codex payload validation で agent-guard に接続した |
+| analyzer は `type==="command"` と stricter tokens を要求すべき | Important | n/a（design） | `type==="command"` と token-exact path matching を追加した |
+| status=confirmed は premature | Minor | n/a | live hook-payload run まで status=draft とした |
 
-## Acceptance criteria
+## 受入条件
 
-1. Codex `.codex/hooks.json` exists, mirroring the Claude guard
-   entrypoints with Codex matchers. (U-CXHOOK-001)
-2. `doctor` `codex-hook-adapter` fails closed when the Codex adapter diverges
-   from the Claude hook config (missing guard, literal-copy matcher, dropped
-   `blockOnFailure`, `$CLAUDE_PROJECT_DIR`, global `~/.codex/`, entrypoint
-   drift, non-`command` hook, loose token match). (U-CXHOOK-002..010, 013, 014)
-3. No global `~/.codex/` writes; config stays repo-relative. (U-CXHOOK-009)
-4. `work-guard` extracts apply_patch patch-body paths (multi-file) so the
-   foreign-edit block fires for Codex's primary edit tool, not just `write_file`;
-   Claude `file_path` behavior unchanged. (`extractEditTargets` tests in
-   `tests/work-guard.test.ts`)
-5. `subagent-stop` documented genuinely N/A; `spawn_agent|spawn_agents_on_csv`
-   recorded as a required `agent-guard` matcher (not N/A / not deferred). Shared
-   guard logic blocks unsafe Claude and Codex sub-agent dispatch. (U-CXHOOK-011,
-   U-CXHOOK-012)
-6. `doctor` surfaces the hosted API/developer-tool limitation explicitly:
-   `.codex/hooks.json` covers direct Codex CLI/IDE sessions, but not this
-   chat/runtime's injected `apply_patch` tool path.
+1. Codex `.codex/hooks.json` が存在し、Claude guard entrypoints を Codex matchers で
+   mirror していること。（U-CXHOOK-001）
+2. Codex adapter が Claude hook config から diverge した場合、`doctor` `codex-hook-adapter`
+   が fail closed すること。対象は missing guard、literal-copy matcher、dropped
+   `blockOnFailure`、`$CLAUDE_PROJECT_DIR`、global `~/.codex/`、entrypoint drift、
+   non-`command` hook、loose token match である。（U-CXHOOK-002..010, 013, 014）
+3. global `~/.codex/` writes は無く、config は repo-relative に留まること。（U-CXHOOK-009）
+4. `work-guard` が apply_patch patch-body paths（multi-file）を抽出し、Codex の primary
+   edit tool で foreign-edit block が発火すること。`write_file` だけに限定しない。
+   Claude の `file_path` behavior は unchanged とする。（`tests/work-guard.test.ts` の
+   `extractEditTargets` tests）
+5. `subagent-stop` は genuinely N/A と記録し、`spawn_agent|spawn_agents_on_csv` は required
+   `agent-guard` matcher として記録すること（not N/A / not deferred）。shared guard logic
+   は unsafe Claude / Codex sub-agent dispatch を block する。（U-CXHOOK-011, U-CXHOOK-012）
+6. `doctor` は hosted API/developer-tool limitation を明示的に surface すること。
+   `.codex/hooks.json` は direct Codex CLI/IDE sessions を covers するが、この chat/runtime
+   が injected する `apply_patch` tool path は covers しない。
 
-## Follow-ups (hardening, not confirmation blockers)
+## Follow-ups（hardening、confirmation blockers ではない）
 
-- **Live hook-payload run**: run `codex` in this repo and confirm `work-guard`
-  actually blocks a foreign `apply_patch` edit — verifies the exact PreToolUse
-  `tool_input` key carrying the patch (binary-inspected, not yet observed live).
-  `write_file` payload still also unconfirmed live. Low residual risk because
-  `extractEditTargets` is payload-key-agnostic.
-- **Hosted API tool enforcement**: repo files cannot make the surrounding
-  platform call `.codex/hooks.json` before its injected developer tools. True
-  mechanical enforcement for this chat/API path requires platform-level hook
-  support or removal of the raw `apply_patch` surface. As a repo-side
-  countermeasure, `ut-tdd guard preflight` runs the same `work-guard` decision
-  before hosted/API edits: it accepts explicit targets, patch files, or stdin
-  apply_patch bodies, returns exit 2 on foreign uncommitted targets, and reports
-  `apiToolPathEnforced=false` so callers do not confuse preflight with mechanical
-  hook interception.
-- **SSoT materializer**: emit `.claude/settings.json` and `.codex/hooks.json` from one
-  source (`ut-tdd setup`) instead of two hand-maintained adapters; currently the
-  `codex-hook-adapter` drift gate keeps them in sync.
+- **Live hook-payload run**: この repo で `codex` を実行し、foreign `apply_patch` edit を
+  `work-guard` が実際に block することを確認する。これは patch を運ぶ正確な PreToolUse
+  `tool_input` key を検証する作業である（binary-inspected、live では未観測）。
+  `write_file` payload も live ではまだ未確認である。`extractEditTargets` は
+  payload-key-agnostic なので、残リスクは低い。
+- **Hosted API tool enforcement**: repo files は、周辺 platform が injected developer tools
+  を呼ぶ前に `.codex/hooks.json` を呼ばせることはできない。この chat/API path に対する
+  真の mechanical enforcement には platform-level hook support、または raw `apply_patch`
+  surface の除去が必要である。repo-side countermeasure として、`helix guard preflight`
+  は hosted/API edits の前に同じ `work-guard` decision を実行する。explicit targets、
+  patch files、stdin apply_patch bodies を受け取り、foreign uncommitted targets では exit 2
+  を返し、preflight と mechanical hook interception を混同しないよう
+  `apiToolPathEnforced=false` を報告する。
+- **SSoT materializer**: `.claude/settings.json` と `.codex/hooks.json` を 1 つの source
+  （`helix setup`）から emit する。現時点では `codex-hook-adapter` drift gate が
+  2 つの hand-maintained adapters を同期状態に保つ。

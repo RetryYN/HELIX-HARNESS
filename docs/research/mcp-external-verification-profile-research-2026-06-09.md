@@ -3,7 +3,7 @@ artifact_type: research_memo
 status: confirmed
 created: 2026-06-09
 updated: 2026-06-09
-related_audit: .ut-tdd/audit/A-125-mcp-external-verification-profile-scope.md
+related_audit: .helix/audit/A-125-mcp-external-verification-profile-scope.md
 related_requirements: docs/governance/helix-harness-requirements_v1.2.md#6810-mcp--external-testing-tool-scope-and-workflow-triggers-a-125-2026-06-09
 ---
 
@@ -52,10 +52,10 @@ related_requirements: docs/governance/helix-harness-requirements_v1.2.md#6810-mc
 profile workflow は次のように動くべきである。
 
 1. relation graph または changed-file signal が 1 つ以上の trigger signals を emit する。
-2. `ut-tdd verify recommend --changed <path>` が signals を profile recommendations へ map する。
-3. `ut-tdd mcp profile probe <profile>` が package install なしで local readiness を check する。
-4. MCP profiles では accept 前に `ut-tdd mcp inspect <profile> --method tools/list` を必須にする。
-5. external run results は `.ut-tdd/evidence/verification-profiles/` 配下の bounded evidence にする。
+2. `helix verify recommend --changed <path>` が signals を profile recommendations へ map する。
+3. `helix mcp profile probe <profile>` が package install なしで local readiness を check する。
+4. MCP profiles では accept 前に `helix mcp inspect <profile> --method tools/list` を必須にする。
+5. external run results は `.helix/evidence/verification-profiles/` 配下の bounded evidence にする。
 6. DB projection は後続で evidence を `mcp_server_runs`、`verification_recommendations`、`external_tool_findings` へ正規化する。
 7. gates は raw MCP/tool output ではなく、正規化済み rows だけを消費する。
 

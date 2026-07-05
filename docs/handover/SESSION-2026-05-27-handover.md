@@ -34,9 +34,9 @@
 - runtime: **Bun 1.3.14** (グローバル導入済)。Node v24.13.0 も在。
 - `src/`: `cli.ts` (commander) / `schema/index.ts` (**zod 単一正本**: VALID_KINDS/LAYERS(L0-L14)/DRIVES/STATUSES/ROLES/WORKFLOW_PHASES/ARTIFACT_TYPES/ORCHESTRATION_MODES + RecommendedCommandV1) / `runtime/detect.ts` (mode 検出) / `plan/lint.ts`・`vmodel/lint.ts`・`doctor/index.ts` (stub)。
 - `tests/`: vitest、**7 PASS**。
-- `scripts/ut-tdd` + `ut-tdd.ps1`: 薄い entrypoint。
+- `scripts/helix` + `helix.ps1`: 薄い entrypoint。
 - config: `package.json` / `tsconfig.json` (strict) / `biome.json` (lint+format 1枚) / `bun.lock`。
-- 検証: `bun run typecheck` (tsc clean) / `bun run test` (7 pass) / `bun run lint` (biome exit 0) / `ut-tdd status --json` 動作 (この環境は `claude-only` 判定)。
+- 検証: `bun run typecheck` (tsc clean) / `bun run test` (7 pass) / `bun run lint` (biome exit 0) / `helix status --json` 動作 (この環境は `claude-only` 判定)。
 
 ### Git / branch（Git と branch）
 
@@ -48,10 +48,10 @@
 TS rebuild の core 実装。優先順:
 
 1. **`src/schema` 完成**: `VALID_ARTIFACT_TYPES` を requirements_v1.2 §1.7 の全 19 種へ補完 (現 scaffold は既知14 + TODO)。frontmatter schema (§1.1: plan_id/kind/layer/drive/status/agent_slots/generates/dependencies/parent_design) を zod 化。
-2. **`ut-tdd plan lint` 実装**: §1 enum + §1.10 受入条件を zod で検証 (kind×drive matrix §1.6 / 必須 role §1.8 / parent_design §1.1)。stub を実装に。
-3. **`ut-tdd vmodel lint` 実装**: §2.4 必須 8 directed edge + §2.2 W-model freeze (G1/G3/G4/G5/G6 pair → G7 trace) + 逆ピラミッド。
-4. **`ut-tdd status` / `doctor` 強化**: detect の **capability probe + Windows wrapper 対応** (現 `where` が拡張子なし codex wrapper を拾わず `claude-only` 誤判定。§6 既知問題)。doctor 横断検出 (relation-graph / drift / regression) は後続。
-5. **`ut-tdd gate` / `ut-tdd route`**: §7.8 配線 (signal→mode / RecommendedCommandV1 / orchestration_mode 注入) + §2.1.2.1 レビューゲート切り分け (単一 mode の専門サブエージェント checklist 強制)。
+2. **`helix plan lint` 実装**: §1 enum + §1.10 受入条件を zod で検証 (kind×drive matrix §1.6 / 必須 role §1.8 / parent_design §1.1)。stub を実装に。
+3. **`helix vmodel lint` 実装**: §2.4 必須 8 directed edge + §2.2 W-model freeze (G1/G3/G4/G5/G6 pair → G7 trace) + 逆ピラミッド。
+4. **`helix status` / `doctor` 強化**: detect の **capability probe + Windows wrapper 対応** (現 `where` が拡張子なし codex wrapper を拾わず `claude-only` 誤判定。§6 既知問題)。doctor 横断検出 (relation-graph / drift / regression) は後続。
+5. **`helix gate` / `helix route`**: §7.8 配線 (signal→mode / RecommendedCommandV1 / orchestration_mode 注入) + §2.1.2.1 レビューゲート切り分け (単一 mode の専門サブエージェント checklist 強制)。
 6. PLAN は v1.2 の流儀で起票 (`docs/plans/PLAN-NNN-slug.md`、layer=L7 impl は `parent_design` 必須、impl template = `docs/templates/plan/impl/template.md` 済 TS 化)。
 
 ### 着手前に再読
@@ -91,4 +91,4 @@ TS rebuild の core 実装。優先順:
 - **`SESSION-2026-05-22-handover.md` は superseded** (W1-W3a Python port 前提。本 session で破棄)。
 - **PLAN-001..004 は `status: archived`** (Python port plan)。
 - 旧 `concept_v3.0` / `requirements_v1.1` は superseded banner 付き。
-- 既知バグ: `ut-tdd status` が native Windows で codex を検出できず `claude-only` 誤判定 (`where` が拡張子なし wrapper を拾わない、§3 carry)。
+- 既知バグ: `helix status` が native Windows で codex を検出できず `claude-only` 誤判定 (`where` が拡張子なし wrapper を拾わない、§3 carry)。

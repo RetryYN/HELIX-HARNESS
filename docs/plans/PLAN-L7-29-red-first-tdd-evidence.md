@@ -10,7 +10,7 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - Red-first evidence implementation"
+    slot_label: "TL - Red-first evidence 実装"
   - role: qa
     slot_label: "QA - Red-first evidence oracle"
 generates:
@@ -30,14 +30,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 の独立再 audit と PO closure 指示。confirmation 前に typecheck/lint/vitest/doctor が green。add-feature triad は内容変更なしで close 済み。"
 ---
 
-# PLAN-L7-29 (add-impl): red-first-tdd-evidence
+# PLAN-L7-29 (add-impl): red-first-tdd-evidence の実装
 
-## §0 Position
+## §0 位置づけ
 
-Implements IMP-099.
+IMP-099 を実装する。
 
 ## §3.1 実装計画 (情報源)
 
@@ -49,28 +49,28 @@ Implements IMP-099.
 
 実装:
 
-- Inspect confirmed PLAN frontmatter for TDD Red/Green evidence.
-- Add missing and inverted timestamp fixtures.
+- confirmed PLAN frontmatter から TDD Red/Green evidence を検査する。
+- 欠落 timestamp と逆転 timestamp の fixture を追加する。
 
 ## §3 工程表
 
 ### Step 1: [直列] PLAN evidence parser
 
-直列理由: downstream_dependency. PLAN parsing defines the Red/Green comparison input.
+直列理由: downstream_dependency。PLAN parsing が Red/Green 比較入力を定義する。
 
 ### Step 2: [並列] unit oracle
 
-Add missing-evidence and inverted-evidence tests.
+missing-evidence と inverted-evidence の tests を追加する。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. lint / typecheck / vitest / doctor must be green before review.
+直列理由: downstream_dependency。review 前に lint / typecheck / vitest / doctor を green にする。
 
 ## §6 用語更新
 
-- **red-first evidence**: implemented Red/Green timestamp detector.
-- **DDD/TDD back-fill**: Reverse record for this add-impl slice.
+- **red-first evidence**: 実装済みの Red/Green timestamp detector。
+- **DDD/TDD back-fill**: この add-impl slice の Reverse record。
 
 ## §8 DoD
 
-- [x] U-DDDTDD-003 passes.
+- [x] U-DDDTDD-003 が pass する。

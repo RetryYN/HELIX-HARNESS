@@ -102,37 +102,37 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 
 ## §4 工程表 (Step + 進捗)
 
-### Step 1: L1 BR-21 / HM-08 / FR-L1-36/38/43 baton 整理
+### 手順 1: L1 BR-21 / HM-08 / FR-L1-36/38/43 baton 整理 (Step 1)
 - 担当: pmo-sonnet
 - 内容: L1 sub-doc 3 件 + functional sub-doc 3 FR を Read し、L3 詳細化対象を一覧化
 - 進捗: 🔄 (本起票時)
 
-### Step 2: 評価サイクル設計 (U-BR21-1〜4 確定)
+### 手順 2: 評価サイクル設計 (Step 2 / U-BR21-1〜4 確定)
 - 担当: tl + pmo-tech-docs
 - 内容: 評価対象 / 指標 / 頻度 / アクションを確定し、business-detail §1〜§4 を起草
 - 進捗: ✅ (A-45 commit、§1 PLAN単位 + §2 5指標 + §3 sprint末 + §4 半自動人間承認 全件確定)
 
-### Step 3: HM-08 画面連動規約確定 (U-BR21-5〜7)
+### 手順 3: HM-08 画面連動規約確定 (Step 3 / U-BR21-5〜7)
 - 担当: tl + uiux
 - 内容: HM-08 のデータソース / 表示頻度 / AI 指示 copy UI を確定、L2-screen ui-element placeholder と整合
 - 進捗: ✅ (business-detail §5 4 ソース統合 + 30 秒ポーリング + AI 指示 copy UI 完備)
 
-### Step 4: Phase B carry 範囲確定 (U-BR21-8〜10)
+### 手順 4: Phase B carry 範囲確定 (Step 4 / U-BR21-8〜10)
 - 担当: tl + po
 - 内容: Phase A / Phase B 境界を明示、Phase A での「宣言のみ vs 最小実装」を確定
 - 進捗: ✅ (§6 Phase A 宣言のみ + Phase B 着手条件 AND 確定 + telemetry スコープ宣言)
 
-### Step 5: FR-L1-36/38/43 詳細化
+### 手順 5: FR-L1-36/38/43 詳細化 (Step 5)
 - 担当: tl + se
 - 内容: 3 FR の入出力 / AC / projection 実装契約を business-detail §7 で詳細化 (PLAN-L3-01 の AC 形式と整合)
 - 進捗: ✅ (§7 FR-BR21-36/38/43 各 AC 2 件 計 6 AC 起草完了。projection は PLAN-L7-53/57/58 で実装済み)
 
-### Step 6: 機械検証 + L12 受入テスト pair 凍結
+### 手順 6: 機械検証 + L12 受入テスト pair 凍結 (Step 6)
 - 担当: qa
 - 内容: BR-21 / FR-L1-36/38/43 全件が L12 受入テストで被覆されているか確認
 - 進捗: ✅ (L12 受入テスト設計 §1.2 で AT-BR21-01〜09 + AT-FR-BR21-36/38/43 全 15 件被覆、孤児 0)
 
-### Step 7: review (self / pmo-sonnet)
+### 手順 7: レビュー (Step 7 / review: self / pmo-sonnet)
 - 担当: pmo-sonnet
 - 内容: 専門サブエージェント review 必須。BR-21 詳細化 / HM-08 連動 / projection 契約明示・孤児 BR-21 由来 0 を確認
 - 進捗: ⬜ (G3 readiness 整備時に L3 3 sub-doc + L12 受入テスト 4 doc 全件まとめて review)
@@ -149,7 +149,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 | §6 後続 carry | U-BR21-8〜10 確定 | HM-08 表示 / 改善ループ / PII redaction の後続条件 |
 | §7 FR-L1-36/38/43 詳細化 | L1 functional + AC テンプレ | PLAN-L3-01 の AC 形式と整合 |
 
-## §6 DoD (Definition of Done)
+## §6 完了条件 (DoD / Definition of Done)
 
 - [ ] business-detail.md が必須 § 全件含む (§1〜§7)
 - [ ] BR-21 詳細化 4 軸 (評価対象 / 指標 / サイクル / アクション) 全て確定
@@ -158,7 +158,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 - [ ] FR-L1-36/38/43 が AC-* と pair で詳細化されている (孤児 0)
 - [ ] frontmatter 必須フィールド完備
 - [ ] L12 受入テスト設計で本 sub-doc 由来要求が被覆
-- [ ] 専門サブエージェント review (Step 7) 通過記録
+- [ ] 専門サブエージェントレビュー (Step 7 / review) 通過記録
 - [ ] **PO サインオフ準備完了**
 
 ## §7 carry / 次工程 (L4 / Phase B) への引き継ぎ

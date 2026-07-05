@@ -37,7 +37,7 @@ review_evidence:
     scope: "L8-L14 filename-level PLAN gap was identified; this master records L9 coverage without claiming full remote/system completion."
     green_commands:
       - kind: lint
-        command: "./scripts/ut-tdd plan lint"
+        command: "./scripts/helix plan lint"
         runner: bun
         scope: targeted
         exit_code: 0

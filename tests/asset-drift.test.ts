@@ -33,7 +33,9 @@ const input = (overrides: Partial<AssetDriftInput>): AssetDriftInput => ({
   ...overrides,
 });
 
-const legacyRuntimeName = ["he", "lix"].join("");
+const legacyRuntimeName = ["ut", "tdd"].join("-");
+const legacyEnvPrefix = ["UT", "TDD"].join("_");
+const legacyProductProse = ["UT", "TDD"].join("-");
 
 describe("asset-drift lint (U-FR-L1-49)", () => {
   it("detects legacy source personal path residue in enrolled assets", () => {
@@ -62,7 +64,7 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
       input({
         assets: [
           agent("pdm-tech", `Use pmo-${legacyRuntimeName}-explorer`),
-          skill("runtime-env", `${legacyRuntimeName.toUpperCase()}_CODEX_BIN=true`),
+          skill("runtime-env", `${legacyEnvPrefix}_CODEX_BIN=true`),
         ],
         allowlist: ["pdm-tech"],
       }),
@@ -85,7 +87,9 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
   it("detects legacy product prose residue while allowing machine prefixes and markers", () => {
     const bad = analyzeAssetDrift(
       input({
-        assets: [skill("cutover", "UT-TDD naming contract は HELIX へ移行済みの prose ではない。")],
+        assets: [
+          skill("cutover", `${legacyProductProse} naming contract は HELIX へ移行済みの prose ではない。`),
+        ],
       }),
     );
     expect(bad.ok).toBe(false);
@@ -93,7 +97,7 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
 
     const ok = analyzeAssetDrift(
       input({
-        assets: [skill("cutover", "UT_TDD_ALLOW_RAW_AGENT と <!-- UT-TDD:managed:start --> は機械識別子。")],
+        assets: [skill("cutover", "HELIX_ALLOW_RAW_AGENT と <!-- HELIX:managed:start --> は機械識別子。")],
         allowlist: [],
       }),
     );
@@ -130,7 +134,7 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
   });
 
   it("U-ASSETDRIFT-007: loads nested agent memory as an enrolled asset source", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-asset-drift-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-asset-drift-"));
     try {
       const memoryDir = join(root, ".claude", "agent-memory", `pmo-${legacyRuntimeName}-explorer`);
       mkdirSync(memoryDir, { recursive: true });

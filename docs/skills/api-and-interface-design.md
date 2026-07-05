@@ -55,7 +55,7 @@ dependency を持つ placeholder へ map する。
 L4 basic-design doc は、各 L3 interface point を具体的な module boundary
 （function signature、command path、HTTP route）へ解決する。
 L4 doc は、自分が実装する L3 interface-point name を参照しなければならない。
-これは `ut-tdd vmodel lint` が検査する trace edge である。
+これは `helix vmodel lint` が検査する trace edge である。
 
 ## Pair-freeze checklist（L2/L3 boundary 設計）
 
@@ -63,10 +63,10 @@ L4 doc は、自分が実装する L3 interface-point name を参照しなけれ
 - [ ] diagram 内のすべての boundary に named L3 interface point がある。
 - [ ] 各 interface point について、それを解決する L4 doc の PLAN に一致する
       `requires` または `placeholder_dep` がある。
-- [ ] 2 つの PLAN が同じ boundary を同時 ownership していない（`ut-tdd graph` で確認）。
-- [ ] `ut-tdd plan lint` と `ut-tdd doctor` が 0 で終了する。
+- [ ] 2 つの PLAN が同じ boundary を同時 ownership していない（`helix graph` で確認）。
+- [ ] `helix plan lint` と `helix doctor` が 0 で終了する。
 - [ ] Refactor PLAN では、対応する contract version bump なしに externally visible boundary name が
-      変わっていないことを `ut-tdd review --uncommitted` で確認する。
+      変わっていないことを `helix review --uncommitted` で確認する。
 
 ## Discovery drive usage（Discovery drive での利用）
 

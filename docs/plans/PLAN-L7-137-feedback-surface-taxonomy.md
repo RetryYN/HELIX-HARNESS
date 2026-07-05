@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-137-feedback-surface-taxonomy
-title: "PLAN-L7-137 (troubleshoot): summarize feedback surface by actionability"
+title: "PLAN-L7-137 (troubleshoot): feedback surface を対応可能性で要約する"
 kind: troubleshoot
 layer: L7
 drive: be
@@ -41,38 +41,33 @@ dependencies:
     - docs/plans/PLAN-L7-110-takeover-feedback-surface.md
 ---
 
-# PLAN-L7-137 (troubleshoot): summarize feedback surface by actionability
+# PLAN-L7-137 (troubleshoot): feedback surface を対応可能性で要約する
 
-## 0. Objective
+## 0. 目的
 
-Reduce feedback surface noise without weakening detection. Open feedback should
-be presented as:
+検出を弱めずに feedback surface のノイズを減らす。未解決 feedback は次の分類で表示する。
 
-- `gate`: true blockers.
-- `actionable`: warnings that can be closed by PLAN/design/test work.
-- `telemetry`: high-volume measurement rows that should be summarized, not
-  listed one by one.
+- `gate`: 真のブロッカー。
+- `actionable`: PLAN、設計、テスト作業で解消できる警告。
+- `telemetry`: 1 件ずつ列挙せず、要約して扱うべき高頻度の計測行。
 
-## 1. Scope
+## 1. スコープ
 
-- Add a shared feedback display taxonomy for takeover and `ut-tdd feedback list`
-  text output.
-- Keep `ut-tdd feedback list --json` as the raw audit path.
-- Group text output by `signal_type` and counts.
-- Exclude `feedback_events` queue rows from resolvable PLAN join findings so the
-  notification queue does not create self-referential `unresolved-join` noise.
+- takeover と `helix feedback list` のテキスト出力で共有する feedback 表示分類を追加する。
+- `helix feedback list --json` は raw audit path として維持する。
+- テキスト出力は `signal_type` と件数でグループ化する。
+- 通知キューが自己参照的な `unresolved-join` ノイズを作らないよう、解決可能な PLAN join findings から
+  `feedback_events` キュー行を除外する。
 
-## 2. Acceptance Criteria
+## 2. 受入条件
 
-- [x] Telemetry rows such as `missing-test-oracle-id`, `artifact_progress_yellow`,
-      and skill rate signals are summarized.
-- [x] Actionable rows remain visible and grouped.
-- [x] Gate rows remain first.
-- [x] Raw JSON output remains available.
-- [x] Feedback queue projection does not create additional unresolved join
-      findings.
+- [x] `missing-test-oracle-id`、`artifact_progress_yellow`、skill rate signals などの telemetry 行が要約される。
+- [x] actionable 行は表示されたまま、グループ化される。
+- [x] gate 行は先頭に維持される。
+- [x] raw JSON 出力は利用可能なまま維持される。
+- [x] feedback queue projection は追加の unresolved join findings を作らない。
 
-## 3. Verification
+## 3. 検証
 
 - `bun run vitest run tests\feedback-surface.test.ts tests\search-feedback.test.ts`
 - `bun run vitest run tests\projection-writer.test.ts tests\feedback-surface.test.ts tests\search-feedback.test.ts`
@@ -81,8 +76,7 @@ be presented as:
 - `bun run src\cli.ts db rebuild --json`
 - `bun run src\cli.ts feedback list --emit`
 
-## 4. Known Residuals
+## 4. 既知の残余
 
-The taxonomy does not claim all warnings are fixed. It only separates blockers,
-actionable backlog, and telemetry so the next close-out work can target the
-highest-value signals first.
+この分類は、すべての警告が修正済みであるとは主張しない。次の close-out 作業が価値の高い signal から
+着手できるように、ブロッカー、対応可能な backlog、telemetry を分離するだけである。

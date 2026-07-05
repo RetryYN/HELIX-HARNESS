@@ -460,16 +460,16 @@ export function checkHandoverDisciplineMessages(deps: DoctorDeps): string[] {
  * 不在・stale・壊れは message で示すのみ (doctor.ok は落とさない = §5.3 exit 0 warning)。
  */
 export function checkHandover(deps: DoctorDeps): string {
-  const raw = deps.readText(join(deps.repoRoot, ".ut-tdd", "handover", "CURRENT.json"));
-  if (!raw) return "doctor: handover — CURRENT.json なし (ut-tdd handover で生成、§6.8.5)";
+  const raw = deps.readText(join(deps.repoRoot, ".helix", "handover", "CURRENT.json"));
+  if (!raw) return "doctor: handover — CURRENT.json なし (helix handover で生成、§6.8.5)";
   let p: HandoverPointer;
   try {
     p = JSON.parse(raw) as HandoverPointer;
   } catch {
-    return "doctor: handover — ⚠ CURRENT.json が壊れています (ut-tdd handover で再生成)";
+    return "doctor: handover — ⚠ CURRENT.json が壊れています (helix handover で再生成)";
   }
   return handoverStale(p.updated_at, deps.now)
-    ? `doctor: handover — ⚠ stale (updated_at=${p.updated_at}、24h 超。ut-tdd handover で更新)`
+    ? `doctor: handover — ⚠ stale (updated_at=${p.updated_at}、24h 超。helix handover で更新)`
     : `doctor: handover — OK (active=${p.active_plan ?? "-"}, updated_at=${p.updated_at})`;
 }
 
@@ -1069,8 +1069,8 @@ export function checkVerifierProviderMismatch(repoRoot: string): {
 
 function runtimeSessionDirsForDoctor(): { claudeDir: string; codexDir: string } {
   return {
-    claudeDir: process.env.UT_TDD_CLAUDE_SESSIONS_DIR ?? join(homedir(), ".claude", "projects"),
-    codexDir: process.env.UT_TDD_CODEX_SESSIONS_DIR ?? join(homedir(), ".codex", "sessions"),
+    claudeDir: process.env.HELIX_CLAUDE_SESSIONS_DIR ?? join(homedir(), ".claude", "projects"),
+    codexDir: process.env.HELIX_CODEX_SESSIONS_DIR ?? join(homedir(), ".codex", "sessions"),
   };
 }
 
@@ -1483,9 +1483,9 @@ export function checkCodexWrapperParity(deps: DoctorDeps): { messages: string[];
   }
 
   const codexWrapperTests = [
-    "ut-tdd codex --execute records the same session lifecycle through the adapter wrapper",
-    "ut-tdd codex --task-file feeds file content through the same adapter wrapper",
-    "ut-tdd codex --plan records wrapper lifecycle without forwarding plan flags to Codex",
+    "helix codex --execute records the same session lifecycle through the adapter wrapper",
+    "helix codex --task-file feeds file content through the same adapter wrapper",
+    "helix codex --plan records wrapper lifecycle without forwarding plan flags to Codex",
   ];
   for (const testName of codexWrapperTests) {
     if (!hookTests.includes(testName)) {
@@ -1509,7 +1509,7 @@ export function checkCodexWrapperParity(deps: DoctorDeps): { messages: string[];
 
   return {
     messages: [
-      "codex-wrapper-parity - OK (claude_hooks=project-settings, codex=ut-tdd-wrapper-lifecycle, adapter=stdin)",
+      "codex-wrapper-parity - OK (claude_hooks=project-settings, codex=helix-wrapper-lifecycle, adapter=stdin)",
     ],
     ok: true,
   };
@@ -1541,7 +1541,7 @@ export function checkReadability(repoRoot: string): { messages: string[]; ok: bo
 
 /**
  * Expanded mojibake guard for generated runtime artifacts outside docs/
- * (PLAN-L7-69): .ut-tdd/audit/** markdown and .ut-tdd/handover/** JSON
+ * (PLAN-L7-69): .helix/audit/** markdown and .helix/handover/** JSON
  * (cross-agent provider payloads included). Fail-open on absence — a fresh
  * repo with no runtime artifacts has nothing to corrupt — and fail-close on
  * any mojibake marker so a corrupted handover/audit/provider-JSON cannot pass
@@ -1558,7 +1558,7 @@ export function checkRuntimeReadability(repoRoot: string): { messages: string[];
     const r = analyzeReadability(loadRuntimeArtifactReadabilityDocs(repoRoot));
     return { messages: runtimeReadabilityMessages(r), ok: r.ok };
   } catch {
-    return { messages: ["runtime-readability — ⚠ .ut-tdd artifacts を読めない"], ok: false };
+    return { messages: ["runtime-readability — ⚠ .helix artifacts を読めない"], ok: false };
   }
 }
 
@@ -2021,10 +2021,10 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ...expectedClaudeAgentPaths,
     ...expectedClaudeCommandPaths,
     CONSUMER_TEAM_DEFINITION_PATH,
-    ".ut-tdd/memory/.gitkeep",
-    ".ut-tdd/handover/.gitkeep",
-    ".ut-tdd/evidence/.gitkeep",
-    ".ut-tdd/state/project-setup.json",
+    ".helix/memory/.gitkeep",
+    ".helix/handover/.gitkeep",
+    ".helix/evidence/.gitkeep",
+    ".helix/state/project-setup.json",
   ];
   const missing = requiredFiles.filter((path) => !consumerHasFile(deps, path));
   messages.push(
@@ -2040,31 +2040,32 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     text.includes("日本語を既定") &&
     text.includes("docs / handover / adapter prose も日本語") &&
     text.includes("PLAN-M-02") &&
-    text.includes("ut-tdd completion decision-packet --json") &&
-    text.includes("ut-tdd completion review-bundle --json") &&
+    text.includes("helix completion decision-packet --json") &&
+    text.includes("helix completion review-bundle --json") &&
     text.includes("semantic digest") &&
     text.includes(
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     ) &&
-    text.includes("ut-tdd doctor --profile consumer");
+    text.includes("helix doctor --profile consumer");
   const docsOk =
     agents.includes("HELIX アダプター") &&
-    agents.includes("UT-TDD:managed:start") &&
+    agents.includes("HELIX:managed:start") &&
     adapterDocHasConsumerPolicy(agents) &&
     claude.includes("HELIX 共有コンテキスト") &&
-    claude.includes("UT-TDD:managed:start") &&
+    claude.includes("HELIX:managed:start") &&
     adapterDocHasConsumerPolicy(claude) &&
     claudeRuntime.includes("Claude runtime アダプター") &&
-    claudeRuntime.includes("UT-TDD:managed:start") &&
+    claudeRuntime.includes("HELIX:managed:start") &&
     adapterDocHasConsumerPolicy(claudeRuntime);
   messages.push(
     docsOk
       ? "doctor: consumer-adapter-docs - OK (managed blocks, Japanese rule, consumer profile, cutover boundary present)"
       : "doctor: consumer-adapter-docs - violation: adapter docs missing managed/Japanese/consumer-profile/cutover markers",
   );
-  const futureStateDir = [".", "helix"].join("");
-  const prematureHelixState = [
-    ...consumerPathsUnder(deps, futureStateDir),
+  const legacyCliName = ["ut", "tdd"].join("-");
+  const legacyStateDir = `.${legacyCliName}`;
+  const legacyState = [
+    ...consumerPathsUnder(deps, legacyStateDir),
     ...prematureHelixRuntimePaths(deps),
   ].sort();
   const packageJson = recordValue(consumerJson(deps, "package.json"));
@@ -2080,26 +2081,30 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     ...expectedClaudeAgentPaths,
     ...expectedClaudeCommandPaths,
   ];
-  const helixCommandPattern = /\bhelix(?:\s+(?:--[a-z0-9-]+|[a-z][a-z0-9-]*))?(?=\s|$)/;
-  const prematureHelixAlias = [
-    ...(packageBin && Object.hasOwn(packageBin, "helix") ? ["package.json:bin.helix"] : []),
-    ...(typeof packageBinRaw === "string" && /(?:^|\/)helix$/.test(packageName)
+  const legacyCommandPattern = new RegExp(
+    String.raw`\b${legacyCliName}(?:\s+(?:--[a-z0-9-]+|[a-z][a-z0-9-]*))?(?=\s|$)`,
+  );
+  const legacyAlias = [
+    ...(packageBin && Object.hasOwn(packageBin, legacyCliName)
+      ? [`package.json:bin.${legacyCliName}`]
+      : []),
+    ...(typeof packageBinRaw === "string" && new RegExp(String.raw`(?:^|/)${legacyCliName}$`).test(packageName)
       ? ["package.json:bin"]
       : []),
     ...Object.entries(packageScripts ?? {})
-      .filter(([, value]) => typeof value === "string" && helixCommandPattern.test(value))
+      .filter(([, value]) => typeof value === "string" && legacyCommandPattern.test(value))
       .map(([name]) => `package.json:scripts.${name}`),
     ...executableSurfacePaths.filter((path) =>
-      helixCommandPattern.test(consumerFile(deps, path) ?? ""),
+      legacyCommandPattern.test(consumerFile(deps, path) ?? ""),
     ),
   ];
   messages.push(
-    prematureHelixState.length === 0 && prematureHelixAlias.length === 0
-      ? `doctor: consumer-identifier-transition - OK (${futureStateDir} state and helix package/bin alias not generated before PLAN-M-02 cutover)`
-      : `doctor: consumer-identifier-transition - violation premature_future_state=${prematureHelixState.join(",")} premature_alias=${prematureHelixAlias.join(",")}`,
+    legacyState.length === 0 && legacyAlias.length === 0
+      ? "doctor: consumer-identifier-transition - OK (.helix state and helix package/bin are canonical; legacy state/CLI absent)"
+      : `doctor: consumer-identifier-transition - violation legacy_state=${legacyState.join(",")} legacy_alias=${legacyAlias.join(",")}`,
   );
 
-  const projectSetupState = recordValue(consumerJson(deps, ".ut-tdd/state/project-setup.json"));
+  const projectSetupState = recordValue(consumerJson(deps, ".helix/state/project-setup.json"));
   const projectSetupWorkspace = recordValue(projectSetupState?.workspace);
   const projectSetupPackageRoot =
     typeof projectSetupWorkspace?.packageRoot === "string"
@@ -2120,23 +2125,23 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     .map((row) => (typeof row?.phase === "string" ? row.phase : ""))
     .filter(Boolean);
   const expectedFirstRunRows = [
-    { phase: "setup-dry-run", command: "ut-tdd setup project --dry-run" },
+    { phase: "setup-dry-run", command: "helix setup project --dry-run" },
     { phase: "vscode-profile-open", command: "code --profile HELIX ." },
-    { phase: "status-frontier", command: "ut-tdd status --json" },
-    { phase: "github-ci-safety", command: "ut-tdd setup project --dry-run --json" },
-    { phase: "completion-decision-packet", command: "ut-tdd completion decision-packet --json" },
-    { phase: "completion-review-bundle", command: "ut-tdd completion review-bundle --json" },
+    { phase: "status-frontier", command: "helix status --json" },
+    { phase: "github-ci-safety", command: "helix setup project --dry-run --json" },
+    { phase: "completion-decision-packet", command: "helix completion decision-packet --json" },
+    { phase: "completion-review-bundle", command: "helix completion review-bundle --json" },
     {
       phase: "version-up-dry-run",
       command:
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     },
-    { phase: "consumer-doctor", command: "ut-tdd doctor --profile consumer" },
-    { phase: "identifier-cutover-packet", command: "ut-tdd rename plan --json" },
-    { phase: "handover-route", command: "ut-tdd handover status --json" },
+    { phase: "consumer-doctor", command: "helix doctor --profile consumer" },
+    { phase: "identifier-cutover-packet", command: "helix rename plan --json" },
+    { phase: "handover-route", command: "helix handover status --json" },
     {
       phase: "team-run-dry-run",
-      command: `ut-tdd team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
+      command: `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
     },
   ];
   const expectedFirstRunCommands = expectedFirstRunRows
@@ -2177,24 +2182,24 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     completionReviewSemanticDigestOk;
   const projectSetupStateOk =
     projectSetupState?.schemaVersion === "helix-project-setup-state.v1" &&
-    projectSetupState?.setupCommand === "ut-tdd setup project" &&
+    projectSetupState?.setupCommand === "helix setup project" &&
     projectSetupObjectiveBoundary?.scope ===
       "consumer_setup_readiness_not_whole_program_completion" &&
     projectSetupObjectiveBoundary?.completionClaimAllowed === false &&
     projectSetupObjectiveBoundary?.completionPacketCommand ===
-      "ut-tdd completion decision-packet --json" &&
+      "helix completion decision-packet --json" &&
     projectSetupObjectiveBoundary?.completionReviewBundleCommand ===
-      "ut-tdd completion review-bundle --json" &&
+      "helix completion review-bundle --json" &&
     projectSetupPostWorkflow?.readinessOk === true &&
     projectSetupPostWorkflow?.nextRoute === "ready" &&
-    projectSetupVerificationCommands.includes("ut-tdd completion decision-packet --json") &&
-    projectSetupVerificationCommands.includes("ut-tdd completion review-bundle --json") &&
-    projectSetupVerificationCommands.includes("ut-tdd doctor --profile consumer") &&
+    projectSetupVerificationCommands.includes("helix completion decision-packet --json") &&
+    projectSetupVerificationCommands.includes("helix completion review-bundle --json") &&
+    projectSetupVerificationCommands.includes("helix doctor --profile consumer") &&
     projectSetupMatrixOk;
   messages.push(
     projectSetupStateOk
       ? "doctor: consumer-project-setup-state - OK (completion boundary persisted; completionClaimAllowed=false; first-run matrix persisted)"
-      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "ut-tdd setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "ut-tdd completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "ut-tdd completion review-bundle --json"} completionReviewSemanticDigest=${completionReviewSemanticDigestOk} readinessOk=${String(projectSetupPostWorkflow?.readinessOk ?? "")} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
+      : `doctor: consumer-project-setup-state - violation schema=${projectSetupState?.schemaVersion === "helix-project-setup-state.v1"} setupCommand=${projectSetupState?.setupCommand === "helix setup project"} scope=${projectSetupObjectiveBoundary?.scope === "consumer_setup_readiness_not_whole_program_completion"} completionClaimAllowed=${projectSetupObjectiveBoundary?.completionClaimAllowed === false} completionPacket=${projectSetupObjectiveBoundary?.completionPacketCommand === "helix completion decision-packet --json"} completionReviewBundle=${projectSetupObjectiveBoundary?.completionReviewBundleCommand === "helix completion review-bundle --json"} completionReviewSemanticDigest=${completionReviewSemanticDigestOk} readinessOk=${String(projectSetupPostWorkflow?.readinessOk ?? "")} nextRoute=${String(projectSetupPostWorkflow?.nextRoute ?? "")} verificationCommands=${projectSetupVerificationCommands.join(",")} verificationMatrix=${projectSetupMatrixOk} matrixPhases=${projectSetupMatrixPhases.join(",")} matrixCommands=${projectSetupMatrixCommands.join(",")}`,
   );
 
   const consumerPackageJson = recordValue(
@@ -2212,7 +2217,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const missingPackageReadiness = [
     ...(consumerPackageJson ? [] : ["consumer_readiness:package-json"]),
     ...[
-      ["ut-tdd", "consumer_readiness:ut-tdd-package-script"],
+      ["helix", "consumer_readiness:helix-package-script"],
       ["typecheck", "consumer_readiness:typecheck-package-script"],
       ["test", "consumer_readiness:test-package-script"],
     ]
@@ -2229,7 +2234,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const consumerPackagePreflightOk = missingPackageReadiness.length === 0;
   messages.push(
     consumerPackagePreflightOk
-      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=ut-tdd,typecheck,test, lockfile=bun.lock|bun.lockb)`
+      ? `doctor: consumer-package-preflight - OK (packageRoot=${projectSetupPackageRoot}, scripts=helix,typecheck,test, lockfile=bun.lock|bun.lockb)`
       : `doctor: consumer-package-preflight - violation packageRoot=${projectSetupPackageRoot} missing=${missingPackageReadiness.join(",")}`,
   );
 
@@ -2263,13 +2268,13 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       typeof fm.tools === "string" &&
       fm.tools.trim().length > 0 &&
       text.includes("consumer-safe な HELIX subagent") &&
-      text.includes("ut-tdd status") &&
-      text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd completion review-bundle --json") &&
+      text.includes("helix status") &&
+      text.includes("helix completion decision-packet --json") &&
+      text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       ) &&
-      text.includes("ut-tdd doctor --profile consumer") &&
+      text.includes("helix doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
       text.includes("findings") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
@@ -2282,13 +2287,13 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       typeof fm?.description === "string" &&
       fm.description.trim().length > 0 &&
       text.includes("HELIX") &&
-      text.includes("ut-tdd status --json") &&
-      text.includes("ut-tdd completion decision-packet --json") &&
-      text.includes("ut-tdd completion review-bundle --json") &&
+      text.includes("helix status --json") &&
+      text.includes("helix completion decision-packet --json") &&
+      text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
       ) &&
-      text.includes("ut-tdd doctor --profile consumer") &&
+      text.includes("helix doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
     );
   });
@@ -2442,8 +2447,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const ok =
     missing.length === 0 &&
     docsOk &&
-    prematureHelixState.length === 0 &&
-    prematureHelixAlias.length === 0 &&
+    legacyState.length === 0 &&
+    legacyAlias.length === 0 &&
     projectSetupStateOk &&
     consumerPackagePreflightOk &&
     claudeOk &&
@@ -2751,7 +2756,7 @@ export function checkCutoverReadiness(repoRoot: string): { messages: string[]; o
     const r = analyzeCutoverReadiness(loadCutoverReadinessInput(repoRoot));
     const renamePlan = buildIdentifierRenameCutoverPlan(repoRoot);
     const templateViolations = recordTemplateContractViolations({
-      subject: "ut-tdd rename plan",
+      subject: "helix rename plan",
       requiredRecords: requiredRecordsForBlockers([
         "irreversible_migration_pending",
         "human_approval_pending",

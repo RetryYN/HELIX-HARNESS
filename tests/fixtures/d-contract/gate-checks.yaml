@@ -3,7 +3,7 @@ gates:
     - check: l1-trace
       next_action:
         schema_version: v1
-        command: ut-tdd doctor
+        command: helix doctor
         args:
           gate: G1
         safety:
@@ -14,7 +14,7 @@ gates:
     - check: integration-evidence
       next_action:
         schema_version: v1
-        command: ut-tdd doctor
+        command: helix doctor
         args:
           gate: G8
         safety:

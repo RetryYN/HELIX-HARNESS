@@ -30,7 +30,7 @@ const itRows = Array.from(
 ).join("\n");
 
 const validManifest = {
-  manifest_path: ".ut-tdd/evidence/g8-integration/test.json",
+  manifest_path: ".helix/evidence/g8-integration/test.json",
   schema_version: "g8-integration-evidence-v1",
   gate: "G8",
   profile: "it-module-state-minimum",
@@ -86,7 +86,7 @@ const validManifest = {
 };
 
 const assetManifest = {
-  manifest_path: ".ut-tdd/evidence/g8-integration/asset.json",
+  manifest_path: ".helix/evidence/g8-integration/asset.json",
   schema_version: "g8-integration-evidence-v1",
   gate: "G8",
   profile: "it-asset-expansion",
@@ -153,7 +153,7 @@ describe("g8-integration-workflow lint", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations).toContain(
-      "G8 integration evidence manifest is missing under .ut-tdd/evidence/g8-integration",
+      "G8 integration evidence manifest is missing under .helix/evidence/g8-integration",
     );
   });
 

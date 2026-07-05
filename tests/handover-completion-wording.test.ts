@@ -9,10 +9,10 @@ import {
 
 const NOW = "2026-06-12T00:00:00.000Z";
 const repoRoot = "/repo";
-const pointerPath = join(repoRoot, ".ut-tdd", "handover", "CURRENT.json");
+const pointerPath = join(repoRoot, ".helix", "handover", "CURRENT.json");
 const residualAuditPath = join(
   repoRoot,
-  ".ut-tdd",
+  ".helix",
   "audit",
   "A-133-upstream-vmodel-coverage-audit.md",
 );

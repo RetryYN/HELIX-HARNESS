@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-124-route-approval-gate
-title: "PLAN-REVERSE-124: route approval gate fullback"
+title: "PLAN-REVERSE-124: route approval gate の fullback"
 kind: reverse
 layer: cross
 workflow_phase: R4
@@ -16,17 +16,17 @@ backprop_scope:
   - layer: requirements
     decision: updated
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
-    reason: "The human-approval route acceptance item is now implemented and checked."
+    reason: "human-approval route の acceptance item は実装済みで検査済み。"
   - layer: L4-basic-design
     decision: updated
     evidence_path: docs/design/harness/L4-basic-design/function.md
-    reason: "Route eval now describes approval-policy resolution and runtime audit block records."
+    reason: "Route eval は approval-policy resolution と runtime audit block record を記述済み。"
   - layer: L5-detailed-design
     decision: not_impacted
-    reason: "The implementation stays within the existing CLI/workflow contract and runtime audit boundaries."
+    reason: "実装は既存の CLI/workflow contract と runtime audit 境界内に収まる。"
 agent_slots:
   - role: tl
-    slot_label: "TL - route approval fullback"
+    slot_label: "TL - route approval fullback 担当"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-124-route-approval-gate.md
     artifact_type: markdown_doc
@@ -44,7 +44,7 @@ review_evidence:
     reviewed_at: "2026-06-23T16:10:00+09:00"
     tests_green_at: "2026-06-23T16:10:00+09:00"
     verdict: approve
-    scope: "R4 fullback from route approval implementation to requirements and L4 design."
+    scope: "route approval 実装から requirements と L4 design への R4 fullback。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -66,22 +66,19 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-REVERSE-124: route approval gate fullback
+# PLAN-REVERSE-124: route approval gate の fullback
 
-## Objective
+## 目的
 
-Back-fill the route approval gate implementation to requirements and L4
-function design.
+route approval gate 実装を requirements と L4 function design へ back-fill する。
 
-## Scope
+## スコープ
 
-- Requirements §7.8.3 / §7.8.6 now record the implemented route approval gate.
-- L4 function design states that blocked approval routes write runtime audit
-  evidence.
-- The audit JSONL remains runtime state and is not tracked in Git.
+- Requirements §7.8.3 / §7.8.6 は、実装済みの route approval gate を記録する。
+- L4 function design は、block された approval route が runtime audit evidence を書くことを明記する。
+- audit JSONL は runtime state のままであり、Git では追跡しない。
 
-## Acceptance Criteria
+## 受入条件
 
-- Requirements and L4 design both name approval-policy resolution.
-- The Reverse record states that `.ut-tdd/audit/route-approval.jsonl` is runtime
-  evidence, not canonical prose.
+- Requirements と L4 design の両方が approval-policy resolution を明記する。
+- Reverse record は `.helix/audit/route-approval.jsonl` が canonical prose ではなく runtime evidence であると示す。

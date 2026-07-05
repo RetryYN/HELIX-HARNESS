@@ -36,7 +36,7 @@ dependencies:
     - docs/design/harness/L5-detailed-design/module-decomposition.md
   references:
     - docs/design/harness/L5-detailed-design/internal-processing.md
-related_adr: docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
+related_adr: docs/adr/ADR-001-helix-harness-redesign-and-language.md
 v2_import: docs/migration/v2-import-ledger.md
 ---
 

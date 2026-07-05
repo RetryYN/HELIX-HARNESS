@@ -67,7 +67,7 @@ dependencies:
 
 # PLAN-L6-50 (add-design): P2 orchestration + P7 memory 機能設計
 
-## §0 役割 / mode
+## §0 役割 / モード（mode）
 
 HELIX を Claude+Codex マルチエージェント・オーケストレーション前提へ寄せる **Add-feature mode（`docs/process/modes/add-feature.md`、route B = bottom-up）**。誤って `kind=design` master_hub で起票した PLAN-L4-50 を本 `kind=add-design` PLAN で **supersede**（正しいフィーチャーワークフロー設定）。
 
@@ -91,17 +91,17 @@ HELIX を Claude+Codex マルチエージェント・オーケストレーショ
 - 却下: heartbeat-scheduler 外部バイナリ / shell・http dispatcher（P8）。
 
 ### P7 共有メモリ（2層・全エージェント共有）
-- harness.db 2表 `harness_memory_entries`/`project_memory_entries` ＋ `.ut-tdd/memory/*.jsonl`（git 共有、Claude+Codex 読書可）。
-- `ut-tdd memory write/list/show/supersede` CLI、SessionStart で harness 層 surface。
+- harness.db 2表 `harness_memory_entries`/`project_memory_entries` ＋ `.helix/memory/*.jsonl`（git 共有、Claude+Codex 読書可）。
+- `helix memory write/list/show/supersede` CLI、SessionStart で harness 層 surface。
 - `.claude/agent-memory/` silo 廃止（asset-drift 衝突解消）。既存 upsertRow/migrate/SECRET_PATTERN/recordProjectionEvent 再利用。
 
 > 設計の素材: 旧 HELIX 精読レポート + scratchpad の Codex ドラフト（`scratchpad/codex-draft-orchestration/`、参照のみ、design 準拠で再生成）。
 
-## §3 coding-rule impact（add-feature CODING-RULE-WORKFLOW）
+## §3 coding-rule 影響（coding-rule impact / add-feature CODING-RULE-WORKFLOW）
 
-`docs/governance/coding-rules.md` への影響 = **delta**: 新規モジュール `src/orchestration/`・`src/memory/` の命名/配置規約、cross-runtime verifier の self-eval 禁止規約を追記対象。具体追記は Step 2（function design 確定）で SSoT 更新。U-CODE テストで新規規約挙動を被覆。
+`docs/governance/coding-rules.md` への影響 = **差分（delta）**: 新規モジュール `src/orchestration/`・`src/memory/` の命名/配置規約、cross-runtime verifier の self-eval 禁止規約を追記対象。具体追記は Step 2（function design 確定）で SSoT 更新。U-CODE テストで新規規約挙動を被覆。
 
-## §4 DDD / TDD impact（add-feature DDD-TDD-WORKFLOW）
+## §4 DDD / TDD 影響（DDD / TDD impact / add-feature DDD-TDD-WORKFLOW）
 
 - DDD: orchestration（loop/job）と memory（2層）は別 Bounded Context。memory は `harness`/`project` の 2 集約。境界=ACL（外部 runtime 跨ぎは adapter 経由、状態は CLI 経由でのみ遷移=agent-as-domain-service）。
 - TDD: `tdd_red_required` = true（add-impl は Red-first 証跡を保つ。stop-rule/verifier 差異/memory 投影は先に失敗テストを書く）。
@@ -123,7 +123,7 @@ HELIX を Claude+Codex マルチエージェント・オーケストレーショ
 `docs/test-design/helix/orchestration-memory.md` に U-ORCH/U-MEM oracle 9 本を起票し function-spec と pair-freeze。coverage 単独 pass 禁止。
 - 進捗: ✅ test-design 確定（9 oracle、契約 1:1、孤児 0、forward-citation スタブ充足）。① ⇔ ③ pair-freeze 完了。
 
-### Step 4: [直列] review（cross-runtime）→ add-design freeze
+### Step 4: [直列] レビュー（review / cross-runtime）→ add-design freeze
 > 直列理由: downstream_dependency — 定量(plan lint/doctor)→定性レビュー。
 tl review（frontier-reviewer class）/ intra_runtime_subagent 記録（tests_green_at ≤ reviewed_at）→ add-design freeze。後続 = `kind=add-impl` PLAN(L7) を本 PLAN を parent に起票。
 - 進捗: ✅ cross_agent review（Codex, VERDICT PASS / Critical 0、Important 4 反映）→ **add-design freeze（status=confirmed）**。次 = add-impl(L7) を本 PLAN parent で起票し writable Codex へ実装分散。
@@ -137,13 +137,13 @@ tl review（frontier-reviewer class）/ intra_runtime_subagent 記録（tests_gr
 | 3 | test-design | U-* oracle 起票、function-spec と pair-freeze |
 | 4 | review/freeze | cross-runtime review → add-design freeze → add-impl(L7) へ |
 
-## §4 DoD (add-design)
+## §4 完了条件（DoD / add-design）
 
 - [x] §1 影響範囲が既存 L1-L14/コードに対し確定（重複実装なし）。
 - [x] L6 function-spec ① 確定、coding-rule SSoT delta 反映。
 - [x] test-design ③ と pair-freeze（片肺禁止）。
 - [x] DDD 境界/不変条件 impact 記録（本 §4）、`tdd_red_required: true`。
-- [x] `ut-tdd plan lint` / `doctor` green、cross-runtime review 証跡。
+- [x] `helix plan lint` / `doctor` green、cross-runtime review 証跡。
 
 ## §5 carry / 後続
 

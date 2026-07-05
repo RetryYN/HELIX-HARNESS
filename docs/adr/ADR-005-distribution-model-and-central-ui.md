@@ -9,7 +9,7 @@
 
 2026-06-01 セッションで「L7-L14 工程定義 → 駆動モデル → ディレクトリ構成」を辿る中、**より上流の前提 = 「ハーネスをどう配布し、更新をどう享受し、Web UI をどこに置くか」が要件定義されていない**ことが判明 (PO 指摘)。この基盤未定義のため、ディレクトリ構成も工程/駆動モデルの置き場も決まらず収束しなかった。
 
-確定済の周辺事実: extraction-plan は配布を「repo template / setup script」とだけ記述 (global 個人 workspace = legacy global workspace 方式は否定)、ただし **global 中央 / npm / plugin / version-pin 更新は未定義**。screen-requirements に **14 画面 Web UI** (PM 案件横断 / HM harness 診断 / GD) が PO 承認済 (2026-05-28) だが backend 配置は未確定 (IMP-031 で将来境界として予告)。UT-TDD は **社内開発チーム配布パッケージ** (legacy single-user workspace 前提と対比)。
+確定済の周辺事実: extraction-plan は配布を「repo template / setup script」とだけ記述 (global 個人 workspace = legacy global workspace 方式は否定)、ただし **global 中央 / npm / plugin / version-pin 更新は未定義**。screen-requirements に **14 画面 Web UI** (PM 案件横断 / HM harness 診断 / GD) が PO 承認済 (2026-05-28) だが backend 配置は未確定 (IMP-031 で将来境界として予告)。HELIX は **社内開発チーム配布パッケージ** (legacy single-user workspace 前提と対比)。
 
 「ハーネスの単一真実 (指示/skill/agent/工程/駆動モデル定義 + TS engine) = リファレンス §④の `.ai/` の役割」であり、`CLAUDE.md`/`.claude/`/`AGENTS.md` は各ツールへ供給する **adapter**。
 
@@ -21,7 +21,7 @@
 - **更新享受** = tag を bump (`bun update`)。社内安全側は **tag pin + 定期 bump** を既定とし、即時全社反映が要る場合のみ branch track を例外採用。
 - **public npm publish しない** (社内コード)。internal GitHub から直接 pull。
 - **engine は tool 非依存 package** (Claude plugin に閉じ込めない)。CLI / CI (Layer B-remote) / Codex / 将来ツールが同一 engine を呼ぶ (ルール同一性 §2.1.0)。
-- `ut-tdd setup` が各 project に adapter (`CLAUDE.md` / `.claude/` / `AGENTS.md`) を投影。単一真実 = package 内、project は投影を受ける。
+- `helix setup` が各 project に adapter (`CLAUDE.md` / `.claude/` / `AGENTS.md`) を投影。単一真実 = package 内、project は投影を受ける。
 
 ### D2. Web UI = 中央・全 project 横断の管理ツール (team server)
 
@@ -36,7 +36,7 @@
 
 ## 根拠（Rationale）
 
-- **CI が package を要求**: Layer B-remote (`.github/workflows`) は `ut-tdd` lint/doctor を回す最終防壁。CI は Claude plugin を使えず、tool 非依存 package (GitHub-pull) が必須。
+- **CI が package を要求**: Layer B-remote (`.github/workflows`) は `helix` lint/doctor を回す最終防壁。CI は Claude plugin を使えず、tool 非依存 package (GitHub-pull) が必須。
 - **社内最適**: GitHub-pull は public publish 不要・registry 構築不要で社内導入が最も楽 (PO 判断)。
 - **チーム前提**: tag-pin コミットで「チーム共有 + 再現性 + 中央更新享受」を両立。legacy personal global workspace の divergence も repo-template の更新不能も解消。
 - **中央 UI = チーム管理**: 全 project 横断の可視化は中央配置でしか成立しない。GitHub を backbone にすれば配布 (D1) と UI (D2) が同一 data source で閉じる。
@@ -66,11 +66,11 @@
 - **L1 技術要求**: 「配布 = GitHub-pull / 更新 channel = tag-pin bump」を technical sub-doc §1 に追記し L3 で FR 化。
 - **screen-requirements 更新**: Web UI を「中央・全 project 横断 (team server)」と明示 (現状は project 文脈で記述)。
 - **repository-structure.md / ディレクトリ構成要件**: 3 層 (① engine repo[GitHub-pull] / ② project 投影[adapter via setup] / ③ 中央 UI service) を反映。工程/駆動モデル定義の home (`docs/process/` 候補) と機能 home (`src/<domain>/`) を要件化。
-- **legacy cutover**: 本配布モデルは legacy personal global workspace の「作って差し替え」対象。cutover-strategy に沿って `.claude/CLAUDE.md` の legacy CLI routeを `ut-tdd` GitHub-pull 導線へ置換。
+- **legacy cutover**: 本配布モデルは legacy personal global workspace の「作って差し替え」対象。cutover-strategy に沿って `.claude/CLAUDE.md` の legacy CLI routeを `helix` GitHub-pull 導線へ置換。
 - **IMP-031 更新**: `ADR-003-runtime-adapter-boundary-subscription-cli.md` Follow-ups §IMP-031 (L52) に「Web サーバ配置方針は ADR-005 D2 を参照」を追記。
 - **Phase B server sync 方向 (PO 2026-06-10、direction-only / 未 freeze)**: 中央 UI の同期方式を以下の方向で具体化 (technical-requirements §2 carry note の「PGlite + ElectricSQL 候補」を refine。実装は Phase B PLAN で起票)。
   - **DB = SQLite** (`bun:sqlite` 継続 = physical-data §9 の core DB 選択と同一、新規依存なし。WAL モードで同期中の読取非ブロック。ElectricSQL/Postgres は不要として candidate から外す方向)。
-  - **同期 = ハイブリッド**: ① GitHub webhook (push) で鮮度同期 (project が `.ut-tdd` state を commit → webhook → VPS が pull + projection rebuild) + ② 定期 reconcile (cron full rebuild) を取りこぼし安全網に (柱3 整合保証)。純イベントのみは drift リスクで不可。
+  - **同期 = ハイブリッド**: ① GitHub webhook (push) で鮮度同期 (project が `.helix` state を commit → webhook → VPS が pull + projection rebuild) + ② 定期 reconcile (cron full rebuild) を取りこぼし安全網に (柱3 整合保証)。純イベントのみは drift リスクで不可。
   - **host = XServer VPS** (Bun HTTP server + SQLite)。CI (GitHub Actions, public 無料) と別の自己管理 ops (TLS/backup/監視)。
-  - **正本境界**: 各 project の git (`.ut-tdd` state) が正本。中央 SQLite は**非正本 projection** (再構築可能、生成物を正本化しない原則)。
+  - **正本境界**: 各 project の git (`.helix` state) が正本。中央 SQLite は**非正本 projection** (再構築可能、生成物を正本化しない原則)。
   - **auth = escalation (人間確定必須)**: ① webhook 受信は GitHub HMAC 署名検証 ② ダッシュボード閲覧アクセス制御。projection に secret/PII/raw transcript を載せない (physical-data 既定を outward-facing VPS で厳守)。判断根拠 = [[project_harness_central_ui_backend_first]]。

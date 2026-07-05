@@ -37,13 +37,13 @@ function runRepoScriptUtTdd(args: string[]) {
         "-ExecutionPolicy",
         "Bypass",
         "-File",
-        join(repoRoot, "scripts", "ut-tdd.ps1"),
+        join(repoRoot, "scripts", "helix.ps1"),
         ...args,
       ],
       { cwd: repoRoot, encoding: "utf8" },
     );
   }
-  return spawnSync(join(repoRoot, "scripts", "ut-tdd"), args, {
+  return spawnSync(join(repoRoot, "scripts", "helix"), args, {
     cwd: repoRoot,
     encoding: "utf8",
   });
@@ -135,7 +135,7 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
         `  echo a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}`,
         "  exit /b 0",
         ")",
-        'echo %args% | findstr /C:"UT-TDD_AGENT-HARNESS-Pack.git" >nul',
+        'echo %args% | findstr /C:"HELIX-HARNESS-OS.git" >nul',
         "if not errorlevel 1 (",
         `  echo ${packHead} refs/heads/main`,
         "  exit /b 0",
@@ -154,10 +154,10 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
     [
       "#!/bin/sh",
       'case "$*" in',
-      '  *"UT-TDD_AGENT-HARNESS-Pack.git"*"--tags"*|*"--tags"*"UT-TDD_AGENT-HARNESS-Pack.git"*)',
+      '  *"HELIX-HARNESS-OS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-OS.git"*)',
       `    echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}'`,
       "    ;;",
-      '  *"UT-TDD_AGENT-HARNESS-Pack.git"*)',
+      '  *"HELIX-HARNESS-OS.git"*)',
       `    echo '${packHead} refs/heads/main'`,
       "    ;;",
       "  *)",
@@ -201,19 +201,19 @@ describe("L7 CLI surface closure", () => {
     const completion = runRepoScriptUtTdd(["completion", "decision-packet", "--json"]);
     expect(completion.status, completion.stderr || completion.stdout).toBe(0);
     const completionPacket = JSON.parse(completion.stdout);
-    expect(completionPacket.sourceCommand).toBe("ut-tdd completion decision-packet --json");
+    expect(completionPacket.sourceCommand).toBe("helix completion decision-packet --json");
     expect(completionPacket.decisions).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          decisionPacketCommand: "ut-tdd s4 decision-packet --json",
-          runnableDecisionPacketCommand: "bun run ut-tdd s4 decision-packet --json",
+          decisionPacketCommand: "helix s4 decision-packet --json",
+          runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
         }),
       ]),
     );
   }, 20_000);
 
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-status-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-handover-status-"));
     try {
       writeObjectiveAuditFixture(root);
       const missing = runCliIn(root, ["handover", "status", "--json"]);
@@ -225,7 +225,7 @@ describe("L7 CLI surface closure", () => {
         active_plan: null,
       });
 
-      const handoverDir = join(root, ".ut-tdd", "handover");
+      const handoverDir = join(root, ".helix", "handover");
       const pointerPath = join(handoverDir, "CURRENT.json");
       mkdirSync(handoverDir, { recursive: true });
       writeFileSync(pointerPath, "{not json", "utf8");
@@ -252,7 +252,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload).toMatchObject({
         active_plan: "PLAN-L7-04-handover-mechanism",
         status: "in_progress",
-        generated_by: "ut-tdd-handover",
+        generated_by: "helix-handover",
         exists: true,
         stale: false,
         stale_reasons: [],
@@ -275,7 +275,7 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         status: "ready",
         generatedFrom: "outstanding.completionReadiness",
-        sourceCommand: "ut-tdd handover",
+        sourceCommand: "helix handover",
         decisionCount: 0,
       });
 
@@ -316,7 +316,7 @@ describe("L7 CLI surface closure", () => {
           owner: "codex",
           updated_at: "2026-06-01T00:00:00.000Z",
         },
-        written: [".ut-tdd/handover/CURRENT.json"],
+        written: [".helix/handover/CURRENT.json"],
       });
       expect(updatePayload.pointer.owner_updated_at).toEqual(expect.any(String));
 
@@ -332,7 +332,7 @@ describe("L7 CLI surface closure", () => {
   }, 15_000);
 
   it("exposes completion decision packet templates through handover status JSON", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-handover-packet-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-handover-packet-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeObjectiveAuditFixture(root);
@@ -354,7 +354,7 @@ describe("L7 CLI surface closure", () => {
 
       const generated = runCliIn(root, ["handover", "--plan", "PLAN-M-02-fixture"]);
       expect(generated.status).toBe(0);
-      const pointerPath = join(root, ".ut-tdd", "handover", "CURRENT.json");
+      const pointerPath = join(root, ".helix", "handover", "CURRENT.json");
       const oldPointer = JSON.parse(readFileSync(pointerPath, "utf8"));
       delete oldPointer.outstanding?.semanticFeatureFrontierRecords;
       writeFileSync(pointerPath, JSON.stringify(oldPointer), "utf8");
@@ -370,13 +370,13 @@ describe("L7 CLI surface closure", () => {
         ok: false,
         status: "blocked",
         generatedFrom: "outstanding.completionReadiness",
-        sourceCommand: "ut-tdd handover",
+        sourceCommand: "helix handover",
         decisionCount: 1,
       });
       expect(payload.completionReviewBundle).toMatchObject({
         schemaVersion: "completion-review-bundle.v1",
-        sourceCommand: "ut-tdd completion review-bundle --json",
-        runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
+        sourceCommand: "helix completion review-bundle --json",
+        runnableSourceCommand: "bun run helix completion review-bundle --json",
         planOnly: true,
         mustNotDecide: true,
         mustNotApply: true,
@@ -436,7 +436,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("workflow-next-actions: 1");
       expect(text.stdout).toContain("workflow-next-action[1]: PLAN-M-02-fixture");
       expect(text.stdout).toContain(
-        "packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json supporting=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json scoped-supporting=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "packet=helix rename plan --json scoped=helix rename plan --json supporting=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json scoped-supporting=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(
         "action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work",
@@ -445,22 +445,22 @@ describe("L7 CLI surface closure", () => {
         "route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply",
       );
       expect(text.stdout).toContain(
-        "completion-decision-packet: ut-tdd completion decision-packet --json",
+        "completion-decision-packet: helix completion decision-packet --json",
       );
       expect(text.stdout).toContain(
-        "completion-review-bundle: ut-tdd completion review-bundle --json",
+        "completion-review-bundle: helix completion review-bundle --json",
       );
       expect(text.stdout).toContain(
-        "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json",
+        "runnable-completion-review-bundle: bun run helix completion review-bundle --json",
       );
       expect(text.stdout).toContain(
         "completion-review-coverage: covered=human_approval_pending,irreversible_migration_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
       );
       expect(text.stdout).toContain(
-        "supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
+        "supporting-decision-packets: helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json",
       );
       expect(text.stdout).toContain(
-        "scoped-supporting-decision-packets: ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "scoped-supporting-decision-packets: helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain("semantic_frontier_records: 1");
       expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
@@ -470,7 +470,7 @@ describe("L7 CLI surface closure", () => {
   }, 15_000);
 
   it("exposes plan complete as the completed handover lifecycle entrypoint", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-plan-complete-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-plan-complete-"));
     try {
       const use = runCliIn(root, ["plan", "use", "PLAN-L7-04-handover-mechanism"]);
       expect(use.status).toBe(0);
@@ -486,8 +486,8 @@ describe("L7 CLI surface closure", () => {
   }, 15_000);
 
   it("exposes whole-program completion readiness on status surfaces", () => {
-    const readyRoot = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-ready-"));
-    const blockedRoot = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-blocked-"));
+    const readyRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-ready-"));
+    const blockedRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-blocked-"));
     try {
       const ready = runCliIn(readyRoot, ["status", "--json"]);
       expect(ready.status).toBe(0);
@@ -541,7 +541,7 @@ describe("L7 CLI surface closure", () => {
       expect(blockedPayload.judgmentReview).toMatchObject({
         mode: expect.any(String),
         requiredReviewKind: expect.stringMatching(/^(cross_agent|intra_runtime_subagent|human)$/),
-        gateCommandTemplate: expect.stringContaining("ut-tdd gate <gate-id>"),
+        gateCommandTemplate: expect.stringContaining("helix gate <gate-id>"),
       });
       expect(blockedPayload.judgmentReview.requiredEvidence.length).toBeGreaterThan(0);
       expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
@@ -559,27 +559,27 @@ describe("L7 CLI surface closure", () => {
           planId: "PLAN-DISCOVERY-07-fixture",
           reason: "po_decision_pending",
           decisionKind: "po_s4_decision",
-          decisionPacketCommand: "ut-tdd s4 decision-packet --json",
-          runnableDecisionPacketCommand: "bun run ut-tdd s4 decision-packet --json",
-          packetCommands: ["ut-tdd s4 decision-packet --json"],
-          runnablePacketCommands: ["bun run ut-tdd s4 decision-packet --json"],
+          decisionPacketCommand: "helix s4 decision-packet --json",
+          runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
+          packetCommands: ["helix s4 decision-packet --json"],
+          runnablePacketCommands: ["bun run helix s4 decision-packet --json"],
           scopedDecisionPacketCommand:
-            "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+            "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           runnableScopedDecisionPacketCommand:
-            "bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+            "bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           scopedPacketCommands: [
-            "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+            "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           ],
           runnableScopedPacketCommands: [
-            "bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+            "bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
           ],
           supportingPacketSummaries: [
             expect.objectContaining({
-              command: "ut-tdd s4 decision-packet --json",
-              runnableCommand: "bun run ut-tdd s4 decision-packet --json",
-              scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+              command: "helix s4 decision-packet --json",
+              runnableCommand: "bun run helix s4 decision-packet --json",
+              scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
               runnableScopedCommand:
-                "bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+                "bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
               schemaVersion: "s4-decision-packet.v1",
               matrixField: "decisionVerificationCommandMatrix",
               expectedMatrixCount: 8,
@@ -600,36 +600,36 @@ describe("L7 CLI surface closure", () => {
           planId: "PLAN-M-02-fixture",
           reason: "irreversible_migration_pending",
           decisionKind: "irreversible_migration_signoff",
-          decisionPacketCommand: "ut-tdd rename plan --json",
-          runnableDecisionPacketCommand: "bun run ut-tdd rename plan --json",
+          decisionPacketCommand: "helix rename plan --json",
+          runnableDecisionPacketCommand: "bun run helix rename plan --json",
           packetCommands: [
-            "ut-tdd rename plan --json",
-            "ut-tdd rename approval-draft --json",
-            "ut-tdd action-binding approval-packet --json",
+            "helix rename plan --json",
+            "helix rename approval-draft --json",
+            "helix action-binding approval-packet --json",
           ],
           runnablePacketCommands: [
-            "bun run ut-tdd rename plan --json",
-            "bun run ut-tdd rename approval-draft --json",
-            "bun run ut-tdd action-binding approval-packet --json",
+            "bun run helix rename plan --json",
+            "bun run helix rename approval-draft --json",
+            "bun run helix action-binding approval-packet --json",
           ],
-          scopedDecisionPacketCommand: "ut-tdd rename plan --json",
-          runnableScopedDecisionPacketCommand: "bun run ut-tdd rename plan --json",
+          scopedDecisionPacketCommand: "helix rename plan --json",
+          runnableScopedDecisionPacketCommand: "bun run helix rename plan --json",
           scopedPacketCommands: [
-            "ut-tdd rename plan --json",
-            "ut-tdd rename approval-draft --json",
-            "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            "helix rename plan --json",
+            "helix rename approval-draft --json",
+            "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           runnableScopedPacketCommands: [
-            "bun run ut-tdd rename plan --json",
-            "bun run ut-tdd rename approval-draft --json",
-            "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            "bun run helix rename plan --json",
+            "bun run helix rename approval-draft --json",
+            "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
           supportingPacketSummaries: [
             expect.objectContaining({
-              command: "ut-tdd rename plan --json",
-              runnableCommand: "bun run ut-tdd rename plan --json",
-              scopedCommand: "ut-tdd rename plan --json",
-              runnableScopedCommand: "bun run ut-tdd rename plan --json",
+              command: "helix rename plan --json",
+              runnableCommand: "bun run helix rename plan --json",
+              scopedCommand: "helix rename plan --json",
+              runnableScopedCommand: "bun run helix rename plan --json",
               schemaVersion: "identifier-rename-cutover-plan.v1",
               matrixField: "verificationCommandMatrix",
               expectedMatrixCount: 10,
@@ -644,10 +644,10 @@ describe("L7 CLI surface closure", () => {
               ]),
             }),
             expect.objectContaining({
-              command: "ut-tdd rename approval-draft --json",
-              runnableCommand: "bun run ut-tdd rename approval-draft --json",
-              scopedCommand: "ut-tdd rename approval-draft --json",
-              runnableScopedCommand: "bun run ut-tdd rename approval-draft --json",
+              command: "helix rename approval-draft --json",
+              runnableCommand: "bun run helix rename approval-draft --json",
+              scopedCommand: "helix rename approval-draft --json",
+              runnableScopedCommand: "bun run helix rename approval-draft --json",
               schemaVersion: "identifier-rename-approval-draft.v1",
               matrixField: "none",
               expectedMatrixCount: 0,
@@ -660,12 +660,12 @@ describe("L7 CLI surface closure", () => {
               requiredMatrixFields: [],
             }),
             expect.objectContaining({
-              command: "ut-tdd action-binding approval-packet --json",
-              runnableCommand: "bun run ut-tdd action-binding approval-packet --json",
+              command: "helix action-binding approval-packet --json",
+              runnableCommand: "bun run helix action-binding approval-packet --json",
               scopedCommand:
-                "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+                "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
               runnableScopedCommand:
-                "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+                "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
               schemaVersion: "action-binding-approval-packet.v1",
               matrixField: "approvalVerificationCommandMatrix",
               expectedMatrixCount: 11,
@@ -691,7 +691,7 @@ describe("L7 CLI surface closure", () => {
         ok: false,
         status: "blocked",
         generatedFrom: "outstanding.completionReadiness",
-        sourceCommand: "ut-tdd status --json",
+        sourceCommand: "helix status --json",
         freshness: {
           validForMinutes: 1440,
           stale: false,
@@ -701,8 +701,8 @@ describe("L7 CLI surface closure", () => {
       });
       expect(blockedPayload.completionReviewBundle).toMatchObject({
         schemaVersion: "completion-review-bundle.v1",
-        sourceCommand: "ut-tdd completion review-bundle --json",
-        runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
+        sourceCommand: "helix completion review-bundle --json",
+        runnableSourceCommand: "bun run helix completion review-bundle --json",
         planOnly: true,
         mustNotDecide: true,
         mustNotApply: true,
@@ -747,34 +747,34 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
-        `workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=${firstWorkflowAction.requiredActionJa} action-id=record the PO/S4 decision before promotion, rejection, or Forward merge route=${firstWorkflowAction.nextWorkflowRouteJa} route-id=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture`,
+        `workflow-next-action: 1 PLAN-DISCOVERY-07-fixture reason=po_decision_pending action=${firstWorkflowAction.requiredActionJa} action-id=record the PO/S4 decision before promotion, rejection, or Forward merge route=${firstWorkflowAction.nextWorkflowRouteJa} route-id=S4 decide -> Reverse/Forward merge only after decision_outcome is recorded packet=helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture`,
       );
       expect(blockedText.stdout).toContain(
-        "runnable-workflow-next-action: 1 PLAN-DISCOVERY-07-fixture packet=bun run ut-tdd s4 decision-packet --json scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+        "runnable-workflow-next-action: 1 PLAN-DISCOVERY-07-fixture packet=bun run helix s4 decision-packet --json scoped=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
       );
       expect(blockedText.stdout).toContain(
-        `workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=${secondWorkflowAction.requiredActionJa} action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=${secondWorkflowAction.nextWorkflowRouteJa} route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=ut-tdd rename plan --json scoped=ut-tdd rename plan --json`,
+        `workflow-next-action: 2 PLAN-M-02-fixture reason=irreversible_migration_pending action=${secondWorkflowAction.requiredActionJa} action-id=obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work route=${secondWorkflowAction.nextWorkflowRouteJa} route-id=L14 cutover -> cutover_decision_record + dry-run/rollback/state backup/audit before apply packet=helix rename plan --json scoped=helix rename plan --json`,
       );
       expect(blockedText.stdout).toContain(
-        "scoped-supporting=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "scoped-supporting=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 1 ut-tdd s4 decision-packet --json runnable=bun run ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture runnable-scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
+        "packet-summary: 1 helix s4 decision-packet --json runnable=bun run helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture runnable-scoped=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-07-fixture",
       );
       expect(blockedText.stdout).toContain(
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd rename plan --json runnable=bun run ut-tdd rename plan --json scoped=ut-tdd rename plan --json runnable-scoped=bun run ut-tdd rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=10",
+        "packet-summary: 2 helix rename plan --json runnable=bun run helix rename plan --json scoped=helix rename plan --json runnable-scoped=bun run helix rename plan --json schema=identifier-rename-cutover-plan.v1 matrix=verificationCommandMatrix count=10",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd rename approval-draft --json runnable=bun run ut-tdd rename approval-draft --json scoped=ut-tdd rename approval-draft --json runnable-scoped=bun run ut-tdd rename approval-draft --json schema=identifier-rename-approval-draft.v1 matrix=none count=0",
+        "packet-summary: 2 helix rename approval-draft --json runnable=bun run helix rename approval-draft --json scoped=helix rename approval-draft --json runnable-scoped=bun run helix rename approval-draft --json schema=identifier-rename-approval-draft.v1 matrix=none count=0",
       );
       expect(blockedText.stdout).toContain(
         "review=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む review-id=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
       );
       expect(blockedText.stdout).toContain(
-        "packet-summary: 2 ut-tdd action-binding approval-packet --json runnable=bun run ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=11",
+        "packet-summary: 2 helix action-binding approval-packet --json runnable=bun run helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-fixture runnable-scoped=bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture schema=action-binding-approval-packet.v1 matrix=approvalVerificationCommandMatrix count=11",
       );
       expect(blockedText.stdout).toContain("completion: blocked");
       expect(blockedText.stdout).toContain("authority-blockers=human:");
@@ -783,18 +783,18 @@ describe("L7 CLI surface closure", () => {
       );
       expect(blockedText.stdout).toContain("semantic_frontier_records: 2");
       expect(blockedText.stdout).toContain("confirmed_current_meaning_records: 11");
-      expect(blockedText.stdout).toContain("decision-packet: ut-tdd s4 decision-packet --json");
+      expect(blockedText.stdout).toContain("decision-packet: helix s4 decision-packet --json");
       expect(blockedText.stdout).toContain(
-        "supporting-decision-packets: ut-tdd s4 decision-packet --json | ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json",
+        "supporting-decision-packets: helix s4 decision-packet --json | helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json",
       );
       expect(blockedText.stdout).toContain(
-        "completion-decision-packet: ut-tdd completion decision-packet --json",
+        "completion-decision-packet: helix completion decision-packet --json",
       );
       expect(blockedText.stdout).toContain(
-        "completion-review-bundle: ut-tdd completion review-bundle --json",
+        "completion-review-bundle: helix completion review-bundle --json",
       );
       expect(blockedText.stdout).toContain(
-        "runnable-completion-review-bundle: bun run ut-tdd completion review-bundle --json",
+        "runnable-completion-review-bundle: bun run helix completion review-bundle --json",
       );
       expect(blockedText.stdout).toContain(
         "completion-review-coverage: covered=human_approval_pending,irreversible_migration_pending,po_decision_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
@@ -832,7 +832,7 @@ describe("L7 CLI surface closure", () => {
   });
 
   it("verifies objective external ledger with git ls-remote observations", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-objective-external-"));
     try {
       writeFakeGitLsRemote(binDir, "a43771ab091486520a4970f6b19b1663a009d4d0");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
@@ -867,7 +867,7 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("blocks objective external audit when git observed HEAD drifts from the ledger", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-drift-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-objective-external-drift-"));
     try {
       writeFakeGitLsRemote(binDir, "drifted-pack-head");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
@@ -887,7 +887,7 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-objective-external-tag-drift-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-objective-external-tag-drift-"));
     try {
       writeFakeGitLsRemote(binDir, "a43771ab091486520a4970f6b19b1663a009d4d0", "v0.1.5");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
@@ -907,7 +907,7 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("exposes a completion decision packet for outstanding PO and approval blockers", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-packet-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-completion-packet-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -950,7 +950,7 @@ describe("L7 CLI surface closure", () => {
         ok: false,
         status: "blocked",
         generatedFrom: "outstanding.completionReadiness",
-        sourceCommand: "ut-tdd completion decision-packet --json",
+        sourceCommand: "helix completion decision-packet --json",
         freshness: {
           validForMinutes: 1440,
           stale: false,
@@ -974,18 +974,18 @@ describe("L7 CLI surface closure", () => {
               planId: "PLAN-DISCOVERY-10-fixture",
               decisionKind: "po_s4_decision",
               scopedPrimaryPacketCommand:
-                "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+                "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
               requiredRecords: ["s4_decision_record"],
             },
             {
               order: 2,
               planId: "PLAN-M-02-fixture",
               decisionKind: "irreversible_migration_signoff",
-              scopedPrimaryPacketCommand: "ut-tdd rename plan --json",
+              scopedPrimaryPacketCommand: "helix rename plan --json",
               scopedSupportingPacketCommands: [
-                "ut-tdd rename plan --json",
-                "ut-tdd rename approval-draft --json",
-                "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+                "helix rename plan --json",
+                "helix rename approval-draft --json",
+                "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
               ],
               requiredRecords: ["cutover_decision_record", "action_binding_approval_record"],
             },
@@ -1024,24 +1024,24 @@ describe("L7 CLI surface closure", () => {
       ).toEqual([
         [
           "PLAN-DISCOVERY-10-fixture",
-          "ut-tdd s4 decision-packet --json",
-          ["ut-tdd s4 decision-packet --json"],
-          "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
-          ["ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture"],
+          "helix s4 decision-packet --json",
+          ["helix s4 decision-packet --json"],
+          "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+          ["helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture"],
         ],
         [
           "PLAN-M-02-fixture",
-          "ut-tdd rename plan --json",
+          "helix rename plan --json",
           [
-            "ut-tdd rename plan --json",
-            "ut-tdd rename approval-draft --json",
-            "ut-tdd action-binding approval-packet --json",
+            "helix rename plan --json",
+            "helix rename approval-draft --json",
+            "helix action-binding approval-packet --json",
           ],
-          "ut-tdd rename plan --json",
+          "helix rename plan --json",
           [
-            "ut-tdd rename plan --json",
-            "ut-tdd rename approval-draft --json",
-            "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            "helix rename plan --json",
+            "helix rename approval-draft --json",
+            "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
           ],
         ],
       ]);
@@ -1103,13 +1103,13 @@ describe("L7 CLI surface closure", () => {
         "semantic-summary: frontier=2 confirmed=11 completion-claim-allowed=false",
       );
       expect(text.stdout).toContain(
-        "packet-freshness: source=ut-tdd completion decision-packet --json",
+        "packet-freshness: source=helix completion decision-packet --json",
       );
       expect(text.stdout).toContain(
         "human-review-bundle: schema=completion-decision-human-review-bundle.v1 decisions=2 next-authority=human completion-claim-allowed=false",
       );
       expect(text.stdout).toContain(
-        "human-review-item: 1 PLAN-DISCOVERY-10-fixture kind=po_s4_decision primary=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+        "human-review-item: 1 PLAN-DISCOVERY-10-fixture kind=po_s4_decision primary=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain("owner-fields=s4_decision_record.decision_owner");
       expect(text.stdout).toContain(
@@ -1119,7 +1119,7 @@ describe("L7 CLI surface closure", () => {
         "safety-fields=s4-decision-packet.v1.planOnly,s4-decision-packet.v1.mustNotDecide,s4-decision-packet.v1.decisionCommandAvailable,s4-decision-packet.v1.decisionAllowed",
       );
       expect(text.stdout).toContain(
-        "human-review-item: 2 PLAN-M-02-fixture kind=irreversible_migration_signoff primary=ut-tdd rename plan --json",
+        "human-review-item: 2 PLAN-M-02-fixture kind=irreversible_migration_signoff primary=helix rename plan --json",
       );
       expect(text.stdout).toContain(
         "timing-fields=cutover_decision_record.trigger_condition,cutover_decision_record.execution_window_or_freeze_policy,action_binding_approval_record.expires_at_or_trigger",
@@ -1130,22 +1130,22 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("PLAN-DISCOVERY-10-fixture");
       expect(text.stdout).toContain("PLAN-M-02-fixture");
       expect(text.stdout).toContain(
-        "packet-command: primary=ut-tdd s4 decision-packet --json scoped-primary=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=ut-tdd s4 decision-packet --json scoped-packets=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+        "packet-command: primary=helix s4 decision-packet --json scoped-primary=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=helix s4 decision-packet --json scoped-packets=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
-        "runnable-packet-command: primary=bun run ut-tdd s4 decision-packet --json scoped-primary=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=bun run ut-tdd s4 decision-packet --json scoped-packets=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+        "runnable-packet-command: primary=bun run helix s4 decision-packet --json scoped-primary=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture packets=bun run helix s4 decision-packet --json scoped-packets=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain(
-        "packet-summary: ut-tdd s4 decision-packet --json runnable=bun run ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture runnable-scoped=bun run ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
+        "packet-summary: helix s4 decision-packet --json runnable=bun run helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture runnable-scoped=bun run helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture schema=s4-decision-packet.v1 matrix=decisionVerificationCommandMatrix count=8",
       );
       expect(text.stdout).toContain(
         "matrixFields=sourceCheckedAt,latestOfficialStatus,sourceStatusDelta,adoptionDecision,adoptionDecisionDelta,workflowRouteImpact",
       );
       expect(text.stdout).toContain(
-        "packet-command: primary=ut-tdd rename plan --json scoped-primary=ut-tdd rename plan --json packets=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json scoped-packets=ut-tdd rename plan --json | ut-tdd rename approval-draft --json | ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "packet-command: primary=helix rename plan --json scoped-primary=helix rename plan --json packets=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json scoped-packets=helix rename plan --json | helix rename approval-draft --json | helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(
-        "runnable-packet-command: primary=bun run ut-tdd rename plan --json scoped-primary=bun run ut-tdd rename plan --json packets=bun run ut-tdd rename plan --json | bun run ut-tdd rename approval-draft --json | bun run ut-tdd action-binding approval-packet --json scoped-packets=bun run ut-tdd rename plan --json | bun run ut-tdd rename approval-draft --json | bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+        "runnable-packet-command: primary=bun run helix rename plan --json scoped-primary=bun run helix rename plan --json packets=bun run helix rename plan --json | bun run helix rename approval-draft --json | bun run helix action-binding approval-packet --json scoped-packets=bun run helix rename plan --json | bun run helix rename approval-draft --json | bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
       );
       expect(text.stdout).toContain(`required-action: ${cutoverDecision.requiredActionsJa[0]}`);
       expect(text.stdout).toContain(
@@ -1181,7 +1181,7 @@ describe("L7 CLI surface closure", () => {
   }, 15_000);
 
   it("U-OUTSTANDING-017: exposes a completion review bundle for scoped non-destructive packet review", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-completion-review-bundle-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-completion-review-bundle-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -1221,7 +1221,7 @@ describe("L7 CLI surface closure", () => {
       const bundle = JSON.parse(json.stdout);
       expect(bundle).toMatchObject({
         schemaVersion: "completion-review-bundle.v1",
-        sourceCommand: "ut-tdd completion review-bundle --json",
+        sourceCommand: "helix completion review-bundle --json",
         planOnly: true,
         mustNotDecide: true,
         mustNotApply: true,
@@ -1231,9 +1231,9 @@ describe("L7 CLI surface closure", () => {
         status: "blocked",
         decisionCount: 2,
         reviewPacketCount: 4,
-        runnableSourceCommand: "bun run ut-tdd completion review-bundle --json",
-        completionDecisionPacketCommand: "ut-tdd completion decision-packet --json",
-        runnableCompletionDecisionPacketCommand: "bun run ut-tdd completion decision-packet --json",
+        runnableSourceCommand: "bun run helix completion review-bundle --json",
+        completionDecisionPacketCommand: "helix completion decision-packet --json",
+        runnableCompletionDecisionPacketCommand: "bun run helix completion decision-packet --json",
         reviewCoveredBlockers: [
           "human_approval_pending",
           "irreversible_migration_pending",
@@ -1248,8 +1248,8 @@ describe("L7 CLI surface closure", () => {
         expect.arrayContaining([
           expect.objectContaining({
             planId: "PLAN-DISCOVERY-10-fixture",
-            command: "ut-tdd s4 decision-packet --json",
-            scopedCommand: "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+            command: "helix s4 decision-packet --json",
+            scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
             writePolicy: "see-packet-matrix",
             requiredSafetyFields: expect.arrayContaining([
               "planOnly",
@@ -1259,17 +1259,17 @@ describe("L7 CLI surface closure", () => {
           }),
           expect.objectContaining({
             planId: "PLAN-M-02-fixture",
-            command: "ut-tdd rename approval-draft --json",
-            scopedCommand: "ut-tdd rename approval-draft --json",
+            command: "helix rename approval-draft --json",
+            scopedCommand: "helix rename approval-draft --json",
             writePolicy: "no-write",
             requiredSafetyFields: expect.arrayContaining(["planOnly", "approvalAllowed"]),
           }),
           expect.objectContaining({
             planId: "PLAN-M-02-fixture",
-            command: "ut-tdd action-binding approval-packet --json",
-            scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+            command: "helix action-binding approval-packet --json",
+            scopedCommand: "helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
             runnableScopedCommand:
-              "bun run ut-tdd action-binding approval-packet --json --plan PLAN-M-02-fixture",
+              "bun run helix action-binding approval-packet --json --plan PLAN-M-02-fixture",
             writePolicy: "see-packet-matrix",
           }),
         ]),
@@ -1278,7 +1278,7 @@ describe("L7 CLI surface closure", () => {
       const text = runCliIn(root, ["completion", "review-bundle"]);
       expect(text.status).toBe(0);
       expect(text.stdout).toContain(
-        "completion review-bundle: blocked decisions=2 reviewPackets=4 source=ut-tdd completion review-bundle --json runnable=bun run ut-tdd completion review-bundle --json",
+        "completion review-bundle: blocked decisions=2 reviewPackets=4 source=helix completion review-bundle --json runnable=bun run helix completion review-bundle --json",
       );
       expect(text.stdout).toContain(
         "safety: planOnly=true mustNotDecide=true mustNotApply=true completionClaimAllowed=false humanDecisionRequired=true nextAuthority=human",
@@ -1286,13 +1286,13 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("bundle-digest: sha256:");
       expect(text.stdout).toContain("semantic-bundle-digest: sha256:");
       expect(text.stdout).toContain(
-        "completion-decision-packet: ut-tdd completion decision-packet --json runnable=bun run ut-tdd completion decision-packet --json digest=sha256:",
+        "completion-decision-packet: helix completion decision-packet --json runnable=bun run helix completion decision-packet --json digest=sha256:",
       );
       expect(text.stdout).toContain(
         "review-coverage: covered=human_approval_pending,irreversible_migration_pending,po_decision_pending non-packet=non_terminal_plans,semantic_frontier_blocked policy=review-packets-cover-decision-blockers-only",
       );
       expect(text.stdout).toContain(
-        "review-packet: PLAN-DISCOVERY-10-fixture ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
+        "review-packet: PLAN-DISCOVERY-10-fixture helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-fixture",
       );
       expect(text.stdout).toContain("reviewFieldCount=");
       expect(text.stdout).toContain("reviewFields=planOnly,mustNotDecide");
@@ -1302,14 +1302,14 @@ describe("L7 CLI surface closure", () => {
         "route=S4 decision evidence / outcome route / verification command を確認する route-id=review S4 decision evidence, outcome routes, and verification commands",
       );
       expect(text.stdout).toContain(
-        "review-packet: PLAN-M-02-fixture ut-tdd rename approval-draft --json scoped=ut-tdd rename approval-draft --json",
+        "review-packet: PLAN-M-02-fixture helix rename approval-draft --json scoped=helix rename approval-draft --json",
       );
       expect(text.stdout).toContain(
         "route=非承認の approval draft record / current snapshot binding / safety flag を確認してから人間承認へ進む route-id=review non-authorizing approval draft records, current snapshot binding, and safety flags before any human approval copy",
       );
       expect(text.stdout).toContain("writePolicy=no-write");
       expect(text.stdout).toContain(
-        "packet-freshness: source=ut-tdd completion review-bundle --json",
+        "packet-freshness: source=helix completion review-bundle --json",
       );
     } finally {
       rmSync(root, { recursive: true, force: true });
@@ -1375,9 +1375,9 @@ describe("L7 CLI surface closure", () => {
     expect(packets[0].relatedDecisionPackets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          command: "ut-tdd s4 decision-packet --json",
+          command: "helix s4 decision-packet --json",
           scopedCommand:
-            "ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
+            "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
         }),
       ]),
     );
@@ -1390,10 +1390,10 @@ describe("L7 CLI surface closure", () => {
     ]);
     expect(s4Text.status).toBe(0);
     expect(s4Text.stdout).toContain(
-      "related-packet: primary ut-tdd s4 decision-packet --json scoped=ut-tdd s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
+      "related-packet: primary helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
     );
     expect(s4Text.stdout).toContain(
-      "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
+      "related-packet: supporting helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
     );
 
     const text = runCli([
@@ -1409,7 +1409,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("approvalAllowed=false");
     expect(text.stdout).toContain("approvalCommandAvailable=false");
     expect(text.stdout).toContain(
-      "packet-freshness: source=ut-tdd action-binding approval-packet --json",
+      "packet-freshness: source=helix action-binding approval-packet --json",
     );
     expect(text.stdout).toContain("binding-checks:");
     expect(text.stdout).toContain("verification-commands=11");
@@ -1429,19 +1429,19 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("binding-check: approved_actor status=pending");
     expect(text.stdout).toContain(
-      "related-packet: primary ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
+      "related-packet: primary helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
     );
     expect(text.stdout).toContain(
-      "related-packet: supporting ut-tdd rename plan --json scoped=ut-tdd rename plan --json",
+      "related-packet: supporting helix rename plan --json scoped=helix rename plan --json",
     );
 
     const renameText = runCli(["rename", "plan"]);
     expect(renameText.status).toBe(0);
     expect(renameText.stdout).toContain(
-      "related-packet: primary ut-tdd rename plan --json scoped=ut-tdd rename plan --json",
+      "related-packet: primary helix rename plan --json scoped=helix rename plan --json",
     );
     expect(renameText.stdout).toContain(
-      "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
+      "related-packet: supporting helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
     );
   }, 20_000);
 
@@ -1474,7 +1474,7 @@ describe("L7 CLI surface closure", () => {
     const payload = JSON.parse(json.stdout);
     expect(payload).toMatchObject({
       schemaVersion: "helix-project-setup.v1",
-      setupCommand: "ut-tdd setup project",
+      setupCommand: "helix setup project",
       futureCommand: "helix setup project",
       githubPlan: {
         schemaVersion: "helix-project-github-plan.v1",
@@ -1488,22 +1488,22 @@ describe("L7 CLI surface closure", () => {
         schemaVersion: "helix-project-doctor-baseline.v1",
         planOnly: true,
         baselineCommands: [
-          "ut-tdd setup project --dry-run",
-          "ut-tdd status --json",
-          "ut-tdd setup project --dry-run --json",
-          "ut-tdd completion decision-packet --json",
-          "ut-tdd completion review-bundle --json",
-          "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-          "ut-tdd doctor --profile consumer",
-          "ut-tdd rename plan --json",
-          "ut-tdd handover status --json",
-          "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+          "helix setup project --dry-run",
+          "helix status --json",
+          "helix setup project --dry-run --json",
+          "helix completion decision-packet --json",
+          "helix completion review-bundle --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix doctor --profile consumer",
+          "helix rename plan --json",
+          "helix handover status --json",
+          "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ],
         stateBaselinePaths: [
-          ".ut-tdd/memory",
-          ".ut-tdd/handover",
-          ".ut-tdd/evidence",
-          ".ut-tdd/teams",
+          ".helix/memory",
+          ".helix/handover",
+          ".helix/evidence",
+          ".helix/teams",
         ],
         completionClaimAllowed: false,
       },
@@ -1522,23 +1522,23 @@ describe("L7 CLI surface closure", () => {
         teamRunTask: "HELIX: team run dry-run",
       },
       baseline: {
-        memoryPath: join(".ut-tdd", "memory"),
-        handoverPath: join(".ut-tdd", "handover"),
-        teamsPath: join(".ut-tdd", "teams"),
+        memoryPath: join(".helix", "memory"),
+        handoverPath: join(".helix", "handover"),
+        teamsPath: join(".helix", "teams"),
       },
       identifierTransition: {
-        currentStateDir: ".ut-tdd",
+        currentStateDir: ".helix",
         targetStateDir: ".helix",
         status: "blocked_pending_cutover_approval",
         mustNotApply: true,
-        cutoverPlanCommand: "ut-tdd rename plan --json",
+        cutoverPlanCommand: "helix rename plan --json",
       },
       commandAvailability: {
-        currentCommand: "ut-tdd setup project",
+        currentCommand: "helix setup project",
         futureCommand: "helix setup project",
         futureCommandAvailable: false,
         enablementStatus: "blocked_pending_cutover_approval",
-        enablementPacketCommand: "ut-tdd rename plan --json",
+        enablementPacketCommand: "helix rename plan --json",
       },
       postSetupWorkflow: {
         schemaVersion: "helix-project-post-setup-workflow.v1",
@@ -1550,8 +1550,8 @@ describe("L7 CLI surface closure", () => {
     expect(payload.written).toEqual(
       expect.arrayContaining([
         join(".vscode", "tasks.json"),
-        join(".ut-tdd", "memory", ".gitkeep"),
-        join(".ut-tdd", "handover", ".gitkeep"),
+        join(".helix", "memory", ".gitkeep"),
+        join(".helix", "handover", ".gitkeep"),
       ]),
     );
     expect(payload.importReport).toMatchObject({
@@ -1598,40 +1598,40 @@ describe("L7 CLI surface closure", () => {
     expect(payload.consumerReadiness.checks).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          name: "ut-tdd-cli",
+          name: "helix-cli",
         }),
       ]),
     );
     expect(
       payload.consumerReadiness.checks.find(
-        (check: { name: string }) => check.name === "ut-tdd-cli",
+        (check: { name: string }) => check.name === "helix-cli",
       )?.message,
-    ).toMatch(/projected hooks|bun link ut-tdd|bun run ut-tdd/);
+    ).toMatch(/projected hooks|bun link helix|bun run helix/);
     expect(payload.commandAvailability.currentCommandAvailable).toBe(
       payload.consumerReadiness.checks.find(
-        (check: { name: string }) => check.name === "ut-tdd-cli",
+        (check: { name: string }) => check.name === "helix-cli",
       )?.ok ?? false,
     );
     expect(payload.postSetupWorkflow.unmetGates).toEqual(
       expect.arrayContaining(["import_report_review"]),
     );
     expect(payload.postSetupWorkflow.verificationCommands).toEqual([
-      "ut-tdd setup project --dry-run",
-      "ut-tdd status --json",
-      "ut-tdd setup project --dry-run --json",
-      "ut-tdd completion decision-packet --json",
-      "ut-tdd completion review-bundle --json",
-      "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
-      "ut-tdd doctor --profile consumer",
-      "ut-tdd rename plan --json",
-      "ut-tdd handover status --json",
-      "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      "helix setup project --dry-run",
+      "helix status --json",
+      "helix setup project --dry-run --json",
+      "helix completion decision-packet --json",
+      "helix completion review-bundle --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix doctor --profile consumer",
+      "helix rename plan --json",
+      "helix handover status --json",
+      "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     ]);
     expect(payload.postSetupWorkflow.verificationMatrix).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           phase: "setup-dry-run",
-          command: "ut-tdd setup project --dry-run",
+          command: "helix setup project --dry-run",
           writePolicy: "no-write",
         }),
         expect.objectContaining({
@@ -1646,7 +1646,7 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           phase: "github-ci-safety",
-          command: "ut-tdd setup project --dry-run --json",
+          command: "helix setup project --dry-run --json",
           writePolicy: "no-write",
           source: "GitHub Actions secure use and workflow token permissions",
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
@@ -1654,7 +1654,7 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           phase: "consumer-doctor",
-          command: "ut-tdd doctor --profile consumer",
+          command: "helix doctor --profile consumer",
           writePolicy: "no-write",
           source: "VS Code Workspace Trust and consumer adapter safety contract",
           sourceUrl: "https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
@@ -1663,13 +1663,13 @@ describe("L7 CLI surface closure", () => {
         }),
         expect.objectContaining({
           phase: "completion-decision-packet",
-          command: "ut-tdd completion decision-packet --json",
+          command: "helix completion decision-packet --json",
           writePolicy: "no-write",
           source: "HELIX completion decision packet contract",
         }),
         expect.objectContaining({
           phase: "completion-review-bundle",
-          command: "ut-tdd completion review-bundle --json",
+          command: "helix completion review-bundle --json",
           writePolicy: "no-write",
           source: "HELIX completion review-bundle contract",
           sourceUrl: "docs/plans/PLAN-L7-278-completion-review-bundle.md",
@@ -1679,7 +1679,7 @@ describe("L7 CLI surface closure", () => {
         expect.objectContaining({
           phase: "version-up-dry-run",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           writePolicy: "no-write",
           source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
           sourceUrl: "https://semver.org/",
@@ -1688,7 +1688,7 @@ describe("L7 CLI surface closure", () => {
         expect.objectContaining({
           phase: "team-run-dry-run",
           command:
-            "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+            "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
           writePolicy: "no-write",
           source: "HELIX team definition schema and provider handover contract",
         }),
@@ -1699,13 +1699,13 @@ describe("L7 CLI surface closure", () => {
     );
     expect(payload.nextCommands).toEqual(
       expect.arrayContaining([
-        "ut-tdd status --json",
-        "ut-tdd completion decision-packet --json",
-        "ut-tdd completion review-bundle --json",
-        "ut-tdd doctor --profile consumer",
-        "ut-tdd rename plan --json",
-        "ut-tdd handover status --json",
-        "ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+        "helix status --json",
+        "helix completion decision-packet --json",
+        "helix completion review-bundle --json",
+        "helix doctor --profile consumer",
+        "helix rename plan --json",
+        "helix handover status --json",
+        "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
       ]),
     );
 
@@ -1724,32 +1724,32 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("verification-matrix: 11");
     expect(text.stdout).toContain("post-setup-next-action:");
     expect(text.stdout).toContain("blocked-until:");
-    expect(text.stdout).toContain("verification-command: ut-tdd completion decision-packet --json");
-    expect(text.stdout).toContain("verification-command: ut-tdd completion review-bundle --json");
+    expect(text.stdout).toContain("verification-command: helix completion decision-packet --json");
+    expect(text.stdout).toContain("verification-command: helix completion review-bundle --json");
     expect(text.stdout).toContain(
-      "verification-command: ut-tdd version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "verification-command: helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
     );
-    expect(text.stdout).toContain("verification-command: ut-tdd doctor --profile consumer");
-    expect(text.stdout).toContain("verification-command: ut-tdd rename plan --json");
+    expect(text.stdout).toContain("verification-command: helix doctor --profile consumer");
+    expect(text.stdout).toContain("verification-command: helix rename plan --json");
     expect(text.stdout).toContain(
-      "verification-command: ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json",
+      "verification-command: helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
     );
     expect(text.stdout).toContain("manual-verification-command: code --profile HELIX .");
     expect(text.stdout).toContain(
       "verification-check: vscode-profile-open availability=manual-local requiresMaterializedPaths=.vscode/tasks.json,.vscode/settings.json writePolicy=no-write command=code --profile HELIX . expected=opens the consumer folder in a named HELIX VS Code profile",
     );
     expect(text.stdout).toContain(
-      "verification-check: consumer-doctor availability=post-apply-or-projected requiresMaterializedPaths=AGENTS.md,CLAUDE.md,.claude/CLAUDE.md,.vscode/tasks.json,.vscode/settings.json,.ut-tdd/memory,.ut-tdd/handover,.ut-tdd/evidence,.ut-tdd/teams writePolicy=no-write command=ut-tdd doctor --profile consumer expected=passes the consumer profile",
+      "verification-check: consumer-doctor availability=post-apply-or-projected requiresMaterializedPaths=AGENTS.md,CLAUDE.md,.claude/CLAUDE.md,.vscode/tasks.json,.vscode/settings.json,.helix/memory,.helix/handover,.helix/evidence,.helix/teams writePolicy=no-write command=helix doctor --profile consumer expected=passes the consumer profile",
     );
     expect(text.stdout).toContain(
-      "verification-check: completion-decision-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd completion decision-packet --json expected=returns completionStatus=blocked",
+      "verification-check: completion-decision-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=helix completion decision-packet --json expected=returns completionStatus=blocked",
     );
     expect(text.stdout).toContain(
-      "verification-check: completion-review-bundle availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd completion review-bundle --json expected=returns completion-review-bundle.v1",
+      "verification-check: completion-review-bundle availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=helix completion review-bundle --json expected=returns completion-review-bundle.v1",
     );
     expect(text.stdout).toContain("semanticBundleDigest");
     expect(text.stdout).toContain(
-      "verification-check: identifier-cutover-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=ut-tdd rename plan --json expected=returns blocked_pending_cutover_approval",
+      "verification-check: identifier-cutover-packet availability=dry-run-immediate requiresMaterializedPaths=- writePolicy=no-write command=helix rename plan --json expected=returns blocked_pending_cutover_approval",
     );
     expect(text.stdout).toContain(
       "verification-source: setup-dry-run source=VS Code workspace task contract sourceUrl=https://code.visualstudio.com/docs/debugtest/tasks",
@@ -1762,7 +1762,7 @@ describe("L7 CLI surface closure", () => {
     );
     expect(text.stdout).toContain("adoption=harness-check は push/pull_request");
     expect(text.stdout).toContain(
-      "writePolicy=no-write command=ut-tdd setup project --dry-run --json",
+      "writePolicy=no-write command=helix setup project --dry-run --json",
     );
     expect(text.stdout).toContain("checked=2026-07-02");
     expect(text.stdout).toContain("status=VS Code Tasks official docs current");
@@ -1770,7 +1770,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("adoption=VS Code Tasks は shell task");
     expect(text.stdout).toContain("adoptionDelta=none; keep task projection non-automatic");
     expect(text.stdout).toContain("routeImpact=task contract drift routes to consumer doctor");
-    expect(text.stdout).toContain("writePolicy=no-write command=ut-tdd setup project --dry-run");
+    expect(text.stdout).toContain("writePolicy=no-write command=helix setup project --dry-run");
     expect(text.stdout).toContain(
       "verification-source: consumer-doctor source=VS Code Workspace Trust and consumer adapter safety contract sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
     );
@@ -1786,7 +1786,7 @@ describe("L7 CLI surface closure", () => {
     );
     const currentAvailable = payload.commandAvailability.currentCommandAvailable;
     expect(text.stdout).toContain(
-      `command-availability: ut-tdd setup project available=${currentAvailable}; helix setup project available=false`,
+      `command-availability: helix setup project available=${currentAvailable}; helix setup project available=false`,
     );
   }, 15_000);
 
@@ -1796,12 +1796,12 @@ describe("L7 CLI surface closure", () => {
     expect(text.status).toBe(0);
     expect(text.stdout).toContain("setup-scope: legacy solo/team adapter setup");
     expect(text.stdout).toContain(
-      "HELIX project bootstrap は `ut-tdd setup project` を使用してください",
+      "HELIX project bootstrap は `helix setup project` を使用してください",
     );
     expect(text.stdout).toContain("completion-boundary:");
     expect(text.stdout).toContain("L14 completion evidence ではありません");
     expect(text.stdout).not.toContain("helix project setup:");
-    expect(text.stdout).not.toContain("verification-command: ut-tdd rename plan --json");
+    expect(text.stdout).not.toContain("verification-command: helix rename plan --json");
   }, 15_000);
 
   it("exposes HELIX project setup package-root evidence for monorepo consumers", () => {
@@ -1822,15 +1822,15 @@ describe("L7 CLI surface closure", () => {
       monorepo: true,
     });
     expect(payload.consumerReadiness.cliResolution).toMatchObject({
-      command: "ut-tdd",
+      command: "helix",
       checkedFrom: join(process.cwd(), "packages/app"),
       fallbackCommands: expect.arrayContaining([
-        "bun run ut-tdd --version",
-        "bun run ut-tdd setup project --dry-run --json",
+        "bun run helix --version",
+        "bun run helix setup project --dry-run --json",
       ]),
     });
     expect(payload.written).toEqual(
-      expect.arrayContaining([join(".ut-tdd", "teams", "default-hybrid.yaml")]),
+      expect.arrayContaining([join(".helix", "teams", "default-hybrid.yaml")]),
     );
   }, 15_000);
 
@@ -1879,7 +1879,7 @@ describe("L7 CLI surface closure", () => {
 
     expect(run.status).toBe(0);
     expect(payload.adapterPlan.context_injection.required_paths.length).toBeGreaterThan(0);
-    expect(payload.adapterPlan.stdin).toContain("UT-TDD context injection:");
+    expect(payload.adapterPlan.stdin).toContain("HELIX context injection:");
   }, 20_000);
 
   it("keeps proposal advisory lanes aligned with executable task routing", () => {
@@ -1941,10 +1941,10 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     const payload = JSON.parse(run.stdout);
     expect(payload.mode).toBe("add-feature");
-    expect(payload.suggest_command).toContain("ut-tdd pair-agent plan --plan-id <PLAN-ID>");
+    expect(payload.suggest_command).toContain("helix pair-agent plan --plan-id <PLAN-ID>");
     expect(payload.recommended_command).toMatchObject({
       schema_version: "v1",
-      command: "ut-tdd pair-agent plan",
+      command: "helix pair-agent plan",
       args: {
         signal: "pair-agent TDD route",
         mode: "add-feature",
@@ -1966,18 +1966,18 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload.ok).toBe(true);
     expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
-      "ut-tdd builder catalog",
+      "helix builder catalog",
     );
     expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
-      "ut-tdd progress snapshot",
+      "helix progress snapshot",
     );
     expect(payload.commands.map((row: { command: string }) => row.command)).toContain(
-      "ut-tdd graph export",
+      "helix graph export",
     );
   });
 
   it("exports relation graph diagrams through mermaid, dot, and d2 CLI formats without silent fallback", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-graph-export-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-graph-export-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "src", "widget"), { recursive: true });
@@ -2055,7 +2055,7 @@ describe("L7 CLI surface closure", () => {
   });
 
   it("exposes progress snapshot as a deterministic visualization JSON surface", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-progress-snapshot-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-progress-snapshot-"));
     try {
       const run = runCliIn(root, ["progress", "snapshot", "--json"]);
       const payload = JSON.parse(run.stdout);
@@ -2078,7 +2078,7 @@ describe("L7 CLI surface closure", () => {
           },
         },
         drilldowns: {
-          artifact_progress_command: "ut-tdd progress artifacts --json",
+          artifact_progress_command: "helix progress artifacts --json",
           runtime_verification_table: "runtime_verification_events",
         },
       });
@@ -2147,16 +2147,16 @@ describe("L7 CLI surface closure", () => {
   });
 
   it("exposes clean distribution planning with preflight, rollback, and contract metadata", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-cli-dist-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-"));
     try {
       writeFakeCommand(binDir, "git", "2.0.0");
       writeFakeCommand(binDir, "gh", "2.0.0");
       const fakeCodex = writeFakeProvider(binDir, "codex");
-      writeFakeCommand(binDir, "ut-tdd", "0.1.0");
+      writeFakeCommand(binDir, "helix", "0.1.0");
       const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.0", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       });
       const payload = JSON.parse(run.stdout);
 
@@ -2175,7 +2175,7 @@ describe("L7 CLI surface closure", () => {
             scope: "consumer_setup_readiness_not_whole_program_completion",
             progressPercent: 90,
             completionClaimAllowed: false,
-            completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
+            completionReviewBundleCommand: "helix completion review-bundle --json",
             distributionReference: {
               repo: "RetryYN/HELIX-HARNESS-OS",
               mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
@@ -2195,7 +2195,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload.export.artifactPaths).toContain("LICENSE");
       expect(payload.export.cleanRepo).toBe("RetryYN/HELIX-HARNESS-OS");
       expect(payload.readiness.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-OS#v0.1.0");
-      expect(payload.readiness.contracts.tagPin).not.toContain("ut-tdd-agent-harness-clean");
+      expect(payload.readiness.contracts.tagPin).not.toContain("helix-agent-harness-clean");
       expect(payload.export.artifactPaths).not.toContain(
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
       );
@@ -2203,14 +2203,14 @@ describe("L7 CLI surface closure", () => {
       expect(payload.readiness.contracts.tagPin).toContain("#v0.1.0");
       expect(payload.readiness.ci.forkPullRequestSecrets).toBe("not-required");
       expect(payload.readiness.ci.packageResolution).toMatchObject({
-        command: "bun run ut-tdd --version",
+        command: "bun run helix --version",
         remediation: expect.stringContaining("consumer package.json"),
       });
       expect(payload.readiness.ci.packagePreflight).toMatchObject({
         installCommand: "bun install --frozen-lockfile",
         lockfiles: ["bun.lock", "bun.lockb"],
-        requiredScripts: ["ut-tdd", "typecheck", "test"],
-        scriptCommands: ["bun run ut-tdd --version", "bun run typecheck", "bun run test"],
+        requiredScripts: ["helix", "typecheck", "test"],
+        scriptCommands: ["bun run helix --version", "bun run typecheck", "bun run test"],
         source: "Bun install / lockfile / package scripts official documentation",
         sourceUrl: "https://bun.com/docs/pm/cli/install",
         lockfileSourceUrl: "https://bun.com/docs/pm/lockfile",
@@ -2235,16 +2235,16 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("blocks distribution planning when the requested tag is not bound to package version", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-cli-dist-version-drift-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-version-drift-"));
     try {
       writeFakeCommand(binDir, "git", "2.0.0");
       writeFakeCommand(binDir, "gh", "2.0.0");
       const fakeCodex = writeFakeProvider(binDir, "codex");
-      writeFakeCommand(binDir, "ut-tdd", "0.1.0");
+      writeFakeCommand(binDir, "helix", "0.1.0");
       const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.4", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       });
       const payload = JSON.parse(run.stdout);
 
@@ -2258,7 +2258,7 @@ describe("L7 CLI surface closure", () => {
         readiness: {
           ok: false,
           objectiveBoundary: {
-            completionReviewBundleCommand: "ut-tdd completion review-bundle --json",
+            completionReviewBundleCommand: "helix completion review-bundle --json",
             versionBinding: {
               localDistributionTag: "v0.1.0",
               requestedDistributionTag: "v0.1.4",
@@ -2283,17 +2283,17 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  it("blocks distribution planning when the bare ut-tdd CLI is not available", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-cli-dist-missing-"));
+  it("blocks distribution planning when the bare helix CLI is not available", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-missing-"));
     try {
       writeFakeCommand(binDir, "git", "2.0.0");
       writeFakeCommand(binDir, "gh", "2.0.0");
       const fakeCodex = writeFakeProvider(binDir, "codex");
-      writeFakeCommand(binDir, "ut-tdd", "not-linked", 127);
+      writeFakeCommand(binDir, "helix", "not-linked", 127);
       const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.0", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
-        UT_TDD_CODEX_BIN: fakeCodex,
+        HELIX_CODEX_BIN: fakeCodex,
       });
       const payload = JSON.parse(run.stdout);
 
@@ -2306,7 +2306,7 @@ describe("L7 CLI surface closure", () => {
       expect(payload.readiness.checks).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            name: "ut-tdd-cli",
+            name: "helix-cli",
             ok: false,
           }),
         ]),
@@ -2317,7 +2317,7 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("exposes telemetry scan as a JSON command surface without provider CLI execution", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-telemetry-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-telemetry-"));
     try {
       const run = runCliIn(root, [
         "telemetry",
@@ -2346,7 +2346,7 @@ describe("L7 CLI surface closure", () => {
   });
 
   it("appends L7.5 RUN & Debug runtime verification logs", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-run-debug-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-run-debug-"));
     try {
       const run = runCliIn(root, [
         "run-debug",
@@ -2360,7 +2360,7 @@ describe("L7 CLI surface closure", () => {
         "--correlation",
         "corr-1",
         "--evidence-path",
-        ".ut-tdd/evidence/run-debug/session-1.jsonl",
+        ".helix/evidence/run-debug/session-1.jsonl",
         "--oracle",
         "U-RUNDEBUG-006",
         "--occurred-at",
@@ -2368,21 +2368,21 @@ describe("L7 CLI surface closure", () => {
         "--json",
       ]);
       const payload = JSON.parse(run.stdout);
-      const logPath = join(root, ".ut-tdd", "evidence", "run-debug", "runtime-verification.jsonl");
+      const logPath = join(root, ".helix", "evidence", "run-debug", "runtime-verification.jsonl");
       const rows = readFileSync(logPath, "utf8")
         .trim()
         .split("\n")
         .map((line) => JSON.parse(line));
 
       expect(run.status).toBe(0);
-      expect(payload.path).toBe(".ut-tdd/evidence/run-debug/runtime-verification.jsonl");
+      expect(payload.path).toBe(".helix/evidence/run-debug/runtime-verification.jsonl");
       expect(rows).toHaveLength(1);
       expect(rows[0]).toMatchObject({
         plan_id: "PLAN-L7-202-run-debug-runtime-verification",
         claim: "works",
         session_id: "session-1",
         source: "run-debug",
-        runtime_surface: "ut-tdd-cli",
+        runtime_surface: "helix-cli",
         test_oracle_id: "U-RUNDEBUG-006",
       });
 
@@ -2398,7 +2398,7 @@ describe("L7 CLI surface closure", () => {
         "--correlation",
         "corr-2",
         "--evidence-path",
-        ".ut-tdd/evidence/run-debug/session-1.jsonl",
+        ".helix/evidence/run-debug/session-1.jsonl",
         "--source",
         "projection",
       ]);
@@ -2430,7 +2430,7 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("exposes team run as a shared Claude/Codex dry-run launch plan", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-team-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-team-"));
     try {
       const teamPath = join(root, "team.yaml");
       writeFileSync(
@@ -2545,7 +2545,7 @@ describe("L7 CLI surface closure", () => {
   }, 20_000);
 
   it("executes team run through fake Claude/Codex adapters while keeping JSON machine-readable", () => {
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-team-exec-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-team-exec-"));
     try {
       const binDir = join(root, "bin");
       mkdirSync(binDir);
@@ -2575,8 +2575,8 @@ describe("L7 CLI surface closure", () => {
         ...process.env,
         PATH: testPath,
         Path: testPath,
-        UT_TDD_CODEX_BIN: fakeCodex,
-        UT_TDD_CLAUDE_BIN: fakeClaude,
+        HELIX_CODEX_BIN: fakeCodex,
+        HELIX_CLAUDE_BIN: fakeClaude,
       };
       const run = runCliIn(
         root,
@@ -2599,7 +2599,7 @@ describe("L7 CLI surface closure", () => {
         "completed",
       ]);
       const slots = JSON.parse(
-        readFileSync(join(root, ".ut-tdd", "state", "agent-slots.json"), "utf8"),
+        readFileSync(join(root, ".helix", "state", "agent-slots.json"), "utf8"),
       );
       expect(slots).toHaveLength(2);
       expect(
@@ -2610,7 +2610,7 @@ describe("L7 CLI surface closure", () => {
       );
       expect(readFileSync(join(root, "codex-env.txt"), "utf8")).not.toContain("raw=1");
       expect(readFileSync(join(root, "codex-env.txt"), "utf8")).not.toContain(
-        "reason=ut-tdd-runtime-adapter-wrapper",
+        "reason=helix-runtime-adapter-wrapper",
       );
       expect(readFileSync(join(root, "claude-env.txt"), "utf8")).not.toContain("raw=1");
       expect(readFileSync(join(root, "claude-env.txt"), "utf8")).toContain("effort=medium");
@@ -2622,7 +2622,7 @@ describe("L7 CLI surface closure", () => {
   it("executes codex adapter under --execute --json and reports dry_run:false honestly", () => {
     // 回帰: 旧実装は --execute --json で provider を起動せず dry_run:false の plan JSON だけ
     // 返していた (実行していないのに実行済みに見える機械判定の罠)。実行 + 正直な JSON を要求する。
-    const root = mkdtempSync(join(tmpdir(), "ut-tdd-cli-adapter-exec-"));
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-exec-"));
     try {
       const binDir = join(root, "bin");
       mkdirSync(binDir);
@@ -2634,8 +2634,8 @@ describe("L7 CLI surface closure", () => {
         ...process.env,
         PATH: testPath,
         Path: testPath,
-        UT_TDD_CODEX_BIN: fakeCodex,
-        UT_TDD_CLAUDE_BIN: fakeClaude,
+        HELIX_CODEX_BIN: fakeCodex,
+        HELIX_CLAUDE_BIN: fakeClaude,
       };
       const run = runCliIn(
         root,
@@ -2664,7 +2664,7 @@ describe("L7 CLI surface closure", () => {
   it("U-CLI-MEM-SURFACE: session start surfaces harness-layer memory (HELIX P7, not a per-agent silo)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-mem-surface-"));
     try {
-      mkdirSync(join(root, ".ut-tdd", "memory"), { recursive: true });
+      mkdirSync(join(root, ".helix", "memory"), { recursive: true });
       const entry = {
         id: "harness:rule:2026-01-01T00:00:00.000Z",
         layer: "harness",
@@ -2674,7 +2674,7 @@ describe("L7 CLI surface closure", () => {
         createdAt: "2026-01-01T00:00:00.000Z",
       };
       writeFileSync(
-        join(root, ".ut-tdd", "memory", "harness.jsonl"),
+        join(root, ".helix", "memory", "harness.jsonl"),
         `${JSON.stringify(entry)}\n`,
         "utf8",
       );

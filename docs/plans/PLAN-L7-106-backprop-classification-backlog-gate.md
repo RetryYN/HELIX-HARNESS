@@ -44,27 +44,27 @@ review_evidence:
     reviewer_model: codex-intra-runtime
 ---
 
-# PLAN-L7-106: Backprop classification backlog gate
+# PLAN-L7-106: Backprop classification backlog gate（backprop classification backlog gate の分類管理）
 
-## Objective
+## 目的
 
-Prevent lower-layer Reverse back-propagation findings from remaining in the
-improvement backlog without a machine-readable disposition.
+lower-layer Reverse の back-propagation findings が、機械可読な disposition を持たないまま
+improvement backlog に残り続けることを防ぐ。
 
 ## Scope
 
-- Extend `improvement-backlog` lint with `missingBackpropClassification`.
-- Require the six classification fields for backlog rows that explicitly mention
-  lower-layer or backprop handling.
-- Wire the new finding into the existing doctor hard gate.
-- Backfill IMP-117 with the same classification fields it now requires.
+- `improvement-backlog` lint に `missingBackpropClassification` を追加する。
+- lower-layer または backprop handling を明示的に言及する backlog row には、6 つの
+  classification fields を必須にする。
+- 新しい finding を既存の doctor hard gate へ接続する。
+- IMP-117 に、この gate が必須化する同じ classification fields を backfill する。
 
-## Acceptance Criteria
+## 受入条件
 
-- A lower-layer/backprop backlog row without classification fields fails.
-- A lower-layer/backprop backlog row with all six fields passes.
-- Live `docs/improvement-backlog.md` has zero missing backprop classifications.
-- `bun test tests/improvement-backlog.test.ts` passes.
-- `bun run typecheck` passes.
-- `bun run lint` passes.
-- `bun run src\cli.ts doctor` passes.
+- classification fields を持たない lower-layer/backprop backlog row は fail する。
+- 6 つの fields をすべて持つ lower-layer/backprop backlog row は pass する。
+- 現行の `docs/improvement-backlog.md` に missing backprop classifications が 0 件である。
+- `bun test tests/improvement-backlog.test.ts` が pass する。
+- `bun run typecheck` が pass する。
+- `bun run lint` が pass する。
+- `bun run src\cli.ts doctor` が pass する。

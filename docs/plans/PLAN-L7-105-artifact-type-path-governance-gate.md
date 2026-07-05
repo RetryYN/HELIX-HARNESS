@@ -44,36 +44,36 @@ review_evidence:
     reviewer_model: codex-intra-runtime
 ---
 
-# PLAN-L7-105: Artifact path/type governance gate
+# PLAN-L7-105: 成果物 path/type ガバナンス gate
 
-## Objective
+## 目的
 
-Prevent PLAN `generates` entries from hiding design, test-design, or PLAN
-artifacts behind the wrong `artifact_type`.
+PLAN の `generates` entry が、design、test-design、PLAN の各 artifacts を誤った
+`artifact_type` の背後に隠さないようにする。
 
-## Scope
+## 範囲
 
-- Enforce `docs/design/` as `design_doc`.
-- Enforce `docs/test-design/` as `test_design`.
-- Enforce `docs/plans/` as `markdown_doc`.
-- Keep enforcement inside `plan-governance` so existing PLAN review and doctor
-  flows fail closed on mismatched path/type declarations.
-- Repair the existing artifact progress PLAN pair whose design backprop artifacts
-  were registered as generic markdown.
+- `docs/design/` は `design_doc` として強制する。
+- `docs/test-design/` は `test_design` として強制する。
+- `docs/plans/` は `markdown_doc` として強制する。
+- enforcement は `plan-governance` 内に留め、既存の PLAN review と doctor flow が
+  path/type 宣言の不一致を fail closed として扱うようにする。
+- design backprop artifacts が generic markdown として登録されていた既存の
+  artifact progress PLAN pair を修正する。
 
-## Acceptance Criteria
+## 受入条件
 
-- A `docs/design/` generated artifact declared as `markdown_doc` fails with
-  `artifact_type_mismatch`.
-- A `docs/test-design/` generated artifact declared as `markdown_doc` fails with
-  `artifact_type_mismatch`.
-- A `docs/plans/` generated artifact declared as `design_doc` fails with
-  `artifact_type_mismatch`.
-- Matching path/type declarations continue to pass existing DB projection and
-  reverse fullback tests.
-- Existing `PLAN-L7-56` / `PLAN-REVERSE-56` design backprop entries are
-  classified as `design_doc`.
-- `bun test tests/plan-lint.test.ts` passes.
-- `bun run typecheck` passes.
-- `bun run lint` passes.
-- `bun run src\cli.ts doctor` passes.
+- `docs/design/` の generated artifact が `markdown_doc` と宣言された場合、
+  `artifact_type_mismatch` で fail する。
+- `docs/test-design/` の generated artifact が `markdown_doc` と宣言された場合、
+  `artifact_type_mismatch` で fail する。
+- `docs/plans/` の generated artifact が `design_doc` と宣言された場合、
+  `artifact_type_mismatch` で fail する。
+- path/type 宣言が一致している場合、既存の DB projection と reverse fullback tests は
+  引き続き pass する。
+- 既存の `PLAN-L7-56` / `PLAN-REVERSE-56` の design backprop entries は
+  `design_doc` として分類される。
+- `bun test tests/plan-lint.test.ts` が pass する。
+- `bun run typecheck` が pass する。
+- `bun run lint` が pass する。
+- `bun run src\cli.ts doctor` が pass する。

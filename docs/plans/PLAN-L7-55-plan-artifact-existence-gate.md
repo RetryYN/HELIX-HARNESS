@@ -32,9 +32,9 @@ dependencies:
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
-# PLAN-L7-55: plan-artifact-existence hard gate
+# PLAN-L7-55: plan-artifact-existence hard gate（phantom artifact 検出 gate）
 
-## Objective
+## 目的 (Objective)
 
 設計の柱3 (自動化で V-model state DB を管理しフィードバック機構にする) + 柱6 (テストなし完了宣言禁止の
 機械担保) の実体化。**PLAN が confirmed/completed/accepted (完了宣言) なのに、その `generates` で宣言した
@@ -60,14 +60,14 @@ descent absence-blindness)。
 | **未 confirm / draft** | merged-plan-status が検出 (L7-54) | OK (作業中) |
 | **完了 (confirmed/completed/accepted)** | OK | **plan-artifact-existence が検出 (本 PLAN)** |
 
-## WBS
+## WBS（作業分解）
 
 | WBS ID | Work | Source target | Test target | Gate | 並直 |
 |---|---|---|---|---|---|
 | WBS-L7-55-01 | `analyzePlanArtifactExistence` 純関数 + `loadPlanArtifactExistenceInput` loader + `planArtifactExistenceMessages`。規則 = 完了 status × generates artifact 不在 → violation。loader が完了 status を pre-filter + existsSync で欠落抽出 | `src/lint/plan-artifact-existence.ts` | `tests/plan-artifact-existence.test.ts` | `vitest tests/plan-artifact-existence.test.ts` | [直列] |
-| WBS-L7-55-02 | `checkPlanArtifactExistence` を doctor へ配線 (runDoctor.ok 連動、hard gate) + 配線 (宣言/ok集約/messages 3点) | `src/doctor/index.ts` | `tests/doctor.test.ts` | `ut-tdd doctor` + `vitest tests/doctor.test.ts` | [直列] |
+| WBS-L7-55-02 | `checkPlanArtifactExistence` を doctor へ配線 (runDoctor.ok 連動、hard gate) + 配線 (宣言/ok集約/messages 3点) | `src/doctor/index.ts` | `tests/doctor.test.ts` | `helix doctor` + `vitest tests/doctor.test.ts` | [直列] |
 
-## Acceptance Criteria
+## 受入条件 (Acceptance Criteria)
 
 - [x] completed/confirmed/accepted PLAN で generates artifact が不在 → violation・doctor ok=false。
 - [x] 完了 status で generates artifact が全て実在 → violation にしない。
@@ -87,7 +87,7 @@ descent absence-blindness)。
 - loader は完了 status を pre-filter する (draft を analyzer に渡さない) ことで false-positive を構造的に防ぐ。
   analyzer 側も COMPLETED_STATUSES で二重に絞る (loader バイパスでも安全)。
 
-## Carry / 別 scope (本 PLAN 範囲外、telemetry/auth 依存で infra 未整備)
+## 持ち越し / 別 scope (Carry、本 PLAN 範囲外、telemetry/auth 依存で infra 未整備)
 
 - **guardrail decision ledger 本番配線**: `recordGuardrailDecision` の runtime 書込経路は依然未配線
   (C-1A 系、auth-gated)。guardrail_decisions テーブルが空でも検出する gate は telemetry/auth 整備後。

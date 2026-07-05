@@ -10,7 +10,7 @@ updated: 2026-06-09
 owner: Codex TL / PO
 agent_slots:
   - role: tl
-    slot_label: "TL - invariant trace implementation"
+    slot_label: "TL - invariant trace 実装"
   - role: qa
     slot_label: "QA - invariant trace oracle"
 generates:
@@ -30,14 +30,14 @@ review_evidence:
     tests_green_at: "2026-06-09T16:53:00+09:00"
     reviewed_at: "2026-06-09T16:55:00+09:00"
     verdict: approve
-    scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
+    scope: "A-114 独立再 audit と PO closure 指示。confirmation 前に typecheck/lint/vitest/doctor が green。add-feature triad は内容変更なしで closure。"
 ---
 
-# PLAN-L7-28 (add-impl): invariant-test-trace
+# PLAN-L7-28 (add-impl): invariant-test-trace 実装
 
-## §0 Position
+## §0 位置づけ
 
-Implements IMP-098.
+IMP-098 を実装する。
 
 ## §3.1 実装計画 (情報源)
 
@@ -49,29 +49,29 @@ Implements IMP-098.
 
 実装:
 
-- Parse invariant oracle references.
-- Flag invariant oracle ids absent from L7 test design.
-- Add negative and real repo tests.
+- invariant oracle references を parse する。
+- L7 test design に存在しない invariant oracle ids を flag する。
+- negative test と real repo test を追加する。
 
 ## §3 工程表
 
 ### Step 1: [直列] invariant parser
 
-直列理由: downstream_dependency. The parser defines the input for oracle comparison.
+直列理由: downstream_dependency。parser が oracle comparison の入力を定義する。
 
 ### Step 2: [並列] unit oracle
 
-Add missing-oracle fixture and real repo guard.
+missing-oracle fixture と real repo guard を追加する。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. lint / typecheck / vitest / doctor must be green before review.
+直列理由: downstream_dependency。review 前に lint / typecheck / vitest / doctor を green にする。
 
 ## §6 用語更新
 
-- **invariant-test-trace**: implemented invariant oracle detector.
-- **DDD/TDD back-fill**: Reverse record for this add-impl slice.
+- **invariant-test-trace**: 実装済みの invariant oracle detector。
+- **DDD/TDD back-fill**: この add-impl slice の Reverse record。
 
 ## §8 DoD
 
-- [x] U-DDDTDD-002 passes.
+- [x] U-DDDTDD-002 が pass する。

@@ -86,7 +86,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-07-03T10:09:30+09:00"
-        evidence_path: .ut-tdd/harness.db
+        evidence_path: .helix/harness.db
         output_digest: "sha256:e608ebd21e602c0d2ac37bf9585117e8f6e06a86f57fa2adcbdff6e7052579d2"
       - kind: doctor
         command: "bun run src/cli.ts doctor"
@@ -130,7 +130,7 @@ feedback 投影前に `quality_signals(source=ut-history)` を作る。
 - DB schema / migration 追加。
 - duration trend 専用 table または dashboard 表示。PLAN-L7-241 は既存 `quality_signals` に
   `duration_trend_ms` を保存する schema-less persistence として扱う。
-- L14 completion / version-up activation / `.ut-tdd` irreversible cutover の承認。
+- L14 completion / version-up activation / `.helix` irreversible cutover の承認。
 
 ## 2. 受入条件
 

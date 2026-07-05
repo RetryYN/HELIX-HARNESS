@@ -5,7 +5,7 @@ export { HARNESS_DB_INDEXES, HARNESS_DB_TABLES } from "./harness-db-catalog";
 /**
  * harness.db projection schema — 単一正本 (PLAN-L7-45, 工程表 PLAN-L7-44 span ①)。
  *
- * `.ut-tdd/harness.db` の projection table を **TS の table registry として単一正本化**する。
+ * `.helix/harness.db` の projection table を **TS の table registry として単一正本化**する。
  * migration (src/state-db/migration.ts) はこの registry から DDL を生成し、projection-writer
  * (span ②) はこの registry の列名で行を書く。table 追加は registry への append + SCHEMA_VERSION
  * bump の 1 箇所で済む (CLAUDE.md: ハードコード単一正本化 / 将来拡張容易性)。

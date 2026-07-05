@@ -70,38 +70,29 @@ review_evidence:
         output_digest: "sha256:b83eb982966a0e6fa019a4fd2bf59e2284cec83a168268f5c845e34243fb8fb1"
 ---
 
-# PLAN-L7-140: Proposal Document Coverage Routing And Lint
+# PLAN-L7-140: Proposal Document Coverage Routing And Lint（文書 coverage routing lint）
 
-## 1. Objective
+## 1. 目的
 
-Add a mechanical regression fence for proposal-to-document coverage routing so
-future template or classifier changes cannot silently remove required design or
-test-design documents.
+proposal-to-document coverage routing に mechanical regression fence を追加し、
+将来の template や classifier 変更が required design / test-design documents を無音で外せないようにする。
 
 ## 2. Scope
 
-- Add a pure lint module for representative `classifyProposalDocumentCoverage`
-  scenarios.
-- Verify required design/test-design document paths exist.
-- Verify the cross-layer routing document is always required.
-- Verify the routing document mentions every classified pattern used by the
-  representative scenarios.
-- Wire the lint into doctor after keeping the lint module dependency-neutral.
-- Route proposal subagent recommendations into `team suggest --design-docs`
-  without allowing low-cost lanes to become closing judgement owners.
+- representative `classifyProposalDocumentCoverage` scenarios 向けの pure lint module を追加する。
+- required design/test-design document paths が存在することを verify する。
+- cross-layer routing document が常に required であることを verify する。
+- routing document が representative scenarios で使う classified pattern をすべて mention していることを verify する。
+- lint module を dependency-neutral に保ったうえで、lint を doctor に wire する。
+- proposal subagent recommendations を `team suggest --design-docs` に route しつつ、low-cost lanes が closing judgement owners にならないようにする。
 
-## 3. Acceptance Criteria
+## 3. 受入条件
 
-- [x] The lint module detects missing routing docs, missing required doc paths,
-  missing pattern markers, missing cross-artifact trace evidence, and missing
-  shrinkage guard behavior.
-- [x] The real repository passes the representative routing scenarios.
-- [x] `lint-wiring` records the module as explicitly deferred rather than dead.
-- [x] Dependency-neutral injection avoids a lint-to-task module cycle and lets
-  doctor hard-gate the coverage routing check.
-- [x] Proposal mini/spark/T1 lanes become owned, parallelizable team members
-  while `T0-frontier` remains a judgement recommendation outside executable
-  team launch output.
+- [x] lint module が missing routing docs、missing required doc paths、missing pattern markers、missing cross-artifact trace evidence、missing shrinkage guard behavior を検出する。
+- [x] real repository が representative routing scenarios を pass する。
+- [x] `lint-wiring` は module を dead ではなく explicitly deferred として記録する。
+- [x] Dependency-neutral injection により lint-to-task module cycle を避け、doctor が coverage routing check を hard-gate できる。
+- [x] Proposal mini/spark/T1 lanes は owned かつ parallelizable な team members になり、`T0-frontier` は executable team launch output の外側にある judgement recommendation のまま残る。
 
 ## 4. Verification
 

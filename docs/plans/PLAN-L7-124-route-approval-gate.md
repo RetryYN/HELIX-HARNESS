@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-124-route-approval-gate
-title: "PLAN-L7-124: route approval gate"
+title: "PLAN-L7-124: ルート承認 gate"
 kind: add-impl
 layer: L7
 drive: agent
@@ -11,7 +11,7 @@ owner: Codex
 parent_design: docs/governance/helix-harness-requirements_v1.2.md
 agent_slots:
   - role: tl
-    slot_label: "TL - route approval gate"
+    slot_label: "TL - ルート承認 gate"
 generates:
   - artifact_path: docs/plans/PLAN-L7-124-route-approval-gate.md
     artifact_type: markdown_doc
@@ -38,7 +38,7 @@ review_evidence:
     reviewed_at: "2026-06-23T16:10:00+09:00"
     tests_green_at: "2026-06-23T16:10:00+09:00"
     verdict: approve
-    scope: "Route eval blocks human-approval-required commands without policy/approval and appends runtime audit evidence."
+    scope: "route eval は policy / approval がない human-approval-required command を block し、runtime audit evidence を追記する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -68,24 +68,22 @@ review_evidence:
         output_digest: "sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791"
 ---
 
-# PLAN-L7-124: route approval gate
+# PLAN-L7-124: ルート承認 gate
 
-## Objective
+## 目的
 
-Make `requires_human_approval=true` route outputs fail closed until a policy and
-matching approvals are available.
+`requires_human_approval=true` の route output は、policy と一致する approval が利用可能になるまで fail closed にする。
 
-## Scope
+## 範囲
 
-- Mark recovery, incident, and retrofit `config_drift` routes as requiring
-  human approval.
-- Resolve `.ut-tdd/config/approval-policy.yaml` when evaluating route commands.
-- Exit 1 for missing policy or missing approvals.
-- Append blocked approval decisions to `.ut-tdd/audit/route-approval.jsonl`.
+- recovery、incident、retrofit `config_drift` route を human approval 必須として mark する。
+- route command の評価時に `.helix/config/approval-policy.yaml` を解決する。
+- policy 不足または approval 不足では exit 1 にする。
+- block された approval decision を `.helix/audit/route-approval.jsonl` に追記する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `forced_stop` / recovery routing returns `requires_human_approval=true`.
-- Missing approval policy produces exit 1, not a runnable green route.
-- A policy with all required approvers returns exit 0.
-- Blocked CLI runs append a JSONL audit record.
+- `forced_stop` / recovery routing は `requires_human_approval=true` を返す。
+- approval policy がない場合は、実行可能な green route ではなく exit 1 を生成する。
+- 必須 approver がすべて揃った policy は exit 0 を返す。
+- block された CLI run は JSONL audit record を追記する。

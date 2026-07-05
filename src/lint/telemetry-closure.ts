@@ -184,14 +184,14 @@ export function analyzeTelemetryClosure(docs: TelemetryClosureDoc[]): TelemetryC
 export function loadTelemetryClosureDocs(repoRoot: string = process.cwd()): TelemetryClosureDoc[] {
   const target = join(
     repoRoot,
-    ".ut-tdd",
+    ".helix",
     "audit",
     "A-134-harness-telemetry-self-improvement-audit.md",
   );
   if (!existsSync(target)) return [];
   return [
     {
-      file: join(".ut-tdd", "audit", "A-134-harness-telemetry-self-improvement-audit.md"),
+      file: join(".helix", "audit", "A-134-harness-telemetry-self-improvement-audit.md"),
       content: readFileSync(target, "utf8"),
     },
   ];

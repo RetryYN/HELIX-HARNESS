@@ -17,7 +17,7 @@ export type RuntimeSurface =
   | "claude-hook"
   | "codex-hook"
   | "codex-hosted-api"
-  | "ut-tdd-cli"
+  | "helix-cli"
   | "external-api";
 
 export interface RuntimeEvidenceClaim {
@@ -115,7 +115,7 @@ const ACCEPTABLE_RUNTIME_SURFACES = new Set<string>([
   "claude-hook",
   "codex-hook",
   "codex-hosted-api",
-  "ut-tdd-cli",
+  "helix-cli",
   "external-api",
 ]);
 
@@ -123,7 +123,7 @@ const SECRET_LIKE_RE =
   /\b[A-Za-z0-9_-]*(?:token|key|secret|password|passwd|pwd|bearer)[A-Za-z0-9_-]*\s*[=:]\s*\S+/i;
 
 export const DEFAULT_RUNTIME_VERIFICATION_LOG_PATH =
-  ".ut-tdd/evidence/run-debug/runtime-verification.jsonl";
+  ".helix/evidence/run-debug/runtime-verification.jsonl";
 
 function present(value: string | null | undefined): value is string {
   return typeof value === "string" && value.trim().length > 0;

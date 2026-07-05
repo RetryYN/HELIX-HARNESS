@@ -182,7 +182,7 @@ export function saveVerificationEvidence(
   };
   const stamp = record.recorded_at.replace(/[^0-9]/g, "").slice(0, 14);
   const rel = join(
-    ".ut-tdd",
+    ".helix",
     "evidence",
     "verification-profiles",
     `${stamp}-${input.kind}-${safeFileName(input.id)}.json`,
@@ -536,7 +536,7 @@ function signalForPath(path: string): VerificationSignal[] {
   if (/^\.github\//.test(p) || /^docs\/process\//.test(p)) {
     signals.push("external_issue", "workflow_policy");
   }
-  if (/^docs\/(governance|design|adr|process)\//.test(p) || /^\.ut-tdd\/audit\//.test(p)) {
+  if (/^docs\/(governance|design|adr|process)\//.test(p) || /^\.helix\/audit\//.test(p)) {
     signals.push("doc_backprop");
   }
   return uniqueSorted(signals);

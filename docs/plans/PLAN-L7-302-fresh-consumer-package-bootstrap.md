@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-302-fresh-consumer-package-bootstrap
-title: "PLAN-L7-302: fresh consumer package bootstrap and adapter prose ratchet"
+title: "PLAN-L7-302: fresh consumer の package bootstrap と adapter prose ratchet"
 kind: impl
 layer: L7
 drive: agent
@@ -15,11 +15,11 @@ pair_artifact: tests/setup.test.ts
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: qa
-    slot_label: "Rawls - fresh VSCode consumer setup audit"
+    slot_label: "Rawls - fresh VSCode consumer setup 監査"
   - role: qa
-    slot_label: "Newton - PLAN-M-02 / L14 autonomy boundary audit"
+    slot_label: "Newton - PLAN-M-02 / L14 autonomy boundary 監査"
   - role: tl
-    slot_label: "TL - package bootstrap implementation"
+    slot_label: "TL - package bootstrap 実装"
 generates:
   - artifact_path: docs/plans/PLAN-L7-302-fresh-consumer-package-bootstrap.md
     artifact_type: markdown_doc
@@ -56,7 +56,7 @@ review_evidence:
     reviewed_at: "2026-07-04T00:58:33+09:00"
     tests_green_at: "2026-07-04T00:58:33+09:00"
     verdict: approve
-    scope: "Subagent 監査で、空の VS Code consumer repo に `ut-tdd setup project` を実行しても package.json / Bun lockfile が生成されず、生成済み VSCode tasks と CI が runnable にならない gap を確認した。本 PLAN は fresh/brownfield package bootstrap、consumer 側 runtime dependency 補完、root adapter prose の日本語 ratchet を閉じる。"
+    scope: "Subagent 監査で、空の VS Code consumer repo に `helix setup project` を実行しても package.json / Bun lockfile が生成されず、生成済み VSCode tasks と CI が runnable にならない gap を確認した。本 PLAN は fresh/brownfield package bootstrap、consumer 側 runtime dependency 補完、root adapter prose の日本語 ratchet を閉じる。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -102,23 +102,23 @@ review_evidence:
         output_digest: "sha256:7c4648c0434efaa75f95df1c8fe1c08d63838d13547796ca89d4f0ce54b50dff"
 ---
 
-# PLAN-L7-302: fresh consumer package bootstrap and adapter prose ratchet
+# PLAN-L7-302: fresh consumer の package bootstrap と adapter prose ratchet
 
 ## 目的
 
-`ut-tdd setup project` を空の VS Code project に適用した直後、生成された VSCode task / CI command が `bun run ut-tdd ...` として実行可能になる状態まで閉じる。
+`helix setup project` を空の VS Code project に適用した直後、生成された VSCode task / CI command が `bun run helix ...` として実行可能になる状態まで閉じる。
 
 ## 問題
 
-- setup は adapter / `.vscode` / `.ut-tdd` baseline を生成するが、fresh repo の `package.json` と `bun.lock` を生成していなかった。
-- brownfield repo で `package.json` に `ut-tdd` dependency や必須 script を merge しても、lockfile を再生成しないため `bun install --frozen-lockfile` が落ち得た。
-- 配布済み Pack tag は CLI runtime が import する `typescript` を transitive runtime dependency として解決できない。consumer 側 setup package surface に `typescript` を明示しないと既存 tag の `ut-tdd` 実行が壊れ得る。
+- setup は adapter / `.vscode` / `.helix` baseline を生成するが、fresh repo の `package.json` と `bun.lock` を生成していなかった。
+- brownfield repo で `package.json` に `helix` dependency や必須 script を merge しても、lockfile を再生成しないため `bun install --frozen-lockfile` が落ち得た。
+- 配布済み Pack tag は CLI runtime が import する `typescript` を transitive runtime dependency として解決できない。consumer 側 setup package surface に `typescript` を明示しないと既存 tag の `helix` 実行が壊れ得る。
 - root adapter docs に英語 prose が残り、docs 日本語原則と design-language ratchet に対して不要な debt を残していた。
 
-## Source 確認
+## Source 確認 (参照元確認)
 
 - Bun 公式 docs: `bun install --frozen-lockfile` は lockfile を更新せず、`package.json` と lockfile の不一致を error にする。CI では lockfile commit が前提。
-- Bun lockfile docs: Bun v1.2 以降の default は text `bun.lock`。旧 project は `bun.lockb` を持ち得る。
+- Bun lockfile docs: Bun v1.2 以降の既定 (default) は text `bun.lock`。旧 project は `bun.lockb` を持ち得る。
 - Bun runtime / script docs: `bun run <script>` は `package.json.scripts` を package-local command surface として解決する。
 - VS Code 公式 docs: workspace tasks は `.vscode/tasks.json` の手動 shell task として定義できる。Workspace Trust は自動実行境界を持つため、setup は task 自動実行を有効化しない。
 - OWASP WSTG stable docs: security review source は stable guide を参照し、setup package bootstrap は auth/secret/PII/remote apply を変更しない。
@@ -126,11 +126,11 @@ review_evidence:
 ## 受入条件
 
 - fresh consumer setup は `package.json`、`bun.lock`、`.vscode/tasks.json` を生成し、`consumerReadiness.ok=true` / `postSetupWorkflow.nextRoute=ready` を返す。
-- generated `package.json` は `scripts.ut-tdd` / `typecheck` / `test`、`devDependencies.ut-tdd`、`devDependencies.typescript` を持つ。
+- generated `package.json` は `scripts.helix` / `typecheck` / `test`、`devDependencies.helix`、`devDependencies.typescript` を持つ。
 - brownfield setup が package surface を merge した場合、`bun install --lockfile-only` を実行して lockfile を更新する。
 - local package manifest は runtime import に必要な `typescript` を `dependencies` に置く。
 - clean distribution acceptance は fresh consumer repo で setup / package / lockfile / local clean artifact link 後の command smoke を通す。
-- root adapter docs の触った prose は日本語-first に寄せ、`ut-tdd` / `.ut-tdd` / adapter rule markers の機械識別子は維持する。
+- root adapter docs の触った prose は日本語-first に寄せ、`helix` / `.helix` / adapter rule markers の機械識別子は維持する。
 
 ## 検証
 

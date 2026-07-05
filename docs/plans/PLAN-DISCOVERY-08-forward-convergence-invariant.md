@@ -42,7 +42,7 @@ review_evidence:
     verdict: approve
     worker_model: claude-opus-4-8
     reviewer_model: gpt-5.5
-    scope: "別 runtime (Codex gpt-5.5, role=tl) が PM=opus の forward-convergence analyzer 実装 (src/lint/forward-convergence.ts + test + doctor report-only 配線) を desk review。verdict=APPROVE-WITH-CHANGES (Critical 0)。判定語彙 (spine内外/landed/local_impl_only)・SSoT 非重複 (poc=scrum-reverse / add-impl 等=backfill / impl=本 analyzer) を支持。baseline 2 件 (PLAN-L7-147 / PLAN-L7-62) は真陽性と確認。Important (docs/process・docs/adr parent_design を spine-外とする回帰テスト追加) を反映済 (15 tests)。Minor (not_required 理由長を S4 で schema 明記) は Step5 follow-up。前段の診断/方向性 desk review (.ut-tdd/review/cross-review-forward-convergence-invariant.md、総合 AGREE) も同 runtime。"
+    scope: "別 runtime (Codex gpt-5.5, role=tl) が PM=opus の forward-convergence analyzer 実装 (src/lint/forward-convergence.ts + test + doctor report-only 配線) を desk review。verdict=APPROVE-WITH-CHANGES (Critical 0)。判定語彙 (spine内外/landed/local_impl_only)・SSoT 非重複 (poc=scrum-reverse / add-impl 等=backfill / impl=本 analyzer) を支持。baseline 2 件 (PLAN-L7-147 / PLAN-L7-62) は真陽性と確認。Important (docs/process・docs/adr parent_design を spine-外とする回帰テスト追加) を反映済 (15 tests)。Minor (not_required 理由長を S4 で schema 明記) は Step5 follow-up。前段の診断/方向性 desk review (.helix/review/cross-review-forward-convergence-invariant.md、総合 AGREE) も同 runtime。"
     green_commands:
       - kind: unit_test
         command: "bunx vitest run tests/forward-convergence.test.ts (15 tests: spine接続×5 / landed-disposition×2 / 分類×6 / parse+messages×2)"
@@ -65,20 +65,20 @@ review_evidence:
 s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (2026-06-26 S4 adoption)
-- decision_basis: forward-convergence invariant was supported by cross-runtime review and implemented as analyzer/test/doctor surface.
-- verified_evidence: review_evidence green_commands, src/lint/forward-convergence.ts, tests/forward-convergence.test.ts, and PLAN-REVERSE-140.
-- stakeholder_review_or_proxy: Codex/gpt-5.5 cross-runtime TL review recorded in review_evidence.
-- acceptance_gap: minor schema wording for not_required reasons remained follow-up but did not block invariant adoption.
-- unresolved_risk: legacy local_impl_only debt must stay allowlisted/audited until fully backfilled.
-- external_source_basis: docs/process/modes/discovery.md and docs/process/modes/scrum.md S4 decision rules.
-- source_ledger_freshness: fresh; S4 decision source ledger checked 2026-07-03 in discovery/scrum mode docs during current audit.
-- source_status_delta: changed; ISO/IEC/IEEE 29148 now shows 2026-02-16 stage 90.92 to be revised, but this does not reopen the historical confirmed S4 decision.
-- adoption_decision_delta: none; historical S4 adoption decision remains aligned with the current route policy while the ISO/IEC/IEEE 29148 revision is tracked until publication.
-- workflow_route_impact: none; historical decision already routed through S4 and Reverse/Forward evidence.
-- route_impact: confirmed makes unaggregated landed side-flow work block freeze/forward-convergence claims.
-- forward_route: PLAN-REVERSE-140-forward-convergence-version-up-backfill -> requirements §6.8.8.1 and process docs.
-- reverse_fullback_required: yes; discharged by PLAN-REVERSE-140-forward-convergence-version-up-backfill.
-- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; keep the invariant and harden analyzer/gate evidence.
+- decision_basis: forward-convergence 不変条件は cross-runtime review で支持され、analyzer/test/doctor surface として実装済み。
+- verified_evidence: 検証証跡は review_evidence green_commands、src/lint/forward-convergence.ts、tests/forward-convergence.test.ts、PLAN-REVERSE-140 に記録済み。
+- stakeholder_review_or_proxy: Codex/gpt-5.5 の cross-runtime TL review を review_evidence に記録済み。
+- acceptance_gap: not_required 理由の minor schema wording は follow-up として残ったが、不変条件の採用は阻害しなかった。
+- unresolved_risk: legacy local_impl_only debt は完全 backfill まで allowlist/audit 対象として維持する必要がある。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh; 現行 audit で 2026-07-03 に discovery/scrum mode docs の S4 decision source ledger を確認済み。
+- source_status_delta: changed; ISO/IEC/IEEE 29148 は 2026-02-16 時点で stage 90.92 to be revised だが、過去の confirmed S4 decision は再オープンしない。
+- adoption_decision_delta: none; ISO/IEC/IEEE 29148 revision は publication まで追跡するが、過去の S4 adoption decision は現行 route policy と整合している。
+- workflow_route_impact: none; 過去の decision は既に S4 と Reverse/Forward evidence を通過済み。
+- route_impact: confirmed により、未集約の landed side-flow work は freeze/forward-convergence claim をブロックする。
+- forward_route: PLAN-REVERSE-140-forward-convergence-version-up-backfill -> requirements §6.8.8.1 および process docs。
+- reverse_fullback_required: yes; PLAN-REVERSE-140-forward-convergence-version-up-backfill で消化済み。
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; 不変条件を維持し、analyzer/gate evidence を harden する。
 
 # PLAN-DISCOVERY-08 (kind=poc): forward-convergence 不変条件
 
@@ -100,7 +100,7 @@ gap を Discovery dogfood で確定する。
 
 ## 1. Gap (機械強制の 2 つの穴) — cross-review 済 (Codex tl = AGREE)
 
-診断と方向性は別 runtime クロスレビュー済 (証跡 = `.ut-tdd/review/cross-review-forward-convergence-invariant.md`
+診断と方向性は別 runtime クロスレビュー済 (証跡 = `.helix/review/cross-review-forward-convergence-invariant.md`
 + Codex gpt-5.5 応答、role=tl、総合判定 AGREE、2026-06-26)。
 
 ### 穴① back-fill 強制が kind を選り好みする
@@ -114,7 +114,7 @@ gap を Discovery dogfood で確定する。
 固定 9 PLAN (`L0_L7_AUTOMATION_PLAN_IDS`) の evidence のみを見る。「spine 外に Forward 未集約の impl/poc が
 landing していないか」を検査しない。実証: doctor は non-terminal L7 が 3 件ある状態でも
 `実装検証サイクルゲート [L0-L7]: ✅ freeze 完了` を出す (absence-blindness: 不在≠違反、
-[[project_descent_absence_blindness]] / [[feedback_coverage_not_substance]])。
+`[[project_descent_absence_blindness]]` / `[[feedback_coverage_not_substance]]`)。
 
 ### 既存統制は部分的 (Codex 指摘)
 `parent_design` / `descent-obligation` / `impl-plan-trace` / `program-coverage` / `screen-impl-pair-freeze` /
@@ -147,7 +147,7 @@ fail-close する SSoT ではない**。
 - `tests/forward-convergence.test.ts` (新規) — 分類ルール + false-positive 非発火 (spine 内 impl 不検出 /
   draft-deferred を violation にしない) を Red 先行で検証。
 - **現リポへ適用して `unconverged-landed` の実数を正直に測定** (baseline。0 と仮定せず実測、
-  [[feedback_coverage_not_substance]])。
+  `[[feedback_coverage_not_substance]]`)。
 - doctor へ **advisory (report-only) で先行 surface**。fail-close 昇格と KIND_BACKFILL / freeze gate への
   接続、modes/requirements/L6/L7 oracle への back-merge は **S4 ADOPT 後** (規範変更 = concept/requirements
   先行ルール、modes README)。
@@ -162,7 +162,7 @@ fail-close する SSoT ではない**。
 - **AC-4 false-positive 非発火**: parent_design/requires/roadmap span 接続済 impl を flag しない、かつ
   draft/deferred を violation にしない (test の負系ケース)。
 - **AC-5 SSoT 非重複**: descent-obligation/impl-plan-trace と別々に同じ判定を再実装していない (クロスレビューで支持)。
-- **AC-6 無回帰**: `ut-tdd doctor` exit 0 / `bun run test` (vitest 全量) green / `ut-tdd plan lint` / `bun run lint` /
+- **AC-6 無回帰**: `helix doctor` exit 0 / `bun run test` (vitest 全量) green / `helix plan lint` / `bun run lint` /
   `bun run typecheck` 通過。
 
 ### AC 充足状況 (confirmed scope = Step 1-4 = analyzer engine + report-only surface + baseline + cross-review、2026-06-26)
@@ -171,14 +171,14 @@ fail-close する SSoT ではない**。
 - **AC-2 ✓ / AC-4 ✓**: 分類ケース + 負系 (spine 接続済 flag せず / draft-deferred を violation にせず /
   local-impl-only 許可 / scope 外 kind 無視) + Codex Important 反映の境界回帰 (docs/process・docs/adr parent_design=spine-外)。
 - **AC-3 ✓ baseline 実測値**: 現リポの `unconverged-landed` = **2 件** ——
-  `PLAN-L7-147-refactor-candidate-detector` (parent_design=docs/process/modes/refactor.md) /
-  `PLAN-L7-62-runtime-portability-guard` (parent_design=docs/adr/ADR-001)。いずれも L6 設計 / L1-L6 Forward PLAN
+  1 件目は `PLAN-L7-147-refactor-candidate-detector` (parent_design=`docs/process/modes/refactor.md`)、
+  2 件目は `PLAN-L7-62-runtime-portability-guard` (parent_design=`docs/adr/ADR-001`)。いずれも L6 設計 / L1-L6 Forward PLAN
   へ降下せず backprop_decision も無い landed impl = 真陽性 (Codex 確認)。その他 spine-internal 33 / converged 0 /
   local-impl-only 0 / draft-deferred 0。これらの disposition (Forward 集約 or local_impl_only) は **Step 5 = S4 PO 判断**。
 - **AC-5 ✓**: scope=kind:impl のみ。poc=scrum-reverse / add-impl 等=backfill に委譲し二重計上なし (Codex 支持)。
   requires=backfill-pairing.parseRequires / reverse links=scrum-reverse.parseLinks / roadmap span=roadmap-registry を再利用。
-- **AC-6 ✓**: `bun run typecheck` exit 0 / `bunx biome check` (新 3 file) クリーン / `ut-tdd plan lint` exit 0 /
-  `bun run test` (vitest 全量) exit 0 / `ut-tdd doctor` exit 0。
+- **AC-6 ✓**: `bun run typecheck` exit 0 / `bunx biome check` (新 3 file) クリーン / `helix plan lint` exit 0 /
+  `bun run test` (vitest 全量) exit 0 / `helix doctor` exit 0。
 - review: Codex (gpt-5.5, role=tl) cross_agent = APPROVE-WITH-CHANGES (Critical 0)。Important 反映済、Minor は Step5 follow-up
   (frontmatter `review_evidence` 参照)。
 

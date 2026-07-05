@@ -225,7 +225,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- access_control_check: Cloudflare Access policy protects read-only dashboard route",
           "- no_secret_pii_check: projection excludes secret/PII/raw transcript",
           "- no_prod_write_check: dry-run uses staging or non-production projection only",
-          "- rollback_rehearsal: .ut-tdd/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
+          "- rollback_rehearsal: .helix/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
           "cost_guardrails:",
           "- pages_limit: Cloudflare Pages official limits must fit static SPA artifact",
           "- workers_limit: Workers Free request budget must fit read API and Pages Functions usage",
@@ -337,7 +337,7 @@ describe("version-up-readiness", () => {
     expect(packet.schemaVersion).toBe("version-up-activation-packet.v1");
     expect(packet.planId).toBe("PLAN-L7-900-future");
     expect(packet.generatedAt).toEqual(expect.any(String));
-    expect(packet.sourceCommand).toBe("ut-tdd version-up activation-packet --json");
+    expect(packet.sourceCommand).toBe("helix version-up activation-packet --json");
     expect(packet.freshness).toEqual({
       validForMinutes: 1440,
       expiresAt: expect.any(String),
@@ -472,7 +472,7 @@ describe("version-up-readiness", () => {
     );
     expect(packet.versionDryRunEvidence).toMatchObject({
       command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
-      planCommand: "ut-tdd version-up dry-run --current 0.1.0 --target future --json",
+      planCommand: "helix version-up dry-run --current 0.1.0 --target future --json",
       digest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       ok: false,
       semverChange: "invalid",
@@ -681,13 +681,13 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           role: "primary",
-          command: "ut-tdd version-up activation-packet --json",
-          scopedCommand: "ut-tdd version-up activation-packet --json --plan PLAN-L7-900-future",
+          command: "helix version-up activation-packet --json",
+          scopedCommand: "helix version-up activation-packet --json --plan PLAN-L7-900-future",
         }),
         expect.objectContaining({
           role: "supporting",
-          command: "ut-tdd action-binding approval-packet --json",
-          scopedCommand: "ut-tdd action-binding approval-packet --json --plan PLAN-L7-900-future",
+          command: "helix action-binding approval-packet --json",
+          scopedCommand: "helix action-binding approval-packet --json --plan PLAN-L7-900-future",
         }),
       ]),
     );
@@ -1143,7 +1143,7 @@ describe("version-up-readiness", () => {
             ...base,
             text: base.text
               .replace(
-                ".ut-tdd/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
+                ".helix/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
                 "disable binding and rebuild projection from GitHub source",
               )
               .replace(
@@ -1201,7 +1201,7 @@ describe("version-up-readiness", () => {
             ...base,
             text: base.text
               .replace(
-                ".ut-tdd/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
+                ".helix/evidence/version-up/rollback-rehearsal.json result=pass exit_code=0 disables binding and rebuilds projection from GitHub source",
                 "status: green",
               )
               .replace(
@@ -1310,7 +1310,7 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           step: "compare_current_target",
-          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.2.0 --json",
+          command: "helix version-up dry-run --current v0.1.0 --target v0.2.0 --json",
           requiredEvidence: "semver_diff",
         }),
         expect.objectContaining({ step: "project_setup_dry_run" }),
@@ -1325,7 +1325,7 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           check: "repeat_dry_run_has_no_state_change",
-          command: "ut-tdd version-up dry-run --current v0.1.0 --target v0.2.0 --json",
+          command: "helix version-up dry-run --current v0.1.0 --target v0.2.0 --json",
         }),
       ]),
     );
@@ -1397,7 +1397,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           step: "compare_current_target",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
         }),
       ]),
     );
@@ -1406,7 +1406,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           check: "repeat_dry_run_has_no_state_change",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
         }),
       ]),
     );
@@ -1424,7 +1424,7 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           step: "compare_current_target",
           command:
-            "ut-tdd version-up dry-run --current v0.1.0 --target 'v0.2.0; echo unsafe' --release-remote 'https://example.invalid/repo.git; echo unsafe' --json",
+            "helix version-up dry-run --current v0.1.0 --target 'v0.2.0; echo unsafe' --release-remote 'https://example.invalid/repo.git; echo unsafe' --json",
         }),
       ]),
     );
@@ -2427,7 +2427,7 @@ describe("version-up-readiness", () => {
       schemaVersion: "version-up-activation-packet.v1",
       planId: "PLAN-L7-146-serverless-readonly-share",
       generatedAt: expect.any(String),
-      sourceCommand: "ut-tdd version-up activation-packet --json",
+      sourceCommand: "helix version-up activation-packet --json",
       freshness: {
         validForMinutes: 1440,
         expiresAt: expect.any(String),
@@ -2713,10 +2713,10 @@ describe("version-up-readiness", () => {
     expect(text).toContain("record-template activation_decision_record");
     expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(
-      "related-packet: primary ut-tdd version-up activation-packet --json scoped=ut-tdd version-up activation-packet --json --plan PLAN-L7-146-serverless-readonly-share",
+      "related-packet: primary helix version-up activation-packet --json scoped=helix version-up activation-packet --json --plan PLAN-L7-146-serverless-readonly-share",
     );
     expect(text).toContain(
-      "related-packet: supporting ut-tdd action-binding approval-packet --json scoped=ut-tdd action-binding approval-packet --json --plan PLAN-L7-146-serverless-readonly-share",
+      "related-packet: supporting helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-L7-146-serverless-readonly-share",
     );
     expect(text).toContain(
       "verification-source: external-rehearsal source=GitHub Actions secure use and pull_request_target guidance sourceUrl=https://docs.github.com/en/actions/reference/security/secure-use checked=2026-07-03",
@@ -2803,7 +2803,7 @@ describe("version-up-readiness", () => {
       expect.arrayContaining([
         expect.objectContaining({
           step: "compare_current_target",
-          command: "ut-tdd version-up dry-run --current v0.1.0 --target future --json",
+          command: "helix version-up dry-run --current v0.1.0 --target future --json",
         }),
       ]),
     );
@@ -2839,7 +2839,7 @@ describe("version-up-readiness", () => {
     });
     expect(blockedPlan.blockedReasons).toContain("current and target versions must be SemVer");
 
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-version-up-fail-on-blocked-ok-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-version-up-fail-on-blocked-ok-"));
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");
       const allowed = spawnSync(
@@ -2882,7 +2882,7 @@ describe("version-up-readiness", () => {
   });
 
   it("resolves Pack release tags through an explicit remote in the CLI dry-run", () => {
-    const binDir = mkdtempSync(join(tmpdir(), "ut-tdd-version-up-remote-tag-"));
+    const binDir = mkdtempSync(join(tmpdir(), "helix-version-up-remote-tag-"));
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");
       const raw = execFileSync(
@@ -2927,7 +2927,7 @@ describe("version-up-readiness", () => {
           expect.objectContaining({
             step: "compare_current_target",
             command:
-              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+              "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           }),
         ]),
       );
@@ -2936,7 +2936,7 @@ describe("version-up-readiness", () => {
           expect.objectContaining({
             check: "repeat_dry_run_has_no_state_change",
             command:
-              "ut-tdd version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+              "helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
           }),
         ]),
       );

@@ -19,7 +19,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/plans/PLAN-M-01-cutover-backfill.md
     artifact_type: markdown_doc
-  - artifact_path: .ut-tdd/audit/A-132-l8-l14-verification-band-execution.md
+  - artifact_path: .helix/audit/A-132-l8-l14-verification-band-execution.md
     artifact_type: markdown_doc
 roadmap:
   layer: L14
@@ -45,10 +45,10 @@ dependencies:
   references:
     - docs/governance/helix-harness-concept_v3.1.md
     - docs/governance/helix-harness-requirements_v1.2.md
-    - docs/adr/ADR-001-ut-tdd-harness-redesign-and-language.md
-    - .ut-tdd/audit/A-130-harness-db-segment-accept.md
-    - .ut-tdd/audit/A-131-recovery-04-closure-accept.md
-    - .ut-tdd/audit/A-132-l8-l14-verification-band-execution.md
+    - docs/adr/ADR-001-helix-harness-redesign-and-language.md
+    - .helix/audit/A-130-harness-db-segment-accept.md
+    - .helix/audit/A-131-recovery-04-closure-accept.md
+    - .helix/audit/A-132-l8-l14-verification-band-execution.md
 review_evidence:
   - reviewer: codex-intra-runtime-review
     review_kind: intra_runtime_subagent
@@ -60,71 +60,71 @@ review_evidence:
     reviewer_model: codex-gpt-5-intra-runtime-review
 ---
 
-# PLAN-VERIFY-CUTOVER-00: L8-L14 verification band + legacy-source isolation backfill
+# PLAN-VERIFY-CUTOVER-00: L8-L14 verification band と legacy-source isolation backfill
 
-## 0. Position
+## 0. 位置づけ
 
-This plan closes the two bands that were intentionally parked by PLAN-REVERSE-44:
+この PLAN は、PLAN-REVERSE-44 で意図的に parked とされた次の 2 つの band を閉じる。
 
-- verification: L8-L14 right-arm verification work was parked because no Forward roadmap existed.
-- cutover: legacy-source isolation was parked because the previous strategy document was stale after ADR-001 and harness.db close.
+- verification: L8-L14 right-arm verification 作業は、Forward roadmap が存在しなかったため parked とされていた。
+- cutover: legacy-source isolation は、ADR-001 と harness.db close の後に以前の strategy document が stale になったため parked とされていた。
 
-Completion here means the bands are no longer invisible parked work and the local L8-L14 verification execution is recorded in `harness.db`. It does not mean production deploy, PO final acceptance for L8-L14, or a destructive cutover. Those remain human-signoff/prod-scope activities outside this local band.
+ここでの completion は、これらの band が見えない parked work ではなくなり、local L8-L14 verification execution が `harness.db` に記録されることを意味する。production deploy、L8-L14 の PO final acceptance、destructive cutover を意味しない。それらは、この local band の外側にある human-signoff / prod-scope activity として残る。
 
-## 1. Completion Contract
+## 1. 完了 contract
 
-- `PROGRAM_BANDS.verification` is covered by this master roadmap (`roadmap.layer: L14`).
-- `PROGRAM_BANDS.cutover` is covered by `PLAN-M-01-cutover-backfill` (`roadmap.layer: cutover`).
-- `roadmap-rollup` can report all five program bands as covered and no parked or uncovered band remains.
-- The cutover stale-doc problem is routed to a concrete backfill artifact instead of staying only as an audit carry.
-- Handover points at the next executable action after this close, not the already-closed L6 frontier.
-- `harness.db` records seven L8-L14 `workflow_runs`, seven matching `gate_runs`, and `coverage` rows for program coverage, reached gates, and review evidence.
-- `.ut-tdd/audit/A-132-l8-l14-verification-band-execution.md` records the local execution boundary and explicitly marks production deploy / post-deploy observation as out of scope.
+- `PROGRAM_BANDS.verification` は、この master roadmap (`roadmap.layer: L14`) で covered になる。
+- `PROGRAM_BANDS.cutover` は、`PLAN-M-01-cutover-backfill` (`roadmap.layer: cutover`) で covered になる。
+- `roadmap-rollup` は、5 つすべての program band が covered であり、parked または uncovered の band が残らないことを報告できる。
+- cutover stale-doc problem は、audit carry のまま残さず、具体的な backfill artifact へ route される。
+- Handover は、すでに closed の L6 frontier ではなく、この close 後の次の executable action を指す。
+- `harness.db` は、7 件の L8-L14 `workflow_runs`、対応する 7 件の `gate_runs`、および program coverage / reached gates / review evidence の `coverage` row を記録する。
+- `.helix/audit/A-132-l8-l14-verification-band-execution.md` は、local execution boundary を記録し、production deploy / post-deploy observation を明示的に out of scope とする。
 
 ## 3. 工程表
 
-### Step 1: [直列] verification band roadmap registration
+### Step 1: [直列] verification band roadmap 登録
 
-Serial reason: downstream_dependency.
+直列理由: downstream_dependency。
 
-Register this plan as the L8-L14 verification band host. The band represents right-arm verification execution planning across integration, system, UX, UAT, deployment acceptance, post-deploy verification, and operational feedback.
+この PLAN を L8-L14 verification band host として登録する。この band は、integration / system / UX / UAT / deployment acceptance / post-deploy verification / operational feedback にまたがる right-arm verification execution planning を表す。
 
-### Step 2: [直列] cutover backfill route registration
+### Step 2: [直列] cutover backfill route 登録
 
-Serial reason: downstream_dependency.
+直列理由: downstream_dependency。
 
-Create the paired cutover roadmap (`PLAN-M-01-cutover-backfill`) and make this master depend on it through the second verification gate. The route turns the stale cutover strategy doc from a free-form carry into a registered roadmap item.
+対になる cutover roadmap (`PLAN-M-01-cutover-backfill`) を作成し、この master が 2 番目の verification gate を通じてそれに依存するようにする。この route により、stale cutover strategy doc を free-form carry から registered roadmap item へ変換する。
 
 ### Step 3: [直列] machine verification
 
-Serial reason: downstream_dependency.
+直列理由: downstream_dependency。
 
-Run roadmap, doctor, review-evidence, and DB projection checks. Required evidence:
+roadmap、doctor、review-evidence、DB projection の check を実行する。必要な evidence は次のとおり。
 
-- `tests/roadmap.test.ts` proves the real repository rollup has verification and cutover covered.
-- `tests/projection-writer.test.ts` proves the real repository rebuild emits L8-L14 execution rows into `harness.db`.
-- `bun run src/cli.ts doctor` surfaces `roadmap-rollup` with no frontier.
-- `review-evidence` remains OK for confirmed design plans.
+- `tests/roadmap.test.ts` は、実 repository rollup が verification と cutover を covered として持つことを証明する。
+- `tests/projection-writer.test.ts` は、実 repository rebuild が L8-L14 execution row を `harness.db` へ出力することを証明する。
+- `bun run src/cli.ts doctor` は、frontier なしの `roadmap-rollup` を表示する。
+- `review-evidence` は、confirmed design plan に対して OK のままである。
 
-### Step 4: [直列] review and handover
+### Step 4: [直列] review と handover
 
-Serial reason: shared_state.
+直列理由: shared_state。
 
-Record intra-runtime review evidence and update `.ut-tdd/handover/CURRENT.json` so the next action points beyond this plan.
+intra-runtime review evidence を記録し、次の action がこの PLAN の先を指すように `.helix/handover/CURRENT.json` を更新する。
 
 ## 3.1 実装計画
 
-- No new TypeScript feature behavior is required beyond test coverage for the existing roadmap registry.
-- The implementation uses current `roadmap.layer` string matching; no schema migration is required because `roadmap.layer` already accepts arbitrary strings and `PROGRAM_BANDS.cutover.layers` contains `cutover`.
-- `PARKED_BANDS` may remain as historical defer reasons. Covered bands take precedence over parked classification, so a registered verification/cutover roadmap results in `parkedBands=0`.
-- Rollback is document-only: remove these two PLAN files and the added test if the registration is judged premature.
+- 既存 roadmap registry の test coverage 以外に、新しい TypeScript feature behavior は不要である。
+- 実装は現在の `roadmap.layer` string matching を使う。`roadmap.layer` はすでに任意の string を受け取り、`PROGRAM_BANDS.cutover.layers` は `cutover` を含むため、schema migration は不要である。
+- `PARKED_BANDS` は historical defer reason として残ってよい。covered band は parked classification より優先されるため、registered verification/cutover roadmap により `parkedBands=0` となる。
+- Rollback は document-only とする。registration が時期尚早と判断された場合は、この 2 つの PLAN file と追加 test を削除する。
 
 ## 4. DoD
 
-- [x] L8-L14 verification band has a confirmed roadmap host.
-- [x] Legacy-source isolation has a confirmed backfill roadmap host.
-- [x] Program rollup can prove 5/5 covered bands with no parked or uncovered band.
-- [x] `harness.db` rebuild records L8-L14 verification execution rows.
-- [x] A-132 audit evidence records the local execution result and production/PO boundary.
-- [x] Stale handover next action is replaced.
-- [x] No vendor or legacy runtime source is edited.
+- [x] L8-L14 verification band は confirmed roadmap host を持つ。
+- [x] Legacy-source isolation は confirmed backfill roadmap host を持つ。
+- [x] Program rollup は、parked または uncovered の band が無い状態で 5/5 covered band を証明できる。
+- [x] `harness.db` rebuild は L8-L14 verification execution row を記録する。
+- [x] A-132 audit evidence は local execution result と production/PO boundary を記録する。
+- [x] Stale handover next action は置き換え済みである。
+- [x] vendor source または legacy runtime source は編集されていない。

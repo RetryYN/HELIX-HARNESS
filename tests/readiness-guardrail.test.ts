@@ -52,7 +52,7 @@ describe("IT-AUTOMATION-01 / IT-GUARDRAIL-01", () => {
         mode: "codex-only",
         reviewer_model: "gpt-5.4",
         worker_model: "gpt-5.4",
-        evidence_path: ".ut-tdd/evidence/review.json",
+        evidence_path: ".helix/evidence/review.json",
       });
       const humanRequired = recordGuardrailDecision(db, {
         plan_id: "PLAN-L7-48-readiness-guardrail",
@@ -81,10 +81,10 @@ describe("IT-AUTOMATION-01 / IT-GUARDRAIL-01", () => {
       // literal secret prefixes never appear in committed source (secret-scan pre-commit hook).
       const body = "0123456789abcdefABCDEFGHIJ";
       const secrets = [
-        `.ut-tdd/evidence/sk-${body}.json`,
-        `.ut-tdd/evidence/ghp_${body}.json`,
-        `.ut-tdd/evidence/github_pat_${body}.json`,
-        `.ut-tdd/evidence/xoxb-${body}.json`,
+        `.helix/evidence/sk-${body}.json`,
+        `.helix/evidence/ghp_${body}.json`,
+        `.helix/evidence/github_pat_${body}.json`,
+        `.helix/evidence/xoxb-${body}.json`,
       ];
       for (const evidence_path of secrets) {
         expect(() =>
@@ -131,7 +131,7 @@ describe("IT-AUTOMATION-01 / IT-GUARDRAIL-01", () => {
         decision: "human-required",
         mode: "codex-only",
         human_signoff_required: true,
-        evidence_path: ".ut-tdd/evidence/signoff.json",
+        evidence_path: ".helix/evidence/signoff.json",
       });
 
       const first = evaluateAutomationReadiness(db);

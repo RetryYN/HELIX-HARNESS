@@ -250,7 +250,7 @@ Coding-rule 文書は Forward 設計 workflow の一部として扱う。
 - SSoT: `docs/governance/coding-rules.md`.
 - Forward L6: G6/G7 handoff 前に coding rules が未変更であることを確認する。差分がある場合は先に SSoT を更新する。
 - Forward L7 entry: 実装は、L6 design notes と U-CODE tests が coding-rule delta を反映した後にのみ開始できる。
-- Machine gate: `ut-tdd doctor` は `checkCodingRules` を実行する。workflow placement または SSoT reference が欠ける場合は hard failure とする。
+- Machine gate: `helix doctor` は `checkCodingRules` を実行する。workflow placement または SSoT reference が欠ける場合は hard failure とする。
 ## DDD-TDD-WORKFLOW（DDD/TDD 運用 workflow）
 
 - SSoT: `docs/governance/ddd-tdd-rules.md`

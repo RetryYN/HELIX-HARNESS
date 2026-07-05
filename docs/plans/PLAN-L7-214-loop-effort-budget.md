@@ -1,6 +1,6 @@
 ---
 plan_id: PLAN-L7-214-loop-effort-budget
-title: "PLAN-L7-214 (add-impl): loop effort-budget enforcement"
+title: "PLAN-L7-214 (add-impl): loop effort-budget 制御"
 kind: add-impl
 layer: L7
 drive: agent
@@ -72,48 +72,41 @@ review_evidence:
         output_digest: "sha256:71f0b3adcee87013c199c4f7510764c3f522e0014aab48878a0ad63c0d6f7dfb"
 ---
 
-# PLAN-L7-214: loop effort-budget enforcement
+# PLAN-L7-214: loop effort-budget 制御
 
-## Objective
+## 目的
 
-Close the HC-P2 / HR-FR-P2-02 gap where loop budget was described at L3/L6 but
-the runtime only had a generic `cost_budget` stop rule. The implementation must
-bind effort to plan size, model role, iteration count, tool use, cost, and
-elapsed time, and must prevent an over-budget worker from continuing or recording
-`pass`.
+L3/L6 では loop budget の説明がある一方で、runtime 側は汎用的な `cost_budget` stop rule しか持っていなかった
+HC-P2 / HR-FR-P2-02 の gap を埋める。実装では effort を plan size、model role、iteration count、tool use、
+cost、elapsed time に結び付け、予算超過の worker が継続したり `pass` を記録したりできないようにする。
 
-## Scope
+## スコープ
 
-- Add `src/orchestration/loop-effort-budget.ts` with pure budget construction,
-  derived role/plan-size limits, and `tickLoopEffortBudget`.
-- Extend `LoopState` with optional effort-budget state while preserving existing
-  loop JSON compatibility.
-- Connect `tick` to the budget decision before worker dispatch and before
-  verifier verdict recording.
-- Add unit coverage for derived limits, over-budget detection, pre-dispatch stop,
-  and post-verdict pass suppression.
-- Update L1/L3/L6 and paired test-design text so P2 residuals no longer claim
-  loop effort-budget is wholly absent.
+- `src/orchestration/loop-effort-budget.ts` を追加し、純粋な budget 構築、role/plan-size から導く limit、
+  `tickLoopEffortBudget` を実装する。
+- `LoopState` に任意の effort-budget state を追加し、既存の loop JSON 互換性は維持する。
+- `tick` を worker dispatch の前と verifier verdict 記録の前で budget 判断につなげる。
+- 導出 limit、予算超過検知、dispatch 前停止、verdict 後の `pass` 抑止について unit coverage を追加する。
+- L1/L3/L6 と対応する test-design 文を更新し、P2 residuals が loop effort-budget を全面不在として
+  語らないようにする。
 
-## Non-Scope
+## 対象外
 
-- This PLAN does not make hosted/API developer tools mechanically hook-covered.
-- This PLAN does not implement the full continuous-run heartbeat engine.
-- This PLAN does not activate `.ut-tdd -> .helix` cutover.
+- この PLAN は hosted/API developer tools を mechanically hook-covered にしない。
+- この PLAN は full continuous-run heartbeat engine を実装しない。
+- この PLAN は `.helix -> .helix` cutover を有効化しない。
 
-## Design Notes
+## 設計メモ
 
-`tickLoopEffortBudget` is intentionally pure and provider-neutral. The runtime
-loop may inject fresh usage through `readEffortUsage`; if absent, the decision
-uses the budget usage stored on `LoopState`. A configured overrun always returns
-`allowContinue=false` and `allowWorkerPass=false`, so `tick` cannot silently
-turn an over-budget pass into loop progress.
+`tickLoopEffortBudget` は意図的に pure で provider-neutral である。runtime loop は `readEffortUsage` を通じて
+最新の usage を注入できる。これが無い場合は、`LoopState` に保持された budget usage を使って判断する。
+設定済みの overrun は常に `allowContinue=false` と `allowWorkerPass=false` を返すため、`tick` が予算超過の
+`pass` をこっそり loop progress に変えることはできない。
 
-## DoD
+## 完了条件
 
-- [x] Plan-size / model-role derived limits exist.
-- [x] Iteration / toolCalls / costUsd / elapsedMs overrun fails closed.
-- [x] `tick` stops before worker dispatch when the budget is already exceeded.
-- [x] `tick` suppresses post-verifier `pass` when the budget becomes exceeded.
-- [x] L1/L3/L6 design and paired test-design are updated without claiming whole
-      P2 completion.
+- [x] Plan-size / model-role に基づく derived limits が存在する。
+- [x] Iteration / toolCalls / costUsd / elapsedMs の overrun は fail-closed する。
+- [x] `tick` は budget がすでに exceeded のとき、worker dispatch 前に停止する。
+- [x] `tick` は budget が exceeded になった後の verifier 後 `pass` を抑止する。
+- [x] L1/L3/L6 design と対応する test-design を、whole P2 completion を主張せずに更新した。

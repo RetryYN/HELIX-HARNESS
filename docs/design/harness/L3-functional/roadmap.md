@@ -127,13 +127,13 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 
 ### Phase 3 — L7 ワークフロー自動化の実装 / 改善サイクル
 
-- **対象**: L7 実装 (谷) のうち **harness ワークフロー自動化** = `ut-tdd` CLI / hook / `plan lint` / gate・doctor 機械検証 / cross-artifact relation graph / verification profile / dependency-drift / regression expansion / canonical document export。
+- **対象**: L7 実装 (谷) のうち **harness ワークフロー自動化** = `helix` CLI / hook / `plan lint` / gate・doctor 機械検証 / cross-artifact relation graph / verification profile / dependency-drift / regression expansion / canonical document export。
 - **検証**: 観点 A を**実装で裏付ける** (workflow が doc 上だけでなくコードで動く)。L6⇔L7 単体テスト設計の TDD Red 先行。
 - **現状接地**: src/ に session-log / forced-stop / setup / handover / doctor / agent-guard / plan lint / roadmap registry / review evidence / relation graph / dependency-drift / regression expansion / verification-profile / tool-adapter / document export pure core 実装済。Phase 3 検証サイクルでは、これらが `doctor` / unit test / trace lint で一体に動くかを検証する。DB projection への自動登録・feedback/監査 DB は Cycle P4 / L7-DB。
 
 ### Cycle P4 — L7 データベース統合の実装 / 改善サイクル
 
-- **対象**: L7 のうち **state DB 統合** = `.ut-tdd/state` の二層 schema、V-model 整合 (孤児 0) の機械保証、PLAN/handover/ledger/backlog の state 化。
+- **対象**: L7 のうち **state DB 統合** = `.helix/state` の二層 schema、V-model 整合 (孤児 0) の機械保証、PLAN/handover/ledger/backlog の state 化。
 - **検証**: 観点 B の機械保証を DB 側で完成させる ([[feedback_vmodel_state_db_completeness]])。doctor / vmodel lint が未充足ペアを fail-close 検知。
 - **現状接地**: handover は CURRENT.json で機械ポインタ化済。state DB 本体・登録トリガ (FR-L1-07 hook) は未。
 
@@ -189,7 +189,7 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 | Phase 2 (L4-L6) | **全件見直し完了 / quantitative+qualitative findings fixed+routed** | L4/G4、L5/G5、L6/G6 は gate-design §2 で PASS 再確定済 (A-101〜A-104 / A-109〜A-111 / A-115)。L4⇔L9、L5⇔L8、L6⇔L7 の V-pair は doctor pair-freeze 孤児0、L6 completion は G6 PASS、現行 FR registry 51件は L6 unit contract / U-* oracle に接続。A-110 で L6 substance 指摘が出て、A-111 で blocker 解消を再確認。A-116 は verification readiness と source-isolation hardening、A-117 は no-finding 過剰主張の補正、A-118 は定量 evidence と定性 workflow/substance review を束ねた L4-L6/L7-L9/PLAN 全件レビューの完了記録。A-122 で自動化/UT DB/共通化/マルチ協調の pre-close hardening を追加し、IMP-107..116 として Phase 3 / Cycle P4 carry へ routing 済 |
 | 設計検証サイクルゲート (旧 GATE-A) | **検証サイクル発火可 (機械) / per-layer Forward gate は PO サインオフ済** | L0-L6 全設計層は doctor `verification — 設計検証サイクルゲート [L0-L6] (全設計層) ✅ freeze 完了 → 検証サイクル発火可` を満たす。**per-layer の正規 Forward gate G0.5/G1/G3/G4/G5/G6 は gate-design §2 で PO サインオフ済 (G2 のみ DEFER)** = 受入の着地点はここ。本 band ゲートは検証ロードマップ固有の機械発火であって別建ての手動 accept ceremony は持たない (PO 2026-06-10 是正「フォワードのワークフロー上じゃない？」、PLAN-REVERSE-36)。2026-06-10 セッション跨ぎ再検証 clean (vitest 332 / typecheck・biome・doctor exit 0 / mojibake 0)、L0-L6 freeze 後の退行なし。A-118 で Phase 2 artifacts 全件見直し (stale/overclaim 修正)、残 placeholder_deps / roster / skill catalog / IMP-087/088 は明示 carry routing。A-122 の GreenDefinition / UT evidence history projection は設計補強済・実装は Phase 3/4 carry |
 | Phase 3 (L7 自動化) | **検証サイクル完了** | src/ に複数機能実装済。`asset-drift`、relation-graph、dependency-drift、regression expansion、MCP profile、tool adapter、doc export pure core は L7 roadmap span で doctor / unit test に接続済。Phase 3 検証サイクルは `docs/handover/phase3-workflow-automation-verification-2026-06-11.md` に証跡化 |
-| Cycle P4 (L7 DB) | **検証サイクル完了** | harness.db roadmap/review evidence projection は `PLAN-M-01-cutover-backfill` で completed。L8-L14 verification band execution は `PLAN-M-00-verify-cutover` + `.ut-tdd/audit/A-132-l8-l14-verification-band-execution.md` に証跡化済。L12/L13 の production / PO signoff は local band 外として `human_required=1` で記録 |
+| Cycle P4 (L7 DB) | **検証サイクル完了** | harness.db roadmap/review evidence projection は `PLAN-M-01-cutover-backfill` で completed。L8-L14 verification band execution は `PLAN-M-00-verify-cutover` + `.helix/audit/A-132-l8-l14-verification-band-execution.md` に証跡化済。L12/L13 の production / PO signoff は local band 外として `human_required=1` で記録 |
 | 実装検証サイクルゲート (旧 GATE-B) / Phase 5-7 | **検証サイクル発火可 (機械)** | `VERIFICATION_GROUPS` に L0-L7 group 追加済 (PLAN-L7-43)。doctor が `verification — 実装検証サイクルゲート [L0-L7]` を surface |
 
 > Phase 1 (L0-L3) は検証/改善サイクル完了。Phase 2 (L4-L6) は A-118 で全件見直し完了。ただし「no finding」ではなく、stale/overclaim を修正し、残 work を carry routing した完了である。今後の規範変更は Reverse/Recovery または add-design/add-impl の差分 PLAN を通す。roadmap は完了状態を反映する companion であり、freeze 権限元ではない。
@@ -215,7 +215,7 @@ L6 機能   ┘                            └ L8 結合テスト       ┘ (L8-
 
 本書は **設計ドキュメントレベル**の artifact として `docs/design/harness/L3-functional/roadmap.md` に置く。governance 昇格 (concept / requirements と同列の正本扱い) は取り下げた。V-model の標準 sub_doc (functional-requirement / business-requirement / nfr-grade) とは別の、L3 で起票する**設計層の計画 doc** (テスト設計と pair しない companion artifact) として扱う。
 
-> **スキーマ補足**: 現 PLAN スキーマ (requirements §1.10.G.1) の L3 sub_doc enum は `business-requirement / functional-requirement / nfr-grade` の 3 種で roadmap 型を持たない。本書は sub_doc pair artifact ではないため `kind=design + sub_doc` の起票導線には乗らない。これを正式な design PLAN で機械追跡するなら sub_doc enum の扱い (拡張 or 非 sub_doc design doc の許容) を整理する必要がある → IMP-036 の back-fill で扱う。現行 `ut-tdd plan lint` は schedule/G1-trace/G3-trace を実装済みだが、本 roadmap 型の sub_doc schema 拡張はまだ対象外。
+> **スキーマ補足**: 現 PLAN スキーマ (requirements §1.10.G.1) の L3 sub_doc enum は `business-requirement / functional-requirement / nfr-grade` の 3 種で roadmap 型を持たない。本書は sub_doc pair artifact ではないため `kind=design + sub_doc` の起票導線には乗らない。これを正式な design PLAN で機械追跡するなら sub_doc enum の扱い (拡張 or 非 sub_doc design doc の許容) を整理する必要がある → IMP-036 の back-fill で扱う。現行 `helix plan lint` は schedule/G1-trace/G3-trace を実装済みだが、本 roadmap 型の sub_doc schema 拡張はまだ対象外。
 
 ### 動的参照配線
 

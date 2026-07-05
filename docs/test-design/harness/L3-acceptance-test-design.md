@@ -29,7 +29,7 @@ updated: 2026-06-02
 - 全 AC-FR-* (85 件、functional sub-doc) / AT 対応必須
 - 全 BR-21 派生 (FR-BR21-36/38/43) / AT 対応必須
 - 全 NFR-* (15 件、NFR-09/10 欠番。NFR-17 = 統合セキュリティ A-54 追加) / AT 対応必須 (carry の場合は placeholder AT)
-- 孤児 = 0 (機械検証 `ut-tdd plan lint --gate G3-trace`)
+- 孤児 = 0 (機械検証 `helix plan lint --gate G3-trace`)
 
 ## §1 受入テスト (AT-*)
 
@@ -37,29 +37,29 @@ updated: 2026-06-02
 
 | AT-ID | 対応条件 | 受入条件 | 機械検証 |
 |-------|---------|---------|---------|
-| **AT-DIST-001** | clean distribution / installable same-core CLI environment | Planned clean artifact set を temp repo に展開し、`src/web/` と web 専用テストが含まれないことを確認したうえで、`bun install --frozen-lockfile` 後に `status --json`、`distribution plan --tag v0.1.0 --json`、`typecheck` が通る。さらに clean artifact CLI を別の fresh consumer repo から `setup project --json` として実行し、fresh import report、readiness ok、VSCode task、adapter/subagent template が生成されることを確認する。生成 VSCode task と CI command set は package-local `bun run ut-tdd status --json` / `bun run ut-tdd doctor --profile consumer --json` / `bun run ut-tdd rename plan --json` / `bun run ut-tdd handover status --json` / `bun run ut-tdd setup project --dry-run --json` / `bun run ut-tdd team run --definition .ut-tdd/teams/default-hybrid.yaml --mode hybrid --json` を consumer repo で実行し、handmade shim や global PATH 前提に戻さない。adapter hook/readiness の bare `ut-tdd` preflight は別契約として維持し、PATH 未解決時は remediation を返す。consumer doctor profile は dogfood PLAN/design/test-design/runtime artifacts を要求せず、生成済み adapter / VSCode task / `.ut-tdd` baseline を検査する。brownfield consumer では既存 `AGENTS.md` と `.vscode/tasks.json` を置いた状態で setup を 2 回実行し、consumer 行保持、managed block 重複なし、`.vscode/tasks.json` skip、`review_import_report` route を確認する。外部 clean GitHub repo 作成、tag push、signed tarball publish は PO 承認後の公開操作として本 smoke では実行しない。 | `tests/distribution-acceptance.test.ts` |
+| **AT-DIST-001** | clean distribution / installable same-core CLI environment | Planned clean artifact set を temp repo に展開し、`src/web/` と web 専用テストが含まれないことを確認したうえで、`bun install --frozen-lockfile` 後に `status --json`、`distribution plan --tag v0.1.0 --json`、`typecheck` が通る。さらに clean artifact CLI を別の fresh consumer repo から `setup project --json` として実行し、fresh import report、readiness ok、VSCode task、adapter/subagent template が生成されることを確認する。生成 VSCode task と CI command set は package-local `bun run helix status --json` / `bun run helix doctor --profile consumer --json` / `bun run helix rename plan --json` / `bun run helix handover status --json` / `bun run helix setup project --dry-run --json` / `bun run helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json` を consumer repo で実行し、handmade shim や global PATH 前提に戻さない。adapter hook/readiness の bare `helix` preflight は別契約として維持し、PATH 未解決時は remediation を返す。consumer doctor profile は dogfood PLAN/design/test-design/runtime artifacts を要求せず、生成済み adapter / VSCode task / `.helix` baseline を検査する。brownfield consumer では既存 `AGENTS.md` と `.vscode/tasks.json` を置いた状態で setup を 2 回実行し、consumer 行保持、managed block 重複なし、`.vscode/tasks.json` skip、`review_import_report` route を確認する。外部 clean GitHub repo 作成、tag push、signed tarball publish は PO 承認後の公開操作として本 smoke では実行しない。 | `tests/distribution-acceptance.test.ts` |
 
 ### §1.1 functional sub-doc 由来 AT (AC-FR 85 件)
 
 | AT-ID | 対応 AC | 受入条件 (Given-When-Then を変換) | 機械検証 |
 |-------|---------|------------------------------|---------|
-| **AT-FR-01-01** | AC-FR-01-01 (PLAN 起票 正常系) | `ut-tdd plan draft --title "X" --kind design --layer L3 --drive be` 実行 → PLAN ファイル + plan_registry 登録 / 終了コード 0 | vitest CLI test |
+| **AT-FR-01-01** | AC-FR-01-01 (PLAN 起票 正常系) | `helix plan draft --title "X" --kind design --layer L3 --drive be` 実行 → PLAN ファイル + plan_registry 登録 / 終了コード 0 | vitest CLI test |
 | **AT-FR-01-02** | AC-FR-01-02 (重複 plan_id) | 重複 ID 指定 → fail-close error 出力 / 既存ファイル不変 / exit 1 | vitest CLI test |
 | **AT-FR-01-03** | AC-FR-01-03 (charter + L4 排他) | kind=charter + layer=L4 → schema 検証 fail / exit 1 | vitest schema test (frontmatter.test.ts 整合) |
-| **AT-FR-02-01** | AC-FR-02-01 (TDD Red→Green) | Red test → 本体実装 commit → `ut-tdd sprint check` pass | vitest + git workflow test |
+| **AT-FR-02-01** | AC-FR-02-01 (TDD Red→Green) | Red test → 本体実装 commit → `helix sprint check` pass | vitest + git workflow test |
 | **AT-FR-02-02** | AC-FR-02-02 (test 無し本体) | 本体 only → fail-close TDD 違反 error / exit 1 | vitest CLI test |
 | **AT-FR-02-03** | AC-FR-02-03 (Red 緑のまま) | assertion 緩い test → warn 継続可 | vitest CLI test |
-| **AT-FR-03-01** | AC-FR-03-01 (trace 整合 pass) | 4 artifact 全件 → `ut-tdd trace check` pass / report 12/12 edges | vitest trace test |
+| **AT-FR-03-01** | AC-FR-03-01 (trace 整合 pass) | 4 artifact 全件 → `helix trace check` pass / report 12/12 edges | vitest trace test |
 | **AT-FR-03-02** | AC-FR-03-02 (test 設計欠落) | pair 欠落 → fail-close trace 断絶 error / exit 1 | vitest trace test |
 | **AT-FR-03-03** | AC-FR-03-03 (generates 未宣言) | pair_artifact のみ → warn / exit 0 | vitest trace test |
-| **AT-FR-03-04** | AC-FR-03-04 (descent obligation 不在検出 / impl-ahead) | src/test 着地済で L6 単体テスト設計が不在 → `ut-tdd doctor` が unmet obligation / impl-ahead を fail-close し、pair back-fill または有効 defer を next_action に出す | vitest descent-obligation test |
+| **AT-FR-03-04** | AC-FR-03-04 (descent obligation 不在検出 / impl-ahead) | src/test 着地済で L6 単体テスト設計が不在 → `helix doctor` が unmet obligation / impl-ahead を fail-close し、pair back-fill または有効 defer を next_action に出す | vitest descent-obligation test |
 | **AT-FR-04-01** | AC-FR-04-01 (kind enum pass) | kind=design + 依存 PLAN 存在 → lint pass | vitest plan lint test |
 | **AT-FR-04-02** | AC-FR-04-02 (循環依存) | 自己 requires → fail-close 循環依存 error / exit 1 | vitest plan lint test |
 | **AT-FR-04-03** | AC-FR-04-03 (impl + parent_design 欠落) | kind=impl で parent_design なし → schema fail / exit 1 | vitest schema test (既存 frontmatter.test.ts カバー) |
 | **AT-FR-05-01** | AC-FR-05-01 (G3 全 check pass) | G3 条件全件満たす → phase.yaml G3=passed / gate_runs 記録 | vitest gate test |
 | **AT-FR-05-02** | AC-FR-05-02 (G3 fail-close trace 孤児) | 孤児 FR-L1 3 件 → fail-close error / next_action 提示 | vitest gate test |
-| **AT-FR-05-03** | AC-FR-05-03 (bypass S-03 行使) | UT_TDD_GATE_BYPASS=1 → bypass + audit / phase.yaml bypassed / D-08 集計 | vitest gate + audit test |
-| **AT-FR-06-01** | AC-FR-06-01 (drive 別 state) | PLAN drive=be → .ut-tdd/drive/be/ のみ登録 / 区画隔離 | vitest state test |
+| **AT-FR-05-03** | AC-FR-05-03 (bypass S-03 行使) | HELIX_GATE_BYPASS=1 → bypass + audit / phase.yaml bypassed / D-08 集計 | vitest gate + audit test |
+| **AT-FR-06-01** | AC-FR-06-01 (drive 別 state) | PLAN drive=be → .helix/drive/be/ のみ登録 / 区画隔離 | vitest state test |
 | **AT-FR-06-02** | AC-FR-06-02 (区画跨ぎ汚染) | 手動複製 → doctor fail-close error / exit 1 | vitest doctor test |
 | **AT-FR-06-03** | AC-FR-06-03 (skip_sub_doc) | skip_sub_doc 指定 → G2 通過 / audit に skip 理由 | vitest gate + audit test |
 | **AT-FR-07-01** | AC-FR-07-01 (hook 自動登録) | git commit → PostCommit hook → code_catalog 追加 | vitest hook test |
@@ -69,29 +69,29 @@ updated: 2026-06-02
 | **AT-FR-07-05** | AC-FR-07-05 (forced-stop 検出 + feedback fail-open) | dangling session を SessionStart で検出し、feedback のみ記録、mistake は記録せず、同一内容は重複せず、Recovery 起票候補は人間 yes 待ち | vitest forced-stop feedback test |
 | **AT-FR-08-01** | AC-FR-08-01 (drift → Reverse 提案) | drift 検出 → mode-routing Reverse 提案 / next_action 出力 | vitest doctor + routing test |
 | **AT-FR-08-02** | AC-FR-08-02 (複数シグナル優先度) | drift + 劣化 + 暴走 → Recovery routing / 他 warn | vitest routing test |
-| **AT-FR-08-03** | AC-FR-08-03 (PO 手動 mode) | `ut-tdd route --mode reverse --force` → warn + audit / routing | vitest CLI + audit test |
+| **AT-FR-08-03** | AC-FR-08-03 (PO 手動 mode) | `helix route --mode reverse --force` → warn + audit / routing | vitest CLI + audit test |
 | **AT-FR-09-01** | AC-FR-09-01 (許可 subagent pass) | pmo-sonnet + model 明示 → agent-guard pass / audit | vitest agent-guard test (既存カバー) |
 | **AT-FR-09-02** | AC-FR-09-02 (許可外 block) | be-api 試行 → fail-close exit 2 | vitest agent-guard test |
-| **AT-FR-09-03** | AC-FR-09-03 (PO bypass) | UT_TDD_ALLOW_RAW_AGENT=1 + 理由 → warn + audit / exit 0 | vitest agent-guard test |
+| **AT-FR-09-03** | AC-FR-09-03 (PO bypass) | HELIX_ALLOW_RAW_AGENT=1 + 理由 → warn + audit / exit 0 | vitest agent-guard test |
 | **AT-FR-10-01** | AC-FR-10-01 (Recovery 再開ポイント) | 5 連続 gate fail + budget 超過 → Recovery / cutover コマンド生成 | vitest recovery test |
-| **AT-FR-10-02** | AC-FR-10-02 (再開ポイント無し) | 全 gate fail → warn / `ut-tdd reset --to-charter` 案内 | vitest recovery test |
+| **AT-FR-10-02** | AC-FR-10-02 (再開ポイント無し) | 全 gate fail → warn / `helix reset --to-charter` 案内 | vitest recovery test |
 | **AT-FR-10-03** | AC-FR-10-03 (UI 直接実行不可) | HM-06 UI ロールバックボタンクリック → 「CLI 実行のみ」表示 | E2E UI test (L4 carry、Phase A は UI placeholder) |
-| **AT-FR-11-01** | AC-FR-11-01 (interrupt 正常) | `ut-tdd interrupt` → PLAN-040 interrupted / PLAN-041 起票 / context handover 保存 | vitest interrupt test |
+| **AT-FR-11-01** | AC-FR-11-01 (interrupt 正常) | `helix interrupt` → PLAN-040 interrupted / PLAN-041 起票 / context handover 保存 | vitest interrupt test |
 | **AT-FR-11-02** | AC-FR-11-02 (二重 interrupt) | 既 interrupted PLAN 再 interrupt → fail-close error | vitest interrupt test |
 | **AT-FR-11-03** | AC-FR-11-03 (debt 閾値超過) | debt 30 件超過 → readiness warn / 起票続行可 | vitest readiness test |
 | **AT-FR-12-01** | AC-FR-12-01 (skill 推奨) | layer=L3 → L3-injection.yaml 5 skill 推奨 + 根拠ログ | vitest skill suggest test |
 | **AT-FR-12-02** | AC-FR-12-02 (yaml 不在) | L3-injection.yaml なし → fail-close error | vitest skill suggest test |
 | **AT-FR-12-03** | AC-FR-12-03 (skill override) | skill_override 指定 → 推奨より優先 + TL 承認 audit | vitest skill suggest test |
-| **AT-FR-13-01** | AC-FR-13-01 (Forward next) | G3 pass 後 → `ut-tdd next` で L4 提示 | vitest next test |
+| **AT-FR-13-01** | AC-FR-13-01 (Forward next) | G3 pass 後 → `helix next` で L4 提示 | vitest next test |
 | **AT-FR-13-02** | AC-FR-13-02 (G3 未通過 L4 block) | G3 未通過で L4 PLAN 起票 → fail-close | vitest plan + gate test |
 | **AT-FR-13-03** | AC-FR-13-03 (Incident 並行例外) | L3 中に Incident troubleshoot PLAN → 許可 + audit | vitest plan test |
-| **AT-FR-14-01** | AC-FR-14-01 (Reverse R0) | `ut-tdd reverse --type code` → R0-evidence.json 生成 | vitest reverse test |
+| **AT-FR-14-01** | AC-FR-14-01 (Reverse R0) | `helix reverse --type code` → R0-evidence.json 生成 | vitest reverse test |
 | **AT-FR-14-02** | AC-FR-14-02 (confirmed_reverse_type 欠落) | 欠落 → fail-close error | vitest schema test (既存カバー) |
 | **AT-FR-14-03** | AC-FR-14-03 (gap-only routing) | R4 routing=gap-only → Forward 起動なし / gap-register 追加 | vitest reverse test |
 | **AT-FR-15-01** | AC-FR-15-01 (Discovery confirmed) | S2 PoC + S3 verify → S4 confirmed 設定可 | vitest discovery test |
 | **AT-FR-15-02** | AC-FR-15-02 (S4 decision_outcome 欠落) | 欠落 → schema fail / exit 1 | vitest schema test (既存カバー) |
 | **AT-FR-15-03** | AC-FR-15-03 (pivot 仮説変更) | decision_outcome=pivot → 旧 PLAN archive / 新 PLAN 案内 | vitest discovery test |
-| **AT-FR-16-01** | AC-FR-16-01 (Incident open P0) | `ut-tdd incident open --severity P0` → troubleshoot PLAN 生成 + bypass 付与 + audit 記録 | vitest incident test |
+| **AT-FR-16-01** | AC-FR-16-01 (Incident open P0) | `helix incident open --severity P0` → troubleshoot PLAN 生成 + bypass 付与 + audit 記録 | vitest incident test |
 | **AT-FR-16-02** | AC-FR-16-02 (24h 未収束) | Incident 24h 超 → warn + postmortem next_action | vitest doctor + incident test |
 | **AT-FR-16-03** | AC-FR-16-03 (複数 P0/P1 並列) | 同時 open → P0 優先 / P1 queue / audit | vitest incident test |
 | **AT-FR-17-01** | AC-FR-17-01 (CI G7 pass) | ローカル G7 pass → GHA workflow G7 pass / PR merge 可 | GHA workflow test |
@@ -101,13 +101,13 @@ updated: 2026-06-02
 | **AT-FR-18-02** | AC-FR-18-02 (doctor 検出 3 件) | error 1 + warn 2 → severity 別表示 / error で exit 1 | vitest doctor test |
 | **AT-FR-18-03** | AC-FR-18-03 (detector timeout) | 30s 超 → skip + warn / 他結果集約 | vitest doctor test |
 | **AT-FR-09-04** | AC-FR-09-04 (opus override 禁止、A-54 で functional に AC 追加) | `Agent({subagent_type: "pmo-sonnet", model: "opus"})` → fail-close exit 2 / audit block 記録 (pdm-* 以外への opus 指定は block) | vitest agent-guard test 拡張 |
-| **AT-FR-45-01** | AC-FR-45-01 (doc-reviewer 召喚正常系) | `ut-tdd review --uncommitted --reviewer doc-reviewer` → `.ut-tdd/audit/doc-reviews/<timestamp>.json` 記録 / pass → 次工程許可 / exit 0 | vitest review test |
-| **AT-FR-45-02** | AC-FR-45-02 (未召喚で G3 fail-close) | doc-reviewer 未召喚 + `ut-tdd gate G3` → fail-close error / next_action 提示 / exit 1 | vitest gate + review test |
-| **AT-FR-45-03** | AC-FR-45-03 (PO bypass) | `UT_TDD_DOC_REVIEWER_BYPASS=1` + 理由 → bypass + audit / D-08 集計 / exit 0 | vitest gate + audit test |
-| **AT-FR-23-01** | (A-50 workflow core) AC-FR-23-01 (Scrum fullback 正常系) | confirmed PoC → `ut-tdd reverse --type fullback` → F0-F4.json 生成 / Forward L3 routing | vitest reverse + scrum test |
+| **AT-FR-45-01** | AC-FR-45-01 (doc-reviewer 召喚正常系) | `helix review --uncommitted --reviewer doc-reviewer` → `.helix/audit/doc-reviews/<timestamp>.json` 記録 / pass → 次工程許可 / exit 0 | vitest review test |
+| **AT-FR-45-02** | AC-FR-45-02 (未召喚で G3 fail-close) | doc-reviewer 未召喚 + `helix gate G3` → fail-close error / next_action 提示 / exit 1 | vitest gate + review test |
+| **AT-FR-45-03** | AC-FR-45-03 (PO bypass) | `HELIX_DOC_REVIEWER_BYPASS=1` + 理由 → bypass + audit / D-08 集計 / exit 0 | vitest gate + audit test |
+| **AT-FR-23-01** | (A-50 workflow core) AC-FR-23-01 (Scrum fullback 正常系) | confirmed PoC → `helix reverse --type fullback` → F0-F4.json 生成 / Forward L3 routing | vitest reverse + scrum test |
 | **AT-FR-23-02** | AC-FR-23-02 (rejected で fullback 試行) | rejected PoC で fullback → fail-close error | vitest reverse test |
 | **AT-FR-23-03** | AC-FR-23-03 (複数 PoC 同時 fullback) | 3 件並列 → 優先度順逐次実行 / 全件成功 | vitest reverse batch test |
-| **AT-FR-24-01** | (A-50 workflow core) AC-FR-24-01 (Add-feature 正常系) | `ut-tdd plan draft --kind add-impl --parent` → PLAN 生成 + dependencies.parent 設定 | vitest plan + add-feature test |
+| **AT-FR-24-01** | (A-50 workflow core) AC-FR-24-01 (Add-feature 正常系) | `helix plan draft --kind add-impl --parent` → PLAN 生成 + dependencies.parent 設定 | vitest plan + add-feature test |
 | **AT-FR-24-02** | AC-FR-24-02 (parent なし) | add-impl + parent 未指定 → schema fail / exit 1 | vitest schema test (既存カバー拡張) |
 | **AT-FR-24-03** | AC-FR-24-03 (parent archived) | parent archived → warn / 起票続行可 | vitest plan test |
 | **AT-FR-25-01** | (A-50 workflow core) AC-FR-25-01 (Refactor 振る舞い不変正常) | 既存 test 緑維持 + axis-11 regression pass | vitest sprint + regression test |
@@ -118,11 +118,11 @@ updated: 2026-06-02
 | **AT-FR-25-06** | AC-FR-25-06 (dependency impact 未解消) | relation-graph open action が残る refactor PLAN は Green/completed にせず、required action を evidence として返す | vitest relation graph readiness test |
 | **AT-FR-26-01** | (A-50 workflow core) AC-FR-26-01 (Retrofit matrix 正常) | retrofit-matrix.yaml 生成 + 段階 config + G4 通過 | vitest retrofit + gate test |
 | **AT-FR-26-02** | AC-FR-26-02 (matrix 欠落) | matrix 未生成で G4 → fail-close error | vitest gate test |
-| **AT-FR-26-03** | AC-FR-26-03 (段階 rollback) | `ut-tdd cutover --to <previous-stage>` → 前段階 config 復帰 + audit | vitest cutover test |
+| **AT-FR-26-03** | AC-FR-26-03 (段階 rollback) | `helix cutover --to <previous-stage>` → 前段階 config 復帰 + audit | vitest cutover test |
 | **AT-FR-27-01** | (A-50 workflow core) AC-FR-27-01 (Research ADR 正常) | research-memo + ADR draft / generates=adr_snapshot 自動 | vitest research test |
 | **AT-FR-27-02** | AC-FR-27-02 (generates 欠落) | research + generates なし → fail-close | vitest schema test |
 | **AT-FR-27-03** | AC-FR-27-03 (ADR 候補なし) | research-memo のみで完了 / status=completed / audit | vitest research test |
-| **AT-FR-29-01** | (A-50 workflow core) AC-FR-29-01 (L2 画面設計起票) | `ut-tdd plan draft --layer L2 --sub-doc screen-list` → 起票 + 15 画面 baton 確認 | vitest plan + L2 test |
+| **AT-FR-29-01** | (A-50 workflow core) AC-FR-29-01 (L2 画面設計起票) | `helix plan draft --layer L2 --sub-doc screen-list` → 起票 + 15 画面 baton 確認 | vitest plan + L2 test |
 | **AT-FR-29-02** | AC-FR-29-02 (G1 未通過で L2) | G1 未通過 + L2 PLAN 起票 → fail-close V-model 順序違反 | vitest gate + plan test |
 | **AT-FR-29-03** | AC-FR-29-03 (wireframe 外部依頼) | 外部成果物戻り → 要件 back-propagation (G1-trace 再検証) → L10 へ | vitest L2 + back-prop test (carry placeholder) |
 | **AT-FR-30-01** | (A-50 workflow core) AC-FR-30-01 (L10 token SSOT) | L9 G9 通過後 + L10 起票 → tokens.yaml 生成 + a11y script | vitest plan + L10 test |
@@ -135,7 +135,7 @@ updated: 2026-06-02
 
 | AT-ID | 対応 AC | 受入条件 | 機械検証 |
 |-------|---------|---------|---------|
-| **AT-BR21-01** | AC-FR-BR21-01 (5 指標記録) | PLAN close → 5 指標が `.ut-tdd/evaluation/PLAN-005.json` 記録 | vitest evaluation test |
+| **AT-BR21-01** | AC-FR-BR21-01 (5 指標記録) | PLAN close → 5 指標が `.helix/evaluation/PLAN-005.json` 記録 | vitest evaluation test |
 | **AT-BR21-02** | AC-FR-BR21-02 (invocation_log 不在 warn) | Phase A 初期 → token cost skip + warn / 4 指標は記録 | vitest evaluation test |
 | **AT-BR21-03** | AC-FR-BR21-03 (model opt-in false) | enabled: false → model 単位 skip | vitest evaluation test |
 | **AT-BR21-04** | AC-FR-BR21-04 (sprint 末自動) | G7 通過 hook → evaluation run --auto 起動 | vitest hook + evaluation test |
@@ -158,10 +158,10 @@ updated: 2026-06-02
 
 | AT-ID | 対応 NFR + AC | 受入条件 | 機械検証 |
 |-------|--------------|---------|---------|
-| **AT-NFR-01** | NFR-01 / AC-NFR-01 | GHA matrix 3 OS で `bun test` + `ut-tdd plan lint` pass | GHA workflow test |
+| **AT-NFR-01** | NFR-01 / AC-NFR-01 | GHA matrix 3 OS で `bun test` + `helix plan lint` pass | GHA workflow test |
 | **AT-NFR-03** | (C-03 補完、A-47) NFR-03 / AI mode 非依存 | 4 mode (standalone / claude-only / codex-only / hybrid) で P0 FR-01〜18 全件動作 / mode 別差異 0 件 | vitest mode E2E test (4 mode × P0 FR) |
-| **AT-NFR-D01** | (A-47 補完) NFR-D01 / KPI D-01 計測 | `ut-tdd plan list --since sprint-start` → PLAN 件数 ≥ 1 を機械計測 / sprint 末 KPI integrated | vitest KPI test |
-| **AT-NFR-D04** | (A-47 補完) NFR-D04 / KPI D-04 計測 | CI gate + `ut-tdd trace check --regression` で回帰検出率 ≥ 80% を集計 | vitest trace + KPI test |
+| **AT-NFR-D01** | (A-47 補完) NFR-D01 / KPI D-01 計測 | `helix plan list --since sprint-start` → PLAN 件数 ≥ 1 を機械計測 / sprint 末 KPI integrated | vitest KPI test |
+| **AT-NFR-D04** | (A-47 補完) NFR-D04 / KPI D-04 計測 | CI gate + `helix trace check --regression` で回帰検出率 ≥ 80% を集計 | vitest trace + KPI test |
 | **AT-NFR-04** | NFR-04 / AC-NFR-04-01 | TS/Python/Go/Rust 各 1 repo で動作確認 | E2E test (multi-repo) |
 | **AT-NFR-05** | NFR-05 / AC-NFR-05-01 | GHA workflow artifact upload + 90 日永続 | GHA workflow test |
 | **AT-NFR-06** | NFR-06 / AC-NFR-06 | agent-guard fail-close exit 2 + 全 fail-close test pass | vitest agent-guard test (既存カバー) |
@@ -221,7 +221,7 @@ updated: 2026-06-02
 
 ## §4 G3-trace 機械検証 (L1 G1-trace 同構造)
 
-`ut-tdd plan lint --gate G3-trace` で以下 4 軸の双方向 trace 整合を機械検証 (L1 G1-trace R1-R4 と同様):
+`helix plan lint --gate G3-trace` で以下 4 軸の双方向 trace 整合を機械検証 (L1 G1-trace R1-R4 と同様):
 
 | ルール | チェック内容 | 結果 (本起草時点) |
 |--------|------------|-----------------|
@@ -230,7 +230,7 @@ updated: 2026-06-02
 | **R3** (AT → 要求) | 全 AT-* が L3 要求 (FR-/AC-/NFR-/BR-21 派生) に紐付き (孤児 AT 禁止) | PASS — 117 AT 全件 trace 確認 (A-54: AT-FR-09-04 に AC-FR-09-04 追加で孤児解消、AT→AC 逆引き lint 機械化) |
 | **R4** (NFR → 閾値 → AT) | 全 NFR-* に閾値 (IPA Lv + 数値 / KPI) + AT 紐付き | PASS — 15 NFR + carry 全件紐付き |
 
-> **lint 実装**: `ut-tdd plan lint --gate G3-trace` の R1-R4 ルールは L7 実装済みで、`ut-tdd doctor` の hard gate に集約される。本書は trace 整合の宣言と、機械検証の期待値を兼ねる。
+> **lint 実装**: `helix plan lint --gate G3-trace` の R1-R4 ルールは L7 実装済みで、`helix doctor` の hard gate に集約される。本書は trace 整合の宣言と、機械検証の期待値を兼ねる。
 
 ## §5 carry / 次工程
 

@@ -32,11 +32,11 @@ review_evidence:
     scope: "A-114 independent re-audit plus PO closure instruction; typecheck/lint/vitest/doctor green before confirmation; add-feature triad closed without content changes."
 ---
 
-# PLAN-REVERSE-26 (reverse): back-fill domain-boundary lint
+# PLAN-REVERSE-26（reverse）back-fill domain-boundary lint の記録
 
-## §0 Position
+## §0 位置づけ
 
-Records the Reverse side for IMP-097.
+IMP-097 の Reverse 側を記録する。
 
 ## §3.1 実装計画 (情報源)
 
@@ -47,27 +47,27 @@ Records the Reverse side for IMP-097.
 
 実装:
 
-- Preserve the reverse trace for DDD domain-boundary enforcement.
+- DDD domain-boundary enforcement の reverse trace を保持する。
 
 ## §3 工程表
 
-### Step 1: [並列] observed gap record
+### Step 1: [並列] observed gap の記録
 
-Record that DDD boundary checking was manual-review-only.
+DDD boundary checking が manual-review-only だったことを記録する。
 
-### Step 2: [直列] Forward PLAN connection
+### Step 2: [直列] Forward PLAN 接続
 
-直列理由: downstream_dependency. Reverse can close only after L6/L7 PLAN ids are fixed.
+直列理由: downstream_dependency。L6/L7 PLAN ID が確定した後にだけ Reverse を close できる。
 
 ### Step 3: [直列] review (self/pmo-sonnet)
 
-直列理由: downstream_dependency. Backfill lint and doctor must be green before review.
+直列理由: downstream_dependency。review 前に backfill lint と doctor が green である必要がある。
 
 ## §6 用語更新
 
-- **DDD/TDD back-fill**: Reverse trace for DDD/TDD strictness automation.
+- **DDD/TDD back-fill**: DDD/TDD strictness automation の Reverse trace。
 
 ## §8 DoD
 
 - [x] PLAN-L7-27 requires this Reverse PLAN.
-- [x] backfill doctor does not report this add-impl as orphan.
+- [x] backfill doctor がこの add-impl を orphan として報告しない。

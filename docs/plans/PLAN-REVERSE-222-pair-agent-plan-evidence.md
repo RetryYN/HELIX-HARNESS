@@ -97,26 +97,23 @@ review_evidence:
         output_digest: "sha256:bb979a6d8736a415df8f8ab837893b9f6a49cbf0c54412857f7bb98cc0abb042"
 ---
 
-# PLAN-REVERSE-222: pair-agent plan evidence backfill
+# PLAN-REVERSE-222: pair-agent plan evidence backfill（pair-agent plan evidence 証跡 backfill）
 
-## Objective
+## 目的
 
-Backfill pair-agent plan evidence so the planning phase is a workflow contract,
-not a CLI convenience. The pair route must be auditable before provider
-execution starts.
+planning phase を単なる CLI convenience ではなく workflow contract として扱えるように、
+pair-agent plan evidence を backfill する。pair route は provider execution の開始前に
+監査可能でなければならない。
 
-## Backfill Result
+## Backfill 結果
 
-- HAC-P2-04b records `pair-agent plan --save-evidence`.
-- HAT-P2-04 observes plan and run evidence as separate acceptance surfaces.
-- L6 HC-P2 records plan evidence projection to `model_runs`, `gate_runs`, and
-  `guardrail_decisions`.
-- HU-PILLAR-P2-04 expects adapter plan / prompt digest / frontier guardrail
-  evidence before run evidence.
+- HAC-P2-04b は `pair-agent plan --save-evidence` を記録する。
+- HAT-P2-04 は plan evidence と run evidence を別々の acceptance surface として観測する。
+- L6 HC-P2 は `model_runs`、`gate_runs`、`guardrail_decisions` への plan evidence projection を記録する。
+- HU-PILLAR-P2-04 は run evidence より前に adapter plan / prompt digest / frontier guardrail evidence を要求する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `PLAN-L7-222` and this Reverse PLAN require each other.
-- Plan evidence remains additive and does not execute providers.
-- Frontier approval, `.ut-tdd -> .helix` cutover, and CI/merge gate boundaries
-  remain unchanged.
+- `PLAN-L7-222` とこの Reverse PLAN は相互に required とする。
+- Plan evidence は additive なままで、provider は実行しない。
+- Frontier approval、`.helix -> .helix` cutover、CI/merge gate の境界は変更しない。

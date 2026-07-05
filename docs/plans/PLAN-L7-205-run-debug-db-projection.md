@@ -84,36 +84,30 @@ review_evidence:
         output_digest: "sha256:0a1c082db408d7627b0ddce759b6f62c4919dac544bab952124d206d3bc11adf"
 ---
 
-# PLAN-L7-205: L7.5 RUN & Debug runtime verification DB projection
+# PLAN-L7-205: L7.5 RUN & Debug runtime verification DB 投影
 
-## Objective
+## 目的
 
-Close the remaining RUN & Debug visibility gap: append-only runtime verification
-JSONL is useful evidence, but deterministic visualization and completion audits
-need it in `harness.db`.
+残っている RUN & Debug の可視化 gap を閉じる。追記専用の runtime verification
+JSONL は有用な evidence だが、決定的な可視化と完了監査には `harness.db` への格納が必要である。
 
-## Scope
+## スコープ
 
-- Add `runtime_verification_events` to the harness.db schema registry.
-- Project `.ut-tdd/evidence/run-debug/runtime-verification.jsonl` during
-  deterministic `rebuildHarnessDb`.
-- Store `verification_class` and `accept_status` explicitly.
-- Keep malformed or incomplete rows as `findings`, not accepted runtime evidence.
-- Add a projection-writer regression test and register `U-RUNDEBUG-007`.
+- `runtime_verification_events` を harness.db schema registry に追加する。
+- 決定的な `rebuildHarnessDb` の中で `.helix/evidence/run-debug/runtime-verification.jsonl` を投影する。
+- `verification_class` と `accept_status` を明示的に保存する。
+- malformed または incomplete な行は accepted runtime evidence ではなく `findings` として保持する。
+- projection-writer の regression test を追加し、`U-RUNDEBUG-007` を登録する。
 
-## Non-Goals
+## 非目標
 
-- This PLAN does not launch external Claude/Codex providers.
-- This PLAN does not treat projection rows as runtime proof; it stores the runtime
-  classification produced from the append-only log.
-- This PLAN does not implement the VSCode Webview itself. It provides the DB read
-  model required by that later view.
+- この PLAN では外部 Claude/Codex providers を起動しない。
+- この PLAN では投影行を runtime proof として扱わない。追記専用 log から生成された runtime classification を保存する。
+- この PLAN では VSCode Webview 自体を実装しない。後続 view に必要な DB read model を提供する。
 
-## Acceptance Criteria
+## 受入条件
 
-- `rebuildHarnessDb` populates `runtime_verification_events` from valid L7.5
-  JSONL rows.
-- Malformed JSONL rows create `findings`.
-- Runtime dashboards can distinguish `runtime_verified` / `accepted` from blocked
-  or malformed rows without reading raw JSONL.
-- Typecheck, lint, targeted projection tests, doctor, and full tests pass.
+- `rebuildHarnessDb` が valid な L7.5 JSONL rows から `runtime_verification_events` を生成する。
+- Malformed JSONL rows が `findings` を作成する。
+- Runtime dashboards が raw JSONL を読まずに、`runtime_verified` / `accepted` と blocked または malformed な行を区別できる。
+- typecheck、lint、targeted projection tests、doctor、full tests が pass する。

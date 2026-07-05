@@ -27,7 +27,7 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 | `selectVerifier` | U-ORCH-003 |
 | `tick` | U-ORCH-004 |
 | `nodeTickDeps` | U-ORCH-BRIDGE-01 |
-| `ut-tdd loop run` | U-ORCH-BRIDGE-02 |
+| `helix loop run` | U-ORCH-BRIDGE-02 |
 | `classifyRecovery` | U-ORCH-005 |
 | `claimNextJob` | U-ORCH-006 |
 | `writeMemory` | U-MEM-001 |
@@ -71,9 +71,9 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
   adapter non-zero は success 扱いにせず、iteration record は store へ追記される。HR-BR-13R の acceptance
   `U-ORCH-BRIDGE-01` と同一 oracle。
 
-### U-ORCH-BRIDGE-02 — `ut-tdd loop run` は store/dry-run/once/iteration 永続を扱う
-- **観測**: temp repo に `.ut-tdd/state/loop/<plan>.json` と fake `codex` / `claude` provider を置き、
-  実 CLI `ut-tdd loop run --plan <id> --dry-run`、`--once`、通常実行を spawn して stdout・provider 呼び出し・
+### U-ORCH-BRIDGE-02 — `helix loop run` は store/dry-run/once/iteration 永続を扱う
+- **観測**: temp repo に `.helix/state/loop/<plan>.json` と fake `codex` / `claude` provider を置き、
+  実 CLI `helix loop run --plan <id> --dry-run`、`--once`、通常実行を spawn して stdout・provider 呼び出し・
   state json・iterations jsonl を観測する。
 - **期待**: `--dry-run` は mode/worker/verifier availability と `dispatch=false` を出し、provider 呼び出しと
   state 書込をしない。`--once` は 1 tick だけ進め、state と iteration record を永続化する。通常実行は
@@ -91,7 +91,7 @@ pair_design: docs/design/helix/L6-function-design/orchestration-memory.md
 
 ### U-MEM-001 — `writeMemory` 2 層投影 + secret + supersede
 - **観測**: 通常 body / `SECRET_PATTERN` 命中 body / 同 key 再書込 を mock `MemoryDeps` で。
-- **期待**: 通常 → harness.db row ＋ `.ut-tdd/memory/<layer>.jsonl` の **両方**に投影、`id` は stableId。
+- **期待**: 通常 → harness.db row ＋ `.helix/memory/<layer>.jsonl` の **両方**に投影、`id` は stableId。
   **secret 命中 → throw で書込拒否（reject、strip 部分保存はしない。両層に一切残らない）**。同 key 再書込 →
   新 entry の `supersedes` に旧 id（旧 entry は履歴に残る）。
 

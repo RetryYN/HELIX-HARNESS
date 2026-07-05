@@ -55,7 +55,7 @@ PLAN-L6-14 の機能設計を実装する add-impl。back-fill pairing は PLAN-
 ### Step 3: [直列] doctor hard + tests + 全回帰
 - 直列理由 = **downstream_dependency**。checkReviewEvidence に testBeforeReviewViolations 連動 (hard) + U-TORDER-001〜004 + U-REVIEW-006 に testBeforeReviewViolations==[] + 全回帰 green。
 
-### Step 4: [直列] review Step (intra_runtime_subagent)
+### 手順 4 (Step 4): [直列] レビュー工程（review Step / intra_runtime_subagent）
 - 直列理由 = **downstream_dependency**。純関数 + back-fill honesty + 既存非破壊をレビュー。通過後 review_evidence 記録 + confirmed flip + REVERSE-14 で back-fill。
 
 ## §実装計画
@@ -63,7 +63,7 @@ PLAN-L6-14 の機能設計を実装する add-impl。back-fill pairing は PLAN-
 - **src/schema/frontmatter.ts**: review_evidence entry に `tests_green_at` optional。
 - **src/lint/review-evidence.ts** (情報源: L6-14 §1.2): ReviewEntry に reviewed_at/tests_green_at + testBeforeReviewViolations。
 - **src/doctor/index.ts**: hard 連動 (既存経路)。
-- **tests/review-evidence.test.ts**: U-TORDER。
+- **テスト**: `tests/review-evidence.test.ts` の U-TORDER。
 
 ## §6 用語更新
 

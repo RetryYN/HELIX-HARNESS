@@ -68,7 +68,7 @@ review_evidence:
         evidence_path: src/context/doc-router.ts
         output_digest: "sha256:3f81be5a6df0d34b6a2167dfbcc0fc7876a84215effcb7273a182a16cbd1c187"
       - kind: doctor
-        command: "./scripts/ut-tdd doctor"
+        command: "./scripts/helix doctor"
         runner: bun
         scope: full
         exit_code: 0
@@ -125,7 +125,7 @@ CLAUDE.md が自称する設計 pillar 4「動的コンテキスト/スキル注
 ## 名称 / rename 境界
 
 - current prose と新規 module は HELIX context doc router として扱う。
-- `.ut-tdd` / `ut-tdd` / `area=harness` の物理 rename、ファイル名 rename、distribution cutover は
+- `.helix` / `helix` / `area=helix` の物理 rename、ファイル名 rename、distribution cutover は
   PLAN-M-02 の cutover approval と action-binding approval がそろうまで実行しない。
 
 ## レビュー / 次工程
