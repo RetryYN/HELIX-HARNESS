@@ -21,7 +21,7 @@ workflow granularity の source は
 `docs/test-design/harness/L8-integration-test-design.md` §6 G8-WORKFLOW.
 <!-- doctor marker: exit blocks -->
 
-Right-arm verification strategy (external-grounded): L8-L14 gate は prose completion claim ではなく、
+右腕検証戦略 (external-grounded): L8-L14 gate は prose completion claim ではなく、
 test-basis / test-condition / execution-evidence / defect-routing record を消費する。
 right-arm evidence profile は
 `docs/process/forward/L08-L14-verification-phase.md` §右腕 evidence profile.

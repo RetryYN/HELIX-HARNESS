@@ -23,7 +23,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | **対象 OS** | Windows / macOS / Linux 全て第一級サポート | NFR-01 cross-platform native |
 | **AI ランタイム** | Claude Code + Codex hybrid を主軸 (standalone / claude-only / codex-only / hybrid の 4 mode) | NFR-03 AI mode 非依存 |
 | **統制対象 repo 言語** | 非依存 (全種類) | NFR-04 言語非依存 |
-| **harness state** | ファイルベース (`.helix/` 配下) | 現行方針。DB は L2/L4 で検討 |
+| **harness state** | `.helix/` 配下の YAML/JSON state + `.helix/harness.db` SQLite projection DB | ADR-001 / L5 physical-data。DB は authoring source ではなく再生成可能な projection として使う |
 | **source reference snapshot** | migration reference として snapshot 隔離、read-only | CLAUDE.md 禁止事項 |
 | **shell entrypoint** | `scripts/helix` (bash) / `scripts/helix.ps1` (PowerShell) | Windows ネイティブ対応 |
 | **テスト** | vitest (`tests/*.test.ts`) | ADR-001 TS/Bun 準拠 |
@@ -159,7 +159,7 @@ R0-R4 + RGC (Reverse Gateway Closure) を Reverse 専用ではなく **共通 cl
 |---|---|---|
 | `helix bench` (I-1) | observability-metrics dashboard の bench コマンド (legacy bench command 翻案、FR-L1-20 連動、L4 CLI 設計 sub-doc) | observability-metrics.md / functional §1.1 |
 | `helix pr` (I-1) | CI/PR gate 連携 (legacy PR command 翻案、FR-L1-17 連動、L4 CLI 設計 sub-doc) | ci-pr-workflow.md / functional §1.1 |
-| `helix cutover` (I-2) | Recovery 収束専用 cutover_orchestrator 翻案。**lock 機構**: ファイルベース実装 (JSON lockfile + DB metadata) または better-sqlite3 advisory lock を L4 で判断 (ADR-001 better-sqlite3 検討時) | recovery-workflow.md / functional §1.1 |
+| `helix cutover` (I-2) | Recovery 収束専用 cutover_orchestrator 翻案。**lock 機構**: JSON lockfile + `.helix/harness.db` metadata を基本とし、Bun runtime では `bun:sqlite` を第一候補にする。Node 互換 adapter が必要な場合だけ SQLite compatibility layer を検討する | recovery-workflow.md / functional §1.1 |
 | HELIX W Phase 合流 state (I-4) | drive=agent (FR-L1-28、two-stage-agent-design.md) が確定したら Phase 1/2 → L10 合流状態を `phase.yaml` に追記 (`phase_merge` フィールド) | two-stage-agent-design.md |
 
 ## §7 drift 解消方針

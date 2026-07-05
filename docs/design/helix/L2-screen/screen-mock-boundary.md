@@ -27,7 +27,7 @@ pair_artifact: docs/test-design/helix/L2-screen-ux-test-design.md
 - HELIX 固有の画面要求は、L1 §2.8 の asset/progress visualization と L3 semantic frontier に接続する。
 - `PLAN-DISCOVERY-10-helix-asset-visualization` が S4 confirmed になるまで、L2 から新しい UI 実装 scope を確定しない。
 - `src/web/**` は component-derived UI slice の証跡であり、L10 UX/WCAG pair の完了証跡ではない。
-- L2 は `.helix` -> `.helix` cutover を承認しない。名称移行は L14 `PLAN-M-02` の cutover decision に従う。
+- L2 は旧 state path から現行 `.helix` への cutover を承認しない。名称移行は L14 `PLAN-M-02` の cutover decision に従う。
 
 ## 受入条件
 

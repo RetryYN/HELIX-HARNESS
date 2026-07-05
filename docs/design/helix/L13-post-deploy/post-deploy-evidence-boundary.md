@@ -36,4 +36,4 @@ L13 は単一 test-design と直接 pair-freeze する設計層ではなく、L8
 
 ## 未完了境界
 
-`.helix` -> `.helix` の irreversible cutover、GitHub rulesets の実適用、PR/CI auto-fix、release/tag publication は、action-binding approval と cutover decision なしに L13 完了へ進めない。
+旧 state path から現行 `.helix` への irreversible cutover、GitHub rulesets の実適用、PR/CI auto-fix、release/tag publication は、action-binding approval と cutover decision なしに L13 完了へ進めない。
