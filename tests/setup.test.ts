@@ -30,21 +30,26 @@ function mockDeps(
 ): SetupDeps & { files: Map<string, string>; ghCalls: string[][] } {
   const files = new Map<string, string>();
   const ghCalls: string[][] = [];
+  const ghRunner =
+    over.gh ??
+    (() => {
+      return { ok: false, stdout: "" }; // 既定: gh 使えない
+    });
   return {
     files,
     ghCalls,
     repoRoot: "/repo",
     now: () => "2026-06-02T00:00:00.000Z",
-    gh: (args) => {
-      ghCalls.push(args);
-      return { ok: false, stdout: "" }; // 既定: gh 使えない
-    },
     readText: (p) => files.get(p) ?? null,
     writeText: (p, c) => files.set(p, c),
     confirm: () => false,
     isInteractive: false,
     templates: {},
     ...over,
+    gh: (args) => {
+      ghCalls.push(args);
+      return ghRunner(args);
+    },
   };
 }
 
@@ -3531,5 +3536,51 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(setup017).not.toContain("期待 task 8 本");
     expect(setup019).toContain("helix completion review-bundle --json");
     expect(setup019).toContain("postSetupWorkflow.verificationCommands");
+  });
+
+  it("U-SETUP-037: approval record env unlocks the branch protection apply surface end-to-end", () => {
+    const previous = process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD;
+    const recordPath = ".helix/evidence/branch-protection-approval.yml";
+    const validRecord =
+      "action_binding_approval_record:\n  approved_by: PO\n  action: branch-protection-apply\n";
+    try {
+      // ① env 未設定 → apply flag があっても approval-required で fail-close (契約どおり停止)。
+      delete process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD;
+      const noEnv = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
+      const r1 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, noEnv);
+      expect(r1.branchProtection).toEqual({ applied: false, reason: "approval-required" });
+
+      // ② env が action_binding_approval_record 記載の実在 record を指す →
+      //    CLI 経路から gh preflight を経て applied に到達できる (apply surface 到達性)。
+      process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD = recordPath;
+      const approvedCalls: string[][] = [];
+      const approved = mockDeps({
+        templates: baseTemplates,
+        isInteractive: false,
+        gh: recordingGh(approvedCalls, ghTeam),
+      });
+      approved.files.set(recordPath, validRecord);
+      const r2 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, approved);
+      expect(r2.branchProtection).toEqual({ applied: true, reason: "applied" });
+      expect(approvedCalls.some((call) => call.includes("PUT"))).toBe(true);
+
+      // ③ record が実在しても action_binding_approval_record を欠く → approval-required (偽装防止)。
+      const invalid = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
+      invalid.files.set(recordPath, "note: informal approval without structured record\n");
+      const r3 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, invalid);
+      expect(r3.branchProtection).toEqual({ applied: false, reason: "approval-required" });
+
+      // ④ helix setup project 経路でも同じ evidence 契約で到達できる。
+      const project = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
+      project.files.set(recordPath, validRecord);
+      const r4 = runHelixProjectSetup(
+        { phase: "0-B", dryRun: false, applyBranchProtection: true },
+        project,
+      );
+      expect(r4.branchProtection).toEqual({ applied: true, reason: "applied" });
+    } finally {
+      if (previous === undefined) delete process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD;
+      else process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD = previous;
+    }
   });
 });

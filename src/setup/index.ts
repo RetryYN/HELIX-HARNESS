@@ -1185,7 +1185,10 @@ function helixProjectBranchProtectionDecision(
   deps: SetupDeps,
 ): SetupResult["branchProtection"] {
   if (args.dryRun) return { applied: false, reason: "dry-run" };
-  return applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
+  return applyBranchProtection(plan, deps, {
+    apply: args.applyBranchProtection,
+    approvalEvidence: loadBranchProtectionApprovalEvidence(deps),
+  });
 }
 
 const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
@@ -2643,6 +2646,25 @@ export function recordHelixProjectSetupState(state: HelixProjectSetupState, deps
 }
 
 /**
+ * U-SETUP-037: `HELIX_BRANCH_PROTECTION_APPROVAL_RECORD` から action-binding approval evidence を
+ * 読む。契約は `scripts/setup-branch-protection.sh` と同一 (record 実在 +
+ * `action_binding_approval_record` 記載)。env 未設定・record 不在・marker 欠落は approved=false で
+ * fail-close し、CLI 経路 (`--apply-branch-protection`) の apply surface 到達性をこの 1 点で解決する。
+ */
+export function loadBranchProtectionApprovalEvidence(deps: SetupDeps): {
+  approved: boolean;
+  recordPath?: string;
+} {
+  const recordPath = (process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD ?? "").trim();
+  if (recordPath.length === 0) return { approved: false };
+  const text = deps.readText(recordPath);
+  if (text === null || !text.includes("action_binding_approval_record")) {
+    return { approved: false, recordPath };
+  }
+  return { approved: true, recordPath };
+}
+
+/**
  * U-SETUP-006: apply≠true → emit-only (既定)。apply=true でも action-binding approval が
  * 無ければ停止する。承認済みの場合だけ gh 認証と repo admin 権限を preflight し、
  * HELIX が保持する token なしで GitHub CLI に適用を委譲する。
@@ -2709,7 +2731,10 @@ export function runSetup(args: SetupArgs, deps: SetupDeps): SetupResult {
   const written = emitSetup(plan, deps.templates, deps);
   const branchProtection = args.dryRun
     ? { applied: false, reason: "dry-run" }
-    : applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
+    : applyBranchProtection(plan, deps, {
+        apply: args.applyBranchProtection,
+        approvalEvidence: loadBranchProtectionApprovalEvidence(deps),
+      });
   return { phase, written, branchProtection };
 }
 
