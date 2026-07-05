@@ -110,7 +110,7 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 | モジュール (module) | 内容 | 検証基準 (oracle) |
 |--------|------|--------|
 | `src/lint/identifier-rename.ts` | repo text files を走査し `helix` / `.helix` / `area=helix` の hit 数、file 数、path 一覧、source/test/runtime-state/adapter-config/consumer-template/plan/design/governance/distribution surface 別の `hitsByCategory` を返す。`PLAN-M-02` の approval record が draft placeholder のままなら `blocked_pending_cutover_approval`。さらに `buildIdentifierRenameCutoverPlan` が rename map、category 別 cutover checklist、dry-run、rollback、monitoring、state backup manifest、freeze policy、provenance requirements、approval gate を返す | identifier-rename tests（改名 audit 検証） |
-| `src/lint/repository-name-paths.ts` | tracked path と repository filesystem path を走査し、`HELIX-HARNESS` / `HELIX-HARNESS-OS` 系の旧 repository name がファイル名・フォルダ名へ戻った場合に doctor hard gate で fail-close する。本文中の外部 reference source URL / fixture は対象外とし、path residue だけを検査する | repository-name-paths tests / doctor hard gate |
+| `src/lint/repository-name-paths.ts` | tracked path と repository filesystem path を走査し、`HELIX-HARNESS` / `HELIX-HARNESS-OS` 系の旧 repository name、旧 state dir `.ut-tdd`、旧 wrapper path `ut-tdd` がファイル名・フォルダ名へ戻った場合に doctor hard gate で fail-close する。本文中の外部 reference source URL / fixture は対象外とし、path residue だけを検査する | repository-name-paths tests / doctor hard gate |
 | `src/cli.ts` | `helix rename audit --json` / `helix rename plan --json` / text output を追加。apply は行わず、targetCli=`helix` / targetStateDir=`.helix` と requiredRecords / cutover packet を出す | identifier-rename CLI test |
 
 ## §2 DoD
@@ -120,6 +120,7 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 - [x] dry-run / rollback / monitoring / approval gate を含む非破壊 cutover packet を JSON で出せる。
 - [x] state backup manifest / frozen HEAD quiet window single-run reapproval / provenance requirements を構造化 JSON field として出せる。
 - [x] `HELIX-HARNESS` 系の旧 repository name がファイル名・フォルダ名へ戻らないことを doctor hard gate で検査する。
+- [x] 旧 state dir `.ut-tdd` / 旧 wrapper path `ut-tdd` がファイル名・フォルダ名へ戻らないことを doctor hard gate で検査する。
 - [x] `旧 state path -> .helix` apply は実行しない。
 - [x] `tests/identifier-rename.test.ts` / typecheck / lint / doctor 対象。
 

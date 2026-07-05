@@ -13,8 +13,10 @@ export interface RepositoryNamePathsResult {
   filesystemResidue: string[];
 }
 
-const LEGACY_REPOSITORY_NAME_PATTERN =
-  /UT[-_\s.]?TDD[-_\s.]?AGENT[-_\s.]?HARNESS(?:[-_\s.]?Pack)?/i;
+const LEGACY_PATH_PATTERNS = [
+  /UT[-_\s.]?TDD[-_\s.]?AGENT[-_\s.]?HARNESS(?:[-_\s.]?Pack)?/i,
+  /(^|\/)\.?ut[-_\s.]?tdd($|[/._-])/i,
+];
 const SKIP_DIRECTORIES = new Set([".git", "node_modules", "dist"]);
 
 export function loadRepositoryNamePathsInput(
@@ -29,12 +31,8 @@ export function loadRepositoryNamePathsInput(
 export function analyzeRepositoryNamePaths(
   input: RepositoryNamePathsInput,
 ): RepositoryNamePathsResult {
-  const trackedResidue = input.trackedPaths.filter((path) =>
-    LEGACY_REPOSITORY_NAME_PATTERN.test(path),
-  );
-  const filesystemResidue = input.filesystemPaths.filter((path) =>
-    LEGACY_REPOSITORY_NAME_PATTERN.test(path),
-  );
+  const trackedResidue = input.trackedPaths.filter(hasLegacyPathResidue);
+  const filesystemResidue = input.filesystemPaths.filter(hasLegacyPathResidue);
   return {
     ok: trackedResidue.length === 0 && filesystemResidue.length === 0,
     trackedResidue,
@@ -48,8 +46,12 @@ export function repositoryNamePathsMessages(result: RepositoryNamePathsResult): 
   }
   const samples = [...result.trackedResidue, ...result.filesystemResidue].slice(0, 8).join(", ");
   return [
-    `repository-name-paths - violation: legacy repository-name path residue tracked=${result.trackedResidue.length}, filesystem=${result.filesystemResidue.length}: ${samples}`,
+    `repository-name-paths - violation: legacy repository/state path residue tracked=${result.trackedResidue.length}, filesystem=${result.filesystemResidue.length}: ${samples}`,
   ];
+}
+
+function hasLegacyPathResidue(path: string): boolean {
+  return LEGACY_PATH_PATTERNS.some((pattern) => pattern.test(path));
 }
 
 function loadTrackedPaths(repoRoot: string): string[] {
