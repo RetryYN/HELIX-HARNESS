@@ -27,7 +27,7 @@ next_pair_freeze: L4
 - 孤児: 0。
 - L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 指示で S4 confirmed に戻したが、
   本 HST 46 件の system pass（システム通過判定）にはまだ含めない。再開する場合は対象 PLAN と別 HST を接続する。
-- G-SF の現行 live frontier は `current_semantic_frontier_count=0` である。`semantic_feature_frontier_record` が
+- G-SF は confirmed overlay を `confirmed_overlay_frontier_count=0` とし、現行 live frontier を `live_semantic_frontier_count=2` とする。`semantic_feature_frontier_record` が
   `frontier_pending_decision` / `parked_future_version` /
   `approval_gated_cutover` を返す意味単位は、HST system pass の対象外でなければならない。
   L9 system 観測では `completion_claim_allowed=false` を期待値にし、doctor green、selected HST green、

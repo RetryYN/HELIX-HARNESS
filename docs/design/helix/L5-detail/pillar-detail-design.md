@@ -27,8 +27,8 @@ next_pair_freeze: L8
 - L1 §2.8 asset/progress visualization amendment は `PLAN-DISCOVERY-10` の 2026-07-06 PO 指示により
   confirmed に戻した。`PLAN-L7-206` の `VisualizationSnapshot` は先行 read-model response であり、
   本 L5 10 contract / 43 `LIT-*` の完了範囲に VSCode View/Webview contract を追加した扱いにはしない。
-- G-SF `semantic_feature_frontier_record` の分類 vocabulary は L5 contract boundary でも維持する。現行 live frontier は
-  `current_semantic_frontier_count=0` であり、deferred 済み PLAN や live draft backlog を L5 confirmed contract と混同しない。
+- G-SF `semantic_feature_frontier_record` の分類 vocabulary は L5 contract boundary でも維持する。confirmed overlay は
+  `confirmed_overlay_frontier_count=0`、現行 live frontier は `live_semantic_frontier_count=2` であり、deferred 済み PLAN や live draft backlog を L5 confirmed contract と混同しない。
   `frontier_pending_decision` は visualization read-model / graph IR / drill-down / UI action contract を
   未 confirmed として扱い、`parked_future_version` は activation decision まで current integration
   contract の pass に数えず、`approval_gated_cutover` は dry-run / rollback / state backup / audit の

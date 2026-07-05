@@ -5,7 +5,7 @@ kind: add-design
 status: placeholder
 created: 2026-07-06
 updated: 2026-07-06
-owner: TL (Codex) / PO approval required for L1 back-merge
+owner: TL (Codex) / L1 back-merge は PO承認必須
 plan: PLAN-L3-07-requirements-binding-enforcement
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l1: docs/design/helix/L1-requirements/pillar-requirements.md

@@ -94,7 +94,8 @@ const EXPECTED_FRONTIERS: readonly ExpectedFrontier[] = [
 
 const REQUIRED_DOC_MARKERS = [
   "semantic_feature_frontier_record",
-  "current_semantic_frontier_count=0",
+  "confirmed_overlay_frontier_count=0",
+  "live_semantic_frontier_count=2",
   "frontier_pending_decision",
   "parked_future_version",
   "approval_gated_cutover",

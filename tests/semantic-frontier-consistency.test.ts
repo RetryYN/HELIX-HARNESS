@@ -281,14 +281,15 @@ function baseInput(): SemanticFrontierConsistencyInput {
     "DB 収束 / relation graph / contract ledger",
     "context efficiency",
     "adapter/rule/memory 一貫性",
-    "current_semantic_frontier_count=0",
+    "confirmed_overlay_frontier_count=0",
+    "live_semantic_frontier_count=2",
     "frontier vocabulary: `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` は将来再起票用に保持する",
     "setup は bare `helix --version` の PATH 解決を required にし、`helix-package-script` は fallback 証跡に限定する",
     "package script のみなら `bareCommandResolved=false` のまま `fix_consumer_readiness` に戻す",
     tableRows(L3_IDS),
   ].join("\n");
   const sharedDoc =
-    "semantic_feature_frontier_record current_semantic_frontier_count=0 frontier_pending_decision parked_future_version approval_gated_cutover";
+    "semantic_feature_frontier_record confirmed_overlay_frontier_count=0 live_semantic_frontier_count=2 frontier_pending_decision parked_future_version approval_gated_cutover";
   const setupCliBoundary =
     "bare `helix --version` `helix-package-script` package script のみ `bareCommandResolved=false` `fix_consumer_readiness`";
   return {
@@ -390,10 +391,10 @@ describe("semantic frontier consistency", () => {
     );
   });
 
-  it("fails when the L3 meaning-based feature list drops the closed-frontier marker", () => {
+  it("fails when the L3 meaning-based feature list drops the frontier markers", () => {
     const input = baseInput();
     input.l3Text = input.l3Text.replaceAll(
-      "current_semantic_frontier_count=0",
+      "confirmed_overlay_frontier_count=0",
       "frontier-count-open",
     );
 
@@ -401,7 +402,7 @@ describe("semantic frontier consistency", () => {
 
     expect(result.ok).toBe(false);
     expect(result.violations).toContain(
-      "L3: missing semantic frontier marker current_semantic_frontier_count=0",
+      "L3: missing semantic frontier marker confirmed_overlay_frontier_count=0",
     );
   });
 

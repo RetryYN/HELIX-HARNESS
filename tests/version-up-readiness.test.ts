@@ -15,6 +15,7 @@ import {
   versionUpReadinessMessages,
   versionUpSecurityChecklistSourceViolations,
 } from "../src/lint/version-up-readiness";
+import { buildVersionUpActivationReviewBundle } from "../src/lint/version-up-bundle";
 
 const REQUIRED_SOURCE_METADATA_FIELDS = [
   "sourceUrl",
@@ -883,6 +884,48 @@ describe("version-up-readiness", () => {
       writePolicy: "no-write",
     });
     expect(rehearsalPacket.activationReadinessChecks.length).toBeGreaterThan(0);
+    const reviewBundle = buildVersionUpActivationReviewBundle(packet);
+    expect(reviewBundle).toMatchObject({
+      schemaVersion: "version-up-activation-review-bundle.v1",
+      planId: "PLAN-L7-900-future",
+      planOnly: true,
+      mustNotApply: true,
+      activationAllowed: false,
+      applyCommandAvailable: false,
+      writePolicy: "local-artifact-write",
+      activationSnapshotId: packet.activationSnapshot.snapshotId,
+    });
+    expect(reviewBundle.files.map((file) => file.path)).toEqual([
+      "activation-packet.json",
+      "activation-rehearsal.json",
+      "security-checklist.json",
+      "version-dry-run-evidence.json",
+      "activation-review-manifest.json",
+    ]);
+    for (const file of reviewBundle.files) {
+      expect(file.mediaType).toBe("application/json; charset=utf-8");
+      expect(file.bytes).toBeGreaterThan(0);
+      expect(file.sha256).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(() => JSON.parse(file.content)).not.toThrow();
+    }
+    const bundleManifest = JSON.parse(
+      reviewBundle.files.find((file) => file.path === "activation-review-manifest.json")?.content ??
+        "",
+    );
+    expect(bundleManifest).toMatchObject({
+      planOnly: true,
+      mustNotApply: true,
+      activationAllowed: false,
+      applyCommandAvailable: false,
+      writePolicy: "local-artifact-write",
+      activationSnapshotId: packet.activationSnapshot.snapshotId,
+    });
+    expect(bundleManifest.blockedUntil).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("action_binding_approval_record"),
+        expect.stringContaining("does not authorize Cloudflare/GitHub/secret/access-control"),
+      ]),
+    );
     const securityPacket = buildVersionUpSecurityChecklistPacket(packet);
     expect(packet.securityChecklistPacket).toMatchObject({
       schemaVersion: "version-up-security-checklist.v1",

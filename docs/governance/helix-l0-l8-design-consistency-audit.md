@@ -33,7 +33,7 @@ pair-agent TDD route、setup/consumer doctor surface は証跡がある。一方
 不可逆 identifier cutover、追加された L3/L7 future PLAN は archive せず、実装・判断対象として追跡する。
 
 `.helix` / `helix` / `area=helix` の残存は意図的な凍結状態である。`bun run src/cli.ts rename plan --json`
-は 9759 hits を検出し、`status=blocked_pending_cutover_approval`、`mustNotApply=true`、
+は current audit で `totalHits=0` を返しつつ、`status=blocked_pending_cutover_approval`、`mustNotApply=true`、
 `applyAuthorized=false` を返す。PLAN-M-02 の `cutover_decision_record` と
 `action_binding_approval_record` が具体化され、snapshot drift と dirty worktree が解消されるまで、
 state dir や CLI alias の不可逆 rename は実行しない。
@@ -76,7 +76,7 @@ state dir や CLI alias の不可逆 rename は実行しない。
 | C-14 | Serverless read-only sharing は version-up parked として残し、archive で閉じない。 | frontier | `docs/plans/PLAN-L7-146-serverless-readonly-share.md`, `docs/process/modes/version-up.md`, `bun run src/cli.ts status --json`, `route eval --signal version_deferral` | `status=draft` + `version_target: future`。外部 Cloudflare/HMAC/access-control activation は承認前に実行しない。 |
 | C-15 | Charter P5 は独立 HBR/block/contract ではなく `HNFR-P5` として降下している。 | proved | `docs/design/helix/L1-requirements/pillar-requirements.md`, `docs/design/helix/L3-requirements/pillar-functional-requirements.md`, `docs/design/helix/L4-basic-design/pillar-basic-design.md`, `docs/design/helix/L5-detail/pillar-detail-design.md`, `docs/design/helix/L6-function-design/pillar-function-design.md`, `tests/vmodel-pair.test.ts` | `HBR-P5` / `HB-P5` / `HC-P5` が無いことは意図的 meaning decision。 |
 | C-16 | 2026-06-30 asset/progress visualization request は記録済みで、2026-07-06 PO 指示により confirmed へ戻した。 | frontier | `docs/design/helix/L1-requirements/pillar-requirements.md` §2.8, `docs/test-design/helix/L1-pillar-operational-test-design.md`, `docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md`, `docs/plans/PLAN-L7-206-visualization-read-model-response.md`, `tests/visualization-read-model.test.ts` | Archive で閉じず、L3/L4/L5/L6/L7 の downstream implementation frontier として扱う。read-model first response は証跡だが VSCode View/Webview 実装完了ではない。 |
-| C-17 | 2026-07-01 re-read と 2026-07-06 closure は pair-agent、setup/rename、visualization amendment、outstanding blockers を意味単位で再確認した。 | proved | `src/orchestration/pair-agent.ts`, `src/state-db/projection-writer.ts`, `tests/pair-agent.test.ts`, `tests/projection-writer.test.ts`, `tests/setup.test.ts`, `tests/cli-surface.test.ts`, `bun run src/cli.ts status --json` | Pair-agent and setup/rename are aligned。future backlog / approval-gated cutover は完了扱いにせず、archive で隠さない。 |
+| C-17 | 2026-07-01 re-read と 2026-07-06 closure は pair-agent、setup/rename、visualization amendment、outstanding blockers を意味単位で再確認した。 | proved | `src/orchestration/pair-agent.ts`, `src/state-db/projection-writer.ts`, `tests/pair-agent.test.ts`, `tests/projection-writer.test.ts`, `tests/setup.test.ts`, `tests/cli-surface.test.ts`, `bun run src/cli.ts status --json` | Pair-agent と setup/rename は整合済み。future backlog / approval-gated cutover は完了扱いにせず、archive で隠さない。 |
 | C-18 | meaning-based feature-list answer は live status/handover frontier records と hard-gate されている。 | proved | `src/lint/semantic-frontier-consistency.ts`, `src/lint/outstanding.ts`, `tests/semantic-frontier-consistency.test.ts`, `tests/doctor.test.ts`, `bun run src/cli.ts doctor` | 現行 live frontier は `completionDecisionPacket` と `objective-evidence-audit` に従う。`design_bottomup_mode`、`asset_progress_visualization`、`serverless_readonly_share`、`name_cutover` を archive で隠して完了にしない。 |
 | C-13 | Charter filename/version は citation ambiguity を持つ。 | warning | `docs/design/helix/L0-charter/helix-charter_v0.1.md` の title/version は v0.2 | trace 参照が多いため本監査では rename しない。後続 atomic migration に送る。 |
 
@@ -112,7 +112,7 @@ PoC と Reverse fullback で扱い、`PLAN-L7-146` は future backlog、`PLAN-M-
 |--------------|-----------------------|------------------|-------------------|
 | Pair-agent TDD route | smart agent が `smart_test_author` から始め、Red/oracle markers before light implementation を出す。light agent は単独 close できない。 | `src/orchestration/pair-agent.ts`, `tests/pair-agent.test.ts`, `docs/design/helix/L6-function-design/pillar-function-design.md` §4.0 | pair-agent workflow evidence であり、CI/merge や whole-program completion ではない。 |
 | Pair-agent evidence and DB convergence | `--save-evidence` は `.helix/evidence/pair-agent/*.json` を書き、DB rebuild は `model_runs`、`gate_runs`、`guardrail_decisions` へ投影する。 | `src/cli.ts`, `src/state-db/projection-writer.ts`, `tests/projection-writer.test.ts` | traceability を支える。projection-only rows だけでは runtime claim を close しない。 |
-| Setup and HELIX command naming | current command は `helix setup project`。`helix setup project` は future target であり PLAN-M-02 approval 前は unavailable。 | `docs/design/helix/L3-requirements/pillar-functional-requirements.md`, `docs/design/helix/L6-function-design/pillar-function-design.md`, `tests/setup.test.ts`, `tests/cli-surface.test.ts` | setup success を `旧 state path -> .helix` rename completion と誤読しない。 |
+| Setup and HELIX command naming | 現行 command は `helix setup project`。未承認なのは state dir / adapter marker / consumer template をまたぐ PLAN-M-02 の atomic cutover である。 | `docs/design/helix/L3-requirements/pillar-functional-requirements.md`, `docs/design/helix/L6-function-design/pillar-function-design.md`, `tests/setup.test.ts`, `tests/cli-surface.test.ts` | setup success を state path / adapter marker の irreversible cutover 完了と誤読しない。 |
 | Asset/progress visualization amendment | S4 判断待ち。L1 §2.8 と first read-model response は証跡として保持する。 | `docs/design/helix/L1-requirements/pillar-requirements.md` §2.8, `docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md`, `tests/visualization-read-model.test.ts` | Archive で閉じず、S4 decision または実装降下で扱う。 |
 | Whole-program/L14 completion | 未完了。`completion-decision-packet` の live 結果に従う。 | `bun run src/cli.ts completion decision-packet --json` / `bun run src/cli.ts doctor --json` | doctor/test green でも decision/cutover/version-up が残る場合は completion claim しない。 |
 
@@ -121,7 +121,7 @@ PoC と Reverse fullback で扱い、`PLAN-L7-146` は future backlog、`PLAN-M-
 2026-07-01 の読み直しは prose answer だけではない。`semantic-frontier-consistency` は L3 §0.2 の feature list と
 live `outstanding.semanticFeatureFrontierRecords[]` を比較する。gate は次を要求する。
 
-- current semantic frontier: `current_semantic_frontier_count=0`
+- current semantic frontier: `current_semantic_frontier_count=2` (`PLAN-L7-146-serverless-readonly-share`, `PLAN-M-02-helix-identifier-rename`)
 - `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` は将来再起票時の classification vocabulary として保持する。
 - deferred 済み PLAN や live draft backlog を confirmed current と混同してはならない。
 - 将来再開する場合は `docs/design/helix/L3-requirements/pillar-functional-requirements.md` と `sourcePaths[]` を対象 PLAN に合わせて更新する。
@@ -137,8 +137,8 @@ live blockers が 0 件であり、deferred 済み meaning units や approval-ga
   L8-L14 の工程・右腕検証は `docs/process/forward/L08-L14-verification-phase.md` と HELIX/harness test-design へ接続済み。
 - Implementation coverage: `doctor` は module drift、impl-plan-trace、oracle-test-trace、l6/l7 completion、
   db projection coverage、semantic frontier consistency を green にしている。
-- Japanese docs: 本監査 doc は日本語化済み。repo 全体には baseline debt が残るため、`design-language` は
-  new=0 を守りながら段階的に debt を下げる。
+- Japanese docs: 本監査 doc は日本語化済み。`design-language` は human-facing docs 895 件で english prose 0 を返すため、
+  新規 prose は日本語で維持する。
 - Identifier rename: 不可逆 identifier cutover は `PLAN-M-02` で追跡し、rename plan の `mustNotApply=true` を尊重する。
   approval record なしに state move しない。
 - Retention / purge / compaction: `docs/design/helix/L3-requirements/retention-purge-policy.md` と

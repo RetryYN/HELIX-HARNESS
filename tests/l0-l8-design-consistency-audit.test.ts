@@ -164,7 +164,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("Discovery S4 confirmed");
     expect(text).toContain("irreversible rename deferred");
     expect(text).toContain("completion-decision-packet decisionCount=2");
-    expect(text).toContain("Pair-agent and setup/rename are aligned");
+    expect(text).toContain("Pair-agent と setup/rename は整合済み");
   });
 
   it("records the 2026-07-01 semantic re-read across feature list and blockers", () => {
@@ -185,7 +185,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("gate_runs");
     expect(text).toContain("guardrail_decisions");
     expect(text).toContain("Setup and HELIX command naming");
-    expect(text).toContain("`helix setup project` は future target");
+    expect(text).toContain("未承認なのは state dir / adapter marker / consumer template");
     expect(text).toContain("Asset/progress visualization amendment");
     expect(text).toContain("Whole-program/L14 completion");
     expect(text).toContain("human_approval_pending");
@@ -249,7 +249,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(addFeature).toContain("bottom-up build で機能意味が増えた場合");
     expect(reverse).toContain("実装や green command があっても意味ベース設計の完了根拠にならない");
     expect(l3).toContain("confirmed 46 件: `classification=confirmed_current`");
-    expect(l3).toContain("live follow-up frontier");
+    expect(l3).toContain("live completion frontier");
     expect(l3).toContain("version-up-activation-packet.v1");
     expect(l3).toContain("plan-only activation packet");
     expect(l3).toContain("apply surface を持たない");

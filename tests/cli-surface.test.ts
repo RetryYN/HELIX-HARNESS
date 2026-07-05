@@ -1481,6 +1481,56 @@ describe("L7 CLI surface closure", () => {
     expect(renameText.stdout).toContain("mustNotApply=true");
   }, 20_000);
 
+  it("writes version-up activation review bundles as local artifacts only", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-version-up-bundle-"));
+    try {
+      const run = runCli([
+        "version-up",
+        "activation-bundle",
+        "--plan",
+        "PLAN-L7-146-serverless-readonly-share",
+        "--out",
+        root,
+        "--json",
+      ]);
+      const payload = JSON.parse(run.stdout);
+      const manifestPath = join(root, "activation-review-manifest.json");
+
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(payload).toMatchObject({
+        ok: true,
+        output_dir: root,
+        schemaVersion: "version-up-activation-review-bundle.v1",
+        planId: "PLAN-L7-146-serverless-readonly-share",
+        planOnly: true,
+        mustNotApply: true,
+        activationAllowed: false,
+        applyCommandAvailable: false,
+        writePolicy: "local-artifact-write",
+      });
+      expect(payload.files.map((file: { path: string }) => file.path)).toEqual([
+        "activation-packet.json",
+        "activation-rehearsal.json",
+        "security-checklist.json",
+        "version-dry-run-evidence.json",
+        "activation-review-manifest.json",
+      ]);
+      const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+      expect(manifest).toMatchObject({
+        planOnly: true,
+        mustNotApply: true,
+        activationAllowed: false,
+        applyCommandAvailable: false,
+        writePolicy: "local-artifact-write",
+      });
+      expect(readFileSync(join(root, "activation-packet.json"), "utf8")).toContain(
+        '"activationAllowed": false',
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("fails scoped decision packet commands closed when the requested PLAN is not present", () => {
     for (const args of [
       ["version-up", "activation-packet", "--plan", "PLAN-NOT-FOUND", "--json"],

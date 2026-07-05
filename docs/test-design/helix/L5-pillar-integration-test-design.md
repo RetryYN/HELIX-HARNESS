@@ -27,7 +27,7 @@ next_pair_freeze: L5
 - 孤児: 0。
 - L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 指示で S4 confirmed に戻したが、
   本 `LIT-*` 46 件の integration pass（結合通過判定）にはまだ含めない。再開する場合は対象 PLAN と別 LIT を接続する。
-- G-SF の現行 live frontier は `current_semantic_frontier_count=0` である。`semantic_feature_frontier_record` が
+- G-SF は confirmed overlay を `confirmed_overlay_frontier_count=0` とし、現行 live frontier を `live_semantic_frontier_count=2` とする。`semantic_feature_frontier_record` が
   `frontier_pending_decision` / `parked_future_version` /
   `approval_gated_cutover` を返す意味単位は、L8 integration pass の対象外でなければならない。
   `completion_claim_allowed=false` を integration expected result（結合期待結果）とし、first-response read model、

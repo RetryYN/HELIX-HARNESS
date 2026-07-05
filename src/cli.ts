@@ -119,6 +119,7 @@ import {
   saveVerificationEvidence,
   verificationRecommendationMermaid,
 } from "./lint/verification-profile";
+import { buildVersionUpActivationReviewBundle } from "./lint/version-up-bundle";
 import {
   buildVersionUpActivationPackets,
   buildVersionUpActivationRehearsalPacket,
@@ -2037,6 +2038,46 @@ versionUp
     for (const blocker of packet.blockedUntil) {
       process.stdout.write(`  blocked-until: ${blocker}\n`);
     }
+  });
+versionUp
+  .command("activation-bundle")
+  .description("write local version-up activation review artifacts without external apply")
+  .requiredOption("--plan <planId>", "parked PLAN id")
+  .requiredOption("--out <dir>", "write review bundle files to a directory")
+  .option("--json", "JSON output")
+  .action((opts: { plan: string; out: string; json?: boolean }) => {
+    const packets = buildVersionUpActivationPackets(loadVersionUpReadinessInput(process.cwd()));
+    const activationPacket = packets.find((packet) => packet.planId === opts.plan);
+    if (!activationPacket) {
+      failPlanNotMatched("version-up activation-bundle", opts.plan, opts.json);
+      return;
+    }
+    const bundle = buildVersionUpActivationReviewBundle(activationPacket);
+    mkdirSync(opts.out, { recursive: true });
+    for (const entry of bundle.files) {
+      writeFileSync(join(opts.out, entry.path), entry.content);
+    }
+    const payload = {
+      ok: true,
+      output_dir: opts.out,
+      schemaVersion: bundle.schemaVersion,
+      planId: bundle.planId,
+      planOnly: bundle.planOnly,
+      mustNotApply: bundle.mustNotApply,
+      activationAllowed: bundle.activationAllowed,
+      applyCommandAvailable: bundle.applyCommandAvailable,
+      writePolicy: bundle.writePolicy,
+      activationSnapshotId: bundle.activationSnapshotId,
+      files: bundle.files.map(({ content: _content, ...file }) => file),
+      blockedUntil: bundle.blockedUntil,
+    };
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `version-up activation-bundle: ${bundle.planId} planOnly=${bundle.planOnly} mustNotApply=${bundle.mustNotApply} activationAllowed=${bundle.activationAllowed} writePolicy=${bundle.writePolicy} output=${opts.out} files=${bundle.files.length}\n`,
+    );
   });
 versionUp
   .command("activation-packet")

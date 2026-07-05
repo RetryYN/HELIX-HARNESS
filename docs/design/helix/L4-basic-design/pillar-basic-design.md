@@ -29,8 +29,8 @@ next_pair_freeze: L9
 - L1 §2.8 asset/progress visualization amendment は本 L4 10 block / 43 要件の confirmed 範囲外である。
   `PLAN-DISCOVERY-10` は 2026-07-06 PO 指示で confirmed に戻し、VSCode Tree View /
   Webview / deterministic graph / drill-down の L4 UI-data boundary は下流実装 frontier として扱う。
-- G-SF `semantic_feature_frontier_record` の分類 vocabulary は L4 ブロック境界でも維持する。現行 live frontier は
-  `current_semantic_frontier_count=0` であり、deferred 済み PLAN や live draft backlog を L4 confirmed boundary と混同しない。
+- G-SF `semantic_feature_frontier_record` の分類 vocabulary は L4 ブロック境界でも維持する。confirmed overlay は
+  `confirmed_overlay_frontier_count=0`、現行 live frontier は `live_semantic_frontier_count=2` であり、deferred 済み PLAN や live draft backlog を L4 confirmed boundary と混同しない。
   `frontier_pending_decision` は L4 UI-data boundary を未 confirmed として扱い、
   `parked_future_version` は current system ブロックの完了に数えず、`approval_gated_cutover` は
   blast-radius / dry-run / rollback / monitoring の設計までで apply 可能なブロックにしない。

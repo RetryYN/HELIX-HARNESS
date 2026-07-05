@@ -6,7 +6,7 @@ artifact_type: test_design
 status: confirmed
 created: 2026-06-28
 updated: 2026-07-06
-owner: AIM + TL (Codex) / PO approval required
+owner: AIM + TL (Codex) / PO承認必須
 plan: PLAN-L3-06-helix-pillar-descent
 pair_artifact: docs/design/helix/L3-requirements/
 related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md
@@ -37,8 +37,8 @@ S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 
 L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
 read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
 
-G-SF oracle: confirmed 46 件の overlay 内では `current_semantic_frontier_count=0` である。現行 live frontier は
-`completionDecisionPacket` と `objective-evidence-audit` に従う。`semantic_feature_frontier_record` は
+G-SF oracle: confirmed 46 件の overlay 内では `confirmed_overlay_frontier_count=0` である。現行 live frontier は
+`live_semantic_frontier_count=2` として `completionDecisionPacket` / `objective-evidence-audit` に従う。`semantic_feature_frontier_record` は
 `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` の classification vocabulary として
 保持し、future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない。
 

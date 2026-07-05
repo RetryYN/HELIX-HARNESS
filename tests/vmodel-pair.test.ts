@@ -213,12 +213,13 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3).toContain("§0.2 意味ベース機能一覧と要求修正境界");
     expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
     expect(l3).toContain("下流実装 frontier として追跡する");
-    expect(l3).toContain("live follow-up frontier は");
+    expect(l3).toContain("live completion frontier は");
     expect(l3).toContain("pair-agent TDD route");
     expect(l3).toContain("旧 state path / CLI rename cutover の action-binding approval");
     expect(l3).toContain("S4 confirmed");
     expect(l3).toContain("G-SF `semantic_feature_frontier_record`");
-    expect(l3).toContain("current_semantic_frontier_count=0");
+    expect(l3).toContain("confirmed_overlay_frontier_count=0");
+    expect(l3).toContain("live_semantic_frontier_count=2");
     expect(l12).toContain("§0.1 amendment frontier oracle");
     expect(l12).toContain("future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない");
     expect(l12).toContain("G-SF oracle");

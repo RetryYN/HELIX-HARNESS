@@ -6,7 +6,7 @@ artifact_type: test_design
 status: placeholder
 created: 2026-07-06
 updated: 2026-07-06
-owner: TL (Codex) / PO approval required for L1 back-merge
+owner: TL (Codex) / L1 back-merge は PO承認必須
 plan: PLAN-L3-07-requirements-binding-enforcement
 pair_artifact: docs/design/helix/L3-requirements/retention-purge-policy.md
 related_l3: docs/design/helix/L3-requirements/retention-purge-policy.md
