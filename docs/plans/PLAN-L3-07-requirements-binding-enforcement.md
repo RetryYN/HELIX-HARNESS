@@ -134,6 +134,15 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 - 本 artifact は L0 §10 を単一 SSoT とする projection であり、用語を独自定義しない。
 - `HR-FR-P7-02`、L5 `HC-P7`、L6 `detectGlossaryDrift` / `validateContextMapBoundary` への trace を束ね、
   識別子・CLI・gate 名を日本語説明に接続した。
+- **Step 1 着地**: 構造品質 gate 増強として `no-circular-dependency` を coding-rule SSoT / `REQUIRED_RULE_IDS`
+  に登録し、`src/**/*.ts` の相対 import graph DFS を `coding-rules` hard gate へ接続した。導入時点の既存
+  12 cycle は `GRANDFATHERED_CIRCULAR_DEPENDENCY_KEYS` で baseline 固定し、新規 cycle のみ fail-close とする。
+  Biome `complexity.noExcessiveCognitiveComplexity` は `level: error` で明示有効化し、現行 baseline 閾値
+  `maxAllowedComplexity: 187` を `coding-rules.md` に記録した。`DISALLOWED_SOURCE_BOUNDARY_IMPORTS` は
+  architecture §3.1 全 module を定義対象に拡張し、`module-drift` が未定義境界 0 を突合する。
+  検証: `bun run vitest run tests/coding-rules.test.ts tests/module-drift.test.ts` / `bun run typecheck` /
+  `bun run lint` / `bun run src/cli.ts doctor` は green。full Vitest / `test:local` は exec session が結果を
+  返さず、実プロセス残存なしを `ps` で確認したため、取得済み green command に含めない。
 - まだ confirmed / terminal ではない。runtime 実装、doctor 接続、drift test、review evidence は後続 Step で扱う。
 
 ## 壊さない / 再発させない
@@ -149,6 +158,6 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 - 起票根拠 = 本セッション監査（pmo-project-explorer 3 系統、2026-07-05）。所見はチャット報告と本文 §監査で
   確認済みの穴に記録。
 - PO は 2026-07-05 に Step 1-3 の着手順と Step 4 retention 方針方向性を承認済み。
-- 次 action: Step 2 後半（config schema + threshold 移設）と Step 1（構造品質 gate）の Forward descent を
-  小さく分割して実装する。Step 4 の L1 追記は PO 起草・承認が必要なため、AI は L3 以下の案と検査設計までに留める。
+- 次 action: Step 2 後半（config schema + threshold 移設）と Step 3（NFR グレード表）を小さく分割して実装する。
+  Step 4 の L1 追記は PO 起草・承認が必要なため、AI は L3 以下の案と検査設計までに留める。
 - terminal 化は、各 Step の generated artifact、review evidence、green command が揃ってから行う。

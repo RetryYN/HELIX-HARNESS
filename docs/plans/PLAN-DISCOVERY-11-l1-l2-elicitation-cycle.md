@@ -3,10 +3,12 @@ plan_id: PLAN-DISCOVERY-11-l1-l2-elicitation-cycle
 title: "PLAN-DISCOVERY-11 (kind=poc): L1⟷L2 要求洗い出しサイクル — 画面(mock)で要求を洗い出す反復前段 + 収束 gate → L3 ハンドオフ"
 kind: poc
 layer: cross
-workflow_phase: S3
+workflow_phase: S4
+decision_outcome: confirmed
 scrum_type: design-spike
+promotion_strategy: reuse-with-hardening
 drive: fe
-status: draft
+status: confirmed
 created: 2026-07-04
 updated: 2026-07-05
 owner: PO (人間) / Claude (Opus)
@@ -35,6 +37,24 @@ dependencies:
     - src/workflow/design-elicitation.ts
     - src/lint/screen-impl-pair-freeze.ts
 ---
+
+s4_decision_record:
+- allowed_outcome: `confirmed`
+- decision_owner: PO (2026-07-05 S4 adoption、「いえす」= 本採用)
+- decision_basis: S2 実走（PM-06 × 観点表 Round 1→2）で、検出 → 人承認 → 反映 → 再列挙 → 残差可視化の 1 周が 3 ラウンド bound 内で完了し、L1 側 8/8 green を達成。観点表は属人判定なしの機械列挙として機能した（§S2/§S3 記録）。
+- verified_evidence: commit `14179b2`（L1 反映 + Round 記録）、`c1cc240`（trace seed + Round 1 記録）、`helix plan lint` OK (checked=517)、doctor `doc-consistency` OK (screens=15)、`design-language` OK。§S3 verify 記録 = pass。
+- stakeholder_review_or_proxy: intra_runtime_subagent (code-reviewer, claude-sonnet-5) による S4 記録レビューを review_evidence に記録。Codex runtime は PLAN-L3-07 Step 1 実装を占有中のため cross-runtime 代替を適用（hybrid 例外理由の記録）。
+- acceptance_gap: accepted gap: L2 側残差 1 件（StatusBadge frozen 写像 + 空ツリー行の L2 追記）は screen track 再開時に A-40 経由で反映。本採用判断を阻害しない（G2 PASS 済 mock への silent edit 回避のための意図的 carry）。
+- unresolved_risk: consistency lint / gap-check CLI が未実装の間、観点表運用は手動列挙に依存する（Forward descent 完了までの期間限定リスク）。発散防止 bound（3 ラウンド + PO エスカレーション）は文書規約のみで機械強制はまだ無い。
+- external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
+- source_ledger_freshness: fresh; discovery.md の S4 decision source ledger（確認日 2026-07-03）を本判断時点で有効と確認。
+- source_status_delta: changed; ISO/IEC/IEEE 29148 は revision 進行中（stage 90.92）だが、本 PoC の要求抽出観点（入力/出力/異常系等）の妥当性に影響しない。
+- adoption_decision_delta: none; 既存 S4 済み decision（DISCOVERY-07/08/10）の route policy と整合し、再オープンを要しない。
+- workflow_route_impact: none; Forward front-end の精緻化であり、既存 mode/route 体系を変更しない（新 mode を作らない、§OUT 維持）。
+- route_impact: confirmed により L1⟷L2 反復ループ + 収束 gate（A-40 精緻化）+ AI gap-check が Forward front-end の正式機構として採用され、process 正本反映と enforcement 実装の descent が解禁される。
+- forward_route: `docs/process/forward/L00-L06-design-phase.md` §L2=L1 フェーズ分離への正式追補 + consistency lint / gap-check CLI の Forward descent（後続 PLAN 起票、`screen-impl-pair-freeze.ts` を参照する別ロジック）。
+- reverse_fullback_required: yes。confirmed PoC は PLAN-REVERSE-329 で concept / requirements / process 正本へ fullback し、charter §3 の人-AI 境界と A-40 接続を維持する。
+- promotion_strategy_or_rejection_pivot_rationale: reuse-with-hardening; 既存萌芽（L00-L06-design-phase §L2=L1 フェーズ分離）と A-40 back-propagation を維持したまま、観点表・発散防止 bound・収束後の拘束を上乗せして機械 enforcement へ降下する。
 
 # PLAN-DISCOVERY-11 (kind=poc): L1⟷L2 要求洗い出しサイクル
 

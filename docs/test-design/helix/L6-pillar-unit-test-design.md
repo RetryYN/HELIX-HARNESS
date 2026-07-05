@@ -108,7 +108,7 @@ next_pair_freeze: L6
 | HC-P8 | untrusted external text を executable instruction field へ copy しない |
 | HC-P9 | stale projection または layer gate 欠落は `ConvergenceStatus` を non-green に保つ |
 | HC-AC | Codex hosted/API surface は preflight evidence なしに hook-covered と分類できない |
-| G-SF | semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。`design_bottomup_mode`、`asset_progress_visualization`、`serverless_readonly_share`、`name_cutover` の live record は L3 §0.2 の meaning-based feature list と一致し、その L3 source を `sourcePaths[]` で参照する。`PLAN-DISCOVERY-11` は S1/S2 の間は active draft として扱い、S3/S4 decision 待ちへ進むまでは frontier record に混ぜない。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
+| G-SF | semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。`design_bottomup_mode`、`asset_progress_visualization`、`serverless_readonly_share`、`name_cutover` の live record は L3 §0.2 の meaning-based feature list と一致し、その L3 source を `sourcePaths[]` で参照する。`PLAN-DISCOVERY-11` は S4 confirmed のため PO decision pending frontier から外し、`PLAN-REVERSE-329` の fullback 完了までは non-terminal PLAN として completion に数えない。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
 
 ## §3 検証方針
 
