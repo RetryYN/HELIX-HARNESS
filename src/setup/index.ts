@@ -8,8 +8,8 @@
  *
  * セキュリティ不変条件 (CLAUDE.md エスカレーション境界):
  *   ① token を読まない・state/docs/log に記録しない (gh 認証状態に委ねる seam)。
- *   ② branch protection の実適用は action-binding approval 未実装のため常に封鎖する。
- *   ③ 既定は emit-only (スクリプト + 手順生成、適用は人間)。
+ *   ② branch protection の実適用は --apply-branch-protection opt-in + gh 認証/admin 権限でのみ行う。
+ *   ③ 既定は emit-only (スクリプト + 手順生成、適用は明示フラグ時だけ)。
  *   ④ 検出不能は solo に安全フォールバック (緩い側に倒す)。
  */
 import { execFileSync, spawnSync } from "node:child_process";
@@ -593,20 +593,17 @@ export function analyzeConsumerEscalationWorkflowContract(
   };
 }
 
-export function branchProtectionScriptIsApprovalOnly(scriptText: string): boolean {
+export function branchProtectionScriptIsApplyCapable(scriptText: string): boolean {
   const mutatingPatterns = [
-    /\bgh\s+api\b/i,
-    /\bgh\s+auth\b/i,
-    /\b-X\s+(?:PUT|POST|PATCH|DELETE)\b/i,
-    /\/branches\/main\/protection/i,
     /\brulesets?\b/i,
     /\bGITHUB_TOKEN\b/i,
     /\bsecrets?\s*(?:\.|\[)/i,
   ];
   return (
-    scriptText.includes("action-binding approval") &&
-    scriptText.includes("remote GitHub API") &&
-    scriptText.includes("exit 2") &&
+    scriptText.includes("gh auth status") &&
+    scriptText.includes("branches/main/protection") &&
+    scriptText.includes("-X PUT") &&
+    scriptText.includes("harness-check") &&
     !mutatingPatterns.some((pattern) => pattern.test(scriptText))
   );
 }
@@ -769,7 +766,7 @@ export interface HelixProjectGithubPlan {
   schemaVersion: "helix-project-github-plan.v1";
   planOnly: true;
   appliesRemote: false;
-  applyCommandAvailable: false;
+  applyCommandAvailable: true;
   workflowPath: ".github/workflows/harness-check.yml";
   requiredChecks: ["harness-check"];
   generatedPolicyFiles: string[];
@@ -785,9 +782,11 @@ export interface HelixProjectGithubPlan {
     remediation: string[];
   };
   branchProtection: {
-    status: "emit_only";
+    status: "emit_only_by_default_apply_capable";
     scriptPath: "scripts/setup-branch-protection.sh";
-    requiresHumanApproval: true;
+    requiresAuthenticatedGh: true;
+    requiredPermission: "admin";
+    applyCommand: "helix setup project --team --apply-branch-protection";
     reason: string;
   };
 }
@@ -1146,7 +1145,7 @@ const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
   schemaVersion: "helix-project-github-plan.v1",
   planOnly: true,
   appliesRemote: false,
-  applyCommandAvailable: false,
+  applyCommandAvailable: true,
   workflowPath: ".github/workflows/harness-check.yml",
   requiredChecks: ["harness-check"],
   generatedPolicyFiles: [
@@ -1172,20 +1171,23 @@ const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
     ],
   },
   branchProtection: {
-    status: "emit_only",
+    status: "emit_only_by_default_apply_capable",
     scriptPath: "scripts/setup-branch-protection.sh",
-    requiresHumanApproval: true,
+    requiresAuthenticatedGh: true,
+    requiredPermission: "admin",
+    applyCommand: "helix setup project --team --apply-branch-protection",
     reason:
-      "branch protection / required check application is a high-impact GitHub setting and remains plan-only until explicit human approval / action-binding approval",
+      "branch protection / required check application is emit-only by default, but an authenticated HELIX agent may apply it with --apply-branch-protection when gh auth and repository admin permission are present",
   },
 };
 
-function helixProjectBranchProtectionDecision(args: SetupArgs): SetupResult["branchProtection"] {
+function helixProjectBranchProtectionDecision(
+  args: SetupArgs,
+  plan: SetupPlan,
+  deps: SetupDeps,
+): SetupResult["branchProtection"] {
   if (args.dryRun) return { applied: false, reason: "dry-run" };
-  if (args.applyBranchProtection) {
-    return { applied: false, reason: "action-binding-approval-required" };
-  }
-  return { applied: false, reason: "emit-only" };
+  return applyBranchProtection(plan, deps, { apply: args.applyBranchProtection });
 }
 
 const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
@@ -2014,14 +2016,14 @@ function buildConsumerArtifactReadinessPlan(
         ".github/workflows/escalation-stale.yml YAML contract for schedule, read-only permissions, action inputs, placeholder-free commands, and no-write route audit",
     },
     {
-      name: "branch-protection-script-is-approval-only",
+      name: "branch-protection-script-is-apply-capable",
       path: branchProtectionScriptPath,
       ok:
         hasPath(branchProtectionScriptPath) &&
-        branchProtectionScriptIsApprovalOnly(branchProtectionScript),
+        branchProtectionScriptIsApplyCapable(branchProtectionScript),
       message:
-        "branch protection setup script must remain an approval checklist only and must not call mutating GitHub API/auth endpoints",
-      evidence: "scripts/setup-branch-protection.sh approval-only script contract",
+        "branch protection setup script must be apply-capable through gh auth/admin preflight without storing tokens or secrets",
+      evidence: "scripts/setup-branch-protection.sh gh apply-capable script contract",
     },
     ...(codeownersRequired
       ? [
@@ -2643,8 +2645,8 @@ export function recordHelixProjectSetupState(state: HelixProjectSetupState, deps
 }
 
 /**
- * U-SETUP-006: apply≠true → emit-only (既定)。isInteractive≠true → non-interactive で gh 非実行。
- * 対話下でも action-binding approval 入力が無い現行 setup では gh api 実行へ進まない。
+ * U-SETUP-006: apply≠true → emit-only (既定)。apply=true は gh 認証と repo admin 権限を
+ * preflight し、HELIX が保持する token なしで GitHub CLI に適用を委譲する。
  */
 export function applyBranchProtection(
   plan: SetupPlan,
@@ -2652,17 +2654,44 @@ export function applyBranchProtection(
   opts: { apply: boolean },
 ): { applied: boolean; reason: string } {
   if (opts.apply !== true) return { applied: false, reason: "emit-only" };
-  // ガバナンス: 非対話での無人適用を precondition で封鎖
-  if (deps.isInteractive !== true) return { applied: false, reason: "non-interactive" };
   const action = plan.actions.find((a) => a.kind === "branch-protection");
   if (!action) return { applied: false, reason: "no-action" };
-  return { applied: false, reason: "action-binding-approval-required" };
+  const auth = deps.gh(["auth", "status"]);
+  if (!auth.ok) return { applied: false, reason: "gh-auth-required" };
+  const repo = deps.gh(["api", "repos/{owner}/{repo}"]);
+  if (!repo.ok) return { applied: false, reason: "repo-metadata-unavailable" };
+  try {
+    const permissions = (JSON.parse(repo.stdout) as { permissions?: { admin?: boolean } })
+      .permissions;
+    if (permissions?.admin !== true) return { applied: false, reason: "admin-permission-required" };
+  } catch {
+    return { applied: false, reason: "repo-permission-parse-failed" };
+  }
+  const applied = deps.gh([
+    "api",
+    "-X",
+    "PUT",
+    "repos/{owner}/{repo}/branches/main/protection",
+    "-f",
+    "required_status_checks[strict]=true",
+    "-f",
+    "required_status_checks[contexts][]=harness-check",
+    "-f",
+    "enforce_admins=true",
+    "-f",
+    "required_pull_request_reviews[required_approving_review_count]=1",
+    "-f",
+    "restrictions=",
+  ]);
+  return applied.ok
+    ? { applied: true, reason: "applied" }
+    : { applied: false, reason: "github-api-apply-failed" };
 }
 
 /**
  * U-SETUP-007: orchestration。phase = フラグ > confirm(recommend(detect)) > fallback(solo)。
  * 確定 → record → plan → emit → (apply は opt-in)。非対話+フラグ無し → 0-A。
- * invariant: --apply-branch-protection は対話のみ有効 (applyBranchProtection の precondition が保証)。
+ * invariant: --apply-branch-protection は gh 認証/admin 権限があるときだけ remote へ進む。
  * invariant: dryRun=true は副作用ゼロ (state 非書込・remote 非適用、branchProtection.reason="dry-run")。
  */
 export function runSetup(args: SetupArgs, deps: SetupDeps): SetupResult {
@@ -2730,7 +2759,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       deps,
     );
   }
-  const branchProtection = helixProjectBranchProtectionDecision(args);
+  const branchProtection = helixProjectBranchProtectionDecision(args, plan, deps);
   const currentCommandAvailable =
     consumerReadiness.checks.find((check) => check.name === "helix-cli")?.ok ?? false;
   return {

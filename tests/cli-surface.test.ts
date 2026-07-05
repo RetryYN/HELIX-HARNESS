@@ -1480,7 +1480,7 @@ describe("L7 CLI surface closure", () => {
         schemaVersion: "helix-project-github-plan.v1",
         planOnly: true,
         appliesRemote: false,
-        applyCommandAvailable: false,
+        applyCommandAvailable: true,
         workflowPath: ".github/workflows/harness-check.yml",
         requiredChecks: ["harness-check"],
       },

@@ -392,7 +392,7 @@ import { teamDefinitionSchema } from "../schema/team";
 import {
   analyzeConsumerCiWorkflowContract,
   analyzeConsumerEscalationWorkflowContract,
-  branchProtectionScriptIsApprovalOnly,
+  branchProtectionScriptIsApplyCapable,
   CONSUMER_CI_RUN_COMMANDS,
   CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS,
   CONSUMER_VSCODE_TASK_COMMANDS,
@@ -2401,11 +2401,11 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   );
 
   const branchProtectionScript = consumerFile(deps, "scripts/setup-branch-protection.sh") ?? "";
-  const branchProtectionScriptOk = branchProtectionScriptIsApprovalOnly(branchProtectionScript);
+  const branchProtectionScriptOk = branchProtectionScriptIsApplyCapable(branchProtectionScript);
   messages.push(
     branchProtectionScriptOk
-      ? "doctor: consumer-branch-protection-script - OK (approval-only, no mutating GitHub API/auth endpoint)"
-      : "doctor: consumer-branch-protection-script - violation: script must contain action-binding approval checklist, remote GitHub API warning, exit 2, and no gh api/auth mutating endpoint",
+      ? "doctor: consumer-branch-protection-script - OK (gh auth/admin preflight, apply-capable, token-free)"
+      : "doctor: consumer-branch-protection-script - violation: script must contain gh auth status, gh api -X PUT branch protection apply, harness-check context, and no token/secrets persistence",
   );
 
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
