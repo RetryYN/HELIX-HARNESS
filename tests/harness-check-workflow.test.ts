@@ -52,21 +52,22 @@ describe("source harness-check workflow", () => {
     expect(matrix.run).toContain('status="applicable"');
   });
 
-  it("fails poc direct-main PRs, hotfix PRs without postmortem evidence, and non-conventional commits", () => {
+  it("runs GitHub operation guards through the HELIX CLI instead of workflow-local rules", () => {
     const { steps } = loadWorkflow();
+    const branchKind = stepByName(steps, "branch-kind-check");
     const commitlint = stepByName(steps, "commitlint");
     const pocGuard = stepByName(steps, "poc-no-merge-guard");
     const hotfixGuard = stepByName(steps, "hotfix-postmortem-required");
 
-    expect(commitlint.run).toContain("git log --format=%s");
-    expect(commitlint.run).toContain("commitlint violation");
-    expect(commitlint.run).toContain(
-      "feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert",
-    );
+    expect(branchKind.run).toContain("bun src/cli.ts");
+    expect(branchKind.run).toContain("guard branch-kind");
+    expect(branchKind.run).toContain("--strict-unknown-prefix");
+    expect(branchKind.run).toContain("git diff --name-only");
+    expect(commitlint.run).toContain("bun src/cli.ts guard commitlint --range");
+    expect(commitlint.run).not.toContain("grep -Eq");
     expect(pocGuard.if).toContain("startsWith(github.head_ref, 'poc/')");
-    expect(pocGuard.run).toContain("exit 1");
+    expect(pocGuard.run).toContain("bun src/cli.ts guard pr-context");
     expect(hotfixGuard.if).toContain("startsWith(github.head_ref, 'hotfix/')");
-    expect(hotfixGuard.run).toContain("## Postmortem");
-    expect(hotfixGuard.run).toContain("PLAN-");
+    expect(hotfixGuard.run).toContain("bun src/cli.ts guard pr-context");
   });
 });

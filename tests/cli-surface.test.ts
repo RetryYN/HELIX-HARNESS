@@ -192,6 +192,72 @@ describe("L7 CLI surface closure", () => {
     expect(run.stdout.trim()).toBe(packageJson.version);
   });
 
+  it("exposes GitHub operation guards as HELIX CLI surfaces", () => {
+    const branchKind = runCli([
+      "guard",
+      "branch-kind",
+      "--branch",
+      "unknown/work",
+      "--strict-unknown-prefix",
+      "--json",
+    ]);
+    expect(branchKind.status).toBe(1);
+    expect(JSON.parse(branchKind.stdout)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "unknown_branch_prefix" })],
+    });
+
+    const goodCommit = runCli([
+      "guard",
+      "commitlint",
+      "--subject",
+      "fix: close guard gap",
+      "--json",
+    ]);
+    expect(goodCommit.status, goodCommit.stderr || goodCommit.stdout).toBe(0);
+    expect(JSON.parse(goodCommit.stdout)).toMatchObject({ ok: true, subjectCount: 1 });
+
+    const badCommit = runCli(["guard", "commitlint", "--subject", "close guard gap", "--json"]);
+    expect(badCommit.status).toBe(1);
+    expect(JSON.parse(badCommit.stdout)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "non_conventional_subject" })],
+    });
+
+    const poc = runCli([
+      "guard",
+      "pr-context",
+      "--event-name",
+      "pull_request",
+      "--head",
+      "poc/demo",
+      "--base",
+      "main",
+      "--json",
+    ]);
+    expect(poc.status).toBe(1);
+    expect(JSON.parse(poc.stdout)).toMatchObject({
+      ok: false,
+      findings: [expect.objectContaining({ code: "poc_main_direct_merge" })],
+    });
+
+    const hotfix = runCli([
+      "guard",
+      "pr-context",
+      "--event-name",
+      "pull_request",
+      "--head",
+      "hotfix/recovery",
+      "--base",
+      "main",
+      "--body",
+      "## Postmortem\n\nRecovery evidence: PLAN-L7-999",
+      "--json",
+    ]);
+    expect(hotfix.status, hotfix.stderr || hotfix.stdout).toBe(0);
+    expect(JSON.parse(hotfix.stdout)).toMatchObject({ ok: true });
+  });
+
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
     const s4 = runRepoScriptHelix(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);

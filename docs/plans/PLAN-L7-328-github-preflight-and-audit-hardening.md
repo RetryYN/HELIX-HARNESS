@@ -31,6 +31,8 @@ generates:
     artifact_type: source_module
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
+  - artifact_path: src/lint/github-guards.ts
+    artifact_type: source_module
   - artifact_path: src/lint/objective-evidence-audit.ts
     artifact_type: source_module
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
@@ -48,6 +50,8 @@ generates:
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
   - artifact_path: tests/harness-check-workflow.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/branch-kind.test.ts
     artifact_type: test_code
   - artifact_path: tests/identifier-rename.test.ts
     artifact_type: test_code

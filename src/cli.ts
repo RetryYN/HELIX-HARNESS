@@ -52,7 +52,21 @@ import {
   buildActionBindingApprovalPackets,
   loadActionBindingApprovalReadinessInput,
 } from "./lint/action-binding-approval-readiness";
+import {
+  analyzeBranchKind,
+  type BranchKindInput,
+  type BranchPlanDoc,
+  branchKindMessages,
+  loadBranchKindInput,
+  loadPlanDoc,
+} from "./lint/branch-kind";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
+import {
+  analyzeCommitSubjects,
+  analyzePrContext,
+  commitlintMessages,
+  prContextGuardMessages,
+} from "./lint/github-guards";
 import {
   auditIdentifierRenameBlastRadius,
   buildIdentifierRenameApprovalDraft,
@@ -334,6 +348,44 @@ function readStdin(): string {
   } catch {
     return "";
   }
+}
+
+function loadBranchKindInputForGuard(opts: {
+  branch?: string;
+  changed?: string[];
+  strictUnknownPrefix?: boolean;
+}): BranchKindInput {
+  const repoRoot = process.cwd();
+  const base = loadBranchKindInput(repoRoot);
+  const changedPaths = opts.changed && opts.changed.length > 0 ? opts.changed : base.changedPaths;
+  const planPaths = changedPaths
+    .map((path) => path.replace(/\\/g, "/"))
+    .filter((path) => /^docs\/plans\/PLAN-.+\.md$/.test(path));
+  const plans: BranchPlanDoc[] = planPaths
+    .map((path) => {
+      try {
+        return loadPlanDoc(repoRoot, path);
+      } catch {
+        return { file: path };
+      }
+    })
+    .filter((plan): plan is BranchPlanDoc => plan != null);
+  return {
+    branch: opts.branch ?? base.branch,
+    changedPaths,
+    plans: opts.changed && opts.changed.length > 0 ? plans : base.plans,
+    strictUnknownPrefix: opts.strictUnknownPrefix,
+  };
+}
+
+function gitCommitSubjectsForRange(range: string): string[] {
+  return execFileSync("git", ["log", "--format=%s", range], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "inherit"],
+  })
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
 }
 
 function resolveTaskText(opts: { task?: string; taskFile?: string }): string | null {
@@ -2684,6 +2736,97 @@ guard
         );
       }
       process.exitCode = result.decision === "block" || hostedPreflight.kind === "deny" ? 2 : 0;
+    },
+  );
+
+guard
+  .command("branch-kind")
+  .description("check governed branch prefix, PLAN kind, and PR branch naming rules")
+  .option("--branch <name>", "branch name to inspect (defaults to current git branch)")
+  .option("--changed <path...>", "changed path(s) from PR or local diff")
+  .option("--strict-unknown-prefix", "fail ungoverned branch prefixes such as unknown/foo")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      branch?: string;
+      changed?: string[];
+      strictUnknownPrefix?: boolean;
+      json?: boolean;
+    }) => {
+      const input = loadBranchKindInputForGuard({
+        branch: opts.branch,
+        changed: opts.changed,
+        strictUnknownPrefix: opts.strictUnknownPrefix,
+      });
+      const result = analyzeBranchKind(input);
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      } else {
+        for (const message of branchKindMessages(result)) process.stdout.write(`${message}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
+
+guard
+  .command("commitlint")
+  .description("check git commit subjects against the HELIX GitHub operation rule")
+  .option("--range <range>", "git revision range to inspect")
+  .option("--subject <subject...>", "explicit commit subject(s) to inspect")
+  .option("--json", "JSON output")
+  .action((opts: { range?: string; subject?: string[]; json?: boolean }) => {
+    if (!opts.range && (!opts.subject || opts.subject.length === 0)) {
+      process.stderr.write("guard commitlint requires --range or --subject\n");
+      process.exitCode = 1;
+      return;
+    }
+    const subjects =
+      opts.subject && opts.subject.length > 0
+        ? opts.subject
+        : gitCommitSubjectsForRange(opts.range as string);
+    const result = analyzeCommitSubjects(subjects);
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    } else {
+      for (const message of commitlintMessages(result)) process.stdout.write(`${message}\n`);
+    }
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+guard
+  .command("pr-context")
+  .description("check PR-only GitHub operation rules such as poc and hotfix merge constraints")
+  .option("--event-name <name>", "GitHub event name (defaults to GITHUB_EVENT_NAME)")
+  .option("--head <branch>", "PR head branch (defaults to GITHUB_HEAD_REF)")
+  .option("--base <branch>", "PR base branch (defaults to GITHUB_BASE_REF)")
+  .option("--body <text>", "PR body text")
+  .option("--body-file <path>", "file containing PR body text")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      eventName?: string;
+      head?: string;
+      base?: string;
+      body?: string;
+      bodyFile?: string;
+      json?: boolean;
+    }) => {
+      let body = opts.body ?? process.env.PR_BODY ?? "";
+      if (opts.bodyFile) {
+        body = readFileSync(opts.bodyFile, "utf8");
+      }
+      const result = analyzePrContext({
+        eventName: opts.eventName ?? process.env.GITHUB_EVENT_NAME,
+        headBranch: opts.head ?? process.env.GITHUB_HEAD_REF,
+        baseBranch: opts.base ?? process.env.GITHUB_BASE_REF,
+        body,
+      });
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      } else {
+        for (const message of prContextGuardMessages(result)) process.stdout.write(`${message}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
     },
   );
 

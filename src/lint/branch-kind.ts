@@ -29,10 +29,16 @@ export interface BranchKindInput {
   branch: string | null;
   changedPaths: string[];
   plans: BranchPlanDoc[];
+  strictUnknownPrefix?: boolean;
 }
 
 export interface BranchKindFinding {
-  code: "missing_plan" | "kind_mismatch" | "skill_doc_plan_missing" | "missing_github_issue_id";
+  code:
+    | "missing_plan"
+    | "kind_mismatch"
+    | "skill_doc_plan_missing"
+    | "missing_github_issue_id"
+    | "unknown_branch_prefix";
   severity: "error" | "warn";
   message: string;
   file?: string;
@@ -59,24 +65,38 @@ const REQUIRED_KIND_BY_BRANCH: Record<
   refactor: ["refactor", "retrofit"],
 };
 
+const GOVERNED_BRANCH_PREFIXES = new Set([
+  "feature",
+  "design",
+  "research",
+  "poc",
+  "reverse",
+  "add",
+  "hotfix",
+  "refactor",
+  "docs",
+  "chore",
+]);
+
+const AUTOMATION_BRANCH_PREFIXES = new Set(["codex", "dependabot", "renovate"]);
+
 export function classifyBranchKind(branch: string | null): BranchKind {
   if (!branch) return "none";
   const prefix = branch.split("/", 1)[0];
-  if (
-    prefix === "feature" ||
-    prefix === "design" ||
-    prefix === "research" ||
-    prefix === "poc" ||
-    prefix === "reverse" ||
-    prefix === "add" ||
-    prefix === "hotfix" ||
-    prefix === "refactor" ||
-    prefix === "docs" ||
-    prefix === "chore"
-  ) {
-    return prefix;
+  if (GOVERNED_BRANCH_PREFIXES.has(prefix)) {
+    return prefix as BranchKind;
   }
   return "none";
+}
+
+export function hasUnknownBranchPrefix(branch: string | null): boolean {
+  if (!branch || branch === "main") return false;
+  const prefix = branch.split("/", 1)[0];
+  return (
+    branch.includes("/") &&
+    !GOVERNED_BRANCH_PREFIXES.has(prefix) &&
+    !AUTOMATION_BRANCH_PREFIXES.has(prefix)
+  );
 }
 
 function isRequiredKind(kind: BranchKind): kind is keyof typeof REQUIRED_KIND_BY_BRANCH {
@@ -92,6 +112,14 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
   const changedPaths = input.changedPaths.map(normalizePath);
   const plans = input.plans;
   const findings: BranchKindFinding[] = [];
+
+  if (input.strictUnknownPrefix && hasUnknownBranchPrefix(input.branch)) {
+    findings.push({
+      code: "unknown_branch_prefix",
+      severity: "error",
+      message: `${input.branch ?? "(unknown)"} uses an ungoverned branch prefix`,
+    });
+  }
 
   if (kind === "docs" || kind === "chore") {
     const touchesSkillDocs = changedPaths.some((p) => /^docs\/skills\/.+\.md$/.test(p));
@@ -111,7 +139,12 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
   }
 
   if (!isRequiredKind(kind)) {
-    return { branch: input.branch, kind, findings, ok: true };
+    return {
+      branch: input.branch,
+      kind,
+      findings,
+      ok: !findings.some((f) => f.severity === "error"),
+    };
   }
 
   const allowedKinds = REQUIRED_KIND_BY_BRANCH[kind];
@@ -155,7 +188,7 @@ function markdownFrontmatter(content: string): string | null {
   return m ? m[1] : null;
 }
 
-function loadPlanDoc(repoRoot: string, file: string): BranchPlanDoc | null {
+export function loadPlanDoc(repoRoot: string, file: string): BranchPlanDoc | null {
   const raw = markdownFrontmatter(readFileSync(join(repoRoot, file), "utf8"));
   if (!raw) return { file };
   const fm = parseYaml(raw) as Record<string, unknown>;
