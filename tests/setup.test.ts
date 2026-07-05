@@ -802,8 +802,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       localDistributionTag: "v0.1.0",
       requestedDistributionTag: "v0.1.0",
       requestedTagMatchesPackageVersion: true,
-      packLatestTag: "v0.1.4",
-      packLatestRequiresVersionUpActivation: true,
+      distributionTargetTag: "v0.1.4",
+      distributionTargetRequiresVersionUpActivation: true,
       versionUpPacketCommand: "helix version-up activation-packet --json",
       adoptionDecision: expect.stringContaining("version-up activation decision"),
     });
@@ -1033,10 +1033,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       localDistributionTag: "v0.1.0",
       requestedDistributionTag: "v0.1.4",
       requestedTagMatchesPackageVersion: false,
-      packLatestRequiresVersionUpActivation: true,
+      distributionTargetRequiresVersionUpActivation: true,
     });
 
-    const stalePackSurface = buildConsumerReadinessPlan({
+    const staleDistributionSurface = buildConsumerReadinessPlan({
       bunVersion: "1.3.2",
       hasGit: true,
       hasGh: true,
@@ -1052,23 +1052,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       distributionPackageSurface: {
         checked: true,
         ok: false,
-        source: "released-pack-tag",
+        source: "released-distribution-tag",
         tag: "v0.1.0",
         evidence:
-          "Pack v0.1.0 installed but `bun run helix setup project --dry-run --json` returned unknown option '--json'",
+          "Distribution v0.1.0 installed but `bun run helix setup project --dry-run --json` returned unknown option '--json'",
         latestObservedStatus: "unknown option '--json'",
       },
     });
-    expect(stalePackSurface.ok).toBe(false);
+    expect(staleDistributionSurface.ok).toBe(false);
     expect(
-      stalePackSurface.checks.find((c) => c.name === "distribution-package-surface"),
+      staleDistributionSurface.checks.find((c) => c.name === "distribution-package-surface"),
     ).toMatchObject({
       ok: false,
       message: expect.stringContaining("version-up activation"),
     });
-    expect(stalePackSurface.ci.distributionPackageSurface).toMatchObject({
+    expect(staleDistributionSurface.ci.distributionPackageSurface).toMatchObject({
       checked: true,
-      source: "released-pack-tag",
+      source: "released-distribution-tag",
       ok: false,
       evidence: expect.stringContaining("unknown option '--json'"),
       remediation: expect.stringContaining("version-up activation"),
@@ -2008,15 +2008,15 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         cutoverPacketCommand: "helix rename plan --json",
         distributionReference: {
           repo: "RetryYN/HELIX-HARNESS-OS",
-          mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
-          latestTag: "v0.1.4",
+          mainHead: "unpublished",
+          targetTag: "v0.1.4",
         },
         versionBinding: {
           localPackageVersion: "0.1.0",
           localDistributionTag: "v0.1.0",
           requestedDistributionTag: "v0.1.0",
           requestedTagMatchesPackageVersion: true,
-          packLatestRequiresVersionUpActivation: true,
+          distributionTargetRequiresVersionUpActivation: true,
         },
       },
     });

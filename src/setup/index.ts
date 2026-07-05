@@ -27,13 +27,13 @@ import {
 } from "./templates";
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
-export const PACK_DISTRIBUTION_REMOTE_URL = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
-export const PACK_DISTRIBUTION_REFERENCE = {
+export const HELIX_DISTRIBUTION_REMOTE_URL = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+export const HELIX_DISTRIBUTION_REFERENCE = {
   repo: "RetryYN/HELIX-HARNESS-OS",
-  mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
-  latestTag: "v0.1.4",
+  mainHead: "unpublished",
+  targetTag: "v0.1.4",
 } as const;
-export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${PACK_DISTRIBUTION_REFERENCE.latestTag} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+export const CONSUMER_VERSION_UP_DRY_RUN_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${HELIX_DISTRIBUTION_REFERENCE.targetTag} --release-remote ${HELIX_DISTRIBUTION_REMOTE_URL} --json`;
 export const CONSUMER_VERSION_UP_DRY_RUN_BUN_COMMAND = `bun run ${CONSUMER_VERSION_UP_DRY_RUN_COMMAND}`;
 
 export const CONSUMER_CI_RUN_COMMANDS = [
@@ -869,16 +869,16 @@ export interface ConsumerReadinessPlan {
     cutoverPacketCommand: "helix rename plan --json";
     distributionReference: {
       repo: "RetryYN/HELIX-HARNESS-OS";
-      mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0";
-      latestTag: "v0.1.4";
+      mainHead: "unpublished";
+      targetTag: "v0.1.4";
     };
     versionBinding: {
       localPackageVersion: string;
       localDistributionTag: string;
       requestedDistributionTag: string;
       requestedTagMatchesPackageVersion: boolean;
-      packLatestTag: "v0.1.4";
-      packLatestRequiresVersionUpActivation: true;
+      distributionTargetTag: "v0.1.4";
+      distributionTargetRequiresVersionUpActivation: true;
       versionUpPacketCommand: "helix version-up activation-packet --json";
       adoptionDecision: string;
     };
@@ -933,7 +933,7 @@ export interface ConsumerReadinessPlan {
       source:
         | "current-clean-artifact-link"
         | "package-script-probe"
-        | "released-pack-tag"
+        | "released-distribution-tag"
         | "not-supplied";
       tag: string;
       requiredCommands: string[];
@@ -1511,7 +1511,7 @@ export function buildConsumerReadinessPlan(input: {
     source:
       | "current-clean-artifact-link"
       | "package-script-probe"
-      | "released-pack-tag"
+      | "released-distribution-tag"
       | "not-supplied";
     evidence: string;
     latestObservedStatus: string;
@@ -1566,13 +1566,13 @@ export function buildConsumerReadinessPlan(input: {
     ok: input.distributionPackageSurface?.ok ?? false,
     evidence:
       input.distributionPackageSurface?.evidence ??
-      "generated consumer CI command surface was not probed; readiness fails closed to avoid treating stale Pack tags as runnable",
+      "generated consumer CI command surface was not probed; readiness fails closed to avoid treating stale distribution tags as runnable",
     remediation:
-      "current clean artifact link smoke または version-up activation で公開 Pack tag の CLI surface を更新してから consumer readiness を再判定する",
+      "current clean artifact link smoke または version-up activation で公開配布 tag の CLI surface を更新してから consumer readiness を再判定する",
     sourceCheckedAt: "2026-07-05" as const,
     latestObservedStatus:
       input.distributionPackageSurface?.latestObservedStatus ??
-      "not observed in this readiness input; Pack v0.1.0/v0.1.4 external probe on 2026-07-05 returned unknown option '--json' for setup project --dry-run --json",
+      "not observed in this readiness input; distribution v0.1.0/v0.1.4 external probe on 2026-07-05 returned unknown option '--json' for setup project --dry-run --json",
     workflowRouteImpact:
       "missing or failing distribution package surface routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
   };
@@ -1657,7 +1657,7 @@ export function buildConsumerReadinessPlan(input: {
       ok: distributionPackageSurface.ok,
       message: distributionPackageSurface.ok
         ? `generated consumer CI の必須 CLI surface は ${distributionPackageSurface.source} で実測済み`
-        : "公開 Pack または package-local CLI が生成 consumer CI の必須 command surface を満たす証跡がない。current clean artifact link smoke または version-up activation 後に再確認する",
+        : "公開配布 tag または package-local CLI が生成 consumer CI の必須 command surface を満たす証跡がない。current clean artifact link smoke または version-up activation 後に再確認する",
     },
   ];
   const packageRoot = input.packageRoot ?? input.repoRoot;
@@ -1685,14 +1685,14 @@ export function buildConsumerReadinessPlan(input: {
       completionReviewBundleCommand: "helix completion review-bundle --json",
       versionUpPacketCommand: "helix version-up activation-packet --json",
       cutoverPacketCommand: "helix rename plan --json",
-      distributionReference: PACK_DISTRIBUTION_REFERENCE,
+      distributionReference: HELIX_DISTRIBUTION_REFERENCE,
       versionBinding: {
         localPackageVersion: packageVersion,
         localDistributionTag,
         requestedDistributionTag: tag,
         requestedTagMatchesPackageVersion,
-        packLatestTag: PACK_DISTRIBUTION_REFERENCE.latestTag,
-        packLatestRequiresVersionUpActivation: true,
+        distributionTargetTag: HELIX_DISTRIBUTION_REFERENCE.targetTag,
+        distributionTargetRequiresVersionUpActivation: true,
         versionUpPacketCommand: "helix version-up activation-packet --json",
         adoptionDecision:
           "Distribution target tag is a reference source only; adopting it over the local package tag requires a recorded version-up activation decision",

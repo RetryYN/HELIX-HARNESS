@@ -2881,7 +2881,7 @@ describe("version-up-readiness", () => {
     }
   });
 
-  it("resolves Pack release tags through an explicit remote in the CLI dry-run", () => {
+  it("resolves distribution release tags through an explicit remote in the CLI dry-run", () => {
     const binDir = mkdtempSync(join(tmpdir(), "helix-version-up-remote-tag-"));
     try {
       writeFakeRemoteTagGit(binDir, "v0.1.3");

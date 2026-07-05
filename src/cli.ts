@@ -4774,13 +4774,13 @@ function loadObjectiveExternalObserved(): {
     ["https://github.com/RetryYN/HELIX-HARNESS.git", "refs/heads/main"],
     firstSha,
   );
-  readRemote("distribution_pack_repo", [distributionRepoUrl, "refs/heads/main"], firstSha);
-  readRemote("distribution_pack_latest_tag", ["--tags", distributionRepoUrl], latestSemverTag);
+  readRemote("distribution_repo", [distributionRepoUrl, "refs/heads/main"], firstSha);
+  readRemote("distribution_latest_tag", ["--tags", distributionRepoUrl], latestSemverTag);
   return {
     ok:
       externalObserved.development_repo !== undefined &&
-      externalObserved.distribution_pack_repo !== undefined &&
-      externalObserved.distribution_pack_latest_tag !== undefined,
+      externalObserved.distribution_repo !== undefined &&
+      externalObserved.distribution_latest_tag !== undefined,
     externalObserved,
     messages,
   };

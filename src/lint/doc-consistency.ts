@@ -20,9 +20,9 @@ const ROOT = resolve(HERE, "..", "..");
 
 const SCREEN_ID_REGEX = /\b(?:PM|HM|GD)-\d{2}\b/g;
 const NFR_ROW_REGEX = /\|\s*\*\*NFR-(\d{2})\*\*\s*\|/g;
-const PACK_DISTRIBUTION_REMOTE_URL = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+const HELIX_DISTRIBUTION_REMOTE_URL = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
 const SETUP_VERSION_UP_TARGET = "v0.1.4";
-const SETUP_VERSION_UP_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${SETUP_VERSION_UP_TARGET} --release-remote ${PACK_DISTRIBUTION_REMOTE_URL} --json`;
+const SETUP_VERSION_UP_COMMAND = `helix version-up dry-run --current v0.1.0 --target ${SETUP_VERSION_UP_TARGET} --release-remote ${HELIX_DISTRIBUTION_REMOTE_URL} --json`;
 const STALE_SETUP_VERSION_UP_TARGET_REGEX =
   /helix version-up dry-run --current v0\.1\.0 --target (v\d+\.\d+\.\d+)(?:\s|`)/g;
 
@@ -228,15 +228,15 @@ export function checkHelixSetupVersionUpTargetConsistency(docs: {
       pattern: new RegExp(escapeRegExp(SETUP_VERSION_UP_COMMAND)),
     },
     {
-      id: "setup-index-version-up-target-derived-from-pack-latest",
+      id: "setup-index-version-up-target-derived-from-distribution-target",
       text: docs.setupIndex,
       pattern:
-        /CONSUMER_VERSION_UP_DRY_RUN_COMMAND\s*=\s*`helix version-up dry-run --current v0\.1\.0 --target \$\{PACK_DISTRIBUTION_REFERENCE\.latestTag\} --release-remote \$\{PACK_DISTRIBUTION_REMOTE_URL\} --json`/,
+        /CONSUMER_VERSION_UP_DRY_RUN_COMMAND\s*=\s*`helix version-up dry-run --current v0\.1\.0 --target \$\{HELIX_DISTRIBUTION_REFERENCE\.targetTag\} --release-remote \$\{HELIX_DISTRIBUTION_REMOTE_URL\} --json`/,
     },
     {
-      id: "setup-index-pack-latest-tag",
+      id: "setup-index-distribution-target-tag",
       text: docs.setupIndex,
-      pattern: /latestTag:\s*"v0\.1\.4"/,
+      pattern: /targetTag:\s*"v0\.1\.4"/,
     },
     {
       id: "setup-templates-version-up-pack-target",

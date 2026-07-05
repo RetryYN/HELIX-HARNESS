@@ -954,8 +954,8 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         externalObserved: {
           development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
-          distribution_pack_repo: "unpublished",
-          distribution_pack_latest_tag: "unpublished",
+          distribution_repo: "unpublished",
+          distribution_latest_tag: "unpublished",
         },
         externalCheck: {
           ok: true,
@@ -987,7 +987,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=unpublished actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_repo observed drift expected=unpublished actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -1007,7 +1007,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_latest_tag observed drift expected=unpublished actual=v0.1.5",
+        "G-01: 外部 source ledger distribution_latest_tag observed drift expected=unpublished actual=v0.1.5",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
@@ -2281,16 +2281,16 @@ describe("L7 CLI surface closure", () => {
             completionReviewBundleCommand: "helix completion review-bundle --json",
             distributionReference: {
               repo: "RetryYN/HELIX-HARNESS-OS",
-              mainHead: "a43771ab091486520a4970f6b19b1663a009d4d0",
-              latestTag: "v0.1.4",
+              mainHead: "unpublished",
+              targetTag: "v0.1.4",
             },
             versionBinding: {
               localPackageVersion: "0.1.0",
               localDistributionTag: "v0.1.0",
               requestedDistributionTag: "v0.1.0",
               requestedTagMatchesPackageVersion: true,
-              packLatestTag: "v0.1.4",
-              packLatestRequiresVersionUpActivation: true,
+              distributionTargetTag: "v0.1.4",
+              distributionTargetRequiresVersionUpActivation: true,
             },
           },
         },
@@ -2366,7 +2366,7 @@ describe("L7 CLI surface closure", () => {
               localDistributionTag: "v0.1.0",
               requestedDistributionTag: "v0.1.4",
               requestedTagMatchesPackageVersion: false,
-              packLatestRequiresVersionUpActivation: true,
+              distributionTargetRequiresVersionUpActivation: true,
             },
           },
         },

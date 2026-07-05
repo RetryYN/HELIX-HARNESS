@@ -72,14 +72,14 @@ review_evidence:
 G-10 の人間判断待ちを越えずに、完了判断前のレビュー材料と HELIX project setup の version-up 証跡を強化する。
 
 - `completion review-bundle` が decision packet の summary 整合だけで止まらず、S4 / version-up / rename / action-binding の dedicated packet bridge まで live 検査する。
-- setup first-run の `version-up dry-run` は Pack 最新 tag `v0.1.4` と Pack release remote を同時に指す。古い target や remote 欠落が L3/L6/test-design/source/template/doctor surface に戻った場合は `doc-consistency` で fail-close する。
+- setup first-run の `version-up dry-run` は配布 target tag `v0.1.4` と配布 release remote を同時に指す。古い target や remote 欠落が L3/L6/test-design/source/template/doctor surface に戻った場合は `doc-consistency` で fail-close する。
 
 ## 実装メモ
 
 - `checkCompletionReviewBundle` は `completionDedicatedPacketBridgeViolations` を呼び、review-bundle が古い dedicated packet 導線を隠せないようにした。
 - `doc-consistency` は `helixSetupVersionUpTargetMissing[]` を返し、doctor の hard gate 判定へ接続した。
-- `src/setup/index.ts` の `CONSUMER_VERSION_UP_DRY_RUN_COMMAND` は `PACK_DISTRIBUTION_REFERENCE.latestTag` から組み立てる。
-- L6 設計と L7 テスト設計の短縮 command を Pack `--release-remote` 付きに揃えた。
+- `src/setup/index.ts` の `CONSUMER_VERSION_UP_DRY_RUN_COMMAND` は `HELIX_DISTRIBUTION_REFERENCE.targetTag` から組み立てる。
+- L6 設計と L7 テスト設計の短縮 command を配布 `--release-remote` 付きに揃えた。
 
 ## DoD
 

@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-07-04
 updated: 2026-07-04
 backprop_decision: not_required
-backprop_decision_reason: "consumer setup readiness の gate 強化。公開 Pack への release apply、外部 API 書込、PLAN-M-02 rename/cutover、D-API/D-DB 変更は行わない。"
+backprop_decision_reason: "consumer setup readiness の gate 強化。公開配布 repo への release apply、外部 API 書込、PLAN-M-02 rename/cutover、D-API/D-DB 変更は行わない。"
 owner: TL (Codex)
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
 pair_artifact: tests/setup.test.ts
@@ -17,7 +17,7 @@ agent_slots:
   - role: tl
     slot_label: "TL - distribution package surface gate 設計"
   - role: qa
-    slot_label: "QA - stale Pack tag false-green 回帰"
+    slot_label: "QA - stale 配布 tag false-green 回帰"
 generates:
   - artifact_path: docs/plans/PLAN-L7-303-distribution-package-surface-readiness.md
     artifact_type: markdown_doc
@@ -42,7 +42,7 @@ review_evidence:
     reviewed_at: "2026-07-04T00:00:00+09:00"
     tests_green_at: "2026-07-04T00:00:00+09:00"
     verdict: approve
-    scope: "公開 Pack tag の stale CLI surface を consumer readiness へ fail-close で反映する L7 gate 強化。version-up release apply、外部 API 書込、PLAN-M-02 cutover は実行していない。"
+    scope: "公開配布 tag の stale CLI surface を consumer readiness へ fail-close で反映する L7 gate 強化。version-up release apply、外部 API 書込、PLAN-M-02 cutover は実行していない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -84,12 +84,12 @@ review_evidence:
 
 ## 目的
 
-HELIX project setup が生成する consumer CI / VSCode task の command surface を、配布 Pack tag の install 成功だけで green にしない。`bun run helix setup project --dry-run --json` など、生成された package-local command が実際に動く証跡を readiness gate にする。
+HELIX project setup が生成する consumer CI / VSCode task の command surface を、公開配布 tag の install 成功だけで green にしない。`bun run helix setup project --dry-run --json` など、生成された package-local command が実際に動く証跡を readiness gate にする。
 
 ## 問題
 
 - 生成 `harness-check.yml` は package-local `bun run helix ...` command を要求する。
-- 公開 Pack tag の `v0.1.0` / `v0.1.4` は 2026-07-04 実測で `setup project --dry-run --json` が `unknown option '--json'` になった。
+- 公開配布 tag の `v0.1.0` / `v0.1.4` は 2026-07-04 実測で `setup project --dry-run --json` が `unknown option '--json'` になった。
 - これを `consumerReadiness.ok` に反映しないと、package.json / lockfile / VSCode task が揃っただけで first-run ready と誤認する。
 
 ## 実装方針
@@ -98,18 +98,18 @@ HELIX project setup が生成する consumer CI / VSCode task の command surfac
 - `distribution-package-surface` check を blocking にし、probe 未実行または失敗時は `consumerReadiness.ok=false` にする。
 - `runHelixProjectSetup` と `distribution plan` は `bun run helix setup project --help` を packageRoot で probe し、`--dry-run` と `--json` の公開を package-local command surface 証跡にする。
 - 実行 smoke は clean distribution acceptance が linked bin で `helix setup project --dry-run --json` を実行して固定する。
-- 公開 Pack tag が stale の場合は、current clean artifact link smoke または version-up activation 後の Pack tag smoke まで `fix_consumer_readiness` に戻す。
+- 公開配布 tag が stale の場合は、current clean artifact link smoke または version-up activation 後の配布 tag smoke まで `fix_consumer_readiness` に戻す。
 
 ## 受入条件
 
-- U-SETUP-012: `buildConsumerReadinessPlan` は surface 証跡ありの正常系 (happy path) と、stale released Pack tag の fail-close path を区別する。
+- U-SETUP-012: `buildConsumerReadinessPlan` は surface 証跡ありの正常系 (happy path) と、stale released 配布 tag の fail-close path を区別する。
 - U-SETUP-013: clean distribution acceptance は local-link した現行 clean artifact (current clean artifact) の package-local command surface を `ci.distributionPackageSurface` として確認する。
 - U-SETUP-039: `runHelixProjectSetup.consumerReadiness` は package-local setup help surface probe が成功した場合だけ ready へ進む。
 - `consumerReadiness.ok=true` は whole-program / L14 completion claim ではなく、`objectiveBoundary.completionClaimAllowed=false` を維持する。
 
 ## 範囲外
 
-- 公開 Pack repository への tag push / release 更新。
+- 公開配布 repository への tag push / release 更新。
 - `.helix` から `.helix` への不可逆 rename/cutover。
 - 認証、secret、PII、外部 API 書込、production infrastructure 変更。
 

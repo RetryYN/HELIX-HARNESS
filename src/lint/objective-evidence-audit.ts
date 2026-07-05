@@ -181,7 +181,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     workflowRouteImpact: "none",
   },
   {
-    source: "distribution_pack_repo",
+    source: "distribution_repo",
     command: "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
     ref: "refs/heads/main",
     observed: "unpublished",
@@ -192,7 +192,7 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
     workflowRouteImpact: "distribution-version-binding gate retained",
   },
   {
-    source: "distribution_pack_latest_tag",
+    source: "distribution_latest_tag",
     command: "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git",
     ref: "refs/tags/unpublished",
     observed: "unpublished",

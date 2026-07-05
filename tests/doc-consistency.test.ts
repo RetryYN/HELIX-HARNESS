@@ -58,11 +58,11 @@ describe("doc consistency (doc 間整合の自動化)", () => {
     expect(checkHelixSetupReviewBundleConsistency(docs).missing).toEqual([]);
   });
 
-  it("HELIX setup の version-up dry-run target は Pack 最新タグと release remote に固定する", () => {
+  it("HELIX setup の version-up dry-run target は配布 target と release remote に固定する", () => {
     expect(checkHelixSetupVersionUpTargetConsistency(docs).missing).toEqual([]);
   });
 
-  it("HELIX setup の version-up dry-run target が古い Pack tag に戻ったら検出する", () => {
+  it("HELIX setup の version-up dry-run target が古い配布 tag に戻ったら検出する", () => {
     const expectedCommand =
       "--target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json";
     const staleDocs = {
