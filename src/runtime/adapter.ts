@@ -243,10 +243,11 @@ function isWindowsCommandScript(command: string): boolean {
   return /\.(cmd|bat)$/i.test(command);
 }
 
-const WINDOWS_CMD_UNSAFE_TOKEN_PATTERN = new RegExp('[\\u0000\\r\\n"&|<>^%!]');
+// NUL は regex に制御文字を持ち込まず includes で検査する (noControlCharactersInRegex 対応)。
+const WINDOWS_CMD_UNSAFE_TOKEN_PATTERN = /[\r\n"&|<>^%!]/;
 
 function assertWindowsCmdTokenSafe(token: string, label: string): void {
-  if (WINDOWS_CMD_UNSAFE_TOKEN_PATTERN.test(token)) {
+  if (token.includes("\u0000") || WINDOWS_CMD_UNSAFE_TOKEN_PATTERN.test(token)) {
     throw new Error(`${label} contains unsafe characters for Windows command wrapping`);
   }
 }

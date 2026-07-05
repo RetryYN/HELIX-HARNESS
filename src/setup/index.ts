@@ -1068,16 +1068,15 @@ function mergeConsumerPackageJson(existing: string | null, scaffold: string): st
         ? (base.devDependencies as Record<string, unknown>)
         : {};
     if (
-      typeof devDependencies["helix"] !== "string" &&
+      typeof devDependencies.helix !== "string" &&
       !(
         base.dependencies &&
         typeof base.dependencies === "object" &&
         !Array.isArray(base.dependencies) &&
-        typeof (base.dependencies as Record<string, unknown>)["helix"] === "string"
+        typeof (base.dependencies as Record<string, unknown>).helix === "string"
       )
     ) {
-      devDependencies["helix"] =
-        wanted.devDependencies?.["helix"] ?? LOCAL_DISTRIBUTION_PACKAGE_SPEC;
+      devDependencies.helix = wanted.devDependencies?.helix ?? LOCAL_DISTRIBUTION_PACKAGE_SPEC;
     }
     if (typeof devDependencies.typescript !== "string") {
       devDependencies.typescript =
@@ -2024,7 +2023,8 @@ function buildConsumerArtifactReadinessPlan(
         branchProtectionScriptIsApplyCapable(branchProtectionScript),
       message:
         "branch protection setup script must be approval-bound and apply-capable through gh auth/admin preflight without storing tokens or secrets",
-      evidence: "scripts/setup-branch-protection.sh approval-bound gh apply-capable script contract",
+      evidence:
+        "scripts/setup-branch-protection.sh approval-bound gh apply-capable script contract",
     },
     ...(codeownersRequired
       ? [

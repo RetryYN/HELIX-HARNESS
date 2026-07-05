@@ -207,9 +207,9 @@ describe("clean distribution local acceptance smoke", () => {
         bin?: { helix?: string };
         scripts?: { helix?: string };
       };
-      expect(packageJson.bin?.["helix"]).toBe("./dist/helix");
-      expect(packageJson.scripts?.["helix"]).toBe("bun run src/cli.ts");
-      expect(existsSync(join(cleanRoot, packageJson.bin?.["helix"] ?? ""))).toBe(true);
+      expect(packageJson.bin?.helix).toBe("./dist/helix");
+      expect(packageJson.scripts?.helix).toBe("bun run src/cli.ts");
+      expect(existsSync(join(cleanRoot, packageJson.bin?.helix ?? ""))).toBe(true);
 
       const packageScriptVersion = runBun(cleanRoot, ["run", "helix", "--version"], env);
       expect(
@@ -800,7 +800,7 @@ describe("clean distribution local acceptance smoke", () => {
           typecheck: "bun run helix status --json",
           test: "bun run helix completion review-bundle --json",
         });
-        expect(generatedPackage.devDependencies?.["helix"]).toBe("github:RetryYN/HELIX-HARNESS");
+        expect(generatedPackage.devDependencies?.helix).toBe("github:RetryYN/HELIX-HARNESS");
         expect(generatedPackage.devDependencies?.typescript).toBe("^5.6.3");
         expect(readFileSync(join(freshConsumerRoot, "bun.lock"), "utf8")).toContain(
           "lockfileVersion",
