@@ -248,7 +248,7 @@ V7 (最重要 gap) は他 gap と独立に解決可能なため R0→R2→R3 を
 
 **B. drive 定義 (§1.6 改訂文)**: 「その PLAN にどの専門職/専門エージェントを招集するか (owner_role / mandatory_agents / orchestration_mode を決める)」。`scrum=仮説検証` 等の mode 説明を削除。
 
-**C. 横断駆動 kind (poc/reverse/recovery) の drive**: 探索/逆引き/復旧 **対象 work の専門職を宣言** (継承)。技術モジュール対象なら its specialist、harness methodology/process 対象なら `fullstack` (UT-TDD harness = TS fullstack) を default。→ V3 決着 (recovery→対象専門職、PLAN-RECOVERY-01=fullstack が正)。
+**C. 横断駆動 kind (poc/reverse/recovery) の drive**: 探索/逆引き/復旧 **対象 work の専門職を宣言** (継承)。技術モジュール対象なら its specialist、harness methodology/process 対象なら `fullstack` (HELIX-HARNESS = TS fullstack) を default。→ V3 決着 (recovery→対象専門職、PLAN-RECOVERY-01=fullstack が正)。
 
 **D. kind×drive matrix 改訂**: **全 12 kind** (charter/design/impl/add-design/add-impl/refactor/retrofit/research/poc/reverse/recovery/troubleshoot) → `be/fe/fullstack/db/agent` のいずれか (対象 work の専門職)。旧 mode 値固定 (poc→scrum/poc / reverse→reverse / **recovery→troubleshoot** / **troubleshoot→troubleshoot**) を全廃止。
 - **recovery kind**: 旧 `recovery→troubleshoot` 固定行を削除 (PLAN-RECOVERY-01=fullstack を合法化、V3 決着)。

@@ -136,7 +136,7 @@ review_evidence:
 
 ## Objective
 
-外部レビュー (GPT5.5Pro) が UT-TDD harness に挙げた 4 件の欠陥を、実コードで全件再現確認した上で
+外部レビュー (GPT5.5Pro) が HELIX-HARNESS に挙げた 4 件の欠陥を、実コードで全件再現確認した上で
 修正し、各々に real-repo 回帰テストを付ける。あわせて、mega-file (`src/cli.ts` 等) を green-command
 evidence として content-hash 参照していた 7 つの confirmed PLAN の `output_digest` が本修正の編集で
 stale 化したため、green 再実行済みの coordinated 再stamp (案A) で監査整合を回復する。
