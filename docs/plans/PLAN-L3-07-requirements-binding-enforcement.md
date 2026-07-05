@@ -20,6 +20,10 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L3-requirements/nfr-grade.md
     artifact_type: design_doc
+  - artifact_path: docs/design/helix/L3-requirements/retention-purge-policy.md
+    artifact_type: design_doc
+  - artifact_path: docs/test-design/helix/L3-retention-purge-acceptance-test-design.md
+    artifact_type: test_design
   # draft のため L3 design projection だけを実在 artifact として追加した。L7 実装成果物は
   # PLAN-L7-334 側で管理する。
 dependencies:
@@ -159,7 +163,12 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   `triage refactor candidate ... attach/create refactor PLAN or record accepted debt` を next action として出す。
   厳密な N 回連続 surface は現行 projection DB が rebuild ごとに履歴を保持しないため、履歴 table 設計を要する
   別 PLAN 候補として扱う。
-- まだ confirmed / terminal ではない。Step 4 の L1/L3 retention/purge 要件化と最終 review evidence は後続 Step で扱う。
+- **Step 4 AI 側完了**: PO 決定済み方針（期限付き物理削除は採用しない、append-only +
+  superseded compaction / archive / projection rebuild）を L3 要件案
+  `docs/design/helix/L3-requirements/retention-purge-policy.md` と L12 受入テスト設計
+  `docs/test-design/helix/L3-retention-purge-acceptance-test-design.md` に降下した。L1 正本への追記は
+  charter §3 に従い PO 起草・承認待ちであり、AI は候補 trace の提示に留める。
+- まだ confirmed / terminal ではない。L1 retention/purge back-merge 承認と最終 review evidence は後続 Step で扱う。
 
 ## 壊さない / 再発させない
 
@@ -174,7 +183,7 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 - 起票根拠 = 本セッション監査（pmo-project-explorer 3 系統、2026-07-05）。所見はチャット報告と本文 §監査で
   確認済みの穴に記録。
 - PO は 2026-07-05 に Step 1-3 の着手順と Step 4 retention 方針方向性を承認済み。
-- 次 action: Step 4 の L1/L3 retention/purge 要件案を、PO 決定済み方針（物理削除ではなく append-only +
-  compaction / archive / projection rebuild）に沿って起草する。L1 追記は PO 起草・承認が必要なため、
-  AI は L3 以下の案と検査設計までに留める。
+- 次 action: Step 4 の L3 要件案を別 runtime / subagent で review し、L1 back-merge 候補を PO 判断材料として
+  completion packet / review evidence に束ねる。L1 追記は PO 起草・承認が必要なため、AI は検査設計と
+  trace evidence までに留める。
 - terminal 化は、各 Step の generated artifact、review evidence、green command が揃ってから行う。

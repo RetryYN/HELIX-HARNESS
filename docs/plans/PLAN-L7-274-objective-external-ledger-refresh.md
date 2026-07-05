@@ -96,7 +96,7 @@ review_evidence:
 
 ## 目的
 
-`helix audit objective-external --json` が、配布レポ `unison-ai-product/HELIX-HARNESS-OS`
+`helix audit objective-external --json` が、配布レポ `RetryYN/HELIX-HARNESS-OS`
 の `main` HEAD drift を検出した。これは外部 source ledger の実測値更新であり、Pack latest tag `v0.1.3`
 の採用や local distribution version の引き上げではない。
 
