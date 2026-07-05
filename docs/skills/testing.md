@@ -18,19 +18,19 @@ applies_to:
 
 # testing（テスト）
 
-HELIX の V-model levels をまたぐ test strategy、fixture design、Vitest execution
-patterns。この skill は test suite architecture の *what and how* を扱う。*when*
+HELIX の V-model levels をまたぐテスト戦略、fixture design、Vitest 実行
+patterns を扱う。この skill は test suite architecture の *what and how*（何をどう検証するか）を扱う。*when*
 (Red-Green order、L6 pairing、trace-freeze) は test-driven-development skill を参照する。
 
 ## この skill を load する場面
 
-- pair-freeze 前に PLAN の test coverage を設計または audit するとき。
+- pair-freeze 前に PLAN の test coverage（テスト被覆）を設計または audit するとき。
 - suite に新しい test level (unit / integration / system) を追加するとき。
 - 単純な assertion error ではない `bun run test` failure を調査するとき。
 - Retrofit または Reverse PLAN で、design docs の back-fill 前に existing code の
   baseline coverage を確立する必要があるとき。
 
-## HELIX の test levels
+## HELIX のテスト levels
 
 | Level | V-model layer | Location | Scope（対象範囲） |
 |-------|---------------|----------|-------|
@@ -61,7 +61,7 @@ suites で false failure が発生する。
 bun run test tests/<module>.test.ts
 ```
 
-**Coverage (gate を追加するとき):**
+**Coverage（gate を追加するとき）:**
 
 Coverage thresholds は `vitest.config.ts` にある。new tests の substance を確認せずに
 thresholds を上げない (coverage count は oracle quality と同じではない)。
@@ -72,13 +72,13 @@ thresholds を上げない (coverage count は oracle quality と同じではな
   state を test fixture として再利用しない。test runs は live runtime なしで再現可能でなければならない。
 - `harness.db` を読む integration tests は、自前の in-memory または temp-file DB instance を
   set up / tear down する。
-- External process calls (`ut-tdd` CLI の spawn) は、制御された `CLAUDE_PROJECT_DIR` を注入する
+- 外部 process calls（`ut-tdd` CLI の spawn）は、制御された `CLAUDE_PROJECT_DIR` を注入する
   helper で wrap し、hook paths が deterministic に解決されるようにする。
 
 ## Coverage と substance
 
-green coverage percentage は test oracles が meaningful であることを証明しない。
-tests 追加後に確認する: この test は wrong return value を捕捉できるか。
+green の coverage percentage は、test oracles が意味のある検証であることを証明しない。
+tests 追加後に確認する: この test は誤った return value を捕捉できるか。
 `.ut-tdd/` への missing write を捕捉できるか。できないなら、coverage が有用だと判断する前に
 assertion を強める。
 
@@ -97,7 +97,7 @@ Retrofit または Reverse PLAN の下で existing code の tests を back-fill 
 
 1. `bun run test` を実行し、current pass/fail state を記録する。
 2. `ut-tdd graph` または manual review で cover 対象の code paths を特定する。
-3. design changes より前に characterisation tests (current behaviour を oracle として記述) を書く。
+3. design changes より前に characterisation tests（現在の behaviour を oracle として記述）を書く。
    これが regression fence になる。
 4. characterisation tests と pair する L6 unit-test design docs を `docs/test-design/` に back-fill する。
 5. その後にだけ design changes または Forward-merge へ進む。
