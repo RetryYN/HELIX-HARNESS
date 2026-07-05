@@ -91,7 +91,7 @@ frontiers は completed work に数えない。
 2026-07-01 の re-read では同じ R4 route を維持し、狭い correction を追加する。audit は
 pair-agent TDD、setup / rename command availability、visualization amendment、現在の
 outstanding blockers に対する明示的な feature-list check を記録する。これは既存の design
-boundary の明確化であり、`.helix -> .helix` の適用や S4-pending work の昇格を承認するものではない。
+boundary の明確化であり、`旧 state path -> .helix` の適用や S4-pending work の昇格を承認するものではない。
 
 ## §3 工程表 (Step + 進捗)
 

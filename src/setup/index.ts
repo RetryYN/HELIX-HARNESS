@@ -716,7 +716,7 @@ export interface HelixProjectSkipSubDocRecord {
 export interface HelixProjectSetupResult extends SetupResult {
   schemaVersion: "helix-project-setup.v1";
   setupCommand: "helix setup project";
-  futureCommand: "helix setup project";
+  canonicalCommand: "helix setup project";
   githubPlan: HelixProjectGithubPlan;
   doctorBaseline: HelixProjectDoctorBaseline;
   importReport: HelixProjectImportReport;
@@ -747,9 +747,7 @@ export interface HelixProjectSetupResult extends SetupResult {
     currentCli: "helix";
     currentStateDir: ".helix";
     currentArea: "area=helix";
-    targetCli: "helix";
-    targetStateDir: ".helix";
-    targetArea: "area=helix";
+    remainingApprovalSurface: "external_apply_and_completion_decision";
     status: "blocked_pending_cutover_approval";
     mustNotApply: true;
     cutoverPlanCommand: "helix rename plan --json";
@@ -758,9 +756,9 @@ export interface HelixProjectSetupResult extends SetupResult {
   commandAvailability: {
     currentCommand: "helix setup project";
     currentCommandAvailable: boolean;
-    futureCommand: "helix setup project";
-    futureCommandAvailable: false;
-    enablementStatus: "blocked_pending_cutover_approval";
+    canonicalCommand: "helix setup project";
+    canonicalCommandAvailable: boolean;
+    enablementStatus: "canonical_helix_surface";
     enablementPacketCommand: "helix rename plan --json";
     reason: string;
   };
@@ -2712,7 +2710,7 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
   return {
     schemaVersion: "helix-project-setup.v1",
     setupCommand: "helix setup project",
-    futureCommand: "helix setup project",
+    canonicalCommand: "helix setup project",
     githubPlan: PROJECT_GITHUB_PLAN,
     doctorBaseline: PROJECT_DOCTOR_BASELINE,
     phase,
@@ -2746,24 +2744,22 @@ export function runHelixProjectSetup(args: SetupArgs, deps: SetupDeps): HelixPro
       currentCli: "helix",
       currentStateDir: ".helix",
       currentArea: "area=helix",
-      targetCli: "helix",
-      targetStateDir: ".helix",
-      targetArea: "area=helix",
+      remainingApprovalSurface: "external_apply_and_completion_decision",
       status: "blocked_pending_cutover_approval",
       mustNotApply: true,
       cutoverPlanCommand: "helix rename plan --json",
       reason:
-        "setup が生成 state を .helix から .helix へ切り替えるには PLAN-M-02 cutover/action-binding approval が必要。",
+        "HELIX CLI/state は現行 surface。残る PLAN-M-02 判断は外部適用、completion decision、運用承認の frontier を setup 完了と混同しないために保持する。",
     },
     commandAvailability: {
       currentCommand: "helix setup project",
       currentCommandAvailable,
-      futureCommand: "helix setup project",
-      futureCommandAvailable: false,
-      enablementStatus: "blocked_pending_cutover_approval",
+      canonicalCommand: "helix setup project",
+      canonicalCommandAvailable: currentCommandAvailable,
+      enablementStatus: "canonical_helix_surface",
       enablementPacketCommand: "helix rename plan --json",
       reason:
-        "`helix` command 名は post-cutover target。package/bin alias activation には PLAN-M-02 cutover/action-binding approval が必要。",
+        "`helix` command 名は現行の正規 surface。rename plan は外部適用・completion decision・運用承認の未完了 frontier を確認するために残す。",
     },
     nextCommands: postSetupWorkflow.verificationCommands,
   };

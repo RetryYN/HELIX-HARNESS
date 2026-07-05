@@ -98,7 +98,7 @@ source 名だけの evidence に戻さない。
 
 ## 境界
 
-- `.helix -> .helix` の実 state move、CLI alias 有効化、package/bin rename は実行しない。
+- `旧 state path -> .helix` の実 state move、CLI alias 有効化、package/bin rename は実行しない。
 - `rename plan` は plan-only / mustNotApply のまま保持する。
 - human/action-binding approval の代替判断はしない。
 

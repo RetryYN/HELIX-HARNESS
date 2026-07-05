@@ -140,7 +140,7 @@ function writeConcreteActorWithOutcomeChoices(root: string) {
       "- allowed_outcome: `approve_action_binding` / `deny_action`",
       "- approved_actor: codex",
       "- approved_tool: helix rename apply",
-      "- approved_target: .helix -> .helix",
+      "- approved_target: 旧 state path -> .helix",
     ].join("\n"),
   );
 }
@@ -181,7 +181,7 @@ function writeApprovedRenamePlan(root: string, snapshotId = CONCRETE_SNAPSHOT_ID
       "- approval_scope: limited CLI/bin rename and .helix state dir migration only",
       "- approved_actor: codex",
       "- approved_tool: helix rename apply",
-      "- approved_target: .helix -> .helix",
+      "- approved_target: 旧 state path -> .helix",
       "- approved_params: reviewed command params hash abc123",
       "- review_approval_evidence: dry-run risk review rollback full test doctor evidence",
       `- reviewed_snapshot_binding: cutoverSnapshot.snapshotId ${snapshotId}`,
@@ -235,7 +235,7 @@ function writeMinimalApprovedRenamePlan(root: string) {
       "- allowed_outcome: approve_action_binding",
       "- approved_actor: codex",
       "- approved_tool: helix rename apply",
-      "- approved_target: .helix -> .helix",
+      "- approved_target: 旧 state path -> .helix",
     ].join("\n"),
   );
 }
@@ -2026,7 +2026,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         expect.arrayContaining([
           expect.stringContaining("cutover_decision_record approves"),
           expect.stringContaining("helix setup project --dry-run --json"),
-          expect.stringContaining("legacy helix alias disposition"),
+          expect.stringContaining("legacy alias disposition"),
         ]),
       );
     } finally {

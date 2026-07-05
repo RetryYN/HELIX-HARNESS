@@ -75,5 +75,5 @@ middle layer を hardening する。
 
 ## Review
 
-これは design-only correction である。`.helix -> .helix` は適用せず、serverless / version-up work も有効化しない。
+これは design-only correction である。`旧 state path -> .helix` は適用せず、serverless / version-up work も有効化しない。
 また、`PLAN-DISCOVERY-10` を S3 から昇格させない。

@@ -77,4 +77,4 @@ review_evidence:
 
 - [x] `ConsumerReadinessPlan.rollback.commands` が `setup project` 入口を返す。
 - [x] 旧 `helix setup --dry-run` / `helix setup --solo` が rollback commands に混入しないことを test で固定する。
-- [x] PLAN-M-02 の `.helix -> .helix` cutover、branch protection apply、secret / PII / external API apply は実行しない。
+- [x] PLAN-M-02 の `旧 state path -> .helix` cutover、branch protection apply、secret / PII / external API apply は実行しない。

@@ -1091,7 +1091,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(preview).toMatchObject({
       schemaVersion: "helix-project-setup.v1",
       setupCommand: "helix setup project",
-      futureCommand: "helix setup project",
+      canonicalCommand: "helix setup project",
       phase: "0-A",
       githubPlan: {
         schemaVersion: "helix-project-github-plan.v1",
@@ -1150,9 +1150,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         currentCli: "helix",
         currentStateDir: ".helix",
         currentArea: "area=helix",
-        targetCli: "helix",
-        targetStateDir: ".helix",
-        targetArea: "area=helix",
+        remainingApprovalSurface: "external_apply_and_completion_decision",
         status: "blocked_pending_cutover_approval",
         mustNotApply: true,
         cutoverPlanCommand: "helix rename plan --json",
@@ -1160,9 +1158,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       commandAvailability: {
         currentCommand: "helix setup project",
         currentCommandAvailable: false,
-        futureCommand: "helix setup project",
-        futureCommandAvailable: false,
-        enablementStatus: "blocked_pending_cutover_approval",
+        canonicalCommand: "helix setup project",
+        canonicalCommandAvailable: false,
+        enablementStatus: "canonical_helix_surface",
         enablementPacketCommand: "helix rename plan --json",
       },
       postSetupWorkflow: {
@@ -1174,7 +1172,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       },
     });
     expect(preview.identifierTransition.reason).toContain("PLAN-M-02");
-    expect(preview.commandAvailability.reason).toContain("package/bin alias activation");
+    expect(preview.commandAvailability.reason).toContain("現行の正規 surface");
     expect(preview.githubPlan.generatedPolicyFiles).toEqual(
       expect.arrayContaining([
         ".github/workflows/harness-check.yml",

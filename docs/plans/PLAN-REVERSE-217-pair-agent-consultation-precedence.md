@@ -136,4 +136,4 @@ parser tweak ではなく workflow rule として扱う。semantic source は HR
 
 - `PLAN-L7-217` とこの Reverse PLAN は add-impl backfill のため相互に require する。
 - 新しい behavior は `HU-PILLAR-P2-04` で test-cited される。
-- この backfill は whole-program completion や `.helix -> .helix` cutover を claim しない。
+- この backfill は whole-program completion や `旧 state path -> .helix` cutover を claim しない。

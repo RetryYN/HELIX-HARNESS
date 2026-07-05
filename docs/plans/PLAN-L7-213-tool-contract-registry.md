@@ -107,7 +107,7 @@ request と response の両方の evidence を検証できるようにする。
 
 - この PLAN では loop effort-budget enforcement を実装しない。
 - この PLAN では hosted/API developer tools を機械的な hook coverage 対象にしない。
-- この PLAN では `.helix -> .helix` cutover を有効化しない。
+- この PLAN では `旧 state path -> .helix` cutover を有効化しない。
 
 ## 設計メモ
 

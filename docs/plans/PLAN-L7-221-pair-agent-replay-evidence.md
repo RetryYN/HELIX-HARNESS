@@ -234,7 +234,7 @@ light-implementation -> smart-review の順序を証明できない保存済み 
 - 外部 provider の CLI は実行しない。
 - frontier approval requirements は変更しない。
 - pair-agent のローカル pass を CI / merge gate の代替にはしない。
-- `.helix -> .helix` cutover は適用しない。
+- `旧 state path -> .helix` cutover は適用しない。
 
 ## 完了条件
 

@@ -1580,7 +1580,7 @@ rename
     }
     if (!audit.cutoverApproved) {
       process.stdout.write(
-        `  required: ${audit.requiredRecords.join(", ")} before .helix -> .helix apply\n`,
+        `  required: ${audit.requiredRecords.join(", ")} before 旧 state path -> .helix apply\n`,
       );
     }
   });
@@ -4969,10 +4969,10 @@ setupCommand
       `vscode-profile: ${r.vscode.profileName} command=${r.vscode.profileOpenCommand} source=${r.vscode.profileSourceUrl} checked=${r.vscode.profileSourceCheckedAt}\n`,
     );
     process.stdout.write(
-      `identifier-transition: ${r.identifierTransition.currentStateDir} -> ${r.identifierTransition.targetStateDir} ${r.identifierTransition.status} (${r.identifierTransition.cutoverPlanCommand})\n`,
+      `identifier-transition: ${r.identifierTransition.currentCli}/${r.identifierTransition.currentStateDir}/${r.identifierTransition.currentArea} ${r.identifierTransition.status} remaining=${r.identifierTransition.remainingApprovalSurface} (${r.identifierTransition.cutoverPlanCommand})\n`,
     );
     process.stdout.write(
-      `command-availability: ${r.commandAvailability.currentCommand} available=${r.commandAvailability.currentCommandAvailable}; ${r.commandAvailability.futureCommand} available=${r.commandAvailability.futureCommandAvailable} (${r.commandAvailability.enablementPacketCommand})\n`,
+      `command-availability: ${r.commandAvailability.canonicalCommand} available=${r.commandAvailability.canonicalCommandAvailable} status=${r.commandAvailability.enablementStatus} (${r.commandAvailability.enablementPacketCommand})\n`,
     );
     process.stdout.write(
       `branch-protection: ${

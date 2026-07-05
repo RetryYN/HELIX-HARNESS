@@ -88,7 +88,7 @@ testing strategy を必須 row として扱い、expected URL と required field
 
 ## 境界
 
-- `.helix -> .helix` の実 cutover / state move / alias enablement は実行しない。
+- `旧 state path -> .helix` の実 cutover / state move / alias enablement は実行しない。
 - `cutover-readiness` は承認前 evidence gate であり、PO/action-binding approval の代替判断をしない。
 
 ## 完了条件

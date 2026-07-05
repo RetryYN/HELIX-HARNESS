@@ -119,7 +119,7 @@ review_evidence:
 
 - `PLAN-L7-146-serverless-readonly-share` は activation しない。
 - apply permission、deployment permission、secret access、action-binding approval は付与しない。
-- `.helix -> .helix` cutover は実行しない。
+- `旧 state path -> .helix` cutover は実行しない。
 
 ## 外部根拠
 

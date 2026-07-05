@@ -101,7 +101,7 @@ HR-NFR-AC-02 gap を閉じる。実装は hosted/API edit が repo hook covered 
 - この PLAN は hosted/API developer tool を機械的な hook-covered 状態にはしない。
 - この PLAN は rule-drift と shared-memory enforcement を将来のすべての
   agent surface へ一般化しない。
-- この PLAN は `.helix -> .helix` cutover を有効化しない。
+- この PLAN は `旧 state path -> .helix` cutover を有効化しない。
 
 ## 設計メモ
 

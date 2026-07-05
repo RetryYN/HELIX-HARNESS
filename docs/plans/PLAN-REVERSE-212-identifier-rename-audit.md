@@ -34,7 +34,7 @@ backprop_scope:
   - layer: L6-test-design
     decision: updated
     evidence_path: docs/test-design/helix/L6-pillar-unit-test-design.md
-    reason: "HU-PILLAR-P6-04 now covers rename audit output and blocked apply semantics before any irreversible .helix -> .helix move."
+    reason: "HU-PILLAR-P6-04 now covers rename audit output and blocked apply semantics before any irreversible 旧 state path -> .helix move."
   - layer: L14-cutover-plan
     decision: updated
     evidence_path: docs/plans/PLAN-M-02-helix-identifier-rename.md
@@ -91,7 +91,7 @@ cutover decision と action-binding approval record が具体化するまで blo
 
 - `HC-P6` は rename apply の安全な前段として `auditIdentifierRenameBlastRadius(input)` を含む。
 - `HU-PILLAR-P6-04` は audit output と fail-closed approval semantics の両方を検証する。
-- `PLAN-M-02` は Step 1 の部分進捗だけを記録する。`.helix -> .helix` state migration、CLI/bin rename、
+- `PLAN-M-02` は Step 1 の部分進捗だけを記録する。`旧 state path -> .helix` state migration、CLI/bin rename、
   hook/adapter marker rewrite、action binding は承認しない。
 - cutover packet は structured backup、freeze、re-approval、provenance field を持つため、apply 前に
   approval を意味面で判断できる。

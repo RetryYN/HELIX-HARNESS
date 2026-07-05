@@ -145,7 +145,7 @@ commit/push evidence を信頼する前提として必要な audit-safe gate cor
 
 - external provider CLIs は実行しない。
 - T0 frontier approval requirements は変更しない。
-- `.helix -> .helix` cutover は activate しない。
+- `旧 state path -> .helix` cutover は activate しない。
 - pair-agent local pass は CI/merge gate の substitute として扱わない。
 
 ## DoD

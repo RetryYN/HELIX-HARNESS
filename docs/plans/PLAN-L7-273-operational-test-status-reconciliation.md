@@ -79,7 +79,7 @@ L1 運用テスト設計の HOT-P6 / HOT-P8 は、過去の大きな未実装領
 一方で下位では `helix setup project`、consumer doctor baseline、version-up dry-run / activation packet、
 source ledger freshness / decision packet gate が実装・検証済みであり、上位表記が現在の機能一覧とズレていた。
 
-この PLAN は、承認待ちの外部適用や `.helix -> .helix` cutover を完了扱いにせず、実装済み範囲を `partial`
+この PLAN は、承認待ちの外部適用や `旧 state path -> .helix` cutover を完了扱いにせず、実装済み範囲を `partial`
 として明示し、残 GAP を分離する。
 
 ## 変更

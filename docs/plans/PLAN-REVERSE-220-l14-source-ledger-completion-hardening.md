@@ -80,5 +80,5 @@ test-design 側のみである。
 
 ## 非対象
 
-この plan は `.helix -> .helix` cutover を承認しない。serverless/version-up
+この plan は `旧 state path -> .helix` cutover を承認しない。serverless/version-up
 作業も有効化せず、保留中の S4 Discovery work も決定しない。

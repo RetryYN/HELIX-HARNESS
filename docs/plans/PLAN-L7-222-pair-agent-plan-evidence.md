@@ -104,7 +104,7 @@ provider 実行が始まる前に、planning phase を再生可能にする。
 
 - 外部 provider CLI は実行しない。
 - T0 frontier 実行を承認しない。
-- `.helix -> .helix` cutover は有効化しない。
+- `旧 state path -> .helix` cutover は有効化しない。
 - local pair-agent evidence を CI / merge gate の代替として扱わない。
 
 ## DoD

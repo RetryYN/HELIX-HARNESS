@@ -17,7 +17,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "継続実装: rename cutover packet は structured stateBackupManifest、freezePolicy、provenanceRequirements を出し、PLAN-M-02 approval を明示的な backup、freeze、再承認、audit-evidence field から判断できるようにした。surface は plan-only のままで、.helix -> .helix は適用しない。"
+    scope: "継続実装: rename cutover packet は structured stateBackupManifest、freezePolicy、provenanceRequirements を出し、PLAN-M-02 approval を明示的な backup、freeze、再承認、audit-evidence field から判断できるようにした。surface は plan-only のままで、旧 state path -> .helix は適用しない。"
     green_commands:
       - kind: unit_test
         command: "bun test tests/identifier-rename.test.ts tests/cutover-readiness.test.ts tests/action-binding-approval-readiness.test.ts"
@@ -50,7 +50,7 @@ review_evidence:
     verdict: pass
     worker_model: codex
     reviewer_model: codex-intra-runtime
-    scope: "PLAN-M-02 Step 1 support: helix、.helix、area=helix 向けに non-destructive な identifier rename blast-radius audit と cutover packet を追加した。cutover_decision_record と action_binding_approval_record が concrete approval value を持つまでは audit は blocked_pending_cutover_approval を返す。rename plan は dry-run / rollback / monitoring / approval-gate material を出すが、不可逆な .helix -> .helix state move は実行しない。"
+    scope: "PLAN-M-02 Step 1 support: helix、.helix、area=helix 向けに non-destructive な identifier rename blast-radius audit と cutover packet を追加した。cutover_decision_record と action_binding_approval_record が concrete approval value を持つまでは audit は blocked_pending_cutover_approval を返す。rename plan は dry-run / rollback / monitoring / approval-gate material を出すが、不可逆な 旧 state path -> .helix state move は実行しない。"
     green_commands:
       - kind: unit_test
         command: "bun test tests/identifier-rename.test.ts"
@@ -120,7 +120,7 @@ dry-run / rollback / monitoring / approval gate を出すだけで apply command
 - [x] dry-run / rollback / monitoring / approval gate を含む非破壊 cutover packet を JSON で出せる。
 - [x] state backup manifest / frozen HEAD quiet window single-run reapproval / provenance requirements を構造化 JSON field として出せる。
 - [x] `HELIX-HARNESS` 系の旧 repository name がファイル名・フォルダ名へ戻らないことを doctor hard gate で検査する。
-- [x] `.helix -> .helix` apply は実行しない。
+- [x] `旧 state path -> .helix` apply は実行しない。
 - [x] `tests/identifier-rename.test.ts` / typecheck / lint / doctor 対象。
 
 ## §3 carry

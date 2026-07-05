@@ -101,4 +101,4 @@ JSON だけの追加ではなく workflow rule として扱う。
 
 - `PLAN-L7-218` とこの Reverse PLAN は、add-impl backfill のため相互に require する。
 - 新しい behavior は `HU-PILLAR-P1-02` により test-cited される。
-- この backfill は parked serverless work または `.helix -> .helix` cutover を activation しない。
+- この backfill は parked serverless work または `旧 state path -> .helix` cutover を activation しない。

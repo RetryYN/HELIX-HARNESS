@@ -1475,7 +1475,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload).toMatchObject({
       schemaVersion: "helix-project-setup.v1",
       setupCommand: "helix setup project",
-      futureCommand: "helix setup project",
+      canonicalCommand: "helix setup project",
       githubPlan: {
         schemaVersion: "helix-project-github-plan.v1",
         planOnly: true,
@@ -1528,16 +1528,15 @@ describe("L7 CLI surface closure", () => {
       },
       identifierTransition: {
         currentStateDir: ".helix",
-        targetStateDir: ".helix",
+        remainingApprovalSurface: "external_apply_and_completion_decision",
         status: "blocked_pending_cutover_approval",
         mustNotApply: true,
         cutoverPlanCommand: "helix rename plan --json",
       },
       commandAvailability: {
         currentCommand: "helix setup project",
-        futureCommand: "helix setup project",
-        futureCommandAvailable: false,
-        enablementStatus: "blocked_pending_cutover_approval",
+        canonicalCommand: "helix setup project",
+        enablementStatus: "canonical_helix_surface",
         enablementPacketCommand: "helix rename plan --json",
       },
       postSetupWorkflow: {
@@ -1786,7 +1785,7 @@ describe("L7 CLI surface closure", () => {
     );
     const currentAvailable = payload.commandAvailability.currentCommandAvailable;
     expect(text.stdout).toContain(
-      `command-availability: helix setup project available=${currentAvailable}; helix setup project available=false`,
+      `command-availability: helix setup project available=${currentAvailable} status=canonical_helix_surface`,
     );
   }, 15_000);
 

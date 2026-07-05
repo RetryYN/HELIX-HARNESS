@@ -94,7 +94,7 @@ cost、elapsed time に結び付け、予算超過の worker が継続したり 
 
 - この PLAN は hosted/API developer tools を mechanically hook-covered にしない。
 - この PLAN は full continuous-run heartbeat engine を実装しない。
-- この PLAN は `.helix -> .helix` cutover を有効化しない。
+- この PLAN は `旧 state path -> .helix` cutover を有効化しない。
 
 ## 設計メモ
 

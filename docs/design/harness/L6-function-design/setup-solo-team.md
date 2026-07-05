@@ -118,7 +118,7 @@ type TemplateSet = { [name: string]: string };     // テンプレ名 → 内容
 > emit-only 境界を再利用し、追加で status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor / rename plan / handover status / team run dry-run を開く `.vscode/tasks.json`、
 > `.vscode/settings.json` と
 > `.helix/memory` / `.helix/handover` / `.helix/evidence` / `.helix/teams` の project-local baseline を作る。
-> `runHelixProjectSetup` は現行 `.helix` baseline と将来 `helix setup project` / `.helix` 目標を
+> `runHelixProjectSetup` は現行 `.helix` baseline と `helix setup project` canonical commandを
 > `identifierTransition` として同時に返し、PLAN-M-02 cutover/action-binding approval が無い限り
 > `blocked_pending_cutover_approval` / `mustNotApply=true` を出す。
 > 親 `helix setup` は legacy solo/team adapter setup として残すが、text surface は

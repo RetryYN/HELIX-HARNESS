@@ -116,4 +116,4 @@ pair-agent plan evidence を backfill する。pair route は provider execution
 
 - `PLAN-L7-222` とこの Reverse PLAN は相互に required とする。
 - Plan evidence は additive なままで、provider は実行しない。
-- Frontier approval、`.helix -> .helix` cutover、CI/merge gate の境界は変更しない。
+- Frontier approval、`旧 state path -> .helix` cutover、CI/merge gate の境界は変更しない。

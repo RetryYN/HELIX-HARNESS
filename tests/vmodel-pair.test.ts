@@ -215,7 +215,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3).toContain("L1 §2.8 を含む revised");
     expect(l3).toContain("要求修正後の revised request 全体");
     expect(l3).toContain("pair-agent TDD route");
-    expect(l3).toContain("`.helix -> .helix` rename");
+    expect(l3).toContain("`旧 state path -> .helix` rename");
     expect(l3).toContain("S3 verified / S4 PO decision pending");
     expect(l3).toContain("G-SF `semantic_feature_frontier_record`");
     expect(l3).toContain(
@@ -1400,7 +1400,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "§0.1 実装可能機能一覧の意味境界",
       "pair-agent TDD / loop trace",
       "GitHub/setup/release/identifier rename",
-      "`.helix -> .helix`",
+      "`旧 state path -> .helix`",
       "view-model function",
       "VSCode Tree View / Webview",
     ]) {
