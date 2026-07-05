@@ -865,7 +865,8 @@ describe("plan schedule lint (IMP-081)", () => {
 
     // record あり → この violation は出ない
     const withRecord = s3Poc("PLAN-DISCOVERY-91-with-record");
-    withRecord.content += "\ns4_decision_record:\n- allowed_outcome: `confirmed` / `rejected` / `pivot`\n";
+    withRecord.content +=
+      "\ns4_decision_record:\n- allowed_outcome: `confirmed` / `rejected` / `pivot`\n";
     const ok = analyzePlanGovernance([withRecord]);
     expect(ok.violations.map((v) => v.reason)).not.toContain("missing_s4_decision_record");
 

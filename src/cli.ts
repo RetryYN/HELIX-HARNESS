@@ -84,13 +84,13 @@ import {
   buildIdentifierRenameRehearsalPlan,
   buildIdentifierRenameStateBackupDryRun,
 } from "./lint/identifier-rename";
+import { l1L2GapCheckMessages, loadL1L2GapCheckPacket } from "./lint/l1-l2-gap-check";
 import {
   analyzeObjectiveEvidenceAudit,
   loadObjectiveEvidenceAuditInput,
   loadObjectiveProgress,
   objectiveEvidenceAuditMessages,
 } from "./lint/objective-evidence-audit";
-import { l1L2GapCheckMessages, loadL1L2GapCheckPacket } from "./lint/l1-l2-gap-check";
 import {
   completionDecisionPacketForOutstanding,
   completionReadinessLine,
