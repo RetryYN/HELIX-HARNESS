@@ -177,6 +177,9 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
   `gh` 委譲認証未完了を分離する。
 - `helix github pr-body`、`helix github ci-status`、`helix github pr-create` を operation packet として追加し、
   PR body draft、GitHub Actions 状態取得不能 / green / red、draft PR 作成 dry-run / apply を分離する。
+- `helix github merge-readiness --json` は `gh auth status` だけでなく `gh repo view --json viewerPermission`
+  による repo write preflight を行い、`READ` / `TRIAGE` / `NONE` / 未確認を `repo_write_permission_required` として
+  PR 作成可能扱いにしない。
 - `harness.db` file-backed connection は WAL と busy timeout を有効化し、`db rebuild` と `doctor` / `status`
   の並行実行で読取側が last committed projection を参照できるようにする。
 - `harness.db` rebuild は schema migration も `BEGIN IMMEDIATE` 配下へ含め、DDL と projection の競合窓を閉じる。
@@ -198,6 +201,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - `goal-evidence-audit` と `cli-surface` test が G-06 artifact requirement と GitHub preflight isolation を検証する。
 - `github-merge-readiness` test が、認証済み agent の PR 作成可否、未認証時の委譲認証待ち分離、
   local evidence defect の fail-close を検証する。
+- `github-merge-readiness` test が、認証済みでも repo write 権限が不足する場合に
+  `canOpenPullRequest=false` / `externalPermissionBlocked=true` へ分離することを検証する。
 - `github-merge-readiness` test が、PR body draft の日本語-first readiness 欄と CI status packet の
   unavailable / green / red 分離を検証する。
 - `state-db` test が file-backed `harness.db` の WAL と busy timeout 設定を検証する。
@@ -222,3 +227,6 @@ GitHub 操作を無制限にするために guard を外すのではなく、AI 
 draft PR 作成、PR body 生成、CI 状態取得を正規 preflight と監査証跡つきで実行できるようにする。
 branch protection、ruleset、release/tag publish、repository rename、force-push は高影響境界として残す。
 今回の修正は、古い credential helper や不完全な digest による不透明な失敗・false green を潰す。
+`gh` 認証済みでも repo の `viewerPermission` が write-capable でない場合は、後段の `gh pr create` 失敗まで
+持ち越さず preflight packet で止める。これは HELIX agent の GitHub 運用を read-only に固定する規則ではなく、
+write-capable credential を安全に要求するための検査である。

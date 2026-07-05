@@ -17,6 +17,7 @@ describe("github merge readiness", () => {
       behind: 0,
       ghInstalled: true,
       ghAuthenticated: true,
+      viewerPermission: "WRITE",
     });
 
     expect(result).toMatchObject({
@@ -41,6 +42,7 @@ describe("github merge readiness", () => {
       behind: 0,
       ghInstalled: true,
       ghAuthenticated: false,
+      viewerPermission: null,
     });
 
     expect(result).toMatchObject({
@@ -56,6 +58,34 @@ describe("github merge readiness", () => {
     );
   });
 
+  it("requires repository write permission before marking PR creation as available", () => {
+    const result = analyzeGithubMergeReadiness({
+      baseBranch: "main",
+      currentBranch: "feature/github-readiness",
+      headSha: "abc123",
+      originUrl: "git@github.com:RetryYN/HELIX-HARNESS.git",
+      worktreeClean: true,
+      ahead: 2,
+      behind: 0,
+      ghInstalled: true,
+      ghAuthenticated: true,
+      viewerPermission: "READ",
+    });
+
+    expect(result).toMatchObject({
+      ok: true,
+      localReady: true,
+      canOpenPullRequest: false,
+      delegatedAuthRequired: false,
+      externalPermissionBlocked: true,
+      githubAccessState: "repo_write_permission_required",
+      viewerPermission: "READ",
+    });
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "repo_write_permission_required", severity: "info" }),
+    );
+  });
+
   it("blocks merge readiness for local evidence defects", () => {
     const result = analyzeGithubMergeReadiness({
       baseBranch: "main",
@@ -67,6 +97,7 @@ describe("github merge readiness", () => {
       behind: 1,
       ghInstalled: false,
       ghAuthenticated: false,
+      viewerPermission: null,
     });
 
     expect(result.localReady).toBe(false);

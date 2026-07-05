@@ -12,6 +12,7 @@ export interface GithubMergeReadinessInput {
   behind: number;
   ghInstalled: boolean;
   ghAuthenticated: boolean;
+  viewerPermission?: GithubViewerPermission | null;
 }
 
 export interface GithubMergeReadinessResult {
@@ -26,6 +27,7 @@ export interface GithubMergeReadinessResult {
   currentBranch: string;
   headSha: string;
   originUrl: string | null;
+  viewerPermission: GithubViewerPermission | null;
   ahead: number;
   behind: number;
   findings: GithubMergeReadinessFinding[];
@@ -33,6 +35,7 @@ export interface GithubMergeReadinessResult {
     push: string;
     createDraftPullRequest: string;
     inspectAuth: string;
+    inspectRepositoryPermission: string;
   };
 }
 
@@ -43,14 +46,18 @@ export interface GithubMergeReadinessFinding {
     | "base_not_ancestor"
     | "no_branch_delta"
     | "gh_missing"
-    | "gh_auth_required";
+    | "gh_auth_required"
+    | "repo_write_permission_required";
   severity: "error" | "info";
   message: string;
 }
 
+export type GithubViewerPermission = "ADMIN" | "MAINTAIN" | "WRITE" | "TRIAGE" | "READ" | "NONE";
+
 export type GithubAccessState =
   | "ready"
   | "delegated_auth_required"
+  | "repo_write_permission_required"
   | "gh_cli_missing"
   | "local_not_ready";
 
@@ -136,10 +143,32 @@ function shellQuote(value: string): string {
   return `'${value.replace(/'/g, "'\\''")}'`;
 }
 
+function normalizeViewerPermission(
+  value: string | null | undefined,
+): GithubViewerPermission | null {
+  const upper = value?.trim().toUpperCase();
+  if (
+    upper === "ADMIN" ||
+    upper === "MAINTAIN" ||
+    upper === "WRITE" ||
+    upper === "TRIAGE" ||
+    upper === "READ" ||
+    upper === "NONE"
+  ) {
+    return upper;
+  }
+  return null;
+}
+
+function canWriteWithViewerPermission(permission: GithubViewerPermission | null): boolean {
+  return permission === "ADMIN" || permission === "MAINTAIN" || permission === "WRITE";
+}
+
 export function analyzeGithubMergeReadiness(
   input: GithubMergeReadinessInput,
 ): GithubMergeReadinessResult {
   const findings: GithubMergeReadinessFinding[] = [];
+  const viewerPermission = normalizeViewerPermission(input.viewerPermission);
   if (!input.worktreeClean) {
     findings.push({
       code: "worktree_dirty",
@@ -181,9 +210,24 @@ export function analyzeGithubMergeReadiness(
       message: "GitHub CLI が未認証のため PR 作成は gh auth login 後に実行する",
     });
   }
+  if (
+    input.ghInstalled &&
+    input.ghAuthenticated &&
+    !canWriteWithViewerPermission(viewerPermission)
+  ) {
+    findings.push({
+      code: "repo_write_permission_required",
+      severity: "info",
+      message:
+        "GitHub repo の viewerPermission が未確認または WRITE/MAINTAIN/ADMIN ではないため PR 作成は write 権限付与後に実行する",
+    });
+  }
 
   const localReady = !findings.some((finding) => finding.severity === "error");
-  const canOpenPullRequest = localReady && input.ghInstalled && input.ghAuthenticated;
+  const hasRepoWritePermission =
+    !input.ghInstalled || !input.ghAuthenticated || canWriteWithViewerPermission(viewerPermission);
+  const canOpenPullRequest =
+    localReady && input.ghInstalled && input.ghAuthenticated && hasRepoWritePermission;
   const delegatedAuthRequired = localReady && input.ghInstalled && !input.ghAuthenticated;
   const githubAccessState: GithubAccessState = !localReady
     ? "local_not_ready"
@@ -191,8 +235,10 @@ export function analyzeGithubMergeReadiness(
       ? "gh_cli_missing"
       : !input.ghAuthenticated
         ? "delegated_auth_required"
-        : "ready";
-  const externalPermissionBlocked = false;
+        : !hasRepoWritePermission
+          ? "repo_write_permission_required"
+          : "ready";
+  const externalPermissionBlocked = githubAccessState === "repo_write_permission_required";
   return {
     schemaVersion: "helix-github-merge-readiness.v1",
     ok: localReady,
@@ -205,6 +251,7 @@ export function analyzeGithubMergeReadiness(
     currentBranch: input.currentBranch,
     headSha: input.headSha,
     originUrl: input.originUrl,
+    viewerPermission,
     ahead: input.ahead,
     behind: input.behind,
     findings,
@@ -212,6 +259,7 @@ export function analyzeGithubMergeReadiness(
       push: `git push -u origin ${shellQuote(input.currentBranch)}`,
       createDraftPullRequest: `gh pr create --draft --base ${shellQuote(input.baseBranch)} --head ${shellQuote(input.currentBranch)} --title <title>`,
       inspectAuth: "gh auth status",
+      inspectRepositoryPermission: "gh repo view --json viewerPermission --jq .viewerPermission",
     },
   };
 }
@@ -254,6 +302,20 @@ export function loadGithubMergeReadiness(
   const ghVersion = spawnSync("gh", ["--version"], { stdio: "ignore" });
   const ghInstalled = ghVersion.status === 0;
   const ghAuth = ghInstalled ? spawnSync("gh", ["auth", "status"], { stdio: "ignore" }) : null;
+  const viewerPermission =
+    ghInstalled && ghAuth?.status === 0
+      ? normalizeViewerPermission(
+          spawnSync(
+            "gh",
+            ["repo", "view", "--json", "viewerPermission", "--jq", ".viewerPermission"],
+            {
+              cwd: repoRoot,
+              encoding: "utf8",
+              stdio: ["ignore", "pipe", "ignore"],
+            },
+          ).stdout,
+        )
+      : null;
   const aheadBehind = parseAheadBehind(
     git(repoRoot, ["rev-list", "--left-right", "--count", `origin/${baseBranch}...HEAD`], "0 0"),
   );
@@ -267,6 +329,7 @@ export function loadGithubMergeReadiness(
     behind: aheadBehind.behind,
     ghInstalled,
     ghAuthenticated: ghAuth?.status === 0,
+    viewerPermission,
   });
 }
 
@@ -432,7 +495,9 @@ export function runGithubPrCreate(
       localReady: readiness.localReady,
       readyToApply,
       ghInstalled: readiness.findings.every((finding) => finding.code !== "gh_missing"),
-      ghAuthenticated: readiness.githubAccessState === "ready",
+      ghAuthenticated:
+        readiness.githubAccessState === "ready" ||
+        readiness.githubAccessState === "repo_write_permission_required",
       delegatedAuthRequired: readiness.delegatedAuthRequired,
       externalPermissionBlocked: readiness.externalPermissionBlocked,
       githubAccessState: readiness.githubAccessState,
@@ -463,6 +528,9 @@ export function runGithubPrCreate(
     ],
     { cwd: repoRoot, encoding: "utf8" },
   );
+  const externalPermissionBlocked =
+    created.status !== 0 &&
+    /permission|forbidden|403|resource not accessible/i.test(created.stderr);
   return {
     schemaVersion: "helix-github-pr-create.v1",
     ok: created.status === 0,
@@ -473,9 +541,8 @@ export function runGithubPrCreate(
     ghInstalled: true,
     ghAuthenticated: true,
     delegatedAuthRequired: false,
-    externalPermissionBlocked:
-      created.status !== 0 && /permission|forbidden|403/i.test(created.stderr),
-    githubAccessState: "ready",
+    externalPermissionBlocked,
+    githubAccessState: externalPermissionBlocked ? "repo_write_permission_required" : "ready",
     baseBranch: draft.baseBranch,
     headBranch: draft.headBranch,
     headSha: draft.headSha,
@@ -550,9 +617,10 @@ export function loadGithubCiStatus(
 export function renderGithubMergeReadiness(result: GithubMergeReadinessResult): string {
   const lines = [
     `github merge-readiness: ${result.ok ? "local-ready" : "blocked"} branch=${result.currentBranch} base=${result.baseBranch} ahead=${result.ahead} behind=${result.behind}`,
-    `  - access=${result.githubAccessState} canOpenPullRequest=${result.canOpenPullRequest} delegatedAuthRequired=${result.delegatedAuthRequired}`,
+    `  - access=${result.githubAccessState} viewerPermission=${result.viewerPermission ?? "unknown"} canOpenPullRequest=${result.canOpenPullRequest} delegatedAuthRequired=${result.delegatedAuthRequired}`,
     `  - push: ${result.commands.push}`,
     `  - draft-pr: ${result.commands.createDraftPullRequest}`,
+    `  - inspect-permission: ${result.commands.inspectRepositoryPermission}`,
   ];
   for (const finding of result.findings) {
     lines.push(`  - ${finding.severity} ${finding.code}: ${finding.message}`);
