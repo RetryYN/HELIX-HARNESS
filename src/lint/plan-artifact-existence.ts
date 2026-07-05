@@ -34,10 +34,10 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadReviewPlans } from "./review-evidence";
-import { normalizePath } from "./shared";
+import { isTerminalPlanStatus, normalizePath } from "./shared";
 
-/** 完了宣言とみなす status。これらは generates 全件が実在 + 非空であるべき。 */
-const COMPLETED_STATUSES: ReadonlySet<string> = new Set(["confirmed", "completed", "accepted"]);
+// 完了宣言とみなす status は shared.ts の TERMINAL_PLAN_STATUSES (正本) を使う。
+// これらの status では generates 全件が実在 + 非空であるべき。
 
 /** 意図的に空であってよい placeholder の basename (hollow 検査の除外)。 */
 const HOLLOW_EXEMPT_BASENAMES: ReadonlySet<string> = new Set([".gitkeep"]);
@@ -74,7 +74,7 @@ export function analyzePlanArtifactExistence(
   input: PlanArtifactExistenceInput,
 ): PlanArtifactExistenceResult {
   const violations = input.plans
-    .filter((p) => COMPLETED_STATUSES.has(p.status.toLowerCase()))
+    .filter((p) => isTerminalPlanStatus(p.status))
     .map((p) => ({
       planId: p.planId,
       status: p.status,
@@ -131,7 +131,7 @@ export function loadPlanArtifactExistenceInput(repoRoot: string): PlanArtifactEx
   for (const rp of reviewPlans) {
     // archived は完了後に成果物を整理・削除することがある (phantom false-positive) → 対象外。
     if (rp.status === "archived") continue;
-    if (!COMPLETED_STATUSES.has(rp.status.toLowerCase())) continue;
+    if (!isTerminalPlanStatus(rp.status)) continue;
     let content = "";
     try {
       content = readFileSync(join(plansDir, rp.file), "utf8");

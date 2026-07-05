@@ -1,9 +1,11 @@
 ---
 description: frozen spec/test design に基づき HELIX quality gate 付きで実装する
 argument-hint: "<PLAN id or feature>"
+judgment_core: v1
 ---
 
 HELIX では incrementally に実装する。`incremental-implementation` skill を使う。
+判断規律（普遍 7 原則・工程別チェック）の正本は `docs/skills/judgment-core.md`（判断コア SSoT）。
 
 Target: $ARGUMENTS
 

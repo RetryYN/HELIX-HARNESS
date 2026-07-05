@@ -4,6 +4,7 @@ description: 最上位アドバイザー (Fable)。TL advisor 相談後も疑問
 tools: Read, Grep, Glob, Bash
 model: claude-fable-5
 effort: high
+judgment_core: v1
 memory: project
 maxTurns: 25
 ---
@@ -30,6 +31,12 @@ maxTurns: 25
    (実装は fe-lead/fe-ui のオーケストレーションが担う)。
 
 該当しない日常判断には呼ばない (コスト最上位帯のため、乱用は agent-cost 設計に反する)。
+
+## 判断コア（judgment-core v1）
+
+本 agent の 5 軸は `docs/skills/judgment-core.md`（判断コア SSoT）の §1 普遍 7 原則へ昇格済みで、
+全実装・レビュー agent に継承されている。5 軸は SSoT §1-1〜§1-5 に対応し、本書はその適用先鋭化
+（最上位セカンドオピニオン向け）である。SSoT を改訂したら frontmatter の marker を追随させる。
 
 ## 評価観点 (毎回この 5 軸で判定する)
 

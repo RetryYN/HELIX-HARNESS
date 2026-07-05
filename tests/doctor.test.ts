@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   checkActionBindingApprovalReadiness,
   checkAgentSlots,
+  checkAllowlistSync,
   checkAssetDrift,
   checkBackfillResult,
   checkChangeImpact,
@@ -29,6 +30,7 @@ import {
   checkHandover,
   checkHandoverDisciplineMessages,
   checkImplPlanTrace,
+  checkJudgmentCoreCoverage,
   checkL6Completion,
   checkL6FrCoverage,
   checkL7Completion,
@@ -46,6 +48,7 @@ import {
   checkPropagation,
   checkReadability,
   checkRegressionExpansion,
+  checkRequirementsBindingConfig,
   checkReviewEvidence,
   checkRightArmVerificationStrategy,
   checkRoadmap,
@@ -2251,6 +2254,22 @@ describe("runDoctor", () => {
     expect(hasDoctorMessageWith(r.messages, "doctor: asset-drift", "OK")).toBe(true);
   });
 
+  it("includes allowlist-sync hard gate in doctor output", () => {
+    const sync = checkAllowlistSync(process.cwd());
+    const r = liveDoctor();
+
+    expect(sync.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: allowlist-sync - OK")).toBe(true);
+  });
+
+  it("includes judgment-core-coverage hard gate in doctor output", () => {
+    const coverage = checkJudgmentCoreCoverage(process.cwd());
+    const r = liveDoctor();
+
+    expect(coverage.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: judgment-core-coverage - OK")).toBe(true);
+  });
+
   it("includes skill-assignment hard gate in doctor output", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: skill-assignment - OK")).toBe(true);
@@ -2330,6 +2349,14 @@ describe("runDoctor", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: g1-trace - OK")).toBe(true);
     expect(hasDoctorMessage(r.messages, "doctor: g3-trace - OK")).toBe(true);
+  });
+
+  it("includes requirements-binding config hard gate in doctor output", () => {
+    const config = checkRequirementsBindingConfig(process.cwd());
+    const r = liveDoctor();
+
+    expect(config.ok).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: requirements-binding-config - OK")).toBe(true);
   });
 
   it("hard-gates PLAN governance once repo frontmatter debt is closed", () => {

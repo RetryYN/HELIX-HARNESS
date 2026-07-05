@@ -8,6 +8,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, isAbsolute, join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { loadRequirementsBindingConfig } from "../config/requirements-binding";
 import {
   checkHandoverBypass,
   checkHandoverCompletionDecisionPacket,
@@ -32,6 +33,11 @@ import {
   loadAgentModelEntries,
   loadCanonicalModelIds,
 } from "../lint/agent-model-ssot";
+import {
+  allowlistSyncMessages,
+  analyzeAllowlistSync,
+  loadAllowlistSyncInput,
+} from "../lint/allowlist-sync";
 import { analyzeAssetDrift, assetDriftMessages, loadAssetDriftInput } from "../lint/asset-drift";
 import { analyzeBackfill, backfillMessages, loadBackfillDocs } from "../lint/backfill-pairing";
 import { analyzeBranchKind, branchKindMessages, loadBranchKindInput } from "../lint/branch-kind";
@@ -175,6 +181,11 @@ import {
   analyzeImprovementBacklog,
   loadBacklog as loadImprovementBacklog,
 } from "../lint/improvement-backlog";
+import {
+  analyzeJudgmentCoreCoverage,
+  judgmentCoreCoverageMessages,
+  loadJudgmentCoreCoverageInput,
+} from "../lint/judgment-core-coverage";
 import {
   analyzeL1L2Consistency,
   l1L2ConsistencyMessages,
@@ -826,6 +837,30 @@ export function checkAssetDrift(repoRoot: string): { messages: string[]; ok: boo
   } catch {
     return {
       messages: ["asset-drift — violation: internal asset drift lint could not run"],
+      ok: false,
+    };
+  }
+}
+
+export function checkAllowlistSync(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const result = analyzeAllowlistSync(loadAllowlistSyncInput(repoRoot));
+    return { messages: allowlistSyncMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["allowlist-sync - violation: allowlist sync input could not be read"],
+      ok: false,
+    };
+  }
+}
+
+export function checkJudgmentCoreCoverage(repoRoot: string): { messages: string[]; ok: boolean } {
+  try {
+    const result = analyzeJudgmentCoreCoverage(loadJudgmentCoreCoverageInput(repoRoot));
+    return { messages: judgmentCoreCoverageMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["judgment-core-coverage - violation: judgment core docs could not be read"],
       ok: false,
     };
   }
@@ -1718,6 +1753,15 @@ export function checkL1L2Consistency(repoRoot: string): { messages: string[]; ok
       ok: false,
     };
   }
+}
+
+/** HELIX 要件拘束の閾値 config が存在し、schema に適合することを hard gate として検査する。 */
+export function checkRequirementsBindingConfig(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  const result = loadRequirementsBindingConfig(repoRoot, { requireFile: true });
+  return { messages: result.messages, ok: result.ok };
 }
 
 /** git tracked top-level ⊆ repository-structure.md canonical の突合を hard gate として検査する。 */
@@ -3247,6 +3291,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const mergedPlanStatus = checkMergedPlanStatus(deps.repoRoot);
   const planArtifactExistence = checkPlanArtifactExistence(deps.repoRoot);
   const assetDrift = checkAssetDrift(deps.repoRoot);
+  const allowlistSync = checkAllowlistSync(deps.repoRoot);
+  const judgmentCoreCoverage = checkJudgmentCoreCoverage(deps.repoRoot);
   const skillAssignment = checkSkillAssignment(deps.repoRoot);
   const descentObligation = checkDescentObligation(deps.repoRoot);
   const changeImpact = checkChangeImpact(deps.repoRoot);
@@ -3289,6 +3335,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const subDocSectionStructure = checkSubDocSectionStructure(deps.repoRoot);
   const screenImplPairFreeze = checkScreenImplPairFreeze(deps.repoRoot);
   const l1L2Consistency = checkL1L2Consistency(deps.repoRoot);
+  const requirementsBindingConfig = checkRequirementsBindingConfig(deps.repoRoot);
   const verificationGroups = checkVerificationGroupsResult(deps.repoRoot);
   const dependencyDrift = checkDependencyDrift(deps.repoRoot);
   const regressionExpansion = checkRegressionExpansion(deps.repoRoot, dependencyDrift.result);
@@ -3343,6 +3390,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       mergedPlanStatus.ok &&
       planArtifactExistence.ok &&
       assetDrift.ok &&
+      allowlistSync.ok &&
+      judgmentCoreCoverage.ok &&
       skillAssignment.ok &&
       descentObligation.ok &&
       changeImpact.ok &&
@@ -3386,6 +3435,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       subDocSectionStructure.ok &&
       screenImplPairFreeze.ok &&
       l1L2Consistency.ok &&
+      requirementsBindingConfig.ok &&
       dependencyDrift.ok &&
       regressionExpansion.ok &&
       dbProjectionCoverage.ok &&
@@ -3437,6 +3487,8 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...mergedPlanStatus.messages.map((m) => `doctor: ${m}`),
       ...planArtifactExistence.messages.map((m) => `doctor: ${m}`),
       ...assetDrift.messages.map((m) => `doctor: ${m}`),
+      ...allowlistSync.messages.map((m) => `doctor: ${m}`),
+      ...judgmentCoreCoverage.messages.map((m) => `doctor: ${m}`),
       ...skillAssignment.messages.map((m) => `doctor: ${m}`),
       ...descentObligation.messages.map((m) => `doctor: ${m}`),
       ...changeImpact.messages.map((m) => `doctor: ${m}`),
@@ -3482,6 +3534,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...subDocSectionStructure.messages.map((m) => `doctor: ${m}`),
       ...screenImplPairFreeze.messages.map((m) => `doctor: ${m}`),
       ...l1L2Consistency.messages.map((m) => `doctor: ${m}`),
+      ...requirementsBindingConfig.messages.map((m) => `doctor: ${m}`),
       ...dependencyDrift.messages.map((m) => `doctor: ${m}`),
       ...regressionExpansion.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionCoverage.messages.map((m) => `doctor: ${m}`),

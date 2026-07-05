@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
+import type { L1L2ConsistencyInput } from "../src/lint/l1-l2-consistency";
 import {
   buildL1L2GapCheckPacket,
   L1_L2_GAP_CHECK_MAX_ROUNDS,
   L1_L2_GAP_CHECK_SCHEMA_VERSION,
   l1L2GapCheckMessages,
 } from "../src/lint/l1-l2-gap-check";
-import type { L1L2ConsistencyInput } from "../src/lint/l1-l2-consistency";
 
 function baseInput(overrides: Partial<L1L2ConsistencyInput> = {}): L1L2ConsistencyInput {
   return {

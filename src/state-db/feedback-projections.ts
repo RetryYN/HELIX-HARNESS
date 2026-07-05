@@ -1,3 +1,4 @@
+import { loadRequirementsBindingConfig } from "../config/requirements-binding";
 import type { HarnessDb } from "./index";
 import {
   analyzeRefactorCandidates,
@@ -24,9 +25,17 @@ export function projectRefactorCandidateSignals(
   deps: FeedbackProjectionDeps,
 ): void {
   const computedAt = deps.nowIso();
-  const cached = refactorCandidateCache.get(repoRoot);
-  const candidates = cached ?? analyzeRefactorCandidates(loadRefactorCandidateInputs(repoRoot));
-  refactorCandidateCache.set(repoRoot, candidates);
+  const configResult = loadRequirementsBindingConfig(repoRoot);
+  if (!configResult.ok) {
+    throw new Error(configResult.messages.join("; "));
+  }
+  const policy = configResult.config.refactorCandidates;
+  const cacheKey = `${repoRoot}:${JSON.stringify(policy)}`;
+  const cached = refactorCandidateCache.get(cacheKey);
+  const candidates =
+    cached ??
+    analyzeRefactorCandidates(loadRefactorCandidateInputs(repoRoot, policy.scanRoots), policy);
+  refactorCandidateCache.set(cacheKey, candidates);
   const feedbackSubjects = new Set(
     candidates
       .filter((candidate) => candidate.confidence === "high")

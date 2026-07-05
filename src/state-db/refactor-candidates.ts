@@ -3,9 +3,9 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { normalizePath } from "../lint/shared";
 import {
-  REFACTOR_CANDIDATE_THRESHOLDS,
-  REFACTOR_POLICY_TERMS,
+  DEFAULT_REFACTOR_CANDIDATE_POLICY,
   REFACTOR_SCAN_ROOTS,
+  type RefactorCandidatePolicy,
 } from "./refactor-candidate-policy";
 
 export type RefactorCandidateKind =
@@ -27,17 +27,6 @@ export interface RefactorCandidate {
 
 export const REFACTOR_FEEDBACK_LIMIT = 20;
 
-const {
-  splitModuleLines: SPLIT_MODULE_LINE_THRESHOLD,
-  splitModuleExports: SPLIT_MODULE_EXPORT_THRESHOLD,
-  extractHelperLines: EXTRACT_HELPER_LINE_THRESHOLD,
-  dedupeFunctionMinLines: DEDUPE_FUNCTION_MIN_LINES,
-  externalizeLiteralMinRepeats: EXTERNALIZE_LITERAL_MIN_REPEATS,
-  externalizeLiteralMinLength: EXTERNALIZE_LITERAL_MIN_LENGTH,
-  externalizePolicy: EXTERNALIZE_POLICY_THRESHOLD,
-  externalizePolicyMaxBranchPoints: EXTERNALIZE_POLICY_MAX_BRANCH_POINTS,
-} = REFACTOR_CANDIDATE_THRESHOLDS;
-
 function stableHash(value: string): string {
   return `sha256:${createHash("sha256").update(value).digest("hex")}`;
 }
@@ -54,11 +43,14 @@ function sourceFiles(dir: string): string[] {
   return out.sort();
 }
 
-export function loadRefactorCandidateInputs(repoRoot: string): Array<{
+export function loadRefactorCandidateInputs(
+  repoRoot: string,
+  scanRoots: readonly string[] = REFACTOR_SCAN_ROOTS,
+): Array<{
   path: string;
   content: string;
 }> {
-  return REFACTOR_SCAN_ROOTS.flatMap((root) =>
+  return scanRoots.flatMap((root) =>
     sourceFiles(join(repoRoot, root)).map((path) => ({
       path: normalizePath(relative(repoRoot, path)),
       content: readFileSync(path, "utf8"),
@@ -124,7 +116,7 @@ function collectFunctionBodies(text: string): Array<{ name: string; body: string
   return functions;
 }
 
-function collectStringLiterals(text: string): string[] {
+function collectStringLiterals(text: string, minLength: number): string[] {
   const stripped = stripTsComments(text);
   const literals: string[] = [];
   for (let i = 0; i < stripped.length; i++) {
@@ -148,7 +140,7 @@ function collectStringLiterals(text: string): string[] {
       value += ch;
     }
     const literal = value.trim();
-    if (closed && literal.length >= EXTERNALIZE_LITERAL_MIN_LENGTH) {
+    if (closed && literal.length >= minLength) {
       const isTemplateExpression = literal.includes("${");
       const isIdentifierLike = /^[a-z][a-z0-9_:-]*$/.test(literal);
       const isCliFlag = literal.startsWith("--");
@@ -161,9 +153,9 @@ function collectStringLiterals(text: string): string[] {
   return literals;
 }
 
-function policyTermHits(text: string): string[] {
+function policyTermHits(text: string, terms: readonly string[]): string[] {
   const lower = text.toLowerCase();
-  return REFACTOR_POLICY_TERMS.filter((term) => new RegExp(`\\b${term}\\b`).test(lower));
+  return terms.filter((term) => new RegExp(`\\b${term}\\b`).test(lower));
 }
 
 function branchCount(text: string): number {
@@ -179,13 +171,14 @@ function collectExternalizedPolicyCandidates(file: {
   path: string;
   content: string;
   allPaths: ReadonlySet<string>;
+  policy: RefactorCandidatePolicy;
 }): RefactorCandidate[] {
   if (file.path === "src/state-db/refactor-candidates.ts") return [];
   if (/(?:catalog|data|policy|routing-contracts|model-policy)\.ts$/.test(file.path)) return [];
   const policyPath = file.path.replace(/\.ts$/, "-policy.ts");
   if (file.allPaths.has(policyPath)) return [];
   const stripped = stripTsComments(file.content);
-  const hits = policyTermHits(stripped);
+  const hits = policyTermHits(stripped, file.policy.policyTerms);
   if (hits.length < 3) return [];
   const branches = branchCount(stripped);
   const hasStageInjectionPolicy =
@@ -195,33 +188,37 @@ function collectExternalizedPolicyCandidates(file: {
     /\b(?:route|approval|model|tier|profile)\b/i.test(stripped) && branches >= 2;
   if (!hasStageInjectionPolicy && !hasRoutingPolicy) return [];
   const score = hits.length + branches;
-  if (score < EXTERNALIZE_POLICY_THRESHOLD) return [];
-  if (branches > EXTERNALIZE_POLICY_MAX_BRANCH_POINTS) return [];
+  if (score < file.policy.thresholds.externalizePolicy) return [];
+  if (branches > file.policy.thresholds.externalizePolicyMaxBranchPoints) return [];
   return [
     {
       kind: "externalize-policy",
       path: file.path,
       subject: `${file.path}#policy:${stableHash(hits.join(":")).slice(0, 19)}`,
       score,
-      threshold: EXTERNALIZE_POLICY_THRESHOLD,
+      threshold: file.policy.thresholds.externalizePolicy,
       confidence: hasStageInjectionPolicy && branches >= 2 && branches <= 20 ? "high" : "medium",
       reason: `policy terms (${hits.join(", ")}) appear with ${branches} branch point(s); consider catalog/config/rule externalization`,
     },
   ];
 }
 
-function candidateConfidence(
-  kind: RefactorCandidateKind,
-  score: number,
-  threshold: number,
-): "high" | "medium" {
-  if (kind === "deduplicate-function") return "high";
-  if (kind === "split-module") {
-    if (threshold === SPLIT_MODULE_EXPORT_THRESHOLD) return "medium";
-    return score >= threshold * 1.25 ? "high" : "medium";
+function candidateConfidence(input: {
+  kind: RefactorCandidateKind;
+  score: number;
+  threshold: number;
+  policy?: RefactorCandidatePolicy;
+}): "high" | "medium" {
+  const policy = input.policy ?? DEFAULT_REFACTOR_CANDIDATE_POLICY;
+  if (input.kind === "deduplicate-function") return "high";
+  if (input.kind === "split-module") {
+    if (input.threshold === policy.thresholds.splitModuleExports) return "medium";
+    return input.score >= input.threshold * 1.25 ? "high" : "medium";
   }
-  if (kind === "extract-helper") return score >= threshold * 1.2 ? "high" : "medium";
-  return score >= threshold * 2 ? "high" : "medium";
+  if (input.kind === "extract-helper") {
+    return input.score >= input.threshold * 1.2 ? "high" : "medium";
+  }
+  return input.score >= input.threshold * 2 ? "high" : "medium";
 }
 
 function splitModuleConfidence(input: {
@@ -229,13 +226,21 @@ function splitModuleConfidence(input: {
   threshold: number;
   functions: Array<{ lines: number }>;
   declarativeCatalog: boolean;
+  policy: RefactorCandidatePolicy;
 }): "high" | "medium" {
   if (input.declarativeCatalog) return "medium";
-  if (input.threshold === SPLIT_MODULE_EXPORT_THRESHOLD) return "medium";
-  const hasLargeFunction = input.functions.some((fn) => fn.lines >= EXTRACT_HELPER_LINE_THRESHOLD);
+  if (input.threshold === input.policy.thresholds.splitModuleExports) return "medium";
+  const hasLargeFunction = input.functions.some(
+    (fn) => fn.lines >= input.policy.thresholds.extractHelperLines,
+  );
   const isExtremeModule = input.score >= input.threshold * 4;
   return hasLargeFunction || isExtremeModule
-    ? candidateConfidence("split-module", input.score, input.threshold)
+    ? candidateConfidence({
+        kind: "split-module",
+        score: input.score,
+        threshold: input.threshold,
+        policy: input.policy,
+      })
     : "medium";
 }
 
@@ -271,6 +276,7 @@ export function candidateRank(candidate: RefactorCandidate): number {
 
 export function analyzeRefactorCandidates(
   files: Array<{ path: string; content: string }>,
+  policy: RefactorCandidatePolicy = DEFAULT_REFACTOR_CANDIDATE_POLICY,
 ): RefactorCandidate[] {
   const candidates: RefactorCandidate[] = [];
   const bodyIndex = new Map<string, Array<{ path: string; name: string; lines: number }>>();
@@ -284,42 +290,49 @@ export function analyzeRefactorCandidates(
     const functions = collectFunctionBodies(file.content);
     const declarativeCatalog = isDeclarativeCatalogModule(file, functions.length);
     if (
-      nonBlankLineCount >= SPLIT_MODULE_LINE_THRESHOLD ||
-      (exportCount >= SPLIT_MODULE_EXPORT_THRESHOLD && !isExportCatalogExempt(file))
+      nonBlankLineCount >= policy.thresholds.splitModuleLines ||
+      (exportCount >= policy.thresholds.splitModuleExports && !isExportCatalogExempt(file))
     ) {
-      const isLineTriggered = nonBlankLineCount >= SPLIT_MODULE_LINE_THRESHOLD;
+      const isLineTriggered = nonBlankLineCount >= policy.thresholds.splitModuleLines;
       const score = isLineTriggered ? nonBlankLineCount : exportCount;
       const threshold = isLineTriggered
-        ? SPLIT_MODULE_LINE_THRESHOLD
-        : SPLIT_MODULE_EXPORT_THRESHOLD;
+        ? policy.thresholds.splitModuleLines
+        : policy.thresholds.splitModuleExports;
       candidates.push({
         kind: "split-module",
         path: file.path,
         subject: file.path,
         score,
         threshold,
-        confidence: splitModuleConfidence({ score, threshold, functions, declarativeCatalog }),
+        confidence: splitModuleConfidence({
+          score,
+          threshold,
+          functions,
+          declarativeCatalog,
+          policy,
+        }),
         reason: `module has ${nonBlankLineCount} nonblank line(s) and ${exportCount} export(s)`,
       });
     }
 
     for (const fn of functions) {
-      if (fn.lines >= EXTRACT_HELPER_LINE_THRESHOLD) {
+      if (fn.lines >= policy.thresholds.extractHelperLines) {
         candidates.push({
           kind: "extract-helper",
           path: file.path,
           subject: `${file.path}#${fn.name}`,
           score: fn.lines,
-          threshold: EXTRACT_HELPER_LINE_THRESHOLD,
-          confidence: candidateConfidence(
-            "extract-helper",
-            fn.lines,
-            EXTRACT_HELPER_LINE_THRESHOLD,
-          ),
+          threshold: policy.thresholds.extractHelperLines,
+          confidence: candidateConfidence({
+            kind: "extract-helper",
+            score: fn.lines,
+            threshold: policy.thresholds.extractHelperLines,
+            policy,
+          }),
           reason: `function ${fn.name} has ${fn.lines} nonblank line(s)`,
         });
       }
-      if (fn.lines >= DEDUPE_FUNCTION_MIN_LINES) {
+      if (fn.lines >= policy.thresholds.dedupeFunctionMinLines) {
         const key = normalizedBody(fn.body);
         if (key.length > 0) {
           const bucket = bodyIndex.get(key) ?? [];
@@ -330,28 +343,32 @@ export function analyzeRefactorCandidates(
     }
 
     const literalCounts = new Map<string, number>();
-    for (const literal of collectStringLiterals(file.content)) {
+    for (const literal of collectStringLiterals(
+      file.content,
+      policy.thresholds.externalizeLiteralMinLength,
+    )) {
       literalCounts.set(literal, (literalCounts.get(literal) ?? 0) + 1);
     }
     for (const [literal, count] of literalCounts) {
-      if (count >= EXTERNALIZE_LITERAL_MIN_REPEATS) {
+      if (count >= policy.thresholds.externalizeLiteralMinRepeats) {
         candidates.push({
           kind: "externalize-literal",
           path: file.path,
           subject: `${file.path}#literal:${stableHash(literal).slice(0, 19)}`,
           score: count,
-          threshold: EXTERNALIZE_LITERAL_MIN_REPEATS,
-          confidence: candidateConfidence(
-            "externalize-literal",
-            count,
-            EXTERNALIZE_LITERAL_MIN_REPEATS,
-          ),
+          threshold: policy.thresholds.externalizeLiteralMinRepeats,
+          confidence: candidateConfidence({
+            kind: "externalize-literal",
+            score: count,
+            threshold: policy.thresholds.externalizeLiteralMinRepeats,
+            policy,
+          }),
           reason: `literal appears ${count} time(s); consider a named constant or config boundary`,
         });
       }
     }
 
-    candidates.push(...collectExternalizedPolicyCandidates({ ...file, allPaths }));
+    candidates.push(...collectExternalizedPolicyCandidates({ ...file, allPaths, policy }));
   }
 
   for (const matches of bodyIndex.values()) {
@@ -367,7 +384,12 @@ export function analyzeRefactorCandidates(
       subject,
       score: sorted.length,
       threshold: 2,
-      confidence: candidateConfidence("deduplicate-function", sorted.length, 2),
+      confidence: candidateConfidence({
+        kind: "deduplicate-function",
+        score: sorted.length,
+        threshold: 2,
+        policy,
+      }),
       reason: `duplicate function body appears in ${sorted.length} function(s): ${subject}`,
     });
   }

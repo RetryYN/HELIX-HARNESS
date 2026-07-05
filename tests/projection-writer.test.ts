@@ -2095,8 +2095,18 @@ export function evaluateAgentGuard(input: { stage: string; route: string; model:
       });
 
       expect(result.ok).toBe(true);
-      const { hook_events: _firstHookEvents, ...firstStableCounts } = result.rowCounts;
-      const { hook_events: _secondHookEvents, ...secondStableCounts } = second.rowCounts;
+      const {
+        feedback_events: _firstFeedbackEvents,
+        findings: _firstFindings,
+        hook_events: _firstHookEvents,
+        ...firstStableCounts
+      } = result.rowCounts;
+      const {
+        feedback_events: _secondFeedbackEvents,
+        findings: _secondFindings,
+        hook_events: _secondHookEvents,
+        ...secondStableCounts
+      } = second.rowCounts;
       expect(secondStableCounts).toEqual(firstStableCounts);
       expect(rowCounts(db).plan_registry).toBeGreaterThan(0);
       const projectedPlan = db

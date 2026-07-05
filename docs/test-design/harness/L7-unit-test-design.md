@@ -1090,3 +1090,28 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 |---|---|---|
 | U-SCRUMREV-006 | `analyzeScrumReverse().emptyReverseFullbacks` | terminal (confirmed/completed) reverse が generates に `docs/plans/` 外の正本 artifact を 1 つも持たない場合は plan_id を返し `ok=false`（空 fullback = 台帳上の完遂偽装を fail-close）。draft reverse と `EMPTY_FULLBACK_ENFORCEMENT_DATE`（2026-07-06）前起票の legacy reverse（25 件）は対象外（日付 ratchet grandfather、CI green を壊さない段階移行）。 |
 | U-SCRUMREV-007 | `analyzeScrumReverse().unresolvedSeedMarkers` / `loadReverseSeedMarkers` | 上位正本 2 doc（concept v3.1 / requirements v1.2）の「trace seed」+「PoC 段階」行は、参照 poc を指す reverse が terminal になった後も残っていれば `doc:line:planId` で fail-close（正式追補への変換漏れ検知）。reverse が draft の間は変換作業中として許容。loader は合成 fixture で行番号・planId 抽出を検証し、live repo は seed 変換済み + 台帳 green を回帰ガードする。 |
+
+## PLAN-L7-335 判断コア（judgment-core）governance 追補
+
+判断規律 SSoT（`docs/skills/judgment-core.md`）と agent / command 配線の同期、および subagent
+allowlist 転記の同期を機械検査する。実装は `src/lint/judgment-core-coverage.ts` /
+`src/lint/allowlist-sync.ts`、テストは `tests/judgment-core-coverage.test.ts` /
+`tests/allowlist-sync.test.ts`。
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-JUDG-001 | `analyzeJudgmentCoreCoverage` | 全 doc の `judgment_core:` marker が SSoT の `judgment_core_version` と一致し本文が SSoT path を参照していれば `ok=true`、violations 空。 |
+| U-JUDG-002 | `analyzeJudgmentCoreCoverage` | marker 欠落は `missing-marker`、version 不一致は `version-mismatch`、SSoT path 参照欠落は `missing-reference` でそれぞれ fail-close する。 |
+| U-JUDG-003 | `analyzeJudgmentCoreCoverage` | SSoT の `judgment_core_version` が読めない（不在 / 非数値）場合は `missing-ssot-version` 単独で fail-close する。 |
+| U-JUDG-004 | `analyzeJudgmentCoreCoverage` | 対象 doc 0 件（`.claude/agents` / `.claude/commands` 消失 = 配線消失）は pass にしない。 |
+| U-JUDG-005 | `loadJudgmentCoreCoverageInput` / live repo | 実 repo の全 agent（21）+ command（7）が SSoT v1 と同期している（real-repo regression、prose ではなく gate run で立証）。 |
+| U-ALSYNC-001 | `analyzeAllowlistSync` | 正本（`SUBAGENT_ALLOWLIST`）と `.claude/CLAUDE.md` 転記が set 一致すれば `ok=true`。 |
+| U-ALSYNC-002 | `analyzeAllowlistSync` | 片側欠落は `missing-in-doc` / `missing-in-policy` の方向つき violation で fail-close する。 |
+| U-ALSYNC-003 | `analyzeAllowlistSync` | どちらかが parse 不能（null）なら `policy-unreadable` / `doc-unreadable` で fail-close する（fail-open 禁止）。 |
+| U-ALSYNC-004 | `parsePolicyAllowlist` | `SUBAGENT_ALLOWLIST = new Set([...])` リテラルから文字列 entry を抽出できる。構造が見つからなければ null。 |
+| U-ALSYNC-005 | `parseDocAllowlist` | Allowlist 見出し（agent-guard-policy.ts を cite する行）直後の `- \`name\`` bullet を次見出しまで収集する。節不在は null。 |
+| U-ALSYNC-006 | `loadAllowlistSyncInput` / live repo | 実 repo の転記 17 件が `SUBAGENT_ALLOWLIST` と一致する（real-repo regression）。 |
+
+> terminal status 共通化（同 PLAN）: `plan-artifact-existence` / `plan-completion-drift` /
+> `merged-plan-status` の 3 重定義を `shared.ts` の `isTerminalPlanStatus`（TERMINAL_PLAN_STATUSES 正本）
+> へ置換。behavior-invariant は既存 U-* net（3 test files、40 oracle green）で regression 検証する。

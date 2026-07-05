@@ -20,8 +20,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/design/helix/L3-requirements/nfr-grade.md
     artifact_type: design_doc
-  # draft のため Step 5 の Glossary placeholder projection だけを実在 artifact として追加した。各 Step の残成果物
-  # （lint 実装 / governance 追補 / NFR グレード表 / config スキーマ）は該当 Step の Forward descent 着地時に追加する。
+  # draft のため L3 design projection だけを実在 artifact として追加した。L7 実装成果物は
+  # PLAN-L7-334 側で管理する。
 dependencies:
   parent: docs/plans/PLAN-L3-00-master.md
   requires:
@@ -150,7 +150,11 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   `pillar-requirements.md` / L6 function design に散在していた fast/default/full verification budget、
   CI auto-fix confidence 0.75、bounded recall 件数、approval snapshot binding を一覧化した。新規閾値は
   発明せず、正本変更が必要な場合は L1/L3 へ back-merge してから projection を更新する。
-- まだ confirmed / terminal ではない。runtime 実装、doctor 接続、drift test、review evidence は後続 Step で扱う。
+- **Step 2 後半完了**: `.helix/config/requirements-binding.yaml` と
+  `src/config/requirements-binding.ts` を追加し、refactor candidate detector の threshold / scan root /
+  policy term、L1/L2 gap-check の `maxRounds` / 観点表を config + zod schema 管理へ移した。`doctor` は
+  `requirements-binding-config` を hard gate として実行し、repo config の欠落・破損を fail-close する。
+- まだ confirmed / terminal ではない。Step 6 の refactor actionable 化、drift test、review evidence は後続 Step で扱う。
 
 ## 壊さない / 再発させない
 

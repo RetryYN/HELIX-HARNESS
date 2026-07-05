@@ -1,10 +1,12 @@
 ---
 description: 作業を machine-checkable な PLAN step に分解する（requirement 単位、parallel/serial marker 付き）
 argument-hint: "<feature or task description>"
+judgment_core: v1
 ---
 
 task を verifiable step を持つ HELIX PLAN へ分解する。`planning-and-task-breakdown` と
-`gate-planning` skill を使う。
+`gate-planning` skill を使う。判断規律（inventory-first・代替案・falsifiable AC）の正本は
+`docs/skills/judgment-core.md`（判断コア SSoT）。
 
 Target: $ARGUMENTS
 

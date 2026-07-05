@@ -1,10 +1,11 @@
 ---
 description: 実装前に spec-first design を作成する（spec → test design → impl）
 argument-hint: "<feature description>"
+judgment_core: v1
 ---
 
 HELIX では、code より先に spec/design を書く。`spec-driven-development` と
-`documentation-and-adrs` skill を使う。
+`documentation-and-adrs` skill を使う。判断規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT）。
 
 Target: $ARGUMENTS
 

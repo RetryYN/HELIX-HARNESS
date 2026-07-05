@@ -32,9 +32,10 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadReviewPlans } from "./review-evidence";
+import { isTerminalPlanStatus } from "./shared";
 
-/** status がこれなら終端 = DoD 完了でも drift でない。これ以外で DoD 全消化 = status 前進忘れ。 */
-const TERMINAL_STATUSES: ReadonlySet<string> = new Set(["confirmed", "completed", "accepted"]);
+// 終端 status の正本は shared.ts の TERMINAL_PLAN_STATUSES。終端なら DoD 完了でも drift でない。
+// これ以外で DoD 全消化 = status 前進忘れ。
 
 export interface PlanCompletionRow {
   planId: string;
@@ -77,12 +78,7 @@ export function dodChecklistState(content: string): { checked: number; unchecked
  */
 export function analyzePlanCompletionDrift(plans: PlanCompletionRow[]): PlanCompletionDriftResult {
   const violations = plans
-    .filter(
-      (p) =>
-        p.checkedItems > 0 &&
-        p.uncheckedItems === 0 &&
-        !TERMINAL_STATUSES.has(p.status.toLowerCase()),
-    )
+    .filter((p) => p.checkedItems > 0 && p.uncheckedItems === 0 && !isTerminalPlanStatus(p.status))
     .map((p) => ({ planId: p.planId, status: p.status, checkedItems: p.checkedItems }))
     .sort((a, b) => a.planId.localeCompare(b.planId));
   return { violations, ok: violations.length === 0 };

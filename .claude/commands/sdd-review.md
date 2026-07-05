@@ -1,8 +1,11 @@
 ---
 description: five-axis code review — correctness, readability, architecture, security, performance
 argument-hint: "[optional file/scope]"
+judgment_core: v1
 ---
 
+レビュー規律（adversarial framing・false positive 抑制・severity-first）の正本は
+`docs/skills/judgment-core.md`（判断コア SSoT）§4。
 HELIX の current change（uncommitted または recent commits）に対して five-axis review を行う。
 `code-review-and-quality` skill を使い、security 観点は `security-and-hardening`、adversarial framing は
 `adversarial-review` から取り込む。

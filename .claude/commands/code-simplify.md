@@ -1,9 +1,11 @@
 ---
 description: regression fence の下で behavior-invariant refactor / simplification を行う
 argument-hint: "[optional file/scope]"
+judgment_core: v1
 ---
 
 HELIX では behavior を変えずに simplify / refactor する。`refactoring` skill を使う。
+判断規律（スコープ規律・regression fence）の正本は `docs/skills/judgment-core.md`（判断コア SSoT）。
 
 Target: $ARGUMENTS
 

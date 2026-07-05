@@ -1,9 +1,11 @@
 ---
 description: 出荷前 fan-out — code-reviewer / security-audit / qa-test を並列実行し、rollback plan 付きで go/no-go を統合判断する
 argument-hint: "[任意の scope note]"
+judgment_core: v1
 ---
 
-`/ship` は HELIX の fan-out orchestrator である。現在の change に対して allowlist 済みの
+判断規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT。委譲 4 点セットは §5、
+レビュー規律は §4）。`/ship` は HELIX の fan-out orchestrator である。現在の change に対して allowlist 済みの
 specialist subagent 3 体を並列実行し、それぞれの report を rollback plan 必須の単一 go/no-go
 decision に統合する。trace-freeze→accept transition または L12 deploy の前に使う。
 

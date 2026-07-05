@@ -35,7 +35,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadReviewPlans } from "./review-evidence";
-import { fmValue, normalizePath } from "./shared";
+import { fmValue, isTerminalPlanStatus, normalizePath } from "./shared";
 
 // review-evidence gate との scope 差は意図的 (別関心、reviewer I-1/I-2):
 //   - 本 gate = **status 正確性**の強制 = 「出荷物を merge したら PLAN を draft のままにするな」。
@@ -45,8 +45,8 @@ import { fmValue, normalizePath } from "./shared";
 //   - review-evidence gate = **証跡要求** = confirmed/completed の PLAN が review_evidence を持つか。
 //     refactor は review-evidence 対象外 (機能変更なし) だが、それは「confirm 時に証跡が要るか」の話で、
 //     「merge 済みなら draft でないこと」とは別軸。両 gate は相補 (重複でも矛盾でもない)。
-/** confirm 済み (= merge して良い終端) とみなす status。これ以外で deliverable 実在 = draft 放置の不整合。 */
-const CONFIRMED_STATUSES: ReadonlySet<string> = new Set(["confirmed", "completed", "accepted"]);
+// confirm 済み (= merge して良い終端) status の正本は shared.ts の TERMINAL_PLAN_STATUSES。
+// これ以外で deliverable 実在 = draft 放置の不整合。
 /**
  * 「merge したら confirm」を強制する出荷物ルート (CLAUDE.md architecture boundary 準拠)。
  * docs/ = V-model 設計成果物、.helix/ = 生成ランタイム状態で、どちらも confirm 前に実在するのが
@@ -86,7 +86,7 @@ export function analyzeMergedPlanStatus(input: MergedPlanStatusInput): MergedPla
   const violations = input.plans
     .filter(
       (p) =>
-        !CONFIRMED_STATUSES.has(p.status.toLowerCase()) &&
+        !isTerminalPlanStatus(p.status) &&
         p.mergedArtifacts.length > 0 &&
         !isS3VerifiedPocPendingDecision(p),
     )

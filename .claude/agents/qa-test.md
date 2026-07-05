@@ -4,6 +4,7 @@ description: QAテスト設計・実行。テスト戦略・カバレッジ・E2
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: medium
+judgment_core: v1
 memory: project
 maxTurns: 25
 ---
@@ -15,6 +16,14 @@ maxTurns: 25
 - `docs/governance/README.md`
 - test-design / verification は project-local の V-model pair docs と PLAN を優先する
 - プロジェクトの docs/design/L3-detailed-design.md §5 テスト設計
+
+## 判断コア（judgment-core v1）
+
+レビュー規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT）§4。本 agent の差分:
+- oracle 強度: complex object への `toBeTruthy()` 等の弱い oracle を「テスト済み」と数えない。
+  real behavior を assert しているテストだけを coverage の根拠にする。
+- coverage gap は correctness / 要件影響の順で severity-first に報告する。数値目標の未達だけを
+  blocker にしない（クリティカルパス欠落 > 数値）。
 
 ## テスト戦略策定
 

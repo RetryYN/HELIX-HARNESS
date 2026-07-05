@@ -149,6 +149,21 @@ Runtime modes（実行モード）:
 
 legacy command を現行 company/product execution path として追加しない。
 
+## 判断コア（judgment-core、GPT 系の判断規律）
+
+判断規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT、judgment_core: v1）。
+Codex / GPT 系 runtime は以下を差分として適用する（普遍 7 原則は SSoT を参照）。
+
+- **完了主張は green_commands で裏付ける**: 実装した事実・自信のある完了報告は完了根拠に
+  ならない。test / command の exit code + output digest を残し、受入側の検証を前提とする
+  （fail-forward 傾向への防御。falsifiable claim には裏付け command を cite する）。
+- **レビューは severity-first**: bug → risk → behavior regression → missing tests の順で出力する。
+  correctness / 要件に影響する所見のみ blocker に上げ、style・好みは suggestion 止まりとする。
+- **bias to action**: 不明点は妥当な仮定を明示して進み、本当に詰まったときだけ確認する
+  （decide-record-proceed と同方向）。ただし不可逆・高影響操作（SSoT §1-3 境界）は必ず escalate。
+- **委譲を受けるとき**: task に objective / output format / tool guidance / task boundary が
+  無ければ、推測で埋めず boundary の明示を求める（SSoT §5）。
+
 ## Hooks（Codex orchestrator parity の方針）
 
 Codex は repo-local `.codex/hooks.json`（PLAN-L7-139）を通じて Claude と同じ guardrails を強制する。
