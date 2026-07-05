@@ -9,6 +9,7 @@ import {
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
   buildIdentifierRenameEvidencePack,
+  buildIdentifierRenameMonitoringDryRun,
   type IdentifierRenameWorktreeSnapshot,
   identifierRenameRunbookCommandViolations,
   identifierRenameStateBackupManifestViolations,
@@ -199,6 +200,7 @@ function writeCutoverEvidenceArtifacts(root: string) {
     ".helix/evidence/rename/state-backup-restore-drill.json",
     ".helix/evidence/rename/static-state-gates.txt",
     ".helix/evidence/rename/dist-smoke-rehearsal.txt",
+    ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
     ".helix/evidence/rename/full-regression.txt",
     ".helix/evidence/rename/restore-harness-db.json",
     ".helix/evidence/rename/restore-memory.json",
@@ -211,6 +213,30 @@ function writeCutoverEvidenceArtifacts(root: string) {
     ".helix/evidence/rename/restore-codex-hooks.json",
   ];
   for (const path of paths) {
+    const absolutePath = join(root, path);
+    mkdirSync(dirname(absolutePath), { recursive: true });
+    writeFileSync(absolutePath, `${JSON.stringify({ path, ok: true })}\n`, "utf8");
+  }
+}
+
+function writeCutoverStateSources(root: string) {
+  const dirs = [
+    ".helix/memory",
+    ".helix/state",
+    ".helix/logs",
+    ".helix/handover",
+    ".helix/handover/provider",
+  ];
+  for (const path of dirs) {
+    mkdirSync(join(root, path), { recursive: true });
+  }
+  const files = [
+    ".helix/harness.db",
+    ".helix/config/approval-policy.yaml",
+    ".claude/settings.json",
+    ".codex/hooks.json",
+  ];
+  for (const path of files) {
     const absolutePath = join(root, path);
     mkdirSync(dirname(absolutePath), { recursive: true });
     writeFileSync(absolutePath, `${JSON.stringify({ path, ok: true })}\n`, "utf8");
@@ -857,6 +883,13 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             command: "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
             passCriteria: expect.stringContaining("post-cutover consumer setup smoke"),
           }),
+          expect.objectContaining({
+            id: "cutover-rb-07",
+            phase: "post-cutover-monitoring-dry-run",
+            command: "bun run src/cli.ts rename monitoring --no-write --json",
+            writePolicy: "no-write",
+            evidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+          }),
         ]),
       );
       expect(identifierRenameRunbookCommandViolations(plan)).toEqual([]);
@@ -917,6 +950,29 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(plan.dryRunPlan.join("\n")).toContain("blast-radius baseline");
       expect(plan.rollbackPlan.join("\n")).toContain(".helix/harness.db");
       expect(plan.monitoringPlan.join("\n")).toContain("helix doctor");
+      const monitoringPacket = buildIdentifierRenameMonitoringDryRun();
+      expect(monitoringPacket).toMatchObject({
+        schemaVersion: "identifier-rename-monitoring-dry-run.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        sourceCommand: "helix rename monitoring --no-write --json",
+        quietWindow: {
+          required: true,
+          concurrencyPolicy: "single-run-no-concurrent-apply",
+          approvalExpiresOnSignalChange: true,
+        },
+        requiredEvidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+      });
+      expect(monitoringPacket.probes).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            phase: "doctor-status-completion",
+            currentNoWriteProxyCommand: expect.stringContaining("bun run src/cli.ts doctor --json"),
+            rollbackTrigger: expect.stringContaining("doctor red"),
+          }),
+        ]),
+      );
       expect(plan.stateBackupManifest).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -1000,10 +1056,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
         evidenceArtifactsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
-        evidenceArtifactsRequired: 16,
+        evidenceArtifactsRequired: 17,
         evidenceArtifactsPresent: 0,
         missingEvidenceArtifacts: expect.arrayContaining([
           ".helix/evidence/rename/blast-radius-baseline.json",
+          ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
           ".helix/evidence/rename/restore-harness-db.json",
         ]),
         sourceLedgerCheckedDate: "2026-07-02",
@@ -1184,12 +1241,12 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         worktreeSnapshot: CLEAN_WORKTREE,
       });
 
-      expect(missing.cutoverSnapshot.evidenceArtifactsRequired).toBe(16);
+      expect(missing.cutoverSnapshot.evidenceArtifactsRequired).toBe(17);
       expect(missing.cutoverSnapshot.evidenceArtifactsPresent).toBe(0);
       expect(missing.cutoverSnapshot.missingEvidenceArtifacts).toContain(
         ".helix/evidence/rename/blast-radius-baseline.json",
       );
-      expect(present.cutoverSnapshot.evidenceArtifactsPresent).toBe(16);
+      expect(present.cutoverSnapshot.evidenceArtifactsPresent).toBe(17);
       expect(present.cutoverSnapshot.missingEvidenceArtifacts).toEqual([]);
       expect(present.cutoverSnapshot.evidenceArtifacts).toEqual(
         expect.arrayContaining([
@@ -1258,6 +1315,11 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             written: false,
           }),
           expect.objectContaining({
+            path: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+            schemaVersion: "identifier-rename-monitoring-dry-run.v1",
+            written: false,
+          }),
+          expect.objectContaining({
             path: ".helix/evidence/rename/restore-harness-db.json",
             source: "stateBackupManifest",
             schemaVersion: "identifier-rename-restore-check-evidence.v1",
@@ -1265,7 +1327,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           }),
         ]),
       );
-      expect(dryRun.generatedArtifacts).toHaveLength(14);
+      expect(dryRun.generatedArtifacts).toHaveLength(15);
       for (const artifact of dryRun.generatedArtifacts) {
         expect(artifact.contentSha256).toMatch(/^sha256:[a-f0-9]{64}$/);
         expect(artifact.sizeBytes).toBeGreaterThan(0);
@@ -1330,6 +1392,28 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       expect(
         readFileSync(join(root, ".helix/evidence/rename/dist-smoke-rehearsal.txt"), "utf8"),
       ).toContain("identifier-rename-dist-smoke-dry-run.v1");
+      const monitoringDryRun = JSON.parse(
+        readFileSync(
+          join(root, ".helix/evidence/rename/post-cutover-monitoring-dry-run.json"),
+          "utf8",
+        ),
+      );
+      expect(monitoringDryRun).toMatchObject({
+        schemaVersion: "identifier-rename-monitoring-dry-run.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        requiredEvidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+      });
+      expect(monitoringDryRun.probes).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            phase: "doctor-status-completion",
+            currentNoWriteProxyCommand: expect.stringContaining("bun run src/cli.ts doctor --json"),
+            rollbackTrigger: expect.stringContaining("doctor red"),
+          }),
+        ]),
+      );
       expect(
         auditIdentifierRenameBlastRadius(root).hits.some((hit) =>
           hit.path.startsWith(".helix/evidence/rename/"),
@@ -1368,8 +1452,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
       });
       expect(draft.currentSnapshot).toMatchObject({
         cutoverSnapshotId: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
-        evidenceArtifactsRequired: 16,
-        evidenceArtifactsPresent: 16,
+        evidenceArtifactsRequired: 17,
+        evidenceArtifactsPresent: 17,
         missingEvidenceArtifacts: [],
         worktreeClean: false,
       });
@@ -1738,6 +1822,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
       );
       writeCutoverEvidenceArtifacts(root);
+      writeCutoverStateSources(root);
 
       const currentSnapshotId = buildIdentifierRenameCutoverPlan(
         root,
@@ -1764,6 +1849,43 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         actionBindingSnapshotMatchesCurrent: true,
         driftWarning: null,
       });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("keeps rename cutover blocked when restore evidence exists but restore source paths are missing", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-missing-restore-source-"));
+    try {
+      writeApprovedRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Use ${legacyCliName} and ${legacyStateDir} until cutover.\n`,
+      );
+      writeCutoverEvidenceArtifacts(root);
+
+      const currentSnapshotId = buildIdentifierRenameCutoverPlan(
+        root,
+        [nameCutoverSemanticRecord()],
+        { repoHeadSha: TEST_HEAD_SHA, worktreeSnapshot: CLEAN_WORKTREE },
+      ).cutoverSnapshot.snapshotId;
+      writeApprovedRenamePlan(root, currentSnapshotId);
+      const plan = buildIdentifierRenameCutoverPlan(root, [nameCutoverSemanticRecord()], {
+        repoHeadSha: TEST_HEAD_SHA,
+        worktreeSnapshot: CLEAN_WORKTREE,
+      });
+
+      expect(plan.status).toBe("blocked_pending_cutover_approval");
+      expect(plan.approvalMaterialReady).toBe(false);
+      expect(plan.cutoverSnapshot.evidenceArtifactsPresent).toBe(17);
+      expect(plan.cutoverSnapshot.missingEvidenceArtifacts).toEqual([]);
+      expect(plan.blockedReasons).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining("state backup restore sources missing before approval"),
+          expect.stringContaining(".helix/config/approval-policy.yaml"),
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -2112,6 +2234,30 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
           expect.stringContaining("legacy alias disposition"),
         ]),
       );
+
+      const monitoring = runCliIn(root, ["rename", "monitoring", "--no-write", "--json"]);
+      expect(monitoring.status, monitoring.stderr || monitoring.stdout).toBe(0);
+      const monitoringPayload = JSON.parse(monitoring.stdout);
+      expect(monitoringPayload).toMatchObject({
+        schemaVersion: "identifier-rename-monitoring-dry-run.v1",
+        planOnly: true,
+        mustNotApply: true,
+        writePolicy: "no-write",
+        quietWindow: {
+          required: true,
+          concurrencyPolicy: "single-run-no-concurrent-apply",
+          approvalExpiresOnSignalChange: true,
+        },
+        requiredEvidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+      });
+      expect(monitoringPayload.probes).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            phase: "rule-drift-and-feedback-backlog",
+            rollbackTrigger: expect.stringContaining("rule-drift"),
+          }),
+        ]),
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -2155,7 +2301,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         appliesCutover: false,
         approvalStillRequired: true,
       });
-      expect(dryRunPayload.generatedArtifacts).toHaveLength(14);
+      expect(dryRunPayload.generatedArtifacts).toHaveLength(15);
       expect(dryRunPayload.pendingArtifacts).toEqual(
         expect.arrayContaining([
           expect.objectContaining({ path: ".helix/evidence/rename/static-state-gates.txt" }),
@@ -2212,8 +2358,8 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
         recommendedOutcome: "request_runbook_changes",
       });
       expect(payload.currentSnapshot).toMatchObject({
-        evidenceArtifactsRequired: 16,
-        evidenceArtifactsPresent: 16,
+        evidenceArtifactsRequired: 17,
+        evidenceArtifactsPresent: 17,
         missingEvidenceArtifacts: [],
         worktreeClean: false,
       });

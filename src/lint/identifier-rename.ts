@@ -303,6 +303,29 @@ export interface IdentifierRenameDistSmokeDryRun {
   blockedUntil: string[];
 }
 
+export interface IdentifierRenameMonitoringDryRun {
+  schemaVersion: "identifier-rename-monitoring-dry-run.v1";
+  planOnly: true;
+  mustNotApply: true;
+  writePolicy: "no-write";
+  sourceCommand: "helix rename monitoring --no-write --json";
+  quietWindow: {
+    required: true;
+    concurrencyPolicy: "single-run-no-concurrent-apply";
+    approvalExpiresOnSignalChange: true;
+  };
+  monitoringPlan: string[];
+  probes: Array<{
+    phase: string;
+    commandAfterApproval: string;
+    currentNoWriteProxyCommand: string;
+    expected: string;
+    rollbackTrigger: string;
+  }>;
+  requiredEvidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json";
+  blockedUntil: string[];
+}
+
 export interface IdentifierRenameEvidencePack {
   schemaVersion: "identifier-rename-evidence-pack.v1";
   sourceCommand:
@@ -1433,6 +1456,27 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       source: "HELIX full regression policy",
       sourceUrl: "docs/test-design/harness/L7-unit-test-design.md",
     },
+    {
+      id: "cutover-rb-07",
+      phase: "post-cutover-monitoring-dry-run",
+      command: "bun run src/cli.ts rename monitoring --no-write --json",
+      writePolicy: "no-write",
+      evidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+      passCriteria:
+        "quiet-window monitoring probes, rollback triggers, and current no-write proxy commands are reviewed before cutover",
+      rollbackCheck: "any red monitoring probe restores the pre-cutover tag/branch and old state path",
+      source: "PLAN-M-02 post-cutover monitoring policy",
+      sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
+    },
+  ];
+}
+
+function buildMonitoringPlan(): IdentifierRenameCutoverPlan["monitoringPlan"] {
+  return [
+    "run helix doctor and legacy alias smoke during the quiet window",
+    "rebuild harness.db and inspect status/completion decision packet",
+    "check rule-drift, hook adapter parity, and green-command digest after cutover",
+    "watch feedback backlog, handover, and runtime logs for path or marker regressions",
   ];
 }
 
@@ -1638,12 +1682,61 @@ export function buildIdentifierRenameDistSmokeDryRun(
   };
 }
 
+export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitoringDryRun {
+  return {
+    schemaVersion: "identifier-rename-monitoring-dry-run.v1",
+    planOnly: true,
+    mustNotApply: true,
+    writePolicy: "no-write",
+    sourceCommand: "helix rename monitoring --no-write --json",
+    quietWindow: {
+      required: true,
+      concurrencyPolicy: "single-run-no-concurrent-apply",
+      approvalExpiresOnSignalChange: true,
+    },
+    monitoringPlan: buildMonitoringPlan(),
+    probes: [
+      {
+        phase: "doctor-status-completion",
+        commandAfterApproval: "helix doctor && helix status && helix completion decision-packet --json",
+        currentNoWriteProxyCommand:
+          "bun run src/cli.ts doctor --json && bun run src/cli.ts status --json && bun run src/cli.ts completion decision-packet --json",
+        expected: "doctor stays green and status/completion packet keeps PLAN-M-02 evidence bound to the approved snapshot",
+        rollbackTrigger: "doctor red, status regression, or completion packet evidence drift",
+      },
+      {
+        phase: "legacy-alias-and-runtime-logs",
+        commandAfterApproval: "dist/helix doctor && helix handover",
+        currentNoWriteProxyCommand:
+          "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts handover",
+        expected: "legacy alias disposition and handover/runtime log continuity are observable during the quiet window",
+        rollbackTrigger: "alias breakage without approved sunset route or runtime path regression in logs/handover",
+      },
+      {
+        phase: "rule-drift-and-feedback-backlog",
+        commandAfterApproval: "helix doctor && helix feedback status",
+        currentNoWriteProxyCommand:
+          "bun run src/cli.ts doctor --json && bun run src/cli.ts feedback status --json",
+        expected: "rule-drift, hook adapter parity, and feedback backlog stay inside the approved cutover boundary",
+        rollbackTrigger: "rule-drift, hook parity failure, or cutover-related feedback backlog escalation",
+      },
+    ],
+    requiredEvidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+    blockedUntil: [
+      "cutover_decision_record approves the current cutoverSnapshot.snapshotId",
+      "action_binding_approval_record scopes the quiet window, monitoring commands, rollback owner, and rollback trigger handling",
+      "post-cutover monitoring dry-run evidence is recorded before apply",
+    ],
+  };
+}
+
 const RENAME_EVIDENCE_PACK_GENERATED_RUNBOOK_PHASES = new Set([
   "blast-radius-baseline",
   "codemod-rehearsal",
   "repository-redirect-and-remote-review",
   "state-backup-restore-drill",
   "dist-smoke-rehearsal",
+  "post-cutover-monitoring-dry-run",
 ]);
 
 export function buildIdentifierRenameEvidencePack(
@@ -1917,6 +2010,9 @@ function renameEvidencePackContent(root: string, path: string): string {
       buildIdentifierRenameDistSmokeDryRun(root),
     )}`;
   }
+  if (path === ".helix/evidence/rename/post-cutover-monitoring-dry-run.json") {
+    return jsonEvidence(buildIdentifierRenameMonitoringDryRun());
+  }
   if (path.startsWith(".helix/evidence/rename/restore-") && path.endsWith(".json")) {
     const backupDryRun = buildIdentifierRenameStateBackupDryRun(root, true);
     const check = backupDryRun.restoreChecks.find((item) => item.restoreEvidencePath === path);
@@ -1947,6 +2043,9 @@ function renameEvidencePackSchemaVersionForPath(path: string): string {
   if (path.endsWith("dist-smoke-rehearsal.txt")) {
     return "identifier-rename-dist-smoke-dry-run.v1";
   }
+  if (path.endsWith("post-cutover-monitoring-dry-run.json")) {
+    return "identifier-rename-monitoring-dry-run.v1";
+  }
   if (path.includes("/restore-") && path.endsWith(".json")) {
     return "identifier-rename-restore-check-evidence.v1";
   }
@@ -1967,6 +2066,7 @@ export function identifierRenameRunbookCommandViolations(
     "bun run src/cli.ts rename state-backup --dry-run --restore-drill --json",
     "bun run lint && bun run typecheck && bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
     "bun run src/cli.ts rename dist-smoke --no-write --target helix --json",
+    "bun run src/cli.ts rename monitoring --no-write --json",
     "bun run test",
   ]);
   return plan.cutoverRunbook.flatMap((step) => {
@@ -2341,6 +2441,14 @@ export function buildIdentifierRenameCutoverPlan(
       `cutover evidence artifacts missing before approval: ${missingEvidenceArtifacts.slice(0, 5).join(", ")}${missingEvidenceArtifacts.length > 5 ? `, ... +${missingEvidenceArtifacts.length - 5}` : ""}`,
     );
   }
+  const missingRestoreSources = buildIdentifierRenameStateBackupDryRun(root, true).restoreChecks
+    .filter((check) => check.restoreRequired && !check.sourceExists)
+    .map((check) => check.path);
+  if (missingRestoreSources.length > 0) {
+    blockedReasons.push(
+      `state backup restore sources missing before approval: ${missingRestoreSources.join(", ")}; create source or record explicit no-state-needed disposition before cutover`,
+    );
+  }
   const freezePolicy: IdentifierRenameCutoverPlan["freezePolicy"] = {
     requiresFrozenHead: true,
     requiresQuietWindow: true,
@@ -2458,12 +2566,7 @@ export function buildIdentifierRenameCutoverPlan(
       "keep or restore a temporary helix alias only with an explicit sunset PLAN",
       "revert the cutover commit if post-cutover monitoring fails",
     ],
-    monitoringPlan: [
-      "run helix doctor and legacy alias smoke during the quiet window",
-      "rebuild harness.db and inspect status/completion decision packet",
-      "check rule-drift, hook adapter parity, and green-command digest after cutover",
-      "watch feedback backlog, handover, and runtime logs for path or marker regressions",
-    ],
+    monitoringPlan: buildMonitoringPlan(),
     stateBackupManifest,
     freezePolicy,
     sourceLedgerFreshness,

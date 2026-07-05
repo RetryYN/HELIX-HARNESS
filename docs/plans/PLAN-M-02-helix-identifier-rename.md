@@ -124,7 +124,7 @@ cutover_decision_record:
 - execution_window_or_freeze_policy: cutover 候補 policy は frozen HEAD、quiet window、single-run/concurrency policy、branch/prose freeze boundary、HEAD/scope/evidence drift 時の re-approval trigger を必須にする。
 - approval_scope: CLI/bin rename、state dir move、adapter marker/hook rename、docs/governance link rename、distribution surface の範囲に限定する。secret/auth/infra は対象外。
 - audit_record: apply commands、git hash、backup location、approver、doctor/full test/dist smoke 結果、rollback decision を `.helix/audit/A-NNN-*` に記録する。
-- post_cutover_monitoring: quiet window 中に `helix doctor`、旧 alias smoke、status/completion packet、harness.db rebuild、feedback backlog を確認する。
+- post_cutover_monitoring: quiet window 中に `helix doctor`、旧 alias smoke、status/completion packet、harness.db rebuild、feedback backlog を確認する。承認前 review では `helix rename monitoring --no-write --json` の証跡を `.helix/evidence/rename/post-cutover-monitoring-dry-run.json` として固定し、rollback trigger と current no-write proxy command を確認する。
 - legacy_alias_policy: `helix` alias/shim は Step 6 review で keep/remove を決め、残す場合は removal PLAN と sunset 条件を持つ。
 - source_ledger_freshness: fresh; cutover 判断に使う前に、2026-07-03 に docs/process/forward/L08-L14-verification-phase.md の cutover source ledger を確認済み。
 - source_status_delta: none; NIST SSDF / GitHub approvals and concurrency / Google SRE release/canary guidance / Microsoft safe deployment/testing / OWASP LLM06 / SLSA の source status change は、それ単体では rename apply を承認しない。
@@ -153,6 +153,7 @@ action_binding_approval_record:
 | 1 | 全機械識別子サイト | 再 grep 計測 → 対応表凍結（prose 除外を明示） |
 | 1a | blast-radius audit CLI | `auditIdentifierRenameBlastRadius` + `helix rename audit --json` で旧 token 残渣、category 別 hit、approval 不足を機械出力 |
 | 1b | non-destructive cutover packet | `helix rename plan --json` で rename map、category 別 cutover checklist、sourceLedgerFreshness、no-write cutoverRunbook、dry-run、rollback、monitoring、restore drill 付き state backup manifest、freeze policy、cutoverSnapshot、provenance requirements、approval gate を出す。verification matrix は current `helix` dist smoke、renamed `helix` dist smoke、legacy alias smoke を分け、各 row に sourceCheckedAt / latestOfficialStatus / sourceStatusDelta / adoptionDecision / adoptionDecisionDelta / workflowRouteImpact を持たせる。Google SRE canarying と Microsoft safe deployment/testing は staged exposure、health comparison、rollback trigger、pre-release security/regression/load evidence を承認前 review 材料に束ねる。apply は提供しない |
+| 1c | monitoring dry-run packet | `helix rename monitoring --no-write --json` で quiet window、single-run policy、post-cutover probe、rollback trigger、current no-write proxy command を出す。`.helix/evidence/rename/post-cutover-monitoring-dry-run.json` が cutoverSnapshot の evidenceArtifacts に含まれ、承認後の監視計画だけが prose に残る状態を許さない |
 | 2 | src/ tests/ | codemod + full vitest で behavior 不変担保 |
 | 3 | `.helix/` 実 dir + コード | atomic dir move + harness.db/projection/store パス更新（冪等手順） |
 | 4 | hooks + marker | 両 adapter 同コミット改名（rule-drift green 維持） |
@@ -167,8 +168,8 @@ action_binding_approval_record:
 - [ ] `rule-drift` green（両 adapter marker 一致）・full vitest green・compiled dist doctor green。
 - [ ] state dir 移行が冪等・不可逆境界で PO 承認済、audit A-NNN 記録。
 - [ ] 製品名/prose の HELIX 表記と機械識別子が完全一致（二重名称解消）。
-- [ ] 承認前 packet に backup/restore manifest、frozen HEAD + quiet window + single-run policy、
-      再承認 trigger、blast-radius/state-backup/audit/window provenance が含まれる。
+- [ ] 承認前 packet に backup/restore manifest、restore source 欠落 blocker、frozen HEAD + quiet window + single-run policy、
+      再承認 trigger、blast-radius/state-backup/audit/window provenance、monitoring dry-run evidence が含まれる。
 
 ## §5 carry / 次工程への引き継ぎ
 

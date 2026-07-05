@@ -6,9 +6,10 @@ layer: L7
 drive: agent
 status: confirmed
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-07-06
 owner: Codex
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
+pair_artifact: tests/identifier-rename.test.ts
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - role: tl
@@ -21,6 +22,8 @@ generates:
   - artifact_path: docs/plans/PLAN-REVERSE-225-approval-snapshot-binding.md
     artifact_type: markdown_doc
   - artifact_path: src/lint/version-up-readiness.ts
+    artifact_type: source_module
+  - artifact_path: src/cli.ts
     artifact_type: source_module
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
@@ -81,6 +84,55 @@ dependencies:
   requires:
     - docs/plans/PLAN-REVERSE-225-approval-snapshot-binding.md
 review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T08:25:00+09:00"
+    tests_green_at: "2026-07-06T08:25:00+09:00"
+    verdict: approve
+    scope: "Continuation: PLAN-M-02 rename/cutover packet に `rename monitoring --no-write --json` を追加し、post-cutover monitoring を prose だけでなく cutoverSnapshot evidence artifact に束縛した。さらに state backup restore source の `sourceExists=false` を `rename plan` の blocker に昇格し、restore evidence file が存在しても復元元が無い場合は approvalMaterialReady=false のまま止める。実 cutover、state move、approval 記録、外部 GitHub 操作は行っていない。"
+    worker_model: codex
+    reviewer_model: fermat-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/identifier-rename.test.ts tests/cli-surface.test.ts tests/completion-decision-packet.test.ts tests/outstanding.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T08:18:00+09:00"
+        evidence_path: tests/identifier-rename.test.ts
+        output_digest: "sha256:94db8d49ce9188e2aa239bb624776ec94e02e064a7882380cdb15051f964d3c1"
+      - kind: unit_test
+        command: "bun test tests/version-up-readiness.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T08:21:00+09:00"
+        evidence_path: tests/version-up-readiness.test.ts
+        output_digest: "sha256:77624e4863fb3b1c6b1f5ea526905bdac05e7583e883ada31dbb60b8b209c595"
+      - kind: typecheck
+        command: "bun run tsc --noEmit"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T08:21:00+09:00"
+        evidence_path: src/lint/identifier-rename.ts
+        output_digest: "sha256:3118e5ae0c44bde84e9b2dcceba8b60767854304f4eb62e4095766f848f6777a"
+      - kind: lint
+        command: "bash -lc 'git diff --check # lint whitespace'"
+        runner: bash
+        scope: changed-files
+        exit_code: 0
+        completed_at: "2026-07-06T08:21:00+09:00"
+        evidence_path: docs/plans/PLAN-L7-225-approval-snapshot-binding.md
+        output_digest: "sha256:5bc178b527c2bf704fa0d4d3f490d32816ec506e8f05e3dc3d40c1aa294e2745"
+      - kind: lint
+        command: "bash -lc 'legacy-name-lint: rg --hidden -n <legacy HELIX pre-rename identifier pattern> -g exclusions . || true'"
+        runner: bash
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T08:21:00+09:00"
+        evidence_path: docs/handover/session-handover-2026-07-05.md
+        output_digest: "sha256:5d94fcffeabd1b15046a6e35b734dc71aae8e45b87fc015ab2533b0a98e72a75"
   - reviewer: codex-tl
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-02T02:06:00+09:00"

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "identifier-rename-monitoring-dry-run.v1",
+  "planOnly": true,
+  "mustNotApply": true,
+  "writePolicy": "no-write",
+  "sourceCommand": "helix rename monitoring --no-write --json",
+  "quietWindow": {
+    "required": true,
+    "concurrencyPolicy": "single-run-no-concurrent-apply",
+    "approvalExpiresOnSignalChange": true
+  },
+  "monitoringPlan": [
+    "run helix doctor and legacy alias smoke during the quiet window",
+    "rebuild harness.db and inspect status/completion decision packet",
+    "check rule-drift, hook adapter parity, and green-command digest after cutover",
+    "watch feedback backlog, handover, and runtime logs for path or marker regressions"
+  ],
+  "probes": [
+    {
+      "phase": "doctor-status-completion",
+      "commandAfterApproval": "helix doctor && helix status && helix completion decision-packet --json",
+      "currentNoWriteProxyCommand": "bun run src/cli.ts doctor --json && bun run src/cli.ts status --json && bun run src/cli.ts completion decision-packet --json",
+      "expected": "doctor stays green and status/completion packet keeps PLAN-M-02 evidence bound to the approved snapshot",
+      "rollbackTrigger": "doctor red, status regression, or completion packet evidence drift"
+    },
+    {
+      "phase": "legacy-alias-and-runtime-logs",
+      "commandAfterApproval": "dist/helix doctor && helix handover",
+      "currentNoWriteProxyCommand": "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts handover",
+      "expected": "legacy alias disposition and handover/runtime log continuity are observable during the quiet window",
+      "rollbackTrigger": "alias breakage without approved sunset route or runtime path regression in logs/handover"
+    },
+    {
+      "phase": "rule-drift-and-feedback-backlog",
+      "commandAfterApproval": "helix doctor && helix feedback status",
+      "currentNoWriteProxyCommand": "bun run src/cli.ts doctor --json && bun run src/cli.ts feedback status --json",
+      "expected": "rule-drift, hook adapter parity, and feedback backlog stay inside the approved cutover boundary",
+      "rollbackTrigger": "rule-drift, hook parity failure, or cutover-related feedback backlog escalation"
+    }
+  ],
+  "requiredEvidencePath": ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
+  "blockedUntil": [
+    "cutover_decision_record approves the current cutoverSnapshot.snapshotId",
+    "action_binding_approval_record scopes the quiet window, monitoring commands, rollback owner, and rollback trigger handling",
+    "post-cutover monitoring dry-run evidence is recorded before apply"
+  ]
+}

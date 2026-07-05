@@ -81,6 +81,7 @@ import {
   buildIdentifierRenameCutoverPlan,
   buildIdentifierRenameDistSmokeDryRun,
   buildIdentifierRenameEvidencePack,
+  buildIdentifierRenameMonitoringDryRun,
   buildIdentifierRenameRehearsalPlan,
   buildIdentifierRenameStateBackupDryRun,
 } from "./lint/identifier-rename";
@@ -1752,6 +1753,38 @@ rename
     process.stdout.write(
       `  setup-after-approval: ${packet.postCutoverConsumerSetupPreview.commandAfterApproval}\n  setup-current-proxy: ${packet.postCutoverConsumerSetupPreview.currentNoWriteProxyCommand}\n`,
     );
+    for (const blocker of packet.blockedUntil) {
+      process.stdout.write(`  blocked-until: ${blocker}\n`);
+    }
+  });
+rename
+  .command("monitoring")
+  .description("emit a no-write post-cutover monitoring packet for HELIX identifier rename")
+  .option("--no-write", "confirm this command must not mutate files or state")
+  .option("--json", "JSON output")
+  .action((opts: { write?: boolean; json?: boolean }) => {
+    if (opts.write !== false) {
+      process.stderr.write("rename monitoring requires --no-write\n");
+      process.exitCode = 1;
+      return;
+    }
+    const packet = buildIdentifierRenameMonitoringDryRun();
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    process.stdout.write(
+      `rename monitoring: planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy} probes=${packet.probes.length}\n`,
+    );
+    process.stdout.write(
+      `  quiet-window: required=${packet.quietWindow.required} concurrency=${packet.quietWindow.concurrencyPolicy} approvalExpiresOnSignalChange=${packet.quietWindow.approvalExpiresOnSignalChange}\n`,
+    );
+    process.stdout.write(`  evidence: ${packet.requiredEvidencePath}\n`);
+    for (const probe of packet.probes) {
+      process.stdout.write(
+        `  monitoring-probe: ${probe.phase} afterApproval=${probe.commandAfterApproval} proxy=${probe.currentNoWriteProxyCommand} rollbackTrigger=${probe.rollbackTrigger}\n`,
+      );
+    }
     for (const blocker of packet.blockedUntil) {
       process.stdout.write(`  blocked-until: ${blocker}\n`);
     }
