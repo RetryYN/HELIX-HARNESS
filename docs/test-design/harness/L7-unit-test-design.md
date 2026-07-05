@@ -1138,3 +1138,20 @@ subagent の「賢さ」を委譲の質で機械保証する 2 機構。(1) Clau
 | U-AGUARD-BRIEF-003 | `evaluateAgentGuard` | 英語 / 日本語ラベルは等価（混在可）。4 要素が揃えば pass。 |
 | U-AGUARD-BRIEF-004 | `evaluateAgentGuard` | `HELIX_ALLOW_RAW_AGENT=1` はブリーフ欠落も bypass 警告付きで通す（既存 bypass 契約と同一）。 |
 | U-ADAPTER-010 | `buildAdapterPlan` / `formatAdapterPrompt` | 全委譲 plan の stdin は task 本文に加えて `ROLE_JUDGMENT_HEADER` の role 判断ブリーフを含む（skill 注入の有無に依らず）。既存 U-ADAPTER-007/008 の stdin 帯域外契約（argv 非混入）は維持される。 |
+
+## PLAN-L7-338 思考レンズ（task-lens）注入 追補
+
+role 判断ブリーフ（どう振る舞うか、PLAN-L7-337）と対で「何を考えるべきか」（設計 / 検証 /
+テスト戦略 / トラブルシューティングの観点網羅）を委譲 prompt へ機械注入する。実装は
+`src/runtime/task-lens.ts` + `adapter.ts`、テストは `tests/task-lens.test.ts` /
+`tests/runtime-adapter.test.ts`。
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-TASKLENS-001 | `detectTaskLenses` | 日本語 keyword（設計 / 検証 / テスト / 不具合・調査 等）で各レンズを検出する。 |
+| U-TASKLENS-002 | `detectTaskLenses` | 英語 keyword は語境界で判定し、designated / protest / prefix 等の部分一致に誤爆しない。 |
+| U-TASKLENS-003 | `detectTaskLenses` | 複数該当は固定順（design→verification→test-strategy→troubleshooting）で全件返す。 |
+| U-TASKLENS-004 | `detectTaskLenses` / `taskLensBrief` | 無 match / 空 task はレンズ 0 でブリーフ空文字列（注入しない = 無関係レンズの context 浪費防止）。 |
+| U-TASKLENS-005 | `taskLensBrief` | 各レンズのブリーフが領域の中核観点（inventory / falsifiable / Red→Green→Refactor / 再現→最小化→根本原因）と skill pack pointer を含む。 |
+| U-TASKLENS-006 | `taskLensBrief` / live repo | ブリーフ内の全 skill pack pointer が実 repo に存在する（dead link を fail-close）。 |
+| U-ADAPTER-012 | `buildAdapterPlan` / `formatAdapterPrompt` | 該当領域のある task はレンズ + role ブリーフを両方含み、無関係 task はレンズを含まず role ブリーフのみ（条件注入の両方向 oracle）。 |

@@ -17,6 +17,7 @@ import {
 } from "./adapter-policy";
 import type { ExecutionMode } from "./detect";
 import { roleJudgmentBrief } from "./role-judgment";
+import { taskLensBrief } from "./task-lens";
 
 export type AdapterProvider = "claude" | "codex";
 
@@ -424,9 +425,11 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
 }
 
 /**
- * 委譲 prompt = task 本文 + role 判断ブリーフ (judgment-core、PLAN-L7-337) + skill 注入。
+ * 委譲 prompt = task 本文 + role 判断ブリーフ (judgment-core、PLAN-L7-337)
+ * + 思考レンズ (task 内容依存、PLAN-L7-338) + skill 注入。
  * role ブリーフは全委譲に必ず載せる: Codex 側には role 別判断基準の正本が無く、
  * --task の手書きに依存すると判断規律が委譲ごとに欠落する (ブリーフ無し委譲を作らない)。
+ * 思考レンズは task に該当領域があるときだけ載せる (無関係レンズの常時注入は context 浪費)。
  */
 function formatAdapterPrompt(
   task: string,
@@ -436,6 +439,8 @@ function formatAdapterPrompt(
   const required = injection?.required_paths ?? [];
   const optional = injection?.optional_paths ?? [];
   const sections = [task, "", roleJudgmentBrief(role)];
+  const lensBrief = taskLensBrief(task);
+  if (lensBrief) sections.push("", lensBrief);
   if (required.length > 0 || optional.length > 0) {
     sections.push(
       "",

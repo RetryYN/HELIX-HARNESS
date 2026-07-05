@@ -163,6 +163,12 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   `triage refactor candidate ... attach/create refactor PLAN or record accepted debt` を next action として出す。
   厳密な N 回連続 surface は現行 projection DB が rebuild ごとに履歴を保持しないため、履歴 table 設計を要する
   別 PLAN 候補として扱う。
+- **Step 6 follow-up triage 証跡**: 2026-07-06 時点の `doctor --json` は
+  `refactor-candidate-triage - actionable (high=8...)` を message-only で表示し、`doctor.ok=true` を維持する。
+  現 8 件は `PLAN-L7-150-refactor-candidate-closure-sweep.md` の
+  「2026-07-06 現候補 triage / accepted debt」へ `accepted_debt` + `attached_plan=PLAN-L7-150` として記録した。
+  これにより Step 6 の「未 triage を見える化する」要件は満たしつつ、実 refactor 本体は blast radius ごとの
+  小 slice へ分割する。新規 product requirement / DB schema / public contract は追加しない。
 - **Step 4 AI 側完了**: PO 決定済み方針（期限付き物理削除は採用しない、append-only +
   superseded compaction / archive / projection rebuild）を L3 要件案
   `docs/design/helix/L3-requirements/retention-purge-policy.md` と L12 受入テスト設計

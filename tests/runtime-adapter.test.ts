@@ -21,6 +21,7 @@ import {
   REQUIRED_SKILL_LABEL,
 } from "../src/runtime/adapter-policy";
 import { ROLE_JUDGMENT_HEADER } from "../src/runtime/role-judgment";
+import { TASK_LENS_HEADER } from "../src/runtime/task-lens";
 
 /** 指定パスの親ディレクトリまで作成し、空の実行ファイルを置く。 */
 function touchBinary(path: string): void {
@@ -357,6 +358,23 @@ describe("runtime adapter plan", () => {
     );
     expect(verify.stdin).toContain("role archetype: verify");
     expect(verify.stdin).toContain("severity-first");
+  });
+
+  it("U-ADAPTER-012: injects task lenses only when the task matches a lens domain", () => {
+    const withLens = buildAdapterPlan(
+      { provider: "codex", role: "se", task: "login バグの原因を調査して修正", model: "gpt-5.4" },
+      "hybrid",
+    );
+    expect(withLens.stdin).toContain(TASK_LENS_HEADER);
+    expect(withLens.stdin).toContain("トラブルシューティングレンズ");
+    expect(withLens.stdin).toContain(ROLE_JUDGMENT_HEADER); // role ブリーフと共存
+
+    const withoutLens = buildAdapterPlan(
+      { provider: "codex", role: "docs", task: "update the changelog wording", model: "gpt-5.4" },
+      "hybrid",
+    );
+    expect(withoutLens.stdin).not.toContain(TASK_LENS_HEADER); // 無関係レンズは注入しない
+    expect(withoutLens.stdin).toContain(ROLE_JUDGMENT_HEADER); // role ブリーフは常時
   });
 
   it("U-ADAPTER-007: delivers the codex prompt via stdin so Windows .cmd shell-wrapping cannot truncate it", () => {
