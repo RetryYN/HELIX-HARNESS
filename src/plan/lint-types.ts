@@ -48,6 +48,8 @@ type PlanGovernanceViolationReason =
   | "reverse_r4_route_backprop_missing"
   | "reverse_fullback_scope_missing"
   | "forward_routing_scope_mismatch"
+  | "missing_s4_decision_record"
+  | "missing_pair_artifact"
   | "scope_integrity_mismatch"
   | "scope_integrity_invalid_waiver";
 

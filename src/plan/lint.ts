@@ -8,6 +8,7 @@ import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
 import {
   DB_PROJECTION_BACKPROP_REQUIRED_GENERATES,
   DESIGN_LAYERS_REQUIRING_SUB_DOC,
+  FILING_COMPLETENESS_ENFORCEMENT_DATE,
   INTERNAL_ASSET_EXTENSION_PLAN_IDS,
   KIND_LAYER_ENFORCEMENT_DATE,
   MODE_PATTERN,
@@ -567,6 +568,34 @@ export function analyzePlanGovernance(
         reason: "forward_routing_scope_mismatch",
         detail: invalidForwardRoutes.join(", "),
       });
+    }
+
+    // 起票完全性 (PLAN-L7-332): 入力漏れを事後 gate でなく plan lint で fail-close する。
+    // 日付 ratchet で既存 PLAN (DISCOVERY-07/10 等の S3 pending) は grandfather。
+    const filingStamp = stringField(raw.updated) ?? stringField(raw.created) ?? "";
+    if (status !== "archived" && filingStamp >= FILING_COMPLETENESS_ENFORCEMENT_DATE) {
+      const phase = stringField(raw.workflow_phase);
+      // S3/S4 の poc は s4_decision_record block 必須 (discovery.md §S4 decision rules、
+      // source_ledger_freshness は S3 pending PLAN で必須)。
+      if (
+        kind === "poc" &&
+        (phase === "S3" || phase === "S4") &&
+        !/^s4_decision_record:\s*$/m.test(entry.content)
+      ) {
+        violations.push({
+          file: entry.file,
+          reason: "missing_s4_decision_record",
+          detail: planId,
+        });
+      }
+      // reverse は検証ペア (pair_artifact) を起票時から明示する (PLAN-L7-331 の完遂検査と対)。
+      if (kind === "reverse" && !stringField(raw.pair_artifact)) {
+        violations.push({
+          file: entry.file,
+          reason: "missing_pair_artifact",
+          detail: planId,
+        });
+      }
     }
 
     if (kind === "design" && layer && DESIGN_LAYERS_REQUIRING_SUB_DOC.has(layer) && !isMasterHub) {

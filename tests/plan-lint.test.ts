@@ -848,6 +848,62 @@ describe("plan schedule lint (IMP-081)", () => {
     expect(mismatch?.detail).toContain("markdown_doc");
   });
 
+  it("U-PLANGOV-020: S3/S4 poc は s4_decision_record block を持たなければならない (起票完全性、PLAN-L7-332)", () => {
+    const s3Poc = (id: string, extra = "") =>
+      planDoc(id, {
+        kind: "poc",
+        layer: "cross",
+        drive: "fe",
+        status: "draft",
+        subDoc: null,
+        extra: `workflow_phase: S3\nscrum_type: design-spike\nupdated: 2026-07-06\n${extra}`,
+      });
+
+    // record 無し → violation
+    const missing = analyzePlanGovernance([s3Poc("PLAN-DISCOVERY-90-no-record")]);
+    expect(missing.violations.map((v) => v.reason)).toContain("missing_s4_decision_record");
+
+    // record あり → この violation は出ない
+    const withRecord = s3Poc("PLAN-DISCOVERY-91-with-record");
+    withRecord.content += "\ns4_decision_record:\n- allowed_outcome: `confirmed` / `rejected` / `pivot`\n";
+    const ok = analyzePlanGovernance([withRecord]);
+    expect(ok.violations.map((v) => v.reason)).not.toContain("missing_s4_decision_record");
+
+    // enforcement 境界より前の updated は grandfather
+    const legacy = planDoc("PLAN-DISCOVERY-92-legacy", {
+      kind: "poc",
+      layer: "cross",
+      drive: "fe",
+      status: "draft",
+      subDoc: null,
+      extra: "workflow_phase: S3\nscrum_type: design-spike\nupdated: 2026-07-01\n",
+    });
+    const grandfathered = analyzePlanGovernance([legacy]);
+    expect(grandfathered.violations.map((v) => v.reason)).not.toContain(
+      "missing_s4_decision_record",
+    );
+  });
+
+  it("U-PLANGOV-021: reverse は起票時から pair_artifact を明示する (PLAN-L7-331 完遂検査と対)", () => {
+    const reverse = (id: string, extra = "") =>
+      planDoc(id, {
+        kind: "reverse",
+        layer: "cross",
+        drive: "fe",
+        status: "draft",
+        subDoc: null,
+        extra: `workflow_phase: R0\nconfirmed_reverse_type: design\ncreated: 2026-07-06\nupdated: 2026-07-06\n${extra}`,
+      });
+
+    const missing = analyzePlanGovernance([reverse("PLAN-REVERSE-90-no-pair")]);
+    expect(missing.violations.map((v) => v.reason)).toContain("missing_pair_artifact");
+
+    const withPair = analyzePlanGovernance([
+      reverse("PLAN-REVERSE-91-with-pair", "pair_artifact: tests/plan-lint.test.ts\n"),
+    ]);
+    expect(withPair.violations.map((v) => v.reason)).not.toContain("missing_pair_artifact");
+  });
+
   it("U-PLANSCH-011: active gate docs do not point to stale trace/stub commands", () => {
     const activeDocs = [
       "docs/test-design/harness/L1-operational-test-design.md",

@@ -6,7 +6,12 @@ layer: L7
 drive: be
 status: draft
 created: 2026-MM-DD
+updated: 2026-MM-DD
 owner: PM (Opus)
+parent_design: docs/plans/PLAN-XXX.md   # kind=impl は必須 (§1.1.parent_design)。設計の出典を指す
+pair_artifact: tests/<module>.test.ts   # 検証ペア (TDD red-first で先行作成)
+backprop_decision: not_required         # 上位設計へ意味変更が無い場合。ある場合は required + 理由
+backprop_decision_reason: "(なぜ上位設計の変更が不要/必要か)"
 agent_slots:
   - role: po
     slot_label: "PO — スコープ判断・受入承認"
@@ -32,6 +37,33 @@ related_adr:
 related_docs:
   - docs/governance/helix-harness-requirements_v1.2.md
 ---
+
+## §-1 review_evidence 骨格（confirmed 昇格前に frontmatter へ移す）
+
+confirmed 昇格には review_evidence が必須（green_commands は実測 digest 付き、IMP-108）。
+reviewer は別 runtime / model family を優先し、不可時は intra_runtime_subagent + 例外理由を記録する。
+`reviewed_at` は `tests_green_at` 以降の時刻にする。`runner` は bun / powershell / bash / ci のみ有効。
+
+```yaml
+review_evidence:
+  - reviewer: (別 runtime / model family)
+    review_kind: cross_agent
+    reviewed_at: "YYYY-MM-DDTHH:MM:SS+09:00"
+    tests_green_at: "YYYY-MM-DDTHH:MM:SS+09:00"
+    verdict: pass
+    scope: "(何をどう検証したか)"
+    worker_model: (作成側 model)
+    reviewer_model: (レビュー側 model)
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/<module>.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "YYYY-MM-DDTHH:MM:SS+09:00"
+        evidence_path: tests/<module>.test.ts
+        output_digest: "sha256:(実行出力の sha256)"
+```
 
 ## §0 PLAN
 
