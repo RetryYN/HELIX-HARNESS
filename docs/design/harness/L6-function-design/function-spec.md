@@ -135,7 +135,7 @@ source file、Git branch、remote、harness state は変更しない。
 Safety defaults（安全側の既定）:
 
 - Docker MCP Toolkit は profile-isolation candidate であり、Docker Desktop/toolkit availability が証明されるまで optional のままにする。
-- GitHub MCP は read-only かつ narrow toolset を既定とし、write-capable profile variant は `requires_human_approval` を必須にする。
+- GitHub MCP は read-only かつ narrow toolset を既定とする。MCP の broad write-capable profile variant は通常の `gh` 委譲 GitHub 運用とは別物として扱い、branch protection / ruleset / release / tag publish / repository rename / force-push など高影響 action を含む場合だけ `requires_human_approval` を必須にする。通常の branch push、draft PR 作成、PR body 生成、CI 状態取得は `github-merge-readiness` / `pr-create` packet の repo write preflight が通れば AI agent の通常運用である。
 - Generated MCP config は local/environment state であり、committed credential や user-specific absolute home path を導入しない。
 - Default runnable verification profile は restricted network でも動く local regression を指し、clean artifact distribution acceptance や外部 registry/cache 前提の full suite を含めない。
 - Tool/profile output は evidence/projection row へ正規化する。raw MCP response、screenshot、trace、provider transcript は DB row から除外する。

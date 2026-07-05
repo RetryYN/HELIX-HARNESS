@@ -129,7 +129,7 @@ function renamePacket(): CompletionDecisionPacket {
           layer: "L14",
           kind: "design",
           status: "draft",
-          text: "irreversible migration pending for .helix to .helix identifier rename cutover.",
+          text: "irreversible migration pending for 旧 state path -> .helix identifier rename cutover.",
         },
       ],
       0,

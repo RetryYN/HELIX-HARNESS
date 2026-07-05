@@ -43,7 +43,13 @@ generates:
     artifact_type: source_module
   - artifact_path: docs/governance/helix-objective-evidence-audit.md
     artifact_type: markdown_doc
+  - artifact_path: docs/process/modes/README.md
+    artifact_type: markdown_doc
+  - artifact_path: docs/process/forward/L08-L14-verification-phase.md
+    artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/harness/L6-function-design/function-spec.md
     artifact_type: design_doc
   - artifact_path: docs/design/harness/L6-function-design/setup-solo-team.md
     artifact_type: design_doc
@@ -185,6 +191,10 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - `harness.db` rebuild は schema migration も `BEGIN IMMEDIATE` 配下へ含め、DDL と projection の競合窓を閉じる。
 - `drive-db-registration` doctor gate は stale persisted DB を検出した場合、read-only の `:memory:` rebuild 結果で
   現行 docs fingerprint を再評価し、rebuild 中の false positive を避ける。
+- process / L6 design docs に残っていた「credential を伴う write action は人間承認必須」と読める過剰制限を、
+  HELIX の自律境界へ合わせる。通常の branch push、draft PR 作成、PR body 生成、CI 状態取得は repo preflight が
+  通れば AI agent の通常運用とし、branch protection / ruleset / release / tag publish / repository rename /
+  force-push / 本番・認証・secret・権限境界変更だけを action-binding approval または Incident 承認へ残す。
 
 ## 非スコープ
 
@@ -230,3 +240,5 @@ branch protection、ruleset、release/tag publish、repository rename、force-pu
 `gh` 認証済みでも repo の `viewerPermission` が write-capable でない場合は、後段の `gh pr create` 失敗まで
 持ち越さず preflight packet で止める。これは HELIX agent の GitHub 運用を read-only に固定する規則ではなく、
 write-capable credential を安全に要求するための検査である。
+2026-07-05 追補: process / L6 design docs も同じ境界へ是正した。人間承認が必要なのは高影響・不可逆操作であり、
+通常の GitHub PR/CI 運用を自由にできないという旧 harness 由来の読み方は不採用とする。

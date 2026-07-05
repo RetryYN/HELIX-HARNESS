@@ -432,7 +432,7 @@ describe("U-HOVER-020 §3 workflow next action seed + anchor gate", () => {
           layer: "L14",
           kind: "design",
           status: "draft",
-          text: "Irreversible .helix to .helix rename cutover requires human approval and action-binding approval before apply.",
+          text: "Irreversible 旧 state path -> .helix rename cutover requires human approval and action-binding approval before apply.",
         },
       ],
       0,

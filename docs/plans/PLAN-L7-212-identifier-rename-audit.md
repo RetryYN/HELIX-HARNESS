@@ -97,13 +97,16 @@ dependencies:
 ## §0 役割
 
 `PLAN-M-02` の Step 1（blast-radius 再計測 + 改名表凍結 + 非破壊 cutover packet）を機械化する。
-これは `.helix` を `.helix` へ移す cutover apply ではない。state dir migration、CLI/bin rename、
+これは旧 state path を `.helix` へ移す cutover apply ではない。state dir migration、CLI/bin rename、
 hook/adapter marker rename は `PLAN-M-02` の cutover decision と action-binding approval が揃うまで
 blocked のまま扱う。`helix rename plan` は approval が concrete でも plan-only surface であり、
 dry-run / rollback / monitoring / approval gate を出すだけで apply command を提供しない。
 2026-07-01 追補 (continuation): cutover packet は構造化された `stateBackupManifest` / `freezePolicy` /
 `provenanceRequirements` を持ち、承認者が backup 対象、凍結 HEAD / quiet window / 単独実行、
 再承認 trigger、audit evidence を JSON で確認できる。これは承認前判定の設計材料であり、apply 権限ではない。
+2026-07-05 追補 (continuation): rename plan の primary related packet reason と PLAN-M-02 Step 3 表示を
+旧 state path (`.ut-tdd`) → `.helix` として正規化し、`.helix` → `.helix` の誤表示を排除する。fixture text も同じ
+意味境界へ揃えるが、cutover apply は引き続き未承認・未実行である。
 
 ## §1 実装単位
 

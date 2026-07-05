@@ -2475,7 +2475,7 @@ export function buildIdentifierRenameCutoverPlan(
         command: RENAME_PLAN_PACKET_COMMAND,
         scopedCommand: RENAME_PLAN_PACKET_COMMAND,
         role: "primary",
-        reason: "irreversible .helix to .helix cutover requires explicit cutover signoff",
+        reason: `irreversible ${LEGACY_STATE_DIR_TOKEN} to .helix cutover requires explicit cutover signoff`,
         route:
           "use rename plan for blast-radius, dry-run, rollback, backup, monitoring, and approval-gate material",
       }),

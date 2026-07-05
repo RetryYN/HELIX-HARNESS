@@ -1043,6 +1043,7 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
             role: "primary",
             command: "helix rename plan --json",
             scopedCommand: "helix rename plan --json",
+            reason: `irreversible ${legacyStateDir} to .helix cutover requires explicit cutover signoff`,
           }),
           expect.objectContaining({
             role: "supporting",

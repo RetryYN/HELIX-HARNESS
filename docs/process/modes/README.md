@@ -115,7 +115,7 @@ Add-feature / version-up / Research であり、古い 9-mode 表記だけを根
 
 - mode は workflow signal と profile recommendation を出す場合に限り、MCP server または外部 test foundation を推奨できる。
 - Add-feature / Refactor / Retrofit の discovery で profile、plugin、MCP server、test foundation を追加する場合、変更を `backprop_decision` で分類する。
-- Recovery / Incident は診断に MCP/browser/GitHub profile を使えるが、credential を伴う write action は人間承認を必須とする。
+- Recovery / Incident は診断に MCP/browser/GitHub profile を使える。通常の branch push、draft PR 作成、PR body 生成、CI 状態取得は `gh` 委譲認証と repo write/admin preflight が通れば AI agent の通常運用として扱う。branch protection / ruleset / release / tag publish / repository rename / force-push / 本番・認証・secret・権限境界を変える write action は action-binding approval または Incident 承認を必須とする。
 - Discovery / Scrum は profile を PoC evidence として使えるが、confirmed outcome は Forward または Reverse back-fill を必要とする。
 - profile の利用可否は environment state である。Docker、browser、auth、MCP server installation の欠落は finding として扱い、無関係な local check を無効化しない。
 - mode または gate で profile rule が有効な場合、accept/close には normalized evidence が必要である。
