@@ -48,8 +48,9 @@ const deps: DigestAuditDeps = {
 };
 
 describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
-  const realDigest = `sha256:${"a".repeat(64)}`;
-  const historicalDigest = `sha256:${"b".repeat(64)}`;
+  // 単一文字反復はプレースホルダ判定 (digest-placeholder) の対象なので、valid fixture は非一様 hex にする。
+  const realDigest = `sha256:${"ab12".repeat(16)}`;
+  const historicalDigest = `sha256:${"cd34".repeat(16)}`;
 
   it("U-GREENCMD-001: passes when output_digest is valid and evidence_path exists", () => {
     const mismatches = auditGreenCommandDigests(
@@ -83,6 +84,23 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(mismatches).toHaveLength(1);
     expect(mismatches[0]?.reason).toBe("digest-invalid");
     expect(mismatches[0]?.plan_id).toBe("PLAN-FAKE");
+  });
+
+  it("U-GREENCMD-001: flags a repeated-hex placeholder digest (sha256:000...0) as digest-placeholder", () => {
+    // 形式は valid な 64 hex でも、単一文字の 64 連続は実測 sha256 では実質発生しない
+    // プレースホルダ (cross-review 2026-07-06 で全ゼロ digest が gate を素通りした実例の再発防止)。
+    for (const char of ["0", "f", "a"]) {
+      const mismatches = auditGreenCommandDigests(
+        [
+          plan("PLAN-PLACEHOLDER", [
+            { evidence_path: "tests/real.test.ts", output_digest: `sha256:${char.repeat(64)}` },
+          ]),
+        ],
+        deps,
+      );
+      expect(mismatches).toHaveLength(1);
+      expect(mismatches[0]?.reason).toBe("digest-placeholder");
+    }
   });
 
   it("U-GREENCMD-001: flags a missing evidence_path file", () => {

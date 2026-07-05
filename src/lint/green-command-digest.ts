@@ -24,7 +24,7 @@ export interface DigestMismatch {
   evidence_path: string;
   claimed: string;
   actual: string;
-  reason: "file-missing" | "digest-invalid";
+  reason: "file-missing" | "digest-invalid" | "digest-placeholder";
 }
 
 export interface DigestAuditDeps {
@@ -44,6 +44,10 @@ export function auditGreenCommandDigests(
 ): DigestMismatch[] {
   const mismatches: DigestMismatch[] = [];
   const validDigestPattern = /^sha256:[a-f0-9]{64}$/i;
+  // 単一 hex 文字の 64 連続 (sha256:000...0 / fff...f 等) は実測 sha256 では実質発生せず、
+  // プレースホルダの典型形。形式検査を素通りした fake substance の実例 (cross-review 検出、
+  // 2026-07-06) を機械で塞ぐ。
+  const placeholderPattern = /^sha256:([a-f0-9])\1{63}$/i;
   for (const plan of plans) {
     for (const entry of plan.crossEntries ?? []) {
       for (const cmd of entry.green_commands ?? []) {
@@ -57,6 +61,16 @@ export function auditGreenCommandDigests(
             claimed,
             actual: "",
             reason: "digest-invalid",
+          });
+          continue;
+        }
+        if (placeholderPattern.test(claimed)) {
+          mismatches.push({
+            plan_id: plan.plan_id,
+            evidence_path: path,
+            claimed,
+            actual: "",
+            reason: "digest-placeholder",
           });
           continue;
         }

@@ -55,7 +55,7 @@ review_evidence:
     reviewed_at: "2026-07-06T06:45:00+09:00"
     tests_green_at: "2026-07-06T06:45:00+09:00"
     verdict: approve_after_tests
-    scope: "task 本文から設計 / 検証 / テスト戦略 / トラブルシューティングの思考レンズを決定論的に検出し、該当時だけ adapter stdin へ注入する。role 判断ブリーフは常時維持し、無関係 task には lens を注入しない。U-ADAPTER 番号衝突は U-ADAPTER-012 へ補正した。"
+    scope: "task 本文から設計 / 検証 / テスト戦略 / トラブルシューティングの思考レンズを決定論的に検出し、該当時だけ adapter stdin へ注入する。role 判断ブリーフは常時維持し、無関係 task には lens を注入しない。U-ADAPTER 番号衝突は U-ADAPTER-012 へ補正した。追補レビューで英語屈折形の見逃しとカタカナ部分一致誤爆を検出したため、U-TASKLENS-007/008 を追加し回帰 fence 化した。"
     worker_model: claude-fable-5
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -73,6 +73,64 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-07-06T05:02:42+09:00"
+        evidence_path: src/runtime/task-lens.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T06:45:00+09:00"
+    tests_green_at: "2026-07-06T06:45:00+09:00"
+    verdict: approve_after_tests
+    scope: "追補レビューで検出した英語屈折形の見逃しとカタカナ部分一致誤爆を U-TASKLENS-007/008 として回帰 fence 化し、既存 adapter 条件注入契約が green のまま保たれることを確認した。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T06:45:00+09:00"
+        evidence_path: tests/task-lens.test.ts
+        output_digest: "sha256:da9986821acaa125128230f767de3595dc29e4167ac86d85281a002abe58762a"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T06:45:00+09:00"
+        evidence_path: src/runtime/task-lens.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+  - reviewer: code-reviewer
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T05:16:12+09:00"
+    tests_green_at: "2026-07-06T05:16:12+09:00"
+    verdict: approve_after_fixes
+    scope: "5 軸レビュー (Claude 側 fresh subagent context)。REQUEST_CHANGES 所見を全て解消: (1) Critical = PLAN 番号重複 (Codex が統合) と全ゼロ placeholder digest (実測 digest 化)。(2) Important = カタカナ部分一致誤爆 (コンテスト/バグダッド) と英語屈折形見逃し (testing/fixed/debugging/verified/validating) → カタカナ語境界近似 + 一様 suffix + 明示形で修正、U-TASKLENS-007/008 で回帰 fence 化。(3) Important = regex 特殊文字未エスケープの latent bug → escapeRegex 導入。(4) レビューが実証した検出盲点 (repeated-hex placeholder が green-command-digest 形式検査を素通り) は digest-placeholder 判定として PLAN-L7-132 延長で fail-close 化し、実 repo の placeholder 3 件 (PLAN-L3-07) を即検出 → 実測是正済み。"
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T05:16:12+09:00"
+        evidence_path: tests/task-lens.test.ts
+        output_digest: "sha256:5922416b2a900e63b3d595c704059992ff8473d824c2d07f36fefeb5afea4c3c"
+      - kind: unit_test
+        command: "bun test tests/green-command-digest.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T05:16:12+09:00"
+        evidence_path: tests/green-command-digest.test.ts
+        output_digest: "sha256:b60309bdbb4ec4b2fc27ec3805b4e1200576f5ebe72037c5821a49ed1ebabddc"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T05:16:12+09:00"
         evidence_path: src/runtime/task-lens.ts
         output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
@@ -124,7 +182,7 @@ PLAN-L7-337 で「どう振る舞うか」（role 規律）は全委譲に載る
 - keyword 表の config 外部化（requirements-binding 系。運用実績を見てから別 PLAN で判断）。
 
 ## 受入条件
-- U-TASKLENS-001..006 / U-ADAPTER-012 が green であること
+- U-TASKLENS-001..008 / U-ADAPTER-012 が green であること
   （検証コマンド: `bun test tests/task-lens.test.ts tests/runtime-adapter.test.ts`）。
 - 既存契約（U-ADAPTER-007/008/010、role ブリーフ・stdin 帯域外）が green のまま（同上に包含）。
 - `bun run typecheck` green、`helix doctor` exit 0。
@@ -139,6 +197,10 @@ PLAN-L7-337 で「どう振る舞うか」（role 規律）は全委譲に載る
 - レンズ本文は skill pack の複製ではなく distillation + pointer に保つ（pointer の実在は
   U-TASKLENS-006 が fail-close）。
 - 誤爆抑制（英語語境界）を keyword 追加時にも維持する（U-TASKLENS-002 が回帰 fence）。
+- 英語 keyword は `testing` / `fixed` / `debugging` / `verified` / `validating` 等の実務上自然な
+  屈折形を検出する（U-TASKLENS-007 が見逃しを回帰 fence 化）。
+- カタカナ keyword は `コンテスト` / `バグダッド` のような別語の部分列へ誤爆せず、
+  `回帰テスト` / `ユニットテスト` / `バグを直す` は検出する（U-TASKLENS-008 が境界を固定）。
 
 ## §6 用語更新 (living glossary delta)
 

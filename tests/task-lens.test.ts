@@ -18,6 +18,26 @@ describe("U-TASKLENS: 思考レンズ検出と注入 (PLAN-L7-338)", () => {
     expect(detectTaskLenses("rename the prefix constant")).toEqual([]);
   });
 
+  it("U-TASKLENS-007: 英語の屈折形 (testing/fixed/debugging/verified) を見逃さない (レビュー実測所見の回帰 fence)", () => {
+    expect(detectTaskLenses("add unit testing for the module")).toContain("test-strategy");
+    expect(detectTaskLenses("I fixed the payment issue yesterday")).toContain("troubleshooting");
+    expect(detectTaskLenses("debugging the payment flow")).toContain("troubleshooting");
+    expect(detectTaskLenses("we verified the output manually")).toContain("verification");
+    expect(detectTaskLenses("validating the input schema")).toContain("verification");
+  });
+
+  it("U-TASKLENS-008: カタカナ語は前後カタカナで別語の部分列とみなし誤爆しない (レビュー実測所見の回帰 fence)", () => {
+    // コン「テスト」/「バグ」ダッド は誤爆しない
+    expect(detectTaskLenses("デザインコンテスト応募文書を作る")).toEqual([]);
+    expect(detectTaskLenses("バグダッド出張の日程調整")).toEqual([]);
+    // 正当な用法 (漢字/助詞に隣接、明示複合語) は検出する
+    expect(detectTaskLenses("回帰テストを足す")).toContain("test-strategy");
+    expect(detectTaskLenses("単体テストの拡充")).toContain("test-strategy");
+    expect(detectTaskLenses("ユニットテストを書く")).toContain("test-strategy");
+    expect(detectTaskLenses("バグを直す")).toContain("troubleshooting");
+    expect(detectTaskLenses("エラーが出る")).toContain("troubleshooting");
+  });
+
   it("U-TASKLENS-003: 複数レンズは固定順 (design→verification→test-strategy→troubleshooting) で全件返す", () => {
     const lenses = detectTaskLenses("設計を検証し、テストを足してバグを修正する");
     expect(lenses).toEqual(["design", "verification", "test-strategy", "troubleshooting"]);

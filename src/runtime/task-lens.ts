@@ -14,7 +14,13 @@ export type TaskLens = "design" | "verification" | "test-strategy" | "troublesho
 
 export const TASK_LENS_HEADER = "## HELIX 思考レンズ (task-lens)";
 
-/** レンズ別 keyword (小文字比較)。日本語は includes、英語は語境界で誤爆を抑える。 */
+/**
+ * レンズ別 keyword (小文字比較)。
+ * - 日本語: includes 判定。ただしカタカナ語 (テスト / バグ / エラー / デバッグ) は前後が
+ *   カタカナだと別語の部分列 (コン「テスト」/「バグ」ダッド) なので語境界を近似検査する。
+ * - 英語: 語境界 regex + 一様な屈折 suffix (s/es/ed/ing)。suffix で覆えない形
+ *   (debugging の子音重複、verify の y 変化) は明示形で列挙する。
+ */
 const LENS_KEYWORDS: Record<TaskLens, { ja: readonly string[]; en: readonly string[] }> = {
   design: {
     ja: ["設計", "アーキテクチャ", "分割", "モデリング", "構成"],
@@ -22,16 +28,76 @@ const LENS_KEYWORDS: Record<TaskLens, { ja: readonly string[]; en: readonly stri
   },
   verification: {
     ja: ["検証", "受入", "妥当性", "証跡"],
-    en: ["verify", "verification", "acceptance", "evidence", "validate"],
+    en: [
+      "verify",
+      "verifies",
+      "verified",
+      "verifying",
+      "verification",
+      "acceptance",
+      "evidence",
+      "validate",
+      "validated",
+      "validating",
+      "validation",
+    ],
   },
   "test-strategy": {
-    ja: ["テスト", "カバレッジ", "回帰"],
+    // カタカナ境界検査で棄却される正当複合語 (ユニットテスト等) は明示形で列挙する。
+    ja: ["テスト", "ユニットテスト", "リグレッションテスト", "カバレッジ", "回帰"],
     en: ["test", "coverage", "regression", "oracle", "tdd"],
   },
   troubleshooting: {
     ja: ["バグ", "修正", "エラー", "障害", "調査", "デバッグ", "原因", "再現", "不具合"],
-    en: ["bug", "fix", "error", "debug", "troubleshoot", "incident", "flaky", "crash"],
+    en: [
+      "bug",
+      "fix",
+      "error",
+      "debug",
+      "debugging",
+      "debugged",
+      "troubleshoot",
+      "incident",
+      "flaky",
+      "crash",
+    ],
   },
+};
+
+const KATAKANA_RE = /[゠-ヿ]/;
+
+/**
+ * 日本語 keyword の match 判定。カタカナ語は前後どちらかがカタカナなら別語の部分列と
+ * みなして棄却する (コンテスト→テスト / バグダッド→バグ の誤爆抑制)。漢字語は includes のまま。
+ */
+function matchesJapaneseKeyword(text: string, keyword: string): boolean {
+  if (!KATAKANA_RE.test(keyword)) return text.includes(keyword);
+  let from = 0;
+  while (true) {
+    const index = text.indexOf(keyword, from);
+    if (index < 0) return false;
+    const before = index > 0 ? text[index - 1] : "";
+    const after = index + keyword.length < text.length ? text[index + keyword.length] : "";
+    if (!KATAKANA_RE.test(before) && !KATAKANA_RE.test(after)) return true;
+    from = index + 1;
+  }
+}
+
+/** regex 特殊文字を escape する (keyword 追加時の latent bug 防止)。 */
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** 英語 keyword の語境界 regex (一様屈折 suffix 付き)。module load 時に構築して使い回す。 */
+function englishPattern(keyword: string): RegExp {
+  return new RegExp(`\\b${escapeRegex(keyword)}(?:s|es|ed|ing)?\\b`, "i");
+}
+
+const EN_PATTERNS: Record<TaskLens, readonly RegExp[]> = {
+  design: LENS_KEYWORDS.design.en.map(englishPattern),
+  verification: LENS_KEYWORDS.verification.en.map(englishPattern),
+  "test-strategy": LENS_KEYWORDS["test-strategy"].en.map(englishPattern),
+  troubleshooting: LENS_KEYWORDS.troubleshooting.en.map(englishPattern),
 };
 
 const LENS_LINES: Record<TaskLens, readonly string[]> = {
@@ -77,9 +143,9 @@ export function detectTaskLenses(task: string | null | undefined): TaskLens[] {
   const text = (task ?? "").toLowerCase();
   if (!text.trim()) return [];
   return LENS_ORDER.filter((lens) => {
-    const { ja, en } = LENS_KEYWORDS[lens];
-    if (ja.some((keyword) => text.includes(keyword.toLowerCase()))) return true;
-    return en.some((keyword) => new RegExp(`\\b${keyword}\\b`, "i").test(text));
+    const { ja } = LENS_KEYWORDS[lens];
+    if (ja.some((keyword) => matchesJapaneseKeyword(text, keyword.toLowerCase()))) return true;
+    return EN_PATTERNS[lens].some((pattern) => pattern.test(text));
   });
 }
 
