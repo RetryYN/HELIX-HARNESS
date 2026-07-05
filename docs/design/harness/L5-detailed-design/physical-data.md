@@ -286,9 +286,9 @@ DB は ID、reason、score、redacted summary だけを保存する。raw provid
 - すべての non-green lint/doctor/vmodel/gate result は `findings` と任意の `quality_signals` として表現できる。
 - `search_index` は docs/state/logs から rebuild 可能であり、削除・再構築しても authoritative state は変わらない。
 
-### §9.4 UT evidence 履歴 projection (A-122 / IMP-109)
+### §9.4 test evidence 履歴 projection (A-122 / IMP-109)
 
-Phase 2 close review では、DB design が workflow、guardrail、skill、quality signal を既に project できる一方で、UT-specific feedback question にはまだ答えられないことが分かった。Phase 4 DB implementation 開始前に、次の projection table を追加する。これらは derived data のままであり、authoring source は test files、PLAN artifacts、vitest/Bun output、CI logs、`.ut-tdd/` evidence である。
+Phase 2 close review では、DB design が workflow、guardrail、skill、quality signal を既に project できる一方で、単体テスト固有の feedback question にはまだ答えられないことが分かった。Phase 4 DB implementation 開始前に、次の projection table を追加する。これらは derived data のままであり、authoring source は test files、PLAN artifacts、vitest/Bun output、CI logs、`.ut-tdd/` evidence である。
 
 | table | primary key | 必須列 | 目的 |
 |---|---|---|---|
