@@ -52,10 +52,10 @@ HELIX-HARNESS/
 │   ├── test-design/              # [予定] ③ テスト設計 doc
 │   ├── research/                 # [予定] Research mode 成果 (research-memo。ADR は adr/、§2 参照)
 │   ├── reference/                # 横断参照資料 (正本外、ai-agent-harness-directory-reference.md)
-│   ├── skills/                   # [予定] UT-TDD 正本化 skill doc
+│   ├── skills/                   # [予定] HELIX 正本化 skill doc
 │   ├── plans/                    # PLAN-NNN-slug.md (実装計画)
 │   ├── templates/                # PLAN / prompt / state テンプレ
-│   ├── migration/                # legacy source → UT-TDD 再設計資料 (旧 porting-map 等。code-port 部は ADR-001 で superseded)
+│   ├── migration/                # legacy source → HELIX 再設計資料 (旧 porting-map 等。code-port 部は ADR-001 で superseded)
 │   ├── handover/                 # セッション handover
 │   ├── memory/                   # 運用メモ
 │   └── archive/                  # 旧版・superseded (正本ではない)

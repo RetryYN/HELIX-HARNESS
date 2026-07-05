@@ -29,33 +29,33 @@ applies_to:
     - Retrofit
     - Add-feature
     - Research
-description: Single-runtime judgment-gate review evidence. Each item requires pass/fail/n-a and evidence for n-a.
+description: Single-runtime judgment-gate review evidence。各項目は pass/fail/n-a と n-a の evidence を必須とする。
 items:
   - id: DOC
-    label: Documentation consistency
+    label: ドキュメント整合性
     status: pass
-    evidence: Replace this with the checked documentation references.
+    evidence: 確認したドキュメント参照に置き換える。
   - id: TST
-    label: Test coverage and green result
+    label: テスト被覆と green 結果
     status: pass
-    evidence: Replace this with the test command and result.
+    evidence: 実行したテスト command と結果に置き換える。
   - id: COD
-    label: Code correctness and maintainability
+    label: コードの正しさと保守性
     status: pass
-    evidence: Replace this with reviewed source references.
+    evidence: review した source 参照に置き換える。
   - id: XR
-    label: Cross-runtime behavior
+    label: cross-runtime 挙動
     status: pass
-    evidence: Replace this with Claude/Codex mode evidence.
+    evidence: Claude/Codex mode evidence に置き換える。
   - id: DEP
-    label: Dependency and boundary impact
+    label: 依存と境界への影響
     status: pass
-    evidence: Replace this with dependency/boundary check evidence.
+    evidence: dependency/boundary check evidence に置き換える。
   - id: DUP
-    label: Duplicate implementation avoidance
+    label: 重複実装の回避
     status: pass
-    evidence: Replace this with reuse/search evidence.
+    evidence: reuse/search evidence に置き換える。
   - id: MOD
-    label: Module and workflow consistency
+    label: module と workflow の整合性
     status: pass
-    evidence: Replace this with module/workflow consistency evidence.
+    evidence: module/workflow consistency evidence に置き換える。
