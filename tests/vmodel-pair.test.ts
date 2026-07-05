@@ -212,15 +212,15 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3).toContain("§0.1 L1 要求修正の境界");
     expect(l3).toContain("§0.2 意味ベース機能一覧と要求修正境界");
     expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
-    expect(l3).toContain("現行 completion scope から archive");
-    expect(l3).toContain("live semantic frontier は 0 件");
+    expect(l3).toContain("下流実装 frontier として追跡する");
+    expect(l3).toContain("live follow-up frontier は");
     expect(l3).toContain("pair-agent TDD route");
-    expect(l3).toContain("旧 state path / CLI rename cutover は現行 completion scope では実行しない");
-    expect(l3).toContain("S4 rejected / archived");
+    expect(l3).toContain("旧 state path / CLI rename cutover の action-binding approval");
+    expect(l3).toContain("S4 confirmed");
     expect(l3).toContain("G-SF `semantic_feature_frontier_record`");
-    expect(l3).toContain("current semantic frontier: `current_semantic_frontier_count=0`");
+    expect(l3).toContain("current_semantic_frontier_count=0");
     expect(l12).toContain("§0.1 amendment frontier oracle");
-    expect(l12).toContain("deferred 済みの PLAN を live `semantic_feature_frontier_record` として残してはならない");
+    expect(l12).toContain("future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない");
     expect(l12).toContain("G-SF oracle");
     const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
@@ -283,9 +283,9 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l3AcIds = uniqueMatches(l3, /^\| (HAC-[^ |]+) \|/gm);
     const hatAcIds = expandHacRefs(l12);
 
-    expect(l3RequirementIds).toHaveLength(43);
+    expect(l3RequirementIds).toHaveLength(46);
     expect(hatRequirementIds).toEqual(l3RequirementIds);
-    expect(l3AcIds).toHaveLength(86);
+    expect(l3AcIds).toHaveLength(92);
     expect(hatAcIds).toEqual(l3AcIds);
   });
 
@@ -971,7 +971,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(acceptance).not.toContain("AT-FR 合計 = 58 + 21");
   });
 
-  it("U-VPAIR-007a: HELIX L3 43要件は L4 basic design に全件降下済み", () => {
+  it("U-VPAIR-007a: HELIX L3 46要件は L4 basic design に全件降下済み", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -981,7 +981,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l4PillarTrace = l4.split("## §2 L3 -> L4 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
     const l4RequirementIds = uniqueMatches(l4PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
 
-    expect(l3RequirementIds).toHaveLength(43);
+    expect(l3RequirementIds).toHaveLength(46);
     expect(l4RequirementIds).toEqual(l3RequirementIds);
     for (const required of [
       "HB-P0 forward-convergence",
@@ -1002,7 +1002,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "bounded context",
       "Red evidence",
       "L1 §2.8 asset/progress visualization amendment",
-      "current scope から archived",
+      "下流実装 frontier",
     ]) {
       expect(l4).toContain(required);
     }
@@ -1027,7 +1027,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(ok.pairs).toBe(1);
   });
 
-  it("U-VPAIR-007c: HELIX L4 system test design は L3 43要件を1件も漏らさない", () => {
+  it("U-VPAIR-007c: HELIX L4 system test design は L3 46要件を1件も漏らさない", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1043,10 +1043,10 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l9TestIds = uniqueMatches(l9, /^\| (HST-(?!ID\b)[^ |]+) \|/gm);
 
     expect(l9RequirementIds).toEqual(l3RequirementIds);
-    expect(l9TestIds).toHaveLength(43);
+    expect(l9TestIds).toHaveLength(46);
     expect(l4TestIds).toEqual(l9TestIds);
     expect(l9).toContain("L1 §2.8 asset/progress visualization amendment");
-    expect(l9).toContain("将来再開する場合は新規 PLAN と別 HST");
+    expect(l9).toContain("HST-P9-06");
   });
 
   it("U-VPAIR-007d: 既存 harness L4 本体も HELIX pillar overlay の scope/carry/boundary を持つ", () => {
@@ -1135,9 +1135,9 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const planL451 = readFileSync("docs/plans/PLAN-L4-51-helix-pillar-basic-design.md", "utf8");
     const planL450 = readFileSync("docs/plans/PLAN-L4-50-orchestration-memory-hybrid.md", "utf8");
 
-    expect(planL450).toMatch(/^status:\s*archived$/m);
+    expect(planL450).toMatch(/^status:\s*confirmed$/m);
     expect(planL451).not.toContain("`status: draft` のまま残っていた");
-    expect(planL451).toContain("現行では `status: archived` に閉じる対象");
+    expect(planL451).toContain("archive で閉じず `status: confirmed` のまま後継 trace");
   });
 
   it("U-VPAIR-008: L4 master は confirmed L4 child と L9 UI標準 pair を漏らさない", () => {
@@ -1183,7 +1183,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     }
   });
 
-  it("U-VPAIR-009a: HELIX L4 43要件は L5 detail design に全件降下済み", () => {
+  it("U-VPAIR-009a: HELIX L4 46要件は L5 detail design に全件降下済み", () => {
     const l4 = readFileSync("docs/design/helix/L4-basic-design/pillar-basic-design.md", "utf8");
     const l5 = readFileSync("docs/design/helix/L5-detail/pillar-detail-design.md", "utf8");
     const l4PillarTrace = l4.split("## §2 L3 -> L4 trace")[1]?.split("## §2.1 Route-B")[0] ?? "";
@@ -1192,7 +1192,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l4RequirementIds = uniqueMatches(l4PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
     const l5RequirementIds = uniqueMatches(l5PillarTrace, /^\| (HR-(?:FR|NFR)-[^ |]+) \|/gm);
 
-    expect(l4RequirementIds).toHaveLength(43);
+    expect(l4RequirementIds).toHaveLength(46);
     expect(l5RequirementIds).toEqual(l4RequirementIds);
     for (const required of [
       "HC-P0 forward-return-contract",
@@ -1249,7 +1249,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(ok.pairs).toBe(1);
   });
 
-  it("U-VPAIR-009c: HELIX L5 integration test design は L3 43要件を1件も漏らさない", () => {
+  it("U-VPAIR-009c: HELIX L5 integration test design は L3 46要件を1件も漏らさない", () => {
     const l3 = readFileSync(
       "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
       "utf8",
@@ -1265,7 +1265,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const l8TestIds = uniqueMatches(l8, /^\| (LIT-(?!ID\b)[^ |]+) \|/gm);
 
     expect(l8RequirementIds).toEqual(l3RequirementIds);
-    expect(l8TestIds).toHaveLength(43);
+    expect(l8TestIds).toHaveLength(46);
     expect(l5TestIds).toEqual(l8TestIds);
     for (const required of [
       "## §3 結合観測 contract",
@@ -1279,7 +1279,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "budget / lock / stop reason",
       "catalog / registry / contract ledger",
       "L1 §2.8 asset/progress visualization amendment",
-      "将来再開する場合は新規 PLAN と別 LIT",
+      "LIT-P9-06",
     ]) {
       expect(l8).toContain(required);
     }
@@ -1370,7 +1370,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(pair.ok).toBe(true);
     expect(l6RequirementIds).toEqual(l3RequirementIds);
     expect(l7RequirementIds).toEqual(l3RequirementIds);
-    expect(l7OracleIds).toHaveLength(49);
+    expect(l7OracleIds).toHaveLength(52);
     expect(uniqueMatches(`${l5}\n${l6}\n${l7}`, /\b(HC-(?:P\d+|AC))\b/g)).toEqual(allowedContracts);
     for (const required of [
       "function contract",

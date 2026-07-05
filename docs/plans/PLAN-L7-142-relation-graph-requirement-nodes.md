@@ -72,7 +72,7 @@ harness.db の検出サーフェスが **stale-edge (severity=error) 59件 (実 
 - **pairs 6本**: L2-screen の design が pairArtifact=wireframe.md (docs/design 配下) / "self" を
   正当に持つ (vmodel group/self-pair) のに、loader が盲目で `test-design:<pairArtifact>` node へ
   map し存在しない端点を作っていた。
-- **generates 1本**: archived `PLAN-L7-102` が削除済 `src/web/app.ts` への generates edge を
+- **generates 1本**: superseded `PLAN-L7-102` が削除済 `src/web/app.ts` への generates edge を
   live graph に残していた。
 
 ## 1. 是正 (src/graph/loader.ts)
@@ -80,8 +80,8 @@ harness.db の検出サーフェスが **stale-edge (severity=error) 59件 (実 
 1. **requirement node 供給**: FR-L1 レジストリ (SSoT、`loadFrDocs`+`parseFrRows` 再利用) ∪
    plan が実参照する FR id を `requirements: RequirementInput[]` として返す
    (path=functional-requirements.md で change-impact 突合可)。→ derives-from 141本の端点実在化。
-2. **archived plan 除外**: loader の plan loop で `status==archived` を skip。historical な
-   archived plan の generates が削除済 artifact を指して dangling 化するのを防ぐ。→ generates 1本解消。
+2. **closed plan 除外**: loader の plan loop で current graph 対象外の closed/historical plan を skip。
+   historical plan の generates が削除済 artifact を指して dangling 化するのを防ぐ。→ generates 1本解消。
 3. **pairs filter**: pairArtifact が `docs/test-design/` を指す時のみ test-design への pairs edge を
    張る (self / docs/design 配下の mock は張らない)。→ pairs 6本解消。
 

@@ -74,7 +74,7 @@ L7 unit test design の U-DESLANG oracle へ合流する。
 
 ## 2. 非変更
 
-- HELIX L3 の confirmed 43 件、amendment frontier、future parked、approval gated cutover の意味分類は変更しない。
+- HELIX L3 の confirmed 46 件、amendment frontier、future parked、approval gated cutover の意味分類は変更しない。
 - 既存 7131 件の英語 prose debt はこの PLAN では翻訳しない。baseline を下げる作業は別 PLAN とする。
 - PLAN-DISCOVERY-07 / PLAN-DISCOVERY-10 / PLAN-L7-146 / PLAN-M-02 の未承認 frontier を完了扱いにしない。
 

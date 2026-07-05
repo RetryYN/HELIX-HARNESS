@@ -1,12 +1,12 @@
 ---
 plan_id: PLAN-L7-307-loop-continuous-run-heartbeat
-title: "PLAN-L7-307 (add-impl): HBR-P1 continuous-run heartbeat と fresh-session 再入"
-kind: add-impl
+title: "PLAN-L7-307 (troubleshoot): HBR-P1 continuous-run heartbeat と fresh-session 再入 backlog boundary"
+kind: troubleshoot
 layer: L7
 drive: agent
-status: archived
+status: confirmed
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-07-06
 owner: TBD
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
 pair_artifact: docs/test-design/helix/L6-pillar-unit-test-design.md
@@ -14,6 +14,8 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-L7-214 §4 carry (「本 PLAN は full continuous-run heartbeat engine を実装しない」) を消化する slice。HBR-P1 要求は既存で、新規 L1/L3 要求は追加しない。"
 agent_slots:
+  - role: aim
+    slot_label: "AIM - continuous-run backlog 境界の影響監視"
   - role: tl
     slot_label: "TL - continuous-run engine 境界設計"
   - role: se
@@ -31,12 +33,12 @@ dependencies:
 
 # PLAN-L7-307: HBR-P1 continuous-run heartbeat と fresh-session 再入
 
-## -1. archived boundary (archive 境界)
+## -1. live backlog boundary (live backlog 境界)
 
 2026-07-04 時点では登録候補のみで、実装 schedule / oracle / owner が未確定である。
-active draft として残すと current completion audit に未証跡 blocker を混入させるため、本 PLAN は
-着手前候補として archived にする。HBR-P1 continuous-run heartbeat / fresh-session 再入を実装する場合は、
-PO/TL が scope と version target を確定したうえで新しい add-feature / version-up PLAN として起票する。
+未証跡 blocker を archive で隠す運用はしないため、本 PLAN は `confirmed` の backlog boundary record として保持する。
+HBR-P1 continuous-run heartbeat / fresh-session 再入を実装する場合は、PO/TL が scope と version target を
+確定したうえで、本 PLAN を更新するか add-feature / version-up PLAN へ明示的に接続する。
 
 ## 0. 目的 (登録のみ、実装は本 PLAN の schedule 確定後)
 

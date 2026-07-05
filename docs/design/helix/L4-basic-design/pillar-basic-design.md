@@ -21,16 +21,16 @@ next_pair_freeze: L9
 
 ## §0 量閉じ
 
-- 入力 L3: `HR-FR` 30 件 + `HR-NFR` 13 件 = 43 件。
+- 入力 L3: `HR-FR` 33 件 + `HR-NFR` 13 件 = 46 件。
 - L4 ブロック: 10 件 (`HB-P0` / `HB-P1` / `HB-P2` / `HB-P3` / `HB-P4` / `HB-P6` / `HB-P7` / `HB-P8` / `HB-P9` / `HB-AC`)。
-- L9 system test design: `HST-*` 43 件。
-- Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存ブロック境界へ受ける。
+- L9 system test design: `HST-*` 46 件。
+- Route-B back-fill L3 要件 8 件は本 pillar overlay の 46 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存ブロック境界へ受ける。
 - 孤児: 0。詳細は §2 trace。
 - L1 §2.8 asset/progress visualization amendment は本 L4 10 block / 43 要件の confirmed 範囲外である。
-  `PLAN-DISCOVERY-10` は 2026-07-06 PO 判断で current scope から archived したため、VSCode Tree View /
-  Webview / deterministic graph / drill-down の L4 UI-data boundary は live frontier として残さない。
+  `PLAN-DISCOVERY-10` は 2026-07-06 PO 指示で confirmed に戻し、VSCode Tree View /
+  Webview / deterministic graph / drill-down の L4 UI-data boundary は下流実装 frontier として扱う。
 - G-SF `semantic_feature_frontier_record` の分類 vocabulary は L4 ブロック境界でも維持する。現行 live frontier は
-  `current_semantic_frontier_count=0` であり、archived / deferred 済み PLAN を L4 未確定 boundary として残さない。
+  `current_semantic_frontier_count=0` であり、deferred 済み PLAN や live draft backlog を L4 confirmed boundary と混同しない。
   `frontier_pending_decision` は L4 UI-data boundary を未 confirmed として扱い、
   `parked_future_version` は current system ブロックの完了に数えず、`approval_gated_cutover` は
   blast-radius / dry-run / rollback / monitoring の設計までで apply 可能なブロックにしない。
@@ -86,6 +86,9 @@ next_pair_freeze: L9
 | HR-FR-P9-01 | HB-P9 | DB 未収束 artifact は complete 扱いせず plan/status/trace/doctor で blocker 表示する | HST-P9-01 |
 | HR-FR-P9-02 | HB-P9 | relation graph と contract ledger は doc/code/test/PR/check/state の impact query を返す | HST-P9-02 |
 | HR-FR-P9-03 | HB-P9 | L0-L14 baseline snapshot / gate result / metric trend / regression owner を harness DB に収束する | HST-P9-03 |
+| HR-FR-P9-04 | HB-P9 | 人間向け prose 文言は message catalog surface で管理し、machine-surface token は固定する | HST-P9-04 |
+| HR-FR-P9-05 | HB-P9 | FR registry の L3→L4→L5→L6 到達状態を中間層 coverage として集計し、停滞・飛び層を可視化する | HST-P9-05 |
+| HR-FR-P9-06 | HB-P9 | design / add-design PLAN は起草前 inventory evidence と採否理由を持ち、prose-only 確認を freeze 根拠にしない | HST-P9-06 |
 | HR-NFR-P3-01 | HB-P3 | green command evidence / review tier / external-truth grounding を合格主張の必須要素にする | HST-N3-01 |
 | HR-NFR-P3-02 | HB-P3 | design requirement / acceptance / code-test evidence / review finding の対応で実装精度を測る | HST-N3-02 |
 | HR-NFR-P3-03 | HB-P9 | 変更影響層の gate/test/doctor profile 未実行を layer regression blocker にする | HST-N3-03 |
@@ -102,7 +105,7 @@ next_pair_freeze: L9
 
 ## §2.1 Route-B back-fill 境界
 
-Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4 ブロックの責務から外すのではなく、
+Route-B back-fill 8 件は §2 の 46 件へ二重採番しない。ただし L4 ブロックの責務から外すのではなく、
 下表のブロック境界で受け、詳細な関数契約は L6 route-B / Reverse back-fill に委ねる。
 
 | Route-B L3 ID | 意味境界 | L4 ブロック境界 | L4 で固定する設計判断 |
@@ -133,10 +136,10 @@ Route-B back-fill 8 件は §2 の 43 件へ二重採番しない。ただし L4
 
 ## §4 L4-50 との関係
 
-`PLAN-L4-50-orchestration-memory-hybrid` は P2/P7 の一部を L4 として起票した historical draft だが、
+`PLAN-L4-50-orchestration-memory-hybrid` は P2/P7 の一部を L4 として起票した historical record だが、
 `PLAN-L6-50-helix-orchestration-memory` が `supersedes` し、P2/P7 の機能設計は L6 route-B と Reverse
 back-fill で確定済みである。本書では P2/P7 を §2.1 のとおり HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の
-L4 ブロック境界へ再接地し、L4-50 自体は archived historical artifact として閉じる。
+L4 ブロック境界へ再接地し、L4-50 自体は archive で閉じず confirmed historical record として後継 trace を保持する。
 
 ## §5 carry
 

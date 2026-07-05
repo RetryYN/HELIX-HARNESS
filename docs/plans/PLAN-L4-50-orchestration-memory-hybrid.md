@@ -1,12 +1,12 @@
 ---
 plan_id: PLAN-L4-50-orchestration-memory-hybrid
 title: "PLAN-L4-50: P2 hybrid orchestration + P7 共有メモリ 機能追加 (Claude+Codex 前提)"
-kind: design
+kind: research
 layer: L4
 drive: agent
-status: archived
+status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-07-06
 owner: PO (人間 / RetryYN)
 master_hub: true   # G.3 単一 sub_doc 例外: P2 orchestration + P7 memory の複数モジュールを coordinate する機能追加 hub
 agent_slots:
@@ -31,12 +31,12 @@ dependencies:
 
 # PLAN-L4-50: P2 hybrid orchestration + P7 共有メモリ 機能追加
 
-> **訂正・archived / superseded (2026-06-28)**: 本 PLAN を `kind=design` master_hub で起票したのは Add-feature
+> **訂正・superseded (2026-06-28)**: 本 PLAN を `kind=design` master_hub で起票したのは Add-feature
 > ワークフロー（`docs/process/modes/add-feature.md` = `kind=add-design`(L3-L6) + `kind=add-impl`(L7)、
 > route B bottom-up）の誤適用だった。正しい add-design として **PLAN-L6-50-helix-orchestration-memory**
 > が本 PLAN を supersede する。設計サマリ・実行は L6-50（および後続 add-impl / Reverse）へ移管。
 > `PLAN-L4-51-helix-pillar-basic-design` で P2/P7 を含む HELIX pillar 全体の L4 block へ再接地したため、
-> 本 PLAN は historical artifact として `archived` に閉じる。
+> 本 PLAN は archive で閉じず、誤起票の confirmed historical record として残す。
 
 ## §0 役割 / 前提
 

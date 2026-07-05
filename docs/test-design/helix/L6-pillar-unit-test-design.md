@@ -21,15 +21,15 @@ next_pair_freeze: L6
 ## §0 量閉じ
 
 - 対象 L6 function family: 10 件。
-- 対象 L3 要件: 43 件。
-- L7 unit oracle: `HU-PILLAR-*` 43 件。
+- 対象 L3 要件: 46 件。
+- L7 unit oracle: `HU-PILLAR-*` 46 件。
 - 孤児: 0。詳細は §1 trace。
-- L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 判断で current scope から archived しており、
-  本 `HU-PILLAR-*` 43 件の unit oracle に含めない。`PLAN-L7-206` の read-model tests は first response の
+- L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 指示で S4 confirmed に戻したが、
+  本 `HU-PILLAR-*` 46 件の unit oracle にはまだ含めない。`PLAN-L7-206` の read-model tests は first response の
   先行検証であり、VSCode Tree View / Webview の view-model function oracle ではない。
 - G-SF の現行 live frontier は `current_semantic_frontier_count=0` である。`semantic_feature_frontier_record` で
   `frontier_pending_decision` / `parked_future_version` /
-  `approval_gated_cutover` に分類された意味単位は、L6 unit oracle の confirmed 43 件へ混ぜない。
+  `approval_gated_cutover` に分類された意味単位は、L6 unit oracle の confirmed 46 件へ混ぜない。
   `completion_claim_allowed=false` が unit oracle の期待動作であり、関数や CLI surface の一部実装だけで
   `confirmed_current` へ昇格しない。
 
@@ -67,6 +67,9 @@ next_pair_freeze: L6
 | HU-PILLAR-P9-01 | HR-FR-P9-01 | HC-P9 | `checkProjectionConvergence` / `analyzeOutstandingWork` / `completionDecisionPacketForOutstanding` | projection 未収束 artifact を complete 扱いにしない。現行 live frontier は `current_semantic_frontier_count=0` であり、archived / deferred 済み PLAN は `semantic_feature_frontier_record` に残さない。未終端の PO/S4 判断待ち、version-up parked、rename/cutover 承認待ちは `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` に分類され、`completionClaimAllowed=false` を返す。outstanding の terminal 判定は `confirmed` / `completed` / `accepted` と closed `archived` に限定し、schema 外 status (`merged` 等) を終端扱いにしない。readiness record 検査は terminal cutover / high-impact approval PLAN も対象にし、terminal 化で必須 record 欠落を隠さない。S4 / activation / cutover / action-binding の dedicated packet は `generatedAt` / `sourceCommand` / `freshness` を持ち、status text は planId 別 `workflow-next-action` と packet command を表示する。S4 / activation / cutover の record template は `source_ledger_freshness`、`source_status_delta`、`adoption_decision_delta`、`workflow_route_impact` を required field として持ち、外部 source 鮮度・採否差分・route 影響を欠く終端判断 record を完了根拠にしない。completion decision packet の S4 `supportingPacketSummaries[].requiredReviewFields` は親 field だけでなく、`decisionRecord.source_ledger_freshness`、`decisionRecord.source_status_delta`、`decisionRecord.adoption_decision_delta`、`decisionRecord.workflow_route_impact`、`decisionEvidenceChecklist.verified_evidence`、`decisionEvidenceChecklist.stakeholder_review_or_proxy`、`decisionEvidenceChecklist.acceptance_gap`、`decisionEvidenceChecklist.unresolved_risk`、`decisionEvidenceChecklist.external_source_basis`、`decisionEvidenceChecklist.route_impact` を列挙する。これらを落とした summary は S4 判断材料から source 鮮度、requirements trace、test basis、residual risk を隠すため fail-close する |
 | HU-PILLAR-P9-02 | HR-FR-P9-02 | HC-P9 | `classifyContractChange` | relation graph/contract ledger に breaking/compatible/migration-needed を要求 |
 | HU-PILLAR-P9-03 | HR-FR-P9-03 | HC-P9 | `queryLayerRegressionImpact` | layer baseline/gate/metric/owner 欠落を blocker にする |
+| HU-PILLAR-P9-04 | HR-FR-P9-04 | HC-P9 | `validateMessageCatalogSurface` | 人間向け prose だけを差し替え、`OK` / `warning` / `violation` / JSON key / env 名 / command 名などの machine-surface token 変更を fail する |
+| HU-PILLAR-P9-05 | HR-FR-P9-05 | HC-P9 | `summarizeMidLayerCoverage` | FR ごとの L3/L4/L5/L6 到達状態、停滞層、owner、defer 理由を返し、新規停滞と層飛ばしを finding にする |
+| HU-PILLAR-P9-06 | HR-FR-P9-06 | HC-P9 | `validatePlanInventoryEvidence` | design/add-design PLAN の confirmed 化前に inventory evidence の照合先、照合日、採否、未採用理由を要求し、prose-only 確認を reject する |
 | HU-PILLAR-N3-01 | HR-NFR-P3-01 | HC-P3 | `classifyVerificationEvidenceProfile` | green command/review tier/external grounding を区別 |
 | HU-PILLAR-N3-02 | HR-NFR-P3-02 | HC-P3 | `classifyVerificationEvidenceProfile` | design/AC/code/test/review finding の対応欠落を reject |
 | HU-PILLAR-N3-03 | HR-NFR-P3-03 | HC-P9 | `queryLayerRegressionImpact` | affected layer の gate/test/doctor 未実行を blocker にする |
@@ -109,7 +112,7 @@ next_pair_freeze: L6
 | HC-P8 | untrusted external text を executable instruction field へ copy しない |
 | HC-P9 | stale projection または layer gate 欠落は `ConvergenceStatus` を non-green に保つ |
 | HC-AC | Codex hosted/API surface は preflight evidence なしに hook-covered と分類できない |
-| G-SF | 現行 live frontier は `current_semantic_frontier_count=0` である。semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。archived / deferred 済みの `design_bottomup_mode`、`asset_progress_visualization`、`serverless_readonly_share`、`name_cutover` は live record として残さない。将来再開する場合は新規 PLAN で L3 §0.2 の meaning-based feature list と `sourcePaths[]` を更新する。`PLAN-DISCOVERY-11` は S4 confirmed のため PO decision pending frontier から外し、`PLAN-REVERSE-329` の fullback 完了までは non-terminal PLAN として completion に数えない。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
+| G-SF | 現行 live frontier は `completionDecisionPacket` と `objective-evidence-audit` に従う。semantic frontier records は `frontier_pending_decision`、`parked_future_version`、`approval_gated_cutover` の場合に whole-program completion を許可できない。`outstanding.semanticFeatureFrontierRecords[]` は status/handover JSON で同じ classification vocabulary を公開する。future backlog / approval-gated cutover / live draft は confirmed current と混同しない。再開する場合は対象 PLAN で L3 §0.2 の meaning-based feature list と `sourcePaths[]` を更新する。`PLAN-DISCOVERY-11` は S4 confirmed のため PO decision pending frontier から外し、`PLAN-REVERSE-329` の fullback 完了までは non-terminal PLAN として completion に数えない。terminal decision record は current source ledger freshness、source status delta、adoption decision delta、workflow route impact なしに close できない |
 
 ## §3 検証方針
 

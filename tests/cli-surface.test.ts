@@ -325,8 +325,11 @@ describe("L7 CLI surface closure", () => {
     expect(completion.status, completion.stderr || completion.stdout).toBe(0);
     const completionPacket = JSON.parse(completion.stdout);
     expect(completionPacket.sourceCommand).toBe("helix completion decision-packet --json");
-    expect(completionPacket.decisionCount).toBe(0);
-    expect(completionPacket.decisions).toEqual([]);
+    expect(completionPacket.decisionCount).toBe(2);
+    expect(completionPacket.humanReviewBundle.items.map((item: { planId: string }) => item.planId)).toEqual([
+      "PLAN-L7-146-serverless-readonly-share",
+      "PLAN-M-02-helix-identifier-rename",
+    ]);
   }, 20_000);
 
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
@@ -927,12 +930,12 @@ describe("L7 CLI surface closure", () => {
     const payload = JSON.parse(json.stdout);
     expect(payload.objectiveProgress).toMatchObject({
       method: "objective-evidence-audit.v1",
-      percent: 100,
-      provedRequirements: 10,
+      percent: 90,
+      provedRequirements: 9,
       totalRequirements: 10,
-      blockedRequirements: 0,
-      completionStatus: "ready",
-      completionClaimAllowed: true,
+      blockedRequirements: 1,
+      completionStatus: "blocked",
+      completionClaimAllowed: false,
       auditOk: true,
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
@@ -941,7 +944,7 @@ describe("L7 CLI surface closure", () => {
     const text = runCli(["status"]);
     expect(text.status).toBe(0);
     expect(text.stdout).toContain(
-      "objective-progress: 100% (ready; completion-claim-allowed=true; evidence=trusted; audit-ok=true; violations=0)",
+      "objective-progress: 90% (blocked; completion-claim-allowed=false; evidence=trusted; audit-ok=true; violations=0)",
     );
     expect(text.stdout).not.toContain("objective-progress-evidence: invalid");
     expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
@@ -971,8 +974,8 @@ describe("L7 CLI surface closure", () => {
         audit: {
           ok: true,
           objectiveProgress: {
-            percent: 100,
-            completionClaimAllowed: true,
+            percent: 90,
+            completionClaimAllowed: false,
           },
         },
       });
@@ -1437,7 +1440,18 @@ describe("L7 CLI surface closure", () => {
 
     expect(json.status).toBe(0);
     const packets = JSON.parse(json.stdout);
-    expect(packets).toEqual([]);
+    expect(packets.map((packet: { planId: string }) => packet.planId)).toEqual([
+      "PLAN-L7-146-serverless-readonly-share",
+      "PLAN-M-02-helix-identifier-rename",
+    ]);
+    expect(
+      packets.every(
+        (packet: { planOnly: boolean; mustNotApprove: boolean; approvalAllowed: boolean }) =>
+          packet.planOnly === true &&
+          packet.mustNotApprove === true &&
+          packet.approvalAllowed === false,
+      ),
+    ).toBe(true);
 
     const s4Text = runCli([
       "s4",
@@ -1456,10 +1470,10 @@ describe("L7 CLI surface closure", () => {
       "--plan",
       "PLAN-M-02-helix-identifier-rename",
     ]);
-    expect(text.status).toBe(1);
-    expect(`${text.stdout}\n${text.stderr}`).toContain(
-      "action-binding approval-packet: plan_not_matched plan=PLAN-M-02-helix-identifier-rename",
-    );
+    expect(text.status).toBe(0);
+    expect(text.stdout).toContain("status=pending_action_binding_approval");
+    expect(text.stdout).toContain("planOnly=true");
+    expect(text.stdout).toContain("approvalAllowed=false");
 
     const renameText = runCli(["rename", "plan"]);
     expect(renameText.status).toBe(0);

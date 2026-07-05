@@ -21,18 +21,18 @@ next_pair_freeze: L5
 ## §0 量閉じ
 
 - 対象 L5 contract（L5 契約）: 10 件。
-- integration test（結合テスト）観測: `LIT-*` 43 件。
-- 対象 L3 要件: 43 件。
-- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle（単体/受入オラクル）で観測し、本 L5 pillar integration test では 43 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract（契約）境界に接続されることは §1.1 で観測する。
+- integration test（結合テスト）観測: `LIT-*` 46 件。
+- 対象 L3 要件: 46 件。
+- Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle（単体/受入オラクル）で観測し、本 L5 pillar integration test では 46 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract（契約）境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
-- L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 判断で current scope から archived しており、
-  本 `LIT-*` 43 件の integration pass（結合通過判定）に含めない。将来再開する場合は新規 PLAN と別 LIT を起票する。
+- L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 指示で S4 confirmed に戻したが、
+  本 `LIT-*` 46 件の integration pass（結合通過判定）にはまだ含めない。再開する場合は対象 PLAN と別 LIT を接続する。
 - G-SF の現行 live frontier は `current_semantic_frontier_count=0` である。`semantic_feature_frontier_record` が
   `frontier_pending_decision` / `parked_future_version` /
   `approval_gated_cutover` を返す意味単位は、L8 integration pass の対象外でなければならない。
   `completion_claim_allowed=false` を integration expected result（結合期待結果）とし、first-response read model、
   setup output（セットアップ出力）、activation/cutover packet が存在しても、S4 / activation / cutover approval 前は
-  current 43 件の integration completion に混ぜない（結合完了に混入させない）。
+  current 46 件の integration completion に混ぜない（結合完了に混入させない）。
 
 ## §1 結合テスト trace
 
@@ -68,6 +68,9 @@ next_pair_freeze: L5
 | LIT-P9-01 | HR-FR-P9-01 | HC-P9 | 前提: incomplete projection / 操作: completion を試行 / 期待: DB convergence blocker が visible のまま残る |
 | LIT-P9-02 | HR-FR-P9-02 | HC-P9 | 前提: relation graph query / 操作: impact analysis を実行 / 期待: doc/code/test/PR/check/state edge を返す |
 | LIT-P9-03 | HR-FR-P9-03 | HC-P9 | 前提: layer baseline / 操作: regression query を実行 / 期待: gate result、metric trend、owner を比較できる |
+| LIT-P9-04 | HR-FR-P9-04 | HC-P9 | 前提: message catalog 差し替え / 操作: CLI/doctor/completion packet smoke / 期待: prose だけが変わり machine token は固定される |
+| LIT-P9-05 | HR-FR-P9-05 | HC-P9 | 前提: FR registry / 操作: mid-layer coverage 集計 / 期待: L3-L6 到達、停滞層、owner、defer 理由を返す |
+| LIT-P9-06 | HR-FR-P9-06 | HC-P9 | 前提: design/add-design PLAN confirmed 化 / 操作: inventory evidence gate / 期待: 照合先・採否・未採用理由が無い場合 fail する |
 | LIT-N3-01 | HR-NFR-P3-01 | HC-P3 | 前提: pass claim / 操作: evidence gate を実行 / 期待: green command、review tier、grounding を区別する |
 | LIT-N3-02 | HR-NFR-P3-02 | HC-P3 | 前提: implementation claim / 操作: trace check を実行 / 期待: design、AC、code/test evidence、finding が整合する |
 | LIT-N3-03 | HR-NFR-P3-03 | HC-P9 | 前提: affected layer / 操作: regression fence を実行 / 期待: missing gate/test/doctor profile が pass を block する |

@@ -10,7 +10,7 @@ describe("HELIX evidence boundary indexes", () => {
     for (const required of [
       "## 証跡対応",
       "L6 unit oracle trace",
-      "`HU-PILLAR-*` 43 件",
+      "`HU-PILLAR-*` 46 件",
       "runtime provenance",
       "projection-only row は trace support",
       "setup/distribution implementation",

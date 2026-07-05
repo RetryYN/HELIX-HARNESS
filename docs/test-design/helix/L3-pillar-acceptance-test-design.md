@@ -28,17 +28,19 @@ next_pair_freeze: L3
 
 ### §0.1 amendment frontier oracle（要求修正 frontier oracle）
 
-L1 §2.8 asset/progress visualization は 2026-06-30 の要求変更だったが、2026-07-06 の PO decision で
-現行 completion scope から archive した。本 confirmed HAT 46 件へ混ぜない。acceptance 上の oracle は、
-archived 要求を採用済み機能として再混入することを false completion として拒否する。
+L1 §2.8 asset/progress visualization は 2026-06-30 の要求変更であり、2026-07-06 の PO 指示で
+S4 confirmed に戻した。本 confirmed HAT 46 件へはまだ混ぜず、downstream implementation frontier として扱う。
+acceptance 上の oracle は、read-model first response だけを VSCode View/Webview 実装完了として再混入することを
+false completion として拒否する。
 
 S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 acceptance、L4 UI-data system test、
 L5 integration contract、L6/L7 view-model unit oracle である。既存 HOT-P9 と `PLAN-L7-206`
 read-model response は先行検証であり、VSCode View/Webview 実装完了の根拠ではない。
 
-G-SF oracle: 現行 live frontier は `current_semantic_frontier_count=0` である。`frontier_pending_decision` /
-`parked_future_version` / `approval_gated_cutover` は将来再起票用 vocabulary として保持するが、archived /
-deferred 済みの PLAN を live `semantic_feature_frontier_record` として残してはならない。
+G-SF oracle: confirmed 46 件の overlay 内では `current_semantic_frontier_count=0` である。現行 live frontier は
+`completionDecisionPacket` と `objective-evidence-audit` に従う。`semantic_feature_frontier_record` は
+`frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` の classification vocabulary として
+保持し、future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない。
 
 ## §0.2 HELIX 検証戦略
 

@@ -31,4 +31,4 @@ L9 は L4 basic design の system test pair である。現状は selected syste
 
 ## 判定
 
-selected HST green は、confirmed 43-item overlay の system behavior を検査する。visualization amendment、serverless sharing、identifier rename cutover は別 frontier として扱う。
+selected HST green は、confirmed 46-item overlay の system behavior を検査する。visualization amendment、serverless sharing、identifier rename cutover は別 frontier として扱う。

@@ -94,7 +94,7 @@ HELIX-HARNESS/
 | enum / 契約 | `src/schema/` | **zod 単一正本**。enum を複数箇所に再定義しない (drift 防止、requirements §1.10 F) |
 | 現行正本 doc | `docs/governance/` | concept v3.1 / requirements v1.2 / README / extraction-plan / 本書 |
 | 決定記録 | `docs/adr/` | `ADR-NNN-slug.md` |
-| 実装計画 | `docs/plans/` | `PLAN-NNN-slug.md`。superseded は `status: archived` |
+| 実装計画 | `docs/plans/` | `PLAN-NNN-slug.md`。superseded は archive で隠さず、後継 PLAN / errata / `supersedes` trace で扱う。`status: archived` への遷移は human approval と rejection/retirement rationale がある場合に限る |
 | 移行資料 | `docs/migration/` | source capability reference。code-port 計画は ADR-001 で superseded |
 | runtime state | `.helix/` (state/cache/logs/handover CURRENT/tmp/local*) | generated。**docs 目的で追跡しない** (CLAUDE.md 禁止事項) |
 | 監査証跡 | `.helix/audit/*.md` / `.helix/audit/reports/*.md` / `.helix/evidence/` / `.helix/handover/provider/` | **tracked** (PO 決定 2026-06-10、A-128 F-1)。audit = A-NNN 監査記録、evidence = 正規化 JSON (secret/PII/raw transcript 禁止)。runtime state と区別する |

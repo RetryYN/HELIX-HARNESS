@@ -27,7 +27,7 @@ pair_artifact: docs/test-design/helix/L6-pillar-unit-test-design.md
 
 | L7 観点 | source / surface | test / oracle | 境界 |
 |---|---|---|---|
-| L6 unit oracle trace | `docs/test-design/helix/L6-pillar-unit-test-design.md` の `HU-PILLAR-*` 43 件 | `tests/vmodel-pair.test.ts` の L6/L7 oracle count assertion | L6 function contract と L7 unit oracle の接続を検査する。実 runtime claim の代替にはしない。 |
+| L6 unit oracle trace | `docs/test-design/helix/L6-pillar-unit-test-design.md` の `HU-PILLAR-*` 46 件 | `tests/vmodel-pair.test.ts` の L6/L7 oracle count assertion | L6 function contract と L7 unit oracle の接続を検査する。実 runtime claim の代替にはしない。 |
 | runtime provenance | `classifyVerificationEvidenceProfile` / `runtime-verification` surfaces | `tests/run-debug.test.ts` / `tests/projection-writer.test.ts` / `tests/semantic-frontier-consistency.test.ts` | `session_id`、runtime surface、timestamp、evidence path がある場合だけ `works` / `fired` / `used` claim に近づける。projection-only row は trace support に留める。 |
 | setup/distribution implementation | `src/setup/**` (`buildCleanDistributionPlan`) / `src/cli.ts` / `src/lint/identifier-rename.ts` | `tests/setup.test.ts` / `tests/distribution-acceptance.test.ts` / `tests/identifier-rename.test.ts` | consumer setup と rename rehearsal は no-write / plan-only 証跡であり、release/tag publish や cutover apply ではない。 |
 | whole-program completion boundary | `src/lint/outstanding.ts` / `src/lint/completion-decision-packet.ts` / `src/lint/objective-evidence-audit.ts` | `tests/outstanding.test.ts` / `tests/completion-decision-packet.test.ts` / `tests/goal-evidence-audit.test.ts` | L7 の選択済み実装 green を L14 completion に読み替えない。`completionClaimAllowed=false` の間は G-10 blocked を維持する。 |

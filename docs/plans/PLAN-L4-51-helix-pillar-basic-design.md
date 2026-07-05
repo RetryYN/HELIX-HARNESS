@@ -57,7 +57,7 @@ review_evidence:
     verdict: approve
     worker_model: gpt-5.5
     reviewer_model: gpt-5.5
-    scope: "Codex-only TL tier review for L4 add-design: L3 HR-FR/HR-NFR 43件 -> L4 design/test-design 43件の全件 trace、superseded PLAN-L4-50 archive、G-DESIGN.L4 span 更新。cross_agent は利用不可のため intra_runtime fallback として記録。"
+    scope: "Codex-only TL tier review for L4 add-design: L3 HR-FR/HR-NFR 43件 -> L4 design/test-design 43件の全件 trace、superseded PLAN-L4-50 の historical record 扱い、G-DESIGN.L4 span 更新。cross_agent は利用不可のため intra_runtime fallback として記録。"
     green_commands:
       - kind: unit_test
         command: "bun run vitest run tests/vmodel-pair.test.ts"
@@ -111,7 +111,7 @@ namespace で L4 閉包済みであること、P6/P8/AC の外部境界・projec
 ### Step 1: [直列] L3 / 既存 L4 精読
 
 - 対象: `pillar-functional-requirements.md`、既存 harness L4 `data/architecture/function/external-if`、`PLAN-L4-50`。
-- 結果: 既存 L4 surface には `HR-FR/HR-NFR` 43 件の直接 trace が無かった。`PLAN-L4-50` は L6-50 に superseded 済みの historical draft だったため、現行では `status: archived` に閉じる対象とした。
+- 結果: 既存 L4 surface には `HR-FR/HR-NFR` 43 件の直接 trace が無かった。`PLAN-L4-50` は L6-50 に superseded 済みの historical record だったため、archive で閉じず `status: confirmed` のまま後継 trace を読む対象とした。
 
 ### Step 2: [直列] L4 基本設計（basic design）作成 + 既存 L4 本体修正
 
@@ -127,11 +127,11 @@ namespace で L4 閉包済みであること、P6/P8/AC の外部境界・projec
 ### Step 4: [直列] L4 master と superseded PLAN の整合
 
 - `PLAN-L4-00-master` に `PLAN-L4-51` を `G-DESIGN.L4` span として追加。
-- `PLAN-L4-50-orchestration-memory-hybrid` は L6-50 が supersedes 済みの historical draft なので `archived` に閉じる。
+- `PLAN-L4-50-orchestration-memory-hybrid` は L6-50 が supersedes 済みの historical record なので、`confirmed` のまま後継 trace と誤起票記録を保持する。
 
 ### Step 5: [直列] 機械検証
 
-- `U-VPAIR-007a/b/c/d/e/f` で L3 43 件 -> L4 design -> L9 test-design の孤児 0、既存 L4 本体修正、L4 block ID 誤記なし、historical draft 状態の残存なしを固定。
+- `U-VPAIR-007a/b/c/d/e/f` で L3 43 件 -> L4 design -> L9 test-design の孤児 0、既存 L4 本体修正、L4 block ID 誤記なし、historical record 状態を固定。
 - `plan lint` / `typecheck` / `lint` / `doctor` で L4 span と pair-freeze を確認する。
 
 ### Step 6: [直列] Route-B back-fill 境界監査（2026-06-29 追補）
@@ -150,7 +150,7 @@ namespace で L4 閉包済みであること、P6/P8/AC の外部境界・projec
 | L3 43 件を 1 件も漏らさず L4 へ降下 | `pillar-basic-design.md` §2、`U-VPAIR-007a` | 準備済み |
 | L4 design と L9 system test design が pair | 両文書 `pair_artifact`、`U-VPAIR-007b` | 準備済み |
 | L4 system test が L3 43 件を 1:1 観測 | `L4-pillar-system-test-design.md` §1、`U-VPAIR-007c` | 準備済み |
-| P2/P7 の既存 L4-50 draft を放置しない | `PLAN-L4-50` archived、L6-50 supersedes back-reference 維持 | 準備済み |
+| P2/P7 の既存 L4-50 を archive で隠さない | `PLAN-L4-50` は confirmed historical record として保持し、L6-50 supersedes back-reference を維持 | 準備済み |
 | API/SDK 常駐前提へ退行しない | `HB-AC` / `HB-P2` / `HB-P8` block、`HR-NFR-AC-03` | 準備済み |
 | L2 skip / template workflow を L4 surface に持つ | `HB-P1`、`HR-FR-P1-04` | 準備済み |
 | context budget, test speed/load, implementation accuracy, L-layer regression, metrics/improvement, security filter を L4 block に持つ | `HNFR-P5` は `HB-P1` / `HB-P3` に降下し、他は `HB-P3` / `HB-P4` / `HB-P8` / `HB-P9` に降下 | 準備済み |
@@ -165,7 +165,7 @@ namespace で L4 閉包済みであること、P6/P8/AC の外部境界・projec
 - [x] L3 43 要件を L4 design に全件 trace。
 - [x] L4 design と L9 test-design の pair を作成。
 - [x] `PLAN-L4-00-master` の `G-DESIGN.L4` span に追加。
-- [x] superseded 済み L4-50 を archived に閉じる。
+- [x] superseded 済み L4-50 を archive で閉じず、live draft と後継 trace で扱う。
 - [x] 既存 L4 `function` / `architecture` / `data` / `external-if` の scope/carry/boundary を修正。
 - [x] targeted regression test を追加。
 - [x] Route-B back-fill 8 件の L4 block boundary を HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC に明示し、二重計上しない境界を test-design にも追加。

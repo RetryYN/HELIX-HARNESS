@@ -71,7 +71,7 @@ review_evidence:
 
 ## 目的
 
-`status` / `handover status` text は `semantic_frontier_records` と `confirmed_current_meaning_records` の件数を出すが、tracked な引き継ぎ Markdown §3 は `featureId` / `classification` / confirmed-current の意味単位 ID を固定していなかった。再開者が Markdown だけを見ると、`semantic_frontier_blocked` が何を守っているのか、また confirmed 43 件がどの 11 意味単位で成立しているのかを落とせる。
+`status` / `handover status` text は `semantic_frontier_records` と `confirmed_current_meaning_records` の件数を出すが、tracked な引き継ぎ Markdown §3 は `featureId` / `classification` / confirmed-current の意味単位 ID を固定していなかった。再開者が Markdown だけを見ると、`semantic_frontier_blocked` が何を守っているのか、また confirmed 46 件がどの 12 意味単位で成立しているのかを落とせる。
 
 この PLAN では引き継ぎ Markdown §3 に `semantic-frontier-records:` と `confirmed-current-meaning-records:` を出し、`checkHandoverNextActionAnchor` が blocked route の意味台帳欠落を fail-close する。
 

@@ -49,13 +49,11 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
       "C-09",
       "C-10",
       "C-11",
-      "C-14",
       "C-15",
-      "C-16",
       "C-17",
       "C-18",
     ];
-    const frontier = ["C-12"];
+    const frontier = ["C-14", "C-16"];
 
     for (const id of proved) {
       expect(auditRow(id), `${id} should be proved`).toContain("| proved |");
@@ -66,14 +64,13 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     }
 
     expect(auditRow("C-13")).toContain("| warning |");
-    expect(auditText()).toContain("2026-07-06 時点の機械証跡では、全体進捗は **100%**");
-    expect(auditText()).toContain("completion=ready, progress=100%, proved=10/10");
+    expect(auditText()).toContain("完了率は `objective-evidence-audit` と `completion-decision-packet` の live 結果に従う");
+    expect(auditText()).toContain("追加 PLAN と S4/cutover 判断が残る");
     expect(auditText()).toContain("G-L7PACK.C");
-    expect(auditText()).toContain("frontier: なし");
     expect(auditText()).toContain("PLAN-L7-141-web-dashboard-component-derived");
     expect(auditText()).toContain("PLAN-L7-146");
     expect(auditText()).toContain("PLAN-DISCOVERY-10");
-    expect(auditText()).toContain("current completion scope から archive");
+    expect(auditText()).toContain("archive で隠さない");
   });
 
   it("cites the semantic design and test-design artifacts that substantiate L0-L8 descent", () => {
@@ -142,15 +139,15 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("`HBR-P5` / `HB-P5` / `HC-P5` が無いことは意図的 meaning decision");
     expect(text).toContain("意図的 meaning decision");
 
-    expect(auditRow("C-16")).toContain("| proved |");
-    expect(auditRow("C-16")).toContain("decision_outcome=rejected");
+    expect(auditRow("C-16")).toContain("| frontier |");
+    expect(auditRow("C-16")).toContain("confirmed へ戻した");
     expect(text).toContain("asset/progress visualization request は記録済み");
     expect(normalized).toContain("revised request fully descended と扱わない");
-    expect(text).toContain("frozen 43-item pillar overlay");
+    expect(text).toContain("46-item overlay");
     expect(text).toContain(
       "visualization amendment、`PLAN-DISCOVERY-07`、`PLAN-DISCOVERY-10`",
     );
-    expect(text).toContain("将来再開する場合は新規 PLAN");
+    expect(text).toContain("archive では閉じない");
   });
 
   it("answers PO semantic completeness questions without false completion wording", () => {
@@ -162,11 +159,11 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(text).toContain("要求修正が入ったのに中身も合っているのか");
     expect(text).toContain("ワークフローに従っているのか");
     expect(text).toContain("全部終わっているのか");
-    expect(text).toContain("はい。現行 completion scope では");
-    expect(text).toContain("confirmed 43 items と `current_semantic_frontier_count=0`");
-    expect(text).toContain("Discovery S4 rejected");
+    expect(text).toContain("いいえ。現行 completion scope では");
+    expect(text).toContain("confirmed 46 items と follow-up frontier を分けて整合");
+    expect(text).toContain("Discovery S4 confirmed");
     expect(text).toContain("irreversible rename deferred");
-    expect(text).toContain("completion-decision-packet decisionCount=0");
+    expect(text).toContain("completion-decision-packet decisionCount=2");
     expect(text).toContain("Pair-agent and setup/rename are aligned");
   });
 
@@ -180,7 +177,7 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(row).toContain("pair-agent");
     expect(row).toContain("setup/rename");
     expect(row).toContain("status --json");
-    expect(row).toContain("archived / deferred 済み PLAN は live frontier に残さない");
+    expect(row).toContain("future backlog / approval-gated cutover は完了扱いにせず");
     expect(text).toContain("Pair-agent TDD route");
     expect(text).toContain("Red/oracle markers before light implementation");
     expect(text).toContain("Pair-agent evidence and DB convergence");
@@ -251,31 +248,31 @@ describe("HELIX L0-L8 semantic design consistency audit", () => {
     expect(discovery).toContain("S3 evidence は `frontier_pending_decision` のまま");
     expect(addFeature).toContain("bottom-up build で機能意味が増えた場合");
     expect(reverse).toContain("実装や green command があっても意味ベース設計の完了根拠にならない");
-    expect(l3).toContain("confirmed 43 件: `classification=confirmed_current`");
-    expect(l3).toContain("current semantic frontier: `current_semantic_frontier_count=0`");
+    expect(l3).toContain("confirmed 46 件: `classification=confirmed_current`");
+    expect(l3).toContain("live follow-up frontier");
     expect(l3).toContain("version-up-activation-packet.v1");
     expect(l3).toContain("plan-only activation packet");
     expect(l3).toContain("apply surface を持たない");
-    expect(l4).toContain("archived / deferred 済み PLAN を L4 未確定 boundary として残さない");
-    expect(l5).toContain("archived / deferred 済み PLAN を L5 未確定 contract として残さない");
+    expect(l4).toContain("deferred 済み PLAN や live draft backlog を L4 confirmed boundary と混同しない");
+    expect(l5).toContain("deferred 済み PLAN や live draft backlog を L5 confirmed contract と混同しない");
     expect(l6).toContain("実装済み path の存在だけでは `completion_claim_allowed=true` にならない");
     expect(l12).toContain("G-SF oracle");
     expect(l9System).toContain("selected HST green");
-    expect(l8Integration).toContain("current 43 件の integration completion に混ぜない");
-    expect(l7Unit).toContain("G-SF | 現行 live frontier は `current_semantic_frontier_count=0`");
+    expect(l8Integration).toContain("current 46 件の integration completion に混ぜない");
+    expect(l7Unit).toContain("G-SF | 現行 live frontier は `completionDecisionPacket`");
   });
 
   it("keeps version-up parking aligned after PLAN-L7-141 activation", () => {
     expect(frontmatterValue(PLAN_L7_141, "status")).toBe("confirmed");
     expect(frontmatterValue(PLAN_L7_141, "version_target")).toBeNull();
-    expect(frontmatterValue(PLAN_L7_146, "status")).toBe("archived");
-    expect(frontmatterValue(PLAN_L7_146, "version_target")).toBeNull();
+    expect(frontmatterValue(PLAN_L7_146, "status")).toBe("draft");
+    expect(frontmatterValue(PLAN_L7_146, "version_target")).toBe("future");
 
     expect(fileText(VERSION_UP_MODE)).toContain("PLAN-L7-141 は component-derived");
     expect(fileText(VERSION_UP_MODE)).toContain("PLAN-L7-146 は外部 serverless");
     expect(fileText(VERSION_UP_DISCOVERY)).toContain("activation note (2026-06-30)");
     expect(fileText(PLAN_L7_146)).toContain("version-up parked");
-    expect(fileText(PLAN_L7_146)).toContain("closed archive");
+    expect(fileText(PLAN_L7_146)).toContain("archive せず future-version backlog");
     expect(fileText(PLAN_L7_146)).toContain("mode=version-up");
   });
 });

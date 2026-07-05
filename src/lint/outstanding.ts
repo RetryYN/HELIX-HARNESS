@@ -102,7 +102,7 @@ export interface OutstandingWork {
   /** 要求修正 / parked / cutover を「意味単位」で閉じないための G-SF record。 */
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   /**
-   * L3 confirmed 43 件を意味単位で束ねた live catalog。
+   * L3 confirmed 46 件を意味単位で束ねた live catalog。
    * frontier ではないため semanticFeatureFrontierRecords には混ぜず、L3/L12 trace の
    * 機械照合用に status/handover JSON へ出す。
    */

@@ -91,7 +91,7 @@ L8 結合テスト設計（integration test design）へ漏れなく降下する
 ### Step 3: [直列] L8 結合テスト設計（integration test design）作成
 
 - 成果: `docs/test-design/helix/L5-pillar-integration-test-design.md`。
-- 内容: `LIT-*` 43 件を L3 43 件へ 1:1 接続。各 L5 contract の結合境界（integration boundary）を Given/When/Then で観測する。
+- 内容: `LIT-*` 46 件を L3 46 件へ 1:1 接続。各 L5 contract の結合境界（integration boundary）を Given/When/Then で観測する。
 
 ### Step 4: [直列] L5 master 整合
 
