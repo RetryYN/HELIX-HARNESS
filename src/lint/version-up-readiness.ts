@@ -44,6 +44,7 @@ import {
 
 const VERSION_UP_ACTIVATION_VERIFICATION_PHASES = [
   "activation-packet-baseline",
+  "activation-review-bundle",
   "version-dry-run",
   "external-rehearsal",
   "security-testing",
@@ -1849,6 +1850,9 @@ export function versionUpActivationVerificationCommandViolations(
     "bun run test",
     `bun run src/cli.ts action-binding approval-packet --plan ${packet.planId} --json`,
   ]);
+  const allowedLocalArtifactWriteCommands = new Set([
+    `bun run src/cli.ts version-up activation-bundle --plan ${packet.planId} --out ${shellQuote(`/tmp/helix-version-up-activation-bundle-${packet.planId}`)} --json`,
+  ]);
   const allowedStateWriteCommands = new Set([
     "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
   ]);
@@ -1886,6 +1890,8 @@ export function versionUpActivationVerificationCommandViolations(
     }
     const allowedForPolicy =
       (row.writePolicy === "no-write" && allowedNoWriteCommands.has(command)) ||
+      (row.writePolicy === "local-artifact-write" &&
+        allowedLocalArtifactWriteCommands.has(command)) ||
       (row.writePolicy === "state-write" && allowedStateWriteCommands.has(command));
     if (!allowedForPolicy) {
       violations.push({
@@ -2138,6 +2144,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
   const dryRunTarget = versionUpDryRunTarget(plan);
   const dryRunTargetResolved = parseSemver(dryRunTarget) !== null;
   const dryRunCommand = buildVersionUpDryRunReviewCommand(currentVersion, dryRunTarget);
+  const activationBundleOut = `/tmp/helix-version-up-activation-bundle-${plan.plan_id}`;
   const sourceCheckedAt = sourceMetadata.sourceLedger.sourceCheckedAt;
   return [
     {
@@ -2156,6 +2163,24 @@ function buildVersionUpActivationVerificationCommandMatrix(
       adoptionDecisionDelta: "none; remains plan-only and approval-gated",
       workflowRouteImpact:
         "none; packet review remains version-up activation -> action-binding approval",
+    },
+    {
+      phase: "activation-review-bundle",
+      command: `bun run src/cli.ts version-up activation-bundle --plan ${plan.plan_id} --out ${shellQuote(activationBundleOut)} --json`,
+      writePolicy: "local-artifact-write",
+      expected:
+        "writes activation packet, rehearsal, security checklist, dry-run evidence, and manifest as local review artifacts only",
+      evidence:
+        "local activation-review-manifest.json with planOnly=true, mustNotApply=true, activationAllowed=false, and file digests",
+      source: "HELIX version-up activation bundle contract",
+      sourceUrl: "docs/plans/PLAN-L7-342-version-up-activation-review-bundle.md",
+      sourceCheckedAt,
+      latestOfficialStatus: "local HELIX activation review bundle contract current at HEAD",
+      sourceStatusDelta: "none; bundle is local review material and does not authorize apply",
+      adoptionDecision: "adopt-local-artifact-bundle-for-pre-approval-version-up-review",
+      adoptionDecisionDelta: "adds review artifact bundling without changing activation authority",
+      workflowRouteImpact:
+        "none; activation remains parked until action-binding approval and explicit activation decision",
     },
     {
       phase: "version-dry-run",

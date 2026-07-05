@@ -11,6 +11,7 @@ import {
   renderAllScreens,
   renderAppShell,
   SCREEN_SPECS,
+  SPECIFIC_COMPONENTS,
   verifyGithubWebhookSignature,
 } from "../src/web";
 
@@ -58,6 +59,14 @@ describe("component-derived web UI registry (PLAN-L7-141)", () => {
       ).toBeGreaterThan(0);
       expect(screen.mission.length, `${screen.id} missing mission`).toBeGreaterThan(10);
     }
+    expect(
+      SPECIFIC_COMPONENTS.filter((component) => component.name !== "SeverityBadge").every(
+        (component) => component.source === "L2-screen-specific",
+      ),
+    ).toBe(true);
+    expect(SPECIFIC_COMPONENTS.find((component) => component.name === "SeverityBadge")?.source).toBe(
+      "L4-alias",
+    );
   });
 
   it("loads L4 tokens.yaml as the renderer token source", () => {

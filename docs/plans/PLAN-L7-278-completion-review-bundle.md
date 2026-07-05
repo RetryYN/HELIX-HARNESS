@@ -169,7 +169,7 @@ review_evidence:
     reviewed_at: "2026-07-03T19:11:00+09:00"
     tests_green_at: "2026-07-03T19:11:00+09:00"
     verdict: approve
-    scope: "Continuation: version-up activation supporting packet の matrix count を実体 9 phase に固定し、missing / extra / duplicate phase を fail-close する。setup、consumer doctor、distribution acceptance は completion review-bundle の semanticBundleDigest を必須証跡として扱う。"
+    scope: "Continuation: version-up activation supporting packet の matrix count を実体 10 phase に固定し、missing / extra / duplicate phase を fail-close する。setup、consumer doctor、distribution acceptance は completion review-bundle の semanticBundleDigest を必須証跡として扱う。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -254,7 +254,7 @@ review_evidence:
 - `.helix/state/project-setup.json` の `objectiveBoundary` は `completionReviewBundleCommand=helix completion review-bundle --json` を永続化し、consumer doctor は欠落を fail-close する。
 - `bundleDigest` は exact artifact integrity digest として生成時刻・freshness を含む。別に `semanticBundleDigest` を出し、`generatedAt` / `expiresAt` / `stale` と時刻入り nested digest を正規化した意味比較用 digest とする。
 - doctor OK message、setup verification matrix、consumer adapter prose は `semanticBundleDigest` も表示・期待し、導入先で exact digest だけを保存して意味比較 digest を落とさない。
-- version-up activation supporting packet summary は現行 `activationVerificationCommandMatrix` の 9 phase と一致させ、validator は matrix count、missing phase、extra phase、duplicate phase を fail-close する。
+- version-up activation supporting packet summary は現行 `activationVerificationCommandMatrix` の 10 phase と一致させ、validator は matrix count、missing phase、extra phase、duplicate phase を fail-close する。
 - version-up activation packet text surface は activation snapshot に `versionDryRunDigest` を表示し、dry-run 証跡 digest を人間判断前に照合できるようにする。
 - distribution acceptance は clean consumer harness-check workflow 内で `completion review-bundle --json` を実行し、`semanticBundleDigest` を検証する。
 - 実 cutover、approval 記録、activation、外部実行は行わない。
@@ -275,6 +275,6 @@ review_evidence:
 - `doctor` / `setup` / `cli-surface` tests が setup state objective boundary に review-bundle command が永続化されることを検証する。
 - `completion-decision-packet` tests が、freshness 再生成で `bundleDigest` は変わるが `semanticBundleDigest` は同一意味なら変わらないことを検証する。
 - `doctor` / `setup` / `cli-surface` tests が、doctor OK message と consumer first-run matrix に `semanticBundleDigest` が露出することを検証する。
-- `version-up-readiness` tests が、activation verification matrix の 9 phase 完全一致、phase 欠落の fail-close、activation text の `versionDryRunDigest` 表示を検証する。
+- `version-up-readiness` tests が、activation verification matrix の 10 phase 完全一致、phase 欠落の fail-close、activation text の `versionDryRunDigest` 表示を検証する。
 - `distribution-acceptance` tests が、consumer harness-check workflow で completion review-bundle を実行し `semanticBundleDigest` を検証する。
 - `typecheck`、`lint`、`plan lint`、`doctor` が成功する。

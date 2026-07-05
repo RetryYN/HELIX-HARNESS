@@ -1751,7 +1751,7 @@ describe("completion decision packet lint", () => {
     const packet = {
       ...source,
       decisions: source.decisions.map((decision) =>
-        decision.planId === "PLAN-DISCOVERY-10-helix-asset-visualization"
+        decision.planId === "PLAN-L7-146-serverless-readonly-share"
           ? {
               ...decision,
               requiredRecords: decision.requiredRecords.filter(
@@ -1766,7 +1766,7 @@ describe("completion decision packet lint", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toContainEqual({
       reason: "invalid_required_record",
-      detail: "decision[1].requiredRecords missing recordName=action_binding_approval_record",
+      detail: "decision[0].requiredRecords missing recordName=action_binding_approval_record",
     });
   });
 
@@ -1796,11 +1796,7 @@ describe("completion decision packet lint", () => {
       "workflow_route_impact",
     ];
 
-    for (const recordName of [
-      "s4_decision_record",
-      "activation_decision_record",
-      "cutover_decision_record",
-    ]) {
+    for (const recordName of ["activation_decision_record", "cutover_decision_record"]) {
       const record = packet.decisions
         .flatMap((decision) => decision.requiredRecords)
         .find((candidate) => candidate.recordName === recordName);

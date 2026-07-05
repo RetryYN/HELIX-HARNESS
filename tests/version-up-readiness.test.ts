@@ -519,6 +519,21 @@ describe("version-up-readiness", () => {
           writePolicy: "no-write",
         }),
         expect.objectContaining({
+          phase: "activation-review-bundle",
+          command:
+            "bun run src/cli.ts version-up activation-bundle --plan PLAN-L7-900-future --out /tmp/helix-version-up-activation-bundle-PLAN-L7-900-future --json",
+          writePolicy: "local-artifact-write",
+          expected: expect.stringContaining("local review artifacts only"),
+          evidence: expect.stringContaining("activation-review-manifest.json"),
+          sourceUrl: "docs/plans/PLAN-L7-342-version-up-activation-review-bundle.md",
+          sourceCheckedAt: "2026-06-30",
+          latestOfficialStatus: expect.stringContaining("bundle contract current at HEAD"),
+          sourceStatusDelta: expect.stringContaining("does not authorize apply"),
+          adoptionDecision: expect.stringContaining("local-artifact-bundle"),
+          adoptionDecisionDelta: expect.stringContaining("without changing activation authority"),
+          workflowRouteImpact: expect.stringContaining("activation remains parked"),
+        }),
+        expect.objectContaining({
           phase: "version-dry-run",
           command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           writePolicy: "no-write",
@@ -575,6 +590,7 @@ describe("version-up-readiness", () => {
     );
     expect(packet.activationVerificationCommandMatrix.map((row) => row.phase)).toEqual([
       "activation-packet-baseline",
+      "activation-review-bundle",
       "version-dry-run",
       "external-rehearsal",
       "security-testing",
@@ -704,7 +720,7 @@ describe("version-up-readiness", () => {
       {
         subject: "PLAN-L7-900-future.activationVerificationCommandMatrix",
         reason:
-          "activationVerificationCommandMatrix must contain exactly 9 phases: activation-packet-baseline,version-dry-run,external-rehearsal,security-testing,state-and-doctor,targeted-regression,static-gates,full-regression,approval-packet",
+          "activationVerificationCommandMatrix must contain exactly 10 phases: activation-packet-baseline,activation-review-bundle,version-dry-run,external-rehearsal,security-testing,state-and-doctor,targeted-regression,static-gates,full-regression,approval-packet",
       },
       {
         subject: "PLAN-L7-900-future.activationVerificationCommandMatrix",
@@ -2752,7 +2768,7 @@ describe("version-up-readiness", () => {
     expect(text).toContain("evidenceDigest=sha256:");
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
-    expect(text).toContain("verification-commands=9");
+    expect(text).toContain("verification-commands=10");
     expect(text).toContain("record-template activation_decision_record");
     expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(

@@ -1469,7 +1469,7 @@ describe("workflowNextActionForOutstanding (U-OUTSTANDING-004)", () => {
             command: "helix version-up activation-packet --json",
             schemaVersion: "version-up-activation-packet.v1",
             matrixField: "activationVerificationCommandMatrix",
-            expectedMatrixCount: 9,
+            expectedMatrixCount: 10,
             requiredReviewFields: expect.arrayContaining([
               "semanticFeatureFrontierRecord",
               "activationDecision",
