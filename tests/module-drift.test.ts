@@ -12,6 +12,7 @@ import {
   parseListedModules,
   scanActualModules,
 } from "../src/lint/module-drift";
+import { SOURCE_BOUNDARY_MODULES } from "../src/lint/shared";
 
 const docs = (listed: string[], actual: string[]): ModuleDocs => ({ listed, actual });
 
@@ -67,8 +68,17 @@ describe("module-drift lint (U-MDRIFT)", () => {
   it("U-MDRIFT-005: 実 repo は孤児0 (src/ 実在 ⊆ architecture §3.1)", () => {
     const r = analyzeModuleDrift(loadModuleDocs(process.cwd()));
     expect(r.orphans).toEqual([]);
+    expect(r.undefinedBoundaryModules).toEqual([]);
     expect(r.actualCount).toBeGreaterThan(0);
     expect(r.listedCount).toBeGreaterThanOrEqual(r.actualCount);
+  });
+
+  it("U-MDRIFT-006: architecture §3.1 modules are all defined in the source boundary matrix", () => {
+    const docs = loadModuleDocs(process.cwd());
+    const r = analyzeModuleDrift(docs);
+
+    expect(r.undefinedBoundaryModules).toEqual([]);
+    expect([...SOURCE_BOUNDARY_MODULES].sort()).toEqual([...docs.listed].sort());
   });
 
   it("scanActualModules: dir 名 + top-level *.ts basename を返す (実 repo に cli を含む)", () => {

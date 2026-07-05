@@ -18,6 +18,7 @@
  */
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { isSourceBoundaryModule } from "./shared";
 
 /** architecture §3.1 building block 表の見出し (対象セクションの開始マーカ、単一正本)。 */
 const SECTION_START = /^#{2,}\s*§?3\.1\b/m;
@@ -34,6 +35,8 @@ export interface ModuleDocs {
 export interface ModuleDriftResult {
   /** 実在するが §3.1 未列挙の module (back-fill 漏れ)。 */
   orphans: string[];
+  /** architecture §3.1 に列挙されているが source-boundary matrix 未定義の module。 */
+  undefinedBoundaryModules: string[];
   listedCount: number;
   actualCount: number;
   ok: boolean;
@@ -85,16 +88,23 @@ export function loadModuleDocs(repoRoot: string): ModuleDocs {
 export function analyzeModuleDrift(docs: ModuleDocs): ModuleDriftResult {
   const listedSet = new Set(docs.listed);
   const orphans = docs.actual.filter((m) => !listedSet.has(m)).sort();
+  const undefinedBoundaryModules = docs.listed.filter((m) => !isSourceBoundaryModule(m)).sort();
   return {
     orphans,
+    undefinedBoundaryModules,
     listedCount: docs.listed.length,
     actualCount: docs.actual.length,
-    ok: orphans.length === 0,
+    ok: docs.listed.length > 0 && orphans.length === 0 && undefinedBoundaryModules.length === 0,
   };
 }
 
 /** doctor 用 message 整形 (fail-close)。 */
 export function moduleDriftMessages(r: ModuleDriftResult): string[] {
+  if (r.undefinedBoundaryModules.length > 0) {
+    return [
+      `module-drift — violation ${r.undefinedBoundaryModules.length}: architecture §3.1 module has no source-boundary matrix entry (${r.undefinedBoundaryModules.join(", ")}).`,
+    ];
+  }
   if (r.orphans.length > 0) {
     return [
       `module-drift — ⚠ ${r.orphans.length} 件: src/ 実在だが architecture §3.1 未列挙 (${r.orphans.join(", ")})。` +

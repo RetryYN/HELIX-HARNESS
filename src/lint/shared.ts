@@ -248,7 +248,58 @@ export function hasDbcTable(text: string): boolean {
 
 // A-120 I-2 / IMP-105: coding-rules / ddd-tdd-rules の import 境界判定を単一正本化する。
 // rule id は module-boundary / domain-boundary のまま分け、禁止 matrix は共有する。
-const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<string, ReadonlySet<string>> = {
+export const SOURCE_BOUNDARY_MODULES = [
+  "assets",
+  "audit",
+  "cli",
+  "context",
+  "doctor",
+  "export",
+  "feedback",
+  "gate",
+  "graph",
+  "guardrail",
+  "handover",
+  "lint",
+  "memory",
+  "orchestration",
+  "plan",
+  "roster",
+  "runtime",
+  "schema",
+  "search",
+  "setup",
+  "skill-engine",
+  "skills",
+  "state-db",
+  "task",
+  "team",
+  "vmodel",
+  "web",
+  "workflow",
+] as const;
+
+export type SourceBoundaryModule = (typeof SOURCE_BOUNDARY_MODULES)[number];
+
+const EMPTY_BOUNDARY: ReadonlySet<string> = new Set();
+const SOURCE_BOUNDARY_MODULE_SET: ReadonlySet<string> = new Set(SOURCE_BOUNDARY_MODULES);
+
+export function isSourceBoundaryModule(value: string): value is SourceBoundaryModule {
+  return SOURCE_BOUNDARY_MODULE_SET.has(value);
+}
+
+const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<SourceBoundaryModule, ReadonlySet<string>> = {
+  assets: EMPTY_BOUNDARY,
+  audit: EMPTY_BOUNDARY,
+  cli: EMPTY_BOUNDARY,
+  context: EMPTY_BOUNDARY,
+  doctor: EMPTY_BOUNDARY,
+  export: EMPTY_BOUNDARY,
+  feedback: EMPTY_BOUNDARY,
+  gate: EMPTY_BOUNDARY,
+  graph: EMPTY_BOUNDARY,
+  guardrail: EMPTY_BOUNDARY,
+  handover: EMPTY_BOUNDARY,
   lint: new Set([
     "cli",
     "doctor",
@@ -260,6 +311,10 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<string, ReadonlySet<string>> = 
     "team",
     "vmodel",
   ]),
+  memory: EMPTY_BOUNDARY,
+  orchestration: EMPTY_BOUNDARY,
+  plan: EMPTY_BOUNDARY,
+  roster: EMPTY_BOUNDARY,
   runtime: new Set(["cli", "doctor", "handover", "lint", "plan", "setup", "team", "vmodel"]),
   schema: new Set([
     "cli",
@@ -273,6 +328,16 @@ const DISALLOWED_SOURCE_BOUNDARY_IMPORTS: Record<string, ReadonlySet<string>> = 
     "team",
     "vmodel",
   ]),
+  search: EMPTY_BOUNDARY,
+  setup: EMPTY_BOUNDARY,
+  "skill-engine": EMPTY_BOUNDARY,
+  skills: EMPTY_BOUNDARY,
+  "state-db": EMPTY_BOUNDARY,
+  task: EMPTY_BOUNDARY,
+  team: EMPTY_BOUNDARY,
+  vmodel: EMPTY_BOUNDARY,
+  web: EMPTY_BOUNDARY,
+  workflow: EMPTY_BOUNDARY,
 };
 
 /** OS path 区切りを `/` に正規化。 */
@@ -317,5 +382,6 @@ export function violatesSourceBoundary(
   toModule: string | null,
 ): boolean {
   if (!fromModule || !toModule) return false;
+  if (!isSourceBoundaryModule(fromModule)) return false;
   return DISALLOWED_SOURCE_BOUNDARY_IMPORTS[fromModule]?.has(toModule) ?? false;
 }

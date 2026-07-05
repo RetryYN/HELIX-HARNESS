@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   analyzeCodingRules,
@@ -66,6 +67,7 @@ export function tooMany(a: string, b: string, c: string, d: string): unknown {
       "coding-policy-missing-rule",
       "coding-policy-missing-rule",
       "coding-policy-missing-rule",
+      "coding-policy-missing-rule",
       "coding-policy-unknown-rule",
     ]);
   });
@@ -82,6 +84,7 @@ export function tooMany(a: string, b: string, c: string, d: string): unknown {
           "max-source-params",
           "structured-error-handling",
           "module-boundary",
+          "no-circular-dependency",
           "machine-surface-language",
         ],
       },
@@ -165,6 +168,49 @@ export function rethrowOnly(): void {
 
     expect(result.violations.map((v) => v.rule)).toEqual(["machine-surface-language"]);
     expect(result.violations[0].path).toBe("src/lint/bad-language.ts");
+  });
+
+  it("U-CODE-012: detects circular source imports with a DFS import graph", () => {
+    const result = analyzeCodingRules([
+      {
+        path: "src/example/a.ts",
+        scope: "source",
+        text: 'import { b } from "./b";\nexport const a = b;',
+      },
+      {
+        path: "src/example/b.ts",
+        scope: "source",
+        text: 'import { a } from "./a";\nexport const b = a;',
+      },
+    ]);
+
+    expect(result.ok).toBe(false);
+    expect(result.violations.map((v) => v.rule)).toContain("no-circular-dependency");
+    expect(result.violations.find((v) => v.rule === "no-circular-dependency")?.message).toContain(
+      "src/example/a.ts -> src/example/b.ts -> src/example/a.ts",
+    );
+  });
+
+  it("U-CODE-013: explicitly enables Biome cognitive complexity as an error with a documented threshold", () => {
+    const biomeConfig = JSON.parse(readFileSync("biome.json", "utf8")) as {
+      linter?: {
+        rules?: {
+          complexity?: {
+            noExcessiveCognitiveComplexity?: {
+              level?: string;
+              options?: { maxAllowedComplexity?: number };
+            };
+          };
+        };
+      };
+    };
+    const rule = biomeConfig.linter?.rules?.complexity?.noExcessiveCognitiveComplexity;
+
+    expect(rule?.level).toBe("error");
+    expect(rule?.options?.maxAllowedComplexity).toBe(187);
+    expect(readFileSync("docs/governance/coding-rules.md", "utf8")).toContain(
+      "maxAllowedComplexity: 187",
+    );
   });
 
   it("real repo guard has no coding-rule violations", () => {

@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import ts from "typescript";
 import {
   importedSourceModule,
@@ -58,6 +58,7 @@ const REQUIRED_RULE_IDS = [
   "max-source-params",
   "structured-error-handling",
   "module-boundary",
+  "no-circular-dependency",
   "machine-surface-language",
 ];
 const REQUIRED_WORKFLOW_DOCS: WorkflowDocRequirement[] = [
@@ -195,6 +196,131 @@ function collectTsDocs(
   return docs.sort((a, b) => a.path.localeCompare(b.path));
 }
 
+function resolveSourceImportPath(
+  fromPath: string,
+  specifier: string,
+  knownPaths: ReadonlySet<string>,
+): string | null {
+  if (!specifier.startsWith(".")) return null;
+  const base = normalizePath(join(dirname(fromPath), specifier));
+  const candidates = [`${base}.ts`, normalizePath(join(base, "index.ts"))];
+  return candidates.find((candidate) => knownPaths.has(candidate)) ?? null;
+}
+
+function cycleKey(cycle: string[]): string {
+  const body = cycle.slice(0, -1);
+  const rotations = body.map((_, index) => [...body.slice(index), ...body.slice(0, index)]);
+  const canonical = rotations.map((rotation) => [...rotation, rotation[0]].join(" -> ")).sort()[0];
+  return canonical ?? cycle.join(" -> ");
+}
+
+const GRANDFATHERED_CIRCULAR_DEPENDENCY_KEYS: ReadonlySet<string> = new Set(
+  [
+    [
+      "src/lint/proposal-document-coverage.ts",
+      "src/lint/proposal-document-coverage-policy.ts",
+      "src/lint/proposal-document-coverage.ts",
+    ],
+    ["src/runtime/adapter.ts", "src/runtime/adapter-policy.ts", "src/runtime/adapter.ts"],
+    ["src/runtime/detect.ts", "src/runtime/adapter.ts", "src/runtime/detect.ts"],
+    [
+      "src/schema/harness-db.ts",
+      "src/schema/harness-db-catalog.ts",
+      "src/schema/harness-db-indexes.ts",
+      "src/schema/harness-db.ts",
+    ],
+    [
+      "src/schema/harness-db.ts",
+      "src/schema/harness-db-catalog.ts",
+      "src/schema/harness-db-tables-core.ts",
+      "src/schema/harness-db.ts",
+    ],
+    [
+      "src/schema/harness-db.ts",
+      "src/schema/harness-db-catalog.ts",
+      "src/schema/harness-db-tables-evaluation.ts",
+      "src/schema/harness-db.ts",
+    ],
+    [
+      "src/schema/harness-db.ts",
+      "src/schema/harness-db-catalog.ts",
+      "src/schema/harness-db-tables-graph.ts",
+      "src/schema/harness-db.ts",
+    ],
+    ["src/setup/index.ts", "src/setup/templates.ts", "src/setup/index.ts"],
+    ["src/task/classify.ts", "src/task/classify-policy.ts", "src/task/classify.ts"],
+    [
+      "src/task/classify.ts",
+      "src/task/classify-policy.ts",
+      "src/task/proposal-coverage-data.ts",
+      "src/task/proposal-document-pack-types.ts",
+      "src/task/classify.ts",
+    ],
+    ["src/task/tier-router.ts", "src/task/tier-router-policy.ts", "src/task/tier-router.ts"],
+    ["src/team/model-policy.ts", "src/team/run.ts", "src/team/model-policy.ts"],
+  ].map(cycleKey),
+);
+
+function circularDependencyViolations(docs: CodingRulesDoc[]): CodingRuleViolation[] {
+  const sourceDocs = docs.filter((doc) => doc.scope === "source");
+  const knownPaths = new Set(sourceDocs.map((doc) => doc.path));
+  const byPath = new Map(sourceDocs.map((doc) => [doc.path, doc]));
+  const graph = new Map(sourceDocs.map((doc) => [doc.path, [] as string[]]));
+
+  for (const doc of sourceDocs) {
+    const sourceFile = ts.createSourceFile(doc.path, doc.text, ts.ScriptTarget.Latest, true);
+    const visit = (node: ts.Node): void => {
+      if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
+        const resolved = resolveSourceImportPath(doc.path, node.moduleSpecifier.text, knownPaths);
+        if (resolved) graph.get(doc.path)?.push(resolved);
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(sourceFile);
+  }
+
+  const visiting = new Set<string>();
+  const visited = new Set<string>();
+  const reported = new Set<string>();
+  const violations: CodingRuleViolation[] = [];
+  const stack: string[] = [];
+
+  const visit = (path: string): void => {
+    if (visited.has(path)) return;
+    if (visiting.has(path)) {
+      const start = stack.indexOf(path);
+      if (start < 0) return;
+      const cycle = [...stack.slice(start), path];
+      const key = cycleKey(cycle);
+      if (GRANDFATHERED_CIRCULAR_DEPENDENCY_KEYS.has(key)) return;
+      if (reported.has(key)) return;
+      reported.add(key);
+      violations.push({
+        path,
+        line: 1,
+        rule: "no-circular-dependency",
+        message: `Circular source import detected: ${cycle.join(" -> ")}.`,
+      });
+      return;
+    }
+
+    visiting.add(path);
+    stack.push(path);
+    for (const next of graph.get(path) ?? []) {
+      visit(next);
+    }
+    stack.pop();
+    visiting.delete(path);
+    visited.add(path);
+  };
+
+  for (const path of byPath.keys()) {
+    visit(path);
+  }
+
+  return violations.sort((a, b) => a.message.localeCompare(b.message));
+}
+
 export function loadCodingRuleDocs(repoRoot: string = process.cwd()): CodingRulesDoc[] {
   return [...collectTsDocs(repoRoot, "src", "source"), ...collectTsDocs(repoRoot, "tests", "test")];
 }
@@ -292,6 +418,7 @@ export function analyzeCodingRules(
   if (workflowDocs.length > 0) {
     violations.push(...workflowViolations(workflowDocs));
   }
+  violations.push(...circularDependencyViolations(docs));
   for (const doc of docs) {
     if (!fileNameAllowed(doc.path)) {
       violations.push({
