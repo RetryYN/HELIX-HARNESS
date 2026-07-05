@@ -141,9 +141,8 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
       "外部ソース HEAD 確認日: 2026-07-05",
       "RetryYN/HELIX-HARNESS",
       "b828fcf64c204d1cfa65c729fa590ca9562adccc",
-      "<historical-pack-reference>",
-      "a43771ab091486520a4970f6b19b1663a009d4d0",
-      "v0.1.4",
+      "RetryYN/HELIX-HARNESS-OS",
+      "unpublished",
       "検証 / 進捗 source basis 再確認日: 2026-07-05",
     ],
   },
@@ -183,23 +182,23 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
   },
   {
     source: "distribution_pack_repo",
-    command: "git ls-remote <historical-pack-reference> refs/heads/main",
+    command: "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
     ref: "refs/heads/main",
-    observed: "a43771ab091486520a4970f6b19b1663a009d4d0",
-    latestOfficialStatus: "main branch reachable",
-    sourceStatusDelta: "changed from 2026-07-03 audit; objective audit refreshed",
+    observed: "unpublished",
+    latestOfficialStatus: "repository reachable; main branch unpublished",
+    sourceStatusDelta: "distribution repo moved to current HELIX-HARNESS-OS surface",
     adoptionDecision:
-      "reference source only; version-up activation required before adopting Pack latest",
+      "current distribution surface; publish/tag activation required before adoption",
     workflowRouteImpact: "distribution-version-binding gate retained",
   },
   {
     source: "distribution_pack_latest_tag",
-    command: "git ls-remote --tags <historical-pack-reference>",
-    ref: "refs/tags/v0.1.4",
-    observed: "v0.1.4",
-    latestOfficialStatus: "latest tag reachable",
-    sourceStatusDelta: "none",
-    adoptionDecision: "reference source only; local distribution tag remains v0.1.0",
+    command: "git ls-remote --tags https://github.com/RetryYN/HELIX-HARNESS-OS.git",
+    ref: "refs/tags/unpublished",
+    observed: "unpublished",
+    latestOfficialStatus: "no distribution tag published",
+    sourceStatusDelta: "distribution tag check moved to current HELIX-HARNESS-OS surface",
+    adoptionDecision: "local distribution tag remains v0.1.0 until publish activation",
     workflowRouteImpact: "version-up activation packet required before tag adoption",
   },
 ] as const;
@@ -416,8 +415,8 @@ function checkDistributionVersionBinding(
   const requiredMarkers = [
     `package.json version: \`${packageVersion}\``,
     `local distribution tag: \`${localTag}\``,
-    "Pack latest tag: `v0.1.4`",
-    "version-up activation required before adopting Pack latest tag",
+    "現行配布 latest tag: `unpublished`",
+    "version-up activation required before publishing/adopting distribution tag",
   ];
   for (const marker of requiredMarkers) {
     if (!input.auditText.includes(marker)) {

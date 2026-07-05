@@ -19,7 +19,9 @@ export interface GithubMergeReadinessResult {
   ok: boolean;
   localReady: boolean;
   canOpenPullRequest: boolean;
+  delegatedAuthRequired: boolean;
   externalPermissionBlocked: boolean;
+  githubAccessState: GithubAccessState;
   baseBranch: string;
   currentBranch: string;
   headSha: string;
@@ -45,6 +47,12 @@ export interface GithubMergeReadinessFinding {
   severity: "error" | "info";
   message: string;
 }
+
+export type GithubAccessState =
+  | "ready"
+  | "delegated_auth_required"
+  | "gh_cli_missing"
+  | "local_not_ready";
 
 export interface GithubPrBodyDraftResult {
   schemaVersion: "helix-github-pr-body-draft.v1";
@@ -89,13 +97,38 @@ export interface GithubCiStatusResult {
   ref: string;
   ghInstalled: boolean;
   ghAuthenticated: boolean;
+  delegatedAuthRequired: boolean;
   externalPermissionBlocked: boolean;
+  githubAccessState: GithubAccessState;
   runs: GithubCiRun[];
   queryError?: string;
   commands: {
     inspectAuth: string;
     listRuns: string;
   };
+}
+
+export interface GithubPrCreateResult {
+  schemaVersion: "helix-github-pr-create.v1";
+  ok: boolean;
+  dryRun: boolean;
+  attempted: boolean;
+  localReady: boolean;
+  readyToApply: boolean;
+  ghInstalled: boolean;
+  ghAuthenticated: boolean;
+  delegatedAuthRequired: boolean;
+  externalPermissionBlocked: boolean;
+  githubAccessState: GithubAccessState;
+  baseBranch: string;
+  headBranch: string;
+  headSha: string;
+  title: string;
+  command: string;
+  pullRequestUrl: string | null;
+  exitCode: number | null;
+  stderr?: string;
+  findings: GithubMergeReadinessFinding[];
 }
 
 function shellQuote(value: string): string {
@@ -151,13 +184,23 @@ export function analyzeGithubMergeReadiness(
 
   const localReady = !findings.some((finding) => finding.severity === "error");
   const canOpenPullRequest = localReady && input.ghInstalled && input.ghAuthenticated;
-  const externalPermissionBlocked = localReady && !canOpenPullRequest;
+  const delegatedAuthRequired = localReady && input.ghInstalled && !input.ghAuthenticated;
+  const githubAccessState: GithubAccessState = !localReady
+    ? "local_not_ready"
+    : !input.ghInstalled
+      ? "gh_cli_missing"
+      : !input.ghAuthenticated
+        ? "delegated_auth_required"
+        : "ready";
+  const externalPermissionBlocked = false;
   return {
     schemaVersion: "helix-github-merge-readiness.v1",
     ok: localReady,
     localReady,
     canOpenPullRequest,
+    delegatedAuthRequired,
     externalPermissionBlocked,
+    githubAccessState,
     baseBranch: input.baseBranch,
     currentBranch: input.currentBranch,
     headSha: input.headSha,
@@ -257,7 +300,7 @@ export function buildGithubPrBodyDraft(input: {
   const markdown = [
     input.templateText.trimEnd(),
     "",
-    "## HELIX merge readiness",
+    "## HELIX マージ準備状況",
     "",
     `- base: \`${input.baseBranch}\``,
     `- head: \`${input.headBranch}\``,
@@ -336,6 +379,12 @@ export function analyzeGithubCiStatus(input: GithubCiStatusInput): GithubCiStatu
       status = "red";
     }
   }
+  const delegatedAuthRequired = input.ghInstalled && !input.ghAuthenticated;
+  const githubAccessState: GithubAccessState = !input.ghInstalled
+    ? "gh_cli_missing"
+    : !input.ghAuthenticated
+      ? "delegated_auth_required"
+      : "ready";
   return {
     schemaVersion: "helix-github-ci-status.v1",
     ok: status === "green",
@@ -343,13 +392,99 @@ export function analyzeGithubCiStatus(input: GithubCiStatusInput): GithubCiStatu
     ref: input.ref,
     ghInstalled: input.ghInstalled,
     ghAuthenticated: input.ghAuthenticated,
-    externalPermissionBlocked: !input.ghInstalled || !input.ghAuthenticated,
+    delegatedAuthRequired,
+    externalPermissionBlocked: false,
+    githubAccessState,
     runs: input.runs,
     queryError: input.queryError,
     commands: {
       inspectAuth: "gh auth status",
       listRuns: `gh run list --branch ${shellQuote(input.ref)} --limit 10 --json databaseId,status,conclusion,headSha,name,workflowName,url`,
     },
+  };
+}
+
+function parsePrUrl(stdout: string): string | null {
+  const trimmed = stdout.trim();
+  if (!trimmed) return null;
+  const match = trimmed.match(/https:\/\/github\.com\/[^\s]+\/pull\/\d+/);
+  return match?.[0] ?? null;
+}
+
+export function runGithubPrCreate(
+  repoRoot: string,
+  opts: { baseBranch?: string; title?: string; dryRun?: boolean } = {},
+): GithubPrCreateResult {
+  const dryRun = opts.dryRun !== false;
+  const readiness = loadGithubMergeReadiness(repoRoot, { baseBranch: opts.baseBranch });
+  const draft = loadGithubPrBodyDraft(repoRoot, {
+    baseBranch: opts.baseBranch,
+    title: opts.title,
+  });
+  const readyToApply = readiness.localReady && readiness.canOpenPullRequest;
+  const command = `gh pr create --draft --base ${shellQuote(draft.baseBranch)} --head ${shellQuote(draft.headBranch)} --title ${shellQuote(draft.title)} --body <generated>`;
+  if (dryRun || !readyToApply) {
+    return {
+      schemaVersion: "helix-github-pr-create.v1",
+      ok: dryRun ? readiness.localReady : false,
+      dryRun,
+      attempted: false,
+      localReady: readiness.localReady,
+      readyToApply,
+      ghInstalled: readiness.findings.every((finding) => finding.code !== "gh_missing"),
+      ghAuthenticated: readiness.githubAccessState === "ready",
+      delegatedAuthRequired: readiness.delegatedAuthRequired,
+      externalPermissionBlocked: readiness.externalPermissionBlocked,
+      githubAccessState: readiness.githubAccessState,
+      baseBranch: draft.baseBranch,
+      headBranch: draft.headBranch,
+      headSha: draft.headSha,
+      title: draft.title,
+      command,
+      pullRequestUrl: null,
+      exitCode: null,
+      findings: readiness.findings,
+    };
+  }
+  const created = spawnSync(
+    "gh",
+    [
+      "pr",
+      "create",
+      "--draft",
+      "--base",
+      draft.baseBranch,
+      "--head",
+      draft.headBranch,
+      "--title",
+      draft.title,
+      "--body",
+      draft.markdown,
+    ],
+    { cwd: repoRoot, encoding: "utf8" },
+  );
+  return {
+    schemaVersion: "helix-github-pr-create.v1",
+    ok: created.status === 0,
+    dryRun: false,
+    attempted: true,
+    localReady: readiness.localReady,
+    readyToApply,
+    ghInstalled: true,
+    ghAuthenticated: true,
+    delegatedAuthRequired: false,
+    externalPermissionBlocked:
+      created.status !== 0 && /permission|forbidden|403/i.test(created.stderr),
+    githubAccessState: "ready",
+    baseBranch: draft.baseBranch,
+    headBranch: draft.headBranch,
+    headSha: draft.headSha,
+    title: draft.title,
+    command,
+    pullRequestUrl: parsePrUrl(created.stdout),
+    exitCode: created.status,
+    stderr: created.status === 0 ? undefined : created.stderr.trim() || undefined,
+    findings: readiness.findings,
   };
 }
 
@@ -415,7 +550,7 @@ export function loadGithubCiStatus(
 export function renderGithubMergeReadiness(result: GithubMergeReadinessResult): string {
   const lines = [
     `github merge-readiness: ${result.ok ? "local-ready" : "blocked"} branch=${result.currentBranch} base=${result.baseBranch} ahead=${result.ahead} behind=${result.behind}`,
-    `  - canOpenPullRequest=${result.canOpenPullRequest} externalPermissionBlocked=${result.externalPermissionBlocked}`,
+    `  - access=${result.githubAccessState} canOpenPullRequest=${result.canOpenPullRequest} delegatedAuthRequired=${result.delegatedAuthRequired}`,
     `  - push: ${result.commands.push}`,
     `  - draft-pr: ${result.commands.createDraftPullRequest}`,
   ];
@@ -428,7 +563,7 @@ export function renderGithubMergeReadiness(result: GithubMergeReadinessResult): 
 export function renderGithubCiStatus(result: GithubCiStatusResult): string {
   const lines = [
     `github ci-status: status=${result.status} ref=${result.ref} runs=${result.runs.length}`,
-    `  - externalPermissionBlocked=${result.externalPermissionBlocked}`,
+    `  - access=${result.githubAccessState} delegatedAuthRequired=${result.delegatedAuthRequired}`,
     `  - inspect-auth: ${result.commands.inspectAuth}`,
     `  - list-runs: ${result.commands.listRuns}`,
   ];

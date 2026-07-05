@@ -67,8 +67,9 @@ Source ledger 意味レビュー証跡:
 <!-- ### Action-binding approval decision record -->
 ### Action-binding approval の判断記録
 
-G11-G14 または mode activation で本番・外部 API・infra・secret・認証/認可・destructive/state 変更などの
+G11-G14 または mode activation のうち、本番・外部 API・infra・secret・認証/認可・destructive/state 変更などの
 高影響 action を扱う PLAN は、prose の「承認済み」ではなく `action_binding_approval_record` を持つ。
+通常の branch push、draft PR 作成、PR body 生成、CI 状態取得は、この高影響 action には含めない。
 これは承認を作業全体へ包括付与するものではなく、actor / tool / target / params / expiry を特定した
 最小権限の実行許可である。
 

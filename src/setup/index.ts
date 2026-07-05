@@ -1695,7 +1695,7 @@ export function buildConsumerReadinessPlan(input: {
         packLatestRequiresVersionUpActivation: true,
         versionUpPacketCommand: "helix version-up activation-packet --json",
         adoptionDecision:
-          "Pack latest tag is a reference source only; adopting it over the local package tag requires a recorded version-up activation decision",
+          "Distribution target tag is a reference source only; adopting it over the local package tag requires a recorded version-up activation decision",
       },
       reason:
         "consumer setup readiness only means the projected adapter/package path can run; it does not approve version-up activation, PLAN-M-02 cutover, or whole-program L14 completion",

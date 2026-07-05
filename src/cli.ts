@@ -28,6 +28,7 @@ import {
   loadGithubPrBodyDraft,
   renderGithubCiStatus,
   renderGithubMergeReadiness,
+  runGithubPrCreate,
 } from "./audit/github-merge-readiness";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { runConsumerDoctor, runDoctor } from "./doctor";
@@ -4746,7 +4747,7 @@ function loadObjectiveExternalObserved(): {
       messages.push(`${source}: git ls-remote failed: ${String(error)}`);
     }
   };
-  const firstSha = (stdout: string) => stdout.trim().split(/\s+/)[0] || null;
+  const firstSha = (stdout: string) => stdout.trim().split(/\s+/)[0] || "unpublished";
   const latestSemverTag = (stdout: string) => {
     const tags = new Set<string>();
     for (const line of stdout.split("\n")) {
@@ -4764,25 +4765,17 @@ function loadObjectiveExternalObserved(): {
           }
           return left.localeCompare(right);
         })
-        .at(-1) ?? null
+        .at(-1) ?? "unpublished"
     );
   };
-  const historicalPackReferenceUrl = `https://github.com/unison-ai-product/${[
-    "UT",
-    "TDD_AGENT",
-    "HARNESS-Pack",
-  ].join("-")}.git`;
+  const distributionRepoUrl = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
   readRemote(
     "development_repo",
     ["https://github.com/RetryYN/HELIX-HARNESS.git", "refs/heads/main"],
     firstSha,
   );
-  readRemote("distribution_pack_repo", [historicalPackReferenceUrl, "refs/heads/main"], firstSha);
-  readRemote(
-    "distribution_pack_latest_tag",
-    ["--tags", historicalPackReferenceUrl],
-    latestSemverTag,
-  );
+  readRemote("distribution_pack_repo", [distributionRepoUrl, "refs/heads/main"], firstSha);
+  readRemote("distribution_pack_latest_tag", ["--tags", distributionRepoUrl], latestSemverTag);
   return {
     ok:
       externalObserved.development_repo !== undefined &&
@@ -4879,7 +4872,9 @@ branch
     }
   });
 
-const github = program.command("github").description("read-only GitHub operation readiness");
+const github = program
+  .command("github")
+  .description("GitHub operation readiness and PR automation");
 
 github
   .command("merge-readiness")
@@ -4924,6 +4919,35 @@ github
     if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     else process.stdout.write(renderGithubCiStatus(result));
     process.exitCode = result.status === "red" ? 1 : 0;
+  });
+
+github
+  .command("pr-create")
+  .description("create a draft pull request through delegated gh authentication")
+  .option("--base <branch>", "base branch for the pull request", "main")
+  .option("--title <title>", "PR title override")
+  .option("--apply", "execute gh pr create; default is dry-run")
+  .option("--json", "JSON output")
+  .action((opts: { base?: string; title?: string; apply?: boolean; json?: boolean }) => {
+    const result = runGithubPrCreate(process.cwd(), {
+      baseBranch: opts.base ?? "main",
+      title: opts.title,
+      dryRun: opts.apply !== true,
+    });
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `github pr-create: ${result.dryRun ? "dry-run" : result.ok ? "created" : "failed"} head=${result.headBranch} base=${result.baseBranch}\n`,
+      );
+      process.stdout.write(
+        `  - access=${result.githubAccessState} readyToApply=${result.readyToApply} delegatedAuthRequired=${result.delegatedAuthRequired}\n`,
+      );
+      process.stdout.write(`  - command=${result.command}\n`);
+      if (result.pullRequestUrl) process.stdout.write(`  - url=${result.pullRequestUrl}\n`);
+      if (result.stderr) process.stdout.write(`  - stderr=${result.stderr}\n`);
+    }
+    process.exitCode = result.ok ? 0 : 1;
   });
 
 const feedback = program

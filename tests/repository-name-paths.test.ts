@@ -19,7 +19,11 @@ describe("repository path naming", () => {
     const legacyDashedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join("-");
     const legacyCompactRepo = [["UT", "TDD"].join(""), "AGENT", "HARNESS"].join("");
     const legacySpacedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join(" ");
-    const legacyUnderscorePack = [["UT", "TDD"].join("_"), "AGENT", "HARNESS-Pack"].join("_");
+    const legacyUnderscorePack = [
+      ["UT", "TDD"].join("_"),
+      "AGENT",
+      ["HARNESS", "Pack"].join("-"),
+    ].join("_");
     const legacyDottedPack = ["ut", "tdd", "agent", "harness", "pack"].join(".");
     const legacyLowerCompactRepo = ["ut", "tdd", "agent", "harness"].join("");
     const result = analyzeRepositoryNamePaths({

@@ -173,10 +173,10 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
   required artifact として fail-close する。
 - consumer readiness / state DB / workflow test helper の内部 identifier に残る旧名由来の camelCase residue も
   HELIX 系 identifier へ揃え、検索 residue を 0 件に保つ。
-- `helix github merge-readiness --json` を read-only operation packet として追加し、ローカル merge readiness と
-  GitHub 認証・権限待ちを分離する。
-- `helix github pr-body` と `helix github ci-status` を read-only operation packet として追加し、PR body draft と
-  GitHub Actions 状態取得不能 / green / red を分離する。
+- `helix github merge-readiness --json` を operation packet として追加し、ローカル merge readiness と
+  `gh` 委譲認証未完了を分離する。
+- `helix github pr-body`、`helix github ci-status`、`helix github pr-create` を operation packet として追加し、
+  PR body draft、GitHub Actions 状態取得不能 / green / red、draft PR 作成 dry-run / apply を分離する。
 - `harness.db` file-backed connection は WAL と busy timeout を有効化し、`db rebuild` と `doctor` / `status`
   の並行実行で読取側が last committed projection を参照できるようにする。
 - `harness.db` rebuild は schema migration も `BEGIN IMMEDIATE` 配下へ含め、DDL と projection の競合窓を閉じる。
@@ -185,9 +185,10 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 
 ## 非スコープ
 
-- GitHub 認証情報の作成、権限昇格、branch protection 適用、PR 作成そのものは実行しない。
+- この PLAN 実装作業では GitHub 認証情報の作成、権限昇格、branch protection 適用、PR 作成そのものは実行しない。
+  ただし成果物の通常運用では、`localReady && ghAuthenticated` の draft PR 作成は AI agent が実行できる。
 - `PLAN-M-02` の不可逆 state move / CLI alias cutover は実行しない。
-- 配布 Pack latest tag の採用、version-up activation、外部 repo の bulk import は実行しない。
+- 配布 target tag の採用、version-up activation、外部 repo の bulk import は実行しない。
 
 ## 受入条件
 
@@ -195,7 +196,7 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - camelCase / compact 表記の旧名由来 internal identifier residue も 0 件。
 - `identifier-rename` test が同一 hit count の content drift で snapshot digest drift を検出する。
 - `goal-evidence-audit` と `cli-surface` test が G-06 artifact requirement と GitHub preflight isolation を検証する。
-- `github-merge-readiness` test が、認証済み agent の PR 作成可否、未認証時の外部権限待ち分離、
+- `github-merge-readiness` test が、認証済み agent の PR 作成可否、未認証時の委譲認証待ち分離、
   local evidence defect の fail-close を検証する。
 - `github-merge-readiness` test が、PR body draft の日本語-first readiness 欄と CI status packet の
   unavailable / green / red 分離を検証する。
@@ -207,7 +208,7 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 
 ## 2026-07-05 追補: 外部 ledger freshness と G-10 stale 行修正
 
-- `git ls-remote` で 2026-07-05 時点の `RetryYN/HELIX-HARNESS` main、historical Pack main、Pack latest tag を再確認し、
+- `git ls-remote` で 2026-07-05 時点の `RetryYN/HELIX-HARNESS` main と `RetryYN/HELIX-HARNESS-OS` 配布 surface を再確認し、
   `docs/governance/helix-objective-evidence-audit.md` と `src/lint/objective-evidence-audit.ts` の external source marker を
   2026-07-05 へ更新した。観測 commit / tag は 2026-07-04 監査から変わらない。
 - `PLAN-L7-03-setup-solo-team` は live PLAN status が `confirmed` であり、`status --json` の outstanding item でもないため、
@@ -217,6 +218,7 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 
 ## 現在の判断
 
-GitHub 操作を「自由に」するために guard を外すのではなく、AI agent が必要な操作を正規 preflight、明示権限、
-監査証跡つきで実行できるようにする。今回の修正は、古い credential helper や不完全な digest による
-不透明な失敗・false green を潰す。
+GitHub 操作を無制限にするために guard を外すのではなく、AI agent が通常運用で必要とする branch push、
+draft PR 作成、PR body 生成、CI 状態取得を正規 preflight と監査証跡つきで実行できるようにする。
+branch protection、ruleset、release/tag publish、repository rename、force-push は高影響境界として残す。
+今回の修正は、古い credential helper や不完全な digest による不透明な失敗・false green を潰す。

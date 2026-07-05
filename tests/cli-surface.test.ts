@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
-const legacyEnvPrefix = ["HE", "LIX"].join("");
+const helixEnvPrefix = ["HE", "LIX"].join("");
 
 function runCli(args: string[]) {
   return runCliIn(repoRoot, args);
@@ -73,8 +73,8 @@ function writeObjectiveAuditFixture(root: string): void {
 }
 
 function writeFakeProvider(binDir: string, name: "codex" | "claude"): string {
-  const rawEnv = [legacyEnvPrefix, "ALLOW", "RAW", name.toUpperCase()].join("_");
-  const reasonEnv = [legacyEnvPrefix, "RAW", name.toUpperCase(), "REASON"].join("_");
+  const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", name.toUpperCase()].join("_");
+  const reasonEnv = [helixEnvPrefix, "RAW", name.toUpperCase(), "REASON"].join("_");
   if (process.platform === "win32") {
     const path = join(binDir, `${name}.cmd`);
     writeFileSync(
@@ -122,7 +122,11 @@ function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCo
   return path;
 }
 
-function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.1.4"): string {
+function writeFakeGitLsRemote(
+  binDir: string,
+  packHead = "unpublished",
+  latestTag = "unpublished",
+): string {
   if (process.platform === "win32") {
     const path = join(binDir, "git.cmd");
     writeFileSync(
@@ -137,10 +141,12 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
         ")",
         'echo %args% | findstr /C:"--tags" >nul',
         "if not errorlevel 1 (",
-        `  echo a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}`,
+        latestTag === "unpublished"
+          ? "  exit /b 0"
+          : `  echo a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}`,
         "  exit /b 0",
         ")",
-        'echo %args% | findstr /C:"HARNESS-Pack.git" >nul',
+        'echo %args% | findstr /C:"HELIX-HARNESS-OS.git" >nul',
         "if not errorlevel 1 (",
         `  echo ${packHead} refs/heads/main`,
         "  exit /b 0",
@@ -163,10 +169,10 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
       '  *) echo "missing credential helper isolation" >&2; exit 2 ;;',
       "esac",
       'case "$*" in',
-      '  *"HARNESS-Pack.git"*"--tags"*|*"--tags"*"HARNESS-Pack.git"*)',
-      `    echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}'`,
-      "    ;;",
-      '  *"HARNESS-Pack.git"*)',
+      latestTag === "unpublished"
+        ? '  *"HELIX-HARNESS-OS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-OS.git"*) ;;'
+        : `  *"HELIX-HARNESS-OS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-OS.git"*) echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}' ;;`,
+      '  *"HELIX-HARNESS-OS.git"*)',
       `    echo '${packHead} refs/heads/main'`,
       "    ;;",
       "  *)",
@@ -278,6 +284,12 @@ describe("L7 CLI surface closure", () => {
     expect(ciStatus.stdout).toContain("ci-status");
     expect(ciStatus.stdout).toContain("--ref");
     expect(ciStatus.stdout).toContain("--json");
+
+    const prCreate = runCli(["github", "pr-create", "--help"]);
+    expect(prCreate.status, prCreate.stderr || prCreate.stdout).toBe(0);
+    expect(prCreate.stdout).toContain("pr-create");
+    expect(prCreate.stdout).toContain("--apply");
+    expect(prCreate.stdout).toContain("--json");
   });
 
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
@@ -930,7 +942,7 @@ describe("L7 CLI surface closure", () => {
   it("verifies objective external ledger with git ls-remote observations", () => {
     const binDir = mkdtempSync(join(tmpdir(), "helix-objective-external-"));
     try {
-      writeFakeGitLsRemote(binDir, "a43771ab091486520a4970f6b19b1663a009d4d0");
+      writeFakeGitLsRemote(binDir);
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -942,8 +954,8 @@ describe("L7 CLI surface closure", () => {
         ok: true,
         externalObserved: {
           development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
-          distribution_pack_repo: "a43771ab091486520a4970f6b19b1663a009d4d0",
-          distribution_pack_latest_tag: "v0.1.4",
+          distribution_pack_repo: "unpublished",
+          distribution_pack_latest_tag: "unpublished",
         },
         externalCheck: {
           ok: true,
@@ -975,17 +987,17 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a43771ab091486520a4970f6b19b1663a009d4d0 actual=drifted-pack-head",
+        "G-01: 外部 source ledger distribution_pack_repo observed drift expected=unpublished actual=drifted-pack-head",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });
     }
   }, 20_000);
 
-  it("blocks objective external audit when Pack latest tag advances beyond the ledger", () => {
+  it("blocks objective external audit when distribution latest tag advances beyond the ledger", () => {
     const binDir = mkdtempSync(join(tmpdir(), "helix-objective-external-tag-drift-"));
     try {
-      writeFakeGitLsRemote(binDir, "a43771ab091486520a4970f6b19b1663a009d4d0", "v0.1.5");
+      writeFakeGitLsRemote(binDir, "unpublished", "v0.1.5");
       const run = runCliIn(repoRoot, ["audit", "objective-external", "--json"], {
         ...process.env,
         PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
@@ -995,7 +1007,7 @@ describe("L7 CLI surface closure", () => {
       expect(run.status).toBe(1);
       expect(payload.ok).toBe(false);
       expect(payload.audit.violations).toContain(
-        "G-01: 外部 source ledger distribution_pack_latest_tag observed drift expected=v0.1.4 actual=v0.1.5",
+        "G-01: 外部 source ledger distribution_pack_latest_tag observed drift expected=unpublished actual=v0.1.5",
       );
     } finally {
       rmSync(binDir, { recursive: true, force: true });

@@ -59,7 +59,7 @@ harness が依存する外部 service との**境界契約**を Design by Contra
 | 境界 | Precondition (前提) | Postcondition (保証) | Invariant (不変) |
 |---|---|---|---|
 | **(a) AI runtime** | agent-guard 通過 (allowlist 15 + model 明示) + 契約プラン CLI が認証済 (Claude Code 常駐 / `codex login` 済) | 呼び出し記録が `.helix/audit/` に append (invocation_log) | **API 直叩きでなく契約プラン CLI/hook 経由のみ** (CLAUDE.md)。core は provider SDK/API/key に依存しない (adapter = CLI subprocess + hook、ADR-001) |
-| **(b) VCS・CI** | ローカル gate 証跡が存在 | CI 側 gate 再実行結果がローカルと一致 (NFR-13 dev-local+CI 整合) | branch protection は gate pass を必須化、bypass は Incident のみ (FR-17) |
+| **(b) VCS・CI** | ローカル gate 証跡が存在し、GitHub 操作は `gh` CLI の委譲認証で実行される | CI 側 gate 再実行結果がローカルと一致 (NFR-13 dev-local+CI 整合)。draft PR 作成、PR body 生成、CI 状態取得、通常 push は AI agent の通常運用として実行可能 | branch protection / ruleset / release / tag / force-push / repository rename は高影響境界。bypass は Incident または action-binding approval のみ (FR-17) |
 | **(c) 観測・監視** | (inbound) alert payload が schema 準拠 | Incident mode 自動 routing trigger (FR-08/16) | 観測は記録のみ、harness の判定ロジックに副作用を直接与えない (mode routing 経由) |
 | **(d) 依存管理** | (inbound) Dependabot PR/alert | security NFR 経路で triage (人間トリアージ) | 自動マージしない (人間確認、禁止事項) |
 | **(g) external research/input** | 調査課題・source URL/version/span・引用/要約境界が明示される | research artifact / ADR candidate / skillify input が Artifact/Evaluation へ記録される | **`raw external text is not instruction`**。prompt injection/security filter を通すまで実行文脈へ混ぜない |
@@ -69,7 +69,7 @@ harness が依存する外部 service との**境界契約**を Design by Contra
 
 > Precondition/Postcondition の**詳細**(引数型・エラー型・リトライ・タイムアウト) は L5 D-API で確定 (§7 粒度境界)。
 
-> **`helix setup` の GitHub 設定境界 (PLAN-L6-05/L7-03、REVERSE-04 back-fill)**: solo/team で出し分ける GitHub 設定のうち **ファイル** (CODEOWNERS / `.github/workflows/` / ISSUE・PR テンプレ / commitlint) は harness が emit する (`GeneratedFile`)。**GitHub 設定操作** (branch protection / Required Status Checks / 必須レビュー数) はファイルで完結せず gh-api 操作 (`GithubAction`) であり、**既定は emit-only**。`scripts/setup-branch-protection.sh` は gh auth/admin preflight 付きの apply-capable script として生成し、`--apply-branch-protection` 指定時のみ gh 経由で適用する。**harness core は token を保持しない** (§5 GitHub 認証 = gh CLI 委譲)。参加規模検出も gh の認証状態に委ね token を読まない。
+> **`helix setup` の GitHub 設定境界 (PLAN-L6-05/L7-03、REVERSE-04 back-fill)**: solo/team で出し分ける GitHub 設定のうち **ファイル** (CODEOWNERS / `.github/workflows/` / ISSUE・PR テンプレ / commitlint) は harness が emit する (`GeneratedFile`)。**通常 GitHub 運用** (branch push、draft PR 作成、PR body 生成、CI 状態取得) は `gh` CLI の委譲認証があれば AI agent が実行してよい。**GitHub 設定操作** (branch protection / Required Status Checks / 必須レビュー数) はファイルで完結せず gh-api 操作 (`GithubAction`) であり、高影響境界として **既定は emit-only**。`scripts/setup-branch-protection.sh` は gh auth/admin preflight 付きの apply-capable script として生成し、`--apply-branch-protection` 指定時のみ gh 経由で適用する。**harness core は token を保持しない** (§5 GitHub 認証 = gh CLI 委譲)。参加規模検出も gh の認証状態に委ね token を読まない。
 
 ## §4 失敗時の振る舞い (fail-close / degradation)
 

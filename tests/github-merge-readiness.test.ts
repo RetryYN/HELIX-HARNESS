@@ -23,7 +23,9 @@ describe("github merge readiness", () => {
       ok: true,
       localReady: true,
       canOpenPullRequest: true,
+      delegatedAuthRequired: false,
       externalPermissionBlocked: false,
+      githubAccessState: "ready",
     });
     expect(result.commands.createDraftPullRequest).toContain("gh pr create --draft");
   });
@@ -45,7 +47,9 @@ describe("github merge readiness", () => {
       ok: true,
       localReady: true,
       canOpenPullRequest: false,
-      externalPermissionBlocked: true,
+      delegatedAuthRequired: true,
+      externalPermissionBlocked: false,
+      githubAccessState: "delegated_auth_required",
     });
     expect(result.findings).toContainEqual(
       expect.objectContaining({ code: "gh_auth_required", severity: "info" }),
@@ -94,7 +98,7 @@ describe("github merge readiness", () => {
       baseBranch: "main",
       headBranch: "feature/github-readiness",
     });
-    expect(result.markdown).toContain("## HELIX merge readiness");
+    expect(result.markdown).toContain("## HELIX マージ準備状況");
     expect(result.markdown).toContain("PR 経由。main 直 merge ではない。");
     expect(result.markdown).toContain("`src/audit/github-merge-readiness.ts`");
   });
@@ -109,7 +113,9 @@ describe("github merge readiness", () => {
     expect(unavailable).toMatchObject({
       ok: false,
       status: "unavailable",
-      externalPermissionBlocked: true,
+      delegatedAuthRequired: true,
+      externalPermissionBlocked: false,
+      githubAccessState: "delegated_auth_required",
     });
 
     const green = analyzeGithubCiStatus({

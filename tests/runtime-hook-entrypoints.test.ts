@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 
 const repoRoot = process.cwd();
 const cliPath = join(repoRoot, "src", "cli.ts");
-const legacyEnvPrefix = ["HE", "LIX"].join("");
+const helixEnvPrefix = ["HE", "LIX"].join("");
 
 function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.ProcessEnv) {
   const stdin = input === undefined ? undefined : JSON.stringify(input);
@@ -31,8 +31,8 @@ function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.Proce
 
 function writeFakeCodex(binDir: string): string {
   mkdirSync(binDir, { recursive: true });
-  const rawEnv = [legacyEnvPrefix, "ALLOW", "RAW", "CODEX"].join("_");
-  const reasonEnv = [legacyEnvPrefix, "RAW", "CODEX", "REASON"].join("_");
+  const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", "CODEX"].join("_");
+  const reasonEnv = [helixEnvPrefix, "RAW", "CODEX", "REASON"].join("_");
   if (process.platform === "win32") {
     const path = join(binDir, "codex.cmd");
     writeFileSync(
@@ -52,8 +52,8 @@ function writeFakeCodex(binDir: string): string {
 
 function writeFakeClaude(binDir: string): string {
   mkdirSync(binDir, { recursive: true });
-  const rawEnv = [legacyEnvPrefix, "ALLOW", "RAW", "CLAUDE"].join("_");
-  const reasonEnv = [legacyEnvPrefix, "RAW", "CLAUDE", "REASON"].join("_");
+  const rawEnv = [helixEnvPrefix, "ALLOW", "RAW", "CLAUDE"].join("_");
+  const reasonEnv = [helixEnvPrefix, "RAW", "CLAUDE", "REASON"].join("_");
   if (process.platform === "win32") {
     const path = join(binDir, "claude.cmd");
     writeFileSync(

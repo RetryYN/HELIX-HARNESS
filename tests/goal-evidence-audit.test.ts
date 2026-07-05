@@ -34,19 +34,22 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain(
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     );
-    expect(text).toContain("git ls-remote <historical-pack-reference> refs/heads/main");
+    expect(text).toContain(
+      "git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
+    );
     expect(text).toContain("distribution_pack_latest_tag");
     expect(text).toContain("sourceStatusDelta");
     expect(text).toContain("workflowRouteImpact");
     expect(text).toContain("b828fcf64c204d1cfa65c729fa590ca9562adccc");
     expect(text).toContain("RetryYN/HELIX-HARNESS");
-    expect(text).toContain("<historical-pack-reference>");
-    expect(text).toContain("a43771ab091486520a4970f6b19b1663a009d4d0");
-    expect(text).toContain("v0.1.4");
+    expect(text).toContain("RetryYN/HELIX-HARNESS-OS");
+    expect(text).toContain("unpublished");
     expect(text).toContain("package.json version: `0.1.0`");
     expect(text).toContain("local distribution tag: `v0.1.0`");
-    expect(text).toContain("Pack latest tag: `v0.1.4`");
-    expect(text).toContain("version-up activation required before adopting Pack latest tag");
+    expect(text).toContain("現行配布 latest tag: `unpublished`");
+    expect(text).toContain(
+      "version-up activation required before publishing/adopting distribution tag",
+    );
     expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-05");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
@@ -157,15 +160,14 @@ describe("HELIX objective evidence audit", () => {
         "外部 source ledger (checked 2026-07-05)",
         "外部 source ledger (checked 2026-01-01)",
       )
-      .replaceAll("<historical-pack-reference>", "historical-pack-reference-missing")
-      .replaceAll("a43771ab091486520a4970f6b19b1663a009d4d0", "pack-head-missing")
+      .replaceAll("RetryYN/HELIX-HARNESS-OS", "HELIX-HARNESS-OS-missing")
+      .replaceAll("unpublished", "distribution-marker-missing")
       .replaceAll("distribution_pack_latest_tag", "distribution_pack_latest_tag_missing")
-      .replaceAll("v0.1.4", "pack-tag-missing")
       .replaceAll("package.json version: `0.1.0`", "package.json version: `0.1.9`")
       .replaceAll("local distribution tag: `v0.1.0`", "local distribution tag: `v0.1.9`")
-      .replaceAll("Pack latest tag: `v0.1.4`", "Pack latest tag: `pack-tag-missing`")
+      .replaceAll("現行配布 latest tag: `unpublished`", "現行配布 latest tag: `missing`")
       .replaceAll(
-        "version-up activation required before adopting Pack latest tag",
+        "version-up activation required before publishing/adopting distribution tag",
         "version-up activation marker missing",
       )
       .replaceAll(
@@ -183,18 +185,17 @@ describe("HELIX objective evidence audit", () => {
     expect(result.violations).toEqual(
       expect.arrayContaining([
         "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-05",
-        "G-01: missing external source marker <historical-pack-reference>",
-        "G-01: missing external source marker a43771ab091486520a4970f6b19b1663a009d4d0",
-        "G-01: missing external source marker v0.1.4",
+        "G-01: missing external source marker RetryYN/HELIX-HARNESS-OS",
+        "G-01: missing external source marker unpublished",
         "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-05",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
-        "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote <historical-pack-reference> refs/heads/main",
-        "G-01: 外部 source ledger distribution_pack_repo observed missing a43771ab091486520a4970f6b19b1663a009d4d0",
+        "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git refs/heads/main",
+        "G-01: 外部 source ledger distribution_pack_repo observed missing unpublished",
         "G-01: 外部 source ledger missing row distribution_pack_latest_tag",
         "G-01: missing distribution version binding marker package.json version: `0.1.0`",
         "G-01: missing distribution version binding marker local distribution tag: `v0.1.0`",
-        "G-01: missing distribution version binding marker Pack latest tag: `v0.1.4`",
-        "G-01: missing distribution version binding marker version-up activation required before adopting Pack latest tag",
+        "G-01: missing distribution version binding marker 現行配布 latest tag: `unpublished`",
+        "G-01: missing distribution version binding marker version-up activation required before publishing/adopting distribution tag",
       ]),
     );
   });
@@ -205,8 +206,8 @@ describe("HELIX objective evidence audit", () => {
       ...baseInput,
       externalObserved: {
         development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
-        distribution_pack_repo: "a43771ab091486520a4970f6b19b1663a009d4d0",
-        distribution_pack_latest_tag: "v0.1.4",
+        distribution_pack_repo: "unpublished",
+        distribution_pack_latest_tag: "unpublished",
       },
     });
     expect(ok.ok).toBe(true);
@@ -231,13 +232,13 @@ describe("HELIX objective evidence audit", () => {
       externalObserved: {
         development_repo: "b828fcf64c204d1cfa65c729fa590ca9562adccc",
         distribution_pack_repo: "different-pack-head",
-        distribution_pack_latest_tag: "v0.1.4",
+        distribution_pack_latest_tag: "unpublished",
       },
     });
 
     expect(drifted.ok).toBe(false);
     expect(drifted.violations).toContain(
-      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=a43771ab091486520a4970f6b19b1663a009d4d0 actual=different-pack-head",
+      "G-01: 外部 source ledger distribution_pack_repo observed drift expected=unpublished actual=different-pack-head",
     );
   });
 

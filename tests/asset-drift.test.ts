@@ -34,7 +34,7 @@ const input = (overrides: Partial<AssetDriftInput>): AssetDriftInput => ({
 });
 
 const legacyRuntimeName = ["ut", "tdd"].join("-");
-const legacyEnvPrefix = ["UT", "TDD"].join("_");
+const legacyRuntimeEnvPrefix = ["UT", "TDD"].join("_");
 const legacyProductProse = ["UT", "TDD"].join("-");
 
 describe("asset-drift lint (U-FR-L1-49)", () => {
@@ -64,7 +64,7 @@ describe("asset-drift lint (U-FR-L1-49)", () => {
       input({
         assets: [
           agent("pdm-tech", `Use pmo-${legacyRuntimeName}-explorer`),
-          skill("runtime-env", `${legacyEnvPrefix}_CODEX_BIN=true`),
+          skill("runtime-env", `${legacyRuntimeEnvPrefix}_CODEX_BIN=true`),
         ],
         allowlist: ["pdm-tech"],
       }),
