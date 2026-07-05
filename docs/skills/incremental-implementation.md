@@ -16,17 +16,17 @@ applies_to:
 
 # incremental implementation（段階実装）
 
-HELIX の L7 implementation quality baseline。対象は type safety、naming discipline、
-function design、descent obligation。PLAN の pair-freeze から trace-freeze までを扱う。
+HELIX の L7 実装品質 baseline。対象は type safety、naming discipline、
+function design、descent obligation である。PLAN の pair-freeze から trace-freeze までを扱う。
 TDD cycle order（test-driven-development skill 参照）を置き換えるものではなく、
-各 Red-Green step の内側で適用する rules である。
+各 Red-Green step の内側で適用する rules（規則）である。
 
 ## この skill を読む条件
 
 - pair-freeze 後に L7 implementation を開始する
   （L5/L6 design docs が存在し、`ut-tdd plan lint` と `ut-tdd doctor` が green）。
-- code review（`ut-tdd review --uncommitted`）が type、naming、design quality issue を指摘する。
-- Refactor または Retrofit PLAN が、in-bounds な source changes を scope している。
+- code review（`ut-tdd review --uncommitted`）が type、naming、design quality issue（設計品質 issue）を指摘する。
+- Refactor または Retrofit PLAN が、in-bounds な source changes（範囲内 source 変更）を scope している。
 
 ## Descent obligation（降下義務）
 
@@ -38,8 +38,8 @@ trace できなければならない。新しい module を書く前に確認す
 3. どちらかが無い場合、PLAN は unresolved `requires` を持つ。
    source を書く前に停止し、design gap を解決する。
 
-`ut-tdd doctor` は structural link existence を確認するが、substance は確認しない。
-coding 前に L5 doc を読み、implementation questions に答えていることを確認する。
+`ut-tdd doctor` は構造 link の存在を確認するが、substance（中身）は確認しない。
+coding 前に L5 doc を読み、implementation questions（実装上の疑問）に答えていることを確認する。
 
 ## Type safety rules（型安全規則）
 
@@ -54,23 +54,23 @@ coding 前に L5 doc を読み、implementation questions に答えているこ�
 
 ## Naming discipline（命名規律）
 
-- Function names は action を表す imperative verbs にする。
+- Function names は action を表す命令形 verb にする。
   例: `recordGuardrail`、`readPlanFile`、`emitProjectionRow`。
   noun forms（`guardrailRecorder`）は避ける。
 - Boolean return values は `is*` / `has*` / `can*` prefixes を使う。
 - File names は primary export と一致させる。
   `projection-writer.ts` は `ProjectionWriter` または `writeProjection` を export する。
-- source に導入した new terms は、同じ commit で `docs/design/L0-glossary.md` に追加する。
+- source に導入した new terms（新規用語）は、同じ commit で `docs/design/L0-glossary.md` に追加する。
 
 ## Function design constraints（関数設計制約）
 
-- function の responsibility は 1 つにする。state を読み、変換し、output を書く function は、
+- function の responsibility（責務）は 1 つにする。state を読み、変換し、output を書く function は、
   distinct names を持つ 3 functions に分割する。
 - `.ut-tdd/` または `harness.db` に書き込む functions は、business logic を同時に計算しない。
   I/O と computation を分離し、unit tests が side effects なしに computation を検証できるようにする。
 - Public API surface（exported functions and types）は、tests と callers に必要な最小集合にする。
   internal helpers を export しない。
-- function body の推奨最大は 30 lines。それを超える場合は named helper を抽出し、
+- function body の推奨最大は 30 lines。それを超える場合は named helper（名前付き helper）を抽出し、
   helper が new concept を表すなら L5 spec に extraction を記録する。
 
 ## Incremental commit discipline（段階 commit 規律）
@@ -78,7 +78,7 @@ coding 前に L5 doc を読み、implementation questions に答えているこ�
 - 各 commit は Red test を Green へ進める
   （または Green を維持したまま refactor する）。
   noise を減らすために複数 feature commits をまとめない。
-  Red-commit / Green-commit sequence は audit evidence である（FR-L1-02）。
+  Red-commit / Green-commit sequence は監査証跡である（FR-L1-02）。
 - stage は explicit files のみ（`git add <file>`、`git add -A` は使わない）。
 - commit messages は Conventional Commits に従う。
   `feat(module): description`、`test(module): description`、`refactor(module): description`。
