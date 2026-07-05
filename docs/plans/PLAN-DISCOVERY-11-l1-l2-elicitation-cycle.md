@@ -14,8 +14,8 @@ updated: 2026-07-05
 review_evidence:
   - reviewer: code-reviewer subagent (intra_runtime_subagent)
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-05"
-    tests_green_at: "2026-07-05"
+    reviewed_at: "2026-07-05T23:20:00+09:00"
+    tests_green_at: "2026-07-05T23:18:10+09:00"
     verdict: pass
     scope: "S4 decision record レビュー（5 観点: 必須 16 フィールド充足 / verified_evidence 実在 (git show 14179b2, c1cc240) / claim discipline / charter §3 整合 / A-40 循環回避 = すべて pass）。Important 指摘 3 件は反映済み: ①adoption_decision_delta の precedent を DISCOVERY-08 のみに訂正（07/10 は S3 pending）②本 review_evidence の frontmatter 着地 ③REVERSE-329 frontmatter / design-language / G-10 ledger は Codex が ec10369 で修正。Minor（decision_basis のラウンド数表現）も 2 ラウンド収束に精緻化済み。tests/s4-decision-readiness.test.ts 29/29 pass。Codex runtime が PLAN-L3-07 Step 1 を占有中だったため cross-runtime でなく intra_runtime_subagent を適用（hybrid 例外理由）。"
     worker_model: claude-fable-5
@@ -26,9 +26,9 @@ review_evidence:
         runner: bun
         scope: targeted
         exit_code: 0
-        completed_at: "2026-07-05T23:15:17+09:00"
+        completed_at: "2026-07-05T23:18:10+09:00"
         evidence_path: tests/s4-decision-readiness.test.ts
-        output_digest: "sha256:c3bdeeda02f5aef74db85a23f36134564a23392049db2e2086ea527bc280b6cb"
+        output_digest: "sha256:b93cdbaacbf6a4b60fa922143ab65da710fc131370402529a3a0802826079069"
 owner: PO (人間) / Claude (Opus)
 parent_design: docs/design/harness/L1-requirements/screen-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
