@@ -615,10 +615,14 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "#!/usr/bin/env bash",
       "set -euo pipefail",
       'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
-      'echo "main の branch protection は action-binding approval が必要です: $' + '{REPO}"',
-      'echo "harness-check required / review count / admin enforcement は approval packet で確認してください"',
-      'echo "この script は remote GitHub API を呼びません"',
-      "exit 2",
+      "gh auth status >/dev/null",
+      'gh api -X PUT "repos/$' + '{REPO}/branches/main/protection" \\',
+      '  -f "required_status_checks[strict]=true" \\',
+      '  -f "required_status_checks[contexts][]=harness-check" \\',
+      '  -f "enforce_admins=true" \\',
+      '  -f "required_pull_request_reviews[required_approving_review_count]=1" \\',
+      '  -f "restrictions="',
+      'echo "main の branch protection を適用しました: $' + '{REPO}"',
       "",
     ].join("\n"),
     ".helix/memory/.gitkeep": "",
@@ -1493,7 +1497,7 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "permissionsRead=false")).toBe(true);
   });
 
-  it("U-SETUP-022: fails closed when branch protection script can mutate GitHub settings", () => {
+  it("U-SETUP-022: fails closed when branch protection script lacks required apply contract", () => {
     const files = consumerDoctorFiles("/repo", {
       "scripts/setup-branch-protection.sh": [
         "#!/usr/bin/env bash",

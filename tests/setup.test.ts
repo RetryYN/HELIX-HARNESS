@@ -2603,8 +2603,8 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
   });
 
-  it("U-SETUP-022: blocks consumer readiness when branch protection script can mutate GitHub settings", () => {
-    const mutatingTemplates = {
+  it("U-SETUP-022: blocks consumer readiness when branch protection script lacks required apply contract", () => {
+    const incompleteTemplates = {
       ...baseTemplates,
       "team/setup-branch-protection.sh": [
         "#!/usr/bin/env bash",
@@ -2615,7 +2615,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ].join("\n"),
     };
     const deps = mockDeps({
-      templates: mutatingTemplates,
+      templates: incompleteTemplates,
       commandAvailable: (name) => ["bun", "git", "helix", "codex"].includes(name),
       bunVersion: () => "1.3.14",
     });

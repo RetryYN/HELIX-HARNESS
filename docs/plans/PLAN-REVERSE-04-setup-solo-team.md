@@ -37,7 +37,7 @@ agent_slots:
   - role: tl
     slot_label: "TL — as-is 設計復元 / GitHub 境界契約 (emit-only) / 用語 back-merge のレビュー (claude-only は code-reviewer 代替)"
   - role: po
-    slot_label: "PO — R3 intent (setup=Phase 0 工程外で新 FR 不要 / branch protection 人間サインオフ) 検証 (§1.8 R3 必須)"
+    slot_label: "PO — R3 intent (setup=Phase 0 工程外で新 FR 不要 / branch protection gh auth/admin preflight) 検証 (§1.8 R3 必須)"
 generates:
   - artifact_path: docs/plans/PLAN-REVERSE-04-setup-solo-team.md
     artifact_type: markdown_doc
@@ -106,7 +106,7 @@ Add-feature 標準ライフサイクル 経路 B の **収束段**。`PLAN-L6-05
 
 2026-07-02 continuation: L3 HR-FR-P6-03 / HAC-P6-03a が求める GitHub rules/checks plan と doctor baseline を
 `HelixProjectSetupResult.githubPlan` / `doctorBaseline` として構造化した。`githubPlan` は plan-only、remote apply
-なし、required check `harness-check`、branch protection `emit_only` / human approval 必須を返す。`doctorBaseline`
+なし、required check `harness-check`、branch protection `emit_only_by_default_apply_capable` / gh auth/admin preflightを返す。`doctorBaseline`
 は setup dry-run / status / doctor / handover status / team-run dry-run と `.helix/memory|handover|evidence|teams` baseline を返し、
 `completionClaimAllowed=false` を固定する。これにより fresh setup の初回稼働証跡が path 文字列だけでなく、
 GitHub gate と doctor baseline の意味単位として trace 可能になる。
@@ -123,14 +123,14 @@ dry-run に接続する。これは provider 実行や外部 API 呼び出しを
 | R0 evidence | 実装事実収集: `src/setup/index.ts` (契約関数 7 本) / `src/cli.ts` helix setup / `tests/setup.test.ts` U-SETUP-001〜007 (92 pass) / `docs/templates/github/{common,team}/` 8 テンプレ | evidence = 実装 + 92 pass + テンプレ |
 | R0 continuation evidence | `planHelixProjectSetup` / `runHelixProjectSetup` / `helix setup project` が VSCode task と project-local `.helix` baseline を同じ setup 境界で生成し、dry-run と branch protection emit-only を維持する。JSON/text は `identifierTransition` として `canonicalCommand=helix setup project`、target `.helix`、PLAN-M-02 承認待ち blocker を返す。`postSetupWorkflow` は `importReport` と `consumerReadiness` を合成し、`ready` / `review_import_report` / `fix_consumer_readiness` の first-run route と verification commands を返す。`githubPlan` は rules/checks plan を plan-only で返し、`doctorBaseline` は初回 doctor/status/handover/team-run baseline を返す | evidence = U-SETUP-015..017/019/023 + CLI surface test + L3/L6/L7 design update |
 | R1 (skip) | GitHub 設定は file emit (CODEOWNERS/workflow/templates) + gh-api 操作 (branch protection) の 2 種。外部契約 = gh CLI I/F + file 投影のみ (setup-solo-team.md §2.4) | observed = gh I/F + file 投影 |
-| R2 as-is | `helix setup` は §6.5 Phase 0-A/0-B の **emission 実装**だが §6.5 側に setup 実装への参照なし。GitHub 境界 (file vs gh-api / emit-only 既定 / branch protection 人間サインオフ) が L4 external-if に未記載。Phase 0-A/0-B・参加規模検出・emit-only が L0 §10 用語に未 back-merge | as-is = 3 つの上位 gap |
-| R3 intent (po 検証) | (a) **setup = Phase 0 bootstrap (リポジトリ初期化 / branch protection = concept §512 で「工程外」) → 新 FR を起こさない** / (b) GitHub 設定操作 (branch protection) は **emit-only 既定・適用は admin 人間サインオフ** (認可・本番影響境界) を L4 external-if に明記 / (c) Phase 0-A/0-B 出し分けが §6.5 2-stage と整合 — の 3 点が intent | **R3 PASS (2026-06-02)**: (a) は concept §512 (Phase 0 = 工程外) + scout 監査 (setup の FR-L1-NN 不在) に grounded、新 top-level 要件にしない / (b)(c) は L6 設計で PO 確定済 (emit-only / 非対話 apply 封鎖 / 数で自動確定しない)。よって R3 intent 充足。PO 認識ずれあれば再エスカレーション |
-| R4 gap/routing | `forward_routing=L4`: ① §6.5 に `helix setup` solo/team が Phase 0-A/0-B emission の実装である旨を追記 / ② L4 external-if に setup GitHub 境界契約 (file emit + emit-only + 人間サインオフ + token 非保持) を追記 / ③ L0 §10.3 機構用語に Phase 0-A/0-B / 参加規模検出 / emit-only を back-merge。`reuse-as-is` (実装変更なし) | back-fill 完了 |
+| R2 as-is | `helix setup` は §6.5 Phase 0-A/0-B の **emission 実装**だが §6.5 側に setup 実装への参照なし。GitHub 境界 (file vs gh-api / emit-only 既定 / branch protection gh auth/admin preflight) が L4 external-if に未記載。Phase 0-A/0-B・参加規模検出・emit-only が L0 §10 用語に未 back-merge | as-is = 3 つの上位 gap |
+| R3 intent (po 検証) | (a) **setup = Phase 0 bootstrap (リポジトリ初期化 / branch protection = concept §512 で「工程外」) → 新 FR を起こさない** / (b) GitHub 設定操作 (branch protection) は **emit-only 既定・適用は gh auth/admin preflight** (認可・本番影響境界) を L4 external-if に明記 / (c) Phase 0-A/0-B 出し分けが §6.5 2-stage と整合 — の 3 点が intent | **R3 PASS (2026-06-02)**: (a) は concept §512 (Phase 0 = 工程外) + scout 監査 (setup の FR-L1-NN 不在) に grounded、新 top-level 要件にしない / (b)(c) は L6 設計で PO 確定済 (emit-only / 非対話 apply 封鎖 / 数で自動確定しない)。よって R3 intent 充足。PO 認識ずれあれば再エスカレーション |
+| R4 gap/routing | `forward_routing=L4`: ① §6.5 に `helix setup` solo/team が Phase 0-A/0-B emission の実装である旨を追記 / ② L4 external-if に setup GitHub 境界契約 (file emit + emit-only default + gh auth/admin preflight + token 非保持) を追記 / ③ L0 §10.3 機構用語に Phase 0-A/0-B / 参加規模検出 / emit-only を back-merge。`reuse-as-is` (実装変更なし) | back-fill 完了 |
 
 ## §2 back-fill 内容 (新規 FR を起こさない)
 
-- **要件 §6.5** (`docs/governance/helix-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`helix setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で人間適用。
-- **L4 external-if** (`docs/design/harness/L4-basic-design/external-if.md`): VCS・CI 境界に「`helix setup` の GitHub 設定境界 = ファイル emit (CODEOWNERS / workflow / ISSUE・PR テンプレ) は harness が書く / branch protection・Required 化は gh-api 操作で **emit-only 既定** (script 生成、適用は admin 人間サインオフ) / token は保持しない (gh 認証委譲)」の DbC 境界を追記。
+- **要件 §6.5** (`docs/governance/helix-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`helix setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で、明示 apply 時だけ gh auth/admin preflight 後に適用。
+- **L4 external-if** (`docs/design/harness/L4-basic-design/external-if.md`): VCS・CI 境界に「`helix setup` の GitHub 設定境界 = ファイル emit (CODEOWNERS / workflow / ISSUE・PR テンプレ) は harness が書く / branch protection・Required 化は gh-api 操作で **emit-only 既定** (script 生成、適用は gh auth/admin preflight) / token は保持しない (gh 認証委譲)」の DbC 境界を追記。
 - **L0 §10.3 機構用語** (`docs/governance/helix-harness-concept_v3.1.md`): Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only を back-merge (§G.9、機構用語)。
 - **L6/L7 continuation** (`docs/design/harness/L6-function-design/setup-solo-team.md` / `docs/test-design/harness/L7-unit-test-design.md`): `helix setup project` は setup solo/team の extension として登録済み。VSCode task と `.helix` baseline は Phase 0 bootstrap の生成物であり、`identifierTransition` は `.helix` 目標と cutover blocker を示すだけで、branch protection / external API / secrets / identifier cutover を自動適用しない。`postSetupWorkflow` は consumer project の初回稼働ルートを first-run contract として出し、brownfield conflict と readiness 未充足を setup 成功と混同しない。`githubPlan` と `doctorBaseline` は L3/HAC-P6-03a の GitHub rules/checks plan / doctor baseline 要求に対応し、remote apply や completion claim を含まない。`AGENTS.md` の team-run 案内は配布済み `.helix/teams/default-hybrid.yaml` と dry-run 検証に接続し、案内だけが実体に先行する状態を U-SETUP-023 で fail-close する。
 
@@ -139,7 +139,7 @@ dry-run に接続する。これは provider 実行や外部 API 呼び出しを
 ## §工程表
 
 ### Step R4-1: 要件 §6.5 に helix setup solo/team emission を追記
-### Step R4-2: L4 external-if に setup GitHub 境界契約 (file emit / emit-only / 人間サインオフ / token 非保持) を追記
+### Step R4-2: L4 external-if に setup GitHub 境界契約 (file emit / emit-only default / gh auth/admin preflight / token 非保持) を追記
 ### Step R4-3: L0 §10.3 機構用語に Phase 0-A/0-B / 参加規模検出 / emit-only を back-merge
 ### Step R4-3b: HELIX project setup continuation の L6/L7 back-fill
 `helix setup project` を L6 setup design と L7 U-SETUP-015 に登録し、Phase 0 bootstrap の生成物であること、dry-run 副作用ゼロと emit-only 境界を維持すること、新 FR / irreversible cutover ではないことを明記。

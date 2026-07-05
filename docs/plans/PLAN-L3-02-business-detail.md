@@ -82,7 +82,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 | U-BR21-1 | 評価対象単位 | business-detail §1 | 🆕 **PLAN 単位 default + 補助で skill / model 単位**。理由: PLAN = harness の最小遂行単位、PLAN 評価が KPI D-07 (AI 委譲時間率) と直結、skill/model は補助計測 |
 | U-BR21-2 | 評価指標 | business-detail §2 | 🆕 **5 指標全部** (成功率 / token cost / 所要時間 / 再実行回数 / fail-close 発火率)。理由: KPI D-07 + D-02 + D-04 + D-06 と integrated、欠けると改善ループが半端 |
 | U-BR21-3 | 改善サイクル頻度 | business-detail §3 | 🆕 **sprint 末 + 任意手動**。理由: 日次は telemetry cost 過大 (NFR-16 軽量原則違反)、週次は agile sprint と非同期、sprint 末が KPI 計測周期と整合 |
-| U-BR21-4 | 改善アクション自動化範囲 | business-detail §4 | 🆕 **全件「人間承認必須」**。理由: CC2 人間主導原則 + NFR-14 human-as-residue 整合、自動化は AI 暴走源、PO の S-03 例外権でのみ自動化許可 |
+| U-BR21-4 | 改善アクション自動化範囲 | business-detail §4 | 🆕 **通常改善は AI 自律を既定許可**。ただし auth / PII / secret / license / production / destructive / 不可逆・高影響 action は PO/S-03 override または action-binding approval を必須にする |
 
 ### 3.2 HM-08 画面連動
 
@@ -144,7 +144,7 @@ PLAN-L3-01 (FR 一般詳細化) とスコープを分離し、本 PLAN は **Lea
 | §1 評価対象 | U-BR21-1 確定 | PLAN 単位 default + 補助単位 |
 | §2 評価指標 | U-BR21-2 確定 | 5 指標 + KPI D-07 整合 |
 | §3 改善サイクル | U-BR21-3 確定 | sprint 末 + 任意手動 |
-| §4 改善アクション | U-BR21-4 確定 | 全件「人間承認必須」 (CC2) |
+| §4 改善アクション | U-BR21-4 確定 | 通常改善は AI 自律、不可逆・高影響 action だけ人間 residue |
 | §5 HM-08 連動 | U-BR21-5〜7 確定 | データソース 4 件統合 + AI 指示 copy UI |
 | §6 後続 carry | U-BR21-8〜10 確定 | HM-08 表示 / 改善ループ / PII redaction の後続条件 |
 | §7 FR-L1-36/38/43 詳細化 | L1 functional + AC テンプレ | PLAN-L3-01 の AC 形式と整合 |

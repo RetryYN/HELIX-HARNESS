@@ -32,8 +32,10 @@ test-design doc は作らない)。
 ## なぜ今は完了ではないか
 
 - 再利用 FE 設計標準 (部品/色/tokens、impl 前に要る) は [L4 ui-standard](../L4-basic-design/ui-standard.md) が持つ。
-- L10 が担うのは **impl 後**の UX 磨きと WCAG 実比検証だが、src/web 実装 (L7-141) が未着手のため、磨く対象が
-  まだ存在しない。よって本 doc は実装到達後に author する (forward 順: L4 設計標準 → L7 impl → 本 L10 磨き)。
+- L10 が担うのは **impl 後**の UX 磨きと WCAG 実比検証である。PLAN-L7-141 により `src/web` の
+  component-derived slice は存在するが、全 15 画面の実装完了 claim と L10 UX polish は未完である。
+  よって本 doc は「磨く対象が無い」ではなく、「component-derived slice を実レンダリングで磨く工程が未完」という
+  状態として扱う (forward 順: L4 設計標準 → L7 component-derived slice → 本 L10 磨き → 完了 claim)。
 - G10 完了には UX 磨き完了の PO サインオフ、実レンダリング証跡、accessibility finding の処理、未完了 blocker の表示確認が必要である。
 
 ## 合否条件

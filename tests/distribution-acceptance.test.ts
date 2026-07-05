@@ -589,12 +589,13 @@ describe("clean distribution local acceptance smoke", () => {
           join(consumerRoot, "scripts", "setup-branch-protection.sh"),
           "utf8",
         );
-        expect(branchProtectionScript).toContain("action-binding approval");
-        expect(branchProtectionScript).toContain("remote GitHub API");
-        expect(branchProtectionScript).toContain("exit 2");
-        expect(branchProtectionScript).not.toContain("gh auth");
-        expect(branchProtectionScript).not.toContain("gh api -X PUT");
-        expect(branchProtectionScript).not.toContain("/branches/main/protection");
+        expect(branchProtectionScript).toContain("gh auth status");
+        expect(branchProtectionScript).toContain("gh api -X PUT");
+        expect(branchProtectionScript).toContain("/branches/main/protection");
+        expect(branchProtectionScript).toContain("harness-check");
+        expect(branchProtectionScript).toContain("required_approving_review_count");
+        expect(branchProtectionScript).not.toContain("GITHUB_TOKEN");
+        expect(branchProtectionScript).not.toContain("secret");
 
         const statusFromGeneratedPath = runCommand(
           consumerRoot,

@@ -1353,7 +1353,7 @@ export function planHelixProjectSetup(
     byPath.set(BP_SCRIPT, {
       path: BP_SCRIPT,
       category: "A",
-      purpose: "branch protection approval checklist (emit-only)",
+      purpose: "branch protection gh apply-capable script (emit-only by default)",
     });
   }
   return {
@@ -2447,7 +2447,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       adoptionDecision:
         "harness-check は push/pull_request の read-only smoke に限定し、pull_request_target と repository secret 前提を初回 setup 証跡にしない",
       adoptionDecisionDelta:
-        "none; branch protection and remote required-check application remain plan-only until approval",
+        "changed; branch protection remote apply is emit-only by default but can run with --apply-branch-protection after gh auth/admin preflight",
       workflowRouteImpact:
         "CI permission or trigger drift routes to consumer doctor/template repair before first HELIX work",
     },

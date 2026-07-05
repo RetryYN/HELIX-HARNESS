@@ -4816,7 +4816,7 @@ const setupCommand = program
   .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
   .option(
     "--apply-branch-protection",
-    "branch protection 適用要求を受け付けるが action-binding approval 未実装のため停止",
+    "gh 認証/admin 権限を確認して branch protection を適用する",
   )
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")
   .option("--qa-team <slug>", "CODEOWNERS の QA team slug")
@@ -4881,7 +4881,7 @@ setupCommand.action((opts: SetupCliOptions) => {
   );
   if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
     process.stdout.write(
-      "  → scripts/setup-branch-protection.sh は action-binding approval checklist です。remote apply は実行しません\n",
+      "  → scripts/setup-branch-protection.sh は gh auth/admin preflight 後に remote apply できます。CLI で即時適用する場合は --apply-branch-protection を指定してください\n",
     );
   }
 });
@@ -4894,7 +4894,7 @@ setupCommand
   .option("--dry-run", "生成物一覧のみ表示 (書き込まない)")
   .option(
     "--apply-branch-protection",
-    "branch protection 適用要求を受け付けるが action-binding approval 未実装のため停止",
+    "gh 認証/admin 権限を確認して branch protection を適用する",
   )
   .option("--package-root <path>", "consumer package root; defaults to repo root")
   .option("--tl-team <slug>", "CODEOWNERS の TL team slug")

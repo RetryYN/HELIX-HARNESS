@@ -78,12 +78,12 @@ review_evidence:
 `githubPlan.branchProtection.scriptPath` として案内する。既存の U-SETUP-022 は built-in template source を検査していたが、
 setup readiness、consumer doctor、clean distribution acceptance は consumer repo に投影された script 実体を検査していなかった。
 
-この PLAN は、生成済み branch protection script が approval checklist だけであり、承認なしに GitHub branch protection
-API へ進まないことを consumer artifact gate として固定する。
+この PLAN の当初方針は、生成済み branch protection script を旧 checklist-only に固定するものだった。
+2026-07-05 の後続修正で supersede され、現在は gh auth/admin preflight 付き apply-capable script を consumer artifact gate として固定する。
 
 ## 変更
 
-- `branchProtectionScriptIsApprovalOnly` を追加し、approval 文言、remote API 警告、`exit 2`、mutating command 不在を検査する。
+- `branchProtectionScriptIsApplyCapable` を正本とし、`gh auth status`、`gh api -X PUT`、`/branches/main/protection`、`harness-check`、token/secret 非保持を検査する。
 - setup artifact readiness に `branch-protection-script-is-approval-only` を追加する。
 - consumer doctor の required file と hard gate に `scripts/setup-branch-protection.sh` を追加する。
 - distribution acceptance で generated consumer repo の script 実体を読み、approval-only 境界を確認する。

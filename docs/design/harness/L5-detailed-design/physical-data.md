@@ -184,7 +184,7 @@ export const VALID_SUB_DOCS = {
 
 - **参照整合 (物理)**: 集約間は ID 文字列参照のみ (data.md §2)。孤児検出 = 参照先 file/key の存在確認 (`helix doctor`)。
 - **採番衝突防止**: 同一 layer+sub_doc の status∉archived 2 重起票は plan lint で exit 1 (requirements §G.1)。
-- **⚠ 実装 regex との乖離 (IMP-004)**: 上記「設計仕様」regex (層別 `PLAN-L\d+-\d{2}-slug`) に対し、`src/schema/frontmatter.ts` の現 `planIdSchema` = `^(PLAN-\d{3}(-[a-z0-9-]+)?|PLAN-MM-\d{3})$` は **3 桁形式のみ**で層別 ID を通さない。現行 PLAN (PLAN-L4-01-data 等) は plan lint 有効化で全件 reject される。**SSoT decision (層別を正本とし frontmatter.ts regex を拡張) を plan-id-schema lint 実装前に確定** (IMP-004、§8 carry)。
+- **IMP-004 解消済み (2026-07-05 監査)**: `src/schema/frontmatter.ts` の `planIdSchema` は層別 `PLAN-L0..L14`、`DISCOVERY`、`REVERSE`、`RECOVERY`、`M` 系を受ける。`tests/plan-id-naming.test.ts` が全 PLAN の naming を検証し、旧 flat `PLAN-001` 系だけに閉じる実装 drift は残さない。
 
 ## §5 state file ↔ `src/schema` zod 1:1 対応
 

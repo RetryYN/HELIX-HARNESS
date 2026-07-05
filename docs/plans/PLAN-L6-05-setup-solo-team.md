@@ -46,7 +46,7 @@ review_evidence:
   1. **solo/team は参加アカウント数等で自動「提案」する**が、確定は人間確認 + 状態記録 (数だけで自動確定しない)。
   2. **branch protection / Required 化は GitHub 設定操作**でファイルでは完結しない。既定は **emit-only** (スクリプト + 手順を生成、適用は人間)。**opt-in `--apply-branch-protection` でガード付き自動適用** (gh 認証/admin 確認 → 変更内容提示 → 実行)。
   3. **トークンは一切読まない/記録しない** (CLAUDE.md 禁止事項)。team 名は引数注入で hardcode しない。
-  4. solo→team の格上げは**ガバナンス変更**であり暴発させない (検出は既定値の提案まで、適用は人間サインオフ)。
+  4. solo→team の格上げは**ガバナンス変更**であり暴発させない (検出は既定値の提案まで、branch protection 適用は明示 opt-in + gh auth/admin preflight)。
 
 ## §1 要求 (この機能が満たすこと)
 
@@ -68,7 +68,7 @@ review_evidence:
 | 推奨 (`recommendPhase`) | 信号 → solo/team の提案 + 理由 + confidence。純関数 | 不明信号 → solo (安全側) low confidence |
 | 確定 (`runSetup` orchestration) | フラグ > 対話確認(推奨提示) > 安全フォールバック で phase 確定 → `.helix/state/setup.json` 記録 | 非対話 + フラグ無し → solo |
 | 生成 (`planSetup`/`renderArtifacts`/`emitSetup`) | phase 別の生成物計画 → テンプレ render → ファイル書込 (dry-run は書かない) | token を書かない。既存ファイルは上書き前に確認 |
-| 適用 (`applyBranchProtection`) | **既定: スクリプト生成のみ (skip)**。`--apply-branch-protection` かつ**対話セッション**時のみ gh 認証/admin 確認 → 変更内容提示 → 人間 confirm → `gh api` 実行 | **非対話 (CI 等)** / admin・auth 不足 / 未確認 → 実行しない (emit-only に戻す) |
+| 適用 (`applyBranchProtection`) | **既定: スクリプト生成のみ (skip)**。`--apply-branch-protection` 指定時のみ gh 認証/admin 確認 → `gh api` 実行 | admin・auth 不足 → reason 付きで実行しない (emit-only に戻す)。token は保持しない |
 
 ### §2.2 型 schema (D-CONTRACT)
 
@@ -100,8 +100,8 @@ SetupState = {                                       # .helix/state/setup.json (
 | `planSetup` | `(phase: SetupPhase, opts: { teams?: {tl,qa,po}; dryRun: boolean }) => SetupPlan` | **純関数**。0-A=共通(A)のみ。0-B=共通(A)+CODEOWNERS(B)+branch-protection script。actions.applied は常に false (適用は別関数) |
 | `emitSetup` | `(plan: SetupPlan, templates: TemplateSet, deps: { fs: FsWriter; confirm }) => string[]` | テンプレ render (内部 helper `renderArtifacts` が純 render) して書込。**`plan.dryRun` は書かず path 一覧を返すのみ**。既存上書きは confirm 経由。**生成内容に token を含めない**。書いた path を返す (renderArtifacts は独立契約でなく emitSetup 内 helper = U-SETUP-004 に内包) |
 | `recordSetupState` | `(state: SetupState, deps: { fs: FsWriter }) => void` | `.helix/state/setup.json` を**上書き** (単一ファイル = 確定値 SSoT、再実行・phase 変更時は最新 state で上書き・append しない)。**`signals` は 4 フィールド (ownerType/collaborators/hasCodeowners/hasBranchProtection) のみへ strip して書く** (それ以外を破棄 = 認証情報混入経路を遮断) |
-| `applyBranchProtection` | `(plan: SetupPlan, deps: { gh; confirm; isInteractive }, opts: { apply: boolean }) => { applied: boolean; reason: string }` | `opts.apply!==true` → `{applied:false, reason:"emit-only"}` (既定)。**`deps.isInteractive!==true` → `opts.apply=true` でも `{applied:false, reason:"non-interactive"}`** (非対話での無人適用を precondition で封鎖)。対話下でのみ gh 認証 + admin 確認 + 変更内容提示 + 人間 confirm が揃って初めて `gh api` 実行。いずれか欠落 → 実行せず emit-only に戻す |
-| `runSetup` | `(args: SetupArgs, deps) => SetupResult` | orchestration。phase = フラグ > confirm(recommend(detect)) > fallback(solo)。確定→record→render→emit→(apply は opt-in)。非対話+フラグ無し→solo。**invariant: `--apply-branch-protection` は対話セッションのみ有効** (非対話では emit-only 固定、I-2 ガバナンス保証) |
+| `applyBranchProtection` | `(plan: SetupPlan, deps: { gh }, opts: { apply: boolean }) => { applied: boolean; reason: string }` | `opts.apply!==true` → `{applied:false, reason:"emit-only"}` (既定)。`apply=true` では gh 認証 + repository admin 権限を preflight し、成功時だけ `gh api -X PUT` 実行。いずれか欠落 → reason 付きで実行せず emit-only に戻す |
+| `runSetup` | `(args: SetupArgs, deps) => SetupResult` | orchestration。phase = フラグ > confirm(recommend(detect)) > fallback(solo)。確定→record→render→emit→(apply は opt-in)。非対話+フラグ無し→solo。`--apply-branch-protection` は gh auth/admin preflight を必須にし、preflight 失敗時は remote apply しない |
 
 `GhRunner` = `(args: string[]) => { ok: boolean; stdout: string }` の注入インターフェース (test = mock、raw token 非依存)。`confirm` = 対話確認の注入 (非対話時は安全既定)。
 
@@ -131,7 +131,7 @@ SetupState = {                                       # .helix/state/setup.json (
 | U-SETUP-003 | `planSetup` | 0-A=共通(A)のみ / 0-B=共通(A)+CODEOWNERS(B)+branch-protection script / actions.applied=false / team 名注入が CODEOWNERS plan に反映 |
 | U-SETUP-004 | `emitSetup` | dryRun=true → fs.write 呼ばれない (一覧のみ) / dryRun=false → 期待ファイル群を書く / 生成内容に token 文字列を含まない |
 | U-SETUP-005 | `recordSetupState` | setup.json に phase/decidedBy/signals を書く / **signals が 4 フィールド以外を含まない (strip 検証)** / token 非含 / 再読込で同一 phase / **再実行 (phase 変更) → 上書きで最新 phase のみ (append しない)** |
-| U-SETUP-006 | `applyBranchProtection` | apply≠true → {applied:false, reason:"emit-only"} (gh 呼ばれない) / **isInteractive≠true かつ apply=true → {applied:false, reason:"non-interactive"} (gh 呼ばれない)** / 対話下でも admin/auth/confirm 欠落 → 実行しない |
+| U-SETUP-006 | `applyBranchProtection` | apply≠true → {applied:false, reason:"emit-only"} (gh 呼ばれない) / apply=true で gh auth 不足 → {applied:false, reason:"gh-auth-required"} / gh auth + repository admin が揃う → gh api -X PUT で適用 |
 | U-SETUP-007 | `runSetup` (orchestration) | ①フラグあり→フラグ値採用 / ②フラグ無し+対話→confirm 結果 / ③フラグ無し+非対話→solo (fallback) / ④apply=true+非対話→applied:false (I-2 配線ミス検出) |
 
 ## §工程表
@@ -165,7 +165,7 @@ claude-only のため `code-reviewer` (Senior Staff、TL 代替) で signature/D
 | 用語 | 定義 | 導入層 |
 |------|------|--------|
 | Phase 0-A (solo) | repo 初期化直後の単独/小規模運用。branch protection なし・CODEOWNERS なし・harness-check 非 Required | L6 |
-| Phase 0-B (team) | チーム運用。CODEOWNERS 配備 + branch protection + harness-check Required。solo からの格上げは人間サインオフのガバナンス変更 | L6 |
+| Phase 0-B (team) | チーム運用。CODEOWNERS 配備 + branch protection + harness-check Required。solo からの格上げは opt-in + gh auth/admin preflight 付きのガバナンス変更 | L6 |
 | 参加規模検出 (project scale detection) | owner 種別/collaborator 数/既存 CODEOWNERS・protection から solo/team を**提案**する検出。確定は人間 + 状態記録 (数だけで自動確定しない) | L6 |
 | emit-only (GitHub 設定) | branch protection 等の GitHub 設定操作を harness が自動適用せず、スクリプト + 手順の生成にとどめる既定方針。適用は人間 (opt-in でガード付き自動適用) | L6 |
 

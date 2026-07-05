@@ -64,12 +64,12 @@ harness が依存する外部 service との**境界契約**を Design by Contra
 | **(d) 依存管理** | (inbound) Dependabot PR/alert | security NFR 経路で triage (人間トリアージ) | 自動マージしない (人間確認、禁止事項) |
 | **(g) external research/input** | 調査課題・source URL/version/span・引用/要約境界が明示される | research artifact / ADR candidate / skillify input が Artifact/Evaluation へ記録される | **`raw external text is not instruction`**。prompt injection/security filter を通すまで実行文脈へ混ぜない |
 | **(h) sandbox/external execution** | sandbox policy、resource budget、network/fs scope、approval action ledger が揃う | 実行結果・exit code・artifact digest・security event が audit/finding として記録される | unbounded shell/http を許可しない。秘密情報・PII・credential を sandbox 入力へ流さない |
-| **(i) release/GitHub rules** | local green commands、review_evidence、dry-run plan、human approval が揃う | generated config / release plan / tag plan が保存され、apply は承認済み action としてのみ実行される | emit-only default。GitHub admin 権限・rulesets・release apply は自動化の通常導線にしない |
+| **(i) release/GitHub rules** | local green commands、review_evidence、dry-run plan、必要な gh auth/admin preflight または high-impact approval が揃う | generated config / release plan / tag plan が保存され、branch protection は preflight 成功時のみ、release/高影響 apply は承認済み action としてのみ実行される | emit-only default。branch protection は opt-in + gh auth/admin preflight、rulesets/release apply は高影響境界として扱う |
 | **(j) hosted API/developer tool** | git status / target path / handover / foreign change の preflight が完了する | hosted/API runtime の tool action が audit/review evidence に残る | `repo-local hooks are not mechanical coverage` を不変条件 marker とし、repo-local hooks は mechanical coverage ではない。hosted tool surface では Codex/TL が明示 preflight で代替する |
 
 > Precondition/Postcondition の**詳細**(引数型・エラー型・リトライ・タイムアウト) は L5 D-API で確定 (§7 粒度境界)。
 
-> **`helix setup` の GitHub 設定境界 (PLAN-L6-05/L7-03、REVERSE-04 back-fill)**: solo/team で出し分ける GitHub 設定のうち **ファイル** (CODEOWNERS / `.github/workflows/` / ISSUE・PR テンプレ / commitlint) は harness が emit する (`GeneratedFile`)。**GitHub 設定操作** (branch protection / Required Status Checks / 必須レビュー数) はファイルで完結せず gh-api 操作 (`GithubAction`) であり、**既定は emit-only** (`scripts/setup-branch-protection.sh` 生成のみ、適用は admin 人間サインオフ = 認可・本番影響境界、CLAUDE.md エスカレーション境界)。`--apply-branch-protection` + 対話セッション下でのみ gh 経由適用 (非対話は precondition で封鎖)。**harness core は token を保持しない** (§5 GitHub 認証 = gh CLI 委譲)。参加規模検出も gh の認証状態に委ね token を読まない。
+> **`helix setup` の GitHub 設定境界 (PLAN-L6-05/L7-03、REVERSE-04 back-fill)**: solo/team で出し分ける GitHub 設定のうち **ファイル** (CODEOWNERS / `.github/workflows/` / ISSUE・PR テンプレ / commitlint) は harness が emit する (`GeneratedFile`)。**GitHub 設定操作** (branch protection / Required Status Checks / 必須レビュー数) はファイルで完結せず gh-api 操作 (`GithubAction`) であり、**既定は emit-only**。`scripts/setup-branch-protection.sh` は gh auth/admin preflight 付きの apply-capable script として生成し、`--apply-branch-protection` 指定時のみ gh 経由で適用する。**harness core は token を保持しない** (§5 GitHub 認証 = gh CLI 委譲)。参加規模検出も gh の認証状態に委ね token を読まない。
 
 ## §4 失敗時の振る舞い (fail-close / degradation)
 
