@@ -35,7 +35,62 @@ interface ExpectedFrontier {
   l3Markers: readonly string[];
 }
 
-const EXPECTED_FRONTIERS: readonly ExpectedFrontier[] = [];
+const EXPECTED_FRONTIERS: readonly ExpectedFrontier[] = [
+  {
+    featureId: "l3_08_message_catalog_externalization",
+    planMarker: "PLAN-L3-08",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L3-08", "message catalog"],
+  },
+  {
+    featureId: "l3_09_requirements_omission_guards",
+    planMarker: "PLAN-L3-09",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L3-09", "中間層 FR"],
+  },
+  {
+    featureId: "l3_10_message_catalog_externalization",
+    planMarker: "PLAN-L3-10",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L3-10", "message catalog"],
+  },
+  {
+    featureId: "l3_11_requirements_omission_guards",
+    planMarker: "PLAN-L3-11",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L3-11", "inventory evidence"],
+  },
+  {
+    featureId: "serverless_readonly_share",
+    planMarker: "PLAN-L7-146",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L7-146", "serverless readonly share"],
+  },
+  {
+    featureId: "l7_339_p6_release_automation_descent",
+    planMarker: "PLAN-L7-339",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L7-339", "release automation"],
+  },
+  {
+    featureId: "l7_340_p6_release_automation_descent",
+    planMarker: "PLAN-L7-340",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L7-340", "release automation"],
+  },
+  {
+    featureId: "l7_341_coding_debt_reduction_roadmap",
+    planMarker: "PLAN-L7-341",
+    classification: "parked_future_version",
+    l3Markers: ["PLAN-L7-341", "coding debt"],
+  },
+  {
+    featureId: "name_cutover",
+    planMarker: "PLAN-M-02",
+    classification: "approval_gated_cutover",
+    l3Markers: ["PLAN-M-02", "approval-gated cutover"],
+  },
+];
 
 const REQUIRED_DOC_MARKERS = [
   "semantic_feature_frontier_record",
@@ -58,8 +113,8 @@ const FORBIDDEN_SETUP_CLI_READY_MARKERS = [
   "ready にでき",
 ] as const;
 
-const EXPECTED_L3_REQUIREMENT_ROWS = 43;
-const EXPECTED_L12_ACCEPTANCE_ROWS = 43;
+const EXPECTED_L3_REQUIREMENT_ROWS = 46;
+const EXPECTED_L12_ACCEPTANCE_ROWS = 46;
 
 const EXPECTED_CONFIRMED_MEANINGS = [
   {
@@ -145,8 +200,22 @@ const EXPECTED_CONFIRMED_MEANINGS = [
     featureId: "db_convergence_contract",
     meaningMarker: "DB 収束 / relation graph / contract ledger",
     l1Parents: ["HBR-P9"],
-    l3Ids: ["HR-FR-P9-01", "HR-FR-P9-02", "HR-FR-P9-03"],
-    l12Ids: ["HAT-P9-01", "HAT-P9-02", "HAT-P9-03"],
+    l3Ids: [
+      "HR-FR-P9-01",
+      "HR-FR-P9-02",
+      "HR-FR-P9-03",
+      "HR-FR-P9-04",
+      "HR-FR-P9-05",
+      "HR-FR-P9-06",
+    ],
+    l12Ids: [
+      "HAT-P9-01",
+      "HAT-P9-02",
+      "HAT-P9-03",
+      "HAT-P9-04",
+      "HAT-P9-05",
+      "HAT-P9-06",
+    ],
   },
   {
     featureId: "context_efficiency",
@@ -194,8 +263,8 @@ export function analyzeSemanticFrontierConsistency(
   if (!input.l3Text.includes("G-SF `semantic_feature_frontier_record` への写像")) {
     violations.push("L3 G-SF mapping section missing");
   }
-  if (!input.l3Text.includes("confirmed 43 件: `classification=confirmed_current`")) {
-    violations.push("L3 confirmed_current mapping for 43-item pillar overlay missing");
+  if (!input.l3Text.includes("confirmed 46 件: `classification=confirmed_current`")) {
+    violations.push("L3 confirmed_current mapping for 46-item pillar overlay missing");
   }
 
   const l3RequirementRows = extractTableIds(input.l3Text, /^HR-(?:FR|NFR)-(?:P|AC)/);
@@ -357,8 +426,11 @@ export function analyzeSemanticFrontierConsistency(
   }
 
   const liveRecords = input.outstanding.semanticFeatureFrontierRecords ?? [];
+  const expectedFrontiers = EXPECTED_FRONTIERS.filter((frontier) =>
+    liveRecords.some((record) => record.featureId === frontier.featureId),
+  );
   const expectedFeatureIds = new Set<string>(
-    EXPECTED_FRONTIERS.map((frontier) => frontier.featureId),
+    expectedFrontiers.map((frontier) => frontier.featureId),
   );
   for (const record of liveRecords) {
     if (!expectedFeatureIds.has(record.featureId)) {
@@ -367,13 +439,13 @@ export function analyzeSemanticFrontierConsistency(
       );
     }
   }
-  if (liveRecords.length !== EXPECTED_FRONTIERS.length) {
+  if (liveRecords.length !== expectedFrontiers.length) {
     violations.push(
-      `live semantic_feature_frontier_record count ${liveRecords.length} expected ${EXPECTED_FRONTIERS.length}`,
+      `live semantic_feature_frontier_record count ${liveRecords.length} expected ${expectedFrontiers.length}`,
     );
   }
 
-  for (const expected of EXPECTED_FRONTIERS) {
+  for (const expected of expectedFrontiers) {
     for (const marker of expected.l3Markers) {
       if (!input.l3Text.includes(marker)) {
         violations.push(`${expected.featureId}: L3 meaning list missing marker ${marker}`);
@@ -408,7 +480,7 @@ export function analyzeSemanticFrontierConsistency(
 
   return {
     ok: violations.length === 0,
-    expectedCount: EXPECTED_FRONTIERS.length,
+    expectedCount: expectedFrontiers.length,
     liveRecordCount: liveRecords.length,
     expectedConfirmedCount: EXPECTED_CONFIRMED_MEANINGS.length,
     liveConfirmedCount: liveConfirmedRecords.length,

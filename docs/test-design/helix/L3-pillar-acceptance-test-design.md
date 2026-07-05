@@ -5,7 +5,7 @@ executed_at_layer: L12
 artifact_type: test_design
 status: confirmed
 created: 2026-06-28
-updated: 2026-07-01
+updated: 2026-07-06
 owner: AIM + TL (Codex) / PO approval required
 plan: PLAN-L3-06-helix-pillar-descent
 pair_artifact: docs/design/helix/L3-requirements/
@@ -20,16 +20,16 @@ next_pair_freeze: L3
 
 ## §0 量閉じ
 
-- 対象 L3 要件: HR-FR 30 件 + HR-NFR 13 件 = 43 件（2026-06-28 G-REQ.L1 freeze 範囲）。
-- 対象 AC: HAC 86 件。
-- 受入テスト: HAT 43 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
-- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 43 件とは別枠で §1.1 に受入観測を持つ。
+- 対象 L3 要件: HR-FR 33 件 + HR-NFR 13 件 = 46 件（2026-06-28 G-REQ.L1 freeze 43 件 + 2026-07-06 add-design 3 件）。
+- 対象 AC: HAC 92 件。
+- 受入テスト: HAT 46 件。各 HAT は対応 FR/NFR の 2 AC を束ね、正常/異常または通常/境界を観測する。
+- Route-B back-fill L3 要件: `HR-BR-*` / `HR-NFR-03*` 8 件。P2/P7 の先行実装由来で、pillar 46 件とは別枠で §1.1 に受入観測を持つ。
 - 孤児: 0。詳細は §2 / §2.1 trace。
 
 ### §0.1 amendment frontier oracle（要求修正 frontier oracle）
 
 L1 §2.8 asset/progress visualization は 2026-06-30 の要求変更だったが、2026-07-06 の PO decision で
-現行 completion scope から archive した。本 confirmed HAT 43 件へ混ぜない。acceptance 上の oracle は、
+現行 completion scope から archive した。本 confirmed HAT 46 件へ混ぜない。acceptance 上の oracle は、
 archived 要求を採用済み機能として再混入することを false completion として拒否する。
 
 S4 confirmed 後に必要な pair は、visualization 専用の L3 要件 / L12 acceptance、L4 UI-data system test、
@@ -98,6 +98,9 @@ projection であり、新しい閾値の正本ではない。受入観測では
 | HAT-P9-01 | HR-FR-P9-01 | HAC-P9-01a/b | DB 未収束 artifact/setup baseline を完了扱いにしない。completion decision packet は S4 / version-up activation / cutover の requiredRecords に source ledger freshness、source status delta、adoption decision delta、workflow route impact を出し、stale source・採否差分不明・route 影響不明の終端 record では L14 / whole-program completion を閉じない。`workflowNextActions` / completion decision packet / handover は base packet command だけでなく PLAN-scoped packet command を出し、複数 pending PLAN がある状態で PO が S4 / version-up / action-binding packet の対象 PLAN を手で推測しなくてよい。action-binding summary は親 field だけでなく actor / tool / target / params / snapshot / expiry / audit の具体 `approvalRecord.*` と `approvalBindingChecks.*` を出し、承認者が見るべき binding を status から失わない。PO/chat 向け text surface は日本語の action/route/review を先に出し、同じ契約内に `action-id` / `required-action-id` / `route-id` / `review-id` の機械 field を残すことを cli-surface / completion-decision-packet / handover tests で確認する | projection/doctor tests / completion-decision-packet tests / cli-surface tests / handover tests |
 | HAT-P9-02 | HR-FR-P9-02 | HAC-P9-02a/b | relation graph / contract ledger が impact query と breaking classification を返す | relation-graph tests |
 | HAT-P9-03 | HR-FR-P9-03 | HAC-P9-03a/b | L階層 baseline、span、metric trend、regression query が未実行 gate/悪化 metric/owner を返す | layer-regression projection tests |
+| HAT-P9-04 | HR-FR-P9-04 | HAC-P9-04a/b | message catalog で人間向け prose を差し替えると CLI / doctor / completion packet の表示文言だけが変わり、`OK` / `warning` / `violation` / JSON key / command 名などの machine-surface token は不変である。catalog key、既定日本語 prose、owner、適用 surface、baseline/grandfather 区分は schema 検証され、欠落 key は fail-close、未使用 key は warning 以上になる | message-catalog lint / cli-surface smoke / doctor message tests |
+| HAT-P9-05 | HR-FR-P9-05 | HAC-P9-05a/b | mid-layer coverage が各 FR の L3/L4/L5/L6 到達状態、停滞層、owner、defer 理由を一覧化し、層を飛ばした FR と新規停滞 FR を finding にする。既存 baseline で許容された停滞以外は fail-close し、`descent-obligation` / `l6-fr-coverage` の既存判定意味を上書きしない | mid-layer-coverage tests / descent-obligation fixture / l6-fr-coverage fixture |
+| HAT-P9-06 | HR-FR-P9-06 | HAC-P9-06a/b | design / add-design PLAN の confirmed 化前に `inventory_evidence[]` が照合先、照合日、照合範囲、採否、未採用理由、旧 HELIX read-only 扱いを構造化して持つことを検査する。prose-only の「確認済み」や旧 HELIX / 既存資産 / 関連 gate の照合結論欠落は block し、既存 confirmed PLAN は baseline/grandfather として別扱いにする | plan-lint inventory-evidence tests / review-evidence gate tests |
 | HAT-N3-01 | HR-NFR-P3-01 | HAC-N3-01a/b | green command と review tier 無しの合格主張を拒否する | review-evidence tests |
 | HAT-N3-02 | HR-NFR-P3-02 | HAC-N3-02a/b | 実装 claim が design/AC/code/test/review finding と対応しない場合に pass しない | implementation-accuracy trace tests |
 | HAT-N3-03 | HR-NFR-P3-03 | HAC-N3-03a/b | 変更影響 L階層の gate/test/doctor profile 未実行や悪化 metric を blocker 化する | layer regression fence tests |
@@ -114,7 +117,7 @@ projection であり、新しい閾値の正本ではない。受入観測では
 
 ## §1.1 Route-B back-fill acceptance（受入）
 
-`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 43 件とは別に
+`orchestration-memory*.md` の L3 back-fill は本書を pair artifact として参照するため、pillar 46 件とは別に
 受入観測を固定する。これらは L4/L5 pillar overlay へ二重採番せず、L6 `orchestration-memory.md` と
 L7 実装済み oracle を通じて trace する。
 
@@ -141,7 +144,7 @@ L7 実装済み oracle を通じて trace する。
 | HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | HAT-P6-01 / HAT-P6-02 / HAT-P6-03 / HAT-P6-04 / HAT-P6-05 | 対応関係 |
 | HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 | HAT-P7-01 / HAT-P7-02 / HAT-P7-03 | 対応関係 |
 | HBR-P8 / HNFR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 / HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | HAT-P8-01 / HAT-P8-02 / HAT-P8-03 / HAT-P8-04 / HAT-N8-01 / HAT-N8-02 / HAT-N8-03 | 対応関係 |
-| HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 | HAT-P9-01 / HAT-P9-02 / HAT-P9-03 | 対応関係 |
+| HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 / HR-FR-P9-04 / HR-FR-P9-05 / HR-FR-P9-06 | HAT-P9-01 / HAT-P9-02 / HAT-P9-03 / HAT-P9-04 / HAT-P9-05 / HAT-P9-06 | 対応関係 |
 | HNFR-P5 | HR-NFR-P5-01 / HR-NFR-P5-02 / HR-NFR-P5-03 | HAT-N5-01 / HAT-N5-02 / HAT-N5-03 | 対応関係 |
 | HNFR-AC | HR-NFR-AC-01 / HR-NFR-AC-02 / HR-NFR-AC-03 | HAT-NAC-01 / HAT-NAC-02 / HAT-NAC-03 | 対応関係 |
 

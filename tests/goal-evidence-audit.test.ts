@@ -26,7 +26,6 @@ describe("HELIX objective evidence audit", () => {
       "G-07",
       "G-08",
       "G-09",
-      "G-10",
     ];
 
     for (const id of provedIds) {
@@ -37,9 +36,9 @@ describe("HELIX objective evidence audit", () => {
 
     const completionRow = text.split("\n").find((line) => line.startsWith("| G-10 |"));
     expect(completionRow, "G-10 row missing").toBeTruthy();
-    expect(completionRow).toContain("| proved |");
-    expect(completionRow).toContain("outstanding.completionReadiness.ok=true");
-    expect(completionRow).toContain("decisionCount=0");
+    expect(completionRow).toContain("| blocked |");
+    expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
+    expect(completionRow).toContain("decisionCount=2");
 
     expect(text).toContain("外部ソース HEAD 確認日: 2026-07-05");
     expect(text).toContain("外部 source ledger (checked 2026-07-05)");
@@ -69,16 +68,13 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("数量だけでなく意味");
     expect(text).toContain("100% の数値だけを L14 / whole-program completion 証跡として扱わない");
     expect(text).toContain("objectiveProgress");
-    expect(text).toContain("percent: 100");
-    expect(text).toContain("completionClaimAllowed=true");
+    expect(text).toContain("percent: 90");
+    expect(text).toContain("completionClaimAllowed: false");
     expect(text).toContain("version_up_parked");
-    expect(completionRow).toContain("PLAN-DISCOVERY-07-design-bottomup-mode");
-    expect(completionRow).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
     expect(completionRow).toContain("PLAN-L7-146-serverless-readonly-share");
     expect(completionRow).toContain("PLAN-M-02-helix-identifier-rename");
-    expect(completionRow).toContain("completionClaimAllowed=true");
-    expect(completionRow).toContain("残存 blocker ではない");
-    expect(completionRow).toContain("不可逆 state dir / CLI cutover を承認または実行したという意味ではない");
+    expect(completionRow).toContain("completionClaimAllowed=false");
+    expect(completionRow).toContain("archive で隠さず");
   });
 
   it("references the core current-state artifacts needed to substantiate the audit", () => {
@@ -436,25 +432,25 @@ describe("HELIX objective evidence audit", () => {
     );
   });
 
-  it("passes the live repository audit and reports completion as ready", () => {
+  it("passes the live repository audit and reports completion as blocked", () => {
     const result = analyzeObjectiveEvidenceAudit(loadObjectiveEvidenceAuditInput());
     expect(result.ok).toBe(true);
-    expect(result.completionStatus).toBe("ready");
+    expect(result.completionStatus).toBe("blocked");
     expect(result.objectiveProgress).toMatchObject({
       method: "objective-evidence-audit.v1",
-      percent: 100,
-      provedRequirements: 10,
+      percent: 90,
+      provedRequirements: 9,
       totalRequirements: 10,
-      blockedRequirements: 0,
-      completionStatus: "ready",
-      completionClaimAllowed: true,
+      blockedRequirements: 1,
+      completionStatus: "blocked",
+      completionClaimAllowed: false,
       auditOk: true,
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
     });
-    expect(result.objectiveProgress.basis).toContain("completionReadiness is ready");
+    expect(result.objectiveProgress.basis).toContain("G-10 is blocked by completionReadiness");
     expect(objectiveEvidenceAuditMessages(result)[0]).toContain(
-      "objective-evidence-audit - OK (completion=ready, progress=100%, proved=10/10)",
+      "objective-evidence-audit - OK (completion=blocked, progress=90%, proved=9/10)",
     );
   });
 

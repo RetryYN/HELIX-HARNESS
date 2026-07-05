@@ -4,7 +4,7 @@ layer: L3
 kind: design
 status: confirmed
 created: 2026-06-28
-updated: 2026-07-01
+updated: 2026-07-06
 owner: AIM + TL (Codex) / PO approval required
 plan: PLAN-L3-06-helix-pillar-descent
 pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
@@ -16,11 +16,13 @@ next_pair_freeze: L12
 # HELIX L3 要件 — L1 pillar HBR/HNFR -> FR/AC descent
 
 > 本書は 2026-06-28 の G-REQ.L1 re-freeze 時点の `pillar-requirements.md` HBR/HNFR 全件を
-> L3 の機能要件・非機能要件・受入条件へ降ろした Forward L3 confirmed 正本である。P2/P7 の実装済み back-fill
+> L3 の機能要件・非機能要件・受入条件へ降ろした Forward L3 confirmed 正本である。2026-07-06 に
+> PLAN-L3-10 / PLAN-L3-11 の add-design として P9 横断 FR 3 件を追加した。P2/P7 の実装済み back-fill
 > (`orchestration-memory*.md`) は下位詳細として参照し、本書では L1 に残っていた GAP と pillar 横断 AC を閉じる。
 > status は `confirmed`。charter §3 に基づく PO 承認を経て G-REQ.L3 の confirmed 正本へ昇格済み。
 > 2026-06-30 に追加された L1 §2.8 asset/progress visualization 要求は、2026-07-06 の PO decision で
-> 現行 completion scope から archive した。履歴証跡は残すが、本 confirmed 43 件へ混ぜない。
+> S4 confirmed に戻した。L1/HOT-P9 と visualization read-model は採用済みだが、L3 confirmed 46 件とは
+> 別の Forward descent / UI 実装 frontier として追跡する。
 
 ## §0 量閉じ
 
@@ -34,7 +36,7 @@ next_pair_freeze: L12
 | HBR-P6 | HR-FR-P6-01 / HR-FR-P6-02 / HR-FR-P6-03 / HR-FR-P6-04 / HR-FR-P6-05 | 確定済 |
 | HBR-P7 | HR-FR-P7-01 / HR-FR-P7-02 / HR-FR-P7-03 + 既存 HR-BR-12/12R | 確定済 |
 | HBR-P8 | HR-FR-P8-01 / HR-FR-P8-02 / HR-FR-P8-03 / HR-FR-P8-04 + HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 確定済 |
-| HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 | 確定済 |
+| HBR-P9 | HR-FR-P9-01 / HR-FR-P9-02 / HR-FR-P9-03 / HR-FR-P9-04 / HR-FR-P9-05 / HR-FR-P9-06 | 確定済 |
 | HNFR-P3 | HR-NFR-P3-01 / HR-NFR-P3-02 / HR-NFR-P3-03 / HR-NFR-P3-04 | 確定済 |
 | HNFR-P5 | HR-NFR-P5-01 / HR-NFR-P5-02 / HR-NFR-P5-03 | 確定済 |
 | HNFR-P8 | HR-NFR-P8-01 / HR-NFR-P8-02 / HR-NFR-P8-03 | 確定済 |
@@ -49,9 +51,9 @@ next_pair_freeze: L12
 `HR-FR-P9-01..03` の単なる言い換えではない。VSCode Tree View / Webview、deterministic graph IR、
 evidence drill-down、read-only first の UI/data boundary を持つ新しい要求変更である。
 
-この amendment は `PLAN-DISCOVERY-10-helix-asset-visualization` が S3 verify 済みだったが、2026-07-06 に
-`decision_outcome=rejected` / `status=archived` としたため、現行 completion scope では以下を未降下ではなく
-非採用履歴として扱う。
+この amendment は `PLAN-DISCOVERY-10-helix-asset-visualization` が S3 verify 済みで、2026-07-06 に
+PO 指示で `decision_outcome=confirmed` / `status=confirmed` へ戻した。現行 L3 46 件の意味単位には
+まだ混ぜず、以下を下流実装 frontier として追跡する。
 
 - L3: visualization view の要件 / acceptance IDs。
 - L4: VSCode extension adapter、Tree View / Webview 境界、CSP / localResourceRoots、read-only action 境界。
@@ -59,42 +61,58 @@ evidence drill-down、read-only first の UI/data boundary を持つ新しい要
 - L6: layer tree、Mermaid-compatible graph IR、runtime evidence timeline、drill-down pointer の view-model function。
 - L7: VSCode Tree View prototype、Webview graph/detail panel の要件。
 
-したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に限定される。L1 §2.8 は現行 scope では
-非採用履歴であり、将来再開する場合は新規 PLAN で再起票する。
+したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に、2026-07-06 add-design の P9 横断 FR
+3 件を加えた 46 件に限定される。L1 §2.8 は confirmed decision として残し、下流の visualization
+実装・受入は別 PLAN の frontier で追跡する。
 
 ### §0.2 意味ベース機能一覧と要求修正境界
 
 本書の機能一覧は、ID 数だけでなく「要求が何を意味しているか」で管理する。したがって、confirmed
-43 件に含まれる機能、archive した要求修正、不可逆 cutover defer、将来版候補を混ぜて「採用済み機能」とは言わない。
+46 件に含まれる機能、S4 confirmed 後に下流実装が未完の要求修正、不可逆 cutover defer、将来版候補を
+混ぜて「採用済み機能がすべて実装完了」とは言わない。
 
 | 意味単位 | 要求根拠 | L3 状態 | 下流状態 / 完了境界 |
 |----------|----------|---------|----------------------|
-| 逸脱受け止めと Forward 収束 | HBR-P0 / HR-FR-P0-01..02 | confirmed 43 件に含む | L4-L6 へ降下済み。runtime/product 完了は各 L7/L14 evidence 別判定 |
-| 連続自律走行 / Scrum 分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 43 件に含む | version-up mode は正本化済み。parked work は activation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digest を plan-only activation packet に出す。HEAD/scope/source/evidence/dry-run result drift があれば dry-run・activation packet・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run に使う場合は `GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを source ledger と external rehearsal に含める。`PLAN-L7-146` は 2026-07-06 に `reject_or_archive` とし、現行 completion scope から除外済み |
-| agent/tool/runtime guardrail + pair-agent TDD route | HR-FR-P2-01..04 / HAC-P2-01a..04b | confirmed 43 件に含む | tool contract registry、loop effort budget、Codex/Claude adapter parity、hosted API preflight、pair-agent TDD route を同じ P2 runtime guardrail family として扱う。L6 `validateToolContractSurface` / `tickLoopEffortBudget` / `validateAdapterParityMap` / `requireHostedSurfacePreflight` / `buildPairAgentTddPlan` / `runPairAgentTddPlan` へ降下済み。smart test/oracle -> light implementation/consultation -> smart review/instruction -> light fix の順序契約であり、consultation question が実装証跡と混在しても pending consultation を優先する。light agent は完了/承認権限を持たず、`VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出す light output は fail-close する。pair-agent plan は task difficulty と `maxFixCyclesSource` を保持し、未指定 max cycle は difficulty policy で決め、max 到達は `max-fix-cycles-exhausted` finding として残す。PLAN-L7-177 / PLAN-L7-221 / PLAN-L7-222 で plan/run evidence 保存・DB projection まで実装済みで、plan evidence は adapter plan / prompt digest / frontier guardrail を監査可能にし、run evidence は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` により consultation/fix/review loop を監査可能にする。保存済み `phase_spans` は `smart_test_author` 起点、`light_implementation` / `smart_review` 交互順序で DB rebuild 時に再検査し、違反 evidence は `pair-agent-run-evidence` gate を `blocked` にする。local verdict と pair-agent evidence は CI/merge gate の代替ではない |
-| 強い検証 / test-first / 実装精度 | HBR-P3 / HNFR-P3 | confirmed 43 件に含む | L6 verification family へ降下済み。green command・review・runtime provenance の実証跡が無い runtime claim は閉じない |
-| 自動修復 / 計測改善 | HBR-P4 | confirmed 43 件に含む | detector -> repair / recipe / metric の要求は降下済み。自動適用は high-impact approval 境界に従う |
-| GitHub 自動化 / setup / release / rename | HBR-P6 | confirmed 43 件に含む | setup / release dry-run / gated push は設計済み。`helix setup project` は現行 `.helix` baseline と identifier cutover packet を同時に示す bootstrap である。`PLAN-M-02` は 2026-07-06 に `reject_or_defer` として archived にし、旧 state path / CLI rename cutover は現行 completion scope では実行しない |
-| 共有 memory / Glossary / DDD context | HBR-P7 | confirmed 43 件に含む | L6 knowledge family へ降下済み。Glossary SSoT と context-map の runtime 完了は下位実装・検証で別判定 |
-| 外部検索 / skillify / security boundary | HBR-P8 / HNFR-P8 | confirmed 43 件に含む | source attribution / sandbox / approval / security filter を要求化済み。外部 API・infra・secret 変更は action-binding approval なしに apply しない |
-| DB 収束 / relation graph / contract ledger | HBR-P9 | confirmed 43 件に含む | DB 未収束 artifact は完了扱いにしない。doctor green だけでは whole-program completion の代替にならない |
-| context efficiency | HNFR-P5 | confirmed 43 件に含む | 独立した business-requirement の P5 ID ではなく HNFR-P5 として P1/P3 に吸収。`HB-P5` / `HC-P5` を期待しない |
-| adapter/rule/memory 一貫性 | HNFR-AC | confirmed 43 件に含む | Claude/Codex/hosted API の surface 差分は adapter/preflight で扱う。repo hook 非強制 surface を hook-covered と主張しない |
-| design-bottomup mode | PLAN-DISCOVERY-07 / PO design-bottomup request | S4 rejected / archived | backend から FE 要件を洗い出す elicitation engine と Discovery 合成は S3 verified だったが、2026-07-06 に現行 scope では正本化しないと決めた。新 mode back-merge と中央 UI dogfood は採用済み機能に混ぜない |
-| asset/progress visualization | L1 §2.8 / PLAN-DISCOVERY-10 | S4 rejected / archived | L1/HOT-P9 と `VisualizationSnapshot` first response は存在するが、2026-07-06 に VSCode View/Webview visualization workflow は現行 scope から除外した |
+| 逸脱受け止めと Forward 収束 | HBR-P0 / HR-FR-P0-01..02 | confirmed 46 件に含む | L4-L6 へ降下済み。runtime/product 完了は各 L7/L14 evidence 別判定 |
+| 連続自律走行 / Scrum 分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 46 件に含む | version-up mode は正本化済み。parked work は activation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digest を plan-only activation packet に出す。HEAD/scope/source/evidence/dry-run result drift があれば dry-run・activation packet・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run に使う場合は `GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを source ledger と external rehearsal に含める。`PLAN-L7-146` は archive では閉じず、外部公開・HMAC・access-control approval が必要な future backlog として残す |
+| agent/tool/runtime guardrail + pair-agent TDD route | HR-FR-P2-01..04 / HAC-P2-01a..04b | confirmed 46 件に含む | tool contract registry、loop effort budget、Codex/Claude adapter parity、hosted API preflight、pair-agent TDD route を同じ P2 runtime guardrail family として扱う。L6 `validateToolContractSurface` / `tickLoopEffortBudget` / `validateAdapterParityMap` / `requireHostedSurfacePreflight` / `buildPairAgentTddPlan` / `runPairAgentTddPlan` へ降下済み。smart test/oracle -> light implementation/consultation -> smart review/instruction -> light fix の順序契約であり、consultation question が実装証跡と混在しても pending consultation を優先する。light agent は完了/承認権限を持たず、`VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出す light output は fail-close する。pair-agent plan は task difficulty と `maxFixCyclesSource` を保持し、未指定 max cycle は difficulty policy で決め、max 到達は `max-fix-cycles-exhausted` finding として残す。PLAN-L7-177 / PLAN-L7-221 / PLAN-L7-222 で plan/run evidence 保存・DB projection まで実装済みで、plan evidence は adapter plan / prompt digest / frontier guardrail を監査可能にし、run evidence は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` により consultation/fix/review loop を監査可能にする。保存済み `phase_spans` は `smart_test_author` 起点、`light_implementation` / `smart_review` 交互順序で DB rebuild 時に再検査し、違反 evidence は `pair-agent-run-evidence` gate を `blocked` にする。local verdict と pair-agent evidence は CI/merge gate の代替ではない |
+| 強い検証 / test-first / 実装精度 | HBR-P3 / HNFR-P3 | confirmed 46 件に含む | L6 verification family へ降下済み。green command・review・runtime provenance の実証跡が無い runtime claim は閉じない |
+| 自動修復 / 計測改善 | HBR-P4 | confirmed 46 件に含む | detector -> repair / recipe / metric の要求は降下済み。自動適用は high-impact approval 境界に従う |
+| GitHub 自動化 / setup / release / rename | HBR-P6 | confirmed 46 件に含む | setup / release dry-run / gated push は設計済み。`helix setup project` は現行 `.helix` baseline と identifier cutover packet を同時に示す bootstrap である。`PLAN-M-02` は archive せず、旧 state path / CLI rename cutover の action-binding approval / dry-run / rollback evidence が揃うまで approval-gated cutover として扱う |
+| 共有 memory / Glossary / DDD context | HBR-P7 | confirmed 46 件に含む | L6 knowledge family へ降下済み。Glossary SSoT と context-map の runtime 完了は下位実装・検証で別判定 |
+| 外部検索 / skillify / security boundary | HBR-P8 / HNFR-P8 | confirmed 46 件に含む | source attribution / sandbox / approval / security filter を要求化済み。外部 API・infra・secret 変更は action-binding approval なしに apply しない |
+| DB 収束 / relation graph / contract ledger | HBR-P9 | confirmed 46 件に含む | DB 未収束 artifact は完了扱いにしない。doctor green だけでは whole-program completion の代替にならない |
+| 文言カタログ / 要件漏れガード | HBR-P9 / HNFR-AC | confirmed 46 件に含む | 人間向け prose の差し替え自由度、machine-surface 固定、中間層 FR 到達集計、inventory evidence を P9 横断検査として追加する。既存 gate の判定意味を変えず、カタログ外部化と起草前 inventory の証跡を fail-close oracle にする |
+| context efficiency | HNFR-P5 | confirmed 46 件に含む | 独立した business-requirement の P5 ID ではなく HNFR-P5 として P1/P3 に吸収。`HB-P5` / `HC-P5` を期待しない |
+| adapter/rule/memory 一貫性 | HNFR-AC | confirmed 46 件に含む | Claude/Codex/hosted API の surface 差分は adapter/preflight で扱う。repo hook 非強制 surface を hook-covered と主張しない |
+| design-bottomup mode | PLAN-DISCOVERY-07 / PO design-bottomup request | S4 confirmed | backend から FE 要件を洗い出す elicitation engine と Discovery 合成は S3 verified 済み。2026-07-06 PO 指示で confirmed に戻し、Forward descent と中央 UI dogfood を未完 frontier として扱う |
+| asset/progress visualization | L1 §2.8 / PLAN-DISCOVERY-10 | S4 confirmed | L1/HOT-P9 と `VisualizationSnapshot` first response は存在する。2026-07-06 PO 指示で confirmed に戻し、VSCode View/Webview visualization workflow は下流実装 frontier として扱う |
 | L1-L2 elicitation cycle | PO 対話 / PLAN-DISCOVERY-11 / PLAN-REVERSE-329 | S4 confirmed / Reverse fullback pending | 画面 mock で要求を洗い出す greenfield 前段サイクルは S4 confirmed。Reverse fullback 完了までは A-40 G1-trace 再検証フック、L1/L2 consistency lint、gap-check read-only 結線を current completion に混ぜない |
 
-この表は「機能一覧が合っているか」の現在の回答である。confirmed 43 件の設計降下は成立しているが、
+この表は「機能一覧が合っているか」の現在の回答である。confirmed 46 件の設計降下は成立しているが、
 要求修正後の revised request のうち、現行 scope に残す live semantic frontier は 0 件である。
 
 G-SF `semantic_feature_frontier_record` への写像:
 
-- confirmed 43 件: `classification=confirmed_current`。L3/L12 pair は本書と
+- confirmed 46 件: `classification=confirmed_current`。L3/L12 pair は本書と
   `docs/test-design/helix/L3-pillar-acceptance-test-design.md`。live `outstanding.confirmedCurrentMeaningRecords[]`
-  は 11 件の意味単位で 43 件全 ID を束ね、未対応 ID がある場合は `semantic-frontier-consistency` で fail する。
-- current semantic frontier: `current_semantic_frontier_count=0`。`PLAN-DISCOVERY-07` / `PLAN-DISCOVERY-10` /
-  `PLAN-L7-146` / `PLAN-M-02` は archived / deferred とし、live `outstanding.semanticFeatureFrontierRecords[]`
-  には残さない。
+  は 12 件の意味単位で 46 件全 ID を束ね、未対応 ID がある場合は `semantic-frontier-consistency` で fail する。
+- current semantic frontier: confirmed 46 件の L3/L12 overlay は閉じているが、live follow-up frontier は
+  9 件残る。`current_semantic_frontier_count=0` は L3/L12 overlay 内の未登録 ID が 0 件であることだけを示す。
+  下記 9 件は archive で閉じず、S4 confirmed follow-up、future backlog、approval-gated cutover として
+  別 packet で追跡する。
+  - `PLAN-L3-08` / `PLAN-L3-10`: message catalog の L3 confirmed FR を L4 以降へ降下し、catalog schema /
+    fail-close / unused-key warning / machine-surface 固定を実装する。
+  - `PLAN-L3-09` / `PLAN-L3-11`: 中間層 FR coverage と `inventory evidence` gate を L4 以降へ降下し、
+    要件漏れガードを実装する。
+  - `PLAN-L7-146`: serverless readonly share は external publish / HMAC / access-control の承認が必要な
+    future backlog として保持する。
+  - `PLAN-L7-339` / `PLAN-L7-340`: release automation / GitHub 運用の PR review route、CI auto-fix gate、
+    release dry-run ADR を実装 frontier として保持する。
+  - `PLAN-L7-341`: coding debt reduction roadmap は complexity baseline と循環依存 grandfather の段階
+    ratchet を実装 frontier として保持する。
+  - `PLAN-M-02`: identifier rename は `.helix` state / CLI / hook / consumer template / distribution surface を
+    またぐ `approval-gated cutover` であり、action-binding approval / dry-run / rollback evidence なしに実移行しない。
 - frontier vocabulary: `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` は将来再起票用に保持する。
   将来 `design-bottomup mode`、`asset/progress visualization`、`serverless readonly share`、`identifier rename`
   を再開する場合は新規 PLAN で再起票し、current snapshot / S4 decision / activation / cutover / action-binding
@@ -144,6 +162,9 @@ supporting summary を表示する場合は `decisionEvidenceChecklist`、`outco
 | HR-FR-P9-01 | HBR-P9 | DB 未収束 artifact は完了扱いにせず、plan/status/trace/doctor が未収束を fail-close または blocker として表示する | HAC-P9-01a / HAC-P9-01b |
 | HR-FR-P9-02 | HBR-P9 | cross-artifact relation graph と contract ledger は doc/code/test/PR/check/state の関係を記録し、影響範囲分析に使える | HAC-P9-02a / HAC-P9-02b |
 | HR-FR-P9-03 | HBR-P9 / HBR-P3 | L階層ごとの baseline snapshot、gate result、metric trend、regression owner を harness DB に収束し、層単位のデグレを比較できる | HAC-P9-03a / HAC-P9-03b |
+| HR-FR-P9-04 | HBR-P9 / HNFR-AC | CLI、doctor、handover、completion packet、consumer guidance などの人間向け prose 文言は message catalog を正本にできる。`OK` / `warning` / `violation` / JSON key / env 名 / command 名などの machine-surface token は差し替え対象外として固定し、カタログ schema、欠落 key fail-close、未使用 key 検出、既存文言の baseline/grandfather を持つ | HAC-P9-04a / HAC-P9-04b |
+| HR-FR-P9-05 | HBR-P9 / HBR-P3 | FR registry は L3→L4→L5→L6 の中間層到達状況を層別に集計し、途中層で止まった FR、層を飛ばした FR、新規停滞を可視化・fail-close できる。既存 `descent-obligation` / `l6-fr-coverage` の判定意味は変えず、chain データの横断集計だけを追加する | HAC-P9-05a / HAC-P9-05b |
+| HR-FR-P9-06 | HBR-P9 / HNFR-AC | design / add-design PLAN は要件起草前 inventory evidence を構造化フィールドで持ち、既存資産、旧 HELIX repo、関連 gate/docs の照合先、照合日、採否結論、未採用理由を記録する。prose-only の「確認済み」は証跡にせず、baseline 対象外の新規 PLAN は evidence 欠落のまま confirmed に到達できない | HAC-P9-06a / HAC-P9-06b |
 | HR-NFR-P3-01 | HNFR-P3 | 合格主張は green command evidence、review tier、external-truth grounding の有無を区別し、self-verification 単独を禁止する | HAC-N3-01a / HAC-N3-01b |
 | HR-NFR-P3-02 | HNFR-P3 / HBR-P3 | 実装精度は design requirement ID、acceptance ID、code/test evidence、review finding の対応で計測し、未対応 claim を完了根拠にしない | HAC-N3-02a / HAC-N3-02b |
 | HR-NFR-P3-03 | HNFR-P3 / HBR-P9 | L0-L14 の層単位で regression fence を持ち、変更影響層の gate/test/doctor が未実行なら pass を出さない | HAC-N3-03a / HAC-N3-03b |
@@ -228,6 +249,12 @@ L3 要件の受入条件として固定する。
 | HAC-P9-02b | contract が変わる | ledger を検査 | breaking/compatible/migration-needed の分類が無ければ fail |
 | HAC-P9-03a | L階層 gate が実行される | DB projection を rebuild | layer、baseline hash、gate status、metric summary、evidence path が同一 key で再現可能に記録される |
 | HAC-P9-03b | 変更が L階層をまたぐ | regression query を実行 | 影響 layer、未実行 gate、悪化 metric、owner を返し、未解決なら完了扱いにしない |
+| HAC-P9-04a | 人間向け prose 文言を追加・変更する | message catalog lint を実行 | catalog key、既定日本語 prose、owner、適用 surface、baseline/grandfather 区分が schema 検証され、欠落 key は fail-close になる |
+| HAC-P9-04b | message catalog で文言を差し替える | CLI / doctor / completion packet の smoke を実行 | 人間向け prose だけが差し替わり、`OK` / `warning` / `violation` / JSON key / command 名などの machine-surface token は不変で、未使用 key は warning 以上で報告される |
+| HAC-P9-05a | FR registry と L4-L6 design chain が存在する | mid-layer coverage を集計する | 各 FR の L3/L4/L5/L6 到達状態、停滞層、owner、defer 理由が一覧化され、層を飛ばした到達は別 finding になる |
+| HAC-P9-05b | 新規または変更 FR が中間層で未降下のまま gate に入る | L3/L4/L5/L6 coverage gate を実行 | 既存 baseline で許容された停滞以外は fail-close し、`descent-obligation` / `l6-fr-coverage` の既存判定を上書きしない |
+| HAC-P9-06a | design / add-design PLAN を confirmed に上げる | plan lint / review evidence gate を実行 | `inventory_evidence[]` が照合先、照合日、照合範囲、採否、未採用理由、旧 HELIX read-only 扱いを構造化して持ち、参照 path/URL が実在確認可能である |
+| HAC-P9-06b | inventory evidence が prose のみ、または旧 HELIX / 既存資産 / 関連 gate の照合結論が欠落している | PLAN status 更新を試行 | confirmed 化を拒否し、必要な inventory 取り直しと review_evidence 追記を next action に出す。既存 confirmed PLAN への遡及適用は baseline/grandfather として別扱いにする |
 | HAC-N3-01a | review_evidence が green command 無し | doctor を実行 | prose-only evidence として reject |
 | HAC-N3-01b | self-review だけで gate pass を主張 | review-evidence を検査 | cross_agent ではないことを記録し、判断 gate の根拠にしない |
 | HAC-N3-02a | 実装完了 claim がある | trace を検査 | design ID、AC ID、code path、test evidence、review finding status が揃わなければ fail |

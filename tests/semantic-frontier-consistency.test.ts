@@ -53,6 +53,9 @@ const L3_IDS = [
   "HR-FR-P9-01",
   "HR-FR-P9-02",
   "HR-FR-P9-03",
+  "HR-FR-P9-04",
+  "HR-FR-P9-05",
+  "HR-FR-P9-06",
   "HR-NFR-P3-01",
   "HR-NFR-P3-02",
   "HR-NFR-P3-03",
@@ -99,6 +102,9 @@ const L12_IDS = [
   "HAT-P9-01",
   "HAT-P9-02",
   "HAT-P9-03",
+  "HAT-P9-04",
+  "HAT-P9-05",
+  "HAT-P9-06",
   "HAT-N3-01",
   "HAT-N3-02",
   "HAT-N3-03",
@@ -205,8 +211,22 @@ const CONFIRMED_MEANINGS = [
     featureId: "db_convergence_contract",
     meaning: "DB 収束 / relation graph / contract ledger",
     l1Parents: ["HBR-P9"],
-    l3RequirementIds: ["HR-FR-P9-01", "HR-FR-P9-02", "HR-FR-P9-03"],
-    l12AcceptanceIds: ["HAT-P9-01", "HAT-P9-02", "HAT-P9-03"],
+    l3RequirementIds: [
+      "HR-FR-P9-01",
+      "HR-FR-P9-02",
+      "HR-FR-P9-03",
+      "HR-FR-P9-04",
+      "HR-FR-P9-05",
+      "HR-FR-P9-06",
+    ],
+    l12AcceptanceIds: [
+      "HAT-P9-01",
+      "HAT-P9-02",
+      "HAT-P9-03",
+      "HAT-P9-04",
+      "HAT-P9-05",
+      "HAT-P9-06",
+    ],
   },
   {
     featureId: "context_efficiency",
@@ -249,7 +269,7 @@ function baseInput(): SemanticFrontierConsistencyInput {
   const l3Text = [
     "§0.2 意味ベース機能一覧と要求修正境界",
     "G-SF `semantic_feature_frontier_record` への写像",
-    "confirmed 43 件: `classification=confirmed_current`",
+    "confirmed 46 件: `classification=confirmed_current`",
     "逸脱受け止めと Forward 収束",
     "連続自律走行 / Scrum 分割 / version-up",
     "agent/tool/runtime guardrail + pair-agent TDD route",
@@ -317,8 +337,8 @@ describe("semantic frontier consistency", () => {
 
     expect(result.ok).toBe(true);
     expect(result.expectedConfirmedCount).toBe(11);
-    expect(result.l3RequirementRowCount).toBe(43);
-    expect(result.l12AcceptanceRowCount).toBe(43);
+    expect(result.l3RequirementRowCount).toBe(46);
+    expect(result.l12AcceptanceRowCount).toBe(46);
     expect(semanticFrontierConsistencyMessages(result)).toEqual([
       "semantic-frontier-consistency - OK (frontier=0/0, confirmed=11/11)",
     ]);
@@ -467,8 +487,8 @@ describe("semantic frontier consistency", () => {
     const result = analyzeSemanticFrontierConsistency(loadSemanticFrontierConsistencyInput());
 
     expect(result.ok).toBe(true);
-    expect(result.expectedCount).toBe(0);
-    expect(result.liveRecordCount).toBe(0);
+    expect(result.expectedCount).toBe(2);
+    expect(result.liveRecordCount).toBe(2);
     expect(result.expectedConfirmedCount).toBe(11);
     expect(result.liveConfirmedCount).toBe(11);
   });

@@ -304,6 +304,32 @@ describe("analyzeOutstandingWork", () => {
     ]);
   });
 
+  it("version_target 付き GitHub automation PLAN を identifier cutover blocker に誤分類しない", () => {
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-L7-340-p6-release-automation-descent",
+          layer: "L7",
+          kind: "impl",
+          status: "draft",
+          versionTarget: "future",
+          text: [
+            "GitHub remote への不可逆操作は対象外。",
+            "実 release の publish は PLAN-M-02 identifier rename 境界と同様、承認証跡が揃うまで dry-run のみ。",
+          ].join("\n"),
+        },
+      ],
+      0,
+    );
+
+    expect(o.blockersByKind).toEqual({ version_up_parked: 1 });
+    expect(o.items[0]).toMatchObject({
+      planId: "PLAN-L7-340-p6-release-automation-descent",
+      reason: "version_up_parked",
+      blockers: ["version_up_parked"],
+    });
+  });
+
   it("does not classify no-snapshot approval wording as irreversible cutover", () => {
     const o = analyzeOutstandingWork(
       [

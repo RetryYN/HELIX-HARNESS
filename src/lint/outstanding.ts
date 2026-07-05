@@ -629,8 +629,22 @@ function confirmedCurrentMeaningRecords(): ConfirmedCurrentMeaningRecord[] {
       featureId: "db_convergence_contract",
       meaning: "DB 収束 / relation graph / contract ledger",
       l1Parents: ["HBR-P9"],
-      l3RequirementIds: ["HR-FR-P9-01", "HR-FR-P9-02", "HR-FR-P9-03"],
-      l12AcceptanceIds: ["HAT-P9-01", "HAT-P9-02", "HAT-P9-03"],
+      l3RequirementIds: [
+        "HR-FR-P9-01",
+        "HR-FR-P9-02",
+        "HR-FR-P9-03",
+        "HR-FR-P9-04",
+        "HR-FR-P9-05",
+        "HR-FR-P9-06",
+      ],
+      l12AcceptanceIds: [
+        "HAT-P9-01",
+        "HAT-P9-02",
+        "HAT-P9-03",
+        "HAT-P9-04",
+        "HAT-P9-05",
+        "HAT-P9-06",
+      ],
     },
     {
       featureId: "context_efficiency",
@@ -784,6 +798,9 @@ function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): b
   const planId = (p.planId ?? "").trim();
   if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
     return /irreversible|不可逆|state dir|cutover|\.helix\/.*\.helix|atomic migration/i.test(text);
+  }
+  if ((p.versionTarget ?? "").trim()) {
+    return /cutover_decision_record|state dir|\.helix\/.*\.helix|atomic migration/i.test(text);
   }
   if (/cutover_decision_record|state dir|\.helix\/.*\.helix|atomic migration/i.test(text)) {
     return true;

@@ -51,7 +51,14 @@
 | G-07 | 新規 HELIX 導入が内部 adapter 設定を取り込めるように、Claude Code / Codex plugin/config setup を事前実装している。 | proved | `.claude/settings.json`<br>`.codex/config.toml`<br>`.codex/hooks.json`<br>`src/setup/index.ts`<br>`src/setup/templates.ts`<br>`src/lint/codex-hook-adapter.ts`<br>`tests/setup.test.ts`<br>`tests/codex-hook-adapter.test.ts`<br>`tests/doctor.test.ts` | setup は Claude / Codex adapter template を出し、Codex hooks feature enablement も含む。doctor は `.codex/hooks.json` wiring と `.codex/config.toml` `[features].hooks=true` の両方を証明する。hosted / API tool は機械 hook coverage 外として明示する。 |
 | G-08 | L3 に test / verification performance NFR を含め、HELIX naming を HELIX へ移行中である。 | proved | `docs/design/helix/L3-requirements/pillar-functional-requirements.md`<br>`docs/test-design/helix/L3-pillar-acceptance-test-design.md`<br>`docs/test-design/helix/L6-pillar-unit-test-design.md`<br>`CLAUDE.md`<br>`AGENTS.md`<br>`src/lint/design-language.ts`<br>`tests/design-language.test.ts`<br>`docs/plans/PLAN-M-02-helix-identifier-rename.md`<br>`src/lint/cutover-readiness.ts`<br>`tests/cutover-readiness.test.ts`<br>`tests/identifier-rename.test.ts`<br>`tests/vmodel-pair.test.ts`<br>`tests/rule-drift.test.ts` | `HR-NFR-P5-03` は fast / default / full profile、worker / resource budget、timeout、p95 duration budget、evidence を定義する。prose 上の product 名は HELIX。日本語-first ルールは `CLAUDE.md` / `AGENTS.md` と `design-language` gate で常設化する。`helix`、`.helix`、`HELIX:managed` などの機械識別子は unsafe partial rename を避けるため、`PLAN-M-02` と cutover readiness まで意図的に deferred とする。 |
 | G-09 | 完了 claim は数量だけでなく意味で判定する。 | proved | `docs/governance/helix-objective-evidence-audit.md`<br>`docs/governance/helix-l0-l8-design-consistency-audit.md`<br>`src/lint/objective-evidence-audit.ts`<br>`src/lint/semantic-frontier-consistency.ts`<br>`tests/goal-evidence-audit.test.ts`<br>`tests/semantic-frontier-consistency.test.ts`<br>`tests/upstream-adoption.test.ts`<br>`tests/legacy-adoption.test.ts`<br>`tests/roadmap.test.ts`<br>`tests/doctor.test.ts`<br>`bun run src/cli.ts status --json`<br>`bun run src/cli.ts audit objective-external --json` | 証跡 row は current-source commit、L3-L6 descent、L7 decision / oracle coverage、doctor gate、明示 non-goal を要求する。file count、green test count、roadmap span count だけでは採用を証明しない。意味ベース機能一覧は C-18 と `semantic-frontier-consistency` で live `semanticFeatureFrontierRecords[]` に hard-gate され、prose-only feature list だけでは G-09 の証跡にならない。`objectiveProgress` は evidence-row 基準であり、現在の進捗は 100% (10/10 objective rows proved)。`completionClaimAllowed=true` は `outstanding.completionReadiness.ok=true` と `completion-decision-packet decisionCount=0` に束縛する。外部 source は通常 doctor では network を呼ばず、専用 `objective-external` surface で実測 HEAD と semver 最大 配布 tag を ledger observed に照合する。 |
-| G-10 | L14 / whole-program completion は、未了 PLAN、version-up parked item、PO/S4 decision、人間承認、不可逆 migration、open defer が残っていない場合だけ claim できる。 | proved | `bun run src/cli.ts status --json`<br>`src/lint/outstanding.ts`<br>`src/lint/completion-decision-packet.ts`<br>`.helix/audit/A-144-l14-close-audit.md`<br>`tests/outstanding.test.ts`<br>`tests/completion-decision-packet.test.ts`<br>`tests/l14-close-audit.test.ts`<br>`tests/cli-surface.test.ts`<br>`docs/process/forward/L08-L14-verification-phase.md`<br>`docs/process/gates.md`<br>`docs/process/modes/version-up.md`<br>`src/lint/version-up-readiness.ts`<br>`tests/version-up-readiness.test.ts`<br>`docs/plans/PLAN-M-02-helix-identifier-rename.md`<br>`src/lint/cutover-readiness.ts`<br>`tests/cutover-readiness.test.ts`<br>`tests/identifier-rename.test.ts` | 現在は `outstanding.completionReadiness.ok=true`。2026-07-06 PO 指示により `PLAN-DISCOVERY-07-design-bottomup-mode` と `PLAN-DISCOVERY-10-helix-asset-visualization` は `decision_outcome=rejected` / `status=archived`、`PLAN-L7-146-serverless-readonly-share` は `reject_or_archive` / `status=archived`、`PLAN-M-02-helix-identifier-rename` は `reject_or_defer` / `status=archived` として現行 completion scope から除外した。`completion-decision-packet` は `decisionCount=0`、`blockers=[]`、`semanticFeatureFrontierRecords=[]` を返し、`completionClaimAllowed=true` である。これは Cloudflare/GitHub/HMAC/access-control activation、VSCode write-capable action surface、不可逆 state dir / CLI cutover を承認または実行したという意味ではない。これらは現行 scope では採用しないか defer し、将来再開する場合は新規 PLAN で current snapshot、dry-run、rollback、backup、monitoring、action-binding approval を取り直す。機械照合用: `outstanding.completionReadiness.ok=true`; `completionClaimAllowed=true`; `decisionCount=0`; `human_approval_pending` / `irreversible_migration_pending` / `non_terminal_plans` / `po_decision_pending` / `semantic_frontier_blocked` / `version_up_parked` は残存 blocker ではない。 |
+| G-10 | L14 / whole-program completion は、未了 PLAN、version-up parked item、PO/S4 decision、人間承認、不可逆 migration、open defer が残っていない場合だけ claim できる。 | blocked | `bun run src/cli.ts status --json`<br>`src/lint/outstanding.ts`<br>`src/lint/completion-decision-packet.ts`<br>`.helix/audit/A-144-l14-close-audit.md`<br>`tests/outstanding.test.ts`<br>`tests/completion-decision-packet.test.ts`<br>`tests/l14-close-audit.test.ts`<br>`tests/cli-surface.test.ts`<br>`docs/process/forward/L08-L14-verification-phase.md`<br>`docs/process/gates.md`<br>`docs/process/modes/version-up.md`<br>`src/lint/version-up-readiness.ts`<br>`tests/version-up-readiness.test.ts`<br>`docs/plans/PLAN-L7-146-serverless-readonly-share.md`<br>`docs/plans/PLAN-M-02-helix-identifier-rename.md`<br>`src/lint/cutover-readiness.ts`<br>`tests/cutover-readiness.test.ts`<br>`tests/identifier-rename.test.ts` | 現在は `outstanding.completionReadiness.ok=false`。`completion-decision-packet` は `decisionCount=2` で、残存 PLAN は `PLAN-L7-146-serverless-readonly-share` と `PLAN-M-02-helix-identifier-rename`。前者は external publish / HMAC / access-control の action-binding approval が必要な version-up item、後者は `.helix` state / CLI / hook / consumer template / distribution surface をまたぐ irreversible cutover である。`completionClaimAllowed=false`; `decisionCount=2`; 残存 blocker は `human_approval_pending` / `irreversible_migration_pending` / `non_terminal_plans` / `semantic_frontier_blocked` / `version_up_parked`。この 2 件を archive で隠さず、実 apply には dry-run、rollback、backup、monitoring、action-binding approval を要求する。required actions: `keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion`; `obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work`; `record required human/action-binding approval before executing the high-impact action`; `resolve semantic feature frontier records before claiming whole-program completion`。 |
+
+G-10 required actions:
+
+- `keep parked until a future version-up activation decision is recorded; do not count this as active frontier completion`
+- `obtain explicit PO signoff before irreversible migration/cutover; do not implement the state move as routine work`
+- `record required human/action-binding approval before executing the high-impact action`
+- `resolve semantic feature frontier records before claiming whole-program completion`
 
 ## 目標進捗
 
@@ -59,16 +66,16 @@
 `helix status --json` が出す。percent は whole-program completion claim ではない。
 
 - method: `objective-evidence-audit.v1`
-- percent: 100
-- provedRequirements: 10
+- percent: 90
+- provedRequirements: 9
 - totalRequirements: 10
-- blockedRequirements: 0
-- completionClaimAllowed: true
-- auditOk: true
-- auditViolationCount: 0
-- progressEvidenceTrusted: true
+- blockedRequirements: 1
+- completionClaimAllowed: false
+- auditOk: false
+- auditViolationCount: 1
+- progressEvidenceTrusted: false
 
-G-10 は proved である。`completionClaimAllowed=true` は
+G-10 は blocked である。`completionClaimAllowed=true` は
 `outstanding.completionReadiness.ok=true`、`completion-decision-packet decisionCount=0`、
 `blockers=[]`、`semanticFeatureFrontierRecords=[]` が同時に成立する場合だけ許可する。
 監査マトリクスが invalid の場合、percent は診断用に残すが `progressEvidenceTrusted=false` /
