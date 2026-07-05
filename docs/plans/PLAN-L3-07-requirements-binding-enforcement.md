@@ -148,4 +148,7 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 
 - 起票根拠 = 本セッション監査（pmo-project-explorer 3 系統、2026-07-05）。所見はチャット報告と本文 §監査で
   確認済みの穴に記録。
-- 次 action: PO が Step 1-3 の着手順と Step 4 の retention 方針方向性を判断 → Forward descent で実装。
+- PO は 2026-07-05 に Step 1-3 の着手順と Step 4 retention 方針方向性を承認済み。
+- 次 action: Step 2 後半（config schema + threshold 移設）と Step 1（構造品質 gate）の Forward descent を
+  小さく分割して実装する。Step 4 の L1 追記は PO 起草・承認が必要なため、AI は L3 以下の案と検査設計までに留める。
+- terminal 化は、各 Step の generated artifact、review evidence、green command が揃ってから行う。
