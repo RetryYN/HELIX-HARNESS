@@ -56,6 +56,18 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
   `helix version-up dry-run --current v0.1.0 --target future --json` を出し、`semverChange=invalid` / `ok=false` /
   `blockedReasons` を no-write evidence として残す。activation packet baseline へ差し替えて dry-run surface を省略しない。
 
+2026-07-06 Codex continuation:
+
+- 承認前レビュー材料として、`src/web/share.ts` と `helix web share-bundle --out <dir> --json` を追加する。
+  これは `PLAN-L7-141` の static read-only HTML から `index.html` と `share-manifest.json` をローカル生成するだけの
+  no-write / no-deploy surface であり、Cloudflare deploy、GitHub webhook 登録、secret binding、access control 設定は
+  実行しない。
+- `share-manifest.json` は `planOnly=true`、`mustNotDeploy=true`、`readOnly=true`、
+  `hmacRequired=true`、`accessControlRequired=true`、`noSecretOrPiiProjection=true`、`noProdWrite=true` を明示し、
+  `activation.*Approved=false` を固定する。これは action-binding approval の代替ではなく、承認前の review packet を厚くする証跡である。
+- GitHub webhook HMAC は `verifyGithubWebhookSignature` の純粋関数として SHA-256 署名検証だけを実装する。
+  secret を docs / manifest / CLI 出力へ書かず、production webhook enablement は引き続き PO action-binding approval 後に限定する。
+
 activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
 - decision_outcome: `keep_parked_with_review_date`。現行 completion scope では activate しないが、archive せず future-version backlog として保全する。

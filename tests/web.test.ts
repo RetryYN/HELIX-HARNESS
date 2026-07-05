@@ -1,14 +1,17 @@
 import { spawnSync } from "node:child_process";
+import { createHmac } from "node:crypto";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  buildReadOnlyShareBundle,
   componentCoverageSummary,
   loadUiTokens,
   renderAllScreens,
   renderAppShell,
   SCREEN_SPECS,
+  verifyGithubWebhookSignature,
 } from "../src/web";
 
 const SCREEN_IDS = [
@@ -130,6 +133,98 @@ describe("component-derived web UI registry (PLAN-L7-141)", () => {
       });
       expect(existsSync(out)).toBe(true);
       expect(readFileSync(out, "utf8")).toContain('data-screen-id="PM-01"');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("builds a plan-only read-only share bundle without external deployment approval", () => {
+    const html = renderAppShell(loadUiTokens());
+    const bundle = buildReadOnlyShareBundle({
+      html,
+      generatedAt: "2026-07-06T00:00:00.000Z",
+      pollIntervalSec: 30,
+      screenCount: 15,
+      commonCount: 10,
+      specificCount: 40,
+      readOnly: true,
+    });
+
+    expect(bundle.manifest).toMatchObject({
+      planId: "PLAN-L7-146-serverless-readonly-share",
+      provider: "cloudflare",
+      planOnly: true,
+      mustNotDeploy: true,
+      readOnly: true,
+      hmacRequired: true,
+      accessControlRequired: true,
+      noSecretOrPiiProjection: true,
+      noProdWrite: true,
+      activation: {
+        cloudflareDeployApproved: false,
+        githubWebhookApproved: false,
+        secretBindingApproved: false,
+        accessControlApproved: false,
+      },
+    });
+    expect(bundle.files.map((entry) => entry.path)).toEqual([
+      "index.html",
+      "share-manifest.json",
+    ]);
+    expect(bundle.files.map((entry) => entry.content).join("\n")).not.toMatch(
+      /secret-[a-z0-9]|BEGIN PRIVATE KEY|password=/i,
+    );
+  });
+
+  it("verifies GitHub webhook SHA-256 signatures without exposing the secret", () => {
+    const body = JSON.stringify({ ref: "refs/heads/main", after: "abc123" });
+    const secret = "local-test-secret";
+    const signature = `sha256=${createHmac("sha256", secret).update(body).digest("hex")}`;
+
+    expect(
+      verifyGithubWebhookSignature({ secret, body, signatureHeader: signature }),
+    ).toMatchObject({ ok: true, algorithm: "sha256" });
+    expect(
+      verifyGithubWebhookSignature({ secret, body, signatureHeader: "sha1=bad" }),
+    ).toMatchObject({ ok: false, reason: "unsupported_algorithm" });
+    expect(
+      verifyGithubWebhookSignature({ secret, body, signatureHeader: `${signature}00` }),
+    ).toMatchObject({ ok: false, reason: "length_mismatch" });
+    expect(
+      verifyGithubWebhookSignature({ secret, body, signatureHeader: signature.replace(/.$/, "0") }),
+    ).toMatchObject({ ok: false, reason: "digest_mismatch" });
+  });
+
+  it("exposes a CLI share-bundle surface that writes only local review files", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-web-share-"));
+    try {
+      const run = runCli(["web", "share-bundle", "--out", root, "--json"]);
+      const payload = JSON.parse(run.stdout);
+      const manifestPath = join(root, "share-manifest.json");
+
+      expect(run.status).toBe(0);
+      expect(payload).toMatchObject({
+        ok: true,
+        output_dir: root,
+        planOnly: true,
+        mustNotDeploy: true,
+        readOnly: true,
+        hmacRequired: true,
+        accessControlRequired: true,
+        noSecretOrPiiProjection: true,
+        noProdWrite: true,
+        screenCount: 15,
+      });
+      expect(existsSync(join(root, "index.html"))).toBe(true);
+      expect(existsSync(manifestPath)).toBe(true);
+      expect(JSON.parse(readFileSync(manifestPath, "utf8"))).toMatchObject({
+        planOnly: true,
+        mustNotDeploy: true,
+        activation: {
+          cloudflareDeployApproved: false,
+          githubWebhookApproved: false,
+        },
+      });
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

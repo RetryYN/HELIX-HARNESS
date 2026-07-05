@@ -3582,7 +3582,91 @@ web
     }
   });
 
+web
+  .command("share-bundle")
+  .description("write a non-deploying read-only share bundle for activation review")
+  .requiredOption("--out <dir>", "write bundle files to a directory")
+  .option("--json", "JSON output with manifest summary")
+  .action(async (opts: { out: string; json?: boolean }) => {
+    try {
+      const {
+        buildReadOnlyShareBundle,
+        componentCoverageSummary,
+        loadUiTokens,
+        renderAppShell,
+      } = await loadOptionalWebUi();
+      const tokens = loadUiTokens(defaultTokenPathFromCwd());
+      const html = renderAppShell(tokens);
+      const summary = componentCoverageSummary();
+      const bundle = buildReadOnlyShareBundle({
+        html,
+        generatedAt: new Date().toISOString(),
+        pollIntervalSec: typeof tokens === "object" && tokens !== null && "motion" in tokens
+          ? (tokens as { motion: { pollIntervalSec: number } }).motion.pollIntervalSec
+          : 30,
+        screenCount: Number(summary.screenCount),
+        commonCount: Number(summary.commonCount),
+        specificCount: Number(summary.specificCount),
+        readOnly: summary.readOnly === true,
+      });
+      mkdirSync(opts.out, { recursive: true });
+      for (const entry of bundle.files) {
+        writeFileSync(join(opts.out, entry.path), entry.content);
+      }
+      const payload = {
+        ok: true,
+        output_dir: opts.out,
+        planOnly: bundle.manifest.planOnly,
+        mustNotDeploy: bundle.manifest.mustNotDeploy,
+        readOnly: bundle.manifest.readOnly,
+        hmacRequired: bundle.manifest.hmacRequired,
+        accessControlRequired: bundle.manifest.accessControlRequired,
+        noSecretOrPiiProjection: bundle.manifest.noSecretOrPiiProjection,
+        noProdWrite: bundle.manifest.noProdWrite,
+        screenCount: bundle.manifest.screenCount,
+        files: bundle.files.map(({ content: _content, ...entry }) => entry),
+      };
+      if (opts.json) {
+        process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+      } else {
+        process.stdout.write(
+          `web share-bundle: planOnly=true mustNotDeploy=true output=${opts.out} files=${bundle.files.length}\n`,
+        );
+      }
+    } catch (e) {
+      process.stderr.write(`web share-bundle failed: ${String(e)}\n`);
+      process.exitCode = 1;
+    }
+  });
+
 async function loadOptionalWebUi(): Promise<{
+  buildReadOnlyShareBundle: (input: {
+    html: string;
+    generatedAt?: string;
+    pollIntervalSec: number;
+    screenCount: number;
+    commonCount: number;
+    specificCount: number;
+    readOnly: boolean;
+  }) => {
+    manifest: {
+      planOnly: true;
+      mustNotDeploy: true;
+      readOnly: true;
+      hmacRequired: true;
+      accessControlRequired: true;
+      noSecretOrPiiProjection: true;
+      noProdWrite: true;
+      screenCount: number;
+    };
+    files: Array<{
+      path: string;
+      mediaType: string;
+      bytes: number;
+      sha256: string;
+      content: string;
+    }>;
+  };
   componentCoverageSummary: () => Record<string, unknown>;
   loadUiTokens: (path: string) => unknown;
   renderAppShell: (tokens: unknown) => string;
@@ -3591,6 +3675,33 @@ async function loadOptionalWebUi(): Promise<{
   const load = new Function("specifier", "return import(specifier)") as (
     specifier: string,
   ) => Promise<{
+    buildReadOnlyShareBundle: (input: {
+      html: string;
+      generatedAt?: string;
+      pollIntervalSec: number;
+      screenCount: number;
+      commonCount: number;
+      specificCount: number;
+      readOnly: boolean;
+    }) => {
+      manifest: {
+        planOnly: true;
+        mustNotDeploy: true;
+        readOnly: true;
+        hmacRequired: true;
+        accessControlRequired: true;
+        noSecretOrPiiProjection: true;
+        noProdWrite: true;
+        screenCount: number;
+      };
+      files: Array<{
+        path: string;
+        mediaType: string;
+        bytes: number;
+        sha256: string;
+        content: string;
+      }>;
+    };
     componentCoverageSummary: () => Record<string, unknown>;
     loadUiTokens: (path: string) => unknown;
     renderAppShell: (tokens: unknown) => string;
