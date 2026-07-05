@@ -25,10 +25,10 @@ next_pair_freeze: L5
 - 対象 L3 要件: 43 件。
 - Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の unit/acceptance oracle（単体/受入オラクル）で観測し、本 L5 pillar integration test では 43 件に二重計上しない。ただし HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract（契約）境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
-- L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 `LIT-*` 43 件の
-  integration pass（結合通過判定）に含めない。S4 confirmed 後は visualization read-model / graph IR / drill-down /
-  read-only UI action boundary（読み取り専用 UI 操作境界）の結合観測を追加する。
-- G-SF `semantic_feature_frontier_record` が `frontier_pending_decision` / `parked_future_version` /
+- L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 判断で current scope から archived しており、
+  本 `LIT-*` 43 件の integration pass（結合通過判定）に含めない。将来再開する場合は新規 PLAN と別 LIT を起票する。
+- G-SF の現行 live frontier は `current_semantic_frontier_count=0` である。`semantic_feature_frontier_record` が
+  `frontier_pending_decision` / `parked_future_version` /
   `approval_gated_cutover` を返す意味単位は、L8 integration pass の対象外でなければならない。
   `completion_claim_allowed=false` を integration expected result（結合期待結果）とし、first-response read model、
   setup output（セットアップ出力）、activation/cutover packet が存在しても、S4 / activation / cutover approval 前は

@@ -24,10 +24,11 @@ next_pair_freeze: L8
 - L8 integration test design: `LIT-*` 43 件。
 - Route-B back-fill L3 要件 8 件は本 pillar detail の 43 件へ二重計上しない。該当契約は L6 `orchestration-memory.md` と Reverse back-fill 側で関数境界へ降下し、本書では HC-P1 / HC-P2 / HC-P3 / HC-P7 / HC-AC の contract matrix に取り込む。
 - 孤児: 0。詳細は §2 trace。
-- L1 §2.8 asset/progress visualization amendment は `PLAN-DISCOVERY-10` S4 decision 待ちである。
-  `PLAN-L7-206` の `VisualizationSnapshot` は先行 read-model response であり、本 L5 10 contract / 43
-  `LIT-*` の完了範囲に VSCode View/Webview contract を追加した扱いにはしない。
-- G-SF `semantic_feature_frontier_record` の分類は L5 contract boundary でも維持する。
+- L1 §2.8 asset/progress visualization amendment は `PLAN-DISCOVERY-10` の 2026-07-06 PO 判断により
+  current scope から archived した。`PLAN-L7-206` の `VisualizationSnapshot` は先行 read-model response であり、
+  本 L5 10 contract / 43 `LIT-*` の完了範囲に VSCode View/Webview contract を追加した扱いにはしない。
+- G-SF `semantic_feature_frontier_record` の分類 vocabulary は L5 contract boundary でも維持する。現行 live frontier は
+  `current_semantic_frontier_count=0` であり、archived / deferred 済み PLAN を L5 未確定 contract として残さない。
   `frontier_pending_decision` は visualization read-model / graph IR / drill-down / UI action contract を
   未 confirmed として扱い、`parked_future_version` は activation decision まで current integration
   contract の pass に数えず、`approval_gated_cutover` は dry-run / rollback / state backup / audit の

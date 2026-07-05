@@ -27,9 +27,10 @@ next_pair_freeze: L9
 - Route-B back-fill L3 要件 8 件は本 pillar overlay の 43 件へ二重計上しない。P2/P7 の実装由来契約は L6 route-B / Reverse back-fill で扱い、本書では HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の既存ブロック境界へ受ける。
 - 孤児: 0。詳細は §2 trace。
 - L1 §2.8 asset/progress visualization amendment は本 L4 10 block / 43 要件の confirmed 範囲外である。
-  `PLAN-DISCOVERY-10` S4 confirmed 後に VSCode Tree View / Webview / deterministic graph / drill-down の
-  L4 UI-data boundary として別途 Forward 合流させる。
-- G-SF `semantic_feature_frontier_record` の分類は L4 ブロック境界でも維持する。
+  `PLAN-DISCOVERY-10` は 2026-07-06 PO 判断で current scope から archived したため、VSCode Tree View /
+  Webview / deterministic graph / drill-down の L4 UI-data boundary は live frontier として残さない。
+- G-SF `semantic_feature_frontier_record` の分類 vocabulary は L4 ブロック境界でも維持する。現行 live frontier は
+  `current_semantic_frontier_count=0` であり、archived / deferred 済み PLAN を L4 未確定 boundary として残さない。
   `frontier_pending_decision` は L4 UI-data boundary を未 confirmed として扱い、
   `parked_future_version` は current system ブロックの完了に数えず、`approval_gated_cutover` は
   blast-radius / dry-run / rollback / monitoring の設計までで apply 可能なブロックにしない。

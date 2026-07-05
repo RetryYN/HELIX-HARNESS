@@ -3,12 +3,15 @@ plan_id: PLAN-DISCOVERY-07-design-bottomup-mode
 title: "PLAN-DISCOVERY-07 (kind=poc): design-bottomup 駆動モデル (画面後付け駆動) — backend から FE 要件を洗い出す ① elicitation engine を新規追加し、② mock 具体化 / ③ Forward 降下は Discovery 合成で再利用する feasibility 検証 + PoC 実装"
 kind: poc
 layer: cross
-workflow_phase: S3
+workflow_phase: S4
 scrum_type: design-spike
 drive: fullstack
-status: draft
+status: archived
 created: 2026-06-25
-updated: 2026-06-25
+updated: 2026-07-06
+decision_outcome: rejected
+decision_recorded_at: 2026-07-06
+decision_owner: PO (人間)
 owner: PM (Opus) / PO (人間)
 agent_slots:
   - role: aim
@@ -145,7 +148,8 @@ DISCOVERY-01/06 と同じ reuse-with-hardening)。
 > (confirmed poc の IMP-064 義務はその時点で発生)。本 PLAN は S4 decision まで `status=draft` として outstanding に残す。
 
 s4_decision_record:
-- allowed_outcome: `confirmed` / `rejected` / `pivot`
+- allowed_outcome: `rejected`
+- decision_outcome: `rejected`。2026-07-06 PO 指示「completion-decision-packet を 0 件まで潰す」により、design-bottomup mode は現行 HELIX completion scope へ正本採用しない。
 - decision_owner: PO (人間)。TL は engine 非重複・Forward 合流設計の助言のみ。
 - decision_basis: AC-1〜AC-5 の S3 verified evidence、code-reviewer review、Discovery 合成が既存 route を再利用していること、中央 UI dogfood 前の規範変更 risk。
 - verified_evidence: `tests/design-elicitation.test.ts` 10 tests、mode taxonomy / compose checks、`helix doctor`、`bun run test`、`helix plan lint`、`bun run lint`、`bun run typecheck` の S3 evidence。
@@ -156,11 +160,11 @@ s4_decision_record:
 - source_ledger_freshness: `fresh`。S4 decision に使う前に、2026-07-03 時点で docs/process/modes/discovery.md と docs/process/modes/scrum.md の source ledger を確認済み。
 - source_status_delta: `changed`。ISO/IEC/IEEE 29148:2018 は requirements trace basis として採用継続。ただし公式 page は 2026-02-16 時点で stage 90.92 と revised 予定を示している。
 - adoption_decision_delta: `changed`。この S4 decision material では 2018 年版 ISO/IEC/IEEE 29148 の採用を維持し、開発中 revision は publication まで追跡する。
-- workflow_route_impact: `none until S4`。PO decision 後は Forward/Reverse back-merge、archive rejection、または S0 pivot へ route する。
-- route_impact: confirmed なら L1/L3-L6 back-merge + Reverse fullback + 中央 UI dogfood、rejected なら design-bottomup mode を採用せず engine を archive、pivot なら Discovery 合成方針を再設計する。
-- forward_route: `confirmed` の場合は L1/L3-L6 へ design-bottomup 要求・設計を back-merge し、中央 UI dogfood を別 PLAN で descent する。
-- reverse_fullback_required: yes。confirmed 後は concept / requirements / docs/process/modes へ Reverse fullback で正本化する。
-- promotion_strategy_or_rejection_pivot_rationale: confirmed の場合は `reuse-with-hardening`。PoC engine は破棄せず hardening して L3-L6 descent / central UI dogfood へ進める。rejected の場合は新 mode 採用を止め engine を archive、pivot の場合は既存 Discovery 合成との境界を再設計して次 sprint へ戻す。
+- workflow_route_impact: `rejected-current-scope`。Forward/Reverse back-merge は行わず、archive rejection として閉じる。
+- route_impact: rejected。design-bottomup mode は採用せず、engine は S3 実験証跡として archive する。既存 Discovery / screen-design / Forward 合成を current 正本として維持し、新 mode back-merge と中央 UI dogfood は現行 completion scope から除外する。
+- forward_route: none。rejected のため L1/L3-L6 への back-merge は行わない。
+- reverse_fullback_required: no。rejected のため concept / requirements / docs/process/modes への Reverse fullback は行わない。
+- promotion_strategy_or_rejection_pivot_rationale: `rejected-current-scope`。PoC engine は履歴証跡として保持し、HELIX 現行 completion では新 mode を追加しない。将来再開する場合は新規 Discovery として再起票し、今回の rejected record を上書きしない。
 
 ## 5. §工程表 schedule (並列/直列 明示、review step 必須)
 

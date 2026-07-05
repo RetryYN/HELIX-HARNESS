@@ -25,10 +25,10 @@ next_pair_freeze: L4
 - system test（システムテスト）観測: HST 43 件。
 - Route-B back-fill L3 要件 8 件は L6 route-B / Reverse back-fill の acceptance（受入）で観測し、本 L4 pillar system test では 43 件に二重計上しない。ただし HB-P1 / HB-P2 / HB-P3 / HB-P7 / HB-AC の境界に接続されることは §1.1 で観測する。
 - 孤児: 0。
-- L1 §2.8 asset/progress visualization amendment は S4 decision 待ちであり、本 HST 43 件の system
-  pass（システム通過判定）に含めない。S4 confirmed 後は Tree View / Webview boundary、read-only action surface、CSP /
-  local resource policy、evidence drill-down を別 HST として追加する。
-- G-SF `semantic_feature_frontier_record` が `frontier_pending_decision` / `parked_future_version` /
+- L1 §2.8 asset/progress visualization amendment は 2026-07-06 PO 判断で current scope から archived しており、
+  本 HST 43 件の system pass（システム通過判定）に含めない。将来再開する場合は新規 PLAN と別 HST を起票する。
+- G-SF の現行 live frontier は `current_semantic_frontier_count=0` である。`semantic_feature_frontier_record` が
+  `frontier_pending_decision` / `parked_future_version` /
   `approval_gated_cutover` を返す意味単位は、HST system pass の対象外でなければならない。
   L9 system 観測では `completion_claim_allowed=false` を期待値にし、doctor green、selected HST green、
   または先行 first-response artifact をもって revised request 全体の system completion（システム完了）としない。

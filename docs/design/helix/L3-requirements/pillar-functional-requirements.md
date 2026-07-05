@@ -19,8 +19,8 @@ next_pair_freeze: L12
 > L3 の機能要件・非機能要件・受入条件へ降ろした Forward L3 confirmed 正本である。P2/P7 の実装済み back-fill
 > (`orchestration-memory*.md`) は下位詳細として参照し、本書では L1 に残っていた GAP と pillar 横断 AC を閉じる。
 > status は `confirmed`。charter §3 に基づく PO 承認を経て G-REQ.L3 の confirmed 正本へ昇格済み。
-> 2026-06-30 に追加された L1 §2.8 asset/progress visualization 要求は、`PLAN-DISCOVERY-10` の
-> S4 PO decision 待ち amendment frontier であり、本 confirmed 43 件へ混ぜない。
+> 2026-06-30 に追加された L1 §2.8 asset/progress visualization 要求は、2026-07-06 の PO decision で
+> 現行 completion scope から archive した。履歴証跡は残すが、本 confirmed 43 件へ混ぜない。
 
 ## §0 量閉じ
 
@@ -49,8 +49,9 @@ next_pair_freeze: L12
 `HR-FR-P9-01..03` の単なる言い換えではない。VSCode Tree View / Webview、deterministic graph IR、
 evidence drill-down、read-only first の UI/data boundary を持つ新しい要求変更である。
 
-この amendment は `PLAN-DISCOVERY-10-helix-asset-visualization` が S3 verify 済み、S4 PO decision
-待ちのため、現時点では以下を未降下として扱う。
+この amendment は `PLAN-DISCOVERY-10-helix-asset-visualization` が S3 verify 済みだったが、2026-07-06 に
+`decision_outcome=rejected` / `status=archived` としたため、現行 completion scope では以下を未降下ではなく
+非採用履歴として扱う。
 
 - L3: visualization view の要件 / acceptance IDs。
 - L4: VSCode extension adapter、Tree View / Webview 境界、CSP / localResourceRoots、read-only action 境界。
@@ -58,53 +59,46 @@ evidence drill-down、read-only first の UI/data boundary を持つ新しい要
 - L6: layer tree、Mermaid-compatible graph IR、runtime evidence timeline、drill-down pointer の view-model function。
 - L7: VSCode Tree View prototype、Webview graph/detail panel の要件。
 
-したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に限定される。L1 §2.8 を含む revised
-request 全体について「L3/L4/L6/L7 fully descended」または「L14 全件達成」と主張してはならない。
+したがって、本書の「量閉じ」は 2026-06-28 freeze の 43 件に限定される。L1 §2.8 は現行 scope では
+非採用履歴であり、将来再開する場合は新規 PLAN で再起票する。
 
 ### §0.2 意味ベース機能一覧と要求修正境界
 
 本書の機能一覧は、ID 数だけでなく「要求が何を意味しているか」で管理する。したがって、confirmed
-43 件に含まれる機能、要求修正で追加された frontier、不可逆承認待ちの cutover、将来版 parked work
-を混ぜて「全部終わった」とは言わない。
+43 件に含まれる機能、archive した要求修正、不可逆 cutover defer、将来版候補を混ぜて「採用済み機能」とは言わない。
 
 | 意味単位 | 要求根拠 | L3 状態 | 下流状態 / 完了境界 |
 |----------|----------|---------|----------------------|
 | 逸脱受け止めと Forward 収束 | HBR-P0 / HR-FR-P0-01..02 | confirmed 43 件に含む | L4-L6 へ降下済み。runtime/product 完了は各 L7/L14 evidence 別判定 |
-| 連続自律走行 / Scrum 分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 43 件に含む | version-up mode は正本化済み。parked work は activation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digest を plan-only activation packet に出す。HEAD/scope/source/evidence/dry-run result drift があれば dry-run・activation packet・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run に使う場合は `GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを source ledger と external rehearsal に含める。ただし `PLAN-L7-146` は `version_target: future` の parked で、今版完了には数えない |
+| 連続自律走行 / Scrum 分割 / version-up | HBR-P1 / HR-FR-P1-01..04 | confirmed 43 件に含む | version-up mode は正本化済み。parked work は activation decision / parked review / action-binding approval / reapproval trigger / activation snapshot binding / version dry-run result digest を plan-only activation packet に出す。HEAD/scope/source/evidence/dry-run result drift があれば dry-run・activation packet・doctor・approval packet を再実行し、古い承認根拠を流用しない。GitHub Actions を activation/dry-run に使う場合は `GITHUB_TOKEN` 権限、least privilege、`pull_request_target` 未信頼コード実行、自動 PR 承認リスクを source ledger と external rehearsal に含める。`PLAN-L7-146` は 2026-07-06 に `reject_or_archive` とし、現行 completion scope から除外済み |
 | agent/tool/runtime guardrail + pair-agent TDD route | HR-FR-P2-01..04 / HAC-P2-01a..04b | confirmed 43 件に含む | tool contract registry、loop effort budget、Codex/Claude adapter parity、hosted API preflight、pair-agent TDD route を同じ P2 runtime guardrail family として扱う。L6 `validateToolContractSurface` / `tickLoopEffortBudget` / `validateAdapterParityMap` / `requireHostedSurfacePreflight` / `buildPairAgentTddPlan` / `runPairAgentTddPlan` へ降下済み。smart test/oracle -> light implementation/consultation -> smart review/instruction -> light fix の順序契約であり、consultation question が実装証跡と混在しても pending consultation を優先する。light agent は完了/承認権限を持たず、`VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出す light output は fail-close する。pair-agent plan は task difficulty と `maxFixCyclesSource` を保持し、未指定 max cycle は difficulty policy で決め、max 到達は `max-fix-cycles-exhausted` finding として残す。PLAN-L7-177 / PLAN-L7-221 / PLAN-L7-222 で plan/run evidence 保存・DB projection まで実装済みで、plan evidence は adapter plan / prompt digest / frontier guardrail を監査可能にし、run evidence は `loop_summary` / `transcript_digest` / phase `output_excerpt_digest` により consultation/fix/review loop を監査可能にする。保存済み `phase_spans` は `smart_test_author` 起点、`light_implementation` / `smart_review` 交互順序で DB rebuild 時に再検査し、違反 evidence は `pair-agent-run-evidence` gate を `blocked` にする。local verdict と pair-agent evidence は CI/merge gate の代替ではない |
 | 強い検証 / test-first / 実装精度 | HBR-P3 / HNFR-P3 | confirmed 43 件に含む | L6 verification family へ降下済み。green command・review・runtime provenance の実証跡が無い runtime claim は閉じない |
 | 自動修復 / 計測改善 | HBR-P4 | confirmed 43 件に含む | detector -> repair / recipe / metric の要求は降下済み。自動適用は high-impact approval 境界に従う |
-| GitHub 自動化 / setup / release / rename | HBR-P6 | confirmed 43 件に含む | setup / release dry-run / gated push は設計済み。`helix setup project` は現行 `.helix` baseline と identifier cutover packet を同時に示す bootstrap であり、`.helix/state/project-setup.json` と consumer doctor は `completionClaimAllowed=false` と completion packet 導線を保持して setup ready を whole-program completion ready にしない。`旧 state path -> .helix` rename は PLAN-M-02 の cutover/action-binding approval が無い限り audit/plan までで、apply 完了にしない |
+| GitHub 自動化 / setup / release / rename | HBR-P6 | confirmed 43 件に含む | setup / release dry-run / gated push は設計済み。`helix setup project` は現行 `.helix` baseline と identifier cutover packet を同時に示す bootstrap である。`PLAN-M-02` は 2026-07-06 に `reject_or_defer` として archived にし、旧 state path / CLI rename cutover は現行 completion scope では実行しない |
 | 共有 memory / Glossary / DDD context | HBR-P7 | confirmed 43 件に含む | L6 knowledge family へ降下済み。Glossary SSoT と context-map の runtime 完了は下位実装・検証で別判定 |
 | 外部検索 / skillify / security boundary | HBR-P8 / HNFR-P8 | confirmed 43 件に含む | source attribution / sandbox / approval / security filter を要求化済み。外部 API・infra・secret 変更は action-binding approval なしに apply しない |
 | DB 収束 / relation graph / contract ledger | HBR-P9 | confirmed 43 件に含む | DB 未収束 artifact は完了扱いにしない。doctor green だけでは whole-program completion の代替にならない |
 | context efficiency | HNFR-P5 | confirmed 43 件に含む | 独立した business-requirement の P5 ID ではなく HNFR-P5 として P1/P3 に吸収。`HB-P5` / `HC-P5` を期待しない |
 | adapter/rule/memory 一貫性 | HNFR-AC | confirmed 43 件に含む | Claude/Codex/hosted API の surface 差分は adapter/preflight で扱う。repo hook 非強制 surface を hook-covered と主張しない |
-| design-bottomup mode | PLAN-DISCOVERY-07 / PO design-bottomup request | S3 verified / S4 PO decision pending | backend から FE 要件を洗い出す elicitation engine と Discovery 合成は S3 verified。S4 confirmed までは mode 正本化、L1/L3-L6 back-merge、中央 UI dogfood を current completion に混ぜない |
-| asset/progress visualization | L1 §2.8 / PLAN-DISCOVERY-10 | S3 verified / S4 PO decision pending | L1/HOT-P9 と `VisualizationSnapshot` first response は存在するが、L3 visualization requirements、L4 UI-data boundary、L5 graph/drill-down contract、L6 view-model function、L7 VSCode View/Webview は未 confirmed |
+| design-bottomup mode | PLAN-DISCOVERY-07 / PO design-bottomup request | S4 rejected / archived | backend から FE 要件を洗い出す elicitation engine と Discovery 合成は S3 verified だったが、2026-07-06 に現行 scope では正本化しないと決めた。新 mode back-merge と中央 UI dogfood は採用済み機能に混ぜない |
+| asset/progress visualization | L1 §2.8 / PLAN-DISCOVERY-10 | S4 rejected / archived | L1/HOT-P9 と `VisualizationSnapshot` first response は存在するが、2026-07-06 に VSCode View/Webview visualization workflow は現行 scope から除外した |
 | L1-L2 elicitation cycle | PO 対話 / PLAN-DISCOVERY-11 / PLAN-REVERSE-329 | S4 confirmed / Reverse fullback pending | 画面 mock で要求を洗い出す greenfield 前段サイクルは S4 confirmed。Reverse fullback 完了までは A-40 G1-trace 再検証フック、L1/L2 consistency lint、gap-check read-only 結線を current completion に混ぜない |
 
 この表は「機能一覧が合っているか」の現在の回答である。confirmed 43 件の設計降下は成立しているが、
-要求修正後の revised request 全体は `PLAN-DISCOVERY-10` S4 判断と PLAN-M-02 cutover 承認が残るため、
-L14 全件完了とは扱わない。
+要求修正後の revised request のうち、現行 scope に残す live semantic frontier は 0 件である。
 
 G-SF `semantic_feature_frontier_record` への写像:
 
 - confirmed 43 件: `classification=confirmed_current`。L3/L12 pair は本書と
   `docs/test-design/helix/L3-pillar-acceptance-test-design.md`。live `outstanding.confirmedCurrentMeaningRecords[]`
   は 11 件の意味単位で 43 件全 ID を束ね、未対応 ID がある場合は `semantic-frontier-consistency` で fail する。
-- design-bottomup mode: `classification=frontier_pending_decision`。S4 confirmed までは design-bottomup
-  mode 正本化 / L1/L3-L6 back-merge / 中央 UI dogfood を current completion に数えない。
-- asset/progress visualization: `classification=frontier_pending_decision`。S4 confirmed までは L3 visualization
-  requirements / acceptance を本書の 43 件に混ぜない。
-- `PLAN-L7-146` serverless readonly share: `classification=parked_future_version`。activation decision が出るまで
-  current completion に数えない。`version-up-activation-packet.v1` は判断材料であり、activation 実行・
-  external infra 変更・secret 設定・`version_target` 解除を行わない。同一 PLAN が action-binding approval
-  も必要な場合は `relatedDecisionPackets[]` で `helix action-binding approval-packet --json` を supporting
-  route として出す。
-- PLAN-M-02 identifier rename: `classification=approval_gated_cutover`。cutover/action-binding approval が無い限り
-  audit/plan-only で止める。`rename plan` は primary cutover packet と supporting action-binding approval packet
-  の関係を `relatedDecisionPackets[]` に保持し、承認待ちを rename 完了や apply 許可に読み替えない。
+- current semantic frontier: `current_semantic_frontier_count=0`。`PLAN-DISCOVERY-07` / `PLAN-DISCOVERY-10` /
+  `PLAN-L7-146` / `PLAN-M-02` は archived / deferred とし、live `outstanding.semanticFeatureFrontierRecords[]`
+  には残さない。
+- frontier vocabulary: `frontier_pending_decision` / `parked_future_version` / `approval_gated_cutover` は将来再起票用に保持する。
+  将来 `design-bottomup mode`、`asset/progress visualization`、`serverless readonly share`、`identifier rename`
+  を再開する場合は新規 PLAN で再起票し、current snapshot / S4 decision / activation / cutover / action-binding
+  evidence を取り直す。
 
 この record が更新されていない要求修正は、doctor green や selected test green があっても G3/G7/accept の完了根拠にしない。
 S4 / completion packet は意味証跡も同じ frontier 契約で扱う。S4 `verified_evidence` / `external_source_basis` は

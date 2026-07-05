@@ -4,12 +4,14 @@ title: "PLAN-L7-146 (impl): 中央UI を無料 serverless(Cloudflare) で read-o
 kind: impl
 layer: L7
 drive: fullstack
-status: draft
-version_target: future
+status: archived
+decision_recorded_at: 2026-07-06
+decision_owner: PO (人間)
 created: 2026-06-24
-updated: 2026-07-03
+updated: 2026-07-06
 owner: PM (Opus) / PO (人間) / Codex
 parent_design: docs/design/harness/L2-screen/screen-list.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 related_l0: docs/governance/helix-harness-concept_v3.1.md
 related_br: docs/design/harness/L1-requirements/business-requirements.md
 agent_slots:
@@ -36,13 +38,13 @@ dependencies:
 PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (clean distribution channel) を別PCで使える状態に
 する** ことを優先する (PO「UI は後回しで配布できるようにしたい」「UI は後程でいい」)。
 
-- 本 PLAN は `status=draft` + `version_target: future` の **version-up parked** とする。破棄 (archived) **ではない** — serverless 共有配信は将来版へ保全する。
+- 本 PLAN は 2026-07-06 PO 指示「completion-decision-packet を 0 件まで潰す」により **archived** とする。serverless 共有配信は現行 HELIX completion scope から除外し、Cloudflare/GitHub/HMAC/access-control activation は実行しない。
 - 配布の active track = [[PLAN-L7-157-distribution-clean-pull]] (R2: 中央UI/画面 = L7-141/146 は配布物に
   **同梱しない** = 画面なしで配布。本 deferral と整合)。ただし中央UI 本体の first component-derived slice
   ([[PLAN-L7-141-web-dashboard-component-derived]]) は 2026-06-30 に着地済みであり、本 PLAN の未了範囲は
   serverless 共有配信層だけに限定される。
 - 再開条件: 配布チャネルが PO 承認・着地し、外部 Cloudflare 配信 / HMAC secret / webhook / 閲覧アクセス制御へ進む action-binding approval が出た後、本 PLAN を再開する。
-- 非終端 (draft) のまま残るため `helix status` の outstanding / version-up parked には引き続き計上される (将来版保全 = 完了ではない)。
+- 非終端 parked ではなく closed archive として扱う。将来再開する場合は新規 version-up / add-feature PLAN で再起票し、この archive record を上書きしない。
 - `helix route eval --signal version_deferral --format json` は `mode=version-up` を返す。駆動モデル上も、本 PLAN は active L7 frontier ではなく version-up parked として扱う。
 - activation 信号（例: `version_deferral Cloudflare HMAC webhook access control external infrastructure activation`）は mode=`version-up` のまま `escalation_boundaries[]` を返し、approval policy/approval が無ければ exit 1 になる。将来版保全と外部配信適用を混同しない。
 - `helix version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json` は activation / parked review / action-binding approval を
@@ -57,6 +59,7 @@ PO 決定 (2026-06-26): **中央UI (画面) は後回し**。先に **配布 (cl
 
 activation_decision_record:
 - allowed_outcome: `activate_future_version` / `reject_or_archive` / `keep_parked_with_review_date`
+- decision_outcome: `reject_or_archive`。現行 completion scope では activate しない。
 - target_version_or_release_trigger: 配布チャネル (`PLAN-L7-157`) の release/tag 着地、または PO が serverless read-only share を次版 scope に戻す明示 request。
 - activation_snapshot_id: `helix version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json` の current `activationSnapshot.snapshotId`。この snapshot が変わった場合、approval evidence は stale とみなす。
 - activation_route: `activate_future_version` の場合は add-feature route で具体対象 `PLAN-L7-146-serverless-readonly-share -> L2/L3/L4/L6/L7` に再降下し、Cloudflare/GitHub webhook activation を Forward 実装 PLAN として扱う。外部 activation だけで terminal にしない。
@@ -68,6 +71,7 @@ activation_decision_record:
 - source_status_delta: changed; 2026-07-03 の official-source refresh は GitHub Actions secure-use / pull_request_target / GITHUB_TOKEN guidance を維持し、activation を承認せずに SLSA Provenance v1.2 を activation artifact provenance evidence として追加する。
 - adoption_decision_delta: changed; adopt-live-docs-for-activation-workflow-hardening は active のまま、adopt-v1.2-for-activation-artifact-provenance は activation を parked かつ plan-only に保ったまま、activation_provenance_requirements / dry_run_evidence / audit_record に provenance review を追加する。
 - workflow_route_impact: parked 中の影響は無し。activation 時は version-up の add-feature 具体対象 `PLAN-L7-146-serverless-readonly-share -> L2/L3/L4/L6/L7` へ接続するか、reject/archive へ進む。
+- archive_route: rejected-current-scope。将来再開する場合は新規 add-feature / version-up PLAN として再起票する。
 
 parked_review_record:
 - review_owner: PO (人間) + TL。activation 可否は PO、technical readiness は TL が判定する。

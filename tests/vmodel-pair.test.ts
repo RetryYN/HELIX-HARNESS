@@ -212,17 +212,15 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3).toContain("§0.1 L1 要求修正の境界");
     expect(l3).toContain("§0.2 意味ベース機能一覧と要求修正境界");
     expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
-    expect(l3).toContain("L1 §2.8 を含む revised");
-    expect(l3).toContain("要求修正後の revised request 全体");
+    expect(l3).toContain("現行 completion scope から archive");
+    expect(l3).toContain("live semantic frontier は 0 件");
     expect(l3).toContain("pair-agent TDD route");
-    expect(l3).toContain("`旧 state path -> .helix` rename");
-    expect(l3).toContain("S3 verified / S4 PO decision pending");
+    expect(l3).toContain("旧 state path / CLI rename cutover は現行 completion scope では実行しない");
+    expect(l3).toContain("S4 rejected / archived");
     expect(l3).toContain("G-SF `semantic_feature_frontier_record`");
-    expect(l3).toContain(
-      "asset/progress visualization: `classification=frontier_pending_decision`",
-    );
+    expect(l3).toContain("current semantic frontier: `current_semantic_frontier_count=0`");
     expect(l12).toContain("§0.1 amendment frontier oracle");
-    expect(l12).toContain("visualization 要求も L3/L4/L6/L7 fully descended");
+    expect(l12).toContain("deferred 済みの PLAN を live `semantic_feature_frontier_record` として残してはならない");
     expect(l12).toContain("G-SF oracle");
     const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
@@ -1004,7 +1002,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "bounded context",
       "Red evidence",
       "L1 §2.8 asset/progress visualization amendment",
-      "S4 confirmed 後",
+      "current scope から archived",
     ]) {
       expect(l4).toContain(required);
     }
@@ -1048,7 +1046,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l9TestIds).toHaveLength(43);
     expect(l4TestIds).toEqual(l9TestIds);
     expect(l9).toContain("L1 §2.8 asset/progress visualization amendment");
-    expect(l9).toContain("Tree View / Webview boundary");
+    expect(l9).toContain("将来再開する場合は新規 PLAN と別 HST");
   });
 
   it("U-VPAIR-007d: 既存 harness L4 本体も HELIX pillar overlay の scope/carry/boundary を持つ", () => {
@@ -1281,7 +1279,7 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
       "budget / lock / stop reason",
       "catalog / registry / contract ledger",
       "L1 §2.8 asset/progress visualization amendment",
-      "visualization read-model / graph IR / drill-down",
+      "将来再開する場合は新規 PLAN と別 LIT",
     ]) {
       expect(l8).toContain(required);
     }

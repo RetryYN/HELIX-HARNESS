@@ -28,51 +28,18 @@ export interface SemanticFrontierConsistencyResult {
 
 const L3_PATH = "docs/design/helix/L3-requirements/pillar-functional-requirements.md";
 
-const EXPECTED_FRONTIERS = [
-  {
-    featureId: "design_bottomup_mode",
-    planMarker: "PLAN-DISCOVERY-07",
-    classification: "frontier_pending_decision",
-    l3Markers: [
-      "design-bottomup mode",
-      "classification=frontier_pending_decision",
-      "backend から FE 要件を洗い出す",
-    ],
-  },
-  {
-    featureId: "asset_progress_visualization",
-    planMarker: "PLAN-DISCOVERY-10",
-    classification: "frontier_pending_decision",
-    l3Markers: [
-      "asset/progress visualization",
-      "classification=frontier_pending_decision",
-      "S4 PO decision pending",
-    ],
-  },
-  {
-    featureId: "serverless_readonly_share",
-    planMarker: "PLAN-L7-146",
-    classification: "parked_future_version",
-    l3Markers: [
-      "serverless readonly share",
-      "classification=parked_future_version",
-      "activation decision",
-    ],
-  },
-  {
-    featureId: "name_cutover",
-    planMarker: "PLAN-M-02",
-    classification: "approval_gated_cutover",
-    l3Markers: [
-      "identifier rename",
-      "classification=approval_gated_cutover",
-      "cutover/action-binding approval",
-    ],
-  },
-] as const;
+interface ExpectedFrontier {
+  featureId: string;
+  planMarker: string;
+  classification: string;
+  l3Markers: readonly string[];
+}
+
+const EXPECTED_FRONTIERS: readonly ExpectedFrontier[] = [];
 
 const REQUIRED_DOC_MARKERS = [
   "semantic_feature_frontier_record",
+  "current_semantic_frontier_count=0",
   "frontier_pending_decision",
   "parked_future_version",
   "approval_gated_cutover",

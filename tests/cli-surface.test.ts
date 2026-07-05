@@ -319,29 +319,14 @@ describe("L7 CLI surface closure", () => {
     const s4 = runRepoScriptHelix(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);
     const s4Packets = JSON.parse(s4.stdout);
-    expect(s4Packets).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          schemaVersion: "s4-decision-packet.v1",
-          recordTemplates: expect.arrayContaining([
-            expect.objectContaining({ recordName: "s4_decision_record" }),
-          ]),
-        }),
-      ]),
-    );
+    expect(s4Packets).toEqual([]);
 
     const completion = runRepoScriptHelix(["completion", "decision-packet", "--json"]);
     expect(completion.status, completion.stderr || completion.stdout).toBe(0);
     const completionPacket = JSON.parse(completion.stdout);
     expect(completionPacket.sourceCommand).toBe("helix completion decision-packet --json");
-    expect(completionPacket.decisions).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          decisionPacketCommand: "helix s4 decision-packet --json",
-          runnableDecisionPacketCommand: "bun run helix s4 decision-packet --json",
-        }),
-      ]),
-    );
+    expect(completionPacket.decisionCount).toBe(0);
+    expect(completionPacket.decisions).toEqual([]);
   }, 20_000);
 
   it("U-HOVER-018: exposes normal handover status as a read-only JSON preflight surface", () => {
@@ -942,12 +927,12 @@ describe("L7 CLI surface closure", () => {
     const payload = JSON.parse(json.stdout);
     expect(payload.objectiveProgress).toMatchObject({
       method: "objective-evidence-audit.v1",
-      percent: 90,
-      provedRequirements: 9,
+      percent: 100,
+      provedRequirements: 10,
       totalRequirements: 10,
-      blockedRequirements: 1,
-      completionStatus: "blocked",
-      completionClaimAllowed: false,
+      blockedRequirements: 0,
+      completionStatus: "ready",
+      completionClaimAllowed: true,
       auditOk: true,
       auditViolationCount: 0,
       progressEvidenceTrusted: true,
@@ -956,7 +941,7 @@ describe("L7 CLI surface closure", () => {
     const text = runCli(["status"]);
     expect(text.status).toBe(0);
     expect(text.stdout).toContain(
-      "objective-progress: 90% (blocked; completion-claim-allowed=false; evidence=trusted; audit-ok=true; violations=0)",
+      "objective-progress: 100% (ready; completion-claim-allowed=true; evidence=trusted; audit-ok=true; violations=0)",
     );
     expect(text.stdout).not.toContain("objective-progress-evidence: invalid");
     expect(text.stdout).toContain("confirmed_current_meaning_records: 11");
@@ -986,8 +971,8 @@ describe("L7 CLI surface closure", () => {
         audit: {
           ok: true,
           objectiveProgress: {
-            percent: 90,
-            completionClaimAllowed: false,
+            percent: 100,
+            completionClaimAllowed: true,
           },
         },
       });
@@ -1452,66 +1437,7 @@ describe("L7 CLI surface closure", () => {
 
     expect(json.status).toBe(0);
     const packets = JSON.parse(json.stdout);
-    expect(packets.map((packet: { planId: string }) => packet.planId)).toEqual([
-      "PLAN-DISCOVERY-10-helix-asset-visualization",
-      "PLAN-L7-146-serverless-readonly-share",
-      "PLAN-M-02-helix-identifier-rename",
-    ]);
-    expect(packets[0]).toMatchObject({
-      schemaVersion: "action-binding-approval-packet.v1",
-      status: "pending_action_binding_approval",
-      planOnly: true,
-      mustNotApprove: true,
-      approvalCommandAvailable: false,
-      approvalAllowed: false,
-      allowedOutcomes: ["approve_action_binding", "deny_action", "request_scope_reduction"],
-    });
-    expect(packets[0].blockedReasons).toEqual(
-      expect.arrayContaining(["missing concrete approve_action_binding decision"]),
-    );
-    expect(packets[0].approvalBindingChecks).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          field: "allowed_outcome",
-          status: "pending",
-        }),
-        expect.objectContaining({
-          field: "approved_actor",
-          status: "pending",
-        }),
-      ]),
-    );
-    expect(packets[0].approvalVerificationCommandMatrix).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          phase: "approval-packet-baseline",
-          command:
-            "bun run src/cli.ts action-binding approval-packet --plan PLAN-DISCOVERY-10-helix-asset-visualization --json",
-        }),
-        expect.objectContaining({
-          phase: "least-privilege-binding",
-          sourceUrl: "https://csrc.nist.gov/glossary/term/least_privilege",
-        }),
-        expect.objectContaining({
-          phase: "web-security-testing-boundary",
-          source: "OWASP Web Security Testing Guide",
-          sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/",
-        }),
-        expect.objectContaining({
-          phase: "completion-frontier",
-          command: "bun run src/cli.ts status --json",
-        }),
-      ]),
-    );
-    expect(packets[0].relatedDecisionPackets).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          command: "helix s4 decision-packet --json",
-          scopedCommand:
-            "helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
-        }),
-      ]),
-    );
+    expect(packets).toEqual([]);
 
     const s4Text = runCli([
       "s4",
@@ -1519,12 +1445,9 @@ describe("L7 CLI surface closure", () => {
       "--plan",
       "PLAN-DISCOVERY-10-helix-asset-visualization",
     ]);
-    expect(s4Text.status).toBe(0);
-    expect(s4Text.stdout).toContain(
-      "related-packet: primary helix s4 decision-packet --json scoped=helix s4 decision-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
-    );
-    expect(s4Text.stdout).toContain(
-      "related-packet: supporting helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-DISCOVERY-10-helix-asset-visualization",
+    expect(s4Text.status).toBe(1);
+    expect(`${s4Text.stdout}\n${s4Text.stderr}`).toContain(
+      "s4 decision-packet: plan_not_matched plan=PLAN-DISCOVERY-10-helix-asset-visualization",
     );
 
     const text = runCli([
@@ -1533,47 +1456,15 @@ describe("L7 CLI surface closure", () => {
       "--plan",
       "PLAN-M-02-helix-identifier-rename",
     ]);
-    expect(text.status).toBe(0);
-    expect(text.stdout).toContain(
-      "action-binding approval-packet: PLAN-M-02-helix-identifier-rename",
-    );
-    expect(text.stdout).toContain("approvalAllowed=false");
-    expect(text.stdout).toContain("approvalCommandAvailable=false");
-    expect(text.stdout).toContain(
-      "packet-freshness: source=helix action-binding approval-packet --json",
-    );
-    expect(text.stdout).toContain("binding-checks:");
-    expect(text.stdout).toContain("verification-commands=11");
-    expect(text.stdout).toContain("record-template action_binding_approval_record");
-    expect(text.stdout).toContain('  - approved_params: "<approved_params>"');
-    expect(text.stdout).toContain(
-      "verification-source: least-privilege-binding source=NIST least privilege security principle sourceUrl=https://csrc.nist.gov/glossary/term/least_privilege",
-    );
-    expect(text.stdout).toContain(
-      "writePolicy=no-write command=bun run src/cli.ts action-binding approval-packet --plan PLAN-M-02-helix-identifier-rename --json",
-    );
-    expect(text.stdout).toContain(
-      "verification-source: security-boundary source=VS Code Workspace Trust execution boundary sourceUrl=https://code.visualstudio.com/docs/editing/workspaces/workspace-trust",
-    );
-    expect(text.stdout).toContain(
-      "verification-source: web-security-testing-boundary source=OWASP Web Security Testing Guide sourceUrl=https://owasp.org/www-project-web-security-testing-guide/",
-    );
-    expect(text.stdout).toContain("binding-check: approved_actor status=pending");
-    expect(text.stdout).toContain(
-      "related-packet: primary helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
-    );
-    expect(text.stdout).toContain(
-      "related-packet: supporting helix rename plan --json scoped=helix rename plan --json",
+    expect(text.status).toBe(1);
+    expect(`${text.stdout}\n${text.stderr}`).toContain(
+      "action-binding approval-packet: plan_not_matched plan=PLAN-M-02-helix-identifier-rename",
     );
 
     const renameText = runCli(["rename", "plan"]);
     expect(renameText.status).toBe(0);
-    expect(renameText.stdout).toContain(
-      "related-packet: primary helix rename plan --json scoped=helix rename plan --json",
-    );
-    expect(renameText.stdout).toContain(
-      "related-packet: supporting helix action-binding approval-packet --json scoped=helix action-binding approval-packet --json --plan PLAN-M-02-helix-identifier-rename",
-    );
+    expect(renameText.stdout).toContain("rename plan: status=blocked_pending_cutover_approval");
+    expect(renameText.stdout).toContain("mustNotApply=true");
   }, 20_000);
 
   it("fails scoped decision packet commands closed when the requested PLAN is not present", () => {

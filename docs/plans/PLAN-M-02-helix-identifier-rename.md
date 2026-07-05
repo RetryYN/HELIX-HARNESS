@@ -4,9 +4,11 @@ title: "PLAN-M-02 (migration): 旧機械識別子 → 現行 HELIX 識別子 ato
 kind: design
 layer: L14
 drive: fullstack
-status: draft
+status: archived
+decision_recorded_at: 2026-07-06
+decision_owner: PO (人間)
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-07-06
 owner: PO (人間 / RetryYN)
 master_hub: true   # CLI/dir/marker/hook/docs を 1 工程で揃える atomic migration 駆動 hub
 agent_slots:
@@ -113,6 +115,7 @@ dir move + harness.db パス + projection-writer + `.gitignore` + loop/jobs/memo
 
 cutover_decision_record:
 - allowed_outcome: `approve_cutover` / `reject_or_defer` / `request_runbook_changes`
+- decision_outcome: `reject_or_defer`。2026-07-06 PO 指示「completion-decision-packet を 0 件まで潰す」により、CLI/bin rename、state dir move、adapter marker/hook rename、distribution surface cutover は現行 HELIX completion scope では実行しない。これは cutover approval ではない。
 - decision_owner: PO (人間 / RetryYN)。TL は blast-radius、dry-run、rollback、alias policy の技術判定を提出する。
 - cutover_snapshot_id: 最後に記録した review snapshot は `sha256:7c22965fb5c0c12ef837a5dd433891f0be7bc008451d26499f92bea12d335e18`。これは承認ではない。将来の cutover 承認では、frozen HEAD で `helix rename plan --json` を再実行し、その時点の current `cutoverSnapshot.snapshotId` を bind する。snapshot が変わった場合、cutover/action-binding approval evidence は stale になる。
 - trigger_condition: `PLAN-L1-06-helix-solo-conversion` の G-REQ.L1 re-freeze が confirmed、かつ Step 1〜6 の atomic rename 検証が green。
@@ -128,11 +131,12 @@ cutover_decision_record:
 - source_ledger_freshness: fresh; cutover 判断に使う前に、2026-07-03 に docs/process/forward/L08-L14-verification-phase.md の cutover source ledger を確認済み。
 - source_status_delta: none; NIST SSDF / GitHub approvals and concurrency / Google SRE release/canary guidance / Microsoft safe deployment/testing / OWASP LLM06 / SLSA の source status change は、それ単体では rename apply を承認しない。
 - adoption_decision_delta: none; 旧 state path から現行 `.helix` への移行は concrete な cutover approval evidence が揃うまで approval-gated かつ plan-only のままにする。
-- workflow_route_impact: draft 中は none。将来の承認は L14 cutover decision、action-binding approval、post-cutover monitoring を通す。
+- workflow_route_impact: rejected-current-scope。将来 state dir / CLI / adapter marker cutover を再開する場合は、新規 cutover PLAN で current snapshot、dry-run、rollback、backup、monitoring、action-binding approval を取り直す。
 
 action_binding_approval_record:
 <!-- action binding 承認記録 -->
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
+- decision_outcome: `deny_action`。現行 scope では不可逆 cutover action を承認しない。
 - approval_policy_or_named_approver: CLI/bin rename、state dir move、hook/adapter marker rename、distribution surface cutover の apply 前に、PO action-binding approval を必須にする。
 - approval_scope: CLI/bin rename、`.helix` state dir migration、adapter marker/hook rename、docs/governance link rename、distribution surface のみに限定する。secret/auth/infra 変更は明示的に範囲外。
 - approved_actor: この draft PLAN は actor を承認しない。cutover approval は apply 前に human operator または automation identity を明記する。
