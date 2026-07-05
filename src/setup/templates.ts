@@ -631,6 +631,12 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   "team/setup-branch-protection.sh": [
     "#!/usr/bin/env bash",
     "set -euo pipefail",
+    'APPROVAL_RECORD="$' + '{HELIX_BRANCH_PROTECTION_APPROVAL_RECORD:-}"',
+    'if [[ -z "$' + '{APPROVAL_RECORD}" || ! -f "$' + '{APPROVAL_RECORD}" ]]; then',
+    '  echo "action-binding approval record is required before branch protection apply" >&2',
+    "  exit 2",
+    "fi",
+    'grep -q "action_binding_approval_record" "$' + '{APPROVAL_RECORD}"',
     'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
     "gh auth status >/dev/null",
     'gh api -X PUT "repos/$' + '{REPO}/branches/main/protection" \\',

@@ -613,6 +613,8 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
     "scripts/setup-branch-protection.sh": [
       "#!/usr/bin/env bash",
       "set -euo pipefail",
+      'APPROVAL_RECORD="$' + '{HELIX_BRANCH_PROTECTION_APPROVAL_RECORD:-}"',
+      'grep -q "action_binding_approval_record" "$' + '{APPROVAL_RECORD}"',
       'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
       "gh auth status >/dev/null",
       'gh api -X PUT "repos/$' + '{REPO}/branches/main/protection" \\',

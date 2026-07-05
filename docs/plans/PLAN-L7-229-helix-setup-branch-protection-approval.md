@@ -102,20 +102,20 @@ review_evidence:
 
 ## 1. 実装
 
-> 2026-07-05 superseded: この PLAN の approval-only 方針は、後続の `gh auth/admin preflight + 明示 apply` 方針で置き換えた。不可逆 cutover や高影響 release は action-binding approval 境界に残すが、branch protection bootstrap は通常の GitHub 管理操作として preflight 成功時に適用できる。
+> 2026-07-05 追補: `gh auth/admin preflight + 明示 apply` だけで置き換える方針は撤回する。branch protection bootstrap は通常 PR/CI 運用ではなく GitHub 設定変更であり、action-binding approval + gh auth/admin preflight が揃った場合だけ適用できる。
 
-- `applyBranchProtection` は `apply=false` では emit-only、`apply=true` では gh auth と repository admin 権限を preflight してから remote API へ進む。
+- `applyBranchProtection` は `apply=false` では emit-only、`apply=true` でも action-binding approval が無ければ `approval-required` で停止し、gh auth と repository admin 権限の preflight に進まない。
 - dry-run は従来どおり `{applied:false, reason:"dry-run"}` を返す。
 - non-dry かつ `applyBranchProtection=false` は `{applied:false, reason:"emit-only"}` を返す。
 - non-dry かつ `applyBranchProtection=true` で gh auth が無ければ `{applied:false, reason:"gh-auth-required"}`、admin 権限が無ければ `{applied:false, reason:"admin-permission-required"}` を返す。
-- non-dry かつ `applyBranchProtection=true` で gh auth/admin が揃えば `gh auth status` と `gh api -X PUT` に進み、`harness-check` required status を設定する。
-- `docs/templates/github/team/setup-branch-protection.sh` と built-in fallback は gh preflight 付き apply-capable script とし、token/secret を保存しない。
+- non-dry かつ `applyBranchProtection=true` で action-binding approval、gh auth/admin が揃えば `gh auth status` と `gh api -X PUT` に進み、`harness-check` required status を設定する。
+- `docs/templates/github/team/setup-branch-protection.sh` と built-in fallback は approval-bound / gh preflight 付き apply-capable script とし、token/secret を保存しない。
 - `src/cli.ts` の `--apply-branch-protection` 説明も gh preflight 後の適用に合わせる。
 
 action_binding_approval_record:
 - allowed_outcome: `approve_action_binding` / `deny_action` / `request_scope_reduction`
 - approval_policy_or_named_approver: PO の human approval / action-binding approval は、HELIX project setup が GitHub branch protection や required status checks を適用する前に必須。
-- approval_scope: この PLAN の approval-only 範囲は supersede 済み。現行では branch protection apply は gh auth/admin preflight で扱い、action-binding approval packet は不可逆 cutover や高影響 release に限定する。
+- approval_scope: limited / 限定 scope。approved_actor、approved_tool、approved_target、approved_params を記録したうえで、GitHub branch protection / required status checks を対象 repository の `main` branch へ適用する単発 action に限定する。対象外: 通常の branch push、draft PR 作成、PR body 生成、CI status 取得、release/tag/ruleset/repository rename、secrets/permissions 変更、force-push。approval record、`--apply-branch-protection`、gh auth/admin preflight が揃うまで適用しない。
 - approved_actor: この PLAN では actor を承認しない。将来承認では GitHub apply 前に human operator または automation identity を記名する。
 - approved_tool: この PLAN では tool を承認しない。将来承認では GitHub apply 前に CLI / script / workflow を記名する。
 - approved_target: この PLAN では target を承認しない。将来承認では GitHub apply 前に repository、branch、branch protection rule、required check target を記名する。
@@ -129,7 +129,7 @@ action_binding_approval_record:
 
 2026-07-02 に GitHub 公式 docs を確認した。branch protection や required status checks は repository workflow と
 merge gate を変える設定であり、admin / owner 権限を要するため、HELIX project setup の初回 bootstrap から
-gh auth/admin preflight なしに適用しない方針と整合する。
+action-binding approval と gh auth/admin preflight なしに適用しない方針と整合する。
 
 - GitHub REST API protected branches は、保護 branch 設定の API surface と admin 権限境界の確認に使った。
 - GitHub protected branches / branch protection rule は、branch protection が repository workflow を変える設定であることの確認に使った。
@@ -137,8 +137,8 @@ gh auth/admin preflight なしに適用しない方針と整合する。
 
 ## 3. 受入条件
 
-- [x] `runHelixProjectSetup --apply-branch-protection` は gh auth/admin preflight が揃う場合だけ `gh api -X PUT` を呼ぶ。
-- [x] legacy `runSetup --apply-branch-protection` も gh auth/admin preflight を通す。
-- [x] result は preflight 成功時 `{applied:true, reason:"applied"}`、失敗時は reason 付き fail-close を返し、`githubPlan` は default emit-only だが `applyCommandAvailable=true` を返す。
-- [x] 生成 branch protection script と built-in fallback は apply-capable で、token/secret を保存しない。
+- [x] `runHelixProjectSetup --apply-branch-protection` は approval 無しなら `approval-required` で停止し、`gh api -X PUT` を呼ばない。
+- [x] legacy `runSetup --apply-branch-protection` も approval 無しなら gh auth/admin preflight 前に停止する。
+- [x] result は approval 不足時 `{applied:false, reason:"approval-required"}`、preflight 失敗時は reason 付き fail-close を返し、`githubPlan` は default emit-only だが `applyCommandAvailable=true` を返す。
+- [x] 生成 branch protection script と built-in fallback は approval-bound apply-capable で、token/secret を保存しない。
 - [x] L6 design / L7 test-design に U-SETUP-006 / U-SETUP-007 / U-SETUP-021 / U-SETUP-022 として現行境界を登録する。

@@ -837,3 +837,19 @@ interface L7FeaturePackCoverageResult {
 
 不変条件: DB または frontend read-model pack は UI pack を close できない。
 deferred UI work は、component-derived UI implementation PLAN が confirmed になるまで `ui` pack span として表示され続ける。
+
+## 2026-07-05 l1-l2-consistency lint 追補 (PLAN-L7-330、親 = PLAN-DISCOVERY-11 forward_route)
+
+L1⟷L2 要求洗い出しサイクル (S4 confirmed) の収束機械判定のうち **ID レベル構造被覆**を担う lint。
+観点表 8 項目の prose 内容充足は gap-check (PLAN-DISCOVERY-11 Step 4、別着地) の領域で本 lint の対象外。
+`screen-impl-pair-freeze` (段階順序検査) とは別ロジック (双方向被覆検査) であり、実装は独立させる。
+
+| 関数 | Signature | pre | post | invariant | oracle |
+|---|---|---|---|---|---|
+| `analyzeL1L2Consistency` | analyzeL1L2Consistency(input: L1L2ConsistencyInput) => L1L2ConsistencyResult | L1/L2 から抽出した画面 ID 集合と pair_artifact が渡される。 | 双方向欠落・ui-element 欠落・dangling 参照・mock ペア欠落を ASCII violation code で返す。 | screen 設計不在は scope 0 で OK。`pair_artifact: self` (IMP-039) を欠落扱いしない。G2 PASS 済み wireframe 縮約 (主要画面のみ Low-Fi) を violation にしない。 | U-L1L2-001..004 |
+| `loadL1L2ConsistencyInput` | loadL1L2ConsistencyInput(repoRoot?: string) => L1L2ConsistencyInput | repo root 配下に L1/L2 設計 docs (存在すれば)。 | 一覧 bold 行 / plain 行 / 見出し行 / 本文参照 / frontmatter から画面 ID 集合を抽出して返す。 | 抽出は fail-open (doc 不在 = 空集合 + screenDesignPresent=false) で、判定側 fail-close と分離。 | U-L1L2-005 |
+| `l1L2ConsistencyMessages` | l1L2ConsistencyMessages(result: L1L2ConsistencyResult) => string[] | analyze 結果。 | doctor 表示行を返す。decision token は ASCII (`OK` / `violation`)。 | violation 行に修復導線 (新ラウンド起票 = A-40 change-log) を含める。 | U-L1L2-006 |
+
+`checkL1L2Consistency(repoRoot)` が doctor 配線点であり、結果は `runDoctor.ok` に含める (fail-close)。
+本 gate green は PLAN-DISCOVERY-11 の収束宣言の機械的必要条件。red の場合は L1/L2 の新ラウンド起票
+(A-40 change-log) を経由して回復する (silent edit しない)。

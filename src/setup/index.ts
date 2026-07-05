@@ -8,7 +8,8 @@
  *
  * セキュリティ不変条件 (CLAUDE.md エスカレーション境界):
  *   ① token を読まない・state/docs/log に記録しない (gh 認証状態に委ねる seam)。
- *   ② branch protection の実適用は --apply-branch-protection opt-in + gh 認証/admin 権限でのみ行う。
+ *   ② branch protection の実適用は action-binding approval + --apply-branch-protection opt-in
+ *      + gh 認証/admin 権限でのみ行う。
  *   ③ 既定は emit-only (スクリプト + 手順生成、適用は明示フラグ時だけ)。
  *   ④ 検出不能は solo に安全フォールバック (緩い側に倒す)。
  */
@@ -595,6 +596,8 @@ export function analyzeConsumerEscalationWorkflowContract(
 export function branchProtectionScriptIsApplyCapable(scriptText: string): boolean {
   const mutatingPatterns = [/\brulesets?\b/i, /\bGITHUB_TOKEN\b/i, /\bsecrets?\s*(?:\.|\[)/i];
   return (
+    scriptText.includes("HELIX_BRANCH_PROTECTION_APPROVAL_RECORD") &&
+    scriptText.includes("action_binding_approval_record") &&
     scriptText.includes("gh auth status") &&
     scriptText.includes("branches/main/protection") &&
     scriptText.includes("-X PUT") &&
@@ -777,7 +780,7 @@ export interface HelixProjectGithubPlan {
     remediation: string[];
   };
   branchProtection: {
-    status: "emit_only_by_default_apply_capable";
+    status: "emit_only_by_default_approval_bound_apply_capable";
     scriptPath: "scripts/setup-branch-protection.sh";
     requiresAuthenticatedGh: true;
     requiredPermission: "admin";
@@ -1166,13 +1169,13 @@ const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
     ],
   },
   branchProtection: {
-    status: "emit_only_by_default_apply_capable",
+    status: "emit_only_by_default_approval_bound_apply_capable",
     scriptPath: "scripts/setup-branch-protection.sh",
     requiresAuthenticatedGh: true,
     requiredPermission: "admin",
     applyCommand: "helix setup project --team --apply-branch-protection",
     reason:
-      "branch protection / required check application is emit-only by default, but an authenticated HELIX agent may apply it with --apply-branch-protection when gh auth and repository admin permission are present",
+      "branch protection / required check application is emit-only by default; apply requires action-binding approval, --apply-branch-protection, gh auth, and repository admin permission",
   },
 };
 
@@ -1348,7 +1351,7 @@ export function planHelixProjectSetup(
     byPath.set(BP_SCRIPT, {
       path: BP_SCRIPT,
       category: "A",
-      purpose: "branch protection gh apply-capable script (emit-only by default)",
+      purpose: "branch protection approval-bound gh apply-capable script (emit-only by default)",
     });
   }
   return {
@@ -2017,8 +2020,8 @@ function buildConsumerArtifactReadinessPlan(
         hasPath(branchProtectionScriptPath) &&
         branchProtectionScriptIsApplyCapable(branchProtectionScript),
       message:
-        "branch protection setup script must be apply-capable through gh auth/admin preflight without storing tokens or secrets",
-      evidence: "scripts/setup-branch-protection.sh gh apply-capable script contract",
+        "branch protection setup script must be approval-bound and apply-capable through gh auth/admin preflight without storing tokens or secrets",
+      evidence: "scripts/setup-branch-protection.sh approval-bound gh apply-capable script contract",
     },
     ...(codeownersRequired
       ? [
@@ -2442,7 +2445,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
       adoptionDecision:
         "harness-check は push/pull_request の read-only smoke に限定し、pull_request_target と repository secret 前提を初回 setup 証跡にしない",
       adoptionDecisionDelta:
-        "changed; branch protection remote apply is emit-only by default but can run with --apply-branch-protection after gh auth/admin preflight",
+        "changed; branch protection remote apply is emit-only by default and additionally requires action-binding approval before gh auth/admin preflight",
       workflowRouteImpact:
         "CI permission or trigger drift routes to consumer doctor/template repair before first HELIX work",
     },
@@ -2640,17 +2643,21 @@ export function recordHelixProjectSetupState(state: HelixProjectSetupState, deps
 }
 
 /**
- * U-SETUP-006: apply≠true → emit-only (既定)。apply=true は gh 認証と repo admin 権限を
- * preflight し、HELIX が保持する token なしで GitHub CLI に適用を委譲する。
+ * U-SETUP-006: apply≠true → emit-only (既定)。apply=true でも action-binding approval が
+ * 無ければ停止する。承認済みの場合だけ gh 認証と repo admin 権限を preflight し、
+ * HELIX が保持する token なしで GitHub CLI に適用を委譲する。
  */
 export function applyBranchProtection(
   plan: SetupPlan,
   deps: SetupDeps,
-  opts: { apply: boolean },
+  opts: { apply: boolean; approvalEvidence?: { approved: boolean; recordPath?: string } },
 ): { applied: boolean; reason: string } {
   if (opts.apply !== true) return { applied: false, reason: "emit-only" };
   const action = plan.actions.find((a) => a.kind === "branch-protection");
   if (!action) return { applied: false, reason: "no-action" };
+  if (opts.approvalEvidence?.approved !== true) {
+    return { applied: false, reason: "approval-required" };
+  }
   const auth = deps.gh(["auth", "status"]);
   if (!auth.ok) return { applied: false, reason: "gh-auth-required" };
   const repo = deps.gh(["api", "repos/{owner}/{repo}"]);
@@ -2686,7 +2693,7 @@ export function applyBranchProtection(
 /**
  * U-SETUP-007: orchestration。phase = フラグ > confirm(recommend(detect)) > fallback(solo)。
  * 確定 → record → plan → emit → (apply は opt-in)。非対話+フラグ無し → 0-A。
- * invariant: --apply-branch-protection は gh 認証/admin 権限があるときだけ remote へ進む。
+ * invariant: --apply-branch-protection は action-binding approval と gh 認証/admin 権限があるときだけ remote へ進む。
  * invariant: dryRun=true は副作用ゼロ (state 非書込・remote 非適用、branchProtection.reason="dry-run")。
  */
 export function runSetup(args: SetupArgs, deps: SetupDeps): SetupResult {

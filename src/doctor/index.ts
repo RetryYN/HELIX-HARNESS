@@ -308,6 +308,11 @@ import {
   s4DecisionVerificationCommandViolations,
 } from "../lint/s4-decision-readiness";
 import {
+  analyzeL1L2Consistency,
+  l1L2ConsistencyMessages,
+  loadL1L2ConsistencyInput,
+} from "../lint/l1-l2-consistency";
+import {
   analyzeScreenImplPairFreeze,
   loadScreenImplPairFreezeInput,
   screenImplPairFreezeMessages,
@@ -1691,6 +1696,25 @@ export function checkScreenImplPairFreeze(repoRoot: string): { messages: string[
   }
 }
 
+/** L1 画面要求 ⇔ L2 画面設計の双方向 ID 被覆を hard gate として検査する (PLAN-DISCOVERY-11 収束機械判定)。 */
+export function checkL1L2Consistency(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["l1-l2-consistency - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const r = analyzeL1L2Consistency(loadL1L2ConsistencyInput(repoRoot));
+    return { messages: l1L2ConsistencyMessages(r), ok: r.ok };
+  } catch {
+    return {
+      messages: ["l1-l2-consistency - violation: screen design docs could not be read"],
+      ok: false,
+    };
+  }
+}
+
 /** git tracked top-level ⊆ repository-structure.md canonical の突合を hard gate として検査する。 */
 export function checkTrackedCanonical(repoRoot: string): { messages: string[]; ok: boolean } {
   if (!existsSync(repoRoot)) {
@@ -2405,8 +2429,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const branchProtectionScriptOk = branchProtectionScriptIsApplyCapable(branchProtectionScript);
   messages.push(
     branchProtectionScriptOk
-      ? "doctor: consumer-branch-protection-script - OK (gh auth/admin preflight, apply-capable, token-free)"
-      : "doctor: consumer-branch-protection-script - violation: script must contain gh auth status, gh api -X PUT branch protection apply, harness-check context, and no token/secrets persistence",
+      ? "doctor: consumer-branch-protection-script - OK (action-binding approval-bound, gh auth/admin preflight, apply-capable, token-free)"
+      : "doctor: consumer-branch-protection-script - violation: script must contain action-binding approval record check, gh auth status, gh api -X PUT branch protection apply, harness-check context, and no token/secrets persistence",
   );
 
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";
@@ -3259,6 +3283,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const subDocCatalogDrift = checkSubDocCatalogDrift(deps.repoRoot);
   const subDocSectionStructure = checkSubDocSectionStructure(deps.repoRoot);
   const screenImplPairFreeze = checkScreenImplPairFreeze(deps.repoRoot);
+  const l1L2Consistency = checkL1L2Consistency(deps.repoRoot);
   const verificationGroups = checkVerificationGroupsResult(deps.repoRoot);
   const dependencyDrift = checkDependencyDrift(deps.repoRoot);
   const regressionExpansion = checkRegressionExpansion(deps.repoRoot, dependencyDrift.result);
@@ -3355,6 +3380,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       subDocCatalogDrift.ok &&
       subDocSectionStructure.ok &&
       screenImplPairFreeze.ok &&
+      l1L2Consistency.ok &&
       dependencyDrift.ok &&
       regressionExpansion.ok &&
       dbProjectionCoverage.ok &&
@@ -3450,6 +3476,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...subDocCatalogDrift.messages.map((m) => `doctor: ${m}`),
       ...subDocSectionStructure.messages.map((m) => `doctor: ${m}`),
       ...screenImplPairFreeze.messages.map((m) => `doctor: ${m}`),
+      ...l1L2Consistency.messages.map((m) => `doctor: ${m}`),
       ...dependencyDrift.messages.map((m) => `doctor: ${m}`),
       ...regressionExpansion.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionCoverage.messages.map((m) => `doctor: ${m}`),

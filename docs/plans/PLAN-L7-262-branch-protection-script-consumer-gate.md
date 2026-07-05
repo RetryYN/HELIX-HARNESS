@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-07-03
 updated: 2026-07-03
 backprop_decision: not_required
-backprop_decision_reason: "consumer setup が生成する branch protection script を gh auth/admin preflight 付き apply-capable として検査する実装強化。既定は emit-only で、明示 apply なしに GitHub branch protection は変更しない。"
+backprop_decision_reason: "consumer setup が生成する branch protection script を action-binding approval + gh auth/admin preflight 付き apply-capable として検査する実装強化。既定は emit-only で、approval なしに GitHub branch protection は変更しない。"
 owner: TL (Codex)
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
@@ -48,7 +48,7 @@ review_evidence:
     reviewed_at: "2026-07-03T17:45:00+09:00"
     tests_green_at: "2026-07-03T17:45:00+09:00"
     verdict: approve
-    scope: "subagent 指摘に基づき、consumer setup が生成する branch protection script を setup readiness / consumer doctor / distribution acceptance で gh auth/admin preflight 付き apply-capable として検査するようにした。既定は emit-only で remote apply は明示フラグ時だけ許可する。"
+    scope: "subagent 指摘に基づき、consumer setup が生成する branch protection script を setup readiness / consumer doctor / distribution acceptance で action-binding approval + gh auth/admin preflight 付き apply-capable として検査するようにした。既定は emit-only で remote apply は approval-bound にする。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:
@@ -79,7 +79,7 @@ review_evidence:
 setup readiness、consumer doctor、clean distribution acceptance は consumer repo に投影された script 実体を検査していなかった。
 
 この PLAN の当初方針は、生成済み branch protection script を旧 checklist-only に固定するものだった。
-2026-07-05 の後続修正で supersede され、現在は gh auth/admin preflight 付き apply-capable script を consumer artifact gate として固定する。
+2026-07-05 の後続修正で、現在は action-binding approval + gh auth/admin preflight 付き apply-capable script を consumer artifact gate として固定する。
 
 ## 変更
 
@@ -92,13 +92,13 @@ setup readiness、consumer doctor、clean distribution acceptance は consumer r
 ## 境界
 
 - 既定実行では `gh auth status`、`gh api -X PUT`、branch protection / ruleset apply、外部 GitHub 書き込みは実行しない。
-- 明示 `--apply-branch-protection` 時だけ、`gh auth status` と repo admin preflight を通した後に remote apply surface へ進める。
-- action-binding approval 記録、GitHub settings 変更、secret 操作は行わない。
+- 明示 `--apply-branch-protection` 時でも、action-binding approval record が無ければ remote apply surface へ進めない。承認済み record と `gh auth status` / repo admin preflight を通した後だけ remote apply へ進める。
+- この PLAN 自体は action-binding approval 記録、GitHub settings 変更、secret 操作を行わない。
 - `PLAN-M-02` の rename/cutover approval と `.helix` 実移行は扱わない。
 
 ## 完了条件
 
-- setup readiness が gh auth/admin preflight と token/secret 非保持を持たない branch protection script を green にしない。
+- setup readiness が action-binding approval check、gh auth/admin preflight、token/secret 非保持を持たない branch protection script を green にしない。
 - consumer doctor が同じ退行を fail-close する。
 - distribution acceptance が generated consumer repo の script 実体を確認する。
 - targeted tests、typecheck、design-language、plan governance、doctor が green。

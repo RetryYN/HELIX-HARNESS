@@ -106,7 +106,7 @@ Add-feature 標準ライフサイクル 経路 B の **収束段**。`PLAN-L6-05
 
 2026-07-02 continuation: L3 HR-FR-P6-03 / HAC-P6-03a が求める GitHub rules/checks plan と doctor baseline を
 `HelixProjectSetupResult.githubPlan` / `doctorBaseline` として構造化した。`githubPlan` は plan-only、remote apply
-なし、required check `harness-check`、branch protection `emit_only_by_default_apply_capable` / gh auth/admin preflightを返す。`doctorBaseline`
+なし、required check `harness-check`、branch protection `emit_only_by_default_approval_bound_apply_capable` / action-binding approval / gh auth/admin preflightを返す。`doctorBaseline`
 は setup dry-run / status / doctor / handover status / team-run dry-run と `.helix/memory|handover|evidence|teams` baseline を返し、
 `completionClaimAllowed=false` を固定する。これにより fresh setup の初回稼働証跡が path 文字列だけでなく、
 GitHub gate と doctor baseline の意味単位として trace 可能になる。
@@ -129,7 +129,7 @@ dry-run に接続する。これは provider 実行や外部 API 呼び出しを
 
 ## §2 back-fill 内容 (新規 FR を起こさない)
 
-- **要件 §6.5** (`docs/governance/helix-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`helix setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で、明示 apply 時だけ gh auth/admin preflight 後に適用。
+- **要件 §6.5** (`docs/governance/helix-harness-requirements_v1.2.md`): Phase 0-A/0-B の定義に「`helix setup --solo/--team` がこの 2-stage の emission を担う (検出→提案→確認→記録、PLAN-L6-05/L7-03)」を追記。branch protection は emit-only 既定で、明示 apply 時も action-binding approval と gh auth/admin preflight が揃った場合だけ適用。
 - **L4 external-if** (`docs/design/harness/L4-basic-design/external-if.md`): VCS・CI 境界に「`helix setup` の GitHub 設定境界 = ファイル emit (CODEOWNERS / workflow / ISSUE・PR テンプレ) は harness が書く / branch protection・Required 化は gh-api 操作で **emit-only 既定** (script 生成、適用は gh auth/admin preflight) / token は保持しない (gh 認証委譲)」の DbC 境界を追記。
 - **L0 §10.3 機構用語** (`docs/governance/helix-harness-concept_v3.1.md`): Phase 0-A (solo) / Phase 0-B (team) / 参加規模検出 / emit-only を back-merge (§G.9、機構用語)。
 - **L6/L7 continuation** (`docs/design/harness/L6-function-design/setup-solo-team.md` / `docs/test-design/harness/L7-unit-test-design.md`): `helix setup project` は setup solo/team の extension として登録済み。VSCode task と `.helix` baseline は Phase 0 bootstrap の生成物であり、`identifierTransition` は `.helix` 目標と cutover blocker を示すだけで、branch protection / external API / secrets / identifier cutover を自動適用しない。`postSetupWorkflow` は consumer project の初回稼働ルートを first-run contract として出し、brownfield conflict と readiness 未充足を setup 成功と混同しない。`githubPlan` と `doctorBaseline` は L3/HAC-P6-03a の GitHub rules/checks plan / doctor baseline 要求に対応し、remote apply や completion claim を含まない。`AGENTS.md` の team-run 案内は配布済み `.helix/teams/default-hybrid.yaml` と dry-run 検証に接続し、案内だけが実体に先行する状態を U-SETUP-023 で fail-close する。

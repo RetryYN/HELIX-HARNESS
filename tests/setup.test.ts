@@ -244,6 +244,12 @@ const baseTemplates: TemplateSet = {
   "team/setup-branch-protection.sh": [
     "#!/usr/bin/env bash",
     "set -euo pipefail",
+    'APPROVAL_RECORD="$' + '{HELIX_BRANCH_PROTECTION_APPROVAL_RECORD:-}"',
+    'if [[ -z "$' + '{APPROVAL_RECORD}" || ! -f "$' + '{APPROVAL_RECORD}" ]]; then',
+    '  echo "action-binding approval record is required before branch protection apply" >&2',
+    "  exit 2",
+    "fi",
+    'grep -q "action_binding_approval_record" "$' + '{APPROVAL_RECORD}"',
     'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
     "gh auth status >/dev/null",
     'gh api -X PUT "repos/$' + '{REPO}/branches/main/protection" \\',
@@ -1125,7 +1131,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             "gh pr create --draft --base <base> --head <branch> --title <title>",
         },
         branchProtection: {
-          status: "emit_only_by_default_apply_capable",
+          status: "emit_only_by_default_approval_bound_apply_capable",
           scriptPath: "scripts/setup-branch-protection.sh",
           requiresAuthenticatedGh: true,
           requiredPermission: "admin",
@@ -3194,7 +3200,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         failureMode: "resource_not_accessible_by_integration",
       },
       branchProtection: {
-        status: "emit_only_by_default_apply_capable",
+        status: "emit_only_by_default_approval_bound_apply_capable",
         scriptPath: "scripts/setup-branch-protection.sh",
         requiresAuthenticatedGh: true,
         requiredPermission: "admin",
@@ -3217,7 +3223,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
-  it("U-SETUP-021: HELIX project setup applies branch protection when gh auth and admin permission pass", () => {
+  it("U-SETUP-021: HELIX project setup keeps branch protection apply approval-bound even when gh auth and admin permission pass", () => {
     const ghCalls: string[][] = [];
     const ghAdmin = (args: string[]) => {
       const key = args.join(" ");
@@ -3247,17 +3253,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       appliesRemote: false,
       applyCommandAvailable: true,
       branchProtection: {
-        status: "emit_only_by_default_apply_capable",
+        status: "emit_only_by_default_approval_bound_apply_capable",
         requiresAuthenticatedGh: true,
         requiredPermission: "admin",
       },
     });
     expect(result.branchProtection).toEqual({
-      applied: true,
-      reason: "applied",
+      applied: false,
+      reason: "approval-required",
     });
-    expect(ghCalls).toContainEqual(["auth", "status"]);
-    expect(ghCalls.some((call) => call.includes("PUT"))).toBe(true);
+    expect(ghCalls).not.toContainEqual(["auth", "status"]);
+    expect(ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
   it("U-SETUP-020: distributed HELIX adapter docs stay Japanese-first", () => {
@@ -3326,7 +3332,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(re.phase).toBe("0-A"); // append でなく上書き
   });
 
-  it("U-SETUP-006: applyBranchProtection は gh 認証/admin 権限を preflight して適用する", () => {
+  it("U-SETUP-006: applyBranchProtection は action-binding approval 後に gh 認証/admin 権限を preflight して適用する", () => {
     const plan = planSetup("0-B", { dryRun: false });
 
     // apply≠true → emit-only、gh 呼ばれない
@@ -3337,7 +3343,20 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(d1.ghCalls.length).toBe(0);
 
-    // apply=true だが gh 未認証 → remote へ進まない
+    // apply=true だが approval 無し → gh に触れず remote へ進まない
+    const dNoApprovalCalls: string[][] = [];
+    const dNoApproval = mockDeps({
+      isInteractive: false,
+      gh: recordingGh(dNoApprovalCalls, ghTeam),
+      confirm: () => true,
+    });
+    expect(applyBranchProtection(plan, dNoApproval, { apply: true })).toEqual({
+      applied: false,
+      reason: "approval-required",
+    });
+    expect(dNoApprovalCalls.length).toBe(0);
+
+    // approval はあるが gh 未認証 → remote へ進まない
     const d2Calls: string[][] = [];
     const d2 = mockDeps({
       isInteractive: false,
@@ -3346,23 +3365,27 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ),
       confirm: () => true,
     });
-    expect(applyBranchProtection(plan, d2, { apply: true })).toEqual({
-      applied: false,
-      reason: "gh-auth-required",
-    });
+    expect(
+      applyBranchProtection(plan, d2, {
+        apply: true,
+        approvalEvidence: { approved: true, recordPath: ".helix/evidence/branch-protection.yml" },
+      }),
+    ).toEqual({ applied: false, reason: "gh-auth-required" });
     expect(d2Calls).toContainEqual(["auth", "status"]);
 
-    // gh 認証 + admin が揃えば、非対話でも AI agent が remote 設定を適用できる。
+    // approval + gh 認証 + admin が揃えば、非対話でも AI agent が remote 設定を適用できる。
     const d3Calls: string[][] = [];
     const d3 = mockDeps({
       isInteractive: true,
       gh: recordingGh(d3Calls, ghTeam),
       confirm: () => true,
     });
-    expect(applyBranchProtection(plan, d3, { apply: true })).toEqual({
-      applied: true,
-      reason: "applied",
-    });
+    expect(
+      applyBranchProtection(plan, d3, {
+        apply: true,
+        approvalEvidence: { approved: true, recordPath: ".helix/evidence/branch-protection.yml" },
+      }),
+    ).toEqual({ applied: true, reason: "applied" });
     expect(d3Calls).toContainEqual(["auth", "status"]);
     expect(d3Calls.some((call) => call.includes("PUT"))).toBe(true);
   });
@@ -3397,13 +3420,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(r3.phase).toBe("0-A");
     expect(JSON.parse(nb.files.get(statePath) as string).decidedBy).toBe("fallback");
 
-    // ④ apply=true + 非対話 + gh 認証/admin → branchProtection.applied=true
+    // ④ apply=true + 非対話 + gh 認証/admin でも approval 無しなら停止
     const a = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
     const r4 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, a);
-    expect(r4.branchProtection.applied).toBe(true);
-    expect(r4.branchProtection.reason).toBe("applied");
+    expect(r4.branchProtection).toEqual({ applied: false, reason: "approval-required" });
 
-    // ⑤ apply=true + 対話 + admin でも同じ preflight 経由で適用する。
+    // ⑤ apply=true + 対話 + admin でも approval 無しなら gh preflight 前に停止する。
     const aiCalls: string[][] = [];
     const ai = mockDeps({
       templates: baseTemplates,
@@ -3413,11 +3435,11 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     const r5 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, ai);
     expect(r5.branchProtection).toEqual({
-      applied: true,
-      reason: "applied",
+      applied: false,
+      reason: "approval-required",
     });
-    expect(aiCalls).toContainEqual(["auth", "status"]);
-    expect(aiCalls.some((call) => call.includes("PUT"))).toBe(true);
+    expect(aiCalls).not.toContainEqual(["auth", "status"]);
+    expect(aiCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
   it("U-SETUP-008: dryRun=true は副作用ゼロ (state 非書込 / gh 非呼出 / branch protection 非適用)", () => {
@@ -3442,12 +3464,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(r.branchProtection).toEqual({ applied: false, reason: "dry-run" });
   });
 
-  it("U-SETUP-022: branch protection 生成 script は gh preflight 付きで remote API を適用できる", () => {
+  it("U-SETUP-022: branch protection 生成 script は approval-bound + gh preflight 付きで remote API を適用できる", () => {
     const repoTemplates = loadTemplates(process.cwd());
     for (const script of [
       repoTemplates["team/setup-branch-protection.sh"],
       BUILTIN_GITHUB_TEMPLATES["team/setup-branch-protection.sh"],
     ]) {
+      expect(script).toContain("HELIX_BRANCH_PROTECTION_APPROVAL_RECORD");
+      expect(script).toContain("action_binding_approval_record");
       expect(script).toContain("gh auth status");
       expect(script).toContain("gh api -X PUT");
       expect(script).toContain("branches/main/protection");
