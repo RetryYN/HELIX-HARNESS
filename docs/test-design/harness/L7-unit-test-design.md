@@ -1132,6 +1132,7 @@ subagent の「賢さ」を委譲の質で機械保証する 2 機構。(1) Clau
 | U-ROLEJUDG-004 | `roleJudgmentBrief("reviewer")` | verify ブリーフは adversarial framing / severity-first / false positive 抑制を含む。 |
 | U-ROLEJUDG-005 | `roleJudgmentBrief("tl")` | consult ブリーフは 4 点出力契約（結論/根拠/残リスク/次の一手）・対案必須・advisory-only を含む。 |
 | U-ROLEJUDG-006 | `roleJudgmentBrief` 全 archetype | すべてのブリーフが escalation 境界と judgment-core 正本参照を含む。 |
+| U-ROLEJUDG-007 | `roleArchetypeFor` ⇔ `ROLE_ARCHETYPE` | runtime 側 role→archetype 局所写しは tier-router-policy の `ROLE_ARCHETYPE`（正本）と全 role 一致する（循環依存回避のための局所化 drift をテスト側で機械固定。正本へ role 追加時に fail する）。 |
 | U-AGUARD-BRIEF-001 | `evaluateAgentGuard` / `missingDelegationBriefMarkers` | 4 marker を含まない Agent prompt は fail-close で block し、message に欠落 key と SSoT 参照を含む。 |
 | U-AGUARD-BRIEF-002 | `evaluateAgentGuard` | prompt 欠落は全 marker 欠落として block。部分欠落は欠落 key のみを列挙する（充足済み key を誤列挙しない）。 |
 | U-AGUARD-BRIEF-003 | `evaluateAgentGuard` | 英語 / 日本語ラベルは等価（混在可）。4 要素が揃えば pass。 |

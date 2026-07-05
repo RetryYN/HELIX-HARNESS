@@ -98,6 +98,39 @@ review_evidence:
         completed_at: "2026-07-06T04:38:35+09:00"
         evidence_path: docs/plans/PLAN-L7-337-delegation-brief-role-judgment.md
         output_digest: "sha256:d357ba4d848b877221bedde18c93b9637c4b6b26b96ab5b646676a1b55b2efe5"
+  - reviewer: code-reviewer
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T04:47:48+09:00"
+    tests_green_at: "2026-07-06T04:47:48+09:00"
+    verdict: approve
+    scope: "5 軸レビュー (Claude 側 fresh subagent context、commit ee173a4 対象)。Critical/Important 0。Minor 3 件のうち trace 漏れ 2 件を解消 (U-ROLEJUDG-007 を test-design 追補と AC へ追記、agent-design.md checklist へ委譲ブリーフ marker を追記)。marker 表記の厳密一致は決定論的 guard の意図的選択として受容 (block message が修正指示になる自己修正性を確認)。role 表局所化は tier-router->adapter の実依存方向 (循環回避) と整合、drift は U-ROLEJUDG-007 で機械固定済み。live 検証: 本レビュー subagent の spawn 自体が 4 marker 付き prompt で新 guard を pass し、hook payload に prompt が流れる前提を実地立証した (欠落なら全 marker 欠落で block されるため)。"
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T04:47:48+09:00"
+        evidence_path: tests/role-judgment.test.ts
+        output_digest: "sha256:86b1a20adbcd63d8c0ff3368d55d8edcf917e9467935ac4e84ab08b30f74ab14"
+      - kind: unit_test
+        command: "bun test tests/tool-adapter.test.ts tests/orchestration/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T04:47:48+09:00"
+        evidence_path: tests/team-run.test.ts
+        output_digest: "sha256:0d8807d5e9a0befaa6bddbb482d5981902b3f1d3d23d54f0bd86551af76ef18e"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T04:47:48+09:00"
+        evidence_path: src/runtime/role-judgment.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-337 (impl): 委譲ブリーフ強制 + role 判断ブリーフ注入
@@ -152,12 +185,13 @@ Anthropic multi-agent research system の実測知見）。PLAN-L7-335 で判断
 - `helix team run` team 定義スキーマへのブリーフ必須化（PLAN-L7-335 OUT を踏襲、別 PLAN 候補）。
 
 ## 受入条件
-- U-ROLEJUDG-001..006 / U-AGUARD-BRIEF-001..004 / U-ADAPTER-010 が green であること
-  （検証コマンド: `bun test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts`）。
+- U-ROLEJUDG-001..007 / U-AGUARD-BRIEF-001..004 / U-ADAPTER-010 が green であること
+  （検証コマンド: `bun test tests/role-judgment.test.ts tests/agent-guard.test.ts tests/runtime-adapter.test.ts`。
+  U-ROLEJUDG-007 = runtime 局所 role 表と tier-router-policy ROLE_ARCHETYPE 正本の同期 oracle）。
 - 既存 stdin 帯域外契約（U-ADAPTER-007/008）と guard 既存 oracle が green のまま
-  （同上コマンドに包含、47 oracle）。
+  （同上コマンドに包含、49 oracle）。
 - adapter 消費側（loop-bridge / team-run / provider-handover / tool-adapter）の回帰が green
-  （検証コマンド: `bun test tests/tool-adapter.test.ts tests/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts`）。
+  （検証コマンド: `bun test tests/tool-adapter.test.ts tests/orchestration/loop-bridge.test.ts tests/team-run.test.ts tests/provider-handover.test.ts`）。
 - `bun run typecheck` green、`helix doctor` exit 0。
 - review evidence + green_commands（digest 付き）を記録する。
 

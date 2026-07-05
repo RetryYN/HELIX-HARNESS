@@ -74,6 +74,8 @@ parent を暗黙継承しない。
 ## Self-review checklist（自己レビューチェックリスト）
 
 - [ ] frontmatter の `name` が filename と一致している（kebab-case、spaces なし）。
+- [ ] spawn prompt に委譲ブリーフ 4 marker（`【objective】【output format】【tool guidance】【task boundary】`、
+      英日ラベル可、judgment-core §5 / PLAN-L7-337）が含まれている（欠落は `agent-guard` が block）。
 - [ ] `model` field が明示されている。blank でも placeholder でもない。
 - [ ] spawn call の `subagent_type` が allowlist entry と完全一致する。
 - [ ] Capability class の根拠がある。選んだ model tier は必要最小限。
