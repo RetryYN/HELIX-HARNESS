@@ -16,6 +16,7 @@ import {
   unavailableProviderMessage,
 } from "./adapter-policy";
 import type { ExecutionMode } from "./detect";
+import { roleJudgmentBrief } from "./role-judgment";
 
 export type AdapterProvider = "claude" | "codex";
 
@@ -409,7 +410,7 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
     available,
     command: isCodex ? "codex" : "claude",
     args,
-    stdin: formatAdapterPrompt(intent.task, intent.contextInjection),
+    stdin: formatAdapterPrompt(intent.task, intent.contextInjection, intent.role),
     ...(intent.provider === "claude" && effort ? { env: { [CLAUDE_EFFORT_ENV]: effort } } : {}),
     dry_run: !intent.execute,
     plan_id: intent.planId,
@@ -422,15 +423,26 @@ export function buildAdapterPlan(intent: AdapterIntent, mode: ExecutionMode): Ad
   };
 }
 
-function formatAdapterPrompt(task: string, injection?: AdapterContextInjection): string {
+/**
+ * 委譲 prompt = task 本文 + role 判断ブリーフ (judgment-core、PLAN-L7-337) + skill 注入。
+ * role ブリーフは全委譲に必ず載せる: Codex 側には role 別判断基準の正本が無く、
+ * --task の手書きに依存すると判断規律が委譲ごとに欠落する (ブリーフ無し委譲を作らない)。
+ */
+function formatAdapterPrompt(
+  task: string,
+  injection?: AdapterContextInjection,
+  role?: string,
+): string {
   const required = injection?.required_paths ?? [];
   const optional = injection?.optional_paths ?? [];
-  if (required.length === 0 && optional.length === 0) return task;
-  return [
-    task,
-    "",
-    ADAPTER_CONTEXT_HEADER,
-    ...required.map((path) => `- ${REQUIRED_SKILL_LABEL}: ${path}`),
-    ...optional.map((path) => `- ${OPTIONAL_SKILL_LABEL}: ${path}`),
-  ].join("\n");
+  const sections = [task, "", roleJudgmentBrief(role)];
+  if (required.length > 0 || optional.length > 0) {
+    sections.push(
+      "",
+      ADAPTER_CONTEXT_HEADER,
+      ...required.map((path) => `- ${REQUIRED_SKILL_LABEL}: ${path}`),
+      ...optional.map((path) => `- ${OPTIONAL_SKILL_LABEL}: ${path}`),
+    );
+  }
+  return sections.join("\n");
 }

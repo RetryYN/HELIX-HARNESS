@@ -1115,3 +1115,25 @@ allowlist 転記の同期を機械検査する。実装は `src/lint/judgment-co
 > terminal status 共通化（同 PLAN）: `plan-artifact-existence` / `plan-completion-drift` /
 > `merged-plan-status` の 3 重定義を `shared.ts` の `isTerminalPlanStatus`（TERMINAL_PLAN_STATUSES 正本）
 > へ置換。behavior-invariant は既存 U-* net（3 test files、40 oracle green）で regression 検証する。
+
+## PLAN-L7-337 委譲ブリーフ強制 + role 判断ブリーフ注入 追補
+
+subagent の「賢さ」を委譲の質で機械保証する 2 機構。(1) Claude Agent spawn は委譲ブリーフ
+4 marker（judgment-core §5）欠落を `agent-guard` が fail-close、(2) `helix codex/claude --role`
+委譲は role archetype 別判断ブリーフを adapter が全 prompt へ機械注入する。実装は
+`src/runtime/role-judgment.ts` / `agent-guard.ts` / `adapter.ts`、テストは
+`tests/role-judgment.test.ts` / `tests/agent-guard.test.ts` / `tests/runtime-adapter.test.ts`。
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-ROLEJUDG-001 | `roleArchetypeFor` | ROLE_ARCHETYPE 正規 role（tl/uiux=consult、qa=verify、se/docs=worker）と review/advisor alias（reviewer/security/code-reviewer=verify、tl-advisor=consult）を trim + 大小無視で解決する。 |
+| U-ROLEJUDG-002 | `roleArchetypeFor` / `roleJudgmentBrief` | 未知 role / 空 role は archetype null。ただしブリーフは共通規律（正本参照 + escalation 境界）を必ず返す（ブリーフ無し委譲を作らない）。 |
+| U-ROLEJUDG-003 | `roleJudgmentBrief("se")` | worker ブリーフは「green な test / command の実測で裏付ける」とスコープ規律を含む。 |
+| U-ROLEJUDG-004 | `roleJudgmentBrief("reviewer")` | verify ブリーフは adversarial framing / severity-first / false positive 抑制を含む。 |
+| U-ROLEJUDG-005 | `roleJudgmentBrief("tl")` | consult ブリーフは 4 点出力契約（結論/根拠/残リスク/次の一手）・対案必須・advisory-only を含む。 |
+| U-ROLEJUDG-006 | `roleJudgmentBrief` 全 archetype | すべてのブリーフが escalation 境界と judgment-core 正本参照を含む。 |
+| U-AGUARD-BRIEF-001 | `evaluateAgentGuard` / `missingDelegationBriefMarkers` | 4 marker を含まない Agent prompt は fail-close で block し、message に欠落 key と SSoT 参照を含む。 |
+| U-AGUARD-BRIEF-002 | `evaluateAgentGuard` | prompt 欠落は全 marker 欠落として block。部分欠落は欠落 key のみを列挙する（充足済み key を誤列挙しない）。 |
+| U-AGUARD-BRIEF-003 | `evaluateAgentGuard` | 英語 / 日本語ラベルは等価（混在可）。4 要素が揃えば pass。 |
+| U-AGUARD-BRIEF-004 | `evaluateAgentGuard` | `HELIX_ALLOW_RAW_AGENT=1` はブリーフ欠落も bypass 警告付きで通す（既存 bypass 契約と同一）。 |
+| U-ADAPTER-010 | `buildAdapterPlan` / `formatAdapterPrompt` | 全委譲 plan の stdin は task 本文に加えて `ROLE_JUDGMENT_HEADER` の role 判断ブリーフを含む（skill 注入の有無に依らず）。既存 U-ADAPTER-007/008 の stdin 帯域外契約（argv 非混入）は維持される。 |

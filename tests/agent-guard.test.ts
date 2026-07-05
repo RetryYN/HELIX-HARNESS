@@ -34,12 +34,16 @@ function ctx(allowRaw = false): AgentGuardContext {
   };
 }
 
+/** 委譲ブリーフ 4 marker を満たす prompt (PLAN-L7-337)。既存 oracle は brief 充足を前提に流す。 */
+const BRIEF_PROMPT =
+  "【objective】fixture 調査【output format】箇条書き【tool guidance】Read のみ【task boundary】tests/ 配下のみ";
+
 function agent(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
-  return { tool_name: "Agent", tool_input };
+  return { tool_name: "Agent", tool_input: { prompt: BRIEF_PROMPT, ...tool_input } };
 }
 
 function task(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
-  return { tool_name: "Task", tool_input };
+  return { tool_name: "Task", tool_input: { prompt: BRIEF_PROMPT, ...tool_input } };
 }
 
 function codexSpawn(tool_input: AgentGuardInput["tool_input"]): AgentGuardInput {
@@ -204,6 +208,83 @@ describe("evaluateAgentGuard", () => {
     );
     expect(d.code).toBe(2);
     expect(d.message).toContain("bulk");
+  });
+
+  it("U-AGUARD-BRIEF-001: 委譲ブリーフ 4 marker 欠落の Agent prompt を fail-close で block する", () => {
+    const d = evaluateAgentGuard(
+      {
+        tool_name: "Agent",
+        tool_input: { subagent_type: "pmo-sonnet", model: "sonnet", prompt: "調べておいて" },
+      },
+      ctx(),
+    );
+    expect(d.code).toBe(2);
+    expect(d.message).toContain("delegation-brief");
+    expect(d.message).toContain("objective");
+    expect(d.message).toContain("judgment-core.md");
+  });
+
+  it("U-AGUARD-BRIEF-002: prompt 欠落は 4 marker 全欠落として block、部分欠落は欠落 key を列挙する", () => {
+    const missingAll = evaluateAgentGuard(
+      { tool_name: "Agent", tool_input: { subagent_type: "pmo-sonnet", model: "sonnet" } },
+      ctx(),
+    );
+    expect(missingAll.code).toBe(2);
+
+    const partial = evaluateAgentGuard(
+      {
+        tool_name: "Agent",
+        tool_input: {
+          subagent_type: "pmo-sonnet",
+          model: "sonnet",
+          prompt: "【objective】x【output format】y【tool guidance】z",
+        },
+      },
+      ctx(),
+    );
+    expect(partial.code).toBe(2);
+    expect(partial.message).toContain("task boundary");
+    expect(partial.message).not.toContain("objective,"); // 充足済み key は列挙しない
+  });
+
+  it("U-AGUARD-BRIEF-003: 英語 / 日本語ラベル混在でも 4 要素が揃えば pass", () => {
+    const ja = evaluateAgentGuard(
+      {
+        tool_name: "Agent",
+        tool_input: {
+          subagent_type: "pmo-sonnet",
+          model: "sonnet",
+          prompt: "【目的】調査【出力形式】表【ツール方針】Read のみ【境界】src/ のみ",
+        },
+      },
+      ctx(),
+    );
+    expect(ja.code).toBe(0);
+
+    const mixed = evaluateAgentGuard(
+      {
+        tool_name: "Agent",
+        tool_input: {
+          subagent_type: "pmo-haiku",
+          model: "haiku",
+          prompt: "【objective】scan【出力形式】1 行 1 件【tool guidance】Grep【境界】docs/ のみ",
+        },
+      },
+      ctx(),
+    );
+    expect(mixed.code).toBe(0);
+  });
+
+  it("U-AGUARD-BRIEF-004: HELIX_ALLOW_RAW_AGENT=1 はブリーフ欠落も bypass 警告付きで通す", () => {
+    const d = evaluateAgentGuard(
+      {
+        tool_name: "Agent",
+        tool_input: { subagent_type: "pmo-sonnet", model: "sonnet", prompt: "quick" },
+      },
+      ctx(true),
+    );
+    expect(d.code).toBe(0);
+    expect(d.bypassed).toBe(true);
   });
 
   it("exposes helix hook agent-guard as a blocking CLI hook", () => {

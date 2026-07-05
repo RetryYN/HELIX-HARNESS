@@ -109,6 +109,10 @@ Rules:
 3. requested model は agent frontmatter family と一致しなければならない。
 4. bypass は `HELIX_ALLOW_RAW_AGENT=1` の場合だけ認め、evidence を残さなければならない。
 5. invalid stdin JSON または unverifiable state は fail closed とする。
+6. Agent prompt は**委譲ブリーフ 4 marker** を含まなければ block する（judgment-core §5 の機械強制、
+   PLAN-L7-337）: `【objective】`（`【目的】`）/ `【output format】`（`【出力形式】`）/
+   `【tool guidance】`（`【ツール方針】`）/ `【task boundary】`（`【境界】`）。英語・日本語ラベル
+   どちらでも可。正本 = `src/runtime/agent-guard-policy.ts` の `DELEGATION_BRIEF_MARKERS`。
 
 Allowlist（正本 = `src/runtime/agent-guard-policy.ts` の `SUBAGENT_ALLOWLIST`。本一覧は同期写し）:
 

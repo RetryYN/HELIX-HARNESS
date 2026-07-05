@@ -19,7 +19,9 @@ decision に統合する。trace-freeze→accept transition または L12 deploy
 
 3 つの Agent call は、並列実行されるように 1 turn でまとめて発行する。逐次 call にすると目的を失う。
 各 `subagent_type` は `PreToolUse(Agent)` guard の allowlist に含まれ、各 call は agent frontmatter
-family と一致する明示 `model` を渡さなければならない。
+family と一致する明示 `model` を渡さなければならない。各 prompt は委譲ブリーフ 4 marker
+（【objective】【output format】【tool guidance】【task boundary】、judgment-core §5）を含める
+（欠落は guard が block する）。
 
 1. **code-reviewer** — staged/uncommitted change に対して five-axis review
    (correctness, readability, architecture, security, performance) を行う。

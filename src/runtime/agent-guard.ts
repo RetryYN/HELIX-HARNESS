@@ -6,6 +6,7 @@
  * 2. Non-allowlisted subagents are blocked.
  * 3. Missing model is blocked.
  * 4. Calls that override the model family declared in frontmatter are blocked.
+ * 5. Prompts missing the delegation-brief markers (judgment-core §5) are blocked.
  *
  * This module is pure. The hook shim owns stdin and filesystem access.
  */
@@ -16,6 +17,8 @@ import {
   CODEX_AGENT_TYPE_ALLOWLIST,
   CODEX_BULK_SPAWN_AGENT_TOOL_NAME,
   CODEX_SPAWN_AGENT_TOOL_NAME,
+  DELEGATION_BRIEF_HINT,
+  DELEGATION_BRIEF_MARKERS,
   SUBAGENT_ALLOWLIST,
 } from "./agent-guard-policy";
 
@@ -30,6 +33,7 @@ export interface AgentGuardInput {
     agent_type?: string;
     message?: string;
     model?: string;
+    prompt?: string;
     items?: Array<{
       type?: string;
       text?: string;
@@ -188,5 +192,24 @@ export function evaluateAgentGuard(input: AgentGuardInput, ctx: AgentGuardContex
     );
   }
 
+  const missingBrief = missingDelegationBriefMarkers(ti.prompt);
+  if (missingBrief.length > 0) {
+    return blockOrBypass(
+      `[helix-guard] BLOCK: subagent_type=${subagentType} prompt is missing delegation-brief markers: ${missingBrief.join(", ")}.\n` +
+        `${DELEGATION_BRIEF_HINT}\n${AGENT_GUARD_BYPASS_HINT}`,
+    );
+  }
+
   return { code: 0 };
+}
+
+/**
+ * 委譲ブリーフ 4 点セット (judgment-core §5) の欠落 marker key を返す (空 = 充足)。
+ * marker は各要素につき英語 / 日本語ラベルのどちらか 1 つで良い。prompt 欠落は全 marker 欠落。
+ */
+export function missingDelegationBriefMarkers(prompt: string | null | undefined): string[] {
+  const text = prompt ?? "";
+  return DELEGATION_BRIEF_MARKERS.filter(
+    (marker) => !marker.labels.some((label) => text.includes(label)),
+  ).map((marker) => marker.key);
 }

@@ -20,6 +20,7 @@ import {
   CODEX_STDIN_ARGS,
   REQUIRED_SKILL_LABEL,
 } from "../src/runtime/adapter-policy";
+import { ROLE_JUDGMENT_HEADER } from "../src/runtime/role-judgment";
 
 /** 指定パスの親ディレクトリまで作成し、空の実行ファイルを置く。 */
 function touchBinary(path: string): void {
@@ -130,7 +131,8 @@ describe("runtime adapter plan", () => {
       "--effort",
       "medium",
     ]);
-    expect(plan.stdin).toBe("review");
+    expect(plan.stdin).toContain("review");
+    expect(plan.stdin).toContain(ROLE_JUDGMENT_HEADER); // 全委譲に判断ブリーフ (PLAN-L7-337)
     expect(plan.model).toBe("claude-sonnet-4-6");
     expect(plan.effort).toBe("medium");
     expect(plan.env).toEqual({ [CLAUDE_EFFORT_ENV]: "medium" });
@@ -340,6 +342,23 @@ describe("runtime adapter plan", () => {
     }
   });
 
+  it("U-ADAPTER-010: injects the role judgment brief into every delegation stdin (with or without skill injection)", () => {
+    const noInjection = buildAdapterPlan(
+      { provider: "codex", role: "se", task: "implement", model: "gpt-5.4" },
+      "hybrid",
+    );
+    expect(noInjection.stdin).toContain("implement");
+    expect(noInjection.stdin).toContain(ROLE_JUDGMENT_HEADER);
+    expect(noInjection.stdin).toContain("role archetype: worker");
+
+    const verify = buildAdapterPlan(
+      { provider: "claude", role: "reviewer", task: "review the diff", model: "claude-sonnet-5" },
+      "hybrid",
+    );
+    expect(verify.stdin).toContain("role archetype: verify");
+    expect(verify.stdin).toContain("severity-first");
+  });
+
   it("U-ADAPTER-007: delivers the codex prompt via stdin so Windows .cmd shell-wrapping cannot truncate it", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-adapter-codex-stdin-"));
     try {
@@ -353,8 +372,9 @@ describe("runtime adapter plan", () => {
         "hybrid",
       );
 
-      // プロンプトは stdin で帯域外に運ぶ。positional 引数には載せない。
-      expect(plan.stdin).toBe(multiline);
+      // プロンプトは stdin で帯域外に運ぶ (task 本文 + role 判断ブリーフ)。positional 引数には載せない。
+      expect(plan.stdin).toContain(multiline);
+      expect(plan.stdin).toContain(ROLE_JUDGMENT_HEADER);
       expect(plan.args).not.toContain(multiline);
       expect(plan.args).toContain("exec");
       expect(plan.args).toContain("-"); // codex exec [PROMPT]: '-' = stdin から読む
@@ -380,7 +400,8 @@ describe("runtime adapter plan", () => {
       { provider: "claude", role: "tl", task: multiline, model: "claude-sonnet-4-6" },
       "hybrid",
     );
-    expect(plan.stdin).toBe(multiline);
+    expect(plan.stdin).toContain(multiline);
+    expect(plan.stdin).toContain(ROLE_JUDGMENT_HEADER);
     expect(plan.args).toContain("--print");
     expect(plan.args).toContain("--input-format");
     expect(plan.args).toContain("text");
