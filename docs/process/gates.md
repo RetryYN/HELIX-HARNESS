@@ -52,6 +52,16 @@ G14 / whole-program completion claim は `helix status --json` の
 `outstanding.completionReadiness.ok=true` も必要条件に含める。これは doctor health gate とは別の
 completion-readiness 判定であり、doctor green を全件完了の代替証跡にしない。
 
+### G1/G2: L1-L2 収束 gate（PLAN-DISCOVERY-11 S4 confirmed / PLAN-REVERSE-329）
+
+G1/G2 の間では、画面が要求を露出する性質を正式に扱うため、L1 要求と L2 mock の反復を許可する。
+この反復は G1 exit の事後拡張ではなく、A-40 back-propagation の再検証条件として扱う。
+
+- `l1-l2-consistency` lint が screen-requirements と L2 screen-list / screen-flow / ui-element の双方向被覆を検査し、green を収束の必要条件にする。
+- AI の gap-check は read-only で、欠落候補と trace 断絶を列挙するだけである。L1/L2 の自動起草、受入、freeze、scope 分割は行わない。
+- 最終 freeze は人が宣言する。3 ラウンド以内に green へ至らない場合は PO へエスカレーションし、scope 分割または要求凍結を判断する。
+- 収束後の L1/L2 変更は silent edit ではなく、change-log と A-40 再検証を経由する。G3 以降は PO 承認済み L3 FR+AC を下流判断の SSoT とする。
+
 注: G8 は PLAN-L7-168 / PLAN-REVERSE-168 / PLAN-L7-169 系で executable evidence manifest 化済み。G9/G10 は PLAN-L7-313 で `g9-system-workflow` / `g10-ux-workflow` の executable evidence gate へ接続済み。G11-G14 は本表と `L08-L14-verification-phase.md` の evidence profile を正本とし、詳細な fail-close 実装は **PLAN-L7-130-right-arm-gate-planning / PLAN-REVERSE-130-right-arm-gate-planning** 配下の子 PLAN で展開する。`docs/improvement-backlog.md` の **IMP-052** は implemented であり、未起票 carry に戻してはならない。G1-G7 は §2.2 段階 A/B で機械化済み (または計画済み)。
 
 > **正規式モデル (PLAN-RECOVERY-02、2026-06-04、非破壊)**: 各 gate の V-pair は対応する検証本質を凍結/検証する — L6 単体 / L5 結合 / L4 総合 / L3 本番受入 / L2 実データ検証 / L1 運用 / **L0 価値検証 (G0.5 + L14→L0 feedback、従来ペア無しの穴埋め)**。右腕 = データ実在性エスカレーション (合成→本番→運用→価値)。番号・既存ゲートは据え置き。正本 = gate-design.md / concept §2.3 / overview §4。

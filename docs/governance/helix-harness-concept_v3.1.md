@@ -329,7 +329,7 @@ V2 の L0-L14 は左右が対になる V-model を成す。左側で書いた設
 
 > **L2 画面は L1 のフェーズ分離**: 画面設計の本質は L1 (要求) に内包される (画面要求 = 的確な要求/要件を引き出す道具)。フェーズが大きいため L2 として分離しているだけで、内容は分配される — **画面要求 → 要求/要件 (L1→L3 の上流)**、**画面の詳細設計 → L5 詳細設計**。よって L2 は純粋独立ペアでなく、その検証本質は実データ検証 (本番の実データで画面が成立するか)。
 >
-> **trace seed (PO 承認 2026-07-05、PoC 段階)**: この往復を明示的な **L1⟷L2 反復ループ + 収束 gate（A-40 back-propagation の精緻化）+ AI gap-check（read-only）** として formalize する設計を `docs/plans/PLAN-DISCOVERY-11-l1-l2-elicitation-cycle.md` が PoC 中。収束宣言後は要件定義を決定事項（decision record）として扱う。confirmed 昇格時に本節へ正式追補する。
+> **trace seed (PO 承認 2026-07-05、S4 confirmed)**: この往復は **L1⟷L2 反復ループ + 収束 gate（A-40 back-propagation の精緻化）+ AI gap-check（read-only）** として正式採用済み。`docs/plans/PLAN-DISCOVERY-11-l1-l2-elicitation-cycle.md` の S4 confirmed と `PLAN-REVERSE-329` fullback に基づき、Forward front-end は人が L1/L2 を作成・収束宣言し、AI は欠落候補と trace 断絶を列挙するだけとする。収束宣言後は要件定義を決定事項（decision record）として扱う。
 
 ### HELIX W (2段V、AI エージェントシステム時のみ)
 

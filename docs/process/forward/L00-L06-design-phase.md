@@ -128,6 +128,21 @@ Fail-close 条件:
 
 出典: requirements v1.2 §1.4 L2 / §2.2 G2
 
+### L1-L2 要求洗い出し反復（PLAN-DISCOVERY-11 S4 confirmed / PLAN-REVERSE-329）
+
+Forward front-end では、L1 要求と L2 mock を一方向の baton ではなく bounded な要求洗い出し反復として扱う。
+これは新 mode ではなく、既存の「L2 画面 = L1 のフェーズ分離」を A-40 back-propagation へ接続する正式工程である。
+
+1 ラウンドは「L2 mock 更新 -> L1 要求更新 -> L1/L2 trace 再列挙 -> 残差確認」で構成する。
+AI の関与は read-only gap-check に限定し、mock にあるが要求に無い項目、要求にあるが mock に無い項目、
+screen ID / screen requirement / FR-L1 trace の断絶、L2-L10 mock pair の欠落を surface するだけである。
+L1/L2 の起草、受入、freeze、scope 分割、収束宣言は人の判断点として残す。
+
+収束 gate は `PLAN-L7-330` の L1/L2 consistency lint green を必要条件にし、最終 freeze は人の宣言で行う。
+3 ラウンド以内に green へ至らない場合は自動継続せず、PO が scope 分割または要求凍結を判断する。
+収束後の L1 要求と L2 mock は decision record であり、silent edit せず change-log と A-40 再検証を経由する。
+収束後にだけ L3 へ baton carry し、AI は L3 FR+AC を起草できる。
+
 ---
 
 ### L3 要件定義
