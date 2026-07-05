@@ -55,8 +55,32 @@ const TELEMETRY_SIGNAL_TYPES = new Set([
   "workflow_human_required_rate",
 ]);
 
+const REFACTOR_CANDIDATE_SIGNAL_PREFIX = "refactor_candidate:";
+
 function severityRank(severity: string): number {
   return SEVERITY_RANK[severity] ?? SEVERITY_RANK.warn;
+}
+
+function isRefactorCandidateSignal(signalType: string): boolean {
+  return signalType.startsWith(REFACTOR_CANDIDATE_SIGNAL_PREFIX);
+}
+
+function qualitySignalSeverity(status: string, signalType: string): string {
+  if (isRefactorCandidateSignal(signalType) && (status === "warn" || status === "fail")) {
+    return "warn";
+  }
+  return status === "fail" ? "warn" : "info";
+}
+
+function qualitySignalNextAction(input: {
+  signalId: string;
+  signalType: string;
+  subject: string;
+}): string {
+  if (isRefactorCandidateSignal(input.signalType)) {
+    return `triage refactor candidate ${input.signalId || input.subject}: attach/create refactor PLAN or record accepted debt`;
+  }
+  return `review quality signal ${input.signalId || input.subject}`;
 }
 
 export function classifyFeedbackBucket(input: {
@@ -65,6 +89,7 @@ export function classifyFeedbackBucket(input: {
 }): FeedbackSurfaceBucket {
   const severity = input.severity.toLowerCase();
   if (severity === "error" || severity === "fail") return "gate";
+  if (isRefactorCandidateSignal(input.signal_type) && severity === "warn") return "actionable";
   if (severity === "info" || TELEMETRY_SIGNAL_TYPES.has(input.signal_type)) return "telemetry";
   return "actionable";
 }
@@ -160,16 +185,19 @@ export function selectTakeoverFeedback(
     .all() as Array<Record<string, unknown>>;
   for (const signal of failedSignals) {
     const subject = String(signal.subject_id ?? signal.signal_id ?? "");
+    const signalType = String(signal.metric ?? "quality_signal");
+    const severity = qualitySignalSeverity(String(signal.status ?? "warn"), signalType);
     items.push({
       feedback_event_id: feedbackId("feedback:signal", String(signal.signal_id ?? subject)),
-      signal_type: String(signal.metric ?? "quality_signal"),
-      severity: String(signal.status ?? "warn") === "fail" ? "warn" : "info",
+      signal_type: signalType,
+      severity,
       plan_id: planIdOf(subject),
-      next_action: `review quality signal ${signal.signal_id ?? subject}`,
-      bucket: classifyFeedbackBucket({
-        severity: String(signal.status ?? "warn") === "fail" ? "warn" : "info",
-        signal_type: String(signal.metric ?? "quality_signal"),
+      next_action: qualitySignalNextAction({
+        signalId: String(signal.signal_id ?? ""),
+        signalType,
+        subject,
       }),
+      bucket: classifyFeedbackBucket({ severity, signal_type: signalType }),
     });
   }
 

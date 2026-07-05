@@ -122,6 +122,28 @@ function feedbackId(prefix: string, subject: string): string {
   return `${prefix}:${subject}`.replace(/[^A-Za-z0-9._:-]+/g, "-");
 }
 
+function isRefactorCandidateSignal(signalType: string): boolean {
+  return signalType.startsWith("refactor_candidate:");
+}
+
+function qualitySignalSeverity(status: string, signalType: string): string {
+  if (isRefactorCandidateSignal(signalType) && (status === "warn" || status === "fail")) {
+    return "warn";
+  }
+  return status === "fail" ? "warn" : "info";
+}
+
+function qualitySignalNextAction(input: {
+  signalId: string;
+  signalType: string;
+  subject: string;
+}): string {
+  if (isRefactorCandidateSignal(input.signalType)) {
+    return `triage refactor candidate ${input.signalId || input.subject}: attach/create refactor PLAN or record accepted debt`;
+  }
+  return `review quality signal ${input.signalId || input.subject}`;
+}
+
 export function emitFeedbackEvents(db: HarnessDb): FeedbackEvent[] {
   const openFindings = db.prepare("SELECT * FROM findings WHERE status = 'open'").all();
   const failedSignals = db
@@ -148,14 +170,16 @@ export function emitFeedbackEvents(db: HarnessDb): FeedbackEvent[] {
 
   for (const signal of failedSignals) {
     const subject = String(signal.subject_id ?? signal.signal_id ?? "");
+    const signalType = String(signal.metric ?? "quality_signal");
+    const signalId = String(signal.signal_id ?? "");
     const event: FeedbackEvent = {
-      feedback_event_id: feedbackId("feedback:signal", String(signal.signal_id ?? subject)),
+      feedback_event_id: feedbackId("feedback:signal", signalId || subject),
       finding_id: "",
       plan_id: subject.startsWith("PLAN-") ? subject : "",
-      signal_type: String(signal.metric ?? "quality_signal"),
-      severity: String(signal.status ?? "warn") === "fail" ? "warn" : "info",
+      signal_type: signalType,
+      severity: qualitySignalSeverity(String(signal.status ?? "warn"), signalType),
       status: "open",
-      next_action: `review quality signal ${signal.signal_id ?? subject}`,
+      next_action: qualitySignalNextAction({ signalId, signalType, subject }),
       created_at: createdAt,
     };
     upsertRow(db, { table: "feedback_events", primaryKey: "feedback_event_id", row: { ...event } });

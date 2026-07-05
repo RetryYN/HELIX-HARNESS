@@ -154,7 +154,12 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   `src/config/requirements-binding.ts` を追加し、refactor candidate detector の threshold / scan root /
   policy term、L1/L2 gap-check の `maxRounds` / 観点表を config + zod schema 管理へ移した。`doctor` は
   `requirements-binding-config` を hard gate として実行し、repo config の欠落・破損を fail-close する。
-- まだ confirmed / terminal ではない。Step 6 の refactor actionable 化、drift test、review evidence は後続 Step で扱う。
+- **Step 6 完了**: high-confidence refactor candidate を `feedback_events` / takeover feedback / doctor の
+  actionable surface へ昇格した。`refactor_candidate:*` の warn signal は telemetry に落とさず、
+  `triage refactor candidate ... attach/create refactor PLAN or record accepted debt` を next action として出す。
+  厳密な N 回連続 surface は現行 projection DB が rebuild ごとに履歴を保持しないため、履歴 table 設計を要する
+  別 PLAN 候補として扱う。
+- まだ confirmed / terminal ではない。Step 4 の L1/L3 retention/purge 要件化と最終 review evidence は後続 Step で扱う。
 
 ## 壊さない / 再発させない
 
@@ -169,6 +174,7 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 - 起票根拠 = 本セッション監査（pmo-project-explorer 3 系統、2026-07-05）。所見はチャット報告と本文 §監査で
   確認済みの穴に記録。
 - PO は 2026-07-05 に Step 1-3 の着手順と Step 4 retention 方針方向性を承認済み。
-- 次 action: Step 2 後半（config schema + threshold 移設）と Step 3（NFR グレード表）を小さく分割して実装する。
-  Step 4 の L1 追記は PO 起草・承認が必要なため、AI は L3 以下の案と検査設計までに留める。
+- 次 action: Step 4 の L1/L3 retention/purge 要件案を、PO 決定済み方針（物理削除ではなく append-only +
+  compaction / archive / projection rebuild）に沿って起草する。L1 追記は PO 起草・承認が必要なため、
+  AI は L3 以下の案と検査設計までに留める。
 - terminal 化は、各 Step の generated artifact、review evidence、green command が揃ってから行う。

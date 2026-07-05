@@ -100,6 +100,41 @@ describe("takeover feedback surface (PLAN-L7-110)", () => {
     }
   });
 
+  it("surfaces refactor candidate quality signals as actionable triage, not telemetry", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      upsertRow(db, {
+        table: "quality_signals",
+        primaryKey: "signal_id",
+        row: {
+          signal_id: "refactor-candidate:src/large.ts",
+          source: "refactor-candidate-detector",
+          subject_id: "src/large.ts",
+          metric: "refactor_candidate:split-module",
+          value: 950,
+          threshold: 700,
+          status: "warn",
+          computed_at: "2026-07-06T00:00:00.000Z",
+        },
+      });
+
+      const result = selectTakeoverFeedback(db);
+      expect(result.total).toBe(1);
+      expect(result.byBucket.actionable).toBe(1);
+      expect(result.byBucket.telemetry).toBe(0);
+      expect(result.items[0]).toMatchObject({
+        signal_type: "refactor_candidate:split-module",
+        severity: "warn",
+        bucket: "actionable",
+      });
+      expect(result.items[0]?.next_action).toContain("triage refactor candidate");
+      expect(renderTakeoverFeedback(result)).toContain("triage refactor candidate");
+    } finally {
+      db.close();
+    }
+  });
+
   it("orders higher severity first so the agent reads the most urgent feedback on top", () => {
     const db = openHarnessDb(":memory:");
     try {
@@ -171,6 +206,9 @@ describe("takeover feedback surface (PLAN-L7-110)", () => {
     expect(
       classifyFeedbackBucket({ severity: "warn", signal_type: "artifact_progress_yellow" }),
     ).toBe("telemetry");
+    expect(
+      classifyFeedbackBucket({ severity: "warn", signal_type: "refactor_candidate:split-module" }),
+    ).toBe("actionable");
     expect(
       classifyFeedbackBucket({ severity: "info", signal_type: "missing-test-oracle-id" }),
     ).toBe("telemetry");

@@ -47,6 +47,7 @@ import {
   checkProjectHooks,
   checkPropagation,
   checkReadability,
+  checkRefactorCandidateTriage,
   checkRegressionExpansion,
   checkRequirementsBindingConfig,
   checkReviewEvidence,
@@ -2357,6 +2358,14 @@ describe("runDoctor", () => {
 
     expect(config.ok).toBe(true);
     expect(hasDoctorMessage(r.messages, "doctor: requirements-binding-config - OK")).toBe(true);
+  });
+
+  it("includes refactor-candidate-triage warning surface in doctor output", () => {
+    const triage = checkRefactorCandidateTriage(process.cwd());
+    const r = liveDoctor();
+
+    expect(triage.ok).toBe(true);
+    expect(hasDoctorMessageWith(r.messages, "doctor: refactor-candidate-triage", "")).toBe(true);
   });
 
   it("hard-gates PLAN governance once repo frontmatter debt is closed", () => {

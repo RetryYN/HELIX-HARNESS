@@ -19,6 +19,28 @@ interface FeedbackProjectionDeps {
 
 const refactorCandidateCache = new Map<string, RefactorCandidate[]>();
 
+function isRefactorCandidateMetric(metric: string): boolean {
+  return metric.startsWith("refactor_candidate:");
+}
+
+function projectedQualitySignalSeverity(status: string, metric: string): string {
+  if (isRefactorCandidateMetric(metric) && (status === "warn" || status === "fail")) {
+    return "warn";
+  }
+  return status === "fail" ? "warn" : "info";
+}
+
+function projectedQualitySignalNextAction(input: {
+  metric: string;
+  signalId: string;
+  subject: string;
+}): string {
+  if (isRefactorCandidateMetric(input.metric)) {
+    return `triage refactor candidate ${input.signalId || input.subject}: attach/create refactor PLAN or record accepted debt`;
+  }
+  return `review quality signal ${input.signalId || input.subject}`;
+}
+
 export function projectRefactorCandidateSignals(
   repoRoot: string,
   db: HarnessDb,
@@ -95,6 +117,8 @@ export function projectFeedbackEvents(db: HarnessDb, deps: FeedbackProjectionDep
     .all()) {
     const signalId = String(signal.signal_id ?? "");
     const subject = String(signal.subject_id ?? signalId);
+    const metric = String(signal.metric ?? "quality_signal");
+    const severity = projectedQualitySignalSeverity(String(signal.status ?? "warn"), metric);
     const id = deps.stableId("feedback:signal", signalId || subject);
     deps.recordProjectionEvent(db, {
       table: "feedback_events",
@@ -106,10 +130,10 @@ export function projectFeedbackEvents(db: HarnessDb, deps: FeedbackProjectionDep
         source_table: "quality_signals",
         source_id: signalId || subject,
         source_color: "",
-        signal_type: String(signal.metric ?? "quality_signal"),
-        severity: String(signal.status ?? "warn") === "fail" ? "warn" : "info",
+        signal_type: metric,
+        severity,
         status: "open",
-        next_action: `review quality signal ${signalId || subject}`,
+        next_action: projectedQualitySignalNextAction({ metric, signalId, subject }),
         created_at: createdAt,
       },
     });

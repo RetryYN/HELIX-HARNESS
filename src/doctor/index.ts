@@ -434,6 +434,11 @@ import {
 import { type HarnessDb, openHarnessDb } from "../state-db/index";
 import { rowCounts } from "../state-db/migration";
 import { projectTokenUsage, rebuildHarnessDb } from "../state-db/projection-writer";
+import {
+  analyzeRefactorCandidates,
+  candidateRank,
+  loadRefactorCandidateInputs,
+} from "../state-db/refactor-candidates";
 import { loadRuntimeSessionUsage } from "../state-db/token-tracker";
 import { classifyProposalDocumentCoverage } from "../task/classify";
 import { buildTeamRunPlan } from "../team/run";
@@ -1762,6 +1767,47 @@ export function checkRequirementsBindingConfig(repoRoot: string): {
 } {
   const result = loadRequirementsBindingConfig(repoRoot, { requireFile: true });
   return { messages: result.messages, ok: result.ok };
+}
+
+/** high-confidence refactor candidate を放置せず triage 対象として doctor に surface する。 */
+export function checkRefactorCandidateTriage(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const configResult = loadRequirementsBindingConfig(repoRoot);
+    if (!configResult.ok) {
+      return {
+        messages: ["refactor-candidate-triage - skipped (requirements-binding config invalid)"],
+        ok: true,
+      };
+    }
+    const policy = configResult.config.refactorCandidates;
+    const highCandidates = analyzeRefactorCandidates(
+      loadRefactorCandidateInputs(repoRoot, policy.scanRoots),
+      policy,
+    )
+      .filter((candidate) => candidate.confidence === "high")
+      .sort((a, b) => candidateRank(b) - candidateRank(a));
+    if (highCandidates.length === 0) {
+      return { messages: ["refactor-candidate-triage - OK (high=0)"], ok: true };
+    }
+    const top = highCandidates
+      .slice(0, 5)
+      .map((candidate) => `${candidate.kind}:${candidate.subject}`)
+      .join(", ");
+    return {
+      messages: [
+        `refactor-candidate-triage - actionable (high=${highCandidates.length}, top=${top}; next=attach/create refactor PLAN or record accepted debt)`,
+      ],
+      ok: true,
+    };
+  } catch {
+    return {
+      messages: ["refactor-candidate-triage - warning: candidate scan could not run"],
+      ok: true,
+    };
+  }
 }
 
 /** git tracked top-level ⊆ repository-structure.md canonical の突合を hard gate として検査する。 */
@@ -3336,6 +3382,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const screenImplPairFreeze = checkScreenImplPairFreeze(deps.repoRoot);
   const l1L2Consistency = checkL1L2Consistency(deps.repoRoot);
   const requirementsBindingConfig = checkRequirementsBindingConfig(deps.repoRoot);
+  const refactorCandidateTriage = checkRefactorCandidateTriage(deps.repoRoot);
   const verificationGroups = checkVerificationGroupsResult(deps.repoRoot);
   const dependencyDrift = checkDependencyDrift(deps.repoRoot);
   const regressionExpansion = checkRegressionExpansion(deps.repoRoot, dependencyDrift.result);
@@ -3535,6 +3582,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...screenImplPairFreeze.messages.map((m) => `doctor: ${m}`),
       ...l1L2Consistency.messages.map((m) => `doctor: ${m}`),
       ...requirementsBindingConfig.messages.map((m) => `doctor: ${m}`),
+      ...refactorCandidateTriage.messages.map((m) => `doctor: ${m}`),
       ...dependencyDrift.messages.map((m) => `doctor: ${m}`),
       ...regressionExpansion.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionCoverage.messages.map((m) => `doctor: ${m}`),
