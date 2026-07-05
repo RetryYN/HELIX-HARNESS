@@ -6,7 +6,7 @@ layer: L3
 drive: fullstack
 status: draft
 created: 2026-07-05
-updated: 2026-07-05
+updated: 2026-07-06
 owner: PO (人間) / Claude (Fable)
 agent_slots:
   - role: tl
@@ -17,6 +17,8 @@ generates:
   - artifact_path: docs/plans/PLAN-L3-07-requirements-binding-enforcement.md
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L3-requirements/glossary-ssot.md
+    artifact_type: design_doc
+  - artifact_path: docs/design/helix/L3-requirements/nfr-grade.md
     artifact_type: design_doc
   # draft のため Step 5 の Glossary placeholder projection だけを実在 artifact として追加した。各 Step の残成果物
   # （lint 実装 / governance 追補 / NFR グレード表 / config スキーマ）は該当 Step の Forward descent 着地時に追加する。
@@ -143,6 +145,11 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
   検証: `bun run vitest run tests/coding-rules.test.ts tests/module-drift.test.ts` / `bun run typecheck` /
   `bun run lint` / `bun run src/cli.ts doctor` は green。full Vitest / `test:local` は exec session が結果を
   返さず、実プロセス残存なしを `ps` で確認したため、取得済み green command に含めない。
+- **Step 3 前半完了**: HELIX 版 NFR グレード projection として
+  `docs/design/helix/L3-requirements/nfr-grade.md` を追加した。既存 `pillar-functional-requirements.md` /
+  `pillar-requirements.md` / L6 function design に散在していた fast/default/full verification budget、
+  CI auto-fix confidence 0.75、bounded recall 件数、approval snapshot binding を一覧化した。新規閾値は
+  発明せず、正本変更が必要な場合は L1/L3 へ back-merge してから projection を更新する。
 - まだ confirmed / terminal ではない。runtime 実装、doctor 接続、drift test、review evidence は後続 Step で扱う。
 
 ## 壊さない / 再発させない
