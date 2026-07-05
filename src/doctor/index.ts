@@ -317,7 +317,12 @@ import {
   loadScreenImplPairFreezeInput,
   screenImplPairFreezeMessages,
 } from "../lint/screen-impl-pair-freeze";
-import { analyzeScrumReverse, loadSrPlans, scrumReverseMessages } from "../lint/scrum-reverse";
+import {
+  analyzeScrumReverse,
+  loadReverseSeedMarkers,
+  loadSrPlans,
+  scrumReverseMessages,
+} from "../lint/scrum-reverse";
 import {
   analyzeSemanticFrontierConsistency,
   loadSemanticFrontierConsistencyInput,
@@ -524,7 +529,7 @@ export function checkScrumReverse(repoRoot: string): { messages: string[]; ok: b
     return { messages: ["scrum-reverse - violation: repo root could not be read"], ok: false };
   }
   try {
-    const r = analyzeScrumReverse(loadSrPlans(repoRoot));
+    const r = analyzeScrumReverse(loadSrPlans(repoRoot), loadReverseSeedMarkers(repoRoot));
     return { messages: scrumReverseMessages(r), ok: r.ok };
   } catch {
     return { messages: ["scrum-reverse - violation: PLAN could not be read"], ok: false };

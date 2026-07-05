@@ -1,6 +1,10 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeScrumReverse,
+  loadReverseSeedMarkers,
   loadSrPlans,
   type ParsedSrPlan,
   parseLinks,
@@ -17,6 +21,8 @@ function plan(over: Partial<ParsedSrPlan>): ParsedSrPlan {
     decision_outcome: "confirmed",
     promotion_strategy: "reuse-with-hardening",
     links: [],
+    generates: [],
+    created: "2026-07-06",
     ...over,
   };
 }
@@ -59,6 +65,11 @@ describe("U-SCRUMREV-002 pocOrphans", () => {
         decision_outcome: null,
         promotion_strategy: null,
         links: ["docs/plans/PLAN-DISCOVERY-09-x.md"],
+        // terminal reverse は正本 artifact 必須 (U-SCRUMREV-006) のため fixture にも持たせる。
+        generates: [
+          "docs/plans/PLAN-REVERSE-09-x.md",
+          "docs/governance/helix-harness-concept_v3.1.md",
+        ],
       }),
     ]);
     expect(r.pocOrphans).toHaveLength(0);
@@ -122,5 +133,154 @@ describe("U-SCRUMREV-005 実 repo の scrum-reverse 整合 (回帰ガード)", (
       pocOrphans: [],
       badReverseRefs: [],
     });
+  });
+});
+
+describe("U-SCRUMREV-006 emptyReverseFullbacks (空 fullback 禁止)", () => {
+  const confirmedPoc = plan({ plan_id: "PLAN-DISCOVERY-09-x" });
+  const reverseBase: Partial<ParsedSrPlan> = {
+    kind: "reverse",
+    decision_outcome: null,
+    promotion_strategy: null,
+    links: ["docs/plans/PLAN-DISCOVERY-09-x.md"],
+  };
+
+  it("terminal reverse が generates 自 doc のみ → 空 fullback violation + ok=false", () => {
+    const r = analyzeScrumReverse([
+      confirmedPoc,
+      plan({
+        ...reverseBase,
+        plan_id: "PLAN-REVERSE-09-x",
+        status: "confirmed",
+        generates: ["docs/plans/PLAN-REVERSE-09-x.md"],
+      }),
+    ]);
+    expect(r.emptyReverseFullbacks).toEqual(["PLAN-REVERSE-09-x"]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("正本 artifact を generates に持つ terminal reverse は OK / draft reverse は検査対象外", () => {
+    const withCanonical = analyzeScrumReverse([
+      confirmedPoc,
+      plan({
+        ...reverseBase,
+        plan_id: "PLAN-REVERSE-09-x",
+        status: "confirmed",
+        generates: [
+          "docs/plans/PLAN-REVERSE-09-x.md",
+          "docs/governance/helix-harness-concept_v3.1.md",
+        ],
+      }),
+    ]);
+    expect(withCanonical.emptyReverseFullbacks).toEqual([]);
+    expect(withCanonical.ok).toBe(true);
+
+    const draft = analyzeScrumReverse([
+      confirmedPoc,
+      plan({
+        ...reverseBase,
+        plan_id: "PLAN-REVERSE-09-x",
+        status: "draft",
+        generates: ["docs/plans/PLAN-REVERSE-09-x.md"],
+      }),
+    ]);
+    expect(draft.emptyReverseFullbacks).toEqual([]);
+  });
+
+  it("enforcement 境界より前に起票された legacy reverse は grandfather (日付 ratchet)", () => {
+    const r = analyzeScrumReverse([
+      confirmedPoc,
+      plan({
+        ...reverseBase,
+        plan_id: "PLAN-REVERSE-02-legacy",
+        status: "confirmed",
+        created: "2026-06-01",
+        generates: ["docs/plans/PLAN-REVERSE-02-legacy.md"],
+      }),
+    ]);
+    expect(r.emptyReverseFullbacks).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("created 欠落の terminal reverse は legacy 扱いにせず fail-close する", () => {
+    const r = analyzeScrumReverse([
+      confirmedPoc,
+      plan({
+        ...reverseBase,
+        plan_id: "PLAN-REVERSE-09-missing-created",
+        status: "confirmed",
+        created: null,
+        generates: ["docs/plans/PLAN-REVERSE-09-missing-created.md"],
+      }),
+    ]);
+    expect(r.emptyReverseFullbacks).toEqual(["PLAN-REVERSE-09-missing-created"]);
+    expect(r.ok).toBe(false);
+  });
+});
+
+describe("U-SCRUMREV-007 unresolvedSeedMarkers (trace seed 変換漏れ)", () => {
+  const marker = {
+    docPath: "docs/governance/helix-harness-concept_v3.1.md",
+    line: 331,
+    planId: "PLAN-DISCOVERY-09-x",
+  };
+  const confirmedPoc = plan({ plan_id: "PLAN-DISCOVERY-09-x" });
+  const reverseOf = (status: string) =>
+    plan({
+      plan_id: "PLAN-REVERSE-09-x",
+      kind: "reverse",
+      status,
+      decision_outcome: null,
+      promotion_strategy: null,
+      links: ["docs/plans/PLAN-DISCOVERY-09-x.md"],
+      generates: [
+        "docs/plans/PLAN-REVERSE-09-x.md",
+        "docs/governance/helix-harness-concept_v3.1.md",
+      ],
+    });
+
+  it("参照 poc の reverse が terminal なのに seed marker が残る → violation", () => {
+    const r = analyzeScrumReverse([confirmedPoc, reverseOf("confirmed")], [marker]);
+    expect(r.unresolvedSeedMarkers).toEqual([
+      "docs/governance/helix-harness-concept_v3.1.md:331:PLAN-DISCOVERY-09-x",
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("reverse が draft の間 (変換作業中) は violation にしない", () => {
+    const r = analyzeScrumReverse([confirmedPoc, reverseOf("draft")], [marker]);
+    expect(r.unresolvedSeedMarkers).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("loader: PoC 段階 seed 行から planId/行番号を抽出する (合成 fixture)", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-seed-"));
+    try {
+      mkdirSync(join(root, "docs", "governance"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "governance", "helix-harness-concept_v3.1.md"),
+        "# t\n\n> **trace seed (PO 承認、PoC 段階)**: `docs/plans/PLAN-DISCOVERY-09-x.md` が PoC 中。\n",
+        "utf8",
+      );
+      const markers = loadReverseSeedMarkers(root);
+      expect(markers).toEqual([
+        {
+          docPath: "docs/governance/helix-harness-concept_v3.1.md",
+          line: 3,
+          planId: "PLAN-DISCOVERY-09-x",
+        },
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("live repo: seed marker は fullback で変換済み、legacy 空 fullback は日付 ratchet で grandfather", () => {
+    const r = analyzeScrumReverse(loadSrPlans(), loadReverseSeedMarkers());
+    expect(r.unresolvedSeedMarkers).toEqual([]);
+    // EMPTY_FULLBACK_ENFORCEMENT_DATE 前に起票された legacy reverse (25 件) は grandfather され、
+    // 境界以降に起票する terminal reverse から fail-close する (CI green を壊さない段階移行)。
+    expect(r.emptyReverseFullbacks).toEqual([]);
+    expect(r.ok).toBe(true);
   });
 });

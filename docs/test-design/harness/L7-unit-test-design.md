@@ -361,6 +361,8 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-SCRUMREV-003 | `analyzeScrumReverse` (badReverseRefs) | reverse が confirmed でない poc (pivot) を参照 → `badReverseRefs` 1件/`ok=false` / `status=archived` → 対象外 |
 | U-SCRUMREV-004 | `scrumReverseMessages` | 孤児なし → `"OK"` / 孤児あり → `"Reverse 合流が無い"` 文言 |
 | U-SCRUMREV-005 | `loadSrPlans`+`analyzeScrumReverse` (実 repo 回帰ガード) | 実 `docs/plans/` で `pocOrphans=[]` / `badReverseRefs=[]` (confirmed poc は Reverse 合流済、redesign 除く) |
+| U-SCRUMREV-006 | `analyzeScrumReverse` (emptyReverseFullbacks) | enforcement 境界以降の terminal reverse が `generates` に `docs/plans/` 外の正本 artifact を持たない場合は `emptyReverseFullbacks` violation / 正本 artifact を持つ場合は OK / draft reverse は検査対象外 / enforcement 境界より前の legacy reverse は grandfather / `created` 欠落は legacy 扱いにせず fail-close |
+| U-SCRUMREV-007 | `loadReverseSeedMarkers`+`analyzeScrumReverse` (unresolvedSeedMarkers) | 正本 doc の `trace seed` + `PoC 段階` marker が参照する poc に terminal reverse が存在する場合は seed 未変換 violation / reverse が draft の間は作業中として許容 / loader は concept / requirements から planId と行番号を抽出 / live repo では seed marker 変換済みで green |
 | U-PROP-001 | `extractSignals` | `\| signal \| mode \|` ヘッダのテーブルのみから signal 列 token 抽出 / 別表 (reverse/fullstack) と interrupt subtype は除外 |
 | U-PROP-002 | `analyzePropagation` | 両 doc 一致 → `ok=true` / concept のみ → `conceptOnly`+`ok=false` / requirements のみ → `requirementsOnly`+`ok=false` |
 | U-PROP-003 | `propagationMessages` | 一致 → `"OK"` / 不一致 → `"未伝播"` 文言 |
@@ -1073,3 +1075,12 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-L1L2-004 | `analyzeL1L2Consistency` | `pair_artifact` 未宣言は `missing-mock-pair` で fail-close、**`self` は IMP-039 self-pair として充足扱い**。screen 設計不在は scope 0 で `ok=true`。 |
 | U-L1L2-005 | `loadL1L2ConsistencyInput` / live repo | 現行 repo は 15 画面が双方向被覆 green（L1 bold 行 / screen-list plain 行 / ui-element bold 行 / wireframe 見出し / flow 参照 / frontmatter pair_artifact の抽出が実 doc で機能する live oracle）。 |
 | U-L1L2-006 | `l1L2ConsistencyMessages` / `checkL1L2Consistency` | doctor 表示行は ASCII decision token（`OK` / `violation`）を用い、violation 行に修復導線（新ラウンド起票 = A-40 change-log）を含む。doctor 配線は `runDoctor.ok` へ fail-close で寄与し `lint-wiring` 死蔵 0 を維持する。 |
+
+## PLAN-L7-331 reverse fullback 台帳強化（空 fullback / seed 変換漏れ）追補
+
+`scrum-reverse` lint の延長。reverse の「存在」（outstanding / G-10 台帳、既存被覆）だけでなく「完遂」を機械検査する。
+
+| U-ID | 対象 | Oracle |
+|---|---|---|
+| U-SCRUMREV-006 | `analyzeScrumReverse().emptyReverseFullbacks` | terminal (confirmed/completed) reverse が generates に `docs/plans/` 外の正本 artifact を 1 つも持たない場合は plan_id を返し `ok=false`（空 fullback = 台帳上の完遂偽装を fail-close）。draft reverse と `EMPTY_FULLBACK_ENFORCEMENT_DATE`（2026-07-06）前起票の legacy reverse（25 件）は対象外（日付 ratchet grandfather、CI green を壊さない段階移行）。 |
+| U-SCRUMREV-007 | `analyzeScrumReverse().unresolvedSeedMarkers` / `loadReverseSeedMarkers` | 上位正本 2 doc（concept v3.1 / requirements v1.2）の「trace seed」+「PoC 段階」行は、参照 poc を指す reverse が terminal になった後も残っていれば `doc:line:planId` で fail-close（正式追補への変換漏れ検知）。reverse が draft の間は変換作業中として許容。loader は合成 fixture で行番号・planId 抽出を検証し、live repo は seed 変換済み + 台帳 green を回帰ガードする。 |
