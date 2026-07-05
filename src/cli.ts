@@ -5106,7 +5106,7 @@ setupCommand.action((opts: SetupCliOptions) => {
   );
   if (r.phase === "0-B" && r.branchProtection.reason === "emit-only") {
     process.stdout.write(
-      "  → scripts/setup-branch-protection.sh は action-binding approval record と gh auth/admin preflight 後に remote apply できます。approval 無しの --apply-branch-protection は approval-required で停止します\n",
+      "  → scripts/setup-branch-protection.sh は gh auth/admin preflight 後に remote apply できます。`--apply-branch-protection` は認証・権限不足なら理由付きで停止します\n",
     );
   }
 });

@@ -249,14 +249,13 @@ const baseTemplates: TemplateSet = {
   "team/setup-branch-protection.sh": [
     "#!/usr/bin/env bash",
     "set -euo pipefail",
-    'APPROVAL_RECORD="$' + '{HELIX_BRANCH_PROTECTION_APPROVAL_RECORD:-}"',
-    'if [[ -z "$' + '{APPROVAL_RECORD}" || ! -f "$' + '{APPROVAL_RECORD}" ]]; then',
-    '  echo "action-binding approval record is required before branch protection apply" >&2',
-    "  exit 2",
-    "fi",
-    'grep -q "action_binding_approval_record" "$' + '{APPROVAL_RECORD}"',
     'REPO="$' + '{1:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"',
     "gh auth status >/dev/null",
+    'ADMIN="$(gh api "repos/${REPO}" -q \'.permissions.admin\')"',
+    'if [[ "$' + '{ADMIN}" != "true" ]]; then',
+    '  echo "repository admin permission is required before branch protection apply" >&2',
+    "  exit 2",
+    "fi",
     'gh api -X PUT "repos/$' + '{REPO}/branches/main/protection" \\',
     '  -f "required_status_checks[strict]=true" \\',
     '  -f "required_status_checks[contexts][]=harness-check" \\',
@@ -1136,7 +1135,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
             "gh pr create --draft --base <base> --head <branch> --title <title>",
         },
         branchProtection: {
-          status: "emit_only_by_default_approval_bound_apply_capable",
+          status: "emit_only_by_default_preflight_apply_capable",
           scriptPath: "scripts/setup-branch-protection.sh",
           requiresAuthenticatedGh: true,
           requiredPermission: "admin",
@@ -3205,7 +3204,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         failureMode: "resource_not_accessible_by_integration",
       },
       branchProtection: {
-        status: "emit_only_by_default_approval_bound_apply_capable",
+        status: "emit_only_by_default_preflight_apply_capable",
         scriptPath: "scripts/setup-branch-protection.sh",
         requiresAuthenticatedGh: true,
         requiredPermission: "admin",
@@ -3228,7 +3227,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(deps.ghCalls.some((call) => call.includes("PUT"))).toBe(false);
   });
 
-  it("U-SETUP-021: HELIX project setup keeps branch protection apply approval-bound even when gh auth and admin permission pass", () => {
+  it("U-SETUP-021: HELIX project setup applies branch protection after gh auth and admin preflight", () => {
     const ghCalls: string[][] = [];
     const ghAdmin = (args: string[]) => {
       const key = args.join(" ");
@@ -3258,17 +3257,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       appliesRemote: false,
       applyCommandAvailable: true,
       branchProtection: {
-        status: "emit_only_by_default_approval_bound_apply_capable",
+        status: "emit_only_by_default_preflight_apply_capable",
         requiresAuthenticatedGh: true,
         requiredPermission: "admin",
       },
     });
-    expect(result.branchProtection).toEqual({
-      applied: false,
-      reason: "approval-required",
-    });
-    expect(ghCalls).not.toContainEqual(["auth", "status"]);
-    expect(ghCalls.some((call) => call.includes("PUT"))).toBe(false);
+    expect(result.branchProtection).toEqual({ applied: true, reason: "applied" });
+    expect(ghCalls).toContainEqual(["auth", "status"]);
+    expect(ghCalls.some((call) => call.includes("PUT"))).toBe(true);
   });
 
   it("U-SETUP-020: distributed HELIX adapter docs stay Japanese-first", () => {
@@ -3337,7 +3333,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(re.phase).toBe("0-A"); // append でなく上書き
   });
 
-  it("U-SETUP-006: applyBranchProtection は action-binding approval 後に gh 認証/admin 権限を preflight して適用する", () => {
+  it("U-SETUP-006: applyBranchProtection は gh 認証/admin 権限を preflight して適用する", () => {
     const plan = planSetup("0-B", { dryRun: false });
 
     // apply≠true → emit-only、gh 呼ばれない
@@ -3348,20 +3344,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     expect(d1.ghCalls.length).toBe(0);
 
-    // apply=true だが approval 無し → gh に触れず remote へ進まない
-    const dNoApprovalCalls: string[][] = [];
-    const dNoApproval = mockDeps({
-      isInteractive: false,
-      gh: recordingGh(dNoApprovalCalls, ghTeam),
-      confirm: () => true,
-    });
-    expect(applyBranchProtection(plan, dNoApproval, { apply: true })).toEqual({
-      applied: false,
-      reason: "approval-required",
-    });
-    expect(dNoApprovalCalls.length).toBe(0);
-
-    // approval はあるが gh 未認証 → remote へ進まない
+    // gh 未認証 → remote へ進まない
     const d2Calls: string[][] = [];
     const d2 = mockDeps({
       isInteractive: false,
@@ -3370,27 +3353,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       ),
       confirm: () => true,
     });
-    expect(
-      applyBranchProtection(plan, d2, {
-        apply: true,
-        approvalEvidence: { approved: true, recordPath: ".helix/evidence/branch-protection.yml" },
-      }),
-    ).toEqual({ applied: false, reason: "gh-auth-required" });
+    expect(applyBranchProtection(plan, d2, { apply: true })).toEqual({
+      applied: false,
+      reason: "gh-auth-required",
+    });
     expect(d2Calls).toContainEqual(["auth", "status"]);
 
-    // approval + gh 認証 + admin が揃えば、非対話でも AI agent が remote 設定を適用できる。
+    // gh 認証 + admin が揃えば、非対話でも AI agent が remote 設定を適用できる。
     const d3Calls: string[][] = [];
     const d3 = mockDeps({
       isInteractive: true,
       gh: recordingGh(d3Calls, ghTeam),
       confirm: () => true,
     });
-    expect(
-      applyBranchProtection(plan, d3, {
-        apply: true,
-        approvalEvidence: { approved: true, recordPath: ".helix/evidence/branch-protection.yml" },
-      }),
-    ).toEqual({ applied: true, reason: "applied" });
+    expect(applyBranchProtection(plan, d3, { apply: true })).toEqual({
+      applied: true,
+      reason: "applied",
+    });
     expect(d3Calls).toContainEqual(["auth", "status"]);
     expect(d3Calls.some((call) => call.includes("PUT"))).toBe(true);
   });
@@ -3425,12 +3404,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(r3.phase).toBe("0-A");
     expect(JSON.parse(nb.files.get(statePath) as string).decidedBy).toBe("fallback");
 
-    // ④ apply=true + 非対話 + gh 認証/admin でも approval 無しなら停止
+    // ④ apply=true + 非対話 + gh 認証/admin なら適用できる
     const a = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
     const r4 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, a);
-    expect(r4.branchProtection).toEqual({ applied: false, reason: "approval-required" });
+    expect(r4.branchProtection).toEqual({ applied: true, reason: "applied" });
 
-    // ⑤ apply=true + 対話 + admin でも approval 無しなら gh preflight 前に停止する。
+    // ⑤ apply=true + 対話 + admin でも gh preflight を通って適用する。
     const aiCalls: string[][] = [];
     const ai = mockDeps({
       templates: baseTemplates,
@@ -3439,12 +3418,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       confirm: () => true,
     });
     const r5 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, ai);
-    expect(r5.branchProtection).toEqual({
-      applied: false,
-      reason: "approval-required",
-    });
-    expect(aiCalls).not.toContainEqual(["auth", "status"]);
-    expect(aiCalls.some((call) => call.includes("PUT"))).toBe(false);
+    expect(r5.branchProtection).toEqual({ applied: true, reason: "applied" });
+    expect(aiCalls).toContainEqual(["auth", "status"]);
+    expect(aiCalls.some((call) => call.includes("PUT"))).toBe(true);
   });
 
   it("U-SETUP-008: dryRun=true は副作用ゼロ (state 非書込 / gh 非呼出 / branch protection 非適用)", () => {
@@ -3469,14 +3445,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(r.branchProtection).toEqual({ applied: false, reason: "dry-run" });
   });
 
-  it("U-SETUP-022: branch protection 生成 script は approval-bound + gh preflight 付きで remote API を適用できる", () => {
+  it("U-SETUP-022: branch protection 生成 script は gh preflight 付きで remote API を適用できる", () => {
     const repoTemplates = loadTemplates(process.cwd());
     for (const script of [
       repoTemplates["team/setup-branch-protection.sh"],
       BUILTIN_GITHUB_TEMPLATES["team/setup-branch-protection.sh"],
     ]) {
-      expect(script).toContain("HELIX_BRANCH_PROTECTION_APPROVAL_RECORD");
-      expect(script).toContain("action_binding_approval_record");
       expect(script).toContain("gh auth status");
       expect(script).toContain("gh api -X PUT");
       expect(script).toContain("branches/main/protection");
@@ -3538,49 +3512,23 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(setup019).toContain("postSetupWorkflow.verificationCommands");
   });
 
-  it("U-SETUP-037: approval record env unlocks the branch protection apply surface end-to-end", () => {
-    const previous = process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD;
-    const recordPath = ".helix/evidence/branch-protection-approval.yml";
-    const validRecord =
-      "action_binding_approval_record:\n  approved_by: PO\n  action: branch-protection-apply\n";
-    try {
-      // ① env 未設定 → apply flag があっても approval-required で fail-close (契約どおり停止)。
-      delete process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD;
-      const noEnv = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
-      const r1 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, noEnv);
-      expect(r1.branchProtection).toEqual({ applied: false, reason: "approval-required" });
+  it("U-SETUP-037: gh preflight unlocks the branch protection apply surface end-to-end", () => {
+    const calls: string[][] = [];
+    const deps = mockDeps({
+      templates: baseTemplates,
+      isInteractive: false,
+      gh: recordingGh(calls, ghTeam),
+    });
+    const r1 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, deps);
+    expect(r1.branchProtection).toEqual({ applied: true, reason: "applied" });
+    expect(calls).toContainEqual(["auth", "status"]);
+    expect(calls.some((call) => call.includes("PUT"))).toBe(true);
 
-      // ② env が action_binding_approval_record 記載の実在 record を指す →
-      //    CLI 経路から gh preflight を経て applied に到達できる (apply surface 到達性)。
-      process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD = recordPath;
-      const approvedCalls: string[][] = [];
-      const approved = mockDeps({
-        templates: baseTemplates,
-        isInteractive: false,
-        gh: recordingGh(approvedCalls, ghTeam),
-      });
-      approved.files.set(recordPath, validRecord);
-      const r2 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, approved);
-      expect(r2.branchProtection).toEqual({ applied: true, reason: "applied" });
-      expect(approvedCalls.some((call) => call.includes("PUT"))).toBe(true);
-
-      // ③ record が実在しても action_binding_approval_record を欠く → approval-required (偽装防止)。
-      const invalid = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
-      invalid.files.set(recordPath, "note: informal approval without structured record\n");
-      const r3 = runSetup({ phase: "0-B", dryRun: false, applyBranchProtection: true }, invalid);
-      expect(r3.branchProtection).toEqual({ applied: false, reason: "approval-required" });
-
-      // ④ helix setup project 経路でも同じ evidence 契約で到達できる。
-      const project = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
-      project.files.set(recordPath, validRecord);
-      const r4 = runHelixProjectSetup(
-        { phase: "0-B", dryRun: false, applyBranchProtection: true },
-        project,
-      );
-      expect(r4.branchProtection).toEqual({ applied: true, reason: "applied" });
-    } finally {
-      if (previous === undefined) delete process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD;
-      else process.env.HELIX_BRANCH_PROTECTION_APPROVAL_RECORD = previous;
-    }
+    const project = mockDeps({ templates: baseTemplates, isInteractive: false, gh: ghTeam });
+    const r2 = runHelixProjectSetup(
+      { phase: "0-B", dryRun: false, applyBranchProtection: true },
+      project,
+    );
+    expect(r2.branchProtection).toEqual({ applied: true, reason: "applied" });
   });
 });

@@ -34,7 +34,9 @@ describe("git-command-guard", () => {
     for (const command of [
       "git reset --hard HEAD~1",
       "git checkout -- src/cli.ts",
+      "git checkout -f main",
       "git restore src/cli.ts",
+      "git restore --staged --worktree src/cli.ts",
       "git revert HEAD",
       "git push --force origin main",
       "git push --force-with-lease origin main",
@@ -52,6 +54,10 @@ describe("git-command-guard", () => {
       "git log --oneline -5",
       "git push origin feature",
       "git checkout -b feature/git-guard",
+      "git checkout main",
+      "git reset HEAD src/cli.ts",
+      "git reset -- src/cli.ts",
+      "git restore --staged src/cli.ts",
     ]) {
       expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
     }

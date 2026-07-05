@@ -2429,8 +2429,8 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
   const branchProtectionScriptOk = branchProtectionScriptIsApplyCapable(branchProtectionScript);
   messages.push(
     branchProtectionScriptOk
-      ? "doctor: consumer-branch-protection-script - OK (action-binding approval-bound, gh auth/admin preflight, apply-capable, token-free)"
-      : "doctor: consumer-branch-protection-script - violation: script must contain action-binding approval record check, gh auth status, gh api -X PUT branch protection apply, harness-check context, and no token/secrets persistence",
+      ? "doctor: consumer-branch-protection-script - OK (gh auth/admin preflight, apply-capable, token-free)"
+      : "doctor: consumer-branch-protection-script - violation: script must contain gh auth status, admin permission check, gh api -X PUT branch protection apply, harness-check context, and no token/secrets persistence",
   );
 
   const recoveryTemplate = consumerFile(deps, ".github/ISSUE_TEMPLATE/recovery.md") ?? "";

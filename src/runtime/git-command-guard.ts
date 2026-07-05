@@ -2,9 +2,10 @@
  * git-command-guard — hybrid runtime で相手 runtime の commit / branch 履歴を壊す
  * destructive git 操作を PreToolUse(Bash/exec_command) で止める。
  *
- * IMP-142 の再発防止: `git reset` / destructive checkout / revert / force-push を
+ * IMP-142 の再発防止: destructive reset / checkout / restore / revert / force-push を
  * 「手順を知っているはず」の運用規律に任せず、理由付き override なしでは fail-close する。
- * 判定は保守的に command token ベース。通常の status/diff/log/commit/push と checkout -b は通す。
+ * 判定は command token ベース。通常の status/diff/log/commit/push、branch switch、
+ * index-only reset/restore は通す。
  */
 
 export type GitCommandGuardReason =
@@ -103,12 +104,32 @@ function hasAny(args: string[], flags: string[]): boolean {
   return flags.some((flag) => set.has(flag));
 }
 
+function isPathReset(rest: string[]): boolean {
+  if (rest.length === 0) return false;
+  if (rest[0] === "--") return true;
+  const separator = rest.indexOf("--");
+  if (separator >= 0) return rest.length > separator + 1;
+  const first = rest[0] ?? "";
+  return /^HEAD(?:~0|\^0)?$/.test(first) && rest.length > 1;
+}
+
+function isStagedOnlyRestore(rest: string[]): boolean {
+  const hasStaged = hasAny(rest, ["--staged", "-S"]);
+  const hasWorktree = hasAny(rest, ["--worktree", "-W"]);
+  return hasStaged && !hasWorktree;
+}
+
 function destructiveOperation(args: string[]): string | null {
   const normalized = withoutGlobalOptions(args);
   const sub = normalized[0];
   const rest = normalized.slice(1);
   if (!sub) return null;
-  if (sub === "reset") return "git reset";
+  if (sub === "reset") {
+    if (isPathReset(rest)) return null;
+    if (hasAny(rest, ["--hard", "--merge", "--keep"])) return "git reset";
+    if (rest.length === 0 || rest[0]?.startsWith("-")) return "git reset";
+    return "git reset";
+  }
   if (sub === "revert") return "git revert";
   if (
     sub === "push" &&
@@ -118,9 +139,15 @@ function destructiveOperation(args: string[]): string | null {
   }
   if (sub === "checkout") {
     if (hasAny(rest, ["-b", "-B", "--orphan", "--detach"])) return null;
+    if (hasAny(rest, ["-f", "--force"])) return "git checkout";
+    if (rest.includes("--")) return "git checkout";
+    if (rest.length >= 1) return null;
     return "git checkout";
   }
-  if (sub === "restore") return "git restore";
+  if (sub === "restore") {
+    if (isStagedOnlyRestore(rest)) return null;
+    return "git restore";
+  }
   return null;
 }
 

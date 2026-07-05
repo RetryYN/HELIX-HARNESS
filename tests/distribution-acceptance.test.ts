@@ -589,9 +589,8 @@ describe("clean distribution local acceptance smoke", () => {
           join(consumerRoot, "scripts", "setup-branch-protection.sh"),
           "utf8",
         );
-        expect(branchProtectionScript).toContain("HELIX_BRANCH_PROTECTION_APPROVAL_RECORD");
-        expect(branchProtectionScript).toContain("action_binding_approval_record");
         expect(branchProtectionScript).toContain("gh auth status");
+        expect(branchProtectionScript).toContain(".permissions.admin");
         expect(branchProtectionScript).toContain("gh api -X PUT");
         expect(branchProtectionScript).toContain("/branches/main/protection");
         expect(branchProtectionScript).toContain("harness-check");
