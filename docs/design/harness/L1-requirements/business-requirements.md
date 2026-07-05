@@ -47,13 +47,13 @@ UX 要求 (UX-01〜03):
 | ID | UX/価値要求 | 出所 |
 |----|------------|------|
 | **UX-01** | 核となる価値 = process/safety/automation の 3 バランス (§0 と同一、要求として再掲) | 価値ヒアリング |
-| **UX-02** | 工程表ダッシュボード (専用 UI) で team が進捗・詰まり・フェーズを把握できる (BR-06 の体験面) | ダッシュボードヒアリング |
+| **UX-02** | 工程表ダッシュボード (専用 UI) で PO と AI agent roster が進捗・詰まり・フェーズを把握できる (BR-06 の体験面) | ダッシュボードヒアリング |
 | **UX-03** | gate/lint 失敗時に **next_action が明確**、CLI 出力が分かりやすい、オンボーディングが滑らか | DX (PO 確定 2026-05-27) |
 
 ### §1.3 WHO
 
 - **PO (Product Owner)**: スコープ・受入・最終承認。業務要求定義の主体。
-- **開発チーム (AI + 人間)**: AI 実装エージェント (Claude Code / Codex) + 人間レビュアー。harness が役割境界を機械強制する対象。
+- **AI agent roster**: Claude Code / Codex などの AI 実装・レビュー・検証 agent。人間を常設 reviewer とせず、worker≠verifier と L0-L3 人間承認境界を harness が機械強制する対象。
 - **HELIX 運用者**: HELIX を超個人開発基盤として使う本人。社内・チーム利用は HELIX-HARNESS package の展開先として扱う。
 
 ### §1.4 体系自己宣言 (本書が前提とする工程・mode・駆動・PLAN 規約)
@@ -239,8 +239,8 @@ Forward / Research / Add-feature / version-up を除く 7 mode (Reverse / Discov
 | BR-06 ダッシュボード機能仕様 | L3 FR / L4 | 実装アーキは L2/L4 |
 | 並列オーケストレーション機械実装 | L3 FR | F-1 (import-ledger §2) |
 | 配布形態 (plugin / MCP 化) | L4 ADR | NFR-02 下流 |
-| B1: チーム規模 2-5 名 + AI スロット 3 の具体 provisioning 方式 | L3 FR / L4 | NFR-05 / GitHub 権限正本連結 |
-| B2: gate サインオフ権限の機械強制実装 (PO G1/G3/G7/G11 / TL G4/G5/G6) | L3 FR | FR-L1-05 下流 |
+| B1: solo PO + AI agent roster の具体 provisioning 方式 | L3 FR / L4 | NFR-05 / GitHub 権限正本連結、PLAN-L1-06 solo 改訂 |
+| B2: gate 判断権限の機械強制実装 (人間=PO L0-L3 承認のみ、L4 以降=AI verifier が worker≠verifier で判定) | L3 FR | FR-L1-05 下流、charter §3 自律境界 |
 | B3: PoC 打ち切り条件の実装 (2 sprint 強制 OR rejected 判定ロジック) | L3 FR / L4 | Discovery ワークフロー機構 |
 | B6: bypass 条件の audit 記録実装 (`HELIX_ALLOW_RAW_AGENT=1` + PO 承認 flow) | L3 FR | agent guard 下流 |
 | B7: handover 30 日 archive + 90 日削除 の自動化実装 | L3 FR / L4 | `helix handover` subcommand |
@@ -276,7 +276,7 @@ Forward / Research / Add-feature / version-up を除く 7 mode (Reverse / Discov
 | **mode** | Forward + entry modes | 開発経路種別 (Forward / Reverse / Discovery / version-up 等) | `.helix/mode.yaml` / `helix status` |
 | **drive** | 駆動タイプ | 実装の主軸 (be/fe/fullstack/db/agent 等) | PLAN frontmatter `drive:` |
 | **agent_slot** | agent_slot | AI エージェント役割枠 (pmo / tl / se / pe 等) | `.claude/agents/*.md` / subagent guard 許可リスト |
-| **handover** | Handover | セッション間の作業引き継ぎ状態 | `.helix/handover/CURRENT.json` / `helix handover` |
+| **handover** | Handover | セッション間の作業引き継ぎ状態 | `.helix/handover/provider/CURRENT.json` / `helix handover` / `handover-*` doctor gate |
 | **sprint** | Sprint | L7 実装スプリント単位 (TDD Red→Green→3 点 R) | PLAN §Sprint / `helix sprint` |
 | **phase** | Phase | 現在の V-model 工程位置 | `.helix/phase.yaml` / `helix status` |
 | **carry** | carry | 後段工程へ送る未確定事項・前提条件 | PLAN §carry / `helix plan lint` |

@@ -35,4 +35,4 @@
 
 ## 境界
 
-この audit は local L8-L14 verification band execution を close する。production deployment、PO final UAT signoff、destructive HELIX-to-UT cutover の承認ではない。
+この audit は local L8-L14 verification band execution を close する。production deployment、PO final UAT signoff、destructive HELIX identifier / state cutover の承認ではない。

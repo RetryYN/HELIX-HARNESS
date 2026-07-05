@@ -4,7 +4,7 @@ layer: L14
 kind: design
 status: confirmed
 created: 2026-07-04
-updated: 2026-07-04
+updated: 2026-07-05
 owner: Codex
 pair_artifact: docs/test-design/harness/L1-operational-test-design.md
 ---
@@ -20,7 +20,7 @@ L14 は L1 operational test design の実施層であり、L0 価値検証へ fe
 | operational test design | `docs/test-design/harness/L1-operational-test-design.md` |
 | status / objective progress | `./scripts/helix status` |
 | completion decision | `./scripts/helix completion decision-packet --json` |
-| handover outstanding | `.helix/handover/CURRENT.json` |
+| handover 未解決項目 | `.helix/handover/provider/CURRENT.json` / `handover-*` doctor gate |
 | rename cutover | `./scripts/helix rename plan --json` |
 
 ## L14 blocker
