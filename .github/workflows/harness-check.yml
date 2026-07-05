@@ -6,9 +6,7 @@
 # 本 workflow は §6.5 Phase 0-A 相当 (配備するが Required 化はしない / solo)。
 # トリガは §6.9 の `pull_request: [main]` に加え、solo main 直開発を即 dogfood するため `push: [main]` も含める。
 #
-# 現状実装される subjob = typecheck + 全回帰 (vitest) + biome lint + doctor。
-# 以下は negative carry (実装後に subjob 追加):
-#   - commitlint / poc-no-merge-guard / hotfix-postmortem-required 等 §6.3 の branch-type subjob: PLAN で追加
+# subjob は本 job 内 step として集約する。Required Status Checks は `harness-check` 1 本だけにする。
 name: harness-check
 
 on:
@@ -30,14 +28,95 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: setup bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.3"
 
+      - name: branch type matrix
+        env:
+          HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          set -euo pipefail
+          branch="${HEAD_BRANCH}"
+          kind="${branch%%/*}"
+          case "$kind" in
+            feature|design|research|poc|reverse|add|hotfix|refactor|docs|chore)
+              ;;
+            *)
+              kind="none"
+              ;;
+          esac
+          echo "branch=${branch}" >> "$GITHUB_STEP_SUMMARY"
+          echo "kind=${kind}" >> "$GITHUB_STEP_SUMMARY"
+          for subjob in plan-lint vmodel-lint branch-kind-check scrum-reverse-lint poc-no-merge-guard hotfix-postmortem-required commitlint regression-test; do
+            status="skipped"
+            case "$subjob:$kind" in
+              plan-lint:feature|plan-lint:design|plan-lint:research|plan-lint:poc|plan-lint:reverse|plan-lint:add|plan-lint:hotfix|plan-lint:refactor) status="applicable" ;;
+              vmodel-lint:feature|vmodel-lint:design|vmodel-lint:add|vmodel-lint:refactor) status="applicable" ;;
+              branch-kind-check:feature|branch-kind-check:design|branch-kind-check:research|branch-kind-check:poc|branch-kind-check:reverse|branch-kind-check:add|branch-kind-check:hotfix|branch-kind-check:refactor) status="applicable" ;;
+              scrum-reverse-lint:poc|scrum-reverse-lint:reverse) status="applicable" ;;
+              poc-no-merge-guard:poc) status="applicable" ;;
+              hotfix-postmortem-required:hotfix) status="applicable" ;;
+              commitlint:feature|commitlint:design|commitlint:research|commitlint:poc|commitlint:reverse|commitlint:add|commitlint:hotfix|commitlint:refactor|commitlint:docs|commitlint:chore) status="applicable" ;;
+              regression-test:feature|regression-test:add|regression-test:hotfix|regression-test:refactor) status="applicable" ;;
+            esac
+            echo "- ${subjob}: ${status}" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+      - name: commitlint
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            range="${PR_BASE_SHA}..${PR_HEAD_SHA}"
+          else
+            range="${BEFORE_SHA}..${HEAD_SHA}"
+          fi
+          pattern='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\([A-Za-z0-9._-]+\))?: .+'
+          git log --format=%s "$range" | while IFS= read -r subject; do
+            [ -n "$subject" ] || continue
+            if ! printf '%s\n' "$subject" | grep -Eq "$pattern"; then
+              echo "commitlint violation: ${subject}" >&2
+              exit 1
+            fi
+          done
+
+      - name: poc-no-merge-guard
+        if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}
+        run: |
+          echo "poc/* branches must pass S4 and re-enter through reverse/* or feature/* before main." >&2
+          exit 1
+
+      - name: hotfix-postmortem-required
+        if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' "$PR_BODY" | grep -Eq '(^|\n)##[[:space:]]+Postmortem' || {
+            echo "hotfix/* PR requires a ## Postmortem section." >&2
+            exit 1
+          }
+          printf '%s\n' "$PR_BODY" | grep -Eq 'PLAN-|recovery' || {
+            echo "hotfix/* PR requires recovery PLAN evidence." >&2
+            exit 1
+          }
+
       - name: install deps (frozen)
         run: bun install --frozen-lockfile
+
+      - name: plan-lint
+        run: bun src/cli.ts plan lint --gate governance
 
       - name: typecheck (tsc --noEmit)
         run: bun run typecheck

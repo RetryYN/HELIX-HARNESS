@@ -47,6 +47,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/goal-evidence-audit.test.ts
     artifact_type: test_code
+  - artifact_path: tests/harness-check-workflow.test.ts
+    artifact_type: test_code
   - artifact_path: tests/identifier-rename.test.ts
     artifact_type: test_code
   - artifact_path: tests/repository-name-paths.test.ts
@@ -55,6 +57,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/state-db.test.ts
     artifact_type: test_code
+  - artifact_path: .github/workflows/harness-check.yml
+    artifact_type: source_module
 dependencies:
   parent: docs/design/harness/L6-function-design/function-spec.md
   requires:
@@ -169,6 +173,7 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - `identifier-rename` test が同一 hit count の content drift で snapshot digest drift を検出する。
 - `goal-evidence-audit` と `cli-surface` test が G-06 artifact requirement と GitHub preflight isolation を検証する。
 - `typecheck` と `doctor` が green。ただし外部 repo が認証必須の場合、`objective-external` は認証不足を明示して blocked とする。
+- source `harness-check` は単一 required check のまま、branch type matrix、commitlint、poc direct-main guard、hotfix postmortem guard を job 内 subjob として実行する。
 
 ## 現在の判断
 
