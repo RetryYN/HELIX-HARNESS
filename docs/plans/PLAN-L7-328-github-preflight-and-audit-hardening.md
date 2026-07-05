@@ -29,6 +29,10 @@ generates:
     artifact_type: source_module
   - artifact_path: src/state-db/index.ts
     artifact_type: source_module
+  - artifact_path: src/state-db/drive-registration.ts
+    artifact_type: source_module
+  - artifact_path: src/state-db/projection-writer.ts
+    artifact_type: source_module
   - artifact_path: src/lint/identifier-rename.ts
     artifact_type: source_module
   - artifact_path: src/lint/github-guards.ts
@@ -64,6 +68,8 @@ generates:
   - artifact_path: tests/setup.test.ts
     artifact_type: test_code
   - artifact_path: tests/state-db.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/drive-db-registration.test.ts
     artifact_type: test_code
   - artifact_path: .github/workflows/harness-check.yml
     artifact_type: source_module
@@ -171,6 +177,11 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
   GitHub 認証・権限待ちを分離する。
 - `helix github pr-body` と `helix github ci-status` を read-only operation packet として追加し、PR body draft と
   GitHub Actions 状態取得不能 / green / red を分離する。
+- `harness.db` file-backed connection は WAL と busy timeout を有効化し、`db rebuild` と `doctor` / `status`
+  の並行実行で読取側が last committed projection を参照できるようにする。
+- `harness.db` rebuild は schema migration も `BEGIN IMMEDIATE` 配下へ含め、DDL と projection の競合窓を閉じる。
+- `drive-db-registration` doctor gate は stale persisted DB を検出した場合、read-only の `:memory:` rebuild 結果で
+  現行 docs fingerprint を再評価し、rebuild 中の false positive を避ける。
 
 ## 非スコープ
 
@@ -188,6 +199,9 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
   local evidence defect の fail-close を検証する。
 - `github-merge-readiness` test が、PR body draft の日本語-first readiness 欄と CI status packet の
   unavailable / green / red 分離を検証する。
+- `state-db` test が file-backed `harness.db` の WAL と busy timeout 設定を検証する。
+- `state-db` test が write transaction 中の reader snapshot と rebuild migration transaction 境界を検証する。
+- `drive-db-registration` test が stale persisted stats を current in-memory fallback 対象として検出する。
 - `typecheck` と `doctor` が green。ただし外部 repo が認証必須の場合、`objective-external` は認証不足を明示して blocked とする。
 - source `harness-check` は単一 required check のまま、branch type matrix、commitlint、poc direct-main guard、hotfix postmortem guard を job 内 subjob として実行する。
 

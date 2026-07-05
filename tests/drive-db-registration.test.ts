@@ -9,6 +9,7 @@ import { loadReviewPlans } from "../src/lint/review-evidence";
 import {
   collectCurrentPlanRegistryFingerprint,
   collectDriveDbRegistrationStats,
+  driveDbStatsMatchCurrentPlanRegistry,
 } from "../src/state-db/drive-registration";
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
@@ -108,6 +109,23 @@ describe("drive DB registration lint", () => {
       expect.objectContaining({ reason: "stale_plan_registry_fingerprint" }),
     );
     expect(driveDbRegistrationMessages(r)[0]).toContain("stale_plan_registry_fingerprint");
+  });
+
+  it("U-DDBREG-008: detects when persisted plan registry stats need current in-memory fallback", () => {
+    expect(driveDbStatsMatchCurrentPlanRegistry(compliant)).toBe(true);
+    expect(
+      driveDbStatsMatchCurrentPlanRegistry({
+        ...compliant,
+        planRegistryFingerprint: "sha256:old",
+        expectedPlanRegistryFingerprint: "sha256:new",
+      }),
+    ).toBe(false);
+    expect(
+      driveDbStatsMatchCurrentPlanRegistry({
+        ...compliant,
+        planCount: compliant.planCount - 1,
+      }),
+    ).toBe(false);
   });
 
   it("U-DDBREG-004: only session-scoped token rows are excluded from model orphan checks (PLAN-L7-58)", () => {

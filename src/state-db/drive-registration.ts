@@ -144,6 +144,15 @@ export function loadDriveDbRegistrationStats(
   }
 }
 
+export function driveDbStatsMatchCurrentPlanRegistry(stats: DriveDbRegistrationStats): boolean {
+  return (
+    stats.expectedPlanCount !== undefined &&
+    stats.planCount === stats.expectedPlanCount &&
+    stats.expectedPlanRegistryFingerprint !== undefined &&
+    stats.planRegistryFingerprint === stats.expectedPlanRegistryFingerprint
+  );
+}
+
 export function loadOrBuildDriveDbRegistrationStats(
   repoRoot: string = process.cwd(),
 ): DriveDbRegistrationStats | null {
@@ -153,7 +162,7 @@ export function loadOrBuildDriveDbRegistrationStats(
   } catch {
     persisted = null;
   }
-  if (persisted) return persisted;
+  if (persisted && driveDbStatsMatchCurrentPlanRegistry(persisted)) return persisted;
 
   const db = openHarnessDb(":memory:", { repoRoot });
   try {

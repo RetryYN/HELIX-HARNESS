@@ -49,6 +49,44 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     }
   });
 
+  it("file-backed harness.db enables WAL and busy timeout for rebuild/read concurrency", () => {
+    const repo = mkdtempSync(join(tmpdir(), "utdb-"));
+    const db = openHarnessDb(join(repo, ".helix", "harness.db"), { repoRoot: repo });
+    try {
+      const journalMode = db.prepare("PRAGMA journal_mode").get();
+      const busyTimeout = db.prepare("PRAGMA busy_timeout").get();
+      const timeout = Number(busyTimeout?.timeout ?? busyTimeout?.busy_timeout ?? 0);
+
+      expect(String(journalMode?.journal_mode ?? "").toLowerCase()).toBe("wal");
+      expect(timeout).toBeGreaterThanOrEqual(5000);
+    } finally {
+      db.close();
+      cleanupRepo(repo);
+    }
+  });
+
+  it("file-backed harness.db readers keep the committed snapshot during a write transaction", () => {
+    const repo = mkdtempSync(join(tmpdir(), "utdb-"));
+    const dbPath = join(repo, ".helix", "harness.db");
+    const writer = openHarnessDb(dbPath, { repoRoot: repo });
+    const reader = openHarnessDb(dbPath, { repoRoot: repo });
+    try {
+      writer.exec("CREATE TABLE snapshot_smoke (id TEXT PRIMARY KEY, value TEXT)");
+      writer.prepare("INSERT INTO snapshot_smoke (id, value) VALUES (?, ?)").run("row", "old");
+
+      writer.exec("BEGIN IMMEDIATE");
+      writer.prepare("UPDATE snapshot_smoke SET value = ? WHERE id = ?").run("new", "row");
+      expect(
+        reader.prepare("SELECT value FROM snapshot_smoke WHERE id = ?").get("row")?.value,
+      ).toBe("old");
+      writer.exec("ROLLBACK");
+    } finally {
+      reader.close();
+      writer.close();
+      cleanupRepo(repo);
+    }
+  });
+
   it("migrate が registry の全 table を作成し user_version を設定する", () => {
     const db = openHarnessDb(":memory:");
     const result = migrate(db);

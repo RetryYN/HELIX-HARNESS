@@ -4081,14 +4081,14 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
   const ownsDb = input.db === undefined;
   const db = input.db ?? openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
   try {
-    migrate(db);
     const relationGraph = input.relationGraph ?? defaultRelationGraphProjection(repoRoot);
     const documentExports = input.documentExports ?? defaultDocumentExportProjection(repoRoot);
-    // Atomic rebuild: truncate + re-project run inside a single transaction so a
-    // mid-rebuild failure rolls back to the prior committed projection instead of
-    // leaving the DB truncated or half-populated (DB rebuild atomicity).
+    // Atomic rebuild: schema migration + truncate + re-project run inside a single
+    // transaction so concurrent doctor/status probes never see a half-migrated or
+    // half-populated DB state.
     db.exec("BEGIN IMMEDIATE");
     try {
+      migrate(db);
       truncateProjectionTables(db);
       const plans = projectPlans(repoRoot, db);
       projectDriveRuns(repoRoot, db, plans);

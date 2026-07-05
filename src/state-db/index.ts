@@ -82,6 +82,17 @@ function openNative(path: string, driver: "bun" | "node"): NativeDatabase {
   return new DatabaseSync(path);
 }
 
+function applyConnectionPragmas(native: NativeDatabase, path: string): void {
+  native.exec("PRAGMA busy_timeout = 5000");
+  if (path !== ":memory:") {
+    // WAL allows read-only status/doctor probes to keep seeing the last committed
+    // projection while a rebuild transaction is in progress.
+    native.exec("PRAGMA journal_mode = WAL");
+    native.exec("PRAGMA synchronous = NORMAL");
+  }
+  native.exec("PRAGMA foreign_keys = ON");
+}
+
 function wrapStatement(stmt: NativeStatement): HarnessStatement {
   return {
     run: (...params: unknown[]) => {
@@ -122,8 +133,8 @@ export function openHarnessDb(path: string, options: { repoRoot?: string } = {})
   if (path !== ":memory:") mkdirSync(dirname(resolve(repoRoot, path)), { recursive: true });
   const driver = currentDriver();
   const native = openNative(path, driver);
-  // 参照整合・外部キー強制 (projection の未解消 join を finding 化する前提の健全性)。
-  native.exec("PRAGMA foreign_keys = ON");
+  // 参照整合・外部キー強制 + concurrent doctor/status probes と rebuild の競合緩和。
+  applyConnectionPragmas(native, path);
   return {
     path,
     driver,
