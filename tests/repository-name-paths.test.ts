@@ -26,18 +26,20 @@ describe("repository path naming", () => {
     ].join("_");
     const legacyDottedPack = ["ut", "tdd", "agent", "harness", "pack"].join(".");
     const legacyLowerCompactRepo = ["ut", "tdd", "agent", "harness"].join("");
+    const legacyStateDir = `.${["ut", "tdd"].join("-")}`;
+    const legacyWrapper = ["ut", "tdd"].join("-");
     const result = analyzeRepositoryNamePaths({
       trackedPaths: [
         `docs/${legacyDashedRepo}-plan.md`,
         `docs/${legacyLowerCompactRepo}-plan.md`,
         `docs/${legacySpacedRepo} plan.md`,
-        ".ut-tdd/handover/CURRENT.json",
+        `${legacyStateDir}/handover/CURRENT.json`,
       ],
       filesystemPaths: [
         `tmp/${legacyUnderscorePack}`,
         `tmp/${legacyCompactRepo}-Pack`,
         `tmp/${legacyDottedPack}`,
-        "scripts/ut-tdd",
+        `scripts/${legacyWrapper}`,
       ],
     });
 
@@ -46,13 +48,13 @@ describe("repository path naming", () => {
       `docs/${legacyDashedRepo}-plan.md`,
       `docs/${legacyLowerCompactRepo}-plan.md`,
       `docs/${legacySpacedRepo} plan.md`,
-      ".ut-tdd/handover/CURRENT.json",
+      `${legacyStateDir}/handover/CURRENT.json`,
     ]);
     expect(result.filesystemResidue).toEqual([
       `tmp/${legacyUnderscorePack}`,
       `tmp/${legacyCompactRepo}-Pack`,
       `tmp/${legacyDottedPack}`,
-      "scripts/ut-tdd",
+      `scripts/${legacyWrapper}`,
     ]);
     expect(repositoryNamePathsMessages(result)[0]).toContain("repository-name-paths - violation");
   });

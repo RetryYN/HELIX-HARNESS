@@ -90,6 +90,7 @@ import {
   loadObjectiveProgress,
   objectiveEvidenceAuditMessages,
 } from "./lint/objective-evidence-audit";
+import { l1L2GapCheckMessages, loadL1L2GapCheckPacket } from "./lint/l1-l2-gap-check";
 import {
   completionDecisionPacketForOutstanding,
   completionReadinessLine,
@@ -4843,6 +4844,22 @@ audit
     for (const message of objectiveEvidenceAuditMessages(result)) {
       process.stdout.write(`  - ${message}\n`);
     }
+  });
+
+const l1l2 = program.command("l1-l2").description("L1/L2 elicitation read-only helpers");
+
+l1l2
+  .command("gap-check")
+  .description("emit the read-only L1/L2 gap-check packet")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const packet = loadL1L2GapCheckPacket(process.cwd());
+    process.exitCode = packet.consistency.ok ? 0 : 1;
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
+      return;
+    }
+    for (const message of l1L2GapCheckMessages(packet)) process.stdout.write(`${message}\n`);
   });
 
 const branch = program.command("branch").description("read-only branch maintenance helpers");

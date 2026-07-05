@@ -673,6 +673,8 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 |---|---|---|
 | U-PLANGOV-015 | `analyzePlanGovernance` scope integrity | `scope_digest` を持つ PLAN の DoD checkbox 行が削除・変更された場合、`scope_integrity_mismatch` violation |
 | U-PLANGOV-016 | `analyzePlanGovernance` waiver | `- [~] (waived: reason/approver/YYYY-MM-DD) ...` 形式の waiver は scope digest 入力として受理し、scope shrink 免責を明示できる |
+| U-PLANGOV-020 | `analyzePlanGovernance` filing completeness | enforcement 境界以降の `kind=poc` かつ `workflow_phase=S3/S4` PLAN は `s4_decision_record:` block を持たなければ `missing_s4_decision_record` violation。record ありは pass、境界前 updated は grandfather。 |
+| U-PLANGOV-021 | `analyzePlanGovernance` filing completeness | enforcement 境界以降の `kind=reverse` PLAN は起票時から `pair_artifact` を持たなければ `missing_pair_artifact` violation。`pair_artifact` ありは pass。 |
 | U-PLANGOV-017 | `analyzePlanGovernance` malformed waiver | `- [~]` 行が `waived: reason/approver/YYYY-MM-DD` を欠く場合、`scope_integrity_invalid_waiver` violation |
 | U-PLANGOV-018 | `analyzePlanGovernance` forward route scope | `forward_routing` が `kind=reverse` 以外、または `workflow_phase=R4` 以外に置かれた場合、`forward_routing_scope_mismatch` violation |
 | U-PLANGOV-019 | `analyzePlanGovernance` reverse R4 route scope | `kind=reverse` + `workflow_phase=R4` の `forward_routing` は route scope として受理し、余計な violation を出さない |
@@ -1075,6 +1077,10 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-L1L2-004 | `analyzeL1L2Consistency` | `pair_artifact` 未宣言は `missing-mock-pair` で fail-close、**`self` は IMP-039 self-pair として充足扱い**。screen 設計不在は scope 0 で `ok=true`。 |
 | U-L1L2-005 | `loadL1L2ConsistencyInput` / live repo | 現行 repo は 15 画面が双方向被覆 green（L1 bold 行 / screen-list plain 行 / ui-element bold 行 / wireframe 見出し / flow 参照 / frontmatter pair_artifact の抽出が実 doc で機能する live oracle）。 |
 | U-L1L2-006 | `l1L2ConsistencyMessages` / `checkL1L2Consistency` | doctor 表示行は ASCII decision token（`OK` / `violation`）を用い、violation 行に修復導線（新ラウンド起票 = A-40 change-log）を含む。doctor 配線は `runDoctor.ok` へ fail-close で寄与し `lint-wiring` 死蔵 0 を維持する。 |
+| U-L1L2-007 | `buildL1L2GapCheckPacket` | gap-check packet は `schemaVersion=l1-l2-gap-check.v1`、`planOnly=true`、`writePolicy=no-write`、`mustNotMutate=true`、観点表 8 項目、`maxRounds=3`、A-40 route、`completionClaimAllowed=false` を返し、AI が L1/L2 を起草・受入・freeze する surface にしない。 |
+| U-L1L2-008 | `buildL1L2GapCheckPacket` | `l1-l2-consistency` の構造 violation は `gapCandidates[]` に写像され、各候補は `route=a40_change_log` と「人が採否判断してから更新する」requiredAction を持つ。 |
+| U-L1L2-009 | `helix l1-l2 gap-check --json` | live repo で read-only gap-check packet を返し、現行 15 画面の構造被覆 green では exit 0。JSON は writePolicy、観点表、round bound、人-AI 境界、A-40 route を落とさない。 |
+| U-L1L2-010 | `l1L2GapCheckMessages` / `helix l1-l2 gap-check` | text mode は `l1-l2 gap-check - OK/violation`、`authority-boundary`、`a40-route` を出し、JSON を開かない運用でも read-only 境界と A-40 導線へ辿れる。 |
 
 ## PLAN-L7-331 reverse fullback 台帳強化（空 fullback / seed 変換漏れ）追補
 

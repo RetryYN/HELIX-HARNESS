@@ -43,8 +43,8 @@ dependencies:
 - [ ] 反映した正本 artifact を generates へ追加する（空 fullback 禁止）。追加例:
 
 ```yaml
-  - artifact_path: docs/governance/helix-harness-concept_v3.1.md
-    artifact_type: markdown_doc
+  # 例: artifact_path=docs/governance/helix-harness-concept_v3.1.md
+  #     artifact_type=markdown_doc
 ```
 - [ ] G-10 台帳（objective evidence ledger）の未了 PLAN 一覧との同期を確認する。
 

@@ -292,6 +292,29 @@ describe("L7 CLI surface closure", () => {
     expect(prCreate.stdout).toContain("--json");
   });
 
+  it("U-L1L2-009: exposes L1/L2 gap-check as a read-only packet", () => {
+    const result = runCli(["l1-l2", "gap-check", "--json"]);
+    expect(result.status, result.stderr || result.stdout).toBe(0);
+    const packet = JSON.parse(result.stdout) as {
+      schemaVersion: string;
+      writePolicy: string;
+      mustNotMutate: boolean;
+      viewpoints: unknown[];
+      maxRounds: number;
+      authorityBoundary: string;
+      a40Route: string;
+      completionClaimAllowed: boolean;
+    };
+    expect(packet.schemaVersion).toBe("l1-l2-gap-check.v1");
+    expect(packet.writePolicy).toBe("no-write");
+    expect(packet.mustNotMutate).toBe(true);
+    expect(packet.viewpoints).toHaveLength(8);
+    expect(packet.maxRounds).toBe(3);
+    expect(packet.authorityBoundary).toContain("read-only gap-check");
+    expect(packet.a40Route).toContain("A-40");
+    expect(packet.completionClaimAllowed).toBe(false);
+  });
+
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
     const s4 = runRepoScriptHelix(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);
