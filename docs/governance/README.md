@@ -7,9 +7,9 @@
 
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
-1. `helix-agent-harness-concept_v3.1.md`
-2. `helix-agent-harness-requirements_v1.2.md`
-3. `helix-agent-harness-extraction-plan_v0.1.md`
+1. `helix-harness-concept_v3.1.md`
+2. `helix-harness-requirements_v1.2.md`
+3. `helix-harness-extraction-plan_v0.1.md`
 4. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 実装言語 = TypeScript)
 5. `repository-structure.md` (リポジトリ構成ルールの正本)
 
