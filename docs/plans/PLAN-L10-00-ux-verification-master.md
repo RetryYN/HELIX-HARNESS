@@ -13,7 +13,7 @@ agent_slots:
   - role: tl
     slot_label: "TL - L10 UX 検証 coverage 境界"
   - role: qa
-    slot_label: "QA - L10 UX evidence review"
+    slot_label: "QA - L10 UX 証跡レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L10-00-ux-verification-master.md
     artifact_type: markdown_doc
@@ -34,7 +34,7 @@ review_evidence:
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
     verdict: pass-with-findings
-    scope: "L10 placeholder status was identified; this master records UX verification boundary without claiming G10 PO signoff."
+    scope: "L10 placeholder 状態を検出したため、この master は G10 PO signoff を主張せず UX 検証境界を記録する。"
     green_commands:
       - kind: lint
         command: "./scripts/helix plan lint"

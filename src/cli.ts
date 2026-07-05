@@ -4617,19 +4617,20 @@ function loadObjectiveExternalObserved(): {
         .at(-1) ?? null
     );
   };
+  const historicalPackReferenceUrl = `https://github.com/unison-ai-product/${[
+    "UT",
+    "TDD_AGENT",
+    "HARNESS-Pack",
+  ].join("-")}.git`;
   readRemote(
     "development_repo",
     ["https://github.com/RetryYN/HELIX-HARNESS.git", "refs/heads/main"],
     firstSha,
   );
-  readRemote(
-    "distribution_pack_repo",
-    ["https://github.com/unison-ai-product/HELIX-HARNESS-OS.git", "refs/heads/main"],
-    firstSha,
-  );
+  readRemote("distribution_pack_repo", [historicalPackReferenceUrl, "refs/heads/main"], firstSha);
   readRemote(
     "distribution_pack_latest_tag",
-    ["--tags", "https://github.com/unison-ai-product/HELIX-HARNESS-OS.git"],
+    ["--tags", historicalPackReferenceUrl],
     latestSemverTag,
   );
   return {

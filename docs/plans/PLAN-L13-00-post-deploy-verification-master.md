@@ -13,7 +13,7 @@ agent_slots:
   - role: tl
     slot_label: "TL - L13 配布後検証 coverage 境界"
   - role: qa
-    slot_label: "QA - L13 local smoke evidence review"
+    slot_label: "QA - L13 local smoke 証跡レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L13-00-post-deploy-verification-master.md
     artifact_type: markdown_doc
@@ -33,7 +33,7 @@ review_evidence:
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
     verdict: pass-with-findings
-    scope: "L13 filename-level PLAN gap was identified; this master records local smoke and monitoring boundary as documentation only."
+    scope: "L13 の filename-level PLAN gap を検出したため、この master は local smoke と monitoring 境界だけを文書証跡として記録する。"
     green_commands:
       - kind: lint
         command: "./scripts/helix plan lint"

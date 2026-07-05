@@ -13,7 +13,7 @@ agent_slots:
   - role: tl
     slot_label: "TL - L11 UAT coverage 境界"
   - role: qa
-    slot_label: "QA - L11 completion packet review"
+    slot_label: "QA - L11 completion packet レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L11-00-uat-verification-master.md
     artifact_type: markdown_doc
@@ -33,7 +33,7 @@ review_evidence:
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
     verdict: pass-with-findings
-    scope: "L11 filename-level PLAN gap was identified; this master records UAT boundary without claiming UAT close."
+    scope: "L11 の filename-level PLAN gap を検出したため、この master は UAT close を主張せず UAT 境界を記録する。"
     green_commands:
       - kind: lint
         command: "./scripts/helix plan lint"

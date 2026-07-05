@@ -13,7 +13,7 @@ agent_slots:
   - role: tl
     slot_label: "TL - L14 運用 feedback coverage 境界"
   - role: qa
-    slot_label: "QA - L14 blocked frontier review"
+    slot_label: "QA - L14 blocked frontier レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L14-00-operations-feedback-master.md
     artifact_type: markdown_doc
@@ -34,7 +34,7 @@ review_evidence:
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
     verdict: pass-with-findings
-    scope: "L14 filename-level PLAN gap was identified; this master records operations feedback boundary while leaving high-impact identifier work to its existing dedicated PLAN."
+    scope: "L14 の filename-level PLAN gap を検出したため、この master は運用 feedback 境界を記録し、高影響 identifier work は既存の専用 PLAN に残す。"
     green_commands:
       - kind: lint
         command: "./scripts/helix plan lint"

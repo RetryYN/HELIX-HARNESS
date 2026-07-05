@@ -13,7 +13,7 @@ agent_slots:
   - role: tl
     slot_label: "TL - L12 受入検証 coverage 境界"
   - role: qa
-    slot_label: "QA - L12 acceptance evidence review"
+    slot_label: "QA - L12 acceptance 証跡レビュー"
 generates:
   - artifact_path: docs/plans/PLAN-L12-00-acceptance-verification-master.md
     artifact_type: markdown_doc
@@ -34,7 +34,7 @@ review_evidence:
     tests_green_at: "2026-07-04T21:23:00+09:00"
     reviewed_at: "2026-07-04T21:23:00+09:00"
     verdict: pass-with-findings
-    scope: "L12 filename-level PLAN gap was identified; this master records acceptance boundary without claiming blocked completion."
+    scope: "L12 の filename-level PLAN gap を検出したため、この master は blocked completion を主張せず acceptance 境界を記録する。"
     green_commands:
       - kind: lint
         command: "./scripts/helix plan lint"
