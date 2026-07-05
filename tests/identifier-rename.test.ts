@@ -1087,6 +1087,30 @@ describe("PLAN-M-02 identifier rename blast-radius audit", () => {
     }
   });
 
+  it("binds cutover blast radius digest to matched file content, not only hit counts", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-content-"));
+    try {
+      writeDraftRenamePlan(root);
+      writeCutoverSourceLedger(root);
+      writeFileSync(join(root, "AGENTS.md"), `Use ${legacyCliName} until approved cutover.\n`);
+
+      const first = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
+      writeFileSync(
+        join(root, "AGENTS.md"),
+        `Do not execute ${legacyCliName} as a current command before approval.\n`,
+      );
+      const second = buildIdentifierRenameCutoverPlan(root, undefined, TEST_HEAD_SHA);
+
+      expect(second.audit.hitsByToken[legacyCliName]).toBe(first.audit.hitsByToken[legacyCliName]);
+      expect(second.cutoverSnapshot.blastRadiusDigest).not.toBe(
+        first.cutoverSnapshot.blastRadiusDigest,
+      );
+      expect(second.cutoverSnapshot.snapshotId).not.toBe(first.cutoverSnapshot.snapshotId);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("binds cutover snapshots to clean git worktree status", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-rename-plan-worktree-"));
     try {

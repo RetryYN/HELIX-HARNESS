@@ -58,7 +58,7 @@ L1 §3.1 横断原則 (CC2/CC3) を満たす再利用部品。全画面がこの
 
 | 画面 | 固有コンポーネント | props / 振る舞い | L1 参照 |
 |---|---|---|---|
-| **HM-01** | `HierarchyPulldown` (3 階層: 整備率/カテゴリ/FR 個別) + `FrStatusTable` (FR-L1 47 件 × implementation_status バッジ + **対応画面列** screen §5 trace) | installed/partial/not-implemented バッジ + 担当 PLAN + 対応画面 / FR 行 → 担当 PLAN 参照 / **FR 行 → PM-06 設計書ビューア deep-link (対応画面要求プレビュー、機能一覧から画面要求を辿る、PO 2026-06-22)** / 未実装エクスポート | §1.HM.01 |
+| **HM-01** | `HierarchyPulldown` (3 階層: 整備率/カテゴリ/FR 個別) + `FrStatusTable` (FR-L1 51 件 × implementation_status バッジ + **対応画面列** screen §5 trace) | installed/partial/not-implemented バッジ + 担当 PLAN + 対応画面 / FR 行 → 担当 PLAN 参照 / **FR 行 → PM-06 設計書ビューア deep-link (対応画面要求プレビュー、機能一覧から画面要求を辿る、PO 2026-06-22)** / 未実装エクスポート | §1.HM.01 |
 | **HM-02** | `CoverageHeatmap` (観点 8 × 軸 5 = 40 cell、色密度) + `AxisSelector` (観点/軸切替) | cell クリック→不足項目一覧 + 起票候補テキスト生成 (`CopyButton`) | §1.HM.02 |
 | **HM-03** | `WiringDiagram` (SVG 静的アーキ + 動的エラー赤) + `ConnectionDetailTable` (起点/終点/状態/最終チェック) + `ModeTransitionArrows` (detection-routing 4 象限→mode、L3 carry) | hook/provider/9 drive 区画状態 / active 遷移強調 / 接続線クリック→詳細 | §1.HM.03 |
 | **HM-04** | `TableExplorer` (.helix state 全 table 切替) + `IntegrityCheckSummary` (orphan/drift/不正値) | table 切替 / 行フィルタ / 整合性再実行トリガー / 問題行 `CopyButton` | §1.HM.04 |

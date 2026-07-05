@@ -130,6 +130,11 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
       [
         "@echo off",
         "set args=%*",
+        'echo %args% | findstr /C:"credential.helper=" >nul',
+        "if errorlevel 1 (",
+        "  echo missing credential helper isolation 1>&2",
+        "  exit /b 2",
+        ")",
         'echo %args% | findstr /C:"--tags" >nul',
         "if not errorlevel 1 (",
         `  echo a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}`,
@@ -153,6 +158,10 @@ function writeFakeGitLsRemote(binDir: string, packHead: string, latestTag = "v0.
     path,
     [
       "#!/bin/sh",
+      'case "$*" in',
+      '  *"credential.helper="*) ;;',
+      '  *) echo "missing credential helper isolation" >&2; exit 2 ;;',
+      "esac",
       'case "$*" in',
       '  *"HELIX-HARNESS-OS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-OS.git"*)',
       `    echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}'`,

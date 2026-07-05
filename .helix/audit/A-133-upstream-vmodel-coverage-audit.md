@@ -5,15 +5,15 @@
 
 ## 結論
 
-current repo は、もともと L7 overclaim の原因になった feature-list residual について、row-level closure を持つ状態になった。
+現行 repo は、もともと L7 過大 claim の原因になった feature-list residual について、行単位の closure を持つ状態になった。
 
-`doctor` は registered-roadmap check と feature-list closure check の両方に pass する。`fr-roadmap-coverage` は R1-R9 を close し、`drive-model-passage` は 9-mode passage certificate table を close し、`drive-db-registration` は current DB projection registration を close する。`plan-dod` は unchecked completed L7 work を block し、`placeholder-deps` は active L7 waiting placeholder を block する。
+`doctor` は registered-roadmap check と feature-list closure check の両方に pass する。`fr-roadmap-coverage` は R1-R9 を close し、`drive-model-passage` は 9-mode passage certificate table を close し、`drive-db-registration` は現行 DB projection registration を close する。`plan-dod` は未検査の completed L7 work を block し、`placeholder-deps` は active L7 waiting placeholder を block する。
 
-original overclaim は、`PLAN-L7-44-harness-db-master` completion を "all L7 complete" と扱ったことから生じた。これは修正済みである。`PLAN-L7-44` は harness.db segment のままであり、`PLAN-L7-50` と `PLAN-L7-51` が residual closure / doctor precision completion record である。
+元の過大 claim は、`PLAN-L7-44-harness-db-master` completion を "all L7 complete" と扱ったことから生じた。これは修正済みである。`PLAN-L7-44` は harness.db segment のままであり、`PLAN-L7-50` と `PLAN-L7-51` が residual closure / doctor precision completion record である。
 
-## 絶対 no-omission principle
+## 絶対 no-omission 原則
 
-この audit は absolute no-omission principle を採用する。
+この audit は、漏れを暗黙完了にしない絶対 no-omission 原則を採用する。
 
 - closure table に表現されていない upstream requirement、carry item、addendum、design contract、oracle、PLAN span、source module、test は、暗黙 covered ではなく `gap` と扱う。
 - `carry` は completion ではない。routed obligation にすぎず、`scheduled`、`parked with reason`、または `PO decision` へ解決しなければならない。
@@ -24,24 +24,24 @@ original overclaim は、`PLAN-L7-44-harness-db-master` completion を "all L7 c
 
 ## work が schedule されていなかった理由
 
-| finding | evidence | 発生理由 | impact | countermeasure |
+| finding | evidence | 発生理由 | 影響 | 対策 |
 |---|---|---|---|---|
 | L7 completion wording が広すぎた | handover は `PLAN-L7-44` 後に no next action と書いた。`PLAN-L7-44` 自体は harness.db segment と記す。 | "L7" が layer と roadmap segment の両方に使われた。 | 残る FR/carry work が green doctor line の背後に隠れる。 | handover wording を修正し、`handover --complete` 前に residual-carry audit を要求する。 |
-| feature-list residual が new WBS に展開されていなかった | L3 functional は 26 L3 FR、L1 は 47 FR。複数の P1/P2/Phase B/A-124..126 item は carry。 | `g3-trace` は "L3 FR or carry" を coverage として受け入れるが、carry は scheduled implementation と同義ではない。 | functional completeness が過大に見える。 | `PLAN-L3-04-upstream-schedule-reconciliation` と residual matrix を追加する。 |
+| feature-list residual が new WBS に展開されていなかった | L3 functional は 26 L3 FR、L1 は 51 FR。複数の P1/P2/Phase B/A-124..126 item は carry。 | `g3-trace` は "L3 FR or carry" を coverage として受け入れるが、carry は scheduled implementation と同義ではない。 | functional completeness が過大に見える。 | `PLAN-L3-04-upstream-schedule-reconciliation` と residual matrix を追加する。 |
 | roadmap rollup は registered-roadmap coverage であり FR coverage ではない | `doctor` は roadmap-rollup green を示す。 | program band は存在する roadmap block を測るだけで、すべての upstream FR obligation を測らない。 | green roadmap と unscheduled FR extension が共存できる。 | `fr-roadmap-coverage` を実装し、FR-L1/carry/addenda residual を PLAN/WBS/source/test/gate evidence または明示 non-closed status へ map させる。 |
 | V-model check は強いが分断されていた | pair-freeze、l6-fr-coverage、impl-plan-trace、oracle-test-trace、dependency-drift はすべて pass。 | 各 check は 1 edge を所有するが、requirement から code coverage までの full row は所有しない。 | human が closure を 1 table で inspect できない。 | residual bucket ごとに single V-model closure table を維持する。 |
 
 ## V-model closure 確認
 
-凡例: `Closed` は、current machine check が row-level residual closure scope の edge を cover していることを意味する。non-current / historical future work は独自 PLAN に残し、silent complete と数えない。
+凡例: `Closed` は、現行の機械 check が行単位 residual closure scope の edge を cover していることを意味する。non-current / historical future work は独自 PLAN に残し、silent complete と数えない。
 
-| layer / artifact | repo が示せる scope | current evidence | status | closure condition |
+| layer / artifact | repo が示せる scope | 現在の証跡 | status | closure condition |
 |---|---|---|---|---|
-| L1 requirement definition | `FR-L1` registry 47 items と upstream baton notes | `g3-trace` + `fr-roadmap-coverage` | `Closed` | FR/carry/addenda residual は closed R1-R9 row または明示 non-closed status へ map する。 |
+| L1 requirement definition | `FR-L1` registry 51 items と upstream baton notes | `g3-trace` + `fr-roadmap-coverage` | `Closed` | FR/carry/addenda residual は closed R1-R9 row または明示 non-closed status へ map する。 |
 | L3 requirement definition | 26 L3 FR と明示 P1/P2/Phase B carry | `docs/design/harness/L3-functional/functional-requirements.md`; `doctor l6-fr-coverage`; `fr-roadmap-coverage` | `Closed` | residual carry bucket は `PLAN-L7-50` WBS row に表現される。 |
 | L4 basic design | architecture/module boundary と system concept | `pair-freeze`, `module-drift`, L4 roadmap, A-133 residual rows | `Closed` | unscheduled extension は infer せず、`fr-roadmap-coverage` で surface する。 |
 | L5 detailed design | D-DB/D-CONTRACT/D-STATE と physical-data extension | L5 roadmap, L8 integration test design, PLAN-L5-08 references, `drive-db-registration` | `Closed` | A-124/A-125/A-126 residual implementation evidence は R7-R9 に表現される。 |
-| L6 function design | unit-level contract と U-* oracle mapping | `l6-fr-coverage - OK (FR registry 47...)` | declared L6 matrix では `Closed` | closure は FR-to-L6/U-* であり、それ自体は implementation shipped を証明しない。 |
+| L6 function design | unit-level contract と U-* oracle mapping | `l6-fr-coverage - OK (FR registry 51...)` | declared L6 matrix では `Closed` | closure は FR-to-L6/U-* であり、それ自体は implementation shipped を証明しない。 |
 | test design | L7 unit、L8 integration、L9 system test docs paired | `vmodel lint` pair-freeze 38 pair / orphan 0; `PLAN-L7-50` R10/R11 closes explicit L7 defer discharge | `Closed` | explicit defer row は PLAN/L7 source/test evidence と link し続け、L6/impl/oracle trace gate で check される。 |
 | L7 plan groups | confirmed/completed L7 PLAN files と residual closure plans | `plan-dod`, `fr-roadmap-coverage`, `roadmap-rollup`, `impl-plan-trace` | `Closed` | completed/confirmed L7 PLAN は unchecked DoD や missing residual evidence を保持できない。 |
 | code | `src` module mapped to PLAN generates and architecture | `impl-plan-trace`, `module-drift`, `dependency-drift` | `Closed` | PLAN coverage のない new source は fail-closed。 |

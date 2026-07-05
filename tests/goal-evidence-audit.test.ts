@@ -112,9 +112,13 @@ describe("HELIX objective evidence audit", () => {
       "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
       "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
       "docs/design/helix/L14-operations/operations-feedback-boundary.md",
+      "docs/test-design/helix/L1-pillar-operational-test-design.md",
       "docs/test-design/helix/L2-screen-ux-test-design.md",
       "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "docs/test-design/helix/L4-pillar-system-test-design.md",
+      "docs/test-design/helix/L5-pillar-integration-test-design.md",
       "docs/test-design/helix/L6-pillar-unit-test-design.md",
+      "docs/test-design/harness/L7-unit-test-design.md",
       "CLAUDE.md",
       "AGENTS.md",
       "src/lint/design-language.ts",
@@ -319,6 +323,14 @@ describe("HELIX objective evidence audit", () => {
       .replaceAll(
         "docs/test-design/helix/L2-screen-ux-test-design.md",
         "docs/test-design/helix/L2-screen-ux-test-design-removed.md",
+      )
+      .replaceAll(
+        "docs/test-design/helix/L5-pillar-integration-test-design.md",
+        "docs/test-design/helix/L5-pillar-integration-test-design-removed.md",
+      )
+      .replaceAll(
+        "docs/test-design/harness/L7-unit-test-design.md",
+        "docs/test-design/harness/L7-unit-test-design-removed.md",
       );
 
     const result = analyzeObjectiveEvidenceAudit({
@@ -334,6 +346,8 @@ describe("HELIX objective evidence audit", () => {
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L7-implementation/implementation-evidence-index.md",
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/design/helix/L14-operations/operations-feedback-boundary.md",
         "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L2-screen-ux-test-design.md",
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/helix/L5-pillar-integration-test-design.md",
+        "G-06: missing HELIX L0-L14 layer coverage artifact citation docs/test-design/harness/L7-unit-test-design.md",
       ]),
     );
   });

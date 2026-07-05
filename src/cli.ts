@@ -4575,8 +4575,14 @@ function loadObjectiveExternalObserved(): {
     parser: (stdout: string) => string | null,
   ) => {
     try {
-      const stdout = execFileSync("git", ["ls-remote", ...args], {
+      const stdout = execFileSync("git", ["-c", "credential.helper=", "ls-remote", ...args], {
         encoding: "utf8",
+        env: {
+          ...process.env,
+          GCM_INTERACTIVE: "Never",
+          GIT_ASKPASS: "",
+          GIT_TERMINAL_PROMPT: "0",
+        },
         stdio: ["ignore", "pipe", "pipe"],
       });
       const observed = parser(stdout);

@@ -2526,6 +2526,7 @@ function buildIdentifierRenameCutoverSnapshot(input: {
       count: hit.count,
       category: hit.category,
       location: hit.location,
+      fileSha256: fileSha256ForRenameHit(input.audit.sourceRoot, hit),
     })),
   });
   const approvalScopeDigest = sha256Json({
@@ -2585,6 +2586,16 @@ function buildIdentifierRenameCutoverSnapshot(input: {
     }),
     ...snapshot,
   };
+}
+
+function fileSha256ForRenameHit(root: string, hit: IdentifierRenameHit): string | null {
+  const absolutePath = join(root, hit.path);
+  try {
+    if (!existsSync(absolutePath) || !statSync(absolutePath).isFile()) return null;
+    return `sha256:${createHash("sha256").update(readFileSync(absolutePath)).digest("hex")}`;
+  } catch {
+    return null;
+  }
 }
 
 function buildIdentifierRenameSnapshotReview(
