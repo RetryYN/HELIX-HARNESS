@@ -588,7 +588,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-CODE-004 | `analyzeCodingRules` file naming | kebab-case ではなく `index.ts` でもない TS file -> `file-name-kebab` violation |
 | U-CODE-005 | test scope split | param が 4 個以上の test helper は OK のまま。ただし no-any/no-suppression/naming は適用する |
 | U-CODE-006 | real repo guard | `loadCodingRulePolicy` + `loadCodingRuleDocs(process.cwd())` + `analyzeCodingRules` は violations `[]` を返す。`doctor` は `coding-rules` を surface し `ok` を link する |
-| U-CODE-007 | workflow placement | `loadCodingWorkflowDocs` + `analyzeCodingRules` は Forward と Add-feature の workflow doc 内の `CODING-RULE-WORKFLOW` / SSoT reference 欠落を検出する。README/READE は gate 対象外 |
+| U-CODE-007 | workflow placement | `loadCodingWorkflowDocs` + `analyzeCodingRules` は Forward と Add-feature の workflow doc 内の `CODING-RULE-WORKFLOW` / SSoT reference 欠落を検出する。README は gate 対象外 |
 | U-CODE-008 | structured error handling | documented でない empty body または rethrow-only body の source catch block -> `structured-error-handling` violation |
 | U-CODE-009 | module boundary | `src/lint/*` が `../runtime/*` を import するような disallowed reverse dependency -> `module-boundary` violation |
 | U-CODE-010 | machine surface language | machine-facing CLI/doctor/lint/gate message line が日本語だけの decision word で、ASCII token (`OK`, `violation`, `warning`, `skipped`, `note`, `error`, `ready`, `not ready`) を持たない場合 -> `machine-surface-language` violation。ASCII token 後の日本語説明文は許可する |
@@ -618,7 +618,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 | U-DDDTDD-003 | Red-first evidence | confirmed `tdd_red_required` PLAN が `red_at` / `green_at` を欠く、または `red_at > green_at` -> violation |
 | U-DDDTDD-004 | test oracle strength | 明示的な `expect` / `assert` が無い `it` / `test` block、または truthiness-only assertion -> violation |
 | U-DDDTDD-005 | integration GWT | L8 `IT-*` row が Given / When / Then granularity を欠く -> violation |
-| U-DDDTDD-006 | workflow placement | Forward と Add-feature の workflow doc が `DDD-TDD-WORKFLOW` / SSoT reference を欠く -> violation。README/READE は gate 対象外 |
+| U-DDDTDD-006 | workflow placement | Forward と Add-feature の workflow doc が `DDD-TDD-WORKFLOW` / SSoT reference を欠く -> violation。README は gate 対象外 |
 | U-DDDTDD-007 | domain boundary | `src/lint/*` が runtime/doctor/CLI feature module を import するような disallowed reverse dependency -> violation |
 | U-DDDTDD-008 | real repo guard | `loadDddTddInputs(process.cwd())` + `analyzeDddTddRules` は violations `[]` を返す。`doctor` は `ddd-tdd-rules` を surface し `ok` を link する |
 | U-DDDTDD-009 | unit-oracle-substance (IMP-083 残差) | L7 unit test-design の `U-XXX-NNN` 行 (末尾数字 = `U-ID` ヘッダ除外) の expected-behavior セルが空 / trivial (< 6 字) / skeleton marker (`-`/TODO/骨格 等) -> violation。substantive 行は非違反 (false-positive 回避) |
@@ -664,7 +664,7 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 
 ### §1.19.1 U-PLANGOV 追補 (plan governance scope integrity、PLAN-L7-322)
 
-> `scope_digest` は opt-in の scope integrity gate として扱う。PLAN の `## §4 DoD` checkbox 行を正規化し、無宣言の DoD 削除や scope shrink を fail-close する。README/READE は gate 対象外。
+> `scope_digest` は opt-in の scope integrity gate として扱う。PLAN の `## §4 DoD` checkbox 行を正規化し、無宣言の DoD 削除や scope shrink を fail-close する。README は gate 対象外。
 
 | Test ID | 対象 | 期待 |
 |---|---|---|

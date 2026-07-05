@@ -124,7 +124,7 @@ const ROOT_READABILITY_DOCS = ["CLAUDE.md", "AGENTS.md", join(".claude", "CLAUDE
 
 function isReadmeLike(path: string): boolean {
   const name = basename(path);
-  return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name) || /^reade(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
+  return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
 }
 
 // System-wide readability band: every active UT-TDD prose surface (full docs/ tree + canonical

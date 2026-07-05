@@ -51,7 +51,7 @@ review_evidence:
     reviewed_at: "2026-07-05T02:46:33+09:00"
     tests_green_at: "2026-07-05T02:46:33+09:00"
     verdict: approve
-    scope: "PLAN-L7-319 の小項目 roundup を既存実装確認と分離済み PLAN-L7-324 証跡へ正規化した。team prompt provider routing と Agent/Task matcher portability は実装・test 済み、github-ci-policy は consumer CI contract、toolchain-pin は PLAN-L7-324、personal-path は既存の部分等価物までと記録した。setup/update-check advisory と personal-path hard gate 化は未実装として後続 slice に分離し、README / READE は gate・証跡・完了条件に紐づけていない。"
+    scope: "PLAN-L7-319 の小項目 roundup を既存実装確認と分離済み PLAN-L7-324 証跡へ正規化した。team prompt provider routing と Agent/Task matcher portability は実装・test 済み、github-ci-policy は consumer CI contract、toolchain-pin は PLAN-L7-324、personal-path は既存の部分等価物までと記録した。setup/update-check advisory と personal-path hard gate 化は未実装として後続 slice に分離し、README は gate・証跡・完了条件に紐づけていない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime-subagent
     green_commands:
@@ -127,7 +127,7 @@ coherent task boundary を保つため実装時は本 PLAN 配下で 1 項目ず
   distribution surface の扱いを伴うため、別 slice で承認境界を切る。
 - `personal-path` の source-wide / doctor hard gate 化はこの PLAN では完了主張しない。現時点では既存の部分等価物の
   棚卸結果として記録し、hard gate 化が必要なら後続の独立 PLAN で扱う。
-- README / READE は gate、証跡、完了条件に紐づけない。
+- README は gate、証跡、完了条件に紐づけない。
 
 ## 受入条件
 - 着手した各項目が最小 diff で回帰なし、provisional lint は確認結果（追加/skip/後続切り出し）を evidence 化。

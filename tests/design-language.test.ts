@@ -155,7 +155,7 @@ describe("design-language lint", () => {
       encoding: "utf8",
     })
       .stdout.split(/\r?\n/)
-      .filter((path) => path && !/(^|\/)(readme|reade)\.md$/i.test(path));
+      .filter((path) => path && !/(^|\/)readme\.md$/i.test(path));
     const auditedPaths = new Set(loadDesignLanguageDocs().map((doc) => doc.path));
 
     const missing = trackedMarkdown.filter((path) => !auditedPaths.has(path));

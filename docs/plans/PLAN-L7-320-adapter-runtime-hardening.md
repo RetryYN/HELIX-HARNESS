@@ -48,7 +48,7 @@ review_evidence:
     reviewed_at: "2026-07-05T02:57:55+09:00"
     tests_green_at: "2026-07-05T02:57:55+09:00"
     verdict: approve
-    scope: "PLAN-L7-320 の adapter runtime hardening を実装した。Windows .cmd/.bat provider command は shell:true 文字列ではなく cmd.exe /d /s /c の明示 command/args、shell=false、windowsVerbatimArguments=true とし、cmd.exe 解釈対象 token は quote 済みかつ unsafe 文字を拒否する。InvokeResult / normalizeInvokeResult は provider_error と malformed_output を分類し、pair-agent executor が分類を受け取る。normalizeProviderEffort は既存実装を維持し、README / READE は gate・証跡・完了条件に紐づけていない。"
+    scope: "PLAN-L7-320 の adapter runtime hardening を実装した。Windows .cmd/.bat provider command は shell:true 文字列ではなく cmd.exe /d /s /c の明示 command/args、shell=false、windowsVerbatimArguments=true とし、cmd.exe 解釈対象 token は quote 済みかつ unsafe 文字を拒否する。InvokeResult / normalizeInvokeResult は provider_error と malformed_output を分類し、pair-agent executor が分類を受け取る。normalizeProviderEffort は既存実装を維持し、README は gate・証跡・完了条件に紐づけていない。"
     worker_model: codex
     reviewer_model: codex-intra-runtime-subagent
     green_commands:

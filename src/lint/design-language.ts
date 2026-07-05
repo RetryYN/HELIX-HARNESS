@@ -113,7 +113,7 @@ function normalizeRel(path: string): string {
 
 function isReadmeLike(path: string): boolean {
   const name = basename(path);
-  return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name) || /^reade(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
+  return /^readme(?:\.[a-z0-9_-]+)?\.md$/i.test(name);
 }
 
 function walkMarkdown(absDir: string, repoRoot: string, acc: DesignLanguageDoc[]): void {
