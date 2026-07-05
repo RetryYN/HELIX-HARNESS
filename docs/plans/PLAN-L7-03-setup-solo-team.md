@@ -6,7 +6,7 @@ layer: L7
 drive: fullstack
 status: confirmed
 created: 2026-06-02
-updated: 2026-07-02
+updated: 2026-07-05
 owner: PM (Opus) / PO (人間)
 parent_design: docs/design/harness/L6-function-design/setup-solo-team.md
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
@@ -39,6 +39,31 @@ dependencies:
     - docs/plans/PLAN-REVERSE-04-setup-solo-team.md
   blocks: []
 review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-05T00:00:00+09:00"
+    tests_green_at: "2026-07-05T00:00:00+09:00"
+    verdict: approve
+    scope: "継続: setup githubPlan に GitHub PR 作成用の pullRequestCreation preflight を追加した。setup result と CLI text は `gh auth status`、repo default branch 確認、GitHub App connector 権限 (`metadata:read` / `contents:read` / `pull_requests:write`)、`resource_not_accessible_by_integration` remediation、draft PR command template を出す。PR 作成不能時は main 直 merge ではなく remediation と記録済み command output へ段階化する。"
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/setup.test.ts tests/cli-surface.test.ts tests/goal-evidence-audit.test.ts --timeout 300000"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-05T00:00:00+09:00"
+        evidence_path: tests/setup.test.ts
+        output_digest: "sha256:c1d818fc3f7bd7e8e316c046d8ec6e853114a4fb130674629ae2bf9467ea7c72"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-05T00:00:00+09:00"
+        evidence_path: src/setup/index.ts
+        output_digest: "sha256:02074e3546a575a65f7d28671ede367b7fc60dafef8625bc0952ef8b19ad36e1"
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-02T00:46:38+09:00"

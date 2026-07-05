@@ -1100,6 +1100,17 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         applyCommandAvailable: false,
         workflowPath: ".github/workflows/harness-check.yml",
         requiredChecks: ["harness-check"],
+        pullRequestCreation: {
+          status: "preflight_required",
+          preferredSurface: "gh-cli",
+          connectorFallback: "github-app",
+          requiresAuthenticatedGh: true,
+          requiredConnectorPermissions: ["metadata:read", "contents:read", "pull_requests:write"],
+          failureMode: "resource_not_accessible_by_integration",
+          preflightCommands: ["gh auth status", "gh repo view --json nameWithOwner,defaultBranchRef"],
+          draftPrCommandTemplate:
+            "gh pr create --draft --base <base> --head <branch> --title <title>",
+        },
         branchProtection: {
           status: "emit_only",
           scriptPath: "scripts/setup-branch-protection.sh",
@@ -1181,6 +1192,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(preview.githubPlan.branchProtection.reason).toContain("human approval");
     expect(preview.githubPlan.branchProtection.reason).toContain("action-binding approval");
+    expect(preview.githubPlan.pullRequestCreation.remediation).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("gh auth login"),
+        expect.stringContaining("Pull requests: write"),
+      ]),
+    );
     expect(preview.doctorBaseline.baselineCommands).toEqual(
       preview.postSetupWorkflow.verificationCommands,
     );
@@ -3161,6 +3178,13 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       applyCommandAvailable: false,
       workflowPath: ".github/workflows/harness-check.yml",
       requiredChecks: ["harness-check"],
+      pullRequestCreation: {
+        status: "preflight_required",
+        preferredSurface: "gh-cli",
+        connectorFallback: "github-app",
+        requiredConnectorPermissions: ["metadata:read", "contents:read", "pull_requests:write"],
+        failureMode: "resource_not_accessible_by_integration",
+      },
       branchProtection: {
         status: "emit_only",
         scriptPath: "scripts/setup-branch-protection.sh",

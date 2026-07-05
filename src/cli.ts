@@ -4960,6 +4960,9 @@ setupCommand
       `github-plan: ${r.githubPlan.schemaVersion} planOnly=${r.githubPlan.planOnly} requiredChecks=${r.githubPlan.requiredChecks.join(",")}\n`,
     );
     process.stdout.write(
+      `github-pr: status=${r.githubPlan.pullRequestCreation.status} preferred=${r.githubPlan.pullRequestCreation.preferredSurface} connector=${r.githubPlan.pullRequestCreation.connectorFallback} failure=${r.githubPlan.pullRequestCreation.failureMode} command="${r.githubPlan.pullRequestCreation.draftPrCommandTemplate}"\n`,
+    );
+    process.stdout.write(
       `doctor-baseline: ${r.doctorBaseline.schemaVersion} completionClaimAllowed=${r.doctorBaseline.completionClaimAllowed} commands=${r.doctorBaseline.baselineCommands.length}\n`,
     );
     process.stdout.write(

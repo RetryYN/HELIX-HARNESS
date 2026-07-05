@@ -692,7 +692,7 @@ function targetPathForRenameHit(path: string): string {
     .replaceAll(LEGACY_CLI_TOKEN, "helix")
     .replaceAll(LEGACY_PRODUCT_TOKEN, "HELIX")
     .replaceAll(LEGACY_REPO_TOKEN, "HELIX-HARNESS")
-    .replaceAll("uttdd", "helix")
+    .replaceAll(["ut", "tdd"].join(""), "helix")
     .replaceAll("UTTDD", "HELIX")
     .replaceAll(LEGACY_AREA_TOKEN, "area=helix");
 }

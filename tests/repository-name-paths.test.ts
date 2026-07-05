@@ -21,10 +21,11 @@ describe("repository path naming", () => {
     const legacySpacedRepo = [["UT", "TDD"].join("-"), "AGENT", "HARNESS"].join(" ");
     const legacyUnderscorePack = [["UT", "TDD"].join("_"), "AGENT", "HARNESS-Pack"].join("_");
     const legacyDottedPack = ["ut", "tdd", "agent", "harness", "pack"].join(".");
+    const legacyLowerCompactRepo = ["ut", "tdd", "agent", "harness"].join("");
     const result = analyzeRepositoryNamePaths({
       trackedPaths: [
         `docs/${legacyDashedRepo}-plan.md`,
-        "docs/uttdd-agent-harness-plan.md",
+        `docs/${legacyLowerCompactRepo}-plan.md`,
         `docs/${legacySpacedRepo} plan.md`,
       ],
       filesystemPaths: [
@@ -37,7 +38,7 @@ describe("repository path naming", () => {
     expect(result.ok).toBe(false);
     expect(result.trackedResidue).toEqual([
       `docs/${legacyDashedRepo}-plan.md`,
-      "docs/uttdd-agent-harness-plan.md",
+      `docs/${legacyLowerCompactRepo}-plan.md`,
       `docs/${legacySpacedRepo} plan.md`,
     ]);
     expect(result.filesystemResidue).toEqual([

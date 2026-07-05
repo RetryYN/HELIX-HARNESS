@@ -1777,6 +1777,9 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("adoption=Workspace Trust の自動コード実行境界");
     expect(text.stdout).toContain("github-plan: helix-project-github-plan.v1 planOnly=true");
     expect(text.stdout).toContain(
+      'github-pr: status=preflight_required preferred=gh-cli connector=github-app failure=resource_not_accessible_by_integration command="gh pr create --draft --base <base> --head <branch> --title <title>"',
+    );
+    expect(text.stdout).toContain(
       "doctor-baseline: helix-project-doctor-baseline.v1 completionClaimAllowed=false",
     );
     expect(text.stdout).toContain("HELIX: handover status");

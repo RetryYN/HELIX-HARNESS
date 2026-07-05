@@ -773,6 +773,17 @@ export interface HelixProjectGithubPlan {
   workflowPath: ".github/workflows/harness-check.yml";
   requiredChecks: ["harness-check"];
   generatedPolicyFiles: string[];
+  pullRequestCreation: {
+    status: "preflight_required";
+    preferredSurface: "gh-cli";
+    connectorFallback: "github-app";
+    requiresAuthenticatedGh: true;
+    requiredConnectorPermissions: ["metadata:read", "contents:read", "pull_requests:write"];
+    failureMode: "resource_not_accessible_by_integration";
+    preflightCommands: ["gh auth status", "gh repo view --json nameWithOwner,defaultBranchRef"];
+    draftPrCommandTemplate: "gh pr create --draft --base <base> --head <branch> --title <title>";
+    remediation: string[];
+  };
   branchProtection: {
     status: "emit_only";
     scriptPath: "scripts/setup-branch-protection.sh";
@@ -1145,6 +1156,21 @@ const PROJECT_GITHUB_PLAN: HelixProjectGithubPlan = {
     ".github/ISSUE_TEMPLATE/add-feature.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
   ],
+  pullRequestCreation: {
+    status: "preflight_required",
+    preferredSurface: "gh-cli",
+    connectorFallback: "github-app",
+    requiresAuthenticatedGh: true,
+    requiredConnectorPermissions: ["metadata:read", "contents:read", "pull_requests:write"],
+    failureMode: "resource_not_accessible_by_integration",
+    preflightCommands: ["gh auth status", "gh repo view --json nameWithOwner,defaultBranchRef"],
+    draftPrCommandTemplate: "gh pr create --draft --base <base> --head <branch> --title <title>",
+    remediation: [
+      "`gh auth login` を完了してから `gh pr create --draft` を実行する",
+      "GitHub App / connector installation に Pull requests: write と Contents: read を付与する",
+      "PR 作成不能時は branch URL と draft PR command を handover / status に残し、main 直 merge に逃げない",
+    ],
+  },
   branchProtection: {
     status: "emit_only",
     scriptPath: "scripts/setup-branch-protection.sh",
