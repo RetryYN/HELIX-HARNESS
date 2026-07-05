@@ -110,7 +110,7 @@ A-124 graph は UT-TDD に impact 対象を伝える。A-125 は、その impact
 
 ### Decision
 
-External tools は default では globally install せず、有効化もしない。UT-TDD はそれらを **profiles** として model 化する:
+External tools は default では globally install せず、有効化もしない。HELIX-HARNESS はそれらを **profiles** として model 化する:
 
 1. `mcp_server_profiles` / `verification_profiles` は allowed commands、package refs、risk tier、auth/network/Docker requirements、trigger signals を定義する。
 2. relation graph の impact expansion は `verification_recommendations` 経由で profiles を推薦する。
