@@ -16,8 +16,10 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L3-07-requirements-binding-enforcement.md
     artifact_type: markdown_doc
-  # draft のため generates は実在する自 doc のみ。各 Step の成果物（lint 実装 / governance 追補 /
-  # NFR グレード表 / config スキーマ）は該当 Step の Forward descent 着地時に追加する。
+  - artifact_path: docs/design/helix/L3-requirements/glossary-ssot.md
+    artifact_type: design_doc
+  # draft のため Step 5 の Glossary placeholder projection だけを実在 artifact として追加した。各 Step の残成果物
+  # （lint 実装 / governance 追補 / NFR グレード表 / config スキーマ）は該当 Step の Forward descent 着地時に追加する。
 dependencies:
   parent: docs/plans/PLAN-L3-00-master.md
   requires:
@@ -90,7 +92,7 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 ### OUT / 非対象
 
 - PLAN-DISCOVERY-11 の担当領域（L1⟷L2 サイクル本体、gap-check、収束 gate）— 参照のみ。
-- CLI/`.helix` rename、配布 cutover（PLAN-M-02 管轄）。
+- CLI 名・ローカル状態ディレクトリ名・配布面の識別子切替（PLAN-M-02 管轄）。
 - 既存違反の一括修正（grandfather baseline で段階移行。ratchet は design-language gate と同型）。
 
 ## 受入条件
@@ -113,6 +115,26 @@ domain-boundary-lint）の**延長**として登録し、Forward descent（L6→
 - Step 4: retention/purge 要件化（PO 起草・承認、AI は L3 降下のみ）。
 - Step 5: Glossary SSoT 起票。
 - Step 6: refactor candidate 未 triage の actionable 化。
+
+## PO 決定記録（2026-07-05、「OK進めて」）
+
+- **着手順を承認**: Step 2 の外部化基準文書化を薄く先行 → Step 1（構造品質 gate、Codex 委譲候補）→
+  Step 3/5 並行。Step 6 は Step 1 の gate 稼働後。
+- **Step 4 retention 方針の方向性を確定**: 期限付き物理削除は採用しない。**append-only を維持し、
+  supersede 済み entry の compaction（折り畳み）+ アーカイブ移動 + projection rebuild** で運用劣化のみ防ぐ
+  （元に戻せない破壊的削除を仕組みに持ち込まない）。この方向で AI が L3 要件案を起草し、PO が承認する。
+- レビュー分離: confirmed 昇格レビューは作成側と逆の runtime / model family へ回す。
+
+## S1 進捗メモ（2026-07-05）
+
+- **Step 2 前半完了**: 外部化基準を `docs/governance/coding-rules.md` §外部化基準として文書化
+  （3 基準 + 段階〔policy module 分離 → `.helix/config` + schema〕+ 安全境界値の外部化禁止 + telemetry triage 義務）。
+  config スキーマ実装と threshold 移設は Step 2 後半（Forward descent）で扱う。
+- Step 5 の初期 placeholder artifact として `docs/design/helix/L3-requirements/glossary-ssot.md` を起票した。
+- 本 artifact は L0 §10 を単一 SSoT とする projection であり、用語を独自定義しない。
+- `HR-FR-P7-02`、L5 `HC-P7`、L6 `detectGlossaryDrift` / `validateContextMapBoundary` への trace を束ね、
+  識別子・CLI・gate 名を日本語説明に接続した。
+- まだ confirmed / terminal ではない。runtime 実装、doctor 接続、drift test、review evidence は後続 Step で扱う。
 
 ## 壊さない / 再発させない
 
