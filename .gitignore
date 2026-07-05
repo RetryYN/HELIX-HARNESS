@@ -48,7 +48,7 @@ __pycache__/
 # PLAN frontmatter runtime lock (W1 cross-platform lock impl)
 docs/plans/*.lock
 
-# Node / TypeScript (UT-TDD harness core, ADR-001)
+# Node / TypeScript (HELIX-HARNESS core, ADR-001)
 node_modules/
 dist/
 *.tsbuildinfo

@@ -121,4 +121,4 @@ PO request（"are there really no fixes? does it actually work?"）を受け、c
 
 Phase 3 workflow automation verification cycle は **pass**。
 
-次の推奨 goal は Phase 4 UT harness DB integration である。automation evidence を DB projection へ ingest し、feedback/audit/state guarantee を完了させる。
+次の推奨 goal は Phase 4 HELIX-HARNESS DB integration である。automation evidence を DB projection へ ingest し、feedback/audit/state guarantee を完了させる。
