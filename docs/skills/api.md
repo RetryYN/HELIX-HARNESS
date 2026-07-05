@@ -19,24 +19,24 @@ applies_to:
 
 # API 設計
 
-新規または変更された API surface に伴う REST/RPC endpoint design、versioning strategy、
-HELIX V-model obligations を定義する。PLAN が API endpoint を追加・変更・削除する場合に使う。
+新規または変更された API surface（API 境界）に伴う REST/RPC endpoint design とバージョン方針、
+HELIX V-model 上の責務を定義する。PLAN が API endpoint を追加・変更・削除する場合に使う。
 
 ## この skill を読む条件
 
-- 新しい REST または RPC surface を定義する L4 basic-design doc を書く。
-- `kind=add-impl` または `kind=add-design` の PLAN が `src/` routes または CLI command dispatch に触れる。
-- Reverse R1 pass で既存 HTTP surface を contract doc に抽出する必要がある。
+- 新しい REST または RPC surface（境界）を定義する L4 basic-design doc を書く。
+- `kind=add-impl` または `kind=add-design` の PLAN が `src/` routes または CLI command dispatch（command 分岐）に触れる。
+- Reverse R1 pass で既存 HTTP surface を contract doc（契約 doc）に抽出する必要がある。
 - L8 integration-test design で test 対象 API contract を指定する必要がある。
 
-## API surface の V-model obligations
+## API surface の V-model 責務
 
 **L3 (functional design):** 各 endpoint に名前を付け、trigger、actor、
-observable outcome を記載する。implementation detail は書かず、
+観測可能な outcome を記載する。implementation detail は書かず、
 「caller から見えるもの」だけを書く。
 
 **L4（basic design）:** method、path、request shape、response shape、error codes を定義する。
-versioning strategy を指定する。L4 doc は `docs/design/<product>/L4-basic/` に置く。
+バージョン方針を指定する。L4 doc は `docs/design/<product>/L4-basic/` に置く。
 pair-freeze 前に、`docs/test-design/` 配下の L8 integration-test design doc と対応させる。
 
 **L5（detailed design）:** serialisation format、auth scheme、rate-limit policy を定義する。
@@ -50,7 +50,7 @@ pagination model を定義する。L6 unit-test design（error-path coverage、b
 - すべての public routes は path level で `/v<N>/` prefix を持つ。
 - Breaking changes（field removal、type change、status-code change）は new version が必要。
   additive changes（optional field、new endpoint）は non-breaking。
-- versioning decision は L4 doc の `## API Versioning` heading 配下に記録する。
+- バージョン判断は L4 doc の `## API Versioning` heading 配下に記録する。
   code comments だけに暗黙化しない。
 - deprecated versions は L4 doc に sunset date を持ち、response header
   （`Deprecation: <date>`）を返す。
@@ -68,7 +68,7 @@ pagination model を定義する。L6 unit-test design（error-path coverage、b
 
 ## Reverse pass（既存 API の抽出）
 
-Reverse drive が既存 `src/` code から始まる場合、tests を書く前に code inspection から
+Reverse drive が既存 `src/` code から始まる場合、tests を書く前に code 精査から
 L4 contract doc を作る。`ut-tdd review --uncommitted` を使い、抽出した doc がすべての
 handler path を覆っていることを確認する。R1 output（contract doc）は、その surface に対する
 以後の Forward または Add-feature work の SSoT になる。
