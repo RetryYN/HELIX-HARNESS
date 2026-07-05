@@ -11,6 +11,24 @@ drive: fe
 status: confirmed
 created: 2026-07-04
 updated: 2026-07-05
+review_evidence:
+  - reviewer: code-reviewer subagent (intra_runtime_subagent)
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-05"
+    tests_green_at: "2026-07-05"
+    verdict: pass
+    scope: "S4 decision record レビュー（5 観点: 必須 16 フィールド充足 / verified_evidence 実在 (git show 14179b2, c1cc240) / claim discipline / charter §3 整合 / A-40 循環回避 = すべて pass）。Important 指摘 3 件は反映済み: ①adoption_decision_delta の precedent を DISCOVERY-08 のみに訂正（07/10 は S3 pending）②本 review_evidence の frontmatter 着地 ③REVERSE-329 frontmatter / design-language / G-10 ledger は Codex が ec10369 で修正。Minor（decision_basis のラウンド数表現）も 2 ラウンド収束に精緻化済み。tests/s4-decision-readiness.test.ts 29/29 pass。Codex runtime が PLAN-L3-07 Step 1 を占有中だったため cross-runtime でなく intra_runtime_subagent を適用（hybrid 例外理由）。"
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/s4-decision-readiness.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-05T23:15:17+09:00"
+        evidence_path: tests/s4-decision-readiness.test.ts
+        output_digest: "sha256:c3bdeeda02f5aef74db85a23f36134564a23392049db2e2086ea527bc280b6cb"
 owner: PO (人間) / Claude (Opus)
 parent_design: docs/design/harness/L1-requirements/screen-requirements.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -41,7 +59,7 @@ dependencies:
 s4_decision_record:
 - allowed_outcome: `confirmed`
 - decision_owner: PO (2026-07-05 S4 adoption、「いえす」= 本採用)
-- decision_basis: S2 実走（PM-06 × 観点表 Round 1→2）で、検出 → 人承認 → 反映 → 再列挙 → 残差可視化の 1 周が 3 ラウンド bound 内で完了し、L1 側 8/8 green を達成。観点表は属人判定なしの機械列挙として機能した（§S2/§S3 記録）。
+- decision_basis: S2 実走（PM-06 × 観点表 Round 1→2）で、検出 → 人承認 → 反映 → 再列挙 → 残差可視化の 1 周が **2 ラウンドで収束（上限 3 ラウンド内）**し、L1 側 8/8 green を達成。観点表は属人判定なしの機械列挙として機能した（§S2/§S3 記録）。
 - verified_evidence: commit `14179b2`（L1 反映 + Round 記録）、`c1cc240`（trace seed + Round 1 記録）、`helix plan lint` OK (checked=517)、doctor `doc-consistency` OK (screens=15)、`design-language` OK。§S3 verify 記録 = pass。
 - stakeholder_review_or_proxy: intra_runtime_subagent (code-reviewer, claude-sonnet-5) による S4 記録レビューを review_evidence に記録。Codex runtime は PLAN-L3-07 Step 1 実装を占有中のため cross-runtime 代替を適用（hybrid 例外理由の記録）。
 - acceptance_gap: accepted gap: L2 側残差 1 件（StatusBadge frozen 写像 + 空ツリー行の L2 追記）は screen track 再開時に A-40 経由で反映。本採用判断を阻害しない（G2 PASS 済 mock への silent edit 回避のための意図的 carry）。
@@ -49,7 +67,7 @@ s4_decision_record:
 - external_source_basis: docs/process/modes/discovery.md と docs/process/modes/scrum.md の S4 decision rules。
 - source_ledger_freshness: fresh; discovery.md の S4 decision source ledger（確認日 2026-07-03）を本判断時点で有効と確認。
 - source_status_delta: changed; ISO/IEC/IEEE 29148 は revision 進行中（stage 90.92）だが、本 PoC の要求抽出観点（入力/出力/異常系等）の妥当性に影響しない。
-- adoption_decision_delta: none; 既存 S4 済み decision（DISCOVERY-07/08/10）の route policy と整合し、再オープンを要しない。
+- adoption_decision_delta: none; 既存 S4 済み decision（DISCOVERY-08、status=confirmed）の route policy と整合し、再オープンを要しない。DISCOVERY-07/10 は S3 pending（s4-decision-readiness pending=2 で実測確認）のため precedent 参照対象外。
 - workflow_route_impact: none; Forward front-end の精緻化であり、既存 mode/route 体系を変更しない（新 mode を作らない、§OUT 維持）。
 - route_impact: confirmed により L1⟷L2 反復ループ + 収束 gate（A-40 精緻化）+ AI gap-check が Forward front-end の正式機構として採用され、process 正本反映と enforcement 実装の descent が解禁される。
 - forward_route: `docs/process/forward/L00-L06-design-phase.md` §L2=L1 フェーズ分離への正式追補 + consistency lint / gap-check CLI の Forward descent（後続 PLAN 起票、`screen-impl-pair-freeze.ts` を参照する別ロジック）。
