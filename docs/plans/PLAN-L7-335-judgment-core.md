@@ -146,6 +146,39 @@ review_evidence:
         completed_at: "2026-07-06T01:25:35+09:00"
         evidence_path: docs/plans/PLAN-L7-335-judgment-core.md
         output_digest: "sha256:0d38550ef52dea3aaa0f87446dfcf3e9040a76b89210274a694558868061a1d5"
+  - reviewer: code-reviewer
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-06T01:53:42+09:00"
+    tests_green_at: "2026-07-06T01:53:42+09:00"
+    verdict: approve_after_fixes
+    scope: "5 軸レビュー (Claude 側 fresh subagent context)。Important 2 件を検出し解消: (1) PLAN-L7-335 番号スロットの並行重複起票 (Codex が -coverage 側を本 PLAN へ統合・削除して解消、単一 PLAN 化を確認)。(2) SSoT §1-3 エスカレーション境界に external API assumptions が欠落 (CLAUDE.md 安全境界より狭かった) → 列挙へ追加し正本 3 箇所の同一集合を明記。terminal status 共通化の behavior-invariant (trim 追加は YAML scalar に前後空白が残らない前提で不変) を 40 oracle green で確認。"
+    worker_model: claude-fable-5
+    reviewer_model: claude-sonnet-5
+    green_commands:
+      - kind: unit_test
+        command: "bun test tests/judgment-core-coverage.test.ts tests/allowlist-sync.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T01:53:42+09:00"
+        evidence_path: tests/judgment-core-coverage.test.ts
+        output_digest: "sha256:0b828d5dfd4b4f366b39d46c790e8f07949f34c0ada3786c9edc3de0e49fcb0e"
+      - kind: unit_test
+        command: "bun test tests/plan-artifact-existence.test.ts tests/plan-completion-drift.test.ts tests/merged-plan-status.test.ts"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-06T01:53:42+09:00"
+        evidence_path: tests/plan-artifact-existence.test.ts
+        output_digest: "sha256:5658843d7bd804a6244efef40fee7602c9bad283bf300faebbdbaf7bb527355f"
+      - kind: typecheck
+        command: "bun run typecheck"
+        runner: bun
+        scope: full
+        exit_code: 0
+        completed_at: "2026-07-06T01:53:42+09:00"
+        evidence_path: src/lint/judgment-core-coverage.ts
+        output_digest: "sha256:8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
 ---
 
 # PLAN-L7-335 (impl): 判断コア — Fable 判断規律の SSoT 化と全 agent 継承 + drift 機械検査
