@@ -854,7 +854,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "bun run helix completion review-bundle --json",
         "bun run helix doctor --profile consumer --json",
       ]),
-      sourceCheckedAt: "2026-07-04",
+      sourceCheckedAt: "2026-07-05",
       workflowRouteImpact: expect.stringContaining("fix_consumer_readiness"),
     });
     expect(ready.ci.requires).toContain("bun run test");

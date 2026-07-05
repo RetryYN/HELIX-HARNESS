@@ -179,6 +179,16 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - `typecheck` と `doctor` が green。ただし外部 repo が認証必須の場合、`objective-external` は認証不足を明示して blocked とする。
 - source `harness-check` は単一 required check のまま、branch type matrix、commitlint、poc direct-main guard、hotfix postmortem guard を job 内 subjob として実行する。
 
+## 2026-07-05 追補: 外部 ledger freshness と G-10 stale 行修正
+
+- `git ls-remote` で 2026-07-05 時点の `RetryYN/HELIX-HARNESS` main、historical Pack main、Pack latest tag を再確認し、
+  `docs/governance/helix-objective-evidence-audit.md` と `src/lint/objective-evidence-audit.ts` の external source marker を
+  2026-07-05 へ更新した。観測 commit / tag は 2026-07-04 監査から変わらない。
+- `PLAN-L7-03-setup-solo-team` は live PLAN status が `confirmed` であり、`status --json` の outstanding item でもないため、
+  G-10 の未了 / decision pending PLAN 一覧から外した。人間承認が必要な blocker
+  (`PLAN-DISCOVERY-07`、`PLAN-DISCOVERY-10`、`PLAN-DISCOVERY-11`、`PLAN-L7-146`、`PLAN-M-02`) は維持する。
+- setup consumer readiness の distribution package surface `sourceCheckedAt` も、同じ 2026-07-05 の実測日に合わせた。
+
 ## 現在の判断
 
 GitHub 操作を「自由に」するために guard を外すのではなく、AI agent が必要な操作を正規 preflight、明示権限、

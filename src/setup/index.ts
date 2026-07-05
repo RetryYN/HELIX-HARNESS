@@ -940,7 +940,7 @@ export interface ConsumerReadinessPlan {
       ok: boolean;
       evidence: string;
       remediation: string;
-      sourceCheckedAt: "2026-07-04";
+      sourceCheckedAt: "2026-07-05";
       latestObservedStatus: string;
       workflowRouteImpact: string;
     };
@@ -1569,10 +1569,10 @@ export function buildConsumerReadinessPlan(input: {
       "generated consumer CI command surface was not probed; readiness fails closed to avoid treating stale Pack tags as runnable",
     remediation:
       "current clean artifact link smoke または version-up activation で公開 Pack tag の CLI surface を更新してから consumer readiness を再判定する",
-    sourceCheckedAt: "2026-07-04" as const,
+    sourceCheckedAt: "2026-07-05" as const,
     latestObservedStatus:
       input.distributionPackageSurface?.latestObservedStatus ??
-      "not observed in this readiness input; Pack v0.1.0/v0.1.4 external probe on 2026-07-04 returned unknown option '--json' for setup project --dry-run --json",
+      "not observed in this readiness input; Pack v0.1.0/v0.1.4 external probe on 2026-07-05 returned unknown option '--json' for setup project --dry-run --json",
     workflowRouteImpact:
       "missing or failing distribution package surface routes setup/distribution readiness to fix_consumer_readiness before first HELIX work",
   };

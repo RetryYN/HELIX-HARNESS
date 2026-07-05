@@ -138,13 +138,13 @@ const REQUIRED_OBJECTIVE_MARKER_GROUPS = [
     requirementId: "G-01",
     label: "external source marker",
     markers: [
-      "外部ソース HEAD 確認日: 2026-07-04",
+      "外部ソース HEAD 確認日: 2026-07-05",
       "RetryYN/HELIX-HARNESS",
       "b828fcf64c204d1cfa65c729fa590ca9562adccc",
       "<historical-pack-reference>",
       "a43771ab091486520a4970f6b19b1663a009d4d0",
       "v0.1.4",
-      "検証 / 進捗 source basis 再確認日: 2026-07-04",
+      "検証 / 進捗 source basis 再確認日: 2026-07-05",
     ],
   },
   {

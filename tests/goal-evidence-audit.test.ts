@@ -29,8 +29,8 @@ describe("HELIX objective evidence audit", () => {
     expect(completionRow).toContain("| blocked |");
     expect(completionRow).toContain("outstanding.completionReadiness.ok=false");
 
-    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-04");
-    expect(text).toContain("外部 source ledger (checked 2026-07-04)");
+    expect(text).toContain("外部ソース HEAD 確認日: 2026-07-05");
+    expect(text).toContain("外部 source ledger (checked 2026-07-05)");
     expect(text).toContain(
       "git ls-remote https://github.com/RetryYN/HELIX-HARNESS.git refs/heads/main",
     );
@@ -47,7 +47,7 @@ describe("HELIX objective evidence audit", () => {
     expect(text).toContain("local distribution tag: `v0.1.0`");
     expect(text).toContain("Pack latest tag: `v0.1.4`");
     expect(text).toContain("version-up activation required before adopting Pack latest tag");
-    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-04");
+    expect(text).toContain("検証 / 進捗 source basis 再確認日: 2026-07-05");
     expect(text).toContain("1cb4c3e9e73e3d2933b353ccaa2b1f64fffa9f23");
     expect(text).toContain("HR-NFR-P5-03");
     expect(text).toContain("PLAN-M-02");
@@ -152,9 +152,9 @@ describe("HELIX objective evidence audit", () => {
 
   it("fails when the external distribution reference repository marker is dropped", () => {
     const text = auditText()
-      .replaceAll("外部ソース HEAD 確認日: 2026-07-04", "外部ソース HEAD 確認日: 2026-06-30")
+      .replaceAll("外部ソース HEAD 確認日: 2026-07-05", "外部ソース HEAD 確認日: 2026-06-30")
       .replaceAll(
-        "外部 source ledger (checked 2026-07-04)",
+        "外部 source ledger (checked 2026-07-05)",
         "外部 source ledger (checked 2026-01-01)",
       )
       .replaceAll("<historical-pack-reference>", "historical-pack-reference-missing")
@@ -169,7 +169,7 @@ describe("HELIX objective evidence audit", () => {
         "version-up activation marker missing",
       )
       .replaceAll(
-        "検証 / 進捗 source basis 再確認日: 2026-07-04",
+        "検証 / 進捗 source basis 再確認日: 2026-07-05",
         "検証 / 進捗 source basis 再確認日: 2026-07-01",
       );
 
@@ -182,11 +182,11 @@ describe("HELIX objective evidence audit", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toEqual(
       expect.arrayContaining([
-        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-04",
+        "G-01: missing external source marker 外部ソース HEAD 確認日: 2026-07-05",
         "G-01: missing external source marker <historical-pack-reference>",
         "G-01: missing external source marker a43771ab091486520a4970f6b19b1663a009d4d0",
         "G-01: missing external source marker v0.1.4",
-        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-04",
+        "G-01: missing external source marker 検証 / 進捗 source basis 再確認日: 2026-07-05",
         expect.stringMatching(/^G-01: 外部 source ledger checked date is stale: 2026-01-01/),
         "G-01: 外部 source ledger distribution_pack_repo command missing git ls-remote <historical-pack-reference> refs/heads/main",
         "G-01: 外部 source ledger distribution_pack_repo observed missing a43771ab091486520a4970f6b19b1663a009d4d0",
@@ -449,7 +449,7 @@ describe("HELIX objective evidence audit", () => {
   it("keeps completion claim blocked when readiness is ready but audit evidence is invalid", () => {
     const readyOutstanding = analyzeOutstandingWork([], 0);
     const invalidText = auditText().replace(
-      "外部ソース HEAD 確認日: 2026-07-04",
+      "外部ソース HEAD 確認日: 2026-07-05",
       "外部ソース HEAD 確認日: missing",
     );
 
