@@ -23,7 +23,10 @@ import { parse as parseYaml } from "yaml";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import {
+  loadGithubCiStatus,
   loadGithubMergeReadiness,
+  loadGithubPrBodyDraft,
+  renderGithubCiStatus,
   renderGithubMergeReadiness,
 } from "./audit/github-merge-readiness";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
@@ -4888,6 +4891,39 @@ github
     if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     else process.stdout.write(renderGithubMergeReadiness(result));
     process.exitCode = result.localReady ? 0 : 1;
+  });
+
+github
+  .command("pr-body")
+  .description("draft a pull request body from the local branch without GitHub write access")
+  .option("--base <branch>", "base branch for the pull request", "main")
+  .option("--title <title>", "PR title override")
+  .option("--json", "JSON output")
+  .option("--markdown", "Markdown body output")
+  .action((opts: { base?: string; title?: string; json?: boolean; markdown?: boolean }) => {
+    const result = loadGithubPrBodyDraft(process.cwd(), {
+      baseBranch: opts.base ?? "main",
+      title: opts.title,
+    });
+    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    else if (opts.markdown) process.stdout.write(`${result.markdown}\n`);
+    else {
+      process.stdout.write(`github pr-body: title=${result.title}\n`);
+      process.stdout.write(`  - body-lines=${result.markdown.split(/\r?\n/).length}\n`);
+      process.stdout.write(`  - command=${result.commands.createDraftPullRequest}\n`);
+    }
+  });
+
+github
+  .command("ci-status")
+  .description("emit a read-only GitHub Actions status packet for a branch/ref")
+  .option("--ref <ref>", "branch or ref to inspect (defaults to current branch)")
+  .option("--json", "JSON output")
+  .action((opts: { ref?: string; json?: boolean }) => {
+    const result = loadGithubCiStatus(process.cwd(), { ref: opts.ref });
+    if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    else process.stdout.write(renderGithubCiStatus(result));
+    process.exitCode = result.status === "red" ? 1 : 0;
   });
 
 const feedback = program

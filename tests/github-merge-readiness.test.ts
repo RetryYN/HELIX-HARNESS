@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { analyzeGithubMergeReadiness } from "../src/audit/github-merge-readiness";
+import {
+  analyzeGithubCiStatus,
+  analyzeGithubMergeReadiness,
+  buildGithubPrBodyDraft,
+} from "../src/audit/github-merge-readiness";
 
 describe("github merge readiness", () => {
   it("allows authenticated HELIX agents to proceed when local branch evidence is ready", () => {
@@ -72,5 +76,74 @@ describe("github merge readiness", () => {
         "gh_missing",
       ]),
     );
+  });
+
+  it("drafts a Japanese-first PR body with local branch evidence", () => {
+    const result = buildGithubPrBodyDraft({
+      baseBranch: "main",
+      headBranch: "feature/github-readiness",
+      headSha: "abc123",
+      templateText: "## 概要\n\n## 検証\n",
+      commitSubjects: ["feat: add github readiness"],
+      changedPaths: ["src/audit/github-merge-readiness.ts"],
+    });
+
+    expect(result).toMatchObject({
+      schemaVersion: "helix-github-pr-body-draft.v1",
+      title: "feat: add github readiness",
+      baseBranch: "main",
+      headBranch: "feature/github-readiness",
+    });
+    expect(result.markdown).toContain("## HELIX merge readiness");
+    expect(result.markdown).toContain("PR 経由。main 直 merge ではない。");
+    expect(result.markdown).toContain("`src/audit/github-merge-readiness.ts`");
+  });
+
+  it("separates unavailable CI status from red CI status", () => {
+    const unavailable = analyzeGithubCiStatus({
+      ref: "feature/github-readiness",
+      ghInstalled: true,
+      ghAuthenticated: false,
+      runs: [],
+    });
+    expect(unavailable).toMatchObject({
+      ok: false,
+      status: "unavailable",
+      externalPermissionBlocked: true,
+    });
+
+    const green = analyzeGithubCiStatus({
+      ref: "feature/github-readiness",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "success",
+          headSha: "abc123",
+          url: "https://example.test/run",
+        },
+      ],
+    });
+    expect(green).toMatchObject({ ok: true, status: "green" });
+
+    const red = analyzeGithubCiStatus({
+      ref: "feature/github-readiness",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "failure",
+          headSha: "abc123",
+          url: "https://example.test/run",
+        },
+      ],
+    });
+    expect(red).toMatchObject({ ok: false, status: "red" });
   });
 });

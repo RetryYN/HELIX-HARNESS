@@ -1,4 +1,6 @@
 import { execFileSync, spawnSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
 export interface GithubMergeReadinessInput {
   baseBranch: string;
@@ -42,6 +44,58 @@ export interface GithubMergeReadinessFinding {
     | "gh_auth_required";
   severity: "error" | "info";
   message: string;
+}
+
+export interface GithubPrBodyDraftResult {
+  schemaVersion: "helix-github-pr-body-draft.v1";
+  baseBranch: string;
+  headBranch: string;
+  headSha: string;
+  title: string;
+  templatePath: string;
+  commitSubjects: string[];
+  changedPaths: string[];
+  omittedCommitCount: number;
+  omittedChangedPathCount: number;
+  markdown: string;
+  commands: {
+    createDraftPullRequest: string;
+  };
+}
+
+export type GithubCiStatusKind = "green" | "red" | "pending" | "no_runs" | "unavailable";
+
+export interface GithubCiRun {
+  name: string;
+  workflowName: string;
+  status: string;
+  conclusion: string | null;
+  headSha: string;
+  url: string | null;
+}
+
+export interface GithubCiStatusInput {
+  ref: string;
+  ghInstalled: boolean;
+  ghAuthenticated: boolean;
+  runs: GithubCiRun[];
+  queryError?: string;
+}
+
+export interface GithubCiStatusResult {
+  schemaVersion: "helix-github-ci-status.v1";
+  ok: boolean;
+  status: GithubCiStatusKind;
+  ref: string;
+  ghInstalled: boolean;
+  ghAuthenticated: boolean;
+  externalPermissionBlocked: boolean;
+  runs: GithubCiRun[];
+  queryError?: string;
+  commands: {
+    inspectAuth: string;
+    listRuns: string;
+  };
 }
 
 function shellQuote(value: string): string {
@@ -138,6 +192,13 @@ function parseAheadBehind(value: string): { ahead: number; behind: number } {
   };
 }
 
+function gitLines(repoRoot: string, args: string[]): string[] {
+  return git(repoRoot, args, "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
 export function loadGithubMergeReadiness(
   repoRoot: string,
   opts: { baseBranch?: string } = {},
@@ -166,6 +227,191 @@ export function loadGithubMergeReadiness(
   });
 }
 
+export function buildGithubPrBodyDraft(input: {
+  baseBranch: string;
+  headBranch: string;
+  headSha: string;
+  title?: string;
+  templateText: string;
+  commitSubjects: string[];
+  changedPaths: string[];
+  commitLimit?: number;
+  changedPathLimit?: number;
+}): GithubPrBodyDraftResult {
+  const commitLimit = input.commitLimit ?? 30;
+  const changedPathLimit = input.changedPathLimit ?? 80;
+  const commitSubjects = input.commitSubjects.slice(0, commitLimit);
+  const changedPaths = input.changedPaths.slice(0, changedPathLimit);
+  const omittedCommitCount = Math.max(0, input.commitSubjects.length - commitSubjects.length);
+  const omittedChangedPathCount = Math.max(0, input.changedPaths.length - changedPaths.length);
+  const title =
+    input.title?.trim() || input.commitSubjects[0] || `HELIX update: ${input.headBranch}`;
+  const changedPreview =
+    changedPaths.length > 0
+      ? changedPaths.map((path) => `- \`${path}\``).join("\n")
+      : "- 差分ファイルなし";
+  const commitPreview =
+    commitSubjects.length > 0
+      ? commitSubjects.map((subject) => `- ${subject}`).join("\n")
+      : "- commit subject なし";
+  const markdown = [
+    input.templateText.trimEnd(),
+    "",
+    "## HELIX merge readiness",
+    "",
+    `- base: \`${input.baseBranch}\``,
+    `- head: \`${input.headBranch}\``,
+    `- headSha: \`${input.headSha}\``,
+    "- merge route: PR 経由。main 直 merge ではない。",
+    "",
+    "## Commit summary",
+    commitPreview,
+    omittedCommitCount > 0 ? `- 他 ${omittedCommitCount} 件は JSON packet で確認` : "",
+    "",
+    "## Changed paths",
+    changedPreview,
+    omittedChangedPathCount > 0 ? `- 他 ${omittedChangedPathCount} 件は JSON packet で確認` : "",
+    "",
+    "## Required local verification",
+    "- [ ] `helix github merge-readiness --json`",
+    "- [ ] `helix github ci-status --json`",
+    "- [ ] `helix doctor`",
+  ].join("\n");
+  return {
+    schemaVersion: "helix-github-pr-body-draft.v1",
+    baseBranch: input.baseBranch,
+    headBranch: input.headBranch,
+    headSha: input.headSha,
+    title,
+    templatePath: ".github/PULL_REQUEST_TEMPLATE.md",
+    commitSubjects,
+    changedPaths,
+    omittedCommitCount,
+    omittedChangedPathCount,
+    markdown,
+    commands: {
+      createDraftPullRequest: `gh pr create --draft --base ${shellQuote(input.baseBranch)} --head ${shellQuote(input.headBranch)} --title ${shellQuote(title)} --body-file <body.md>`,
+    },
+  };
+}
+
+export function loadGithubPrBodyDraft(
+  repoRoot: string,
+  opts: { baseBranch?: string; title?: string } = {},
+): GithubPrBodyDraftResult {
+  const baseBranch = opts.baseBranch ?? "main";
+  const headBranch = git(repoRoot, ["rev-parse", "--abbrev-ref", "HEAD"], "HEAD");
+  const headSha = git(repoRoot, ["rev-parse", "HEAD"], "");
+  const templatePath = join(repoRoot, ".github", "PULL_REQUEST_TEMPLATE.md");
+  const templateText = existsSync(templatePath)
+    ? readFileSync(templatePath, "utf8")
+    : "## 概要\n\n## 検証\n";
+  return buildGithubPrBodyDraft({
+    baseBranch,
+    headBranch,
+    headSha,
+    title: opts.title,
+    templateText,
+    commitSubjects: gitLines(repoRoot, ["log", "--format=%s", `origin/${baseBranch}..HEAD`]),
+    changedPaths: gitLines(repoRoot, ["diff", "--name-only", `origin/${baseBranch}...HEAD`]),
+  });
+}
+
+export function analyzeGithubCiStatus(input: GithubCiStatusInput): GithubCiStatusResult {
+  let status: GithubCiStatusKind = "unavailable";
+  if (input.ghInstalled && input.ghAuthenticated && input.queryError === undefined) {
+    if (input.runs.length === 0) {
+      status = "no_runs";
+    } else if (
+      input.runs.some((run) => run.conclusion === "failure" || run.conclusion === "cancelled")
+    ) {
+      status = "red";
+    } else if (input.runs.some((run) => run.status !== "completed" || run.conclusion === null)) {
+      status = "pending";
+    } else if (
+      input.runs.every((run) => run.conclusion === "success" || run.conclusion === "skipped")
+    ) {
+      status = "green";
+    } else {
+      status = "red";
+    }
+  }
+  return {
+    schemaVersion: "helix-github-ci-status.v1",
+    ok: status === "green",
+    status,
+    ref: input.ref,
+    ghInstalled: input.ghInstalled,
+    ghAuthenticated: input.ghAuthenticated,
+    externalPermissionBlocked: !input.ghInstalled || !input.ghAuthenticated,
+    runs: input.runs,
+    queryError: input.queryError,
+    commands: {
+      inspectAuth: "gh auth status",
+      listRuns: `gh run list --branch ${shellQuote(input.ref)} --limit 10 --json databaseId,status,conclusion,headSha,name,workflowName,url`,
+    },
+  };
+}
+
+function parseGhRuns(stdout: string): GithubCiRun[] {
+  try {
+    const parsed = JSON.parse(stdout) as unknown;
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((row): GithubCiRun => {
+      const record = row && typeof row === "object" ? (row as Record<string, unknown>) : {};
+      return {
+        name: typeof record.name === "string" ? record.name : "",
+        workflowName: typeof record.workflowName === "string" ? record.workflowName : "",
+        status: typeof record.status === "string" ? record.status : "",
+        conclusion: typeof record.conclusion === "string" ? record.conclusion : null,
+        headSha: typeof record.headSha === "string" ? record.headSha : "",
+        url: typeof record.url === "string" ? record.url : null,
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
+export function loadGithubCiStatus(
+  repoRoot: string,
+  opts: { ref?: string } = {},
+): GithubCiStatusResult {
+  const ref = opts.ref ?? git(repoRoot, ["rev-parse", "--abbrev-ref", "HEAD"], "HEAD");
+  const ghVersion = spawnSync("gh", ["--version"], { stdio: "ignore" });
+  const ghInstalled = ghVersion.status === 0;
+  const ghAuth = ghInstalled ? spawnSync("gh", ["auth", "status"], { stdio: "ignore" }) : null;
+  if (!ghInstalled || ghAuth?.status !== 0) {
+    return analyzeGithubCiStatus({
+      ref,
+      ghInstalled,
+      ghAuthenticated: ghAuth?.status === 0,
+      runs: [],
+    });
+  }
+  const query = spawnSync(
+    "gh",
+    [
+      "run",
+      "list",
+      "--branch",
+      ref,
+      "--limit",
+      "10",
+      "--json",
+      "databaseId,status,conclusion,headSha,name,workflowName,url",
+    ],
+    { cwd: repoRoot, encoding: "utf8" },
+  );
+  return analyzeGithubCiStatus({
+    ref,
+    ghInstalled,
+    ghAuthenticated: true,
+    runs: query.status === 0 ? parseGhRuns(query.stdout) : [],
+    queryError: query.status === 0 ? undefined : query.stderr.trim() || "gh run list failed",
+  });
+}
+
 export function renderGithubMergeReadiness(result: GithubMergeReadinessResult): string {
   const lines = [
     `github merge-readiness: ${result.ok ? "local-ready" : "blocked"} branch=${result.currentBranch} base=${result.baseBranch} ahead=${result.ahead} behind=${result.behind}`,
@@ -175,6 +421,22 @@ export function renderGithubMergeReadiness(result: GithubMergeReadinessResult): 
   ];
   for (const finding of result.findings) {
     lines.push(`  - ${finding.severity} ${finding.code}: ${finding.message}`);
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+export function renderGithubCiStatus(result: GithubCiStatusResult): string {
+  const lines = [
+    `github ci-status: status=${result.status} ref=${result.ref} runs=${result.runs.length}`,
+    `  - externalPermissionBlocked=${result.externalPermissionBlocked}`,
+    `  - inspect-auth: ${result.commands.inspectAuth}`,
+    `  - list-runs: ${result.commands.listRuns}`,
+  ];
+  if (result.queryError) lines.push(`  - query-error: ${result.queryError}`);
+  for (const run of result.runs) {
+    lines.push(
+      `  - ${run.workflowName || run.name || "-"} status=${run.status || "-"} conclusion=${run.conclusion ?? "-"}`,
+    );
   }
   return `${lines.join("\n")}\n`;
 }

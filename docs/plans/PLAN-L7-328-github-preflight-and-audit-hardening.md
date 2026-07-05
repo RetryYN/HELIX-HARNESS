@@ -169,6 +169,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
   HELIX 系 identifier へ揃え、検索 residue を 0 件に保つ。
 - `helix github merge-readiness --json` を read-only operation packet として追加し、ローカル merge readiness と
   GitHub 認証・権限待ちを分離する。
+- `helix github pr-body` と `helix github ci-status` を read-only operation packet として追加し、PR body draft と
+  GitHub Actions 状態取得不能 / green / red を分離する。
 
 ## 非スコープ
 
@@ -184,6 +186,8 @@ GitHub 運用が harness の古い前提やローカル credential helper に巻
 - `goal-evidence-audit` と `cli-surface` test が G-06 artifact requirement と GitHub preflight isolation を検証する。
 - `github-merge-readiness` test が、認証済み agent の PR 作成可否、未認証時の外部権限待ち分離、
   local evidence defect の fail-close を検証する。
+- `github-merge-readiness` test が、PR body draft の日本語-first readiness 欄と CI status packet の
+  unavailable / green / red 分離を検証する。
 - `typecheck` と `doctor` が green。ただし外部 repo が認証必須の場合、`objective-external` は認証不足を明示して blocked とする。
 - source `harness-check` は単一 required check のまま、branch type matrix、commitlint、poc direct-main guard、hotfix postmortem guard を job 内 subjob として実行する。
 

@@ -267,6 +267,19 @@ describe("L7 CLI surface closure", () => {
     expect(help.stdout).toContain("--json");
   });
 
+  it("exposes PR body and CI status as read-only GitHub operation packets", () => {
+    const prBody = runCli(["github", "pr-body", "--help"]);
+    expect(prBody.status, prBody.stderr || prBody.stdout).toBe(0);
+    expect(prBody.stdout).toContain("pr-body");
+    expect(prBody.stdout).toContain("--markdown");
+
+    const ciStatus = runCli(["github", "ci-status", "--help"]);
+    expect(ciStatus.status, ciStatus.stderr || ciStatus.stdout).toBe(0);
+    expect(ciStatus.stdout).toContain("ci-status");
+    expect(ciStatus.stdout).toContain("--ref");
+    expect(ciStatus.stdout).toContain("--json");
+  });
+
   it("keeps repo wrapper decision packet commands aligned with live source", () => {
     const s4 = runRepoScriptHelix(["s4", "decision-packet", "--json"]);
     expect(s4.status, s4.stderr || s4.stdout).toBe(0);
