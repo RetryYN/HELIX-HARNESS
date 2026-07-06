@@ -19,7 +19,6 @@ import {
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { Command } from "commander";
-import { parse as parseYaml } from "yaml";
 import { catalogAutomationAssets } from "./assets/catalog";
 import { loadBranchAudit, renderBranchAudit } from "./audit/branches";
 import {
@@ -31,6 +30,9 @@ import {
   runGithubPrCreate,
 } from "./audit/github-merge-readiness";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
+import { registerRenameCommands } from "./cli/commands/rename";
+import { registerRouteCommands } from "./cli/commands/route";
+import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
@@ -75,16 +77,6 @@ import {
   commitlintMessages,
   prContextGuardMessages,
 } from "./lint/github-guards";
-import {
-  auditIdentifierRenameBlastRadius,
-  buildIdentifierRenameApprovalDraft,
-  buildIdentifierRenameCutoverPlan,
-  buildIdentifierRenameDistSmokeDryRun,
-  buildIdentifierRenameEvidencePack,
-  buildIdentifierRenameMonitoringDryRun,
-  buildIdentifierRenameRehearsalPlan,
-  buildIdentifierRenameStateBackupDryRun,
-} from "./lint/identifier-rename";
 import { l1L2GapCheckMessages, loadL1L2GapCheckPacket } from "./lint/l1-l2-gap-check";
 import {
   analyzeObjectiveEvidenceAudit,
@@ -272,15 +264,7 @@ import {
 } from "./team/run";
 import { formatVmodelInjection, resolveVmodelInjection } from "./vmodel/injection";
 import { lintVmodel } from "./vmodel/lint";
-import {
-  buildCommandCatalog,
-  evaluateRouteCommand,
-  type RouteApprovalPolicy,
-  type RouteConfigViolation,
-  type RouteEvalResult,
-  type RouteSignalEntry,
-  validateRouteConfigText,
-} from "./workflow/contracts";
+import { buildCommandCatalog } from "./workflow/contracts";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";
@@ -868,14 +852,6 @@ function defaultPairAgentExecutor(): PairAgentPhaseExecutor {
   };
 }
 
-function packetFreshnessLine(packet: {
-  sourceCommand: string;
-  generatedAt: string;
-  freshness: { validForMinutes: number; expiresAt: string; stale: boolean };
-}): string {
-  return `  packet-freshness: source=${packet.sourceCommand} generatedAt=${packet.generatedAt} validForMinutes=${packet.freshness.validForMinutes} expiresAt=${packet.freshness.expiresAt} stale=${packet.freshness.stale}\n`;
-}
-
 function failPlanNotMatched(command: string, planId: string, json = false): void {
   process.exitCode = 1;
   const payload = { ok: false, reason: "plan_not_matched", command, planId };
@@ -884,29 +860,6 @@ function failPlanNotMatched(command: string, planId: string, json = false): void
     return;
   }
   process.stderr.write(`${command}: plan_not_matched plan=${planId}\n`);
-}
-
-function verificationSourceLines(
-  rows: Array<{
-    phase: string;
-    command?: string;
-    writePolicy?: string;
-    source?: string;
-    sourceUrl?: string;
-    sourceCheckedAt?: string;
-    latestOfficialStatus?: string;
-    sourceStatusDelta?: string;
-    adoptionDecision?: string;
-    adoptionDecisionDelta?: string;
-    workflowRouteImpact?: string;
-  }>,
-): string {
-  return rows
-    .map(
-      (row) =>
-        `  verification-source: ${row.phase} source=${row.source ?? "-"} sourceUrl=${row.sourceUrl ?? "-"} checked=${row.sourceCheckedAt ?? "-"} status=${row.latestOfficialStatus ?? "-"} statusDelta=${row.sourceStatusDelta ?? "-"} adoption=${row.adoptionDecision ?? "-"} adoptionDelta=${row.adoptionDecisionDelta ?? "-"} routeImpact=${row.workflowRouteImpact ?? "-"} writePolicy=${row.writePolicy ?? "-"} command=${row.command ?? "-"}\n`,
-    )
-    .join("");
 }
 
 function packetSummaryText(summary: {
@@ -937,32 +890,6 @@ function semanticMeaningSummaryLine(
     `semantic_frontier_records: ${outstanding.semanticFeatureFrontierRecords?.length ?? 0}`,
     `confirmed_current_meaning_records: ${outstanding.confirmedCurrentMeaningRecords?.length ?? 0}`,
   ].join("\n");
-}
-
-function writeRecordTemplates(
-  templates: Array<{
-    recordName: string;
-    insertionHintJa?: string;
-    yamlLines: string[];
-    yamlLinesJa?: string[];
-  }>,
-  indent = "    ",
-): void {
-  for (const template of templates) {
-    process.stdout.write(`${indent}record-template ${template.recordName}:\n`);
-    if (template.insertionHintJa) {
-      process.stdout.write(`${indent}  record-template-hint-ja: ${template.insertionHintJa}\n`);
-    }
-    for (const line of template.yamlLines) {
-      process.stdout.write(`${indent}  ${line}\n`);
-    }
-    if (template.yamlLinesJa && template.yamlLinesJa.length > 0) {
-      process.stdout.write(`${indent}  record-template-ja:\n`);
-      for (const line of template.yamlLinesJa) {
-        process.stdout.write(`${indent}    ${line}\n`);
-      }
-    }
-  }
 }
 
 const program = new Command();
@@ -1604,312 +1531,7 @@ pairAgent
     },
   );
 
-const rename = program.command("rename").description("HELIX identifier rename audit surfaces");
-rename
-  .command("audit")
-  .description("measure helix/.helix/area=helix blast radius before PLAN-M-02 cutover")
-  .option("--json", "JSON output")
-  .action((opts: { json?: boolean }) => {
-    const audit = auditIdentifierRenameBlastRadius(process.cwd());
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(audit, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename audit: status=${audit.status} totalHits=${audit.totalHits} cutoverApproved=${audit.cutoverApproved} approvalRecordsConcrete=${audit.approvalRecordsConcrete}\n`,
-    );
-    for (const token of audit.tokens) {
-      process.stdout.write(
-        `  ${token}: hits=${audit.hitsByToken[token]} files=${audit.filesByToken[token]} pathHits=${audit.pathHitsByToken[token]} pathEntries=${audit.pathEntriesByToken[token]} contentHits=${audit.contentHitsByToken[token]} contentFiles=${audit.contentFilesByToken[token]}\n`,
-      );
-    }
-    for (const category of audit.hitsByCategory) {
-      process.stdout.write(
-        `  category ${category.category}: hits=${category.hits} files=${category.files}\n`,
-      );
-    }
-    const blockedPathRenameEntries = audit.pathRenameEntries.filter(
-      (entry) => entry.disposition === "blocked_pending_cutover_approval",
-    );
-    const manualPathRenameEntries = audit.pathRenameEntries.filter(
-      (entry) => entry.disposition === "manual_review_required",
-    );
-    process.stdout.write(
-      `  path-renames: entries=${audit.pathRenameEntries.length} blocked=${blockedPathRenameEntries.length} manualReview=${manualPathRenameEntries.length}\n`,
-    );
-    for (const residual of audit.residualsByDisposition) {
-      process.stdout.write(
-        `  residual ${residual.disposition}: hits=${residual.hits} files=${residual.files}\n`,
-      );
-    }
-    if (!audit.cutoverApproved) {
-      process.stdout.write(
-        `  required: ${audit.requiredRecords.join(", ")} before 旧 state path -> .helix apply\n`,
-      );
-    }
-  });
-rename
-  .command("rehearsal")
-  .description("emit a no-write HELIX identifier rename rehearsal packet")
-  .option("--no-write", "confirm this command must not mutate files or state")
-  .option("--target <target>", "target CLI name", "helix")
-  .option("--json", "JSON output")
-  .action((opts: { write?: boolean; target?: string; json?: boolean }) => {
-    if (opts.write !== false) {
-      process.stderr.write("rename rehearsal requires --no-write\n");
-      process.exitCode = 1;
-      return;
-    }
-    if (opts.target !== "helix") {
-      process.stderr.write("rename rehearsal currently supports --target helix only\n");
-      process.exitCode = 1;
-      return;
-    }
-    const packet = buildIdentifierRenameRehearsalPlan(process.cwd(), "helix");
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename rehearsal: target=${packet.target} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy}\n`,
-    );
-    process.stdout.write(
-      `  preview-categories=${packet.previewCategories.length} preview-commands=${packet.previewCommands.length}\n`,
-    );
-    for (const command of packet.previewCommands) {
-      process.stdout.write(
-        `  preview-command: ${command.phase} command=${command.command} writesRepo=${command.writesRepo} evidence=${command.evidencePath} description=${command.description}\n`,
-      );
-    }
-    for (const blocker of packet.blockedUntil) {
-      process.stdout.write(`  blocked-until: ${blocker}\n`);
-    }
-  });
-rename
-  .command("state-backup")
-  .description("emit a no-write state backup and restore-drill packet for HELIX identifier rename")
-  .requiredOption("--dry-run", "confirm no state backup files are written")
-  .option("--restore-drill", "include restore drill requirements")
-  .option("--json", "JSON output")
-  .action((opts: { dryRun?: boolean; restoreDrill?: boolean; json?: boolean }) => {
-    if (!opts.dryRun) {
-      process.stderr.write("rename state-backup requires --dry-run\n");
-      process.exitCode = 1;
-      return;
-    }
-    const packet = buildIdentifierRenameStateBackupDryRun(
-      process.cwd(),
-      Boolean(opts.restoreDrill),
-    );
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename state-backup: planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy} restoreDrill=${packet.restoreDrillRequested}\n`,
-    );
-    process.stdout.write(
-      `  manifest=${packet.manifest.length} restore-checks=${packet.restoreChecks.length}\n`,
-    );
-    for (const check of packet.restoreChecks) {
-      process.stdout.write(
-        `  restore-check: ${check.path} exists=${check.sourceExists} evidence=${check.restoreEvidencePath}\n`,
-      );
-    }
-    for (const blocker of packet.blockedUntil) {
-      process.stdout.write(`  blocked-until: ${blocker}\n`);
-    }
-  });
-rename
-  .command("dist-smoke")
-  .description("emit a no-write compiled binary smoke packet for HELIX identifier rename")
-  .option("--no-write", "confirm this command must not mutate files or state")
-  .option("--target <target>", "target CLI name", "helix")
-  .option("--json", "JSON output")
-  .action((opts: { write?: boolean; target?: string; json?: boolean }) => {
-    if (opts.write !== false) {
-      process.stderr.write("rename dist-smoke requires --no-write\n");
-      process.exitCode = 1;
-      return;
-    }
-    if (opts.target !== "helix") {
-      process.stderr.write("rename dist-smoke currently supports --target helix only\n");
-      process.exitCode = 1;
-      return;
-    }
-    const packet = buildIdentifierRenameDistSmokeDryRun(process.cwd(), "helix");
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename dist-smoke: target=${packet.target} planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy}\n`,
-    );
-    process.stdout.write(
-      `  current=${packet.currentBinary.path} exists=${packet.currentBinary.exists} renamed=${packet.renamedBinaryPreview.path} exists=${packet.renamedBinaryPreview.exists}\n`,
-    );
-    process.stdout.write(
-      `  current-smoke: ${packet.currentBinary.smokeCommand}\n  renamed-after-approval: ${packet.renamedBinaryPreview.smokeCommandAfterApproval}\n`,
-    );
-    process.stdout.write(
-      `  setup-after-approval: ${packet.postCutoverConsumerSetupPreview.commandAfterApproval}\n  setup-current-proxy: ${packet.postCutoverConsumerSetupPreview.currentNoWriteProxyCommand}\n`,
-    );
-    for (const blocker of packet.blockedUntil) {
-      process.stdout.write(`  blocked-until: ${blocker}\n`);
-    }
-  });
-rename
-  .command("monitoring")
-  .description("emit a no-write post-cutover monitoring packet for HELIX identifier rename")
-  .option("--no-write", "confirm this command must not mutate files or state")
-  .option("--json", "JSON output")
-  .action((opts: { write?: boolean; json?: boolean }) => {
-    if (opts.write !== false) {
-      process.stderr.write("rename monitoring requires --no-write\n");
-      process.exitCode = 1;
-      return;
-    }
-    const packet = buildIdentifierRenameMonitoringDryRun();
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename monitoring: planOnly=${packet.planOnly} mustNotApply=${packet.mustNotApply} writePolicy=${packet.writePolicy} probes=${packet.probes.length}\n`,
-    );
-    process.stdout.write(
-      `  quiet-window: required=${packet.quietWindow.required} concurrency=${packet.quietWindow.concurrencyPolicy} approvalExpiresOnSignalChange=${packet.quietWindow.approvalExpiresOnSignalChange}\n`,
-    );
-    process.stdout.write(`  evidence: ${packet.requiredEvidencePath}\n`);
-    for (const probe of packet.probes) {
-      process.stdout.write(
-        `  monitoring-probe: ${probe.phase} afterApproval=${probe.commandAfterApproval} proxy=${probe.currentNoWriteProxyCommand} rollbackTrigger=${probe.rollbackTrigger}\n`,
-      );
-    }
-    for (const blocker of packet.blockedUntil) {
-      process.stdout.write(`  blocked-until: ${blocker}\n`);
-    }
-  });
-rename
-  .command("approval-draft")
-  .description(
-    "emit a non-authorizing PLAN-M-02 cutover approval record draft bound to current evidence",
-  )
-  .option("--json", "JSON output")
-  .action((opts: { json?: boolean }) => {
-    const packet = buildIdentifierRenameApprovalDraft(process.cwd());
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename approval-draft: recommendedOutcome=${packet.recommendedOutcome} approvalAllowed=${packet.approvalAllowed} applyAuthorized=${packet.applyAuthorized} evidence=${packet.currentSnapshot.evidenceArtifactsPresent}/${packet.currentSnapshot.evidenceArtifactsRequired} clean=${packet.currentSnapshot.worktreeClean}\n`,
-    );
-    process.stdout.write(packetFreshnessLine(packet));
-    process.stdout.write(
-      `  current-snapshot: ${packet.currentSnapshot.cutoverSnapshotId} head=${packet.currentSnapshot.repoHeadSha ?? "-"} dirtyPathCount=${packet.currentSnapshot.worktreeDirtyPathCount} evidenceDigest=${packet.currentSnapshot.evidenceDigest}\n`,
-    );
-    for (const record of packet.draftRecords) {
-      process.stdout.write(
-        `  approval-draft-record: ${record.recordName} pasteReady=${record.pasteReady} unsafeToTreatAsApproval=${record.unsafeToTreatAsApproval}\n`,
-      );
-      process.stdout.write(`    hint-ja: ${record.insertionHintJa}\n`);
-      for (const line of record.yamlLines) {
-        process.stdout.write(`    ${line}\n`);
-      }
-    }
-    for (const blocker of packet.blockedUntil) {
-      process.stdout.write(`  blocked-until: ${blocker}\n`);
-    }
-    for (const related of packet.relatedDecisionPackets) {
-      process.stdout.write(
-        `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
-      );
-    }
-  });
-rename
-  .command("evidence-pack")
-  .description("generate or preview local evidence artifacts for PLAN-M-02 rename cutover review")
-  .option("--dry-run", "preview generated evidence without writing files")
-  .option("--write", "write safe local evidence artifacts under .helix/evidence/rename")
-  .option("--json", "JSON output")
-  .action((opts: { dryRun?: boolean; write?: boolean; json?: boolean }) => {
-    if (Boolean(opts.dryRun) === Boolean(opts.write)) {
-      process.stderr.write("rename evidence-pack requires exactly one of --dry-run or --write\n");
-      process.exitCode = 1;
-      return;
-    }
-    const packet = buildIdentifierRenameEvidencePack(process.cwd(), {
-      write: Boolean(opts.write),
-    });
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(packet, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename evidence-pack: writePolicy=${packet.writePolicy} generated=${packet.generatedArtifacts.length} pending=${packet.pendingArtifacts.length} appliesCutover=${packet.appliesCutover} approvalStillRequired=${packet.approvalStillRequired}\n`,
-    );
-    for (const artifact of packet.generatedArtifacts) {
-      process.stdout.write(
-        `  generated-artifact: ${artifact.path} written=${artifact.written} schema=${artifact.schemaVersion} sha256=${artifact.contentSha256} bytes=${artifact.sizeBytes}\n`,
-      );
-    }
-    for (const artifact of packet.pendingArtifacts) {
-      process.stdout.write(
-        `  pending-artifact: ${artifact.path} command=${artifact.requiredCommand} reason=${artifact.reason}\n`,
-      );
-    }
-    for (const blocker of packet.blockedUntil) {
-      process.stdout.write(`  blocked-until: ${blocker}\n`);
-    }
-  });
-rename
-  .command("plan")
-  .description("emit a non-destructive PLAN-M-02 cutover packet without applying rename")
-  .option("--json", "JSON output")
-  .action((opts: { json?: boolean }) => {
-    const plan = buildIdentifierRenameCutoverPlan(process.cwd());
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
-      return;
-    }
-    process.stdout.write(
-      `rename plan: status=${plan.status} planOnly=${plan.planOnly} approvalMaterialReady=${plan.approvalMaterialReady} applyAuthorized=${plan.applyAuthorized} mustNotApply=${plan.mustNotApply}\n`,
-    );
-    process.stdout.write(packetFreshnessLine(plan));
-    process.stdout.write(
-      `  dry-run=${plan.dryRunPlan.length} rollback=${plan.rollbackPlan.length} monitoring=${plan.monitoringPlan.length}\n`,
-    );
-    process.stdout.write(
-      `  source-ledger: label=${plan.sourceLedgerFreshness.ledgerLabel} checked=${plan.sourceLedgerFreshness.checkedDate ?? "-"} stale=${plan.sourceLedgerFreshness.stale ? "yes" : "no"} rows=${plan.sourceLedgerFreshness.rowCount} missing=${plan.sourceLedgerFreshness.missingRows.length} rowsDigest=${plan.sourceLedgerFreshness.rowsDigest}\n`,
-    );
-    process.stdout.write(
-      `  cutover-checklist=${plan.cutoverCategoryChecklist.length} runbook=${plan.cutoverRunbook.length} verification-commands=${plan.verificationCommandMatrix.length}\n`,
-    );
-    writeRecordTemplates(plan.recordTemplates, "  ");
-    process.stdout.write(verificationSourceLines(plan.verificationCommandMatrix));
-    process.stdout.write(
-      `  snapshot-review: current=${plan.snapshotReview.currentSnapshotId} recordedCutover=${plan.snapshotReview.recordedCutoverSnapshotId ?? "-"} recordedActionBinding=${plan.snapshotReview.recordedActionBindingSnapshotId ?? "-"} drift=${plan.snapshotReview.driftWarning ? "yes" : "no"}\n`,
-    );
-    process.stdout.write(
-      `  cutover-snapshot-head: ${plan.cutoverSnapshot.repoHeadSha ?? "-"} digest=${plan.cutoverSnapshot.headDigest ?? "-"} sourceLedgerRowsDigest=${plan.cutoverSnapshot.sourceLedgerRowsDigest} blastRadiusDigest=${plan.cutoverSnapshot.blastRadiusDigest} approvalScopeDigest=${plan.cutoverSnapshot.approvalScopeDigest} evidenceDigest=${plan.cutoverSnapshot.evidenceDigest}\n`,
-    );
-    process.stdout.write(
-      `  cutover-snapshot-worktree: readable=${plan.cutoverSnapshot.worktreeStatusReadable ? "yes" : "no"} clean=${plan.cutoverSnapshot.worktreeClean ? "yes" : "no"} dirtyPathCount=${plan.cutoverSnapshot.worktreeDirtyPathCount} statusDigest=${plan.cutoverSnapshot.worktreeStatusDigest ?? "-"}\n`,
-    );
-    process.stdout.write(
-      `  cutover-snapshot-evidence: required=${plan.cutoverSnapshot.evidenceArtifactsRequired} present=${plan.cutoverSnapshot.evidenceArtifactsPresent} missing=${plan.cutoverSnapshot.missingEvidenceArtifacts.length} artifactsDigest=${plan.cutoverSnapshot.evidenceArtifactsDigest}\n`,
-    );
-    if (plan.blockedReasons.length > 0) {
-      for (const reason of plan.blockedReasons) process.stdout.write(`  blocked: ${reason}\n`);
-    }
-    for (const related of plan.relatedDecisionPackets) {
-      process.stdout.write(
-        `  related-packet: ${related.role} ${related.command} scoped=${related.scopedCommand ?? related.command} (${related.reason})\n`,
-      );
-    }
-  });
-
+registerRenameCommands(program);
 const versionUp = program
   .command("version-up")
   .description("version-up parked work decision surfaces");
@@ -4159,138 +3781,7 @@ vmodel
     },
   );
 
-function loadRouteApprovalPolicy(repoRoot: string): RouteApprovalPolicy | undefined {
-  const policyPath = join(repoRoot, ".helix", "config", "approval-policy.yaml");
-  if (!existsSync(policyPath)) return undefined;
-  const parsed = parseYaml(readFileSync(policyPath, "utf8")) as Partial<RouteApprovalPolicy>;
-  if (!Array.isArray(parsed.rules)) return undefined;
-  return {
-    rules: parsed.rules
-      .filter(
-        (rule) => rule && typeof rule.mode === "string" && Array.isArray(rule.required_approvers),
-      )
-      .map((rule) => ({
-        mode: String(rule.mode),
-        ...(typeof rule.condition === "string" ? { condition: rule.condition } : {}),
-        required_approvers: rule.required_approvers.map(String),
-      })),
-    approvals: Array.isArray(parsed.approvals)
-      ? parsed.approvals
-          .filter(
-            (approval) =>
-              approval &&
-              typeof approval.mode === "string" &&
-              typeof approval.approver === "string" &&
-              typeof approval.approved_at === "string",
-          )
-          .map((approval) => ({
-            mode: String(approval.mode),
-            ...(typeof approval.condition === "string" ? { condition: approval.condition } : {}),
-            approver: String(approval.approver),
-            approved_at: String(approval.approved_at),
-            ...(typeof approval.subject === "string" ? { subject: approval.subject } : {}),
-          }))
-      : [],
-  };
-}
-
-function appendRouteApprovalAudit(repoRoot: string, evaluated: RouteEvalResult): string {
-  const auditDir = join(repoRoot, ".helix", "audit");
-  mkdirSync(auditDir, { recursive: true });
-  const auditPath = join(auditDir, "route-approval.jsonl");
-  appendFileSync(
-    auditPath,
-    `${JSON.stringify({
-      event: "route_approval_blocked",
-      occurred_at: new Date().toISOString(),
-      signal: evaluated.signal,
-      mode: evaluated.mode,
-      approval_status: evaluated.approval.status,
-      required_approvers: evaluated.approval.required_approvers,
-      missing_approvers: evaluated.approval.missing_approvers,
-      recommended_command: evaluated.recommended_command,
-    })}\n`,
-  );
-  return auditPath;
-}
-
-function loadRouteMap(
-  repoRoot: string,
-  explicitPath?: string,
-): { routes?: RouteSignalEntry[]; violations: RouteConfigViolation[] } {
-  const routeMapPath = explicitPath ?? join(repoRoot, ".helix", "config", "route-map.yaml");
-  if (!existsSync(routeMapPath)) return { violations: [] };
-  const text = readFileSync(routeMapPath, "utf8");
-  const violations = validateRouteConfigText({ path: routeMapPath, text });
-  const parsed = parseYaml(text) as {
-    routes?: Partial<RouteSignalEntry>[];
-  };
-  if (!Array.isArray(parsed.routes)) return { violations };
-  return {
-    violations,
-    routes: parsed.routes
-      .filter(
-        (route) =>
-          route &&
-          Array.isArray(route.tokens) &&
-          typeof route.mode === "string" &&
-          typeof route.command === "string",
-      )
-      .map((route) => ({
-        tokens: route.tokens?.map(String) ?? [],
-        mode: String(route.mode),
-        command: String(route.command),
-        preflight: route.preflight !== false,
-        requiresApproval: route.requiresApproval === true,
-      })),
-  };
-}
-
-const routeCommand = program.command("route").description("signal routing");
-routeCommand
-  .command("eval")
-  .description("evaluate a signal into a mode and RecommendedCommandV1")
-  .requiredOption("--signal <signal>", "observed signal")
-  .option("--env <env>", "runtime environment")
-  .option("--drift-type <type>", "drift subtype")
-  .option("--route-map <path>", "route-map YAML override")
-  .option("--format <format>", "output format: text or json", "text")
-  .action(
-    (opts: {
-      signal: string;
-      env?: string;
-      driftType?: string;
-      routeMap?: string;
-      format?: string;
-    }) => {
-      const repoRoot = process.cwd();
-      const routeMap = loadRouteMap(repoRoot, opts.routeMap);
-      const evaluated = evaluateRouteCommand({
-        signal: opts.signal,
-        env: opts.env,
-        drift_type: opts.driftType,
-        approval_policy: loadRouteApprovalPolicy(repoRoot),
-        route_map: routeMap.routes,
-        route_config_violations: routeMap.violations,
-      });
-      const auditPath =
-        evaluated.exit_code === 1 ? appendRouteApprovalAudit(repoRoot, evaluated) : "";
-      if (opts.format === "json") {
-        process.stdout.write(
-          `${JSON.stringify(auditPath ? { ...evaluated, audit_path: auditPath } : evaluated, null, 2)}\n`,
-        );
-      } else if (evaluated.recommended_command) {
-        process.stdout.write(`mode=${evaluated.mode}\n`);
-        process.stdout.write(`suggest_command=${evaluated.suggest_command}\n`);
-        process.stdout.write(`command=${evaluated.recommended_command.command}\n`);
-        if (auditPath) process.stderr.write(`human approval blocked; audit=${auditPath}\n`);
-      } else {
-        process.stderr.write(`${evaluated.suggest_command}\n`);
-      }
-      process.exitCode = evaluated.exit_code;
-    },
-  );
-
+registerRouteCommands(program);
 function runtimeCommand(provider: AdapterProvider): Command {
   return program
     .command(provider)
