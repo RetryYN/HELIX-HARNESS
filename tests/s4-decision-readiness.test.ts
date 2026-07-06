@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 import {
   analyzeS4DecisionReadiness,
@@ -1439,4 +1440,43 @@ describe("S4 decision readiness", () => {
       );
     }
   });
+
+  it("exposes the live decision frontier through the CLI S4 decision packet surface", () => {
+    const liveInput = loadS4DecisionReadinessInput();
+    const expectedPackets = buildS4DecisionPackets(liveInput);
+
+    const raw = execFileSync("bun", ["run", "src/cli.ts", "s4", "decision-packet", "--json"], {
+      encoding: "utf8",
+    });
+    const cliPackets = JSON.parse(raw);
+    expect(Array.isArray(cliPackets)).toBe(true);
+    expect(cliPackets.map((packet: { planId: string }) => packet.planId)).toEqual(
+      expectedPackets.map((packet) => packet.planId),
+    );
+    for (const packet of cliPackets) {
+      expect(packet).toMatchObject({
+        schemaVersion: "s4-decision-packet.v1",
+        sourceCommand: "helix s4 decision-packet --json",
+        status: "pending_po_decision",
+        planOnly: true,
+        mustNotDecide: true,
+        decisionAllowed: false,
+      });
+      expect(packet.allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+      expect(s4DecisionVerificationCommandViolations(packet)).toEqual([]);
+    }
+
+    const text = execFileSync("bun", ["run", "src/cli.ts", "s4", "decision-packet"], {
+      encoding: "utf8",
+    });
+    for (const packet of expectedPackets) {
+      expect(text).toContain(packet.planId);
+      expect(text).toContain(`evidence-checks=${packet.decisionEvidenceChecklist.length}`);
+      expect(text).toContain(`outcome-routes=${packet.outcomeRouteMatrix.length}`);
+      expect(text).toContain(
+        `verification-commands=${packet.decisionVerificationCommandMatrix.length}`,
+      );
+      expect(text).toContain("record-template s4_decision_record");
+    }
+  }, 40_000);
 });
