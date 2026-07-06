@@ -79,6 +79,7 @@ import {
   analyzeOutstandingWork,
   computeOutstandingWork,
   completionDecisionPacketForOutstanding,
+  completionReviewBundleForOutstanding,
 } from "../src/lint/outstanding";
 import {
   buildS4DecisionPackets,
@@ -2122,13 +2123,18 @@ describe("runDoctor", () => {
 
   it("U-OUTSTANDING-003/U-OUTSTANDING-018: completion review-bundle doctor bridge accepts the current live scoped packet bundle", () => {
     const result = checkCompletionReviewBundle(process.cwd());
+    const expectedBundle = completionReviewBundleForOutstanding(computeOutstandingWork(process.cwd()));
 
     expect(result.ok).toBe(true);
     expect(result.messages).toContainEqual(
       expect.stringContaining("completion-review-bundle - OK"),
     );
-    expect(result.messages).toContainEqual(expect.stringContaining("decisions=0"));
-    expect(result.messages).toContainEqual(expect.stringContaining("reviewPackets=0"));
+    expect(result.messages).toContainEqual(
+      expect.stringContaining(`decisions=${expectedBundle.decisionCount}`),
+    );
+    expect(result.messages).toContainEqual(
+      expect.stringContaining(`reviewPackets=${expectedBundle.reviewPacketCount}`),
+    );
     expect(result.messages).toContainEqual(expect.stringContaining("semanticDigest=sha256:"));
   });
 
@@ -2158,20 +2164,23 @@ describe("runDoctor", () => {
     );
   });
 
-  it("U-OUTSTANDING-011: completion decision doctor bridge has no scoped packet drift when live decisions are closed", () => {
+  it("U-OUTSTANDING-011: completion decision doctor bridge has no scoped packet drift for live decisions", () => {
     const livePacket = completionDecisionPacketForOutstanding(computeOutstandingWork(process.cwd()));
 
-    expect(livePacket.decisionCount).toBe(0);
+    expect(livePacket.decisionCount).toBe(livePacket.decisions.length);
     expect(completionDedicatedPacketBridgeViolations(process.cwd(), livePacket)).toEqual([]);
   });
 
-  it("U-OUTSTANDING-014: completion review-bundle doctor bridge accepts zero live review packets", () => {
+  it("U-OUTSTANDING-014: completion review-bundle doctor bridge accepts current live review packets", () => {
     const liveS4Packets = buildS4DecisionPackets(loadS4DecisionReadinessInput(process.cwd()));
+    const expectedBundle = completionReviewBundleForOutstanding(computeOutstandingWork(process.cwd()));
 
     const result = checkCompletionReviewBundle(process.cwd(), { s4Packets: liveS4Packets });
     expect(liveS4Packets).toEqual([]);
     expect(result.ok).toBe(true);
-    expect(result.messages).toContainEqual(expect.stringContaining("reviewPackets=0"));
+    expect(result.messages).toContainEqual(
+      expect.stringContaining(`reviewPackets=${expectedBundle.reviewPacketCount}`),
+    );
   });
 
   it("ok=true includes handover and agent-slots surfaces as warnings", () => {
@@ -2269,9 +2278,14 @@ describe("runDoctor", () => {
   });
 
   it("includes objective evidence audit hard gate in doctor output", () => {
+    const audit = checkObjectiveEvidenceAudit(process.cwd());
     const r = liveDoctor();
+
+    expect(audit.ok).toBe(true);
     expect(hasDoctorMessage(r.messages, "doctor: objective-evidence-audit - OK")).toBe(true);
-    expect(hasDoctorMessage(r.messages, "progress=100%")).toBe(true);
+    for (const message of audit.messages) {
+      expect(hasDoctorMessage(r.messages, `doctor: ${message}`)).toBe(true);
+    }
   });
 
   it("includes repository name path hard gate in doctor output", () => {

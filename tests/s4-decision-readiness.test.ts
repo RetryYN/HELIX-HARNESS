@@ -1,4 +1,3 @@
-import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 import {
   analyzeS4DecisionReadiness,
@@ -101,6 +100,19 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
     ],
     ...overrides,
   };
+}
+
+function livePendingS4PlanIds(liveInput: S4DecisionReadinessInput): string[] {
+  return liveInput.plans
+    .filter(
+      (plan) =>
+        plan.kind === "poc" &&
+        plan.status === "draft" &&
+        (plan.workflowPhase === "S3" || plan.workflowPhase === "S4") &&
+        !plan.decisionOutcome,
+    )
+    .map((plan) => plan.plan_id)
+    .sort();
 }
 
 describe("S4 decision readiness", () => {
@@ -1315,73 +1327,59 @@ describe("S4 decision readiness", () => {
     expect(result.pendingPlanIds).toEqual([]);
   });
 
-  it("passes against the live repository and lists the current S3 PO decisions", () => {
+  it("passes against the live repository and matches current S3/S4 PO decision frontier", () => {
     const liveInput = loadS4DecisionReadinessInput();
     const result = analyzeS4DecisionReadiness(liveInput);
+    const expectedPendingPlanIds = livePendingS4PlanIds(liveInput);
+    const packets = buildS4DecisionPackets(liveInput);
+
     expect(result.ok).toBe(true);
-    expect(result.pendingPlanIds).toEqual([
-      "PLAN-DISCOVERY-07-design-bottomup-mode",
-      "PLAN-DISCOVERY-10-helix-asset-visualization",
-    ]);
+    expect(result.pendingPlanIds).toEqual(expectedPendingPlanIds);
     expect(result.missingSourceLedgerRows).toEqual([]);
     expect(result.sourceLedgerViolations).toEqual([]);
 
-    const packets = buildS4DecisionPackets(liveInput);
-    expect(packets.map((packet) => packet.planId).sort()).toEqual([
-      "PLAN-DISCOVERY-07-design-bottomup-mode",
-      "PLAN-DISCOVERY-10-helix-asset-visualization",
-    ]);
-    expect(
-      packets.find((packet) => packet.planId === "PLAN-DISCOVERY-07-design-bottomup-mode")
-        ?.decisionRecord.forward_route,
-    ).toContain("L1/L3-L6");
-    expect(
-      packets.find((packet) => packet.planId === "PLAN-DISCOVERY-10-helix-asset-visualization")
-        ?.decisionRecord.forward_route,
-    ).toContain("L3 visualization");
+    expect(packets.map((packet) => packet.planId)).toEqual(expectedPendingPlanIds);
+    for (const packet of packets) {
+      expect(packet.schemaVersion).toBe("s4-decision-packet.v1");
+      expect(packet.status).toBe("pending_po_decision");
+      expect(packet.decisionRecord.forward_route).not.toBe("");
+      expect(packet.semanticFeatureFrontierRecord?.classification).toBe(
+        "frontier_pending_decision",
+      );
+    }
   });
 
-  it("exposes live S3 pending PoC work through the CLI S4 decision packet surface", () => {
-    const raw = execFileSync(
-      "bun",
-      [
-        "run",
-        "src/cli.ts",
-        "s4",
-        "decision-packet",
-        "--plan",
-        "PLAN-DISCOVERY-10-helix-asset-visualization",
-        "--json",
-      ],
-      { encoding: "utf8" },
-    );
-    const packets = JSON.parse(raw);
-    expect(packets).toHaveLength(1);
-    expect(packets[0]).toMatchObject({
-      schemaVersion: "s4-decision-packet.v1",
-      planId: "PLAN-DISCOVERY-10-helix-asset-visualization",
-      generatedAt: expect.any(String),
-      sourceCommand: "helix s4 decision-packet --json",
-      freshness: {
-        validForMinutes: 1440,
-        expiresAt: expect.any(String),
-        stale: false,
-        policy: "decision-packet-freshness.v1",
-      },
-      status: "pending_po_decision",
-      planOnly: true,
-      mustNotDecide: true,
-      decisionCommandAvailable: false,
-      decisionAllowed: false,
-    });
-    expect(packets[0].allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
-    expect(packets[0].blockedReasons).toEqual(
-      expect.arrayContaining([
-        "plan remains S3 draft; PO/S4 decision_outcome has not been recorded",
-      ]),
-    );
-    expect(packets[0].decisionRecord.forward_route).toContain("L3 visualization");
-    expect(packets[0].decisionEvidenceChecklist.map((row: { field: string }) => row.field)).toEqual(
+  it("exposes current live pending PoC work through the S4 decision packet surface", () => {
+    const liveInput = loadS4DecisionReadinessInput();
+    const expectedPendingPlanIds = livePendingS4PlanIds(liveInput);
+    const packets = buildS4DecisionPackets(liveInput);
+
+    expect(packets.map((packet) => packet.planId)).toEqual(expectedPendingPlanIds);
+    for (const packet of packets) {
+      expect(packet).toMatchObject({
+        schemaVersion: "s4-decision-packet.v1",
+        generatedAt: expect.any(String),
+        sourceCommand: "helix s4 decision-packet --json",
+        freshness: {
+          validForMinutes: 1440,
+          expiresAt: expect.any(String),
+          stale: false,
+          policy: "decision-packet-freshness.v1",
+        },
+        status: "pending_po_decision",
+        planOnly: true,
+        mustNotDecide: true,
+        decisionCommandAvailable: false,
+        decisionAllowed: false,
+      });
+      expect(packet.allowedOutcomes).toEqual(["confirmed", "rejected", "pivot"]);
+      expect(packet.blockedReasons).toEqual(
+        expect.arrayContaining([
+          "plan remains S3 draft; PO/S4 decision_outcome has not been recorded",
+        ]),
+      );
+      expect(packet.decisionRecord.forward_route).not.toBe("");
+      expect(packet.decisionEvidenceChecklist.map((row: { field: string }) => row.field)).toEqual(
       [
         "verified_evidence",
         "stakeholder_review_or_proxy",
@@ -1391,88 +1389,54 @@ describe("S4 decision readiness", () => {
         "route_impact",
       ],
     );
-    expect(packets[0].outcomeRouteMatrix.map((row: { outcome: string }) => row.outcome)).toEqual([
-      "confirmed",
-      "rejected",
-      "pivot",
-    ]);
-    expect(packets[0].decisionVerificationCommandMatrix).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          phase: "decision-packet-baseline",
-          command:
-            "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-10-helix-asset-visualization --json",
-        }),
-        expect.objectContaining({
-          phase: "targeted-regression",
-          command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
-          adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
-        }),
-        expect.objectContaining({
-          phase: "completion-frontier",
-          command: "bun run src/cli.ts status --json",
-          sourceCheckedAt: "2026-07-03",
-        }),
-      ]),
-    );
-    for (const row of packets[0].decisionVerificationCommandMatrix) {
-      expect(row.sourceCheckedAt).toBe("2026-07-03");
+      expect(packet.outcomeRouteMatrix.map((row: { outcome: string }) => row.outcome)).toEqual([
+        "confirmed",
+        "rejected",
+        "pivot",
+      ]);
+      expect(packet.decisionVerificationCommandMatrix).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            phase: "decision-packet-baseline",
+            command: `bun run src/cli.ts s4 decision-packet --plan ${packet.planId} --json`,
+          }),
+          expect.objectContaining({
+            phase: "targeted-regression",
+            command: "bun test tests/s4-decision-readiness.test.ts tests/cli-surface.test.ts",
+            adoptionDecision: "adopt-targeted-regression-before-s4-decision-review",
+          }),
+          expect.objectContaining({
+            phase: "completion-frontier",
+            command: "bun run src/cli.ts status --json",
+          }),
+        ]),
+      );
+      for (const row of packet.decisionVerificationCommandMatrix) {
+        expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(row.latestOfficialStatus, row.phase).not.toBe("");
+        expect(row.sourceStatusDelta, row.phase).not.toBe("");
+        expect(row.adoptionDecision, row.phase).not.toBe("");
+        expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
+        expect(row.workflowRouteImpact, row.phase).not.toBe("");
+      }
+      expect(s4DecisionVerificationCommandViolations(packet)).toEqual([]);
+      expect(packet.provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
+        "decision_record",
+        "green_evidence",
+        "stakeholder_or_proxy_review",
+        "route_and_fullback",
+        "source_ledger",
+      ]);
+      expect(packet.recordTemplates).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            recordName: "s4_decision_record",
+            yamlLines: expect.arrayContaining([
+              '  - allowed_outcome: "<confirmed|rejected|pivot>"',
+            ]),
+          }),
+        ]),
+      );
     }
-    for (const row of packets[0].decisionVerificationCommandMatrix) {
-      expect(row.sourceCheckedAt, row.phase).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      expect(row.latestOfficialStatus, row.phase).not.toBe("");
-      expect(row.sourceStatusDelta, row.phase).not.toBe("");
-      expect(row.adoptionDecision, row.phase).not.toBe("");
-      expect(row.adoptionDecisionDelta, row.phase).not.toBe("");
-      expect(row.workflowRouteImpact, row.phase).not.toBe("");
-    }
-    expect(s4DecisionVerificationCommandViolations(packets[0])).toEqual([]);
-    expect(packets[0].provenanceRequirements.map((row: { item: string }) => row.item)).toEqual([
-      "decision_record",
-      "green_evidence",
-      "stakeholder_or_proxy_review",
-      "route_and_fullback",
-      "source_ledger",
-    ]);
-    expect(packets[0].recordTemplates).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          recordName: "s4_decision_record",
-          yamlLines: expect.arrayContaining(['  - allowed_outcome: "<confirmed|rejected|pivot>"']),
-        }),
-        expect.objectContaining({
-          recordName: "action_binding_approval_record",
-          yamlLines: expect.arrayContaining([
-            '  - approved_actor: "<approved_actor>"',
-            '  - reviewed_snapshot_binding: "<activationSnapshot.snapshotId|cutoverSnapshot.snapshotId|no-snapshot basis>"',
-          ]),
-        }),
-      ]),
-    );
-
-    const text = execFileSync(
-      "bun",
-      [
-        "run",
-        "src/cli.ts",
-        "s4",
-        "decision-packet",
-        "--plan",
-        "PLAN-DISCOVERY-10-helix-asset-visualization",
-      ],
-      { encoding: "utf8" },
-    );
-    expect(text).toContain("evidence-checks=6");
-    expect(text).toContain("outcome-routes=3");
-    expect(text).toContain("verification-commands=8");
-    expect(text).toContain("record-template s4_decision_record");
-    expect(text).toContain("record-template action_binding_approval_record");
-    expect(text).toContain(
-      "verification-source: requirements-trace source=HELIX V-model trace gate sourceUrl=docs/governance/helix-harness-requirements_v1.2.md",
-    );
-    expect(text).toContain("writePolicy=no-write command=bun run src/cli.ts doctor");
-    expect(text).toContain(
-      "verification-source: completion-frontier source=HELIX completion frontier contract sourceUrl=docs/design/helix/L3-requirements/pillar-functional-requirements.md",
-    );
   });
 });

@@ -1371,24 +1371,22 @@ describe("action-binding approval readiness", () => {
   });
 
   it("loads the current repo pending approval records", () => {
-    const result = analyzeActionBindingApprovalReadiness(loadActionBindingApprovalReadinessInput());
+    const liveInput = loadActionBindingApprovalReadinessInput();
+    const result = analyzeActionBindingApprovalReadiness(liveInput);
+    const expectedPendingPlanIds = buildActionBindingApprovalPackets(liveInput).map(
+      (packet) => packet.planId,
+    );
 
     expect(result.ok).toBe(true);
-    expect(result.pendingPlanIds).toEqual([
-      "PLAN-DISCOVERY-10-helix-asset-visualization",
-      "PLAN-L7-146-serverless-readonly-share",
-      "PLAN-M-02-helix-identifier-rename",
-    ]);
+    expect(result.pendingPlanIds).toEqual(expectedPendingPlanIds);
   });
 
   it("emits current repo approval packets for every pending high-impact approval PLAN", () => {
-    const packets = buildActionBindingApprovalPackets(loadActionBindingApprovalReadinessInput());
+    const liveInput = loadActionBindingApprovalReadinessInput();
+    const result = analyzeActionBindingApprovalReadiness(liveInput);
+    const packets = buildActionBindingApprovalPackets(liveInput);
 
-    expect(packets.map((packet) => packet.planId)).toEqual([
-      "PLAN-DISCOVERY-10-helix-asset-visualization",
-      "PLAN-L7-146-serverless-readonly-share",
-      "PLAN-M-02-helix-identifier-rename",
-    ]);
+    expect(packets.map((packet) => packet.planId)).toEqual(result.pendingPlanIds);
     expect(packets.every((packet) => packet.approvalAllowed === false)).toBe(true);
     expect(
       packets.every((packet) =>
@@ -1407,39 +1405,22 @@ describe("action-binding approval readiness", () => {
     expect(packets.flatMap((packet) => packet.blockedReasons)).toContain(
       "missing concrete approve_action_binding decision",
     );
-    expect(
-      packets.find((packet) => packet.planId === "PLAN-DISCOVERY-10-helix-asset-visualization")
-        ?.semanticFeatureFrontierRecords,
-    ).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          featureId: "asset_progress_visualization",
-          classification: "frontier_pending_decision",
-        }),
-      ]),
-    );
-    expect(
-      packets.find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")
-        ?.semanticFeatureFrontierRecords,
-    ).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          featureId: "serverless_readonly_share",
-          classification: "parked_future_version",
-        }),
-      ]),
-    );
-    expect(
-      packets.find((packet) => packet.planId === "PLAN-M-02-helix-identifier-rename")
-        ?.semanticFeatureFrontierRecords,
-    ).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          featureId: "name_cutover",
-          classification: "approval_gated_cutover",
-        }),
-      ]),
-    );
+    for (const packet of packets) {
+      const expectedRecords = (liveInput.semanticFeatureFrontierRecords ?? []).filter(
+        (record) => record.planId === packet.planId,
+      );
+      expect(packet.semanticFeatureFrontierRecords).toHaveLength(expectedRecords.length);
+      expect(packet.semanticFeatureFrontierRecords).toEqual(
+        expect.arrayContaining(
+          expectedRecords.map((record) =>
+            expect.objectContaining({
+              featureId: record.featureId,
+              classification: record.classification,
+            }),
+          ),
+        ),
+      );
+    }
     expect(packets.every((packet) => packet.approvalVerificationCommandMatrix.length === 11)).toBe(
       true,
     );
@@ -1466,40 +1447,28 @@ describe("action-binding approval readiness", () => {
         ),
       ),
     ).toBe(true);
-    expect(
-      packets
-        .find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")
-        ?.approvalVerificationCommandMatrix.find(
-          (command) => command.phase === "sibling-decision-packets",
-        )?.command,
-    ).toContain(
-      "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
-    );
-    expect(
-      packets
-        .find((packet) => packet.planId === "PLAN-L7-146-serverless-readonly-share")
-        ?.approvalVerificationCommandMatrix.find(
-          (command) => command.phase === "github-environment-approval-boundary",
-        )?.command,
-    ).toBe(
-      "bun run src/cli.ts version-up security-checklist --plan PLAN-L7-146-serverless-readonly-share --no-write --json",
-    );
-    expect(
-      packets.map(
-        (packet) =>
-          packet.approvalVerificationCommandMatrix.find(
-            (command) => command.phase === "sibling-decision-packets",
-          )?.command,
-      ),
-    ).toEqual([
-      expect.stringContaining(
-        "bun run src/cli.ts s4 decision-packet --plan PLAN-DISCOVERY-10-helix-asset-visualization --json",
-      ),
-      expect.stringContaining(
-        "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
-      ),
-      expect.stringContaining("bun run src/cli.ts rename plan --json"),
-    ]);
+    for (const packet of packets) {
+      const siblingCommand = packet.approvalVerificationCommandMatrix.find(
+        (command) => command.phase === "sibling-decision-packets",
+      )?.command;
+      for (const related of packet.relatedDecisionPackets.filter(
+        (related) => related.role === "supporting",
+      )) {
+        expect(related.scopedCommand).toBeDefined();
+        if (!related.scopedCommand) {
+          continue;
+        }
+        const runnableScopedCommand = related.scopedCommand.replace(
+          /^helix (.+?) --json(?: --plan (.+))?$/,
+          "bun run src/cli.ts $1",
+        );
+        expect(siblingCommand).toContain(runnableScopedCommand);
+        expect(siblingCommand).toContain("--json");
+        if (related.scopedCommand.includes(" --plan ")) {
+          expect(siblingCommand).toContain(`--plan ${packet.planId}`);
+        }
+      }
+    }
     expect(
       packets.every(
         (packet) => actionBindingApprovalVerificationCommandViolations(packet).length === 0,

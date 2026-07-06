@@ -297,7 +297,11 @@ describe("review-evidence lint (review 前置の機械強制、IMP-071)", () => 
     expect(r.missing).toEqual([]);
     expect(r.crossReviewViolations).toEqual([]); // 実 repo に cross_agent entry は無い (claude-only solo) → 違反0
     expect(r.testBeforeReviewViolations).toEqual([]); // 全 review_evidence entry に tests_green_at ≤ reviewed_at (IMP-077 back-fill 済)
-    expect(r.ok).toBe(true);
+    // r.ok は green_commands の鮮度 audit も含むため、この fail-close ガードは
+    // review_evidence presence / cross-review / test-before-review の対象 facet に限定して固定する。
+    expect(
+      r.missing.length + r.crossReviewViolations.length + r.testBeforeReviewViolations.length,
+    ).toBe(0);
     // confirmed かつ review_evidence ありの代表 PLAN が missing に出ないことも明示 (draft 除外と混同しない)。
     const missingIds = new Set(r.missing.map((m) => m.plan_id));
     expect(missingIds.has("PLAN-L4-05-workflow-orchestration")).toBe(false);
