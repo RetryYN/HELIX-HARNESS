@@ -4,6 +4,12 @@ import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
+import {
+  analyzePlanDescent,
+  loadPlanDescentBaseline,
+  loadPlanDescentDocs,
+  planDescentMessages,
+} from "../lint/plan-descent";
 import { type Frontmatter, frontmatterSchema } from "../schema/frontmatter";
 import {
   DB_PROJECTION_BACKPROP_REQUIRED_GENERATES,
@@ -797,12 +803,30 @@ export function lintPlan(path?: string, repoRoot: string = process.cwd()): LintR
   return { ok: result.ok, messages: planScheduleMessages(result) };
 }
 
+export function lintPlanDescent(path?: string, repoRoot: string = process.cwd()): LintResult {
+  const result = analyzePlanDescent(
+    loadPlanDescentDocs(repoRoot, path),
+    loadPlanDescentBaseline(repoRoot),
+  );
+  return { ok: result.ok, messages: planDescentMessages(result) };
+}
+
 export function lintPlanGate(
   gate: string | undefined,
   path?: string,
   repoRoot: string = process.cwd(),
 ): LintResult {
-  if (!gate || gate === "schedule") return lintPlan(path, repoRoot);
+  // 既定 (gate 未指定) は schedule + descent の合成 (PLAN-L6-54: L6 設計降下の起票時 fail-close)
+  if (!gate) {
+    const schedule = lintPlan(path, repoRoot);
+    const descent = lintPlanDescent(path, repoRoot);
+    return {
+      ok: schedule.ok && descent.ok,
+      messages: [...schedule.messages, ...descent.messages],
+    };
+  }
+  if (gate === "schedule") return lintPlan(path, repoRoot);
+  if (gate === "descent") return lintPlanDescent(path, repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {
     const result = analyzePlanGovernance(loadPlanGovernanceDocs(repoRoot, path), repoRoot);

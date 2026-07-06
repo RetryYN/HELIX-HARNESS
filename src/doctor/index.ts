@@ -250,6 +250,12 @@ import {
   loadPlanCompletionDriftInput,
   planCompletionDriftMessages,
 } from "../lint/plan-completion-drift";
+import {
+  analyzePlanDescent,
+  loadPlanDescentBaseline,
+  loadPlanDescentDocs,
+  planDescentMessages,
+} from "../lint/plan-descent";
 import { analyzePlanDod, loadPlanDodDocs, planDodMessages } from "../lint/plan-dod";
 import {
   analyzePlanSupersession,
@@ -1130,7 +1136,10 @@ export function projectRuntimeModelTelemetryForDoctor(_repoRoot: string, db: Har
   projectTokenUsage(db, usages);
 }
 
-export function checkDbProjectionIngestion(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDbProjectionIngestion(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["db-projection-ingestion - violation: repo root could not be read"],
@@ -1138,9 +1147,11 @@ export function checkDbProjectionIngestion(repoRoot: string): { messages: string
     };
   }
   try {
-    const db = openHarnessDb(":memory:", { repoRoot });
+    // prebuiltDb = runDoctor が 1 回だけ rebuild した共有 in-memory projection (PLAN-L7-348)。
+    // 共有時も telemetry projection と検査内容は単体実行と同一で、lifecycle は呼び出し側が持つ。
+    const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
     try {
-      rebuildHarnessDb({ repoRoot, db });
+      if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
       projectRuntimeModelTelemetryForDoctor(repoRoot, db);
       const result = analyzeDbProjectionIngestion(rowCounts(db));
       const pairAgentBlockedGate = db
@@ -1173,7 +1184,7 @@ export function checkDbProjectionIngestion(repoRoot: string): { messages: string
         ok: result.ok && !pairAgentBlockedGate && !pairAgentFinding,
       };
     } finally {
-      db.close();
+      if (!prebuiltDb) db.close();
     }
   } catch {
     return {
@@ -1238,6 +1249,21 @@ export function checkPlanSchedule(repoRoot: string): { messages: string[]; ok: b
     return lintPlan(undefined, repoRoot);
   } catch {
     return { messages: ["plan-schedule - violation: PLAN schedule lint could not run"], ok: false };
+  }
+}
+
+export function checkPlanDescent(repoRoot: string): { messages: string[]; ok: boolean } {
+  if (!existsSync(repoRoot)) {
+    return { messages: ["plan-descent - violation: repo root could not be read"], ok: false };
+  }
+  try {
+    const result = analyzePlanDescent(
+      loadPlanDescentDocs(repoRoot),
+      loadPlanDescentBaseline(repoRoot),
+    );
+    return { messages: planDescentMessages(result), ok: result.ok };
+  } catch {
+    return { messages: ["plan-descent - violation: plan descent lint could not run"], ok: false };
   }
 }
 
@@ -1335,7 +1361,10 @@ export function checkDriveModelPassage(repoRoot: string): { messages: string[]; 
   }
 }
 
-export function checkDriveDbRegistration(repoRoot: string): { messages: string[]; ok: boolean } {
+export function checkDriveDbRegistration(
+  repoRoot: string,
+  prebuiltDb?: HarnessDb,
+): { messages: string[]; ok: boolean } {
   if (!existsSync(repoRoot)) {
     return {
       messages: ["drive-db-registration - violation: repo root could not be read"],
@@ -1343,7 +1372,7 @@ export function checkDriveDbRegistration(repoRoot: string): { messages: string[]
     };
   }
   try {
-    const r = analyzeDriveDbRegistration(loadOrBuildDriveDbRegistrationStats(repoRoot));
+    const r = analyzeDriveDbRegistration(loadOrBuildDriveDbRegistrationStats(repoRoot, prebuiltDb));
     return { messages: driveDbRegistrationMessages(r), ok: r.ok };
   } catch {
     return {
@@ -3352,6 +3381,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
   const planSchedule = checkPlanSchedule(deps.repoRoot);
+  const planDescent = checkPlanDescent(deps.repoRoot);
   const planGovernance = checkPlanGovernance(deps.repoRoot);
   const planDod = checkPlanDod(deps.repoRoot);
   const placeholderDeps = checkPlaceholderDeps(deps.repoRoot);
@@ -3359,7 +3389,24 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const g3Trace = checkPlanTraceGate(deps.repoRoot, "G3-trace");
   const ruleAutomationClosure = checkRuleAutomationClosure(deps.repoRoot);
   const driveModelPassage = checkDriveModelPassage(deps.repoRoot);
-  const driveDbRegistration = checkDriveDbRegistration(deps.repoRoot);
+  // PLAN-L7-348: 重量 2 gate (drive-db-registration / db-projection-ingestion) は同一入力から
+  // 同じ in-memory projection を独立に rebuild していた (各 15-25 秒)。ここで 1 回だけ rebuild
+  // して共有する。drive 側は read-only、ingestion 側の telemetry projection 書込みは drive 読取り
+  // 後に走るため、検査結果は単体実行と同一。build 失敗時は undefined のまま各 check の自前
+  // rebuild 経路へ fallback する (fail 挙動不変)。
+  let sharedProjectionDb: HarnessDb | undefined;
+  try {
+    sharedProjectionDb = openHarnessDb(":memory:", { repoRoot: deps.repoRoot });
+    rebuildHarnessDb({ repoRoot: deps.repoRoot, db: sharedProjectionDb });
+  } catch {
+    try {
+      sharedProjectionDb?.close();
+    } catch {
+      // fail-open: 共有 projection の close 失敗は無視し、各 check の自前 rebuild 経路へ委ねる
+    }
+    sharedProjectionDb = undefined;
+  }
+  const driveDbRegistration = checkDriveDbRegistration(deps.repoRoot, sharedProjectionDb);
   const frRoadmapCoverage = checkFrRoadmapCoverage(deps.repoRoot);
   const telemetryClosure = checkTelemetryClosure(deps.repoRoot);
   const cycleP4Verification = checkCycleP4Verification(deps.repoRoot);
@@ -3388,7 +3435,12 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
   const regressionExpansion = checkRegressionExpansion(deps.repoRoot, dependencyDrift.result);
   const guardrailInvariants = checkGuardrailInvariants(deps.repoRoot);
   const dbProjectionCoverage = checkDbProjectionCoverage(deps.repoRoot);
-  const dbProjectionIngestion = checkDbProjectionIngestion(deps.repoRoot);
+  const dbProjectionIngestion = checkDbProjectionIngestion(deps.repoRoot, sharedProjectionDb);
+  try {
+    sharedProjectionDb?.close();
+  } catch {
+    // fail-open: in-memory 共有 projection の close 失敗は検査結果へ影響しないため無視する
+  }
   const verifierProviderMismatch = checkVerifierProviderMismatch(deps.repoRoot);
   const agentModelSsot = checkAgentModelSsot(deps.repoRoot);
   const docConsistency = checkDocConsistency(deps.repoRoot);
@@ -3452,6 +3504,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ruleDrift.ok &&
       gateConfirm.ok &&
       planSchedule.ok &&
+      planDescent.ok &&
       planGovernance.ok &&
       planDod.ok &&
       placeholderDeps.ok &&
@@ -3549,6 +3602,7 @@ export function runDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): Lin
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
       ...planSchedule.messages.map((m) => `doctor: ${m}`),
+      ...planDescent.messages.map((m) => `doctor: ${m}`),
       ...planGovernance.messages.map((m) => `doctor: ${m}`),
       ...planDod.messages.map((m) => `doctor: ${m}`),
       ...placeholderDeps.messages.map((m) => `doctor: ${m}`),
