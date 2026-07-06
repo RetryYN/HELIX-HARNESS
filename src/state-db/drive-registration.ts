@@ -155,6 +155,7 @@ export function driveDbStatsMatchCurrentPlanRegistry(stats: DriveDbRegistrationS
 
 export function loadOrBuildDriveDbRegistrationStats(
   repoRoot: string = process.cwd(),
+  prebuiltDb?: HarnessDb,
 ): DriveDbRegistrationStats | null {
   let persisted: DriveDbRegistrationStats | null = null;
   try {
@@ -164,9 +165,11 @@ export function loadOrBuildDriveDbRegistrationStats(
   }
   if (persisted && driveDbStatsMatchCurrentPlanRegistry(persisted)) return persisted;
 
-  const db = openHarnessDb(":memory:", { repoRoot });
+  // prebuiltDb = 呼び出し側 (runDoctor) が rebuild 済みの共有 projection (PLAN-L7-348)。
+  // 本関数は read-only アクセスのみで、lifecycle (close) は共有時は呼び出し側が持つ。
+  const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
   try {
-    rebuildHarnessDb({ repoRoot, db });
+    if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
     return {
       ...collectDriveDbRegistrationStats(db),
       expectedPlanCount: loadReviewPlans(repoRoot).length,
@@ -175,6 +178,6 @@ export function loadOrBuildDriveDbRegistrationStats(
   } catch {
     return null;
   } finally {
-    db.close();
+    if (!prebuiltDb) db.close();
   }
 }
