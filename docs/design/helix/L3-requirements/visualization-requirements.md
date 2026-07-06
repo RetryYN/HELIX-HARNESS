@@ -2,11 +2,11 @@
 title: "HELIX L3 要件 — 資産/進捗 可視化 view 要件（Tree View / graph panel / evidence drill-down / read-only 境界）"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 freeze_blocking: false
 created: 2026-07-06
-updated: 2026-07-06
-owner: FE lead (Opus) / L3 confirmed は PO 承認必須（charter §3）
+updated: 2026-07-07
+owner: FE lead (Opus) / PO 承認 2026-07-07（charter §3）
 plan: PLAN-L3-12-visualization-requirements
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 related_l1: docs/design/helix/L1-requirements/pillar-requirements.md

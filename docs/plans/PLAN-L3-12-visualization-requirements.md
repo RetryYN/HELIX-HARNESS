@@ -4,12 +4,12 @@ title: "PLAN-L3-12 (add-design): 可視化 view 要件の L3 降下 — Tree Vie
 kind: add-design
 layer: L3
 drive: fe
-status: draft
+status: confirmed
 route_mode: add-feature
 entry_signals:
   - "po_directive:2026-07-06 view をすすめてくれ（PLAN-DISCOVERY-10 S4 confirmed の forward route L3 降下）"
 created: 2026-07-06
-updated: 2026-07-06
+updated: 2026-07-07
 backprop_decision: not_required
 backprop_decision_reason: "PLAN-DISCOVERY-10 S4 confirmed（reuse-with-hardening）の forward route どおりの L3 追加設計。L1 §2.8 / HOT-P9 / VisualizationSnapshot（PLAN-L7-206）は変更せず、その下流要件を追加するのみ。"
 owner: Claude (Fable)
@@ -33,8 +33,8 @@ review_evidence:
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-07-06T17:10:00+09:00"
     tests_green_at: "2026-07-06T17:17:15+09:00"
-    verdict: reviewed_pending_po_approval
-    scope: "5 軸レビュー。verdict=approve-with-notes（Critical 0 / Important 2 / Minor 2）: (1) Design/test pair の graph.* 総数と pair フィルタ済み集計の精度不整合 → L6 契約で専用 field 定義と HAC-VIS-02a の集計方法明示に是正。(2) HAC-VIS-04a の view 別 warning 期待が実装（共有 warnings 1 件）と不整合 → 共有 banner 方式へ是正し warnings 拡張を L5/L6 送り。(3) action-binding タプルに timestamp 補完（L1 §2.8 準拠）。(4) inventory 一次確認の注記（2026-07-06 shallow clone 実確認）を追記。全所見反映済み。confirmed 化は PO 承認後（charter §3、L3 は人間承認）。"
+    verdict: approve
+    scope: "5 軸レビュー。verdict=approve-with-notes（Critical 0 / Important 2 / Minor 2）: (1) Design/test pair の graph.* 総数と pair フィルタ済み集計の精度不整合 → L6 契約で専用 field 定義と HAC-VIS-02a の集計方法明示に是正。(2) HAC-VIS-04a の view 別 warning 期待が実装（共有 warnings 1 件）と不整合 → 共有 banner 方式へ是正し warnings 拡張を L5/L6 送り。(3) action-binding タプルに timestamp 補完（L1 §2.8 準拠）。(4) inventory 一次確認の注記（2026-07-06 shallow clone 実確認）を追記。全所見反映済み。confirmed 化は PO 承認後（charter §3、L3 は人間承認）。PO 承認 2026-07-07（chat、Harness growth view + Project/Harness 2 root 分割を含む draft を承認）。"
     green_commands:
       - kind: lint
         command: "bun run src/cli.ts plan lint docs/plans/PLAN-L3-12-visualization-requirements.md"
