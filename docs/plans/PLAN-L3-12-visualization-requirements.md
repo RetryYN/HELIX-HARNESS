@@ -31,7 +31,7 @@ generates:
 review_evidence:
   - reviewer: code-reviewer (claude-sonnet-5)
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-07-06T17:10:00+09:00"
+    reviewed_at: "2026-07-07T13:05:00+09:00"
     tests_green_at: "2026-07-06T17:17:15+09:00"
     verdict: approve
     scope: "5 軸レビュー。verdict=approve-with-notes（Critical 0 / Important 2 / Minor 2）: (1) Design/test pair の graph.* 総数と pair フィルタ済み集計の精度不整合 → L6 契約で専用 field 定義と HAC-VIS-02a の集計方法明示に是正。(2) HAC-VIS-04a の view 別 warning 期待が実装（共有 warnings 1 件）と不整合 → 共有 banner 方式へ是正し warnings 拡張を L5/L6 送り。(3) action-binding タプルに timestamp 補完（L1 §2.8 準拠）。(4) inventory 一次確認の注記（2026-07-06 shallow clone 実確認）を追記。全所見反映済み。confirmed 化は PO 承認後（charter §3、L3 は人間承認）。PO 承認 2026-07-07（chat、Harness growth view + Project/Harness 2 root 分割を含む draft を承認）。"
