@@ -52,7 +52,7 @@ review_evidence:
         output_digest: "sha256:7274b69b656f8294b9441ec0b261b6a93b66fa02fe2f58d29452da4a1e14e87b"
 ---
 
-# PLAN-L7-354-harness-memory-compaction-impl (impl)
+# PLAN-L7-354 (impl): ハーネスメモリ compaction の実装
 
 ## 0. 目的
 
