@@ -129,7 +129,6 @@ const ROUTE_ESCALATION_PATTERNS: { term: string; pattern: RegExp }[] = [
   pattern: new RegExp(`\\b${term}s?\\b`, "i"),
 }));
 
-const ROUTE_COMMAND_DOCTOR = "helix doctor";
 const ROUTE_CONTRACT_EVIDENCE_PATH = "src/workflow/routing-contracts.ts";
 
 export const D_CONTRACT_MODES = [

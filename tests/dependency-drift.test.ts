@@ -82,6 +82,26 @@ describe("dependency-drift and regression expansion (PLAN-REVERSE-42)", () => {
     );
   });
 
+  it("U-DEPD-004: grandfathered module cycles stay visible without failing the gate", () => {
+    const result = analyzeDependencyDrift({
+      sourceDocs: [
+        { path: "src/lint/a.ts", text: 'import "../state-db/b";' },
+        { path: "src/state-db/b.ts", text: 'import "../lint/a";' },
+      ],
+      testDocs: [],
+    });
+
+    expect(result.ok).toBe(true);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        code: "module-cycle",
+        severity: "warn",
+        cycle: ["lint", "state-db", "lint"],
+      }),
+    );
+    expect(dependencyDriftMessages(result)[0]).toContain("grandfathered cycles 1");
+  });
+
   it("U-REGEXP-001: changed source expands to direct tests and dependent module tests", () => {
     const drift = analyzeDependencyDrift(input);
     const scope = expandRegressionScope(drift, ["src/lint/audit.ts"]);

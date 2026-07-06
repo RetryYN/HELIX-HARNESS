@@ -4129,11 +4129,7 @@ function projectScreens(repoRoot: string, db: HarnessDb): void {
   }
 }
 
-function profiled<T>(
-  name: string,
-  onProfile: RebuildHarnessDbInput["onProfile"],
-  fn: () => T,
-): T {
+function profiled<T>(name: string, onProfile: RebuildHarnessDbInput["onProfile"], fn: () => T): T {
   if (!onProfile) return fn();
   const started = performance.now();
   try {
@@ -4206,7 +4202,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       profiled("projectRefactorCandidateSignals", input.onProfile, () =>
         projectRefactorCandidateSignals(repoRoot, db, projectionDeps),
       );
-      profiled("projectRelationGraph", input.onProfile, () => projectRelationGraph(db, relationGraph));
+      profiled("projectRelationGraph", input.onProfile, () =>
+        projectRelationGraph(db, relationGraph),
+      );
       const graphSnapshotId = profiled("projectGraphSnapshot", input.onProfile, () =>
         projectGraphSnapshot(db, relationGraph),
       );

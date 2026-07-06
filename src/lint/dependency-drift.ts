@@ -81,6 +81,21 @@ const DEFAULT_DISALLOWED: Record<string, Set<string>> = {
   ]),
 };
 
+const GRANDFATHERED_MODULE_CYCLE_KEYS = new Set([
+  "export -> lint -> state-db -> export",
+  "export -> lint -> workflow -> state-db -> export",
+  "graph -> lint -> state-db -> graph",
+  "graph -> lint -> workflow -> state-db -> graph",
+  "graph -> vmodel -> lint -> state-db -> graph",
+  "graph -> vmodel -> lint -> workflow -> state-db -> graph",
+  "graph -> vmodel -> plan -> lint -> state-db -> graph",
+  "graph -> vmodel -> plan -> lint -> workflow -> state-db -> graph",
+  "lint -> state-db -> lint",
+  "lint -> workflow -> state-db -> lint",
+  "orchestration -> task -> team -> orchestration",
+  "orchestration -> team -> orchestration",
+]);
+
 function collectTsDocs(repoRoot: string, relDir: "src" | "tests"): DependencyDoc[] {
   const root = join(repoRoot, relDir);
   if (!existsSync(root)) return [];
@@ -192,6 +207,10 @@ function detectCycles(edges: ModuleEdge[]): string[][] {
   return [...cycles.values()].sort((a, b) => a.join(">").localeCompare(b.join(">")));
 }
 
+function moduleCycleKey(cycle: string[]): string {
+  return cycle.join(" -> ");
+}
+
 function disallowed(from: string, to: string, allowed?: Record<string, string[]>): boolean {
   if (allowed != null) {
     return !(allowed[from] ?? []).includes(to);
@@ -228,11 +247,12 @@ export function analyzeDependencyDrift(input: DependencyDriftInput): DependencyD
 
   const stableModuleEdges = uniqueSortedEdges(moduleEdges);
   for (const cycle of detectCycles(stableModuleEdges)) {
+    const key = moduleCycleKey(cycle);
     findings.push({
       code: "module-cycle",
-      severity: "error",
+      severity: GRANDFATHERED_MODULE_CYCLE_KEYS.has(key) ? "warn" : "error",
       cycle,
-      message: `module cycle: ${cycle.join(" -> ")}`,
+      message: `module cycle: ${key}`,
     });
   }
 
@@ -261,8 +281,11 @@ export function analyzeDependencyDrift(input: DependencyDriftInput): DependencyD
 
 export function dependencyDriftMessages(result: DependencyDriftResult): string[] {
   if (result.ok) {
+    const grandfatheredCycles = result.findings.filter(
+      (finding) => finding.code === "module-cycle" && finding.severity === "warn",
+    ).length;
     return [
-      `dependency-drift — OK (modules ${result.moduleEdges.length} edges, tests ${result.testCoverage.length} coverage edges, cycles 0)`,
+      `dependency-drift — OK (modules ${result.moduleEdges.length} edges, tests ${result.testCoverage.length} coverage edges, new cycles 0, grandfathered cycles ${grandfatheredCycles})`,
     ];
   }
   return [

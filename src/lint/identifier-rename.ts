@@ -1464,7 +1464,8 @@ function buildCutoverRunbook(): IdentifierRenameCutoverPlan["cutoverRunbook"] {
       evidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
       passCriteria:
         "quiet-window monitoring probes, rollback triggers, and current no-write proxy commands are reviewed before cutover",
-      rollbackCheck: "any red monitoring probe restores the pre-cutover tag/branch and old state path",
+      rollbackCheck:
+        "any red monitoring probe restores the pre-cutover tag/branch and old state path",
       source: "PLAN-M-02 post-cutover monitoring policy",
       sourceUrl: "docs/plans/PLAN-M-02-helix-identifier-rename.md",
     },
@@ -1698,10 +1699,12 @@ export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitor
     probes: [
       {
         phase: "doctor-status-completion",
-        commandAfterApproval: "helix doctor && helix status && helix completion decision-packet --json",
+        commandAfterApproval:
+          "helix doctor && helix status && helix completion decision-packet --json",
         currentNoWriteProxyCommand:
           "bun run src/cli.ts doctor --json && bun run src/cli.ts status --json && bun run src/cli.ts completion decision-packet --json",
-        expected: "doctor stays green and status/completion packet keeps PLAN-M-02 evidence bound to the approved snapshot",
+        expected:
+          "doctor stays green and status/completion packet keeps PLAN-M-02 evidence bound to the approved snapshot",
         rollbackTrigger: "doctor red, status regression, or completion packet evidence drift",
       },
       {
@@ -1709,16 +1712,20 @@ export function buildIdentifierRenameMonitoringDryRun(): IdentifierRenameMonitor
         commandAfterApproval: "dist/helix doctor && helix handover",
         currentNoWriteProxyCommand:
           "bun run src/cli.ts rename dist-smoke --no-write --target helix --json && bun run src/cli.ts handover",
-        expected: "legacy alias disposition and handover/runtime log continuity are observable during the quiet window",
-        rollbackTrigger: "alias breakage without approved sunset route or runtime path regression in logs/handover",
+        expected:
+          "legacy alias disposition and handover/runtime log continuity are observable during the quiet window",
+        rollbackTrigger:
+          "alias breakage without approved sunset route or runtime path regression in logs/handover",
       },
       {
         phase: "rule-drift-and-feedback-backlog",
         commandAfterApproval: "helix doctor && helix feedback status",
         currentNoWriteProxyCommand:
           "bun run src/cli.ts doctor --json && bun run src/cli.ts feedback status --json",
-        expected: "rule-drift, hook adapter parity, and feedback backlog stay inside the approved cutover boundary",
-        rollbackTrigger: "rule-drift, hook parity failure, or cutover-related feedback backlog escalation",
+        expected:
+          "rule-drift, hook adapter parity, and feedback backlog stay inside the approved cutover boundary",
+        rollbackTrigger:
+          "rule-drift, hook parity failure, or cutover-related feedback backlog escalation",
       },
     ],
     requiredEvidencePath: ".helix/evidence/rename/post-cutover-monitoring-dry-run.json",
@@ -2441,8 +2448,8 @@ export function buildIdentifierRenameCutoverPlan(
       `cutover evidence artifacts missing before approval: ${missingEvidenceArtifacts.slice(0, 5).join(", ")}${missingEvidenceArtifacts.length > 5 ? `, ... +${missingEvidenceArtifacts.length - 5}` : ""}`,
     );
   }
-  const missingRestoreSources = buildIdentifierRenameStateBackupDryRun(root, true).restoreChecks
-    .filter((check) => check.restoreRequired && !check.sourceExists)
+  const missingRestoreSources = buildIdentifierRenameStateBackupDryRun(root, true)
+    .restoreChecks.filter((check) => check.restoreRequired && !check.sourceExists)
     .map((check) => check.path);
   if (missingRestoreSources.length > 0) {
     blockedReasons.push(
