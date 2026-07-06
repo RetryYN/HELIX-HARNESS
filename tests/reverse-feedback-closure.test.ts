@@ -9,8 +9,8 @@ import {
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import {
-  REVERSE_TYPE_BY_ARTIFACT,
   collectReverseCandidates,
+  REVERSE_TYPE_BY_ARTIFACT,
 } from "../src/state-db/reverse-candidates";
 
 const tempRoots: string[] = [];

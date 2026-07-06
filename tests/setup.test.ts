@@ -59,12 +59,10 @@ const statePath = join("/repo", ".helix", "state", "setup.json");
 const projectSetupStatePath = join("/repo", ".helix", "state", "project-setup.json");
 
 function templateDigestManifest(templates: TemplateSet): string {
-  return (
-    Object.entries(templates)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([path, content]) => `${createHash("sha256").update(content).digest("hex")}  ${path}`)
-      .join("\n") + "\n"
-  );
+  return `${Object.entries(templates)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([path, content]) => `${createHash("sha256").update(content).digest("hex")}  ${path}`)
+    .join("\n")}\n`;
 }
 
 /** org + 4 collaborators + protection あり + admin を返す gh mock。 */
