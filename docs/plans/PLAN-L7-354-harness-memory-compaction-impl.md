@@ -4,7 +4,7 @@ title: "PLAN-L7-354-harness-memory-compaction-impl (impl): ハーネスメモリ
 kind: impl
 layer: L7
 drive: be
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07 さっさとやってくれ（PLAN-L6-56-harness-memory-compaction step 2 の実装解禁）"
@@ -32,7 +32,24 @@ dependencies:
   parent: docs/plans/PLAN-L6-56-harness-memory-compaction.md
   requires:
     - docs/plans/PLAN-L6-56-harness-memory-compaction.md
-review_evidence: []
+review_evidence:
+  - reviewer: code-reviewer (claude-sonnet-5)
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-07T06:45:00+09:00"
+    tests_green_at: "2026-07-07T06:38:48+09:00"
+    verdict: approve_after_fixes
+    worker_model: codex
+    reviewer_model: claude-sonnet-5
+    scope: "5 軸レビュー verdict=reject → 是正後 approve。Critical: deriveHandoverSnapshot が plan_registry 射影（workflow_phase / version_target / 本文なし）で authority 判定を導出し fail-open → completionReadiness を構造的 blocker のみ（authorityScope=structural_only）に限定し authority 判定を非導出に是正。Important: layer file 未作成時に backup ENOENT で非 dryRun だけ落ちる非対称 → 空 file short-circuit を追加（U-MEMC-003b 回帰テスト新設）。Good: temp+rename atomic、backup 失敗時中止、deps.now() 注入で Date.now 直接依存なし。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/memory-compaction.test.ts tests/handover-db-derivation.test.ts --project fast"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-07T06:38:48+09:00"
+        evidence_path: tests/memory-compaction.test.ts
+        output_digest: "sha256:7274b69b656f8294b9441ec0b261b6a93b66fa02fe2f58d29452da4a1e14e87b"
 ---
 
 # PLAN-L7-354-harness-memory-compaction-impl (impl)

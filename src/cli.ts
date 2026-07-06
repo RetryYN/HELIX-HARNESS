@@ -121,6 +121,7 @@ import {
   loadVersionUpReadinessInput,
 } from "./lint/version-up-readiness";
 import { listMemory, type MemoryLayer, surfaceMemory, writeMemory } from "./memory";
+import { compactMemory, nodeMemoryCompactionDeps } from "./memory/memory-compaction";
 import { fileMemoryDeps } from "./memory/memory-store";
 import { selectVerifier } from "./orchestration/cross-verifier";
 import { nodeTickDeps } from "./orchestration/loop-bridge";
@@ -1237,6 +1238,27 @@ memory
     for (const entry of entries) {
       process.stdout.write(`[${entry.id}] ${entry.key}: ${entry.body}\n`);
     }
+  });
+
+memory
+  .command("compact")
+  .description("compact shared memory jsonl")
+  .option("--layer <layer>", "memory layer to compact (harness|project)", "harness")
+  .option("--dry-run", "count removable entries without rewriting the memory file")
+  .action((opts: { layer?: string; dryRun?: boolean }) => {
+    const memoryLayer = parseMemoryLayer(opts.layer ?? "harness");
+    if (!memoryLayer) return;
+    const root = process.cwd();
+    const result = compactMemory(
+      { layer: memoryLayer, dryRun: opts.dryRun },
+      {
+        ...fileMemoryDeps({ root }),
+        ...nodeMemoryCompactionDeps({ root }),
+      },
+    );
+    process.stdout.write(
+      `memory compact: layer=${result.layer} kept=${result.kept} removedSuperseded=${result.removedSuperseded} removedDamaged=${result.removedDamaged} applied=${result.applied} backup=${result.backupPath ?? "-"}\n`,
+    );
   });
 
 memory

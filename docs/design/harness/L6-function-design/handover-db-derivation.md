@@ -1,7 +1,7 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 freeze_blocking: false
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 plan: docs/plans/PLAN-L6-57-handover-db-derivation.md
@@ -22,7 +22,7 @@ feedback_events の正本地位（PLAN-L7-110）は変更しない。
 
 | 関数 | 契約 |
 |---|---|
-| `deriveHandoverSnapshot(deps)` | harness.db から active PLAN frontier（非終端 status の PLAN、更新時刻降順の先頭群）、outstanding blocker 集計（completionReadiness）、直近 feedback_events 件数を、git から検証基準点（HEAD sha / branch）を導出し `DerivedHandoverSnapshot` を返す。deps 注入（db open / git resolve）で純関数化し、手書き入力を受け取らない。 |
+| `deriveHandoverSnapshot(deps)` | harness.db から active PLAN frontier（非終端 status の PLAN、更新時刻降順の先頭群）、outstanding blocker 集計、直近 feedback_events 件数を、git から検証基準点（HEAD sha / branch）を導出し `DerivedHandoverSnapshot` を返す。deps 注入（db open / git resolve）で純関数化し、手書き入力を受け取らない。**completionReadiness は構造的 blocker のみ（`authorityScope: "structural_only"`）とし、authority 判定（humanDecisionRequired / nextAuthority）はこの経路では導出しない** — plan_registry 射影に workflow_phase / version_target / 本文が無く false negative（fail-open）になるため（review Critical 所見 2026-07-07 の是正）。authority 判定の正本は `helix status` のフル入力経路。 |
 | `renderCurrentPointer(snapshot, note)` | snapshot + `takeoverNote: string \| null` から CURRENT.json 内容を生成。note 以外の field は毎回上書き。`generated_at` / `generator: "helix handover"` を刻む。 |
 | `detectPointerDrift(existing, snapshot)` | 既存 CURRENT.json の derived field が最新 snapshot と乖離している場合に drift 一覧を返す（field 名 + expected/actual）。手書き編集の検出にも使う。 |
 

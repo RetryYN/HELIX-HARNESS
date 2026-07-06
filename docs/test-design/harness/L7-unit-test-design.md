@@ -1196,3 +1196,11 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-RVC-001 | `collectReverseCandidates` | recovery 未紐付けの red artifact は reverse 候補となり、type 割当は `REVERSE_TYPE_BY_ARTIFACT` に従う。紐付き済み・green は候補外。 |
 | U-RVC-002 | `collectReverseCandidates` | open warn finding は候補、info finding と resolved は候補外。 |
 | U-RVC-003 | `collectReverseCandidates` | 対象なしは空配列（0 件を 0 件として返す、query-only）。 |
+| U-MEMC-001 | `compactMemory` | superseded chain（A ← B ← C）を含む layer の compaction 後、file には active entry のみが残り、`listMemory` / `findByKey` / `surfaceMemory` の結果が前後で deep equal。 |
+| U-MEMC-002 | `compactMemory` | parse 不能行は `removedDamaged` として除去され、件数が返り値に一致する。 |
+| U-MEMC-003 | `compactMemory` | `dryRun=true` は file と mtime を変更せず件数のみ返す。backup 作成失敗を注入すると compaction は中止され元 file が不変。 |
+| U-MEMC-004 | `memoryCompactionAdvice` | 閾値未満で `recommend=false`、`total>=200` または superseded 比率 `>=0.5` で `recommend=true`（境界値を含む）。 |
+| U-HDRV-001 | `deriveHandoverSnapshot` | fixture db（非終端 PLAN 2 件 + blocker）から active PLAN / blocker 集計 / HEAD sha を deterministic に返す（同一入力 → deep equal）。 |
+| U-HDRV-002 | `renderCurrentPointer` / `detectPointerDrift` | derived field を毎回上書きし、`takeover_note` を保持する。note 以外への手書き変更は field 単位で検出する。 |
+| U-HDRV-003 | `deriveHandoverSnapshot` | db open 失敗 / HEAD 解決失敗は fail-close（pointer を書かない・error 返却）。 |
+| U-HDRV-004 | `renderCurrentPointer` | 再生成は状態が変わらない限り連続実行で内容が不変（`generated_at` を除く）。 |
