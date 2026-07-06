@@ -4,7 +4,7 @@ title: "PLAN-L7-372 (impl): 可視化 view-model の実装 — 6 view builder / 
 kind: impl
 layer: L7
 drive: fe
-status: draft
+status: confirmed
 route_mode: forward
 entry_signals:
   - "po_directive:2026-07-07 進めて（PLAN-L6-58 step 3 の実装解禁、Tree View prototype の前提）"
@@ -34,7 +34,24 @@ dependencies:
     - docs/plans/PLAN-L6-58-visualization-view-model.md
   references:
     - src/state-db/visualization-read-model.ts
-review_evidence: []
+review_evidence:
+  - reviewer: code-reviewer (claude-sonnet-5)
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-07-07T07:20:00+09:00"
+    tests_green_at: "2026-07-07T07:16:54+09:00"
+    verdict: approve
+    worker_model: claude-sonnet-5 (fe-ui)
+    reviewer_model: claude-sonnet-5
+    scope: "5 軸レビュー verdict=approve-with-notes（Critical 0 / Minor 2）。契約 marker（純関数・DB 再クエリなし・時刻依存なし・count 一致・warnings 分離）全充足、U-VVM-001..007 と test 1:1、honest degrade は捏造なしを確認。Minor: (1) latest_node_count と aggregate 乖離 fixture 未網羅 → latest 優先を正と設計 doc に補注し後続テスト拡充課題として記録、(2) pair test-design の status を confirmed へ更新。worker=fe-ui (sonnet)、reviewer は独立 subagent。"
+    green_commands:
+      - kind: unit_test
+        command: "bunx vitest run tests/visualization-view-model.test.ts --project fast"
+        runner: bun
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-07-07T07:16:54+09:00"
+        evidence_path: tests/visualization-view-model.test.ts
+        output_digest: "sha256:4770f24c6f40f00ce513e2f9891150181285e37b31d4cb1a2c9c5df9c6056f3f"
 ---
 
 # PLAN-L7-372 (impl): 可視化 view-model の実装

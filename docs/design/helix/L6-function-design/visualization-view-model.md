@@ -11,6 +11,10 @@ plan: docs/plans/PLAN-L6-58-visualization-view-model.md
 
 # 可視化 view-model の L6 機能設計
 
+> 補注（review Minor 2026-07-07）: Relation/dependency view の `node_count`/`edge_count` は
+> `latest_node_count`/`latest_edge_count`（snapshot 記録値）を正とし、aggregate count は fallback。
+> 両者乖離時の挙動 fixture は後続テスト拡充課題として記録する。
+
 ## §1 範囲
 
 `PLAN-L3-12`（HR-FR-VIS-01..07）と L4 surface 境界
