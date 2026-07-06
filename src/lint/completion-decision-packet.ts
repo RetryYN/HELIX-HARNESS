@@ -1327,7 +1327,7 @@ function requiredSupportingPacketSummary(command: string): {
       return {
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
-        expectedMatrixCount: 10,
+        expectedMatrixCount: 11,
         requiredReviewFields: [
           "semanticFeatureFrontierRecord",
           "activationDecision",

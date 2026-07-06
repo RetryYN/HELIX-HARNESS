@@ -3,6 +3,7 @@ import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { buildVersionUpActivationReviewBundle } from "../src/lint/version-up-bundle";
 import {
   analyzeVersionUpReadiness,
   buildVersionUpActivationPackets,
@@ -15,7 +16,6 @@ import {
   versionUpReadinessMessages,
   versionUpSecurityChecklistSourceViolations,
 } from "../src/lint/version-up-readiness";
-import { buildVersionUpActivationReviewBundle } from "../src/lint/version-up-bundle";
 
 const REQUIRED_SOURCE_METADATA_FIELDS = [
   "sourceUrl",
@@ -534,6 +534,17 @@ describe("version-up-readiness", () => {
           workflowRouteImpact: expect.stringContaining("activation remains parked"),
         }),
         expect.objectContaining({
+          phase: "readonly-share-bundle",
+          command:
+            "bun run src/cli.ts web share-bundle --out /tmp/helix-readonly-share-bundle-PLAN-L7-900-future --json",
+          writePolicy: "local-artifact-write",
+          expected: expect.stringContaining("read-only HTML and share-manifest"),
+          evidence: expect.stringContaining("share-manifest.json"),
+          sourceUrl: "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+          adoptionDecision: "adopt-readonly-share-bundle-as-pre-activation-review-artifact",
+          workflowRouteImpact: expect.stringContaining("Cloudflare deploy"),
+        }),
+        expect.objectContaining({
           phase: "version-dry-run",
           command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           writePolicy: "no-write",
@@ -591,6 +602,7 @@ describe("version-up-readiness", () => {
     expect(packet.activationVerificationCommandMatrix.map((row) => row.phase)).toEqual([
       "activation-packet-baseline",
       "activation-review-bundle",
+      "readonly-share-bundle",
       "version-dry-run",
       "external-rehearsal",
       "security-testing",
@@ -720,7 +732,7 @@ describe("version-up-readiness", () => {
       {
         subject: "PLAN-L7-900-future.activationVerificationCommandMatrix",
         reason:
-          "activationVerificationCommandMatrix must contain exactly 10 phases: activation-packet-baseline,activation-review-bundle,version-dry-run,external-rehearsal,security-testing,state-and-doctor,targeted-regression,static-gates,full-regression,approval-packet",
+          "activationVerificationCommandMatrix must contain exactly 11 phases: activation-packet-baseline,activation-review-bundle,readonly-share-bundle,version-dry-run,external-rehearsal,security-testing,state-and-doctor,targeted-regression,static-gates,full-regression,approval-packet",
       },
       {
         subject: "PLAN-L7-900-future.activationVerificationCommandMatrix",
@@ -942,6 +954,55 @@ describe("version-up-readiness", () => {
         expect.stringContaining("does not authorize Cloudflare/GitHub/secret/access-control"),
       ]),
     );
+    const shareReviewBundle = buildVersionUpActivationReviewBundle({
+      ...packet,
+      planId: "PLAN-L7-146-serverless-readonly-share",
+    });
+    expect(shareReviewBundle.files.map((file) => file.path)).toEqual([
+      "activation-packet.json",
+      "activation-rehearsal.json",
+      "security-checklist.json",
+      "version-dry-run-evidence.json",
+      "readonly-share-index.html",
+      "readonly-share-manifest.json",
+      "activation-review-manifest.json",
+    ]);
+    for (const file of shareReviewBundle.files) {
+      expect(file.bytes).toBeGreaterThan(0);
+      expect(file.sha256).toMatch(/^sha256:[a-f0-9]{64}$/);
+      if (file.mediaType === "application/json; charset=utf-8") {
+        expect(() => JSON.parse(file.content)).not.toThrow();
+      } else {
+        expect(file.mediaType).toBe("text/html; charset=utf-8");
+        expect(file.content).toContain("<!doctype html>");
+      }
+    }
+    const readonlyShareManifest = JSON.parse(
+      shareReviewBundle.files.find((file) => file.path === "readonly-share-manifest.json")
+        ?.content ?? "",
+    );
+    expect(readonlyShareManifest).toMatchObject({
+      schema: "helix.readonly-share-bundle.v1",
+      planOnly: true,
+      mustNotDeploy: true,
+      readOnly: true,
+      hmacRequired: true,
+      accessControlRequired: true,
+      noSecretOrPiiProjection: true,
+      noProdWrite: true,
+      activation: {
+        cloudflareDeployApproved: false,
+        githubWebhookApproved: false,
+        secretBindingApproved: false,
+        accessControlApproved: false,
+      },
+    });
+    expect(
+      JSON.parse(
+        shareReviewBundle.files.find((file) => file.path === "activation-review-manifest.json")
+          ?.content ?? "",
+      ).blockedUntil,
+    ).toEqual(expect.arrayContaining([expect.stringContaining("readonly share bundle manifest")]));
     const securityPacket = buildVersionUpSecurityChecklistPacket(packet);
     expect(packet.securityChecklistPacket).toMatchObject({
       schemaVersion: "version-up-security-checklist.v1",
@@ -2586,6 +2647,13 @@ describe("version-up-readiness", () => {
             "bun run src/cli.ts version-up activation-packet --plan PLAN-L7-146-serverless-readonly-share --json",
         }),
         expect.objectContaining({
+          phase: "readonly-share-bundle",
+          command:
+            "bun run src/cli.ts web share-bundle --out /tmp/helix-readonly-share-bundle-PLAN-L7-146-serverless-readonly-share --json",
+          writePolicy: "local-artifact-write",
+          evidence: expect.stringContaining("share-manifest.json"),
+        }),
+        expect.objectContaining({
           phase: "version-dry-run",
           command: "bun run src/cli.ts version-up dry-run --current 0.1.0 --target future --json",
           expected: expect.stringContaining("concrete SemVer tag"),
@@ -2768,7 +2836,7 @@ describe("version-up-readiness", () => {
     expect(text).toContain("evidenceDigest=sha256:");
     expect(text).toContain("readiness: status=pending_evidence");
     expect(text).toContain("total=17");
-    expect(text).toContain("verification-commands=10");
+    expect(text).toContain("verification-commands=11");
     expect(text).toContain("record-template activation_decision_record");
     expect(text).toContain("record-template action_binding_approval_record");
     expect(text).toContain(

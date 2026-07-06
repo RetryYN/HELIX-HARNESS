@@ -1762,11 +1762,14 @@ describe("completion decision packet lint", () => {
       ),
     };
     const result = analyzeCompletionDecisionPacket(packet, "2026-06-30T03:00:00.000Z");
+    const versionUpDecisionIndex = source.decisions.findIndex(
+      (decision) => decision.planId === "PLAN-L7-146-serverless-readonly-share",
+    );
 
     expect(result.ok).toBe(false);
     expect(result.violations).toContainEqual({
       reason: "invalid_required_record",
-      detail: "decision[0].requiredRecords missing recordName=action_binding_approval_record",
+      detail: `decision[${versionUpDecisionIndex}].requiredRecords missing recordName=action_binding_approval_record`,
     });
   });
 

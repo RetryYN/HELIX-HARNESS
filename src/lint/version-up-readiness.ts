@@ -45,6 +45,7 @@ import {
 const VERSION_UP_ACTIVATION_VERIFICATION_PHASES = [
   "activation-packet-baseline",
   "activation-review-bundle",
+  "readonly-share-bundle",
   "version-dry-run",
   "external-rehearsal",
   "security-testing",
@@ -1852,6 +1853,7 @@ export function versionUpActivationVerificationCommandViolations(
   ]);
   const allowedLocalArtifactWriteCommands = new Set([
     `bun run src/cli.ts version-up activation-bundle --plan ${packet.planId} --out ${shellQuote(`/tmp/helix-version-up-activation-bundle-${packet.planId}`)} --json`,
+    `bun run src/cli.ts web share-bundle --out ${shellQuote(`/tmp/helix-readonly-share-bundle-${packet.planId}`)} --json`,
   ]);
   const allowedStateWriteCommands = new Set([
     "bun run src/cli.ts db rebuild && bun run src/cli.ts doctor",
@@ -2145,6 +2147,7 @@ function buildVersionUpActivationVerificationCommandMatrix(
   const dryRunTargetResolved = parseSemver(dryRunTarget) !== null;
   const dryRunCommand = buildVersionUpDryRunReviewCommand(currentVersion, dryRunTarget);
   const activationBundleOut = `/tmp/helix-version-up-activation-bundle-${plan.plan_id}`;
+  const readonlyShareBundleOut = `/tmp/helix-readonly-share-bundle-${plan.plan_id}`;
   const sourceCheckedAt = sourceMetadata.sourceLedger.sourceCheckedAt;
   return [
     {
@@ -2181,6 +2184,26 @@ function buildVersionUpActivationVerificationCommandMatrix(
       adoptionDecisionDelta: "adds review artifact bundling without changing activation authority",
       workflowRouteImpact:
         "none; activation remains parked until action-binding approval and explicit activation decision",
+    },
+    {
+      phase: "readonly-share-bundle",
+      command: `bun run src/cli.ts web share-bundle --out ${shellQuote(readonlyShareBundleOut)} --json`,
+      writePolicy: "local-artifact-write",
+      expected:
+        "writes read-only HTML and share-manifest review artifacts without deploy, webhook registration, secret binding, or access-control mutation",
+      evidence:
+        "share-manifest.json with planOnly=true, mustNotDeploy=true, readOnly=true, hmacRequired=true, accessControlRequired=true, noSecretOrPiiProjection=true, noProdWrite=true, and activation approvals fixed false",
+      source: "PLAN-L7-146 read-only share bundle contract",
+      sourceUrl: "docs/plans/PLAN-L7-146-serverless-readonly-share.md",
+      sourceCheckedAt,
+      latestOfficialStatus:
+        "local HELIX read-only share bundle contract current at HEAD and still approval-gated",
+      sourceStatusDelta: "none; bundle is local review material and does not deploy externally",
+      adoptionDecision: "adopt-readonly-share-bundle-as-pre-activation-review-artifact",
+      adoptionDecisionDelta:
+        "connects existing share-bundle evidence to version-up activation review without changing activation authority",
+      workflowRouteImpact:
+        "none; Cloudflare deploy, GitHub webhook, HMAC secret, and access-control activation remain blocked pending action-binding approval",
     },
     {
       phase: "version-dry-run",

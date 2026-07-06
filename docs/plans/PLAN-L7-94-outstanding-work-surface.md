@@ -7,7 +7,7 @@ drive: db
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 status: confirmed
 created: 2026-06-22
-updated: 2026-07-03
+updated: 2026-07-06
 owner: PM (Opus) / PO (人間)
 review_evidence:
   - reviewer: codex-tl
@@ -1625,6 +1625,8 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/s4-decision-readiness.test.ts
     artifact_type: test_code
+  - artifact_path: tests/poc-s3-s4-boundary.test.ts
+    artifact_type: test_code
   - artifact_path: tests/cutover-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
@@ -1638,6 +1640,8 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 ---
 
 # PLAN-L7-94 (impl): outstanding-work surface (IMP-139) — 未了作業 surface
+
+2026-07-06 追記: PLAN-L7-346 により `tests/poc-s3-s4-boundary.test.ts` の `test_code` generates を追記した。confirmed claim 本体は変更せず、silent overwrite ではない機械的登録補完として扱う。
 
 ## 0. 目的
 

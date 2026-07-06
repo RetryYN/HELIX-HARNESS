@@ -8,7 +8,7 @@ status: confirmed
 created: 2026-07-06
 updated: 2026-07-06
 backprop_decision: not_required
-backprop_decision_reason: "PLAN-L7-146 の外部 activation 境界は変えず、既存 version-up activation-packet / rehearsal / security-checklist / dry-run evidence をローカル確認 bundle に束ねるだけの実装。新規 product requirement は追加しない。"
+backprop_decision_reason: "PLAN-L7-146 の外部 activation 境界は変えず、既存 version-up activation-packet / rehearsal / security-checklist / dry-run evidence / read-only share manifest をローカル確認 bundle に束ねるだけの実装。新規 product requirement は追加しない。"
 owner: Codex
 parent_design: docs/process/modes/version-up.md
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -23,11 +23,23 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: src/lint/version-up-bundle.ts
     artifact_type: source_module
+  - artifact_path: src/lint/version-up-readiness.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/completion-decision-packet.ts
+    artifact_type: source_module
+  - artifact_path: src/lint/outstanding.ts
+    artifact_type: source_module
   - artifact_path: src/cli.ts
     artifact_type: source_module
+  - artifact_path: docs/process/modes/version-up.md
+    artifact_type: markdown_doc
   - artifact_path: tests/version-up-readiness.test.ts
     artifact_type: test_code
   - artifact_path: tests/cli-surface.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/outstanding.test.ts
+    artifact_type: test_code
+  - artifact_path: tests/completion-decision-packet.test.ts
     artifact_type: test_code
 dependencies:
   parent: docs/process/modes/version-up.md
@@ -69,7 +81,7 @@ review_evidence:
 
 `PLAN-L7-146` の version-up parked work は、外部 Cloudflare 配信、GitHub webhook、HMAC secret、
 access control を含むため action-binding approval 前に apply しない。一方で、承認前レビューでは
-activation packet、external rehearsal、security checklist、version dry-run evidence を同じ snapshot に束ねて
+activation packet、external rehearsal、security checklist、version dry-run evidence、read-only share manifest を同じ snapshot に束ねて
 確認できる必要がある。
 
 本 PLAN は、その確認材料を `helix version-up activation-bundle --plan <planId> --out <dir> --json`
@@ -77,7 +89,9 @@ activation packet、external rehearsal、security checklist、version dry-run ev
 
 ## 実装
 
-- `src/lint/version-up-bundle.ts`: `version-up-activation-review-bundle.v1` を生成する。
+- `src/lint/version-up-bundle.ts`: `version-up-activation-review-bundle.v1` を生成し、PLAN-L7-146 の場合は
+  `readonly-share-index.html` と `readonly-share-manifest.json` を同梱する。
+- `src/lint/version-up-readiness.ts`: `activationVerificationCommandMatrix` に `readonly-share-bundle` phase を追加する。
 - `src/cli.ts`: `version-up activation-bundle` を追加し、指定 `--out` 配下へ JSON 成果物を書く。
 - `tests/version-up-readiness.test.ts`: bundle contract、manifest、hash、JSON parse 可能性を検証する。
 - `tests/cli-surface.test.ts`: CLI がローカル成果物だけを書き、`planOnly=true` / `mustNotApply=true` /
@@ -91,7 +105,8 @@ activation packet、external rehearsal、security checklist、version dry-run ev
 
 ## 受入条件
 
-- `version-up activation-bundle` が 5 件の JSON 成果物をローカル directory に出力する。
+- `version-up activation-bundle` が activation packet / rehearsal / security checklist / dry-run evidence /
+  read-only share HTML / share manifest / activation review manifest をローカル directory に出力する。
 - manifest に `writePolicy=local-artifact-write`、`mustNotApply=true`、`activationAllowed=false` が入る。
 - `bun test tests/version-up-readiness.test.ts tests/cli-surface.test.ts` と `bun run tsc --noEmit` が green。
 - `helix doctor` の impl-plan-trace / change-set-integrity が source-plan-missing を出さない。

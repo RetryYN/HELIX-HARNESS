@@ -1776,7 +1776,7 @@ function supportingPacketSummaryForCommand(
         ...base,
         schemaVersion: "version-up-activation-packet.v1",
         matrixField: "activationVerificationCommandMatrix",
-        expectedMatrixCount: 10,
+        expectedMatrixCount: 11,
         requiredReviewFields: [
           "planOnly",
           "mustNotApply",
@@ -2684,7 +2684,7 @@ function requiredRecordsForOutstandingReason(
         {
           recordName: "terminal_evidence_record",
           fields: ["generated_artifacts", "review_evidence", "green_commands"],
-          sourcePaths: ["docs/plans"],
+          sourcePaths: ["docs/process/modes/README.md"],
         },
       ];
   }
