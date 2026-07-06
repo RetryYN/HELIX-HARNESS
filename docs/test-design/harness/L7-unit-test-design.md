@@ -868,6 +868,20 @@ plan 別 supporting packet、route が直接表示されることを必須にす
 - U-L6COMP-004: `analyzeL6Completion` は、G6 audit 前で docs/plans/L7/G6 がまだ draft でも、L6 trace/substance input が complete なら `freezeInputReady=true` を報告する。
 - U-L6COMP-005: post-G6 `kind=add-design` PLAN draft は base L6 completion を再 open しない。add-feature completeness は backfill/pair/review evidence で扱う。
 
+### 2026-07-06 L6 追加設計 reverse reference 追補
+
+`l6-completion` の L7 reverse reference は、L6 設計 doc の filename が本テスト設計へ現れることを
+凍結入力とする。以下の追加 L6 設計は既存の L7 unit oracle へ接続し、各実装 PLAN の tests で
+詳細 oracle を保持する。
+
+| L6 doc | L7 oracle |
+|---|---|
+| `effort-observation.md` | U-EFF-001..009 |
+| `delegation-brief-substance.md` | U-BRIEF-001..005 |
+| `agent-context-efficiency.md` | U-CTX-001..004 |
+| `plan-descent-gate.md` | U-PDESC-001..010 |
+| `plan-entry-routing.md` | U-PROUTE-001..012 |
+
 ## PLAN-L7-68 Provider Dispatch 追補
 
 | U-ID | Target | Oracle |
