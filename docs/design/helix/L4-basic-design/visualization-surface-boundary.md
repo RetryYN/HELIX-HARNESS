@@ -3,7 +3,7 @@ layer: L4
 sub_doc: basic-design
 status: draft
 freeze_blocking: false
-pair_artifact: docs/test-design/helix/L3-pillar-acceptance-test-design.md
+pair_artifact: docs/test-design/helix/visualization-surface-boundary.md
 plan: docs/plans/PLAN-L4-52-visualization-surface-boundary.md
 ---
 
@@ -29,7 +29,7 @@ top-level を **2 root** に分割する（L3 §1 情報設計判断）。両 ro
 |------|---------------------|---------------|---------------|-------------------|
 | Project | Layer progress | Tree View（PLAN/gate/artifact 階層） | 集計 bar/detail | `progress.artifacts` / `progress.plans` / `progress.gates` |
 | Project | Design/test pair | Tree View（pair 有無階層） | orphan graph | `graph.*` ＋ `drilldowns.relation_graph_command` |
-| Project | Relation/dependency | — | Mermaid graph panel | `graph.nodes` / `graph.edges` / `graph.latest_snapshot_*` |
+| Project | Relation/dependency | —（Webview のみ） | Mermaid graph パネル | `graph.nodes` / `graph.edges` / `graph.latest_snapshot_*` |
 | Project | Runtime evidence | Tree View（evidence 種別階層） | evidence timeline/detail | `evidence.test_runs` / `evidence.runtime_verification` / `evidence.guardrail_decisions` |
 | Harness | Harness growth | Tree View（資産クラス別現在値） | 時系列 trend panel | `progress.*` 現在値 ＋ `graph.latest_snapshot_*`（L6 で時系列 field 新設） |
 | Harness | Skill/agent telemetry | Tree View（skill/model 一覧） | metrics table/trend | `evidence.skill_invocations` / `evidence.model_runs` |

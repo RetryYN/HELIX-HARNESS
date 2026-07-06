@@ -3,7 +3,7 @@ layer: L6
 sub_doc: function-spec
 status: draft
 freeze_blocking: false
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/helix/visualization-view-model.md
 plan: docs/plans/PLAN-L6-58-visualization-view-model.md
 ---
 

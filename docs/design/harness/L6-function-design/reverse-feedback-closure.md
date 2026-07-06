@@ -1,7 +1,7 @@
 ---
 layer: L6
 sub_doc: function-spec
-status: draft
+status: confirmed
 freeze_blocking: false
 pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 plan: docs/plans/PLAN-L6-59-reverse-feedback-closure.md
