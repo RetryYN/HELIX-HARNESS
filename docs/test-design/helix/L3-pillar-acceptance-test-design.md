@@ -144,12 +144,13 @@ PO 承認前は `draft` frontier として扱い、read-model first response を
 
 | HAT-ID | 対応 L3 | 対応 AC | 受入観測 | 機械検証候補 |
 |--------|---------|---------|----------|--------------|
-| HAT-VIS-01 | HR-FR-VIS-01 | HAC-VIS-01a/b | 5 view が Tree View / Webview panel に割り付き、各 view の正本 source が `VisualizationSnapshot` の実在 field を指し、LLM 生成を正本にしない | `tests/visualization-read-model.test.ts` / view-source マッピング検査 |
+| HAT-VIS-01 | HR-FR-VIS-01 | HAC-VIS-01a/b | 6 view（5 view + Harness growth）が Tree View / Webview panel に割り付き、各 view の正本 source が `VisualizationSnapshot` の実在 field を指し、LLM 生成を正本にしない | `tests/visualization-read-model.test.ts` / view-source マッピング検査 |
 | HAT-VIS-02 | HR-FR-VIS-02 | HAC-VIS-02a/b | graph/progress/evidence view の node/edge/metric 数が「その view の定義済み集計（全体 count または L6 契約で明示するフィルタ済み count）」と一致し、乖離は成功に混ぜず warning/error 化する | `tests/visualization-read-model.test.ts` / node-edge 一致 oracle |
 | HAT-VIS-03 | HR-FR-VIS-03 | HAC-VIS-03a/b | `runtime_verified` と `projection_only_unverified` / `missing_runtime_provenance` を分離表示し、projection-only を accepted へ昇格表示しない | `tests/visualization-read-model.test.ts` projection-only guard |
 | HAT-VIS-04 | HR-FR-VIS-04 | HAC-VIS-04a/b | 空 DB で全 view が 0 を表示し、`warnings` は全 view 共通の共有 banner として表示される（view 別 warning は要求しない。現行は `artifact_progress is empty` 1 件、拡張は L5/L6）。成功・mock を捏造しない | `tests/visualization-read-model.test.ts` / `tests/cli-surface.test.ts` cold start |
 | HAT-VIS-05 | HR-FR-VIS-05 | HAC-VIS-05a/b | view は read-only 描画 + CLI copy までで、command 実行/外部 API/config/branch-ruleset mutation は action-binding approval なしに実行しない。secret/transcript/絶対 path を state に持たない | approval-boundary tests / read-only surface 検査 |
 | HAT-VIS-06 | HR-FR-VIS-06 | HAC-VIS-06a/b | 各表示要素が `drilldowns` の CLI/table pointer で DB row / docs / CLI へ deterministic に戻れ、LLM 要約を drill-down 根拠にしない | drill-down 契約 tests / `drilldowns` pointer 検査 |
+| HAT-VIS-07 | HR-FR-VIS-07 | HAC-VIS-07a/b | Harness growth view の時系列各点が snapshot 履歴 / evidence timestamp から DB 再現でき、Layer progress と同一 surface で並置参照できる。履歴の無い期間は補間せず「記録なし」を明示する | 時系列再現 oracle / trend 描画検査（時系列 field は L6 契約で新設） |
 
 ## §2 trace 対応
 
@@ -181,7 +182,7 @@ confirmed 46 件の trace とは別枠。`visualization-requirements.md` の `HR
 
 | L1 | L3 | L12 | 備考 |
 |----|----|-----|------|
-| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 | visualization frontier（confirmed 46 件外）。孤児 0 |
+| HBR-P9 / HBR-P4 / HBR-P7 / HNFR-P3 / HNFR-AC / HNFR-P8（§2.8） | HR-FR-VIS-01 / HR-FR-VIS-02 / HR-FR-VIS-03 / HR-FR-VIS-04 / HR-FR-VIS-05 / HR-FR-VIS-06 / HR-FR-VIS-07 | HAT-VIS-01 / HAT-VIS-02 / HAT-VIS-03 / HAT-VIS-04 / HAT-VIS-05 / HAT-VIS-06 / HAT-VIS-07 | visualization frontier（confirmed 46 件外）。孤児 0 |
 
 ## §3 G-REQ.L3
 

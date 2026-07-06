@@ -23,6 +23,8 @@ export interface PairDoc {
   pairArtifact: string | null;
   /** frontmatter status (confirmed/draft/placeholder 等)。null = 欠落。検証発火の freeze 判定に使う。 */
   status: string | null;
+  /** false の doc は pair 整合だけを見て、既存 freeze を巻き戻さない frontier として扱う。 */
+  freezeBlocking?: boolean;
 }
 
 export type PairOrphanReason = "pair-missing" | "ref-unresolved" | "trace-orphan";
@@ -69,11 +71,13 @@ export function isDesignSubDoc(d: PairDoc): boolean {
 
 export function parsePairDoc(path: string, content: string): PairDoc {
   const raw = fmValue(content, "pair_artifact");
+  const freezeBlocking = stripInlineComment(fmValue(content, "freeze_blocking") ?? "true");
   return {
     path: toPosix(path),
     layer: fmValue(content, "layer") ?? null,
     pairArtifact: raw != null ? stripInlineComment(raw) : null,
     status: fmValue(content, "status") ?? null,
+    freezeBlocking: freezeBlocking !== "false",
   };
 }
 
@@ -345,7 +349,9 @@ export function analyzeVerificationGroups(
     const layerSet = new Set(g.layers);
     const groupDocs = docs.filter((d) => {
       const layer = designLayerFromPath(d.path);
-      return isDesignSubDoc(d) && layer != null && layerSet.has(layer);
+      return (
+        isDesignSubDoc(d) && (d.freezeBlocking ?? true) && layer != null && layerSet.has(layer)
+      );
     });
     let confirmed = 0;
     let draft = 0;

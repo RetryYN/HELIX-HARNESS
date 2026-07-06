@@ -77,7 +77,10 @@ export function analyzeLayerPairGate(
 ): LayerPairGateResult {
   const pair = analyzePairFreeze(docs);
   const layerDocs = docs.filter(
-    (doc) => isDesignSubDoc(doc) && designLayerFromPath(doc.path) === layer,
+    (doc) =>
+      isDesignSubDoc(doc) &&
+      (doc.freezeBlocking ?? true) &&
+      designLayerFromPath(doc.path) === layer,
   );
   const orphanPaths = pair.orphans
     .filter((orphan) => designLayerFromPath(orphan.path) === layer)

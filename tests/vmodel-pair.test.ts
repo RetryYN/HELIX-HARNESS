@@ -221,7 +221,9 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     expect(l3).toContain("confirmed_overlay_frontier_count=0");
     expect(l3).toContain("live_semantic_frontier_count=2");
     expect(l12).toContain("§0.1 amendment frontier oracle");
-    expect(l12).toContain("future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない");
+    expect(l12).toContain(
+      "future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない",
+    );
     expect(l12).toContain("G-SF oracle");
     const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
@@ -280,14 +282,41 @@ describe("vmodel pair-freeze lint (U-VPAIR)", () => {
     const hatRequirementIds = uniqueMatches(
       l12,
       /^\| HAT-(?!ID\b|O)[^|]+ \| (HR-(?:FR|NFR)-[^ |]+) \|/gm,
-    );
+    ).filter((id) => !id.startsWith("HR-FR-VIS-"));
     const l3AcIds = uniqueMatches(l3, /^\| (HAC-[^ |]+) \|/gm);
-    const hatAcIds = expandHacRefs(l12);
+    const hatAcIds = expandHacRefs(l12).filter((id) => !id.startsWith("HAC-VIS-"));
+    const visRequirementIds = uniqueMatches(l12, /^\| HAT-VIS-[^|]+ \| (HR-FR-VIS-[^ |]+) \|/gm);
+    const visAcIds = expandHacRefs(l12).filter((id) => id.startsWith("HAC-VIS-"));
 
     expect(l3RequirementIds).toHaveLength(46);
     expect(hatRequirementIds).toEqual(l3RequirementIds);
     expect(l3AcIds).toHaveLength(92);
     expect(hatAcIds).toEqual(l3AcIds);
+    expect(visRequirementIds).toEqual([
+      "HR-FR-VIS-01",
+      "HR-FR-VIS-02",
+      "HR-FR-VIS-03",
+      "HR-FR-VIS-04",
+      "HR-FR-VIS-05",
+      "HR-FR-VIS-06",
+      "HR-FR-VIS-07",
+    ]);
+    expect(visAcIds).toEqual([
+      "HAC-VIS-01a",
+      "HAC-VIS-01b",
+      "HAC-VIS-02a",
+      "HAC-VIS-02b",
+      "HAC-VIS-03a",
+      "HAC-VIS-03b",
+      "HAC-VIS-04a",
+      "HAC-VIS-04b",
+      "HAC-VIS-05a",
+      "HAC-VIS-05b",
+      "HAC-VIS-06a",
+      "HAC-VIS-06b",
+      "HAC-VIS-07a",
+      "HAC-VIS-07b",
+    ]);
   });
 
   it("U-VPAIR-005j: HELIX L3 route-B back-fill 要件も L12 acceptance に孤児なく接続", () => {
@@ -1601,6 +1630,24 @@ describe("verification trigger (U-VTRIG、層群 freeze の機械発火、IMP-06
       [],
     ).find((g) => g.id === "L0-L3");
     expect(withDraft?.frozen).toBe(false); // draft あり → Forward 進行中
+
+    const withFrontier = analyzeVerificationGroups(
+      [
+        doc("docs/design/harness/L1-requirements/a.md", "L1", "x", "confirmed"),
+        {
+          ...doc(
+            "docs/design/helix/L3-requirements/visualization-requirements.md",
+            "L3",
+            "x",
+            "draft",
+          ),
+          freezeBlocking: false,
+        },
+      ],
+      [],
+    ).find((g) => g.id === "L0-L3");
+    expect(withFrontier?.frozen).toBe(true);
+    expect(withFrontier?.total).toBe(1);
   });
 
   it("U-VTRIG-003: 層群に pair 孤児があれば freeze 未完了", () => {
